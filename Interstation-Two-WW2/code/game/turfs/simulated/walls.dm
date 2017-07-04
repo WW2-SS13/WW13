@@ -24,9 +24,13 @@ var/list/global/wall_cache = list()
 	var/list/wall_connections = list("0", "0", "0", "0")
 	var/ref_state = "generic"
 
+/turf/unsimulated/wall
+	name = ""
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rock"
 // replaces /turf/unsimulated/wall
 /turf/simulated/wall/rockwall
-	name = "wall"
+	name = ""
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 

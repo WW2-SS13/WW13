@@ -18,11 +18,11 @@ var/datum/reinforcements/reinforcements_master
 	var/russian_countdown_success_reset = 300
 	var/german_countdown_success_reset = 300
 
-	var/reinforcement_add_limit = 5
+	var/reinforcement_add_limit = 7
 
 	var/reinforcement_spawn_req = 3
 
-	var/reinforcement_difference_cutoff = 5 // once one side has this many more reinforcements than the other, lock it until that's untrue
+	var/reinforcement_difference_cutoff = 7 // once one side has this many more reinforcements than the other, lock it until that's untrue
 
 	var/reinforcements_granted[2] // keep track of how many troops we've given to germans, how many to russians, for autobalance
 

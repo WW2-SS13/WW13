@@ -19,6 +19,7 @@
 	opacity = 1
 	density = 1
 	blocks_air = 1
+
 /turf/simulated/shuttle/wall/cargo
 	name = "Cargo Transport Shuttle (A5)"
 	icon = 'icons/turf/shuttlecargo.dmi'
@@ -37,6 +38,7 @@
 	icon = 'icons/turf/shuttle.dmi'
 	anchored = 1
 	density = 1
+
 /obj/structure/shuttle_part/cargo
 	name = "Cargo Transport Shuttle (A5)"
 	icon = 'icons/turf/shuttlecargo.dmi'

@@ -14,7 +14,8 @@
 		var/base = (rand(2,3)) * severity
 		if (base >= 2)
 			m << "<span class = 'danger'>The gas burns your eyes!</span>"
-			m.emote("scream")
+			if (m.stat != DEAD)
+				m.emote("scream")
 			m.adjustFireLossByPart(base, "eyes")
 			m.Weaken(rand(2,3))
 			m.eye_blurry = max(m.eye_blurry+2, 0)
@@ -25,7 +26,8 @@
 		if (base >= 2)
 			m << "<span class = 'danger'>The gas burns your skin!</span>"
 			if (prob(50))
-				m.emote("scream")
+				if (m.stat != DEAD)
+					m.emote("scream")
 			m.adjustFireLoss(base)
 			if (prob(50))
 				m.Weaken(rand(4,5))
@@ -36,7 +38,8 @@
 		var/base = (rand(2,3)) * severity
 		if (base >= 2)
 			m << "<span class = 'danger'>The gas burns your lungs!</span>"
-			m.emote("scream")
+			if (m.stat != DEAD)
+				m.emote("scream")
 			m.adjustFireLossByPart(base, "chest")
 			if (prob(70))
 				m.Weaken(rand(3,4))
@@ -48,7 +51,8 @@
 		if (base >= 1)
 			m << "<span class = 'danger'>The gas burns the open wounds on your skin!</span>"
 			if (prob(50))
-				m.emote("scream")
+				if (m.stat != DEAD)
+					m.emote("scream")
 			m.adjustFireLoss(base)
 			if (prob(50))
 				m.Weaken(rand(4,5))

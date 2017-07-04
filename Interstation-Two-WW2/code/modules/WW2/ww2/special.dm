@@ -89,6 +89,7 @@ var/wlg_selected_border_tree = 0
 	wlg_selected_grass = 0
 	wlg_selected_bush = 0
 	wlg_selected_border_tree = 0
+
 	spawn(100)
 		for(var/turf/T in world)
 			if(T.z != 1)
@@ -103,7 +104,7 @@ var/wlg_selected_border_tree = 0
 
 			for(var/dir in cardinal)
 				var/turf/C = get_step(T, dir)
-				if(istype(C, /turf/unsimulated/wall))
+				if(istype(C, /turf/unsimulated/wall) || istype(C, /turf/simulated/wall/rockwall))
 					wlg_selected_border_tree++
 					new /obj/structure/wild/tree(T)
 					break
@@ -168,7 +169,7 @@ var/mission_announced = 0
 				mercy_period = 0
 				world << "<font size=4>The 10 minute mercy period has ended. Either side can now attack!</font>"
 
-	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] civilians.</font>"
+	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] S.S..</font>"
 	var/ru_fireteams = 0
 	var/en_fireteams = 0
 	for(var/datum/fireteam/ft in job_master.fireteams)
