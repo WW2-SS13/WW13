@@ -1,7 +1,6 @@
 // BEGIN_INTERNALS
 /*
-LAST_COMPILE_TIME: 1499108152
-DIR: code code\__defines code\_helpers code\_onclick code\_onclick\hud code\_onclick\hud\screen_objects code\controllers code\controllers\Processes code\datums code\datums\diseases code\datums\diseases\advance code\datums\diseases\advance\symptoms code\game maps 
+DIR: code code\__defines code\_helpers code\_onclick code\_onclick\hud code\_onclick\hud\screen_objects code\controllers code\controllers\Processes code\datums code\datums\diseases code\datums\diseases\advance code\datums\diseases\advance\symptoms code\game code\game\turfs code\game\turfs\flooring maps 
 PACKAGE_RSC_NAME: C:\Users\krisc\Desktop\My stuff\My Projects\Interstation-Two-WW2\Interstation-Two-WW2_rsc.zip
 AUTO_FILE_DIR: OFF
 PACKAGE_DMB_INFO: 
@@ -10,7 +9,7 @@ PACKAGE_DME_NAME: C:\Users\krisc\Desktop\My stuff\My Projects\Interstation-Two-W
 LAST_COMPILE_VERSION: 511.1385
 PACKAGE_TYPE: 0
 PACKAGE_DME_START: 
-WINDOW: maps\battlegroundforest_marco_v2.2.dmm
+WINDOW: maps\battlegroundforest_marco_v2.2.dmm;code\game\turfs\simulated\walls.dm;code\game\turfs\turf_changing.dm
 PACKAGE_DME_INFO: 
 FILE: maps\battlegroundforest_marco_v2.2.dmm
 PACKAGE_DMB_NAME: C:\Users\krisc\OneDrive\Documents\ss13-ww2-unincluded-resources\host files\Interstation-Two-WW2.zip
