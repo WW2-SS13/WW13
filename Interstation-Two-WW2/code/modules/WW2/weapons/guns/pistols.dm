@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/pistol/luger
 	name = "Luger P08"
-	desc = "German 9mm pistol, u can see some WW1 dirt on it. Or it's some old man's shit."
+	desc = "German 9mm pistol, commonly used by officers and special assignment units."
 	icon_state = "luger"
 	item_state = "luger"
 	w_class = 2
