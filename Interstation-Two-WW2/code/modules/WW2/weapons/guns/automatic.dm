@@ -118,7 +118,7 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 4
 	fire_sound = 'sound/weapons/m16.ogg'
-	accuracy = -8
+	accuracy = -6
 	caliber = "a762x25"
 	magazine_type = /obj/item/ammo_magazine/a556/m4
 	firemodes = list(

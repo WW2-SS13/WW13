@@ -18,6 +18,9 @@ var/datum/reinforcements/reinforcements_master
 	var/russian_countdown_success_reset = 300
 	var/german_countdown_success_reset = 300
 
+	var/german_reinforcements_at_once = 10
+	var/russian_reinforcements_at_once = 10
+
 	var/reinforcement_add_limit = 7
 
 	var/reinforcement_spawn_req = 3
@@ -34,6 +37,8 @@ var/datum/reinforcements/reinforcements_master
 
 /datum/reinforcements/New()
 	..()
+
+	reinforcement_add_limit = max(german_reinforcements_at_once, russian_reinforcements_at_once, 10)
 
 	if (config && config.debug)
 		russian_countdown = 10
@@ -215,7 +220,7 @@ var/datum/reinforcements/reinforcements_master
 			if (reinforcements_granted["GERMAN"] > config.max_german_reinforcements)
 				return 1
 		if ("RUSSIAN")
-			if (reinforcements_granted["RUSSIAN"] > config.max_german_reinforcements)
+			if (reinforcements_granted["RUSSIAN"] > config.max_russian_reinforcements)
 				return 1
 	return 0
 

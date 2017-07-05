@@ -4,7 +4,7 @@
 	name = "Baystation12"
 	desc = "This shouldn't be read"
 	icon = 'icons/_LOBBY.dmi'
-	icon_state = "title"
+	icon_state = "titlenew"
 	screen_loc = "WEST,SOUTH"
 
 /obj/effect/lobby_image/initialize()

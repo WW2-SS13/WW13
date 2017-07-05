@@ -6,7 +6,7 @@ var/list/gamemode_cache = list()
 
 	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
 
-	var/list/lobby_screens = list("title") // Which lobby screens are available
+	var/list/lobby_screens = list("titlenew") // Which lobby screens are available
 
 	var/log_ooc = 0						// log OOC channel
 	var/log_access = 0					// log login/logout
@@ -233,8 +233,11 @@ var/list/gamemode_cache = list()
 
 	var/machinery_does_not_use_power = 0
 	var/lighting_is_rustic = 0
-	var/max_german_reinforcements = 35
-	var/max_russian_reinforcements = 50
+	var/max_german_reinforcements = 45
+	var/max_russian_reinforcements = 60
+
+	var/german_reinforcements_at_once = 10
+	var/russian_reinforcements_at_once = 10
 
 
 /datum/configuration/New()
@@ -311,6 +314,12 @@ var/list/gamemode_cache = list()
 
 				if ("max_russian_reinforcements")
 					config.max_russian_reinforcements = text2num(value)
+
+				if ("german_reinforcements_at_once")
+					config.german_reinforcements_at_once = text2num(value)
+
+				if ("russian_reinforcements_at_once")
+					config.russian_reinforcements_at_once = text2num(value)
 
 				if ("resource_urls")
 					config.resource_urls = splittext(value, " ")

@@ -572,8 +572,9 @@ var/world_topic_spam_protect_time = world.timeofday
 */
 
 /world/proc/update_status()
-	var/s = "<center><b><a href = \"https://discord.gg/NgpWkc5\" target=\"_blank\">Ava's Battlegrounds: WW2 Edition</a></b></center>"
-	s += "<img src = 'https://kek.gg/i/5Mf4RH.png'></img>"
+	var/s = "<center><b><a href = \"https://discord.gg/PVqjqCv\" target=\"_blank\">No Man's Land: World War II</b></center><br>"
+	s += "Hosted by the <b>Old Bolsheviks</b></a>"
+	s += "<img src = 'https://kek.gg/i/4Y3NPs.png'></img>"
 	/* does this help? I do not know */
 	if (src.status != s)
 		src.status = s

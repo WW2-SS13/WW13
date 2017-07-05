@@ -1014,7 +1014,6 @@ window "mainwindow"
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Space Station 13"
 		is-maximized = true
-		icon = 'icons\\avathumbnail.png'
 		macro = "macro"
 		menu = "menu"
 	elem "hotkey_toggle"

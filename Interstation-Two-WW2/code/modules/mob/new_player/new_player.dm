@@ -160,9 +160,13 @@
 	if(href_list["re_german"])
 		if (!reinforcements_master.is_permalocked("GERMAN"))
 			reinforcements_master.add(src, "GERMAN")
+		else
+			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements!</span>"
 	if(href_list["re_russian"])
 		if (!reinforcements_master.is_permalocked("RUSSIAN"))
 			reinforcements_master.add(src, "RUSSIAN")
+		else
+			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements!</span>"
 	if(href_list["unre_german"])
 		reinforcements_master.remove(src, "GERMAN")
 	if(href_list["unre_russian"])
