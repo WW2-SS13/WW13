@@ -158,6 +158,35 @@
 
 	return 0
 
+// fixes grenades?
+/obj/item/projectile/proc/launch_fragment(atom/target)
+
+	var/turf/targloc = get_turf(target)
+
+	if (!istype(targloc))
+		qdel(src)
+		return 1
+
+	if(targloc == get_turf(src)) //Shooting something in the same turf
+		target.bullet_act(src, "chest")
+		on_impact(target)
+		qdel(src)
+		return 0
+
+	original = target
+	loc = get_turf(src)
+	starting = get_turf(src)
+	current = get_turf(src)
+	yo = targloc.y - y
+	xo = targloc.x - x
+
+	silenced = 0
+
+	spawn()
+		process()
+
+	return 0
+
 //called to launch a projectile from a gun
 /obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/weapon/gun/launcher, var/target_zone, var/x_offset=0, var/y_offset=0)
 	if(user == target) //Shooting yourself

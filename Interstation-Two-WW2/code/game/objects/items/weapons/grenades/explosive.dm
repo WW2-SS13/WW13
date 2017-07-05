@@ -50,7 +50,7 @@
 		P.range_step = damage_step
 		P.shot_from = src.name
 
-		P.launch(T)
+		P.launch_fragment(T)
 
 		//Make sure to hit any mobs in the source turf
 		for(var/mob/living/M in O)
