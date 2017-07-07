@@ -154,14 +154,14 @@ OTHER
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/a556
-	name = "magazine (5.56mm)"
+	name = "PPSh Drum Magazine"
 	icon_state = "ppshmag"
 	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "a762x25"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a762x25
-	max_ammo = 81
+	max_ammo = 71
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/a556/empty
