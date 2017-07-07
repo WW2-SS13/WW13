@@ -60,7 +60,7 @@
 
 /client/verb/adminwho()
 	set category = "Admin"
-	set name = "Adminwho"
+	set name = "Staff Who"
 
 	var/msg = ""
 	var/modmsg = ""

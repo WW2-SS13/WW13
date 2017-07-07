@@ -72,6 +72,8 @@ datum/preferences
 		//Some faction information.
 	var/religion = "None"               //Religious association.
 
+	var/be_jew = 0
+
  // TODO?
 /*
 // preferences refactor: 1 preference per faction: german/russian right now

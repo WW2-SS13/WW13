@@ -175,6 +175,9 @@
 				if (istype(user_area, /area/prishtina/soviet/bunker))
 					user << failure_msg
 					return
+				if (istype(user_area, /area/prishtina/soviet/bunker_entrance))
+					user << failure_msg
+					return
 				if (istype(user_area, /area/prishtina/houses))
 					user << failure_msg
 					return
@@ -409,14 +412,21 @@
 
 		var/area/t_area = get_area(t)
 
-		if (istype(t_area, /area/prishtina/void))
-			return 0
+		var/is_indoors = 0
+		var/artillery_deflection_bonus = 0
 
-		if (istype(t_area, /area/prishtina/soviet/bunker))
+		if (istype(t_area, /area/prishtina/void))
 			return 0
 
 		if (istype(t_area, /area/prishtina/admin))
 			return 0
+
+		if (istype(t_area, /area/prishtina/soviet/bunker))
+			is_indoors = 1
+			artillery_deflection_bonus = rand(40,50)
+
+		if (istype(t_area, /area/prishtina/soviet/bunker_entrance))
+			is_indoors = 1
 
 		var/power_mult = 1 //experimental. 2 is a bit high.
 
@@ -432,9 +442,9 @@
 
 		spawn (travel_time)
 
-			if (istrueflooring(t) || iswall(t) || istype(t.loc, /area/prishtina/soviet/bunker))
+			if (istrueflooring(t) || iswall(t) || is_indoors)
 				var/area/a = t.loc
-				if (prob(a.artillery_integrity))
+				if (prob(a.artillery_integrity + artillery_deflection_bonus))
 					for (var/mob/m in range(20, t))
 						shake_camera(m, 5, 5)
 						m << "<span class = 'danger'>You hear something violently smash into the ceiling!</span>"

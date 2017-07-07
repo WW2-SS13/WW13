@@ -13,8 +13,8 @@
 
 /obj/train_lever/attack_hand(var/mob/user as mob)
 	if (user && istype(user, /mob/living/carbon/human))
-		if (world.time - roundstart_time < 9000)
-			user << "<span class = 'danger'>15 minutes or more must elapse before you can leave!</span>"
+		if (world.time - roundstart_time < 6000)
+			user << "<span class = 'danger'>10 minutes or more must elapse before you can leave!</span>"
 			return
 		function(user)
 

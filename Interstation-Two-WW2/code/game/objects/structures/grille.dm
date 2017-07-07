@@ -11,9 +11,13 @@
 	var/health = 10 // 50 is waaaaaay to fucking high.
 	var/destroyed = 0
 
-
 /obj/structure/grille/ex_act(severity)
 	qdel(src)
+
+/obj/structure/grille/New()
+	..()
+	for (var/obj/structure/flora/f in get_turf(src))
+		qdel(f)
 
 /obj/structure/grille/update_icon()
 	if(destroyed)
@@ -217,7 +221,7 @@
 	health -= damage
 	spawn(1) healthcheck()
 	return 1
-	
+
 /obj/structure/grille/hitby(AM as mob|obj)
 	..()
 	visible_message("<span class='danger'>[src] was hit by [AM].</span>")

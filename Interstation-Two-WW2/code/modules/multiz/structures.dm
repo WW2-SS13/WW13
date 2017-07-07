@@ -4,16 +4,16 @@
 
 /hook/startup/proc/assign_ladder_ids()
 
-	var/top_ladders = 0
-	var/bottom_ladders = 0
+	var/list/top_ladders = list()
+	var/list/bottom_ladders = list()
 
 	for (var/obj/structure/multiz/ladder/ww2/ladder in world) // todo: remove
 		if (ladder.istop)
-			++top_ladders
-			ladder.ladder_id = "ww2-l-[ladder.area_id]-[top_ladders]"
+			++top_ladders[ladder.area_id]
+			ladder.ladder_id = "ww2-l-[ladder.area_id]-[top_ladders[ladder.area_id]]"
 		else
-			++bottom_ladders
-			ladder.ladder_id = "ww2-l-[ladder.area_id]-[bottom_ladders]"
+			++bottom_ladders[ladder.area_id]
+			ladder.ladder_id = "ww2-l-[ladder.area_id]-[bottom_ladders[ladder.area_id]]"
 
 	for (var/obj/structure/multiz/ladder/ww2/ladder in world)
 		ladder.target = ladder.find_target()
@@ -127,6 +127,9 @@
 	for (var/obj/structure/multiz/ladder/ww2/ladder in world) // todo: get rid of
 		if (ladder_id == ladder.ladder_id && ladder != src)
 			return ladder
+
+/obj/structure/multiz/ladder/ww2/ex_act(severity)
+	return
 
 /obj/structure/multiz/ladder/ww2/up
 	icon_state = "ladderup"

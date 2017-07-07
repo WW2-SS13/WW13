@@ -131,8 +131,8 @@
 		chance /= 100
 		if(prob(chance))
 			//visible_message("<span class='warning'>[P] hits \the [src]!</span>")
-			return 0
-	return 1
+			return 1
+	return 0
 
 
 /obj/structure/window/sandbag/set_dir(direction)
@@ -178,10 +178,9 @@
 	var/chance = base_chance + extra_chance
 
 	if(prob(chance))
-		visible_message("<span class='warning'>[P] hits \the [src]!</span>")
-		return 0
-	else
 		return 1
+	else
+		return 0
 
 // sandbag window overrides
 

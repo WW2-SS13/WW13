@@ -23,7 +23,7 @@
 	else
 		icon_state = "svt0"
 	return
-	
+
 /obj/item/weapon/gun/projectile/g41
 	name = "Gewehr 41"
 	desc = "Semi-Automatic Jew Hunter."
@@ -42,7 +42,7 @@
 		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, accuracy = list(0), dispersion = list(1))
 		)
 
-/obj/item/weapon/gun/projectile/svt/update_icon()
+/obj/item/weapon/gun/projectile/g41/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "" //to-do
