@@ -195,6 +195,13 @@
 
 	if(href_list["SelectedJob"])
 
+		for (var/datum/job/j in job_master.occupations)
+			if (j.title == href_list["SelectedJob"])
+				if (istype(j, /datum/job/german))
+					if (client.prefs.s_tone < -30)
+						usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
+						return
+
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return

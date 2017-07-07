@@ -10,7 +10,7 @@
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
-//	world << "new"
+
 	if (istype(get_area(new_loc), /area/prishtina/german))
 		world << "made a guy appear at the german spot"
 		s_tone = Clamp(s_tone, 0, 50)

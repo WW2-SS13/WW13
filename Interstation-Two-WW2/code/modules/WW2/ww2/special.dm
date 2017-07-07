@@ -48,7 +48,7 @@ var/train_checked = 0
 					return 1 // if the game has not started, nobody passes. For benefit of attacking commanders/defenders - prevents ramboing, allows setting up
 			else if (istype(pb, /obj/prishtina_block/defenders))
 				if (mercy_period)
-					return 1 // if the mercy period is active, nobdy passes. For the benefit of attackers, so they get time to set up.
+					return 1 // if the grace period is active, nobdy passes. For the benefit of attackers, so they get time to set up.
 	return 0
 
 /obj/prishtina_block
@@ -114,6 +114,7 @@ var/wlg_selected_border_tree = 0
 	wlg_selected_grass = 0
 	wlg_selected_bush = 0
 	wlg_selected_border_tree = 0
+	var/spawned_secret_ladder = 0
 
 	spawn(100)
 		for(var/turf/T in world)
@@ -121,6 +122,18 @@ var/wlg_selected_border_tree = 0
 				continue
 			if(!istype(T, /turf/simulated/floor/plating/grass))
 				continue
+
+			if (prob(1) && T.x > 171 && !spawned_secret_ladder)
+				spawned_secret_ladder = 1
+				var/obj/structure/multiz/ladder/ww2/ladder = new/obj/structure/multiz/ladder/ww2(T)
+				ladder.area_id = "sovsecret"
+				ladder.ladder_id = "ww2-l-sovsecret-1"
+				ladder.target = ladder.find_target()
+				message_admins("Secret entrance to the soviet bunker spawned at [T.x],[T.y],[T.z]")
+				for (var/obj/structure/wild/w in T)
+					qdel(w)
+				for (var/obj/structure/flora/f in T)
+					qdel(f)
 
 			wlg_total++
 			if(T.contents.len > 1)
@@ -134,36 +147,37 @@ var/wlg_selected_border_tree = 0
 					new /obj/structure/wild/tree(T)
 					break
 
-			var/rn = rand(1, 100)
-			switch(rn)
-				if(1 to 80)
-					wlg_selected_none++
-					continue
-				if(81 to 99)
-					wlg_selected_grass++
-					var/grass = pick(/obj/structure/flora/ausbushes/sparsegrass,
-									/obj/structure/flora/ausbushes/sparsegrass,
-									/obj/structure/flora/ausbushes/fullgrass,
-									/obj/structure/flora/ausbushes/lavendergrass)
-					new grass(T)
-				//if(97 to 99)
-				//	var/flowers = pick(/obj/structure/flora/ausbushes/ywflowers,
-				//					/obj/structure/flora/ausbushes/brflowers,
-				//					/obj/structure/flora/ausbushes/ppflowers)
-				//	new flowers(T)
-				else
-					wlg_selected_bush++
-					var/bushes = pick(/obj/structure/flora/ausbushes,
-									/obj/structure/flora/ausbushes/reedbush,
-									/obj/structure/flora/ausbushes/leafybush,
-									/obj/structure/flora/ausbushes/palebush,
-									/obj/structure/flora/ausbushes/stalkybush,
-									/obj/structure/flora/ausbushes/grassybush,
-									/obj/structure/flora/ausbushes/fernybush,
-									/obj/structure/flora/ausbushes/sunnybush,
-									/obj/structure/flora/ausbushes/genericbush,
-									/obj/structure/flora/ausbushes/pointybush)
-					new bushes(T)
+			if (!locate(/obj/structure) in T)
+				var/rn = rand(1, 100)
+				switch(rn)
+					if(1 to 80)
+						wlg_selected_none++
+						continue
+					if(81 to 99)
+						wlg_selected_grass++
+						var/grass = pick(/obj/structure/flora/ausbushes/sparsegrass,
+										/obj/structure/flora/ausbushes/sparsegrass,
+										/obj/structure/flora/ausbushes/fullgrass,
+										/obj/structure/flora/ausbushes/lavendergrass)
+						new grass(T)
+					//if(97 to 99)
+					//	var/flowers = pick(/obj/structure/flora/ausbushes/ywflowers,
+					//					/obj/structure/flora/ausbushes/brflowers,
+					//					/obj/structure/flora/ausbushes/ppflowers)
+					//	new flowers(T)
+					else
+						wlg_selected_bush++
+						var/bushes = pick(/obj/structure/flora/ausbushes,
+										/obj/structure/flora/ausbushes/reedbush,
+										/obj/structure/flora/ausbushes/leafybush,
+										/obj/structure/flora/ausbushes/palebush,
+										/obj/structure/flora/ausbushes/stalkybush,
+										/obj/structure/flora/ausbushes/grassybush,
+										/obj/structure/flora/ausbushes/fernybush,
+										/obj/structure/flora/ausbushes/sunnybush,
+										/obj/structure/flora/ausbushes/genericbush,
+										/obj/structure/flora/ausbushes/pointybush)
+						new bushes(T)
 	return 1
 
 var/mission_announced = 0
@@ -192,7 +206,7 @@ var/mission_announced = 0
 		spawn (10 MINUTES) // because byond minutes are a long fucking time, this should be long enough to build defenses. maybe. - Kachnov
 			if (mercy_period)
 				mercy_period = 0
-				world << "<font size=4>The 10 minute mercy period has ended. Either side can now attack!</font>"
+				world << "<font size=4>The 10 minute grace period has ended. Either side can now attack!</font>"
 
 	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] S.S..</font>"
 	var/ru_fireteams = 0

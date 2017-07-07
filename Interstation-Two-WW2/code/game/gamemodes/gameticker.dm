@@ -32,7 +32,7 @@ var/global/datum/controller/gameticker/ticker
 	var/can_latejoin_geforce = 1
 
 /datum/controller/gameticker/proc/pregame()
-	login_music = pick('sound/music/WW2/erika.ogg', 'sound/music/WW2/katyusha.ogg', 'sound/music/WW2/r1.ogg', 'sound/music/WW2/r2.ogg', 'sound/music/WW2/r3.ogg', 'sound/music/WW2/latvianss.ogg', 'sound/music/WW2/snakesintracksuits.ogg')
+	login_music = pick('sound/music/WW2/erika.ogg', 'sound/music/WW2/katyusha.ogg', 'sound/music/WW2/r1.ogg', 'sound/music/WW2/r2.ogg', 'sound/music/WW2/r3.ogg', 'sound/music/WW2/latvianss.ogg', 'sound/music/WW2/snakesintracksuits.ogg', 'sound/music/WW2/chooseyourpower.ogg', 'sound/music/WW2/derkommissar.ogg')
 
 	do
 		pregame_timeleft = 180

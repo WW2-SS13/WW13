@@ -25,6 +25,8 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	S["gender"]					>> pref.gender
 
+	S["be_jew"] >> pref.be_jew
+
 	// factional genders
 	S["german_gender"] >> pref.german_gender
 	S["russian_gender"] >> pref.russian_gender
@@ -48,6 +50,8 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	S["russian_name_is_always_random"]	<< pref.be_random_name_russian
 
 	S["gender"]					<< pref.gender
+
+	S["be_jew"] << pref.be_jew
 
 	// factional genders
 	S["german_gender"] << pref.german_gender
