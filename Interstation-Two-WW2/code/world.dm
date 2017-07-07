@@ -572,9 +572,15 @@ var/world_topic_spam_protect_time = world.timeofday
 */
 
 /world/proc/update_status()
-	var/s = "<center><b><a href = \"https://discord.gg/PVqjqCv\" target=\"_blank\">No Man's Land: World War II</b></center><br>"
-	s += "Hosted by the <b>Old Bolsheviks</b></a>"
-	s += "<img src = 'https://kek.gg/i/4Y3NPs.png'></img>"
+
+	// this can hold around 20 chars max I think, but keep it at 15 or so - Kachnov
+	var/list/memes = list("CM BTFO Edition")
+
+	var/s = ""
+	s += "<center><b><a href = \"https://discord.gg/PVqjqCv\" target=\"_blank\">No Man's Land: World War II</b></center><br>"
+	s += "Hosted by the <b>Old Bolsheviks</b></a><br>"
+	s += "<big><span style = \"color:red\"><b>[pick(memes)]</b></span></big><br>"
+	s += "<img src = 'http://tny.im/9Bm'>"
 	/* does this help? I do not know */
 	if (src.status != s)
 		src.status = s

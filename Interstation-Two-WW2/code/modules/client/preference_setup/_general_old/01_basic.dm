@@ -24,6 +24,11 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	S["russian_name_is_always_random"]	>> pref.be_random_name_russian
 
 	S["gender"]					>> pref.gender
+
+	// factional genders
+	S["german_gender"] >> pref.german_gender
+	S["russian_gender"] >> pref.russian_gender
+
 	S["body_build"]				>> pref.body_build
 	S["age"]					>> pref.age
 	S["spawnpoint"]				>> pref.spawnpoint
@@ -43,6 +48,11 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	S["russian_name_is_always_random"]	<< pref.be_random_name_russian
 
 	S["gender"]					<< pref.gender
+
+	// factional genders
+	S["german_gender"] << pref.german_gender
+	S["russian_gender"] << pref.russian_gender
+
 	S["body_build"]				<< pref.body_build
 	S["age"]					<< pref.age
 	S["spawnpoint"]				<< pref.spawnpoint
@@ -52,6 +62,8 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
 	pref.age			= sanitize_integer(pref.age, S.min_age, S.max_age, initial(pref.age))
 	pref.gender 		= sanitize_inlist(pref.gender, valid_player_genders, pick(valid_player_genders))
+	pref.german_gender 		= sanitize_inlist(pref.german_gender, valid_player_genders, pick(valid_player_genders))
+	pref.russian_gender 		= sanitize_inlist(pref.russian_gender, valid_player_genders, pick(valid_player_genders))
 	pref.body_build 	= sanitize_inlist(pref.body_build, list("Slim", "Default", "Fat"), "Default")
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.gender
 	pref.real_name		= sanitize_name(pref.real_name, pref.species)
@@ -64,11 +76,11 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	pref.german_name		= sanitize_name(pref.german_name, pref.species)
 
 	if(!pref.german_name)
-		pref.german_name	= random_german_name(pref.gender, pref.species)
+		pref.german_name	= random_german_name(pref.german_gender, pref.species)
 
 	pref.russian_name		= sanitize_name(pref.russian_name, pref.species)
 	if(!pref.russian_name)
-		pref.russian_name	= random_russian_name(pref.gender, pref.species)
+		pref.russian_name	= random_russian_name(pref.russian_gender, pref.species)
 
 	/*										*/
 
@@ -98,6 +110,9 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "<br>"
 	//gender
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
+	. += "<b>German Gender:</b> <a href='?src=\ref[src];gender_german=1'><b>[capitalize(lowertext(pref.german_gender))]</b></a><br>"
+	. += "<b>Russian Gender:</b> <a href='?src=\ref[src];gender_russian=1'><b>[capitalize(lowertext(pref.russian_gender))]</b></a><br>"
+
 	//. += "<b>Body Shape:</b> <a href='?src=\ref[src];body_build=1'><b>[pref.body_build]</b></a><br>" No. No no no no no no.
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
 	if(config.allow_Metadata)
@@ -138,7 +153,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 				return TOPIC_NOACTION
 
 	else if(href_list["random_name_german"])
-		pref.german_name = random_german_name(pref.gender, pref.species)
+		pref.german_name = random_german_name(pref.german_gender, pref.species)
 		return TOPIC_REFRESH
 
 	else if(href_list["always_random_name_german"])
@@ -158,7 +173,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 				return TOPIC_NOACTION
 
 	else if(href_list["random_name_russian"])
-		pref.russian_name = random_russian_name(pref.gender, pref.species)
+		pref.russian_name = random_russian_name(pref.russian_gender, pref.species)
 		return TOPIC_REFRESH
 
 	else if(href_list["always_random_name_russian"])
@@ -171,6 +186,18 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 			user << "<span class = 'danger'>Germans can't be females.</span>"
 			return
 		pref.gender = next_in_list(pref.gender, valid_player_genders)
+		return TOPIC_REFRESH
+
+	else if(href_list["gender_german"])
+		var/next_gender = next_in_list(pref.german_gender, valid_player_genders)
+		if (next_gender == FEMALE)
+			user << "<span class = 'danger'>Germans can't be females.</span>"
+			return
+		pref.german_gender = next_in_list(pref.german_gender, valid_player_genders)
+		return TOPIC_REFRESH
+
+	else if(href_list["gender_russian"])
+		pref.russian_gender = next_in_list(pref.russian_gender, valid_player_genders)
 		return TOPIC_REFRESH
 
 	else if(href_list["body_build"])

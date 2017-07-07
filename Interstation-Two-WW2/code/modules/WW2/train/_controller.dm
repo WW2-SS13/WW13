@@ -19,7 +19,7 @@
 	var/moving = 0 // are we moving?
 	var/halting = 0 // did the conductor stop us?
 //	var/finishing_halting = 0 // did we halt recently? don't play movement sounds
-	var/velocity = 3.0 // normally 2.0
+	var/velocity = 3.0 // previously 2.0
 	var/started_moving = 0  // calls train_start hook when set to 1 for the first time
 	var/list/last_played[2] // movement, halting sounds
 	var/playing = "" // ditto
@@ -235,8 +235,7 @@
 		callHook("train_move")
 
 /datum/train_controller/proc/getMoveInc()
-	return inc[direction] * 1 // ?
-
+	return inc[direction] * 1
 
 /datum/train_controller/proc/Process()
 	if (moving)
@@ -258,76 +257,6 @@
 			lever.icon_state = lever.none_state
 			lever.direction = "NONE"
 
-/*
-/datum/train_controller/proc/double_speed_process()
-	if (moving)
-		if (can_move_check())
-			for (var/mob/m in player_list)
-				if (!isobserver(m) && m.is_on_train() && m.get_train() == src && m.client)
-
-					var/default_yinc = 0
-
-					switch (direction)
-						if ("FORWARDS")
-							default_yinc = -1
-						if ("BACKWARDS")
-							default_yinc = 1
-
-					var/move_x = 0
-					var/move_y = 0
-
-					if (m.next_train_move && islist(m.next_train_move))
-						move_x = m.next_train_move["x"]
-						move_y = m.next_train_move["y"]
-
-					m.next_train_move = locate(m.x+move_x, m.y+move_y+default_yinc, m.z)
-
-					var/atom/movable/pulling = null
-					var/pulling_dir_from_m = 0
-
-					if (m.pulling && abs_dist(m.pulling, m) < 2)
-						pulling = m.pulling
-
-					if (pulling)
-						var/turf/N = get_step(m, NORTH)
-						var/turf/S = get_step(m, SOUTH)
-						var/turf/E = get_step(m, EAST)
-						var/turf/W = get_step(m, WEST)
-
-						if (N.contents.Find(m.pulling))
-							pulling_dir_from_m = NORTH
-
-						else if (S.contents.Find(m.pulling))
-							pulling_dir_from_m = SOUTH
-
-						else if (E.contents.Find(m.pulling))
-							pulling_dir_from_m = EAST
-
-						else if (W.contents.Find(m.pulling))
-							pulling_dir_from_m = WEST
-
-					m.dir = get_dir(m.loc, m.next_train_move)
-
-					if (m.dir == SOUTHEAST || m.dir == SOUTHWEST)
-						m.dir = SOUTH
-					if (m.dir == NORTHEAST || m.dir == NORTHWEST)
-						m.dir = NORTH
-
-					m.Move(m.next_train_move)
-
-					if (pulling && pulling_dir_from_m)
-						switch (pulling_dir_from_m)
-							if (NORTH)
-								pulling.Move(locate(m.x, m.y + 1, m.z))
-							if (SOUTH)
-								pulling.Move(locate(m.x, m.y - 1, m.z))
-							if (EAST)
-								pulling.Move(locate(m.x + 1, m.y, m.z))
-							if (WEST)
-								pulling.Move(locate(m.x - 1, m.y, m.z))
-
-					m.next_train_move = null
-*/
 /datum/train_controller/proc/move_connectors(var/reverse = 0)
 
 	if (!moving)
@@ -429,13 +358,13 @@
 			for (var/obj/train_car_center/tcc in train_car_centers)
 				if (!last_car || last_car == tcc)
 					for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
-						if (tpt.y + getMoveInc() - 1 <= limit_point.y) // since y decreases as we go down
-							return 0
+						if (tpt.y + getMoveInc() < limit_point.y) // since y decreases as we go down
+							return 0 // + getMoveInc() because getMoveInc() handles signs
 		if ("BACKWARDS")
 			for (var/obj/train_car_center/tcc in reverse_train_car_centers)
 				if (!first_car || first_car == tcc)
 					for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs)
-						if (tpt.y + getMoveInc() + 1 >= starting_point.y)
+						if (tpt.y + getMoveInc() > starting_point.y)
 							return 0
 	return 1
 

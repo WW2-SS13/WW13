@@ -3,6 +3,31 @@ var/mercy_period = 1
 var/game_started = 0
 var/train_checked = 0
 
+/proc/WW2_soldiers_alive()
+	var/en = 0
+	var/ru = 0
+
+	for(var/mob/living/carbon/human/H in human_mob_list)
+		var/datum/job/job = H.original_job
+		if(!job)
+			usr << "\red [H] has no job!"
+			continue
+
+		if(H.stat != DEAD)
+			switch(job.department_flag)
+				if(GEFORCE)
+					en++
+				if(RUFORCE)
+					ru++
+				if (CIVILIAN)
+					en++ // S.S.
+	return list("en" = en, "ru" = ru)
+
+/proc/WW2_soldiers_en_ru_ratio()
+	var/list/soldiers = WW2_soldiers_alive()
+	return soldiers["en"]/soldiers["ru"] // we need decimals here so no rounding
+
+
 /proc/WW2_train_check()
 	if (locate(/obj/effect/landmark/train/german_train_start) in world || train_checked)
 		train_checked = 1

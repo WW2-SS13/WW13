@@ -122,6 +122,7 @@
 /datum/job/german/squad_leader/update_character(var/mob/living/carbon/human/H)
 	H.add_language("German")
 	H.default_language = all_languages["German"]
+
 	if(prob(10))
 		H.add_language("Russian")
 		H << "<b>You know the Russian language!</b>"

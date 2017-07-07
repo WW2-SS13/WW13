@@ -275,8 +275,6 @@ var/global/list/additional_antag_types = list()
 
 
 
-
-
 	return 0
 
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.

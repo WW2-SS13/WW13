@@ -31,6 +31,8 @@ datum/preferences
 	var/be_random_name_german = 0
 	var/be_random_name_russian = 0
 	var/gender = MALE					//gender of character (well duh)
+	var/german_gender = MALE
+	var/russian_gender = MALE
 	var/body_build = "Default"			//character body build name
 	var/age = 30						//age of character
 	var/spawnpoint = "Cryogenic Storage"//where this character will spawn (0-2).
@@ -45,9 +47,19 @@ datum/preferences
 	var/g_facial = 0					//Face hair color
 	var/b_facial = 0					//Face hair color
 	var/s_tone = 0						//Skin tone
+
 	var/r_skin = 0						//Skin color
 	var/g_skin = 0						//Skin color
 	var/b_skin = 0						//Skin color
+
+	var/german_r_skin = 0						//Skin color
+	var/german_g_skin = 0						//Skin color
+	var/german_b_skin = 0						//Skin color
+
+	var/russian_r_skin = 0						//Skin color
+	var/russian_g_skin = 0						//Skin color
+	var/russian_b_skin = 0						//Skin color
+
 	var/r_eyes = 0						//Eye color
 	var/g_eyes = 0						//Eye color
 	var/b_eyes = 0						//Eye color
@@ -60,6 +72,69 @@ datum/preferences
 		//Some faction information.
 	var/religion = "None"               //Religious association.
 
+ // TODO?
+/*
+// preferences refactor: 1 preference per faction: german/russian right now
+	var/real_name_german						//our character's name
+	var/be_random_name_german = 0				//whether we are a random name every round
+	var/gender_german = MALE					//gender of character (well duh)
+	var/body_build_german = "Default"			//character body build name
+	var/age_german = 30						//age of character
+	var/spawnpoint_german = "Cryogenic Storage"//where this character will spawn (0-2).
+	var/b_type_german = "A+"					//blood type (not-chooseable)
+	var/backbag_german = 2						//backpack type
+	var/h_style_german = "Bald"				//Hair type
+	var/r_hair_german = 0						//Hair color
+	var/g_hair_german = 0						//Hair color
+	var/b_hair_german = 0						//Hair color
+	var/f_style_german = "Shaved"				//Face hair type
+	var/r_facial_german = 0					//Face hair color
+	var/g_facial_german = 0					//Face hair color
+	var/b_facial_german = 0					//Face hair color
+	var/s_tone_german = 0						//Skin tone
+	var/r_skin_german = 0						//Skin color
+	var/g_skin_german = 0						//Skin color
+	var/b_skin_german = 0						//Skin color
+	var/r_eyes_german = 0						//Eye color
+	var/g_eyes_german = 0						//Eye color
+	var/b_eyes_german = 0						//Eye color
+	var/species_german = "Human"               //Species datum to use.
+	var/species_preview_german                 //Used for the species selection window.
+	var/list/alternate_languages_german = list() //Secondary language(s)
+	var/list/language_prefixes_german = list() //Kanguage prefix keys
+	var/list/gear_german						//Custom/fluff item loadout.
+	var/religion_german = "None"               //Religious association.
+
+	var/real_name_russian						//our character's name
+	var/be_random_name_russian = 0				//whether we are a random name every round
+	var/gender_russian = MALE					//gender of character (well duh)
+	var/body_build_russian = "Default"			//character body build name
+	var/age_russian = 30						//age of character
+	var/spawnpoint_russian = "Cryogenic Storage"//where this character will spawn (0-2).
+	var/b_type_russian = "A+"					//blood type (not-chooseable)
+	var/backbag_russian = 2						//backpack type
+	var/h_style_russian = "Bald"				//Hair type
+	var/r_hair_russian = 0						//Hair color
+	var/g_hair_russian = 0						//Hair color
+	var/b_hair_russian = 0						//Hair color
+	var/f_style_russian = "Shaved"				//Face hair type
+	var/r_facial_russian = 0					//Face hair color
+	var/g_facial_russian = 0					//Face hair color
+	var/b_facial_russian = 0					//Face hair color
+	var/s_tone_russian = 0						//Skin tone
+	var/r_skin_russian = 0						//Skin color
+	var/g_skin_russian = 0						//Skin color
+	var/b_skin_russian = 0						//Skin color
+	var/r_eyes_russian = 0						//Eye color
+	var/g_eyes_russian = 0						//Eye color
+	var/b_eyes_russian = 0						//Eye color
+	var/species_russian = "Human"               //Species datum to use.
+	var/species_preview_russian                 //Used for the species selection window.
+	var/list/alternate_languages_russian = list() //Secondary language(s)
+	var/list/language_prefixes_russian = list() //Kanguage prefix keys
+	var/list/gear_russian						//Custom/fluff item loadout.
+	var/religion_russian = "None"               //Religious association.
+*/
 		//Mob preview
 	var/icon/preview_icon = null
 	var/icon/preview_icon_front = null
@@ -115,9 +190,10 @@ datum/preferences
 /datum/preferences/New(client/C)
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)
+	german_gender = pick(MALE, FEMALE)
+	russian_gender = pick(MALE, FEMALE)
 	real_name = random_name(gender,species)
-	german_name = random_german_name(gender,species)
-	russian_name = random_russian_name(gender,species)
+
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
 	gear = list()
@@ -255,6 +331,63 @@ datum/preferences
 
 	character.religion = religion
 
+/*
+	// german
+	character.gender_german = gender_german
+	character.age_german = age_german
+	character.b_type_german = b_type_german
+
+	character.r_eyes_german = r_eyes_german
+	character.g_eyes_german = g_eyes_german
+	character.b_eyes_german = b_eyes_german
+
+	character.r_hair_german = r_hair_german
+	character.g_hair_german = g_hair_german
+	character.b_hair_german = b_hair_german
+
+	character.r_facial_german = r_facial_german
+	character.g_facial_german = g_facial_german
+	character.b_facial_german = b_facial_german
+
+	character.r_skin_german = r_skin_german
+	character.g_skin_german = g_skin_german
+	character.b_skin_german = b_skin_german
+
+	character.s_tone_german = s_tone_german
+
+	character.h_style_german = h_style_german
+	character.f_style_german = f_style_german
+
+	character.religion_german = religion_german
+
+	// russian
+	character.gender_russian = gender_russian
+	character.age_russian = age_russian
+	character.b_type_russian = b_type_russian
+
+	character.r_eyes_russian = r_eyes_russian
+	character.g_eyes_russian = g_eyes_russian
+	character.b_eyes_russian = b_eyes_russian
+
+	character.r_hair_russian = r_hair_russian
+	character.g_hair_russian = g_hair_russian
+	character.b_hair_russian = b_hair_russian
+
+	character.r_facial_russian = r_facial_russian
+	character.g_facial_russian = g_facial_russian
+	character.b_facial_russian = b_facial_russian
+
+	character.r_skin_russian = r_skin_russian
+	character.g_skin_russian = g_skin_russian
+	character.b_skin_russian = b_skin_russian
+
+	character.s_tone_russian = s_tone_russian
+
+	character.h_style_russian = h_style_russian
+	character.f_style_russian = f_style_russian
+
+	character.religion_russian = religion_russian
+*/
 	// Destroy/cyborgize organs
 
 	for(var/name in organ_data)

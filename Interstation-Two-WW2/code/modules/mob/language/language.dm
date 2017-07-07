@@ -192,7 +192,8 @@
 						H.real_name = H.species.get_random_german_name(H.gender)
 					else
 						H.real_name = H.client.prefs.german_name
-					H.name = H.real_name
+					H.name = H.client.prefs.real_name
+					H.gender = H.client.prefs.german_gender
 
 		else if (istype(new_language, /datum/language/russian))
 			if (ishuman(src))
@@ -203,6 +204,7 @@
 					else
 						H.real_name = H.client.prefs.russian_name
 					H.name = H.real_name
+					H.gender = H.client.prefs.russian_gender
 
 	if(!istype(new_language) || (new_language in languages))
 		return 0

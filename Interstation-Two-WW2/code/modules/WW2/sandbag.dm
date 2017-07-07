@@ -1,7 +1,9 @@
 // this now inherits from window as its an easy way to give it the same
 // multidirectional collision behavior
 
-#define SANDBAG_BLOCK_ITEMS_CHANCE 90
+#define SANDBAG_BLOCK_ITEMS_CHANCE 70
+
+/mob/living/carbon/human/var/crouching = 0
 
 /obj/structure/window/sandbag
 	name = "sandbag"
@@ -15,6 +17,28 @@
 		if (do_after(user, rand(70,80), src))
 			visible_message("<span class='danger'>[user] finishes dismantling the sandbag wall.</span>", "<span class='danger'>You finish dismantling the sandbag wall.</span>")
 			qdel(src)
+
+/obj/structure/window/sandbag/verb/crouch()
+	set category = "Sandbag"
+	set src in oview(1, usr)
+	if (ishuman(usr))
+		var/mob/living/carbon/human/H = usr
+		if (istype(src, /obj/structure/window/sandbag/incomplete))
+			H << "<span class = 'warning'>Crouching under this one won't do you any good.</span>"
+			return
+		H.crouching = !H.crouching
+		if (locate(src) in get_step(H, H.dir))
+			// shitcode inbound - Kachnov
+			if (H.crouching)
+				H.pixel_y -= 16
+				H.layer = MOB_LAYER - 0.06
+				H << "<span class = 'warning'>You squat behind the sandbag wall.</span>"
+			else
+				H.pixel_y += 16
+				H.layer = initial(H.layer)
+				H << "<span class = 'warning'>You stop squatting behind the sandbag wall.</span>"
+	else
+		usr << "<span class = 'warning'>You can't do that.</span>"
 
 /obj/structure/window/sandbag/ex_act(severity)
 	switch(severity)
@@ -94,7 +118,7 @@
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return 1
 	if (get_turf(P.original) == cover)
-		var/chance = 20
+		var/chance = SANDBAG_BLOCK_ITEMS_CHANCE
 		if (ismob(P.original))
 			var/mob/M = P.original
 			if (M.lying)
@@ -138,7 +162,21 @@
 
 	return 1
 			*/
-	var/chance = 70 - (P.penetrating * 3)
+
+	var/base_chance = SANDBAG_BLOCK_ITEMS_CHANCE - (P.penetrating * 3)
+	var/extra_chance = 0
+
+	if (ismob(P.original))
+		var/mob/m = P.original
+		if (m.lying)
+			extra_chance += 30
+		if (ishuman(m))
+			var/mob/living/carbon/human/H = m
+			if (H.crouching && !H.lying)
+				extra_chance += 20
+
+	var/chance = base_chance + extra_chance
+
 	if(prob(chance))
 		visible_message("<span class='warning'>[P] hits \the [src]!</span>")
 		return 0
@@ -248,7 +286,7 @@
 					if (dir != EAST)
 						return 1
 
-			if (prob(bullet_pass_chance(mover)))
+			if (check_cover(mover, mover.last_throw_source))
 				visible_message("<span class = 'warning'>[mover] hits the sandbag!</span>")
 				return 0
 			else

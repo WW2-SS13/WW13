@@ -197,6 +197,11 @@
 			mob.dir = direct
 			return
 
+	if (ishuman(mob))
+		var/mob/living/carbon/human/H = mob
+		if (H.crouching)
+			return
+
 	if(isobserver(mob))
 		var/turf/t = get_step(mob, direct)
 		if (!t)

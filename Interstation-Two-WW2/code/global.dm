@@ -41,8 +41,8 @@ var/changelog_hash      = ""
 var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
 var/round_progressing = 1
-var/master_mode       = "extended" // "extended"
-var/secret_force_mode = "secret"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
+var/master_mode       = "ww2" // "extended"
+var/secret_force_mode = "ww2"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
 
 var/host = null //only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
 

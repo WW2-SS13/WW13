@@ -24,7 +24,8 @@
 		trigger_full()
 	if(job.type == can_set_name)
 		name_set = 1
-		var/new_name = input(H, "Enter new squad name. Leave empty to use default.", "Name", "") as text
+	//	var/new_name = input(H, "Enter new squad name. Leave empty to use default.", "Name", "") as text
+		var/new_name = "Alpha" // fix to SLs spawning in the wrong spot and meme names - Kachnov
 		new_name = sanitizeName(new_name)
 		if(new_name && new_name != code)
 			name = new_name

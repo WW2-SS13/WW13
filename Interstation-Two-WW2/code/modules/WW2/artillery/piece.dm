@@ -182,10 +182,25 @@
 				if (state == "OPEN")
 					user << "<span class='danger'>Close the shell loading slot first.</span>"
 					return
+
 				var/target_x = offset_x + x
 				var/target_y = offset_y + y
 
-				if (!global.valid_coordinates.Find("[target_x],[target_y]"))
+				var/valid_coords_check = 0
+
+				if (global.valid_coordinates.Find("[target_x],[target_y]"))
+					valid_coords_check = 1
+				else
+					for (var/coords in global.valid_coordinates)
+						var/splitcoords = splittext(coords, ",")
+						var/coordx = text2num(splitcoords[1])
+						var/coordy = text2num(splitcoords[2])
+						if (abs(coordx - target_x) <= 15)
+							if (abs(coordy - target_y) <= 15)
+								valid_coords_check = 1
+
+
+				if (!valid_coords_check)
 					user << "<span class='danger'>You have no knowledge of this location.</span>"
 					return
 				if (abs(offset_x) > 0 || abs(offset_y) > 0)
@@ -417,13 +432,13 @@
 
 		spawn (travel_time)
 
-			if (istrueflooring(t) || iswall(t))
+			if (istrueflooring(t) || iswall(t) || istype(t.loc, /area/prishtina/soviet/bunker))
 				var/area/a = t.loc
 				if (prob(a.artillery_integrity))
 					for (var/mob/m in range(20, t))
 						shake_camera(m, 5, 5)
 						m << "<span class = 'danger'>You hear something violently smash into the ceiling!</span>"
-					a.artillery_integrity -= rand(7,14)
+					a.artillery_integrity -= rand(25,30)
 					return
 				else
 					t.visible_message("<span class = 'danger'>The ceiling collapses!</span>")

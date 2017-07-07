@@ -2,16 +2,8 @@
 #define TOPIC_NOACTION 0
 #define TOPIC_HANDLED 1
 #define TOPIC_REFRESH 2
-/*
-/datum/category_group/player_setup_category/general_preferences_german
-	name = "German Character"
-	sort_order = 1
-	category_item_type = /datum/category_item/player_setup_item/general
 
-/datum/category_group/player_setup_category/general_preferences_russian
-	name = "Russian Character"
-	sort_order = 2
-	category_item_type = /datum/category_item/player_setup_item/general*/
+
 /datum/category_group/player_setup_category/general_preferences
 	name = "Character Setup"
 	sort_order = 2
