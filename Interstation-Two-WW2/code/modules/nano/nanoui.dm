@@ -4,6 +4,8 @@ nanoui class (or whatever Byond calls classes)
 nanoui is used to open and update nano browser uis
 **********************************************************/
 
+#define LAYOUT_KEY_DEFAULT "default"
+#define STATE_KEY_DEFAULT "default"
 
 /datum/nanoui
 	// the user who opened this ui
