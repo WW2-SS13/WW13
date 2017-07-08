@@ -40,8 +40,10 @@
 
 
 /world/New()
+	daynight_setting = "DAY"
+
 	. = ..()
-/*
+
 	if (prob(60))
 		daynight_setting = "DAY"
 		for (var/area/prishtina/p in world) // make indoor areas have full light
@@ -52,14 +54,14 @@
 		for (var/area/prishtina/p in world) // make all areas use lighting
 			if (istype(p) && !istype(p, /area/prishtina/train)) // not trains
 				p.dynamic_lighting = 1
-*/
+
 	create_all_lighting_corners()
 	create_all_lighting_overlays()
-/*
+
 	if (daynight_setting == "NIGHT")
 		for (var/obj/machinery/light/l in world)
 			l.brightness_power = 1
 			l.brightness_range = round(l.brightness_range*1.33) // 7 to 9
 			l.update_icon()
 
-*/
+

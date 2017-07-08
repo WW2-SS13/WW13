@@ -94,37 +94,15 @@ var/train_checked = 0
 		icon_state = null
 		layer = -1000
 
-var/daynight_setting = "DAY"
 
 /hook/roundstart/proc/game_start()
 	roundstart_time = world.time
-/*
-	spawn (30)
-		if (prob(60))
-			daynight_setting = "DAY"
-			for (var/area/prishtina/p in world) // make indoor areas have full light
-				if (istype(p) && !istype(p, /area/prishtina/void) && !istype(p, /area/prishtina/soviet/bunker) && !istype(p, /area/prishtina/soviet/bunker_entrance))
-					p.dynamic_lighting = 0
-		else
-			daynight_setting = "NIGHT"
-			for (var/area/prishtina/p in world) // make all areas use lighting
-				if (istype(p) && !istype(p, /area/prishtina/train)) // not trains
-					p.dynamic_lighting = 1
 
-		create_all_lighting_corners()
-		create_all_lighting_overlays()
+	if (daynight_setting == "NIGHT")
+		world << "<font size=3><span class = 'notice'>It's nighttime.</span></font>"
+	else
+		world << "<font size=3><span class = 'notice'>It's daytime.</span></font>"
 
-		if (daynight_setting == "NIGHT")
-			for (var/obj/machinery/light/l in world)
-				l.brightness_power = 1
-				l.brightness_range = round(l.brightness_range*1.33) // 7 to 9
-				l.update_icon()
-
-		if (daynight_setting == "NIGHT")
-			world << "<font size=3><span class = 'notice'>It's nighttime.</span></font>"
-		else
-			world << "<font size=3><span class = 'notice'>It's daytime.</span></font>"
-*/
 	return 1
 
 var/wlg_total = 0

@@ -19,6 +19,21 @@
 	name = "\improper Houses"
 	icon_state = "houses"
 
+/area/prishtina/houses/one
+/area/prishtina/houses/two
+/area/prishtina/houses/three
+/area/prishtina/houses/four
+/area/prishtina/houses/five
+/area/prishtina/houses/six
+/area/prishtina/houses/seven
+/area/prishtina/houses/eight
+/area/prishtina/houses/nine
+/area/prishtina/houses/ten
+/area/prishtina/houses/eleven
+/area/prishtina/houses/twelve
+/area/prishtina/houses/thirteen
+/area/prishtina/houses/fourteen
+
 /area/prishtina/west_village
 	name = "\improper Village"
 	icon_state = "houses"

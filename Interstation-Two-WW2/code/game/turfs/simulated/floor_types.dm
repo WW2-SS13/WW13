@@ -455,6 +455,19 @@
 	..()
 	icon_state = "road_[icon_mode][rand(1, 3)]"
 
+/turf/simulated/floor/plating/cobblestone
+	name = "road"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "cobble_horizontal"
+	interior = 0
+
+
+/turf/simulated/floor/plating/cobblestone/vertical
+	name = "road"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "cobble_verticle"
+	interior = 0
+
 turf/simulated/air
 	icon_state = "air"
 	name = "air"
