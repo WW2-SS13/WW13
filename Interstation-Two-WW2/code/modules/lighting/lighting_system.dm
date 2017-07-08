@@ -44,7 +44,7 @@
 
 	. = ..()
 
-	if (prob(60))
+	if (prob(50))
 		daynight_setting = "DAY"
 		for (var/area/prishtina/p in world) // make indoor areas have full light
 			if (istype(p) && !istype(p, /area/prishtina/void) && !istype(p, /area/prishtina/soviet/bunker) && !istype(p, /area/prishtina/soviet/bunker_entrance))
