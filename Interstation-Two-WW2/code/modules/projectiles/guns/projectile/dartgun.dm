@@ -6,7 +6,7 @@
 	embed = 1 //the dart is shot fast enough to pierce space suits, so I guess splintering inside the target can be a thing. Should be rare due to low damage.
 	var/reagent_amount = 15
 	kill_count = 15 //shorter range
-	
+
 	muzzle_type = null
 
 /obj/item/projectile/bullet/chemdart/New()
@@ -104,6 +104,9 @@
 					user << "\blue [R.volume] units of [R.name]"
 
 /obj/item/weapon/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
+	if (..()) // handle attachments
+		return 1
+
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(!istype(I, container_type))
 			user << "\blue [I] doesn't seem to fit into [src]."

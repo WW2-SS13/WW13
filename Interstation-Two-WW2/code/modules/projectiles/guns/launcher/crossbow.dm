@@ -134,6 +134,9 @@
 
 
 /obj/item/weapon/gun/launcher/crossbow/attackby(obj/item/W as obj, mob/user as mob)
+	if (..()) // handle attachments
+		return 1
+
 	if(!bolt)
 		if (istype(W,/obj/item/weapon/arrow))
 			user.drop_from_inventory(W, src)

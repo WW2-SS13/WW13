@@ -2,7 +2,7 @@
 	name = "Luger P08"
 	desc = "German 9mm pistol, commonly used by officers and special assignment units."
 	icon_state = "luger"
-	item_state = "luger"
+	item_state = "gun"
 	w_class = 2
 	caliber = "a9mm_para"
 	silenced = 0
@@ -23,12 +23,24 @@
 	name = "Flare Gun"
 	desc = "A gun which shoots flares, giving orders designated by an officer."
 	icon_state = "flare"
-	item_state = "flare"
+	item_state = "gun"
 	caliber = "flare"
+	var/last_fired = -1
 
 /obj/item/weapon/gun/projectile/pistol/luger/flaregun/New()
 	..()
 	ammo_magazine = new/obj/item/ammo_magazine/flare/red // prevents us from starting with a shitty generic mag
+
+/obj/item/weapon/gun/projectile/pistol/luger/flaregun/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
+
+	if (last_fired != -1)
+		if (world.time - last_fired < 150)
+			user << "<span class = 'warning'>You can't fire again so soon!</span>"
+			return
+
+	last_fired = world.time
+
+	..(target, user, clickparams, pointblank, reflex)
 
 //called after successfully firing
 /obj/item/weapon/gun/projectile/pistol/luger/flaregun/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)

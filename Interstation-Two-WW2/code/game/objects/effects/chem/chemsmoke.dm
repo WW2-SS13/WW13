@@ -42,11 +42,12 @@
 
 	//switching opacity on after the smoke has spawned, and then turning it off before it is deleted results in cleaner
 	//lighting and view range updates (Is this still true with the new lighting system?)
-	opacity = 1
+
 
 	if (istype(src, /obj/effect/effect/smoke/chem/payload/zyklon_b))
-
 		opacity = 0
+	else
+		opacity = 1
 
 	//float over to our destination, if we have one
 	destination = dest_turf

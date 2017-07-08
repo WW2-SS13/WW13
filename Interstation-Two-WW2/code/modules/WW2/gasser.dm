@@ -7,25 +7,32 @@
 /obj/gasser/proc/function()
 
 	var/list/chemsmokes = list()
+	var/list/target_turfs = list()
+	var/area/target_area = locate(/area/prishtina/void/german/ss_train/gas_chamber/gas_room)
 
-	for (var/v in 1 to 5)
-		spawn ((v*1) - 1)
-			var/obj/effect/effect/smoke/chem/smoke = new/obj/effect/effect/smoke/chem/payload/zyklon_b(get_turf(src), _spread = 1)
+	for (var/turf/t in target_area.contents)
+		if (istype(t))
+			target_turfs += t
+
+	for (var/v in 1 to rand(2,3))
+		spawn ((v*2) - 2)
+			var/obj/effect/effect/smoke/chem/smoke = new/obj/effect/effect/smoke/chem/payload/zyklon_b(get_turf(src), _spread = 2, _destination = get_step(get_step(src, EAST), EAST))
 			chemsmokes += smoke
-	// shitty solution since I can't get the chems to spread on to people - Kachnov
 
-	spawn (5)
-		for (var/s in 1 to chemsmokes.len)
-			var/obj/effect/effect/smoke/chem/smoke = chemsmokes[s]
-			for (var/v in 1 to 20)
-				spawn (v * 10)
-					if (istype(get_area(smoke), /area/prishtina/void/german/ss_train/gas_chamber/gas_room))
-						for(var/datum/reagent/R in smoke.reagents.reagent_list)
-							for (var/mob/m in get_turf(smoke))
-								R.touch_mob(m, 20)
-					else
-						qdel(smoke) // we're too far away now anyway
-
+	// make the smoke randomly move around
+	for (var/v in 1 to 10)
+		spawn (v * 20)
+			for (var/obj/effect/effect/smoke/chem/smoke in chemsmokes)
+				walk_to(smoke, pick(target_turfs),0,rand(2,3),0)
+/*
+	// now make it splash people since apparently the middle of the room is a safe zone
+	for (var/v in 1 to 200)
+		spawn (v)
+			for (var/obj/effect/effect/smoke/chem/smoke in chemsmokes)
+				var/mob/m = locate() in get_turf(smoke)
+				if (m)
+					smoke.reagents.splash(m, 1, copy = 1)
+*/
 
 /obj/gas_lever // same icon as the train lever for now
 	anchored = 1.0

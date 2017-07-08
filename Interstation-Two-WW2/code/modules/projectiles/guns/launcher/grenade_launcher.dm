@@ -71,6 +71,9 @@
 	pump(user)
 
 /obj/item/weapon/gun/launcher/grenade/attackby(obj/item/I, mob/user)
+	if (..()) // handle attachments
+		return 1
+
 	if((istype(I, /obj/item/weapon/grenade)))
 		load(I, user)
 	else

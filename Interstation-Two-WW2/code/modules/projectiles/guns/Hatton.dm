@@ -51,6 +51,9 @@
 
 
 /obj/item/weapon/hatton/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if (..()) // handle attachments
+		return 1
+
 	if(istype(W,/obj/item/weapon/hatton_magazine))
 		if(!magazine)
 			user.drop_item()

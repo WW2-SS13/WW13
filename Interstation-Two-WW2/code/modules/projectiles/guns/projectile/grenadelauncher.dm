@@ -22,6 +22,9 @@
 		return
 
 /obj/item/weapon/gun/projectile/rocket/attackby(obj/item/I as obj, mob/user as mob)
+	if (..()) // handle attachments
+		return 1
+
 	if(istype(I, /obj/item/ammo_casing/rocket))
 		load_ammo(I, user)
 	else
@@ -45,6 +48,9 @@
 	must_wield = 1
 
 /obj/item/weapon/gun/projectile/rocket/one_use/attackby(obj/item/I as obj, mob/user as mob)
+	if (..()) // handle attachments
+		return 1
+
 	return
 
 /obj/item/weapon/gun/projectile/rocket/one_use/attack_self(mob/user as mob)
@@ -172,6 +178,9 @@
 	return
 
 /obj/item/weapon/gun/projectile/grenade/attackby(obj/item/I, mob/user)
+	if (..()) // handle attachments
+		return 1
+
 	if(istype(I, /obj/item/ammo_casing/grenade))
 		if(opened)
 			load_ammo(I, user)

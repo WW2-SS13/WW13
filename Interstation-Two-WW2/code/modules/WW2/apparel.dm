@@ -11,6 +11,24 @@
 	icon_state = "geruni"
 	item_state = "geruni"
 	worn_state = "geruni"
+	var/rolled = 0
+
+/obj/item/clothing/under/geruni/verb/roll_sleeves()
+	set category = null
+	set src in usr
+	if (rolled)
+		item_state = "geruni"
+		worn_state = "geruni"
+		item_state_slots["slot_w_uniform"] = "geruni"
+		usr << "<span class = 'danger'>You roll down your uniform's sleeves.</span>"
+		rolled = 0
+	else if (!rolled)
+		item_state = "gerunirolledup"
+		worn_state = "gerunirolledup"
+		item_state_slots["slot_w_uniform"] = "gerunirolledup"
+		usr << "<span class = 'danger'>You roll up your uniform's sleeves.</span>"
+		rolled = 1
+	update_clothing_icon()
 
 /obj/item/clothing/under/falluni
 	name = "Fallschirmjager uniform"
@@ -37,9 +55,9 @@
 /obj/item/clothing/under/ssuni
 	name = "SS uniform"
 	desc = "Camo uniform for ShutzStaffel soldiers. Sturdy, comfy, and makes you less visible in autumn. They gave you this too early by the way."
-	icon_state = "ssuni"
-	item_state = "ssuni"
-	worn_state = "ssuni"
+	icon_state = "newssuni"
+	item_state = "newssuni"
+	worn_state = "newssuni"
 
 /obj/item/clothing/head/helmet/tactical/gerhelm
 	name = "German helmet"

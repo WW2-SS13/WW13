@@ -99,8 +99,10 @@
 
 
 	Move()
+		global.valid_coordinates["[x],[y]"] = 0
 		..()
 		other.loc = (get_step(src, src.dir) || loc)
+		global.valid_coordinates["[x],[y]"] = 1
 
 
 /obj/machinery/artillery/base/New()
@@ -423,7 +425,7 @@
 
 		if (istype(t_area, /area/prishtina/soviet/bunker))
 			is_indoors = 1
-			artillery_deflection_bonus = rand(40,50)
+			artillery_deflection_bonus = 55 // experimental
 
 		if (istype(t_area, /area/prishtina/soviet/bunker_entrance))
 			is_indoors = 1
@@ -444,11 +446,12 @@
 
 			if (istrueflooring(t) || iswall(t) || is_indoors)
 				var/area/a = t.loc
-				if (prob(a.artillery_integrity + artillery_deflection_bonus))
+				if (prob(a.artillery_integrity))
 					for (var/mob/m in range(20, t))
 						shake_camera(m, 5, 5)
 						m << "<span class = 'danger'>You hear something violently smash into the ceiling!</span>"
-					a.artillery_integrity -= rand(25,30)
+					if (prob(100 - artillery_deflection_bonus))
+						a.artillery_integrity -= rand(25,30)
 					return
 				else
 					t.visible_message("<span class = 'danger'>The ceiling collapses!</span>")

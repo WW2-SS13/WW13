@@ -64,6 +64,9 @@
 		return ..()
 
 /obj/item/weapon/gun/launcher/pneumatic/attackby(obj/item/W as obj, mob/user as mob)
+	if (..()) // handle attachments
+		return 1
+
 	if(!tank && istype(W,/obj/item/weapon/tank))
 		user.drop_from_inventory(W, src)
 		tank = W

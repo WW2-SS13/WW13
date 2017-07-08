@@ -15,7 +15,7 @@
 	uid = ++global_uid
 	all_areas += src
 
-	if(!requires_power)
+	if(!requires_power || config.machinery_does_not_use_power)
 		power_light = 0
 		power_equip = 0
 		power_environ = 0

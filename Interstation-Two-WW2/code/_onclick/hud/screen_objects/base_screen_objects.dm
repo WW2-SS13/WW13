@@ -1,3 +1,5 @@
+#define MINIMAL_HUD
+
  /*
 	Screen objects
 	Todo: improve/re-implement

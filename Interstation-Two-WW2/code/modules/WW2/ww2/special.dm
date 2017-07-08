@@ -94,9 +94,37 @@ var/train_checked = 0
 		icon_state = null
 		layer = -1000
 
+var/daynight_setting = "DAY"
+
 /hook/roundstart/proc/game_start()
 	roundstart_time = world.time
-	world << "<font size=3>Don't forget to change the weather.</font>"
+/*
+	spawn (30)
+		if (prob(60))
+			daynight_setting = "DAY"
+			for (var/area/prishtina/p in world) // make indoor areas have full light
+				if (istype(p) && !istype(p, /area/prishtina/void) && !istype(p, /area/prishtina/soviet/bunker) && !istype(p, /area/prishtina/soviet/bunker_entrance))
+					p.dynamic_lighting = 0
+		else
+			daynight_setting = "NIGHT"
+			for (var/area/prishtina/p in world) // make all areas use lighting
+				if (istype(p) && !istype(p, /area/prishtina/train)) // not trains
+					p.dynamic_lighting = 1
+
+		create_all_lighting_corners()
+		create_all_lighting_overlays()
+
+		if (daynight_setting == "NIGHT")
+			for (var/obj/machinery/light/l in world)
+				l.brightness_power = 1
+				l.brightness_range = round(l.brightness_range*1.33) // 7 to 9
+				l.update_icon()
+
+		if (daynight_setting == "NIGHT")
+			world << "<font size=3><span class = 'notice'>It's nighttime.</span></font>"
+		else
+			world << "<font size=3><span class = 'notice'>It's daytime.</span></font>"
+*/
 	return 1
 
 var/wlg_total = 0
@@ -114,70 +142,79 @@ var/wlg_selected_border_tree = 0
 	wlg_selected_grass = 0
 	wlg_selected_bush = 0
 	wlg_selected_border_tree = 0
+
 	var/spawned_secret_ladder = 0
 
-	spawn(100)
-		for(var/turf/T in world)
-			if(T.z != 1)
-				continue
-			if(!istype(T, /turf/simulated/floor/plating/grass))
-				continue
+	if (!config.debug) // this fun piece of code causes way too much startup lag
 
-			if (prob(1) && T.x > 171 && !spawned_secret_ladder)
+		spawn(100)
+
+			if (prob(50))
 				spawned_secret_ladder = 1
-				var/obj/structure/multiz/ladder/ww2/ladder = new/obj/structure/multiz/ladder/ww2(T)
-				ladder.area_id = "sovsecret"
-				ladder.ladder_id = "ww2-l-sovsecret-1"
-				ladder.target = ladder.find_target()
-				message_admins("Secret entrance to the soviet bunker spawned at [T.x],[T.y],[T.z]")
-				for (var/obj/structure/wild/w in T)
-					qdel(w)
-				for (var/obj/structure/flora/f in T)
-					qdel(f)
+				message_admins("There is no secret entrance to the soviet bunker this round!")
 
-			wlg_total++
-			if(T.contents.len > 1)
-				wlg_rejected++
-				continue
+			for(var/turf/T in world)
+				if(T.z != 1)
+					continue
+				if(!istype(T, /turf/simulated/floor/plating/grass))
+					continue
 
-			for(var/dir in cardinal)
-				var/turf/C = get_step(T, dir)
-				if(istype(C, /turf/unsimulated/wall) || istype(C, /turf/simulated/wall/rockwall))
-					wlg_selected_border_tree++
-					new /obj/structure/wild/tree(T)
-					break
+				if (prob(1) && T.x > 171 && !spawned_secret_ladder)
+					spawned_secret_ladder = 1
+					var/obj/structure/multiz/ladder/ww2/ladder = new/obj/structure/multiz/ladder/ww2(T)
+					ladder.area_id = "sovsecret"
+					ladder.ladder_id = "ww2-l-sovsecret-1"
+					ladder.target = ladder.find_target()
+					ladder.target.target = ladder
+					message_admins("Secret entrance to the soviet bunker spawned at [T.x],[T.y],[T.z]")
+					for (var/obj/structure/wild/w in T)
+						qdel(w)
+					for (var/obj/structure/flora/f in T)
+						qdel(f)
 
-			if (!locate(/obj/structure) in T)
-				var/rn = rand(1, 100)
-				switch(rn)
-					if(1 to 80)
-						wlg_selected_none++
-						continue
-					if(81 to 99)
-						wlg_selected_grass++
-						var/grass = pick(/obj/structure/flora/ausbushes/sparsegrass,
-										/obj/structure/flora/ausbushes/sparsegrass,
-										/obj/structure/flora/ausbushes/fullgrass,
-										/obj/structure/flora/ausbushes/lavendergrass)
-						new grass(T)
-					//if(97 to 99)
-					//	var/flowers = pick(/obj/structure/flora/ausbushes/ywflowers,
-					//					/obj/structure/flora/ausbushes/brflowers,
-					//					/obj/structure/flora/ausbushes/ppflowers)
-					//	new flowers(T)
-					else
-						wlg_selected_bush++
-						var/bushes = pick(/obj/structure/flora/ausbushes,
-										/obj/structure/flora/ausbushes/reedbush,
-										/obj/structure/flora/ausbushes/leafybush,
-										/obj/structure/flora/ausbushes/palebush,
-										/obj/structure/flora/ausbushes/stalkybush,
-										/obj/structure/flora/ausbushes/grassybush,
-										/obj/structure/flora/ausbushes/fernybush,
-										/obj/structure/flora/ausbushes/sunnybush,
-										/obj/structure/flora/ausbushes/genericbush,
-										/obj/structure/flora/ausbushes/pointybush)
-						new bushes(T)
+				wlg_total++
+				if(T.contents.len > 1)
+					wlg_rejected++
+					continue
+
+				for(var/dir in cardinal)
+					var/turf/C = get_step(T, dir)
+					if(istype(C, /turf/unsimulated/wall) || istype(C, /turf/simulated/wall/rockwall))
+						wlg_selected_border_tree++
+						new /obj/structure/wild/tree(T)
+						break
+
+				if (!locate(/obj/structure) in T)
+					var/rn = rand(1, 100)
+					switch(rn)
+						if(1 to 80)
+							wlg_selected_none++
+							continue
+						if(81 to 99)
+							wlg_selected_grass++
+							var/grass = pick(/obj/structure/flora/ausbushes/sparsegrass,
+											/obj/structure/flora/ausbushes/sparsegrass,
+											/obj/structure/flora/ausbushes/fullgrass,
+											/obj/structure/flora/ausbushes/lavendergrass)
+							new grass(T)
+						//if(97 to 99)
+						//	var/flowers = pick(/obj/structure/flora/ausbushes/ywflowers,
+						//					/obj/structure/flora/ausbushes/brflowers,
+						//					/obj/structure/flora/ausbushes/ppflowers)
+						//	new flowers(T)
+						else
+							wlg_selected_bush++
+							var/bushes = pick(/obj/structure/flora/ausbushes,
+											/obj/structure/flora/ausbushes/reedbush,
+											/obj/structure/flora/ausbushes/leafybush,
+											/obj/structure/flora/ausbushes/palebush,
+											/obj/structure/flora/ausbushes/stalkybush,
+											/obj/structure/flora/ausbushes/grassybush,
+											/obj/structure/flora/ausbushes/fernybush,
+											/obj/structure/flora/ausbushes/sunnybush,
+											/obj/structure/flora/ausbushes/genericbush,
+											/obj/structure/flora/ausbushes/pointybush)
+							new bushes(T)
 	return 1
 
 var/mission_announced = 0

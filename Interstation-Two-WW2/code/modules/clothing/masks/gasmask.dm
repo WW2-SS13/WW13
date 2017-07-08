@@ -24,7 +24,7 @@
 /obj/item/clothing/mask/gas/german
 	icon_state = "gas_ww2"
 	item_state = "gas_ww2"
-	filtered_gases = list("xylyl_bromide", "mustard_gas", "white_phosphorus_gas", "chlorine_gas")
+	filtered_gases = list("xylyl_bromide", "mustard_gas", "white_phosphorus_gas", "chlorine_gas", "zyklon_b")
 
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)

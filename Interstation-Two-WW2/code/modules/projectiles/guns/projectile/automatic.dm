@@ -148,6 +148,9 @@
 	launcher = new(src)
 
 /obj/item/weapon/gun/projectile/automatic/z8/attackby(obj/item/I, mob/user)
+	if (..()) // handle attachments
+		return 1
+
 	if((istype(I, /obj/item/weapon/grenade)))
 		launcher.load(I, user)
 	else
