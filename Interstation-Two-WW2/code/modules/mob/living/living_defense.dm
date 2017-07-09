@@ -297,7 +297,7 @@ var/obj/human_fire_overlay_lying = null
 		generic_living_fire_overlay.icon = 'icons/mob/OnFire.dmi'
 		generic_living_fire_overlay.icon_state = "Generic_mob_burning"
 
-	apply_damage(fire_stacks, BURN, "chest", 0) // because fire does 0.2 damage per tick
+	apply_damage(ceil(fire_stacks/3), BURN, "chest", 0) // because fire does 0.2 damage per tick
 
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src

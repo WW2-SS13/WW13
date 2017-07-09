@@ -423,7 +423,7 @@ var/first_fallschirm = 1
 	if(!H)	return 0
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/falluni(H), slot_w_uniform)
-	//H.equip_to_slot_or_del(new /obj/item/clothing/suit/fallsparka(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/fallsparka(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 	if(first_fallschirm)
