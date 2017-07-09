@@ -181,6 +181,7 @@
 	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
 		if(A.Adjacent(src) || (W && (istype(W, /obj/item/weapon/flamethrower/flammenwerfer) || istype(W, /obj/item/weapon/sandbag))) && A.rangedAdjacent(src)) // see adjacent.dm
 
+			dir = get_dir(src, A)
 
 			if (W && istype(W, /obj/item/weapon/flamethrower/flammenwerfer) && A.rangedAdjacent(src))
 				if (src.get_active_hand() != W)

@@ -214,6 +214,14 @@ var/datum/reinforcements/reinforcements_master
 		locked["RUSSIAN"] = 0
 		locked["GERMAN"] = 0
 
+	if (is_permalocked("GERMAN"))
+
+		world << "<font size = 3>The German Side is all out of reinforcements.</font>"
+
+	if (is_permalocked("RUSSIAN"))
+
+		world << "<font size = 3>The Russian Side is all out of reinforcements.</font>"
+
 /datum/reinforcements/proc/is_permalocked(side)
 	switch (side)
 		if ("GERMAN")

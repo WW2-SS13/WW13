@@ -19,6 +19,7 @@
 		else if (reinforcements_master.is_permalocked("GERMAN"))
 			if (reinforcements_master.is_permalocked("RUSSIAN"))
 				time_both_sides_locked = world.realtime
+				world << "<font size = 3>The game will end in 15 minutes.</font>"
 
 /datum/game_mode/ww2/declare_completion()
 	var/list/soldiers = WW2_soldiers_alive()

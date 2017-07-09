@@ -20,7 +20,7 @@ var/command_name = null
 /proc/new_station_name()
 
 	if (1 || 1 == 1)
-		var/x = "Avas Battlegrounds: WW2" //note: neither &#39; nor " ' " work here!
+		var/x = "No Mans Land: WW2 Edition" //note: neither &#39; nor " ' " work here!
 
 		if (config && config.server_name)
 			world.name = "[config.server_name]"

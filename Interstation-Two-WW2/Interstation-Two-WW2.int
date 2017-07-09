@@ -1,19 +1,19 @@
 // BEGIN_INTERNALS
 /*
-LAST_COMPILE_TIME: 1499544718
+LAST_COMPILE_TIME: 1499571846
+DIR: code code\__defines code\_helpers code\_onclick code\_onclick\hud code\_onclick\hud\screen_objects code\ATMOSPHERICS code\controllers code\controllers\Processes code\datums code\datums\diseases code\datums\diseases\advance code\datums\WW2 code\Fire code\game code\game\area code\game\area\prishtina code\game\gamemodes code\game\gamemodes\WW2 code\game\objects code\game\objects\items code\game\objects\items\weapons code\game\objects\items\weapons\flamethrower code\modules code\modules\lighting code\modules\mob code\modules\mob\language code\modules\mob\living code\modules\mob\living\carbon code\modules\mob\living\carbon\alien code\modules\nano code\modules\WW2 code\modules\WW2\jobs code\modules\WW2\sandbags code\modules\WW2\ww2 icons icons\obj interface sound sound\weapons 
 PACKAGE_RSC_NAME: C:\Users\krisc\Desktop\My stuff\My Projects\Interstation-Two-WW2\Interstation-Two-WW2_rsc.zip
-DIR: code code\__defines code\_helpers code\_onclick code\_onclick\hud code\_onclick\hud\screen_objects code\ATMOSPHERICS code\controllers code\controllers\Processes code\datums code\datums\diseases code\datums\diseases\advance code\Fire code\game code\game\area code\game\area\prishtina code\game\turfs code\game\turfs\simulated code\modules code\modules\lighting code\modules\mob code\modules\mob\living code\modules\mob\living\carbon code\modules\mob\living\carbon\metroid code\modules\modular_computers code\modules\modular_computers\file_system code\modules\modular_computers\file_system\programs code\modules\nano code\modules\projectiles code\modules\projectiles\guns code\modules\projectiles\guns\energy code\modules\projectiles\projectile code\modules\wireless code\modules\WW2 code\modules\WW2\ww2 config icons icons\mob icons\mob\screen icons\obj icons\turf interface maps nano nano\css 
 AUTO_FILE_DIR: OFF
 PACKAGE_DMB_INFO: 
 MAP_ICON_TYPE: 0
 PACKAGE_DME_NAME: C:\Users\krisc\Desktop\My stuff\My Projects\Interstation-Two-WW2\Interstation-Two-WW2_src.zip
 LAST_COMPILE_VERSION: 511.1385
-PACKAGE_DME_START: 
 PACKAGE_TYPE: 0
-WINDOW: code\modules\nano\nanoui.dm;code\modules\WW2\ww2\special.dm;code\modules\lighting\lighting_system.dm;code\world.dm;interface\skin.dmf
+PACKAGE_DME_START: 
+WINDOW: code\modules\nano\nanoui.dm;code\modules\WW2\ww2\special.dm;code\modules\lighting\lighting_system.dm;code\world.dm;interface\skin.dmf;code\game\gamemodes\WW2\ww2.dm;code\_helpers\names.dm;code\datums\WW2\reinforcements.dm;code\game\area\prishtina\_new_huge_map.dm;code\modules\WW2\sandbags\cover.dm;code\modules\mob\language\language.dm;code\modules\mob\language\earth.dm;code\modules\mob\living\carbon\alien\alien.dm;code\game\objects\items\weapons\flamethrower\werfer.dm;code\game\objects\items\weapons\flamethrower\base.dm;code\_onclick\click.dm;code\modules\mob\living\damage_procs.dm;code\modules\mob\living\living.dm;code\modules\mob\living\life.dm;code\modules\mob\living\living_defense.dm
 PACKAGE_DME_INFO: 
-FILE: code\world.dm
-PACKAGE_DME_DEMO: 
+FILE: code\modules\mob\living\living_defense.dm
 PACKAGE_DMB_NAME: C:\Users\krisc\OneDrive\Documents\GitHub\WW13-host-files\Interstation-Two-WW2.zip
+PACKAGE_DME_DEMO: 
 */
 // END_INTERNALS

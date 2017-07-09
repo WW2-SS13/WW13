@@ -52,7 +52,7 @@
 	else
 		daynight_setting = "NIGHT"
 		for (var/area/prishtina/p in world) // make all areas use lighting
-			if (istype(p) && !istype(p, /area/prishtina/train)) // not trains
+			if (istype(p) && !istype(p, /area/prishtina/train) && !istype(p, /area/prishtina/german/train_zone)) // not trains
 				p.dynamic_lighting = 1
 
 	create_all_lighting_corners()

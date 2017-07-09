@@ -67,14 +67,14 @@
 		#endif
 	if (istype(proj, /obj/item/projectile/bullet/rifle/a762x54)) // mosin
 		#ifdef BULLETDEBUG
-		world << "mosin [proj] deflection chance: 55%"
+		world << "mosin [proj] deflection chance: 65%"
 		#endif
-		return base - 40
+		return base - 30
 	if (istype(proj, /obj/item/projectile/bullet/rifle/a792x57)) // kar
 		#ifdef BULLETDEBUG
-		world << "kar [proj] deflection chance: 55%"
+		world << "kar [proj] deflection chance: 65%"
 		#endif
-		return base - 40
+		return base - 30
 	else
 		#ifdef BULLETDEBUG
 		world << "other [proj] deflection chance: 65%"
