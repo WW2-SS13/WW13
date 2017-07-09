@@ -79,16 +79,24 @@
 				usr.put_in_l_hand(src)*/
 
 		if (istype(over_object, /obj/screen/inventory/hand))
-			var/obj/screen/inventory/hand/H = over_object
-			switch(H.slot_id)
-				if(slot_r_hand)
-					usr.u_equip(src)
-					usr.put_in_r_hand(src)
-				if(slot_l_hand)
-					usr.u_equip(src)
-					usr.put_in_l_hand(src)
-
-
+			if( !usr.get_active_hand() )
+				var/obj/screen/inventory/hand/H = over_object
+				switch(H.slot_id)
+					if(slot_r_hand)
+						if(!usr.r_hand)
+							usr.u_equip(src)
+							usr.put_in_r_hand(src)
+						else
+							usr << "<span class='notice'>Your right hand is already holding the [usr.r_hand].</span>"
+					if(slot_l_hand)
+						if(!usr.l_hand)
+							usr.u_equip(src)
+							usr.put_in_l_hand(src)
+						else
+							usr << "<span class='notice'>Your left hand is already holding the [usr.l_hand].</span>"
+			else
+				usr << "<span class='notice'>Your hand is too busy to grab the [src].</span>"
+				
 		src.add_fingerprint(usr)
 
 
