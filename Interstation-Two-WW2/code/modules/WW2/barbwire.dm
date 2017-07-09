@@ -38,7 +38,6 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if (prob (33))
-				M << "\red <B>You got slightly cut by \the [src]!</B>"
 				playsound(src.loc, 'sound/effects/glass_step.ogg', 50, 1)
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
@@ -48,8 +47,9 @@
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
 					H.Weaken(3)
+				M << "\red <B>Your [affecting.name] gets slightly cut by \the [src]!</B>"
+				return ..()
 			if (prob (33))
-				M << "\red <B>You got cut by \the [src]!</B>"
 				playsound(src.loc, 'sound/effects/glass_step.ogg', 50, 1)
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
@@ -59,8 +59,9 @@
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
 					H.Weaken(5)
+				M << "\red <B>Your [affecting.name] gets cut by \the [src]!</B>"
+				return ..()
 			if (prob (33))
-				M << "\red <B>You got strongly cut by \the [src]!</B>"
 				playsound(src.loc, 'sound/effects/glass_step.ogg', 50, 1)
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
@@ -70,17 +71,48 @@
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
 					H.Weaken(7)
+				M << "\red <B>Your [affecting.name] gets deeply cut by \the [src]!</B>"
+				return ..()
 	..()
 
 /obj/structure/barbwire/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/material/knife))
+	if(istype(W, /obj/item/weapon/wirecutters))
 		if(anchored)
-			user.visible_message("\blue \The [user] starts to cut through \the [src].")
-			if(!do_after(user,80))
-				user.visible_message("\blue \The [user] decides not to cut through \the [src].")
+			user.visible_message("\blue \The [user] starts to cut through \the [src] with [W].")
+			if(!do_after(user,60))
+				user.visible_message("\blue \The [user] decides not to cut through the \the [src].")
 				return
-			user.visible_message("\blue \The [user] finishes cutting throguh \the [src]!")
+			user.visible_message("\blue \The [user] finishes cutting through \the [src]!")
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 			qdel(src)
 			return
-
+			
+	else if(istype(W, /obj/item/weapon/material/knife))
+		if(anchored)
+			user.visible_message("\blue \The [user] starts to cut through \the [src] with [W].")
+			if(!do_after(user,80))
+				user.visible_message("\blue \The [user] decides not to cut through \the [src].")
+				return
+			if(prob(40))
+				user.visible_message("\blue \The [user] finishes cutting through \the [src]!")
+				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				qdel(src)
+				return
+			else
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					var/obj/item/organ/external/affecting = null
+					if (istype(H.l_hand, /obj/item/weapon/material/knife))
+						affecting = H.get_organ("l_hand")
+					else
+						affecting = H.get_organ("r_hand")
+						
+					user << "\red <B>Your hand slips, causing \the [src] to cut your [affecting.name] open!</B>"
+					playsound(src.loc, 'sound/effects/glass_step.ogg', 50, 1)
+					if(affecting.status & ORGAN_ROBOT)
+						return
+					if(affecting.take_damage(10, 0))
+						H.UpdateDamageIcon()
+					H.updatehealth()
+					if(!(H.species && (H.species.flags)))
+						H.Weaken(2)
