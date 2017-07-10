@@ -1,3 +1,5 @@
+// 2017-07-06: Defeated the curtain man meme (they were unanchored) -- Irra
+
 #define SHOWER_OPEN_LAYER OBJ_LAYER + 0.4
 #define SHOWER_CLOSED_LAYER MOB_LAYER + 0.2
 
@@ -6,6 +8,7 @@
 	icon = 'icons/obj/curtain.dmi'
 	icon_state = "closed"
 	layer = SHOWER_OPEN_LAYER
+	anchored = 1
 	opacity = 1
 	density = 0
 
