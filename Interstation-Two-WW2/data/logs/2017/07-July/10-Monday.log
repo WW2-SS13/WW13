@@ -1,0 +1,87 @@
+
+
+Starting up. (ID: bPo-aU0i) 00:01.11
+---------------------
+[00:01:12] bPo-aU0i ADMIN: Loading jobban_rank
+[00:01:12] bPo-aU0i ADMIN: jobban_keylist was empty
+[00:01:12] bPo-aU0i ADMIN: Loading Banlist
+[00:01:12] bPo-aU0i DEBUG: Rebuilding Master Controller
+[00:03:01] bPo-aU0i ACCESS: Login: Vivalas/(Vivalas) from 127.0.0.1-1842493572 || BYOND v511
+[00:03:06] bPo-aU0i ADMIN: Vivalas has started the game.
+[00:03:07] bPo-aU0i DEBUG: Next event of severity Mundane in 16.388 minutes.
+[00:03:07] bPo-aU0i DEBUG: Next event of severity Moderate in 46.996 minutes.
+[00:03:07] bPo-aU0i DEBUG: Next event of severity Major in 83.8683 minutes.
+[00:03:13] bPo-aU0i ACCESS: Logout: *no key*/(Vivalas)
+[00:03:13] bPo-aU0i ACCESS: Login: Vivalas/(Irvine Atkinson) from 127.0.0.1-1842493572 || BYOND v511
+[00:03:17] bPo-aU0i SAY: corgi puppy/ : AUUUUUU
+[00:03:29] bPo-aU0i SAY: corgi puppy/ : AUUUUUU
+[00:04:03] bPo-aU0i EMOTE: Ian/ : <B>Ian</B> chases their tail
+[00:04:10] bPo-aU0i SAY: Leonore Taschner/Vivalas : Test
+[00:04:25] bPo-aU0i ADMIN: Vivalas/(Leonore Taschner) created 1 /obj/item/device/radio/rbs (<a HREF='?_src_=holder;adminplayerobservecoodjump=1;X=111;Y=693;Z=1'>JMP</a>)
+[00:04:34] bPo-aU0i SAY: Leonore Taschner/Vivalas : Test
+[00:05:24] bPo-aU0i ADMIN: Vivalas/(Leonore Taschner) modified Torn.Fu.d2's frequency to 1240
+[00:05:30] bPo-aU0i SAY: Leonore Taschner/Vivalas : Test
+[00:05:39] bPo-aU0i SAY: Leonore Taschner/Vivalas : Test
+[00:05:48] bPo-aU0i SAY: Leonore Taschner/Vivalas : Test
+[00:08:33] bPo-aU0i EMOTE: Ian/ : <B>Ian</B> dances around
+[00:09:43] bPo-aU0i ADMIN: Vivalas/(Leonore Taschner) deleted Train Control at (130,634,1)
+[00:09:48] bPo-aU0i SAY: Leonore Taschner/Vivalas : Test
+[00:10:05] bPo-aU0i ACCESS: Logout: Vivalas/(Leonore Taschner)
+[00:11:00] bPo-aU0i ACCESS: Login: Vivalas/(Leonore Taschner) from 127.0.0.1-1842493572 || BYOND v511
+[00:11:33] bPo-aU0i EMOTE: Ian/ : <B>Ian</B> chases their tail
+[00:12:19] bPo-aU0i EMOTE: corgi puppy/ : <B>The corgi puppy</B> barks.
+[00:12:39] bPo-aU0i EMOTE: Ian/ : <B>Ian</B> dances around
+[00:12:40] bPo-aU0i ADMIN: Vivalas/(Leonore Taschner) created 1 /obj/item/weapon/grenade/spawnergrenade/spesscarp (<a HREF='?_src_=holder;adminplayerobservecoodjump=1;X=130;Y=629;Z=1'>JMP</a>)
+[00:12:43] bPo-aU0i ATTACK: Leonore Taschner (vivalas) primed a carp delivery grenade (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=130;Y=630;Z=1'>JMP</a>)
+[00:12:49] bPo-aU0i EMOTE: space carp/ : <B>The space carp</B> nashes at Leonore Taschner
+[00:12:49] bPo-aU0i EMOTE: space carp/ : <B>The space carp</B> nashes at Leonore Taschner
+[00:12:49] bPo-aU0i EMOTE: space carp/ : <B>The space carp</B> nashes at Leonore Taschner
+[00:12:49] bPo-aU0i EMOTE: space carp/ : <B>The space carp</B> nashes at Leonore Taschner
+[00:12:49] bPo-aU0i EMOTE: space carp/ : <B>The space carp</B> nashes at Leonore Taschner
+[00:13:08] bPo-aU0i ATTACK: Vivalas/(Leonore Taschner) shot (/obj/item/projectile/bullet/rifle/a9_parabellum) *no key*/(space carp) (INTENT: HARM) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=130;Y=680;Z=1'>JMP</a>)
+[00:13:09] bPo-aU0i ATTACK: Vivalas/(Leonore Taschner) shot (/obj/item/projectile/bullet/rifle/a9_parabellum) *no key*/(space carp) (INTENT: HARM) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=130;Y=680;Z=1'>JMP</a>)
+[00:13:10] bPo-aU0i ATTACK: Vivalas/(Leonore Taschner) shot (/obj/item/projectile/bullet/rifle/a9_parabellum) *no key*/(space carp) (INTENT: HARM) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=130;Y=681;Z=1'>JMP</a>)
+[00:13:17] bPo-aU0i EMOTE: space carp/ : <B>The space carp</B> nashes at Leonore Taschner
+[00:13:17] bPo-aU0i EMOTE: space carp/ : <B>The space carp</B> nashes at Leonore Taschner
+[00:13:19] bPo-aU0i EMOTE: space carp/ : <B>The space carp</B> nashes at Leonore Taschner
+[00:13:19] bPo-aU0i ACCESS: Logout: Vivalas/(Leonore Taschner)
+
+
+Starting up. (ID: bPo-aXaD) 00:14.09
+---------------------
+[00:14:09] bPo-aXaD ADMIN: Loading jobban_rank
+[00:14:09] bPo-aXaD ADMIN: jobban_keylist was empty
+[00:14:09] bPo-aXaD ADMIN: Loading Banlist
+[00:14:09] bPo-aXaD DEBUG: Rebuilding Master Controller
+
+
+Starting up. (ID: bPo-aXS6) 00:18.44
+---------------------
+[00:18:45] bPo-aXS6 ADMIN: Loading jobban_rank
+[00:18:45] bPo-aXS6 ADMIN: jobban_keylist was empty
+[00:18:45] bPo-aXS6 ADMIN: Loading Banlist
+[00:18:45] bPo-aXS6 DEBUG: Rebuilding Master Controller
+
+
+Starting up. (ID: bPo-aYeG) 00:20.58
+---------------------
+[00:20:59] bPo-aYeG ADMIN: Loading jobban_rank
+[00:20:59] bPo-aYeG ADMIN: jobban_keylist was empty
+[00:20:59] bPo-aYeG ADMIN: Loading Banlist
+[00:20:59] bPo-aYeG DEBUG: Rebuilding Master Controller
+[00:26:59] bPo-aYeG ACCESS: Login: Vivalas/(Vivalas) from 127.0.0.1-1842493572 || BYOND v511
+[00:27:00] bPo-aYeG ACCESS: Logout: Vivalas/(Vivalas)
+[00:27:01] bPo-aYeG ACCESS: Login: Vivalas/(Vivalas) from 127.0.0.1-1842493572 || BYOND v511
+[00:27:06] bPo-aYeG ADMIN: Vivalas has started the game.
+[00:27:06] bPo-aYeG DEBUG: Next event of severity Mundane in 13.23 minutes.
+[00:27:06] bPo-aYeG DEBUG: Next event of severity Moderate in 49.976 minutes.
+[00:27:06] bPo-aYeG DEBUG: Next event of severity Major in 83.535 minutes.
+[00:27:09] bPo-aYeG ACCESS: Logout: *no key*/(Vivalas)
+[00:27:09] bPo-aYeG ACCESS: Login: Vivalas/(Tony Christopher) from 127.0.0.1-1842493572 || BYOND v511
+[00:27:43] bPo-aYeG SAY: Siglinde Thälmann/Vivalas : Testing
+[00:27:52] bPo-aYeG SAY: Siglinde Thälmann/Vivalas : testing
+[00:28:04] bPo-aYeG EMOTE: Ian/ : <B>Ian</B> chases their tail
+[00:28:04] bPo-aYeG SAY: Siglinde Thälmann/Vivalas : Testing
+[00:28:10] bPo-aYeG EMOTE: Ian/ : <B>Ian</B> shakes its head.
+[00:28:13] bPo-aYeG SAY: Siglinde Thälmann/Vivalas : Morning soldats, get to briefing.
+[00:28:46] bPo-aYeG ACCESS: Logout: Vivalas/(Siglinde Thälmann)

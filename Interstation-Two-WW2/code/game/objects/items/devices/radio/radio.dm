@@ -20,6 +20,14 @@ var/global/list/default_medbay_channels = list(
 	num2text(MED_I_FREQ) = list(access_medical_equip)
 )
 
+var/global/list/default_german_channels = list(
+	num2text(DE_COMM_FREQ) = list()
+)
+
+var/global/list/default_russian_channels = list(
+	num2text(RU_COMM_FREQ) = list()
+)
+
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"

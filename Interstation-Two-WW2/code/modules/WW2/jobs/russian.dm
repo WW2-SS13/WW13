@@ -25,6 +25,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/colt(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_s_store)
 	world << "<b>[H.client.prefs.russian_name] is the [title] of the Soviet forces!</b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the Russian forces and lead them to victory.</span>"
 	return 1
@@ -72,6 +73,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m4(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_s_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the Russian force according to the <b>Commandir</b>'s orders.</span>"
 	return 1
 
@@ -431,6 +433,7 @@ var/first_guard = 0
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_s_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a Quartermaster. Your job is to keep the army well armed and supplied.</span>"
 	return 1
 

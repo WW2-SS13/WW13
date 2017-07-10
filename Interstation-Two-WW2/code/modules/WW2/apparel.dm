@@ -141,3 +141,10 @@
 	new /obj/item/ammo_magazine/kar98k(src)
 	new /obj/item/weapon/gauze_pack/gauze(src)
 	new /obj/item/weapon/grenade/explosive/stgnade(src)
+
+/obj/item/clothing/suit/radio_harness
+	name = "radio harness"
+	desc = "Use this to hold your big clunky radios."
+	icon_state = "radio_harness"
+	item_state = "radio_harness"
+	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu)
