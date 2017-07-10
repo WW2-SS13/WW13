@@ -1,3 +1,5 @@
+// 2017-07-04: Fixed rifles spitting out all casings on ground when opening bolt after first shot -- Irra
+
 /obj/item/weapon/gun/projectile/boltaction/
 	name = "bolt-action rifle"
 	desc = "A bolt-action rifle of true ww2 "
@@ -30,8 +32,6 @@
 			user << "<span class='notice'>You work the bolt open, ejecting [chambered]!</span>"
 			chambered.loc = get_turf(src)
 			loaded -= chambered
-			for (var/atom/movable/a in contents)
-				a.loc = get_turf(src)
 			chambered = null
 		else
 			playsound(src.loc, 'sound/weapons/bolt_open.ogg', 50, 1)
