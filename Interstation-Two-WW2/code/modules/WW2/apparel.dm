@@ -58,6 +58,13 @@
 	icon_state = "newssuni"
 	item_state = "newssuni"
 	worn_state = "newssuni"
+	
+/obj/item/clothing/under/ssformalofc
+	name = "SS Officer's Formal Uniform"
+	desc = "Jet black formal uniform. Swastika armband included."
+	icon_state = "ss_formal_ofc"
+	item_state = "ss_formal_ofc"
+	worn_state = "ss_formal_ofc"
 
 /obj/item/clothing/head/helmet/tactical/gerhelm
 	name = "German helmet"
