@@ -105,12 +105,16 @@
 				qdel(src)
 		visible_message("<span class='danger'>[user] adds a bag to [src].</span>")
 		qdel(O)
+	else
+		return
 
 /obj/structure/window/sandbag/set_dir(direction)
 	dir = direction
 
 // sandbag window overrides
 
+/obj/structure/window/sandbag/attackby(obj/O as obj, mob/user as mob)
+	return 0
 
 /obj/structure/window/sandbag/examine(mob/user)
 	user << "That's a sandbag."

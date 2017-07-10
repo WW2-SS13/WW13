@@ -367,7 +367,9 @@
 			var/shake_strength = recoil
 			if(can_wield && !wielded)
 				shake_strength += 2
-			shake_camera(user, shake_strength+1, shake_strength)
+			shake_strength -= 2
+			if (shake_strength > 0)
+				shake_camera(user, shake_strength+1, shake_strength)
 	update_icon()
 
 
