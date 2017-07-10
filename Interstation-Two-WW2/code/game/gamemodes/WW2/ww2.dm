@@ -9,7 +9,7 @@
 	var/soviet_win_coeff = 1.0 // and soviets don't
 
 /datum/game_mode/ww2/check_finished()
-	if (..())
+	if (..() == 1)
 		return 1
 	else
 		if (time_both_sides_locked != -1)
@@ -24,6 +24,7 @@
 			if (reinforcements_master.is_permalocked("RUSSIAN"))
 				time_both_sides_locked = world.realtime
 				world << "<font size = 3>The game will end in 15 minutes.</font>"
+				return 0
 
 /datum/game_mode/ww2/declare_completion()
 	var/list/soldiers = WW2_soldiers_alive()
