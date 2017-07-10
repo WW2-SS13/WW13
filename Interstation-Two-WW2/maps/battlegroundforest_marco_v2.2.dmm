@@ -145,7 +145,7 @@
 "cO" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/obj/structure/closet/crate/bin{anchored = 1},/turf/simulated/floor/wood,/area/prishtina/german/cargo)
 "cP" = (/obj/structure/closet/crate/bayonets,/obj/effect/floor_decal/industrial/outline/grey,/turf/simulated/floor/wood,/area/prishtina/german/cargo)
 "cQ" = (/obj/structure/sign/portrait_hitler{pixel_y = 30},/turf/simulated/floor/wood,/area/prishtina/german/cargo)
-"cR" = (/obj/structure/table/reinforced,/obj/item/device/radio/feldfu,/obj/item/device/radio/feldfu,/obj/item/device/radio/feldfu,/obj/item/device/radio/feldfu,/turf/simulated/floor/wood,/area/prishtina/german/cargo)
+"cR" = (/obj/structure/table/reinforced,/obj/item/device/radio/feldfu,/obj/item/device/radio/feldfu,/obj/item/device/radio/feldfu,/obj/item/device/radio/feldfu,/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/turf/simulated/floor/wood,/area/prishtina/german/cargo)
 "cS" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/floor/wood,/area/prishtina/german/cargo)
 "cT" = (/obj/structure/simple_door/key_door/german/soldat{name = "Janitor Closet"},/turf/simulated/floor/wood,/area/prishtina/german/janitor)
 "cU" = (/turf/simulated/floor/wood,/area/prishtina/german/janitor)
