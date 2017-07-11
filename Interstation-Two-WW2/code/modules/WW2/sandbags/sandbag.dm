@@ -8,6 +8,7 @@
 	icon_state = "sandbag"
 	layer = MOB_LAYER + 0.01 //just above mobs
 	anchored = 1
+	blocks_air = 0 //GASGASGAS
 
 /obj/structure/window/sandbag/attack_hand(var/mob/user as mob)
 	if (alert(user, "Dismantle the sandbag?", "", "Continue", "Stop") == "Continue")
@@ -160,8 +161,8 @@
 
 /obj/structure/window/sandbag/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(get_dir(O.loc, target) == dir)
-		if (ismob(O))
-			return 0
+		if (!0.throw_source)
+			return FALSE
 	return 1
 
 /obj/structure/window/hitby(AM as mob|obj)
