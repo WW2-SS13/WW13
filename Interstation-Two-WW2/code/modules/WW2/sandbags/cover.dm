@@ -99,13 +99,13 @@
 			if (proj.firer && (get_step(proj.firer, proj.firer.dir) == get_turf(src) || proj.firer.loc == get_turf(src)))
 				return TRUE
 
-		if (!mover.last_throw_source)
+		if (!mover.throw_source)
 			if(get_dir(loc, target) & dir)
 				return FALSE
 			else
 				return TRUE
 		else
-			switch (get_dir(mover.last_throw_source, get_turf(src)))
+			switch (get_dir(mover.throw_source, get_turf(src)))
 				if (NORTH, NORTHEAST)
 					if (dir == EAST || dir == WEST || dir == NORTH)
 						return TRUE
