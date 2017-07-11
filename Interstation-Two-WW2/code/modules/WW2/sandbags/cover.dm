@@ -119,7 +119,7 @@
 					if (dir != EAST)
 						return TRUE
 
-			if (check_cover(mover, mover.last_throw_source) && prob(bullet_deflection_chance(mover)))
+			if (check_cover(mover, mover.throw_source) && prob(bullet_deflection_chance(mover)))
 				visible_message("<span class = 'warning'>[mover] hits the sandbag!</span>")
 				return FALSE
 			else
