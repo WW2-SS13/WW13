@@ -97,7 +97,10 @@
 				return 1
 
 		if (!mover.last_throw_source)
-			return 0
+			if(get_dir(loc, target) & dir)
+				return !density
+			else
+				return 1
 		else
 			switch (get_dir(mover.last_throw_source, get_turf(src)))
 				if (NORTH, NORTHEAST)
