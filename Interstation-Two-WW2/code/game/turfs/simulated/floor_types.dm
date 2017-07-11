@@ -467,17 +467,16 @@
 	icon_state = "cobble_horizontal_dark"
 	interior = 0
 
-
 /turf/simulated/floor/plating/cobblestone/vertical
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "cobble_verticle"
+	icon_state = "cobble_vertical"
 	interior = 0
 
 /turf/simulated/floor/plating/cobblestone/vertical/dark
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "cobble_verticle_dark"
+	icon_state = "cobble_vertical_dark"
 	interior = 0
 
 turf/simulated/air

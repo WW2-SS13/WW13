@@ -186,7 +186,6 @@
 	else if(user.a_intent == I_HURT) //point blank shooting
 		Fire(A, user, pointblank=1)
 	else
-		..() //Pistolwhippin'
 		if (attachment)
 			if (istype(attachment, /obj/item/weapon/gun_attachment) && isliving(A))
 				var/mob/living/l = A
@@ -194,6 +193,8 @@
 				visible_message("<span class = 'danger'>[user] impales [l] with their gun's [a.improper_name]!</span>")
 				l.apply_damage(a.force * 2, BRUTE, def_zone)
 				playsound(get_turf(src), a.attack_sound, rand(75,100))
+		else
+			..() //Pistolwhippin'
 
 
 /obj/item/weapon/gun/proc/force_fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
@@ -367,7 +368,7 @@
 			var/shake_strength = recoil
 			if(can_wield && !wielded)
 				shake_strength += 2
-			shake_strength -= 2
+			shake_strength -= 1
 			if (shake_strength > 0)
 				shake_camera(user, shake_strength+1, shake_strength)
 	update_icon()
@@ -504,13 +505,13 @@
 		recoil = initial(recoil)
 
 
-
-
 /obj/item/weapon/gun/examine(mob/user)
 	..()
 	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		user << "The fire selector is set to [current_mode.name]."
+	if (attachment)
+		user << "It has [attachment] attached to the end."
 
 /obj/item/weapon/gun/proc/switch_firemodes(mob/user=null)
 	sel_mode++

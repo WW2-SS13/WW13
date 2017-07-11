@@ -1,3 +1,6 @@
+/obj/item/weapon/gun/projectile/boltaction
+	recoil = 2
+
 /obj/item/weapon/gun/projectile/boltaction/mosin
 	name = "Mosin-Nagant rifle"
 	desc = "A bolt-action rifle of true LIBERATORS."
@@ -9,7 +12,6 @@
 	slot_flags = SLOT_BACK
 	origin_tech = "combat=4;materials=2;syndicate=8"
 	caliber = "a762x54"
-	recoil = 1 //extra kickback
 	fire_sound = 'sound/weapons/mosin_shot.ogg'
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING | SPEEDLOADER
@@ -38,7 +40,6 @@
 	slot_flags = SLOT_BACK
 	origin_tech = "combat=4;materials=2;syndicate=8"
 	caliber = "a762x54"
-	recoil = 1 //extra kickback
 	fire_sound = 'sound/weapons/mosin_shot.ogg'
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING | SPEEDLOADER
@@ -74,7 +75,6 @@
 	slot_flags = SLOT_BACK
 	origin_tech = "combat=5;materials=2;syndicate=8"
 	caliber = "a792x57"
-	recoil = 1 //extra kickback
 	fire_sound = 'sound/weapons/kar_shot.ogg'
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING | SPEEDLOADER
@@ -104,7 +104,6 @@
 	slot_flags = SLOT_BACK
 	origin_tech = "combat=5;materials=2;syndicate=8"
 	caliber = "a792x57"
-	recoil = 1 //extra kickback
 	fire_sound = 'sound/weapons/kar_shot.ogg'
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING | SPEEDLOADER

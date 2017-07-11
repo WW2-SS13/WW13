@@ -35,6 +35,8 @@ var/datum/reinforcements/reinforcements_master
 
 	var/allow_quickspawn[2]
 
+	var/showed_permalock_message[2]
+
 /datum/reinforcements/New()
 	..()
 
@@ -57,6 +59,9 @@ var/datum/reinforcements/reinforcements_master
 
 	allow_quickspawn["RUSSIAN"] = 0
 	allow_quickspawn["GERMAN"] = 0
+
+	showed_permalock_message["GERMAN"] = 0
+	showed_permalock_message["RUSSIAN"] = 0
 
 	tick()
 
@@ -115,7 +120,7 @@ var/datum/reinforcements/reinforcements_master
 		return
 
 	if (nope[side])
-		np << "<span class = 'danger'>Too many people are attempting to join this side.</span>"
+		np << "<span class = 'danger'>Sorry, too many people are attempting to join this side already.</span>"
 		return
 
 	//remove them from all pools, just in case
@@ -158,12 +163,17 @@ var/datum/reinforcements/reinforcements_master
 	return 0
 
 /datum/reinforcements/proc/reset_russian_timer()
+
 	var/ret = 0
 	var/list/l = reinforcement_pool["RUSSIAN"]
 	if (l.len < reinforcement_spawn_req && !allow_quickspawn["RUSSIAN"])
 		for (var/mob/new_player/np in l)
 			l << "<span class='danger'>Failed to spawn a new Russian squadron. [reinforcement_spawn_req - l.len] more draftees needed."
-		return 0
+		return ret
+	else if (has_occupied_base("RUSSIAN"))
+		for (var/mob/new_player/np in l)
+			l << "<span class='danger'>The Germans are currently occupying the bunker! Reinforcements can't be sent."
+		return ret
 	for (var/mob/new_player/np in l)
 		if (np)
 			np.LateSpawnForced("Sovietsky Soldat", 1)
@@ -180,7 +190,11 @@ var/datum/reinforcements/reinforcements_master
 	if (l.len < reinforcement_spawn_req && !allow_quickspawn["GERMAN"])
 		for (var/mob/new_player/np in l)
 			l << "<span class='danger'>Failed to spawn a new German squadron. [reinforcement_spawn_req - l.len] more draftees needed."
-		return 0
+		return ret
+	else if (has_occupied_base("GERMAN"))
+		for (var/mob/new_player/np in l)
+			l << "<span class='danger'>The Russians are currently occupying your base! Reinforcements can't be sent."
+		return ret
 	for (var/mob/new_player/np in l)
 		if (np) // maybe helps with logged out nps
 			np.LateSpawnForced("Soldat", 1)
@@ -200,6 +214,7 @@ var/datum/reinforcements/reinforcements_master
 	return l.len
 
 /datum/reinforcements/proc/lock_check()
+
 	var/r = reinforcements_granted["RUSSIAN"]
 	var/g = reinforcements_granted["GERMAN"]
 
@@ -214,13 +229,26 @@ var/datum/reinforcements/reinforcements_master
 		locked["RUSSIAN"] = 0
 		locked["GERMAN"] = 0
 
-	if (is_permalocked("GERMAN"))
-
-		world << "<font size = 3>The German Side is all out of reinforcements.</font>"
-
 	if (is_permalocked("RUSSIAN"))
 
-		world << "<font size = 3>The Russian Side is all out of reinforcements.</font>"
+		if (!showed_permalock_message["RUSSIAN"])
+			world << "<font size = 3>The Soviet Army is all out of reinforcements.</font>"
+			showed_permalock_message["RUSSIAN"] = 1
+
+		locked["RUSSIAN"] = 1
+		locked["GERMAN"] = 1 // since russians get more reinforcements,
+		 // if they are locked german must also be
+
+	if (is_permalocked("GERMAN"))
+
+		if (!showed_permalock_message["GERMAN"])
+			world << "<font size = 3>The German Army is all out of reinforcements.</font>"
+			showed_permalock_message["GERMAN"] = 1
+
+		locked["GERMAN"] = 1
+
+		if (!is_permalocked("RUSSIAN"))
+			locked["RUSSIAN"] = 0 // if germans are permalocked but not russians, russians must be unlocked
 
 /datum/reinforcements/proc/is_permalocked(side)
 	switch (side)

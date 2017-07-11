@@ -1,3 +1,10 @@
+/obj/item/weapon/gun/projectile/pistol/attackby(obj/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/weapon/gun_attachment))
+		user << "<span class = 'danger'>That won't fit on there.</span>"
+		return 0
+	else
+		return ..()
+
 /obj/item/weapon/gun/projectile/pistol/luger
 	name = "Luger P08"
 	desc = "German 9mm pistol, commonly used by officers and special assignment units."

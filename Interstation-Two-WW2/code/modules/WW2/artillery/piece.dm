@@ -451,7 +451,10 @@
 						shake_camera(m, 5, 5)
 						m << "<span class = 'danger'>You hear something violently smash into the ceiling!</span>"
 					if (prob(100 - artillery_deflection_bonus))
-						a.artillery_integrity -= rand(25,30)
+						if (explosion) // HE master race
+							a.artillery_integrity -= rand(25,30)
+						else
+							a.artillery_integrity -= rand(15,20)
 					return
 				else
 					t.visible_message("<span class = 'danger'>The ceiling collapses!</span>")
