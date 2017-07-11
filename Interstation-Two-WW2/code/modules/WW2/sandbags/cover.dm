@@ -95,7 +95,7 @@
 	else
 		if (istype(mover, /obj/item/projectile))
 			var/obj/item/projectile/proj = mover
-			proj.last_throw_source = (proj.firer ? get_turf(proj.firer) : null)
+			proj.throw_source = (proj.firer ? get_turf(proj.firer) : null)
 			if (proj.firer && (get_step(proj.firer, proj.firer.dir) == get_turf(src) || proj.firer.loc == get_turf(src)))
 				return TRUE
 
