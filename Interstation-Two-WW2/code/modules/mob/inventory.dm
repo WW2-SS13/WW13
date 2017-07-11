@@ -143,6 +143,14 @@ var/list/slot_equipment_priority = list( \
 	W.layer = initial(W.layer)
 	W.dropped()
 	return 0
+
+//Checks if mob has one or more empty hands, depending on input param:
+//	both: if 0 (false), it returns true if at least one hand is free, otherwise 1 for checking both
+/mob/proc/has_empty_hand(var/both = 0)
+	if (both)
+		return src.l_hand == null && src.r_hand == null
+	return src.l_hand == null || src.r_hand == null
+
 // Removes an item from inventory and places it in the target atom.
 // If canremove or other conditions need to be checked then use unEquip instead.
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null)

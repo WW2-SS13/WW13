@@ -8,8 +8,14 @@
 	set popup_menu = 1
 	set src in range(1, usr)
 
-	if (locate(src) in get_step(usr, usr.dir)) // this isn't a set src setting so it's the best I can do, thanks byond - Kachnov
-		toggle_scope(2.0)
+	src.try_use_sights(usr)
+
+/obj/item/weapon/gun/projectile/minigun/verb/eject_mag()
+	set category = "Minigun"
+	set name = "Eject magazine"
+	set src in range(1, usr)
+
+	src.try_remove_mag(usr)
 
 /////////////////////////////
 ////Stationary Machinegun////
@@ -35,6 +41,8 @@
 		list(name="6000 rpm", burst=20, burst_delay=0.05, fire_delay=1, dispersion=list(1.5), accuracy=list(0))
 		)
 
+	var/maximum_use_range = 0 // user loc at minigun's current loc (used in use_object.dm)
+
 	var/user_old_x = 0
 	var/user_old_y = 0
 
@@ -47,12 +55,44 @@
 		var/grip_dir = reverse_direction(dir)
 		var/turf/T = get_step(src.loc, grip_dir)
 		if(user.loc == T)
-			if(user.get_active_hand() == null && user.get_inactive_hand() == null)
+			if(user.has_empty_hand(both = 1) && !src.is_used_by(user))
 				user.use_object(src)
 			else
 				user << "\red Your hands are busy by holding things."
 		else
 			user << "\red You're too far from the handles."
+
+/obj/item/weapon/gun/projectile/minigun/proc/try_use_sights(mob/user)
+	if (src.is_used_by(user))
+		toggle_scope(2.0)
+	else
+		user.visible_message("<span class='warning'>You aren't using \the [src].</span>")
+
+
+// An ugly hack called a boolean proc, made it like this to allow special
+// behaviour without too many overrides. So special snowflake weapons like the minigun
+// can use zoom without overriding the original zoom proc.
+//	user: user mob
+//	devicename: name of what device you are peering through, set by zoom() in items.dm
+//	silent: boolean controlling whether it should tell the user why they can't zoom in or not
+// I am sorry for creating this abomination -- Irra
+/obj/item/weapon/gun/projectile/minigun/can_zoom(mob/user, var/devicename, var/silent)
+	if(user.stat || !ishuman(user))
+		if (!silent) user << "You are unable to focus through the [devicename]"
+		return 0
+	else if(!zoom && global_hud.darkMask[1] in user.client.screen)
+		if (!silent) user << "Your visor gets in the way of looking through the [devicename]"
+		return 0
+	return 1
+
+/obj/item/weapon/gun/projectile/minigun/proc/try_remove_mag(mob/user)
+	if (!src.is_used_by(user))
+		if (user.has_empty_hand())
+			src.unload_ammo(user)
+		else
+			user.visible_message("<span class='warning'>You need an empty hand for this.</span>")
+	else
+		user.visible_message("<span class='warning'>You can't do this while using \the [src].</span>")
 
 /obj/item/weapon/gun/projectile/minigun/proc/usedby(mob/user, atom/A, params)
 	if(A == src)
@@ -110,9 +150,15 @@
 //	var/grip_dir = reverse_direction(dir)
 //	if (user_old_x && user_old_y)
 		//animate(user, pixel_x=user_old_x, pixel_y=user_old_y, 4, 1)
+	if (zoom)
+		zoom() // out
 
-	user.pixel_x = initial(user.pixel_x)
-	user.pixel_y = initial(user.pixel_y)
+	user.pixel_x = user_old_x
+	user.pixel_y = user_old_y
+	animate(user, pixel_x=0, pixel_y=0, 4, 1)
+
+/obj/item/weapon/gun/projectile/minigun/proc/is_used_by(mob/user)
+	return user.using_object == src && user.loc == src.loc
 
 /obj/item/weapon/gun/projectile/minigun/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1

@@ -10,8 +10,11 @@
 
 /mob/Move()
 	. = ..()
-	if (using_object && !locate(using_object) in range(1, src))
+	if (using_object)
 		if (istype(using_object, /obj/item/weapon/gun/projectile/minigun))
 			var/obj/item/weapon/gun/projectile/minigun/mg = using_object
-			mg.stopped_using(src)
-		use_object(null)
+			if (!locate(src) in range(mg.maximum_use_range, mg))
+				use_object(null)
+				mg.stopped_using(src)
+		else if (!locate(using_object) in range(1, src))
+			use_object(null)
