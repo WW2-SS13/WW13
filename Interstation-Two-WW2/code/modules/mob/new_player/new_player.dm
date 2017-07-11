@@ -159,6 +159,9 @@
 
 	if(href_list["re_german"])
 		if (!reinforcements_master.is_permalocked("GERMAN"))
+			if (client.prefs.s_tone < -30)
+				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
+				return
 			reinforcements_master.add(src, "GERMAN")
 		else
 			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements!</span>"

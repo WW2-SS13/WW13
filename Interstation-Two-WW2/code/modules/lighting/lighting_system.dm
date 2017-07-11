@@ -38,8 +38,30 @@
 
 			T.corners[i] = new/datum/lighting_corner(T, LIGHTING_CORNER_DIAGONAL[i])
 
+
 /world/New()
+	daynight_setting = "DAY"
+
 	. = ..()
+
+	if (prob(66))
+		daynight_setting = "DAY"
+		for (var/area/prishtina/p in world) // make indoor areas have full light
+			if (istype(p) && !istype(p, /area/prishtina/void) && !istype(p, /area/prishtina/soviet/bunker) && !istype(p, /area/prishtina/soviet/bunker_entrance))
+				p.dynamic_lighting = 0
+	else
+		daynight_setting = "NIGHT"
+		for (var/area/prishtina/p in world) // make all areas use lighting
+			if (istype(p) && !istype(p, /area/prishtina/train) && !istype(p, /area/prishtina/german/train_zone)) // not trains
+				p.dynamic_lighting = 1
 
 	create_all_lighting_corners()
 	create_all_lighting_overlays()
+
+	if (daynight_setting == "NIGHT")
+		for (var/obj/machinery/light/l in world)
+			l.brightness_power = 1
+			l.brightness_range = round(l.brightness_range*2) // 7 to 14
+			l.update_icon()
+
+

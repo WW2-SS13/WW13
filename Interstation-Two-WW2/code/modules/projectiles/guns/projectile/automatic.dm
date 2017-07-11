@@ -148,6 +148,9 @@
 	launcher = new(src)
 
 /obj/item/weapon/gun/projectile/automatic/z8/attackby(obj/item/I, mob/user)
+	if (..()) // handle attachments
+		return 1
+
 	if((istype(I, /obj/item/weapon/grenade)))
 		launcher.load(I, user)
 	else
@@ -206,8 +209,8 @@
 	accuracy = -8
 
 	firemodes = list(
-		list(mode_name="short bursts",	burst=5, move_delay=6, burst_accuracy = list(0,-1,-1,-2,-2),          dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(mode_name="long bursts",	burst=8, move_delay=8, burst_accuracy = list(0,-1,-1,-2,-2,-2,-3,-3), dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
+		list(name="short bursts",	burst=5, move_delay=6, burst_accuracy = list(0,-1,-1,-2,-2),          dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(name="long bursts",	burst=8, move_delay=8, burst_accuracy = list(0,-1,-1,-2,-2,-2,-3,-3), dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)
 
 	var/cover_open = 0

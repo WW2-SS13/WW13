@@ -1,5 +1,3 @@
-![](http://cdn.history.com/sites/2/2017/05/GettyImages-542884237-2.jpg)
-# Ava's Battlegrounds: WW2
-[![discord](https://discordapp.com/api/guilds/300896442707476480/widget.png)](https://discord.gg/NgpWkc5)
-
-The code crew
+![](https://puu.sh/wFD0e/b3099eccb1.jpg)
+# No Man's Land: WW2 Edition
+[![discord](https://discordapp.com/api/guilds/331613189462556672/widget.png)](https://discord.gg/5nED5wA)

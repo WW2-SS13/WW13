@@ -193,7 +193,7 @@
 					else
 						H.real_name = H.client.prefs.german_name
 					H.name = H.client.prefs.real_name
-					H.gender = H.client.prefs.german_gender
+					H.gender = MALE
 
 		else if (istype(new_language, /datum/language/russian))
 			if (ishuman(src))

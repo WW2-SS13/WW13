@@ -160,4 +160,4 @@
 
 	air_transfer.gas["plasma"] = 0
 	target.assume_air(air_transfer)
-	target.create_fire(5, rand(1200,1500))
+	target.create_fire(5, rand(400,600))

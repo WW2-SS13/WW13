@@ -107,8 +107,20 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/flares_ammo
+	name = "Flaregun Ammo crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
 /obj/structure/closet/crate/flares
 	name = "Flares crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/bayonets
+	name = "Bayonets crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
@@ -213,13 +225,25 @@
 	for (var/v in 1 to 66) // this was 24, I made it 30, meaning you can make 5 sandbag walls per crate, as each takes 6 right now
 		new /obj/item/weapon/sandbag(src)
 
-/obj/structure/closet/crate/flares/New()
+/obj/structure/closet/crate/flares_ammo/New()
 	..()
 
 	for (var/v in 1 to 10)
 		new /obj/item/ammo_magazine/flare/red(src)
 		new /obj/item/ammo_magazine/flare/green(src)
 		new /obj/item/ammo_magazine/flare/yellow(src)
+
+/obj/structure/closet/crate/flares/New()
+	..()
+
+	for (var/v in 1 to 50)
+		new /obj/item/device/flashlight/flare(src)
+
+/obj/structure/closet/crate/bayonets/New()
+	..()
+
+	for (var/v in 1 to 20)
+		new /obj/item/weapon/gun_attachment/bayonet(src)
 
 //arty
 

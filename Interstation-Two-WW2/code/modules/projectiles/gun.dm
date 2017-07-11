@@ -76,6 +76,8 @@
 	var/list/burst_accuracy = list(0)
 	var/list/dispersion = list(0)
 
+	var/obj/item/weapon/gun_attachment/attachment = null
+
 /obj/item/weapon/gun/New()
 	..()
 	if(!firemodes.len)
@@ -86,6 +88,18 @@
 
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
+
+/obj/item/weapon/gun/attackby(obj/W as obj, mob/user as mob)
+	if (ishuman(user))
+		if (istype(W, /obj/item/weapon/gun_attachment))
+			var/obj/item/weapon/gun_attachment/_attachment = W
+			if (!attachment)
+				user.remove_from_mob(_attachment)
+				_attachment.loc = src
+				attachment = _attachment
+				visible_message("<span class = 'danger'>[user] attaches [attachment] to their gun.</span>")
+				return 1
+	return 0
 
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
@@ -172,7 +186,15 @@
 	else if(user.a_intent == I_HURT) //point blank shooting
 		Fire(A, user, pointblank=1)
 	else
-		return ..() //Pistolwhippin'
+		if (attachment)
+			if (istype(attachment, /obj/item/weapon/gun_attachment) && isliving(A))
+				var/mob/living/l = A
+				var/obj/item/weapon/gun_attachment/a = attachment
+				visible_message("<span class = 'danger'>[user] impales [l] with their gun's [a.improper_name]!</span>")
+				l.apply_damage(a.force * 2, BRUTE, def_zone)
+				playsound(get_turf(src), a.attack_sound, rand(75,100))
+		else
+			..() //Pistolwhippin'
 
 
 /obj/item/weapon/gun/proc/force_fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
@@ -346,7 +368,9 @@
 			var/shake_strength = recoil
 			if(can_wield && !wielded)
 				shake_strength += 2
-			shake_camera(user, shake_strength+1, shake_strength)
+			shake_strength -= 1
+			if (shake_strength > 0)
+				shake_camera(user, shake_strength+1, shake_strength)
 	update_icon()
 
 
@@ -481,13 +505,13 @@
 		recoil = initial(recoil)
 
 
-
-
 /obj/item/weapon/gun/examine(mob/user)
 	..()
 	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		user << "The fire selector is set to [current_mode.name]."
+	if (attachment)
+		user << "It has [attachment] attached to the end."
 
 /obj/item/weapon/gun/proc/switch_firemodes(mob/user=null)
 	sel_mode++

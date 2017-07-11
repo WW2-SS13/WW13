@@ -20,7 +20,7 @@ var/train_checked = 0
 				if(RUFORCE)
 					ru++
 				if (CIVILIAN)
-					en++ // S.S.
+					en++ // SS
 	return list("en" = en, "ru" = ru)
 
 /proc/WW2_soldiers_en_ru_ratio()
@@ -36,6 +36,7 @@ var/train_checked = 0
 		return 0
 
 /turf/proc/check_prishtina_block(var/mob/m)
+
 	if (isobserver(m))
 		return 0
 
@@ -60,7 +61,6 @@ var/train_checked = 0
 	icon_state = "x2"
 
 	New()
-		..()
 		icon = null
 		icon_state = null
 		layer = -1000
@@ -74,7 +74,6 @@ var/train_checked = 0
 	icon_state = "x2"
 
 	New()
-		..()
 		icon = null
 		icon_state = null
 		layer = -1000
@@ -89,14 +88,19 @@ var/train_checked = 0
 	icon_state = "x2"
 
 	New()
-		..()
 		icon = null
 		icon_state = null
 		layer = -1000
 
+
 /hook/roundstart/proc/game_start()
 	roundstart_time = world.time
-	world << "<font size=3>Don't forget to change the weather.</font>"
+
+	if (daynight_setting == "NIGHT")
+		world << "<font size=3><span class = 'notice'>It's nighttime.</span></font>"
+	else
+		world << "<font size=3><span class = 'notice'>It's daytime.</span></font>"
+
 	return 1
 
 var/wlg_total = 0
@@ -114,70 +118,79 @@ var/wlg_selected_border_tree = 0
 	wlg_selected_grass = 0
 	wlg_selected_bush = 0
 	wlg_selected_border_tree = 0
+
 	var/spawned_secret_ladder = 0
 
-	spawn(100)
-		for(var/turf/T in world)
-			if(T.z != 1)
-				continue
-			if(!istype(T, /turf/simulated/floor/plating/grass))
-				continue
+	if (!config.debug) // this fun piece of code causes way too much startup lag
 
-			if (prob(1) && T.x > 171 && !spawned_secret_ladder)
+		spawn(100)
+
+			if (prob(50))
 				spawned_secret_ladder = 1
-				var/obj/structure/multiz/ladder/ww2/ladder = new/obj/structure/multiz/ladder/ww2(T)
-				ladder.area_id = "sovsecret"
-				ladder.ladder_id = "ww2-l-sovsecret-1"
-				ladder.target = ladder.find_target()
-				message_admins("Secret entrance to the soviet bunker spawned at [T.x],[T.y],[T.z]")
-				for (var/obj/structure/wild/w in T)
-					qdel(w)
-				for (var/obj/structure/flora/f in T)
-					qdel(f)
+				message_admins("There is no secret entrance to the soviet bunker this round!")
 
-			wlg_total++
-			if(T.contents.len > 1)
-				wlg_rejected++
-				continue
+			for(var/turf/T in world)
+				if(T.z != 1)
+					continue
+				if(!istype(T, /turf/simulated/floor/plating/grass))
+					continue
 
-			for(var/dir in cardinal)
-				var/turf/C = get_step(T, dir)
-				if(istype(C, /turf/unsimulated/wall) || istype(C, /turf/simulated/wall/rockwall))
-					wlg_selected_border_tree++
-					new /obj/structure/wild/tree(T)
-					break
+				if (prob(1) && T.x > 171 && !spawned_secret_ladder)
+					spawned_secret_ladder = 1
+					var/obj/structure/multiz/ladder/ww2/ladder = new/obj/structure/multiz/ladder/ww2(T)
+					ladder.area_id = "sovsecret"
+					ladder.ladder_id = "ww2-l-sovsecret-1"
+					ladder.target = ladder.find_target()
+					ladder.target.target = ladder
+					message_admins("Secret entrance to the soviet bunker spawned at [T.x],[T.y],[T.z]")
+					for (var/obj/structure/wild/w in T)
+						qdel(w)
+					for (var/obj/structure/flora/f in T)
+						qdel(f)
 
-			if (!locate(/obj/structure) in T)
-				var/rn = rand(1, 100)
-				switch(rn)
-					if(1 to 80)
-						wlg_selected_none++
-						continue
-					if(81 to 99)
-						wlg_selected_grass++
-						var/grass = pick(/obj/structure/flora/ausbushes/sparsegrass,
-										/obj/structure/flora/ausbushes/sparsegrass,
-										/obj/structure/flora/ausbushes/fullgrass,
-										/obj/structure/flora/ausbushes/lavendergrass)
-						new grass(T)
-					//if(97 to 99)
-					//	var/flowers = pick(/obj/structure/flora/ausbushes/ywflowers,
-					//					/obj/structure/flora/ausbushes/brflowers,
-					//					/obj/structure/flora/ausbushes/ppflowers)
-					//	new flowers(T)
-					else
-						wlg_selected_bush++
-						var/bushes = pick(/obj/structure/flora/ausbushes,
-										/obj/structure/flora/ausbushes/reedbush,
-										/obj/structure/flora/ausbushes/leafybush,
-										/obj/structure/flora/ausbushes/palebush,
-										/obj/structure/flora/ausbushes/stalkybush,
-										/obj/structure/flora/ausbushes/grassybush,
-										/obj/structure/flora/ausbushes/fernybush,
-										/obj/structure/flora/ausbushes/sunnybush,
-										/obj/structure/flora/ausbushes/genericbush,
-										/obj/structure/flora/ausbushes/pointybush)
-						new bushes(T)
+				wlg_total++
+				if(T.contents.len > 1)
+					wlg_rejected++
+					continue
+
+				for(var/dir in cardinal)
+					var/turf/C = get_step(T, dir)
+					if(istype(C, /turf/unsimulated/wall) || istype(C, /turf/simulated/wall/rockwall))
+						wlg_selected_border_tree++
+						new /obj/structure/wild/tree(T)
+						break
+
+				if (!locate(/obj/structure) in T)
+					var/rn = rand(1, 100)
+					switch(rn)
+						if(1 to 80)
+							wlg_selected_none++
+							continue
+						if(81 to 99)
+							wlg_selected_grass++
+							var/grass = pick(/obj/structure/flora/ausbushes/sparsegrass,
+											/obj/structure/flora/ausbushes/sparsegrass,
+											/obj/structure/flora/ausbushes/fullgrass,
+											/obj/structure/flora/ausbushes/lavendergrass)
+							new grass(T)
+						//if(97 to 99)
+						//	var/flowers = pick(/obj/structure/flora/ausbushes/ywflowers,
+						//					/obj/structure/flora/ausbushes/brflowers,
+						//					/obj/structure/flora/ausbushes/ppflowers)
+						//	new flowers(T)
+						else
+							wlg_selected_bush++
+							var/bushes = pick(/obj/structure/flora/ausbushes,
+											/obj/structure/flora/ausbushes/reedbush,
+											/obj/structure/flora/ausbushes/leafybush,
+											/obj/structure/flora/ausbushes/palebush,
+											/obj/structure/flora/ausbushes/stalkybush,
+											/obj/structure/flora/ausbushes/grassybush,
+											/obj/structure/flora/ausbushes/fernybush,
+											/obj/structure/flora/ausbushes/sunnybush,
+											/obj/structure/flora/ausbushes/genericbush,
+											/obj/structure/flora/ausbushes/pointybush)
+							new bushes(T)
 	return 1
 
 var/mission_announced = 0
@@ -208,7 +221,7 @@ var/mission_announced = 0
 				mercy_period = 0
 				world << "<font size=4>The 10 minute grace period has ended. Either side can now attack!</font>"
 
-	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] S.S..</font>"
+	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] SS.</font>"
 	var/ru_fireteams = 0
 	var/en_fireteams = 0
 	for(var/datum/fireteam/ft in job_master.fireteams)

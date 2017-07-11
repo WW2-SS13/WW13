@@ -110,7 +110,7 @@
 
 //Called when the mob is hit with an item in combat. Returns the blocked result
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
-	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!</span>")
+	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with the [I.name] by [user]!</span>")
 
 	var/blocked = run_armor_check(hit_zone, "melee")
 	standard_weapon_hit_effects(I, user, effective_force, blocked, hit_zone)
@@ -296,6 +296,8 @@ var/obj/human_fire_overlay_lying = null
 		generic_living_fire_overlay = new()
 		generic_living_fire_overlay.icon = 'icons/mob/OnFire.dmi'
 		generic_living_fire_overlay.icon_state = "Generic_mob_burning"
+
+	apply_damage(ceil(fire_stacks/3), BURN, "chest", 0) // because fire does 0.2 damage per tick
 
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src

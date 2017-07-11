@@ -1,5 +1,7 @@
 //ARTILLERY
 
+#define kanonier_msg " A Kanonier can now fire within <b>15 square tiles</b> of this position."
+
 var/global/list/valid_coordinates = list()
 /mob/living/carbon/human/var/checking_coords[4]
 /mob/living/carbon/human/var/can_check_distant_coordinates = 0
@@ -21,7 +23,7 @@ var/global/list/valid_coordinates = list()
 		checking_coords[4] = y
 		valid_coordinates["[x],[y]"] = 1
 		var/dist = "[checking_coords[3] - checking_coords[1]],[checking_coords[4] - checking_coords[2]]"
-		usr << "<span class = 'notice'>You finished tracking coordinates at <b>[x],[y]</b>. You moved an offset of <b>[dist]</b>. A Kanonier can now fire at this location.</span>"
+		usr << "<span class = 'notice'>You finished tracking coordinates at <b>[x],[y]</b>. You moved an offset of <b>[dist]</b>.[kanonier_msg]</span>"
 		checking_coords[3] = null
 		checking_coords[4] = null // continue to track from the same starting location
 	else
@@ -50,7 +52,7 @@ var/global/list/valid_coordinates = list()
 		checking_coords[4] = y
 		valid_coordinates["[x],[y]"] = 1
 		var/dist = "[checking_coords[3] - checking_coords[1]],[checking_coords[4] - checking_coords[2]]"
-		usr << "<span class = 'notice'>You finished tracking coordinates at <b>[x],[y]</b>. You moved an offset of <b>[dist]</b>. A Kanonier can now fire at this location.</span>"
+		usr << "<span class = 'notice'>You finished tracking coordinates at <b>[x],[y]</b>. You moved an offset of <b>[dist]</b>.[kanonier_msg]</span>"
 		checking_coords[3] = null
 		checking_coords[4] = null // continue to track from the same starting location
 	else
@@ -76,7 +78,7 @@ var/global/list/valid_coordinates = list()
 		if (can_check_distant_coordinates && get_turf(src) != t)
 			var/offset_x = t.x - x
 			var/offset_y = t.y - y
-			src << "<span class = 'notice'>This turf has an offset of <b>[offset_x],[offset_y]</b> and coordinates of <b>[t.x],[t.y]</b>. A Kanonier can now fire at this location.</span>"
+			src << "<span class = 'notice'>This turf has an offset of <b>[offset_x],[offset_y]</b> and coordinates of <b>[t.x],[t.y]</b>.[kanonier_msg]</span>"
 			valid_coordinates["[t.x],[t.y]"] = 1
 	else
 		return ..()

@@ -205,8 +205,8 @@
 			if(istype(affecting, /obj/item/organ/external/head) && prob(hitcheck * (hit_zone == "mouth" ? 5 : 1))) //MUCH higher chance to knock out teeth if you aim for mouth
 				var/obj/item/organ/external/head/U = affecting
 				if(U.knock_out_teeth(get_dir(H, src), round(rand(28, 38) * ((hitcheck*2)/100))))
-					src.visible_message("<span class='danger'>[src]'s teeth sail off in an arc!</span>", \
-										"<span class='userdanger'>[src]'s teeth sail off in an arc!</span>")
+					src.visible_message("<span class='danger'>Some of [src]'s teeth sail off in an arc!</span>", \
+										"<span class='userdanger'>Some of [src]'s teeth sail off in an arc!</span>")
 
 			// See what attack they use
 			var/datum/unarmed_attack/attack = H.get_unarmed_attack(src, hit_zone)

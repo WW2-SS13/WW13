@@ -19,6 +19,53 @@
 	name = "\improper Houses"
 	icon_state = "houses"
 
+// houses in No Man's Land
+
+/area/prishtina/houses/nml_one
+/area/prishtina/houses/nml_two
+/area/prishtina/houses/nml_three
+/area/prishtina/houses/nml_four
+/area/prishtina/houses/nml_five
+/area/prishtina/houses/nml_six
+/area/prishtina/houses/nml_seven
+/area/prishtina/houses/nml_eight
+/area/prishtina/houses/nml_nine
+/area/prishtina/houses/nml_ten
+/area/prishtina/houses/nml_eleven
+/area/prishtina/houses/nml_twelve
+/area/prishtina/houses/nml_thirteen
+/area/prishtina/houses/nml_fourteen
+
+/area/prishtina/houses/sov_one
+/area/prishtina/houses/sov_two
+/area/prishtina/houses/sov_three
+/area/prishtina/houses/sov_four
+/area/prishtina/houses/sov_five
+/area/prishtina/houses/sov_six
+/area/prishtina/houses/sov_seven
+/area/prishtina/houses/sov_eight
+/area/prishtina/houses/sov_nine
+/area/prishtina/houses/sov_ten
+/area/prishtina/houses/sov_eleven
+/area/prishtina/houses/sov_twelve
+/area/prishtina/houses/sov_thirteen
+/area/prishtina/houses/sov_fourteen
+
+/area/prishtina/houses/ger_one
+/area/prishtina/houses/ger_two
+/area/prishtina/houses/ger_three
+/area/prishtina/houses/ger_four
+/area/prishtina/houses/ger_five
+/area/prishtina/houses/ger_six
+/area/prishtina/houses/ger_seven
+/area/prishtina/houses/ger_eight
+/area/prishtina/houses/ger_nine
+/area/prishtina/houses/ger_ten
+/area/prishtina/houses/ger_eleven
+/area/prishtina/houses/ger_twelve
+/area/prishtina/houses/ger_thirteen
+/area/prishtina/houses/ger_fourteen
+
 /area/prishtina/west_village
 	name = "\improper Village"
 	icon_state = "houses"

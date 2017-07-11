@@ -96,6 +96,7 @@ var/list/gamemode_cache = list()
 	var/banappeals
 	var/wikiurl
 	var/forumurl
+	var/rulesurl
 	var/githuburl
 
 	//Alert level description
@@ -479,6 +480,9 @@ var/list/gamemode_cache = list()
 
 				if ("forumurl")
 					config.forumurl = value
+
+				if ("rulesurl")
+					config.rulesurl = value
 
 				if ("githuburl")
 					config.githuburl = value

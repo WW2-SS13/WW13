@@ -5,7 +5,7 @@
 	damage_type = BRUTE
 	nodamage = 0
 	check_armour = "bullet"
-	embed = 1
+	embed = 0
 	sharp = 1
 	hitsound_wall = "ric_sound"
 	var/mob_passthrough_check = 0
