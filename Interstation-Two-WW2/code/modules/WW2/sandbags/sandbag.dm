@@ -218,6 +218,13 @@
 	qdel(src)
 	*/
 
+/obj/structure/window/proc/set_anchored(var/new_anchored)  //warning-heavy
+	if(anchored == TRUE)
+		return
+	anchored = TRUE
+	update_verbs()
+	update_nearby_icons()
+
 /obj/item/weapon/sandbag/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/ore/glass))
 		if(sand_amount >= 4)
