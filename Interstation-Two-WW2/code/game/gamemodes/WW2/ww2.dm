@@ -96,7 +96,7 @@
 
 		if (alive_russians > alive_germans)
 			if (russians_in_germany > germans_in_germany)
-				if (!win_condition) win_condition = "The Soviet Army won by outnumbering the Germans and occupying their base."
+				if (!win_condition) win_condition = "The Soviet Army won by outnumbering the Germans and occupying most of their territory, cutting them off from supplies!"
 				winning_side = "Soviet Army"
 				return 1
 
@@ -105,7 +105,7 @@
 
 		if (alive_germans > alive_russians)
 			if (germans_in_russia > russians_in_russia)
-				if (!win_condition) win_condition = "The German Army won by outnumbering the Soviets and occupying their bunker."
+				if (!win_condition) win_condition = "The German Army won by outnumbering the Soviets and occupying most of their territory. The bunker was surrounded and cut off from reinforcements!"
 				winning_side = "German Army"
 				return 1
 
@@ -120,7 +120,7 @@
 		if ((germans_in_russia/1.33) > russians_in_russia && !cond_2_3_check1)
 			cond_2_3_check1 = 1
 			cond_2_3_nextcheck = world.time + 6000
-			world << "<font size = 3>The Germans have occupied the Soviet bunker! The Soviet Army has 10 minutes to reclaim it!</font>"
+			world << "<font size = 3>The Germans have occupied most Soviet territory! The Soviet Army has 10 minutes to reclaim their land!</font>"
 		else
 			cond_2_3_check1 = 0
 
@@ -131,17 +131,17 @@
 		if ((russians_in_germany/1.33) > germans_in_germany && !cond_2_4_check1)
 			cond_2_4_check1 = 1
 			cond_2_4_nextcheck = world.time + 6000
-			world << "<font size = 3>The Soviets have occupied the German base! The German Army has 10 minutes to reclaim it!</font>"
+			world << "<font size = 3>The Soviets have occupied most German territory! The German Army has 10 minutes to reclaim their land!</font>"
 		else
 			cond_2_4_check1 = 0
 
 		if (cond_2_3_check1 && world.time >= cond_2_3_nextcheck && cond_2_3_nextcheck != -1) // condition 2.3 completed
-			if (!win_condition) win_condition = "The German Army won by occupying and holding the Soviet bunker, while heavily outnumber the Soviets there."
+			if (!win_condition) win_condition = "The German Army won by occupying and holding Soviet territory, while heavily outnumber the Soviets there."
 			winning_side = "German Army"
 			return 1
 
 		if (cond_2_4_check1 && world.time >= cond_2_4_nextcheck && cond_2_4_nextcheck != -1)
-			if (!win_condition) win_condition = "The Soviet Army won by occupying and holding the German base, while heavily outnumber the Germans there."
+			if (!win_condition) win_condition = "The Soviet Army won by occupying and holding German territory, while heavily outnumber the Germans there."
 			winning_side = "Soviet Army"
 			return 1
 
