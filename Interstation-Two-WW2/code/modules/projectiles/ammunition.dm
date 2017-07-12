@@ -22,7 +22,6 @@
 	pixel_y = rand(-10, 10)
 	bullet_casings += src
 
-
 /obj/item/ammo_casing/Destroy()
 	bullet_casings -= src
 	return ..()
