@@ -60,6 +60,10 @@
 				var/obj/train_lever/lever = aa
 				lever.real = 1 // distinguish us from the example lever
 
+			if (istype(aa, /obj/structure/bed))
+				var/obj/structure/bed/bed = aa
+				bed.can_buckle = 0 // fixes the train buckling meme
+
 			aa.icon = a.icon
 			aa.icon_state = a.icon_state
 			aa.layer = a.layer
