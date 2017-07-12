@@ -94,7 +94,7 @@
 		// condition 2.1: Russians outnumber germans and the amount of
 		// russians in the german base is > than the amount of germans there
 
-		if (alive_russians >= alive_germans)
+		if (alive_russians > alive_germans)
 			if (russians_in_germany > germans_in_germany)
 				if (!win_condition) win_condition = "The Soviet Army won by outnumbering the Germans and occupying their base."
 				winning_side = "Soviet Army"
@@ -103,7 +103,7 @@
 		// condition 2.2: Germans outnumber russians and the amount of germans
 		// in the russian base is > than the amount of russians there
 
-		if (alive_germans >= alive_russians)
+		if (alive_germans > alive_russians)
 			if (germans_in_russia > russians_in_russia)
 				if (!win_condition) win_condition = "The German Army won by outnumbering the Soviets and occupying their bunker."
 				winning_side = "German Army"

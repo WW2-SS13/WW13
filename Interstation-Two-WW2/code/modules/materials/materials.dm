@@ -305,7 +305,7 @@ var/list/name_to_material
 	icon_colour = "#D9C179"
 	shard_type = SHARD_STONE_PIECE
 	weight = 22
-	hardness = 55
+	hardness = 55 * 2 // made this harder - kachnov
 	door_icon_base = "stone"
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"

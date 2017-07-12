@@ -41,14 +41,9 @@
 /obj/structure/window/sandbag/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
 			qdel(src)
 			return
 		if(2.0)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
 			qdel(src)
 			return
 		else
@@ -163,15 +158,15 @@
 
 
 /obj/structure/window/sandbag/CheckExit(atom/movable/O as mob|obj, target as turf)
-	
+
 	if(get_dir(O.loc, target) == dir)
 		if(istype(O, /obj/item/projectile))
 			var/obj/item/projectile/P = O
 			if(get_turf(src) == P.starting)
 				return TRUE
-			else 
+			else
 				if (prob(bullet_deflection_chance(P)))
-					visible_message("<span class = 'warning'>[mover] hits the sandbag!</span>")
+					visible_message("<span class = 'warning'>[P] hits the sandbag!</span>")
 					return FALSE
 				else
 					return TRUE

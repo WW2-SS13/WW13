@@ -39,10 +39,8 @@
 		new /obj/item/device/flashlight/flare(src)
 		new /obj/item/device/flashlight/flare(src)
 		new /obj/item/weapon/storage/backpack/medic(src)
-		new /obj/item/weapon/storage/box/med_kit_ruforce/full(src)
-		new /obj/item/weapon/storage/box/med_kit_ruforce/full(src)
-		new /obj/item/weapon/storage/box/med_kit_ruforce/full(src)
-		new /obj/item/weapon/storage/box/med_kit_ruforce/full(src)
+		new /obj/item/weapon/storage/bag/medical_bag_nato/full(src)
+		new /obj/item/weapon/storage/bag/medical_bag_nato/full(src)
 		new /obj/item/device/healthanalyzer(src)
 
 		//new /obj/item/clothing/mask/gas(src)

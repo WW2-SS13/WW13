@@ -190,6 +190,7 @@ datum/preferences
 
 	var/current_character_type = "N/A"
 
+
 /datum/preferences/New(client/C)
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)

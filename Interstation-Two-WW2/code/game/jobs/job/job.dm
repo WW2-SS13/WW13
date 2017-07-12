@@ -210,5 +210,16 @@
 		for(var/obj/item/sub_item in item.contents)
 			apply_fingerprints_to_item(holder, sub_item)
 
-/datum/job/proc/is_position_available()
-	return (current_positions < total_positions) || (total_positions == -1)
+/datum/job/proc/is_position_available(var/list/restricted_choices)
+	if (!restricted_choices || restricted_choices.len == 0)
+		return (current_positions < total_positions) || (total_positions == -1)
+	else
+		var/subtract_positions = 0
+		for (var/_title in restricted_choices)
+			if (_title == title)
+				subtract_positions++
+
+		if (total_positions == -1)
+			return 1
+		else
+			return (current_positions-subtract_positions < total_positions)

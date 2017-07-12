@@ -579,7 +579,10 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/s = ""
 	s += "<center><a href = \"https://discord.gg/PVqjqCv\" target=\"_blank\"><b>No Man's Land: World War II</b></center><br>"
 	s += "Hosted by the <b>Old Bolsheviks</b></a><br>"
-	s += "Time of Day: <b>[daynight_setting == "NIGHT" ? "Nighttime" : "Daytime"]</b>"
+
+	var/timeofday = daynight_setting == "NIGHT" ? "[rand(8,10)] PM" : pick("[rand(1,5)] PM", "[rand(7,12)] AM")
+
+	s += "1943, [daynight_setting == "NIGHT" ? "Night" : "Day"], [timeofday]"
 //	s += "<big><span style = \"color:red\"><b>[pick(memes)]</b></span></big><br>"
 	// todo: only change the banner after a world restart
 	//"<img src = 'http://tny.im/9Cw'>"

@@ -31,6 +31,10 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	S["german_gender"] >> pref.german_gender
 	S["russian_gender"] >> pref.russian_gender
 
+	// donor stuff
+	S["role_preference_sov"] >> pref.client.role_preference_sov
+	S["role_preference_ger"] >> pref.client.role_preference_ger
+
 	S["body_build"]				>> pref.body_build
 	S["age"]					>> pref.age
 	S["spawnpoint"]				>> pref.spawnpoint
@@ -56,6 +60,10 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	// factional genders
 	S["german_gender"] << pref.german_gender
 	S["russian_gender"] << pref.russian_gender
+
+	// donor stuff
+	S["role_preference_sov"] << pref.client.role_preference_sov
+	S["role_preference_ger"] << pref.client.role_preference_ger
 
 	S["body_build"]				<< pref.body_build
 	S["age"]					<< pref.age
@@ -116,6 +124,12 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
 	. += "<b>German Gender:</b> <a href='?src=\ref[src];gender_german=1'><b>[capitalize(lowertext(pref.german_gender))]</b></a><br>"
 	. += "<b>Russian Gender:</b> <a href='?src=\ref[src];gender_russian=1'><b>[capitalize(lowertext(pref.russian_gender))]</b></a><br>"
+
+	var/client/client = pref.client
+	// donor stuff
+	if (pref.client.role_preference)
+		. += "<b>Role Preference (Soviet):</b> <a href='?src=\ref[src];role_preference_sov=1'><b>[capitalize(lowertext(client.role_preference_sov))]</b></a><br>"
+		. += "<b>Role Preference (German):</b> <a href='?src=\ref[src];role_preference_ger=1'><b>[capitalize(lowertext(client.role_preference_ger))]</b></a><br>"
 
 	//. += "<b>Body Shape:</b> <a href='?src=\ref[src];body_build=1'><b>[pref.body_build]</b></a><br>" No. No no no no no no.
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
@@ -185,16 +199,12 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 		return TOPIC_REFRESH
 
 	else if(href_list["gender"])
-		var/next_gender = next_in_list(pref.gender, valid_player_genders)
-		if (next_gender == FEMALE && user.client.prefs.current_character_type == "GERMAN")
-			user << "<span class = 'danger'>Germans can't be females.</span>"
-			return
 		pref.gender = next_in_list(pref.gender, valid_player_genders)
 		return TOPIC_REFRESH
 
 	else if(href_list["gender_german"])
 		var/next_gender = next_in_list(pref.german_gender, valid_player_genders)
-		if (next_gender == FEMALE)
+		if (next_gender == FEMALE && !pref.client.untermensch)
 			user << "<span class = 'danger'>Germans can't be females.</span>"
 			return
 		pref.german_gender = next_in_list(pref.german_gender, valid_player_genders)
@@ -203,6 +213,69 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	else if(href_list["gender_russian"])
 		pref.russian_gender = next_in_list(pref.russian_gender, valid_player_genders)
 		return TOPIC_REFRESH
+
+	else if (href_list["role_preference_ger"])
+
+		var/list/linked_jobs = list()
+		var/list/roles = list()
+		for (var/datum/job/german/j in job_master.occupations)
+			if (istype(j))
+				roles += j.title
+				linked_jobs[j.title] = j
+
+		var/_role_preference_ger = input("Set your GERMAN role preference to what?") in null|roles
+		var/datum/job/chosen = linked_jobs[_role_preference_ger]
+		if (chosen.total_positions == 1)
+			user << "<span class = 'danger'>You can't set preference to this job, because there is only one of them.</span>"
+			return 0
+		else if (chosen.total_positions > 1) // now we're talking
+			var/hypothetical_remaining_postions = chosen.total_positions-1
+			// above: if we set preference to this job, how many remain?
+			// must be at least 1
+			for (var/client/_client in clients)
+				if (_client.role_preference_ger)
+					if (linked_jobs[_client.role_preference_ger] == chosen)
+						--hypothetical_remaining_postions
+
+			if (hypothetical_remaining_postions < 1)
+				user << "<span class = 'danger'>Unfortunately, setting preference to this job would leave no positions for anyone else, so you can't do it. Try another job or wait for someone else with preference to log out.</span>"
+				return 0
+			else
+				user << "<span class = 'danger'>Successfully changed preference to [chosen.title].</span>"
+				pref.client.role_preference_ger = _role_preference_ger
+				return 1
+
+
+	else if (href_list["role_preference_sov"])
+
+		var/list/linked_jobs = list()
+		var/list/roles = list()
+		for (var/datum/job/russian/j in job_master.occupations)
+			if (istype(j))
+				roles += j.title
+				linked_jobs[j.title] = j
+
+		var/_role_preference_sov = input("Set your SOVIET role preference to what?") in null|roles
+		var/datum/job/chosen = linked_jobs[_role_preference_sov]
+		if (chosen.total_positions == 1)
+			user << "<span class = 'danger'>You can't set preference to this job, because there is only one of them.</span>"
+			return 0
+		else if (chosen.total_positions > 1) // now we're talking
+			var/hypothetical_remaining_postions = chosen.total_positions-1
+			// above: if we set preference to this job, how many remain?
+			// must be at least 1
+			for (var/client/_client in clients)
+				if (_client.role_preference_sov)
+					if (linked_jobs[_client.role_preference_sov] == chosen)
+						--hypothetical_remaining_postions
+
+			if (hypothetical_remaining_postions < 1)
+				user << "<span class = 'danger'>Unfortunately, setting preference to this job would leave no positions for anyone else, so you can't do it. Try another job or wait for someone else with preference to log out.</span>"
+				return 0
+			else
+				user << "<span class = 'danger'>Successfully changed preference to [chosen.title].</span>"
+				pref.client.role_preference_sov = _role_preference_sov
+				return 1
 
 	else if(href_list["body_build"])
 		pref.body_build = input("Body Shape", "Body") in list("Default", "Slim", "Fat")

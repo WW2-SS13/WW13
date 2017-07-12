@@ -62,31 +62,16 @@
 	var/base = 95
 	if (!istype(proj))
 		return base
-		#ifdef BULLETDEBUG
-		world << "non-proj [proj] deflection chance: 95%"
-		#endif
-	if (istype(proj, /obj/item/projectile/bullet/rifle/a762x54)) // mosin
-		#ifdef BULLETDEBUG
-		world << "mosin [proj] deflection chance: 65%"
-		#endif
-		return base - 30
-	if (istype(proj, /obj/item/projectile/bullet/rifle/a792x57)) // kar
-		#ifdef BULLETDEBUG
-		world << "kar [proj] deflection chance: 65%"
-		#endif
-		return base - 30
 	else
-		#ifdef BULLETDEBUG
-		world << "other [proj] deflection chance: 65%"
-		#endif
-		return base - 30
+		var/accuracy = max(proj.accuracy, 0.5)
+		return (base - (accuracy*7))
 
 // procedure for both incomplete and complete sandbags
 /obj/structure/window/sandbag/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
 	if (istype(mover, /obj/effect/effect/smoke))
 		return TRUE
-		
+
 	if (!istype(mover, /obj/item))
 		if(get_dir(loc, target) & dir)
 			return FALSE
