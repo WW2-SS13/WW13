@@ -153,8 +153,21 @@
 			Fire(A,user,params) //Otherwise, fire normally.
 */
 
+/obj/item/weapon/gun/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(attachment && istype(attachment, /obj/item/weapon/gun_attachment))
+		if(default_parry_check(user, attacker, damage_source) && prob(40))
+			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
+			playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+			return 1
+	else
+		if(default_parry_check(user, attacker, damage_source) && prob(10))// Much smaller chance to block it due to no bayonet.
+			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
+			playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+			return 1
+	return 0
 
 /obj/item/weapon/gun/afterattack(atom/A, mob/living/user, adjacent, params)
+
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
 
 	if(!user.aiming)
