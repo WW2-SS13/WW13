@@ -63,6 +63,8 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tt = say
 \t5 = emote
 \tx = swap-hand
+\tspace = Use-iron-sights
+\t, = rest
 \tz = activate held object (or y)
 \tj = toggle-aiming-mode
 \tf = cycle-intents-left
@@ -115,6 +117,8 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tw = up
 \tq = unequip active module
 \tt = say
+\tspace = Use-iron-sights
+\t, = rest
 \tx = cycle active modules
 \tz = activate held object (or y)
 \tf = cycle-intents-left
