@@ -84,37 +84,43 @@
 // procedure for both incomplete and complete sandbags
 /obj/structure/window/sandbag/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
+	if (istype(mover, /obj/effect/effect/smoke))
+		return TRUE
+		
 	if (!istype(mover, /obj/item))
 		if(get_dir(loc, target) & dir)
-			return !density
+			return FALSE
 		else
-			return 1
+			return TRUE
 	else
 		if (istype(mover, /obj/item/projectile))
 			var/obj/item/projectile/proj = mover
-			proj.last_throw_source = (proj.firer ? get_turf(proj.firer) : null)
+			proj.throw_source = proj.starting
 			if (proj.firer && (get_step(proj.firer, proj.firer.dir) == get_turf(src) || proj.firer.loc == get_turf(src)))
-				return 1
+				return TRUE
 
-		if (!mover.last_throw_source)
-			return 0
+		if (!mover.throw_source)
+			if(get_dir(loc, target) & dir)
+				return FALSE
+			else
+				return TRUE
 		else
-			switch (get_dir(mover.last_throw_source, get_turf(src)))
+			switch (get_dir(mover.throw_source, get_turf(src)))
 				if (NORTH, NORTHEAST)
 					if (dir == EAST || dir == WEST || dir == NORTH)
-						return 1
+						return TRUE
 				if (SOUTH, SOUTHEAST)
 					if (dir == EAST || dir == WEST || dir == SOUTH)
-						return 1
+						return TRUE
 				if (EAST)
 					if (dir != WEST)
-						return 1
+						return TRUE
 				if (WEST)
 					if (dir != EAST)
-						return 1
+						return TRUE
 
-			if (check_cover(mover, mover.last_throw_source) && prob(bullet_deflection_chance(mover)))
+			if (check_cover(mover, mover.throw_source) && prob(bullet_deflection_chance(mover)))
 				visible_message("<span class = 'warning'>[mover] hits the sandbag!</span>")
-				return 0
+				return FALSE
 			else
-				return 1
+				return TRUE
