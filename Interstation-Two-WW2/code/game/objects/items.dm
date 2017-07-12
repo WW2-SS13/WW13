@@ -560,14 +560,32 @@ var/list/global/slot_flags_enumeration = list(
 	if(I && !I.abstract)
 		I.showoff(src)
 
+// An ugly hack called a boolean proc, made it like this to allow special
+// behaviour without big overrides. So special snowflake weapons like the minigun
+// can use zoom without overriding the original zoom proc.
+//	user: user mob
+//	devicename: name of what device you are peering through, set by zoom() in items.dm
+//	silent: boolean controlling whether it should tell the user why they can't zoom in or not
+// I am sorry for creating this abomination -- Irra
+/obj/item/proc/can_zoom(mob/user, var/devicename = src.name, var/silent = 0)
+	if(user.stat || !ishuman(user))
+		if (!silent) user << "You are unable to focus through the [devicename]"
+		return 0
+	else if(!zoom && global_hud.darkMask[1] in user.client.screen)
+		if (!silent) user << "Your visor gets in the way of looking through the [devicename]"
+		return 0
+	else if(!zoom && user.get_active_hand() != src)
+		if (!silent) user << "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better"
+		return 0
+	return 1
+
 /*
 For zooming with scope or binoculars. This is called from
 modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
-/obj/item/proc/zoom(var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
-
+/obj/item/proc/zoom(var/tileoffset = 14, var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	var/devicename
 
 	if(zoomdevicename)
@@ -575,17 +593,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		devicename = src.name
 
-	var/cannotzoom
-
-	if(usr.stat || !(istype(usr,/mob/living/carbon/human)))
-		usr << "You are unable to focus through the [devicename]"
-		cannotzoom = 1
-	else if(!zoom && global_hud.darkMask[1] in usr.client.screen)
-		usr << "Your visor gets in the way of looking through the [devicename]"
-		cannotzoom = 1
-	else if(!zoom && usr.get_active_hand() != src)
-		usr << "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better"
-		cannotzoom = 1
+	var/cannotzoom = !can_zoom(usr, devicename)
 
 	if(!zoom && !cannotzoom)
 		//if(usr.hud_used.hud_shown)

@@ -58,7 +58,7 @@
 	icon_state = "newssuni"
 	item_state = "newssuni"
 	worn_state = "newssuni"
-	
+
 /obj/item/clothing/under/ssformalofc
 	name = "SS Officer's Formal Uniform"
 	desc = "Jet black formal uniform. Swastika armband included."
@@ -155,3 +155,9 @@
 	icon_state = "radio_harness"
 	item_state = "radio_harness"
 	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu)
+
+/obj/item/clothing/under/doctor
+	desc = "A classy suit for doctors of the 40's."
+	name = "doctor's uniform"
+	icon_state = "ba_suit"
+	item_state = "ba_suit"
