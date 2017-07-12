@@ -8,7 +8,6 @@
 	icon_state = "sandbag"
 	layer = MOB_LAYER + 0.01 //just above mobs
 	anchored = 1
-	blocks_air = 0 //GASGASGAS
 
 /obj/structure/window/sandbag/attack_hand(var/mob/user as mob)
 	if (alert(user, "Dismantle the sandbag?", "", "Continue", "Stop") == "Continue")
@@ -163,10 +162,11 @@
 	
 	if(get_dir(O.loc, target) == dir)
 		if(istype(O, /obj/item/projectile))
-			if(get_turf(src) == O.starting)
+			var/obj/item/projectile/P = O
+			if(get_turf(src) == P.starting)
 				return TRUE
 			else 
-				if (prob(bullet_deflection_chance(O)))
+				if (prob(bullet_deflection_chance(P)))
 					return FALSE
 				else
 					return TRUE
@@ -229,7 +229,7 @@
 	qdel(src)
 	*/
 
-/obj/structure/window/proc/set_anchored(var/new_anchored)  //warning-heavy
+/obj/structure/window/set_anchored(var/new_anchored)  //warning-heavy
 	if(anchored == TRUE)
 		return
 	anchored = TRUE
