@@ -167,6 +167,7 @@
 				return TRUE
 			else 
 				if (prob(bullet_deflection_chance(P)))
+					visible_message("<span class = 'warning'>[mover] hits the sandbag!</span>")
 					return FALSE
 				else
 					return TRUE
