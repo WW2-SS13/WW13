@@ -31,6 +31,8 @@ var/global/datum/controller/gameticker/ticker
 	var/can_latejoin_ruforce = 1
 	var/can_latejoin_geforce = 1
 
+	var/role_preference_grace_period = -1
+
 /datum/controller/gameticker/proc/pregame()
 	login_music = pick('sound/music/WW2/erika.ogg', 'sound/music/WW2/katyusha.ogg', 'sound/music/WW2/r1.ogg', 'sound/music/WW2/r2.ogg', 'sound/music/WW2/r3.ogg', 'sound/music/WW2/latvianss.ogg', 'sound/music/WW2/snakesintracksuits.ogg', 'sound/music/WW2/chooseyourpower.ogg', 'sound/music/WW2/derkommissar.ogg')
 
@@ -133,6 +135,8 @@ var/global/datum/controller/gameticker/ticker
 		start_train_loop()
 
 		reinforcements_master = new()
+
+		role_preference_grace_period = world.time + 450
 
 	//close_jobs()//Makes certain jobs unselectable past roundstart. Unneeded atm.
 	//start_events() //handles random events and space dust.

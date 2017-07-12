@@ -45,3 +45,11 @@
 	var/related_accounts_cid = "Requires database"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this computer id
 
 	preload_rsc = 1 // This was 0, so Bay12 can set it to an URL once the player logs in and have them download the resources from a different server. But we change it.
+
+	// WW2 donor benefits
+
+	var/list/donor_spawn_stuff = list()
+	var/role_preference = 0
+	var/role_preference_sov = "N/A"
+	var/role_preference_ger = "N/A"
+	var/untermensch = 0

@@ -159,7 +159,7 @@
 
 	if(href_list["re_german"])
 		if (!reinforcements_master.is_permalocked("GERMAN"))
-			if (client.prefs.s_tone < -30)
+			if (client.prefs.s_tone < -30 && !client.untermensch)
 				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
 				return
 			reinforcements_master.add(src, "GERMAN")
@@ -201,7 +201,7 @@
 		for (var/datum/job/j in job_master.occupations)
 			if (j.title == href_list["SelectedJob"])
 				if (istype(j, /datum/job/german))
-					if (client.prefs.s_tone < -30)
+					if (client.prefs.s_tone < -30 && !client.untermensch)
 						usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
 						return
 
@@ -285,10 +285,10 @@
 					if(!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
 						vote_on_poll(pollid, optionid, 1)
 
-/mob/new_player/proc/IsJobAvailable(rank)
+/mob/new_player/proc/IsJobAvailable(rank, var/list/restricted_choices)
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job)	return 0
-	if(!job.is_position_available()) return 0
+	if(!job.is_position_available(restricted_choices)) return 0
 	if(jobban_isbanned(src,rank))	return 0
 	if(!job.player_old_enough(src.client))	return 0
 	return 1
@@ -410,6 +410,7 @@
 	qdel(src)
 
 /mob/new_player/proc/LateChoices()
+
 	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
 
 	var/dat = "<html><body><center>"
@@ -439,12 +440,44 @@
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=300x640;can_close=1")*/
 
+	var/list/restricted_choices = list()
+
+	if (world.time <= ticker.role_preference_grace_period) // people with preference get 45 seconds to choose
+
+		for (var/client/c in clients)
+			if (c.role_preference_sov && c.role_preference_sov != client.role_preference_sov)
+				if (!restricted_choices[c.role_preference_sov])
+					restricted_choices[c.role_preference_sov] = 0
+				else
+					restricted_choices[c.role_preference_sov]++
+			if (c.role_preference_ger && c.role_preference_ger != client.role_preference_ger)
+				if (!restricted_choices[c.role_preference_ger])
+					restricted_choices[c.role_preference_ger] = 0
+				else
+					restricted_choices[c.role_preference_ger]++
+
 	var/prev_side = 0
+
+	if (world.time <= ticker.role_preference_grace_period)
+
+		if (client.role_preference_sov)
+			dat += "Soviet Role Preference: [client.role_preference_sov]<br>"
+		if (client.role_preference_ger)
+			dat += "German Role Preference: [client.role_preference_ger]<br>"
+
+	else
+		if (client.role_preference_sov)
+			dat += "<strike>Soviet Role Preference: [client.role_preference_sov]</strike><br>"
+		if (client.role_preference_ger)
+			dat += "<strike>German Role Preference: [client.role_preference_ger]</strike><br>"
+
 	dat += "Choose from the following open positions:<br>"
 	for(var/datum/job/job in job_master.occupations)
 		if(job && !job.train_check())
 			continue
-		if(job && IsJobAvailable(job.title))
+
+		var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
+		if(job)
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
@@ -454,11 +487,18 @@
 				var/side_name = get_side_name(job.department_flag, job)
 				if(side_name)
 					dat += "[side_name]<br>"
-			if (!job.en_meaning)
-				dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
-			else
-				dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</a><br>"
 
+			if (!job.en_meaning)
+				if (job_is_available)
+					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+				else
+					dat += "TAKEN OR RESTRICTED: <strike>[job.title] ([job.current_positions]) (Active: [active])</strike><br>"
+
+			else
+				if (job_is_available)
+					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</a><br>"
+				else
+					dat += "TAKEN OR RESTRICTED: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</strike><br>"
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")
 
