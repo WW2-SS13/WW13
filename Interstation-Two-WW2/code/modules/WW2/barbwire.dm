@@ -42,11 +42,11 @@
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
 					return
-				if(affecting.take_damage(10, 0))
+				if(affecting.take_damage(5, 0))
 					H.UpdateDamageIcon()
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
-					H.Weaken(3)
+					H.Weaken(2)
 				M << "\red <B>Your [affecting.name] gets slightly cut by \the [src]!</B>"
 				return ..()
 			if (prob (33))
@@ -54,11 +54,11 @@
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
 					return
-				if(affecting.take_damage(20, 0))
+				if(affecting.take_damage(10, 0))
 					H.UpdateDamageIcon()
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
-					H.Weaken(5)
+					H.Weaken(4)
 				M << "\red <B>Your [affecting.name] gets cut by \the [src]!</B>"
 				return ..()
 			if (prob (33))
@@ -66,11 +66,11 @@
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
 					return
-				if(affecting.take_damage(30, 0))
+				if(affecting.take_damage(15, 0))
 					H.UpdateDamageIcon()
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
-					H.Weaken(7)
+					H.Weaken(5)
 				M << "\red <B>Your [affecting.name] gets deeply cut by \the [src]!</B>"
 				return ..()
 	..()
