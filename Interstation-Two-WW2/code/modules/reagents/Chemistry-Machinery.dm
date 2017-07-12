@@ -51,6 +51,11 @@
 	else
 		recharged -= 1
 
+	if (stat & BROKEN)
+		icon_state = "dispenser_broken"
+	else
+		icon_state = initial(icon_state)
+
 /obj/machinery/chemical_dispenser/New()
 	..()
 	recharge()

@@ -153,6 +153,18 @@
 			Fire(A,user,params) //Otherwise, fire normally.
 */
 
+/obj/item/weapon/gun/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(default_parry_check(user, attacker, damage_source) && w_class >= 4) // Only big guns can stop attacks.
+		if(attachment && istype(attachment, /obj/item/weapon/gun_attachment) && prob(40)) // If they have a bayonet they get a higher chance to stop the attack.
+			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
+			playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+			return 1
+		else
+			if(prob(10))// Much smaller chance to block it due to no bayonet.
+				user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
+				playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+				return 1
+	return 0
 
 /obj/item/weapon/gun/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
@@ -190,6 +202,7 @@
 			if (istype(attachment, /obj/item/weapon/gun_attachment) && isliving(A))
 				var/mob/living/l = A
 				var/obj/item/weapon/gun_attachment/a = attachment
+				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
 				visible_message("<span class = 'danger'>[user] impales [l] with their gun's [a.improper_name]!</span>")
 				l.apply_damage(a.force * 2, BRUTE, def_zone)
 				playsound(get_turf(src), a.attack_sound, rand(75,100))

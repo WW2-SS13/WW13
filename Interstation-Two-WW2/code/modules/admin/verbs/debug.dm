@@ -876,3 +876,32 @@
 		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
 	else
 		alert("Invalid mob")
+
+/client/proc/removeEmptyCases()
+	set category = "Debug"
+	set name = "Remove empty bullet casings"
+	set desc = "Removes ALL empty bullet casings from the map"
+
+	for(var/A in bullet_casings)
+		var/obj/item/ammo_casing/B = A
+		if(B.BB)
+			continue
+		qdel(B)
+	log_admin("[key_name(usr)] has removed all empty bullet casings.")
+	message_admins("<span class='notice'>[key_name_admin(usr)] has removed all empty bullet casings.</span>", 1)
+
+/client/proc/removeHalfEmptyCases()
+	set category = "Debug"
+	set name = "Remove half of empty bullet casings"
+	set desc = "Removes half of the empty bullet casings from the map"
+
+	var/limit = bullet_casings.len/2
+	var/counter = 0
+	for(var/A in bullet_casings)
+		var/obj/item/ammo_casing/B = A
+		if(B.BB || counter > limit)
+			continue
+		counter ++
+		qdel(B)
+	log_admin("[key_name(usr)] has removed half of all empty bullet casings.")
+	message_admins("<span class='notice'>[key_name_admin(usr)] has removed half of all empty bullet casings.</span>", 1)

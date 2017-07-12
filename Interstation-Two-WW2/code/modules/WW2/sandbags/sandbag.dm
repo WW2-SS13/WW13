@@ -41,14 +41,9 @@
 /obj/structure/window/sandbag/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
 			qdel(src)
 			return
 		if(2.0)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
 			qdel(src)
 			return
 		else
@@ -162,12 +157,6 @@
 	return 0
 
 
-/obj/structure/window/sandbag/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(get_dir(O.loc, target) == dir)
-		if (ismob(O))
-			return 0
-	return 1
-
 /obj/structure/window/hitby(AM as mob|obj)
 	return 0 // don't move
 
@@ -221,6 +210,13 @@
 	user.drop_item()
 	qdel(src)
 	*/
+
+/obj/structure/window/set_anchored(var/new_anchored)  //warning-heavy
+	if(anchored == TRUE)
+		return
+	anchored = TRUE
+	update_verbs()
+	update_nearby_icons()
 
 /obj/item/weapon/sandbag/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/ore/glass))
