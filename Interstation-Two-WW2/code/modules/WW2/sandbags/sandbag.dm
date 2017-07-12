@@ -160,10 +160,20 @@
 
 
 /obj/structure/window/sandbag/CheckExit(atom/movable/O as mob|obj, target as turf)
+	
 	if(get_dir(O.loc, target) == dir)
-		if (!0.throw_source)
-			return FALSE
-	return 1
+		if(istype(O, /obj/item/projectile))
+			if(get_turf(src) == O.starting)
+				return TRUE
+			else 
+				if (prob(bullet_deflection_chance(O)))
+					return FALSE
+				else
+					return TRUE
+		else
+			if (!O.throw_source)
+				return FALSE
+	return TRUE
 
 /obj/structure/window/hitby(AM as mob|obj)
 	return 0 // don't move
