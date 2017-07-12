@@ -58,7 +58,7 @@
 	icon_state = "newssuni"
 	item_state = "newssuni"
 	worn_state = "newssuni"
-	
+
 /obj/item/clothing/under/ssformalofc
 	name = "SS Officer's Formal Uniform"
 	desc = "Jet black formal uniform. Swastika armband included."
@@ -148,3 +148,9 @@
 	new /obj/item/ammo_magazine/kar98k(src)
 	new /obj/item/weapon/gauze_pack/gauze(src)
 	new /obj/item/weapon/grenade/explosive/stgnade(src)
+
+/obj/item/clothing/under/doctor
+	desc = "A classy suit for doctors of the 40's."
+	name = "doctor's uniform"
+	icon_state = "ba_suit"
+	item_state = "ba_suit"
