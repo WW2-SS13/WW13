@@ -96,6 +96,7 @@ var/list/gamemode_cache = list()
 	var/banappeals
 	var/wikiurl
 	var/forumurl
+	var/rulesurl
 	var/githuburl
 
 	//Alert level description
@@ -239,6 +240,11 @@ var/list/gamemode_cache = list()
 	var/german_reinforcements_at_once = 10
 	var/russian_reinforcements_at_once = 10
 
+	//WW2 donor shit
+
+	var/list/job_specific_custom_loadouts = list() // format is a triple list, first of jobs, second of ckeys containing a list of items
+	var/list/people_with_role_preference = list() // just a list of ckeys
+	var/list/untermenschen = list() // just a list of ckeys
 
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
@@ -261,6 +267,76 @@ var/list/gamemode_cache = list()
 	// I can't conditionally compile, but I don't absolutely need to - Kachnov
 	if (fexists("config/debug.txt"))
 		src.debug = 1
+
+	var/fstring = "config/donors/job_specific_custom_loadout.txt"
+
+	if (fexists(fstring))
+		var/list/strings = file2list(fstring)
+		for (var/string in strings)
+			if (dd_hasprefix(string, "#"))
+				continue
+			var/list/split_string = splittext(string, ";")
+			var/ckey = split_string[1] // who gets it
+			var/job = split_string[2] // for what job title
+			var/list/items = list() // and what do they get
+			if (split_string.len == 3)
+				items += split_string[3]
+			else
+				for (var/i in 3 to split_string.len)
+					items += split_string[i]
+
+			job_specific_custom_loadouts[job] = list()
+			job_specific_custom_loadouts[job][ckey] = items
+
+	fstring = "config/donors/role_preference.txt"
+
+	if (fexists(fstring))
+		var/list/strings = file2list(fstring)
+		for (var/string in strings)
+			if (dd_hasprefix(string, "#"))
+				continue
+			people_with_role_preference += string
+
+	fstring = "config/donors/untermenschen.txt"
+
+	if (fexists(fstring))
+		var/list/strings = file2list(fstring)
+		for (var/string in strings)
+			if (dd_hasprefix(string, "#"))
+				continue
+			untermenschen += string
+
+/datum/configuration/proc/donor_item2real_item(var/item)
+	switch (item)
+		if ("kar_ammo")
+			return new/obj/item/ammo_magazine/kar98k
+		if ("mosin_ammo")
+			return new/obj/item/ammo_magazine/mosin
+
+/datum/configuration/proc/give_donor_benefits(var/client/client)
+
+	// process custom items: extra ammo, etc
+
+	var/list/stuff = list()
+	for (var/datum/job/j in job_master.occupations)
+		if (job_specific_custom_loadouts[j.title])
+			if (job_specific_custom_loadouts[j.title][client.ckey])
+				var/list/donor_items = job_specific_custom_loadouts[j.title][client.ckey]
+				for (var/item in 1 to donor_items.len)
+					stuff += donor_item2real_item(item)
+
+	client.donor_spawn_stuff = stuff // I guess they'll just have these objects
+	// floating in the void until we "spawn" them
+
+	// see if they have role preference
+
+	if (people_with_role_preference.Find(client.ckey))
+		client.role_preference = 1
+
+	if (untermenschen.Find(client.ckey))
+		client.untermensch = 1
+
+
 
 /datum/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
 
@@ -479,6 +555,9 @@ var/list/gamemode_cache = list()
 
 				if ("forumurl")
 					config.forumurl = value
+
+				if ("rulesurl")
+					config.rulesurl = value
 
 				if ("githuburl")
 					config.githuburl = value

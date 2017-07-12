@@ -332,7 +332,7 @@ OTHER
 	ammo_type = /obj/item/ammo_casing/a762x54
 	max_ammo = 10
 	multiple_sprites = 0
-	
+
 /obj/item/ammo_magazine/g41
 	name = "magazine (7.92x57)"
 	icon_state = "127x108"

@@ -48,6 +48,8 @@
 		admin_inject_log(user, M, src, contained, trans)
 		user << "<span class='notice'>[trans] units injected. [reagents.total_volume] units remaining in \the [src].</span>"
 
+	update_icon()
+
 	return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector

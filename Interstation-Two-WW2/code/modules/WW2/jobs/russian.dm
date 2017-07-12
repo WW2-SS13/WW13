@@ -438,8 +438,8 @@ var/first_guard = 0
 	return 1
 
 /datum/job/russian/zavhoz/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
 	H.add_language("Russian")
+	H.add_language("German")
 	H.default_language = all_languages["Rusian"]
 	H << "<b>You know the German language!</b>"
 

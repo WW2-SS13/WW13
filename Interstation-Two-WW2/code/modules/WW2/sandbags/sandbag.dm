@@ -41,14 +41,9 @@
 /obj/structure/window/sandbag/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
 			qdel(src)
 			return
 		if(2.0)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
-			PoolOrNew(/obj/structure/window/sandbag, src.loc)
 			qdel(src)
 			return
 		else
@@ -163,10 +158,22 @@
 
 
 /obj/structure/window/sandbag/CheckExit(atom/movable/O as mob|obj, target as turf)
+
 	if(get_dir(O.loc, target) == dir)
-		if (ismob(O))
-			return 0
-	return 1
+		if(istype(O, /obj/item/projectile))
+			var/obj/item/projectile/P = O
+			if(get_turf(src) == P.starting)
+				return TRUE
+			else
+				if (prob(bullet_deflection_chance(P)))
+					visible_message("<span class = 'warning'>[P] hits the sandbag!</span>")
+					return FALSE
+				else
+					return TRUE
+		else
+			if (!O.throw_source)
+				return FALSE
+	return TRUE
 
 /obj/structure/window/hitby(AM as mob|obj)
 	return 0 // don't move
@@ -221,6 +228,13 @@
 	user.drop_item()
 	qdel(src)
 	*/
+
+/obj/structure/window/set_anchored(var/new_anchored)  //warning-heavy
+	if(anchored == TRUE)
+		return
+	anchored = TRUE
+	update_verbs()
+	update_nearby_icons()
 
 /obj/item/weapon/sandbag/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/ore/glass))

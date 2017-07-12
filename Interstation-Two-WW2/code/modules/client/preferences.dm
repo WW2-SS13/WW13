@@ -16,7 +16,8 @@ datum/preferences
 
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
-	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
+//	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
+	var/ooccolor = "#C40F00"
 	var/list/be_special_role = list()		//Special role selection
 	var/UI_style = "ErisStyleHolo"
 	var/UI_useborder = 0
@@ -188,6 +189,7 @@ datum/preferences
 	var/datum/category_collection/player_setup_collection/player_setup
 
 	var/current_character_type = "N/A"
+
 
 /datum/preferences/New(client/C)
 	player_setup = new(src)

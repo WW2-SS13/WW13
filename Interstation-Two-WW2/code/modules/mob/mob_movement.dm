@@ -185,7 +185,7 @@
 	if(!mob)
 		return // Moved here to avoid nullrefs below
 
-	var/turf/t1 = get_step(mob, direct)
+	var/turf/t1 = n
 
 	if (t1 && t1.check_prishtina_block(mob))
 		if (!isobserver(mob))

@@ -20,7 +20,7 @@ var/train_checked = 0
 				if(RUFORCE)
 					ru++
 				if (CIVILIAN)
-					en++ // S.S.
+					en++ // SS
 	return list("en" = en, "ru" = ru)
 
 /proc/WW2_soldiers_en_ru_ratio()
@@ -36,6 +36,7 @@ var/train_checked = 0
 		return 0
 
 /turf/proc/check_prishtina_block(var/mob/m)
+
 	if (isobserver(m))
 		return 0
 
@@ -60,7 +61,6 @@ var/train_checked = 0
 	icon_state = "x2"
 
 	New()
-		..()
 		icon = null
 		icon_state = null
 		layer = -1000
@@ -74,7 +74,6 @@ var/train_checked = 0
 	icon_state = "x2"
 
 	New()
-		..()
 		icon = null
 		icon_state = null
 		layer = -1000
@@ -89,7 +88,6 @@ var/train_checked = 0
 	icon_state = "x2"
 
 	New()
-		..()
 		icon = null
 		icon_state = null
 		layer = -1000
@@ -223,7 +221,7 @@ var/mission_announced = 0
 				mercy_period = 0
 				world << "<font size=4>The 10 minute grace period has ended. Either side can now attack!</font>"
 
-	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] S.S..</font>"
+	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] SS.</font>"
 	var/ru_fireteams = 0
 	var/en_fireteams = 0
 	for(var/datum/fireteam/ft in job_master.fireteams)

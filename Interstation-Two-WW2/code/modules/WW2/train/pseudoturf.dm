@@ -60,6 +60,10 @@
 				var/obj/train_lever/lever = aa
 				lever.real = 1 // distinguish us from the example lever
 
+			if (istype(aa, /obj/structure/bed))
+				var/obj/structure/bed/bed = aa
+				bed.can_buckle = 0 // fixes the train buckling meme
+
 			aa.icon = a.icon
 			aa.icon_state = a.icon_state
 			aa.layer = a.layer
@@ -109,7 +113,11 @@
 			var/obj/machinery/light/l = a
 			l.seton(0, 0, 1, 1)
 		#endif
-		a.y += controller.getMoveInc()
+		if (ismob(a))
+			var/mob/m = a
+			m.train_move(locate(m.x, m.y+controller.getMoveInc(), m.z))
+		else
+			a.y += controller.getMoveInc()
 		#ifdef USE_TRAIN_LIGHTS
 		if (istype(a, /obj/machinery/light))
 			var/obj/machinery/light/l = a
@@ -129,7 +137,6 @@
 			var/mob/m = a
 			if (!isnull(m.next_train_movement))
 				var/atom/movable/p = m.pulling
-
 				switch (m.next_train_movement)
 					if (NORTH)
 						m.train_move(locate(m.x, m.y+1, m.z))

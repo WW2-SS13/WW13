@@ -197,6 +197,12 @@ macro "borghotkeymode"
 	elem 
 		name = "F12"
 		command = "F12"
+	elem
+		name = "space"
+		command = "Use-iron-sights"
+	elem
+		name = ","
+		command = "rest"
 
 macro "macro"
 	elem 

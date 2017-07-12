@@ -178,7 +178,7 @@
 
 	usr << "German Side: [alive_en] alive, [heavily_injured_en] heavily injured, and [dead_en] deceased. Mortality rate: [mortality_en]%"
 	usr << "Russian Side: [alive_ru] alive, [heavily_injured_ru] heavily injured, and [dead_ru] deceased. Mortality rate: [mortality_ru]%"
-	usr << "Waffen-S.S.: [alive_ss], [heavily_injured_ss] heavily injured, and [dead_ss] deceased. Mortality rate: [mortality_ss]%"
+	usr << "Waffen-SS: [alive_ss], [heavily_injured_ss] heavily injured, and [dead_ss] deceased. Mortality rate: [mortality_ss]%"
 
 	var/public = alert(usr, "Show it to the entire server?",,"Yes", "No")
 
@@ -186,7 +186,7 @@
 		world << "<font size=4>Battle status report:</font>"
 		world << "<font size=3>German Side: [alive_en] alive, [heavily_injured_en] heavily injured, and [dead_en] deceased. Mortality rate: [mortality_en]%</font>"
 		world << "<font size=3>Russian Side: [alive_ru] alive, [heavily_injured_ru] heavily injured, and [dead_ru] deceased. Mortality rate: [mortality_ru]%</font>"
-		world << "<font size=3>Waffen-S.S.: [alive_ss] alive, [heavily_injured_ss] heavily injured, and [dead_ss] deceased. Mortality rate: [mortality_ss]%</font>"
+		world << "<font size=3>Waffen-SS: [alive_ss] alive, [heavily_injured_ss] heavily injured, and [dead_ss] deceased. Mortality rate: [mortality_ss]%</font>"
 		message_admins("[key_name(src)] showed everyone the battle report.")
 
 /client/proc/generate_hit_table()
@@ -366,11 +366,11 @@
 
 /client/proc/message_SS()
 	set category = "WW2"
-	set name = "Message the S.S."
+	set name = "Message the SS"
 
-	var/msg = input(usr, "Send what?", "Message the S.S.") as text
+	var/msg = input(usr, "Send what?", "Message the SS") as text
 
-	var/ick_ock = input(usr, "Make this an IC message?", "Message the S.S.") in list("Yes", "No")
+	var/ick_ock = input(usr, "Make this an IC message?", "Message the SS") in list("Yes", "No")
 
 	if (ick_ock == "Yes")
 		ick_ock = 1
@@ -381,8 +381,8 @@
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
 				if (H.original_job && H.original_job.team == "GERMAN" && H.original_job.is_SS)
-					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE S.S.:</b>" : "<b>MESSAGE TO THE S.S. FROM ADMINS:</b>"
+					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE SS:</b>" : "<b>MESSAGE TO THE SS FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
-		src << "You sent '[msg]' to the S.S."
-		message_admins("[key_name(src)] sent '[msg]' to the S.S.")
+		src << "You sent '[msg]' to the SS."
+		message_admins("[key_name(src)] sent '[msg]' to the SS")

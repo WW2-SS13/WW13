@@ -14,6 +14,7 @@
 	throw_range = 6
 	throw_speed = 3
 	unacidable = 1
+	anchored = 0
 
 	var/triggered = 0
 	var/triggertype = "explosive" //Calls that proc
@@ -30,28 +31,65 @@
 		return
 
 	if(!anchored)
-		user.visible_message("\blue \The [user] is deploying \the [src]")
+		user.visible_message("\blue \The [user] starts to deploy the \the [src]")
 		if(!do_after(user,40))
-			user.visible_message("\blue \The [user] decides not to deploy \the [src].")
+			user.visible_message("\blue \The [user] decides not to deploy the \the [src].")
 			return
-		user.visible_message("\blue \The [user] deployed \the [src].")
+		user.visible_message("\blue \The [user] finishes deploying the \the [src].")
 		anchored = 1
+		layer = TURF_LAYER + 0.01
 		icon_state = "mine_armed"
 		user.drop_item()
 		return
 
 //Disarming
 /obj/item/device/mine/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/material/knife))
-		if(anchored)
-			user.visible_message("\blue \The [user] starts to disarm \the [src].")
-			if(!do_after(user,80))
-				user.visible_message("\blue \The [user] decides not to disarm \the [src].")
+	if(anchored)
+		if(istype(W, /obj/item/weapon/wirecutters))
+			user.visible_message("\blue \The [user] starts to disarm the \the [src] with the [W]")
+			if(!do_after(user,60))
+				user.visible_message("\blue \The [user] decides not to disarm the \the [src].")
 				return
-			user.visible_message("\blue \The [user] finishes disarming \the [src]!")
-			anchored = 0
-			icon_state = "mine"
+			if(prob(95))
+				user.visible_message("\blue \The [user] finishes disarming the \the [src]!")
+				anchored = 0
+				icon_state = "betty"
+				layer = initial(layer)
+				return
+			else
+				Bumped(user)
+		else if(istype(W, /obj/item/weapon/material/knife))
+			user.visible_message("\blue \The [user] starts to disarm the \the [src] with the [W].")
+			if(!do_after(user,80))
+				user.visible_message("\blue \The [user] decides not to disarm the \the [src].")
+				return
+			if(prob(50))
+				user.visible_message("\blue \The [user] finishes disarming the \the [src]!")
+				anchored = 0
+				icon_state = "betty"
+				layer = initial(layer)
+				return
+			else
+				Bumped(user)
+		else
+			Bumped(user)
+
+/obj/item/device/mine/attack_hand(mob/user as mob)
+	if(anchored)
+		user.visible_message("\blue \The [user] starts to dig around the \the [src] with their bare hands!")
+		if(!do_after(user,100))
+			user.visible_message("\blue \The [user] decides not to dig up the \the [src].")
 			return
+		if(prob(15))
+			user.visible_message("\blue \The [user] finishes digging up the \the [src], disarming it!")
+			anchored = 0
+			icon_state = "betty"
+			layer = initial(layer)
+			return
+		else
+			Bumped(user)
+	else
+		..()
 
 //Triggering
 /obj/item/device/mine/Crossed(AM as mob|obj)
@@ -63,7 +101,7 @@
 
 	if(istype(M, /mob/living/carbon/human) && M.stat != DEAD)
 		for(var/mob/O in viewers(world.view, src.loc))
-			O << "<font color='red'>[M] triggered the \icon[src] [src]!</font>"
+			O << "<font color='red'>[M] triggered the [src]!</font>"
 		triggered = 1
 		explosion(src.loc,-1,1,3)
 		spawn(0)
@@ -89,3 +127,4 @@
 	throw_range = 6
 	throw_speed = 3
 	unacidable = 1
+	anchored = 0
