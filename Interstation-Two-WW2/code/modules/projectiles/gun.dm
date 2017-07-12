@@ -190,6 +190,7 @@
 			if (istype(attachment, /obj/item/weapon/gun_attachment) && isliving(A))
 				var/mob/living/l = A
 				var/obj/item/weapon/gun_attachment/a = attachment
+				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
 				visible_message("<span class = 'danger'>[user] impales [l] with their gun's [a.improper_name]!</span>")
 				l.apply_damage(a.force * 2, BRUTE, def_zone)
 				playsound(get_turf(src), a.attack_sound, rand(75,100))
