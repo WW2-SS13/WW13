@@ -133,6 +133,45 @@
 	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/soldat,
 		new/obj/item/weapon/key/russian/medic)
 
+/datum/job/russian/doctor
+	title = "Doktor"
+	en_meaning = "Doctor"
+	flag = ENGINEER
+	department_flag = ENGSEC
+	faction = "Station"
+	total_positions = 2
+	spawn_positions = 2
+	selection_color = "#770e0e"
+	access = list(access_ru_soldier, access_ru_medic)
+	minimal_access = list(access_ru_soldier, access_ru_medic)
+	spawn_location = "JoinLateRussia"
+
+/datum/job/russian/doctor/equip(var/mob/living/carbon/human/H)
+	if(!H)	return 0
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/white(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/doctor(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), slot_gloves)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_l_hand)
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a doctor. Your job is to stay back at base and treat wounded that come in from the front, as well as treat prisoners and base personnel.</span>"
+	return 1
+
+/datum/job/russian/doctor/get_keys()
+	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/medic, new/obj/item/weapon/key/russian/command_intermediate)
+
+/datum/job/russian/doctor/update_character(var/mob/living/carbon/human/H)
+	H.add_language("Russian")
+	H.default_language = all_languages["Russian"]
+	if(prob(5))
+		H.add_language("German")
+		H << "<b>You know the German language!</b>"
+
+	if (istype(H.languages[1], /datum/language/common))
+		H.languages[1] = null
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -435,8 +474,8 @@ var/first_guard = 0
 	return 1
 
 /datum/job/russian/zavhoz/update_character(var/mob/living/carbon/human/H)
-	H.add_language("Russian")
 	H.add_language("German")
+	H.add_language("Russian")
 	H.default_language = all_languages["Rusian"]
 	H << "<b>You know the German language!</b>"
 
