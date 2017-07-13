@@ -195,20 +195,21 @@
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
 	if (A == user && user.targeted_organ == "mouth" && !mouthshoot)
 		handle_suicide(user)
-	else if(user.a_intent == I_HURT) //point blank shooting
+
+	var/attachment_attack_check = (attachment && istype(attachment, /obj/item/weapon/gun_attachment/bayonet))
+
+	if(user.a_intent == I_HURT && !attachment_attack_check) //point blank shooting
 		Fire(A, user, pointblank=1)
 	else
-		if (attachment)
-			if (istype(attachment, /obj/item/weapon/gun_attachment) && isliving(A))
-				var/mob/living/l = A
-				var/obj/item/weapon/gun_attachment/a = attachment
-				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
-				visible_message("<span class = 'danger'>[user] impales [l] with their gun's [a.improper_name]!</span>")
-				l.apply_damage(a.force * 2, BRUTE, def_zone)
-				playsound(get_turf(src), a.attack_sound, rand(75,100))
+		if (istype(attachment, /obj/item/weapon/gun_attachment) && isliving(A))
+			var/mob/living/l = A
+			var/obj/item/weapon/gun_attachment/a = attachment
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
+			visible_message("<span class = 'danger'>[user] impales [l] with their gun's [a.improper_name]!</span>")
+			l.apply_damage(a.force * 2, BRUTE, def_zone)
+			playsound(get_turf(src), a.attack_sound, rand(75,100))
 		else
 			..() //Pistolwhippin'
-
 
 /obj/item/weapon/gun/proc/force_fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
