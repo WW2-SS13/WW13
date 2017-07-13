@@ -17,6 +17,8 @@
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
 	spawn_location = "JoinLateNATO"
 
+	additional_languages = list( "Russian" = 100 )
+
 /datum/job/german/commander/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
@@ -31,16 +33,9 @@
 	return 1
 
 /datum/job/german/commander/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.add_language("Russian")
-	H.default_language = all_languages["German"]
-
-	H << "<b>You know the Russian language!</b>"
+	..()
 
 	H.make_artillery_officer()
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
 
 /datum/job/german/commander/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
@@ -52,7 +47,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*/datum/job/german/pilot
-	title = "Flugzeugführer"
+	title = "FlugzeugfÃ¼hrer"
 	flag = GEROFF
 	department_flag = MEDSCI
 	faction = "Station"
@@ -108,6 +103,7 @@
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_cook, access_nato_squad_leader, access_nato_heavy_weapon)
 	spawn_location = "JoinLateNATO"
 
+	additional_languages = list( "Russian" = 10 )
 
 /datum/job/german/squad_leader/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -122,17 +118,9 @@
 	return 1
 
 /datum/job/german/squad_leader/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-
-	if(prob(10))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
+	..()
 
 	H.make_artillery_officer()
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
 
 /datum/job/german/squad_leader/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/command_intermediate)
@@ -166,16 +154,6 @@
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a medic. Your job is to keep the army healthy and in good condition.</span>"
 	return 1
 
-/datum/job/german/medic/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(5))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
-
 /datum/job/german/medic/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic)
 
@@ -208,16 +186,6 @@
 /datum/job/german/doctor/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/command_intermediate)
 
-/datum/job/german/doctor/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(5))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -246,16 +214,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/flammenwerfer(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a flamethrower unit. Your job is incinerate the enemy!</span>"
 	return 1
-
-/datum/job/german/flamethrower_man/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(5))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
 
 /datum/job/german/flamethrower_man/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
@@ -287,16 +245,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a sniper. Your job is to assist normal <b>Soldat</b> from behind defenses.</span>"
 	return 1
-
-/datum/job/german/sniper/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(5))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
 
 /datum/job/german/sniper/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
@@ -333,16 +281,6 @@
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an engineer. Your job is to build forward defenses.</span>"
 	return 1
 
-/datum/job/german/engineer/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(5))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
-
 /datum/job/german/engineer/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/engineer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -374,16 +312,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_l_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a heavy weapons unit. Your job is to assist normal <b>Soldat</b>en in front line combat.</span>"
 	return 1
-
-/datum/job/german/heavy_weapon/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(5))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
 
 /datum/job/german/heavy_weapon/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
@@ -424,17 +352,6 @@
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.</span>"
 	return 1
 
-
-/datum/job/german/soldier/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(5))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
-
 /datum/job/german/soldier/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -459,6 +376,7 @@ var/first_fallschirm = 1
 //	spawn_location = "Fallschirm"
 	spawn_location = "JoinLateNATO"
 
+	additional_languages = list( "Russian" = 100 )
 
 /datum/job/german/fallschirm/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -483,16 +401,6 @@ var/first_fallschirm = 1
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a paratrooper. Your job is to help any other units that need assistance.</span>"
 	return 1
 
-
-/datum/job/german/fallschirm/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.add_language("Russian")
-	H.default_language = all_languages["German"]
-	H << "<b>You know the Russian language!</b>"
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
-
 /datum/job/german/fallschirm/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -515,6 +423,8 @@ var/first_fallschirm = 1
 //	spawn_location = "Fallschirm"
 	spawn_location = "JoinLateNATO"
 
+	additional_languages = list( "Russian" = 100 )
+
 /datum/job/german/stabsgefreiter/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
 
@@ -524,15 +434,6 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a Quartermaster. Your job is to keep the army well armed and supplied.</span>"
 	return 1
-
-/datum/job/german/stabsgefreiter/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.add_language("Russian")
-	H.default_language = all_languages["German"]
-	H << "<b>You know the Russian language!</b>"
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
 
 /datum/job/german/stabsgefreiter/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/QM)
@@ -570,11 +471,7 @@ var/first_fallschirm = 1
 	return 1
 
 /datum/job/german/artyman/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(5))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
+	..()
 
 	H.make_artillery_officer()
 
@@ -617,11 +514,7 @@ var/first_fallschirm = 1
 	return 1
 
 /datum/job/german/scout/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(5))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
+	..()
 
 	H.make_artillery_scout()
 
@@ -664,16 +557,6 @@ var/first_fallschirm = 1
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a train conductor. Your job is take men to and from the front.</span>"
 	return 1
 
-/datum/job/german/conductor/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(5))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
-
 /datum/job/german/conductor/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/train,
 		new/obj/item/weapon/key/german/command_intermediate)
@@ -694,6 +577,8 @@ var/first_fallschirm = 1
 	spawn_location = "JoinLateSS-Officer"
 	is_SS = 1
 
+	additional_languages = list( "Russian" = 10 )
+
 /datum/job/german/squad_leader_ss/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
 
@@ -707,11 +592,7 @@ var/first_fallschirm = 1
 	return 1
 
 /datum/job/german/squad_leader_ss/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(10))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
+	..()
 
 	H.make_artillery_officer()
 
@@ -748,16 +629,6 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a soldier for an elite S.S. unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>.</span>"
 	return 1
-
-/datum/job/german/soldier_ss/update_character(var/mob/living/carbon/human/H)
-	H.add_language("German")
-	H.default_language = all_languages["German"]
-	if(prob(5))
-		H.add_language("Russian")
-		H << "<b>You know the Russian language!</b>"
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
 
 /datum/job/german/soldier_ss/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/SS)
