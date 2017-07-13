@@ -228,7 +228,7 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user as mob)
 	..()
-	if(zoom) zoom() //binoculars, scope, etc
+	if(zoom) zoom(user) //binoculars, scope, etc
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -567,7 +567,7 @@ var/list/global/slot_flags_enumeration = list(
 //	devicename: name of what device you are peering through, set by zoom() in items.dm
 //	silent: boolean controlling whether it should tell the user why they can't zoom in or not
 // I am sorry for creating this abomination -- Irra
-/obj/item/proc/can_zoom(mob/user, var/devicename = src.name, var/silent = 0)
+/obj/item/proc/can_zoom(mob/living/user, var/devicename = src.name, var/silent = 0)
 	if(user.stat || !ishuman(user))
 		if (!silent) user << "You are unable to focus through the [devicename]"
 		return 0
@@ -584,9 +584,11 @@ For zooming with scope or binoculars. This is called from
 modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
-/client/var/zoomed_objects = 0
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
-/obj/item/proc/zoom(var/tileoffset = 14, var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+/obj/item/proc/zoom(var/mob/user, var/tileoffset = 14, var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+	if (!user)
+		return 0
+
 	var/devicename
 
 	if(zoomdevicename)
@@ -594,46 +596,42 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		devicename = src.name
 
-	var/cannotzoom = !can_zoom(usr, devicename)
+	var/cannotzoom = !can_zoom(user, devicename)
 
 	if(!zoom && !cannotzoom)
 		//if(usr.hud_used.hud_shown)
 			//usr.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		usr.client.view = viewsize
+		user.client.view = viewsize
 		zoom = 1
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset
 
-		switch(usr.dir)
+		switch(user.dir)
 			if (NORTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = viewoffset
+				user.client.pixel_x = 0
+				user.client.pixel_y = viewoffset
 			if (SOUTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = -viewoffset
+				user.client.pixel_x = 0
+				user.client.pixel_y = -viewoffset
 			if (EAST)
-				usr.client.pixel_x = viewoffset
-				usr.client.pixel_y = 0
+				user.client.pixel_x = viewoffset
+				user.client.pixel_y = 0
 			if (WEST)
-				usr.client.pixel_x = -viewoffset
-				usr.client.pixel_y = 0
+				user.client.pixel_x = -viewoffset
+				user.client.pixel_y = 0
 
-		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
-		++usr.client.zoomed_objects
+		user.visible_message("[user] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
+
 	else
-		usr.client.view = world.view
-		//if(!usr.hud_used.hud_shown)
-			//usr.toggle_zoom_hud()
 		zoom = 0
 
-		usr.client.pixel_x = 0
-		usr.client.pixel_y = 0
+		user.reset_zoom() // IT IS NOT THE SAME AS "reset_view"!
 
 		if(!cannotzoom)
-			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [src.name]" : "[usr] lowers the [src.name]"].")
-		--usr.client.zoomed_objects
-	return
+			user.visible_message("[zoomdevicename ? "[user] looks up from the [src.name]" : "[user] lowers the [src.name]"].")
+
+	return 1
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
