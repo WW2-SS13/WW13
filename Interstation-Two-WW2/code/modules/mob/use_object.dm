@@ -8,13 +8,21 @@
 			mg.usedby(src, mg)
 			mg.started_using(src)
 
-/mob/Move()
-	. = ..()
+/mob/proc/handle_object_operation(var/stop_using = 0)
 	if (using_object)
 		if (istype(using_object, /obj/item/weapon/gun/projectile/minigun))
 			var/obj/item/weapon/gun/projectile/minigun/mg = using_object
-			if (!locate(src) in range(mg.maximum_use_range, mg))
+			if (!(locate(src) in range(mg.maximum_use_range, mg)) || stop_using)
 				use_object(null)
 				mg.stopped_using(src)
-		else if (!locate(using_object) in range(1, src))
+		else if (!locate(using_object) in range(1, src) || stop_using)
 			use_object(null)
+
+/mob/Move()
+	. = ..()
+	handle_object_operation()
+
+/mob/update_canmove()
+	. = ..()
+	if (lying || stat)
+		handle_object_operation(stop_using = 1)
