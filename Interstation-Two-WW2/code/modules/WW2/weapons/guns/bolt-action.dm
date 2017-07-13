@@ -62,7 +62,7 @@
 	set name = "Use Scope"
 	set popup_menu = 1
 
-	toggle_scope(2.0)
+	toggle_scope(usr, 2.0)
 
 /obj/item/weapon/gun/projectile/boltaction/kar98k
 	name = "Kar98k rifle"
@@ -126,4 +126,4 @@
 	set name = "Use Scope"
 	set popup_menu = 1
 
-	toggle_scope(2.2)
+	toggle_scope(usr, 2.2)
