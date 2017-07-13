@@ -63,8 +63,8 @@
 	if (!istype(proj))
 		return base
 	else
-		var/accuracy = max(proj.accuracy, 0.5)
-		return (base - (accuracy*7))
+		var/subtract = max(max(proj.accuracy, 0.5) * 7, 5)
+		return (base - subtract)
 
 // procedure for both incomplete and complete sandbags
 /obj/structure/window/sandbag/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)

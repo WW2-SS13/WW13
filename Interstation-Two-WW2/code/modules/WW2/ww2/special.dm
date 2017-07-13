@@ -219,7 +219,7 @@ var/mission_announced = 0
 		spawn (10 MINUTES) // because byond minutes are a long fucking time, this should be long enough to build defenses. maybe. - Kachnov
 			if (mercy_period)
 				mercy_period = 0
-				world << "<font size=4>The 10 minute grace period has ended. Either side can now attack!</font>"
+				world << "<font size=4>The 10 minute grace period has ended. Either side can now cross the river!</font>"
 
 	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] SS.</font>"
 	var/ru_fireteams = 0

@@ -155,7 +155,7 @@
 
 /obj/item/weapon/gun/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && w_class >= 4) // Only big guns can stop attacks.
-		if(attachment && istype(attachment, /obj/item/weapon/gun_attachment) && prob(40)) // If they have a bayonet they get a higher chance to stop the attack.
+		if(attachment && istype(attachment, /obj/item/weapon/gun_attachment/bayonet) && prob(40)) // If they have a bayonet they get a higher chance to stop the attack.
 			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
 			playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 			return 1
@@ -195,17 +195,19 @@
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
 	if (A == user && user.targeted_organ == "mouth" && !mouthshoot)
 		handle_suicide(user)
-	else if(user.a_intent == I_HURT) //point blank shooting
+
+	var/attachment_attack_check = (attachment && istype(attachment, /obj/item/weapon/gun_attachment/bayonet))
+
+	if(user.a_intent == I_HURT && !attachment_attack_check) //point blank shooting
 		Fire(A, user, pointblank=1)
 	else
-		if (attachment)
-			if (istype(attachment, /obj/item/weapon/gun_attachment) && isliving(A))
-				var/mob/living/l = A
-				var/obj/item/weapon/gun_attachment/a = attachment
-				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
-				visible_message("<span class = 'danger'>[user] impales [l] with their gun's [a.improper_name]!</span>")
-				l.apply_damage(a.force * 2, BRUTE, def_zone)
-				playsound(get_turf(src), a.attack_sound, rand(75,100))
+		if (istype(attachment, /obj/item/weapon/gun_attachment) && isliving(A))
+			var/mob/living/l = A
+			var/obj/item/weapon/gun_attachment/a = attachment
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
+			visible_message("<span class = 'danger'>[user] impales [l] with their gun's [a.improper_name]!</span>")
+			l.apply_damage(a.force * 2, BRUTE, def_zone)
+			playsound(get_turf(src), a.attack_sound, rand(75,100))
 		else
 			..() //Pistolwhippin'
 
@@ -505,6 +507,7 @@
 	var/scoped_accuracy_mod = zoom_offset
 
 	zoom(zoom_offset, view_size)
+
 	if(zoom)
 		accuracy = scoped_accuracy + scoped_accuracy_mod
 		if(recoil)

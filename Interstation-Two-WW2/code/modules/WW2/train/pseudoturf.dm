@@ -115,9 +115,15 @@
 		#endif
 		if (ismob(a))
 			var/mob/m = a
-			m.train_move(locate(m.x, m.y+controller.getMoveInc(), m.z))
+			if (!m.buckled)
+				m.train_move(locate(m.x, m.y+controller.getMoveInc(), m.z))
 		else
 			a.y += controller.getMoveInc()
+			if (istype(a, /obj/structure/bed))
+				var/obj/structure/bed/bed = a
+				if (bed.buckled_mob)
+					bed.buckled_mob.y += controller.getMoveInc()
+
 		#ifdef USE_TRAIN_LIGHTS
 		if (istype(a, /obj/machinery/light))
 			var/obj/machinery/light/l = a

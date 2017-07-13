@@ -895,6 +895,40 @@ var/global/datum/controller/occupations/job_master
 		return !ticker.can_latejoin_geforce
 	return 0
 
+// this works in favor of the soviets since they don't get SS
+/datum/controller/occupations/proc/get_max_autobalance_diff()
+
+	var/clients_len = 0
+
+	if (clients)
+		clients_len = clients.len
+
+	switch (clients_len)
+
+		if (0 to 10)
+
+			return 1
+
+		if (11 to 20)
+
+			return 2
+
+		if (21 to 30)
+
+			return 3
+
+		if (31 to 49)
+
+			return 4
+
+		if (50 to 59)
+
+			return 5
+
+		if (60 to INFINITY)
+
+			return 6
+
 /datum/controller/occupations/proc/can_join_side(side)
 	if(!autobalance)
 		return 1
@@ -904,11 +938,9 @@ var/global/datum/controller/occupations/job_master
 		if (side == RUFORCE || side == GEFORCE)
 			return 1
 	if(side == RUFORCE)
-		return (ruforce_count < geforce_count) && ticker.can_latejoin_ruforce
+		return (ruforce_count-get_max_autobalance_diff() < geforce_count) && ticker.can_latejoin_ruforce
 	if(side == GEFORCE || side == CIVILIAN)
-		return (geforce_count < ruforce_count + 1) && ticker.can_latejoin_geforce
-/*	if(side == CIVILIAN)
-		return (geforce_count + ruforce_count) / 5 > civilian_count*/
+		return (geforce_count < ruforce_count) && ticker.can_latejoin_geforce
 	return 0
 
 /*

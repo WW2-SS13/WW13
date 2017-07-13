@@ -120,9 +120,10 @@
 			user << "<span class='notice'>You ripped the [src.name] and took out an [O.name].</span>"
 		else
 			user << "<span class='warning'>You ripped the [src.name] but it's empty!</span>"
-		update_icon()
 	else
 		..()
+
+	update_icon()
 
 /obj/item/weapon/gauze_pack/attack_self(mob/user as mob)
 	if(packed)
@@ -136,11 +137,12 @@
 				user << "<span class='notice'>You ripped the [src.name] by one hand and [O] falls out.</span>"
 			else
 				user << "<span class='warning'>You ripped the [src.name] but it's empty!</span>"
-			update_icon()
 		else
 			user << "<span class='warning'>You tried to rip the [src.name] but failed!</span>"
 	else
 		user << "<span class='warning'>[name] is already unpacked!</span>"
+
+	update_icon()
 
 /obj/item/weapon/gauze_pack/update_icon()
 	icon_state = "[initial(icon_state)][packed]"
@@ -160,7 +162,6 @@
 	singular_name = "bint length"
 	icon = 'icons/WW2/medical.dmi'
 	icon_state = "bint"
-
 
 /obj/item/weapon/gauze_pack/gauze
 	name = "pack of gauze"

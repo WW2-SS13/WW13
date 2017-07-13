@@ -573,11 +573,14 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/proc/update_status()
 
+	if (world.port == 12345)
+		visibility = 0 // debug mode
+
 	// this can hold around 20 chars max I think, but keep it at 15 or so - Kachnov
 //	var/list/memes = list("CM BTFO Edition")
 
 	var/s = ""
-	s += "<center><a href = \"https://discord.gg/PVqjqCv\" target=\"_blank\"><b>No Man's Land: World War II</b></center><br>"
+	s += "<center><a href = \"https://discord.gg/PVqjqCv\" target=\"_blank\"><b>No Man's Land: World War II (Early Alpha)</b></center><br>"
 	s += "Hosted by the <b>Old Bolsheviks</b></a><br>"
 
 	var/timeofday = daynight_setting == "NIGHT" ? "[rand(8,10)] PM" : pick("[rand(1,5)] PM", "[rand(7,12)] AM")

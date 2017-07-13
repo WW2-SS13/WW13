@@ -12,7 +12,7 @@
 	w_class = 4
 	caliber = "a9mm_para"
 	magazine_type = /obj/item/ammo_magazine/mp40
-	accuracy = -6
+	accuracy = -4
 
 	can_wield = 1
 	//must_wield = 1
@@ -82,7 +82,7 @@
 	w_class = 5
 	caliber = "a792x33"
 	magazine_type = /obj/item/ammo_magazine/a762/akm
-	accuracy = -5
+	accuracy = -3
 
 	can_wield = 1
 	//must_wield = 1
@@ -118,7 +118,7 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 4
 	fire_sound = 'sound/weapons/m16.ogg'
-	accuracy = -6
+	accuracy = -4
 	caliber = "a762x25"
 	magazine_type = /obj/item/ammo_magazine/a556/m4
 	firemodes = list(
@@ -153,7 +153,7 @@
 	item_state = "dp"
 	load_method = MAGAZINE
 	w_class = 5
-	accuracy = -5
+	accuracy = -3
 	caliber = "a762x39"
 	magazine_type = /obj/item/ammo_magazine/a762/pkm
 
@@ -201,7 +201,6 @@
 	fire_sound = 'sound/weapons/val.ogg'
 	magazine_type = /obj/item/ammo_magazine/a9x39
 	silenced = 1
-
 	can_wield = 1
 	//must_wield = 1
 

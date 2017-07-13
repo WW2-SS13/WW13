@@ -15,8 +15,7 @@
 	selection_color = "#2d2d63"
 	access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
-	spawn_location = "JoinLateNATO"
-
+	spawn_location = "JoinLateNATO-commander"
 	additional_languages = list( "Russian" = 100 )
 
 /datum/job/german/commander/equip(var/mob/living/carbon/human/H)
@@ -39,6 +38,47 @@
 
 /datum/job/german/commander/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
+		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/command_high, new/obj/item/weapon/key/german/train, new/obj/item/weapon/key/german/SS)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/german/staff_officer
+	title = "Stabsoffizier"
+	en_meaning = "Staff Officer"
+	flag = GEROFF
+	department_flag = MEDSCI
+	faction = "Station"
+	total_positions = 2
+	spawn_positions = 2
+	head_position = 0
+	selection_color = "#2d2d63"
+	access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
+	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
+	spawn_location = "JoinLateNATO-officer"
+	additional_languages = list( "Russian" = 100 )
+
+/datum/job/german/staff_officer/equip(var/mob/living/carbon/human/H)
+	if(!H)	return 0
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
+	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the German forces. Your job is to take orders from the <b>Feldwebel</b> and coordinate with squad leaders.</span>"
+	return 1
+
+/datum/job/german/staff_officer/update_character(var/mob/living/carbon/human/H)
+	..()
+
+	H.make_artillery_officer()
+
+/datum/job/german/staff_officer/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
 		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/command_high, new/obj/item/weapon/key/german/train)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,6 +86,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /*/datum/job/german/pilot
 	title = "Flugzeugführer"
 	flag = GEROFF
@@ -95,31 +136,30 @@
 	flag = GERSER
 	department_flag = MEDSCI
 	faction = "Station"
-	total_positions = 0
-	spawn_positions = 0
-	head_position = 1
+	total_positions = 5
+	spawn_positions = 5
+	head_position = 0
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_cook, access_nato_squad_leader, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_cook, access_nato_squad_leader, access_nato_heavy_weapon)
 	spawn_location = "JoinLateNATO"
-
-	additional_languages = list( "Russian" = 10 )
+	additional_languages = list( "Russian" = 33 )
 
 /datum/job/german/squad_leader/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
-	H << "<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the German force according to the <b>Feldwebel</b>'s orders.</span>"
+	H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
+	H << "<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the German force according to the <b>Feldwebel</b>'s and <b>Stabsoffizier</b>en's orders.</span>"
 	return 1
 
 /datum/job/german/squad_leader/update_character(var/mob/living/carbon/human/H)
 	..()
-
 	H.make_artillery_officer()
 
 /datum/job/german/squad_leader/get_keys()
@@ -467,6 +507,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an artillery officer. Your job is to bomb the shit out of the enemy.</span>"
 	return 1
 
@@ -510,6 +551,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a scout. Your job is to assist the <b>Kanonier</b> by getting coordinates.</span>"
 	return 1
 
@@ -554,6 +596,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a train conductor. Your job is take men to and from the front.</span>"
 	return 1
 
@@ -585,6 +628,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/ssuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sshelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/akm(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)

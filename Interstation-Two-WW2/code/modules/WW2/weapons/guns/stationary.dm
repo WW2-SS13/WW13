@@ -8,7 +8,10 @@
 	set popup_menu = 1
 	set src in range(1, usr)
 
-	src.try_use_sights(usr)
+	if (locate(src) in get_step(usr, usr.dir))
+		try_use_sights(usr)
+	else
+		usr << "<span class = 'danger'>Stand in front of [src] to use iron sights.</span>"
 
 /obj/item/weapon/gun/projectile/minigun/verb/eject_mag()
 	set category = "Minigun"
