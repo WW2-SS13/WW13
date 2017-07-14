@@ -122,6 +122,13 @@ var/const/SUP_FREQ = 1347
 var/const/MED_I_FREQ = 1485
 var/const/SEC_I_FREQ = 1475
 
+// ww2 specific channels
+var/const/RU_BASE_FREQ = 1220
+var/const/RU_COMM_FREQ = 1230
+
+var/const/DE_BASE_FREQ = 1240
+var/const/DE_COMM_FREQ = 1250
+
 var/list/radiochannels = list(
 	"Common"		= PUB_FREQ,
 	"Science"		= SCI_FREQ,
@@ -136,7 +143,11 @@ var/list/radiochannels = list(
 	"AI Private"	= AI_FREQ,
 	"Entertainment" = ENT_FREQ,
 	"Medical(I)"	= MED_I_FREQ,
-	"Security(I)"	= SEC_I_FREQ
+	"Security(I)"	= SEC_I_FREQ,
+	"Russian Base" = RU_BASE_FREQ,
+	"Russian Command" = RU_COMM_FREQ,
+	"German Base" = DE_BASE_FREQ,
+	"German Command" = DE_COMM_FREQ
 )
 
 // central command channels, i.e deathsquid
@@ -159,7 +170,7 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI
 	if(frequency in CENT_FREQS)
 		return "centradio"
 	// command channel
-	if(frequency == COMM_FREQ)
+	if(frequency == COMM_FREQ || frequency == DE_COMM_FREQ || frequency == RU_COMM_FREQ) //command frequencies
 		return "comradio"
 	// AI private channel
 	if(frequency == AI_FREQ)
@@ -173,7 +184,7 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI
 		return "sciradio"
 	if(frequency == MED_FREQ)
 		return "medradio"
-	if(frequency == SUP_FREQ) // cargo
+	if(frequency == SUP_FREQ || frequency == DE_BASE_FREQ || frequency == RU_BASE_FREQ) // cargo / base frequencies
 		return "supradio"
 	if(frequency == SRV_FREQ) // service
 		return "srvradio"

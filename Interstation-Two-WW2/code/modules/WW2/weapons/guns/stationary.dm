@@ -8,7 +8,10 @@
 	set popup_menu = 1
 	set src in range(1, usr)
 
-	src.try_use_sights(usr)
+	if (locate(src) in get_step(usr, usr.dir))
+		try_use_sights(usr)
+	else
+		usr << "<span class = 'danger'>Stand in front of [src] to use iron sights.</span>"
 
 /obj/item/weapon/gun/projectile/minigun/verb/eject_mag()
 	set category = "Minigun"
@@ -58,15 +61,15 @@
 			if(user.has_empty_hand(both = 1) && !src.is_used_by(user))
 				user.use_object(src)
 			else
-				user << "\red Your hands are busy by holding things."
+				user.show_message("\red Your hands are busy by holding things.")
 		else
-			user << "\red You're too far from the handles."
+			user.show_message("\red You're too far from the handles.")
 
 /obj/item/weapon/gun/projectile/minigun/proc/try_use_sights(mob/user)
 	if (src.is_used_by(user))
-		toggle_scope(2.0)
+		toggle_scope(usr, 2.0)
 	else
-		user.visible_message("<span class='warning'>You aren't using \the [src].</span>")
+		user.show_message("<span class='warning'>You aren't using \the [src].</span>")
 
 
 // An ugly hack called a boolean proc, made it like this to allow special
@@ -78,10 +81,10 @@
 // I am sorry for creating this abomination -- Irra
 /obj/item/weapon/gun/projectile/minigun/can_zoom(mob/user, var/devicename, var/silent)
 	if(user.stat || !ishuman(user))
-		if (!silent) user << "You are unable to focus through the [devicename]"
+		if (!silent) user.show_message("You are unable to focus through the [devicename]")
 		return 0
 	else if(!zoom && global_hud.darkMask[1] in user.client.screen)
-		if (!silent) user << "Your visor gets in the way of looking through the [devicename]"
+		if (!silent) user.show_message("Your visor gets in the way of looking through the [devicename]")
 		return 0
 	return 1
 
@@ -90,9 +93,9 @@
 		if (user.has_empty_hand())
 			src.unload_ammo(user)
 		else
-			user.visible_message("<span class='warning'>You need an empty hand for this.</span>")
+			user.show_message("<span class='warning'>You need an empty hand for this.</span>")
 	else
-		user.visible_message("<span class='warning'>You can't do this while using \the [src].</span>")
+		user.show_message("<span class='warning'>You can't do this while using \the [src].</span>")
 
 /obj/item/weapon/gun/projectile/minigun/proc/usedby(mob/user, atom/A, params)
 	if(A == src)
@@ -116,7 +119,7 @@
 	return 1
 
 /obj/item/weapon/gun/projectile/minigun/proc/rotate_to(mob/user, atom/A)
-	user << "<span class='warning'>You can't turn the [name] there.</span>"
+	user.show_message("<span class='warning'>You can't turn the [name] there.</span>")
 	return 0
 
 /obj/item/weapon/gun/projectile/minigun/proc/update_layer()
@@ -151,7 +154,7 @@
 //	if (user_old_x && user_old_y)
 		//animate(user, pixel_x=user_old_x, pixel_y=user_old_y, 4, 1)
 	if (zoom)
-		zoom() // out
+		zoom(user) // out
 
 	user.pixel_x = user_old_x
 	user.pixel_y = user_old_y

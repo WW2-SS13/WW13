@@ -49,7 +49,7 @@
 	set name = "Use iron sights"
 	set popup_menu = 1
 
-	toggle_scope(1.0)
+	toggle_scope(usr, 1.0)
 
 /obj/item/weapon/gun/projectile/New()
 	..()

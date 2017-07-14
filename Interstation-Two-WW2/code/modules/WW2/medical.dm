@@ -93,11 +93,11 @@
 //////////////////////////
 
 /obj/item/weapon/gauze_pack
+	var/content_type = null
 	name = "pack of nothing"
 	desc = "Contains nothing."
 	icon = 'icons/WW2/medical.dmi'
 	w_class = 1 //Packed very effective
-	var/content_type = null
 	var/packed = 1
 	var/rip_sound = 'sound/effects/rip_pack.ogg'
 
@@ -120,14 +120,15 @@
 			user << "<span class='notice'>You ripped the [src.name] and took out an [O.name].</span>"
 		else
 			user << "<span class='warning'>You ripped the [src.name] but it's empty!</span>"
-		update_icon()
 	else
 		..()
+
+	update_icon()
 
 /obj/item/weapon/gauze_pack/attack_self(mob/user as mob)
 	if(packed)
 		if(prob(50))
-			packed = 1
+			packed = 0
 			if(rip_sound)
 				playsound(src.loc, rip_sound, 50, 1)
 			if(contents.len)
@@ -136,14 +137,16 @@
 				user << "<span class='notice'>You ripped the [src.name] by one hand and [O] falls out.</span>"
 			else
 				user << "<span class='warning'>You ripped the [src.name] but it's empty!</span>"
-			update_icon()
 		else
 			user << "<span class='warning'>You tried to rip the [src.name] but failed!</span>"
 	else
 		user << "<span class='warning'>[name] is already unpacked!</span>"
 
+	update_icon()
+
 /obj/item/weapon/gauze_pack/update_icon()
 	icon_state = "[initial(icon_state)][packed]"
+	..()
 
 ///////////////////
 ////Gauze Packs////
@@ -151,7 +154,7 @@
 
 /obj/item/weapon/gauze_pack/bint
 	name = "pack of bint"
-	desc = "Contains sterile bint."
+	desc = "contains sterile bint"
 	icon_state = "bint_pack"
 	content_type = /obj/item/stack/medical/bruise_pack/bint
 
@@ -161,10 +164,9 @@
 	icon = 'icons/WW2/medical.dmi'
 	icon_state = "bint"
 
-
 /obj/item/weapon/gauze_pack/gauze
 	name = "pack of gauze"
-	desc = "Contains sterile gauze."
+	desc = "contains sterile gauze"
 	icon_state = "gauze_pack"
 	content_type = /obj/item/stack/medical/bruise_pack/gauze
 

@@ -439,7 +439,7 @@
 		if (ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if (H.original_job.team == original_job.team) // when you ghost, mind.assigned_job is set to null
-				msg += "<br><i>You recognize [T.him] as a [original_job.title].</i>"
+				msg += "<br><i>You recognize [T.him] as a [original_job.title] ([original_job.en_meaning]).</i>"
 		else if (isobserver(user))
 			msg += "<br><i>[T.He] [T.is] a [original_job.title].</i>"
 

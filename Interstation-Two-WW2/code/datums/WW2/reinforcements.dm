@@ -18,14 +18,16 @@ var/datum/reinforcements/reinforcements_master
 	var/russian_countdown_success_reset = 300
 	var/german_countdown_success_reset = 300
 
-	var/german_reinforcements_at_once = 10
-	var/russian_reinforcements_at_once = 10
+	var/german_reinforcements_at_once = 9
+	var/russian_reinforcements_at_once = 12
 
 	var/reinforcement_add_limit = 7
+	var/reinforcement_add_limit_german = 7
+	var/reinforcement_add_limit_russian = 7
 
 	var/reinforcement_spawn_req = 3
 
-	var/reinforcement_difference_cutoff = 7 // once one side has this many more reinforcements than the other, lock it until that's untrue
+	var/reinforcement_difference_cutoff = 12 // once one side has this many more reinforcements than the other, lock it until that's untrue
 
 	var/reinforcements_granted[2] // keep track of how many troops we've given to germans, how many to russians, for autobalance
 
@@ -40,7 +42,8 @@ var/datum/reinforcements/reinforcements_master
 /datum/reinforcements/New()
 	..()
 
-	reinforcement_add_limit = max(german_reinforcements_at_once, russian_reinforcements_at_once, 10)
+	reinforcement_add_limit_german = german_reinforcements_at_once
+	reinforcement_add_limit_russian = russian_reinforcements_at_once
 
 	if (config && config.debug)
 		russian_countdown = 10
@@ -105,12 +108,12 @@ var/datum/reinforcements/reinforcements_master
 
 	switch (side)
 		if ("RUSSIAN")
-			if (len(reinforcement_pool["RUSSIAN"]) >= reinforcement_add_limit)
+			if (len(reinforcement_pool["RUSSIAN"]) >= reinforcement_add_limit_russian)
 				nope["RUSSIAN"] = 1
 			else
 				nope["RUSSIAN"] = 0
 		if ("GERMAN")
-			if (len(reinforcement_pool["GERMAN"]) >= reinforcement_add_limit)
+			if (len(reinforcement_pool["GERMAN"]) >= reinforcement_add_limit_german)
 				nope["GERMAN"] = 1
 			else
 				nope["GERMAN"] = 0
@@ -265,11 +268,11 @@ var/datum/reinforcements/reinforcements_master
 	var/list/l = list()
 	l += "GERMAN REINFORCEMENTS:"
 	l += "Deployed: [reinforcements_granted["GERMAN"]]"
-	l += "Deploying: [r_german()]/[reinforcement_add_limit] in [german_countdown] seconds"
+	l += "Deploying: [r_german()]/[reinforcement_add_limit_german] in [german_countdown] seconds"
 	l += "Locked: [locked["GERMAN"] ? "Yes" : "No"]"
 	l += "RUSSIAN REINFORCEMENTS:"
 	l += "Deployed: [reinforcements_granted["RUSSIAN"]]"
-	l += "Deploying: [r_russian()]/[reinforcement_add_limit] in [russian_countdown] seconds"
+	l += "Deploying: [r_russian()]/[reinforcement_add_limit_russian] in [russian_countdown] seconds"
 	l += "Locked: [locked["RUSSIAN"] ? "Yes" : "No"]"
 
 	return l

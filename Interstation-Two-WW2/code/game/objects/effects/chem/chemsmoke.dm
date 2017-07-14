@@ -14,7 +14,7 @@
 	var/last_duration = -1
 	var/random_destination = 0
 	var/maxspread = 10
-	var/passes_walls = 1
+	var/passes_walls = 0
 
 /obj/effect/effect/smoke/chem/New(var/newloc, smoke_duration, turf/dest_turf = null, icon/cached_icon = null, var/spread = 10)
 
@@ -82,6 +82,10 @@
 	var/list/oldlocs = view(1, src)
 	. = ..()
 	if(.)
+		// before we gas people, make sure we didn't pass a wall
+		if (!passes_walls && (istype(loc, /turf/simulated/wall) || istype(loc, /turf/unsimulated/wall)))
+			qdel(src)
+
 		for(var/turf/T in view(1, src) - oldlocs)
 			for(var/atom/movable/AM in T)
 				if(!istype(AM, /obj/effect/effect/smoke/chem))

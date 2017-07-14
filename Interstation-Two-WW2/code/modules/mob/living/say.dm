@@ -2,6 +2,7 @@ var/list/department_radio_keys = list(
 	  ":r" = "right ear",	".r" = "right ear",
 	  ":l" = "left ear",	".l" = "left ear",
 	  ":i" = "intercom",	".i" = "intercom",
+	  ":b" = "harness", 	".b" = "harness",
 	  ":h" = "department",	".h" = "department",
 	  ":+" = "special",		".+" = "special", //activate radio-specific special functions
 	  ":c" = "Command",		".c" = "Command",
@@ -19,6 +20,7 @@ var/list/department_radio_keys = list(
 	  ":R" = "right ear",	".R" = "right ear",
 	  ":L" = "left ear",	".L" = "left ear",
 	  ":I" = "intercom",	".I" = "intercom",
+	  ":B" = "harness", 	".B" = "harness",
 	  ":H" = "department",	".H" = "department",
 	  ":C" = "Command",		".C" = "Command",
 	  ":N" = "Science",		".N" = "Science",
@@ -37,6 +39,7 @@ var/list/department_radio_keys = list(
 	  ":ê" = "right ear",	".ê" = "right ear",
 	  ":ä" = "left ear",	".ä" = "left ear",
 	  ":ø" = "intercom",	".ø" = "intercom",
+	 // ":b" = "harness", 	".b" = "harness", someone russian needs to handle this
 	  ":ğ" = "department",	".ğ" = "department",
 	  ":ñ" = "Command",		".ñ" = "Command",
 	  ":ò" = "Science",		".ò" = "Science",

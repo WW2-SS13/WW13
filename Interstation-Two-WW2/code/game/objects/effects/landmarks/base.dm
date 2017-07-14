@@ -102,12 +102,40 @@
 			qdel(src)
 			return
 
+		if("JoinLateNATO-commander")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateNATO-officer")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
 		if ("JoinLateRussia-FALLBACK")
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 
 		if ("JoinLateRussia-NATO")
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRussia-commander")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRussia-officer")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return

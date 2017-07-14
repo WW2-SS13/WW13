@@ -187,6 +187,15 @@
 			if(has_radio)
 				R.talk_into(src,message,null,verb,speaking)
 				used_radios += R
+		if("harness")
+			var/obj/item/device/radio/R
+			var/has_radio = 0
+			if(s_store && istype(s_store,/obj/item/device/radio))
+				R = s_store
+				has_radio = 1
+			if(has_radio)
+				R.talk_into(src,message,null,verb,speaking)
+				used_radios += R
 		if("whisper")
 			whisper_say(message, speaking, alt_name)
 			return 1

@@ -10,7 +10,7 @@
 	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/a762x54
-	accuracy = -1
+	accuracy = 1
 	magazine_type = /obj/item/ammo_magazine/svt
 	firemodes = list(
 		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, accuracy = list(0), dispersion = list(1))
@@ -36,7 +36,7 @@
 	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/a792x57
-	accuracy = -1
+	accuracy = 1
 	magazine_type = /obj/item/ammo_magazine/g41
 	firemodes = list(
 		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, accuracy = list(0), dispersion = list(1))

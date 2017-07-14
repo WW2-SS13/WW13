@@ -211,24 +211,51 @@
 		if(prob(20))
 			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
 	else
-		on_hear_radio(part_a, speaker_name, track, part_b, formatted)
+		var/fontsize = 2
+
+		if (istype(speaker.original_job, /datum/job/german/commander))
+			fontsize = 3
+		else if (istype(speaker.original_job, /datum/job/german/staff_officer))
+			fontsize = 3
+		else if (istype(speaker.original_job, /datum/job/german/squad_leader))
+			fontsize = 3
+		else if (istype(speaker.original_job, /datum/job/german/stabsgefreiter))
+			fontsize = 3
+		else if (istype(speaker.original_job, /datum/job/german/artyman))
+			fontsize = 3
+		else if (istype(speaker.original_job, /datum/job/german/conductor))
+			fontsize = 3
+		else if (istype(speaker.original_job, /datum/job/german/squad_leader_ss))
+			fontsize = 3
+
+		else if (istype(speaker.original_job, /datum/job/russian/commander))
+			fontsize = 3
+		else if (istype(speaker.original_job, /datum/job/russian/staff_officer))
+			fontsize = 3
+		else if (istype(speaker.original_job, /datum/job/russian/squad_leader))
+			fontsize = 3
+		else if (istype(speaker.original_job, /datum/job/russian/zavhoz))
+			fontsize = 3
+
+
+		on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize)
 
 /proc/say_timestamp()
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
 
-/mob/proc/on_hear_radio(part_a, speaker_name, track, part_b, formatted)
-	src << "[part_a][speaker_name][part_b][formatted]"
+/mob/proc/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
+	src << "<font size = [fontsize]>[part_a][speaker_name][part_b][formatted]</font>"
 
-/mob/observer/ghost/on_hear_radio(part_a, speaker_name, track, part_b, formatted)
-	src << "[part_a][track][part_b][formatted]"
+/mob/observer/ghost/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
+	src << "<font size = [fontsize]>[part_a][track][part_b][formatted]</font>"
 
-/mob/living/silicon/on_hear_radio(part_a, speaker_name, track, part_b, formatted)
+/mob/living/silicon/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
 	var/time = say_timestamp()
-	src << "[time][part_a][speaker_name][part_b][formatted]"
+	src << "<font size = [fontsize]>[time][part_a][speaker_name][part_b][formatted]</font>"
 
-/mob/living/silicon/ai/on_hear_radio(part_a, speaker_name, track, part_b, formatted)
+/mob/living/silicon/ai/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
 	var/time = say_timestamp()
-	src << "[time][part_a][track][part_b][formatted]"
+	src << "<font size = [fontsize]>[time][part_a][track][part_b][formatted]</font>"
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
 	if(!client)

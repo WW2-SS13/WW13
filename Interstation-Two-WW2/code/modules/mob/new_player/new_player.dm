@@ -492,13 +492,13 @@
 				if (job_is_available)
 					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 				else
-					dat += "TAKEN OR RESTRICTED: <strike>[job.title] ([job.current_positions]) (Active: [active])</strike><br>"
+					dat += "TAKEN: <strike>[job.title] ([job.current_positions]) (Active: [active])</strike><br>"
 
 			else
 				if (job_is_available)
 					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</a><br>"
 				else
-					dat += "TAKEN OR RESTRICTED: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</strike><br>"
+					dat += "TAKEN: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</strike><br>"
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")
 

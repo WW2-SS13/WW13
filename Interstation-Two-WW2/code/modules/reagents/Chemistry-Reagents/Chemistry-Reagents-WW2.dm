@@ -1,4 +1,4 @@
-
+#define CHEMNERF 2 // divide the power of all chems by this for BALANCE - Kachnov
 
 /datum/reagent/proc/mask_check(var/mob/living/carbon/human/m)
 	if (m && istype(m))
@@ -11,7 +11,7 @@
 /datum/reagent/proc/eye_damage(var/mob/living/carbon/human/m, var/severity = 1) // damage eyes
 	if (mask_check(m)) return
 	if (m && istype(m) && severity)
-		var/base = (rand(2,3)) * severity
+		var/base = ((rand(2,3)) * severity)/CHEMNERF
 		if (base >= 2)
 			m << "<span class = 'danger'>The gas burns your eyes!</span>"
 			if (m.stat != DEAD)
@@ -22,7 +22,7 @@
 
 /datum/reagent/proc/external_damage(var/mob/living/carbon/human/m, var/severity = 1) // damage skin
 	if (m && istype(m) && severity)
-		var/base = (rand(2,3)) * severity
+		var/base = ((rand(2,3)) * severity)/CHEMNERF
 		if (base >= 2)
 			m << "<span class = 'danger'>The gas burns your skin!</span>"
 			if (prob(50))
@@ -35,7 +35,7 @@
 /datum/reagent/proc/internal_damage(var/mob/living/carbon/human/m, var/severity = 1) // damage things like lungs
 	if (mask_check(m)) return
 	if (m && istype(m) && severity)
-		var/base = (rand(2,3)) * severity
+		var/base = ((rand(2,3)) * severity)/CHEMNERF
 		if (base >= 2)
 			m << "<span class = 'danger'>The gas burns your lungs!</span>"
 			if (m.stat != DEAD)
@@ -48,6 +48,7 @@
 	if (m && istype(m) && severity)
 		var/base = ((m.getBruteLoss() + m.getFireLoss())/10) * severity
 		base += rand(1,2)
+		base /= CHEMNERF
 		if (base >= 1)
 			m << "<span class = 'danger'>The gas burns the open wounds on your skin!</span>"
 			if (prob(50))

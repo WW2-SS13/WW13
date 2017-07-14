@@ -1332,12 +1332,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_amount = 32
 	// gender = PLURAL
 	desc = "Welp. Someone had their teeth knocked out."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "tooth1"
+	icon = 'icons/mob/surgery.dmi'
+	icon_state = "tooth"
 
 /obj/item/stack/teeth/New()
 	..()
-	icon_state = "tooth[rand(1,3)]"
+	icon_state = "tooth"
 
 /obj/item/stack/teeth/human
 	name = "human teeth"
