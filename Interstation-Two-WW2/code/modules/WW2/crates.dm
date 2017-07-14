@@ -250,9 +250,9 @@
 /obj/structure/closet/crate/artillery
 	name = "German artillery shell crate"
 	icon = 'icons/WW2/artillery_crate.dmi'
-	icon_state = "closed"
+	icon_state = "closed2"
 	icon_opened = "opened"
-	icon_closed = "closed"
+	icon_closed = "closed2"
 
 	New()
 		..()
