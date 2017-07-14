@@ -1,9 +1,10 @@
 /mob/var/train_gib_immunity = 0
 
 /atom/movable/proc/train_move(var/loc)
-	for (var/obj/structure/simple_door/door in loc)
-		if (door.density)
+	for (var/obj/structure/s in loc)
+		if (s.density)
 			return 0
+			/*
 	if (ismob(src) && dir == NORTH)
 		for (var/obj/structure/simple_door/key_door/door in get_step(loc, SOUTH))
 			if (door.density)
@@ -21,7 +22,7 @@
 		for (var/obj/structure/simple_door/key_door/door in get_step(get_step(loc, NORTH), NORTH))
 			if (door.density)
 				if (!door.keyslot.check_user(src))
-					return 0
+					return 0*/
 	Move(loc)
 	return 1
 

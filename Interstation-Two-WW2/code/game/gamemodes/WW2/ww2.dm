@@ -1,3 +1,19 @@
+/proc/is_russian_contested_zone(var/area/a)
+	if (istype(a, /area/prishtina/soviet/bunker))
+		return 1
+	if (istype(a, /area/prishtina/soviet/bunker_entrance))
+		return 1
+	if (istype(a, /area/prishtina/soviet/immediate_outside_defenses))
+		return 1
+	return 0
+
+/proc/is_german_contested_zone(var/area/a)
+	if (istype(a, /area/prishtina/german))
+		if (!istype(a, /area/prishtina/german/train_landing_zone))
+			if (!istype(a, /area/prishtina/german/train_zone))
+				return 1
+	return 0
+
 /proc/get_russian_german_stats()
 	var/alive_russians = 0
 	var/alive_germans = 0
@@ -12,17 +28,17 @@
 		if (istype(H.original_job, /datum/job/russian))
 			if (H.stat != DEAD && H.stat != UNCONSCIOUS)
 				++alive_russians
-				if (istype(get_area(H), /area/prishtina/german))
+				if (is_german_contested_zone(get_area(H)))
 					++russians_in_germany
-				else if (istype(get_area(H), /area/prishtina/soviet))
+				else if (is_russian_contested_zone(get_area(H)))
 					++russians_in_russia
 
 		else if (istype(H.original_job, /datum/job/german))
 			if (H.stat != DEAD && H.stat != UNCONSCIOUS)
 				++alive_germans
-				if (istype(get_area(H), /area/prishtina/german))
+				if (is_german_contested_zone(get_area(H)))
 					++germans_in_germany
-				else if (istype(get_area(H), /area/prishtina/soviet))
+				else if (is_russian_contested_zone(get_area(H)))
 					++germans_in_russia
 
 	return list ("alive_russians" = alive_russians, "alive_germans" = alive_germans,
@@ -78,7 +94,7 @@
 				world << "<font size = 3>Both sides are locked for reinforcements; the game will end in 10 minutes.</font>"
 				return 0
 
-		// condition two: one side has occupied the enemy base
+		// conditions 2.1 to 2.5: one side has occupied the enemy base
 
 		var/stats = get_russian_german_stats()
 
@@ -146,6 +162,7 @@
 			return 1
 
 
+
 /datum/game_mode/ww2/declare_completion()
 	var/list/soldiers = WW2_soldiers_alive()
 	var/WW2_soldiers_en_ru_coeff = WW2_soldiers_en_ru_ratio()
@@ -176,3 +193,7 @@
 
 /datum/game_mode/ww2/announce() //to be called when round starts
 	world << "<b>The current game mode is World War II!</b>"
+
+/datum/game_mode/ww2/declare_completion()
+	name = "World War 2" // fixes capitalization error - Kachnov
+	..()

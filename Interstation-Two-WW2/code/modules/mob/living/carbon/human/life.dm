@@ -962,10 +962,10 @@
 					if(!(M.status_flags & GODMODE))
 						M.adjustBruteLoss(5)
 					nutrition += 10
-	
+
 	handle_excrement()//Handle excrement needs
 	handle_starvation()//Handle starving
-	
+
 
 /mob/living/carbon/human/proc/handle_starvation()//Making this it's own proc for my sanity's sake - Matt
 	if(nutrition < 100) //Nutrition is below 100 = starvation

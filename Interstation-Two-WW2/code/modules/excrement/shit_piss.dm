@@ -275,8 +275,9 @@
 		src.bowels -= rand(60,80)
 
 	else
-		src << "You don't have to."
-		return
+		if (stat != UNCONSCIOUS && stat != DEAD)
+			src << "You don't have to."
+			return
 
 	visible_message("[message]")
 

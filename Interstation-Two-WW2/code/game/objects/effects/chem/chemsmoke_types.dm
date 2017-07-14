@@ -1,8 +1,8 @@
 /obj/effect/effect/smoke/chem/payload
-	last_duration = 200
+	last_duration = 500
 	random_destination = 1
 
-	New(var/newloc, var/_spread = 10, var/_destination = null)
+	New(var/newloc, var/_spread = 7, var/_destination = null)
 		..(spread = _spread, dest_turf = _destination)
 
 		for (var/datum/reagent/r in reagents.reagent_list)

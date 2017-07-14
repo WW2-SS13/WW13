@@ -370,3 +370,15 @@ var/list/organ_cache = list()
 	if(!robotic && user.a_intent == I_HELP && user.targeted_organ == "mouth")
 		bitten(user)
 		return
+
+/obj/item/organ/attackby(obj/i as obj, mob/user as mob)
+	if (istype(i, /obj/item/weapon))
+		var/obj/item/weapon/W = i
+		if (W.sharp)
+			user.visible_message("<span class = 'notice'>[user] starts to carve [src] into a few meat slabs.</span>")
+			if (do_after(user, 30, src))
+				user.visible_message("<span class = 'notice'>[user] carves [src] into a few meat slabs.</span>")
+				for (var/v in 1 to rand(2,4))
+					var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
+					meat.name = "[name] meatsteak"
+				qdel(src)
