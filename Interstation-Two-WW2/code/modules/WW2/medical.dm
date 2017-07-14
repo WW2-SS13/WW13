@@ -93,11 +93,11 @@
 //////////////////////////
 
 /obj/item/weapon/gauze_pack
+	var/content_type = null
 	name = "pack of nothing"
 	desc = "Contains nothing."
 	icon = 'icons/WW2/medical.dmi'
 	w_class = 1 //Packed very effective
-	var/content_type = null
 	var/packed = 1
 	var/rip_sound = 'sound/effects/rip_pack.ogg'
 
@@ -128,7 +128,7 @@
 /obj/item/weapon/gauze_pack/attack_self(mob/user as mob)
 	if(packed)
 		if(prob(50))
-			packed = 1
+			packed = 0
 			if(rip_sound)
 				playsound(src.loc, rip_sound, 50, 1)
 			if(contents.len)
@@ -146,6 +146,7 @@
 
 /obj/item/weapon/gauze_pack/update_icon()
 	icon_state = "[initial(icon_state)][packed]"
+	..()
 
 ///////////////////
 ////Gauze Packs////
@@ -153,7 +154,7 @@
 
 /obj/item/weapon/gauze_pack/bint
 	name = "pack of bint"
-	desc = "Contains sterile bint."
+	desc = "contains sterile bint"
 	icon_state = "bint_pack"
 	content_type = /obj/item/stack/medical/bruise_pack/bint
 
@@ -165,7 +166,7 @@
 
 /obj/item/weapon/gauze_pack/gauze
 	name = "pack of gauze"
-	desc = "Contains sterile gauze."
+	desc = "contains sterile gauze"
 	icon_state = "gauze_pack"
 	content_type = /obj/item/stack/medical/bruise_pack/gauze
 
