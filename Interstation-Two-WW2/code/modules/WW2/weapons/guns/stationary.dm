@@ -2,14 +2,6 @@
 //POD MACHINEGUNS
 //*********************
 
-/obj/item/weapon/gun/projectile/minigun/verb/mgsight()
-	set category = "Minigun"
-	set name = "Use iron sights"
-	set popup_menu = 1
-	set src in range(1, usr)
-
-	src.try_use_sights(usr)
-
 /obj/item/weapon/gun/projectile/minigun/verb/eject_mag()
 	set category = "Minigun"
 	set name = "Eject magazine"
@@ -35,6 +27,9 @@
 	caliber = "4mm"
 	slot_flags = 0
 	ammo_type = /obj/item/ammo_casing/c4mm
+	zoomable = TRUE
+	zoom_amt = 6
+
 
 	firemodes = list(
 		list(name="3000 rpm", burst=10, burst_delay=0.1, fire_delay=1, dispersion=list(1.0), accuracy=list(0)),
@@ -61,12 +56,12 @@
 				user << "\red Your hands are busy by holding things."
 		else
 			user << "\red You're too far from the handles."
-
+/*
 /obj/item/weapon/gun/projectile/minigun/proc/try_use_sights(mob/user)
 	if (src.is_used_by(user))
-		toggle_scope(2.0)
+		//toggle_scope(2.0)
 	else
-		user.visible_message("<span class='warning'>You aren't using \the [src].</span>")
+		user.visible_message("<span class='warning'>You aren't using \the [src].</span>")*/
 
 
 // An ugly hack called a boolean proc, made it like this to allow special
@@ -80,7 +75,7 @@
 	if(user.stat || !ishuman(user))
 		if (!silent) user << "You are unable to focus through the [devicename]"
 		return 0
-	else if(!zoom && global_hud.darkMask[1] in user.client.screen)
+	else if(!zoomed && global_hud.darkMask[1] in user.client.screen)
 		if (!silent) user << "Your visor gets in the way of looking through the [devicename]"
 		return 0
 	return 1
@@ -128,34 +123,18 @@
 /obj/item/weapon/gun/projectile/minigun/proc/started_using(mob/user as mob)
 	..()
 
-	stopped_using(user)
-
-
-	var/diff_x = 0
-	var/diff_y = 0
-	if(dir == EAST)		diff_x = -16 + user.pixel_x
-	if(dir == WEST)		diff_x = 16 + user.pixel_x
-	if(dir == NORTH)	diff_y = -16 + user.pixel_y
-	if(dir == SOUTH)	diff_y = 16 + user.pixel_y
-
-	user_old_x = user.pixel_x
-	user_old_y = user.pixel_y
-
+	azoom.Grant(user)
 	user.forceMove(src.loc)
 	user.dir = src.dir
-	animate(user, pixel_x=diff_x, pixel_y=diff_y, 4, 1)
 
 /obj/item/weapon/gun/projectile/minigun/proc/stopped_using(mob/user as mob)
 	..()
 //	var/grip_dir = reverse_direction(dir)
 //	if (user_old_x && user_old_y)
 		//animate(user, pixel_x=user_old_x, pixel_y=user_old_y, 4, 1)
-	if (zoom)
-		zoom() // out
-
-	user.pixel_x = user_old_x
-	user.pixel_y = user_old_y
-	animate(user, pixel_x=0, pixel_y=0, 4, 1)
+	if(zoomed)
+		zoom(user, FALSE) // out
+	azoom.Remove(user)
 
 /obj/item/weapon/gun/projectile/minigun/proc/is_used_by(mob/user)
 	return user.using_object == src && user.loc == src.loc
@@ -188,17 +167,12 @@
 /obj/item/weapon/gun/projectile/minigun/kord/rotate_to(mob/user, atom/A)
 	var/shot_dir = get_carginal_dir(src, A)
 	dir = shot_dir
-
-	var/diff_x = 0
-	var/diff_y = 0
-	if(dir == EAST)		diff_x = -16 + user_old_x
-	if(dir == WEST)		diff_x = 16 + user_old_x
-	if(dir == NORTH)	diff_y = -16 + user_old_y
-	if(dir == SOUTH)	diff_y = 16 + user_old_y
+	
+	if(zoomed)
+		zoom(user, FALSE) //Stop Zoom
 
 	user.forceMove(src.loc)
 	user.dir = src.dir
-	animate(user, pixel_x=diff_x, pixel_y=diff_y, 4, 1)
 
 
 /obj/item/weapon/gun/projectile/minigun/kord/maxim

@@ -2,7 +2,7 @@
 
 /obj/item/weapon/gun/projectile/boltaction/
 	name = "bolt-action rifle"
-	desc = "A bolt-action rifle of true ww2 "
+	desc = "A bolt-action rifle of true ww2 (You shouldn't be seeing this)"
 	icon_state = "mosin"
 	item_state = "mosin" //placeholder
 	w_class = 4
@@ -22,9 +22,16 @@
 	accuracy = 1
 	scoped_accuracy = 2
 	var/bolt_open = 0
-
+	var/check_bolt = 0 //Keeps the bolt from being interfered with
+	var/bolt_safety = 0 //If true, locks the bolt when gun is empty
 
 /obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user as mob)
+	if(!check_bolt)//Keeps people from spamming the bolt
+		check_bolt++
+		if(!do_after(user, 5, src, 0))//Delays the bolt
+			check_bolt--
+			return
+	else return
 	bolt_open = !bolt_open
 	if(bolt_open)
 		if(chambered)
@@ -33,6 +40,10 @@
 			chambered.loc = get_turf(src)
 			loaded -= chambered
 			chambered = null
+			if(bolt_safety)
+				if(!loaded)
+					check_bolt++
+					user.visible_message("<span class='notice'>The bolt is locked!</span>")
 		else
 			playsound(src.loc, 'sound/weapons/bolt_open.ogg', 50, 1)
 			user << "<span class='notice'>You work the bolt open.</span>"
@@ -42,6 +53,7 @@
 		bolt_open = 0
 	add_fingerprint(user)
 	update_icon()
+	check_bolt--
 
 /obj/item/weapon/gun/projectile/boltaction/special_check(mob/user)
 	if(bolt_open)
@@ -52,10 +64,11 @@
 /obj/item/weapon/gun/projectile/boltaction/load_ammo(var/obj/item/A, mob/user)
 	if(!bolt_open)
 		return
+	if(bolt_safety && !loaded)
+		check_bolt--
 	..()
 
 /obj/item/weapon/gun/projectile/boltaction/unload_ammo(mob/user, var/allow_dump=1)
 	if(!bolt_open)
 		return
 	..()
-

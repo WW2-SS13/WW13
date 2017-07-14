@@ -20,6 +20,8 @@
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/rifle_load.ogg'
 	var/bolt_open = 0
+	zoomable = TRUE
+	zoom_amt = 7
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
 	if(bolt_open)
@@ -60,10 +62,3 @@
 	if(!bolt_open)
 		return
 	..()
-
-/obj/item/weapon/gun/projectile/heavysniper/scope()
-	set category = "Object"
-	set popup_menu = 1
-
-	toggle_scope(2.0)
-

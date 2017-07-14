@@ -43,14 +43,6 @@
 	var/load_shell_sound = 'sound/weapons/empty.ogg'
 	var/load_magazine_sound = 'sound/weapons/flipblade.ogg'
 
-
-/obj/item/weapon/gun/projectile/verb/scope()
-	set category = "Weapons"
-	set name = "Use iron sights"
-	set popup_menu = 1
-
-	toggle_scope(1.0)
-
 /obj/item/weapon/gun/projectile/New()
 	..()
 	if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))

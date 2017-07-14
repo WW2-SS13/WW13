@@ -5,7 +5,7 @@
 
 	// kachnov
 	var/nodrop = 0
-
+	var/list/actions = list() //list of /datum/action's that this item has.
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/abstract = 0
 	var/r_speed = 1.0
@@ -228,7 +228,7 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user as mob)
 	..()
-	if(zoom) zoom() //binoculars, scope, etc
+	//if(zoomed) zoom() //binoculars, scope, etc
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -559,80 +559,6 @@ var/list/global/slot_flags_enumeration = list(
 	var/obj/item/I = get_active_hand()
 	if(I && !I.abstract)
 		I.showoff(src)
-
-// An ugly hack called a boolean proc, made it like this to allow special
-// behaviour without big overrides. So special snowflake weapons like the minigun
-// can use zoom without overriding the original zoom proc.
-//	user: user mob
-//	devicename: name of what device you are peering through, set by zoom() in items.dm
-//	silent: boolean controlling whether it should tell the user why they can't zoom in or not
-// I am sorry for creating this abomination -- Irra
-/obj/item/proc/can_zoom(mob/user, var/devicename = src.name, var/silent = 0)
-	if(user.stat || !ishuman(user))
-		if (!silent) user << "You are unable to focus through the [devicename]"
-		return 0
-	else if(!zoom && global_hud.darkMask[1] in user.client.screen)
-		if (!silent) user << "Your visor gets in the way of looking through the [devicename]"
-		return 0
-	else if(!zoom && user.get_active_hand() != src)
-		if (!silent) user << "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better"
-		return 0
-	return 1
-
-/*
-For zooming with scope or binoculars. This is called from
-modules/mob/mob_movement.dm if you move you will be zoomed out
-modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
-*/
-//Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
-/obj/item/proc/zoom(var/tileoffset = 14, var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
-	var/devicename
-
-	if(zoomdevicename)
-		devicename = zoomdevicename
-	else
-		devicename = src.name
-
-	var/cannotzoom = !can_zoom(usr, devicename)
-
-	if(!zoom && !cannotzoom)
-		//if(usr.hud_used.hud_shown)
-			//usr.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		usr.client.view = viewsize
-		zoom = 1
-
-		var/tilesize = 32
-		var/viewoffset = tilesize * tileoffset
-
-		switch(usr.dir)
-			if (NORTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = viewoffset
-			if (SOUTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = -viewoffset
-			if (EAST)
-				usr.client.pixel_x = viewoffset
-				usr.client.pixel_y = 0
-			if (WEST)
-				usr.client.pixel_x = -viewoffset
-				usr.client.pixel_y = 0
-
-		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
-
-	else
-		usr.client.view = world.view
-		//if(!usr.hud_used.hud_shown)
-			//usr.toggle_zoom_hud()
-		zoom = 0
-
-		usr.client.pixel_x = 0
-		usr.client.pixel_y = 0
-
-		if(!cannotzoom)
-			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [src.name]" : "[usr] lowers the [src.name]"].")
-
-	return
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill

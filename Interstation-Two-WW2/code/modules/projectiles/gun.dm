@@ -39,7 +39,6 @@
 	force = 5
 	origin_tech = "combat=1"
 	attack_verb = list("struck", "hit", "bashed")
-	zoomdevicename = "scope"
 
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -78,6 +77,13 @@
 
 	var/obj/item/weapon/gun_attachment/attachment = null
 
+	//Zooming
+	var/zoomable = FALSE //whether the gun generates a Zoom action on creation
+	var/zoomed = FALSE //Zoom toggle
+	var/zoom_amt = 0 //Distance in TURFs to move the user's screen forward (the "zoom" effect)
+	zoomdevicename = "iron sights"
+	var/datum/action/toggle_scope/azoom
+
 /obj/item/weapon/gun/New()
 	..()
 	if(!firemodes.len)
@@ -88,6 +94,7 @@
 
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
+	build_zooming()
 
 /obj/item/weapon/gun/attackby(obj/W as obj, mob/user as mob)
 	if (ishuman(user))
@@ -497,27 +504,6 @@
 		mouthshoot = 0
 		return
 
-/obj/item/weapon/gun/proc/toggle_scope(var/zoom_amount=2.0)
-	//looking through a scope limits your periphereal vision
-	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
-	var/zoom_offset = round(world.view * zoom_amount)
-	var/view_size = round(world.view + zoom_amount)
-	var/scoped_accuracy_mod = zoom_offset
-
-	zoom(zoom_offset, view_size)
-	if(zoom)
-		accuracy = scoped_accuracy + scoped_accuracy_mod
-		if(recoil)
-			recoil = round(recoil*zoom_amount+1) //recoil is worse when looking through a scope
-
-//make sure accuracy and recoil are reset regardless of how the item is unzoomed.
-/obj/item/weapon/gun/zoom()
-	..()
-	if(!zoom)
-		accuracy = initial(accuracy)
-		recoil = initial(recoil)
-
-
 /obj/item/weapon/gun/examine(mob/user)
 	..()
 	if(firemodes.len > 1)
@@ -567,10 +553,10 @@
 			user.drop_active_hand()
 			qdel(O)
 
-/obj/item/weapon/gun/dropped(mob/user as mob)
+/obj/item/weapon/gun/dropped(mob/user)
+	..()
 	if(wielded)
 		unwield(user)
-	return ..()
 
 /obj/item/weapon/gun/mob_can_equip(M as mob, slot) //Dirty hack
 	. = ..()

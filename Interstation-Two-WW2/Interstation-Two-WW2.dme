@@ -1945,6 +1945,7 @@
 #include "code\modules\WW2\weapons\grenades.dm"
 #include "code\modules\WW2\weapons\melee.dm"
 #include "code\modules\WW2\weapons\mines.dm"
+#include "code\modules\WW2\weapons\zoom.dm"
 #include "code\modules\WW2\weapons\donors\swords\sword1.dm"
 #include "code\modules\WW2\weapons\guns\automatic.dm"
 #include "code\modules\WW2\weapons\guns\bolt-action.dm"
