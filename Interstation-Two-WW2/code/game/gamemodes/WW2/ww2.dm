@@ -161,12 +161,12 @@
 		else
 			cond_2_4_check1 = 0
 
-		if (cond_2_1_check1 && world.time >= cond_2_1_nextcheck && cond_2_1_nextcheck != -1) // condition 2.3 completed
+		if (cond_2_1_check1 && world.time >= cond_2_1_nextcheck && cond_2_1_nextcheck != -1) // condition 2.1 completed
 			if (!win_condition) win_condition = "The Soviet Army won by outnumbering the Germans and occupying most of their territory, cutting them off from supplies!"
 			winning_side = "Soviet Army"
 			return 1
 
-		if (cond_2_2_check1 && world.time >= cond_2_2_nextcheck && cond_2_2_nextcheck != -1) // condition 2.3 completed
+		if (cond_2_2_check1 && world.time >= cond_2_2_nextcheck && cond_2_2_nextcheck != -1) // condition 2.2 completed
 			if (!win_condition) win_condition = "The German Army won by outnumbering the Soviets and occupying most of their territory. The bunker was surrounded and cut off from reinforcements!"
 			winning_side = "German Army"
 			return 1
@@ -176,7 +176,7 @@
 			winning_side = "German Army"
 			return 1
 
-		if (cond_2_4_check1 && world.time >= cond_2_4_nextcheck && cond_2_4_nextcheck != -1)
+		if (cond_2_4_check1 && world.time >= cond_2_4_nextcheck && cond_2_4_nextcheck != -1) // condition 2.4 completed
 			if (!win_condition) win_condition = "The Soviet Army won by occupying and holding German territory, while heavily outnumber the Germans there."
 			winning_side = "Soviet Army"
 			return 1
