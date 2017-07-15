@@ -120,8 +120,8 @@
 		// condition 2.1: Russians outnumber germans and the amount of
 		// russians in the german base is > than the amount of germans there
 
-		if (alive_russians > alive_germans && !cond_2_1_check1)
-			if (russians_in_germany > germans_in_germany)
+		if (alive_russians > alive_germans)
+			if (russians_in_germany > germans_in_germany && !cond_2_1_check1)
 				cond_2_1_check1 = 1
 				cond_2_1_nextcheck = world.time + 3000
 				world << "<font size = 3>The Russians have occupied most German territory! The German Army has 5 minutes to reclaim their land!</font>"
@@ -131,8 +131,8 @@
 		// condition 2.2: Germans outnumber russians and the amount of germans
 		// in the russian base is > than the amount of russians there
 
-		if (alive_germans > alive_russians && !cond_2_2_check1)
-			if (germans_in_russia > russians_in_russia)
+		if (alive_germans > alive_russians)
+			if (germans_in_russia > russians_in_russia && !cond_2_2_check1)
 				cond_2_2_check1 = 1
 				cond_2_2_nextcheck = world.time + 3000
 				world << "<font size = 3>The Germans have occupied most Soviet territory! The Soviet Army has 5 minutes to reclaim their land!</font>"
@@ -143,10 +143,11 @@
 		// base, regardless of general numerical superiority/inferiority.
 		// they have to hold this position for 10+ minutes
 
-		if ((germans_in_russia/1.33) > russians_in_russia && !cond_2_3_check1)
-			cond_2_3_check1 = 1
-			cond_2_3_nextcheck = world.time + 6000
-			world << "<font size = 3>The Germans have occupied most Soviet territory! The Soviet Army has 10 minutes to reclaim their land!</font>"
+		if ((germans_in_russia/1.33) > russians_in_russia)
+			if(!cond_2_3_check1)
+				cond_2_3_check1 = 1
+				cond_2_3_nextcheck = world.time + 6000
+				world << "<font size = 3>The Germans have occupied most Soviet territory! The Soviet Army has 10 minutes to reclaim their land!</font>"
 		else
 			cond_2_3_check1 = 0
 
@@ -154,10 +155,11 @@
 		// base, regardless of general numerical superiority/inferiority.
 		// they have to hold this position for 10+ minutes
 
-		if ((russians_in_germany/1.33) > germans_in_germany && !cond_2_4_check1)
-			cond_2_4_check1 = 1
-			cond_2_4_nextcheck = world.time + 6000
-			world << "<font size = 3>The Soviets have occupied most German territory! The German Army has 10 minutes to reclaim their land!</font>"
+		if ((russians_in_germany/1.33) > germans_in_germany)
+			if(!cond_2_4_check1)
+				cond_2_4_check1 = 1
+				cond_2_4_nextcheck = world.time + 6000
+				world << "<font size = 3>The Soviets have occupied most German territory! The German Army has 10 minutes to reclaim their land!</font>"
 		else
 			cond_2_4_check1 = 0
 
