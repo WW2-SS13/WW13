@@ -1,30 +1,55 @@
 /mob/var/train_gib_immunity = 0
 
-/atom/movable/proc/train_move(var/loc)
-	for (var/obj/structure/s in loc)
-		if (s.density)
+/atom/movable/proc/train_move_check(var/turf/loc)
+	if (!istype(loc))
+		return 0
+	if (loc.density)
+		return 0
+	for (var/obj/o in loc)
+		if (o.density)
 			return 0
-			/*
-	if (ismob(src) && dir == NORTH)
-		for (var/obj/structure/simple_door/key_door/door in get_step(loc, SOUTH))
-			if (door.density)
-				if (!door.keyslot.check_user(src))
-					return 0
-		for (var/obj/structure/simple_door/key_door/door in get_step(get_step(loc, SOUTH), SOUTH))
-			if (door.density)
-				if (!door.keyslot.check_user(src))
-					return 0
-	if (ismob(src) && dir == SOUTH)
-		for (var/obj/structure/simple_door/key_door/door in get_step(loc, NORTH))
-			if (door.density)
-				if (!door.keyslot.check_user(src))
-					return 0
-		for (var/obj/structure/simple_door/key_door/door in get_step(get_step(loc, NORTH), NORTH))
-			if (door.density)
-				if (!door.keyslot.check_user(src))
-					return 0*/
-	Move(loc)
 	return 1
+
+/atom/movable/proc/train_move(var/turf/_loc)
+
+	var/SUCCESS = 1
+	var/FAILURE = 0
+
+	var/list/nonblocking_types = list(/obj/machinery/door/morgue)
+	var/list/blocking_types = list(/obj/structure/window) // includes sandbags
+
+	// don't invoke Move()
+
+	if (ismob(src) || src.pulledby)
+		for (var/obj/o in _loc)
+			for (var/type in blocking_types)
+				if (istype(o, type))
+					return FAILURE
+			if (o.density)
+				for (var/type in nonblocking_types)
+					if (istype(o, type))
+						train_setloc(_loc)
+						return SUCCESS
+				if (ismob(src) && istype(o, /obj/structure/simple_door/key_door))
+					var/obj/structure/simple_door/key_door/door = o
+					if (door.keyslot.check_user(src))
+						door.keyslot.locked = 0
+						door.Bumped(src)
+						train_setloc(_loc)
+						return SUCCESS
+					else
+						return FAILURE
+				else
+					train_setloc(_loc) // we already checked stuff in mob_movement.dm, so this must be valid
+					return SUCCESS
+
+	train_setloc(_loc)
+	return SUCCESS
+
+/atom/movable/proc/train_setloc(var/turf/_loc)
+	x = _loc.x
+	y = _loc.y
+	z = _loc.z
 
 /mob/proc/is_on_train()
 	for (var/atom/movable/a in get_turf(src))
@@ -70,12 +95,7 @@
 			return 1
 
 	return 0
-		/*
-/proc/isTrainTrack(var/atom/a)
-	if (istype(a, /obj/train_track))
-		return 1
-	return 0
-	*/
+
 /proc/getAreaDimensions(var/datum/train_controller/controller, what)
 
 	var/checking_area = null

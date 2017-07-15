@@ -280,10 +280,20 @@
 			moving_objs += tr
 
 	for (var/obj/o in moving_objs)
+		if (istype(o, /obj/train_connector))
+			var/obj/train_connector/tc = o
+			tc.save_contents_as_refs()
+
+	for (var/obj/o in moving_objs)
 		o:_Move()
 		if (istype(o, /obj/train_connector))
 			var/obj/train_connector/tc = o
 			tc.move_mobs()
+
+	for (var/obj/o in moving_objs)
+		if (istype(o, /obj/train_connector))
+			var/obj/train_connector/tc = o
+			tc.remove_contents_refs()
 
 /datum/train_controller/proc/generate_connectors()
 

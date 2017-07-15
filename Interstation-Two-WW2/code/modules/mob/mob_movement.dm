@@ -207,13 +207,14 @@
 		if (!t)
 			return
 
-	if (!isobserver(mob) && mob.is_on_train())
+	if (!isobserver(mob) && mob.is_on_train() && !mob.buckled)
 		var/datum/train_controller/tc = mob.get_train()
 		if (tc && tc.moving)
-			mob.next_train_movement = direct
-			mob.train_gib_immunity = 1
-			mob.last_train_movement_attempt = world.time
-			return
+			if (mob.train_move_check(get_step(mob, direct)))
+				mob.next_train_movement = direct
+				mob.train_gib_immunity = 1
+				mob.last_train_movement_attempt = world.time
+				return
 
 	if(mob.control_object)	Move_object(direct)
 

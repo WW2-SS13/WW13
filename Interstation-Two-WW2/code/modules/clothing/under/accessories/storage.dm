@@ -48,6 +48,11 @@
 	icon_state = "webbing"
 	slots = 8
 
+	New()
+		..()
+		hold.cant_hold = list(/obj/item/clothing/accessory/storage/webbing)
+
+
 /obj/item/clothing/accessory/storage/black_vest
 	name = "black webbing vest"
 	desc = "Robust black synthcotton vest with lots of pockets to hold whatever you need, but cannot hold in hands."
