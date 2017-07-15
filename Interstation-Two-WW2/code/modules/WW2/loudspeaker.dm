@@ -4,6 +4,7 @@
 	icon_state = "loudspeaker"
 	canhear_range = 7
 	listening = 0
+	broadcasting = 1
 	layer = MOB_LAYER + 1
 
 /obj/item/device/radio/intercom/loudspeaker/german

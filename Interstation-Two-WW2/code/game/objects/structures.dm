@@ -59,6 +59,11 @@
 	set category = "Object"
 	set src in oview(1)
 
+	var/turf/my_turf = get_turf(src)
+
+	if (my_turf.check_prishtina_block(usr))
+		return 0
+
 	do_climb(usr)
 
 /obj/structure/MouseDrop_T(mob/target, mob/user)
