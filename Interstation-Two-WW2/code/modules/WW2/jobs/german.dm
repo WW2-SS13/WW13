@@ -15,7 +15,7 @@
 	selection_color = "#2d2d63"
 	access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
-	spawn_location = "JoinLateNATO-commander"
+	spawn_location = "JoinLateHeerCO"
 	additional_languages = list( "Russian" = 100 )
 
 /datum/job/german/commander/equip(var/mob/living/carbon/human/H)
@@ -57,7 +57,7 @@
 	selection_color = "#2d2d63"
 	access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
-	spawn_location = "JoinLateNATO-officer"
+	spawn_location = "JoinLateHeerSO"
 	additional_languages = list( "Russian" = 100 )
 
 /datum/job/german/staff_officer/equip(var/mob/living/carbon/human/H)
@@ -142,7 +142,7 @@
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_cook, access_nato_squad_leader, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_cook, access_nato_squad_leader, access_nato_heavy_weapon)
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeerSL"
 	additional_languages = list( "Russian" = 33 )
 
 /datum/job/german/squad_leader/equip(var/mob/living/carbon/human/H)
@@ -181,7 +181,7 @@
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_medic, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_heavy_weapon)
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeerDr"
 
 /datum/job/german/medic/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -208,7 +208,7 @@
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_medic)
 	minimal_access = list(access_nato_soldier, access_nato_medic)
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeerDr"
 
 /datum/job/german/doctor/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -243,7 +243,7 @@
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_medic, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_heavy_weapon)
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeer"
 
 /datum/job/german/flamethrower_man/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -274,7 +274,7 @@
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeer"
 
 /datum/job/german/sniper/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -305,7 +305,7 @@
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeer"
 
 
 /datum/job/german/engineer/equip(var/mob/living/carbon/human/H)
@@ -340,7 +340,7 @@
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeer"
 
 /datum/job/german/heavy_weapon/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -372,7 +372,7 @@
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeer"
 	fallback_spawn_location = "JoinLateNATO-Fallback"
 
 /datum/job/german/soldier/equip(var/mob/living/carbon/human/H)
@@ -414,7 +414,7 @@ var/first_fallschirm = 1
 	access = list(access_nato_soldier, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
 //	spawn_location = "Fallschirm"
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeer"
 
 	additional_languages = list( "Russian" = 100 )
 
@@ -461,7 +461,7 @@ var/first_fallschirm = 1
 	access = list(access_nato_soldier, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
 //	spawn_location = "Fallschirm"
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeerQM"
 
 	additional_languages = list( "Russian" = 100 )
 
@@ -494,7 +494,7 @@ var/first_fallschirm = 1
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeerSO"
 
 /datum/job/german/artyman/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -539,7 +539,7 @@ var/first_fallschirm = 1
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeer"
 
 /datum/job/german/scout/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -582,7 +582,7 @@ var/first_fallschirm = 1
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
-	spawn_location = "JoinLateNATO"
+	spawn_location = "JoinLateHeerSO"
 
 /datum/job/german/conductor/train_check() // if there's no train, don't let people be conductors!
 	return WW2_train_check()
@@ -629,7 +629,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/ssuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sshelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/akm(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite S.S. unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Feldwebel</b>, while setting your own goals.</span>"
