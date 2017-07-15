@@ -59,18 +59,17 @@
 		user.show_message("Consulting [src], you've concluded that [victim] [victim.stat == DEAD ? "is dead. [G.He] " : "" ]has signs of:")
 
 		var/is_bad = 0	// I hate myself
-		var/msg = ""
 		if (severity_blood_loss)
 			is_bad = 1
-			user.show_message(capitalize("<span style='warning'>* [severity_adj[severity_blood_loss]] blood loss.</span>"))
+			user.show_message("<span class='warning'>* [capitalize(severity_adj[severity_blood_loss])] blood loss.</span>")
 		if (severity_poisoning)
 			is_bad = 1
-			user.show_message(capitalize("<span style='warning'>* [severity_adj[severity_poisoning]] general poisoning.</span>"))
+			user.show_message("<span class='warning'>* [capitalize(severity_adj[severity_poisoning])] general poisoning.</span>")
 		if (severity_malnourishment)
 			is_bad = 1
-			user.show_message(capitalize("<span style='warning'>* [severity_adj[severity_malnourishment]] malnourishment.</span>"))
+			user.show_message("<span class='warning'>* [capitalize(severity_adj[severity_malnourishment])] malnourishment.</span>")
 		if (!is_bad)
-			user.show_message("<span style='notice'>* No general health issues.</span>")
+			user.show_message("<span class='notice'>* No general health issues.</span>")
 
 		var/count = 0
 		var/list/unsplinted_limbs = list()
@@ -89,7 +88,7 @@
 			if (!e)
 				continue
 			if (e.status & ORGAN_DESTROYED && !e.is_stump())
-				user.show_message(capitalize("<span style='warning'>* [e.name] is gored at [e.amputation_point] and needs to be amputated properly.</span>"))
+				user.show_message("<span class='warning'>* [capitalize(e.name)] is gored at [e.amputation_point] and needs to be amputated properly.</span>")
 				count++
 				continue
 			if (e.status & ORGAN_BROKEN)
@@ -108,35 +107,36 @@
 
 			if (wounds || infected || broken || internal || open || bleeding || internal || foreign)
 				var/string = "<span class='warning'>* "
+				var/inner = ""
 				if (wounds || infected || broken || internal || open || bleeding)
-					string += "[wounds > 1 ? "multiple" : (open ? "an" : "a") ]"
-					string += "[open ? " open" : ""]"
-					string += "[bleeding ? " bleeding" : ""]"
-					string += "[infected && e.germ_level > 175 ? " infected" : ""]"
-					string += " wound[wounds > 1 ? "s" : ""]"
-					string += " [foregin || internal || broken || e.burn_dam > 2 || e.brute_dam > 2 ? "and" : "at"]"
+					inner += "[wounds > 1 ? "multiple" : (open ? "an" : "a") ]"
+					inner += "[open ? " open" : ""]"
+					inner += "[bleeding ? " bleeding" : ""]"
+					inner += "[infected && e.germ_level > 175 ? " infected" : ""]"
+					inner += " wound[wounds > 1 ? "s" : ""]"
+					inner += " [foreign || internal || broken || e.burn_dam > 2 || e.brute_dam > 2 ? "and " : "at"]"
 				if (e.brute_dam > 2)
 					var/sev = pick_severity(e.brute_dam)
-					string += " [sev ? severity_adj[sev] : "dismissable"] bruises"
-					string += " [foregin || internal || broken || e.burn_dam > 2 ? "and" : "at"]"
+					inner += "[sev ? severity_adj[sev] : "dismissable"] bruises"
+					inner += " [foreign || internal || broken || e.burn_dam > 2 ? "and " : "at"]"
 				if (e.burn_dam > 2)
 					var/sev = pick_severity(e.burn_dam)
-					string += " [sev ? severity_adj[sev] : "dismissable"] burns"
-					string += " [foregin || internal || broken || "and" : "at"]"
+					inner += "[sev ? severity_adj[sev] : "dismissable"] burns"
+					inner += " [foreign || internal || broken ? "and " : "at"]"
 				if (broken)
-					string += " broken bones"
-					string += " [foregin || internal ? "and" : "in"]"
+					inner += "broken bones"
+					inner += " [foreign || internal ? "and " : "in"]"
 				if (internal)
-					string += " signs of internal bleeding"
-					string += " [foregin ? "and" : "in"]"
-				if (foregin)
-					string += " likely sharpnel"
-					string += " in"
-				string += " [G.his] [e.name].</span>"
-				user.show_message(capitalize(string))
+					inner += "signs of internal bleeding"
+					inner += " [foreign ? "and " : "in"]"
+				if (foreign)
+					inner += "likely sharpnel"
+					inner += " in"
+				string += "[capitalize(inner)] [G.his] [e.name].</span>"
+				user.show_message(string)
 				count++
 		if(!count)
-			user.show_message("<span style='notice'>* No local injuries.</span>")
+			user.show_message("<span class='notice'>* No local injuries.</span>")
 		if(unsplinted_limbs.len >= 1)
 			var/string = "[G.His] "
 			var/Count = 1
@@ -158,9 +158,9 @@
 	return pick_severity_by_percent(round((damage / max_damage)*100))
 
 /obj/item/weapon/doctor_handbook/proc/pick_severity_by_percent(var/percent)
-	return (percent - (percent % get_factor()))/(get_factor())
+	return round(percent - (percent % get_factor()))/(get_factor())
 
 /obj/item/weapon/doctor_handbook/proc/get_factor()
 	if (!sev_factor)
-		sev_factor = 100/(severity_adj.len + 1)
+		sev_factor = 100/severity_adj.len
 	return sev_factor
