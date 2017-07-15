@@ -25,6 +25,10 @@
 		if (istype(H.r_hand, /obj/item/weapon/key))
 			keys |= H.r_hand
 
+		if (istype(H.wear_id, /obj/item/weapon/storage/belt/keychain))
+			var/obj/item/weapon/storage/belt/keychain/keychain = H.wear_id
+			keys |= keychain.keys
+
 		for (var/obj/item/weapon/key/key in keys)
 			if (check_key(key))
 				return 1
