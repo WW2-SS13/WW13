@@ -14,7 +14,7 @@
 	selection_color = "#530909"
 	access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
 	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
-	spawn_location = "JoinLateRussia-commander"
+	spawn_location = "JoinLateRACO"
 	additional_languages = list( "German" = 100 )
 
 /datum/job/russian/commander/equip(var/mob/living/carbon/human/H)
@@ -53,7 +53,7 @@
 	selection_color = "#530909"
 	access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
 	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
-	spawn_location = "JoinLateRussia-officer"
+	spawn_location = "JoinLateRASO"
 	additional_languages = list( "German" = 100 )
 
 /datum/job/russian/staff_officer/equip(var/mob/living/carbon/human/H)
@@ -91,7 +91,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_squad_leader, access_ru_cook)
 	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_squad_leader, access_ru_cook)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRASL"
 	fallback_spawn_location = "JoinLateRussia-Fallback"
 	additional_languages = list( "German" = 33 )
 
@@ -129,7 +129,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier, access_ru_medic)
 	minimal_access = list(access_ru_soldier, access_ru_medic)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRADr"
 
 /datum/job/russian/medic/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -157,7 +157,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier, access_ru_medic)
 	minimal_access = list(access_ru_soldier, access_ru_medic)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRADr"
 
 /datum/job/russian/doctor/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -192,7 +192,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier)
 	minimal_access = list(access_ru_soldier)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 /datum/job/russian/sniper/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -224,7 +224,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier, access_ru_engineer)
 	minimal_access = list(access_ru_soldier, access_ru_engineer)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 /datum/job/russian/engineer/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -258,7 +258,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier)
 	minimal_access = list(access_ru_soldier)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 /datum/job/russian/heavy_weapon/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -326,7 +326,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier)
 	minimal_access = list(access_ru_soldier)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 /datum/job/russian/soldier/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -359,7 +359,7 @@
 	selection_color = "#a8b800"
 	access = list(access_ru_soldier)
 	minimal_access = list(access_ru_soldier)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 	additional_languages = list( "German" = 100 )
 
@@ -413,7 +413,7 @@ var/first_guard = 0
 	selection_color = "#a8b800"
 	access = list(access_ru_soldier, access_ru_heavy_weapon)
 	minimal_access = list(access_ru_soldier, access_ru_heavy_weapon)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRAQM"
 
 	additional_languages = list( "German" = 100 )
 
@@ -515,7 +515,7 @@ var/first_guard = 0
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier)
 	minimal_access = list(access_ru_soldier)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 /datum/job/russian/sturmovik/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
