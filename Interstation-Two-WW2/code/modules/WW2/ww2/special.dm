@@ -65,6 +65,9 @@ var/train_checked = 0
 		icon_state = null
 		layer = -1000
 
+	ex_act(severity)
+		return 0
+
 /obj/prishtina_block/attackers // block the Germans (or whoever is attacking) from attacking early
 	icon = null
 	icon_state = null
