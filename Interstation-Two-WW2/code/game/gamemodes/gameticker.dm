@@ -1,4 +1,6 @@
 var/global/datum/controller/gameticker/ticker
+var/global/datum/lobby_music_player/lobby_music_player = null
+
 
 /datum/controller/gameticker
 	var/const/restart_timeout = 600
@@ -34,28 +36,33 @@ var/global/datum/controller/gameticker/ticker
 	var/role_preference_grace_period = -1
 
 /datum/controller/gameticker/proc/pregame()
-	login_music = pick('sound/music/WW2/erika.ogg', 'sound/music/WW2/katyusha.ogg', 'sound/music/WW2/r1.ogg', 'sound/music/WW2/r2.ogg', 'sound/music/WW2/r3.ogg', 'sound/music/WW2/latvianss.ogg', 'sound/music/WW2/snakesintracksuits.ogg', 'sound/music/WW2/chooseyourpower.ogg', 'sound/music/WW2/derkommissar.ogg')
 
-	do
-		pregame_timeleft = 180
-		world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
-		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
-		while(current_state == GAME_STATE_PREGAME)
-			for(var/i=0, i<10, i++)
-				sleep(1)
-				vote.process()
-			if(round_progressing)
-				pregame_timeleft--
-			if(pregame_timeleft == config.vote_autogamemode_timeleft)
-				if(!vote.time_remaining)
-					vote.autogamemode()	//Quit calling this over and over and over and over.
-					while(vote.time_remaining)
-						for(var/i=0, i<10, i++)
-							sleep(1)
-							vote.process()
-			if(pregame_timeleft <= 0)
-				current_state = GAME_STATE_SETTING_UP
-	while (!setup())
+	spawn (0)
+		if (!lobby_music_player)
+			lobby_music_player = new()
+
+		login_music = lobby_music_player.get_song()
+
+		do
+			pregame_timeleft = 180
+			world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
+			world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+			while(current_state == GAME_STATE_PREGAME)
+				for(var/i=0, i<10, i++)
+					sleep(1)
+					vote.process()
+				if(round_progressing)
+					pregame_timeleft--
+				if(pregame_timeleft == config.vote_autogamemode_timeleft)
+					if(!vote.time_remaining)
+						vote.autogamemode()	//Quit calling this over and over and over and over.
+						while(vote.time_remaining)
+							for(var/i=0, i<10, i++)
+								sleep(1)
+								vote.process()
+				if(pregame_timeleft <= 0)
+					current_state = GAME_STATE_SETTING_UP
+		while (!setup())
 
 
 /datum/controller/gameticker/proc/setup()

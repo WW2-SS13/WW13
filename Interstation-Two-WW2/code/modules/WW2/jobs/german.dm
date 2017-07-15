@@ -629,7 +629,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/ssuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sshelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/akm(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite S.S. unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Feldwebel</b>, while setting your own goals.</span>"

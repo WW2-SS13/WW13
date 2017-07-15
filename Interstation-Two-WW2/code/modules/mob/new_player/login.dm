@@ -21,5 +21,7 @@
 	player_list |= src
 
 	new_player_panel()
-	if(client)
-		client.playtitlemusic()
+
+	spawn (10) // lets the host hear music too
+		if(client)
+			client.playtitlemusic()
