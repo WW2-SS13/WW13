@@ -156,7 +156,7 @@
 		// they have to hold this position for 10+ minutes
 
 		if ((russians_in_germany/1.33) > germans_in_germany)
-			if(!!cond_2_4_check1)
+			if(!cond_2_4_check1)
 				cond_2_4_check1 = 1
 				cond_2_4_nextcheck = world.time + 6000
 				world << "<font size = 3>The Soviets have occupied most German territory! The German Army has 10 minutes to reclaim their land!</font>"
