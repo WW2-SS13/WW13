@@ -183,6 +183,7 @@
 			winning_side = "Soviet Army"
 			return 1
 
+	return 0
 
 
 /datum/game_mode/ww2/declare_completion()
