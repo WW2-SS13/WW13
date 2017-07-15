@@ -7,8 +7,8 @@
 	icon_state = "book1"
 	item_state = "bible" // I couldn't find any better placeholder for now
 	slot_flags = SLOT_BELT | SLOT_POCKET
-	force = WEAPON_FORCE_NORMAL
-	throwforce = WEAPON_FORCE_NORMAL
+	force = 1
+	throwforce = 1
 	w_class = 2.0
 	throw_speed = 5
 	throw_range = 10
@@ -22,7 +22,7 @@
 		return ..()
 
 	var/datum/gender/G = gender_datums[victim.gender]
-	user.visible_message("<span class='notice'>[user] riffles through [src], inspecting [victim]'s [victim.stat == DEAD ? "corpse" : "body"].</span>")
+	user.visible_message("<span class='notice'>[user] glances through [src], inspecting [victim]'s [victim.stat == DEAD ? "corpse" : "body"].</span>")
 
 	if (ishuman(victim))
 		var/mob/living/carbon/human/H = victim
@@ -56,18 +56,19 @@
 
 		// Begin displaying
 		user.show_message("<b>----------</b>")
-		user.show_message("Consulting [src], I've concluded that [victim] [victim.stat == DEAD ? "is dead. [G.He] " : "" ]has signs of:")
+		user.show_message("Consulting [src], you've concluded that [victim] [victim.stat == DEAD ? "is dead. [G.He] " : "" ]has signs of:")
 
 		var/is_bad = 0	// I hate myself
+		var/msg = ""
 		if (severity_blood_loss)
 			is_bad = 1
-			user.show_message("<span style='warning'>* [severity_adj[severity_blood_loss]] blood loss.</span>")
+			user.show_message(capitalize("<span style='warning'>* [severity_adj[severity_blood_loss]] blood loss.</span>"))
 		if (severity_poisoning)
 			is_bad = 1
-			user.show_message("<span style='warning'>* [severity_adj[severity_poisoning]] general poisoning.</span>")
+			user.show_message(capitalize("<span style='warning'>* [severity_adj[severity_poisoning]] general poisoning.</span>"))
 		if (severity_malnourishment)
 			is_bad = 1
-			user.show_message("<span style='warning'>* [severity_adj[severity_malnourishment]] malnourishment.</span>")
+			user.show_message(capitalize("<span style='warning'>* [severity_adj[severity_malnourishment]] malnourishment.</span>"))
 		if (!is_bad)
 			user.show_message("<span style='notice'>* No general health issues.</span>")
 
@@ -83,11 +84,12 @@
 			var/internal = 0
 			var/open = 0
 			var/bleeding = 0
+			var/foreign = 0 // sharpnel, implants, and etcera
 
 			if (!e)
 				continue
 			if (e.status & ORGAN_DESTROYED && !e.is_stump())
-				user.show_message("<span style='warning'>* [e.name] is gored at [e.amputation_point] and needs to be amputated properly.</span>")
+				user.show_message(capitalize("<span style='warning'>* [e.name] is gored at [e.amputation_point] and needs to be amputated properly.</span>"))
 				count++
 				continue
 			if (e.status & ORGAN_BROKEN)
@@ -96,13 +98,15 @@
 					unsplinted_limbs.Add(e.name)
 			if (e.has_infected_wound())
 				infected = 1
+			if (e.implants.len)
+				foreign = 1
 			for (var/datum/wound/W in e.wounds)
 				if (W.damage > 2)					wounds++
 				if (W.internal)						internal = 1
 				if (W.bleeding())					bleeding = 1
 				if (W.can_be_infected()) 	open = 1 // returns 1 when it can be infected, then cosnidered as an open wound
 
-			if (wounds || infected || broken || internal || open || bleeding)
+			if (wounds || infected || broken || internal || open || bleeding || internal || foreign)
 				var/string = "<span class='warning'>* "
 				if (wounds || infected || broken || internal || open || bleeding)
 					string += "[wounds > 1 ? "multiple" : (open ? "an" : "a") ]"
@@ -110,20 +114,26 @@
 					string += "[bleeding ? " bleeding" : ""]"
 					string += "[infected && e.germ_level > 175 ? " infected" : ""]"
 					string += " wound[wounds > 1 ? "s" : ""]"
-					string += " [broken || e.burn_dam > 2 || e.brute_dam > 2 ? "and" : "at"]"
+					string += " [foregin || internal || broken || e.burn_dam > 2 || e.brute_dam > 2 ? "and" : "at"]"
 				if (e.brute_dam > 2)
 					var/sev = pick_severity(e.brute_dam)
 					string += " [sev ? severity_adj[sev] : "dismissable"] bruises"
-					string += " [broken || e.burn_dam > 2 ? "and" : "at"]"
+					string += " [foregin || internal || broken || e.burn_dam > 2 ? "and" : "at"]"
 				if (e.burn_dam > 2)
 					var/sev = pick_severity(e.burn_dam)
 					string += " [sev ? severity_adj[sev] : "dismissable"] burns"
-					string += " [broken || e.burn_dam > 2 ? "and" : "at"]"
+					string += " [foregin || internal || broken || "and" : "at"]"
 				if (broken)
 					string += " broken bones"
+					string += " [foregin || internal ? "and" : "in"]"
+				if (internal)
+					string += " signs of internal bleeding"
+					string += " [foregin ? "and" : "in"]"
+				if (foregin)
+					string += " likely sharpnel"
 					string += " in"
 				string += " [G.his] [e.name].</span>"
-				user.show_message(string)
+				user.show_message(capitalize(string))
 				count++
 		if(!count)
 			user.show_message("<span style='notice'>* No local injuries.</span>")
@@ -143,6 +153,8 @@
 
 // Internal code for doctor_handbook
 /obj/item/weapon/doctor_handbook/proc/pick_severity(var/damage, var/max_damage = 200)
+	if (damage > max_damage)
+		damage = max_damage
 	return pick_severity_by_percent(round((damage / max_damage)*100))
 
 /obj/item/weapon/doctor_handbook/proc/pick_severity_by_percent(var/percent)

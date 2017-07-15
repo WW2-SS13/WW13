@@ -137,7 +137,7 @@
 	// checks if wound is considered open for external infections
 	// untreated cuts (and bleeding bruises) and burns are possibly infectable, chance higher if wound is bigger
 	proc/infection_check()
-		if (src.can_be_infected())
+		if (can_be_infected())
 			var/dam_coef = round(damage/10)
 			switch (damage_type)
 				if (BRUISE)
@@ -147,7 +147,7 @@
 				if (CUT)
 					return prob(dam_coef*20)
 
-	return 0
+		return 0
 
 	proc/bandage()
 		bandaged = 1
