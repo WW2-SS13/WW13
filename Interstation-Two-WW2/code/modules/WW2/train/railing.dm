@@ -9,8 +9,17 @@
 	for (var/atom/movable/a in get_turf(src))
 		if (check_object_invalid_for_moving(src, a))
 			continue
-		a.y+=master.getMoveInc()
-	y+=master.getMoveInc()
+		switch (master.orientation)
+			if (VERTICAL)
+				a.y+=master.getMoveInc()
+			if (HORIZONTAL)
+				a.x+=master.getMoveInc()
+
+	switch (master.orientation)
+		if (VERTICAL)
+			y+=master.getMoveInc()
+		if (HORIZONTAL)
+			x+=master.getMoveInc()
 
 /obj/train_connector/ex_act(severity)
 	if (prob(round(60 * (1/severity))))

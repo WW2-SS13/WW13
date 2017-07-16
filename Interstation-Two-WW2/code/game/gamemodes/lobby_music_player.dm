@@ -42,7 +42,7 @@
 		song_title = pick(songs)
 
 /datum/lobby_music_player/proc/announce(var/client/client)
-	client << "<span class = 'notice'><font size = 2><i>Now playing </i><b>[song_title]</b></font></span>"
+	client << "<span class = 'notice'><font size = 2>Now playing <b>[song_title]</b></font></span>"
 
 /datum/lobby_music_player/proc/get_song()
 	return songs[song_title]

@@ -39,14 +39,27 @@
 		if (ismob(a))
 			var/mob/m = a
 			if (!m.buckled)
-				m.train_move(locate(m.x, m.y+master.getMoveInc(), m.z))
+				switch (master.orientation)
+					if (VERTICAL)
+						m.train_move(locate(m.x, m.y+master.getMoveInc(), m.z))
+					if (HORIZONTAL)
+						m.train_move(locate(m.x+master.getMoveInc(), m.y, m.z))
 		else
-			a.train_move(locate(a.x, a.y+master.getMoveInc(), a.z))
+			switch (master.orientation)
+				if (VERTICAL)
+					a.train_move(locate(a.x, a.y+master.getMoveInc(), a.z))
+				if (HORIZONTAL)
+					a.train_move(locate(a.x+master.getMoveInc(), a.y, a.z))
+
 			if (istype(a, /obj/structure/bed))
 				var/obj/structure/bed/bed = a
 				var/mob/m = bed.buckled_mob
 				if (m)
-					m.train_move(locate(m.x, m.y+master.getMoveInc(), m.z))
+					switch (master.orientation)
+						if (VERTICAL)
+							m.train_move(locate(m.x, m.y+master.getMoveInc(), m.z))
+						if (HORIZONTAL)
+							m.train_move(locate(m.x+master.getMoveInc(), m.y, m.z))
 
 		#ifdef USE_TRAIN_LIGHTS
 		if (istype(a, /obj/machinery/light))
@@ -59,7 +72,11 @@
 			m.start_pulling(m.original_pulling)
 			m.original_pulling = null
 
-	y+=master.getMoveInc()
+	switch (master.orientation)
+		if (VERTICAL)
+			y+=master.getMoveInc()
+		if (HORIZONTAL)
+			x+=master.getMoveInc()
 
 // copied from /obj/train_pseudoturf/move_mobs()
 
@@ -70,6 +87,7 @@
 			if (!isnull(m.next_train_movement))
 				var/atom/movable/p = m.pulling
 
+				// orientation is irrelevant here
 				switch (m.next_train_movement)
 					if (NORTH)
 						m.train_move(locate(m.x, m.y+1, m.z))

@@ -1,6 +1,7 @@
 /proc/is_russian_contested_zone(var/area/a)
 	if (istype(a, /area/prishtina/soviet/bunker))
-		return 1
+		if (!istype(a, /area/prishtina/soviet/bunker/tunnel))
+			return 1
 	if (istype(a, /area/prishtina/soviet/bunker_entrance))
 		return 1
 	if (istype(a, /area/prishtina/soviet/immediate_outside_defenses))

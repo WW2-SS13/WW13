@@ -120,14 +120,27 @@
 		if (ismob(a))
 			var/mob/m = a
 			if (!m.buckled)
-				m.train_move(locate(m.x, m.y+controller.getMoveInc(), m.z))
+				switch (controller.orientation)
+					if (VERTICAL)
+						m.train_move(locate(m.x, m.y+controller.getMoveInc(), m.z))
+					if (HORIZONTAL)
+						m.train_move(locate(m.x+controller.getMoveInc(), m.y, m.z))
 		else
-			a.train_move(locate(a.x, a.y+controller.getMoveInc(), a.z))
+			switch (controller.orientation)
+				if (VERTICAL)
+					a.train_move(locate(a.x, a.y+controller.getMoveInc(), a.z))
+				if (HORIZONTAL)
+					a.train_move(locate(a.x+controller.getMoveInc(), a.y, a.z))
+
 			if (istype(a, /obj/structure/bed))
 				var/obj/structure/bed/bed = a
 				var/mob/m = bed.buckled_mob
 				if (m)
-					m.train_move(locate(m.x, m.y+controller.getMoveInc(), m.z))
+					switch (controller.orientation)
+						if (VERTICAL)
+							m.train_move(locate(m.x, m.y+controller.getMoveInc(), m.z))
+						if (HORIZONTAL)
+							m.train_move(locate(m.x+controller.getMoveInc(), m.y, m.z))
 
 		#ifdef USE_TRAIN_LIGHTS
 		if (istype(a, /obj/machinery/light))
@@ -140,7 +153,11 @@
 			m.start_pulling(m.original_pulling)
 			m.original_pulling = null
 
-	y+=controller.getMoveInc()
+	switch (controller.orientation)
+		if (VERTICAL)
+			y+=controller.getMoveInc()
+		if (HORIZONTAL)
+			x+=controller.getMoveInc()
 
 /obj/train_pseudoturf/proc/move_mobs(var/_direction)
 	for (var/atom/movable/a in saved_contents)
@@ -148,6 +165,7 @@
 			var/mob/m = a
 			if (!isnull(m.next_train_movement))
 				var/atom/movable/p = m.pulling
+				// orientation is irrelevant here
 				switch (m.next_train_movement)
 					if (NORTH)
 						var/moved = m.train_move(locate(m.x, m.y+1, m.z))

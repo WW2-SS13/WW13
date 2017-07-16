@@ -223,6 +223,7 @@ var/list/gamemode_cache = list()
 
 	var/german_train_cars_officer = 1
 	var/german_train_cars_storage = 1
+	var/german_train_cars_supply = 1
 	var/german_train_cars_soldier = 1
 	var/german_train_cars_conductor = 1
 
@@ -378,6 +379,8 @@ var/list/gamemode_cache = list()
 					config.german_train_cars_soldier = text2num(value)
 				if ("german_train_cars_conductor")
 					config.german_train_cars_conductor = text2num(value)
+				if ("german_supplytrain_cars")
+					config.german_train_cars_supply = text2num(value)
 
 				if ("machinery_does_not_use_power")
 					config.machinery_does_not_use_power = text2num(value)

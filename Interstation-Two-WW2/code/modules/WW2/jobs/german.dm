@@ -470,6 +470,7 @@ var/first_fallschirm = 1
 /datum/job/german/stabsgefreiter/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
 
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
