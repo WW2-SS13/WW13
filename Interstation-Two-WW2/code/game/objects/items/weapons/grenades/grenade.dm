@@ -6,7 +6,7 @@
 	icon_state = "grenade"
 	item_state = "grenade"
 	throw_speed = 4
-	throw_range = 20
+	throw_range = 8
 	flags = CONDUCT
 	slot_flags = SLOT_BELT|SLOT_MASK
 	var/active = 0
