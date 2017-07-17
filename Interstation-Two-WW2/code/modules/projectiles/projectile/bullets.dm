@@ -9,6 +9,8 @@
 	sharp = 1
 	hitsound_wall = "ric_sound"
 	var/mob_passthrough_check = 0
+	var/move_tiles = -1
+	var/moved_tiles = 0
 
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
 
@@ -73,6 +75,7 @@
 	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.
 	var/base_spread = 90	//lower means the pellets spread more across body parts. If zero then this is considered a shrapnel explosion instead of a shrapnel cone
 	var/spread_step = 10	//higher means the pellets spread more across body parts with distance
+	move_tiles = 7 // 7 tiles
 
 /obj/item/projectile/bullet/pellet/Bumped()
 	. = ..()
@@ -116,6 +119,10 @@
 
 /obj/item/projectile/bullet/pellet/Move()
 	. = ..()
+
+	++moved_tiles
+	if (moved_tiles >= move_tiles)
+		return
 
 	//If this is a shrapnel explosion, allow mobs that are prone to get hit, too
 	if(. && !base_spread && isturf(loc))

@@ -140,22 +140,22 @@ Current Defines (_defines/attachment.dm)
       if(attachment_slots & CHECK_SCOPE)
         add_attachment(A, user)
       else
-        user.visible_message("There is already something attached.")
+        user.visible_message("You fumble around with the attachment.")
     if(ATTACH_STOCK)
       if(attachment_slots & CHECK_STOCK)
         add_attachment(A, user)
       else
-        user.visible_message("There is already something attached.")
+        user.visible_message("You fumble around with the attachment.")
     if(ATTACH_BARREL)
       if(attachment_slots & CHECK_BARREL)
         add_attachment(A, user)
       else
-        user.visible_message("There is already something attached.")
+        user.visible_message("You fumble around with the attachment.")
     if(ATTACH_UNDER)
       if(attachment_slots & CHECK_UNDER)
         add_attachment(A, user)
       else
-        user.visible_message("There is already something attached.")
+        user.visible_message("You fumble around with the attachment.")
     else
       user.visible_message("[A] cannot be attached to the [src].")
 
@@ -211,7 +211,6 @@ Current Defines (_defines/attachment.dm)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	attachment_type = ATTACH_BARREL
 	var/attack_sound = 'sound/weapons/slice.ogg'
-  var/improper_name = "bayonet"
 	//var/datum/action/bayonet/amelee
 
 /obj/item/attachment/bayonet/attached(mob/user, obj/item/weapon/gun/G)

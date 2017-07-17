@@ -3,7 +3,8 @@
 	desc = "This is where your commandant shouts at you from."
 	icon_state = "loudspeaker"
 	canhear_range = 7
-	listening = 0
+	listening = 1
+	broadcasting = 0
 	layer = MOB_LAYER + 1
 
 /obj/item/device/radio/intercom/loudspeaker/german

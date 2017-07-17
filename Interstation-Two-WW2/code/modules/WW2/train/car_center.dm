@@ -9,23 +9,47 @@
 
 /obj/train_car_center/proc/regenerate_connector_turfs()
 
-	connector_turfs = list()
+	switch (master.orientation)
 
-	var/middleX = 1000000
-	var/minX = 1000000
-	var/minY = 1000000
+		if (VERTICAL)
 
-	for (var/obj/train_pseudoturf/tpt in forwards_pseudoturfs)
-		minY = min(minY, tpt.y)
-		minX = min(minX, tpt.x)
+			connector_turfs = list()
 
-	middleX = minX + 3 // todo : make this a constant based on train width
+			var/middleX = 1000000
+			var/minX = 1000000
+			var/minY = 1000000
 
-	//get pseudoturf 1 - middle x, lowest y - 1
-	var/turf/t1 = locate(middleX, minY-1, z)
+			for (var/obj/train_pseudoturf/tpt in forwards_pseudoturfs)
+				minY = min(minY, tpt.y)
+				minX = min(minX, tpt.x)
 
-	connector_turfs["turf"] = t1
-	connector_turfs["dir"] = SOUTH // dir we're adding the connectors in is always SOUTH for vertical trains
+			middleX = minX + 3 // todo : make this a constant based on train width
+
+			//get pseudoturf 1 - middle x, lowest y - 1
+			var/turf/t1 = locate(middleX, minY-1, z)
+
+			connector_turfs["turf"] = t1
+			connector_turfs["dir"] = SOUTH // dir we're adding the connectors in is always SOUTH for vertical trains
+
+		if (HORIZONTAL)
+
+			connector_turfs = list()
+
+			var/middleY = 1000000
+			var/minY = 1000000
+			var/minX = 1000000
+
+			for (var/obj/train_pseudoturf/tpt in forwards_pseudoturfs)
+				minY = min(minY, tpt.y)
+				minX = min(minX, tpt.x)
+
+			middleY = minY + 3 // todo : make this a constant based on train width
+
+			//get pseudoturf 1 - middle x, lowest y - 1
+			var/turf/t1 = locate(middleY, minY-1, z)
+
+			connector_turfs["turf"] = t1
+			connector_turfs["dir"] = SOUTH // dir we're adding the connectors in is always SOUTH for vertical trains
 
 /obj/train_car_center/proc/print_loc(var/atom/a)
 	return "[a.x],[a.y],[a.z]"
@@ -63,6 +87,8 @@
 /obj/train_car_center/german/soldier
 
 /obj/train_car_center/german/conductor
+
+/obj/train_car_center/german/supplytrain
 
 /obj/train_car_center/russian
 
@@ -142,7 +168,18 @@
 				tpt.master = src
 				tpt.controller = src.master
 				forwards_pseudoturfs += tpt
-
+		if ("horizontal-storage")
+			var/area/a = locate(/area/prishtina/train/german/cabin/storage/horizontal)
+			var/min_x = min_area_x(a)
+			var/max_y = max_area_y(a) // start at the minimum x and maximum y, ie top left corner
+			for (var/turf/t in a.contents)
+				var/x_offset = t.x - min_x
+				var/y_offset = max_y - t.y
+				var/z = t.z
+				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(src.x + x_offset,src.y - y_offset,z), t)
+				tpt.master = src
+				tpt.controller = src.master
+				forwards_pseudoturfs += tpt
 		if ("soldier")
 			var/area/a = locate(/area/prishtina/train/german/cabin/soldier)
 			var/min_x = min_area_x(a)
@@ -186,6 +223,10 @@
 
 /obj/train_car_center/german/New(_loc, _master)
 	..(_loc, _master)
+
+/obj/train_car_center/german/supplytrain/New(_loc, _master)
+	..(_loc, _master)
+	Graft("horizontal-storage")
 
 /obj/train_car_center/german/officer/New(_loc, _master)
 	..(_loc, _master)

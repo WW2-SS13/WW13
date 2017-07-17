@@ -653,7 +653,7 @@
 "mC" = (/obj/structure/multiz/stairs{dir = 8},/turf/simulated/floor/plating/road,/area/prishtina/german/train_landing_zone)
 "mD" = (/obj/structure/multiz/stairs{dir = 4},/turf/simulated/floor/plating/road,/area/prishtina/german/train_landing_zone)
 "mE" = (/obj/structure/grille{icon_state = "fence1-2"; name = "fence"},/turf/simulated/floor/plating/grass,/area/prishtina/german/train_landing_zone)
-"mF" = (/obj/effect/landmark/train/german_train_limit,/turf/simulated/floor/dirt,/area/prishtina/german/train_zone)
+"mF" = (/obj/effect/landmark/train/german_train_limit,/obj/train_track,/turf/simulated/floor/dirt,/area/prishtina/german/train_zone)
 "mG" = (/obj/prishtina_block/attackers,/obj/effect/floor_decal/corner/grey/border{dir = 8},/turf/simulated/floor/plating/road,/area/prishtina/field)
 "mH" = (/obj/prishtina_block/attackers,/obj/effect/floor_decal/corner/grey/border{dir = 4},/turf/simulated/floor/plating/road,/area/prishtina/field)
 "mI" = (/obj/prishtina_block/attackers,/turf/simulated/floor/dirt,/area/prishtina/field)

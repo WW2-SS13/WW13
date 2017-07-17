@@ -14,7 +14,7 @@
 	selection_color = "#530909"
 	access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
 	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
-	spawn_location = "JoinLateRussia-commander"
+	spawn_location = "JoinLateRACO"
 	additional_languages = list( "German" = 100 )
 
 /datum/job/russian/commander/equip(var/mob/living/carbon/human/H)
@@ -53,7 +53,7 @@
 	selection_color = "#530909"
 	access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
 	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
-	spawn_location = "JoinLateRussia-officer"
+	spawn_location = "JoinLateRASO"
 	additional_languages = list( "German" = 100 )
 
 /datum/job/russian/staff_officer/equip(var/mob/living/carbon/human/H)
@@ -61,7 +61,7 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/colt(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
@@ -91,7 +91,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_squad_leader, access_ru_cook)
 	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_squad_leader, access_ru_cook)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRASL"
 	fallback_spawn_location = "JoinLateRussia-Fallback"
 	additional_languages = list( "German" = 33 )
 
@@ -99,7 +99,7 @@
 	if(!H)	return 0
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m4(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
@@ -129,7 +129,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier, access_ru_medic)
 	minimal_access = list(access_ru_soldier, access_ru_medic)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRADr"
 
 /datum/job/russian/medic/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -139,6 +139,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/russian(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a medic. Your job is to keep the army healthy and in good condition.</span>"
 	return 1
 
@@ -157,7 +158,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier, access_ru_medic)
 	minimal_access = list(access_ru_soldier, access_ru_medic)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRADr"
 
 /datum/job/russian/doctor/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -169,6 +170,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a doctor. Your job is to stay back at base and treat wounded that come in from the front, as well as treat prisoners and base personnel.</span>"
 	return 1
 
@@ -192,7 +194,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier)
 	minimal_access = list(access_ru_soldier)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 /datum/job/russian/sniper/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -225,7 +227,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier, access_ru_engineer)
 	minimal_access = list(access_ru_soldier, access_ru_engineer)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 /datum/job/russian/engineer/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -259,7 +261,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier)
 	minimal_access = list(access_ru_soldier)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 /datum/job/russian/heavy_weapon/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -327,7 +329,7 @@
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier)
 	minimal_access = list(access_ru_soldier)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 /datum/job/russian/soldier/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -360,7 +362,7 @@
 	selection_color = "#a8b800"
 	access = list(access_ru_soldier)
 	minimal_access = list(access_ru_soldier)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 	additional_languages = list( "German" = 100 )
 
@@ -414,7 +416,7 @@ var/first_guard = 0
 	selection_color = "#a8b800"
 	access = list(access_ru_soldier, access_ru_heavy_weapon)
 	minimal_access = list(access_ru_soldier, access_ru_heavy_weapon)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRAQM"
 
 	additional_languages = list( "German" = 100 )
 
@@ -426,7 +428,7 @@ var/first_guard = 0
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/rbs(H), slot_s_store)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap(H), slot_head)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a Quartermaster. Your job is to keep the army well armed and supplied.</span>"
 	return 1
 
@@ -516,7 +518,7 @@ var/first_guard = 0
 	selection_color = "#770e0e"
 	access = list(access_ru_soldier)
 	minimal_access = list(access_ru_soldier)
-	spawn_location = "JoinLateRussia"
+	spawn_location = "JoinLateRA"
 
 /datum/job/russian/sturmovik/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0

@@ -52,6 +52,7 @@
 	load_magazine_sound = 'sound/weapons/stg_reload.ogg'
 	magazine_type = /obj/item/ammo_magazine/a792x33/stgmag
 
+	accuracy = -4
 	can_wield = 1
 	//must_wield = 1
 

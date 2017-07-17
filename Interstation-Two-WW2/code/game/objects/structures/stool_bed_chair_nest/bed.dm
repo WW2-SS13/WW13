@@ -252,13 +252,18 @@
 	held = null
 
 
-/obj/structure/bed/roller/Move()
-	..()
+/obj/structure/bed/roller/Move(var/turf/newloc)
+	if (buckled_mob && newloc.check_prishtina_block(buckled_mob))
+		return 0
+
+	..(newloc)
+
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
 			buckled_mob.loc = src.loc
 		else
 			buckled_mob = null
+	return 1
 
 /obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
 	if(M == buckled_mob)

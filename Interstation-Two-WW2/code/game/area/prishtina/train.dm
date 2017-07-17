@@ -8,6 +8,8 @@
 
 /area/prishtina/train/german/cabin/storage // crates
 
+/area/prishtina/train/german/cabin/storage/horizontal // crates
+
 /area/prishtina/train/german/cabin/soldier // personnel
 
 /area/prishtina/train/german/cabin/conductor // where the conductor drives the train
