@@ -86,10 +86,13 @@
 			if(ticker.hide_mode == 0)
 				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
 
+		totalPlayers = 0
 		// by counting observers, our playercount now looks more impressive - Kachnov
 		if(ticker.current_state == GAME_STATE_PREGAME)
 			stat("Time Until Joining Allowed:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
+			stat("","")
 			stat("Players: [totalPlayers]")
+			stat("","")
 
 			for(var/mob/new_player/player in player_list)
 				stat("[player.key]", " (Playing)")
@@ -293,7 +296,7 @@
 /mob/new_player/proc/IsJobAvailable(rank, var/list/restricted_choices)
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job)	return 0
-	if(!job.is_position_available(restricted_choices)) return 0
+	if(!job.is_position_available(restricted_choices, job_master.people_in_join_queue())) return 0
 	if(jobban_isbanned(src,rank))	return 0
 	if(!job.player_old_enough(src.client))	return 0
 	return 1
@@ -345,7 +348,7 @@
 		usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 		return 0
 	if(!IsJobAvailable(rank))
-		src << alert("[rank] is not available. Please try another.")
+		src << alert("[rank] is not available. Perhaps too many people are already attempting to join as it?")
 		return 0
 
 	var/datum/job/job = job_master.GetJob(rank)
@@ -355,6 +358,7 @@
 		return 0
 
 	if(!job_master.can_join_side(job.department_flag))
+		job_master.remove_from_join_queue(src)
 		var/side = istype(job, /datum/job/german) ? "GERMAN" : "RUSSIAN"
 		if ((side == "GERMAN" || side == "RUSSIAN") && !job_master.has_in_join_queue(src))
 			job_master.put_in_join_queue(side, src, rank)
@@ -516,8 +520,11 @@
 
 
 /mob/new_player/proc/create_character()
+
 	spawning = 1
 	close_spawn_windows()
+
+	job_master.remove_from_join_queue(src)
 
 	var/mob/living/carbon/human/new_character
 

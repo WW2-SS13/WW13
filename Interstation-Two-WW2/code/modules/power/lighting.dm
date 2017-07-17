@@ -184,6 +184,7 @@
 	name = "streetlight"
 	base_state = "streetlight"
 	icon_state = "streetlight1"
+	brightness_range = 7
 	brightness_power = 3
 	density = 1
 	layer = MOB_LAYER + 0.5
