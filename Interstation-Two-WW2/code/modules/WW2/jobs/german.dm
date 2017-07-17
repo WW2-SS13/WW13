@@ -191,6 +191,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a medic. Your job is to keep the army healthy and in good condition.</span>"
 	return 1
 
@@ -220,6 +221,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a doctor. Your job is to stay back at base and treat wounded that come in from the front, as well as treat prisoners and base personnel.</span>"
 	return 1
 
@@ -468,6 +470,7 @@ var/first_fallschirm = 1
 /datum/job/german/stabsgefreiter/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
 
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)

@@ -21,6 +21,15 @@ var/global/datum/controller/occupations/job_master
 	var/list/fireteams = list()
 	var/list/not_full_fireteams = list()
 
+	var/list/join_queue = list()
+
+
+	New()
+		..()
+		join_queue["GERMAN"] = list()
+		join_queue["SOVIET"] = list()
+		join_queue_loop()
+
 
 /*	var/list/crate_positions = list(
 		/datum/job/commander_american = "Field Officer",
@@ -942,6 +951,31 @@ var/global/datum/controller/occupations/job_master
 	if(side == GEFORCE || side == CIVILIAN)
 		return (geforce_count < ruforce_count) && ticker.can_latejoin_geforce
 	return 0
+
+/datum/controller/occupations/proc/put_in_join_queue(side, var/mob/new_player/player, job)
+	join_queue[side] += player
+	player.desired_job = job
+
+/datum/controller/occupations/proc/remove_from_join_queue(var/mob/new_player/player)
+	join_queue["GERMAN"] -= player
+	join_queue["RUSSIAN"] -= player
+	player.desired_job = null
+
+/datum/controller/occupations/proc/has_in_join_queue(var/mob/new_player/player)
+	var/list/g = join_queue["GERMAN"]
+	var/list/r = join_queue["RUSSIAN"]
+	return (g.Find(player) || r.Find(player))
+
+/datum/controller/occupations/proc/join_queue_loop()
+
+	spawn while (1)
+		for (var/mob/new_player/np in join_queue["GERMAN"])
+			if (can_join_side("GERMAN"))
+				np.AttemptLateSpawn(np.desired_job, 1)
+		for (var/mob/new_player/np in join_queue["RUSSIAN"])
+			if (can_join_side("RUSSIAN"))
+				np.AttemptLateSpawn(np.desired_job, 1)
+		sleep (3)
 
 /*
 /datum/controller/occupations/proc/spawn_crate(var/datum/job/job)

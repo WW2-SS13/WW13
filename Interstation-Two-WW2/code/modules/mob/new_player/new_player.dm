@@ -5,6 +5,7 @@
 	var/spawning = 0//Referenced when you want to delete the new_player later on in the code.
 	var/totalPlayers = 0		 //Player counts for the Lobby tab
 	var/totalPlayersReady = 0
+	var/desired_job = null // job title
 	universal_speak = 1
 
 	invisibility = 101
@@ -14,6 +15,7 @@
 	canmove = 0
 
 	anchored = 1	//  don't get pushed around
+
 
 /mob/new_player/New()
 	mob_list += src
@@ -84,15 +86,18 @@
 			if(ticker.hide_mode == 0)
 				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
 
+		// by counting observers, our playercount now looks more impressive - Kachnov
 		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
-			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
-			totalPlayers = 0
-			totalPlayersReady = 0
+			stat("Time Until Joining Allowed:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
+			stat("Players: [totalPlayers]")
+
 			for(var/mob/new_player/player in player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
-				totalPlayers++
-				if(player.ready)totalPlayersReady++
+				stat("[player.key]", " (Playing)")
+				++totalPlayers
+
+			for (var/mob/observer/observer in player_list)
+				stat("[observer.key]", " (Observing)")
+				++totalPlayers
 
 	stat("", "")
 
@@ -330,7 +335,7 @@
 
 	qdel(src)
 
-/mob/new_player/proc/AttemptLateSpawn(rank/*,var/spawning_at*/)
+/mob/new_player/proc/AttemptLateSpawn(rank, var/nomsg = 0/*,var/spawning_at*/)
 	if(src != usr)
 		return 0
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
@@ -350,8 +355,15 @@
 		return 0
 
 	if(!job_master.can_join_side(job.department_flag))
-		src << "\red Currently you can't join this side due to auto-balancing."
-		return 0
+		var/side = istype(job, /datum/job/german) ? "GERMAN" : "RUSSIAN"
+		if ((side == "GERMAN" || side == "RUSSIAN") && !job_master.has_in_join_queue(src))
+			job_master.put_in_join_queue(side, src, rank)
+			src << "\red You've been put in a queue to join as a [rank]."
+			return 0
+		else
+			if (!nomsg)
+				src << "\red Currently you can't join this side due to auto-balancing."
+			return 0
 
 	spawning = 1
 	close_spawn_windows()

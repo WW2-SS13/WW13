@@ -8,3 +8,7 @@
 /obj/effect/landmark/train/german_train_start
 
 /obj/effect/landmark/train/german_train_limit
+
+/obj/effect/landmark/train/german_train_start/supplytrain
+
+/obj/effect/landmark/train/german_train_limit/supplytrain
