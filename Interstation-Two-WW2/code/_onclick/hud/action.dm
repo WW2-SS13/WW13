@@ -9,7 +9,7 @@
 #define AB_CHECK_ALIVE 8
 #define AB_CHECK_INSIDE 16
 
-
+// TODO: COMPLETELY UNFUCK THE HUD - JULY 14, 2017 aka the 'mob/living/living.dm' spaghetti monster
 /datum/action
 	var/name = "Generic Action"
 	var/action_type = AB_ITEM
@@ -26,10 +26,19 @@
 
 /datum/action/New(var/Target)
 	target = Target
+	button = new
+	button.name = name
 
 /datum/action/Destroy()
 	if(owner)
 		Remove(owner)
+	if(target)
+		target = null
+	if(button)
+		qdel(button)
+	else
+		button = null
+	return ..()
 
 /datum/action/proc/Grant(mob/living/T)
 	if(owner)
@@ -37,42 +46,24 @@
 			return
 		Remove(owner)
 	owner = T
-	owner.actions.Add(src)
-	owner.update_action_buttons()
-	return
+	button.owner = src
+	T.actions += src
+	if(T.client)
+		T.client.screen += button
+	T.update_action_buttons()
 
 /datum/action/proc/Remove(mob/living/T)
-	if(button)
-		if(T.client)
-			T.client.screen -= button
-		qdel(button)
-		button = null
-	T.actions.Remove(src)
+	if(T.client)
+		T.client.screen -= button
+	button.moved = FALSE //so the button appears in its normal position when given to another owner.
+	T.actions -= src
 	T.update_action_buttons()
 	owner = null
-	return
 
 /datum/action/proc/Trigger()
-	if(!Checks())
-		return
-	switch(action_type)
-		if(AB_ITEM)
-			if(target)
-				var/obj/item/item = target
-				item.ui_action_click()
-		//if(AB_SPELL)
-		//	if(target)
-		//		var/obj/effect/proc_holder/spell = target
-		//		spell.Click()
-		if(AB_INNATE)
-			if(!active)
-				Activate()
-			else
-				Deactivate()
-		if(AB_GENERIC)
-			if(target && procname)
-				call(target,procname)(usr)
-	return
+	if(!IsAvailable())
+		return 0
+	return 1
 
 /datum/action/proc/Activate()
 	return
@@ -87,9 +78,6 @@
 	return 0
 
 /datum/action/proc/IsAvailable()
-	return Checks()
-
-/datum/action/proc/Checks()// returns 1 if all checks pass
 	if(!owner)
 		return 0
 	if(check_flags & AB_CHECK_RESTRAINED)
@@ -107,7 +95,6 @@
 	if(check_flags & AB_CHECK_INSIDE)
 		if(!(target in owner))
 			return 0
-	return 1
 
 /datum/action/proc/UpdateName()
 	return name

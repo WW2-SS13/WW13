@@ -60,9 +60,3 @@
 	if(!bolt_open)
 		return
 	..()
-
-/obj/item/weapon/gun/projectile/heavysniper/scope()
-	set category = "Object"
-	set popup_menu = 1
-
-	toggle_scope(usr, 2.0)
