@@ -278,7 +278,7 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
+/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, can_move = 0)
 	if(!user)
 		return 0
 
@@ -307,13 +307,18 @@ Proc for attack log creation, because really why not
 		if (progress)
 			progbar.update(world.time - starttime)
 
-		if(!user || user.incapacitated(incapacitation_flags) || (user.loc != original_loc && !last_move_time))
+		if(!user || user.incapacitated(incapacitation_flags))
 			. = 0
 			break
 
 		if(target_loc && (!target || target_loc != target.loc))
 			. = 0
 			break
+
+		if(!can_move)
+			if(user.loc != original_loc && !last_move_time)
+				. = 0
+				break
 
 		if (last_move_time)
 			if (user.last_train_movement_attempt != last_move_time)

@@ -243,7 +243,7 @@
 	..()
 
 	for (var/v in 1 to 20)
-		new /obj/item/weapon/gun_attachment/bayonet(src)
+		new /obj/item/attachment/bayonet(src)
 
 //arty
 

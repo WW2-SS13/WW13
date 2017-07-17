@@ -6,7 +6,6 @@
 	set category = "Minigun"
 	set name = "Eject magazine"
 	set src in range(1, usr)
-
 	src.try_remove_mag(usr)
 
 /////////////////////////////
@@ -27,8 +26,6 @@
 	caliber = "4mm"
 	slot_flags = 0
 	ammo_type = /obj/item/ammo_casing/c4mm
-	zoomable = TRUE
-	zoom_amt = 6
 
 
 	firemodes = list(
@@ -70,16 +67,18 @@
 //	devicename: name of what device you are peering through, set by zoom() in items.dm
 //	silent: boolean controlling whether it should tell the user why they can't zoom in or not
 // I am sorry for creating this abomination -- Irra
-/obj/item/weapon/gun/projectile/minigun/can_zoom(mob/user, var/devicename, var/silent)
-	if(user.stat || !ishuman(user))
-		if (!silent) user.show_message("You are unable to focus through the [devicename]")
-		return 0
-	else if(!zoomed && global_hud.darkMask[1] in user.client.screen)
-		if (!silent) user.show_message("Your visor gets in the way of looking through the [devicename]")
-		return 0
+///obj/item/weapon/gun/projectile/minigun/can_zoom(mob/user, var/devicename, var/silent)
+	//if(user.stat || !ishuman(user))
+		//if (!silent) user.show_message("You are unable to focus through the [devicename]")
+		//return 0
+	//else if(!zoomed && global_hud.darkMask[1] in user.client.screen)
+		//if (!silent) user.show_message("Your visor gets in the way of looking through the [devicename]")
+		//return 0
 	return 1
 
 /obj/item/weapon/gun/projectile/minigun/proc/try_remove_mag(mob/user)
+	if(!ishuman(user))
+		return
 	if (!src.is_used_by(user))
 		if (user.has_empty_hand())
 			src.unload_ammo(user)
@@ -119,21 +118,29 @@
 	else
 		layer = FLY_LAYER
 
-/obj/item/weapon/gun/projectile/minigun/proc/started_using(mob/user as mob)
+/obj/item/weapon/gun/projectile/minigun/proc/started_using(mob/living/carbon/human/user)
 	..()
 
-	azoom.Grant(user)
+	for(var/datum/action/A in actions)
+		if(istype(A, /datum/action/toggle_scope))
+			if(user.client.pixel_x | user.client.pixel_y)
+				for(var/datum/action/toggle_scope/T in user.actions)
+					if(T.scope.zoomed)
+						T.scope.zoom(user, FALSE)
+			var/datum/action/toggle_scope/S = A
+			S.scope.zoom(user, TRUE, 1)
+
+
 	user.forceMove(src.loc)
 	user.dir = src.dir
 
 /obj/item/weapon/gun/projectile/minigun/proc/stopped_using(mob/user as mob)
 	..()
-//	var/grip_dir = reverse_direction(dir)
-//	if (user_old_x && user_old_y)
-		//animate(user, pixel_x=user_old_x, pixel_y=user_old_y, 4, 1)
-	if(zoomed)
-		zoom(user, FALSE) // out
-	azoom.Remove(user)
+
+	for(var/datum/action/A in actions)
+		if(istype(A, /datum/action/toggle_scope))
+			var/datum/action/toggle_scope/S = A
+			S.scope.zoom(user, FALSE)
 
 /obj/item/weapon/gun/projectile/minigun/proc/is_used_by(mob/user)
 	return user.using_object == src && user.loc == src.loc
@@ -166,9 +173,9 @@
 /obj/item/weapon/gun/projectile/minigun/kord/rotate_to(mob/user, atom/A)
 	var/shot_dir = get_carginal_dir(src, A)
 	dir = shot_dir
-	
-	if(zoomed)
-		zoom(user, FALSE) //Stop Zoom
+
+	//if(zoomed)
+		//zoom(user, FALSE) //Stop Zoom
 
 	user.forceMove(src.loc)
 	user.dir = src.dir

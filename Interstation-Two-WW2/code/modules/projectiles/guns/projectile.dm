@@ -39,6 +39,7 @@
 	//var/list/icon_keys = list()		//keys
 	//var/list/ammo_states = list()	//values
 	var/magazine_based = 1
+	attachment_slots = ATTACH_IRONSIGHTS
 
 	var/load_shell_sound = 'sound/weapons/empty.ogg'
 	var/load_magazine_sound = 'sound/weapons/flipblade.ogg'
@@ -51,6 +52,9 @@
 	if(ispath(magazine_type) && (load_method & MAGAZINE))
 		ammo_magazine = new magazine_type(src)
 	update_icon()
+
+	var/obj/item/attachment/A = new /obj/item/attachment/scope/iron_sights(src)
+	spawn_add_attachment(A, src)
 
 /obj/item/weapon/gun/projectile/proc/cock_gun(mob/user)
 	set waitfor = 0
@@ -146,7 +150,7 @@
 						AM.stored_ammo -= C //should probably go inside an ammo_magazine proc, but I guess less proc calls this way...
 						count++
 				if(count)
-					user.visible_message("[user] reloads [src].", "<span class='notice'>You load [count] round\s into [src].</span>")
+					user.visible_message("[user] reloads [src].", "<span class='notice'>You load [count] round\s into \the [src].</span>")
 					if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
 					cock_gun(user)
 		AM.update_icon()
@@ -192,16 +196,19 @@
 			loaded.len--
 			user.put_in_hands(C)
 			user.visible_message("[user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
+			if(istype(src, /obj/item/weapon/gun/projectile/boltaction))
+				var/obj/item/weapon/gun/projectile/boltaction/B = src
+				if(B.bolt_safety && !B.loaded.len)
+					B.check_bolt_lock++
 			if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 	else
 		user << "<span class='warning'>[src] is empty.</span>"
 	update_icon()
 
-/obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
-	if (..()) // handle attachments
-		return 1
-
-	load_ammo(A, user)
+/obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user)
+	..()
+	if(istype(A, /obj/item/ammo_magazine))
+		load_ammo(A, user)
 
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
 	if(firemodes.len > 1)

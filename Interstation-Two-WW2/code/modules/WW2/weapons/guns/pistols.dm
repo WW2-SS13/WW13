@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/pistol/attackby(obj/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/gun_attachment))
+	if (istype(W, /obj/item/attachment/bayonet))
 		user << "<span class = 'danger'>That won't fit on there.</span>"
 		return 0
 	else

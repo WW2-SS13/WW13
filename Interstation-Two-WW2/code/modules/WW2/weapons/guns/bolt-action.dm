@@ -7,35 +7,31 @@
 	force = 12
 	origin_tech = "combat=4;materials=2;syndicate=8"
 	fire_sound = 'sound/weapons/mosin_shot.ogg'
+	caliber = "a762x54"
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = 2
-	zoomable = TRUE
-	zoom_amt = 3
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 
-/obj/item/weapon/gun/projectile/boltaction/mosin/update_icon()
+//This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
+/obj/item/weapon/gun/projectile/boltaction/mosin/update_icon(var/add_scope = 0)
+	if(add_scope)
+		if(bolt_open)
+			icon_state = "mosin_scope_open"
+			item_state = "mosin_scope_open"
+			return
+		else
+			icon_state = "mosin_scope"
+			item_state = "mosin_scope"
+			return
 	if(bolt_open)
-		icon_state = "mosin_open" //open
+		if(!findtext(icon_state, "_open"))
+			icon_state = addtext(icon_state, "_open") //open
+	else if(icon_state == "mosin_scope_open") //closed
+		icon_state = "mosin_scope"
+	else if(icon_state == "mosin_scope")
+		return
 	else
-		icon_state = "mosin" //closed
-
-
-
-/obj/item/weapon/gun/projectile/boltaction/mosin/scoped
-	name = "Mosin-Nagant scoped rifle"
-	icon_state = "mosin_scope"
-	item_state = "mosin_scope" //placeholder
-	scoped_accuracy = 4 //If this is really meant to be worse than the kar, yell at me -Alexshreds
-	zoomable = TRUE
-	zoom_amt = 8
-	zoomdevicename = "scope"
-
-
-
-/obj/item/weapon/gun/projectile/boltaction/mosin/scoped/update_icon()
-	if(bolt_open)
-		icon_state = "mosin_scope_open" //open
-	else
-		icon_state = "mosin_scope" //closed
+		icon_state = "mosin"
 
 /obj/item/weapon/gun/projectile/boltaction/kar98k
 	name = "Kar98k rifle"
@@ -49,29 +45,26 @@
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = 2
 	scoped_accuracy = 4
-	zoomable = TRUE
-	zoom_amt = 3
 	bolt_safety = 1
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 
-/obj/item/weapon/gun/projectile/boltaction/kar98k/update_icon()
-
+//This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
+/obj/item/weapon/gun/projectile/boltaction/kar98k/update_icon(var/add_scope = 0)
+	if(add_scope)
+		if(bolt_open)
+			icon_state = "kar98k_scope_open"
+			item_state = "kar98k_scope_open"
+			return
+		else
+			icon_state = "kar98k_scope"
+			item_state = "kar98k_scope"
+			return
 	if(bolt_open)
-		icon_state = "kar98k_open" //open
+		if(!findtext(icon_state, "_open"))
+			icon_state = addtext(icon_state, "_open") //open
+	else if(icon_state == "kar98k_scope_open") //closed
+		icon_state = "kar98k_scope"
+	else if(icon_state == "kar98k_scope")
+		return
 	else
-		icon_state = "kar98k" //closed
-
-
-
-/obj/item/weapon/gun/projectile/boltaction/kar98k/scoped
-	name = "Kar98k scoped rifle"
-	icon_state = "kar98k_scope"
-	item_state = "kar98k_scope" //placeholder
-	scoped_accuracy = 5
-	zoom_amt = 8
-	zoomdevicename = "scope"
-
-/obj/item/weapon/gun/projectile/boltaction/kar98k/scoped/update_icon()
-	if(bolt_open)
-		icon_state = "kar98k_scope_open" //open
-	else
-		icon_state = "kar98k_scope" //closed
+		icon_state = "kar98k"

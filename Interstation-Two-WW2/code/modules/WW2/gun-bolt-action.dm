@@ -23,33 +23,45 @@
 	scoped_accuracy = 2
 	var/bolt_open = 0
 	var/check_bolt = 0 //Keeps the bolt from being interfered with
+	var/check_bolt_lock = 0 //For locking the bolt. Didn't put this in with check_bolt to avoid issues
 	var/bolt_safety = 0 //If true, locks the bolt when gun is empty
 
-/obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user as mob)
+/obj/item/weapon/gun/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/attachment))
+		var/obj/item/attachment/A = I
+		if(A.attachable)
+			try_attach(A, user)
+	..()
+
+/obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user)
 	if(!check_bolt)//Keeps people from spamming the bolt
 		check_bolt++
-		if(!do_after(user, 5, src, 0))//Delays the bolt
+		if(!do_after(user, 5, src, 0, 1,INCAPACITATION_DEFAULT, 1))//Delays the bolt
 			check_bolt--
 			return
 	else return
+	if(check_bolt_lock)
+		user.visible_message("<span class='notice'>The bolt won't move!</span>")
+		check_bolt--
+		return
 	bolt_open = !bolt_open
 	if(bolt_open)
 		if(chambered)
 			playsound(src.loc, 'sound/weapons/bolt_open.ogg', 50, 1)
-			user << "<span class='notice'>You work the bolt open, ejecting [chambered]!</span>"
+			user.visible_message("<span class='notice'>You work the bolt open, ejecting [chambered]!</span>")
 			chambered.loc = get_turf(src)
 			loaded -= chambered
 			chambered = null
 			if(bolt_safety)
-				if(!loaded)
-					check_bolt++
+				if(!loaded.len)
+					check_bolt_lock++
 					user.visible_message("<span class='notice'>The bolt is locked!</span>")
 		else
 			playsound(src.loc, 'sound/weapons/bolt_open.ogg', 50, 1)
-			user << "<span class='notice'>You work the bolt open.</span>"
+			user.visible_message("<span class='notice'>You work the bolt open.</span>")
 	else
 		playsound(src.loc, 'sound/weapons/bolt_close.ogg', 50, 1)
-		user << "<span class='notice'>You work the bolt closed.</span>"
+		user.visible_message("<span class='notice'>You work the bolt closed.</span>")
 		bolt_open = 0
 	add_fingerprint(user)
 	update_icon()
@@ -57,15 +69,15 @@
 
 /obj/item/weapon/gun/projectile/boltaction/special_check(mob/user)
 	if(bolt_open)
-		user << "<span class='warning'>You can't fire [src] while the bolt is open!</span>"
+		user.visible_message("<span class='warning'>You can't fire [src] while the bolt is open!</span>")
 		return 0
 	return ..()
 
 /obj/item/weapon/gun/projectile/boltaction/load_ammo(var/obj/item/A, mob/user)
 	if(!bolt_open)
 		return
-	if(bolt_safety && !loaded)
-		check_bolt--
+	if(check_bolt_lock)
+		check_bolt_lock--
 	..()
 
 /obj/item/weapon/gun/projectile/boltaction/unload_ammo(mob/user, var/allow_dump=1)
