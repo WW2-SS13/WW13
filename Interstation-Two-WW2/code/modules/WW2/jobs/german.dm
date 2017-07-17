@@ -25,7 +25,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger(H), slot_r_hand)
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
 	world << "<b>[H.client.prefs.german_name] is the [title] of the German forces!</b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the German forces and lead them to victory, while working alongside the <b>SS-Untersharffuhrer</b>.</span>"
@@ -67,7 +67,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger(H), slot_r_hand)
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the German forces. Your job is to take orders from the <b>Feldwebel</b> and coordinate with squad leaders.</span>"
 	return 1
@@ -106,7 +106,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger(H), slot_r_hand)
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	return 1
 
 /datum/job/german/pilot/update_character(var/mob/living/carbon/human/H)
@@ -152,7 +152,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the German force according to the <b>Feldwebel</b>'s and <b>Stabsoffizier</b>en's orders.</span>"
@@ -283,8 +283,9 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k_scope(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/sniper_scope(H), slot_r_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a sniper. Your job is to assist normal <b>Soldat</b> from behind defenses.</span>"
 	return 1
 
@@ -507,7 +508,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/wrench(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
@@ -551,7 +552,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
@@ -634,7 +635,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/akm(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite S.S. unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Feldwebel</b>, while setting your own goals.</span>"
 	return 1
 

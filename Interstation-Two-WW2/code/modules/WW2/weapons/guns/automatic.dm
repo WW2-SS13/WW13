@@ -2,12 +2,6 @@
 //*********************
 //PPS
 //*********************
-/obj/item/weapon/gun/projectile/automatic/attackby(obj/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/gun_attachment))
-		user << "<span class = 'danger'>That won't fit on there.</span>"
-		return 0
-	else
-		return ..()
 /obj/item/weapon/gun/projectile/automatic/mp40
 	name = "Mp40"
 	desc = "Mp40 german submachinegun."

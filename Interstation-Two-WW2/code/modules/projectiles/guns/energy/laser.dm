@@ -98,13 +98,6 @@ obj/item/weapon/gun/energy/retro
 	accuracy = -3 //shooting at the hip
 	scoped_accuracy = 0
 
-/obj/item/weapon/gun/energy/sniperrifle/verb/scope()
-	set category = "Object"
-	set name = "Use Scope"
-	set popup_menu = 1
-
-	toggle_scope(usr, 2.0)
-
 ////////Laser Tag////////////////////
 
 /obj/item/weapon/gun/energy/lasertag

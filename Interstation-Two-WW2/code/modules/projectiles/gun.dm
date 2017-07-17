@@ -39,7 +39,6 @@
 	force = 5
 	origin_tech = "combat=1"
 	attack_verb = list("struck", "hit", "bashed")
-	zoomdevicename = "scope"
 
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -76,7 +75,7 @@
 	var/list/burst_accuracy = list(0)
 	var/list/dispersion = list(0)
 
-	var/obj/item/weapon/gun_attachment/attachment = null
+	var/obj/item/attachment/bayonet = null
 
 /obj/item/weapon/gun/New()
 	..()
@@ -88,18 +87,6 @@
 
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
-
-/obj/item/weapon/gun/attackby(obj/W as obj, mob/user as mob)
-	if (ishuman(user))
-		if (istype(W, /obj/item/weapon/gun_attachment))
-			var/obj/item/weapon/gun_attachment/_attachment = W
-			if (!attachment)
-				user.remove_from_mob(_attachment)
-				_attachment.loc = src
-				attachment = _attachment
-				visible_message("<span class = 'danger'>[user] attaches [attachment] to their gun.</span>")
-				return 1
-	return 0
 
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
@@ -155,7 +142,7 @@
 
 /obj/item/weapon/gun/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && w_class >= 4) // Only big guns can stop attacks.
-		if(attachment && istype(attachment, /obj/item/weapon/gun_attachment) && prob(40)) // If they have a bayonet they get a higher chance to stop the attack.
+		if(bayonet && prob(40)) // If they have a bayonet they get a higher chance to stop the attack.
 			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
 			playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 			return 1
@@ -196,16 +183,14 @@
 	if (A == user && user.targeted_organ == "mouth" && !mouthshoot)
 		handle_suicide(user)
 
-	var/attachment_attack_check = (attachment && istype(attachment, /obj/item/weapon/gun_attachment/bayonet))
-
-	if(user.a_intent == I_HURT && !attachment_attack_check) //point blank shooting
+	if(user.a_intent == I_HURT && !bayonet) //point blank shooting
 		Fire(A, user, pointblank=1)
 	else
-		if (istype(attachment, /obj/item/weapon/gun_attachment) && isliving(A))
+		if(bayonet && isliving(A))
 			var/mob/living/l = A
-			var/obj/item/weapon/gun_attachment/a = attachment
+			var/obj/item/attachment/bayonet/a = bayonet
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
-			visible_message("<span class = 'danger'>[user] impales [l] with their gun's [a.improper_name]!</span>")
+			visible_message("<span class = 'danger'>[user] impales [l] with their gun's bayonet!</span>")
 			l.apply_damage(a.force * 2, BRUTE, def_zone)
 			playsound(get_turf(src), a.attack_sound, rand(75,100))
 		else
@@ -498,34 +483,11 @@
 		mouthshoot = 0
 		return
 
-/obj/item/weapon/gun/proc/toggle_scope(mob/living/user, var/zoom_amount=2.0)
-	//looking through a scope limits your periphereal vision
-	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
-	var/zoom_offset = round(world.view * zoom_amount)
-	var/view_size = round(world.view + zoom_amount)
-	var/scoped_accuracy_mod = zoom_offset
-
-	zoom(user, zoom_offset, view_size)
-	if(zoom)
-		accuracy = scoped_accuracy + scoped_accuracy_mod
-		if(recoil)
-			recoil = round(recoil*zoom_amount+1) //recoil is worse when looking through a scope
-
-//make sure accuracy and recoil are reset regardless of how the item is unzoomed.
-/obj/item/weapon/gun/zoom()
-	..()
-	if(!zoom)
-		accuracy = initial(accuracy)
-		recoil = initial(recoil)
-
-
 /obj/item/weapon/gun/examine(mob/user)
 	..()
 	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
-		user << "The fire selector is set to [current_mode.name]."
-	if (attachment)
-		user << "It has [attachment] attached to the end."
+		user.visible_message("The fire selector is set to [current_mode.name].")
 
 /obj/item/weapon/gun/proc/switch_firemodes(mob/user=null)
 	sel_mode++
@@ -568,10 +530,10 @@
 			user.drop_active_hand()
 			qdel(O)
 
-/obj/item/weapon/gun/dropped(mob/user as mob)
+/obj/item/weapon/gun/dropped(mob/user)
+	..()
 	if(wielded)
 		unwield(user)
-	return ..()
 
 /obj/item/weapon/gun/mob_can_equip(M as mob, slot) //Dirty hack
 	. = ..()
