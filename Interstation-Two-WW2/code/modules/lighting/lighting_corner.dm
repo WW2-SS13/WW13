@@ -17,6 +17,12 @@
 	var/lum_g = 0
 	var/lum_b = 0
 
+	// luminosity values based on the time of day
+	var/TOD_lum_r = 0
+	var/TOD_lum_g = 0
+	var/TOD_lum_b = 0
+
+
 /datum/lighting_corner/New(var/turf/new_turf, var/diagonal)
 	. = ..()
 
@@ -67,6 +73,7 @@
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
 /datum/lighting_corner/proc/update_lumcount(var/delta_r, var/delta_g, var/delta_b)
+
 	lum_r += delta_r
 	lum_g += delta_g
 	lum_b += delta_b
@@ -81,3 +88,5 @@
 				T.lighting_overlay.needs_update = TRUE
 				lighting_update_overlays += T.lighting_overlay
 			#endif
+
+

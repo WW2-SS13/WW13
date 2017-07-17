@@ -31,13 +31,6 @@
 		if (ismob(a))
 			var/mob/m = a
 			m.original_pulling = m.pulling
-		#ifdef USE_TRAIN_LIGHTS
-		if (istype(a, /obj/machinery/light))
-			var/obj/machinery/light/l = a
-			l.seton(0, 0, 1, 1)
-		#endif
-		if (ismob(a))
-			var/mob/m = a
 			if (!m.buckled)
 				switch (master.orientation)
 					if (VERTICAL)
@@ -60,12 +53,6 @@
 							m.train_move(locate(m.x, m.y+master.getMoveInc(), m.z))
 						if (HORIZONTAL)
 							m.train_move(locate(m.x+master.getMoveInc(), m.y, m.z))
-
-		#ifdef USE_TRAIN_LIGHTS
-		if (istype(a, /obj/machinery/light))
-			var/obj/machinery/light/l = a
-			l.seton(1, 0, 1, 1)
-		#endif
 
 	for (var/mob/m in saved_contents)
 		if (istype(m))

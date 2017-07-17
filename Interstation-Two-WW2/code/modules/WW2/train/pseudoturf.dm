@@ -8,6 +8,8 @@
 	var/datum/train_controller/controller = null
 	var/deadly = 0
 	var/list/saved_contents = list()
+	var/based_on_type = null // debug variable
+	var/copy_of_instance = null // debug variable
 
 /obj/train_pseudoturf/New(_loc, var/turf/t, var/ignorecontents = 0)
 	..()
@@ -15,6 +17,8 @@
 	loc = _loc
 	density = t.density
 	opacity = t.opacity
+	based_on_type = t.type
+	copy_of_instance = t
 
 	if (istype(t, /turf/simulated/wall))
 		var/turf/simulated/wall/w = t
@@ -81,10 +85,7 @@
 			if (a.density && !istype(a, /obj/structure/railing/train_railing))
 				if (!istype(a, /obj/structure/simple_door))
 					deadly = 1
-	#ifdef USE_TRAIN_LIGHTS
-	for (var/obj/train_track/tt in get_turf(src))
-		tt.set_light(0,0)
-	#endif
+
 
 /obj/train_pseudoturf/proc/save_contents_as_refs()
 	for (var/atom/movable/a in get_turf(src))
@@ -112,13 +113,6 @@
 		if (ismob(a))
 			var/mob/m = a
 			m.original_pulling = m.pulling
-		#ifdef USE_TRAIN_LIGHTS
-		if (istype(a, /obj/machinery/light))
-			var/obj/machinery/light/l = a
-			l.seton(0, 0, 1, 1)
-		#endif
-		if (ismob(a))
-			var/mob/m = a
 			if (!m.buckled)
 				switch (controller.orientation)
 					if (VERTICAL)
@@ -142,11 +136,6 @@
 						if (HORIZONTAL)
 							m.train_move(locate(m.x+controller.getMoveInc(), m.y, m.z))
 
-		#ifdef USE_TRAIN_LIGHTS
-		if (istype(a, /obj/machinery/light))
-			var/obj/machinery/light/l = a
-			l.seton(1, 0, 1, 1)
-		#endif
 
 	for (var/mob/m in saved_contents)
 		if (istype(m))

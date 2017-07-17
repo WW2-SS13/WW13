@@ -214,7 +214,7 @@
 				mob.next_train_movement = direct
 				mob.train_gib_immunity = 1
 				mob.last_train_movement_attempt = world.time
-				return
+			return // prevent movement either way if we're on a moving train
 
 	if(mob.control_object)	Move_object(direct)
 

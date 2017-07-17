@@ -52,6 +52,37 @@
 
 					C.active = TRUE
 
+// DAYLIGHT RELATED MEMBER PROCS
+
+// make this turf have a darkness level based on the time of day
+/turf/proc/adjust_lighting_overlay_to_daylight()
+
+	var/changed = 0
+
+	for (var/datum/lighting_corner/corner in corners)
+		if (corner.TOD_lum_r)
+			corner.TOD_lum_r = time_of_day2luminosity[time_of_day]
+			corner.TOD_lum_g = time_of_day2luminosity[time_of_day]
+			corner.TOD_lum_b = time_of_day2luminosity[time_of_day]
+			changed = 1
+
+	if (changed)
+		lighting_overlay.update_overlay()
+
+// make this turf have NO darkness. Used exclusively for trains (for now)
+/turf/proc/adjust_lighting_overlay_to_train_light()
+
+	var/changed = 0
+	for (var/datum/lighting_corner/corner in corners)
+		if (corner.TOD_lum_r)
+			corner.TOD_lum_r = 0.0
+			corner.TOD_lum_g = 0.0
+			corner.TOD_lum_b = 0.0
+			changed = 1
+
+	if (changed)
+		lighting_overlay.update_overlay()
+
 // Used to get a scaled lumcount.
 /turf/proc/get_lumcount(var/minlum = 0, var/maxlum = 1)
 	if(!lighting_overlay)

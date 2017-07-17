@@ -263,14 +263,16 @@
 
 	lever.direction = direction
 
+	// todo: this screws up density, fix it
+
 	if (faction == "GERMAN-SUPPLY")
 		for (var/obj/train_car_center/tcc in train_car_centers)
 			for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
 				if (locate(/obj/effect/landmark/train/german_train_limit) in get_turf(tpt))
 					return
 
-	invisible = 0
-	update_invisibility(invisible)
+		invisible = 0
+		update_invisibility(invisible)
 
 /datum/train_controller/proc/stop_moving()
 
@@ -280,6 +282,8 @@
 	var/obj/train_lever/lever = get_lever()
 	lever.icon_state = lever.none_state
 	lever.direction = "NONE"
+
+	// todo: this screws up density, fix it
 
 	if (faction == "GERMAN-SUPPLY")
 		for (var/obj/train_car_center/tcc in train_car_centers)

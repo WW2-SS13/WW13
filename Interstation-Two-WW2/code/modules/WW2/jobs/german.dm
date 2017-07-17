@@ -610,7 +610,7 @@ var/first_fallschirm = 1
 ////////////////////////////////
 /datum/job/german/squad_leader_ss
 	title = "SS-Untersharffuhrer"
-	en_meaning = "S.S. Squad Leader"
+	en_meaning = "SS Squad Leader"
 	flag = GERSER
 	department_flag = GUNSERG // so we get our own job category
 	faction = "Station"
@@ -635,7 +635,9 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/akm(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_hand)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite S.S. unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Feldwebel</b>, while setting your own goals.</span>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite SS unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Feldwebel</b>, while setting your own goals.</span>"
+	if (secret_ladder_message)
+		H << "<br>[secret_ladder_message]"
 	return 1
 
 /datum/job/german/squad_leader_ss/update_character(var/mob/living/carbon/human/H)
@@ -653,7 +655,7 @@ var/first_fallschirm = 1
 
 /datum/job/german/soldier_ss
 	title = "SS-Schutze"
-	en_meaning = "S.S. Infantry Soldier"
+	en_meaning = "SS Infantry Soldier"
 	flag = GERSOL
 	department_flag = GUNSERG // so we get our own job category
 	faction = "Station"
@@ -674,7 +676,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sshelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a soldier for an elite S.S. unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>.</span>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>.</span>"
 	return 1
 
 /datum/job/german/soldier_ss/get_keys()

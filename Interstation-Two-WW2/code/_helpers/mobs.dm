@@ -327,3 +327,87 @@ Proc for attack log creation, because really why not
 
 	if (progbar)
 		qdel(progbar)
+
+//Returns a list of all mobs with their name
+/proc/getmobs()
+
+	var/list/mobs = sortmobs()
+	var/list/names = list()
+	var/list/creatures = list()
+	var/list/namecounts = list()
+	for(var/mob/M in mobs)
+		var/name = M.name
+		if (name in names)
+			namecounts[name]++
+			name = "[name] ([namecounts[name]])"
+		else
+			names.Add(name)
+			namecounts[name] = 1
+		if (M.real_name && M.real_name != M.name)
+			name += " \[[M.real_name]\]"
+		if (M.stat == 2)
+			if(istype(M, /mob/observer/ghost/))
+				name += " \[ghost\]"
+			else
+				name += " \[dead\]"
+		creatures[name] = M
+
+	return creatures
+
+/proc/getrussianmobs(var/alive = 0)
+	var/list/russians = list()
+	for (var/mob/living/carbon/human/H in mob_list)
+		if (!istype(H))
+			continue
+		if (alive && H.stat == DEAD)
+			continue
+		if (!istype(H.original_job, /datum/job/russian))
+			continue
+		russians += H
+
+	return russians
+
+/proc/getgermanmobs(var/alive = 0)
+	var/list/germans = list()
+	for (var/mob/living/carbon/human/H in mob_list)
+		if (!istype(H))
+			continue
+		if (alive && H.stat == DEAD)
+			continue
+		if (!istype(H.original_job, /datum/job/german))
+			continue
+		germans += H
+
+	return germans
+
+//Orders mobs by type then by name
+/proc/sortmobs()
+	var/list/moblist = list()
+	var/list/sortmob = sortAtom(mob_list)
+	for(var/mob/observer/eye/M in sortmob)
+		moblist.Add(M)
+	for(var/mob/living/silicon/ai/M in sortmob)
+		moblist.Add(M)
+	for(var/mob/living/silicon/pai/M in sortmob)
+		moblist.Add(M)
+	for(var/mob/living/silicon/robot/M in sortmob)
+		moblist.Add(M)
+	for(var/mob/living/carbon/human/M in sortmob)
+		moblist.Add(M)
+	for(var/mob/living/carbon/brain/M in sortmob)
+		moblist.Add(M)
+	for(var/mob/living/carbon/alien/M in sortmob)
+		moblist.Add(M)
+	for(var/mob/observer/ghost/M in sortmob)
+		moblist.Add(M)
+	for(var/mob/new_player/M in sortmob)
+		moblist.Add(M)
+	for(var/mob/living/carbon/slime/M in sortmob)
+		moblist.Add(M)
+	for(var/mob/living/simple_animal/M in sortmob)
+		moblist.Add(M)
+//	for(var/mob/living/silicon/hivebot/M in world)
+//		mob_list.Add(M)
+//	for(var/mob/living/silicon/hive_mainframe/M in world)
+//		mob_list.Add(M)
+	return moblist

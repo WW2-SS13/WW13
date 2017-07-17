@@ -261,8 +261,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "Not when you're not dead!"
 		return
 	usr.verbs -= /mob/observer/ghost/proc/dead_tele
-	spawn(30)
+	spawn(15) // a 3 second delay was a bit long, in my opinion - Kachnov
 		usr.verbs += /mob/observer/ghost/proc/dead_tele
+
 	var/area/thearea = ghostteleportlocs[A]
 	if(!thearea)	return
 
@@ -296,6 +297,37 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/target = getmobs()[input]
 	if(!target) return
 	ManualFollow(target)
+
+
+/mob/observer/ghost/verb/follow_russian(input in getrussianmobs(1))
+	set category = "Ghost"
+	set name = "Follow a Russian"
+	set desc = "Follow and haunt a living rusky."
+
+	var/target = input // not a map
+	if(!target) return
+	ManualFollow(target)
+
+/mob/observer/ghost/verb/follow_german(input in getgermanmobs(1))
+	set category = "Ghost"
+	set name = "Follow a German"
+	set desc = "Follow and haunt a living german."
+
+	var/target = input // not a map
+	if(!target) return
+	ManualFollow(target)
+
+/mob/observer/ghost/verb/follow_train()
+	set category = "Ghost"
+	set name = "Follow the Train"
+
+	var/datum/train_controller/tc = german_train_master
+
+	for (var/obj/train_car_center/tcc in tc.train_car_centers)
+		for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
+			ManualFollow(tpt)
+			return
+
 
 // This is the ghost's follow verb with an argument
 /mob/observer/ghost/proc/ManualFollow(var/atom/movable/target)

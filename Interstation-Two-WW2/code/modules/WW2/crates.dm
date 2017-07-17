@@ -256,14 +256,22 @@
 
 	New()
 		..()
-		for (var/v in 1 to 20)
+		for (var/v in 1 to 25)
 			new/obj/item/artillery_ammo(src)
-		for (var/v in 1 to 3)
+
+/obj/structure/closet/crate/artillery_gas
+	name = "German gas artillery shell crate"
+	icon = 'icons/WW2/artillery_crate.dmi'
+	icon_state = "closed2"
+	icon_opened = "opened"
+	icon_closed = "closed2"
+
+	New()
+		..()
+		for (var/v in 1 to 4) // 16 total
 			new/obj/item/artillery_ammo/gaseous/green_cross/chlorine(src)
-		for (var/v in 1 to 2)
 			new/obj/item/artillery_ammo/gaseous/yellow_cross/mustard(src)
 			new/obj/item/artillery_ammo/gaseous/yellow_cross/white_phosphorus(src)
-		for (var/v in 1 to 4)
 			new/obj/item/artillery_ammo/gaseous/blue_cross/xylyl_bromide(src)
 
 /obj/structure/closet/crate/gasmasks

@@ -210,13 +210,16 @@
 		for(var/obj/item/sub_item in item.contents)
 			apply_fingerprints_to_item(holder, sub_item)
 
-/datum/job/proc/is_position_available(var/list/restricted_choices)
-	if (!restricted_choices || restricted_choices.len == 0)
+/datum/job/proc/is_position_available(var/list/restricted_choices, var/list/people_in_join_queue)
+	if ((!restricted_choices || restricted_choices.len == 0) && (!people_in_join_queue || people_in_join_queue.len == 0))
 		return (current_positions < total_positions) || (total_positions == -1)
 	else
 		var/subtract_positions = 0
 		for (var/_title in restricted_choices)
 			if (_title == title)
+				subtract_positions++
+		for (var/mob/new_player/player in people_in_join_queue)
+			if (player.desired_job == title)
 				subtract_positions++
 
 		if (total_positions == -1)

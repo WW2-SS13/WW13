@@ -2,6 +2,7 @@ var/roundstart_time = 0
 var/mercy_period = 1
 var/game_started = 0
 var/train_checked = 0
+var/secret_ladder_message = null
 
 /proc/WW2_soldiers_alive()
 	var/en = 0
@@ -99,10 +100,7 @@ var/train_checked = 0
 /hook/roundstart/proc/game_start()
 	roundstart_time = world.time
 
-	if (daynight_setting == "NIGHT")
-		world << "<font size=3><span class = 'notice'>It's nighttime.</span></font>"
-	else
-		world << "<font size=3><span class = 'notice'>It's daytime.</span></font>"
+	world << "<font size=3><span class = 'notice'>It's [lowertext(time_of_day)].</span></font>"
 
 	return 1
 
@@ -131,6 +129,9 @@ var/wlg_selected_border_tree = 0
 			if (prob(50))
 				spawned_secret_ladder = 1
 				message_admins("There is no secret entrance to the soviet bunker this round!")
+			else
+				secret_ladder_message = "<span class = 'notice'><b>There is a secret ladder to the inside of the Soviet bunker somewhere in the forest. If you find it, you will gain a huge advantage over the enemy.</b></span>"
+
 
 			for(var/turf/T in world)
 				if(T.z != 1)

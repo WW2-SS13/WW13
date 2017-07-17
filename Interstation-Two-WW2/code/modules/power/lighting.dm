@@ -179,6 +179,15 @@
 	icon_state = "floortube1"
 	layer = 2.5
 
+/obj/machinery/light/floor/streetlight
+	icon = 'icons/obj/lighting_32x64.dmi'
+	name = "streetlight"
+	base_state = "streetlight"
+	icon_state = "streetlight1"
+	brightness_power = 3
+	density = 1
+	layer = MOB_LAYER + 0.5
+
 /obj/machinery/light/small
 	icon_state = "bulb1"
 	base_state = "bulb"
