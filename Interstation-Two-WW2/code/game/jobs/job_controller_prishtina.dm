@@ -27,8 +27,14 @@ var/global/datum/controller/occupations/job_master
 	New()
 		..()
 		join_queue["GERMAN"] = list()
-		join_queue["SOVIET"] = list()
+		join_queue["RUSSIAN"] = list()
 		join_queue_loop()
+
+	proc/people_in_join_queue()
+		var/list/l = list()
+		l += join_queue["GERMAN"]
+		l += join_queue["RUSSIAN"]
+		return l
 
 
 /*	var/list/crate_positions = list(

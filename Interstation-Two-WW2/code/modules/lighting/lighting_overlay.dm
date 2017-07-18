@@ -74,15 +74,15 @@
 			if(NORTHWEST)
 				i = BR
 
-		var/mx = max(C.lum_r, C.lum_g, C.lum_b) // Scale it so 1 is the strongest lum, if it is above 1.
+		var/mx = max(C.lum_r+C.TOD_lum_r, C.lum_g+C.TOD_lum_g, C.lum_b+C.TOD_lum_b) // Scale it so 1 is the strongest lum, if it is above 1.
 		anylums += mx
 		. = 1 // factor
 		if(mx > 1)
 			. = 1 / mx
 
-		L[i + 0]   = C.lum_r * .
-		L[i + 1]   = C.lum_g * .
-		L[i + 2]   = C.lum_b * .
+		L[i + 0]   = (C.lum_r + C.TOD_lum_r) * .
+		L[i + 1]   = (C.lum_g + C.TOD_lum_g) * .
+		L[i + 2]   = (C.lum_b + C.TOD_lum_b) * .
 
 	src.color  = L
 	luminosity = (anylums > 0)

@@ -11,6 +11,8 @@
 /obj/item/weapon/storage/bag/medical_bag_soviet/full/New()
 	..()
 
+	new/obj/item/weapon/doctor_handbook(src)
+
 	for(var/i = 1 to 5)
 		new /obj/item/weapon/gauze_pack/gauze(src)
 
@@ -40,6 +42,8 @@
 
 /obj/item/weapon/storage/bag/medical_bag_nato/full/New()
 	..()
+
+	new/obj/item/weapon/doctor_handbook(src)
 
 	for(var/i = 1 to 5)
 		new /obj/item/weapon/gauze_pack/gauze(src)

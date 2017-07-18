@@ -214,7 +214,7 @@
 				mob.next_train_movement = direct
 				mob.train_gib_immunity = 1
 				mob.last_train_movement_attempt = world.time
-				return
+			return // prevent movement either way if we're on a moving train
 
 	if(mob.control_object)	Move_object(direct)
 
@@ -246,22 +246,6 @@
 		if(L.incorporeal_move)//Move though walls
 			Process_Incorpmove(direct)
 			return
-		if(mob.client)
-			if(mob.client.view != world.view) // If mob moves while zoomed in with device, unzoom them.
-				for(var/obj/item/item in mob.contents)
-					if(item.zoom)
-						item.zoom(mob)
-						break
-				/*
-				if(locate(/obj/item/weapon/gun/energy/sniperrifle, mob.contents))		// If mob moves while zoomed in with sniper rifle, unzoom them.
-					var/obj/item/weapon/gun/energy/sniperrifle/s = locate() in mob
-					if(s.zoom)
-						s.zoom()
-				if(locate(/obj/item/device/binoculars, mob.contents))		// If mob moves while zoomed in with binoculars, unzoom them.
-					var/obj/item/device/binoculars/b = locate() in mob
-					if(b.zoom)
-						b.zoom()
-				*/
 
 	if(Process_Grab())	return
 

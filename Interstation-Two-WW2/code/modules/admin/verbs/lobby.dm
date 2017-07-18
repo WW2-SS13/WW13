@@ -14,3 +14,5 @@
 		if (istype(np))
 			np.client << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jamsz
 			np.client.playtitlemusic()
+
+	message_admins("[key_name(src)] randomized the lobby music.")

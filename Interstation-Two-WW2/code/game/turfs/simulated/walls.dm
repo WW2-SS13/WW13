@@ -28,6 +28,8 @@ var/list/global/wall_cache = list()
 	name = ""
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
+	density = 1
+
 // replaces /turf/unsimulated/wall
 /turf/simulated/wall/rockwall
 	name = ""

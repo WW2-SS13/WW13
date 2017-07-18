@@ -14,13 +14,13 @@
 		"Falco - Der Kommissar" = 'sound/music/WW2/derkommissar.ogg')
 
 	var/list/song_probability_multipliers = list(
-		2,
-		1,
-		1,
-		1,
-		1,
-		1,
-		1
+		"Dj Blyatman - Chernobyl" = 2,
+		"Dj Snat - Choose Your Power (Gopnik Mcblyat Remix)" = 1,
+		"Gopnik Mcblyat - Snakes In Tracksuits" = 1,
+		"Katyusha" = 1,
+		"Latvian SS Anthem" = 1,
+		"ERIKA" = 1,
+		"Falco - Der Kommissar" = 1
 	)
 
 	var/song_title = null
@@ -31,15 +31,26 @@
 
 /datum/lobby_music_player/proc/choose_song()
 
-	var/num = 0
-	var/default_prob = ceil(100/7) // songs.len wasn't working for some reason
-	for (var/title in songs)
-		++num
-		if (prob(default_prob * song_probability_multipliers[num]))
+	// for some reason byond is horrible with randomness and overwhelmingly
+	// plays the first few songs in the list. The solution is randomizing the list
+	// - Kachnov
+
+	var/last_song_title = song_title
+
+	var/list/random_order_songs = shuffle(songs)
+	var/songs_len = random_order_songs.len
+
+	var/default_prob = ceil(100/songs_len)
+	for (var/title in random_order_songs)
+		var/multiplier = (song_probability_multipliers[title] || 1)
+		if (prob(default_prob * multiplier))
 			song_title = title
 			break
 	if (!song_title)
-		song_title = pick(songs)
+		song_title = pick(random_order_songs)
+
+	while (song_title == last_song_title)
+		song_title = pick(random_order_songs)
 
 /datum/lobby_music_player/proc/announce(var/client/client)
 	client << "<span class = 'notice'><font size = 2>Now playing <b>[song_title]</b></font></span>"
