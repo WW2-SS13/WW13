@@ -23,8 +23,8 @@
 		desc = "This is a minimoog, like a space piano, but more spacey!"
 		icon_state = "minimoog"
 	else
-		name = "space piano"
-		desc = "This is a space piano, like a regular piano, but always in tune! Even if the musician isn't."
+		name = "\piano"
+		desc = "This is a piano!"
 		icon_state = "piano"
 
 /obj/structure/device/piano/proc/playnote(var/note as text)
