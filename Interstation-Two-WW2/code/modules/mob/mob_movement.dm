@@ -214,7 +214,6 @@
 				mob.next_train_movement = direct
 				mob.train_gib_immunity = 1
 				mob.last_train_movement_attempt = world.time
-			return // prevent movement either way if we're on a moving train
 
 	if(mob.control_object)	Move_object(direct)
 
@@ -246,14 +245,6 @@
 		if(L.incorporeal_move)//Move though walls
 			Process_Incorpmove(direct)
 			return
-		if(mob.client)
-			if(mob.client.view != world.view) // If mob moves while zoomed in with device, unzoom them.
-				for(var/obj/item/item in mob.contents)
-					if (istype(item, /obj/item/attachment/scope))
-						var/obj/item/attachment/scope/scope = item
-						if(scope.zoomed)
-							scope.zoom(mob)
-							break
 
 	if(Process_Grab())	return
 
@@ -395,7 +386,6 @@
 		for (var/atom/movable/a in get_turf(mob))
 			if (isMovingTrainObject(a))
 				mob.attached_to_object = a
-
 		if (locate(/obj/train_connector) in get_step(mob, mob.dir))
 			var/obj/train_connector/tc = locate(/obj/train_connector) in get_step(mob, mob.dir)
 			if (tc)
