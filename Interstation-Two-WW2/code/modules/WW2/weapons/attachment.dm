@@ -94,7 +94,7 @@ Current Defines (_defines/attachment.dm)
         var/obj/item/weapon/gun/projectile/boltaction/W = src
         W.update_icon(1)
 
-    user.visible_message("You attach [A] to the [src].")
+    user << "You attach [A] to the [src]."
     return 0
 
 /obj/item/weapon/gun/proc/update_attachment_actions(mob/user)
@@ -118,13 +118,13 @@ Current Defines (_defines/attachment.dm)
         if(W.bolt_open)
           W.icon_state = addtext(W.icon_state, "_open")
 
-    user.visible_message("You remove [A] from the [src].")
+    user << "You remove [A] from the [src]."
 
 /obj/item/weapon/gun/proc/try_attach(obj/item/attachment/A, mob/user)
   if(!A || !user)
     return
   if(user.get_inactive_hand() != src)
-    user.visible_message("You must be holding the [src] to add attachments.")
+    user << "You must be holding the [src] to add attachments."
     return
   attach_A(A, user)
 
@@ -135,29 +135,29 @@ Current Defines (_defines/attachment.dm)
       if(attachment_slots & CHECK_IRONSIGHTS)
         add_attachment(A, user)
       else
-        user.visible_message("You already have iron sights.")
+        user << "You already have iron sights."
     if(ATTACH_SCOPE)
       if(attachment_slots & CHECK_SCOPE)
         add_attachment(A, user)
       else
-        user.visible_message("You fumble around with the attachment.")
+        user << "You fumble around with the attachment."
     if(ATTACH_STOCK)
       if(attachment_slots & CHECK_STOCK)
         add_attachment(A, user)
       else
-        user.visible_message("You fumble around with the attachment.")
+        user << "You fumble around with the attachment."
     if(ATTACH_BARREL)
       if(attachment_slots & CHECK_BARREL)
         add_attachment(A, user)
       else
-        user.visible_message("You fumble around with the attachment.")
+        user << "You fumble around with the attachment."
     if(ATTACH_UNDER)
       if(attachment_slots & CHECK_UNDER)
         add_attachment(A, user)
       else
-        user.visible_message("You fumble around with the attachment.")
+        user << "You fumble around with the attachment."
     else
-      user.visible_message("[A] cannot be attached to the [src].")
+      user << "[A] cannot be attached to the [src]."
 
 //ATTACHMENTS
 
@@ -224,7 +224,7 @@ Current Defines (_defines/attachment.dm)
 /obj/item/attachment/scope/iron_sights
 	name = "iron sights"
 	attachment_type = ATTACH_IRONSIGHTS
-	zoom_amt = 3
+	zoom_amt = 4
 
 /obj/item/attachment/scope/adjustable/sniper_scope
 	name = "sniper scope"
