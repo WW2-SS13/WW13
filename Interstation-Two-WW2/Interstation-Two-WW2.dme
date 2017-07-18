@@ -356,7 +356,7 @@
 #include "code\game\gamemodes\revolution\revolution.dm"
 #include "code\game\gamemodes\traitor\traitor.dm"
 #include "code\game\gamemodes\wizard\wizard.dm"
-#include "code\game\gamemodes\WW2\ww2.dm"
+#include "code\game\gamemodes\WW2\WW2.dm"
 #include "code\game\jobs\_access_defs.dm"
 #include "code\game\jobs\access.dm"
 #include "code\game\jobs\access_datum.dm"
