@@ -23,7 +23,7 @@
 		desc = "This is a minimoog, like a space piano, but more spacey!"
 		icon_state = "minimoog"
 	else
-		name = "\piano"
+		name = "piano"
 		desc = "This is a piano!"
 		icon_state = "piano"
 
