@@ -977,10 +977,10 @@ var/global/datum/controller/occupations/job_master
 	spawn while (1)
 		for (var/mob/new_player/np in join_queue["GERMAN"])
 			if (can_join_side("GERMAN"))
-				np.AttemptLateSpawn(np.desired_job, 1)
+				np.LateSpawnForced(np.desired_job)
 		for (var/mob/new_player/np in join_queue["RUSSIAN"])
 			if (can_join_side("RUSSIAN"))
-				np.AttemptLateSpawn(np.desired_job, 1)
+				np.LateSpawnForced(np.desired_job)
 		sleep (3)
 
 /*

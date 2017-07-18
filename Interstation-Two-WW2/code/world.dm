@@ -580,17 +580,10 @@ var/world_topic_spam_protect_time = world.timeofday
 //	var/list/memes = list("CM BTFO Edition")
 
 	var/s = ""
-	s += "<center><a href = \"https://discord.gg/PVqjqCv\" target=\"_blank\"><b>No Man's Land: World War II (Early Alpha)</b></center><br>"
-	s += "Hosted by the <b>Old Bolsheviks</b></a><br>"
-
-	s += "<i>1942, [lowertext(time_of_day)], Ukrajina</i>"
-//	s += "<big><span style = \"color:red\"><b>[pick(memes)]</b></span></big><br>"
-	// todo: only change the banner after a world restart
-	//"<img src = 'http://tny.im/9Cw'>"
-	s += pick("<img src = 'http://tny.im/9Bm'>")
-	/* does this help? I do not know */
-	if (src.status != s)
-		src.status = s
+	s += "<center><a href=\"https://discord.gg/PVqjqCv\" target=\"_blank\"><b>No Man's Land: World War II (Early Alpha)</b></center><br>"
+	s += "<i>1942, [lowertext(time_of_day)], Ukrajina</i><br>"
+	s += pick("<img src='http://tny.im/9Bm'>")
+	status = s
 
 #define FAILED_DB_CONNECTION_CUTOFF 5
 var/failed_db_connections = 0

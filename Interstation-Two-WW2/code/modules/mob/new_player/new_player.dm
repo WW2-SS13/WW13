@@ -86,13 +86,14 @@
 			if(ticker.hide_mode == 0)
 				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
 
-		totalPlayers = 0
 		// by counting observers, our playercount now looks more impressive - Kachnov
 		if(ticker.current_state == GAME_STATE_PREGAME)
 			stat("Time Until Joining Allowed:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
 			stat("","")
 			stat("Players: [totalPlayers]")
 			stat("","")
+
+			totalPlayers = 0
 
 			for(var/mob/new_player/player in player_list)
 				stat("[player.key]", " (Playing)")
@@ -112,6 +113,7 @@
 				stat(split[1], split[2])
 			else
 				stat(split[1])
+
 
 /mob/new_player/Topic(href, href_list[])
 	if(!client)	return 0

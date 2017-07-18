@@ -1,5 +1,3 @@
-//#define TESTING_NOLIGHTS
-#define DAY_CHANCE 0
 
 
 /var/list/all_lighting_overlays   = list()    // Global list of lighting overlays.
@@ -28,7 +26,6 @@
 
 	global.lighting_corners_initialised = TRUE
 
-	#ifndef TESTING_NOLIGHTS
 	for (var/turf/t in world)
 
 		if (!locate(/obj/train_track) in t.contents)
@@ -50,7 +47,6 @@
 				var/b = ceil(time_of_day2luminosity[time_of_day] * 255)
 				var/turf/tt_turf = get_turf(tt)
 				tt_turf.color = rgb(r,g,b)*/
-	#endif
 
 /proc/create_lighting_corners_zlevel(var/zlevel)
 	for(var/turf/T in block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel)))
@@ -73,7 +69,6 @@
 
 	. = ..()
 
-	#ifndef TESTING_NOLIGHTS
 	if (time_of_day == "Midday") // we have no darkness whatsoever
 		for (var/area/prishtina/p in world) // make indoor areas have full light
 			if (istype(p) && !istype(p, /area/prishtina/void) && !istype(p, /area/prishtina/soviet/bunker) && !istype(p, /area/prishtina/soviet/bunker_entrance))
@@ -90,18 +85,7 @@
 			light.brightness_power = 0
 			light.update(0, 1, 1)*/
 
-	#endif
 
 
 	create_all_lighting_corners()
 	create_all_lighting_overlays()
-/*
-	#ifndef TESTING_NOLIGHTS
-
-	if (daynight_setting == "NIGHT")
-		for (var/obj/machinery/light/l in world)
-			l.brightness_power = 1
-			l.brightness_range = round(l.brightness_range*2) // 7 to 14
-			l.update_icon()
-
-	#endif*/
