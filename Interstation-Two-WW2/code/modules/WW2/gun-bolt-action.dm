@@ -36,12 +36,12 @@
 /obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user)
 	if(!check_bolt)//Keeps people from spamming the bolt
 		check_bolt++
-		if(!do_after(user, 5, src, 0, 1,INCAPACITATION_DEFAULT, 1))//Delays the bolt
+		if(!do_after(user, 2, src, 0, 1,INCAPACITATION_DEFAULT, 1))//Delays the bolt
 			check_bolt--
 			return
 	else return
 	if(check_bolt_lock)
-		user << "<span class='notice'>The bolt won't move!</span>"
+		user << "<span class='notice'>The bolt won't move, the gun is empety!</span>"
 		check_bolt--
 		return
 	bolt_open = !bolt_open

@@ -74,14 +74,14 @@ Parts of code courtesy of Super3222
 
 	if(input > max_zoom)
 		if(zoom_amt == max_zoom)
-			user.visible_message("<span class='warning'>You can't adjust it any further.</span>")
+			user << "<span class='warning'>You can't adjust it any further.</span>"
 			return
 		else
 			zoom_amt = max_zoom
 			dial_check = 1
 	else if(input < min_zoom)
 		if(zoom_amt == min_zoom)
-			user.visible_message("<span class='warning'>You can't adjust it any further.</span>")
+			user << "<span class='warning'>You can't adjust it any further.</span>"
 			return
 		else
 			zoom_amt = min_zoom
@@ -90,7 +90,7 @@ Parts of code courtesy of Super3222
 			dial_check = 1
 		zoom_amt = input
 
-	user.visible_message("<span class='notice'>You twist the dial on [src] [dial_check ? "clockwise, increasing" : "counterclockwise, decreasing"] the zoom range to [zoom_amt].</span>")
+	user << "<span class='notice'>You twist the dial on [src] [dial_check ? "clockwise, increasing" : "counterclockwise, decreasing"] the zoom range to [zoom_amt].</span>"
 
 // An ugly hack called a boolean proc, made it like this to allow special
 // behaviour without big overrides. So special snowflake weapons like the minigun
@@ -101,20 +101,20 @@ Parts of code courtesy of Super3222
 // I am sorry for creating this abomination -- Irra
 /obj/item/attachment/scope/proc/can_zoom(mob/living/user, var/silent = 0)
 	if(user.stat || !ishuman(user))
-		if(!silent) user.visible_message("You are unable to focus through \the [src].")
+		if(!silent) user << "You are unable to focus through \the [src]."
 		return 0
 	else if(global_hud.darkMask[1] in user.client.screen)
-		if(!silent) user.visible_message("Your visor gets in the way of looking through \the [src].")
+		if(!silent) user << "Your visor gets in the way of looking through \the [src]."
 		return 0
 	else if(!A_attached)
 		if(user.client.pixel_x | user.client.pixel_y) //Keep people from looking through two scopes at once
-			if(!silent) user.visible_message("You are too distracted to look through \the [src].")
+			if(!silent) user << "You are too distracted to look through \the [src]."
 			return 0
 		if(user.get_active_hand() != src)
-			if(!silent) user.visible_message("You are too distracted to look through \the [src].")
+			if(!silent) user << "You are too distracted to look through \the [src]."
 			return 0
 	else if(user.get_active_hand() != loc)
-		if(!silent) user.visible_message("You are too distracted to look through \the [src].")
+		if(!silent) user << "You are too distracted to look through \the [src]."
 		return 0
 	return 1
 
