@@ -44,7 +44,7 @@ Current Defines (_defines/attachment.dm)
   ..()
   if(attachments.len)
     for(var/obj/item/attachment/A in attachments)
-      user.visible_message("<span class='notice'>It has [A] attached.</span>")
+      user << "<span class='notice'>It has [A] attached.</span>"
 
 /obj/item/weapon/gun/dropped(mob/user)
   if(attachments.len)

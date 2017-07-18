@@ -41,7 +41,7 @@
 			return
 	else return
 	if(check_bolt_lock)
-		user << "<span class='notice'>The bolt won't move, the gun is empety!</span>"
+		user << "<span class='notice'>The bolt won't move, the gun is empty!</span>"
 		check_bolt--
 		return
 	bolt_open = !bolt_open
