@@ -41,27 +41,27 @@
 			return
 	else return
 	if(check_bolt_lock)
-		user.visible_message("<span class='notice'>The bolt won't move!</span>")
+		user << "<span class='notice'>The bolt won't move!</span>"
 		check_bolt--
 		return
 	bolt_open = !bolt_open
 	if(bolt_open)
 		if(chambered)
 			playsound(src.loc, 'sound/weapons/bolt_open.ogg', 50, 1)
-			user.visible_message("<span class='notice'>You work the bolt open, ejecting [chambered]!</span>")
+			user << "<span class='notice'>You work the bolt open, ejecting [chambered]!</span>"
 			chambered.loc = get_turf(src)
 			loaded -= chambered
 			chambered = null
 			if(bolt_safety)
 				if(!loaded.len)
 					check_bolt_lock++
-					user.visible_message("<span class='notice'>The bolt is locked!</span>")
+					user << "<span class='notice'>The bolt is locked!</span>"
 		else
 			playsound(src.loc, 'sound/weapons/bolt_open.ogg', 50, 1)
-			user.visible_message("<span class='notice'>You work the bolt open.</span>")
+			user << "<span class='notice'>You work the bolt open.</span>"
 	else
 		playsound(src.loc, 'sound/weapons/bolt_close.ogg', 50, 1)
-		user.visible_message("<span class='notice'>You work the bolt closed.</span>")
+		user << "<span class='notice'>You work the bolt closed.</span>"
 		bolt_open = 0
 	add_fingerprint(user)
 	update_icon()
@@ -69,7 +69,7 @@
 
 /obj/item/weapon/gun/projectile/boltaction/special_check(mob/user)
 	if(bolt_open)
-		user.visible_message("<span class='warning'>You can't fire [src] while the bolt is open!</span>")
+		user << "<span class='warning'>You can't fire [src] while the bolt is open!</span>"
 		return 0
 	return ..()
 
@@ -77,7 +77,7 @@
 	if(!bolt_open)
 		return
 	if(check_bolt_lock)
-		check_bolt_lock--
+		--check_bolt_lock // preincrement is superior
 	..()
 
 /obj/item/weapon/gun/projectile/boltaction/unload_ammo(mob/user, var/allow_dump=1)

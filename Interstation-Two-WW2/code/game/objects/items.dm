@@ -153,7 +153,7 @@
 		if(!temp)
 			user << "<span class='notice'>You try to use your hand, but realize it is no longer attached!</span>"
 			return
-	src.pickup(user)
+	pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
 		S.remove_from_storage(src)
