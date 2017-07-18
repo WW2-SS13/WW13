@@ -3,7 +3,6 @@ Should be used for all zoom mechanics
 Parts of code courtesy of Super3222
 */
 
-
 /obj/item/attachment/scope
 	name = "generic scope"
 	icon = 'icons/obj/device.dmi'
@@ -19,11 +18,14 @@ Parts of code courtesy of Super3222
 	..()
 	build_zooming()
 
-
 /obj/item/attachment/scope/adjustable
 	name = "generic adjustable scope"
 	var/min_zoom = 3
 	var/max_zoom = 3
+
+/obj/item/attachment/scope/adjustable/New()
+	..()
+	zoom_amt = max_zoom // this really makes more sense IMO, 95% of people will just set it to the max - Kachnov
 
 /obj/item/attachment/scope/adjustable/sniper_scope/zoom()
 	..()
@@ -45,6 +47,7 @@ Parts of code courtesy of Super3222
 	desc = "A pair of binoculars."
 	max_zoom = 12
 	attachable = FALSE
+
 
 /obj/item/attachment/scope/adjustable/verb/adjust_scope_verb()
 	set name = "Adjust Zoom"
