@@ -45,7 +45,7 @@ Parts of code courtesy of Super3222
 /obj/item/attachment/scope/adjustable/binoculars
 	name = "binoculars"
 	desc = "A pair of binoculars."
-	max_zoom = 12
+	max_zoom = 25
 	attachable = FALSE
 
 

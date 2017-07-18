@@ -224,13 +224,13 @@ Current Defines (_defines/attachment.dm)
 /obj/item/attachment/scope/iron_sights
 	name = "iron sights"
 	attachment_type = ATTACH_IRONSIGHTS
-	zoom_amt = 4
+	zoom_amt = 10
 
 /obj/item/attachment/scope/adjustable/sniper_scope
 	name = "sniper scope"
 	icon_state = "kar_scope"
 	desc = "You can attach this to rifles... or use them as binoculars."
-	max_zoom = 8
+	max_zoom = 20
 
 /obj/item/attachment/scope/removed(mob/user, obj/item/weapon/gun/G)
   ..()
