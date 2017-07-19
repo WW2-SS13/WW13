@@ -36,7 +36,7 @@ Parts of code courtesy of Super3222
 			if(L.accuracy)
 				L.accuracy = L.scoped_accuracy + zoom_offset
 			if(L.recoil)
-				L.recoil = round(L.recoil*zoom_amt+1)//recoil is worse when looking through a scope
+				L.recoil = round(L.recoil*(zoom_amt/5)+1)//recoil is worse when looking through a scope
 		else
 			L.accuracy = initial(L.accuracy)
 			L.recoil = initial(L.recoil)
@@ -47,7 +47,6 @@ Parts of code courtesy of Super3222
 	desc = "A pair of binoculars."
 	max_zoom = 25
 	attachable = FALSE
-
 
 /obj/item/attachment/scope/adjustable/verb/adjust_scope_verb()
 	set name = "Adjust Zoom"
