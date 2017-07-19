@@ -122,8 +122,9 @@
 		alert("Admin jumping disabled")
 
 /client/proc/Goto_adminzone()
-	set category = "Admin"
+	set category = "Ghost"
 	set name = "Go To The Admin Zone"
+
 	if(!check_rights(R_MOD))
 		return
 

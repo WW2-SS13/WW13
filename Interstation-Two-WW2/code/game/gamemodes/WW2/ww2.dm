@@ -84,8 +84,10 @@
 	var/win_condition = ""
 	var/winning_side = ""
 
+	var/admins_triggered_roundend = 0
+
 /datum/game_mode/ww2/check_finished()
-	if (..() == 1)
+	if (..() == 1 || admins_triggered_roundend)
 		return 1
 	else
 
@@ -211,7 +213,8 @@
 	if (win_condition)
 		text += "<big>[win_condition]</big>"
 	else
-		text += "<big>The [winning_side] won by a war of attrition.</big>"
+		if (winning_side)
+			text += "<big>The [winning_side] won by a war of attrition.</big>"
 
 	world << text
 
@@ -221,3 +224,4 @@
 /datum/game_mode/ww2/declare_completion()
 	name = "World War 2" // fixes capitalization error - Kachnov
 	..()
+

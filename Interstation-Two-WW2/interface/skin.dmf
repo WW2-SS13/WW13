@@ -197,10 +197,10 @@ macro "borghotkeymode"
 	elem 
 		name = "F12"
 		command = "F12"
-	elem
+	elem 
 		name = "space"
 		command = "Use-iron-sights"
-	elem
+	elem 
 		name = ","
 		command = "rest"
 
@@ -1096,10 +1096,11 @@ window "mapwindow"
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
-		pos = 281,0
+		pos = 418,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1121,10 +1122,11 @@ window "outputwindow"
 window "rpane"
 	elem "rpane"
 		type = MAIN
-		pos = 281,0
+		pos = 418,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
 	elem "rpanewindow"
@@ -1133,6 +1135,7 @@ window "rpane"
 		size = 640x499
 		anchor1 = 0,0
 		anchor2 = 100,100
+		background-color = none
 		saved-params = "splitter"
 		right = "outputwindow"
 		is-vert = false
@@ -1142,6 +1145,7 @@ window "rpane"
 		size = 60x16
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
@@ -1152,6 +1156,7 @@ window "rpane"
 		size = 67x16
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "is-checked"
 		text = "Changelog"
 		command = "Changelog"
@@ -1162,9 +1167,10 @@ window "rpane"
 		size = 60x16
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "is-checked"
-		text = "Forum"
-		command = "forum"
+		text = "Github"
+		command = "github"
 		group = "rpanemode"
 	elem "wikib"
 		type = BUTTON
@@ -1172,6 +1178,7 @@ window "rpane"
 		size = 60x16
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
@@ -1182,6 +1189,7 @@ window "rpane"
 		size = 60x16
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Text"
@@ -1195,6 +1203,7 @@ window "rpane"
 		size = 60x16
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Browser"
@@ -1207,6 +1216,7 @@ window "rpane"
 		size = 60x16
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Info"
@@ -1217,10 +1227,11 @@ window "rpane"
 window "browserwindow"
 	elem "browserwindow"
 		type = MAIN
-		pos = 281,0
+		pos = 418,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Browser"
 		is-pane = true
@@ -1239,10 +1250,11 @@ window "browserwindow"
 window "infowindow"
 	elem "infowindow"
 		type = MAIN
-		pos = 281,0
+		pos = 418,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Info"
 		is-pane = true
@@ -1255,6 +1267,7 @@ window "infowindow"
 		is-default = true
 		saved-params = ""
 		highlight-color = #00aa00
+		tab-background-color = none
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
 

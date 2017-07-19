@@ -25,7 +25,16 @@ var/secret_ladder_message = null
 	return list("en" = en, "ru" = ru)
 
 /proc/WW2_soldiers_en_ru_ratio()
+
 	var/list/soldiers = WW2_soldiers_alive()
+	// prevents dividing by 0 - Kachnov
+	if (soldiers["en"] > 0 && soldiers["ru"] == 0)
+		return 1000
+	else if (soldiers["ru"] > 0 && soldiers["en"] == 0)
+		return 1/1000
+	else if (soldiers["ru"] == soldiers["en"])
+		return 1
+
 	return soldiers["en"]/soldiers["ru"] // we need decimals here so no rounding
 
 

@@ -432,17 +432,31 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 /world/Reboot(var/reason)
+
 	spawn(0)
-		world << sound(pick('sound/misc/endsound1.ogg','sound/misc/endsound2.ogg','sound/misc/endsound3.ogg','sound/misc/endsound4.ogg')) // random end sounds!! - LastyBatsy
+		roundabout()
+
+	spawn (100)
+
+		processScheduler.stop()
+
+		for(var/client/C in clients)
+			if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+				C << link("byond://[config.server]")
+
+		..(reason)
 
 
-	processScheduler.stop()
+/world/proc/roundabout() // yes i know this is dumb - kachnov
+	world << sound('sound/misc/roundabout.ogg')
+	spawn (40)
+		for (var/client/client in clients)
+			client.color = COLOR_SEPIA
+			client.screen += tobecontinued
+			client.canmove = 0
 
-	for(var/client/C in clients)
-		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-			C << link("byond://[config.server]")
 
-	..(reason)
+#undef COLOR_SEPIA
 
 /hook/startup/proc/loadMode()
 	world.load_mode()

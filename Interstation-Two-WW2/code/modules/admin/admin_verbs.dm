@@ -88,6 +88,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/show_battle_report,
 //	/client/proc/generate_hit_table,
 	/datum/admins/proc/paralyze_mob,
+
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -134,6 +135,7 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/restart,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
+	/client/proc/trigger_roundend,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/immreboot,
 	/client/proc/everyone_random,

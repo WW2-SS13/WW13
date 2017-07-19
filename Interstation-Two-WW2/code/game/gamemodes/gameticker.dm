@@ -3,7 +3,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 
 /datum/controller/gameticker
-	var/const/restart_timeout = 600
+	var/const/restart_timeout = 300
 	var/current_state = GAME_STATE_PREGAME
 
 	var/hide_mode = 0
@@ -336,14 +336,9 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 			spawn(50)
 				callHook("roundend")
-/*
-				if (universe_has_ended)
-					if(!delay_end)
-						world << "<span class='notice'><b>Rebooting due to destruction of station in [restart_timeout/10] seconds</b></span>"
-				else*/
+
 				if(!delay_end)
 					world << "<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>"
-
 
 				if(!delay_end)
 					sleep(restart_timeout)

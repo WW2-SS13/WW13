@@ -182,6 +182,9 @@
 
 
 /client/Move(n, direct)
+	if(!canmove)
+		return
+
 	if(!mob)
 		return // Moved here to avoid nullrefs below
 
