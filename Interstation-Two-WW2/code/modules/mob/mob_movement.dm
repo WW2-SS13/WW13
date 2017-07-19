@@ -193,7 +193,7 @@
 			return 0
 
 	if (t1 && locate(/obj/noghost) in t1)
-		if (isobserver(mob))
+		if (isobserver(mob) && !mob.client.holder) // admins can pass
 			mob.dir = direct
 			return
 

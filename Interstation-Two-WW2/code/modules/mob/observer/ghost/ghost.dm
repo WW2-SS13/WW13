@@ -323,7 +323,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/datum/train_controller/tc = german_train_master
 
-	for (var/obj/train_car_center/tcc in tc.train_car_centers)
+	for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
 		for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
 			ManualFollow(tpt)
 			return

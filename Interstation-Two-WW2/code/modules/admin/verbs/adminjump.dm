@@ -121,6 +121,19 @@
 	else
 		alert("Admin jumping disabled")
 
+/client/proc/Goto_adminzone()
+	set category = "Admin"
+	set name = "Go To The Admin Zone"
+	if(!check_rights(R_MOD))
+		return
+
+	log_admin("[key_name(usr)] went to the admin zone")
+	message_admins("[key_name_admin(usr)] went to the admin zone", 1)
+
+	var/area/prishtina/admin/admin_zone = locate() in world
+	mob.loc = pick(admin_zone.contents)
+
+
 /client/proc/Getkey()
 	set category = "Admin"
 	set name = "Get Key"
