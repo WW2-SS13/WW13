@@ -446,6 +446,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		..(reason)
 
+#define COLOR_SEPIA "#D4C6B8" // this is a light sepia
 
 /world/proc/roundabout() // yes i know this is dumb - kachnov
 	world << sound('sound/misc/roundabout.ogg')
