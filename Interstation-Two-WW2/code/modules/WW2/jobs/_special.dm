@@ -35,3 +35,17 @@
 	if(side == GEFORCE)
 		return "German Wehrmacht"
 	return null
+
+// here's a story
+// the lines to give people radios and harnesses are really long and go off screen like this one
+// and I got tired of constantly having to readd radios because merge conflicts
+// so now there's this magical function that equips a human with a radio and harness
+//	- Kachnov
+/mob/living/carbon/human/proc/give_radio()
+	equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(src), slot_wear_suit)
+	if (!istype(original_job, /datum/job/russian))
+		equip_to_slot_or_del(new /obj/item/device/radio/feldfu(src), slot_s_store)
+	else
+		equip_to_slot_or_del(new /obj/item/device/radio/rbs(src), slot_s_store)
+
+	src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it, prefix your message with ':b'.</b></span>"

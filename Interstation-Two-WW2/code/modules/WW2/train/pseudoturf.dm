@@ -95,10 +95,6 @@
 /obj/train_pseudoturf/proc/remove_contents_refs()
 	saved_contents.Cut()
 
-/mob/var/next_train_movement = null
-/mob/var/last_train_movement_attempt = -1
-/mob/var/original_pulling = null
-
 /obj/train_pseudoturf/proc/reset_track_lights() // pre movement
 	for (var/obj/train_track/tt in get_turf(src))
 		tt.set_light(2, 3, "#a0a080") // reset the lights of tracks we left behind
@@ -174,6 +170,7 @@
 				m.start_pulling(p) // start_pulling checks for p on its own
 				m.next_train_movement = null
 				m.train_gib_immunity = 0
+				m.last_moved_on_train = world.time
 
 /obj/train_pseudoturf/proc/src_dir()
 	switch (controller.direction)

@@ -1949,6 +1949,7 @@
 #include "code\modules\WW2\train\track.dm"
 #include "code\modules\WW2\train\undefs.dm"
 #include "code\modules\WW2\weapons\attachment.dm"
+#include "code\modules\WW2\weapons\baton.dm"
 #include "code\modules\WW2\weapons\grenades.dm"
 #include "code\modules\WW2\weapons\melee.dm"
 #include "code\modules\WW2\weapons\mines.dm"

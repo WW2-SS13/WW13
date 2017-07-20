@@ -253,6 +253,7 @@
 
 
 /obj/structure/bed/roller/Move(var/turf/newloc)
+
 	if (buckled_mob && newloc.check_prishtina_block(buckled_mob))
 		return 0
 
@@ -263,6 +264,10 @@
 			buckled_mob.loc = src.loc
 		else
 			buckled_mob = null
+
+		if (buckled_mob && buckled_mob.is_on_train())
+			buckled_mob.last_moved_on_train = world.time
+
 	return 1
 
 /obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)

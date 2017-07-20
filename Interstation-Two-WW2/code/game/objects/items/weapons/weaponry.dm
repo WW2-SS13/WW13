@@ -5,7 +5,7 @@
 	icon_state = "nullrod"
 	item_state = "nullrod"
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 4
 	throwforce = WEAPON_FORCE_WEAK

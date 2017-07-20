@@ -85,8 +85,11 @@
 	var/winning_side = ""
 
 	var/admins_triggered_roundend = 0
+	var/admins_triggered_noroundend = 0
 
 /datum/game_mode/ww2/check_finished()
+	if (admins_triggered_noroundend)
+		return 0 // no matter what, don't end
 	if (..() == 1 || admins_triggered_roundend)
 		return 1
 	else
@@ -127,8 +130,12 @@
 			if (russians_in_germany > germans_in_germany && !cond_2_1_check1)
 				cond_2_1_check1 = 1
 				cond_2_1_nextcheck = world.time + 3000
-				world << "<font size = 3>The Russians have occupied most German territory! The German Army has 5 minutes to reclaim their land!</font>"
+				world << "<font size = 3>The Soviets have occupied most German territory! The German Army has 5 minutes to reclaim their land!</font>"
+				return 0
 		else
+			if (cond_2_1_check1 == 1) // soviets lost control!
+				world << "<font size = 3>The Soviets have lost control of the German territory they occupied!</font>"
+
 			cond_2_1_check1 = 0
 
 		// condition 2.2: Germans outnumber russians and the amount of germans
@@ -139,7 +146,11 @@
 				cond_2_2_check1 = 1
 				cond_2_2_nextcheck = world.time + 3000
 				world << "<font size = 3>The Germans have occupied most Soviet territory! The Soviet Army has 5 minutes to reclaim their land!</font>"
+				return 0
 		else
+			if (cond_2_2_check1 == 1) // soviets lost control!
+				world << "<font size = 3>The Germans have lost control of the Soviet territory they occupied!</font>"
+
 			cond_2_2_check1 = 0
 
 		// condition 2.3: Germans heavily outnumber russians in the russian
@@ -151,7 +162,11 @@
 				cond_2_3_check1 = 1
 				cond_2_3_nextcheck = world.time + 6000
 				world << "<font size = 3>The Germans have occupied most Soviet territory! The Soviet Army has 10 minutes to reclaim their land!</font>"
+				return 0
 		else
+			if (cond_2_3_check1 == 1) // soviets lost control!
+				world << "<font size = 3>The Germans have lost control of the Soviet territory they occupied!</font>"
+
 			cond_2_3_check1 = 0
 
 		// condition 2.4: Russians heavily outnumber Germans in the German
@@ -163,7 +178,11 @@
 				cond_2_4_check1 = 1
 				cond_2_4_nextcheck = world.time + 6000
 				world << "<font size = 3>The Soviets have occupied most German territory! The German Army has 10 minutes to reclaim their land!</font>"
+				return 0
 		else
+			if (cond_2_4_check1 == 1) // soviets lost control!
+				world << "<font size = 3>The Soviets have lost control of the German territory they occupied!</font>"
+
 			cond_2_4_check1 = 0
 
 		if (cond_2_1_check1 && world.time >= cond_2_1_nextcheck && cond_2_1_nextcheck != -1) // condition 2.1 completed

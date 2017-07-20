@@ -26,7 +26,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/colt(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_s_store)
+	H.give_radio()
 	world << "<b>[H.client.prefs.russian_name] is the [title] of the Soviet forces!</b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the Russian forces and lead them to victory.</span>"
 	return 1
@@ -65,7 +65,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/colt(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
+	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the Russian forces. Your job is to take orders from the <b>Commandir</b> and coordinate with squad leaders.</span>"
 	return 1
 
@@ -103,8 +103,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m4(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/rbs(H), slot_s_store)
+	H.give_radio()
 	H.visible_message("<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the Russian force according to the <b>Commandir</b>'s and the <b>Ofitser</b>'s orders.</span>")
 	return 1
 
@@ -171,6 +170,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
+	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a doctor. Your job is to stay back at base and treat wounded that come in from the front, as well as treat prisoners and base personnel.</span>"
 	return 1
 
@@ -283,41 +283,6 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-/datum/job/russian/cook
-	title = "Povar"
-	flag = CAPTAIN
-	department_flag = ENGSEC
-	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
-	selection_color = "#770e0e"
-	access = list(access_ru_soldier, access_ru_cook)
-	minimal_access = list(access_ru_soldier, access_ru_cook)
-	spawn_location = "JoinLateRussia"
-
-/datum/job/russian/cook/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
-
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
-	return 1
-
-/datum/job/russian/cook/update_character(var/mob/living/carbon/human/H)
-	H.add_language("Russian")
-	H.default_language = all_languages["Russian"]
-	if(prob(5))
-		H.add_language("German")
-		H << "<b>You know the German language!</b>"
-*/
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/russian/soldier
 	title = "Sovietsky Soldat"
 	en_meaning = "Infantry Soldier"
@@ -393,6 +358,7 @@ var/first_guard = 0
 		new /obj/item/ammo_magazine/svt(belt)
 		new /obj/item/ammo_magazine/svt(belt)
 		H.equip_to_slot_or_del(belt, slot_belt)
+	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a guard. Your job is to operate the minigun.</span>"
 	return 1
 
@@ -426,81 +392,14 @@ var/first_guard = 0
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(H), slot_wear_suit)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/rbs(H), slot_s_store)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap(H), slot_head)
+	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a Quartermaster. Your job is to keep the army well armed and supplied.</span>"
 	return 1
 
 /datum/job/russian/zavhoz/get_keys()
 	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/soldat,  new/obj/item/weapon/key/russian/QM)
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-//////////////
-/datum/job/russian/gru
-	title = "Gvardeyci"
-	flag = DETECTIVE
-	department_flag = ENGSEC
-	faction = "Station"
-	total_positions = 3
-	spawn_positions = 3
-	selection_color = "#a8b800"
-	access = list(access_ru_soldier)
-	minimal_access = list(access_ru_soldier)
-	spawn_location = "JoinLateGRU"
-
-/datum/job/russian/gru/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
-
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/gru_uniform(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/val(H), slot_back)
-
-	var/obj/item/weapon/storage/belt/security/tactical/belt = new(H)
-	new /obj/item/ammo_magazine/a9x39(belt)
-	new /obj/item/ammo_magazine/a9x39(belt)
-	new /obj/item/ammo_magazine/a9x39(belt)
-	new /obj/item/ammo_magazine/a9x39(belt)
-	new /obj/item/weapon/grenade/smokebomb(belt)
-	new /obj/item/weapon/grenade/smokebomb(belt)
-	H.equip_to_slot_or_del(belt, slot_belt)
-
-	var/obj/item/clothing/suit/storage/vest/gru/suit = new(H)
-	new /obj/item/weapon/storage/box/med_kit_ruforce/full(suit.pockets)
-	new /obj/item/weapon/plastique(suit.pockets)
-	new /obj/item/weapon/plastique(suit.pockets)
-	H.equip_to_slot_or_del(suit, slot_wear_suit)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/russia(H), slot_s_store)
-	//H.equip_to_slot_or_del(new /obj/item/device/radio/headset/ru(H), slot_l_ear)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/night(H), slot_glasses)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(H), slot_gloves)
-
-	H.equip_to_slot_or_del(new /obj/item/weapon/paper/map(H), slot_l_store)
-
-	if(prob(50))
-		var/head = pick(
-			/obj/item/clothing/head/soft/gorka,
-			/obj/item/clothing/head/soft/gru_bandana,
-			)
-		H.equip_to_slot_or_del(new head(H), slot_head)
-	if(prob(25))
-		var/mask = /obj/item/clothing/mask/gru_mask
-		H.equip_to_slot_or_del(new mask(H), slot_wear_mask)
-	return 1
-
-
-/datum/job/russian/gru/update_character(var/mob/living/carbon/human/H)
-	H.add_language("Russian")
-	H.add_language("German")
-	H.default_language = all_languages["Russian"]
-
-*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -528,6 +427,7 @@ var/first_guard = 0
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m4(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/bulletproof/cn42(H), slot_l_hand)
+	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an elite infantry soldier. Your job is assist normal <b>Soldat</b>i in front line combat.</span>"
 	return 1
 

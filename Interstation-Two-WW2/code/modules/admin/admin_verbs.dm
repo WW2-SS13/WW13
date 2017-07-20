@@ -88,6 +88,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/show_battle_report,
 //	/client/proc/generate_hit_table,
 	/datum/admins/proc/paralyze_mob,
+	/client/proc/removeEmptyCases,
+	/client/proc/removeHalfEmptyCases
 
 )
 var/list/admin_verbs_ban = list(

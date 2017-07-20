@@ -5,6 +5,7 @@ var/train_checked = 0
 var/secret_ladder_message = null
 
 /proc/WW2_soldiers_alive()
+
 	var/en = 0
 	var/ru = 0
 
@@ -14,7 +15,7 @@ var/secret_ladder_message = null
 			usr << "\red [H] has no job!"
 			continue
 
-		if(H.stat != DEAD)
+		if(H.stat != DEAD && !H.restrained())
 			switch(job.department_flag)
 				if(GEFORCE)
 					en++
@@ -22,6 +23,7 @@ var/secret_ladder_message = null
 					ru++
 				if (CIVILIAN)
 					en++ // SS
+
 	return list("en" = en, "ru" = ru)
 
 /proc/WW2_soldiers_en_ru_ratio()

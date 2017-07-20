@@ -49,7 +49,7 @@
 	if(user && user.get_active_hand() == src)
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
-			var/turflist = getstraightline(user, target_turf, 1, 1)
+			var/turflist = getturfsbetween(user, target_turf)
 			flame_turf(turflist)
 
 /obj/item/weapon/flamethrower/flammenwerfer/process()

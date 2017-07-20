@@ -21,3 +21,25 @@
 
 	message_admins("[key_name(src)] ended the round!")
 	log_admin("[key_name(src)] ended the round!")
+
+/client/proc/toggle_round_ending()
+	set name = "Toggle Round Ending"
+	set category = "Server"
+
+	if(!check_rights(R_SERVER))
+		src << "<span class = 'danger'>You don't have the permissions.</span>"
+		return
+	if (!istype(ticker.mode, /datum/game_mode/ww2))
+		src << "<span class = 'danger'>Hey dick, you aren't allowed to prevent roundend this type of gamemode.</span>"
+		return
+
+	var/datum/game_mode/ww2/WW2 = ticker.mode
+	WW2.admins_triggered_noroundend = !WW2.admins_triggered_noroundend
+
+	switch (WW2.admins_triggered_noroundend)
+		if (1)
+			message_admins("[key_name(src)] prevented the round from ending.")
+			log_admin("[key_name(src)] prevented the round from ending.")
+		if (0)
+			message_admins("[key_name(src)] undid the administrative lock on the round ending.")
+			log_admin("[key_name(src)] undid the administrative lock on the round ending.")

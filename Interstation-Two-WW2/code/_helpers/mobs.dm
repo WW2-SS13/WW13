@@ -283,10 +283,12 @@ Proc for attack log creation, because really why not
 		return 0
 
 	var/atom/target_loc = null
-	var/last_move_time = null
+	var/last_train_move_time = null
+
+	// made this account for being moved on rollerbeds - Kachnov
 
 	if (user.is_on_train())
-		last_move_time = user.last_train_movement_attempt // not a perfect solution but the best I can think of for now - Kachnov
+		last_train_move_time = user.last_moved_on_train
 	else
 		if (target)
 			target_loc = target.loc
@@ -316,12 +318,16 @@ Proc for attack log creation, because really why not
 			break
 
 		if(!can_move)
-			if(user.loc != original_loc && !last_move_time)
+			if(user.loc != original_loc && !last_train_move_time)
 				. = 0
 				break
 
-		if (last_move_time)
-			if (user.last_train_movement_attempt != last_move_time)
+
+		// this should fix the bug where a guy can start resisting on a train,
+		// get moved off the train, and keep resisting even after being moved
+		// - Kachnov
+		if (last_train_move_time)
+			if (user.last_moved_on_train != last_train_move_time || !user.is_on_train())
 				. = 0
 				break
 
@@ -384,6 +390,31 @@ Proc for attack log creation, because really why not
 		germans += H
 
 	return germans
+
+// doesn't it suck to get a list of alive people you can observe,
+// only to find out that 90% of them are half dead and not where the action
+// is?
+
+/proc/getfitmobs(var/faction)
+	var/list/mobs = null
+	var/list/newmobs = list()
+
+	switch (faction)
+		if (null)
+			mobs = mob_list // we want actual mobs, not name = mob
+		if ("GERMAN")
+			mobs = getgermanmobs(1)
+		if ("RUSSIAN", "SOVIET")
+			mobs = getrussianmobs(1)
+
+	for (var/mob/m in mobs)
+		if (m.stat == UNCONSCIOUS || m.stat == DEAD)
+			continue
+
+		newmobs += m
+
+	return newmobs
+
 
 //Orders mobs by type then by name
 /proc/sortmobs()

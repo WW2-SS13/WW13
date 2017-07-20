@@ -1,4 +1,10 @@
-/mob/var/train_gib_immunity = 0
+
+/mob/var/train_gib_immunity = 0 // can the train make us splat?
+/mob/var/next_train_movement = -1 // when will we move again?
+/mob/var/last_train_movement_attempt = -1 // when did we last try to move?
+/mob/var/last_train_movement= -1 // when did we last successfully move intentionally?
+/mob/var/original_pulling = null // what were we just pulling before being moved?
+/mob/var/last_moved_on_train = -1 // when did we last move on the train, intentionally or not?
 
 /atom/movable/proc/train_move_check(var/turf/loc)
 	if (!istype(loc))

@@ -240,7 +240,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	for (var/v in 1 to rand(7,9))
 		if (skip_turfs)
-			skip_turfs--
+			--skip_turfs
 			continue
 		line += active_turf
 		if (active_turf == get_turf(N))
@@ -248,6 +248,23 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		active_turf = get_step(active_turf, M.dir)
 
 	return line
+
+/proc/getturfsbetween(atom/start, atom/target, var/maxrange = 20)
+	var/list/turfs = list()
+	var/horizontal_dir_2_target = target.x > start.x ? EAST : WEST
+	var/vertical_dir_2_target = target.y > start.y ? NORTH : SOUTH
+	for (var/turf/t in range(maxrange, start))
+
+		if (horizontal_dir_2_target == EAST && t.x < target.x)
+			turfs += t
+		else if (horizontal_dir_2_target == WEST && t.x > target.x)
+			turfs += t
+		else if (vertical_dir_2_target == NORTH && t.y < target.y)
+			turfs += t
+		else if (vertical_dir_2_target == SOUTH && t.y > target.y)
+			turfs += t
+
+	return turfs
 
 #define LOCATE_COORDS(X, Y, Z) locate(between(1, X, world.maxx), between(1, Y, world.maxy), Z)
 /proc/getcircle(turf/center, var/radius) //Uses a fast Bresenham rasterization algorithm to return the turfs in a thin circle.

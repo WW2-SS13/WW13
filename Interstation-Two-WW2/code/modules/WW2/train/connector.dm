@@ -94,6 +94,7 @@
 				m.start_pulling(p) // start_pulling checks for p on its own
 				m.next_train_movement = null
 				m.train_gib_immunity = 0
+				m.last_moved_on_train = world.time
 
 /obj/train_connector/ex_act(severity)
 	if (prob(round(90 * (1/severity))))

@@ -1,3 +1,14 @@
+// types that can't break down doors - Kachnov
+var/list/nonbreaking_types = list(
+	/obj/item/clothing,
+	/obj/item/weapon/handcuffs)
+
+/proc/check_can_break_doors(var/atom/a)
+	for (var/type in nonbreaking_types)
+		if (istype(a, type))
+			return 0
+	return 1
+
 /mob/var/hitting_key_door = 0
 
 /obj/structure/simple_door/key_door
@@ -46,7 +57,7 @@
 		if (keyslot.check_user(user, 1))
 			keyslot.locked = !keyslot.locked
 	else
-		if (W.force > WEAPON_FORCE_WEAK || user.a_intent == I_HURT)
+		if ((W.force > WEAPON_FORCE_WEAK || user.a_intent == I_HURT) && check_can_break_doors(W))
 			if (!user.hitting_key_door)
 				user.hitting_key_door = 1
 				visible_message("<span class = 'danger'>[user] hits the door with [W]!</span>")

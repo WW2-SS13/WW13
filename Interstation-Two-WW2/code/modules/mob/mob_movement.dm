@@ -216,7 +216,8 @@
 			if (mob.train_move_check(get_step(mob, direct)))
 				mob.next_train_movement = direct
 				mob.train_gib_immunity = 1
-				mob.last_train_movement_attempt = world.time
+				mob.last_train_movement = world.time // last successful move
+			mob.last_train_movement_attempt = world.time // last move attempt
 			return // prevent normal movement if we're on a train
 
 	if(mob.control_object)	Move_object(direct)
