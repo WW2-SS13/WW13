@@ -56,8 +56,9 @@
 
 	for (var/mob/m in saved_contents)
 		if (istype(m))
-			m.start_pulling(m.original_pulling)
-			m.original_pulling = null
+			if (m.original_pulling)
+				m.start_pulling(m.original_pulling)
+				m.original_pulling = null
 
 	switch (master.orientation)
 		if (VERTICAL)
@@ -78,20 +79,20 @@
 				switch (m.next_train_movement)
 					if (NORTH)
 						m.train_move(locate(m.x, m.y+1, m.z))
-						if (p) p.train_move(locate(p.x, p.y+1, p.z))
+					//	if (p) p.train_move(m.behind())
 					if (SOUTH)
 						m.train_move(locate(m.x, m.y-1, m.z))
-						if (p) p.train_move(locate(p.x, p.y-1, p.z))
+				//		if (p) p.train_move(m.behind())
 					if (EAST)
 						m.train_move(locate(m.x+1, m.y, m.z))
-						if (p) p.train_move(locate(p.x+1, p.y, p.z))
+				//		if (p) p.train_move(m.behind())
 					if (WEST)
 						m.train_move(locate(m.x-1, m.y, m.z))
-						if (p) p.train_move(locate(p.x-1, p.y, p.z))
+					//	if (p) p.train_move(m.behind())
 
 				m.dir = m.next_train_movement
 				if (p) p.dir = m.next_train_movement
-				m.start_pulling(p) // start_pulling checks for p on its own
+				m.start_pulling(p) // start_pulling checks for p being null
 				m.next_train_movement = null
 				m.train_gib_immunity = 0
 				m.last_moved_on_train = world.time

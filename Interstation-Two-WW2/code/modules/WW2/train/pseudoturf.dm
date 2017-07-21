@@ -135,8 +135,9 @@
 
 	for (var/mob/m in saved_contents)
 		if (istype(m))
-			m.start_pulling(m.original_pulling)
-			m.original_pulling = null
+			if (m.original_pulling)
+				m.start_pulling(m.original_pulling)
+				m.original_pulling = null
 
 	switch (controller.orientation)
 		if (VERTICAL)
@@ -154,16 +155,16 @@
 				switch (m.next_train_movement)
 					if (NORTH)
 						var/moved = m.train_move(locate(m.x, m.y+1, m.z))
-						if (p && moved) p.train_move(locate(p.x, p.y+1, p.z))
+				//		if (p && moved) p.train_move(m.behind())
 					if (SOUTH)
 						var/moved = m.train_move(locate(m.x, m.y-1, m.z))
-						if (p && moved) p.train_move(locate(p.x, p.y-1, p.z))
+					//	if (p && moved) p.train_move(m.behind())
 					if (EAST)
 						var/moved = m.train_move(locate(m.x+1, m.y, m.z))
-						if (p && moved) p.train_move(locate(p.x+1, p.y, p.z))
+				//		if (p && moved) p.train_move(m.behind())
 					if (WEST)
 						var/moved = m.train_move(locate(m.x-1, m.y, m.z))
-						if (p && moved) p.train_move(locate(p.x-1, p.y, p.z))
+					//	if (p && moved) p.train_move(m.behind())
 
 				m.dir = m.next_train_movement
 				if (p) p.dir = m.next_train_movement

@@ -447,3 +447,19 @@ Proc for attack log creation, because really why not
 //	for(var/mob/living/silicon/hive_mainframe/M in world)
 //		mob_list.Add(M)
 	return moblist
+
+// returns the turf behind the mob
+
+/proc/behind(var/mob/m)
+	switch (m.dir)
+		if (NORTH)
+			return locate(m.x, m.y-1, m.z)
+		if (SOUTH)
+			return locate(m.x, m.y+1, m.z)
+		if (EAST)
+			return locate(m.x-1, m.y, m.z)
+		if (WEST)
+			return locate(m.x+1, m.y, m.z)
+
+/mob/proc/behind()
+	return behind(src)
