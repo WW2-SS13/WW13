@@ -167,6 +167,8 @@
 		if(config.aggressive_changelog)
 			src.changes()
 
+	fix_nanoUI()
+
 
 
 	//////////////

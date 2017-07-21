@@ -12,7 +12,7 @@
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "1"
 	light_color = "#ED9200"
-	layer = TURF_LAYER
+	layer = TURF_LAYER + 0.6 // above train pseudoturfs and stairs
 
 	var/firelevel = 1
 	var/default_damage = 6 // 10 was really fucking overpowered if you crossed it a lot

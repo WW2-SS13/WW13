@@ -1,16 +1,90 @@
+#define SOVIET_UNIFORM_NAME "Soviet uniform"
+#define SOVIET_UNIFORM_DESC "Standard soviet uniform for soildiers. You can smell german virgin's blood on it."
+#define SOVIET_UNIFORM_STATE "sovuni"
+
+#define GERMAN_UNIFORM_NAME "German uniform"
+#define GERMAN_UNIFORM_DESC "Standart german uniform for soildiers. You can smell seiner madchenes parfume!"
+#define GERMAN_UNIFORM_STATE "geruni"
+
+/obj/item/clothing/under
+	var/swapped = 0
+
+/obj/item/clothing/under/proc/add_alternative_setting()
+	verbs += /obj/item/clothing/under/proc/Swap
+
+/obj/item/clothing/under/proc/Swap()
+	set category = "Object"
+	var/mob/m = loc
+	if (m && ishuman(m) && m.is_spy)
+
+		if (name == GERMAN_UNIFORM_NAME)
+			transform2soviet()
+		else if (name == SOVIET_UNIFORM_NAME)
+			transform2german()
+
+		if (istype(src, /obj/item/clothing/under/geruni))
+			switch (name)
+				if (SOVIET_UNIFORM_NAME)
+					m << "<span class = 'danger'>You change back into your original uniform. Long live mother Russia!</span>"
+				if (GERMAN_UNIFORM_NAME)
+					m << "<span class = 'danger'>You change back into your spy uniform.</span>"
+		else if (istype(src, /obj/item/clothing/under/sovuni))
+			if (GERMAN_UNIFORM_NAME)
+				m << "<span class = 'danger'>You change back into your original uniform. Sieg heil!</span>"
+			if (SOVIET_UNIFORM_NAME)
+				m << "<span class = 'danger'>You change back into your spy uniform.</span>"
+	else
+		m << "<span class = 'danger'><font size = 3>What the fuck do you think you're doing?</font></span>"
+		message_admins("[m] tried to use a spy uniform, but they aren't even a spy!!!")
+
+	return 0
+
+/obj/item/clothing/under/proc/transform2soviet()
+	name = SOVIET_UNIFORM_NAME
+	desc = SOVIET_UNIFORM_DESC
+	icon_state = SOVIET_UNIFORM_STATE
+	item_state = SOVIET_UNIFORM_STATE
+	worn_state = SOVIET_UNIFORM_STATE
+	item_state_slots["slot_w_uniform"] = SOVIET_UNIFORM_STATE
+	update_clothing_icon()
+
+	var/mob/living/carbon/human/H = loc
+	if (istype(H.s_store, /obj/item/device/radio/feldfu))
+		var/radio = H.s_store
+		H.drop_from_inventory(radio)
+		qdel(radio)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/rbs(H), slot_s_store)
+
+/obj/item/clothing/under/proc/transform2german()
+	name = GERMAN_UNIFORM_NAME
+	desc = GERMAN_UNIFORM_DESC
+	icon_state = GERMAN_UNIFORM_STATE
+	item_state = GERMAN_UNIFORM_STATE
+	worn_state = GERMAN_UNIFORM_STATE
+	item_state_slots["slot_w_uniform"] = GERMAN_UNIFORM_STATE
+	update_clothing_icon()
+
+	var/mob/living/carbon/human/H = loc
+	if (istype(H.s_store, /obj/item/device/radio/rbs))
+		var/radio = H.s_store
+		H.drop_from_inventory(radio)
+		qdel(radio)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
+
+
 /obj/item/clothing/under/sovuni
-	name = "Soviet uniform"
-	desc = "Standart soviet uniform for soildiers. You can smell german virgin's blood on it."
-	icon_state = "sovuni"
-	item_state = "sovuni"
-	worn_state = "sovuni"
+	name = SOVIET_UNIFORM_NAME
+	desc = SOVIET_UNIFORM_DESC
+	icon_state = SOVIET_UNIFORM_STATE
+	item_state = SOVIET_UNIFORM_STATE
+	worn_state = SOVIET_UNIFORM_STATE
 
 /obj/item/clothing/under/geruni
-	name = "German uniform"
-	desc = "Standart german uniform for soildiers. You can smell seiner madchenes parfume!"
-	icon_state = "geruni"
-	item_state = "geruni"
-	worn_state = "geruni"
+	name = GERMAN_UNIFORM_NAME
+	desc = GERMAN_UNIFORM_DESC
+	icon_state = GERMAN_UNIFORM_STATE
+	item_state = GERMAN_UNIFORM_STATE
+	worn_state = GERMAN_UNIFORM_STATE
 	var/rolled = 0
 
 /obj/item/clothing/under/geruni/verb/roll_sleeves()
@@ -30,7 +104,7 @@
 		rolled = 1
 	update_clothing_icon()
 
-/obj/item/clothing/under/falluni
+/obj/item/clothing/under/geruni/falluni
 	name = "Fallschirmjager uniform"
 	desc = "Standart german uniform for fallschirmjagers. This is quite comfy and sturdy uniform."
 	icon_state = "falluni"
@@ -52,14 +126,14 @@
 	worn_state = "sssmock"
 
 
-/obj/item/clothing/under/ssuni
+/obj/item/clothing/under/geruni/ssuni
 	name = "SS uniform"
 	desc = "Camo uniform for ShutzStaffel soldiers. Sturdy, comfy, and makes you less visible in autumn. They gave you this too early by the way."
 	icon_state = "newssuni"
 	item_state = "newssuni"
 	worn_state = "newssuni"
 
-/obj/item/clothing/under/ssformalofc
+/obj/item/clothing/under/geruni/ssformalofc
 	name = "SS Officer's Formal Uniform"
 	desc = "Jet black formal uniform. Swastika armband included."
 	icon_state = "ss_formal_ofc"

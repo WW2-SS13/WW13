@@ -1505,6 +1505,7 @@
 #include "code\modules\multiz\shadow.dm"
 #include "code\modules\multiz\structures.dm"
 #include "code\modules\multiz\turf.dm"
+#include "code\modules\nano\helpers.dm"
 #include "code\modules\nano\nanoexternal.dm"
 #include "code\modules\nano\nanomanager.dm"
 #include "code\modules\nano\nanomapgen.dm"
@@ -1992,5 +1993,5 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\battlegroundforest_marco_v2.2_hayden.714.dmm"
+#include "maps\battlegroundforest_marco_v2.2_hayden.714_new.dmm"
 // END_INCLUDE

@@ -1,11 +1,8 @@
+
 /proc/is_russian_contested_zone(var/area/a)
 	if (istype(a, /area/prishtina/soviet/bunker))
 		if (!istype(a, /area/prishtina/soviet/bunker/tunnel))
 			return 1
-	if (istype(a, /area/prishtina/soviet/bunker_entrance))
-		return 1
-	if (istype(a, /area/prishtina/soviet/immediate_outside_defenses))
-		return 1
 	return 0
 
 /proc/is_german_contested_zone(var/area/a)
@@ -14,6 +11,7 @@
 			if (!istype(a, /area/prishtina/german/train_zone))
 				return 1
 	return 0
+
 
 /proc/get_russian_german_stats()
 	var/alive_russians = 0

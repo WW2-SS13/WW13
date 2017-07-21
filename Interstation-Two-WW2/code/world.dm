@@ -592,12 +592,18 @@ var/world_topic_spam_protect_time = world.timeofday
 		visibility = 0 // debug mode
 
 	// this can hold around 20 chars max I think, but keep it at 15 or so - Kachnov
-//	var/list/memes = list("CM BTFO Edition")
+	var/freaking_cool_features = "Spies! New map!"
+
+	//var/original_banner = "http://tny.im/9Bm"
+	//var/cavebob_banner_1 = "http://tny.im/9IQ"
+	//var/cavebob_banner_2 = "http://tny.im/9IS"
+	//var/cavebob_banner_final = "http://tny.im/9IU"
 
 	var/s = ""
 	s += "<center><a href=\"https://discord.gg/PVqjqCv\" target=\"_blank\"><b>No Man's Land: World War II (Early Alpha)</b></center><br>"
 	s += "<i>1942, [lowertext(time_of_day)], Ukrajina</i><br>"
-	s += pick("<img src='http://tny.im/9Bm'>")
+	s += "<b>[freaking_cool_features]</b><br>"
+	s += pick("<img src='http://tny.im/9IU'>")
 	status = s
 
 #define FAILED_DB_CONNECTION_CUTOFF 5

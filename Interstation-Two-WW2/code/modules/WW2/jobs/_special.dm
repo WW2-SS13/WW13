@@ -16,6 +16,39 @@
 				return 1 // found a conscious german dude with the key
 	return 0
 
+/datum/job/var/allow_spies = 0
+
+// try to make someone a spy: 12% chance for soldats only
+/datum/job/proc/try_make_spy(var/mob/user)
+	if (prob(12))
+		if (allow_spies)
+			make_spy(user)
+
+/datum/job/proc/opposite_faction_name()
+	if (istype(src, /datum/job/german))
+		return "Soviet"
+	else
+		return "German"
+// make someone a spy regardless, allowing them to swap uniforms
+/datum/job/proc/make_spy(var/mob/user)
+	user << "<span class = 'danger'>You are the spy.</span><br>"
+	user << "<span class = 'warning'>Sabotage your own team wherever possible. To change your uniform and radio to the [opposite_faction_name()] one, right click your uniform and use 'Swap'. You know both Russian and German; to change your language, use the IC tab.</span>"
+	user.is_spy = 1 // lets admins see who's a spy
+
+	var/mob/living/carbon/human/H = user
+	if (istype(H))
+		var/obj/item/clothing/under/under = H.w_uniform
+		if (under && istype(under))
+			under.add_alternative_setting()
+
+	if (istype(src, /datum/job/german))
+		if (!H.languages.Find("Russian"))
+			H.add_language("Russian")
+	else
+		if (!H.languages.Find("German"))
+			H.add_language("German")
+
+
 /datum/job/german
 	uses_keys = 1
 	team = "GERMAN"
@@ -23,7 +56,6 @@
 /datum/job/russian
 	uses_keys = 1
 	team = "RUSSIAN"
-
 
 /proc/get_side_name(var/side, var/datum/job/j)
 	if (j && (istype(j, /datum/job/german/squad_leader_ss) || istype(j, /datum/job/german/soldier_ss)))

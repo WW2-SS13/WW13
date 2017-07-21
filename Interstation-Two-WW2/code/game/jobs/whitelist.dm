@@ -1,24 +1,28 @@
-#define WHITELISTFILE "data/whitelist.txt"
+//based off the old system - Kachnov
 
-var/list/whitelist = list()
+#define WHITELISTFILE "config/job_white_list.txt"
 
-/hook/startup/proc/loadWhitelist()
-	if(config.usewhitelist)
+var/list/job_whitelist = list()
+
+/proc/load_job_whitelist()
+	if(config.use_job_whitelist)
 		load_whitelist()
 	return 1
 
 /proc/load_whitelist()
-	whitelist = file2list(WHITELISTFILE)
-	if(!whitelist.len)	whitelist = null
+	job_whitelist = file2list(WHITELISTFILE)
+	if(!job_whitelist.len)	job_whitelist = null
 
-/proc/check_whitelist(mob/M /*, var/rank*/)
-	if(!whitelist)
+/proc/check_job_whitelist(mob/M, var/rank)
+	if(!job_whitelist)
 		return 0
-	return ("[M.ckey]" in whitelist)
+	for (var/line in job_whitelist)
+		line = lowertext(line)
+		rank = lowertext(rank)
 
+		if (findtext(line, rank) && findtext(line, M.ckey))
+			return 1
+	return 0
 
-/proc/is_alien_whitelisted(mob/M, var/species)
-	// always return true because we don't have xenos and related whitelist
-	return 1
 
 #undef WHITELISTFILE

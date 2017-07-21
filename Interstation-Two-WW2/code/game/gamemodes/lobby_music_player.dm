@@ -14,7 +14,7 @@
 		"Falco - Der Kommissar" = 'sound/music/WW2/derkommissar.ogg')
 
 	var/list/song_probability_multipliers = list(
-		"Dj Blyatman - Chernobyl" = 2,
+		"Dj Blyatman - Chernobyl" = 1,
 		"Dj Snat - Choose Your Power (Gopnik Mcblyat Remix)" = 1,
 		"Gopnik Mcblyat - Snakes In Tracksuits" = 1,
 		"Katyusha" = 1,

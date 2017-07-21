@@ -17,28 +17,9 @@
 	else
 		item_state = "fw_off"
 		item_state = "fw_off"
-/*
-/obj/item/weapon/flamethrower/flammenwerfer/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/flammenwerfer_fueltank))
-		if (!fueltank)
-			fueltank = 1
-			qdel(W)
-			visible_message("<span class = 'notice'>[user] puts a fuel tank into their flammenwerfer.</span>")
-			ptank = new ptank.type
-
-/obj/item/weapon/flamethrower/flammenwerfer/MouseDrop(obj/over_object as obj)
-
-	if (istype(over_object, /obj/screen/inventory))
-		if (fueltank)
-			if (user.put_in_any_hand_if_possible(new/obj/item/weapon/flammenwerfer_fueltank))
-				visible_message("<span class = 'notice'>[user] takes a fuel tank out of the flammenwerfer.</span>")
-				fueltank = 0
-				qdel(ptank)*/
-
 
 /obj/item/weapon/flamethrower/flammenwerfer/Destroy()
 	..()
-
 
 /obj/item/weapon/flamethrower/flammenwerfer/throw_at(atom/target, range, speed, thrower)
 	return
@@ -50,7 +31,7 @@
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
 			var/turflist = getturfsbetween(user, target_turf)
-			flame_turf(turflist)
+			flame_turf(turflist, get_dir(get_turf(user), target_turf))
 
 /obj/item/weapon/flamethrower/flammenwerfer/process()
 	if(!lit)
@@ -74,7 +55,8 @@
 	return
 
 // this has better range checking so we don't burn/overheat ourselves
-/obj/item/weapon/flamethrower/flammenwerfer/flame_turf(turflist)
+/obj/item/weapon/flamethrower/flammenwerfer/flame_turf(turflist, var/flamedir)
+
 	var/turf/my_turf = get_turf(loc)
 
 	if(!lit || operating)	return
@@ -87,10 +69,23 @@
 			continue
 
 		if(T.density || istype(T, /turf/space))
-			break
+			continue
+
+		if (my_turf)
+			if (T.x <= my_turf.x)
+				if (flamedir == EAST || flamedir == NORTHEAST || flamedir == SOUTHEAST)
+					continue
+			else if (T.x >= my_turf.x)
+				if (flamedir == WEST || flamedir == NORTHWEST || flamedir == SOUTHWEST)
+					continue
+			else if (T.y >= my_turf.y)
+				if (flamedir == NORTH || flamedir == NORTHEAST || flamedir == NORTHWEST)
+					continue
+			else if (T.y <= my_turf.y)
+				if (flamedir == SOUTH || flamedir == SOUTHEAST || flamedir == SOUTHWEST)
+					continue
 
 		ignite_turf(T)
-
 
 	previousturf = null
 	operating = 0

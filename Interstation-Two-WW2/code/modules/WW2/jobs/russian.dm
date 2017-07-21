@@ -295,6 +295,7 @@
 	access = list(access_ru_soldier)
 	minimal_access = list(access_ru_soldier)
 	spawn_location = "JoinLateRA"
+	allow_spies = 1
 
 /datum/job/russian/soldier/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0

@@ -181,6 +181,8 @@
 
 /obj/train_pseudoturf/proc/destroy_objects()
 	for (var/atom/movable/a in get_step(src, src_dir()))
+		if (a.pulledby && a.pulledby.is_on_train())
+			continue
 		if (check_object_invalid_for_moving(src, a) && check_object_valid_for_destruction(a))
 			if (a.density)
 				visible_message("<span class = 'danger'>The train crushes [a]!</span>")

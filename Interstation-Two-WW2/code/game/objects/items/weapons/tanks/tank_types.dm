@@ -105,8 +105,8 @@
 /obj/item/weapon/tank/plasma/super/New() // 30x regular volume
 	..()
 
-	src.my_tank_fragment_pressure*=5 //otherwise, we explode.
-	src.air_contents.adjust_gas("plasma", ((3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))*50)
+	src.my_tank_fragment_pressure*=25 //otherwise, we explode.
+	src.air_contents.adjust_gas("plasma", ((3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))*250)
 	return
 
 

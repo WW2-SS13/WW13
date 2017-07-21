@@ -249,20 +249,31 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return line
 
-/proc/getturfsbetween(atom/start, atom/target, var/maxrange = 20)
+/proc/getturfsbetween(atom/start, atom/target, var/maxrange = 5, var/safe = 1)
+
 	var/list/turfs = list()
 	var/horizontal_dir_2_target = target.x > start.x ? EAST : WEST
 	var/vertical_dir_2_target = target.y > start.y ? NORTH : SOUTH
+
 	for (var/turf/t in range(maxrange, start))
 
-		if (horizontal_dir_2_target == EAST && t.x < target.x)
+		if (safe)
+			if (t == get_turf(start) || t == get_turf(target))
+				continue
+
+			if (locate(get_turf(start) in range(1, t)))
+				continue
+
+		if (horizontal_dir_2_target == EAST && t.x > start.x && t.x <= target.x)
 			turfs += t
-		else if (horizontal_dir_2_target == WEST && t.x > target.x)
+		else if (horizontal_dir_2_target == WEST && t.x < start.x && t.x >= target.x)
 			turfs += t
-		else if (vertical_dir_2_target == NORTH && t.y < target.y)
+
+		if (vertical_dir_2_target == NORTH && t.y > start.y && t.y <= target.y)
 			turfs += t
-		else if (vertical_dir_2_target == SOUTH && t.y > target.y)
+		else if (vertical_dir_2_target == SOUTH && t.y < start.y && t.y >= target.y)
 			turfs += t
+
 
 	return turfs
 

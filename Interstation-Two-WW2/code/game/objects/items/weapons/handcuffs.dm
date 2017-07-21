@@ -35,6 +35,7 @@
 
 		//check for an aggressive grab (or robutts)
 		var/can_place
+
 		if(istype(user, /mob/living/silicon/robot))
 			can_place = 1
 		else
@@ -42,6 +43,9 @@
 				if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
 					can_place = 1
 					break
+
+		if (C.lying)
+			can_place = 1
 
 		if(can_place)
 			place_handcuffs(C, user)

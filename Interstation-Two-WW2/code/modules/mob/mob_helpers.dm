@@ -78,15 +78,15 @@ proc/getsensorlevel(A)
 var/list/global/base_miss_chance = list(
 	"head" = 40,
 	"chest" = 10,
-	"groin" = 20,
-	"l_leg" = 20,
-	"r_leg" = 20,
-	"l_arm" = 20,
-	"r_arm" = 20,
-	"l_hand" = 50,
-	"r_hand" = 50,
-	"l_foot" = 50,
-	"r_foot" = 50,
+	"groin" = 75,
+	"l_leg" = 50,
+	"r_leg" = 50,
+	"l_arm" = 50,
+	"r_arm" = 50,
+	"l_hand" = 90,
+	"r_hand" = 90,
+	"l_foot" = 90,
+	"r_foot" = 90,
 )
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
@@ -158,6 +158,7 @@ var/list/global/organ_rel_size = list(
 				return zone
 
 	var/miss_chance = 10
+
 	if (zone in base_miss_chance)
 		miss_chance = base_miss_chance[zone]
 

@@ -209,7 +209,7 @@ Parts of code courtesy of Super3222
 /mob/living/carbon/human/Move()//Resets zoom on movement
 	..()
 	if(client && actions)
-		if(client.pixel_x | client.pixel_y) //Cancle currently scoped weapons
+		if(client.pixel_x | client.pixel_y) //Cancel currently scoped weapons
 			for(var/datum/action/toggle_scope/T in actions)
 				if(T.scope.zoomed)
 					T.scope.zoom(src, FALSE)

@@ -63,6 +63,7 @@ var/list/gamemode_cache = list()
 	var/respawn_delay = 30
 	var/guest_jobban = 1
 	var/usewhitelist = 0
+	var/use_job_whitelist =  0
 	var/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
 	var/show_mods = 0
 	var/show_mentors = 0
@@ -596,6 +597,9 @@ var/list/gamemode_cache = list()
 
 				if ("usewhitelist")
 					config.usewhitelist = 1
+
+				if ("use_job_whitelist")
+					config.use_job_whitelist = text2num(value)
 
 				if ("feature_object_spell_system")
 					config.feature_object_spell_system = 1
