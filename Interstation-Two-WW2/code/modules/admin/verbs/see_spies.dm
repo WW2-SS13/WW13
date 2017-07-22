@@ -13,7 +13,7 @@
 
 	for (var/mob/living/carbon/human/H in player_list)
 		if (H.is_spy)
-			if (istype(H.job, /datum/job/german))
+			if (istype(H.original_job, /datum/job/german))
 				src << "[H]/[H.ckey] - German soldier spying for the Russians.<br>"
-			else if (istype(H.job, /datum/job/russian))
+			else if (istype(H.original_job, /datum/job/russian))
 				src << "[H]/[H.ckey] - Russian soldier spying for the Germans.<br>"

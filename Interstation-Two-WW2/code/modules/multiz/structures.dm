@@ -112,7 +112,16 @@
 		var/was_pulling = null
 		if (M.pulling)
 			was_pulling = M.pulling
-			M.pulling.Move(get_step(T, M.dir))
+			var/turf/move_pulling = get_step(T, M.dir)
+			if (move_pulling.density)
+				move_pulling = get_step(T, NORTH)
+			if (move_pulling.density)
+				move_pulling = get_step(T, SOUTH)
+			if (move_pulling.density)
+				move_pulling = get_step(T, EAST)
+			if (move_pulling.density)
+				move_pulling = get_step(T, WEST)
+			M.pulling.Move()
 		M.Move(T)
 		if (was_pulling)
 			M.pulling = was_pulling
