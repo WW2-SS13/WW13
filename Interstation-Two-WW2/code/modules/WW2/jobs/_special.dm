@@ -35,8 +35,9 @@
 	user << "<span class = 'danger'>You are the spy.</span><br>"
 	user << "<span class = 'warning'>Sabotage your own team wherever possible. To change your uniform and radio to the [opposite_faction_name()] one, right click your uniform and use 'Swap'. You know both Russian and German; to change your language, use the IC tab.</span>"
 
-	add_memory("<b>Spy Objectives</b><br>")
-	add_memory("<span class = 'warning'>Sabotage your own team wherever possible. To change your uniform and radio to the [opposite_faction_name()] one, right click your uniform and use 'Swap'. You know both Russian and German; to change your language, use the IC tab.</span>")
+	user.add_memory("Spy Objectives")
+	user.add_memory("")
+	user.add_memory("Sabotage your own team wherever possible. To change your uniform and radio to the [opposite_faction_name()] one, right click your uniform and use 'Swap'. You know both Russian and German; to change your language, use the IC tab.")
 
 	user.is_spy = 1 // lets admins see who's a spy
 

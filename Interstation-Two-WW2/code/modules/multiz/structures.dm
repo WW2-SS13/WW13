@@ -121,7 +121,7 @@
 				move_pulling = get_step(T, EAST)
 			if (move_pulling.density)
 				move_pulling = get_step(T, WEST)
-			M.pulling.Move()
+			M.pulling.Move(move_pulling)
 		M.Move(T)
 		if (was_pulling)
 			M.pulling = was_pulling
