@@ -299,7 +299,7 @@
 				M << "<span class='notice'>You switch the [src] on.</span>"
 			else if(T)
 				T.visible_message("<span class='danger'>\The [src] turns on.</span>")
-			src.force = WEAPON_FORCE_PAINFULL
+			src.force = WEAPON_FORCE_PAINFUL
 			src.damtype = "fire"
 			src.w_class = 4
 			welding = 1
@@ -404,7 +404,7 @@
 	icon_state = "crowbar"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_NORMAL
 	item_state = "crowbar"
 	w_class = 2.0

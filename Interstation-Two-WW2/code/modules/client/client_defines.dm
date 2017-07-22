@@ -13,6 +13,7 @@
 		//OTHER//
 		/////////
 	var/datum/preferences/prefs = null
+	var/canmove = 1
 	var/move_delay		= 1
 	var/moving			= null
 	var/adminobs		= null

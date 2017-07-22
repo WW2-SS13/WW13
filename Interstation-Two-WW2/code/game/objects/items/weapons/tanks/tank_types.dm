@@ -14,7 +14,7 @@
 	name = "oxygen tank"
 	desc = "A tank of oxygen."
 	icon_state = "oxygen"
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 
 
@@ -64,7 +64,7 @@
 	name = "air tank"
 	desc = "Mixed anyone?"
 	icon_state = "oxygen"
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 
 
 	examine(mob/user)
@@ -105,8 +105,8 @@
 /obj/item/weapon/tank/plasma/super/New() // 30x regular volume
 	..()
 
-	src.my_tank_fragment_pressure*=5 //otherwise, we explode.
-	src.air_contents.adjust_gas("plasma", ((3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))*50)
+	src.my_tank_fragment_pressure*=25 //otherwise, we explode.
+	src.air_contents.adjust_gas("plasma", ((3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))*250)
 	return
 
 
@@ -168,7 +168,7 @@
 /obj/item/weapon/tank/nitrogen
 	name = "nitrogen tank"
 	desc = "A tank of nitrogen."
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	icon_state = "oxygen_fr"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 

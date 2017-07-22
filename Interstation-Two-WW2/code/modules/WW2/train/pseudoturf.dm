@@ -95,10 +95,6 @@
 /obj/train_pseudoturf/proc/remove_contents_refs()
 	saved_contents.Cut()
 
-/mob/var/next_train_movement = null
-/mob/var/last_train_movement_attempt = -1
-/mob/var/original_pulling = null
-
 /obj/train_pseudoturf/proc/reset_track_lights() // pre movement
 	for (var/obj/train_track/tt in get_turf(src))
 		tt.set_light(2, 3, "#a0a080") // reset the lights of tracks we left behind
@@ -139,8 +135,9 @@
 
 	for (var/mob/m in saved_contents)
 		if (istype(m))
-			m.start_pulling(m.original_pulling)
-			m.original_pulling = null
+			if (m.original_pulling)
+				m.start_pulling(m.original_pulling)
+				m.original_pulling = null
 
 	switch (controller.orientation)
 		if (VERTICAL)
@@ -158,22 +155,23 @@
 				switch (m.next_train_movement)
 					if (NORTH)
 						var/moved = m.train_move(locate(m.x, m.y+1, m.z))
-						if (p && moved) p.train_move(locate(p.x, p.y+1, p.z))
+				//		if (p && moved) p.train_move(m.behind())
 					if (SOUTH)
 						var/moved = m.train_move(locate(m.x, m.y-1, m.z))
-						if (p && moved) p.train_move(locate(p.x, p.y-1, p.z))
+					//	if (p && moved) p.train_move(m.behind())
 					if (EAST)
 						var/moved = m.train_move(locate(m.x+1, m.y, m.z))
-						if (p && moved) p.train_move(locate(p.x+1, p.y, p.z))
+				//		if (p && moved) p.train_move(m.behind())
 					if (WEST)
 						var/moved = m.train_move(locate(m.x-1, m.y, m.z))
-						if (p && moved) p.train_move(locate(p.x-1, p.y, p.z))
+					//	if (p && moved) p.train_move(m.behind())
 
 				m.dir = m.next_train_movement
 				if (p) p.dir = m.next_train_movement
 				m.start_pulling(p) // start_pulling checks for p on its own
 				m.next_train_movement = null
 				m.train_gib_immunity = 0
+				m.last_moved_on_train = world.time
 
 /obj/train_pseudoturf/proc/src_dir()
 	switch (controller.direction)
@@ -184,6 +182,8 @@
 
 /obj/train_pseudoturf/proc/destroy_objects()
 	for (var/atom/movable/a in get_step(src, src_dir()))
+		if (a.pulledby && a.pulledby.is_on_train())
+			continue
 		if (check_object_invalid_for_moving(src, a) && check_object_valid_for_destruction(a))
 			if (a.density)
 				visible_message("<span class = 'danger'>The train crushes [a]!</span>")

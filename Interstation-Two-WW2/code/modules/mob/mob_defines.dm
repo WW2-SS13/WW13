@@ -192,3 +192,5 @@
 	var/bladder = 0 //For pissing
 
 	var/using_object = null
+
+	var/is_spy = 0

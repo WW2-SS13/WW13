@@ -9,7 +9,9 @@ var/list/admin_verbs_default = list(
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify,
 //	/client/proc/check_antagonists,		//shows all antags,
-	/client/proc/cmd_mentor_check_new_players
+	/client/proc/cmd_mentor_check_new_players,
+	/client/proc/Goto_adminzone,
+	/client/proc/see_spies
 //	/client/proc/deadchat				//toggles deadchat on/off,
 	)
 var/list/admin_verbs_admin = list(
@@ -87,6 +89,9 @@ var/list/admin_verbs_admin = list(
 	/client/proc/show_battle_report,
 //	/client/proc/generate_hit_table,
 	/datum/admins/proc/paralyze_mob,
+	/client/proc/removeEmptyCases,
+	/client/proc/removeHalfEmptyCases
+
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -133,6 +138,8 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/restart,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
+	/client/proc/trigger_roundend,
+	/client/proc/toggle_round_ending,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/immreboot,
 	/client/proc/everyone_random,

@@ -3,7 +3,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 
 /datum/controller/gameticker
-	var/const/restart_timeout = 600
+	var/const/restart_timeout = 300
 	var/current_state = GAME_STATE_PREGAME
 
 	var/hide_mode = 0
@@ -42,6 +42,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			lobby_music_player = new()
 
 		login_music = lobby_music_player.get_song()
+
+		load_job_whitelist()
 
 		do
 			pregame_timeleft = 180
@@ -336,14 +338,9 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 			spawn(50)
 				callHook("roundend")
-/*
-				if (universe_has_ended)
-					if(!delay_end)
-						world << "<span class='notice'><b>Rebooting due to destruction of station in [restart_timeout/10] seconds</b></span>"
-				else*/
+
 				if(!delay_end)
 					world << "<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>"
-
 
 				if(!delay_end)
 					sleep(restart_timeout)
@@ -368,62 +365,64 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 /datum/controller/gameticker/proc/declare_completion()
 	world << "<br><br><br><H1>A round of [mode.name] has ended!</H1>"
-	for(var/mob/Player in player_list)
-		if(Player.mind && !isnewplayer(Player))
-			if(Player.stat != DEAD)
-				var/turf/playerTurf = get_turf(Player)
-				if(emergency_shuttle.departed && emergency_shuttle.evac)
-					if(isNotAdminLevel(playerTurf.z))
-						Player << "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>"
+	if (!istype(mode, /datum/game_mode/ww2))
+		for(var/mob/Player in player_list)
+			if(Player.mind && !isnewplayer(Player))
+
+				if(Player.stat != DEAD)
+					var/turf/playerTurf = get_turf(Player)
+					if(emergency_shuttle.departed && emergency_shuttle.evac)
+						if(isNotAdminLevel(playerTurf.z))
+							Player << "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>"
+						else
+							Player << "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>"
+					else if(isAdminLevel(playerTurf.z))
+						Player << "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>"
+					else if(issilicon(Player))
+						Player << "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>"
 					else
-						Player << "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>"
-				else if(isAdminLevel(playerTurf.z))
-					Player << "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>"
-				else if(issilicon(Player))
-					Player << "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>"
+						Player << "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>"
 				else
-					Player << "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>"
-			else
-				if(isghost(Player))
-					var/mob/observer/ghost/O = Player
-					if(!O.started_as_observer)
+					if(isghost(Player))
+						var/mob/observer/ghost/O = Player
+						if(!O.started_as_observer)
+							Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
+					else
 						Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
-				else
-					Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
-	world << "<br>"
+		world << "<br>"
 
-	for (var/mob/living/silicon/ai/aiPlayer in mob_list)
-		if (aiPlayer.stat != 2)
-			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>"
-		else
-			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>"
-		aiPlayer.show_laws(1)
-
-		if (aiPlayer.connected_robots.len)
-			var/robolist = "<b>The AI's loyal minions were:</b> "
-			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
-				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
-			world << "[robolist]"
-
-	var/dronecount = 0
-
-	for (var/mob/living/silicon/robot/robo in mob_list)
-
-		if(istype(robo,/mob/living/silicon/robot/drone))
-			dronecount++
-			continue
-
-		if (!robo.connected_ai)
-			if (robo.stat != 2)
-				world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less synthetic! Its laws were:</b>"
+		for (var/mob/living/silicon/ai/aiPlayer in mob_list)
+			if (aiPlayer.stat != 2)
+				world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>"
 			else
-				world << "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a synthetic without an AI. Its laws were:</b>"
+				world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>"
+			aiPlayer.show_laws(1)
 
-			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
-				robo.laws.show_laws(world)
+			if (aiPlayer.connected_robots.len)
+				var/robolist = "<b>The AI's loyal minions were:</b> "
+				for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
+					robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
+				world << "[robolist]"
 
-	if(dronecount)
-		world << "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>"
+		var/dronecount = 0
+
+		for (var/mob/living/silicon/robot/robo in mob_list)
+
+			if(istype(robo,/mob/living/silicon/robot/drone))
+				dronecount++
+				continue
+
+			if (!robo.connected_ai)
+				if (robo.stat != 2)
+					world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less synthetic! Its laws were:</b>"
+				else
+					world << "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a synthetic without an AI. Its laws were:</b>"
+
+				if(robo) //How the hell do we lose robo between here and the world messages directly above this?
+					robo.laws.show_laws(world)
+
+		if(dronecount)
+			world << "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>"
 
 	mode.declare_completion()//To declare normal completion.
 

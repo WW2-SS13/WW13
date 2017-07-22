@@ -591,9 +591,6 @@ var/global/datum/controller/occupations/job_master
 						else
 							permitted = 1
 
-						if(G.whitelisted && !is_alien_whitelisted(H, G.whitelisted))
-							permitted = 0
-
 						if(!permitted)
 							H << "\red Your current job or whitelist status does not permit you to spawn with [thing]!"
 							continue
@@ -616,7 +613,6 @@ var/global/datum/controller/occupations/job_master
 			//job.equip_backpack(H)
 			//job.equip_survival(H)
 			job.apply_fingerprints(H)
-
 			if(job.department_flag == MEDSCI)
 				geforce_count++
 			if(job.department_flag == ENGSEC)
@@ -635,6 +631,9 @@ var/global/datum/controller/occupations/job_master
 						custom_equip_slots.Add(G.slot)
 					else
 						spawn_in_storage += thing
+
+			job.try_make_spy(H)
+
 		else
 			H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
 

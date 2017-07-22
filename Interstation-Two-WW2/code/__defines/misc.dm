@@ -159,7 +159,7 @@
 #define WEAPON_FORCE_HARMLESS    3
 #define WEAPON_FORCE_WEAK        7
 #define WEAPON_FORCE_NORMAL      10
-#define WEAPON_FORCE_PAINFULL    15
+#define WEAPON_FORCE_PAINFUL    15
 #define WEAPON_FORCE_DANGEROUS   20
 #define WEAPON_FORCE_ROBUST      26
 #define WEAPON_FORCE_LETHAL      51
@@ -224,4 +224,4 @@
 
 
 //ANNOUNSER! I THINK YOU MEAN ANNOUNCER!
-#define ANNOUNSER_NAME "CEV Eris System Announcer" 
+#define ANNOUNSER_NAME "CEV Eris System Announcer"

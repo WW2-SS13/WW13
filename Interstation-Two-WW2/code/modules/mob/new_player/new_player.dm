@@ -193,9 +193,6 @@
 
 		if(!check_rights(R_ADMIN, 0))
 			var/datum/species/S = all_species[client.prefs.species]
-			if((S.spawn_flags & IS_WHITELISTED) && !is_alien_whitelisted(src, client.prefs.species))
-				src << alert("You are currently not whitelisted to play [client.prefs.species].")
-				return 0
 
 			if(!(S.spawn_flags & CAN_JOIN))
 				src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
@@ -223,9 +220,6 @@
 			return
 
 		var/datum/species/S = all_species[client.prefs.species]
-		if((S.spawn_flags & IS_WHITELISTED) && !is_alien_whitelisted(src, client.prefs.species))
-			src << alert("You are currently not whitelisted to play [client.prefs.species].")
-			return 0
 
 		if(!(S.spawn_flags & CAN_JOIN))
 			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
@@ -495,6 +489,10 @@
 			continue
 
 		var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
+
+		if (config.use_job_whitelist && !check_job_whitelist(src, job.title))
+			job_is_available = 0
+
 		if(job)
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
@@ -510,13 +508,13 @@
 				if (job_is_available)
 					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 				else
-					dat += "TAKEN: <strike>[job.title] ([job.current_positions]) (Active: [active])</strike><br>"
+					dat += "TAKEN or WHITELISTED: <strike>[job.title] ([job.current_positions]) (Active: [active])</strike><br>"
 
 			else
 				if (job_is_available)
 					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</a><br>"
 				else
-					dat += "TAKEN: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</strike><br>"
+					dat += "TAKEN or WHITELISTED: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</strike><br>"
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")
 
@@ -549,7 +547,7 @@
 	for(var/lang in client.prefs.alternate_languages)
 		var/datum/language/chosen_language = all_languages[lang]
 		if(chosen_language)
-			if(!(chosen_language.flags & WHITELISTED) || is_alien_whitelisted(src, lang) || has_admin_rights() \
+			if(has_admin_rights() \
 				|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
 
@@ -606,8 +604,7 @@
 	return check_rights(R_ADMIN, 0, src)
 
 /mob/new_player/proc/is_species_whitelisted(datum/species/S)
-	if(!S) return 1
-	return is_alien_whitelisted(src, S.name) || !(S.spawn_flags & IS_WHITELISTED)
+	return 0
 
 /mob/new_player/get_species()
 	var/datum/species/chosen_species

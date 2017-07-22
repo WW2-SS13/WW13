@@ -23,7 +23,7 @@ var/jobban_keylist[0]		//to store the keys & ranks
 		if (guest_jobbans(rank))
 			if(config.guest_jobban && IsGuestKey(M.key))
 				return "Guest Job-ban"
-			if(config.usewhitelist && !check_whitelist(M))
+			if(config.usewhitelist && !check_job_whitelist(M))
 				return "Whitelisted Job"
 
 		for (var/s in jobban_keylist)

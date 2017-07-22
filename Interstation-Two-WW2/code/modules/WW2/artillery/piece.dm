@@ -438,11 +438,22 @@
 
 		travel_time = abs((round(abs_dist/50) * 10)) + 20 // must be at least 2 seconds for the incoming sound to
 		// work right
+
 		spawn (travel_time - 20) // the new artillery sound takes about 2 seconds to reach the explosion point, so start playing it now
 			var/list/heard = playsound(t, "artillery_in", 100, 1)
 			playsound(t, "artillery_in_distant", 100, 1, 100, excluded = heard)
 
 		spawn (travel_time)
+
+			// allows shells aimed at ladders to go down ladders - Kachnov
+
+			if (locate(/obj/structure/multiz) in t)
+				if (prob(50))
+					visible_message("<span class = 'danger'>An artillery shell goes down the ladders!</span>")
+					for (var/obj/structure/multiz/warp in t)
+						if (warp.target)
+							t = get_turf(warp.target)
+							break
 
 			if (istrueflooring(t) || iswall(t) || is_indoors)
 				var/area/a = t.loc

@@ -192,6 +192,7 @@
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
 			visible_message("<span class = 'danger'>[user] impales [l] with their gun's bayonet!</span>")
 			l.apply_damage(a.force * 2, BRUTE, def_zone)
+			l.Weaken(rand(1,2))
 			playsound(get_turf(src), a.attack_sound, rand(75,100))
 		else
 			..() //Pistolwhippin'

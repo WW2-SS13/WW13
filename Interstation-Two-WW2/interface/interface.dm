@@ -23,6 +23,30 @@
 		src << "<span class='warning'>The forum URL is not set in the server configuration.</span>"
 	return
 
+/client/verb/github()
+	set name = "Github"
+	set desc = "Visit the Github"
+	set hidden = 1
+	if( config.githuburl )
+		if(alert("This will open the Github in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.githuburl)
+	else
+		src << "<span class='warning'>The Github URL is not set in the server configuration.</span>"
+	return
+
+/client/verb/discord()
+	set name = "discord"
+	set desc = "Visit the discord"
+	set hidden = 1
+	if( config.discordurl )
+		if(alert("This will open the Discord in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.discordurl)
+	else
+		src << "<span class='warning'>The Discord URL is not set in the server configuration.</span>"
+	return
+
 #define RULES_FILE "config/rules.html"
 /client/verb/rules()
 	set name = "Rules"

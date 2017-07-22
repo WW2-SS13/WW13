@@ -289,17 +289,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	stop_following()
 	usr.forceMove(pick(L))
 
-/mob/observer/ghost/verb/follow(input in getmobs())
+/mob/observer/ghost/verb/follow(input in getfitmobs())
 	set category = "Ghost"
 	set name = "Follow" // "Haunt"
 	set desc = "Follow and haunt a mob."
 
-	var/target = getmobs()[input]
+	var/target = input // no longer a map
 	if(!target) return
 	ManualFollow(target)
 
 
-/mob/observer/ghost/verb/follow_russian(input in getrussianmobs(1))
+/mob/observer/ghost/verb/follow_russian(input in getfitmobs("RUSSIAN"))
 	set category = "Ghost"
 	set name = "Follow a Russian"
 	set desc = "Follow and haunt a living rusky."
@@ -308,7 +308,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!target) return
 	ManualFollow(target)
 
-/mob/observer/ghost/verb/follow_german(input in getgermanmobs(1))
+/mob/observer/ghost/verb/follow_german(input in getfitmobs("GERMAN"))
 	set category = "Ghost"
 	set name = "Follow a German"
 	set desc = "Follow and haunt a living german."
@@ -323,7 +323,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/datum/train_controller/tc = german_train_master
 
-	for (var/obj/train_car_center/tcc in tc.train_car_centers)
+	for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
 		for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
 			ManualFollow(tpt)
 			return
