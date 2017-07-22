@@ -31,8 +31,13 @@
 		return "German"
 // make someone a spy regardless, allowing them to swap uniforms
 /datum/job/proc/make_spy(var/mob/user)
+
 	user << "<span class = 'danger'>You are the spy.</span><br>"
 	user << "<span class = 'warning'>Sabotage your own team wherever possible. To change your uniform and radio to the [opposite_faction_name()] one, right click your uniform and use 'Swap'. You know both Russian and German; to change your language, use the IC tab.</span>"
+
+	add_memory("<b>Spy Objectives</b><br>")
+	add_memory("<span class = 'warning'>Sabotage your own team wherever possible. To change your uniform and radio to the [opposite_faction_name()] one, right click your uniform and use 'Swap'. You know both Russian and German; to change your language, use the IC tab.</span>")
+
 	user.is_spy = 1 // lets admins see who's a spy
 
 	var/mob/living/carbon/human/H = user
@@ -47,7 +52,6 @@
 	else
 		if (!H.languages.Find("German"))
 			H.add_language("German")
-
 
 /datum/job/german
 	uses_keys = 1

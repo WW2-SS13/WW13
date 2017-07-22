@@ -1932,6 +1932,7 @@
 #include "code\modules\WW2\artillery\spawning.dm"
 #include "code\modules\WW2\items\health\doctor_handbook.dm"
 #include "code\modules\WW2\jobs\_special.dm"
+#include "code\modules\WW2\jobs\faction.dm"
 #include "code\modules\WW2\jobs\german.dm"
 #include "code\modules\WW2\jobs\job_language.dm"
 #include "code\modules\WW2\jobs\russian.dm"
