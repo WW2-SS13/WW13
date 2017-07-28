@@ -7,6 +7,7 @@
 	var/pressure_1 = 100
 	status = 1
 	nodrop = 1
+	nothrow = 1
 	var/fueltank = 1
 
 /obj/item/weapon/flamethrower/flammenwerfer/update_icon()
@@ -85,7 +86,7 @@
 				if (flamedir == SOUTH || flamedir == SOUTHEAST || flamedir == SOUTHWEST)
 					continue
 
-		ignite_turf(T)
+		ignite_turf(T, flamedir)
 
 	previousturf = null
 	operating = 0
@@ -140,19 +141,31 @@
 
 	return (p2/p1)
 
-/obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target)
+/obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target, flamedir)
 	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
 	//Transfer 2.5% of current tank air contents to turf
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.02*(calculate_throw_amount()/100))
+/*
+	var/turf/my_turf = get_turf(loc) // loc = the mob
 
-	var/abs_dist = 3
-	var/mob/m = loc
-	if (m)
-		abs_dist = abs(m.x - target.x) + abs(m.y - target.y)
+	if (loc && my_turf)
+		var/turf/T = target
+		if (T.x <= my_turf.x)
+			if (flamedir == EAST || flamedir == NORTHEAST || flamedir == SOUTHEAST)
+				goto end
+		else if (T.x >= my_turf.x)
+			if (flamedir == WEST || flamedir == NORTHWEST || flamedir == SOUTHWEST)
+				goto end
+		else if (T.y >= my_turf.y)
+			if (flamedir == NORTH || flamedir == NORTHEAST || flamedir == NORTHWEST)
+				goto end
+		else if (T.y <= my_turf.y)
+			if (flamedir == SOUTH || flamedir == SOUTHEAST || flamedir == SOUTHWEST)
+				goto end
 
-	if (abs_dist >= 3) // experiment to try and keep flammenwerfersoldats from igniting themselves
 		new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(target,air_transfer.gas["plasma"],get_dir(loc,target),1)
 
+	end*/
 	air_transfer.gas["plasma"] = 0
 	target.assume_air(air_transfer)
-	target.create_fire(5, rand(400,600))
+	target.create_fire(5, rand(400,600), 0)

@@ -11,16 +11,17 @@
 		"Latvian SS Anthem" = 'sound/music/WW2/latvianss.ogg',
 		"ERIKA" = 'sound/music/WW2/ERIKA.ogg',
 		// other shit
-		"Falco - Der Kommissar" = 'sound/music/WW2/derkommissar.ogg')
+		"Falco - Der Kommissar" = 'sound/music/WW2/derkommissar.ogg',
+		"DJ Blyatman - Dragunov" = 'sound/music/WW2/dragunov.ogg',
+		"M.O.O.N._-_Dust_Official_Hotline_Miami_2_OST" = 'sound/music/WW2/moon.ogg')
 
 	var/list/song_probability_multipliers = list(
-		"Dj Blyatman - Chernobyl" = 1,
 		"Dj Snat - Choose Your Power (Gopnik Mcblyat Remix)" = 1,
-		"Gopnik Mcblyat - Snakes In Tracksuits" = 1,
 		"Katyusha" = 1,
-		"Latvian SS Anthem" = 1,
 		"ERIKA" = 1,
-		"Falco - Der Kommissar" = 1
+		"Falco - Der Kommissar" = 1,
+		"DJ Blyatman - Dragunov" = 2,
+		"M.O.O.N._-_Dust_Official_Hotline_Miami_2_OST" = 1
 	)
 
 	var/song_title = null

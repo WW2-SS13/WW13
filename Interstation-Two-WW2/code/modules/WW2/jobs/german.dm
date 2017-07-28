@@ -17,6 +17,8 @@
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
 	spawn_location = "JoinLateHeerCO"
 	additional_languages = list( "Russian" = 100 )
+	is_officer = 1
+	is_commander = 1
 
 /datum/job/german/commander/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -59,6 +61,7 @@
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
 	spawn_location = "JoinLateHeerSO"
 	additional_languages = list( "Russian" = 100 )
+	is_officer = 1
 
 /datum/job/german/staff_officer/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -100,6 +103,8 @@
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_cook, access_nato_squad_leader, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeerSL"
 	additional_languages = list( "Russian" = 33 )
+	is_officer = 1
+	is_squad_leader = 1
 
 /datum/job/german/squad_leader/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -166,6 +171,7 @@
 	access = list(access_nato_soldier, access_nato_medic)
 	minimal_access = list(access_nato_soldier, access_nato_medic)
 	spawn_location = "JoinLateHeerDr"
+	is_nonmilitary = 1
 
 /datum/job/german/doctor/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -424,6 +430,7 @@ var/first_fallschirm = 1
 	spawn_location = "JoinLateHeerQM"
 
 	additional_languages = list( "Russian" = 100 )
+	is_officer = 1
 
 /datum/job/german/stabsgefreiter/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -456,6 +463,7 @@ var/first_fallschirm = 1
 	access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeerSO"
+	is_officer = 1
 
 /datum/job/german/artyman/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -542,6 +550,7 @@ var/first_fallschirm = 1
 	access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeerSO"
+	is_officer = 1
 
 /datum/job/german/conductor/train_check() // if there's no train, don't let people be conductors!
 	return WW2_train_check()
@@ -577,8 +586,9 @@ var/first_fallschirm = 1
 	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_cook, access_nato_squad_leader, access_nato_heavy_weapon)
 	spawn_location = "JoinLateSS-Officer"
 	is_SS = 1
-
 	additional_languages = list( "Russian" = 10 )
+	is_officer = 1
+	is_commander = 1 // not a squad leader despite the title
 
 /datum/job/german/squad_leader_ss/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -631,7 +641,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sshelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm/sshelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>.</span>"

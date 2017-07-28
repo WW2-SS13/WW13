@@ -12,15 +12,15 @@
 	w_class = 4
 	caliber = "a9mm_para"
 	magazine_type = /obj/item/ammo_magazine/mp40
-	accuracy = -4
-
 	can_wield = 1
 	//must_wield = 1
 
+	accuracy = DEFAULT_MG_ACCURACY+1
+
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=1.5, move_delay=2, accuracy = list(0,0,-1,-1,-2,-2,-2,-3), dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(name="short bursts",	burst=3, burst_delay=1.5, move_delay=4, accuracy = list(0,-1,-1,-2,-2,-2,-3,-4), dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(name="long bursts",	burst=5, burst_delay=1.5, move_delay=6, accuracy = list(0,-1,-1,-2,-2,-2,-4,-5), dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
+		list(name="single shot",	burst=1, burst_delay=1.5, move_delay=2, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(name="short bursts",	burst=3, burst_delay=1.5, move_delay=4, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(name="long bursts",	burst=5, burst_delay=1.5, move_delay=6, dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/mp40/update_icon()
@@ -52,7 +52,7 @@
 	load_magazine_sound = 'sound/weapons/stg_reload.ogg'
 	magazine_type = /obj/item/ammo_magazine/a792x33/stgmag
 
-	accuracy = -4
+	accuracy = DEFAULT_MG_ACCURACY
 	can_wield = 1
 	//must_wield = 1
 
@@ -83,7 +83,7 @@
 	w_class = 5
 	caliber = "a792x33"
 	magazine_type = /obj/item/ammo_magazine/a762/akm
-	accuracy = -3
+	accuracy = DEFAULT_MG_ACCURACY
 
 	can_wield = 1
 	//must_wield = 1
@@ -112,19 +112,19 @@
 
 /obj/item/weapon/gun/projectile/automatic/m4
 	name = "PPSh submachinegun"
-	desc = "Soviet submachinegun. Easy to make and easy to stuff someone with led using it."
+	desc = "Soviet submachinegun. Easy to make and easy to stuff someone with lead using it."
 	icon_state = "ppsh"
 	item_state = "ppsh"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 4
 	fire_sound = 'sound/weapons/m16.ogg'
-	accuracy = -4
+	accuracy = DEFAULT_MG_ACCURACY
 	caliber = "a762x25"
 	magazine_type = /obj/item/ammo_magazine/a556/m4
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=1.1, move_delay=3, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(name="short bursts",	burst=5, burst_delay=1.1, move_delay=5, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(name="single shot",	burst=1, burst_delay=1.1, move_delay=3, dispersion = list(0.9, 1.0, 1.0, 1.0, 1.1)),
+		list(name="short bursts",	burst=5, burst_delay=1.1, move_delay=5, dispersion = list(0.9, 1.0, 1.0, 1.0, 1.1)),
 		list(name="long bursts",	burst=8, burst_delay=1.1, move_delay=7, dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)
 
@@ -154,16 +154,16 @@
 	item_state = "dp"
 	load_method = MAGAZINE
 	w_class = 5
-	accuracy = -3
+	accuracy = DEFAULT_MG_ACCURACY+1
 	caliber = "a762x39"
 	magazine_type = /obj/item/ammo_magazine/a762/pkm
 
-	can_wield = 1
-	must_wield = 1
+	can_wield = 0
+	must_wield = 0
 
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=2, move_delay=3, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(name="short bursts",	burst=5, burst_delay=2, move_delay=6, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(name="single shot",	burst=1, burst_delay=2, move_delay=3, dispersion = list(0.9, 1.0, 1.0, 1.0, 1.1)),
+		list(name="short bursts",	burst=5, burst_delay=2, move_delay=6, dispersion = list(0.9, 1.0, 1.0, 1.0, 1.1)),
 		list(name="long bursts",	burst=8, burst_delay=2, move_delay=8, dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)
 
@@ -203,6 +203,7 @@
 	magazine_type = /obj/item/ammo_magazine/a9x39
 	silenced = 1
 	can_wield = 1
+	accuracy = DEFAULT_MG_ACCURACY
 	//must_wield = 1
 
 /obj/item/weapon/gun/projectile/automatic/val/update_icon()

@@ -226,11 +226,15 @@
 		return "unknown"
 	return species_language.get_random_name(gender)
 
-/datum/species/proc/get_random_german_name(var/gender)
+/datum/species/proc/get_random_german_name(var/gender, var/jew)
 	if(!name_language)
 		if(gender == FEMALE)
+			if (jew)
+				return capitalize(pick(first_names_female_german_jew)) + " " + capitalize(pick(last_names_german_jew))
 			return capitalize(pick(first_names_female_german)) + " " + capitalize(pick(last_names_german))
 		else
+			if (jew)
+				return capitalize(pick(first_names_male_german_jew)) + " " + capitalize(pick(last_names_german_jew))
 			return capitalize(pick(first_names_male_german)) + " " + capitalize(pick(last_names_german))
 
 	var/datum/language/species_language = all_languages[name_language]
@@ -240,7 +244,7 @@
 		return "unknown"
 	return species_language.get_random_german_name(gender)
 
-/datum/species/proc/get_random_russian_name(var/gender)
+/datum/species/proc/get_random_russian_name(var/gender, var/jew)
 	if(!name_language)
 		if(gender == FEMALE)
 			return capitalize(pick(first_names_female_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))

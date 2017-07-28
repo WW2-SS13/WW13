@@ -6,6 +6,14 @@
 #define GERMAN_UNIFORM_DESC "Standart german uniform for soildiers. You can smell seiner madchenes parfume!"
 #define GERMAN_UNIFORM_STATE "geruni"
 
+#define SOVIET_HELMET_NAME ""
+#define SOVIET_HELMET_DESC ""
+#define SOVIET_HELMET_STATE ""
+
+#define GERMAN_HELMET_NAME ""
+#define GERMAN_HELMET_DESC ""
+#define GERMAN_HELMET_STATE ""
+
 /obj/item/clothing/under
 	var/swapped = 0
 
@@ -14,8 +22,8 @@
 
 /obj/item/clothing/under/proc/Swap()
 	set category = "Object"
-	var/mob/m = loc
-	if (m && ishuman(m) && m.is_spy)
+	var/mob/living/carbon/human/m = loc
+	if (m && istype(m) && m.is_spy)
 
 		if (name == GERMAN_UNIFORM_NAME)
 			transform2soviet()
@@ -33,13 +41,11 @@
 				m << "<span class = 'danger'>You change back into your original uniform. Sieg heil!</span>"
 			if (SOVIET_UNIFORM_NAME)
 				m << "<span class = 'danger'>You change back into your spy uniform.</span>"
-	else
-		m << "<span class = 'danger'><font size = 3>What the fuck do you think you're doing?</font></span>"
-		message_admins("[m] tried to use a spy uniform, but they aren't even a spy!!!")
 
 	return 0
 
 /obj/item/clothing/under/proc/transform2soviet()
+
 	name = SOVIET_UNIFORM_NAME
 	desc = SOVIET_UNIFORM_DESC
 	icon_state = SOVIET_UNIFORM_STATE
@@ -54,6 +60,11 @@
 		H.drop_from_inventory(radio)
 		qdel(radio)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/rbs(H), slot_s_store)
+	if (istype(H.head, /obj/item/clothing/head/helmet/tactical/gerhelm))
+		var/head = H.head
+		H.drop_from_inventory(head)
+		qdel(head)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
 
 /obj/item/clothing/under/proc/transform2german()
 	name = GERMAN_UNIFORM_NAME
@@ -70,6 +81,11 @@
 		H.drop_from_inventory(radio)
 		qdel(radio)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
+	if (istype(H.head, /obj/item/clothing/head/helmet/tactical/sovhelm))
+		var/head = H.head
+		H.drop_from_inventory(head)
+		qdel(head)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 
 
 /obj/item/clothing/under/sovuni
@@ -125,7 +141,6 @@
 	item_state = "sssmock"
 	worn_state = "sssmock"
 
-
 /obj/item/clothing/under/geruni/ssuni
 	name = "SS uniform"
 	desc = "Camo uniform for ShutzStaffel soldiers. Sturdy, comfy, and makes you less visible in autumn. They gave you this too early by the way."
@@ -145,7 +160,7 @@
 	icon_state = "gerhelm"
 	item_state = "gerhelm"
 
-/obj/item/clothing/head/helmet/tactical/sshelm
+/obj/item/clothing/head/helmet/tactical/gerhelm/sshelm
 	name = "SS camo helmet"
 	icon_state = "sshelm"
 	item_state = "sshelm"

@@ -7,6 +7,20 @@ meteor_act
 
 */
 
+/mob/living/carbon/human/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if (stat != DEAD)
+		return ..()
+	if (!istype(W) || !W.sharp)
+		return ..()
+	else
+		user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
+		if (do_after(user, 30, src))
+			user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
+			for (var/v in 1 to rand(5,7))
+				var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
+				meat.name = "[name] meatsteak"
+			qdel(src)
+
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
 	def_zone = check_zone(def_zone)
@@ -21,7 +35,6 @@ meteor_act
 		return PROJECTILE_FORCE_MISS //if they don't have the organ in question then the projectile just passes by.
 
 	var/obj/item/organ/external/organ = get_organ()
-
 	//Shields
 	var/shield_check = check_shields(P.damage*5, P, null, def_zone, "the [P.name]")
 

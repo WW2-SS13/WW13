@@ -2,6 +2,15 @@
 WW 2 WEAPONS MAGS N AMMO
 ***********************************/
 
+/obj/item/ammo_casing/a145
+	name = "shell casing"
+	desc = "A 14.5mm shell."
+	icon_state = "lcasing"
+	spent_icon = "lcasing-spent"
+	caliber = "14.5mm"
+	projectile_type = /obj/item/projectile/bullet/rifle/a145
+	matter = list(DEFAULT_WALL_MATERIAL = 1250)
+
 /obj/item/ammo_casing/c4mm
 	name = "a 4mm bullet casing"
 	projectile_type = /obj/item/projectile/bullet/rifle/c4mm
@@ -102,6 +111,9 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_casing/rocket/yuge
 	projectile_type = /obj/item/projectile/missile/yuge
+
+/obj/item/ammo_casing/rocket/tank
+	projectile_type = /obj/item/projectile/missile/tank
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

@@ -1,48 +1,14 @@
-/proc/scream_sound(var/dying = 0)
-	return 0
+/proc/scream_sound(var/mob/m, var/dying = 0)
 
-/*
+	if (!ishuman(m))
+		return 0
 
-var/global/list/scream_sounds_german_l1 = list()
-var/global/list/scream_sounds_german_l2 = list()
-var/global/list/scream_sounds_german_l3 = list()
-var/global/list/scream_sounds_german_l4 = list()
-var/global/list/scream_sounds_german_l5 = list()
-var/global/list/scream_sounds_german_dying = list()
+	if (m.stat == UNCONSCIOUS || m.stat == DEAD)
+		return 0
 
-var/global/list/scream_sounds_russian = list()
+	var/mob/living/carbon/human/H = m
 
-/mob/living/carbon/human/proc/scream_sound(var/dying = 0)
-	var/health_percentage = (health/maxhealth) * 100
-	if (istype(default_language, /datum/language/german))
-		if (!dying)
-			switch (health_percentage)
-				if (0 to 20)
-					playsound(get_turf(src), pick(scream_sounds_german_l5), 100)
-				if (21 to 40)
-					playsound(get_turf(src), pick(scream_sounds_german_l4), 100)
-				if (41 to 60)
-					playsound(get_turf(src), pick(scream_sounds_german_l3), 100)
-				if (61 to 80)
-					playsound(get_turf(src), pick(scream_sounds_german_l2), 100)
-				if (81 to 100)
-					playsound(get_turf(src), pick(scream_sounds_german_l2), 100)
-		else
-			playsound(get_turf(src), pick(scream_sounds_german_dying), 100)
+	if (H.gender == MALE)
+		playsound(get_turf(H), 'sound/voice/scream_male.ogg', 100)
 	else
-		if (!dying)
-			switch (health_percentage)
-				if (0 to 20)
-					playsound(get_turf(src), pick(scream_sounds_russian_l5), 100)
-				if (21 to 40)
-					playsound(get_turf(src), pick(scream_sounds_russian_l4), 100)
-				if (41 to 60)
-					playsound(get_turf(src), pick(scream_sounds_russian_l3), 100)
-				if (61 to 80)
-					playsound(get_turf(src), pick(scream_sounds_russian_l2), 100)
-				if (81 to 100)
-					playsound(get_turf(src), pick(scream_sounds_russian_l1), 100)
-		else
-			playsound(get_turf(src), pick(scream_sounds_russian_dying), 100)
-
-			*/
+		playsound(get_turf(H), 'sound/voice/scream_female.ogg', 100)

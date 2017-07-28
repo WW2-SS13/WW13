@@ -158,16 +158,26 @@
 				if(CIVILIAN)
 					alive_ss++
 
+	var/total_en = alive_en + dead_en + heavily_injured_en
+	var/total_ru = alive_ru + dead_ru + heavily_injured_ru
+	var/total_ss = alive_ss + dead_ss + heavily_injured_ss
+
 	var/mortality_coefficient_en = 0
 	var/mortality_coefficient_ru = 0
 	var/mortality_coefficient_ss = 0
 
 	if (dead_en > 0)
 		mortality_coefficient_en = dead_en/(alive_en+heavily_injured_en+dead_en)
+	else if (!total_en || !(alive_en+heavily_injured_en))
+		mortality_coefficient_en = 1.0
 	if (dead_ru > 0)
 		mortality_coefficient_ru = dead_ru/(alive_ru+heavily_injured_ru+dead_ru)
+	else if (!total_ru || !(alive_ru+heavily_injured_ru))
+		mortality_coefficient_ru = 1.0
 	if (dead_ss > 0)
 		mortality_coefficient_ss = dead_ss/(alive_ss+heavily_injured_ss+dead_ss)
+	else if (!total_ss || !(alive_ss+heavily_injured_ss))
+		mortality_coefficient_ss = 1.0
 
 	#ifdef MORTALITYRATEDEBUG
 	world << "mortality_coefficient_en: [mortality_coefficient_en]"

@@ -188,6 +188,11 @@
 	if(!mob)
 		return // Moved here to avoid nullrefs below
 
+	if (istype(mob.loc, /obj/tank))
+		var/obj/tank/tank = mob.loc
+		tank.receive_command_from(mob, direct)
+		return 1
+
 	var/turf/t1 = n
 
 	if (t1 && t1.check_prishtina_block(mob))

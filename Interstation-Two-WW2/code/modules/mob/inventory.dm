@@ -38,6 +38,9 @@
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 //In most cases you will want to use equip_to_slot_if_possible()
 /mob/proc/equip_to_slot(obj/item/W as obj, slot)
+	if (ishuman(src))
+		var/mob/living/carbon/human/H = src
+		H.update_faction_huds_to_nearby_mobs()
 	return
 
 //This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
@@ -257,6 +260,9 @@ var/list/slot_equipment_priority = list( \
 		var/obj/item/I = O
 		I.forceMove(src.loc, MOVED_DROP)
 		I.dropped(src)
+	if (ishuman(src))
+		var/mob/living/carbon/human/H = src
+		H.update_faction_huds_to_nearby_mobs()
 	return 1
 
 

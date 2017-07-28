@@ -210,7 +210,7 @@
 		if ("deathgasp")
 			//message = "[species.death_message]"
 			//m_type = 1
-			scream_sound(1)
+			scream_sound(src, 1)
 
 		if ("giggle")
 			if(miming)
@@ -543,7 +543,7 @@
 					message = "makes a very loud noise."
 					m_type = 2
 
-			scream_sound(0)
+			scream_sound(src, 0)
 
 		if("swish")
 			src.animate_tail_once()

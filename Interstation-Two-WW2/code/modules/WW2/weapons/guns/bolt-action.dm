@@ -9,7 +9,9 @@
 	fire_sound = 'sound/weapons/mosin_shot.ogg'
 	caliber = "a762x54"
 	//+2 accuracy over the LWAP because only one shot
-	accuracy = 2
+	accuracy = DEFAULT_BOLTACTION_ACCURACY
+	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
+
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
@@ -43,8 +45,8 @@
 	ammo_type = /obj/item/ammo_casing/a792x57
 	magazine_type = /obj/item/ammo_magazine/kar98k
 	//+2 accuracy over the LWAP because only one shot
-	accuracy = 2
-	scoped_accuracy = 4
+	accuracy = DEFAULT_BOLTACTION_ACCURACY
+	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
 	bolt_safety = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 

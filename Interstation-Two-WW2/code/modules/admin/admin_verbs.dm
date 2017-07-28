@@ -11,7 +11,9 @@ var/list/admin_verbs_default = list(
 //	/client/proc/check_antagonists,		//shows all antags,
 	/client/proc/cmd_mentor_check_new_players,
 	/client/proc/Goto_adminzone,
-	/client/proc/see_spies
+	/client/proc/see_spies,
+	/client/proc/see_jews,
+	/client/proc/see_soldiers
 //	/client/proc/deadchat				//toggles deadchat on/off,
 	)
 var/list/admin_verbs_admin = list(

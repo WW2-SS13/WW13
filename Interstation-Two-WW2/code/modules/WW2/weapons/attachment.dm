@@ -78,6 +78,7 @@ Current Defines (_defines/attachment.dm)
     update_attachment_actions(H)
 
 /obj/item/weapon/gun/proc/add_attachment(obj/item/attachment/A, mob/user)
+  user << "<span class = 'notice'>You start to attach [A] to the [src].</span>"
   if(do_after(user, 15, user))
     attachments += A
     user.unEquip(A)
@@ -94,7 +95,7 @@ Current Defines (_defines/attachment.dm)
         var/obj/item/weapon/gun/projectile/boltaction/W = src
         W.update_icon(1)
 
-    user << "You attach [A] to the [src]."
+    user << "<span class = 'notice'>You attach [A] to the [src].</span>"
     return 0
 
 /obj/item/weapon/gun/proc/update_attachment_actions(mob/user)

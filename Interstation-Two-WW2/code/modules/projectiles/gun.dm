@@ -188,12 +188,17 @@
 	else
 		if(bayonet && isliving(A))
 			var/mob/living/l = A
-			var/obj/item/attachment/bayonet/a = bayonet
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
-			visible_message("<span class = 'danger'>[user] impales [l] with their gun's bayonet!</span>")
-			l.apply_damage(a.force * 2, BRUTE, def_zone)
-			l.Weaken(rand(1,2))
-			playsound(get_turf(src), a.attack_sound, rand(75,100))
+			if (prob(35) && l != user && !l.lying)
+				visible_message("<span class = 'danger'>[user] tries to bayonet [l], but they miss!</span>")
+			else
+				var/obj/item/attachment/bayonet/a = bayonet
+				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
+				visible_message("<span class = 'danger'>[user] impales [l] with their gun's bayonet!</span>")
+				l.apply_damage(a.force * 2, BRUTE, def_zone)
+				l.Weaken(rand(1,2))
+				if (l.stat == CONSCIOUS)
+					l.emote("scream")
+				playsound(get_turf(src), a.attack_sound, rand(90,100))
 		else
 			..() //Pistolwhippin'
 
@@ -317,6 +322,9 @@
 		spawn(5)
 			set_light(0)
 
+	if (ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.update_faction_huds_to_nearby_mobs() // overlays got wiped
 
 //obtains the next projectile to fire
 /obj/item/weapon/gun/proc/consume_next_projectile()

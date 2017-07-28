@@ -83,6 +83,12 @@
 		var/obj/mecha/M = loc
 		return M.click_action(A, src)
 
+	if (istype(loc, /obj/tank))
+		if (A == loc)
+			var/obj/tank/tank = loc
+			tank.handle_seat_exit(src)
+			return
+
 	if(restrained())
 		setClickCooldown(10)
 		RestrainedClickOn(A)

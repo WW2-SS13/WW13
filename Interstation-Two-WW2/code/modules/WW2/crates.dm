@@ -5,6 +5,14 @@
 	icon_opened = "opened"
 	icon_closed = "closed"
 
+/obj/structure/closet/crate/tank_fueltanks
+	name = "Tank fueltanks crate"
+	icon = 'icons/WW2/artillery_crate.dmi'
+	icon_state = "closed"
+	icon_opened = "opened"
+	icon_closed = "closed"
+
+
 /obj/structure/closet/crate/maximbelt
 	name = "Maxim ammo crate"
 	icon_state = "mil_crate_closed"
@@ -130,8 +138,13 @@
 
 /obj/structure/closet/crate/flammenwerfer_fueltanks/New()
 	..()
-	for (var/v in 1 to 10)
+	for (var/v in 1 to 20)
 		new/obj/item/weapon/flammenwerfer_fueltank(src)
+
+/obj/structure/closet/crate/tank_fueltanks/New()
+	..()
+	for (var/v in 1 to 20)
+		new/obj/item/weapon/tank_fueltank(src)
 
 /obj/structure/closet/crate/maximbelt/New()
 	..()
