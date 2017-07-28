@@ -1,26 +1,31 @@
+/mob/var/lastgib = -1
+
 //This is the proc for gibbing a mob. Cannot gib ghosts.
 //added different sort of gibs and animations. N
 /mob/proc/gib(anim="gibbed-m",do_gibs)
-	death(1)
-	transforming = 1
-	canmove = 0
-	icon = null
-	invisibility = 101
-	update_canmove()
-	dead_mob_list -= src
+	// should prevent spam-gibbing that causes immense lag - Kachnov
+	if (lastgib == -1 || world.time - lastgib > 10)
+		lastgib = world.time
+		death(1)
+		transforming = 1
+		canmove = 0
+		icon = null
+		invisibility = 101
+		update_canmove()
+		dead_mob_list -= src
 
-	var/atom/movable/overlay/animation = null
-	animation = new(loc)
-	animation.icon_state = "blank"
-	animation.icon = 'icons/mob/mob.dmi'
-	animation.master = src
+		var/atom/movable/overlay/animation = null
+		animation = new(loc)
+		animation.icon_state = "blank"
+		animation.icon = 'icons/mob/mob.dmi'
+		animation.master = src
 
-	flick(anim, animation)
-	if(do_gibs) gibs(loc, dna)
+		flick(anim, animation)
+		if(do_gibs) gibs(loc, dna)
 
-	spawn(15)
-		if(animation)	qdel(animation)
-		if(src)			qdel(src)
+		spawn(15)
+			if(animation)	qdel(animation)
+			if(src)			qdel(src)
 
 //This is the proc for turning a mob into ash. Mostly a copy of gib code (above).
 //Originally created for wizard disintegrate. I've removed the virus code since it's irrelevant here.

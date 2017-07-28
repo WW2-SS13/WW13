@@ -536,55 +536,6 @@ var/world_topic_spam_protect_time = world.timeofday
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
 				D.associate(directory[ckey])
-/*
-/world/proc/update_status()
-	var/s = ""
-
-	if (config && config.server_name)
-		s += "<b>[config.server_name]</b> &#8212; "
-
-	s += "<b>[station_name()]</b>";
-	s += " (<a href = \"https://discord.gg/NgpWkc5\" target=\"_blank\">Visit our discord!</a>)"
-	var/list/features = list()
-
-	if(ticker)
-		if(master_mode)
-			features += master_mode
-	else
-		features += "<b>STARTING</b>"
-
-	if (!config.enter_allowed)
-		features += "closed"
-
-	features += config.abandon_allowed ? "respawn" : "no respawn"
-
-	if (config && config.allow_vote_mode)
-		features += "vote"
-
-	if (config && config.allow_ai)
-		features += "AI allowed"
-
-	var/n = 0
-	for (var/mob/M in player_list)
-		if (M.client)
-			n++
-
-	if (n > 1)
-		features += "~[n] players"
-	else if (n > 0)
-		features += "~[n] player"
-
-
-	if (config && config.hostedby)
-		features += "hosted by <b>[config.hostedby]</b>"
-
-	if (features)
-		s += ": [jointext(features, ", ")]"
-
-	/* does this help? I do not know */
-	if (src.status != s)
-		src.status = s
-*/
 
 /world/proc/update_status()
 
@@ -592,7 +543,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		visibility = 0 // debug mode
 
 	// this can hold around 20 chars max I think, but keep it at 15 or so - Kachnov
-	var/freaking_cool_features = "Spies! New map!"
+
+	var/freaking_cool_features = "Partisans! Tanks! Paratroopers!"
 
 	//var/original_banner = "http://tny.im/9Bm"
 	//var/cavebob_banner_1 = "http://tny.im/9IQ"

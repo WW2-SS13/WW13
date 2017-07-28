@@ -16,12 +16,11 @@ datum/preferences
 
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
-//	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
-	var/ooccolor = "#C40F00"
+	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/list/be_special_role = list()		//Special role selection
 	var/UI_style = "ErisStyleHolo"
 	var/UI_useborder = 0
-	var/UI_style_color = "#F51301"
+	var/UI_style_color = "#039C21"
 	var/UI_style_alpha = 255
 
 	//character preferences
@@ -70,9 +69,11 @@ datum/preferences
 	var/list/language_prefixes = list() //Kanguage prefix keys
 	var/list/gear						//Custom/fluff item loadout.
 
+
 		//Some faction information.
 	var/religion = "None"               //Religious association.
 
+	var/be_spy = 0
 	var/be_jew = 0
 
  // TODO?

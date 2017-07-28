@@ -36,7 +36,7 @@
 
 
 /obj/item/weapon/storage/backpack/flammenwerfer/MouseDrop(obj/over_object as obj)
-	if (!nodrop) // if the flamethrower is in the bag, we can move it
+	if (!nodrop) // if the flamethrower is in the backpack, we can move it
 		return ..(over_object)
 
 
@@ -65,23 +65,6 @@
 				user << "<span class = 'notice'>You take the flamethrower from [src].</span>"
 	else
 		..(user)
-
-
-
-/*
-/obj/item/weapon/storage/backpack/flammenwerfer/dropped(var/mob/user)
-	..()
-
-	if (user.get_active_hand() == flamethrower || user.get_inactive_hand() == flamethrower)
-		user.u_equip(flamethrower)
-		flamethrower.loc = null
-
-	var/mob/m = flamethrower.loc
-
-	if (m && istype(m))
-		if (m.get_active_hand() == flamethrower || m.get_inactive_hand() == flamethrower)
-			m.u_equip(flamethrower)
-			flamethrower.loc = null*/
 
 
 /obj/item/weapon/storage/backpack/flammenwerfer/proc/explode()

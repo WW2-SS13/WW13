@@ -305,7 +305,8 @@ var/list/name_to_material
 	icon_colour = "#D9C179"
 	shard_type = SHARD_STONE_PIECE
 	weight = 22
-	hardness = 55 * 4 // made this MUCH harder - kachnov
+	integrity = 500
+	hardness = 250
 	door_icon_base = "stone"
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
@@ -321,7 +322,7 @@ var/list/name_to_material
 /material/steel
 	name = DEFAULT_WALL_MATERIAL
 	stack_type = /obj/item/stack/material/steel
-	integrity = 150
+	integrity = 300
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = "#666666"

@@ -26,11 +26,11 @@
 	caliber = "4mm"
 	slot_flags = 0
 	ammo_type = /obj/item/ammo_casing/c4mm
-
+	accuracy = DEFAULT_MG_ACCURACY
 
 	firemodes = list(
-		list(name="3000 rpm", burst=10, burst_delay=0.1, fire_delay=1, dispersion=list(1.0), accuracy=list(0)),
-		list(name="6000 rpm", burst=20, burst_delay=0.05, fire_delay=1, dispersion=list(1.5), accuracy=list(0))
+		list(name="3000 rpm", burst=10, burst_delay=0.1, fire_delay=0.5, dispersion=list(1.0)),
+		list(name="6000 rpm", burst=20, burst_delay=0.05, fire_delay=0.25, dispersion=list(1.5))
 		)
 
 	var/maximum_use_range = 0 // user loc at minigun's current loc (used in use_object.dm)

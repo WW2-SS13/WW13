@@ -144,7 +144,7 @@ var/list/global/organ_rel_size = list(
 // Emulates targetting a specific body part, and miss chances
 // May return null if missed
 // miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0, var/ranged_attack=0)
+/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0, var/ranged_attack=0, var/range = -1)
 
 	zone = check_zone(zone)
 
@@ -165,16 +165,34 @@ var/list/global/organ_rel_size = list(
 	miss_chance = max(miss_chance + miss_chance_mod, 0)
 
 	if (target.lying) //you should probably hit someone who is lying.
-		miss_chance /= 3
+		miss_chance /= 5
 
-
-	if (target.buckled) //frankly, not being able to hit a buckled dude is stupid - kachnov
+	if (target.buckled) //frankly, not being able to hit a buckled dude is stupid as fuck - kachnov
 		miss_chance = 0
 
+	// makes missing at a close distance much less stupid - Kachnov
+
+	if (range != -1)
+		if (range < 6 && range > 3)
+			if (!target.lying)
+				miss_chance/=2
+			else
+				miss_chance = 0
+		else if (range < 3)
+			if (!target.lying)
+				miss_chance/=4
+			else
+				miss_chance = 0
+		else if (range > 6)
+			miss_chance*=1.5
+
 	if(prob(miss_chance))
-		if(prob(70))
+		if(prob(90))
 			return null
-		return pick(base_miss_chance)
+		else if (prob(90)) // stop missing so much plz - Kachnov
+			return zone
+		else
+			return pick(base_miss_chance)
 	return zone
 
 

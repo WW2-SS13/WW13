@@ -25,6 +25,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	S["gender"]					>> pref.gender
 
+	S["be_spy"] >> pref.be_spy
 	S["be_jew"] >> pref.be_jew
 
 	// factional genders
@@ -55,6 +56,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	S["gender"]					<< pref.gender
 
+	S["be_spy"] << pref.be_spy
 	S["be_jew"] << pref.be_jew
 
 	// factional genders
@@ -76,6 +78,8 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	pref.gender 		= sanitize_inlist(pref.gender, valid_player_genders, pick(valid_player_genders))
 	pref.german_gender 		= sanitize_inlist(pref.german_gender, valid_player_genders, pick(valid_player_genders))
 	pref.russian_gender 		= sanitize_inlist(pref.russian_gender, valid_player_genders, pick(valid_player_genders))
+	pref.be_jew 		= sanitize_inlist(pref.be_jew, list(0,1), pick(list(0,1)))
+	pref.be_spy 		= sanitize_inlist(pref.be_spy, list(0,1), pick(list(0,1)))
 	pref.body_build 	= sanitize_inlist(pref.body_build, list("Slim", "Default", "Fat"), "Default")
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.gender
 	pref.real_name		= sanitize_name(pref.real_name, pref.species)
@@ -124,6 +128,9 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
 	. += "<b>German Gender:</b> <a href='?src=\ref[src];gender_german=1'><b>[capitalize(lowertext(pref.german_gender))]</b></a><br>"
 	. += "<b>Russian Gender:</b> <a href='?src=\ref[src];gender_russian=1'><b>[capitalize(lowertext(pref.russian_gender))]</b></a><br>"
+	//misc antag stuff
+	. += "<b>Be Jew:</b> <a href='?src=\ref[src];be_jew=1'><b>[capitalize(lowertext(pref.be_jew ? "Yes" : "No"))]</b></a><br>"
+	. += "<b>Be Spy:</b> <a href='?src=\ref[src];be_spy=1'><b>[capitalize(lowertext(pref.be_spy ? "Yes" : "No"))]</b></a><br>"
 
 	var/client/client = pref.client
 	// donor stuff
@@ -213,6 +220,15 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	else if(href_list["gender_russian"])
 		pref.russian_gender = next_in_list(pref.russian_gender, valid_player_genders)
 		return TOPIC_REFRESH
+
+	else if(href_list["be_jew"])
+		pref.be_jew = next_in_list(pref.be_jew, list(0,1))
+		return TOPIC_REFRESH
+
+	else if(href_list["be_spy"])
+		pref.be_spy = next_in_list(pref.be_spy, list(0,1))
+		return TOPIC_REFRESH
+
 
 	else if (href_list["role_preference_ger"])
 

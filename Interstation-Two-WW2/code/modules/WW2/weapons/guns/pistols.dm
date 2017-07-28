@@ -17,7 +17,7 @@
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/luger
-	accuracy = -3
+	accuracy = DEFAULT_PISTOL_ACCURACY
 
 
 /////////////////////FLAREGUNS//////////////////////////////////////////

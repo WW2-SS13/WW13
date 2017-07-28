@@ -31,10 +31,10 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		create_fire(exposed_temperature)
 	return igniting
 
-/turf/proc/create_fire(fl, temp)
+/turf/proc/create_fire(fl, temp, spread = 1)
 	return 0
 
-/turf/simulated/create_fire(fl, temp)
+/turf/simulated/create_fire(fl, temp, spread = 1)
 
 	if(fire)
 		fire.firelevel = max(fl, fire.firelevel)
@@ -42,6 +42,9 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		return 1
 
 	fire = new(src, fl)
+
+	if (!spread)
+		fire.nospread = 1
 
 	fire.temperature = temp
 

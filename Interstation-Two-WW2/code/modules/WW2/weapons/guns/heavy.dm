@@ -15,7 +15,7 @@
 	max_shells = 1
 	ammo_type = /obj/item/ammo_casing/a145
 	//+2 accuracy over the LWAP because only one shot
-	accuracy = -1
+	accuracy = DEFAULT_BOLTACTION_ACCURACY + 2
 	scoped_accuracy = 2
 
 /obj/item/weapon/gun/projectile/heavysniper/ptrd/update_icon()
@@ -35,15 +35,15 @@
 	caliber = "a556x45"
 	magazine_type = /obj/item/ammo_magazine/a556x45
 
-	accuracy = -2
-	scoped_accuracy = 4
+	accuracy = DEFAULT_MG_ACCURACY + 1
+	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
 
 	can_wield = 1
 	must_wield = 1
 	can_scope = 1
 
 	firemodes = list(
-		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, accuracy = list(0), dispersion = list(0))
+		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, dispersion = list(0))
 		)
 
 /obj/item/weapon/gun/projectile/mk12/update_icon()

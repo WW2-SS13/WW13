@@ -71,6 +71,7 @@ var/list/global/wall_cache = list()
 		return PROCESS_KILL
 
 /turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
+
 	if(istype(Proj,/obj/item/projectile/beam))
 		burn(2500)
 	else if(istype(Proj,/obj/item/projectile/ion))
@@ -152,7 +153,9 @@ var/list/global/wall_cache = list()
 	return
 
 /turf/simulated/wall/proc/update_damage()
-	var/cap = material.integrity
+
+	var/cap = material ? material.integrity : 150
+
 	if(reinf_material)
 		cap += reinf_material.integrity
 

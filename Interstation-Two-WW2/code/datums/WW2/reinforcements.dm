@@ -74,6 +74,14 @@ var/datum/reinforcements/reinforcements_master
 
 /datum/reinforcements/proc/tick()
 
+	if (clients.len <= 20 && reinforcement_spawn_req != 1)
+		reinforcement_spawn_req = 1
+		world << "<span class = 'danger'>Due to there being less than 20 players, reinforcements now require only 1 person to fill a queue.</span>"
+	else if (clients.len > 20 && reinforcement_spawn_req == 1)
+		reinforcement_spawn_req = initial(reinforcement_spawn_req)
+		world << "<span class = 'danger'>Due to there being more than 20 players, reinforcements now require 3 people to fill a queue.</span>"
+
+
 	spawn while (1)
 
 		if (reinforcement_pool["RUSSIAN"] && reinforcement_pool["GERMAN"])

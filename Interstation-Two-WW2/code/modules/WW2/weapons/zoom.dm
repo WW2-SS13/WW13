@@ -118,6 +118,7 @@ Parts of code courtesy of Super3222
 	return 1
 
 /obj/item/attachment/scope/proc/zoom(mob/living/user, forced_zoom, var/bypass_can_zoom = 0)
+
 	if(!user || !user.client)
 		return
 
@@ -159,8 +160,14 @@ Parts of code courtesy of Super3222
 						if(WEST)
 							_x += view_offset
 					animate(user.client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, 4, 1)
+					animate(user.client, pixel_x = 0, pixel_y = 0)
+					user.client.pixel_x = world.icon_size*_x
+					user.client.pixel_y = world.icon_size*_y
 				else // Otherwise just slide the camera
 					animate(user.client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, 4, 1)
+					animate(user.client, pixel_x = 0, pixel_y = 0)
+					user.client.pixel_x = world.icon_size*_x
+					user.client.pixel_y = world.icon_size*_y
 				user.visible_message("[user] peers through the [zoomdevicename ? "[zoomdevicename] of \the [src.name]" : "[src.name]"].")
 			else
 				zoomed = FALSE
@@ -208,8 +215,8 @@ Parts of code courtesy of Super3222
 
 /mob/living/carbon/human/Move()//Resets zoom on movement
 	..()
-	if(client && actions)
-		if(client.pixel_x | client.pixel_y) //Cancel currently scoped weapons
+	if(client && actions.len)
+		if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 			for(var/datum/action/toggle_scope/T in actions)
 				if(T.scope.zoomed)
 					T.scope.zoom(src, FALSE)

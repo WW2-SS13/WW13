@@ -16,6 +16,8 @@
 	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
 	spawn_location = "JoinLateRACO"
 	additional_languages = list( "German" = 100 )
+	is_officer = 1
+	is_commander = 1
 
 /datum/job/russian/commander/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -55,6 +57,7 @@
 	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
 	spawn_location = "JoinLateRASO"
 	additional_languages = list( "German" = 100 )
+	is_officer = 1
 
 /datum/job/russian/staff_officer/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -94,6 +97,8 @@
 	spawn_location = "JoinLateRASL"
 	fallback_spawn_location = "JoinLateRussia-Fallback"
 	additional_languages = list( "German" = 33 )
+	is_officer = 1
+	is_squad_leader = 1
 
 /datum/job/russian/squad_leader/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -158,6 +163,7 @@
 	access = list(access_ru_soldier, access_ru_medic)
 	minimal_access = list(access_ru_soldier, access_ru_medic)
 	spawn_location = "JoinLateRADr"
+	is_nonmilitary = 1
 
 /datum/job/russian/doctor/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -384,8 +390,8 @@ var/first_guard = 0
 	access = list(access_ru_soldier, access_ru_heavy_weapon)
 	minimal_access = list(access_ru_soldier, access_ru_heavy_weapon)
 	spawn_location = "JoinLateRAQM"
-
 	additional_languages = list( "German" = 100 )
+	is_officer = 1
 
 /datum/job/russian/zavhoz/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0

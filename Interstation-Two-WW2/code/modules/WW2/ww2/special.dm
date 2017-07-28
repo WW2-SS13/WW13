@@ -10,12 +10,13 @@ var/secret_ladder_message = null
 	var/ru = 0
 
 	for(var/mob/living/carbon/human/H in human_mob_list)
+
 		var/datum/job/job = H.original_job
 		if(!job)
 			usr << "\red [H] has no job!"
 			continue
 
-		if(H.stat != DEAD && !H.restrained())
+		if(H.stat != DEAD && !H.restrained() && H.client)
 			switch(job.department_flag)
 				if(GEFORCE)
 					en++
@@ -113,6 +114,16 @@ var/secret_ladder_message = null
 
 	world << "<font size=3><span class = 'notice'>It's [lowertext(time_of_day)].</span></font>"
 
+	var/mice_spawned = 0
+	var/max_mice = rand(50,75)
+
+	for (var/area/prishtina/soviet/bunker/area in world)
+		for (var/turf/t in area.contents)
+			if (prob(1))
+				new/mob/living/simple_animal/mouse/gray(t)
+				++mice_spawned
+				if (mice_spawned > max_mice)
+					return 1
 	return 1
 
 var/wlg_total = 0
@@ -237,51 +248,3 @@ var/mission_announced = 0
 				world << "<font size=4>The 10 minute grace period has ended. Either side can now cross the river!</font>"
 
 	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] SS.</font>"
-	var/ru_fireteams = 0
-	var/en_fireteams = 0
-	for(var/datum/fireteam/ft in job_master.fireteams)
-		if(!ft.is_full())
-			continue
-		if(ft.side == RUFORCE)
-			ru_fireteams++
-		if(ft.side == GEFORCE)
-			en_fireteams++
-	world << "<font size=3>Fireteams report: [en_fireteams] German full fireteams, [ru_fireteams] Soviet full otdeleniy and spec otryadov."
-	for(var/datum/fireteam/ft in job_master.fireteams)
-		var/text = "[get_side_name(ft.side)] - [ft.code]"
-		if(ft.name)
-			text += " named \"[ft.name]\"."
-		world << "<font size=2>-[text]</font>"
-	return 1
-/*
-/hook/train_move/proc/announce_mission_start()
-
-	if(mission_announced)
-		return 1
-
-	mission_announced = 1
-
-	var/preparation_time = world.time - roundstart_time
-
-	world << "<font size=4>The German assault has started after [preparation_time / 600] minutes of preparation.</font>"
-	world << "<font size=3>Both sides are locked for joining.</font>."
-	game_started = 1
-	ticker.can_latejoin_ruforce = 0
-	ticker.can_latejoin_geforce = 0
-	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] civilians.</font>"
-	var/ru_fireteams = 0
-	var/en_fireteams = 0
-	for(var/datum/fireteam/ft in job_master.fireteams)
-		if(!ft.is_full())
-			continue
-		if(ft.side == RUFORCE)
-			ru_fireteams++
-		if(ft.side == GEFORCE)
-			en_fireteams++
-	world << "<font size=3>Fireteams report: [en_fireteams] German full fireteams, [ru_fireteams] Soviet full otdeleniy and spec otryadov."
-	for(var/datum/fireteam/ft in job_master.fireteams)
-		var/text = "[get_side_name(ft.side)] - [ft.code]"
-		if(ft.name)
-			text += " named \"[ft.name]\"."
-		world << "<font size=2>-[text]</font>"
-	return 1*/

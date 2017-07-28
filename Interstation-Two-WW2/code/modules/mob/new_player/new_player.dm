@@ -326,9 +326,9 @@
 	//	ticker.mode.handle_latejoin(character)
 	character.lastarea = get_area(loc)
 
-	if (needs_random_name)
-		if (names_used[character.real_name])
-			character.mind.assigned_job.give_random_name(character)
+	//if (needs_random_name)
+	if (names_used[character.real_name])
+		character.mind.assigned_job.give_random_name(character)
 
 	names_used[character.real_name] = 1
 
@@ -417,6 +417,10 @@
 	//	AnnounceCyborg(character, rank, join_message)
 	//	ticker.mode.handle_latejoin(character)
 	character.lastarea = get_area(loc)
+
+	if (names_used[character.real_name])
+		character.mind.assigned_job.give_random_name(character)
+
 	names_used[character.real_name] = 1
 
 	qdel(src)

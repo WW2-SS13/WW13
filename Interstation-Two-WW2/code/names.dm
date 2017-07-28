@@ -12,6 +12,11 @@ var/list/first_names_male_german = file2list("config/names/first_male_german.txt
 var/list/first_names_female_german = file2list("config/names/first_female_german.txt")
 var/list/last_names_german = file2list("config/names/last_german.txt")
 
+var/list/first_names_male_german_jew = file2list("config/names/first_male_german_jew.txt")
+var/list/first_names_female_german_jew = file2list("config/names/first_female_german_jew.txt")
+var/list/last_names_german_jew = file2list("config/names/last_german_jew.txt")
+
+
 var/list/first_names_male_russian = file2list("config/names/first_male_russian.txt")
 var/list/first_names_female_russian = file2list("config/names/first_female_russian.txt")
 var/list/last_names_russian = file2list("config/names/last_russian.txt")

@@ -26,6 +26,8 @@
 
 	var/ticks = 0
 
+	var/nospread = 0
+
 /obj/fire/process()
 	. = 1
 
@@ -55,31 +57,33 @@
 	//	A.fire_act(air_contents, air_contents.temperature, air_contents.volume)
 
 	//spread
-	for(var/direction in cardinal)
-		var/turf/simulated/enemy_tile = get_step(my_tile, direction)
 
-		if(istype(enemy_tile))
-			if(my_tile.open_directions & direction) //Grab all valid bordering tiles
-				if(enemy_tile.fire)
-					continue
+	if (!nospread)
+		for(var/direction in cardinal)
+			var/turf/simulated/enemy_tile = get_step(my_tile, direction)
 
-				//if(!enemy_tile.zone.fire_tiles.len) TODO - optimize
-				var/datum/gas_mixture/acs = enemy_tile.return_air()
-				var/obj/effect/decal/cleanable/liquid_fuel/liquid = locate() in enemy_tile
-				if(!acs || !acs.check_combustability(liquid))
-					continue
+			if(istype(enemy_tile))
+				if(my_tile.open_directions & direction) //Grab all valid bordering tiles
+					if(enemy_tile.fire)
+						continue
 
-				//If extinguisher mist passed over the turf it's trying to spread to, don't spread and
-				//reduce firelevel.
+					//if(!enemy_tile.zone.fire_tiles.len) TODO - optimize
+					var/datum/gas_mixture/acs = enemy_tile.return_air()
+					var/obj/effect/decal/cleanable/liquid_fuel/liquid = locate() in enemy_tile
+					if(!acs || !acs.check_combustability(liquid))
+						continue
 
-				if(enemy_tile.fire_protection > world.time-30)
-					firelevel -= 1.5
-					continue
+					//If extinguisher mist passed over the turf it's trying to spread to, don't spread and
+					//reduce firelevel.
 
-				//Spread the fire.
+					if(enemy_tile.fire_protection > world.time-30)
+						firelevel -= 1.5
+						continue
 
-				if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile.CanPass(null, enemy_tile, 0,0) && enemy_tile.CanPass(null, my_tile, 0,0))
-					enemy_tile.create_fire(firelevel)
+					//Spread the fire.
+
+					if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile && my_tile.CanPass(null, enemy_tile, 0,0) && enemy_tile && enemy_tile.CanPass(null, my_tile, 0,0))
+						enemy_tile.create_fire(firelevel)
 
 		//	else
 			//	enemy_tile.adjacent_fire_act(loc, air_contents, air_contents.temperature, air_contents.volume)

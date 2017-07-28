@@ -24,7 +24,22 @@
 	var/germans_in_russia = 0
 
 	for (var/mob/living/carbon/human/H in player_list)
+
+		var/H_side = ""
+
 		if (istype(H.original_job, /datum/job/russian))
+			if (H.is_spy)
+				H_side = "GERMAN"
+			else
+				H_side = "RUSSIAN"
+
+		if (istype(H.original_job, /datum/job/german))
+			if (H.is_spy)
+				H_side = "RUSSIAN"
+			else
+				H_side = "GERMAN"
+
+		if (H_side == "RUSSIAN")
 			if (H.stat != DEAD && H.stat != UNCONSCIOUS)
 				++alive_russians
 				if (is_german_contested_zone(get_area(H)))
@@ -32,7 +47,7 @@
 				else if (is_russian_contested_zone(get_area(H)))
 					++russians_in_russia
 
-		else if (istype(H.original_job, /datum/job/german))
+		else if (H_side == "GERMAN")
 			if (H.stat != DEAD && H.stat != UNCONSCIOUS)
 				++alive_germans
 				if (is_german_contested_zone(get_area(H)))
@@ -85,10 +100,22 @@
 	var/admins_triggered_roundend = 0
 	var/admins_triggered_noroundend = 0
 
+// win conditions for one side already exist, make sure we
+// don't active another
+/datum/game_mode/ww2/proc/trying_to_win()
+	return (cond_2_1_check1 || cond_2_2_check1 || cond_2_3_check1 || cond_2_4_check1)
+
+
 /datum/game_mode/ww2/check_finished()
 	if (admins_triggered_noroundend)
 		return 0 // no matter what, don't end
-	if (..() == 1 || admins_triggered_roundend)
+	else if (..() == 1 || admins_triggered_roundend)
+		return 1
+	else if (WW2_soldiers_en_ru_ratio() == 1000 && game_started)
+		winning_side = "German Army"
+		return 1
+	else if (WW2_soldiers_en_ru_ratio() == 1/1000 && game_started)
+		winning_side = "Soviet Army"
 		return 1
 	else
 
@@ -125,7 +152,7 @@
 		// russians in the german base is > than the amount of germans there
 
 		if (alive_russians > alive_germans)
-			if (russians_in_germany > germans_in_germany && !cond_2_1_check1)
+			if (russians_in_germany > germans_in_germany && !cond_2_1_check1 && !trying_to_win())
 				cond_2_1_check1 = 1
 				cond_2_1_nextcheck = world.time + 3000
 				world << "<font size = 3>The Soviets have occupied most German territory! The German Army has 5 minutes to reclaim their land!</font>"
@@ -140,7 +167,7 @@
 		// in the russian base is > than the amount of russians there
 
 		if (alive_germans > alive_russians)
-			if (germans_in_russia > russians_in_russia && !cond_2_2_check1)
+			if (germans_in_russia > russians_in_russia && !cond_2_2_check1 && !trying_to_win())
 				cond_2_2_check1 = 1
 				cond_2_2_nextcheck = world.time + 3000
 				world << "<font size = 3>The Germans have occupied most Soviet territory! The Soviet Army has 5 minutes to reclaim their land!</font>"
@@ -155,7 +182,7 @@
 		// base, regardless of general numerical superiority/inferiority.
 		// they have to hold this position for 10+ minutes
 
-		if ((germans_in_russia/1.33) > russians_in_russia)
+		if ((germans_in_russia/1.33) > russians_in_russia && !trying_to_win())
 			if(!cond_2_3_check1)
 				cond_2_3_check1 = 1
 				cond_2_3_nextcheck = world.time + 6000
@@ -171,7 +198,7 @@
 		// base, regardless of general numerical superiority/inferiority.
 		// they have to hold this position for 10+ minutes
 
-		if ((russians_in_germany/1.33) > germans_in_germany)
+		if ((russians_in_germany/1.33) > germans_in_germany && !trying_to_win())
 			if(!cond_2_4_check1)
 				cond_2_4_check1 = 1
 				cond_2_4_nextcheck = world.time + 6000
@@ -234,6 +261,11 @@
 			text += "<big>The [winning_side] won by a war of attrition.</big>"
 
 	world << text
+
+	for (var/client/client in clients)
+		client << "<br>"
+		print_spies(client, 0)
+		print_jews(client, 0)
 
 /datum/game_mode/ww2/announce() //to be called when round starts
 	world << "<b>The current game mode is World War II!</b>"

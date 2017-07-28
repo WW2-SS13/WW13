@@ -3,7 +3,6 @@
 	icon = 'icons/obj/items.dmi'
 	w_class = 3.0
 
-	// kachnov
 	var/nodrop = 0
 	var/list/actions = list() //list of /datum/action's that this item has.
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
@@ -219,6 +218,15 @@
 
 /obj/item/proc/bypass_no_drop_check()
 	if (istype(src, /obj/item/weapon/flamethrower/flammenwerfer) || istype(src, /obj/item/weapon/storage/backpack/flammenwerfer))
+
+		if (istype(src, /obj/item/weapon/flamethrower/flammenwerfer))
+			var/obj/item/weapon/flamethrower/flammenwerfer/flammenwerfer = src
+			flammenwerfer.nodrop = 0
+		else
+			var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = src
+			backpack.nodrop = 0
+			backpack.flamethrower.nodrop = 0
+
 		if (ismob(src.loc))
 			var/mob/m = src.loc
 			if (m.stat == UNCONSCIOUS || m.stat == DEAD)
@@ -231,6 +239,13 @@
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
+	if (istype(src, /obj/item/weapon/flamethrower/flammenwerfer))
+		var/obj/item/weapon/flamethrower/flammenwerfer/flammenwerfer = src
+		flammenwerfer.nodrop = 1
+	else if (istype(src, /obj/item/weapon/storage/backpack/flammenwerfer))
+		var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = src
+		backpack.nodrop = 1
+		backpack.flamethrower.nodrop = 1
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.

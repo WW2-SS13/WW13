@@ -676,6 +676,11 @@ default behaviour is:
 	resting = !resting
 	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
 
+	if (ishuman(src) && client)
+		spawn (25) // wait till we actually rest
+			var/mob/living/carbon/human/H = src
+			H.update_faction_huds_to_nearby_mobs()
+
 /mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	return isnull(get_inventory_slot(carried_item))
 

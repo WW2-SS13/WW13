@@ -95,3 +95,14 @@
 
 	var/stance_damage = 0 //Whether this mob's ability to stand has been affected
 	var/identifying_gender // In case the human identifies as another gender than it's biological
+
+	var/list/all_job_factions = list()
+	var/datum/job_faction/base_job_faction = null
+	var/datum/job_faction/officer_job_faction = null
+	var/datum/job_faction/squad/squad_job_faction = null
+	var/datum/job_faction/spy_job_faction = null
+
+	var/list/job_faction_images[100] // names are keys, values are images
+
+	var/is_spy = 0
+	var/is_jew = 0

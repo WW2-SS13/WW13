@@ -18,6 +18,15 @@
 	var/global/list/acceptable_reagents // List of the reagents you can put in
 	var/global/max_n_of_items = 0
 
+	var/base_state = "mw"
+	var/on_state = "mw1"
+	var/open_state = "mwo"
+	var/off_state = "mw0"
+	var/broken_state = "mwb"
+	var/bloody_state = "mwbloody"
+	var/bloody_off_state = "mwbloody0"
+	var/bloody_open_state = "mwbloodyo"
+	var/bloody_on_state = "mwbloody1"
 
 // see code/modules/food/recipes_microwave.dm for recipes
 
@@ -56,26 +65,26 @@
 	if(src.broken > 0)
 		if(src.broken == 2 && istype(O, /obj/item/weapon/screwdriver)) // If it's broken and they're using a screwdriver
 			user.visible_message( \
-				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
-				"<span class='notice'>You start to fix part of the microwave.</span>" \
+				"<span class='notice'>\The [user] starts to fix part of the [lowertext(name)].</span>", \
+				"<span class='notice'>You start to fix part of the [lowertext(name)].</span>" \
 			)
 			if (do_after(user, 20, src))
 				user.visible_message( \
-					"<span class='notice'>\The [user] fixes part of the microwave.</span>", \
-					"<span class='notice'>You have fixed part of the microwave.</span>" \
+					"<span class='notice'>\The [user] fixes part of the [lowertext(name)].</span>", \
+					"<span class='notice'>You have fixed part of the [lowertext(name)].</span>" \
 				)
 				src.broken = 1 // Fix it a bit
 		else if(src.broken == 1 && istype(O, /obj/item/weapon/wrench)) // If it's broken and they're doing the wrench
 			user.visible_message( \
-				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
-				"<span class='notice'>You start to fix part of the microwave.</span>" \
+				"<span class='notice'>\The [user] starts to fix part of the [lowertext(name)].</span>", \
+				"<span class='notice'>You start to fix part of the [lowertext(name)].</span>" \
 			)
 			if (do_after(user, 20, src))
 				user.visible_message( \
-					"<span class='notice'>\The [user] fixes the microwave.</span>", \
-					"<span class='notice'>You have fixed the microwave.</span>" \
+					"<span class='notice'>\The [user] fixes the [lowertext(name)].</span>", \
+					"<span class='notice'>You have fixed the [lowertext(name)].</span>" \
 				)
-				src.icon_state = "mw"
+				src.icon_state = base_state
 				src.broken = 0 // Fix it!
 				src.dirty = 0 // just to be sure
 				src.flags = OPENCONTAINER
@@ -85,17 +94,17 @@
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/weapon/reagent_containers/spray/cleaner)) // If they're trying to clean it then let them
 			user.visible_message( \
-				"<span class='notice'>\The [user] starts to clean the microwave.</span>", \
-				"<span class='notice'>You start to clean the microwave.</span>" \
+				"<span class='notice'>\The [user] starts to clean the [lowertext(name)].</span>", \
+				"<span class='notice'>You start to clean the [lowertext(name)].</span>" \
 			)
 			if (do_after(user, 20, src))
 				user.visible_message( \
-					"<span class='notice'>\The [user] has cleaned the microwave.</span>", \
-					"<span class='notice'>You have cleaned the microwave.</span>" \
+					"<span class='notice'>\The [user] has cleaned the [lowertext(name)].</span>", \
+					"<span class='notice'>You have cleaned the [lowertext(name)].</span>" \
 				)
 				src.dirty = 0 // It's clean!
 				src.broken = 0 // just to be sure
-				src.icon_state = "mw"
+				src.icon_state = base_state
 				src.flags = OPENCONTAINER
 		else //Otherwise bad luck!!
 			user << "<span class='warning'>It's dirty!</span>"
@@ -137,13 +146,13 @@
 		return 1
 	else if(istype(O,/obj/item/weapon/crowbar))
 		user.visible_message( \
-			"<span class='notice'>\The [user] begins [src.anchored ? "securing" : "unsecuring"] the microwave.</span>", \
-			"<span class='notice'>You attempt to [src.anchored ? "secure" : "unsecure"] the microwave.</span>"
+			"<span class='notice'>\The [user] begins [src.anchored ? "securing" : "unsecuring"] the [lowertext(name)].</span>", \
+			"<span class='notice'>You attempt to [src.anchored ? "secure" : "unsecure"] the [lowertext(name)].</span>"
 			)
 		if (do_after(user,20, src))
 			user.visible_message( \
-			"<span class='notice'>\The [user] [src.anchored ? "secures" : "unsecures"] the microwave.</span>", \
-			"<span class='notice'>You [src.anchored ? "secure" : "unsecure"] the microwave.</span>"
+			"<span class='notice'>\The [user] [src.anchored ? "secures" : "unsecures"] the [lowertext(name)].</span>", \
+			"<span class='notice'>You [src.anchored ? "secure" : "unsecure"] the [lowertext(name)].</span>"
 			)
 			src.anchored = !src.anchored
 		else
@@ -171,9 +180,12 @@
 	if(src.broken > 0)
 		dat = {"<TT>Bzzzzttttt</TT>"}
 	else if(src.operating)
-		dat = {"<TT>Microwaving in progress!<BR>Please wait...!</TT>"}
+		if (!istype(src, /obj/machinery/microwave/oven))
+			dat = {"<TT>Microwaving in progress!<BR>Please wait...!</TT>"}
+		else
+			dat = {"<TT>Cooking in progress!<BR>Please wait...!</TT>"}
 	else if(src.dirty==100)
-		dat = {"<TT>This microwave is dirty!<BR>Please clean it before use!</TT>"}
+		dat = {"<TT>This [lowertext(name)] is dirty!<BR>Please clean it before use!</TT>"}
 	else
 		var/list/items_counts = new
 		var/list/items_measures = new
@@ -216,7 +228,7 @@
 			dat += {"<B>[display_name]:</B> [R.volume] unit\s<BR>"}
 
 		if (items_counts.len==0 && reagents.reagent_list.len==0)
-			dat = {"<B>The microwave is empty</B><BR>"}
+			dat = {"<B>The [lowertext(name)] is empty</B><BR>"}
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
 		dat += {"<HR><BR>\
@@ -224,7 +236,7 @@
 <A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
 "}
 
-	user << browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave")
+	user << browse("<HEAD><TITLE>[name] Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave")
 	onclose(user, "microwave")
 	return
 
@@ -309,20 +321,20 @@
 	return 0
 
 /obj/machinery/microwave/proc/start()
-	src.visible_message("<span class='notice'>The microwave turns on.</span>", "<span class='notice'>You hear a microwave.</span>")
+	src.visible_message("<span class='notice'>The [lowertext(name)] turns on.</span>", "<span class='notice'>You hear a [lowertext(name)].</span>")
 	src.operating = 1
-	src.icon_state = "mw1"
+	src.icon_state = on_state
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/abort()
 	src.operating = 0 // Turn it off again aferwards
-	src.icon_state = "mw"
+	src.icon_state = base_state
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/stop()
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	src.operating = 0 // Turn it off again aferwards
-	src.icon_state = "mw"
+	src.icon_state = base_state
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/dispose()
@@ -331,7 +343,7 @@
 	if (src.reagents.total_volume)
 		src.dirty++
 	src.reagents.clear_reagents()
-	usr << "<span class='notice'>You dispose of the microwave contents.</span>"
+	usr << "<span class='notice'>You dispose of the [lowertext(name)] contents.</span>"
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/muck_start()
@@ -340,10 +352,10 @@
 
 /obj/machinery/microwave/proc/muck_finish()
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
-	src.visible_message("<span class='warning'>The microwave gets covered in muck!</span>")
+	src.visible_message("<span class='warning'>The [lowertext(name)] gets covered in muck!</span>")
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
 	src.flags = null //So you can't add condiments
-	src.icon_state = "mwbloody" // Make it look dirty too
+	src.icon_state = bloody_state // Make it look dirty too
 	src.operating = 0 // Turn it off again aferwards
 	src.updateUsrDialog()
 
@@ -351,8 +363,8 @@
 	var/datum/effect/effect/system/spark_spread/s = new
 	s.set_up(2, 1, src)
 	s.start()
-	src.icon_state = "mwb" // Make it look all busted up and shit
-	src.visible_message("<span class='warning'>The microwave breaks!</span>") //Let them know they're stupid
+	src.icon_state = broken_state // Make it look all busted up and shit
+	src.visible_message("<span class='warning'>The [lowertext(name)] breaks!</span>") //Let them know they're stupid
 	src.broken = 2 // Make it broken so it can't be used util fixed
 	src.flags = null //So you can't add condiments
 	src.operating = 0 // Turn it off again aferwards
