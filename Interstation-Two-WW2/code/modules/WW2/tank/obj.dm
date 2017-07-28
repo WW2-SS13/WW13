@@ -162,7 +162,7 @@
 		if (fuel/max_fuel < 0.2)
 			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 20%!</big></span>")
 			last_spam = world.time
-		else if (fuel/max_fuel < 0.5)
+		else if (fuel/max_fuel <= 0.5)
 			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 50%.</big></span>")
 			last_spam = world.time
 
