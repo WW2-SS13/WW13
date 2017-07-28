@@ -146,6 +146,7 @@
 #include "code\controllers\Processes\emergencyShuttle.dm"
 #include "code\controllers\Processes\event.dm"
 #include "code\controllers\Processes\garbage.dm"
+#include "code\controllers\Processes\human.dm"
 #include "code\controllers\Processes\inactivity.dm"
 #include "code\controllers\Processes\machinery.dm"
 #include "code\controllers\Processes\mob.dm"
@@ -2010,5 +2011,5 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\battlegroundforest_marco_v2.2_hayden.721.dmm"
+#include "maps\testing-map.dmm"
 // END_INCLUDE

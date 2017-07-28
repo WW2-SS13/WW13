@@ -270,7 +270,7 @@
 		text += "<big>[win_condition]</big>"
 	else
 		if (winning_side)
-			text += "<big>The [winning_side] won by a war of attrition.</big>"
+			text += "<big><i>The [winning_side] won by a war of attrition.</i></big>"
 
 	world << text
 

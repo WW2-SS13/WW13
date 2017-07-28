@@ -64,13 +64,6 @@
 	if(wearing_rig && wearing_rig.offline)
 		wearing_rig = null
 
-	if (client)
-		update_faction_huds_to_nearby_mobs()
-
-		for (var/mob/living/carbon/human/H in view(client.view, src))
-			if (H.stat == DEAD || !H.client) // not processing in Life()
-				H.update_faction_huds_to_nearby_mobs()
-
 	..()
 
 	if(life_tick%30==15)

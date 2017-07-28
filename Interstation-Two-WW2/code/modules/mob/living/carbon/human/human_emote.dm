@@ -1,3 +1,5 @@
+/mob/living/carbon/human/var/last_scream = -1
+
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 	var/param = null
 
@@ -206,11 +208,12 @@
 				else
 					message = "makes a weak noise."
 					m_type = 2
-
+/*
 		if ("deathgasp")
 			//message = "[species.death_message]"
 			//m_type = 1
-			scream_sound(src, 1)
+			if (last_scream == -1 || world.time - last_scream >= 10)
+				scream_sound(src, 1)*/
 
 		if ("giggle")
 			if(miming)
@@ -532,6 +535,9 @@
 					message = "sadly can't find anybody to give daps to, and daps [get_visible_gender() == MALE ? "himself" : get_visible_gender() == FEMALE ? "herself" : "themselves"]. Shameful."
 
 		if ("scream")
+			if (last_scream != -1 && world.time - last_scream < 10)
+				return
+			last_scream = world.time
 			if (miming)
 				message = "acts out a scream!"
 				m_type = 1

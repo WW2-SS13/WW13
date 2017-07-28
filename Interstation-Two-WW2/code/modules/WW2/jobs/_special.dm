@@ -98,13 +98,13 @@
 					user.squad_job_faction = new/datum/job_faction/squad/four/leader(user, src)
 		else if (!is_officer && !is_commander && !is_nonmilitary && !istype(src, /datum/job/german/soldier_ss))
 			switch (squad_members["GERMAN"]) // non officers
-				if (0 to 7)
+				if (0 to 7-1)
 					user.squad_job_faction = new/datum/job_faction/squad/one(user, src)
-				if (8 to 14)
+				if (8-1 to 14-1)
 					user.squad_job_faction = new/datum/job_faction/squad/two(user, src)
-				if (15 to 21)
+				if (15-1 to 21-1)
 					user.squad_job_faction = new/datum/job_faction/squad/three(user, src)
-				if (22 to 28)
+				if (22-1 to 28-1)
 					user.squad_job_faction = new/datum/job_faction/squad/four(user, src)
 
 	else if (istype(src, /datum/job/russian))
@@ -128,13 +128,13 @@
 					user.squad_job_faction = new/datum/job_faction/squad/four/leader(user, src)
 		else if (!is_officer && !is_commander && !is_nonmilitary)
 			switch (squad_members["RUSSIAN"]) // non officers
-				if (0 to 7)
+				if (0 to 7-1)
 					user.squad_job_faction = new/datum/job_faction/squad/one(user, src)
-				if (8 to 14)
+				if (8-1 to 14-1)
 					user.squad_job_faction = new/datum/job_faction/squad/two(user, src)
-				if (15 to 21)
+				if (15-1 to 21-1)
 					user.squad_job_faction = new/datum/job_faction/squad/three(user, src)
-				if (22 to 28)
+				if (22-1 to 28-1)
 					user.squad_job_faction = new/datum/job_faction/squad/four(user, src)
 
 	else if (istype(src, /datum/job/partisan))
@@ -144,10 +144,6 @@
 		else if (is_commander)
 			user.officer_job_faction = new/datum/job_faction/partisan/commander(user, src)
 
-
-// try to make someone a spy if they DONT spawn in a reinforcement wave
-//: 12% chance for soldats only. Now 20% for German soldats,
-// because Germans have so many more roles
 
 /datum/job/proc/try_make_jew(var/mob/living/carbon/human/user)
 
@@ -169,7 +165,12 @@
 
 	user.is_jew = 1
 
+	user.real_name = user.species.get_random_german_name(user.gender, 1)
+	user.name = user.real_name
 
+// try to make someone a spy if they DONT spawn in a reinforcement wave
+//: 12% chance for soldats only. Now 20% for German soldats,
+// because Germans have so many more roles
 /datum/job/proc/try_make_initial_spy(var/mob/living/carbon/human/user)
 
 	if (!istype(user))
@@ -185,9 +186,11 @@
 		if (allow_spies)
 			make_spy(user)
 			user.give_radio()
+			return 1
 	else
 		if (prob(20)) // give 20% of soldats radios so it's not suspicious when spies get them
 			user.give_radio()
+	return 0
 
 /datum/job/proc/try_make_latejoin_spy(var/mob/user)
 	return //disabled

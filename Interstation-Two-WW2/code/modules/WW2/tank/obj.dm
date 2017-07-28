@@ -14,11 +14,12 @@
 	var/fuel_slot_open = 0
 	var/fuel = 500
 	var/max_fuel = 500
-	var/last_spam = -1
+	var/next_spam_allowed = -1
+	var/size_multiplier = 2
 
 /obj/tank/New()
 	..()
-	animate(src, transform = matrix()*2, time = -1)
+	animate(src, transform = matrix()*size_multiplier, time = -1)
 	update_bounding_rectangle()
 
 /obj/tank/attack_hand(var/mob/user as mob)
@@ -129,12 +130,16 @@
 
 #ifndef TANKSEATDEBUGGING
 /obj/tank/proc/receive_command_from(var/mob/user, x)
+	if (!isliving(user))
+		return
 	if (user == front_seat())
 		return receive_frontseat_command(x)
 	else if (user == back_seat())
 		return receive_backseat_command(x)
 #else
 /obj/tank/proc/receive_command_from(var/mob/user, x)
+	if (!isliving(user))
+		return
 	if (user == front_seat() && x != "FIRE" || user == back_seat() && x != "FIRE")
 		return receive_frontseat_command(x)
 	if (user == front_seat() || user == back_seat())
@@ -158,13 +163,13 @@
 			_Move(WEST)
 			moved = 1
 
-	if (moved && world.time - last_spam > 100 || last_spam == -1)
+	if (moved && world.time > next_spam_allowed)
 		if (fuel/max_fuel < 0.2)
 			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 20%!</big></span>")
-			last_spam = world.time
+			next_spam_allowed = world.time + 100
 		else if (fuel/max_fuel <= 0.5)
 			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 50%.</big></span>")
-			last_spam = world.time
+			next_spam_allowed = world.time + 300
 
 /obj/tank/proc/receive_backseat_command(x)
 	if (x == "FIRE")

@@ -1,7 +1,8 @@
 /obj/tank/var/last_movement = -1
-/obj/tank/var/movement_delay = 2.5
+/obj/tank/var/movement_delay = 3
 /obj/tank/var/last_movement_sound = -1
 /obj/tank/var/movement_sound_delay = 30
+/obj/tank/var/last_gibbed = -1
 
 
 /obj/tank/Move()
@@ -58,17 +59,17 @@
 /obj/tank/proc/update_bounding_rectangle()
 	switch (dir)
 		if (EAST)
-			bound_width = 96
-			bound_height = 32
+			bound_width = 96*size_multiplier
+			bound_height = 64*size_multiplier
 		if (WEST)
-			bound_width = 96
-			bound_height = 32
+			bound_width = 96*size_multiplier
+			bound_height = 64*size_multiplier
 		if (NORTH)
-			bound_width = 32
-			bound_height = 96
+			bound_width = 64*size_multiplier
+			bound_height = 96*size_multiplier
 		if (SOUTH)
-			bound_width = 32
-			bound_height = 96
+			bound_width = 64*size_multiplier
+			bound_height = 96*size_multiplier
 
 /obj/tank/proc/handle_passing_target_turf(var/turf/t)
 	var/list/turfs_in_the_way = list(t)
@@ -115,7 +116,6 @@
 	if (o == src)
 		return 1
 
-
 	if (istype(o))
 		if (istype(o, /obj/train_pseudoturf))
 			if (o.density)
@@ -157,8 +157,7 @@
 		else
 			if (!o.density && !istype(o, /obj/item))
 				return 1
-			if ((istype(o, /obj/item) && o.w_class == 1) || (istype(o, /obj/item) && o.anchored))
-				tank_message("<span class = 'warning'>The tank crosses over [o].</span>")
+			if ((istype(o, /obj/item) && o.w_class == 1) || (istype(o, /obj/item) && o.anchored) || istype(o, /obj/item/ammo_casing) || istype(o, /obj/item/organ))
 				return 1
 			else
 				tank_message("<span class = 'warning'>The tank crushes [o].</span>")
@@ -174,7 +173,15 @@
 					playsound(get_turf(src), 'sound/effects/clang.ogg', rand(60,70))
 					return 0
 
-/obj/tank/proc/handle_passing_mob(var/mob/m)
-	if (istype(m))
+	return 1
+
+/obj/tank/proc/handle_passing_mob(var/mob/living/m)
+	if (istype(m) && (world.time - last_gibbed > 5 || last_gibbed == -1))
+		last_gibbed = world.time
 		tank_message("<span class = 'danger'>The tank crushes [m]!</span>")
 		m.gib()
+		last_movement = world.time + 25
+	else if (istype(m))
+		spawn (5)
+			m.gib()
+			last_movement = world.time + 25

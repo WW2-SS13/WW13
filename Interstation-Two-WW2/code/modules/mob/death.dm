@@ -5,6 +5,10 @@
 /mob/proc/gib(anim="gibbed-m",do_gibs)
 	// should prevent spam-gibbing that causes immense lag - Kachnov
 	if (lastgib == -1 || world.time - lastgib > 10)
+
+		if (ishuman(src))
+			emote("scream")
+
 		lastgib = world.time
 		death(1)
 		transforming = 1

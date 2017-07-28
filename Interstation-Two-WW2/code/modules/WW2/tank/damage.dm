@@ -1,3 +1,5 @@
+/obj/tank/var/did_critical_damage = 0
+
 /obj/tank/bullet_act(var/obj/item/projectile/P, var/def_zone)
 	def_zone = check_zone(def_zone)
 	damage += (P.damage + (P.armor_penetration*20))/25
@@ -48,13 +50,22 @@
 			return 25
 
 /obj/tank/proc/critical_damage()
+
+	if (did_critical_damage)
+		return
+
+	did_critical_damage = 1
 	tank_message("<span class = 'danger'><big>[src] starts to shake and fall apart!</big></span>")
 	spawn (rand(100,200))
-		tank_message("<span class = 'danger'>You can smell burning inside [src].</danger>")
+		tank_message("<span class = 'danger'>You can smell burning from inside [src].</danger>")
 		for (var/mob/living/m in src)
 			m.on_fire = 1
 			m.fire_stacks += rand(5,15)
 			m << "<span class = 'danger'><big>You're on fire.</big></danger>"
+			if (prob(30))
+				spawn (25) // smell needs to travel or something
+					tank_message("<span class = 'danger'>You can smell burning flesh from inside [src].</danger>")
+
 	spawn (rand(250, 350))
 		tank_message("<span class = 'danger'>[src] is falling apart[pick("!", "!!")]</span>")
 		for (var/v in 1 to 10)
