@@ -603,7 +603,8 @@ var/global/datum/controller/occupations/job_master
 			job.assign_faction(H)
 
 			if (!game_started)
-				job.try_make_initial_spy(H)
+				if (!job.try_make_initial_spy(H))
+					job.try_make_jew(H)
 			else
 				job.try_make_latejoin_spy(H)
 

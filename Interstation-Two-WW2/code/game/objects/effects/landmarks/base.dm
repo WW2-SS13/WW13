@@ -242,6 +242,29 @@
 			qdel(src)
 			return
 
+		// PARTISAN LANDMARKS
+
+		if ("JoinLatePartisan")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLatePartisanLeader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLateCivilian")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
 		if("JoinLateGRU")
 			if(!latejoin_turfs[name])
 				latejoin_turfs[name] = list()

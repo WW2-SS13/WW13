@@ -29,6 +29,7 @@ var/global/squad_members[3]
 	var/list/objectives = list()
 	var/team = null
 	var/image/last_returned_image = null
+	var/obj/factionhud/last_returned_hud = null
 
 /datum/job_faction/proc/base_type()
 	return "/datum/job_faction"
@@ -182,41 +183,72 @@ var/global/squad_members[3]
 				squad_members["PARTISAN"]++
 	H.all_job_factions += src
 	..()
-
+/*
 /datum/job_faction/proc/return_image()
+	qdel(last_returned_image)
 	var/image/i = image(icon, get_turf(holder), icon_state, MOB_LAYER + 20.0)
 	last_returned_image = i
-	return i
+	return i*/
+
+
+/obj/factionhud // for displaying huds with screen_loc
+	// for checking if our mob moved
+	var/turf/reference_loc = null
+	var/mob/reference_mob = null
+
+/datum/job_faction/proc/return_image(var/mob/source, var/mob/target)
+	var/obj/factionhud/factionhud = new
+	factionhud.icon = icon
+	factionhud.icon_state = icon_state
+	factionhud.layer = MOB_LAYER + 20.0
+	factionhud.pixel_x = ((source.x - target.x) * world.icon_size)
+	factionhud.pixel_y = ((source.y - target.y) * world.icon_size)
+	factionhud.reference_loc = get_turf(target)
+	factionhud.reference_mob = target
+	last_returned_hud = factionhud
+	return factionhud
+
+
+/mob/living/carbon/human/var/last_faction_hud_update = -1
 
 /mob/living/carbon/human/Move()
 	..()
 	update_faction_huds_to_nearby_mobs()
 
 /mob/living/carbon/human/proc/update_faction_huds_to_nearby_mobs()
-	if (client)
-		for (var/mob/living/carbon/human/H in view(client.view, src))
+	if (last_faction_hud_update == -1 || world.time - last_faction_hud_update >= 1)
+		last_faction_hud_update = world.time
+		for (var/mob/living/carbon/human/H in view(client ? client.view : world.view, src))
 			update_faction_huds(H)
-			H.update_faction_huds(src)
-
-#define FACTIONDEBUG
 
 /proc/factiondebug(who, whom, scenario)
 	#ifdef FACTIONDEBUG
 	world << "[who] sent a faction image to [whom] in [scenario]"
 	#endif
+
 // updates the HUDs that target (a human) has for src
 /mob/living/carbon/human/proc/update_faction_huds(var/mob/living/carbon/human/target)
+
+	var/obj/factionhud/factionhud = target.job_faction_images[real_name]
+
+	if (factionhud)
+		if (factionhud.reference_mob == src && factionhud.reference_loc == get_turf(src))
+			return 1
+		else
+			target.overlays -= factionhud
+			qdel(factionhud)
+			target.job_faction_images[real_name] = null
 
 	if (!base_job_faction || !target.base_job_faction) // we just spawned.
 		return 0
 
-	if (target.job_faction_images[real_name] && istype(target.job_faction_images[real_name], /image))
-		target.overlays -= target.job_faction_images[real_name]
+	if (!target.client)
+		return 0
 
 	if (base_job_faction.base_type() != target.base_job_faction.base_type() && (!spy_job_faction || spy_job_faction.base_type() != target.base_job_faction.base_type()))
 		return 0 // no HUDs if we don't share a base faction or spy faction
 
-	// scenario 0.0: this is you
+	// scenario 0.0: this is you: this works
 	if (src == target)
 		factiondebug(src, target, "scenario 0.0")
 		var/datum/job_faction/optimal = squad_job_faction
@@ -224,18 +256,18 @@ var/global/squad_members[3]
 			optimal = officer_job_faction
 		if (!optimal)
 			optimal = base_job_faction
-		target.job_faction_images[real_name] = optimal.return_image()
+		target.job_faction_images[real_name] = optimal.return_image(src, target)
 		goto addoverlay
 
 	// scenario 1.0: we're a spy and they're on the team we're spying for
 	else if (base_job_faction.base_type() != target.base_job_faction.base_type() && spy_job_faction && spy_job_faction.base_type() == target.base_job_faction.base_type())
-		target.job_faction_images[real_name] = spy_job_faction.return_image()
+		target.job_faction_images[real_name] = spy_job_faction.return_image(src, target)
 		factiondebug(src, target, "scenario 1.0")
 		goto addoverlay
 
 	// scenario 1.1: they're a spy and we're on the team we're spying for
 	else if (target.base_job_faction.base_type() != base_job_faction.base_type() && target.spy_job_faction && target.spy_job_faction.base_type() == base_job_faction.base_type())
-		target.job_faction_images[real_name] = base_job_faction.return_image()
+		target.job_faction_images[real_name] = base_job_faction.return_image(src, target)
 		factiondebug(src, target, "scenario 1.1")
 		goto addoverlay
 
@@ -247,13 +279,13 @@ var/global/squad_members[3]
 
 			// scenario 2.1: we're both non-officers, different squads
 			if (getsquad(src) != getsquad(target))
-				target.job_faction_images[real_name] = base_job_faction.return_image()
+				target.job_faction_images[real_name] = base_job_faction.return_image(src, target)
 				factiondebug(src, target, "scenario 2.1")
 				goto addoverlay
 
 			// scenario 2.2: we're both non-officer squaddies
 			else if (getsquad(src) == getsquad(target) && getsquad(src) != null)
-				target.job_faction_images[real_name] = squad_job_faction.return_image()
+				target.job_faction_images[real_name] = squad_job_faction.return_image(src, target)
 				factiondebug(src, target, "scenario 2.2")
 				goto addoverlay
 
@@ -263,48 +295,48 @@ var/global/squad_members[3]
 			// scenario 3.1: we're a squad leader, they aren't our soldat
 			if (issquadleader(src) && !issquadleader(target) && !isleader(src, target))
 				factiondebug(src, target, "scenario 3.1")
-				target.job_faction_images[real_name] = officer_job_faction.return_image()
+				target.job_faction_images[real_name] = officer_job_faction.return_image(src, target)
 				goto addoverlay
 
 			// scenario 3.2: you're an SL, they're your soldat
 			else if (issquadleader(src) && isleader(src, target))
 				factiondebug(src, target, "scenario 3.2")
-				target.job_faction_images[real_name] = squad_job_faction.return_image()
+				target.job_faction_images[real_name] = squad_job_faction.return_image(src, target)
 				goto addoverlay
 
 			// scenario 3.3: you're a generic officer or the CO, they're literally anyone else
 			else if (officer_job_faction)
 				factiondebug(src, target, "scenario 3.3")
-				target.job_faction_images[real_name] = officer_job_faction.return_image()
+				target.job_faction_images[real_name] = officer_job_faction.return_image(src, target)
 				goto addoverlay
 
 		// scenario 4.0: we're both officers
 		else if (officer_job_faction && target.officer_job_faction)
 			factiondebug(src, target, "scenario 4.0")
-			target.job_faction_images[real_name] = officer_job_faction.return_image()
+			target.job_faction_images[real_name] = officer_job_faction.return_image(src, target)
 			goto addoverlay
 		// scenario 5.0: they're an officer, we aren't
 		else if (!officer_job_faction && target.officer_job_faction)
 			// scenario 5.1: they're a squad leader, we aren't their soldat
 			if (issquadleader(target) && !issquadleader(src) && !isleader(target, src))
 				factiondebug(src, target, "scenario 5.1")
-				target.job_faction_images[real_name] = base_job_faction.return_image()
+				target.job_faction_images[real_name] = base_job_faction.return_image(src, target)
 				goto addoverlay
 
 			// scenario 5.2: they're an SL, you're their soldat
 			else if (issquadleader(target) && isleader(target, src))
-				target.job_faction_images[real_name] = squad_job_faction.return_image()
+				target.job_faction_images[real_name] = squad_job_faction.return_image(src, target)
 				factiondebug(src, target, "scenario 5.2")
 				goto addoverlay
 
 			// scenario 5.3: they're an officer or the CO, you're literally anyone else
 			else if (target.officer_job_faction)
 				factiondebug(src, target, "scenario 5.3")
-				target.job_faction_images[real_name] = base_job_faction.return_image()
+				target.job_faction_images[real_name] = base_job_faction.return_image(src, target)
 				goto addoverlay
 
 	addoverlay
-	target.overlays += target.job_faction_images[real_name]
+	target.overlays |= target.job_faction_images[real_name]
 
 /* HELPER FUNCTIONS */
 

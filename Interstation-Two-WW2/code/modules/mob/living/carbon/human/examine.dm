@@ -440,8 +440,13 @@
 			var/mob/living/carbon/human/H = user
 			if (H.original_job.team == original_job.team) // when you ghost, mind.assigned_job is set to null
 				msg += "<br><i>You recognize [T.him] as a [original_job.title] ([original_job.en_meaning]).</i>"
+			if (istype(original_job, /datum/job/german))
+				if (is_jew && !wear_mask)
+					msg += "<br><big>Mein gott, it's a jew!</big>"
 		else if (isobserver(user))
 			msg += "<br><i>[T.He] [T.is] a [original_job.title].</i>"
+
+
 
 	for (var/v in 1 to embedded.len)
 		msg += "<a href='?src=\ref[user];remove_embedded=[v]'>Remove [embedded[v]]</a>"

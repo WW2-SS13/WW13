@@ -6,13 +6,13 @@
 #define GERMAN_UNIFORM_DESC "Standart german uniform for soildiers. You can smell seiner madchenes parfume!"
 #define GERMAN_UNIFORM_STATE "geruni"
 
-#define SOVIET_HELMET_NAME ""
+#define SOVIET_HELMET_NAME "Soviet helmet"
 #define SOVIET_HELMET_DESC ""
-#define SOVIET_HELMET_STATE ""
+#define SOVIET_HELMET_STATE "sovhelm"
 
-#define GERMAN_HELMET_NAME ""
+#define GERMAN_HELMET_NAME "German helmet"
 #define GERMAN_HELMET_DESC ""
-#define GERMAN_HELMET_STATE ""
+#define GERMAN_HELMET_STATE "gerhelm"
 
 /obj/item/clothing/under
 	var/swapped = 0
@@ -61,12 +61,11 @@
 		qdel(radio)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/rbs(H), slot_s_store)
 	if (istype(H.head, /obj/item/clothing/head/helmet/tactical/gerhelm))
-		var/head = H.head
-		H.drop_from_inventory(head)
-		qdel(head)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
+		var/obj/item/clothing/head/helmet/tactical/gerhelm/head = H.head
+		head.transform2soviet()
 
 /obj/item/clothing/under/proc/transform2german()
+
 	name = GERMAN_UNIFORM_NAME
 	desc = GERMAN_UNIFORM_DESC
 	icon_state = GERMAN_UNIFORM_STATE
@@ -82,11 +81,8 @@
 		qdel(radio)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
 	if (istype(H.head, /obj/item/clothing/head/helmet/tactical/sovhelm))
-		var/head = H.head
-		H.drop_from_inventory(head)
-		qdel(head)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
-
+		var/obj/item/clothing/head/helmet/tactical/sovhelm/head = H.head
+		head.transform2german()
 
 /obj/item/clothing/under/sovuni
 	name = SOVIET_UNIFORM_NAME
@@ -156,9 +152,18 @@
 	worn_state = "ss_formal_ofc"
 
 /obj/item/clothing/head/helmet/tactical/gerhelm
-	name = "German helmet"
-	icon_state = "gerhelm"
-	item_state = "gerhelm"
+	name = GERMAN_HELMET_NAME
+	icon_state = GERMAN_HELMET_STATE
+	item_state = GERMAN_HELMET_STATE
+
+/obj/item/clothing/head/helmet/tactical/gerhelm/proc/transform2soviet()
+	name = SOVIET_HELMET_NAME
+	desc = SOVIET_HELMET_DESC
+	icon_state = SOVIET_HELMET_STATE
+	item_state = SOVIET_HELMET_STATE
+	worn_state = SOVIET_HELMET_STATE
+	item_state_slots["slot_head"] = SOVIET_HELMET_STATE
+	update_clothing_icon()
 
 /obj/item/clothing/head/helmet/tactical/gerhelm/sshelm
 	name = "SS camo helmet"
@@ -166,9 +171,18 @@
 	item_state = "sshelm"
 
 /obj/item/clothing/head/helmet/tactical/sovhelm
-	name = "Soviet helmet"
-	icon_state = "sovhelm"
-	item_state = "sovhelm"
+	name = SOVIET_HELMET_NAME
+	icon_state = SOVIET_HELMET_STATE
+	item_state = SOVIET_HELMET_STATE
+
+/obj/item/clothing/head/helmet/tactical/sovhelm/proc/transform2german()
+	name = GERMAN_HELMET_NAME
+	desc = GERMAN_HELMET_DESC
+	icon_state = GERMAN_HELMET_STATE
+	item_state = GERMAN_HELMET_STATE
+	worn_state = GERMAN_HELMET_STATE
+	item_state_slots["slot_head"] = GERMAN_HELMET_STATE
+	update_clothing_icon()
 
 
 //WIP, need icons - Kachnov
