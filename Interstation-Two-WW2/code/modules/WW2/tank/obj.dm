@@ -4,7 +4,7 @@
 	density = 1
 	anchored = 1
 	var/damage = 0
-	var/max_damage = 500
+	var/max_damage = 400
 	icon = 'icons/WW2/tank_64x96.dmi' // I don't know why but we start out southfacing
 	var/horizontal_icon = 'icons/WW2/tank_96x64.dmi'
 	var/vertical_icon = 'icons/WW2/tank_64x96.dmi'
@@ -167,7 +167,7 @@
 		if (fuel/max_fuel < 0.2)
 			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 20%!</big></span>")
 			next_spam_allowed = world.time + 100
-		else if (fuel/max_fuel < 0.5)
+		else if (fuel/max_fuel <= 0.5)
 			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 50%.</big></span>")
 			next_spam_allowed = world.time + 300
 

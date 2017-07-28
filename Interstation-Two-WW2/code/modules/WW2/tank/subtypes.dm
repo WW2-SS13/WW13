@@ -7,7 +7,7 @@
 
 /obj/tank/soviet
 	icon_state = "sov"
-	name = "Soviet Tank"
+	name = "Soviet T-23 Tank"
 
 /obj/tank/soviet/my_name()
-	return "the Soviet Tank"
+	return "the Soviet T-23 Tank"

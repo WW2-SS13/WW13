@@ -159,7 +159,10 @@
 				return 0
 		else
 			if (cond_2_1_check1 == 1) // soviets lost control!
-				world << "<font size = 3>The Soviets have lost control of the German territory they occupied!</font>"
+				if(cond_2_1_nextcheck < world.time + 2400)
+					world << "<font size = 3>The Soviets have lost control of the German territory they occupied!</font>"
+				else
+					return
 
 			cond_2_1_check1 = 0
 
@@ -174,7 +177,10 @@
 				return 0
 		else
 			if (cond_2_2_check1 == 1) // soviets lost control!
-				world << "<font size = 3>The Germans have lost control of the Soviet territory they occupied!</font>"
+				if(cond_2_2_nextcheck < world.time + 2400)
+					world << "<font size = 3>The Germans have lost control of the Soviet territory they occupied!</font>"
+				else
+					return
 
 			cond_2_2_check1 = 0
 
@@ -190,7 +196,10 @@
 				return 0
 		else
 			if (cond_2_3_check1 == 1) // soviets lost control!
-				world << "<font size = 3>The Germans have lost control of the Soviet territory they occupied!</font>"
+				if(cond_2_3_nextcheck < world.time + 5400)
+					world << "<font size = 3>The Germans have lost control of the Soviet territory they occupied!</font>"
+				else
+					return
 
 			cond_2_3_check1 = 0
 
@@ -206,7 +215,10 @@
 				return 0
 		else
 			if (cond_2_4_check1 == 1) // soviets lost control!
-				world << "<font size = 3>The Soviets have lost control of the German territory they occupied!</font>"
+				if(cond_2_4_nextcheck < world.time + 5400)
+					world << "<font size = 3>The Soviets have lost control of the German territory they occupied!</font>"
+				else
+					return
 
 			cond_2_4_check1 = 0
 
@@ -273,4 +285,3 @@
 /datum/game_mode/ww2/declare_completion()
 	name = "World War 2" // fixes capitalization error - Kachnov
 	..()
-
