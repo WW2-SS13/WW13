@@ -780,6 +780,10 @@ var/global/datum/controller/occupations/job_master
 
 	proc/spawn_keys(var/mob/living/carbon/human/H, rank, var/datum/job/job)
 
+		var/list/_keys = job.get_keys()
+		if (!_keys.len)
+			return
+
 		var/obj/item/weapon/storage/belt/keychain/keychain = new/obj/item/weapon/storage/belt/keychain()
 
 		if (!H.belt) // first, try to equip it as their belt
@@ -875,8 +879,10 @@ var/global/datum/controller/occupations/job_master
 		return 1
 	if(side == RUFORCE)
 		return !ticker.can_latejoin_ruforce
-	if(side == GEFORCE)
+	else if(side == GEFORCE)
 		return !ticker.can_latejoin_geforce
+	else if (side == CIVILIAN)
+		return game_started
 	return 0
 
 // this works in favor of the soviets since they don't get SS
@@ -923,8 +929,15 @@ var/global/datum/controller/occupations/job_master
 			return 1
 	if(side == RUFORCE)
 		return (ruforce_count-get_max_autobalance_diff() < geforce_count) && ticker.can_latejoin_ruforce
-	if(side == GEFORCE || side == CIVILIAN)
+	else if(side == GEFORCE)
 		return (geforce_count < ruforce_count) && ticker.can_latejoin_geforce
+	else if (side == CIVILIAN)
+		if (clients.len < 40)
+			return 0
+		else
+			if (ruforce_count > civilian_count && geforce_count > civilian_count)
+				return 1 // temporary
+
 	return 0
 
 /datum/controller/occupations/proc/put_in_join_queue(side, var/mob/new_player/player, job)
