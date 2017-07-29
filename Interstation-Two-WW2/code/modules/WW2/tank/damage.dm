@@ -2,7 +2,12 @@
 
 /obj/tank/bullet_act(var/obj/item/projectile/P, var/def_zone)
 	def_zone = check_zone(def_zone)
-	damage += (P.damage + (P.armor_penetration*20))/25
+	damage += (P.damage/3 + (P.armor_penetration*20))/25
+	if (P.armor_penetration < 50)
+		damage /= 4
+
+	damage += 1 // minimum damage
+
 	update_damage_status()
 	if (prob(critical_damage_chance()))
 		critical_damage()

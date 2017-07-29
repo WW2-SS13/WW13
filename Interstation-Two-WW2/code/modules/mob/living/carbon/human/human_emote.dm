@@ -208,12 +208,6 @@
 				else
 					message = "makes a weak noise."
 					m_type = 2
-/*
-		if ("deathgasp")
-			//message = "[species.death_message]"
-			//m_type = 1
-			if (last_scream == -1 || world.time - last_scream >= 10)
-				scream_sound(src, 1)*/
 
 		if ("giggle")
 			if(miming)
@@ -535,7 +529,7 @@
 					message = "sadly can't find anybody to give daps to, and daps [get_visible_gender() == MALE ? "himself" : get_visible_gender() == FEMALE ? "herself" : "themselves"]. Shameful."
 
 		if ("scream")
-			if (last_scream != -1 && world.time - last_scream < 10)
+			if (last_scream != -1 && world.time - last_scream < 30)
 				return
 			last_scream = world.time
 			if (miming)

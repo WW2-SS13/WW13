@@ -218,7 +218,7 @@
 	if (!isobserver(mob) && mob.is_on_train() && !mob.buckled)
 		var/datum/train_controller/tc = mob.get_train()
 		if (tc && tc.moving)
-			if (mob.train_move_check(get_step(mob, direct)))
+			if (mob.train_move_check(get_step(mob, direct)) && !mob.lying && mob.stat != UNCONSCIOUS && mob.stat != DEAD)
 				mob.next_train_movement = direct
 				mob.train_gib_immunity = 1
 				mob.last_train_movement = world.time // last successful move

@@ -146,7 +146,6 @@
 #include "code\controllers\Processes\emergencyShuttle.dm"
 #include "code\controllers\Processes\event.dm"
 #include "code\controllers\Processes\garbage.dm"
-#include "code\controllers\Processes\human.dm"
 #include "code\controllers\Processes\inactivity.dm"
 #include "code\controllers\Processes\machinery.dm"
 #include "code\controllers\Processes\mob.dm"
@@ -1920,7 +1919,6 @@
 #include "code\modules\WW2\gun-bolt-action.dm"
 #include "code\modules\WW2\hats.dm"
 #include "code\modules\WW2\helmet.dm"
-#include "code\modules\WW2\jobs.dm"
 #include "code\modules\WW2\loudspeaker.dm"
 #include "code\modules\WW2\medical.dm"
 #include "code\modules\WW2\officer.dm"
@@ -2011,5 +2009,5 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\testing-map.dmm"
+#include "maps\battlegroundforest_marco_v2.2_hayden.721.dmm"
 // END_INCLUDE

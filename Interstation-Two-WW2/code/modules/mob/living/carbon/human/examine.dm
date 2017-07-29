@@ -269,7 +269,6 @@
 			continue
 
 
-
 	for(var/obj/item/organ/external/temp in organs)
 		if(temp)
 			if(temp.status & ORGAN_ROBOT)
@@ -439,10 +438,24 @@
 		if (ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if (H.original_job.team == original_job.team) // when you ghost, mind.assigned_job is set to null
-				msg += "<br><i>You recognize [T.him] as a [original_job.title] ([original_job.en_meaning]).</i>"
+				if (original_job.en_meaning)
+					msg += "<br><i>You recognize [T.him] as a <b>[original_job.title] ([original_job.en_meaning])</b>.</i>"
+				else
+					msg += "<br><i>You recognize [T.him] as a <b>[original_job.title]</b>.</i>"
+			else
+				msg += "<br><i>He's a <b>[capitalize(lowertext(original_job.team))]</b>.</i>"
+
 			if (istype(original_job, /datum/job/german))
 				if (is_jew && !wear_mask)
 					msg += "<br><big>Mein gott, it's a jew!</big>"
+			if (original_job.team == H.original_job.team)
+				if (isleader(src, H))
+					msg += "<br><b>[T.He] [T.is] your squad leader.</b>"
+				else if (isleader(H, src))
+					msg += "<br><b>[T.He] [T.is] your soldat.</b>"
+				else
+					msg += "<br><b>[T.He] [T.is] in your squad.</b>"
+
 		else if (isobserver(user))
 			msg += "<br><i>[T.He] [T.is] a [original_job.title].</i>"
 

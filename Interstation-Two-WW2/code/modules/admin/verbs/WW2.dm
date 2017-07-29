@@ -188,7 +188,7 @@
 
 	usr << "German Side: [alive_en] alive, [heavily_injured_en] heavily injured, and [dead_en] deceased. Mortality rate: [mortality_en]%"
 	usr << "Russian Side: [alive_ru] alive, [heavily_injured_ru] heavily injured, and [dead_ru] deceased. Mortality rate: [mortality_ru]%"
-	usr << "Waffen-SS: [alive_ss], [heavily_injured_ss] heavily injured, and [dead_ss] deceased. Mortality rate: [mortality_ss]%"
+	usr << "Civilians: [alive_ss], [heavily_injured_ss] heavily injured, and [dead_ss] deceased. Mortality rate: [mortality_ss]%"
 
 	var/public = alert(usr, "Show it to the entire server?",,"Yes", "No")
 
@@ -196,7 +196,7 @@
 		world << "<font size=4>Battle status report:</font>"
 		world << "<font size=3>German Side: [alive_en] alive, [heavily_injured_en] heavily injured, and [dead_en] deceased. Mortality rate: [mortality_en]%</font>"
 		world << "<font size=3>Russian Side: [alive_ru] alive, [heavily_injured_ru] heavily injured, and [dead_ru] deceased. Mortality rate: [mortality_ru]%</font>"
-		world << "<font size=3>Waffen-SS: [alive_ss] alive, [heavily_injured_ss] heavily injured, and [dead_ss] deceased. Mortality rate: [mortality_ss]%</font>"
+		world << "<font size=3>Civilians: [alive_ss] alive, [heavily_injured_ss] heavily injured, and [dead_ss] deceased. Mortality rate: [mortality_ss]%</font>"
 		message_admins("[key_name(src)] showed everyone the battle report.")
 
 /client/proc/generate_hit_table()

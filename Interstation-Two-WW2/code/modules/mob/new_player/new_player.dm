@@ -355,8 +355,8 @@
 
 	if(!job_master.can_join_side(job.department_flag))
 		job_master.remove_from_join_queue(src)
-		var/side = istype(job, /datum/job/german) ? "GERMAN" : "RUSSIAN"
-		if ((side == "GERMAN" || side == "RUSSIAN") && !job_master.has_in_join_queue(src))
+		var/side = istype(job, /datum/job/german) ? "GERMAN" : istype(job, /datum/job/russian) ? "RUSSIAN" : "PARTISAN"
+		if ((side == "GERMAN" || side == "RUSSIAN" || side == "PARTISAN") && !job_master.has_in_join_queue(src))
 			job_master.put_in_join_queue(side, src, rank)
 			src << "\red You've been put in a queue to join as a [rank]."
 			return 0
