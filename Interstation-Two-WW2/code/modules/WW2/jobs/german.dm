@@ -368,7 +368,7 @@
 /datum/job/german/tankcrew
 	title = "Panzerbesatzung"
 	en_meaning = "Tank Crewman"
-	flag = GERTNK
+	flag = GERSOL
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 4
