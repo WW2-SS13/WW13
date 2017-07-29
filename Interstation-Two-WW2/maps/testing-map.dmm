@@ -62,129 +62,132 @@
 "bj" = (/obj/structure/closet/crate/bayonets,/turf/simulated/floor/wood,/area/prishtina/german/cargo)
 "bk" = (/obj/machinery/atmospherics/pipe/tank/nitrogen,/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
 "bl" = (/obj/machinery/light/small,/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"bm" = (/obj/structure/girder,/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"bn" = (/obj/item/weapon/stool,/obj/machinery/light/small,/turf/simulated/floor/wood,/area/prishtina/german/cargo)
-"bo" = (/obj/effect/landmark{name = "JoinLateHeerDr"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
-"bp" = (/obj/structure/flora/ausbushes/fullgrass,/obj/structure/flora/ausbushes/fullgrass,/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
-"bq" = (/turf/simulated/wall/r_wall,/area/prishtina/german/janitor)
-"br" = (/turf/simulated/wall,/area/prishtina/german/janitor)
-"bs" = (/turf/simulated/wall/r_wall,/area/prishtina/german/engineering)
-"bt" = (/obj/structure/closet/crate/trashcart,/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
-"bu" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
-"bv" = (/obj/structure/reagent_dispensers/watertank,/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
-"bw" = (/obj/structure/table/rack,/obj/item/weapon/storage/toolbox/mechanical,/obj/item/weapon/storage/toolbox/emergency,/obj/item/weapon/storage/toolbox/electrical,/obj/item/clothing/glasses/welding,/obj/item/weapon/storage/belt/utility/full,/obj/item/weapon/storage/belt/utility/full,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"bx" = (/obj/structure/table/rack,/obj/item/clothing/gloves/insulated,/obj/item/clothing/gloves/insulated,/obj/item/clothing/gloves/insulated,/obj/item/clothing/glasses/welding,/obj/item/weapon/storage/belt/utility/full,/obj/item/weapon/storage/belt/utility/full,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"by" = (/obj/structure/table/reinforced,/obj/item/stack/material/barbwire,/obj/item/stack/material/barbwire,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"bz" = (/obj/structure/table/steel,/obj/item/stack/material/plasteel{amount = 20},/obj/item/stack/material/glass{amount = 30},/obj/item/stack/material/wood{amount = 30},/obj/item/stack/material/glass/reinforced{amount = 10},/obj/item/stack/material/steel{amount = 30},/obj/structure/table/reinforced,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"bA" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 8},/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"bB" = (/obj/machinery/light/small{dir = 8},/obj/effect/floor_decal/corner/grey/border,/turf/simulated/floor/plating/grass,/area/prishtina/german/main_area)
-"bC" = (/obj/effect/landmark{name = "JoinLateHeer"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"bD" = (/obj/effect/landmark{name = "JoinLateHeerCO"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"bE" = (/obj/effect/landmark{name = "JoinLateHeerQM"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"bF" = (/obj/effect/landmark{name = "JoinLateHeerSL"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"bG" = (/obj/effect/landmark{name = "JoinLateHeerSO"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"bH" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"bI" = (/obj/effect/landmark{name = "JoinLateRACO"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"bJ" = (/obj/effect/landmark{name = "JoinLateRADr"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"bK" = (/obj/effect/landmark{name = "JoinLateRAQM"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
-"bL" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
-"bM" = (/obj/effect/landmark{name = "JoinLateRASO"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
-"bN" = (/obj/effect/landmark{name = "JoinLateSS"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
-"bO" = (/obj/effect/landmark{name = "JoinLateSS-Officer"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
-"bP" = (/obj/effect/landmark{name = "Observer-Start"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"bQ" = (/obj/structure/closet,/obj/item/weapon/mop,/obj/item/weapon/soap,/obj/item/weapon/reagent_containers/glass/bucket,/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
-"bR" = (/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
-"bS" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 8},/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
-"bT" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"bU" = (/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"bV" = (/obj/structure/simple_door/key_door/german/engineer{name = "Engineering Room"},/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"bW" = (/obj/structure/simple_door/key_door/german/soldat{name = "Janitor Closet"},/obj/effect/floor_decal/spline/plain,/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
-"bX" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/lights/mixed,/obj/item/weapon/storage/fancy/crayons,/obj/item/tape/engineering,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"bY" = (/obj/structure/table/reinforced,/obj/item/weapon/plastique,/obj/item/weapon/plastique,/obj/item/weapon/plastique,/obj/item/weapon/plastique,/obj/item/weapon/storage/fancy/crayons,/obj/item/tape/engineering,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"bZ" = (/obj/structure/closet/toolcloset,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"ca" = (/obj/structure/closet/secure_closet/engineering_welding{req_access = null},/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"cb" = (/obj/structure/closet/crate/bettymines,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
-"cc" = (/obj/effect/floor_decal/corner/grey/border{dir = 1},/turf/simulated/floor/plating/grass,/area/prishtina/german/main_area)
-"cd" = (/obj/machinery/door/unpowered/simple/iron,/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
-"ce" = (/turf/simulated/wall/r_wall,/area/prishtina/german/shower1)
-"cf" = (/obj/machinery/shower{tag = "icon-shower (EAST)"; icon_state = "shower"; dir = 4; step_x = 0; step_y = 0},/turf/simulated/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/shower1)
-"cg" = (/turf/simulated/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/shower1)
-"ch" = (/obj/machinery/shower{tag = "icon-shower (WEST)"; icon_state = "shower"; dir = 8; step_x = 0; step_y = 0},/turf/simulated/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/shower1)
-"ci" = (/obj/item/weapon/soap,/turf/simulated/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/shower1)
-"cj" = (/turf/simulated/wall,/area/prishtina/german/shower2)
-"ck" = (/obj/structure/toilet{pixel_y = 13},/obj/machinery/light/small{dir = 8},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
-"cl" = (/obj/structure/toilet{pixel_y = 13},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
-"cm" = (/obj/structure/mirror{step_y = 0; pixel_y = 33},/obj/structure/sink{step_y = 0; pixel_y = 27},/obj/item/device/radio/intercom/loudspeaker/german{dir = 8},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
-"cn" = (/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (WEST)"; icon_state = "spline_plain"; dir = 8},/obj/structure/curtain/open/shower,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
-"co" = (/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
-"cp" = (/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/obj/structure/simple_door/key_door/anyone{name = "Latrine"},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
-"cq" = (/turf/simulated/wall,/area/prishtina/german/shower1)
-"cr" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cs" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"ct" = (/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cu" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cv" = (/obj/machinery/light/small,/turf/simulated/floor/plating/grass,/area/prishtina/german/main_area)
-"cw" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cx" = (/obj/effect/floor_decal/industrial/warning/dust,/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cy" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cz" = (/turf/simulated/wall/r_wall,/area/prishtina/german/cafeteria)
-"cA" = (/turf/simulated/wall,/area/prishtina/german/cafeteria)
-"cB" = (/obj/structure/simple_door/key_door/anyone{name = "Canteen"},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"cC" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cD" = (/obj/item/weapon/gun/projectile/minigun/maximstat,/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cE" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cF" = (/obj/structure/table/reinforced,/obj/item/weapon/soap,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"cG" = (/obj/structure/sink/kitchen{pixel_x = 0; pixel_y = 28},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"cH" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"cI" = (/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"cJ" = (/obj/structure/simple_door/key_door/german/soldat{name = "kitchen"},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"cK" = (/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"cL" = (/obj/item/device/radio/intercom/loudspeaker/german,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"cM" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"cN" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cO" = (/obj/structure/closet,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"cP" = (/obj/structure/table/reinforced,/obj/item/weapon/reagent_containers/food/snacks/boiledrice,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"cQ" = (/obj/structure/bed/chair/wood,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"cR" = (/obj/structure/bed/chair/wood{dir = 4},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"cS" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"cT" = (/obj/structure/bed/chair/wood{dir = 8},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"cU" = (/obj/structure/window/sandbag{step_y = 0},/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cV" = (/obj/structure/window/sandbag{step_y = 0},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cW" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{step_y = 0},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
-"cX" = (/obj/structure/closet,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"cY" = (/obj/structure/table/reinforced,/obj/item/weapon/tray,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"cZ" = (/obj/structure/table/reinforced,/obj/item/trash/plate,/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"da" = (/obj/structure/table/woodentable,/obj/item/weapon/flame/candle,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"db" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"dc" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
-"dd" = (/obj/structure/kitchenspike,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"de" = (/obj/structure/table/reinforced,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"df" = (/obj/structure/table/reinforced,/obj/item/trash/plate,/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"dg" = (/obj/structure/bed/chair/wood{dir = 1},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"dh" = (/obj/structure/table/reinforced,/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"di" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/box/matches,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"dj" = (/obj/structure/closet,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/knife,/obj/item/weapon/material/kitchen/utensil/knife,/obj/item/weapon/material/kitchen/utensil/knife,/obj/item/weapon/material/kitchen/utensil/knife,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"dk" = (/obj/structure/table/reinforced,/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"dl" = (/obj/structure/closet/secure_closet/freezer/meat,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"dm" = (/obj/structure/reagent_dispensers/beerkeg,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"dn" = (/obj/structure/table/reinforced,/obj/item/weapon/material/kitchen/rollingpin,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"do" = (/obj/structure/table/reinforced,/obj/machinery/light/small,/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"dp" = (/obj/structure/table/reinforced,/obj/item/weapon/material/knife/butch,/obj/machinery/light/small,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"dq" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"dr" = (/obj/structure/table/reinforced,/obj/machinery/microwave,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"ds" = (/obj/machinery/gibber,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"dt" = (/obj/structure/closet/crate/bin{anchored = 1},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"du" = (/obj/machinery/light/small,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
-"dv" = (/obj/structure/barbwire,/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
-"dw" = (/obj/structure/grille{icon_state = "fence4-8"; name = "fence"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
-"dx" = (/turf/simulated/wall,/area/prishtina/german/base_defenses)
-"dy" = (/obj/structure/grille{icon_state = "fence4-8"; name = "fence"},/turf/simulated/floor/plating/grass,/area/prishtina/german/base_defenses)
-"dz" = (/obj/structure/barbwire,/turf/simulated/floor/plating/grass,/area/prishtina/german/base_defenses)
-"dA" = (/turf/simulated/floor/plating/grass,/area/prishtina/german/base_defenses)
-"dB" = (/obj/structure/flora/ausbushes/fullgrass,/turf/simulated/floor/plating/grass,/area/prishtina/german/base_defenses)
-"dC" = (/obj/prishtina_block/attackers,/turf/simulated/floor/plating/grass,/area/prishtina/german/base_defenses)
-"dD" = (/obj/structure/wild/tree,/turf/simulated/floor/plating/grass,/area/prishtina/field)
-"dE" = (/turf/simulated/floor/plating/grass,/area/prishtina/field)
+"bm" = (/obj/effect/landmark{name = "JoinLatePartisan"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bn" = (/obj/effect/landmark{name = "JoinLatePartisanLeader"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bo" = (/obj/structure/girder,/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bp" = (/obj/item/weapon/stool,/obj/machinery/light/small,/turf/simulated/floor/wood,/area/prishtina/german/cargo)
+"bq" = (/obj/effect/landmark{name = "JoinLateHeerDr"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
+"br" = (/obj/effect/landmark{name = "JoinLateCivilian"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bs" = (/obj/structure/flora/ausbushes/fullgrass,/obj/structure/flora/ausbushes/fullgrass,/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
+"bt" = (/turf/simulated/wall/r_wall,/area/prishtina/german/janitor)
+"bu" = (/turf/simulated/wall,/area/prishtina/german/janitor)
+"bv" = (/turf/simulated/wall/r_wall,/area/prishtina/german/engineering)
+"bw" = (/obj/structure/closet/crate/trashcart,/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
+"bx" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
+"by" = (/obj/structure/reagent_dispensers/watertank,/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
+"bz" = (/obj/structure/table/rack,/obj/item/weapon/storage/toolbox/mechanical,/obj/item/weapon/storage/toolbox/emergency,/obj/item/weapon/storage/toolbox/electrical,/obj/item/clothing/glasses/welding,/obj/item/weapon/storage/belt/utility/full,/obj/item/weapon/storage/belt/utility/full,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"bA" = (/obj/structure/table/rack,/obj/item/clothing/gloves/insulated,/obj/item/clothing/gloves/insulated,/obj/item/clothing/gloves/insulated,/obj/item/clothing/glasses/welding,/obj/item/weapon/storage/belt/utility/full,/obj/item/weapon/storage/belt/utility/full,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"bB" = (/obj/structure/table/reinforced,/obj/item/stack/material/barbwire,/obj/item/stack/material/barbwire,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"bC" = (/obj/structure/table/steel,/obj/item/stack/material/plasteel{amount = 20},/obj/item/stack/material/glass{amount = 30},/obj/item/stack/material/wood{amount = 30},/obj/item/stack/material/glass/reinforced{amount = 10},/obj/item/stack/material/steel{amount = 30},/obj/structure/table/reinforced,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"bD" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 8},/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"bE" = (/obj/machinery/light/small{dir = 8},/obj/effect/floor_decal/corner/grey/border,/turf/simulated/floor/plating/grass,/area/prishtina/german/main_area)
+"bF" = (/obj/effect/landmark{name = "JoinLateHeer"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bG" = (/obj/effect/landmark{name = "JoinLateHeerCO"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bH" = (/obj/effect/landmark{name = "JoinLateHeerQM"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bI" = (/obj/effect/landmark{name = "JoinLateHeerSL"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bJ" = (/obj/effect/landmark{name = "JoinLateHeerSO"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bK" = (/obj/effect/landmark{name = "JoinLateRA"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bL" = (/obj/effect/landmark{name = "JoinLateRACO"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bM" = (/obj/effect/landmark{name = "JoinLateRADr"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bN" = (/obj/effect/landmark{name = "JoinLateRAQM"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
+"bO" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
+"bP" = (/obj/effect/landmark{name = "JoinLateRASO"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
+"bQ" = (/obj/effect/landmark{name = "JoinLateSS"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
+"bR" = (/obj/effect/landmark{name = "JoinLateSS-Officer"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
+"bS" = (/obj/effect/landmark{name = "Observer-Start"},/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"bT" = (/obj/structure/closet,/obj/item/weapon/mop,/obj/item/weapon/soap,/obj/item/weapon/reagent_containers/glass/bucket,/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
+"bU" = (/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
+"bV" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 8},/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
+"bW" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"bX" = (/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"bY" = (/obj/structure/simple_door/key_door/german/engineer{name = "Engineering Room"},/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"bZ" = (/obj/structure/simple_door/key_door/german/soldat{name = "Janitor Closet"},/obj/effect/floor_decal/spline/plain,/turf/simulated/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
+"ca" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/lights/mixed,/obj/item/weapon/storage/fancy/crayons,/obj/item/tape/engineering,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"cb" = (/obj/structure/table/reinforced,/obj/item/weapon/plastique,/obj/item/weapon/plastique,/obj/item/weapon/plastique,/obj/item/weapon/plastique,/obj/item/weapon/storage/fancy/crayons,/obj/item/tape/engineering,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"cc" = (/obj/structure/closet/toolcloset,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"cd" = (/obj/structure/closet/secure_closet/engineering_welding{req_access = null},/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"ce" = (/obj/structure/closet/crate/bettymines,/turf/simulated/floor/wood,/area/prishtina/german/engineering)
+"cf" = (/obj/effect/floor_decal/corner/grey/border{dir = 1},/turf/simulated/floor/plating/grass,/area/prishtina/german/main_area)
+"cg" = (/obj/machinery/door/unpowered/simple/iron,/turf/simulated/floor/plating/road,/area/prishtina/german_base_outside)
+"ch" = (/turf/simulated/wall/r_wall,/area/prishtina/german/shower1)
+"ci" = (/obj/machinery/shower{tag = "icon-shower (EAST)"; icon_state = "shower"; dir = 4; step_x = 0; step_y = 0},/turf/simulated/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/shower1)
+"cj" = (/turf/simulated/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/shower1)
+"ck" = (/obj/machinery/shower{tag = "icon-shower (WEST)"; icon_state = "shower"; dir = 8; step_x = 0; step_y = 0},/turf/simulated/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/shower1)
+"cl" = (/obj/item/weapon/soap,/turf/simulated/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/shower1)
+"cm" = (/turf/simulated/wall,/area/prishtina/german/shower2)
+"cn" = (/obj/structure/toilet{pixel_y = 13},/obj/machinery/light/small{dir = 8},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
+"co" = (/obj/structure/toilet{pixel_y = 13},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
+"cp" = (/obj/structure/mirror{step_y = 0; pixel_y = 33},/obj/structure/sink{step_y = 0; pixel_y = 27},/obj/item/device/radio/intercom/loudspeaker/german{dir = 8},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
+"cq" = (/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (WEST)"; icon_state = "spline_plain"; dir = 8},/obj/structure/curtain/open/shower,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
+"cr" = (/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
+"cs" = (/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/obj/structure/simple_door/key_door/anyone{name = "Latrine"},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/shower2)
+"ct" = (/turf/simulated/wall,/area/prishtina/german/shower1)
+"cu" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cv" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cw" = (/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cx" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cy" = (/obj/machinery/light/small,/turf/simulated/floor/plating/grass,/area/prishtina/german/main_area)
+"cz" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cA" = (/obj/effect/floor_decal/industrial/warning/dust,/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cB" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cC" = (/turf/simulated/wall/r_wall,/area/prishtina/german/cafeteria)
+"cD" = (/turf/simulated/wall,/area/prishtina/german/cafeteria)
+"cE" = (/obj/structure/simple_door/key_door/anyone{name = "Canteen"},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"cF" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cG" = (/obj/item/weapon/gun/projectile/minigun/maximstat,/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cH" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cI" = (/obj/structure/table/reinforced,/obj/item/weapon/soap,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"cJ" = (/obj/structure/sink/kitchen{pixel_x = 0; pixel_y = 28},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"cK" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"cL" = (/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"cM" = (/obj/structure/simple_door/key_door/german/soldat{name = "kitchen"},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"cN" = (/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"cO" = (/obj/item/device/radio/intercom/loudspeaker/german,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"cP" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"cQ" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cR" = (/obj/structure/closet,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"cS" = (/obj/structure/table/reinforced,/obj/item/weapon/reagent_containers/food/snacks/boiledrice,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"cT" = (/obj/structure/bed/chair/wood,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"cU" = (/obj/structure/bed/chair/wood{dir = 4},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"cV" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"cW" = (/obj/structure/bed/chair/wood{dir = 8},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"cX" = (/obj/structure/window/sandbag{step_y = 0},/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cY" = (/obj/structure/window/sandbag{step_y = 0},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"cZ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{step_y = 0},/turf/simulated/floor/plating/asteroid,/area/prishtina/german_base_outside)
+"da" = (/obj/structure/closet,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"db" = (/obj/structure/table/reinforced,/obj/item/weapon/tray,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dc" = (/obj/structure/table/reinforced,/obj/item/trash/plate,/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dd" = (/obj/structure/table/woodentable,/obj/item/weapon/flame/candle,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"de" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"df" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
+"dg" = (/obj/structure/kitchenspike,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dh" = (/obj/structure/table/reinforced,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"di" = (/obj/structure/table/reinforced,/obj/item/trash/plate,/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dj" = (/obj/structure/bed/chair/wood{dir = 1},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"dk" = (/obj/structure/table/reinforced,/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dl" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/box/matches,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"dm" = (/obj/structure/closet,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/knife,/obj/item/weapon/material/kitchen/utensil/knife,/obj/item/weapon/material/kitchen/utensil/knife,/obj/item/weapon/material/kitchen/utensil/knife,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dn" = (/obj/structure/table/reinforced,/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"do" = (/obj/structure/closet/secure_closet/freezer/meat,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dp" = (/obj/structure/reagent_dispensers/beerkeg,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dq" = (/obj/structure/table/reinforced,/obj/item/weapon/material/kitchen/rollingpin,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dr" = (/obj/structure/table/reinforced,/obj/machinery/light/small,/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"ds" = (/obj/structure/table/reinforced,/obj/item/weapon/material/knife/butch,/obj/machinery/light/small,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dt" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"du" = (/obj/structure/table/reinforced,/obj/machinery/microwave,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dv" = (/obj/machinery/gibber,/turf/simulated/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"dw" = (/obj/structure/closet/crate/bin{anchored = 1},/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"dx" = (/obj/machinery/light/small,/turf/simulated/floor/wood,/area/prishtina/german/cafeteria)
+"dy" = (/obj/structure/barbwire,/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
+"dz" = (/obj/structure/grille{icon_state = "fence4-8"; name = "fence"},/turf/simulated/floor/plating/grass,/area/prishtina/german_base_outside)
+"dA" = (/turf/simulated/wall,/area/prishtina/german/base_defenses)
+"dB" = (/obj/structure/grille{icon_state = "fence4-8"; name = "fence"},/turf/simulated/floor/plating/grass,/area/prishtina/german/base_defenses)
+"dC" = (/obj/structure/barbwire,/turf/simulated/floor/plating/grass,/area/prishtina/german/base_defenses)
+"dD" = (/turf/simulated/floor/plating/grass,/area/prishtina/german/base_defenses)
+"dE" = (/obj/structure/flora/ausbushes/fullgrass,/turf/simulated/floor/plating/grass,/area/prishtina/german/base_defenses)
+"dF" = (/obj/prishtina_block/attackers,/turf/simulated/floor/plating/grass,/area/prishtina/german/base_defenses)
+"dG" = (/obj/structure/wild/tree,/turf/simulated/floor/plating/grass,/area/prishtina/field)
+"dH" = (/turf/simulated/floor/plating/grass,/area/prishtina/field)
 
 (1,1,1) = {"
 aaabacacacacacababacacadadadadaeadadadadacacacacacadadadadafadadadadacagahaiajajajajajajajajajajajaj
@@ -198,43 +201,43 @@ aaaraMaMaMaMaNaMaMaJadadadadadaeadadadadacacacacacadadadadafadadadadacagahapaKaK
 aaaraRaSaTaSaUaVaWaJaeaeaeaeaeaeadadadadacacacabacadadadadafadadadadacagahapaXaYaYaKaKaZbaaKbbaqbcaj
 aaarbdbdbdbdbdbebdbfadadadadadaeadadadadacacacacacadadadadafadadadadacagahapaKaKbgaKaKbgaKaKbgaOaman
 aaaradaIbhadaIbiadaJadadadadadaeadadadadacacacacacadadadadafadadadadacagahapaKaKbjaEaKbjaEaKbjaqahai
-aaararbkadadadblaIaJadadadadadaeadadadadacacacacacadadadadafadadadadacagahapaDatauaEatauaEataFaqahai
-aaacararararararararbmadadadadaeadadadadacacacacabadadadadafadadadadacagahapasatauavbnauavatauaqahai
-aaacacacacacacacacacaaadadadadaeadadadadboabacacacadadadadafadadadadacagahapaqaqaqaqaqaqaqaqaqaqahai
-aaacacacacacacacacacaaadadadadaeadadadadacacacacacadadadadafadadadadacagaoahahahahahahahahahahahahai
-aaacacabacacacabbpacaaadadadadaeadadadadacacacacacadadadadafadadadadacagahbqbrbrbrbsbsbsbsbsbsbsahai
-aaacacacacacacababacaaadadadadaeadadadadacacacacacadadadadafadadadadacagahbqbtbubvbsbwbxbybzbAbsbBai
-aaacacacacacacacacacaabCbDbDbEbFbGbHbIbJbKbLbMbNbObPadadadafadadadadacagahbqbQbRbSbsbTbUbUbUbUbVajaj
-aaacacacacacacacacacaaadadadadaeadadadadacacacacacadadadadafadadadadacagahbqbrbWbrbsbXbYbZcacbbsccai
-aaacacacacacabacacaccdadadadadadadadadadacacacacacadadadadafadadadadacagaocecfcgchbsbsbsbsbsbsbsahai
-aaacacacacacacacacacacacacacacacacacacacacacabacacadadadadafadadadadacagahcecfcichcjckclclclcmcjbBai
-aaacacacacacacacacacacacacacacacacacacacacacacacacadadadadafadadadadacagahcecfcgcgcncocococococpajaj
-aaacacbpacacacacacacacabacacacacacacacabacacacacacadadadadafadadadadacagahcecqcqcqcjcjcjcjcjcjcjccai
-aaacacbpabacacacacacacacacacacacacacacacacacabacacadadadadafadadadadacagahahahahahahahahahahahahahai
+aaararbkadadadblaIaJadadbmadadaebnadadadacacacacacadadadadafadadadadacagahapaDatauaEatauaEataFaqahai
+aaacararararararararboadadadadaeadadadadacacacacabadadadadafadadadadacagahapasatauavbpauavatauaqahai
+aaacacacacacacacacacaaadadadadaeadadadadbqabacacacadadadadafadadadadacagahapaqaqaqaqaqaqaqaqaqaqahai
+aaacacacacacacacacacaaadbradadaeadadadadacacacacacadadadadafadadadadacagaoahahahahahahahahahahahahai
+aaacacabacacacabbsacaaadadadadaeadadadadacacacacacadadadadafadadadadacagahbtbubububvbvbvbvbvbvbvahai
+aaacacacacacacababacaaadadadadaeadadadadacacacacacadadadadafadadadadacagahbtbwbxbybvbzbAbBbCbDbvbEai
+aaacacacacacacacacacaabFbGbGbHbIbJbKbLbMbNbObPbQbRbSadadadafadadadadacagahbtbTbUbVbvbWbXbXbXbXbYajaj
+aaacacacacacacacacacaaadadadadaeadadadadacacacacacadadadadafadadadadacagahbtbubZbubvcacbcccdcebvcfai
+aaacacacacacabacacaccgadadadadadadadadadacacacacacadadadadafadadadadacagaochcicjckbvbvbvbvbvbvbvahai
+aaacacacacacacacacacacacacacacacacacacacacacabacacadadadadafadadadadacagahchciclckcmcncocococpcmbEai
+aaacacacacacacacacacacacacacacacacacacacacacacacacadadadadafadadadadacagahchcicjcjcqcrcrcrcrcrcsajaj
+aaacacbsacacacacacacacabacacacacacacacabacacacacacadadadadafadadadadacagahchctctctcmcmcmcmcmcmcmcfai
+aaacacbsabacacacacacacacacacacacacacacacacacabacacadadadadafadadadadacagahahahahahahahahahahahahahai
 aaacacacacacacacacacacacacacacacacacacacacacacacacadadadadafadadadadacagahahahahahahahahahahahahahai
 aaacacacacacacacacacacacacacacacacacacacacacacacacadadadadafadadadadacagahahahahahahahahahahahahahai
-aaacacacacacaccrcsctcscuacacacacabacacacacacacacacadadadadafadadadadacagahaoahahahahahahahahaoahcvai
-aaacacacacacaccwctcxctcyacacacacacacacacacacacacacadadadadafadadadadacagahczcAcAcAcAcAcAcAcAcAcAcAcB
-aaacacabacacaccwcCcDcEcyacacacacabacacacacacacacacadadadadafadadadadacagaoczcFcGcHcIcJcKcLcKcKcMcKcK
-aaacacacacacaccwctcNctcyacacacacacacacacabacacabacadadadadafadadadadacagaoczcOcIcPcIcAcKcQcQcKcRcScT
-aaacacacacacaccUcVcVcVcWacacacacacacacacacacacacacadadadadafadadadadacagahczcXcIcYcIcZcKdadbcKcRdacT
-aaacacacacacacacacacacacacacacdcdcacacacacacacacacadadadadafadadadadacagahczddcIdecIdfcKdgdgcKcRdbcT
-aaacdcacabacacacacacdcdcacacacacacacacacacacabacacadadadadafadadadadacagahczddcIdhcIdfcKcKcKcKcRdicT
-aaacacacacacacacacacdcdcacacacacacacacacacacacacacadadadadafadadadadacagahczdjcIdhcIdkcKcQcQcKcRcScT
-aaacacacacacacacacacacacacdcacacacacacacacacacacacadadadadafadadadadacagahczdlcIdmcIdkcKdadbcKcRdacT
-aaacacacacdcacabacacacacacacacacacdcacacacabacacacaMaMaMaMafaMaMaMaMacagahczdncIcIcIdocKdgdgcKcRdbcT
-aaacabacdcacacacacacacdcacacacacacdcacacacacacacacaMaMaMaMafaMaMaMaMacagahczdpdqdrdscAdtcKcKcKducKcK
-aaacacacacacacacacacacacacacacacacacacacacacacacacadadadadafadadadadacagahczczczczczczczczczczczczcz
+aaacacacacacaccucvcwcvcxacacacacabacacacacacacacacadadadadafadadadadacagahaoahahahahahahahahaoahcyai
+aaacacacacacacczcwcAcwcBacacacacacacacacacacacacacadadadadafadadadadacagahcCcDcDcDcDcDcDcDcDcDcDcDcE
+aaacacabacacacczcFcGcHcBacacacacabacacacacacacacacadadadadafadadadadacagaocCcIcJcKcLcMcNcOcNcNcPcNcN
+aaacacacacacacczcwcQcwcBacacacacacacacacabacacabacadadadadafadadadadacagaocCcRcLcScLcDcNcTcTcNcUcVcW
+aaacacacacacaccXcYcYcYcZacacacacacacacacacacacacacadadadadafadadadadacagahcCdacLdbcLdccNdddecNcUddcW
+aaacacacacacacacacacacacacacacdfdfacacacacacacacacadadadadafadadadadacagahcCdgcLdhcLdicNdjdjcNcUdecW
+aaacdfacabacacacacacdfdfacacacacacacacacacacabacacadadadadafadadadadacagahcCdgcLdkcLdicNcNcNcNcUdlcW
+aaacacacacacacacacacdfdfacacacacacacacacacacacacacadadadadafadadadadacagahcCdmcLdkcLdncNcTcTcNcUcVcW
+aaacacacacacacacacacacacacdfacacacacacacacacacacacadadadadafadadadadacagahcCdocLdpcLdncNdddecNcUddcW
+aaacacacacdfacabacacacacacacacacacdfacacacabacacacaMaMaMaMafaMaMaMaMacagahcCdqcLcLcLdrcNdjdjcNcUdecW
+aaacabacdfacacacacacacdfacacacacacdfacacacacacacacaMaMaMaMafaMaMaMaMacagahcCdsdtdudvcDdwcNcNcNdxcNcN
+aaacacacacacacacacacacacacacacacacacacacacacacacacadadadadafadadadadacagahcCcCcCcCcCcCcCcCcCcCcCcCcC
 aaacacacacacacacacacacacacacabacacacacacacacacacacacacacacacacacacacacagahahahahahahahahahahahahahah
-aadvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvdvagahahahahahahahahahahahahahah
-ardwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdwdxdydydydydydydydydydydydydydy
-dzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdz
-dAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdA
-dAdAdBdAdAdBdAdAdAdAdAdBdBdAdAdAdAdAdAdBdAdAdAdAdAdAdBdAdAdAdAdAdAdAdAdAdAdAdAdBdAdAdAdAdAdBdAdAdAdA
-dAdAdBdAdAdAdAdAdAdAdAdAdAdAdAdAdBdAdAdAdAdBdAdAdAdAdAdAdAdAdAdAdAdAdBdAdAdAdAdAdAdAdAdBdAdAdAdAdAdA
-dAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdBdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdA
-dzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdz
+aadydydydydydydydydydydydydydydydydydydydydydydydydydydydydydydydydydyagahahahahahahahahahahahahahah
+ardzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdzdAdBdBdBdBdBdBdBdBdBdBdBdBdBdB
 dCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC
-dDdDdEdEdEdEdEdEdEdEdEdEdDdDdEdEdEdEdEdEdEdEdEdEdEdEdEdDdDdDdDdDdEdEdEdEdEdDdDdDdEdEdEdEdDdEdEdEdEdE
-dDdDdEdEdDdDdEdEdEdEdEdEdEdDdDdDdDdDdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdDdDdEdEdEdDdDdEdEdEdE
+dDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdD
+dDdDdEdDdDdEdDdDdDdDdDdEdEdDdDdDdDdDdDdEdDdDdDdDdDdDdEdDdDdDdDdDdDdDdDdDdDdDdDdEdDdDdDdDdDdEdDdDdDdD
+dDdDdEdDdDdDdDdDdDdDdDdDdDdDdDdDdEdDdDdDdDdEdDdDdDdDdDdDdDdDdDdDdDdDdEdDdDdDdDdDdDdDdDdEdDdDdDdDdDdD
+dDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdEdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdDdD
+dCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdCdC
+dFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdFdF
+dGdGdHdHdHdHdHdHdHdHdHdHdGdGdHdHdHdHdHdHdHdHdHdHdHdHdHdGdGdGdGdGdHdHdHdHdHdGdGdGdHdHdHdHdGdHdHdHdHdH
+dGdGdHdHdGdGdHdHdHdHdHdHdHdGdGdGdGdGdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHdGdGdHdHdHdGdGdHdHdHdH
 "}

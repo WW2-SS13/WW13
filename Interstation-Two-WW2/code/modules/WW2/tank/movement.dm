@@ -57,19 +57,21 @@
 	update_bounding_rectangle()
 
 /obj/tank/proc/update_bounding_rectangle()
+	// todo: fix this, until then it will be 0 - Kachnov
+	var/bound_width_height_minus = size_multiplier >= 2.0 ? 0 : 0
 	switch (dir)
 		if (EAST)
-			bound_width = 96*size_multiplier
-			bound_height = 64*size_multiplier
+			bound_width = (96*size_multiplier) - bound_width_height_minus
+			bound_height = (64*size_multiplier) - bound_width_height_minus
 		if (WEST)
-			bound_width = 96*size_multiplier
-			bound_height = 64*size_multiplier
+			bound_width = (96*size_multiplier) - bound_width_height_minus
+			bound_height = (64*size_multiplier) - bound_width_height_minus
 		if (NORTH)
-			bound_width = 64*size_multiplier
-			bound_height = 96*size_multiplier
+			bound_width = (64*size_multiplier) - bound_width_height_minus
+			bound_height = (96*size_multiplier) - bound_width_height_minus
 		if (SOUTH)
-			bound_width = 64*size_multiplier
-			bound_height = 96*size_multiplier
+			bound_width = (64*size_multiplier) - bound_width_height_minus
+			bound_height = (96*size_multiplier) - bound_width_height_minus
 
 /obj/tank/proc/handle_passing_target_turf(var/turf/t)
 	var/list/turfs_in_the_way = list(t)
@@ -154,6 +156,8 @@
 				critical_damage()
 			if (prob(other.critical_damage_chance()))
 				other.critical_damage()
+
+			return 0
 		else
 			if (!o.density && !istype(o, /obj/item))
 				return 1

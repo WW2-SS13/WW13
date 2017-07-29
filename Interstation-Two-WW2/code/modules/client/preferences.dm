@@ -27,12 +27,15 @@ datum/preferences
 	var/real_name						//our character's name
 	var/german_name
 	var/russian_name
+	var/ukrainian_name
 	var/be_random_name = 0				//whether we are a random name every round
 	var/be_random_name_german = 0
 	var/be_random_name_russian = 0
+	var/be_random_name_ukrainian = 0
 	var/gender = MALE					//gender of character (well duh)
 	var/german_gender = MALE
 	var/russian_gender = MALE
+	var/ukrainian_gender = MALE // civs
 	var/body_build = "Default"			//character body build name
 	var/age = 30						//age of character
 	var/spawnpoint = "Cryogenic Storage"//where this character will spawn (0-2).
@@ -197,6 +200,7 @@ datum/preferences
 	gender = pick(MALE, FEMALE)
 	german_gender = pick(MALE, FEMALE)
 	russian_gender = pick(MALE, FEMALE)
+	ukrainian_gender = pick(MALE, FEMALE)
 	real_name = random_name(gender,species)
 
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")

@@ -1,3 +1,5 @@
+var/area/partisan_stockpile = null
+
 /obj/effect/landmark
 	name = "landmark"
 	icon = 'icons/mob/screen1.dmi'
@@ -258,10 +260,59 @@
 			qdel(src)
 			return
 
+		if ("TownStockpile")
+			var/turf/turf = loc
+			var/i = rand(1,3) // 1 == meds 2 == tools no weapons for now
+			switch (i)
+				if (1)
+					for (var/v in 1 to rand(2,3))
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/antitox(turf)
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/tramadol(turf)
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/dexalin(turf)
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/bicaridine(turf)
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/inaprovaline(turf)
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/pervitin(turf)
+						if (prob(33))
+							new/obj/item/weapon/gauze_pack/bint(turf)
+				if (2)
+					for (var/v in 1 to rand(2,3))
+						if (prob(50))
+							new/obj/item/weapon/wrench(turf)
+						if (prob(50))
+							new/obj/item/weapon/crowbar(turf)
+						if (prob(50))
+							new/obj/item/weapon/weldingtool(turf)
+						if (prob(50))
+							new/obj/item/weapon/screwdriver(turf)
+
+			qdel(src)
+			return
+
 		if ("JoinLateCivilian")
 			if(!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("PartisanStockpile")
+			var/turf/turf = get_turf(loc)
+			for (var/v in 1 to 5)
+				if (prob(50))
+					new/obj/item/weapon/gun/projectile/pistol/luger(turf)
+				if (prob(75))
+					new/obj/item/ammo_magazine/luger(turf)
+				if (prob(60))
+					new/obj/item/attachment/bayonet(turf)
+				if (prob(50))
+					new/obj/item/weapon/melee/classic_baton/mp_baton/russian_baton/old(turf)
+			partisan_stockpile = get_area(turf)
 			qdel(src)
 			return
 

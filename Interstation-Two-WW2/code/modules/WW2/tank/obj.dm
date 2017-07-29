@@ -4,7 +4,7 @@
 	density = 1
 	anchored = 1
 	var/damage = 0
-	var/max_damage = 400
+	var/max_damage = 450
 	icon = 'icons/WW2/tank_64x96.dmi' // I don't know why but we start out southfacing
 	var/horizontal_icon = 'icons/WW2/tank_96x64.dmi'
 	var/vertical_icon = 'icons/WW2/tank_64x96.dmi'
@@ -15,7 +15,7 @@
 	var/fuel = 500
 	var/max_fuel = 500
 	var/next_spam_allowed = -1
-	var/size_multiplier = 2
+	var/size_multiplier = 2.0 // warning: do NOT make this a non-whole number ever
 
 /obj/tank/New()
 	..()
@@ -114,6 +114,12 @@
 	if (!ishuman(user))
 		return 0
 
+	var/mob/living/carbon/human/H = user
+
+	if (H.is_jew)
+		user << "<span class = 'danger'>You don't know how to use [my_name()].</span>"
+		return 0
+
 	if (next_seat() && !accepting_occupant)
 		tank_message("<span class = 'warning'>[user] starts to go in the [next_seat_name()] of [my_name()].</span>")
 		accepting_occupant = 1
@@ -138,7 +144,7 @@
 		return receive_backseat_command(x)
 #else
 /obj/tank/proc/receive_command_from(var/mob/user, x)
-	if (!isliving(user))
+	if (!isliving(user) || user.stat == UNCONSCIOUS || user.stat == DEAD)
 		return
 	if (user == front_seat() && x != "FIRE" || user == back_seat() && x != "FIRE")
 		return receive_frontseat_command(x)
@@ -167,7 +173,7 @@
 		if (fuel/max_fuel < 0.2)
 			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 20%!</big></span>")
 			next_spam_allowed = world.time + 100
-		else if (fuel/max_fuel <= 0.5)
+		else if (fuel/max_fuel < 0.5)
 			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 50%.</big></span>")
 			next_spam_allowed = world.time + 300
 

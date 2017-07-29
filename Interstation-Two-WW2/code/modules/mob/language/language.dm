@@ -74,6 +74,24 @@
 
 	return "[trim(full_name)]"
 
+/datum/language/proc/get_random_ukrainian_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
+	if(!syllables || !syllables.len)
+		if(gender==FEMALE)
+			return capitalize(pick(first_names_female_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
+		else
+			return capitalize(pick(first_names_male_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
+
+	var/full_name = ""
+	var/new_name = ""
+
+	for(var/i = 0;i<name_count;i++)
+		new_name = ""
+		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+			new_name += pick(syllables)
+		full_name += " [capitalize(lowertext(new_name))]"
+
+	return "[trim(full_name)]"
+
 /datum/language
 	var/list/scramble_cache = list()
 
@@ -206,6 +224,17 @@
 						H.real_name = H.client.prefs.russian_name
 					H.name = H.real_name
 					H.gender = H.client.prefs.russian_gender
+
+		else if (istype(new_language, /datum/language/ukrainian))
+			if (ishuman(src))
+				var/mob/living/carbon/human/H = src
+				if (H.species)
+					if (H.client.prefs.be_random_name_ukrainian)
+						H.real_name = H.species.get_random_ukrainian_name(H.gender, H.client.prefs.be_jew)
+					else
+						H.real_name = H.client.prefs.ukrainian_name
+					H.name = H.real_name
+					H.gender = H.client.prefs.ukrainian_gender
 
 	if(!istype(new_language) || (new_language in languages))
 		return 0

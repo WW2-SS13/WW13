@@ -150,10 +150,14 @@
 	if (!istype(user))
 		return
 
-	if (!user.client.prefs.be_jew || !istype(src, /datum/job/german))
+	if (!user.client.prefs.be_jew || !istype(src, /datum/job/german/soldier))
+		return
+
+	if (is_officer)
 		return
 
 	user << "<span class = 'danger'>You are the Jew.</span><br>"
+	user << "<span class = 'notice'>Objective #1: Survive.</span>"
 
 	user.add_memory("Jew Objectives")
 	user.add_memory("")
@@ -182,7 +186,7 @@
 	if (clients.len < 25) // too lowpop for spies! Todo: config setting
 		return
 
-	if (prob(20) && istype(src, /datum/job/german/soldier) || prob(12) && istype(src, /datum/job/russian/soldier))
+	if ((prob(20) && istype(src, /datum/job/german/soldier)) || (prob(12) && istype(src, /datum/job/russian/soldier)))
 		if (allow_spies)
 			make_spy(user)
 			user.give_radio()
@@ -236,6 +240,10 @@
 /datum/job/russian
 	uses_keys = 1
 	team = "RUSSIAN"
+
+/datum/job/partisan
+	uses_keys = 1
+	team = "PARTISAN"
 
 /proc/get_side_name(var/side, var/datum/job/j)
 	if (j && (istype(j, /datum/job/german/squad_leader_ss) || istype(j, /datum/job/german/soldier_ss)))

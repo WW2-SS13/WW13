@@ -102,34 +102,42 @@ var/global/squad_members[3]
 /datum/job_faction/squad
 	var/squad = null
 	var/is_leader = 0
+	var/number = "#1"
 	New(var/mob/living/carbon/human/H, var/datum/job/J)
 		if (!is_leader)
-			H << "<span class = 'danger'>You've been assigned to squad [squad]."
+			H << "<span class = 'danger'>You've been assigned to squad [squad]. Meet with the rest of your squad on train car [number]. Examine people to see if they're in your squad, or if they're your squad leader."
 		else
-			H << "<span class = 'danger'>You are the [J.title] of squad [squad]."
+			H << "<span class = 'danger'>You are the [J.title] of squad [squad]. Meet with your squad on train car [number]. Examine people to see if they're one of your soldats."
 		..(H, J)
 
 /datum/job_faction/squad/one
 	icon_state = "squad_one"
 	squad = "one"
+	number = "#1"
 /datum/job_faction/squad/one/leader
 	icon_state = "squad_one_leader"
 	is_leader = 1
+
 /datum/job_faction/squad/two
 	icon_state = "squad_two"
 	squad = "two"
+	number = "#2"
 /datum/job_faction/squad/two/leader
 	icon_state = "squad_two_leader"
 	is_leader = 1
+
 /datum/job_faction/squad/three
 	icon_state = "squad_three"
 	squad = "three"
+	number = "#3"
 /datum/job_faction/squad/three/leader
 	icon_state = "squad_three_leader"
 	is_leader = 1
+
 /datum/job_faction/squad/four
 	icon_state = "squad_four"
 	squad = "four"
+	number = "#4"
 /datum/job_faction/squad/four/leader
 	icon_state = "squad_four_leader"
 	is_leader = 1
@@ -183,14 +191,13 @@ var/global/squad_members[3]
 				squad_members["PARTISAN"]++
 	H.all_job_factions += src
 	..()
-/*
+
 /datum/job_faction/proc/return_image()
 	qdel(last_returned_image)
 	var/image/i = image(icon, get_turf(holder), icon_state, MOB_LAYER + 20.0)
 	last_returned_image = i
-	return i*/
-
-
+	return i
+/*
 /obj/factionhud // for displaying huds with screen_loc
 	// for checking if our mob moved
 	var/turf/reference_loc = null
@@ -208,18 +215,11 @@ var/global/squad_members[3]
 	last_returned_hud = factionhud
 	return factionhud
 
-
-/mob/living/carbon/human/var/last_faction_hud_update = -1
-
-/mob/living/carbon/human/Move()
-	..()
-	update_faction_huds_to_nearby_mobs()
-
+*/
 /mob/living/carbon/human/proc/update_faction_huds_to_nearby_mobs()
-	if (last_faction_hud_update == -1 || world.time - last_faction_hud_update >= 1)
-		last_faction_hud_update = world.time
-		for (var/mob/living/carbon/human/H in view(client ? client.view : world.view, src))
-			update_faction_huds(H)
+	return // FIX THIS SHIT - kachnov
+	for (var/mob/living/carbon/human/H in view(client ? client.view : world.view, src))
+		update_faction_huds(H)
 
 /proc/factiondebug(who, whom, scenario)
 	#ifdef FACTIONDEBUG
@@ -228,16 +228,6 @@ var/global/squad_members[3]
 
 // updates the HUDs that target (a human) has for src
 /mob/living/carbon/human/proc/update_faction_huds(var/mob/living/carbon/human/target)
-
-	var/obj/factionhud/factionhud = target.job_faction_images[real_name]
-
-	if (factionhud)
-		if (factionhud.reference_mob == src && factionhud.reference_loc == get_turf(src))
-			return 1
-		else
-			target.overlays -= factionhud
-			qdel(factionhud)
-			target.job_faction_images[real_name] = null
 
 	if (!base_job_faction || !target.base_job_faction) // we just spawned.
 		return 0
@@ -336,7 +326,7 @@ var/global/squad_members[3]
 				goto addoverlay
 
 	addoverlay
-	target.overlays |= target.job_faction_images[real_name]
+	target.client.images |= target.job_faction_images[real_name]
 
 /* HELPER FUNCTIONS */
 

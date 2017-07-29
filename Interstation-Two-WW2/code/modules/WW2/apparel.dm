@@ -91,6 +91,14 @@
 	item_state = SOVIET_UNIFORM_STATE
 	worn_state = SOVIET_UNIFORM_STATE
 
+// todo
+/obj/item/clothing/under/sovuni/officer
+	name = SOVIET_UNIFORM_NAME
+	desc = SOVIET_UNIFORM_DESC
+	icon_state = "sovuniofficer"
+	item_state = "sovuniofficer"
+	worn_state = "sovuniofficer"
+
 /obj/item/clothing/under/geruni
 	name = GERMAN_UNIFORM_NAME
 	desc = GERMAN_UNIFORM_DESC
@@ -98,6 +106,7 @@
 	item_state = GERMAN_UNIFORM_STATE
 	worn_state = GERMAN_UNIFORM_STATE
 	var/rolled = 0
+
 
 /obj/item/clothing/under/geruni/verb/roll_sleeves()
 	set category = null
@@ -257,3 +266,37 @@
 	name = "doctor's uniform"
 	icon_state = "ba_suit"
 	item_state = "ba_suit"
+
+// soviets and partisans
+
+/obj/item/clothing/shoes/swat/wrappedboots
+	name = "\improper wrapped boots"
+	icon_state = "wrappedboots"
+	force = WEAPON_FORCE_WEAK
+	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
+	item_flags = NOSLIP
+	siemens_coefficient = 0.6
+
+
+// partisans / civs
+
+/obj/item/clothing/under/civ1
+	name = "Civilian Clothing"
+	desc = ""
+	icon_state = "civuni1"
+	item_state = "civuni1"
+	worn_state = "civuni1"
+
+/obj/item/clothing/under/civ2
+	name = "Civilian Clothing"
+	desc = ""
+	icon_state = "civuni2"
+	item_state = "civuni2"
+	worn_state = "civuni2"
+
+/obj/item/clothing/under/civ3
+	name = "Civilian Clothing"
+	desc = ""
+	icon_state = "civuni3"
+	item_state = "civuni3"
+	worn_state = "civuni3"
