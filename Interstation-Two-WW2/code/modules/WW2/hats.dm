@@ -26,3 +26,13 @@
 	name = "German officer cap"
 	icon_state = "fieldcap"
 	item_state = "fieldcap"
+	
+/obj/item/clothing/head/caphat/sovtankerhat
+	name = "Soviet Crewman Cap"
+	icon_state = "sovtankerhat"
+	item_state = "sovtankerhat"
+	
+/obj/item/clothing/head/caphat/gertankerhat
+	name = "Panzer Crewman Cap"
+	icon_state = "gertankerhat"
+	item_state = "gertankerhat"
