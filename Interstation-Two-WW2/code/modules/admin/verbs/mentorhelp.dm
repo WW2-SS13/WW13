@@ -29,7 +29,7 @@
 	src << "<font color=green>PM to-<b>Mentors </b>: [msg]</font>"
 
 
-	var/mentormsg = "<b><font color=green>Request for Help:[get_options_bar(mob, 4, 0, 1, 0)]:</b> [msg]</font>"
+	var/mentormsg = "<b><font color=green>Request for Help:</font>[get_options_bar(mob, 4, 0, 1, 0)]:</b> [msg]</font>"
 	var/adminmsg = "(MENTORHELP) [mentormsg]"
 
 	for(var/client/X in admins)

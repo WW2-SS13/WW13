@@ -9,7 +9,6 @@
 
 /datum/gender
 	var/key  = "plural"
-
 	var/He   = "They"
 	var/he   = "they"
 	var/His  = "Their"

@@ -5,9 +5,9 @@
 	anchored = 1
 	var/damage = 0
 	var/max_damage = 450
-	icon = 'icons/WW2/tank_64x96.dmi' // I don't know why but we start out southfacing
-	var/horizontal_icon = 'icons/WW2/tank_96x64.dmi'
-	var/vertical_icon = 'icons/WW2/tank_64x96.dmi'
+	icon = 'icons/WW2/tank_large_vertical.dmi' // I don't know why but we start out southfacing
+	var/horizontal_icon = 'icons/WW2/tank_large_horizontal.dmi'
+	var/vertical_icon = 'icons/WW2/tank_large_vertical.dmi'
 	icon_state = "ger"
 	layer = MOB_LAYER - 0.01
 	var/fuel_slot_screwed = 1
@@ -15,11 +15,10 @@
 	var/fuel = 500
 	var/max_fuel = 500
 	var/next_spam_allowed = -1
-	var/size_multiplier = 2.0 // warning: do NOT make this a non-whole number ever
+	//var/size_multiplier = 2.0 // warning: do NOT make this a non-whole number ever
 
 /obj/tank/New()
 	..()
-	animate(src, transform = matrix()*size_multiplier, time = -1)
 	update_bounding_rectangle()
 
 /obj/tank/attack_hand(var/mob/user as mob)
