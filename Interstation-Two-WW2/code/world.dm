@@ -544,7 +544,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	// this can hold around 20 chars max I think, but keep it at 15 or so - Kachnov
 
-	var/freaking_cool_features = "Partisans! Tanks! Paratroopers!"
+	var/freaking_cool_features = "Partisans! Tanks! Spies!"
 
 	//var/original_banner = "http://tny.im/9Bm"
 	//var/cavebob_banner_1 = "http://tny.im/9IQ"
