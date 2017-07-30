@@ -55,13 +55,13 @@
 		var/mob/user = drive_front_seat
 		user.loc = exitturf
 		if (user.client) user.client.eye = user
-		user = null
+		drive_front_seat = null
 
 	if (fire_back_seat)
 		var/mob/user = fire_back_seat
 		user.loc = exitturf
 		if (user.client) user.client.eye = user
-		user = null
+		fire_back_seat = null
 
 /obj/tank/proc/handle_seat_exit(var/mob/user)
 
