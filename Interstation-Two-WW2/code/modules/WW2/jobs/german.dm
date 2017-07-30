@@ -365,6 +365,45 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/german/tankcrew
+	title = "Panzerbesatzung"
+	en_meaning = "Tank Crewman"
+	flag = GERSOL
+	department_flag = MEDSCI
+	faction = "Station"
+	total_positions = 4
+	spawn_positions = 4
+	selection_color = "#4c4ca5"
+	access = list(access_nato_soldier, access_nato_heavy_weapon)
+	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
+	spawn_location = "JoinLateHeer"
+	fallback_spawn_location = "JoinLateNATO-Fallback"
+
+/datum/job/german/tankcrew/equip(var/mob/living/carbon/human/H)
+	if(!H)	return 0
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gertankeruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gertankerhat(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
+	if (!check_for_german_train_conductors())
+		for (var/obj/item/weapon/storage/belt/keychain/keychain in H)
+			keychain.keys += new/obj/item/weapon/key/german/train()
+			H << "<i>You have a key with train access.</i>"
+			break
+
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a tank crewman. Your job is to work with another crewman to operate a tank.</span>"
+	return 1
+
+/datum/job/german/tankcrew/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/command_intermediate)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var/first_fallschirm = 1
 
 /datum/job/german/fallschirm

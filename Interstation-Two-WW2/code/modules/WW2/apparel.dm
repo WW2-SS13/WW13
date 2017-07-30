@@ -159,6 +159,20 @@
 	icon_state = "ss_formal_ofc"
 	item_state = "ss_formal_ofc"
 	worn_state = "ss_formal_ofc"
+	
+/obj/item/clothing/under/geruni/gertankeruni
+	name = "Panzer Crewman Uniform"
+	desc = "Dark gray jumpsuit with a brown belt. It has an insignia declaring the wearer as a tank crewman."
+	icon_state = "gertankeruni"
+	item_state = "gertankeruni"
+	worn_state = "gertankeruni"
+	
+/obj/item/clothing/under/sovuni/sovtankeruni
+	name = "Soviet Crewman Uniform"
+	desc = "Dark blue jumpsuit with a brown belt and bandolier."
+	icon_state = "sovtankeruni"
+	item_state = "sovtankeruni"
+	worn_state = "sovtankeruni"
 
 /obj/item/clothing/head/helmet/tactical/gerhelm
 	name = GERMAN_HELMET_NAME
