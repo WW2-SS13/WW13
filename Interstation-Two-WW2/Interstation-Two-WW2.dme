@@ -940,6 +940,7 @@
 #include "code\modules\admin\verbs\see_soldiers.dm"
 #include "code\modules\admin\verbs\see_spies.dm"
 #include "code\modules\admin\verbs\striketeam.dm"
+#include "code\modules\admin\verbs\tanks.dm"
 #include "code\modules\admin\verbs\ticklag.dm"
 #include "code\modules\admin\verbs\tripAI.dm"
 #include "code\modules\admin\verbs\WW2.dm"
