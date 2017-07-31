@@ -59,17 +59,17 @@
 /obj/tank/proc/update_bounding_rectangle()
 	switch (dir)
 		if (EAST)
-			bound_width = 160 // 168
-			bound_height = 128 // 102
+			bound_width = 160
+			bound_height = 96
 		if (WEST)
-			bound_width = 160 // 168
-			bound_height = 128 // 102
+			bound_width = 160
+			bound_height = 96
 		if (NORTH)
-			bound_width = 96 // 94
-			bound_height = 160 // 164
+			bound_width = 96
+			bound_height = 160
 		if (SOUTH)
-			bound_width = 96 // 94
-			bound_height = 160 //164
+			bound_width = 96
+			bound_height = 160
 
 /obj/tank/proc/handle_passing_target_turf(var/turf/t)
 	var/list/turfs_in_the_way = list(t)
