@@ -14,7 +14,7 @@
 
 	var/dam = (P.damage/3 + (P.armor_penetration*20))/25
 	if (P.armor_penetration < 50)
-		dam /= 4
+		dam /= 8
 	dam += 1 // minimum damage
 
 	damage += dam

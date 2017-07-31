@@ -51,7 +51,7 @@
 	else if (istype(W, /obj/item/weapon/storage/belt/keychain))
 		var/obj/item/weapon/storage/belt/keychain/kc = W
 		//var/list/keylist = kc.keys
-		
+
 		for (var/obj/item/weapon/key/german/command_intermediate/key in kc.keys)
 			if(istype(key))
 				if (locked == 1)
@@ -83,7 +83,7 @@
 	else if (!istankvalidtool(W) || W.force < 5)
 		if (user.a_intent != I_HURT)
 			return 0
-			
+
 	if (istankvalidtool(W))
 		if (istype(W, /obj/item/weapon/wrench) && !user.repairing_tank)
 			tank_message("<span class = 'notice'>[user] starts to wrench in some loose parts on [my_name()].</span>")
