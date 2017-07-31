@@ -3,8 +3,8 @@
 //PPS
 //*********************
 /obj/item/weapon/gun/projectile/automatic/mp40
-	name = "Mp40"
-	desc = "Mp40 german submachinegun."
+	name = "MP-40"
+	desc = "German submachinegun chambered in 9x19 Parabellum, with a 32 magazine magazine layout. Standard issue amongst most troops."
 	icon_state = "mp40"
 	item_state = "mp40"
 	load_method = MAGAZINE
@@ -40,8 +40,8 @@
 	return
 
 /obj/item/weapon/gun/projectile/automatic/stg
-	name = "Stg44"
-	desc = "Assault rifle made by german genius."
+	name = "STG-44"
+	desc = "German assault rifle with a 30 round magazine, chambered in 7.92x33mm Kurz. It is a devastating weapon."
 	icon_state = "stg"
 	item_state = "stg"
 	load_method = MAGAZINE
@@ -74,8 +74,8 @@
 
 
 /obj/item/weapon/gun/projectile/automatic/akm
-	name = "Mp43B"
-	desc = "Assault rifle made by german genius."
+	name = "MP-43/B"
+	desc = "German assault rifle chambered in 7.92x33mm Kurz, 30 round magazine. Variant of the STG-44, issued to SS, usually."
 	icon_state = "stg"
 	item_state = "stg"
 	load_method = MAGAZINE
@@ -111,8 +111,8 @@
 	return
 
 /obj/item/weapon/gun/projectile/automatic/m4
-	name = "PPSh submachinegun"
-	desc = "Soviet submachinegun. Easy to make and easy to stuff someone with lead using it."
+	name = "PPSh-41"
+	desc = "Soviet submachinegun with a very large drum magazine. Capable of bringing many targets down in Stalin's name."
 	icon_state = "ppsh"
 	item_state = "ppsh"
 	load_method = MAGAZINE
@@ -148,8 +148,8 @@
 	return
 
 /obj/item/weapon/gun/projectile/automatic/pkm
-	name = "DP"
-	desc = "DP soviet machinegun. Durable and accurate, but not so fast firing."
+	name = "DP-28"
+	desc = "Soviet light machine gun with a odd disk-shaped magazine on top. Chambered in 7.62x54mmR, in 41 round magazines."
 	icon_state = "dp"
 	item_state = "dp"
 	load_method = MAGAZINE

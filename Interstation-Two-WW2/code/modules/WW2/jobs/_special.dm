@@ -257,4 +257,4 @@
 	else
 		equip_to_slot_or_del(new /obj/item/device/radio/rbs(src), slot_s_store)
 
-	src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it, prefix your message with ':b'.</b></span>"
+	src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while on your back, prefix your message with ':b'.</b></span>"
