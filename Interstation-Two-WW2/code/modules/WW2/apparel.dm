@@ -1,17 +1,17 @@
 #define SOVIET_UNIFORM_NAME "Soviet uniform"
-#define SOVIET_UNIFORM_DESC "Standard soviet uniform for soildiers. You can smell german virgin's blood on it."
+#define SOVIET_UNIFORM_DESC "Standard issue Soviet uniform issued to soldiers of the Red Army. You can smell Vodka and see faint borsch stains."
 #define SOVIET_UNIFORM_STATE "sovuni"
 
 #define GERMAN_UNIFORM_NAME "German uniform"
-#define GERMAN_UNIFORM_DESC "Standart german uniform for soildiers. You can smell seiner madchenes parfume!"
+#define GERMAN_UNIFORM_DESC "Standard issue German uniform issued to soldiers of the Wehrmacht. It looks sturdy and strictly folded."
 #define GERMAN_UNIFORM_STATE "geruni"
 
 #define SOVIET_HELMET_NAME "Soviet helmet"
-#define SOVIET_HELMET_DESC ""
+#define SOVIET_HELMET_DESC "Standard issue helmet of the Red Army. Provides some protection against both the elements and flying bullets."
 #define SOVIET_HELMET_STATE "sovhelm"
 
 #define GERMAN_HELMET_NAME "German helmet"
-#define GERMAN_HELMET_DESC ""
+#define GERMAN_HELMET_DESC "Standard issue helmet of the Wehrmacht. Provides some protection against both the elements and flying bullets."
 #define GERMAN_HELMET_STATE "gerhelm"
 
 /obj/item/clothing/under
@@ -91,10 +91,9 @@
 	item_state = SOVIET_UNIFORM_STATE
 	worn_state = SOVIET_UNIFORM_STATE
 
-// todo
 /obj/item/clothing/under/sovuni/officer
-	name = SOVIET_UNIFORM_NAME
-	desc = SOVIET_UNIFORM_DESC
+	name = "soviet officer's uniform"
+	desc = "A fancier, more pressed uniform of the Red Army, given to Soviet officers. It has a feel of pride and authority."
 	icon_state = "sovuniofficer"
 	item_state = "sovuniofficer"
 	worn_state = "sovuniofficer"
@@ -141,7 +140,7 @@
 
 /obj/item/clothing/suit/sssmock
 	name = "S.S. Smock"
-	desc = "A camo S.S. overcoat."
+	desc = "A camo S.S. overcoat that blends in well in the fall."
 	icon_state = "sssmock"
 	item_state = "sssmock"
 	worn_state = "sssmock"
@@ -159,14 +158,14 @@
 	icon_state = "ss_formal_ofc"
 	item_state = "ss_formal_ofc"
 	worn_state = "ss_formal_ofc"
-	
+
 /obj/item/clothing/under/geruni/gertankeruni
 	name = "Panzer Crewman Uniform"
 	desc = "Dark gray jumpsuit with a brown belt. It has an insignia declaring the wearer as a tank crewman."
 	icon_state = "gertankeruni"
 	item_state = "gertankeruni"
 	worn_state = "gertankeruni"
-	
+
 /obj/item/clothing/under/sovuni/sovtankeruni
 	name = "Soviet Crewman Uniform"
 	desc = "Dark blue jumpsuit with a brown belt and bandolier."
@@ -190,6 +189,7 @@
 
 /obj/item/clothing/head/helmet/tactical/gerhelm/sshelm
 	name = "SS camo helmet"
+	desc =  "A metal helmet issued to SS soldiers, that is camouflaged for autumn operations. A bit early for it, ja?"
 	icon_state = "sshelm"
 	item_state = "sshelm"
 
@@ -216,7 +216,7 @@
 
 /obj/item/clothing/suit/armor/bulletproof/cn42
 	name = "CN-42 bulletproof vest"
-	desc = "A heavy vest used by soviet shock troops"
+	desc = "A heavy vest used by Soviet shock troops."
 	icon_state = "cn42"
 	armor = list(melee = 30, bullet = 60, laser = 10, energy = 10, bomb = 15, bio = 0, rad = 0)
 
@@ -276,8 +276,8 @@
 	new /obj/item/weapon/grenade/explosive/stgnade(src)
 
 /obj/item/clothing/under/doctor
-	desc = "A classy suit for doctors of the 40's."
 	name = "doctor's uniform"
+	desc = "A sterile, nicely pressed suit for doctors."
 	icon_state = "ba_suit"
 	item_state = "ba_suit"
 
@@ -296,21 +296,21 @@
 
 /obj/item/clothing/under/civ1
 	name = "Civilian Clothing"
-	desc = ""
+	desc = "A nice set of threads for civilians. Smells of sweat and resentment."
 	icon_state = "civuni1"
 	item_state = "civuni1"
 	worn_state = "civuni1"
 
 /obj/item/clothing/under/civ2
 	name = "Civilian Clothing"
-	desc = ""
+	desc = "A nice set of threads for civilians. Smells of sweat and resentment."
 	icon_state = "civuni2"
 	item_state = "civuni2"
 	worn_state = "civuni2"
 
 /obj/item/clothing/under/civ3
 	name = "Civilian Clothing"
-	desc = ""
+	desc = "A nice set of threads for civilians. Smells of sweat and resentment."
 	icon_state = "civuni3"
 	item_state = "civuni3"
 	worn_state = "civuni3"
