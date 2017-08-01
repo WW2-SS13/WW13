@@ -443,10 +443,10 @@ var/first_fallschirm = 1
 	H.give_radio()
 
 
-	var/list/fallschirm_spawnzone = list()
+	var/fallschirm_spawnzone = null
 	var/list/fallschirm_spawnpoints = list()
 
-	if(!fallschirm_spawnzone.len)
+	if(!fallschirm_spawnzone)
 		fallschirm_spawnzone = pick(fallschirm_landmarks)
 		fallschirm_landmarks = null
 		for(var/turf/T in range(3, fallschirm_spawnzone))
