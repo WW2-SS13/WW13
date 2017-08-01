@@ -12,7 +12,7 @@
 		owner = M
 		owner.parallax = src
 		image = image('icons/parallax.dmi', src, "space")
-		image.invisibility = 0
+		image.invisibility = 101
 		update()
 
 	proc/update()
