@@ -4,6 +4,8 @@ var/global/datum/controller/occupations/job_master
 #define BE_ASSISTANT 1
 #define RETURN_TO_LOBBY 2
 
+var/global/list/fallschirm_landmarks = list()
+
 /datum/controller/occupations
 		//List of all jobs
 	var/list/occupations = list()
@@ -49,6 +51,9 @@ var/global/datum/controller/occupations/job_master
 	proc/relocate(var/mob/living/L)
 
 		var/list/turfs = latejoin_turfs[L.mind.assigned_job.spawn_location]
+
+		if(istype(L.mind.assigned_job, /datum/job/german/fallschirm))
+			return
 
 		if(turfs && turfs.len > 0)
 			L.loc = pick(turfs)
@@ -616,7 +621,7 @@ var/global/datum/controller/occupations/job_master
 		if(!joined_late)
 
 			if(!job)
-				H << "Your job doesn't exists. You fucked. Report to administator."
+				H << "Your job doesn't exist. You are fucked. Report to the nearest codernerd."
 			else
 				var/list/turfs = latejoin_turfs[job.spawn_location]
 				if(turfs && turfs.len > 0)
