@@ -6,8 +6,6 @@
 
 
 /obj/tank/Move()
-	..()
-
 	switch (dir)
 		if (EAST)
 			icon = horizontal_icon
@@ -18,6 +16,7 @@
 		if (SOUTH)
 			icon = vertical_icon
 	update_bounding_rectangle()
+	..()
 
 /obj/tank/proc/_Move(direct)
 	if (world.time - last_movement > movement_delay || last_movement == -1)
@@ -29,6 +28,7 @@
 		if (target && (target.check_prishtina_block(src.front_seat()) || target.check_prishtina_block(src.back_seat())))
 			return
 		dir = direct
+		update_bounding_rectangle()
 		switch (dir)
 			if (EAST)
 				icon = horizontal_icon
@@ -54,7 +54,6 @@
 				return 0
 		loc = target
 		fuel -= pick(0.33,0.5,0.75)
-	update_bounding_rectangle()
 
 /obj/tank/proc/update_bounding_rectangle()
 	switch (dir)
