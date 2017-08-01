@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/svt
-	name = "SVT automatic rifle"
-	desc = "Automatic Simonov rifle."
+	name = "SVT-40"
+	desc = "Soviet semi-automatic rifle chambered in 7.62x54mmR. Used by some guard units and defense units."
 	icon_state = "svt"
 	item_state = "svt"
 	w_class = 4
@@ -26,7 +26,7 @@
 
 /obj/item/weapon/gun/projectile/g41
 	name = "Gewehr 41"
-	desc = "Semi-Automatic Jew Hunter."
+	desc = "German semi-automatic rifle using 7.92x57mm Mauser ammunition in a 10 round magazine. Devastating rifle."
 	icon_state = "" //to-do
 	item_state = "" //to-do
 	w_class = 4

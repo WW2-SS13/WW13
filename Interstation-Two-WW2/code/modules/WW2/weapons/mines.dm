@@ -103,6 +103,7 @@
 		for(var/mob/O in viewers(world.view, src.loc))
 			O << "<font color='red'>[M] triggered the [src]!</font>"
 		triggered = 1
+		visible_message("\red <b>Click!</b>")
 		explosion(src.loc,-1,1,3)
 		spawn(0)
 			if(src)
