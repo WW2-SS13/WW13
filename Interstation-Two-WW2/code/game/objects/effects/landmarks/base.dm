@@ -272,9 +272,7 @@
 			qdel(src)
 			return
 		if("Fallschirm")
-			if(!latejoin_turfs[name])
-				latejoin_turfs[name] = list()
-			latejoin_turfs[name] += loc
+			fallschirm_landmarks += loc
 			qdel(src)
 			return
 		if("prisonwarp")
