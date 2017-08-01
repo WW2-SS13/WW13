@@ -175,6 +175,7 @@
 
 /obj/item/clothing/head/helmet/tactical/gerhelm
 	name = GERMAN_HELMET_NAME
+	desc = GERMAN_HELMET_DESC
 	icon_state = GERMAN_HELMET_STATE
 	item_state = GERMAN_HELMET_STATE
 
@@ -195,6 +196,7 @@
 
 /obj/item/clothing/head/helmet/tactical/sovhelm
 	name = SOVIET_HELMET_NAME
+	desc = SOVIET_HELMET_DESC
 	icon_state = SOVIET_HELMET_STATE
 	item_state = SOVIET_HELMET_STATE
 
