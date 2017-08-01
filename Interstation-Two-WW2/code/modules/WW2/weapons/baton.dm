@@ -35,6 +35,10 @@
 	desc = "A wooden police baton perfect for subduing fascists."
 	weakens = 3
 
+/obj/item/weapon/melee/classic_baton/mp_baton/russian_baton/old
+	name = "Old Soviet police baton"
+	weakens = 2
+
 /obj/item/weapon/melee/classic_baton/mp_baton/german_baton
 	name = "Wehrmacht police baton"
 	desc = "A wooden police baton perfect for subduing commies."

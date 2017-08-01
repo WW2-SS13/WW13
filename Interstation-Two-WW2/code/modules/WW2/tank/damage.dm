@@ -1,8 +1,24 @@
 /obj/tank/var/did_critical_damage = 0
 
 /obj/tank/bullet_act(var/obj/item/projectile/P, var/def_zone)
+
+	if (istype(P, /obj/item/projectile/bullet/pellet))
+		tank_message("<span class = 'danger'>[P] bounces off the tank!</span>")
+		return
+
+	if (istype(P, /obj/item/weapon/material/shard/shrapnel))
+		tank_message("<span class = 'danger'>[P] bounces off the tank!</span>")
+		return
+
 	def_zone = check_zone(def_zone)
-	damage += (P.damage + (P.armor_penetration*20))/25
+
+	var/dam = (P.damage/3 + (P.armor_penetration*20))/25
+	if (P.armor_penetration < 50)
+		dam /= 8
+	dam += 1 // minimum damage
+
+	damage += dam
+
 	update_damage_status()
 	if (prob(critical_damage_chance()))
 		critical_damage()

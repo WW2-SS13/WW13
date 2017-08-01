@@ -59,17 +59,17 @@
 /obj/tank/proc/update_bounding_rectangle()
 	switch (dir)
 		if (EAST)
-			bound_width = 96*size_multiplier
-			bound_height = 64*size_multiplier
+			bound_width = 160
+			bound_height = 96
 		if (WEST)
-			bound_width = 96*size_multiplier
-			bound_height = 64*size_multiplier
+			bound_width = 160
+			bound_height = 96
 		if (NORTH)
-			bound_width = 64*size_multiplier
-			bound_height = 96*size_multiplier
+			bound_width = 96
+			bound_height = 160
 		if (SOUTH)
-			bound_width = 64*size_multiplier
-			bound_height = 96*size_multiplier
+			bound_width = 96
+			bound_height = 160
 
 /obj/tank/proc/handle_passing_target_turf(var/turf/t)
 	var/list/turfs_in_the_way = list(t)
@@ -117,10 +117,13 @@
 		return 1
 
 	if (istype(o))
+		if (istype(o, /obj/train_lever))
+			return 1 // pass over it
+
 		if (istype(o, /obj/train_pseudoturf))
 			if (o.density)
-				var/wall_integrity = 100 // trains aren't that hard
-				if (prob(min(wall_integrity/2, 97)))
+				var/wall_integrity = 500 // trains are hard as fuck
+				if (prob(min(wall_integrity/2, 98)))
 					tank_message("<span class = 'danger'>The tank smashes against [o]!</span>")
 					playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 					return 0
@@ -154,10 +157,12 @@
 				critical_damage()
 			if (prob(other.critical_damage_chance()))
 				other.critical_damage()
+
+			return 0
 		else
 			if (!o.density && !istype(o, /obj/item))
 				return 1
-			if ((istype(o, /obj/item) && o.w_class == 1) || (istype(o, /obj/item) && o.anchored) || istype(o, /obj/item/ammo_casing) || istype(o, /obj/item/organ))
+			if ((istype(o, /obj/item) && o.w_class == 1) || (istype(o, /obj/item) && o.anchored) || istype(o, /obj/item/ammo_casing) || istype(o, /obj/item/ammo_magazine) || istype(o, /obj/item/organ))
 				return 1
 			else
 				tank_message("<span class = 'warning'>The tank crushes [o].</span>")
@@ -176,6 +181,7 @@
 	return 1
 
 /obj/tank/proc/handle_passing_mob(var/mob/living/m)
+
 	if (istype(m) && (world.time - last_gibbed > 5 || last_gibbed == -1))
 		last_gibbed = world.time
 		tank_message("<span class = 'danger'>The tank crushes [m]!</span>")

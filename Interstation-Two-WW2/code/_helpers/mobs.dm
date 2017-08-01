@@ -122,6 +122,21 @@ proc/random_russian_name(gender, species = "Human")
 	else
 		return current_species.get_random_russian_name(gender)
 
+proc/random_ukrainian_name(gender, species = "Human")
+
+	var/datum/species/current_species
+
+	if(species)
+		current_species = all_species[species]
+
+	if(!current_species || current_species.name_language == null)
+		if(gender==FEMALE)
+			return capitalize(pick(first_names_female_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
+		else
+			return capitalize(pick(first_names_male_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
+	else
+		return current_species.get_random_ukrainian_name(gender)
+
 proc/random_skin_tone()
 	switch(pick(60;"caucasian", 15;"afroamerican", 10;"african", 10;"latino", 5;"albino"))
 		if("caucasian")		. = -10

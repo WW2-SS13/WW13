@@ -4,10 +4,10 @@
 	density = 1
 	anchored = 1
 	var/damage = 0
-	var/max_damage = 400
-	icon = 'icons/WW2/tank_64x96.dmi' // I don't know why but we start out southfacing
-	var/horizontal_icon = 'icons/WW2/tank_96x64.dmi'
-	var/vertical_icon = 'icons/WW2/tank_64x96.dmi'
+	var/max_damage = 450
+	icon = 'icons/WW2/tank_large_vertical.dmi' // I don't know why but we start out southfacing
+	var/horizontal_icon = 'icons/WW2/tank_large_horizontal.dmi'
+	var/vertical_icon = 'icons/WW2/tank_large_vertical.dmi'
 	icon_state = "ger"
 	layer = MOB_LAYER - 0.01
 	var/fuel_slot_screwed = 1
@@ -15,11 +15,10 @@
 	var/fuel = 500
 	var/max_fuel = 500
 	var/next_spam_allowed = -1
-	var/size_multiplier = 2
+	var/locked = 1 //tanks need to be unlocked
 
 /obj/tank/New()
 	..()
-	animate(src, transform = matrix()*size_multiplier, time = -1)
 	update_bounding_rectangle()
 
 /obj/tank/attack_hand(var/mob/user as mob)
@@ -48,6 +47,38 @@
 	else if (istype(W, /obj/item/weapon/flammenwerfer_fueltank))
 		if (fuel_slot_open)
 			user << "<span class = 'danger'>Wrong kind of fuel.</span>"
+		return 0
+	else if (istype(W, /obj/item/weapon/storage/belt/keychain))
+		var/obj/item/weapon/storage/belt/keychain/kc = W
+		//var/list/keylist = kc.keys
+
+		for (var/obj/item/weapon/key/german/command_intermediate/key in kc.keys)
+			if(istype(key))
+				if (locked == 1)
+					tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
+					locked = 0
+				else
+					tank_message("<span class = 'notice'>[user] locks [my_name()].</span>")
+					locked = 1
+				return 0
+		for (var/obj/item/weapon/key/russian/command_intermediate/key in kc.keys)
+			if(istype(key))
+				if (locked == 1)
+					tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
+					locked = 0
+				else
+					tank_message("<span class = 'notice'>[user] locks [my_name()].</span>")
+					locked = 1
+				return 0
+		user << "<span class = 'danger'>None of your keys seem to fit!</span>"
+		return 0
+	else if (istype(W, /obj/item/weapon/key/german/command_intermediate) || istype(W, /obj/item/weapon/key/russian/command_intermediate))
+		if (locked == 1)
+			tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
+			locked = 0
+		else
+			tank_message("<span class = 'notice'>[user] locks [my_name()].</span>")
+			locked = 1
 		return 0
 	else if (!istankvalidtool(W) || W.force < 5)
 		if (user.a_intent != I_HURT)
@@ -114,19 +145,28 @@
 	if (!ishuman(user))
 		return 0
 
-	if (next_seat() && !accepting_occupant)
-		tank_message("<span class = 'warning'>[user] starts to go in the [next_seat_name()] of [my_name()].</span>")
-		accepting_occupant = 1
-		if (do_after(user, 30, src))
-			tank_message("<span class = 'warning'>[user] gets in the [next_seat_name()] of [my_name()].")
-			assign_seat(user)
-			accepting_occupant = 0
-			user << "<span class = 'notice'><big>To fire, use SPACE and be in the back seat.</big></span>"
-			return 1
-		else
-			tank_message("<span class = 'warning'>[user] stops going in [my_name()].</span>")
-			accepting_occupant = 0
+	var/mob/living/carbon/human/H = user
+
+	if (locked == 0)
+		if (H.is_jew)
+			user << "<span class = 'danger'>You don't know how to use [my_name()].</span>"
 			return 0
+
+		if (next_seat() && !accepting_occupant)
+			tank_message("<span class = 'warning'>[user] starts to go in the [next_seat_name()] of [my_name()].</span>")
+			accepting_occupant = 1
+			if (do_after(user, 30, src))
+				tank_message("<span class = 'warning'>[user] gets in the [next_seat_name()] of [my_name()].")
+				assign_seat(user)
+				accepting_occupant = 0
+				user << "<span class = 'notice'><big>To fire, use SPACE and be in the back seat.</big></span>"
+				return 1
+			else
+				tank_message("<span class = 'warning'>[user] stops going in [my_name()].</span>")
+				accepting_occupant = 0
+				return 0
+	else
+		user << "<span class = 'danger'>[my_name()] is locked! Use a tank key or keychain with a tank key on it to unlock it.</span>"
 
 #ifndef TANKSEATDEBUGGING
 /obj/tank/proc/receive_command_from(var/mob/user, x)
@@ -138,7 +178,7 @@
 		return receive_backseat_command(x)
 #else
 /obj/tank/proc/receive_command_from(var/mob/user, x)
-	if (!isliving(user))
+	if (!isliving(user) || user.stat == UNCONSCIOUS || user.stat == DEAD)
 		return
 	if (user == front_seat() && x != "FIRE" || user == back_seat() && x != "FIRE")
 		return receive_frontseat_command(x)
@@ -167,7 +207,7 @@
 		if (fuel/max_fuel < 0.2)
 			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 20%!</big></span>")
 			next_spam_allowed = world.time + 100
-		else if (fuel/max_fuel <= 0.5)
+		else if (fuel/max_fuel < 0.5)
 			internal_tank_message("<span class = 'danger'><big>WARNING: tank fuel is less than 50%.</big></span>")
 			next_spam_allowed = world.time + 300
 

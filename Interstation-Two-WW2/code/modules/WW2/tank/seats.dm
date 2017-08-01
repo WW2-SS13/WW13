@@ -35,6 +35,34 @@
 	user.client.eye = src
 	return 1
 
+/obj/tank/proc/forcibly_eject_everyone()
+	var/turf/exitturf = get_turf(src)
+	switch (dir)
+		if (EAST, WEST)
+			var/turf/candidate = locate(x, y+1, z)
+			if (!candidate)
+				candidate = locate(x, y-1, z)
+			if (candidate)
+				exitturf = candidate
+		if (NORTH, SOUTH)
+			var/turf/candidate = locate(x-1, y, z)
+			if (!candidate)
+				candidate = locate(x+1, y, z)
+			if (candidate)
+				exitturf = candidate
+
+	if (drive_front_seat)
+		var/mob/user = drive_front_seat
+		user.loc = exitturf
+		if (user.client) user.client.eye = user
+		drive_front_seat = null
+
+	if (fire_back_seat)
+		var/mob/user = fire_back_seat
+		user.loc = exitturf
+		if (user.client) user.client.eye = user
+		fire_back_seat = null
+
 /obj/tank/proc/handle_seat_exit(var/mob/user)
 
 	if (!istype(user))

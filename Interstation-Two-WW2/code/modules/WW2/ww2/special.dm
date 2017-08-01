@@ -62,7 +62,10 @@ var/secret_ladder_message = null
 					return 1 // if the game has not started, nobody passes. For benefit of attacking commanders/defenders - prevents ramboing, allows setting up
 			else if (istype(pb, /obj/prishtina_block/defenders))
 				if (mercy_period)
-					return 1 // if the grace period is active, nobdy passes. For the benefit of attackers, so they get time to set up.
+					var/mob/living/carbon/human/H = m
+					if (H && H.original_job && istype(H.original_job, /datum/job/german))
+						return 0 // germans can pass
+					return 1 // if the grace period is active, nobody south of the river passes. For the benefit of attackers, so they get time to set up.
 	return 0
 
 /obj/prishtina_block
@@ -247,4 +250,4 @@ var/mission_announced = 0
 				mercy_period = 0
 				world << "<font size=4>The 10 minute grace period has ended. Either side can now cross the river!</font>"
 
-	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] SS.</font>"
+	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] Civilians/Partisans.</font>"

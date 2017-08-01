@@ -10,21 +10,29 @@
 	..()
 
 /datum/controller/process/human/doWork()
-	for(last_object in human_mob_list)
-		var/mob/living/carbon/human/H = last_object
+	for (var/v in 1 to 2)
+		for(last_object in human_mob_list)
+			var/mob/living/carbon/human/H = last_object
 
-		if(isnull(H))
-			return
+			if(isnull(H))
+				return
 
-		if(isnull(H.gcDestroyed))
-			try
-				H.update_faction_huds_to_nearby_mobs()
-			catch(var/exception/e)
-				catchException(e, H)
-			SCHECK
-		else
-			catchBadType(H)
-			human_mob_list -= H
+			if(isnull(H.gcDestroyed))
+				try
+					switch (v)
+						if (1)
+							for (var/image in H.client.images)
+								H.client.images -= image
+								qdel(image)
+							H.job_faction_images = initial(H.job_faction_images)
+						if (2)
+							H.update_faction_huds_to_nearby_mobs()
+				catch(var/exception/e)
+					catchException(e, H)
+				SCHECK
+			else
+				catchBadType(H)
+				human_mob_list -= H
 
 /datum/controller/process/human/statProcess()
 	..()

@@ -329,6 +329,27 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			return
 
 
+// FOLLOWING TANKS
+
+/proc/gettanks()
+	var/list/tanks = list()
+	for (var/obj/tank/tank in world)
+		var/count = 0
+		for (var/tank2 in tanks)
+			var/obj/tank/other = tanks[tank2]
+			if (other.name == tank.name)
+				++count // tank, tank (1), tank (2), etc
+		tanks["[tank.name][count ? "([count])" : ""]"] = tank
+	return tanks
+
+/mob/observer/ghost/verb/follow_tank(input in gettanks())
+	set category = "Ghost"
+	set name = "Follow a Tank"
+
+	var/obj/tank/tank = gettanks()[input]
+	if (!tank) return
+	ManualFollow(tank)
+
 // This is the ghost's follow verb with an argument
 /mob/observer/ghost/proc/ManualFollow(var/atom/movable/target)
 	if(!target || target == following || target == src)

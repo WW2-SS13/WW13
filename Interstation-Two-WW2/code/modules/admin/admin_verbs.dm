@@ -314,6 +314,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/message_russians,
 	/client/proc/message_SS,
 	/client/proc/send_german_train,
+	/client/proc/eject_from_tank
 )
 
 var/list/admin_verbs_mentor = list(

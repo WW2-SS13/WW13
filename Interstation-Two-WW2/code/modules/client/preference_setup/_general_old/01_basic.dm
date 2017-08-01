@@ -23,6 +23,11 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	S["russian_name"]				>> pref.russian_name
 	S["russian_name_is_always_random"]	>> pref.be_random_name_russian
 
+	// ukrainian names
+	S["ukrainian_name"]				>> pref.ukrainian_name
+	S["ukrainian_name_is_always_random"]	>> pref.be_random_name_ukrainian
+
+
 	S["gender"]					>> pref.gender
 
 	S["be_spy"] >> pref.be_spy
@@ -31,6 +36,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	// factional genders
 	S["german_gender"] >> pref.german_gender
 	S["russian_gender"] >> pref.russian_gender
+	S["ukrainian_gender"] >> pref.ukrainian_gender
 
 	// donor stuff
 	S["role_preference_sov"] >> pref.client.role_preference_sov
@@ -54,6 +60,10 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	S["russian_name"]				<< pref.russian_name
 	S["russian_name_is_always_random"]	<< pref.be_random_name_russian
 
+	// ukrainian names
+	S["ukrainian_name"]				<< pref.ukrainian_name
+	S["ukrainian_name_is_always_random"]	<< pref.be_random_name_ukrainian
+
 	S["gender"]					<< pref.gender
 
 	S["be_spy"] << pref.be_spy
@@ -62,6 +72,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	// factional genders
 	S["german_gender"] << pref.german_gender
 	S["russian_gender"] << pref.russian_gender
+	S["ukrainian_gender"] << pref.ukrainian_gender
 
 	// donor stuff
 	S["role_preference_sov"] << pref.client.role_preference_sov
@@ -78,6 +89,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	pref.gender 		= sanitize_inlist(pref.gender, valid_player_genders, pick(valid_player_genders))
 	pref.german_gender 		= sanitize_inlist(pref.german_gender, valid_player_genders, pick(valid_player_genders))
 	pref.russian_gender 		= sanitize_inlist(pref.russian_gender, valid_player_genders, pick(valid_player_genders))
+	pref.ukrainian_gender 		= sanitize_inlist(pref.ukrainian_gender, valid_player_genders, pick(valid_player_genders))
 	pref.be_jew 		= sanitize_inlist(pref.be_jew, list(0,1), pick(list(0,1)))
 	pref.be_spy 		= sanitize_inlist(pref.be_spy, list(0,1), pick(list(0,1)))
 	pref.body_build 	= sanitize_inlist(pref.body_build, list("Slim", "Default", "Fat"), "Default")
@@ -98,12 +110,17 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	if(!pref.russian_name)
 		pref.russian_name	= random_russian_name(pref.russian_gender, pref.species)
 
+	pref.ukrainian_name		= sanitize_name(pref.ukrainian_name, pref.species)
+	if(!pref.ukrainian_name)
+		pref.ukrainian_name	= random_ukrainian_name(pref.ukrainian_gender, pref.species)
+
 	/*										*/
 
 	pref.spawnpoint		= sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
 	pref.be_random_name	= sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 	pref.be_random_name_german	= sanitize_integer(pref.be_random_name_german, 0, 1, initial(pref.be_random_name_german))
 	pref.be_random_name_russian	= sanitize_integer(pref.be_random_name_russian, 0, 1, initial(pref.be_random_name_russian))
+	pref.be_random_name_ukrainian	= sanitize_integer(pref.be_random_name_ukrainian, 0, 1, initial(pref.be_random_name_ukrainian))
 
 /datum/category_item/player_setup_item/general/basic/content()
 	//name
@@ -124,10 +141,18 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "(<a href='?src=\ref[src];random_name_russian=1'>Random Name</A>) "
 	. += "(<a href='?src=\ref[src];always_random_name_russian=1'>Always Random Name: [pref.be_random_name_russian ? "Yes" : "No"]</a>)"
 	. += "<br>"
+	//ukrainian name
+	. += "<b>Ukrainian Name:</b> "
+	. += "<a href='?src=\ref[src];rename_ukrainian=1'><b>[pref.ukrainian_name]</b></a><br>"
+	. += "(<a href='?src=\ref[src];random_name_ukrainian=1'>Random Name</A>) "
+	. += "(<a href='?src=\ref[src];always_random_name_ukrainian=1'>Always Random Name: [pref.be_random_name_ukrainian ? "Yes" : "No"]</a>)"
+	. += "<br>"
 	//gender
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
 	. += "<b>German Gender:</b> <a href='?src=\ref[src];gender_german=1'><b>[capitalize(lowertext(pref.german_gender))]</b></a><br>"
 	. += "<b>Russian Gender:</b> <a href='?src=\ref[src];gender_russian=1'><b>[capitalize(lowertext(pref.russian_gender))]</b></a><br>"
+	. += "<b>Ukrainian Gender:</b> <a href='?src=\ref[src];gender_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_gender))]</b></a><br>"
+
 	//misc antag stuff
 	. += "<b>Be Jew:</b> <a href='?src=\ref[src];be_jew=1'><b>[capitalize(lowertext(pref.be_jew ? "Yes" : "No"))]</b></a><br>"
 	. += "<b>Be Spy:</b> <a href='?src=\ref[src];be_spy=1'><b>[capitalize(lowertext(pref.be_spy ? "Yes" : "No"))]</b></a><br>"
@@ -205,6 +230,26 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 		pref.be_random_name_russian = !pref.be_random_name_russian
 		return TOPIC_REFRESH
 
+	//ukrainian names
+	if(href_list["rename_ukrainian"])
+		var/raw_name = input(user, "Choose your character's UKRAINIAN/CIVILIAN name:", "Character Name")  as text|null
+		if (!isnull(raw_name) && CanUseTopic(user))
+			var/new_name = sanitize_name(raw_name, pref.species)
+			if(new_name)
+				pref.ukrainian_name = new_name
+				return TOPIC_REFRESH
+			else
+				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
+				return TOPIC_NOACTION
+
+	else if(href_list["random_name_ukrainian"])
+		pref.ukrainian_name = random_ukrainian_name(pref.ukrainian_gender, pref.species)
+		return TOPIC_REFRESH
+
+	else if(href_list["always_random_name_ukrainian"])
+		pref.be_random_name_ukrainian = !pref.be_random_name_ukrainian
+		return TOPIC_REFRESH
+
 	else if(href_list["gender"])
 		pref.gender = next_in_list(pref.gender, valid_player_genders)
 		return TOPIC_REFRESH
@@ -219,6 +264,10 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	else if(href_list["gender_russian"])
 		pref.russian_gender = next_in_list(pref.russian_gender, valid_player_genders)
+		return TOPIC_REFRESH
+
+	else if(href_list["gender_ukrainian"])
+		pref.ukrainian_gender = next_in_list(pref.ukrainian_gender, valid_player_genders)
 		return TOPIC_REFRESH
 
 	else if(href_list["be_jew"])

@@ -10,6 +10,10 @@
 	default_language = "Russian"
 	additional_languages = list("German" = 5)
 
+/datum/job/partisan
+	default_language = "Ukrainian"
+	additional_languages = list("German" = 50, "Russian" = 50)
+
 /datum/job/update_character(var/mob/living/carbon/human/H)
 	. = ..()
 

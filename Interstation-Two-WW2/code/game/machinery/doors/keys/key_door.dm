@@ -40,8 +40,6 @@ var/list/nonbreaking_types = list(
 		else if (map_door_name != "door")
 			name = map_door_name
 
-
-
 /obj/structure/simple_door/key_door/attackby(obj/item/W as obj, mob/user as mob)
 
 	var/keyslot_original_locked = keyslot.locked
