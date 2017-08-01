@@ -417,8 +417,7 @@ var/first_fallschirm = 1
 	selection_color = "#4c4ca5"
 	access = list(access_nato_soldier, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
-//	spawn_location = "Fallschirm"
-	spawn_location = "JoinLateHeer"
+	spawn_location = "Fallschirm"
 
 	additional_languages = list( "Russian" = 100 )
 
@@ -442,6 +441,22 @@ var/first_fallschirm = 1
 
 	first_fallschirm = 0
 	H.give_radio()
+
+
+	var/fallschirm_spawnzone = null
+	var/list/fallschirm_spawnpoints = list()
+
+	if(!fallschirm_spawnzone)
+		fallschirm_spawnzone = pick(fallschirm_landmarks)
+		fallschirm_landmarks = null
+		for(var/turf/T in range(3, fallschirm_spawnzone))
+			fallschirm_spawnpoints += T
+
+		H.loc = pick(fallschirm_spawnpoints)
+
+	else
+		H.loc = pick(fallschirm_spawnpoints)
+
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a paratrooper. Your job is to help any other units that need assistance.</span>"
 	return 1
 
