@@ -20,8 +20,10 @@
 	..()
 	if(ammo_magazine)
 		icon_state = "svt"
+		item_state = "svt-mag"
 	else
 		icon_state = "svt0"
+		item_state = "svt-0"
 	return
 
 /obj/item/weapon/gun/projectile/g41
