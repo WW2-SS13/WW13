@@ -8,12 +8,12 @@
 	icon_state = "ru_beret"
 
 /obj/item/clothing/head/caphat/sovcap
-	name = "Soviet officer cap"
+	name = "Soviet cap"
 	icon_state = "sovcap"
 	item_state = "sovcap"
 
 /obj/item/clothing/head/caphat/sovofficercap
-	name = "Soviet commanding officer cap"
+	name = "Soviet officer cap"
 	icon_state = "sovofficercap"
 	item_state = "sovofficercap"
 
