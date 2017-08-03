@@ -220,3 +220,12 @@ Parts of code courtesy of Super3222
 			for(var/datum/action/toggle_scope/T in actions)
 				if(T.scope.zoomed)
 					T.scope.zoom(src, FALSE)
+
+// called from Life()
+/mob/living/carbon/human/proc/handle_zoom_stuff(var/ghosting = FALSE)
+	if (stat == UNCONSCIOUS || stat == DEAD || ghosting)
+		if(client && actions.len)
+			if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
+				for(var/datum/action/toggle_scope/T in actions)
+					if(T.scope.zoomed)
+						T.scope.zoom(src, FALSE)

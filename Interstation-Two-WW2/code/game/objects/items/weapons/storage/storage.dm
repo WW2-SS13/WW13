@@ -96,7 +96,7 @@
 							usr << "<span class='notice'>Your left hand is already holding the [usr.l_hand].</span>"
 			else
 				usr << "<span class='notice'>Your hand is too busy to grab the [src].</span>"
-				
+
 		src.add_fingerprint(usr)
 
 

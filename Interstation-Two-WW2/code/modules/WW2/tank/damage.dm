@@ -25,8 +25,6 @@
 	tank_message("<span class = 'danger'>The tank is hit by [P]!</span>")
 
 /obj/tank/ex_act(severity)
-	if (damage < (max_damage/10))
-		return 0
 
 	// reproportion severity - most dangerous to biggest number
 	switch (severity)

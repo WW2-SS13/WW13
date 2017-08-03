@@ -435,7 +435,7 @@
 		msg += "\n[T.He] [T.is] [pose]"
 
 	if (original_job)
-		if (ishuman(user))
+		if (ishuman(user) && user != src)
 			var/mob/living/carbon/human/H = user
 			if (H.original_job.team == original_job.team) // when you ghost, mind.assigned_job is set to null
 				if (original_job.en_meaning)
@@ -448,12 +448,16 @@
 			if (istype(original_job, /datum/job/german))
 				if (is_jew && !wear_mask)
 					msg += "<br><big>Mein gott, it's a jew!</big>"
-			if (original_job.team == H.original_job.team)
+			if (istype(original_job, /datum/job/russian) || istype(original_job, /datum/job/partisan))
+				if (is_jew && !wear_mask)
+					msg += "<br><big>Oy blin, it's a jew!</big>"
+
+			if (original_job.team == H.original_job.team && (original_job.team == "RUSSIAN" || original_job.team == "GERMAN"))
 				if (isleader(src, H))
 					msg += "<br><b>[T.He] [T.is] your squad leader.</b>"
 				else if (isleader(H, src))
 					msg += "<br><b>[T.He] [T.is] your soldat.</b>"
-				else
+				else if (getsquad(H) == getsquad(src) && getsquad(H) != null)
 					msg += "<br><b>[T.He] [T.is] in your squad.</b>"
 
 		else if (isobserver(user))

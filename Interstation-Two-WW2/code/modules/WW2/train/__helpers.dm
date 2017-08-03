@@ -28,6 +28,8 @@
 
 	if (ismob(src) || src.pulledby)
 		for (var/obj/o in _loc)
+			if (o == src)
+				continue
 			for (var/type in blocking_types)
 				if (istype(o, type))
 					return FAILURE

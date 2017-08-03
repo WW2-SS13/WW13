@@ -27,10 +27,11 @@
 	slot_flags = 0
 	ammo_type = /obj/item/ammo_casing/c4mm
 	accuracy = DEFAULT_MG_ACCURACY
+	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 
 	firemodes = list(
-		list(name="3000 rpm", burst=10, burst_delay=0.1, fire_delay=0.5, dispersion=list(1.0)),
-		list(name="6000 rpm", burst=20, burst_delay=0.05, fire_delay=0.25, dispersion=list(1.5))
+		list(name="3000 rpm", burst=10, burst_delay=0.1, fire_delay=0.4, dispersion=list(1.0)),
+		list(name="6000 rpm", burst=20, burst_delay=0.05, fire_delay=0.2, dispersion=list(1.5))
 		)
 
 	var/maximum_use_range = 0 // user loc at minigun's current loc (used in use_object.dm)
@@ -194,7 +195,7 @@
 	auto_eject = 1
 	fire_sound = 'sound/weapons/maxim_shot.ogg'
 	firemodes = list(
-		list(name="default", burst=3, burst_delay=2.5, fire_delay=1.5, dispersion=list(0.4), accuracy=list(2))
+		list(name="default", burst=3, burst_delay=2.5, fire_delay=1.0, dispersion=list(0.4), accuracy=list(2))
 		)
 
 
@@ -235,7 +236,7 @@
 	ammo_type = /obj/item/ammo_casing/a762x54
 
 	firemodes = list(	// changed burst from 3 to 6, burst_delay from 2.5 to 0.1 to make this more mg-ish - Kachnov
-		list(name="default", burst=9, burst_delay=0.1, fire_delay=1, dispersion=list(0.3), accuracy=list(2))
+		list(name="default", burst=9, burst_delay=0.1, fire_delay=0.75, dispersion=list(0.3), accuracy=list(2))
 		)
 
 

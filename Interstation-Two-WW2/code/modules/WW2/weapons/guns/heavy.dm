@@ -16,7 +16,7 @@
 	ammo_type = /obj/item/ammo_casing/a145
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = DEFAULT_BOLTACTION_ACCURACY + 2
-	scoped_accuracy = 2
+	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY + 2
 
 /obj/item/weapon/gun/projectile/heavysniper/ptrd/update_icon()
 	if(bolt_open)
@@ -35,8 +35,8 @@
 	caliber = "a556x45"
 	magazine_type = /obj/item/ammo_magazine/a556x45
 
-	accuracy = DEFAULT_MG_ACCURACY + 1
-	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
+	accuracy = DEFAULT_BOLTACTION_ACCURACY + 1
+	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY + 1
 
 	can_wield = 1
 	must_wield = 1

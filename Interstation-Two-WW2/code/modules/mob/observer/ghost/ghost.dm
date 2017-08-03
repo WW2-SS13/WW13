@@ -154,6 +154,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(stat == DEAD)
 		announce_ghost_joinleave(ghostize(1))
+		if (ishuman(src))
+			var/mob/living/carbon/human/H = src
+			H.handle_zoom_stuff(TRUE)
 	else
 		var/response
 		if(src.client && src.client.holder)
@@ -161,6 +164,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			if(response == "Admin Ghost")
 				if(!src.client)
 					return
+				if (ishuman(src))
+					var/mob/living/carbon/human/H = src
+					H.handle_zoom_stuff(TRUE)
 				src.client.admin_ghost()
 		else
 			response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to play this round for another 30 minutes! You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
@@ -168,6 +174,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			return
 		resting = 1
 		var/turf/location = get_turf(src)
+		if (ishuman(src))
+			var/mob/living/carbon/human/H = src
+			H.handle_zoom_stuff(TRUE)
 		message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		log_game("[key_name_admin(usr)] has ghosted.")
 		var/mob/observer/ghost/ghost = ghostize(0)	//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3

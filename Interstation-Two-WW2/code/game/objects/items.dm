@@ -216,21 +216,22 @@
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
 
-/obj/item/proc/bypass_no_drop_check()
-	if (istype(src, /obj/item/weapon/flamethrower/flammenwerfer) || istype(src, /obj/item/weapon/storage/backpack/flammenwerfer))
+/obj/item/proc/nodrop_special_check()
+	if (istype(src, /obj/item/weapon/flamethrower/flammenwerfer))
+		var/obj/item/weapon/flamethrower/flammenwerfer/flamethrower = src
+		if (istype(flamethrower.loc, /mob))
+			if (ishuman(flamethrower.loc))
+				var/mob/living/carbon/human/H = flamethrower.loc
+				if (istype(H.back, /obj/item/weapon/storage/backpack/flammenwerfer))
+					return 1
+	else if (istype(src, /obj/item/weapon/storage/backpack/flammenwerfer))
+		var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower_backpack = src
+		if (flamethrower_backpack.flamethrower.loc == flamethrower_backpack)
+			return 0
+		return 1
+	return 0
 
-		if (istype(src, /obj/item/weapon/flamethrower/flammenwerfer))
-			var/obj/item/weapon/flamethrower/flammenwerfer/flammenwerfer = src
-			flammenwerfer.nodrop = 0
-		else
-			var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = src
-			backpack.nodrop = 0
-			backpack.flamethrower.nodrop = 0
-
-		if (ismob(src.loc))
-			var/mob/m = src.loc
-			if (m.stat == UNCONSCIOUS || m.stat == DEAD)
-				return 1
+/obj/item/proc/nothrow_special_check()
 	return 0
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
@@ -239,13 +240,6 @@
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
-	if (istype(src, /obj/item/weapon/flamethrower/flammenwerfer))
-		var/obj/item/weapon/flamethrower/flammenwerfer/flammenwerfer = src
-		flammenwerfer.nodrop = 1
-	else if (istype(src, /obj/item/weapon/storage/backpack/flammenwerfer))
-		var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = src
-		backpack.nodrop = 1
-		backpack.flamethrower.nodrop = 1
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.

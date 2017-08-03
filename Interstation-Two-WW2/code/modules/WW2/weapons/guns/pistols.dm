@@ -18,6 +18,7 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/luger
 	accuracy = DEFAULT_PISTOL_ACCURACY
+	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 
 
 /////////////////////FLAREGUNS//////////////////////////////////////////

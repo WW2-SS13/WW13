@@ -11,7 +11,7 @@
 	else if (istype(src, /area/prishtina/german/ss_torture_room))
 		name = "(Waffen-S.S.) [name]"
 	else
-		name = "(Unaligned) [name]"
+		name = "(Civilian) [name]"
 
 /area/prishtina/admin
 	icon_state = "yellow"

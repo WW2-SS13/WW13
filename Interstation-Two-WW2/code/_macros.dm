@@ -57,7 +57,7 @@
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
 
-
+#define isitem(A) istype(A, /obj/item)
 
 
 #define islist(A) istype(A, /list)

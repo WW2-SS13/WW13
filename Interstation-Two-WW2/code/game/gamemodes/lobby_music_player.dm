@@ -3,6 +3,7 @@
     // title = ogg
 	var/list/songs = list(
 		// HARDBASS
+		"Dj Blyatman - Tsar Bomb" = 'sound/music/WW2/tsarbomb.ogg',
 		"Dj Blyatman - Chernobyl" = 'sound/music/WW2/chernobyl.ogg',
 		"Dj Snat - Choose Your Power (Gopnik Mcblyat Remix)" = 'sound/music/WW2/chooseyourpower.ogg',
 		"Gopnik Mcblyat - Snakes In Tracksuits" = 'sound/music/WW2/snakesintracksuits.ogg',
@@ -16,11 +17,11 @@
 		"M.O.O.N._-_Dust_Official_Hotline_Miami_2_OST" = 'sound/music/WW2/moon.ogg')
 
 	var/list/song_probability_multipliers = list(
+		"Dj Blyatman - Tsar Bomb" = 2,
 		"Dj Snat - Choose Your Power (Gopnik Mcblyat Remix)" = 1,
 		"Katyusha" = 1,
 		"ERIKA" = 1,
 		"Falco - Der Kommissar" = 1,
-		"DJ Blyatman - Dragunov" = 2,
 		"M.O.O.N._-_Dust_Official_Hotline_Miami_2_OST" = 1
 	)
 

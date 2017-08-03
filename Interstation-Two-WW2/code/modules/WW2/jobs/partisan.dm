@@ -1,3 +1,6 @@
+/datum/job/partisan
+	uses_keys = 1
+	team = "PARTISAN"
 
 /datum/job/partisan/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_ukrainian_name(H.gender)
@@ -22,6 +25,7 @@
 	access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
 	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
 	spawn_location = "JoinLateCivilian"
+	team = "CIVILIAN" // for examine
 
 /datum/job/partisan/civilian/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0

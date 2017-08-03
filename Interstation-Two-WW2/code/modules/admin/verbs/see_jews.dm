@@ -18,16 +18,17 @@
 	else
 		whomst << "<big>Jews at the end of the round:</big><br><br>"
 
-	var/list/mobs = getrussianmobs(0)|getgermanmobs(0)
+	var/list/mobs = dead_mob_list
+	mobs |= living_mob_list
 
 	for (var/mob/living/carbon/human/H in mobs)
 		if (istype(H) && H.is_jew)
 			var/H_stat = (H.stat == DEAD ? "DEAD" : H.stat == UNCONSCIOUS ? "UNCONSCIOUS" : "ALIVE")
 			var/is_ghosted = (H.client ? "IN BODY" : "GHOSTED OR LOGGED OUT")
-			var/spanstyle = H.stat == DEAD ? "warning" : "notice"
+			var/spanstyle = (H.stat == DEAD ? "warning" : "notice")
 			if (istype(H.original_job, /datum/job/german))
-				whomst << "<span style = '[spanstyle]'>[H][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - German soldier jew. ([H_stat]) ([is_ghosted])</span><br>"
+				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - German soldier jew. ([H_stat]) ([is_ghosted])</span><br>"
 			else if (istype(H.original_job, /datum/job/russian))
-				whomst << "<span style = '[spanstyle]'>[H][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - Russian soldierjew. ([H_stat]) ([is_ghosted])</span><br>"
+				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - Russian soldierjew. ([H_stat]) ([is_ghosted])</span><br>"
 			if (!notroundend && H.stat == CONSCIOUS && !H.restrained())
-				whomst << "<span style = 'notice'>The Jew survived!</span><br>"
+				whomst << "<span class = 'notice'>The Jew survived!</span><br>"

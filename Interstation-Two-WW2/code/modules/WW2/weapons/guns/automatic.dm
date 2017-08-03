@@ -16,6 +16,7 @@
 	//must_wield = 1
 
 	accuracy = DEFAULT_MG_ACCURACY+1
+	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY+1
 
 	firemodes = list(
 		list(name="single shot",	burst=1, burst_delay=1.5, move_delay=2, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
@@ -53,6 +54,8 @@
 	magazine_type = /obj/item/ammo_magazine/a792x33/stgmag
 
 	accuracy = DEFAULT_MG_ACCURACY
+	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
+
 	can_wield = 1
 	//must_wield = 1
 
@@ -83,7 +86,9 @@
 	w_class = 5
 	caliber = "a792x33"
 	magazine_type = /obj/item/ammo_magazine/a762/akm
+
 	accuracy = DEFAULT_MG_ACCURACY
+	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 
 	can_wield = 1
 	//must_wield = 1
@@ -120,6 +125,7 @@
 	w_class = 4
 	fire_sound = 'sound/weapons/m16.ogg'
 	accuracy = DEFAULT_MG_ACCURACY
+	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 	caliber = "a762x25"
 	magazine_type = /obj/item/ammo_magazine/a556/m4
 	firemodes = list(
@@ -155,6 +161,7 @@
 	load_method = MAGAZINE
 	w_class = 5
 	accuracy = DEFAULT_MG_ACCURACY+1
+	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY+1
 	caliber = "a762x39"
 	magazine_type = /obj/item/ammo_magazine/a762/pkm
 
@@ -204,6 +211,7 @@
 	silenced = 1
 	can_wield = 1
 	accuracy = DEFAULT_MG_ACCURACY
+	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY+1
 	//must_wield = 1
 
 /obj/item/weapon/gun/projectile/automatic/val/update_icon()

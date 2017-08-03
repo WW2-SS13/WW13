@@ -23,6 +23,18 @@
 		src << "<span class='warning'>The forum URL is not set in the server configuration.</span>"
 	return
 
+/client/verb/donate()
+	set name = "donate"
+	set desc = "Give us the shills oy vey"
+	set hidden = 1
+	if( config.donationurl )
+		if(alert("This will open Paypal in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.donationurl)
+	else
+		src << "<span class='warning'>The donation URL is not set in the server configuration.</span>"
+	return
+
 /client/verb/github()
 	set name = "Github"
 	set desc = "Visit the Github"

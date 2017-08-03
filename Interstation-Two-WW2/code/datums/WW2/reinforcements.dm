@@ -179,11 +179,11 @@ var/datum/reinforcements/reinforcements_master
 	var/list/l = reinforcement_pool["RUSSIAN"]
 	if (l.len < reinforcement_spawn_req && !allow_quickspawn["RUSSIAN"])
 		for (var/mob/new_player/np in l)
-			l << "<span class='danger'>Failed to spawn a new Russian squadron. [reinforcement_spawn_req - l.len] more draftees needed."
+			np << "<span class='danger'>Failed to spawn a new Russian squadron. [reinforcement_spawn_req - l.len] more draftees needed."
 		return ret
 	else if (has_occupied_base("RUSSIAN"))
 		for (var/mob/new_player/np in l)
-			l << "<span class='danger'>The Germans are currently occupying the bunker! Reinforcements can't be sent."
+			np << "<span class='danger'>The Germans are currently occupying the bunker! Reinforcements can't be sent."
 		return ret
 	for (var/mob/new_player/np in l)
 		if (np)
@@ -200,11 +200,11 @@ var/datum/reinforcements/reinforcements_master
 	var/list/l = reinforcement_pool["GERMAN"]
 	if (l.len < reinforcement_spawn_req && !allow_quickspawn["GERMAN"])
 		for (var/mob/new_player/np in l)
-			l << "<span class='danger'>Failed to spawn a new German squadron. [reinforcement_spawn_req - l.len] more draftees needed."
+			np << "<span class='danger'>Failed to spawn a new German squadron. [reinforcement_spawn_req - l.len] more draftees needed."
 		return ret
 	else if (has_occupied_base("GERMAN"))
 		for (var/mob/new_player/np in l)
-			l << "<span class='danger'>The Russians are currently occupying your base! Reinforcements can't be sent."
+			np << "<span class='danger'>The Russians are currently occupying your base! Reinforcements can't be sent."
 		return ret
 	for (var/mob/new_player/np in l)
 		if (np) // maybe helps with logged out nps

@@ -11,6 +11,7 @@
 	slot_flags = SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/a762x54
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY
+	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	magazine_type = /obj/item/ammo_magazine/svt
 	firemodes = list(
 		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, dispersion = list(1))
@@ -37,6 +38,7 @@
 	slot_flags = SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/a792x57
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY
+	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	magazine_type = /obj/item/ammo_magazine/g41
 	firemodes = list(
 		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, dispersion = list(1))

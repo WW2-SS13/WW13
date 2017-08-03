@@ -1,3 +1,7 @@
+/datum/job/german
+	uses_keys = 1
+	team = "GERMAN"
+
 /datum/job/german/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_german_name(H.gender)
 	H.real_name = H.name
@@ -25,7 +29,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.give_radio()
 	world << "<b>[H.client.prefs.german_name] is the [title] of the German forces!</b>"
@@ -68,7 +71,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the German forces. Your job is to take orders from the <b>Feldwebel</b> and coordinate with squad leaders.</span>"
@@ -215,6 +217,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/flammenwerfer(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a flamethrower unit. Your job is incinerate the enemy!</span>"
 	return 1
 
@@ -392,7 +395,7 @@
 			keychain.keys += new/obj/item/weapon/key/german/train()
 			H << "<i>You have a key with train access.</i>"
 			break
-
+	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a tank crewman. Your job is to work with another crewman to operate a tank.</span>"
 	return 1
 
@@ -421,6 +424,9 @@ var/first_fallschirm = 1
 
 	additional_languages = list( "Russian" = 100 )
 
+var/fallschirm_spawnzone = null
+var/list/fallschirm_spawnpoints = list()
+
 /datum/job/german/fallschirm/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
 
@@ -442,17 +448,13 @@ var/first_fallschirm = 1
 	first_fallschirm = 0
 	H.give_radio()
 
-
-	var/fallschirm_spawnzone = null
-	var/list/fallschirm_spawnpoints = list()
-
 	if(!fallschirm_spawnzone)
 		fallschirm_spawnzone = pick(fallschirm_landmarks)
 		fallschirm_landmarks = null
 		for(var/turf/T in range(3, fallschirm_spawnzone))
 			fallschirm_spawnpoints += T
 
-		H.loc = pick(fallschirm_spawnpoints)
+		H.loc = get_turf(fallschirm_spawnzone)
 
 	else
 		H.loc = pick(fallschirm_spawnpoints)
@@ -615,7 +617,6 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger(H), slot_r_hand)
 	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a train conductor. Your job is take men to and from the front.</span>"
 	return 1
@@ -651,13 +652,10 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/akm(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite SS unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Feldwebel</b>, while setting your own goals.</span>"
+	H.give_radio()
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite SS unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Feldwebel</b>, while setting your own goals. Also, kill any jews you find on sight. They usually have long hair and beards.</span>"
 	if (secret_ladder_message)
 		H << "<br>[secret_ladder_message]"
-
-	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H.give_radio()
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite S.S. unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Feldwebel</b>, while setting your own goals.</span>"
 
 	return 1
 
@@ -697,7 +695,7 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm/sshelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>.</span>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>. Also, kill any jews you find on sight. They usually have long hair and beards.</span>"
 	return 1
 
 /datum/job/german/soldier_ss/get_keys()

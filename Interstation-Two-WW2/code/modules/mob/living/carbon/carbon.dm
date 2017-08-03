@@ -318,7 +318,7 @@
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
 				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
 
-	if(!item) return //Grab processing has a chance of returning null
+	if(!item || item.nothrow) return //Grab processing has a chance of returning null
 
 	playsound(src, 'sound/effects/throw.ogg', 50, 1)
 	src.remove_from_mob(item)

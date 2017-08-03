@@ -51,8 +51,16 @@
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
 
+	handle_zoom_stuff()
+
 	if (transforming)
 		return
+
+	if (stat == UNCONSCIOUS || stat == DEAD || lying)
+		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
+			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower_backpack = back
+			if (flamethrower_backpack.flamethrower && flamethrower_backpack.flamethrower.loc != flamethrower_backpack)
+				flamethrower_backpack.reclaim_flamethrower()
 
 	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
 

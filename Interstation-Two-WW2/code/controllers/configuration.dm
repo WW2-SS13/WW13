@@ -97,6 +97,7 @@ var/list/gamemode_cache = list()
 	var/banappeals
 	var/wikiurl
 	var/forumurl
+	var/donationurl
 	var/rulesurl
 	var/discordurl
 	var/githuburl
@@ -560,6 +561,9 @@ var/list/gamemode_cache = list()
 
 				if ("forumurl")
 					config.forumurl = value
+
+				if ("donationurl")
+					config.donationurl = value
 
 				if ("rulesurl")
 					config.rulesurl = value

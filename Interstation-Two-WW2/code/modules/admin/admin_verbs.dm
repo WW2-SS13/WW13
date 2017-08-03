@@ -314,6 +314,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/message_russians,
 	/client/proc/message_SS,
 	/client/proc/send_german_train,
+	/client/proc/see_who_is_in_tank,
 	/client/proc/eject_from_tank
 )
 
@@ -423,6 +424,10 @@ var/list/admin_verbs_mentor = list(
 		src << "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>"
 	else
 		//ghostize
+		if (ishuman(mob))
+			var/mob/living/carbon/human/H = mob
+			H.handle_zoom_stuff(TRUE)
+
 		var/mob/body = mob
 		var/mob/observer/ghost/ghost = body.ghostize(1)
 		ghost.admin_ghosted = 1

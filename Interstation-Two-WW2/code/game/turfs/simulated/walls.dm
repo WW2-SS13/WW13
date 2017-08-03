@@ -24,6 +24,8 @@ var/list/global/wall_cache = list()
 	var/list/wall_connections = list("0", "0", "0", "0")
 	var/ref_state = "generic"
 
+	var/tank_destroyable = 1
+
 /turf/unsimulated/wall
 	name = ""
 	icon = 'icons/turf/walls.dmi'
@@ -35,6 +37,7 @@ var/list/global/wall_cache = list()
 	name = ""
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
+	tank_destroyable = 0
 
 /turf/simulated/wall/rockwall/update_icon()
 	return

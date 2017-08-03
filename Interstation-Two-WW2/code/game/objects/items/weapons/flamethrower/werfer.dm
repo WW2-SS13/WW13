@@ -6,9 +6,11 @@
 	item_state = "fw_off"
 	var/pressure_1 = 100
 	status = 1
-	nodrop = 1
 	nothrow = 1
 	var/fueltank = 1
+
+/obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
+	return nodrop_special_check()
 
 /obj/item/weapon/flamethrower/flammenwerfer/update_icon()
 	overlays.Cut()
@@ -21,9 +23,6 @@
 
 /obj/item/weapon/flamethrower/flammenwerfer/Destroy()
 	..()
-
-/obj/item/weapon/flamethrower/flammenwerfer/throw_at(atom/target, range, speed, thrower)
-	return
 
 /obj/item/weapon/flamethrower/flammenwerfer/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return

@@ -670,6 +670,7 @@
 		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
 			//stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
+			stat("Time of Day", "[time_of_day]")
 
 		if(client.holder)
 			if(statpanel("Status"))
@@ -694,6 +695,7 @@
 						if(is_type_in_list(A, shouldnt_see))
 							continue
 						stat(A)
+
 
 
 // facing verbs

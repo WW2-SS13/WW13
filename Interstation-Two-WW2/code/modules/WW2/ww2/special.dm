@@ -157,11 +157,10 @@ var/wlg_selected_border_tree = 0
 			else
 				secret_ladder_message = "<span class = 'notice'><b>There is a secret ladder to the inside of the Soviet bunker somewhere in the forest. If you find it, you will gain a huge advantage over the enemy.</b></span>"
 
-
-			for(var/turf/T in world)
+			for(var/turf/simulated/floor/plating/grass/T in turfs)
 				if(T.z != 1)
 					continue
-				if(!istype(T, /turf/simulated/floor/plating/grass))
+				if(!istype(T))
 					continue
 
 				if (prob(1) && T.x > 171 && !spawned_secret_ladder)
@@ -248,6 +247,6 @@ var/mission_announced = 0
 		spawn (10 MINUTES) // because byond minutes are a long fucking time, this should be long enough to build defenses. maybe. - Kachnov
 			if (mercy_period)
 				mercy_period = 0
-				world << "<font size=4>The 10 minute grace period has ended. Either side can now cross the river!</font>"
+				world << "<font size=4>The 10 minute grace period has ended. Soveits and Partisans can now cross the river!</font>"
 
 	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] Civilians/Partisans.</font>"

@@ -12,14 +12,17 @@
 	layer = MOB_LAYER - 0.01
 	var/fuel_slot_screwed = 1
 	var/fuel_slot_open = 0
-	var/fuel = 500
-	var/max_fuel = 500
+	var/fuel = 650
+	var/max_fuel = 650
 	var/next_spam_allowed = -1
 	var/locked = 1 //tanks need to be unlocked
+	var/heal_damage[2]
 
 /obj/tank/New()
 	..()
 	update_bounding_rectangle()
+	heal_damage["weldingtool"] = max_damage/10
+	heal_damage["wrench"] = max_damage/20
 
 /obj/tank/attack_hand(var/mob/user as mob)
 
@@ -91,7 +94,7 @@
 			user.repairing_tank = 1
 			if (do_after(user, 50, src))
 				tank_message("<span class = 'notice'>[user] wrenches in some loose parts on [my_name()]. It looks about [health_percentage()] healthy.</span>")
-				damage = max(damage - 25, 0)
+				damage = max(damage - heal_damage["wrench"], 0)
 				user.repairing_tank = 0
 			else
 				user.repairing_tank = 0
@@ -108,7 +111,7 @@
 			if (do_after(user, 60, src))
 				tank_message("<span class = 'notice'>[user] repairs some of the damage on [my_name()]. It looks about [health_percentage()] healthy.</span>")
 				playsound(get_turf(src), 'sound/items/Welder2.ogg', rand(75,100))
-				damage = max(damage - 50, 0)
+				damage = max(damage - heal_damage["weldingtool"], 0)
 				user.repairing_tank = 0
 			else
 				user.repairing_tank = 0
@@ -168,23 +171,13 @@
 	else
 		user << "<span class = 'danger'>[my_name()] is locked! Use a tank key or keychain with a tank key on it to unlock it.</span>"
 
-#ifndef TANKSEATDEBUGGING
 /obj/tank/proc/receive_command_from(var/mob/user, x)
-	if (!isliving(user))
+	if (!isliving(user) || user.stat == UNCONSCIOUS || user.stat == DEAD)
 		return
 	if (user == front_seat())
 		return receive_frontseat_command(x)
 	else if (user == back_seat())
 		return receive_backseat_command(x)
-#else
-/obj/tank/proc/receive_command_from(var/mob/user, x)
-	if (!isliving(user) || user.stat == UNCONSCIOUS || user.stat == DEAD)
-		return
-	if (user == front_seat() && x != "FIRE" || user == back_seat() && x != "FIRE")
-		return receive_frontseat_command(x)
-	if (user == front_seat() || user == back_seat())
-		return receive_backseat_command(x)
-#endif
 
 /obj/tank/proc/receive_frontseat_command(x)
 	var/moved = 0

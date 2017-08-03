@@ -184,7 +184,10 @@ var/list/global/organ_rel_size = list(
 			else
 				miss_chance = 0
 		else if (range > 6)
-			miss_chance*=1.5
+			miss_chance*=1.25
+
+	// don't let people miss more than 95% of the time, no matter what.
+	miss_chance = min(miss_chance, 95)
 
 	if(prob(miss_chance))
 		if(prob(90))

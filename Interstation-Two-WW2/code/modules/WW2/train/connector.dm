@@ -69,30 +69,34 @@
 // copied from /obj/train_pseudoturf/move_mobs()
 
 /obj/train_connector/proc/move_mobs(var/_direction)
-	for (var/atom/movable/a in get_turf(src))
+	for (var/atom/movable/a in saved_contents)
 		if (ismob(a))
 			var/mob/m = a
 			if (!isnull(m.next_train_movement))
+
 				var/atom/movable/p = m.pulling
 
-				// orientation is irrelevant here
+				if (m.next_train_movement)
+					m.dir = m.next_train_movement
+					if (p) p.dir = m.next_train_movement
+
 				switch (m.next_train_movement)
 					if (NORTH)
-						m.train_move(locate(m.x, m.y+1, m.z))
-					//	if (p) p.train_move(m.behind())
+						var/moved = m.train_move(locate(m.x, m.y+1, m.z))
+						if (p && moved) p.train_move(m.behind())
 					if (SOUTH)
-						m.train_move(locate(m.x, m.y-1, m.z))
-				//		if (p) p.train_move(m.behind())
+						var/moved = m.train_move(locate(m.x, m.y-1, m.z))
+						if (p && moved) p.train_move(m.behind())
 					if (EAST)
-						m.train_move(locate(m.x+1, m.y, m.z))
-				//		if (p) p.train_move(m.behind())
+						var/moved = m.train_move(locate(m.x+1, m.y, m.z))
+						if (p && moved) p.train_move(m.behind())
 					if (WEST)
-						m.train_move(locate(m.x-1, m.y, m.z))
-					//	if (p) p.train_move(m.behind())
+						var/moved = m.train_move(locate(m.x-1, m.y, m.z))
+						if (p && moved) p.train_move(m.behind())
 
-				m.dir = m.next_train_movement
-				if (p) p.dir = m.next_train_movement
-				m.start_pulling(p) // start_pulling checks for p being null
+				if (p && get_dist(m, p) <= 1)
+					m.start_pulling(p) // start_pulling checks for p on its own
+
 				m.next_train_movement = null
 				m.train_gib_immunity = 0
 				m.last_moved_on_train = world.time

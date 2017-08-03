@@ -128,7 +128,6 @@
 	for(var/mob/living/carbon/human/H in human_mob_list)
 		var/datum/job/job = H.original_job
 		if(!job)
-			usr << "\red [H] has no job!"
 			continue
 
 		if(H.stat == DEAD)
@@ -179,9 +178,6 @@
 	else if (!total_ss || !(alive_ss+heavily_injured_ss))
 		mortality_coefficient_ss = 1.0
 
-	#ifdef MORTALITYRATEDEBUG
-	world << "mortality_coefficient_en: [mortality_coefficient_en]"
-	#endif
 	var/mortality_en = round(mortality_coefficient_en*100)
 	var/mortality_ru = round(mortality_coefficient_ru*100)
 	var/mortality_ss = round(mortality_coefficient_ss*100)

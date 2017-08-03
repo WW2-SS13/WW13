@@ -1,3 +1,7 @@
+/datum/job/russian
+	uses_keys = 1
+	team = "RUSSIAN"
+
 /datum/job/russian/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_russian_name(H.gender)
 	H.real_name = H.name
@@ -26,7 +30,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/colt(H), slot_belt)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.give_radio()
 	world << "<b>[H.client.prefs.russian_name] is the [title] of the Soviet forces!</b>"
@@ -35,7 +38,7 @@
 
 /datum/job/russian/commander/get_keys()
 	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/soldat, new/obj/item/weapon/key/russian/medic, new/obj/item/weapon/key/russian/engineer,
-		new/obj/item/weapon/key/russian/QM, new/obj/item/weapon/key/russian/command_intermediate, new/obj/item/weapon/key/russian/command_high)
+		new/obj/item/weapon/key/russian/QM, new/obj/item/weapon/key/russian/command_intermediate, new/obj/item/weapon/key/russian/command_high, new/obj/item/weapon/key/russian/bunker_doors)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,7 +69,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/colt(H), slot_belt)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the Russian forces. Your job is to take orders from the <b>Commandir</b> and coordinate with squad leaders.</span>"
@@ -74,7 +76,7 @@
 
 /datum/job/russian/staff_officer/get_keys()
 	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/soldat, new/obj/item/weapon/key/russian/medic, new/obj/item/weapon/key/russian/engineer,
-		new/obj/item/weapon/key/russian/QM, new/obj/item/weapon/key/russian/command_intermediate, new/obj/item/weapon/key/russian/command_high)
+		new/obj/item/weapon/key/russian/QM, new/obj/item/weapon/key/russian/command_intermediate, new/obj/item/weapon/key/russian/command_high, new/obj/item/weapon/key/russian/bunker_doors)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,7 +116,7 @@
 
 /datum/job/russian/squad_leader/get_keys()
 	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/soldat,
-		new/obj/item/weapon/key/russian/command_intermediate)
+		new/obj/item/weapon/key/russian/command_intermediate, new/obj/item/weapon/key/russian/bunker_doors)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -343,6 +345,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/sovtankeruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m4(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
+	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a tank crewman. Your job is to work with another crewman to operate a tank.</span>"
 	return 1
 
@@ -401,7 +404,7 @@ var/first_guard = 0
 	return 1
 
 /datum/job/russian/guard/get_keys()
-	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/soldat)
+	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/soldat, new/obj/item/weapon/key/russian/bunker_doors)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -436,7 +439,7 @@ var/first_guard = 0
 	return 1
 
 /datum/job/russian/zavhoz/get_keys()
-	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/soldat,  new/obj/item/weapon/key/russian/QM)
+	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/soldat,  new/obj/item/weapon/key/russian/QM, new/obj/item/weapon/key/russian/bunker_doors)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

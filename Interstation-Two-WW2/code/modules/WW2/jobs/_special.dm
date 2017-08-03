@@ -233,17 +233,6 @@
 			H.add_language("German")
 		H.spy_job_faction = new/datum/job_faction/german()
 
-/datum/job/german
-	uses_keys = 1
-	team = "GERMAN"
-
-/datum/job/russian
-	uses_keys = 1
-	team = "RUSSIAN"
-
-/datum/job/partisan
-	uses_keys = 1
-	team = "PARTISAN"
 
 /proc/get_side_name(var/side, var/datum/job/j)
 	if (j && (istype(j, /datum/job/german/squad_leader_ss) || istype(j, /datum/job/german/soldier_ss)))

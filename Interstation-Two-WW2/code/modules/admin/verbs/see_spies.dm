@@ -18,7 +18,8 @@
 	else
 		whomst << "<big>Spies at the end of the round:</big><br><br>"
 
-	var/list/mobs = getrussianmobs(0)|getgermanmobs(0)
+	var/list/mobs = dead_mob_list
+	mobs |= living_mob_list
 
 	for (var/mob/living/carbon/human/H in mobs)
 		if (istype(H) && H.is_spy)
@@ -26,8 +27,8 @@
 			var/is_ghosted = (H.client ? "IN BODY" : "GHOSTED OR LOGGED OUT")
 			var/spanstyle = H.stat == DEAD ? "warning" : "notice"
 			if (istype(H.original_job, /datum/job/german))
-				whomst << "<span style = '[spanstyle]'>[H][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - German soldier spying for the Russians. ([H_stat]) ([is_ghosted])</span><br>"
+				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - German soldier spying for the Russians. ([H_stat]) ([is_ghosted])</span><br>"
 			else if (istype(H.original_job, /datum/job/russian))
-				whomst << "<span style = '[spanstyle]'>[H][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - Russian soldier spying for the Germans. ([H_stat]) ([is_ghosted])</span><br>"
+				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - Russian soldier spying for the Germans. ([H_stat]) ([is_ghosted])</span><br>"
 			if (!notroundend && H.stat != DEAD && !H.restrained())
-				whomst << "<span style = 'notice'>The Spy survived!</span><br>"
+				whomst << "<span class = 'notice'>The Spy survived!</span><br>"

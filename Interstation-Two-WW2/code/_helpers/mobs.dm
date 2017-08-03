@@ -465,7 +465,7 @@ Proc for attack log creation, because really why not
 
 // returns the turf behind the mob
 
-/proc/behind(var/mob/m)
+/proc/get_turf_behind(var/mob/m)
 	switch (m.dir)
 		if (NORTH)
 			return locate(m.x, m.y-1, m.z)
@@ -477,4 +477,4 @@ Proc for attack log creation, because really why not
 			return locate(m.x+1, m.y, m.z)
 
 /mob/proc/behind()
-	return behind(src)
+	return get_turf_behind(src)

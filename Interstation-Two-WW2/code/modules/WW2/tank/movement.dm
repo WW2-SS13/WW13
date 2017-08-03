@@ -49,9 +49,11 @@
 		for (var/obj/o in get_step(src, direct))
 			if (!handle_passing_obj(o))
 				return 0
+
 		for (var/mob/m in get_step(src, direct))
 			if (!handle_passing_mob(m))
 				return 0
+
 		loc = target
 		fuel -= pick(0.33,0.5,0.75)
 
@@ -71,15 +73,32 @@
 			bound_height = 160
 
 /obj/tank/proc/handle_passing_target_turf(var/turf/t)
-	var/list/turfs_in_the_way = list(t)
+
+	var/list/turfs_in_the_way = list()
+
+
+	// note that the actual object's x is ALWAYS(?) the bottom left corner of it
+	// this new turfs in the way code is designed assuming the bounds of
+	// the tank while facing EAST and WEST is 5x3, and the bounds while
+	// facing NORTH and SOUTH is 3x5
 
 	switch (dir)
-		if (EAST, WEST)
+		if (EAST)
+			turfs_in_the_way += locate(t.x+4, t.y, t.z)
+			turfs_in_the_way += locate(t.x+4, t.y+1, t.z)
+		//	turfs_in_the_way += locate(t.x+5, t.y+2, t.z) // doesn't work with the current sprite
+		if (WEST)
+			turfs_in_the_way += locate(t.x, t.y, t.z)
 			turfs_in_the_way += locate(t.x, t.y+1, t.z)
-			turfs_in_the_way += locate(t.x, t.y-1, t.z)
-		if (NORTH, SOUTH)
+		//	turfs_in_the_way += locate(t.x-1, t.y+2, t.z) // doesn't work with the current sprite
+		if (NORTH)
+			turfs_in_the_way += locate(t.x, t.y+4, t.z)
+			turfs_in_the_way += locate(t.x+1, t.y+4, t.z)
+			turfs_in_the_way += locate(t.x+2, t.y+4, t.z)
+		if (SOUTH)
+			turfs_in_the_way += locate(t.x, t.y, t.z)
 			turfs_in_the_way += locate(t.x+1, t.y, t.z)
-			turfs_in_the_way += locate(t.x-1, t.y, t.z)
+			turfs_in_the_way += locate(t.x+2, t.y, t.z)
 
 	for (var/turf/tt in turfs_in_the_way)
 		if (!handle_passing_turf(tt))
@@ -100,6 +119,8 @@
 		return 1
 	if (istype(t, /turf/simulated/wall))
 		var/turf/simulated/wall/wall = t
+		if (!wall.tank_destroyable)
+			return 0
 		var/wall_integrity = wall.material ? wall.material.integrity : 150
 		if (prob(min(wall_integrity/2, 97)))
 			tank_message("<span class = 'danger'>The tank smashes against [wall]!</span>")
@@ -109,6 +130,7 @@
 			tank_message("<span class = 'danger'>The tank smashes its way through [wall]!</span>")
 			qdel(wall)
 			return 1
+	return 1
 
 /obj/tank/proc/handle_passing_obj(var/obj/o)
 
@@ -190,3 +212,5 @@
 		spawn (5)
 			m.gib()
 			last_movement = world.time + 25
+
+	return 1

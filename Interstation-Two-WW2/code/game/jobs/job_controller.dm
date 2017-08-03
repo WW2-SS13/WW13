@@ -18,7 +18,7 @@ var/global/list/fallschirm_landmarks = list()
 	var/geforce_count = 0
 	var/civilian_count = 0
 
-	var/autobalance = 1
+	var/autobalance = 0
 
 	var/list/join_queue = list()
 
@@ -580,7 +580,18 @@ var/global/list/fallschirm_landmarks = list()
 						else
 							spawn_in_storage += thing
 			//Equip job items.
+
 			job.equip(H)
+
+			// Give the guy some ammo for his gun
+			if (istype(ticker.mode, /datum/game_mode/ww2))
+				for (var/obj/item/weapon/gun/projectile/gun in H)
+					if (!H.r_store)
+						H.equip_to_slot_or_del(new gun.magazine_type(H), slot_r_store)
+					if (!H.l_store)
+						H.equip_to_slot_or_del(new gun.magazine_type(H), slot_l_store)
+					break // but only the first gun we find
+
 			job.update_character(H)
 			//job.equip_backpack(H)
 			//job.equip_survival(H)
@@ -751,6 +762,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		if (job.uses_keys)
 			spawn_keys(H, rank, job)
+			H << "<i>Click on a door with your <b>keychain</b> to open it. It will select the right key for you.</i>"
 		else
 
 			if(job)
