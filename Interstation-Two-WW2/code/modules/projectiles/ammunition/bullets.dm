@@ -43,11 +43,10 @@
 	caliber = "9mm"
 	projectile_type = /obj/item/projectile/bullet/pistol/practice
 
-
 /obj/item/ammo_casing/c45
 	desc = "A .45 bullet casing."
 	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/pistol/medium
+	projectile_type = /obj/item/projectile/bullet/rifle/a9_parabellum
 
 /obj/item/ammo_casing/c45p
 	desc = "A .45 practice bullet casing."
