@@ -117,6 +117,8 @@
 		return 1
 	if (!istype(t, /turf/simulated/wall) && !istype(t, /turf/unsimulated))
 		return 1
+	if (istype(t,  /turf/simulated/wall/rockwall))
+		return 0
 	if (istype(t, /turf/simulated/wall))
 		var/turf/simulated/wall/wall = t
 		if (!wall.tank_destroyable)

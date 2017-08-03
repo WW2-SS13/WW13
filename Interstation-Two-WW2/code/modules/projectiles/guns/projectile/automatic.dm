@@ -186,8 +186,8 @@
 		user << "\The [launcher] is empty."
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw
-	name = "Mg34"
-	desc = "German mg34 light machinegun. Pre-version of hitlers buzzsaw"
+	name = "MG-34"
+	desc = "German light machinegun chambered in 7.92x57mm Mauser. An utterly devastating support weapon."
 	icon_state = "l6closed100"
 	item_state = "l6closedmag"
 	w_class = 4
