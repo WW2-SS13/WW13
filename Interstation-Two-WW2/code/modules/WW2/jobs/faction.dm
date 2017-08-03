@@ -104,10 +104,19 @@ var/global/squad_members[3]
 	var/is_leader = 0
 	var/number = "#1"
 	New(var/mob/living/carbon/human/H, var/datum/job/J)
+
+		var/squadmsg = ""
+
 		if (!is_leader)
-			H << "<span class = 'danger'>You've been assigned to squad [squad].[istype(J, /datum/job/german) ? " Meet with the rest of your squad on train car [number]. " : " "]Examine people to see if they're in your squad, or if they're your squad leader."
+			squadmsg = "<span class = 'danger'>You've been assigned to squad [squad].[istype(J, /datum/job/german) ? " Meet with the rest of your squad on train car [number]. " : " "]Examine people to see if they're in your squad, or if they're your squad leader."
 		else
-			H << "<span class = 'danger'>You are the [J.title] of squad [squad].[istype(J, /datum/job/german) ? " Meet with your squad on train car [number]. " : " "]Examine people to see if they're one of your soldats."
+			squadmsg = "<span class = 'danger'>You are the [J.title] of squad [squad].[istype(J, /datum/job/german) ? " Meet with your squad on train car [number]. " : " "]Examine people to see if they're one of your soldats."
+
+		squadmsg = replacetext(squadmsg, "<span class = 'danger'>", "")
+		squadmsg = replacetext(squadmsg, "</span>", "")
+
+		H.add_memory(squadmsg)
+
 		..(H, J)
 
 /datum/job_faction/squad/one
