@@ -141,7 +141,7 @@
 	else
 		icon_state = "ppsh_empty"
 		if(wielded)
-			item_state = "ppsh"
+			item_state = "ppsh_empty"
 		else
 			item_state = "ppsh_empty"
 	update_held_icon()
