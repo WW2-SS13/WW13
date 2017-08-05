@@ -106,6 +106,13 @@
 	worn_state = GERMAN_UNIFORM_STATE
 	var/rolled = 0
 
+/obj/item/clothing/under/geruni/gerofficer
+	name = "german officer's uniform"
+	desc = "A fancier, more pressed uniform of the Nazi Army, given to German officers. It has a feel of pride and authority."
+	icon_state = "falluni"
+	item_state = "geruniofficer"
+	worn_state = "geruniofficer"
+
 
 /obj/item/clothing/under/geruni/verb/roll_sleeves()
 	set category = null
