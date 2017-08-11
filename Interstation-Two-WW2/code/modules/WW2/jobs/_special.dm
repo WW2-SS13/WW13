@@ -153,7 +153,7 @@
 	if (!user.client.prefs.be_jew)
 		return
 
-	if (istype(src, /datum/job/german))
+	if (clients.len < 25) // too lowpop for jews! Todo: config setting
 		return
 
 	if (is_officer)
