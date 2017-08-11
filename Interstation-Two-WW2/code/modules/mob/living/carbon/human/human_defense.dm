@@ -87,6 +87,13 @@ meteor_act
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 					emote("me", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
+		else
+			if (agony_amount > 5)
+				if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/german))
+					say("OH GOD THE PAIN", src.languages.Find("German"))
+
+				if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/russian))
+					say("OH GOD THE PAIN", src.languages.Find("Russian"))
 
 		else
 			if (agony_amount > 10)
