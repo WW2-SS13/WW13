@@ -150,7 +150,10 @@
 	if (!istype(user))
 		return
 
-	if (!user.client.prefs.be_jew || !istype(src, /datum/job/german/soldier))
+	if (!user.client.prefs.be_jew)
+		return
+
+	if (istype(src, /datum/job/german))
 		return
 
 	if (is_officer)
