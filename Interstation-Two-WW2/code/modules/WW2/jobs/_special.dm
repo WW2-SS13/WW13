@@ -186,10 +186,10 @@
 	if (!user.client.prefs.be_spy)
 		return
 
-	if (clients.len < 25) // too lowpop for spies! Todo: config setting
+	if (clients.len < -1) // too lowpop for spies! Todo: config setting
 		return
 
-	if ((prob(20) && istype(src, /datum/job/german/soldier)) || (prob(12) && istype(src, /datum/job/russian/soldier)))
+	if ((prob(100) && istype(src, /datum/job/german/soldier)) || (prob(100) && istype(src, /datum/job/russian/soldier)))
 		if (allow_spies)
 			make_spy(user)
 			user.give_radio()
