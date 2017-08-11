@@ -24,6 +24,11 @@ meteor_act
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
 	def_zone = check_zone(def_zone)
+	if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/german))
+		say("GOD DAMN IT HURTS", src.languages.Find("German"))
+
+	if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/russian))
+		say("GOD DAMN IT HURTS", src.languages.Find("Russian"))
 
 	if (def_zone == "chest" && P.firer && (P.firer.dir == src.dir || P.firer.lying))
 		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
@@ -82,6 +87,13 @@ meteor_act
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 					emote("me", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
+		else
+			if (agony_amount > 5)
+				if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/german))
+					say("OH GOD THE PAIN", src.languages.Find("German"))
+
+				if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/russian))
+					say("OH GOD THE PAIN", src.languages.Find("Russian"))
 
 	..(stun_amount, agony_amount, def_zone)
 
