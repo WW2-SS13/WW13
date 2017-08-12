@@ -218,7 +218,7 @@ Parts of code courtesy of Super3222
 	if(client && actions.len)
 		if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 			for(var/datum/action/toggle_scope/T in actions)
-				if(T.scope.zoomed)
+				if(T.scope.zoomed && src.m_intent=="run")
 					T.scope.zoom(src, FALSE)
 
 // called from Life()
