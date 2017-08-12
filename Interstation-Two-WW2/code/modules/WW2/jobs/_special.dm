@@ -150,10 +150,10 @@
 	if (!istype(user))
 		return
 
-	if (!user.client.prefs.be_jew)
+	if (!user.client.prefs.be_jew || !istype(src, /datum/job/german/soldier))
 		return
 
-	if (clients.len < 25) // too lowpop for jews! Todo: config setting
+	if (clients.len < -1) // too lowpop for jews! Todo: config setting
 		return
 
 	if (is_officer)
