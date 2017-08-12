@@ -14,8 +14,20 @@
 
 	var/override_material_state = null
 
+	var/health = 100
+	var/initial_health = 100
+
 /obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	TemperatureAct(exposed_temperature)
+
+/obj/structure/simple_door/bullet_act(var/obj/item/projectile/P)
+	var/damage = max(P.damage/5, 2)
+	health -= damage
+	visible_message("<span class = 'danger'>[src] is hit by the bullet!</span>")
+	if (istype(src, /obj/structure/simple_door/key_door))
+		src:damage_display()
+	if (health <= 0)
+		qdel(src)
 
 /obj/structure/simple_door/proc/TemperatureAct(temperature)
 	hardness -= material.combustion_effect(get_turf(src),temperature, 0.3)

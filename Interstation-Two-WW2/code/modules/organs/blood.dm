@@ -36,6 +36,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
+
 	if(in_stasis)
 		return
 
@@ -51,14 +52,23 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	//Bleeding out
 	var/blood_max = 0
 	for(var/obj/item/organ/external/temp in organs)
-		if(!(temp.status & ORGAN_BLEEDING) || (temp.status & ORGAN_ROBOT))
+		if(!(temp.status & ORGAN_BLEEDING))
 			continue
 		for(var/datum/wound/W in temp.wounds)
 			if(W.bleeding())
 				blood_max += W.damage / 40
 		if (temp.open)
 			blood_max += 2  //Yer stomach is cut open
-	drip(max(blood_max/2,1)) // nerfs bleeding out - kachnov
+
+	if (blood_max) // we're bleeding
+		drip(max(blood_max/2,1)) // nerfs bleeding out - kachnov
+	else // we're not bleeding, regenerate some blood (experimental) - kachnov
+		for (var/datum/reagent/r in vessel.reagent_list)
+			if (istype(r, /datum/reagent/blood))
+				if (r.volume >= species.blood_volume)
+					return // we're full on blood.
+		vessel.add_reagent("blood", 1/(rand(1,3))
+
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/human/proc/drip(var/amt as num)

@@ -14,8 +14,6 @@ var/list/nonbreaking_types = list(
 /obj/structure/simple_door/key_door
 	var/datum/keyslot/keyslot = null
 	var/keyslot_type = null
-	var/health = 100
-	var/initial_health = 100
 	var/showed_damage_messages[4]
 	var/unique_door_name = null
 	material = "iron"
