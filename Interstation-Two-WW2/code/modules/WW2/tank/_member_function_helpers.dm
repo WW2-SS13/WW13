@@ -1,6 +1,10 @@
 /obj/tank/proc/my_name()
 	return "the [name]"
 
+/obj/tank/proc/set_name(x)
+	name = x
+	named = 1
+
 /obj/tank/var/displayed_damage_message[10]
 
 /obj/tank/proc/x_percent_of_max_damage(x)
