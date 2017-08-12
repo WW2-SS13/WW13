@@ -96,6 +96,7 @@ meteor_act
 				if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/russian))
 					say("OH GOD THE PAIN", src.languages.Find("Russian"))
 
+<<<<<<< HEAD
 		else
 			if (agony_amount > 10)
 				if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/german))
@@ -104,6 +105,8 @@ meteor_act
 				if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/russian))
 					say("OH GOD THE PAIN", src.languages.Find("Russian"))
 
+=======
+>>>>>>> 7b7a967a468d19f3d555c4bed8de247ede4e090c
 	..(stun_amount, agony_amount, def_zone)
 
 /mob/living/carbon/human/getarmor(var/def_zone, var/type)
