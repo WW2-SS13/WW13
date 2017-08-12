@@ -105,6 +105,28 @@
 /obj/item/stack/proc/produce_recipe(datum/stack_recipe/recipe, var/quantity, mob/user)
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
+	var/atom/movable/build_override_object = null
+
+	if (recipe.title == "locked door")
+		if (!ishuman(user))
+			return
+
+		var/mob/living/carbon/human/H = user
+		if (!istype(H.l_hand, /obj/item/weapon/key) && !istype(H.r_hand, /obj/item/weapon/key))
+			user << "<span class = 'warning'>You need to have a key in one of your hands to make a locked door.</span>"
+			return
+
+		var/obj/item/weapon/key = H.l_hand
+		if (!key || !istype(key))
+			key = H.r_hand
+		if (!key || !istype(key))
+			return // should never happen
+
+		var/texttype = "[key.type]"
+		var/uniquepart = replacetext(texttype, "/obj/item/weapon/key/", "")
+		var/doorbasepath = "/obj/structure/simple_door/key_door/"
+		var/doorpath = text2path("[doorbasepath][uniquepart]")
+		build_override_object = new doorpath()
 
 	if (!can_use(required))
 		if (produced>1)
@@ -132,6 +154,12 @@
 			O = new recipe.result_type(user.loc, recipe.use_material)
 		else
 			O = new recipe.result_type(user.loc)
+
+		if (build_override_object)
+			build_override_object.loc = get_turf(O)
+			qdel(O)
+			return
+
 		O.set_dir(user.dir)
 		O.add_fingerprint(user)
 
@@ -341,6 +369,7 @@
 	var/use_material
 
 	New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = 0, on_floor = 0, supplied_material = null)
+
 		src.title = title
 		src.result_type = result_type
 		src.req_amount = req_amount

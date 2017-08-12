@@ -49,6 +49,12 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/c45ammo
+	name = ".45 ammo crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
 /obj/structure/closet/crate/kar98kammo
 	name = "Kar98k ammo crate"
 	icon_state = "mil_crate_closed"
@@ -133,6 +139,54 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/rations/
+	name = "Rations"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/rations/New()
+	..()
+	var/textpath = "[type]"
+	if (findtext(textpath, "german"))
+		if (findtext(textpath, "solids"))
+			for (var/v in 1 to rand(10,15))
+				contents += new_ration("GERMAN", "solid")
+		if (findtext(textpath, "liquids"))
+			for (var/v in 1 to rand(10,15))
+				contents += new_ration("GERMAN", "liquid")
+		if (findtext(textpath, "desserts"))
+			for (var/v in 1 to rand(10,15))
+				contents += new_ration("GERMAN", "dessert")
+	else if (findtext(textpath, "soviet"))
+		if (findtext(textpath, "solids"))
+			for (var/v in 1 to rand(10,15))
+				contents += new_ration("SOVIET", "solid")
+		if (findtext(textpath, "liquids"))
+			for (var/v in 1 to rand(10,15))
+				contents += new_ration("SOVIET", "liquid")
+	/*	if (findtext(textpath, "desserts"))
+			for (var/v in 1 to rand(10,15))
+				contents += new_ration("SOVIET", "dessert")*/
+
+/obj/structure/closet/crate/rations/german_solids
+	name = "Rations: solids"
+
+/obj/structure/closet/crate/rations/german_liquids
+	name = "Rations: liquids"
+
+/obj/structure/closet/crate/rations/german_desserts
+	name = "Rations: dessert"
+
+/obj/structure/closet/crate/rations/soviet_solids
+	name = "Rations: solids"
+
+/obj/structure/closet/crate/rations/soviet_liquids
+	name = "Rations: liquids"
+
+/obj/structure/closet/crate/rations/soviet_desserts
+	name = "Rations: dessert"
+
 //making crates populate their contents via a for loop, so it's obvious how many things are in them. Original versions in
 //ww2_weapons.dm
 
@@ -187,6 +241,10 @@
 	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/luger(src)
 
+/obj/structure/closet/crate/c45ammo/New()
+	..()
+	for (var/v in 1 to 15)
+		new /obj/item/ammo_magazine/c45m(src)
 
 /obj/structure/closet/crate/bettymines/New()
 	..()

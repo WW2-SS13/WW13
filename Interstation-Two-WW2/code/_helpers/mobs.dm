@@ -401,7 +401,7 @@ Proc for attack log creation, because really why not
 	var/list/germans = getgermanmobs(alive)
 	var/list/paratroopers = list()
 	for (var/mob/living/carbon/human/H in germans)
-		if (istype(H.job, /datum/job/german/fallschirm))
+		if (istype(H.job, /datum/job/german/paratrooper))
 			paratroopers += H
 	return paratroopers
 

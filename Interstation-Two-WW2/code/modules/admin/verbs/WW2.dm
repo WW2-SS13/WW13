@@ -101,14 +101,6 @@
 
 	reinforcements_master.lock_check()
 
-/client/proc/toggle_autobalance()
-	set category = "WW2"
-	set name = "Toggle autobalance"
-
-	job_master.autobalance = !job_master.autobalance
-	world << "<font size=3>Autobalance is now [(job_master.autobalance) ? "enabled" : "disabled"].</font>"
-	message_admins("[key_name(src)] changed the autobalance settings.")
-
 /client/proc/show_battle_report()
 	set category = "WW2"
 	set name = "Show battle report"
@@ -375,7 +367,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.base_type_flag() == "GERMAN" && istype(H.original_job, /datum/job/german/fallschirm))
+				if (H.original_job && H.original_job.base_type_flag() == "GERMAN" && istype(H.original_job, /datum/job/german/paratrooper))
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE PARATROOPER SQUAD:</b>" : "<b>MESSAGE TO THE PARATROOPER SQUAD FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 

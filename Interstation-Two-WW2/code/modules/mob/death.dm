@@ -25,7 +25,7 @@
 		animation.master = src
 
 		flick(anim, animation)
-		if(do_gibs) gibs(loc, dna)
+		if(do_gibs) gibs(loc)
 
 		spawn(15)
 			if(animation)	qdel(animation)

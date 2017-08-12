@@ -5,7 +5,8 @@
 	var/spawning = 0//Referenced when you want to delete the new_player later on in the code.
 	var/totalPlayers = 0		 //Player counts for the Lobby tab
 	var/totalPlayersReady = 0
-	var/desired_job = null // job title
+	var/desired_job = null // job title. This is for join queues.
+	var/datum/job/delayed_spawning_as_job = null // job title. Self explanatory.
 	universal_speak = 1
 
 	invisibility = 101
@@ -15,6 +16,7 @@
 	canmove = 0
 
 	anchored = 1	//  don't get pushed around
+
 
 
 /mob/new_player/New()
@@ -230,24 +232,10 @@
 			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
 			return 0
 
-		// for delayed spawning, wait the spawn_delay of the job
-		// and lock up one job position while they're spawning
-
-		if (actual_job.spawn_delay && actual_job.delayed_spawn_message)
-			src << actual_job.delayed_spawn_message
-			actual_job.spawn_positions -= 1
-			actual_job.total_positions -= 1
-
-		spawn (actual_job.spawn_delay)
-			if (src)
-				// if we did spawn, unlock the position
-				actual_job.spawn_positions += 1
-				actual_job.total_positions += 1
-				AttemptLateSpawn(href_list["SelectedJob"])
-				return
-			// if we didn't spawn, unlock the position
-			actual_job.spawn_positions += 1
-			actual_job.total_positions += 1
+		if (actual_job.spawn_delay)
+			job_master.spawn_with_delay(src, actual_job)
+		else
+			AttemptLateSpawn(href_list["SelectedJob"])
 
 	if(!ready && href_list["preference"])
 		if(client)
@@ -313,7 +301,7 @@
 /mob/new_player/proc/IsJobAvailable(rank, var/list/restricted_choices)
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job)	return 0
-	if(!job.is_position_available(restricted_choices, job_master.people_in_join_queue())) return 0
+	if(!job.is_position_available(restricted_choices)) return 0
 	if(jobban_isbanned(src,rank))	return 0
 	if(!job.player_old_enough(src.client))	return 0
 	return 1
@@ -356,6 +344,7 @@
 	qdel(src)
 
 /mob/new_player/proc/AttemptLateSpawn(rank, var/nomsg = 0/*,var/spawning_at*/)
+
 	if(src != usr)
 		return 0
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
@@ -372,19 +361,8 @@
 
 	if(job_master.is_side_locked(job.base_type_flag()))
 		src << "\red Currently this side is locked for joining."
-		return 0
+		return
 
-	if(!job_master.can_join_side(job.base_type_flag()))
-		job_master.remove_from_join_queue(src)
-		var/side = job.base_type_flag()
-		if ((side == "GERMAN" || side == "RUSSIAN" || side == "PARTISAN" || side == "CIVILIAN") && !job_master.has_in_join_queue(src))
-			job_master.put_in_join_queue(side, src, rank)
-			src << "\red You've been put in a queue to join as a [rank]."
-			return 0
-		else
-			if (!nomsg)
-				src << "\red Currently you can't join this side due to auto-balancing."
-			return 0
 
 	spawning = 1
 	close_spawn_windows()
@@ -509,7 +487,7 @@
 		if (config.use_job_whitelist && !check_job_whitelist(src, job.title))
 			job_is_available = 0
 
-		if (istype(job, /datum/job/german/fallschirm) && !paratroopers_toggled)
+		if (istype(job, /datum/job/german/paratrooper) && !paratroopers_toggled)
 			job_is_available = 0
 
 		if ((istype(job, /datum/job/german/soldier_ss) || istype(job, /datum/job/german/squad_leader_ss)) && !SS_toggled)
@@ -549,10 +527,14 @@
 
 /mob/new_player/proc/create_character()
 
+	if (delayed_spawning_as_job)
+		delayed_spawning_as_job.spawn_positions += 1
+		delayed_spawning_as_job.total_positions += 1
+
+	delayed_spawning_as_job = null
+
 	spawning = 1
 	close_spawn_windows()
-
-	job_master.remove_from_join_queue(src)
 
 	var/mob/living/carbon/human/new_character
 

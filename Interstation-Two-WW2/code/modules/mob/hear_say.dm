@@ -242,20 +242,29 @@
 
 /proc/say_timestamp()
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
-
+/*
 /mob/proc/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
 	src << "<font size = [fontsize]>[part_a][speaker_name][part_b][formatted]</font>"
 
 /mob/observer/ghost/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
 	src << "<font size = [fontsize]>[part_a][track][part_b][formatted]</font>"
+*/
 
-/mob/living/silicon/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
-	var/time = say_timestamp()
-	src << "<font size = [fontsize]>[time][part_a][speaker_name][part_b][formatted]</font>"
+/mob/proc/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
+	// find the radio that this probably came from. Not a great solution
+	var/obj/item/device/radio/source = null
+	for (var/obj/item/device/radio/radio in orange(10, src))
+		source = radio
+		break
 
-/mob/living/silicon/ai/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
-	var/time = say_timestamp()
-	src << "<font size = [fontsize]>[time][part_a][track][part_b][formatted]</font>"
+	src << "[icon(source.icon, source.icon_state)]<font size = [fontsize]><b><span style = \"color:[radio_freq2color(source.frequency)]\">[source.bracketed_name()] [speaker_name]</b> [formatted]</span></font>"
+
+/mob/observer/ghost/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
+	var/obj/item/device/radio/source = null
+	for (var/obj/item/device/radio/radio in world)
+		source = radio
+		break
+	src << "<font size = [fontsize]><b><span style = \"color:red\">[source.bracketed_name()] [track]</b> [formatted]</span></font>"
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
 	if(!client)

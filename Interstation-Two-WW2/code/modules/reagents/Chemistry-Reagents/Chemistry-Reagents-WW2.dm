@@ -159,7 +159,7 @@
 			return // this area is gas immune
 
 	if(istype(L))
-		internal_damage(L, get_severity(amount)*10)
+		internal_damage(L, get_severity(amount)*4)
 
 /datum/reagent/toxin/zyklon_b/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 

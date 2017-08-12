@@ -165,6 +165,13 @@ var/area/partisan_stockpile = null
 			qdel(src)
 			return
 
+		if("JoinLateHeerChef")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
 		if("JoinLateHeerCO")
 			if(!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
@@ -203,6 +210,13 @@ var/area/partisan_stockpile = null
 		// NEW RUSSIAN LANDMARKS
 
 		if("JoinLateRA")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRAChef")
 			if(!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
@@ -262,9 +276,9 @@ var/area/partisan_stockpile = null
 
 		if ("TownStockpile")
 			var/turf/turf = loc
-			var/i = rand(1,3) // 1 == meds 2 == tools no weapons for now
+			var/i = rand(1,3)
 			switch (i)
-				if (1)
+				if (1) // meds
 					for (var/v in 1 to rand(2,3))
 						if (prob(33))
 							new/obj/item/weapon/pill_pack/antitox(turf)
@@ -280,7 +294,7 @@ var/area/partisan_stockpile = null
 							new/obj/item/weapon/pill_pack/pervitin(turf)
 						if (prob(33))
 							new/obj/item/weapon/gauze_pack/bint(turf)
-				if (2)
+				if (2) // tools
 					for (var/v in 1 to rand(2,3))
 						if (prob(50))
 							new/obj/item/weapon/wrench(turf)
@@ -290,6 +304,11 @@ var/area/partisan_stockpile = null
 							new/obj/item/weapon/weldingtool(turf)
 						if (prob(50))
 							new/obj/item/weapon/screwdriver(turf)
+				if (3) // materials
+					var/type = pick(/obj/item/stack/material/steel, /obj/item/stack/material/wood)
+					var/obj/item/stack/sheets = new type (turf)
+					sheets.amount = rand(10,30)
+
 
 			qdel(src)
 			return

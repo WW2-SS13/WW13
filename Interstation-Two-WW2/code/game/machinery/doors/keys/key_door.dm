@@ -22,7 +22,7 @@ var/list/nonbreaking_types = list(
 
 	var/map_door_name = name
 
-	..(material)
+	..(loc, material)
 
 	if (keyslot_type)
 		keyslot = new keyslot_type
@@ -37,6 +37,11 @@ var/list/nonbreaking_types = list(
 			name = unique_door_name
 		else if (map_door_name != "door")
 			name = map_door_name
+
+	// should fix doors always being the wrong type
+	spawn (5)
+		if (material.name != initial(material))
+			update_material(initial(material))
 
 /obj/structure/simple_door/key_door/attackby(obj/item/W as obj, mob/user as mob)
 

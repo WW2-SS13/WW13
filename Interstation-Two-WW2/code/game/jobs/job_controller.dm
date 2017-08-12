@@ -6,6 +6,10 @@ var/global/datum/controller/occupations/job_master
 
 var/global/list/fallschirm_landmarks = list()
 
+/hook/roundstart/proc/setup_autobalance()
+	if (job_master)
+		job_master.toggle_roundstart_autobalance()
+
 /datum/controller/occupations
 		//List of all jobs
 	var/list/occupations = list()
@@ -18,10 +22,6 @@ var/global/list/fallschirm_landmarks = list()
 	var/geforce_count = 0
 	var/civilian_count = 0
 	var/partisan_count = 0
-
-	var/autobalance = 0
-
-	var/list/join_queue = list()
 
 	var/allow_jews = 1
 	var/allow_spies = 1
@@ -71,14 +71,6 @@ var/global/list/fallschirm_landmarks = list()
 	var/partisan_soldat_slots = 0
 	var/partisan_commander_slots = 0
 
-	New()
-		..()
-		join_queue["GERMAN"] = list()
-		join_queue["RUSSIAN"] = list()
-		join_queue["PARTISAN"] = list()
-		join_queue["CIVILIAN"] = list()
-		join_queue_loop()
-
 	// new autobalance system helpers lambdas when byond ree
 
 	proc/remaining_german_slots()
@@ -123,6 +115,9 @@ var/global/list/fallschirm_landmarks = list()
 	// being sent
 
 	proc/toggle_roundstart_autobalance()
+
+		if (config.debug)
+			return
 		// how many unique clients we expect to play
 
 		var/expected_players = ceil(clients.len * 0.9)
@@ -264,31 +259,36 @@ var/global/list/fallschirm_landmarks = list()
 					j.total_positions = german_ss_slots
 					j.spawn_positions = german_ss_slots
 
-	proc/people_in_join_queue()
-		var/list/l = list()
-		l += join_queue["GERMAN"]
-		l += join_queue["RUSSIAN"]
-		l += join_queue["PARTISAN"]
-		return l
+	proc/spawn_with_delay(var/mob/new_player/np, var/datum/job/j)
+		// for delayed spawning, wait the spawn_delay of the job
+		// and lock up one job position while np is spawning
+		if (!j.spawn_delay)
+			return
 
+		if (j.delayed_spawn_message)
+			np << j.delayed_spawn_message
 
-/*	var/list/crate_positions = list(
-		/datum/job/commander_american = "Field Officer",
-		/datum/job/squad_leader_american = "Squad Officer",
-		/datum/job/medic_american = "Field Medic",
-		/datum/job/engineer_american = "Engineer",
-		/datum/job/heavy_weapon_american = "Specialist",
-		/datum/job/soldier_american = "Soldier"
-		)
+		np.delayed_spawning_as_job = j
 
+		// occupy a position slot
 
-*/
+		j.spawn_positions -= 1
+		j.total_positions -= 1
+
+		spawn (j.spawn_delay)
+			if (np && np.delayed_spawning_as_job == j) // if np hasn't already spawned
+				// if np did spawn, unoccupy the position slot
+				j.spawn_positions += 1
+				j.total_positions += 1
+				np.AttemptLateSpawn(j.title)
+				return
+
 
 	proc/relocate(var/mob/living/L)
 
 		var/list/turfs = latejoin_turfs[L.mind.assigned_job.spawn_location]
 
-		if(istype(L.mind.assigned_job, /datum/job/german/fallschirm))
+		if(istype(L.mind.assigned_job, /datum/job/german/paratrooper))
 			return
 
 		if(turfs && turfs.len > 0)
@@ -908,8 +908,9 @@ var/global/list/fallschirm_landmarks = list()
 				W.buckled_mob = H
 				W.add_fingerprint(H)
 
-		if (!istype(H.mind.assigned_job, /datum/job/german) && !istype(H.mind.assigned_job, /datum/job/russian))
-			H << "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"
+	//	if (!istype(H.mind.assigned_job, /datum/job/german) && !istype(H.mind.assigned_job, /datum/job/russian))
+		//	H << "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"
+
 /*
 		if(job.supervisors)
 			H << "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"
@@ -1091,57 +1092,4 @@ var/global/list/fallschirm_landmarks = list()
 
 			return 6
 
-/datum/controller/occupations/proc/can_join_side(side)
-	if(!autobalance)
-		return 1
-	if(!ticker)
-		return 0
-	if (ruforce_count == 0 && geforce_count == 0)
-		if (side == "RUSSIAN" || side == "GERMAN")
-			return 1
-	if(side == "RUSSIAN")
-		return (ruforce_count-get_max_autobalance_diff() < geforce_count) && ticker.can_latejoin_ruforce
-	else if(side == "GERMAN")
-		return (geforce_count < ruforce_count) && ticker.can_latejoin_geforce
-	else if (side == "PARTISAN")
-		if (clients.len < 40)
-			return 0
-		else
-			if (ruforce_count > civilian_count && geforce_count > civilian_count)
-				return 1 // temporary
 
-	return 0
-
-/datum/controller/occupations/proc/put_in_join_queue(side, var/mob/new_player/player, job)
-	join_queue[side] += player
-	player.desired_job = job
-
-/datum/controller/occupations/proc/remove_from_join_queue(var/mob/new_player/player)
-	join_queue["GERMAN"] -= player
-	join_queue["RUSSIAN"] -= player
-	join_queue["PARTISAN"] -= player
-	player.desired_job = null
-
-/datum/controller/occupations/proc/has_in_join_queue(var/mob/new_player/player)
-	var/list/g = join_queue["GERMAN"]
-	var/list/r = join_queue["RUSSIAN"]
-	var/list/p = join_queue["PARTISAN"]
-	return (g.Find(player) || r.Find(player) || p.Find(player))
-
-/datum/controller/occupations/proc/join_queue_loop()
-
-	spawn while (1)
-		for (var/mob/new_player/np in join_queue["GERMAN"])
-			if (can_join_side("GERMAN"))
-				np.LateSpawnForced(np.desired_job)
-		for (var/mob/new_player/np in join_queue["RUSSIAN"])
-			if (can_join_side("RUSSIAN"))
-				np.LateSpawnForced(np.desired_job)
-		for (var/mob/new_player/np in join_queue["PARTISAN"])
-			if (can_join_side("PARTISAN"))
-				np.LateSpawnForced(np.desired_job)
-		sleep (3)
-
-/*
-/datum/controller/occupations/proc/spawn_crate(var/datum/job/job)
-*/

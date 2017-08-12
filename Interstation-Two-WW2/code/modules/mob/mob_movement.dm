@@ -293,13 +293,17 @@
 
 		move_delay = world.time//set move delay
 
+		// removed config.run_speed, config.walk_speed from move_delays
+		// for some reason they kept defaulting to values different from
+		// the ones specified in the config.
+
 		switch(mob.m_intent)
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 1+config.run_speed
+				move_delay += 2.5
 			if("walk")
-				move_delay += 7+config.walk_speed
+				move_delay += 5.0
 
 		move_delay += mob.movement_delay()
 

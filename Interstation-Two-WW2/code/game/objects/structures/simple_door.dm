@@ -21,7 +21,7 @@
 	TemperatureAct(exposed_temperature)
 
 /obj/structure/simple_door/bullet_act(var/obj/item/projectile/P)
-	var/damage = max(P.damage/5, 2)
+	var/damage = max(P.damage/2, 2)
 	health -= damage
 	visible_message("<span class = 'danger'>[src] is hit by the bullet!</span>")
 	if (istype(src, /obj/structure/simple_door/key_door))

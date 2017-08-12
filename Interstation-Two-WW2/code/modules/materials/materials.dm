@@ -548,11 +548,15 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 	hitsound = 'sound/weapons/smash.ogg'
 
-/material/iron/morgue
+/material/morgue
 	name = "morgue"
-	icon_colour = "#FFFFFF"
+	icon_base = "morgue"
+	door_icon_base = "morgue"
+	stack_type = /obj/item/stack/material/iron
+	weight = 22
+	sheet_singular_name = "ingot"
+	sheet_plural_name = "ingots"
 	hitsound = 'sound/weapons/smash.ogg'
-
 // Adminspawn only, do not let anyone get this.
 /material/voxalloy
 	name = "voxalloy"

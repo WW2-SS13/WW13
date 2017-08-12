@@ -153,6 +153,8 @@
 	icon_state = "sssmock"
 	item_state = "sssmock"
 	worn_state = "sssmock"
+	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu)
+
 
 /obj/item/clothing/under/geruni/ssuni
 	name = "SS uniform"

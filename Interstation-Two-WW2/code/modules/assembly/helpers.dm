@@ -18,11 +18,6 @@
 		return 1
 	return 0
 
-/proc/issignaler(O)
-	if(istype(O, /obj/item/device/assembly/signaler))
-		return 1
-	return 0
-
 /proc/istimer(O)
 	if(istype(O, /obj/item/device/assembly/timer))
 		return 1

@@ -1,8 +1,8 @@
 var/list/department_radio_keys = list(
-	  ":r" = "right ear",	".r" = "right ear",
-	  ":l" = "left ear",	".l" = "left ear",
+	  //":r" = "right ear",	".r" = "right ear",
+	//  ":l" = "left ear",	".l" = "left ear",
 	  ":i" = "intercom",	".i" = "intercom",
-	  ":b" = "harness", 	".b" = "harness",
+	//  ":b" = "harness", 	".b" = "harness",
 	  ":h" = "department",	".h" = "department",
 	  ":+" = "special",		".+" = "special", //activate radio-specific special functions
 	  ":c" = "Command",		".c" = "Command",

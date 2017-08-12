@@ -64,9 +64,8 @@
 	return ..()
 
 /mob/living/carbon/human/GetVoice()
-
+/*
 	var/voice_sub
-
 	for(var/obj/item/gear in list(wear_mask,wear_suit,head))
 		if(!gear)
 			continue
@@ -76,7 +75,7 @@
 	if(voice_sub)
 		return voice_sub
 	if(GetSpecialVoice())
-		return GetSpecialVoice()
+		return GetSpecialVoice()*/
 	return real_name
 
 /mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)

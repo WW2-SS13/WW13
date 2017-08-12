@@ -1436,7 +1436,7 @@ mob/living/proc/can_centcom_reply()
 	return 0
 
 mob/living/carbon/human/can_centcom_reply()
-	return istype(l_ear, /obj/item/device/radio/headset) || istype(r_ear, /obj/item/device/radio/headset)
+	return 0
 
 /atom/proc/extra_admin_link()
 	return

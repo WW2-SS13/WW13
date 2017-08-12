@@ -5,7 +5,7 @@
 	H.real_name = H.name
 
 /datum/job/german/commander
-	title = "Feldwebel"
+	title = "Oberleutnant"
 	en_meaning = "Commander"
 	faction = "Station"
 	total_positions = 1
@@ -371,23 +371,28 @@ var/first_fallschirm = 1
 	spawn_location = "Fallschirm"
 	additional_languages = list( "Russian" = 100 )
 	spawn_delay = 2000 // a bit more than 3 minutes should give russians some time to prepare - kachnov
-	delayed_spawn_message = "<span class = 'danger'>You are parachuting behind Russian lines. You won't spawn for about 3 minutes.</span>"
+	delayed_spawn_message = "<span class = 'danger'><big>You are parachuting behind Russian lines. You won't spawn for about 3 minutes.</big></span>"
 	is_paratrooper = 1
+	var/fallschirm_spawnzone = null
+	var/list/fallschirm_spawnpoints = list()
 
-var/fallschirm_spawnzone = null
-var/list/fallschirm_spawnpoints = list()
-
-/datum/job/german/fallschirm/equip(var/mob/living/carbon/human/H)
+/datum/job/german/paratrooper/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/falluni(H), slot_w_uniform)
+
+	var/obj/item/clothing/accessory/storage/webbing/webbing = new/obj/item/clothing/accessory/storage/webbing(get_turf(H))
+	var/obj/item/clothing/under/uniform = H.w_uniform
+	uniform.attackby(webbing, H)
+
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/fallsparka(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german/paratrooper(H), slot_r_hand)
 	H.give_radio()
+
 	if(first_fallschirm)
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
-		world << "<b>You can see a Ju 57 in the sky...</b>"
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 
@@ -405,14 +410,13 @@ var/list/fallschirm_spawnpoints = list()
 			fallschirm_spawnpoints += T
 
 		H.loc = get_turf(fallschirm_spawnzone)
-
 	else
 		H.loc = pick(fallschirm_spawnpoints)
 
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a paratrooper. Your job is to help any other units that need assistance.</span>"
+	H << "<span class  'notice'>You are the <b>[title]</b>, a paratrooper. Your job is to help any other units that need assistance.</span>"
 	return 1
 
-/datum/job/german/fallschirm/get_keys()
+/datum/job/german/paratrooper/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -599,8 +603,12 @@ var/list/fallschirm_spawnpoints = list()
 /datum/job/german/squad_leader_ss/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat,
 		new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/SS)
-////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/soldier_ss
 	title = "SS-Schutze"
 	en_meaning = "SS Infantry Soldier"
@@ -626,3 +634,34 @@ var/list/fallschirm_spawnpoints = list()
 
 /datum/job/german/soldier_ss/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/SS)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/job/german/chef
+	title = "Kuchenchef" // note: SS13 does not like ü in job titles
+	en_meaning = "Chef"
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeerChef"
+
+/datum/job/german/chef/equip(var/mob/living/carbon/human/H)
+	if(!H)	return 0
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef/classic(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a front chef. Your job is to keep the Wehrmacht well fed.</span>"
+	return 1
+
+/datum/job/german/chef/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)

@@ -1435,7 +1435,7 @@
 		reagents.add_reagent("protein", 2)
 		reagents.add_reagent("blood", 10)
 		reagents.add_reagent("water", 5)
-		bitesize = 5
+		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/clownstears
 	name = "Clown's Tears"
@@ -1792,7 +1792,7 @@
 		reagents.add_reagent("tomatojuice", 5)
 		reagents.add_reagent("imidazoline", 5)
 		reagents.add_reagent("water", 5)
-		bitesize = 10
+		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/jelliedtoast
 	name = "Jellied Toast"
@@ -2075,7 +2075,7 @@
 	nutriment_amt = 8
 	New()
 		..()
-		bitesize = 3
+		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/plumphelmetbiscuit
 	name = "plump helmet biscuit"
@@ -2119,6 +2119,10 @@
 	New()
 		..()
 		name = pick(list("borsch","bortsch","borstch","borsh","borshch","borscht"))
+		reagents.add_reagent("protein", 4)
+		reagents.add_reagent("tomatojuice", 5)
+		reagents.add_reagent("imidazoline", 5)
+		reagents.add_reagent("water", 5)
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/tossedsalad

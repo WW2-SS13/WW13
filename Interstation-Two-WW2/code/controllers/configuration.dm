@@ -895,9 +895,10 @@ var/list/gamemode_cache = list()
 					config.limbs_can_break = value
 
 				if("run_speed")
-					config.run_speed = value
+					config.run_speed = text2num(value)
+
 				if("walk_speed")
-					config.walk_speed = value
+					config.walk_speed = text2num(value)
 
 				if("human_delay")
 					config.human_delay = value

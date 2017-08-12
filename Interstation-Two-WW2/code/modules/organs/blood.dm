@@ -1,3 +1,4 @@
+#define BLOOD_NERF 3
 /****************************************************
 				BLOOD SYSTEM
 ****************************************************/
@@ -37,6 +38,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
 
+	make_blood()
+
 	if(in_stasis)
 		return
 
@@ -56,12 +59,12 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 			continue
 		for(var/datum/wound/W in temp.wounds)
 			if(W.bleeding())
-				blood_max += W.damage / 40
+				blood_max += (W.damage / 40 / BLOOD_NERF)
 		if (temp.open)
 			blood_max += 2  //Yer stomach is cut open
 
 	if (blood_max) // we're bleeding
-		drip(max(blood_max/2,1)) // nerfs bleeding out - kachnov
+		drip(blood_max)
 	else // we're not bleeding, regenerate some blood (experimental) - kachnov
 		for (var/datum/reagent/r in vessel.reagent_list)
 			if (istype(r, /datum/reagent/blood))

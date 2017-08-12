@@ -276,15 +276,28 @@
 // and I got tired of constantly having to readd radios because merge conflicts
 // so now there's this magical function that equips a human with a radio and harness
 //	- Kachnov
+
+/mob/living/carbon/human/var/gave_radio = 0
+
 /mob/living/carbon/human/proc/give_radio()
 
-	// we already have something that holds radios
-	if (!original_job.is_paratrooper && !original_job.is_sturmovik)
-		equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(src), slot_wear_suit)
+	if (gave_radio)
+		return
 
-	if (!istype(original_job, /datum/job/russian))
-		equip_to_slot_or_del(new /obj/item/device/radio/feldfu(src), slot_s_store)
-	else
-		equip_to_slot_or_del(new /obj/item/device/radio/rbs(src), slot_s_store)
+	gave_radio = 1
 
-	src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while on your back, prefix your message with ':b'.</b></span>"
+	spawn (1)
+
+		// we already have something that holds radios
+		if (!original_job.is_paratrooper && !original_job.is_sturmovik && !original_job.is_SS)
+			equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(src), slot_wear_suit)
+
+		spawn (0)
+			if (istype(original_job, /datum/job/russian))
+				equip_to_slot_or_del(new /obj/item/device/radio/rbs(src), slot_s_store)
+			else if (istype(original_job, /datum/job/german))
+				equip_to_slot_or_del(new /obj/item/device/radio/feldfu(src), slot_s_store)
+			else if (istype(original_job, /datum/job/partisan))
+				equip_to_slot_or_del(new /obj/item/device/radio/feldfu/partisan(src), slot_s_store)
+
+		src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while on your back, prefix your message with ':b'.</b></span>"

@@ -1,4 +1,5 @@
 /obj/tank/var/did_critical_damage = 0
+/obj/tank/var/next_ex_act = -1
 
 /obj/tank/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
@@ -27,6 +28,11 @@
 
 /obj/tank/ex_act(severity)
 
+	if (world.time < next_ex_act)
+		return
+
+	next_ex_act = world.time + 5
+
 	// reproportion severity - most dangerous to biggest number
 	switch (severity)
 		if (3.0)
@@ -39,6 +45,7 @@
 	// stops tanks from blowing themselves up so easily
 	var/addamage = (rand(15,20) * severity)
 	addamage = min(addamage, max_damage/10)
+
 	damage += addamage
 
 	if (prob(critical_damage_chance()))

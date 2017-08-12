@@ -29,7 +29,7 @@
 	var/gloves = null
 	var/mask = null
 	var/belt = null
-	var/ear = /obj/item/device/radio/headset
+	var/ear = null
 	var/hand = null
 	var/glasses = null
 	var/suit_store = null

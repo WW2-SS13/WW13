@@ -80,8 +80,8 @@ var/list/global/tank_gauge_cache = list()
 /*	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
 		var/obj/item/device/analyzer/A = W
 		A.analyze_gases(src, user)*/
-	if(istype(W, /obj/item/device/assembly_holder))
-		bomb_assemble(W,user)
+//	if(istype(W, /obj/item/device/assembly_holder))
+	//	bomb_assemble(W,user)
 
 /obj/item/weapon/tank/attack_self(mob/user as mob)
 	if (!(src.air_contents))

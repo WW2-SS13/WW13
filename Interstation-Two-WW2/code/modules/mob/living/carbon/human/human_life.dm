@@ -35,18 +35,6 @@
 	var/global/list/overlays_cache = null
 
 
-
-
-/*
-				if(HUDdatum.HUDneed[HUDelement.name]["icon"])
-					HUDelement.icon = HUDdatum.HUDneed[HUDelement.name]["icon"]
-				else
-					HUDelement.icon = HUDdatum.icon
-				HUDelement.screen_loc = HUDdatum.HUDneed[HUDelement.name]["loc"]
-*/
-
-
-
 /mob/living/carbon/human/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED

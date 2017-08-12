@@ -33,10 +33,6 @@
 		if("Jobs")
 			debug_variables(job_master)
 
-
-		if("Radio")
-			debug_variables(radio_controller)
-
 		if("Configuration")
 			debug_variables(config)
 

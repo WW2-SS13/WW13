@@ -29,6 +29,7 @@
 		new/datum/stack_recipe("dark office chair", /obj/structure/bed/chair/office/dark, 5, one_per_turf = 1, on_floor = 1), \
 		new/datum/stack_recipe("light office chair", /obj/structure/bed/chair/office/light, 5, one_per_turf = 1, on_floor = 1) \
 		))
+
 	recipes += new/datum/stack_recipe_list("comfy chairs", list( \
 		new/datum/stack_recipe("beige comfy chair", /obj/structure/bed/chair/comfy/beige, 2, one_per_turf = 1, on_floor = 1), \
 		new/datum/stack_recipe("black comfy chair", /obj/structure/bed/chair/comfy/black, 2, one_per_turf = 1, on_floor = 1), \
@@ -40,6 +41,7 @@
 		new/datum/stack_recipe("purple comfy chair", /obj/structure/bed/chair/comfy/purp, 2, one_per_turf = 1, on_floor = 1), \
 		new/datum/stack_recipe("green comfy chair", /obj/structure/bed/chair/comfy/green, 2, one_per_turf = 1, on_floor = 1), \
 		))
+
 
 	recipes += new/datum/stack_recipe_list("floor tile", list( \
 		new/datum/stack_recipe("regular floor tile", /obj/item/stack/tile/floor, 1, 4, 20), \
@@ -87,6 +89,8 @@
 //	recipes += new/datum/stack_recipe("modular console frame", /obj/machinery/modular_computer/console/buildable, 20)
 //	recipes += new/datum/stack_recipe("modular laptop frame", /obj/machinery/modular_computer/laptop/buildable, 10)
 //	recipes += new/datum/stack_recipe("modular tablet frame", /obj/item/modular_computer/tablet, 5)
+	recipes += new/datum/stack_recipe("unlocked door", /obj/structure/simple_door/key_door/anyone, 5, time = 50, one_per_turf = 1, on_floor = 1)
+	recipes += new/datum/stack_recipe("locked door", /obj/structure/simple_door/key_door/anyone, 5, time = 50, one_per_turf = 1, on_floor = 1)
 
 /material/plasteel/generate_recipes()
 	..()
@@ -118,6 +122,7 @@
 //	recipes += new/datum/stack_recipe("beehive assembly", /obj/item/beehive_assembly, 4)
 //	recipes += new/datum/stack_recipe("beehive frame", /obj/item/honey_frame, 1)
 	recipes += new/datum/stack_recipe("book shelf", /obj/structure/bookcase, 5, time = 15, one_per_turf = 1, on_floor = 1)
+	recipes += new/datum/stack_recipe("unlocked door", /obj/structure/simple_door/key_door/anyone/wood, 5, time = 50, one_per_turf = 1, on_floor = 1)
 
 /material/cardboard/generate_recipes()
 	..()
