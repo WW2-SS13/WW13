@@ -17,6 +17,7 @@
 	var/next_spam_allowed = -1
 	var/locked = 1 //tanks need to be unlocked
 	var/heal_damage[2]
+	var/named = 0
 
 /obj/tank/New()
 	..()
@@ -33,6 +34,9 @@
 		tank_message("<span class = 'danger'>[user] closes [my_name()]'s fuel slot.</span>")
 		fuel_slot_open = 0
 		return 1
+	if (!named)
+		var/str = sanitizeSafe(input(user,"Name tank?","Set Tank Name",""), MAX_NAME_LEN)
+		set_name(str)
 	else
 		return ..()
 
