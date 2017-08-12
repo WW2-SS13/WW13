@@ -37,10 +37,9 @@
 			severity = 3.0
 
 	// stops tanks from blowing themselves up so easily
-	var/adddamage = (rand(15,20) * severity)
-	adddamage = min(adddamage, maxdamage/10)
-
-	damage += adddamage
+	var/addamage = (rand(15,20) * severity)
+	addamage = min(addamage, max_damage/10)
+	damage += addamage
 
 	if (prob(critical_damage_chance()))
 		critical_damage()

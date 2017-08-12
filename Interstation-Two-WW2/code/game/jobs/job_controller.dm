@@ -17,6 +17,7 @@ var/global/list/fallschirm_landmarks = list()
 	var/ruforce_count = 0
 	var/geforce_count = 0
 	var/civilian_count = 0
+	var/partisan_count = 0
 
 	var/autobalance = 0
 
@@ -75,6 +76,7 @@ var/global/list/fallschirm_landmarks = list()
 		join_queue["GERMAN"] = list()
 		join_queue["RUSSIAN"] = list()
 		join_queue["PARTISAN"] = list()
+		join_queue["CIVILIAN"] = list()
 		join_queue_loop()
 
 	// new autobalance system helpers lambdas when byond ree
@@ -297,14 +299,6 @@ var/global/list/fallschirm_landmarks = list()
 				while (tries <= 5 && !locate(L.loc) in turfs)
 					++tries
 					L.loc = pick(turfs)
-
-				if (L.mind.assigned_job.fallback_spawn_location)
-					tries = 0
-					turfs = latejoin_turfs[L.mind.assigned_job.fallback_spawn_location]
-					while (tries <= 5 && !locate(L.loc) in turfs)
-						++tries
-						L.loc = pick(turfs)
-
 		else
 			L << "\red Oh god. Bug with spawning! We are doomed!"
 
@@ -336,8 +330,9 @@ var/global/list/fallschirm_landmarks = list()
 			if(J.title == rank)	return J
 		return null
 
-	proc/GetPlayerAltTitle(mob/new_player/player, rank)
-		return player.client.prefs.GetPlayerAltTitle(GetJob(rank))
+	proc/GetPlayerAltTitle(var/mob/new_player/player, rank)
+		return player.original_job.title
+	//	return player.client.prefs.GetPlayerAltTitle(GetJob(rank))
 
 	proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0)
 		Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
@@ -369,7 +364,8 @@ var/global/list/fallschirm_landmarks = list()
 		return 0
 
 	proc/FindOccupationCandidates(datum/job/job, level, flag)
-		Debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
+		return
+	/*	Debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 		var/list/candidates = list()
 		for(var/mob/new_player/player in unassigned)
 			if(jobban_isbanned(player, job.title))
@@ -384,10 +380,11 @@ var/global/list/fallschirm_landmarks = list()
 			if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
 				Debug("FOC pass, Player: [player], Level:[level]")
 				candidates += player
-		return candidates
+		return candidates*/
 
 	proc/FindSideOccupationCandidates(department, level)
-		Debug("Running FSOC, Department: [department], Level: [level]")
+		return
+	/*	Debug("Running FSOC, Department: [department], Level: [level]")
 		var/list/candidates = list()
 		for(var/mob/new_player/player in unassigned)
 			for(var/datum/job/job in occupations)
@@ -403,9 +400,11 @@ var/global/list/fallschirm_landmarks = list()
 					Debug("FSOC pass, Player: [player], Level:[level]")
 					candidates += player
 					break
-		return candidates
+		return candidates*/
 
 	proc/GiveRandomJob(var/mob/new_player/player)
+		return
+	/*
 		Debug("GRJ Giving random job, Player: [player]")
 		for(var/datum/job/job in shuffle(occupations))
 			if(!job)
@@ -429,9 +428,10 @@ var/global/list/fallschirm_landmarks = list()
 				Debug("GRJ Random job given, Player: [player], Job: [job]")
 				AssignRole(player, job.title)
 				unassigned -= player
-				break
+				break*/
 
 	proc/ResetOccupations()
+
 		for(var/mob/new_player/player in player_list)
 			if((player) && (player.mind))
 				player.mind.assigned_role = null
@@ -535,7 +535,9 @@ var/global/list/fallschirm_landmarks = list()
  *  This proc must not have any side effect besides of modifying "assigned_role".
  **/
 	proc/DivideOccupations()
-		//Setup new player list and get the jobs list
+		return // this no longer works. I disabled it to fix errors - Kachnov
+
+	/*	//Setup new player list and get the jobs list
 		Debug("Running DO")
 		SetupOccupations()
 
@@ -771,7 +773,7 @@ var/global/list/fallschirm_landmarks = list()
 				player.new_player_panel_proc()
 				unassigned -= player
 		return 1
-		*/
+		*/ */
 
 	proc/EquipRank(var/mob/living/carbon/human/H, var/rank, var/joined_late = 0)
 		if(!H)	return null
@@ -829,12 +831,15 @@ var/global/list/fallschirm_landmarks = list()
 			job.update_character(H)
 			job.apply_fingerprints(H)
 
-			if(job.department_flag == MEDSCI)
-				geforce_count++
-			if(job.department_flag == ENGSEC)
-				ruforce_count++
-			if(job.department_flag == CIVILIAN)
-				civilian_count++
+			switch (job.base_type_flag())
+				if ("RUSSIAN")
+					++ruforce_count
+				if ("CIVILIAN")
+					++civilian_count
+				if ("PARTISAN")
+					++partisan_count
+				if ("GERMAN")
+					++geforce_count
 
 			//If some custom items could not be equipped before, try again now.
 			for(var/thing in custom_equip_leftovers)
@@ -1010,6 +1015,8 @@ var/global/list/fallschirm_landmarks = list()
 
 
 	proc/HandleFeedbackGathering()
+		return
+	/*
 		for(var/datum/job/job in occupations)
 			var/tmp_str = "|[job.title]|"
 
@@ -1038,7 +1045,7 @@ var/global/list/fallschirm_landmarks = list()
 
 			tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
 		//	feedback_add_details("job_preferences",tmp_str)
-
+*/
 /datum/controller/occupations/proc/is_side_locked(side)
 	if(!ticker)
 		return 1

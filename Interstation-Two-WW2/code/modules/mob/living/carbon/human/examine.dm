@@ -391,7 +391,7 @@
 	if (original_job)
 		if (ishuman(user) && user != src)
 			var/mob/living/carbon/human/H = user
-			if (H.original_job.team == original_job.team) // when you ghost, mind.assigned_job is set to null
+			if (H.original_job.base_type_flag() == original_job.base_type_flag()) // when you ghost, mind.assigned_job is set to null
 				if (original_job.en_meaning)
 					msg += "<br><i>You recognize [T.him] as a <b>[original_job.title] ([original_job.en_meaning])</b>.</i>"
 				else
@@ -399,11 +399,11 @@
 			else // examining someone on another team
 
 				// make partisans show up as civs
-				var/team = original_job.team
+				var/team = original_job.base_type_flag()
 				if (team == "PARTISAN")
 					team = "CIVILIAN"
 
-				msg += "<br><i>He's a <b>[capitalize(lowertext(original_job.team))]</b>.</i>"
+				msg += "<br><i>He's a <b>[capitalize(lowertext(original_job.base_type_flag()))]</b>.</i>"
 
 			if (istype(original_job, /datum/job/german))
 				if (is_jew && !wear_mask)
@@ -412,7 +412,6 @@
 				if (is_jew && !wear_mask)
 					msg += "<br><big>Oy blin, it's a jew!</big>"
 
-			if (original_job.team == H.original_job.team && (original_job.team == "RUSSIAN" || original_job.team == "GERMAN"))
 				if (isleader(src, H))
 					msg += "<br><b>[T.He] [T.is] your squad leader.</b>"
 				else if (isleader(H, src))

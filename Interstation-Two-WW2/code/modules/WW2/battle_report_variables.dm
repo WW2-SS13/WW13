@@ -27,7 +27,7 @@ var/list/dead_partisans = list()
 		injured = heavily_injured_russians
 		alive = alive_russians
 	else
-		switch (original_job.team)
+		switch (original_job.base_type_flag())
 			if ("CIVILIAN")
 				dead = dead_civilians
 				injured = heavily_injured_civilians

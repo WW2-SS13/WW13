@@ -144,6 +144,8 @@
 	icon_state = "fallsparka"
 	item_state = "fallsparka"
 	worn_state = "fallsparka"
+	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu)
+
 
 /obj/item/clothing/suit/sssmock
 	name = "S.S. Smock"
@@ -228,6 +230,7 @@
 	desc = "A heavy vest used by Soviet shock troops."
 	icon_state = "cn42"
 	armor = list(melee = 30, bullet = 60, laser = 10, energy = 10, bomb = 15, bio = 0, rad = 0)
+	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu)
 
 /obj/item/weapon/storage/belt/german
 	name = "German belt pouch"

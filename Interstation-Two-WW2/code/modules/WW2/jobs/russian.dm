@@ -1,5 +1,4 @@
 /datum/job/russian
-	team = "RUSSIAN"
 
 /datum/job/russian/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_russian_name(H.gender)
@@ -8,15 +7,11 @@
 /datum/job/russian/commander
 	title = "Comandir Batalyona"
 	en_meaning = "Commander"
-	flag = HOS
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	head_position = 1
 	selection_color = "#530909"
-	access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
-	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
 	spawn_location = "JoinLateRACO"
 	additional_languages = list( "German" = 100 )
 	is_officer = 1
@@ -48,15 +43,11 @@
 /datum/job/russian/staff_officer
 	title = "Ofitser"
 	en_meaning = "Staff Officer"
-	flag = HOS
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	head_position = 0
 	selection_color = "#530909"
-	access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
-	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_heavy_weapon, access_ru_squad_leader, access_ru_cook, access_ru_commander)
 	spawn_location = "JoinLateRASO"
 	additional_languages = list( "German" = 100 )
 	is_officer = 1
@@ -86,17 +77,12 @@
 /datum/job/russian/squad_leader
 	title = "Sergant"
 	en_meaning = "Squad Leader"
-	flag = WARDEN
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
 	head_position = 0
 	selection_color = "#770e0e"
-	access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_squad_leader, access_ru_cook)
-	minimal_access = list(access_ru_soldier, access_nato_squad_leader, access_ru_medic, access_ru_surgerist, access_ru_engineer, access_ru_squad_leader, access_ru_cook)
 	spawn_location = "JoinLateRASL"
-	fallback_spawn_location = "JoinLateRussia-Fallback"
 	additional_languages = list( "German" = 33 )
 	is_officer = 1
 	is_squad_leader = 1
@@ -126,14 +112,10 @@
 /datum/job/russian/medic
 	title = "Sanitar"
 	en_meaning = "Medic"
-	flag = ENGINEER
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
 	selection_color = "#770e0e"
-	access = list(access_ru_soldier, access_ru_medic)
-	minimal_access = list(access_ru_soldier, access_ru_medic)
 	spawn_location = "JoinLateRADr"
 
 /datum/job/russian/medic/equip(var/mob/living/carbon/human/H)
@@ -155,14 +137,10 @@
 /datum/job/russian/doctor
 	title = "Doktor"
 	en_meaning = "Doctor"
-	flag = ENGINEER
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	selection_color = "#770e0e"
-	access = list(access_ru_soldier, access_ru_medic)
-	minimal_access = list(access_ru_soldier, access_ru_medic)
 	spawn_location = "JoinLateRADr"
 	is_nonmilitary = 1
 
@@ -193,14 +171,10 @@
 /datum/job/russian/sniper
 	title = "Snaiper"
 	en_meaning = "Sniper"
-	flag = CYBORG
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	selection_color = "#770e0e"
-	access = list(access_ru_soldier)
-	minimal_access = list(access_ru_soldier)
 	spawn_location = "JoinLateRA"
 
 /datum/job/russian/sniper/equip(var/mob/living/carbon/human/H)
@@ -226,14 +200,10 @@
 /datum/job/russian/engineer
 	title = "Boyevoy saper"
 	en_meaning = "Engineer"
-	flag = CHIEF
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
 	selection_color = "#770e0e"
-	access = list(access_ru_soldier, access_ru_engineer)
-	minimal_access = list(access_ru_soldier, access_ru_engineer)
 	spawn_location = "JoinLateRA"
 
 /datum/job/russian/engineer/equip(var/mob/living/carbon/human/H)
@@ -260,14 +230,10 @@
 /datum/job/russian/heavy_weapon
 	title = "Pulemetchik"
 	en_meaning = "Heavy Weapons Soldier"
-	flag = OFFICER
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
 	selection_color = "#770e0e"
-	access = list(access_ru_soldier)
-	minimal_access = list(access_ru_soldier)
 	spawn_location = "JoinLateRA"
 
 /datum/job/russian/heavy_weapon/equip(var/mob/living/carbon/human/H)
@@ -293,14 +259,10 @@
 /datum/job/russian/soldier
 	title = "Sovietsky Soldat"
 	en_meaning = "Infantry Soldier"
-	flag = ATMOSTECH
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1000
 	spawn_positions = -1
 	selection_color = "#770e0e"
-	access = list(access_ru_soldier)
-	minimal_access = list(access_ru_soldier)
 	spawn_location = "JoinLateRA"
 	allow_spies = 1
 
@@ -326,14 +288,10 @@
 /datum/job/russian/tankcrew
 	title = "Tank-ekipazh"
 	en_meaning = "Tank Crewman"
-	flag = ATMOSTECH
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
 	selection_color = "#770e0e"
-	access = list(access_ru_soldier)
-	minimal_access = list(access_ru_soldier)
 	spawn_location = "JoinLateRA"
 
 /datum/job/russian/tankcrew/equip(var/mob/living/carbon/human/H)
@@ -359,16 +317,11 @@
 /datum/job/russian/guard
 	title = "Gvardeyec"
 	en_meaning = "Guard"
-	flag = DETECTIVE
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
 	selection_color = "#a8b800"
-	access = list(access_ru_soldier)
-	minimal_access = list(access_ru_soldier)
 	spawn_location = "JoinLateRA"
-
 	additional_languages = list( "German" = 100 )
 
 var/first_guard = 0
@@ -414,14 +367,10 @@ var/first_guard = 0
 /datum/job/russian/zavhoz
 	title = "Zavhoz"
 	en_meaning = "Quartermaster"
-	flag = SOVQUAR
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	selection_color = "#a8b800"
-	access = list(access_ru_soldier, access_ru_heavy_weapon)
-	minimal_access = list(access_ru_soldier, access_ru_heavy_weapon)
 	spawn_location = "JoinLateRAQM"
 	additional_languages = list( "German" = 100 )
 	is_officer = 1
@@ -449,15 +398,12 @@ var/first_guard = 0
 /datum/job/russian/sturmovik
 	title = "Sturmovik"
 	en_meaning = "Elite Infantry Soldier"
-	flag = ATMOSTECH
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
 	selection_color = "#770e0e"
-	access = list(access_ru_soldier)
-	minimal_access = list(access_ru_soldier)
 	spawn_location = "JoinLateRA"
+	is_sturmovik = 1
 
 /datum/job/russian/sturmovik/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0

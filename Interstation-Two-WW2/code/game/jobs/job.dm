@@ -1,21 +1,15 @@
 /datum/job
 
 	//The name of the job
-	var/title = "NOPE"
+	var/title = "generic job"
+	//English meaning of this job's title, if applicable
 	var/en_meaning = ""
-	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
-	var/list/minimal_access = list()      // Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
-	var/list/access = list()              // Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
-	var/flag = 0 	                      // Bitflags for the job
-	var/department_flag = 0
 	var/faction = "None"	              // Players will be allowed to spawn in as jobs that are set to "Station"
-	var/team = "N/A"
+
 	var/total_positions = 0               // How many players can be this job
 	var/spawn_positions = 0               // How many players can spawn in as this job
 	var/current_positions = 0             // How many players have this job
-	var/supervisors = null                // Supervisors, who this person answers to directly
 	var/selection_color = "#ffffff"       // Selection screen color
-//	var/idtype = /obj/item/weapon/card/id // The type of the ID the player will have
 	var/list/alt_titles                   // List of alternate titles, if any
 	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/minimal_player_age = 0            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
@@ -23,12 +17,11 @@
 	var/head_position = 0                 // Is this position Command?
 	var/minimum_character_age = 0
 	var/ideal_character_age = 30
-
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
-
 	var/survival_gear = /obj/item/weapon/storage/box/survival// Custom box for spawn in backpack
-//job equipment
+
+	//job equipment
 	var/uniform = /obj/item/clothing/under/color/grey
 	var/shoes = /obj/item/clothing/shoes/black
 	var/hat = null
@@ -50,8 +43,6 @@
 	//This will be put in backpack. List ordered by priority!
 	var/list/put_in_backpack = list()
 	var/spawn_location = null
-
-	var/fallback_spawn_location = null
 
 	var/uses_keys = 1
 
@@ -144,10 +135,7 @@
 	return 1
 
 /datum/job/proc/get_access()
-	if(!config || config.jobs_have_minimal_access)
-		return src.minimal_access.Copy()
-	else
-		return src.access.Copy()
+	return list()
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)

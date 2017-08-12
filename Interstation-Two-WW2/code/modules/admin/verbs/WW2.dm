@@ -305,7 +305,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.team == "RUSSIAN")
+				if (H.original_job && H.original_job.base_type_flag() == "RUSSIAN")
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE SOVIET HIGH COMMAND:</b>" : "<b>MESSAGE TO THE RUSSIAN TEAM FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
@@ -328,7 +328,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.team == "GERMAN")
+				if (H.original_job && H.original_job.base_type_flag() == "GERMAN")
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND:</b>" : "<b>MESSAGE TO THE GERMAN TEAM FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
@@ -351,7 +351,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.team == "GERMAN" && H.original_job.is_SS)
+				if (H.original_job && H.original_job.base_type_flag() == "GERMAN" && H.original_job.is_SS)
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE SS:</b>" : "<b>MESSAGE TO THE SS FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
@@ -375,7 +375,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.team == "GERMAN" && istype(H.original_job, /datum/job/german/fallschirm))
+				if (H.original_job && H.original_job.base_type_flag() == "GERMAN" && istype(H.original_job, /datum/job/german/fallschirm))
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE PARATROOPER SQUAD:</b>" : "<b>MESSAGE TO THE PARATROOPER SQUAD FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
@@ -398,7 +398,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job && (H.original_job.team == "CIVILIAN" || H.original_job.team == "PARTISAN"))
+				if (H.original_job && (H.original_job.base_type_flag() == "CIVILIAN" || H.original_job.base_type_flag() == "PARTISAN"))
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM ???? to Civilians:</b>" : "<b>MESSAGE TO THE CIVILIANS FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
@@ -421,7 +421,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job || H.original_job.team == "PARTISAN")
+				if (H.original_job || H.original_job.base_type_flag() == "PARTISAN")
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE UKRAINIAN PARTISAN COMMAND TO PARTISANS:</b>" : "<b>MESSAGE TO PARTISANS FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 

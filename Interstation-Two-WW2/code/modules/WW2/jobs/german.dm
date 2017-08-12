@@ -1,5 +1,4 @@
 /datum/job/german
-	team = "GERMAN"
 
 /datum/job/german/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_german_name(H.gender)
@@ -8,15 +7,11 @@
 /datum/job/german/commander
 	title = "Feldwebel"
 	en_meaning = "Commander"
-	flag = GEROFF
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	head_position = 1
 	selection_color = "#2d2d63"
-	access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
-	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
 	spawn_location = "JoinLateHeerCO"
 	additional_languages = list( "Russian" = 100 )
 	is_officer = 1
@@ -51,15 +46,11 @@
 /datum/job/german/staff_officer
 	title = "Stabsoffizier"
 	en_meaning = "Staff Officer"
-	flag = GEROFF
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	head_position = 0
 	selection_color = "#2d2d63"
-	access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
-	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_heavy_weapon, access_nato_cook, access_nato_squad_leader, access_nato_commander)
 	spawn_location = "JoinLateHeerSO"
 	additional_languages = list( "Russian" = 100 )
 	is_officer = 1
@@ -92,15 +83,11 @@
 /datum/job/german/squad_leader
 	title = "Gruppenfuhrer"
 	en_meaning = "Squad Leader"
-	flag = GERSER
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
 	head_position = 0
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_cook, access_nato_squad_leader, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_cook, access_nato_squad_leader, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeerSL"
 	additional_languages = list( "Russian" = 33 )
 	is_officer = 1
@@ -133,14 +120,10 @@
 /datum/job/german/medic
 	title = "Feldarzt"
 	en_meaning = "Medic"
-	flag = GERMED
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_medic, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeerDr"
 
 /datum/job/german/medic/equip(var/mob/living/carbon/human/H)
@@ -162,14 +145,10 @@
 /datum/job/german/doctor
 	title = "Medizinier"
 	en_meaning = "Doctor"
-	flag = GERMED
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_medic)
-	minimal_access = list(access_nato_soldier, access_nato_medic)
 	spawn_location = "JoinLateHeerDr"
 	is_nonmilitary = 1
 
@@ -199,14 +178,10 @@
 /datum/job/german/flamethrower_man
 	title = "Flammenwerfersoldat"
 	en_meaning = "Flamethrower Soldier"
-	flag = GERQUAR
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_medic, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeer"
 
 /datum/job/german/flamethrower_man/equip(var/mob/living/carbon/human/H)
@@ -231,14 +206,10 @@
 /datum/job/german/sniper
 	title = "Sharfshutze"
 	en_meaning = "Sniper"
-	flag = GERSNI
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeer"
 
 /datum/job/german/sniper/equip(var/mob/living/carbon/human/H)
@@ -263,14 +234,10 @@
 /datum/job/german/engineer
 	title = "Pionier"
 	en_meaning = "Engineer"
-	flag = GERENG
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeer"
 
 
@@ -298,14 +265,10 @@
 /datum/job/german/heavy_weapon
 	title = "Machinegewehrschutze"
 	en_meaning = "Heavy Weapons Soldier"
-	flag = GERSOND
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeer"
 
 /datum/job/german/heavy_weapon/equip(var/mob/living/carbon/human/H)
@@ -330,16 +293,11 @@
 /datum/job/german/soldier
 	title = "Soldat"
 	en_meaning = "Infantry Soldier"
-	flag = GERSOL
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1000 // this was causing an error with latejoin spawning
 	spawn_positions = 3
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeer"
-	fallback_spawn_location = "JoinLateNATO-Fallback"
 	allow_spies = 1
 
 /datum/job/german/soldier/equip(var/mob/living/carbon/human/H)
@@ -370,16 +328,11 @@
 /datum/job/german/tankcrew
 	title = "Panzerbesatzung"
 	en_meaning = "Tank Crewman"
-	flag = GERSOL
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeer"
-	fallback_spawn_location = "JoinLateNATO-Fallback"
 
 /datum/job/german/tankcrew/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -408,22 +361,18 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var/first_fallschirm = 1
 
-/datum/job/german/fallschirm
+/datum/job/german/paratrooper
 	title = "Fallschirmjager"
 	en_meaning = "Paratrooper"
-	flag = GERFALL
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 7
 	spawn_positions = 7
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
 	spawn_location = "Fallschirm"
 	additional_languages = list( "Russian" = 100 )
 	spawn_delay = 2000 // a bit more than 3 minutes should give russians some time to prepare - kachnov
 	delayed_spawn_message = "<span class = 'danger'>You are parachuting behind Russian lines. You won't spawn for about 3 minutes.</span>"
-
+	is_paratrooper = 1
 
 var/fallschirm_spawnzone = null
 var/list/fallschirm_spawnpoints = list()
@@ -474,15 +423,10 @@ var/list/fallschirm_spawnpoints = list()
 /datum/job/german/stabsgefreiter
 	title = "Stabsgefreiter"
 	en_meaning = "Quartermaster"
-	flag = GERQUAR
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
-//	spawn_location = "Fallschirm"
 	spawn_location = "JoinLateHeerQM"
 
 	additional_languages = list( "Russian" = 100 )
@@ -510,14 +454,10 @@ var/list/fallschirm_spawnpoints = list()
 /datum/job/german/artyman
 	title = "Kanonier"
 	en_meaning = "Artillery Officer"
-	flag = GERQUAR
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeerSO"
 	is_officer = 1
 
@@ -555,14 +495,10 @@ var/list/fallschirm_spawnpoints = list()
 /datum/job/german/scout
 	title = "Aufklartrupp"
 	en_meaning = "Scout"
-	flag = GERQUAR
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeer"
 
 /datum/job/german/scout/equip(var/mob/living/carbon/human/H)
@@ -597,14 +533,10 @@ var/list/fallschirm_spawnpoints = list()
 /datum/job/german/conductor
 	title = "Dirigent"
 	en_meaning = "Train Conductor"
-	flag = GERQUAR
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_engineer, access_nato_heavy_weapon)
 	spawn_location = "JoinLateHeerSO"
 	is_officer = 1
 
@@ -630,15 +562,11 @@ var/list/fallschirm_spawnpoints = list()
 /datum/job/german/squad_leader_ss
 	title = "SS-Untersharffuhrer"
 	en_meaning = "SS Squad Leader"
-	flag = GERSER
-	department_flag = GUNSERG // so we get our own job category
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	head_position = 1
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_cook, access_nato_squad_leader, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_medic, access_nato_surgerist, access_nato_engineer, access_nato_cook, access_nato_squad_leader, access_nato_heavy_weapon)
 	spawn_location = "JoinLateSS-Officer"
 	is_SS = 1
 	additional_languages = list( "Russian" = 10 )
@@ -676,14 +604,10 @@ var/list/fallschirm_spawnpoints = list()
 /datum/job/german/soldier_ss
 	title = "SS-Schutze"
 	en_meaning = "SS Infantry Soldier"
-	flag = GERSOL
-	department_flag = GUNSERG // so we get our own job category
 	faction = "Station"
 	total_positions = 5 // this was causing an error with latejoin spawning
 	spawn_positions = 5
 	selection_color = "#4c4ca5"
-	access = list(access_nato_soldier, access_nato_heavy_weapon)
-	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
 	spawn_location = "JoinLateSS"
 	is_SS = 1
 

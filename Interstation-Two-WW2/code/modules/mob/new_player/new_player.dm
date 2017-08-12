@@ -370,14 +370,14 @@
 
 	var/datum/job/job = job_master.GetJob(rank)
 
-	if(job_master.is_side_locked(job.department_flag))
+	if(job_master.is_side_locked(job.base_type_flag()))
 		src << "\red Currently this side is locked for joining."
 		return 0
 
-	if(!job_master.can_join_side(job.department_flag))
+	if(!job_master.can_join_side(job.base_type_flag()))
 		job_master.remove_from_join_queue(src)
-		var/side = istype(job, /datum/job/german) ? "GERMAN" : istype(job, /datum/job/russian) ? "RUSSIAN" : "PARTISAN"
-		if ((side == "GERMAN" || side == "RUSSIAN" || side == "PARTISAN") && !job_master.has_in_join_queue(src))
+		var/side = job.base_type_flag()
+		if ((side == "GERMAN" || side == "RUSSIAN" || side == "PARTISAN" || side == "CIVILIAN") && !job_master.has_in_join_queue(src))
 			job_master.put_in_join_queue(side, src, rank)
 			src << "\red You've been put in a queue to join as a [rank]."
 			return 0
@@ -526,9 +526,9 @@
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
-			if(job.department_flag != prev_side)
-				prev_side = job.department_flag
-				var/side_name = get_side_name(job.department_flag, job)
+			if(job.base_type_flag() != prev_side)
+				prev_side = job.base_type_flag()
+				var/side_name = get_side_name(job.base_type_flag(), job)
 				if(side_name)
 					dat += "[side_name]<br>"
 

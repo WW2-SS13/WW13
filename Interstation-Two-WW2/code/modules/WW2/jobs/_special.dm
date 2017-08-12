@@ -12,7 +12,7 @@
 				cont = 1
 				break
 		if (cont)
-			if (H.stat == CONSCIOUS && H.mind.assigned_job.team == "GERMAN")
+			if (H.stat == CONSCIOUS && H.mind.assigned_job.base_type_flag() == "GERMAN")
 				return 1 // found a conscious german dude with the key
 	return 0
 
@@ -26,6 +26,24 @@
 /datum/job/var/is_SS = 0
 /datum/job/var/is_primary = 1
 /datum/job/var/is_secondary = 0
+/datum/job/var/is_paratrooper = 0
+/datum/job/var/is_sturmovik = 0
+
+// type_flag() replaces flag, and base_type_flag() replaces department_flag
+// this is a better solution than bit constants, in my opinion
+
+/datum/job/proc/type_flag()
+	return "[type]"
+
+/datum/job/proc/base_type_flag()
+	if (istype(src, /datum/job/russian))
+		return "RUSSIAN"
+	else if (istype(src, /datum/job/partisan))
+		if (istype(src, /datum/job/partisan/civilian))
+			return "CIVILIAN"
+		return "PARTISAN"
+	else if (istype(src, /datum/job/german))
+		return "GERMAN"
 
 /datum/job/proc/assign_faction(var/mob/living/carbon/human/user)
 
@@ -259,7 +277,11 @@
 // so now there's this magical function that equips a human with a radio and harness
 //	- Kachnov
 /mob/living/carbon/human/proc/give_radio()
-	equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(src), slot_wear_suit)
+
+	// we already have something that holds radios
+	if (!original_job.is_paratrooper && !original_job.is_sturmovik)
+		equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(src), slot_wear_suit)
+
 	if (!istype(original_job, /datum/job/russian))
 		equip_to_slot_or_del(new /obj/item/device/radio/feldfu(src), slot_s_store)
 	else

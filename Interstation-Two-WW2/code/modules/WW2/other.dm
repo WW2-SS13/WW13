@@ -8,6 +8,8 @@ var/secret_ladder_message = null
 
 	var/en = 0
 	var/ru = 0
+	var/partisan = 0
+	var/civilian = 0
 
 	for(var/mob/living/carbon/human/H in human_mob_list)
 
@@ -17,15 +19,17 @@ var/secret_ladder_message = null
 			continue
 
 		if(H.stat != DEAD && !H.restrained() && H.client)
-			switch(job.department_flag)
+			switch(job.base_type_flag())
 				if("GERMAN")
-					en++
+					++en
 				if("RUSSIAN")
-					ru++
+					++ru
 				if ("PARTISAN")
-					en++ // SS
+					++partisan
+				if ("CIVILIAN")
+					++civilian
 
-	return list("en" = en, "ru" = ru)
+	return list("en" = en, "ru" = ru, "partisan" = partisan, "civilian" = civilian)
 
 /proc/WW2_soldiers_en_ru_ratio()
 
@@ -137,22 +141,22 @@ var/wlg_selected_bush = 0
 var/wlg_selected_border_tree = 0
 
 /hook/startup/proc/spawn_bushes()
-	world << "<b>Generating wild life. Experimental.</b>"
-	wlg_total = 0
+//	world << "<b>Generating wild life. Experimental.</b>"
+/*	wlg_total = 0
 	wlg_rejected = 0
 	wlg_selected_none = 0
 	wlg_selected_grass = 0
 	wlg_selected_bush = 0
 	wlg_selected_border_tree = 0
-
-	var/spawned_secret_ladder = 0
+*/
+//	var/spawned_secret_ladder = 0
 
 	if (!config.debug) // this fun piece of code causes way too much startup lag
 
 		spawn(100)
 
 			if (prob(50))
-				spawned_secret_ladder = 1
+		//		spawned_secret_ladder = 1
 				message_admins("There is no secret entrance to the soviet bunker this round!")
 			else
 				secret_ladder_message = "<span class = 'notice'><b>There is a secret ladder to the inside of the Soviet bunker somewhere in the forest. If you find it, you will gain a huge advantage over the enemy.</b></span>"

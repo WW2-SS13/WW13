@@ -67,7 +67,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 			if (istype(r, /datum/reagent/blood))
 				if (r.volume >= species.blood_volume)
 					return // we're full on blood.
-		vessel.add_reagent("blood", 1/(rand(1,3))
+		vessel.add_reagent("blood", 1/(rand(1,3)))
 
 
 //Makes a blood drop, leaking amt units of blood from the mob
