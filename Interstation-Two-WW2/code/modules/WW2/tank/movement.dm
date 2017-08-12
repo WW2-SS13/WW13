@@ -25,8 +25,10 @@
 			return
 		last_movement = world.time
 		var/turf/target = get_step(src, direct)
-		if (target && (target.check_prishtina_block(src.front_seat()) || target.check_prishtina_block(src.back_seat())))
+
+		if (target && target.check_prishtina_block(src.front_seat()))
 			return
+
 		dir = direct
 		update_bounding_rectangle()
 		switch (dir)
@@ -75,7 +77,6 @@
 /obj/tank/proc/handle_passing_target_turf(var/turf/t)
 
 	var/list/turfs_in_the_way = list()
-
 
 	// note that the actual object's x is ALWAYS(?) the bottom left corner of it
 	// this new turfs in the way code is designed assuming the bounds of

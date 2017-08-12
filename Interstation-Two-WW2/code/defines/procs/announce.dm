@@ -41,37 +41,23 @@
 	message_title = rhtml_encode(message_title)
 
 	Message(message, message_title)
-	if(do_newscast)
-		NewsCast(message, message_title)
 	//Sound(message_sound)
 	Log(message, message_title)
 
 datum/announcement/proc/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(title)]:</span> [utf8_to_cp1251(message)]"), announcer ? announcer : ANNOUNSER_NAME)
+//	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(title)]:</span> [utf8_to_cp1251(message)]"), announcer ? announcer : ANNOUNSER_NAME)
 
 datum/announcement/minor/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251(message), ANNOUNSER_NAME)
+//	global_announcer.autosay(utf8_to_cp1251(message), ANNOUNSER_NAME)
 
 datum/announcement/priority/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251("<span class='alert'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), announcer ? announcer : ANNOUNSER_NAME)
+//	global_announcer.autosay(utf8_to_cp1251("<span class='alert'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), announcer ? announcer : ANNOUNSER_NAME)
 
 datum/announcement/priority/command/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(command_name())] [utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
+//	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(command_name())] [utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
 
 datum/announcement/priority/security/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251("<font color='red'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
-
-datum/announcement/proc/NewsCast(message as text, message_title as text)
-	if(!newscast)
-		return
-
-	var/datum/news_announcement/news = new
-	news.channel_name = channel_name
-	news.author = announcer
-	news.message = message
-	news.message_type = announcement_type
-	news.can_be_redacted = 0
-	announce_newscaster_news(news)
+//	global_announcer.autosay(utf8_to_cp1251("<font color='red'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
 
 datum/announcement/proc/PlaySound(var/message_sound)
 	return
@@ -100,7 +86,8 @@ datum/announcement/proc/Log(message as text, message_title as text)
 
 /proc/GetNameAndAssignmentFromId(var/obj/item/weapon/card/id/I)
 	// Format currently matches that of newscaster feeds: Registered Name (Assigned Rank)
-	return I.assignment ? "[I.registered_name] ([I.assignment])" : I.registered_name
+//	return I.assignment ? "[I.registered_name] ([I.assignment])" : I.registered_name
+	return ""
 
 /proc/level_seven_announcement()
 	return

@@ -40,16 +40,18 @@
 		M.adjustToxLoss(removed)
 	if(effective_dose > 15)
 		M.adjustToxLoss(removed)
-	if(data && data["virus2"])
+
+/*	if(data && data["virus2"])
 		var/list/vlist = data["virus2"]
 		if(vlist.len)
 			for(var/ID in vlist)
 				var/datum/disease2/disease/V = vlist[ID]
 				if(V.spreadtype == "Contact")
-					infect_virus2(M, V.getcopy())
+					infect_virus2(M, V.getcopy())*/
 
 /datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	if(data && data["virus2"])
+	return
+/*	if(data && data["virus2"])
 		var/list/vlist = data["virus2"]
 		if(vlist.len)
 			for(var/ID in vlist)
@@ -57,7 +59,7 @@
 				if(V.spreadtype == "Contact")
 					infect_virus2(M, V.getcopy())
 	if(data && data["antibodies"])
-		M.antibodies |= data["antibodies"]
+		M.antibodies |= data["antibodies"]*/
 
 /datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.inject_blood(src, volume)

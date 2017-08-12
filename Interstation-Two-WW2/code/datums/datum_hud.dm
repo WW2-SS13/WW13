@@ -192,7 +192,7 @@
 		)
 
 	HUDfrippery = list()
-
+/*
 /datum/hud/cyborg
 	name = "BorgStyle"
 	icon = 'icons/mob/screen1_robot.dmi'
@@ -276,3 +276,4 @@
 		"l_hand" =       list("loc" = "9,0",  "name" = "Left Hand",       "state" = "hand", "dir" = NORTH, "type" = /obj/screen/inventory/hand),
 		"r_hand" =       list("loc" = "8,0",  "name" = "Right Hand",      "state" = "hand", "dir" = SOUTH, "type" = /obj/screen/inventory/hand)
 		)
+*/

@@ -116,26 +116,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			if("eyes")
 				organ_name = "eyes"
 
-		if(status == "cyborg")
-			++ind
-			if(ind > 1)
-				. += ", "
-			var/datum/robolimb/R
-			if(pref.rlimb_data[name] && all_robolimbs[pref.rlimb_data[name]])
-				R = all_robolimbs[pref.rlimb_data[name]]
-			else
-				R = basic_robolimb
-			. += "\t[R.company] [organ_name] prosthesis"
-		else if(status == "amputated")
+		if(status == "amputated")
 			++ind
 			if(ind > 1)
 				. += ", "
 			. += "\tAmputated [organ_name]"
-		else if(status == "mechanical")
-			++ind
-			if(ind > 1)
-				. += ", "
-			. += "\tMechanical [organ_name]"
 		else if(status == "assisted")
 			++ind
 			if(ind > 1)
@@ -323,7 +308,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				if(second_limb)
 					pref.organ_data[second_limb] = "amputated"
 					pref.rlimb_data[second_limb] = null
-
+/*
 			if("Prosthesis")
 				var/list/usable_manufacturers = list()
 				for(var/company in chargen_robolimbs)
@@ -340,7 +325,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					pref.rlimb_data[second_limb] = choice
 					pref.organ_data[second_limb] = "cyborg"
 				if(third_limb && pref.organ_data[third_limb] == "amputated")
-					pref.organ_data[third_limb] = null
+					pref.organ_data[third_limb] = null*/
 		return TOPIC_REFRESH
 
 	else if(href_list["organs"])
@@ -360,10 +345,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		switch(new_state)
 			if("Normal")
 				pref.organ_data[organ] = null
-			if("Assisted")
+	/*		if("Assisted")
 				pref.organ_data[organ] = "assisted"
 			if("Mechanical")
-				pref.organ_data[organ] = "mechanical"
+				pref.organ_data[organ] = "mechanical"*/
 		return TOPIC_REFRESH
 
 	else if(href_list["disabilities"])

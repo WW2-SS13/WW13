@@ -3,9 +3,6 @@
 	set category = "Object"
 
 	. = 1
-	if(!allow_thrust(0.01, usr))
-		usr << "<span class='warning'>\The [src] is disabled.</span>"
-		return
 
 	var/turf/above = GetAbove(src)
 	if(!istype(above))
@@ -23,12 +20,13 @@
 
 	usr.Move(above)
 	usr << "<span class='notice'>You move upwards.</span>"
-
+/*
 /obj/item/weapon/tank/jetpack/verb/movedown()
 	set name = "Move Downwards"
 	set category = "Object"
 
 	. = 1
+
 	if(!allow_thrust(0.01, usr))
 		usr << "<span class='warning'>\The [src] is disabled.</span>"
 		return
@@ -50,7 +48,7 @@
 	usr.Move(below)
 	usr << "<span class='notice'>You move downwards.</span>"
 
-
+*/
 /mob/observer/ghost/verb/moveup()
 	set name = "Move Upwards"
 	set category = null

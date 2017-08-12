@@ -42,7 +42,7 @@ var/intercom_range_display_status = 0
 	set name = "-None of these are for ingame use!!"
 
 	..()
-
+/*
 /client/proc/camera_view()
 	set category = "Mapping"
 	set name = "Camera Range Display"
@@ -60,7 +60,6 @@ var/intercom_range_display_status = 0
 	if(camera_range_display_status)
 		for(var/obj/machinery/camera/C in cameranet.cameras)
 			new/obj/effect/debugging/camera_range(C.loc)
-
 
 
 
@@ -103,7 +102,7 @@ var/intercom_range_display_status = 0
 	output += "</ul>"
 	usr << browse(output,"window=airreport;size=1000x500")
 
-
+*/
 /client/proc/intercom_view()
 	set category = "Mapping"
 	set name = "Intercom Range Display"
@@ -126,26 +125,19 @@ var/intercom_range_display_status = 0
 
 var/list/debug_verbs = list (
         /client/proc/do_not_use_these
-        ,/client/proc/camera_view
-        ,/client/proc/sec_camera_report
-        ,/client/proc/intercom_view
         ,/client/proc/Cell
-        ,/client/proc/atmosscan
-        ,/client/proc/powerdebug
         ,/client/proc/count_objects_on_z_level
         ,/client/proc/count_objects_all
         ,/client/proc/cmd_assume_direct_control
         ,/client/proc/jump_to_dead_group
         ,/client/proc/startSinglo
         ,/client/proc/ticklag
-        ,/client/proc/cmd_admin_grantfullaccess
         ,/client/proc/kaboom
         ,/client/proc/cmd_admin_areatest
         ,/client/proc/cmd_admin_rejuvenate
         ,/datum/admins/proc/show_traitor_panel
         ,/client/proc/print_jobban_old
         ,/client/proc/print_jobban_old_filter
-        ,/client/proc/forceEvent
         ,/client/proc/break_all_air_groups
         ,/client/proc/regroup_all_air_groups
         ,/client/proc/kill_pipe_processing
@@ -159,8 +151,6 @@ var/list/debug_verbs = list (
         ,/client/proc/hide_debug_verbs
         ,/client/proc/testZAScolors
         ,/client/proc/testZAScolors_remove
-        ,/datum/admins/proc/setup_supermatter
-		,/client/proc/atmos_toggle_debug
 		,/client/proc/spawn_tanktransferbomb
 	)
 
@@ -182,7 +172,6 @@ var/list/debug_verbs = list (
 	if(!check_rights(R_DEBUG)) return
 
 	verbs -= debug_verbs
-
 
 
 

@@ -270,7 +270,8 @@
 	return dna
 
 /mob/living/carbon/proc/setDNA(var/datum/dna/newDNA)
-	dna = newDNA
+	return
+//	dna = newDNA
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
@@ -396,8 +397,6 @@
 	if(now_pushing || !yes)
 		return
 	..()
-	if(istype(AM, /mob/living/carbon) && prob(10))
-		src.spread_disease_to(AM, "Contact")
 
 /mob/living/carbon/cannot_use_vents()
 	return

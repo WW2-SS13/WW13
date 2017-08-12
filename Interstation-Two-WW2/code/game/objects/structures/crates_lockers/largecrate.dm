@@ -21,7 +21,7 @@
 		qdel(src)
 	else
 		return attack_hand(user)
-
+/*
 /obj/structure/largecrate/mule
 	name = "MULE crate"
 
@@ -74,3 +74,4 @@
 	name = "chicken crate"
 	held_count = 5
 	held_type = /mob/living/simple_animal/chick
+*/

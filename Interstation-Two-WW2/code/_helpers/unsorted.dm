@@ -180,10 +180,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	for(var/obj/machinery/door/D in loc)
 		if(!D.density)			continue
-		if(istype(D, /obj/machinery/door/window))
+	/*	if(istype(D, /obj/machinery/door/window))
 			if((dir & SOUTH) && (D.dir & (EAST|WEST)))		return 1
 			if((dir & EAST ) && (D.dir & (NORTH|SOUTH)))	return 1
-		else return 1	// it's a real, air blocking door
+		else */
+		return 1	// it's a real, air blocking door
 	return 0
 
 /proc/TurfBlockedNonWindow(turf/loc)
@@ -353,28 +354,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				if(R.fields["name"] == oldname)
 					R.fields["name"] = newname
 					break
-
-		//update our pda and id if we have them on our person
-		var/list/searching = GetAllContents(searchDepth = 3)
-		var/search_id = 1
-		var/search_pda = 1
-
-		for(var/A in searching)
-			if( search_id && istype(A,/obj/item/weapon/card/id) )
-				var/obj/item/weapon/card/id/ID = A
-				if(ID.registered_name == oldname)
-					ID.registered_name = newname
-					ID.name = "[newname]'s ID Card ([ID.assignment])"
-					if(!search_pda)	break
-					search_id = 0
-
-			else if( search_pda && istype(A,/obj/item/device/pda) )
-				var/obj/item/device/pda/PDA = A
-				if(PDA.owner == oldname)
-					PDA.owner = newname
-					PDA.name = "PDA-[newname] ([PDA.ownjob])"
-					if(!search_id)	break
-					search_pda = 0
 	return 1
 
 
@@ -407,15 +386,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(!newname)	//we'll stick with the oldname then
 			return
 
-		if(cmptext("ai",role))
-			if(isAI(src))
-				var/mob/living/silicon/ai/A = src
-				oldname = null//don't bother with the records update crap
-				//world << "<b>[newname] is the AI!</b>"
-				//world << sound('sound/AI/newAI.ogg')
-				// Set eyeobj name
-				A.SetName(newname)
-
 
 		fully_replace_character_name(oldname,newname)
 
@@ -424,48 +394,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //Picks a string of symbols to display as the law number for hacked or ion laws
 /proc/ionnum()
 	return "[pick("1","2","3","4","5","6","7","8","9","0")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")]"
-
-//When an AI is activated, it can choose from a list of non-slaved borgs to have as a slave.
-/proc/freeborg()
-	var/select = null
-	var/list/borgs = list()
-	for (var/mob/living/silicon/robot/A in player_list)
-		if (A.stat == 2 || A.connected_ai || A.scrambledcodes || istype(A,/mob/living/silicon/robot/drone))
-			continue
-		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
-		borgs[name] = A
-
-	if (borgs.len)
-		select = input("Unshackled borg signals detected:", "Borg selection", null, null) as null|anything in borgs
-		return borgs[select]
-
-//When a borg is activated, it can choose which AI it wants to be slaved to
-/proc/active_ais()
-	. = list()
-	for(var/mob/living/silicon/ai/A in living_mob_list)
-		if(A.stat == DEAD)
-			continue
-		if(A.control_disabled == 1)
-			continue
-		. += A
-	return .
-
-//Find an active ai with the least borgs. VERBOSE PROCNAME HUH!
-/proc/select_active_ai_with_fewest_borgs()
-	var/mob/living/silicon/ai/selected
-	var/list/active = active_ais()
-	for(var/mob/living/silicon/ai/A in active)
-		if(!selected || (selected.connected_robots.len > A.connected_robots.len))
-			selected = A
-
-	return selected
-
-/proc/select_active_ai(var/mob/user)
-	var/list/ais = active_ais()
-	if(ais.len)
-		if(user)	. = input(usr,"AI signals detected:", "AI selection") in ais
-		else		. = pick(ais)
-	return .
 
 /proc/get_sorted_mobs()
 	var/list/old_list = getmobs()
@@ -757,7 +685,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					X.underlays = old_underlays
 					X.decals = old_decals
 
-					if(istype(T, /turf/space) || istype(T, /turf/simulated/floor/asteroid))
+					if(istype(T, /turf/space))
 						X.ChangeTurf(get_base_turf_by_area(B))
 
 					var/turf/simulated/ST = T
@@ -1117,8 +1045,6 @@ proc/is_hot(obj/item/W as obj)
 				return 1000
 			else
 				return 0
-		if(/obj/item/weapon/pickaxe/plasmacutter)
-			return 3800
 		if(/obj/item/weapon/melee/energy)
 			return 3500
 		else

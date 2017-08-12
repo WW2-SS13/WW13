@@ -63,20 +63,10 @@ var/list/nuke_disks = list()
 		world << "<FONT size = 3><B>[syndicate_name()] operatives have earned Darwin Award!</B></FONT>"
 		world << "<B>[syndicate_name()] operatives blew up something that wasn't [station_name()] and got caught in the explosion.</B> Next time, don't lose the disk!"
 
-	else if (disk_rescued && mercs.antags_are_dead())
-
-		world << "<FONT size = 3><B>Crew Major Victory!</B></FONT>"
-		world << "<B>The Research Staff has saved the disc and killed the [syndicate_name()] Operatives</B>"
-
 	else if ( disk_rescued                                        )
 
 		world << "<FONT size = 3><B>Crew Major Victory</B></FONT>"
 		world << "<B>The Research Staff has saved the disc and stopped the [syndicate_name()] Operatives!</B>"
-
-	else if (!disk_rescued && mercs.antags_are_dead())
-
-		world << "<FONT size = 3><B>Mercenary Minor Victory!</B></FONT>"
-		world << "<B>The Research Staff failed to secure the authentication disk but did manage to kill most of the [syndicate_name()] Operatives!</B>"
 
 	else if (!disk_rescued && crew_evacuated)
 

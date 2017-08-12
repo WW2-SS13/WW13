@@ -37,8 +37,6 @@
 
 /mob/living/simple_animal/borer/Login()
 	..()
-	if(mind)
-		borers.add_antagonist(mind)
 
 /mob/living/simple_animal/borer/New()
 	..()

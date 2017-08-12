@@ -48,9 +48,6 @@
 
 	if ((ishuman(usr) || issmall(usr)) && !ismouse(usr)) //so monkeys can take off their backpacks -- Urist
 
-		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
-			return
-
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
 			src.open(usr)
 			return
@@ -108,10 +105,6 @@
 
 	for(var/obj/item/weapon/storage/S in src)
 		L += S.return_inv()
-	for(var/obj/item/weapon/gift/G in src)
-		L += G.gift
-		if (istype(G.gift, /obj/item/weapon/storage))
-			L += G.gift:return_inv()
 	return L
 
 /obj/item/weapon/storage/proc/show_to(mob/user as mob)
@@ -345,12 +338,12 @@
 
 	if(can_hold.len)
 		if(!is_type_in_list(W, can_hold))
-			if(!stop_messages && ! istype(W, /obj/item/weapon/hand_labeler))
+			if(!stop_messages)
 				usr << "<span class='notice'>[src] cannot hold \the [W].</span>"
 			return 0
 		var/max_instances = can_hold[W.type]
 		if(max_instances && instances_of_type_in_list(W, contents) >= max_instances)
-			if(!stop_messages && !istype(W, /obj/item/weapon/hand_labeler))
+			if(!stop_messages)
 				usr << "<span class='notice'>[src] has no more space specifically for \the [W].</span>"
 			return 0
 
@@ -415,9 +408,6 @@
 /obj/item/weapon/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
 	if(!istype(W)) return 0
 
-	if(istype(src, /obj/item/weapon/storage/fancy))
-		var/obj/item/weapon/storage/fancy/F = src
-		F.update_icon(1)
 
 	for(var/mob/M in range(1, src.loc))
 		if (M.s_active == src)
@@ -451,21 +441,6 @@
 
 	if(isrobot(user))
 		return //Robots can't interact with storage items.
-
-	if(istype(W, /obj/item/device/lightreplacer))
-		var/obj/item/device/lightreplacer/LP = W
-		var/amt_inserted = 0
-		var/turf/T = get_turf(user)
-		for(var/obj/item/weapon/light/L in src.contents)
-			if(L.status == 0)
-				if(LP.uses < LP.max_uses)
-					LP.AddUses(1)
-					amt_inserted++
-					remove_from_storage(L, T)
-					qdel(L)
-		if(amt_inserted)
-			user << "You inserted [amt_inserted] light\s into \the [LP.name]. You have [LP.uses] light\s remaining."
-			return
 
 	if(!can_be_inserted(W))
 		return

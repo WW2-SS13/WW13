@@ -9,5 +9,9 @@
 /obj/structure/simple_door/key_door/anyone/wood
 	material = "wood"
 
+/obj/machinery/simple_door/key_door/train
+	icon = 'icons/obj/doors/doormorgue.dmi'
+	material = "morgue"
+
 #undef ANYONE_CODE
 

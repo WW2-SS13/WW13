@@ -210,13 +210,6 @@
 			if(!has_title)
 				continue
 
-		// ID cards and PDAs are applied directly to the existing object rather than spawned fresh.
-		var/obj/item/existing_item
-		if(citem.item_path == /obj/item/weapon/card/id && istype(current_id)) //Set earlier.
-			existing_item = M.wear_id
-		else if(citem.item_path == /obj/item/device/pda)
-			existing_item = locate(/obj/item/device/pda) in M.contents
-
 		// Spawn and equip the item.
 		if(existing_item)
 			citem.apply_to_item(existing_item)

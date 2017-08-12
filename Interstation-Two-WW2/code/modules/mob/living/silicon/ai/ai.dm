@@ -47,7 +47,6 @@ var/list/ai_verbs_default = list(
 	anchored = 1 // -- TLE
 	density = 1
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
-	shouldnt_see = list(/obj/effect/rune)
 	var/list/network = list("Exodus")
 	var/obj/machinery/camera/camera = null
 	var/list/connected_robots = list()
@@ -185,10 +184,6 @@ var/list/ai_verbs_default = list(
 			radio_text += ", "
 
 	src << radio_text
-
-	if (malf && !(mind in malf.current_antagonists))
-		show_laws()
-		src << "<b>These laws may be changed by other players, or by you being the traitor.</b>"
 
 	job = "AI"
 	setup_icon()

@@ -24,9 +24,9 @@
 		overlays += "bomb_assembly"
 
 /obj/item/device/onetankbomb/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/analyzer))
+/*	if(istype(W, /obj/item/device/analyzer))
 		bombtank.attackby(W, user)
-		return
+		return*/
 	if(istype(W, /obj/item/weapon/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
 
 		user << "<span class='notice'>You disassemble [src].</span>"

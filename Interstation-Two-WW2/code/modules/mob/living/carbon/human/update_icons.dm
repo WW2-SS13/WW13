@@ -368,6 +368,8 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_mutations(var/update_icons=1)
+	return
+	/*
 	var/fat = body_build ? body_build.index : ""
 
 	var/image/standing	= image("icon" = 'icons/effects/genetics.dmi')
@@ -407,7 +409,7 @@ var/global/list/damage_icon_parts = list()
 	else
 		overlays_standing[MUTATIONS_LAYER]	= null
 	if(update_icons)   update_icons()
-
+*/
 /* --------------------------------------- */
 //For legacy support.
 /mob/living/carbon/human/regenerate_icons()
@@ -848,11 +850,6 @@ var/global/list/damage_icon_parts = list()
 		var/icon/overlay_icon
 		if(back.icon_override)
 			overlay_icon = back.icon_override
-		else if(istype(back, /obj/item/weapon/rig))
-			//If this is a rig and a mob_icon is set, it will take species into account in the rig update_icon() proc.
-			var/obj/item/weapon/rig/rig = back
-			overlay_icon = rig.mob_icon
-
 		else if(back.item_icons && (slot_back_str in back.item_icons))
 			overlay_icon = back.item_icons[slot_back_str]
 		else

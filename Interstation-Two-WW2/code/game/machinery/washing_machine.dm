@@ -114,19 +114,6 @@
 		istype(W,/obj/item/clothing/suit) || \
 		istype(W,/obj/item/weapon/bedsheet))
 
-		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item.
-		if ( istype(W,/obj/item/clothing/suit/space ) )
-			user << "This item does not fit."
-			return
-		if ( istype(W,/obj/item/clothing/suit/syndicatefake ) )
-			user << "This item does not fit."
-			return
-//		if ( istype(W,/obj/item/clothing/suit/powered ) )
-//			user << "This item does not fit."
-//			return
-		if ( istype(W,/obj/item/clothing/suit/cyborg_suit ) )
-			user << "This item does not fit."
-			return
 		if ( istype(W,/obj/item/clothing/suit/bomb_suit ) )
 			user << "This item does not fit."
 			return

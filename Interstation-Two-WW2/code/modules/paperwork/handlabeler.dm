@@ -39,14 +39,14 @@
 	if(istype(A, /obj/item/weapon/reagent_containers/glass))
 		user << "<span class='notice'>The label can't stick to the [A.name].  (Try using a pen)</span>"
 		return
-	if(istype(A, /obj/machinery/portable_atmospherics/hydroponics))
+/*	if(istype(A, /obj/machinery/portable_atmospherics/hydroponics))
 		var/obj/machinery/portable_atmospherics/hydroponics/tray = A
 		if(!tray.mechanical)
 			user << "<span class='notice'>How are you going to label that?</span>"
 			return
 		tray.labelled = label
 		spawn(1)
-			tray.update_icon()
+			tray.update_icon()*/
 	playsound(src,'sound/effects/FOLEY_Gaffer_Tape_Tear_mono.wav',100,1)
 	user.visible_message("<span class='notice'>[user] labels [A] as [label].</span>", \
 						 "<span class='notice'>You label [A] as [label].</span>")

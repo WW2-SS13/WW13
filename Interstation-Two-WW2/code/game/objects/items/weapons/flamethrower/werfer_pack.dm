@@ -28,7 +28,7 @@
 	return
 
 /obj/item/weapon/storage/backpack/flammenwerfer/equipped(var/mob/user, var/slot)
-	..()
+	..(user, slot)
 
 	if (src == user.back)
 

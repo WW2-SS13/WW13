@@ -52,10 +52,6 @@
 		. = ..()
 		user.Move(get_turf(target))
 
-	attack_ai(mob/living/silicon/ai/user)
-		var/turf/T = get_turf(target)
-		T.move_camera_by_click()
-
 	attackby(obj/item/C, mob/user)
 		. = ..()
 		attack_hand(user)
@@ -84,6 +80,12 @@
 	return ..()
 
 /obj/structure/multiz/ladder/attack_hand(var/mob/M)
+
+	if (ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if (H.laddervision == src)
+			H.update_laddervision(null)
+			return
 
 	if(!target || !istype(target.loc, /turf))
 		M << "<span class='notice'>\The [src] is incomplete and can't be climbed.</span>"
@@ -126,7 +128,26 @@
 		if (was_pulling)
 			M.pulling = was_pulling
 
-////1 Z LEVEL LADDERS - Kachnov////
+//// laddervision - Kachnov ////
+
+/mob/living/carbon/human/var/laddervision = null
+
+/obj/structure/multiz/ladder/MouseDrop_T(var/mob/living/carbon/human/user as mob)
+	if (!user || !istype(user))
+		return
+	if (user.laddervision == src)
+		return
+	user.update_laddervision(src)
+
+/mob/living/carbon/human/proc/update_laddervision(var/obj/structure/multiz/ladder/ladder)
+	if (ladder && istype(ladder))
+		laddervision = ladder
+		client.eye = get_turf(laddervision)
+	else if (!ladder)
+		client.eye = src
+		laddervision = null
+
+//// 1 Z LEVEL LADDERS - Kachnov ////
 
 /obj/structure/multiz/ladder/ww2
 	var/ladder_id = null
@@ -237,10 +258,6 @@
 	else
 		M.Move(get_turf(target))
 
-/obj/structure/multiz/stairs/active/attack_robot(mob/user)
-	. = ..()
-	if(Adjacent(user))
-		Bumped(user)
 
 /obj/structure/stairs/active/attack_hand(mob/user)
 	. = ..()

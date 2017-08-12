@@ -15,7 +15,7 @@
 	var/current_positions = 0             // How many players have this job
 	var/supervisors = null                // Supervisors, who this person answers to directly
 	var/selection_color = "#ffffff"       // Selection screen color
-	var/idtype = /obj/item/weapon/card/id // The type of the ID the player will have
+//	var/idtype = /obj/item/weapon/card/id // The type of the ID the player will have
 	var/list/alt_titles                   // List of alternate titles, if any
 	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/minimal_player_age = 0            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
@@ -29,10 +29,8 @@
 
 	var/survival_gear = /obj/item/weapon/storage/box/survival// Custom box for spawn in backpack
 //job equipment
-	var/implanted = null
 	var/uniform = /obj/item/clothing/under/color/grey
 	var/shoes = /obj/item/clothing/shoes/black
-	var/pda = /obj/item/device/pda
 	var/hat = null
 	var/suit = null
 	var/gloves = null
@@ -55,9 +53,9 @@
 
 	var/fallback_spawn_location = null
 
-	var/uses_keys = 0
+	var/uses_keys = 1
 
-	var/is_SS = 0
+	var/enabled = 1
 
 	/*For copy-pasting:
 	implanted =
@@ -122,13 +120,7 @@
 	if(hat)			H.equip_to_slot_or_del(new hat (H), slot_head)
 	if(gloves)		H.equip_to_slot_or_del(new gloves (H), slot_gloves)
 	if(glasses)		H.equip_to_slot_or_del(new glasses (H), slot_glasses)
-
-	//Belt and PDA
-	if(belt)
-		H.equip_to_slot_or_del(new belt (H), slot_belt)
-		H.equip_to_slot_or_del(new pda (H), slot_l_store)
-	else
-		H.equip_to_slot_or_del(new pda (H), slot_belt)
+	if(belt)		H.equip_to_slot_or_del(new belt (H), slot_belt)
 
 	if(!H.back || !istype(H.back, /obj/item/weapon/storage/backpack))
 		var/list/slots = list( slot_belt, slot_r_store, slot_l_store, slot_r_hand, slot_l_hand, slot_s_store )
@@ -144,43 +136,12 @@
 			else if(istype(H.l_hand, /obj/item/weapon/storage))
 				new path(H.l_hand)
 
-	if(implanted)
-		var/obj/item/weapon/implant/loyalty/I = new /obj/item/weapon/implant/loyalty(src)
-		I.install(H, "head")
-
 	update_character(H)
 
 	return 1
 
 /datum/job/proc/update_character(var/mob/living/carbon/human/H)
 	return 1
-
-/datum/job/proc/setup_account(var/mob/living/carbon/human/H)
-	if(!account_allowed || (H.mind && H.mind.initial_account))
-		return
-
-	//give them an account in the station database
-	var/species_modifier = (H.species ? economic_species_modifier[H.species.type] : 2)
-	if(!species_modifier)
-		species_modifier = economic_species_modifier[/datum/species/human]
-
-	var/money_amount = (rand(5,50) + rand(5, 50)) * economic_modifier * species_modifier
-	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
-	if(H.mind)
-		var/remembered_info = ""
-		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"
-		remembered_info += "<b>Your account pin is:</b> [M.remote_access_pin]<br>"
-		remembered_info += "<b>Your account funds are:</b> $[M.money]<br>"
-
-		if(M.transaction_log.len)
-			var/datum/transaction/T = M.transaction_log[1]
-			remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
-		H.mind.store_memory(remembered_info)
-
-		H.mind.initial_account = M
-
-	H << "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>"
-
 
 /datum/job/proc/get_access()
 	if(!config || config.jobs_have_minimal_access)

@@ -78,18 +78,6 @@
 		chargelevel = -1
 		update_icon()
 
-/obj/machinery/cell_charger/attack_ai(mob/user)
-	if(istype(user, /mob/living/silicon/robot) && Adjacent(user)) // Borgs can remove the cell if they are near enough
-		if(!src.charging)
-			return
-
-		charging.loc = src.loc
-		charging.update_icon()
-		charging = null
-		update_icon()
-		user.visible_message("[user] removes the cell from the charger.", "You remove the cell from the charger.")
-
-
 /obj/machinery/cell_charger/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
 		return

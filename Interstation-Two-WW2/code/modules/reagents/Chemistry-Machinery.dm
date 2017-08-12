@@ -174,9 +174,6 @@
 		nanomanager.update_uis(src) // update all UIs attached to src
 		return
 
-/obj/machinery/chemical_dispenser/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/chemical_dispenser/attack_hand(mob/user as mob)
 	if(stat & BROKEN)
 		return
@@ -466,9 +463,6 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/chem_master/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/chem_master/attack_hand(mob/user as mob)
 	if(inoperable())
 		return
@@ -595,30 +589,6 @@
 	if(!istype(O))
 		return
 
-	if(istype(O,/obj/item/weapon/storage/bag/plants))
-		var/obj/item/weapon/storage/bag/plants/bag = O
-		var/failed = 1
-		for(var/obj/item/G in O.contents)
-			if(!G.reagents || !G.reagents.total_volume)
-				continue
-			failed = 0
-			bag.remove_from_storage(G, src)
-			holdingitems += G
-			if(holdingitems && holdingitems.len >= limit)
-				break
-
-		if(failed)
-			user << "Nothing in the plant bag is usable."
-			return 1
-
-		if(!O.contents.len)
-			user << "You empty \the [O] into \the [src]."
-		else
-			user << "You fill \the [src] from \the [O]."
-
-		src.updateUsrDialog()
-		return 0
-
 	if(!sheet_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
 		user << "\The [O] is not suitable for blending."
 		return 1
@@ -627,9 +597,6 @@
 	O.loc = src
 	holdingitems += O
 	src.updateUsrDialog()
-	return 0
-
-/obj/machinery/reagentgrinder/attack_ai(mob/user as mob)
 	return 0
 
 /obj/machinery/reagentgrinder/attack_hand(mob/user as mob)

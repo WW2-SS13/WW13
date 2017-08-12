@@ -217,7 +217,7 @@
 	anchored = TRUE
 	update_verbs()
 	update_nearby_icons()
-
+/*
 /obj/item/weapon/sandbag/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/ore/glass))
 		if(sand_amount >= 4)
@@ -229,7 +229,7 @@
 		w_class++
 		update_icon()
 		user << "You need [4 - sand_amount] more units."
-
+*/
 
 
 //obj/item/weapon/ore/glass

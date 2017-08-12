@@ -1,5 +1,4 @@
 /datum/job/german
-	uses_keys = 1
 	team = "GERMAN"
 
 /datum/job/german/give_random_name(var/mob/living/carbon/human/H)
@@ -421,8 +420,10 @@ var/first_fallschirm = 1
 	access = list(access_nato_soldier, access_nato_heavy_weapon)
 	minimal_access = list(access_nato_soldier, access_nato_heavy_weapon)
 	spawn_location = "Fallschirm"
-
 	additional_languages = list( "Russian" = 100 )
+	spawn_delay = 2000 // a bit more than 3 minutes should give russians some time to prepare - kachnov
+	delayed_spawn_message = "<span class = 'danger'>You are parachuting behind Russian lines. You won't spawn for about 3 minutes.</span>"
+
 
 var/fallschirm_spawnzone = null
 var/list/fallschirm_spawnpoints = list()
@@ -434,6 +435,7 @@ var/list/fallschirm_spawnpoints = list()
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/fallsparka(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
+	H.give_radio()
 	if(first_fallschirm)
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
 		world << "<b>You can see a Ju 57 in the sky...</b>"
@@ -446,7 +448,6 @@ var/list/fallschirm_spawnpoints = list()
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/fallsoldier(H), slot_belt)
 
 	first_fallschirm = 0
-	H.give_radio()
 
 	if(!fallschirm_spawnzone)
 		fallschirm_spawnzone = pick(fallschirm_landmarks)
@@ -695,6 +696,7 @@ var/list/fallschirm_spawnpoints = list()
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm/sshelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>. Also, kill any jews you find on sight. They usually have long hair and beards.</span>"
 	return 1
 

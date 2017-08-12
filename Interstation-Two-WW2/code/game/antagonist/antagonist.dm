@@ -20,7 +20,7 @@
 
 	// Visual references.
 	var/antaghud_indicator = "hudsyndicate" // Used by the ghost antagHUD.
-	var/antag_indicator                     // icon_state for icons/mob/mob.dm visual indicator.
+	var/antag_indicator                     // icon_state for icons/mob/mob.dmi visual indicator.
 	var/faction_indicator                   // See antag_indicator, but for factionalized people only.
 	var/faction_invisible                   // Can members of the faction identify other antagonists?
 
@@ -68,7 +68,7 @@
 
 	// ID card stuff.
 	var/default_access = list()
-	var/id_type = /obj/item/weapon/card/id
+//	var/id_type = /obj/item/weapon/card/id
 
 
 /datum/antagonist/New()

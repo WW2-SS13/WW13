@@ -138,7 +138,7 @@ for reference:
 		return 1
 	else
 		return 0
-
+/*
 //Actual Deployable machinery stuff
 /obj/machinery/deployable
 	name = "deployable"
@@ -269,3 +269,4 @@ for reference:
 		s.start()
 		visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
 		return 1
+*/

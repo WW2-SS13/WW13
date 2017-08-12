@@ -41,7 +41,6 @@
 		new /obj/item/weapon/storage/backpack/medic(src)
 		new /obj/item/weapon/storage/bag/medical_bag_nato/full(src)
 		new /obj/item/weapon/storage/bag/medical_bag_nato/full(src)
-		new /obj/item/device/healthanalyzer(src)
 
 		//new /obj/item/clothing/mask/gas(src)
 
@@ -181,7 +180,6 @@
 		new /obj/item/weapon/storage/backpack/medic(src)
 		new /obj/item/weapon/storage/bag/medical_bag_nato/full(src)
 		new /obj/item/weapon/storage/bag/medical_bag_nato/full(src)
-		new /obj/item/device/healthanalyzer(src)
 		//new /obj/item/weapon/storage/firstaid/adv(src)
 		//new /obj/item/weapon/storage/firstaid/regular(src)
 		//new /obj/item/weapon/storage/firstaid/combat(src)

@@ -21,6 +21,11 @@
 /datum/job/var/is_squad_leader = 0
 /datum/job/var/is_commander = 0
 /datum/job/var/is_nonmilitary = 0
+/datum/job/var/spawn_delay = 0
+/datum/job/var/delayed_spawn_message = ""
+/datum/job/var/is_SS = 0
+/datum/job/var/is_primary = 1
+/datum/job/var/is_secondary = 0
 
 /datum/job/proc/assign_faction(var/mob/living/carbon/human/user)
 
@@ -156,6 +161,9 @@
 	if (is_officer)
 		return
 
+	if (clients.len < config.min_players_for_jews && !config.debug) // too lowpop for spies! Todo: config setting
+		return
+
 	user << "<span class = 'danger'>You are the Jew.</span><br>"
 	user << "<span class = 'notice'>Objective #1: Survive.</span>"
 
@@ -183,7 +191,7 @@
 	if (!user.client.prefs.be_spy)
 		return
 
-	if (clients.len < 25) // too lowpop for spies! Todo: config setting
+	if (clients.len < config.min_players_for_spies && !config.debug) // too lowpop for spies! Todo: config setting
 		return
 
 	if ((prob(20) && istype(src, /datum/job/german/soldier)) || (prob(12) && istype(src, /datum/job/russian/soldier)))
@@ -237,11 +245,11 @@
 /proc/get_side_name(var/side, var/datum/job/j)
 	if (j && (istype(j, /datum/job/german/squad_leader_ss) || istype(j, /datum/job/german/soldier_ss)))
 		return "Waffen-S.S."
-	if(side == CIVILIAN)
+	if(side == "PARTISAN")
 		return "Civilian"
-	if(side == RUFORCE)
+	if(side == "RUSSIAN")
 		return "Red Army"
-	if(side == GEFORCE)
+	if(side == "GERMAN")
 		return "German Wehrmacht"
 	return null
 

@@ -168,15 +168,6 @@
 	user.put_in_active_hand(src)
 	return
 
-/obj/item/attack_ai(mob/user as mob)
-	if (istype(src.loc, /obj/item/weapon/robot_module))
-		//If the item is part of a cyborg module, equip it
-		if(!isrobot(user))
-			return
-		var/mob/living/silicon/robot/R = user
-		R.activate_module(src)
-//		R.hud_used.update_robot_modules_display()
-
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
 /obj/item/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -346,7 +337,7 @@ var/list/global/slot_flags_enumeration = list(
 				if(!disable_warning)
 					usr << "<span class='warning'>You somehow have a suit with no defined allowed items for suit storage, stop that.</span>"
 				return 0
-			if( !(istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
+			if( !(istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
 				return 0
 		if(slot_handcuffed)
 			if(!istype(src, /obj/item/weapon/handcuffs))

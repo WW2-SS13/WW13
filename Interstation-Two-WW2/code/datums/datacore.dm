@@ -77,18 +77,6 @@
 		if(!department && !(name in heads))
 			misc[name] = rank
 
-	// Synthetics don't have actual records, so we will pull them from here.
-	for(var/mob/living/silicon/ai/ai in mob_list)
-		bot[ai.name] = "Artificial Intelligence"
-
-	for(var/mob/living/silicon/robot/robot in mob_list)
-		// No combat/syndicate cyborgs, no drones.
-		if(robot.module && robot.module.hide_on_manifest)
-			continue
-
-		bot[robot.name] = "[robot.modtype] [robot.braintype]"
-
-
 	if(heads.len > 0)
 		dat += "<tr><th colspan=3>Heads</th></tr>"
 		for(name in heads)
@@ -183,7 +171,7 @@
 		G.fields["real_rank"]	= H.mind.assigned_role
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
-		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
+	//	G.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"
 		G.fields["sex"]			= H.gender
@@ -193,8 +181,8 @@
 
 		//Medical Record
 		var/datum/data/record/M = CreateMedicalRecord(H.real_name, id)
-		M.fields["b_type"]		= H.b_type
-		M.fields["b_dna"]		= H.dna.unique_enzymes
+	//	M.fields["b_type"]		= H.b_type
+	//	M.fields["b_dna"]		= H.dna.unique_enzymes
 		//M.fields["id_gender"]	= gender2text(H.identifying_gender)
 		if(H.med_record && !jobban_isbanned(H, "Records"))
 			M.fields["notes"] = H.med_record
@@ -210,13 +198,13 @@
 		L.fields["name"]		= H.real_name
 		L.fields["rank"] 		= H.mind.assigned_role
 		L.fields["age"]			= H.age
-		L.fields["fingerprint"]	= md5(H.dna.uni_identity)
+	//	L.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		L.fields["sex"]			= H.gender
 		///L.fields["id_gender"]	= gender2text(H.identifying_gender)
-		L.fields["b_type"]		= H.b_type
-		L.fields["b_dna"]		= H.dna.unique_enzymes
-		L.fields["enzymes"]		= H.dna.SE // Used in respawning
-		L.fields["identity"]	= H.dna.UI // "
+	//	L.fields["b_type"]		= H.b_type
+	//	L.fields["b_dna"]		= H.dna.unique_enzymes
+	//	L.fields["enzymes"]		= H.dna.SE // Used in respawning
+	//	L.fields["identity"]	= H.dna.UI // "
 		L.fields["religion"]	= H.religion
 		L.fields["image"]		= getFlatIcon(H)	//This is god-awful
 		if(H.exploit_record && !jobban_isbanned(H, "Records"))

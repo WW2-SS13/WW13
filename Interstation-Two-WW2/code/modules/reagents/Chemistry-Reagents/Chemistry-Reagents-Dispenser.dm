@@ -19,9 +19,6 @@
 	if(istype(O, /obj/item/weapon/book))
 		if(volume < 5)
 			return
-		if(istype(O, /obj/item/weapon/book/tome))
-			usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
-			return
 		var/obj/item/weapon/book/affectedbook = O
 		affectedbook.dat = null
 		usr << "<span class='notice'>The solution dissolves the ink on the book.</span>"
@@ -152,9 +149,6 @@
 	if(istype(O, /obj/item/weapon/book))
 		if(volume < 5)
 			return
-		if(istype(O, /obj/item/weapon/book/tome))
-			usr << "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>"
-			return
 		var/obj/item/weapon/book/affectedbook = O
 		affectedbook.dat = null
 		usr << "<span class='notice'>The solution dissolves the ink on the book.</span>"
@@ -238,34 +232,6 @@
 	reagent_state = SOLID
 	color = "#A0A0A0"
 
-/datum/reagent/radium
-	name = "Radium"
-	id = "radium"
-	description = "Radium is an alkaline earth metal. It is extremely radioactive."
-	taste_description = "the color blue, and regret"
-	reagent_state = SOLID
-	color = "#C7C7C7"
-
-/datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(issmall(M)) removed *= 2
-	M.apply_effect(10 * removed, IRRADIATE, 0) // Radium may increase your chances to cure a disease
-	if(M.virus2.len)
-		for(var/ID in M.virus2)
-			var/datum/disease2/disease/V = M.virus2[ID]
-			if(prob(5))
-				M.antibodies |= V.antigen
-				if(prob(50))
-					M.apply_effect(50, IRRADIATE, check_protection = 0) // curing it that way may kill you instead
-
-
-/datum/reagent/radium/touch_turf(var/turf/T)
-	if(volume >= 3)
-		if(!istype(T, /turf/space))
-			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
-			if(!glow)
-				new /obj/effect/decal/cleanable/greenglow(T)
-			return
-
 /datum/reagent/acid
 	name = "Sulphuric acid"
 	id = "sacid"
@@ -345,7 +311,7 @@
 /datum/reagent/acid/touch_obj(var/obj/O)
 	if(O.unacidable)
 		return
-	if((istype(O, /obj/item) || istype(O, /obj/effect/plant)) && (volume > meltdose))
+	if(istype(O, /obj/item))
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."
 		for(var/mob/M in viewers(5, O))

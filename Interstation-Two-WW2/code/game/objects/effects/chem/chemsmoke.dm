@@ -126,7 +126,7 @@
 	var/list/wallList
 	var/density
 	var/show_log = 1
-
+/*8
 /datum/effect/effect/system/smoke_spread/chem/spores
 	show_log = 0
 	var/datum/seed/seed
@@ -137,7 +137,7 @@
 	if(!seed)
 		qdel(src)
 	..()
-
+*/
 /datum/effect/effect/system/smoke_spread/chem/New()
 	..()
 	chemholder = new/obj()
@@ -275,12 +275,12 @@
 	if(splash_initial)
 		smoke.initial_splash()
 
-
+/*
 /datum/effect/effect/system/smoke_spread/chem/spores/spawnSmoke(var/turf/T, var/smoke_duration, var/icon/I, var/dist = 1)
 	var/obj/effect/effect/smoke/chem/spores = PoolOrNew(/obj/effect/effect/smoke/chem, location)
 	spores.name = "cloud of [seed.seed_name] [seed.seed_noun]"
 	..(T, I, smoke_duration, dist, spores)
-
+*/
 
 /datum/effect/effect/system/smoke_spread/chem/proc/smokeFlow() // Smoke pathfinder. Uses a flood fill method based on zones to quickly check what turfs the smoke (airflow) can actually reach.
 

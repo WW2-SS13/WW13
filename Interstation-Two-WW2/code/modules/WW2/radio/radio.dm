@@ -1,3 +1,42 @@
+var/global/list/default_german_channels = list(
+	num2text(DE_COMM_FREQ) = list()
+)
+
+var/global/list/default_russian_channels = list(
+	num2text(RU_COMM_FREQ) = list()
+)
+
+
+/obj/item/device/radio
+	icon = 'icons/obj/radio.dmi'
+	name = "station bounced radio"
+	suffix = "\[3\]"
+	icon_state = "walkietalkie"
+	item_state = "walkietalkie"
+
+	var/on = 1 // 0 for off
+	var/last_transmission
+	var/frequency = PUB_FREQ //common chat
+	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
+	var/canhear_range = 3 // the range which mobs can hear this radio from
+	var/datum/wires/radio/wires = null
+	var/b_stat = 0
+	var/broadcasting = 0
+	var/listening = 1
+	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
+	var/subspace_transmission = 0
+	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
+	flags = CONDUCT
+	slot_flags = SLOT_BELT
+	throw_speed = 2
+	throw_range = 9
+	w_class = 2
+
+	matter = list("glass" = 25,DEFAULT_WALL_MATERIAL = 75)
+	var/const/FREQ_LISTENING = 1
+	var/list/internal_channels
+
+	var/last_tick = -1
 
 /obj/item/device/radio
 	var/speech_sound = null
@@ -49,8 +88,8 @@
 
 
 /obj/item/device/radio/intercom/a7b/process()
-	if(((world.timeofday - last_tick) > 30) || ((world.timeofday - last_tick) < 0))
-		last_tick = world.timeofday
+	if(world.time - last_tick > 30 || last_tick == -1)
+		last_tick = world.time
 
 		if(!src.loc)
 			on = 0
@@ -98,8 +137,8 @@
 	internal_channels[num2text(DE_BASE_FREQ)] = list()
 
 /obj/item/device/radio/intercom/fu2/process()
-	if(((world.timeofday - last_tick) > 30) || ((world.timeofday - last_tick) < 0))
-		last_tick = world.timeofday
+	if(world.time - last_tick > 30 || last_tick == -1)
+		last_tick = world.time
 
 		if(!src.loc)
 			on = 0

@@ -15,6 +15,7 @@
 	var/dam = (P.damage/3 + (P.armor_penetration*20))/25
 	if (P.armor_penetration < 50)
 		dam /= 8
+
 	dam += 1 // minimum damage
 
 	damage += dam
@@ -35,7 +36,11 @@
 		if (1.0)
 			severity = 3.0
 
-	damage += (rand(15,20) * severity)
+	// stops tanks from blowing themselves up so easily
+	var/adddamage = (rand(15,20) * severity)
+	adddamage = min(adddamage, maxdamage/10)
+
+	damage += adddamage
 
 	if (prob(critical_damage_chance()))
 		critical_damage()

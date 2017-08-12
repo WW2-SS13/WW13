@@ -78,26 +78,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	//There is no pod 4, apparently.
 
 	//give the emergency shuttle controller it's shuttles
-	emergency_shuttle.shuttle = shuttles["Escape"]
-	emergency_shuttle.escape_pods = list(
-		shuttles["Escape Pod 1"],
-		shuttles["Escape Pod 2"],
-		shuttles["Escape Pod 3"],
-		shuttles["Escape Pod 5"],
-	)
 
-	// Supply shuttle
-	shuttle = new/datum/shuttle/ferry/supply()
-	shuttle.location = 1
-	shuttle.warmup_time = 10
-	shuttle.area_offsite = locate(/area/supply/dock)
-	shuttle.area_station = locate(/area/supply/station)
-	shuttle.docking_controller_tag = "supply_shuttle"
-	shuttle.dock_target_station = "cargo_bay"
-	shuttles["Supply"] = shuttle
-	process_shuttles += shuttle
-
-	supply_controller.shuttle = shuttle
 
 	// Public shuttles
 

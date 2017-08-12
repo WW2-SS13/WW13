@@ -78,13 +78,7 @@
 		else if(istype(C, /obj/item/stack/cable_coil))
 			user << "<span class='warning'>You must remove the [flooring.descriptor] first.</span>"
 			return
-		else if (istype(C, /obj/item/frame))
-			var/obj/item/frame/F = C
-			//world<<"click on floor"
-			F.try_floorbuild(src)
-			return
 	else
-
 		if(istype(C, /obj/item/stack))
 			if(broken || burnt)
 				user << "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>"
@@ -127,11 +121,6 @@
 					else
 						user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 					return
-		else if(istype(C,/obj/item/frame))
-			var/obj/item/frame/F = C
-			//world<<"click on floor"
-			F.try_floorbuild(src)
-			return
 	return ..()
 
 

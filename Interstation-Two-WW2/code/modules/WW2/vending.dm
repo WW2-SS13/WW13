@@ -140,3 +140,28 @@
 
 	)
 	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+
+
+/obj/machinery/vending/wallmed1
+	name = "NanoMed"
+	desc = "Wall-mounted Medical Equipment dispenser."
+	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
+	icon_state = "wallmed"
+	light_color = "#e6fff2"
+	icon_deny = "wallmed-deny"
+	req_access = list(access_medical)
+	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4)
+	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
+
+/obj/machinery/vending/wallmed2
+	name = "NanoMed"
+	desc = "Wall-mounted Medical Equipment dispenser."
+	icon_state = "wallmed"
+	light_color = "#e6fff2"
+	icon_deny = "wallmed-deny"
+	req_access = list(access_medical)
+	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
+					/obj/item/stack/medical/ointment =3)
+	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)

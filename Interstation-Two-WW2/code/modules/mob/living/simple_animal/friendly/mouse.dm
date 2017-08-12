@@ -116,7 +116,7 @@
 		return ..()
 	if (!istype(W) || !W.sharp)
 		return ..()
-	else
+	else if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers/syringe))
 		user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
 		if (do_after(user, 30, src))
 			user.visible_message("<span class = 'notice'>[user] butchers [src] into a sole meat slab.</span>")

@@ -6,11 +6,8 @@ var/list/exterior_turfs = list(/turf/simulated/floor/plating/grass,
 							/turf/simulated/floor/plating/asteroid
 							)
 
-var/list/interior_areas = list(/area/prishtina/dungeons,
-							/area/prishtina/aeroport_in,
-							/area/prishtina/south_farm,
-							/area/prishtina/west_village,
-							/area/prishtina/houses
+var/list/interior_areas = list(/area/prishtina/houses,
+							/area/prishtina/train
 							)
 
 
@@ -242,7 +239,7 @@ var/const/enterloopsanity = 100
 			var/turf/simulated/T = src
 			T.dirt = 0
 		for(var/obj/effect/O in src)
-			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
 	else
 		user << "<span class='warning'>\The [source] is too dry to wash that.</span>"
@@ -310,8 +307,6 @@ var/const/enterloopsanity = 100
 
 /turf/simulated/New()
 	..()
-	if(istype(loc, /area/chapel))
-		holy = 1
 	levelupdate()
 
 /turf/simulated/Destroy()
@@ -345,10 +340,6 @@ var/const/enterloopsanity = 100
 		var/mob/living/M = A
 		if(M.lying)
 			return ..()
-
-		// Ugly hack :( Should never have multiple plants in the same tile.
-		var/obj/effect/plant/plant = locate() in contents
-		if(plant) plant.trodden_on(M)
 
 		// Dirt overlays.
 		update_dirt()
@@ -450,11 +441,11 @@ var/const/enterloopsanity = 100
 
 	if(istype(M))
 		for(var/obj/effect/decal/cleanable/blood/B in contents)
-			if(!B.blood_DNA)
+	/*		if(!B.blood_DNA)
 				B.blood_DNA = list()
 			if(!B.blood_DNA[M.dna.unique_enzymes])
 				B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-				B.virus2 = virus_copylist(M.virus2)
+				B.virus2 = virus_copylist(M.virus2)*/
 			return 1 //we bloodied the floor
 		blood_splatter(src,M.get_blood(M.vessel),1)
 		return 1 //we bloodied the floor

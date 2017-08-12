@@ -172,7 +172,7 @@
 /datum/reagent/toxin/fertilizer/robustharvest
 	name = "Robust Harvest"
 	id = "robustharvest"
-
+/*
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
 	id = "plantbgone"
@@ -193,7 +193,7 @@
 /datum/reagent/toxin/plantbgone/touch_obj(var/obj/O, var/volume)
 	if(istype(O, /obj/effect/plant))
 		qdel(O)
-
+*/
 /datum/reagent/acid/polyacid
 	name = "Polytrinic acid"
 	id = "pacid"
@@ -217,38 +217,6 @@
 	M.take_organ_damage(3 * removed, 0)
 	if(M.losebreath < 15)
 		M.losebreath++
-
-/datum/reagent/mutagen
-	name = "Unstable mutagen"
-	id = "mutagen"
-	description = "Might cause unpredictable mutations. Keep away from children."
-	taste_description = "slime"
-	taste_mult = 0.9
-	reagent_state = LIQUID
-	color = "#13BC5E"
-
-/datum/reagent/mutagen/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	if(prob(33))
-		affect_blood(M, alien, removed)
-
-/datum/reagent/mutagen/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(prob(67))
-		affect_blood(M, alien, removed)
-
-/datum/reagent/mutagen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/mob/living/carbon/human/H = M
-	if(istype(H) && (H.species.flags & NO_SCAN))
-		return
-	if(M.dna)
-		if(prob(removed * 0.1)) // Approx. one mutation per 10 injected/20 ingested/30 touching units
-			randmuti(M)
-			if(prob(98))
-				randmutb(M)
-			else
-				randmutg(M)
-			domutcheck(M, null)
-			M.UpdateAppearance()
-	M.apply_effect(10 * removed, IRRADIATE, 0)
 
 /datum/reagent/slimejelly
 	name = "Slime Jelly"

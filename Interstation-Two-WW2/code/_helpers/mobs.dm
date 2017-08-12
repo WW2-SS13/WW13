@@ -1,13 +1,6 @@
 /atom/movable/proc/get_mob()
 	return
 
-/obj/machinery/bot/mulebot/get_mob()
-	if(load && istype(load,/mob/living))
-		return load
-
-/obj/mecha/get_mob()
-	return occupant
-
 /obj/vehicle/train/get_mob()
 	return buckled_mob
 
@@ -242,10 +235,7 @@ Proc for attack log creation, because really why not
 
 //checks whether this item is a module of the robot it is located in.
 /proc/is_robot_module(var/obj/item/thing)
-	if (!thing || !istype(thing.loc, /mob/living/silicon/robot))
-		return 0
-	var/mob/living/silicon/robot/R = thing.loc
-	return (thing in R.module.modules)
+	return 0
 
 /proc/get_exposed_defense_zone(var/atom/movable/target)
 	var/obj/item/weapon/grab/G = locate() in target
@@ -406,6 +396,23 @@ Proc for attack log creation, because really why not
 
 	return germans
 
+
+/proc/getgermanparatroopers(var/alive = 0)
+	var/list/germans = getgermanmobs(alive)
+	var/list/paratroopers = list()
+	for (var/mob/living/carbon/human/H in germans)
+		if (istype(H.job, /datum/job/german/fallschirm))
+			paratroopers += H
+	return paratroopers
+
+/proc/getSS(var/alive = 0)
+	var/list/germans = getgermanmobs(alive)
+	var/list/SS = list()
+	for (var/mob/living/carbon/human/H in germans)
+		if (istype(H.job, /datum/job/german/soldier_ss) || istype(H.job, /datum/job/german/squad_leader_ss))
+			SS += H
+	return SS
+
 // doesn't it suck to get a list of alive people you can observe,
 // only to find out that 90% of them are half dead and not where the action
 // is?
@@ -421,6 +428,10 @@ Proc for attack log creation, because really why not
 			mobs = getgermanmobs(1)
 		if ("RUSSIAN", "SOVIET")
 			mobs = getrussianmobs(1)
+		if ("PARATROOPERS")
+			mobs = getgermanparatroopers(1)
+		if ("SS")
+			mobs = getSS(1)
 
 	for (var/mob/m in mobs)
 		if (m.stat == UNCONSCIOUS || m.stat == DEAD)

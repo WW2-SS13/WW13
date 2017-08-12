@@ -164,8 +164,8 @@
 			G.clean_blood()
 
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.type == /obj/item/device/analyzer)
-		user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
+//	if(I.type == /obj/item/device/analyzer)
+	//	user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
 	if(istype(I, /obj/item/weapon/wrench))
 		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
 		user << "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>"
@@ -291,7 +291,7 @@
 	if(isturf(loc))
 		var/turf/tile = loc
 		for(var/obj/effect/E in tile)
-			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
+			if(istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
 				qdel(E)
 
 	reagents.splash(O, 10)
@@ -421,11 +421,7 @@
 				user.Stun(10)
 				user.stuttering = 10
 				user.Weaken(10)
-				if(isrobot(user))
-					var/mob/living/silicon/robot/R = user
-					R.cell.charge -= 20
-				else
-					B.deductcharge(B.hitcost)
+				B.deductcharge(B.hitcost)
 				user.visible_message( \
 					"<span class='danger'>[user] was stunned by \his wet [O]!</span>", \
 					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>")

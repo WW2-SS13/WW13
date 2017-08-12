@@ -16,48 +16,6 @@
 		return STATUS_CLOSE
 	return STATUS_UPDATE									// Ghosts can view updates
 
-/mob/living/silicon/pai/default_can_use_topic(var/src_object)
-	if((src_object == src || src_object == radio) && !stat)
-		return STATUS_INTERACTIVE
-	else
-		return ..()
-
-/mob/living/silicon/robot/default_can_use_topic(var/src_object)
-	. = shared_nano_interaction()
-	if(. <= STATUS_DISABLED)
-		return
-
-	// robots can interact with things they can see within their view range
-	if((src_object in view(src)) && get_dist(src_object, src) <= src.client.view)
-		return STATUS_INTERACTIVE	// interactive (green visibility)
-	return STATUS_DISABLED			// no updates, completely disabled (red visibility)
-
-/mob/living/silicon/ai/default_can_use_topic(var/src_object)
-	. = shared_nano_interaction()
-	if(. != STATUS_INTERACTIVE)
-		return
-
-	// Prevents the AI from using Topic on admin levels (by for example viewing through the court/thunderdome cameras)
-	// unless it's on the same level as the object it's interacting with.
-	var/turf/T = get_turf(src_object)
-	if(!T || !(z == T.z || (T.z in config.player_levels)))
-		return STATUS_CLOSE
-
-	// If an object is in view then we can interact with it
-	if(src_object in view(client.view, src))
-		return STATUS_INTERACTIVE
-
-	// If we're installed in a chassi, rather than transfered to an inteliCard or other container, then check if we have camera view
-	if(is_in_chassis())
-		//stop AIs from leaving windows open and using then after they lose vision
-		if(cameranet && !cameranet.checkTurfVis(get_turf(src_object)))
-			return STATUS_CLOSE
-		return STATUS_INTERACTIVE
-	else if(get_dist(src_object, src) <= client.view)	// View does not return what one would expect while installed in an inteliCard
-		return STATUS_INTERACTIVE
-
-	return STATUS_CLOSE
-
 //Some atoms such as vehicles might have special rules for how mobs inside them interact with NanoUI.
 /atom/proc/contents_nano_distance(var/src_object, var/mob/living/user)
 	return user.shared_living_nano_distance(src_object)

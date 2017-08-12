@@ -44,3 +44,11 @@
 			if(65 to 70)	. += ascii2text(ascii+32)	//letters A to F - translates to lowercase
 			else			return default
 	return .
+
+// Sanitize inputs to avoid SQL injection attacks
+proc/sql_sanitize_text(var/text)
+	text = replacetext(text, "'", "''")
+	text = replacetext(text, ";", "")
+	text = replacetext(text, "&", "")
+	return text
+

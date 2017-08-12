@@ -140,9 +140,9 @@ var/list/possible_cable_coil_colours = list(
 			user << "<span class='warning'>You must cut this cable from above.</span>"
 			return
 
-		if(breaker_box)
+	/*	if(breaker_box)
 			user << "\red This cable is connected to nearby breaker box. Use breaker box to interact with it."
-			return
+			return*/
 
 		if (shock(user, 50))
 			return

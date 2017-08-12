@@ -11,17 +11,17 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 	var/_wifi_id
-	var/datum/wifi/sender/wifi_sender
+//	var/datum/wifi/sender/wifi_sender
 
 /obj/machinery/button/initialize()
 	..()
 	update_icon()
-	if(_wifi_id && !wifi_sender)
+/*	if(_wifi_id && !wifi_sender)
 		wifi_sender = new/datum/wifi/sender/button(_wifi_id, src)
-
+*/
 /obj/machinery/button/Destroy()
-	qdel(wifi_sender)
-	wifi_sender = null
+//	qdel(wifi_sender)
+//	wifi_sender = null
 	return..()
 
 /obj/machinery/button/attack_ai(mob/user as mob)
@@ -36,14 +36,14 @@
 	activate(user)
 
 /obj/machinery/button/proc/activate(mob/living/user)
-	if(operating || !istype(wifi_sender))
+	if(operating /*|| !istype(wifi_sender)*/)
 		return
 
 	operating = 1
 	active = 1
 	use_power(5)
 	update_icon()
-	wifi_sender.activate(user)
+//	wifi_sender.activate(user)
 	sleep(10)
 	active = 0
 	update_icon()

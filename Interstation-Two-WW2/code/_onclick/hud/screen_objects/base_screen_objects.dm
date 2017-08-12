@@ -65,8 +65,6 @@
 			return*/
 
 		if("equip")
-			if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-				return 1
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				H.quick_equip()
@@ -337,8 +335,6 @@
 		return 1
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
 		return 1
-	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
 	if(master)
 		var/obj/item/I = usr.get_active_hand()
 		if(I)
@@ -366,17 +362,7 @@
 		return 1
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
 		return 1
-	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
 	switch(name)
-/*		if("r_hand")
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
-				C.activate_hand("r")
-		if("l_hand")
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
-				C.activate_hand("l")*/
 		if("hand")
 			usr:swap_hand()
 		else
@@ -420,20 +406,16 @@
 		if (parentmob:analgesic > 100)
 			icon_state = "health_numb"
 		else
-			switch(parentmob:hal_screwyhud)
-				if(1)	icon_state = "health6"
-				if(2)	icon_state = "health7"
-				else
-				//switch(health - halloss)
-					switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
-					//switch(100 - parentmob.traumatic_shock)
-						if(100 to INFINITY)		icon_state = "health0"
-						if(80 to 100)			icon_state = "health1"
-						if(60 to 80)			icon_state = "health2"
-						if(40 to 60)			icon_state = "health3"
-						if(20 to 40)			icon_state = "health4"
-						if(0 to 20)				icon_state = "health5"
-						else					icon_state = "health6"
+		//switch(health - halloss)
+			switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
+			//switch(100 - parentmob.traumatic_shock)
+				if(100 to INFINITY)		icon_state = "health0"
+				if(80 to 100)			icon_state = "health1"
+				if(60 to 80)			icon_state = "health2"
+				if(40 to 60)			icon_state = "health3"
+				if(20 to 40)			icon_state = "health4"
+				if(0 to 20)				icon_state = "health5"
+				else					icon_state = "health6"
 
 /obj/screen/health/Click()
 	if(ishuman(parentmob))
@@ -560,11 +542,7 @@
 	update_icon()
 
 /obj/screen/toxin/update_icon()
-	var/mob/living/carbon/human/H = parentmob
-	if(H.hal_screwyhud == 4 || H.plasma_alert)
-		icon_state = "tox1"
-	else
-		icon_state = "tox0"
+	icon_state = "tox0"
 //--------------------------------------------------toxin end---------------------------------------------------------
 
 //--------------------------------------------------oxygen---------------------------------------------------------
@@ -580,11 +558,7 @@
 	update_icon()
 
 /obj/screen/oxygen/update_icon()
-	var/mob/living/carbon/human/H = parentmob
-	if(H.hal_screwyhud == 3 || H.oxygen_alert)
-		icon_state = "oxy1"
-	else
-		icon_state = "oxy0"
+	icon_state = "oxy0"
 //--------------------------------------------------oxygen end---------------------------------------------------------
 
 //--------------------------------------------------fire---------------------------------------------------------
@@ -660,14 +634,6 @@
 					else
 						nicename = list("right hand", "left hand", "back")
 						tankcheck = list(C.r_hand, C.l_hand, C.back)
-
-					// Rigs are a fucking pain since they keep an air tank in nullspace.
-					if(istype(C.back,/obj/item/weapon/rig))
-						var/obj/item/weapon/rig/rig = C.back
-						if(rig.air_supply)
-							from = "in"
-							nicename |= "hardsuit"
-							tankcheck |= rig.air_supply
 
 					for(var/i=1, i<tankcheck.len+1, ++i)
 						if(istype(tankcheck[i], /obj/item/weapon/tank))
@@ -842,8 +808,6 @@
 	screen_loc = "8,2"
 
 /obj/screen/equip/Click()
-	if (istype(parentmob.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
 	if(ishuman(parentmob))
 		var/mob/living/carbon/human/H = parentmob
 		H.quick_equip()

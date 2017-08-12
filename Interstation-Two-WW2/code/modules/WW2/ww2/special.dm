@@ -18,11 +18,11 @@ var/secret_ladder_message = null
 
 		if(H.stat != DEAD && !H.restrained() && H.client)
 			switch(job.department_flag)
-				if(GEFORCE)
+				if("GERMAN")
 					en++
-				if(RUFORCE)
+				if("RUSSIAN")
 					ru++
-				if (CIVILIAN)
+				if ("PARTISAN")
 					en++ // SS
 
 	return list("en" = en, "ru" = ru)
@@ -157,7 +157,13 @@ var/wlg_selected_border_tree = 0
 			else
 				secret_ladder_message = "<span class = 'notice'><b>There is a secret ladder to the inside of the Soviet bunker somewhere in the forest. If you find it, you will gain a huge advantage over the enemy.</b></span>"
 
-			for(var/turf/simulated/floor/plating/grass/T in turfs)
+		// this is disabled because
+			// 1. there are trees on the map
+			// 2. fuck the game taking so long to start up
+			// - Kachnov
+
+		/*	for(var/turf/simulated/floor/plating/grass/T in grass_turf_list)
+
 				if(T.z != 1)
 					continue
 				if(!istype(T))
@@ -218,7 +224,7 @@ var/wlg_selected_border_tree = 0
 											/obj/structure/flora/ausbushes/sunnybush,
 											/obj/structure/flora/ausbushes/genericbush,
 											/obj/structure/flora/ausbushes/pointybush)
-							new bushes(T)
+							new bushes(T)*/
 	return 1
 
 var/mission_announced = 0
@@ -247,6 +253,6 @@ var/mission_announced = 0
 		spawn (10 MINUTES) // because byond minutes are a long fucking time, this should be long enough to build defenses. maybe. - Kachnov
 			if (mercy_period)
 				mercy_period = 0
-				world << "<font size=4>The 10 minute grace period has ended. Soveits and Partisans can now cross the river!</font>"
+				world << "<font size=4>The 10 minute grace period has ended. Soviets and Partisans may now cross the river.</font>"
 
 	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] Civilians/Partisans.</font>"

@@ -27,7 +27,7 @@
 			H.do_attack_animation(src)
 			return 0
 
-		if(istype(H.gloves, /obj/item/clothing/gloves/boxing/hologlove))
+	/*	if(istype(H.gloves, /obj/item/clothing/gloves/boxing/hologlove))
 			H.do_attack_animation(src)
 			var/damage = rand(0, 9)
 			if(!damage)
@@ -49,11 +49,11 @@
 				visible_message("\red <B>[H] has weakened [src]!</B>")
 				apply_effect(4, WEAKEN, armor_block)
 
-			return
-
+			return*/
+/*
 	if(istype(M,/mob/living/carbon))
 		M.spread_disease_to(src, "Contact")
-
+*/
 	switch(M.a_intent)
 		if(I_HELP)
 			if(istype(H) && health < config.health_threshold_crit && health > config.health_threshold_dead)
@@ -117,16 +117,16 @@
 			return 1
 
 		if(I_HURT)
-			if(M.targeted_organ == "mouth" && wear_mask && istype(wear_mask, /obj/item/weapon/grenade)) 
-				var/obj/item/weapon/grenade/G = wear_mask 
-				if(!G.active) 
-					visible_message("<span class='danger'>\The [M] pulls the pin from \the [src]'s [G.name]!</span>") 
-					G.activate(M) 
-					update_inv_wear_mask() 
-				else 
-					M << "<span class='warning'>\The [G] is already primed! Run!</span>" 
+			if(M.targeted_organ == "mouth" && wear_mask && istype(wear_mask, /obj/item/weapon/grenade))
+				var/obj/item/weapon/grenade/G = wear_mask
+				if(!G.active)
+					visible_message("<span class='danger'>\The [M] pulls the pin from \the [src]'s [G.name]!</span>")
+					G.activate(M)
+					update_inv_wear_mask()
+				else
+					M << "<span class='warning'>\The [G] is already primed! Run!</span>"
 				return
-			
+
 			if(!istype(H))
 				attack_generic(H,rand(1,3),"punched")
 				return

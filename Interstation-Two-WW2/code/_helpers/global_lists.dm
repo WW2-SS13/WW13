@@ -30,7 +30,7 @@ var/global/list/names_used = list() // map
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER)
 
 var/global/list/turfs = list()						//list of all turfs
-
+var/global/list/grass_turf_list = list() // list of all /turf/simulated/floor/plating/grass
 //Languages/species/whitelist.
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
@@ -64,7 +64,6 @@ var/global/list/exclude_jobs = list(/*/datum/job/ai,/datum/job/cyborg*/)
 
 // Visual nets
 var/list/datum/visualnet/visual_nets = list()
-var/datum/visualnet/camera/cameranet = new()
 var/datum/visualnet/cult/cultnet = new()
 
 //spawn

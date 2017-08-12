@@ -47,9 +47,9 @@
 	. += "</table>"
 
 /datum/category_item/player_setup_item/proc/banned_from_ghost_role(var/mob, var/datum/ghosttrap/ghost_trap)
-	for(var/ban_type in ghost_trap.ban_checks)
+/*	for(var/ban_type in ghost_trap.ban_checks)
 		if(jobban_isbanned(mob, ban_type))
-			return 1
+			return 1*/
 	return 0
 
 /datum/category_item/player_setup_item/antagonism/candidacy/OnTopic(var/href,var/list/href_list, var/mob/user)

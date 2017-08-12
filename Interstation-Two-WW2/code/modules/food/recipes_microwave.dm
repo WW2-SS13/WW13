@@ -75,41 +75,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/monkeyburger
 
-/datum/recipe/syntiburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/monkeyburger
-
-/datum/recipe/brainburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/organ/brain
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/brainburger
-
-/datum/recipe/roburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/robot_parts/head
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/roburger
-
-/datum/recipe/xenoburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/weapon/reagent_containers/food/snacks/xenomeat
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/xenoburger
-
-/datum/recipe/fishburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/weapon/reagent_containers/food/snacks/carpmeat
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/fishburger
-
 /datum/recipe/tofuburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
@@ -120,7 +85,6 @@ I said no!
 /datum/recipe/ghostburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/weapon/ectoplasm //where do you even find this stuff
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/ghostburger
 
@@ -537,20 +501,6 @@ I said no!
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/plump_pie
 
-/datum/recipe/spellburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/monkeyburger,
-		/obj/item/clothing/head/wizard/fake,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/spellburger
-
-/datum/recipe/spellburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/monkeyburger,
-		/obj/item/clothing/head/wizard,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/spellburger
-
 /datum/recipe/bigbiteburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/monkeyburger,
@@ -914,13 +864,13 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/stuffing,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tofurkey
-
+/*
 // Fuck Science!
 /datum/recipe/ruinedvirusdish
 	items = list(
 		/obj/item/weapon/virusdish
 	)
-	result = /obj/item/weapon/ruinedvirusdish
+	result = /obj/item/weapon/ruinedvirusdish*/
 
 //////////////////////////////////////////
 // bs12 food port stuff

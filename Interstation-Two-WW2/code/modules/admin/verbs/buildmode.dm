@@ -241,8 +241,8 @@
 				else if(istype(object,/obj))
 					qdel(object)
 					return
-			else if(istype(object,/turf) && pa.Find("alt") && pa.Find("left"))
-				new/obj/machinery/door/airlock(get_turf(object))
+		/*	else if(istype(object,/turf) && pa.Find("alt") && pa.Find("left"))
+				new/obj/machinery/door/airlock(get_turf(object))*/
 			else if(istype(object,/turf) && pa.Find("ctrl") && pa.Find("left"))
 				switch(holder.builddir.dir)
 					if(NORTH)

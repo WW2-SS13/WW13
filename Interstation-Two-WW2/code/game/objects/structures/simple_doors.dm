@@ -12,6 +12,8 @@
 	var/hardness = 1
 	var/oreAmount = 7
 
+	var/override_material_state = null
+
 /obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	TemperatureAct(exposed_temperature)
 
@@ -57,13 +59,6 @@
 		return TryToSwitchState(user)
 	return
 
-/obj/structure/simple_door/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
-	if(isAI(user)) //so the AI can't open it
-		return
-	else if(isrobot(user)) //but cyborgs can
-		if(get_dist(user,src) <= 1) //not remotely though
-			return TryToSwitchState(user)
-
 /obj/structure/simple_door/attack_hand(mob/user as mob)
 	return TryToSwitchState(user)
 
@@ -88,9 +83,6 @@
 					SwitchState()
 			else
 				SwitchState()
-	else if(istype(user, /obj/mecha))
-		SwitchState()
-
 	return 1
 
 
@@ -140,13 +132,7 @@
 		icon_state = material.door_icon_base
 
 /obj/structure/simple_door/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/pickaxe))
-		var/obj/item/weapon/pickaxe/digTool = W
-		user << "You start digging the [name]."
-		if(do_after(user,digTool.digspeed*hardness) && src)
-			user << "You finished digging."
-			Dismantle()
-	else if(istype(W,/obj/item/weapon)) //not sure, can't not just weapons get passed to this proc?
+	if(istype(W,/obj/item/weapon)) //not sure, can't not just weapons get passed to this proc?
 		hardness -= W.force/100
 		user << "You hit the [name] with your [W.name]!"
 		CheckHardness()

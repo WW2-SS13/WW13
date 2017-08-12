@@ -46,9 +46,6 @@
 		if (istype(W,/turf/simulated/floor))
 			W.RemoveLattice()
 
-		if(tell_universe)
-			universe.OnTurfChange(W)
-
 		if(air_master)
 			air_master.mark_for_update(src) //handle the addition of the new turf.
 /*
@@ -64,9 +61,6 @@
 
 		if(old_fire)
 			old_fire.RemoveFire()
-
-		if(tell_universe)
-			universe.OnTurfChange(W)
 
 		if(air_master)
 			air_master.mark_for_update(src)

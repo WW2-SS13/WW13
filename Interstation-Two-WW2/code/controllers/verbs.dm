@@ -8,9 +8,6 @@
 	if(!holder)	return
 	usr = null
 	src = null
-	switch(controller)
-		if("Supply")
-			supply_controller.process()
 
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
 	return

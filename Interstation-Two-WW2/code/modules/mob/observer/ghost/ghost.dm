@@ -90,10 +90,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 				ManualFollow(target)
 
 /mob/observer/ghost/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/weapon/book/tome))
-		var/mob/observer/ghost/M = src
-		M.manifest(user)
-
+	return 0
 /*
 Transfer_mind is there to check if mob is being deleted/not going to have a body.
 Works together with spawning an observer, noted above.
@@ -130,8 +127,8 @@ Works together with spawning an observer, noted above.
 	var/client/C = U.client
 	for(var/mob/living/carbon/human/target in target_list)
 		C.images += target.hud_list[SPECIALROLE_HUD]
-	for(var/mob/living/silicon/target in target_list)
-		C.images += target.hud_list[SPECIALROLE_HUD]
+/*	for(var/mob/living/silicon/target in target_list)
+		C.images += target.hud_list[SPECIALROLE_HUD]*/
 	return 1
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
@@ -186,14 +183,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/can_use_hands()	return 0
 /mob/observer/ghost/is_active()		return 0
 
-/mob/observer/ghost/Stat()
-	..()
-	if(statpanel("Status"))
-		if(emergency_shuttle)
-			var/eta_status = emergency_shuttle.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
-
 /mob/observer/ghost/verb/reenter_corpse()
 	set category = "Ghost"
 	set name = "Re-enter Corpse"
@@ -204,15 +193,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
 		usr << "<span class='warning'>Another consciousness is in your body... it is resisting you.</span>"
 		return
-	if(mind.current.ajourn && mind.current.stat != DEAD) //check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
-		var/found_rune
-		for(var/obj/effect/rune/R in mind.current.loc)   //whilst corpse is alive, we can only reenter the body if it's on the rune
-			if(R && R.word1 == cultwords["hell"] && R.word2 == cultwords["travel"] && R.word3 == cultwords["self"]) // Found an astral journey rune.
-				found_rune = 1
-				break
-		if(!found_rune)
-			usr << "<span class='warning'>The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you.</span>"
-			return
 	stop_following()
 	mind.current.ajourn=0
 	mind.current.key = key
@@ -279,7 +259,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/list/L = list()
 	var/holyblock = 0
 
-	if(usr.invisibility <= SEE_INVISIBLE_LIVING || (usr.mind in cult.current_antagonists))
+	if(usr.invisibility <= SEE_INVISIBLE_LIVING)
 		for(var/turf/T in get_area_turfs(thearea.type))
 			if(!T.holy)
 				L+=T
@@ -321,6 +301,25 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Follow a German"
 	set desc = "Follow and haunt a living german."
+
+	var/target = input // not a map
+	if(!target) return
+	ManualFollow(target)
+
+
+/mob/observer/ghost/verb/follow_paratroopers(input in getfitmobs("PARATROOPERS"))
+	set category = "Ghost"
+	set name = "Follow a Paratrooper"
+	set desc = "Follow and haunt a living Paratrooper."
+
+	var/target = input // not a map
+	if(!target) return
+	ManualFollow(target)
+
+/mob/observer/ghost/verb/follow_ss(input in getfitmobs("SS"))
+	set category = "Ghost"
+	set name = "Follow a SS soldier"
+	set desc = "Follow and haunt a living SS soldier."
 
 	var/target = input // not a map
 	if(!target) return
@@ -394,7 +393,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/check_holy(var/turf/T)
 	if(check_rights(R_ADMIN|R_FUN, 0, src))
 		return 0
-	return (T && T.holy) && (invisibility <= SEE_INVISIBLE_LIVING || (mind in cult.current_antagonists))
+	return 0
 
 /mob/observer/ghost/verb/jumptomob(target in getmobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
@@ -470,7 +469,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/verb/become_mouse()
 	set name = "Become mouse"
 	set category = "Ghost"
-
+	return 0
+/*
 	if(config.disable_player_mice)
 		src << "<span class='warning'>Spawning as a mouse is currently disabled.</span>"
 		return
@@ -506,7 +506,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		announce_ghost_joinleave(src, 0, "They are now a mouse.")
 		host.ckey = src.ckey
 		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
-
+*/
 /mob/observer/ghost/verb/view_manfiest()
 	set name = "Show Crew Manifest"
 	set category = "Ghost"
@@ -527,9 +527,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			return
 		// Otherwise, see if we can possess the target.
 		if(usr == src && try_possession(M))
-			return
-	if(istype(over, /obj/machinery/drone_fabricator))
-		if(try_drone_spawn(src, over))
 			return
 
 	return ..()

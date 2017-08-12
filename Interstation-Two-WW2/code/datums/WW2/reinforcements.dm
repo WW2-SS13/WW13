@@ -81,7 +81,6 @@ var/datum/reinforcements/reinforcements_master
 		reinforcement_spawn_req = initial(reinforcement_spawn_req)
 		world << "<span class = 'danger'>Due to there being more than 20 players, reinforcements now require 3 people to fill a queue.</span>"
 
-
 	spawn while (1)
 
 		if (reinforcement_pool["RUSSIAN"] && reinforcement_pool["GERMAN"])

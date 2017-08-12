@@ -113,87 +113,52 @@
 	set category = "WW2"
 	set name = "Show battle report"
 
-	var/alive_en = 0
-	var/alive_ru = 0
-	var/alive_ss = 0
+	var/total_germans = alive_germans.len + dead_germans.len + heavily_injured_germans.len
+	var/total_russians = alive_russians.len + dead_russians.len + heavily_injured_russians.len
+	var/total_civilians = alive_civilians.len + dead_civilians.len + heavily_injured_civilians.len
+	var/total_partisans = alive_partisans.len + dead_partisans.len + heavily_injured_partisans.len
 
-	var/heavily_injured_en = 0
-	var/heavily_injured_ru = 0
-	var/heavily_injured_ss = 0
+	var/mortality_coefficient_german = 0
+	var/mortality_coefficient_russian = 0
+	var/mortality_coefficient_civilian = 0
+	var/mortality_coefficient_partisan = 0
 
-	var/dead_en = 0
-	var/dead_ru = 0
-	var/dead_ss = 0
+	if (dead_germans.len > 0)
+		mortality_coefficient_german = dead_germans.len/total_germans
 
-	for(var/mob/living/carbon/human/H in human_mob_list)
-		var/datum/job/job = H.original_job
-		if(!job)
-			continue
+	if (dead_russians.len > 0)
+		mortality_coefficient_russian = dead_russians.len/total_russians
 
-		if(H.stat == DEAD)
-			switch(job.department_flag)
-				if(GEFORCE)
-					dead_en++
-				if(RUFORCE)
-					dead_ru++
-				if (CIVILIAN)
-					dead_ss++
+	if (dead_civilians.len > 0)
+		mortality_coefficient_civilian = dead_civilians.len/total_civilians
 
-		else if(H.health <= 0)
-			switch(job.department_flag)
-				if(GEFORCE)
-					heavily_injured_en++
-				if(RUFORCE)
-					heavily_injured_ru++
-				if (CIVILIAN)
-					heavily_injured_ss++
+	if (dead_partisans.len > 0)
+		mortality_coefficient_partisan = dead_partisans.len/total_partisans
 
-		else
-			switch(job.department_flag)
-				if(GEFORCE)
-					alive_en++
-				if(RUFORCE)
-					alive_ru++
-				if(CIVILIAN)
-					alive_ss++
+	var/mortality_german = round(mortality_coefficient_german*100)
+	var/mortality_russian = round(mortality_coefficient_russian*100)
+	var/mortality_civilian = round(mortality_coefficient_civilian*100)
+	var/mortality_partisan = round(mortality_coefficient_partisan*100)
 
-	var/total_en = alive_en + dead_en + heavily_injured_en
-	var/total_ru = alive_ru + dead_ru + heavily_injured_ru
-	var/total_ss = alive_ss + dead_ss + heavily_injured_ss
-
-	var/mortality_coefficient_en = 0
-	var/mortality_coefficient_ru = 0
-	var/mortality_coefficient_ss = 0
-
-	if (dead_en > 0)
-		mortality_coefficient_en = dead_en/(alive_en+heavily_injured_en+dead_en)
-	else if (!total_en || !(alive_en+heavily_injured_en))
-		mortality_coefficient_en = 1.0
-	if (dead_ru > 0)
-		mortality_coefficient_ru = dead_ru/(alive_ru+heavily_injured_ru+dead_ru)
-	else if (!total_ru || !(alive_ru+heavily_injured_ru))
-		mortality_coefficient_ru = 1.0
-	if (dead_ss > 0)
-		mortality_coefficient_ss = dead_ss/(alive_ss+heavily_injured_ss+dead_ss)
-	else if (!total_ss || !(alive_ss+heavily_injured_ss))
-		mortality_coefficient_ss = 1.0
-
-	var/mortality_en = round(mortality_coefficient_en*100)
-	var/mortality_ru = round(mortality_coefficient_ru*100)
-	var/mortality_ss = round(mortality_coefficient_ss*100)
-
-	usr << "German Side: [alive_en] alive, [heavily_injured_en] heavily injured, and [dead_en] deceased. Mortality rate: [mortality_en]%"
-	usr << "Russian Side: [alive_ru] alive, [heavily_injured_ru] heavily injured, and [dead_ru] deceased. Mortality rate: [mortality_ru]%"
-	usr << "Civilians: [alive_ss], [heavily_injured_ss] heavily injured, and [dead_ss] deceased. Mortality rate: [mortality_ss]%"
+	var/msg1 = "German Side: [alive_germans.len] alive, [heavily_injured_germans.len] heavily injured or unconscious, and [dead_germans.len] deceased. Mortality rate: [mortality_german]%"
+	var/msg2 = "Soviet Side: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, and [dead_russians.len] deceased. Mortality rate: [mortality_russian]%"
+	var/msg3 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, and [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
+	var/msg4 = "German Side: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, and [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
 
 	var/public = alert(usr, "Show it to the entire server?",,"Yes", "No")
 
 	if(public == "Yes")
 		world << "<font size=4>Battle status report:</font>"
-		world << "<font size=3>German Side: [alive_en] alive, [heavily_injured_en] heavily injured, and [dead_en] deceased. Mortality rate: [mortality_en]%</font>"
-		world << "<font size=3>Russian Side: [alive_ru] alive, [heavily_injured_ru] heavily injured, and [dead_ru] deceased. Mortality rate: [mortality_ru]%</font>"
-		world << "<font size=3>Civilians: [alive_ss] alive, [heavily_injured_ss] heavily injured, and [dead_ss] deceased. Mortality rate: [mortality_ss]%</font>"
+		world << "<font size=3>[msg1]</font>"
+		world << "<font size=3>[msg2]</font>"
+		world << "<font size=3>[msg3]</font>"
+		world << "<font size=3>[msg4]</font>"
 		message_admins("[key_name(src)] showed everyone the battle report.")
+	else
+		usr << msg1
+		usr << msg2
+		usr << msg3
+		usr << msg4
 
 /client/proc/generate_hit_table()
 	set category = "WW2"
@@ -392,3 +357,73 @@
 
 		src << "You sent '[msg]' to the SS."
 		message_admins("[key_name(src)] sent '[msg]' to the SS")
+
+
+/client/proc/message_paratroopers()
+	set category = "WW2"
+	set name = "Messages Paratroopers"
+
+	var/msg = input(usr, "Send what?", "Message Paratroopers") as text
+
+	var/ick_ock = input(usr, "Make this an IC message?", "Message Paratroopers") in list("Yes", "No")
+
+	if (ick_ock == "Yes")
+		ick_ock = 1
+	else
+		ick_ock = 0
+
+	if (msg)
+		for (var/mob/living/carbon/human/H in player_list)
+			if (istype(H) && H.client)
+				if (H.original_job && H.original_job.team == "GERMAN" && istype(H.original_job, /datum/job/german/fallschirm))
+					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE PARATROOPER SQUAD:</b>" : "<b>MESSAGE TO THE PARATROOPER SQUAD FROM ADMINS:</b>"
+					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+
+		src << "You sent '[msg]' to the paratroopers."
+		message_admins("[key_name(src)] sent '[msg]' to the paratroopers")
+
+/client/proc/message_civilians()
+	set category = "WW2"
+	set name = "Message Civilians"
+
+	var/msg = input(usr, "Send what? Note that this messages Partisans too!", "Message Civilians") as text
+
+	var/ick_ock = input(usr, "Make this an IC message?", "Message Civilians") in list("Yes", "No")
+
+	if (ick_ock == "Yes")
+		ick_ock = 1
+	else
+		ick_ock = 0
+
+	if (msg)
+		for (var/mob/living/carbon/human/H in player_list)
+			if (istype(H) && H.client)
+				if (H.original_job && (H.original_job.team == "CIVILIAN" || H.original_job.team == "PARTISAN"))
+					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM ???? to Civilians:</b>" : "<b>MESSAGE TO THE CIVILIANS FROM ADMINS:</b>"
+					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+
+		src << "You sent '[msg]' to all Civilians."
+		message_admins("[key_name(src)] sent '[msg]' to all Civilians")
+
+/client/proc/message_partisans()
+	set category = "WW2"
+	set name = "Message Partisans"
+
+	var/msg = input(usr, "Send what?", "Message Partisans") as text
+
+	var/ick_ock = input(usr, "Make this an IC message?", "Message Partisans") in list("Yes", "No")
+
+	if (ick_ock == "Yes")
+		ick_ock = 1
+	else
+		ick_ock = 0
+
+	if (msg)
+		for (var/mob/living/carbon/human/H in player_list)
+			if (istype(H) && H.client)
+				if (H.original_job || H.original_job.team == "PARTISAN")
+					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE UKRAINIAN PARTISAN COMMAND TO PARTISANS:</b>" : "<b>MESSAGE TO PARTISANS FROM ADMINS:</b>"
+					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+
+		src << "You sent '[msg]' to all Partisans."
+		message_admins("[key_name(src)] sent '[msg]' to all Partisans")

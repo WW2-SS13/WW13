@@ -140,8 +140,6 @@ datum/track/New(var/title_name, var/audio)
 		// open the new ui window
 		ui.open()
 
-/obj/machinery/media/jukebox/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
 
 /obj/machinery/media/jukebox/attack_hand(var/mob/user as mob)
 	interact(user)

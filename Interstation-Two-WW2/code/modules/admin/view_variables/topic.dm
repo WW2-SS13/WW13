@@ -63,17 +63,6 @@
 		src.holder.show_player_panel(M)
 		href_list["datumrefresh"] = href_list["mob_player_panel"]
 
-	else if(href_list["give_spell"])
-		if(!check_rights(R_ADMIN|R_FUN))	return
-
-		var/mob/M = locate(href_list["give_spell"])
-		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
-			return
-
-		src.give_spell(M)
-		href_list["datumrefresh"] = href_list["give_spell"]
-
 	else if(href_list["give_disease2"])
 		if(!check_rights(R_ADMIN|R_FUN))	return
 
@@ -376,10 +365,6 @@
 		switch(H.type)
 			if(/mob/living/carbon/human)
 				possibleverbs += typesof(/mob/living/carbon/proc,/mob/living/carbon/verb,/mob/living/carbon/human/verb,/mob/living/carbon/human/proc)
-			if(/mob/living/silicon/robot)
-				possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/robot/proc,/mob/living/silicon/robot/verb)
-			if(/mob/living/silicon/ai)
-				possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/ai/proc,/mob/living/silicon/ai/verb)
 		possibleverbs -= H.verbs
 		possibleverbs += "Cancel" 								// ...And one for the bottom
 

@@ -102,13 +102,7 @@ var/list/global/wall_cache = list()
 /turf/simulated/wall/proc/clear_plants()
 	for(var/obj/effect/overlay/wallrot/WR in src)
 		qdel(WR)
-	for(var/obj/effect/plant/plant in range(src, 1))
-		if(!plant.floor) //shrooms drop to the floor
-			plant.floor = 1
-			plant.update_icon()
-			plant.pixel_x = 0
-			plant.pixel_y = 0
-		plant.update_neighbors()
+	return
 
 /turf/simulated/wall/ChangeTurf(var/newtype)
 	clear_plants()
@@ -276,5 +270,3 @@ var/list/global/wall_cache = list()
 			src.ChangeTurf(/turf/simulated/floor)
 			for(var/turf/simulated/wall/W in range(3,src))
 				W.burn((temperature/4))
-			for(var/obj/machinery/door/airlock/plasma/D in range(3,src))
-				D.ignite(temperature/4)

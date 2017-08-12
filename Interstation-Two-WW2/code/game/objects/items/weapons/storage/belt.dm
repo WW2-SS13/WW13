@@ -44,13 +44,11 @@
 		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
 		/obj/item/stack/cable_coil,
-		/obj/item/device/t_scanner,
-		/obj/item/device/analyzer,
-		/obj/item/taperoll/engineering,
-		/obj/item/device/robotanalyzer,
+	//	/obj/item/device/analyzer,
+//		/obj/item/taperoll/engineering,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
-		/obj/item/device/analyzer/plant_analyzer,
+//		/obj/item/device/analyzer/plant_analyzer,
 		/obj/item/weapon/extinguisher/mini
 		)
 
@@ -72,9 +70,6 @@
 	new /obj/item/weapon/weldingtool(src)
 	new /obj/item/weapon/crowbar(src)
 	new /obj/item/weapon/wirecutters(src)
-	new /obj/item/device/t_scanner(src)
-
-
 
 /obj/item/weapon/storage/belt/medical
 	name = "medical belt"
@@ -82,15 +77,14 @@
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
-		/obj/item/device/healthanalyzer,
-		/obj/item/weapon/dnainjector,
+	//	/obj/item/device/healthanalyzer,
+	//	/obj/item/weapon/dnainjector,
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/reagent_containers/glass/beaker,
 		/obj/item/weapon/reagent_containers/glass/bottle,
 		/obj/item/weapon/reagent_containers/pill,
 		/obj/item/weapon/reagent_containers/syringe,
 		/obj/item/weapon/flame/lighter/zippo,
-		/obj/item/weapon/storage/fancy/cigarettes,
 		/obj/item/weapon/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/device/flashlight/pen,
@@ -119,7 +113,6 @@
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/reagent_containers/spray/pepper,
 		/obj/item/weapon/handcuffs,
-		/obj/item/device/flash,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_magazine,
@@ -129,34 +122,13 @@
 		/obj/item/weapon/flame/lighter,
 		/obj/item/clothing/glasses/hud/security,
 		/obj/item/device/flashlight,
-		/obj/item/device/pda,
 		/obj/item/device/radio/headset,
 		/obj/item/device/hailer,
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
 		/obj/item/weapon/gun/projectile/sec,
-		/obj/item/taperoll/police
+	//	/obj/item/taperoll/police
 		)
-
-/obj/item/weapon/storage/belt/soulstone
-	name = "soul stone belt"
-	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away"
-	icon_state = "soulstonebelt"
-	item_state = "soulstonebelt"
-	storage_slots = 6
-	can_hold = list(
-		/obj/item/device/soulstone
-		)
-
-/obj/item/weapon/storage/belt/soulstone/full/New()
-	..()
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-
 
 /obj/item/weapon/storage/belt/champion
 	name = "championship belt"

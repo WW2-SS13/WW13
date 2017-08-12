@@ -1,5 +1,17 @@
 // uses /area/prishtina/field
 
+/area/prishtina
+	atmos = 0
+	atmosalm = 0
+	poweralm = 0
+	requires_power = 0
+	has_gravity = 1
+	no_air = 0
+	ambience = list()
+	forced_ambience = null
+	base_turf = /turf/simulated/floor/plating/grass //The base turf type of the area, which can be used to override the z-level's base turf
+	sound_env = STANDARD_STATION
+
 /area/prishtina/New()
 	..()
 	if (istype(src, /area/prishtina/german) && !istype(src, /area/prishtina/german/ss_torture_room))
@@ -13,9 +25,67 @@
 	else
 		name = "(Civilian) [name]"
 
+// base area
+
+/area/prishtina/field
+
+// admin zone
+
 /area/prishtina/admin
 	icon_state = "yellow"
 	name = "Admin Zone"
+
+// houses in No Man's Land
+
+/area/prishtina/houses
+	name = "\improper Houses"
+	icon_state = "houses"
+
+/area/prishtina/houses/nml_one
+/area/prishtina/houses/nml_two
+/area/prishtina/houses/nml_three
+/area/prishtina/houses/nml_four
+/area/prishtina/houses/nml_five
+/area/prishtina/houses/nml_six
+/area/prishtina/houses/nml_seven
+/area/prishtina/houses/nml_eight
+/area/prishtina/houses/nml_nine
+/area/prishtina/houses/nml_ten
+/area/prishtina/houses/nml_eleven
+/area/prishtina/houses/nml_twelve
+/area/prishtina/houses/nml_thirteen
+/area/prishtina/houses/nml_fourteen
+
+/area/prishtina/houses/sov_one
+/area/prishtina/houses/sov_two
+/area/prishtina/houses/sov_three
+/area/prishtina/houses/sov_four
+/area/prishtina/houses/sov_five
+/area/prishtina/houses/sov_six
+/area/prishtina/houses/sov_seven
+/area/prishtina/houses/sov_eight
+/area/prishtina/houses/sov_nine
+/area/prishtina/houses/sov_ten
+/area/prishtina/houses/sov_eleven
+/area/prishtina/houses/sov_twelve
+/area/prishtina/houses/sov_thirteen
+/area/prishtina/houses/sov_fourteen
+
+/area/prishtina/houses/ger_one
+/area/prishtina/houses/ger_two
+/area/prishtina/houses/ger_three
+/area/prishtina/houses/ger_four
+/area/prishtina/houses/ger_five
+/area/prishtina/houses/ger_six
+/area/prishtina/houses/ger_seven
+/area/prishtina/houses/ger_eight
+/area/prishtina/houses/ger_nine
+/area/prishtina/houses/ger_ten
+/area/prishtina/houses/ger_eleven
+/area/prishtina/houses/ger_twelve
+/area/prishtina/houses/ger_thirteen
+/area/prishtina/houses/ger_fourteen
+
 
 // "wormhole" areas: doesn't include trains since they don't get their area copied
 
@@ -87,6 +157,13 @@
 /area/prishtina/german/main_area
 	name = "German Base"
 	icon_state = "red2"
+	dynamic_lighting = 0
+
+/area/prishtina/german/outside
+
+/area/prishtina/german/gas_chamber
+	name = "German Gas Chamber"
+	icon_state = "blue-red"
 	dynamic_lighting = 0
 
 /area/prishtina/german/train_zone
@@ -314,3 +391,32 @@
 	icon_state = "blue-red2"
 	name = "Brig Cell #2"
 
+// areas for example train cars
+
+/area/prishtina/train // nothing here yet, but I feel like I will need it later - Kachnov
+
+/area/prishtina/train/german
+
+/area/prishtina/train/german/cabin
+
+/area/prishtina/train/german/cabin/officer // fanciest cabin. Also, nobody has to walk through your room since it's in the back.
+
+/area/prishtina/train/german/cabin/storage // crates
+
+/area/prishtina/train/german/cabin/storage/horizontal // crates
+
+/area/prishtina/train/german/cabin/soldier // personnel
+
+/area/prishtina/train/german/cabin/conductor // where the conductor drives the train
+
+/area/prishtina/train/russian
+
+/area/prishtina/train/russian/cabin
+
+/area/prishtina/train/russian/cabin/officer // fanciest cabin. Also, nobody has to walk through your room since it's in the back.
+
+/area/prishtina/train/russian/cabin/storage // crates
+
+/area/prishtina/train/russian/cabin/soldier // personnel
+
+/area/prishtina/train/russian/cabin/conductor // where the conductor drives the train

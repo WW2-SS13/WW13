@@ -137,7 +137,7 @@
 				if(istype(target, /obj/item/weapon/implantcase/chem))
 					return
 
-				if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/slime_extract) && !istype(target, /obj/item/clothing/mask/smokable/cigarette) && !istype(target, /obj/item/weapon/storage/fancy/cigarettes))
+				if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/slime_extract) && !istype(target, /obj/item/clothing/mask/smokable/cigarette))
 					user << "<span class='notice'>You cannot directly fill this object.</span>"
 					return
 				if(!target.reagents.get_free_space())
@@ -160,9 +160,7 @@
 
 					if(istype(H))
 						if(H.wear_suit)
-							if(istype(H.wear_suit, /obj/item/clothing/suit/space))
-								injtime = injtime * 2
-							else if(!H.can_inject(user, 1))
+							if(!H.can_inject(user, 1))
 								return
 
 					else if(isliving(target))

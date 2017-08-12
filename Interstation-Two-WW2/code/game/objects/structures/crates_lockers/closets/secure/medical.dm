@@ -90,8 +90,7 @@
 		new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 		new /obj/item/clothing/shoes/color/white(src)
 //		new /obj/item/weapon/cartridge/medical(src)
-		new /obj/item/device/radio/headset/headset_med(src)
-		new /obj/item/taperoll/medical(src)
+//		new /obj/item/taperoll/medical(src)
 		new /obj/item/weapon/storage/belt/medical/emt(src)
 		return
 
@@ -128,28 +127,13 @@
 				new /obj/item/clothing/head/surgery/purple(src)
 		new /obj/item/clothing/under/rank/chief_medical_officer(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat/cmo(src)
-		new /obj/item/weapon/cartridge/cmo(src)
+//		new /obj/item/weapon/cartridge/cmo(src)
 		new /obj/item/clothing/gloves/latex(src)
 		new /obj/item/clothing/shoes/color/brown	(src)
-		new /obj/item/device/radio/headset/heads/cmo(src)
-		new /obj/item/device/flash(src)
+//		new /obj/item/device/radio/headset/heads/cmo(src)
 		new /obj/item/weapon/reagent_containers/hypospray(src)
 		return
 
-
-
-/obj/structure/closet/secure_closet/animal
-	name = "animal control closet"
-	req_access = list(access_surgery)
-
-
-	New()
-		..()
-		new /obj/item/device/assembly/signaler(src)
-		new /obj/item/device/radio/electropack(src)
-		new /obj/item/device/radio/electropack(src)
-		new /obj/item/device/radio/electropack(src)
-		return
 
 
 

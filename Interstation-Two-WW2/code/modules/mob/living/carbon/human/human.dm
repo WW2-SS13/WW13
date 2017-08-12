@@ -72,11 +72,6 @@
 	if(statpanel("Status"))
 		stat("Intent:", "[a_intent]")
 		stat("Move Mode:", "[m_intent]")
-		if(emergency_shuttle)
-			var/eta_status = emergency_shuttle.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
-
 		if (internal)
 			if (!internal.air_contents)
 				qdel(internal)
@@ -84,22 +79,6 @@
 				stat("Internal Atmosphere Info", internal.name)
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
-
-		var/obj/item/organ/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
-		if(P)
-			stat(null, "Plasma Stored: [P.stored_plasma]/[P.max_plasma]")
-
-		if(back && istype(back,/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/suit = back
-			var/cell_status = "ERROR"
-			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
-			stat(null, "Suit charge: [cell_status]")
-
-		if(mind)
-			if(mind.changeling)
-				stat("Chemical Storage", mind.changeling.chem_charges)
-				stat("Genetic Damage Time", mind.changeling.geneticdamage)
-
 		if (time_of_day)
 			stat("Time of Day: ", time_of_day)
 
@@ -232,7 +211,7 @@
 		dat += "<BR><b>Right hand:</b> <A href='?src=\ref[src];item=[slot_r_hand]'>[istype(r_hand) ? r_hand : "nothing"]</A>"
 
 	// Do they get an option to set internals?
-	if(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space))
+	if(istype(wear_mask, /obj/item/clothing/mask))
 		if(istype(back, /obj/item/weapon/tank) || istype(belt, /obj/item/weapon/tank) || istype(s_store, /obj/item/weapon/tank))
 			dat += "<BR><A href='?src=\ref[src];item=internals'>Toggle internals.</A>"
 
@@ -255,48 +234,15 @@
 	onclose(user, "mob[name]")
 	return
 
-// called when something steps onto a human
-// this handles mulebots and vehicles
-/mob/living/carbon/human/Crossed(var/atom/movable/AM)
-	if(istype(AM, /obj/machinery/bot/mulebot))
-		var/obj/machinery/bot/mulebot/MB = AM
-		MB.RunOver(src)
-
-	if(istype(AM, /obj/vehicle))
-		var/obj/vehicle/V = AM
-		V.RunOver(src)
-
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/device/pda/pda = wear_id
-	if (istype(pda))
-		if (pda.id)
-			return pda.id.rank
-		else
-			return pda.ownrank
-	else
-		var/obj/item/weapon/card/id/id = get_idcard()
-		if(id)
-			return id.rank ? id.rank : if_no_job
-		else
-			return if_no_id
+	return if_no_id
 
 
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(var/if_no_id = "Unknown")
-	var/obj/item/device/pda/pda = wear_id
-	if (istype(pda))
-		if (pda.id)
-			return pda.id.registered_name
-		else
-			return pda.owner
-	else
-		var/obj/item/weapon/card/id/id = get_idcard()
-		if(id)
-			return id.registered_name
-		else
-			return if_no_id
+	return if_no_id
 
 //Trust me I'm an engineer
 //I think we'll put this shit right here
@@ -339,26 +285,9 @@ var/list/rank_prefix = list(\
 //gets name from ID or PDA itself, ID inside PDA doesn't matter
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(var/if_no_id = "Unknown")
-	. = if_no_id
-	if(istype(wear_id,/obj/item/device/pda))
-		var/obj/item/device/pda/P = wear_id
-		return P.owner
-	if(wear_id)
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
-		if(I)
-			return I.registered_name
-	return
+	return if_no_id
 
 /mob/living/carbon/human/proc/get_id_rank()
-	var/rank
-	if(istype(wear_id,/obj/item/device/pda))
-		var/obj/item/device/pda/P = wear_id
-		rank = P.ownjob
-	else if(wear_id && istype(wear_id, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
-		rank = I.rank
-	if(rank_prefix[rank])
-		return rank_prefix[rank]
 	return ""
 
 //gets ID card object from special clothes slot or null.
@@ -393,263 +322,6 @@ var/list/rank_prefix = list(\
 
 	if(href_list["item"])
 		handle_strip(href_list["item"],usr)
-
-	if (href_list["criminal"])
-		if(hasHUD(usr,"security"))
-
-			var/modified = 0
-			var/perpname = "wot"
-			if(wear_id)
-				var/obj/item/weapon/card/id/I = wear_id.GetID()
-				if(I)
-					perpname = I.registered_name
-				else
-					perpname = name
-			else
-				perpname = name
-
-			if(perpname)
-				for (var/datum/data/record/E in data_core.general)
-					if (E.fields["name"] == perpname)
-						for (var/datum/data/record/R in data_core.security)
-							if (R.fields["id"] == E.fields["id"])
-
-								var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Parolled", "Released", "Cancel")
-
-								if(hasHUD(usr, "security"))
-									if(setcriminal != "Cancel")
-										R.fields["criminal"] = setcriminal
-										modified = 1
-
-										spawn()
-											BITSET(hud_updateflag, WANTED_HUD)
-											if(istype(usr,/mob/living/carbon/human))
-												var/mob/living/carbon/human/U = usr
-												U.handle_regular_hud_updates()
-											if(istype(usr,/mob/living/silicon/robot))
-												var/mob/living/silicon/robot/U = usr
-												U.handle_regular_hud_updates()
-
-			if(!modified)
-				usr << "\red Unable to locate a data core entry for this person."
-
-	if (href_list["secrecord"])
-		if(hasHUD(usr,"security"))
-			var/perpname = "wot"
-			var/read = 0
-
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"security"))
-								usr << "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]"
-								usr << "<b>Minor Crimes:</b> [R.fields["mi_crim"]]"
-								usr << "<b>Details:</b> [R.fields["mi_crim_d"]]"
-								usr << "<b>Major Crimes:</b> [R.fields["ma_crim"]]"
-								usr << "<b>Details:</b> [R.fields["ma_crim_d"]]"
-								usr << "<b>Notes:</b> [R.fields["notes"]]"
-								usr << "<a href='?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>"
-								read = 1
-
-			if(!read)
-				usr << "\red Unable to locate a data core entry for this person."
-
-	if (href_list["secrecordComment"])
-		if(hasHUD(usr,"security"))
-			var/perpname = "wot"
-			var/read = 0
-
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"security"))
-								read = 1
-								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
-									usr << text("[]", R.fields[text("com_[]", counter)])
-									counter++
-								if (counter == 1)
-									usr << "No comment found"
-								usr << "<a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>"
-
-			if(!read)
-				usr << "\red Unable to locate a data core entry for this person."
-
-	if (href_list["secrecordadd"])
-		if(hasHUD(usr,"security"))
-			var/perpname = "wot"
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"security"))
-								var/t1 = sanitize(input("Add Comment:", "Sec. records", null, null)  as message)
-								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"security")) )
-									return
-								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
-									counter++
-								if(istype(usr,/mob/living/carbon/human))
-									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
-								if(istype(usr,/mob/living/silicon/robot))
-									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
-
-	if (href_list["medical"])
-		if(hasHUD(usr,"medical"))
-			var/perpname = "wot"
-			var/modified = 0
-
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
-			else
-				perpname = src.name
-
-			for (var/datum/data/record/E in data_core.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.general)
-						if (R.fields["id"] == E.fields["id"])
-
-							var/setmedical = input(usr, "Specify a new medical status for this person.", "Medical HUD", R.fields["p_stat"]) in list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled", "Cancel")
-
-							if(hasHUD(usr,"medical"))
-								if(setmedical != "Cancel")
-									R.fields["p_stat"] = setmedical
-									modified = 1
-									if(PDA_Manifest.len)
-										PDA_Manifest.Cut()
-
-									spawn()
-										if(istype(usr,/mob/living/carbon/human))
-											var/mob/living/carbon/human/U = usr
-											U.handle_regular_hud_updates()
-										if(istype(usr,/mob/living/silicon/robot))
-											var/mob/living/silicon/robot/U = usr
-											U.handle_regular_hud_updates()
-
-			if(!modified)
-				usr << "\red Unable to locate a data core entry for this person."
-
-	if (href_list["medrecord"])
-		if(hasHUD(usr,"medical"))
-			var/perpname = "wot"
-			var/read = 0
-
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.medical)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"medical"))
-								usr << "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]"
-								usr << "<b>DNA:</b> [R.fields["b_dna"]]"
-								usr << "<b>Minor Disabilities:</b> [R.fields["mi_dis"]]"
-								usr << "<b>Details:</b> [R.fields["mi_dis_d"]]"
-								usr << "<b>Major Disabilities:</b> [R.fields["ma_dis"]]"
-								usr << "<b>Details:</b> [R.fields["ma_dis_d"]]"
-								usr << "<b>Notes:</b> [R.fields["notes"]]"
-								usr << "<a href='?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>"
-								read = 1
-
-			if(!read)
-				usr << "\red Unable to locate a data core entry for this person."
-
-	if (href_list["medrecordComment"])
-		if(hasHUD(usr,"medical"))
-			var/perpname = "wot"
-			var/read = 0
-
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.medical)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"medical"))
-								read = 1
-								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
-									usr << text("[]", R.fields[text("com_[]", counter)])
-									counter++
-								if (counter == 1)
-									usr << "No comment found"
-								usr << "<a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>"
-
-			if(!read)
-				usr << "\red Unable to locate a data core entry for this person."
-
-	if (href_list["medrecordadd"])
-		if(hasHUD(usr,"medical"))
-			var/perpname = "wot"
-			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.medical)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"medical"))
-								var/t1 = sanitize(input("Add Comment:", "Med. records", null, null)  as message)
-								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"medical")) )
-									return
-								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
-									counter++
-								if(istype(usr,/mob/living/carbon/human))
-									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
-								if(istype(usr,/mob/living/silicon/robot))
-									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
 
 	if (href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])
@@ -941,10 +613,10 @@ var/list/rank_prefix = list(\
 						H.brainmob.mind.transfer_to(src)
 						qdel(H)
 
-
+/*
 	for (var/ID in virus2)
 		var/datum/disease2/disease/V = virus2[ID]
-		V.cure(src)
+		V.cure(src)*/
 
 	losebreath = 0
 
@@ -1002,7 +674,7 @@ var/list/rank_prefix = list(\
 			blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 	hand_blood_color = blood_color
 	src.update_inv_gloves()	//handles bloody hands overlays and updating
-	verbs += /mob/living/carbon/human/proc/bloody_doodle
+//	verbs += /mob/living/carbon/human/proc/bloody_doodle
 	return 1 //we applied blood to the item
 
 /mob/living/carbon/human/proc/get_full_print()
@@ -1018,45 +690,6 @@ var/list/rank_prefix = list(\
 		feet_blood_DNA = null
 		update_inv_shoes(1)
 		return 1
-
-/mob/living/carbon/human/get_visible_implants(var/class = 0)
-
-	var/list/visible_implants = list()
-	for(var/obj/item/organ/external/organ in src.organs)
-		for(var/obj/item/weapon/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && (O.w_class > class) && !istype(O,/obj/item/weapon/material/shard/shrapnel))
-				visible_implants += O
-
-	return(visible_implants)
-
-/mob/living/carbon/human/embedded_needs_process()
-	for(var/obj/item/organ/external/organ in src.organs)
-		for(var/obj/item/O in organ.implants)
-			if(!istype(O, /obj/item/weapon/implant)) //implant type items do not cause embedding effects, see handle_embedded_objects()
-				return 1
-	return 0
-
-/mob/living/carbon/human/proc/handle_embedded_objects()
-
-	for(var/obj/item/organ/external/organ in src.organs)
-		if(organ.status & ORGAN_SPLINTED) //Splints prevent movement.
-			continue
-		for(var/obj/item/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
-				// All kinds of embedded objects cause bleeding.
-				if(species.flags & NO_PAIN)
-					src << "<span class='warning'>You feel [O] moving inside your [organ.name].</span>"
-				else
-					var/msg = pick( \
-						"<span class='warning'>A spike of pain jolts your [organ.name] as you bump [O] inside.</span>", \
-						"<span class='warning'>Your movement jostles [O] in your [organ.name] painfully.</span>", \
-						"<span class='warning'>Your movement jostles [O] in your [organ.name] painfully.</span>")
-					src << msg
-
-				organ.take_damage(rand(1,3), 0, 0)
-				if(!(organ.status & ORGAN_ROBOT) && !(species.flags & NO_BLOOD)) //There is no blood in protheses.
-					organ.status |= ORGAN_BLEEDING
-					src.adjustToxLoss(rand(1,3))
 
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"
@@ -1166,7 +799,7 @@ var/list/rank_prefix = list(\
 		return 1
 	else
 		return 0
-
+/*
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"
 	set name = "Write in blood"
@@ -1221,7 +854,7 @@ var/list/rank_prefix = list(\
 		W.update_icon()
 		W.message = message
 		W.add_fingerprint(src)
-
+*/
 /mob/living/carbon/human/can_inject(var/mob/user, var/error_msg, var/target_zone)
 	. = 1
 
@@ -1429,13 +1062,6 @@ var/list/rank_prefix = list(\
 
 
 /mob/living/carbon/human/can_stand_overridden()
-	if(wearing_rig && wearing_rig.ai_can_move_suit(check_for_ai = 1))
-		// Actually missing a leg will screw you up. Everything else can be compensated for.
-		for(var/limbcheck in list("l_leg","r_leg"))
-			var/obj/item/organ/affecting = get_organ(limbcheck)
-			if(!affecting)
-				return 0
-		return 1
 	return 0
 
 /mob/living/carbon/human/MouseDrop(var/atom/over_object)

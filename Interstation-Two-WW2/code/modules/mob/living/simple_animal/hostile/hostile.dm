@@ -44,19 +44,6 @@
 					T = L
 					break
 
-		else if(istype(A, /obj/mecha)) // Our line of sight stuff was already done in ListTargets().
-			var/obj/mecha/M = A
-			if (M.occupant)
-				stance = HOSTILE_STANCE_ATTACK
-				T = M
-				break
-
-		if(istype(A, /obj/machinery/bot))
-			var/obj/machinery/bot/B = A
-			if (B.health > 0)
-				stance = HOSTILE_STANCE_ATTACK
-				T = B
-				break
 	return T
 
 
@@ -96,14 +83,10 @@
 		var/mob/living/L = target_mob
 		L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 		return L
-	if(istype(target_mob,/obj/mecha))
-		var/obj/mecha/M = target_mob
-		M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-		return M
-	if(istype(target_mob,/obj/machinery/bot))
+/*	if(istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
 		B.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-		return B
+		return B*/
 
 /mob/living/simple_animal/hostile/proc/LoseTarget()
 	stance = HOSTILE_STANCE_IDLE
@@ -117,11 +100,6 @@
 
 /mob/living/simple_animal/hostile/proc/ListTargets(var/dist = 7)
 	var/list/L = hearers(src, dist)
-
-	for (var/obj/mecha/M in mechas_list)
-		if (M.z == src.z && get_dist(src, M) <= dist)
-			L += M
-
 	return L
 
 /mob/living/simple_animal/hostile/death()
@@ -203,7 +181,7 @@
 
 /mob/living/simple_animal/hostile/proc/check_horde()
 	return 0
-	if(emergency_shuttle.shuttle.location)
+	/*if(emergency_shuttle.shuttle.location)
 		if(!enroute && !target_mob)	//The shuttle docked, all monsters rush for the escape hallway
 			if(!shuttletarget && escape_list.len) //Make sure we didn't already assign it a target, and that there are targets to pick
 				shuttletarget = pick(escape_list) //Pick a shuttle target
@@ -215,17 +193,12 @@
 
 		if(get_dist(src, shuttletarget) <= 2)		//The monster reached the escape hallway
 			enroute = 0
-			stop_automated_movement = 0
+			stop_automated_movement = 0*/
 
 /mob/living/simple_animal/hostile/proc/horde()
 	var/turf/T = get_step_to(src, shuttletarget)
 	for(var/atom/A in T)
-		if(istype(A,/obj/machinery/door/))
-			var/obj/machinery/door/D = A
-			D.open(1)
-		else if(istype(A,/obj/structure/cult/pylon))
-			A.attack_generic(src, rand(melee_damage_lower, melee_damage_upper))
-		else if(istype(A, /obj/structure/window) || istype(A, /obj/structure/closet) || istype(A, /obj/structure/table) || istype(A, /obj/structure/grille))
+		if(istype(A, /obj/structure/window) || istype(A, /obj/structure/closet) || istype(A, /obj/structure/table) || istype(A, /obj/structure/grille))
 			A.attack_generic(src, rand(melee_damage_lower, melee_damage_upper))
 	Move(T)
 	FindTarget()

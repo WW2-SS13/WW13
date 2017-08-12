@@ -73,17 +73,13 @@ var/list/global/tank_gauge_cache = list()
 
 /obj/item/weapon/tank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
+	/*
 	if (istype(src.loc, /obj/item/assembly))
-		icon = src.loc
+		icon = src.loc*/
 
-	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
+/*	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
 		var/obj/item/device/analyzer/A = W
-		A.analyze_gases(src, user)
-	else if (istype(W,/obj/item/latexballon))
-		var/obj/item/latexballon/LB = W
-		LB.blow(src)
-		src.add_fingerprint(user)
-
+		A.analyze_gases(src, user)*/
 	if(istype(W, /obj/item/device/assembly_holder))
 		bomb_assemble(W,user)
 
@@ -96,10 +92,7 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/weapon/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/mob/living/carbon/location = null
 
-	if(istype(loc, /obj/item/weapon/rig))		// check for tanks in rigs
-		if(istype(loc.loc, /mob/living/carbon))
-			location = loc.loc
-	else if(istype(loc, /mob/living/carbon))
+	if(istype(loc, /mob/living/carbon))
 		location = loc
 
 	var/using_internal
@@ -125,10 +118,6 @@ var/list/global/tank_gauge_cache = list()
 		else if(src in location)		// or if tank is in the mobs possession
 			if(!location.internal)		// and they do not have any active internals
 				mask_check = 1
-		else if(istype(src.loc, /obj/item/weapon/rig) && src.loc in location)	// or the rig is in the mobs possession
-			if(!location.internal)		// and they do not have any active internals
-				mask_check = 1
-
 		if(mask_check)
 			if(location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
 				data["maskConnected"] = 1

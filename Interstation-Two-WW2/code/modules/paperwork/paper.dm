@@ -117,27 +117,8 @@
 		icon_state = "scrap"
 		return
 	user.examinate(src)
-	if(rigged && (Holiday == "April Fool's Day"))
-		if(spam_flag == 0)
-			spam_flag = 1
-			playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)
-			spawn(20)
-				spam_flag = 0
 	return
 
-/obj/item/weapon/paper/attack_ai(var/mob/living/silicon/ai/user as mob)
-	var/dist
-	if(istype(user) && user.camera) //is AI
-		dist = get_dist(src, user.camera)
-	else //cyborg or AI not seeing through a camera
-		dist = get_dist(src, user)
-	if(dist < 2)
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
-		onclose(usr, "[name]")
-	else
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
-		onclose(usr, "[name]")
-	return
 
 /obj/item/weapon/paper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.targeted_organ == "eyes")
@@ -337,15 +318,7 @@
 		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
 		if(!istype(i, /obj/item/weapon/pen))
-			if(usr.back && istype(usr.back,/obj/item/weapon/rig))
-				var/obj/item/weapon/rig/r = usr.back
-				var/obj/item/rig_module/device/pen/m = locate(/obj/item/rig_module/device/pen) in r.installed_modules
-				if(!r.offline && m)
-					i = m.device
-				else
-					return
-			else
-				return
+			return
 
 		if(istype(i, /obj/item/weapon/pen/crayon))
 			iscrayon = 1
@@ -454,12 +427,12 @@
 		if(icon_state == "scrap")
 			usr << "<span class='warning'>\The [src] is too crumpled to write on.</span>"
 			return
-
+/*
 		var/obj/item/weapon/pen/robopen/RP = P
 		if ( istype(RP) && RP.mode == 2 )
 			RP.RenamePaper(user,src)
-		else
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
+		else*/
+		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 		return
 
 	else if(istype(P, /obj/item/weapon/stamp))

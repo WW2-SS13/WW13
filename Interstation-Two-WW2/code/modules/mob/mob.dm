@@ -5,14 +5,10 @@
 	unset_machine()
 	qdel(hud_used)
 	if(client)
-		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
-			qdel(spell_master)
 		remove_screen_obj_references()
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
-	if(mind && mind.current == src)
-		spellremove(src)
 	ghostize()
 	..()
 
@@ -38,7 +34,7 @@
 //	item_use_icon = null
 //	gun_move_icon = null
 //	gun_setting_icon = null
-	spell_masters = null
+//	spell_masters = null
 	zone_sel = null
 
 /mob/New()
@@ -277,8 +273,6 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha)) return
-
 	if(hand)
 		var/obj/item/W = l_hand
 		if (W)
@@ -454,7 +448,8 @@
 	for(var/obj/O in world)				//EWWWWWWWWWWWWWWWWWWWWWWWW ~needs to be optimised
 		if(!O.loc)
 			continue
-		if(istype(O, /obj/item/weapon/disk/nuclear))
+
+	/*	if(istype(O, /obj/item/weapon/disk/nuclear))
 			var/name = "Nuclear Disk"
 			if (names.Find(name))
 				namecounts[name]++
@@ -462,18 +457,8 @@
 			else
 				names.Add(name)
 				namecounts[name] = 1
-			creatures[name] = O
-
-		if(istype(O, /obj/singularity))
-			var/name = "Singularity"
-			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
-			else
-				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
-
+			creatures[name] = O*/
+/*
 		if(istype(O, /obj/machinery/bot))
 			var/name = "BOT: [O.name]"
 			if (names.Find(name))
@@ -483,7 +468,7 @@
 				names.Add(name)
 				namecounts[name] = 1
 			creatures[name] = O
-
+*/
 
 	for(var/mob/M in sortAtom(mob_list))
 		var/name = M.name
@@ -720,17 +705,7 @@
 		lying = 0
 		canmove = 1
 	else
-		if(istype(buckled, /obj/vehicle))
-			var/obj/vehicle/V = buckled
-			if(is_physically_disabled())
-				lying = 1
-				canmove = 0
-				pixel_y = V.mob_offset_y - 5
-			else
-				if(buckled.buckle_lying != -1) lying = buckled.buckle_lying
-				canmove = 1
-				pixel_y = V.mob_offset_y
-		else if(buckled)
+		if(buckled)
 			anchored = 1
 			canmove = 0
 			if(istype(buckled))
@@ -1057,10 +1032,6 @@ mob/proc/yank_out_object()
 
 //Check for brain worms in head.
 /mob/proc/has_brain_worms()
-
-	for(var/I in contents)
-		if(istype(I,/mob/living/simple_animal/borer))
-			return I
 
 	return 0
 

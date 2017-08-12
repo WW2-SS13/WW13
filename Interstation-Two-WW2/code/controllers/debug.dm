@@ -8,7 +8,7 @@
 		usr.client.debug_variables(antag)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 
-/client/proc/debug_controller(controller in list("World", "Master","Ticker","Ticker Process","Air","Jobs","Sun","Radio","Supply","Shuttles","Emergency Shuttle","Configuration","pAI", "Cameras", "Transfer Controller", "Gas Data","Event","Plants","Alarm","Nano","Chemistry","Wireless","Observation","German Train", "Russian Train"))
+/client/proc/debug_controller(controller in list("World", "Master","Ticker","Ticker Process","Air","Jobs","Sun","Radio","Supply","Shuttles","Emergency Shuttle","Configuration","pAI", "Cameras", "Transfer Controller", "Gas Data","Event","Plants","Alarm","Nano","Chemistry","Wireless","Observation","German Train System", "Russian Train System"))
 	set category = "Debug"
 	set name = "Debug Controller"
 	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
@@ -33,50 +33,21 @@
 		if("Jobs")
 			debug_variables(job_master)
 
-		if("Sun")
-			debug_variables(sun)
 
 		if("Radio")
 			debug_variables(radio_controller)
 
-		if("Supply")
-			debug_variables(supply_controller)
-
-		if("Shuttles")
-			debug_variables(shuttle_controller)
-
-		if("Emergency Shuttle")
-			debug_variables(emergency_shuttle)
-
 		if("Configuration")
 			debug_variables(config)
 
-		if("pAI")
-			debug_variables(paiController)
-
-		if("Cameras")
-			debug_variables(cameranet)
-
 		if("Gas Data")
 			debug_variables(gas_data)
-
-		if("Event")
-			debug_variables(event_manager)
-
-		if("Plants")
-			debug_variables(plant_controller)
-
-		if("Alarm")
-			debug_variables(alarm_manager)
 
 		if("Nano")
 			debug_variables(nanomanager)
 
 		if("Chemistry")
 			debug_variables(chemistryProcess)
-
-		if("Wireless")
-			debug_variables(wirelessProcess)
 
 		if("Observation")
 			debug_variables(all_observable_events)

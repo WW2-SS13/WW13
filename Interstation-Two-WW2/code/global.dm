@@ -20,8 +20,6 @@ var/list/init_lights = list()
 
 var/global/list/global_mutations  = list() // List of hidden mutation things.
 
-var/global/datum/universal_state/universe = new
-
 var/global/list/global_map = null
 
 // Noises made when hit while typing.
@@ -103,7 +101,6 @@ var/gravity_is_on = 1
 var/join_motd = null
 
 var/datum/nanomanager/nanomanager		= new() // NanoManager, the manager for Nano UIs.
-var/datum/event_manager/event_manager	= new() // Event Manager, the manager for events.
 
 var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.
 

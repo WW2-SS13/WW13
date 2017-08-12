@@ -66,18 +66,6 @@ var/global/list/additional_antag_types = list()
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				antag_scaling_coeff = choice
-			if("event_modifier_moderate")
-				choice = input("Enter a new moderate event time modifier.") as num
-				if(isnull(choice) || choice < 0 || choice > 100)
-					return
-				event_delay_mod_moderate = choice
-				refresh_event_modifiers()
-			if("event_modifier_severe")
-				choice = input("Enter a new moderate event time modifier.") as num
-				if(isnull(choice) || choice < 0 || choice > 100)
-					return
-				event_delay_mod_major = choice
-				refresh_event_modifiers()
 		message_admins("Admin [key_name_admin(usr)] set game mode option '[href_list["set"]]' to [choice].")
 	else if(href_list["debug_antag"])
 		if(href_list["debug_antag"] == "self")
@@ -168,16 +156,6 @@ var/global/list/additional_antag_types = list()
 					return 1
 	return 0
 
-/datum/game_mode/proc/refresh_event_modifiers()
-	if(event_delay_mod_moderate || event_delay_mod_major)
-		event_manager.report_at_round_end = 1
-		if(event_delay_mod_moderate)
-			var/datum/event_container/EModerate = event_manager.event_containers[EVENT_LEVEL_MODERATE]
-			EModerate.delay_modifier = event_delay_mod_moderate
-		if(event_delay_mod_moderate)
-			var/datum/event_container/EMajor = event_manager.event_containers[EVENT_LEVEL_MAJOR]
-			EMajor.delay_modifier = event_delay_mod_major
-
 /datum/game_mode/proc/pre_setup()
 	for(var/datum/antagonist/antag in antag_templates)
 		antag.update_current_antag_max()
@@ -189,8 +167,6 @@ var/global/list/additional_antag_types = list()
 
 ///post_setup()
 /datum/game_mode/proc/post_setup()
-
-	refresh_event_modifiers()
 
 	spawn (ROUNDSTART_LOGOUT_REPORT_TIME)
 		display_roundstart_logout_report()
@@ -204,9 +180,6 @@ var/global/list/additional_antag_types = list()
 			antag.attempt_spawn() //select antags to be spawned
 		antag.finalize_spawn() //actually spawn antags
 
-	if(emergency_shuttle && auto_recall_shuttle)
-		emergency_shuttle.auto_recall = 1
-
 	return 1
 
 /datum/game_mode/proc/fail_setup()
@@ -215,14 +188,14 @@ var/global/list/additional_antag_types = list()
 
 
 /datum/game_mode/proc/check_finished()
-	if(emergency_shuttle.returned() || station_was_nuked)
+	if(station_was_nuked)
 		return 1
 	if(end_on_antag_death && antag_templates && antag_templates.len)
 		for(var/datum/antagonist/antag in antag_templates)
 			if(!antag.antags_are_dead())
 				return 0
 		if(config.continous_rounds)
-			emergency_shuttle.auto_recall = 0
+		//	emergency_shuttle.auto_recall = 0
 			return 0
 		return 1
 	return 0
@@ -243,13 +216,12 @@ var/global/list/additional_antag_types = list()
 		sleep(10)
 		print_ownerless_uplinks()
 
-
+/*
 	var/surviving_total = 0
 	var/ghosts = 0
 
-	var/escaped_total = 0
-
-
+	var/escaped_total = 0*/
+/*
 	var/list/area/escape_locations = list(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom)
 
 	for(var/mob/M in player_list)
@@ -268,13 +240,12 @@ var/global/list/additional_antag_types = list()
 	var/text = ""
 	if(surviving_total > 0)
 		text += "<br>There [surviving_total>1 ? "were <b>[surviving_total] survivors</b>" : "was <b>one survivor</b>"]"
-		text += " (<b>[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]</b>) and <b>[ghosts] ghosts</b>.<br>"
+	//	text += " (<b>[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]</b>) and <b>[ghosts] ghosts</b>.<br>"
 	else
 		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
 	world << text
 
-
-
+*/
 	return 0
 
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
@@ -396,7 +367,6 @@ var/global/list/additional_antag_types = list()
 				antag_templates |= antag
 
 	shuffle(antag_templates) //In the case of multiple antag types
-	newscaster_announcements = pick(newscaster_standard_feeds)
 
 /datum/game_mode/proc/check_victory()
 	return

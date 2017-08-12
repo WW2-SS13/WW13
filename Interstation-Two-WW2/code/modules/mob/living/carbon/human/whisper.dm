@@ -77,18 +77,13 @@
 
 	//looks like this only appears in whisper. Should it be elsewhere as well? Maybe handle_speech_problems?
 	var/voice_sub
-	if(istype(back,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = back
-		// todo: fix this shit
-		if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice)
-			voice_sub = rig.speech.voice_holder.voice
-	else
-		for(var/obj/item/gear in list(wear_mask,wear_suit,head))
-			if(!gear)
-				continue
-			var/obj/item/voice_changer/changer = locate() in gear
-			if(changer && changer.active && changer.voice)
-				voice_sub = changer.voice
+
+	for(var/obj/item/gear in list(wear_mask,wear_suit,head))
+		if(!gear)
+			continue
+		var/obj/item/voice_changer/changer = locate() in gear
+		if(changer && changer.active && changer.voice)
+			voice_sub = changer.voice
 
 	if(voice_sub == "Unknown")
 		if(copytext(message, 1, 2) != "*")

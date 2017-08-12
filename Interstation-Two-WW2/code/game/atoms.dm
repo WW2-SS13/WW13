@@ -235,8 +235,6 @@ its easier to just keep the beam vertical.
 /atom/proc/ex_act()
 	return
 
-/atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
-	return NO_EMAG_ACT
 
 /atom/proc/fire_act()
 	return
@@ -282,7 +280,7 @@ its easier to just keep the beam vertical.
 			fingerprintshidden = list()
 
 		//Fibers~
-		add_fibers(M)
+	//	add_fibers(M)
 
 		//He has no prints!
 		if (mFingerprints in M.mutations)

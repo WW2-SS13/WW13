@@ -531,12 +531,6 @@
 					message = "makes a very loud noise."
 					m_type = 2
 
-		if("poo")
-			src.handle_shit()
-
-		if("pee")
-			src.handle_piss()
-
 		if ("help")
 			src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
 cry, custom, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,

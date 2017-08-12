@@ -5,7 +5,7 @@
 	var/href
 	href_list = params2list("src=\ref[src]&[target]=1")
 	href = "src=\ref[src];[target]=1"
-	src:temphtml = null
+	//src:temphtml = null
 	src:Topic(href, href_list)
 	return null
 
@@ -196,6 +196,7 @@
 	var/list/speaker_coverage = list()
 	for(var/obj/item/device/radio/R in radios)
 		if(R)
+		/*
 			//Cyborg checks. Receiving message uses a bit of cyborg's charge.
 			var/obj/item/device/radio/borg/BR = R
 			if(istype(BR) && BR.myborg)
@@ -205,6 +206,8 @@
 					continue //No radio component (Shouldn't happen)
 				if(!borg.is_component_functioning("radio") || !borg.cell_use_power(CO.active_usage))
 					continue //No power.
+
+					*/
 
 			var/turf/speaker = get_turf(R)
 			if(speaker)
@@ -443,7 +446,7 @@ datum/projectile_data
 
 	return mixedcolor
 
-/**
+/*
 * Gets the highest and lowest pressures from the tiles in cardinal directions
 * around us, then checks the difference.
 */
@@ -511,4 +514,4 @@ datum/projectile_data
 	return seconds * 10
 
 /proc/round_is_spooky(var/spookiness_threshold = config.cult_ghostwriter_req_cultists)
-	return (cult.current_antagonists.len > spookiness_threshold)
+	return 0

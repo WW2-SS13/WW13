@@ -157,7 +157,6 @@
 
 /obj/vehicle/attack_ai(mob/user as mob)
 	return
-
 // For downstream compatibility (in particular Paradise)
 /obj/vehicle/proc/handle_rotation()
 	return

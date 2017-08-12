@@ -244,6 +244,9 @@ var/list/gamemode_cache = list()
 	var/german_reinforcements_at_once = 10
 	var/russian_reinforcements_at_once = 10
 
+	var/min_players_for_spies = 10
+	var/min_players_for_jews = 10
+
 	//WW2 donor shit
 
 	var/list/job_specific_custom_loadouts = list() // format is a triple list, first of jobs, second of ckeys containing a list of items
@@ -402,6 +405,12 @@ var/list/gamemode_cache = list()
 
 				if ("russian_reinforcements_at_once")
 					config.russian_reinforcements_at_once = text2num(value)
+
+				if ("min_players_for_spies")
+					config.min_players_for_spies = text2num(value)
+
+				if ("min_players_for_jews")
+					config.min_players_for_jews = text2num(value)
 
 				if ("resource_urls")
 					config.resource_urls = splittext(value, " ")
@@ -688,9 +697,6 @@ var/list/gamemode_cache = list()
 
 				if("popup_admin_pm")
 					config.popup_admin_pm = 1
-
-				if("allow_holidays")
-					Holiday = 1
 
 				if("use_irc_bot")
 					use_irc_bot = 1

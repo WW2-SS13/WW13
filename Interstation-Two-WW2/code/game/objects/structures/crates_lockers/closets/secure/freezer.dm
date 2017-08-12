@@ -69,25 +69,3 @@
 			new /obj/item/weapon/storage/fancy/egg_box(src)
 		return
 
-
-
-/obj/structure/closet/secure_closet/freezer/money
-	name = "freezer"
-	icon_state = "fridge1"
-	icon_closed = "fridge"
-	icon_locked = "fridge1"
-	icon_opened = "fridgeopen"
-	icon_broken = "fridgebroken"
-	icon_off = "fridge1"
-	req_access = list(access_heads_vault)
-
-
-	New()
-		..()
-		for(var/i = 0, i < 3, i++)
-			new /obj/item/weapon/spacecash/bundle/c1000(src)
-		for(var/i = 0, i < 5, i++)
-			new /obj/item/weapon/spacecash/bundle/c500(src)
-		for(var/i = 0, i < 6, i++)
-			new /obj/item/weapon/spacecash/bundle/c200(src)
-		return

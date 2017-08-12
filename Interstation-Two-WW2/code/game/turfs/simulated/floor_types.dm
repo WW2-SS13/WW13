@@ -244,9 +244,6 @@
 	name = "engraved floor"
 	icon_state = "cult"
 
-/turf/simulated/floor/engine/cult/cultify()
-	return
-
 /turf/simulated/floor/engine/n20
 	New()
 		. = ..()
@@ -410,6 +407,10 @@
 	icon_state = "grass_dark"
 	interior = 0
 	stepsound = "dirt"
+
+/turf/simulated/floor/plating/grass/New()
+	..()
+	grass_turf_list += src
 
 /turf/simulated/floor/plating/dirt
 	name = "dirt"

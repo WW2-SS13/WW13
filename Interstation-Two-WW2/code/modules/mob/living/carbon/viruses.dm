@@ -1,5 +1,7 @@
 /mob/living/carbon/proc/handle_viruses()
 
+	return
+	/*
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(bodytemperature > 406)
@@ -39,3 +41,4 @@
 				V.dead = 1
 
 	return
+*/

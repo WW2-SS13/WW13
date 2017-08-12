@@ -77,12 +77,6 @@
 	if(!canClick()) // in the year 2000...
 		return
 
-	if(istype(loc, /obj/mecha))
-		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
-			return
-		var/obj/mecha/M = loc
-		return M.click_action(A, src)
-
 	if (istype(loc, /obj/tank))
 		if (A == loc)
 			var/obj/tank/tank = loc

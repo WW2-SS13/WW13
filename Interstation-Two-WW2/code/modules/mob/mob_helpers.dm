@@ -1,8 +1,5 @@
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
 /proc/isxenomorph(A)
-	if(istype(A, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = A
-		return istype(H.species, /datum/species/xenos)
 	return 0
 
 /proc/issmall(A)
@@ -341,16 +338,10 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 			return
 
 		var/atom/oldeye=M.client.eye
-		var/aiEyeFlag = 0
-		if(istype(oldeye, /mob/observer/eye/aiEye))
-			aiEyeFlag = 1
 
 		var/x
 		for(x=0; x<duration, x++)
-			if(aiEyeFlag)
-				M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
-			else
-				M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
+			M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
 			sleep(1)
 		M.client.eye=oldeye
 		M.shakecamera = 0
@@ -529,19 +520,6 @@ proc/is_blind(A)
 		else
 			say_dead_direct("<span class='name'>[name]</span> no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
-/mob/proc/switch_to_camera(var/obj/machinery/camera/C)
-	if (!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))
-		return 0
-	check_eye(src)
-	return 1
-
-/mob/living/silicon/ai/switch_to_camera(var/obj/machinery/camera/C)
-	if(!C.can_use() || !is_in_chassis())
-		return 0
-
-	eyeobj.setLoc(C)
-	return 1
-
 // Returns true if the mob has a client which has been active in the last given X minutes.
 /mob/proc/is_client_active(var/active = 1)
 	return client && client.inactivity < active MINUTES
@@ -569,15 +547,16 @@ proc/is_blind(A)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
-
+/*
 	//Agent cards lower threatlevel.
 	var/obj/item/weapon/card/id/id = GetIdCard()
-	if(id && istype(id, /obj/item/weapon/card/id/syndicate))
-		threatcount -= 2
+
+/*	if(id && istype(id, /obj/item/weapon/card/id/syndicate))
+		threatcount -= 2*/
 	// A proper	CentCom id is hard currency.
 	else if(id && istype(id, /obj/item/weapon/card/id/centcom))
 		return SAFE_PERP
-
+*/
 	if(check_access && !access_obj.allowed(src))
 		threatcount += 4
 
@@ -596,8 +575,8 @@ proc/is_blind(A)
 
 	if(check_records || check_arrest)
 		var/perpname = name
-		if(id)
-			perpname = id.registered_name
+		/*if(id)
+			perpname = id.registered_name*/
 
 		var/datum/data/record/R = find_security_record("name", perpname)
 		if(check_records && !R)
@@ -613,8 +592,6 @@ proc/is_blind(A)
 	if(. == SAFE_PERP)
 		return SAFE_PERP
 
-	if(!istype(src, /mob/living/simple_animal/hostile/retaliate/goat))
-		threatcount += 4
 	return threatcount
 
 #undef SAFE_PERP
@@ -628,9 +605,3 @@ proc/is_blind(A)
 
 /mob/living/carbon/human/get_multitool()
 	return ..(get_active_hand())
-
-/mob/living/silicon/robot/get_multitool()
-	return ..(get_active_hand())
-
-/mob/living/silicon/ai/get_multitool()
-	return ..(aiMulti)

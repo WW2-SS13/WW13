@@ -49,5 +49,5 @@
 	. = ..(need_rebuild)
 	// Glass door glass = 1
 	// don't check then?
-	if(!glass)
-		updateVisibility(src, 0)
+/*	if(!glass)
+		updateVisibility(src, 0)*/

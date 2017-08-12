@@ -388,14 +388,6 @@
 
 /obj/machinery/light/attackby(obj/item/W, mob/user)
 
-	//Light replacer code
-	if(istype(W, /obj/item/device/lightreplacer))
-		var/obj/item/device/lightreplacer/LR = W
-		if(isliving(user))
-			var/mob/living/U = user
-			LR.ReplaceLight(src, U)
-			return
-
 	// attempt to insert light
 	if(istype(W, /obj/item/weapon/light))
 		if(status != LIGHT_EMPTY)
@@ -502,12 +494,6 @@
 			on = (status == LIGHT_OK)
 			update(0)
 		flickering = 0
-
-// ai attack - make lights flicker, because why not
-
-/obj/machinery/light/attack_ai(mob/user)
-	src.flicker(1)
-	return
 
 // attack with hand - remove tube/bulb
 // if hands aren't protected and the light is on, burn the player

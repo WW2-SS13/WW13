@@ -35,7 +35,6 @@
 	w_class = 4
 	max_w_class = 2
 	can_hold = list() // any
-	cant_hold = list(/obj/item/weapon/disk/nuclear)
 
 /obj/item/weapon/storage/bag/trash/update_icon()
 	if(contents.len == 0)
@@ -61,12 +60,11 @@
 	w_class = 4
 	max_w_class = 2
 	can_hold = list() // any
-	cant_hold = list(/obj/item/weapon/disk/nuclear)
 
 // -----------------------------
 //        Mining Satchel
 // -----------------------------
-
+/*
 /obj/item/weapon/storage/bag/ore
 	name = "mining satchel"
 	desc = "This little bugger can be used to store and transport ores."
@@ -77,12 +75,11 @@
 	max_storage_space = 100
 	max_w_class = 3
 	can_hold = list(/obj/item/weapon/ore)
-
-
+*/
 // -----------------------------
 //          Plant bag
 // -----------------------------
-
+/*
 /obj/item/weapon/storage/bag/plants
 	name = "plant bag"
 	icon = 'icons/obj/hydroponics_machines.dmi'
@@ -91,7 +88,7 @@
 	max_w_class = 3
 	w_class = 2
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/weapon/grown)
-
+*/
 
 // -----------------------------
 //        Sheet Snatcher
@@ -239,7 +236,7 @@
 // -----------------------------
 //           Cash Bag
 // -----------------------------
-
+/*
 /obj/item/weapon/storage/bag/cash
 	name = "cash bag"
 	icon = 'icons/obj/storage.dmi'
@@ -249,3 +246,4 @@
 	max_w_class = 3
 	w_class = 2
 	can_hold = list(/obj/item/weapon/coin,/obj/item/weapon/spacecash)
+*/

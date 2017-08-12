@@ -403,7 +403,7 @@ var/list/name_to_material
 		possible_directions  -= check_window.dir
 
 	// Get the closest available dir to the user's current facing.
-	var/build_dir = SOUTHWEST //Default to southwest for fulltile windows.
+//	var/build_dir = SOUTHWEST //Default to southwest for fulltile windows.
 	var/failed_to_build
 
 	if(window_count >= 4)
@@ -413,7 +413,7 @@ var/list/name_to_material
 			if(possible_directions.len)
 				for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
 					if(direction in possible_directions)
-						build_dir = direction
+					//	build_dir = direction
 						break
 			else
 				failed_to_build = 1
@@ -421,13 +421,13 @@ var/list/name_to_material
 				if(!is_reinforced())
 					user << "<span class='warning'>This material is not reinforced enough to use for a door.</span>"
 					return
-				if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
-					failed_to_build = 1
+		/*		if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
+					failed_to_build = 1*/
 	if(failed_to_build)
 		user << "<span class='warning'>There is no room in this location.</span>"
 		return 1
 
-	var/build_path = /obj/structure/windoor_assembly
+/*	var/build_path = /obj/structure/windoor_assembly
 	var/sheets_needed = window_options[choice]
 	if(choice == "Windoor")
 		build_dir = user.dir
@@ -440,7 +440,7 @@ var/list/name_to_material
 
 	// Build the structure and update sheet count etc.
 	used_stack.use(sheets_needed)
-	new build_path(T, build_dir, 1)
+	new build_path(T, build_dir, 1)*/
 	return 1
 
 /material/glass/proc/is_reinforced()
@@ -548,6 +548,11 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 	hitsound = 'sound/weapons/smash.ogg'
 
+/material/iron/morgue
+	name = "morgue"
+	icon_colour = "#FFFFFF"
+	hitsound = 'sound/weapons/smash.ogg'
+
 // Adminspawn only, do not let anyone get this.
 /material/voxalloy
 	name = "voxalloy"
@@ -610,44 +615,6 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	flags = MATERIAL_PADDING
-
-/material/cult
-	name = "cult"
-	display_name = "disturbing stone"
-	icon_base = "cult"
-	icon_colour = "#402821"
-	icon_reinf = "reinf_cult"
-	shard_type = SHARD_STONE_PIECE
-	sheet_singular_name = "brick"
-	sheet_plural_name = "bricks"
-
-/material/cult/place_dismantled_girder(var/turf/target)
-	new /obj/structure/girder/cult(target)
-
-/material/cult/place_dismantled_product(var/turf/target)
-	new /obj/effect/decal/cleanable/blood(target)
-
-/material/cult/reinf
-	name = "cult2"
-	display_name = "human remains"
-
-/material/cult/reinf/place_dismantled_product(var/turf/target)
-	new /obj/item/remains/human(target)
-
-/material/resin
-	name = "resin"
-	icon_colour = "#E85DD8"
-	dooropen_noise = 'sound/effects/attackblob.ogg'
-	door_icon_base = "resin"
-	melting_point = T0C+300
-	sheet_singular_name = "blob"
-	sheet_plural_name = "blobs"
-
-/material/resin/can_open_material_door(var/mob/living/user)
-	var/mob/living/carbon/M = user
-	if(istype(M) && locate(/obj/item/organ/xenos/hivenode) in M.internal_organs)
-		return 1
-	return 0
 
 //TODO PLACEHOLDERS:
 /material/leather

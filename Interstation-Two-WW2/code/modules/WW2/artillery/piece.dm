@@ -168,12 +168,6 @@
 
 				var/failure_msg = "<span class = 'danger'>You can't fire from here.</span>"
 
-				if (istype(user_area, /area/prishtina/helicopter_1))
-					user << failure_msg
-					return
-				if (istype(user_area, /area/prishtina/helicopter_2))
-					user << failure_msg
-					return
 				if (istype(user_area, /area/prishtina/soviet/bunker))
 					user << failure_msg
 					return

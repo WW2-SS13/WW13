@@ -36,9 +36,6 @@
 
 	var/list/construct_spells = list()
 
-/mob/living/simple_animal/construct/cultify()
-	return
-
 /mob/living/simple_animal/construct/New()
 	..()
 	name = text("[initial(name)] ([rand(1, 1000)])")

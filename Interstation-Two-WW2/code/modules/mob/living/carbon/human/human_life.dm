@@ -68,10 +68,6 @@
 	// update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
-	// This is not an ideal place for this but it will do for now.
-	if(wearing_rig && wearing_rig.offline)
-		wearing_rig = null
-
 	..()
 
 	if(life_tick%30==15)
@@ -82,7 +78,7 @@
 	//No need to update all of these procs if the guy is dead.
 	if(stat != DEAD && !in_stasis)
 		//Updates the number of stored chemicals for powers
-		handle_changeling()
+	//	handle_changeling()
 
 		//Organs and blood
 		handle_organs()
@@ -123,12 +119,6 @@
 
 	if(wear_suit && (wear_suit.item_flags & STOPPRESSUREDAMAGE) && head && (head.item_flags & STOPPRESSUREDAMAGE)) // Complete set of pressure-proof suit worn, assume fully sealed.
 		pressure_adjustment_coefficient = 0
-
-		// Handles breaches in your space suit. 10 suit damage equals a 100% loss of pressure protection.
-		if(istype(wear_suit,/obj/item/clothing/suit/space))
-			var/obj/item/clothing/suit/space/S = wear_suit
-			if(S.can_breach && S.damage)
-				pressure_adjustment_coefficient += S.damage * 0.1
 
 	pressure_adjustment_coefficient = min(1,max(pressure_adjustment_coefficient,0)) // So it isn't less than 0 or larger than 1.
 
@@ -239,7 +229,8 @@
 
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
-	if(in_stasis)
+	return
+	/*if(in_stasis)
 		return
 
 	if(getFireLoss())
@@ -296,7 +287,7 @@
 			if(organs.len)
 				var/obj/item/organ/external/O = pick(organs)
 				if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)
-
+*/
 	/** breathing **/
 
 /mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
@@ -308,22 +299,10 @@
 		return
 	..()
 
-/mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)
-	..()
-	//spread some viruses while we are at it
-	if(breath && virus2.len > 0 && prob(10))
-		for(var/mob/living/carbon/M in view(1,src))
-			src.spread_disease_to(M)
-
-
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=BREATH_VOLUME)
 	if(internal)
 
 		var/obj/item/weapon/tank/rig_supply
-		if(istype(back,/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/rig = back
-			if(!rig.offline && (rig.air_supply && internal == rig.air_supply))
-				rig_supply = rig.air_supply
 
 		if (!rig_supply && (!contents.Find(internal) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT)))))
 			internal = null
@@ -386,10 +365,7 @@
 			bodytemperature -= temperature_loss
 	else
 		var/loc_temp = T0C
-		if(istype(loc, /obj/mecha))
-			var/obj/mecha/M = loc
-			loc_temp =  M.return_temperature()
-		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
+		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			loc_temp = loc:air_contents.temperature
 		else
 			loc_temp = environment.temperature
@@ -648,27 +624,6 @@
 		if((getOxyLoss() > (species.total_health/2)) || (health <= config.health_threshold_crit))
 			Paralyse(3)
 
-		if(hallucination)
-			if(hallucination >= 20)
-				if(prob(3))
-					fake_attack(src)
-				if(!handling_hal)
-					spawn handle_hallucinations() //The not boring kind!
-				if(client && prob(5))
-					client.dir = pick(2,4,8)
-					spawn(rand(20,50))
-						client.dir = 1
-
-			hallucination = max(0, hallucination - 2)
-		else
-			for(var/atom/a in hallucinations)
-				qdel(a)
-
-			if(halloss >= species.total_health)
-				src << "<span class='warning'>[species.halloss_message_self]</span>"
-				src.visible_message("<B>[src]</B> [species.halloss_message].")
-				Paralyse(10)
-				setHalLoss(species.total_health-1)
 
 		if(paralysis || sleeping)
 			blinded = 1
@@ -686,7 +641,7 @@
 				//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 				if(client || sleeping > 3)
 					AdjustSleeping(-1)
-			if( prob(2) && health && !hal_crit )
+			if( prob(2) && health)
 				spawn(0)
 					emote("snore")
 		//CONSCIOUS
@@ -971,7 +926,6 @@
 						M.adjustBruteLoss(5)
 					nutrition += 10
 
-	handle_excrement()//Handle excrement needs
 	handle_starvation()//Handle starving
 
 
@@ -1038,11 +992,6 @@
 				if(prob(10))
 					Weaken(15)
 
-
-
-/mob/living/carbon/human/proc/handle_changeling()
-	if(mind && mind.changeling)
-		mind.changeling.regenerate()
 
 /mob/living/carbon/human/handle_shock()
 	..()
@@ -1122,10 +1071,10 @@
 
 	if (BITTEST(hud_updateflag, STATUS_HUD))
 		var/foundVirus = 0
-		for (var/ID in virus2)
+	/*	for (var/ID in virus2)
 			if (ID in virusDB)
 				foundVirus = 1
-				break
+				break*/
 
 		var/image/holder = hud_list[STATUS_HUD]
 		if(stat == DEAD)
@@ -1134,14 +1083,6 @@
 			holder.icon_state = "hudxeno"
 		else if(foundVirus)
 			holder.icon_state = "hudill"
-		else if(has_brain_worms())
-			var/mob/living/simple_animal/borer/B = has_brain_worms()
-			if(B.controlling)
-				holder.icon_state = "hudbrainworm"
-			else
-				holder.icon_state = "hudhealthy"
-		else
-			holder.icon_state = "hudhealthy"
 
 		var/image/holder2 = hud_list[STATUS_HUD_OOC]
 		if(stat == DEAD)
@@ -1150,8 +1091,6 @@
 			holder2.icon_state = "hudxeno"
 		else if(has_brain_worms())
 			holder2.icon_state = "hudbrainworm"
-		else if(virus2.len)
-			holder2.icon_state = "hudill"
 		else
 			holder2.icon_state = "hudhealthy"
 
@@ -1160,18 +1099,9 @@
 
 	if (BITTEST(hud_updateflag, ID_HUD))
 		var/image/holder = hud_list[ID_HUD]
-		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetID()
-			if(I)
-				holder.icon_state = "hud[ckey(I.GetJobName())]"
-			else
-				holder.icon_state = "hudunknown"
-		else
-			holder.icon_state = "hudunknown"
-
-
+		holder.icon_state = "hudunknown"
 		hud_list[ID_HUD] = holder
-
+/*
 	if (BITTEST(hud_updateflag, WANTED_HUD))
 		var/image/holder = hud_list[WANTED_HUD]
 		holder.icon_state = "hudblank"
@@ -1196,7 +1126,7 @@
 					else if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "Released"))
 						holder.icon_state = "hudreleased"
 						break
-		hud_list[WANTED_HUD] = holder
+		hud_list[WANTED_HUD] = holder*/
 
 	if (  BITTEST(hud_updateflag, IMPLOYAL_HUD) \
 	   || BITTEST(hud_updateflag,  IMPCHEM_HUD) \
@@ -1212,10 +1142,6 @@
 
 		for(var/obj/item/weapon/implant/I in src)
 			if(I.implanted)
-				if(istype(I,/obj/item/weapon/implant/tracking))
-					holder1.icon_state = "hud_imp_tracking"
-				if(istype(I,/obj/item/weapon/implant/loyalty))
-					holder2.icon_state = "hud_imp_loyal"
 				if(istype(I,/obj/item/weapon/implant/chem))
 					holder3.icon_state = "hud_imp_chem"
 

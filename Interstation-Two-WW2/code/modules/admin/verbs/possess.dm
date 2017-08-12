@@ -1,11 +1,11 @@
 /proc/possess(obj/O as obj in range(world.view))
 	set name = "Possess Obj"
 	set category = "Object"
-
+/*
 	if(istype(O,/obj/singularity))
 		if(config.forbid_singulo_possession)
 			usr << "It is forbidden to possess singularities."
-			return
+			return*/
 
 	var/turf/T = get_turf(O)
 

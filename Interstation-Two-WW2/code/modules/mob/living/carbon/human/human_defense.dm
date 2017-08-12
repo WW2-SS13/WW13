@@ -12,7 +12,7 @@ meteor_act
 		return ..()
 	if (!istype(W) || !W.sharp)
 		return ..()
-	else
+	else if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers/syringe))
 		user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
 		if (do_after(user, 30, src))
 			user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
@@ -268,18 +268,6 @@ meteor_act
 		return 1
 	return 0
 
-/mob/living/carbon/human/emag_act(var/remaining_charges, mob/user, var/emag_source)
-	var/obj/item/organ/external/affecting = get_organ(user.targeted_organ)
-	if(!affecting || !(affecting.status & ORGAN_ROBOT))
-		user << "<span class='warning'>That limb isn't robotic.</span>"
-		return -1
-	if(affecting.sabotaged)
-		user << "<span class='warning'>[src]'s [affecting.name] is already sabotaged!</span>"
-		return -1
-	user << "<span class='notice'>You sneakily slide [emag_source] into the dataport on [src]'s [affecting.name] and short out the safeties.</span>"
-	affecting.sabotaged = 1
-	return 1
-
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
 	if(istype(AM,/obj/))
@@ -390,7 +378,6 @@ meteor_act
 	if(affecting)
 		affecting.embed(O)
 
-
 /mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
 	if (gloves)
 		gloves.add_blood(source)
@@ -411,21 +398,7 @@ meteor_act
 		update_inv_w_uniform(0)
 
 /mob/living/carbon/human/proc/handle_suit_punctures(var/damtype, var/damage, var/def_zone)
-
-	// Tox and oxy don't matter to suits.
-	if(damtype != BURN && damtype != BRUTE) return
-
-	// The rig might soak this hit, if we're wearing one.
-	if(back && istype(back,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = back
-		rig.take_hit(damage)
-
-	// We may also be taking a suit breach.
-	if(!wear_suit) return
-	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
-	var/obj/item/clothing/suit/space/SS = wear_suit
-	var/penetrated_dam = max(0,(damage - SS.breach_threshold))
-	if(penetrated_dam) SS.create_breaches(damtype, penetrated_dam)
+	return
 
 /mob/living/carbon/human/reagent_permeability()
 	var/perm = 0

@@ -205,12 +205,17 @@
 
 	if(href_list["SelectedJob"])
 
+		var/datum/job/actual_job = null
+
 		for (var/datum/job/j in job_master.occupations)
 			if (j.title == href_list["SelectedJob"])
-				if (istype(j, /datum/job/german))
-					if (client.prefs.s_tone < -30 && !client.untermensch)
-						usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
-						return
+				actual_job = j
+				break
+
+		if (istype(actual_job, /datum/job/german))
+			if (client.prefs.s_tone < -30 && !client.untermensch)
+				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
+				return
 
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
@@ -225,8 +230,24 @@
 			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
 			return 0
 
-		AttemptLateSpawn(href_list["SelectedJob"]/*,client.prefs.spawnpoint*/)
-		return
+		// for delayed spawning, wait the spawn_delay of the job
+		// and lock up one job position while they're spawning
+
+		if (actual_job.spawn_delay && actual_job.delayed_spawn_message)
+			src << actual_job.delayed_spawn_message
+			actual_job.spawn_positions -= 1
+			actual_job.total_positions -= 1
+
+		spawn (actual_job.spawn_delay)
+			if (src)
+				// if we did spawn, unlock the position
+				actual_job.spawn_positions += 1
+				actual_job.total_positions += 1
+				AttemptLateSpawn(href_list["SelectedJob"])
+				return
+			// if we didn't spawn, unlock the position
+			actual_job.spawn_positions += 1
+			actual_job.total_positions += 1
 
 	if(!ready && href_list["preference"])
 		if(client)
@@ -306,7 +327,7 @@
 
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
-	equip_custom_items(character)
+	//equip_custom_items(character)
 
 	job_master.relocate(character)
 
@@ -372,7 +393,7 @@
 
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
-	equip_custom_items(character)
+//	equip_custom_items(character)
 
 
 /*
@@ -433,15 +454,6 @@
 	dat += "<b>Welcome, [name].<br></b>"
 	dat += "Round Duration: [roundduration2text()]<br>"
 
-	if(emergency_shuttle) //In case Nanotrasen decides reposess CentComm's shuttles.
-		if(emergency_shuttle.going_to_centcom()) //Shuttle is going to centcomm, not recalled
-			dat += "<font color='red'><b>The station has been evacuated.</b></font><br>"
-		if(emergency_shuttle.online())
-			if (emergency_shuttle.evac)	// Emergency shuttle is past the point of no recall
-				dat += "<font color='red'>The station is currently undergoing evacuation procedures.</font><br>"
-			else						// Crew transfer initiated
-				dat += "<font color='red'>The station is currently undergoing crew transfer procedures.</font><br>"
-
 /*	dat += "Choose from the following open/valid positions:<br>"
 	for(var/datum/job/job in job_master.occupations)
 		if(job && IsJobAvailable(job.title))
@@ -473,7 +485,7 @@
 					restricted_choices[c.role_preference_ger]++
 
 	var/prev_side = 0
-
+/*
 	if (world.time <= ticker.role_preference_grace_period)
 
 		if (client.role_preference_sov)
@@ -486,7 +498,7 @@
 			dat += "<strike>Soviet Role Preference: [client.role_preference_sov]</strike><br>"
 		if (client.role_preference_ger)
 			dat += "<strike>German Role Preference: [client.role_preference_ger]</strike><br>"
-
+*/
 	dat += "Choose from the following open positions:<br>"
 	for(var/datum/job/job in job_master.occupations)
 		if(job && !job.train_check())
@@ -495,6 +507,18 @@
 		var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
 
 		if (config.use_job_whitelist && !check_job_whitelist(src, job.title))
+			job_is_available = 0
+
+		if (istype(job, /datum/job/german/fallschirm) && !paratroopers_toggled)
+			job_is_available = 0
+
+		if ((istype(job, /datum/job/german/soldier_ss) || istype(job, /datum/job/german/squad_leader_ss)) && !SS_toggled)
+			job_is_available = 0
+
+		if (istype(job, /datum/job/partisan) && !civilians_toggled)
+			job_is_available = 0
+
+		if (!job.enabled)
 			job_is_available = 0
 
 		if(job)
@@ -512,13 +536,13 @@
 				if (job_is_available)
 					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 				else
-					dat += "TAKEN or WHITELISTED: <strike>[job.title] ([job.current_positions]) (Active: [active])</strike><br>"
+					dat += "TAKEN, WHITELISTED, OR DISABLED BY ADMINS: <strike>[job.title] ([job.current_positions]) (Active: [active])</strike><br>"
 
 			else
 				if (job_is_available)
 					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</a><br>"
 				else
-					dat += "TAKEN or WHITELISTED: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</strike><br>"
+					dat += "TAKEN, WHITELISTED, OR DISABLED BY ADMINS: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</strike><br>"
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")
 

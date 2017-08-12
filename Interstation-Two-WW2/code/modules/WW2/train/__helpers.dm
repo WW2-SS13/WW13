@@ -21,7 +21,7 @@
 	var/SUCCESS = 1
 	var/FAILURE = 0
 
-	var/list/nonblocking_types = list(/obj/machinery/door/morgue)
+	var/list/nonblocking_types = list(/obj/machinery/simple_door/key_door/train)
 	var/list/blocking_types = list(/obj/structure/window) // includes sandbags
 
 	// don't invoke Move()

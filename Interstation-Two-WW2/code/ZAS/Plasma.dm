@@ -75,6 +75,8 @@ obj/var/contaminated = 0
 /mob/proc/pl_effects()
 
 /mob/living/carbon/human/pl_effects()
+	return // what the fuck is plasma? - kachnov
+/*
 	//Handles all the bad things plasma can do.
 
 	//Contamination
@@ -114,7 +116,7 @@ obj/var/contaminated = 0
 			src << "<span class='danger'>High levels of toxins cause you to spontaneously mutate!</span>"
 			domutcheck(src,null)
 
-
+*/
 /mob/living/carbon/human/proc/burn_eyes()
 	//The proc that handles eye burning.
 	if(!species.has_organ["eyes"])

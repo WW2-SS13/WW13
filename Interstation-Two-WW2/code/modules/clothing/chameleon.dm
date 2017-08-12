@@ -180,6 +180,7 @@
 //**********************
 //**Chameleon Backpack**
 //**********************
+
 /obj/item/weapon/storage/backpack/chameleon
 	name = "backpack"
 	icon_state = "backpack"

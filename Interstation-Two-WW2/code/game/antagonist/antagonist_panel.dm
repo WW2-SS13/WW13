@@ -36,7 +36,7 @@
 			dat += "<td><i>Mob not found/([player.key])!</i></td>"
 		dat += "</tr>"
 	dat += "</table>"
-
+/*
 	if(flags & ANTAG_HAS_NUKE)
 		dat += "<br><table><tr><td><B>Nuclear disk(s)</B></td></tr>"
 		for(var/obj/item/weapon/disk/nuclear/N in world)
@@ -51,7 +51,7 @@
 					dat += "in \a [O.name] "
 				disk_loc = disk_loc.loc
 			dat += "in [disk_loc.loc] at ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td></tr>"
-		dat += "</table>"
+		dat += "</table>"*/
 	dat += get_additional_check_antag_output(caller)
 	dat += "<hr>"
 	return dat

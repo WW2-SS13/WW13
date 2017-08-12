@@ -82,9 +82,6 @@
 	set hidden = 1
 	if(istype(mob, /mob/living/carbon))
 		mob:swap_hand()
-	if(istype(mob,/mob/living/silicon/robot))
-		var/mob/living/silicon/robot/R = mob
-		R.cycle_modules()
 	return
 
 
@@ -263,6 +260,11 @@
 
 	//if(istype(mob.loc, /turf/space) || (mob.flags & NOGRAV))
 	//	if(!mob.Process_Spacemove(0))	return 0
+
+	// we can probably move now, so update our eye for ladders
+	if (ishuman(mob))
+		var/mob/living/carbon/human/H = mob
+		H.update_laddervision(null)
 
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)

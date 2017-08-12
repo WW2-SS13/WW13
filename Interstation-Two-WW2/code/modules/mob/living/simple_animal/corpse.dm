@@ -99,7 +99,6 @@
 	corpseidaccess = "Syndicate"
 
 
-
 /obj/effect/landmark/mobcorpse/syndicatecommando
 	name = "Syndicate Commando"
 	corpseuniform = /obj/item/clothing/under/syndicate

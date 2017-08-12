@@ -309,20 +309,6 @@ default behaviour is:
 
 	if(Storage) //If it called itself
 		L += Storage.return_inv()
-
-		//Leave this commented out, it will cause storage items to exponentially add duplicate to the list
-		//for(var/obj/item/weapon/storage/S in Storage.return_inv()) //Check for storage items
-		//	L += get_contents(S)
-
-		for(var/obj/item/weapon/gift/G in Storage.return_inv()) //Check for gift-wrapped items
-			L += G.gift
-			if(istype(G.gift, /obj/item/weapon/storage))
-				L += get_contents(G.gift)
-
-		for(var/obj/item/smallDelivery/D in Storage.return_inv()) //Check for package wrapped items
-			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
-				L += get_contents(D.wrapped)
 		return L
 
 	else
@@ -331,15 +317,6 @@ default behaviour is:
 		for(var/obj/item/weapon/storage/S in src.contents)	//Check for storage items
 			L += get_contents(S)
 
-		for(var/obj/item/weapon/gift/G in src.contents) //Check for gift-wrapped items
-			L += G.gift
-			if(istype(G.gift, /obj/item/weapon/storage))
-				L += get_contents(G.gift)
-
-		for(var/obj/item/smallDelivery/D in src.contents) //Check for package wrapped items
-			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
-				L += get_contents(D.wrapped)
 		return L
 
 /mob/living/proc/check_contents_for(A)
@@ -628,7 +605,7 @@ default behaviour is:
 
 		// Update whether or not this mob needs to pass emotes to contents.
 		for(var/atom/A in M.contents)
-			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/weapon/holder))
+			if(istype(A,/obj/item/weapon/holder))
 				return
 		M.status_flags &= ~PASSEMOTES
 
@@ -684,110 +661,8 @@ default behaviour is:
 /mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	return isnull(get_inventory_slot(carried_item))
 
-/mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
-	if(carried_item == held_item)
-		return 0
-	return ..()
-
 /mob/living/proc/handle_ventcrawl(var/obj/machinery/atmospherics/unary/vent_pump/vent_found = null, var/ignore_items = 0) // -- TLE -- Merged by Carn
-	if(stat)
-		src << "You must be conscious to do this!"
-		return
-	if(lying)
-		src << "You can't vent crawl while you're stunned!"
-		return
-
-	var/special_fail_msg = cannot_use_vents()
-	if(special_fail_msg)
-		src << "<span class='warning'>[special_fail_msg]</span>"
-		return
-
-	if(vent_found) // one was passed in, probably from vent/AltClick()
-		if(vent_found.welded)
-			src << "That vent is welded shut."
-			return
-		if(!vent_found.Adjacent(src))
-			return // don't even acknowledge that
-	else
-		for(var/obj/machinery/atmospherics/unary/vent_pump/v in range(1,src))
-			if(!v.welded)
-				if(v.Adjacent(src))
-					vent_found = v
-	if(!vent_found)
-		src << "You'll need a non-welded vent to crawl into!"
-		return
-
-	if(!vent_found.network || !vent_found.network.normal_members.len)
-		src << "This vent is not connected to anything."
-		return
-
-	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in vent_found.network.normal_members)
-		if(temp_vent.welded)
-			continue
-		if(temp_vent in loc)
-			continue
-		var/turf/T = get_turf(temp_vent)
-
-		if(!T || T.z != loc.z)
-			continue
-
-		var/i = 1
-		var/index = "[T.loc.name]\[[i]\]"
-		while(index in vents)
-			i++
-			index = "[T.loc.name]\[[i]\]"
-		vents[index] = temp_vent
-	if(!vents.len)
-		src << "\red There are no available vents to travel to, they could be welded."
-		return
-
-	var/obj/selection = input("Select a destination.", "Duct System") as null|anything in sortAssoc(vents)
-	if(!selection)	return
-
-	if(!vent_found.Adjacent(src))
-		src << "Never mind, you left."
-		return
-
-	if(!ignore_items)
-		for(var/obj/item/carried_item in contents)//If the monkey got on objects.
-			if(is_allowed_vent_crawl_item(carried_item))
-				continue
-			src << "<span class='warning'>You can't be carrying items or have items equipped when vent crawling!</span>"
-			return
-
-	if(isslime(src))
-		var/mob/living/carbon/slime/S = src
-		if(S.Victim)
-			src << "\red You'll have to let [S.Victim] go or finish eating \him first."
-			return
-
-	var/obj/machinery/atmospherics/unary/vent_pump/target_vent = vents[selection]
-	if(!target_vent)
-		return
-
-	for(var/mob/O in viewers(src, null))
-		O.show_message(text("<B>[src] scrambles into the ventillation ducts!</B>"), 1)
-	loc = target_vent
-
-	var/travel_time = round(get_dist(loc, target_vent.loc) / 2)
-
-	spawn(travel_time)
-
-		if(!target_vent)	return
-		for(var/mob/O in hearers(target_vent,null))
-			O.show_message("You hear something squeezing through the ventilation ducts.",2)
-
-		sleep(travel_time)
-
-		if(!target_vent)	return
-		if(target_vent.welded)			//the vent can be welded while alien scrolled through the list or travelled.
-			target_vent = vent_found 	//travel back. No additional time required.
-			src << "\red The vent you were heading to appears to be welded."
-		loc = target_vent.loc
-		var/area/new_area = get_area(loc)
-		if(new_area)
-			new_area.Entered(src)
+	return 0
 
 /mob/living/proc/cannot_use_vents()
 	return "You can't fit into that vent."
@@ -804,26 +679,6 @@ default behaviour is:
 /mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 	if(W in internal_organs)
 		return
-	..()
-
-/mob/living/touch_map_edge()
-
-	//check for nuke disks
-	if(client && stat != DEAD) //if they are clientless and dead don't bother, the parent will treat them as any other container
-		if(ticker && istype(ticker.mode, /datum/game_mode/nuclear)) //only really care if the game mode is nuclear
-			var/datum/game_mode/nuclear/G = ticker.mode
-			if(G.check_mob(src))
-				if(x <= TRANSITIONEDGE)
-					inertia_dir = 4
-				else if(x >= world.maxx -TRANSITIONEDGE)
-					inertia_dir = 8
-				else if(y <= TRANSITIONEDGE)
-					inertia_dir = 1
-				else if(y >= world.maxy -TRANSITIONEDGE)
-					inertia_dir = 2
-				src << "<span class='warning'>Something you are carrying is preventing you from leaving.</span>"
-				return
-
 	..()
 
 //damage/heal the mob ears and adjust the deaf amount

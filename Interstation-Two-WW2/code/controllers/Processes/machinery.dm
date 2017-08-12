@@ -50,18 +50,19 @@
 		SCHECK
 
 /datum/controller/process/machinery/proc/internal_process_pipenets()
-	for(last_object in pipe_networks)
+	return
+/*	for(last_object in pipe_networks)
 		var/datum/pipe_network/pipeNetwork = last_object
 		if(istype(pipeNetwork) && isnull(pipeNetwork.gcDestroyed))
 			pipeNetwork.process()
 			SCHECK
 			continue
 
-		pipe_networks.Remove(pipeNetwork)
+		pipe_networks.Remove(pipeNetwork)*/
 
 /datum/controller/process/machinery/statProcess()
 	..()
 	stat(null, "[machines.len] machines")
 	stat(null, "[powernets.len] powernets")
-	stat(null, "[pipe_networks.len] pipenets")
+//	stat(null, "[pipe_networks.len] pipenets")
 	stat(null, "[processing_power_items.len] power item\s")

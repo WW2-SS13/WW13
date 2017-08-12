@@ -1,5 +1,4 @@
 /datum/job/partisan
-	uses_keys = 1
 	team = "PARTISAN"
 
 /datum/job/partisan/give_random_name(var/mob/living/carbon/human/H)
@@ -17,7 +16,7 @@
 /datum/job/partisan/civilian
 	title = "Civilian"
 	flag = BOTANIST
-	department_flag = CIVILIAN
+	department_flag = "PARTISAN"
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
@@ -52,8 +51,6 @@
 	equip_random_uniform(H)
 	if (prob(40))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
-	if (prob(40))
-		H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger(H), slot_r_hand)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/combat(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a partisan soldier. You take orders from the <b>Partisan Leader</b> alone.</span>"
@@ -81,7 +78,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	equip_random_uniform(H)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/luger(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the leader of the partisan forces in the town. Protect your men and the civilians!</span>"
 	H << "<br><span class = 'warning'>You have a stockpile of weapons at [partisan_stockpile.name]. Also, there are some stockpiles of medical items and tools around the town.</span>"

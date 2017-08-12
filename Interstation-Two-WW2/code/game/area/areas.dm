@@ -1,5 +1,88 @@
 // Areas.dm
 
+/*
+
+### This file contains a list of all the areas in your station. Format is as follows:
+
+/area/CATEGORY/OR/DESCRIPTOR/NAME 	(you can make as many subdivisions as you want)
+	name = "NICE NAME" 				(not required but makes things really nice)
+	icon = "ICON FILENAME" 			(defaults to areas.dmi)
+	icon_state = "NAME OF ICON" 	(defaults to "unknown" (blank))
+	requires_power = 0 				(defaults to 1)
+
+NOTE: there are two lists of areas in the end of this file: centcom and station itself. Please maintain these lists valid. --rastaf0
+
+*/
+
+
+
+/area
+	var/fire = null
+	var/atmos = 1
+	var/atmosalm = 0
+	var/poweralm = 1
+	var/party = null
+	level = null
+	name = "Unknown"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "unknown"
+	layer = 10
+	mouse_opacity = 0
+	var/lightswitch = 1
+
+	var/eject = null
+
+	var/debug = 0
+	var/requires_power = 1
+	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
+
+	var/power_equip = 1
+	var/power_light = 1
+	var/power_environ = 1
+	var/used_equip = 0
+	var/used_light = 0
+	var/used_environ = 0
+
+	var/has_gravity = 1
+	var/obj/machinery/power/apc/apc = null
+	var/no_air = null
+	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
+	var/air_doors_activated = 0
+	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
+	var/list/forced_ambience = null
+	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
+	var/sound_env = STANDARD_STATION
+
+/*Adding a wizard area teleport list because motherfucking lag -- Urist*/
+/*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
+var/list/teleportlocs = list()
+
+/hook/startup/proc/setupTeleportLocs()
+	for(var/area/AR in world)
+		if(teleportlocs.Find(AR.name)) continue
+		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
+		if (picked)
+			teleportlocs += AR.name
+			teleportlocs[AR.name] = AR
+
+	teleportlocs = sortAssoc(teleportlocs)
+
+	return 1
+
+var/list/ghostteleportlocs = list()
+
+/hook/startup/proc/setupGhostTeleportLocs()
+	for(var/area/AR in world)
+		if(ghostteleportlocs.Find(AR.name)) continue
+		if(!istype(AR, /area/prishtina)) continue
+		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
+		if (picked)
+			ghostteleportlocs += AR.name
+			ghostteleportlocs[AR.name] = AR
+
+	ghostteleportlocs = sortAssoc(ghostteleportlocs)
+
+	return 1
 
 
 // ===
@@ -34,88 +117,23 @@
 /area/proc/get_contents()
 	return contents
 
-/area/proc/get_cameras()
-	var/list/cameras = list()
-	for (var/obj/machinery/camera/C in src)
-		cameras += C
-	return cameras
-
 /area/proc/get_camera_tag(var/obj/machinery/camera/C)
 	return "[name] [camera_id++]"
 
 /area/proc/atmosalert(danger_level, var/alarm_source)
-	if (danger_level == 0)
-		atmosphere_alarm.clearAlarm(src, alarm_source)
-	else
-		atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
-
-	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
-	for (var/obj/machinery/alarm/AA in src)
-		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.report_danger_level)
-			danger_level = max(danger_level, AA.danger_level)
-
-	if(danger_level != atmosalm)
-		if (danger_level < 1 && atmosalm >= 1)
-			//closing the doors on red and opening on green provides a bit of hysteresis that will hopefully prevent fire doors from opening and closing repeatedly due to noise
-			air_doors_open()
-		else if (danger_level >= 2 && atmosalm < 2)
-			air_doors_close()
-
-		atmosalm = danger_level
-		for (var/obj/machinery/alarm/AA in src)
-			AA.update_icon()
-
-		return 1
-	return 0
+	return
 
 /area/proc/air_doors_close()
-	if(!air_doors_activated)
-		air_doors_activated = 1
-		for(var/obj/machinery/door/firedoor/E in all_doors)
-			if(!E.blocked)
-				if(E.operating)
-					E.nextstate = FIREDOOR_CLOSED
-				else if(!E.density)
-					spawn(0)
-						E.close()
+	return
 
 /area/proc/air_doors_open()
-	if(air_doors_activated)
-		air_doors_activated = 0
-		for(var/obj/machinery/door/firedoor/E in all_doors)
-			if(!E.blocked)
-				if(E.operating)
-					E.nextstate = FIREDOOR_OPEN
-				else if(E.density)
-					spawn(0)
-						E.open()
-
+	return
 
 /area/proc/fire_alert()
-	if(!fire)
-		fire = 1	//used for firedoor checks
-		updateicon()
-		mouse_opacity = 0
-		for(var/obj/machinery/door/firedoor/D in all_doors)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_CLOSED
-				else if(!D.density)
-					spawn()
-						D.close()
+	return
 
 /area/proc/fire_reset()
-	if (fire)
-		fire = 0	//used for firedoor checks
-		updateicon()
-		mouse_opacity = 0
-		for(var/obj/machinery/door/firedoor/D in all_doors)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_OPEN
-				else if(D.density)
-					spawn(0)
-					D.open()
+	return
 
 /area/proc/readyalert()
 	if(!eject)
@@ -137,17 +155,6 @@
 	return
 
 /area/proc/partyreset()
-	if (party)
-		party = 0
-		mouse_opacity = 0
-		updateicon()
-		for(var/obj/machinery/door/firedoor/D in src)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_OPEN
-				else if(D.density)
-					spawn(0)
-					D.open()
 	return
 
 /area/proc/updateicon()
@@ -309,16 +316,6 @@ var/list/mob/living/forced_ambiance_list = new
 			H.AdjustWeakened(1)
 		mob << "<span class='notice'>The sudden appearance of gravity makes you fall to the floor!</span>"
 
-/area/proc/prison_break()
-	var/obj/machinery/power/apc/theAPC = get_apc()
-	if(theAPC.operating)
-		for(var/obj/machinery/power/apc/temp_apc in src)
-			temp_apc.overload_lighting(70)
-		for(var/obj/machinery/door/airlock/temp_airlock in src)
-			temp_airlock.prison_open()
-		for(var/obj/machinery/door/window/temp_windoor in src)
-			temp_windoor.open()
-
 /area/proc/has_gravity()
 	return has_gravity
 
@@ -326,9 +323,4 @@ var/list/mob/living/forced_ambiance_list = new
 	return 0
 
 /proc/has_gravity(atom/AT, turf/T)
-	if(!T)
-		T = get_turf(AT)
-	var/area/A = get_area(T)
-	if(A && A.has_gravity())
-		return 1
-	return 0
+	return 1

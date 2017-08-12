@@ -163,10 +163,6 @@
 	..()
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/attack_ai(mob/user as mob)
-	if(istype(user, /mob/living/silicon/robot) && Adjacent(user))
-		attack_hand(user)
-
 /obj/machinery/microwave/attack_hand(mob/user as mob)
 	user.set_machine(src)
 	interact(user)
@@ -312,12 +308,12 @@
 	return 1
 
 /obj/machinery/microwave/proc/has_extra_item()
-	for (var/obj/O in contents)
-		if ( \
+//	for (var/obj/O in contents)
+	//	if ( \
 				!istype(O,/obj/item/weapon/reagent_containers/food) && \
 				!istype(O, /obj/item/weapon/grown) \
 			)
-			return 1
+		//	return 1
 	return 0
 
 /obj/machinery/microwave/proc/start()

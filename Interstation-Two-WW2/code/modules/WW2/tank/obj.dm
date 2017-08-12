@@ -133,7 +133,7 @@
 	else
 		tank_message("<span class = 'danger'>[user] hits [my_name()] with [W]!</span>")
 		playsound(get_turf(src), W.hitsound, 100)
-		damage += W.force/3 // this is a bit ridiculous, but if the damage divider is less than that of bullets, it's 0 damage. Plus, if you try to melee a tank you most likely get ran over by it.
+		damage += W.force/20 // huge nerf to melee vs tanks - Kachnov
 		update_damage_status()
 		if (prob(critical_damage_chance()))
 			critical_damage()

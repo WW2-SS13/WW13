@@ -186,59 +186,6 @@
 
 		edit_admin_permissions()
 
-	else if(href_list["call_shuttle"])
-		if(!check_rights(R_ADMIN))	return
-
-		if( ticker.mode.name == "blob" )
-			alert("You can't call the shuttle during blob!")
-			return
-
-		switch(href_list["call_shuttle"])
-			if("1")
-				if ((!( ticker ) || !emergency_shuttle.location()))
-					return
-				if (emergency_shuttle.can_call())
-					emergency_shuttle.call_evac()
-					log_admin("[key_name(usr)] called the Emergency Shuttle")
-					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
-
-			if("2")
-				if (!( ticker ) || !emergency_shuttle.location())
-					return
-				if (emergency_shuttle.can_call())
-					emergency_shuttle.call_evac()
-					log_admin("[key_name(usr)] called the Emergency Shuttle")
-					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
-
-				else if (emergency_shuttle.can_recall())
-					emergency_shuttle.recall()
-					log_admin("[key_name(usr)] sent the Emergency Shuttle back")
-					message_admins("\blue [key_name_admin(usr)] sent the Emergency Shuttle back", 1)
-
-		href_list["secretsadmin"] = "check_antagonist"
-
-	else if(href_list["edit_shuttle_time"])
-		if(!check_rights(R_SERVER))	return
-
-		if (emergency_shuttle.wait_for_launch)
-			var/new_time_left = input("Enter new shuttle launch countdown (seconds):","Edit Shuttle Launch Time", emergency_shuttle.estimate_launch_time() ) as num
-
-			emergency_shuttle.launch_time = world.time + new_time_left*10
-
-			log_admin("[key_name(usr)] edited the Emergency Shuttle's launch time to [new_time_left]")
-			message_admins("\blue [key_name_admin(usr)] edited the Emergency Shuttle's launch time to [new_time_left*10]", 1)
-		else if (emergency_shuttle.shuttle.has_arrive_time())
-
-			var/new_time_left = input("Enter new shuttle arrival time (seconds):","Edit Shuttle Arrival Time", emergency_shuttle.estimate_arrival_time() ) as num
-			emergency_shuttle.shuttle.arrive_time = world.time + new_time_left*10
-
-			log_admin("[key_name(usr)] edited the Emergency Shuttle's arrival time to [new_time_left]")
-			message_admins("\blue [key_name_admin(usr)] edited the Emergency Shuttle's arrival time to [new_time_left*10]", 1)
-		else
-			alert("The shuttle is neither counting down to launch nor is it in transit. Please try again when it is.")
-
-		href_list["secretsadmin"] = "check_antagonist"
-
 	else if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))	return
 
@@ -277,8 +224,8 @@
 			if("ian")				M.change_mob_type( /mob/living/simple_animal/corgi/Ian , null, null, delmob )
 			if("crab")				M.change_mob_type( /mob/living/simple_animal/crab , null, null, delmob )
 			if("coffee")			M.change_mob_type( /mob/living/simple_animal/crab/Coffee , null, null, delmob )
-			if("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
-			if("polyparrot")		M.change_mob_type( /mob/living/simple_animal/parrot/Poly , null, null, delmob )
+//			if("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
+	//		if("polyparrot")		M.change_mob_type( /mob/living/simple_animal/parrot/Poly , null, null, delmob )
 			if("constructarmoured")	M.change_mob_type( /mob/living/simple_animal/construct/armoured , null, null, delmob )
 			if("constructbuilder")	M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
 			if("constructwraith")	M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
@@ -948,148 +895,6 @@
 		log_admin("[key_name(usr)] forced [key_name(M)] to say: [speech]")
 		message_admins("\blue [key_name_admin(usr)] forced [key_name_admin(M)] to say: [speech]")
 
-	else if(href_list["sendtoprison"])
-		if(!check_rights(R_ADMIN))	return
-
-		if(alert(usr, "Send to admin prison for the round?", "Message", "Yes", "No") != "Yes")
-			return
-
-		var/mob/M = locate(href_list["sendtoprison"])
-		if(!ismob(M))
-			usr << "This can only be used on instances of type /mob"
-			return
-		if(istype(M, /mob/living/silicon/ai))
-			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
-			return
-
-		var/turf/prison_cell = pick(prisonwarp)
-		if(!prison_cell)	return
-
-		var/obj/structure/closet/secure_closet/brig/locker = new /obj/structure/closet/secure_closet/brig(prison_cell)
-		locker.opened = 0
-		locker.locked = 1
-
-		//strip their stuff and stick it in the crate
-		for(var/obj/item/I in M)
-			M.drop_from_inventory(I, locker)
-		M.update_icons()
-
-		//so they black out before warping
-		M.Paralyse(5)
-		sleep(5)
-		if(!M)	return
-
-		M.loc = prison_cell
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), slot_w_uniform)
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/orange(prisoner), slot_shoes)
-
-		M << "\red You have been sent to the prison station!"
-		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
-		message_admins("\blue [key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.", 1)
-
-	else if(href_list["tdome1"])
-		if(!check_rights(R_FUN))	return
-
-		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
-			return
-
-		var/mob/M = locate(href_list["tdome1"])
-		if(!ismob(M))
-			usr << "This can only be used on instances of type /mob"
-			return
-		if(istype(M, /mob/living/silicon/ai))
-			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
-			return
-
-		for(var/obj/item/I in M)
-			M.drop_from_inventory(I)
-
-		M.Paralyse(5)
-		sleep(5)
-		M.loc = pick(tdome1)
-		spawn(50)
-			M << "\blue You have been sent to the Thunderdome."
-		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 1)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 1)", 1)
-
-	else if(href_list["tdome2"])
-		if(!check_rights(R_FUN))	return
-
-		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
-			return
-
-		var/mob/M = locate(href_list["tdome2"])
-		if(!ismob(M))
-			usr << "This can only be used on instances of type /mob"
-			return
-		if(istype(M, /mob/living/silicon/ai))
-			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
-			return
-
-		for(var/obj/item/I in M)
-			M.drop_from_inventory(I)
-
-		M.Paralyse(5)
-		sleep(5)
-		M.loc = pick(tdome2)
-		spawn(50)
-			M << "\blue You have been sent to the Thunderdome."
-		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 2)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 2)", 1)
-
-	else if(href_list["tdomeadmin"])
-		if(!check_rights(R_FUN))	return
-
-		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
-			return
-
-		var/mob/M = locate(href_list["tdomeadmin"])
-		if(!ismob(M))
-			usr << "This can only be used on instances of type /mob"
-			return
-		if(istype(M, /mob/living/silicon/ai))
-			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
-			return
-
-		M.Paralyse(5)
-		sleep(5)
-		M.loc = pick(tdomeadmin)
-		spawn(50)
-			M << "\blue You have been sent to the Thunderdome."
-		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Admin.)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Admin.)", 1)
-
-	else if(href_list["tdomeobserve"])
-		if(!check_rights(R_FUN))	return
-
-		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
-			return
-
-		var/mob/M = locate(href_list["tdomeobserve"])
-		if(!ismob(M))
-			usr << "This can only be used on instances of type /mob"
-			return
-		if(istype(M, /mob/living/silicon/ai))
-			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
-			return
-
-		for(var/obj/item/I in M)
-			M.drop_from_inventory(I)
-
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/observer = M
-			observer.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(observer), slot_w_uniform)
-			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), slot_shoes)
-		M.Paralyse(5)
-		sleep(5)
-		M.loc = pick(tdomeobserve)
-		spawn(50)
-			M << "\blue You have been sent to the Thunderdome."
-		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Observer.)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Observer.)", 1)
-
 	else if(href_list["revive"])
 		if(!check_rights(R_REJUVINATE))	return
 
@@ -1105,18 +910,6 @@
 		else
 			usr << "Admin Rejuvinates have been disabled"
 
-	else if(href_list["makeai"])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["makeai"])
-		if(!istype(H))
-			usr << "This can only be used on instances of type /mob/living/carbon/human"
-			return
-
-		message_admins("\red Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!", 1)
-		log_admin("[key_name(usr)] AIized [key_name(H)]")
-		H.AIize()
-
 	else if(href_list["makeslime"])
 		if(!check_rights(R_SPAWN))	return
 
@@ -1126,16 +919,6 @@
 			return
 
 		usr.client.cmd_admin_slimeize(H)
-
-	else if(href_list["makerobot"])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
-		if(!istype(H))
-			usr << "This can only be used on instances of type /mob/living/carbon/human"
-			return
-
-		usr.client.cmd_admin_robotize(H)
 
 	else if(href_list["makeanimal"])
 		if(!check_rights(R_SPAWN))	return
@@ -1265,7 +1048,7 @@
 		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 
 		H << "\blue Your prayers have been answered!! You received the <b>best cookie</b>!"
-
+/*
 	else if(href_list["BlueSpaceArtillery"])
 		if(!check_rights(R_ADMIN|R_FUN))	return
 
@@ -1425,7 +1208,7 @@
 		src.owner << "/red Unable to locate fax!"
 		*/
 
-
+*/
 
 	else if(href_list["jumpto"])
 		if(!check_rights(R_ADMIN))	return
@@ -1578,13 +1361,7 @@
 								var/mob/living/L = usr
 								var/obj/item/I = O
 								L.put_in_hands(I)
-								if(isrobot(L))
-									var/mob/living/silicon/robot/R = L
-									if(R.module)
-										R.module.modules += I
-										I.loc = R.module
-										R.module.rebuild()
-										R.activate_module(I)
+
 
 		log_and_message_admins("created [number] [english_list(paths)]")
 		return
@@ -1592,197 +1369,6 @@
 	else if(href_list["admin_secrets"])
 		var/datum/admin_secret_item/item = locate(href_list["admin_secrets"]) in admin_secrets.items
 		item.execute(usr)
-
-	else if(href_list["ac_view_wanted"])            //Admin newscaster Topic() stuff be here
-		src.admincaster_screen = 18                 //The ac_ prefix before the hrefs stands for AdminCaster.
-		src.access_news_network()
-
-	else if(href_list["ac_set_channel_name"])
-		src.admincaster_feed_channel.channel_name = sanitizeSafe(input(usr, "Provide a Feed Channel Name", "Network Channel Handler", ""))
-		src.access_news_network()
-
-	else if(href_list["ac_set_channel_lock"])
-		src.admincaster_feed_channel.locked = !src.admincaster_feed_channel.locked
-		src.access_news_network()
-
-	else if(href_list["ac_submit_new_channel"])
-		var/check = 0
-		for(var/datum/feed_channel/FC in news_network.network_channels)
-			if(FC.channel_name == src.admincaster_feed_channel.channel_name)
-				check = 1
-				break
-		if(src.admincaster_feed_channel.channel_name == "" || src.admincaster_feed_channel.channel_name == "\[REDACTED\]" || check )
-			src.admincaster_screen=7
-		else
-			var/choice = alert("Please confirm Feed channel creation","Network Channel Handler","Confirm","Cancel")
-			if(choice=="Confirm")
-				news_network.CreateFeedChannel(admincaster_feed_channel.channel_name, admincaster_signature, admincaster_feed_channel.locked, 1)
-
-				log_admin("[key_name_admin(usr)] created command feed channel: [src.admincaster_feed_channel.channel_name]!")
-				src.admincaster_screen=5
-		src.access_news_network()
-
-	else if(href_list["ac_set_channel_receiving"])
-		var/list/available_channels = list()
-		for(var/datum/feed_channel/F in news_network.network_channels)
-			available_channels += F.channel_name
-		src.admincaster_feed_channel.channel_name = sanitizeSafe(input(usr, "Choose receiving Feed Channel", "Network Channel Handler") in available_channels )
-		src.access_news_network()
-
-	else if(href_list["ac_set_new_message"])
-		src.admincaster_feed_message.body = sanitize(input(usr, "Write your Feed story", "Network Channel Handler", ""))
-		src.access_news_network()
-
-	else if(href_list["ac_submit_new_message"])
-		if(src.admincaster_feed_message.body =="" || src.admincaster_feed_message.body =="\[REDACTED\]" || src.admincaster_feed_channel.channel_name == "" )
-			src.admincaster_screen = 6
-		else
-
-			news_network.SubmitArticle(src.admincaster_feed_message.body, src.admincaster_signature, src.admincaster_feed_channel.channel_name, null, 1)
-			src.admincaster_screen=4
-
-		log_admin("[key_name_admin(usr)] submitted a feed story to channel: [src.admincaster_feed_channel.channel_name]!")
-		src.access_news_network()
-
-	else if(href_list["ac_create_channel"])
-		src.admincaster_screen=2
-		src.access_news_network()
-
-	else if(href_list["ac_create_feed_story"])
-		src.admincaster_screen=3
-		src.access_news_network()
-
-	else if(href_list["ac_menu_censor_story"])
-		src.admincaster_screen=10
-		src.access_news_network()
-
-	else if(href_list["ac_menu_censor_channel"])
-		src.admincaster_screen=11
-		src.access_news_network()
-
-	else if(href_list["ac_menu_wanted"])
-		var/already_wanted = 0
-		if(news_network.wanted_issue)
-			already_wanted = 1
-
-		if(already_wanted)
-			src.admincaster_feed_message.author = news_network.wanted_issue.author
-			src.admincaster_feed_message.body = news_network.wanted_issue.body
-		src.admincaster_screen = 14
-		src.access_news_network()
-
-	else if(href_list["ac_set_wanted_name"])
-		src.admincaster_feed_message.author = sanitize(input(usr, "Provide the name of the Wanted person", "Network Security Handler", ""))
-		src.access_news_network()
-
-	else if(href_list["ac_set_wanted_desc"])
-		src.admincaster_feed_message.body = sanitize(input(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", ""))
-		src.access_news_network()
-
-	else if(href_list["ac_submit_wanted"])
-		var/input_param = text2num(href_list["ac_submit_wanted"])
-		if(src.admincaster_feed_message.author == "" || src.admincaster_feed_message.body == "")
-			src.admincaster_screen = 16
-		else
-			var/choice = alert("Please confirm Wanted Issue [(input_param==1) ? ("creation.") : ("edit.")]","Network Security Handler","Confirm","Cancel")
-			if(choice=="Confirm")
-				if(input_param==1)          //If input_param == 1 we're submitting a new wanted issue. At 2 we're just editing an existing one. See the else below
-					var/datum/feed_message/WANTED = new /datum/feed_message
-					WANTED.author = src.admincaster_feed_message.author               //Wanted name
-					WANTED.body = src.admincaster_feed_message.body                   //Wanted desc
-					WANTED.backup_author = src.admincaster_signature                  //Submitted by
-					WANTED.is_admin_message = 1
-					news_network.wanted_issue = WANTED
-					for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
-						NEWSCASTER.newsAlert()
-						NEWSCASTER.update_icon()
-					src.admincaster_screen = 15
-				else
-					news_network.wanted_issue.author = src.admincaster_feed_message.author
-					news_network.wanted_issue.body = src.admincaster_feed_message.body
-					news_network.wanted_issue.backup_author = src.admincaster_feed_message.backup_author
-					src.admincaster_screen = 19
-				log_admin("[key_name_admin(usr)] issued a Station-wide Wanted Notification for [src.admincaster_feed_message.author]!")
-		src.access_news_network()
-
-	else if(href_list["ac_cancel_wanted"])
-		var/choice = alert("Please confirm Wanted Issue removal","Network Security Handler","Confirm","Cancel")
-		if(choice=="Confirm")
-			news_network.wanted_issue = null
-			for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
-				NEWSCASTER.update_icon()
-			src.admincaster_screen=17
-		src.access_news_network()
-
-	else if(href_list["ac_censor_channel_author"])
-		var/datum/feed_channel/FC = locate(href_list["ac_censor_channel_author"])
-		if(FC.author != "<B>\[REDACTED\]</B>")
-			FC.backup_author = FC.author
-			FC.author = "<B>\[REDACTED\]</B>"
-		else
-			FC.author = FC.backup_author
-		src.access_news_network()
-
-	else if(href_list["ac_censor_channel_story_author"])
-		var/datum/feed_message/MSG = locate(href_list["ac_censor_channel_story_author"])
-		if(MSG.author != "<B>\[REDACTED\]</B>")
-			MSG.backup_author = MSG.author
-			MSG.author = "<B>\[REDACTED\]</B>"
-		else
-			MSG.author = MSG.backup_author
-		src.access_news_network()
-
-	else if(href_list["ac_censor_channel_story_body"])
-		var/datum/feed_message/MSG = locate(href_list["ac_censor_channel_story_body"])
-		if(MSG.body != "<B>\[REDACTED\]</B>")
-			MSG.backup_body = MSG.body
-			MSG.body = "<B>\[REDACTED\]</B>"
-		else
-			MSG.body = MSG.backup_body
-		src.access_news_network()
-
-	else if(href_list["ac_pick_d_notice"])
-		var/datum/feed_channel/FC = locate(href_list["ac_pick_d_notice"])
-		src.admincaster_feed_channel = FC
-		src.admincaster_screen=13
-		src.access_news_network()
-
-	else if(href_list["ac_toggle_d_notice"])
-		var/datum/feed_channel/FC = locate(href_list["ac_toggle_d_notice"])
-		FC.censored = !FC.censored
-		src.access_news_network()
-
-	else if(href_list["ac_view"])
-		src.admincaster_screen=1
-		src.access_news_network()
-
-	else if(href_list["ac_setScreen"]) //Brings us to the main menu and resets all fields~
-		src.admincaster_screen = text2num(href_list["ac_setScreen"])
-		if (src.admincaster_screen == 0)
-			if(src.admincaster_feed_channel)
-				src.admincaster_feed_channel = new /datum/feed_channel
-			if(src.admincaster_feed_message)
-				src.admincaster_feed_message = new /datum/feed_message
-		src.access_news_network()
-
-	else if(href_list["ac_show_channel"])
-		var/datum/feed_channel/FC = locate(href_list["ac_show_channel"])
-		src.admincaster_feed_channel = FC
-		src.admincaster_screen = 9
-		src.access_news_network()
-
-	else if(href_list["ac_pick_censor_channel"])
-		var/datum/feed_channel/FC = locate(href_list["ac_pick_censor_channel"])
-		src.admincaster_feed_channel = FC
-		src.admincaster_screen = 12
-		src.access_news_network()
-
-	else if(href_list["ac_refresh"])
-		src.access_news_network()
-
-	else if(href_list["ac_set_signature"])
-		src.admincaster_signature = sanitize(input(usr, "Provide your desired signature", "Network Identity Handler", ""))
-		src.access_news_network()
 
 	else if(href_list["populate_inactive_customitems"])
 		if(check_rights(R_ADMIN|R_SERVER))
@@ -1851,9 +1437,6 @@ mob/living/proc/can_centcom_reply()
 
 mob/living/carbon/human/can_centcom_reply()
 	return istype(l_ear, /obj/item/device/radio/headset) || istype(r_ear, /obj/item/device/radio/headset)
-
-mob/living/silicon/ai/can_centcom_reply()
-	return common_radio != null && !check_unable(2)
 
 /atom/proc/extra_admin_link()
 	return

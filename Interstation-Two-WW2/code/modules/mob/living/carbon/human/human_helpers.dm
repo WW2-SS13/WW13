@@ -56,8 +56,6 @@
 		process_glasses(glasses)
 	if(istype(src.wear_mask, /obj/item/clothing/mask))
 		add_clothing_protection(wear_mask)
-	if(istype(back,/obj/item/weapon/rig))
-		process_rig(back)
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
 	if(G && G.active)
@@ -77,10 +75,3 @@
 
 		add_clothing_protection(G)
 		G.process_hud(src)
-
-/mob/living/carbon/human/proc/process_rig(var/obj/item/weapon/rig/O)
-	if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
-		if((O.offline && O.offline_vision_restriction == 2) || (!O.offline && O.vision_restriction == 2))
-			equipment_tint_total += TINT_BLIND
-	if(O.visor && O.visor.active && O.visor.vision && O.visor.vision.glasses && (!O.helmet || (head && O.helmet == head)))
-		process_glasses(O.visor.vision.glasses)

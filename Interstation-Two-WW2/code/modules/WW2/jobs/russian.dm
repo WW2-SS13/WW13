@@ -1,5 +1,4 @@
 /datum/job/russian
-	uses_keys = 1
 	team = "RUSSIAN"
 
 /datum/job/russian/give_random_name(var/mob/living/carbon/human/H)
@@ -29,7 +28,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovofficercap(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/colt(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger/colt(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.give_radio()
 	world << "<b>[H.client.prefs.russian_name] is the [title] of the Soviet forces!</b>"
@@ -68,7 +67,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovofficercap(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/colt(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger/colt(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the Russian forces. Your job is to take orders from the <b>Commandir</b> and coordinate with squad leaders.</span>"

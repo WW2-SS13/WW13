@@ -57,28 +57,6 @@
 	return
 
 
-/obj/structure/closet/wardrobe/chaplain_black
-	name = "chapel wardrobe"
-	desc = "It's a storage unit for approved religious attire."
-	icon_state = "black"
-	icon_closed = "black"
-
-/obj/structure/closet/wardrobe/chaplain_black/New()
-	..()
-	new /obj/item/clothing/under/rank/chaplain(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/suit/nun(src)
-	new /obj/item/clothing/head/nun_hood(src)
-	new /obj/item/clothing/suit/chaplain_hoodie(src)
-	new /obj/item/clothing/head/chaplain_hood(src)
-	new /obj/item/clothing/under/wedding/bride_white(src)
-	new /obj/item/weapon/storage/backpack/cultpack (src)
-	new /obj/item/weapon/storage/fancy/candle_box(src)
-	new /obj/item/weapon/storage/fancy/candle_box(src)
-	new /obj/item/weapon/deck/tarot(src)
-	new /obj/item/weapon/talkingcrystal(src)
-	return
-
 
 /obj/structure/closet/wardrobe/green
 	name = "green wardrobe"
@@ -239,8 +217,6 @@
 	..()
 	new /obj/item/clothing/under/rank/roboticist(src)
 	new /obj/item/clothing/under/rank/roboticist(src)
-	new /obj/item/clothing/suit/storage/robotech_jacket(src)
-	new /obj/item/clothing/suit/storage/robotech_jacket(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/gloves/thick(src)

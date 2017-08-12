@@ -36,42 +36,17 @@
 
 	animate_tail_stop()
 
-	//Handle brain slugs.
-	var/obj/item/organ/external/head = get_organ("head")
-	var/mob/living/simple_animal/borer/B
-
-	for(var/I in head.implants)
-		if(istype(I,/mob/living/simple_animal/borer))
-			B = I
-	if(B)
-		if(!B.ckey && ckey && B.controlling)
-			B.ckey = ckey
-			B.controlling = 0
-		if(B.host_brain.ckey)
-			ckey = B.host_brain.ckey
-			B.host_brain.ckey = null
-			B.host_brain.name = "host brain"
-			B.host_brain.real_name = "host brain"
-
-		verbs -= /mob/living/carbon/proc/release_control
-
 	callHook("death", list(src, gibbed))
 
 	if(ticker && ticker.mode)
 
 		ticker.mode.check_win()
 
-	if(wearing_rig)
-		wearing_rig.notify_ai("<span class='danger'>Warning: user death event. Mobility control passed to integrated intelligence system.</span>")
-
 	. = ..(gibbed)//,species.death_message)
 	if(!gibbed)
 		handle_organs()
 		if(species.death_sound)
 			playsound(loc, species.death_sound, 80, 1, 1)
-		if(prob(30))//30 percent chance to release any shit or piss they're hodling upon death, provided they have any.
-			handle_shit()
-			handle_piss()
 	handle_hud_list()
 
 /mob/living/carbon/human/proc/ChangeToHusk()
