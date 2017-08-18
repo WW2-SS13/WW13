@@ -192,7 +192,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	//german names
 	if(href_list["rename_german"])
-		var/raw_name = input(user, "Choose your character's GERMAN name:", "Character Name")  as text|null
+		var/raw_name = input(user, "Choose your character's German name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species)
 			if(new_name)
@@ -212,7 +212,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	//russian names
 	if(href_list["rename_russian"])
-		var/raw_name = input(user, "Choose your character's RUSSIAN name:", "Character Name")  as text|null
+		var/raw_name = input(user, "Choose your character's Russian name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species)
 			if(new_name)
@@ -288,7 +288,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 				roles += j.title
 				linked_jobs[j.title] = j
 
-		var/_role_preference_ger = input("Set your GERMAN role preference to what?") in null|roles
+		var/_role_preference_ger = input("Set your German role preference to what?") in null|roles
 		var/datum/job/chosen = linked_jobs[_role_preference_ger]
 		if (chosen.total_positions == 1)
 			user << "<span class = 'danger'>You can't set preference to this job, because there is only one of them.</span>"

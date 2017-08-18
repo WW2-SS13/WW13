@@ -29,7 +29,7 @@
 
 		if (istype(H.original_job, /datum/job/russian))
 			if (H.is_spy)
-				H_side = "GERMAN"
+				H_side = GERMAN
 			else
 				H_side = "RUSSIAN"
 
@@ -37,7 +37,7 @@
 			if (H.is_spy)
 				H_side = "RUSSIAN"
 			else
-				H_side = "GERMAN"
+				H_side = GERMAN
 
 		if (H_side == "RUSSIAN")
 			if (H.stat != DEAD && H.stat != UNCONSCIOUS)
@@ -47,7 +47,7 @@
 				else if (is_russian_contested_zone(get_area(H)))
 					++russians_in_russia
 
-		else if (H_side == "GERMAN")
+		else if (H_side == GERMAN)
 			if (H.stat != DEAD && H.stat != UNCONSCIOUS)
 				++alive_germans
 				if (is_german_contested_zone(get_area(H)))
@@ -62,7 +62,7 @@
 /proc/has_occupied_base(var/side)
 	var/stats = get_russian_german_stats()
 	switch (side)
-		if ("GERMAN")
+		if (GERMAN)
 			if (stats["russians_in_germany"] > stats["germans_in_germany"])
 				return 1
 		if ("RUSSIAN")
@@ -125,7 +125,7 @@
 		if (time_both_sides_locked != -1)
 			if ((time_both_sides_locked - world.time) >= 6000)
 				return 1
-		else if (reinforcements_master.is_permalocked("GERMAN"))
+		else if (reinforcements_master.is_permalocked(GERMAN))
 			if (reinforcements_master.is_permalocked("RUSSIAN"))
 				time_both_sides_locked = world.time
 				world << "<font size = 3>Both sides are locked for reinforcements; the game will end in 10 minutes.</font>"

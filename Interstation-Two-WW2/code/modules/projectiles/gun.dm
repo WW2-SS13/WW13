@@ -322,10 +322,6 @@
 		spawn(5)
 			set_light(0)
 
-	if (ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.update_faction_huds_to_nearby_mobs() // overlays got wiped
-
 //obtains the next projectile to fire
 /obj/item/weapon/gun/proc/consume_next_projectile()
 	return null

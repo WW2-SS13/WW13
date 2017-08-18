@@ -207,6 +207,61 @@ var/area/partisan_stockpile = null
 			qdel(src)
 			return
 
+		if("JoinLateHeer-S1")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S2")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S3")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S4")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S1-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S2-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S3-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S4-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
 		// NEW RUSSIAN LANDMARKS
 
 		if("JoinLateRA")
@@ -258,6 +313,62 @@ var/area/partisan_stockpile = null
 			qdel(src)
 			return
 
+		if("JoinLateRA-S1")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S2")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S3")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S4")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S1-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S2-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S3-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S4-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
 		// PARTISAN LANDMARKS
 
 		if ("JoinLatePartisan")
@@ -275,39 +386,64 @@ var/area/partisan_stockpile = null
 			return
 
 		if ("TownStockpile")
+
 			var/turf/turf = loc
+			var/list/possible_turfs = list()
+
+			for (var/turf/t in range(turf, 1))
+				if (t.density)
+					continue
+				for (var/obj/o in t)
+					if (o.density)
+						continue
+
+				var/turf/east = locate(t.x+1, t.y, t.z)
+				var/turf/west = locate(t.x-1, t.y, t.z)
+				var/turf/north = locate(t.x, t.y+1, t.z)
+				var/turf/south = locate(t.x, t.y-1, t.z)
+
+				// shitty hack to prevent tools from spawning below fences
+				// that haven't been created yet
+				if (east.type == west.type && north.type == south.type)
+					possible_turfs += t
+
 			var/i = rand(1,3)
 			switch (i)
 				if (1) // meds
 					for (var/v in 1 to rand(2,3))
 						if (prob(33))
-							new/obj/item/weapon/pill_pack/antitox(turf)
+							new/obj/item/weapon/pill_pack/antitox(pick(possible_turfs))
 						if (prob(33))
-							new/obj/item/weapon/pill_pack/tramadol(turf)
+							new/obj/item/weapon/pill_pack/tramadol(pick(possible_turfs))
 						if (prob(33))
-							new/obj/item/weapon/pill_pack/dexalin(turf)
+							new/obj/item/weapon/pill_pack/dexalin(pick(possible_turfs))
 						if (prob(33))
-							new/obj/item/weapon/pill_pack/bicaridine(turf)
+							new/obj/item/weapon/pill_pack/bicaridine(pick(possible_turfs))
 						if (prob(33))
-							new/obj/item/weapon/pill_pack/inaprovaline(turf)
+							new/obj/item/weapon/pill_pack/inaprovaline(pick(possible_turfs))
 						if (prob(33))
-							new/obj/item/weapon/pill_pack/pervitin(turf)
+							new/obj/item/weapon/pill_pack/pervitin(pick(possible_turfs))
 						if (prob(33))
-							new/obj/item/weapon/gauze_pack/bint(turf)
+							new/obj/item/weapon/gauze_pack/bint(pick(possible_turfs))
 				if (2) // tools
 					for (var/v in 1 to rand(2,3))
 						if (prob(50))
-							new/obj/item/weapon/wrench(turf)
+							new/obj/item/weapon/wrench(pick(possible_turfs))
 						if (prob(50))
-							new/obj/item/weapon/crowbar(turf)
+							new/obj/item/weapon/crowbar(pick(possible_turfs))
 						if (prob(50))
-							new/obj/item/weapon/weldingtool(turf)
+							new/obj/item/weapon/weldingtool(pick(possible_turfs))
 						if (prob(50))
-							new/obj/item/weapon/screwdriver(turf)
+							new/obj/item/weapon/screwdriver(pick(possible_turfs))
 				if (3) // materials
-					var/type = pick(/obj/item/stack/material/steel, /obj/item/stack/material/wood)
-					var/obj/item/stack/sheets = new type (turf)
-					sheets.amount = rand(10,30)
+					for (var/v in 1 to rand(3,5))
+						var/type = pick(/obj/item/stack/material/steel, /obj/item/stack/material/wood)
+						var/obj/item/stack/sheets = new type (pick(possible_turfs))
+						sheets.amount = rand(10,30)
+
+			if (prob(30))
+				for (var/v in 1 to rand(2,3))
+					new/obj/item/weapon/reagent_containers/glass/rag(pick(possible_turfs))
 
 
 			qdel(src)

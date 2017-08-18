@@ -388,10 +388,6 @@
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap
-		spawn (25) // wait till we actually sleep
-			if (ishuman(src) && client)
-				var/mob/living/carbon/human/H = src
-				H.update_faction_huds_to_nearby_mobs()
 
 /mob/living/carbon/Bump(var/atom/movable/AM, yes)
 	if(now_pushing || !yes)

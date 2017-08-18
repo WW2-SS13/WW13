@@ -7,9 +7,9 @@
 		return
 
 	var/i2faction[3]
-	i2faction[1] = "GERMAN"
-	i2faction[2] = "RUSSIAN"
-	i2faction[3] = "PARTISAN"
+	i2faction[1] = GERMAN
+	i2faction[2] = RUSSIAN
+	i2faction[3] = PARTISAN
 
 	for (var/i in 1 to 3)
 		var/faction = i2faction[i]

@@ -75,7 +75,7 @@
 				p.dynamic_lighting = 0
 	else
 		for (var/area/prishtina/p in world) // make all areas use lighting
-			if (istype(p) && !istype(p, /area/prishtina/train) && !istype(p, /area/prishtina/german/train_zone))
+			if (istype(p) && !istype(p, /area/prishtina/train) && !istype(p, /area/prishtina/german/train_zone) && !istype(p, /area/prishtina/german/armory/train))
 				p.dynamic_lighting = 1
 	/*	todo: fix train lights
 	var/area/prishtina/german/train_zone/train_zone = locate() in world

@@ -400,8 +400,8 @@
 
 				// make partisans show up as civs
 				var/team = original_job.base_type_flag()
-				if (team == "PARTISAN")
-					team = "CIVILIAN"
+				if (team == PARTISAN)
+					team = CIVILIAN
 
 				msg += "<br><i>He's a <b>[capitalize(lowertext(original_job.base_type_flag()))]</b>.</i>"
 
@@ -412,7 +412,7 @@
 				if (is_jew && !wear_mask)
 					msg += "<br><big>Oy blin, it's a jew!</big>"
 
-			if (original_job.base_type_flag() == H.original_job.base_type_flag() && (original_job.base_type_flag() == "RUSSIAN" || original_job.base_type_flag() == "GERMAN"))
+			if (original_job.base_type_flag() == H.original_job.base_type_flag() && (original_job.base_type_flag() == RUSSIAN || original_job.base_type_flag() == GERMAN))
 				if (isleader(src, H))
 					msg += "<br><b>[T.He] [T.is] your squad leader.</b>"
 				else if (isleader(H, src))

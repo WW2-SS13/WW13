@@ -38,6 +38,12 @@
 	dir = t.dir
 	anchored = 1
 
+	uses_initial_density = 1
+	initial_density = density
+
+	uses_initial_opacity = 1
+	initial_opacity = opacity
+
 	for (var/atom/movable/a in loc)
 		if (istype(a, /obj/structure/flora) || istype(a, /obj/structure/wild))
 			qdel(a)
@@ -78,6 +84,12 @@
 			aa.pixel_x = a.pixel_x
 			aa.pixel_y = a.pixel_y
 			aa.dir = a.dir
+
+			aa.uses_initial_density = 1
+			aa.initial_density = aa.density
+
+			aa.uses_initial_opacity = 1
+			aa.initial_opacity = aa.opacity
 
 
 	for (var/atom/movable/a in t)
@@ -211,8 +223,8 @@
 			continue
 
 		if (deadly && istype(m))
-			m.gib()
-			m.loc = pick(locate(m.x+10, m.y, m.z), locate(m.x-10, m.y, m.z))// attempt to fix 4x gibbing error
+			visible_message("<span class = 'danger'>The train crushes [m]!</span>")
+			m.crush()
 
 /obj/train_connector/ex_act(severity)
 	if (prob(round(70 * (1/severity))))

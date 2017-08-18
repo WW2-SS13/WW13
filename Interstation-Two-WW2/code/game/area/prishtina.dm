@@ -209,6 +209,11 @@
 	name = "Armory"
 	icon_state = "blue-red"
 
+/area/prishtina/german/armory/train
+	name = "Armory"
+	icon_state = "purple"
+	dynamic_lighting = 0
+
 /area/prishtina/german/cafeteria
 	name = "Cafeteria"
 	icon_state = "blue-red-d"
@@ -391,6 +396,19 @@
 	icon_state = "blue-red2"
 	name = "Brig Cell #2"
 
+/area/prishtina/soviet/lift/
+	icon_state = "purple"
+	name = "Soviet Lift"
+
+/area/prishtina/soviet/lift/upper
+
+/area/prishtina/soviet/lift/lower
+
+/area/prishtina/soviet/backup_armory
+	icon_state = "purple"
+	name = "Soviet Backup Armory"
+
+
 // areas for example train cars
 
 /area/prishtina/train // nothing here yet, but I feel like I will need it later - Kachnov
@@ -403,7 +421,8 @@
 
 /area/prishtina/train/german/cabin/storage // crates
 
-/area/prishtina/train/german/cabin/storage/horizontal // crates
+// don't inherit this from storage, it causes problems
+/area/prishtina/train/german/cabin/storage_horizontal // crates
 
 /area/prishtina/train/german/cabin/soldier // personnel
 
@@ -420,3 +439,4 @@
 /area/prishtina/train/russian/cabin/soldier // personnel
 
 /area/prishtina/train/russian/cabin/conductor // where the conductor drives the train
+

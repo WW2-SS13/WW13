@@ -3,34 +3,54 @@
 
 /proc/new_ration(faction, sort)
 	switch (faction)
-		if ("GERMAN")
+		if (GERMAN)
 			switch (sort)
 				if ("solid")
 					var/solid = pick(german_rations_solids)
-					return new solid
+					var/obj/food = new solid
+					food.pixel_x = 0
+					food.pixel_y = 0
+					return food
 				if ("liquid")
 					var/liquid = pick(german_rations_liquids)
-					return new liquid
+					var/obj/food = new liquid
+					food.pixel_x = 0
+					food.pixel_y = 0
+					return food
 				if ("dessert")
-					var/liquid = pick(german_rations_desserts)
-					return new liquid
+					var/dessert = pick(german_rations_desserts)
+					var/obj/food = new dessert
+					food.pixel_x = 0
+					food.pixel_y = 0
+					return food
 		if ("SOVIET")
 			switch (sort)
 				if ("solid")
 					var/solid = pick(soviet_rations_solids)
-					return new solid
+					var/obj/food = new solid
+					food.pixel_x = 0
+					food.pixel_y = 0
+					return food
 				if ("liquid")
 					var/liquid = pick(soviet_rations_liquids)
-					return new liquid
+					var/obj/food = new liquid
+					food.pixel_x = 0
+					food.pixel_y = 0
+					return food
 				if ("dessert")
-					var/liquid = pick(soviet_rations_desserts)
-					return new liquid
+					var/dessert = pick(soviet_rations_desserts)
+					var/obj/food = new dessert
+					food.pixel_x = 0
+					food.pixel_y = 0
+					return food
+
 // GERMAN RATIONS
 
 var/list/german_rations_solids = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesewheel,
 /obj/item/weapon/reagent_containers/food/snacks/sandwich,
-/obj/item/weapon/reagent_containers/food/snacks/mint
+/obj/item/weapon/reagent_containers/food/snacks/mint,
+/obj/item/weapon/reagent_containers/food/snacks/sausage
 )
 
 var/list/german_rations_liquids = list(
@@ -48,7 +68,8 @@ var/list/german_rations_desserts = list(
 var/list/soviet_rations_solids = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesewheel,
 /obj/item/weapon/reagent_containers/food/snacks/sandwich,
-/obj/item/weapon/reagent_containers/food/snacks/mint
+/obj/item/weapon/reagent_containers/food/snacks/mint,
+/obj/item/weapon/reagent_containers/food/snacks/cutlet
 )
 
 var/list/soviet_rations_liquids = list(

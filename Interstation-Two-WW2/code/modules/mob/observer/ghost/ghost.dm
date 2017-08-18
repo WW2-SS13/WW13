@@ -70,6 +70,15 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	real_name = name
 
 	ghost_multitool = new(src)
+
+	// when you gib, you have no icon state.
+	// now you get a default ghost icon
+	// - Kachnov
+
+	if (!icon_state)
+		icon = initial(icon)
+		icon_state = initial(icon_state)
+
 	..()
 
 /mob/observer/ghost/Destroy()
@@ -287,8 +296,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!target) return
 	ManualFollow(target)
 
-
-/mob/observer/ghost/verb/follow_russian(input in getfitmobs("RUSSIAN"))
+/mob/observer/ghost/verb/follow_russian(input in getfitmobs(RUSSIAN))
 	set category = "Ghost"
 	set name = "Follow a Russian"
 	set desc = "Follow and haunt a living rusky."
@@ -297,7 +305,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!target) return
 	ManualFollow(target)
 
-/mob/observer/ghost/verb/follow_german(input in getfitmobs("GERMAN"))
+/mob/observer/ghost/verb/follow_german(input in getfitmobs(GERMAN))
 	set category = "Ghost"
 	set name = "Follow a German"
 	set desc = "Follow and haunt a living german."
@@ -325,9 +333,27 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!target) return
 	ManualFollow(target)
 
+/mob/observer/ghost/verb/follow_partisan(input in getfitmobs(PARTISAN))
+	set category = "Ghost"
+	set name = "Follow a Partisan"
+	set desc = "Follow and haunt a living Partisan."
+
+	var/target = input // not a map
+	if(!target) return
+	ManualFollow(target)
+
+/mob/observer/ghost/verb/follow_civilian(input in getfitmobs(CIVILIAN))
+	set category = "Ghost"
+	set name = "Follow a Civilian"
+	set desc = "Follow and haunt a living Civilian."
+
+	var/target = input // not a map
+	if(!target) return
+	ManualFollow(target)
+
 /mob/observer/ghost/verb/follow_train()
 	set category = "Ghost"
-	set name = "Follow the Train"
+	set name = "Jump to the Main Train" // renamed because apparently you can't follow a train
 
 	var/datum/train_controller/tc = german_train_master
 
@@ -336,6 +362,33 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			ManualFollow(tpt)
 			return
 
+/mob/observer/ghost/verb/follow_supplytrain()
+	set category = "Ghost"
+	set name = "Jump to the Supply Train" // renamed because apparently you can't follow a train
+
+	var/datum/train_controller/tc = german_supplytrain_master
+
+	for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
+		for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
+			ManualFollow(tpt)
+			return
+
+/mob/observer/ghost/verb/follow_supply_lift()
+	set category = "Ghost"
+	set name = "Jump to a Supply Lift"
+
+	var/list/options = list()
+
+	for (var/obj/lift_controller/lc in world)
+		options += lc.jump_name
+
+	options += "CANCEL"
+	var/option = input("Which?") in options
+	if (option != "CANCEL")
+		for (var/obj/lift_controller/lc in world)
+			if (lc.jump_name == option)
+				ManualFollow(lc)
+				break
 
 // FOLLOWING TANKS
 

@@ -109,7 +109,7 @@
 	var/checking_area = null
 
 	switch (controller.faction)
-		if ("GERMAN")
+		if (GERMAN)
 			switch (what)
 				if ("officer")
 					checking_area = locate(/area/prishtina/train/german/cabin/officer)
@@ -119,8 +119,11 @@
 					checking_area = locate(/area/prishtina/train/german/cabin/soldier)
 				if ("conductor")
 					checking_area = locate(/area/prishtina/train/german/cabin/conductor)
-		if ("RUSSIAN") // not implemented lmao, make it return dimensions of german officer's area anyway
+		if (RUSSIAN) // not implemented lmao, make it return dimensions of german officer's area anyway
 			checking_area = locate(/area/prishtina/train/german/cabin/officer)
+		if ("GERMAN-SUPPLY")
+			checking_area = locate(/area/prishtina/train/german/cabin/storage_horizontal)
+
 
 	var/list/l = list()
 

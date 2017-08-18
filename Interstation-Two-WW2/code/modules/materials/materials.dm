@@ -557,6 +557,7 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	hitsound = 'sound/weapons/smash.ogg'
+	dooropen_noise = null
 // Adminspawn only, do not let anyone get this.
 /material/voxalloy
 	name = "voxalloy"

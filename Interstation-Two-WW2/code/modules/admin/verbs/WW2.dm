@@ -45,8 +45,8 @@
 	set name = "Toggle reinforcements (German)"
 
 	if (reinforcements_master)
-		reinforcements_master.locked["GERMAN"] = !reinforcements_master.locked["GERMAN"]
-		world << "<font color=red>Reinforcements [(!reinforcements_master.locked["GERMAN"]) ? "can" : "can't"] join the Germans [(!reinforcements_master.locked["GERMAN"]) ? "now" : "anymore"].</font>"
+		reinforcements_master.locked[GERMAN] = !reinforcements_master.locked[GERMAN]
+		world << "<font color=red>Reinforcements [(!reinforcements_master.locked[GERMAN]) ? "can" : "can't"] join the Germans [(!reinforcements_master.locked[GERMAN]) ? "now" : "anymore"].</font>"
 		message_admins("[key_name(src)] changed the geforce reinforcements setting.")
 	else
 		src << "<span class = danger>WARNING: No reinforcements master found.</span>"
@@ -56,8 +56,8 @@
 	set name = "Toggle reinforcements (Russian)"
 
 	if (reinforcements_master)
-		reinforcements_master.locked["RUSSIAN"] = !reinforcements_master.locked["RUSSIAN"]
-		world << "<font color=red>Reinforcements [(!reinforcements_master.locked["RUSSIAN"]) ? "can" : "can't"] join the Russians [(!reinforcements_master.locked["RUSSIAN"]) ? "now" : "anymore"].</font>"
+		reinforcements_master.locked[RUSSIAN] = !reinforcements_master.locked[RUSSIAN]
+		world << "<font color=red>Reinforcements [(!reinforcements_master.locked[RUSSIAN]) ? "can" : "can't"] join the Russians [(!reinforcements_master.locked[RUSSIAN]) ? "now" : "anymore"].</font>"
 		message_admins("[key_name(src)] changed the ruforce reinforcements setting.")
 	else
 		src << "<span class = danger>WARNING: No reinforcements master found.</span>"
@@ -67,11 +67,11 @@
 	set category = "WW2"
 	set name = "Quickspawn reinforcements (German)"
 
-	var/list/l = reinforcements_master.reinforcement_pool["GERMAN"]
+	var/list/l = reinforcements_master.reinforcement_pool[GERMAN]
 
 	if (reinforcements_master)
 		if (l.len)
-			reinforcements_master.allow_quickspawn["GERMAN"] = 1
+			reinforcements_master.allow_quickspawn[GERMAN] = 1
 			reinforcements_master.german_countdown = 0
 		else
 			src << "<span class = danger>Nobody is in the German reinforcement pool.</span>"
@@ -86,11 +86,11 @@
 	set category = "WW2"
 	set name = "Quickspawn reinforcements (Russian)"
 
-	var/list/l = reinforcements_master.reinforcement_pool["RUSSIAN"]
+	var/list/l = reinforcements_master.reinforcement_pool[RUSSIAN]
 
 	if (reinforcements_master)
 		if (l.len)
-			reinforcements_master.allow_quickspawn["RUSSIAN"] = 1
+			reinforcements_master.allow_quickspawn[RUSSIAN] = 1
 			reinforcements_master.russian_countdown = 0
 		else
 			src << "<span class = danger>Nobody is in the Russian reinforcement pool.</span>"
@@ -101,9 +101,24 @@
 
 	reinforcements_master.lock_check()
 
+// debugging
+/client/proc/reset_roundstart_autobalance()
+	set category = "WW2"
+	set name = "Reset Roundstart Autobalance"
+
+	if(!check_rights(R_HOST))
+		src << "<span class = 'danger'>You don't have the permissions.</span>"
+		return
+
+	var/_clients = input("How many clients?") as num
+	job_master.toggle_roundstart_autobalance(_clients)
+
 /client/proc/show_battle_report()
 	set category = "WW2"
 	set name = "Show battle report"
+	show_global_battle_report(src)
+
+/proc/show_global_battle_report(var/shower)
 
 	var/total_germans = alive_germans.len + dead_germans.len + heavily_injured_germans.len
 	var/total_russians = alive_russians.len + dead_russians.len + heavily_injured_russians.len
@@ -132,10 +147,10 @@
 	var/mortality_civilian = round(mortality_coefficient_civilian*100)
 	var/mortality_partisan = round(mortality_coefficient_partisan*100)
 
-	var/msg1 = "German Side: [alive_germans.len] alive, [heavily_injured_germans.len] heavily injured or unconscious, and [dead_germans.len] deceased. Mortality rate: [mortality_german]%"
-	var/msg2 = "Soviet Side: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, and [dead_russians.len] deceased. Mortality rate: [mortality_russian]%"
-	var/msg3 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, and [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
-	var/msg4 = "German Side: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, and [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
+	var/msg1 = "German Side: [alive_germans.len] alive, [heavily_injured_germans.len] heavily injured or unconscious, [dead_germans.len] deceased. Mortality rate: [mortality_german]%"
+	var/msg2 = "Soviet Side: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, [dead_russians.len] deceased. Mortality rate: [mortality_russian]%"
+	var/msg3 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
+	var/msg4 = "Partisans: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
 
 	var/public = alert(usr, "Show it to the entire server?",,"Yes", "No")
 
@@ -145,7 +160,10 @@
 		world << "<font size=3>[msg2]</font>"
 		world << "<font size=3>[msg3]</font>"
 		world << "<font size=3>[msg4]</font>"
-		message_admins("[key_name(src)] showed everyone the battle report.")
+		if (shower)
+			message_admins("[key_name(shower)] showed everyone the battle report.")
+		else
+			message_admins("the <b>Battle Controller Process</b> showed everyone the battle report.")
 	else
 		usr << msg1
 		usr << msg2
@@ -297,7 +315,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.base_type_flag() == "RUSSIAN")
+				if (H.original_job && H.original_job.base_type_flag() == RUSSIAN)
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE SOVIET HIGH COMMAND:</b>" : "<b>MESSAGE TO THE RUSSIAN TEAM FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
@@ -320,7 +338,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.base_type_flag() == "GERMAN")
+				if (H.original_job && H.original_job.base_type_flag() == GERMAN)
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND:</b>" : "<b>MESSAGE TO THE GERMAN TEAM FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
@@ -343,7 +361,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.base_type_flag() == "GERMAN" && H.original_job.is_SS)
+				if (H.original_job && H.original_job.base_type_flag() == GERMAN && H.original_job.is_SS)
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE SS:</b>" : "<b>MESSAGE TO THE SS FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
@@ -367,7 +385,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.base_type_flag() == "GERMAN" && istype(H.original_job, /datum/job/german/paratrooper))
+				if (H.original_job && H.original_job.base_type_flag() == GERMAN && istype(H.original_job, /datum/job/german/paratrooper))
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE PARATROOPER SQUAD:</b>" : "<b>MESSAGE TO THE PARATROOPER SQUAD FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
@@ -390,7 +408,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job && (H.original_job.base_type_flag() == "CIVILIAN" || H.original_job.base_type_flag() == "PARTISAN"))
+				if (H.original_job && (H.original_job.base_type_flag() == CIVILIAN || H.original_job.base_type_flag() == PARTISAN))
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM ???? to Civilians:</b>" : "<b>MESSAGE TO THE CIVILIANS FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
@@ -413,7 +431,7 @@
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H) && H.client)
-				if (H.original_job || H.original_job.base_type_flag() == "PARTISAN")
+				if (H.original_job || H.original_job.base_type_flag() == PARTISAN)
 					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE UKRAINIAN PARTISAN COMMAND TO PARTISANS:</b>" : "<b>MESSAGE TO PARTISANS FROM ADMINS:</b>"
 					H << "[msg_start] <span class = 'notice'>[msg]</span>"
 

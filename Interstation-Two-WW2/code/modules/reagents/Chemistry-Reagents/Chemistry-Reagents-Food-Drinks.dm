@@ -11,6 +11,10 @@
 	var/injectable = 0
 	color = "#664330"
 
+/datum/reagent/nutriment/New()
+	..()
+	data = list()[10]
+
 /datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
 	if(!islist(newdata) || !newdata.len)
 		return
@@ -38,7 +42,7 @@
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 	M.heal_organ_damage(0.5 * removed, 0)
 	M.nutrition += nutriment_factor * removed // For hunger and fatness
-	M.bowels += nutriment_factor * removed	//For pooping
+//	M.bowels += nutriment_factor * removed	//For pooping
 	M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
 
 /datum/reagent/nutriment/glucose

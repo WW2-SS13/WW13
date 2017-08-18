@@ -13,6 +13,11 @@
 	var/last_loc = null
 	var/datum/train_controller/master = null
 	var/list/saved_contents = list()
+	uses_initial_density = 1
+	initial_density = 0
+
+	uses_initial_opacity = 1
+	initial_opacity = 0
 
 // #define TCDEBUG
 

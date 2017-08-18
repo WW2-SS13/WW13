@@ -24,7 +24,7 @@
 							for (var/image in H.client.images)
 								H.client.images -= image
 								qdel(image)
-							H.job_faction_images = initial(H.job_faction_images)
+							H.faction_images = initial(H.faction_images)
 						if (2)
 							H.update_faction_huds_to_nearby_mobs()
 				catch(var/exception/e)

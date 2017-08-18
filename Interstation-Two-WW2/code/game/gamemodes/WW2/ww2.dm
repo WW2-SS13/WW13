@@ -52,8 +52,8 @@
 		if (time_both_sides_locked != -1)
 			if ((time_both_sides_locked - world.time) >= 6000)
 				return 1
-		else if (reinforcements_master.is_permalocked("GERMAN"))
-			if (reinforcements_master.is_permalocked("RUSSIAN"))
+		else if (reinforcements_master.is_permalocked(GERMAN))
+			if (reinforcements_master.is_permalocked(RUSSIAN))
 				time_both_sides_locked = world.time
 				world << "<font size = 3>Both sides are locked for reinforcements; the game will end in 10 minutes.</font>"
 				return 0
@@ -185,7 +185,8 @@
 			winners = "Soviet Army"
 
 	var/text = ""
-	text += "[soldiers["en"]] Wehrmacht and SS soldiers survived.<br>"
+
+	text += "[soldiers["de"]] Wehrmacht and SS soldiers survived.<br>"
 	text += "[soldiers["ru"]] Soviet soldiers survived.<br><br>"
 
 	if (winning_side)

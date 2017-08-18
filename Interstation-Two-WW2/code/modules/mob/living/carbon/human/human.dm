@@ -5,11 +5,6 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
 
-	var/list/hud_list[10]
-	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
-	var/stamina = 100
-
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
 	body_build = get_body_build(gender)
@@ -41,6 +36,8 @@
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy")
 
+	for (var/v in FACTION_TO_ENEMIES to SQUAD_FACTION)
+		hud_list[v] = image('icons/mob/hud_WW2.dmi', src, "")
 
 	human_mob_list |= src
 	..()

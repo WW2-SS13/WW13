@@ -9,6 +9,11 @@
 
 /obj/effect/landmark/train/german_train_limit
 
-/obj/effect/landmark/train/german_train_start/supplytrain
+// warning: don't make one train landmark type inherit from another
+// or bad things happen, namely a train tries to stretch out between
+// the wrong landmarks. This was previously german_train_start/supplytrain,
+// and that happened
 
-/obj/effect/landmark/train/german_train_limit/supplytrain
+/obj/effect/landmark/train/german_supplytrain_start
+
+/obj/effect/landmark/train/german_supplytrain_limit

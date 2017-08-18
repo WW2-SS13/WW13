@@ -56,7 +56,20 @@
 	// update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
+	// handle nutrition stuff before we handle stomach stuff in the callback
+
+	switch (stat)
+		if (CONSCIOUS) // takes about 1333 ticks to start starving, or ~44 minutes
+			nutrition -= 0.30
+		if (UNCONSCIOUS) // takes over an hour to starve
+			nutrition -= 0.20
+
+	nutrition = min(nutrition, max_nutrition)
+	nutrition = max(nutrition, -max_nutrition)
+
 	..()
+
+	stamina = min(stamina + rand(2,3), max_stamina)
 
 	if(life_tick%30==15)
 		hud_updateflag = 1022
@@ -65,9 +78,6 @@
 
 	//No need to update all of these procs if the guy is dead.
 	if(stat != DEAD && !in_stasis)
-		//Updates the number of stored chemicals for powers
-	//	handle_changeling()
-
 		//Organs and blood
 		handle_organs()
 
@@ -81,9 +91,12 @@
 
 		handle_medical_side_effects()
 
+		if (original_job && base_faction)
+			faction_hud_users |= src
+			process_faction_hud(src)
+
 		if(!client)
 			species.handle_npc(src)
-
 
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
@@ -220,64 +233,7 @@
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	return
-	/*if(in_stasis)
-		return
 
-	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || (prob(1)))
-			heal_organ_damage(0,1)
-
-	// DNA2 - Gene processing.
-	// The HULK stuff that was here is now in the hulk gene.
-	for(var/datum/dna/gene/gene in dna_genes)
-		if(!gene.block)
-			continue
-		if(gene.is_active(src))
-			speech_problem_flag = 1
-			gene.OnMobLife(src)
-
-	radiation = Clamp(radiation,0,100)
-
-	if (radiation)
-		var/damage = 0
-		radiation -= 1 * RADIATION_SPEED_COEFFICIENT
-		if(prob(25))
-			damage = 1
-
-		if (radiation > 50)
-			damage = 1
-			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
-			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
-				radiation -= 5 * RADIATION_SPEED_COEFFICIENT
-				src << "<span class='warning'>You feel weak.</span>"
-				Weaken(3)
-				if(!lying)
-					emote("collapse")
-			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == "Human") //apes go bald
-				if((h_style != "Bald" || f_style != "Shaved" ))
-					src << "<span class='warning'>Your hair falls out.</span>"
-					h_style = "Bald"
-					f_style = "Shaved"
-					update_hair()
-
-		if (radiation > 75)
-			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
-			damage = 3
-			if(prob(5))
-				take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
-			if(prob(1))
-				src << "<span class='warning'>You feel strange!</span>"
-				adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
-				emote("gasp")
-
-		if(damage)
-			damage *= species.radiation_mod
-			adjustToxLoss(damage * RADIATION_SPEED_COEFFICIENT)
-			updatehealth()
-			if(organs.len)
-				var/obj/item/organ/external/O = pick(organs)
-				if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)
-*/
 	/** breathing **/
 
 /mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
@@ -715,7 +671,7 @@
 		overlays_cache[22] = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay5")
 		overlays_cache[23] = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay6")
 
-	if(hud_updateflag) // update our mob's hud overlays, AKA what others see flaoting above our head
+	if(hud_updateflag || never_updated_hud_list) // update our mob's hud overlays, AKA what others see flaoting above our head
 		handle_hud_list()
 
 	// now handle what we see on our screen
@@ -911,16 +867,33 @@
 					stomach_contents.Remove(M)
 					qdel(M)
 					continue
-				if(air_master.current_cycle%3==1)
-					if(!(M.status_flags & GODMODE))
-						M.adjustBruteLoss(5)
-					nutrition += 10
 
-	handle_starvation()//Handle starving
+		handle_starvation()
 
+//Hardcore mode stuff. This was moved here because constants that are only used
+//at one spot in the code shouldn't be in the __defines folder
+
+#define STARVATION_MIN 0 //If you have less nutrition than this value, the hunger indicator starts flashing
+
+#define STARVATION_NOTICE -15 //If you have more nutrition than this value, you get an occasional message reminding you that you're going to starve soon
+
+#define STARVATION_WEAKNESS -40 //Otherwise, if you have more nutrition than this value, you occasionally become weak and receive minor damage
+
+#define STARVATION_NEARDEATH -55 //Otherwise, if you have more nutrition than this value, you have seizures and occasionally receive damage
+
+#define STARVATION_NEGATIVE_INFINITY -10000 // because trying to parse INFINITY into text is bad
+
+//If you have less nutrition than STARVATION_NEARDEATH, you start getting damage
+
+#define STARVATION_OXY_DAMAGE 2.5
+#define STARVATION_TOX_DAMAGE 2.5
+#define STARVATION_BRAIN_DAMAGE 2.5
+#define STARVATION_OXY_HEAL_RATE 1 //While starving, THIS much oxygen damage is restored per life tick (instead of the default 5)
+
+/mob/living/carbon/human/var/list/informed_starvation[4]
 
 /mob/living/carbon/human/proc/handle_starvation()//Making this it's own proc for my sanity's sake - Matt
-	if(nutrition < 100) //Nutrition is below 100 = starvation
+	if(nutrition < 20) //Nutrition is below 20 = starvation
 
 		var/list/hunger_phrases = list(
 			"You feel weak and malnourished. You must find something to eat now!",
@@ -933,18 +906,34 @@
 		//When you're starving, the rate at which oxygen damage is healed is reduced by 80% (you only restore 1 oxygen damage per life tick, instead of 5)
 
 		switch(nutrition)
-			if(STARVATION_NOTICE to STARVATION_MIN) //60-80
+			if(STARVATION_NOTICE to STARVATION_MIN)
 				if(sleeping) return
 
-				if(prob(2))
+				if (!informed_starvation[num2text(-STARVATION_NOTICE)])
 					src << "<span class='notice'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
 
-			if(STARVATION_WEAKNESS to STARVATION_NOTICE) //30-60
+				informed_starvation[num2text(-STARVATION_NOTICE)] = 1
+				informed_starvation[num2text(-STARVATION_WEAKNESS)] = 0
+				informed_starvation[num2text(-STARVATION_NEARDEATH)] = 0
+				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = 0
+
+				if(prob(10))
+					src << "<span class='notice'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
+
+			if(STARVATION_WEAKNESS to STARVATION_NOTICE)
 				if(sleeping) return
 
-				if(prob(3)) //3% chance of a tiny amount of oxygen damage (1-10)
+				if (!informed_starvation[num2text(-STARVATION_WEAKNESS)])
+					src << "<span class='danger'>[pick(hunger_phrases)]</span>"
 
-					adjustOxyLoss(rand(1,10))
+				informed_starvation[num2text(-STARVATION_NOTICE)] = 1
+				informed_starvation[num2text(-STARVATION_WEAKNESS)] = 1
+				informed_starvation[num2text(-STARVATION_NEARDEATH)] = 0
+				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = 0
+
+				if(prob(6)) //6% chance of a tiny amount of oxygen damage (1-5)
+
+					adjustOxyLoss(rand(1,5))
 					src << "<span class='danger'>[pick(hunger_phrases)]</span>"
 
 				else if(prob(5)) //5% chance of being weakened
@@ -957,14 +946,22 @@
 			if(STARVATION_NEARDEATH to STARVATION_WEAKNESS) //5-30, 5% chance of weakening and 1-230 oxygen damage. 5% chance of a seizure. 10% chance of dropping item
 				if(sleeping) return
 
-				if(prob(5))
+				if (!informed_starvation[num2text(-STARVATION_NEARDEATH)])
+					src << "<span class='danger'>You're starving. You feel your life force slowly leaving your body...</span>"
+
+				informed_starvation[num2text(-STARVATION_NOTICE)] = 1
+				informed_starvation[num2text(-STARVATION_WEAKNESS)] = 1
+				informed_starvation[num2text(-STARVATION_NEARDEATH)] = 1
+				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = 0
+
+				if(prob(7))
 
 					adjustOxyLoss(rand(1,20))
 					src << "<span class='danger'>You're starving. You feel your life force slowly leaving your body...</span>"
 					eye_blurry += 20
 					if(weakened < 1) Weaken(20)
 
-				else if(paralysis<1 && prob(5)) //Mini seizure (25% duration and strength of a normal seizure)
+				else if(paralysis<1 && prob(7)) //Mini seizure (25% duration and strength of a normal seizure)
 
 					visible_message("<span class='danger'>\The [src] starts having a seizure!</span>", \
 							"<span class='warning'>You have a seizure!</span>")
@@ -974,7 +971,18 @@
 					eye_blurry += 20
 
 			if(-INFINITY to STARVATION_NEARDEATH) //Fuck the whole body up at this point
-				src << "<span class='danger'>You are dying from starvation!</span>"
+
+				if (!informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)])
+					src << "<span class='danger'>You are dying from starvation!</span>"
+
+				informed_starvation[num2text(-STARVATION_NOTICE)] = 1
+				informed_starvation[num2text(-STARVATION_WEAKNESS)] = 1
+				informed_starvation[num2text(-STARVATION_NEARDEATH)] = 1
+				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = 1
+
+				if (prob(10))
+					src << "<span class='danger'>You are dying from starvation!</span>"
+
 				adjustToxLoss(STARVATION_TOX_DAMAGE)
 				adjustOxyLoss(STARVATION_OXY_DAMAGE)
 				adjustBrainLoss(STARVATION_BRAIN_DAMAGE)
@@ -1041,7 +1049,96 @@
 */
 
 
+/mob/living/carbon/human/var/never_updated_hud_list = 1
+
 /mob/living/carbon/human/proc/handle_hud_list()
+
+	#ifdef HUD_LIST_DEBUG
+	world << "called [src]'s handle_hud_list()"
+	#endif
+
+	never_updated_hud_list = 0
+
+
+	if (original_job && base_faction)
+
+		if (base_faction && BITTEST(hud_updateflag, FACTION_TO_ENEMIES))
+			var/image/holder = hud_list[FACTION_TO_ENEMIES]
+			holder.icon = null
+			holder.icon_state = null
+			hud_list[FACTION_TO_ENEMIES] = holder
+			#ifdef HUD_LIST_DEBUG
+			world << "updated [src]'s FACTION_TO_ENEMIES hud"
+			#endif
+
+		if (spy_faction && BITTEST(hud_updateflag, SPY_FACTION))
+			var/image/holder = hud_list[SPY_FACTION]
+			holder.icon = 'icons/mob/hud_WW2.dmi'
+			switch (original_job.base_type_flag())
+				if (RUSSIAN)
+					holder.icon_state = spy_faction.icon_state
+				if (GERMAN)
+					holder.icon_state = spy_faction.icon_state
+				if (PARTISAN)
+					holder.icon_state = spy_faction.icon_state
+				if (CIVILIAN)
+					holder.icon_state = ""
+			hud_list[SPY_FACTION] = holder
+			#ifdef HUD_LIST_DEBUG
+			world << "updated [src]'s SPY_FACTION hud"
+			#endif
+
+		if (officer_faction && BITTEST(hud_updateflag, OFFICER_FACTION))
+			var/image/holder = hud_list[OFFICER_FACTION]
+			holder.icon = 'icons/mob/hud_WW2.dmi'
+			switch (original_job.base_type_flag())
+				if (RUSSIAN)
+					holder.icon_state = officer_faction.icon_state
+				if (GERMAN)
+					holder.icon_state = officer_faction.icon_state
+				if (PARTISAN)
+					holder.icon_state = officer_faction.icon_state
+				if (CIVILIAN)
+					holder.icon_state = ""
+			hud_list[OFFICER_FACTION] = holder
+			#ifdef HUD_LIST_DEBUG
+			world << "updated [src]'s OFFICER_FACTION hud"
+			#endif
+
+		if (base_faction && BITTEST(hud_updateflag, BASE_FACTION))
+			var/image/holder = hud_list[BASE_FACTION]
+			holder.icon = 'icons/mob/hud_WW2.dmi'
+			switch (original_job.base_type_flag())
+				if (RUSSIAN)
+					holder.icon_state = base_faction.icon_state
+				if (GERMAN)
+					holder.icon_state = base_faction.icon_state
+				if (PARTISAN)
+					holder.icon_state = base_faction.icon_state
+				if (CIVILIAN)
+					holder.icon_state = ""
+			hud_list[BASE_FACTION] = holder
+			#ifdef HUD_LIST_DEBUG
+			world << "updated [src]'s BASE_FACTION hud"
+			#endif
+
+		if (squad_faction && BITTEST(hud_updateflag, SQUAD_FACTION))
+			var/image/holder = hud_list[SQUAD_FACTION]
+			holder.icon = 'icons/mob/hud_WW2.dmi'
+			switch (original_job.base_type_flag())
+				if (RUSSIAN)
+					holder.icon_state = squad_faction.icon_state
+				if (GERMAN)
+					holder.icon_state = squad_faction.icon_state
+				if (PARTISAN)
+					holder.icon_state = squad_faction.icon_state
+				if (CIVILIAN)
+					holder.icon_state = ""
+			hud_list[SQUAD_FACTION] = holder
+			#ifdef HUD_LIST_DEBUG
+			world << "updated [src]'s SQUAD_FACTION hud"
+			#endif
+
 	if (BITTEST(hud_updateflag, HEALTH_HUD))
 		var/image/holder = hud_list[HEALTH_HUD]
 		if(stat == DEAD)
@@ -1188,25 +1285,31 @@
 	..()
 
 /mob/living/carbon/human/handle_vision()
+
 	if(client)
 		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
-	if(machine)
-		var/viewflags = machine.check_eye(src)
-		if(viewflags < 0)
-			reset_view(null, 0)
-		else if(viewflags)
-			sight |= viewflags
-	else if(eyeobj)
-		if(eyeobj.owner != src)
-			reset_view(null)
+
+	if (!laddervision)
+		if(machine)
+			var/viewflags = machine.check_eye(src)
+			if(viewflags < 0)
+				reset_view(null, 0)
+			else if(viewflags)
+				sight |= viewflags
+		else if(eyeobj)
+			if(eyeobj.owner != src)
+				reset_view(null)
+		else
+			var/isRemoteObserve = 0
+			if((mRemote in mutations) && remoteview_target)
+				if(remoteview_target.stat==CONSCIOUS)
+					isRemoteObserve = 1
+			if(!isRemoteObserve && client && !client.adminobs)
+				remoteview_target = null
+				reset_view(null, 0)
 	else
-		var/isRemoteObserve = 0
-		if((mRemote in mutations) && remoteview_target)
-			if(remoteview_target.stat==CONSCIOUS)
-				isRemoteObserve = 1
-		if(!isRemoteObserve && client && !client.adminobs)
-			remoteview_target = null
-			reset_view(null, 0)
+		client.perspective = EYE_PERSPECTIVE
+		client.eye = laddervision
 
 	update_equipment_vision()
 	species.handle_vision(src)

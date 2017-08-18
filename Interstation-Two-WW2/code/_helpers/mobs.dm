@@ -396,12 +396,24 @@ Proc for attack log creation, because really why not
 
 	return germans
 
+/proc/getukrainianmobs(var/alive = 0)
+	var/list/ukrainians = list()
+	for (var/mob/living/carbon/human/H in mob_list)
+		if (!istype(H))
+			continue
+		if (alive && H.stat == DEAD)
+			continue
+		if (!istype(H.original_job, /datum/job/partisan))
+			continue
+		ukrainians += H
+
+	return ukrainians
 
 /proc/getgermanparatroopers(var/alive = 0)
 	var/list/germans = getgermanmobs(alive)
 	var/list/paratroopers = list()
 	for (var/mob/living/carbon/human/H in germans)
-		if (istype(H.job, /datum/job/german/paratrooper))
+		if (istype(H.original_job, /datum/job/german/paratrooper))
 			paratroopers += H
 	return paratroopers
 
@@ -409,9 +421,25 @@ Proc for attack log creation, because really why not
 	var/list/germans = getgermanmobs(alive)
 	var/list/SS = list()
 	for (var/mob/living/carbon/human/H in germans)
-		if (istype(H.job, /datum/job/german/soldier_ss) || istype(H.job, /datum/job/german/squad_leader_ss))
+		if (istype(H.original_job, /datum/job/german/soldier_ss) || istype(H.original_job, /datum/job/german/squad_leader_ss))
 			SS += H
 	return SS
+
+/proc/getcivilians(var/alive = 0)
+	var/list/ukrainians = getukrainianmobs(alive)
+	var/list/civilians = list()
+	for (var/mob/living/carbon/human/H in ukrainians)
+		if (istype(H.original_job, /datum/job/partisan/civilian))
+			civilians += H
+	return civilians
+
+/proc/getpartisans(var/alive = 0)
+	var/list/ukrainians = getukrainianmobs(alive)
+	var/list/partisans = list()
+	for (var/mob/living/carbon/human/H in ukrainians)
+		if (!istype(H.original_job, /datum/job/partisan/civilian))
+			partisans += H
+	return partisans
 
 // doesn't it suck to get a list of alive people you can observe,
 // only to find out that 90% of them are half dead and not where the action
@@ -424,14 +452,18 @@ Proc for attack log creation, because really why not
 	switch (faction)
 		if (null)
 			mobs = mob_list // we want actual mobs, not name = mob
-		if ("GERMAN")
+		if (GERMAN)
 			mobs = getgermanmobs(1)
-		if ("RUSSIAN", "SOVIET")
+		if (RUSSIAN, "SOVIET")
 			mobs = getrussianmobs(1)
 		if ("PARATROOPERS")
 			mobs = getgermanparatroopers(1)
 		if ("SS")
 			mobs = getSS(1)
+		if (PARTISAN)
+			mobs = getpartisans(1)
+		if (CIVILIAN)
+			mobs = getcivilians(1)
 
 	for (var/mob/m in mobs)
 		if (m.stat == UNCONSCIOUS || m.stat == DEAD)

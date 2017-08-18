@@ -1230,7 +1230,7 @@
 				but apparently there are some on a space station who don't. This guide should give you a basic idea of how to use this gear, safely. It's split into two sections:
 				 Civilian suits and hardsuits.<BR><BR>
 
-				<h2><a name="Civilian">Civilian Suits</a></h2>
+				<h2><a name=CIVILIAN>Civilian Suits</a></h2>
 				<I>The bulkiest things this side of Alpha Centauri</I><BR>
 				These suits are the grey ones that are stored in EVA. They're the more simple to get on, but are also a lot bulkier, and provide less protection from environmental hazards such as radiation or physical impact.
 				As Medical, Engineering, Security, and Mining all have hardsuits of their own, these don't see much use, but knowing how to put them on is quite useful anyways.<BR><BR>

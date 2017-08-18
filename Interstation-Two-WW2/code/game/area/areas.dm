@@ -117,6 +117,26 @@ var/list/ghostteleportlocs = list()
 /area/proc/get_contents()
 	return contents
 
+/area/proc/get_turfs()
+	. = get_contents()
+	. -= typesof(/obj)
+	. -= typesof(/mob)
+
+/area/proc/get_mobs()
+	. = get_contents()
+	. -= typesof(/turf)
+	. -= typesof(/obj)
+
+/area/proc/get_objs()
+	. = get_contents()
+	. -= typesof(/turf)
+	. -= typesof(/mob)
+
+/area/proc/lift_master()
+	for (var/obj/lift_controller/master in contents)
+		return master
+	return null
+
 /area/proc/get_camera_tag(var/obj/machinery/camera/C)
 	return "[name] [camera_id++]"
 

@@ -15,6 +15,7 @@
 	var/random_destination = 0
 	var/maxspread = 10
 	var/passes_walls = 0
+	var/dontmove = 0
 
 /obj/effect/effect/smoke/chem/New(var/newloc, smoke_duration, turf/dest_turf = null, icon/cached_icon = null, var/spread = 10)
 
@@ -69,9 +70,11 @@
 			if (prob(_prob))
 				destination = t
 
-	if(destination)
+	spawn (1)
 
-		walk_to(src, destination,0,rand(2,3),0)
+		if(destination && !dontmove)
+
+			walk_to(src, destination,0,rand(2,3),0)
 
 /obj/effect/effect/smoke/chem/Destroy()
 	opacity = 0

@@ -8,6 +8,7 @@
 	status = 1
 	nothrow = 1
 	var/fueltank = 1
+	var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = null
 
 /obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
 	return nodrop_special_check()
@@ -60,6 +61,15 @@
 	var/turf/my_turf = get_turf(loc)
 
 	if(!lit || operating)	return
+
+	var/mob/living/carbon/human/my_mob = loc
+	if (!my_mob || !istype(my_mob))
+		return
+
+	if (my_mob.back != backpack || !my_mob.back || !backpack)
+		my_mob << "<span class = 'danger'>Put the backpack on first.</span>"
+		return
+
 	operating = 1
 	playsound(my_turf, 'sound/weapons/flamethrower.ogg', 100, 1)
 
@@ -132,39 +142,12 @@
 	return
 
 /obj/item/weapon/flamethrower/flammenwerfer/proc/calculate_throw_amount()
-	return throw_amount * calculate_power_decimal()
+	return throw_amount * calculate_power_coeff()
 
-/obj/item/weapon/flamethrower/flammenwerfer/proc/calculate_power_decimal()
+/obj/item/weapon/flamethrower/flammenwerfer/proc/calculate_power_coeff()
 	var/p1 = pressure_1
 	var/p2 = ptank.air_contents.return_pressure()
-
 	return (p2/p1)
 
 /obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target, flamedir)
-	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
-	//Transfer 2.5% of current tank air contents to turf
-	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.02*(calculate_throw_amount()/100))
-/*
-	var/turf/my_turf = get_turf(loc) // loc = the mob
-
-	if (loc && my_turf)
-		var/turf/T = target
-		if (T.x <= my_turf.x)
-			if (flamedir == EAST || flamedir == NORTHEAST || flamedir == SOUTHEAST)
-				goto end
-		else if (T.x >= my_turf.x)
-			if (flamedir == WEST || flamedir == NORTHWEST || flamedir == SOUTHWEST)
-				goto end
-		else if (T.y >= my_turf.y)
-			if (flamedir == NORTH || flamedir == NORTHEAST || flamedir == NORTHWEST)
-				goto end
-		else if (T.y <= my_turf.y)
-			if (flamedir == SOUTH || flamedir == SOUTHEAST || flamedir == SOUTHWEST)
-				goto end
-
-		new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(target,air_transfer.gas["plasma"],get_dir(loc,target),1)
-
-	end*/
-	air_transfer.gas["plasma"] = 0
-	target.assume_air(air_transfer)
-	target.create_fire(5, rand(400,600), 0)
+	target.create_fire(5, rand(300,400), 0)

@@ -224,7 +224,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		if(!has_flag(mob_species, HAS_SKIN_TONE))
 			return TOPIC_NOACTION
 		var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference", (-pref.s_tone) + 35)  as num|null
-		if (new_s_tone > 55 && user.client.prefs.current_character_type == "GERMAN")
+		if (new_s_tone > 55 && user.client.prefs.current_character_type == GERMAN)
 			user << "<span class = 'danger'>This skin is too dark for a German.</span>"
 			return
 		if(new_s_tone && has_flag(mob_species, HAS_SKIN_TONE) && CanUseTopic(user))

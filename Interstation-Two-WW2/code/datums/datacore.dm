@@ -371,7 +371,7 @@ proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 		return H.mind.role_alt_title
 	else if(H.mind.assigned_role)
 		return H.mind.assigned_role
-	else if(H.job)
-		return H.job
+	else if(H.original_job.title)
+		return H.original_job.title
 	else
 		return "Unassigned"

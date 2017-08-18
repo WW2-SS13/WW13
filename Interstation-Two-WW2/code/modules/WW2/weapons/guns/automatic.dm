@@ -164,7 +164,6 @@
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY+1
 	caliber = "a762x39"
 	magazine_type = /obj/item/ammo_magazine/a762/pkm
-
 	can_wield = 0
 	must_wield = 0
 

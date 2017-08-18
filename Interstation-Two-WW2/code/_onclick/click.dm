@@ -83,6 +83,14 @@
 			tank.handle_seat_exit(src)
 			return
 
+	// stop looking down a ladder
+	if (istype(A, /obj/structure/multiz/ladder/ww2))
+		var/mob/living/carbon/human/H = src
+		if (istype(H) && H.laddervision)
+			H.update_laddervision(null)
+			H.visible_message("<span class = 'notice'>[H] stops looking [H.laddervision_direction()] the ladder.</span>")
+			return
+
 	if(restrained())
 		setClickCooldown(10)
 		RestrainedClickOn(A)

@@ -1,0 +1,4 @@
+#define GERMAN "GERMAN"
+#define CIVILIAN "CIVILIAN"
+#define PARTISAN "PARTISAN"
+#define RUSSIAN "RUSSIAN"

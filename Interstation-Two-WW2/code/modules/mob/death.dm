@@ -31,6 +31,39 @@
 			if(animation)	qdel(animation)
 			if(src)			qdel(src)
 
+// gibbing, but without organ or item dropping
+/mob/proc/crush(anim="gibbed-m",do_gibs)
+	if (lastgib == -1 || world.time - lastgib > 10)
+
+		if (ishuman(src))
+			emote("scream")
+
+		lastgib = world.time
+		death(1)
+		transforming = 1
+		canmove = 0
+		icon = null
+		invisibility = 101
+		update_canmove()
+		dead_mob_list -= src
+
+		var/atom/movable/overlay/animation = null
+		animation = new(loc)
+		animation.icon_state = "blank"
+		animation.icon = 'icons/mob/mob.dmi'
+		animation.master = src
+
+		flick(anim, animation)
+		if(do_gibs) gibs(loc)
+
+		// I couldn't find the gib sound, so I'm using this instead
+		// - Kachnov
+		playsound(loc, 'sound/effects/splat.ogg', 100)
+
+		spawn(15)
+			if(animation)	qdel(animation)
+			if(src)			qdel(src)
+
 //This is the proc for turning a mob into ash. Mostly a copy of gib code (above).
 //Originally created for wizard disintegrate. I've removed the virus code since it's irrelevant here.
 //Dusting robots does not eject the MMI, so it's a bit more powerful than gib() /N
@@ -63,9 +96,6 @@
 
 	facing_dir = null
 
-	//if(!gibbed && deathmessage != "no message") // This is gross, but reliable. Only brains use it.
-	//	src.visible_message("<b>\The [src.name]</b> [deathmessage]")//NO MORE FUCKING SEIZING UP AND FALLING LIMP UGH!
-
 	stat = DEAD
 
 	update_canmove()
@@ -75,9 +105,6 @@
 
 	layer = MOB_LAYER
 
-/*	if(blind && client)
-		blind.alpha = 0*/
-
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 	see_in_dark = 8
 	see_invisible = SEE_INVISIBLE_LEVEL_TWO
@@ -85,15 +112,6 @@
 	drop_r_hand()
 	drop_l_hand()
 
-	//TODO:  Change death state to health_dead for all these icon files.  This is a stop gap.
-/*
-	if(healths)
-		if("health7" in icon_states(healths.icon))
-			healths.icon_state = "health7"
-		else
-			healths.icon_state = "health6"
-			log_debug("[src] ([src.type]) died but does not have a valid health7 icon_state (using health6 instead). report this error to Ccomp5950 or your nearest Developer")
-*/
 	if(istype(src,/mob/living))
 		var/mob/living/L = src
 		if(L.HUDneed.Find("health"))
@@ -110,5 +128,7 @@
 	if(ticker && ticker.mode)
 		ticker.mode.check_win()
 
+	if (client)
+		ghostize()
 
 	return 1

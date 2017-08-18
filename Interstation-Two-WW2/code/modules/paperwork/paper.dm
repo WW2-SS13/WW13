@@ -34,6 +34,7 @@
 	var/const/signfont = "Times New Roman"
 	var/const/crayonfont = "Comic Sans MS"
 
+
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
 /obj/item/weapon/paper/New()
@@ -303,6 +304,8 @@
 		return
 
 	if(href_list["write"])
+		if (istype(src, /obj/item/weapon/paper/supply_train_requisitions_sheet))
+			return
 		var/id = href_list["write"]
 		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message
 

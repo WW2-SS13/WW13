@@ -91,7 +91,7 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
-/obj/structure/closet/crate/gernade
+/obj/structure/closet/crate/grenade
 	name = "Stielgranate crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
@@ -148,16 +148,16 @@
 /obj/structure/closet/crate/rations/New()
 	..()
 	var/textpath = "[type]"
-	if (findtext(textpath, "german"))
+	if (findtext(textpath, GERMAN))
 		if (findtext(textpath, "solids"))
 			for (var/v in 1 to rand(10,15))
-				contents += new_ration("GERMAN", "solid")
+				contents += new_ration(GERMAN, "solid")
 		if (findtext(textpath, "liquids"))
 			for (var/v in 1 to rand(10,15))
-				contents += new_ration("GERMAN", "liquid")
+				contents += new_ration(GERMAN, "liquid")
 		if (findtext(textpath, "desserts"))
 			for (var/v in 1 to rand(10,15))
-				contents += new_ration("GERMAN", "dessert")
+				contents += new_ration(GERMAN, "dessert")
 	else if (findtext(textpath, "soviet"))
 		if (findtext(textpath, "solids"))
 			for (var/v in 1 to rand(10,15))
@@ -272,7 +272,7 @@
 	for (var/v in 10 to 24)
 		new /obj/item/weapon/grenade/explosive/rgd(src)
 
-/obj/structure/closet/crate/gernade/New()
+/obj/structure/closet/crate/grenade/New()
 	..()
 	for (var/v in 1 to 24)
 		new /obj/item/weapon/grenade/explosive/stgnade(src)

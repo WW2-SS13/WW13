@@ -47,6 +47,9 @@
 	brainmob << "<span class='notice'>You feel slightly disoriented. That's normal when you're just a [initial(src.name)].</span>"
 	callHook("debrain", list(brainmob))
 
+	if (brainmob.client)
+		brainmob.ghostize() // gibbed people now automatically ghost - Kachnov
+
 /obj/item/organ/brain/examine(mob/user) // -- TLE
 	..(user)
 	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.

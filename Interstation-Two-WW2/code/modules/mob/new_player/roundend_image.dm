@@ -6,6 +6,7 @@ var/obj/effect/roundend_image/tobecontinued/tobecontinued = new/obj/effect/round
 	icon = 'icons/_ROUNDEND.dmi'
 	icon_state = ""
 	screen_loc = "WEST,SOUTH"
+	plane = 10000
 
 /obj/effect/roundend_image/tobecontinued
 	name = "To Be Continued"

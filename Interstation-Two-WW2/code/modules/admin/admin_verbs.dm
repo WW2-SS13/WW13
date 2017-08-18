@@ -308,6 +308,7 @@ var/list/admin_verbs_mentor = list(
 		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
 		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
 		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
+		if(holder.rights & R_HOST) verbs += /client/proc/reset_roundstart_autobalance
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(

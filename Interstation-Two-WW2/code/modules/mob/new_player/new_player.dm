@@ -48,9 +48,9 @@
 			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a German reinforcement!</A></p>"
 			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Russian reinforcement!</A></p>"
 		else
-			if (reinforcements_master.has(src, "GERMAN"))
+			if (reinforcements_master.has(src, GERMAN))
 				output += "<p><a href='byond://?src=\ref[src];unre_german=1'>Leave the German reinforcement pool.</A></p>"
-			else if (reinforcements_master.has(src, "RUSSIAN"))
+			else if (reinforcements_master.has(src, RUSSIAN))
 				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Russian reinforcement pool.</A></p>"
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
@@ -170,22 +170,22 @@
 			return 1
 
 	if(href_list["re_german"])
-		if (!reinforcements_master.is_permalocked("GERMAN"))
+		if (!reinforcements_master.is_permalocked(GERMAN))
 			if (client.prefs.s_tone < -30 && !client.untermensch)
 				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
 				return
-			reinforcements_master.add(src, "GERMAN")
+			reinforcements_master.add(src, GERMAN)
 		else
 			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements!</span>"
 	if(href_list["re_russian"])
-		if (!reinforcements_master.is_permalocked("RUSSIAN"))
-			reinforcements_master.add(src, "RUSSIAN")
+		if (!reinforcements_master.is_permalocked(RUSSIAN))
+			reinforcements_master.add(src, RUSSIAN)
 		else
 			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements!</span>"
 	if(href_list["unre_german"])
-		reinforcements_master.remove(src, "GERMAN")
+		reinforcements_master.remove(src, GERMAN)
 	if(href_list["unre_russian"])
-		reinforcements_master.remove(src, "RUSSIAN")
+		reinforcements_master.remove(src, RUSSIAN)
 
 	if(href_list["late_join"])
 
@@ -214,7 +214,15 @@
 				actual_job = j
 				break
 
-		if (istype(actual_job, /datum/job/german))
+		if (actual_job.base_type_flag() == GERMAN || actual_job.base_type_flag() == RUSSIAN)
+			// we're only accepting squad leaders right now
+			if (!job_master.squad_leader_check(src, actual_job))
+				return
+			// we aren't accepting squad leaders right now
+			if (!job_master.squad_member_check(src, actual_job))
+				return
+
+		if (actual_job.base_type_flag() == GERMAN)
 			if (client.prefs.s_tone < -30 && !client.untermensch)
 				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
 				return
@@ -233,6 +241,11 @@
 			return 0
 
 		if (actual_job.spawn_delay)
+
+			if (delayed_spawning_as_job)
+				delayed_spawning_as_job.total_positions += 1
+				delayed_spawning_as_job = null
+
 			job_master.spawn_with_delay(src, actual_job)
 		else
 			AttemptLateSpawn(href_list["SelectedJob"])
@@ -312,10 +325,8 @@
 	close_spawn_windows()
 
 	job_master.AssignRole(src, rank, 1)
-
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
-	//equip_custom_items(character)
 
 	job_master.relocate(character)
 
@@ -327,78 +338,39 @@
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
-		//Grab some data from the character prefs for use in random news procs.
-
-	//	AnnounceArrival(character, rank, join_message)
-//	else
-	//	AnnounceCyborg(character, rank, join_message)
-	//	ticker.mode.handle_latejoin(character)
 	character.lastarea = get_area(loc)
-
-	//if (needs_random_name)
-	if (names_used[character.real_name])
-		character.mind.assigned_job.give_random_name(character)
-
-	names_used[character.real_name] = 1
 
 	qdel(src)
 
-/mob/new_player/proc/AttemptLateSpawn(rank, var/nomsg = 0/*,var/spawning_at*/)
+/mob/new_player/proc/AttemptLateSpawn(rank, var/nomsg = 0)
 
 	if(src != usr)
 		return 0
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-		usr << "\red The round is either not ready, or has already finished..."
+		if (!nomsg)
+			usr << "\red The round is either not ready, or has already finished..."
 		return 0
 	if(!config.enter_allowed)
-		usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
+		if (!nomsg)
+			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 		return 0
 	if(!IsJobAvailable(rank))
-		src << alert("[rank] is not available. Perhaps too many people are already attempting to join as it?")
+		if (!nomsg)
+			src << alert("[rank] is not available. Perhaps too many people are already attempting to join as it?")
 		return 0
 
 	var/datum/job/job = job_master.GetJob(rank)
 
 	if(job_master.is_side_locked(job.base_type_flag()))
-		src << "\red Currently this side is locked for joining."
+		if (!nomsg)
+			src << "\red Currently this side is locked for joining."
 		return
-
 
 	spawning = 1
 	close_spawn_windows()
-
 	job_master.AssignRole(src, rank, 1)
-
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
-//	equip_custom_items(character)
-
-
-/*
-	// AIs don't need a spawnpoint, they must spawn at an empty core
-	if(character.mind.assigned_role == "AI")
-
-		character = character.AIize(move=0) // AIize the character, but don't move them yet
-
-			// IsJobAvailable for AI checks that there is an empty core available in this list
-		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
-		empty_playable_ai_cores -= C
-
-		character.loc = C.loc
-
-	//	AnnounceCyborg(character, rank, "has been downloaded to the empty core in \the [character.loc.loc]")
-		ticker.mode.handle_latejoin(character)
-
-		qdel(C)
-		qdel(src)
-		return
-
-	//Find our spawning point.
-	var/join_message = job_master.LateSpawn(character.client, rank)*/
-
-
-	// Moving wheelchair if they have one
-
 	job_master.relocate(character)
 
 	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
@@ -409,42 +381,17 @@
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
-		//Grab some data from the character prefs for use in random news procs.
-
-	//	AnnounceArrival(character, rank, join_message)
-//	else
-	//	AnnounceCyborg(character, rank, join_message)
-	//	ticker.mode.handle_latejoin(character)
 	character.lastarea = get_area(loc)
-
-	if (names_used[character.real_name])
-		character.mind.assigned_job.give_random_name(character)
-
-	names_used[character.real_name] = 1
 
 	qdel(src)
 
+	return 1
+
 /mob/new_player/proc/LateChoices()
 
-	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
-
 	var/dat = "<html><body><center>"
-	dat += "<b>Welcome, [name].<br></b>"
+	dat += "<b>Welcome, [key].<br></b>"
 	dat += "Round Duration: [roundduration2text()]<br>"
-
-/*	dat += "Choose from the following open/valid positions:<br>"
-	for(var/datum/job/job in job_master.occupations)
-		if(job && IsJobAvailable(job.title))
-			if(job.minimum_character_age && (client.prefs.age < job.minimum_character_age))
-				continue
-			var/active = 0
-			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
-				active++
-			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
-
-	dat += "</center>"
-	src << browse(dat, "window=latechoices;size=300x640;can_close=1")*/
 
 	var/list/restricted_choices = list()
 
@@ -463,20 +410,7 @@
 					restricted_choices[c.role_preference_ger]++
 
 	var/prev_side = 0
-/*
-	if (world.time <= ticker.role_preference_grace_period)
 
-		if (client.role_preference_sov)
-			dat += "Soviet Role Preference: [client.role_preference_sov]<br>"
-		if (client.role_preference_ger)
-			dat += "German Role Preference: [client.role_preference_ger]<br>"
-
-	else
-		if (client.role_preference_sov)
-			dat += "<strike>Soviet Role Preference: [client.role_preference_sov]</strike><br>"
-		if (client.role_preference_ger)
-			dat += "<strike>German Role Preference: [client.role_preference_ger]</strike><br>"
-*/
 	dat += "Choose from the following open positions:<br>"
 	for(var/datum/job/job in job_master.occupations)
 		if(job && !job.train_check())
@@ -487,17 +421,34 @@
 		if (config.use_job_whitelist && !check_job_whitelist(src, job.title))
 			job_is_available = 0
 
+		// check if the faction is admin-locked
+
 		if (istype(job, /datum/job/german/paratrooper) && !paratroopers_toggled)
 			job_is_available = 0
 
 		if ((istype(job, /datum/job/german/soldier_ss) || istype(job, /datum/job/german/squad_leader_ss)) && !SS_toggled)
 			job_is_available = 0
 
-		if (istype(job, /datum/job/partisan) && !civilians_toggled)
+		if (istype(job, /datum/job/partisan) && !istype(job, /datum/job/partisan/civilian) && !partisans_toggled)
 			job_is_available = 0
+
+		if (istype(job, /datum/job/partisan/civilian) && !civilians_toggled)
+			job_is_available = 0
+
+		// check if the job is admin-locked or disabled codewise
 
 		if (!job.enabled)
 			job_is_available = 0
+
+		// check if the faction is autobalance-locked
+
+		if (istype(job, /datum/job/partisan) && !istype(job, /datum/job/partisan/civilian) && !job_master.allow_partisans)
+			job_is_available = 0
+
+		if (istype(job, /datum/job/partisan/civilian) && !job_master.allow_civilians)
+			job_is_available = 0
+
+		// check if the job is autobalance-locked
 
 		if(job)
 			var/active = 0
@@ -506,21 +457,22 @@
 				active++
 			if(job.base_type_flag() != prev_side)
 				prev_side = job.base_type_flag()
-				var/side_name = get_side_name(job.base_type_flag(), job)
+				var/side_name = "<b>[job.get_side_name()]</b>"
 				if(side_name)
 					dat += "[side_name]<br>"
 
 			if (!job.en_meaning)
 				if (job_is_available)
-					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a><br>"
 				else
-					dat += "TAKEN, WHITELISTED, OR DISABLED BY ADMINS: <strike>[job.title] ([job.current_positions]) (Active: [active])</strike><br>"
+					dat += "TAKEN, WHITELISTED, OR DISABLED BY ADMINS: <strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike><br>"
 
 			else
 				if (job_is_available)
-					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</a><br>"
+					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a><br>"
 				else
-					dat += "TAKEN, WHITELISTED, OR DISABLED BY ADMINS: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]) (Active: [active])</strike><br>"
+					dat += "TAKEN, WHITELISTED, OR DISABLED BY ADMINS: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike><br>"
+
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")
 
@@ -528,10 +480,8 @@
 /mob/new_player/proc/create_character()
 
 	if (delayed_spawning_as_job)
-		delayed_spawning_as_job.spawn_positions += 1
 		delayed_spawning_as_job.total_positions += 1
-
-	delayed_spawning_as_job = null
+		delayed_spawning_as_job = null
 
 	spawning = 1
 	close_spawn_windows()
@@ -576,11 +526,11 @@
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 
 	new_character.original_job = original_job
-
 	new_character.name = real_name
 	new_character.dna.ready_dna(new_character)
 	new_character.dna.b_type = client.prefs.b_type
 	new_character.sync_organ_dna()
+
 	if(client.prefs.disabilities)
 		// Set defer to 1 if you add more crap here so it only recalculates struc_enzymes once. - N3X
 		new_character.dna.SetSEState(GLASSESBLOCK,1,0)

@@ -229,7 +229,7 @@
 				if(iscarbon(M)) //Carbon stuff
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
-						M_job = H.job
+						M_job = H.original_job
 					else if(isslime(M))
 						M_job = "slime"
 					else if(issmall(M))

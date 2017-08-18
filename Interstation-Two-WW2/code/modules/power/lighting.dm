@@ -310,6 +310,7 @@
 /obj/machinery/light/proc/update(var/trigger = 1, var/fastupdate = 0, var/nosound = 0)
 
 	update_icon()
+
 	if(on == 1)
 		if(needsound == 1)
 			if (!nosound)

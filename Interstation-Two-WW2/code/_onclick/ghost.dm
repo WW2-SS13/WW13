@@ -14,18 +14,33 @@
 	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
+
 	if(can_reenter_corpse && mind && mind.current)
 		if(A == mind.current || (mind.current in A)) // double click your corpse or whatever holds it
 			reenter_corpse()						// (cloning scanner, body bag, closet, mech, etc)
 			return
 
 	// Things you might plausibly want to follow
-	if(istype(A,/atom/movable))
+	if(istype(A,/atom/movable) && !istype(A, /obj/lift_pseudoturf))
 		ManualFollow(A)
+	else if (istype(A, /obj/lift_pseudoturf))
+
+		var/obj/lift_pseudoturf/lpt = A
+		var/obj/lift_controller/master = lpt.master
+
+		forceMove(get_turf(A))
+
+		if (istype(master, /obj/lift_controller/down))
+			movedown()
+		else
+			moveup()
 	// Otherwise jump
 	else
 		stop_following()
 		forceMove(get_turf(A))
+
+		if (istype(A, /turf/simulated/open))
+			movedown()
 
 /mob/observer/ghost/ClickOn(var/atom/A, var/params)
 	if(client.buildmode)

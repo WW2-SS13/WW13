@@ -1,3 +1,4 @@
+var/partisans_toggled = 1
 var/civilians_toggled = 1
 var/SS_toggled = 1
 var/paratroopers_toggled = 1
@@ -14,17 +15,27 @@ var/paratroopers_toggled = 1
 		return
 
 	var/list/choices = list()
+
+	choices += "PARTISANS ([partisans_toggled ? "ENABLED" : "DISABLED"])"
 	choices += "CIVILIANS ([civilians_toggled ? "ENABLED" : "DISABLED"])"
 	choices += "WAFFEN-SS ([SS_toggled ? "ENABLED" : "DISABLED"])"
 	choices += "PARATROOPERS ([paratroopers_toggled ? "ENABLED" : "DISABLED"])"
+	choices += "CANCEL"
 
 	var/choice = input("Enable/Disable what subfaction?") in choices
+
+	if (choice == "CANCEL")
+		return
+
+	if (findtext(choice, "PARTISANS"))
+		partisans_toggled = !partisans_toggled
+		world << "<span class = 'danger'>The Partisan faction has been [partisans_toggled ? "<i>ENABLED</i>" : "<i>DISABLED</i>"].</span>"
 	if (findtext(choice, "CIVILIANS"))
 		civilians_toggled = !civilians_toggled
-		src << "<span class = 'danger'>The Civilian faction has been [civilians_toggled ? "<i>ENABLED</i>" : "<i>DISABLED</i>"].</span>"
+		world << "<span class = 'danger'>The Civilian faction has been [civilians_toggled ? "<i>ENABLED</i>" : "<i>DISABLED</i>"].</span>"
 	if (findtext(choice, "WAFFEN-SS"))
 		SS_toggled = !SS_toggled
-		src << "<span class = 'danger'>The SS faction has been [SS_toggled ? "<i>ENABLED</i>" : "<i>DISABLED</i>"].</span>"
+		world << "<span class = 'danger'>The SS faction has been [SS_toggled ? "<i>ENABLED</i>" : "<i>DISABLED</i>"].</span>"
 	if (findtext(choice, "PARATROOPERS"))
 		paratroopers_toggled = !paratroopers_toggled
-		src << "<span class = 'danger'>The Paratrooper faction has been [paratroopers_toggled ? "<i>ENABLED</i>" : "<i>DISABLED</i>"].</span>"
+		world << "<span class = 'danger'>The Paratrooper faction has been [paratroopers_toggled ? "<i>ENABLED</i>" : "<i>DISABLED</i>"].</span>"

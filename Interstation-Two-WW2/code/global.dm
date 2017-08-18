@@ -12,6 +12,7 @@ var/global/list/processing_power_items   = list()
 var/global/list/active_diseases          = list()
 var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
 var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
+var/global/list/faction_hud_users		 = list() // List of all entities using faction huds.
 var/global/list/hud_icon_reference       = list()
 var/global/list/bullet_casings			 = list()
 
@@ -176,6 +177,6 @@ var/static/list/scarySounds = list(
 var/max_explosion_range = 14
 
 // Announcer intercom, because too much stuff creates an intercom for one message then hard del()s it.
-var/global/obj/item/device/radio/intercom/global_announcer = new(null)
+//var/global/obj/item/device/radio/intercom/global_announcer = new(null)
 
-var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Civilian")
+//var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Civilian")

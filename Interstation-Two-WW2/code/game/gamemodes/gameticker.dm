@@ -137,7 +137,10 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	//	world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
 
+		// todo: make these hooks. Apparently they all fail on /hook/roundstart
 		start_train_loop()
+		handle_lifts()
+		setup_autobalance()
 
 		reinforcements_master = new()
 

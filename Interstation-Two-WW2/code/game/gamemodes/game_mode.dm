@@ -376,41 +376,41 @@ var/global/list/additional_antag_types = list()
 //////////////////////////
 proc/display_roundstart_logout_report()
 	var/msg = "<span class='notice'><b>Roundstart logout report</b>\n\n"
-	for(var/mob/living/L in mob_list)
+	for(var/mob/living/carbon/human/H in mob_list)
 
-		if(L.ckey)
+		if(H.ckey)
 			var/found = 0
 			for(var/client/C in clients)
-				if(C.ckey == L.ckey)
+				if(C.ckey == H.ckey)
 					found = 1
 					break
 			if(!found)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
+				msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
 
-		if(L.ckey && L.client)
-			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
+		if(H.ckey && H.client)
+			if(H.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
+				msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				continue //AFK client
-			if(L.stat)
-				if(L.stat == UNCONSCIOUS)
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dying)\n"
+			if(H.stat)
+				if(H.stat == UNCONSCIOUS)
+					msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (Dying)\n"
 					continue //Unconscious
-				if(L.stat == DEAD)
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dead)\n"
+				if(H.stat == DEAD)
+					msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (Dead)\n"
 					continue //Dead
 
 			continue //Happy connected client
 		for(var/mob/observer/ghost/D in mob_list)
-			if(D.mind && (D.mind.original == L || D.mind.current == L))
-				if(L.stat == DEAD)
-					msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)\n"
+			if(D.mind && (D.mind.original == H || D.mind.current == H))
+				if(H.stat == DEAD)
+					msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job.title] (Dead)\n"
 					continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Adminghosted</b></font>)\n"
-						continue //Lolwhat
+						msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job.title] (<font color='red'><b>Adminghosted</b></font>)\n"
+						continue //Holwhat
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Ghosted</b></font>)\n"
+						msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job.title] (<font color='red'><b>Ghosted</b></font>)\n"
 						continue //Ghosted while alive
 
 	msg += "</span>" // close the span from right at the top

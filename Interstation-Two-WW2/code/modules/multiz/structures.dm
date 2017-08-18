@@ -81,12 +81,6 @@
 
 /obj/structure/multiz/ladder/attack_hand(var/mob/M)
 
-	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if (H.laddervision == src)
-			H.update_laddervision(null)
-			return
-
 	if(!target || !istype(target.loc, /turf))
 		M << "<span class='notice'>\The [src] is incomplete and can't be climbed.</span>"
 		return
@@ -137,15 +131,33 @@
 		return
 	if (user.laddervision == src)
 		return
-	user.update_laddervision(src)
+	if (!target)
+		return
+	if (user.laddervision)
+		user.update_laddervision(target) // stop looking up/down
+		return
+	visible_message("<span class = 'notice'>[user] starts to look [user.laddervision_direction()] the ladder.</span>")
+	if (do_after(user, 12, src))
+		user.update_laddervision(target)
+		visible_message("<span class = 'notice'>[user] looks [user.laddervision_direction()] the ladder.</span>")
 
 /mob/living/carbon/human/proc/update_laddervision(var/obj/structure/multiz/ladder/ladder)
 	if (ladder && istype(ladder))
+		client.perspective = EYE_PERSPECTIVE
 		laddervision = ladder
-		client.eye = get_turf(laddervision)
+		client.eye = laddervision
 	else if (!ladder)
+		client.perspective = MOB_PERSPECTIVE
 		client.eye = src
 		laddervision = null
+
+/mob/living/carbon/human/proc/laddervision_direction()
+	if (!laddervision)
+		return ""
+	var/obj/structure/multiz/ladder = laddervision
+	if (ladder.istop)
+		return "up"
+	return "down"
 
 //// 1 Z LEVEL LADDERS - Kachnov ////
 

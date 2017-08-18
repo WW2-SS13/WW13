@@ -62,11 +62,7 @@
 		equipment_darkness_modifier += G.darkness_view
 		equipment_vision_flags |= G.vision_flags
 		equipment_prescription = equipment_prescription || G.prescription
-//		if(G.overlay)
-//			equipment_overlays |= G.overlay
-//		if (src.HUDtech.Find("glassesoverlay"))//i process that ocerlay
-//			var/obj/screen/glasses_overlay/GO = src.HUDtech["glassesoverlay"]
-//			GO.update_icon()
+
 		if(G.see_invisible >= 0)
 			if(equipment_see_invis)
 				equipment_see_invis = min(equipment_see_invis, G.see_invisible)

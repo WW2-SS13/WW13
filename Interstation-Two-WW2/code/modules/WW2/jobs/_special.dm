@@ -12,7 +12,7 @@
 				cont = 1
 				break
 		if (cont)
-			if (H.stat == CONSCIOUS && H.mind.assigned_job.base_type_flag() == "GERMAN")
+			if (H.stat == CONSCIOUS && H.mind.assigned_job.base_type_flag() == GERMAN)
 				return 1 // found a conscious german dude with the key
 	return 0
 
@@ -28,6 +28,7 @@
 /datum/job/var/is_secondary = 0
 /datum/job/var/is_paratrooper = 0
 /datum/job/var/is_sturmovik = 0
+/datum/job/var/absolute_limit = 0 // if this is 0 it's ignored
 
 // type_flag() replaces flag, and base_type_flag() replaces department_flag
 // this is a better solution than bit constants, in my opinion
@@ -37,58 +38,61 @@
 
 /datum/job/proc/base_type_flag()
 	if (istype(src, /datum/job/russian))
-		return "RUSSIAN"
+		return RUSSIAN
 	else if (istype(src, /datum/job/partisan))
 		if (istype(src, /datum/job/partisan/civilian))
-			return "CIVILIAN"
-		return "PARTISAN"
+			return CIVILIAN
+		return PARTISAN
 	else if (istype(src, /datum/job/german))
-		return "GERMAN"
+		return GERMAN
+
+/datum/job/proc/get_side_name()
+	return capitalize(lowertext(base_type_flag()))
 
 /datum/job/proc/assign_faction(var/mob/living/carbon/human/user)
 
-	if (!spies["GERMAN"])
-		spies["GERMAN"] = 0
-	if (!spies["RUSSIAN"])
-		spies["RUSSIAN"] = 0
-	if (!spies["PARTISAN"])
-		spies["PARTISAN"] = 0
+	if (!spies[GERMAN])
+		spies[GERMAN] = 0
+	if (!spies[RUSSIAN])
+		spies[RUSSIAN] = 0
+	if (!spies[PARTISAN])
+		spies[PARTISAN] = 0
 
-	if (!squad_leaders["GERMAN"])
-		squad_leaders["GERMAN"] = 0
-	if (!squad_leaders["RUSSIAN"])
-		squad_leaders["RUSSIAN"] = 0
-	if (!squad_leaders["PARTISAN"])
-		squad_leaders["PARTISAN"] = 0
+	if (!squad_leaders[GERMAN])
+		squad_leaders[GERMAN] = 0
+	if (!squad_leaders[RUSSIAN])
+		squad_leaders[RUSSIAN] = 0
+	if (!squad_leaders[PARTISAN])
+		squad_leaders[PARTISAN] = 0
 
-	if (!officers["GERMAN"])
-		officers["GERMAN"] = 0
-	if (!officers["RUSSIAN"])
-		officers["RUSSIAN"] = 0
-	if (!officers["PARTISAN"])
-		officers["PARTISAN"] = 0
+	if (!officers[GERMAN])
+		officers[GERMAN] = 0
+	if (!officers[RUSSIAN])
+		officers[RUSSIAN] = 0
+	if (!officers[PARTISAN])
+		officers[PARTISAN] = 0
 
-	if (!commanders["GERMAN"])
-		commanders["GERMAN"] = 0
-	if (!commanders["RUSSIAN"])
-		commanders["RUSSIAN"] = 0
-	if (!commanders["PARTISAN"])
-		commanders["PARTISAN"] = 0
+	if (!commanders[GERMAN])
+		commanders[GERMAN] = 0
+	if (!commanders[RUSSIAN])
+		commanders[RUSSIAN] = 0
+	if (!commanders[PARTISAN])
+		commanders[PARTISAN] = 0
 
-	if (!soldiers["GERMAN"])
-		soldiers["GERMAN"] = 0
-	if (!soldiers["RUSSIAN"])
-		soldiers["RUSSIAN"] = 0
-	if (!soldiers["PARTISAN"])
-		soldiers["PARTISAN"] = 0
+	if (!soldiers[GERMAN])
+		soldiers[GERMAN] = 0
+	if (!soldiers[RUSSIAN])
+		soldiers[RUSSIAN] = 0
+	if (!soldiers[PARTISAN])
+		soldiers[PARTISAN] = 0
 
 
-	if (!squad_members["GERMAN"])
-		squad_members["GERMAN"] = 0
-	if (!squad_members["RUSSIAN"])
-		squad_members["RUSSIAN"] = 0
-	if (!squad_members["PARTISAN"])
-		squad_members["PARTISAN"] = 0
+	if (!squad_members[GERMAN])
+		squad_members[GERMAN] = 0
+	if (!squad_members[RUSSIAN])
+		squad_members[RUSSIAN] = 0
+	if (!squad_members[PARTISAN])
+		squad_members[PARTISAN] = 0
 
 	if (!istype(user))
 		return
@@ -96,76 +100,87 @@
 	if (istype(src, /datum/job/german))
 
 		if (istype(src, /datum/job/german/soldier_ss))
-			user.base_job_faction = new/datum/job_faction/german/SS(user, src)
+			user.base_faction = new/datum/faction/german/SS(user, src)
 		else
-			user.base_job_faction = new/datum/job_faction/german(user, src)
+			user.base_faction = new/datum/faction/german(user, src)
 
 		if (is_officer && !is_commander)
-			user.officer_job_faction = new/datum/job_faction/german/officer(user, src)
+			user.officer_faction = new/datum/faction/german/officer(user, src)
 
 		else if (is_commander)
 			if (istype(src, /datum/job/german/squad_leader_ss))
-				user.officer_job_faction = new/datum/job_faction/german/commander/SS(user, src)
+				user.officer_faction = new/datum/faction/german/commander/SS(user, src)
 			else
-				user.officer_job_faction = new/datum/job_faction/german/commander(user, src)
+				user.officer_faction = new/datum/faction/german/commander(user, src)
 
 		if (is_squad_leader)
-			switch (squad_leaders["GERMAN"])
+			switch (squad_leaders[GERMAN])
 				if (0)
-					user.squad_job_faction = new/datum/job_faction/squad/one/leader(user, src)
+					user.squad_faction = new/datum/faction/squad/one/leader(user, src)
 				if (1)
-					user.squad_job_faction = new/datum/job_faction/squad/two/leader(user, src)
+					user.squad_faction = new/datum/faction/squad/two/leader(user, src)
 				if (2)
-					user.squad_job_faction = new/datum/job_faction/squad/three/leader(user, src)
+					user.squad_faction = new/datum/faction/squad/three/leader(user, src)
 				if (3)
-					user.squad_job_faction = new/datum/job_faction/squad/four/leader(user, src)
-		else if (!is_officer && !is_commander && !is_nonmilitary && !istype(src, /datum/job/german/soldier_ss))
-			switch (squad_members["GERMAN"]) // non officers
-				if (0 to 7-1)
-					user.squad_job_faction = new/datum/job_faction/squad/one(user, src)
-				if (8-1 to 14-1)
-					user.squad_job_faction = new/datum/job_faction/squad/two(user, src)
-				if (15-1 to 21-1)
-					user.squad_job_faction = new/datum/job_faction/squad/three(user, src)
-				if (22-1 to 28-1)
-					user.squad_job_faction = new/datum/job_faction/squad/four(user, src)
+					user.squad_faction = new/datum/faction/squad/four/leader(user, src)
+		else if (!is_officer && !is_commander && !is_nonmilitary && !is_SS && !is_paratrooper)
+			switch (squad_members[GERMAN]) // non officers
+				if (0 to MEMBERS_PER_SQUAD-1)
+					user.squad_faction = new/datum/faction/squad/one(user, src)
+				if ((MEMBERS_PER_SQUAD) to (MEMBERS_PER_SQUAD*2)-1)
+					user.squad_faction = new/datum/faction/squad/two(user, src)
+				if ((MEMBERS_PER_SQUAD*2) to (MEMBERS_PER_SQUAD*3)-1)
+					user.squad_faction = new/datum/faction/squad/three(user, src)
+				if ((MEMBERS_PER_SQUAD*3) to (MEMBERS_PER_SQUAD*4)-1)
+					user.squad_faction = new/datum/faction/squad/four(user, src)
+				if ((MEMBERS_PER_SQUAD*4) to INFINITY) // latejoiners
+					if (prob(50))
+						if (prob(50))
+							user.squad_faction = new/datum/faction/squad/one(user, src)
+						else
+							user.squad_faction = new/datum/faction/squad/two(user, src)
+					else
+						if (prob(50))
+							user.squad_faction = new/datum/faction/squad/three(user, src)
+						else
+							user.squad_faction = new/datum/faction/squad/four(user, src)
 
 	else if (istype(src, /datum/job/russian))
-		user.base_job_faction = new/datum/job_faction/russian(user, src)
+		user.base_faction = new/datum/faction/russian(user, src)
 
 		if (is_officer && !is_commander)
-			user.officer_job_faction = new/datum/job_faction/russian/officer(user, src)
+			user.officer_faction = new/datum/faction/russian/officer(user, src)
 
 		else if (is_commander)
-			user.officer_job_faction = new/datum/job_faction/russian/commander(user, src)
+			user.officer_faction = new/datum/faction/russian/commander(user, src)
 
 		if (is_squad_leader)
-			switch (squad_leaders["RUSSIAN"])
+			switch (squad_leaders[RUSSIAN])
 				if (0)
-					user.squad_job_faction = new/datum/job_faction/squad/one/leader(user, src)
+					user.squad_faction = new/datum/faction/squad/one/leader(user, src)
 				if (1)
-					user.squad_job_faction = new/datum/job_faction/squad/two/leader(user, src)
+					user.squad_faction = new/datum/faction/squad/two/leader(user, src)
 				if (2)
-					user.squad_job_faction = new/datum/job_faction/squad/three/leader(user, src)
+					user.squad_faction = new/datum/faction/squad/three/leader(user, src)
 				if (3)
-					user.squad_job_faction = new/datum/job_faction/squad/four/leader(user, src)
+					user.squad_faction = new/datum/faction/squad/four/leader(user, src)
 		else if (!is_officer && !is_commander && !is_nonmilitary)
-			switch (squad_members["RUSSIAN"]) // non officers
+			switch (squad_members[RUSSIAN]) // non officers
 				if (0 to 7-1)
-					user.squad_job_faction = new/datum/job_faction/squad/one(user, src)
+					user.squad_faction = new/datum/faction/squad/one(user, src)
 				if (8-1 to 14-1)
-					user.squad_job_faction = new/datum/job_faction/squad/two(user, src)
+					user.squad_faction = new/datum/faction/squad/two(user, src)
 				if (15-1 to 21-1)
-					user.squad_job_faction = new/datum/job_faction/squad/three(user, src)
+					user.squad_faction = new/datum/faction/squad/three(user, src)
 				if (22-1 to 28-1)
-					user.squad_job_faction = new/datum/job_faction/squad/four(user, src)
+					user.squad_faction = new/datum/faction/squad/four(user, src)
 
 	else if (istype(src, /datum/job/partisan))
-		user.base_job_faction = new/datum/job_faction/partisan(user, src)
+		user.base_faction = new/datum/faction/partisan(user, src)
 		if (is_officer && !is_commander)
-			user.officer_job_faction = new/datum/job_faction/partisan/officer(user, src)
+			user.officer_faction = new/datum/faction/partisan/officer(user, src)
 		else if (is_commander)
-			user.officer_job_faction = new/datum/job_faction/partisan/commander(user, src)
+			user.officer_faction = new/datum/faction/partisan/commander(user, src)
 
 
 /datum/job/proc/try_make_jew(var/mob/living/carbon/human/user)
@@ -176,7 +191,7 @@
 	if (!user.client.prefs.be_jew || !istype(src, /datum/job/german/soldier))
 		return
 
-	if (clients.len < 25) // too lowpop for jews! Todo: config setting
+	if (!job_master.allow_jews)
 		return
 
 	if (is_officer)
@@ -212,7 +227,7 @@
 	if (!user.client.prefs.be_spy)
 		return
 
-	if (clients.len < config.min_players_for_spies && !config.debug) // too lowpop for spies! Todo: config setting
+	if (!job_master.allow_spies)
 		return
 
 	if ((prob(20) && istype(src, /datum/job/german/soldier)) || (prob(12) && istype(src, /datum/job/russian/soldier)))
@@ -232,7 +247,7 @@
 	if (istype(src, /datum/job/german))
 		return "Soviet"
 	else
-		return "German"
+		return GERMAN
 // make someone a spy regardless, allowing them to swap uniforms
 /datum/job/proc/make_spy(var/mob/living/carbon/human/user)
 
@@ -254,23 +269,23 @@
 			under.add_alternative_setting()
 
 	if (istype(src, /datum/job/german))
-		if (!H.languages.Find("Russian"))
-			H.add_language("Russian")
-		H.spy_job_faction = new/datum/job_faction/russian()
+		if (!H.languages.Find(RUSSIAN))
+			H.add_language(RUSSIAN)
+		H.spy_faction = new/datum/faction/russian()
 	else
-		if (!H.languages.Find("German"))
-			H.add_language("German")
-		H.spy_job_faction = new/datum/job_faction/german()
+		if (!H.languages.Find(GERMAN))
+			H.add_language(GERMAN)
+		H.spy_faction = new/datum/faction/german()
 
 
 /proc/get_side_name(var/side, var/datum/job/j)
 	if (j && (istype(j, /datum/job/german/squad_leader_ss) || istype(j, /datum/job/german/soldier_ss)))
 		return "Waffen-S.S."
-	if(side == "PARTISAN")
-		return "Civilian"
-	if(side == "RUSSIAN")
+	if(side == PARTISAN)
+		return CIVILIAN
+	if(side == RUSSIAN)
 		return "Red Army"
-	if(side == "GERMAN")
+	if(side == GERMAN)
 		return "German Wehrmacht"
 	return null
 
@@ -292,7 +307,7 @@
 	spawn (1)
 
 		// we already have something that holds radios
-		if (!original_job.is_paratrooper && !original_job.is_sturmovik && !original_job.is_SS)
+		if (!original_job.is_paratrooper && !original_job.is_sturmovik && !(original_job.is_SS && !original_job.is_commander))
 			equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(src), slot_wear_suit)
 
 		spawn (0)
@@ -301,6 +316,6 @@
 			else if (istype(original_job, /datum/job/german))
 				equip_to_slot_or_del(new /obj/item/device/radio/feldfu(src), slot_s_store)
 			else if (istype(original_job, /datum/job/partisan))
-				equip_to_slot_or_del(new /obj/item/device/radio/feldfu/partisan(src), slot_s_store)
+				equip_to_slot_or_del(new /obj/item/device/radio/partisan(src), slot_s_store)
 
-		src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while on your back, prefix your message with ':b'.</b></span>"
+		src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while its on your back, prefix your message with ':b'.</b></span>"

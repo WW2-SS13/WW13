@@ -1,4 +1,4 @@
-
+/*
 var/const/ENGSEC			=(1<<0)
 
 var/const/CAPTAIN			=(1<<0)
@@ -29,7 +29,7 @@ var/const/XENOBIOLOGIST		=(1<<9)
 var/const/PARAMEDIC			=(1<<10)
 
 
-var/const/CIVILIAN			=(1<<2)
+var/const/CIVILIAN			= (1<<2)
 
 var/const/HOP				=(1<<0)
 var/const/BARTENDER			=(1<<1)
@@ -69,7 +69,7 @@ var/const/SOVSER			=(1<<26)
 var/const/SOVENG			=(1<<27)
 var/const/SOVSOND			=(1<<28)
 var/const/SOVQUAR			=(1<<29)
-
+*/
 var/list/assistant_occupations = list(
 )
 

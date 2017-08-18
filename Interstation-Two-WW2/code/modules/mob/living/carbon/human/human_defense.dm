@@ -9,31 +9,34 @@ meteor_act
 
 /mob/living/carbon/human/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (stat != DEAD)
-		return ..()
+		return ..(W, user)
 	if (!istype(W) || !W.sharp)
-		return ..()
-	else if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers/syringe))
+		return ..(W, user)
+	else if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers/syringe) && user.a_intent == I_HURT)
 		user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
 		if (do_after(user, 30, src))
 			user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
 			for (var/v in 1 to rand(5,7))
 				var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
 				meat.name = "[name] meatsteak"
+			crush()
 			qdel(src)
+	else
+		return ..(W, user)
 
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
 	def_zone = check_zone(def_zone)
-	if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/german))
-		say("GOD DAMN IT HURTS", src.languages.Find("German"))
+	if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
+		say("GOD DAMN IT HURTS", src.languages.Find(GERMAN))
 
-	if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/russian))
-		say("GOD DAMN IT HURTS", src.languages.Find("Russian"))
+	if (src.is_spy && istype(src.spy_faction, /datum/faction/russian))
+		say("GOD DAMN IT HURTS", src.languages.Find(RUSSIAN))
 
 	if (def_zone == "chest" && P.firer && (P.firer.dir == src.dir || P.firer.lying))
 		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower = back
-			if (prob(15))
+			if (prob(15) || (world.time - last_movement >= 50))
 				flamethrower.explode()
 
 	if(!has_organ(def_zone))
@@ -90,18 +93,18 @@ meteor_act
 
 		else
 			if (agony_amount > 10)
-				if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/german))
-					say("OH GOD THE PAIN", src.languages.Find("German"))
+				if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
+					say("OH GOD THE PAIN", src.languages.Find(GERMAN))
 
-				if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/russian))
-					say("OH GOD THE PAIN", src.languages.Find("Russian"))
+				if (src.is_spy && istype(src.spy_faction, /datum/faction/russian))
+					say("OH GOD THE PAIN", src.languages.Find(RUSSIAN))
 		else
 			if (agony_amount > 10)
-				if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/german))
-					say("OH GOD THE PAIN", src.languages.Find("German"))
+				if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
+					say("OH GOD THE PAIN", src.languages.Find(GERMAN))
 
-				if (src.is_spy && istype(src.spy_job_faction, /datum/job_faction/russian))
-					say("OH GOD THE PAIN", src.languages.Find("Russian"))
+				if (src.is_spy && istype(src.spy_faction, /datum/faction/russian))
+					say("OH GOD THE PAIN", src.languages.Find(RUSSIAN))
 	..(stun_amount, agony_amount, def_zone)
 
 /mob/living/carbon/human/getarmor(var/def_zone, var/type)

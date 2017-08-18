@@ -192,7 +192,7 @@
 
 	var/turf/t1 = n
 
-	if (t1 && t1.check_prishtina_block(mob))
+	if (t1 && t1.check_prishtina_block(mob, 1))
 		if (!isobserver(mob))
 			mob.dir = direct
 			return 0
@@ -301,9 +301,25 @@
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 2.5
+				move_delay += 3.0
+				if (ishuman(mob))
+					var/mob/living/carbon/human/H = mob
+					H.nutrition -= 0.03
+					--H.stamina
 			if("walk")
-				move_delay += 5.0
+				move_delay += 4.5
+				if (ishuman(mob))
+					var/mob/living/carbon/human/H = mob
+					H.nutrition -= 0.003
+
+		var/mob/living/carbon/human/H = mob
+
+		if (istype(H) && H.stamina <= 0 && H.m_intent == "run")
+			H << "<span class = 'warning'>You're too tired to keep running.</span>"
+			for (var/obj/screen/mov_intent/mov in H.client.screen)
+				H.client.Click(mov)
+			H.m_intent = "walk" // in case we don't have a m_intent HUD, somehow
+
 
 		move_delay += mob.movement_delay()
 

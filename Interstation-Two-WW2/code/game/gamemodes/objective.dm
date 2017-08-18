@@ -328,7 +328,6 @@ datum/objective/steal
 	var/global/possible_items[] = list(
 		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/captain,
 		//"an RCD" = /obj/item/weapon/rcd,
-		"a jetpack" = /obj/item/weapon/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 	//	"the station blueprints" = /obj/item/blueprints,
@@ -530,19 +529,4 @@ datum/objective/heist/salvage
 	return target
 
 /datum/objective/rev/check_completion()
-	var/rval = 1
-	if(target && target.current)
-		var/mob/living/carbon/human/H = target.current
-		if(!istype(H))
-			return 1
-		if(H.stat == DEAD || H.restrained())
-			return 1
-		// Check if they're converted
-		if(target in revs.current_antagonists)
-			return 1
-		var/turf/T = get_turf(H)
-		if(T && isNotStationLevel(T.z))			//If they leave the station they count as dead for this
-			rval = 2
-		return 0
-	return rval
-
+	return 0

@@ -144,7 +144,7 @@
 	icon_state = "fallsparka"
 	item_state = "fallsparka"
 	worn_state = "fallsparka"
-	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu)
+	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
 
 
 /obj/item/clothing/suit/sssmock
@@ -153,7 +153,7 @@
 	icon_state = "sssmock"
 	item_state = "sssmock"
 	worn_state = "sssmock"
-	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu)
+	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
 
 
 /obj/item/clothing/under/geruni/ssuni
@@ -220,19 +220,12 @@
 	item_state_slots["slot_head"] = GERMAN_HELMET_STATE
 	update_clothing_icon()
 
-
-//WIP, need icons - Kachnov
-/obj/item/clothing/suit/armor/flammenwerfer
-	name = "fireproof flammenwerfer vest"
-	icon_state = "cn42"
-	armor = list(melee = 30, bullet = 60, laser = 10, energy = 10, bomb = 15, bio = 0, rad = 0)
-
 /obj/item/clothing/suit/armor/bulletproof/cn42
 	name = "CN-42 bulletproof vest"
 	desc = "A heavy vest used by Soviet shock troops."
 	icon_state = "cn42"
 	armor = list(melee = 30, bullet = 60, laser = 10, energy = 10, bomb = 15, bio = 0, rad = 0)
-	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu)
+	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
 
 /obj/item/weapon/storage/belt/german
 	name = "German belt pouch"

@@ -17,6 +17,14 @@
 
 /turf/simulated/open/Entered(var/atom/movable/mover)
 	. = ..()
+	if (isobserver(mover))
+		return
+	if (istype(mover, /obj/lift_controller))
+		return
+	if (istype(mover, /obj/lift_pseudoturf))
+		return
+	if (locate(/obj/lift_pseudoturf) in contents)
+		return
 #ifdef USE_OPENSPACE
 	if(istype(mover, /mob/shadow))
 		return

@@ -4,46 +4,7 @@ var/game_started = 0
 var/train_checked = 0
 var/secret_ladder_message = null
 
-/proc/WW2_soldiers_alive()
-
-	var/en = 0
-	var/ru = 0
-	var/partisan = 0
-	var/civilian = 0
-
-	for(var/mob/living/carbon/human/H in human_mob_list)
-
-		var/datum/job/job = H.original_job
-		if(!job)
-			usr << "\red [H] has no job!"
-			continue
-
-		if(H.stat != DEAD && !H.restrained() && H.client)
-			switch(job.base_type_flag())
-				if("GERMAN")
-					++en
-				if("RUSSIAN")
-					++ru
-				if ("PARTISAN")
-					++partisan
-				if ("CIVILIAN")
-					++civilian
-
-	return list("en" = en, "ru" = ru, "partisan" = partisan, "civilian" = civilian)
-
-/proc/WW2_soldiers_en_ru_ratio()
-
-	var/list/soldiers = WW2_soldiers_alive()
-	// prevents dividing by 0 - Kachnov
-	if (soldiers["en"] > 0 && soldiers["ru"] == 0)
-		return 1000
-	else if (soldiers["ru"] > 0 && soldiers["en"] == 0)
-		return 1/1000
-	else if (soldiers["ru"] == soldiers["en"])
-		return 1
-
-	return soldiers["en"]/soldiers["ru"] // we need decimals here so no rounding
-
+var/list/list_of_germans_who_crossed_the_river = list()
 
 /proc/WW2_train_check()
 	if (locate(/obj/effect/landmark/train/german_train_start) in world || train_checked)
@@ -52,7 +13,7 @@ var/secret_ladder_message = null
 	else
 		return 0
 
-/turf/proc/check_prishtina_block(var/mob/m)
+/turf/proc/check_prishtina_block(var/mob/m, var/actual_movement = 0)
 
 	if (isobserver(m))
 		return 0
@@ -68,6 +29,12 @@ var/secret_ladder_message = null
 				if (mercy_period)
 					var/mob/living/carbon/human/H = m
 					if (H && H.original_job && istype(H.original_job, /datum/job/german))
+						if (actual_movement)
+							if (!istype(H.original_job, /datum/job/german/paratrooper))
+								list_of_germans_who_crossed_the_river |= H
+								if (list_of_germans_who_crossed_the_river.len > 10 && mercy_period)
+									world << "<span class = 'notice'><big>A number of Germans have crossed the river; the Grace Period has been ended early.</span>"
+									mercy_period = 0
 						return 0 // germans can pass
 					return 1 // if the grace period is active, nobody south of the river passes. For the benefit of attackers, so they get time to set up.
 	return 0
@@ -121,11 +88,17 @@ var/secret_ladder_message = null
 
 	world << "<font size=3><span class = 'notice'>It's [lowertext(time_of_day)].</span></font>"
 
+	// spawn mice so soviets have something to eat after they start starving
+
 	var/mice_spawned = 0
-	var/max_mice = rand(50,75)
+	var/max_mice = rand(40,50)
 
 	for (var/area/prishtina/soviet/bunker/area in world)
 		for (var/turf/t in area.contents)
+			if (t.density)
+				continue
+			if (istype(t, /turf/simulated/open))
+				continue
 			if (prob(1))
 				new/mob/living/simple_animal/mouse/gray(t)
 				++mice_spawned
@@ -247,11 +220,9 @@ var/mission_announced = 0
 	if (mercy_period && WW2_train_check())
 		world << "<font size=3>The Russian side can't attack until after 10 minutes.</font><br>"
 
-	world << "<font size=3>Both sides are locked for joining.</font>."
-
 	game_started = 1
-	ticker.can_latejoin_ruforce = 0
-	ticker.can_latejoin_geforce = 0
+//	ticker.can_latejoin_ruforce = 0
+//	ticker.can_latejoin_geforce = 0
 
 	if (WW2_train_check())
 		spawn (10 MINUTES) // because byond minutes are a long fucking time, this should be long enough to build defenses. maybe. - Kachnov

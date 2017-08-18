@@ -207,7 +207,7 @@
 
 	if (ishuman(usr))
 		var/mob/living/carbon/human/H = usr
-		if(H.job == befriend_job)
+		if(H.original_job == befriend_job)
 			friend = usr
 			set_dir(get_dir(src, friend))
 			say("Meow!")

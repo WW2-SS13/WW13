@@ -1,4 +1,3 @@
-var/disabled_jobs[100]
 
 /client/proc/toggle_jobs()
 	set name = "Toggle Jobs"
@@ -19,20 +18,26 @@ var/disabled_jobs[100]
 	var/list/choices = list()
 
 	for (var/jobtitle in jobs_linked_list)
-		if (!disabled_jobs[jobtitle])
+		var/datum/job/j = jobs_linked_list[jobtitle]
+		if (j.enabled)
 			choices += "[jobtitle] (ENABLED)"
 		else
 			choices += "[jobtitle] (DISABLED)"
 
 	choices += "CANCEL"
 
+
 	var/choice = input("Enable/Disable what job?") in choices
 	if (choice == "CANCEL")
-		return 0
+		return
 
 	var/jobtitle = replacetext(choice, " (ENABLED)", "")
-	jobtitle = replacetext(choices, " (DISABLED)", "")
+	jobtitle = replacetext(jobtitle, " (DISABLED)", "")
+
+	world << jobtitle
+	world << jobs_linked_list[jobtitle]
+
 	var/datum/job/j = jobs_linked_list[jobtitle]
 	if (j)
 		j.enabled = !j.enabled
-		src << "<span class = 'warning'>[j.title] is now <b>[j.enabled ? "ENABLED" : "DISABLED"]</b>.</span>"
+		world << "<span class = 'warning'>[j.title] is now <b>[j.enabled ? "ENABLED" : "DISABLED"]</b>.</span>"

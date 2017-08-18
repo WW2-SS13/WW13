@@ -9,13 +9,13 @@
 	en_meaning = "Commander"
 	faction = "Station"
 	total_positions = 1
-	spawn_positions = 1
 	head_position = 1
 	selection_color = "#530909"
 	spawn_location = "JoinLateRACO"
-	additional_languages = list( "German" = 100 )
+	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 	is_officer = 1
 	is_commander = 1
+	absolute_limit = 1
 
 /datum/job/russian/commander/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -25,9 +25,10 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger/colt(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H), slot_r_hand)
 	H.give_radio()
 	world << "<b>[H.client.prefs.russian_name] is the [title] of the Soviet forces!</b>"
-	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the Russian forces and lead them to victory.</span>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the Russian forces and lead them to victory. You take orders from the <b>Soviet High Command</b>.</span>"
 	return 1
 
 /datum/job/russian/commander/get_keys()
@@ -45,12 +46,12 @@
 	en_meaning = "Staff Officer"
 	faction = "Station"
 	total_positions = 2
-	spawn_positions = 2
 	head_position = 0
 	selection_color = "#530909"
 	spawn_location = "JoinLateRASO"
-	additional_languages = list( "German" = 100 )
+	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 	is_officer = 1
+	absolute_limit = 3
 
 /datum/job/russian/staff_officer/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -60,6 +61,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger/colt(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H), slot_r_hand)
 	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the Russian forces. Your job is to take orders from the <b>Commandir</b> and coordinate with squad leaders.</span>"
 	return 1
@@ -78,8 +80,7 @@
 	title = "Sergant"
 	en_meaning = "Squad Leader"
 	faction = "Station"
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 4
 	head_position = 0
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRASL"
@@ -114,9 +115,8 @@
 	en_meaning = "Medic"
 	faction = "Station"
 	total_positions = 5
-	spawn_positions = 5
 	selection_color = "#770e0e"
-	spawn_location = "JoinLateRADr"
+	spawn_location = "JoinLateRA"
 
 /datum/job/russian/medic/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -139,7 +139,6 @@
 	en_meaning = "Doctor"
 	faction = "Station"
 	total_positions = 2
-	spawn_positions = 2
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRADr"
 	is_nonmilitary = 1
@@ -173,9 +172,10 @@
 	en_meaning = "Sniper"
 	faction = "Station"
 	total_positions = 2
-	spawn_positions = 2
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
+	is_primary = 0
+	is_secondary = 1
 
 /datum/job/russian/sniper/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -202,7 +202,6 @@
 	en_meaning = "Engineer"
 	faction = "Station"
 	total_positions = 3
-	spawn_positions = 3
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 
@@ -232,9 +231,10 @@
 	en_meaning = "Heavy Weapons Soldier"
 	faction = "Station"
 	total_positions = 3
-	spawn_positions = 3
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
+	is_primary = 0
+	is_secondary = 1
 
 /datum/job/russian/heavy_weapon/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -260,8 +260,7 @@
 	title = "Sovietsky Soldat"
 	en_meaning = "Infantry Soldier"
 	faction = "Station"
-	total_positions = 1000
-	spawn_positions = -1
+	total_positions = 50
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	allow_spies = 1
@@ -290,9 +289,11 @@
 	en_meaning = "Tank Crewman"
 	faction = "Station"
 	total_positions = 4
-	spawn_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
+	is_primary = 0
+	is_secondary = 1
+	absolute_limit = 4
 
 /datum/job/russian/tankcrew/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -319,7 +320,6 @@
 	en_meaning = "Guard"
 	faction = "Station"
 	total_positions = 3
-	spawn_positions = 3
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRA"
 	additional_languages = list( "German" = 100 )
@@ -369,11 +369,11 @@ var/first_guard = 0
 	en_meaning = "Quartermaster"
 	faction = "Station"
 	total_positions = 1
-	spawn_positions = 1
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRAQM"
 	additional_languages = list( "German" = 100 )
 	is_officer = 1
+	absolute_limit = 1
 
 /datum/job/russian/zavhoz/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -382,6 +382,7 @@ var/first_guard = 0
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H), slot_r_hand)
 	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a Quartermaster. Your job is to keep the army well armed and supplied.</span>"
 	return 1
@@ -400,7 +401,6 @@ var/first_guard = 0
 	en_meaning = "Elite Infantry Soldier"
 	faction = "Station"
 	total_positions = 3
-	spawn_positions = 3
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	is_sturmovik = 1
@@ -429,11 +429,14 @@ var/first_guard = 0
 	title = "Povar"
 	en_meaning = "Chef"
 	faction = "Station"
-	total_positions = 1000
-	spawn_positions = -1
+	total_positions = 1
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRAChef"
 	allow_spies = 1
+	is_nonmilitary = 1
+	is_primary = 0
+	is_secondary = 1
+	absolute_limit = 1
 
 /datum/job/russian/chef/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0

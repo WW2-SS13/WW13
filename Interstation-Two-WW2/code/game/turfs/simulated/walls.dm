@@ -38,6 +38,7 @@ var/list/global/wall_cache = list()
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 	tank_destroyable = 0
+	layer = TURF_LAYER + 0.02 // above lifts
 
 /turf/simulated/wall/rockwall/update_icon()
 	return

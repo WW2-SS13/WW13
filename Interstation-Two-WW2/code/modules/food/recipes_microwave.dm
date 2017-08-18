@@ -1,23 +1,4 @@
-
 // see code/datums/recipe.dm
-
-
-/* No telebacon. just no...
-/datum/recipe/telebacon
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat,
-		/obj/item/device/assembly/signaler
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/telebacon
-
-I said no!
-/datum/recipe/syntitelebacon
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh,
-		/obj/item/device/assembly/signaler
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/telebacon
-*/
 
 /datum/recipe/friedegg
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)

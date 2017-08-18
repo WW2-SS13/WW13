@@ -1,5 +1,5 @@
 /obj/train_lever // I would make this machinery, but right now trains don't need power subsystems etc
-	var/faction = "GERMAN"
+	var/faction = GERMAN
 	anchored = 1.0
 	density = 1
 	icon = 'icons/WW2/train_lever.dmi'
@@ -22,12 +22,11 @@
 	var/datum/train_controller/train_controller = null
 
 	switch (faction)
-		if ("GERMAN")
+		if (GERMAN)
 			if (german_train_master)
 				train_controller = german_train_master
-		if ("RUSSIAN")
-			if (russian_train_master)
-				train_controller = russian_train_master
+		if (RUSSIAN)
+			return
 
 	if (!train_controller)
 		abuser << "<span class = 'danger'>Couldn't find a train datum!</span>" // bug
@@ -48,12 +47,11 @@
 	var/datum/train_controller/train_controller = null
 
 	switch (faction)
-		if ("GERMAN")
+		if (GERMAN)
 			if (german_train_master)
 				train_controller = german_train_master
-		if ("RUSSIAN")
-			if (russian_train_master)
-				train_controller = russian_train_master
+		if (RUSSIAN)
+			return
 
 	if (!train_controller)
 		return // bug
@@ -95,7 +93,7 @@
 					visible_message("<span class = 'danger'>[user] pushes the train lever forward, stopping the train.</span>")
 
 /obj/train_lever/german
-	faction = "GERMAN"
+	faction = GERMAN
 
 /obj/train_lever/russian
-	faction = "GERMAN"
+	faction = GERMAN

@@ -7,7 +7,7 @@
 	var/faction = "None"	              // Players will be allowed to spawn in as jobs that are set to "Station"
 
 	var/total_positions = 0               // How many players can be this job
-	var/spawn_positions = 0               // How many players can spawn in as this job
+	//var/spawn_positions = 0               // How many players can spawn in as this job
 	var/current_positions = 0             // How many players have this job
 	var/selection_color = "#ffffff"       // Selection screen color
 	var/list/alt_titles                   // List of alternate titles, if any

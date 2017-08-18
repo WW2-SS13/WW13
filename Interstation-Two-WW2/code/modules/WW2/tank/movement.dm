@@ -141,6 +141,13 @@
 		return 1
 
 	if (istype(o))
+
+		if (istype(o, /obj/item/device/mine))
+			var/obj/item/device/mine/mine = o
+			mine.trigger(src)
+			update_damage_status()
+			return 0 // halt us too
+
 		if (istype(o, /obj/train_lever))
 			return 1 // pass over it
 
@@ -209,11 +216,11 @@
 	if (istype(m) && (world.time - last_gibbed > 5 || last_gibbed == -1))
 		last_gibbed = world.time
 		tank_message("<span class = 'danger'>The tank crushes [m]!</span>")
-		m.gib()
+		m.crush()
 		last_movement = world.time + 25
 	else if (istype(m))
 		spawn (5)
-			m.gib()
+			m.crush()
 			last_movement = world.time + 25
 
 	return 1

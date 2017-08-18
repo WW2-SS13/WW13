@@ -14,28 +14,28 @@ var/list/dead_civilians = list()
 var/list/dead_partisans = list()
 
 /mob/living/carbon/human/proc/get_battle_report_lists()
+
 	var/list/alive = list()
 	var/list/injured = list()
 	var/list/dead = list()
 
-	if (istype(original_job, /datum/job/german))
-		dead = dead_germans
-		injured = heavily_injured_germans
-		alive = alive_germans
-	else if (istype(original_job, /datum/job/russian))
-		dead = dead_russians
-		injured = heavily_injured_russians
-		alive = alive_russians
-	else
-		switch (original_job.base_type_flag())
-			if ("CIVILIAN")
-				dead = dead_civilians
-				injured = heavily_injured_civilians
-				alive = alive_civilians
-			if ("PARTISAN")
-				dead = dead_partisans
-				injured = heavily_injured_partisans
-				alive = alive_partisans
+	switch (original_job.base_type_flag())
+		if (GERMAN)
+			dead = dead_germans
+			injured = heavily_injured_germans
+			alive = alive_germans
+		if (RUSSIAN)
+			dead = dead_russians
+			injured = heavily_injured_russians
+			alive = alive_russians
+		if (CIVILIAN)
+			dead = dead_civilians
+			injured = heavily_injured_civilians
+			alive = alive_civilians
+		if (PARTISAN)
+			dead = dead_partisans
+			injured = heavily_injured_partisans
+			alive = alive_partisans
 
 	return list(alive, dead, injured)
 
@@ -62,10 +62,9 @@ var/list/dead_partisans = list()
 
 	alive -= src
 	injured -= src
+	dead -= src
 	// give these lists starting values to prevent runtimes.
 	if (stat == CONSCIOUS)
 		alive |= src
 	else if (stat == UNCONSCIOUS || health <= 0)
 		injured |= src
-
-	dead -= src

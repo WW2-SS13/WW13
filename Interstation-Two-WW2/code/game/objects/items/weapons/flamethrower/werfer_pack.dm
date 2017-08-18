@@ -20,6 +20,7 @@
 	..()
 
 	flamethrower = new(src)
+	flamethrower.backpack = src
 	ptank = new/obj/item/weapon/tank/plasma/super()
 	flamethrower.ptank = ptank
 	flamethrower.pressure_1 = ptank.air_contents.return_pressure()

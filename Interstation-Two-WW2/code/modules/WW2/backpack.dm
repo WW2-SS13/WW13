@@ -12,14 +12,14 @@
 /obj/item/weapon/storage/backpack/german/rations/New()
 	..()
 	for (var/v in 1 to 3)
-		contents += new_ration("GERMAN", "solid")
+		contents += new_ration(GERMAN, "solid")
 
 /obj/item/weapon/storage/backpack/german/paratrooper
 
 /obj/item/weapon/storage/backpack/german/paratrooper/New()
 	..()
 	for (var/v in 1 to 3)
-		contents += new_ration("GERMAN", "solid")
+		contents += new_ration(GERMAN, "solid")
 	contents += new/obj/item/device/flashlight/lantern()
 
 // todo: needs a new icon

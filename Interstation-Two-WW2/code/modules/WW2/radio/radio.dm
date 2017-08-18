@@ -10,7 +10,12 @@ var/const/DE_COMM_FREQ = 1250
 
 var/const/UK_FREQ = 1260
 
+/proc/radio_sanitize_frequency(freq)
+	return text2num("[freq].0")
+
 /proc/radio_freq2name(constant)
+	if (istext(constant))
+		constant = text2num(constant)
 	switch (constant)
 		if (DEFAULT_FREQ)
 			return "DEFAULT"
@@ -25,27 +30,32 @@ var/const/UK_FREQ = 1260
 		if (UK_FREQ)
 			return "Partisans"
 
-/proc/radio_freq2color(constant)
+/proc/radio_freq2span(constant)
+	if (istext(constant))
+		constant = text2num(constant)
 	switch (constant)
 		if (DEFAULT_FREQ)
-			return "brown"
+			return "secradio"
 		if (RU_BASE_FREQ)
-			return "brown"
+			return "secradio"
 		if (RU_COMM_FREQ)
-			return "blue"
+			return "comradio"
 		if (DE_BASE_FREQ)
-			return "brown"
+			return "secradio"
 		if (DE_COMM_FREQ)
-			return "blue"
+			return "comradio"
 		if (UK_FREQ)
-			return "blue"
+			return "secradio"
 
+// channel = access
 var/global/list/default_german_channels = list(
-	num2text(DE_COMM_FREQ) = list()
+	num2text(DE_COMM_FREQ) = list(),
+	num2text(DE_BASE_FREQ) = list()
 )
 
 var/global/list/default_russian_channels = list(
-	num2text(RU_COMM_FREQ) = list()
+	num2text(RU_COMM_FREQ) = list(),
+	num2text(RU_BASE_FREQ) = list()
 )
 
 var/global/list/default_ukrainian_channels = list(
@@ -70,6 +80,7 @@ var/global/list/default_ukrainian_channels = list(
 	var/broadcasting = 0
 	var/listening = 1
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
+	var/list/listening_on_channel = list()
 	var/subspace_transmission = 0
 	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
 	flags = CONDUCT
@@ -81,6 +92,62 @@ var/global/list/default_ukrainian_channels = list(
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 	var/last_tick = -1
+	var/datum/nanoui/UI
+
+/obj/item/device/radio/New()
+	..()
+	for (var/channel in internal_channels)
+		listening_on_channel[radio_freq2name(channel)] = 1
+
+/obj/item/device/radio/proc/list_internal_channels(var/mob/user)
+	var/dat[0]
+	for(var/internal_chan in internal_channels)
+		dat.Add(list(list("chan" = internal_chan, "display_name" = radio_freq2name(text2num(internal_chan)), "chan_span" = radio_freq2span(text2num(internal_chan)))))
+
+	return dat
+
+/obj/item/device/radio/proc/list_channels(var/mob/user)
+	return list_internal_channels(user)
+
+/obj/item/device/radio/proc/format_frequency(var/f)
+	return "[round(f / 10)].[f % 10]"
+
+/obj/item/device/radio/proc/span_class()
+	return radio_freq2span(frequency)
+
+/* New code for interacting with radios - Kachnov */
+
+/obj/item/device/radio/attack_self(mob/user as mob)
+	user.set_machine(src)
+	interact(user)
+
+/obj/item/device/radio/interact(mob/user)
+	if(!user)
+		return 0
+
+	return ui_interact(user)
+
+/obj/item/device/radio/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	var/data[0]
+
+	data["mic_status"] = broadcasting
+	data["speaker"] = listening
+	data["freq"] = format_frequency(frequency)
+	data["rawfreq"] = num2text(frequency)
+
+	var/list/chanlist = list_channels(user)
+	if(islist(chanlist) && chanlist.len)
+		data["chan_list"] = chanlist
+		data["chan_list_len"] = chanlist.len
+
+	if(syndie)
+		data["useSyndMode"] = 1
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
+		ui.set_initial_data(data)
+		ui.open()
 
 /* Hearing radios, less stupid and telecomms free edition - Kachnov
 
@@ -92,8 +159,10 @@ var/global/list/default_ukrainian_channels = list(
  I may do this some time in the future.
 */
 
-/mob/living/carbon/human/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="")
+/mob/living/carbon/human/say(var/message)
 	..()
+	if (stat != CONSCIOUS)
+		return
 	var/list/used_radio_turfs = list()
 	for (var/obj/item/device/radio/radio in range(1, src))
 		if (used_radio_turfs.Find(get_turf(radio)))
@@ -105,25 +174,31 @@ var/global/list/default_ukrainian_channels = list(
 				continue
 			else
 				message = copytext(message, 3)
-		if (radio == l_hand)
+		else if (radio == l_hand)
 			if (!dd_hasprefix(message, ":l"))
 				continue
 			else
 				message = copytext(message, 3)
-		if (radio == r_hand)
+		else if (radio == r_hand)
 			if (!dd_hasprefix(message, ":r"))
 				continue
 			else
 				message = copytext(message, 3)
-		used_radio_turfs += get_turf(radio)
+		if (istype(radio.loc, /turf) && !radio.broadcasting)
+			continue
+		else
+			used_radio_turfs += get_turf(radio)
+
 		spawn (5)
 			if (!stuttering || stuttering < 4)
-				radio.broadcast(message, src, 0)
+				radio.broadcast(rhtml_encode(message), src, 0)
 			else
-				radio.broadcast(message, src, 1)
+				radio.broadcast(rhtml_encode(message), src, 1)
 
 /obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = 0)
 	var/list/used_radio_turfs = list()
+	var/list/used_radios = list()
+	// let people playing near radios hear it
 	for (var/mob/living/carbon/human/hearer in human_mob_list)
 		if (istype(hearer) && hearer.stat == CONSCIOUS)
 			var/list/radios = list()
@@ -134,11 +209,29 @@ var/global/list/default_ukrainian_channels = list(
 			for (var/obj/item/device/radio/radio in radios)
 				if (used_radio_turfs.Find(get_turf(radio)))
 					continue
+				if (used_radios.Find(radio))
+					continue
 				if (!radio.on)
 					continue
-				used_radio_turfs += get_turf(radio)
-				if (radio.frequency == src.frequency)
-					hearer.hear_radio(msg, "says", speaker.default_language, null, null, speaker, hardtohear)
+				if (!radio.listening)
+					continue
+				if (istype(radio.loc, /turf))
+					used_radio_turfs += get_turf(radio)
+				used_radios += radio
+				if (radio.listening_on_channel[radio_freq2name(frequency)])
+					hearer.hear_radio(msg, "says", speaker.default_language, speaker, src, hardtohear)
+	// let observers hear it
+	for (var/mob/observer/o in mob_list)
+		if (istype(o))
+			// first, try to find an actual radio that the message could be sent to (to get the right radio icon)
+			for (var/obj/item/device/radio/radio in world)
+				if (radio.listening_on_channel[radio_freq2name(frequency)])
+					o.hear_radio(msg, "says", speaker.default_language, speaker, src, hardtohear)
+					return
+			// failing that, pick the first radio we can find.
+			for (var/obj/item/device/radio/radio in world)
+				o.hear_radio(msg, "says", speaker.default_language, speaker, src, hardtohear)
+				return
 
 /obj/item/device/radio
 	var/speech_sound = null
@@ -160,10 +253,8 @@ var/global/list/default_ukrainian_channels = list(
 	speech_sound = 'sound/effects/roger_beep.ogg'
 
 /obj/item/device/radio/intercom/a7b/New()
-	..()
 	internal_channels = default_russian_channels.Copy()
-	internal_channels += num2text(RU_BASE_FREQ)
-	internal_channels[num2text(RU_BASE_FREQ)] = list()
+	..()
 
 /obj/item/device/radio/intercom/a7b/process()
 	if(world.time - last_tick > 30 || last_tick == -1)
@@ -194,8 +285,8 @@ var/global/list/default_ukrainian_channels = list(
 	speech_sound = 'sound/effects/roger_beep.ogg'
 
 /obj/item/device/radio/rbs/New()
-	..()
 	internal_channels = default_russian_channels.Copy()
+	..()
 
 /obj/item/device/radio/intercom/fu2
 	name = "Torn.Fu.d2"
@@ -208,10 +299,8 @@ var/global/list/default_ukrainian_channels = list(
 	speech_sound = 'sound/effects/roger_beep2.ogg'
 
 /obj/item/device/radio/intercom/fu2/New()
-	..()
 	internal_channels = default_german_channels.Copy()
-	internal_channels += num2text(DE_BASE_FREQ)
-	internal_channels[num2text(DE_BASE_FREQ)] = list()
+	..()
 
 /obj/item/device/radio/intercom/fu2/process()
 	if(world.time - last_tick > 30 || last_tick == -1)
@@ -244,20 +333,54 @@ var/global/list/default_ukrainian_channels = list(
 	speech_sound = 'sound/effects/roger_beep2.ogg'
 
 /obj/item/device/radio/feldfu/New()
-	..()
 	internal_channels = default_german_channels.Copy()
-
-// partisan clone of german radios
-
-/obj/item/device/radio/feldfu/partisan
-
-/obj/item/device/radio/feldfu/partisan/New()
 	..()
-	internal_channels = default_ukrainian_channels.Copy()
 
-/obj/item/clothing/suit/radio_harness
-	name = "radio harness"
-	desc = "Use this to hold your big clunky radios."
-	icon_state = "radio_harness"
-	item_state = "radio_harness"
-	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu)
+// partisan clone of german radios. Doesn't inherit from the feldfu for
+// callback meme reasons
+
+/obj/item/device/radio/partisan
+	name = "Feldfu.f"
+	icon_state = "feldfu"
+	item_state = "feldfu"
+	freerange = 0
+	frequency = UK_FREQ
+	canhear_range = 1
+	w_class = 4
+	speech_sound = 'sound/effects/roger_beep2.ogg'
+
+/obj/item/device/radio/partisan/New()
+	internal_channels = default_ukrainian_channels.Copy()
+	..()
+
+// radio topic stuff
+
+/obj/item/device/radio/Topic(href, href_list)
+	if(..())
+		return 1
+
+	usr.set_machine(src)
+
+	if (href_list["freq"])
+		var/new_frequency = (frequency + text2num(href_list["freq"]))
+		if ((new_frequency != 0))
+			new_frequency = radio_sanitize_frequency(new_frequency)
+		frequency = new_frequency
+		. = 1
+	else if (href_list["talk"])
+		broadcasting = !broadcasting
+		. = 1
+	else if (href_list["listen"])
+		listening = !listening
+		. = 1
+	else if(href_list["spec_freq"])
+		frequency = (text2num(href_list["spec_freq"]))
+		. = 1
+
+	for (var/channel in internal_channels)
+		listening_on_channel[radio_freq2name(channel)] = 1
+
+	if(.)
+		nanomanager.update_uis(src)
+
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)

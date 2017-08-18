@@ -27,6 +27,16 @@
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
+	// supply trains
+
+	var/uses_initial_density = 0
+
+	var/initial_density = 0
+
+	var/uses_initial_opacity = 0
+
+	var/initial_opacity = 0
+
 /atom/Destroy()
 	if(reagents)
 		qdel(reagents)
