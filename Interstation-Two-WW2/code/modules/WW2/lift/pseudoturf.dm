@@ -1,7 +1,7 @@
 // this is a lift pseudoturf, an object that takes the appearance and layer
 // of a turf. It's based off of /obj/train_pseudoturf
 
-var/turf/simulated/floor/plating/under/ref_under_plating = null
+var/turf/floor/plating/under/ref_under_plating = null
 
 /obj/lift_pseudoturf
 	anchored = 1
@@ -16,8 +16,8 @@ var/turf/simulated/floor/plating/under/ref_under_plating = null
 
 	loc = _loc
 
-	if (istype(loc, /turf/simulated/open))
-		var/turf/simulated/open/open_space = loc
+	if (istype(loc, /turf/open))
+		var/turf/open/open_space = loc
 		open_space.update_icon()
 
 	if (t)

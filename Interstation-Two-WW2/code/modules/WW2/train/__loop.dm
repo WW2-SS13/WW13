@@ -1,5 +1,6 @@
 var/train_loop_interval = -1
 var/next_supplytrain_message = -1
+var/supplytrain_interval = 1800
 
 /proc/start_train_loop()
 
@@ -50,12 +51,12 @@ var/next_supplytrain_message = -1
 			switch (german_supplytrain_master.direction)
 				if ("FORWARDS")
 					german_supplytrain_master.direction = "BACKWARDS"
-					message_germans("<span class = 'notice'><big>SUPPLY: The Supply Train is now departing from the armory. It will arrive again in 5 minutes.</big></span>")
+					message_germans("<span class = 'notice'><big>SUPPLY: The Supply Train is now departing from the armory. It will arrive again in [supplytrain_interval/600] minutes.</big></span>")
 					if (!german_supplytrain_master.invisible)
 						german_supplytrain_master.update_invisibility(1)
 				if ("BACKWARDS")
 					german_supplytrain_master.direction = "FORWARDS"
-					message_germans("<span class = 'notice'><big>SUPPLY: The Supply Train is now arriving at the armory. It will depart in 5 minutes.</big></span>")
+					message_germans("<span class = 'notice'><big>SUPPLY: The Supply Train is now arriving at the armory. It will depart in [supplytrain_interval/600] minutes.</big></span>")
 					if (german_supplytrain_master.invisible)
 						german_supplytrain_master.update_invisibility(0)
 
@@ -63,4 +64,4 @@ var/next_supplytrain_message = -1
 
 		skipmovement
 
-		sleep (600) // every minute????
+		sleep (rand(supplytrain_interval-100, supplytrain_interval+100)) // around every three minutes

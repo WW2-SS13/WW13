@@ -224,8 +224,6 @@ var/datum/controller/process/explosives/bomb_processor
 
 /datum/controller/process/explosives/proc/explosion_spread(turf/s, power, direction)
 	SCHECK
-	if (istype(s, /turf/unsimulated))
-		return
 	if(power <= 0)
 		return
 

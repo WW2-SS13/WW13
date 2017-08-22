@@ -11,9 +11,9 @@
 		src << "<span class='notice'>You will no longer examine things you click on.</span>"
 
 /mob/observer/ghost/DblClickOn(var/atom/A, var/params)
-	if(client.buildmode)
+/*	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
-		return
+		return*/
 
 	if(can_reenter_corpse && mind && mind.current)
 		if(A == mind.current || (mind.current in A)) // double click your corpse or whatever holds it
@@ -39,13 +39,13 @@
 		stop_following()
 		forceMove(get_turf(A))
 
-		if (istype(A, /turf/simulated/open))
+		if (istype(A, /turf/open))
 			movedown()
 
 /mob/observer/ghost/ClickOn(var/atom/A, var/params)
-	if(client.buildmode)
+/*	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
-		return
+		return*/
 	if(!canClick()) return
 	setClickCooldown(4)
 	// You are responsible for checking config.ghost_interaction when you override this function

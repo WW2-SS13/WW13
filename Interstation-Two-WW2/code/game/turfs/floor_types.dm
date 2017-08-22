@@ -1,28 +1,28 @@
-/turf/simulated/shuttle
+/turf/shuttle
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
 	thermal_conductivity = 0.05
 	heat_capacity = 0
 	layer = 2
 
-/turf/simulated/shuttle/floor
+/turf/shuttle/floor
 	name = "floor"
 	icon_state = "floor"
 
-/turf/simulated/shuttle/floor/mining
+/turf/shuttle/floor/mining
 	icon_state = "6,19"
 	icon = 'icons/turf/shuttlemining.dmi'
 
-/turf/simulated/shuttle/plating
+/turf/shuttle/plating
 	name = "plating"
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
 	level = 1
 
-/turf/simulated/shuttle/plating/is_plating()
+/turf/shuttle/plating/is_plating()
 	return 1
 
-/turf/simulated/floor/plating/under
+/turf/floor/plating/under
 	name = "underplating"
 	icon_state = "un"
 	icon = 'icons/turf/un.dmi'
@@ -31,7 +31,7 @@
 	var/has_base_range = null
 	//style = "underplating"
 
-/turf/simulated/floor/plating/under/update_icon(var/update_neighbors)
+/turf/floor/plating/under/update_icon(var/update_neighbors)
 	if(lava)
 		return
 	// Set initial icon and strings.
@@ -49,8 +49,8 @@
 	var/has_border = 0
 	if(isnull(set_update_icon) && (flags & TURF_HAS_EDGES))
 		for(var/step_dir in cardinal)
-			var/turf/simulated/floor/T = get_step(src, step_dir)
-			if((!istype(T) || !T || T.name != name) && !istype(T, /turf/simulated/open) && !istype(T, /turf/space))
+			var/turf/floor/T = get_step(src, step_dir)
+			if((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
 				has_border |= step_dir
 				overlays |= get_flooring_overlayu("[icon_base]-edge-[step_dir]", "[icon_base]_edges", step_dir)
 		if ((flags & TURF_USE0ICON) && has_border)
@@ -70,21 +70,21 @@
 			// As above re: concise numerical way to do this.
 			if(!(has_border & NORTH))
 				if(!(has_border & EAST))
-					var/turf/simulated/floor/T = get_step(src, NORTHEAST)
-					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/simulated/open) && !istype(T, /turf/space))
+					var/turf/floor/T = get_step(src, NORTHEAST)
+					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
 						overlays |= get_flooring_overlayu("[icon_base]-corner-[NORTHEAST]", "[icon_base]_corners", NORTHEAST)
 				if(!(has_border & WEST))
-					var/turf/simulated/floor/T = get_step(src, NORTHWEST)
-					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/simulated/open) && !istype(T, /turf/space))
+					var/turf/floor/T = get_step(src, NORTHWEST)
+					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
 						overlays |= get_flooring_overlayu("[icon_base]-corner-[NORTHWEST]", "[icon_base]_corners", NORTHWEST)
 			if(!(has_border & SOUTH))
 				if(!(has_border & EAST))
-					var/turf/simulated/floor/T = get_step(src, SOUTHEAST)
-					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/simulated/open) && !istype(T, /turf/space))
+					var/turf/floor/T = get_step(src, SOUTHEAST)
+					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
 						overlays |= get_flooring_overlayu("[icon_base]-corner-[SOUTHEAST]", "[icon_base]_corners", SOUTHEAST)
 				if(!(has_border & WEST))
-					var/turf/simulated/floor/T = get_step(src, SOUTHWEST)
-					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/simulated/open) && !istype(T, /turf/space))
+					var/turf/floor/T = get_step(src, SOUTHWEST)
+					if((!istype(T) || !T || T.name != name) && !istype(T, /turf/open) && !istype(T, /turf/space))
 						overlays |= get_flooring_overlayu("[icon_base]-corner-[SOUTHWEST]", "[icon_base]_corners", SOUTHWEST)
 
 	if(decals && decals.len)
@@ -99,12 +99,12 @@
 		if(!isnull(burnt) && (flags & TURF_CAN_BURN))
 			overlays |= get_flooring_overlayu("[icon_base]-burned-[burnt]", "burned[burnt]")
 	if(update_neighbors)
-		for(var/turf/simulated/floor/F in range(src, 1))
+		for(var/turf/floor/F in range(src, 1))
 			if(F == src)
 				continue
 			F.update_icon()
 
-/turf/simulated/floor/plating/under/proc/get_flooring_overlayu(var/cache_key, var/icon_base, var/icon_dir = 0)
+/turf/floor/plating/under/proc/get_flooring_overlayu(var/cache_key, var/icon_base, var/icon_dir = 0)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
@@ -112,11 +112,11 @@
 	return flooring_cache[cache_key]
 
 
-/turf/simulated/floor/plating/under/New()
+/turf/floor/plating/under/New()
 	..()
 	update_icon(1)
 
-/turf/simulated/floor/plating/under/Entered(mob/living/M as mob)
+/turf/floor/plating/under/Entered(mob/living/M as mob)
 	..()
 	for(var/obj/structure/catwalk/C in get_turf(src))
 		return
@@ -131,7 +131,7 @@
 			M << "<span class='warning'>You tripped over!</span>"
 			return
 
-/turf/simulated/floor/plating/under/attackby(obj/item/C as obj, mob/user as mob)
+/turf/floor/plating/under/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = C
 		if(R.amount <= 2)
@@ -146,34 +146,34 @@
 			return
 	return
 
-/turf/simulated/shuttle/plating/vox //Skipjack plating
-	oxygen = 0
-	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
+/turf/shuttle/plating/vox //Skipjack plating
+//	oxygen = 0
+//	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
 
-/turf/simulated/shuttle/floor4 // Added this floor tile so that I have a seperate turf to check in the shuttle -- Polymorph
+/turf/shuttle/floor4 // Added this floor tile so that I have a seperate turf to check in the shuttle -- Polymorph
 	name = "Brig floor"        // Also added it into the 2x3 brig area of the shuttle.
 	icon_state = "floor4"
 
-/turf/simulated/shuttle/floor4/vox //skipjack floors
+/turf/shuttle/floor4/vox //skipjack floors
 	name = "skipjack floor"
-	oxygen = 0
-	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
+//	oxygen = 0
+//	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
 
-/turf/simulated/floor/airless
+/turf/floor/airless
 	icon_state = "floor"
 	name = "airless floor"
-	oxygen = 0
-	nitrogen = 0
+//	oxygen = 0
+//	nitrogen = 0
 	temperature = TCMB
 
 	New()
 		..()
 		name = "floor"
 
-/turf/simulated/floor/airless/ceiling
+/turf/floor/airless/ceiling
 	icon_state = "rockvault"
 
-/turf/simulated/floor/light
+/turf/floor/light
 	name = "Light floor"
 	light_range = 5
 	icon_state = "light_on"
@@ -187,45 +187,45 @@
 				update_icon()
 				name = n
 
-/turf/simulated/floor/wood
+/turf/floor/wood
 	name = "floor"
 	icon_state = "wood"
 	floor_type = /obj/item/stack/tile/wood
 	stepsound = "wood"
 
-/turf/simulated/floor/wood/broken
+/turf/floor/wood/broken
 	name = "floor"
 	icon_state = "wood-broken"
 
-/turf/simulated/floor/wood/broken/New()
+/turf/floor/wood/broken/New()
 	..()
 	icon_state = "wood-broken[rand(1,7)]"
 
-/turf/simulated/floor/vault
+/turf/floor/vault
 	icon_state = "rockvault"
 
 	New(location,type)
 		..()
 		icon_state = "[type]vault"
 
-/turf/simulated/wall/vault
+/turf/wall/vault
 	icon_state = "rockvault"
 
 	New(location,type)
 		..()
 		icon_state = "[type]vault"
 
-/turf/simulated/floor/engine
+/turf/floor/engine
 	name = "reinforced floor"
 	icon_state = "engine"
 	thermal_conductivity = 0.025
 	heat_capacity = 325000
 	intact = 0
 
-/turf/simulated/floor/engine/nitrogen
-	oxygen = 0
+/turf/floor/engine/nitrogen
+//	oxygen = 0
 
-/turf/simulated/floor/engine/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/turf/floor/engine/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	if(!C)
 		return
 	if(!user)
@@ -235,34 +235,34 @@
 		playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
 		if(do_after(user, 30))
 			PoolOrNew(/obj/item/stack/rods, list(loc, 2))
-			ChangeTurf(/turf/simulated/floor)
-			var/turf/simulated/floor/F = src
+			ChangeTurf(/turf/floor)
+			var/turf/floor/F = src
 			F.make_plating()
 			return
 
-/turf/simulated/floor/engine/cult
+/turf/floor/engine/cult
 	name = "engraved floor"
 	icon_state = "cult"
 
-/turf/simulated/floor/engine/n20
+/turf/floor/engine/n20
 	New()
 		. = ..()
-		assume_gas("sleeping_agent", 2000)
+	//	assume_gas("sleeping_agent", 2000)
 
-/turf/simulated/floor/engine/vacuum
+/turf/floor/engine/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
-	oxygen = 0
-	nitrogen = 0
+//	oxygen = 0
+//	nitrogen = 0
 	temperature = TCMB
 
-/turf/simulated/floor/plating
+/turf/floor/plating
 	name = "plating"
 	icon_state = "plating"
 	floor_type = null
 	intact = 0
 
-/turf/simulated/floor/plating/ex_act(severity)
+/turf/floor/plating/ex_act(severity)
 		//set src in oview(1)
 	switch(severity)
 		if(1.0)
@@ -272,87 +272,64 @@
 				ChangeTurf(world.turf)
 	return
 
-/turf/simulated/floor/plating/airless
+/turf/floor/plating/airless
 	icon_state = "plating"
 	name = "airless plating"
-	oxygen = 0
-	nitrogen = 0
+//	oxygen = 0
+//	nitrogen = 0
 	temperature = TCMB
 
 	New()
 		..()
 		name = "plating"
 
-/turf/simulated/floor/bluegrid
+/turf/floor/bluegrid
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "bcircuit"
 
-/turf/simulated/floor/greengrid
+/turf/floor/greengrid
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gcircuit"
 
 
-/turf/simulated/shuttle
+/turf/shuttle
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
 	thermal_conductivity = 0.05
 	heat_capacity = 0
 	layer = TURF_LAYER
 
-/turf/simulated/shuttle/wall
+/turf/shuttle/wall
 	name = "wall"
 	icon_state = "wall1"
 	opacity = 1
 	density = 1
-	blocks_air = 1
+//	blocks_air = 1
 
-/turf/simulated/shuttle/floor
+/turf/shuttle/floor
 	name = "floor"
 	icon_state = "floor"
 
-/turf/simulated/shuttle/plating
+/turf/shuttle/plating
 	name = "plating"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 
-/turf/simulated/shuttle/plating/vox	//Skipjack plating
-	oxygen = 0
-	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
+/turf/shuttle/plating/vox	//Skipjack plating
+//	oxygen = 0
+//	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
 
-/turf/simulated/shuttle/floor4 // Added this floor tile so that I have a seperate turf to check in the shuttle -- Polymorph
+/turf/shuttle/floor4 // Added this floor tile so that I have a seperate turf to check in the shuttle -- Polymorph
 	name = "Brig floor"        // Also added it into the 2x3 brig area of the shuttle.
 	icon_state = "floor4"
 
-/turf/simulated/shuttle/floor4/vox	//skipjack floors
+/turf/shuttle/floor4/vox	//skipjack floors
 	name = "skipjack floor"
-	oxygen = 0
-	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
+//	oxygen = 0
+//	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
 
-/turf/simulated/floor/beach
-	name = "Beach"
-	icon = 'icons/misc/beach.dmi'
 
-/turf/simulated/floor/beach/sand
-	name = "Sand"
-	icon_state = "sand"
-
-/turf/simulated/floor/beach/coastline
-	name = "Coastline"
-	icon = 'icons/misc/beach2.dmi'
-	icon_state = "sandwater"
-
-/turf/simulated/floor/beach/water
-	name = "Water"
-	icon_state = "water"
-
-/turf/simulated/floor/beach/water/ex_act(severity)
-	return
-
-/turf/simulated/floor/beach/water/New()
-	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
-
-/turf/simulated/floor/grass
+/turf/floor/grass
 	name = "Grass patch"
 	icon_state = "grass1"
 	floor_type = /obj/item/stack/tile/grass
@@ -364,11 +341,11 @@
 			if(src)
 				update_icon()
 				for(var/direction in cardinal)
-					if(istype(get_step(src,direction),/turf/simulated/floor))
-						var/turf/simulated/floor/FF = get_step(src,direction)
+					if(istype(get_step(src,direction),/turf/floor))
+						var/turf/floor/FF = get_step(src,direction)
 						FF.update_icon() //so siding get updated properly
 
-/turf/simulated/floor/carpet
+/turf/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
 	floor_type = /obj/item/stack/tile/carpet
@@ -381,62 +358,87 @@
 			if(src)
 				update_icon()
 				for(var/direction in list(1,2,4,8,5,6,9,10))
-					if(istype(get_step(src,direction),/turf/simulated/floor))
-						var/turf/simulated/floor/FF = get_step(src,direction)
+					if(istype(get_step(src,direction),/turf/floor))
+						var/turf/floor/FF = get_step(src,direction)
 						FF.update_icon() //so siding get updated properly
 
 
 
-/turf/simulated/floor/plating/ironsand/New()
+/turf/floor/plating/ironsand/New()
 	..()
 	icon = 'icons/turf/floors.dmi'
 	name = "Iron Sand"
 	icon_state = "ironsand[rand(1,15)]"
 
-/turf/simulated/floor/plating/snow
+/turf/floor/plating/snow
 	name = "snow"
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow"
 
-/turf/simulated/floor/plating/snow/ex_act(severity)
+/turf/floor/plating/snow/ex_act(severity)
 	return
 
-/turf/simulated/floor/plating/grass
+/turf/floor/plating/grass
 	name = "grass"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "grass_dark"
 	interior = 0
 	stepsound = "dirt"
 
-/turf/simulated/floor/plating/grass/New()
+/turf/floor/plating/grass/New()
 	..()
 	grass_turf_list += src
 
-/turf/simulated/floor/plating/dirt
+/turf/floor/plating/beach
+	name = "Beach"
+	icon = 'icons/misc/beach.dmi'
+
+/turf/floor/plating/beach/sand
+	name = "Sand"
+	icon_state = "sand"
+
+/turf/floor/plating/beach/coastline
+	name = "Coastline"
+	icon = 'icons/misc/beach2.dmi'
+	icon_state = "sandwater"
+
+/turf/floor/plating/beach/water
+	name = "Water"
+	icon_state = "seadeep"
+
+/turf/floor/plating/beach/water/ex_act(severity)
+	return
+
+/turf/floor/plating/beach/water/New()
+	..()
+	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+
+
+/turf/floor/plating/dirt
 	name = "dirt"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "dirt"
 	interior = 0
 	stepsound = "dirt"
 
-/turf/simulated/floor/plating/sand
+/turf/floor/plating/sand
 	name = "sand"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "sand1"
 	interior = 0
 	stepsound = "dirt"
 
-/turf/simulated/floor/plating/sand/New()
+/turf/floor/plating/sand/New()
 	..()
 	icon_state = "sand[rand(1, 3)]"
 
-/turf/simulated/floor/plating/concrete
+/turf/floor/plating/concrete
 	name = "concrete"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "concrete6"
 	interior = 0
 
-/turf/simulated/floor/plating/concrete/New()
+/turf/floor/plating/concrete/New()
 	..()
 	if(icon_state == "concrete2")
 		icon_state = pick("concrete2", "concrete3")
@@ -448,47 +450,47 @@
 		icon_state = pick("concrete10", "concrete11")
 		return
 
-/turf/simulated/floor/plating/road
+/turf/floor/plating/road
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "road_1"
 	interior = 0
 	var/icon_mode = ""
 
-/turf/simulated/floor/plating/road/New()
+/turf/floor/plating/road/New()
 	..()
 	icon_state = "road_[icon_mode][rand(1, 3)]"
 
-/turf/simulated/floor/plating/cobblestone
+/turf/floor/plating/cobblestone
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cobble_horizontal"
 	interior = 0
 
-/turf/simulated/floor/plating/cobblestone/dark
+/turf/floor/plating/cobblestone/dark
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cobble_horizontal_dark"
 	interior = 0
 
-/turf/simulated/floor/plating/cobblestone/vertical
+/turf/floor/plating/cobblestone/vertical
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cobble_vertical"
 	interior = 0
 
-/turf/simulated/floor/plating/cobblestone/vertical/dark
+/turf/floor/plating/cobblestone/vertical/dark
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cobble_vertical_dark"
 	interior = 0
 
-turf/simulated/air
+turf/air
 	icon_state = "air"
 	name = "air"
 	icon = 'icons/WW2/ju57.dmi'
 
-turf/simulated/junkers
+turf/junkers
 	icon = 'icons/WW2/ju57.dmi'
 	name = "Ju-52 cassis"
 

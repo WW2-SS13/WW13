@@ -6,7 +6,7 @@
 
 /client
 	var/hardsuit_click_mode = MIDDLE_CLICK
-
+/*
 /client/verb/toggle_hardsuit_mode()
 	set name = "Toggle Hardsuit Activation Mode"
 	set desc = "Switch between hardsuit activation modes."
@@ -28,7 +28,7 @@
 			soft_assert(0, "Bad hardsuit click mode: [hardsuit_click_mode] - expected 0 to [MAX_HARDSUIT_CLICK_MODE]")
 			src << "Somehow you bugged the system. Setting your hardsuit mode to middle-click."
 			hardsuit_click_mode = MIDDLE_CLICK
-
+*/
 /mob/living/MiddleClickOn(atom/A)
 	if(client && client.hardsuit_click_mode == MIDDLE_CLICK)
 		if(HardsuitClickOn(A))

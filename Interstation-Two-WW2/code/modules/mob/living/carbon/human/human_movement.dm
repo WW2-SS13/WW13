@@ -19,8 +19,9 @@
 	if (!(species && (species.flags & NO_PAIN)))
 		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
-	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
-	if (hungry >= 70) tally += hungry/50
+	if (nutrition <= 0)
+		var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
+		if (hungry >= 100) tally += hungry/70
 
 	if(wear_suit)
 		tally += wear_suit.slowdown

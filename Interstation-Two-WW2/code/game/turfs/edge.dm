@@ -1,4 +1,4 @@
-/turf/simulated/floor/edgefloor //this is now a floor, not a wall, so that girders can be built on it
+/turf/floor/edgefloor //this is now a floor, not a wall, so that girders can be built on it
 	name = ""
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "grass_dark"

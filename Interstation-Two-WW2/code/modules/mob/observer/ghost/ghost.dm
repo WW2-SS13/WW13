@@ -270,10 +270,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(usr.invisibility <= SEE_INVISIBLE_LIVING)
 		for(var/turf/T in get_area_turfs(thearea.type))
-			if(!T.holy)
+		/*	if(!T.holy)
 				L+=T
 			else
-				holyblock = 1
+				holyblock = 1*/
+			L += T
 	else
 		for(var/turf/T in get_area_turfs(thearea.type))
 			L+=T
@@ -625,7 +626,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/effect/decal/cleanable/blood/choice = input(src,"What blood would you like to use?") in null|choices
 
 	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
-	var/turf/simulated/T = src.loc
+	var/turf/T = src.loc
 	if (direction != "Here")
 		T = get_step(T,text2dir(direction))
 

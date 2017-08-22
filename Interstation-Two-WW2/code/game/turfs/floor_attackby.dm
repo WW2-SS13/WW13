@@ -1,4 +1,4 @@
-/turf/simulated/floor/attackby(obj/item/C as obj, mob/user as mob)
+/turf/floor/attackby(obj/item/C as obj, mob/user as mob)
 
 	if(!C || !user)
 		return 0
@@ -124,7 +124,7 @@
 	return ..()
 
 
-/turf/simulated/floor/can_build_cable(var/mob/user)
+/turf/floor/can_build_cable(var/mob/user)
 	if(!is_plating() || flooring)
 		user << "<span class='warning'>Removing the tiling first.</span>"
 		return 0

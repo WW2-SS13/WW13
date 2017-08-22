@@ -27,7 +27,8 @@
 	"Bayonet" = /obj/structure/closet/crate/bayonets,
 	"Solid Rations" = /obj/structure/closet/crate/rations/german_solids,
 	"Liquid Rations" = /obj/structure/closet/crate/rations/german_liquids,
-	"Dessert Rations" = /obj/structure/closet/crate/rations/german_desserts
+	"Dessert Rations" = /obj/structure/closet/crate/rations/german_desserts,
+	"Supply Requisition Sheets" = /obj/structure/closet/crate/supply_req_sheets
 	)
 
 	var/list/costs = list(
@@ -50,12 +51,16 @@
 	"Bayonet" = 10,
 	"Solid Rations" = 80,
 	"Liquid Rations" = 80,
-	"Dessert Rations" = 160
+	"Dessert Rations" = 160,
+	"Supply Requisition Sheets" = 10
 	)
 
 /obj/item/weapon/paper/supply_train_requisitions_sheet/New()
 	..()
 	regenerate_info()
+
+/obj/item/weapon/paper/supply_train_requisitions_sheet/attack_self(mob/living/user as mob)
+	user.examinate(src) // no crumpling
 
 /obj/item/weapon/paper/supply_train_requisitions_sheet/show_content(var/mob/user, var/forceshow=0)
 	regenerate_info()
@@ -84,6 +89,7 @@
 						show_content(H)
 
 /obj/item/weapon/paper/supply_train_requisitions_sheet/proc/regenerate_info()
+
 	info_links = {"
 	<b><big>CRATES</big></b><br><br>
 	"}
@@ -99,14 +105,19 @@
 		info_links += "<i>[purchase]</i><br>"
 		total_cost += costs[purchase]
 
-	info_links += "<br><b>Total Cost:<b> [total_cost]<br>"
+	if (purchases.len)
+		info_links += "<br><b>Total Cost:<b> [total_cost]<br>"
 
-	info_links += "[signatures()]<br><br>"
+	if (signatures.len)
+		info_links += "[signatures()]<br><br>"
 
 	if (memo)
 		info_links += "<br>[memo]"
 
 	info = info_links
+
+	if (info && icon_state != "scrap")
+		icon_state = "paper_words"
 
 /obj/item/weapon/paper/supply_train_requisitions_sheet/proc/make_purchase_href_link(var/name)
 	return "<A href='?src=\ref[src];purchase=[name]'>[name]</a>"
@@ -158,14 +169,14 @@
 			CO_sig = 1
 
 	if (!QM_sig && !SO_sig && !CO_sig)
-		memo = "<i>We didn't find any valid signatures, so your requisition has been rejected.</span>"
-		return
+		memo = "<i>We didn't find any valid signatures, so your requisition has been rejected.</span><br>"
+		goto end
 
 	for (var/purchase in purchases)
 		var/cost = costs[purchase]
 		var/cratetype = crate_types[purchase]
 		if (cost > train.supply_points)
-			memo = "<i>Unfortunately, you did not have enough supply points left to purchase the [purchase] crate, or any of the purchases listed after it.</i>"
+			memo = "<i>Unfortunately, you did not have enough supply points left to purchase the [purchase] crate, or any of the purchases listed after it.</i><br>"
 			break
 		create_crates += cratetype
 		train.supply_points -= cost
@@ -173,20 +184,22 @@
 	for (var/obj/train_car_center/tcc in train.train_car_centers)
 		for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
 			if (locate(/obj/train_decal/cargo/outline) in get_turf(tpt))
-				var/cratetype = pick(create_crates)
-				create_crates -= cratetype
+				if (!locate(/obj/structure/closet/crate) in get_turf(tpt))
+					if (create_crates.len)
+						var/cratetype = pick(create_crates)
+						create_crates -= cratetype
 
-				var/tpt_turf = get_turf(tpt)
+						var/tpt_turf = get_turf(tpt)
 
-				for (var/mob/m in tpt_turf)
-					qdel(m)
-				for (var/obj/item/i in tpt_turf)
-					qdel(i)
-				for (var/obj/o in tpt_turf)
-					if (o.density)
-						qdel(o)
+						for (var/mob/m in tpt_turf)
+							qdel(m)
+						for (var/obj/item/i in tpt_turf)
+							qdel(i)
+						for (var/obj/o in tpt_turf)
+							if (o.density)
+								qdel(o)
 
-				new cratetype(tpt_turf)
+						new cratetype(tpt_turf)
 
 	if (create_crates.len) // we didn't have enough space to send them all
 		memo = "<i><br>We didn't have enough space for the crates listed below, so you were reimbursed for their cost: </i><br><br>"
@@ -197,11 +210,14 @@
 					train.supply_points += cost
 					memo += "<i>[cratename]</i><br>"
 
-	memo += "<br><i>As of the time this was printed, you have [train.supply_points] remaining.</i>"
 
-	signatures.Cut()
+	end
 
-	purchases.Cut()
+	memo += "<br><i>As of the time this was printed, you have [train.supply_points] Supply Requisition Points remaining.</i>"
+
+	signatures = list()
+
+	purchases = list()
 
 	regenerate_info()
 

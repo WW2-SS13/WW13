@@ -59,13 +59,13 @@
 
 /datum/reagent/toxin/plasma/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	M.take_organ_damage(0, removed * 0.1) //being splashed directly with plasma causes minor chemical burns
-	if(prob(50))
-		M.pl_effects()
+/*	if(prob(50))
+		M.pl_effects()*/
 
-/datum/reagent/toxin/plasma/touch_turf(var/turf/simulated/T)
+/datum/reagent/toxin/plasma/touch_turf(var/turf/T)
 	if(!istype(T))
 		return
-	T.assume_gas("plasma", volume, T20C)
+//	T.assume_gas("plasma", volume, T20C)
 	remove_self(volume)
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
@@ -183,8 +183,8 @@
 	strength = 4
 
 /datum/reagent/toxin/plantbgone/touch_turf(var/turf/T)
-	if(istype(T, /turf/simulated/wall))
-		var/turf/simulated/wall/W = T
+	if(istype(T, /turf/wall))
+		var/turf/wall/W = T
 		if(locate(/obj/effect/overlay/wallrot) in W)
 			for(var/obj/effect/overlay/wallrot/E in W)
 				qdel(E)

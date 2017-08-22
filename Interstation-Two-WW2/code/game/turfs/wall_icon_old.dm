@@ -1,4 +1,4 @@
-/turf/simulated/wall/proc/update_material()
+/turf/wall/proc/update_material()
 
 	if(!material)
 		return
@@ -30,12 +30,12 @@
 	update_icon()
 
 
-/turf/simulated/wall/proc/set_material(var/material/newmaterial, var/material/newrmaterial)
+/turf/wall/proc/set_material(var/material/newmaterial, var/material/newrmaterial)
 	material = newmaterial
 	reinf_material = newrmaterial
 	update_material()
 
-/turf/simulated/wall/update_icon()
+/turf/wall/update_icon()
 	if(!material)
 		return
 
@@ -85,7 +85,7 @@
 		overlays += damage_overlays[overlay]
 	return
 
-/turf/simulated/wall/proc/generate_overlays()
+/turf/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / damage_overlays.len
 
 	for(var/i = 1; i <= damage_overlays.len; i++)
@@ -95,11 +95,11 @@
 		damage_overlays[i] = img
 
 
-/turf/simulated/wall/proc/update_connections(propagate = 0)
+/turf/wall/proc/update_connections(propagate = 0)
 	if(!material)
 		return
 	var/list/dirs = list()
-	for(var/turf/simulated/wall/W in orange(src, 1))
+	for(var/turf/wall/W in orange(src, 1))
 		if(!W.material)
 			continue
 		if(propagate)
@@ -110,7 +110,7 @@
 
 	wall_connections = dirs_to_corner_states(dirs)
 
-/turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
+/turf/wall/proc/can_join_with(var/turf/wall/W)
 	if(material && W.material && material.icon_base == W.material.icon_base)
 		return 1
 	return 0

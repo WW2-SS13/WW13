@@ -14,11 +14,10 @@ var/global/list/cached_icons = list()
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(10,20,30,60)
 	volume = 60
-	unacidable = 0
 	flags = OPENCONTAINER
 	var/paint_type = "red"
 
-	afterattack(turf/simulated/target, mob/user, proximity)
+	afterattack(turf/target, mob/user, proximity)
 		if(!proximity) return
 		if(istype(target) && reagents.total_volume > 5)
 			user.visible_message("<span class='warning'>\The [target] has been splashed with something by [user]!</span>")

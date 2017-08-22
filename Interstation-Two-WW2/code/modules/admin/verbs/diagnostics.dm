@@ -1,4 +1,4 @@
-/client/proc/air_report()
+/*/client/proc/air_report()
 	set category = "Debug"
 	set name = "Show Air Report"
 
@@ -40,7 +40,7 @@
 "}
 
 	usr << browse(output,"window=airreport")
-
+*/
 /client/proc/fix_next_move()
 	set category = "Debug"
 	set name = "Unfreeze Everyone"

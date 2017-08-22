@@ -62,6 +62,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 							for(var/i=0, i<10, i++)
 								sleep(1)
 								vote.process()
+				if(pregame_timeleft == 20)
+					world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(roundstart_tips)]</span>"
 				if(pregame_timeleft <= 0)
 					current_state = GAME_STATE_SETTING_UP
 		while (!setup())

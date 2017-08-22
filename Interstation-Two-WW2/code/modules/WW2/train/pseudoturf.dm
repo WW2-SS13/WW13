@@ -20,8 +20,8 @@
 	based_on_type = t.type
 	copy_of_instance = t
 
-	if (istype(t, /turf/simulated/wall))
-		var/turf/simulated/wall/w = t
+	if (istype(t, /turf/wall))
+		var/turf/wall/w = t
 		icon = w.icon
 		icon_state = w.ref_state
 		overlays = w.overlays

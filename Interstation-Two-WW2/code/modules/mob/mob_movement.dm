@@ -178,6 +178,8 @@
 	return
 
 
+/mob/living/carbon/human/var/next_stamina_message = -1
+
 /client/Move(n, direct)
 	if(!canmove)
 		return
@@ -301,30 +303,36 @@
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 3.0
+				move_delay += 2.8
 				if (ishuman(mob))
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.03
 					--H.stamina
 			if("walk")
-				move_delay += 4.5
+				move_delay += 4.2
 				if (ishuman(mob))
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.003
 
 		var/mob/living/carbon/human/H = mob
 
+		if (istype(H) && H.stamina == (H.max_stamina/2) && H.m_intent == "run" && world.time >= H.next_stamina_message)
+			H << "<span class = 'danger'>You're starting to tire from running so much.</span>"
+			H.next_stamina_message = world.time + 20
+
 		if (istype(H) && H.stamina <= 0 && H.m_intent == "run")
-			H << "<span class = 'warning'>You're too tired to keep running.</span>"
+			H << "<span class = 'danger'>You're too tired to keep running.</span>"
 			for (var/obj/screen/mov_intent/mov in H.client.screen)
 				H.client.Click(mov)
-			H.m_intent = "walk" // in case we don't have a m_intent HUD, somehow
+				break
+			if (H.m_intent != "walk")
+				H.m_intent = "walk" // in case we don't have a m_intent HUD, somehow
 
 
 		move_delay += mob.movement_delay()
 
 		if (!isobserver(mob))
-			if (istype(get_turf(mob), /turf/simulated/floor/beach/water))
+			if (istype(get_turf(mob), /turf/floor/plating/beach/water))
 				move_delay += 3
 
 		var/tickcomp = 0 //moved this out here so we can use it for vehicles
@@ -544,7 +552,7 @@
 
 	var/shoegrip = Check_Shoegrip()
 
-	for(var/turf/simulated/T in trange(1,src)) //we only care for non-space turfs
+	for(var/turf/T in trange(1,src)) //we only care for non-space turfs
 		if(T.density)	//walls work
 			return 1
 		else

@@ -80,8 +80,8 @@ proc/GetBelow(var/atom/atom, var/obj/lift_controller/optional_lift_master)
 	return null
 
 // for in game debugging
-/turf/simulated/proc/GetBelowMemberFunction()
+/turf/proc/GetBelowMemberFunction()
 	return GetBelow(src)
 
-/turf/simulated/proc/GetAboveMemberFunction()
+/turf/proc/GetAboveMemberFunction()
 	return GetAbove(src)

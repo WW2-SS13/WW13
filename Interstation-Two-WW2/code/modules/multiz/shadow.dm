@@ -50,7 +50,7 @@
 /mob/living/proc/check_shadow()
 	var/mob/M = src
 	if(isturf(M.loc))
-		var/turf/simulated/open/OS = GetAbove(src)
+		var/turf/open/OS = GetAbove(src)
 		while(OS && istype(OS))
 			if(!M.shadow)
 				M.shadow = PoolOrNew(/mob/shadow, M)

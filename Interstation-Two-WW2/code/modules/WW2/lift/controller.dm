@@ -15,6 +15,8 @@
 	icon_state = "x2"
 
 
+//#define LIFT_CONTROLLER_DEBUG
+
 /obj/lift_controller/New()
 	..()
 	icon = null
@@ -42,8 +44,22 @@
 
 	next_activation = world.time + 50
 
+	#ifdef LIFT_CONTROLLER_DEBUG
+	world << "playing lift sound at [get_turf(src)]"
+	#endif
+
+	for (var/mob/m in range(12, src))
+		m.playsound_local(get_turf(m), 'sound/misc/lift.ogg', 100 - get_dist(m, src))
+	for (var/mob/m in range(12, target))
+		m.playsound_local(get_turf(m), 'sound/misc/lift.ogg', 100 - get_dist(m, target))
+/*
 	playsound(get_turf(src), 'sound/misc/lift.ogg', 100)
-	playsound(get_turf(target), 'sound/misc/lift.ogg', 100)
+	playsound(get_turf(src), 'sound/misc/lift.ogg', 100)
+*/
+	#ifdef LIFT_CONTROLLER_DEBUG
+	world << "played lift sound at [get_turf(src)]"
+	#endif
+
 
 	spawn (25) // give them time to get on
 		switch (status)

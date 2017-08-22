@@ -29,7 +29,7 @@
 	for (var/turf/t in world)
 
 		if (!locate(/obj/train_track) in t.contents)
-			if (istype(t, /turf/simulated/floor/plating/road) || istype(t, /turf/simulated/floor/plating/cobblestone) || istype(t, /turf/simulated/floor/dirt) || istype(t, /turf/simulated/floor/plating/grass) || istype(t, /turf/simulated/wall) || istype(t, /turf/simulated/floor/beach) || istype(t, /turf/simulated/floor/plating/asteroid) || locate(/obj/structure/catwalk) in t.contents)
+			if (istype(t, /turf/floor/plating/road) || istype(t, /turf/floor/plating/cobblestone) || istype(t, /turf/floor/dirt) || istype(t, /turf/floor/plating/grass) || istype(t, /turf/wall) || istype(t, /turf/floor/plating/beach) || istype(t, /turf/floor/plating/asteroid) || locate(/obj/structure/catwalk) in t.contents)
 				var/area/a = t.loc
 				if (a.dynamic_lighting && !istype(a, /area/prishtina/soviet/bunker) && !istype(a, /area/prishtina/soviet/bunker_entrance) && !istype(a, /area/prishtina/void))
 					for (var/datum/lighting_corner/corner in t.corners)

@@ -29,13 +29,17 @@ var/paratroopers_toggled = 1
 
 	if (findtext(choice, "PARTISANS"))
 		partisans_toggled = !partisans_toggled
-		world << "<span class = 'danger'>The Partisan faction has been [partisans_toggled ? "<i>ENABLED</i>" : "<i>DISABLED</i>"].</span>"
+		world << "<span class = 'warning'>The Partisan faction has been [partisans_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] disabled the Partisan faction.")
 	if (findtext(choice, "CIVILIANS"))
 		civilians_toggled = !civilians_toggled
-		world << "<span class = 'danger'>The Civilian faction has been [civilians_toggled ? "<i>ENABLED</i>" : "<i>DISABLED</i>"].</span>"
+		world << "<span class = 'warning'>The Civilian faction has been [civilians_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] disabled the Civilian faction.")
 	if (findtext(choice, "WAFFEN-SS"))
 		SS_toggled = !SS_toggled
-		world << "<span class = 'danger'>The SS faction has been [SS_toggled ? "<i>ENABLED</i>" : "<i>DISABLED</i>"].</span>"
+		world << "<span class = 'warning'>The SS faction has been [SS_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] disabled the SS faction.")
 	if (findtext(choice, "PARATROOPERS"))
 		paratroopers_toggled = !paratroopers_toggled
-		world << "<span class = 'danger'>The Paratrooper faction has been [paratroopers_toggled ? "<i>ENABLED</i>" : "<i>DISABLED</i>"].</span>"
+		world << "<span class = 'warning'>The Paratrooper faction has been [paratroopers_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] disabled the Paratrooper faction.")

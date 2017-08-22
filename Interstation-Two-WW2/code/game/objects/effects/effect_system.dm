@@ -10,7 +10,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
 	mouse_opacity = 0
-	unacidable = 1//So effect are not targeted by alien acid.
+//	unacidable = 1//So effect are not targeted by alien acid.
 	pass_flags = PASSTABLE | PASSGRILLE
 
 /obj/effect/Destroy()
@@ -107,7 +107,7 @@ steam.start() -- spawns the effect
 	var/turf/T = src.loc
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
-		
+
 /obj/effect/sparks/initialize()
 	..()
 	schedule_task_in(10 SECONDS, /proc/qdel, list(src))
@@ -508,9 +508,9 @@ steam.start() -- spawns the effect
 				M << "<span class='warning'>The solution violently explodes.</span>"
 
 			explosion(
-				location, 
-				round(min(devst, BOMBCAP_DVSTN_RADIUS)), 
-				round(min(heavy, BOMBCAP_HEAVY_RADIUS)), 
-				round(min(light, BOMBCAP_LIGHT_RADIUS)), 
+				location,
+				round(min(devst, BOMBCAP_DVSTN_RADIUS)),
+				round(min(heavy, BOMBCAP_HEAVY_RADIUS)),
+				round(min(light, BOMBCAP_LIGHT_RADIUS)),
 				round(min(flash, BOMBCAP_FLASH_RADIUS))
 				)

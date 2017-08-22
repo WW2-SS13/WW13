@@ -252,11 +252,11 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.head)
-			if(H.head.unacidable)
+		/*	if(H.head.unacidable)
 				H << "<span class='danger'>Your [H.head] protects you from the acid.</span>"
 				remove_self(volume)
-				return
-			else if(removed > meltdose)
+				return*/
+			if(removed > meltdose)
 				H << "<span class='danger'>Your [H.head] melts away!</span>"
 				qdel(H.head)
 				H.update_inv_head(1)
@@ -266,11 +266,11 @@
 			return
 
 		if(H.wear_mask)
-			if(H.wear_mask.unacidable)
+		/*	if(H.wear_mask.unacidable)
 				H << "<span class='danger'>Your [H.wear_mask] protects you from the acid.</span>"
 				remove_self(volume)
-				return
-			else if(removed > meltdose)
+				return*/
+			if(removed > meltdose)
 				H << "<span class='danger'>Your [H.wear_mask] melts away!</span>"
 				qdel(H.wear_mask)
 				H.update_inv_wear_mask(1)
@@ -280,10 +280,11 @@
 			return
 
 		if(H.glasses)
-			if(H.glasses.unacidable)
+		/*	if(H.glasses.unacidable)
 				H << "<span class='danger'>Your [H.glasses] partially protect you from the acid!</span>"
 				removed /= 2
-			else if(removed > meltdose)
+			else */
+			if(removed > meltdose)
 				H << "<span class='danger'>Your [H.glasses] melt away!</span>"
 				qdel(H.glasses)
 				H.update_inv_glasses(1)
@@ -309,8 +310,8 @@
 			M.take_organ_damage(0, removed * power * 0.1) // Balance. The damage is instant, so it's weaker. 10 units -> 5 damage, double for pacid. 120 units beaker could deal 60, but a) it's burn, which is not as dangerous, b) it's a one-use weapon, c) missing with it will splash it over the ground and d) clothes give some protection, so not everything will hit
 
 /datum/reagent/acid/touch_obj(var/obj/O)
-	if(O.unacidable)
-		return
+//	if(O.unacidable)
+	//	return
 	if(istype(O, /obj/item))
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."

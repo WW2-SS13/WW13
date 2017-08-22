@@ -10,20 +10,20 @@ var/datum/controller/process/open_space/OS_controller = null
 	OS_controller = src
 
 /datum/controller/process/open_space/doWork()
-	for (var/turf/simulated/open/T in open_spaces)
+	for (var/turf/open/T in open_spaces)
 		T.update_icon()
 
-/turf/simulated/open/New()
+/turf/open/New()
 	..()
 	if(OS_controller)
 		OS_controller.open_spaces += src
 
-/turf/simulated/open/Del()
+/turf/open/Del()
 	if(OS_controller)
 		OS_controller.open_spaces -= src
 	..()
 
-/turf/simulated/open/update_icon()
+/turf/open/update_icon()
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
 	if (!isturf(below))
@@ -36,7 +36,7 @@ var/datum/controller/process/open_space/OS_controller = null
 	//	overlays += below.overlays // for some reason this turns an open
 	// space into plating.
 
-		if(!istype(below,/turf/simulated/open))
+		if(!istype(below,/turf/open))
 			// get objects
 			var/image/o_img = list()
 			for(var/obj/o in below)

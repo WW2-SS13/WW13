@@ -139,6 +139,13 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/supply_req_sheets
+	name = "Supply requisition forms crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+
 /obj/structure/closet/crate/rations/
 	name = "Rations"
 	icon_state = "mil_crate_closed"
@@ -147,6 +154,7 @@
 
 /obj/structure/closet/crate/rations/New()
 	..()
+	update_capacity(15)
 	var/textpath = "[type]"
 	if (findtext(textpath, GERMAN))
 		if (findtext(textpath, "solids"))
@@ -192,105 +200,125 @@
 
 /obj/structure/closet/crate/flammenwerfer_fueltanks/New()
 	..()
+	update_capacity(20)
 	for (var/v in 1 to 20)
 		new/obj/item/weapon/flammenwerfer_fueltank(src)
 
 /obj/structure/closet/crate/tank_fueltanks/New()
 	..()
+	update_capacity(20)
 	for (var/v in 1 to 20)
 		new/obj/item/weapon/tank_fueltank(src)
 
 /obj/structure/closet/crate/maximbelt/New()
 	..()
+	update_capacity(4)
 	for (var/v in 1 to 4)
 		new /obj/item/ammo_magazine/maxim(src)
 
 /obj/structure/closet/crate/mosinammo/New()
 	..()
+	update_capacity(24)
 	for (var/v in 1 to 24)
 		new /obj/item/ammo_magazine/mosin(src)
 
 /obj/structure/closet/crate/kar98kammo/New()
 	..()
+	update_capacity(27)
 	for (var/v in 1 to 27)
 		new /obj/item/ammo_magazine/kar98k(src)
 
 /obj/structure/closet/crate/mp40kammo/New()
 	..()
+	update_capacity(24)
 	for (var/v in 1 to 24)
 		new /obj/item/ammo_magazine/mp40(src)
 
 /obj/structure/closet/crate/mp43ammo/New()
 	..()
+	update_capacity(21)
 	for (var/v in 1 to 21)
 		new /obj/item/ammo_magazine/a762/akm(src)
 
 /obj/structure/closet/crate/mg34ammo/New()
 	..()
+	update_capacity(13)
 	for (var/v in 1 to 13)
 		new /obj/item/ammo_magazine/a762(src)
 
 /obj/structure/closet/crate/ppshammo/New()
 	..()
+	update_capacity(17)
 	for (var/v in 1 to 17)
 		new /obj/item/ammo_magazine/a556/m4(src)
 
 
 /obj/structure/closet/crate/lugerammo/New()
 	..()
+	update_capacity(15)
 	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/luger(src)
 
 /obj/structure/closet/crate/c45ammo/New()
 	..()
+	update_capacity(15)
 	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/c45m(src)
 
 /obj/structure/closet/crate/bettymines/New()
 	..()
+	update_capacity(20)
 	for (var/v in 1 to 20)
 		new /obj/item/device/mine/betty(src)
 
 /obj/structure/closet/crate/dpammo/New()
 	..()
+	update_capacity(15)
 	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/a762/pkm(src)
 
 /obj/structure/closet/crate/bint/New()
 	..()
+	update_capacity(18)
 	for (var/v in 1 to 18)
 		new /obj/item/weapon/gauze_pack/bint(src)
 
 
 /obj/structure/closet/crate/gauze/New()
 	..()
+	update_capacity(17)
 	for (var/v in 1 to 17)
 		new /obj/item/weapon/gauze_pack/gauze(src)
 
 /obj/structure/closet/crate/sovnade/New()
 	..()
+	update_capacity(24)
 	for (var/v in 10 to 24)
 		new /obj/item/weapon/grenade/explosive/rgd(src)
 
 /obj/structure/closet/crate/grenade/New()
 	..()
+	update_capacity(24)
 	for (var/v in 1 to 24)
 		new /obj/item/weapon/grenade/explosive/stgnade(src)
 
 /obj/structure/closet/crate/panzerfaust/New()
 	..()
+	update_capacity(24)
 	for (var/v in 1 to 24)
 		new /obj/item/weapon/gun/launcher/rocket/panzerfaust(src)
 
 
 /obj/structure/closet/crate/gersnade/New()
 	..()
+	update_capacity(10)
 	for (var/v in 1 to 10)
 		new /obj/item/weapon/grenade/smokebomb/gernade(src)
 
 
 /obj/structure/closet/crate/sandbags/New()
 	..()
+	update_capacity(66)
 	// more than tripled this to 100 bags, experimental. Didn't seem like Germans had enough to make a decent FOB
 	// now this is 66 because 100 seemed like way too many
 	for (var/v in 1 to 66) // this was 24, I made it 30, meaning you can make 5 sandbag walls per crate, as each takes 6 right now
@@ -299,6 +327,7 @@
 /obj/structure/closet/crate/flares_ammo/New()
 	..()
 
+	update_capacity(10)
 	for (var/v in 1 to 10)
 		new /obj/item/ammo_magazine/flare/red(src)
 		new /obj/item/ammo_magazine/flare/green(src)
@@ -307,14 +336,23 @@
 /obj/structure/closet/crate/flares/New()
 	..()
 
+	update_capacity(50)
 	for (var/v in 1 to 50)
 		new /obj/item/device/flashlight/flare(src)
 
 /obj/structure/closet/crate/bayonets/New()
 	..()
 
+	update_capacity(20)
 	for (var/v in 1 to 20)
 		new /obj/item/attachment/bayonet(src)
+
+/obj/structure/closet/crate/supply_req_sheets/New()
+	..()
+
+	update_capacity(50)
+	for (var/v in 1 to 50)
+		new /obj/item/weapon/paper/supply_train_requisitions_sheet(src)
 
 //arty
 

@@ -2,7 +2,7 @@
 	//Used to store information about the contents of the object.
 	var/list/matter
 	var/w_class // Size of the object.
-	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
+//	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
 	var/throwforce = 1
 	var/sharp = 0		// whether this object cuts
@@ -10,18 +10,18 @@
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
 	var/armor_penetration = 0
-	var/corporation = null
+//	var/corporation = null
 
 /obj/examine(mob/user,distance=-1)
-	if(..(user,2))
-		if (corporation)
+//	if(..(user,2))
+	/*	if (corporation)
 			if (corporation in global.global_corporations)
 				var/datum/corporation/C = global_corporations[corporation]
 				user << "<font color='[C.textcolor]'>You think this [src.name] create a \
 				<IMG CLASS=icon SRC=\ref[C.icon] ICONSTATE='[C.icon_state]'>\
 				[C.name]. [C.about]</font>"
 			else
-				user << "You think this [src.name] create a [corporation]."
+				user << "You think this [src.name] create a [corporation]."*/
 	return distance == -1 || (get_dist(src, user) <= distance)
 
 
@@ -48,10 +48,6 @@
 	user << "<span class='danger'>\icon[src]Access Denied!</span>"
 	return STATUS_CLOSE
 
-/mob/living/silicon/CanUseObjTopic(var/obj/O)
-	var/id = src.GetIdCard()
-	return O.check_access(id)
-
 /mob/proc/CanUseObjTopic()
 	return 1
 
@@ -67,8 +63,6 @@
 	else
 		target.add_hiddenprint(src)
 
-/mob/living/silicon/ai/AddTopicPrint(var/obj/target)
-	target.add_hiddenprint(src)
 
 /obj/proc/CouldNotUseTopic(var/mob/user)
 	// Nada

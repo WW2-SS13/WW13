@@ -92,12 +92,13 @@
 			return
 
 	M.visible_message(
-		"<span class='notice'>\A [M] climbs [istop ? "down" : "up"] \a [src]!</span>",
-		"You climb [istop ? "down" : "up"] \the [src]!",
+		"<span class='notice'>\A [M] starts to climb [istop ? "down" : "up"] \a [src].</span>",
+		"<span class='notice'>You start to climb [istop ? "down" : "up"] \the [src].</span>",
 		"You hear the grunting and clanging of a metal ladder being used."
 	)
+
 	T.visible_message(
-		"<span class='warning'>Someone climbs [istop ? "down" : "up"] \a [src]!</span>",
+		"<span class='warning'>Someone starts to climb [istop ? "down" : "up"] \a [src].</span>",
 		"You hear the grunting and clanging of a metal ladder being used."
 	)
 
@@ -122,6 +123,12 @@
 		if (was_pulling)
 			M.pulling = was_pulling
 
+		M.visible_message(
+			"<span class='notice'>\A [M] climbs [istop ? "down" : "up"] \a [src].</span>",
+			"<span class='notice'>You climb [istop ? "down" : "up"] \the [src].</span>",
+			"You hear the grunting and clanging of a metal ladder being used."
+		)
+
 //// laddervision - Kachnov ////
 
 /mob/living/carbon/human/var/laddervision = null
@@ -136,7 +143,8 @@
 	if (user.laddervision)
 		user.update_laddervision(target) // stop looking up/down
 		return
-	visible_message("<span class = 'notice'>[user] starts to look [user.laddervision_direction()] the ladder.</span>")
+
+	visible_message("<span class = 'notice'>[user] starts to look [target.laddervision_direction()] the ladder.</span>")
 	if (do_after(user, 12, src))
 		user.update_laddervision(target)
 		visible_message("<span class = 'notice'>[user] looks [user.laddervision_direction()] the ladder.</span>")
@@ -150,6 +158,12 @@
 		client.perspective = MOB_PERSPECTIVE
 		client.eye = src
 		laddervision = null
+
+/obj/structure/multiz/proc/laddervision_direction()
+	if (istop)
+		return "up"
+	else
+		return "down"
 
 /mob/living/carbon/human/proc/laddervision_direction()
 	if (!laddervision)

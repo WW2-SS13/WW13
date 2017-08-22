@@ -1,8 +1,8 @@
 // New version of fire that doesn't require ZAS. Mostly copypasta - Kachnov
 
-/turf/simulated/var/fire_protection = 0 //Protects newly extinguished tiles from being overrun again.
+/turf/var/fire_protection = 0 //Protects newly extinguished tiles from being overrun again.
 /turf/proc/apply_fire_protection()
-/turf/simulated/apply_fire_protection()
+/turf/apply_fire_protection()
 	fire_protection = world.time
 
 //Some legacy definitions so fires can be started.
@@ -13,7 +13,7 @@
 turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	return
 
-/turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
+/turf/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	if(fire_protection > world.time-300)
 		return 0
 	if(locate(/obj/fire) in src)
@@ -23,12 +23,12 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		return 0
 
 	var/igniting = 0
-	var/obj/effect/decal/cleanable/liquid_fuel/liquid = locate() in src
+	//var/obj/effect/decal/cleanable/liquid_fuel/liquid = locate() in src
 
-	if(air_contents.check_combustability(liquid))
-		igniting = 1
+/*	if(air_contents.check_combustability(liquid))
+		igniting = 1*/
 
-		create_fire(exposed_temperature)
+	//	create_fire(exposed_temperature)
 	return igniting
 
 /turf/var/obj/fire/fire = null
@@ -43,7 +43,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		if (fire)
 			fire.Burn(L)
 
-/turf/simulated/create_fire(fl, temp, spread = 1)
+/turf/create_fire(fl, temp, spread = 1)
 
 	if(fire)
 		fire.firelevel = max(fl, fire.firelevel)
@@ -94,7 +94,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 /obj/fire/process()
 	. = 1
 
-	var/turf/simulated/my_tile = loc
+	var/turf/my_tile = loc
 	if(!istype(my_tile))
 		if(my_tile.fire == src)
 			my_tile.fire = null
@@ -123,7 +123,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	if (!nospread)
 		for(var/direction in cardinal)
-			var/turf/simulated/enemy_tile = get_step(my_tile, direction)
+			var/turf/enemy_tile = get_step(my_tile, direction)
 
 			if(istype(enemy_tile))
 				if(my_tile.open_directions & direction) //Grab all valid bordering tiles
@@ -131,10 +131,10 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 						continue
 
 					//if(!enemy_tile.zone.fire_tiles.len) TODO - optimize
-					var/datum/gas_mixture/acs = enemy_tile.return_air()
-					var/obj/effect/decal/cleanable/liquid_fuel/liquid = locate() in enemy_tile
-					if(!acs || !acs.check_combustability(liquid))
-						continue
+				//	var/datum/gas_mixture/acs = enemy_tile.return_air()
+				//	var/obj/effect/decal/cleanable/liquid_fuel/liquid = locate() in enemy_tile
+				//	if(!acs || !acs.check_combustability(liquid))
+					//	continue
 
 					//If extinguisher mist passed over the turf it's trying to spread to, don't spread and
 					//reduce firelevel.
@@ -145,8 +145,8 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 					//Spread the fire.
 
-					if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile && my_tile.CanPass(null, enemy_tile, 0,0) && enemy_tile && enemy_tile.CanPass(null, my_tile, 0,0))
-						enemy_tile.create_fire(firelevel)
+				/*	if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile && my_tile.CanPass(null, enemy_tile, 0,0) && enemy_tile && enemy_tile.CanPass(null, my_tile, 0,0))
+						enemy_tile.create_fire(firelevel)*/
 
 		//	else
 			//	enemy_tile.adjacent_fire_act(loc, air_contents, air_contents.temperature, air_contents.volume)
@@ -178,8 +178,9 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	processing_objects += src
 
 /obj/fire/proc/fire_color(var/env_temperature)
-	var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)
-	return heat2color(temperature)
+	//var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)
+	//return heat2color(temperature)
+	return heat2color(env_temperature)
 
 /obj/fire/Destroy()
 	RemoveFire()

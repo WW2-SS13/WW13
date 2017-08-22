@@ -256,9 +256,11 @@
 			generate_connectors()
 			reverse_train_car_centers = reverselist(train_car_centers)
 
-			for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in world)
-				paper.memo = "<i>As of the time this was printed, you have [german_supplytrain_master.supply_points] requisition points.</i>"
-				paper.regenerate_info()
+			spawn (0)
+				var/datum/train_controller/german_supplytrain_controller/train = src
+				for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in world)
+					paper.memo = "<br><i>As of the time this was printed, you have [train.supply_points] Supply Requisition Points remaining.</i>"
+					paper.regenerate_info()
 
 
 /datum/train_controller/proc/start_moving(var/_direction) // when the conductor decides to move
@@ -292,7 +294,8 @@
 	if (faction != "GERMAN-SUPPLY")
 		return
 	invisible = on
-	if (on)
+
+	if (on) // make us invisible
 		spawn (20)
 			for (var/obj/train_car_center/tcc in train_car_centers)
 				for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
@@ -334,10 +337,10 @@
 						L.update(0, 1, 1)
 					if (istype(a, /obj/structure/simple_door/key_door/anyone/train))
 						var/obj/structure/simple_door/key_door/anyone/train/door = a
-						if (door.density)
-							door.icon_state = door.material.name
-						else
-							door.icon_state = "[door.material.name]open"
+						door.density = 1
+						door.opacity = 1
+						door.state = 0
+						door.icon_state = door.material.name
 
 		for (var/atom/a in train_connectors)
 			a.invisibility = 0
@@ -617,8 +620,8 @@
 
 /datum/train_controller/german_supplytrain_controller
 	var/supply_points = 200
-	var/supply_points_per_second_min = 0.2
-	var/supply_points_per_second_max = 0.5
+	var/supply_points_per_second_min = 0.1
+	var/supply_points_per_second_max = 0.3
 
 /datum/train_controller/german_supplytrain_controller/New()
 	..("GERMAN-SUPPLY")

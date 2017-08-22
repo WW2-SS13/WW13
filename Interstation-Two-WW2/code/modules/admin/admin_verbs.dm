@@ -231,7 +231,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
-	/client/proc/air_report,
+//	/client/proc/air_report,
 	/client/proc/enable_debug_verbs,
 	/client/proc/roll_dices,
 	/proc/possess,
@@ -291,7 +291,7 @@ var/list/admin_verbs_mentor = list(
 /client/proc/add_admin_verbs()
 	if(holder)
 		verbs += admin_verbs_default
-		if(holder.rights & R_BUILDMODE)		verbs += /client/proc/togglebuildmodeself
+	//	if(holder.rights & R_BUILDMODE)		verbs += /client/proc/togglebuildmodeself
 		if(holder.rights & R_ADMIN)			verbs += admin_verbs_admin
 		if(holder.rights & R_BAN)			verbs += admin_verbs_ban
 		if(holder.rights & R_FUN)			verbs += admin_verbs_fun
@@ -313,7 +313,7 @@ var/list/admin_verbs_mentor = list(
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
 		admin_verbs_default,
-		/client/proc/togglebuildmodeself,
+//		/client/proc/togglebuildmodeself,
 		admin_verbs_admin,
 		admin_verbs_ban,
 		admin_verbs_fun,
@@ -622,13 +622,13 @@ var/list/admin_verbs_mentor = list(
 		message_admins("\blue [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound", 1)
 
 
-
+/*
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Special Verbs"
 	if(src.mob)
 		togglebuildmode(src.mob)
-
+*/
 
 /client/proc/object_talk(var/msg as text) // -- TLE
 	set category = "Special Verbs"

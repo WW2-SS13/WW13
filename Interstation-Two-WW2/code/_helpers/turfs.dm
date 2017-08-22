@@ -7,13 +7,13 @@
 	return mloc
 
 /proc/iswall(turf/T)
-	return (istype(T, /turf/simulated/wall) || istype(T, /turf/unsimulated/wall) || istype(T, /turf/simulated/shuttle/wall))
+	return istype(T, /turf/wall)
 
 /proc/isfloor(turf/T)
-	return (istype(T, /turf/simulated/floor) || istype(T, /turf/simulated/shuttle/floor))
+	return istype(T, /turf/floor)
 
 /proc/istrueflooring(turf/T)
-	return (isfloor(T) && !istype(T, /turf/simulated/floor/plating))
+	return (isfloor(T) && !istype(T, /turf/floor/plating))
 
 /proc/turf_clear(turf/T)
 	for(var/atom/A in T)

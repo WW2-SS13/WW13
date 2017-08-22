@@ -117,25 +117,25 @@
 	isSwitchingStates = 1
 	playsound(loc, material.dooropen_noise, 100, 1)
 	flick("[material.door_icon_base]opening",src)
-	sleep(10)
-	density = 0
-	opacity = 0
-	state = 1
-	update_icon()
-	isSwitchingStates = 0
-	update_nearby_tiles()
+	spawn (10)
+		density = 0
+		opacity = 0
+		state = 1
+		update_icon()
+		isSwitchingStates = 0
+		update_nearby_tiles()
 
 /obj/structure/simple_door/proc/Close()
 	isSwitchingStates = 1
 	playsound(loc, material.dooropen_noise, 100, 1)
 	flick("[material.door_icon_base]closing",src)
-	sleep(10)
-	density = 1
-	opacity = 1
-	state = 0
-	update_icon()
-	isSwitchingStates = 0
-	update_nearby_tiles()
+	spawn (10)
+		density = 1
+		opacity = 1
+		state = 0
+		update_icon()
+		isSwitchingStates = 0
+		update_nearby_tiles()
 
 /obj/structure/simple_door/update_icon()
 	if(state)

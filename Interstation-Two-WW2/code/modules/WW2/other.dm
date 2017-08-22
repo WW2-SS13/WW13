@@ -97,7 +97,7 @@ var/list/list_of_germans_who_crossed_the_river = list()
 		for (var/turf/t in area.contents)
 			if (t.density)
 				continue
-			if (istype(t, /turf/simulated/open))
+			if (istype(t, /turf/open))
 				continue
 			if (prob(1))
 				new/mob/living/simple_animal/mouse/gray(t)
@@ -139,7 +139,7 @@ var/wlg_selected_border_tree = 0
 			// 2. fuck the game taking so long to start up
 			// - Kachnov
 
-		/*	for(var/turf/simulated/floor/plating/grass/T in grass_turf_list)
+		/*	for(var/turf/floor/plating/grass/T in grass_turf_list)
 
 				if(T.z != 1)
 					continue
@@ -166,7 +166,7 @@ var/wlg_selected_border_tree = 0
 
 				for(var/dir in cardinal)
 					var/turf/C = get_step(T, dir)
-					if(istype(C, /turf/unsimulated/wall) || istype(C, /turf/simulated/wall/rockwall))
+					if(istype(C, /turf/wall) || istype(C, /turf/wall/rockwall))
 						wlg_selected_border_tree++
 						new /obj/structure/wild/tree(T)
 						break
@@ -217,6 +217,7 @@ var/mission_announced = 0
 
 	world << "<font size=4>The German assault has started after [preparation_time / 600] minutes of preparation.</font><br>"
 
+
 	if (mercy_period && WW2_train_check())
 		world << "<font size=3>The Russian side can't attack until after 10 minutes.</font><br>"
 
@@ -231,3 +232,8 @@ var/mission_announced = 0
 				world << "<font size=4>The 10 minute grace period has ended. Soviets and Partisans may now cross the river.</font>"
 
 	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] Civilians/Partisans.</font>"
+
+	for (var/obj/structure/simple_door/key_door/keydoor in world)
+		if (findtext(keydoor.name, "Squad"))
+			if (findtext(keydoor.name, "Preparation"))
+				keydoor.Open()

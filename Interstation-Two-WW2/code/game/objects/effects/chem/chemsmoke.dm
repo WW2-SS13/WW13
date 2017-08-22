@@ -86,7 +86,7 @@
 	. = ..()
 	if(.)
 		// before we gas people, make sure we didn't pass a wall
-		if (!passes_walls && (istype(loc, /turf/simulated/wall) || istype(loc, /turf/unsimulated/wall)))
+		if (!passes_walls && istype(loc, /turf/wall))
 			qdel(src)
 
 		for(var/turf/T in view(1, src) - oldlocs)
@@ -297,7 +297,7 @@
 			for(var/D in cardinal)
 				var/turf/target = get_step(current, D)
 				if(wallList)
-					if(istype(target, /turf/simulated/wall))
+					if(istype(target, /turf/wall))
 						if(!(target in wallList))
 							wallList += target
 						continue
@@ -308,10 +308,10 @@
 					continue
 				if(!(target in targetTurfs))
 					continue
-				if(current.c_airblock(target)) //this is needed to stop chemsmoke from passing through thin window walls
+			/*	if(current.c_airblock(target)) //this is needed to stop chemsmoke from passing through thin window walls
 					continue
 				if(target.c_airblock(current))
-					continue
+					continue*/
 				pending += target
 
 			pending -= current

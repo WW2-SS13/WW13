@@ -44,9 +44,9 @@
 
 	next_click = world.time + 1
 
-	if(client.buildmode)
+	/*if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
-		return
+		return*/
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])

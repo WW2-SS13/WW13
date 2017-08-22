@@ -42,18 +42,23 @@ var/list/dead_partisans = list()
 /mob/living/carbon/human/death()
 	..()
 
-	var/list/lists = get_battle_report_lists()
-	var/list/alive = lists[1]
-	var/list/dead = lists[2]
-	var/list/injured = lists[3]
+	spawn (100) // make sure what we do undone by Life()
 
-	// give these lists starting values to prevent runtimes.
-	alive -= src
-	injured -= src
-	dead |= src
+		var/list/lists = get_battle_report_lists()
+		var/list/alive = lists[1]
+		var/list/dead = lists[2]
+		var/list/injured = lists[3]
+
+		// give these lists starting values to prevent runtimes.
+		alive -= src
+		injured -= src
+		dead += src
 
 /mob/living/carbon/human/Life()
 	..()
+
+	if (stat == DEAD)
+		return
 
 	var/list/lists = get_battle_report_lists()
 	var/list/alive = lists[1]
@@ -66,5 +71,5 @@ var/list/dead_partisans = list()
 	// give these lists starting values to prevent runtimes.
 	if (stat == CONSCIOUS)
 		alive |= src
-	else if (stat == UNCONSCIOUS || health <= 0)
+	else if (stat == UNCONSCIOUS || (health <= 0 && stat != DEAD))
 		injured |= src

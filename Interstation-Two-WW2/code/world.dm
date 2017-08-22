@@ -50,7 +50,7 @@ var/global/datum/global_init/init = new ()
 
 /world
 	mob = /mob/new_player
-	turf = /turf/simulated/floor/plating/grass
+	turf = /turf/floor/plating/grass
 	area = /area/prishtina/field
 	view = "15x15"
 	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session
@@ -513,7 +513,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	// this can hold around 20 chars max I think, but keep it at 15 or so - Kachnov
 
-	var/freaking_cool_features = "Partisans! Tanks! Spies!"
+	var/freaking_cool_features = "New build! Supply Trains! Tanks!"
 
 	//var/original_banner = "http://tny.im/9Bm"
 	//var/cavebob_banner_1 = "http://tny.im/9IQ"

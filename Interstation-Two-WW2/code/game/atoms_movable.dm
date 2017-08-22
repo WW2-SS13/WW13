@@ -44,6 +44,18 @@
 			pulledby.pulling = null
 		pulledby = null
 
+
+
+//Convenience function for atoms to update turfs they occupy
+/atom/movable/proc/update_nearby_tiles(need_rebuild)
+/*	if(!air_master)
+		return 0
+
+	for(var/turf/turf in locs)
+		air_master.mark_for_update(turf)*/
+
+	return 1
+
 /atom/movable/proc/initialize()
 	if(!isnull(gcDestroyed))
 		crash_with("GC: -- [type] had initialize() called after qdel() --")

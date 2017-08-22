@@ -73,7 +73,7 @@ var/global/list/valid_coordinates = list()
 		checking_coords[4] = null
 
 // artyman/officer/scout getting coordinates
-/mob/living/carbon/human/RangedAttack(var/turf/simulated/t)
+/mob/living/carbon/human/RangedAttack(var/turf/t)
 	if (checking_coords[1] && istype(t))
 		if (can_check_distant_coordinates && get_turf(src) != t)
 			var/offset_x = t.x - x

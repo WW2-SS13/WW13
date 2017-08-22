@@ -49,7 +49,7 @@
 		A.clean_blood()
 		if(istype(A, /obj/item))
 			var/obj/item/I = A
-			I.decontaminate()
+		//	I.decontaminate()
 			if(istype(crayon,/obj/item/weapon/pen/crayon) && istype(I, /obj/item/clothing/gloves/color) || istype(I, /obj/item/clothing/head/soft) || istype(I, /obj/item/clothing/shoes/color) || istype(I, /obj/item/clothing/under/color))
 				var/obj/item/clothing/C = I
 				var/obj/item/weapon/pen/crayon/CR = crayon

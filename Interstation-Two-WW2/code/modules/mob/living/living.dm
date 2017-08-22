@@ -518,7 +518,7 @@ default behaviour is:
 								//this is the gay blood on floor shit -- Added back -- Skie
 								if (M.lying && (prob(M.getBruteLoss() / 6)))
 									var/turf/location = M.loc
-									if (istype(location, /turf/simulated))
+									if (istype(location, /turf))
 										location.add_blood(M)
 								//pull damage with injured people
 									if(prob(25))
@@ -529,7 +529,7 @@ default behaviour is:
 										M.adjustBruteLoss(2)
 										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
 										var/turf/location = M.loc
-										if (istype(location, /turf/simulated))
+										if (istype(location, /turf))
 											location.add_blood(M)
 											if(ishuman(M))
 												var/mob/living/carbon/human/H = M

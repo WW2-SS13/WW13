@@ -23,12 +23,12 @@
 		anchored = 1
 		layer = 99
 		mouse_opacity = 0
-		unacidable = 1//Just to be sure.
+	//	unacidable = 1//Just to be sure.
 
 /obj/effect/beam
 	name = "beam"
 	density = 0
-	unacidable = 1//Just to be sure.
+//	unacidable = 1//Just to be sure.
 	var/def_zone
 	flags = PROXMOVE
 	pass_flags = PASSTABLE
@@ -39,7 +39,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "begin"
 	anchored = 1.0
-	unacidable = 1
+//	unacidable = 1
 
 /*
  * This item is completely unused, but removing it will break something in R&D and Radio code causing PDA and Ninja code to fail on compile
@@ -186,7 +186,7 @@ var/global/ManifestJSON
 	desc = "A stand with the empty body of a cyborg bolted to it."
 	density = 1
 	anchored = 1
-	unacidable = 1//temporary until I decide whether the borg can be removed. -veyveyr
+//	unacidable = 1//temporary until I decide whether the borg can be removed. -veyveyr
 
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 

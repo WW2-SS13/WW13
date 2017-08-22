@@ -16,7 +16,7 @@
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
 	layer = 20.0
-	unacidable = 1
+//	unacidable = 1
 	var/obj/master = null //A reference to the object in the slot. Grabs or items, generally.
 	var/mob/living/parentmob
 	var/process_flag = 0

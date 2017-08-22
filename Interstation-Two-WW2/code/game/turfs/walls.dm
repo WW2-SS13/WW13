@@ -1,13 +1,13 @@
 var/list/global/wall_cache = list()
 
-/turf/simulated/wall
+/turf/wall
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "generic"
 	opacity = 1
 	density = 1
-	blocks_air = 1
+//	blocks_air = 1
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
@@ -25,35 +25,35 @@ var/list/global/wall_cache = list()
 	var/ref_state = "generic"
 
 	var/tank_destroyable = 1
-
+/*
 /turf/unsimulated/wall
 	name = ""
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 	density = 1
-
+*/
 // replaces /turf/unsimulated/wall
-/turf/simulated/wall/rockwall
-	name = ""
+/turf/wall/rockwall
+	name = "cave wall"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 	tank_destroyable = 0
 	layer = TURF_LAYER + 0.02 // above lifts
 
-/turf/simulated/wall/rockwall/update_icon()
+/turf/wall/rockwall/update_icon()
 	return
 
-/turf/simulated/wall/rockwall/New(var/newloc, var/materialtype, var/rmaterialtype)
+/turf/wall/rockwall/New(var/newloc, var/materialtype, var/rmaterialtype)
 	..(newloc, materialtype, rmaterialtype)
 
 // Walls always hide the stuff below them.
-/turf/simulated/wall/levelupdate()
+/turf/wall/levelupdate()
 	for(var/obj/O in src)
 		O.hide(1)
 
-/turf/simulated/wall/New(var/newloc, var/materialtype, var/rmaterialtype)
+/turf/wall/New(var/newloc, var/materialtype, var/rmaterialtype)
 	..(newloc)
-	if (!istype(src, /turf/simulated/wall/rockwall))
+	if (!istype(src, /turf/wall/rockwall))
 		icon_state = "blank"
 		if(!materialtype)
 			materialtype = DEFAULT_WALL_MATERIAL
@@ -62,19 +62,22 @@ var/list/global/wall_cache = list()
 			reinf_material = get_material_by_name(rmaterialtype)
 		update_material()
 		hitsound = material.hitsound
+	else
+		icon = 'icons/turf/walls.dmi'
+		icon_state = "rock"
 	//	processing_turfs |= src
 
-/turf/simulated/wall/Destroy()
+/turf/wall/Destroy()
 	//processing_turfs -= src
 	dismantle_wall(null,null,1)
 	..()
 
-/turf/simulated/wall/process()
+/turf/wall/process()
 	// Calling parent will kill processing
 	if(!radiate())
 		return PROCESS_KILL
 
-/turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
+/turf/wall/bullet_act(var/obj/item/projectile/Proj)
 
 	if(istype(Proj,/obj/item/projectile/beam))
 		burn(2500)
@@ -89,7 +92,7 @@ var/list/global/wall_cache = list()
 	take_damage(damage)
 	return
 
-/turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
+/turf/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
 	..()
 	if(ismob(AM))
 		return
@@ -100,17 +103,17 @@ var/list/global/wall_cache = list()
 
 	take_damage(tforce)
 
-/turf/simulated/wall/proc/clear_plants()
+/turf/wall/proc/clear_plants()
 	for(var/obj/effect/overlay/wallrot/WR in src)
 		qdel(WR)
 	return
 
-/turf/simulated/wall/ChangeTurf(var/newtype)
+/turf/wall/ChangeTurf(var/newtype)
 	clear_plants()
 	..(newtype)
 
 //Appearance
-/turf/simulated/wall/examine(mob/user)
+/turf/wall/examine(mob/user)
 	. = ..(user)
 
 	if(!damage)
@@ -129,14 +132,14 @@ var/list/global/wall_cache = list()
 
 //Damage
 
-/turf/simulated/wall/melt()
+/turf/wall/melt()
 
 	if(!can_melt())
 		return
 
-	src.ChangeTurf(/turf/simulated/floor/plating)
+	src.ChangeTurf(/turf/floor/plating)
 
-	var/turf/simulated/floor/F = src
+	var/turf/floor/F = src
 	if(!F)
 		return
 	F.burn_tile()
@@ -144,13 +147,13 @@ var/list/global/wall_cache = list()
 	visible_message("<span class='danger'>\The [src] spontaneously combusts!.</span>") //!!OH SHIT!!
 	return
 
-/turf/simulated/wall/proc/take_damage(dam)
+/turf/wall/proc/take_damage(dam)
 	if(dam)
 		damage = max(0, damage + dam)
 		update_damage()
 	return
 
-/turf/simulated/wall/proc/update_damage()
+/turf/wall/proc/update_damage()
 
 	var/cap = material ? material.integrity : 150
 
@@ -167,17 +170,17 @@ var/list/global/wall_cache = list()
 
 	return
 
-/turf/simulated/wall/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)//Doesn't fucking work because walls don't interact with air :(
+/turf/wall/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)//Doesn't fucking work because walls don't interact with air :(
 	burn(exposed_temperature)
 
-/turf/simulated/wall/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
+/turf/wall/adjacent_fire_act(turf/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	burn(adj_temp)
 	if(adj_temp > material.melting_point)
 		take_damage(log(RAND_F(0.9, 1.1) * (adj_temp - material.melting_point)))
 
 	return ..()
 
-/turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
+/turf/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
 
 	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	if(!no_product)
@@ -200,9 +203,9 @@ var/list/global/wall_cache = list()
 	//update_connections(1)
 	update_icon()
 
-	ChangeTurf(/turf/simulated/floor/plating)
+	ChangeTurf(/turf/floor/plating)
 
-/turf/simulated/wall/ex_act(severity)
+/turf/wall/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			src.ChangeTurf(get_base_turf(src.z))
@@ -218,19 +221,19 @@ var/list/global/wall_cache = list()
 	return
 
 // Wall-rot effect, a nasty fungus that destroys walls.
-/turf/simulated/wall/proc/rot()
+/turf/wall/proc/rot()
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		return
 	var/number_rots = rand(2,3)
 	for(var/i=0, i<number_rots, i++)
 		new/obj/effect/overlay/wallrot(src)
 
-/turf/simulated/wall/proc/can_melt()
+/turf/wall/proc/can_melt()
 	if(material.flags & MATERIAL_UNMELTABLE)
 		return 0
 	return 1
 
-/turf/simulated/wall/proc/thermitemelt(mob/user as mob)
+/turf/wall/proc/thermitemelt(mob/user as mob)
 	if(!can_melt())
 		return
 	var/obj/effect/overlay/O = new/obj/effect/overlay( src )
@@ -242,9 +245,9 @@ var/list/global/wall_cache = list()
 	O.density = 1
 	O.layer = 5
 
-	src.ChangeTurf(/turf/simulated/floor/plating)
+	src.ChangeTurf(/turf/floor/plating)
 
-	var/turf/simulated/floor/F = src
+	var/turf/floor/F = src
 	F.burn_tile()
 	F.icon_state = "wall_thermite"
 	user << "<span class='warning'>The thermite starts melting through the wall.</span>"
@@ -255,7 +258,7 @@ var/list/global/wall_cache = list()
 //	F.sd_LumReset()		//TODO: ~Carn
 	return
 
-/turf/simulated/wall/proc/radiate()
+/turf/wall/proc/radiate()
 	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0)
 	if(!total_radiation)
 		return
@@ -264,10 +267,10 @@ var/list/global/wall_cache = list()
 		L.apply_effect(total_radiation, IRRADIATE,0)
 	return total_radiation
 
-/turf/simulated/wall/proc/burn(temperature)
+/turf/wall/proc/burn(temperature)
 	if(material.combustion_effect(src, temperature, 0.7))
 		spawn(2)
 			new /obj/structure/girder(src)
-			src.ChangeTurf(/turf/simulated/floor)
-			for(var/turf/simulated/wall/W in range(3,src))
+			src.ChangeTurf(/turf/floor)
+			for(var/turf/wall/W in range(3,src))
 				W.burn((temperature/4))

@@ -116,12 +116,12 @@
 /obj/tank/proc/handle_passing_turf(var/turf/t)
 	if (!t.density)
 		return 1
-	if (!istype(t, /turf/simulated/wall) && !istype(t, /turf/unsimulated))
+	if (!istype(t, /turf/wall))
 		return 1
-	if (istype(t,  /turf/simulated/wall/rockwall))
+	if (istype(t,  /turf/wall/rockwall))
 		return 0
-	if (istype(t, /turf/simulated/wall))
-		var/turf/simulated/wall/wall = t
+	if (istype(t, /turf/wall))
+		var/turf/wall/wall = t
 		if (!wall.tank_destroyable)
 			return 0
 		var/wall_integrity = wall.material ? wall.material.integrity : 150

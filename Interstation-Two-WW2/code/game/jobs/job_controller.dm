@@ -176,6 +176,10 @@ var/global/list/fallschirm_landmarks = list()
 		partisan_job_slots = civilian_job_slots
 
 
+		allow_jews = initial(allow_jews)
+		allow_spies = initial(allow_spies)
+		allow_civilians = initial(allow_civilians)
+		allow_partisans = initial(allow_partisans)
 		// what else do we want to do based on how many players we expect
 
 		switch (expected_players)
@@ -217,7 +221,7 @@ var/global/list/fallschirm_landmarks = list()
 				german_commander_slots = 1
 				german_ss_slots = 0
 				german_paratrooper_slots = 0
-				german_soldat_slots = remaining_german_slots()
+				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 0
 			if (8 to 14) // small but not tiny. Deserves a few primary roles, and no secondary/tertiary
 				german_primary_job_slots = n_percent_of_job_slots(50, GERMAN)
@@ -225,7 +229,7 @@ var/global/list/fallschirm_landmarks = list()
 				german_commander_slots = 1
 				german_ss_slots = 0
 				german_paratrooper_slots = 0
-				german_soldat_slots = remaining_german_slots()
+				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 0
 			if (15 to 19) // decent sized team. Some primary and secondary roles.
 				german_primary_job_slots = n_percent_of_job_slots(30, GERMAN)
@@ -233,7 +237,7 @@ var/global/list/fallschirm_landmarks = list()
 				german_commander_slots = 1
 				german_ss_slots = 0
 				german_paratrooper_slots = 0
-				german_soldat_slots = remaining_german_slots()
+				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 0
 			if (20 to 24) // good sized team, some of every role but no SS/para
 				german_primary_job_slots = n_percent_of_job_slots(30, GERMAN)
@@ -241,7 +245,7 @@ var/global/list/fallschirm_landmarks = list()
 				german_commander_slots = 1
 				german_ss_slots = 0
 				german_paratrooper_slots = 0
-				german_soldat_slots = remaining_german_slots()
+				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 0
 			if (25 to 29) // good sized team. Let's give them SS or paratroopers, but not both. And more officers.
 				german_primary_job_slots = n_percent_of_job_slots(30, GERMAN)
@@ -250,14 +254,14 @@ var/global/list/fallschirm_landmarks = list()
 				german_ss_slots = 0
 				german_paratrooper_slots = n_percent_of_job_slots(25, GERMAN)
 				german_ss_commander_slots = 0
-				german_soldat_slots = remaining_german_slots()
+				german_soldat_slots = remaining_german_slots() + 2
 			if (30 to 34) // large team. They get SS and paratroopers.
 				german_primary_job_slots = n_percent_of_job_slots(25, GERMAN)
 				german_secondary_job_slots = n_percent_of_job_slots(25, GERMAN)
 				german_commander_slots = 1
 				german_ss_slots = n_percent_of_job_slots(25, GERMAN)
 				german_paratrooper_slots = n_percent_of_job_slots(25, GERMAN)
-				german_soldat_slots = remaining_german_slots()
+				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 1
 			if (35 to INFINITY) // largest team
 				german_primary_job_slots = n_percent_of_job_slots(25, GERMAN)
@@ -265,7 +269,7 @@ var/global/list/fallschirm_landmarks = list()
 				german_commander_slots = 1
 				german_ss_slots = n_percent_of_job_slots(20, GERMAN)
 				german_paratrooper_slots = n_percent_of_job_slots(20, GERMAN)
-				german_soldat_slots = remaining_german_slots()
+				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 1
 
 		// useful information
@@ -320,43 +324,43 @@ var/global/list/fallschirm_landmarks = list()
 				russian_secondary_job_slots = 0
 				russian_sturmovik_slots = 0
 				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots()
+				russian_soldat_slots = remaining_russian_slots() + 2
 			if (8 to 14) // small but not tiny. Deserves a few primary roles, and no secondary/tertiary
 				russian_primary_job_slots = n_percent_of_job_slots(60, RUSSIAN)
 				russian_secondary_job_slots = 0
 				russian_sturmovik_slots = 0
 				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots()
+				russian_soldat_slots = remaining_russian_slots() + 2
 			if (15 to 19) // decent sized team. Some primary and secondary roles.
 				russian_primary_job_slots = n_percent_of_job_slots(35, RUSSIAN)
 				russian_secondary_job_slots = n_percent_of_job_slots(25, RUSSIAN)
 				russian_sturmovik_slots = 0
 				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots()
+				russian_soldat_slots = remaining_russian_slots() + 2
 			if (20 to 24) // good sized team, some of every role but no sturms
 				russian_primary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
 				russian_secondary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
 				russian_sturmovik_slots = 0
 				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots()
+				russian_soldat_slots = remaining_russian_slots() + 2
 			if (25 to 29) // good sized team, they get sturms
 				russian_primary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
 				russian_secondary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
 				russian_commander_slots = 1
 				russian_sturmovik_slots = n_percent_of_job_slots(15, RUSSIAN)
-				russian_soldat_slots = remaining_russian_slots()
+				russian_soldat_slots = remaining_russian_slots() + 2
 			if (30 to 34) // large team, they get sturms
 				russian_primary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
 				russian_secondary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
 				russian_sturmovik_slots = n_percent_of_job_slots(15, RUSSIAN)
 				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots()
+				russian_soldat_slots = remaining_russian_slots() + 2
 			if (35 to INFINITY) // largest team
 				russian_primary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
 				russian_secondary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
 				russian_sturmovik_slots = n_percent_of_job_slots(15, RUSSIAN)
 				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots()
+				russian_soldat_slots = remaining_russian_slots() + 2
 
 		// useful information
 
@@ -444,7 +448,7 @@ var/global/list/fallschirm_landmarks = list()
 				return round(german_squad_members/MEMBERS_PER_SQUAD)
 			if (RUSSIAN)
 				return round(russian_squad_members/MEMBERS_PER_SQUAD)
-		return 1
+		return 0
 /*
 	proc/can_have_squad_leader(var/team)
 		switch (team)
@@ -518,6 +522,10 @@ var/global/list/fallschirm_landmarks = list()
 				if (must_have_squad_leader(j.base_type_flag())) // only accept SLs
 					np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
 					return 0
+		else
+			if (must_have_squad_leader(j.base_type_flag()))
+				np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
+				return 0
 		return 1
 
 	// too many people joined as a SL and not enough as soldier
@@ -532,6 +540,10 @@ var/global/list/fallschirm_landmarks = list()
 						return 0
 					else
 						return 1
+		else
+			if (must_have_squad_leader(j.base_type_flag()))
+				np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
+				return 0
 		return 1
 
 	proc/relocate(var/mob/living/carbon/human/H)
@@ -1192,7 +1204,7 @@ var/global/list/fallschirm_landmarks = list()
 							spawn (0)
 								H << german_squad_info[current_german_squad]
 						else
-							H << "<i>Your squad, #[current_german_squad], does not have a Squad Leader yet. Wait for one to unlock the door.</i>"
+							H << "<i>Your squad, #[current_german_squad], does not have a Squad Leader yet. Wait for one to unlock the door. If you do not have a SL after several minutes, break down the door with your weapon (on harm intent)</i>"
 
 			else if (isrussiansquadmember_or_leader(H))
 				if (isrussiansquadleader(H))
@@ -1208,7 +1220,8 @@ var/global/list/fallschirm_landmarks = list()
 								H << russian_squad_info[current_russian_squad]
 						else
 							spawn (0)
-								H << "<i>Your squad, #[current_russian_squad], does not have a Squad Leader yet. Wait for one to unlock the door.</i>"
+								H << "<i>Your squad, #[current_russian_squad], does not have a Squad Leader yet. Wait for one to unlock the door. If you do not have a SL after several minutes, break down the door with your weapon (on harm intent)</i>"
+
 			else if (H.original_job.is_officer && H.original_job.base_type_flag() == RUSSIAN)
 				spawn (5)
 					for (var/i in 1 to russian_officer_squad_info.len)

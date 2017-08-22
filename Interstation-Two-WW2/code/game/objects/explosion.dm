@@ -35,23 +35,23 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 /turf/space
 	explosion_resistance = 3
 
-/turf/simulated/floor
+/turf/floor
 	explosion_resistance = 1
 
-/turf/simulated/mineral
+/turf/mineral
 	explosion_resistance = 2
 
-/turf/simulated/shuttle/floor
+/turf/shuttle/floor
 	explosion_resistance = 1
 
-/turf/simulated/shuttle/floor4
+/turf/shuttle/floor4
 	explosion_resistance = 1
 
-/turf/simulated/shuttle/plating
+/turf/shuttle/plating
 	explosion_resistance = 1
 
-/turf/simulated/shuttle/wall
+/turf/shuttle/wall
 	explosion_resistance = 10
 
-/turf/simulated/wall
+/turf/wall
 	explosion_resistance = 10

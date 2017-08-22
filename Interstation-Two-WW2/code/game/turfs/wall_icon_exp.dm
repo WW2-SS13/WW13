@@ -1,4 +1,4 @@
-/turf/simulated/wall/proc/update_material()
+/turf/wall/proc/update_material()
 
 	if(!material)
 		return
@@ -32,7 +32,7 @@
 	update_icon()
 	check_relatives()
 
-/turf/simulated/wall/proc/set_wall_state(var/new_state)
+/turf/wall/proc/set_wall_state(var/new_state)
 
 	ref_state = new_state
 
@@ -73,14 +73,14 @@
 		overlays |= wall_cache[cache_key]
 
 
-/turf/simulated/wall/proc/set_material(var/material/newmaterial, var/material/newrmaterial)
+/turf/wall/proc/set_material(var/material/newmaterial, var/material/newrmaterial)
 	material = newmaterial
 	reinf_material = newrmaterial
 	update_material()
 	check_relatives()
 	check_relatives(1)
 
-/turf/simulated/wall/update_icon()
+/turf/wall/update_icon()
 	if(!material)
 		return
 
@@ -113,7 +113,7 @@
 		damage_overlay = overlay
 	return
 
-/turf/simulated/wall/proc/generate_overlays()
+/turf/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / damage_overlays.len
 
 	for(var/i = 1; i <= damage_overlays.len; i++)
@@ -123,14 +123,14 @@
 		damage_overlays[i] = img
 
 //Smoothwall code. update_self for relativewall(), not for relativewall_neighbors()
-/turf/simulated/wall/proc/check_relatives(var/update_self)
+/turf/wall/proc/check_relatives(var/update_self)
 	if(!material)
 		return
 	var/junction
 	if(update_self)
 		junction = 0
 	for(var/checkdir in cardinal)
-		var/turf/simulated/wall/T = get_step(src, checkdir)
+		var/turf/wall/T = get_step(src, checkdir)
 		if(!istype(T) || !T.material)
 			continue
 		if(update_self)
@@ -142,7 +142,7 @@
 		set_wall_state("[material.icon_base][junction]")
 	return
 
-/turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
+/turf/wall/proc/can_join_with(var/turf/wall/W)
 	if(material && W.material && material.icon_base == W.material.icon_base)
 		return 1
 	return 0

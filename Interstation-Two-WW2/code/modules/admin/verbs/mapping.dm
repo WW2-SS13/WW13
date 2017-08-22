@@ -144,13 +144,13 @@ var/list/debug_verbs = list (
         ,/client/proc/kill_air_processing
         ,/client/proc/disable_communication
         ,/client/proc/disable_movement
-        ,/client/proc/Zone_Info
-        ,/client/proc/Test_ZAS_Connection
-        ,/client/proc/ZoneTick
-        ,/client/proc/rebootAirMaster
+  //      ,/client/proc/Zone_Info
+ //       ,/client/proc/Test_ZAS_Connection
+  //      ,/client/proc/ZoneTick
+ //       ,/client/proc/rebootAirMaster
         ,/client/proc/hide_debug_verbs
-        ,/client/proc/testZAScolors
-        ,/client/proc/testZAScolors_remove
+ //       ,/client/proc/testZAScolors
+    //    ,/client/proc/testZAScolors_remove
 	//	,/client/proc/spawn_tanktransferbomb
 	)
 
@@ -179,7 +179,7 @@ var/list/debug_verbs = list (
 /client/var/list/testZAScolors_zones = list()
 /client/var/usedZAScolors = 0
 /client/var/list/image/ZAScolors = list()
-
+/*
 /client/proc/recurse_zone(var/zone/Z, var/recurse_level =1)
 	testZAScolors_zones += Z
 	if(recurse_level > 10)
@@ -195,7 +195,8 @@ var/list/debug_verbs = list (
 			continue
 		recurse_zone(connected,recurse_level+1)
 
-
+*/
+/*
 /client/proc/testZAScolors()
 	set category = "ZAS"
 	set name = "Check ZAS connections"
@@ -203,9 +204,9 @@ var/list/debug_verbs = list (
 	if(!check_rights(R_DEBUG)) return
 	testZAScolors_remove()
 
-	var/turf/simulated/location = get_turf(usr)
+	var/turf/location = get_turf(usr)
 
-	if(!istype(location, /turf/simulated)) // We're in space, let's not cause runtimes.
+	if(!istype(location, /turf)) // We're in space, let's not cause runtimes.
 		usr << "\red this debug tool cannot be used from space"
 		return
 
@@ -270,7 +271,7 @@ var/list/debug_verbs = list (
 		air_master.Setup()
 		spawn air_master.Start()
 
-
+*/
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"
 	set name = "Count Objects On Level"

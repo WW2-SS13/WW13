@@ -687,15 +687,15 @@ proc/GaussRandRound(var/sigma,var/roundto)
 
 					if(istype(T, /turf/space))
 						X.ChangeTurf(get_base_turf_by_area(B))
-
-					var/turf/simulated/ST = T
+/*
+					var/turf/ST = T
 					if(istype(ST) && ST.zone)
-						var/turf/simulated/SX = X
+						var/turf/SX = X
 						if(!SX.air)
 							SX.make_air()
 						SX.air.copy_from(ST.zone.air)
 						ST.zone.remove(ST)
-
+*/
 					/* Quick visual fix for some weird shuttle corner artefacts when on transit space tiles */
 					if(direction && findtext(X.icon_state, "swall_s"))
 
@@ -891,11 +891,11 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 					continue moving
 
 
-
+/*
 
 	if(toupdate.len)
-		for(var/turf/simulated/T1 in toupdate)
-			air_master.mark_for_update(T1)
+		for(var/turf/T1 in toupdate)
+			air_master.mark_for_update(T1)*/
 
 	return copiedobjs
 

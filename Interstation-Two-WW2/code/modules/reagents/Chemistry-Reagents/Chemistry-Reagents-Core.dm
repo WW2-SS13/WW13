@@ -21,7 +21,7 @@
 		t["virus2"] = v.Copy()
 	return t
 
-/datum/reagent/blood/touch_turf(var/turf/simulated/T)
+/datum/reagent/blood/touch_turf(var/turf/T)
 	if(!istype(T) || volume < 3)
 		return
 	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
@@ -89,7 +89,7 @@
 	metabolism = REM * 10
 	taste_description = "water"
 
-/datum/reagent/water/touch_turf(var/turf/simulated/T)
+/datum/reagent/water/touch_turf(var/turf/T)
 	if(!istype(T))
 		return
 
@@ -98,10 +98,10 @@
 
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
-		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
-		lowertemp.react()
-		T.assume_air(lowertemp)
+	//	var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
+	//	lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
+	//	lowertemp.react()
+	//	T.assume_air(lowertemp)
 		qdel(hotspot)
 
 	if (environment && environment.temperature > min_temperature) // Abstracted as steam or something

@@ -13,7 +13,7 @@
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
-	unacidable = 1
+//	unacidable = 1
 	anchored = 0
 
 	var/triggered = 0
@@ -128,5 +128,5 @@
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
-	unacidable = 1
+//	unacidable = 1
 	anchored = 0

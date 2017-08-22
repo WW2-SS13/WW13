@@ -1,4 +1,4 @@
-/datum/turf_initializer/maintenance/initialize(var/turf/simulated/T)
+/datum/turf_initializer/maintenance/initialize(var/turf/T)
 	if(T.density)
 		return
 	// Quick and dirty check to avoid placing things inside windows
@@ -38,13 +38,13 @@ var/global/list/random_junk
 
 /datum/turf_initializer/maintenance/proc/dirty_neighbors(var/list/cardinal_turfs)
 	var/how_dirty = 0
-	for(var/turf/simulated/T in cardinal_turfs)
+	for(var/turf/T in cardinal_turfs)
 		// Considered dirty if more than halfway to visible dirt
 		if(T.dirt > 25)
 			how_dirty++
 	return how_dirty
 
-/datum/turf_initializer/maintenance/proc/attempt_web(var/turf/simulated/T)
+/datum/turf_initializer/maintenance/proc/attempt_web(var/turf/T)
 	var/turf/north_turf = get_step(T, NORTH)
 	if(!north_turf || !north_turf.density)
 		return

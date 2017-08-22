@@ -1,8 +1,3 @@
-/turf/simulated/var/zone/zone
-/turf/simulated/var/open_directions
-
-/turf/var/needs_air_update = 0
-/turf/var/datum/gas_mixture/air
 
 /turf/simulated/proc/update_graphic(list/graphic_add = null, list/graphic_remove = null)
 	if(graphic_add && graphic_add.len)

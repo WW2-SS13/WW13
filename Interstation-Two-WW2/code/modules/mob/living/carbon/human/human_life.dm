@@ -296,11 +296,11 @@
 	var/pressure = environment.return_pressure()
 	var/adjusted_pressure = calculate_affecting_pressure(pressure)
 
-	//Check for contaminants before anything else because we don't want to skip it.
+/*	//Check for contaminants before anything else because we don't want to skip it.
 	for(var/g in environment.gas)
 		if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
 			pl_effects()
-			break
+			break*/
 
 	if(istype(get_turf(src), /turf/space))
 		//Don't bother if the temperature drop is less than 0.1 anyways. Hopefully BYOND is smart enough to turn this constant expression into a constant
@@ -516,9 +516,9 @@
 			analgesic = chem_effects[CE_PAINKILLER]
 
 		var/total_plasmaloss = 0
-		for(var/obj/item/I in src)
+	/*	for(var/obj/item/I in src)
 			if(I.contaminated)
-				total_plasmaloss += vsc.plc.CONTAMINATION_LOSS
+				total_plasmaloss += vsc.plc.CONTAMINATION_LOSS*/
 		if(!(status_flags & GODMODE)) adjustToxLoss(total_plasmaloss)
 
 	if(status_flags & GODMODE)	return 0	//godmode

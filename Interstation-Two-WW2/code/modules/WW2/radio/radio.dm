@@ -159,13 +159,21 @@ var/global/list/default_ukrainian_channels = list(
  I may do this some time in the future.
 */
 
+/mob/living/carbon/human/var/next_radio_speak = -1
+
 /mob/living/carbon/human/say(var/message)
 	..()
+	if (next_radio_speak > world.time)
+		return
+	next_radio_speak = world.time + 1 // prevents radio spam due to say() callbacks
 	if (stat != CONSCIOUS)
 		return
 	var/list/used_radio_turfs = list()
+	var/list/used_radios = list()
 	for (var/obj/item/device/radio/radio in range(1, src))
 		if (used_radio_turfs.Find(get_turf(radio)))
+			continue
+		if (used_radios.Find(radio))
 			continue
 		if (!radio.on)
 			continue
@@ -184,10 +192,16 @@ var/global/list/default_ukrainian_channels = list(
 				continue
 			else
 				message = copytext(message, 3)
+		else
+			if (!radio.broadcasting)
+				continue
+
 		if (istype(radio.loc, /turf) && !radio.broadcasting)
 			continue
 		else
 			used_radio_turfs += get_turf(radio)
+
+		used_radios += radio
 
 		spawn (5)
 			if (!stuttering || stuttering < 4)

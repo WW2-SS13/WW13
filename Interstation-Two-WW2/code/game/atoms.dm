@@ -43,6 +43,15 @@
 		reagents = null
 	. = ..()
 
+/atom/proc/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
+	//Purpose: Determines if the object (or airflow) can pass this atom.
+	//Called by: Movement, airflow.
+	//Inputs: The moving atom (optional), target turf, "height" and air group
+	//Outputs: Boolean if can pass.
+
+	return (!density || !height || air_group)
+
+
 /atom/proc/reveal_blood()
 	return
 
@@ -427,7 +436,7 @@ its easier to just keep the beam vertical.
 	return 1
 
 /atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
-	if( istype(src, /turf/simulated) )
+	if( istype(src, /turf) )
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 
 		// Make toxins vomit look different

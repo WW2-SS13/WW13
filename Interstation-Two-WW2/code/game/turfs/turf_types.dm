@@ -1,26 +1,34 @@
-var/list/exterior_turfs = list(/turf/simulated/floor/plating/grass,
-							/turf/simulated/floor/plating/dirt,
-							/turf/simulated/floor/plating/sand,
-							/turf/simulated/floor/plating/concrete,
-							/turf/simulated/floor/plating/road,
-							/turf/simulated/floor/plating/asteroid
+var/list/exterior_turfs = list(/turf/floor/plating/grass,
+							/turf/floor/plating/dirt,
+							/turf/floor/plating/sand,
+							/turf/floor/plating/concrete,
+							/turf/floor/plating/road,
+							/turf/floor/plating/asteroid
 							)
 
 var/list/interior_areas = list(/area/prishtina/houses,
 							/area/prishtina/train
 							)
 
+// atmos stuff
+/turf/var/zone/zone
+/turf/var/open_directions
+
+/turf/var/needs_air_update = 0
+/turf/var/datum/gas_mixture/air
+
 
 /turf
+	name = "station"
 	icon = 'icons/turf/floors.dmi'
 	level = 1
-	var/holy = 0
+//	var/holy = 0
 
 	// Initial air contents (in moles)
-	var/oxygen = 0
-	var/carbon_dioxide = 0
-	var/nitrogen = 0
-	var/plasma = 0
+//	var/oxygen = 0
+//	var/carbon_dioxide = 0
+//	var/nitrogen = 0
+//	var/plasma = 0
 
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
@@ -28,14 +36,35 @@ var/list/interior_areas = list(/area/prishtina/houses,
 
 	//Properties for both
 	var/temperature = T20C      // Initial turf temperature.
-	var/blocks_air = 0          // Does this turf contain air/let air through?
+//	var/blocks_air = 0          // Does this turf contain air/let air through?
 
 	// General properties.
 	var/icon_old = null
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
-	var/blessed = 0             // Has the turf been blessed?
+//	var/blessed = 0             // Has the turf been blessed?
 
 	var/list/decals
+
+	var/wet = 0
+	var/image/wet_overlay = null
+
+	//Mining resources (for the large drills).
+//	var/has_resources
+//	var/list/resources
+
+//	var/thermite = 0
+//	oxygen = MOLES_O2STANDARD
+//	nitrogen = MOLES_N2STANDARD
+	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
+	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
+	var/dirt = 0
+
+	var/datum/scheduled_task/unwet_task
+	var/interior = 1
+	var/stepsound = null
+	var/floor_type= null
+	var/intact = 1
+
 
 /turf/New()
 	..()
@@ -44,6 +73,27 @@ var/list/interior_areas = list(/area/prishtina/houses,
 			src.Entered(AM)
 			return
 	turfs |= src
+
+
+/turf/CanPass(atom/movable/mover, turf/target, height=1.5,air_group=0)
+	if(!target) return 0
+
+	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
+		return !density
+
+	else // Now, doing more detailed checks for air movement and air group formation
+	/*	if(target.blocks_air||blocks_air)
+			return 0*/
+
+		for(var/obj/obstacle in src)
+			if(!obstacle.CanPass(mover, target, height, air_group))
+				return 0
+		if(target != src)
+			for(var/obj/obstacle in target)
+				if(!obstacle.CanPass(mover, src, height, air_group))
+					return 0
+
+		return 1
 
 /turf/proc/update_icon()
 	return
@@ -163,7 +213,7 @@ var/const/enterloopsanity = 100
 						thing.HasProximity(A, 1)
 	return
 
-/turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)
+/turf/proc/adjacent_fire_act(turf/floor/source, temperature, volume)
 	return
 
 /turf/proc/is_plating()
@@ -191,7 +241,7 @@ var/const/enterloopsanity = 100
 
 /turf/proc/AdjacentTurfs()
 	var/L[] = new()
-	for(var/turf/simulated/t in oview(src,1))
+	for(var/turf/t in oview(src,1))
 		if(!t.density)
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				L.Add(t)
@@ -199,7 +249,7 @@ var/const/enterloopsanity = 100
 
 /turf/proc/CardinalTurfs()
 	var/L[] = new()
-	for(var/turf/simulated/T in AdjacentTurfs())
+	for(var/turf/T in AdjacentTurfs())
 		if(T.x == src.x || T.y == src.y)
 			L.Add(T)
 	return L
@@ -235,8 +285,8 @@ var/const/enterloopsanity = 100
 /turf/proc/clean(atom/source, mob/user)
 	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
 		clean_blood()
-		if(istype(src, /turf/simulated))
-			var/turf/simulated/T = src
+		if(istype(src, /turf))
+			var/turf/T = src
 			T.dirt = 0
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
@@ -247,31 +297,8 @@ var/const/enterloopsanity = 100
 
 /turf/proc/update_blood_overlays()
 	return
-
-/turf/simulated
-	name = "station"
-	var/wet = 0
-	var/image/wet_overlay = null
-
-	//Mining resources (for the large drills).
-	var/has_resources
-	var/list/resources
-
-	var/thermite = 0
-	oxygen = MOLES_O2STANDARD
-	nitrogen = MOLES_N2STANDARD
-	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
-	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
-	var/dirt = 0
-
-	var/datum/scheduled_task/unwet_task
-	var/interior = 1
-	var/stepsound = null
-	var/floor_type= null
-	var/intact = 1
-
-// This is not great.
-/turf/simulated/proc/wet_floor(var/wet_val = 1)
+.
+/turf/proc/wet_floor(var/wet_val = 1)
 	if(wet_val < wet)
 		return
 
@@ -284,14 +311,14 @@ var/const/enterloopsanity = 100
 		unwet_task.trigger_task_in(8 SECONDS)
 	else
 		unwet_task = schedule_task_in(8 SECONDS)
-		task_triggered_event.register(unwet_task, src, /turf/simulated/proc/task_unwet_floor)
+		task_triggered_event.register(unwet_task, src, /turf/proc/task_unwet_floor)
 
-/turf/simulated/proc/task_unwet_floor(var/triggered_task)
+/turf/proc/task_unwet_floor(var/triggered_task)
 	if(triggered_task == unwet_task)
 		unwet_task = null
 		unwet_floor(TRUE)
 
-/turf/simulated/proc/unwet_floor(var/check_very_wet)
+/turf/proc/unwet_floor(var/check_very_wet)
 	if(check_very_wet && wet >= 2)
 		return
 
@@ -300,30 +327,30 @@ var/const/enterloopsanity = 100
 		overlays -= wet_overlay
 		wet_overlay = null
 
-/turf/simulated/clean_blood()
+/turf/clean_blood()
 	for(var/obj/effect/decal/cleanable/blood/B in contents)
 		B.clean_blood()
 	..()
 
-/turf/simulated/New()
+/turf/New()
 	..()
 	levelupdate()
 
-/turf/simulated/Destroy()
+/turf/Destroy()
 	qdel(unwet_task)
 	unwet_task = null
 	return ..()
 
-/turf/simulated/proc/initialize()
+/turf/proc/initialize()
 	return
 
-/turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)
 		tracks = new typepath(src)
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
 
-/turf/simulated/proc/update_dirt()
+/turf/proc/update_dirt()
 	dirt = min(dirt+1, 101)
 	var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
 	if (dirt > 50)
@@ -331,7 +358,7 @@ var/const/enterloopsanity = 100
 			dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
 		dirtoverlay.alpha = min((dirt - 50) * 5, 255)
 
-/turf/simulated/Entered(atom/A, atom/OL)
+/turf/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		usr << "<span class='danger'>Movement is admin-disabled.</span>" //This is to identify lag problems
 		return
@@ -367,24 +394,24 @@ var/const/enterloopsanity = 100
 
 			if (bloodDNA)
 				src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
-				var/turf/simulated/from = get_step(H,reverse_direction(H.dir))
+				var/turf/from = get_step(H,reverse_direction(H.dir))
 				if(istype(from) && from)
 					from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
 
 				bloodDNA = null
 
 			//Shoe sounds
-			if 		(istype(src, /turf/simulated/floor/grass))
+			if 		(istype(src, /turf/floor/grass))
 				footstepsound = "grassfootsteps"
 			//else 	if(istype(src, /turf/stalker/floor/tropa))//Not needed for now.
 			//	footstepsound = "sandfootsteps"
-			else 	if(istype(src, /turf/simulated/floor/beach/water))
+			else 	if(istype(src, /turf/floor/plating/beach/water))
 				footstepsound = "waterfootsteps"
-			else 	if(istype(src, /turf/simulated/floor/wood))
+			else 	if(istype(src, /turf/floor/wood))
 				footstepsound = "woodfootsteps"
-			else 	if(istype(src, /turf/simulated/floor/carpet))
+			else 	if(istype(src, /turf/floor/carpet))
 				footstepsound = "carpetfootsteps"
-			else 	if(istype(src, /turf/simulated/floor/dirt))
+			else 	if(istype(src, /turf/floor/dirt))
 				footstepsound = "dirtfootsteps"
 			else
 				footstepsound = "erikafootsteps"
@@ -435,7 +462,7 @@ var/const/enterloopsanity = 100
 	..()
 
 //returns 1 if made bloody, returns 0 otherwise
-/turf/simulated/add_blood(mob/living/carbon/human/M as mob)
+/turf/add_blood(mob/living/carbon/human/M as mob)
 	if (!..())
 		return 0
 
@@ -452,17 +479,17 @@ var/const/enterloopsanity = 100
 	return 0
 
 // Only adds blood on the floor -- Skie
-/turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
+/turf/proc/add_blood_floor(mob/living/carbon/M as mob)
 	if( istype(M, /mob/living/carbon/alien ))
 		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
 		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
 	else if( istype(M, /mob/living/silicon/robot ))
 		new /obj/effect/decal/cleanable/blood/oil(src)
 
-/turf/simulated/proc/can_build_cable(var/mob/user)
+/turf/proc/can_build_cable(var/mob/user)
 	return 0
 
-/turf/simulated/attackby(var/obj/item/thing, var/mob/user)
+/turf/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/stack/cable_coil) && can_build_cable(user))
 		var/obj/item/stack/cable_coil/coil = thing
 		coil.turf_place(src, user)

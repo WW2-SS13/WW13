@@ -1,5 +1,5 @@
 //Returns the firelevel
-/datum/gas_mixture/proc/zburn(zone/zone, force_burn, no_check = 0)
+/*/datum/gas_mixture/proc/zburn(zone/zone, force_burn, no_check = 0)
 	. = 0
 	if((temperature > PLASMA_MINIMUM_BURN_TEMPERATURE || force_burn) && (no_check ||check_recombustability(zone? zone.fuel_objs : null)))
 
@@ -97,7 +97,7 @@
 		#endif
 
 		return firelevel
-
+*/
 /datum/gas_mixture/proc/check_recombustability(list/fuel_objs)
 	. = 0
 	for(var/g in gas)

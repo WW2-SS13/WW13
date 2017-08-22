@@ -5,6 +5,7 @@ var/list/directory = list()							//list of all ckeys with associated client
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
+var/global/list/roundstart_tips = file2list("config/tips.txt")
 var/global/list/player_list = list()				//List of all mobs **with clients attached**. Excludes /mob/new_player
 var/global/list/mob_list = list()					//List of all mobs, including clientless
 var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
@@ -30,7 +31,7 @@ var/global/list/names_used = list() // map
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER)
 
 var/global/list/turfs = list()						//list of all turfs
-var/global/list/grass_turf_list = list() // list of all /turf/simulated/floor/plating/grass
+var/global/list/grass_turf_list = list() // list of all /turf/floor/plating/grass
 //Languages/species/whitelist.
 var/global/list/all_species[0]
 var/global/list/all_languages[0]

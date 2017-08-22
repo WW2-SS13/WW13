@@ -136,8 +136,8 @@
 		return
 
 	proc/AttemptToEat(var/atom/target)
-		if(istype(target,/turf/simulated/wall))
-			var/turf/simulated/wall/W = target
+		if(istype(target,/turf/wall))
+			var/turf/wall/W = target
 			if((!W.reinf_material && eatingDuration >= 100) || eatingDuration >= 200) //need 20 ticks to eat an rwall, 10 for a regular one
 				W.dismantle_wall()
 				return 1

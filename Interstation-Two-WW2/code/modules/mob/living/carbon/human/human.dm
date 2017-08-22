@@ -427,7 +427,7 @@ var/list/rank_prefix = list(\
 				playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 
 				var/turf/location = loc
-				if (istype(location, /turf/simulated))
+				if (istype(location, /turf))
 					location.add_vomit_floor(src, 1)
 
 				nutrition -= 40
@@ -815,7 +815,7 @@ var/list/rank_prefix = list(\
 		src << "<span class='warning'>Your [src.gloves] are getting in the way.</span>"
 		return
 
-	var/turf/simulated/T = src.loc
+	var/turf/T = src.loc
 	if (!istype(T)) //to prevent doodling out of mechs and lockers
 		src << "<span class='warning'>You cannot reach the floor.</span>"
 		return
