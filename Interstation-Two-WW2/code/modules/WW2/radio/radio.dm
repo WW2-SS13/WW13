@@ -192,15 +192,10 @@ var/global/list/default_ukrainian_channels = list(
 				continue
 			else
 				message = copytext(message, 3)
-		else
-			if (!radio.broadcasting)
-				continue
-
-		if (istype(radio.loc, /turf) && !radio.broadcasting)
+		else if (istype(radio.loc, /turf) && !radio.broadcasting)
 			continue
-		else
-			used_radio_turfs += get_turf(radio)
 
+		used_radio_turfs += get_turf(radio)
 		used_radios += radio
 
 		spawn (5)
