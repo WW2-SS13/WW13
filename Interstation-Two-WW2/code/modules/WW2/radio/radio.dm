@@ -162,7 +162,9 @@ var/global/list/default_ukrainian_channels = list(
 /mob/living/carbon/human/var/next_radio_speak = -1
 
 /mob/living/carbon/human/say(var/message)
-	..()
+	..(message)
+	if (!locate(/obj/item/device/radio) in range(1, src))
+		return
 	if (next_radio_speak > world.time)
 		return
 	next_radio_speak = world.time + 1 // prevents radio spam due to say() callbacks

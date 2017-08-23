@@ -329,8 +329,6 @@
 				H.m_intent = "walk" // in case we don't have a m_intent HUD, somehow
 
 
-		move_delay += mob.movement_delay()
-
 		if (!isobserver(mob))
 			if (istype(get_turf(mob), /turf/floor/plating/beach/water))
 				move_delay += 3
@@ -339,7 +337,13 @@
 		if(config.Tickcomp)
 			// move_delay -= 1.3 //~added to the tickcomp calculation below
 			tickcomp = ((1/(world.tick_lag))*1.3) - 1.3
-			move_delay = move_delay + tickcomp
+			move_delay += tickcomp
+
+		#define MOVEDELAYDEBUG
+		move_delay += mob.movement_delay()
+		#ifdef MOVEDELAYDEBUG
+		world << "move_delay: [move_delay]"
+		#endif
 
 		if(istype(mob.buckled, /obj/vehicle))
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
@@ -421,19 +425,12 @@
 
 		moving = 0
 
+		#ifdef MOVEDELAYDEBUG
+		world << "world.time [world.time]"
+		world << "move delay [move_delay]"
+		#endif
+
 		mob.last_movement = world.time
-/*
-		for (var/atom/movable/a in get_turf(mob))
-			if (isMovingTrainObject(a))
-				mob.attached_to_object = a
-		if (locate(/obj/train_connector) in get_step(mob, mob.dir))
-			var/obj/train_connector/tc = locate(/obj/train_connector) in get_step(mob, mob.dir)
-			if (tc)
-				var/datum/train_controller/controller = tc.master
-				if (controller && controller.moving && controller.opposing_directions_check(mob))
-					for (var/v in 1 to controller.velocity+1)
-						if (get_step(mob, mob.dir))
-							mob.loc = get_step(mob, mob.dir)*/
 
 		return .
 

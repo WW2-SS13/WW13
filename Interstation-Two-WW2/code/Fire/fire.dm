@@ -95,6 +95,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	. = 1
 
 	var/turf/my_tile = loc
+
 	if(!istype(my_tile))
 		if(my_tile.fire == src)
 			my_tile.fire = null
@@ -111,7 +112,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		icon_state = "1"
 		set_light(3, 1)
 
-	for(var/mob/m in loc)
+	for(var/mob/m in get_turf(src))
 		Burn(m)
 
 	//loc.fire_act(air_contents, air_contents.temperature, air_contents.volume)
@@ -150,6 +151,8 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 		//	else
 			//	enemy_tile.adjacent_fire_act(loc, air_contents, air_contents.temperature, air_contents.volume)
+	else
+		firelevel -= 1.5
 
 	animate(src, color = fire_color(temperature), 5)
 	set_light(l_color = color)
@@ -169,13 +172,15 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	set_dir(pick(cardinal))
 
-	var/datum/gas_mixture/air_contents = loc.return_air()
-	color = fire_color(air_contents.temperature)
+	color = fire_color(temperature)
 	set_light(3, 1, color)
 
 	firelevel = fl
 
 	processing_objects += src
+
+	spawn (200)
+		qdel(src) // crappy workaround because fire won't process aaa
 
 /obj/fire/proc/fire_color(var/env_temperature)
 	//var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)

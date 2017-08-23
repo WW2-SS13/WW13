@@ -46,6 +46,7 @@ var/list/list_of_germans_who_crossed_the_river = list()
 	anchored = 1.0
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
+	name = ""
 
 	New()
 		icon = null
@@ -62,6 +63,7 @@ var/list/list_of_germans_who_crossed_the_river = list()
 	anchored = 1.0
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
+	name = ""
 
 	New()
 		icon = null
@@ -76,6 +78,7 @@ var/list/list_of_germans_who_crossed_the_river = list()
 	anchored = 1.0
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
+	name = ""
 
 	New()
 		icon = null
@@ -87,6 +90,13 @@ var/list/list_of_germans_who_crossed_the_river = list()
 	roundstart_time = world.time
 
 	world << "<font size=3><span class = 'notice'>It's [lowertext(time_of_day)].</span></font>"
+
+	// very lowpop, open all squad doors
+	if (clients.len <= 12)
+		for (var/obj/structure/simple_door/key_door/keydoor in world)
+			if (findtext(keydoor.name, "Squad"))
+				if (findtext(keydoor.name, "Preparation"))
+					keydoor.Open()
 
 	// spawn mice so soviets have something to eat after they start starving
 

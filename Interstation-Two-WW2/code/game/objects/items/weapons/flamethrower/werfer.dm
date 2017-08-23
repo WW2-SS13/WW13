@@ -151,3 +151,6 @@
 
 /obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target, flamedir)
 	target.create_fire(5, rand(300,400), 0)
+	spawn (150)
+		for (var/obj/fire/fire in target)
+			qdel(fire) // shitty workaround #2

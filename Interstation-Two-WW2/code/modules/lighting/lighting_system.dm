@@ -65,7 +65,11 @@
 
 /world/New()
 
+	#ifndef ALWAYS_DAY
 	time_of_day = pick(times_of_day)
+	#else
+	time_of_day = "Midday"
+	#endif
 
 	. = ..()
 

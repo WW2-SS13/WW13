@@ -1,3 +1,5 @@
+#define ALWAYS_DAY
+
 var/time_of_day = "Morning"
 var/list/times_of_day = list("Morning", "Afternoon", "Midday", "Evening", "Night", "Midnight", "Early Morning")
 // from lightest to darkest: midday, afternoon, morning, early morning, evening, night, midnight

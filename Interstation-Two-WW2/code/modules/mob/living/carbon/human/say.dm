@@ -1,5 +1,6 @@
 /mob/living/carbon/human/say(var/message)
 	var/alt_name = ""
+
 	if(name != rank_prefix_name(GetVoice()))
 		alt_name = "(as [rank_prefix_name(get_id_name())])"
 

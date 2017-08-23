@@ -155,9 +155,10 @@
 		laddervision = ladder
 		client.eye = laddervision
 	else if (!ladder)
-		client.perspective = MOB_PERSPECTIVE
-		client.eye = src
-		laddervision = null
+		if (laddervision)
+			client.perspective = MOB_PERSPECTIVE
+			client.eye = src
+			laddervision = null
 
 /obj/structure/multiz/proc/laddervision_direction()
 	if (istop)

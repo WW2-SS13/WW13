@@ -28,6 +28,7 @@
 // base area
 
 /area/prishtina/field
+	name = "Field"
 
 // admin zone
 
@@ -174,6 +175,10 @@
 	#else
 	dynamic_lighting = 0
 	#endif
+
+/area/prishtina/german/train_zone/fieldtest
+	name = "Field Zone"
+	dynamic_lighting = 1
 
 /area/prishtina/german/train_starting_zone
 	icon_state = "blue-red2"
