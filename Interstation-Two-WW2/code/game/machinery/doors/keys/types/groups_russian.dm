@@ -102,4 +102,5 @@
 /obj/structure/simple_door/key_door/russian/bunker_doors
 	keyslot_type = /datum/keyslot/russian/bunker_doors
 	unique_door_name = "Bunker Doors Access"
+	starts_open = 1
 #undef RUSSIAN_BUNKER_DOORS_CODE

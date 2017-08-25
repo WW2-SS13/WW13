@@ -17,6 +17,7 @@ var/list/nonbreaking_types = list(
 	var/showed_damage_messages[4]
 	var/unique_door_name = null
 	material = "iron"
+	var/starts_open = 0
 
 /obj/structure/simple_door/key_door/New()
 
@@ -42,6 +43,10 @@ var/list/nonbreaking_types = list(
 	spawn (5)
 		if (material.name != initial(material))
 			update_material(initial(material))
+
+	spawn (7)
+		if (starts_open)
+			Open()
 
 /obj/structure/simple_door/key_door/attackby(obj/item/W as obj, mob/user as mob)
 

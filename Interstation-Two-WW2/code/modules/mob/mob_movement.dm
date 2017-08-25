@@ -303,13 +303,13 @@
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 2.8
+				move_delay += 2.2
 				if (ishuman(mob))
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.03
 					--H.stamina
 			if("walk")
-				move_delay += 4.2
+				move_delay += 3.3
 				if (ishuman(mob))
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.003
