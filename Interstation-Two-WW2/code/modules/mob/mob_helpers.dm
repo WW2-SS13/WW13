@@ -18,15 +18,6 @@
 			return 0
 	return 1
 
-/mob/living/silicon/isSynthetic()
-	return 1
-
-/mob/proc/isMonkey()
-	return 0
-
-/mob/living/carbon/human/isMonkey()
-	return istype(species, /datum/species/monkey)
-
 proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A

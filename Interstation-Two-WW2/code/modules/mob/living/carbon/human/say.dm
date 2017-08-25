@@ -7,6 +7,8 @@
 	message = capitalize_cp1251(sanitize(message))
 	..(message, alt_name = alt_name)
 
+	post_say(message)
+
 /mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)
 		if(client)

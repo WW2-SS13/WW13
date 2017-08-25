@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/monkeyize()
+/*/mob/living/carbon/human/proc/monkeyize()
 	if (transforming)
 		return
 	for(var/obj/item/W in src)
@@ -74,7 +74,7 @@
 	new_slime << "<B>You are now a slime. Skreee!</B>"
 	qdel(src)
 	return
-
+*/
 /mob/living/carbon/human/proc/corgize()
 	if (transforming)
 		return

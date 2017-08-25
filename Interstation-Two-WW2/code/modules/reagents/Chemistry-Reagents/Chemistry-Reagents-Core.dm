@@ -131,7 +131,7 @@
 			remove_self(amount)
 
 /datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	if(istype(M, /mob/living/carbon/slime))
+/*	if(istype(M, /mob/living/carbon/slime))
 		var/mob/living/carbon/slime/S = M
 		S.adjustToxLoss(8 * removed) // Babies have 150 health, adults have 200; So, 10 units and 13.5
 		if(!S.client)
@@ -140,7 +140,7 @@
 				++S.Discipline
 		if(dose == removed)
 			S.visible_message("<span class='warning'>[S]'s flesh sizzles where the water touches it!</span>", "<span class='danger'>Your flesh burns in the water!</span>")
-
+*/
 /datum/reagent/fuel
 	name = "Welding fuel"
 	id = "fuel"

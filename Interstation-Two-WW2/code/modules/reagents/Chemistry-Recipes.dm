@@ -984,7 +984,7 @@
 	return "#F0F8FF"
 
 /* Slime cores */
-
+/*
 /datum/chemical_reaction/slime
 	var/required = null
 
@@ -1004,6 +1004,7 @@
 		T.desc = "This extract has been used up."
 
 //Grey
+
 /datum/chemical_reaction/slime/spawn
 	name = "Slime Spawn"
 	id = "m_spawn"
@@ -1315,7 +1316,7 @@
 	var/obj/effect/golemrune/Z = new /obj/effect/golemrune
 	Z.loc = get_turf(holder.my_atom)
 	Z.announce_to_ghosts()
-
+*/
 /* Food */
 
 /datum/chemical_reaction/tofu

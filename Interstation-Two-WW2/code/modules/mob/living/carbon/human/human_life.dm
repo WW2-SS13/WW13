@@ -112,7 +112,7 @@
 /mob/living/carbon/human/breathe()
 	if(!in_stasis)
 		..()
-
+/*
 // Calculate how vulnerable the human is to under- and overpressure.
 // Returns 0 (equals 0 %) if sealed in an undamaged suit, 1 if unprotected (equals 100%).
 // Suitdamage can modifiy this in 10% steps.
@@ -153,7 +153,7 @@
 		return ONE_ATMOSPHERE - pressure_difference
 	else
 		return ONE_ATMOSPHERE + pressure_difference
-
+*/
 /mob/living/carbon/human/handle_disabilities()
 	..()
 	//Vision
@@ -230,9 +230,9 @@
 					Weaken(10)
 
 
-
+/*
 /mob/living/carbon/human/handle_mutations_and_radiation()
-	return
+	return*/
 
 	/** breathing **/
 
@@ -267,7 +267,7 @@
 		return
 
 	//check if we actually need to process breath
-	if(!breath || (breath.total_moles == 0))
+	if(!breath)
 		failed_last_breath = 1
 		if(prob(20))
 			emote("gasp")

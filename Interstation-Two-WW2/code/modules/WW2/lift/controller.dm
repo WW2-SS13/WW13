@@ -14,14 +14,11 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
 
-
-//#define LIFT_CONTROLLER_DEBUG
-
 /obj/lift_controller/New()
 	..()
 	icon = null
 	icon_state = ""
-	#ifndef LIFT_CONTROLLER_DEBUG
+	#ifndef LIFT_DEBUG
 	name = ""
 	#endif
 
@@ -44,7 +41,7 @@
 
 	next_activation = world.time + 50
 
-	#ifdef LIFT_CONTROLLER_DEBUG
+	#ifdef LIFT_DEBUG
 	world << "playing lift sound at [get_turf(src)]"
 	#endif
 
@@ -56,7 +53,7 @@
 	playsound(get_turf(src), 'sound/misc/lift.ogg', 100)
 	playsound(get_turf(src), 'sound/misc/lift.ogg', 100)
 */
-	#ifdef LIFT_CONTROLLER_DEBUG
+	#ifdef LIFT_DEBUG
 	world << "played lift sound at [get_turf(src)]"
 	#endif
 
@@ -66,7 +63,7 @@
 			if (STATUS_LIFT_DOCKED) // going down
 				for (var/turf/lift1_turf in get_area(src))
 					var/turf/lift2_turf = GetBelow(lift1_turf, src)
-					#ifdef LIFT_CONTROLLER_DEBUG
+					#ifdef LIFT_DEBUG
 					world << "LIFT GOING DOWN:"
 					world << "lift1_turf.loc: [lift1_turf.x], [lift1_turf.y]"
 					world << "lift2_turf.loc: [lift2_turf.x], [lift2_turf.y]"
@@ -80,7 +77,7 @@
 			if (STATUS_LIFT_AWAY)
 				for (var/turf/lift1_turf in get_area(target))
 					var/turf/lift2_turf = GetAbove(lift1_turf, target)
-					#ifdef LIFT_CONTROLLER_DEBUG
+					#ifdef LIFT_DEBUG
 					world << "LIFT GOING UP:"
 					world << "lift1_turf.loc: [lift1_turf.x], [lift1_turf.y]"
 					world << "lift2_turf.loc: [lift2_turf.x], [lift2_turf.y]"

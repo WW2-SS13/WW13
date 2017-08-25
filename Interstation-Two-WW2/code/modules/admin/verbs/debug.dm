@@ -63,7 +63,7 @@
 	spawn(10)
 		M.Animalize()
 
-
+/*
 /client/proc/cmd_admin_slimeize(var/mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make slime"
@@ -81,7 +81,6 @@
 	else
 		alert("Invalid mob")
 
-/*
 /client/proc/cmd_admin_monkeyize(var/mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make Monkey"
@@ -431,13 +430,14 @@
 			M.equip_to_slot_or_del(new /obj/item/stack/tile/floor(M), slot_in_backpack)
 			M.equip_to_slot_or_del(new /obj/item/stack/tile/floor(M), slot_in_backpack)
 			M.equip_to_slot_or_del(new /obj/item/stack/tile/floor(M), slot_in_backpack)
-
+/*
 		if ("pirate")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/pirate(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/brown(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/bandana(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/eyepatch(M), slot_glasses)
 			M.equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword/pirate(M), slot_r_hand)
+		*/
 		if ("soviet soldier")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/soviet(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), slot_shoes)

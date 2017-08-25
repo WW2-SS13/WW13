@@ -856,7 +856,7 @@
 		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [secret_force_mode].", 1)
 		Game() // updates the main game menu
 		.(href, list("f_secret"=1))
-
+/*
 	else if(href_list["monkeyone"])
 		if(!check_rights(R_SPAWN))	return
 
@@ -868,7 +868,7 @@
 		log_admin("[key_name(usr)] attempting to monkeyize [key_name(H)]")
 		message_admins("\blue [key_name_admin(usr)] attempting to monkeyize [key_name_admin(H)]", 1)
 		H.monkeyize()
-
+*/
 	else if(href_list["corgione"])
 		if(!check_rights(R_SPAWN))	return
 
@@ -909,7 +909,7 @@
 			log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
 		else
 			usr << "Admin Rejuvinates have been disabled"
-
+/*
 	else if(href_list["makeslime"])
 		if(!check_rights(R_SPAWN))	return
 
@@ -919,7 +919,7 @@
 			return
 
 		usr.client.cmd_admin_slimeize(H)
-
+*/
 	else if(href_list["makeanimal"])
 		if(!check_rights(R_SPAWN))	return
 

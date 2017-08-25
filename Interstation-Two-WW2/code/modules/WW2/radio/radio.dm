@@ -93,11 +93,26 @@ var/global/list/default_ukrainian_channels = list(
 	var/list/internal_channels
 	var/last_tick = -1
 	var/datum/nanoui/UI
+	var/speech_sound = null
+	var/freerange = 1
+	var/last_broadcast = -1
+	var/notyetmoved = 1 // shitty variable to prevent radio piles from broadcasting
 
 /obj/item/device/radio/New()
 	..()
 	for (var/channel in internal_channels)
 		listening_on_channel[radio_freq2name(channel)] = 1
+
+	if (!isturf(loc))
+		notyetmoved = 0
+
+/obj/item/device/radio/Move()
+	..()
+	notyetmoved = 0
+
+/obj/item/device/radio/pickup(mob/user)
+	..(user)
+	notyetmoved = 0
 
 /obj/item/device/radio/proc/list_internal_channels(var/mob/user)
 	var/dat[0]
@@ -159,15 +174,9 @@ var/global/list/default_ukrainian_channels = list(
  I may do this some time in the future.
 */
 
-/mob/living/carbon/human/var/next_radio_speak = -1
-
-/mob/living/carbon/human/say(var/message)
-	..(message)
+/mob/living/carbon/human/proc/post_say(var/message)
 	if (!locate(/obj/item/device/radio) in range(1, src))
 		return
-	if (next_radio_speak > world.time)
-		return
-	next_radio_speak = world.time + 1 // prevents radio spam due to say() callbacks
 	if (stat != CONSCIOUS)
 		return
 	var/list/used_radio_turfs = list()
@@ -176,6 +185,8 @@ var/global/list/default_ukrainian_channels = list(
 		if (used_radio_turfs.Find(get_turf(radio)))
 			continue
 		if (used_radios.Find(radio))
+			continue
+		if (radio.notyetmoved)
 			continue
 		if (!radio.on)
 			continue
@@ -207,27 +218,39 @@ var/global/list/default_ukrainian_channels = list(
 				radio.broadcast(rhtml_encode(message), src, 1)
 
 /obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = 0)
+
+	if (!can_broadcast())
+		return
+
+	if (notyetmoved)
+		return
+
 	var/list/used_radio_turfs = list()
 	var/list/used_radios = list()
+	var/list/tried_mobs = list()
 	// let people playing near radios hear it
 	for (var/mob/living/carbon/human/hearer in human_mob_list)
+		if (tried_mobs.Find(hearer))
+			continue
+		tried_mobs += hearer
 		if (istype(hearer) && hearer.stat == CONSCIOUS)
 			var/list/radios = list()
 			for (var/obj/item/device/radio/radio in view(world.view, hearer))
-				radios += radio
+				radios |= radio
 			for (var/obj/item/device/radio/radio in hearer.contents)
-				radios += radio
+				radios |= radio
 			for (var/obj/item/device/radio/radio in radios)
 				if (used_radio_turfs.Find(get_turf(radio)))
 					continue
 				if (used_radios.Find(radio))
 					continue
+				if (radio.notyetmoved)
+					continue
 				if (!radio.on)
 					continue
 				if (!radio.listening)
 					continue
-				if (istype(radio.loc, /turf))
-					used_radio_turfs += get_turf(radio)
+				used_radio_turfs += get_turf(radio)
 				used_radios += radio
 				if (radio.listening_on_channel[radio_freq2name(frequency)])
 					hearer.hear_radio(msg, "says", speaker.default_language, speaker, src, hardtohear)
@@ -244,14 +267,25 @@ var/global/list/default_ukrainian_channels = list(
 				o.hear_radio(msg, "says", speaker.default_language, speaker, src, hardtohear)
 				return
 
-/obj/item/device/radio
-	var/speech_sound = null
-	var/freerange = 1
+	post_broadcast()
 
 /obj/item/device/radio/proc/bracketed_name()
 	var/lbracket = "\["
 	var/rbracket = "\]"
 	return "[lbracket][radio_freq2name(frequency)][rbracket]"
+
+/obj/item/device/radio/proc/can_broadcast()
+	if (last_broadcast > world.time)
+		return 0
+	for (var/obj/item/device/radio/radio in get_turf(src))
+		// the reason radio.can_broadcast() is not checked is because
+		// it might cause an infinite loop
+		if (radio.last_broadcast > world.time)
+			return 0
+	return 1
+
+/obj/item/device/radio/proc/post_broadcast()
+	last_broadcast = world.time + 5
 
 /obj/item/device/radio/intercom/a7b
 	name = "A-7-B"

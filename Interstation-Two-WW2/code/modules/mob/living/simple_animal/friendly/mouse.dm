@@ -66,8 +66,8 @@
 /mob/living/simple_animal/mouse/New()
 	..()
 
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+//	verbs += /mob/living/proc/ventcrawl
+//	verbs += /mob/living/proc/hide
 
 	if(name == initial(name))
 		name = "[name] ([rand(1, 1000)])"

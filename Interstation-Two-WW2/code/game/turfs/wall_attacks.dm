@@ -130,16 +130,6 @@
 
 
 		else */
-		if( istype(W, /obj/item/weapon/melee/energy/blade) )
-			var/obj/item/weapon/melee/energy/blade/EB = W
-
-			EB.spark_system.start()
-			user << "<span class='notice'>You slash \the [src] with \the [EB]; the thermite ignites!</span>"
-			playsound(src, "sparks", 50, 1)
-			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
-
-			thermitemelt(user)
-			return
 
 	var/turf/T = user.loc	//get user's location for delay checks
 
@@ -178,10 +168,6 @@
 			dismantle_verb = "cutting"
 			dismantle_sound = 'sound/items/Welder.ogg'
 			cut_delay *= 0.7
-		else if(istype(W,/obj/item/weapon/melee/energy/blade))
-			dismantle_sound = "sparks"
-			dismantle_verb = "slicing"
-			cut_delay *= 0.5
 
 		if(dismantle_verb)
 

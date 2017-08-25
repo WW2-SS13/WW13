@@ -33,7 +33,7 @@ var/turf/floor/plating/under/ref_under_plating = null
 		dir = t.dir
 	else
 		icon = 'icons/turf/un.dmi'
-		icon_state = "un"
+		icon_state = "un_dark"
 
 	for (var/atom/movable/a in loc)
 		if (istype(a, /obj/structure/flora) || istype(a, /obj/structure/wild))
@@ -42,6 +42,11 @@ var/turf/floor/plating/under/ref_under_plating = null
 			qdel(a)
 
 	master = _master
+
+	#ifndef LIFT_DEBUG
+	name = ""
+	#endif
+
 
 /obj/lift_pseudoturf/proc/_Move(_newloc)
 

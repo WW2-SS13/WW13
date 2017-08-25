@@ -339,12 +339,6 @@
 			tickcomp = ((1/(world.tick_lag))*1.3) - 1.3
 			move_delay += tickcomp
 
-		#define MOVEDELAYDEBUG
-		move_delay += mob.movement_delay()
-		#ifdef MOVEDELAYDEBUG
-		world << "move_delay: [move_delay]"
-		#endif
-
 		if(istype(mob.buckled, /obj/vehicle))
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
