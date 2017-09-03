@@ -227,6 +227,32 @@
 	armor = list(melee = 30, bullet = 60, laser = 10, energy = 10, bomb = 15, bio = 0, rad = 0)
 	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
 
+/obj/item/weapon/storage/belt/soviet
+	name = "Soviet belt pouch"
+	desc = "Can hold gear like pistol, ammo and other thingies."
+	icon_state = "gerbelt"
+	item_state = "gerbelt"
+	storage_slots = 6
+	max_w_class = 3
+	max_storage_space = 28
+	can_hold = list(
+		/obj/item/ammo_magazine/a792x33/stgmag,
+		/obj/item/ammo_magazine/kar98k,
+		/obj/item/ammo_magazine/mp40,
+		/obj/item/weapon/material/knife,
+		/obj/item/weapon/gauze_pack/gauze,
+		/obj/item/weapon/grenade/explosive/stgnade,
+		/obj/item/weapon/gun/projectile/pistol/luger,
+		/obj/item/ammo_magazine/luger
+		)
+
+/obj/item/weapon/storage/belt/soviet/anti_tank_crew
+/obj/item/weapon/storage/belt/soviet/anti_tank_crew/New()
+	..()
+
+	for (var/v in 1 to 10)
+		new /obj/item/ammo_casing/a145(src)
+
 /obj/item/weapon/storage/belt/german
 	name = "German belt pouch"
 	desc = "Can hold gear like pistol, ammo and other thingies."
@@ -245,6 +271,13 @@
 		/obj/item/weapon/gun/projectile/pistol/luger,
 		/obj/item/ammo_magazine/luger
 		)
+
+/obj/item/weapon/storage/belt/german/anti_tank_crew
+/obj/item/weapon/storage/belt/german/anti_tank_crew/New()
+	..()
+
+	for (var/v in 1 to 10)
+		new /obj/item/ammo_casing/a145(src)
 
 /obj/item/weapon/storage/belt/german/fallofficer
 	name = "German belt"

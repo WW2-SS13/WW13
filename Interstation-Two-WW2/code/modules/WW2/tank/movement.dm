@@ -1,5 +1,5 @@
 /obj/tank/var/last_movement = -1
-/obj/tank/var/movement_delay = 3
+/obj/tank/var/movement_delay = 4.5
 /obj/tank/var/last_movement_sound = -1
 /obj/tank/var/movement_sound_delay = 30
 /obj/tank/var/last_gibbed = -1
@@ -7,14 +7,11 @@
 
 /obj/tank/Move()
 	switch (dir)
-		if (EAST)
+		if (EAST, WEST)
 			icon = horizontal_icon
-		if (WEST)
-			icon = horizontal_icon
-		if (NORTH)
+		if (NORTH, SOUTH)
 			icon = vertical_icon
-		if (SOUTH)
-			icon = vertical_icon
+
 	update_bounding_rectangle()
 	..()
 

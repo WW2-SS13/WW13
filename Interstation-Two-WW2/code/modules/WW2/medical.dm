@@ -25,7 +25,7 @@
 			if(pop_sound)
 				playsound(src.loc, pop_sound, 50, 1)
 			var/obj/item/weapon/reagent_containers/pill/pill = contents[1]
-			user << "<span class='notice'>You took one [pill.name] from [src.name]</span>"
+			user << "<span class='notice'>You take one [pill.name] from [src.name].</span>"
 			user.put_in_active_hand(pill)
 			update_icon()
 		else
@@ -36,14 +36,14 @@
 /obj/item/weapon/pill_pack/attack_self(mob/user as mob)
 	if(src.contents.len > 0)
 		var/obj/item/weapon/reagent_containers/pill/pill = contents[1]
-		if(prob(30))
+		if(prob(70))
 			if(pop_sound)
 				playsound(src.loc, pop_sound, 50, 1)
-			user << "<span class='notice'>You took one [pill.name] from [src.name]</span>"
+			user << "<span class='notice'>You take one [pill.name] from [src.name].</span>"
 			pill.loc = user.loc
 			update_icon()
 		else
-			user << "<span class='warning'>You tried to take one [pill.name] from [src.name] by one hand but failed</span>"
+			user << "<span class='warning'>You tried to take one [pill.name] from [src.name] by one hand, but failed.</span>"
 	else
 		user << "<span class='warning'>[name] is empty!</span>"
 

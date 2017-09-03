@@ -300,15 +300,15 @@ var/global/list/fallschirm_landmarks = list()
 				else if (j.is_secondary && !j.is_commander && !j.is_officer && !j.is_paratrooper && !j.is_SS)
 					j.total_positions = max(round(german_secondary_job_slots/secondary_german_jobs), 1)
 				else if (j.is_commander)
-					j.total_positions = german_commander_slots
-				else if (j.is_officer)
 					if (j.is_SS)
 						j.total_positions = german_ss_commander_slots
 					else
-						if (!j.is_squad_leader)
-							j.total_positions = max(round(german_secondary_job_slots/secondary_german_jobs), 1)
-						else
-							j.total_positions = SL_LIMIT
+						j.total_positions = german_commander_slots
+				else if (j.is_officer)
+					if (!j.is_squad_leader)
+						j.total_positions = max(round(german_secondary_job_slots/secondary_german_jobs), 1)
+					else
+						j.total_positions = SL_LIMIT
 				else if (j.is_SS)
 					j.total_positions = german_ss_slots
 				if (j.absolute_limit)

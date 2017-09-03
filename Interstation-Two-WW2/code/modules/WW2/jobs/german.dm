@@ -307,11 +307,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
-	if (!check_for_german_train_conductors())
-		for (var/obj/item/weapon/storage/belt/keychain/keychain in H)
-			keychain.keys += new/obj/item/weapon/key/german/train()
-			H << "<i>You have a key with train access.</i>"
-			break
 
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.</span>"
 	return 1
@@ -343,11 +338,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gertankerhat(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
-	if (!check_for_german_train_conductors())
-		for (var/obj/item/weapon/storage/belt/keychain/keychain in H)
-			keychain.keys += new/obj/item/weapon/key/german/train()
-			H << "<i>You have a key with train access.</i>"
-			break
+
 	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a tank crewman. Your job is to work with another crewman to operate a tank.</span>"
 	return 1
@@ -360,6 +351,31 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/german/anti_tank_crew
+	title = "Panzer-Soldat"
+	en_meaning = "Anti Tank Soldier"
+	faction = "Station"
+	total_positions = 4
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateHeer"
+	is_primary = 0
+	is_secondary = 1
+	absolute_limit = 4
+
+/datum/job/german/anti_tank_crew/equip(var/mob/living/carbon/human/H)
+	if(!H)	return 0
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/heavysniper/ptrd(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/anti_tank_crew, slot_belt)
+	H << "<span class = 'notice'>You are the <b>[title]</b>, an anti-tank infantry unit. Your job is to destroy enemy tanks.</span>"
+	return 1
+
+/datum/job/german/anti_tank_crew/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
+
 var/first_fallschirm = 1
 
 /datum/job/german/paratrooper

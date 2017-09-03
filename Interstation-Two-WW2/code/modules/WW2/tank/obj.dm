@@ -12,8 +12,8 @@
 	layer = MOB_LAYER - 0.01
 	var/fuel_slot_screwed = 1
 	var/fuel_slot_open = 0
-	var/fuel = 650
-	var/max_fuel = 650
+	var/fuel = 750
+	var/max_fuel = 750
 	var/next_spam_allowed = -1
 	var/locked = 1 //tanks need to be unlocked
 	var/heal_damage[2]

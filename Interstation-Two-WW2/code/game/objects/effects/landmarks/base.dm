@@ -460,13 +460,17 @@ var/area/partisan_stockpile = null
 			var/turf/turf = get_turf(loc)
 			for (var/v in 1 to 5)
 				if (prob(50))
-					new/obj/item/weapon/gun/projectile/pistol/luger(turf)
+					new /obj/item/weapon/gun/projectile/pistol/luger(turf)
 				if (prob(75))
-					new/obj/item/ammo_magazine/luger(turf)
+					new /obj/item/ammo_magazine/luger(turf)
 				if (prob(60))
-					new/obj/item/attachment/bayonet(turf)
+					new /obj/item/attachment/bayonet(turf)
 				if (prob(50))
-					new/obj/item/weapon/melee/classic_baton/mp_baton/russian_baton/old(turf)
+					new /obj/item/weapon/melee/classic_baton/mp_baton/russian_baton/old(turf)
+			// ptrd ammo
+			for (var/v in 1 to rand(10,20))
+				new /obj/item/ammo_casing/a145 (turf)
+
 			partisan_stockpile = get_area(turf)
 			qdel(src)
 			return

@@ -177,6 +177,15 @@ Parts of code courtesy of Super3222
 		user.client.view = world.view
 		user.visible_message("[zoomdevicename ? "[user] looks up from \the [src.name]" : "[user] lowers \the [src.name]"].")
 
+	if (zoomed)
+		for (var/obj/o in user.client.screen)
+			if (!istype(o, /obj/screen/movable/action_button))
+				o.invisibility = 101
+	else
+		for (var/obj/o in user.client.screen)
+			if (!istype(o, /obj/screen/movable/action_button))
+				o.invisibility = initial(o.invisibility)
+
 /datum/action/toggle_scope
 	name = "Toggle Sights"
 	check_flags = AB_CHECK_ALIVE|AB_CHECK_RESTRAINED|AB_CHECK_STUNNED|AB_CHECK_LYING
@@ -229,3 +238,4 @@ Parts of code courtesy of Super3222
 				for(var/datum/action/toggle_scope/T in actions)
 					if(T.scope.zoomed)
 						T.scope.zoom(src, FALSE)
+
