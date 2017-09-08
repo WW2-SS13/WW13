@@ -21,7 +21,7 @@
 	var/set_update_icon
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
-	var/lava = 0
+//	var/lava = 0
 	var/overrided_icon_state
 
 /turf/floor/is_plating()

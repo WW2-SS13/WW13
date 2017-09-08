@@ -32,8 +32,6 @@
 	//style = "underplating"
 
 /turf/floor/plating/under/update_icon(var/update_neighbors)
-	if(lava)
-		return
 	// Set initial icon and strings.
 	if(!isnull(set_update_icon) && istext(set_update_icon))
 		icon_state = set_update_icon

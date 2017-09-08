@@ -3,9 +3,11 @@
 	appearance_flags = TILE_BOUND
 	var/level = 2
 	var/flags = 0
+
 	var/list/fingerprints
 	var/list/fingerprintshidden
 	var/fingerprintslast = null
+
 	var/list/blood_DNA
 	var/was_bloodied
 	var/blood_color
@@ -14,7 +16,7 @@
 	var/throwpass = 0
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 	var/simulated = 1 //filter for actions - used by lighting overlays
-	var/fluorescent // Shows up under a UV light.
+//	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = 1
 
 	///Chemistry.
@@ -446,7 +448,7 @@ its easier to just keep the beam vertical.
 /atom/proc/clean_blood()
 	if(!simulated)
 		return
-	fluorescent = 0
+//	fluorescent = 0
 	src.germ_level = 0
 	if(istype(blood_DNA, /list))
 		blood_DNA = null

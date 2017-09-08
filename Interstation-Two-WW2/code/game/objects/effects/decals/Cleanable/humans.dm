@@ -23,13 +23,13 @@ var/global/list/image/splatter_cache=list()
 	var/drytime
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
-	if(!fluorescent)
-		fluorescent = 1
-		basecolor = COLOR_LUMINOL
-		update_icon()
+/*	if(!fluorescent)
+		fluorescent = 1*/
+	basecolor = COLOR_LUMINOL
+	update_icon()
 
 /obj/effect/decal/cleanable/blood/clean_blood()
-	fluorescent = 0
+//	fluorescent = 0
 	if(invisibility != 100)
 		invisibility = 100
 		amount = 0

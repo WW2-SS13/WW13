@@ -187,7 +187,7 @@ var/global/list/string_slot_flags = list(
 			whitelisted_species += S.name
 
 	//Posters
-	paths = typesof(/datum/poster) - /datum/poster - /datum/poster/wanted
+	paths = typesof(/datum/poster) - /datum/poster /*- /datum/poster/wanted*/
 	for(var/T in paths)
 		var/datum/poster/P = new T
 		poster_designs += P

@@ -2,8 +2,8 @@ var/list/flooring_cache = list()
 
 /turf/floor/update_icon(var/update_neighbors)
 
-	if(lava)
-		return
+/*	if(lava)
+		return*/
 
 	if(flooring)
 		// Set initial icon and strings.
