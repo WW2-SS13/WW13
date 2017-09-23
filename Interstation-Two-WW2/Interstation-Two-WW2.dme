@@ -999,5 +999,5 @@
 #include "code\modules\xgm\xgm_gas_mixture.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\battlegroundforest_marco_v2.2_hayden.721.dmm"
+#include "maps\main.dmm"
 // END_INCLUDE

@@ -1204,7 +1204,8 @@ var/global/list/fallschirm_landmarks = list()
 							spawn (0)
 								H << german_squad_info[current_german_squad]
 						else
-							H << "<i>Your squad, #[current_german_squad], does not have a Squad Leader yet. Wait for one to unlock the door. If you do not have a SL after several minutes, break down the door with your weapon (on harm intent)</i>"
+							spawn (2)
+								H << "<i>Your squad, #[current_german_squad], does not have a Squad Leader yet. Wait for one before deploying.</i>"
 
 			else if (isrussiansquadmember_or_leader(H))
 				if (isrussiansquadleader(H))
@@ -1219,8 +1220,8 @@ var/global/list/fallschirm_landmarks = list()
 							spawn (0)
 								H << russian_squad_info[current_russian_squad]
 						else
-							spawn (0)
-								H << "<i>Your squad, #[current_russian_squad], does not have a Squad Leader yet. Wait for one to unlock the door. If you do not have a SL after several minutes, break down the door with your weapon (on harm intent)</i>"
+							spawn (2)
+								H << "<i>Your squad, #[current_russian_squad], does not have a Squad Leader yet. Wait for one before deploying.</i>"
 
 			else if (H.original_job.is_officer && H.original_job.base_type_flag() == RUSSIAN)
 				spawn (5)

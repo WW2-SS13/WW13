@@ -220,7 +220,15 @@ var/list/gamemode_cache = list()
 
 	var/ghosts_can_possess_animals = 0
 
+	// hub stuff
+
 	var/hub = 0
+	var/testing_port = -1
+	var/open_hub_discord_in_new_window = 1
+	var/hub_body = ""
+	var/hub_features = ""
+	var/hub_banner_url = ""
+
 
 	//TRAINS
 
@@ -376,6 +384,16 @@ var/list/gamemode_cache = list()
 
 				if ("hub")
 					config.hub = 1
+				if ("testing_port")
+					config.testing_port = text2num(value)
+				if ("open_hub_discord_in_new_window")
+					config.open_hub_discord_in_new_window = text2num(value)
+				if ("hub_body")
+					config.hub_body = value
+				if ("hub_features")
+					config.hub_features = value
+				if ("hub_banner_url")
+					config.hub_banner_url = value
 				//TRAINS
 				if ("german_train_cars_officer")
 					config.german_train_cars_officer = text2num(value)
@@ -544,7 +562,7 @@ var/list/gamemode_cache = list()
 				if ("respawn_delay")
 					config.respawn_delay = text2num(value)
 
-				if ("servername")
+				if ("server_name")
 					config.server_name = value
 
 				if ("serversuffix")

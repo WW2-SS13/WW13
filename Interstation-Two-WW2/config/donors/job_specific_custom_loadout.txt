@@ -1,0 +1,1 @@
+# the format for this is ckey:jobtitle:item1;item2;item3 ; actual paths aren't used because they change, and only a few things can be picked

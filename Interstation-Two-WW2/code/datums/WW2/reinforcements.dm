@@ -4,7 +4,6 @@ var/datum/reinforcements/reinforcements_master
 /proc/len(var/list/l)
 	return l.len
 
-
 /datum/reinforcements
 	var/russian_countdown = 50
 	var/german_countdown = 50
