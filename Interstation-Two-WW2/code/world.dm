@@ -508,12 +508,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/proc/update_status()
 
-	if (world.port == 12345)
-		visibility = 0 // debug mode
-
-	// this can hold around 20 chars max I think, but keep it at 15 or so - Kachnov
-
-	var/freaking_cool_features = "New build! Supply Trains! Tanks!"
+	if (world.port == config.testing_port)
+		visibility = 0
 
 	//var/original_banner = "http://tny.im/9Bm"
 	//var/cavebob_banner_1 = "http://tny.im/9IQ"
@@ -521,10 +517,24 @@ var/world_topic_spam_protect_time = world.timeofday
 	//var/cavebob_banner_final = "http://tny.im/9IU"
 
 	var/s = ""
-	s += "<center><a href=\"https://discord.gg/PVqjqCv\" target=\"_blank\"><b>No Man's Land: World War II (Early Alpha)</b></center><br>"
-	s += "<i>1942, [lowertext(time_of_day)], Ukrajina</i><br>"
-	s += "<b>[freaking_cool_features]</b><br>"
-	s += pick("<img src='http://tny.im/9IU'>")
+
+	if (config.open_hub_discord_in_new_window)
+		s += "<center><a href=\"[config.discordurl]\" target=\"_blank\"><b>[station_name()]</b></center><br>"
+	else
+		s += "<center><a href=\"[config.discordurl]\"><b>[station_name()]</b></center><br>"
+
+	// we can't execute code in config settings, so this is a workaround.
+	config.hub_body = replacetext(config.hub_body, "TIME_OF_DAY", lowertext(time_of_day))
+
+	if (config.hub_body)
+		s += config.hub_body
+
+	if (config.hub_features)
+		s += "<b>[config.hub_features]</b><br>"
+
+	if (config.hub_banner_url)
+		s += config.hub_banner_url
+
 	status = s
 
 #define FAILED_DB_CONNECTION_CUTOFF 5
@@ -564,6 +574,7 @@ proc/setup_database_connection()
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
 proc/establish_db_connection()
+
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
