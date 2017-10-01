@@ -134,6 +134,7 @@
 			var/rights = 0
 			if(D)
 				rights = D.rights
+
 			switch(new_rank)
 				if(null,"") return
 				if("*New Rank*")
@@ -165,7 +166,7 @@
 			var/client/C = directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
 			D.associate(C)											//link up with the client and add verbs
 
-			C << "[key_name_admin(usr)] has set your admin rank to: [new_rank]."
+			C << "<b>[key_name_admin(usr)] has set your admin rank to: [new_rank].</b>"
 			message_admins("[key_name_admin(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
 			log_admin("[key_name(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
 			log_admin_rank_modification(adm_ckey, new_rank)
