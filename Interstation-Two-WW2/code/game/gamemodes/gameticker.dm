@@ -168,9 +168,9 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	processScheduler.start()
 
-	if(config.sql_enabled)
+/*	if(config.sql_enabled)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
-
+*/
 	return 1
 
 /datum/controller/gameticker/proc/close_jobs()

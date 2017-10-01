@@ -138,22 +138,23 @@
 				if(null,"") return
 				if("*New Rank*")
 					new_rank = input("Please input a new rank", "New custom rank", null, null) as null|text
-					if(config.admin_legacy_system)
-						new_rank = ckeyEx(new_rank)
+				/*	if(config.admin_legacy_system)
+						new_rank = ckeyEx(new_rank)*/
 					if(!new_rank)
 						usr << "<font color='red'>Error: Topic 'editrights': Invalid rank</font>"
 						return
-					if(config.admin_legacy_system)
+				/*	if(config.admin_legacy_system)
 						if(admin_ranks.len)
 							if(new_rank in admin_ranks)
 								rights = admin_ranks[new_rank]		//we typed a rank which already exists, use its rights
 							else
 								admin_ranks[new_rank] = 0			//add the new rank to admin_ranks
-				else
+					*/
+			/*	else
 					if(config.admin_legacy_system)
 						new_rank = ckeyEx(new_rank)
 						rights = admin_ranks[new_rank]				//we input an existing rank, use its rights
-
+					*/
 			if(D)
 				D.disassociate()								//remove adminverbs and unlink from client
 				D.rank = new_rank								//update the rank
@@ -603,9 +604,9 @@
 					if(!check_rights(R_MOD,0) && !check_rights(R_BAN, 0))
 						usr << "<span class='warning'> You Cannot issue temporary job-bans!</span>"
 						return
-					if(config.ban_legacy_system)
+					/*if(config.ban_legacy_system)
 						usr << "\red Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban."
-						return
+						return*/
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(!mins)
 						return
@@ -662,10 +663,10 @@
 		//Unbanning joblist
 		//all jobs in joblist are banned already OR we didn't give a reason (implying they shouldn't be banned)
 		if(joblist.len) //at least 1 banned job exists in joblist so we have stuff to unban.
-			if(!config.ban_legacy_system)
-				usr << "Unfortunately, database based unbanning cannot be done through this panel"
-				DB_ban_panel(M.ckey)
-				return
+		//	if(!config.ban_legacy_system)
+			usr << "Unfortunately, database based unbanning cannot be done through this panel"
+			DB_ban_panel(M.ckey)
+			return
 			var/msg
 			for(var/job in joblist)
 				var/reason = jobban_isbanned(M, job)
@@ -1369,10 +1370,10 @@
 	else if(href_list["admin_secrets"])
 		var/datum/admin_secret_item/item = locate(href_list["admin_secrets"]) in admin_secrets.items
 		item.execute(usr)
-
+/*
 	else if(href_list["populate_inactive_customitems"])
 		if(check_rights(R_ADMIN|R_SERVER))
-			populate_inactive_customitems_list(src.owner)
+			populate_inactive_customitems_list(src.owner)*/
 /*
 	else if(href_list["vsc"])
 		if(check_rights(R_ADMIN|R_SERVER))

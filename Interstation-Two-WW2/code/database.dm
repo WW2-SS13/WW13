@@ -1,3 +1,23 @@
+var/database/database = null
+
+/database/New(filename)
+	..(filename)
+
+	spawn (1)
+		// create our tables now
+		if (!execute("TABLE erro_ban EXISTS"))
+			execute("CREATE TABLE erro_ban (id NULL, bantime STRING, serverip STRING, bantype STRING, reason STRING, job STRING, duration STRING, rounds STRING, expiration_time STRING, ckey STRING, computerid STRING, ip STRING, a_ckey STRING, a_computerid STRING, a_ip STRING , who STRING, adminwho STRING, edits STRING, unbanned STRING, unbanned_datetime STRING, unbanned_ckey STRING, unbanned_computerid STRING, unbanned_ip STRING);")
+
+		if (!execute("TABLE erro_admin EXISTS"))
+			execute("CREATE TABLE erro_admin (id NULL, ckey STRING, rank STRING, flags INTEGER);")
+
+		if (!execute("TABLE erro_player EXISTS"))
+			execute("CREATE TABLE erro_player (id NULL, ckey STRING, firstseen STRING, lastseen STRING, ip STRING, computerid STRING, lastadminrank STRING);")
+
+		if (!execute("TABLE erro_connection_log EXISTS"))
+			execute("CREATE TABLE erro_connection_log (id NULL, datetime STRING, serverip STRING, ckey STRING, ip STRING, computerid STRING);")
+
+
 /database/proc/execute(querytext)
 	. = FALSE
 
@@ -20,7 +40,7 @@
 		querytext = replacetext(querytext, empty_space, v)
 
 	// ensure we end with ;
-	if (hassuffix(querytext, ";"))
+	if (dd_hassuffix(querytext, ";"))
 		querytext = copytext(querytext, 1, length(querytext))
 
 	querytext = "[querytext];"
@@ -37,11 +57,14 @@
 				for (var/x in Q.GetRowData())
 					if (!.[x])
 						.[x] = Q.GetRowData()[x]
+						.["[x]_1"] = .[x]
 					else // handle duplicate values
 						if (!occurences_of[x])
 							occurences_of[x] = 1
 						var/occ = ++occurences_of[x]
 						.["[x]_[occ]"] = Q.GetRowData()[x]
+						// let us count how many 'x's there are
+						.["occurences_of_[x]"] = occ
 
 			return .
 

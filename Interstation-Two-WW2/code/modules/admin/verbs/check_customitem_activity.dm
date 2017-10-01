@@ -55,8 +55,7 @@ var/inactive_keys = "None<br>"
 	//run a query to get all ckeys inactive for over 2 months
 	var/list/inactive_ckeys = list()
 	if(ckeys_with_customitems.len)
-		var/DBQuery/query_inactive = dbcon.NewQuery("SELECT ckey, lastseen FROM erro_player WHERE datediff(Now(), lastseen) > 60")
-		query_inactive.Execute()
+		var/list/rowdata = database.execute("SELECT ckey, lastseen FROM erro_player WHERE datediff(Now(), lastseen) > 60")
 		while(query_inactive.NextRow())
 			var/cur_ckey = query_inactive.item[1]
 			//if the ckey has a custom item attached, output it

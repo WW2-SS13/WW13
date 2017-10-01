@@ -58,7 +58,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/show_player_info,
 	/client/proc/free_slot,			//frees slot for chosen job,
 	/client/proc/cmd_admin_change_custom_event,
-	/client/proc/check_customitem_activity,
+	///client/proc/check_customitem_activity,
 	/client/proc/allow_character_respawn,    // Allows a ghost to respawn ,
 	/client/proc/aooc,
 	/client/proc/change_human_appearance_admin,	// Allows an admin to change the basic appearance of human-based mobs ,
@@ -127,7 +127,7 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
 	/client/proc/toggle_random_events,
-	/client/proc/check_customitem_activity,
+//	/client/proc/check_customitem_activity,
 	/client/proc/nanomapgen_DumpImage
 	)
 var/list/admin_verbs_debug = list(
@@ -442,11 +442,11 @@ var/list/admin_verbs_mentor = list(
 /client/proc/jobbans()
 	set name = "Display Job bans"
 	set category = "Admin"
-	if(holder)
+	if(holder)/*
 		if(config.ban_legacy_system)
 			holder.Jobbans()
-		else
-			holder.DB_ban_panel()
+		else*/
+		holder.DB_ban_panel()
 
 	return
 
@@ -454,10 +454,10 @@ var/list/admin_verbs_mentor = list(
 	set name = "Unban Panel"
 	set category = "Admin"
 	if(holder)
-		if(config.ban_legacy_system)
+	/*	if(config.ban_legacy_system)
 			holder.unbanpanel()
-		else
-			holder.DB_ban_panel()
+		else*/
+		holder.DB_ban_panel()
 
 	return
 

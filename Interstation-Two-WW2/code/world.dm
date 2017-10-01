@@ -83,6 +83,9 @@ var/global/datum/global_init/init = new ()
 
 	src.update_status()
 
+	// make the database, or connect to it
+	establish_db_connection()
+
 	. = ..()
 
 #ifndef UNIT_TEST
@@ -466,7 +469,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	return 1
 
 /world/proc/load_mods()
-	if(config.admin_legacy_system)
+	return
+/*	if(config.admin_legacy_system)
 		var/text = file2text("config/moderators.txt")
 		if (!text)
 			error("Failed to load config/mods.txt")
@@ -485,9 +489,10 @@ var/world_topic_spam_protect_time = world.timeofday
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
 				D.associate(directory[ckey])
-
+*/
 /world/proc/load_mentors()
-	if(config.admin_legacy_system)
+	return
+/*	if(config.admin_legacy_system)
 		var/text = file2text("config/mentors.txt")
 		if (!text)
 			error("Failed to load config/mentors.txt")
@@ -505,7 +510,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
 				D.associate(directory[ckey])
-
+*/
 /world/proc/update_status()
 
 	if (world.port == config.testing_port)
@@ -553,22 +558,24 @@ proc/setup_database_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
-	if(!dbcon)
-		dbcon = new()
-
+	if(!database)
+		database = new("database.db")
+/*
 	var/user = sqlfdbklogin
 	var/pass = sqlfdbkpass
 	var/db = sqlfdbkdb
 	var/address = sqladdress
-	var/port = sqlport
+	var/port = sqlport*/
 
-	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = dbcon.IsConnected()
+//	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	//. = dbcon.IsConnected()
+
+	. = TRUE
 	if ( . )
 		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		failed_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << dbcon.ErrorMsg()
+		world.log << "The database failed to start up for the [failed_db_connections == 1 ? "1st" : "[failed_db_connections]st"] time."
 
 	return .
 
@@ -578,26 +585,26 @@ proc/establish_db_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
-	if(!dbcon || !dbcon.IsConnected())
+	if(!database)
 		return setup_database_connection()
 	else
 		return 1
 
-
+/*
 /hook/startup/proc/connectOldDB()
 	if(!setup_old_database_connection())
 		world.log << "Your server failed to establish a connection with the SQL database."
 	else
 		world.log << "SQL database connection established."
-	return 1
-
+	return 1*/
+/*
 //These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
 proc/setup_old_database_connection()
 
 	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
-	if(!dbcon_old)
+	if(!database)
 		dbcon_old = new()
 
 	var/user = sqllogin
@@ -625,5 +632,5 @@ proc/establish_old_db_connection()
 		return setup_old_database_connection()
 	else
 		return 1
-
+*/
 #undef FAILED_DB_CONNECTION_CUTOFF

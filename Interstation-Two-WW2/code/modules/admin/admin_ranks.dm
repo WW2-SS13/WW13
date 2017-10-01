@@ -64,7 +64,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		C.remove_admin_verbs()
 		C.holder = null
 	admins.Cut()
-
+/*
 	if(config.admin_legacy_system)
 		load_admin_ranks()
 
@@ -98,36 +98,38 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 			//find the client for a ckey if they are connected and associate them with the new admin datum
 			D.associate(directory[ckey])
 
-	else
-		//The current admin system uses SQL
+	else*/
+	//The current admin system uses SQL
 
-		establish_db_connection()
-		if(!dbcon.IsConnected())
-			error("Failed to connect to database in load_admins(). Reverting to legacy system.")
-			log_misc("Failed to connect to database in load_admins(). Reverting to legacy system.")
-			config.admin_legacy_system = 1
-			load_admins()
-			return
+//	establish_db_connection()
+	if(!database)
+	/*	error("Failed to connect to database in load_admins(). Reverting to legacy system.")
+		log_misc("Failed to connect to database in load_admins(). Reverting to legacy system.")
+		config.admin_legacy_system = 1
+		load_admins()*/
+		return
 
-		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, rank, flags FROM erro_admin")
-		query.Execute()
-		while(query.NextRow())
-			var/ckey = query.item[1]
-			var/rank = query.item[2]
-			if(rank == "Removed")	continue	//This person was de-adminned. They are only in the admin list for archive purposes.
+	var/list/rowdata = database.execute("SELECT ckey, rank, flags FROM erro_admin")
 
-			var/rights = query.item[3]
-			if(istext(rights))	rights = text2num(rights)
-			var/datum/admins/D = new /datum/admins(rank, rights, ckey)
+	if (islist(rowdata) && !isemptylist(rowdata))
+		var/ckey = rowdata["ckey"]
+		var/rank = rowdata["rank"]
+		if(rank == "Removed") goto deadminned	//This person was de-adminned. They are only in the admin list for archive purposes.
 
-			//find the client for a ckey if they are connected and associate them with the new admin datum
-			D.associate(directory[ckey])
-		if(!admin_datums)
-			error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
-			log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
-			config.admin_legacy_system = 1
-			load_admins()
-			return
+		var/rights = rowdata["flags"]
+		if(istext(rights))	rights = text2num(rights)
+		var/datum/admins/D = new /datum/admins(rank, rights, ckey)
+
+		//find the client for a ckey if they are connected and associate them with the new admin datum
+		D.associate(directory[ckey])
+
+	deadminned
+	if(!admin_datums)
+		/*error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
+		log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
+		config.admin_legacy_system = 1
+		load_admins()*/
+		return
 
 	#ifdef TESTING
 	var/msg = "Admins Built:\n"
