@@ -11,6 +11,7 @@
 	forced_ambience = null
 	base_turf = /turf/floor/plating/grass //The base turf type of the area, which can be used to override the z-level's base turf
 	sound_env = STANDARD_STATION
+	icon_state = "none"
 
 /area/prishtina/New()
 	..()

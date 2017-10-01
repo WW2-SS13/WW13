@@ -1,7 +1,13 @@
-// the only reason this exists is because apparently new pick(listoftypes)
-// is invalid code
+/* the only reason this exists is because apparently 'new pick(listoftypes)'
+	is invalid code - Kachnov */
+
+var/added_plants_to_rations = 0
 
 /proc/new_ration(faction, sort)
+	if (!added_plants_to_rations)
+		german_rations_solids += typesof(/obj/item/weapon/reagent_containers/food/snacks/grown) - /obj/item/weapon/reagent_containers/food/snacks/grown
+		soviet_rations_solids += typesof(/obj/item/weapon/reagent_containers/food/snacks/grown) - /obj/item/weapon/reagent_containers/food/snacks/grown
+
 	switch (faction)
 		if (GERMAN)
 			switch (sort)
@@ -23,7 +29,7 @@
 					food.pixel_x = 0
 					food.pixel_y = 0
 					return food
-		if ("SOVIET")
+		if (RUSSIAN)
 			switch (sort)
 				if ("solid")
 					var/solid = pick(soviet_rations_solids)

@@ -253,7 +253,11 @@
 		stop()
 		return
 
-	var/datum/recipe/recipe = select_recipe(available_recipes,src)
+	var/datum/recipe/food/recipe = select_recipe(available_recipes,src)
+	if (!istype(recipe))
+		abort()
+		return
+
 	var/obj/cooked
 	if (!recipe)
 		dirty += 1
@@ -284,7 +288,7 @@
 			cooked.loc = src.loc
 			return
 	else
-		var/halftime = round(recipe.time/10/2)
+		var/halftime = round(recipe.calculate_cooking_time()/10/2)
 		if (!wzhzhzh(halftime))
 			abort()
 			return
