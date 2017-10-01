@@ -51,7 +51,9 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		validckey = 1
 
 	var/client/me = usr.client
-	if (istype(me) && me.holder.rank == "Host")
+
+	// Hosts (including testing mode hosts) can bypass the validckey check.
+	if (istype(me) && findtext(me.holder.rank, "Host"))
 		validckey = 1
 
 	if(!validckey)

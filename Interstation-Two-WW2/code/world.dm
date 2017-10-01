@@ -559,7 +559,7 @@ proc/setup_database_connection()
 		return 0
 
 	if(!database)
-		database = new("database.db")
+		database = new("SQL/database.db")
 /*
 	var/user = sqlfdbklogin
 	var/pass = sqlfdbkpass
