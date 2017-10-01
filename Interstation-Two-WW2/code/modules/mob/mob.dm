@@ -397,7 +397,7 @@
 	if(M.mind)
 		M.mind.reset()
 	return
-
+/*
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC"
@@ -426,7 +426,7 @@
 		prefs.lastchangelog = changelog_hash
 		prefs.save_preferences()
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
-
+*/
 /mob/verb/observe()
 	set name = "Observe"
 	set category = "OOC"
@@ -500,13 +500,13 @@
 			client.adminobs = 1
 			if(mob_eye == client.mob || client.eye == client.mob)
 				client.adminobs = 0
-
+/*
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "OOC"
 	unset_machine()
 	reset_view(null)
-
+*/
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])
 		var/t1 = text("window=[href_list["mach_close"]]")

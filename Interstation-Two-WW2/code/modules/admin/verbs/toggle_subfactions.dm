@@ -5,7 +5,7 @@ var/paratroopers_toggled = 1
 
 /client/proc/toggle_subfactions()
 	set name = "Toggle Subfactions"
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"

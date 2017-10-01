@@ -9,7 +9,7 @@ var/database/database = null
 			execute("CREATE TABLE erro_ban (id NULL, bantime STRING, serverip STRING, bantype STRING, reason STRING, job STRING, duration STRING, rounds STRING, expiration_time STRING, ckey STRING, computerid STRING, ip STRING, a_ckey STRING, a_computerid STRING, a_ip STRING , who STRING, adminwho STRING, edits STRING, unbanned STRING, unbanned_datetime STRING, unbanned_ckey STRING, unbanned_computerid STRING, unbanned_ip STRING);")
 
 		if (!execute("TABLE erro_admin EXISTS"))
-			execute("CREATE TABLE erro_admin (id NULL, ckey STRING, rank STRING, flags INTEGER);")
+			execute("CREATE TABLE erro_admin (id INTEGER, ckey STRING, rank STRING, flags INTEGER);")
 
 		if (!execute("TABLE erro_player EXISTS"))
 			execute("CREATE TABLE erro_player (id NULL, ckey STRING, firstseen STRING, lastseen STRING, ip STRING, computerid STRING, lastadminrank STRING);")

@@ -443,7 +443,7 @@ proc/display_roundstart_logout_report()
 	for(var/datum/objective/objective in player.objectives)
 		player.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
 		obj_count++
-
+/*
 /mob/verb/check_round_info()
 	set name = "Check Round Info"
 	set category = "OOC"
@@ -461,3 +461,4 @@ proc/display_roundstart_logout_report()
 	else
 		usr << "<i>Shhhh</i>. It's a secret."
 	return
+*/

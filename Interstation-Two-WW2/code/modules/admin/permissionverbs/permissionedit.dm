@@ -47,18 +47,25 @@
 // see admin/topic.dm
 /datum/admins/proc/log_admin_rank_modification(var/adm_ckey, var/new_rank)
 
+	world << "log_admin_rank_modification happened"
+
 	if(!usr.client)
+		world << "log_admin_rank_modification: no bloody usr.client!!!"
 		return
 
 	if(!usr.client.holder || !(usr.client.holder.rights & R_PERMISSIONS))
 		usr << "\red You do not have permission to do this!"
 		return
 
+	world << "log_admin_rank_modification: establishing DB"
+
 	establish_db_connection()
 
 	if(!database)
 		usr << "\red Failed to establish database connection"
 		return
+
+	world << "log_admin_rank_modification: established DB"
 
 	if(!adm_ckey || !new_rank)
 		return
@@ -136,6 +143,9 @@
 	if (islist(rowdata) && !isemptylist(rowdata))
 		admin_id = text2num(rowdata["id"])
 		admin_rights = text2num(rowdata["flags"])
+
+	world << "log_admin_permission_modification id: [admin_id]"
+	world << "log_admin_permission_modification rights: [admin_rights]"
 
 	if(!admin_id)
 		return

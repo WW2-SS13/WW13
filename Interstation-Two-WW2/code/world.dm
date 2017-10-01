@@ -222,12 +222,12 @@ var/world_topic_spam_protect_time = world.timeofday
 			positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Captain", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
 
 		return list2params(positions)
-
+/*
 	else if(T == "revision")
 		if(revdata.revision)
 			return list2params(list(branch = revdata.branch, date = revdata.date, revision = revdata.revision))
 		else
-			return "unknown"
+			return "unknown"*/
 
 	else if(copytext(T,1,5) == "info")
 		var/input[] = params2list(T)

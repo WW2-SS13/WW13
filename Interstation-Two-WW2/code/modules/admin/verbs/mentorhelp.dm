@@ -1,5 +1,5 @@
 /client/verb/mentorhelp(msg as text)
-	set category = "HELP"
+	set category = "Help!"
 	set name = "Mentorhelp"
 
 	if(say_disabled)	//This is here to try to identify lag problems

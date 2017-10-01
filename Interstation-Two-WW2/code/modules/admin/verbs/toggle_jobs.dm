@@ -1,7 +1,7 @@
 
 /client/proc/toggle_jobs()
 	set name = "Toggle Jobs"
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"

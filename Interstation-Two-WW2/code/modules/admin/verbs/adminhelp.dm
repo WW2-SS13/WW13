@@ -1,5 +1,5 @@
 /client/verb/adminhelp(msg as text)
-	set category = "HELP"
+	set category = "Help!"
 	set name = "Adminhelp"
 
 	if(say_disabled)	//This is here to try to identify lag problems

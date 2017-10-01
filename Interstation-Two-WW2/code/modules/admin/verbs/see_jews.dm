@@ -1,6 +1,6 @@
 /client/proc/see_jews()
 	set name = "See Jews"
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 
 	if(!check_rights(R_MOD))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
