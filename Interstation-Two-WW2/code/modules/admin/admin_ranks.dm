@@ -64,6 +64,8 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		C.remove_admin_verbs()
 		C.holder = null
 	admins.Cut()
+
+	load_admin_ranks()
 /*
 	if(config.admin_legacy_system)
 		load_admin_ranks()

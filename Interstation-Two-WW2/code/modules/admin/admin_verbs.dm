@@ -96,7 +96,7 @@ var/list/admin_verbs_fun = list(
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
 	/client/proc/editappear,
-	/client/proc/roll_dices,
+//	/client/proc/roll_dices,
 	/client/proc/randomize_lobby_music,
 //	/datum/admins/proc/call_supply_drop,
 //	/datum/admins/proc/call_drop_pod
@@ -233,7 +233,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_debug_tog_aliens,
 //	/client/proc/air_report,
 	/client/proc/enable_debug_verbs,
-	/client/proc/roll_dices,
+//	/client/proc/roll_dices,
 	/proc/possess,
 	/proc/release
 	)
@@ -358,10 +358,6 @@ var/list/admin_verbs_mentor = list(
 	add_admin_verbs()
 
 	src << "<span class='interface'>All of your adminverbs are now visible.</span>"
-
-
-
-
 
 
 /client/proc/admin_ghost()

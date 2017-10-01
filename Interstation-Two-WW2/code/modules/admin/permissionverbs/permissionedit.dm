@@ -44,8 +44,8 @@
 
 	usr << browse(output,"window=editrights;size=600x500")
 
+// see admin/topic.dm
 /datum/admins/proc/log_admin_rank_modification(var/adm_ckey, var/new_rank)
-//	if(config.admin_legacy_system)	return
 
 	if(!usr.client)
 		return
@@ -71,28 +71,31 @@
 	if(!istext(adm_ckey) || !istext(new_rank))
 		return
 
-	var/list/rowdata = database.execute("SELECT id FROM erro_admin WHERE ckey = '[adm_ckey]'")
+	var/list/rowdata = database.execute("SELECT id FROM erro_admin WHERE ckey = '[adm_ckey]';")
 
 	var/new_admin = 1
 	var/admin_id
-	for (var/v in 1 to rowdata["occurences_of_id"])
+
+	if (islist(rowdata) && !isemptylist(rowdata))
 		new_admin = 0
-		admin_id = text2num(rowdata["id_[v]"])
+		admin_id = text2num(rowdata["id"])
 
 	if(new_admin)
-		database.execute("INSERT INTO erro_admin (`id`, `ckey`, `rank`, `flags`) VALUES (null, '[adm_ckey]', '[new_rank]', 0)")
+		database.execute("INSERT INTO erro_admin (id, ckey, rank, flags) VALUES (null, '[adm_ckey]', '[new_rank]', 0)")
 		message_admins("[key_name_admin(usr)] made [key_name_admin(adm_ckey)] an admin with the rank [new_rank]")
 		log_admin("[key_name(usr)] made [key_name(adm_ckey)] an admin with the rank [new_rank]")
 		usr << "\blue New admin added."
 	else
 		if(!isnull(admin_id) && isnum(admin_id))
-			database.execute("UPDATE erro_admin SET rank = '[new_rank]' WHERE id = [admin_id]")
+			database.execute("UPDATE erro_admin SET rank = '[new_rank]' WHERE id = '[admin_id]'")
 			message_admins("[key_name_admin(usr)] changed [key_name_admin(adm_ckey)] admin rank to [new_rank]")
 			log_admin("[key_name(usr)] changed [key_name(adm_ckey)] admin rank to [new_rank]")
 			usr << "\blue Admin rank changed."
 
+// see admin/topic.dm
 /datum/admins/proc/log_admin_permission_modification(var/adm_ckey, var/new_permission, var/nominal)
-//	if(config.admin_legacy_system)	return
+
+	world << "log_admin_permission_modification happened"
 
 	if(!usr.client)
 		return
@@ -101,10 +104,15 @@
 		usr << "\red You do not have permission to do this!"
 		return
 
+	world << "log_admin_permission_modification: establishing DB conn"
+
 	establish_db_connection()
+
 	if(!database)
 		usr << "\red Failed to establish database connection"
 		return
+
+	world << "log_admin_permission_modification: established DB conn"
 
 	if(!adm_ckey || !new_permission)
 		return
@@ -120,25 +128,25 @@
 	if(!istext(adm_ckey) || !isnum(new_permission))
 		return
 
-	var/list/rowdata = database.execute("SELECT id, flags FROM erro_admin WHERE ckey = '[adm_ckey]'")
+	var/list/rowdata = database.execute("SELECT id, flags FROM erro_admin WHERE ckey = '[adm_ckey]';")
 
 	var/admin_id
 	var/admin_rights
 
-	for (var/v in 1 to rowdata["occurences_of_id"])
-		admin_id = text2num(rowdata["id_[v]"])
-		admin_rights = text2num(rowdata["flags_[v]"])
+	if (islist(rowdata) && !isemptylist(rowdata))
+		admin_id = text2num(rowdata["id"])
+		admin_rights = text2num(rowdata["flags"])
 
 	if(!admin_id)
 		return
 
 	if(admin_rights & new_permission) //This admin already has this permission, so we are removing it.
-		database.execute("UPDATE erro_admin SET flags = [admin_rights & ~new_permission] WHERE id = [admin_id]")
+		database.execute("UPDATE erro_admin SET flags = '[admin_rights & ~new_permission]' WHERE id = '[admin_id]'")
 		message_admins("[key_name_admin(usr)] removed the [nominal] permission of [key_name_admin(adm_ckey)]")
 		log_admin("[key_name(usr)] removed the [nominal] permission of [key_name(adm_ckey)]")
 		usr << "\blue Permission removed."
 	else //This admin doesn't have this permission, so we are adding it.
-		database.execute("UPDATE erro_admin SET flags = '[admin_rights | new_permission]' WHERE id = [admin_id]")
+		database.execute("UPDATE erro_admin SET flags = '[admin_rights | new_permission]' WHERE id = '[admin_id]'")
 		message_admins("[key_name_admin(usr)] added the [nominal] permission of [key_name_admin(adm_ckey)]")
 		log_admin("[key_name(usr)] added the [nominal] permission of [key_name(adm_ckey)]")
 		usr << "\blue Permission added."

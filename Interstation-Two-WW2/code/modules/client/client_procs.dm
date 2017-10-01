@@ -97,6 +97,7 @@
 	//CONNECT//
 	///////////
 /client/New(TopicData)
+
 	dir = NORTH
 	TopicData = null							//Prevent calls to client.Topic from connect
 
@@ -144,7 +145,6 @@
 		src << "<span class='alert'>[custom_event_msg]</span>"
 		src << "<br>"
 
-
 	if(holder)
 		add_admin_verbs()
 		admin_memo_show()
@@ -157,7 +157,6 @@
 			sleep(2) // wait a bit more, possibly fixes hardware mode not re-activating right
 			winset(src, null, "command=\".configure graphics-hwmode on\"")
 
-	log_client_to_db()
 
 	send_resources()
 
@@ -169,6 +168,8 @@
 
 	fix_nanoUI()
 
+	spawn (1)
+		log_to_db()
 
 
 	//////////////
@@ -202,17 +203,17 @@
 		return -1
 
 
-/client/proc/log_client_to_db()
+/client/proc/log_to_db()
 
 	if ( IsGuestKey(src.key) )
 		return
-/*
-	establish_db_connection()
-	if(!dbcon.IsConnected())
-		return*/
+
+	if (!database)
+		establish_db_connection()
+
 
 	var/sql_ckey = sql_sanitize_text(src.ckey)
-	var/list/rowdata = database.execute("SELECT id, datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]'")
+	var/list/rowdata = database.execute("SELECT id, datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]';")
 	var/sql_id = 0
 	player_age = 0	// New players won't have an entry so knowing we have a connection we set this to zero to be updated if their is a record.
 
@@ -220,13 +221,13 @@
 		sql_id = rowdata["id"]
 		player_age = rowdata["age"]
 
-	rowdata = database.execute("SELECT ckey FROM erro_player WHERE ip = '[address]'")
+	rowdata = database.execute("SELECT ckey FROM erro_player WHERE ip = '[address]';")
 	related_accounts_ip = ""
 
 	if (islist(rowdata) && !isemptylist(rowdata))
 		related_accounts_ip += "[rowdata["ckey"]], "
 
-	rowdata = database.execute("SELECT ckey FROM erro_player WHERE computerid = '[computer_id]'")
+	rowdata = database.execute("SELECT ckey FROM erro_player WHERE computerid = '[computer_id]';")
 	related_accounts_cid = ""
 	if (islist(rowdata) && !isemptylist(rowdata))
 		related_accounts_cid += "[rowdata["ckey"]], "
@@ -246,18 +247,35 @@
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
 	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
+	if (sql_ip == null)
+		sql_ip = "HOST"
+
+	//#define DEBUG
+
+	#ifdef DEBUG
+	world << "sql_ip: [sql_ip]"
+	world << "sql_computerid: [sql_computerid]"
+	world << "sql_admin_rank: [sql_admin_rank]"
+	world << "sql_id: [sql_id]"
+	#endif
 
 	if(sql_id)
+		#ifdef DEBUG
+		world << "prev. player [src]"
+		#endif
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
-		database.execute("UPDATE erro_player SET lastseen = Now(), ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = [sql_id]")
+		database.execute("UPDATE erro_player SET lastseen = '[database.Now()]', ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = '[sql_id]';")
 	else
+		#ifdef DEBUG
+		world << "new player [src]"
+		#endif
 		//New player!! Need to insert all the stuff
-		database.execute("INSERT INTO erro_player (id, ckey, firstseen, lastseen, ip, computerid, lastadminrank) VALUES (null, '[sql_ckey]', Now(), Now(), '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]')")
+		database.execute("INSERT INTO erro_player (id, ckey, firstseen, lastseen, ip, computerid, lastadminrank) VALUES (null, '[sql_ckey]', '[database.Now()]', '[database.Now()]', '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]');")
 
 	//Logging player access
 	var/serverip = "[world.internet_address]:[world.port]"
-	database.execute("INSERT INTO erro_connection_log (`id`,`datetime`,`serverip`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),'[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
-
+	database.execute("INSERT INTO erro_connection_log (id,datetime,serverip,ckey,ip,computerid) VALUES(null,'[database.Now()]','[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
+	//#undef DEBUG
 
 #undef TOPIC_SPAM_DELAY
 #undef UPLOAD_LIMIT

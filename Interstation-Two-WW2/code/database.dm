@@ -17,6 +17,8 @@ var/database/database = null
 		if (!execute("TABLE erro_connection_log EXISTS"))
 			execute("CREATE TABLE erro_connection_log (id NULL, datetime STRING, serverip STRING, ckey STRING, ip STRING, computerid STRING);")
 
+/database/proc/Now()
+	return "[world.realtime]"
 
 /database/proc/execute(querytext)
 	. = FALSE
