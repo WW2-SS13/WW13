@@ -86,10 +86,12 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 
 	reason = sql_sanitize_text(reason)
 
-	database.execute("INSERT INTO erro_ban (id,bantime,serverip,bantype,reason,job,duration,rounds,expiration_time,ckey,computerid,ip,a_ckey,a_computerid,a_ip,who,adminwho,edits,unbanned,unbanned_datetime,unbanned_ckey,unbanned_computerid,unbanned_ip) VALUES (null, Now(), '[serverip]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], [(rounds)?"[rounds]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null)")
-	usr << "\blue Ban saved to database."
-	message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.",1)
-
+	if (database.execute("INSERT INTO erro_ban (id,bantime,serverip,bantype,reason,job,duration,rounds,expiration_time,ckey,computerid,ip,a_ckey,a_computerid,a_ip,who,adminwho,edits,unbanned,unbanned_datetime,unbanned_ckey,unbanned_computerid,unbanned_ip) VALUES (null, '[database.Now()]', '[serverip]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], [(rounds)?"[rounds]":"0"], '[database.After(duration)]', '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null)"))
+		usr << "\blue Ban saved to database."
+		message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.",1)
+	else
+		usr << "\red Ban failed!"
+		message_admins("[key_name_admin(usr)] tried to add a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database. But it failed.",1)
 
 
 datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")

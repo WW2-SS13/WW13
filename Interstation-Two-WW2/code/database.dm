@@ -20,6 +20,10 @@ var/database/database = null
 /database/proc/Now()
 	return "[world.realtime]"
 
+/database/proc/After(minutes)
+	return "[world.realtime]+[minutes*600]"
+
+
 /database/proc/execute(querytext)
 	. = FALSE
 
