@@ -78,18 +78,19 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 	var/list/rowdata = database.execute("SELECT ckey, rank, flags FROM erro_admin;")
 
 	if (islist(rowdata) && !isemptylist(rowdata))
-		var/ckey = lowertext(rowdata["ckey"])
-		var/rank = rowdata["rank"]
-		if(rank == "Removed") goto deadminned	//This person was de-adminned. They are only in the admin list for archive purposes.
-		var/rights = rowdata["flags"]
-		if(istext(rights))
-			rights = text2num(rights)
+		for (var/v in 1 to rowdata.len)
+			var/ckey = lowertext(rowdata["ckey_[v]"])
+			var/rank = rowdata["rank_[v]"]
+			if(rank == "Removed") goto deadminned	//This person was de-adminned. They are only in the admin list for archive purposes.
+			var/rights = rowdata["flags_[v]"]
+			if(istext(rights))
+				rights = text2num(rights)
 
-		// make our admins datum and put us in admin_datums[]
-		new/datum/admins(rank, rights, ckey)
+			// make our admins datum and put us in admin_datums[]
+			new/datum/admins(rank, rights, ckey)
 
-		/* moved association code to client/New(), so it works for clients
-		   created at the same time as the world */
+			/* moved association code to client/New(), so it works for clients
+			   created at the same time as the world */
 
 	deadminned
 	if(!admin_datums)

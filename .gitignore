@@ -16,3 +16,4 @@ cfg/
 # ignore config, but not subdirs (like config/example)
 config/*
 !config/*/
+Interstation-Two-WW2/SQL/database.db
