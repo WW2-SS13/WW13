@@ -26,7 +26,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	var/delay_end = 0	//if set to nonzero, the round will not restart on it's own
 
-	var/triai = 0//Global holder for Triumvirate
+//	var/triai = 0//Global holder for Triumvirate
 
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
 
@@ -137,8 +137,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			//Deleting Startpoints but we need the ai point to AI-ize people later
 			if (S.name != "AI")
 				qdel(S)
-		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
-	//	world << sound('sound/AI/welcome.ogg') // Skie
+
+	//	world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
 		//Holiday Round-start stuff	~Carn
 
 		// todo: make these hooks. Apparently they all fail on /hook/roundstart
@@ -161,16 +161,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
 
-/*	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
-	master_controller.process()		//Start master_controller.process()
-	lighting_controller.process()	//Start processing DynamicAreaLighting updates
-	*/
-
 	processScheduler.start()
 
-/*	if(config.sql_enabled)
-		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
-*/
 	return 1
 
 /datum/controller/gameticker/proc/close_jobs()

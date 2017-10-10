@@ -116,7 +116,9 @@
 /client/proc/show_battle_report()
 	set category = "WW2 (Admin)"
 	set name = "Show battle report"
-	show_global_battle_report(src)
+
+	if ((input(src, "Are you sure you want to show the battle report? Unless the Battle Controller Process died, it will happen automatically!", "Battle Report") in list ("Yes", "No")) == "Yes")
+		show_global_battle_report(src)
 
 /proc/show_global_battle_report(var/shower)
 

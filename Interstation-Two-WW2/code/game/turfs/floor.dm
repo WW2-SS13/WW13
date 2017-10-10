@@ -24,6 +24,9 @@
 //	var/lava = 0
 	var/overrided_icon_state
 
+	var/season = "SPRING"
+	var/uses_winter_overlay = 0
+
 /turf/floor/is_plating()
 	return !flooring
 

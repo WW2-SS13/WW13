@@ -38,6 +38,7 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/Destroy()
 	processing_objects -= src
+	blood -= src
 	return ..()
 
 /obj/effect/decal/cleanable/blood/New()
@@ -54,6 +55,7 @@ var/global/list/image/splatter_cache=list()
 					qdel(B)
 	drytime = world.time + DRYING_TIME * (amount+1)
 	processing_objects += src
+	blood += src
 
 /obj/effect/decal/cleanable/blood/process()
 	if(world.time > drytime)

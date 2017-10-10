@@ -531,6 +531,11 @@ var/world_topic_spam_protect_time = world.timeofday
 	// we can't execute code in config settings, so this is a workaround.
 	config.hub_body = replacetext(config.hub_body, "TIME_OF_DAY", lowertext(time_of_day))
 
+	if (ticker && ticker.mode && istype(ticker.mode, /datum/game_mode/ww2))
+		config.hub_body = replacetext(config.hub_body, "SEASON", lowertext(ticker.mode:season))
+	else
+		config.hub_body = replacetext(config.hub_body, "SEASON", "Spring")
+
 	if (config.hub_body)
 		s += config.hub_body
 
@@ -580,7 +585,7 @@ proc/setup_database_connection()
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_db_connection()
+/proc/establish_db_connection()
 
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0

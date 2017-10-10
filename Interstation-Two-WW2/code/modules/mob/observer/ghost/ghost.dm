@@ -146,6 +146,15 @@ Works together with spawning an observer, noted above.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
 		ghost.key = key
+
+		// add ghost-only admins verbs
+		if (ghost.client.holder && check_rights(R_MOD, user = ghost))
+			ghost.verbs += /client/proc/see_who_is_in_tank
+			ghost.verbs += /client/proc/eject_from_tank
+			ghost.verbs += /client/proc/Goto_adminzone
+			if (check_rights(R_POSSESS, user = ghost))
+				ghost.verbs += admin_verbs_possess
+
 	//	if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
 		//	ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
 		return ghost
@@ -206,8 +215,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	mind.current.ajourn=0
 	mind.current.key = key
 	mind.current.teleop = null
+
 	if(!admin_ghosted)
 		announce_ghost_joinleave(mind, 0, "They now occupy their body again.")
+
+	// remove ghost-only admins verbs
+	if (mind.current.client.holder && check_rights(R_MOD, user = mind.current))
+		mind.current.verbs -= /client/proc/see_who_is_in_tank
+		mind.current.verbs -= /client/proc/eject_from_tank
+		mind.current.verbs -= /client/proc/Goto_adminzone
+		if (check_rights(R_POSSESS, user = mind.current))
+			mind.current.verbs -= admin_verbs_possess
+
 	return 1
 
 /mob/observer/ghost/verb/toggle_medHUD()

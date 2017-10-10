@@ -1,3 +1,16 @@
+/obj/structure/closet/crate/proc/resize(decimal)
+	if (decimal > 1.0)
+		var/add_crates = ceil((decimal - 1.0) * contents.len)
+		for (var/v in 1 to add_crates)
+			var/atom/contents_1 = contents[1]
+			contents += new contents_1.type
+	else if (decimal < 1.0)
+		var/remove_crates = ceil((1.0 - decimal) * contents.len)
+		for (var/v in 1 to remove_crates)
+			if (!contents.len)
+				break
+			contents -= pick(contents)
+
 /obj/structure/closet/crate/flammenwerfer_fueltanks
 	name = "Flammenwerfer fueltanks crate"
 	icon = 'icons/WW2/artillery_crate.dmi'
@@ -144,7 +157,6 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-
 
 /obj/structure/closet/crate/rations/
 	name = "Rations"

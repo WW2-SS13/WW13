@@ -1094,9 +1094,11 @@ var/global/list/fallschirm_landmarks = list()
 				if (istype(ticker.mode, /datum/game_mode/ww2))
 					for (var/obj/item/weapon/gun/projectile/gun in H)
 						if (!H.r_store)
-							H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_r_store)
+							if (gun.magazine_type)
+								H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_r_store)
 						if (!H.l_store)
-							H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_l_store)
+							if (gun.magazine_type)
+								H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_l_store)
 						break // but only the first gun we find
 
 			// get our new real name based on jobspecific language ( and more
@@ -1194,7 +1196,7 @@ var/global/list/fallschirm_landmarks = list()
 			if (isgermansquadmember_or_leader(H))
 				if (isgermansquadleader(H))
 					++german_squad_leaders
-					german_squad_info[current_german_squad] = "<b>The leader of your squad (#[current_german_squad]) is [H.real_name]. He has a fancy golden version of your HUD.</b>"
+					german_squad_info[current_german_squad] = "<b>The leader of your squad (#[current_german_squad]) is [H.real_name]. He has a golden HUD.</b>"
 					world << "<b>The leader of Wehrmacht Squad #[current_german_squad] is [H.real_name]!</b>"
 					german_officer_squad_info[current_german_squad] = "<b><i>The leader of squad #[current_german_squad] is [H.real_name].</i></b>"
 				else
@@ -1209,7 +1211,7 @@ var/global/list/fallschirm_landmarks = list()
 
 			else if (isrussiansquadmember_or_leader(H))
 				if (isrussiansquadleader(H))
-					russian_squad_info[current_russian_squad] = "<b>The leader of your squad (#[current_russian_squad]) is [H.real_name]. He has a fancy golden version of your HUD.</b>"
+					russian_squad_info[current_russian_squad] = "<b>The leader of your squad (#[current_russian_squad]) is [H.real_name]. He has a golden HUD.</b>"
 					world << "<b>The leader of Soviet Squad #[current_russian_squad] is [H.real_name]!</b>"
 					russian_officer_squad_info[current_russian_squad] = "<b><i>The leader of squad #[current_russian_squad] is [H.real_name].</i></b>"
 					++russian_squad_leaders

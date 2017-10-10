@@ -2,6 +2,23 @@
 #define RAND_F(LOW, HIGH) (rand()*(HIGH-LOW) + LOW)
 #define ceil(x) (-round(-(x)))
 
+// random decimals
+/proc/random_decimal(var/low, var/high)
+	return (rand(smart_round(low*100), smart_round(high*100)))/100
+
+/proc/smart_round(var/num)
+	var/_ceil = ceil(num)
+	var/_floor = round(num)
+	// if the ceiling is farther away, or the num == the floor, return _floor
+	if (abs(num - _ceil) > abs(num - _floor) || num == _floor)
+		return _floor
+	// if the floor is farther away, or the num == the ceiling, return _ceil
+	else if (abs(num - _floor) > abs(num - _ceil) || num == _ceil)
+		return _ceil
+
+	// we're equally far from the ceiling and the floor, return the floor
+	return _floor
+
 // min is inclusive, max is exclusive
 /proc/Wrap(val, min, max)
 	var/d = max - min

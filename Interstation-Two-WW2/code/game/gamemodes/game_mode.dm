@@ -34,6 +34,8 @@ var/global/list/additional_antag_types = list()
 	var/event_delay_mod_moderate             // Modifies the timing of random events.
 	var/event_delay_mod_major                // As above.
 
+	var/datum/game_aspect/aspect = null
+
 /datum/game_mode/New()
 	..()
 	// Enforce some formatting.
@@ -122,6 +124,8 @@ var/global/list/additional_antag_types = list()
 			world << "[antag_summary]"
 		else
 			message_admins("[antag_summary]")
+	if (aspect)
+		aspect.activate()
 
 ///can_start()
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.

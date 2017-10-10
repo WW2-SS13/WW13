@@ -1059,7 +1059,6 @@
 
 	never_updated_hud_list = 0
 
-
 	if (original_job && base_faction)
 
 		if (base_faction && BITTEST(hud_updateflag, FACTION_TO_ENEMIES))

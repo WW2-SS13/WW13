@@ -96,6 +96,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m4(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H), slot_r_hand)
 	H.give_radio()
 	H.visible_message("<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the Russian force according to the <b>Commandir</b>'s and the <b>Ofitser</b>'s orders.</span>")
 	return 1
@@ -355,6 +356,7 @@
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRA"
 	additional_languages = list( "German" = 100 )
+	is_guard = 1
 
 var/first_guard = 0
 /datum/job/russian/guard/equip(var/mob/living/carbon/human/H)

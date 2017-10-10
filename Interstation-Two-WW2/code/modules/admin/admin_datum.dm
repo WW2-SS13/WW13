@@ -13,17 +13,26 @@ var/list/admin_datums = list()
 		return marked_datum_weak.resolve()
 
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
+
 	if(!ckey)
 		error("Admin datum created without a ckey argument. Datum has been deleted")
 		qdel(src)
 		return
-//	admincaster_signature = "[company_name] Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
+
 	if (!config || !config.debug)
 		rank = initial_rank
 		rights = initial_rights
 	else
-		rank = "Host - Debug Mode"
-		rights = (R_HOST | R_BUILDMODE | R_ADMIN | R_BAN | R_FUN | R_SERVER | R_DEBUG | R_PERMISSIONS | R_POSSESS | R_STEALTH | R_REJUVINATE | R_VAREDIT | R_SOUNDS | R_SPAWN | R_MOD| R_MENTOR)
+		rank = "Debug Host"
+
+	if (rights == 0)
+		rights = admin_ranks[ckeyEx(rank)]
+
+	if (istext(rights))
+		rights = text2num(rights)
+
+//	world << "[ckey]'s rights = [rights]"
+
 	admin_datums[ckey] = src
 
 /datum/admins/proc/associate(client/C)
@@ -32,6 +41,7 @@ var/list/admin_datums = list()
 		owner.holder = src
 		owner.add_admin_verbs()	//TODO
 		admins |= C
+//		world << "[C] is the new owner of [rank] admin datum"
 
 /datum/admins/proc/disassociate()
 	if(owner)
@@ -42,7 +52,7 @@ var/list/admin_datums = list()
 
 /datum/admins/proc/reassociate()
 	if(owner)
-		admins += owner
+		admins |= owner
 		owner.holder = src
 		owner.deadmin_holder = null
 		owner.add_admin_verbs()

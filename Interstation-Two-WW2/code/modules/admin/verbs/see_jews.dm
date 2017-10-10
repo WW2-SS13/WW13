@@ -13,6 +13,14 @@
 
 /proc/print_jews(whomst, var/notroundend = 0)
 
+	var/list/jews = list()
+	for (var/mob/living/carbon/human/H in mob_list)
+		if (istype(H) && H.is_jew)
+			jews += H
+
+	if (!jews.len && !notroundend)
+		return
+
 	if (notroundend)
 		whomst << "<big>Jews:</big><br><br>"
 	else

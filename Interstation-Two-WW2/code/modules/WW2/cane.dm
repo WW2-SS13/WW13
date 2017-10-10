@@ -1,6 +1,6 @@
 /obj/item/weapon/cane
 	name = "cane"
-	desc = "A cane used by a true gentlemen. Or a clown."
+	desc = "A cane used by a true gentlemen."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cane"
 	item_state = "stick"

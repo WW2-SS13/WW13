@@ -221,6 +221,7 @@ var/list/gamemode_cache = list()
 
 	var/hub = 0
 	var/testing_port = -1
+	var/hubtesting_port = -2
 	var/open_hub_discord_in_new_window = 1
 	var/hub_body = ""
 	var/hub_features = ""
@@ -383,6 +384,8 @@ var/list/gamemode_cache = list()
 					config.hub = 1
 				if ("testing_port")
 					config.testing_port = text2num(value)
+				if ("hubtesting_port")
+					config.hubtesting_port = text2num(value)
 				if ("open_hub_discord_in_new_window")
 					config.open_hub_discord_in_new_window = text2num(value)
 				if ("hub_body")

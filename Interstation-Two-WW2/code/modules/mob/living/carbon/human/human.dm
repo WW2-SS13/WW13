@@ -76,6 +76,7 @@
 				stat("Internal Atmosphere Info", internal.name)
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
+
 		if (time_of_day)
 			stat("Time of Day: ", time_of_day)
 
@@ -83,6 +84,7 @@
 			var/obj/tank/tank = loc
 			var/fuel_slot_screwed = tank.fuel_slot_screwed ? "Screwed," : "Unscrewed,"
 			var/fuel_slot_open = tank.fuel_slot_open ? " open" : " closed"
+			stat("<br>TANK INFORMATION<br>")
 			stat("Tank Integrity:", tank.health_percentage())
 			stat("Ready to fire?:", (world.time - tank.last_fire > tank.fire_delay || tank.last_fire == -1) ? "Yes" : "No")
 			stat("Fuel Slot:", "[fuel_slot_screwed][fuel_slot_open].")

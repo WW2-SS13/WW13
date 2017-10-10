@@ -71,7 +71,7 @@
 				C << "<span class='notice'>You take a bite of [src].</span>"
 			if (fullness > 350 && fullness <= 550)
 				C << "<span class='notice'>You unwillingly chew a bit of [src].</span>"
-			if (fullness > 550)
+			if (fullness > 580)
 				C << "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>"
 				return 0
 		else

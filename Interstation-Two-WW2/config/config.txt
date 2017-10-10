@@ -1,12 +1,12 @@
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Remove the # infront of SERVERNAME and replace 'tgstation' with the name of your choice.
 ## IMPORTANT: Don't include special characters such as ' in here
-SERVER_NAME No Mans Land: Official Server
+SERVER_NAME World War II Revival
 
 ## What features do you want to advertise on your hub message?
-HUB_FEATURES New build! Supply Trains! Tanks!
+HUB_FEATURES New and improved WW2 gameplay!
 
 ## The main content of your hub message
-HUB_BODY <i>1942, TIME_OF_DAY, Ukrajina</i><br>
+HUB_BODY <i>1942, SEASON, TIME_OF_DAY, Ukraine</i><br>
 
 ## Use a link to a banner on your hub message? Comment out if not
 HUB_BANNER_URL <img src='http://tny.im/9IU'>
@@ -16,6 +16,9 @@ OPEN_HUB_DISCORD_IN_NEW_WINDOW 1
 
 ## When hosting on this port number, your server will not show on the hub
 TESTING_PORT 12345
+
+## When hosting on this port number, you server WILL show up on the hub, but only admins can join
+HUBTESTING_PORT 12346
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
 # SERVERSQLNAME tgstation

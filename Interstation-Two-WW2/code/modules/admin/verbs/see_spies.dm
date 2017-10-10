@@ -13,6 +13,14 @@
 
 /proc/print_spies(whomst, var/notroundend = 0)
 
+	var/list/spies = list()
+	for (var/mob/living/carbon/human/H in mob_list)
+		if (istype(H) && H.is_spy)
+			spies += H
+
+	if (!spies.len && !notroundend)
+		return
+
 	if (notroundend)
 		whomst << "<big>Spies:</big><br><br>"
 	else

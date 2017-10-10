@@ -2,8 +2,8 @@
 	icon = 'icons/obj/structures.dmi'
 	w_class = 10
 
-	var/climbable
-	var/breakable
+	var/climbable = 0
+	var/breakable = 0
 	var/parts
 	var/list/climbers = list()
 
@@ -43,28 +43,6 @@
 				return
 		if(3.0)
 			return
-
-/obj/structure/New()
-	..()
-	if(climbable)
-		verbs += /obj/structure/proc/climb_on
-
-/obj/structure/Destroy()
-	..()
-
-/obj/structure/proc/climb_on()
-
-	set name = "Climb structure"
-	set desc = "Climbs onto a structure."
-	set category = "Object"
-	set src in oview(1)
-
-	var/turf/my_turf = get_turf(src)
-
-	if (my_turf.check_prishtina_block(usr))
-		return 0
-
-	do_climb(usr)
 
 /obj/structure/MouseDrop_T(mob/target, mob/user)
 

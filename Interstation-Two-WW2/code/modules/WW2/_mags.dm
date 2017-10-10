@@ -53,6 +53,18 @@ WW 2 WEAPONS MAGS N AMMO
 	max_ammo = 50
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/kar98kbox
+	name = "magazine box (7.92x57mm)"
+	icon_state = "mosin_ammo"
+	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = "a792x57"
+	w_class = 3
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/ammo_casing/a792x57
+	max_ammo = 50
+	multiple_sprites = 1
+
 /obj/item/ammo_magazine/mp40
 	name = "magazine (9mm)"
 	icon_state = "mp40mag"

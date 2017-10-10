@@ -49,8 +49,6 @@
 		cmd_admin_irc_pm(href_list["irc_msg"])
 		return
 
-
-
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
 		href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
@@ -92,7 +90,6 @@
 	fileaccess_timer = world.time + FTPDELAY	*/
 	return 1
 
-
 	///////////
 	//CONNECT//
 	///////////
@@ -119,15 +116,8 @@
 
 	src << "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears."
 
-
 	clients += src
 	directory[ckey] = src
-
-	//Admin Authorisation
-	holder = admin_datums[ckey]
-	if(holder)
-		admins += src
-		holder.owner = src
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
@@ -138,6 +128,25 @@
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
 	. = ..()	//calls mob.Login()
+
+	var/admin_spawntime = 0
+	if (host == key)
+		admin_spawntime = 50
+
+	spawn (admin_spawntime)
+
+		//Admin Authorisation
+		holder = admin_datums[ckey]
+		holder.associate(src)
+
+		if(holder)
+//			src << "<span class = 'userdanger'>Hello, [holder.rank]. Your rights are [holder.rights].</span>"
+			holder.owner = src
+		else if (world.port == config.hubtesting_port)
+			src << "<span class = 'userdanger'>The server is closed to non-admins right now, sorry.</span>"
+			message_admins("[src] tried to log in, but was rejected, because they aren't an admin")
+			qdel(src)
+			return
 
 	if(custom_event_msg && custom_event_msg != "")
 		src << "<h1 class='alert'>Custom Event</h1>"
@@ -156,7 +165,6 @@
 			winset(src, null, "command=\".configure graphics-hwmode off\"")
 			sleep(2) // wait a bit more, possibly fixes hardware mode not re-activating right
 			winset(src, null, "command=\".configure graphics-hwmode on\"")
-
 
 	send_resources()
 /*
@@ -250,9 +258,9 @@
 	if (sql_ip == null)
 		sql_ip = "HOST"
 
-	//#define DEBUG
+	//#define SQLDEBUG
 
-	#ifdef DEBUG
+	#ifdef SQLDEBUG
 	world << "sql_ip: [sql_ip]"
 	world << "sql_computerid: [sql_computerid]"
 	world << "sql_admin_rank: [sql_admin_rank]"
@@ -260,13 +268,13 @@
 	#endif
 
 	if(sql_id)
-		#ifdef DEBUG
+		#ifdef SQLDEBUG
 		world << "prev. player [src]"
 		#endif
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
 		database.execute("UPDATE erro_player SET lastseen = '[database.Now()]', ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = '[sql_id]';")
 	else
-		#ifdef DEBUG
+		#ifdef SQLDEBUG
 		world << "new player [src]"
 		#endif
 		//New player!! Need to insert all the stuff
@@ -275,7 +283,7 @@
 	//Logging player access
 	var/serverip = "[world.internet_address]:[world.port]"
 	database.execute("INSERT INTO erro_connection_log (id,datetime,serverip,ckey,ip,computerid) VALUES(null,'[database.Now()]','[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
-	//#undef DEBUG
+	//#undef SQLDEBUG
 
 #undef TOPIC_SPAM_DELAY
 #undef UPLOAD_LIMIT
@@ -318,7 +326,7 @@ client/proc/MayRespawn()
 	return 0
 
 client/verb/character_setup()
-	set name = "Character Setup"
+	set name = "Character & Preferences Setup"
 	set category = "OOC"
 	if(prefs)
 		prefs.ShowChoices(usr)

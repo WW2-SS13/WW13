@@ -402,8 +402,9 @@
 		else
 			moving = 0
 			var/obj/train_lever/lever = get_lever()
-			lever.icon_state = lever.none_state
-			lever.direction = "NONE"
+			if (lever)
+				lever.icon_state = lever.none_state
+				lever.direction = "NONE"
 
 /datum/train_controller/proc/move_connectors(var/reverse = 0)
 

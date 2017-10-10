@@ -21,8 +21,8 @@
 	..()
 	if (constructed)	//player-constructed railings
 		anchored = 0
-	if(climbable)
-		verbs += /obj/structure/proc/climb_on
+/*	if(climbable)
+		verbs += /obj/structure/proc/climb_on*/
 	if(src.anchored)
 		spawn(5)
 			update_icon(0)
@@ -150,58 +150,6 @@
 
 //obj/structure/railing/proc/NeighborsCheck2()
 
-/obj/structure/railing/verb/rotate()
-	set name = "Rotate Railing Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.incapacitated())
-		return 0
-
-	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
-		return 0
-
-	set_dir(turn(dir, 90))
-	update_icon()
-	return
-
-/obj/structure/railing/verb/revrotate()
-	set name = "Rotate Railing Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.incapacitated())
-		return 0
-
-	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
-		return 0
-
-	set_dir(turn(dir, -90))
-	update_icon()
-	return
-
-/obj/structure/railing/verb/flip() // This will help push railing to remote places, such as open space turfs
-	set name = "Flip Railing"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.incapacitated())
-		return 0
-
-	if(anchored)
-		usr << "It is fastened to the floor therefore you can't flip it!"
-		return 0
-
-	if(!neighbor_turf_passable())
-		usr << "You can't flip the [src] because something blocking it."
-		return 0
-
-	src.loc = get_step(src, src.dir)
-	set_dir(turn(dir, 180))
-	update_icon()
-	return
 
 /obj/structure/railing/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))

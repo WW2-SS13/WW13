@@ -10,7 +10,6 @@ var/list/admin_verbs_default = list(
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify,
 //	/client/proc/check_antagonists,		//shows all antags,
 	/client/proc/cmd_mentor_check_new_players,
-	/client/proc/Goto_adminzone,
 	/client/proc/see_spies,
 	/client/proc/see_jews,
 	/client/proc/see_soldiers
@@ -72,6 +71,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/removeEmptyCases,
 	/client/proc/removeHalfEmptyCases,
+	/client/proc/removeAllBlood,
 	/client/proc/toggle_jobs,
 	/client/proc/toggle_subfactions
 
@@ -171,6 +171,7 @@ var/list/admin_verbs_possess = list(
 	/proc/possess,
 	/proc/release
 	)
+
 var/list/admin_verbs_permissions = list(
 	/client/proc/edit_admin_permissions
 	)
@@ -274,8 +275,6 @@ var/list/admin_verbs_mod = list(
 	/client/proc/message_civilians,
 	/client/proc/message_partisans,
 	/client/proc/send_german_train,
-	/client/proc/see_who_is_in_tank,
-	/client/proc/eject_from_tank
 )
 
 var/list/admin_verbs_mentor = list(
@@ -290,6 +289,7 @@ var/list/admin_verbs_mentor = list(
 
 /client/proc/add_admin_verbs()
 	if(holder)
+//		world << "[src] getting [holder]([holder.rights]) admin verbs."
 		verbs += admin_verbs_default
 	//	if(holder.rights & R_BUILDMODE)		verbs += /client/proc/togglebuildmodeself
 		if(holder.rights & R_ADMIN)			verbs += admin_verbs_admin
@@ -300,7 +300,7 @@ var/list/admin_verbs_mentor = list(
 			verbs += admin_verbs_debug
 			if(config.debugparanoid && !(holder.rights & R_ADMIN))
 				verbs.Remove(admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
-		if(holder.rights & R_POSSESS)		verbs += admin_verbs_possess
+//		if(holder.rights & R_POSSESS)		verbs += admin_verbs_possess
 		if(holder.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
 		if(holder.rights & R_STEALTH)		verbs += /client/proc/stealth
 		if(holder.rights & R_REJUVINATE)	verbs += admin_verbs_rejuv
@@ -319,7 +319,7 @@ var/list/admin_verbs_mentor = list(
 		admin_verbs_fun,
 		admin_verbs_server,
 		admin_verbs_debug,
-		admin_verbs_possess,
+//		admin_verbs_possess,
 		admin_verbs_permissions,
 		/client/proc/stealth,
 		admin_verbs_rejuv,

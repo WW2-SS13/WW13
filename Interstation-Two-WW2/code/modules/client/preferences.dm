@@ -196,6 +196,7 @@ datum/preferences
 
 
 /datum/preferences/New(client/C)
+
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)
 	german_gender = pick(MALE, FEMALE)

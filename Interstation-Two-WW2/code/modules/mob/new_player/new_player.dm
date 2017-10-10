@@ -412,10 +412,14 @@
 
 	dat += "Choose from the following open positions:<br>"
 	for(var/datum/job/job in job_master.occupations)
+
 		if(job && !job.train_check())
 			continue
 
 		var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
+
+		if (job.is_paratrooper)
+			job_is_available = allow_paratroopers
 
 		if (config.use_job_whitelist && !check_job_whitelist(src, job.title))
 			job_is_available = 0
@@ -464,13 +468,13 @@
 				if (job_is_available)
 					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a><br>"
 				else
-					dat += "TAKEN, WHITELISTED, OR DISABLED BY ADMINS: <strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike><br>"
+					dat += "UNAVAILABLE: <strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike><br>"
 
 			else
 				if (job_is_available)
 					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a><br>"
 				else
-					dat += "TAKEN, WHITELISTED, OR DISABLED BY ADMINS: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike><br>"
+					dat += "UNAVAILABLE: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike><br>"
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")
