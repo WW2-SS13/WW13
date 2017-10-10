@@ -141,6 +141,7 @@
 
 		if(holder)
 //			src << "<span class = 'userdanger'>Hello, [holder.rank]. Your rights are [holder.rights].</span>"
+			admins |= src
 			holder.owner = src
 		else if (world.port == config.hubtesting_port)
 			src << "<span class = 'userdanger'>The server is closed to non-admins right now, sorry.</span>"
