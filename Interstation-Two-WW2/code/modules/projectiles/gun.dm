@@ -95,6 +95,7 @@
 
 	if(!istype(user, /mob/living))
 		return 0
+
 	if(!user.IsAdvancedToolUser())
 		return 0
 
@@ -257,7 +258,17 @@
 	if(muzzle_flash)
 		set_light(0)
 
+// only update our in-hands icon if we aren't using a scope (invisible)
+/obj/item/weapon/gun/update_held_icon()
+	if (loc && ismob(loc))
+		if (ishuman(loc))
+			var/mob/living/carbon/human/H = loc
+			if (H.using_zoom())
+				return 0
+	..()
+
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
+
 	if(!user || !target) return
 
 	add_fingerprint(user)
@@ -322,6 +333,7 @@
 		spawn(5)
 			set_light(0)
 
+
 //obtains the next projectile to fire
 /obj/item/weapon/gun/proc/consume_next_projectile()
 	return null
@@ -339,7 +351,8 @@
 	if (user)
 		user.visible_message("*click click*", "<span class='danger'>*click*</span>")
 	else
-		src.visible_message("*click click*")
+		visible_message("*click click*")
+
 	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
 
 //called after successfully firing
@@ -429,7 +442,6 @@
 
 	if(!istype(P))
 		return 0 //default behaviour only applies to true projectiles
-
 
 	if(params)
 		P.set_clickpoint(params)
