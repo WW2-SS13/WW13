@@ -15,10 +15,10 @@ var/global/datum/controller/occupations/job_master
 
 var/global/list/fallschirm_landmarks = list()
 
-/proc/setup_autobalance()
+/proc/setup_autobalance(var/announce = 1)
 	spawn (0)
 		if (job_master)
-			job_master.toggle_roundstart_autobalance()
+			job_master.toggle_roundstart_autobalance(0, announce)
 
 /datum/controller/occupations
 		//List of all jobs
@@ -139,7 +139,7 @@ var/global/list/fallschirm_landmarks = list()
 	// ~90% of clients in the lobby will join as a role prior to the train
 	// being sent
 
-	proc/toggle_roundstart_autobalance(var/_clients = 0)
+	proc/toggle_roundstart_autobalance(var/_clients = 0, var/announce = 1)
 
 		// how many unique clients we expect to play
 		var/expected_players = 0
@@ -152,7 +152,8 @@ var/global/list/fallschirm_landmarks = list()
 			_clients = clients.len
 		#endif
 
-		world << "<span class = 'warning'>Setting up roundstart autobalance for [_clients] players.</span>"
+		if (announce)
+			world << "<span class = 'warning'>Setting up roundstart autobalance for [_clients] players.</span>"
 
 		expected_players = _clients * 0.9
 

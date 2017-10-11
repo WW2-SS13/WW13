@@ -276,7 +276,7 @@
 						if (istype(get_area(soviet), /area/prishtina/soviet))
 							soviet.resize(supplies[RUSSIAN])
 
-				// this may have already happened, do it again
-				setup_autobalance()
+				// this may have already happened, do it again w/o announce
+				setup_autobalance(0)
 
 		world << "<b>The current game mode is World War II!</b>"

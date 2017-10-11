@@ -393,28 +393,28 @@ proc/display_roundstart_logout_report()
 
 		if(H.ckey && H.client)
 			if(H.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
-				msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
+				msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job ? H.original_job.title : "nobody"] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				continue //AFK client
 			if(H.stat)
 				if(H.stat == UNCONSCIOUS)
-					msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (Dying)\n"
+					msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job ? H.original_job.title : "nobody"] (Dying)\n"
 					continue //Unconscious
 				if(H.stat == DEAD)
-					msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (Dead)\n"
+					msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job ? H.original_job.title : "nobody"] (Dead)\n"
 					continue //Dead
 
 			continue //Happy connected client
 		for(var/mob/observer/ghost/D in mob_list)
 			if(D.mind && (D.mind.original == H || D.mind.current == H))
 				if(H.stat == DEAD)
-					msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job.title] (Dead)\n"
+					msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job ? H.original_job.title : "nobody"] (Dead)\n"
 					continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
-						msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job.title] (<font color='red'><b>Adminghosted</b></font>)\n"
+						msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job ? H.original_job.title : "nobody"] (<font color='red'><b>Adminghosted</b></font>)\n"
 						continue //Holwhat
 					else
-						msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job.title] (<font color='red'><b>Ghosted</b></font>)\n"
+						msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job ? H.original_job.title : "nobody"] (<font color='red'><b>Ghosted</b></font>)\n"
 						continue //Ghosted while alive
 
 	msg += "</span>" // close the span from right at the top

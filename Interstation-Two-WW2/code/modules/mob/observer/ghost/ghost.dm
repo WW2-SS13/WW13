@@ -146,9 +146,6 @@ Works together with spawning an observer, noted above.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
 		ghost.key = key
-		spawn (0)
-			if (ghost.client)
-				ghost.client.add_ghost_only_admin_verbs()
 		return ghost
 
 /*
@@ -203,6 +200,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
 		usr << "<span class='warning'>Another consciousness is in your body... it is resisting you.</span>"
 		return
+
+	client.remove_ghost_only_admin_verbs()
+
 	stop_following()
 	mind.current.ajourn=0
 	mind.current.key = key
@@ -210,10 +210,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(!admin_ghosted)
 		announce_ghost_joinleave(mind, 0, "They now occupy their body again.")
-
-	spawn (0)
-		if (mind.current.client)
-			mind.current.client.remove_ghost_only_admin_verbs()
 
 	return 1
 
