@@ -26,9 +26,9 @@
 		critical_damage()
 	tank_message("<span class = 'danger'>The tank is hit by [P]!</span>")
 
-/obj/tank/ex_act(severity)
+/obj/tank/ex_act(severity, var/forced = 0)
 
-	if (world.time < next_ex_act)
+	if (world.time < next_ex_act && !forced)
 		return
 
 	next_ex_act = world.time + 5
@@ -42,8 +42,8 @@
 		if (1.0)
 			severity = 3.0
 
-	// stops tanks from blowing themselves up so easily
-	var/addamage = (rand(15,20) * severity)
+	// very high damage
+	var/addamage = (rand(90,110) * severity)
 	addamage = min(addamage, max_damage/10)
 
 	damage += addamage
@@ -56,7 +56,6 @@
 
 /obj/tank/proc/health_percentage() // text!
 	return "[100 - ((damage/max_damage) * 100)]%"
-
 
 /obj/tank/proc/health_percentage_num()
 	return 100 - ((damage/max_damage) * 100)

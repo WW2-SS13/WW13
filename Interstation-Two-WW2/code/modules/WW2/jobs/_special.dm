@@ -29,6 +29,7 @@
 /datum/job/var/is_paratrooper = 0
 /datum/job/var/is_sturmovik = 0
 /datum/job/var/is_guard = 0
+/datum/job/var/is_tankuser = 0
 /datum/job/var/absolute_limit = 0 // if this is 0 it's ignored
 
 // type_flag() replaces flag, and base_type_flag() replaces department_flag
@@ -124,7 +125,7 @@
 					user.squad_faction = new/datum/faction/squad/three/leader(user, src)
 				if (3)
 					user.squad_faction = new/datum/faction/squad/four/leader(user, src)
-		else if (!is_officer && !is_commander && !is_nonmilitary && !is_SS && !is_paratrooper && !is_guard)
+		else if (!is_officer && !is_commander && !is_nonmilitary && !is_SS && !is_paratrooper && !is_guard && !is_tankuser)
 			switch (squad_members[GERMAN]) // non officers
 				if (0 to MEMBERS_PER_SQUAD-1)
 					user.squad_faction = new/datum/faction/squad/one(user, src)
@@ -165,7 +166,7 @@
 					user.squad_faction = new/datum/faction/squad/three/leader(user, src)
 				if (3)
 					user.squad_faction = new/datum/faction/squad/four/leader(user, src)
-		else if (!is_officer && !is_commander && !is_nonmilitary && !is_guard)
+		else if (!is_officer && !is_commander && !is_nonmilitary && !is_guard && !is_tankuser)
 			switch (squad_members[RUSSIAN]) // non officers
 				if (0 to 7-1)
 					user.squad_faction = new/datum/faction/squad/one(user, src)

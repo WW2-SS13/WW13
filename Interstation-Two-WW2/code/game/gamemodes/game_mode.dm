@@ -389,7 +389,7 @@ proc/display_roundstart_logout_report()
 					found = 1
 					break
 			if(!found)
-				msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
+				msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job ? H.original_job.title : "nobody"] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
 
 		if(H.ckey && H.client)
 			if(H.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)

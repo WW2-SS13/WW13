@@ -32,11 +32,12 @@
 	set popup_menu = 0
 	set src = usr.contents
 	return 0
-
-/mob/observer/eye/pointed()
+/*
+/mob/observer/eye/verb/pointed()
+	set category = "Ghost"
 	set popup_menu = 0
 	set src = usr.contents
-	return 0
+	return 0*/
 
 /mob/observer/eye/examine(mob/user)
 

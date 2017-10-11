@@ -219,6 +219,10 @@ var/global/list/default_ukrainian_channels = list(
 
 /obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = 0)
 
+	// ignore emotes.
+	if (copytext(msg, 1, 2) == "*")
+		return
+
 	if (!can_broadcast())
 		return
 

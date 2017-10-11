@@ -1,7 +1,7 @@
 /datum/game_mode/ww2
 	name = "World War 2"
 	config_tag = "ww2"
-	required_players = 0
+	required_players = 1
 	round_description = ""
 	extended_round_description = ""
 
@@ -35,6 +35,39 @@
 /datum/game_mode/ww2/New()
 	..()
 	season = pick(/*"SPRING", "SUMMER", "FALL", */"SPRING")
+
+// because we don't use readying up, we override can_start()
+/datum/game_mode/ww2/can_start(var/do_not_spawn)
+
+	var/playerC = 0
+	for(var/mob/new_player/player in player_list)
+		if(player.client)
+			playerC++
+
+	if(playerC < required_players)
+		return 0
+
+	if(!(antag_templates && antag_templates.len))
+		return 1
+
+	var/enemy_count = 0
+	if(antag_tags && antag_tags.len)
+		for(var/antag_tag in antag_tags)
+			var/datum/antagonist/antag = all_antag_types[antag_tag]
+			if(!antag)
+				continue
+			var/list/potential = list()
+			if(antag.flags & ANTAG_OVERRIDE_JOB)
+				potential = antag.pending_antagonists
+			else
+				potential = antag.candidates
+			if(islist(potential))
+				if(require_all_templates && potential.len < antag.initial_spawn_req)
+					return 0
+				enemy_count += potential.len
+				if(enemy_count >= required_enemies)
+					return 1
+	return 0
 
 // win conditions for one side already exist, make sure we
 // don't active another

@@ -51,6 +51,9 @@
 	var/obj/tank/tank = loc
 	tank.receive_command_from(src, "FIRE")
 
+/obj/tank/proc/tank_explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, is_rec = config.use_recursive_explosions)
+	var/datum/explosiondata/data = explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, z_transfer, is_rec)
+	data.objects_with_immunity += src
 
 /obj/tank/proc/Fire()
 
@@ -72,4 +75,4 @@
 
 	var/abs_dist = abs_dist(src, target)
 
-	explosion(target, min(2, abs_dist), 3, 4, 5)
+	tank_explosion(target, min(2, abs_dist), 3, 4, 5)

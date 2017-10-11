@@ -655,6 +655,7 @@
 #include "code\modules\mob\living\login.dm"
 #include "code\modules\mob\living\logout.dm"
 #include "code\modules\mob\living\say.dm"
+#include "code\modules\mob\living\verbs.dm"
 #include "code\modules\mob\living\carbon\breathe.dm"
 #include "code\modules\mob\living\carbon\carbon.dm"
 #include "code\modules\mob\living\carbon\carbon_defense.dm"

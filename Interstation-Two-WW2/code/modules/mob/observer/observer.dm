@@ -26,6 +26,10 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 		ghost_sightless_images |= ghost_image //so ghosts can see the eye when they disable ghost sight
 	updateallghostimages()
 
+	spawn (1)
+		if (client)
+			client.add_ghost_only_admin_verbs()
+
 /mob/observer/Destroy()
 	if (ghost_image)
 		ghost_darkness_images -= ghost_image

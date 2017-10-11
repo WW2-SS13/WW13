@@ -36,7 +36,8 @@
 		return 1
 	if (!named)
 		var/str = sanitizeSafe(input(user,"Name tank?","Set Tank Name",""), MAX_NAME_LEN)
-		set_name(str)
+		if (str)
+			set_name(str)
 	else
 		return ..()
 

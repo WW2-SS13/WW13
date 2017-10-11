@@ -468,13 +468,13 @@
 				if (job_is_available)
 					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a><br>"
 				else
-					dat += "UNAVAILABLE: <strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike><br>"
+					dat += "<span style = 'color:red'><strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 
 			else
 				if (job_is_available)
 					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a><br>"
 				else
-					dat += "UNAVAILABLE: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike><br>"
+					dat += "<span style = 'color:red'><strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")

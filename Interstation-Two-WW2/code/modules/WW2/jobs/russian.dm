@@ -128,6 +128,8 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/russian(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
+
+	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a medic. Your job is to keep the army healthy and in good condition.</span>"
 	return 1
 
@@ -155,6 +157,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
+
 	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a doctor. Your job is to stay back at base and treat wounded that come in from the front, as well as treat prisoners and base personnel.</span>"
 	return 1
@@ -295,6 +298,7 @@
 	is_primary = 0
 	is_secondary = 1
 	absolute_limit = 4
+	is_tankuser = 1
 
 /datum/job/russian/tankcrew/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -422,7 +426,7 @@ var/first_guard = 0
 	return 1
 
 /datum/job/russian/zavhoz/get_keys()
-	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/soldat,  new/obj/item/weapon/key/russian/QM, new/obj/item/weapon/key/russian/bunker_doors)
+	return list(new/obj/item/weapon/key/russian, new/obj/item/weapon/key/russian/soldat,  new/obj/item/weapon/key/russian/QM, new/obj/item/weapon/key/russian/bunker_doors, new/obj/item/weapon/key/russian/command_intermediate)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

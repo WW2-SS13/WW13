@@ -146,17 +146,9 @@ Works together with spawning an observer, noted above.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
 		ghost.key = key
-
-		// add ghost-only admins verbs
-		if (ghost.client.holder && check_rights(R_MOD, user = ghost))
-			ghost.verbs += /client/proc/see_who_is_in_tank
-			ghost.verbs += /client/proc/eject_from_tank
-			ghost.verbs += /client/proc/Goto_adminzone
-			if (check_rights(R_POSSESS, user = ghost))
-				ghost.verbs += admin_verbs_possess
-
-	//	if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
-		//	ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
+		spawn (0)
+			if (ghost.client)
+				ghost.client.add_ghost_only_admin_verbs()
 		return ghost
 
 /*
@@ -219,13 +211,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!admin_ghosted)
 		announce_ghost_joinleave(mind, 0, "They now occupy their body again.")
 
-	// remove ghost-only admins verbs
-	if (mind.current.client.holder && check_rights(R_MOD, user = mind.current))
-		mind.current.verbs -= /client/proc/see_who_is_in_tank
-		mind.current.verbs -= /client/proc/eject_from_tank
-		mind.current.verbs -= /client/proc/Goto_adminzone
-		if (check_rights(R_POSSESS, user = mind.current))
-			mind.current.verbs -= admin_verbs_possess
+	spawn (0)
+		if (mind.current.client)
+			mind.current.client.remove_ghost_only_admin_verbs()
 
 	return 1
 
@@ -684,9 +672,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		W.add_hiddenprint(src)
 		W.visible_message("\red Invisible fingers crudely paint something in blood on [T]...")
 */
-/mob/observer/ghost/pointed(atom/A as mob|obj|turf in view())
-	if(!..())
-		return 0
+
+/mob/observer/ghost/verb/pointed(atom/A as mob|obj|turf in view())
+	set category = "Ghost"
+	set name = "Point To"
 	usr.visible_message("<span class='deadsay'><b>[src]</b> points to [A]</span>")
 	return 1
 

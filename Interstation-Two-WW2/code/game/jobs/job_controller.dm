@@ -1163,6 +1163,14 @@ var/global/list/fallschirm_landmarks = list()
 					if (RUSSIAN)
 						spawn_location = "JoinLateRA"
 
+			// may fix russians spawning in the german train, unknown - Kach
+			if (!spawn_location)
+				switch (splittext(H.original_job.spawn_location, "-")[1])
+					if ("JoinLateHeer")
+						spawn_location = "JoinLateHeer"
+					if ("JoinLateRA")
+						spawn_location = "JoinLateRA"
+
 			H.job_spawn_location = spawn_location
 
 			#ifdef SPAWNLOC_DEBUG

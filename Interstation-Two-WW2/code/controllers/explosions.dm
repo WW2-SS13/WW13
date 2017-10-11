@@ -38,6 +38,7 @@ var/datum/controller/process/explosives/bomb_processor
 		SCHECK
 
 		work_queue -= data
+
 /datum/controller/process/explosives/proc/explosion(var/datum/explosiondata/data)
 	var/turf/epicenter = data.epicenter
 	var/devastation_range = data.devastation_range
@@ -163,9 +164,11 @@ var/datum/controller/process/explosives/bomb_processor
 
 		T.ex_act(dist)
 		SCHECK
-		if(T)
+		if(T && !data.objects_with_immunity.Find(T))
 			for(var/atom_movable in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
 				var/atom/movable/AM = atom_movable
+				if (data.objects_with_immunity.Find(AM))
+					continue
 				if(AM && AM.simulated)	AM.ex_act(dist)
 				SCHECK
 
@@ -262,3 +265,4 @@ var/datum/controller/process/explosives/bomb_processor
 	var/z_transfer
 	var/is_rec
 	var/rec_pow
+	var/list/objects_with_immunity = list()

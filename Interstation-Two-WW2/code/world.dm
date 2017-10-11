@@ -50,7 +50,7 @@ var/global/datum/global_init/init = new ()
 
 /world
 	mob = /mob/new_player
-	turf = /turf/floor/plating/grass
+	turf = /turf/floor/plating/grass/wild
 	area = /area/prishtina
 	view = "15x15"
 	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session

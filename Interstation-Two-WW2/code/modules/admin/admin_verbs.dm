@@ -393,6 +393,21 @@ var/list/admin_verbs_mentor = list(
 			if(!body.key)
 				body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
 
+/client/proc/add_ghost_only_admin_verbs()
+	if (holder && check_rights(R_MOD, user = mob))
+		verbs |= /client/proc/see_who_is_in_tank
+		verbs |= /client/proc/eject_from_tank
+		verbs |= /client/proc/Goto_adminzone
+		if (check_rights(R_POSSESS, user = mob))
+			verbs |= admin_verbs_possess
+
+/client/proc/remove_ghost_only_admin_verbs()
+	if (mob && holder && check_rights(R_MOD, user = mob))
+		verbs -= /client/proc/see_who_is_in_tank
+		verbs -= /client/proc/eject_from_tank
+		verbs -= /client/proc/Goto_adminzone
+		if (check_rights(R_POSSESS, user = mob))
+			verbs -= admin_verbs_possess
 
 
 /client/proc/invisimin()

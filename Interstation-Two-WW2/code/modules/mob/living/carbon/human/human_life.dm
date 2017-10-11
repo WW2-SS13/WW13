@@ -64,6 +64,9 @@
 		if (UNCONSCIOUS) // takes over an hour to starve
 			nutrition -= 0.20
 
+	if (stamina == max_stamina-1 && m_intent == "walk")
+		src << "<span class = 'good'>You feel like you can run for a while.</span>"
+
 	nutrition = min(nutrition, max_nutrition)
 	nutrition = max(nutrition, -max_nutrition)
 
@@ -893,6 +896,15 @@
 /mob/living/carbon/human/var/list/informed_starvation[4]
 
 /mob/living/carbon/human/proc/handle_starvation()//Making this it's own proc for my sanity's sake - Matt
+
+	if(nutrition < 350 && nutrition >= 200)
+		if (prob(4))
+			src << "<span class = 'notice'>You're getting a bit hungry.</span>"
+
+	if(nutrition < 200)
+		if (prob(5))
+			src << "<span class = 'notice'>You're pretty hungry.</span>"
+
 	if(nutrition < 20) //Nutrition is below 20 = starvation
 
 		var/list/hunger_phrases = list(

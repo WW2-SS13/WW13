@@ -105,13 +105,17 @@ for reference:
 				src.health -= W.force * 1
 			if("brute")
 				src.health -= W.force * 0.75
-			else
-		if (src.health <= 0)
-			visible_message("<span class='danger'>The barricade is smashed apart!</span>")
-			dismantle()
-			qdel(src)
-			return
+
+		try_destroy()
+
 		..()
+
+/obj/structure/barricade/proc/try_destroy()
+	if (health <= 0)
+		visible_message("<span class='danger'>The barricade is smashed apart!</span>")
+		dismantle()
+		qdel(src)
+		return
 
 /obj/structure/barricade/proc/dismantle()
 	material.place_dismantled_product(get_turf(src))
@@ -131,13 +135,24 @@ for reference:
 				dismantle()
 			return
 
+
+/* the only barricades still in the code are wood barricades, which SHOULD
+  be hit by bullets, at least sometimes - hence these changes. */
+
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 	if(air_group || (height==0))
-		return 1
+		if (prob(30))
+			return 1
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		if (prob(30))
+			return 1
 	else
 		return 0
+
+/obj/structure/barricade/bullet_act(var/obj/item/projectile/proj)
+	health -= proj.damage
+	visible_message("<span class='warning'>\The [src] is hit by the bullet!</span>")
+	try_destroy()
 /*
 //Actual Deployable machinery stuff
 /obj/machinery/deployable

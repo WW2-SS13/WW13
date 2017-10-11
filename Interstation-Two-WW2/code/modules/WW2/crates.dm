@@ -1,3 +1,4 @@
+// increase or decrease the amount of items in a crate
 /obj/structure/closet/crate/proc/resize(decimal)
 	if (decimal > 1.0)
 		var/add_crates = max(1, ceil((decimal - 1.0) * contents.len))
@@ -14,6 +15,31 @@
 				break
 			contents -= pick(contents)
 
+
+/obj/structure/closet/crate/wood
+	name = "Wood planks crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/steel
+	name = "Steel sheets crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/iron
+	name = "Iron ingots crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/metal
+	name = "Metal sheet crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
 /obj/structure/closet/crate/flammenwerfer_fueltanks
 	name = "Flammenwerfer fueltanks crate"
 	icon = 'icons/WW2/artillery_crate.dmi'
@@ -27,7 +53,6 @@
 	icon_state = "closed"
 	icon_opened = "opened"
 	icon_closed = "closed"
-
 
 /obj/structure/closet/crate/maximbelt
 	name = "Maxim ammo crate"
@@ -181,6 +206,9 @@
 		if (findtext(textpath, "desserts"))
 			for (var/v in 1 to rand(10,15))
 				contents += new_ration(GERMAN, "dessert")
+		if (findtext(textpath, "meat"))
+			for (var/v in 1 to rand(10,15))
+				contents += new_ration(GERMAN, "meat")
 	else if (findtext(textpath, "soviet"))
 		if (findtext(textpath, "solids"))
 			for (var/v in 1 to rand(10,15))
@@ -191,6 +219,9 @@
 	/*	if (findtext(textpath, "desserts"))
 			for (var/v in 1 to rand(10,15))
 				contents += new_ration("SOVIET", "dessert")*/
+		if (findtext(textpath, "meat"))
+			for (var/v in 1 to rand(10,15))
+				contents += new_ration(RUSSIAN, "meat")
 
 /obj/structure/closet/crate/rations/german_solids
 	name = "Rations: solids"
@@ -201,6 +232,9 @@
 /obj/structure/closet/crate/rations/german_desserts
 	name = "Rations: dessert"
 
+/obj/structure/closet/crate/rations/german_meat
+	name = "Rations: meat"
+
 /obj/structure/closet/crate/rations/soviet_solids
 	name = "Rations: solids"
 
@@ -210,8 +244,32 @@
 /obj/structure/closet/crate/rations/soviet_desserts
 	name = "Rations: dessert"
 
-//making crates populate their contents via a for loop, so it's obvious how many things are in them. Original versions in
-//ww2_weapons.dm
+/obj/structure/closet/crate/rations/soviet_meat
+	name = "Rations: meat"
+
+// 5 wood planks with 25 each = 125 wood planks (25 barricades)
+/obj/structure/closet/crate/wood/New()
+	..()
+	update_capacity(5)
+	for (var/v in 1 to 5)
+		var/obj/item/stack/S = new/obj/item/stack/material/wood(src)
+		S.amount = 25
+
+// 5 steel sheets with 25 each = 125 steel sheets
+/obj/structure/closet/crate/steel/New()
+	..()
+	update_capacity(5)
+	for (var/v in 1 to 5)
+		var/obj/item/stack/S = new/obj/item/stack/material/steel(src)
+		S.amount = 25
+
+// 5 iron ingots with 25 each = 125 iron ingots
+/obj/structure/closet/crate/iron/New()
+	..()
+	update_capacity(5)
+	for (var/v in 1 to 5)
+		var/obj/item/stack/S = new/obj/item/stack/material/iron(src)
+		S.amount = 25
 
 /obj/structure/closet/crate/flammenwerfer_fueltanks/New()
 	..()
