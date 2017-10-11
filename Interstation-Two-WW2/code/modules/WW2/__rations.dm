@@ -4,6 +4,7 @@
 var/added_plants_to_rations = 0
 
 /proc/new_ration(faction, sort)
+
 	if (!added_plants_to_rations)
 		german_rations_solids += typesof(/obj/item/weapon/reagent_containers/food/snacks/grown) - /obj/item/weapon/reagent_containers/food/snacks/grown
 		soviet_rations_solids += typesof(/obj/item/weapon/reagent_containers/food/snacks/grown) - /obj/item/weapon/reagent_containers/food/snacks/grown

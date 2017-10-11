@@ -1,12 +1,11 @@
 /obj/structure/closet/crate/proc/resize(decimal)
 	if (decimal > 1.0)
-		var/add_crates = ceil((decimal - 1.0) * contents.len)
+		var/add_crates = max(1, ceil((decimal - 1.0) * contents.len))
 		for (var/v in 1 to add_crates)
-			var/index = v
-			if (index > contents.len)
-				index = 1
-			var/atom/contents_example = contents[index]
-			contents += new contents_example.type
+			var/atom/object = pick(contents)
+			if (object)
+				var/object_type = object.type
+				new object_type(src)
 
 	else if (decimal < 1.0)
 		var/remove_crates = ceil((1.0 - decimal) * contents.len)
@@ -170,7 +169,7 @@
 
 /obj/structure/closet/crate/rations/New()
 	..()
-	update_capacity(15)
+	update_capacity(30)
 	var/textpath = "[type]"
 	if (findtext(textpath, GERMAN))
 		if (findtext(textpath, "solids"))
@@ -185,10 +184,10 @@
 	else if (findtext(textpath, "soviet"))
 		if (findtext(textpath, "solids"))
 			for (var/v in 1 to rand(10,15))
-				contents += new_ration("SOVIET", "solid")
+				contents += new_ration(RUSSIAN, "solid")
 		if (findtext(textpath, "liquids"))
 			for (var/v in 1 to rand(10,15))
-				contents += new_ration("SOVIET", "liquid")
+				contents += new_ration(RUSSIAN, "liquid")
 	/*	if (findtext(textpath, "desserts"))
 			for (var/v in 1 to rand(10,15))
 				contents += new_ration("SOVIET", "dessert")*/
