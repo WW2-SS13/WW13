@@ -93,6 +93,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		usr << "\red Ban failed!"
 		message_admins("[key_name_admin(usr)] tried to add a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database. But it failed.",1)
 
+	return reason
 
 datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
@@ -402,80 +403,82 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 			var/list/rowdata = database.execute("SELECT id, bantime, bantype, reason, job, duration, expiration_time, ckey, a_ckey, unbanned, unbanned_ckey, unbanned_datetime, edits, ip, computerid FROM erro_ban WHERE 1 [playersearch] [adminsearch] [ipsearch] [cidsearch] [bantypesearch] ORDER BY bantime DESC LIMIT 100")
 
-			var/now = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss") // MUST BE the same format as SQL gives us the dates in, and MUST be least to most specific (i.e. year, month, day not day, month, year)
+		//	var/now = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss") // MUST BE the same format as SQL gives us the dates in, and MUST be least to most specific (i.e. year, month, day not day, month, year)
 
-			for (var/v in 1 to rowdata["occurences_of_id"])
-				var/banid = rowdata["id_[v]"]
-				var/bantime = rowdata["bantime_[v]"]
-				var/bantype  = rowdata["bantype_[v]"]
-				var/reason = rowdata["reason_[v]"]
-				var/job = rowdata["job_[v]"]
-				var/duration = rowdata["duration_[v]"]
-				var/expiration = rowdata["expiration_time_[v]"]
-				var/ckey = rowdata["ckey_[v]"]
-				var/ackey = rowdata["a_ckey_[v]"]
-				var/unbanned = rowdata["unbanned_[v]"]
-				var/unbanckey = rowdata["unbanned_ckey_[v]"]
-				var/unbantime = rowdata["unbanned_datetime_[v]"]
-				var/edits = rowdata["edits_[v]"]
-				var/ip = rowdata["ip_[v]"]
-				var/cid = rowdata["computerid_[v]"]
+			var/now = database.Now()
+			if (rowdata["occurences_of_id"])
+				for (var/v in 1 to rowdata["occurences_of_id"])
+					var/banid = rowdata["id_[v]"]
+					var/bantime = rowdata["bantime_[v]"]
+					var/bantype  = rowdata["bantype_[v]"]
+					var/reason = rowdata["reason_[v]"]
+					var/job = rowdata["job_[v]"]
+					var/duration = rowdata["duration_[v]"]
+					var/expiration = rowdata["expiration_time_[v]"]
+					var/ckey = rowdata["ckey_[v]"]
+					var/ackey = rowdata["a_ckey_[v]"]
+					var/unbanned = rowdata["unbanned_[v]"]
+					var/unbanckey = rowdata["unbanned_ckey_[v]"]
+					var/unbantime = rowdata["unbanned_datetime_[v]"]
+					var/edits = rowdata["edits_[v]"]
+					var/ip = rowdata["ip_[v]"]
+					var/cid = rowdata["computerid_[v]"]
 
-				// true if this ban has expired
-				var/auto = (bantype in list("TEMPBAN", "JOB_TEMPBAN")) && now > expiration // oh how I love ISO 8601 (ish) date strings
+					// true if this ban has expired
+					var/auto = (bantype in list("TEMPBAN", "JOB_TEMPBAN")) && now > expiration // oh how I love ISO 8601 (ish) date strings
 
-				var/lcolor = blcolor
-				var/dcolor = bdcolor
-				if(unbanned)
-					lcolor = ulcolor
-					dcolor = udcolor
-				else if(auto)
-					lcolor = alcolor
-					dcolor = adcolor
+					var/lcolor = blcolor
+					var/dcolor = bdcolor
+					if(unbanned)
+						lcolor = ulcolor
+						dcolor = udcolor
+					else if(auto)
+						lcolor = alcolor
+						dcolor = adcolor
 
-				var/typedesc =""
-				switch(bantype)
-					if("PERMABAN")
-						typedesc = "<font color='red'><b>PERMABAN</b></font>"
-					if("TEMPBAN")
-						typedesc = "<b>TEMPBAN</b><br><font size='2'>([duration] minutes) [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=duration;dbbanid=[banid]\">Edit</a>)"]<br>Expires [expiration]</font>"
-					if("JOB_PERMABAN")
-						typedesc = "<b>JOBBAN</b><br><font size='2'>([job])</font>"
-					if("JOB_TEMPBAN")
-						typedesc = "<b>TEMP JOBBAN</b><br><font size='2'>([job])<br>([duration] minutes<br>Expires [expiration]</font>"
+					var/typedesc =""
+					switch(bantype)
+						if("PERMABAN")
+							typedesc = "<font color='red'><b>PERMABAN</b></font>"
+						if("TEMPBAN")
+							typedesc = "<b>TEMPBAN</b><br><font size='2'>([duration] minutes) [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=duration;dbbanid=[banid]\">Edit</a>)"]<br>Expires [expiration]</font>"
+						if("JOB_PERMABAN")
+							typedesc = "<b>JOBBAN</b><br><font size='2'>([job])</font>"
+						if("JOB_TEMPBAN")
+							typedesc = "<b>TEMP JOBBAN</b><br><font size='2'>([job])<br>([duration] minutes<br>Expires [expiration]</font>"
 
-				output += "<tr bgcolor='[dcolor]'>"
-				output += "<td align='center'>[typedesc]</td>"
-				output += "<td align='center'><b>[ckey]</b></td>"
-				output += "<td align='center'>[bantime]</td>"
-				output += "<td align='center'><b>[ackey]</b></td>"
-				output += "<td align='center'>[(unbanned || auto) ? "" : "<b><a href=\"byond://?src=\ref[src];dbbanedit=unban;dbbanid=[banid]\">Unban</a></b>"]</td>"
-				output += "</tr>"
-				output += "<tr bgcolor='[dcolor]'>"
-				output += "<td align='center' colspan='2' bgcolor=''><b>IP:</b> [ip]</td>"
-				output += "<td align='center' colspan='3' bgcolor=''><b>CIP:</b> [cid]</td>"
-				output += "</tr>"
-				output += "<tr bgcolor='[lcolor]'>"
-				output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=reason;dbbanid=[banid]\">Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
-				output += "</tr>"
-				if(edits)
 					output += "<tr bgcolor='[dcolor]'>"
-					output += "<td align='center' colspan='5'><b>EDITS</b></td>"
+					output += "<td align='center'>[typedesc]</td>"
+					output += "<td align='center'><b>[ckey]</b></td>"
+					output += "<td align='center'>[bantime]</td>"
+					output += "<td align='center'><b>[ackey]</b></td>"
+					output += "<td align='center'>[(unbanned || auto) ? "" : "<b><a href=\"byond://?src=\ref[src];dbbanedit=unban;dbbanid=[banid]\">Unban</a></b>"]</td>"
+					output += "</tr>"
+					output += "<tr bgcolor='[dcolor]'>"
+					output += "<td align='center' colspan='2' bgcolor=''><b>IP:</b> [ip]</td>"
+					output += "<td align='center' colspan='3' bgcolor=''><b>CIP:</b> [cid]</td>"
 					output += "</tr>"
 					output += "<tr bgcolor='[lcolor]'>"
-					output += "<td align='center' colspan='5'><font size='2'>[edits]</font></td>"
+					output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=reason;dbbanid=[banid]\">Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
 					output += "</tr>"
-				if(unbanned)
-					output += "<tr bgcolor='[dcolor]'>"
-					output += "<td align='center' colspan='5' bgcolor=''><b>UNBANNED by admin [unbanckey] on [unbantime]</b></td>"
+					if(edits)
+						output += "<tr bgcolor='[dcolor]'>"
+						output += "<td align='center' colspan='5'><b>EDITS</b></td>"
+						output += "</tr>"
+						output += "<tr bgcolor='[lcolor]'>"
+						output += "<td align='center' colspan='5'><font size='2'>[edits]</font></td>"
+						output += "</tr>"
+					if(unbanned)
+						output += "<tr bgcolor='[dcolor]'>"
+						output += "<td align='center' colspan='5' bgcolor=''><b>UNBANNED by admin [unbanckey] on [unbantime]</b></td>"
+						output += "</tr>"
+					else if(auto)
+						output += "<tr bgcolor='[dcolor]'>"
+						output += "<td align='center' colspan='5' bgcolor=''><b>EXPIRED at [expiration]</b></td>"
+						output += "</tr>"
+					output += "<tr>"
+					output += "<td colspan='5' bgcolor='white'>&nbsp</td>"
 					output += "</tr>"
-				else if(auto)
-					output += "<tr bgcolor='[dcolor]'>"
-					output += "<td align='center' colspan='5' bgcolor=''><b>EXPIRED at [expiration]</b></td>"
-					output += "</tr>"
-				output += "<tr>"
-				output += "<td colspan='5' bgcolor='white'>&nbsp</td>"
-				output += "</tr>"
 
 			output += "</table></div>"
 

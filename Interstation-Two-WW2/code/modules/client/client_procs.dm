@@ -124,30 +124,32 @@
 	if(!prefs)
 		prefs = new /datum/preferences(src)
 		preferences_datums[ckey] = prefs
+
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
 	. = ..()	//calls mob.Login()
 
-	var/admin_spawntime = 0
-	if (host == key)
-		admin_spawntime = 50
+	var/list/bantable = world.IsBanned(key, address, computer_id)
+	if (islist(bantable) && !isemptylist(bantable))
+		if (bantable.Find("desc"))
+			src << "<span class = 'danger'>[bantable["desc"]]</span>"
+			del(src)
+		return 0
 
-	spawn (admin_spawntime)
+	//Admin Authorisation
+	holder = admin_datums[ckey]
 
-		//Admin Authorisation
-		holder = admin_datums[ckey]
+	if(holder)
 		holder.associate(src)
-
-		if(holder)
 //			src << "<span class = 'userdanger'>Hello, [holder.rank]. Your rights are [holder.rights].</span>"
-			admins |= src
-			holder.owner = src
-		else if (world.port == config.hubtesting_port)
-			src << "<span class = 'userdanger'>The server is closed to non-admins right now, sorry.</span>"
-			message_admins("[src] tried to log in, but was rejected, because they aren't an admin")
-			qdel(src)
-			return
+		admins |= src
+		holder.owner = src
+	else if (world.port == config.hubtesting_port)
+		src << "<span class = 'userdanger'>The server is closed to non-admins right now, sorry.</span>"
+		message_admins("[src] tried to log in, but was rejected, because they aren't an admin.")
+		del(src)
+		return
 
 	if(custom_event_msg && custom_event_msg != "")
 		src << "<h1 class='alert'>Custom Event</h1>"

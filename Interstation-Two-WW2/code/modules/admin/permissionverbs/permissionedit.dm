@@ -47,17 +47,25 @@
 // see admin/topic.dm
 /datum/admins/proc/log_admin_rank_modification(var/adm_ckey, var/new_rank)
 
+	//#define LOG_RANK_MODIFICATION
+
+	#ifdef LOG_RANK_MODIFICATION
 	world << "log_admin_rank_modification happened"
+	#endif
 
 	if(!usr.client)
+		#ifdef LOG_RANK_MODIFICATION
 		world << "log_admin_rank_modification: no bloody usr.client!!!"
+		#endif
 		return
 
 	if(!usr.client.holder || !(usr.client.holder.rights & R_PERMISSIONS))
 		usr << "\red You do not have permission to do this!"
 		return
 
+	#ifdef LOG_RANK_MODIFICATION
 	world << "log_admin_rank_modification: establishing DB"
+	#endif
 
 	establish_db_connection()
 
@@ -65,7 +73,9 @@
 		usr << "\red Failed to establish database connection"
 		return
 
+	#ifdef LOG_RANK_MODIFICATION
 	world << "log_admin_rank_modification: established DB"
+	#endif
 
 	if(!adm_ckey || !new_rank)
 		return

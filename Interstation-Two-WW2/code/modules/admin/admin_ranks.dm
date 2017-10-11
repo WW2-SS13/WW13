@@ -87,7 +87,10 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 				rights = text2num(rights)
 
 			// make our admins datum and put us in admin_datums[]
-			new/datum/admins(rank, rights, ckey)
+			var/datum/admins/A = new/datum/admins(rank, rights, ckey)
+			if (directory[ckey])
+				A.associate(directory[ckey])
+
 
 			/* moved association code to client/New(), so it works for clients
 			   created at the same time as the world */

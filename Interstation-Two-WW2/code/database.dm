@@ -17,12 +17,13 @@ var/database/database = null
 		if (!execute("TABLE erro_connection_log EXISTS"))
 			execute("CREATE TABLE erro_connection_log (id NULL, datetime STRING, serverip STRING, ckey STRING, ip STRING, computerid STRING);")
 
-/database/proc/Now()
-	return "[world.realtime]"
+/database/proc/Now(var/num = 0)
+	if (!num)
+		return "[world.realtime]"
+	return world.realtime
 
 /database/proc/After(minutes)
-	return "[world.realtime]+[minutes*600]"
-
+	return "[world.realtime+(minutes*600)]"
 
 /database/proc/execute(querytext)
 	. = FALSE

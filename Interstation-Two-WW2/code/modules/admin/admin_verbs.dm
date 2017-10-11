@@ -77,7 +77,7 @@ var/list/admin_verbs_admin = list(
 
 )
 var/list/admin_verbs_ban = list(
-	/client/proc/unban_panel,
+	/client/proc/ban_panel,
 	/client/proc/jobbans
 	)
 var/list/admin_verbs_sounds = list(
@@ -446,13 +446,10 @@ var/list/admin_verbs_mentor = list(
 
 	return
 
-/client/proc/unban_panel()
-	set name = "Unban Panel"
+/client/proc/ban_panel()
+	set name = "Ban Panel"
 	set category = "Admin"
 	if(holder)
-	/*	if(config.ban_legacy_system)
-			holder.unbanpanel()
-		else*/
 		holder.DB_ban_panel()
 
 	return

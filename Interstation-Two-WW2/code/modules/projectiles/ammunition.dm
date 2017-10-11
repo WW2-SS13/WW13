@@ -124,12 +124,13 @@
 	if(!stored_ammo.len)
 		user << "<span class='notice'>[src] is already empty!</span>"
 		return
-	user << "<span class='notice'>You empty [src].</span>"
-	for(var/obj/item/ammo_casing/C in stored_ammo)
-		C.loc = user.loc
-		C.set_dir(pick(cardinal))
-	stored_ammo.Cut()
-	update_icon()
+	if ((input(user, "Are you sure you want to empty the [src]?", "[src]") in list ("Yes", "No")) == "Yes")
+		user << "<span class='notice'>You empty [src].</span>"
+		for(var/obj/item/ammo_casing/C in stored_ammo)
+			C.loc = user.loc
+			C.set_dir(pick(cardinal))
+		stored_ammo.Cut()
+		update_icon()
 
 /obj/item/ammo_magazine/update_icon()
 	if(multiple_sprites)

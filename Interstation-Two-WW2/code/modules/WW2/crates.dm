@@ -2,8 +2,12 @@
 	if (decimal > 1.0)
 		var/add_crates = ceil((decimal - 1.0) * contents.len)
 		for (var/v in 1 to add_crates)
-			var/atom/contents_1 = contents[1]
-			contents += new contents_1.type
+			var/index = v
+			if (index > contents.len)
+				index = 1
+			var/atom/contents_example = contents[index]
+			contents += new contents_example.type
+
 	else if (decimal < 1.0)
 		var/remove_crates = ceil((1.0 - decimal) * contents.len)
 		for (var/v in 1 to remove_crates)

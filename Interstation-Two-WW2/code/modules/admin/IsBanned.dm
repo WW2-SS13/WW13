@@ -43,19 +43,44 @@ world/IsBanned(key,address,computer_id)
 	var/failedcid = 1
 	var/failedip = 1
 
-	var/ipquery = ""
-	var/cidquery = ""
 	if(address)
 		failedip = 0
-		ipquery = " OR ip = '[address]' "
 
 	if(computer_id)
 		failedcid = 0
-		cidquery = " OR computerid = '[computer_id]' "
 
-	var/list/rowdata = database.execute("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM erro_ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN'  OR (bantype = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
+//	#define IsBannedDebug
+
+	#ifdef IsBannedDebug
+	world << "ckey: [ckeytext]"
+	world << "address: [address]"
+	world << "CID: [computer_id]"
+	#endif
+
+	#ifdef IsBannedDebug
+	world << "in procedure IsBanned(), ckey = [ckeytext], ip = [address], computerid = [computer_id];"
+	#endif
+
+	//var/list/rowdata = database.execute("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM erro_ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN' OR (bantype = 'TEMPBAN' AND expiration_time > [database.Now(1)])) AND unbanned = NULL;")
+//x = OR (bantype = 'TEMPBAN' AND expiration_time > [database.Now(1)])
+//y =  AND (bantype = 'PERMABAN' x) AND unbanned = NULL)
+
+
+	var/list/rowdata = database.execute("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype, unbanned FROM erro_ban WHERE ((ckey = '[ckeytext]' OR ip = '[address ? address : "NOTHING"]' OR computerid = '[computer_id ? computer_id : "NOTHING"]') AND (bantype = 'PERMABAN' OR bantype = 'TEMPBAN'));")
+
+	#ifdef IsBannedDebug
+	world << "we managed to get past the ban SELECT query"
+	#endif
+
+	#ifdef IsBannedDebug
+	if (!islist(rowdata) || isemptylist(rowdata))
+		world << "no rowdata from the query"
+	#endif
 
 	if (islist(rowdata) && !isemptylist(rowdata))
+		#ifdef IsBannedDebug
+		world << "we have a 'rowdata' list."
+		#endif
 		var/pckey = rowdata["ckey"]
 		//var/pip = rowdata[2]
 		//var/pcid = rowdata[3]
@@ -65,20 +90,49 @@ world/IsBanned(key,address,computer_id)
 		var/duration = rowdata["duration"]
 		var/bantime = rowdata["bantime"]
 		var/bantype = rowdata["bantype"]
+		var/unbanned = rowdata["unbanned"]
+
+		// if this is a tempban, check expiration_time
+
+		if (istext(expiration))
+			expiration = text2num(expiration)
+
+		if (bantype == "TEMPBAN" && expiration < database.Now(1))
+			#ifdef IsBannedDebug
+			world << "skipping temp ban"
+			#endif
+			goto skipban
+
+		if (unbanned != null)
+			#ifdef IsBannedDebug
+			world << "skipping removed ban"
+			#endif
+			goto skipban
 
 		var/expires = ""
 		if(text2num(duration) > 0)
 			expires = " The ban is for [duration] minutes and expires on [expiration] (server time)."
 
-		var/desc = "\nReason: You, or another user of this computer or connection ([pckey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban was applied by [ackey] on [bantime], [expires]"
+		var/days_ago = smart_round(bantime/864000)
+		var/days_left = (duration == -1 ? "" : smart_round((expiration-bantime)/864000))
+
+		var/desc = "You, or another user of this computer or connection ([pckey]) is banned from playing here. The ban reason is:\n[reason]\n[duration != -1 ? "This ban was applied by [capitalize(ackey)] [days_ago] days ago." : ""]"
+		desc += "<br>"
+		if (!expires)
+			desc += "This is a permanent ban."
+		else
+			desc += "Your ban expires in [days_left] days."
 
 		return list("reason"="[bantype]", "desc"="[desc]")
+
+	skipban
 
 	if (failedcid)
 		message_admins("[key] has logged in with a blank computer id in the ban check.")
 	if (failedip)
 		message_admins("[key] has logged in with a blank ip in the ban check.")
 	return ..()	//default pager ban stuff
+
 #endif
 #undef OVERRIDE_BAN_SYSTEM
 
