@@ -102,6 +102,8 @@ Parts of code courtesy of Super3222
 	if(user.stat || !ishuman(user))
 		if(!silent) user << "You are unable to focus through \the [src]."
 		return 0
+	if (istype(user.loc, /obj/tank))
+		return 0
 	else if(global_hud.darkMask[1] in user.client.screen)
 		if(!silent) user << "Your visor gets in the way of looking through \the [src]."
 		return 0
@@ -180,7 +182,9 @@ Parts of code courtesy of Super3222
 	if (zoomed)
 		for (var/obj/o in user.client.screen)
 			if (!istype(o, /obj/screen/movable/action_button))
-				o.invisibility = 101
+				/* 100 invisibility is better than 101 so we can still
+				   work with objects (like radios) */
+				o.invisibility = 100
 	else
 		for (var/obj/o in user.client.screen)
 			if (!istype(o, /obj/screen/movable/action_button))

@@ -144,7 +144,7 @@
 				world << "<font size = 3>The Germans have occupied most Soviet territory! The Soviet Army has 5 minutes to reclaim their land!</font>"
 				return 0
 		else
-			if (cond_2_2_check1 == 1) // soviets lost control!
+			if (cond_2_2_check1 == 1) // germans lost control!
 				if(cond_2_2_nextcheck < world.time + 2400)
 					world << "<font size = 3>The Germans have lost control of the Soviet territory they occupied!</font>"
 				else

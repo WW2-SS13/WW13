@@ -11,20 +11,36 @@
 	var/datum/game_mode/mode = null
 	var/desc = ""
 	var/required_clients = 0
+	var/list/real_aspects = list()
 
 /datum/game_aspect/New(var/datum/game_mode/M)
 	..()
-	if (M)
+	if (M) // if we don't pass an arg, this code is ommitted. Intentional.
 		if (!game_mode_type || !default_aspect_type || !possible_subtypes.len)
 			qdel(src)
 			return
 
-		var/aspecttype = pick(possible_subtypes)
-		M.aspect = new aspecttype
-		if (clients.len < M.aspect.required_clients)
+		for (var/aspecttype in possible_subtypes)
+			var/datum/game_aspect/A = new aspecttype
+			if (A && clients.len >= A.required_clients)
+				real_aspects += A
+/*
+		#define testaspects
+
+		#ifdef testaspects
+		world << "real_aspects.len = [real_aspects.len]"
+		#endif
+*/
+		if (prob(100 - default_aspect_chance))
+			M.aspect = pick(real_aspects)
+		else
 			M.aspect = new default_aspect_type
 
 		M.aspect.mode = M
+
+		for (var/x in real_aspects)
+			if (x != M.aspect)
+				qdel(x)
 
 /datum/game_aspect/proc/activate()
 	if (!mode)
@@ -47,7 +63,9 @@
 		/datum/game_aspect/ww2/german_sadvantage,
 		/datum/game_aspect/ww2/german_sdisadvantage,
 		/datum/game_aspect/ww2/russian_sadvantage,
-		/datum/game_aspect/ww2/russian_sdisadvantage)
+		/datum/game_aspect/ww2/russian_sdisadvantage,
+
+		/datum/game_aspect/ww2/german_logistical_disadvantage)
 
 /datum/game_aspect/ww2/post_activation()
 
@@ -180,6 +198,17 @@
 	world << "<br><i>[desc]</i>"
 	var/datum/game_mode/ww2/mymode = mode
 	mymode.supplies[RUSSIAN] = random_decimal(0.8, 0.9)
+
+/datum/game_aspect/ww2/german_logistical_disadvantage
+	desc = "The German High Command has disallowed sending the train until after 15 minutes for this round."
+
+/datum/game_aspect/ww2/german_logistical_disadvantage/activate()
+	. = ..()
+	if (. == FALSE)
+		return .
+	world << "[WW2_ASPECT_SPAN][.]German Logistical Disadvantage!</span>"
+	world << "<br><i>[desc]</i>"
+	GRACE_PERIOD_LENGTH = 15
 
 #undef WW2_ASPECT_SPAN
 #undef WW2_ASPECTDESC_SPAN

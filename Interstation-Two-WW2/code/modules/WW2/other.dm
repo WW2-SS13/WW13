@@ -3,8 +3,8 @@ var/grace_period = 1
 var/game_started = 0
 var/train_checked = 0
 var/secret_ladder_message = null
-
 var/list/list_of_germans_who_crossed_the_river = list()
+var/GRACE_PERIOD_LENGTH = 10
 
 /proc/WW2_train_check()
 	if (locate(/obj/effect/landmark/train/german_train_start) in world || train_checked)
@@ -166,7 +166,7 @@ var/allow_paratroopers = 1
 	if (WW2_train_check())
 		spawn (5 MINUTES)
 			allow_paratroopers = 0
-		spawn (10 MINUTES) // because byond minutes are a long fucking time, this should be long enough to build defenses. maybe. - Kachnov
+		spawn (GRACE_PERIOD_LENGTH MINUTES) // because byond minutes are a long fucking time, this should be long enough to build defenses. maybe. - Kachnov
 			if (grace_period)
 				grace_period = 0
 				world << "<font size=4>The 10 minute grace period has ended. Soviets and Partisans may now cross the river.</font>"

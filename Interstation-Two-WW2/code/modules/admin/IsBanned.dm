@@ -97,7 +97,7 @@ world/IsBanned(key,address,computer_id)
 		if (istext(expiration))
 			expiration = text2num(expiration)
 
-		if (bantype == "TEMPBAN" && expiration < database.Now(1))
+		if (bantype == "TEMPBAN" && expiration < database.Now())
 			#ifdef IsBannedDebug
 			world << "skipping temp ban"
 			#endif
@@ -113,15 +113,17 @@ world/IsBanned(key,address,computer_id)
 		if(text2num(duration) > 0)
 			expires = " The ban is for [duration] minutes and expires on [expiration] (server time)."
 
-		var/days_ago = smart_round(bantime/864000)
+		var/days_ago = smart_round(abs(world.realtime - bantime)/864000)
 		var/days_left = (duration == -1 ? "" : smart_round((expiration-bantime)/864000))
+		var/minutes_left = ((expiration-bantime)/600)
 
 		var/desc = "You, or another user of this computer or connection ([pckey]) is banned from playing here. The ban reason is:\n[reason]\n[duration != -1 ? "This ban was applied by [capitalize(ackey)] [days_ago] days ago." : ""]"
 		desc += "<br>"
+
 		if (!expires)
 			desc += "This is a permanent ban."
 		else
-			desc += "Your ban expires in [days_left] days."
+			desc += "Your ban expires in [days_left] days ([minutes_left] minutes)."
 
 		return list("reason"="[bantype]", "desc"="[desc]")
 

@@ -186,6 +186,36 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+// crates full of actual guns
+
+/obj/structure/closet/crate/lugers
+	name = "Luger crate"
+	icon = 'icons/WW2/artillery_crate.dmi'
+	icon_state = "closed"
+	icon_opened = "opened"
+	icon_closed = "closed"
+
+/obj/structure/closet/crate/lugers/New()
+	..()
+	update_capacity(20)
+	for (var/v in 1 to 20)
+		new/obj/item/weapon/gun/projectile/pistol/luger(src)
+
+/obj/structure/closet/crate/colts
+	name = "Colt crate"
+	icon = 'icons/WW2/artillery_crate.dmi'
+	icon_state = "closed"
+	icon_opened = "opened"
+	icon_closed = "closed"
+
+/obj/structure/closet/crate/colts/New()
+	..()
+	update_capacity(20)
+	for (var/v in 1 to 20)
+		new/obj/item/weapon/gun/projectile/pistol/luger/colt(src)
+
+// rations crates
+
 /obj/structure/closet/crate/rations/
 	name = "Rations"
 	icon_state = "mil_crate_closed"

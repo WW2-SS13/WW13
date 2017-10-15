@@ -1,6 +1,6 @@
 var/train_loop_interval = -1
 var/next_supplytrain_message = -1
-var/supplytrain_interval = 1800
+var/supplytrain_interval = 1200 // todo: config setting
 
 /proc/start_train_loop()
 

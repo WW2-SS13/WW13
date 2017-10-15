@@ -45,7 +45,15 @@
 			if(on_fire)
 				visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
 			else
-				user << "<span class='warning'>You manage to singe [src], but fail to light it.</span>"
+				user << "<span class='warning'>You manage to singe [src], but fail to light it. Maybe you should wet it.</span>"
+	else if(!on_fire && istype(W, /obj/item/weapon/weldingtool))
+		var/obj/item/weapon/weldingtool/F = W
+		if(F.welding)
+			ignite()
+			if(on_fire)
+				visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
+			else
+				user << "<span class='warning'>You manage to singe [src], but fail to light it. Maybe you should wet it.</span>"
 
 	. = ..()
 	update_name()
@@ -152,6 +160,10 @@
 //maybe generalize flammable reagents someday
 /obj/item/weapon/reagent_containers/glass/rag/proc/can_ignite()
 	var/fuel = reagents.get_reagent_amount("fuel")
+	for (var/datum/reagent/R in reagents.reagent_list)
+		if (istype(R, /datum/reagent/ethanol))
+			fuel += R.volume
+
 	return (fuel >= 2 && fuel >= reagents.total_volume*0.8)
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/ignite()

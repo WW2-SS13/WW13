@@ -19,11 +19,17 @@ var/list/nonbreaking_types = list(
 	material = "iron"
 	var/starts_open = 0
 
-/obj/structure/simple_door/key_door/New()
+/obj/structure/simple_door/key_door/New(_loc, _material = null)
+
+	#define keydoortesting
+
+	#ifdef keydoortesting
+	world << _material
+	#endif
 
 	var/map_door_name = name
 
-	..(loc, material)
+	..(_loc, _material ? _material : material)
 
 	if (keyslot_type)
 		keyslot = new keyslot_type
@@ -41,8 +47,9 @@ var/list/nonbreaking_types = list(
 
 	// should fix doors always being the wrong type
 	spawn (5)
-		if (material.name != initial(material))
-			update_material(initial(material))
+		var/initial_material = _material ? _material : initial(material)
+		if (material.name != initial_material)
+			update_material(initial_material)
 
 	spawn (7)
 		if (starts_open)

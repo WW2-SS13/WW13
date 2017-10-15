@@ -37,8 +37,14 @@
 	var/pushed_state = "lever_pushed"
 	var/orientation = "NONE"
 	name = "gassing lever"
+	var/next_use = -1
 
 /obj/gas_lever/attack_hand(var/mob/user as mob)
+	if (world.time < next_use && next_use != -1)
+		return
+
+	next_use = world.time + 25
+
 	if (user && istype(user, /mob/living/carbon/human))
 		if (orientation == "NONE")
 			icon_state = pushed_state

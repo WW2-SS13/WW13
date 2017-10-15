@@ -41,6 +41,7 @@
 	// GUNS & ARTILLERY
 	"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 	"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
+	"Luger Crate" = /obj/structure/closet/crate/lugers,
 
 	// ARTILLERY AMMO
 	"Artillery Ballistic Shells Crate" = /obj/structure/closet/crate/artillery,
@@ -87,6 +88,7 @@
 	// GUNS & ARTILLERY
 	"Flammenwerfer" = 250,
 	"7,5 cm FK 18 Artillery Piece" = 300,
+	"Luger Crate" = 400,
 
 	// ARTILLERY AMMO
 	"Artillery Ballistic Shells Crate" = 100,
@@ -194,10 +196,14 @@
 		else
 			H << "<span class = 'warning'>You must have a pen in-hand to write down a purchase.</span>"
 
+/obj/item/weapon/paper/supply_train_requisitions_sheet/proc/generate_memoend(var/datum/train_controller/german_supplytrain_controller/train)
+	return "<br><i>As of the time this was printed, you have [train.supply_points] Supply Requisition Points remaining.</i>"
+
 /obj/item/weapon/paper/supply_train_requisitions_sheet/proc/supplytrain_process(var/datum/train_controller/german_supplytrain_controller/train)
 
 	if (!purchases.len)
-		return 0
+		memo = ""
+		goto end
 
 	var/list/create_crates = list()
 
@@ -260,7 +266,8 @@
 
 	end
 
-	memo += "<br><i>As of the time this was printed, you have [train.supply_points] Supply Requisition Points remaining.</i>"
+	// add our unique memo ending
+	memo += generate_memoend(train)
 
 	signatures = list()
 

@@ -14,7 +14,7 @@
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	magazine_type = /obj/item/ammo_magazine/svt
 	firemodes = list(
-		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, dispersion = list(1))
+		list(name="single shot",burst=1, move_delay=4, fire_delay=10)
 		)
 
 /obj/item/weapon/gun/projectile/svt/update_icon()
@@ -43,7 +43,7 @@
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	magazine_type = /obj/item/ammo_magazine/g41
 	firemodes = list(
-		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, dispersion = list(1))
+		list(name="single shot",burst=1, move_delay=4, fire_delay=10, dispersion = list(1))
 		)
 
 /obj/item/weapon/gun/projectile/g41/update_icon()

@@ -562,7 +562,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		var/list/turfs = latejoin_turfs[spawn_location]
 
-		if(istype(H.job_spawn_location, /datum/job/german/paratrooper))
+		if(istype(H.original_job, /datum/job/german/paratrooper))
 			return
 
 		if(turfs && turfs.len > 0)
@@ -573,8 +573,9 @@ var/global/list/fallschirm_landmarks = list()
 				while (tries <= 5 && !locate(H.loc) in turfs)
 					++tries
 					H.loc = pick(turfs)
-		else
-			H << "\red Oh god. Bug with spawning! We are doomed!"
+		// custom spawning
+		else if (!istype(H.original_job, /datum/job/german/paratrooper))
+			H << "\red Something went wrong while spawning you. Please contact an admin."
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()

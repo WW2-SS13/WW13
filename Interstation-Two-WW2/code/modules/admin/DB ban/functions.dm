@@ -4,7 +4,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 
 	if(!check_rights(R_MOD,0) && !check_rights(R_BAN))	return
 
-	//establish_db_connection()
+	establish_db_connection()
 	if(!database)
 		return
 
@@ -26,6 +26,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		if(BANTYPE_JOB_TEMP)
 			bantype_str = "JOB_TEMPBAN"
 			bantype_pass = 1
+
 	if( !bantype_pass ) return
 	if( !istext(reason) ) return
 	if( !isnum(duration) ) return
@@ -44,7 +45,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		computerid = bancid
 		ip = banip
 
-	var/list/rowdata = database.execute("SELECT id FROM erro_player WHERE ckey = '[ckey]'")
+	var/list/rowdata = database.execute("SELECT id FROM erro_player WHERE ckey = '[ckey]';")
 
 	var/validckey = 0
 	if(islist(rowdata) && !isemptylist(rowdata))
@@ -86,7 +87,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 
 	reason = sql_sanitize_text(reason)
 
-	if (database.execute("INSERT INTO erro_ban (id,bantime,serverip,bantype,reason,job,duration,rounds,expiration_time,ckey,computerid,ip,a_ckey,a_computerid,a_ip,who,adminwho,edits,unbanned,unbanned_datetime,unbanned_ckey,unbanned_computerid,unbanned_ip) VALUES (null, '[database.Now()]', '[serverip]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], [(rounds)?"[rounds]":"0"], '[database.After(duration)]', '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null)"))
+	if (database.execute("INSERT INTO erro_ban (id,bantime,serverip,bantype,reason,job,duration,rounds,expiration_time,ckey,computerid,ip,a_ckey,a_computerid,a_ip,who,adminwho,edits,unbanned,unbanned_datetime,unbanned_ckey,unbanned_computerid,unbanned_ip) VALUES (null, '[database.Now()]', '[serverip]', '[bantype_str]', '[reason]', '[job]', '[(duration)?"[duration]":"0"]', '[(rounds)?"[rounds]":"0"]', '[database.After(duration)]', '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null);"))
 		usr << "\blue Ban saved to database."
 		message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.",1)
 	else
@@ -122,7 +123,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 	var/bantype_sql
 	if(bantype_str == "ANY")
-		bantype_sql = "(bantype = 'PERMABAN' OR (bantype = 'TEMPBAN' AND expiration_time > Now() ) )"
+		bantype_sql = "(bantype = 'PERMABAN' OR (bantype = 'TEMPBAN' AND expiration_time > '[database.Now()]' ) )"
 	else
 		bantype_sql = "bantype = '[bantype_str]'"
 
@@ -270,8 +271,8 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	if(!check_rights(R_BAN))	return
 
-/*	establish_db_connection()
-	if(!dbcon.IsConnected())*/
+	establish_db_connection()
+
 	if (!database)
 		usr << "\red Failed to establish database connection"
 		return
@@ -300,6 +301,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	output += "<tr><td width='50%' align='right'><b>Duration:</b> <input type='text' name='dbbaddduration'></td>"
 	output += "<td width='50%' align='right'><b>Job:</b><select name='dbbanaddjob'>"
 	output += "<option value=''>--</option>"
+
 	for(var/j in get_all_jobs())
 		output += "<option value='[j]'>[j]</option>"
 	for(var/j in nonhuman_positions)
@@ -406,7 +408,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		//	var/now = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss") // MUST BE the same format as SQL gives us the dates in, and MUST be least to most specific (i.e. year, month, day not day, month, year)
 
 			var/now = database.Now()
-			if (rowdata["occurences_of_id"])
+			if (islist(rowdata) && !isemptylist(rowdata) && rowdata["occurences_of_id"])
 				for (var/v in 1 to rowdata["occurences_of_id"])
 					var/banid = rowdata["id_[v]"]
 					var/bantime = rowdata["bantime_[v]"]

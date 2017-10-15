@@ -39,9 +39,8 @@ var/list/admin_datums = list()
 	if(istype(C))
 		owner = C
 		owner.holder = src
-		owner.add_admin_verbs()	//TODO
+		owner.add_admin_verbs()
 		admins |= C
-//		world << "[C] is the new owner of [rank] admin datum"
 
 /datum/admins/proc/disassociate()
 	if(owner)

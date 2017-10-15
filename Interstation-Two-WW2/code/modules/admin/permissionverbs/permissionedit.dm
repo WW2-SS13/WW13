@@ -47,35 +47,18 @@
 // see admin/topic.dm
 /datum/admins/proc/log_admin_rank_modification(var/adm_ckey, var/new_rank)
 
-	//#define LOG_RANK_MODIFICATION
-
-	#ifdef LOG_RANK_MODIFICATION
-	world << "log_admin_rank_modification happened"
-	#endif
-
 	if(!usr.client)
-		#ifdef LOG_RANK_MODIFICATION
-		world << "log_admin_rank_modification: no bloody usr.client!!!"
-		#endif
 		return
 
 	if(!usr.client.holder || !(usr.client.holder.rights & R_PERMISSIONS))
 		usr << "\red You do not have permission to do this!"
 		return
 
-	#ifdef LOG_RANK_MODIFICATION
-	world << "log_admin_rank_modification: establishing DB"
-	#endif
-
 	establish_db_connection()
 
 	if(!database)
 		usr << "\red Failed to establish database connection"
 		return
-
-	#ifdef LOG_RANK_MODIFICATION
-	world << "log_admin_rank_modification: established DB"
-	#endif
 
 	if(!adm_ckey || !new_rank)
 		return
@@ -112,8 +95,6 @@
 // see admin/topic.dm
 /datum/admins/proc/log_admin_permission_modification(var/adm_ckey, var/new_permission, var/nominal)
 
-	world << "log_admin_permission_modification happened"
-
 	if(!usr.client)
 		return
 
@@ -121,15 +102,11 @@
 		usr << "\red You do not have permission to do this!"
 		return
 
-	world << "log_admin_permission_modification: establishing DB conn"
-
 	establish_db_connection()
 
 	if(!database)
 		usr << "\red Failed to establish database connection"
 		return
-
-	world << "log_admin_permission_modification: established DB conn"
 
 	if(!adm_ckey || !new_permission)
 		return
@@ -153,9 +130,6 @@
 	if (islist(rowdata) && !isemptylist(rowdata))
 		admin_id = text2num(rowdata["id"])
 		admin_rights = text2num(rowdata["flags"])
-
-	world << "log_admin_permission_modification id: [admin_id]"
-	world << "log_admin_permission_modification rights: [admin_rights]"
 
 	if(!admin_id)
 		return

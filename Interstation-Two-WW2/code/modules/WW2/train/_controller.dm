@@ -303,7 +303,7 @@
 					tpt.density = 0
 					tpt.opacity = 0
 					for (var/atom/movable/a in get_turf(tpt))
-						if (!istype(a, /obj/effect) && !istype(a, /obj/train_track) && !istype(a, /obj/structure/closet/crate))
+						if (!istype(a, /obj/effect) && !istype(a, /obj/train_track) && !istype(a, /obj/structure/closet))
 							a.invisibility = 100
 							a.density = 0
 							a.opacity = 0
@@ -327,7 +327,7 @@
 				tpt.density = tpt.initial_density
 				tpt.opacity = tpt.initial_opacity
 				for (var/atom/movable/a in get_turf(tpt))
-					if (!istype(a, /obj/effect))
+					if (!istype(a, /obj/effect) && !istype(a, /obj/train_track) && !istype(a, /obj/structure/closet))
 						a.invisibility = 0
 						a.density = a.initial_density
 						a.opacity = a.initial_opacity
@@ -612,24 +612,4 @@
 	else if (direction == "BACKWARDS" && m.dir == SOUTH)
 		return 1
 	return 0
-// factional train controllers
-
-/datum/train_controller/german_train_controller
-
-/datum/train_controller/german_train_controller/New()
-	..(GERMAN)
-
-/datum/train_controller/german_supplytrain_controller
-	var/supply_points = 200
-	var/supply_points_per_second_min = 0.1
-	var/supply_points_per_second_max = 0.3
-
-/datum/train_controller/german_supplytrain_controller/New()
-	..("GERMAN-SUPPLY")
-	direction = "BACKWARDS"
-
-/datum/train_controller/russian_train_controller
-
-/datum/train_controller/russian_train_controller/New()
-	..(RUSSIAN)
 

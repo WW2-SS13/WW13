@@ -340,6 +340,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/heavysniper/ptrd(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/anti_tank_crew(H), slot_belt)
+
 	H.give_radio()
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an anti-tank infantry unit. Your job is to destroy enemy tanks.</span>"
 	return 1

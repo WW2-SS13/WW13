@@ -45,6 +45,7 @@
 
 	if (!ishuman(src))
 		return 0
+
 	if (!istype(loc, /obj/tank))
 		return 0
 
@@ -57,7 +58,7 @@
 
 /obj/tank/proc/Fire()
 
-	var/atom/target = get_x_steps_in_dir(10)
+	var/atom/target = get_x_steps_in_dir(pick(6,7)) // nerfed from 10, experimental
 
 	if(!target) return
 
@@ -66,7 +67,7 @@
 	if (!user) return
 
 	if(world.time - last_fire < fire_delay && last_fire != -1)
-		(back_seat() ? back_seat() : front_seat()) << "<span class = 'danger'>You can't fire again so quickly!</span>"
+		user << "<span class = 'danger'>You can't fire again so quickly!</span>"
 		return
 
 	playsound(get_turf(src), 'sound/weapons/WW2/tank_fire.ogg', 100)
@@ -75,4 +76,20 @@
 
 	var/abs_dist = abs_dist(src, target)
 
-	tank_explosion(target, min(2, abs_dist), 3, 4, 5)
+	// give us a 66% chance of hitting next to, but not on, our target
+	if (prob(33))
+		switch (dir)
+			if (NORTH, SOUTH)
+				target = locate(target.x+1, target.y, target.z)
+			if (EAST, WEST)
+				target = locate(target.x, target.y+1, target.z)
+
+	else if (prob(33))
+		switch (dir)
+			if (NORTH, SOUTH)
+				target = locate(target.x-1, target.y, target.z)
+			if (EAST, WEST)
+				target = locate(target.x, target.y-1, target.z)
+
+	if (target)
+		tank_explosion(target, min(2, abs_dist), 3, 4, 5)

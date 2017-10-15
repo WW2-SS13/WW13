@@ -30,7 +30,6 @@
 	set src = usr
 	new_player_panel_proc()
 
-
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'><B>New Player Options</B>"
 	output +="<hr>"
@@ -468,15 +467,25 @@
 				if(side_name)
 					dat += "[side_name]<br>"
 
+			var/extra_span = ""
+			var/end_extra_span = ""
+
+			if (job.is_officer && !job.is_commander)
+				extra_span = "<span style = 'font-size: 1.5em;'>"
+				end_extra_span = "</span>"
+			else if (job.is_commander)
+				extra_span = "<span style = 'font-size: 2.0em;'>"
+				end_extra_span = "</span>"
+
 			if (!job.en_meaning)
 				if (job_is_available)
-					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a><br>"
+					dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
 				else
 					dat += "<span style = 'color:red'><strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 
 			else
 				if (job_is_available)
-					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a><br>"
+					dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
 				else
 					dat += "<span style = 'color:red'><strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 

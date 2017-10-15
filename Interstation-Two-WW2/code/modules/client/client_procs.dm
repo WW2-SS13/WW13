@@ -137,17 +137,26 @@
 			del(src)
 		return 0
 
-	//Admin Authorisation
+	/*Admin Authorisation: if there are no admins, and we are the host,
+	  give us host permissions - todo: config setting */
+
 	holder = admin_datums[ckey]
+
+	establish_db_connection()
+
+	var/list/admins = database.execute("SELECT * FROM erro_admin;")
+	if ((!islist(admins) || isemptylist(admins)) && !holder)
+		holder = new("Host", 0, ckey)
+		database.execute("INSERT INTO erro_admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rank]');")
+
 
 	if(holder)
 		holder.associate(src)
-//			src << "<span class = 'userdanger'>Hello, [holder.rank]. Your rights are [holder.rights].</span>"
 		admins |= src
 		holder.owner = src
 	else if (world.port == config.hubtesting_port)
 		src << "<span class = 'userdanger'>The server is closed to non-admins right now, sorry.</span>"
-		message_admins("[src] tried to log in, but was rejected, because they aren't an admin.")
+		message_admins("[src] tried to log in, but was rejected, because they aren't an admin, and the server is on hubtesting mode.")
 		del(src)
 		return
 

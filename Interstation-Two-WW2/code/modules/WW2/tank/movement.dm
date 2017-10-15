@@ -1,9 +1,9 @@
 /obj/tank/var/last_movement = -1
-/obj/tank/var/movement_delay = 4.5
+/obj/tank/var/movement_delay = 4.8 // about 1.4 - 1.5x slower than walking humans
 /obj/tank/var/last_movement_sound = -1
 /obj/tank/var/movement_sound_delay = 30
 /obj/tank/var/last_gibbed = -1
-
+/obj/tank/var/lastdir = -1
 
 /obj/tank/Move()
 	switch (dir)
@@ -17,16 +17,30 @@
 
 /obj/tank/proc/_Move(direct)
 	if (world.time - last_movement > movement_delay || last_movement == -1)
+
 		if (fuel <= 0)
 			internal_tank_message("<span class = 'danger'><big>Out of fuel!</big></danger>")
 			return
+
 		last_movement = world.time
 		var/turf/target = get_step(src, direct)
+
+		if (istype(target, /turf/floor/plating/beach/water))
+			play_movement_sound()
+			return
 
 		if (target && target.check_prishtina_block(src.front_seat()))
 			return
 
+		if (direct != lastdir && lastdir != -1)
+			internal_tank_message("<span class = 'notice'><big>Attempting to turn...</big></span>")
+			var/turndelay = 25
+			last_movement = world.time + turndelay + 5
+			sleep(turndelay)
+
 		dir = direct
+		lastdir = dir
+
 		update_bounding_rectangle()
 		switch (dir)
 			if (EAST)
@@ -41,9 +55,7 @@
 		if (!handle_passing_target_turf(target))
 			return 0
 
-		if (world.time - last_movement_sound > movement_sound_delay || last_movement_sound == -1)
-			playsound(get_turf(src), 'sound/weapons/WW2/tank_move.ogg', 100)
-			last_movement_sound = world.time
+		play_movement_sound()
 
 		for (var/obj/o in get_step(src, direct))
 			if (!handle_passing_obj(o))
@@ -55,6 +67,11 @@
 
 		loc = target
 		fuel -= pick(0.33,0.5,0.75)
+
+/obj/tank/proc/play_movement_sound()
+	if (world.time - last_movement_sound > movement_sound_delay || last_movement_sound == -1)
+		playsound(get_turf(src), 'sound/weapons/WW2/tank_move.ogg', 100)
+		last_movement_sound = world.time
 
 /obj/tank/proc/update_bounding_rectangle()
 	switch (dir)
@@ -142,8 +159,12 @@
 		if (istype(o, /obj/item/device/mine))
 			var/obj/item/device/mine/mine = o
 			mine.trigger(src)
+			damage += x_percent_of_max_damage(rand(5,7))
 			update_damage_status()
 			return 0 // halt us too
+
+		if (istype(o, /obj/item/weapon/grenade))
+			return 1 // pass over it
 
 		if (istype(o, /obj/train_lever))
 			return 1 // pass over it
@@ -159,8 +180,9 @@
 					tank_message("<span class = 'danger'>The tank smashes its way through [o]!</span>")
 					qdel(o)
 					return 1
-			else
-				return 1
+			else // you can no longer drive tanks into trains.
+				return 0
+
 		else if (istype(o, /obj/tank))
 			tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
 			var/obj/tank/other = o

@@ -327,6 +327,7 @@ var/list/admin_verbs_mentor = list(
 		admin_verbs_spawn,
 		debug_verbs
 		)
+	remove_ghost_only_admin_verbs()
 
 /client/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
 	set name = "Adminverbs - Hide Most"
@@ -394,7 +395,6 @@ var/list/admin_verbs_mentor = list(
 				body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
 
 /client/proc/add_ghost_only_admin_verbs()
-	src << "<span class = 'notice'>Added your ghost verbs.</span>"
 	if (mob && holder && check_rights(R_MOD, user = mob))
 		verbs |= /client/proc/see_who_is_in_tank
 		verbs |= /client/proc/eject_from_tank
@@ -403,7 +403,6 @@ var/list/admin_verbs_mentor = list(
 			verbs |= admin_verbs_possess
 
 /client/proc/remove_ghost_only_admin_verbs()
-	src << "<span class = 'notice'>Removed your ghost verbs.</span>"
 	if (mob && holder && check_rights(R_MOD, user = mob))
 		verbs -= /client/proc/see_who_is_in_tank
 		verbs -= /client/proc/eject_from_tank

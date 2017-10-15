@@ -303,7 +303,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/verb/follow_russian(input in getfitmobs(RUSSIAN))
 	set category = "Ghost"
 	set name = "Follow a Russian"
-	set desc = "Follow and haunt a living rusky."
+	set desc = "Follow and haunt a living Russian."
 
 	var/target = input // not a map
 	if(!target) return
@@ -312,7 +312,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/verb/follow_german(input in getfitmobs(GERMAN))
 	set category = "Ghost"
 	set name = "Follow a German"
-	set desc = "Follow and haunt a living german."
+	set desc = "Follow and haunt a living German."
 
 	var/target = input // not a map
 	if(!target) return
