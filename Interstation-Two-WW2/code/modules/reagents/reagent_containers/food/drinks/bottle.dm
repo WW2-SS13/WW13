@@ -72,7 +72,7 @@
 		rag.forceMove(loc)
 		var/mob/living/L = against
 		L.IgniteMob()
-		#define testmolotovs
+	//	#define testmolotovs
 
 		var/explosion_power = 0
 		for (var/datum/reagent/R in reagents.reagent_list)

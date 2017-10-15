@@ -21,12 +21,6 @@ var/list/nonbreaking_types = list(
 
 /obj/structure/simple_door/key_door/New(_loc, _material = null)
 
-	#define keydoortesting
-
-	#ifdef keydoortesting
-	world << _material
-	#endif
-
 	var/map_door_name = name
 
 	..(_loc, _material ? _material : material)

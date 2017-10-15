@@ -24,13 +24,7 @@
 			var/datum/game_aspect/A = new aspecttype
 			if (A && clients.len >= A.required_clients)
 				real_aspects += A
-/*
-		#define testaspects
 
-		#ifdef testaspects
-		world << "real_aspects.len = [real_aspects.len]"
-		#endif
-*/
 		if (prob(100 - default_aspect_chance))
 			M.aspect = pick(real_aspects)
 		else
