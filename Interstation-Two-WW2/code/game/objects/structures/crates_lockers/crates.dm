@@ -23,16 +23,6 @@
 	if(!src.can_open())
 		return 0
 
-	if(rigged && locate(/obj/item/device/radio/electropack) in src)
-		if(isliving(usr))
-			var/mob/living/L = usr
-			if(L.electrocute_act(17, src))
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-				s.set_up(5, 1, src)
-				s.start()
-				if(usr.stunned)
-					return 2
-
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
 	for(var/obj/O in src)
 		O.forceMove(get_turf(src))
@@ -70,8 +60,6 @@
 /obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(opened)
 		return ..()
-	else if(istype(W, /obj/item/weapon/packageWrap))
-		return
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 		if(rigged)
@@ -80,12 +68,6 @@
 		if (C.use(1))
 			user  << "<span class='notice'>You rig [src].</span>"
 			rigged = 1
-			return
-	else if(istype(W, /obj/item/device/radio/electropack))
-		if(rigged)
-			user  << "<span class='notice'>You attach [W] to [src].</span>"
-			user.drop_item()
-			W.forceMove(src)
 			return
 	else if(istype(W, /obj/item/weapon/wirecutters))
 		if(rigged)
@@ -184,26 +166,12 @@
 		src.toggle(user)
 
 /obj/structure/closet/crate/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/weapon/packageWrap, /obj/item/stack/cable_coil, /obj/item/device/radio/electropack, /obj/item/weapon/wirecutters)))
+	if(is_type_in_list(W, list(/obj/item/stack/cable_coil, /obj/item/weapon/wirecutters)))
 		return ..()
-	if(istype(W, /obj/item/weapon/melee/energy/blade))
-		emag_act(INFINITY, user)
 	if(!opened)
 		src.togglelock(user)
 		return
 	return ..()
-
-/obj/structure/closet/crate/secure/emag_act(var/remaining_charges, var/mob/user)
-	if(!broken)
-		overlays.Cut()
-		overlays += emag
-		overlays += sparks
-		spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-		playsound(src.loc, "sparks", 60, 1)
-		src.locked = 0
-		src.broken = 1
-		user << "<span class='notice'>You unlock \the [src].</span>"
-		return 1
 
 /obj/structure/closet/crate/secure/emp_act(severity)
 	for(var/obj/O in src)
@@ -285,36 +253,6 @@
 //	new /obj/item/weapon/rcd_ammo(src)
 //	new /obj/item/weapon/rcd_ammo(src)
 //	new /obj/item/weapon/rcd(src)
-
-/obj/structure/closet/crate/solar
-	name = "solar pack crate"
-
-/obj/structure/closet/crate/solar/New()
-	..()
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/weapon/circuitboard/solar_control(src)
-	new /obj/item/weapon/tracker_electronics(src)
-	new /obj/item/weapon/paper/solar(src)
 
 /obj/structure/closet/crate/freezer
 	name = "freezer"

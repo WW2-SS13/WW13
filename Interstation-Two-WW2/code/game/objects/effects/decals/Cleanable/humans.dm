@@ -23,13 +23,13 @@ var/global/list/image/splatter_cache=list()
 	var/drytime
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
-	if(!fluorescent)
-		fluorescent = 1
-		basecolor = COLOR_LUMINOL
-		update_icon()
+/*	if(!fluorescent)
+		fluorescent = 1*/
+	basecolor = COLOR_LUMINOL
+	update_icon()
 
 /obj/effect/decal/cleanable/blood/clean_blood()
-	fluorescent = 0
+//	fluorescent = 0
 	if(invisibility != 100)
 		invisibility = 100
 		amount = 0
@@ -126,7 +126,6 @@ var/global/list/image/splatter_cache=list()
 		user.bloody_hands += taken
 		user.hand_blood_color = basecolor
 		user.update_inv_gloves(1)
-		user.verbs += /mob/living/carbon/human/proc/bloody_doodle
 
 /obj/effect/decal/cleanable/blood/splatter
         random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")

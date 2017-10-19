@@ -1,3 +1,5 @@
+
+
 /obj/item/stack/cable_coil/New()
 	set_extension(src, /datum/extension/multitool, /datum/extension/multitool/items/cable)
 	..()

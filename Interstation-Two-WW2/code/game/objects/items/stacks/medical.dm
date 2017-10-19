@@ -24,15 +24,6 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
-		if(affecting.name == "head")
-			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
-				user << "<span class='warning'>You can't apply [src] through [H.head]!</span>"
-				return 1
-		else
-			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-				user << "<span class='warning'>You can't apply [src] through [H.wear_suit]!</span>"
-				return 1
-
 		if(affecting.status & ORGAN_ROBOT)
 			user << "<span class='warning'>This isn't useful at all on a robotic limb..</span>"
 			return 1

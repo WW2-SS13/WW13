@@ -184,8 +184,8 @@
 /obj/machinery/vending/Destroy()
 	qdel(wires)
 	wires = null
-	qdel(coin)
-	coin = null
+//	qdel(coin)
+//	coin = null
 	for(var/datum/data/vending_product/R in product_records)
 		qdel(R)
 	product_records.Cut()
@@ -209,14 +209,9 @@
 		else
 	return
 
-/obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
-	if (!emagged)
-		src.emagged = 1
-		user << "You short out the product lock on \the [src]"
-		return 1
 
 /obj/machinery/vending/attackby(obj/item/weapon/W as obj, mob/user as mob)
-
+/*
 	var/obj/item/weapon/card/id/I = W.GetID()
 
 	if (currently_vending && vendor_account && !vendor_account.suspended)
@@ -246,8 +241,9 @@
 
 	if (I || istype(W, /obj/item/weapon/spacecash))
 		attack_hand(user)
-		return
-	else if(istype(W, /obj/item/weapon/screwdriver))
+		return*/
+
+	if(istype(W, /obj/item/weapon/screwdriver))
 		if (src.panel_open)
 			playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
 			src.panel_open = !src.panel_open
@@ -270,14 +266,14 @@
 		if(src.panel_open)
 			attack_hand(user)
 		return
-	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
+/*	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
 		user.drop_item()
 		W.loc = src
 		coin = W
 		categories |= CAT_COIN
 		user << "<span class='notice'>You insert \the [W] into \the [src].</span>"
 		nanomanager.update_uis(src)
-		return
+		return*/
 	else if(istype(W, /obj/item/weapon/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		if(anchored)
@@ -303,6 +299,8 @@
  *  Receive payment with cashmoney.
  */
 /obj/machinery/vending/proc/pay_with_cash(var/obj/item/weapon/spacecash/bundle/cashmoney)
+	return
+	/*
 	if(currently_vending.price > cashmoney.worth)
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
@@ -320,7 +318,7 @@
 
 	// Vending machines have no idea who paid with cash
 	credit_purchase("(cash)")
-	return 1
+	return 1*/
 
 /**
  * Scan a chargecard and deduct payment from it.
@@ -329,7 +327,8 @@
  * successful, 0 if failed.
  */
 /obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/weapon/spacecash/ewallet/wallet)
-	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
+	return 0
+/*	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
 	if(currently_vending.price > wallet.worth)
 		src.status_message = "Insufficient funds on chargecard."
 		src.status_error = 1
@@ -337,7 +336,7 @@
 	else
 		wallet.worth -= currently_vending.price
 		credit_purchase("[wallet.owner_name] (chargecard)")
-		return 1
+		return 1*/
 
 /**
  * Scan a card and attempt to transfer payment from associated account.
@@ -346,7 +345,8 @@
  * successful, 0 if failed
  */
 /obj/machinery/vending/proc/pay_with_card(var/obj/item/weapon/card/id/I, var/obj/item/ID_container)
-	if(I==ID_container || ID_container == null)
+	return
+/*	if(I==ID_container || ID_container == null)
 		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
 	else
 		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
@@ -400,14 +400,14 @@
 		// owner made them
 		credit_purchase(customer_account.owner_name)
 		return 1
-
+*/
 /**
  *  Add money for current purchase to the vendor account.
  *
  *  Called after the money has already been taken from the customer.
  */
 /obj/machinery/vending/proc/credit_purchase(var/target as text)
-	vendor_account.money += currently_vending.price
+/*	vendor_account.money += currently_vending.price
 
 	var/datum/transaction/T = new()
 	T.target_name = target
@@ -416,10 +416,8 @@
 	T.source_terminal = src.name
 	T.date = current_date_string
 	T.time = stationtime2text()
-	vendor_account.transaction_log.Add(T)
-
-/obj/machinery/vending/attack_ai(mob/user as mob)
-	return attack_hand(user)
+	vendor_account.transaction_log.Add(T)*/
+	return 0
 
 /obj/machinery/vending/attack_hand(mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))
@@ -467,9 +465,9 @@
 
 		data["products"] = listed_products
 
-	if(src.coin)
+/*	if(src.coin)
 		data["coin"] = src.coin.name
-
+*/
 	if(src.panel_open)
 		data["panel"] = 1
 		data["speaker"] = src.shut_up ? 0 : 1
@@ -487,7 +485,7 @@
 		return
 	if(usr.stat || usr.restrained())
 		return
-
+/*
 	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
 		if(!coin)
 			usr << "There is no coin in this machine."
@@ -499,7 +497,7 @@
 		usr << "<span class='notice'>You remove the [coin] from the [src]</span>"
 		coin = null
 		categories &= ~CAT_COIN
-
+*/
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		if ((href_list["vend"]) && (src.vend_ready) && (!currently_vending))
 			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
@@ -521,12 +519,8 @@
 				return
 			else
 				src.currently_vending = R
-				if(!vendor_account || vendor_account.suspended)
-					src.status_message = "This machine is currently unable to process payments due to problems with the associated account."
-					src.status_error = 1
-				else
-					src.status_message = "Please swipe a card or insert cash to pay for the item."
-					src.status_error = 0
+				src.status_message = "Please swipe a card or insert cash to pay for the item."
+				src.status_error = 0
 
 		else if (href_list["cancelpurchase"])
 			src.currently_vending = null
@@ -547,7 +541,7 @@
 	src.status_message = "Vending..."
 	src.status_error = 0
 	nanomanager.update_uis(src)
-
+/*
 	if (R.category & CAT_COIN)
 		if(!coin)
 			user << "<span class='notice'>You need to insert a coin to get this item.</span>"
@@ -562,7 +556,7 @@
 		else
 			qdel(coin)
 			categories &= ~CAT_COIN
-
+*/
 	if(((src.last_reply + (src.vend_delay + 200)) <= world.time) && src.vend_reply)
 		spawn(0)
 			src.speak(src.vend_reply)
@@ -696,7 +690,7 @@
 	productamounts = "10;10;10;5;25"
 	vend_delay = 0
 */
-
+/*
 /obj/machinery/vending/boozeomat
 	name = "Booze-O-Mat"
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
@@ -843,29 +837,6 @@
 					/obj/item/device/transfer_valve = 6,/obj/item/device/assembly/timer = 6,/obj/item/device/assembly/signaler = 6,
 					/obj/item/device/assembly/prox_sensor = 6,/obj/item/device/assembly/igniter = 6)
 
-/obj/machinery/vending/wallmed1
-	name = "NanoMed"
-	desc = "Wall-mounted Medical Equipment dispenser."
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
-	icon_state = "wallmed"
-	light_color = "#e6fff2"
-	icon_deny = "wallmed-deny"
-	req_access = list(access_medical)
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/healthanalyzer = 1)
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
-
-/obj/machinery/vending/wallmed2
-	name = "NanoMed"
-	desc = "Wall-mounted Medical Equipment dispenser."
-	icon_state = "wallmed"
-	light_color = "#e6fff2"
-	icon_deny = "wallmed-deny"
-	req_access = list(access_medical)
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
-					/obj/item/stack/medical/ointment =3,/obj/item/device/healthanalyzer = 3)
-	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
 
 /obj/machinery/vending/security
 	name = "SecTech"
@@ -1025,3 +996,4 @@
 	desc = "A container that dispenses containers."
 	icon_state = "robotics"
 	products = list(/obj/structure/closet/crate/freezer = 2, /obj/structure/closet = 3, /obj/structure/closet/crate = 3)
+*/

@@ -169,7 +169,7 @@
 			if ((B.client && !( B.blinded )))
 				B << "<span class='warning'>\The [user] stuffs [O] into [src]!</span>"
 	return
-
+/*
 
 /*
  * Crematorium
@@ -426,3 +426,4 @@
 					C.cremate(user)
 	else
 		usr << "<span class='warning'>Access denied.</span>"
+*/

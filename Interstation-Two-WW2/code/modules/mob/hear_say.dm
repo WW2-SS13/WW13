@@ -10,16 +10,6 @@
 		return
 
 	//make sure the air can transmit speech - hearer's side
-	var/turf/T = get_turf(src)
-	if ((T) && (!(isghost(src)))) //Ghosts can hear even in vacuum.
-		var/datum/gas_mixture/environment = T.return_air()
-		var/pressure = (environment)? environment.return_pressure() : 0
-		if(pressure < SOUND_MINIMUM_PRESSURE && get_dist(speaker, src) > 1)
-			return
-
-		if (pressure < ONE_ATMOSPHERE*0.4) //sound distortion pressure, to help clue people in that the air is thin, even if it isn't a vacuum yet
-			italics = 1
-			sound_vol *= 0.5 //muffle the sound a bit, so it's like we're actually talking through contact
 
 	if(sleeping || stat == 1)
 		hear_sleep(message)
@@ -77,16 +67,12 @@
 /mob/proc/on_hear_say(var/message)
 	src << message
 
-/mob/living/silicon/on_hear_say(var/message)
-	var/time = say_timestamp()
-	src << "[time] [message]"
-
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="")
-
-	playsound(loc, 'sound/effects/radio_chatter.ogg', 25, 0, -1)//They won't always be able to read the message, but the sound will play regardless.
+/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/device/radio/source, var/hard_to_hear = 0)
 
 	if(!client)
 		return
+
+	playsound(loc, 'sound/effects/radio_chatter.ogg', 25, 0, -1)//They won't always be able to read the message, but the sound will play regardless.
 
 	if(sleeping || stat==1) //If unconscious or sleeping
 		hear_sleep(message)
@@ -119,9 +105,6 @@
 
 	var/speaker_name = speaker.name
 
-	if(vname)
-		speaker_name = vname
-
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
 		if(H.voice)
@@ -134,13 +117,7 @@
 		if(H.age && H.gender)//If they have an age and gender
 			var/ageAndGender
 			jobname = H.get_assignment_noid()
-/*
-			if(H.get_assignment() == "No id")//If they don't have an ID then we don't know their job.
-				jobname = "Unknown"
 
-			if(H.get_assignment() == "Captain")//No sense repeating Captain twice.
-				jobname = ""
-*/
 			ageAndGender = ageAndGender2Desc(H.age, H.gender)//Get their age and gender
 
 			speaker_name += " \[" + "[jobname] " + "[ageAndGender]" + "]"//Print it out.
@@ -148,65 +125,16 @@
 	if(hard_to_hear)
 		speaker_name = "unknown"
 
-	var/changed_voice
-
-	if(istype(src, /mob/living/silicon/ai) && !hard_to_hear)
-		var/mob/living/carbon/human/impersonating //The crew member being impersonated, if any.
-
-		if (ishuman(speaker))
-			var/mob/living/carbon/human/H = speaker
-
-			if(H.wear_mask && istype(H.wear_mask,/obj/item/clothing/mask/gas/voice))
-				changed_voice = 1
-				var/list/impersonated = new()
-				var/mob/living/carbon/human/I = impersonated[speaker_name]
-
-				if(!I)
-					for(var/mob/living/carbon/human/M in mob_list)
-						if(M.real_name == speaker_name)
-							I = M
-							impersonated[speaker_name] = I
-							break
-
-				// If I's display name is currently different from the voice name and using an agent ID then don't impersonate
-				// as this would allow the AI to track I and realize the mismatch.
-				if(I && !(I.name != speaker_name && I.wear_id && istype(I.wear_id,/obj/item/weapon/card/id/syndicate)))
-					impersonating = I
-					jobname = impersonating.get_assignment()
-				else
-					jobname = "Unknown"
-			else
-				jobname = H.get_assignment()
-
-		else if (iscarbon(speaker)) // Nonhuman carbon mob
-			jobname = "No id"
-		else if (isAI(speaker))
-			jobname = "AI"
-		else if (isrobot(speaker))
-			jobname = "Cyborg"
-		else if (istype(speaker, /mob/living/silicon/pai))
-			jobname = "Personal AI"
-		else
-			jobname = "Unknown"
-
-		if(changed_voice)
-			if(impersonating)
-				track = "<a href='byond://?src=\ref[src];trackname=[rhtml_encode(speaker_name)];track=\ref[impersonating]'>[speaker_name] ([jobname])</a>"
-			else
-				track = "[speaker_name] ([jobname])"
-		else
-			track = "<a href='byond://?src=\ref[src];trackname=[rhtml_encode(speaker_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
-
 	if(isghost(src))
 		if(speaker_name != speaker.real_name && !isAI(speaker)) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
 			speaker_name = "[speaker.real_name] ([speaker_name])"
-		track = "[speaker_name] ([ghost_follow_link(speaker, src)])"
+		track = /*"[speaker_name] */"([ghost_follow_link(speaker, src)])"
 
-	var/formatted
-	if(language)
-		formatted = language.format_message_radio(message, verb)
-	else
-		formatted = "[verb], <span class=\"body\">\"[message]\"</span>"
+	if (dd_hasprefix(message, " "))
+		message = copytext(message, 2)
+
+	message = "<span class = [source.span_class()]>[verb],</b> \"[message]\"</span>"
+
 	if(sdisabilities & DEAF || ear_deaf)
 		if(prob(20))
 			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
@@ -227,7 +155,6 @@
 			fontsize = 3
 		else if (istype(speaker.original_job, /datum/job/german/squad_leader_ss))
 			fontsize = 3
-
 		else if (istype(speaker.original_job, /datum/job/russian/commander))
 			fontsize = 3
 		else if (istype(speaker.original_job, /datum/job/russian/staff_officer))
@@ -237,25 +164,19 @@
 		else if (istype(speaker.original_job, /datum/job/russian/zavhoz))
 			fontsize = 3
 
-
-		on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize)
+		var/full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] [message]</span></font>"
+		if (track)
+			full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] ([track]) [message]</span></font>"
+		on_hear_radio(source, full_message)
 
 /proc/say_timestamp()
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
 
-/mob/proc/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
-	src << "<font size = [fontsize]>[part_a][speaker_name][part_b][formatted]</font>"
+/mob/proc/on_hear_radio(var/obj/item/device/radio/source, var/fullmessage)
+	src << "\icon[getFlatIcon(source)] [fullmessage]"
 
-/mob/observer/ghost/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
-	src << "<font size = [fontsize]>[part_a][track][part_b][formatted]</font>"
-
-/mob/living/silicon/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
-	var/time = say_timestamp()
-	src << "<font size = [fontsize]>[time][part_a][speaker_name][part_b][formatted]</font>"
-
-/mob/living/silicon/ai/on_hear_radio(part_a, speaker_name, track, part_b, formatted, fontsize = 2)
-	var/time = say_timestamp()
-	src << "<font size = [fontsize]>[time][part_a][track][part_b][formatted]</font>"
+/mob/observer/ghost/on_hear_radio(var/obj/item/device/radio/source, var/fullmessage)
+	src << "\icon[getFlatIcon(source)] [fullmessage]"
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
 	if(!client)

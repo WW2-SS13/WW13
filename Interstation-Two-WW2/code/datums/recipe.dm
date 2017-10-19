@@ -52,22 +52,6 @@
 
 /datum/recipe/proc/check_fruit(var/obj/container)
 	. = 1
-	if(fruit && fruit.len)
-		var/list/checklist = list()
-		 // You should trust Copy().
-		checklist = fruit.Copy()
-		for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in container)
-			if(!G.seed || !G.seed.kitchen_tag || isnull(checklist[G.seed.kitchen_tag]))
-				continue
-			checklist[G.seed.kitchen_tag]--
-		for(var/ktag in checklist)
-			if(!isnull(checklist[ktag]))
-				if(checklist[ktag] < 0)
-					. = 0
-				else if(checklist[ktag] > 0)
-					. = -1
-					break
-	return .
 
 /datum/recipe/proc/check_items(var/obj/container as obj)
 	. = 1

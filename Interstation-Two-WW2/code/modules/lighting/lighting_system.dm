@@ -29,7 +29,7 @@
 	for (var/turf/t in world)
 
 		if (!locate(/obj/train_track) in t.contents)
-			if (istype(t, /turf/simulated/floor/plating/road) || istype(t, /turf/simulated/floor/plating/cobblestone) || istype(t, /turf/simulated/floor/dirt) || istype(t, /turf/simulated/floor/plating/grass) || istype(t, /turf/simulated/wall) || istype(t, /turf/simulated/floor/beach) || istype(t, /turf/simulated/floor/plating/asteroid) || locate(/obj/structure/catwalk) in t.contents)
+			if (istype(t, /turf/floor/plating/road) || istype(t, /turf/floor/plating/cobblestone) || istype(t, /turf/floor/dirt) || istype(t, /turf/floor/plating/grass) || istype(t, /turf/wall) || istype(t, /turf/floor/plating/beach) || istype(t, /turf/floor/plating/asteroid) || locate(/obj/structure/catwalk) in t.contents)
 				var/area/a = t.loc
 				if (a.dynamic_lighting && !istype(a, /area/prishtina/soviet/bunker) && !istype(a, /area/prishtina/soviet/bunker_entrance) && !istype(a, /area/prishtina/void))
 					for (var/datum/lighting_corner/corner in t.corners)
@@ -65,7 +65,11 @@
 
 /world/New()
 
+	#ifndef ALWAYS_DAY
 	time_of_day = pick(times_of_day)
+	#else
+	time_of_day = "Midday"
+	#endif
 
 	. = ..()
 
@@ -75,7 +79,7 @@
 				p.dynamic_lighting = 0
 	else
 		for (var/area/prishtina/p in world) // make all areas use lighting
-			if (istype(p) && !istype(p, /area/prishtina/train) && !istype(p, /area/prishtina/german/train_zone))
+			if (istype(p) && !istype(p, /area/prishtina/train) && !istype(p, /area/prishtina/german/train_zone) && !istype(p, /area/prishtina/german/armory/train))
 				p.dynamic_lighting = 1
 	/*	todo: fix train lights
 	var/area/prishtina/german/train_zone/train_zone = locate() in world

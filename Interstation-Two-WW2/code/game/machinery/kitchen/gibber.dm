@@ -18,37 +18,6 @@
 	idle_power_usage = 2
 	active_power_usage = 500
 
-//auto-gibs anything that bumps into it
-/obj/machinery/gibber/autogibber
-	var/turf/input_plate
-
-/obj/machinery/gibber/autogibber/New()
-	..()
-	spawn(5)
-		for(var/i in cardinal)
-			var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
-			if(input_obj)
-				if(isturf(input_obj.loc))
-					input_plate = input_obj.loc
-					gib_throw_dir = i
-					qdel(input_obj)
-					break
-
-		if(!input_plate)
-			log_misc("a [src] didn't find an input plate.")
-			return
-
-/obj/machinery/gibber/autogibber/Bumped(var/atom/A)
-	if(!input_plate) return
-
-	if(ismob(A))
-		var/mob/M = A
-
-		if(M.loc == input_plate
-		)
-			M.loc = src
-			M.gib()
-
 
 /obj/machinery/gibber/New()
 	..()
@@ -83,11 +52,6 @@
 /obj/machinery/gibber/examine()
 	..()
 	usr << "The safety guard is [emagged ? "<span class='danger'>disabled</span>" : "enabled"]."
-
-/obj/machinery/gibber/emag_act(var/remaining_charges, var/mob/user)
-	emagged = !emagged
-	user << "<span class='danger'>You [emagged ? "disable" : "enable"] the gibber safety guard.</span>"
-	return 1
 
 /obj/machinery/gibber/attackby(var/obj/item/W, var/mob/user)
 	var/obj/item/weapon/grab/G = W

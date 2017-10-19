@@ -732,9 +732,9 @@
 			//Handle spawning in living, mobile products.
 			if(istype(product,/mob/living))
 				product.visible_message("<span class='notice'>The pod disgorges [product]!</span>")
-				if(istype(product,/mob/living/simple_animal/mushroom)) // Gross.
+			/*	if(istype(product,/mob/living/simple_animal/mushroom)) // Gross.
 					var/mob/living/simple_animal/mushroom/mush = product
-					mush.seed = src
+					mush.seed = src*/
 
 // When the seed in this machine mutates/is modified, the tray seed value
 // is set to a new datum copied from the original. This datum won't actually

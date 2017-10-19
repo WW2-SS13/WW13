@@ -5,7 +5,6 @@
 	icon_state = "glass-highball"
 	amount_per_transfer_from_this = 5
 	volume = 30
-	unacidable = 1 //glass
 	center_of_mass = list("x"=16, "y"=10)
 	var/glass_type = "highball"
 	var/salted = 0

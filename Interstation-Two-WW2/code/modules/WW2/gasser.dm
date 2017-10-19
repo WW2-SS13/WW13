@@ -10,13 +10,16 @@
 	var/list/target_turfs = list()
 	var/area/target_area = locate(/area/prishtina/void/german/ss_train/gas_chamber/gas_room)
 
+	if (istype(get_area(src), /area/prishtina/german))
+		target_area = locate(/area/prishtina/german/gas_chamber)
+
 	for (var/turf/t in target_area.contents)
-		if (istype(t))
-			target_turfs += t
+		target_turfs += t
 
 	for (var/v in 1 to rand(2,3))
 		spawn ((v*2) - 2)
-			var/obj/effect/effect/smoke/chem/smoke = new/obj/effect/effect/smoke/chem/payload/zyklon_b(get_turf(src), _spread = 2, _destination = get_step(get_step(src, EAST), EAST))
+			var/obj/effect/effect/smoke/chem/smoke = new/obj/effect/effect/smoke/chem/payload/zyklon_b(get_turf(src), _spread = 1, _destination = get_step(src, EAST))
+			smoke.dontmove = 1
 			chemsmokes += smoke
 
 	// make the smoke randomly move around
@@ -24,15 +27,6 @@
 		spawn (v * 20)
 			for (var/obj/effect/effect/smoke/chem/smoke in chemsmokes)
 				walk_to(smoke, pick(target_turfs),0,rand(2,3),0)
-/*
-	// now make it splash people since apparently the middle of the room is a safe zone
-	for (var/v in 1 to 200)
-		spawn (v)
-			for (var/obj/effect/effect/smoke/chem/smoke in chemsmokes)
-				var/mob/m = locate() in get_turf(smoke)
-				if (m)
-					smoke.reagents.splash(m, 1, copy = 1)
-*/
 
 /obj/gas_lever // same icon as the train lever for now
 	anchored = 1.0

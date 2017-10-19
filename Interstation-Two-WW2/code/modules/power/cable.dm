@@ -140,9 +140,9 @@ var/list/possible_cable_coil_colours = list(
 			user << "<span class='warning'>You must cut this cable from above.</span>"
 			return
 
-		if(breaker_box)
+	/*	if(breaker_box)
 			user << "\red This cable is connected to nearby breaker box. Use breaker box to interact with it."
-			return
+			return*/
 
 		if (shock(user, 50))
 			return
@@ -622,8 +622,8 @@ obj/structure/cable/proc/cableColor(var/colorC)
 // Cable laying procedures
 //////////////////////////////////////////////
 
-// called when cable_coil is clicked on a turf/simulated/floor
-/obj/item/stack/cable_coil/proc/turf_place(turf/simulated/F, mob/user)
+// called when cable_coil is clicked on a turf/floor
+/obj/item/stack/cable_coil/proc/turf_place(turf/F, mob/user)
 	if(!isturf(user.loc))
 		return
 
@@ -653,7 +653,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 				return
 ///// Z-Level Stuff
 		// check if the target is open space
-		if(istype(F, /turf/simulated/open))
+		if(istype(F, /turf/open))
 			for(var/obj/structure/cable/LC in F)
 				if((LC.d1 == dirn && LC.d2 == 11 ) || ( LC.d2 == dirn && LC.d1 == 11))
 					user << "<span class='warning'>There's already a cable at that position.</span>"

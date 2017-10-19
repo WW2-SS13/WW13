@@ -16,11 +16,11 @@
 		//don't warp them if they aren't ready or are already there
 			continue
 		H.Paralyse(5)
-		if(H.wear_id)
+	/*	if(H.wear_id)
 			var/obj/item/weapon/card/id/id = H.get_idcard()
 			for(var/A in id.access)
 				if(A == access_security)
-					security++
+					security++*/
 		if(!security)
 			//strip their stuff before they teleport into a cell :downs:
 			for(var/obj/item/weapon/W in H)

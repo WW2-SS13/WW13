@@ -84,7 +84,7 @@
 
 
 //Places the poster on a wall
-/obj/item/weapon/contraband/poster/afterattack(var/turf/simulated/wall/W, var/mob/user, var/adjacent, var/clickparams)
+/obj/item/weapon/contraband/poster/afterattack(var/turf/wall/W, var/mob/user, var/adjacent, var/clickparams)
 	if (!adjacent)
 		return
 

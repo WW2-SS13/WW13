@@ -59,7 +59,7 @@
 	src << msg
 
 /client/verb/adminwho()
-	set category = "Admin"
+	set category = "HELP"
 	set name = "Staff Who"
 
 	var/msg = ""

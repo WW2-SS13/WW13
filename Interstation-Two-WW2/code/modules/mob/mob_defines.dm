@@ -94,7 +94,7 @@
 
 	var/shakecamera = 0
 	var/a_intent = I_HELP//Living
-	var/m_intent = "run"//Living
+	var/m_intent = "walk"//Living
 	var/obj/buckled = null//Living
 	var/obj/item/l_hand = null//Living
 	var/obj/item/r_hand = null//Living
@@ -192,5 +192,3 @@
 	var/bladder = 0 //For pissing
 
 	var/using_object = null
-
-	var/is_spy = 0

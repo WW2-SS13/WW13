@@ -157,9 +157,12 @@
 	if (istype(l_area, /area/prishtina/void/german/ss_train/gas_chamber))
 		if (!istype(l_area, /area/prishtina/void/german/ss_train/gas_chamber/gas_room))
 			return // this area is gas immune
+	else if (istype(l_area, /area/prishtina/german))
+		if (!istype(l_area, /area/prishtina/german/gas_chamber))
+			return // ditto
 
 	if(istype(L))
-		internal_damage(L, get_severity(amount)*10)
+		internal_damage(L, get_severity(amount)*4)
 
 /datum/reagent/toxin/zyklon_b/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 
@@ -168,6 +171,9 @@
 	if (istype(l_area, /area/prishtina/void/german/ss_train/gas_chamber))
 		if (!istype(l_area, /area/prishtina/void/german/ss_train/gas_chamber/gas_room))
 			return // this area is gas immune
+	else if (istype(l_area, /area/prishtina/german))
+		if (!istype(l_area, /area/prishtina/german/gas_chamber))
+			return // ditto
 
 	..(M, alien, removed)
 
@@ -178,6 +184,9 @@
 	if (istype(l_area, /area/prishtina/void/german/ss_train/gas_chamber))
 		if (!istype(l_area, /area/prishtina/void/german/ss_train/gas_chamber/gas_room))
 			return // this area is gas immune
+	else if (istype(l_area, /area/prishtina/german))
+		if (!istype(l_area, /area/prishtina/german/gas_chamber))
+			return // ditto
 
 	..(M, alien, removed)
 
@@ -188,5 +197,8 @@
 	if (istype(l_area, /area/prishtina/void/german/ss_train/gas_chamber))
 		if (!istype(l_area, /area/prishtina/void/german/ss_train/gas_chamber/gas_room))
 			return // this area is gas immune
+	else if (istype(l_area, /area/prishtina/german))
+		if (!istype(l_area, /area/prishtina/german/gas_chamber))
+			return // ditto
 
 	..(M, alien, removed)

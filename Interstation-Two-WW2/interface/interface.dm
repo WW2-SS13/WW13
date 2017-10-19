@@ -23,6 +23,18 @@
 		src << "<span class='warning'>The forum URL is not set in the server configuration.</span>"
 	return
 
+/client/verb/donate()
+	set name = "donate"
+	set desc = "Give us the shills oy vey"
+	set hidden = 1
+	if( config.donationurl )
+		if(alert("This will open Paypal in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.donationurl)
+	else
+		src << "<span class='warning'>The donation URL is not set in the server configuration.</span>"
+	return
+
 /client/verb/github()
 	set name = "Github"
 	set desc = "Visit the Github"
@@ -101,14 +113,12 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tPgDwn = go down
 \tCtrl = drag
 \tShift = examine
+\tCtrl+S = scream
+\tSpace = fire while in a tank
 </font>"}
 
 	var/other = {"<font color='purple'>
 Any-Mode: (hotkey doesn't need to be on)
-\tCtrl+a = left
-\tCtrl+s = down
-\tCtrl+d = right
-\tCtrl+w = up
 \tCtrl+q = drop
 \tCtrl+e = equip
 \tCtrl+r = throw
@@ -130,6 +140,8 @@ Any-Mode: (hotkey doesn't need to be on)
 \tPGUP = swap-hand
 \tPGDN = activate held object
 \tEND = throw
+\tCtrl+S = scream
+\tSpace = fire while in a tank
 </font>"}
 
 	var/robot_hotkey_mode = {"<font color='purple'>

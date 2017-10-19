@@ -13,11 +13,11 @@
 /turf/drain_power()
 	return -1
 
-/turf/simulated/Destroy()
+/turf/Destroy()
 	updateVisibility(src)
 	return ..()
 
-/turf/simulated/New()
+/turf/New()
 	..()
 	updateVisibility(src)
 
@@ -49,5 +49,5 @@
 	. = ..(need_rebuild)
 	// Glass door glass = 1
 	// don't check then?
-	if(!glass)
-		updateVisibility(src, 0)
+/*	if(!glass)
+		updateVisibility(src, 0)*/

@@ -35,6 +35,7 @@
 	stun = 3
 	weaken = 3
 	penetrating = 5
+	armor_penetration = 80
 	hitscan = 1 //so the PTR isn't useless as a sniper weapon
 
 /obj/item/projectile/bullet/rifle/a556
@@ -83,6 +84,21 @@
 
 	on_hit(atom/hit_atom)
 		explosion(hit_atom, 1, 3, 4, 8)
+		qdel(src)
+
+	on_impact(atom/hit_atom)
+		on_hit(hit_atom)
+
+/obj/item/projectile/missile/tank
+	name = "tank missle"
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "missile"
+	throwforce = 5
+	muzzle_type = /obj/effect/projectile/bullet/muzzle
+	kill_count = 10
+
+	on_hit(atom/hit_atom)
+		explosion(hit_atom, 3, 4, 5, 9)
 		qdel(src)
 
 	on_impact(atom/hit_atom)

@@ -1,3 +1,5 @@
+/mob/living/carbon/human/var/last_scream = -1
+
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 	var/param = null
 
@@ -206,11 +208,6 @@
 				else
 					message = "makes a weak noise."
 					m_type = 2
-
-		if ("deathgasp")
-			//message = "[species.death_message]"
-			//m_type = 1
-			scream_sound(1)
 
 		if ("giggle")
 			if(miming)
@@ -515,23 +512,13 @@
 					if (M.canmove && !M.r_hand && !M.restrained())
 						message = "shakes hands with [M]."
 					else
-						message = "holds out [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] hand to [M]."
-
-		if("dap")
-			m_type = 1
-			if (!src.restrained())
-				var/M = null
-				if (param)
-					for (var/mob/A in view(1, null))
-						if (param == A.name)
-							M = A
-							break
-				if (M)
-					message = "gives daps to [M]."
-				else
-					message = "sadly can't find anybody to give daps to, and daps [get_visible_gender() == MALE ? "himself" : get_visible_gender() == FEMALE ? "herself" : "themselves"]. Shameful."
+						var/datum/gender/g = gender_datums[gender]
+						message = "holds out [g.his] hand to [M]."
 
 		if ("scream")
+			if (last_scream != -1 && world.time - last_scream < 30)
+				return
+			last_scream = world.time
 			if (miming)
 				message = "acts out a scream!"
 				m_type = 1
@@ -539,29 +526,10 @@
 				if (!muzzled)
 					message = "screams!"
 					m_type = 2
+					scream_sound(src, 0)
 				else
 					message = "makes a very loud noise."
 					m_type = 2
-
-			scream_sound(0)
-
-		if("swish")
-			src.animate_tail_once()
-
-		if("wag", "sway")
-			src.animate_tail_start()
-
-		if("qwag", "fastsway")
-			src.animate_tail_fast()
-
-		if("swag", "stopsway")
-			src.animate_tail_stop()
-
-		if("poo")
-			src.handle_shit()
-
-		if("pee")
-			src.handle_piss()
 
 		if ("help")
 			src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,

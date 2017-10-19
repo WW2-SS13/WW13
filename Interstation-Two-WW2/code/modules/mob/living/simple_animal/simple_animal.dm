@@ -302,9 +302,7 @@
 	var/damage = O.force
 	if (O.damtype == HALLOSS)
 		damage = 0
-	if(supernatural && istype(O,/obj/item/weapon/nullrod))
-		damage *= 2
-		purge = 3
+
 	adjustBruteLoss(damage)
 
 	return 0
@@ -355,14 +353,6 @@
 	if (isliving(target_mob))
 		var/mob/living/L = target_mob
 		if(!L.stat && L.health >= 0)
-			return (0)
-	if (istype(target_mob,/obj/mecha))
-		var/obj/mecha/M = target_mob
-		if (M.occupant)
-			return (0)
-	if (istype(target_mob,/obj/machinery/bot))
-		var/obj/machinery/bot/B = target_mob
-		if(B.health > 0)
 			return (0)
 	return 1
 

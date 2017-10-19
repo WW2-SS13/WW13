@@ -12,6 +12,7 @@ var/global/list/processing_power_items   = list()
 var/global/list/active_diseases          = list()
 var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
 var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
+var/global/list/faction_hud_users		 = list() // List of all entities using faction huds.
 var/global/list/hud_icon_reference       = list()
 var/global/list/bullet_casings			 = list()
 
@@ -19,8 +20,6 @@ var/list/init_lights = list()
 
 
 var/global/list/global_mutations  = list() // List of hidden mutation things.
-
-var/global/datum/universal_state/universe = new
 
 var/global/list/global_map = null
 
@@ -103,7 +102,6 @@ var/gravity_is_on = 1
 var/join_motd = null
 
 var/datum/nanomanager/nanomanager		= new() // NanoManager, the manager for Nano UIs.
-var/datum/event_manager/event_manager	= new() // Event Manager, the manager for events.
 
 var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.
 
@@ -179,6 +177,6 @@ var/static/list/scarySounds = list(
 var/max_explosion_range = 14
 
 // Announcer intercom, because too much stuff creates an intercom for one message then hard del()s it.
-var/global/obj/item/device/radio/intercom/global_announcer = new(null)
+//var/global/obj/item/device/radio/intercom/global_announcer = new(null)
 
-var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Civilian")
+//var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Civilian")

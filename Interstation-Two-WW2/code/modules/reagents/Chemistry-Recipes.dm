@@ -668,8 +668,8 @@
 
 /datum/chemical_reaction/napalm/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/turf/location = get_turf(holder.my_atom.loc)
-	for(var/turf/simulated/floor/target_tile in range(0,location))
-		target_tile.assume_gas("plasma", created_volume, 400+T0C)
+	for(var/turf/floor/target_tile in range(0,location))
+	//	target_tile.assume_gas("plasma", created_volume, 400+T0C)
 		spawn (0) target_tile.hotspot_expose(700, 400)
 	holder.del_reagent("napalm")
 	return
@@ -984,7 +984,7 @@
 	return "#F0F8FF"
 
 /* Slime cores */
-
+/*
 /datum/chemical_reaction/slime
 	var/required = null
 
@@ -1004,6 +1004,7 @@
 		T.desc = "This extract has been used up."
 
 //Grey
+
 /datum/chemical_reaction/slime/spawn
 	name = "Slime Spawn"
 	id = "m_spawn"
@@ -1145,8 +1146,8 @@
 	..()
 	sleep(50)
 	var/turf/location = get_turf(holder.my_atom.loc)
-	for(var/turf/simulated/floor/target_tile in range(0, location))
-		target_tile.assume_gas("plasma", 25, 1400)
+	for(var/turf/floor/target_tile in range(0, location))
+	//	target_tile.assume_gas("plasma", 25, 1400)
 		spawn (0)
 			target_tile.hotspot_expose(700, 400)
 
@@ -1315,7 +1316,7 @@
 	var/obj/effect/golemrune/Z = new /obj/effect/golemrune
 	Z.loc = get_turf(holder.my_atom)
 	Z.announce_to_ghosts()
-
+*/
 /* Food */
 
 /datum/chemical_reaction/tofu

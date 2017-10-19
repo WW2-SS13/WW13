@@ -95,7 +95,7 @@
 		else
 			icon_state = icon_closed
 
-
+/*
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
 	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant, especially useful if short on time or in \
@@ -108,6 +108,7 @@
 	var/obj/structure/closet/body_bag/cryobag/R = new /obj/structure/closet/body_bag/cryobag(user.loc)
 	R.add_fingerprint(user)
 	qdel(src)
+
 
 /obj/structure/closet/body_bag/cryobag
 	name = "stasis bag"
@@ -163,14 +164,4 @@
 		user << "<span class='info'>You peer into \the [src].</span>"
 		for(var/mob/living/L in contents)
 			L.examine(user)
-
-/obj/structure/closet/body_bag/cryobag/attackby(obj/item/W, mob/user)
-	if(opened)
-		..()
-	else //Allows the bag to respond to a health analyzer by analyzing the mob inside without needing to open it.
-		if(istype(W,/obj/item/device/healthanalyzer))
-			var/obj/item/device/healthanalyzer/analyzer = W
-			for(var/mob/living/L in contents)
-				analyzer.attack(L,user)
-		else
-			..()
+*/

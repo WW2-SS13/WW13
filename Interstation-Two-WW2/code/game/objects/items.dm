@@ -3,7 +3,6 @@
 	icon = 'icons/obj/items.dmi'
 	w_class = 3.0
 
-	// kachnov
 	var/nodrop = 0
 	var/list/actions = list() //list of /datum/action's that this item has.
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
@@ -169,15 +168,6 @@
 	user.put_in_active_hand(src)
 	return
 
-/obj/item/attack_ai(mob/user as mob)
-	if (istype(src.loc, /obj/item/weapon/robot_module))
-		//If the item is part of a cyborg module, equip it
-		if(!isrobot(user))
-			return
-		var/mob/living/silicon/robot/R = user
-		R.activate_module(src)
-//		R.hud_used.update_robot_modules_display()
-
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
 /obj/item/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -217,12 +207,22 @@
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
 
-/obj/item/proc/bypass_no_drop_check()
-	if (istype(src, /obj/item/weapon/flamethrower/flammenwerfer) || istype(src, /obj/item/weapon/storage/backpack/flammenwerfer))
-		if (ismob(src.loc))
-			var/mob/m = src.loc
-			if (m.stat == UNCONSCIOUS || m.stat == DEAD)
-				return 1
+/obj/item/proc/nodrop_special_check()
+	if (istype(src, /obj/item/weapon/flamethrower/flammenwerfer))
+		var/obj/item/weapon/flamethrower/flammenwerfer/flamethrower = src
+		if (istype(flamethrower.loc, /mob))
+			if (ishuman(flamethrower.loc))
+				var/mob/living/carbon/human/H = flamethrower.loc
+				if (istype(H.back, /obj/item/weapon/storage/backpack/flammenwerfer))
+					return 1
+	else if (istype(src, /obj/item/weapon/storage/backpack/flammenwerfer))
+		var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower_backpack = src
+		if (flamethrower_backpack.flamethrower.loc == flamethrower_backpack)
+			return 0
+		return 1
+	return 0
+
+/obj/item/proc/nothrow_special_check()
 	return 0
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
@@ -337,7 +337,7 @@ var/list/global/slot_flags_enumeration = list(
 				if(!disable_warning)
 					usr << "<span class='warning'>You somehow have a suit with no defined allowed items for suit storage, stop that.</span>"
 				return 0
-			if( !(istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
+			if( !(istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
 				return 0
 		if(slot_handcuffed)
 			if(!istype(src, /obj/item/weapon/handcuffs))
@@ -505,8 +505,8 @@ var/list/global/slot_flags_enumeration = list(
 		G.transfer_blood = 0
 
 /obj/item/reveal_blood()
-	if(was_bloodied && !fluorescent)
-		fluorescent = 1
+	if(was_bloodied/* && !fluorescent*/)
+	//	fluorescent = 1
 		blood_color = COLOR_LUMINOL
 		blood_overlay.color = COLOR_LUMINOL
 		update_icon()

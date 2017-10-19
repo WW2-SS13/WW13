@@ -16,24 +16,26 @@ datum/preferences
 
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
-//	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
-	var/ooccolor = "#C40F00"
+	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/list/be_special_role = list()		//Special role selection
 	var/UI_style = "ErisStyleHolo"
 	var/UI_useborder = 0
-	var/UI_style_color = "#F51301"
+	var/UI_style_color = "#039C21"
 	var/UI_style_alpha = 255
 
 	//character preferences
 	var/real_name						//our character's name
 	var/german_name
 	var/russian_name
+	var/ukrainian_name
 	var/be_random_name = 0				//whether we are a random name every round
 	var/be_random_name_german = 0
 	var/be_random_name_russian = 0
+	var/be_random_name_ukrainian = 0
 	var/gender = MALE					//gender of character (well duh)
 	var/german_gender = MALE
 	var/russian_gender = MALE
+	var/ukrainian_gender = MALE // civs
 	var/body_build = "Default"			//character body build name
 	var/age = 30						//age of character
 	var/spawnpoint = "Cryogenic Storage"//where this character will spawn (0-2).
@@ -70,9 +72,11 @@ datum/preferences
 	var/list/language_prefixes = list() //Kanguage prefix keys
 	var/list/gear						//Custom/fluff item loadout.
 
+
 		//Some faction information.
 	var/religion = "None"               //Religious association.
 
+	var/be_spy = 0
 	var/be_jew = 0
 
  // TODO?
@@ -196,6 +200,7 @@ datum/preferences
 	gender = pick(MALE, FEMALE)
 	german_gender = pick(MALE, FEMALE)
 	russian_gender = pick(MALE, FEMALE)
+	ukrainian_gender = pick(MALE, FEMALE)
 	real_name = random_name(gender,species)
 
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")

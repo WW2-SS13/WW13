@@ -20,8 +20,8 @@
 	based_on_type = t.type
 	copy_of_instance = t
 
-	if (istype(t, /turf/simulated/wall))
-		var/turf/simulated/wall/w = t
+	if (istype(t, /turf/wall))
+		var/turf/wall/w = t
 		icon = w.icon
 		icon_state = w.ref_state
 		overlays = w.overlays
@@ -37,6 +37,12 @@
 	pixel_y = t.pixel_y
 	dir = t.dir
 	anchored = 1
+
+	uses_initial_density = 1
+	initial_density = density
+
+	uses_initial_opacity = 1
+	initial_opacity = opacity
 
 	for (var/atom/movable/a in loc)
 		if (istype(a, /obj/structure/flora) || istype(a, /obj/structure/wild))
@@ -78,6 +84,12 @@
 			aa.pixel_x = a.pixel_x
 			aa.pixel_y = a.pixel_y
 			aa.dir = a.dir
+
+			aa.uses_initial_density = 1
+			aa.initial_density = aa.density
+
+			aa.uses_initial_opacity = 1
+			aa.initial_opacity = aa.opacity
 
 
 	for (var/atom/movable/a in t)
@@ -150,25 +162,30 @@
 		if (ismob(a))
 			var/mob/m = a
 			if (!isnull(m.next_train_movement))
+
 				var/atom/movable/p = m.pulling
-				// orientation is irrelevant here
+
+				if (m.next_train_movement)
+					m.dir = m.next_train_movement
+					if (p) p.dir = m.next_train_movement
+
 				switch (m.next_train_movement)
 					if (NORTH)
 						var/moved = m.train_move(locate(m.x, m.y+1, m.z))
-				//		if (p && moved) p.train_move(m.behind())
+						if (p && moved) p.train_move(m.behind())
 					if (SOUTH)
 						var/moved = m.train_move(locate(m.x, m.y-1, m.z))
-					//	if (p && moved) p.train_move(m.behind())
+						if (p && moved) p.train_move(m.behind())
 					if (EAST)
 						var/moved = m.train_move(locate(m.x+1, m.y, m.z))
-				//		if (p && moved) p.train_move(m.behind())
+						if (p && moved) p.train_move(m.behind())
 					if (WEST)
 						var/moved = m.train_move(locate(m.x-1, m.y, m.z))
-					//	if (p && moved) p.train_move(m.behind())
+						if (p && moved) p.train_move(m.behind())
 
-				m.dir = m.next_train_movement
-				if (p) p.dir = m.next_train_movement
-				m.start_pulling(p) // start_pulling checks for p on its own
+				if (p && get_dist(m, p) <= 1)
+					m.start_pulling(p) // start_pulling checks for p on its own
+
 				m.next_train_movement = null
 				m.train_gib_immunity = 0
 				m.last_moved_on_train = world.time
@@ -183,6 +200,8 @@
 /obj/train_pseudoturf/proc/destroy_objects()
 	for (var/atom/movable/a in get_step(src, src_dir()))
 		if (a.pulledby && a.pulledby.is_on_train())
+			continue
+		if (istype(a, /obj/tank)) // should fix the most horrible bug in the history of bugs, maybe ever - Kachnov
 			continue
 		if (check_object_invalid_for_moving(src, a) && check_object_valid_for_destruction(a))
 			if (a.density)
@@ -204,8 +223,8 @@
 			continue
 
 		if (deadly && istype(m))
-			m.gib()
-			m.loc = pick(locate(m.x+10, m.y, m.z), locate(m.x-10, m.y, m.z))// attempt to fix 4x gibbing error
+			visible_message("<span class = 'danger'>The train crushes [m]!</span>")
+			m.crush()
 
 /obj/train_connector/ex_act(severity)
 	if (prob(round(70 * (1/severity))))

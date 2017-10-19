@@ -6,7 +6,9 @@
 // The name is used on /vg/ for species with predefined genetic traits,
 //  and for the DNA panel in the player panel.
 /proc/getAssignedBlock(var/name,var/list/blocksLeft, var/activity_bounds=DNA_DEFAULT_BOUNDS)
-	if(blocksLeft.len==0)
+	return
+
+/*	if(blocksLeft.len==0)
 		warning("[name]: No more blocks left to assign!")
 		return 0
 	var/assigned = pick(blocksLeft)
@@ -14,9 +16,13 @@
 	assigned_blocks[assigned]=name
 	dna_activity_bounds[assigned]=activity_bounds
 	//testing("[name] assigned to block #[assigned].")
-	return assigned
+	return assigned*/
 
 /proc/setupgenetics()
+
+	return
+
+	/*
 
 	if (prob(50))
 		// Currently unused.  Will revisit. - N3X
@@ -33,10 +39,10 @@
 	// Standard muts, imported from older code above.
 	BLINDBLOCK         = getAssignedBlock("BLIND",         numsToAssign)
 	DEAFBLOCK          = getAssignedBlock("DEAF",          numsToAssign)
-	HULKBLOCK          = getAssignedBlock("HULK",          numsToAssign, DNA_HARD_BOUNDS)
-	TELEBLOCK          = getAssignedBlock("TELE",          numsToAssign, DNA_HARD_BOUNDS)
-	FIREBLOCK          = getAssignedBlock("FIRE",          numsToAssign, DNA_HARDER_BOUNDS)
-	XRAYBLOCK          = getAssignedBlock("XRAY",          numsToAssign, DNA_HARDER_BOUNDS)
+//	HULKBLOCK          = getAssignedBlock("HULK",          numsToAssign, DNA_HARD_BOUNDS)
+///	TELEBLOCK          = getAssignedBlock("TELE",          numsToAssign, DNA_HARD_BOUNDS)
+//	FIREBLOCK          = getAssignedBlock("FIRE",          numsToAssign, DNA_HARDER_BOUNDS)
+//	XRAYBLOCK          = getAssignedBlock("XRAY",          numsToAssign, DNA_HARDER_BOUNDS)
 	CLUMSYBLOCK        = getAssignedBlock("CLUMSY",        numsToAssign)
 	FAKEBLOCK          = getAssignedBlock("FAKE",          numsToAssign)
 
@@ -67,7 +73,7 @@
 
 	// Monkeyblock is always last.
 	MONKEYBLOCK = DNA_SE_LENGTH
-
+/*
 	// And the genes that actually do the work. (domutcheck improvements)
 	var/list/blocks_assigned[DNA_SE_LENGTH]
 	for(var/gene_type in typesof(/datum/dna/gene))
@@ -81,3 +87,4 @@
 				assignedToBlock=blocks_assigned[G.block]
 			assignedToBlock.Add(G.name)
 			blocks_assigned[G.block]=assignedToBlock
+*/*/

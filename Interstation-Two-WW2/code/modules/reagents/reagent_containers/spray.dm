@@ -11,7 +11,6 @@
 	throw_speed = 2
 	throw_range = 10
 	amount_per_transfer_from_this = 10
-	unacidable = 1 //plastic
 	possible_transfer_amounts = list(5,10) //Set to null instead of list, if there is only one.
 	var/spray_size = 3
 	var/list/spray_sizes = list(1,3)
@@ -23,9 +22,6 @@
 
 /obj/item/weapon/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
 	if(istype(A, /obj/item/weapon/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/closet) || istype(A, /obj/item/weapon/reagent_containers) || istype(A, /obj/structure/sink) /*|| istype(A, /obj/structure/janitorialcart)*/)
-		return
-
-	if(istype(A, /spell))
 		return
 
 	if(proximity)
@@ -203,8 +199,5 @@
 
 /obj/item/weapon/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
 	if(!proximity) return
-
-	if(istype(A, /obj/effect/blob)) // blob damage in blob code
-		return
 
 	..()

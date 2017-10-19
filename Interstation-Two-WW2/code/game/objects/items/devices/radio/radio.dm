@@ -160,8 +160,9 @@ var/global/list/default_russian_channels = list(
 	return user.has_internal_radio_channel_access(internal_channels[freq])
 
 /mob/proc/has_internal_radio_channel_access(var/list/req_one_accesses)
-	var/obj/item/weapon/card/id/I = GetIdCard()
-	return has_access(list(), req_one_accesses, I ? I.GetAccess() : list())
+//	var/obj/item/weapon/card/id/I = GetIdCard()
+//	return has_access(list(), req_one_accesses, I ? I.GetAccess() : list())
+	return 0
 
 /mob/observer/ghost/has_internal_radio_channel_access(var/list/req_one_accesses)
 	return can_admin_interact()
@@ -399,6 +400,7 @@ var/global/list/default_russian_channels = list(
 			"language" = speaking,
 			"verb" = verb
 		)
+
 		signal.frequency = connection.frequency // Quick frequency set
 
 	  //#### Sending the signal to all subspace receivers ####//

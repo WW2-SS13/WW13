@@ -113,7 +113,6 @@
 	if(handle_casings != HOLD_CASINGS)
 		chambered = null
 
-
 //Attempts to load A into src, depending on the type of thing being loaded and the load_method
 //Maybe this should be broken up into separate procs for each load method?
 /obj/item/weapon/gun/projectile/proc/load_ammo(var/obj/item/A, mob/user)
@@ -207,7 +206,7 @@
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user)
 	..()
-	if(istype(A, /obj/item/ammo_magazine))
+	if(istype(A, /obj/item/ammo_magazine) || istype(A, /obj/item/ammo_casing))
 		load_ammo(A, user)
 
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)

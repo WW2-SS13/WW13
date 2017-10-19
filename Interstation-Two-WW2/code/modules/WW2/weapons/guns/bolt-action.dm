@@ -2,14 +2,16 @@
 	recoil = 2
 
 /obj/item/weapon/gun/projectile/boltaction/mosin
-	name = "Mosin-Nagant rifle"
-	desc = "A bolt-action rifle of true LIBERATORS."
+	name = "Mosin-Nagant"
+	desc = "Soviet bolt-action rifle chambered in 7.62x54mmR cartridges. It looks worn and has Katyusha on the butt."
 	force = 12
 	origin_tech = "combat=4;materials=2;syndicate=8"
 	fire_sound = 'sound/weapons/mosin_shot.ogg'
 	caliber = "a762x54"
 	//+2 accuracy over the LWAP because only one shot
-	accuracy = 2
+	accuracy = DEFAULT_BOLTACTION_ACCURACY
+	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
+
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
@@ -34,8 +36,8 @@
 		icon_state = "mosin"
 
 /obj/item/weapon/gun/projectile/boltaction/kar98k
-	name = "Kar98k rifle"
-	desc = "A bolt-action rifle of true ARYAN."
+	name = "Kar-98K"
+	desc = "German bolt-action rifle chambered in 7.92x57mm Mauser ammunition. It looks clean and well-fabricated."
 	icon_state = "kar98k"
 	item_state = "kar98k" //placeholder
 	caliber = "a792x57"
@@ -43,8 +45,8 @@
 	ammo_type = /obj/item/ammo_casing/a792x57
 	magazine_type = /obj/item/ammo_magazine/kar98k
 	//+2 accuracy over the LWAP because only one shot
-	accuracy = 2
-	scoped_accuracy = 4
+	accuracy = DEFAULT_BOLTACTION_ACCURACY
+	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
 	bolt_safety = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 

@@ -6,8 +6,12 @@
 	item_state = "fw_off"
 	var/pressure_1 = 100
 	status = 1
-	nodrop = 1
+	nothrow = 1
 	var/fueltank = 1
+	var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = null
+
+/obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
+	return nodrop_special_check()
 
 /obj/item/weapon/flamethrower/flammenwerfer/update_icon()
 	overlays.Cut()
@@ -20,9 +24,6 @@
 
 /obj/item/weapon/flamethrower/flammenwerfer/Destroy()
 	..()
-
-/obj/item/weapon/flamethrower/flammenwerfer/throw_at(atom/target, range, speed, thrower)
-	return
 
 /obj/item/weapon/flamethrower/flammenwerfer/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
@@ -60,6 +61,15 @@
 	var/turf/my_turf = get_turf(loc)
 
 	if(!lit || operating)	return
+
+	var/mob/living/carbon/human/my_mob = loc
+	if (!my_mob || !istype(my_mob))
+		return
+
+	if (my_mob.back != backpack || !my_mob.back || !backpack)
+		my_mob << "<span class = 'danger'>Put the backpack on first.</span>"
+		return
+
 	operating = 1
 	playsound(my_turf, 'sound/weapons/flamethrower.ogg', 100, 1)
 
@@ -85,7 +95,7 @@
 				if (flamedir == SOUTH || flamedir == SOUTHEAST || flamedir == SOUTHWEST)
 					continue
 
-		ignite_turf(T)
+		ignite_turf(T, flamedir)
 
 	previousturf = null
 	operating = 0
@@ -132,27 +142,15 @@
 	return
 
 /obj/item/weapon/flamethrower/flammenwerfer/proc/calculate_throw_amount()
-	return throw_amount * calculate_power_decimal()
+	return throw_amount * calculate_power_coeff()
 
-/obj/item/weapon/flamethrower/flammenwerfer/proc/calculate_power_decimal()
+/obj/item/weapon/flamethrower/flammenwerfer/proc/calculate_power_coeff()
 	var/p1 = pressure_1
 	var/p2 = ptank.air_contents.return_pressure()
-
 	return (p2/p1)
 
-/obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target)
-	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
-	//Transfer 2.5% of current tank air contents to turf
-	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.02*(calculate_throw_amount()/100))
-
-	var/abs_dist = 3
-	var/mob/m = loc
-	if (m)
-		abs_dist = abs(m.x - target.x) + abs(m.y - target.y)
-
-	if (abs_dist >= 3) // experiment to try and keep flammenwerfersoldats from igniting themselves
-		new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(target,air_transfer.gas["plasma"],get_dir(loc,target),1)
-
-	air_transfer.gas["plasma"] = 0
-	target.assume_air(air_transfer)
-	target.create_fire(5, rand(400,600))
+/obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target, flamedir)
+	target.create_fire(5, rand(300,400), 0)
+	spawn (150)
+		for (var/obj/fire/fire in target)
+			qdel(fire) // shitty workaround #2

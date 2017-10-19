@@ -250,19 +250,4 @@
 	set name = "Toggle AI Core Latejoin"
 	set category = "Admin"
 
-	var/list/cores = list()
-	for(var/obj/structure/AIcore/deactivated/D in world)
-		cores["[D] ([D.loc.loc])"] = D
-
-	var/id = input("Which core?", "Toggle AI Core Latejoin", null) as null|anything in cores
-	if(!id) return
-
-	var/obj/structure/AIcore/deactivated/D = cores[id]
-	if(!D) return
-
-	if(D in empty_playable_ai_cores)
-		empty_playable_ai_cores -= D
-		src << "\The [id] is now <font color=\"#ff0000\">not available</font> for latejoining AIs."
-	else
-		empty_playable_ai_cores += D
-		src << "\The [id] is now <font color=\"#008000\">available</font> for latejoining AIs."
+	return 0

@@ -96,6 +96,6 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 		A.print_player_summary()
 
 /proc/debug_uplink_item_assoc_list()
-	for(var/key in uplink.items_assoc)
-		world << "[key] - [uplink.items_assoc[key]]"
+	return 0
+
 #endif

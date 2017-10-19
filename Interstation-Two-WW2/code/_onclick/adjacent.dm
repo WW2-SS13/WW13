@@ -135,12 +135,6 @@ Quick adjacency (to turf):
 	so they can be interacted with without opening the door.
 */
 /obj/machinery/door/Adjacent(var/atom/neighbor)
-	var/obj/machinery/door/firedoor/border_only/BOD = locate() in loc
-	if(BOD)
-		BOD.throwpass = 1 // allow click to pass
-		. = ..()
-		BOD.throwpass = 0
-		return .
 	return ..()
 
 

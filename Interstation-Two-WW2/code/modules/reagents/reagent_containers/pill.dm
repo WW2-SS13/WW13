@@ -255,4 +255,4 @@
 	icon_state = "pill16"
 	New()
 		..()
-		reagents.add_reagent("pervitin", 5)
+		reagents.add_reagent("pervitin", REAGENTS_OVERDOSE*0.45) // slightly less than an OD

@@ -96,9 +96,9 @@
 			W.shatter()
 		else if(istype(A,/obj/structure/grille))
 			qdel(A)
-		else if(istype(A,/obj/effect/plant))
+	/*	else if(istype(A,/obj/effect/plant))
 			var/obj/effect/plant/P = A
-			P.die_off()
+			P.die_off()*/
 
 //spears, bay edition
 /obj/item/weapon/material/twohanded/spear

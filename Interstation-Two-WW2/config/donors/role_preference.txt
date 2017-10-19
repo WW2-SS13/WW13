@@ -1,0 +1,1 @@
+# allows a person to pick the role that they would prefer to start as. If too many people are already preferring this role, they can't.

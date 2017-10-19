@@ -102,7 +102,7 @@
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			PoolOrNew(/obj/item/stack/rods, list(get_turf(src), destroyed ? 1 : 2))
 			qdel(src)
-	else if((isscrewdriver(W)) && (istype(loc, /turf/simulated) || anchored))
+	else if((isscrewdriver(W)) && (istype(loc, /turf) || anchored))
 		if(!shock(user, 90))
 			playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			anchored = !anchored

@@ -7,7 +7,7 @@
 	icon_state = "scorched1"
 
 /obj/effect/damagedfloor/fire/New(loc)
-	var/turf/simulated/floor/F = loc
+	var/turf/floor/F = loc
 	if(istype(F))
 		F.burn_tile()
 	qdel(src)
@@ -16,7 +16,7 @@
 	icon_state = "rust"
 
 /obj/effect/damagedfloor/New(loc)
-	var/turf/simulated/floor/F = loc
+	var/turf/floor/F = loc
 	if(istype(F))
 		F.break_tile(1)
 	qdel(src)

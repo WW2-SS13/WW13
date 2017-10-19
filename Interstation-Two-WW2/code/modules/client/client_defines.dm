@@ -20,7 +20,7 @@
 	var/area			= null
 
 	var/adminhelped = 0
-
+	var/mentorhelped = 0
 		///////////////
 		//SOUND STUFF//
 		///////////////

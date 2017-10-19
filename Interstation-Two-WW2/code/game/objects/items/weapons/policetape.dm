@@ -251,7 +251,7 @@ var/list/tape_roll_applications = list()
 		P.layer = 3.2
 		user << "<span class='notice'>You finish placing \the [src].</span>"
 
-	if (istype(A, /turf/simulated/floor) ||istype(A, /turf/unsimulated/floor))
+	if (isfloor(A))
 		var/turf/F = A
 		var/direction = user.loc == F ? user.dir : turn(user.dir, 180)
 		var/icon/hazard_overlay = hazard_overlays["[direction]"]

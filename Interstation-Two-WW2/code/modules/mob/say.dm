@@ -26,6 +26,9 @@
 	*/
 
 	set_typing_indicator(0)
+	if (dd_hasprefix(message, "*scream") && !isliving(src))
+		usr << "<span class = 'warning'>You can't scream, because you're dead.</span>"
+		return
 	usr.say(message)
 
 /mob/verb/me_verb(message as text)

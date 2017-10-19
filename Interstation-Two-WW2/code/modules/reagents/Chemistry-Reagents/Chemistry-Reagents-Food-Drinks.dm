@@ -11,8 +11,11 @@
 	var/injectable = 0
 	color = "#664330"
 
-/datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
+/datum/reagent/nutriment/New()
+	..()
+	data = list()[10]
 
+/datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
 	if(!islist(newdata) || !newdata.len)
 		return
 	for(var/i in 1 to newdata.len)
@@ -39,7 +42,7 @@
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 	M.heal_organ_damage(0.5 * removed, 0)
 	M.nutrition += nutriment_factor * removed // For hunger and fatness
-	M.bowels += nutriment_factor * removed	//For pooping
+//	M.bowels += nutriment_factor * removed	//For pooping
 	M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
 
 /datum/reagent/nutriment/glucose
@@ -79,7 +82,7 @@
 	nutriment_factor = 1
 	color = "#FFFFFF"
 
-/datum/reagent/nutriment/flour/touch_turf(var/turf/simulated/T)
+/datum/reagent/nutriment/flour/touch_turf(var/turf/T)
 	if(!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/flour(T)
 
@@ -142,16 +145,16 @@
 	nutriment_factor = 20
 	color = "#302000"
 
-/datum/reagent/nutriment/cornoil/touch_turf(var/turf/simulated/T)
+/datum/reagent/nutriment/cornoil/touch_turf(var/turf/T)
 	if(!istype(T))
 		return
 
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
-		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
-		lowertemp.react()
-		T.assume_air(lowertemp)
+	//	var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
+	//	lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
+	//	lowertemp.react()
+	//	T.assume_air(lowertemp)
 		qdel(hotspot)
 
 	if(volume >= 3)

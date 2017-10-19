@@ -43,11 +43,10 @@
 	caliber = "9mm"
 	projectile_type = /obj/item/projectile/bullet/pistol/practice
 
-
 /obj/item/ammo_casing/c45
 	desc = "A .45 bullet casing."
 	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/pistol/medium
+	projectile_type = /obj/item/projectile/bullet/rifle/a9_parabellum
 
 /obj/item/ammo_casing/c45p
 	desc = "A .45 practice bullet casing."
@@ -133,15 +132,6 @@
 	caliber = "a762"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
 
-/obj/item/ammo_casing/a145
-	name = "shell casing"
-	desc = "A 14.5mm shell."
-	icon_state = "lcasing"
-	spent_icon = "lcasing-spent"
-	caliber = "14.5mm"
-	projectile_type = /obj/item/projectile/bullet/rifle/a145
-	matter = list(DEFAULT_WALL_MATERIAL = 1250)
-
 /obj/item/ammo_casing/a556
 	desc = "A 5.56mm bullet casing."
 	caliber = "a556"
@@ -151,14 +141,14 @@
 	desc = "A 5.56mm practice bullet casing."
 	caliber = "a556"
 	projectile_type = /obj/item/projectile/bullet/rifle/a556/practice
-
+/*
 /obj/item/ammo_casing/rocket
 	name = "rocket shell"
 	desc = "A high explosive designed to be fired from a launcher."
 	icon_state = "rocketshell"
 	projectile_type = /obj/item/missile
 	caliber = "rocket"
-
+*/
 /obj/item/ammo_casing/cap
 	name = "cap"
 	desc = "A cap for children toys."

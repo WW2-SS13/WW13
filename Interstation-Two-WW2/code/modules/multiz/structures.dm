@@ -52,10 +52,6 @@
 		. = ..()
 		user.Move(get_turf(target))
 
-	attack_ai(mob/living/silicon/ai/user)
-		var/turf/T = get_turf(target)
-		T.move_camera_by_click()
-
 	attackby(obj/item/C, mob/user)
 		. = ..()
 		attack_hand(user)
@@ -96,12 +92,13 @@
 			return
 
 	M.visible_message(
-		"<span class='notice'>\A [M] climbs [istop ? "down" : "up"] \a [src]!</span>",
-		"You climb [istop ? "down" : "up"] \the [src]!",
+		"<span class='notice'>\A [M] starts to climb [istop ? "down" : "up"] \a [src].</span>",
+		"<span class='notice'>You start to climb [istop ? "down" : "up"] \the [src].</span>",
 		"You hear the grunting and clanging of a metal ladder being used."
 	)
+
 	T.visible_message(
-		"<span class='warning'>Someone climbs [istop ? "down" : "up"] \a [src]!</span>",
+		"<span class='warning'>Someone starts to climb [istop ? "down" : "up"] \a [src].</span>",
 		"You hear the grunting and clanging of a metal ladder being used."
 	)
 
@@ -121,12 +118,63 @@
 				move_pulling = get_step(T, EAST)
 			if (move_pulling.density)
 				move_pulling = get_step(T, WEST)
-			M.pulling.Move()
+			M.pulling.Move(move_pulling)
 		M.Move(T)
 		if (was_pulling)
 			M.pulling = was_pulling
 
-////1 Z LEVEL LADDERS - Kachnov////
+		M.visible_message(
+			"<span class='notice'>\A [M] climbs [istop ? "down" : "up"] \a [src].</span>",
+			"<span class='notice'>You climb [istop ? "down" : "up"] \the [src].</span>",
+			"You hear the grunting and clanging of a metal ladder being used."
+		)
+
+//// laddervision - Kachnov ////
+
+/mob/living/carbon/human/var/laddervision = null
+
+/obj/structure/multiz/ladder/MouseDrop_T(var/mob/living/carbon/human/user as mob)
+	if (!user || !istype(user))
+		return
+	if (user.laddervision == src)
+		return
+	if (!target)
+		return
+	if (user.laddervision)
+		user.update_laddervision(target) // stop looking up/down
+		return
+
+	visible_message("<span class = 'notice'>[user] starts to look [target.laddervision_direction()] the ladder.</span>")
+	if (do_after(user, 12, src))
+		user.update_laddervision(target)
+		visible_message("<span class = 'notice'>[user] looks [user.laddervision_direction()] the ladder.</span>")
+
+/mob/living/carbon/human/proc/update_laddervision(var/obj/structure/multiz/ladder/ladder)
+	if (ladder && istype(ladder))
+		client.perspective = EYE_PERSPECTIVE
+		laddervision = ladder
+		client.eye = laddervision
+	else if (!ladder)
+		if (laddervision)
+			client.perspective = MOB_PERSPECTIVE
+			client.eye = src
+			laddervision = null
+
+/obj/structure/multiz/proc/laddervision_direction()
+	if (istop)
+		return "up"
+	else
+		return "down"
+
+/mob/living/carbon/human/proc/laddervision_direction()
+	if (!laddervision)
+		return ""
+	var/obj/structure/multiz/ladder = laddervision
+	if (ladder.istop)
+		return "up"
+	return "down"
+
+//// 1 Z LEVEL LADDERS - Kachnov ////
 
 /obj/structure/multiz/ladder/ww2
 	var/ladder_id = null
@@ -237,10 +285,6 @@
 	else
 		M.Move(get_turf(target))
 
-/obj/structure/multiz/stairs/active/attack_robot(mob/user)
-	. = ..()
-	if(Adjacent(user))
-		Bumped(user)
 
 /obj/structure/stairs/active/attack_hand(mob/user)
 	. = ..()

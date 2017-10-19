@@ -7,21 +7,42 @@ meteor_act
 
 */
 
+/mob/living/carbon/human/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if (stat != DEAD)
+		return ..(W, user)
+	if (!istype(W) || !W.sharp)
+		return ..(W, user)
+	else if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers/syringe) && user.a_intent == I_HURT)
+		user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
+		if (do_after(user, 30, src))
+			user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
+			for (var/v in 1 to rand(5,7))
+				var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
+				meat.name = "[name] meatsteak"
+			crush()
+			qdel(src)
+	else
+		return ..(W, user)
+
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
 	def_zone = check_zone(def_zone)
+	if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
+		say("GOD DAMN IT HURTS", src.languages.Find(GERMAN))
+
+	if (src.is_spy && istype(src.spy_faction, /datum/faction/russian))
+		say("GOD DAMN IT HURTS", src.languages.Find(RUSSIAN))
 
 	if (def_zone == "chest" && P.firer && (P.firer.dir == src.dir || P.firer.lying))
 		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower = back
-			if (prob(15))
+			if (prob(15) || (world.time - last_movement >= 50))
 				flamethrower.explode()
 
 	if(!has_organ(def_zone))
 		return PROJECTILE_FORCE_MISS //if they don't have the organ in question then the projectile just passes by.
 
 	var/obj/item/organ/external/organ = get_organ()
-
 	//Shields
 	var/shield_check = check_shields(P.damage*5, P, null, def_zone, "the [P.name]")
 
@@ -70,6 +91,20 @@ meteor_act
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 					emote("me", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
 
+		else
+			if (agony_amount > 10)
+				if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
+					say("OH GOD THE PAIN", src.languages.Find(GERMAN))
+
+				if (src.is_spy && istype(src.spy_faction, /datum/faction/russian))
+					say("OH GOD THE PAIN", src.languages.Find(RUSSIAN))
+		else
+			if (agony_amount > 10)
+				if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
+					say("OH GOD THE PAIN", src.languages.Find(GERMAN))
+
+				if (src.is_spy && istype(src.spy_faction, /datum/faction/russian))
+					say("OH GOD THE PAIN", src.languages.Find(RUSSIAN))
 	..(stun_amount, agony_amount, def_zone)
 
 /mob/living/carbon/human/getarmor(var/def_zone, var/type)
@@ -222,7 +257,7 @@ meteor_act
 
 		if(prob(33 + I.sharp*10))
 			var/turf/location = loc
-			if(istype(location, /turf/simulated))
+			if(istype(location, /turf))
 				location.add_blood(src)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
@@ -254,18 +289,6 @@ meteor_act
 		organ.dislocate(1)
 		return 1
 	return 0
-
-/mob/living/carbon/human/emag_act(var/remaining_charges, mob/user, var/emag_source)
-	var/obj/item/organ/external/affecting = get_organ(user.targeted_organ)
-	if(!affecting || !(affecting.status & ORGAN_ROBOT))
-		user << "<span class='warning'>That limb isn't robotic.</span>"
-		return -1
-	if(affecting.sabotaged)
-		user << "<span class='warning'>[src]'s [affecting.name] is already sabotaged!</span>"
-		return -1
-	user << "<span class='notice'>You sneakily slide [emag_source] into the dataport on [src]'s [affecting.name] and short out the safeties.</span>"
-	affecting.sabotaged = 1
-	return 1
 
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
@@ -377,7 +400,6 @@ meteor_act
 	if(affecting)
 		affecting.embed(O)
 
-
 /mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
 	if (gloves)
 		gloves.add_blood(source)
@@ -398,21 +420,7 @@ meteor_act
 		update_inv_w_uniform(0)
 
 /mob/living/carbon/human/proc/handle_suit_punctures(var/damtype, var/damage, var/def_zone)
-
-	// Tox and oxy don't matter to suits.
-	if(damtype != BURN && damtype != BRUTE) return
-
-	// The rig might soak this hit, if we're wearing one.
-	if(back && istype(back,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = back
-		rig.take_hit(damage)
-
-	// We may also be taking a suit breach.
-	if(!wear_suit) return
-	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
-	var/obj/item/clothing/suit/space/SS = wear_suit
-	var/penetrated_dam = max(0,(damage - SS.breach_threshold))
-	if(penetrated_dam) SS.create_breaches(damtype, penetrated_dam)
+	return
 
 /mob/living/carbon/human/reagent_permeability()
 	var/perm = 0

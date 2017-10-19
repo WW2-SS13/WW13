@@ -6,7 +6,7 @@
 
 /client
 	var/hardsuit_click_mode = MIDDLE_CLICK
-
+/*
 /client/verb/toggle_hardsuit_mode()
 	set name = "Toggle Hardsuit Activation Mode"
 	set desc = "Switch between hardsuit activation modes."
@@ -28,7 +28,7 @@
 			soft_assert(0, "Bad hardsuit click mode: [hardsuit_click_mode] - expected 0 to [MAX_HARDSUIT_CLICK_MODE]")
 			src << "Somehow you bugged the system. Setting your hardsuit mode to middle-click."
 			hardsuit_click_mode = MIDDLE_CLICK
-
+*/
 /mob/living/MiddleClickOn(atom/A)
 	if(client && client.hardsuit_click_mode == MIDDLE_CLICK)
 		if(HardsuitClickOn(A))
@@ -54,28 +54,9 @@
 	return 1
 
 /mob/living/carbon/brain/can_use_rig()
-	return istype(loc, /obj/item/device/mmi)
-
-/mob/living/silicon/ai/can_use_rig()
-	return carded
-
-/mob/living/silicon/pai/can_use_rig()
-	return loc == card
+	return 0
 
 /mob/living/proc/HardsuitClickOn(var/atom/A, var/alert_ai = 0)
-	if(!can_use_rig() || !canClick())
-		return 0
-	var/obj/item/weapon/rig/rig = get_rig()
-	if(istype(rig) && !rig.offline && rig.selected_module)
-		if(src != rig.wearer)
-			if(rig.ai_can_move_suit(src, check_user_module = 1))
-				message_admins("[key_name_admin(src, include_name = 1)] is trying to force \the [key_name_admin(rig.wearer, include_name = 1)] to use a hardsuit module.")
-			else
-				return 0
-		rig.selected_module.engage(A, alert_ai)
-		if(ismob(A)) // No instant mob attacking - though modules have their own cooldowns
-			setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		return 1
 	return 0
 
 #undef MIDDLE_CLICK

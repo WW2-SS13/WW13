@@ -17,11 +17,6 @@
 /mob/living/proc/seen_cult_turfs()
 	return seen_turfs_in_range(src, 3)
 
-/mob/living/carbon/human/seen_cult_turfs()
-	if(mind in cult.current_antagonists)
-		return seen_turfs_in_range(src, world.view)
-	return ..()
-
 /mob/living/silicon/seen_cult_turfs()
 	return list()
 

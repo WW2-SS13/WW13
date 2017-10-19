@@ -21,7 +21,7 @@
 		t["virus2"] = v.Copy()
 	return t
 
-/datum/reagent/blood/touch_turf(var/turf/simulated/T)
+/datum/reagent/blood/touch_turf(var/turf/T)
 	if(!istype(T) || volume < 3)
 		return
 	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
@@ -40,16 +40,18 @@
 		M.adjustToxLoss(removed)
 	if(effective_dose > 15)
 		M.adjustToxLoss(removed)
-	if(data && data["virus2"])
+
+/*	if(data && data["virus2"])
 		var/list/vlist = data["virus2"]
 		if(vlist.len)
 			for(var/ID in vlist)
 				var/datum/disease2/disease/V = vlist[ID]
 				if(V.spreadtype == "Contact")
-					infect_virus2(M, V.getcopy())
+					infect_virus2(M, V.getcopy())*/
 
 /datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	if(data && data["virus2"])
+	return
+/*	if(data && data["virus2"])
 		var/list/vlist = data["virus2"]
 		if(vlist.len)
 			for(var/ID in vlist)
@@ -57,7 +59,7 @@
 				if(V.spreadtype == "Contact")
 					infect_virus2(M, V.getcopy())
 	if(data && data["antibodies"])
-		M.antibodies |= data["antibodies"]
+		M.antibodies |= data["antibodies"]*/
 
 /datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.inject_blood(src, volume)
@@ -87,7 +89,7 @@
 	metabolism = REM * 10
 	taste_description = "water"
 
-/datum/reagent/water/touch_turf(var/turf/simulated/T)
+/datum/reagent/water/touch_turf(var/turf/T)
 	if(!istype(T))
 		return
 
@@ -96,10 +98,10 @@
 
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
-		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
-		lowertemp.react()
-		T.assume_air(lowertemp)
+	//	var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
+	//	lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
+	//	lowertemp.react()
+	//	T.assume_air(lowertemp)
 		qdel(hotspot)
 
 	if (environment && environment.temperature > min_temperature) // Abstracted as steam or something
@@ -129,7 +131,7 @@
 			remove_self(amount)
 
 /datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	if(istype(M, /mob/living/carbon/slime))
+/*	if(istype(M, /mob/living/carbon/slime))
 		var/mob/living/carbon/slime/S = M
 		S.adjustToxLoss(8 * removed) // Babies have 150 health, adults have 200; So, 10 units and 13.5
 		if(!S.client)
@@ -138,7 +140,7 @@
 				++S.Discipline
 		if(dose == removed)
 			S.visible_message("<span class='warning'>[S]'s flesh sizzles where the water touches it!</span>", "<span class='danger'>Your flesh burns in the water!</span>")
-
+*/
 /datum/reagent/fuel
 	name = "Welding fuel"
 	id = "fuel"

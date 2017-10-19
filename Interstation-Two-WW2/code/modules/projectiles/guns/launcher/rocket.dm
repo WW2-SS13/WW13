@@ -37,15 +37,15 @@
 			usr << "\red [src] cannot hold more rockets."
 
 /obj/item/weapon/gun/launcher/rocket/consume_next_projectile()
-	if(rockets.len)
+	/*if(rockets.len)
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
 		var/obj/item/missile/M = new (src)
 		M.primed = 1
 		rockets -= I
-		return M
+		return M*/
 	return null
 
 /obj/item/weapon/gun/launcher/rocket/handle_post_fire(mob/user, atom/target)
-	message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]) at [target].")
-	log_game("[key_name_admin(user)] used a rocket launcher ([src.name]) at [target].")
+	message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([name]) at [target].")
+	log_game("[key_name_admin(user)] used a rocket launcher ([name]) at [target].")
 	..()

@@ -9,11 +9,26 @@
 		src << "<span class = 'danger'>What spies?</span>"
 		return
 
-	src << "<big>Spies:</big><br><br>"
+	print_spies(src, 1)
 
-	for (var/mob/living/carbon/human/H in player_list)
-		if (H.is_spy)
+/proc/print_spies(whomst, var/notroundend = 0)
+
+	if (notroundend)
+		whomst << "<big>Spies:</big><br><br>"
+	else
+		whomst << "<big>Spies at the end of the round:</big><br><br>"
+
+	var/list/mobs = dead_mob_list
+	mobs |= living_mob_list
+
+	for (var/mob/living/carbon/human/H in mobs)
+		if (istype(H) && H.is_spy)
+			var/H_stat = (H.stat == DEAD ? "DEAD" : H.stat == UNCONSCIOUS ? "UNCONSCIOUS" : "ALIVE")
+			var/is_ghosted = (H.client ? "IN BODY" : "GHOSTED OR LOGGED OUT")
+			var/spanstyle = H.stat == DEAD ? "warning" : "notice"
 			if (istype(H.original_job, /datum/job/german))
-				src << "[H]/[H.ckey] - German soldier spying for the Russians.<br>"
+				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - German soldier spying for the Russians. ([H_stat]) ([is_ghosted])</span><br>"
 			else if (istype(H.original_job, /datum/job/russian))
-				src << "[H]/[H.ckey] - Russian soldier spying for the Germans.<br>"
+				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - Russian soldier spying for the Germans. ([H_stat]) ([is_ghosted])</span><br>"
+			if (!notroundend && H.stat != DEAD && !H.restrained())
+				whomst << "<span class = 'notice'>The Spy survived!</span><br>"

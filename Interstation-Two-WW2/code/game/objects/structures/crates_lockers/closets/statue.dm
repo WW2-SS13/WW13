@@ -13,7 +13,7 @@
 	var/timer = 240 //eventually the person will be freed
 
 /obj/structure/closet/statue/New(loc, var/mob/living/L)
-	if(L && (ishuman(L) || L.isMonkey() || iscorgi(L)))
+	if(L && (ishuman(L) || iscorgi(L)))
 		if(L.buckled)
 			L.buckled = 0
 			L.anchored = 0
@@ -31,9 +31,6 @@
 			name = "statue of [L.name]"
 			if(L.gender == "female")
 				icon_state = "human_female"
-		else if(L.isMonkey())
-			name = "statue of a monkey"
-			icon_state = "monkey"
 		else if(iscorgi(L))
 			name = "statue of a corgi"
 			icon_state = "corgi"

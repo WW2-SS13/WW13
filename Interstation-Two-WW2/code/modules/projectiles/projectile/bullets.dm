@@ -14,6 +14,11 @@
 
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
 
+/obj/item/projectile/bullet/get_structure_damage()
+	if(damage_type == BRUTE || damage_type == BURN)
+		return damage/5 // bullets should no longer obliterate walls
+	return 0
+
 /obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = 0)
 	if (..(target, blocked))
 		var/mob/living/L = target
@@ -35,9 +40,6 @@
 /obj/item/projectile/bullet/check_penetrate(var/atom/A)
 	if(!A || !A.density) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
 
-	if(istype(A, /obj/mecha))
-		return 1 //mecha have their own penetration handling
-
 	if(ismob(A))
 		if(!mob_passthrough_check)
 			return 0
@@ -46,13 +48,9 @@
 		return 1
 
 	var/chance = 0
-	if(istype(A, /turf/simulated/wall))
-		var/turf/simulated/wall/W = A
-		chance = round(damage/W.material.integrity*180)
-	else if(istype(A, /obj/machinery/door))
-		var/obj/machinery/door/D = A
-		chance = round(damage/D.maxhealth*180)
-		if(D.glass) chance *= 2
+	if(istype(A, /turf/wall))
+		var/turf/wall/W = A
+		chance = round(damage/(W.material ? W.material.integrity : 150)*180)
 	else if(istype(A, /obj/structure/girder))
 		chance = 100
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
@@ -185,14 +183,6 @@
 
 /obj/item/projectile/bullet/rifle/a556
 	damage = 35
-
-/obj/item/projectile/bullet/rifle/a145
-	damage = 80
-	stun = 3
-	weaken = 3
-	penetrating = 5
-	armor_penetration = 80
-	hitscan = 1 //so the PTR isn't useless as a sniper weapon
 
 /* Miscellaneous */
 

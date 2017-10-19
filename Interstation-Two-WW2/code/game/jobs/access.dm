@@ -193,17 +193,8 @@
 /mob/proc/GetIdCard()
 	return null
 
-var/obj/item/weapon/card/id/all_access/ghost_all_access
 /mob/observer/ghost/GetIdCard()
-	if(!is_admin(src))
-		return
-
-	if(!ghost_all_access)
-		ghost_all_access = new()
-	return ghost_all_access
-
-/mob/living/bot/GetIdCard()
-	return botcard
+	return null
 
 /mob/living/carbon/human/GetIdCard()
 	var/obj/item/I = get_active_hand()
@@ -214,20 +205,17 @@ var/obj/item/weapon/card/id/all_access/ghost_all_access
 	if(wear_id)
 		return wear_id.GetID()
 
-/mob/living/silicon/GetIdCard()
-	return idcard
-
 proc/FindNameFromID(var/mob/M, var/missing_id_name = "Unknown")
-	var/obj/item/weapon/card/id/C = M.GetIdCard()
+/*	var/obj/item/weapon/card/id/C = M.GetIdCard()
 	if(C)
-		return C.registered_name
+		return C.registered_name*/
 	return missing_id_name
 
 proc/get_all_job_icons() //For all existing HUD icons
 	return joblist + list("Prisoner")
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
-	var/obj/item/weapon/card/id/I = GetID()
+/*	var/obj/item/weapon/card/id/I = GetID()
 
 	if(I)
 		var/job_icons = get_all_job_icons()
@@ -243,5 +231,5 @@ proc/get_all_job_icons() //For all existing HUD icons
 			return "Centcom"
 	else
 		return
-
+*/
 	return "Unknown" //Return unknown if none of the above apply

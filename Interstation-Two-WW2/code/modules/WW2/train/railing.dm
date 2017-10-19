@@ -4,6 +4,11 @@
 	name = "train railing"
 	var/occupied = 0
 	var/datum/train_controller/master = null
+	uses_initial_density = 1
+	initial_density = 1
+
+	uses_initial_opacity = 1
+	initial_opacity = 0
 
 /obj/structure/railing/train_railing/proc/_Move()
 	for (var/atom/movable/a in get_turf(src))

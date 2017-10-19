@@ -1,13 +1,6 @@
 /atom/movable/proc/get_mob()
 	return
 
-/obj/machinery/bot/mulebot/get_mob()
-	if(load && istype(load,/mob/living))
-		return load
-
-/obj/mecha/get_mob()
-	return occupant
-
 /obj/vehicle/train/get_mob()
 	return buckled_mob
 
@@ -122,6 +115,21 @@ proc/random_russian_name(gender, species = "Human")
 	else
 		return current_species.get_random_russian_name(gender)
 
+proc/random_ukrainian_name(gender, species = "Human")
+
+	var/datum/species/current_species
+
+	if(species)
+		current_species = all_species[species]
+
+	if(!current_species || current_species.name_language == null)
+		if(gender==FEMALE)
+			return capitalize(pick(first_names_female_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
+		else
+			return capitalize(pick(first_names_male_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
+	else
+		return current_species.get_random_ukrainian_name(gender)
+
 proc/random_skin_tone()
 	switch(pick(60;"caucasian", 15;"afroamerican", 10;"african", 10;"latino", 5;"albino"))
 		if("caucasian")		. = -10
@@ -227,10 +235,7 @@ Proc for attack log creation, because really why not
 
 //checks whether this item is a module of the robot it is located in.
 /proc/is_robot_module(var/obj/item/thing)
-	if (!thing || !istype(thing.loc, /mob/living/silicon/robot))
-		return 0
-	var/mob/living/silicon/robot/R = thing.loc
-	return (thing in R.module.modules)
+	return 0
 
 /proc/get_exposed_defense_zone(var/atom/movable/target)
 	var/obj/item/weapon/grab/G = locate() in target
@@ -391,6 +396,51 @@ Proc for attack log creation, because really why not
 
 	return germans
 
+/proc/getukrainianmobs(var/alive = 0)
+	var/list/ukrainians = list()
+	for (var/mob/living/carbon/human/H in mob_list)
+		if (!istype(H))
+			continue
+		if (alive && H.stat == DEAD)
+			continue
+		if (!istype(H.original_job, /datum/job/partisan))
+			continue
+		ukrainians += H
+
+	return ukrainians
+
+/proc/getgermanparatroopers(var/alive = 0)
+	var/list/germans = getgermanmobs(alive)
+	var/list/paratroopers = list()
+	for (var/mob/living/carbon/human/H in germans)
+		if (istype(H.original_job, /datum/job/german/paratrooper))
+			paratroopers += H
+	return paratroopers
+
+/proc/getSS(var/alive = 0)
+	var/list/germans = getgermanmobs(alive)
+	var/list/SS = list()
+	for (var/mob/living/carbon/human/H in germans)
+		if (istype(H.original_job, /datum/job/german/soldier_ss) || istype(H.original_job, /datum/job/german/squad_leader_ss))
+			SS += H
+	return SS
+
+/proc/getcivilians(var/alive = 0)
+	var/list/ukrainians = getukrainianmobs(alive)
+	var/list/civilians = list()
+	for (var/mob/living/carbon/human/H in ukrainians)
+		if (istype(H.original_job, /datum/job/partisan/civilian))
+			civilians += H
+	return civilians
+
+/proc/getpartisans(var/alive = 0)
+	var/list/ukrainians = getukrainianmobs(alive)
+	var/list/partisans = list()
+	for (var/mob/living/carbon/human/H in ukrainians)
+		if (!istype(H.original_job, /datum/job/partisan/civilian))
+			partisans += H
+	return partisans
+
 // doesn't it suck to get a list of alive people you can observe,
 // only to find out that 90% of them are half dead and not where the action
 // is?
@@ -402,10 +452,18 @@ Proc for attack log creation, because really why not
 	switch (faction)
 		if (null)
 			mobs = mob_list // we want actual mobs, not name = mob
-		if ("GERMAN")
+		if (GERMAN)
 			mobs = getgermanmobs(1)
-		if ("RUSSIAN", "SOVIET")
+		if (RUSSIAN, "SOVIET")
 			mobs = getrussianmobs(1)
+		if ("PARATROOPERS")
+			mobs = getgermanparatroopers(1)
+		if ("SS")
+			mobs = getSS(1)
+		if (PARTISAN)
+			mobs = getpartisans(1)
+		if (CIVILIAN)
+			mobs = getcivilians(1)
 
 	for (var/mob/m in mobs)
 		if (m.stat == UNCONSCIOUS || m.stat == DEAD)
@@ -450,7 +508,7 @@ Proc for attack log creation, because really why not
 
 // returns the turf behind the mob
 
-/proc/behind(var/mob/m)
+/proc/get_turf_behind(var/mob/m)
 	switch (m.dir)
 		if (NORTH)
 			return locate(m.x, m.y-1, m.z)
@@ -462,4 +520,4 @@ Proc for attack log creation, because really why not
 			return locate(m.x+1, m.y, m.z)
 
 /mob/proc/behind()
-	return behind(src)
+	return get_turf_behind(src)

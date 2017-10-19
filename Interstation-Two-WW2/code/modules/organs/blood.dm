@@ -1,3 +1,4 @@
+#define BLOOD_NERF 3
 /****************************************************
 				BLOOD SYSTEM
 ****************************************************/
@@ -36,6 +37,9 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
+
+	make_blood()
+
 	if(in_stasis)
 		return
 
@@ -43,6 +47,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		return
 
 	var/obj/item/organ/heart/H = internal_organs_by_name["heart"]
+
 	if(!H)	//not having a heart is bad for health
 		setOxyLoss(max(getOxyLoss(),60))
 		adjustOxyLoss(10)
@@ -50,13 +55,23 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	//Bleeding out
 	var/blood_max = 0
 	for(var/obj/item/organ/external/temp in organs)
-		if(!(temp.status & ORGAN_BLEEDING) || (temp.status & ORGAN_ROBOT))
+		if(!(temp.status & ORGAN_BLEEDING))
 			continue
-		for(var/datum/wound/W in temp.wounds) if(W.bleeding())
-			blood_max += W.damage / 40
+		for(var/datum/wound/W in temp.wounds)
+			if(W.bleeding())
+				blood_max += (W.damage / 40 / BLOOD_NERF)
 		if (temp.open)
 			blood_max += 2  //Yer stomach is cut open
-	drip(blood_max)
+
+	if (blood_max) // we're bleeding
+		drip(blood_max)
+	else // we're not bleeding, regenerate some blood (experimental) - kachnov
+		for (var/datum/reagent/r in vessel.reagent_list)
+			if (istype(r, /datum/reagent/blood))
+				if (r.volume >= species.blood_volume)
+					return // we're full on blood.
+		vessel.add_reagent("blood", 1/(rand(1,3)))
+
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/human/proc/drip(var/amt as num)
@@ -84,9 +99,11 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 	//set reagent data
 	B.data["donor"] = src
+	/*
 	if (!B.data["virus2"])
 		B.data["virus2"] = list()
 	B.data["virus2"] |= virus_copylist(src.virus2)
+	*/
 	B.data["antibodies"] = src.antibodies
 	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
 	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
@@ -120,12 +137,13 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 /mob/living/carbon/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
 	if (!injected || !istype(injected))
 		return
-	var/list/sniffles = virus_copylist(injected.data["virus2"])
+
+/*	var/list/sniffles = virus_copylist(injected.data["virus2"])
 	for(var/ID in sniffles)
 		var/datum/disease2/disease/sniffle = sniffles[ID]
 		infect_virus2(src,sniffle,1)
 	if (injected.data["antibodies"] && prob(5))
-		antibodies |= injected.data["antibodies"]
+		antibodies |= injected.data["antibodies"]*/
 	var/list/chems = list()
 	chems = params2list(injected.data["trace_chem"])
 	for(var/C in chems)
@@ -231,10 +249,10 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 		else
 			B.blood_DNA[source.data["blood_DNA"]] = "O+"
 
-	// Update virus information.
+/*	// Update virus information.
 	if(source.data["virus2"])
-		B.virus2 = virus_copylist(source.data["virus2"])
+		B.virus2 = virus_copylist(source.data["virus2"])*/
 
-	B.fluorescent  = 0
+//	B.fluorescent  = 0
 	B.invisibility = 0
 	return B

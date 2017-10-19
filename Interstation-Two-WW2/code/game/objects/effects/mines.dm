@@ -48,21 +48,21 @@
 /obj/effect/mine/proc/triggern2o(obj)
 	//example: n2o triggerproc
 	//note: im lazy
-
-	for (var/turf/simulated/floor/target in range(1,src))
+/*
+	for (var/turf/floor/target in range(1,src))
 		if(!target.blocks_air)
-			target.assume_gas("sleeping_agent", 30)
+			target.assume_gas("sleeping_agent", 30)*/
 
 	spawn(0)
 		qdel(src)
 
 /obj/effect/mine/proc/triggerplasma(obj)
-	for (var/turf/simulated/floor/target in range(1,src))
-		if(!target.blocks_air)
+	for (var/turf/floor/target in range(1,src))
+	/*	if(!target.blocks_air)
 			target.assume_gas("plasma", 30)
 
 			target.hotspot_expose(1000, CELL_VOLUME)
-
+*/
 	spawn(0)
 		qdel(src)
 

@@ -35,6 +35,9 @@
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 
+// max w_class/2 * items = enough to fit items amount of items no matter the size
+/obj/structure/closet/proc/update_capacity(items)
+	storage_capacity = ((4/2) * items) + 5
 
 /obj/structure/closet/examine(mob/user)
 	if(..(user, 1) && !opened)
@@ -70,9 +73,6 @@
 
 /obj/structure/closet/proc/dump_contents()
 	//Cham Projector Exception
-	for(var/obj/effect/dummy/chameleon/AD in src)
-		AD.forceMove(src.loc)
-
 	for(var/obj/I in src)
 		I.forceMove(src.loc)
 
@@ -122,11 +122,6 @@
 //Cham Projector Exception
 /obj/structure/closet/proc/store_misc(var/stored_units)
 	var/added_units = 0
-	for(var/obj/effect/dummy/chameleon/AD in src.loc)
-		if((stored_units + added_units) > storage_capacity)
-			break
-		AD.forceMove(src)
-		added_units++
 	return added_units
 
 /obj/structure/closet/proc/store_items(var/stored_units)
@@ -218,15 +213,6 @@
 				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with \the [WT].</span>", 3, "You hear welding.", 2)
 			qdel(src)
 			return
-		if(istype(W, /obj/item/weapon/storage/laundry_basket) && W.contents.len)
-			var/obj/item/weapon/storage/laundry_basket/LB = W
-			var/turf/T = get_turf(src)
-			for(var/obj/item/I in LB.contents)
-				LB.remove_from_storage(I, T)
-			user.visible_message("<span class='notice'>[user] empties \the [LB] into \the [src].</span>", \
-								 "<span class='notice'>You empty \the [LB] into \the [src].</span>", \
-								 "<span class='notice'>You hear rustling of clothes.</span>")
-			return
 		if(isrobot(user))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
@@ -234,8 +220,6 @@
 		usr.drop_item()
 		if(W)
 			W.forceMove(src.loc)
-	else if(istype(W, /obj/item/weapon/packageWrap))
-		return
 	else if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(!WT.remove_fuel(0,user))
@@ -272,10 +256,6 @@
 		user.show_viewers("<span class='danger'>[user] stuffs [O] into [src]!</span>")
 	src.add_fingerprint(user)
 	return
-
-/obj/structure/closet/attack_ai(mob/user)
-	if(istype(user, /mob/living/silicon/robot) && Adjacent(user)) // Robots can open/close it, but not the AI.
-		attack_hand(user)
 
 /obj/structure/closet/relaymove(mob/user as mob)
 	if(user.stat || !isturf(src.loc))
@@ -375,9 +355,6 @@
 	welded = 0
 	update_icon()
 	//Do this to prevent contents from being opened into nullspace (read: bluespace)
-	if(istype(loc, /obj/structure/bigDelivery))
-		var/obj/structure/bigDelivery/BD = loc
-		BD.unwrap()
 	open()
 
 /obj/structure/closet/proc/animate_shake()

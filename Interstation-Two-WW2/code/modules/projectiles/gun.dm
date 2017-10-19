@@ -188,12 +188,17 @@
 	else
 		if(bayonet && isliving(A))
 			var/mob/living/l = A
-			var/obj/item/attachment/bayonet/a = bayonet
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
-			visible_message("<span class = 'danger'>[user] impales [l] with their gun's bayonet!</span>")
-			l.apply_damage(a.force * 2, BRUTE, def_zone)
-			l.Weaken(rand(1,2))
-			playsound(get_turf(src), a.attack_sound, rand(75,100))
+			if (prob(35) && l != user && !l.lying)
+				visible_message("<span class = 'danger'>[user] tries to bayonet [l], but they miss!</span>")
+			else
+				var/obj/item/attachment/bayonet/a = bayonet
+				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
+				visible_message("<span class = 'danger'>[user] impales [l] with their gun's bayonet!</span>")
+				l.apply_damage(a.force * 2, BRUTE, def_zone)
+				l.Weaken(rand(1,2))
+				if (l.stat == CONSCIOUS)
+					l.emote("scream")
+				playsound(get_turf(src), a.attack_sound, rand(90,100))
 		else
 			..() //Pistolwhippin'
 
@@ -316,7 +321,6 @@
 	if(muzzle_flash)
 		spawn(5)
 			set_light(0)
-
 
 //obtains the next projectile to fire
 /obj/item/weapon/gun/proc/consume_next_projectile()
@@ -464,10 +468,6 @@
 			playsound(user, fire_sound, 10, 1)
 		else
 			playsound(user, fire_sound, 50, 1)
-		if(istype(in_chamber, /obj/item/projectile/beam/lastertag))
-			user.show_message("<span class = 'warning'>You feel rather silly, trying to commit suicide with a toy.</span>")
-			mouthshoot = 0
-			return
 
 		in_chamber.on_hit(M)
 		if (in_chamber.damage_type != HALLOSS)

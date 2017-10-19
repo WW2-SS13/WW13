@@ -13,7 +13,7 @@
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
-	unacidable = 1
+//	unacidable = 1
 	anchored = 0
 
 	var/triggered = 0
@@ -22,7 +22,6 @@
 		"explosive"
 		//"incendiary" //New bay//
 	*/
-
 
 //Arming
 /obj/item/device/mine/attack_self(mob/living/user as mob)
@@ -95,18 +94,21 @@
 /obj/item/device/mine/Crossed(AM as mob|obj)
 	Bumped(AM)
 
-/obj/item/device/mine/Bumped(mob/M as mob|obj)
+/obj/item/device/mine/Bumped(AM as mob|obj)
 	if(!anchored) return //If armed
 	if(triggered) return
+	trigger(AM)
 
-	if(istype(M, /mob/living/carbon/human) && M.stat != DEAD)
-		for(var/mob/O in viewers(world.view, src.loc))
-			O << "<font color='red'>[M] triggered the [src]!</font>"
-		triggered = 1
-		explosion(src.loc,-1,1,3)
-		spawn(0)
-			if(src)
-				del(src)
+
+/obj/item/device/mine/proc/trigger(atom/movable/AM)
+	for(var/mob/O in viewers(world.view, src.loc))
+		O << "<font color='red'>[AM] triggered the [src]!</font>"
+	triggered = 1
+	visible_message("\red <b>Click!</b>")
+	explosion(get_turf(src),-1,1,3)
+	spawn(0)
+		if(src)
+			del(src)
 
 //TYPES//
 //Explosive
@@ -126,5 +128,5 @@
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
-	unacidable = 1
+//	unacidable = 1
 	anchored = 0

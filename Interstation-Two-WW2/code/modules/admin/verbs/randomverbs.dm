@@ -155,7 +155,6 @@
 	message_admins("[key_name_admin(usr)] has toggled [key_name_admin(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]", 1)
 
 
-
 proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
 		if(!config.automute_on)	return
@@ -203,25 +202,6 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	log_admin("[key_name(usr)] has [muteunmute] [key_name(M)] from [mute_string]")
 	message_admins("[key_name_admin(usr)] has [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
 	M << "<span class = 'alert'>You have been [muteunmute] from [mute_string].</span>"
-
-
-/client/proc/cmd_admin_add_random_ai_law()
-	set category = "Fun"
-	set name = "Add Random AI Law"
-	if(!holder)
-		src << "Only administrators may use this command."
-		return
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes") return
-	log_admin("[key_name(src)] has added a random AI law.")
-	message_admins("[key_name_admin(src)] has added a random AI law.", 1)
-
-	var/show_log = alert(src, "Show ion message?", "Message", "Yes", "No")
-	if(show_log == "Yes")
-		command_announcement.Announce("Ion storm detected near the ship. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
-
-	IonStorm(0)
-
 
 /*
 Allow admins to set players to be able to respawn/bypass 30 min wait, without the admin having to edit variables directly
@@ -456,34 +436,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	return new_character
 
-/client/proc/cmd_admin_add_freeform_ai_law()
-	set category = "Fun"
-	set name = "Add Custom AI law"
-	if(!holder)
-		src << "Only administrators may use this command."
-		return
-	var/input = sanitize(input(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "") as text|null)
-	if(!input)
-		return
-	for(var/mob/living/silicon/ai/M in mob_list)
-		if (M.stat == 2)
-			usr << "Upload failed. No signal is being detected from the AI."
-		else if (M.see_in_dark == 0)
-			usr << "Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power."
-		else
-			M.add_ion_law(input)
-			for(var/mob/living/silicon/ai/O in mob_list)
-				O << "\red " + input + "\red...LAWS UPDATED"
-				O.show_laws()
-
-	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
-	message_admins("Admin [key_name_admin(usr)] has added a new AI law - [input]", 1)
-
-	var/show_log = alert(src, "Show ion message?", "Message", "Yes", "No")
-	if(show_log == "Yes")
-		command_announcement.Announce("Ion storm detected near the ship. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
-
-
 /client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Rejuvenate"
@@ -507,29 +459,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/cmd_admin_create_centcom_report()
 	set category = "Special Verbs"
 	set name = "Create Command Report"
-	if(!holder)
-		src << "Only administrators may use this command."
-		return
-	var/input = cp1251_to_utf8(sanitize(input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as message|null, extra = 0))
-	var/customname = cp1251_to_utf8(sanitizeSafe(input(usr, "Pick a title for the report.", "Title") as text|null))
-	if(!input)
-		return
-	if(!customname)
-		customname = "[command_name()] Update"
-
-	//New message handling
-	post_comm_message(customname, replacetext(input, "\n", "<br/>"))
-
-	switch(alert("Should this be announced to the general population?",,"Yes","No"))
-		if("Yes")
-			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
-		if("No")
-			world << "\red New [company_name] Update available at all communication consoles."
-			world << sound('sound/AI/commandreport.ogg')
-
-	log_admin("[key_name(src)] has created a command report: [input]")
-	message_admins("[key_name_admin(src)] has created a command report", 1)
-
+	return 0
 
 /client/proc/cmd_admin_delete(atom/O as obj|mob|turf in range(world.view))
 	set category = "Admin"
@@ -764,59 +694,19 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Admin"
 	set name = "Call Shuttle"
 
-	if ((!( ticker ) || !emergency_shuttle.location()))
-		return
-
-	if(!check_rights(R_ADMIN))	return
-
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes") return
-
-	var/choice
-	if(ticker.mode.auto_recall_shuttle)
-		choice = input("The shuttle will just return if you call it. Call anyway?") in list("Confirm", "Cancel")
-		if(choice == "Confirm")
-			emergency_shuttle.auto_recall = 1	//enable auto-recall
-		else
-			return
-
-	emergency_shuttle.call_evac()
-
-	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
-	message_admins("\blue [key_name_admin(usr)] admin-called the emergency shuttle.", 1)
-	return
+	return 0
 
 /client/proc/admin_cancel_shuttle()
 	set category = "Admin"
 	set name = "Cancel Shuttle"
 
-	if(!check_rights(R_ADMIN))	return
-
-	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
-
-	if(!ticker || !emergency_shuttle.can_recall())
-		return
-
-	emergency_shuttle.recall()
-
-	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
-	message_admins("\blue [key_name_admin(usr)] admin-recalled the emergency shuttle.", 1)
-
-	return
+	return 0
 
 /client/proc/admin_deny_shuttle()
 	set category = "Admin"
 	set name = "Toggle Deny Shuttle"
 
-	if (!ticker)
-		return
-
-	if(!check_rights(R_ADMIN))	return
-
-	emergency_shuttle.deny_shuttle = !emergency_shuttle.deny_shuttle
-
-	log_admin("[key_name(src)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
-	message_admins("[key_name_admin(usr)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
+	return 0
 
 /client/proc/cmd_admin_attack_log(mob/M as mob in mob_list)
 	set category = "Special Verbs"

@@ -215,15 +215,6 @@ Class Procs:
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/machinery/attack_ai(mob/user as mob)
-	if(isrobot(user))
-		// For some reason attack_robot doesn't work
-		// This is to stop robots from using cameras to remotely control machines.
-		if(user.client && user.client.eye == user)
-			return src.attack_hand(user)
-	else
-		return src.attack_hand(user)
-
 /obj/machinery/attack_hand(mob/user as mob)
 	if(inoperable(MAINT))
 		return 1
@@ -305,11 +296,12 @@ Class Procs:
 	return 1
 
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
-	if(!istype(R))
+	return 0
+/*	if(!istype(R))
 		return 0
 	if(!component_parts)
 		return 0
-	if(panel_open)
+/*	if(panel_open)
 		var/obj/item/weapon/circuitboard/CB = locate(/obj/item/weapon/circuitboard) in component_parts
 		var/P
 		for(var/obj/item/weapon/stock_parts/A in component_parts)
@@ -329,19 +321,19 @@ Class Procs:
 						user << "<span class='notice'>[A.name] replaced with [B.name].</span>"
 						break
 			update_icon()
-			RefreshParts()
-	else
-		user << "<span class='notice'>Following parts detected in the machine:</span>"
-		for(var/var/obj/item/C in component_parts)
-			user << "<span class='notice'>    [C.name]</span>"
+			RefreshParts()*/
+//	else
+	user << "<span class='notice'>Following parts detected in the machine:</span>"
+	for(var/var/obj/item/C in component_parts)
+		user << "<span class='notice'>    [C.name]</span>"
 	return 1
-
+*/
 /obj/machinery/proc/dismantle()
 	playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
-	var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
-	M.set_dir(src.dir)
-	M.state = 2
-	M.icon_state = "box_1"
+//	var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
+//	M.set_dir(src.dir)
+//	M.state = 2
+//	M.icon_state = "box_1"
 	for(var/obj/I in component_parts)
 		I.loc = loc
 	qdel(src)

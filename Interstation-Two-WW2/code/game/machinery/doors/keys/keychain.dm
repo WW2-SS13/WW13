@@ -7,7 +7,8 @@
 	desc = "This holds your keys"
 	w_class = 2
 	max_w_class = 2
-	max_storage_space = 30
+	storage_slots = 20 // up to 20 keys can spawn
+	max_storage_space = 1000 // more or less infinite space
 
 /obj/item/weapon/storage/belt/keychain/orient2hud(mob/user as mob)
 	return 0

@@ -32,65 +32,22 @@
 	return M
 
 /datum/antagonist/proc/create_id(var/assignment, var/mob/living/carbon/human/player, var/equip = 1)
-
+	return 0
+	/*
 	var/obj/item/weapon/card/id/W = new id_type(player)
 	if(!W) return
 	W.access |= default_access
 	W.assignment = "[assignment]"
 	player.set_id_info(W)
 	if(equip) player.equip_to_slot_or_del(W, slot_wear_id)
-	return W
+	return W*/
 
 /datum/antagonist/proc/create_radio(var/freq, var/mob/living/carbon/human/player)
-	var/obj/item/device/radio/R
 
-	if(freq == SYND_FREQ)
-		R = new/obj/item/device/radio/headset/syndicate(player)
-	else
-		R = new/obj/item/device/radio/headset(player)
-
-	R.set_frequency(freq)
-	player.equip_to_slot_or_del(R, slot_l_ear)
-	return R
+	return null
 
 /datum/antagonist/proc/create_nuke(var/atom/paper_spawn_loc, var/datum/mind/code_owner)
-
-	// Decide on a code.
-	var/obj/effect/landmark/nuke_spawn = locate(nuke_spawn_loc ? nuke_spawn_loc : "landmark*Nuclear-Bomb")
-
-	var/code
-	if(nuke_spawn)
-		var/obj/machinery/nuclearbomb/nuke = new(get_turf(nuke_spawn))
-		code = "[rand(10000, 99999)]"
-		nuke.r_code = code
-
-	if(code)
-		if(!paper_spawn_loc)
-			if(leader && leader.current)
-				paper_spawn_loc = get_turf(leader.current)
-			else
-				paper_spawn_loc = get_turf(locate("landmark*Nuclear-Code"))
-
-		if(paper_spawn_loc)
-			// Create and pass on the bomb code paper.
-			var/obj/item/weapon/paper/P = new(paper_spawn_loc)
-			P.info = "The nuclear authorization code is: <b>[code]</b>"
-			P.name = "nuclear bomb code"
-			if(leader && leader.current)
-				if(get_turf(P) == get_turf(leader.current) && !(leader.current.l_hand && leader.current.r_hand))
-					leader.current.put_in_hands(P)
-
-		if(!code_owner && leader)
-			code_owner = leader
-		if(code_owner)
-			code_owner.store_memory("<B>Nuclear Bomb Code</B>: [code]", 0, 0)
-			code_owner.current << "The nuclear authorization code is: <B>[code]</B>"
-	else
-		message_admins("<span class='danger'>Could not spawn nuclear bomb. Contact a developer.</span>")
-		return
-
-	spawned_nuke = code
-	return code
+	return 0
 
 /datum/antagonist/proc/greet(var/datum/mind/player)
 
@@ -119,7 +76,7 @@
 	if (newname)
 		player.real_name = newname
 		player.name = player.real_name
-		player.dna.real_name = newname
+	//	player.dna.real_name = newname
 	if(player.mind) player.mind.name = player.name
 	// Update any ID cards.
 	update_access(player)

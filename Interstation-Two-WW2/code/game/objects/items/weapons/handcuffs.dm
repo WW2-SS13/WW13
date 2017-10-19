@@ -63,10 +63,6 @@
 		user << "<span class='danger'>\The [H] needs at least two wrists before you can cuff them together!</span>"
 		return 0
 
-	if(istype(H.gloves,/obj/item/clothing/gloves/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
-		user << "<span class='danger'>\The [src] won't fit around \the [H.gloves]!</span>"
-		return 0
-
 	//user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
 
 	if(!do_after(user,0, target))
@@ -104,7 +100,6 @@ var/last_chew = 0
 	if (H.targeted_organ != "mouth") return
 	if (H.wear_mask) return
 	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
-
 	var/obj/item/organ/external/O = H.organs_by_name[H.hand?"l_hand":"r_hand"]
 	if (!O) return
 

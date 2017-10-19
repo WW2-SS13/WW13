@@ -15,6 +15,7 @@
 	var/random_destination = 0
 	var/maxspread = 10
 	var/passes_walls = 0
+	var/dontmove = 0
 
 /obj/effect/effect/smoke/chem/New(var/newloc, smoke_duration, turf/dest_turf = null, icon/cached_icon = null, var/spread = 10)
 
@@ -69,9 +70,11 @@
 			if (prob(_prob))
 				destination = t
 
-	if(destination)
+	spawn (1)
 
-		walk_to(src, destination,0,rand(2,3),0)
+		if(destination && !dontmove)
+
+			walk_to(src, destination,0,rand(2,3),0)
 
 /obj/effect/effect/smoke/chem/Destroy()
 	opacity = 0
@@ -83,7 +86,7 @@
 	. = ..()
 	if(.)
 		// before we gas people, make sure we didn't pass a wall
-		if (!passes_walls && (istype(loc, /turf/simulated/wall) || istype(loc, /turf/unsimulated/wall)))
+		if (!passes_walls && istype(loc, /turf/wall))
 			qdel(src)
 
 		for(var/turf/T in view(1, src) - oldlocs)
@@ -126,7 +129,7 @@
 	var/list/wallList
 	var/density
 	var/show_log = 1
-
+/*8
 /datum/effect/effect/system/smoke_spread/chem/spores
 	show_log = 0
 	var/datum/seed/seed
@@ -137,7 +140,7 @@
 	if(!seed)
 		qdel(src)
 	..()
-
+*/
 /datum/effect/effect/system/smoke_spread/chem/New()
 	..()
 	chemholder = new/obj()
@@ -275,12 +278,12 @@
 	if(splash_initial)
 		smoke.initial_splash()
 
-
+/*
 /datum/effect/effect/system/smoke_spread/chem/spores/spawnSmoke(var/turf/T, var/smoke_duration, var/icon/I, var/dist = 1)
 	var/obj/effect/effect/smoke/chem/spores = PoolOrNew(/obj/effect/effect/smoke/chem, location)
 	spores.name = "cloud of [seed.seed_name] [seed.seed_noun]"
 	..(T, I, smoke_duration, dist, spores)
-
+*/
 
 /datum/effect/effect/system/smoke_spread/chem/proc/smokeFlow() // Smoke pathfinder. Uses a flood fill method based on zones to quickly check what turfs the smoke (airflow) can actually reach.
 
@@ -294,7 +297,7 @@
 			for(var/D in cardinal)
 				var/turf/target = get_step(current, D)
 				if(wallList)
-					if(istype(target, /turf/simulated/wall))
+					if(istype(target, /turf/wall))
 						if(!(target in wallList))
 							wallList += target
 						continue
@@ -305,10 +308,10 @@
 					continue
 				if(!(target in targetTurfs))
 					continue
-				if(current.c_airblock(target)) //this is needed to stop chemsmoke from passing through thin window walls
+			/*	if(current.c_airblock(target)) //this is needed to stop chemsmoke from passing through thin window walls
 					continue
 				if(target.c_airblock(current))
-					continue
+					continue*/
 				pending += target
 
 			pending -= current

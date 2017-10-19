@@ -1,3 +1,6 @@
+/hook/
+
+
 /mob/living/simple_animal/mouse
 	name = "mouse"
 	real_name = "mouse"
@@ -37,18 +40,19 @@
 
 /mob/living/simple_animal/mouse/Life()
 	..()
+
 	if(!stat && prob(speak_chance))
 		for(var/mob/M in view())
 			M << 'sound/effects/mousesqueek.ogg'
 
-	if(!ckey && stat == CONSCIOUS && prob(0.5))
+	if(!ckey && stat == CONSCIOUS && prob(1))
 		stat = UNCONSCIOUS
 		icon_state = "mouse_[body_color]_sleep"
 		wander = 0
 		speak_chance = 0
 		//snuffles
 	else if(stat == UNCONSCIOUS)
-		if(ckey || prob(1))
+		if(ckey || prob(5))
 			stat = CONSCIOUS
 			icon_state = "mouse_[body_color]"
 			wander = 1
@@ -62,11 +66,12 @@
 /mob/living/simple_animal/mouse/New()
 	..()
 
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+//	verbs += /mob/living/proc/ventcrawl
+//	verbs += /mob/living/proc/hide
 
 	if(name == initial(name))
 		name = "[name] ([rand(1, 1000)])"
+
 	real_name = name
 
 	if(!body_color)
@@ -105,6 +110,19 @@
 /mob/living/simple_animal/mouse/death()
 	layer = MOB_LAYER
 	..()
+
+/mob/living/simple_animal/mouse/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if (stat != DEAD)
+		return ..()
+	if (!istype(W) || !W.sharp)
+		return ..()
+	else if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers/syringe))
+		user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
+		if (do_after(user, 30, src))
+			user.visible_message("<span class = 'notice'>[user] butchers [src] into a sole meat slab.</span>")
+			var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
+			meat.name = "[name] meatsteak"
+			qdel(src)
 
 /*
  * Mouse types

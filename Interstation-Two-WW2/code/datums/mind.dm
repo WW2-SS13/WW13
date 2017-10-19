@@ -69,20 +69,14 @@
 	if(!istype(new_character))
 		world.log << "## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn"
 	if(current)					//remove ourself from our old body's mind variable
-		if(changeling)
-			current.remove_changeling_powers()
-			current.verbs -= /datum/changeling/proc/EvolutionMenu
 		current.mind = null
-
 		nanomanager.user_transferred(current, new_character) // transfer active NanoUI instances to new user
+
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
 	current = new_character		//link ourself to our new body
 	new_character.mind = src	//and link our new body to ourself
-
-	if(changeling)
-		new_character.make_changeling()
 
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
@@ -143,7 +137,7 @@
 
 	if(href_list["add_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
-		if(antag) 
+		if(antag)
 			if(antag.add_antagonist(src, 1, 1, 0, 1, 1)) // Ignore equipment and role type for this.
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 			else
@@ -196,7 +190,8 @@
 
 		var/datum/objective/new_objective = null
 
-		switch (new_obj_type)
+	//	switch (new_obj_type)
+			/*
 			if ("assassinate","protect","debrain", "harm", "brig")
 				//To determine what to name the objective in explanation text.
 				var/objective_type_capital = uppertext(copytext(new_obj_type, 1,2))//Capitalize first letter.
@@ -287,7 +282,7 @@
 				new_objective = new /datum/objective
 				new_objective.owner = src
 				new_objective.explanation_text = expl
-
+*/
 		if (!new_objective) return
 
 		if (objective)
@@ -306,66 +301,6 @@
 		if(!istype(objective))	return
 		objective.completed = !objective.completed
 
-	else if(href_list["implant"])
-		var/mob/living/carbon/human/H = current
-
-		BITSET(H.hud_updateflag, IMPLOYAL_HUD)   // updates that players HUD images so secHUD's pick up they are implanted or not.
-
-		switch(href_list["implant"])
-			if("remove")
-				for(var/obj/item/weapon/implant/loyalty/I in H.contents)
-					for(var/obj/item/organ/external/organs in H.organs)
-						if(I in organs.implants)
-							qdel(I)
-							break
-				H << "<span class='notice'><font size =3><B>Your loyalty implant has been deactivated.</B></font></span>"
-				log_admin("[key_name_admin(usr)] has de-loyalty implanted [current].")
-			if("add")
-				H << "<span class='danger'><font size =3>You somehow have become the recepient of a loyalty transplant, and it just activated!</font></span>"
-				var/obj/item/weapon/implant/loyalty/I = new /obj/item/weapon/implant/loyalty(H)
-				I.install(H, "head")
-				log_admin("[key_name_admin(usr)] has loyalty implanted [current].")
-			else
-	else if (href_list["silicon"])
-		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
-		switch(href_list["silicon"])
-
-			if("unemag")
-				var/mob/living/silicon/robot/R = current
-				if (istype(R))
-					R.emagged = 0
-					if (R.activated(R.module.emag))
-						R.module_active = null
-					if(R.module_state_1 == R.module.emag)
-						R.module_state_1 = null
-						R.contents -= R.module.emag
-					else if(R.module_state_2 == R.module.emag)
-						R.module_state_2 = null
-						R.contents -= R.module.emag
-					else if(R.module_state_3 == R.module.emag)
-						R.module_state_3 = null
-						R.contents -= R.module.emag
-					log_admin("[key_name_admin(usr)] has unemag'ed [R].")
-
-			if("unemagcyborgs")
-				if (istype(current, /mob/living/silicon/ai))
-					var/mob/living/silicon/ai/ai = current
-					for (var/mob/living/silicon/robot/R in ai.connected_robots)
-						R.emagged = 0
-						if (R.module)
-							if (R.activated(R.module.emag))
-								R.module_active = null
-							if(R.module_state_1 == R.module.emag)
-								R.module_state_1 = null
-								R.contents -= R.module.emag
-							else if(R.module_state_2 == R.module.emag)
-								R.module_state_2 = null
-								R.contents -= R.module.emag
-							else if(R.module_state_3 == R.module.emag)
-								R.module_state_3 = null
-								R.contents -= R.module.emag
-					log_admin("[key_name_admin(usr)] has unemag'ed [ai]'s Cyborgs.")
-
 	else if (href_list["common"])
 		switch(href_list["common"])
 			if("undress")
@@ -374,16 +309,6 @@
 			if("takeuplink")
 				take_uplink()
 				memory = null//Remove any memory they may have had.
-			if("crystals")
-				if (usr.client.holder.rights & R_FUN)
-					var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
-					var/crystals
-					if (suplink)
-						crystals = suplink.uses
-					crystals = input("Amount of telecrystals for [key]","Operative uplink", crystals) as null|num
-					if (!isnull(crystals))
-						if (suplink)
-							suplink.uses = crystals
 
 	else if (href_list["obj_announce"])
 		var/obj_count = 1
@@ -394,44 +319,16 @@
 	edit_memory()
 
 /datum/mind/proc/find_syndicate_uplink()
-	var/list/L = current.get_contents()
-	for (var/obj/item/I in L)
-		if (I.hidden_uplink)
-			return I.hidden_uplink
 	return null
 
 /datum/mind/proc/take_uplink()
-	var/obj/item/device/uplink/hidden/H = find_syndicate_uplink()
-	if(H)
-		qdel(H)
+	return 0
 
 
 // check whether this mind's mob has been brigged for the given duration
 // have to call this periodically for the duration to work properly
 /datum/mind/proc/is_brigged(duration)
-	var/turf/T = current.loc
-	if(!istype(T))
-		brigged_since = -1
-		return 0
-	var/is_currently_brigged = 0
-	if(istype(T.loc,/area/security/brig))
-		is_currently_brigged = 1
-		for(var/obj/item/weapon/card/id/card in current)
-			is_currently_brigged = 0
-			break // if they still have ID they're not brigged
-		for(var/obj/item/device/pda/P in current)
-			if(P.id)
-				is_currently_brigged = 0
-				break // if they still have ID they're not brigged
-
-	if(!is_currently_brigged)
-		brigged_since = -1
-		return 0
-
-	if(brigged_since == -1)
-		brigged_since = world.time
-
-	return (duration <= world.time - brigged_since)
+	return 0
 
 /datum/mind/proc/reset()
 	assigned_role =   null
@@ -439,8 +336,6 @@
 	role_alt_title =  null
 	assigned_job =    null
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
-	changeling =      null
-	initial_account = null
 	objectives =      list()
 	special_verbs =   list()
 	has_been_rev =    0

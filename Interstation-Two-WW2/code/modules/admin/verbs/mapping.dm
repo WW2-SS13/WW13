@@ -42,7 +42,7 @@ var/intercom_range_display_status = 0
 	set name = "-None of these are for ingame use!!"
 
 	..()
-
+/*
 /client/proc/camera_view()
 	set category = "Mapping"
 	set name = "Camera Range Display"
@@ -60,7 +60,6 @@ var/intercom_range_display_status = 0
 	if(camera_range_display_status)
 		for(var/obj/machinery/camera/C in cameranet.cameras)
 			new/obj/effect/debugging/camera_range(C.loc)
-
 
 
 
@@ -103,7 +102,7 @@ var/intercom_range_display_status = 0
 	output += "</ul>"
 	usr << browse(output,"window=airreport;size=1000x500")
 
-
+*/
 /client/proc/intercom_view()
 	set category = "Mapping"
 	set name = "Intercom Range Display"
@@ -126,42 +125,33 @@ var/intercom_range_display_status = 0
 
 var/list/debug_verbs = list (
         /client/proc/do_not_use_these
-        ,/client/proc/camera_view
-        ,/client/proc/sec_camera_report
-        ,/client/proc/intercom_view
         ,/client/proc/Cell
-        ,/client/proc/atmosscan
-        ,/client/proc/powerdebug
         ,/client/proc/count_objects_on_z_level
         ,/client/proc/count_objects_all
         ,/client/proc/cmd_assume_direct_control
         ,/client/proc/jump_to_dead_group
         ,/client/proc/startSinglo
         ,/client/proc/ticklag
-        ,/client/proc/cmd_admin_grantfullaccess
         ,/client/proc/kaboom
         ,/client/proc/cmd_admin_areatest
         ,/client/proc/cmd_admin_rejuvenate
         ,/datum/admins/proc/show_traitor_panel
         ,/client/proc/print_jobban_old
         ,/client/proc/print_jobban_old_filter
-        ,/client/proc/forceEvent
         ,/client/proc/break_all_air_groups
         ,/client/proc/regroup_all_air_groups
         ,/client/proc/kill_pipe_processing
         ,/client/proc/kill_air_processing
         ,/client/proc/disable_communication
         ,/client/proc/disable_movement
-        ,/client/proc/Zone_Info
-        ,/client/proc/Test_ZAS_Connection
-        ,/client/proc/ZoneTick
-        ,/client/proc/rebootAirMaster
+  //      ,/client/proc/Zone_Info
+ //       ,/client/proc/Test_ZAS_Connection
+  //      ,/client/proc/ZoneTick
+ //       ,/client/proc/rebootAirMaster
         ,/client/proc/hide_debug_verbs
-        ,/client/proc/testZAScolors
-        ,/client/proc/testZAScolors_remove
-        ,/datum/admins/proc/setup_supermatter
-		,/client/proc/atmos_toggle_debug
-		,/client/proc/spawn_tanktransferbomb
+ //       ,/client/proc/testZAScolors
+    //    ,/client/proc/testZAScolors_remove
+	//	,/client/proc/spawn_tanktransferbomb
 	)
 
 
@@ -185,12 +175,11 @@ var/list/debug_verbs = list (
 
 
 
-
 /client/var/list/testZAScolors_turfs = list()
 /client/var/list/testZAScolors_zones = list()
 /client/var/usedZAScolors = 0
 /client/var/list/image/ZAScolors = list()
-
+/*
 /client/proc/recurse_zone(var/zone/Z, var/recurse_level =1)
 	testZAScolors_zones += Z
 	if(recurse_level > 10)
@@ -206,7 +195,8 @@ var/list/debug_verbs = list (
 			continue
 		recurse_zone(connected,recurse_level+1)
 
-
+*/
+/*
 /client/proc/testZAScolors()
 	set category = "ZAS"
 	set name = "Check ZAS connections"
@@ -214,9 +204,9 @@ var/list/debug_verbs = list (
 	if(!check_rights(R_DEBUG)) return
 	testZAScolors_remove()
 
-	var/turf/simulated/location = get_turf(usr)
+	var/turf/location = get_turf(usr)
 
-	if(!istype(location, /turf/simulated)) // We're in space, let's not cause runtimes.
+	if(!istype(location, /turf)) // We're in space, let's not cause runtimes.
 		usr << "\red this debug tool cannot be used from space"
 		return
 
@@ -281,7 +271,7 @@ var/list/debug_verbs = list (
 		air_master.Setup()
 		spawn air_master.Start()
 
-
+*/
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"
 	set name = "Count Objects On Level"

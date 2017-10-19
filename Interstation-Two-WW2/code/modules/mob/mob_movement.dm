@@ -82,9 +82,6 @@
 	set hidden = 1
 	if(istype(mob, /mob/living/carbon))
 		mob:swap_hand()
-	if(istype(mob,/mob/living/silicon/robot))
-		var/mob/living/silicon/robot/R = mob
-		R.cycle_modules()
 	return
 
 
@@ -181,6 +178,8 @@
 	return
 
 
+/mob/living/carbon/human/var/next_stamina_message = -1
+
 /client/Move(n, direct)
 	if(!canmove)
 		return
@@ -188,9 +187,14 @@
 	if(!mob)
 		return // Moved here to avoid nullrefs below
 
+	if (istype(mob.loc, /obj/tank))
+		var/obj/tank/tank = mob.loc
+		tank.receive_command_from(mob, direct)
+		return 1
+
 	var/turf/t1 = n
 
-	if (t1 && t1.check_prishtina_block(mob))
+	if (t1 && t1.check_prishtina_block(mob, 1))
 		if (!isobserver(mob))
 			mob.dir = direct
 			return 0
@@ -213,7 +217,7 @@
 	if (!isobserver(mob) && mob.is_on_train() && !mob.buckled)
 		var/datum/train_controller/tc = mob.get_train()
 		if (tc && tc.moving)
-			if (mob.train_move_check(get_step(mob, direct)))
+			if (mob.train_move_check(get_step(mob, direct)) && !mob.lying && mob.stat != UNCONSCIOUS && mob.stat != DEAD)
 				mob.next_train_movement = direct
 				mob.train_gib_immunity = 1
 				mob.last_train_movement = world.time // last successful move
@@ -259,6 +263,11 @@
 	//if(istype(mob.loc, /turf/space) || (mob.flags & NOGRAV))
 	//	if(!mob.Process_Spacemove(0))	return 0
 
+	// we can probably move now, so update our eye for ladders
+	if (ishuman(mob))
+		var/mob/living/carbon/human/H = mob
+		H.update_laddervision(null)
+
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)
 
@@ -286,25 +295,49 @@
 
 		move_delay = world.time//set move delay
 
+		// removed config.run_speed, config.walk_speed from move_delays
+		// for some reason they kept defaulting to values different from
+		// the ones specified in the config.
+
 		switch(mob.m_intent)
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 1+config.run_speed
+				move_delay += 2.2
+				if (ishuman(mob))
+					var/mob/living/carbon/human/H = mob
+					H.nutrition -= 0.03
+					--H.stamina
 			if("walk")
-				move_delay += 7+config.walk_speed
+				move_delay += 3.3
+				if (ishuman(mob))
+					var/mob/living/carbon/human/H = mob
+					H.nutrition -= 0.003
 
-		move_delay += mob.movement_delay()
+		var/mob/living/carbon/human/H = mob
+
+		if (istype(H) && H.stamina == (H.max_stamina/2) && H.m_intent == "run" && world.time >= H.next_stamina_message)
+			H << "<span class = 'danger'>You're starting to tire from running so much.</span>"
+			H.next_stamina_message = world.time + 20
+
+		if (istype(H) && H.stamina <= 0 && H.m_intent == "run")
+			H << "<span class = 'danger'>You're too tired to keep running.</span>"
+			for (var/obj/screen/mov_intent/mov in H.client.screen)
+				H.client.Click(mov)
+				break
+			if (H.m_intent != "walk")
+				H.m_intent = "walk" // in case we don't have a m_intent HUD, somehow
+
 
 		if (!isobserver(mob))
-			if (istype(get_turf(mob), /turf/simulated/floor/beach/water))
+			if (istype(get_turf(mob), /turf/floor/plating/beach/water))
 				move_delay += 3
 
 		var/tickcomp = 0 //moved this out here so we can use it for vehicles
 		if(config.Tickcomp)
 			// move_delay -= 1.3 //~added to the tickcomp calculation below
 			tickcomp = ((1/(world.tick_lag))*1.3) - 1.3
-			move_delay = move_delay + tickcomp
+			move_delay += tickcomp
 
 		if(istype(mob.buckled, /obj/vehicle))
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
@@ -386,19 +419,12 @@
 
 		moving = 0
 
+		#ifdef MOVEDELAYDEBUG
+		world << "world.time [world.time]"
+		world << "move delay [move_delay]"
+		#endif
+
 		mob.last_movement = world.time
-/*
-		for (var/atom/movable/a in get_turf(mob))
-			if (isMovingTrainObject(a))
-				mob.attached_to_object = a
-		if (locate(/obj/train_connector) in get_step(mob, mob.dir))
-			var/obj/train_connector/tc = locate(/obj/train_connector) in get_step(mob, mob.dir)
-			if (tc)
-				var/datum/train_controller/controller = tc.master
-				if (controller && controller.moving && controller.opposing_directions_check(mob))
-					for (var/v in 1 to controller.velocity+1)
-						if (get_step(mob, mob.dir))
-							mob.loc = get_step(mob, mob.dir)*/
 
 		return .
 
@@ -517,7 +543,7 @@
 
 	var/shoegrip = Check_Shoegrip()
 
-	for(var/turf/simulated/T in trange(1,src)) //we only care for non-space turfs
+	for(var/turf/T in trange(1,src)) //we only care for non-space turfs
 		if(T.density)	//walls work
 			return 1
 		else

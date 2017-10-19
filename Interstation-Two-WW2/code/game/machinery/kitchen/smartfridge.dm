@@ -39,30 +39,7 @@
 	return ..()
 
 /obj/machinery/smartfridge/proc/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/seeds
-	name = "\improper MegaSeed Servitor"
-	desc = "When you need seeds fast!"
-	icon = 'icons/obj/vending.dmi'
-	icon_state = "seeds"
-	icon_on = "seeds"
-	icon_off = "seeds-off"
-
-/obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/seeds/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/secure/extract
-	name = "\improper Slime Extract Storage"
-	desc = "A refrigerated storage unit for slime extracts"
-	req_access = list(access_research)
-
-/obj/machinery/smartfridge/secure/extract/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/slime_extract))
+	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown/))
 		return 1
 	return 0
 
@@ -79,21 +56,6 @@
 	if(istype(O,/obj/item/weapon/storage/pill_bottle/))
 		return 1
 	if(istype(O,/obj/item/weapon/reagent_containers/pill/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/secure/virology
-	name = "\improper Refrigerated Virus Storage"
-	desc = "A refrigerated storage unit for storing viral material."
-	req_access = list(access_virology)
-	icon_state = "smartfridge_virology"
-	icon_on = "smartfridge_virology"
-	icon_off = "smartfridge_virology-off"
-
-/obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial/))
-		return 1
-	if(istype(O,/obj/item/weapon/virusdish/))
 		return 1
 	return 0
 
@@ -254,15 +216,6 @@
 		user << "<span class='notice'>\The [src] smartly refuses [O].</span>"
 		return 1
 
-/obj/machinery/smartfridge/secure/emag_act(var/remaining_charges, var/mob/user)
-	if(!emagged)
-		emagged = 1
-		locked = -1
-		user << "You short out the product lock on [src]."
-		return 1
-
-/obj/machinery/smartfridge/attack_ai(mob/user as mob)
-	attack_hand(user)
 
 /obj/machinery/smartfridge/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))

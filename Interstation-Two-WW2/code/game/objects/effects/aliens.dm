@@ -32,8 +32,8 @@
 	ticks++
 	if(ticks >= target_strength)
 		target.visible_message("<span class='alium'>\The [target] collapses under its own weight into a puddle of goop and undigested debris!</span>")
-		if(istype(target, /turf/simulated/wall)) // I hate turf code.
-			var/turf/simulated/wall/W = target
+		if(istype(target, /turf/wall)) // I hate turf code.
+			var/turf/wall/W = target
 			W.dismantle_wall(1)
 		else
 			qdel(target)

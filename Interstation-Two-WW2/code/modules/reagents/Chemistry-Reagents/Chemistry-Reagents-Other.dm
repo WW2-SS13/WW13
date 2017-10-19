@@ -200,14 +200,9 @@
 
 /datum/reagent/water/holywater/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(ishuman(M)) // Any location
-		if(M.mind && cult.is_antagonist(M.mind) && prob(10))
-			cult.remove_antagonist(M.mind)
 
 /datum/reagent/water/holywater/touch_turf(var/turf/T)
-	if(volume >= 5)
-		T.holy = 1
-	return
+	return 0
 
 /datum/reagent/diethylamine
 	name = "Diethylamine"
@@ -232,7 +227,7 @@
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#664B63"
-
+/*
 /datum/reagent/thermite
 	name = "Thermite"
 	id = "thermite"
@@ -244,8 +239,8 @@
 
 /datum/reagent/thermite/touch_turf(var/turf/T)
 	if(volume >= 5)
-		if(istype(T, /turf/simulated/wall))
-			var/turf/simulated/wall/W = T
+		if(istype(T, /turf/wall))
+			var/turf/wall/W = T
 			W.thermite = 1
 			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 			remove_self(5)
@@ -257,7 +252,7 @@
 
 /datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustFireLoss(3 * removed)
-
+*/
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
 	id = "cleaner"
@@ -272,8 +267,8 @@
 
 /datum/reagent/space_cleaner/touch_turf(var/turf/T)
 	if(volume >= 1)
-		if(istype(T, /turf/simulated))
-			var/turf/simulated/S = T
+		if(istype(T, /turf))
+			var/turf/S = T
 			S.dirt = 0
 		T.clean_blood()
 
@@ -315,7 +310,7 @@
 	reagent_state = LIQUID
 	color = "#009CA8"
 
-/datum/reagent/lube/touch_turf(var/turf/simulated/T)
+/datum/reagent/lube/touch_turf(var/turf/T)
 	if(!istype(T))
 		return
 	if(volume >= 1)

@@ -337,18 +337,18 @@
 		switch(safety)
 			if(FLASH_PROTECTION_MODERATE)
 				H << "<span class='warning'>Your eyes sting a little.</span>"
-				E.damage += rand(1, 2)
+				E.damage += rand(1, 2)/2
 				if(E.damage > 12)
-					H.eye_blurry += rand(3,6)
+					H.eye_blurry += rand(3,6)/2
 			if(FLASH_PROTECTION_NONE)
 				H << "<span class='warning'>Your eyes burn.</span>"
-				E.damage += rand(2, 4)
+				E.damage += rand(2, 4)/2
 				if(E.damage > 10)
-					E.damage += rand(4,10)
+					E.damage += rand(4,10)/2
 			if(FLASH_PROTECTION_REDUCED)
 				H << "<span class='danger'>Your equipment intensify the welder's glow. Your eyes itch and burn severely.</span>"
-				H.eye_blurry += rand(12,20)
-				E.damage += rand(12, 16)
+				H.eye_blurry += rand(12,20)/2
+				E.damage += rand(12, 16)/2
 		if(safety<FLASH_PROTECTION_MAJOR)
 			if(E.damage > 10)
 				user << "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>"

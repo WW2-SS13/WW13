@@ -8,7 +8,7 @@
 		usr.client.debug_variables(antag)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 
-/client/proc/debug_controller(controller in list("World", "Master","Ticker","Ticker Process","Air","Jobs","Sun","Radio","Supply","Shuttles","Emergency Shuttle","Configuration","pAI", "Cameras", "Transfer Controller", "Gas Data","Event","Plants","Alarm","Nano","Chemistry","Wireless","Observation","German Train", "Russian Train"))
+/client/proc/debug_controller(controller in list("World", "Master","Ticker","Ticker Process","Jobs","Sun","Supply","Configuration", "Gas Data","Nano","Chemistry","Observation","Primary German Train", "German Supply Train", "Russian Supply Lift"))
 	set category = "Debug"
 	set name = "Debug Controller"
 	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
@@ -27,47 +27,14 @@
 		if("Ticker Process")
 			debug_variables(tickerProcess)
 
-		if("Air")
-			debug_variables(air_master)
-
 		if("Jobs")
 			debug_variables(job_master)
-
-		if("Sun")
-			debug_variables(sun)
-
-		if("Radio")
-			debug_variables(radio_controller)
-
-		if("Supply")
-			debug_variables(supply_controller)
-
-		if("Shuttles")
-			debug_variables(shuttle_controller)
-
-		if("Emergency Shuttle")
-			debug_variables(emergency_shuttle)
 
 		if("Configuration")
 			debug_variables(config)
 
-		if("pAI")
-			debug_variables(paiController)
-
-		if("Cameras")
-			debug_variables(cameranet)
-
 		if("Gas Data")
 			debug_variables(gas_data)
-
-		if("Event")
-			debug_variables(event_manager)
-
-		if("Plants")
-			debug_variables(plant_controller)
-
-		if("Alarm")
-			debug_variables(alarm_manager)
 
 		if("Nano")
 			debug_variables(nanomanager)
@@ -75,23 +42,31 @@
 		if("Chemistry")
 			debug_variables(chemistryProcess)
 
-		if("Wireless")
-			debug_variables(wirelessProcess)
-
 		if("Observation")
 			debug_variables(all_observable_events)
 
-		if ("German Train System")
+		if ("Primary German Train")
 			if (!german_train_master)
 				src << "<span class = 'danger'>This object doesn't exist.</span>"
 				return
 			debug_variables(german_train_master)
 
-		if ("Russian Train System")
-			if (!russian_train_master)
+		if ("German Supply Train")
+			if (!german_supplytrain_master)
 				src << "<span class = 'danger'>This object doesn't exist.</span>"
 				return
-			debug_variables(russian_train_master)
+			debug_variables(german_supplytrain_master)
+
+		if ("Russian Supply Lift")
+			var/which = input("Top or bottom?") in list("Top", "Bottom")
+			if (which == "Top")
+				for (var/obj/lift_controller/down/soviet/lift in world)
+					debug_variables(lift)
+					return
+			else
+				for (var/obj/lift_controller/up/soviet/lift in world)
+					debug_variables(lift)
+					return
 
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return

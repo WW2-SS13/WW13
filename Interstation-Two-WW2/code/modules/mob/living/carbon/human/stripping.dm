@@ -113,11 +113,6 @@
 /mob/living/carbon/human/proc/remove_splints(var/mob/living/user)
 
 	var/can_reach_splints = 1
-	if(istype(wear_suit,/obj/item/clothing/suit/space))
-		var/obj/item/clothing/suit/space/suit = wear_suit
-		if(suit.supporting_limbs && suit.supporting_limbs.len)
-			user << "<span class='warning'>You cannot remove the splints - [src]'s [suit] is supporting some of the breaks.</span>"
-			can_reach_splints = 0
 
 	if(can_reach_splints)
 		var/removed_splint
@@ -143,7 +138,7 @@
 			HUDelm.icon_state = "internal0"
 	else
 		// Check for airtight mask/helmet.
-		if(!(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space)))
+		if(!(istype(wear_mask, /obj/item/clothing/mask)))
 			return
 		// Find an internal source.
 		if(istype(back, /obj/item/weapon/tank))

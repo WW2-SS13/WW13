@@ -107,7 +107,7 @@
 		new /obj/item/weapon/reagent_containers/syringe( src )
 		new /obj/item/weapon/reagent_containers/syringe( src )
 		new /obj/item/weapon/reagent_containers/syringe( src )
-
+/*
 /obj/item/weapon/storage/box/syringegun
 	name = "box of syringe gun cartridges"
 	desc = "A box full of compressed gas cartridges."
@@ -123,7 +123,7 @@
 		new /obj/item/weapon/syringe_cartridge( src )
 		new /obj/item/weapon/syringe_cartridge( src )
 
-
+*/
 /obj/item/weapon/storage/box/beakers
 	name = "box of beakers"
 	icon_state = "beaker"
@@ -137,7 +137,7 @@
 		new /obj/item/weapon/reagent_containers/glass/beaker( src )
 		new /obj/item/weapon/reagent_containers/glass/beaker( src )
 		new /obj/item/weapon/reagent_containers/glass/beaker( src )
-
+/*
 /obj/item/weapon/storage/box/injectors
 	name = "box of DNA injectors"
 	desc = "This box contains injectors it seems."
@@ -150,7 +150,7 @@
 		new /obj/item/weapon/dnainjector/m2h(src)
 		new /obj/item/weapon/dnainjector/m2h(src)
 		new /obj/item/weapon/dnainjector/m2h(src)
-
+*/
 
 /obj/item/weapon/storage/box/blanks
 	name = "box of blank shells"
@@ -334,37 +334,6 @@
 		new /obj/item/weapon/grenade/anti_photon(src)
 		new /obj/item/weapon/grenade/anti_photon(src)
 
-/obj/item/weapon/storage/box/trackimp
-	name = "boxed tracking implant kit"
-	desc = "Box full of scum-bag tracking utensils."
-	icon_state = "implant"
-
-	New()
-		..()
-		new /obj/item/weapon/implantcase/tracking(src)
-		new /obj/item/weapon/implantcase/tracking(src)
-		new /obj/item/weapon/implantcase/tracking(src)
-		new /obj/item/weapon/implantcase/tracking(src)
-		new /obj/item/weapon/implanter(src)
-		new /obj/item/weapon/implantpad(src)
-		new /obj/item/weapon/locator(src)
-
-/obj/item/weapon/storage/box/chemimp
-	name = "boxed chemical implant kit"
-	desc = "Box of stuff used to implant chemicals."
-	icon_state = "implant"
-
-	New()
-		..()
-		new /obj/item/weapon/implantcase/chem(src)
-		new /obj/item/weapon/implantcase/chem(src)
-		new /obj/item/weapon/implantcase/chem(src)
-		new /obj/item/weapon/implantcase/chem(src)
-		new /obj/item/weapon/implantcase/chem(src)
-		new /obj/item/weapon/implanter(src)
-		new /obj/item/weapon/implantpad(src)
-
-
 
 /obj/item/weapon/storage/box/rxglasses
 	name = "box of prescription glasses"
@@ -393,22 +362,6 @@
 		new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass(src)
 		new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass(src)
 		new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass(src)
-
-/obj/item/weapon/storage/box/cdeathalarm_kit
-	name = "death alarm kit"
-	desc = "Box of stuff used to implant death alarms."
-	icon_state = "implant"
-	item_state = "syringe_kit"
-
-	New()
-		..()
-		new /obj/item/weapon/implanter(src)
-		new /obj/item/weapon/implantcase/death_alarm(src)
-		new /obj/item/weapon/implantcase/death_alarm(src)
-		new /obj/item/weapon/implantcase/death_alarm(src)
-		new /obj/item/weapon/implantcase/death_alarm(src)
-		new /obj/item/weapon/implantcase/death_alarm(src)
-		new /obj/item/weapon/implantcase/death_alarm(src)
 
 /obj/item/weapon/storage/box/condimentbottles
 	name = "box of condiment bottles"
@@ -478,37 +431,6 @@
 		if(src.type == /obj/item/weapon/storage/box/monkeycubes)
 			for(var/i = 1; i <= 5; i++)
 				new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
-
-/obj/item/weapon/storage/box/ids
-	name = "box of spare IDs"
-	desc = "Has so many empty IDs."
-	icon_state = "id"
-
-	New()
-		..()
-		new /obj/item/weapon/card/id(src)
-		new /obj/item/weapon/card/id(src)
-		new /obj/item/weapon/card/id(src)
-		new /obj/item/weapon/card/id(src)
-		new /obj/item/weapon/card/id(src)
-		new /obj/item/weapon/card/id(src)
-		new /obj/item/weapon/card/id(src)
-
-
-/obj/item/weapon/storage/box/seccarts
-	name = "box of spare R.O.B.U.S.T. Cartridges"
-	desc = "A box full of R.O.B.U.S.T. Cartridges, used by Security."
-	icon_state = "pda"
-
-	New()
-		..()
-		new /obj/item/weapon/cartridge/security(src)
-		new /obj/item/weapon/cartridge/security(src)
-		new /obj/item/weapon/cartridge/security(src)
-		new /obj/item/weapon/cartridge/security(src)
-		new /obj/item/weapon/cartridge/security(src)
-		new /obj/item/weapon/cartridge/security(src)
-		new /obj/item/weapon/cartridge/security(src)
 
 
 /obj/item/weapon/storage/box/handcuffs

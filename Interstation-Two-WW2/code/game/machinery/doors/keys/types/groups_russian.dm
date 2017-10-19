@@ -76,6 +76,7 @@
 	keyslot_type = /datum/keyslot/russian/command_intermediate
 	unique_door_name = "Intermediate Command Access"
 #undef RUSSIAN_INTER_COMMAND_CODE
+
 // all high (and above) command
 #define RUSSIAN_HIGH_COMMAND_CODE 1000 * 2
 /datum/keyslot/russian/command_high
@@ -89,3 +90,17 @@
 	keyslot_type = /datum/keyslot/russian/command_high
 	unique_door_name = "High Command Access"
 #undef RUSSIAN_HIGH_COMMAND_CODE
+// bunker doors
+#define RUSSIAN_BUNKER_DOORS_CODE 1001 * 2
+/datum/keyslot/russian/bunker_doors
+	code = RUSSIAN_BUNKER_DOORS_CODE
+
+/obj/item/weapon/key/russian/bunker_doors
+	code = RUSSIAN_BUNKER_DOORS_CODE
+	name = "Bunker Doors Access Key"
+
+/obj/structure/simple_door/key_door/russian/bunker_doors
+	keyslot_type = /datum/keyslot/russian/bunker_doors
+	unique_door_name = "Bunker Doors Access"
+	starts_open = 1
+#undef RUSSIAN_BUNKER_DOORS_CODE

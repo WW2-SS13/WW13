@@ -11,7 +11,9 @@ var/list/admin_verbs_default = list(
 //	/client/proc/check_antagonists,		//shows all antags,
 	/client/proc/cmd_mentor_check_new_players,
 	/client/proc/Goto_adminzone,
-	/client/proc/see_spies
+	/client/proc/see_spies,
+	/client/proc/see_jews,
+	/client/proc/see_soldiers
 //	/client/proc/deadchat				//toggles deadchat on/off,
 	)
 var/list/admin_verbs_admin = list(
@@ -33,22 +35,14 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_subtle_message,	//send an message to somebody as a 'voice in their head',
 	/client/proc/cmd_admin_delete,		//delete an instance/object/mob/etc,
 	/client/proc/cmd_admin_check_contents,	//displays the contents of an instance,
-	/datum/admins/proc/access_news_network,	//allows access of newscasters,
 	/client/proc/giveruntimelog,		//allows us to give access to runtime logs to somebody,
 	/client/proc/getserverlog,			//allows us to fetch server logs (diary) for other days,
 	/client/proc/Getmob,				//teleports a mob to our location,
 	/client/proc/Getkey,				//teleports a mob with a certain ckey to our location,
 //	/client/proc/sendmob,				//sends a mob somewhere, -Removed due to it needing two sorting procs to work, which were executed every time an admin right-clicked. ~Errorage,
-
-	/client/proc/admin_call_shuttle,	//allows us to call the emergency shuttle,
-	/client/proc/admin_cancel_shuttle,	//allows us to cancel the emergency shuttle, sending it back to centcomm,
+	//allows us to cancel the emergency shuttle, sending it back to centcomm,
 	/client/proc/cmd_admin_direct_narrate,	//send text directly to a player with no padding. Useful for narratives and fluff-text,
 	/client/proc/cmd_admin_world_narrate,	//sends text to all players with no padding,
-	/client/proc/cmd_admin_create_centcom_report,
-	/client/proc/check_words,			//displays cult-words,
-	/client/proc/check_ai_laws,			//shows AI and borg laws,
-	/client/proc/rename_silicon,		//properly renames silicons,
-	/client/proc/manage_silicon_laws,	// Allows viewing and editing silicon laws. ,
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,			//admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
 	/client/proc/dsay,					//talk in deadchat using our ckey/fakekey,
@@ -60,37 +54,26 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/toggleoocdead,	//toggles ooc on/off for everyone who is dead,
 	/datum/admins/proc/toggledsay,		//toggles dsay on/off for everyone,
 	/client/proc/game_panel,			//game panel, allows to change game-mode etc,
-	///datum/admins/proc/togglehubvisibility, //toggles visibility on the BYOND Hub,
 	/datum/admins/proc/PlayerNotes,
 	/datum/admins/proc/show_player_info,
 	/client/proc/free_slot,			//frees slot for chosen job,
 	/client/proc/cmd_admin_change_custom_event,
-	/client/proc/toggleghostwriters,
-	/client/proc/toggledrones,
 	/client/proc/check_customitem_activity,
-	/client/proc/man_up,
-	/client/proc/global_man_up,
-	/client/proc/toggle_antagHUD_use,
-	/client/proc/toggle_antagHUD_restrictions,
 	/client/proc/allow_character_respawn,    // Allows a ghost to respawn ,
-	/client/proc/event_manager_panel,
-	/client/proc/empty_ai_core_toggle_latejoin,
-	/client/proc/empty_ai_core_toggle_latejoin,
 	/client/proc/aooc,
 	/client/proc/change_human_appearance_admin,	// Allows an admin to change the basic appearance of human-based mobs ,
 	/client/proc/change_human_appearance_self,	// Allows the human-based mob itself change its basic appearance ,
 	/client/proc/change_security_level,
 	/client/proc/view_chemical_reaction_logs,
-	/client/proc/makePAI,
 	/client/proc/allow_join_ruforce,
 	/client/proc/allow_join_geforce,
-	///client/proc/set_daytime,
-	/client/proc/toggle_autobalance,
 	/client/proc/show_battle_report,
-//	/client/proc/generate_hit_table,
+//	/client/proc/generate_hit_table, // REALLY FUCKING LAGGY WARNING
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/removeEmptyCases,
-	/client/proc/removeHalfEmptyCases
+	/client/proc/removeHalfEmptyCases,
+	/client/proc/toggle_jobs,
+	/client/proc/toggle_subfactions
 
 )
 var/list/admin_verbs_ban = list(
@@ -110,8 +93,6 @@ var/list/admin_verbs_fun = list(
 	/client/proc/everyone_random,
 	/client/proc/cinematic,
 	/datum/admins/proc/toggle_aliens,
-	/client/proc/cmd_admin_add_freeform_ai_law,
-	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
 	/client/proc/editappear,
@@ -122,17 +103,13 @@ var/list/admin_verbs_fun = list(
 	)
 
 var/list/admin_verbs_spawn = list(
-	/datum/admins/proc/spawn_fruit,
-	/datum/admins/proc/spawn_custom_item,
-	/datum/admins/proc/check_custom_items,
-	/datum/admins/proc/spawn_plant,
+//	/datum/admins/proc/spawn_custom_item,
+//	/datum/admins/proc/check_custom_items,
 	/datum/admins/proc/spawn_atom,		// allows us to spawn instances,
 	/client/proc/respawn_character,
-	/client/proc/virus2_editor,
 	)
 var/list/admin_verbs_server = list(
 	/datum/admins/proc/capture_map,
-	/client/proc/Set_Holiday,
 	/client/proc/ToRban,
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,
@@ -149,7 +126,6 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
-	/datum/admins/proc/toggle_aliens,
 	/client/proc/toggle_random_events,
 	/client/proc/check_customitem_activity,
 	/client/proc/nanomapgen_DumpImage
@@ -158,17 +134,13 @@ var/list/admin_verbs_debug = list(
 	/client/proc/getruntimelog,                     // allows us to access runtime logs to somebody,
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/Debug2,
-	/client/proc/kill_air,
-	/client/proc/ZASSettings,
-	/client/proc/cmd_debug_make_powernets,
-	/client/proc/kill_airgroup,
+//	/client/proc/cmd_debug_make_powernets,
 	/client/proc/debug_controller,
 	/client/proc/debug_antagonist_template,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
-	/client/proc/air_report,
 	/client/proc/reload_admins,
 	/client/proc/reload_mentors,
 	/client/proc/restart_controller,
@@ -177,7 +149,6 @@ var/list/admin_verbs_debug = list(
 //	/client/proc/apply_random_map,
 //	/client/proc/overlay_random_map,
 //	/client/proc/delete_random_map,
-	/client/proc/show_plant_genes,
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/callproc_target,
@@ -188,7 +159,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/jumptocoord,
 	/client/proc/dsay,
 	/client/proc/check_positions,
-	/datum/admins/proc/run_unit_test
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -223,12 +193,10 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/view_atk_log,
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_check_contents,
-	/datum/admins/proc/access_news_network,
 	/client/proc/admin_call_shuttle,
 	/client/proc/admin_cancel_shuttle,
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/cmd_admin_world_narrate,
-	/client/proc/check_words,
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
 	/client/proc/play_server_sound,
@@ -238,13 +206,8 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/drop_bomb,
 	/client/proc/cinematic,
 	/datum/admins/proc/toggle_aliens,
-	/client/proc/cmd_admin_add_freeform_ai_law,
-	/client/proc/cmd_admin_add_random_ai_law,
-	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
-	/client/proc/cmd_admin_add_random_ai_law,
-	/client/proc/Set_Holiday,
 	/client/proc/ToRban,
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,
@@ -263,15 +226,12 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/callproc_target,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
-	/client/proc/kill_air,
 	/client/proc/cmd_debug_make_powernets,
-	/client/proc/kill_airgroup,
 	/client/proc/debug_controller,
-	/client/proc/startSinglo,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
-	/client/proc/air_report,
+//	/client/proc/air_report,
 	/client/proc/enable_debug_verbs,
 	/client/proc/roll_dices,
 	/proc/possess,
@@ -302,7 +262,6 @@ var/list/admin_verbs_mod = list(
 	/client/proc/game_panel,			//game panel, allows to change game-mode etc,
 	/client/proc/allow_join_ruforce,
 	/client/proc/allow_join_geforce,
-	/client/proc/toggle_autobalance,
 	/client/proc/show_battle_report,
 	/client/proc/allow_rjoin_geforce,
 	/client/proc/allow_rjoin_ruforce,
@@ -311,7 +270,12 @@ var/list/admin_verbs_mod = list(
 	/client/proc/message_germans,
 	/client/proc/message_russians,
 	/client/proc/message_SS,
+	/client/proc/message_paratroopers,
+	/client/proc/message_civilians,
+	/client/proc/message_partisans,
 	/client/proc/send_german_train,
+	/client/proc/see_who_is_in_tank,
+	/client/proc/eject_from_tank
 )
 
 var/list/admin_verbs_mentor = list(
@@ -327,7 +291,7 @@ var/list/admin_verbs_mentor = list(
 /client/proc/add_admin_verbs()
 	if(holder)
 		verbs += admin_verbs_default
-		if(holder.rights & R_BUILDMODE)		verbs += /client/proc/togglebuildmodeself
+	//	if(holder.rights & R_BUILDMODE)		verbs += /client/proc/togglebuildmodeself
 		if(holder.rights & R_ADMIN)			verbs += admin_verbs_admin
 		if(holder.rights & R_BAN)			verbs += admin_verbs_ban
 		if(holder.rights & R_FUN)			verbs += admin_verbs_fun
@@ -344,11 +308,12 @@ var/list/admin_verbs_mentor = list(
 		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
 		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
 		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
+		if(holder.rights & R_HOST) verbs += /client/proc/reset_roundstart_autobalance
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
 		admin_verbs_default,
-		/client/proc/togglebuildmodeself,
+//		/client/proc/togglebuildmodeself,
 		admin_verbs_admin,
 		admin_verbs_ban,
 		admin_verbs_fun,
@@ -420,6 +385,10 @@ var/list/admin_verbs_mentor = list(
 		src << "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>"
 	else
 		//ghostize
+		if (ishuman(mob))
+			var/mob/living/carbon/human/H = mob
+			H.handle_zoom_stuff(TRUE)
+
 		var/mob/body = mob
 		var/mob/observer/ghost/ghost = body.ghostize(1)
 		ghost.admin_ghosted = 1
@@ -611,7 +580,8 @@ var/list/admin_verbs_mentor = list(
 	set category = "Fun"
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
-
+	return
+/*
 	var/datum/disease2/disease/D = new /datum/disease2/disease()
 
 	var/severity = 1
@@ -637,7 +607,7 @@ var/list/admin_verbs_mentor = list(
 
 	log_admin("[key_name(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].")
 	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].", 1)
-
+*/
 /client/proc/make_sound(var/obj/O in range(world.view)) // -- TLE
 	set category = "Special Verbs"
 	set name = "Make Sound"
@@ -652,13 +622,13 @@ var/list/admin_verbs_mentor = list(
 		message_admins("\blue [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound", 1)
 
 
-
+/*
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Special Verbs"
 	if(src.mob)
 		togglebuildmode(src.mob)
-
+*/
 
 /client/proc/object_talk(var/msg as text) // -- TLE
 	set category = "Special Verbs"
@@ -724,37 +694,18 @@ var/list/admin_verbs_mentor = list(
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
 	set category = "Admin"
-	if(holder)
-		src.holder.output_ai_laws()
+	return 0
 
 /client/proc/rename_silicon()
 	set name = "Rename Silicon"
 	set category = "Admin"
-
-	if(!check_rights(R_ADMIN)) return
-
-	var/mob/living/silicon/S = input("Select silicon.", "Rename Silicon.") as null|anything in silicon_mob_list
-	if(!S) return
-
-	var/new_name = sanitizeSafe(input(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name))
-	if(new_name && new_name != S.real_name)
-		log_and_message_admins("has renamed the silicon '[S.real_name]' to '[new_name]'")
-		S.SetName(new_name)
+	return 0
 
 
 /client/proc/manage_silicon_laws()
 	set name = "Manage Silicon Laws"
 	set category = "Admin"
-
-	if(!check_rights(R_ADMIN)) return
-
-	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in silicon_mob_list
-	if(!S) return
-
-	var/datum/nano_module/law_manager/L = new(S)
-	L.ui_interact(usr, state = admin_state)
-	log_and_message_admins("has opened [S]'s law manager.")
-
+	return 0
 
 /client/proc/change_human_appearance_admin()
 	set name = "Change Mob Appearance - Admin"
@@ -797,8 +748,8 @@ var/list/admin_verbs_mentor = list(
 	set name = "Set security level"
 	set desc = "Sets the station security level"
 	set category = "Admin"
-
-	if(!check_rights(R_ADMIN))	return
+	return
+/*	if(!check_rights(R_ADMIN))	return
 	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())
 	if(!sec_level)
 		return
@@ -806,7 +757,7 @@ var/list/admin_verbs_mentor = list(
 	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
 		set_security_level(sec_level)
 		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
-
+*/
 
 //---- bs12 verbs ----
 
@@ -951,14 +902,3 @@ var/list/admin_verbs_mentor = list(
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
-
-/client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
-	set category = "Fun"
-	set name = "Give Spell"
-	set desc = "Gives a spell to a mob."
-	var/spell/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spells
-	if(!S) return
-	T.add_spell(new S)
-
-	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
-	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] the spell [S].", 1)

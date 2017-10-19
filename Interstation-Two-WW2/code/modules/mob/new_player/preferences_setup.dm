@@ -206,12 +206,8 @@ datum/preferences
 
 		for(var/name in list("r_arm","r_hand","r_leg","r_foot","l_leg","l_foot","l_arm","l_hand"))
 			if(organ_data[name] == "amputated") continue
-			if(organ_data[name] == "cyborg")
-				var/datum/robolimb/R
-				if(rlimb_data[name]) R = all_robolimbs[rlimb_data[name]]
-				if(!R) R = basic_robolimb
-				preview_icon.Blend(icon(R.icon, "[name][g][body.index]"), ICON_OVERLAY) // This doesn't check gendered_icon. Not an issue while only limbs can be robotic.
-				continue
+			if(organ_data[name] == "cyborg") continue
+
 			preview_icon.Blend(new /icon(icobase, "[name][g][body.index]"), ICON_OVERLAY)
 
 		//Tail
@@ -247,7 +243,7 @@ datum/preferences
 			eyes.Blend(facial, ICON_OVERLAY)
 
 		var/icon/clothes = null
-		if(job_civilian_low & ASSISTANT)//This gives the preview icon clothes depending on which job(if any) is set to 'high'
+	/*	if(job_civilian_low & ASSISTANT)//This gives the preview icon clothes depending on which job(if any) is set to 'high'
 			clothes = new /icon('icons/mob/uniform.dmi', "grey_s")
 			clothes.Blend(new /icon('icons/mob/feet.dmi', "black"), ICON_UNDERLAY)
 			if(backbag == 2)
@@ -255,43 +251,43 @@ datum/preferences
 			else if(backbag == 3 || backbag == 4)
 				clothes.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
 
-		else
-			if(isnull(job_master))
-				usr << "<span class='warning'>Job Controller went [job_master], contact to the coder and tell details.</span>"
-				return
+		else*/
+		if(isnull(job_master))
+			usr << "<span class='warning'>Job Controller went [job_master], contact to the coder and tell details.</span>"
+			return
 
-			var/datum/job/J = job_master.GetJob(high_job_title)
-			if(J)
+		var/datum/job/J = job_master.GetJob(high_job_title)
+		if(J)
 
-				var/obj/item/clothing/under/UF = J.uniform
-				var/UF_state = initial(UF.icon_state)
-				if(!UF_state) UF_state = initial(UF.item_state)
-				clothes = new /icon(body.uniform_icon, UF_state)
+			var/obj/item/clothing/under/UF = J.uniform
+			var/UF_state = initial(UF.icon_state)
+			if(!UF_state) UF_state = initial(UF.item_state)
+			clothes = new /icon(body.uniform_icon, UF_state)
 
-				var/obj/item/clothing/shoes/SH = J.shoes
-				clothes.Blend(new /icon(body.shoes_icon, initial(SH.icon_state)), ICON_UNDERLAY)
+			var/obj/item/clothing/shoes/SH = J.shoes
+			clothes.Blend(new /icon(body.shoes_icon, initial(SH.icon_state)), ICON_UNDERLAY)
 
-				var/obj/item/clothing/gloves/GL = J.gloves
-				if(GL)
-					var/GL_state = initial(GL.item_state)
-					if(!GL_state) GL_state = initial(GL.icon_state)
-					clothes.Blend(new /icon(body.gloves_icon, ), ICON_UNDERLAY)
-				var/obj/item/weapon/storage/belt/BT = J.belt
-				if(BT)
-					var/BT_state = initial(BT.item_state)
-					if(!BT_state) BT_state = initial(BT.icon_state)
-					clothes.Blend(new /icon(body.belt_icon, BT_state), ICON_OVERLAY)
+			var/obj/item/clothing/gloves/GL = J.gloves
+			if(GL)
+				var/GL_state = initial(GL.item_state)
+				if(!GL_state) GL_state = initial(GL.icon_state)
+				clothes.Blend(new /icon(body.gloves_icon, ), ICON_UNDERLAY)
+			var/obj/item/weapon/storage/belt/BT = J.belt
+			if(BT)
+				var/BT_state = initial(BT.item_state)
+				if(!BT_state) BT_state = initial(BT.icon_state)
+				clothes.Blend(new /icon(body.belt_icon, BT_state), ICON_OVERLAY)
 
 
-				var/obj/item/clothing/suit/ST = J.suit
-				if(ST) clothes.Blend(new /icon(body.suit_icon, initial(ST.icon_state)), ICON_OVERLAY)
+			var/obj/item/clothing/suit/ST = J.suit
+			if(ST) clothes.Blend(new /icon(body.suit_icon, initial(ST.icon_state)), ICON_OVERLAY)
 
-				var/obj/item/clothing/head/HT = J.hat
-				if(HT) clothes.Blend(new /icon(body.hat_icon, initial(HT.icon_state)), ICON_OVERLAY)
+			var/obj/item/clothing/head/HT = J.hat
+			if(HT) clothes.Blend(new /icon(body.hat_icon, initial(HT.icon_state)), ICON_OVERLAY)
 
-				if( backbag > 1 )
-					var/obj/item/weapon/storage/backpack/BP = J.backpacks[backbag-1]
-					clothes.Blend(new /icon(body.backpack_icon, initial(BP.icon_state)), ICON_OVERLAY)
+			if( backbag > 1 )
+				var/obj/item/weapon/storage/backpack/BP = J.backpacks[backbag-1]
+				clothes.Blend(new /icon(body.backpack_icon, initial(BP.icon_state)), ICON_OVERLAY)
 
 
 		if(disabilities & NEARSIGHTED)

@@ -59,11 +59,6 @@
 	the appropriate verb in the chameleon items tab. Any beams or projectiles fired from this gun are actually holograms and useless for actual combat. \
 	Projecting these holograms over distance uses a little bit of charge."
 
-/obj/item/weapon/gun/energy/chameleon/change(picked in gun_choices) //Making the gun change its help text to match the weapon's help text.
-	..(picked)
-	var/obj/O = gun_choices[picked]
-	description_info = initial(O.description_info)
-
 /obj/item/weapon/gun/projectile/shotgun/pump
 	description_info = "This is a ballistic weapon.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
 	then click where you want to fire.  After firing, you will need to pump the gun, by clicking on the gun in your hand.  To reload, load more shotgun \

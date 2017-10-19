@@ -44,6 +44,10 @@
 /mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot)
 	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
 
+/mob/proc/equip_to_slot_or_drop(obj/item/W as obj, slot)
+	if (!equip_to_slot_if_possible(W, slot, 1, 1, 0))
+		W.loc = get_turf(src)
+
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
 var/list/slot_equipment_priority = list( \
 		slot_back,\
@@ -155,9 +159,8 @@ var/list/slot_equipment_priority = list( \
 // If canremove or other conditions need to be checked then use unEquip instead.
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 	if(W)
-		if (W.nodrop)
-			if (!W.bypass_no_drop_check())
-				return 0
+		if (W.nodrop || W.nodrop_special_check())
+			return 0
 
 		if(!Target)
 			Target = loc

@@ -17,6 +17,7 @@
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
 
 	var/auto_init = 1
+	var/nothrow = 0
 
 /atom/movable/New()
 	..()
@@ -42,6 +43,18 @@
 		if (pulledby.pulling == src)
 			pulledby.pulling = null
 		pulledby = null
+
+
+
+//Convenience function for atoms to update turfs they occupy
+/atom/movable/proc/update_nearby_tiles(need_rebuild)
+/*	if(!air_master)
+		return 0
+
+	for(var/turf/turf in locs)
+		air_master.mark_for_update(turf)*/
+
+	return 1
 
 /atom/movable/proc/initialize()
 	if(!isnull(gcDestroyed))
@@ -139,6 +152,7 @@
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
 	if(!target || !src)	return 0
+
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 
 	src.throwing = 1
@@ -265,10 +279,6 @@
 	if(z in config.sealed_levels)
 		return
 
-	if(config.use_overmap)
-		overmap_spacetravel(get_turf(src), src)
-		return
-
 	var/move_to_z = src.get_transit_zlevel()
 	if(move_to_z)
 		z = move_to_z
@@ -288,10 +298,6 @@
 		else if (y >= (world.maxy - TRANSITIONEDGE + 1))
 			y = TRANSITIONEDGE + 1
 			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
-
-		if(ticker && istype(ticker.mode, /datum/game_mode/nuclear)) //only really care if the game mode is nuclear
-			var/datum/game_mode/nuclear/G = ticker.mode
-			G.check_nuke_disks()
 
 		spawn(0)
 			if(loc) loc.Entered(src)

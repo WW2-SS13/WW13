@@ -226,11 +226,15 @@
 		return "unknown"
 	return species_language.get_random_name(gender)
 
-/datum/species/proc/get_random_german_name(var/gender)
+/datum/species/proc/get_random_german_name(var/gender, var/jew)
 	if(!name_language)
 		if(gender == FEMALE)
+			if (jew)
+				return capitalize(pick(first_names_female_german_jew)) + " " + capitalize(pick(last_names_german_jew))
 			return capitalize(pick(first_names_female_german)) + " " + capitalize(pick(last_names_german))
 		else
+			if (jew)
+				return capitalize(pick(first_names_male_german_jew)) + " " + capitalize(pick(last_names_german_jew))
 			return capitalize(pick(first_names_male_german)) + " " + capitalize(pick(last_names_german))
 
 	var/datum/language/species_language = all_languages[name_language]
@@ -240,7 +244,7 @@
 		return "unknown"
 	return species_language.get_random_german_name(gender)
 
-/datum/species/proc/get_random_russian_name(var/gender)
+/datum/species/proc/get_random_russian_name(var/gender, var/jew)
 	if(!name_language)
 		if(gender == FEMALE)
 			return capitalize(pick(first_names_female_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))
@@ -253,6 +257,20 @@
 	if(!species_language)
 		return "unknown"
 	return species_language.get_random_russian_name(gender)
+
+/datum/species/proc/get_random_ukrainian_name(var/gender, var/jew)
+	if(!name_language)
+		if(gender == FEMALE)
+			return capitalize(pick(first_names_female_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
+		else
+			return capitalize(pick(first_names_male_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
+
+	var/datum/language/species_language = all_languages[name_language]
+	if(!species_language)
+		species_language = all_languages[default_language]
+	if(!species_language)
+		return "unknown"
+	return species_language.get_random_ukrainian_name(gender)
 
 /datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
 
@@ -370,10 +388,7 @@
 
 	if(!H.druggy)
 		H.see_in_dark = (H.sight == SEE_TURFS|SEE_MOBS|SEE_OBJS) ? 8 : min(darksight + H.equipment_darkness_modifier, 8)
-		if(H.seer)
-			var/obj/effect/rune/R = locate() in H.loc
-			if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
-				H.see_invisible = SEE_INVISIBLE_CULT
+
 		if(H.see_invisible != SEE_INVISIBLE_CULT && H.equipment_see_invis)
 			H.see_invisible = min(H.see_invisible, H.equipment_see_invis)
 

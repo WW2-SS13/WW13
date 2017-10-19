@@ -236,7 +236,7 @@
 	name = "rune"
 	icon = 'icons/obj/rune.dmi'
 	icon_state = "golem"
-	unacidable = 1
+//	unacidable = 1
 	layer = TURF_LAYER
 
 	New()

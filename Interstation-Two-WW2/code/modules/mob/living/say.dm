@@ -1,8 +1,8 @@
 var/list/department_radio_keys = list(
-	  ":r" = "right ear",	".r" = "right ear",
-	  ":l" = "left ear",	".l" = "left ear",
+	  //":r" = "right ear",	".r" = "right ear",
+	//  ":l" = "left ear",	".l" = "left ear",
 	  ":i" = "intercom",	".i" = "intercom",
-	  ":b" = "harness", 	".b" = "harness",
+	//  ":b" = "harness", 	".b" = "harness",
 	  ":h" = "department",	".h" = "department",
 	  ":+" = "special",		".+" = "special", //activate radio-specific special functions
 	  ":c" = "Command",		".c" = "Command",
@@ -70,22 +70,7 @@ proc/get_radio_key_from_channel(var/channel)
 	return key
 
 /mob/living/proc/binarycheck()
-
-	if (istype(src, /mob/living/silicon/pai))
-		return
-
-	if (!ishuman(src))
-		return
-
-	var/mob/living/carbon/human/H = src
-	if (H.l_ear || H.r_ear)
-		var/obj/item/device/radio/headset/dongle
-		if(istype(H.l_ear,/obj/item/device/radio/headset))
-			dongle = H.l_ear
-		else
-			dongle = H.r_ear
-		if(!istype(dongle)) return
-		if(dongle.translate_binary) return 1
+	return 0
 
 /mob/living/proc/get_default_language()
 	return default_language
@@ -205,7 +190,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	var/italics = 0
 	var/message_range = world.view
-
+/*
 	//speaking into radios
 	if(used_radios.len)
 		italics = 1
@@ -219,7 +204,7 @@ proc/get_radio_key_from_channel(var/channel)
 			if((M != src) && msg)
 				M.show_message(msg)
 			if (speech_sound)
-				sound_vol *= 0.5
+				sound_vol *= 0.5*/
 
 	var/turf/T = get_turf(src)
 
@@ -236,16 +221,6 @@ proc/get_radio_key_from_channel(var/channel)
 	var/list/listening_obj = list()
 
 	if(T)
-		//make sure the air can transmit speech - speaker's side
-		var/datum/gas_mixture/environment = T.return_air()
-		var/pressure = (environment)? environment.return_pressure() : 0
-		if(pressure < SOUND_MINIMUM_PRESSURE)
-			message_range = 1
-
-		if (pressure < ONE_ATMOSPHERE*0.4) //sound distortion pressure, to help clue people in that the air is thin, even if it isn't a vacuum yet
-			italics = 1
-			sound_vol *= 0.5 //muffle the sound a bit, so it's like we're actually talking through contact
-
 		//DO NOT FUCKING CHANGE THIS TO GET_OBJ_OR_MOB_AND_BULLSHIT() -- Hugs and Kisses ~Ccomp
 		var/list/hear = hear(message_range,T)
 		var/list/hearturfs = list()
@@ -259,7 +234,6 @@ proc/get_radio_key_from_channel(var/channel)
 				var/obj/O = I
 				hearturfs += O.locs[1]
 				listening_obj |= O
-
 
 		for(var/mob/M in player_list)
 			if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))

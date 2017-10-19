@@ -9,5 +9,8 @@
 /obj/structure/simple_door/key_door/anyone/wood
 	material = "wood"
 
+/obj/structure/simple_door/key_door/anyone/train
+	material = "morgue"
+
 #undef ANYONE_CODE
 

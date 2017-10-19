@@ -3,9 +3,11 @@
 ****************************************************/
 
 //These control the damage thresholds for the various ways of removing limbs
+
+// buffing these to see if it makes limbs explode less from bullets - Kachnov
 #define DROPLIMB_THRESHOLD_EDGE 5
-#define DROPLIMB_THRESHOLD_TEAROFF 2
-#define DROPLIMB_THRESHOLD_DESTROY 1
+#define DROPLIMB_THRESHOLD_TEAROFF 4
+#define DROPLIMB_THRESHOLD_DESTROY 2
 
 /obj/item/organ/external
 	name = "external"
@@ -907,7 +909,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
 	// TODO: consider moving this to a suit proc or process() or something during
 	// hardsuit rewrite.
-	if(owner && !(status & ORGAN_SPLINTED) && istype(owner,/mob/living/carbon/human))
+/*	if(owner && !(status & ORGAN_SPLINTED) && istype(owner,/mob/living/carbon/human))
 
 		var/mob/living/carbon/human/H = owner
 
@@ -920,7 +922,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 			owner << "You feel \the [suit] constrict about your [name], supporting it."
 			status |= ORGAN_SPLINTED
-			suit.supporting_limbs |= src
+			suit.supporting_limbs |= src*/
 	return
 
 /obj/item/organ/external/proc/mend_fracture()
@@ -933,23 +935,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return 1
 
 /obj/item/organ/external/robotize(var/company)
-	..()
-
-	if(company)
-		model = company
-		var/datum/robolimb/R = all_robolimbs[company]
-		if(R)
-			force_icon = R.icon
-			name = "[R.company] [initial(name)]"
-			desc = "[R.desc]"
-
-	dislocated = -1 //TODO, make robotic limbs a separate type, remove snowflake
-	cannot_break = 1
-	update_icon(1)
-	unmutate()
-	for (var/obj/item/organ/external/T in children)
-		if(T)
-			T.robotize()
+	return
 
 /obj/item/organ/external/proc/mutate()
 	if(src.status & ORGAN_ROBOT)

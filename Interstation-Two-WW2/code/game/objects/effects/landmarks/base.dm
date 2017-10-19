@@ -1,9 +1,11 @@
+var/area/partisan_stockpile = null
+
 /obj/effect/landmark
 	name = "landmark"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
 	anchored = 1.0
-	unacidable = 1
+//	unacidable = 1
 	simulated = 0
 	invisibility = 101
 	var/delete_me = 0
@@ -163,6 +165,13 @@
 			qdel(src)
 			return
 
+		if("JoinLateHeerChef")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
 		if("JoinLateHeerCO")
 			if(!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
@@ -198,9 +207,71 @@
 			qdel(src)
 			return
 
+		if("JoinLateHeer-S1")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S2")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S3")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S4")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S1-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S2-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S3-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateHeer-S4-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
 		// NEW RUSSIAN LANDMARKS
 
 		if("JoinLateRA")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRAChef")
 			if(!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
@@ -242,6 +313,168 @@
 			qdel(src)
 			return
 
+		if("JoinLateRA-S1")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S2")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S3")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S4")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S1-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S2-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S3-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRA-S4-Leader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		// PARTISAN LANDMARKS
+
+		if ("JoinLatePartisan")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLatePartisanLeader")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("TownStockpile")
+
+			var/turf/turf = loc
+			var/list/possible_turfs = list()
+
+			for (var/turf/t in range(turf, 1))
+				if (t.density)
+					continue
+				for (var/obj/o in t)
+					if (o.density)
+						continue
+
+				var/turf/east = locate(t.x+1, t.y, t.z)
+				var/turf/west = locate(t.x-1, t.y, t.z)
+				var/turf/north = locate(t.x, t.y+1, t.z)
+				var/turf/south = locate(t.x, t.y-1, t.z)
+
+				// shitty hack to prevent tools from spawning below fences
+				// that haven't been created yet
+				if (east.type == west.type && north.type == south.type)
+					possible_turfs += t
+
+			var/i = rand(1,3)
+			switch (i)
+				if (1) // meds
+					for (var/v in 1 to rand(2,3))
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/antitox(pick(possible_turfs))
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/tramadol(pick(possible_turfs))
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/dexalin(pick(possible_turfs))
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/bicaridine(pick(possible_turfs))
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/inaprovaline(pick(possible_turfs))
+						if (prob(33))
+							new/obj/item/weapon/pill_pack/pervitin(pick(possible_turfs))
+						if (prob(33))
+							new/obj/item/weapon/gauze_pack/bint(pick(possible_turfs))
+				if (2) // tools
+					for (var/v in 1 to rand(2,3))
+						if (prob(50))
+							new/obj/item/weapon/wrench(pick(possible_turfs))
+						if (prob(50))
+							new/obj/item/weapon/crowbar(pick(possible_turfs))
+						if (prob(50))
+							new/obj/item/weapon/weldingtool(pick(possible_turfs))
+						if (prob(50))
+							new/obj/item/weapon/screwdriver(pick(possible_turfs))
+				if (3) // materials
+					for (var/v in 1 to rand(3,5))
+						var/type = pick(/obj/item/stack/material/steel, /obj/item/stack/material/wood)
+						var/obj/item/stack/sheets = new type (pick(possible_turfs))
+						sheets.amount = rand(10,30)
+
+			if (prob(30))
+				for (var/v in 1 to rand(2,3))
+					new/obj/item/weapon/reagent_containers/glass/rag(pick(possible_turfs))
+
+
+			qdel(src)
+			return
+
+		if ("JoinLateCivilian")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("PartisanStockpile")
+			var/turf/turf = get_turf(loc)
+			for (var/v in 1 to 5)
+				if (prob(50))
+					new /obj/item/weapon/gun/projectile/pistol/luger(turf)
+				if (prob(75))
+					new /obj/item/ammo_magazine/luger(turf)
+				if (prob(60))
+					new /obj/item/attachment/bayonet(turf)
+				if (prob(50))
+					new /obj/item/weapon/melee/classic_baton/mp_baton/russian_baton/old(turf)
+			// ptrd ammo
+			for (var/v in 1 to rand(10,20))
+				new /obj/item/ammo_casing/a145 (turf)
+
+			partisan_stockpile = get_area(turf)
+			qdel(src)
+			return
+
 		if("JoinLateGRU")
 			if(!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
@@ -249,9 +482,7 @@
 			qdel(src)
 			return
 		if("Fallschirm")
-			if(!latejoin_turfs[name])
-				latejoin_turfs[name] = list()
-			latejoin_turfs[name] += loc
+			fallschirm_landmarks += loc
 			qdel(src)
 			return
 		if("prisonwarp")
@@ -328,13 +559,6 @@
 	new PICK(src.loc)
 	delete_me = 1
 
-//SUBCLASSES.  Spawn a bunch of items and disappear likewise
-/obj/effect/landmark/costume/chicken/New()
-	new /obj/item/clothing/suit/chickensuit(src.loc)
-	new /obj/item/clothing/head/chicken(src.loc)
-	new /obj/item/weapon/reagent_containers/food/snacks/egg(src.loc)
-	delete_me = 1
-
 /obj/effect/landmark/costume/gladiator/New()
 	new /obj/item/clothing/under/gladiator(src.loc)
 	new /obj/item/clothing/head/helmet/gladiator(src.loc)
@@ -364,27 +588,6 @@
 	new /obj/item/clothing/glasses/sunglasses/blindfold(src.loc)
 	delete_me = 1
 
-/obj/effect/landmark/costume/butler/New()
-	new /obj/item/clothing/suit/wcoat(src.loc)
-	new /obj/item/clothing/head/that(src.loc)
-	delete_me = 1
-
-/obj/effect/landmark/costume/highlander/New()
-	new /obj/item/clothing/under/kilt(src.loc)
-	new /obj/item/clothing/head/beret(src.loc)
-	delete_me = 1
-
-/obj/effect/landmark/costume/prig/New()
-	new /obj/item/clothing/suit/wcoat(src.loc)
-	new /obj/item/clothing/glasses/monocle(src.loc)
-	var/CHOICE= pick( /obj/item/clothing/head/bowler, /obj/item/clothing/head/that)
-	new CHOICE(src.loc)
-	new /obj/item/clothing/shoes/black(src.loc)
-	new /obj/item/weapon/cane(src.loc)
-	//new /obj/item/clothing/under/sl_suit(src.loc)
-	new /obj/item/clothing/mask/fakemoustache(src.loc)
-	delete_me = 1
-
 /obj/effect/landmark/costume/plaguedoctor/New()
 	new /obj/item/clothing/suit/bio_suit/plaguedoctorsuit(src.loc)
 	new /obj/item/clothing/head/plaguedoctorhat(src.loc)
@@ -395,32 +598,7 @@
 	new /obj/item/clothing/mask/gas/owl_mask(src.loc)
 	delete_me = 1
 
-/obj/effect/landmark/costume/waiter/New()
-	new /obj/item/clothing/under/waiter(src.loc)
-	var/CHOICE= pick( /obj/item/clothing/head/kitty, /obj/item/clothing/head/rabbitears)
-	new CHOICE(src.loc)
-	new /obj/item/clothing/suit/apron(src.loc)
-	delete_me = 1
-
-/obj/effect/landmark/costume/pirate/New()
-	new /obj/item/clothing/under/pirate(src.loc)
-	new /obj/item/clothing/suit/pirate(src.loc)
-	var/CHOICE = pick( /obj/item/clothing/head/pirate , /obj/item/clothing/head/bandana )
-	new CHOICE(src.loc)
-	new /obj/item/clothing/glasses/eyepatch(src.loc)
-	delete_me = 1
-
 /obj/effect/landmark/costume/commie/New()
 	new /obj/item/clothing/under/soviet(src.loc)
 	new /obj/item/clothing/head/ushanka(src.loc)
-	delete_me = 1
-
-/obj/effect/landmark/costume/marisawizard/fake/New()
-	new /obj/item/clothing/head/wizard/marisa/fake(src.loc)
-	new/obj/item/clothing/suit/wizrobe/marisa/fake(src.loc)
-	delete_me = 1
-
-/obj/effect/landmark/costume/sexyclown/New()
-	new /obj/item/clothing/mask/gas/sexyclown(src.loc)
-	new /obj/item/clothing/under/sexyclown(src.loc)
 	delete_me = 1

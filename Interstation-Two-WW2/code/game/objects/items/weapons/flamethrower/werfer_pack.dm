@@ -5,7 +5,10 @@
 	item_state_slots = null
 	var/obj/item/weapon/flamethrower/flammenwerfer/flamethrower = null // thrower is taken by movable atoms!
 	var/obj/item/weapon/tank/plasma/ptank = null
-	nodrop = 0
+	nothrow = 1
+
+/obj/item/weapon/storage/backpack/flammenwerfer/nothrow_special_check()
+	return nodrop_special_check()
 
 /obj/item/weapon/storage/backpack/flammenwerfer/examine(var/mob/user)
 	var/show = desc
@@ -16,7 +19,8 @@
 /obj/item/weapon/storage/backpack/flammenwerfer/New()
 	..()
 
-	flamethrower = new()
+	flamethrower = new(src)
+	flamethrower.backpack = src
 	ptank = new/obj/item/weapon/tank/plasma/super()
 	flamethrower.ptank = ptank
 	flamethrower.pressure_1 = ptank.air_contents.return_pressure()
@@ -25,7 +29,7 @@
 	return
 
 /obj/item/weapon/storage/backpack/flammenwerfer/equipped(var/mob/user, var/slot)
-	..()
+	..(user, slot)
 
 	if (src == user.back)
 
@@ -34,14 +38,21 @@
 			user.u_equip(src)
 			user << "<span class = 'danger'>You don't have space to hold the flammenwerfer in your hands.</span>"
 
+/obj/item/weapon/storage/backpack/flammenwerfer/proc/reclaim_flamethrower()
+
+	if (!flamethrower)
+		return
+
+	flamethrower.loc = src
+	handle_item_insertion(flamethrower, 1)
+
 
 /obj/item/weapon/storage/backpack/flammenwerfer/MouseDrop(obj/over_object as obj)
-	if (!nodrop) // if the flamethrower is in the bag, we can move it
+	if (!nodrop_special_check()) // if the flamethrower is in the backpack, we can move it
 		return ..(over_object)
 
 
 /obj/item/weapon/storage/backpack/flammenwerfer/attackby(obj/item/W as obj, mob/user as mob)
-	nodrop = 1
 
 	if (istype(W, /obj/item/weapon/flamethrower/flammenwerfer))
 		..(W, user)
@@ -52,11 +63,6 @@
 		flamethrower.ptank = new ptank.type
 		flamethrower.pressure_1 = ptank.air_contents.return_pressure()
 
-	for (var/atom/a in contents)
-		if (istype(a, /obj/item/weapon/flamethrower/flammenwerfer))
-			nodrop = 0
-			break
-
 /obj/item/weapon/storage/backpack/flammenwerfer/attack_hand(mob/user as mob)
 	if (loc == user)
 		if (contents.Find(flamethrower))
@@ -65,23 +71,6 @@
 				user << "<span class = 'notice'>You take the flamethrower from [src].</span>"
 	else
 		..(user)
-
-
-
-/*
-/obj/item/weapon/storage/backpack/flammenwerfer/dropped(var/mob/user)
-	..()
-
-	if (user.get_active_hand() == flamethrower || user.get_inactive_hand() == flamethrower)
-		user.u_equip(flamethrower)
-		flamethrower.loc = null
-
-	var/mob/m = flamethrower.loc
-
-	if (m && istype(m))
-		if (m.get_active_hand() == flamethrower || m.get_inactive_hand() == flamethrower)
-			m.u_equip(flamethrower)
-			flamethrower.loc = null*/
 
 
 /obj/item/weapon/storage/backpack/flammenwerfer/proc/explode()

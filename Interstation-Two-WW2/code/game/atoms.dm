@@ -3,9 +3,11 @@
 	appearance_flags = TILE_BOUND
 	var/level = 2
 	var/flags = 0
+
 	var/list/fingerprints
 	var/list/fingerprintshidden
 	var/fingerprintslast = null
+
 	var/list/blood_DNA
 	var/was_bloodied
 	var/blood_color
@@ -14,7 +16,7 @@
 	var/throwpass = 0
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 	var/simulated = 1 //filter for actions - used by lighting overlays
-	var/fluorescent // Shows up under a UV light.
+//	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = 1
 
 	///Chemistry.
@@ -27,11 +29,30 @@
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
+	// supply trains
+
+	var/uses_initial_density = 0
+
+	var/initial_density = 0
+
+	var/uses_initial_opacity = 0
+
+	var/initial_opacity = 0
+
 /atom/Destroy()
 	if(reagents)
 		qdel(reagents)
 		reagents = null
 	. = ..()
+
+/atom/proc/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
+	//Purpose: Determines if the object (or airflow) can pass this atom.
+	//Called by: Movement, airflow.
+	//Inputs: The moving atom (optional), target turf, "height" and air group
+	//Outputs: Boolean if can pass.
+
+	return (!density || !height || air_group)
+
 
 /atom/proc/reveal_blood()
 	return
@@ -235,8 +256,6 @@ its easier to just keep the beam vertical.
 /atom/proc/ex_act()
 	return
 
-/atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
-	return NO_EMAG_ACT
 
 /atom/proc/fire_act()
 	return
@@ -282,7 +301,7 @@ its easier to just keep the beam vertical.
 			fingerprintshidden = list()
 
 		//Fibers~
-		add_fibers(M)
+	//	add_fibers(M)
 
 		//He has no prints!
 		if (mFingerprints in M.mutations)
@@ -419,7 +438,7 @@ its easier to just keep the beam vertical.
 	return 1
 
 /atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
-	if( istype(src, /turf/simulated) )
+	if( istype(src, /turf) )
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 
 		// Make toxins vomit look different
@@ -429,7 +448,7 @@ its easier to just keep the beam vertical.
 /atom/proc/clean_blood()
 	if(!simulated)
 		return
-	fluorescent = 0
+//	fluorescent = 0
 	src.germ_level = 0
 	if(istype(blood_DNA, /list))
 		blood_DNA = null

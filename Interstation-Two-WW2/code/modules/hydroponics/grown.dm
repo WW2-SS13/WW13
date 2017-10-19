@@ -288,11 +288,11 @@
 		qdel(src)
 		return
 
-	if(seed.get_trait(TRAIT_SPREAD) > 0)
-		user << "<span class='notice'>You plant the [src.name].</span>"
-		new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(get_turf(user),src.seed)
-		qdel(src)
-		return
+//	if(seed.get_trait(TRAIT_SPREAD) > 0)
+	//	user << "<span class='notice'>You plant the [src.name].</span>"
+	//	new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(get_turf(user),src.seed)
+	//	qdel(src)
+	//	return
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/pickup(mob/user)
 	..()

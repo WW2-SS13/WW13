@@ -50,8 +50,8 @@ var/global/datum/global_init/init = new ()
 
 /world
 	mob = /mob/new_player
-	turf = /turf/simulated/floor/plating/asteroid
-	area = /area/prishtina/field
+	turf = /turf/floor/plating/grass
+	area = /area/prishtina/german
 	view = "15x15"
 	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session
 
@@ -94,43 +94,12 @@ var/global/datum/global_init/init = new ()
 	load_unit_test_changes()
 #endif
 
-	// Set up roundstart seed list.
-	plant_controller = new()
-
 	// This is kinda important. Set up details of what the hell things are made of.
 	populate_material_list()
 
-	if(config.generate_asteroid)
-		// These values determine the specific area that the map is applied to.
-		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
-		if(config.asteroid_z_levels)
-			for(var/z_level in config.asteroid_z_levels)
-				// In case we got fed a string instead of a number...
-				z_level = text2num(z_level)
-				if(!isnum(z_level))
-					// If it's still not a number, we probably got fed some nonsense string.
-					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
-				// Now for the actual map generating.  This occurs for every z-level defined in the config.
-			//	new /datum/random_map/automata/cave_system(null,1,1,z_level,300,300)
-				// Let's add ore too.
-			//	new /datum/random_map/noise/ore(null, 1, 1, z_level, 64, 64)
-		else
-			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
-		// Update all turfs to ensure everything looks good post-generation. Yes,
-		// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
-		for(var/turf/simulated/mineral/M in world) // Ugh.
-			M.updateMineralOverlays()
-		for(var/turf/simulated/floor/asteroid/M in world) // Uuuuuugh.
-			M.updateMineralOverlays()
-
-	// Create autolathe recipes, as above.
-	populate_lathe_recipes()
-
-	// Create robolimbs for chargen.
-	populate_robolimb_list()
-
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
+
 	spawn(1)
 		processScheduler.deferSetupFor(/datum/controller/process/ticker)
 		processScheduler.setup()
@@ -536,63 +505,11 @@ var/world_topic_spam_protect_time = world.timeofday
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
 				D.associate(directory[ckey])
-/*
-/world/proc/update_status()
-	var/s = ""
-
-	if (config && config.server_name)
-		s += "<b>[config.server_name]</b> &#8212; "
-
-	s += "<b>[station_name()]</b>";
-	s += " (<a href = \"https://discord.gg/NgpWkc5\" target=\"_blank\">Visit our discord!</a>)"
-	var/list/features = list()
-
-	if(ticker)
-		if(master_mode)
-			features += master_mode
-	else
-		features += "<b>STARTING</b>"
-
-	if (!config.enter_allowed)
-		features += "closed"
-
-	features += config.abandon_allowed ? "respawn" : "no respawn"
-
-	if (config && config.allow_vote_mode)
-		features += "vote"
-
-	if (config && config.allow_ai)
-		features += "AI allowed"
-
-	var/n = 0
-	for (var/mob/M in player_list)
-		if (M.client)
-			n++
-
-	if (n > 1)
-		features += "~[n] players"
-	else if (n > 0)
-		features += "~[n] player"
-
-
-	if (config && config.hostedby)
-		features += "hosted by <b>[config.hostedby]</b>"
-
-	if (features)
-		s += ": [jointext(features, ", ")]"
-
-	/* does this help? I do not know */
-	if (src.status != s)
-		src.status = s
-*/
 
 /world/proc/update_status()
 
-	if (world.port == 12345)
-		visibility = 0 // debug mode
-
-	// this can hold around 20 chars max I think, but keep it at 15 or so - Kachnov
-	var/freaking_cool_features = "Spies! New map!"
+	if (world.port == config.testing_port)
+		visibility = 0
 
 	//var/original_banner = "http://tny.im/9Bm"
 	//var/cavebob_banner_1 = "http://tny.im/9IQ"
@@ -600,10 +517,24 @@ var/world_topic_spam_protect_time = world.timeofday
 	//var/cavebob_banner_final = "http://tny.im/9IU"
 
 	var/s = ""
-	s += "<center><a href=\"https://discord.gg/PVqjqCv\" target=\"_blank\"><b>No Man's Land: World War II (Early Alpha)</b></center><br>"
-	s += "<i>1942, [lowertext(time_of_day)], Ukrajina</i><br>"
-	s += "<b>[freaking_cool_features]</b><br>"
-	s += pick("<img src='http://tny.im/9IU'>")
+
+	if (config.open_hub_discord_in_new_window)
+		s += "<center><a href=\"[config.discordurl]\" target=\"_blank\"><b>[station_name()]</b></center><br>"
+	else
+		s += "<center><a href=\"[config.discordurl]\"><b>[station_name()]</b></center><br>"
+
+	// we can't execute code in config settings, so this is a workaround.
+	config.hub_body = replacetext(config.hub_body, "TIME_OF_DAY", lowertext(time_of_day))
+
+	if (config.hub_body)
+		s += config.hub_body
+
+	if (config.hub_features)
+		s += "<b>[config.hub_features]</b><br>"
+
+	if (config.hub_banner_url)
+		s += config.hub_banner_url
+
 	status = s
 
 #define FAILED_DB_CONNECTION_CUTOFF 5
@@ -643,6 +574,7 @@ proc/setup_database_connection()
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
 proc/establish_db_connection()
+
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 

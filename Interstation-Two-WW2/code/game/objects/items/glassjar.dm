@@ -30,14 +30,6 @@
 		contains = 2
 		update_icon()
 		return
-	else if(istype(A, /obj/effect/spider/spiderling))
-		var/obj/effect/spider/spiderling/S = A
-		user.visible_message("<span class='notice'>[user] scoops [S] into \the [src].</span>", "<span class='notice'>You scoop [S] into \the [src].</span>")
-		S.forceMove(src)
-		processing_objects.Remove(S) // No growing inside jars
-		contains = 3
-		update_icon()
-		return
 
 /obj/item/glass_jar/attack_self(var/mob/user)
 	switch(contains)
@@ -55,16 +47,9 @@
 			contains = 0
 			update_icon()
 			return
-		if(3)
-			for(var/obj/effect/spider/spiderling/S in src)
-				S.loc = user.loc
-				user.visible_message("<span class='notice'>[user] releases [S] from \the [src].</span>", "<span class='notice'>You release [S] from \the [src].</span>")
-				processing_objects.Add(S) // They can grow after being let out though
-			contains = 0
-			update_icon()
-			return
 
 /obj/item/glass_jar/attackby(var/obj/item/W, var/mob/user)
+	/*
 	if(istype(W, /obj/item/weapon/spacecash))
 		if(contains == 0)
 			contains = 1
@@ -74,7 +59,8 @@
 		user.visible_message("<span class='notice'>[user] puts [S.worth] [S.worth > 1 ? "thalers" : "thaler"] into \the [src].</span>")
 		user.drop_from_inventory(S)
 		S.forceMove(src)
-		update_icon()
+		update_icon()*/
+	return
 
 /obj/item/glass_jar/update_icon() // Also updates name and desc
 	underlays.Cut()
@@ -86,12 +72,12 @@
 		if(1)
 			name = "tip jar"
 			desc = "A small jar with money inside."
-			for(var/obj/item/weapon/spacecash/S in src)
+		/*	for(var/obj/item/weapon/spacecash/S in src)
 				var/image/money = image(S.icon, S.icon_state)
 				money.pixel_x = rand(-2, 3)
 				money.pixel_y = rand(-6, 6)
 				money.transform *= 0.6
-				underlays += money
+				underlays += money*/
 		if(2)
 			for(var/mob/M in src)
 				var/image/victim = image(M.icon, M.icon_state)
@@ -99,10 +85,4 @@
 				underlays += victim
 				name = "glass jar with [M]"
 				desc = "A small jar with [M] inside."
-		if(3)
-			for(var/obj/effect/spider/spiderling/S in src)
-				var/image/victim = image(S.icon, S.icon_state)
-				underlays += victim
-				name = "glass jar with [S]"
-				desc = "A small jar with [S] inside."
 	return

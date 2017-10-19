@@ -413,10 +413,6 @@
 		user << "<span class='notice'>Cannot establish a bluespace connection.</span>"
 		return
 
-	if(deathsquad.deployed)
-		user << "[boss_short] will not allow the shuttle to be called. Consider all contracts terminated."
-		return
-
 	if(emergency_shuttle.deny_shuttle)
 		user << "The emergency shuttle may not be sent at this time. Please try again later."
 		return
@@ -462,10 +458,6 @@
 			user << "[boss_short] does not currently have a shuttle available in your sector. Please try again later."
 			return
 
-		if(deathsquad.deployed == 1)
-			user << "[boss_short] will not allow the shuttle to be called. Consider all contracts terminated."
-			return
-
 		if(world.time < 54000) // 30 minute grace period to let the game get going
 			user << "The shuttle is refueling. Please wait another [round((54000-world.time)/60)] minutes before trying again."
 			return
@@ -489,16 +481,7 @@
 	return
 
 /proc/cancel_call_proc(var/mob/user)
-	if (!( ticker ) || !emergency_shuttle.can_recall())
-		return
-	if((ticker.mode.name == "blob")||(ticker.mode.name == "Meteor"))
-		return
-
-	if(!emergency_shuttle.going_to_centcom()) //check that shuttle isn't already heading to centcomm
-		emergency_shuttle.recall()
-		log_game("[key_name(user)] has recalled the shuttle.")
-		message_admins("[key_name_admin(user)] has recalled the shuttle.", 1)
-	return
+	return 0
 
 
 /proc/is_relay_online()

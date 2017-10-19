@@ -97,6 +97,7 @@ var/list/gamemode_cache = list()
 	var/banappeals
 	var/wikiurl
 	var/forumurl
+	var/donationurl
 	var/rulesurl
 	var/discordurl
 	var/githuburl
@@ -219,7 +220,15 @@ var/list/gamemode_cache = list()
 
 	var/ghosts_can_possess_animals = 0
 
+	// hub stuff
+
 	var/hub = 0
+	var/testing_port = -1
+	var/open_hub_discord_in_new_window = 1
+	var/hub_body = ""
+	var/hub_features = ""
+	var/hub_banner_url = ""
+
 
 	//TRAINS
 
@@ -242,6 +251,9 @@ var/list/gamemode_cache = list()
 
 	var/german_reinforcements_at_once = 10
 	var/russian_reinforcements_at_once = 10
+
+	var/min_players_for_spies = 10
+	var/min_players_for_jews = 10
 
 	//WW2 donor shit
 
@@ -372,6 +384,16 @@ var/list/gamemode_cache = list()
 
 				if ("hub")
 					config.hub = 1
+				if ("testing_port")
+					config.testing_port = text2num(value)
+				if ("open_hub_discord_in_new_window")
+					config.open_hub_discord_in_new_window = text2num(value)
+				if ("hub_body")
+					config.hub_body = value
+				if ("hub_features")
+					config.hub_features = value
+				if ("hub_banner_url")
+					config.hub_banner_url = value
 				//TRAINS
 				if ("german_train_cars_officer")
 					config.german_train_cars_officer = text2num(value)
@@ -401,6 +423,12 @@ var/list/gamemode_cache = list()
 
 				if ("russian_reinforcements_at_once")
 					config.russian_reinforcements_at_once = text2num(value)
+
+				if ("min_players_for_spies")
+					config.min_players_for_spies = text2num(value)
+
+				if ("min_players_for_jews")
+					config.min_players_for_jews = text2num(value)
 
 				if ("resource_urls")
 					config.resource_urls = splittext(value, " ")
@@ -534,7 +562,7 @@ var/list/gamemode_cache = list()
 				if ("respawn_delay")
 					config.respawn_delay = text2num(value)
 
-				if ("servername")
+				if ("server_name")
 					config.server_name = value
 
 				if ("serversuffix")
@@ -560,6 +588,9 @@ var/list/gamemode_cache = list()
 
 				if ("forumurl")
 					config.forumurl = value
+
+				if ("donationurl")
+					config.donationurl = value
 
 				if ("rulesurl")
 					config.rulesurl = value
@@ -684,9 +715,6 @@ var/list/gamemode_cache = list()
 
 				if("popup_admin_pm")
 					config.popup_admin_pm = 1
-
-				if("allow_holidays")
-					Holiday = 1
 
 				if("use_irc_bot")
 					use_irc_bot = 1
@@ -885,9 +913,10 @@ var/list/gamemode_cache = list()
 					config.limbs_can_break = value
 
 				if("run_speed")
-					config.run_speed = value
+					config.run_speed = text2num(value)
+
 				if("walk_speed")
-					config.walk_speed = value
+					config.walk_speed = text2num(value)
 
 				if("human_delay")
 					config.human_delay = value

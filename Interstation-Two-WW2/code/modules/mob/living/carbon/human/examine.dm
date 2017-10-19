@@ -269,7 +269,6 @@
 			continue
 
 
-
 	for(var/obj/item/organ/external/temp in organs)
 		if(temp)
 			if(temp.status & ORGAN_ROBOT)
@@ -381,52 +380,6 @@
 	if(O && O.get_teeth() < O.max_teeth)
 		msg += "<span class='warning'>[O.get_teeth() <= 0 ? "All" : "[O.max_teeth - O.get_teeth()]"] of [T.his] teeth are missing!</span>\n"
 
-	if(hasHUD(usr,"security"))
-		var/perpname = "wot"
-		var/criminal = "None"
-
-		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetID()
-			if(I)
-				perpname = I.registered_name
-			else
-				perpname = name
-		else
-			perpname = name
-
-		if(perpname)
-			for (var/datum/data/record/E in data_core.general)
-				if(E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
-						if(R.fields["id"] == E.fields["id"])
-							criminal = R.fields["criminal"]
-
-			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
-			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>\n"
-
-	if(hasHUD(usr,"medical"))
-		var/perpname = "wot"
-		var/medical = "None"
-
-		if(wear_id)
-			if(istype(wear_id,/obj/item/weapon/card/id))
-				perpname = wear_id:registered_name
-			else if(istype(wear_id,/obj/item/device/pda))
-				var/obj/item/device/pda/tempPda = wear_id
-				perpname = tempPda.owner
-		else
-			perpname = src.name
-
-		for (var/datum/data/record/E in data_core.general)
-			if (E.fields["name"] == perpname)
-				for (var/datum/data/record/R in data_core.general)
-					if (R.fields["id"] == E.fields["id"])
-						medical = R.fields["p_stat"]
-
-		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
-		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>\n"
-
-
 	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
 
 	msg += "*---------*</span>"
@@ -436,12 +389,41 @@
 		msg += "\n[T.He] [T.is] [pose]"
 
 	if (original_job)
-		if (ishuman(user))
+		if (ishuman(user) && user != src)
 			var/mob/living/carbon/human/H = user
-			if (H.original_job.team == original_job.team) // when you ghost, mind.assigned_job is set to null
-				msg += "<br><i>You recognize [T.him] as a [original_job.title] ([original_job.en_meaning]).</i>"
+			if (H.original_job.base_type_flag() == original_job.base_type_flag()) // when you ghost, mind.assigned_job is set to null
+				if (original_job.en_meaning)
+					msg += "<br><i>You recognize [T.him] as a <b>[original_job.title] ([original_job.en_meaning])</b>.</i>"
+				else
+					msg += "<br><i>You recognize [T.him] as a <b>[original_job.title]</b>.</i>"
+			else // examining someone on another team
+
+				// make partisans show up as civs
+				var/team = original_job.base_type_flag()
+				if (team == PARTISAN)
+					team = CIVILIAN
+
+				msg += "<br><i>He's a <b>[capitalize(lowertext(original_job.base_type_flag()))]</b>.</i>"
+
+			if (istype(original_job, /datum/job/german))
+				if (is_jew && !wear_mask)
+					msg += "<br><big>Mein gott, it's a jew!</big>"
+			if (istype(original_job, /datum/job/russian) || istype(original_job, /datum/job/partisan))
+				if (is_jew && !wear_mask)
+					msg += "<br><big>Oy blin, it's a jew!</big>"
+
+			if (original_job.base_type_flag() == H.original_job.base_type_flag() && (original_job.base_type_flag() == RUSSIAN || original_job.base_type_flag() == GERMAN))
+				if (isleader(src, H))
+					msg += "<br><b>[T.He] [T.is] your squad leader.</b>"
+				else if (isleader(H, src))
+					msg += "<br><b>[T.He] [T.is] your soldat.</b>"
+				else if (getsquad(H) == getsquad(src) && getsquad(H) != null)
+					msg += "<br><b>[T.He] [T.is] in your squad.</b>"
+
 		else if (isobserver(user))
 			msg += "<br><i>[T.He] [T.is] a [original_job.title].</i>"
+
+
 
 	for (var/v in 1 to embedded.len)
 		msg += "<a href='?src=\ref[user];remove_embedded=[v]'>Remove [embedded[v]]</a>"
@@ -463,27 +445,3 @@
 			adjustBruteLoss(rand(10,15))
 		embedded -= embedded_obj
 		embedded_obj.loc = get_turf(src)
-
-
-//Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
-/proc/hasHUD(mob/M as mob, hudtype)
-	if(istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
-		switch(hudtype)
-			if("security")
-				return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
-			if("medical")
-				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
-			else
-				return 0
-	else if(istype(M, /mob/living/silicon/robot))
-		var/mob/living/silicon/robot/R = M
-		switch(hudtype)
-			if("security")
-				return istype(R.module_state_1, /obj/item/borg/sight/hud/sec) || istype(R.module_state_2, /obj/item/borg/sight/hud/sec) || istype(R.module_state_3, /obj/item/borg/sight/hud/sec)
-			if("medical")
-				return istype(R.module_state_1, /obj/item/borg/sight/hud/med) || istype(R.module_state_2, /obj/item/borg/sight/hud/med) || istype(R.module_state_3, /obj/item/borg/sight/hud/med)
-			else
-				return 0
-	else
-		return 0

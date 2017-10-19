@@ -206,64 +206,67 @@ macro "borghotkeymode"
 
 macro "macro"
 	elem 
-		name = "TAB"
+		name = "Tab"
 		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
 	elem 
-		name = "CENTER+REP"
+		name = "Center+REP"
 		command = ".center"
 	elem 
-		name = "NORTHEAST"
+		name = "Space"
+		command = "use-tank-guns"
+	elem 
+		name = "Northeast"
 		command = ".northeast"
 	elem 
-		name = "SOUTHEAST"
+		name = "Southeast"
 		command = ".southeast"
 	elem 
-		name = "SOUTHWEST"
+		name = "Southwest"
 		command = ".southwest"
 	elem 
-		name = "NORTHWEST"
+		name = "Northwest"
 		command = ".northwest"
 	elem 
-		name = "ALT+WEST"
+		name = "ALT+West"
 		command = "westfaceperm"
 	elem 
-		name = "CTRL+WEST"
+		name = "CTRL+West"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
+		name = "West+REP"
 		command = ".moveleft"
 	elem 
-		name = "ALT+NORTH"
+		name = "ALT+North"
 		command = "northfaceperm"
 	elem 
-		name = "CTRL+NORTH"
+		name = "CTRL+North"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
+		name = "North+REP"
 		command = ".moveup"
 	elem 
-		name = "ALT+EAST"
+		name = "ALT+East"
 		command = "eastfaceperm"
 	elem 
-		name = "CTRL+EAST"
+		name = "CTRL+East"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
+		name = "East+REP"
 		command = ".moveright"
 	elem 
-		name = "ALT+SOUTH"
+		name = "ALT+South"
 		command = "southfaceperm"
 	elem 
-		name = "CTRL+SOUTH"
+		name = "CTRL+South"
 		command = "southface"
 	elem 
-		name = "SOUTH+REP"
+		name = "South+REP"
 		command = ".movedown"
 	elem 
-		name = "INSERT"
+		name = "Insert"
 		command = "a-intent right"
 	elem 
-		name = "DELETE"
+		name = "Delete"
 		command = "delete-key-pressed"
 	elem 
 		name = "CTRL+1"
@@ -302,8 +305,8 @@ macro "macro"
 		name = "CTRL+R"
 		command = ".southwest"
 	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
+		name = "CTRL+S"
+		command = "Say \"*scream"
 	elem 
 		name = "CTRL+W+REP"
 		command = ".moveup"
@@ -355,64 +358,67 @@ macro "macro"
 
 macro "hotkeymode"
 	elem 
-		name = "TAB"
+		name = "Tab"
 		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true\""
 	elem 
-		name = "CENTER+REP"
+		name = "Center+REP"
 		command = ".center"
 	elem 
-		name = "NORTHEAST"
-		command = ".northeast"
+		name = "Space"
+		command = "use-tank-guns"
 	elem 
-		name = "SOUTHEAST"
-		command = ".southeast"
+		name = "Northeast"
+		command = "Move-Upwards"
 	elem 
-		name = "SOUTHWEST"
+		name = "Southeast"
+		command = "Move-Downwards"
+	elem 
+		name = "Southwest"
 		command = ".southwest"
 	elem 
-		name = "NORTHWEST"
+		name = "Northwest"
 		command = ".northwest"
 	elem 
-		name = "ALT+WEST"
+		name = "ALT+West"
 		command = "westfaceperm"
 	elem 
-		name = "CTRL+WEST"
+		name = "CTRL+West"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
+		name = "West+REP"
 		command = ".moveleft"
 	elem 
-		name = "ALT+NORTH"
+		name = "ALT+North"
 		command = "northfaceperm"
 	elem 
-		name = "CTRL+NORTH"
+		name = "CTRL+North"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
+		name = "North+REP"
 		command = ".moveup"
 	elem 
-		name = "ALT+EAST"
+		name = "ALT+East"
 		command = "eastfaceperm"
 	elem 
-		name = "CTRL+EAST"
+		name = "CTRL+East"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
+		name = "East+REP"
 		command = ".moveright"
 	elem 
-		name = "ALT+SOUTH"
+		name = "ALT+South"
 		command = "southfaceperm"
 	elem 
-		name = "CTRL+SOUTH"
+		name = "CTRL+South"
 		command = "southface"
 	elem 
-		name = "SOUTH+REP"
+		name = "South+REP"
 		command = ".movedown"
 	elem 
-		name = "INSERT"
+		name = "Insert"
 		command = "a-intent right"
 	elem 
-		name = "DELETE"
+		name = "Delete"
 		command = "delete-key-pressed"
 	elem 
 		name = "1"
@@ -495,11 +501,11 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+R"
 		command = ".southwest"
+	elem 
+		name = "CTRL+S"
+		command = "Say \"*scream"
 	elem "s_key"
 		name = "S+REP"
-		command = ".movedown"
-	elem 
-		name = "CTRL+S+REP"
 		command = ".movedown"
 	elem 
 		name = "T"
@@ -564,12 +570,6 @@ macro "hotkeymode"
 	elem 
 		name = "F12"
 		command = "F12"
-	elem 
-		name = "NORTHEAST"
-		command = "Move-Upwards"
-	elem 
-		name = "SOUTHEAST"
-		command = "Move-Downwards"
 
 macro "borgmacro"
 	elem 
@@ -1092,7 +1092,7 @@ window "mapwindow"
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
-		pos = 418,0
+		pos = 464,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
@@ -1117,17 +1117,39 @@ window "outputwindow"
 window "rpane"
 	elem "rpane"
 		type = MAIN
-		pos = 418,0
+		pos = 464,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
 		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
+	elem "button6"
+		type = BUTTON
+		pos = 413,0
+		size = 67x16
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		saved-params = "is-checked"
+		text = "Forum"
+		command = "forum"
+		group = "rpanemode"
+	elem "donbutton"
+		type = BUTTON
+		pos = 485,0
+		size = 67x16
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		saved-params = "is-checked"
+		text = "Donate"
+		command = "donate"
+		group = "rpanemode"
 	elem "rpanewindow"
 		type = CHILD
 		pos = 0,0
-		size = 640x499
+		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = none
@@ -1194,7 +1216,7 @@ window "rpane"
 		button-type = pushbox
 	elem "browseb"
 		type = BUTTON
-		pos = 464,0
+		pos = 556,0
 		size = 60x16
 		anchor1 = none
 		anchor2 = none
@@ -1222,7 +1244,7 @@ window "rpane"
 window "browserwindow"
 	elem "browserwindow"
 		type = MAIN
-		pos = 418,0
+		pos = 464,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none

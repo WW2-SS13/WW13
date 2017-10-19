@@ -44,9 +44,9 @@
 
 	next_click = world.time + 1
 
-	if(client.buildmode)
+	/*if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
-		return
+		return*/
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])
@@ -77,11 +77,19 @@
 	if(!canClick()) // in the year 2000...
 		return
 
-	if(istype(loc, /obj/mecha))
-		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
+	if (istype(loc, /obj/tank))
+		if (A == loc)
+			var/obj/tank/tank = loc
+			tank.handle_seat_exit(src)
 			return
-		var/obj/mecha/M = loc
-		return M.click_action(A, src)
+
+	// stop looking down a ladder
+	if (istype(A, /obj/structure/multiz/ladder/ww2))
+		var/mob/living/carbon/human/H = src
+		if (istype(H) && H.laddervision)
+			H.update_laddervision(null)
+			H.visible_message("<span class = 'notice'>[H] stops looking [H.laddervision_direction()] the ladder.</span>")
+			return
 
 	if(restrained())
 		setClickCooldown(10)

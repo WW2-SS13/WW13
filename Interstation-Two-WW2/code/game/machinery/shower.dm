@@ -16,8 +16,7 @@
 	var/list/effect = list()
 
 /obj/machinery/cellshower/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.type == /obj/item/device/analyzer)
-		user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
+	return
 
 /obj/machinery/cellshower/process()
 	for(var/obj/effect/shower/S in effect)
@@ -186,7 +185,7 @@
 		var/turf/tile = loc
 		loc.clean_blood()
 		for(var/obj/effect/E in tile)
-			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
+			if(istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
 				del(E)
 
 /obj/effect/shower/process()
