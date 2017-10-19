@@ -8,6 +8,9 @@ var/list/gamemode_cache = list()
 
 	var/list/lobby_screens = list("titlenew") // Which lobby screens are available
 
+	var/lobby_countdown = 120
+	var/round_end_countdown = 60
+
 	var/log_ooc = 0						// log OOC channel
 	var/log_access = 0					// log login/logout
 	var/log_say = 0						// log client say
@@ -20,7 +23,6 @@ var/list/gamemode_cache = list()
 	var/log_attack = 0					// log attack messages
 	var/log_adminchat = 0				// log admin chat messages
 	var/log_adminwarn = 0				// log warnings admins get about bomb construction and such
-	var/log_pda = 0						// log pda messages
 	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
 	var/log_runtime = 0					// logs world.log to a file
 	var/log_world_output = 0			// log world.log << messages
@@ -71,7 +73,6 @@ var/list/gamemode_cache = list()
 	var/mods_can_job_tempban = 0
 	var/mod_tempban_max = 1440
 	var/mod_job_tempban_max = 1440
-	var/load_jobs_from_txt = 0
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
 	var/jobs_have_minimal_access = 0	//determines whether jobs use minimal access or expanded access.
@@ -102,15 +103,14 @@ var/list/gamemode_cache = list()
 	var/discordurl
 	var/githuburl
 
-	//Alert level description
+/*	//Alert level description - disabled for now, may be repurposed later
 	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
 	var/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
 	var/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
 	var/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
 	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
 	var/alert_desc_delta = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
-
-	var/forbid_singulo_possession = 0
+*/
 
 	//game_options.txt configs
 
@@ -170,12 +170,6 @@ var/list/gamemode_cache = list()
 
 	var/enter_allowed = 1
 
-	var/use_irc_bot = 0
-	var/irc_bot_host = ""
-	var/irc_bot_export = 0 // whether the IRC bot in use is a Bot32 (or similar) instance; Bot32 uses world.Export() instead of nudge.py/libnudge
-	var/main_irc = ""
-	var/admin_irc = ""
-	var/announce_shuttle_dock_to_irc = FALSE
 	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/use_overmap = 0
@@ -206,10 +200,6 @@ var/list/gamemode_cache = list()
 	var/dsay_allowed = 1
 
 	var/starlight = 0	// Whether space turfs have ambient light or not
-
-	var/list/ert_species = list("Human")
-
-	var/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
 
 	var/aggressive_changelog = 0
 
@@ -493,9 +483,6 @@ var/list/gamemode_cache = list()
 				if ("log_adminwarn")
 					config.log_adminwarn = 1
 
-				if ("log_pda")
-					config.log_pda = 1
-
 				if ("log_world_output")
 					config.log_world_output = 1
 
@@ -630,7 +617,7 @@ var/list/gamemode_cache = list()
 					config.usewhitelist = 1
 
 				if ("use_job_whitelist")
-					config.use_job_whitelist = text2num(value)
+					config.use_job_whitelist = 1
 
 				if ("feature_object_spell_system")
 					config.feature_object_spell_system = 1
@@ -689,10 +676,7 @@ var/list/gamemode_cache = list()
 				if("mod_job_tempban_max")
 					config.mod_job_tempban_max = text2num(value)
 
-				if("load_jobs_from_txt")
-					load_jobs_from_txt = 1
-
-				if("alert_red_upto")
+		/*		if("alert_red_upto")
 					config.alert_desc_red_upto = value
 
 				if("alert_red_downto")
@@ -708,19 +692,9 @@ var/list/gamemode_cache = list()
 					config.alert_desc_green = value
 
 				if("alert_delta")
-					config.alert_desc_delta = value
-
-				if("forbid_singulo_possession")
-					forbid_singulo_possession = 1
 
 				if("popup_admin_pm")
 					config.popup_admin_pm = 1
-
-				if("use_irc_bot")
-					use_irc_bot = 1
-
-				if("irc_bot_export")
-					irc_bot_export = 1
 
 				if("ticklag")
 					Ticklag = text2num(value)
@@ -765,18 +739,6 @@ var/list/gamemode_cache = list()
 
 				if("comms_password")
 					config.comms_password = value
-
-				if("irc_bot_host")
-					config.irc_bot_host = value
-
-				if("main_irc")
-					config.main_irc = value
-
-				if("admin_irc")
-					config.admin_irc = value
-
-				if("announce_shuttle_dock_to_irc")
-					config.announce_shuttle_dock_to_irc = TRUE
 
 				if("python_path")
 					if(value)
@@ -855,14 +817,6 @@ var/list/gamemode_cache = list()
 					value = text2num(value)
 					config.starlight = value >= 0 ? value : 0
 
-				if("ert_species")
-					config.ert_species = splittext(value, ";")
-					if(!config.ert_species.len)
-						config.ert_species += "Human"
-
-				if("law_zero")
-					law_zero = value
-
 				if("aggressive_changelog")
 					config.aggressive_changelog = 1
 
@@ -873,6 +827,12 @@ var/list/gamemode_cache = list()
 
 				if ("lobby_screens")
 					config.lobby_screens = splittext(value, ";")
+
+				if ("lobby_countdown")
+					config.lobby_countdown = text2num(value)
+
+				if ("round_end_countdown")
+					config.round_end_countdown = text2num(value)
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

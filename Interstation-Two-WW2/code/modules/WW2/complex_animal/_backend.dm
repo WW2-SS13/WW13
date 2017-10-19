@@ -1,13 +1,22 @@
 // backend member functions for complex_animals, which call frontend hooks
+/mob/living/simple_animal/complex_animal/New()
+	..()
+	resting_state = "[icon_state]_rest"
+	dead_state = "[icon_state]_dead"
+
 /mob/living/simple_animal/complex_animal/Life()
 	..()
 	onEveryLifeTick()
+
+/mob/living/simple_animal/complex_animal/death(gibbed, deathmessage = "dies!")
+	..(gibbed,deathmessage)
+	icon_state = dead_state
 
 /mob/living/simple_animal/complex_animal/attack_hand(var/mob/living/carbon/human/H as mob)
 	..(H)
 	onTouchedBy(H)
 
-/mob/living/simple_animal/complex_animal/attack_hand(var/mob/living/carbon/human/H as mob, var/obj/item/weapon/W as obj)
+/mob/living/simple_animal/complex_animal/attackby(var/mob/living/carbon/human/H as mob, var/obj/item/weapon/W as obj)
 	..(H)
 	onAttackedBy(H, W)
 

@@ -1362,7 +1362,7 @@ var/global/list/fallschirm_landmarks = list()
 				keychain.update_icon_state()
 				keychain.keys += key
 
-	proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
+/*	proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 		if(!config.load_jobs_from_txt)
 			return 0
 
@@ -1395,6 +1395,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		return 1
 
+*/
 
 	proc/HandleFeedbackGathering()
 		return

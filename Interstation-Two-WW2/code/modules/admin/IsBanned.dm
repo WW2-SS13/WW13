@@ -123,7 +123,7 @@ world/IsBanned(key,address,computer_id)
 		if (!expires)
 			desc += "This is a permanent ban."
 		else
-			desc += "Your ban expires in [days_left] days ([minutes_left] minutes)."
+			desc += "This ban was for [duration] minutes. Your ban expires in [days_left] days ([minutes_left] minutes)."
 
 		return list("reason"="[bantype]", "desc"="[desc]")
 

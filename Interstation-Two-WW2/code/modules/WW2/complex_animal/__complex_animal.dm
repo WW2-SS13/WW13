@@ -27,9 +27,10 @@
 	var/list/enemies = list()
 
 	// icons
-	icon = null
+	icon = 'icons/mob/animal.dmi'
 	icon_state = null
 	var/resting_state = null
+	var/dead_state = null
 
 // things we do every life tick: by default, wander every few seconds,
 // rest every ~10 minutes. Deplete nutrition over ~30 minutes

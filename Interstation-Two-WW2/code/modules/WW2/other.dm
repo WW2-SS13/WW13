@@ -85,12 +85,6 @@ var/GRACE_PERIOD_LENGTH = 10
 		icon_state = null
 		layer = -1000
 
-/hook/startup/proc/nature()
-	for (var/obj/structure/wild/tree/T in world)
-		if (prob(25))
-			new /obj/structure/wild/bush(get_turf(T))
-			qdel(T)
-
 /hook/roundstart/proc/game_start()
 
 	roundstart_time = world.time
@@ -126,19 +120,75 @@ var/GRACE_PERIOD_LENGTH = 10
 				keydoor.Open()
 	return 1
 
+// this is roundstart because we need to wait for objs to be created
+/hook/roundstart/proc/nature()
+	world << "<span class = 'notice'>Setting up wild grasses.</span>"
+	for (var/turf/floor/plating/grass/G in world)
+		if (prob(50))
+			for (var/atom/movable/AM in G.contents)
+				goto next
+			new /obj/structure/wild/bush(G)
+		next
+
+// freaking seasons dude
 /hook/roundstart/proc/do_seasonal_stuff()
 
+	world << "<span class = 'notice'>Setting up seasonal stuff.</span>"
 	var/datum/game_mode/ww2/mode = ticker.mode
 	if (istype(mode))
 		for (var/turf/floor/plating/grass/G in grass_turf_list)
 			G.season = mode.season
-			if (G.uses_winter_overlay && G.season == "WINTER")
-				var/obj/o = new
-				o.icon = 'icons/turf/snow.dmi'
-				o.icon_state = ""
-				o.alpha = 200
-				o.name = ""
-				G.overlays += o
+			if (G.uses_winter_overlay)
+				if (G.season == "WINTER")
+
+					var/obj/o = new(G)
+					o.icon = 'icons/turf/snow.dmi'
+					o.icon_state = ""
+					o.layer = G.layer
+					o.alpha = 200
+					o.name = ""
+					o.special_id = "seasons"
+					G.overlays += o
+
+					for (var/obj/structure/wild/W in G.contents)
+						if (istype(W) && !istype(W, /obj/structure/wild/tree))
+							var/obj/W_overlay = new(G)
+							W_overlay.icon = W.icon
+							W_overlay.icon_state = W.icon_state
+							W_overlay.layer = W.layer
+							W_overlay.alpha = 100
+							W_overlay.name = ""
+							W_overlay.color = "#FFFAFA"
+							W_overlay.special_id = "seasons"
+							W.overlays.Insert(1, W_overlay)
+
+				else if (G.season == "SUMMER")
+					G.color = "#fc913a"
+					for (var/obj/structure/wild/W in G.contents)
+						if (istype(W) && !istype(W, /obj/structure/wild/tree))
+							var/obj/W_overlay = new(G)
+							W_overlay.icon = W.icon
+							W_overlay.icon_state = W.icon_state
+							W_overlay.layer = W.layer + 0.01
+							W_overlay.alpha = 100
+							W_overlay.name = ""
+							W_overlay.color = "#fc913a"
+							W_overlay.special_id = "seasons"
+							W.overlays.Insert(1, W_overlay)
+
+				else if (G.season == "FALL")
+					G.color = "#9C2706"
+					for (var/obj/structure/wild/W in G.contents)
+						if (istype(W) && !istype(W, /obj/structure/wild/tree))
+							var/obj/W_overlay = new(G)
+							W_overlay.icon = W.icon
+							W_overlay.icon_state = W.icon_state
+							W_overlay.layer = W.layer + 0.01
+							W_overlay.alpha = 100
+							W_overlay.name = ""
+							W_overlay.color = "#9C2706"
+							W_overlay.special_id = "seasons"
+							W.overlays.Insert(1, W_overlay)
 
 	return 1
 

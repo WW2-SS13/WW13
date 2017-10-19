@@ -124,8 +124,58 @@ var/global/datum/global_init/init = new ()
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
+// todo: add aspect to this
+/world/proc/replace_custom_hub_text(T)
+
+	T = replacetext(T, "{CLIENTS}", clients.len)
+	T = replacetext(T, "{PLAYERS}", player_list.len)
+	T = replacetext(T, "{MOBS}", mob_list.len)
+	T = replacetext(T, "{LIVING}", living_mob_list.len)
+	T = replacetext(T, "{HUMAN}", human_mob_list)
+	T = replacetext(T, "{TIMEOFDAY}", time_of_day)
+	T = replacetext(T, "{WEATHER}", "clear skies")
+
+	if (ticker.mode.vars.Find("season"))
+		T = replacetext(T, "{SEASON}", ticker.mode:season)
+	else
+		T = replacetext(T, "{SEASON}", "Spring")
+
+	T = replacetext(T, "{ROUNDTIME}", roundduration2text())
+
 /world/Topic(T, addr, master, key)
 	diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+
+	// custom WW13 hub modules
+
+	if (T == "WW13.title")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.oocdesc")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.icdesc")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.rplevel")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.hostedby")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.extra.1")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.extra.2")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.extra.3")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.extra.4")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.extra.5")
+		return replace_custom_hub_text("replaceme")
 
 	if (T == "ping")
 		var/x = 1

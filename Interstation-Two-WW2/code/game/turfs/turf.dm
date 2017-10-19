@@ -106,6 +106,9 @@ var/list/interior_areas = list(/area/prishtina/houses,
 
 /turf/Destroy()
 	turfs -= src
+	for (var/obj/o in contents)
+		if (o.special_id == "seasons")
+			qdel(o)
 	..()
 
 /turf/ex_act(severity)

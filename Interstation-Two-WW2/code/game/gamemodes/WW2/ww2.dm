@@ -34,7 +34,7 @@
 
 /datum/game_mode/ww2/New()
 	..()
-	season = pick(/*"SPRING", "SUMMER", "FALL", */"SPRING")
+	season = pick("SPRING", "SUMMER", "FALL", "WINTER")
 
 // because we don't use readying up, we override can_start()
 /datum/game_mode/ww2/can_start(var/do_not_spawn)

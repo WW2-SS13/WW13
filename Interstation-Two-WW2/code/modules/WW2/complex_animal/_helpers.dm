@@ -70,6 +70,6 @@
 
 /mob/living/simple_animal/complex_animal/proc/update_icon()
 	if (resting)
-		icon_state = "resting_state"
+		icon_state = resting_state
 	else
 		icon_state = initial(icon_state)

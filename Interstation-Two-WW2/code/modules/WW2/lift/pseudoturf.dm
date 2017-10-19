@@ -36,7 +36,7 @@ var/turf/floor/plating/under/ref_under_plating = null
 		icon_state = "un_dark"
 
 	for (var/atom/movable/a in loc)
-		if (istype(a, /obj/structure/flora) || istype(a, /obj/structure/wild))
+		if (istype(a, /obj/structure/wild))
 			qdel(a)
 		if (ismob(a)) // fucking mice
 			qdel(a)

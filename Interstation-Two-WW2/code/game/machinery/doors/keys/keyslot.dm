@@ -5,6 +5,26 @@
 /datum/keyslot/New()
 	..()
 
+/datum/keyslot/proc/check_weapon(var/obj/item/weapon/W, var/mob/living/carbon/human/H, var/msg = 0)
+	. = 0
+
+	if (istype(W, /obj/item/weapon/key))
+		if (check_individual_key(W))
+			. = 1
+	else if (istype(W, /obj/item/weapon/storage/belt/keychain))
+		if (check_individual_keychain(W))
+			. = 1
+	else
+		. = 0
+
+	if (msg && . == 0)
+		if (istype(H.get_active_hand(), /obj/item/weapon/key))
+			H << "<span class = 'danger'>Your key doesn't match this lock.</span>"
+		else
+			H << "<span class = 'danger'>You don't have a key which matches this lock.</span>"
+
+	return .
+
 /datum/keyslot/proc/check_user(var/mob/living/carbon/human/H, var/msg = 0)
 	if (code == -1)
 		return 1
@@ -30,7 +50,7 @@
 			keys |= keychain.keys
 
 		for (var/obj/item/weapon/key/key in keys)
-			if (check_key(key))
+			if (check_individual_key(key))
 				return 1
 
 	if (msg)
@@ -41,7 +61,13 @@
 
 	return 0
 
-/datum/keyslot/proc/check_key(var/obj/item/weapon/key/key)
+/datum/keyslot/proc/check_individual_key(var/obj/item/weapon/key/key)
 	if (key.code == code)
 		return 1
+	return 0
+
+/datum/keyslot/proc/check_individual_keychain(var/obj/item/weapon/storage/belt/keychain/keychain)
+	for (var/obj/item/weapon/key/K in keychain)
+		if (check_individual_key(K))
+			return 1
 	return 0

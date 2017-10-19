@@ -56,12 +56,12 @@ var/list/nonbreaking_types = list(
 	if (istype(W, /obj/item/weapon/key))
 		if (istype(src, /obj/structure/simple_door/key_door/anyone))
 			return
-		if (keyslot.check_user(user, 1)) // even if this isn't the right key, they made an effort
+		if (keyslot.check_weapon(W, user, 1))
 			keyslot.locked = !keyslot.locked
 	else if (istype(W, /obj/item/weapon/storage/belt/keychain))
 		if (istype(src, /obj/structure/simple_door/key_door/anyone))
 			return
-		if (keyslot.check_user(user, 1))
+		if (keyslot.check_weapon(W, user, 1))
 			keyslot.locked = !keyslot.locked
 	else
 		if ((W.force > WEAPON_FORCE_WEAK || user.a_intent == I_HURT) && check_can_break_doors(W))

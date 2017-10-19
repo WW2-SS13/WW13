@@ -15,6 +15,11 @@
 				break
 			contents -= pick(contents)
 
+// new crate icons from F13 - most are unused
+
+/* todo: turn some crates into CARTS and re-enable this
+/obj/structure/closet/crate
+	icon = 'icons/obj/crate.dmi'*/
 
 /obj/structure/closet/crate/wood
 	name = "Wood planks crate"

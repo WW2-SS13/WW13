@@ -154,12 +154,14 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	//start_events() //handles random events and space dust.
 	//new random event system is handled from the MC.
 
+	/* TODO: discord bot - Kachnov
 	var/admins_number = 0
 	for(var/client/C)
 		if(C.holder)
 			admins_number++
+
 	if(admins_number == 0)
-		send2adminirc("Round has started with no admins online.")
+		send2adminirc("Round has started with no admins online.")*/
 
 	processScheduler.start()
 

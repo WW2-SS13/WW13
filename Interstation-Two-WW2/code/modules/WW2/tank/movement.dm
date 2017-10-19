@@ -25,17 +25,24 @@
 		last_movement = world.time
 		var/turf/target = get_step(src, direct)
 
+		if (target && target.check_prishtina_block(src.front_seat()))
+			play_movement_sound()
+			return
+
 		if (istype(target, /turf/floor/plating/beach/water))
 			play_movement_sound()
 			return
 
-		if (target && target.check_prishtina_block(src.front_seat()))
-			return
+		if (hascall(target, "has_snow") && target:has_snow())
+			if (prob(25))
+				internal_tank_message("<span class = 'notice'><big>Your tank is getting stuck in the snow.</big></span>")
+			else
+				last_movement = world.time + (movement_delay*1.5)
 
 		if (direct != lastdir && lastdir != -1)
-			internal_tank_message("<span class = 'notice'><big>Attempting to turn...</big></span>")
-			var/turndelay = 25
-			last_movement = world.time + turndelay + 5
+			internal_tank_message("<span class = 'notice'><big>Turning...</big></span>")
+			var/turndelay = movement_delay * 1.5
+			last_movement = world.time + turndelay + movement_delay
 			sleep(turndelay)
 
 		dir = direct
