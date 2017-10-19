@@ -156,7 +156,8 @@
 				num_mentors_online++
 /* todo: discord bot
 	if(config.admin_irc)
-		src << "<span class='info'>Adminhelps are also sent to IRC. If no admins are available in game try anyway and an admin on IRC may see it and respond.</span>"
+		src << "<span class='info'>Adminhelps are also sent to IRC. If no admins are available in game try anyway and an admin on IRC may see it and respond.</span>"*/
+
 	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg
 
 	if(config.show_mods)

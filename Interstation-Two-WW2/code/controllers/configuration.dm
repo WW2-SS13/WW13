@@ -692,6 +692,7 @@ var/list/gamemode_cache = list()
 					config.alert_desc_green = value
 
 				if("alert_delta")
+					config.alert_desc_delta = value */
 
 				if("popup_admin_pm")
 					config.popup_admin_pm = 1
