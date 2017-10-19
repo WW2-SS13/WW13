@@ -72,7 +72,7 @@
 		rag.forceMove(loc)
 		var/mob/living/L = against
 		L.IgniteMob()
-	//	#define testmolotovs
+		#define testmolotovs
 
 		var/explosion_power = 0
 		for (var/datum/reagent/R in reagents.reagent_list)
@@ -80,11 +80,18 @@
 				var/datum/reagent/ethanol/E = R
 				explosion_power += (min(max(E.strength, 25), 50) * E.volume)
 
+		for (var/datum/reagent/R in rag.reagents.reagent_list)
+			if (istype(R, /datum/reagent/ethanol))
+				var/datum/reagent/ethanol/E = R
+				explosion_power += (min(max(E.strength, 25), 50) * E.volume)
+
+		explosion_power *= 3.0
+
 		if (explosion_power > 0)
 			var/devrange = min(1, round(explosion_power/1000))
-			var/heavyrange = min(1, round(devrange*2))
-			var/lightrange = min(1, round(devrange*3))
-			var/flashrange = min(1, round(devrange*4))
+			var/heavyrange = max(1, round(devrange*2))
+			var/lightrange = max(1, round(devrange*3))
+			var/flashrange = max(1, round(devrange*4))
 			explosion(get_turf(src), devrange, heavyrange, lightrange, flashrange)
 
 		#ifdef testmolotovs

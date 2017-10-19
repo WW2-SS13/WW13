@@ -117,7 +117,8 @@ world/IsBanned(key,address,computer_id)
 		var/days_left = (duration == -1 ? "" : smart_round((expiration-bantime)/864000))
 		var/minutes_left = ((expiration-bantime)/600)
 
-		var/desc = "You, or another user of this computer or connection ([pckey]) is banned from playing here. The ban reason is:\n[reason]\n[duration != -1 ? "This ban was applied by [capitalize(ackey)] [days_ago] days ago." : ""]"
+		var/desc = "<font size = 3>You are banned.</font><br>"
+		desc += "You, or another user of this computer or connection ([pckey]) is banned from playing here. The ban reason is:\n[reason]\n[duration != -1 ? "This ban was applied by [capitalize(ackey)] [days_ago] days ago." : ""]"
 		desc += "<br>"
 
 		if (!expires)

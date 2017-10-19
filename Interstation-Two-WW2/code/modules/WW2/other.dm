@@ -138,6 +138,7 @@ var/GRACE_PERIOD_LENGTH = 10
 	if (istype(mode))
 		for (var/turf/floor/plating/grass/G in grass_turf_list)
 			G.season = mode.season
+
 			if (G.uses_winter_overlay)
 				if (G.season == "WINTER")
 
@@ -177,7 +178,7 @@ var/GRACE_PERIOD_LENGTH = 10
 							W.overlays.Insert(1, W_overlay)
 
 				else if (G.season == "FALL")
-					G.color = "#9C2706"
+					G.color = "#C37D69"
 					for (var/obj/structure/wild/W in G.contents)
 						if (istype(W) && !istype(W, /obj/structure/wild/tree))
 							var/obj/W_overlay = new(G)

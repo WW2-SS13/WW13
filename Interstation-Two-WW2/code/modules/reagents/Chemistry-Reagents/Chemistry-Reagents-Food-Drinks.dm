@@ -968,7 +968,7 @@
 	description = "Number one drink AND fueling choice for Russians worldwide."
 	taste_description = "grain alcohol"
 	color = "#0064C8" // rgb: 0, 100, 200
-	strength = 15
+	strength = 25
 
 /datum/reagent/ethanol/vodka/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
