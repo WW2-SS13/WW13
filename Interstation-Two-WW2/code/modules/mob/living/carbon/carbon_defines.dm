@@ -25,8 +25,13 @@
 	var/lastpuke = 0
 
 	var/cpr_time = 1.0
-	var/nutrition = 400.0//Carbon
+
+	// hunger
+	var/nutrition = 400.0
 	var/max_nutrition = 400.0
 
+	// thirst
+	var/water = 350.0
+	var/max_water = 350.0
 
 	var/obj/item/weapon/tank/internal = null//Human/Monkey

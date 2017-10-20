@@ -44,19 +44,19 @@ var/supplytrain_interval = 1200 // todo: config setting
 
 			if (stopthetrain)
 				if (world.time > next_supplytrain_message)
-					message_germans("<span class = 'warning'><big>SUPPLY: The Supply Train is either occupied by a person, has a person standing in its way, or has not had its crates unloaded. Its departure has been delayed until this condition is solved.</big></span>")
+					german_supplytrain_master.announce("The Supply Train is either occupied by a person, has a person standing in its way, or has not had its crates unloaded. Its departure has been delayed until this condition is solved.")
 					next_supplytrain_message = world.time + 600
 				goto skipmovement
 
 			switch (german_supplytrain_master.direction)
 				if ("FORWARDS")
 					german_supplytrain_master.direction = "BACKWARDS"
-					message_germans("<span class = 'notice'><big>SUPPLY: The Supply Train is now departing from the armory. It will arrive again in [supplytrain_interval/600] minutes.</big></span>")
+					german_supplytrain_master.announce("The Supply Train is now departing from the armory. It will arrive again in [supplytrain_interval/600] minutes.")
 					if (!german_supplytrain_master.invisible)
 						german_supplytrain_master.update_invisibility(1)
 				if ("BACKWARDS")
 					german_supplytrain_master.direction = "FORWARDS"
-					message_germans("<span class = 'notice'><big>SUPPLY: The Supply Train is now arriving at the armory. It will depart in [supplytrain_interval/600] minutes.</big></span>")
+					german_supplytrain_master.announce("The Supply Train is now arriving at the armory. It will depart in [supplytrain_interval/600] minutes.")
 					if (german_supplytrain_master.invisible)
 						german_supplytrain_master.update_invisibility(0)
 

@@ -119,6 +119,8 @@
 			jobname = H.get_assignment_noid()
 
 			ageAndGender = ageAndGender2Desc(H.age, H.gender)//Get their age and gender
+			if (H.original_job && H.original_job.title == "N/A")
+				ageAndGender = ""
 
 			speaker_name += " \[" + "[jobname] " + "[ageAndGender]" + "]"//Print it out.
 

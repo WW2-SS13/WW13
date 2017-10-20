@@ -123,16 +123,30 @@ var/GRACE_PERIOD_LENGTH = 10
 // this is roundstart because we need to wait for objs to be created
 /hook/roundstart/proc/nature()
 	world << "<span class = 'notice'>Setting up wild grasses.</span>"
-	for (var/turf/floor/plating/grass/G in world)
+	for (var/turf/floor/plating/grass/G in grass_turf_list)
 		if (prob(50))
-			for (var/atom/movable/AM in G.contents)
+			if (locate(/atom/movable) in G)
 				goto next
 			new /obj/structure/wild/bush(G)
 		next
 
+// must come after do_seasonal_stuff() or things break, notably the entire game
+/hook/roundstart/proc/correct_seasonal_stuff()
+	spawn (1)
+		world << "<span class = 'notice'>Correcting seasonal icon errors.</span>"
+	spawn (50)
+		for (var/turf/floor/plating/grass/G in grass_turf_list)
+			G.overlays.Cut()
+			for (var/obj/o in G.contents)
+				if (o.special_id == "seasons")
+					G.overlays += o
+			for (var/cache_key in G.floor_decal_cache_keys)
+				var/image/decal = floor_decals[cache_key]
+				decal.layer = G.layer + 0.01
+				G.overlays += decal
+
 // freaking seasons dude
 /hook/roundstart/proc/do_seasonal_stuff()
-
 	world << "<span class = 'notice'>Setting up seasonal stuff.</span>"
 	var/datum/game_mode/ww2/mode = ticker.mode
 	if (istype(mode))

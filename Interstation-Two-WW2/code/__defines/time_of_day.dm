@@ -11,3 +11,13 @@ var/list/time_of_day2luminosity = list(
 	"Early Morning" = 0.4,
 	"Night" = 0.3,
 	"Midnight" = 0.2)
+
+/proc/pick_TOD()
+	#ifdef ALWAYS_DAY
+	return "Midday"
+	#else
+	if (prob(40))
+		return "Midday"
+	else
+		return pick(times_of_day - "Midday")
+	#endif

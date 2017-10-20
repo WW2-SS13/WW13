@@ -65,11 +65,7 @@
 
 /world/New()
 
-	#ifndef ALWAYS_DAY
-	time_of_day = pick(times_of_day)
-	#else
-	time_of_day = "Midday"
-	#endif
+	time_of_day = pick_TOD()
 
 	. = ..()
 
@@ -81,6 +77,7 @@
 		for (var/area/prishtina/p in world) // make all areas use lighting
 			if (istype(p) && !istype(p, /area/prishtina/train) && !istype(p, /area/prishtina/german/train_zone) && !istype(p, /area/prishtina/german/armory/train))
 				p.dynamic_lighting = 1
+
 	/*	todo: fix train lights
 	var/area/prishtina/german/train_zone/train_zone = locate() in world
 	for (var/turf/t in train_zone.contents)
@@ -88,8 +85,6 @@
 			light.brightness_range = 0
 			light.brightness_power = 0
 			light.update(0, 1, 1)*/
-
-
 
 	create_all_lighting_corners()
 	create_all_lighting_overlays()

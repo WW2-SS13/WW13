@@ -1,1 +1,1 @@
- /mob/living/simple_animal/complex_animal/canine
+/mob/living/simple_animal/complex_animal/canine

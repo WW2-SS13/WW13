@@ -61,14 +61,19 @@
 	switch (stat)
 		if (CONSCIOUS) // takes about 1333 ticks to start starving, or ~44 minutes
 			nutrition -= 0.30
+			water -= 0.30
 		if (UNCONSCIOUS) // takes over an hour to starve
 			nutrition -= 0.20
+			water -= 0.20
 
 	if (stamina == max_stamina-1 && m_intent == "walk")
 		src << "<span class = 'good'>You feel like you can run for a while.</span>"
 
 	nutrition = min(nutrition, max_nutrition)
 	nutrition = max(nutrition, -max_nutrition)
+
+	water = min(water, max_water)
+	water = max(water, -max_water)
 
 	..()
 
@@ -534,10 +539,10 @@
 			take_overall_damage(1,1)
 		else //heal in the dark
 			heal_overall_damage(1,1)
-
+/*
 	// nutrition decrease
 	if (nutrition > 0 && stat != 2)
-		nutrition = max (0, nutrition - species.hunger_factor)
+		nutrition = max (0, nutrition - species.hunger_factor)*/
 
 	// TODO: stomach and bloodstream organ.
 	handle_trace_chems()
@@ -871,8 +876,8 @@
 
 		handle_starvation()
 
-//Hardcore mode stuff. This was moved here because constants that are only used
-//at one spot in the code shouldn't be in the __defines folder
+/*Hardcore mode stuff. This was moved here because constants that are only used
+  at one spot in the code shouldn't be in the __defines folder */
 
 #define STARVATION_MIN 0 //If you have less nutrition than this value, the hunger indicator starts flashing
 
@@ -896,11 +901,11 @@
 /mob/living/carbon/human/proc/handle_starvation()//Making this it's own proc for my sanity's sake - Matt
 
 	if(nutrition < 350 && nutrition >= 200)
-		if (prob(4))
+		if (prob(3))
 			src << "<span class = 'notice'>You're getting a bit hungry.</span>"
 
 	if(nutrition < 200)
-		if (prob(5))
+		if (prob(4))
 			src << "<span class = 'notice'>You're pretty hungry.</span>"
 
 	if(nutrition < 20) //Nutrition is below 20 = starvation

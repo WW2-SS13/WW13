@@ -2,16 +2,16 @@
 	icon = 'icons/obj/wild.dmi'
 	anchored = 1
 	var/sways = 0
-
+/*
 /obj/structure/wild/New()
-	..()
-
+	..()*/
+/*
 	spawn (50)
 		for (var/obj/structure/S in get_turf(src))
 			if (S && istype(S) && S != src)
 				qdel(src)
 				return
-
+*/
 /obj/structure/wild/Destroy()
 	for (var/obj/o in get_turf(src))
 		if (o.special_id == "seasons")
@@ -46,11 +46,13 @@
 	opacity = 0
 	density = 0
 
+/* todo: bush sounds
 /obj/structure/wild/bush/Crossed(var/atom/movable/am)
 	if (!istype(src, /obj/structure/wild/bush/tame))
 		if (istype(am, /mob/living))
 			playsound(get_turf(src), "rustle", rand(50,70))
 	..(am)
+*/
 
 /obj/structure/wild/bush/tame
 	name = "cultivated bush"
