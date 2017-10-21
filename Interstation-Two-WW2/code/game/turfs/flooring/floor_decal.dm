@@ -1,7 +1,10 @@
+// this was flooring_decal.dm. I renamed it to fit the type name better - Kachnov
+
 // These are objects that destroy themselves and add themselves to the
 // decal list of the floor under them. Use them rather than distinct icon_states
 // when mapping in interesting floor designs.
 var/list/floor_decals = list()
+/turf/var/list/floor_decal_cache_keys = list()
 
 /obj/effect/floor_decal
 	name = "floor decal"
@@ -21,13 +24,14 @@ var/list/floor_decals = list()
 		var/cache_key = "[alpha]-[color]-[dir]-[icon_state]-[layer]"
 		if(!floor_decals[cache_key])
 			var/image/I = image(icon = src.icon, icon_state = src.icon_state, dir = src.dir)
-			I.layer = T.layer
+			I.layer = T.layer+0.05
 			I.color = src.color
 			I.alpha = src.alpha
 			floor_decals[cache_key] = I
 		if(!T.decals) T.decals = list()
 		T.decals |= floor_decals[cache_key]
 		T.overlays |= floor_decals[cache_key]
+		T.floor_decal_cache_keys |= cache_key
 	qdel(src)
 	return
 

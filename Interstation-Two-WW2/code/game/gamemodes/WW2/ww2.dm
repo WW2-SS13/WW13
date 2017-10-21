@@ -32,9 +32,8 @@
 
 	var/season = "SPRING"
 
-/datum/game_mode/ww2/New()
-	..()
-	season = pick("SPRING", "SUMMER", "FALL", "WINTER")
+/datum/game_mode/ww2/pre_setup()
+	season = pick("SUMMER", "FALL", "WINTER")
 
 // because we don't use readying up, we override can_start()
 /datum/game_mode/ww2/can_start(var/do_not_spawn)

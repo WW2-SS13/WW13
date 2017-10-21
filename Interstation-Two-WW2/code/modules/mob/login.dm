@@ -47,3 +47,8 @@
 
 	//set macro to normal incase it was overriden (like cyborg currently does)
 	winset(src, null, "mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5")
+
+	spawn (1)
+		if(admin_datums[src.ckey])
+			if (ticker && ticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
+				message_admins("Admin login: [key_name(src)]")

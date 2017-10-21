@@ -52,7 +52,42 @@
 		return 0
 	return prob(chance_table[idx])
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, var/speed)
+	smash(get_turf(hit_atom), hit_atom)
+	..(hit_atom, speed)
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null)
+
+	if(rag && rag.on_fire && isliving(against))
+		rag.forceMove(loc)
+		var/mob/living/L = against
+		L.IgniteMob()
+
+		#define testmolotovs
+
+		var/explosion_power = 0
+		for (var/datum/reagent/R in reagents.reagent_list)
+			if (istype(R, /datum/reagent/ethanol))
+				var/datum/reagent/ethanol/E = R
+				explosion_power += (min(max(E.strength, 25), 50) * E.volume)
+
+		for (var/datum/reagent/R in rag.reagents.reagent_list)
+			if (istype(R, /datum/reagent/ethanol))
+				var/datum/reagent/ethanol/E = R
+				explosion_power += (min(max(E.strength, 25), 50) * E.volume)
+
+		#ifdef testmolotovs
+		world << "testing molotov with an explosion_power of [explosion_power]."
+		#endif
+
+		if (explosion_power > 0)
+			var/devrange = min(1, round(explosion_power/1000))
+			var/heavyrange = max(1, round(devrange*2))
+			var/lightrange = max(1, round(devrange*3))
+			var/flashrange = max(1, round(devrange*4))
+			explosion(get_turf(src), devrange, heavyrange, lightrange, flashrange)
+
+
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src)
@@ -67,29 +102,6 @@
 	I.Blend(B.broken_outline, ICON_OVERLAY, rand(5), 1)
 	I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
 	B.icon = I
-
-	if(rag && rag.on_fire && isliving(against))
-		rag.forceMove(loc)
-		var/mob/living/L = against
-		L.IgniteMob()
-	//	#define testmolotovs
-
-		var/explosion_power = 0
-		for (var/datum/reagent/R in reagents.reagent_list)
-			if (istype(R, /datum/reagent/ethanol))
-				var/datum/reagent/ethanol/E = R
-				explosion_power += (min(max(E.strength, 25), 50) * E.volume)
-
-		if (explosion_power > 0)
-			var/devrange = min(1, round(explosion_power/1000))
-			var/heavyrange = min(1, round(devrange*2))
-			var/lightrange = min(1, round(devrange*3))
-			var/flashrange = min(1, round(devrange*4))
-			explosion(get_turf(src), devrange, heavyrange, lightrange, flashrange)
-
-		#ifdef testmolotovs
-		world << "testing molotov with explosion_power = [explosion_power]"
-		#endif
 
 	playsound(src,'sound/effects/GLASS_Rattle_Many_Fragments_01_stereo.wav',100,1)
 	src.transfer_fingerprints_to(B)
@@ -170,8 +182,9 @@
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	if(reagents)
-		user.visible_message("<span class='notice'>The contents of \the [src] splash all over [target]!</span>")
-		reagents.splash(target, reagents.total_volume)
+		spawn (1) // wait until after our explosion, if we have one
+			user.visible_message("<span class='notice'>The contents of \the [src] splash all over [target]!</span>")
+			reagents.splash(target, reagents.total_volume)
 
 	//Finally, smash the bottle. This kills (qdel) the bottle.
 	var/obj/item/weapon/broken_bottle/B = smash(target.loc, target)

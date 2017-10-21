@@ -58,6 +58,8 @@
 	..(newloc,"plasma")
 /turf/wall/sandstone/New(var/newloc)
 	..(newloc,"sandstone")
+/turf/wall/wood/New(var/newloc)
+	..(newloc,"wood")
 /turf/wall/ironplasma/New(var/newloc)
 	..(newloc,"iron","plasma")
 /turf/wall/golddiamond/New(var/newloc)

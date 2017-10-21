@@ -695,3 +695,14 @@ var/first_fallschirm = 1
 
 /datum/job/german/chef/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
+
+// this is a horrible hack.
+/datum/job/german/trainsystem
+	title = "N/A"
+	en_meaning = "N/A"
+	faction = "Station"
+	total_positions = 0
+	head_position = 0
+	is_officer = 0
+	is_commander = 0
+	absolute_limit = 0

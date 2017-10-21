@@ -60,12 +60,14 @@
 		else // we're going to nap so stop knowing about them
 			knows_about_mobs -= M
 	resting = 1
+	wander = 0
 	update_icon()
 
 /mob/living/simple_animal/complex_animal/proc/stop_napping()
 	if (!resting)
 		return 0
 	resting = 0
+	wander = initial(wander)
 	update_icon()
 
 /mob/living/simple_animal/complex_animal/proc/update_icon()

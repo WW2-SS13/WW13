@@ -35,11 +35,9 @@
 // things we do every life tick: by default, wander every few seconds,
 // rest every ~10 minutes. Deplete nutrition over ~30 minutes
 /mob/living/simple_animal/complex_animal/proc/onEveryLifeTick()
-	if (prob(50))
-		wander()
-	else if (prob(1) && prob(33) && !resting)
+	if (prob(1) && prob(33) && !resting)
 		nap()
-	else
+	else if (resting)
 		stop_napping()
 
 	var/nutrition_loss = initial(nutrition)/900

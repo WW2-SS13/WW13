@@ -1,4 +1,4 @@
- /mob/living/simple_animal/complex_animal/canine/wolf
+/mob/living/simple_animal/complex_animal/canine/wolf
 	icon_state = null
 	resting_state = null
 

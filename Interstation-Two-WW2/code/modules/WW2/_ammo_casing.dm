@@ -11,6 +11,18 @@ WW 2 WEAPONS MAGS N AMMO
 	projectile_type = /obj/item/projectile/bullet/rifle/a145
 	matter = list(DEFAULT_WALL_MATERIAL = 1250)
 
+/obj/item/ammo_magazine/ptrdbox
+	name = "magazine box (PTRD ammo)"
+	icon_state = "mosin_ammo"
+	origin_tech = "combat=2"
+	mag_type = MAGAZINE
+	caliber = "14.5mm"
+	w_class = 3
+	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	ammo_type = /obj/item/projectile/bullet/rifle/a145
+	max_ammo = 20
+	multiple_sprites = 1
+
 /obj/item/ammo_casing/c4mm
 	name = "a 4mm bullet casing"
 	projectile_type = /obj/item/projectile/bullet/rifle/c4mm

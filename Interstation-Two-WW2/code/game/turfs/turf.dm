@@ -419,15 +419,26 @@ var/const/enterloopsanity = 100
 			else
 				footstepsound = "erikafootsteps"
 
-			if(istype(H.shoes, /obj/item/clothing/shoes))//This is probably the worst possible way to handle walking sfx.
+			if (locate(/obj/train_pseudoturf) in contents)
+				var/obj/train_pseudoturf/tpt = locate() in contents
+				if (istype(tpt.based_on_type, /turf/floor/wood))
+					footstepsound = "woodfootsteps"
+				else
+					footstepsound = "erikafootsteps"
+
+			else if (locate(/obj/train_connector) in contents)
+				footstepsound = "erikafootsteps"
+
+
+			if(istype(H.shoes, /obj/item/clothing/shoes))
 				if(M.m_intent == "run")
-					if(M.footstep >= 1)//Every two steps.
+					if(M.footstep >= 0) // Every step.
 						M.footstep = 0
 						playsound(src, footstepsound, 100, 1)
 					else
 						M.footstep++
 				else
-					if(M.footstep >= 6)
+					if(M.footstep >= 1) // Every two steps.
 						M.footstep = 0
 						playsound(src, footstepsound, 100, 1)
 					else

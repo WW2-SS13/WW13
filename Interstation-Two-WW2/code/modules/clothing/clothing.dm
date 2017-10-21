@@ -379,8 +379,22 @@ BLIND     // can't see anything
 
 
 /obj/item/clothing/under/attack_hand(var/mob/user)
-	if(accessories && accessories.len)
+	if(accessories && accessories.len && (src == user.r_hand || src == user.l_hand))
+		if (istype(accessories[1], /obj/item/clothing/accessory/storage/webbing))
+			var/obj/item/clothing/accessory/storage/webbing/webbing = accessories[1]
+			user << "<span class = 'warning'>You start to remove the webbing from [src].</span>"
+			if (do_after(user, 50, get_turf(user)))
+				user << "<span class = 'warning'>You finish removing the webbing from [src].</span>"
+				accessories -= webbing
+				if (overlays.len == 1) // hack
+					overlays.Cut()
+				else
+					overlays -= webbing
+				update_icon()
+				user.put_in_hands(webbing)
+	else
 		..()
+
 	if ((ishuman(usr) || issmall(usr)) && src.loc == user)
 		return
 	..()
