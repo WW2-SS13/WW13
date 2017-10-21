@@ -466,6 +466,9 @@
 
 			if (explosion)
 				explosion(t, 2*power_mult, 4*power_mult, 6*power_mult, 9*power_mult)
+				// extra effective against tonks
+				for (var/obj/tank/T in range(1, t))
+					T.ex_act(1.0, 1)
 			else
 				var/how_many = rand(20,30) // was 40, 50
 				for (var/v in 1 to how_many)

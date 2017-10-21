@@ -55,6 +55,7 @@ DEBUG
 	return 1
 
 /proc/jobban_loadbanfile()
+/*
 	if(config.ban_legacy_system)
 		var/savefile/S=new("data/job_full.ban")
 		S["keys[0]"] >> jobban_keylist
@@ -64,32 +65,30 @@ DEBUG
 		if (!length(jobban_keylist))
 			jobban_keylist=list()
 			log_admin("jobban_keylist was empty")
-	else
-		if(!establish_db_connection())
-			error("Database connection failed. Reverting to the legacy ban system.")
-			log_misc("Database connection failed. Reverting to the legacy ban system.")
-			config.ban_legacy_system = 1
-			jobban_loadbanfile()
-			return
+	else*/
+	if(!establish_db_connection())
+	/*	error("Database connection failed. Reverting to the legacy ban system.")
+		log_misc("Database connection failed. Reverting to the legacy ban system.")
+		config.ban_legacy_system = 1
+		jobban_loadbanfile()*/
+		return
 
-		//Job permabans
-		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_PERMABAN' AND isnull(unbanned)")
-		query.Execute()
+	//Job permabans
+	var/list/rowdata = database.execute("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_PERMABAN' AND isnull(unbanned)")
 
-		while(query.NextRow())
-			var/ckey = query.item[1]
-			var/job = query.item[2]
-
+	if (islist(rowdata) && !isemptylist(rowdata))
+		for (var/v in 1 to rowdata["occurences_of_ckey"])
+			var/ckey = rowdata["ckey_[v]"]
+			var/job = rowdata["job_[v]"]
 			jobban_keylist.Add("[ckey] - [job]")
 
-		//Job tempbans
-		var/DBQuery/query1 = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
-		query1.Execute()
+	//Job tempbans
+	rowdata = database.execute("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
 
-		while(query1.NextRow())
-			var/ckey = query1.item[1]
-			var/job = query1.item[2]
-
+	if (islist(rowdata) && !isemptylist(rowdata))
+		for (var/v in 1 to rowdata["occurences_of_ckey"])
+			var/ckey = rowdata["ckey_[v]"]
+			var/job = rowdata["job_[v]"]
 			jobban_keylist.Add("[ckey] - [job]")
 
 /proc/jobban_savebanfile()

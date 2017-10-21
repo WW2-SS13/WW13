@@ -1,7 +1,7 @@
 /datum/game_mode/ww2
 	name = "World War 2"
 	config_tag = "ww2"
-	required_players = 0
+	required_players = 1
 	round_description = ""
 	extended_round_description = ""
 
@@ -27,11 +27,52 @@
 	var/admins_triggered_roundend = 0
 	var/admins_triggered_noroundend = 0
 
+	var/personnel[2]
+	var/supplies[2]
+
+	var/season = "SPRING"
+
+/datum/game_mode/ww2/New()
+	..()
+	season = pick("SPRING", "SUMMER", "FALL", "WINTER")
+
+// because we don't use readying up, we override can_start()
+/datum/game_mode/ww2/can_start(var/do_not_spawn)
+
+	var/playerC = 0
+	for(var/mob/new_player/player in player_list)
+		if(player.client)
+			playerC++
+
+	if(playerC < required_players)
+		return 0
+
+	if(!(antag_templates && antag_templates.len))
+		return 1
+
+	var/enemy_count = 0
+	if(antag_tags && antag_tags.len)
+		for(var/antag_tag in antag_tags)
+			var/datum/antagonist/antag = all_antag_types[antag_tag]
+			if(!antag)
+				continue
+			var/list/potential = list()
+			if(antag.flags & ANTAG_OVERRIDE_JOB)
+				potential = antag.pending_antagonists
+			else
+				potential = antag.candidates
+			if(islist(potential))
+				if(require_all_templates && potential.len < antag.initial_spawn_req)
+					return 0
+				enemy_count += potential.len
+				if(enemy_count >= required_enemies)
+					return 1
+	return 0
+
 // win conditions for one side already exist, make sure we
 // don't active another
 /datum/game_mode/ww2/proc/trying_to_win()
 	return (cond_2_1_check1 || cond_2_2_check1 || cond_2_3_check1 || cond_2_4_check1)
-
 
 /datum/game_mode/ww2/check_finished()
 	if (admins_triggered_noroundend)
@@ -103,7 +144,7 @@
 				world << "<font size = 3>The Germans have occupied most Soviet territory! The Soviet Army has 5 minutes to reclaim their land!</font>"
 				return 0
 		else
-			if (cond_2_2_check1 == 1) // soviets lost control!
+			if (cond_2_2_check1 == 1) // germans lost control!
 				if(cond_2_2_nextcheck < world.time + 2400)
 					world << "<font size = 3>The Germans have lost control of the Soviet territory they occupied!</font>"
 				else
@@ -171,8 +212,10 @@
 
 	return 0
 
-
 /datum/game_mode/ww2/declare_completion()
+
+	name = "World War 2"
+
 	var/list/soldiers = WW2_soldiers_alive()
 	var/WW2_soldiers_en_ru_coeff = WW2_soldiers_en_ru_ratio()
 
@@ -184,7 +227,7 @@
 		else if (WW2_soldiers_en_ru_coeff <= soviet_win_coeff)
 			winners = "Soviet Army"
 
-	var/text = ""
+	var/text = "<big><span class = 'notice'>The War has ended.</span></big><br><br>"
 
 	text += "[soldiers["de"]] Wehrmacht and SS soldiers survived.<br>"
 	text += "[soldiers["ru"]] Soviet soldiers survived.<br><br>"
@@ -208,8 +251,32 @@
 		print_jews(client, 0)
 
 /datum/game_mode/ww2/announce() //to be called when round starts
-	world << "<b>The current game mode is World War II!</b>"
 
-/datum/game_mode/ww2/declare_completion()
-	name = "World War 2" // fixes capitalization error - Kachnov
-	..()
+	// announce after some other stuff, like system setups, are announced
+	spawn (3)
+
+		new/datum/game_aspect/ww2(src)
+
+		spawn (0)
+			if (aspect)
+				aspect.activate()
+				aspect.post_activation()
+
+			spawn (1)
+				job_master.german_job_slots *= personnel[GERMAN]
+				job_master.russian_job_slots *= personnel[RUSSIAN]
+
+				// nerf or buff german supplies by editing the supply train controller
+				german_supplytrain_master.supply_points_per_second_min *= supplies[GERMAN]
+				german_supplytrain_master.supply_points_per_second_max *= supplies[GERMAN]
+
+				// nerf or buff soviet supplies by editing crates in Soviet territory.
+				spawn (10) // make sure rations are set up?
+					for (var/obj/structure/closet/crate/soviet in world)
+						if (istype(get_area(soviet), /area/prishtina/soviet))
+							soviet.resize(supplies[RUSSIAN])
+
+				// this may have already happened, do it again w/o announce
+				setup_autobalance(0)
+
+		world << "<b>The current game mode is World War II!</b>"

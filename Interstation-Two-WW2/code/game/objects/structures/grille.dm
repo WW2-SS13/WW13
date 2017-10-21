@@ -16,8 +16,8 @@
 
 /obj/structure/grille/New()
 	..()
-	for (var/obj/structure/flora/f in get_turf(src))
-		qdel(f)
+	for (var/obj/structure/wild/W in get_turf(src))
+		qdel(W)
 
 /obj/structure/grille/update_icon()
 	if(destroyed)

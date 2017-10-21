@@ -6,31 +6,43 @@
 	if(istype(C, /obj/item/stack/cable_coil) || (flooring && istype(C, /obj/item/stack/rods)))
 		return ..(C, user)
 
-	//var/dir_to_floor =
+	else if (istype(C, /obj/item/weapon/shovel))
+		if (season == "WINTER" && uses_winter_overlay)
+			var/obj/o = has_snow()
+			if (o)
+				visible_message("[user] starts to shovel the snow from [src].", "You start to shovel the snow from [src]")
+				if (do_after(user, rand(40,60)))
+					visible_message("[user] shovels the snow from [src].", "You shovel the snow from [src]")
+					qdel(o)
+			else
+				return ..(C, user)
+		else
+			return ..(C, user)
 
-	var/your_dir = "NORTH"
+	else if (istype(C, /obj/item/weapon/sandbag))
 
-	switch (user.dir)
-		if (NORTH)
-			your_dir = "NORTH"
-		if (SOUTH)
-			your_dir = "SOUTH"
-		if (EAST)
-			your_dir = "EAST"
-		if (WEST)
-			your_dir = "WEST"
+		var/your_dir = "NORTH"
 
-	var/sandbag_time = 50
+		switch (user.dir)
+			if (NORTH)
+				your_dir = "NORTH"
+			if (SOUTH)
+				your_dir = "SOUTH"
+			if (EAST)
+				your_dir = "EAST"
+			if (WEST)
+				your_dir = "WEST"
 
-	if (ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if (istype(H.original_job, /datum/job/german/engineer))
-			sandbag_time = 20
-		if (istype(H.original_job, /datum/job/russian/engineer))
-			sandbag_time = 20
+		var/sandbag_time = 50
 
-	if (src == get_step(user, user.dir))
-		if (istype(C, /obj/item/weapon/sandbag))
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if (istype(H.original_job, /datum/job/german/engineer))
+				sandbag_time = 20
+			if (istype(H.original_job, /datum/job/russian/engineer))
+				sandbag_time = 20
+
+		if (src == get_step(user, user.dir))
 			if (alert(user, "This will start building a sandbag [your_dir] of you.", "", "Continue", "Stop") == "Continue")
 				visible_message("<span class='danger'>[user] starts constructing the base of a sandbag wall.</span>", "<span class='danger'>You start constructing the base of a sandbag wall.</span>")
 				if (do_after(user, sandbag_time, user.loc))
@@ -40,7 +52,7 @@
 					var/obj/structure/window/sandbag/incomplete/sandbag = new/obj/structure/window/sandbag/incomplete(src, user)
 					sandbag.progress = progress
 					visible_message("<span class='danger'>[user] finishes constructing the base of a sandbag wall. Anyone can now add to it.</span>")
-			return
+				return
 
 
 	if(flooring)

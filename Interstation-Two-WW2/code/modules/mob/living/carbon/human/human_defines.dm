@@ -109,9 +109,25 @@
 
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
-	var/stamina = 100
-	var/max_stamina = 100
 
 	var/list/hud_list[200]
 
 	var/job_spawn_location = null // used to override job.spawn_location for a single mob
+
+	// NEW STAT SYSTEM
+	// the 'normal' for all stats is 100
+	// all stats have a corresponding max_stat variable, except for lists
+
+
+	var/stamina = 100
+	var/max_stamina = 100
+
+	var/strength = 100
+	var/max_strength = 100
+
+	var/speed = 100
+	var/max_speed = 100
+
+	var/knows_tools = list()
+	var/knows_weapons = list()
+	var/knows_guns = list()

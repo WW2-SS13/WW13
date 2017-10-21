@@ -19,7 +19,7 @@
 		icon_state = "fw_on"
 		item_state = "fw_on"
 	else
-		item_state = "fw_off"
+		icon_state = "fw_off"
 		item_state = "fw_off"
 
 /obj/item/weapon/flamethrower/flammenwerfer/Destroy()
@@ -44,15 +44,6 @@
 		if(M.l_hand == src || M.r_hand == src)
 			location = M.loc
 	// made this stop starting fires where we are standing. fuck.
-	return
-
-
-/obj/item/weapon/flamethrower/flammenwerfer/update_icon()
-	overlays.Cut()
-	if(lit)
-		item_state = "flamethrower_1"
-	else
-		item_state = "flamethrower_0"
 	return
 
 // this has better range checking so we don't burn/overheat ourselves

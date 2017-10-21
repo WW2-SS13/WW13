@@ -88,8 +88,9 @@
 
 /client/verb/attack_self()
 	set hidden = 1
-	if(mob)
-		mob.mode()
+	if(mob && isliving(mob))
+		var/mob/living/L = mob
+		L.mode()
 	return
 
 
@@ -299,17 +300,22 @@
 		// for some reason they kept defaulting to values different from
 		// the ones specified in the config.
 
+		var/standing_on_snow = 0
+		var/turf/floor/F = get_turf(mob)
+		if (F && istype(F) && F.season == "WINTER")
+			standing_on_snow = 1
+
 		switch(mob.m_intent)
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 2.2
+				move_delay += 2.2 + (standing_on_snow ? 1.1 : 0)
 				if (ishuman(mob))
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.03
 					--H.stamina
 			if("walk")
-				move_delay += 3.3
+				move_delay += 3.3 + (standing_on_snow ? 1.65 : 0)
 				if (ishuman(mob))
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.003
@@ -327,7 +333,6 @@
 				break
 			if (H.m_intent != "walk")
 				H.m_intent = "walk" // in case we don't have a m_intent HUD, somehow
-
 
 		if (!isobserver(mob))
 			if (istype(get_turf(mob), /turf/floor/plating/beach/water))

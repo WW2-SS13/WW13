@@ -34,6 +34,8 @@ var/global/list/additional_antag_types = list()
 	var/event_delay_mod_moderate             // Modifies the timing of random events.
 	var/event_delay_mod_major                // As above.
 
+	var/datum/game_aspect/aspect = null
+
 /datum/game_mode/New()
 	..()
 	// Enforce some formatting.
@@ -122,6 +124,8 @@ var/global/list/additional_antag_types = list()
 			world << "[antag_summary]"
 		else
 			message_admins("[antag_summary]")
+	if (aspect)
+		aspect.activate()
 
 ///can_start()
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
@@ -385,32 +389,32 @@ proc/display_roundstart_logout_report()
 					found = 1
 					break
 			if(!found)
-				msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
+				msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job ? H.original_job.title : "nobody"] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
 
 		if(H.ckey && H.client)
 			if(H.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
-				msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
+				msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job ? H.original_job.title : "nobody"] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				continue //AFK client
 			if(H.stat)
 				if(H.stat == UNCONSCIOUS)
-					msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (Dying)\n"
+					msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job ? H.original_job.title : "nobody"] (Dying)\n"
 					continue //Unconscious
 				if(H.stat == DEAD)
-					msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job.title] (Dead)\n"
+					msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job ? H.original_job.title : "nobody"] (Dead)\n"
 					continue //Dead
 
 			continue //Happy connected client
 		for(var/mob/observer/ghost/D in mob_list)
 			if(D.mind && (D.mind.original == H || D.mind.current == H))
 				if(H.stat == DEAD)
-					msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job.title] (Dead)\n"
+					msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job ? H.original_job.title : "nobody"] (Dead)\n"
 					continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
-						msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job.title] (<font color='red'><b>Adminghosted</b></font>)\n"
+						msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job ? H.original_job.title : "nobody"] (<font color='red'><b>Adminghosted</b></font>)\n"
 						continue //Holwhat
 					else
-						msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job.title] (<font color='red'><b>Ghosted</b></font>)\n"
+						msg += "<b>[H.name]</b> ([ckey(D.mind.key)]), the [H.original_job ? H.original_job.title : "nobody"] (<font color='red'><b>Ghosted</b></font>)\n"
 						continue //Ghosted while alive
 
 	msg += "</span>" // close the span from right at the top
@@ -443,7 +447,7 @@ proc/display_roundstart_logout_report()
 	for(var/datum/objective/objective in player.objectives)
 		player.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
 		obj_count++
-
+/*
 /mob/verb/check_round_info()
 	set name = "Check Round Info"
 	set category = "OOC"
@@ -461,3 +465,4 @@ proc/display_roundstart_logout_report()
 	else
 		usr << "<i>Shhhh</i>. It's a secret."
 	return
+*/

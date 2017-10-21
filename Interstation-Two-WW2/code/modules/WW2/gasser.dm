@@ -37,16 +37,22 @@
 	var/pushed_state = "lever_pushed"
 	var/orientation = "NONE"
 	name = "gassing lever"
+	var/next_use = -1
 
 /obj/gas_lever/attack_hand(var/mob/user as mob)
+	if (world.time < next_use && next_use != -1)
+		return
+
+	next_use = world.time + 25
+
 	if (user && istype(user, /mob/living/carbon/human))
 		if (orientation == "NONE")
 			icon_state = pushed_state
 			orientation = "PUSHED"
-			visible_message("<span class = 'danger'>[user] pushes the lever forwards!</span>")
+			visible_message("<span class = 'danger'>[user] pushes the lever forwards!</span>", "<span class = 'notice'>You push the lever forwards.</span>")
 			for (var/obj/gasser/gasser in range(10, src))
 				gasser.function()
 		else if (orientation == "PUSHED")
 			icon_state = none_state
 			orientation = "NONE"
-			visible_message("<span class = 'danger'>[user] pulls the lever back.</span>")
+			visible_message("<span class = 'danger'>[user] pulls the lever back.</span>", "<span class = 'notice'>You pull the lever back.</span>")

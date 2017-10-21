@@ -38,14 +38,31 @@
 		remove_contents(user)
 
 /obj/item/weapon/reagent_containers/glass/rag/attackby(obj/item/W, mob/user)
-	if(!on_fire && istype(W, /obj/item/weapon/flame))
-		var/obj/item/weapon/flame/F = W
-		if(F.lit)
-			ignite()
-			if(on_fire)
-				visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
-			else
-				user << "<span class='warning'>You manage to singe [src], but fail to light it.</span>"
+	if(!on_fire)
+		if(istype(W, /obj/item/weapon/flame))
+			var/obj/item/weapon/flame/F = W
+			if(F.lit)
+				ignite()
+				if(on_fire)
+					visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
+				else
+					user << "<span class='warning'>You manage to singe [src], but fail to light it. Maybe you should wet it.</span>"
+		else if(istype(W, /obj/item/weapon/weldingtool))
+			var/obj/item/weapon/weldingtool/F = W
+			if(F.welding)
+				ignite()
+				if(on_fire)
+					visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
+				else
+					user << "<span class='warning'>You manage to singe [src], but fail to light it. Maybe you should wet it.</span>"
+		else if(istype(W, /obj/item/weapon/flamethrower))
+			var/obj/item/weapon/flamethrower/F = W
+			if(F.lit)
+				ignite()
+				if(on_fire)
+					visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
+				else
+					user << "<span class='warning'>You manage to singe [src], but fail to light it. Maybe you should wet it.</span>"
 
 	. = ..()
 	update_name()
@@ -59,10 +76,11 @@
 		name = "dry [initial(name)]"
 
 /obj/item/weapon/reagent_containers/glass/rag/update_icon()
+
+	overlays.Cut()
+
 	if(on_fire)
-		icon_state = "raglit"
-	else
-		icon_state = "rag"
+		overlays += icon('icons/effects/fire.dmi', "fire")
 
 	var/obj/item/weapon/reagent_containers/food/drinks/bottle/B = loc
 	if(istype(B))
@@ -152,6 +170,10 @@
 //maybe generalize flammable reagents someday
 /obj/item/weapon/reagent_containers/glass/rag/proc/can_ignite()
 	var/fuel = reagents.get_reagent_amount("fuel")
+	for (var/datum/reagent/R in reagents.reagent_list)
+		if (istype(R, /datum/reagent/ethanol))
+			fuel += R.volume
+
 	return (fuel >= 2 && fuel >= reagents.total_volume*0.8)
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/ignite()

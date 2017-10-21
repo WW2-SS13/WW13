@@ -110,20 +110,6 @@
 		else
 	return
 
-/obj/item/verb/move_to_top()
-	set name = "Move To Top"
-	set category = "Object"
-	set src in oview(1)
-
-	if(!istype(src.loc, /turf) || usr.stat || usr.restrained() )
-		return
-
-	var/turf/T = src.loc
-
-	src.loc = null
-
-	src.loc = T
-
 /obj/item/examine(mob/user, var/distance = -1)
 	var/size
 	switch(src.w_class)
@@ -405,7 +391,6 @@ var/list/global/slot_flags_enumeration = list(
 	//All checks are done, time to pick it up!
 	usr.UnarmedAttack(src)
 	return
-
 
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
 //The default action is attack_self().

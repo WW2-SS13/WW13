@@ -11,6 +11,7 @@
 	var/damtype = "brute"
 	var/armor_penetration = 0
 //	var/corporation = null
+	var/special_id = 0
 
 /obj/examine(mob/user,distance=-1)
 //	if(..(user,2))

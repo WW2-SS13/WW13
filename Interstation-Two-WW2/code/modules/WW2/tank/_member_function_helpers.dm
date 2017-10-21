@@ -45,7 +45,7 @@
 				displayed_damage_message["80-97"] = 1
 		if (97 to INFINITY)
 			if (!displayed_damage_message["97-INFINITY"])
-				tank_message("<span class = 'danger'><big>[src] looks like it's about to explode!!</big></span>")
+				tank_message("<span class = 'danger'><big>[src] looks like its going to explode!!</big></span>")
 				displayed_damage_message["97-INFINITY"] = 1
 
 /obj/tank/proc/tank_message(x)

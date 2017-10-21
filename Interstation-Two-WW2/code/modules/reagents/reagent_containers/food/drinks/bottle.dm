@@ -72,6 +72,24 @@
 		rag.forceMove(loc)
 		var/mob/living/L = against
 		L.IgniteMob()
+	//	#define testmolotovs
+
+		var/explosion_power = 0
+		for (var/datum/reagent/R in reagents.reagent_list)
+			if (istype(R, /datum/reagent/ethanol))
+				var/datum/reagent/ethanol/E = R
+				explosion_power += (min(max(E.strength, 25), 50) * E.volume)
+
+		if (explosion_power > 0)
+			var/devrange = min(1, round(explosion_power/1000))
+			var/heavyrange = min(1, round(devrange*2))
+			var/lightrange = min(1, round(devrange*3))
+			var/flashrange = min(1, round(devrange*4))
+			explosion(get_turf(src), devrange, heavyrange, lightrange, flashrange)
+
+		#ifdef testmolotovs
+		world << "testing molotov with explosion_power = [explosion_power]"
+		#endif
 
 	playsound(src,'sound/effects/GLASS_Rattle_Many_Fragments_01_stereo.wav',100,1)
 	src.transfer_fingerprints_to(B)
@@ -109,6 +127,7 @@
 	rag = null
 	flags |= (initial(flags) & OPENCONTAINER)
 	update_icon()
+	user << "<span class='notice'>You remove the rag from [src].</span>"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/open(mob/user)
 	if(rag) return

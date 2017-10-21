@@ -1,5 +1,5 @@
 /client/verb/mentorhelp(msg as text)
-	set category = "HELP"
+	set category = "Help!"
 	set name = "Mentorhelp"
 
 	if(say_disabled)	//This is here to try to identify lag problems
@@ -28,18 +28,16 @@
 
 	src << "<font color=green>PM to-<b>Mentors </b>: [msg]</font>"
 
-
 	var/mentormsg = "<b><font color=green>Request for Help:</font>[get_options_bar(mob, 4, 0, 1, 0)]:</b> [msg]</font>"
 	var/adminmsg = "(MENTORHELP) [mentormsg]"
 
 	for(var/client/X in admins)
-		if((R_MENTOR) & X.holder.rights)
-
+		if((R_MENTOR & X.holder.rights) && !((R_ADMIN|R_MOD) & X.holder.rights))
 			if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 				X << 'sound/effects/adminhelp.ogg'
 			X << mentormsg
 
-		if ((R_ADMIN|R_MOD) & X.holder.rights)
+		else if ((R_ADMIN|R_MOD) & X.holder.rights)
 			X << adminmsg
 
 	return

@@ -1,6 +1,6 @@
 /client/proc/see_jews()
 	set name = "See Jews"
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 
 	if(!check_rights(R_MOD))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
@@ -12,6 +12,14 @@
 	print_jews(src, 1)
 
 /proc/print_jews(whomst, var/notroundend = 0)
+
+	var/list/jews = list()
+	for (var/mob/living/carbon/human/H in mob_list)
+		if (istype(H) && H.is_jew)
+			jews += H
+
+	if (!jews.len && !notroundend)
+		return
 
 	if (notroundend)
 		whomst << "<big>Jews:</big><br><br>"

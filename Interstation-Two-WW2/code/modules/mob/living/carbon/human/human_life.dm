@@ -64,6 +64,9 @@
 		if (UNCONSCIOUS) // takes over an hour to starve
 			nutrition -= 0.20
 
+	if (stamina == max_stamina-1 && m_intent == "walk")
+		src << "<span class = 'good'>You feel like you can run for a while.</span>"
+
 	nutrition = min(nutrition, max_nutrition)
 	nutrition = max(nutrition, -max_nutrition)
 
@@ -285,55 +288,53 @@
 		failed_last_breath = 1
 	return 1
 
-/mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
-	if(!environment)
-		return
+/mob/living/carbon/human/handle_environment()
 
 	//Stuff like the xenomorph's plasma regen happens here.
 	species.handle_environment_special(src)
 
 	//Moved pressure calculations here for use in skip-processing check.
-	var/pressure = environment.return_pressure()
-	var/adjusted_pressure = calculate_affecting_pressure(pressure)
+	var/pressure = NORMAL_PRESSURE
+	var/loc_temp = 293
+	var/area/mob_area = get_area(src)
 
-/*	//Check for contaminants before anything else because we don't want to skip it.
-	for(var/g in environment.gas)
-		if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
-			pl_effects()
-			break*/
+	if (mob_area.location == AREA_OUTSIDE)
 
-	if(istype(get_turf(src), /turf/space))
-		//Don't bother if the temperature drop is less than 0.1 anyways. Hopefully BYOND is smart enough to turn this constant expression into a constant
-		if(bodytemperature > (0.1 * HUMAN_HEAT_CAPACITY/(HUMAN_EXPOSED_SURFACE_AREA*STEFAN_BOLTZMANN_CONSTANT))**(1/4) + COSMIC_RADIATION_TEMPERATURE)
-			//Thermal radiation into space
-			var/heat_loss = HUMAN_EXPOSED_SURFACE_AREA * STEFAN_BOLTZMANN_CONSTANT * ((bodytemperature - COSMIC_RADIATION_TEMPERATURE)**4)
-			var/temperature_loss = heat_loss/HUMAN_HEAT_CAPACITY
-			bodytemperature -= temperature_loss
-	else
-		var/loc_temp = T0C
-		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			loc_temp = loc:air_contents.temperature
-		else
-			loc_temp = environment.temperature
+		var/game_season = "SPRING"
+		if (ticker.mode.vars.Find("season"))
+			game_season = ticker.mode:season
 
-		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
-			pressure_alert = 0
-			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
+		switch (game_season)
+			if ("WINTER")
+				loc_temp = 264
+			if ("FALL")
+				loc_temp = 285
+			if ("SUMMER")
+				loc_temp = 303
 
-		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
-		var/temp_adj = 0
-		if(loc_temp < bodytemperature)			//Place is colder than we are
-			var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-			if(thermal_protection < 1)
-				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
-		else if (loc_temp > bodytemperature)			//Place is hotter than we are
-			var/thermal_protection = get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-			if(thermal_protection < 1)
-				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
+	// todo: inside/outside temp adjustment
 
-		//Use heat transfer as proportional to the gas density. However, we only care about the relative density vs standard 101 kPa/20 C air. Therefore we can use mole ratios
-		var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
-		bodytemperature += between(BODYTEMP_COOLING_MAX, temp_adj*relative_density, BODYTEMP_HEATING_MAX)
+	// todo: wind adjusting effective loc_temp
+
+	if(pressure < species.warning_high_pressure && pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
+		pressure_alert = 0
+		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
+
+	//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
+	var/temp_adj = 0
+	if(loc_temp < bodytemperature)			//Place is colder than we are
+		var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		if(thermal_protection < 1)
+			temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
+	else if (loc_temp > bodytemperature)			//Place is hotter than we are
+		var/thermal_protection = get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		if(thermal_protection < 1)
+			temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
+
+	//Use heat transfer as proportional to the gas density. However, we only care about the relative density vs standard 101 kPa/20 C air. Therefore we can use mole ratios
+//	var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
+	var/relative_density = 1.0
+	bodytemperature += between(BODYTEMP_COOLING_MAX, temp_adj*relative_density, BODYTEMP_HEATING_MAX)
 
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature >= species.heat_level_1)
@@ -371,15 +372,15 @@
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
 	if(status_flags & GODMODE)	return 1	//godmode
 
-	if(adjusted_pressure >= species.hazard_high_pressure)
-		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
+	if(pressure >= species.hazard_high_pressure)
+		var/pressure_damage = min( ( (pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
 		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
 		pressure_alert = 2
-	else if(adjusted_pressure >= species.warning_high_pressure)
+	else if(pressure >= species.warning_high_pressure)
 		pressure_alert = 1
-	else if(adjusted_pressure >= species.warning_low_pressure)
+	else if(pressure >= species.warning_low_pressure)
 		pressure_alert = 0
-	else if(adjusted_pressure >= species.hazard_low_pressure)
+	else if(pressure >= species.hazard_low_pressure)
 		pressure_alert = -1
 	else
 		if( !(COLD_RESISTANCE in mutations))
@@ -893,6 +894,15 @@
 /mob/living/carbon/human/var/list/informed_starvation[4]
 
 /mob/living/carbon/human/proc/handle_starvation()//Making this it's own proc for my sanity's sake - Matt
+
+	if(nutrition < 350 && nutrition >= 200)
+		if (prob(4))
+			src << "<span class = 'notice'>You're getting a bit hungry.</span>"
+
+	if(nutrition < 200)
+		if (prob(5))
+			src << "<span class = 'notice'>You're pretty hungry.</span>"
+
 	if(nutrition < 20) //Nutrition is below 20 = starvation
 
 		var/list/hunger_phrases = list(
@@ -1058,7 +1068,6 @@
 	#endif
 
 	never_updated_hud_list = 0
-
 
 	if (original_job && base_faction)
 

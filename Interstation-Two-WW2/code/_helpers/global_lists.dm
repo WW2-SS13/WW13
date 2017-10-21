@@ -76,6 +76,10 @@ var/global/list/escape_list = list()
 var/global/list/endgame_exits = list()
 var/global/list/endgame_safespawns = list()
 
+// for mass deletion
+var/global/list/bullet_casings = list()
+var/global/list/blood = list()
+
 var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
 
 // Strings which corraspond to bodypart covering flags, useful for outputting what something covers.

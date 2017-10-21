@@ -1,6 +1,6 @@
 /client/proc/see_spies()
 	set name = "See Spies"
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 
 	if(!check_rights(R_MOD))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
@@ -12,6 +12,14 @@
 	print_spies(src, 1)
 
 /proc/print_spies(whomst, var/notroundend = 0)
+
+	var/list/spies = list()
+	for (var/mob/living/carbon/human/H in mob_list)
+		if (istype(H) && H.is_spy)
+			spies += H
+
+	if (!spies.len && !notroundend)
+		return
 
 	if (notroundend)
 		whomst << "<big>Spies:</big><br><br>"

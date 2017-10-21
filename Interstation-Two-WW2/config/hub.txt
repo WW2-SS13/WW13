@@ -1,0 +1,43 @@
+## Hub settings
+
+#### First, a list of valid constants and their purpose (MUST be enclosed in {brackets}): 
+
+## clients & mobs. /mob/living/carbon is not here because it's being phased out
+## observers and ghosts are excluded because they are not generally used here
+## and also because there is no convenient list to efficiently get the number of them
+
+## (!!!todo) assuming you want a different form of capitalization for the value represented
+by your constant, you can do the following - assuming {SEASON} is a constant representing "Spring"
+- {SEASON} for "SPRING", {Season} for "Spring", {season} for "spring"
+
+# CLIENTS = number of clients online
+# PLAYERS = number of mobs with clients attached
+# MOBS = number of mobs online
+# LIVING = number of /mob/living(s) online
+# HUMANS = number of /mob/living/carbon/human(s) online
+
+## various game things
+
+# TIMEOFDAY = displays the current time of day
+# WEATHER = displays the current weather
+# SEASON = displays the current season
+
+## meta game things
+
+# ROUNDTIME = displays the current round time
+
+#### Actual definitions
+
+TITLE = World War II Revival: Official Server
+OOCDESC = The official server, running the bleeding edge of the WW13 codebase.
+ICDESC = {TIMEOFDAY}, {WEATHER}, {SEASON}, Ukraine. The current round time is {ROUNDTIME}.
+RPLEVEL = Medium Roleplay
+HOSTEDBY = Kachnov
+
+#### Up to 5 lines of other info
+
+OTHERINFO_1 = null
+OTHERINFO_2 = null
+OTHERINFO_3 = null
+OTHERINFO_4 = null
+OTHERINFO_5 = null

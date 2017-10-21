@@ -28,15 +28,15 @@
 /obj/item/weapon/storage/backpack/flammenwerfer/open()
 	return
 
+// todo: this sucks - Kachnov
 /obj/item/weapon/storage/backpack/flammenwerfer/equipped(var/mob/user, var/slot)
-	..(user, slot)
 
-	if (src == user.back)
-
+	if (slot == SLOT_BACK)
 		if (!user.put_in_any_hand_if_possible(flamethrower) && !(user.l_hand == flamethrower) && !(user.r_hand == flamethrower))
-
-			user.u_equip(src)
 			user << "<span class = 'danger'>You don't have space to hold the flammenwerfer in your hands.</span>"
+			return
+
+	..(user, slot)
 
 /obj/item/weapon/storage/backpack/flammenwerfer/proc/reclaim_flamethrower()
 

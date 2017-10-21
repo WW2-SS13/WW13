@@ -562,3 +562,15 @@
 		qdel(B)
 	log_admin("[key_name(usr)] has removed half of all empty bullet casings.")
 	message_admins("<span class='notice'>[key_name_admin(usr)] has removed half of all empty bullet casings.</span>", 1)
+
+/client/proc/removeAllBlood()
+	set category = "Debug"
+	set name = "Remove All Blood"
+	set desc = "Removes ALL blood from the map"
+
+	for(var/B in blood)
+		if (istype(B, /datum))
+			qdel(B)
+
+	log_admin("[key_name(usr)] has removed all blood.")
+	message_admins("<span class='notice'>[key_name_admin(usr)] has removed all blood.</span>", 1)

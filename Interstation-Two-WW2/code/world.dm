@@ -50,8 +50,8 @@ var/global/datum/global_init/init = new ()
 
 /world
 	mob = /mob/new_player
-	turf = /turf/floor/plating/grass
-	area = /area/prishtina/german
+	turf = /turf/floor/plating/grass/wild
+	area = /area/prishtina
 	view = "15x15"
 	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session
 
@@ -82,6 +82,9 @@ var/global/datum/global_init/init = new ()
 	//end-emergency fix
 
 	src.update_status()
+
+	// make the database, or connect to it
+	establish_db_connection()
 
 	. = ..()
 
@@ -121,8 +124,58 @@ var/global/datum/global_init/init = new ()
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
+// todo: add aspect to this
+/world/proc/replace_custom_hub_text(T)
+
+	T = replacetext(T, "{CLIENTS}", clients.len)
+	T = replacetext(T, "{PLAYERS}", player_list.len)
+	T = replacetext(T, "{MOBS}", mob_list.len)
+	T = replacetext(T, "{LIVING}", living_mob_list.len)
+	T = replacetext(T, "{HUMAN}", human_mob_list)
+	T = replacetext(T, "{TIMEOFDAY}", time_of_day)
+	T = replacetext(T, "{WEATHER}", "clear skies")
+
+	if (ticker.mode.vars.Find("season"))
+		T = replacetext(T, "{SEASON}", ticker.mode:season)
+	else
+		T = replacetext(T, "{SEASON}", "Spring")
+
+	T = replacetext(T, "{ROUNDTIME}", roundduration2text())
+
 /world/Topic(T, addr, master, key)
 	diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+
+	// custom WW13 hub modules
+
+	if (T == "WW13.title")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.oocdesc")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.icdesc")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.rplevel")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.hostedby")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.extra.1")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.extra.2")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.extra.3")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.extra.4")
+		return replace_custom_hub_text("replaceme")
+
+	else if (T == "WW13.extra.5")
+		return replace_custom_hub_text("replaceme")
 
 	if (T == "ping")
 		var/x = 1
@@ -219,12 +272,12 @@ var/world_topic_spam_protect_time = world.timeofday
 			positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Captain", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
 
 		return list2params(positions)
-
+/*
 	else if(T == "revision")
 		if(revdata.revision)
 			return list2params(list(branch = revdata.branch, date = revdata.date, revision = revdata.revision))
 		else
-			return "unknown"
+			return "unknown"*/
 
 	else if(copytext(T,1,5) == "info")
 		var/input[] = params2list(T)
@@ -466,7 +519,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	return 1
 
 /world/proc/load_mods()
-	if(config.admin_legacy_system)
+	return
+/*	if(config.admin_legacy_system)
 		var/text = file2text("config/moderators.txt")
 		if (!text)
 			error("Failed to load config/mods.txt")
@@ -485,9 +539,10 @@ var/world_topic_spam_protect_time = world.timeofday
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
 				D.associate(directory[ckey])
-
+*/
 /world/proc/load_mentors()
-	if(config.admin_legacy_system)
+	return
+/*	if(config.admin_legacy_system)
 		var/text = file2text("config/mentors.txt")
 		if (!text)
 			error("Failed to load config/mentors.txt")
@@ -505,7 +560,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
 				D.associate(directory[ckey])
-
+*/
 /world/proc/update_status()
 
 	if (world.port == config.testing_port)
@@ -525,6 +580,11 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	// we can't execute code in config settings, so this is a workaround.
 	config.hub_body = replacetext(config.hub_body, "TIME_OF_DAY", lowertext(time_of_day))
+
+	if (ticker && ticker.mode && istype(ticker.mode, /datum/game_mode/ww2))
+		config.hub_body = replacetext(config.hub_body, "SEASON", lowertext(ticker.mode:season))
+	else
+		config.hub_body = replacetext(config.hub_body, "SEASON", "Spring")
 
 	if (config.hub_body)
 		s += config.hub_body
@@ -553,51 +613,53 @@ proc/setup_database_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
-	if(!dbcon)
-		dbcon = new()
-
+	if(!database)
+		database = new("SQL/database.db")
+/*
 	var/user = sqlfdbklogin
 	var/pass = sqlfdbkpass
 	var/db = sqlfdbkdb
 	var/address = sqladdress
-	var/port = sqlport
+	var/port = sqlport*/
 
-	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = dbcon.IsConnected()
+//	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	//. = dbcon.IsConnected()
+
+	. = TRUE
 	if ( . )
 		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		failed_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << dbcon.ErrorMsg()
+		world.log << "The database failed to start up for the [failed_db_connections == 1 ? "1st" : "[failed_db_connections]st"] time."
 
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_db_connection()
+/proc/establish_db_connection()
 
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
-	if(!dbcon || !dbcon.IsConnected())
+	if(!database)
 		return setup_database_connection()
 	else
 		return 1
 
-
+/*
 /hook/startup/proc/connectOldDB()
 	if(!setup_old_database_connection())
 		world.log << "Your server failed to establish a connection with the SQL database."
 	else
 		world.log << "SQL database connection established."
-	return 1
-
+	return 1*/
+/*
 //These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
 proc/setup_old_database_connection()
 
 	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
-	if(!dbcon_old)
+	if(!database)
 		dbcon_old = new()
 
 	var/user = sqllogin
@@ -625,5 +687,5 @@ proc/establish_old_db_connection()
 		return setup_old_database_connection()
 	else
 		return 1
-
+*/
 #undef FAILED_DB_CONNECTION_CUTOFF

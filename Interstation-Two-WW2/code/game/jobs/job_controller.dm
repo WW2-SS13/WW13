@@ -15,10 +15,10 @@ var/global/datum/controller/occupations/job_master
 
 var/global/list/fallschirm_landmarks = list()
 
-/proc/setup_autobalance()
+/proc/setup_autobalance(var/announce = 1)
 	spawn (0)
 		if (job_master)
-			job_master.toggle_roundstart_autobalance()
+			job_master.toggle_roundstart_autobalance(0, announce)
 
 /datum/controller/occupations
 		//List of all jobs
@@ -139,7 +139,7 @@ var/global/list/fallschirm_landmarks = list()
 	// ~90% of clients in the lobby will join as a role prior to the train
 	// being sent
 
-	proc/toggle_roundstart_autobalance(var/_clients = 0)
+	proc/toggle_roundstart_autobalance(var/_clients = 0, var/announce = 1)
 
 		// how many unique clients we expect to play
 		var/expected_players = 0
@@ -152,7 +152,8 @@ var/global/list/fallschirm_landmarks = list()
 			_clients = clients.len
 		#endif
 
-		world << "<span class = 'warning'>Setting up roundstart autobalance for [_clients] players.</span>"
+		if (announce)
+			world << "<span class = 'warning'>Setting up roundstart autobalance for [_clients] players.</span>"
 
 		expected_players = _clients * 0.9
 
@@ -561,7 +562,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		var/list/turfs = latejoin_turfs[spawn_location]
 
-		if(istype(H.job_spawn_location, /datum/job/german/paratrooper))
+		if(istype(H.original_job, /datum/job/german/paratrooper))
 			return
 
 		if(turfs && turfs.len > 0)
@@ -572,8 +573,9 @@ var/global/list/fallschirm_landmarks = list()
 				while (tries <= 5 && !locate(H.loc) in turfs)
 					++tries
 					H.loc = pick(turfs)
-		else
-			H << "\red Oh god. Bug with spawning! We are doomed!"
+		// custom spawning
+		else if (!istype(H.original_job, /datum/job/german/paratrooper))
+			H << "\red Something went wrong while spawning you. Please contact an admin."
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
@@ -1094,9 +1096,11 @@ var/global/list/fallschirm_landmarks = list()
 				if (istype(ticker.mode, /datum/game_mode/ww2))
 					for (var/obj/item/weapon/gun/projectile/gun in H)
 						if (!H.r_store)
-							H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_r_store)
+							if (gun.magazine_type)
+								H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_r_store)
 						if (!H.l_store)
-							H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_l_store)
+							if (gun.magazine_type)
+								H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_l_store)
 						break // but only the first gun we find
 
 			// get our new real name based on jobspecific language ( and more
@@ -1161,6 +1165,14 @@ var/global/list/fallschirm_landmarks = list()
 					if (RUSSIAN)
 						spawn_location = "JoinLateRA"
 
+			// may fix russians spawning in the german train, unknown - Kach
+			if (!spawn_location)
+				switch (splittext(H.original_job.spawn_location, "-")[1])
+					if ("JoinLateHeer")
+						spawn_location = "JoinLateHeer"
+					if ("JoinLateRA")
+						spawn_location = "JoinLateRA"
+
 			H.job_spawn_location = spawn_location
 
 			#ifdef SPAWNLOC_DEBUG
@@ -1194,7 +1206,7 @@ var/global/list/fallschirm_landmarks = list()
 			if (isgermansquadmember_or_leader(H))
 				if (isgermansquadleader(H))
 					++german_squad_leaders
-					german_squad_info[current_german_squad] = "<b>The leader of your squad (#[current_german_squad]) is [H.real_name]. He has a fancy golden version of your HUD.</b>"
+					german_squad_info[current_german_squad] = "<b>The leader of your squad (#[current_german_squad]) is [H.real_name]. He has a golden HUD.</b>"
 					world << "<b>The leader of Wehrmacht Squad #[current_german_squad] is [H.real_name]!</b>"
 					german_officer_squad_info[current_german_squad] = "<b><i>The leader of squad #[current_german_squad] is [H.real_name].</i></b>"
 				else
@@ -1209,7 +1221,7 @@ var/global/list/fallschirm_landmarks = list()
 
 			else if (isrussiansquadmember_or_leader(H))
 				if (isrussiansquadleader(H))
-					russian_squad_info[current_russian_squad] = "<b>The leader of your squad (#[current_russian_squad]) is [H.real_name]. He has a fancy golden version of your HUD.</b>"
+					russian_squad_info[current_russian_squad] = "<b>The leader of your squad (#[current_russian_squad]) is [H.real_name]. He has a golden HUD.</b>"
 					world << "<b>The leader of Soviet Squad #[current_russian_squad] is [H.real_name]!</b>"
 					russian_officer_squad_info[current_russian_squad] = "<b><i>The leader of squad #[current_russian_squad] is [H.real_name].</i></b>"
 					++russian_squad_leaders
@@ -1350,7 +1362,7 @@ var/global/list/fallschirm_landmarks = list()
 				keychain.update_icon_state()
 				keychain.keys += key
 
-	proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
+/*	proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 		if(!config.load_jobs_from_txt)
 			return 0
 
@@ -1383,6 +1395,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		return 1
 
+*/
 
 	proc/HandleFeedbackGathering()
 		return

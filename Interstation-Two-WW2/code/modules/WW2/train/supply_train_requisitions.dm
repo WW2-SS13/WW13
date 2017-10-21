@@ -1,5 +1,6 @@
 /obj/item/weapon/paper/supply_train_requisitions_sheet
 	name = "Supply Train Requisitions"
+	desc = "Must be signed by an Officer to be valid."
 
 	var/list/purchases = list()
 
@@ -8,6 +9,8 @@
 	var/memo = ""
 
 	var/list/crate_types = list(
+
+	// AMMO AND MISC.
 	"Flammenwerfer Fuel Tanks" = /obj/structure/closet/crate/flammenwerfer_fueltanks,
 	"Tank Fuel Tanks" = /obj/structure/closet/crate/tank_fueltanks,
 	"Maxim Belts" = /obj/structure/closet/crate/maximbelt,
@@ -28,10 +31,33 @@
 	"Solid Rations" = /obj/structure/closet/crate/rations/german_solids,
 	"Liquid Rations" = /obj/structure/closet/crate/rations/german_liquids,
 	"Dessert Rations" = /obj/structure/closet/crate/rations/german_desserts,
-	"Supply Requisition Sheets" = /obj/structure/closet/crate/supply_req_sheets
+	"Supply Requisition Sheets" = /obj/structure/closet/crate/supply_req_sheets,
+
+	// MATERIALS
+	"Wood Planks" = /obj/structure/closet/crate/wood,
+	"Steel Sheets" = /obj/structure/closet/crate/steel,
+	"Iron Ingots" = /obj/structure/closet/crate/iron,
+
+	// GUNS & ARTILLERY
+	"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
+	"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
+	"Luger Crate" = /obj/structure/closet/crate/lugers,
+
+	// ARTILLERY AMMO
+	"Artillery Ballistic Shells Crate" = /obj/structure/closet/crate/artillery,
+	"Artillery Gas Shells Crate" = /obj/structure/closet/crate/artillery_gas,
+
+	// CLOSETS
+	"Tool Closet" = /obj/structure/closet/toolcloset,
+
+	// MINES
+	"Betty Mines Crate" = /obj/structure/closet/crate/bettymines
+
 	)
 
 	var/list/costs = list(
+
+	// AMMO AND MISC.
 	"Flammenwerfer Fuel Tanks" = 50,
 	"Tank Fuel Tanks" = 75,
 	"Maxim Belts" = 40,
@@ -52,7 +78,28 @@
 	"Solid Rations" = 80,
 	"Liquid Rations" = 80,
 	"Dessert Rations" = 160,
-	"Supply Requisition Sheets" = 10
+	"Supply Requisition Sheets" = 10,
+
+	// MATERIALS
+	"Wood Planks" = 75,
+	"Steel Sheets" = 100,
+	"Iron Ingots" = 125,
+
+	// GUNS & ARTILLERY
+	"Flammenwerfer" = 250,
+	"7,5 cm FK 18 Artillery Piece" = 300,
+	"Luger Crate" = 400,
+
+	// ARTILLERY AMMO
+	"Artillery Ballistic Shells Crate" = 100,
+	"Artillery Gas Shells Crate" = 200,
+
+	// CLOSETS
+	"Tool Closet" = 50,
+
+	// MINES
+	"Betty Mines Crate" = 200
+
 	)
 
 /obj/item/weapon/paper/supply_train_requisitions_sheet/New()
@@ -108,8 +155,7 @@
 	if (purchases.len)
 		info_links += "<br><b>Total Cost:<b> [total_cost]<br>"
 
-	if (signatures.len)
-		info_links += "[signatures()]<br><br>"
+	info_links += "[signatures()]<br><br>"
 
 	if (memo)
 		info_links += "<br>[memo]"
@@ -124,8 +170,11 @@
 
 /obj/item/weapon/paper/supply_train_requisitions_sheet/proc/signatures()
 	. = "<br><br><b>Signatures:</b><br>"
-	for (var/signature in signatures)
-		. += "[signature]<br>"
+	if (signatures.len)
+		for (var/signature in signatures)
+			. += "[signature]<br>"
+	else
+		. += "<i>Please sign your name here.</i><br>"
 
 /obj/item/weapon/paper/supply_train_requisitions_sheet/Topic(href, href_list)
 	..()
@@ -147,10 +196,14 @@
 		else
 			H << "<span class = 'warning'>You must have a pen in-hand to write down a purchase.</span>"
 
+/obj/item/weapon/paper/supply_train_requisitions_sheet/proc/generate_memoend(var/datum/train_controller/german_supplytrain_controller/train)
+	return "<br><i>As of the time this was printed, you have [train.supply_points] Supply Requisition Points remaining.</i>"
+
 /obj/item/weapon/paper/supply_train_requisitions_sheet/proc/supplytrain_process(var/datum/train_controller/german_supplytrain_controller/train)
 
 	if (!purchases.len)
-		return 0
+		memo = ""
+		goto end
 
 	var/list/create_crates = list()
 
@@ -213,7 +266,8 @@
 
 	end
 
-	memo += "<br><i>As of the time this was printed, you have [train.supply_points] Supply Requisition Points remaining.</i>"
+	// add our unique memo ending
+	memo += generate_memoend(train)
 
 	signatures = list()
 

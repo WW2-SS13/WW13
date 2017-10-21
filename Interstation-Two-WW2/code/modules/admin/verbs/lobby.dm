@@ -1,6 +1,6 @@
 /client/proc/randomize_lobby_music()
 	set name = "Randomize Lobby Music"
-	set category = "Lobby"
+	set category = "Fun"
 
 	if(!src.holder)
 		src << "<font color='red'>Only Admins may use this command.</font>"

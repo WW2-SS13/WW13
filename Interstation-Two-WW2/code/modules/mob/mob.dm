@@ -45,6 +45,10 @@
 		living_mob_list += src
 	..()
 
+	spawn (1)
+		if (!isobserver(src) && client)
+			client.remove_ghost_only_admin_verbs()
+
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
 	if(!client)	return
@@ -211,27 +215,6 @@
 	//A.visible_message("<small>[A] looks at [src].</small>")//Doesn't work for everything yet.
 	A.examine(src)
 
-/mob/verb/pointed(atom/A as mob|obj|turf in view())
-	set name = "Point To"
-	set category = "Object"
-
-	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
-		return 0
-	if(istype(A, /obj/effect/decal/point))
-		return 0
-
-	var/tile = get_turf(A)
-	if (!tile)
-		return 0
-
-	var/obj/P = new /obj/effect/decal/point(tile)
-	P.invisibility = invisibility
-	spawn (20)
-		if(P)
-			qdel(P)	// qdel
-
-	face_atom(A)
-	return 1
 
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
@@ -367,9 +350,11 @@
 	if (ticker.mode && ticker.mode.deny_respawn)
 		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
 		return
+
 	else if(!MayRespawn(1, config.respawn_delay))
-		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
-			return
+		if (config.respawn_delay != 0)
+			if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
+				return
 
 	usr << "You can respawn now, enjoy your new life!"
 
@@ -397,7 +382,7 @@
 	if(M.mind)
 		M.mind.reset()
 	return
-
+/*
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC"
@@ -426,7 +411,7 @@
 		prefs.lastchangelog = changelog_hash
 		prefs.save_preferences()
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
-
+*/
 /mob/verb/observe()
 	set name = "Observe"
 	set category = "OOC"
@@ -500,13 +485,13 @@
 			client.adminobs = 1
 			if(mob_eye == client.mob || client.eye == client.mob)
 				client.adminobs = 0
-
+/*
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "OOC"
 	unset_machine()
 	reset_view(null)
-
+*/
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])
 		var/t1 = text("window=[href_list["mach_close"]]")

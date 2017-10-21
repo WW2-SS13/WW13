@@ -13,7 +13,10 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 	data.rec_pow = max(0,devastation_range) * 2 + max(0,heavy_impact_range) + max(0,light_impact_range)
 
 	// queue work
-	bomb_processor.queue(data)
+	spawn (1)
+		bomb_processor.queue(data)
+
+	return data
 
 // == Recursive Explosions stuff ==
 

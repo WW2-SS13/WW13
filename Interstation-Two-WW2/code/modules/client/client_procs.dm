@@ -49,8 +49,6 @@
 		cmd_admin_irc_pm(href_list["irc_msg"])
 		return
 
-
-
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
 		href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
@@ -92,11 +90,11 @@
 	fileaccess_timer = world.time + FTPDELAY	*/
 	return 1
 
-
 	///////////
 	//CONNECT//
 	///////////
 /client/New(TopicData)
+
 	dir = NORTH
 	TopicData = null							//Prevent calls to client.Topic from connect
 
@@ -118,32 +116,55 @@
 
 	src << "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears."
 
-
 	clients += src
 	directory[ckey] = src
-
-	//Admin Authorisation
-	holder = admin_datums[ckey]
-	if(holder)
-		admins += src
-		holder.owner = src
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
 	if(!prefs)
 		prefs = new /datum/preferences(src)
 		preferences_datums[ckey] = prefs
+
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
 	. = ..()	//calls mob.Login()
+
+	var/list/bantable = world.IsBanned(key, address, computer_id)
+	if (islist(bantable) && !isemptylist(bantable))
+		if (bantable.Find("desc"))
+			src << "<span class = 'danger'>[bantable["desc"]]</span>"
+			del(src)
+		return 0
+
+	/*Admin Authorisation: if there are no admins, and we are the host,
+	  give us host permissions - todo: config setting */
+
+	holder = admin_datums[ckey]
+
+	establish_db_connection()
+
+	var/list/admins = database.execute("SELECT * FROM erro_admin;")
+	if ((!islist(admins) || isemptylist(admins)) && !holder)
+		holder = new("Host", 0, ckey)
+		database.execute("INSERT INTO erro_admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rank]');")
+
+
+	if(holder)
+		holder.associate(src)
+		admins |= src
+		holder.owner = src
+	else if (world.port == config.hubtesting_port)
+		src << "<span class = 'userdanger'>The server is closed to non-admins right now, sorry.</span>"
+		message_admins("[src] tried to log in, but was rejected, because they aren't an admin, and the server is on hubtesting mode.")
+		del(src)
+		return
 
 	if(custom_event_msg && custom_event_msg != "")
 		src << "<h1 class='alert'>Custom Event</h1>"
 		src << "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>"
 		src << "<span class='alert'>[custom_event_msg]</span>"
 		src << "<br>"
-
 
 	if(holder)
 		add_admin_verbs()
@@ -157,18 +178,18 @@
 			sleep(2) // wait a bit more, possibly fixes hardware mode not re-activating right
 			winset(src, null, "command=\".configure graphics-hwmode on\"")
 
-	log_client_to_db()
-
 	send_resources()
-
+/*
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		src << "<span class='info'>You have unread updates in the changelog.</span>"
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
-			src.changes()
+			src.changes()*/
 
 	fix_nanoUI()
 
+	spawn (1)
+		log_to_db()
 
 
 	//////////////
@@ -188,54 +209,48 @@
 // Returns null if no DB connection can be established, or -1 if the requested key was not found in the database
 
 /proc/get_player_age(key)
-	establish_db_connection()
-	if(!dbcon.IsConnected())
+//	establish_db_connection()
+	if(!database)
 		return null
 
 	var/sql_ckey = sql_sanitize_text(ckey(key))
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]'")
-	query.Execute()
+	var/list/rowdata = database.execute("SELECT datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]'")
 
-	if(query.NextRow())
-		return text2num(query.item[1])
+	if(islist(rowdata) && !isemptylist(rowdata))
+		return text2num(rowdata["age"])
 	else
 		return -1
 
 
-/client/proc/log_client_to_db()
+/client/proc/log_to_db()
 
 	if ( IsGuestKey(src.key) )
 		return
 
-	establish_db_connection()
-	if(!dbcon.IsConnected())
-		return
+	if (!database)
+		establish_db_connection()
+
 
 	var/sql_ckey = sql_sanitize_text(src.ckey)
-
-	var/DBQuery/query = dbcon.NewQuery("SELECT id, datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]'")
-	query.Execute()
+	var/list/rowdata = database.execute("SELECT id, datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]';")
 	var/sql_id = 0
 	player_age = 0	// New players won't have an entry so knowing we have a connection we set this to zero to be updated if their is a record.
-	while(query.NextRow())
-		sql_id = query.item[1]
-		player_age = text2num(query.item[2])
-		break
 
-	var/DBQuery/query_ip = dbcon.NewQuery("SELECT ckey FROM erro_player WHERE ip = '[address]'")
-	query_ip.Execute()
+	if (islist(rowdata) && !isemptylist(rowdata))
+		sql_id = rowdata["id"]
+		player_age = rowdata["age"]
+
+	rowdata = database.execute("SELECT ckey FROM erro_player WHERE ip = '[address]';")
 	related_accounts_ip = ""
-	while(query_ip.NextRow())
-		related_accounts_ip += "[query_ip.item[1]], "
-		break
 
-	var/DBQuery/query_cid = dbcon.NewQuery("SELECT ckey FROM erro_player WHERE computerid = '[computer_id]'")
-	query_cid.Execute()
+	if (islist(rowdata) && !isemptylist(rowdata))
+		related_accounts_ip += "[rowdata["ckey"]], "
+
+	rowdata = database.execute("SELECT ckey FROM erro_player WHERE computerid = '[computer_id]';")
 	related_accounts_cid = ""
-	while(query_cid.NextRow())
-		related_accounts_cid += "[query_cid.item[1]], "
-		break
+	if (islist(rowdata) && !isemptylist(rowdata))
+		related_accounts_cid += "[rowdata["ckey"]], "
 
 	//Just the standard check to see if it's actually a number
 	if(sql_id)
@@ -252,21 +267,35 @@
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
 	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
+	if (sql_ip == null)
+		sql_ip = "HOST"
+
+	//#define SQLDEBUG
+
+	#ifdef SQLDEBUG
+	world << "sql_ip: [sql_ip]"
+	world << "sql_computerid: [sql_computerid]"
+	world << "sql_admin_rank: [sql_admin_rank]"
+	world << "sql_id: [sql_id]"
+	#endif
 
 	if(sql_id)
+		#ifdef SQLDEBUG
+		world << "prev. player [src]"
+		#endif
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
-		var/DBQuery/query_update = dbcon.NewQuery("UPDATE erro_player SET lastseen = Now(), ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = [sql_id]")
-		query_update.Execute()
+		database.execute("UPDATE erro_player SET lastseen = '[database.Now()]', ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = '[sql_id]';")
 	else
+		#ifdef SQLDEBUG
+		world << "new player [src]"
+		#endif
 		//New player!! Need to insert all the stuff
-		var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO erro_player (id, ckey, firstseen, lastseen, ip, computerid, lastadminrank) VALUES (null, '[sql_ckey]', Now(), Now(), '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]')")
-		query_insert.Execute()
+		database.execute("INSERT INTO erro_player (id, ckey, firstseen, lastseen, ip, computerid, lastadminrank) VALUES (null, '[sql_ckey]', '[database.Now()]', '[database.Now()]', '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]');")
 
 	//Logging player access
 	var/serverip = "[world.internet_address]:[world.port]"
-	var/DBQuery/query_accesslog = dbcon.NewQuery("INSERT INTO `erro_connection_log`(`id`,`datetime`,`serverip`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),'[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
-	query_accesslog.Execute()
-
+	database.execute("INSERT INTO erro_connection_log (id,datetime,serverip,ckey,ip,computerid) VALUES(null,'[database.Now()]','[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
+	//#undef SQLDEBUG
 
 #undef TOPIC_SPAM_DELAY
 #undef UPLOAD_LIMIT
@@ -309,7 +338,7 @@ client/proc/MayRespawn()
 	return 0
 
 client/verb/character_setup()
-	set name = "Character Setup"
-	set category = "Preferences"
+	set name = "Character & Preferences Setup"
+	set category = "OOC"
 	if(prefs)
 		prefs.ShowChoices(usr)

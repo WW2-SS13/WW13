@@ -13,7 +13,8 @@
 
 /datum/reagent/nutriment/New()
 	..()
-	data = list()[10]
+	data = list()
+	data.len = 10
 
 /datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
 	if(!islist(newdata) || !newdata.len)

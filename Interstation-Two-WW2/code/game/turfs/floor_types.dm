@@ -382,10 +382,19 @@
 	icon_state = "grass_dark"
 	interior = 0
 	stepsound = "dirt"
+	uses_winter_overlay = 1
 
 /turf/floor/plating/grass/New()
 	..()
 	grass_turf_list += src
+
+/turf/floor/plating/grass/wild
+	name = "wild grass"
+
+/turf/floor/plating/grass/wild/New()
+	..()
+	icon = 'icons/turf/flooring/grass.dmi'
+	icon_state = "grass[rand(0,3)]"
 
 /turf/floor/plating/beach
 	name = "Beach"
@@ -402,7 +411,7 @@
 
 /turf/floor/plating/beach/water
 	name = "Water"
-	icon_state = "seadeep"
+	icon_state = "seashallow"
 
 /turf/floor/plating/beach/water/ex_act(severity)
 	return
@@ -410,7 +419,6 @@
 /turf/floor/plating/beach/water/New()
 	..()
 	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
-
 
 /turf/floor/plating/dirt
 	name = "dirt"

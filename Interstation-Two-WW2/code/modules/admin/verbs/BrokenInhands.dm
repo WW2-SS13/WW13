@@ -4,7 +4,6 @@
 	var/icon/IR = new('icons/mob/items/righthand.dmi')
 	var/list/Rstates = IR.IconStates()
 
-
 	var/text
 	for(var/A in typesof(/obj/item))
 		var/obj/item/O = new A( locate(1,1,1) )

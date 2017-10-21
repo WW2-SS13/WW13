@@ -1,7 +1,14 @@
-// the only reason this exists is because apparently new pick(listoftypes)
-// is invalid code
+/* the only reason this exists is because apparently 'new pick(listoftypes)'
+	is invalid code - Kachnov */
+
+var/added_plants_to_rations = 0
 
 /proc/new_ration(faction, sort)
+
+	if (!added_plants_to_rations)
+		german_rations_solids += typesof(/obj/item/weapon/reagent_containers/food/snacks/grown) - /obj/item/weapon/reagent_containers/food/snacks/grown
+		soviet_rations_solids += typesof(/obj/item/weapon/reagent_containers/food/snacks/grown) - /obj/item/weapon/reagent_containers/food/snacks/grown
+
 	switch (faction)
 		if (GERMAN)
 			switch (sort)
@@ -23,7 +30,13 @@
 					food.pixel_x = 0
 					food.pixel_y = 0
 					return food
-		if ("SOVIET")
+				if ("meat")
+					var/meat = pick(german_rations_meat)
+					var/obj/food = new meat
+					food.pixel_x = 0
+					food.pixel_y = 0
+					return food
+		if (RUSSIAN)
 			switch (sort)
 				if ("solid")
 					var/solid = pick(soviet_rations_solids)
@@ -40,6 +53,12 @@
 				if ("dessert")
 					var/dessert = pick(soviet_rations_desserts)
 					var/obj/food = new dessert
+					food.pixel_x = 0
+					food.pixel_y = 0
+					return food
+				if ("meat")
+					var/meat = pick(soviet_rations_meat)
+					var/obj/food = new meat
 					food.pixel_x = 0
 					food.pixel_y = 0
 					return food
@@ -63,6 +82,10 @@ var/list/german_rations_desserts = list(
 /obj/item/weapon/reagent_containers/food/snacks/appletart,
 )
 
+var/list/german_rations_meat = list(
+/obj/item/weapon/reagent_containers/food/snacks/meat
+)
+
 // soviet RATIONS
 
 var/list/soviet_rations_solids = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
@@ -80,4 +103,9 @@ var/list/soviet_rations_liquids = list(
 // blin no dessert in mother russia
 var/list/soviet_rations_desserts = list(
 
+)
+
+var/list/soviet_rations_meat = list(
+/obj/item/weapon/reagent_containers/food/snacks/bearmeat,
+/obj/item/weapon/reagent_containers/food/snacks/meat
 )

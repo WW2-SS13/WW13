@@ -146,8 +146,6 @@ Works together with spawning an observer, noted above.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
 		ghost.key = key
-		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
-			ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
 		return ghost
 
 /*
@@ -202,12 +200,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
 		usr << "<span class='warning'>Another consciousness is in your body... it is resisting you.</span>"
 		return
+
+	client.remove_ghost_only_admin_verbs()
+
 	stop_following()
 	mind.current.ajourn=0
 	mind.current.key = key
 	mind.current.teleop = null
+
 	if(!admin_ghosted)
 		announce_ghost_joinleave(mind, 0, "They now occupy their body again.")
+
 	return 1
 
 /mob/observer/ghost/verb/toggle_medHUD()
@@ -222,7 +225,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		medHUD = 1
 		src << "\blue <B>Medical HUD Enabled</B>"
-
+/*
 /mob/observer/ghost/verb/toggle_antagHUD()
 	set category = "Ghost"
 	set name = "Toggle AntagHUD"
@@ -250,7 +253,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		M.antagHUD = 1
 		src << "\blue <B>AntagHUD Enabled</B>"
-
+*/
 /mob/observer/ghost/proc/dead_tele(A in ghostteleportlocs)
 	set category = "Ghost"
 	set name = "Teleport"
@@ -300,7 +303,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/verb/follow_russian(input in getfitmobs(RUSSIAN))
 	set category = "Ghost"
 	set name = "Follow a Russian"
-	set desc = "Follow and haunt a living rusky."
+	set desc = "Follow and haunt a living Russian."
 
 	var/target = input // not a map
 	if(!target) return
@@ -309,7 +312,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/verb/follow_german(input in getfitmobs(GERMAN))
 	set category = "Ghost"
 	set name = "Follow a German"
-	set desc = "Follow and haunt a living german."
+	set desc = "Follow and haunt a living German."
 
 	var/target = input // not a map
 	if(!target) return
@@ -493,7 +496,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/Post_Incorpmove()
 	stop_following()
-
+/*
 /mob/observer/ghost/verb/analyze_air()
 	set name = "Analyze Air"
 	set category = "Ghost"
@@ -519,12 +522,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			src << "\blue [gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)"
 		src << "\blue Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)"
 		src << "\blue Heat Capacity: [round(environment.heat_capacity(),0.1)]"
-
+*/
+/*
 /mob/observer/ghost/verb/become_mouse()
 	set name = "Become mouse"
 	set category = "Ghost"
 	return 0
-/*
+
 	if(config.disable_player_mice)
 		src << "<span class='warning'>Spawning as a mouse is currently disabled.</span>"
 		return
@@ -561,6 +565,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		host.ckey = src.ckey
 		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
 */
+/*
 /mob/observer/ghost/verb/view_manfiest()
 	set name = "Show Crew Manifest"
 	set category = "Ghost"
@@ -584,7 +589,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			return
 
 	return ..()
-
+*/
 /mob/observer/ghost/proc/try_possession(var/mob/living/M)
 	if(!config.ghosts_can_possess_animals)
 		usr << "<span class='warning'>Ghosts are not permitted to possess animals.</span>"
@@ -592,7 +597,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!M.can_be_possessed_by(src))
 		return 0
 	return M.do_possession(src)
-
+/*
 //Used for drawing on walls with blood puddles as a spooky ghost.
 /mob/observer/ghost/verb/bloody_doodle()
 
@@ -662,10 +667,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		W.message = message
 		W.add_hiddenprint(src)
 		W.visible_message("\red Invisible fingers crudely paint something in blood on [T]...")
+*/
 
-/mob/observer/ghost/pointed(atom/A as mob|obj|turf in view())
-	if(!..())
-		return 0
+/mob/observer/ghost/verb/pointed(atom/A as mob|obj|turf in view())
+	set category = "Ghost"
+	set name = "Point To"
 	usr.visible_message("<span class='deadsay'><b>[src]</b> points to [A]</span>")
 	return 1
 

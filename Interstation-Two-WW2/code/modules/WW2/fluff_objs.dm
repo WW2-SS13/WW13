@@ -1,6 +1,5 @@
-// objects that don't actually do anything, used in various areas on the map
-// for flavor
-// mostly atmospherics stuff I removed
+/* objects that don't actually do anything, used in a few areas on the map
+ for flavor. It's mostly atmospherics stuff I removed - Kachnov */
 
 /obj/structure/atmospherics_pipe_tank
 	icon = 'icons/atmos/tank.dmi'

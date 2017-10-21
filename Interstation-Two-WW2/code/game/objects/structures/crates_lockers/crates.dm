@@ -11,6 +11,17 @@
 //	mouse_drag_pointer = MOUSE_ACTIVE_POINTER	//???
 	var/rigged = 0
 
+// climbing crates - Kachnov
+/obj/structure/closet/crate/MouseDrop_T(mob/target, mob/user)
+	if (!opened)
+		var/mob/living/H = user
+		if(istype(H) && can_climb(H) && target == user)
+			do_climb(target)
+		else
+			return ..(target, user)
+	else
+		return ..(target, user)
+
 /obj/structure/closet/crate/can_open()
 	return 1
 

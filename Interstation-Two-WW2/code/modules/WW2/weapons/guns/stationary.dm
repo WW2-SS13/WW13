@@ -51,7 +51,7 @@
 			if(user.has_empty_hand(both = 1) && !src.is_used_by(user))
 				user.use_object(src)
 			else
-				user.show_message("\red Your hands are busy by holding things.")
+				user.show_message("\red You need both hands to use a minigun.")
 		else
 			user.show_message("<span class='warning'>You're too far from the handles.</span>")
 /*

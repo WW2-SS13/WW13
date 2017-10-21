@@ -38,6 +38,7 @@ var/datum/controller/process/explosives/bomb_processor
 		SCHECK
 
 		work_queue -= data
+
 /datum/controller/process/explosives/proc/explosion(var/datum/explosiondata/data)
 	var/turf/epicenter = data.epicenter
 	var/devastation_range = data.devastation_range
@@ -136,7 +137,7 @@ var/datum/controller/process/explosives/bomb_processor
 
 					//Deaf people will feel vibrations though
 					if (volume > 0)//Only shake camera if someone was close enough to hear it
-						shake_camera(M, min(60,max(2,(power*18) / dist)), min(3.5,((power*3) / dist)),0.05)
+						shake_camera(M, min(60,max(2,(power*18*0.5) / dist)), min(3.5,((power*3*0.5) / dist)),0.05)
 						//Maximum duration is 6 seconds, and max strength is 3.5
 						//Becuse values higher than those just get really silly
 
@@ -163,9 +164,11 @@ var/datum/controller/process/explosives/bomb_processor
 
 		T.ex_act(dist)
 		SCHECK
-		if(T)
+		if(T && !data.objects_with_immunity.Find(T))
 			for(var/atom_movable in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
 				var/atom/movable/AM = atom_movable
+				if (data.objects_with_immunity.Find(AM))
+					continue
 				if(AM && AM.simulated)	AM.ex_act(dist)
 				SCHECK
 
@@ -262,3 +265,4 @@ var/datum/controller/process/explosives/bomb_processor
 	var/z_transfer
 	var/is_rec
 	var/rec_pow
+	var/list/objects_with_immunity = list()

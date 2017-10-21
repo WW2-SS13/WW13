@@ -13,7 +13,17 @@
 
 /datum/controller/process/mob/doWork()
 	for(last_object in mob_list)
+
 		var/mob/M = last_object
+
+		// if we're a spawned in, jobless mob: don't handle processing
+		/* todo: these mobs SHOULD process if they have clients.
+			right now, letting jobless mobs with or w/o clients process
+			results in a lot of obscure runtimes, possibly associated
+			with human.Life() calling back to living.Life() - Kach */
+
+		if (ishuman(M) && !M:original_job)
+			continue
 
 		if(isnull(M))
 			return

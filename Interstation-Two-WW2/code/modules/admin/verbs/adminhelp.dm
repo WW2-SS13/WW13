@@ -1,5 +1,5 @@
 /client/verb/adminhelp(msg as text)
-	set category = "HELP"
+	set category = "Help!"
 	set name = "Adminhelp"
 
 	if(say_disabled)	//This is here to try to identify lag problems
@@ -28,7 +28,8 @@
 
 	//show it to the person adminhelping too
 	src << "<font color='blue'>PM to-<b>Staff </b>: [msg]</font>"
-	src << "<i>If no admins are online, ping @Admin Team in the discord.</i>"
+	if (config.discordurl)
+		src << "<i>If no admins are online, please ping @Admin Team <a href = '[config.discordurl]'>in the discord</a>.</i>"
 	log_admin("HELP: [key_name(src)]: [msg]")
 
 	msg = "\blue <b><font color=red>Request for Help:: </font>[get_options_bar(mob, 2, 1, 1)]:</b> [msg]"

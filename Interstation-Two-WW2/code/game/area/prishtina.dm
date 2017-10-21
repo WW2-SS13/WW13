@@ -9,8 +9,9 @@
 	no_air = 0
 	ambience = list()
 	forced_ambience = null
-	base_turf = /turf/floor/plating/grass //The base turf type of the area, which can be used to override the z-level's base turf
+	base_turf = /turf/floor/plating/grass/wild //The base turf type of the area, which can be used to override the z-level's base turf
 	sound_env = STANDARD_STATION
+	icon_state = "none"
 
 /area/prishtina/New()
 	..()
@@ -41,6 +42,7 @@
 /area/prishtina/houses
 	name = "\improper Houses"
 	icon_state = "houses"
+	location = AREA_INSIDE
 
 /area/prishtina/houses/nml_one
 /area/prishtina/houses/nml_two
@@ -103,6 +105,7 @@
 /area/prishtina/void/german/ss_train
 	icon_state = "red2"
 	name = "Train"
+	location = AREA_INSIDE
 
 /area/prishtina/void/german/ss_train/entrance
 	icon_state = "red2"
@@ -193,26 +196,34 @@
 /area/prishtina/german/resting_area_1
 	name = "Resting Area #1"
 	icon_state = "blue-red-d"
+	location = AREA_INSIDE
 
 /area/prishtina/german/resting_area_2
 	name = "Resting Area #2"
 	icon_state = "purple"
+	location = AREA_INSIDE
+
 
 /area/prishtina/german/resting_area_3
 	name = "Resting Area #3"
 	icon_state = "red2"
+	location = AREA_INSIDE
+
 
 /area/prishtina/german/resting_area_4
 	name = "Resting Area #4"
 	icon_state = "blue2"
+	location = AREA_INSIDE
 
-/area/prishtina/german/cargo
+/area/prishtina/german/gearing
 	name = "Cargo"
 	icon_state = "blue-red2"
+	location = AREA_INSIDE
 
 /area/prishtina/german/armory
 	name = "Armory"
 	icon_state = "blue-red"
+	location = AREA_INSIDE
 
 /area/prishtina/german/armory/train
 	name = "Armory"
@@ -222,67 +233,81 @@
 /area/prishtina/german/cafeteria
 	name = "Cafeteria"
 	icon_state = "blue-red-d"
+	location = AREA_INSIDE
 
 /area/prishtina/german/kitchen
 	name = "Kitchen"
 	icon_state = "purple"
+	location = AREA_INSIDE
 
-// because the german showers and drying rooms are disconnected, giving them the same color
- // - Kachnov
+/* because the german showers and drying rooms are disconnected, giving them the same color
+  - Kachnov */
 
 /area/prishtina/german/shower1
 	name = "Showers #1"
 	icon_state = "red2"
 	dynamic_lighting = 0
+	location = AREA_INSIDE
 
 /area/prishtina/german/shower2
 	name = "Showers #2"
 	icon_state = "red2"
 	dynamic_lighting = 0
+	location = AREA_INSIDE
 
 /area/prishtina/german/shower3
 	name = "Showers #3"
 	icon_state = "red2"
 	dynamic_lighting = 0
+	location = AREA_INSIDE
 
 /area/prishtina/german/drying1
 	name = "Drying Room #1"
 	icon_state = "blue2"
 	dynamic_lighting = 0
+	location = AREA_INSIDE
 
 /area/prishtina/german/drying2
 	name = "Drying Room #2"
 	icon_state = "blue2"
 	dynamic_lighting = 0
+	location = AREA_INSIDE
 
 /area/prishtina/german/drying3
 	name = "Drying Room #3"
 	icon_state = "blue2"
 	dynamic_lighting = 0
+	location = AREA_INSIDE
 
 /area/prishtina/german/ss_torture_room
 	name = "Interrogation Room" // "Interrogation"
 	icon_state = "blue-red2"
+	location = AREA_INSIDE
 
 /area/prishtina/german/ss_torture_room/tools
 	name = "Interrogation Room Tools"
 	icon_state = "blue-red"
+	location = AREA_INSIDE
 
 /area/prishtina/german/ss_torture_room/cell1
 	name = "Interrogation Room Cell #1"
 	icon_state = "blue-red-d"
+	location = AREA_INSIDE
 
 /area/prishtina/german/ss_torture_room/cell2
 	name = "Interrogation Room Cell #2"
 	icon_state = "purple"
+	location = AREA_INSIDE
 
 /area/prishtina/german/command
 	name = "Command"
 	icon_state = "purple"
+	location = AREA_INSIDE
 
 /area/prishtina/german/command/office
 	name = "Feldwebel's Office"
 	icon_state = "blue-red-d"
+	location = AREA_INSIDE
 
 /area/prishtina/german/briefing
 	name = "Briefing"
@@ -297,14 +322,17 @@
 /area/prishtina/german/engineering
 	name = "Engineering"
 	icon_state = "blue-red"
+	location = AREA_INSIDE
 
 /area/prishtina/german/janitor
 	name = "Janitor's Closet"
 	icon_state = "blue-red2"
+	location = AREA_INSIDE
 
 /area/prishtina/german/medical
 	name = "Medical Area"
 	icon_state = "blue-red2"
+	location = AREA_INSIDE
 
 // soviet areas
 
@@ -328,6 +356,7 @@
 
 /area/prishtina/soviet/bunker
 	name = "Soviet Bunker"
+	location = AREA_INSIDE
 
 /area/prishtina/soviet/bunker/tunnel
 	icon_state = "purple"
@@ -404,6 +433,7 @@
 /area/prishtina/soviet/lift/
 	icon_state = "purple"
 	name = "Soviet Lift"
+	location = AREA_INSIDE
 
 /area/prishtina/soviet/lift/upper
 
@@ -412,6 +442,7 @@
 /area/prishtina/soviet/backup_armory
 	icon_state = "purple"
 	name = "Soviet Backup Armory"
+	location = AREA_INSIDE
 
 
 // areas for example train cars

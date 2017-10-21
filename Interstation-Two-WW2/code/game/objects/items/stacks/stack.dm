@@ -107,7 +107,12 @@
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
 	var/atom/movable/build_override_object = null
 
-	if (recipe.title == "locked door")
+	if (findtext(recipe.title, "locked") && findtext(recipe.title, "door") && !findtext(recipe.title, "unlocked"))
+
+		var/material = null
+		if (findtext(recipe.title, "wood"))
+			material = "wood"
+
 		if (!ishuman(user))
 			return
 
@@ -126,7 +131,7 @@
 		var/uniquepart = replacetext(texttype, "/obj/item/weapon/key/", "")
 		var/doorbasepath = "/obj/structure/simple_door/key_door/"
 		var/doorpath = text2path("[doorbasepath][uniquepart]")
-		build_override_object = new doorpath()
+		build_override_object = new doorpath(null, material)
 
 	if (!can_use(required))
 		if (produced>1)
@@ -157,6 +162,8 @@
 
 		if (build_override_object)
 			build_override_object.loc = get_turf(O)
+			build_override_object.set_dir(user.dir)
+			build_override_object.add_fingerprint(user)
 			qdel(O)
 			return
 

@@ -145,9 +145,6 @@
 		return 1
 	if (istype(a, /atom/movable/lighting_overlay))
 		return 1
-	if (istype(a, /obj/structure/flora))
-		qdel(a)
-		return 1
 	if (istype(a, /obj/structure/wild))
 		qdel(a)
 		return 1

@@ -1,15 +1,13 @@
 
 /mob/new_player/proc/handle_privacy_poll()
-	establish_db_connection()
-	if(!dbcon.IsConnected())
-		return
+//	establish_db_connection()
+//	if(!dbcon.IsConnected())
+	//	return
 	var/voted = 0
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT * FROM erro_privacy WHERE ckey='[src.ckey]'")
-	query.Execute()
-	while(query.NextRow())
+	var/list/rowdata = database.execute("SELECT * FROM erro_privacy WHERE ckey='[src.ckey]'")
+	if (islist(rowdata) && !isemptylist(rowdata))
 		voted = 1
-		break
 
 	if(!voted)
 		privacy_poll()
@@ -47,35 +45,35 @@
 	var/optiontext
 
 /mob/new_player/proc/handle_player_polling()
-	establish_db_connection()
-	if(dbcon.IsConnected())
-		var/isadmin = 0
-		if(src.client && src.client.holder)
-			isadmin = 1
+	//establish_db_connection()
+	//if(dbcon.IsConnected())
+	var/isadmin = 0
+	if(src.client && src.client.holder)
+		isadmin = 1
 
-		var/DBQuery/select_query = dbcon.NewQuery("SELECT id, question FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime")
-		select_query.Execute()
+	var/DBQuery/select_query = dbcon.NewQuery("SELECT id, question FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime")
+	select_query.Execute()
 
-		var/output = "<div align='center'><B>Player polls</B>"
-		output +="<hr>"
+	var/output = "<div align='center'><B>Player polls</B>"
+	output +="<hr>"
 
-		var/pollid
-		var/pollquestion
+	var/pollid
+	var/pollquestion
 
-		output += "<table>"
-		var/color1 = "#ececec"
-		var/color2 = "#e2e2e2"
-		var/i = 0
+	output += "<table>"
+	var/color1 = "#ececec"
+	var/color2 = "#e2e2e2"
+	var/i = 0
 
-		while(select_query.NextRow())
-			pollid = select_query.item[1]
-			pollquestion = select_query.item[2]
-			output += "<tr bgcolor='[ (i % 2 == 1) ? color1 : color2 ]'><td><a href=\"byond://?src=\ref[src];pollid=[pollid]\"><b>[pollquestion]</b></a></td></tr>"
-			i++
+	while(select_query.NextRow())
+		pollid = select_query.item[1]
+		pollquestion = select_query.item[2]
+		output += "<tr bgcolor='[ (i % 2 == 1) ? color1 : color2 ]'><td><a href=\"byond://?src=\ref[src];pollid=[pollid]\"><b>[pollquestion]</b></a></td></tr>"
+		i++
 
-		output += "</table>"
+	output += "</table>"
 
-		src << browse(output,"window=playerpolllist;size=500x300")
+	src << browse(output,"window=playerpolllist;size=500x300")
 
 
 

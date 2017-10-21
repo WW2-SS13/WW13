@@ -102,6 +102,8 @@ Parts of code courtesy of Super3222
 	if(user.stat || !ishuman(user))
 		if(!silent) user << "You are unable to focus through \the [src]."
 		return 0
+	if (istype(user.loc, /obj/tank))
+		return 0
 	else if(global_hud.darkMask[1] in user.client.screen)
 		if(!silent) user << "Your visor gets in the way of looking through \the [src]."
 		return 0
@@ -180,7 +182,9 @@ Parts of code courtesy of Super3222
 	if (zoomed)
 		for (var/obj/o in user.client.screen)
 			if (!istype(o, /obj/screen/movable/action_button))
-				o.invisibility = 101
+				/* 100 invisibility is better than 101 so we can still
+				   work with objects (like radios) */
+				o.invisibility = 100
 	else
 		for (var/obj/o in user.client.screen)
 			if (!istype(o, /obj/screen/movable/action_button))
@@ -228,7 +232,8 @@ Parts of code courtesy of Super3222
 		if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 			for(var/datum/action/toggle_scope/T in actions)
 				if(T.scope.zoomed && src.m_intent=="run")
-					T.scope.zoom(src, FALSE)
+					shake_camera(src, 2, rand(2,3))
+				//	T.scope.zoom(src, FALSE)
 
 // called from Life()
 /mob/living/carbon/human/proc/handle_zoom_stuff(var/ghosting = FALSE)
@@ -238,4 +243,14 @@ Parts of code courtesy of Super3222
 				for(var/datum/action/toggle_scope/T in actions)
 					if(T.scope.zoomed)
 						T.scope.zoom(src, FALSE)
+
+/mob/living/carbon/human/proc/using_zoom()
+	if (stat == CONSCIOUS)
+		if(client && actions.len)
+			if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
+				for(var/datum/action/toggle_scope/T in actions)
+					if(T.scope.zoomed)
+						return 1
+	return 0
+
 

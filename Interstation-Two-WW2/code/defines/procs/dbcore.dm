@@ -143,7 +143,6 @@ DBQuery/proc/SetConversion(column,conversion)
 	else if(conversions.len < column) conversions.len = column
 	conversions[column] = conversion
 
-
 DBColumn
 	var/name
 	var/table
@@ -179,7 +178,6 @@ DBColumn/proc/SqlTypeName(type_handler=src.sql_type)
 		if(TIME) return "TIME"
 		if(STRING) return "STRING"
 		if(BLOB) return "BLOB"
-
 
 #undef Default_Cursor
 #undef Client_Cursor

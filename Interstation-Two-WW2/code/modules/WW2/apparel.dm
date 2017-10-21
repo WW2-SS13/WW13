@@ -311,7 +311,7 @@
 	new /obj/item/ammo_magazine/kar98k(src)
 	new /obj/item/ammo_magazine/kar98k(src)
 	new /obj/item/ammo_magazine/kar98k(src)
-	new /obj/item/ammo_magazine/kar98k(src)
+	new /obj/item/attachment/bayonet(src)
 	new /obj/item/weapon/gauze_pack/gauze(src)
 	new /obj/item/weapon/grenade/explosive/stgnade(src)
 

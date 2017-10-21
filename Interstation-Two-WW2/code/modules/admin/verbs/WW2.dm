@@ -1,5 +1,5 @@
 /client/proc/send_german_train()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Send train (German)"
 
 	var/direction = input("Make the train go forwards, backwards, or stop?") in list("Forwards", "Backwards", "Stop", "Cancel")
@@ -25,7 +25,7 @@
 	message_admins("[key_name(src)] tried to send the german train [direction].")
 
 /client/proc/allow_join_geforce()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Toggle joining (German)"
 
 	ticker.can_latejoin_geforce = !ticker.can_latejoin_geforce
@@ -33,7 +33,7 @@
 	message_admins("[key_name(src)] changed the geforce latejoin setting.")
 
 /client/proc/allow_join_ruforce()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Toggle joining (Russian)"
 
 	ticker.can_latejoin_ruforce = !ticker.can_latejoin_ruforce
@@ -41,7 +41,7 @@
 	message_admins("[key_name(src)] changed the ruforce latejoin setting.")
 
 /client/proc/allow_rjoin_geforce()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Toggle reinforcements (German)"
 
 	if (reinforcements_master)
@@ -52,7 +52,7 @@
 		src << "<span class = danger>WARNING: No reinforcements master found.</span>"
 
 /client/proc/allow_rjoin_ruforce()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Toggle reinforcements (Russian)"
 
 	if (reinforcements_master)
@@ -64,7 +64,7 @@
 
 
 /client/proc/force_reinforcements_geforce()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Quickspawn reinforcements (German)"
 
 	var/list/l = reinforcements_master.reinforcement_pool[GERMAN]
@@ -83,7 +83,7 @@
 	reinforcements_master.lock_check()
 
 /client/proc/force_reinforcements_ruforce()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Quickspawn reinforcements (Russian)"
 
 	var/list/l = reinforcements_master.reinforcement_pool[RUSSIAN]
@@ -103,7 +103,7 @@
 
 // debugging
 /client/proc/reset_roundstart_autobalance()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Reset Roundstart Autobalance"
 
 	if(!check_rights(R_HOST))
@@ -114,9 +114,11 @@
 	job_master.toggle_roundstart_autobalance(_clients)
 
 /client/proc/show_battle_report()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Show battle report"
-	show_global_battle_report(src)
+
+	if ((input(src, "Are you sure you want to show the battle report? Unless the Battle Controller Process died, it will happen automatically!", "Battle Report") in list ("Yes", "No")) == "Yes")
+		show_global_battle_report(src)
 
 /proc/show_global_battle_report(var/shower)
 
@@ -171,7 +173,7 @@
 		usr << msg4
 
 /client/proc/generate_hit_table()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Hit tables"
 	set background = 1
 
@@ -301,7 +303,7 @@
 				T.update_starlight()*/
 
 /client/proc/message_russians()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Message Russians"
 
 	var/msg = input(usr, "Send what?", "Message Russians") as text
@@ -323,7 +325,7 @@
 		message_admins("[key_name(src)] sent '[msg]' to the Russian team.")
 
 /client/proc/message_germans()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Message Germans"
 
 	var/msg = input(usr, "Send what?", "Message Germans") as text
@@ -346,7 +348,7 @@
 		message_admins("[key_name(src)] sent '[msg]' to the German team.")
 
 /client/proc/message_SS()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Message the SS"
 
 	var/msg = input(usr, "Send what?", "Message the SS") as text
@@ -370,7 +372,7 @@
 
 
 /client/proc/message_paratroopers()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Messages Paratroopers"
 
 	var/msg = input(usr, "Send what?", "Message Paratroopers") as text
@@ -393,7 +395,7 @@
 		message_admins("[key_name(src)] sent '[msg]' to the paratroopers")
 
 /client/proc/message_civilians()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Message Civilians"
 
 	var/msg = input(usr, "Send what? Note that this messages Partisans too!", "Message Civilians") as text
@@ -416,7 +418,7 @@
 		message_admins("[key_name(src)] sent '[msg]' to all Civilians")
 
 /client/proc/message_partisans()
-	set category = "WW2"
+	set category = "WW2 (Admin)"
 	set name = "Message Partisans"
 
 	var/msg = input(usr, "Send what?", "Message Partisans") as text

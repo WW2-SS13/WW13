@@ -85,9 +85,12 @@
 				banreason = "[banreason] (CUSTOM CID)"
 		else
 			message_admins("Ban process: A mob matching [playermob.ckey] was found at location [playermob.x], [playermob.y], [playermob.z]. Custom ip and computer id fields replaced with the ip and computer id from the located mob")
-		notes_add(banckey,banreason,usr)
 
-		DB_ban_record(bantype, playermob, banduration, banreason, banjob, null, banckey, banip, bancid )
+		notes_add(banckey,banreason,usr)
+		var/reason = DB_ban_record(bantype, playermob, banduration, banreason, banjob, null, banckey, banip, bancid )
+		if (playermob && playermob.client)
+			playermob << "<span class = 'danger'>You've been banned. Reason: [reason].</span>"
+			qdel(playermob.client)
 
 	else if(href_list["editrights"])
 		if(!check_rights(R_PERMISSIONS))
@@ -102,7 +105,7 @@
 			var/new_ckey = ckey(input(usr,"New admin's ckey","Admin ckey", null) as text|null)
 			if(!new_ckey)	return
 			if(new_ckey in admin_datums)
-				usr << "<font color='red'>Error: Topic 'editrights': [new_ckey] is already an admin</font>"
+				usr << "<font color='red'>Error: Topic 'editrights': [new_ckey] is already an admin.</font>"
 				return
 			adm_ckey = new_ckey
 			task = "rank"
@@ -134,37 +137,28 @@
 			var/rights = 0
 			if(D)
 				rights = D.rights
+
 			switch(new_rank)
 				if(null,"") return
 				if("*New Rank*")
 					new_rank = input("Please input a new rank", "New custom rank", null, null) as null|text
-					if(config.admin_legacy_system)
-						new_rank = ckeyEx(new_rank)
+
 					if(!new_rank)
 						usr << "<font color='red'>Error: Topic 'editrights': Invalid rank</font>"
 						return
-					if(config.admin_legacy_system)
-						if(admin_ranks.len)
-							if(new_rank in admin_ranks)
-								rights = admin_ranks[new_rank]		//we typed a rank which already exists, use its rights
-							else
-								admin_ranks[new_rank] = 0			//add the new rank to admin_ranks
-				else
-					if(config.admin_legacy_system)
-						new_rank = ckeyEx(new_rank)
-						rights = admin_ranks[new_rank]				//we input an existing rank, use its rights
-
+			/*
 			if(D)
 				D.disassociate()								//remove adminverbs and unlink from client
 				D.rank = new_rank								//update the rank
 				D.rights = rights								//update the rights based on admin_ranks (default: 0)
 			else
-				D = new /datum/admins(new_rank, rights, adm_ckey)
+				*/
+			D = new /datum/admins(new_rank, rights, adm_ckey)
 
 			var/client/C = directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
 			D.associate(C)											//link up with the client and add verbs
 
-			C << "[key_name_admin(usr)] has set your admin rank to: [new_rank]."
+			C << "<b>[key_name_admin(usr)] has set your admin rank to: [new_rank].</b>"
 			message_admins("[key_name_admin(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
 			log_admin("[key_name(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
 			log_admin_rank_modification(adm_ckey, new_rank)
@@ -603,9 +597,9 @@
 					if(!check_rights(R_MOD,0) && !check_rights(R_BAN, 0))
 						usr << "<span class='warning'> You Cannot issue temporary job-bans!</span>"
 						return
-					if(config.ban_legacy_system)
+					/*if(config.ban_legacy_system)
 						usr << "\red Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban."
-						return
+						return*/
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(!mins)
 						return
@@ -662,10 +656,10 @@
 		//Unbanning joblist
 		//all jobs in joblist are banned already OR we didn't give a reason (implying they shouldn't be banned)
 		if(joblist.len) //at least 1 banned job exists in joblist so we have stuff to unban.
-			if(!config.ban_legacy_system)
-				usr << "Unfortunately, database based unbanning cannot be done through this panel"
-				DB_ban_panel(M.ckey)
-				return
+		//	if(!config.ban_legacy_system)
+			usr << "Unfortunately, database based unbanning cannot be done through this panel"
+			DB_ban_panel(M.ckey)
+			return
 			var/msg
 			for(var/job in joblist)
 				var/reason = jobban_isbanned(M, job)
@@ -961,7 +955,7 @@
 		check_antagonists()
 
 	else if(href_list["adminplayerobservecoodjump"])
-		if(!check_rights(R_ADMIN))	return
+		if(!check_rights(R_ADMIN|R_MOD))	return
 
 		var/x = text2num(href_list["X"])
 		var/y = text2num(href_list["Y"])
@@ -1369,10 +1363,10 @@
 	else if(href_list["admin_secrets"])
 		var/datum/admin_secret_item/item = locate(href_list["admin_secrets"]) in admin_secrets.items
 		item.execute(usr)
-
+/*
 	else if(href_list["populate_inactive_customitems"])
 		if(check_rights(R_ADMIN|R_SERVER))
-			populate_inactive_customitems_list(src.owner)
+			populate_inactive_customitems_list(src.owner)*/
 /*
 	else if(href_list["vsc"])
 		if(check_rights(R_ADMIN|R_SERVER))

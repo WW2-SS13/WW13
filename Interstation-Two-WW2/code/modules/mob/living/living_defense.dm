@@ -258,8 +258,9 @@ var/obj/human_fire_overlay_lying = null
 
 /mob/living/proc/handle_fire()
 
-	overlays -= generic_living_fire_overlay
-	overlays -= human_fire_overlay
+	if (human_fire_overlay)
+		overlays -= generic_living_fire_overlay
+		overlays -= human_fire_overlay
 
 	if(fire_stacks < 0)
 		fire_stacks = min(0, ++fire_stacks) //If we've doused ourselves in water to avoid fire, dry off slowly
@@ -270,7 +271,7 @@ var/obj/human_fire_overlay_lying = null
 	else if(fire_stacks <= 0)
 		ExtinguishMob() //Fire's been put out.
 		return 1
-
+/*
 	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment
 	if(G.gas["oxygen"] < 1)
 		ExtinguishMob() //If there's no oxygen in the tile we're on, put out the fire
@@ -278,15 +279,15 @@ var/obj/human_fire_overlay_lying = null
 
 	var/turf/location = get_turf(src)
 	location.hotspot_expose(fire_burn_temperature(), 50, 1)
-
+*/
 	if (!human_fire_overlay)
-		human_fire_overlay = new()
+		human_fire_overlay = new
 		human_fire_overlay.icon = 'icons/mob/OnFire.dmi'
 		human_fire_overlay.icon_state = "Standing"
-		human_fire_overlay_lying = new()
+		human_fire_overlay_lying = new
 		human_fire_overlay_lying.icon = 'icons/mob/OnFire.dmi'
 		human_fire_overlay_lying.icon_state = "Lying"
-		generic_living_fire_overlay = new()
+		generic_living_fire_overlay = new
 		generic_living_fire_overlay.icon = 'icons/mob/OnFire.dmi'
 		generic_living_fire_overlay.icon_state = "Generic_mob_burning"
 

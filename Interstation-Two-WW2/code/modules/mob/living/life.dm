@@ -9,8 +9,6 @@
 	if(!loc)
 		return
 
-	var/datum/gas_mixture/environment = loc.return_air()
-
 	if(stat != DEAD)
 		//Breathing, if applicable
 		handle_breathing()
@@ -29,9 +27,7 @@
 
 		. = 1
 
-	//Handle temperature/pressure differences between body and environment
-	if(environment)
-		handle_environment(environment)
+		handle_environment()
 
 	//Check if we're on fire
 	handle_fire()
@@ -71,7 +67,7 @@
 /mob/living/proc/handle_random_events()
 	return
 
-/mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
+/mob/living/proc/handle_environment()
 	return
 
 /mob/living/proc/handle_stomach()

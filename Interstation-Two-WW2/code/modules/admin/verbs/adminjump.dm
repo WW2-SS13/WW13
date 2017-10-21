@@ -121,6 +121,8 @@
 	else
 		alert("Admin jumping disabled")
 
+var/turf/default_adminzone_turf = null
+
 /client/proc/Goto_adminzone()
 	set category = "Ghost"
 	set name = "Go To The Admin Zone"
@@ -131,8 +133,20 @@
 	log_admin("[key_name(usr)] went to the admin zone")
 	message_admins("[key_name_admin(usr)] went to the admin zone", 1)
 
+	if (!default_adminzone_turf)
+		default_adminzone_turf = locate(20, 72, 1)
+
+	if (default_adminzone_turf)
+		if (istype(get_area(default_adminzone_turf), /area/prishtina/admin))
+			mob.loc = default_adminzone_turf
+			return 1
+
 	var/area/prishtina/admin/admin_zone = locate() in world
-	mob.loc = pick(admin_zone.contents)
+	for (var/turf/T in admin_zone.contents)
+		mob.loc = T
+		break
+
+	return 0
 
 
 /client/proc/Getkey()

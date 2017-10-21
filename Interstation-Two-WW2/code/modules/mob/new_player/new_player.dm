@@ -22,10 +22,13 @@
 /mob/new_player/New()
 	mob_list += src
 
+	spawn (1)
+		if (client)
+			client.remove_ghost_only_admin_verbs()
+
 /mob/new_player/verb/new_player_panel()
 	set src = usr
 	new_player_panel_proc()
-
 
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'><B>New Player Options</B>"
@@ -54,25 +57,24 @@
 				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Russian reinforcement pool.</A></p>"
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
-	if(!IsGuestKey(src.key))
-		establish_db_connection()
-		if(dbcon.IsConnected())
-			var/isadmin = 0
-			if(src.client && src.client.holder)
-				isadmin = 1
-			// TODO: reimplement database interaction
-			var/DBQuery/query = dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
-			query.Execute()
-			var/newpoll = 0
-			while(query.NextRow())
-				newpoll = 1
-				break
+/*	if(!IsGuestKey(src.key))
+	//	establish_db_connection()
+	//	if(dbcon.IsConnected())
+		var/isadmin = 0
+		if(src.client && src.client.holder)
+			isadmin = 1
+		// TODO: reimplement database interaction
+		var/list/rowdata = database.execute("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
+		var/newpoll = 0
+		if (islist(rowdata) && !isemptylist(rowdata))
+			newpoll = 1
+			break
 
-			if(newpoll)
-				output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
-			else
-				output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
-
+		if(newpoll)
+			output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+		else
+			output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
+*/
 	output += "</div>"
 
 	src << browse(output,"window=playersetup;size=210x280;can_close=0")
@@ -162,8 +164,8 @@
 				client.prefs.real_name = random_name(client.prefs.gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
-			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
-				observer.verbs -= /mob/observer/ghost/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
+		//	if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
+				//observer.verbs -= /mob/observer/ghost/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
 			observer.key = key
 			qdel(src)
 
@@ -255,12 +257,12 @@
 			client.prefs.process_link(src, href_list)
 	else if(!href_list["late_join"])
 		new_player_panel()
-
+/*
 	if(href_list["showpoll"])
 
 		handle_player_polling()
-		return
-
+		return*/
+/*
 	if(href_list["pollid"])
 
 		var/pollid = href_list["pollid"]
@@ -310,7 +312,7 @@
 				for(var/optionid = id_min; optionid <= id_max; optionid++)
 					if(!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
 						vote_on_poll(pollid, optionid, 1)
-
+*/
 /mob/new_player/proc/IsJobAvailable(rank, var/list/restricted_choices)
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job)	return 0
@@ -413,10 +415,14 @@
 
 	dat += "Choose from the following open positions:<br>"
 	for(var/datum/job/job in job_master.occupations)
+
 		if(job && !job.train_check())
 			continue
 
 		var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
+
+		if (job.is_paratrooper)
+			job_is_available = allow_paratroopers
 
 		if (config.use_job_whitelist && !check_job_whitelist(src, job.title))
 			job_is_available = 0
@@ -461,17 +467,27 @@
 				if(side_name)
 					dat += "[side_name]<br>"
 
+			var/extra_span = ""
+			var/end_extra_span = ""
+
+			if (job.is_officer && !job.is_commander)
+				extra_span = "<span style = 'font-size: 1.5em;'>"
+				end_extra_span = "</span>"
+			else if (job.is_commander)
+				extra_span = "<span style = 'font-size: 2.0em;'>"
+				end_extra_span = "</span>"
+
 			if (!job.en_meaning)
 				if (job_is_available)
-					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a><br>"
+					dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
 				else
-					dat += "TAKEN, WHITELISTED, OR DISABLED BY ADMINS: <strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike><br>"
+					dat += "<span style = 'color:red'><strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 
 			else
 				if (job_is_available)
-					dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a><br>"
+					dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
 				else
-					dat += "TAKEN, WHITELISTED, OR DISABLED BY ADMINS: <strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike><br>"
+					dat += "<span style = 'color:red'><strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")

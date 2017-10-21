@@ -24,6 +24,14 @@
 //	var/lava = 0
 	var/overrided_icon_state
 
+	var/season = "SPRING"
+	var/uses_winter_overlay = 0
+
+/turf/floor/proc/has_snow()
+	for (var/obj/o in contents)
+		if (o.icon == 'icons/turf/snow.dmi')
+			return o
+
 /turf/floor/is_plating()
 	return !flooring
 

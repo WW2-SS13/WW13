@@ -20,7 +20,7 @@ datum/preferences
 	var/list/be_special_role = list()		//Special role selection
 	var/UI_style = "ErisStyleHolo"
 	var/UI_useborder = 0
-	var/UI_style_color = "#039C21"
+	var/UI_style_color = "#92CE81"
 	var/UI_style_alpha = 255
 
 	//character preferences
@@ -196,6 +196,7 @@ datum/preferences
 
 
 /datum/preferences/New(client/C)
+
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)
 	german_gender = pick(MALE, FEMALE)

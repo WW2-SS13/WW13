@@ -208,7 +208,9 @@ var/global/list/default_ukrainian_channels = list(
 		else if (istype(radio.loc, /turf) && !radio.broadcasting)
 			continue
 
-		used_radio_turfs += get_turf(radio)
+		if (!istype(loc, /obj/tank))
+			used_radio_turfs += get_turf(radio)
+
 		used_radios += radio
 
 		spawn (5)
@@ -218,6 +220,10 @@ var/global/list/default_ukrainian_channels = list(
 				radio.broadcast(rhtml_encode(message), src, 1)
 
 /obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = 0)
+
+	// ignore emotes.
+	if (copytext(msg, 1, 2) == "*")
+		return
 
 	if (!can_broadcast())
 		return

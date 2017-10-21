@@ -36,7 +36,7 @@
 	else if (soldiers["ru"] == soldiers["en"])
 		return 1
 
-	return soldiers["en"]/soldiers["ru"] // we need decimals here so no rounding
+	return max(soldiers["en"], 1)/max(soldiers["ru"], 1) // we need decimals here so no rounding
 
 /proc/is_russian_contested_zone(var/area/a)
 	if (istype(a, /area/prishtina/soviet/bunker))

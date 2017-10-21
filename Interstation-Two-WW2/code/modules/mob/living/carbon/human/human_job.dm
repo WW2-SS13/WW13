@@ -16,4 +16,6 @@
 			return if_no_id*/
 
 /mob/living/carbon/human/proc/get_assignment_noid()
+	if (!mind.assigned_job)
+		return ""
 	return mind.assigned_job.title

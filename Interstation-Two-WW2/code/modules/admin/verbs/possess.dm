@@ -1,11 +1,6 @@
 /proc/possess(obj/O as obj in range(world.view))
 	set name = "Possess Obj"
-	set category = "Object"
-/*
-	if(istype(O,/obj/singularity))
-		if(config.forbid_singulo_possession)
-			usr << "It is forbidden to possess singularities."
-			return*/
+	set category = "Ghost"
 
 	var/turf/T = get_turf(O)
 
@@ -28,7 +23,7 @@
 
 /proc/release(obj/O as obj in range(world.view))
 	set name = "Release Obj"
-	set category = "Object"
+	set category = "Ghost"
 	//usr.loc = get_turf(usr)
 
 	if(usr.control_object && usr.name_archive) //if you have a name archived and if you are actually relassing an object

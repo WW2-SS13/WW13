@@ -85,7 +85,7 @@
 	var/area/prishtina/german/train_zone/train_zone = locate() in world
 	for (var/turf/t in train_zone.contents)
 		for (var/obj/machinery/light/light in t.contents)
-			light.bright`ness_range = 0
+			light.brightness_range = 0
 			light.brightness_power = 0
 			light.update(0, 1, 1)*/
 
