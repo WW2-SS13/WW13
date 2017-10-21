@@ -1,3 +1,10 @@
+/obj/snow
+
+/obj/snow/attackby(obj/item/C as obj, mob/user as mob)
+	var/turf/floor/F = get_turf(src)
+	if (istype(F))
+		return F.attackby(C, user)
+
 /turf/floor/attackby(obj/item/C as obj, mob/user as mob)
 
 	if(!C || !user)
@@ -5,6 +12,13 @@
 
 	if(istype(C, /obj/item/stack/cable_coil) || (flooring && istype(C, /obj/item/stack/rods)))
 		return ..(C, user)
+
+	else if (istype(C, /obj/item/weapon/reagent_containers/food/drinks))
+		if (C.reagents.total_volume)
+			visible_message("<span class='notice'>\The [user] tips the contents of \the [C] on \the [src].</span>")
+			C.reagents.clear_reagents()
+			C.update_icon()
+		return
 
 	else if (istype(C, /obj/item/weapon/shovel))
 		if (season == "WINTER" && uses_winter_overlay)

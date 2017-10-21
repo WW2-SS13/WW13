@@ -974,7 +974,7 @@ var/global/list/common_tools = list(
 /obj/item/weapon/weldingtool,
 /obj/item/weapon/screwdriver,
 /obj/item/weapon/wirecutters,
-/obj/item/device/multitool,
+///obj/item/device/multitool,
 /obj/item/weapon/crowbar)
 
 /proc/istool(O)
@@ -1006,12 +1006,12 @@ var/global/list/common_tools = list(
 	if(istype(O, /obj/item/weapon/screwdriver))
 		return 1
 	return 0
-
+/*
 /proc/ismultitool(O)
 	if(istype(O, /obj/item/device/multitool))
 		return 1
 	return 0
-
+*/
 /proc/iscrowbar(O)
 	if(istype(O, /obj/item/weapon/crowbar))
 		return 1

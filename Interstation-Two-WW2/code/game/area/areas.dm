@@ -309,11 +309,11 @@ var/list/mob/living/forced_ambiance_list = new
 			L << sound(sound, repeat = 0, wait = 0, volume = 10, channel = SOUND_CHANNEL_AMBIENCE)
 			L.client.played = world.time
 			return 1
-	else
+	/*else // disabled ship ambience because this is WORLD WAR II - Kachnov
 		var/sound = 'sound/ambience/shipambience.ogg'
 		CL.ambience_playing = sound
 		L << sound(sound, repeat = 1, wait = 0, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
-
+*/
 /area/proc/gravitychange(var/gravitystate = 0, var/area/A)
 	A.has_gravity = gravitystate
 

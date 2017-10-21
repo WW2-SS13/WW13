@@ -47,7 +47,7 @@
 
 /obj/item/weapon/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	return base_block_chance
-
+/*
 /obj/item/weapon/shield/riot
 	name = "riot shield"
 	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
@@ -60,7 +60,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = 4.0
-	origin_tech = list(TECH_MATERIAL = 2)
+//	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list("glass" = 7500, DEFAULT_WALL_MATERIAL = 1000)
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
@@ -85,11 +85,11 @@
 			cooldown = world.time
 	else
 		..()
-
+*/
 /*
  * Energy Shield
  */
-
+/*
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
@@ -158,3 +158,4 @@
 		set_light(0)
 
 
+*/

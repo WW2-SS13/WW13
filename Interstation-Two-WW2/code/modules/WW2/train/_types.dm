@@ -23,9 +23,10 @@
 	// hackish code because radios need a mob, with a language, to announce
 	mob = new
 	mob.default_language = new/datum/language/german
-	mob.real_name = "Supply System"
+	mob.real_name = "Supply Announcement System"
 	mob.name = mob.real_name
 	mob.original_job = new/datum/job/german/trainsystem
+	mob.sayverb = "announces"
 
 /datum/train_controller/german_supplytrain_controller/proc/announce(msg)
 	if (!announcer)

@@ -196,6 +196,12 @@
 	//DISCONNECT//
 	//////////////
 /client/Del()
+
+	// this is here because mob/Login() is called whenever a mob spawns in
+	if(admin_datums[ckey])
+		if (ticker && ticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
+			message_admins("Admin login: [key_name(src)]")
+
 	if(holder)
 		holder.owner = null
 		admins -= src

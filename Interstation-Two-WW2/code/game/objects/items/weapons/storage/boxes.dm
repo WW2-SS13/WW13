@@ -325,7 +325,7 @@
 	name = "box of anti-photon grenades"
 	desc = "A box containing 5 experimental photon disruption grenades."
 	icon_state = "flashbang"
-
+/*
 /obj/item/weapon/storage/box/anti_photons/New()
 		..()
 		new /obj/item/weapon/grenade/anti_photon(src)
@@ -333,7 +333,7 @@
 		new /obj/item/weapon/grenade/anti_photon(src)
 		new /obj/item/weapon/grenade/anti_photon(src)
 		new /obj/item/weapon/grenade/anti_photon(src)
-
+*/
 
 /obj/item/weapon/storage/box/rxglasses
 	name = "box of prescription glasses"

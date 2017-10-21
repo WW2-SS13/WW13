@@ -59,7 +59,11 @@
 		/datum/game_aspect/ww2/russian_sadvantage,
 		/datum/game_aspect/ww2/russian_sdisadvantage,
 
-		/datum/game_aspect/ww2/german_logistical_disadvantage)
+		/datum/game_aspect/ww2/german_logistical_disadvantage,
+
+		/datum/game_aspect/ww2/no_tanks,
+
+		)
 
 /datum/game_aspect/ww2/post_activation()
 
@@ -203,6 +207,18 @@
 	world << "[WW2_ASPECT_SPAN][.]German Logistical Disadvantage!</span>"
 	world << "<br><i>[desc]</i>"
 	GRACE_PERIOD_LENGTH = 15
+
+/datum/game_aspect/ww2/no_tanks
+	desc = "There are no tanks, hooray!"
+
+/datum/game_aspect/ww2/german_logistical_disadvantage/activate()
+	. = ..()
+	if (. == FALSE)
+		return .
+	world << "[WW2_ASPECT_SPAN][.]No tanks!</span>"
+	world << "<br><i>[desc]</i>"
+	for (var/obj/tank/T in world)
+		qdel(T)
 
 #undef WW2_ASPECT_SPAN
 #undef WW2_ASPECTDESC_SPAN

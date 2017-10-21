@@ -258,6 +258,10 @@
 			for (var/v in 1 to rand(10,15))
 				contents += new_ration(RUSSIAN, "meat")
 
+	else if (findtext(textpath, "water"))
+		for (var/v in 1 to rand(20,30))
+			contents += water_ration()
+
 /obj/structure/closet/crate/rations/german_solids
 	name = "Rations: solids"
 
@@ -281,6 +285,10 @@
 
 /obj/structure/closet/crate/rations/soviet_meat
 	name = "Rations: meat"
+
+/obj/structure/closet/crate/rations/water
+	name = "Rations: H20"
+
 
 // 5 wood planks with 25 each = 125 wood planks (25 barricades)
 /obj/structure/closet/crate/wood/New()

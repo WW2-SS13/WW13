@@ -81,8 +81,6 @@ var/list/global/wall_cache = list()
 
 	if(istype(Proj,/obj/item/projectile/beam))
 		burn(2500)
-	else if(istype(Proj,/obj/item/projectile/ion))
-		burn(500)
 
 	var/proj_damage = Proj.get_structure_damage()
 

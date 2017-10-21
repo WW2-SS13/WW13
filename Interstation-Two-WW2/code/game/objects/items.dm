@@ -18,7 +18,7 @@
 	pass_flags = PASSTABLE
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
-	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
+	//var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/force = 0
 
@@ -81,6 +81,16 @@
 		m.update_inv_l_hand()
 		src.loc = null
 	return ..()
+
+/obj/item/proc/has_edge()
+	. = 0
+	if (edge)
+		. = 1
+	else
+		if (istype(src, /obj/item/weapon/gun))
+			var/obj/item/weapon/gun/G = src
+			if (G.bayonet)
+				. = 1
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'

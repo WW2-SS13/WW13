@@ -17,6 +17,8 @@
 
 	anchored = 1	//  don't get pushed around
 
+	var/on_welcome_popup = 0
+
 
 
 /mob/new_player/New()
@@ -31,9 +33,9 @@
 	new_player_panel_proc()
 
 /mob/new_player/proc/new_player_panel_proc()
-	var/output = "<div align='center'><B>New Player Options</B>"
+	var/output = "<div align='center'><b>Welcome, [key]!</b>"
 	output +="<hr>"
-	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character & Preferences</A></p>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 		//output += fix_ru("<p>Отключено в целях отладки (<a href='byond://?src=\ref[src];ready=0'>Жми сюда в надежде, что появятся новые кнопки.</a>)</p>")
@@ -46,7 +48,9 @@
 	//	output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</A></p>"
 
+	var/height = 300
 	if (reinforcements_master && reinforcements_master.is_ready())
+		height = 450
 		if (!reinforcements_master.has(src))
 			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a German reinforcement!</A></p>"
 			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Russian reinforcement!</A></p>"
@@ -77,7 +81,8 @@
 */
 	output += "</div>"
 
-	src << browse(output,"window=playersetup;size=210x280;can_close=0")
+	src << browse(null, "window=playersetup;")
+	src << browse(output, "window=playersetup;size=300x[height];can_close=0")
 	return
 
 /mob/new_player/Stat()

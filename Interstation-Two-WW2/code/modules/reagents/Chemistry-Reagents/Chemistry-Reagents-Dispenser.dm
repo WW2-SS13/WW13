@@ -109,6 +109,7 @@
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
 	M.nutrition += nutriment_factor * removed
+	M.water += nutriment_factor * removed
 	var/strength_mod = 1
 
 	M.add_chemical_effect(CE_ALCOHOL, 1)

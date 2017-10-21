@@ -39,6 +39,7 @@
 	return 1
 
 // Attacking someone with a weapon while they are neck-grabbed
+// todo: allow throat slitting by targeting the neck because it's more intuitive
 /mob/living/carbon/proc/check_attack_throat(obj/item/W, mob/user)
 	if(user.a_intent == I_HURT)
 		for(var/obj/item/weapon/grab/G in src.grabbed_by)
@@ -48,15 +49,15 @@
 	return 0
 
 // Knifing
-/mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/weapon/grab/G, mob/user)
+/mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/weapon/grab/G, mob/user, delay = 20)
 
-	if(!W.edge || !W.force || W.damtype != BRUTE)
+	if(!W.has_edge() || !W.force || W.damtype != BRUTE)
 		return 0 //unsuitable weapon
 
 	user.visible_message("<span class='danger'>\The [user] begins to slit [src]'s throat with \the [W]!</span>")
 
-	user.next_move = world.time + 20 //also should prevent user from triggering this repeatedly
-	if(!do_after(user, 20, progress=0))
+	user.next_move = world.time + delay //also should prevent user from triggering this repeatedly
+	if(!do_after(user, delay, progress=0))
 		return 0
 	if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
 		return 0
@@ -73,6 +74,10 @@
 		var/damage = min(W.force*1.5, 20)*damage_mod
 		apply_damage(damage, W.damtype, "head", 0, sharp=W.sharp, edge=W.edge)
 		total_damage += damage
+
+	// seriously buffing throat slitting because neckgrabs are hard to get
+	// - Kachnov
+	total_damage *= 3
 
 	var/oxyloss = total_damage
 	if(total_damage >= 40) //threshold to make someone pass out
@@ -92,7 +97,9 @@
 	G.last_action = world.time
 	flick(G.hud.icon_state, G.hud)
 
-	user.attack_log += "\[[time_stamp()]\]<font color='red'> Knifed [name] ([ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
-	src.attack_log += "\[[time_stamp()]\]<font color='orange'> Got knifed by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
-	msg_admin_attack("[key_name(user)] knifed [key_name(src)] with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])" )
+	emote("scream")
+
+	user.attack_log += "\[[time_stamp()]\]<font color='red'> slit [name]'s throat ([ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
+	src.attack_log += "\[[time_stamp()]\]<font color='orange'> got throatslit by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
+	msg_admin_attack("[key_name(user)] slit [key_name(src)]'s throat with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])" )
 	return 1

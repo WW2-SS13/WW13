@@ -31,6 +31,7 @@
 	"Solid Rations" = /obj/structure/closet/crate/rations/german_solids,
 	"Liquid Rations" = /obj/structure/closet/crate/rations/german_liquids,
 	"Dessert Rations" = /obj/structure/closet/crate/rations/german_desserts,
+	"Water Rations" = /obj/structure/closet/crate/rations/water,
 	"Supply Requisition Sheets" = /obj/structure/closet/crate/supply_req_sheets,
 
 	// MATERIALS
@@ -78,6 +79,7 @@
 	"Solid Rations" = 80,
 	"Liquid Rations" = 80,
 	"Dessert Rations" = 160,
+	"Water Rations" = 50,
 	"Supply Requisition Sheets" = 10,
 
 	// MATERIALS

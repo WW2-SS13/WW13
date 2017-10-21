@@ -93,14 +93,14 @@ default behaviour is:
 					src << "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>"
 					now_pushing = 0
 					return
-			if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
+			/*if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
 				if(prob(99))
 					now_pushing = 0
 					return
 			if(tmob.l_hand && istype(tmob.l_hand, /obj/item/weapon/shield/riot))
 				if(prob(99))
 					now_pushing = 0
-					return
+					return*/
 			if(!(tmob.status_flags & CANPUSH))
 				now_pushing = 0
 				return

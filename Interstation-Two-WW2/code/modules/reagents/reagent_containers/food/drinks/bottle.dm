@@ -20,8 +20,11 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/New()
 	..()
-	icon_state_full = "[icon_state]"
-	icon_state_empty = "[icon_state]_empty"
+	icon_state_full = icon_state
+	if (findtext(icon_state, "bottle"))
+		icon_state_empty = icon_state
+	else
+		icon_state_empty = "[icon_state]_empty"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Destroy()
 	if(rag)
@@ -52,16 +55,21 @@
 		return 0
 	return prob(chance_table[idx])
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, var/speed)
-	smash(get_turf(hit_atom), hit_atom)
-	..(hit_atom, speed)
+/obj/item/weapon/reagent_containers/food/drinks/bottle/Bump(atom/A, yes)
+	..(A, yes)
+	if (src)
+		if (isliving(A) || iswall(A))
+			smash(get_turf(A), A)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null)
 
-	if(rag && rag.on_fire && isliving(against))
+	if(rag && rag.on_fire && (isliving(against) || iswall(against)))
+
 		rag.forceMove(loc)
-		var/mob/living/L = against
-		L.IgniteMob()
+
+		if (isliving(against))
+			var/mob/living/L = against
+			L.IgniteMob()
 
 		#define testmolotovs
 
@@ -184,7 +192,7 @@
 	if(reagents)
 		spawn (1) // wait until after our explosion, if we have one
 			user.visible_message("<span class='notice'>The contents of \the [src] splash all over [target]!</span>")
-			reagents.splash(target, reagents.total_volume)
+			if (reagents) reagents.splash(target, reagents.total_volume)
 
 	//Finally, smash the bottle. This kills (qdel) the bottle.
 	var/obj/item/weapon/broken_bottle/B = smash(target.loc, target)
@@ -229,6 +237,27 @@
 	New()
 		..()
 		reagents.add_reagent("whiskey", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/water
+	name = "Bottle of Water"
+	desc = "Just a bottle of drinking water."
+	icon_state = "waterbottle"
+	center_of_mass = list("x"=17, "y"=3)
+	volume = 100 // this is kind of important for filling bottles from sinks
+	New()
+		..()
+		// empty by default
+
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled
+	name = "Bottle of Water"
+	desc = "Just a bottle of drinking water."
+	icon_state = "waterbottle"
+	center_of_mass = list("x"=17, "y"=3)
+	New()
+		..()
+		reagents.add_reagent("water", 100)
+
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka
 	name = "Tunguska Triple Distilled"

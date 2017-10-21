@@ -120,8 +120,15 @@ var/GRACE_PERIOD_LENGTH = 10
 				keydoor.Open()
 	return 1
 
+// season defines used in this file
+#define WINTER_COLOR "#FFFAFA"
+#define SUMMER_COLOR "#FDBD88"
+#define FALL_COLOR "#C37D69"
+
 // this is roundstart because we need to wait for objs to be created
 /hook/roundstart/proc/nature()
+
+	// create wild grasses
 	world << "<span class = 'notice'>Setting up wild grasses.</span>"
 	for (var/turf/floor/plating/grass/G in grass_turf_list)
 		if (prob(50))
@@ -130,55 +137,48 @@ var/GRACE_PERIOD_LENGTH = 10
 			new /obj/structure/wild/bush(G)
 		next
 
-// must come after do_seasonal_stuff() or things break, notably the entire game
-/hook/roundstart/proc/correct_seasonal_stuff()
-	spawn (1)
-		world << "<span class = 'notice'>Correcting seasonal icon errors.</span>"
-	spawn (50)
-		for (var/turf/floor/plating/grass/G in grass_turf_list)
-			G.overlays.Cut()
-			for (var/obj/o in G.contents)
-				if (o.special_id == "seasons")
-					G.overlays += o
-			for (var/cache_key in G.floor_decal_cache_keys)
-				var/image/decal = floor_decals[cache_key]
-				decal.layer = G.layer + 0.01
-				G.overlays += decal
+	do_seasonal_stuff()
+//	correct_seasonal_stuff()
 
 // freaking seasons dude
-/hook/roundstart/proc/do_seasonal_stuff()
+/proc/do_seasonal_stuff()
 	world << "<span class = 'notice'>Setting up seasonal stuff.</span>"
 	var/datum/game_mode/ww2/mode = ticker.mode
 	if (istype(mode))
 		for (var/turf/floor/plating/grass/G in grass_turf_list)
 			G.season = mode.season
 
+			if (G.season != "SPRING")
+				G.overlays.Cut()
+
 			if (G.uses_winter_overlay)
 				if (G.season == "WINTER")
 
-					var/obj/o = new(G)
-					o.icon = 'icons/turf/snow.dmi'
-					o.icon_state = ""
-					o.layer = G.layer
-					o.alpha = 200
-					o.name = ""
-					o.special_id = "seasons"
-					G.overlays += o
+					var/obj/snow/S = new(G)
+					S.icon = 'icons/turf/snow.dmi'
+					S.icon_state = ""
+					S.layer = G.layer
+					S.alpha = 200
+					S.name = ""
+					S.special_id = "seasons"
 
 					for (var/obj/structure/wild/W in G.contents)
-						if (istype(W) && !istype(W, /obj/structure/wild/tree))
+						if (istype(W))
+							W.color = "#521515" // make us look dead
 							var/obj/W_overlay = new(G)
 							W_overlay.icon = W.icon
 							W_overlay.icon_state = W.icon_state
-							W_overlay.layer = W.layer
-							W_overlay.alpha = 100
+							W_overlay.layer = W.layer + 0.01
+							W_overlay.alpha = 200
 							W_overlay.name = ""
-							W_overlay.color = "#FFFAFA"
+							var/icon/W_overlay_icon = icon(W_overlay.icon, W_overlay.icon_state)
+							W_overlay_icon.Blend(icon('icons/turf/snow.dmi', ""), ICON_MULTIPLY)
+							W_overlay.icon = W_overlay_icon
 							W_overlay.special_id = "seasons"
 							W.overlays.Insert(1, W_overlay)
 
 				else if (G.season == "SUMMER")
-					G.color = "#fc913a"
+					G.color = "#FDBD88"
 					for (var/obj/structure/wild/W in G.contents)
 						if (istype(W) && !istype(W, /obj/structure/wild/tree))
 							var/obj/W_overlay = new(G)
@@ -205,7 +205,44 @@ var/GRACE_PERIOD_LENGTH = 10
 							W_overlay.special_id = "seasons"
 							W.overlays.Insert(1, W_overlay)
 
+			if (G.season != "SPRING")
+				for (var/cache_key in G.floor_decal_cache_keys)
+					var/image/decal = floor_decals[cache_key]
+					var/obj/o = new(G)
+					o.icon = decal.icon
+					o.icon_state = decal.icon_state
+					o.dir = decal.dir
+					o.color = decal.color
+					o.layer = G.layer+0.02
+					o.alpha = decal.alpha
+					o.name = ""
+
 	return 1
+
+
+// must come after do_seasonal_stuff() or things break,
+//notably the entire game
+
+// this exists to prevent floor_decal objs from taking on seasonal colors
+// belonging to their turf
+
+/proc/correct_seasonal_stuff()
+	world << "<span class = 'notice'>Correcting seasonal icon errors.</span>"
+	for (var/turf/floor/plating/grass/G in grass_turf_list)
+		if (istype(G))
+			if (G.color == SUMMER_COLOR || G.color == FALL_COLOR)
+				if (G.overlays.len)
+					G.overlays.Cut()
+					world << "editing grass [G] floor decal"
+					for (var/cache_key in G.floor_decal_cache_keys)
+						var/image/decal = floor_decals[cache_key]
+						var/obj/o = new(G)
+						o.icon = decal.icon
+						o.icon_state = decal.icon_state
+						o.color = decal.color
+						o.layer = G.layer+0.02
+						o.alpha = decal.alpha
+						o.name = ""
 
 var/mission_announced = 0
 var/allow_paratroopers = 1
@@ -225,6 +262,13 @@ var/allow_paratroopers = 1
 		world << "<font size=3>The Russian side can't attack until after 10 minutes.</font><br>"
 
 	game_started = 1
+
+	// let the new players see reinforcements now
+	spawn (1)
+		for (var/mob/new_player/np in world)
+			if (np.client)
+				np.new_player_panel_proc()
+
 //	ticker.can_latejoin_ruforce = 0
 //	ticker.can_latejoin_geforce = 0
 

@@ -174,7 +174,7 @@ var/list/possible_cable_coil_colours = list(
 			user << "Not enough cable"
 			return
 		coil.cable_join(src, user)
-
+/*
 	else if(istype(W, /obj/item/device/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
@@ -184,7 +184,7 @@ var/list/possible_cable_coil_colours = list(
 			user << "<span class='warning'>The cable is not powered.</span>"
 
 		shock(user, 5, 0.2)
-
+*/
 	else
 		if (W.flags & CONDUCT)
 			shock(user, 50, 0.7)
@@ -321,7 +321,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 					merge_powernets(powernet, C.powernet)
 				else
 					powernet.add_cable(C) //the cable was powernetless, let's just add it to our powernet
-
+/*
 		else if(istype(AM,/obj/machinery/power/apc))
 			var/obj/machinery/power/apc/N = AM
 			if(!N.terminal)	continue // APC are connected through their terminal
@@ -330,7 +330,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 				continue
 
 			to_connect += N.terminal //we'll connect the machines after all cables are merged
-
+*/
 		else if(istype(AM,/obj/machinery/power)) //other power machines
 			var/obj/machinery/power/M = AM
 

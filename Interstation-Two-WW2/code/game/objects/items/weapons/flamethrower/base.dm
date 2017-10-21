@@ -10,7 +10,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
-	origin_tech = list(TECH_COMBAT = 1, TECH_PLASMA = 1)
+//	origin_tech = list(TECH_COMBAT = 1, TECH_PLASMA = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
 	var/status = 0
 	var/throw_amount = 100

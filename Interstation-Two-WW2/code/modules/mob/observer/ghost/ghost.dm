@@ -69,7 +69,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 
-	ghost_multitool = new(src)
+//	ghost_multitool = new(src)
 
 	// when you gib, you have no icon state.
 	// now you get a default ghost icon
@@ -83,8 +83,8 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 
 /mob/observer/ghost/Destroy()
 	stop_following()
-	qdel(ghost_multitool)
-	ghost_multitool = null
+//	qdel(ghost_multitool)
+//	ghost_multitool = null
 	return ..()
 
 /mob/observer/ghost/Topic(href, href_list)

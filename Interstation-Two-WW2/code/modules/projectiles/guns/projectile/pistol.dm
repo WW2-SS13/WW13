@@ -4,7 +4,7 @@
 	magazine_type = /obj/item/ammo_magazine/c45m
 	icon_state = "colt"
 	caliber = ".45"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+//	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 
@@ -35,7 +35,7 @@
 	icon_state = "secguncomp"
 	magazine_type = /obj/item/ammo_magazine/c45m/flash
 	caliber = ".45"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+//	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 
@@ -54,7 +54,7 @@
 	w_class = 3
 	caliber = ".45"
 	silenced = 1
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
+//	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c45m
 
@@ -93,7 +93,7 @@
 	max_shells = 8
 	caliber = "75"
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
-	origin_tech = list(TECH_COMBAT = 3)
+//	origin_tech = list(TECH_COMBAT = 3)
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a75
@@ -118,7 +118,7 @@
 	w_class = 2
 	caliber = "9mm"
 	silenced = 0
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
+//	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/mc9mm
@@ -217,7 +217,7 @@
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	caliber = ".44"
 	ammo_mag = "mag_cl44"
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
+//	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	load_method = MAGAZINE
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
@@ -240,7 +240,7 @@
 	ammo_mag = "mag_cl32"
 	w_class = 2
 	fire_delay = 0.6
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
+//	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 	load_method = MAGAZINE
 	accuracy = 1
 
@@ -259,7 +259,7 @@
 	caliber = ".32"
 	ammo_mag = "mag_cl32"
 	fire_delay = 1.2
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
+//	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	load_method = MAGAZINE
 	accuracy = 2
 

@@ -164,15 +164,7 @@ var/global/list/default_ukrainian_channels = list(
 		ui.set_initial_data(data)
 		ui.open()
 
-/* Hearing radios, less stupid and telecomms free edition - Kachnov
-
- This is really simple. When a mob says something near a radio,
- or while there is a radio in their contents, their message
- gets broadcasted exactly 1/2 of a second later. I was planning to
- add randomness to this time interval, but then I would have to store
- messages to make sure they get broadcasted in chronological order.
- I may do this some time in the future.
-*/
+/* Hearing radios, less stupid and telecomms free edition - Kachnov */
 
 /mob/living/carbon/human/proc/post_say(var/message)
 	if (!locate(/obj/item/device/radio) in range(1, src))
@@ -259,7 +251,7 @@ var/global/list/default_ukrainian_channels = list(
 				used_radio_turfs += get_turf(radio)
 				used_radios += radio
 				if (radio.listening_on_channel[radio_freq2name(frequency)])
-					hearer.hear_radio(msg, "says", speaker.default_language, speaker, src, hardtohear)
+					hearer.hear_radio(msg, speaker.sayverb, speaker.default_language, speaker, src, hardtohear)
 	// let observers hear it
 	for (var/mob/observer/o in mob_list)
 		if (istype(o))

@@ -16,9 +16,9 @@
 	..(H)
 	onTouchedBy(H)
 
-/mob/living/simple_animal/complex_animal/attackby(var/mob/living/carbon/human/H as mob, var/obj/item/weapon/W as obj)
-	..(H)
-	onAttackedBy(H, W)
+/mob/living/simple_animal/complex_animal/attackby(var/obj/item/weapon/W as obj, var/mob/living/carbon/human/H as mob)
+	..(W, H)
+	onAttackedBy(W, H)
 
 // movement detection
 /mob/Move()

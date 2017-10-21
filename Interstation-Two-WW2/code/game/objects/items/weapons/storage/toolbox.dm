@@ -12,7 +12,7 @@
 	w_class = 4
 	max_w_class = 3
 	max_storage_space = 14 //enough to hold all starting contents
-	origin_tech = list(TECH_COMBAT = 1)
+//	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("robusted")
 
 /obj/item/weapon/storage/toolbox/emergency
@@ -66,7 +66,7 @@
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
-	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
+//	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
 	force = WEAPON_FORCE_DANGEROUS
 
 	New()
@@ -77,4 +77,4 @@
 		new /obj/item/weapon/weldingtool(src)
 		new /obj/item/weapon/crowbar(src)
 		new /obj/item/weapon/wirecutters(src)
-		new /obj/item/device/multitool(src)
+//		new /obj/item/device/multitool(src)

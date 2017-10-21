@@ -9,7 +9,6 @@
 			continue
 		chemical_reagents_list[D.id] = D
 
-
 /datum/reagent
 	var/name = "Reagent"
 	var/id = "reagent"

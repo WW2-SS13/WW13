@@ -262,10 +262,10 @@
 				src.overlays += image(src.icon, "[initial(icon_state)]-panel")
 			nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
 			return
-	else if(istype(W, /obj/item/device/multitool)||istype(W, /obj/item/weapon/wirecutters))
+	/*else if(istype(W, /obj/item/device/multitool)||istype(W, /obj/item/weapon/wirecutters))
 		if(src.panel_open)
 			attack_hand(user)
-		return
+		return*/
 /*	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
 		user.drop_item()
 		W.loc = src

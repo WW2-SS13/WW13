@@ -1,15 +1,19 @@
-client/script = {"<style>
-body					{font-family: Verdana, sans-serif;}
+/* old settings */
 
-h1, h2, h3, h4, h5, h6	{color: #0000ff;font-family: Georgia, Verdana, sans-serif;}
+//BODY: {font-family: Verdana, sans-serif;}
+
+client/script = {"<style>
+body					{font-family: "Book Antiqua", Verdana, sans-serif;}
+
+h1, h2, h3, h4, h5, h6	{color: #0000ff; font-family: "Book Antiqua", Georgia, Verdana, sans-serif;}
 
 em						{font-style: normal;font-weight: bold;}
 
-.motd					{color: #638500;font-family: Verdana, sans-serif;}
+.motd					{color: #4C6CCD; font-family: "Book Antiqua", Verdana, sans-serif;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6
-						{color: #638500;text-decoration: underline;}
+						{color: #4C6CCD; text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
-						{color: #638500;}
+						{color: #CD4C6C;}
 
 .prefix					{font-weight: bold;}
 .log_message			{color: #386AFF;	font-weight: bold;}

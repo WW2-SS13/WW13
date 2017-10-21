@@ -1,4 +1,16 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
+/client/verb/website()
+	set name = "website"
+	set desc = "Visit the website"
+	set hidden = 1
+	if( config.websiteurl )
+		if(alert("This will open the website in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.websiteurl)
+	else
+		src << "<span class='warning'>The website URL is not set in the server configuration.</span>"
+	return
+
 /client/verb/wiki()
 	set name = "wiki"
 	set desc = "Visit the wiki"
@@ -59,19 +71,40 @@
 		src << "<span class='warning'>The Discord URL is not set in the server configuration.</span>"
 	return
 
-/client/verb/report_a_bug()
-	set name = "report a bug"
+/client/verb/reportabug()
+	set name = "Report a Bug"
 	set desc = "Report a bug, and a coder will eventually put in on Github."
 	set hidden = 1
-	var/bugname = input("What do you name this bug?") as text
+	var/bugname = input("What is a name for this bug?") as text
 	var/bugdesc = input("What is the bug's description?") as text
-	var/bugrep = input("How do you reproduce the bug?") as text
+
+	var/list/steps = list()
+	var/bugrep = input("Does the bug have any special steps in order to recreate it?") in list("Yes", "No")
+	if (bugrep == "Yes")
+		var/stepnum = steps.len+1
+		while ((input("Add another step? (#[stepnum])") in list ("Yes", "No")) == "Yes")
+			var/step = input("What is a description of step number #[stepnum]?") as text
+			step = sanitizeSQL(step)
+			if (lentext(step) > 200)
+				step = copytext(step, 1, 201)
+				src << "<span class = 'warning'>[step] #[stepnum] was culled to 200 characters.</span>"
+			steps += step
+			if (stepnum == 10)
+				src << "<span class = 'warning'>Max number of steps (#[stepnum]) reached.</span>"
+				break
+
+	var/steps2string = ""
+	for (var/_step in steps)
+		steps2string += _step
+		if (_step != steps[steps.len])
+			steps2string += ";"
+
 	var/anything_else = input("Anything else?") as text
 
 	if (bugname && bugdesc && bugrep && anything_else)
 		establish_db_connection()
 		if (database)
-			if (database.execute("INSERT INTO bug_reports (name, desc, rep, other) VALUES ('[bugname]', '[bugdesc]', '[bugrep]', '[anything_else]');"))
+			if (database.execute("INSERT INTO bug_reports (name, desc, steps, other) VALUES ('[bugname]', '[bugdesc]', '[steps2string]', '[anything_else]');"))
 				src << "<span class = 'notice'>Your bug was successfully reported. Thank you!</span>"
 			else
 				src << "<span class = 'warning'>A database error occured; your bug was NOT reported.</span>"

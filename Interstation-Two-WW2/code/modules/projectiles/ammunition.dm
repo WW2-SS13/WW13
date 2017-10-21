@@ -93,6 +93,9 @@
 	var/list/icon_keys = list()		//keys
 	var/list/ammo_states = list()	//values
 
+	// are we an ammo box
+	var/is_box = 0
+
 /obj/item/ammo_magazine/New()
 	..()
 	if(multiple_sprites)
@@ -107,6 +110,8 @@
 	update_icon()
 
 /obj/item/ammo_magazine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if (W == src)
+		return
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(C.caliber != caliber)
@@ -119,9 +124,35 @@
 		C.loc = src
 		stored_ammo.Insert(1, C) //add to the head of the list
 		update_icon()
+	else if (istype(W, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/M = W
+		if(M.caliber != caliber)
+			user << "<span class='warning'>[M]'s ammo type does not fit into [src].</span>"
+			return
+		if(stored_ammo.len >= max_ammo)
+			user << "<span class='warning'>[src] is full!</span>"
+			return
+		if (M.stored_ammo.len == 0)
+			user << "<span class='warning'>[M] is empty!</span>"
+			return
+
+		var/filled = 0
+		for (var/obj/item/ammo_casing/C in M.stored_ammo)
+			if (stored_ammo.len >= max_ammo)
+				break
+			C.loc = src
+			stored_ammo.Insert(1, C)
+			M.stored_ammo -= C
+			filled = 1
+
+		if (filled)
+			user << "<span class = 'notice'>You fill [src] with [M]'s ammo.</span>"
+
+		update_icon()
 
 // empty the mag
 /obj/item/ammo_magazine/attack_self(mob/user)
+
 	if(!stored_ammo.len)
 		user << "<span class='notice'>[src] is already empty!</span>"
 		return
@@ -134,8 +165,10 @@
 			cont = 1
 
 	if (cont)
-		user << "<span class='notice'>You empty [src].</span>"
-		for(var/obj/item/ammo_casing/C in stored_ammo)
+		var/turf/T = get_turf(src)
+		// so people know who to lynch
+		T.visible_message("<span class = 'notice'>[user] empties [src].</span>", "<span class='notice'>You empty [src].</span>")
+		for (var/obj/item/ammo_casing/C in stored_ammo)
 			C.loc = user.loc
 			C.set_dir(pick(cardinal))
 		stored_ammo.Cut()

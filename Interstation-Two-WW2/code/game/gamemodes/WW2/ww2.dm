@@ -261,7 +261,8 @@
 				aspect.activate()
 				aspect.post_activation()
 
-			spawn (1)
+			// train might not be set up yet
+			spawn (30)
 				job_master.german_job_slots *= personnel[GERMAN]
 				job_master.russian_job_slots *= personnel[RUSSIAN]
 
@@ -279,3 +280,9 @@
 				setup_autobalance(0)
 
 		world << "<b>The current game mode is World War II!</b>"
+
+		// let new players see the join link
+		for (var/mob/new_player/np in world)
+			if (np.client)
+				np.new_player_panel_proc()
+

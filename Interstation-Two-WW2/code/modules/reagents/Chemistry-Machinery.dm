@@ -178,7 +178,7 @@
 	if(stat & BROKEN)
 		return
 	ui_interact(user)
-
+/*
 /obj/machinery/chemical_dispenser/soda
 	icon_state = "soda_dispenser"
 	name = "soda fountain"
@@ -203,7 +203,7 @@
 			dispensable_reagents -= list("thirteenloko","grapesoda")
 			hackedcheck = 0
 			return
-
+*/
 /obj/machinery/chemical_dispenser/beer
 	icon_state = "booze_dispenser"
 	name = "booze dispenser"
@@ -216,7 +216,7 @@
 
 /obj/machinery/chemical_dispenser/beer/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
-
+/*
 	if(istype(B, /obj/item/device/multitool))
 		if(hackedcheck == 0)
 			user << "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes."
@@ -228,7 +228,7 @@
 			user << "You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes."
 			dispensable_reagents -= list("goldschlager","patron","watermelonjuice","berryjuice")
 			hackedcheck = 0
-			return
+			return*/
 
 /obj/machinery/chemical_dispenser/meds
 	name = "chem dispenser magic"

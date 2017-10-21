@@ -27,43 +27,43 @@
 /obj/item/weapon/ore/uranium
 	name = "pitchblende"
 	icon_state = "ore_uranium"
-	origin_tech = list(TECH_MATERIAL = 5)
+//	origin_tech = list(TECH_MATERIAL = 5)
 
 /obj/item/weapon/ore/iron
 	name = "hematite"
 	icon_state = "ore_iron"
-	origin_tech = list(TECH_MATERIAL = 1)
+//	origin_tech = list(TECH_MATERIAL = 1)
 
 /obj/item/weapon/ore/coal
 	name = "raw carbon"
 	icon_state = "ore_coal"
-	origin_tech = list(TECH_MATERIAL = 1)
+//	origin_tech = list(TECH_MATERIAL = 1)
 
 /obj/item/weapon/ore/glass
 	name = "sand"
 	icon_state = "ore_glass"
-	origin_tech = list(TECH_MATERIAL = 1)
+//	origin_tech = list(TECH_MATERIAL = 1)
 	slot_flags = SLOT_HOLSTER
 
 /obj/item/weapon/ore/plasma
 	name = "plasma crystals"
 	icon_state = "ore_plasma"
-	origin_tech = list(TECH_MATERIAL = 2)
+//	origin_tech = list(TECH_MATERIAL = 2)
 
 /obj/item/weapon/ore/silver
 	name = "native silver ore"
 	icon_state = "ore_silver"
-	origin_tech = list(TECH_MATERIAL = 3)
+//	origin_tech = list(TECH_MATERIAL = 3)
 
 /obj/item/weapon/ore/gold
 	name = "native gold ore"
 	icon_state = "ore_gold"
-	origin_tech = list(TECH_MATERIAL = 4)
+//	origin_tech = list(TECH_MATERIAL = 4)
 
 /obj/item/weapon/ore/diamond
 	name = "diamonds"
 	icon_state = "ore_diamond"
-	origin_tech = list(TECH_MATERIAL = 6)
+//	origin_tech = list(TECH_MATERIAL = 6)
 
 /obj/item/weapon/ore/osmium
 	name = "raw platinum"

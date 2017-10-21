@@ -164,11 +164,11 @@
 			overlays += image(icon, icon_panel)
 		nanomanager.update_uis(src)
 		return
-
+/*
 	if(istype(O, /obj/item/device/multitool)||istype(O, /obj/item/weapon/wirecutters))
 		if(panel_open)
 			attack_hand(user)
-		return
+		return*/
 
 	if(stat & NOPOWER)
 		user << "<span class='notice'>\The [src] is unpowered and useless.</span>"

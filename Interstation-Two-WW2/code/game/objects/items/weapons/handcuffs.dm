@@ -10,7 +10,7 @@
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 5
-	origin_tech = list(TECH_MATERIAL = 1)
+//	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
 	var/elastic
 	var/dispenser = 0
@@ -145,7 +145,7 @@ var/last_chew = 0
 
 /obj/item/weapon/handcuffs/cable/white
 	color = "#FFFFFF"
-
+/*
 /obj/item/weapon/handcuffs/cable/attackby(var/obj/item/I, mob/user as mob)
 	..()
 	if(istype(I, /obj/item/stack/rods))
@@ -155,10 +155,8 @@ var/last_chew = 0
 			user.put_in_hands(W)
 			user << "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>"
 			qdel(src)
-			update_icon(user)
+			update_icon(user)*/
 
-/obj/item/weapon/handcuffs/cyborg
-	dispenser = 1
 
 /obj/item/weapon/handcuffs/cable/tape
 	name = "tape restraints"
