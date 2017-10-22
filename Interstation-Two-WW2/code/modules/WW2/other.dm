@@ -120,10 +120,19 @@ var/GRACE_PERIOD_LENGTH = 10
 				keydoor.Open()
 	return 1
 
-// season defines used in this file
-#define WINTER_COLOR "#FFFAFA"
-#define SUMMER_COLOR "#FDBD88"
-#define FALL_COLOR "#C37D69"
+/obj/snow
+	icon = 'icons/turf/snow.dmi'
+	icon_state = ""
+	layer = 2.00
+	alpha = 200
+	name = ""
+	anchored = 1
+	special_id = "seasons"
+
+/obj/snow/attackby(obj/item/C as obj, mob/user as mob)
+	var/turf/floor/F = get_turf(src)
+	if (istype(F))
+		return F.attackby(C, user)
 
 // this is roundstart because we need to wait for objs to be created
 /hook/roundstart/proc/nature()
@@ -131,14 +140,16 @@ var/GRACE_PERIOD_LENGTH = 10
 	// create wild grasses
 	world << "<span class = 'notice'>Setting up wild grasses.</span>"
 	for (var/turf/floor/plating/grass/G in grass_turf_list)
+		if (!G || !istype(G))
+			continue
+
 		if (prob(50))
 			if (locate(/atom/movable) in G)
-				goto next
-			new /obj/structure/wild/bush(G)
-		next
+				continue
+			else
+				new /obj/structure/wild/bush(G)
 
 	do_seasonal_stuff()
-//	correct_seasonal_stuff()
 
 // freaking seasons dude
 /proc/do_seasonal_stuff()
@@ -146,7 +157,15 @@ var/GRACE_PERIOD_LENGTH = 10
 	var/datum/game_mode/ww2/mode = ticker.mode
 	if (istype(mode))
 		for (var/turf/floor/plating/grass/G in grass_turf_list)
+			if (!G || !istype(G))
+				continue
+
 			G.season = mode.season
+
+			var/area/A = get_area(G)
+
+			if (A.location == AREA_INSIDE)
+				continue
 
 			if (G.season != "SPRING")
 				G.overlays.Cut()
@@ -154,28 +173,16 @@ var/GRACE_PERIOD_LENGTH = 10
 			if (G.uses_winter_overlay)
 				if (G.season == "WINTER")
 
-					var/obj/snow/S = new(G)
-					S.icon = 'icons/turf/snow.dmi'
-					S.icon_state = ""
-					S.layer = G.layer
-					S.alpha = 200
-					S.name = ""
-					S.special_id = "seasons"
+					G.color = DEAD_COLOR
+					new/obj/snow(G)
 
 					for (var/obj/structure/wild/W in G.contents)
 						if (istype(W))
-							W.color = "#521515" // make us look dead
-							var/obj/W_overlay = new(G)
-							W_overlay.icon = W.icon
-							W_overlay.icon_state = W.icon_state
-							W_overlay.layer = W.layer + 0.01
-							W_overlay.alpha = 200
-							W_overlay.name = ""
-							var/icon/W_overlay_icon = icon(W_overlay.icon, W_overlay.icon_state)
-							W_overlay_icon.Blend(icon('icons/turf/snow.dmi', ""), ICON_MULTIPLY)
-							W_overlay.icon = W_overlay_icon
-							W_overlay.special_id = "seasons"
-							W.overlays.Insert(1, W_overlay)
+
+							W.color = DEAD_COLOR
+							var/icon/W_icon = icon(W.icon, W.icon_state)
+							W_icon.Blend(icon('icons/turf/snow.dmi', "wild_overlay"), ICON_ADD)
+							W.icon = W_icon
 
 				else if (G.season == "SUMMER")
 					G.color = "#FDBD88"
@@ -218,31 +225,6 @@ var/GRACE_PERIOD_LENGTH = 10
 					o.name = ""
 
 	return 1
-
-
-// must come after do_seasonal_stuff() or things break,
-//notably the entire game
-
-// this exists to prevent floor_decal objs from taking on seasonal colors
-// belonging to their turf
-
-/proc/correct_seasonal_stuff()
-	world << "<span class = 'notice'>Correcting seasonal icon errors.</span>"
-	for (var/turf/floor/plating/grass/G in grass_turf_list)
-		if (istype(G))
-			if (G.color == SUMMER_COLOR || G.color == FALL_COLOR)
-				if (G.overlays.len)
-					G.overlays.Cut()
-					world << "editing grass [G] floor decal"
-					for (var/cache_key in G.floor_decal_cache_keys)
-						var/image/decal = floor_decals[cache_key]
-						var/obj/o = new(G)
-						o.icon = decal.icon
-						o.icon_state = decal.icon_state
-						o.color = decal.color
-						o.layer = G.layer+0.02
-						o.alpha = decal.alpha
-						o.name = ""
 
 var/mission_announced = 0
 var/allow_paratroopers = 1

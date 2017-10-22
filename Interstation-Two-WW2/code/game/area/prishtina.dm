@@ -163,6 +163,12 @@
 	icon_state = "red2"
 	dynamic_lighting = 0
 
+/area/prishtina/german/main_area/dogshed
+	name = "German Dogshed"
+	icon_state = "blue-red"
+	dynamic_lighting = 0
+	location = AREA_INSIDE
+
 /area/prishtina/german/outside
 
 /area/prishtina/german/gas_chamber
@@ -342,6 +348,12 @@
 /area/prishtina/soviet/bunker_entrance
 	name = "Bunker Entrance"
 	icon_state = "red2"
+
+/area/prishtina/soviet/dogshed
+	name = "Soviet Dogshed"
+	icon_state = "blue-red"
+	dynamic_lighting = 0
+	location = AREA_INSIDE
 
 /area/prishtina/soviet/immediate_outside_defenses
 	name = "Bunker Defenses"

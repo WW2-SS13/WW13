@@ -596,6 +596,7 @@ var/first_fallschirm = 1
 	additional_languages = list( "Russian" = 10 )
 	is_officer = 1
 	is_commander = 1 // not a squad leader despite the title
+	is_petty_commander = 1
 
 /datum/job/german/squad_leader_ss/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0

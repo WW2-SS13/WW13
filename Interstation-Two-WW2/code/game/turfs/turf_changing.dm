@@ -1,3 +1,9 @@
+// season defines used in this file and modules/WW2/other.dm
+#define WINTER_COLOR "#FFFAFA"
+#define DEAD_COLOR "#744343"
+#define SUMMER_COLOR "#FDBD88"
+#define FALL_COLOR "#C37D69"
+
 /turf/proc/ReplaceWithLattice()
 	src.ChangeTurf(get_base_turf_by_area(src))
 	spawn()
@@ -40,6 +46,16 @@
 
 	if(ispath(N, /turf/floor))
 		var/turf/W = new N( locate(src.x, src.y, src.z) )
+		if (istype(W, /turf/floor/plating/grass))
+			if (ticker.mode.vars.Find("season"))
+				switch (ticker.mode:season)
+					if ("WINTER")
+						W.color = DEAD_COLOR
+					if ("SUMMER")
+						W.color = SUMMER_COLOR
+					if ("FALL")
+						W.color = FALL_COLOR
+
 		if(old_fire)
 			fire = old_fire
 

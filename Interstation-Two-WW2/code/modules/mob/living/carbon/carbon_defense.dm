@@ -38,8 +38,7 @@
 
 	return 1
 
-// Attacking someone with a weapon while they are neck-grabbed
-// todo: allow throat slitting by targeting the neck because it's more intuitive
+// Attacking someone with a weapon while they are neck-grabbed = throat slitting
 /mob/living/carbon/proc/check_attack_throat(obj/item/W, mob/user)
 	if(user.a_intent == I_HURT)
 		for(var/obj/item/weapon/grab/G in src.grabbed_by)
@@ -62,22 +61,19 @@
 	if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
 		return 0
 
-	var/damage_mod = 1
+	var/base_damage_mod = 4.0
+	var/damage_mod = base_damage_mod
 	//presumably, if they are wearing a helmet that stops pressure effects, then it probably covers the throat as well
 	var/obj/item/clothing/head/helmet = get_equipped_item(slot_head)
 	if(istype(helmet) && (helmet.body_parts_covered & HEAD) && (helmet.flags & STOPPRESSUREDAMAGE))
 		//we don't do an armor_check here because this is not an impact effect like a weapon swung with momentum, that either penetrates or glances off.
-		damage_mod = 1.0 - (helmet.armor["melee"]/100)
+		damage_mod = base_damage_mod - (helmet.armor["melee"]/100)
 
 	var/total_damage = 0
 	for(var/i in 1 to 3)
 		var/damage = min(W.force*1.5, 20)*damage_mod
 		apply_damage(damage, W.damtype, "head", 0, sharp=W.sharp, edge=W.edge)
 		total_damage += damage
-
-	// seriously buffing throat slitting because neckgrabs are hard to get
-	// - Kachnov
-	total_damage *= 3
 
 	var/oxyloss = total_damage
 	if(total_damage >= 40) //threshold to make someone pass out

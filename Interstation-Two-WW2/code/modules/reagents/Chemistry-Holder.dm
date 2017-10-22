@@ -159,6 +159,7 @@
 		return 1
 	else
 		warning("[my_atom] attempted to add a reagent called '[id]' which doesn't exist. ([usr])")
+
 	return 0
 
 /datum/reagents/proc/remove_reagent(var/id, var/amount, var/safety = 0)

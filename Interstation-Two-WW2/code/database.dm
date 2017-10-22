@@ -18,10 +18,13 @@ var/database/database = null
 			execute("CREATE TABLE erro_connection_log (id NULL, datetime STRING, serverip STRING, ckey STRING, ip STRING, computerid STRING);")
 
 		if (!execute("TABLE bug_reports EXISTS;"))
-			execute("CREATE TABLE bug_reports (name STRING, desc STRING, rep STRING, other STRING);")
+			execute("CREATE TABLE bug_reports (name STRING, desc STRING, steps STRING, other STRING);")
 
 /database/proc/Now()
 	return world.realtime
+
+/database/proc/nowAsString()
+	return
 
 /database/proc/After(minutes)
 	return world.realtime+(minutes*600)
@@ -66,13 +69,12 @@ var/database/database = null
 					if (!.[x])
 						.[x] = Q.GetRowData()[x]
 						.["[x]_1"] = .[x]
+						occurences_of[x] = 1
 					else // handle duplicate values
-						if (!occurences_of[x])
-							occurences_of[x] = 1
 						var/occ = ++occurences_of[x]
 						.["[x]_[occ]"] = Q.GetRowData()[x]
 						// let us count how many 'x's there are
-						.["occurences_of_[x]"] = occ
+					.["occurences_of_[x]"] = occurences_of[x]
 
 			return .
 

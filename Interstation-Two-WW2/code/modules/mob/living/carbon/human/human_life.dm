@@ -317,11 +317,29 @@
 			if ("SUMMER")
 				loc_temp = 303
 
+		switch (time_of_day)
+			if ("Midday")
+				loc_temp *= 1.03
+			if ("Afternoon")
+				loc_temp *= 1.02
+			if ("Morning")
+				loc_temp *= 1.01
+			if ("Evening")
+				loc_temp *= 1.00 // default
+			if ("Early Morning")
+				loc_temp *= 0.99
+			if ("Night")
+				loc_temp *= 0.98
+			if ("Midnight")
+				loc_temp *= 0.97
+
+		loc_temp = round(loc_temp)
+
 	// todo: inside/outside temp adjustment
 
 	// todo: wind adjusting effective loc_temp
 
-	if(pressure < species.warning_high_pressure && pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
+	if(pressure < species.warning_high_pressure && pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 1 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 		pressure_alert = 0
 		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
@@ -875,6 +893,7 @@
 					continue
 
 		handle_starvation()
+		handle_dehydration()
 
 /*Hardcore mode stuff. This was moved here because constants that are only used
   at one spot in the code shouldn't be in the __defines folder */
@@ -902,11 +921,11 @@
 
 	if(nutrition < 350 && nutrition >= 200)
 		if (prob(3))
-			src << "<span class = 'notice'>You're getting a bit hungry.</span>"
+			src << "<span class = 'warning'>You're getting a bit hungry.</span>"
 
 	if(nutrition < 200)
 		if (prob(4))
-			src << "<span class = 'notice'>You're pretty hungry.</span>"
+			src << "<span class = 'warning'>You're pretty hungry.</span>"
 
 	if(nutrition < 20) //Nutrition is below 20 = starvation
 
@@ -925,7 +944,7 @@
 				if(sleeping) return
 
 				if (!informed_starvation[num2text(-STARVATION_NOTICE)])
-					src << "<span class='notice'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
+					src << "<span class='warning'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
 
 				informed_starvation[num2text(-STARVATION_NOTICE)] = 1
 				informed_starvation[num2text(-STARVATION_WEAKNESS)] = 0
@@ -933,7 +952,7 @@
 				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = 0
 
 				if(prob(10))
-					src << "<span class='notice'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
+					src << "<span class='warning'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
 
 			if(STARVATION_WEAKNESS to STARVATION_NOTICE)
 				if(sleeping) return
@@ -1022,11 +1041,11 @@
 
 	if(water < 350 && water >= 250)
 		if (prob(3))
-			src << "<span class = 'notice'>You're getting a bit thirsty.</span>"
+			src << "<span class = 'warning'>You're getting a bit thirsty.</span>"
 
 	if(water < 250)
 		if (prob(4))
-			src << "<span class = 'notice'>You're pretty thirsty.</span>"
+			src << "<span class = 'warning'>You're pretty thirsty.</span>"
 
 	if(water < 20) //Nutrition is below 20 = dehydration
 
@@ -1045,7 +1064,7 @@
 				if(sleeping) return
 
 				if (!informed_dehydration[num2text(-DEHYDRATION_NOTICE)])
-					src << "<span class='notice'>[pick("You're very thirsty.","You really could use some water right now.")]</span>"
+					src << "<span class='warning'>[pick("You're very thirsty.","You really could use some water right now.")]</span>"
 
 				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = 1
 				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = 0
@@ -1053,7 +1072,7 @@
 				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = 0
 
 				if(prob(10))
-					src << "<span class='notice'>[pick("You're very thirsty.","You really could use some water right now.")]</span>"
+					src << "<span class='warning'>[pick("You're very thirsty.","You really could use some water right now.")]</span>"
 
 			if(DEHYDRATION_WEAKNESS to DEHYDRATION_NOTICE)
 				if(sleeping) return

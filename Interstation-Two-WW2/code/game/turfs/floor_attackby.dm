@@ -1,10 +1,3 @@
-/obj/snow
-
-/obj/snow/attackby(obj/item/C as obj, mob/user as mob)
-	var/turf/floor/F = get_turf(src)
-	if (istype(F))
-		return F.attackby(C, user)
-
 /turf/floor/attackby(obj/item/C as obj, mob/user as mob)
 
 	if(!C || !user)
@@ -25,7 +18,7 @@
 			var/obj/o = has_snow()
 			if (o)
 				visible_message("[user] starts to shovel the snow from [src].", "You start to shovel the snow from [src]")
-				if (do_after(user, rand(40,60)))
+				if (do_after(user, rand(40,50)))
 					visible_message("[user] shovels the snow from [src].", "You shovel the snow from [src]")
 					qdel(o)
 			else

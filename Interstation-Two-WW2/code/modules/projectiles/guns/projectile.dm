@@ -119,10 +119,11 @@
 
 	// special scenario: A is an ammo box, src a PTRD or something
 	// turn A from the ammo magazine to the first bullet in the ammo magazine
-	if (istype(A, /obj/item/ammo_magazine) && A.vars.Find("is_box") && A:is_box && istype(ammo_type, /obj/item/ammo_casing))
+	if (istype(A, /obj/item/ammo_magazine) && A.vars.Find("is_box") && A:is_box && A:ammo_type == ammo_type)
 		var/obj/item/ammo_magazine/AM = A
 		if (AM.stored_ammo.len)
 			A = AM.stored_ammo[1]
+			return load_ammo(A, user)
 
 	else if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A

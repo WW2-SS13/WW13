@@ -55,17 +55,25 @@
 		return 0
 	return prob(chance_table[idx])
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/throw_at(atom/target, range, speed, thrower)
+	..(target, range, speed, thrower)
+	spawn (3)
+		while (src && throwing)
+			sleep(1)
+		if (src && !throwing)
+			Bump(target, 1)
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Bump(atom/A, yes)
-	..(A, yes)
 	if (src)
-		if (isliving(A) || iswall(A))
+		if (isliving(A) || isturf(A))
 			smash(get_turf(A), A)
+	..(A, yes)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null)
 
-	if(rag && rag.on_fire && (isliving(against) || iswall(against)))
+	if(rag && rag.on_fire)
 
-		rag.forceMove(loc)
+		forceMove(newloc)
 
 		if (isliving(against))
 			var/mob/living/L = against
@@ -84,6 +92,8 @@
 				var/datum/reagent/ethanol/E = R
 				explosion_power += (min(max(E.strength, 25), 50) * E.volume)
 
+		qdel(rag)
+
 		#ifdef testmolotovs
 		world << "testing molotov with an explosion_power of [explosion_power]."
 		#endif
@@ -96,26 +106,27 @@
 			explosion(get_turf(src), devrange, heavyrange, lightrange, flashrange)
 
 
-	if(ismob(loc))
-		var/mob/M = loc
-		M.drop_from_inventory(src)
+	if (src)
+		if(ismob(loc))
+			var/mob/M = loc
+			M.drop_from_inventory(src)
 
-	//Creates a shattering noise and replaces the bottle with a broken_bottle
-	var/obj/item/weapon/broken_bottle/B = new /obj/item/weapon/broken_bottle(newloc)
-	if(prob(33))
-		new/obj/item/weapon/material/shard(newloc) // Create a glass shard at the target's location!
-	B.icon_state = src.icon_state
+		//Creates a shattering noise and replaces the bottle with a broken_bottle
+		var/obj/item/weapon/broken_bottle/B = new /obj/item/weapon/broken_bottle(newloc)
+		if(prob(33))
+			new/obj/item/weapon/material/shard(newloc) // Create a glass shard at the target's location!
+		B.icon_state = src.icon_state
 
-	var/icon/I = new('icons/obj/drinks.dmi', src.icon_state)
-	I.Blend(B.broken_outline, ICON_OVERLAY, rand(5), 1)
-	I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
-	B.icon = I
+		var/icon/I = new('icons/obj/drinks.dmi', src.icon_state)
+		I.Blend(B.broken_outline, ICON_OVERLAY, rand(5), 1)
+		I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
+		B.icon = I
 
-	playsound(src,'sound/effects/GLASS_Rattle_Many_Fragments_01_stereo.wav',100,1)
-	src.transfer_fingerprints_to(B)
+		playsound(src,'sound/effects/GLASS_Rattle_Many_Fragments_01_stereo.wav',100,1)
+		src.transfer_fingerprints_to(B)
 
-	qdel(src)
-	return B
+		qdel(src)
+		return B
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/attackby(obj/item/W, mob/user)
 	if(!rag && istype(W, /obj/item/weapon/reagent_containers/glass/rag))

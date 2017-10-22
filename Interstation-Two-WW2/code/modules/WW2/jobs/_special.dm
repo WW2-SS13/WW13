@@ -20,6 +20,7 @@
 /datum/job/var/is_officer = 0
 /datum/job/var/is_squad_leader = 0
 /datum/job/var/is_commander = 0
+/datum/job/var/is_petty_commander = 0
 /datum/job/var/is_nonmilitary = 0
 /datum/job/var/spawn_delay = 0
 /datum/job/var/delayed_spawn_message = ""

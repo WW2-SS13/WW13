@@ -302,7 +302,7 @@
 
 		var/standing_on_snow = 0
 		var/turf/floor/F = get_turf(mob)
-		if (F && istype(F) && F.season == "WINTER")
+		if (F.has_snow())
 			standing_on_snow = 1
 
 		switch(mob.m_intent)

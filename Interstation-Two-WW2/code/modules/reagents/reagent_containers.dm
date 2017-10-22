@@ -163,4 +163,11 @@
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	playsound(src,'sound/effects/Liquid_transfer_mono.wav',50,1)
 	user << "<span class='notice'>You transfer [trans] units of the solution to [target].</span>"
+
+	// fixes rags not updating names after being wet - Kachnov
+	if (istype(target, /obj/item/weapon/reagent_containers/glass/rag))
+		var/obj/item/weapon/reagent_containers/glass/rag/R = target
+		R.update_name()
+
 	return 1
+
