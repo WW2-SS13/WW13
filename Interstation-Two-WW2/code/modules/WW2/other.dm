@@ -123,7 +123,7 @@ var/GRACE_PERIOD_LENGTH = 10
 /obj/snow
 	icon = 'icons/turf/snow.dmi'
 	icon_state = ""
-	layer = 2.00
+	layer = 2.03 // above grass_edge plant decals
 	alpha = 200
 	name = ""
 	anchored = 1
@@ -137,17 +137,14 @@ var/GRACE_PERIOD_LENGTH = 10
 // this is roundstart because we need to wait for objs to be created
 /hook/roundstart/proc/nature()
 
-	// create wild grasses
+	// create wild grasses in "clumps"
 	world << "<span class = 'notice'>Setting up wild grasses.</span>"
 	for (var/turf/floor/plating/grass/G in grass_turf_list)
 		if (!G || !istype(G))
 			continue
 
-		if (prob(50))
-			if (locate(/atom/movable) in G)
-				continue
-			else
-				new /obj/structure/wild/bush(G)
+		if (!locate(/obj/structure) in G || locate(/obj/item) in G)
+			G.plant_grass()
 
 	do_seasonal_stuff()
 
@@ -156,7 +153,7 @@ var/GRACE_PERIOD_LENGTH = 10
 	world << "<span class = 'notice'>Setting up seasonal stuff.</span>"
 	var/datum/game_mode/ww2/mode = ticker.mode
 	if (istype(mode))
-		for (var/turf/floor/plating/grass/G in grass_turf_list)
+		for (var/turf/floor/G in world)
 			if (!G || !istype(G))
 				continue
 
@@ -181,36 +178,38 @@ var/GRACE_PERIOD_LENGTH = 10
 
 							W.color = DEAD_COLOR
 							var/icon/W_icon = icon(W.icon, W.icon_state)
-							W_icon.Blend(icon('icons/turf/snow.dmi', "wild_overlay"), ICON_ADD)
+							W_icon.Blend(icon('icons/turf/snow.dmi', (istype(W, /obj/structure/wild/tree) ? "wild_overlay" : "tree_overlay")), ICON_MULTIPLY)
 							W.icon = W_icon
 
 				else if (G.season == "SUMMER")
-					G.color = "#FDBD88"
+					G.color = SUMMER_COLOR
 					for (var/obj/structure/wild/W in G.contents)
-						if (istype(W) && !istype(W, /obj/structure/wild/tree))
+						if (istype(W))
 							var/obj/W_overlay = new(G)
 							W_overlay.icon = W.icon
 							W_overlay.icon_state = W.icon_state
 							W_overlay.layer = W.layer + 0.01
-							W_overlay.alpha = 100
+							W_overlay.alpha = 133
+							W_overlay.pixel_x = W.pixel_x
+							W_overlay.pixel_y = W.pixel_y
 							W_overlay.name = ""
-							W_overlay.color = "#fc913a"
+							W_overlay.color = SUMMER_COLOR
 							W_overlay.special_id = "seasons"
-							W.overlays.Insert(1, W_overlay)
 
 				else if (G.season == "FALL")
-					G.color = "#C37D69"
+					G.color = FALL_COLOR
 					for (var/obj/structure/wild/W in G.contents)
-						if (istype(W) && !istype(W, /obj/structure/wild/tree))
+						if (istype(W))
 							var/obj/W_overlay = new(G)
 							W_overlay.icon = W.icon
 							W_overlay.icon_state = W.icon_state
 							W_overlay.layer = W.layer + 0.01
-							W_overlay.alpha = 100
+							W_overlay.alpha = 133
+							W_overlay.pixel_x = W.pixel_x
+							W_overlay.pixel_y = W.pixel_y
 							W_overlay.name = ""
-							W_overlay.color = "#9C2706"
+							W_overlay.color = FALL_COLOR
 							W_overlay.special_id = "seasons"
-							W.overlays.Insert(1, W_overlay)
 
 			if (G.season != "SPRING")
 				for (var/cache_key in G.floor_decal_cache_keys)

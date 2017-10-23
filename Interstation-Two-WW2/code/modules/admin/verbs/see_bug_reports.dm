@@ -1,6 +1,5 @@
-// todo: browser interface for browsing bug reports
-
 var/sepstring = ""
+// see bug reports
 /client/proc/see_bug_reports()
 	set category = "Debug"
 	set name = "See Bug Reports"
@@ -64,3 +63,58 @@ var/sepstring = ""
 					return
 	else
 		src << "<span class = 'danger'>A database error occured; you cannot see bug reports right now.</span>"
+// see suggestions
+/client/proc/see_suggestions()
+	set category = "Debug"
+	set name = "See Suggestions"
+
+	establish_db_connection()
+
+	if (database)
+		var/list/suggestions = database.execute("SELECT * FROM suggestions;")
+		var/list/suggestion_names = list()
+		if (islist(suggestions) && !isemptylist(suggestions))
+			for (var/v in 1 to suggestions["occurences_of_name"])
+				suggestion_names += suggestions["name_[v]"]
+		else
+			src << "<span class = 'danger'>There are no open suggestions right now.</span>"
+			return
+		var/suggestion = input("Please select a suggestion to work with.") in suggestion_names + "Cancel"
+		if (!suggestion || suggestion == "Cancel")
+			src << "<span class = 'warning'>No suggestion selected; cancelling proc.</span>"
+			return
+		else
+			var/option = input("Please select an option for suggestion '[suggestion]'.") in list("View", "Delete", "Cancel")
+			switch (lowertext(option))
+				if ("view")
+
+					suggestions = database.execute("SELECT * FROM suggestions WHERE name = '[suggestion]';")
+					if (!islist(suggestions) || isemptylist(suggestions))
+						src << "<span class = 'danger'>Something went wrong - you can't see this suggestion. Contact someone with DB access or a coder and tell them to fix it.</span>"
+						return
+
+					if (!sepstring)
+						for (var/v in 1 to 50)
+							sepstring += "-"
+
+					src << "<span class = 'notice'>[sepstring]</span>"
+					src << "<span class = 'notice'><big>[suggestion]</big></span>"
+					for (var/key in suggestions)
+						if (dd_hassuffix(key, "_"))
+							continue
+						if (findtext(key, "occurences"))
+							continue
+						var/value = suggestions[key]
+						src << "<span class = 'notice'>[key] = [value]</span>"
+
+					src << "<span class = 'notice'>[sepstring]</span>"
+
+				if ("delete")
+					if (database.execute("DELETE FROM suggestions WHERE name = '[suggestion]';"))
+						src << "<span class = 'notice'>Suggestion '[suggestion]' successfully deleted.</span>"
+					else
+						src << "<span class = 'warning'>A database error occured; suggestion '[suggestion]' was not deleted.</span>"
+				if ("cancel")
+					return
+	else
+		src << "<span class = 'danger'>A database error occured; you cannot see suggestions right now.</span>"

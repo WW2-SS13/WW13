@@ -1,6 +1,9 @@
 /obj/tank/var/last_fire = -1
 /obj/tank/var/fire_delay = 100
 
+#define MIN_RANGE 5
+#define MAX_RANGE 6
+
 
 /obj/tank/proc/density_check(var/turf/_loc)
 	if (_loc.density)
@@ -58,7 +61,7 @@
 
 /obj/tank/proc/Fire()
 
-	var/atom/target = get_x_steps_in_dir(pick(6,7)) // nerfed from 10, experimental
+	var/atom/target = get_x_steps_in_dir(rand(MIN_RANGE,MAX_RANGE))
 
 	if(!target) return
 
@@ -93,3 +96,6 @@
 
 	if (target)
 		tank_explosion(target, min(2, abs_dist), 3, 4, 5)
+
+#undef MIN_RANGE
+#undef MAX_RANGE

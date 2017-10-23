@@ -14,7 +14,6 @@
 	return nodrop_special_check()
 
 /obj/item/weapon/flamethrower/flammenwerfer/update_icon()
-	overlays.Cut()
 	if(lit)
 		icon_state = "fw_on"
 		item_state = "fw_on"

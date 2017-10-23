@@ -211,7 +211,7 @@
 /datum/game_aspect/ww2/no_tanks
 	desc = "There are no tanks, hooray!"
 
-/datum/game_aspect/ww2/german_logistical_disadvantage/activate()
+/datum/game_aspect/ww2/no_tanks/activate()
 	. = ..()
 	if (. == FALSE)
 		return .

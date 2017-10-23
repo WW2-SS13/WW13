@@ -1,8 +1,3 @@
-// season defines used in this file and modules/WW2/other.dm
-#define WINTER_COLOR "#FFFAFA"
-#define DEAD_COLOR "#744343"
-#define SUMMER_COLOR "#FDBD88"
-#define FALL_COLOR "#C37D69"
 
 /turf/proc/ReplaceWithLattice()
 	src.ChangeTurf(get_base_turf_by_area(src))

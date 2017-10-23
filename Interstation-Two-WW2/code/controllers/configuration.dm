@@ -244,6 +244,8 @@ var/list/gamemode_cache = list()
 	var/min_players_for_spies = 10
 	var/min_players_for_jews = 10
 
+	var/paratrooper_drop_time = 3000
+
 	//WW2 donor shit
 
 	var/list/job_specific_custom_loadouts = list() // format is a triple list, first of jobs, second of ckeys containing a list of items
@@ -420,6 +422,9 @@ var/list/gamemode_cache = list()
 
 				if ("min_players_for_jews")
 					config.min_players_for_jews = text2num(value)
+
+				if ("paratrooper_drop_time")
+					config.paratrooper_drop_time = text2num(value)
 
 				if ("resource_urls")
 					config.resource_urls = splittext(value, " ")

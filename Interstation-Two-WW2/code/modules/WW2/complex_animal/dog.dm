@@ -1,3 +1,4 @@
+// basic dog stuff
 /mob/living/simple_animal/complex_animal/canine/dog
 	icon_state = null
 	resting_state = null
@@ -21,17 +22,21 @@
 	faction = null
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/check_can_command(var/list/ranks, var/mob/living/carbon/human/H)
+	// no 'else's here, because we accept multiple ranks
 	if (ranks.Find("master"))
 		if (H == owner)
 			return 1
-	else if (ranks.Find("^master"))
+	if (ranks.Find("^master"))
 		if (owner && H.is_superior_of(owner))
 			return 1
-	else if (ranks.Find("team"))
+	if (ranks.Find("team"))
 		if (H.original_job && H.original_job.base_type_flag() == faction)
 			return 1
-	else if (ranks.Find("everyone"))
+	if (ranks.Find("everyone"))
 		return 1
+	return 0
+
+// types of puppers
 
 /mob/living/simple_animal/complex_animal/canine/dog/german_shepherd
 	icon_state = "g_shepherd"
@@ -42,6 +47,8 @@
 	icon_state = "samoyed"
 	name = "Samoyed"
 	faction = RUSSIAN
+
+// "backend" procs
 
 // parse messages that people say (WIP)
 	// needs faction, friendly, etc support
@@ -65,5 +72,15 @@
 
 				if (req_ranks.Find(rank) || pupper.check_can_command(req_ranks, src))
 					if (dd_hasprefix(message, req_word))
-						call(pupper, _call)(src)
+						if (hascall(pupper, _call))
+							call(pupper, _call)(src)
 
+// "frontend" procs
+/mob/living/simple_animal/complex_animal/canine/dog/proc/follow(var/mob/living/carbon/human/H)
+	//...
+
+/mob/living/simple_animal/complex_animal/canine/dog/proc/guard(var/mob/living/carbon/human/H)
+	//...
+
+/mob/living/simple_animal/complex_animal/canine/dog/proc/attack(var/mob/living/carbon/human/H)
+	//...

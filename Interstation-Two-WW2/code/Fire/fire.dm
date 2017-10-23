@@ -115,6 +115,19 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	for(var/mob/m in get_turf(src))
 		Burn(m)
 
+	for (var/obj/snow/S in get_turf(src))
+		if (prob(25))
+			S.visible_message("<span class = 'warning'>The snow melts.</span>")
+			qdel(S)
+
+	for (var/obj/structure/wild/W in get_turf(src))
+		if (istype(W, /obj/structure/wild/tree))
+			if (prob(15))
+				W.visible_message("<span class = 'warning'>[W] collapses.</span>")
+		else
+			if (prob(35))
+				W.visible_message("<span class = 'warning'>[W] is burned away.</span>")
+
 	//loc.fire_act(air_contents, air_contents.temperature, air_contents.volume)
 
 //	for(var/atom/A in loc)

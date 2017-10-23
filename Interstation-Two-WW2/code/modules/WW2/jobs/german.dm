@@ -16,6 +16,7 @@
 	is_officer = 1
 	is_commander = 1
 	absolute_limit = 1
+	whitelisted = 1
 
 /datum/job/german/commander/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -392,13 +393,15 @@ var/first_fallschirm = 1
 	selection_color = "#4c4ca5"
 	spawn_location = "Fallschirm"
 	additional_languages = list( "Russian" = 100 )
-	spawn_delay = 4000 // a bit more than 6.5 minutes should give russians some time to prepare - kachnov
-	delayed_spawn_message = "<span class = 'danger'><big>You are parachuting behind Russian lines. You won't spawn until 6-7 minutes.</big></span>"
+	spawn_delay = 3000
+	delayed_spawn_message = "<span class = 'danger'><big>You are parachuting behind Russian lines. You won't spawn until 5 minutes.</big></span>"
 	is_paratrooper = 1
 	var/fallschirm_spawnzone = null
 	var/list/fallschirm_spawnpoints = list()
 
 /datum/job/german/paratrooper/equip(var/mob/living/carbon/human/H)
+	spawn_delay = config.paratrooper_drop_time
+
 	if(!H)	return 0
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/falluni(H), slot_w_uniform)

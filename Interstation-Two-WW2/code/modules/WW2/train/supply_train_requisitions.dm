@@ -12,7 +12,7 @@
 
 	// AMMO AND MISC.
 	"Flammenwerfer Fuel Tanks" = /obj/structure/closet/crate/flammenwerfer_fueltanks,
-	"Tank Fuel Tanks" = /obj/structure/closet/crate/tank_fueltanks,
+	"Vehicle Fuel Tanks" = /obj/structure/closet/crate/vehicle_fueltanks,
 	"Maxim Belts" = /obj/structure/closet/crate/maximbelt,
 	"Guaze" = /obj/structure/closet/crate/gauze,
 	"Luger Ammo" = /obj/structure/closet/crate/lugerammo,
@@ -60,7 +60,7 @@
 
 	// AMMO AND MISC.
 	"Flammenwerfer Fuel Tanks" = 50,
-	"Tank Fuel Tanks" = 75,
+	"Vehicle Fuel Tanks" = 75,
 	"Maxim Belts" = 40,
 	"Guaze" = 35,
 	"Luger Ammo" = 30,

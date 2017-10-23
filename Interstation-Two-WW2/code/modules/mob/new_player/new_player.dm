@@ -421,6 +421,8 @@
 	dat += "Choose from the following open positions:<br>"
 	for(var/datum/job/job in job_master.occupations)
 
+		var/unavailable_message = ""
+
 		if(job && !job.train_check())
 			continue
 
@@ -429,8 +431,10 @@
 		if (job.is_paratrooper)
 			job_is_available = allow_paratroopers
 
-		if (config.use_job_whitelist && !check_job_whitelist(src, job.title))
+
+		if (!job.validate(src))
 			job_is_available = 0
+			unavailable_message = " <span class = 'color: rgb(255,215,0);'>{WHITELISTED}</span> "
 
 		// check if the faction is admin-locked
 
@@ -486,13 +490,13 @@
 				if (job_is_available)
 					dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
 				else
-					dat += "<span style = 'color:red'><strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
+					dat += "<span style = 'color:red'><strike>[unavailable_message][job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 
 			else
 				if (job_is_available)
 					dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
 				else
-					dat += "<span style = 'color:red'><strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
+					dat += "<span style = 'color:red'><strike>[unavailable_message][job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")

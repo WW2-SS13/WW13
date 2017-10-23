@@ -23,16 +23,13 @@ var/list/global/wall_cache = list()
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	var/list/wall_connections = list("0", "0", "0", "0")
 	var/ref_state = "generic"
-
 	var/tank_destroyable = 1
-/*
-/turf/unsimulated/wall
-	name = ""
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "rock"
-	density = 1
-*/
-// replaces /turf/unsimulated/wall
+
+/turf/wall/void
+	icon_state = "void"
+	damage = -100000
+	tank_destroyable = 0
+
 /turf/wall/rockwall
 	name = "cave wall"
 	icon = 'icons/turf/walls.dmi'

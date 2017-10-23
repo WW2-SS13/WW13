@@ -146,6 +146,16 @@
 /area/prishtina/void/german/ss_train/gas_chamber/gas_room
 	icon_state = "purple"
 	name = "Train Gas Room"
+
+/area/prishtina/void/skybox
+	icon_state = "purple"
+/area/prishtina/void/skybox/one
+/area/prishtina/void/skybox/two
+/area/prishtina/void/skybox/three
+/area/prishtina/void/skybox/four
+/area/prishtina/void/skybox/five
+/area/prishtina/void/skybox/six
+/area/prishtina/void/skybox/seven
 // end of wormhole areas
 
 // no man's land

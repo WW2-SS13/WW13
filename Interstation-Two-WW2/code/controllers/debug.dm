@@ -8,7 +8,7 @@
 		usr.client.debug_variables(antag)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 
-/client/proc/debug_controller(controller in list("World", "Master","Ticker","Ticker Process","Jobs","Sun","Supply","Configuration", "Gas Data","Nano","Chemistry","Observation","Primary German Train", "German Supply Train", "Russian Supply Lift"))
+/client/proc/debug_controller(controller in list("World", "Master","Ticker","Ticker Process","Jobs","Configuration","Nano","Chemistry","Observation","Primary German Train", "German Supply Train", "Russian Supply Lift", "Whitelists", "Game Schedule"))
 	set category = "Debug"
 	set name = "Debug Controller"
 	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
@@ -67,6 +67,16 @@
 				for (var/obj/lift_controller/up/soviet/lift in world)
 					debug_variables(lift)
 					return
+
+		if ("Whitelists")
+			var/which = input("Which whitelist?") in global_whitelists
+			var/datum/whitelist/W = global_whitelists[which]
+			if (W && istype(W))
+				debug_variables(W)
+
+		if ("Game Schedule")
+			if (global_game_schedule)
+				debug_variables(global_game_schedule)
 
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return

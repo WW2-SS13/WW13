@@ -12,8 +12,6 @@
 		message_admins("[key_name(src)] toggled debugging on.")
 		log_admin("[key_name(src)] toggled debugging on.")
 
-
-
 // callproc moved to code/modules/admin/callproc
 
 

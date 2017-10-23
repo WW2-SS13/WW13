@@ -45,7 +45,7 @@
 
 	if (!istype(W))
 		return 0
-	else if (istype(W, /obj/item/weapon/tank_fueltank))
+	else if (istype(W, /obj/item/weapon/vehicle_fueltank))
 		if (fuel_slot_open)
 			refuel(W, user)
 			return 1

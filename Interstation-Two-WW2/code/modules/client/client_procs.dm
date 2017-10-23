@@ -154,9 +154,22 @@
 		holder.associate(src)
 		admins |= src
 		holder.owner = src
+
+	if (!world_is_open && !holder)
+		src << "<span class = 'userdanger'>The server is currently closed to non-admins. The game is currently open [global_game_schedule.getScheduleAsString()].</span>"
+		del(src)
+		return // todo
+
 	else if (world.port == config.hubtesting_port)
-		src << "<span class = 'userdanger'>The server is closed to non-admins right now, sorry.</span>"
-		message_admins("[src] tried to log in, but was rejected, because they aren't an admin, and the server is on hubtesting mode.")
+		if (!validate_whitelist("server"))
+			src << "<span class = 'userdanger'>The server is closed to non-admins and non-whitelisted right now, sorry.</span>"
+			message_admins("[src] tried to log in, but was rejected, because they aren't an admin or in the 'server' whitelist, and the server is on hubtesting mode.")
+			del(src)
+			return
+
+	else if (!validate_whitelist("server"))
+		src << "<span class = 'userdanger'>You are not in the server whitelist. You cannot join this server right now, sorry.</span>"
+		message_admins("[src] tried to log in, but was rejected, because they aren't in the 'server' whitelist.")
 		del(src)
 		return
 

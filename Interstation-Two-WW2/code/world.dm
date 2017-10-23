@@ -48,6 +48,8 @@ var/global/datum/global_init/init = new ()
 		t = round(t / l)
 
 
+var/world_is_open = 1
+
 /world
 	mob = /mob/new_player
 	turf = /turf/floor/plating/grass/wild
@@ -75,6 +77,12 @@ var/global/datum/global_init/init = new ()
 
 	if(config && config.log_runtime)
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
+
+	global_game_schedule = new
+
+	for (var/W in (typesof(/datum/whitelist) - /datum/whitelist))
+		var/datum/whitelist/whitelist = new W
+		global_whitelists[whitelist.name] = whitelist
 
 	callHook("startup")
 	//Emergency Fix

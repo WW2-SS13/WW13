@@ -10,3 +10,4 @@
 	if (original_job.is_commander)
 		if (!H.original_job.is_commander || H.original_job.is_petty_commander)
 			return 1
+	return 0

@@ -1095,7 +1095,6 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1132,20 +1131,32 @@ window "rpane"
 		is-pane = true
 	elem "rpanewindow"
 		type = CHILD
-		pos = 2,0
-		size = 638x584
+		pos = 0,0
+		size = 638x840
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = none
 		saved-params = "splitter"
 		right = "outputwindow"
 		is-vert = false
+	elem "button7"
+		type = BUTTON
+		pos = 528,0
+		size = 109x16
+		anchor1 = 83,0
+		anchor2 = 100,3
+		text-color = #ff0000
+		background-color = none
+		saved-params = "is-checked"
+		text = "Make A Suggestion"
+		command = "makeasugg"
+		group = "rpanemode"
 	elem "button6"
 		type = BUTTON
-		pos = 488,0
-		size = 140x16
-		anchor1 = 76,0
-		anchor2 = 98,3
+		pos = 414,0
+		size = 109x16
+		anchor1 = 65,0
+		anchor2 = 82,3
 		text-color = #ff0000
 		background-color = none
 		saved-params = "is-checked"
@@ -1198,10 +1209,10 @@ window "rpane"
 		group = "rpanemode"
 	elem "textb"
 		type = BUTTON
-		pos = 0,0
+		pos = 3,0
 		size = 60x16
 		anchor1 = 0,0
-		anchor2 = 9,3
+		anchor2 = 10,3
 		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
@@ -1212,10 +1223,10 @@ window "rpane"
 		button-type = pushbox
 	elem "infob"
 		type = BUTTON
-		pos = 64,0
+		pos = 67,0
 		size = 60x16
 		anchor1 = 10,0
-		anchor2 = 19,3
+		anchor2 = 20,3
 		background-color = none
 		is-visible = false
 		saved-params = "is-checked"

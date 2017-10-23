@@ -383,10 +383,23 @@
 	interior = 0
 	stepsound = "dirt"
 	uses_winter_overlay = 1
+	var/obj/structure/wild/wild = null
 
 /turf/floor/plating/grass/New()
 	..()
 	grass_turf_list += src
+
+// adapted from Drymouth Gulch.
+/turf/floor/plating/grass/proc/plant_grass()
+	if(prob(0.1))
+		wild = new(src)
+	else
+		var/chance = 0
+		for(var/turf/floor/plating/grass/T in range(1,src))
+			if(T.wild)
+				chance += 40
+		if(prob(chance))
+			wild = new(src)
 
 /turf/floor/plating/grass/wild
 	name = "wild grass"
@@ -426,6 +439,7 @@
 	icon_state = "dirt"
 	interior = 0
 	stepsound = "dirt"
+	uses_winter_overlay = 1
 
 /turf/floor/plating/sand
 	name = "sand"

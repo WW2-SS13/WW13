@@ -91,7 +91,8 @@
 
 		handle_blood()
 
-		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
+		adjust_body_temperature()
+		stabilize_body_temperature()
 
 		handle_shock()
 
@@ -416,7 +417,7 @@
 
 	return
 
-/*
+
 /mob/living/carbon/human/proc/adjust_body_temperature(current, loc_temp, boost)
 	var/temperature = current
 	var/difference = abs(current-loc_temp)	//get difference
@@ -433,7 +434,7 @@
 		temperature = max(loc_temp, temperature-change)
 	temp_change = (temperature - current)
 	return temp_change
-*/
+
 
 /mob/living/carbon/human/proc/stabilize_body_temperature()
 	if (species.passive_temp_gain) // We produce heat naturally.

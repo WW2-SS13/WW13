@@ -18,7 +18,8 @@
 			if(!A.dynamic_lighting)
 				continue
 
-		PoolOrNew(/atom/movable/lighting_overlay, T, TRUE)
+		if (!locate(/atom/movable/lighting_overlay) in T)
+			PoolOrNew(/atom/movable/lighting_overlay, T, TRUE)
 
 /proc/create_all_lighting_corners()
 	for(var/zlevel = 1 to world.maxz)
@@ -64,10 +65,15 @@
 
 
 /world/New()
+	..()
+	create_lighting()
 
-	time_of_day = pick_TOD()
+/proc/create_lighting(_time_of_day)
 
-	. = ..()
+	if (_time_of_day)
+		time_of_day = _time_of_day
+	else
+		time_of_day = pick_TOD()
 
 	if (time_of_day == "Midday") // we have no darkness whatsoever
 		for (var/area/prishtina/p in world) // make indoor areas have full light

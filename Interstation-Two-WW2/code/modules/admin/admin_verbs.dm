@@ -13,7 +13,9 @@ var/list/admin_verbs_default = list(
 	/client/proc/see_spies,
 	/client/proc/see_jews,
 	/client/proc/see_soldiers,
-	/client/proc/see_bug_reports
+	/client/proc/see_bug_reports,
+	/client/proc/see_suggestions,
+	/client/proc/see_world_realtime
 //	/client/proc/deadchat				//toggles deadchat on/off,
 	)
 var/list/admin_verbs_admin = list(
@@ -160,6 +162,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/jumptocoord,
 	/client/proc/dsay,
 	/client/proc/check_positions,
+	/client/proc/recreate_lighting
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
