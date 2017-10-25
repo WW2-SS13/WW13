@@ -410,7 +410,7 @@ proc/is_blind(A)
 		if(C.sdisabilities & BLIND || C.blinded)
 			return 1
 	return 0
-
+/*
 /proc/broadcast_security_hud_message(var/message, var/broadcast_source)
 	broadcast_hud_message(message, broadcast_source, sec_hud_users, /obj/item/clothing/glasses/hud/security)
 
@@ -423,7 +423,7 @@ proc/is_blind(A)
 		var/turf/targetturf = get_turf(M)
 		if((targetturf.z == sourceturf.z))
 			M.show_message("<span class='info'>\icon[icon] [message]</span>", 1)
-
+*/
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = new
 	for(var/mob/living/M in mob_list)

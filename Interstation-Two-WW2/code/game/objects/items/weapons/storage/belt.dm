@@ -92,7 +92,7 @@
 		/obj/item/clothing/head/surgery,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/weapon/reagent_containers/hypospray,
-		/obj/item/clothing/glasses/hud/health,
+//		/obj/item/clothing/glasses/hud/health,
 		/obj/item/weapon/crowbar,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/extinguisher/mini

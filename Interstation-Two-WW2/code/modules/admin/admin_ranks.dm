@@ -56,11 +56,15 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 	testing(msg)
 	#endif
 
+var/loaded_admins = 0
+
 /hook/startup/proc/loadAdmins()
 	load_admins()
 	return 1
 
 /proc/load_admins()
+	if (loaded_admins)
+		return
 	//clear the datums references
 	admin_datums.Cut()
 	for(var/client/C in admins)
@@ -73,6 +77,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 	establish_db_connection()
 
 	if(!database)
+		loaded_admins = 1
 		return
 
 	var/list/rowdata = database.execute("SELECT ckey, rank, flags FROM erro_admin;")
@@ -101,6 +106,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 		config.admin_legacy_system = 1
 		load_admins()*/
+		loaded_admins = 1
 		return
 
 	#ifdef TESTING
@@ -113,6 +119,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 	testing(msg)
 	#endif
 
+	loaded_admins = 1
 
 #ifdef TESTING
 /client/verb/changerank(newrank in admin_ranks)

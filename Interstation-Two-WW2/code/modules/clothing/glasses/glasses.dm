@@ -64,7 +64,7 @@
 /obj/item/clothing/glasses/science/New()
 	..()
 	overlay = global_hud.science*/
-
+/*
 /obj/item/clothing/glasses/night
 	name = "Night Vision Goggles"
 	desc = "You can totally see in the dark now!"
@@ -79,7 +79,7 @@
 /obj/item/clothing/glasses/night/New()
 	..()
 	overlay = global_hud.nvg
-
+*/
 /obj/item/clothing/glasses/eyepatch
 	name = "eyepatch"
 	desc = "Yarr."

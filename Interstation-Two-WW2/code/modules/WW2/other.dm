@@ -139,12 +139,12 @@ var/GRACE_PERIOD_LENGTH = 10
 
 	// create wild grasses in "clumps"
 	world << "<span class = 'notice'>Setting up wild grasses.</span>"
+
 	for (var/turf/floor/plating/grass/G in grass_turf_list)
 		if (!G || !istype(G))
 			continue
 
-		if (!locate(/obj/structure) in G || locate(/obj/item) in G)
-			G.plant_grass()
+		G.plant()
 
 	do_seasonal_stuff()
 
@@ -154,6 +154,7 @@ var/GRACE_PERIOD_LENGTH = 10
 	var/datum/game_mode/ww2/mode = ticker.mode
 	if (istype(mode))
 		for (var/turf/floor/G in world)
+
 			if (!G || !istype(G))
 				continue
 

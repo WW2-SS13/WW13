@@ -137,18 +137,21 @@
 			del(src)
 		return 0
 
-	/*Admin Authorisation: if there are no admins, and we are the host,
-	  give us host permissions - todo: config setting */
+	/*Admin Authorisation: */
+
+	load_admins()
 
 	holder = admin_datums[ckey]
 
 	establish_db_connection()
 
+	/* if there are no admins, and we are the host,
+	  give us host permissions - todo: config setting */
+
 	var/list/admins = database.execute("SELECT * FROM erro_admin;")
 	if ((!islist(admins) || isemptylist(admins)) && !holder)
 		holder = new("Host", 0, ckey)
-		database.execute("INSERT INTO erro_admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rank]');")
-
+		database.execute("INSERT INTO erro_admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
 
 	if(holder)
 		holder.associate(src)

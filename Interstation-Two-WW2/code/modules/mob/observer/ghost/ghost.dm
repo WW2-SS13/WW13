@@ -81,6 +81,9 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 
 	..()
 
+	if (client.holder && check_rights(R_ADMIN, 1, src))
+		verbs += /mob/observer/ghost/proc/toggle_aghost_vision
+
 /mob/observer/ghost/Destroy()
 	stop_following()
 //	qdel(ghost_multitool)
@@ -761,11 +764,24 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	seedarkness = !(seedarkness)
 	updateghostsight()
 
+// lets use see areas in the void.
+/mob/observer/ghost/var/use_admin_vision = 0
+/mob/observer/ghost/proc/toggle_aghost_vision()
+	set name = "Toggle Aghost Sight"
+	set category = "Ghost"
+	use_admin_vision = !use_admin_vision
+	src << "<span class = 'notice'>Aghost sight now [use_admin_vision ? "enabled" : "disabled"]</span>"
+	updateghostsight()
+
 /mob/observer/ghost/proc/updateghostsight()
 	if (!seedarkness)
-		see_invisible = SEE_INVISIBLE_NOLIGHTING
+		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 	else
-		see_invisible = ghostvision ? SEE_INVISIBLE_OBSERVER : SEE_INVISIBLE_LIVING
+		if (!client.holder || !check_rights(R_ADMIN, 1, src) || !use_admin_vision)
+			see_invisible = ghostvision ? SEE_INVISIBLE_OBSERVER : SEE_INVISIBLE_LIVING
+		else if (use_admin_vision)
+			see_invisible = ghostvision ? SEE_INVISIBLE_ADMINOBSERVER : SEE_INVISIBLE_LIVING
+
 	updateghostimages()
 
 /mob/observer/ghost/proc/updateghostimages()

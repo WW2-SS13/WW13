@@ -124,10 +124,11 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		if (istype(W, /obj/structure/wild/tree))
 			if (prob(15))
 				W.visible_message("<span class = 'warning'>[W] collapses.</span>")
+				qdel(W)
 		else
 			if (prob(35))
 				W.visible_message("<span class = 'warning'>[W] is burned away.</span>")
-
+				qdel(W)
 	//loc.fire_act(air_contents, air_contents.temperature, air_contents.volume)
 
 //	for(var/atom/A in loc)

@@ -1095,6 +1095,7 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1223,10 +1224,10 @@ window "rpane"
 		button-type = pushbox
 	elem "infob"
 		type = BUTTON
-		pos = 67,0
+		pos = 74,0
 		size = 60x16
-		anchor1 = 10,0
-		anchor2 = 20,3
+		anchor1 = 12,0
+		anchor2 = 21,3
 		background-color = none
 		is-visible = false
 		saved-params = "is-checked"

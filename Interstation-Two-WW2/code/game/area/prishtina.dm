@@ -149,6 +149,8 @@
 
 /area/prishtina/void/skybox
 	icon_state = "purple"
+	name = "The Sky"
+
 /area/prishtina/void/skybox/one
 /area/prishtina/void/skybox/two
 /area/prishtina/void/skybox/three
@@ -156,6 +158,10 @@
 /area/prishtina/void/skybox/five
 /area/prishtina/void/skybox/six
 /area/prishtina/void/skybox/seven
+
+/area/prishtina/void/sky
+	icon_state = "purple"
+	name = "The Sky"
 // end of wormhole areas
 
 // no man's land

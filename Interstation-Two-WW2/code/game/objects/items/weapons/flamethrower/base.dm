@@ -48,17 +48,19 @@
 
 
 /obj/item/weapon/flamethrower/update_icon()
-	overlays.Cut()
-	if(igniter)
-		overlays += "+igniter[status]"
-	if(ptank)
-		overlays += "+ptank"
-	if(lit)
-		overlays += "+lit"
-		item_state = "flamethrower_1"
+	if (!istype(src, /obj/item/weapon/flamethrower/flammenwerfer))
+		overlays.Cut()
+		if(igniter)
+			overlays += "+igniter[status]"
+		if(ptank)
+			overlays += "+ptank"
+		if(lit)
+			overlays += "+lit"
+			item_state = "flamethrower_1"
+		else
+			item_state = "flamethrower_0"
 	else
-		item_state = "flamethrower_0"
-	return
+		..()
 
 /obj/item/weapon/flamethrower/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return

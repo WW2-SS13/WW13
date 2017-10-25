@@ -75,16 +75,11 @@
 	else
 		time_of_day = pick_TOD()
 
-	if (time_of_day == "Midday") // we have no darkness whatsoever
-		for (var/area/prishtina/p in world) // make indoor areas have full light
-			if (istype(p) && !istype(p, /area/prishtina/void) && !istype(p, /area/prishtina/soviet/bunker) && !istype(p, /area/prishtina/soviet/bunker_entrance))
-				p.dynamic_lighting = 0
-	else
-		for (var/area/prishtina/p in world) // make all areas use lighting
-			if (istype(p) && !istype(p, /area/prishtina/train) && !istype(p, /area/prishtina/german/train_zone) && !istype(p, /area/prishtina/german/armory/train))
-				p.dynamic_lighting = 1
+	change_area_light_settings()
 
-	/*	todo: fix train lights
+	/*	todo: fix train lights. They have no light because trains fuck with it */
+
+	/*
 	var/area/prishtina/german/train_zone/train_zone = locate() in world
 	for (var/turf/t in train_zone.contents)
 		for (var/obj/machinery/light/light in t.contents)
@@ -94,3 +89,25 @@
 
 	create_all_lighting_corners()
 	create_all_lighting_overlays()
+
+/proc/update_lighting(_time_of_day)
+
+	if (_time_of_day)
+		time_of_day = _time_of_day
+	else
+		time_of_day = pick_TOD()
+
+	change_area_light_settings()
+
+	for (var/turf/T in world)
+		T.adjust_lighting_overlay_to_daylight()
+
+/proc/change_area_light_settings()
+	if (time_of_day == "Midday") // we have no darkness whatsoever
+		for (var/area/prishtina/p in world) // make indoor areas have full light
+			if (istype(p) && !istype(p, /area/prishtina/void) && !istype(p, /area/prishtina/soviet/bunker) && !istype(p, /area/prishtina/soviet/bunker_entrance))
+				p.dynamic_lighting = 0
+	else
+		for (var/area/prishtina/p in world) // make all areas use lighting
+			if (istype(p) && !istype(p, /area/prishtina/train) && !istype(p, /area/prishtina/german/train_zone) && !istype(p, /area/prishtina/german/armory/train))
+				p.dynamic_lighting = 1

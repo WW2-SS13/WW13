@@ -390,16 +390,29 @@
 	grass_turf_list += src
 
 // adapted from Drymouth Gulch.
-/turf/floor/plating/grass/proc/plant_grass()
-	if(prob(0.1))
-		wild = new(src)
+/turf/floor/plating/grass/proc/plant()
+	// 3x3 clumps of grass - original code
+	if (prob(1))
+		if (!locate(/obj/structure/wild/bush) in range(3, src))
+			if (!locate(/obj/item) in range(3, src))
+				for (var/turf/floor/plating/grass/G in range(3, src))
+					var/dist = get_dist(src, G)
+					if (prob(100-(dist*5)))
+	// huge grassy areas - from Drymouth Gulch
 	else
-		var/chance = 0
-		for(var/turf/floor/plating/grass/T in range(1,src))
-			if(T.wild)
-				chance += 40
-		if(prob(chance))
-			wild = new(src)
+		if (locate(/obj/structure) in src)
+			return
+		if (locate(/obj/item) in src)
+			return
+		if(prob(0.1)) // was 0.1
+			wild = new/obj/structure/wild/bush(src)
+		else
+			var/chance = 0
+			for(var/turf/floor/plating/grass/T in range(1,src))
+				if(T.wild)
+					chance += 40 // was 40
+			if(prob(chance))
+				wild = new/obj/structure/wild/bush(src)
 
 /turf/floor/plating/grass/wild
 	name = "wild grass"

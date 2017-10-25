@@ -366,7 +366,7 @@
 
 			job.equip(M)
 			job.apply_fingerprints(M)
-			job_master.spawnId(M, selected_job)
+			job_master.spawnKeys(M, selected_job)
 
 		if ("tournament standard red","tournament standard green") //we think stunning weapon is too overpowered to use it on tournaments. --rastaf0
 			if (dresscode=="tournament standard red")

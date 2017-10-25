@@ -78,8 +78,6 @@ var/world_is_open = 1
 	if(config && config.log_runtime)
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
-	global_game_schedule = new
-
 	for (var/W in (typesof(/datum/whitelist) - /datum/whitelist))
 		var/datum/whitelist/whitelist = new W
 		global_whitelists[whitelist.name] = whitelist
@@ -95,6 +93,15 @@ var/world_is_open = 1
 	establish_db_connection()
 
 	. = ..()
+
+	// make turfs in the void invisible
+	for (var/turf/T in turfs)
+		var/area/A = get_area(T)
+		if (istype(A, /area/prishtina/admin) || istype(A, /area/prishtina/void) || istype(A, /area/prishtina/train))
+			if (!istype(A, /area/prishtina/void/german))
+				T.invisibility = SEE_INVISIBLE_ADMINOBSERVER - 1
+				for (var/atom/movable/AM in T.contents)
+					AM.invisibility = T.invisibility
 
 #ifndef UNIT_TEST
 
@@ -608,6 +615,7 @@ var/world_topic_spam_protect_time = world.timeofday
 #define FAILED_DB_CONNECTION_CUTOFF 5
 var/failed_db_connections = 0
 var/failed_old_db_connections = 0
+var/setting_up_db_connection = 0
 
 /hook/startup/proc/connectDB()
 	if(!setup_database_connection())
@@ -616,9 +624,26 @@ var/failed_old_db_connections = 0
 		world.log << "Feedback database connection established."
 	return 1
 
+//This proc ensures that the connection to the feedback database (global variable dbcon) is established
+/proc/establish_db_connection()
+
+	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
+		return 0
+
+	if(!database)
+		return setup_database_connection()
+	else
+		return 1
+
 proc/setup_database_connection()
 
+	if (setting_up_db_connection)
+		return
+
+	setting_up_db_connection = 1
+
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
+		setting_up_db_connection = 0
 		return 0
 
 	if(!database)
@@ -640,18 +665,8 @@ proc/setup_database_connection()
 		failed_db_connections++		//If it failed, increase the failed connections counter.
 		world.log << "The database failed to start up for the [failed_db_connections == 1 ? "1st" : "[failed_db_connections]st"] time."
 
+	setting_up_db_connection = 0
 	return .
-
-//This proc ensures that the connection to the feedback database (global variable dbcon) is established
-/proc/establish_db_connection()
-
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return 0
-
-	if(!database)
-		return setup_database_connection()
-	else
-		return 1
 
 /*
 /hook/startup/proc/connectOldDB()

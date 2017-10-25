@@ -436,6 +436,10 @@
 			job_is_available = 0
 			unavailable_message = " <span class = 'color: rgb(255,215,0);'>{WHITELISTED}</span> "
 
+		if (job_master.side_is_hardlocked(job.base_type_flag()))
+			job_is_available = 0
+			unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
+
 		// check if the faction is admin-locked
 
 		if (istype(job, /datum/job/german/paratrooper) && !paratroopers_toggled)

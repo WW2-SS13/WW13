@@ -13,3 +13,4 @@ Trees provide overall shitty cover from bullets, but they're usually good for a 
 It's a bad idea to run on train tracks.
 The Quartermaster for either side can shoot anyone who comes in the Armory without permission.
 You can build locked doors in the same way as regular doors. You have to have a key in one hand and metal/wood in the other (active) hand.
+Flammenwerfers can melt snow and burn down trees and plants.

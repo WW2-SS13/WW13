@@ -1,4 +1,3 @@
-
 /datum/job/partisan/civilian
 	title = "Civilian"
 	faction = "Station"

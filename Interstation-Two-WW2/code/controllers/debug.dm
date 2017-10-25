@@ -76,6 +76,7 @@
 
 		if ("Game Schedule")
 			if (global_game_schedule)
+				global_game_schedule.update()
 				debug_variables(global_game_schedule)
 
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
