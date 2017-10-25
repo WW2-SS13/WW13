@@ -398,6 +398,7 @@
 				for (var/turf/floor/plating/grass/G in range(3, src))
 					var/dist = get_dist(src, G)
 					if (prob(100-(dist*5)))
+						G.wild = new/obj/structure/wild/bush(G)
 	// huge grassy areas - from Drymouth Gulch
 	else
 		if (locate(/obj/structure) in src)
