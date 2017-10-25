@@ -403,6 +403,9 @@ var/list/admin_verbs_mentor = list(
 		verbs |= /client/proc/see_who_is_in_tank
 		verbs |= /client/proc/eject_from_tank
 		verbs |= /client/proc/Goto_adminzone
+		if (isghost(mob))
+			mob.verbs |= /mob/observer/ghost/proc/toggle_aghost_vision
+
 		if (check_rights(R_POSSESS, user = mob))
 			verbs |= admin_verbs_possess
 
@@ -411,6 +414,9 @@ var/list/admin_verbs_mentor = list(
 		verbs -= /client/proc/see_who_is_in_tank
 		verbs -= /client/proc/eject_from_tank
 		verbs -= /client/proc/Goto_adminzone
+		if (isghost(mob))
+			mob.verbs -= /mob/observer/ghost/proc/toggle_aghost_vision
+
 		if (check_rights(R_POSSESS, user = mob))
 			verbs -= admin_verbs_possess
 

@@ -102,6 +102,10 @@ var/world_is_open = 1
 				T.invisibility = SEE_INVISIBLE_ADMINOBSERVER - 1
 				for (var/atom/movable/AM in T.contents)
 					AM.invisibility = T.invisibility
+					AM.overlays.Cut()
+				T.overlays.Cut()
+				// todo: if T contains overlays, do something to hide them
+				// ie, floor decals. Right now we Cut() them.
 
 #ifndef UNIT_TEST
 

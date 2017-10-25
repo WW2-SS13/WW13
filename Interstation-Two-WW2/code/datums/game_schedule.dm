@@ -11,7 +11,7 @@ var/datum/game_schedule/global_game_schedule = null
 	// this is not 100% accurate, but because starttime, endtime, are
 	// independent of this, it doesn't matter
 	var/refdate = "5619460480:22-10-17:Sunday"
-	// the time
+	// the time in hours (decimal)
 	var/time = -1
 	// the day
 	var/day = "Sunday"
