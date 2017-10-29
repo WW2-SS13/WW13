@@ -482,8 +482,15 @@
 	var/thirsty_coeff = min(H.water/H.max_water, 1.0)
 	var/thirsty_percentage = "[round(thirsty_coeff*100)]%"
 
-	H << "<span class = 'warning'>You're about [hungry_percentage] full.</span>"
-	H << "<span class = 'warning'>You're about [thirsty_percentage] hydrated.</span>"
+	if (thirsty_coeff <= 0)
+		H << "<span class = 'danger'>You're dehydrating.</span>"
+	else
+		H << "<span class = 'warning'>You're about [thirsty_percentage] hydrated.</span>"
+
+	if (hungry_coeff <= 0)
+		H << "<span class = 'danger'>You're starving.</span>"
+	else
+		H << "<span class = 'warning'>You're about [hungry_percentage] full.</span>"
 
 //--------------------------------------------------nutrition end---------------------------------------------------------
 
@@ -628,6 +635,7 @@
 	icon_state = "block"
 	screen_loc = ""*/
 //-----------------------internal------------------------------
+/*
 /obj/screen/internal
 	name = "internal"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
@@ -728,7 +736,7 @@
 					else
 						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank.</span>"
 //-----------------------internal END------------------------------
-
+*/
 /obj/screen/pull
 	name = "pull"
 	icon = 'icons/mob/screen/ErisStyle.dmi'

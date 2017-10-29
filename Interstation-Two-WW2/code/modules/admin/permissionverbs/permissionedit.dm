@@ -71,7 +71,7 @@
 	if(!istext(adm_ckey) || !istext(new_rank))
 		return
 
-	var/list/rowdata = database.execute("SELECT id FROM erro_admin WHERE ckey = '[adm_ckey]';")
+	var/list/rowdata = database.execute("SELECT id FROM admin WHERE ckey = '[adm_ckey]';")
 
 	var/new_admin = 1
 	var/admin_id
@@ -81,13 +81,13 @@
 		admin_id = text2num(rowdata["id"])
 
 	if(new_admin)
-		database.execute("INSERT INTO erro_admin (id, ckey, rank, flags) VALUES (null, '[adm_ckey]', '[new_rank]', 0)")
+		database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[adm_ckey]', '[new_rank]', 0)")
 		message_admins("[key_name_admin(usr)] made [key_name_admin(adm_ckey)] an admin with the rank [new_rank]")
 		log_admin("[key_name(usr)] made [key_name(adm_ckey)] an admin with the rank [new_rank]")
 		usr << "\blue New admin added."
 	else
 		if(!isnull(admin_id) && isnum(admin_id))
-			database.execute("UPDATE erro_admin SET rank = '[new_rank]' WHERE id = '[admin_id]'")
+			database.execute("UPDATE admin SET rank = '[new_rank]' WHERE id = '[admin_id]'")
 			message_admins("[key_name_admin(usr)] changed [key_name_admin(adm_ckey)] admin rank to [new_rank]")
 			log_admin("[key_name(usr)] changed [key_name(adm_ckey)] admin rank to [new_rank]")
 			usr << "\blue Admin rank changed."
@@ -122,7 +122,7 @@
 	if(!istext(adm_ckey) || !isnum(new_permission))
 		return
 
-	var/list/rowdata = database.execute("SELECT id, flags FROM erro_admin WHERE ckey = '[adm_ckey]';")
+	var/list/rowdata = database.execute("SELECT id, flags FROM admin WHERE ckey = '[adm_ckey]';")
 
 	var/admin_id
 	var/admin_rights
@@ -135,12 +135,12 @@
 		return
 
 	if(admin_rights & new_permission) //This admin already has this permission, so we are removing it.
-		database.execute("UPDATE erro_admin SET flags = '[admin_rights & ~new_permission]' WHERE id = '[admin_id]'")
+		database.execute("UPDATE admin SET flags = '[admin_rights & ~new_permission]' WHERE id = '[admin_id]'")
 		message_admins("[key_name_admin(usr)] removed the [nominal] permission of [key_name_admin(adm_ckey)]")
 		log_admin("[key_name(usr)] removed the [nominal] permission of [key_name(adm_ckey)]")
 		usr << "\blue Permission removed."
 	else //This admin doesn't have this permission, so we are adding it.
-		database.execute("UPDATE erro_admin SET flags = '[admin_rights | new_permission]' WHERE id = '[admin_id]'")
+		database.execute("UPDATE admin SET flags = '[admin_rights | new_permission]' WHERE id = '[admin_id]'")
 		message_admins("[key_name_admin(usr)] added the [nominal] permission of [key_name_admin(adm_ckey)]")
 		log_admin("[key_name(usr)] added the [nominal] permission of [key_name(adm_ckey)]")
 		usr << "\blue Permission added."

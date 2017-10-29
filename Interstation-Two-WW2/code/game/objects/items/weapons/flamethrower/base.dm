@@ -59,8 +59,6 @@
 			item_state = "flamethrower_1"
 		else
 			item_state = "flamethrower_0"
-	else
-		..()
 
 /obj/item/weapon/flamethrower/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return

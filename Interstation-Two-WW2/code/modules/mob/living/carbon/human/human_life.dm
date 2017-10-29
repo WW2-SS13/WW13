@@ -8,10 +8,10 @@
 #define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
 #define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
 
-#define COLD_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when your body temperature just passes the 260.15k safety point
-#define COLD_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when your body temperature passes the 200K point
-#define COLD_DAMAGE_LEVEL_3 3 //Amount of damage applied when your body temperature passes the 120K point
-
+#define COLD_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 260.15k safety point
+#define COLD_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 200K point
+#define COLD_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 120K point
+/*
 //Note that gas heat damage is only applied once every FOUR ticks.
 #define HEAT_GAS_DAMAGE_LEVEL_1 2 //Amount of damage applied when the current breath's temperature just passes the 360.15k safety point
 #define HEAT_GAS_DAMAGE_LEVEL_2 4 //Amount of damage applied when the current breath's temperature passes the 400K point
@@ -20,8 +20,10 @@
 #define COLD_GAS_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
 #define COLD_GAS_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when the current breath's temperature passes the 200K point
 #define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
+*/
 
-#define RADIATION_SPEED_COEFFICIENT 0.1
+
+//#define RADIATION_SPEED_COEFFICIENT 0.1
 
 /mob/living/carbon/human
 	var/oxygen_alert = 0
@@ -121,48 +123,7 @@
 /mob/living/carbon/human/breathe()
 	if(!in_stasis)
 		..()
-/*
-// Calculate how vulnerable the human is to under- and overpressure.
-// Returns 0 (equals 0 %) if sealed in an undamaged suit, 1 if unprotected (equals 100%).
-// Suitdamage can modifiy this in 10% steps.
-/mob/living/carbon/human/proc/get_pressure_weakness()
 
-	var/pressure_adjustment_coefficient = 1 // Assume no protection at first.
-
-	if(wear_suit && (wear_suit.item_flags & STOPPRESSUREDAMAGE) && head && (head.item_flags & STOPPRESSUREDAMAGE)) // Complete set of pressure-proof suit worn, assume fully sealed.
-		pressure_adjustment_coefficient = 0
-
-	pressure_adjustment_coefficient = min(1,max(pressure_adjustment_coefficient,0)) // So it isn't less than 0 or larger than 1.
-
-	return pressure_adjustment_coefficient
-
-// Calculate how much of the enviroment pressure-difference affects the human.
-/mob/living/carbon/human/calculate_affecting_pressure(var/pressure)
-	var/pressure_difference
-
-	// First get the absolute pressure difference.
-	if(pressure < ONE_ATMOSPHERE) // We are in an underpressure.
-		pressure_difference = ONE_ATMOSPHERE - pressure
-
-	else //We are in an overpressure or standard atmosphere.
-		pressure_difference = pressure - ONE_ATMOSPHERE
-
-	if(pressure_difference < 5) // If the difference is small, don't bother calculating the fraction.
-		pressure_difference = 0
-
-	else
-		// Otherwise calculate how much of that absolute pressure difference affects us, can be 0 to 1 (equals 0% to 100%).
-		// This is our relative difference.
-		pressure_difference *= get_pressure_weakness()
-
-	// The difference is always positive to avoid extra calculations.
-	// Apply the relative difference on a standard atmosphere to get the final result.
-	// The return value will be the adjusted_pressure of the human that is the basis of pressure warnings and damage.
-	if(pressure < ONE_ATMOSPHERE)
-		return ONE_ATMOSPHERE - pressure_difference
-	else
-		return ONE_ATMOSPHERE + pressure_difference
-*/
 /mob/living/carbon/human/handle_disabilities()
 	..()
 	//Vision
@@ -294,13 +255,14 @@
 		failed_last_breath = 1
 	return 1
 
+/mob/living/carbon/human/var/loc_temperature = -1 // for debugging.
 /mob/living/carbon/human/handle_environment()
 
 	//Stuff like the xenomorph's plasma regen happens here.
 	species.handle_environment_special(src)
 
 	//Moved pressure calculations here for use in skip-processing check.
-	var/pressure = NORMAL_PRESSURE
+//	var/pressure = NORMAL_PRESSURE
 	var/loc_temp = 293
 	var/area/mob_area = get_area(src)
 
@@ -334,14 +296,36 @@
 			if ("Midnight")
 				loc_temp *= 0.97
 
+		switch (mob_area.weather)
+			if (WEATHER_NONE)
+				loc_temp *= 1.00
+			if (WEATHER_SNOW)
+				switch (mob_area.weather_intensity)
+					if (1.0)
+						loc_temp *= 0.97
+					if (2.0)
+						loc_temp *= 0.96
+					if (3.0)
+						loc_temp *= 0.95
+			if (WEATHER_RAIN)
+				switch (mob_area.weather_intensity)
+					if (1.0)
+						loc_temp *= 0.99
+					if (2.0)
+						loc_temp *= 0.985
+					if (3.0)
+						loc_temp *= 0.98
+
 		loc_temp = round(loc_temp)
 
-	// todo: inside/outside temp adjustment
+	for (var/obj/snow/S in get_turf(src))
+		loc_temp -= (S.amount * 20)
+
+	src.loc_temperature = loc_temp
 
 	// todo: wind adjusting effective loc_temp
 
-	if(pressure < species.warning_high_pressure && pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 1 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
-		pressure_alert = 0
+	if(abs(loc_temp - bodytemperature) < 0.5 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 	//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
@@ -359,7 +343,6 @@
 //	var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
 	var/relative_density = 1.0
 	bodytemperature += between(BODYTEMP_COOLING_MAX, temp_adj*relative_density, BODYTEMP_HEATING_MAX)
-
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature >= species.heat_level_1)
 		//Body temperature is too hot.
@@ -384,39 +367,23 @@
 			var/burn_dam = 0
 			switch(bodytemperature)
 				if(-INFINITY to species.cold_level_3)
-					burn_dam = COLD_DAMAGE_LEVEL_1
+					burn_dam = COLD_DAMAGE_LEVEL_3
 				if(species.cold_level_3 to species.cold_level_2)
 					burn_dam = COLD_DAMAGE_LEVEL_2
 				if(species.cold_level_2 to species.cold_level_1)
-					burn_dam = COLD_DAMAGE_LEVEL_3
+					burn_dam = COLD_DAMAGE_LEVEL_1
 			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
 			fire_alert = max(fire_alert, 1)
+
+	// tell src they're dying
+	species.get_environment_discomfort(src, "cold")
+	species.get_environment_discomfort(src, "heat")
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
 	if(status_flags & GODMODE)	return 1	//godmode
 
-	if(pressure >= species.hazard_high_pressure)
-		var/pressure_damage = min( ( (pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
-		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
-		pressure_alert = 2
-	else if(pressure >= species.warning_high_pressure)
-		pressure_alert = 1
-	else if(pressure >= species.warning_low_pressure)
-		pressure_alert = 0
-	else if(pressure >= species.hazard_low_pressure)
-		pressure_alert = -1
-	else
-		if( !(COLD_RESISTANCE in mutations))
-			take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
-			if(getOxyLoss() < 55) // 11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
-				adjustOxyLoss(4)  // 16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
-			pressure_alert = -2
-		else
-			pressure_alert = -1
-
 	return
-
 
 /mob/living/carbon/human/proc/adjust_body_temperature(current, loc_temp, boost)
 	var/temperature = current
@@ -451,7 +418,7 @@
 
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
 		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
-			nutrition -= 2
+			nutrition -= 0.5
 		var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
 		//world << "Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
 //				log_debug("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
@@ -468,7 +435,8 @@
 //				log_debug("Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 		bodytemperature += recovery_amt
 
-	//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
+
+//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 	. = 0
 	//Handle normal clothing

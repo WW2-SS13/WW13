@@ -6,11 +6,13 @@ var/datum/game_schedule/global_game_schedule = null
 	// when the game is closed to non-staff, UTC (4 hours ahead of EST)
 	var/endtime = 21
 	// days the game is CLOSED
-	var/list/days_closed = list("Sunday", "Monday", "Tuesday")
+	var/list/days_closed = list()
 	// a reference realtime, date (in DD-MM-YY format) and day:
 	// this is not 100% accurate, but because starttime, endtime, are
 	// independent of this, it doesn't matter
 	var/refdate = "5619460480:22-10-17:Sunday"
+	// DO NOT CHANGE THIS **EVER** OR ALL BANS AND STUFF BREAK
+	var/refdate_static = "5619460480:22-10-17:Sunday"
 	// the time in hours (decimal)
 	var/time = -1
 	// the day
@@ -23,9 +25,7 @@ var/datum/game_schedule/global_game_schedule = null
 	var/scheduleString = ""
 	var/dateInfoString = ""
 
-/datum/game_schedule/New(_starttime, _endtime)
-	starttime = _starttime
-	endtime = _endtime
+/datum/game_schedule/New()
 	update()
 
 /datum/game_schedule/proc/update()
@@ -49,7 +49,7 @@ var/datum/game_schedule/global_game_schedule = null
 	realtime = world.realtime
 	realtime_as_string = num2text(realtime, 20)
 
-/datum/game_schedule/proc/getCurrentTime()
+/datum/game_schedule/proc/getCurrentTime(var/unit = "hours")
 	// first, get the number of seconds that have elapsed since 00:00:00 today
 	. = world.timeofday/10
 	// now convert that to minutes
@@ -57,6 +57,20 @@ var/datum/game_schedule/global_game_schedule = null
 	// now convert that to hours
 	. /= 60
 	// now we've returned the current time
+
+	switch (unit)
+		if ("hours")
+			return .
+		if ("minutes")
+			return .*60
+		if ("seconds")
+			return .*60*60
+		if ("deciseconds")
+			return .*60*60*10
+
+/datum/game_schedule/proc/getNewRealtime()
+	var/reftime = text2num(splittext(refdate_static, ":")[1])
+	reftime += getCurrentTime("deciseconds")
 
 /datum/game_schedule/proc/getScheduleAsString()
 	. = "from [starttime] to [endtime] UTC"

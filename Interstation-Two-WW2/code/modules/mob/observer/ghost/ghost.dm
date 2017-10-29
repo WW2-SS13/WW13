@@ -136,8 +136,6 @@ Works together with spawning an observer, noted above.
 	var/client/C = U.client
 	for(var/mob/living/carbon/human/target in target_list)
 		C.images += target.hud_list[SPECIALROLE_HUD]
-/*	for(var/mob/living/silicon/target in target_list)
-		C.images += target.hud_list[SPECIALROLE_HUD]*/
 	return 1
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
@@ -357,7 +355,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/verb/follow_train()
 	set category = "Ghost"
-	set name = "Jump to the Main Train" // renamed because apparently you can't follow a train
+	set name = "Jump to the Main Train"
 
 	var/datum/train_controller/tc = german_train_master
 
@@ -368,14 +366,20 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/verb/follow_supplytrain()
 	set category = "Ghost"
-	set name = "Jump to the Supply Train" // renamed because apparently you can't follow a train
+	set name = "Jump to the Supply Train"
+
+	var/oldloc = get_turf(src)
 
 	var/datum/train_controller/tc = german_supplytrain_master
 
 	for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
 		for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
 			ManualFollow(tpt)
-			return
+
+	var/newloc = get_turf(src)
+
+	if (oldloc == newloc) // we didn't move: train isn't here
+		loc = locate(15, 526, 1) // take us to the train station
 
 /mob/observer/ghost/verb/follow_supply_lift()
 	set category = "Ghost"
@@ -761,23 +765,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	seedarkness = !(seedarkness)
 	updateghostsight()
 
-// lets use see areas in the void.
-/mob/observer/ghost/var/use_admin_vision = 0
-/mob/observer/ghost/proc/toggle_aghost_vision()
-	set name = "Toggle Aghost Vision"
-	set category = "Ghost"
-	use_admin_vision = !use_admin_vision
-	src << "<span class = 'notice'>Aghost sight now [use_admin_vision ? "enabled" : "disabled"]</span>"
-	updateghostsight()
-
 /mob/observer/ghost/proc/updateghostsight()
 	if (!seedarkness)
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 	else
-		if (!client.holder || !check_rights(R_ADMIN, 1, src) || !use_admin_vision)
-			see_invisible = ghostvision ? SEE_INVISIBLE_OBSERVER : SEE_INVISIBLE_LIVING
-		else if (use_admin_vision)
-			see_invisible = ghostvision ? SEE_INVISIBLE_ADMINOBSERVER : SEE_INVISIBLE_LIVING
+		see_invisible = ghostvision ? SEE_INVISIBLE_OBSERVER : SEE_INVISIBLE_LIVING
 
 	updateghostimages()
 

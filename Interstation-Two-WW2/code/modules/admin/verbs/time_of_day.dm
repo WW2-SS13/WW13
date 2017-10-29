@@ -5,5 +5,4 @@
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 	src << "<span class = 'warning'>Updating lights..</span>"
-	update_lighting()
-	src << "<span class = 'warning'>Updating lights for [time_of_day]</span>"
+	update_lighting(null, src)

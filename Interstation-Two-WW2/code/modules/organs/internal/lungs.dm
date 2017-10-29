@@ -18,11 +18,12 @@
 
 /obj/item/organ/lungs/set_dna(var/datum/dna/new_dna)
 	..()
+	/*
 	min_breath_pressure = species.breath_pressure
 	breath_type = species.breath_type ? species.breath_type : "oxygen"
 	poison_type = species.poison_type ? species.poison_type : "plasma"
 	exhale_type = species.exhale_type ? species.exhale_type : 0
-
+*/
 /obj/item/organ/lungs/process()
 	..()
 
@@ -152,7 +153,8 @@
 	return !failed_breath
 
 /obj/item/organ/lungs/proc/handle_temperature_effects(datum/gas_mixture/breath)
-	// Hot air hurts :(
+	return
+/*	// Hot air hurts :(
 	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in owner.mutations))
 		var/damage = 0
 		if(breath.temperature <= species.cold_level_1)
@@ -202,4 +204,4 @@
 	else if(breath.temperature >= species.heat_discomfort_level)
 		species.get_environment_discomfort(owner,"heat")
 	else if(breath.temperature <= species.cold_discomfort_level)
-		species.get_environment_discomfort(owner,"cold")
+		species.get_environment_discomfort(owner,"cold")*/

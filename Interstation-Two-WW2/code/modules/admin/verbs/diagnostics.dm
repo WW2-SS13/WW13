@@ -85,9 +85,9 @@
 	if(!check_rights(R_SERVER))	return
 
 	message_admins("[key_name(usr)] manually reloaded admins")
-	load_admins()
+	load_admins(1)
 
-
+/*
 /client/proc/reload_mentors()
 	set name = "Reload Mentors"
 	set category = "Debug"
@@ -95,7 +95,7 @@
 	if(!check_rights(R_SERVER)) return
 
 	message_admins("[key_name(usr)] manually reloaded Mentors")
-	world.load_mods()
+	world.load_mods()*/
 
 
 //todo:

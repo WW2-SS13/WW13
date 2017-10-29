@@ -180,7 +180,7 @@
 
 
 /mob/living/carbon/human/var/next_stamina_message = -1
-
+/mob/var/next_snow_message = -1
 /client/Move(n, direct)
 	if(!canmove)
 		return
@@ -196,14 +196,14 @@
 	var/turf/t1 = n
 
 	if (t1 && t1.check_prishtina_block(mob, 1))
-		if (!isobserver(mob))
-			mob.dir = direct
-			return 0
+		mob.dir = direct
+		return 0
 
 	if (t1 && locate(/obj/noghost) in t1)
-		if (isobserver(mob) && !mob.client.holder) // admins can pass
-			mob.dir = direct
-			return
+		if (isobserver(mob)) // admins can pass
+			if (!mob.client.holder || !check_rights(R_MOD, user = mob))
+				mob.dir = direct
+				return
 
 	if (ishuman(mob))
 		var/mob/living/carbon/human/H = mob
@@ -261,9 +261,6 @@
 	if(!mob.canmove)
 		return
 
-	//if(istype(mob.loc, /turf/space) || (mob.flags & NOGRAV))
-	//	if(!mob.Process_Spacemove(0))	return 0
-
 	// we can probably move now, so update our eye for ladders
 	if (ishuman(mob))
 		var/mob/living/carbon/human/H = mob
@@ -272,12 +269,10 @@
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)
 
-	if((istype(mob.loc, /turf/space)) || (mob.lastarea.has_gravity == 0))
-		if(!mob.Process_Spacemove(0))	return 0
-
 	if(isobj(mob.loc) || ismob(mob.loc))//Inside an object, tell it we moved
 		var/atom/O = mob.loc
-		return O.relaymove(mob, direct)
+		if (!istype(O, /obj/tank))
+			return O.relaymove(mob, direct)
 
 	if(isturf(mob.loc))
 
@@ -300,22 +295,56 @@
 		// for some reason they kept defaulting to values different from
 		// the ones specified in the config.
 
-		var/standing_on_snow = 0
+
 		var/turf/floor/F = get_turf(mob)
-		if (F.has_snow())
-			standing_on_snow = 1
+		var/standing_on_snow = 0
+
+		if (F && istype(F))
+			var/obj/snow/S = F.has_snow()
+			var/snow_message = ""
+			var/snow_span = "notice"
+
+			if (S)
+				standing_on_snow = 1
+				switch (S.amount)
+					if (0.01 to 0.8) // more than none and up to ~1/4 feet
+						standing_on_snow = 1
+						snow_message = "You're slowed down a little by the snow."
+					if (0.08 to 0.16) // up to ~1/2 feet
+						standing_on_snow = 1.25
+						snow_message = "You're slowed down a bit by the snow."
+					if (0.16 to 0.30) // up to a ~1 foot
+						standing_on_snow = 1.75
+						snow_message = "You're slowed down quite a bit by the snow."
+						snow_span = "warning"
+					if (0.30 to 0.75) // ~ 2 to 2.5 feet
+						standing_on_snow = 2.25
+						snow_message = "You're seriously being slowed down by the snow. It's almost hard to walk in."
+						snow_span = "warning"
+					if (0.75 to 1.22) // up to 4 feet!
+						standing_on_snow = 4.5
+						snow_message = "There's way too much snow here to properly move."
+						snow_span = "danger"
+					if (1.22 to INFINITY) // no way we can go through this easily
+						standing_on_snow = 18
+						snow_message = "There's way too much snow here to move!"
+						snow_span = "danger"
+
+			if (S && snow_message && world.time >= mob.next_snow_message)
+				mob << "<span class = '[snow_span]'>[snow_message]</span>"
+				mob.next_snow_message = world.time+100
 
 		switch(mob.m_intent)
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 2.2 + (standing_on_snow ? 1.1 : 0)
+				move_delay += 2.2 + standing_on_snow
 				if (ishuman(mob))
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.03
 					--H.stamina
 			if("walk")
-				move_delay += 3.3 + (standing_on_snow ? 1.65 : 0)
+				move_delay += 3.3 + standing_on_snow
 				if (ishuman(mob))
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.003
@@ -335,8 +364,10 @@
 				H.m_intent = "walk" // in case we don't have a m_intent HUD, somehow
 
 		if (!isobserver(mob))
-			if (istype(get_turf(mob), /turf/floor/plating/beach/water))
-				move_delay += 3
+			var/turf/T = get_turf(mob)
+			if (istype(T, /turf/floor/plating/beach/water))
+				if (!istype(T, /turf/floor/plating/beach/water/ice))
+					move_delay += 3
 
 		var/tickcomp = 0 //moved this out here so we can use it for vehicles
 		if(config.Tickcomp)
@@ -442,7 +473,6 @@
 
 /mob/proc/SelfMove(turf/n, direct)
 	return Move(n, direct)
-
 
 ///Process_Incorpmove
 ///Called by client/Move()

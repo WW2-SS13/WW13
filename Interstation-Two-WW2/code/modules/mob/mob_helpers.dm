@@ -563,11 +563,11 @@ proc/is_blind(A)
 
 		if(species.name != "Human")
 			threatcount += 2
-
+/*
 	if(check_records || check_arrest)
 		var/perpname = name
-		/*if(id)
-			perpname = id.registered_name*/
+		if(id)
+			perpname = id.registered_name
 
 		var/datum/data/record/R = find_security_record("name", perpname)
 		if(check_records && !R)
@@ -575,7 +575,7 @@ proc/is_blind(A)
 
 		if(check_arrest && R && (R.fields["criminal"] == "*Arrest*"))
 			threatcount += 4
-
+*/
 	return threatcount
 
 /mob/living/simple_animal/hostile/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)

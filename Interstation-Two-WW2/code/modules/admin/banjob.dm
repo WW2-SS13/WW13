@@ -16,15 +16,14 @@ var/jobban_keylist[0]		//to store the keys & ranks
 //returns a reason if M is banned from rank, returns 0 otherwise
 /proc/jobban_isbanned(mob/M, rank)
 	if(M && rank)
-		/*
-		if(_jobban_isbanned(M, rank)) return "Reason Unspecified"	//for old jobban
-		*/
-
 		if (guest_jobbans(rank))
 			if(config.guest_jobban && IsGuestKey(M.key))
 				return "Guest Job-ban"
-			if(config.usewhitelist && !check_job_whitelist(M))
-				return "Whitelisted Job"
+			if (job_master)
+				for (var/datum/job/J in job_master.occupations)
+					if (J.title == rank)
+						if (!J.validate(M))
+							return "Whitelisted Job"
 
 		for (var/s in jobban_keylist)
 			if( findtext(s,"[M.ckey] - [rank]") == 1 )
@@ -74,7 +73,7 @@ DEBUG
 		return
 
 	//Job permabans
-	var/list/rowdata = database.execute("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_PERMABAN' AND isnull(unbanned)")
+	var/list/rowdata = database.execute("SELECT ckey, job FROM ban WHERE bantype = 'JOB_PERMABAN' AND isnull(unbanned)")
 
 	if (islist(rowdata) && !isemptylist(rowdata))
 		for (var/v in 1 to rowdata["occurences_of_ckey"])
@@ -83,7 +82,7 @@ DEBUG
 			jobban_keylist.Add("[ckey] - [job]")
 
 	//Job tempbans
-	rowdata = database.execute("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
+	rowdata = database.execute("SELECT ckey, job FROM ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
 
 	if (islist(rowdata) && !isemptylist(rowdata))
 		for (var/v in 1 to rowdata["occurences_of_ckey"])

@@ -3,7 +3,6 @@
   I. make a whitelist type for what you want to whitelist
   II. make sure the new type has a unique 'name' variable
   III. make a global variable for that whitelist
-  IV. use the code `mywhitelist.whitelistproc()` in order to use the datum
 */
 
 var/list/global_whitelists[50]

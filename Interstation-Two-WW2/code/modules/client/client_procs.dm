@@ -148,10 +148,10 @@
 	/* if there are no admins, and we are the host,
 	  give us host permissions - todo: config setting */
 
-	var/list/admins = database.execute("SELECT * FROM erro_admin;")
+	var/list/admins = database.execute("SELECT * FROM admin;")
 	if ((!islist(admins) || isemptylist(admins)) && !holder)
 		holder = new("Host", 0, ckey)
-		database.execute("INSERT INTO erro_admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
+		database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
 
 	if(holder)
 		holder.associate(src)
@@ -159,7 +159,7 @@
 		holder.owner = src
 
 	if (!world_is_open && !holder)
-		src << "<span class = 'userdanger'>The server is currently closed to non-admins. The game is currently open [global_game_schedule.getScheduleAsString()].</span>"
+		src << "<span class = 'userdanger'>The server is currently closed to non-admins. The game is open [global_game_schedule.getScheduleAsString()].</span>"
 		del(src)
 		return // todo
 
@@ -231,19 +231,21 @@
 // Returns null if no DB connection can be established, or -1 if the requested key was not found in the database
 
 /proc/get_player_age(key)
-//	establish_db_connection()
+	establish_db_connection()
 	if(!database)
 		return null
 
 	var/sql_ckey = sql_sanitize_text(ckey(key))
 
-	var/list/rowdata = database.execute("SELECT datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]'")
+	var/list/rowdata = database.execute("SELECT datediff(Now(),firstseen) as age FROM player WHERE ckey = '[sql_ckey]'")
 
 	if(islist(rowdata) && !isemptylist(rowdata))
 		return text2num(rowdata["age"])
 	else
 		return -1
 
+/client/proc/getSQL_id()
+	return md5(ckey)
 
 /client/proc/log_to_db()
 
@@ -253,33 +255,33 @@
 	if (!database)
 		establish_db_connection()
 
-
 	var/sql_ckey = sql_sanitize_text(src.ckey)
-	var/list/rowdata = database.execute("SELECT id, datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]';")
-	var/sql_id = 0
+	var/list/rowdata = database.execute("SELECT id, datediff(Now(),firstseen) as age FROM player WHERE ckey = '[sql_ckey]';")
+	var/sql_id = getSQL_id()
 	player_age = 0	// New players won't have an entry so knowing we have a connection we set this to zero to be updated if their is a record.
 
 	if (islist(rowdata) && !isemptylist(rowdata))
-		sql_id = rowdata["id"]
+		if (rowdata["id"] != null)
+			sql_id = rowdata["id"]
 		player_age = rowdata["age"]
 
-	rowdata = database.execute("SELECT ckey FROM erro_player WHERE ip = '[address]';")
+	rowdata = database.execute("SELECT ckey FROM player WHERE ip = '[address]';")
 	related_accounts_ip = ""
 
 	if (islist(rowdata) && !isemptylist(rowdata))
 		related_accounts_ip += "[rowdata["ckey"]], "
 
-	rowdata = database.execute("SELECT ckey FROM erro_player WHERE computerid = '[computer_id]';")
+	rowdata = database.execute("SELECT ckey FROM player WHERE computerid = '[computer_id]';")
 	related_accounts_cid = ""
 	if (islist(rowdata) && !isemptylist(rowdata))
 		related_accounts_cid += "[rowdata["ckey"]], "
-
+/*
 	//Just the standard check to see if it's actually a number
 	if(sql_id)
 		if(istext(sql_id))
 			sql_id = text2num(sql_id)
 		if(!isnum(sql_id))
-			return
+			return*/
 
 	var/admin_rank = "Player"
 	if(src.holder)
@@ -306,17 +308,17 @@
 		world << "prev. player [src]"
 		#endif
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
-		database.execute("UPDATE erro_player SET lastseen = '[database.Now()]', ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = '[sql_id]';")
+		database.execute("UPDATE player SET lastseen = '[database.Now()]', ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = '[sql_id]';")
 	else
 		#ifdef SQLDEBUG
 		world << "new player [src]"
 		#endif
 		//New player!! Need to insert all the stuff
-		database.execute("INSERT INTO erro_player (id, ckey, firstseen, lastseen, ip, computerid, lastadminrank) VALUES (null, '[sql_ckey]', '[database.Now()]', '[database.Now()]', '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]');")
+		database.execute("INSERT INTO player (id, ckey, firstseen, lastseen, ip, computerid, lastadminrank) VALUES (null, '[sql_ckey]', '[database.Now()]', '[database.Now()]', '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]');")
 
 	//Logging player access
 	var/serverip = "[world.internet_address]:[world.port]"
-	database.execute("INSERT INTO erro_connection_log (id,datetime,serverip,ckey,ip,computerid) VALUES(null,'[database.Now()]','[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
+	database.execute("INSERT INTO connection_log (id,datetime,serverip,ckey,ip,computerid) VALUES(null,'[database.Now()]','[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
 	//#undef SQLDEBUG
 
 #undef TOPIC_SPAM_DELAY

@@ -45,7 +45,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		computerid = bancid
 		ip = banip
 
-	var/list/rowdata = database.execute("SELECT id FROM erro_player WHERE ckey = '[ckey]';")
+	var/list/rowdata = database.execute("SELECT id FROM player WHERE ckey = '[ckey]';")
 
 	var/validckey = 0
 	if(islist(rowdata) && !isemptylist(rowdata))
@@ -87,7 +87,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 
 	reason = sql_sanitize_text(reason)
 
-	if (database.execute("INSERT INTO erro_ban (id,bantime,serverip,bantype,reason,job,duration,rounds,expiration_time,ckey,computerid,ip,a_ckey,a_computerid,a_ip,who,adminwho,edits,unbanned,unbanned_datetime,unbanned_ckey,unbanned_computerid,unbanned_ip) VALUES (null, '[database.Now()]', '[serverip]', '[bantype_str]', '[reason]', '[job]', '[(duration)?"[duration]":"0"]', '[(rounds)?"[rounds]":"0"]', '[database.After(duration)]', '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null);"))
+	if (database.execute("INSERT INTO ban (id,bantime,serverip,bantype,reason,job,duration,rounds,expiration_time,ckey,computerid,ip,a_ckey,a_computerid,a_ip,who,adminwho,edits,unbanned,unbanned_datetime,unbanned_ckey,unbanned_computerid,unbanned_ip) VALUES (null, '[database.Now()]', '[serverip]', '[bantype_str]', '[reason]', '[job]', '[(duration)?"[duration]":"0"]', '[(rounds)?"[rounds]":"0"]', '[database.After(duration)]', '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null);"))
 		usr << "\blue Ban saved to database."
 		message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.",1)
 	else
@@ -127,7 +127,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 	else
 		bantype_sql = "bantype = '[bantype_str]'"
 
-	var/sql = "SELECT id FROM erro_ban WHERE ckey = '[ckey]' AND [bantype_sql] AND (unbanned is null OR unbanned = false)"
+	var/sql = "SELECT id FROM ban WHERE ckey = '[ckey]' AND [bantype_sql] AND (unbanned is null OR unbanned = false)"
 	if(job)
 		sql += " AND job = '[job]'"
 
@@ -167,7 +167,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 		usr << "Cancelled"
 		return
 
-	var/list/rowdata = database.execute("SELECT ckey, duration, reason FROM erro_ban WHERE id = [banid]")
+	var/list/rowdata = database.execute("SELECT ckey, duration, reason FROM ban WHERE id = [banid]")
 
 	var/eckey = usr.ckey	//Editing admin ckey
 	var/pckey				//(banned) Player ckey
@@ -194,7 +194,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 					usr << "Cancelled"
 					return
 
-			database.execute("UPDATE erro_ban SET reason = '[value]', edits = CONCAT(edits,'- [eckey] changed ban reason from <cite><b>\\\"[reason]\\\"</b></cite> to <cite><b>\\\"[value]\\\"</b></cite><BR>') WHERE id = [banid]")
+			database.execute("UPDATE ban SET reason = '[value]', edits = CONCAT(edits,'- [eckey] changed ban reason from <cite><b>\\\"[reason]\\\"</b></cite> to <cite><b>\\\"[value]\\\"</b></cite><BR>') WHERE id = [banid]")
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s reason from [reason] to [value]",1)
 		if("duration")
 			if(!value)
@@ -203,7 +203,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 					usr << "Cancelled"
 					return
 
-			database.execute("UPDATE erro_ban SET duration = [value], edits = CONCAT(edits,'- [eckey] changed ban duration from [duration] to [value]<br>'), expiration_time = DATE_ADD(bantime, INTERVAL [value] MINUTE) WHERE id = [banid]")
+			database.execute("UPDATE ban SET duration = [value], edits = CONCAT(edits,'- [eckey] changed ban duration from [duration] to [value]<br>'), expiration_time = DATE_ADD(bantime, INTERVAL [value] MINUTE) WHERE id = [banid]")
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s duration from [duration] to [value]",1)
 		if("unban")
 			if(alert("Unban [pckey]?", "Unban?", "Yes", "No") == "Yes")
@@ -220,7 +220,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	if(!check_rights(R_BAN))	return
 
-	var/sql = "SELECT ckey FROM erro_ban WHERE id = [id]"
+	var/sql = "SELECT ckey FROM ban WHERE id = [id]"
 
 	if(!database)
 		return
@@ -248,7 +248,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	var/unban_computerid = src.owner:computer_id
 	var/unban_ip = src.owner:address
 
-	var/sql_update = "UPDATE erro_ban SET unbanned = 1, unbanned_datetime = Now(), unbanned_ckey = '[unban_ckey]', unbanned_computerid = '[unban_computerid]', unbanned_ip = '[unban_ip]' WHERE id = [id]"
+	var/sql_update = "UPDATE ban SET unbanned = 1, unbanned_datetime = Now(), unbanned_ckey = '[unban_ckey]', unbanned_computerid = '[unban_computerid]', unbanned_ip = '[unban_ip]' WHERE id = [id]"
 	message_admins("[key_name_admin(usr)] has lifted [pckey]'s ban.",1)
 
 	database.execute(sql_update)
@@ -403,7 +403,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 					else
 						bantypesearch += "'PERMABAN' "
 
-			var/list/rowdata = database.execute("SELECT id, bantime, bantype, reason, job, duration, expiration_time, ckey, a_ckey, unbanned, unbanned_ckey, unbanned_datetime, edits, ip, computerid FROM erro_ban WHERE 1 [playersearch] [adminsearch] [ipsearch] [cidsearch] [bantypesearch] ORDER BY bantime DESC LIMIT 100")
+			var/list/rowdata = database.execute("SELECT id, bantime, bantype, reason, job, duration, expiration_time, ckey, a_ckey, unbanned, unbanned_ckey, unbanned_datetime, edits, ip, computerid FROM ban WHERE 1 [playersearch] [adminsearch] [ipsearch] [cidsearch] [bantypesearch] ORDER BY bantime DESC LIMIT 100")
 
 		//	var/now = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss") // MUST BE the same format as SQL gives us the dates in, and MUST be least to most specific (i.e. year, month, day not day, month, year)
 

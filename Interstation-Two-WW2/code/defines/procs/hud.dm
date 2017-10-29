@@ -3,7 +3,7 @@ Use the regular_hud_updates() proc before process_med_hud(mob) or process_sec_hu
 the HUD updates properly! */
 
 //Medical HUD outputs. Called by the Life() proc of the mob using it, usually.
-proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
+/*proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
 	if(!can_process_hud(M))
 		return
 
@@ -32,7 +32,7 @@ proc/process_sec_hud(var/mob/M, var/advanced_mode, var/mob/Alt)
 			continue
 
 		P.Client.images += perp.hud_list[ID_HUD]
-
+*/
 //faction HUDs.
 
 /mob/living/carbon/human/proc/most_important_faction_hud_constant()
@@ -122,8 +122,8 @@ mob/proc/handle_hud_glasses() //Used in the life.dm of mobs that can use HUDs.
 		for(var/image/hud in client.images)
 			if(copytext(hud.icon_state,1,4) == "hud")
 				client.images -= hud
-	med_hud_users -= src
-	sec_hud_users -= src
+//	med_hud_users -= src
+//	sec_hud_users -= src
 
 mob/proc/in_view(var/turf/T)
 	return view(T)

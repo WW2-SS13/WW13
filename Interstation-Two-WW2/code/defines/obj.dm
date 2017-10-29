@@ -61,6 +61,7 @@ we'll only update it when it changes.  The PDA_Manifest global list is zeroed ou
 using /datum/datacore/proc/manifest_inject( ), or manifest_insert( )
 */
 
+/*
 var/global/list/PDA_Manifest = list()
 var/global/ManifestJSON
 
@@ -149,7 +150,10 @@ var/global/ManifestJSON
 	ManifestJSON = json_encode(PDA_Manifest)
 	return
 
+(/
 
+
+*/
 
 /obj/effect/laser
 	name = "laser"

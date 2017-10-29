@@ -62,7 +62,7 @@ var/loaded_admins = 0
 	load_admins()
 	return 1
 
-/proc/load_admins()
+/proc/load_admins(var/force = 0)
 	if (loaded_admins)
 		return
 	//clear the datums references
@@ -80,7 +80,7 @@ var/loaded_admins = 0
 		loaded_admins = 1
 		return
 
-	var/list/rowdata = database.execute("SELECT ckey, rank, flags FROM erro_admin;")
+	var/list/rowdata = database.execute("SELECT ckey, rank, flags FROM admin;")
 
 	if (islist(rowdata) && !isemptylist(rowdata))
 		for (var/v in 1 to rowdata.len)

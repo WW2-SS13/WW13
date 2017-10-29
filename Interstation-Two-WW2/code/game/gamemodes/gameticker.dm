@@ -44,8 +44,6 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 		login_music = lobby_music_player.get_song()
 
-		load_job_whitelist()
-
 		do
 			pregame_timeleft = 180
 			world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
@@ -126,7 +124,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
-	data_core.manifest()
+//	data_core.manifest()
 
 	callHook("roundstart")
 

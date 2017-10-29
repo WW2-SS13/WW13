@@ -36,6 +36,7 @@
 /area/prishtina/admin
 	icon_state = "yellow"
 	name = "Admin Zone"
+	location = AREA_INSIDE
 
 // houses in No Man's Land
 
@@ -97,6 +98,11 @@
 /area/prishtina/void
 	icon_state = "dark"
 	name = "the void"
+	location = AREA_INSIDE
+
+/area/prishtina/void/caves
+	icon_state = "blue2"
+	name = "the caves"
 
 /area/prishtina/void/german
 	icon_state = "red2"
@@ -186,6 +192,9 @@
 	location = AREA_INSIDE
 
 /area/prishtina/german/outside
+
+/area/prishtina/german/outside/indoors
+	location = AREA_INSIDE
 
 /area/prishtina/german/gas_chamber
 	name = "German Gas Chamber"
@@ -341,6 +350,10 @@
 	icon_state = "blue2"
 	dynamic_lighting = 0
 
+// prevents snowing on some walls
+/area/prishtina/german/base_defenses/wall
+	location = AREA_INSIDE
+
 /area/prishtina/german/engineering
 	name = "Engineering"
 	icon_state = "blue-red"
@@ -364,6 +377,7 @@
 /area/prishtina/soviet/bunker_entrance
 	name = "Bunker Entrance"
 	icon_state = "red2"
+	location = AREA_INSIDE
 
 /area/prishtina/soviet/dogshed
 	name = "Soviet Dogshed"
@@ -375,6 +389,11 @@
 	name = "Bunker Defenses"
 	icon_state = "blue2"
 	dynamic_lighting = 0
+
+/area/prishtina/soviet/immediate_outside_defenses/houses
+	icon_state = "purple"
+	dynamic_lighting = 1
+	location = AREA_INSIDE
 
 /area/prishtina/soviet/forward_defenses
 	name = "Bunker Defenses"

@@ -13,10 +13,12 @@
 	for(var/turf/T in block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel)))
 		if(!T.dynamic_lighting)
 			continue
-		else
-			var/area/A = T.loc
-			if(!A.dynamic_lighting)
-				continue
+	//	else
+		//	var/area/A = T.loc
+		/*	if(!A.dynamic_lighting)
+				continue */
+			/* we now create overlays, even if they aren't used
+				 so cycling times of day is easier - Kachnov */
 
 		if (!locate(/atom/movable/lighting_overlay) in T)
 			PoolOrNew(/atom/movable/lighting_overlay, T, TRUE)
@@ -34,7 +36,6 @@
 				var/area/a = t.loc
 				if (a.dynamic_lighting && !istype(a, /area/prishtina/soviet/bunker) && !istype(a, /area/prishtina/soviet/bunker_entrance) && !istype(a, /area/prishtina/void))
 					for (var/datum/lighting_corner/corner in t.corners)
-
 						corner.TOD_lum_r = time_of_day2luminosity[time_of_day]
 						corner.TOD_lum_g = time_of_day2luminosity[time_of_day]
 						corner.TOD_lum_b = time_of_day2luminosity[time_of_day]
@@ -64,8 +65,7 @@
 			T.corners[i] = new/datum/lighting_corner(T, LIGHTING_CORNER_DIAGONAL[i])
 
 
-/world/New()
-	..()
+/hook/startup/proc/setup_lighting()
 	create_lighting()
 
 /proc/create_lighting(_time_of_day)
@@ -90,24 +90,54 @@
 	create_all_lighting_corners()
 	create_all_lighting_overlays()
 
-/proc/update_lighting(_time_of_day)
+/proc/update_lighting(_time_of_day, var/client/admincaller = null)
+
+	var/old_TOD = time_of_day
 
 	if (_time_of_day)
 		time_of_day = _time_of_day
 	else
 		time_of_day = pick_TOD()
 
+	var/iterations = 0
+	while (time_of_day == old_TOD)
+		time_of_day = pick_TOD()
+		++iterations
+		if (iterations >= 10)
+			break
+
 	change_area_light_settings()
 
-	for (var/turf/T in world)
-		T.adjust_lighting_overlay_to_daylight()
+	if (old_TOD == "Midday" && time_of_day != "Midday")
+		create_all_lighting_corners()
+		create_all_lighting_overlays()
+
+	// change lighting over 60 seconds
+	spawn while (1)
+		var/max_v = 60
+		for (var/v in 1 to max_v)
+			var/iterations_per_loop = ceil(turfs.len/max_v)
+			for (var/vv in 1+(iterations_per_loop*(v-1)) to iterations_per_loop*v)
+				if (turfs.len >= vv && turfs[vv])
+					var/turf/T = turfs[vv]
+					if (locate(/atom/movable/lighting_overlay) in T)
+						T.adjust_lighting_overlay_to_daylight()
+			sleep(1)
+
+	if (admincaller)
+		spawn (60)
+			admincaller << "<span class = 'warning'>Updated lights for [time_of_day]</span>"
+	spawn (60)
+		world << "<font size=3><span class = 'notice'>It's <b>[lowertext(time_of_day)]</b>.</span></font>"
 
 /proc/change_area_light_settings()
 	if (time_of_day == "Midday") // we have no darkness whatsoever
 		for (var/area/prishtina/p in world) // make indoor areas have full light
+			if (p.location == AREA_INSIDE) continue
 			if (istype(p) && !istype(p, /area/prishtina/void) && !istype(p, /area/prishtina/soviet/bunker) && !istype(p, /area/prishtina/soviet/bunker_entrance))
 				p.dynamic_lighting = 0
 	else
 		for (var/area/prishtina/p in world) // make all areas use lighting
+			if (p.location == AREA_INSIDE) continue
 			if (istype(p) && !istype(p, /area/prishtina/train) && !istype(p, /area/prishtina/german/train_zone) && !istype(p, /area/prishtina/german/armory/train))
 				p.dynamic_lighting = 1

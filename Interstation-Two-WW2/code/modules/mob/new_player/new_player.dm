@@ -68,7 +68,7 @@
 		if(src.client && src.client.holder)
 			isadmin = 1
 		// TODO: reimplement database interaction
-		var/list/rowdata = database.execute("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
+		var/list/rowdata = database.execute("SELECT id FROM poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM poll_textreply WHERE ckey = \"[ckey]\")")
 		var/newpoll = 0
 		if (islist(rowdata) && !isemptylist(rowdata))
 			newpoll = 1
@@ -208,9 +208,9 @@
 				return 0
 
 		LateChoices()
-
+/*
 	if(href_list["manifest"])
-		ViewManifest()
+		ViewManifest()*/
 
 	if(href_list["SelectedJob"])
 
@@ -342,7 +342,7 @@
 		character.buckled.set_dir(character.dir)
 
 	if(character.mind.assigned_role != "Cyborg")
-		data_core.manifest_inject(character)
+	//	data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
 	character.lastarea = get_area(loc)
@@ -385,7 +385,7 @@
 		character.buckled.set_dir(character.dir)
 
 	if(character.mind.assigned_role != "Cyborg")
-		data_core.manifest_inject(character)
+	//	data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
 	character.lastarea = get_area(loc)
@@ -575,13 +575,13 @@
 	new_character.key = key		//Manually transfer the key to log them in
 
 	return new_character
-
+/*
 /mob/new_player/proc/ViewManifest()
 	var/dat = "<html><body>"
 	dat += "<h4>Show Crew Manifest</h4>"
 	dat += data_core.get_manifest(OOC = 1)
 	src << browse(dat, "window=manifest;size=370x420;can_close=1")
-
+*/
 /mob/new_player/Move()
 	return 0
 

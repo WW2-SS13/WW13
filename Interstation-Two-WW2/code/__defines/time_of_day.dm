@@ -13,6 +13,8 @@ var/list/time_of_day2luminosity = list(
 	"Midnight" = 0.2)
 
 /proc/pick_TOD()
+	// attempt to fix broken BYOND probability
+	times_of_day = shuffle(times_of_day)
 	#ifdef ALWAYS_DAY
 	return "Midday"
 	#else
@@ -21,3 +23,7 @@ var/list/time_of_day2luminosity = list(
 	else
 		return pick(times_of_day - "Midday")
 	#endif
+
+// cycles
+/proc/randomly_update_lighting()
+	update_lighting(null)

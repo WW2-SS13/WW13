@@ -4,14 +4,18 @@
 #endif
 
 // Items that ask to be called every cycle.
-var/global/datum/datacore/data_core = null
+//var/global/datum/datacore/data_core = null
 var/global/list/all_areas                = list()
 var/global/list/machines                 = list()
 var/global/list/processing_objects       = list()
-var/global/list/processing_power_items   = list()
+var/global/list/nonvital_processing_objects_1       = list()
+var/global/list/nonvital_processing_objects_2       = list()
+var/global/list/nonvital_processing_objects_3       = list()
+var/global/list/nonvital_processing_objects_4       = list()
+//var/global/list/processing_power_items   = list()
 var/global/list/active_diseases          = list()
-var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
-var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
+//var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
+//var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
 var/global/list/faction_hud_users		 = list() // List of all entities using faction huds.
 var/global/list/hud_icon_reference       = list()
 

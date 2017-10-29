@@ -171,7 +171,7 @@
 			for (var/turf/t in a.contents)
 				var/x_offset = t.x - min_x
 				var/y_offset = max_y - t.y
-				var/z = t.z
+				var/z = 1
 				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(src.x + x_offset,src.y - y_offset,z), t)
 				tpt.master = src
 				tpt.controller = src.master
@@ -189,7 +189,7 @@
 			for (var/turf/t in a.contents)
 				var/x_offset = t.x - min_x
 				var/y_offset = max_y - t.y
-				var/z = t.z
+				var/z = 1
 				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(src.x + x_offset,src.y - y_offset,z), t)
 				tpt.master = src
 				tpt.controller = src.master
@@ -201,7 +201,7 @@
 			for (var/turf/t in a.contents)
 				var/x_offset = t.x - min_x
 				var/y_offset = max_y - t.y
-				var/z = t.z
+				var/z = 1
 				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(src.x + x_offset,src.y - y_offset,z), t)
 				tpt.master = src
 				tpt.controller = src.master
@@ -213,7 +213,7 @@
 			for (var/turf/t in a.contents)
 				var/x_offset = t.x - min_x
 				var/y_offset = max_y - t.y
-				var/z = t.z
+				var/z = 1
 				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(src.x + x_offset,src.y - y_offset,z), t)
 				tpt.master = src
 				tpt.controller = src.master
@@ -225,7 +225,7 @@
 			for (var/turf/t in a.contents)
 				var/x_offset = t.x - min_x
 				var/y_offset = max_y - t.y
-				var/z = t.z
+				var/z = 1
 				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(src.x + x_offset,src.y - y_offset,z), t)
 				tpt.master = src
 				tpt.controller = src.master

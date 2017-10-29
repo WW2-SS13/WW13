@@ -1095,7 +1095,6 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1133,7 +1132,7 @@ window "rpane"
 	elem "rpanewindow"
 		type = CHILD
 		pos = 0,0
-		size = 638x840
+		size = 654x904
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = none
@@ -1210,12 +1209,11 @@ window "rpane"
 		group = "rpanemode"
 	elem "textb"
 		type = BUTTON
-		pos = 3,0
+		pos = 5,0
 		size = 60x16
-		anchor1 = 0,0
+		anchor1 = 1,0
 		anchor2 = 10,3
 		background-color = none
-		is-visible = false
 		saved-params = "is-checked"
 		text = "Text"
 		command = ".winset \"rpanewindow.left=;\""
@@ -1224,12 +1222,11 @@ window "rpane"
 		button-type = pushbox
 	elem "infob"
 		type = BUTTON
-		pos = 74,0
+		pos = 78,0
 		size = 60x16
 		anchor1 = 12,0
-		anchor2 = 21,3
+		anchor2 = 22,3
 		background-color = none
-		is-visible = false
 		saved-params = "is-checked"
 		text = "Info"
 		command = ".winset \"rpanewindow.left=infowindow\""

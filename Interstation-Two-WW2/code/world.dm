@@ -84,7 +84,7 @@ var/world_is_open = 1
 
 	callHook("startup")
 	//Emergency Fix
-	load_mods()
+//	load_mods()
 	//end-emergency fix
 
 	src.update_status()
@@ -93,19 +93,6 @@ var/world_is_open = 1
 	establish_db_connection()
 
 	. = ..()
-
-	// make turfs in the void invisible
-	for (var/turf/T in turfs)
-		var/area/A = get_area(T)
-		if (istype(A, /area/prishtina/admin) || istype(A, /area/prishtina/void) || istype(A, /area/prishtina/train))
-			if (!istype(A, /area/prishtina/void/german))
-				T.invisibility = SEE_INVISIBLE_ADMINOBSERVER - 1
-				for (var/atom/movable/AM in T.contents)
-					AM.invisibility = T.invisibility
-					AM.overlays.Cut()
-				T.overlays.Cut()
-				// todo: if T contains overlays, do something to hide them
-				// ie, floor decals. Right now we Cut() them.
 
 #ifndef UNIT_TEST
 
@@ -164,37 +151,55 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/Topic(T, addr, master, key)
 	diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
 
+	/* patreon data: we send nothing back
+	  example: "patreon.data.user,pledge" */
+
+	/* How this works: the WW13 hub uses patreon's PHP library
+	  to obtain info from the patreon. Then the WW13 hub pings
+	  the server with this data. */
+
+	// todo: patreon_ids that go in player preferences.
+	// WW13 hub should send patreon data every 0.5 minutes,
+	// but only retrieve it every 10 minutes
+
+	if (findtext(T, "patreon.data"))
+		var/list/datalist = splittext(T, ".")
+		var/data = datalist[datalist.len]
+		var/list/data_kvs = splittext(data, ",")
+		var/user = data_kvs["user"]
+		var/pledge = data_kvs["pledge"]
+		establish_db_connection()
+
+		var/list/patrons = database.execute("SELECT * FROM player WHERE patreon_id = '[user]';")
+		if (islist(patrons) && !isemptylist(patrons))
+			database.execute("INSERT INTO patreon user, pledge VALUES('[user]', '[pledge]');")
+
+		return ""
+
 	// custom WW13 hub modules
 
-	if (T == "WW13.title")
-		return replace_custom_hub_text("replaceme")
+	if (T == "WW13.preinfo")
+		return replace_custom_hub_text(config.ww13_hub_preinfo)
+
+	else if (T == "WW13.title")
+		return replace_custom_hub_text(config.ww13_hub_title)
 
 	else if (T == "WW13.oocdesc")
-		return replace_custom_hub_text("replaceme")
+		return replace_custom_hub_text(config.ww13_hub_oocdesc)
 
 	else if (T == "WW13.icdesc")
-		return replace_custom_hub_text("replaceme")
+		return replace_custom_hub_text(config.ww13_hub_icdesc)
 
 	else if (T == "WW13.rplevel")
-		return replace_custom_hub_text("replaceme")
+		return replace_custom_hub_text(config.ww13_hub_rplevel)
 
 	else if (T == "WW13.hostedby")
-		return replace_custom_hub_text("replaceme")
+		return replace_custom_hub_text(config.ww13_hub_hostedby)
 
-	else if (T == "WW13.extra.1")
-		return replace_custom_hub_text("replaceme")
+	else if (T == "WW13.postinfo")
+		return replace_custom_hub_text(config.ww13_hub_postinfo)
 
-	else if (T == "WW13.extra.2")
-		return replace_custom_hub_text("replaceme")
-
-	else if (T == "WW13.extra.3")
-		return replace_custom_hub_text("replaceme")
-
-	else if (T == "WW13.extra.4")
-		return replace_custom_hub_text("replaceme")
-
-	else if (T == "WW13.extra.5")
-		return replace_custom_hub_text("replaceme")
+	// normal ss13 stuff
 
 	if (T == "ping")
 		var/x = 1
@@ -256,7 +261,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			s["admins"] = admins
 
 		return list2params(s)
-
+/*
 	else if(T == "manifest")
 		var/list/positions = list()
 		var/list/set_names = list(
@@ -290,7 +295,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		for(var/k in positions)
 			positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Captain", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
 
-		return list2params(positions)
+		return list2params(positions)*/
 /*
 	else if(T == "revision")
 		if(revdata.revision)
@@ -487,17 +492,14 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		..(reason)
 
-#define COLOR_SEPIA "#D4C6B8" // this is a light sepia
-
+#define COLOR_LIGHT_SEPIA "#D4C6B8"
 /world/proc/roundabout() // yes i know this is dumb - kachnov
 	world << sound('sound/misc/roundabout.ogg')
 	spawn (40)
 		for (var/client/client in clients)
-			client.color = COLOR_SEPIA
+			client.color = COLOR_LIGHT_SEPIA
 			client.screen += tobecontinued
 			client.canmove = 0
-
-
 #undef COLOR_SEPIA
 
 /hook/startup/proc/loadMode()
@@ -522,16 +524,20 @@ var/world_topic_spam_protect_time = world.timeofday
 	return 1
 
 /world/proc/load_motd()
-	join_motd = russian_to_cp1251(file2text("config/motd.txt"))
-
+//	join_motd = russian_to_cp1251(file2text("config/motd.txt"))
+	join_motd = file2text("config/motd.txt")
 
 /proc/load_configuration()
 	config = new /datum/configuration()
 	config.load("config/config.txt")
 	config.load("config/game_options.txt","game_options")
-	config.loadsql("config/dbconfig.txt")
-	config.loadforumsql("config/forumdbconfig.txt")
-
+	// new
+	config.load("config/hub.txt", "hub")
+	config.load("config/game_schedule.txt", "game_schedule")
+	// being phased out
+	//config.loadsql("config/dbconfig.txt")
+	//config.loadforumsql("config/forumdbconfig.txt")
+/*
 /hook/startup/proc/loadMods()
 	world.load_mods()
 	world.load_mentors() // no need to write another hook.
@@ -579,6 +585,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
 				D.associate(directory[ckey])
+*/
 */
 /world/proc/update_status()
 
@@ -652,15 +659,6 @@ proc/setup_database_connection()
 
 	if(!database)
 		database = new("SQL/database.db")
-/*
-	var/user = sqlfdbklogin
-	var/pass = sqlfdbkpass
-	var/db = sqlfdbkdb
-	var/address = sqladdress
-	var/port = sqlport*/
-
-//	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	//. = dbcon.IsConnected()
 
 	. = TRUE
 	if ( . )
@@ -672,47 +670,4 @@ proc/setup_database_connection()
 	setting_up_db_connection = 0
 	return .
 
-/*
-/hook/startup/proc/connectOldDB()
-	if(!setup_old_database_connection())
-		world.log << "Your server failed to establish a connection with the SQL database."
-	else
-		world.log << "SQL database connection established."
-	return 1*/
-/*
-//These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
-proc/setup_old_database_connection()
-
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
-		return 0
-
-	if(!database)
-		dbcon_old = new()
-
-	var/user = sqllogin
-	var/pass = sqlpass
-	var/db = sqldb
-	var/address = sqladdress
-	var/port = sqlport
-
-	dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = dbcon_old.IsConnected()
-	if ( . )
-		failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
-	else
-		failed_old_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << dbcon.ErrorMsg()
-
-	return .
-
-//This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_old_db_connection()
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return 0
-
-	if(!dbcon_old || !dbcon_old.IsConnected())
-		return setup_old_database_connection()
-	else
-		return 1
-*/
 #undef FAILED_DB_CONNECTION_CUTOFF

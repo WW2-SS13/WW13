@@ -43,8 +43,6 @@ mob/observer/check_airflow_movable()
 	return FALSE
 */
 /mob/observer/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (locate(/obj/noghost) in mover || istype(mover, /obj/noghost))
-		return FALSE
 	return TRUE
 
 /mob/observer/dust()	//observers can't be vaporised.
@@ -52,7 +50,3 @@ mob/observer/check_airflow_movable()
 
 /mob/observer/gib()		//observers can't be gibbed.
 	return
-
-/proc/updateallghostimages()
-	for (var/mob/observer/ghost/O in player_list)
-		O.updateghostimages()

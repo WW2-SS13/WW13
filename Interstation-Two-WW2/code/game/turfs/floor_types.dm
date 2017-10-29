@@ -389,7 +389,6 @@
 	..()
 	grass_turf_list += src
 
-// adapted from Drymouth Gulch.
 /turf/floor/plating/grass/proc/plant()
 	// 3x3 clumps of grass - original code
 	if (prob(1))
@@ -399,19 +398,19 @@
 					var/dist = get_dist(src, G)
 					if (prob(100-(dist*5)))
 						G.wild = new/obj/structure/wild/bush(G)
-	// huge grassy areas - from Drymouth Gulch
+	// huge grassy areas - adapted from Drymouth Gulch
 	else
 		if (locate(/obj/structure) in src)
 			return
 		if (locate(/obj/item) in src)
 			return
-		if(prob(0.1)) // was 0.1
+		if(prob(0.1)) // default is 0.1
 			wild = new/obj/structure/wild/bush(src)
 		else
 			var/chance = 0
 			for(var/turf/floor/plating/grass/T in range(1,src))
 				if(T.wild)
-					chance += 40 // was 40
+					chance += 40 // default is 40
 			if(prob(chance))
 				wild = new/obj/structure/wild/bush(src)
 
@@ -445,7 +444,12 @@
 
 /turf/floor/plating/beach/water/New()
 	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+	if (!istype(src, /turf/floor/plating/beach/water/ice))
+		overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+
+/turf/floor/plating/beach/water/ice
+	name = "Ice"
+	icon_state = "seashallow_frozen"
 
 /turf/floor/plating/dirt
 	name = "dirt"

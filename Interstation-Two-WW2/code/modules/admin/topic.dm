@@ -153,15 +153,18 @@
 				D.rights = rights								//update the rights based on admin_ranks (default: 0)
 			else
 				*/
-			D = new /datum/admins(new_rank, rights, adm_ckey)
 
 			var/client/C = directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
+			if (C.holder)
+				C.holder.disassociate()
+			D = new /datum/admins(new_rank, rights, adm_ckey)
 			D.associate(C)											//link up with the client and add verbs
 
 			C << "<b>[key_name_admin(usr)] has set your admin rank to: [new_rank].</b>"
 			message_admins("[key_name_admin(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
 			log_admin("[key_name(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
 			log_admin_rank_modification(adm_ckey, new_rank)
+			load_admins(1)
 
 		else if(task == "permissions")
 			if(!D)	return

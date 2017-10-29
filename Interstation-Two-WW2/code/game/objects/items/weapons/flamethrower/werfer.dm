@@ -20,7 +20,7 @@
 	else
 		icon_state = "fw_off"
 		item_state = "fw_off"
-	..()
+	update_held_icon()
 
 /obj/item/weapon/flamethrower/flammenwerfer/Destroy()
 	..()

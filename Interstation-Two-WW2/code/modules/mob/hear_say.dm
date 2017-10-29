@@ -111,10 +111,10 @@
 		var/mob/living/carbon/human/H = speaker
 		if(H.voice)
 			speaker_name = H.voice
-		for(var/datum/data/record/G in data_core.general)
+	/*	for(var/datum/data/record/G in data_core.general)
 			if(G.fields["name"] == speaker_name)
 				speaker_name = H.rank_prefix_name(speaker_name)
-				break
+				break*/
 
 		if(H.age && H.gender)//If they have an age and gender
 			var/ageAndGender

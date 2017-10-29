@@ -125,9 +125,60 @@ var/GRACE_PERIOD_LENGTH = 10
 	icon_state = ""
 	layer = 2.03 // above grass_edge plant decals
 	alpha = 200
-	name = ""
+	name = "snow"
 	anchored = 1
 	special_id = "seasons"
+	var/amount = 0.05 // "meters" of snow
+	var/area/my_area = null
+
+/obj/snow/New()
+	..()
+	amount = pick(0.04, 0.05, 0.06) // around 2 inchesi
+	var/spawntime = 0
+	if (!obj_process)
+		spawntime = 300
+	spawn (spawntime)
+		obj_process.add_nonvital_object(src)
+
+/obj/snow/Destroy()
+	var/spawntime = 0
+	if (!obj_process)
+		spawntime = 300
+	spawn (spawntime)
+		obj_process.remove_nonvital_object(src)
+	..()
+
+/obj/snow/process()
+	if (!my_area)
+		my_area = get_area(src)
+	if (my_area.weather == WEATHER_SNOW)
+		// accumulate about 0.25 meters of snow/2000 seconds (+ randomness)
+		amount += 0.0025 * my_area.weather_intensity
+		if (prob(25))
+			amount *= 0.0025 * my_area.weather_intensity
+	else if (weather == WEATHER_SNOW && my_area.artillery_integrity <= 20)
+		// or, if we're inside, 0.1 meters (+ randomness)
+		amount += 0.0010 * 1.0
+		if (prob(25))
+			amount += 0.0010 * 1.0
+
+/obj/snow/proc/descriptor()
+	switch (amount)
+		if (0 to 0.08) // up to ~1/4 feet
+			return "light snow"
+		if (0.08 to 0.16) // up to ~1/2 feet
+			return "moderately deep snow"
+		if (0.16 to 0.30) // up to a ~1 foot
+			return "deep snow"
+		if (0.30 to 0.75) // ~ 2 to 2.5 feet
+			return "very deep snow"
+		if (0.75 to 1.22) // up to 4 feet!
+			return "extremely deep snow"
+		if (1.22 to INFINITY) // no way we can go through this easily
+			return "incredibly deep snow"
+
+/obj/snow/get_description_info()
+	return "It's about [amount] meters deep. That's [descriptor()]."
 
 /obj/snow/attackby(obj/item/C as obj, mob/user as mob)
 	var/turf/floor/F = get_turf(src)
@@ -141,7 +192,7 @@ var/GRACE_PERIOD_LENGTH = 10
 	world << "<span class = 'notice'>Setting up wild grasses.</span>"
 
 	for (var/turf/floor/plating/grass/G in grass_turf_list)
-		if (!G || !istype(G))
+		if (!G || G.z > 1)
 			continue
 
 		G.plant()
@@ -152,10 +203,17 @@ var/GRACE_PERIOD_LENGTH = 10
 /proc/do_seasonal_stuff()
 	world << "<span class = 'notice'>Setting up seasonal stuff.</span>"
 	var/datum/game_mode/ww2/mode = ticker.mode
-	if (istype(mode))
-		for (var/turf/floor/G in world)
 
-			if (!G || !istype(G))
+	if (istype(mode))
+
+		// first, make all water into ice if it's winter
+		if (mode.season == "WINTER")
+			for (var/turf/floor/plating/beach/water/W in turfs)
+				new /turf/floor/plating/beach/water/ice (W)
+
+		for (var/turf/floor/G in turfs)
+
+			if (!G || G.z > 1 || !G.uses_winter_overlay)
 				continue
 
 			G.season = mode.season
@@ -220,7 +278,7 @@ var/GRACE_PERIOD_LENGTH = 10
 					o.icon_state = decal.icon_state
 					o.dir = decal.dir
 					o.color = decal.color
-					o.layer = G.layer+0.02
+					o.layer = 2.04 // above snow
 					o.alpha = decal.alpha
 					o.name = ""
 

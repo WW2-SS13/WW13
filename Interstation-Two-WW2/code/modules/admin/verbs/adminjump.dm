@@ -134,7 +134,7 @@ var/turf/default_adminzone_turf = null
 	message_admins("[key_name_admin(usr)] went to the admin zone", 1)
 
 	if (!default_adminzone_turf)
-		default_adminzone_turf = locate(20, 72, 1)
+		default_adminzone_turf = locate(90, 92, 3)
 
 	if (default_adminzone_turf)
 		if (istype(get_area(default_adminzone_turf), /area/prishtina/admin))

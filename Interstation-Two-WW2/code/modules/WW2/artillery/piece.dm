@@ -458,8 +458,10 @@
 					if (prob(100 - artillery_deflection_bonus))
 						if (explosion) // HE master race
 							a.artillery_integrity -= rand(25,30)
+							a.update_snowfall_valid_turfs()
 						else
 							a.artillery_integrity -= rand(15,20)
+							a.update_snowfall_valid_turfs()
 					return
 				else
 					t.visible_message("<span class = 'danger'>The ceiling collapses!</span>")

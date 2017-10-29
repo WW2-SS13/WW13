@@ -6,6 +6,6 @@
 	var/datum/whitelist/W = global_whitelists["jobs"]
 	if (!W)
 		return 1
-	else
+	else if (config.use_job_whitelist)
 		return W.validate(np.client)
 	return 1

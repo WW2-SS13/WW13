@@ -21,7 +21,7 @@
 	onAttackedBy(W, H)
 
 // movement detection
-/mob/Move()
+/mob/living/Move()
 	..()
 	for (var/mob/living/simple_animal/complex_animal/C in range(30, src))
 		if (prob(90) && C in range(C.sightrange, src))
