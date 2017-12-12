@@ -32,12 +32,17 @@
 	var/resting_state = null
 	var/dead_state = null
 
+	// simple_animal overrides
+	response_help   = "tries to help"
+	response_disarm = "pushes"
+	response_harm   = "punches"
+
 // things we do every life tick: by default, wander every few seconds,
 // rest every ~10 minutes. Deplete nutrition over ~30 minutes
 /mob/living/simple_animal/complex_animal/proc/onEveryLifeTick()
-	if (prob(1) && prob(33) && !resting)
+	if (prob(1) && prob(20) && !resting)
 		nap()
-	else if (resting)
+	else if (resting && prob(1))
 		stop_napping()
 
 	var/nutrition_loss = initial(nutrition)/900

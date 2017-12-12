@@ -5,7 +5,7 @@
 	name = "Mosin-Nagant"
 	desc = "Soviet bolt-action rifle chambered in 7.62x54mmR cartridges. It looks worn and has Katyusha on the butt."
 	force = 12
-	origin_tech = "combat=4;materials=2;syndicate=8"
+//	origin_tech = "combat=4;materials=2;syndicate=8"
 	fire_sound = 'sound/weapons/mosin_shot.ogg'
 	caliber = "a762x54"
 	//+2 accuracy over the LWAP because only one shot

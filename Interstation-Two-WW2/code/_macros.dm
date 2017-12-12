@@ -66,3 +66,5 @@
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)
 
+// other
+#define isclient(A) istype(A, /client)

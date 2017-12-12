@@ -67,6 +67,7 @@
 	name = "dirt"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "dirt"
+	uses_winter_overlay = 1
 
 /turf/floor/hull
 	name = "hull"

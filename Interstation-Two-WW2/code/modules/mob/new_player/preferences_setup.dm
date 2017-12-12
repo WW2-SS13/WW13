@@ -253,7 +253,7 @@ datum/preferences
 
 		else*/
 		if(isnull(job_master))
-			usr << "<span class='warning'>Job Controller went [job_master], contact to the coder and tell details.</span>"
+			usr << "<span class='warning'>Job Controller is null, contact a coder and tell them details.</span>"
 			return
 
 		var/datum/job/J = job_master.GetJob(high_job_title)

@@ -81,7 +81,7 @@
 			W.forceMove(src.loc)
 	else if(istype(W,/obj/item/weapon/weldingtool))
 		return ..(W,user)
-	else if(istype(W,/obj/item/device/multitool))
+	/*else if(istype(W,/obj/item/device/multitool))
 		//if (!src.locked)
 			//return ..(W,user)
 		if (can_open())
@@ -95,7 +95,7 @@
 		playsound(src.loc, "sparks", 50, 1)
 		user << "Done!"
 		src.locked = 0
-		update_icon()
+		update_icon()*/
 	else
 		togglelock(user)
 

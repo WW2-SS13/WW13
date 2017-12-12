@@ -52,7 +52,6 @@
 /datum/train_controller/german_supply_controller/get_lever()
 	return null
 
-
 /datum/train_controller/russian/get_lever()
 	for (var/obj/train_lever/lever in world)
 		if (lever.loc && istype(lever, /obj/train_lever/russian) && lever.real)

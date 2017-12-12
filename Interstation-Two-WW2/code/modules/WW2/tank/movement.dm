@@ -35,7 +35,7 @@
 
 		if (hascall(target, "has_snow") && target:has_snow())
 			if (prob(25))
-				internal_tank_message("<span class = 'notice'><big>Your tank is getting stuck in the snow.</big></span>")
+				internal_tank_message("<span class = 'notice'><big>Your tank gets stuck in the snow.</big></span>")
 			else
 				last_movement = world.time + (movement_delay*1.5)
 

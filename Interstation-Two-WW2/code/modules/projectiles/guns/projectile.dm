@@ -7,7 +7,7 @@
 	name = "gun"
 	desc = "A gun that fires bullets."
 	icon_state = "revolver"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+//	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	w_class = 3
 	matter = list(DEFAULT_WALL_MATERIAL = 1000)
 	recoil = 1
@@ -116,8 +116,18 @@
 //Attempts to load A into src, depending on the type of thing being loaded and the load_method
 //Maybe this should be broken up into separate procs for each load method?
 /obj/item/weapon/gun/projectile/proc/load_ammo(var/obj/item/A, mob/user)
-	if(istype(A, /obj/item/ammo_magazine))
+
+	// special scenario: A is an ammo box, src a PTRD or something
+	// turn A from the ammo magazine to the first bullet in the ammo magazine
+	if (istype(A, /obj/item/ammo_magazine) && A.vars.Find("is_box") && A:is_box && A:ammo_type == ammo_type)
 		var/obj/item/ammo_magazine/AM = A
+		if (AM.stored_ammo.len)
+			A = AM.stored_ammo[1]
+			return load_ammo(A, user)
+
+	else if(istype(A, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/AM = A
+
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
 			return //incompatible
 
@@ -153,6 +163,7 @@
 					if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
 					cock_gun(user)
 		AM.update_icon()
+
 	else if(istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
 		if(!(load_method & SINGLE_CASING) || caliber != C.caliber)

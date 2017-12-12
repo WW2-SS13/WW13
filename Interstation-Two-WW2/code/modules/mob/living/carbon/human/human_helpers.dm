@@ -70,4 +70,4 @@
 				equipment_see_invis = G.see_invisible
 
 		add_clothing_protection(G)
-		G.process_hud(src)
+//		G.process_hud(src)

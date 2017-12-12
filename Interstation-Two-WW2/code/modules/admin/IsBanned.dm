@@ -61,12 +61,12 @@ world/IsBanned(key,address,computer_id)
 	world << "in procedure IsBanned(), ckey = [ckeytext], ip = [address], computerid = [computer_id];"
 	#endif
 
-	//var/list/rowdata = database.execute("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM erro_ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN' OR (bantype = 'TEMPBAN' AND expiration_time > [database.Now(1)])) AND unbanned = NULL;")
+	//var/list/rowdata = database.execute("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN' OR (bantype = 'TEMPBAN' AND expiration_time > [database.Now(1)])) AND unbanned = NULL;")
 //x = OR (bantype = 'TEMPBAN' AND expiration_time > [database.Now(1)])
 //y =  AND (bantype = 'PERMABAN' x) AND unbanned = NULL)
 
 
-	var/list/rowdata = database.execute("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype, unbanned FROM erro_ban WHERE ((ckey = '[ckeytext]' OR ip = '[address ? address : "NOTHING"]' OR computerid = '[computer_id ? computer_id : "NOTHING"]') AND (bantype = 'PERMABAN' OR bantype = 'TEMPBAN'));")
+	var/list/rowdata = database.execute("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype, unbanned FROM ban WHERE ((ckey = '[ckeytext]' OR ip = '[address ? address : "NOTHING"]' OR computerid = '[computer_id ? computer_id : "NOTHING"]') AND (bantype = 'PERMABAN' OR bantype = 'TEMPBAN'));")
 
 	#ifdef IsBannedDebug
 	world << "we managed to get past the ban SELECT query"
@@ -118,13 +118,13 @@ world/IsBanned(key,address,computer_id)
 		var/minutes_left = ((expiration-bantime)/600)
 
 		var/desc = "<font size = 3>You are banned.</font><br>"
-		desc += "You, or another user of this computer or connection ([pckey]) is banned from playing here. The ban reason is:\n[reason]\n[duration != -1 ? "This ban was applied by [capitalize(ackey)] [days_ago] days ago." : ""]"
+		desc += "<i>You, or another user of this computer or connection ([pckey]) is banned from playing here. The ban reason is:\n[reason]\n[duration != -1 ? "This ban was applied by [capitalize(ackey)] [days_ago] days ago." : ""]</i>"
 		desc += "<br>"
 
 		if (!expires)
-			desc += "This is a permanent ban."
+			desc += "<b>This is a permanent ban.</b>"
 		else
-			desc += "This ban was for [duration] minutes. Your ban expires in [days_left] days ([minutes_left] minutes)."
+			desc += "<b>This ban is for [duration] minutes. Your ban expires in [days_left] days ([minutes_left] minutes).</b>"
 
 		return list("reason"="[bantype]", "desc"="[desc]")
 

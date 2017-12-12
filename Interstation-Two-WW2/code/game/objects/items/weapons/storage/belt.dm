@@ -41,7 +41,7 @@
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/wirecutters,
 		/obj/item/weapon/wrench,
-		/obj/item/device/multitool,
+//		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
 		/obj/item/stack/cable_coil,
 	//	/obj/item/device/analyzer,
@@ -92,7 +92,7 @@
 		/obj/item/clothing/head/surgery,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/weapon/reagent_containers/hypospray,
-		/obj/item/clothing/glasses/hud/health,
+//		/obj/item/clothing/glasses/hud/health,
 		/obj/item/weapon/crowbar,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/extinguisher/mini
@@ -103,7 +103,7 @@
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "emsbelt"
 	item_state = "emsbelt"
-
+/*
 /obj/item/weapon/storage/belt/security
 	name = "security belt"
 	desc = "Can hold security gear like handcuffs and flashes."
@@ -127,7 +127,7 @@
 		/obj/item/weapon/gun/projectile/sec,
 	//	/obj/item/taperoll/police
 		)
-
+*/
 /obj/item/weapon/storage/belt/champion
 	name = "championship belt"
 	desc = "Proves to the world that you are the strongest!"

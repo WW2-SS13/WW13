@@ -7,7 +7,7 @@
 	item_state = "plasticx"
 	flags = NOBLUDGEON
 	w_class = 2.0
-	origin_tech = list(TECH_ILLEGAL = 2)
+//	origin_tech = list(TECH_ILLEGAL = 2)
 	var/datum/wires/explosive/c4/wires = null
 	var/timer = 10
 	var/atom/target = null
@@ -28,7 +28,7 @@
 	if(istype(I, /obj/item/weapon/screwdriver))
 		open_panel = !open_panel
 		user << "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>"
-	else if(istype(I, /obj/item/weapon/wirecutters) || istype(I, /obj/item/device/multitool))
+	else if(istype(I, /obj/item/weapon/wirecutters) /*|| istype(I, /obj/item/device/multitool)*/)
 		wires.Interact(user)
 	else
 		..()

@@ -84,7 +84,7 @@ var/syndicate_code_response//Code response for traitors.
 	One example of an earlier system is commented below.
 	-N
 	*/
-
+/*
 /proc/generate_code_phrase()//Proc is used for phrase and response in master_controller.dm
 
 	var/code_phrase = ""//What is returned when the proc finishes.
@@ -147,3 +147,4 @@ var/syndicate_code_response//Code response for traitors.
 			code_phrase += ", "
 
 	return code_phrase
+*/

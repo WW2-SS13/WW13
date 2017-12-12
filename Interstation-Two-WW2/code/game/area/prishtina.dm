@@ -36,6 +36,7 @@
 /area/prishtina/admin
 	icon_state = "yellow"
 	name = "Admin Zone"
+	location = AREA_INSIDE
 
 // houses in No Man's Land
 
@@ -97,6 +98,11 @@
 /area/prishtina/void
 	icon_state = "dark"
 	name = "the void"
+	location = AREA_INSIDE
+
+/area/prishtina/void/caves
+	icon_state = "blue2"
+	name = "the caves"
 
 /area/prishtina/void/german
 	icon_state = "red2"
@@ -146,6 +152,22 @@
 /area/prishtina/void/german/ss_train/gas_chamber/gas_room
 	icon_state = "purple"
 	name = "Train Gas Room"
+
+/area/prishtina/void/skybox
+	icon_state = "purple"
+	name = "The Sky"
+
+/area/prishtina/void/skybox/one
+/area/prishtina/void/skybox/two
+/area/prishtina/void/skybox/three
+/area/prishtina/void/skybox/four
+/area/prishtina/void/skybox/five
+/area/prishtina/void/skybox/six
+/area/prishtina/void/skybox/seven
+
+/area/prishtina/void/sky
+	icon_state = "purple"
+	name = "The Sky"
 // end of wormhole areas
 
 // no man's land
@@ -163,7 +185,16 @@
 	icon_state = "red2"
 	dynamic_lighting = 0
 
+/area/prishtina/german/main_area/dogshed
+	name = "German Dogshed"
+	icon_state = "blue-red"
+	dynamic_lighting = 0
+	location = AREA_INSIDE
+
 /area/prishtina/german/outside
+
+/area/prishtina/german/outside/indoors
+	location = AREA_INSIDE
 
 /area/prishtina/german/gas_chamber
 	name = "German Gas Chamber"
@@ -319,6 +350,10 @@
 	icon_state = "blue2"
 	dynamic_lighting = 0
 
+// prevents snowing on some walls
+/area/prishtina/german/base_defenses/wall
+	location = AREA_INSIDE
+
 /area/prishtina/german/engineering
 	name = "Engineering"
 	icon_state = "blue-red"
@@ -342,11 +377,23 @@
 /area/prishtina/soviet/bunker_entrance
 	name = "Bunker Entrance"
 	icon_state = "red2"
+	location = AREA_INSIDE
+
+/area/prishtina/soviet/dogshed
+	name = "Soviet Dogshed"
+	icon_state = "blue-red"
+	dynamic_lighting = 0
+	location = AREA_INSIDE
 
 /area/prishtina/soviet/immediate_outside_defenses
 	name = "Bunker Defenses"
 	icon_state = "blue2"
 	dynamic_lighting = 0
+
+/area/prishtina/soviet/immediate_outside_defenses/houses
+	icon_state = "purple"
+	dynamic_lighting = 1
+	location = AREA_INSIDE
 
 /area/prishtina/soviet/forward_defenses
 	name = "Bunker Defenses"

@@ -332,11 +332,11 @@
 		PN = power_source
 	else if(istype(power_source,/obj/item/weapon/cell))
 		cell = power_source
-	else if(istype(power_source,/obj/machinery/power/apc))
+/*	else if(istype(power_source,/obj/machinery/power/apc))
 		var/obj/machinery/power/apc/apc = power_source
 		cell = apc.cell
 		if (apc.terminal)
-			PN = apc.terminal.powernet
+			PN = apc.terminal.powernet*/
 	else if (!power_source)
 		return 0
 	else

@@ -5,6 +5,11 @@
 		alt_name = "(as [rank_prefix_name(get_id_name())])"
 
 	message = capitalize_cp1251(sanitize(message))
+	if (dd_hassuffix(message, "!") && !dd_hassuffix(message, "!!"))
+		message = "<span class = 'font-size: 1.1em;'>[message]</span>"
+	else if (dd_hassuffix(message, "!!"))
+		message = "<span class = 'font-size: 1.2em;'><b>[message]</b></span>"
+
 	..(message, alt_name = alt_name)
 
 	post_say(message)

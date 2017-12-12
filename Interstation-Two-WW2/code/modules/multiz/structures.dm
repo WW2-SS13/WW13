@@ -2,7 +2,7 @@
 //Contents: Ladders, Stairs.//
 //////////////////////////////
 
-/hook/startup/proc/assign_ladder_ids()
+/hook/roundstart/proc/assign_ladder_ids()
 
 	var/list/top_ladders = list()
 	var/list/bottom_ladders = list()

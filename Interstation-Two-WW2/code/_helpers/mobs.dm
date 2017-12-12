@@ -377,6 +377,8 @@ Proc for attack log creation, because really why not
 			continue
 		if (alive && H.stat == DEAD)
 			continue
+		if (!H.loc)
+			continue
 		if (!istype(H.original_job, /datum/job/russian))
 			continue
 		russians += H
@@ -387,6 +389,8 @@ Proc for attack log creation, because really why not
 	var/list/germans = list()
 	for (var/mob/living/carbon/human/H in mob_list)
 		if (!istype(H))
+			continue
+		if (!H.loc) // supply train announcer
 			continue
 		if (alive && H.stat == DEAD)
 			continue
@@ -400,6 +404,8 @@ Proc for attack log creation, because really why not
 	var/list/ukrainians = list()
 	for (var/mob/living/carbon/human/H in mob_list)
 		if (!istype(H))
+			continue
+		if (!H.loc)
 			continue
 		if (alive && H.stat == DEAD)
 			continue

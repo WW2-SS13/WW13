@@ -120,90 +120,167 @@ var/GRACE_PERIOD_LENGTH = 10
 				keydoor.Open()
 	return 1
 
+/obj/snow
+	icon = 'icons/turf/snow.dmi'
+	icon_state = ""
+	layer = 2.03 // above grass_edge plant decals
+	alpha = 200
+	name = "snow"
+	anchored = 1
+	special_id = "seasons"
+	var/amount = 0.05 // "meters" of snow
+	var/area/my_area = null
+
+/obj/snow/New()
+	..()
+	amount = pick(0.04, 0.05, 0.06) // around 2 inchesi
+	var/spawntime = 0
+	if (!obj_process)
+		spawntime = 300
+	spawn (spawntime)
+		obj_process.add_nonvital_object(src)
+
+/obj/snow/Destroy()
+	var/spawntime = 0
+	if (!obj_process)
+		spawntime = 300
+	spawn (spawntime)
+		obj_process.remove_nonvital_object(src)
+	..()
+
+/obj/snow/process()
+	if (!my_area)
+		my_area = get_area(src)
+	if (my_area.weather == WEATHER_SNOW)
+		// accumulate about 0.25 meters of snow/2000 seconds (+ randomness)
+		amount += 0.0025 * my_area.weather_intensity
+		if (prob(25))
+			amount *= 0.0025 * my_area.weather_intensity
+	else if (weather == WEATHER_SNOW && my_area.artillery_integrity <= 20)
+		// or, if we're inside, 0.1 meters (+ randomness)
+		amount += 0.0010 * 1.0
+		if (prob(25))
+			amount += 0.0010 * 1.0
+
+/obj/snow/proc/descriptor()
+	switch (amount)
+		if (0 to 0.08) // up to ~1/4 feet
+			return "light snow"
+		if (0.08 to 0.16) // up to ~1/2 feet
+			return "moderately deep snow"
+		if (0.16 to 0.30) // up to a ~1 foot
+			return "deep snow"
+		if (0.30 to 0.75) // ~ 2 to 2.5 feet
+			return "very deep snow"
+		if (0.75 to 1.22) // up to 4 feet!
+			return "extremely deep snow"
+		if (1.22 to INFINITY) // no way we can go through this easily
+			return "incredibly deep snow"
+
+/obj/snow/get_description_info()
+	return "It's about [amount] meters deep. That's [descriptor()]."
+
+/obj/snow/attackby(obj/item/C as obj, mob/user as mob)
+	var/turf/floor/F = get_turf(src)
+	if (istype(F))
+		return F.attackby(C, user)
+
 // this is roundstart because we need to wait for objs to be created
 /hook/roundstart/proc/nature()
-	world << "<span class = 'notice'>Setting up wild grasses.</span>"
-	for (var/turf/floor/plating/grass/G in grass_turf_list)
-		if (prob(50))
-			if (locate(/atom/movable) in G)
-				goto next
-			new /obj/structure/wild/bush(G)
-		next
 
-// must come after do_seasonal_stuff() or things break, notably the entire game
-/hook/roundstart/proc/correct_seasonal_stuff()
-	spawn (1)
-		world << "<span class = 'notice'>Correcting seasonal icon errors.</span>"
-	spawn (50)
-		for (var/turf/floor/plating/grass/G in grass_turf_list)
-			G.overlays.Cut()
-			for (var/obj/o in G.contents)
-				if (o.special_id == "seasons")
-					G.overlays += o
-			for (var/cache_key in G.floor_decal_cache_keys)
-				var/image/decal = floor_decals[cache_key]
-				decal.layer = G.layer + 0.01
-				G.overlays += decal
+	// create wild grasses in "clumps"
+	world << "<span class = 'notice'>Setting up wild grasses.</span>"
+
+	for (var/turf/floor/plating/grass/G in grass_turf_list)
+		if (!G || G.z > 1)
+			continue
+
+		G.plant()
+
+	do_seasonal_stuff()
 
 // freaking seasons dude
-/hook/roundstart/proc/do_seasonal_stuff()
+/proc/do_seasonal_stuff()
 	world << "<span class = 'notice'>Setting up seasonal stuff.</span>"
 	var/datum/game_mode/ww2/mode = ticker.mode
+
 	if (istype(mode))
-		for (var/turf/floor/plating/grass/G in grass_turf_list)
+
+		// first, make all water into ice if it's winter
+		if (mode.season == "WINTER")
+			for (var/turf/floor/plating/beach/water/W in turfs)
+				new /turf/floor/plating/beach/water/ice (W)
+
+		for (var/turf/floor/G in turfs)
+
+			if (!G || G.z > 1 || !G.uses_winter_overlay)
+				continue
+
 			G.season = mode.season
+
+			var/area/A = get_area(G)
+
+			if (A.location == AREA_INSIDE)
+				continue
+
+			if (G.season != "SPRING")
+				G.overlays.Cut()
 
 			if (G.uses_winter_overlay)
 				if (G.season == "WINTER")
 
-					var/obj/o = new(G)
-					o.icon = 'icons/turf/snow.dmi'
-					o.icon_state = ""
-					o.layer = G.layer
-					o.alpha = 200
-					o.name = ""
-					o.special_id = "seasons"
-					G.overlays += o
+					G.color = DEAD_COLOR
+					new/obj/snow(G)
 
 					for (var/obj/structure/wild/W in G.contents)
-						if (istype(W) && !istype(W, /obj/structure/wild/tree))
-							var/obj/W_overlay = new(G)
-							W_overlay.icon = W.icon
-							W_overlay.icon_state = W.icon_state
-							W_overlay.layer = W.layer
-							W_overlay.alpha = 100
-							W_overlay.name = ""
-							W_overlay.color = "#FFFAFA"
-							W_overlay.special_id = "seasons"
-							W.overlays.Insert(1, W_overlay)
+						if (istype(W))
+
+							W.color = DEAD_COLOR
+							var/icon/W_icon = icon(W.icon, W.icon_state)
+							W_icon.Blend(icon('icons/turf/snow.dmi', (istype(W, /obj/structure/wild/tree) ? "wild_overlay" : "tree_overlay")), ICON_MULTIPLY)
+							W.icon = W_icon
 
 				else if (G.season == "SUMMER")
-					G.color = "#fc913a"
+					G.color = SUMMER_COLOR
 					for (var/obj/structure/wild/W in G.contents)
-						if (istype(W) && !istype(W, /obj/structure/wild/tree))
+						if (istype(W))
 							var/obj/W_overlay = new(G)
 							W_overlay.icon = W.icon
 							W_overlay.icon_state = W.icon_state
 							W_overlay.layer = W.layer + 0.01
-							W_overlay.alpha = 100
+							W_overlay.alpha = 133
+							W_overlay.pixel_x = W.pixel_x
+							W_overlay.pixel_y = W.pixel_y
 							W_overlay.name = ""
-							W_overlay.color = "#fc913a"
+							W_overlay.color = SUMMER_COLOR
 							W_overlay.special_id = "seasons"
-							W.overlays.Insert(1, W_overlay)
 
 				else if (G.season == "FALL")
-					G.color = "#C37D69"
+					G.color = FALL_COLOR
 					for (var/obj/structure/wild/W in G.contents)
-						if (istype(W) && !istype(W, /obj/structure/wild/tree))
+						if (istype(W))
 							var/obj/W_overlay = new(G)
 							W_overlay.icon = W.icon
 							W_overlay.icon_state = W.icon_state
 							W_overlay.layer = W.layer + 0.01
-							W_overlay.alpha = 100
+							W_overlay.alpha = 133
+							W_overlay.pixel_x = W.pixel_x
+							W_overlay.pixel_y = W.pixel_y
 							W_overlay.name = ""
-							W_overlay.color = "#9C2706"
+							W_overlay.color = FALL_COLOR
 							W_overlay.special_id = "seasons"
-							W.overlays.Insert(1, W_overlay)
+
+			if (G.season != "SPRING")
+				for (var/cache_key in G.floor_decal_cache_keys)
+					var/image/decal = floor_decals[cache_key]
+					var/obj/o = new(G)
+					o.icon = decal.icon
+					o.icon_state = decal.icon_state
+					o.dir = decal.dir
+					o.color = decal.color
+					o.layer = 2.04 // above snow
+					o.alpha = decal.alpha
+					o.name = ""
 
 	return 1
 
@@ -225,6 +302,13 @@ var/allow_paratroopers = 1
 		world << "<font size=3>The Russian side can't attack until after 10 minutes.</font><br>"
 
 	game_started = 1
+
+	// let the new players see reinforcements now
+	spawn (1)
+		for (var/mob/new_player/np in world)
+			if (np.client)
+				np.new_player_panel_proc()
+
 //	ticker.can_latejoin_ruforce = 0
 //	ticker.can_latejoin_geforce = 0
 

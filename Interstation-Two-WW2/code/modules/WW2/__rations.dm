@@ -3,6 +3,12 @@
 
 var/added_plants_to_rations = 0
 
+/proc/water_ration()
+	var/obj/water = new /obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled
+	water.pixel_x = 0
+	water.pixel_y = 0
+	return water
+
 /proc/new_ration(faction, sort)
 
 	if (!added_plants_to_rations)

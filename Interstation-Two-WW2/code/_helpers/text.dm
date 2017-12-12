@@ -13,11 +13,11 @@
  * SQL sanitization
  */
 
-// Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
+// this is a legacy procedure. Due to how strings work in SQLite, there's
+// no longer any need for anything more complex than a call to sanitize()
+// - Kachnov
 /proc/sanitizeSQL(var/t as text)
-//	var/sqltext = dbcon.Quote(t);
-	var/sqltext = sanitize(t) // is this okay?
-	return copytext(sqltext, 2, lentext(sqltext));//Quote() adds quotes around input, we already do that
+	return sanitize(t)
 
 /*
  * Text sanitization

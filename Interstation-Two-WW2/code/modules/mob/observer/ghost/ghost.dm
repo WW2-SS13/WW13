@@ -69,7 +69,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 
-	ghost_multitool = new(src)
+//	ghost_multitool = new(src)
 
 	// when you gib, you have no icon state.
 	// now you get a default ghost icon
@@ -83,8 +83,8 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 
 /mob/observer/ghost/Destroy()
 	stop_following()
-	qdel(ghost_multitool)
-	ghost_multitool = null
+//	qdel(ghost_multitool)
+//	ghost_multitool = null
 	return ..()
 
 /mob/observer/ghost/Topic(href, href_list)
@@ -136,8 +136,6 @@ Works together with spawning an observer, noted above.
 	var/client/C = U.client
 	for(var/mob/living/carbon/human/target in target_list)
 		C.images += target.hud_list[SPECIALROLE_HUD]
-/*	for(var/mob/living/silicon/target in target_list)
-		C.images += target.hud_list[SPECIALROLE_HUD]*/
 	return 1
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
@@ -357,7 +355,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/verb/follow_train()
 	set category = "Ghost"
-	set name = "Jump to the Main Train" // renamed because apparently you can't follow a train
+	set name = "Jump to the Main Train"
 
 	var/datum/train_controller/tc = german_train_master
 
@@ -368,14 +366,20 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/verb/follow_supplytrain()
 	set category = "Ghost"
-	set name = "Jump to the Supply Train" // renamed because apparently you can't follow a train
+	set name = "Jump to the Supply Train"
+
+	var/oldloc = get_turf(src)
 
 	var/datum/train_controller/tc = german_supplytrain_master
 
 	for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
 		for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
 			ManualFollow(tpt)
-			return
+
+	var/newloc = get_turf(src)
+
+	if (oldloc == newloc) // we didn't move: train isn't here
+		loc = locate(15, 526, 1) // take us to the train station
 
 /mob/observer/ghost/verb/follow_supply_lift()
 	set category = "Ghost"
@@ -763,9 +767,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/proc/updateghostsight()
 	if (!seedarkness)
-		see_invisible = SEE_INVISIBLE_NOLIGHTING
+		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 	else
 		see_invisible = ghostvision ? SEE_INVISIBLE_OBSERVER : SEE_INVISIBLE_LIVING
+
 	updateghostimages()
 
 /mob/observer/ghost/proc/updateghostimages()

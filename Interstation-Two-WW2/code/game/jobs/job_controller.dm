@@ -9,10 +9,6 @@ var/global/datum/controller/occupations/job_master
 
 #define SL_LIMIT 4
 
-//#define DEBUG_AUTOBALANCE
-
-//#define SPAWNLOC_DEBUG
-
 var/global/list/fallschirm_landmarks = list()
 
 /proc/setup_autobalance(var/announce = 1)
@@ -52,7 +48,7 @@ var/global/list/fallschirm_landmarks = list()
 	   // flammenwerfers, officers, etc
 	 // Soldats:
 	   // self explanatory
-	 // Comannder:
+	 // Commander:
 	   // always 1 slot no matter what (for now)
 
 	var/german_primary_job_slots = 0
@@ -86,7 +82,6 @@ var/global/list/fallschirm_landmarks = list()
 
 	var/german_officer_squad_info[4]
 	var/russian_officer_squad_info[4]
-	// new autobalance system helpers lambdas when byond ree
 
 	proc/total_german_slots()
 		. = 0
@@ -1286,7 +1281,7 @@ var/global/list/fallschirm_landmarks = list()
 			world << "[H] ([rank]) GOT TO before spawnID()"
 			#endif
 			// this spawns keys now
-			spawnId(H, rank, alt_title)
+			spawnKeys(H, rank, alt_title)
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO after spawnID()"
@@ -1315,7 +1310,7 @@ var/global/list/fallschirm_landmarks = list()
 			return H
 
 
-	proc/spawnId(var/mob/living/carbon/human/H, rank, title)
+	proc/spawnKeys(var/mob/living/carbon/human/H, rank, title)
 
 		if(!H)	return 0
 
@@ -1362,116 +1357,43 @@ var/global/list/fallschirm_landmarks = list()
 				keychain.update_icon_state()
 				keychain.keys += key
 
-/*	proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
-		if(!config.load_jobs_from_txt)
-			return 0
-
-		var/list/jobEntries = file2list(jobsfile)
-
-		for(var/job in jobEntries)
-			if(!job)
-				continue
-
-			job = trim(job)
-			if (!length(job))
-				continue
-
-			var/pos = findtext(job, "=")
-			var/name = null
-			var/value = null
-
-			if(pos)
-				name = copytext(job, 1, pos)
-				value = copytext(job, pos + 1)
-			else
-				continue
-
-			if(name && value)
-				var/datum/job/J = GetJob(name)
-				if(!J)	continue
-				J.total_positions = text2num(value)
-				if(name == "AI" || name == "Cyborg")//I dont like this here but it will do for now
-					J.total_positions = 0
-
-		return 1
-
-*/
-
-	proc/HandleFeedbackGathering()
-		return
-	/*
-		for(var/datum/job/job in occupations)
-			var/tmp_str = "|[job.title]|"
-
-			var/level1 = 0 //high
-			var/level2 = 0 //medium
-			var/level3 = 0 //low
-			var/level4 = 0 //never
-			var/level5 = 0 //banned
-			var/level6 = 0 //account too young
-			for(var/mob/new_player/player in player_list)
-				if(!(player.ready && player.mind && !player.mind.assigned_role))
-					continue //This player is not ready
-				if(jobban_isbanned(player, job.title))
-					level5++
-					continue
-				if(!job.player_old_enough(player.client))
-					level6++
-					continue
-				if(player.client.prefs.GetJobDepartment(job, 1) & job.flag)
-					level1++
-				else if(player.client.prefs.GetJobDepartment(job, 2) & job.flag)
-					level2++
-				else if(player.client.prefs.GetJobDepartment(job, 3) & job.flag)
-					level3++
-				else level4++ //not selected
-
-			tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
-		//	feedback_add_details("job_preferences",tmp_str)
-*/
-/datum/controller/occupations/proc/is_side_locked(side)
-	if(!ticker)
-		return 1
-	if(side == RUSSIAN)
-		return !ticker.can_latejoin_ruforce
-	else if(side == GERMAN)
-		return !ticker.can_latejoin_geforce
-	else if (side == PARTISAN)
-		return game_started
-	return 0
-
-// this works in favor of the soviets since they don't get SS
-/datum/controller/occupations/proc/get_max_autobalance_diff()
-
-	var/clients_len = 0
-
-	if (clients)
-		clients_len = clients.len
-
-	switch (clients_len)
-
-		if (0 to 10)
-
+	proc/is_side_locked(side)
+		if(!ticker)
 			return 1
+		if(side == RUSSIAN)
+			if (side_is_hardlocked(side))
+				return 2
+			return !ticker.can_latejoin_ruforce
+		else if(side == GERMAN)
+			if (side_is_hardlocked(side))
+				return 2
+			return !ticker.can_latejoin_geforce
+		else if (side == PARTISAN) // does this account for civs?
+			return game_started
+		return 0
 
-		if (11 to 20)
+	// this is a solution to 5 germans and 1 russian, on lowpop.
+	proc/side_is_hardlocked(side)
+		// when it's highpop enough for partisans
+		// there aren't enough partisan roles for hardlocking to matter
+		// for Russians and Germans, it's another matter
+		// the generation of these two lists may take a lot of extra CPU,
+		// but it's important if we want to keep up to date.
 
-			return 2
+		// todo: faction lists structured like player_list (ie german_list)
+		var/germans = n_of_side(GERMAN)
+		var/russians = n_of_side(RUSSIAN)
 
-		if (21 to 30)
-
-			return 3
-
-		if (31 to 49)
-
-			return 4
-
-		if (50 to 59)
-
-			return 5
-
-		if (60 to INFINITY)
-
-			return 6
-
-
+		switch (side)
+			if (PARTISAN)
+				return 0
+			if (CIVILIAN)
+				return 0
+			if (GERMAN)
+				if (player_list.len >= 2 && player_list.len <= 20)
+					if (germans >= ceil(player_list.len/2))
+						return 1
+			if (RUSSIAN)
+				if (player_list.len >= 2 && player_list.len <= 20)
+					if (russians >= ceil(player_list.len/2))
+						return 1

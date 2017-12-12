@@ -42,12 +42,13 @@
 		powernets.Remove(powerNetwork)
 
 /datum/controller/process/machinery/proc/internal_process_power_drain()
-	// Currently only used by powersinks. These items get priority processed before machinery
+	return
+/*	// Currently only used by powersinks. These items get priority processed before machinery
 	for(last_object in processing_power_items)
 		var/obj/item/I = last_object
 		if(!I.pwr_drain()) // 0 = Process Kill, remove from processing list.
 			processing_power_items.Remove(I)
-		SCHECK
+		SCHECK*/
 
 /datum/controller/process/machinery/proc/internal_process_pipenets()
 	return
@@ -65,4 +66,4 @@
 	stat(null, "[machines.len] machines")
 	stat(null, "[powernets.len] powernets")
 //	stat(null, "[pipe_networks.len] pipenets")
-	stat(null, "[processing_power_items.len] power item\s")
+//	stat(null, "[processing_power_items.len] power item\s")

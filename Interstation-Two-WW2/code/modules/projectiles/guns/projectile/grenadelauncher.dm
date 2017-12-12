@@ -11,7 +11,7 @@
 	force = 5.0
 	flags = CONDUCT | USEDELAY
 	slot_flags = 0
-	origin_tech = "combat=8;materials=5"
+//	origin_tech = "combat=8;materials=5"
 	fire_sound = 'sound/effects/bang.ogg'
 
 	recoil = 4

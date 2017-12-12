@@ -17,6 +17,8 @@
 
 	anchored = 1	//  don't get pushed around
 
+	var/on_welcome_popup = 0
+
 
 
 /mob/new_player/New()
@@ -31,9 +33,9 @@
 	new_player_panel_proc()
 
 /mob/new_player/proc/new_player_panel_proc()
-	var/output = "<div align='center'><B>New Player Options</B>"
+	var/output = "<div align='center'><b>Welcome, [key]!</b>"
 	output +="<hr>"
-	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character & Preferences</A></p>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 		//output += fix_ru("<p>Отключено в целях отладки (<a href='byond://?src=\ref[src];ready=0'>Жми сюда в надежде, что появятся новые кнопки.</a>)</p>")
@@ -46,7 +48,9 @@
 	//	output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</A></p>"
 
+	var/height = 300
 	if (reinforcements_master && reinforcements_master.is_ready())
+		height = 450
 		if (!reinforcements_master.has(src))
 			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a German reinforcement!</A></p>"
 			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Russian reinforcement!</A></p>"
@@ -64,7 +68,7 @@
 		if(src.client && src.client.holder)
 			isadmin = 1
 		// TODO: reimplement database interaction
-		var/list/rowdata = database.execute("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
+		var/list/rowdata = database.execute("SELECT id FROM poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM poll_textreply WHERE ckey = \"[ckey]\")")
 		var/newpoll = 0
 		if (islist(rowdata) && !isemptylist(rowdata))
 			newpoll = 1
@@ -77,7 +81,8 @@
 */
 	output += "</div>"
 
-	src << browse(output,"window=playersetup;size=210x280;can_close=0")
+	src << browse(null, "window=playersetup;")
+	src << browse(output, "window=playersetup;size=300x[height];can_close=0")
 	return
 
 /mob/new_player/Stat()
@@ -203,9 +208,9 @@
 				return 0
 
 		LateChoices()
-
+/*
 	if(href_list["manifest"])
-		ViewManifest()
+		ViewManifest()*/
 
 	if(href_list["SelectedJob"])
 
@@ -337,7 +342,7 @@
 		character.buckled.set_dir(character.dir)
 
 	if(character.mind.assigned_role != "Cyborg")
-		data_core.manifest_inject(character)
+	//	data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
 	character.lastarea = get_area(loc)
@@ -380,7 +385,7 @@
 		character.buckled.set_dir(character.dir)
 
 	if(character.mind.assigned_role != "Cyborg")
-		data_core.manifest_inject(character)
+	//	data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
 	character.lastarea = get_area(loc)
@@ -416,6 +421,8 @@
 	dat += "Choose from the following open positions:<br>"
 	for(var/datum/job/job in job_master.occupations)
 
+		var/unavailable_message = ""
+
 		if(job && !job.train_check())
 			continue
 
@@ -424,8 +431,14 @@
 		if (job.is_paratrooper)
 			job_is_available = allow_paratroopers
 
-		if (config.use_job_whitelist && !check_job_whitelist(src, job.title))
+
+		if (!job.validate(src))
 			job_is_available = 0
+			unavailable_message = " <span class = 'color: rgb(255,215,0);'>{WHITELISTED}</span> "
+
+		if (job_master.side_is_hardlocked(job.base_type_flag()))
+			job_is_available = 0
+			unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
 
 		// check if the faction is admin-locked
 
@@ -481,13 +494,13 @@
 				if (job_is_available)
 					dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
 				else
-					dat += "<span style = 'color:red'><strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
+					dat += "<span style = 'color:red'><strike>[unavailable_message][job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 
 			else
 				if (job_is_available)
 					dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
 				else
-					dat += "<span style = 'color:red'><strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
+					dat += "<span style = 'color:red'><strike>[unavailable_message][job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")
@@ -562,13 +575,13 @@
 	new_character.key = key		//Manually transfer the key to log them in
 
 	return new_character
-
+/*
 /mob/new_player/proc/ViewManifest()
 	var/dat = "<html><body>"
 	dat += "<h4>Show Crew Manifest</h4>"
 	dat += data_core.get_manifest(OOC = 1)
 	src << browse(dat, "window=manifest;size=370x420;can_close=1")
-
+*/
 /mob/new_player/Move()
 	return 0
 

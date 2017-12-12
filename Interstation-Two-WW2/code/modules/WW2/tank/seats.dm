@@ -13,6 +13,8 @@
 		return 1
 	else if (!fire_back_seat && drive_front_seat)
 		return 1
+	else if (!drive_front_seat && fire_back_seat)
+		return 1
 	else if (fire_back_seat && drive_front_seat)
 		return 0
 
@@ -21,6 +23,8 @@
 		return "front seat"
 	else if (!fire_back_seat && drive_front_seat)
 		return "back seat"
+	else if (!drive_front_seat && fire_back_seat)
+		return "front seat"
 	else if (fire_back_seat && drive_front_seat)
 		return "what the fuck how did you get here lmao"
 
@@ -29,6 +33,8 @@
 		drive_front_seat = user
 	else if (!fire_back_seat && drive_front_seat)
 		fire_back_seat  = user
+	else if (!drive_front_seat && fire_back_seat)
+		drive_front_seat = user
 	else if (fire_back_seat && drive_front_seat)
 		return 0
 	user.loc = src

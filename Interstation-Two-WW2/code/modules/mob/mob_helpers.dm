@@ -410,7 +410,7 @@ proc/is_blind(A)
 		if(C.sdisabilities & BLIND || C.blinded)
 			return 1
 	return 0
-
+/*
 /proc/broadcast_security_hud_message(var/message, var/broadcast_source)
 	broadcast_hud_message(message, broadcast_source, sec_hud_users, /obj/item/clothing/glasses/hud/security)
 
@@ -423,7 +423,7 @@ proc/is_blind(A)
 		var/turf/targetturf = get_turf(M)
 		if((targetturf.z == sourceturf.z))
 			M.show_message("<span class='info'>\icon[icon] [message]</span>", 1)
-
+*/
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = new
 	for(var/mob/living/M in mob_list)
@@ -563,11 +563,11 @@ proc/is_blind(A)
 
 		if(species.name != "Human")
 			threatcount += 2
-
+/*
 	if(check_records || check_arrest)
 		var/perpname = name
-		/*if(id)
-			perpname = id.registered_name*/
+		if(id)
+			perpname = id.registered_name
 
 		var/datum/data/record/R = find_security_record("name", perpname)
 		if(check_records && !R)
@@ -575,7 +575,7 @@ proc/is_blind(A)
 
 		if(check_arrest && R && (R.fields["criminal"] == "*Arrest*"))
 			threatcount += 4
-
+*/
 	return threatcount
 
 /mob/living/simple_animal/hostile/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
@@ -586,7 +586,7 @@ proc/is_blind(A)
 	return threatcount
 
 #undef SAFE_PERP
-
+/*
 /mob/proc/get_multitool(var/obj/item/device/multitool/P)
 	if(istype(P))
 		return P
@@ -595,4 +595,4 @@ proc/is_blind(A)
 	return can_admin_interact() && ..(ghost_multitool)
 
 /mob/living/carbon/human/get_multitool()
-	return ..(get_active_hand())
+	return ..(get_active_hand())*/

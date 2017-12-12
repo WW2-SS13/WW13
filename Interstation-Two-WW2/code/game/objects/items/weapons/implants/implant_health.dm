@@ -1,7 +1,7 @@
 /obj/item/weapon/implant/health
 	name = "health implant"
 	var/healthstring = ""
-	origin_tech = list(TECH_MATERIAL=3, TECH_BIO=4)
+//	origin_tech = list(TECH_MATERIAL=3, TECH_BIO=4)
 
 /obj/item/weapon/implant/health/proc/sensehealth()
 	if(!implanted)

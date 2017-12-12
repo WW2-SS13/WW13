@@ -37,7 +37,7 @@
 		qdel(W)
 		qdel(src)
 		return
-
+/*
 /obj/item/weapon/material/wirerod
 	name = "wired rod"
 	desc = "A rod with some wire wrapped around the top. It'd be easy to attach something to the top bit."
@@ -58,9 +58,9 @@
 		var/obj/item/weapon/material/tmp_shard = I
 		finished = new /obj/item/weapon/material/twohanded/spear(get_turf(user), tmp_shard.material.name)
 		user << "<span class='notice'>You fasten \the [I] to the top of the rod with the cable.</span>"
-	else if(istype(I, /obj/item/weapon/wirecutters))
+/*	else if(istype(I, /obj/item/weapon/wirecutters))
 		finished = new /obj/item/weapon/melee/baton/cattleprod(get_turf(user))
-		user << "<span class='notice'>You fasten the wirecutters to the top of the rod with the cable, prongs outward.</span>"
+		user << "<span class='notice'>You fasten the wirecutters to the top of the rod with the cable, prongs outward.</span>"*/
 	if(finished)
 		user.drop_from_inventory(src)
 		user.drop_from_inventory(I)
@@ -68,3 +68,4 @@
 		qdel(src)
 		user.put_in_hands(finished)
 	update_icon(user)
+*/

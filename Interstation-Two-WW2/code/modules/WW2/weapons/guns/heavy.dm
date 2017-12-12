@@ -6,7 +6,7 @@
 	w_class = 4
 	force = 10
 	slot_flags = SLOT_BACK
-	origin_tech = "combat=8;materials=2;syndicate=8"
+//	origin_tech = "combat=8;materials=2;syndicate=8"
 	caliber = "14.5mm"
 	recoil = 3 //extra kickback
 	fire_sound = 'sound/weapons/WW2/ptrd_fire.ogg'

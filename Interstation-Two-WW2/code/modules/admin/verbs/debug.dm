@@ -12,8 +12,6 @@
 		message_admins("[key_name(src)] toggled debugging on.")
 		log_admin("[key_name(src)] toggled debugging on.")
 
-
-
 // callproc moved to code/modules/admin/callproc
 
 
@@ -368,7 +366,7 @@
 
 			job.equip(M)
 			job.apply_fingerprints(M)
-			job_master.spawnId(M, selected_job)
+			job_master.spawnKeys(M, selected_job)
 
 		if ("tournament standard red","tournament standard green") //we think stunning weapon is too overpowered to use it on tournaments. --rastaf0
 			if (dresscode=="tournament standard red")

@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = 3
 	force = WEAPON_FORCE_NORMAL
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
+//	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 	projectile_type = /obj/item/projectile/beam/midlaser
 	requires_two_hands = 1
@@ -44,7 +44,7 @@ obj/item/weapon/gun/energy/retro
 	slot_flags = SLOT_BELT
 	w_class = 3
 	projectile_type = /obj/item/projectile/beam
-	origin_tech = null
+//	origin_tech = null
 	max_shots = 5 //to compensate a bit for self-recharging
 	self_recharge = 1
 	requires_two_hands = 0
@@ -55,7 +55,7 @@ obj/item/weapon/gun/energy/retro
 	icon_state = "lasercannon"
 	item_state = null
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
+//	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 400
@@ -74,7 +74,7 @@ obj/item/weapon/gun/energy/retro
 	icon_state = "xray"
 	item_state = "xray"
 	fire_sound = 'sound/weapons/laser3.ogg'
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
+//	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	projectile_type = /obj/item/projectile/beam/xray
 	charge_cost = 100
 	max_shots = 20
@@ -87,7 +87,7 @@ obj/item/weapon/gun/energy/retro
 	icon_state = "sniper"
 	item_state = "laser"
 	fire_sound = 'sound/weapons/marauder.ogg'
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
+//	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
 	charge_cost = 400

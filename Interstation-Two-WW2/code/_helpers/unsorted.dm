@@ -346,14 +346,14 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		mind.name = newname
 	if(dna)
 		dna.real_name = real_name
-
+/*
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
 		for(var/list/L in list(data_core.general,data_core.medical,data_core.security,data_core.locked))
 			for(var/datum/data/record/R in L)
 				if(R.fields["name"] == oldname)
 					R.fields["name"] = newname
-					break
+					break*/
 	return 1
 
 
@@ -974,7 +974,7 @@ var/global/list/common_tools = list(
 /obj/item/weapon/weldingtool,
 /obj/item/weapon/screwdriver,
 /obj/item/weapon/wirecutters,
-/obj/item/device/multitool,
+///obj/item/device/multitool,
 /obj/item/weapon/crowbar)
 
 /proc/istool(O)
@@ -1006,12 +1006,12 @@ var/global/list/common_tools = list(
 	if(istype(O, /obj/item/weapon/screwdriver))
 		return 1
 	return 0
-
+/*
 /proc/ismultitool(O)
 	if(istype(O, /obj/item/device/multitool))
 		return 1
 	return 0
-
+*/
 /proc/iscrowbar(O)
 	if(istype(O, /obj/item/weapon/crowbar))
 		return 1

@@ -37,7 +37,7 @@
 	throw_speed = 4
 	throw_range = 5
 	force = 5
-	origin_tech = "combat=1"
+//	origin_tech = "combat=1"
 	attack_verb = list("struck", "hit", "bashed")
 
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
@@ -189,17 +189,23 @@
 	else
 		if(bayonet && isliving(A))
 			var/mob/living/l = A
-			if (prob(35) && l != user && !l.lying)
-				visible_message("<span class = 'danger'>[user] tries to bayonet [l], but they miss!</span>")
+			var/mob/living/carbon/C = A
+			if (!istype(C) || !C.check_attack_throat(src, user))
+				if (prob(35) && l != user && !l.lying)
+					visible_message("<span class = 'danger'>[user] tries to bayonet [l], but they miss!</span>")
+				else
+					var/obj/item/attachment/bayonet/a = bayonet
+					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
+					visible_message("<span class = 'danger'>[user] impales [l] with their gun's bayonet!</span>")
+					l.apply_damage(a.force * 2, BRUTE, def_zone)
+					l.Weaken(rand(1,2))
+					if (l.stat == CONSCIOUS)
+						l.emote("scream")
+					playsound(get_turf(src), a.attack_sound, rand(90,100))
 			else
 				var/obj/item/attachment/bayonet/a = bayonet
-				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
-				visible_message("<span class = 'danger'>[user] impales [l] with their gun's bayonet!</span>")
-				l.apply_damage(a.force * 2, BRUTE, def_zone)
-				l.Weaken(rand(1,2))
-				if (l.stat == CONSCIOUS)
-					l.emote("scream")
 				playsound(get_turf(src), a.attack_sound, rand(90,100))
+
 		else
 			..() //Pistolwhippin'
 

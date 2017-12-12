@@ -79,28 +79,26 @@
 
 	// Environment tolerance/life processes vars.
 	var/reagent_tag                                   //Used for metabolizing reagents.
-	var/breath_pressure = 16                          // Minimum partial pressure safe for breathing, kPa
-	var/breath_type = "oxygen"                        // Non-oxygen gas breathed, if any.
-	var/poison_type = "plasma"                        // Poisonous air.
-	var/exhale_type = "carbon_dioxide"                // Exhaled gas type.
+//	var/breath_pressure = 16                          // Minimum partial pressure safe for breathing, kPa
+//	var/breath_type = "oxygen"                        // Non-oxygen gas breathed, if any.
+//	var/poison_type = "plasma"                        // Poisonous air.
+//	var/exhale_type = "carbon_dioxide"                // Exhaled gas type.
 	//var/cold_level_1 = 260                            // Cold damage level 1 below this point.
-	var/cold_level_1 = 270
-	var/cold_level_2 = 200                            // Cold damage level 2 below this point.
-	var/cold_level_3 = 120                            // Cold damage level 3 below this point.
-	var/heat_level_1 = 360                            // Heat damage level 1 above this point.
-	var/heat_level_2 = 400                            // Heat damage level 2 above this point.
-	var/heat_level_3 = 1000                           // Heat damage level 3 above this point.
+	var/cold_level_1 = 273
+	var/cold_level_2 = 265                            // Cold damage level 2 below this point.
+	var/cold_level_3 = 255                            // Cold damage level 3 below this point.
+	var/heat_level_1 = 315                            // Heat damage level 1 above this point.
+	var/heat_level_2 = 323                            // Heat damage level 2 above this point.
+	var/heat_level_3 = 333                           // Heat damage level 3 above this point.
 	var/passive_temp_gain = 0		                  // Species will gain this much temperature every second
-	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE   // Dangerously high pressure.
-	var/warning_high_pressure = WARNING_HIGH_PRESSURE // High pressure warning.
-	var/warning_low_pressure = WARNING_LOW_PRESSURE   // Low pressure warning.
-	var/hazard_low_pressure = HAZARD_LOW_PRESSURE     // Dangerously low pressure.
+//	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE   // Dangerously high pressure.
+//	var/warning_high_pressure = WARNING_HIGH_PRESSURE // High pressure warning.
+//	var/warning_low_pressure = WARNING_LOW_PRESSURE   // Low pressure warning.
+//	var/hazard_low_pressure = HAZARD_LOW_PRESSURE     // Dangerously low pressure.
 	var/light_dam                                     // If set, mob will be damaged in light over this value and heal in light below its negative.
 	var/body_temperature = 310.15	                  // Non-IS_SYNTHETIC species will try to stabilize at this temperature.
 	                                                  // (also affects temperature processing)
 
-	var/heat_discomfort_level = 315                   // Aesthetic messages about feeling warm.
-	var/cold_discomfort_level = 285                   // Aesthetic messages about feeling chilly.
 	var/list/heat_discomfort_strings = list(
 		"You feel sweat drip down your neck.",
 		"You feel uncomfortably warm.",
@@ -191,24 +189,39 @@
 
 /datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
 
-	if(!prob(5))
-		return
+	if ((H.bodytemperature < cold_level_1 && msg_type == "cold") || (H.bodytemperature > heat_level_1 && msg_type == "heat"))
+		if(!prob(5))
+			return
 
-	var/covered = 0 // Basic coverage can help.
-	for(var/obj/item/clothing/clothes in H)
-		if(H.l_hand == clothes|| H.r_hand == clothes)
-			continue
-		if((clothes.body_parts_covered & UPPER_TORSO) && (clothes.body_parts_covered & LOWER_TORSO))
-			covered = 1
-			break
+		var/covered = 0 // Basic coverage can help.
+		for(var/obj/item/clothing/clothes in H)
+			if(H.l_hand == clothes|| H.r_hand == clothes)
+				continue
+			if((clothes.body_parts_covered & UPPER_TORSO) && (clothes.body_parts_covered & LOWER_TORSO))
+				covered = 1
+				break
 
-	switch(msg_type)
-		if("cold")
-			if(!covered)
-				H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
-		if("heat")
-			if(covered)
-				H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
+		var/turf/H_turf = get_turf(H)
+		if (istype(H_turf) && msg_type == "cold" && locate(/obj/snow) in H_turf)
+			var/obj/snow/S = locate(/obj/snow) in H_turf
+			if (prob(25) && S.amount >= 0.20)
+				H << "<span class='danger'>Your feet are freezing!</span>"
+				var/base_damage = 1
+				base_damage *= S.amount/0.20
+				H.adjustFireLossByPart(base_damage, pick("l_foot", "r_foot"))
+
+		if (!covered)
+			switch(msg_type)
+				if("cold")
+					H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
+				if("heat")
+					H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
+		else
+			switch(msg_type)
+				if("cold")
+					H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
+				if("heat")
+					H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
 
 /datum/species/proc/sanitize_name(var/name)
 	return sanitizeName(name)

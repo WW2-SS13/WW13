@@ -8,10 +8,10 @@
 #define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
 #define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
 
-#define COLD_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when your body temperature just passes the 260.15k safety point
-#define COLD_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when your body temperature passes the 200K point
-#define COLD_DAMAGE_LEVEL_3 3 //Amount of damage applied when your body temperature passes the 120K point
-
+#define COLD_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 260.15k safety point
+#define COLD_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 200K point
+#define COLD_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 120K point
+/*
 //Note that gas heat damage is only applied once every FOUR ticks.
 #define HEAT_GAS_DAMAGE_LEVEL_1 2 //Amount of damage applied when the current breath's temperature just passes the 360.15k safety point
 #define HEAT_GAS_DAMAGE_LEVEL_2 4 //Amount of damage applied when the current breath's temperature passes the 400K point
@@ -20,8 +20,10 @@
 #define COLD_GAS_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
 #define COLD_GAS_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when the current breath's temperature passes the 200K point
 #define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
+*/
 
-#define RADIATION_SPEED_COEFFICIENT 0.1
+
+//#define RADIATION_SPEED_COEFFICIENT 0.1
 
 /mob/living/carbon/human
 	var/oxygen_alert = 0
@@ -91,7 +93,8 @@
 
 		handle_blood()
 
-		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
+		adjust_body_temperature()
+		stabilize_body_temperature()
 
 		handle_shock()
 
@@ -120,48 +123,7 @@
 /mob/living/carbon/human/breathe()
 	if(!in_stasis)
 		..()
-/*
-// Calculate how vulnerable the human is to under- and overpressure.
-// Returns 0 (equals 0 %) if sealed in an undamaged suit, 1 if unprotected (equals 100%).
-// Suitdamage can modifiy this in 10% steps.
-/mob/living/carbon/human/proc/get_pressure_weakness()
 
-	var/pressure_adjustment_coefficient = 1 // Assume no protection at first.
-
-	if(wear_suit && (wear_suit.item_flags & STOPPRESSUREDAMAGE) && head && (head.item_flags & STOPPRESSUREDAMAGE)) // Complete set of pressure-proof suit worn, assume fully sealed.
-		pressure_adjustment_coefficient = 0
-
-	pressure_adjustment_coefficient = min(1,max(pressure_adjustment_coefficient,0)) // So it isn't less than 0 or larger than 1.
-
-	return pressure_adjustment_coefficient
-
-// Calculate how much of the enviroment pressure-difference affects the human.
-/mob/living/carbon/human/calculate_affecting_pressure(var/pressure)
-	var/pressure_difference
-
-	// First get the absolute pressure difference.
-	if(pressure < ONE_ATMOSPHERE) // We are in an underpressure.
-		pressure_difference = ONE_ATMOSPHERE - pressure
-
-	else //We are in an overpressure or standard atmosphere.
-		pressure_difference = pressure - ONE_ATMOSPHERE
-
-	if(pressure_difference < 5) // If the difference is small, don't bother calculating the fraction.
-		pressure_difference = 0
-
-	else
-		// Otherwise calculate how much of that absolute pressure difference affects us, can be 0 to 1 (equals 0% to 100%).
-		// This is our relative difference.
-		pressure_difference *= get_pressure_weakness()
-
-	// The difference is always positive to avoid extra calculations.
-	// Apply the relative difference on a standard atmosphere to get the final result.
-	// The return value will be the adjusted_pressure of the human that is the basis of pressure warnings and damage.
-	if(pressure < ONE_ATMOSPHERE)
-		return ONE_ATMOSPHERE - pressure_difference
-	else
-		return ONE_ATMOSPHERE + pressure_difference
-*/
 /mob/living/carbon/human/handle_disabilities()
 	..()
 	//Vision
@@ -293,13 +255,14 @@
 		failed_last_breath = 1
 	return 1
 
+/mob/living/carbon/human/var/loc_temperature = -1 // for debugging.
 /mob/living/carbon/human/handle_environment()
 
 	//Stuff like the xenomorph's plasma regen happens here.
 	species.handle_environment_special(src)
 
 	//Moved pressure calculations here for use in skip-processing check.
-	var/pressure = NORMAL_PRESSURE
+//	var/pressure = NORMAL_PRESSURE
 	var/loc_temp = 293
 	var/area/mob_area = get_area(src)
 
@@ -317,12 +280,52 @@
 			if ("SUMMER")
 				loc_temp = 303
 
-	// todo: inside/outside temp adjustment
+		switch (time_of_day)
+			if ("Midday")
+				loc_temp *= 1.03
+			if ("Afternoon")
+				loc_temp *= 1.02
+			if ("Morning")
+				loc_temp *= 1.01
+			if ("Evening")
+				loc_temp *= 1.00 // default
+			if ("Early Morning")
+				loc_temp *= 0.99
+			if ("Night")
+				loc_temp *= 0.98
+			if ("Midnight")
+				loc_temp *= 0.97
+
+		switch (mob_area.weather)
+			if (WEATHER_NONE)
+				loc_temp *= 1.00
+			if (WEATHER_SNOW)
+				switch (mob_area.weather_intensity)
+					if (1.0)
+						loc_temp *= 0.97
+					if (2.0)
+						loc_temp *= 0.96
+					if (3.0)
+						loc_temp *= 0.95
+			if (WEATHER_RAIN)
+				switch (mob_area.weather_intensity)
+					if (1.0)
+						loc_temp *= 0.99
+					if (2.0)
+						loc_temp *= 0.985
+					if (3.0)
+						loc_temp *= 0.98
+
+		loc_temp = round(loc_temp)
+
+	for (var/obj/snow/S in get_turf(src))
+		loc_temp -= (S.amount * 20)
+
+	src.loc_temperature = loc_temp
 
 	// todo: wind adjusting effective loc_temp
 
-	if(pressure < species.warning_high_pressure && pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
-		pressure_alert = 0
+	if(abs(loc_temp - bodytemperature) < 0.5 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 	//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
@@ -340,7 +343,6 @@
 //	var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
 	var/relative_density = 1.0
 	bodytemperature += between(BODYTEMP_COOLING_MAX, temp_adj*relative_density, BODYTEMP_HEATING_MAX)
-
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature >= species.heat_level_1)
 		//Body temperature is too hot.
@@ -365,40 +367,24 @@
 			var/burn_dam = 0
 			switch(bodytemperature)
 				if(-INFINITY to species.cold_level_3)
-					burn_dam = COLD_DAMAGE_LEVEL_1
+					burn_dam = COLD_DAMAGE_LEVEL_3
 				if(species.cold_level_3 to species.cold_level_2)
 					burn_dam = COLD_DAMAGE_LEVEL_2
 				if(species.cold_level_2 to species.cold_level_1)
-					burn_dam = COLD_DAMAGE_LEVEL_3
+					burn_dam = COLD_DAMAGE_LEVEL_1
 			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
 			fire_alert = max(fire_alert, 1)
+
+	// tell src they're dying
+	species.get_environment_discomfort(src, "cold")
+	species.get_environment_discomfort(src, "heat")
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
 	if(status_flags & GODMODE)	return 1	//godmode
 
-	if(pressure >= species.hazard_high_pressure)
-		var/pressure_damage = min( ( (pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
-		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
-		pressure_alert = 2
-	else if(pressure >= species.warning_high_pressure)
-		pressure_alert = 1
-	else if(pressure >= species.warning_low_pressure)
-		pressure_alert = 0
-	else if(pressure >= species.hazard_low_pressure)
-		pressure_alert = -1
-	else
-		if( !(COLD_RESISTANCE in mutations))
-			take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
-			if(getOxyLoss() < 55) // 11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
-				adjustOxyLoss(4)  // 16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
-			pressure_alert = -2
-		else
-			pressure_alert = -1
-
 	return
 
-/*
 /mob/living/carbon/human/proc/adjust_body_temperature(current, loc_temp, boost)
 	var/temperature = current
 	var/difference = abs(current-loc_temp)	//get difference
@@ -415,7 +401,7 @@
 		temperature = max(loc_temp, temperature-change)
 	temp_change = (temperature - current)
 	return temp_change
-*/
+
 
 /mob/living/carbon/human/proc/stabilize_body_temperature()
 	if (species.passive_temp_gain) // We produce heat naturally.
@@ -432,7 +418,7 @@
 
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
 		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
-			nutrition -= 2
+			nutrition -= 0.5
 		var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
 		//world << "Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
 //				log_debug("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
@@ -449,7 +435,8 @@
 //				log_debug("Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 		bodytemperature += recovery_amt
 
-	//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
+
+//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 	. = 0
 	//Handle normal clothing
@@ -875,6 +862,7 @@
 					continue
 
 		handle_starvation()
+		handle_dehydration()
 
 /*Hardcore mode stuff. This was moved here because constants that are only used
   at one spot in the code shouldn't be in the __defines folder */
@@ -902,11 +890,11 @@
 
 	if(nutrition < 350 && nutrition >= 200)
 		if (prob(3))
-			src << "<span class = 'notice'>You're getting a bit hungry.</span>"
+			src << "<span class = 'warning'>You're getting a bit hungry.</span>"
 
 	if(nutrition < 200)
 		if (prob(4))
-			src << "<span class = 'notice'>You're pretty hungry.</span>"
+			src << "<span class = 'warning'>You're pretty hungry.</span>"
 
 	if(nutrition < 20) //Nutrition is below 20 = starvation
 
@@ -925,7 +913,7 @@
 				if(sleeping) return
 
 				if (!informed_starvation[num2text(-STARVATION_NOTICE)])
-					src << "<span class='notice'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
+					src << "<span class='warning'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
 
 				informed_starvation[num2text(-STARVATION_NOTICE)] = 1
 				informed_starvation[num2text(-STARVATION_WEAKNESS)] = 0
@@ -933,7 +921,7 @@
 				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = 0
 
 				if(prob(10))
-					src << "<span class='notice'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
+					src << "<span class='warning'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
 
 			if(STARVATION_WEAKNESS to STARVATION_NOTICE)
 				if(sleeping) return
@@ -1005,6 +993,125 @@
 				if(prob(10))
 					Weaken(15)
 
+#define DEHYDRATION_MIN 0
+#define DEHYDRATION_NOTICE -15
+#define DEHYDRATION_WEAKNESS -40
+#define DEHYDRATION_NEARDEATH -55
+#define DEHYDRATION_NEGATIVE_INFINITY -10000
+
+#define DEHYDRATION_OXY_DAMAGE 2.5
+#define DEHYDRATION_TOX_DAMAGE 2.5
+#define DEHYDRATION_BRAIN_DAMAGE 2.5
+#define DEHYDRATION_OXY_HEAL_RATE 1
+
+/mob/living/carbon/human/var/list/informed_dehydration[4]
+
+/mob/living/carbon/human/proc/handle_dehydration()//Making this it's own proc for my sanity's sake - Matt
+
+	if(water < 350 && water >= 250)
+		if (prob(3))
+			src << "<span class = 'warning'>You're getting a bit thirsty.</span>"
+
+	if(water < 250)
+		if (prob(4))
+			src << "<span class = 'warning'>You're pretty thirsty.</span>"
+
+	if(water < 20) //Nutrition is below 20 = dehydration
+
+		var/list/thirst_phrases = list(
+			"You feel weak and malnourished. You must find something to drink now!",
+			"You haven't drank in ages, and your body feels weak! It's time to drink something.",
+			"You can barely remember the last time you had something to drink!",
+			"Your body is starting to dehydrate! You have to drink something soon.",
+			"If you don't drink something very soon, you're going to dehydrate to death."
+			)
+
+		//When you're starving, the rate at which oxygen damage is healed is reduced by 80% (you only restore 1 oxygen damage per life tick, instead of 5)
+
+		switch(water)
+			if(DEHYDRATION_NOTICE to DEHYDRATION_MIN)
+				if(sleeping) return
+
+				if (!informed_dehydration[num2text(-DEHYDRATION_NOTICE)])
+					src << "<span class='warning'>[pick("You're very thirsty.","You really could use some water right now.")]</span>"
+
+				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = 1
+				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = 0
+				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = 0
+				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = 0
+
+				if(prob(10))
+					src << "<span class='warning'>[pick("You're very thirsty.","You really could use some water right now.")]</span>"
+
+			if(DEHYDRATION_WEAKNESS to DEHYDRATION_NOTICE)
+				if(sleeping) return
+
+				if (!informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)])
+					src << "<span class='danger'>[pick(thirst_phrases)]</span>"
+
+				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = 1
+				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = 1
+				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = 0
+				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = 0
+
+				if(prob(6)) //6% chance of a tiny amount of oxygen damage (1-5)
+
+					adjustOxyLoss(rand(1,5))
+					src << "<span class='danger'>[pick(thirst_phrases)]</span>"
+
+				else if(prob(5)) //5% chance of being weakened
+
+					eye_blurry += 10
+					Weaken(10)
+					adjustOxyLoss(rand(1,15))
+					src << "<span class='danger'>You're dehydrating! The lack of strength makes you black out for a few moments...</span>"
+
+			if(DEHYDRATION_NEARDEATH to DEHYDRATION_WEAKNESS) //5-30, 5% chance of weakening and 1-230 oxygen damage. 5% chance of a seizure. 10% chance of dropping item
+				if(sleeping) return
+
+				if (!informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)])
+					src << "<span class='danger'>You're dehydrating. You feel your life force slowly leaving your body...</span>"
+
+				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = 1
+				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = 1
+				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = 1
+				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = 0
+
+				if(prob(7))
+
+					adjustOxyLoss(rand(1,20))
+					src << "<span class='danger'>You're dehydrating. You feel your life force slowly leaving your body...</span>"
+					eye_blurry += 20
+					if(weakened < 1) Weaken(20)
+
+				else if(paralysis<1 && prob(7)) //Mini seizure (25% duration and strength of a normal seizure)
+
+					visible_message("<span class='danger'>\The [src] starts having a seizure!</span>", \
+							"<span class='warning'>You have a seizure!</span>")
+					Paralyse(5)
+					make_jittery(500)
+					adjustOxyLoss(rand(1,25))
+					eye_blurry += 20
+
+			if(-INFINITY to DEHYDRATION_NEARDEATH) //Fuck the whole body up at this point
+
+				if (!informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)])
+					src << "<span class='danger'>You are dying from dehydration!</span>"
+
+				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = 1
+				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = 1
+				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = 1
+				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = 1
+
+				if (prob(10))
+					src << "<span class='danger'>You are dying from dehydration!</span>"
+
+				adjustToxLoss(DEHYDRATION_TOX_DAMAGE)
+				adjustOxyLoss(DEHYDRATION_OXY_DAMAGE)
+				adjustBrainLoss(DEHYDRATION_BRAIN_DAMAGE)
+
+				if(prob(10))
+					Weaken(15)
 
 /mob/living/carbon/human/handle_shock()
 	..()

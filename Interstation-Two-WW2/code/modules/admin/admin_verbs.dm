@@ -12,7 +12,10 @@ var/list/admin_verbs_default = list(
 	/client/proc/cmd_mentor_check_new_players,
 	/client/proc/see_spies,
 	/client/proc/see_jews,
-	/client/proc/see_soldiers
+	/client/proc/see_soldiers,
+	/client/proc/see_bug_reports,
+	/client/proc/see_suggestions,
+	/client/proc/see_world_realtime
 //	/client/proc/deadchat				//toggles deadchat on/off,
 	)
 var/list/admin_verbs_admin = list(
@@ -80,6 +83,7 @@ var/list/admin_verbs_ban = list(
 	/client/proc/ban_panel,
 	/client/proc/jobbans
 	)
+
 var/list/admin_verbs_sounds = list(
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
@@ -142,7 +146,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/reload_admins,
-	/client/proc/reload_mentors,
+	///client/proc/reload_mentors,
 	/client/proc/restart_controller,
 //	/client/proc/print_random_map,
 //	/client/proc/create_random_map,
@@ -159,6 +163,9 @@ var/list/admin_verbs_debug = list(
 	/client/proc/jumptocoord,
 	/client/proc/dsay,
 	/client/proc/check_positions,
+	/client/proc/recreate_lighting,
+	/client/proc/randomly_change_weather,
+	/client/proc/randomly_modify_weather
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -239,6 +246,7 @@ var/list/admin_verbs_hideable = list(
 	/proc/release
 	)
 var/list/admin_verbs_mod = list(
+	/client/proc/who_invisimin,				//allows our mob to go invisible/visible in staffwho
 	/client/proc/cmd_admin_rejuvenate,
 	/client/proc/jumptocoord,			//we ghost and jump to a coordinate,
 	/client/proc/Jump,
@@ -399,6 +407,7 @@ var/list/admin_verbs_mentor = list(
 		verbs |= /client/proc/see_who_is_in_tank
 		verbs |= /client/proc/eject_from_tank
 		verbs |= /client/proc/Goto_adminzone
+
 		if (check_rights(R_POSSESS, user = mob))
 			verbs |= admin_verbs_possess
 
@@ -407,6 +416,7 @@ var/list/admin_verbs_mentor = list(
 		verbs -= /client/proc/see_who_is_in_tank
 		verbs -= /client/proc/eject_from_tank
 		verbs -= /client/proc/Goto_adminzone
+
 		if (check_rights(R_POSSESS, user = mob))
 			verbs -= admin_verbs_possess
 
@@ -415,15 +425,29 @@ var/list/admin_verbs_mentor = list(
 	set category = "Admin"
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
 	if(holder && mob)
+		if (istype(mob, /mob/observer))
+			mob << "<span class = 'warning'>You're already invisible!</span>"
+			return
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
 			mob << "\red <b>Invisimin off. Invisibility reset.</b>"
 			mob.alpha = max(mob.alpha + 100, 255)
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
-			mob << "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>"
+			mob << "\green <b>Invisimin on. You are now as invisible as a ghost.</b>"
 			mob.alpha = max(mob.alpha - 100, 0)
 
+/client/var/visible_in_who = 1
+/client/proc/who_invisimin()
+	set name = "Toggle Staffwho Visibility"
+	set category = "Admin"
+	set desc = "Toggle your visibility in Staffwho."
+	if(holder && mob)
+		visible_in_who = !visible_in_who
+		if (visible_in_who)
+			mob << "\blue You are now <b>visible</b> in Staffwho."
+		else
+			mob << "\blue You are <b>no longer visible</b> in Staffwho."
 
 /client/proc/player_panel()
 	set name = "Player Panel"

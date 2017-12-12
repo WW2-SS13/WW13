@@ -23,7 +23,7 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_magazine/mosinbox
 	name = "magazine box (7.62x54mm)"
 	icon_state = "mosin_ammo"
-	origin_tech = "combat=2"
+//	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "a762x54"
 	w_class = 3
@@ -31,6 +31,7 @@ WW 2 WEAPONS MAGS N AMMO
 	ammo_type = /obj/item/ammo_casing/a762x54
 	max_ammo = 50
 	multiple_sprites = 1
+	is_box = 1
 
 /obj/item/ammo_magazine/kar98k
 	name = "Clip (7.92x57mm)"
@@ -44,7 +45,7 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_magazine/kar98kbox
 	name = "magazine box (7.92x57mm)"
 	icon_state = "mosin_ammo"
-	origin_tech = "combat=2"
+//	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "a792x57"
 	w_class = 3
@@ -52,11 +53,12 @@ WW 2 WEAPONS MAGS N AMMO
 	ammo_type = /obj/item/ammo_casing/a792x57
 	max_ammo = 50
 	multiple_sprites = 1
+	is_box = 1
 
 /obj/item/ammo_magazine/mp40
 	name = "magazine (9mm)"
 	icon_state = "mp40mag"
-	origin_tech = "combat=2"
+//	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "a9mm_para"
 	w_class = 2
@@ -68,7 +70,7 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_magazine/maxim
 	name = "Maxim ammo belt"
 	icon_state = "maximbelt"
-	origin_tech = "combat=2"
+//	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "a762x54"
 	w_class = 4
@@ -127,7 +129,7 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_magazine/luger
 	name = "Luger magazine"
 	icon_state = "lugermag"
-	origin_tech = "combat=2"
+//	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	matter = list(DEFAULT_WALL_MATERIAL = 600)
 	caliber = "a9mm_para"
@@ -142,7 +144,7 @@ OTHER
 /obj/item/ammo_magazine/a12mm
 	name = "magazine (12mm)"
 	icon_state = "12mm"
-	origin_tech = "combat=2"
+//	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "12mm"
 	matter = list(DEFAULT_WALL_MATERIAL = 1500)
@@ -156,7 +158,7 @@ OTHER
 /obj/item/ammo_magazine/a556
 	name = "PPSh Drum Magazine"
 	icon_state = "ppshmag"
-	origin_tech = "combat=2"
+////	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "a762x25"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
@@ -174,7 +176,7 @@ OTHER
 /obj/item/ammo_magazine/a50
 	name = "magazine (.50)"
 	icon_state = "50ae"
-	origin_tech = "combat=2"
+////	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = ".50"
 	matter = list(DEFAULT_WALL_MATERIAL = 1260)
@@ -200,7 +202,7 @@ OTHER
 /obj/item/ammo_magazine/a762
 	name = "M34 drum magazine"
 	icon_state = "mg34_drum"
-	origin_tech = "combat=2"
+////	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	w_class = 2
 	caliber = "a792x57"
@@ -215,13 +217,14 @@ OTHER
 /obj/item/ammo_magazine/a762x39
 	name = "magazine box (7.62mm x 39mm)"
 	icon_state = "a762"
-	origin_tech = "combat=2"
+////	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "a762x39"
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 50
 	multiple_sprites = 1
+	is_box = 1
 
 /obj/item/ammo_magazine/a762x51/empty
 	initial_ammo = 0
@@ -229,13 +232,14 @@ OTHER
 /obj/item/ammo_magazine/a762x51
 	name = "magazine box (7.62mm x 51mm)"
 	icon_state = "a762x51"
-	origin_tech = "combat=2"
+//	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	caliber = "a762"
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 50
 	multiple_sprites = 1
+	is_box = 1
 
 /obj/item/ammo_magazine/a762/empty
 	initial_ammo = 0

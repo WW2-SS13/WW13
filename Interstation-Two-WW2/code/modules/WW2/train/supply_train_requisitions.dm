@@ -12,7 +12,7 @@
 
 	// AMMO AND MISC.
 	"Flammenwerfer Fuel Tanks" = /obj/structure/closet/crate/flammenwerfer_fueltanks,
-	"Tank Fuel Tanks" = /obj/structure/closet/crate/tank_fueltanks,
+	"Vehicle Fuel Tanks" = /obj/structure/closet/crate/vehicle_fueltanks,
 	"Maxim Belts" = /obj/structure/closet/crate/maximbelt,
 	"Guaze" = /obj/structure/closet/crate/gauze,
 	"Luger Ammo" = /obj/structure/closet/crate/lugerammo,
@@ -31,6 +31,7 @@
 	"Solid Rations" = /obj/structure/closet/crate/rations/german_solids,
 	"Liquid Rations" = /obj/structure/closet/crate/rations/german_liquids,
 	"Dessert Rations" = /obj/structure/closet/crate/rations/german_desserts,
+	"Water Rations" = /obj/structure/closet/crate/rations/water,
 	"Supply Requisition Sheets" = /obj/structure/closet/crate/supply_req_sheets,
 
 	// MATERIALS
@@ -59,7 +60,7 @@
 
 	// AMMO AND MISC.
 	"Flammenwerfer Fuel Tanks" = 50,
-	"Tank Fuel Tanks" = 75,
+	"Vehicle Fuel Tanks" = 75,
 	"Maxim Belts" = 40,
 	"Guaze" = 35,
 	"Luger Ammo" = 30,
@@ -78,6 +79,7 @@
 	"Solid Rations" = 80,
 	"Liquid Rations" = 80,
 	"Dessert Rations" = 160,
+	"Water Rations" = 50,
 	"Supply Requisition Sheets" = 10,
 
 	// MATERIALS

@@ -108,6 +108,8 @@ var/list/interior_areas = list(/area/prishtina/houses,
 	turfs -= src
 	for (var/obj/o in contents)
 		if (o.special_id == "seasons")
+			if (overlays.Find(o))
+				overlays -= o
 			qdel(o)
 	..()
 

@@ -13,7 +13,7 @@
 	w_class = 2
 	caliber = "a9mm_para"
 	silenced = 0
-	origin_tech = "combat=2;materials=2;syndicate=2"
+//	origin_tech = "combat=2;materials=2;syndicate=2"
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/luger

@@ -97,20 +97,12 @@ var/list/gamemode_cache = list()
 	var/server
 	var/banappeals
 	var/wikiurl
+	var/websiteurl
 	var/forumurl
 	var/donationurl
 	var/rulesurl
 	var/discordurl
 	var/githuburl
-
-/*	//Alert level description - disabled for now, may be repurposed later
-	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
-	var/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
-	var/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
-	var/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
-	var/alert_desc_delta = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
-*/
 
 	//game_options.txt configs
 
@@ -217,7 +209,6 @@ var/list/gamemode_cache = list()
 	var/hub_features = ""
 	var/hub_banner_url = ""
 
-
 	//TRAINS
 
 	var/german_train_cars_officer = 1
@@ -243,11 +234,23 @@ var/list/gamemode_cache = list()
 	var/min_players_for_spies = 10
 	var/min_players_for_jews = 10
 
+	var/paratrooper_drop_time = 3000
+
 	//WW2 donor shit
 
 	var/list/job_specific_custom_loadouts = list() // format is a triple list, first of jobs, second of ckeys containing a list of items
 	var/list/people_with_role_preference = list() // just a list of ckeys
 	var/list/untermenschen = list() // just a list of ckeys
+
+	//WW13 hub stuff
+
+	var/ww13_hub_preinfo
+	var/ww13_hub_title
+	var/ww13_hub_oocdesc
+	var/ww13_hub_icdesc
+	var/ww13_hub_rplevel
+	var/ww13_hub_hostedby
+	var/ww13_hub_postinfo
 
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
@@ -420,6 +423,9 @@ var/list/gamemode_cache = list()
 				if ("min_players_for_jews")
 					config.min_players_for_jews = text2num(value)
 
+				if ("paratrooper_drop_time")
+					config.paratrooper_drop_time = text2num(value)
+
 				if ("resource_urls")
 					config.resource_urls = splittext(value, " ")
 /*
@@ -572,6 +578,9 @@ var/list/gamemode_cache = list()
 
 				if ("wikiurl")
 					config.wikiurl = value
+
+				if ("websiteurl")
+					config.websiteurl = value
 
 				if ("forumurl")
 					config.forumurl = value
@@ -897,7 +906,27 @@ var/list/gamemode_cache = list()
 					config.use_loyalty_implants = 1
 
 				else
-					log_misc("Unknown setting in configuration: '[name]'")
+					log_misc("Unknown setting in game_options configuration: '[name]'")
+		else if (type == "hub")
+			if(!value)
+				log_misc("Unknown value for setting [name] in [filename].")
+			value = text2num(value)
+
+			switch (name)
+				if ("preinfo")
+					config.ww13_hub_preinfo = value
+				if ("title")
+					config.ww13_hub_title = value
+				if ("oocdesc")
+					config.ww13_hub_oocdesc = value
+				if ("icdesc")
+					config.ww13_hub_icdesc = value
+				if ("rplevel")
+					config.ww13_hub_rplevel = value
+				if ("hostedby")
+					config.ww13_hub_hostedby = value
+				if ("postinfo")
+					config.ww13_hub_postinfo = value
 
 	if (!config.hub)
 		world.hub_password = "SORRYNOPASSWORD"

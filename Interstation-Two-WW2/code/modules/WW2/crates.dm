@@ -52,8 +52,8 @@
 	icon_opened = "opened"
 	icon_closed = "closed"
 
-/obj/structure/closet/crate/tank_fueltanks
-	name = "Tank fueltanks crate"
+/obj/structure/closet/crate/vehicle_fueltanks
+	name = "Vehicle fueltanks crate"
 	icon = 'icons/WW2/artillery_crate.dmi'
 	icon_state = "closed"
 	icon_opened = "opened"
@@ -258,6 +258,10 @@
 			for (var/v in 1 to rand(10,15))
 				contents += new_ration(RUSSIAN, "meat")
 
+	else if (findtext(textpath, "water"))
+		for (var/v in 1 to rand(20,30))
+			contents += water_ration()
+
 /obj/structure/closet/crate/rations/german_solids
 	name = "Rations: solids"
 
@@ -281,6 +285,10 @@
 
 /obj/structure/closet/crate/rations/soviet_meat
 	name = "Rations: meat"
+
+/obj/structure/closet/crate/rations/water
+	name = "Rations: H20"
+
 
 // 5 wood planks with 25 each = 125 wood planks (25 barricades)
 /obj/structure/closet/crate/wood/New()
@@ -312,11 +320,11 @@
 	for (var/v in 1 to 20)
 		new/obj/item/weapon/flammenwerfer_fueltank(src)
 
-/obj/structure/closet/crate/tank_fueltanks/New()
+/obj/structure/closet/crate/vehicle_fueltanks/New()
 	..()
 	update_capacity(20)
 	for (var/v in 1 to 20)
-		new/obj/item/weapon/tank_fueltank(src)
+		new/obj/item/weapon/vehicle_fueltank(src)
 
 /obj/structure/closet/crate/maximbelt/New()
 	..()

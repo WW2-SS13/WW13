@@ -72,6 +72,8 @@
 	if(!client)
 		return
 
+	message = capitalize(message)
+
 	playsound(loc, 'sound/effects/radio_chatter.ogg', 25, 0, -1)//They won't always be able to read the message, but the sound will play regardless.
 
 	if(sleeping || stat==1) //If unconscious or sleeping
@@ -109,20 +111,22 @@
 		var/mob/living/carbon/human/H = speaker
 		if(H.voice)
 			speaker_name = H.voice
-		for(var/datum/data/record/G in data_core.general)
+	/*	for(var/datum/data/record/G in data_core.general)
 			if(G.fields["name"] == speaker_name)
 				speaker_name = H.rank_prefix_name(speaker_name)
-				break
+				break*/
 
 		if(H.age && H.gender)//If they have an age and gender
 			var/ageAndGender
 			jobname = H.get_assignment_noid()
+			if (jobname != "N/A")
+				jobname = "[jobname] "
 
 			ageAndGender = ageAndGender2Desc(H.age, H.gender)//Get their age and gender
-			if (H.original_job && H.original_job.title == "N/A")
+			if (jobname == "N/A")
 				ageAndGender = ""
 
-			speaker_name += " \[" + "[jobname] " + "[ageAndGender]" + "]"//Print it out.
+			speaker_name += " \[" + "[jobname]" + "[ageAndGender]" + "]"//Print it out.
 
 	if(hard_to_hear)
 		speaker_name = "unknown"

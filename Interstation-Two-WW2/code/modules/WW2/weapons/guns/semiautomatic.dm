@@ -7,7 +7,7 @@
 	load_method = SPEEDLOADER | MAGAZINE
 	max_shells = 0
 	caliber = "a762x54"
-	origin_tech = "combat=4;materials=2"
+//	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/a762x54
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY
@@ -36,7 +36,7 @@
 	load_method = SPEEDLOADER | MAGAZINE
 	max_shells = 0
 	caliber = "a792x57"
-	origin_tech = "combat=4;materials=2"
+//	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/a792x57
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY

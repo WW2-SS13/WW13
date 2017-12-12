@@ -33,7 +33,7 @@
 			tint = initial(tint)
 			usr << "You activate the optical matrix on the [src]."
 		user.update_action_buttons()
-
+/*
 /obj/item/clothing/glasses/meson
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
@@ -63,14 +63,14 @@
 
 /obj/item/clothing/glasses/science/New()
 	..()
-	overlay = global_hud.science
-
+	overlay = global_hud.science*/
+/*
 /obj/item/clothing/glasses/night
 	name = "Night Vision Goggles"
 	desc = "You can totally see in the dark now!"
 	icon_state = "night"
 	item_state = "glasses"
-	origin_tech = list(TECH_MAGNET = 2)
+//	origin_tech = list(TECH_MAGNET = 2)
 	darkness_view = 7
 	toggleable = 1
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
@@ -79,7 +79,7 @@
 /obj/item/clothing/glasses/night/New()
 	..()
 	overlay = global_hud.nvg
-
+*/
 /obj/item/clothing/glasses/eyepatch
 	name = "eyepatch"
 	desc = "Yarr."
@@ -99,7 +99,7 @@
 	desc = "Very confusing glasses."
 	icon_state = "material"
 	item_state = "glasses"
-	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
+//	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
 	toggleable = 1
 	vision_flags = SEE_OBJS
 
@@ -214,7 +214,7 @@
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
-
+/*
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
@@ -291,3 +291,4 @@
 	desc = "A set of implantable lenses designed to augment your vision"
 	icon_state = "thermalimplants"
 	item_state = "syringe_kit"
+*/

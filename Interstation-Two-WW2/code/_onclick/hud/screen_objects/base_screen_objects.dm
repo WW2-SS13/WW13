@@ -444,12 +444,54 @@
 /obj/screen/nutrition/update_icon()
 	set src in usr.client.screen
 	var/mob/living/carbon/human/H = parentmob
+
+	// show our worst status, hunger or thirst
+
+	var/status = 0
+	var/nstatus = 0
+	var/wstatus = 0
+
+	// todo: correct these numbers, and those below in Click()
+
 	switch(H.nutrition)
-		if(450 to INFINITY)				icon_state = "nutrition0"
-		if(350 to 450)					icon_state = "nutrition1"
-		if(250 to 350)					icon_state = "nutrition2"
-		if(150 to 250)					icon_state = "nutrition3"
-		else							icon_state = "nutrition4"
+		if(450 to INFINITY)				nstatus = 0
+		if(350 to 450)					nstatus = 1
+		if(250 to 350)					nstatus = 2
+		if(150 to 250)					nstatus = 3
+		else							nstatus = 4
+
+	switch(H.water)
+		if(350 to INFINITY)				wstatus = 0
+		if(250 to 350)					wstatus = 1
+		if(150 to 250)					wstatus = 2
+		if(50 to 150)					wstatus = 3
+		else							wstatus = 4
+
+	status = min(nstatus, wstatus)
+	icon_state = "nutrition[status]"
+
+/obj/screen/nutrition/Click()
+	if (!parentmob)
+		return
+
+	var/mob/living/carbon/human/H = parentmob
+
+	var/hungry_coeff = min(H.nutrition/H.max_nutrition, 1.0)
+	var/hungry_percentage = "[round(hungry_coeff*100)]%"
+
+	var/thirsty_coeff = min(H.water/H.max_water, 1.0)
+	var/thirsty_percentage = "[round(thirsty_coeff*100)]%"
+
+	if (thirsty_coeff <= 0)
+		H << "<span class = 'danger'>You're dehydrating.</span>"
+	else
+		H << "<span class = 'warning'>You're about [thirsty_percentage] hydrated.</span>"
+
+	if (hungry_coeff <= 0)
+		H << "<span class = 'danger'>You're starving.</span>"
+	else
+		H << "<span class = 'warning'>You're about [hungry_percentage] full.</span>"
+
 //--------------------------------------------------nutrition end---------------------------------------------------------
 
 //--------------------------------------------------bodytemp---------------------------------------------------------
@@ -593,6 +635,7 @@
 	icon_state = "block"
 	screen_loc = ""*/
 //-----------------------internal------------------------------
+/*
 /obj/screen/internal
 	name = "internal"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
@@ -693,7 +736,7 @@
 					else
 						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank.</span>"
 //-----------------------internal END------------------------------
-
+*/
 /obj/screen/pull
 	name = "pull"
 	icon = 'icons/mob/screen/ErisStyle.dmi'

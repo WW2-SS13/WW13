@@ -6,14 +6,23 @@
 	if(istype(C, /obj/item/stack/cable_coil) || (flooring && istype(C, /obj/item/stack/rods)))
 		return ..(C, user)
 
+	else if (istype(C, /obj/item/weapon/reagent_containers/food/drinks))
+		if (C.reagents.total_volume)
+			visible_message("<span class='notice'>\The [user] tips the contents of \the [C] on \the [src].</span>")
+			C.reagents.clear_reagents()
+			C.update_icon()
+		return
+
 	else if (istype(C, /obj/item/weapon/shovel))
 		if (season == "WINTER" && uses_winter_overlay)
-			var/obj/o = has_snow()
-			if (o)
-				visible_message("[user] starts to shovel the snow from [src].", "You start to shovel the snow from [src]")
-				if (do_after(user, rand(40,60)))
-					visible_message("[user] shovels the snow from [src].", "You shovel the snow from [src]")
-					qdel(o)
+			var/obj/snow/S = has_snow()
+			if (S)
+				var/time_modifier = S.amount/0.05
+				time_modifier = min(time_modifier, 30)
+				visible_message("[user] starts to shovel the [S.descriptor()] from [src].", "You start to shovel the snow from [src]")
+				if (do_after(user, rand(9*time_modifier,12*time_modifier)))
+					visible_message("[user] shovels the [S.descriptor()] from [src].", "You shovel the snow from [src]")
+					qdel(S)
 			else
 				return ..(C, user)
 		else

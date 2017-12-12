@@ -9,7 +9,7 @@
 	force = 10
 	max_shells = 5
 	slot_flags = SLOT_BACK
-	origin_tech = "combat=4;materials=2;syndicate=8"
+//	origin_tech = "combat=4;materials=2;syndicate=8"
 	caliber = "a792x54"
 	recoil = 1 //extra kickback
 	//fire_sound = 'sound/weapons/sniper.ogg'

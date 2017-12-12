@@ -67,7 +67,8 @@
 			changed = 1
 
 	if (changed)
-		lighting_overlay.update_overlay()
+		if (lighting_overlay)
+			lighting_overlay.update_overlay()
 
 // make this turf have NO darkness. Used exclusively for trains (for now)
 /turf/proc/adjust_lighting_overlay_to_train_light()

@@ -26,7 +26,7 @@
 			continue
 
 		if(isnull(M))
-			return
+			continue
 
 		if(isnull(M.gcDestroyed))
 			try

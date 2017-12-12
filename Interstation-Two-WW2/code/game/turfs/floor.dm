@@ -28,9 +28,8 @@
 	var/uses_winter_overlay = 0
 
 /turf/floor/proc/has_snow()
-	for (var/obj/o in contents)
-		if (o.icon == 'icons/turf/snow.dmi')
-			return o
+	for (var/obj/snow/S in contents)
+		return S
 
 /turf/floor/is_plating()
 	return !flooring

@@ -56,6 +56,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 	var/location = AREA_OUTSIDE
 
+	var/weather = WEATHER_NONE
+	var/weather_intensity = 1.0
+
+	var/list/snowfall_valid_turfs = list()
+
+
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
 var/list/teleportlocs = list()
@@ -107,6 +113,8 @@ var/list/ghostteleportlocs = list()
 		power_environ = 0
 
 	..()
+
+	update_snowfall_valid_turfs()
 
 /area/proc/initialize()
 	if(config.machinery_does_not_use_power)
@@ -309,11 +317,11 @@ var/list/mob/living/forced_ambiance_list = new
 			L << sound(sound, repeat = 0, wait = 0, volume = 10, channel = SOUND_CHANNEL_AMBIENCE)
 			L.client.played = world.time
 			return 1
-	else
+	/*else // disabled ship ambience because this is WORLD WAR II - Kachnov
 		var/sound = 'sound/ambience/shipambience.ogg'
 		CL.ambience_playing = sound
 		L << sound(sound, repeat = 1, wait = 0, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
-
+*/
 /area/proc/gravitychange(var/gravitystate = 0, var/area/A)
 	A.has_gravity = gravitystate
 

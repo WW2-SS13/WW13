@@ -78,3 +78,8 @@ var/global/movement_disabled_exception //This is the client that calls the proc,
 		movement_disabled_exception = usr.ckey
 	else
 		message_admins("[src.ckey] used 'Disable all movement', restoring all movement.")*/
+
+/client/proc/see_world_realtime()
+	set category = "Debug"
+	set name = "See World Realtime"
+	usr << num2text(world.realtime, 20)

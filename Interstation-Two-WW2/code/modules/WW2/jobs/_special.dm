@@ -20,6 +20,7 @@
 /datum/job/var/is_officer = 0
 /datum/job/var/is_squad_leader = 0
 /datum/job/var/is_commander = 0
+/datum/job/var/is_petty_commander = 0
 /datum/job/var/is_nonmilitary = 0
 /datum/job/var/spawn_delay = 0
 /datum/job/var/delayed_spawn_message = ""
@@ -320,4 +321,4 @@
 			else if (istype(original_job, /datum/job/partisan))
 				equip_to_slot_or_del(new /obj/item/device/radio/partisan(src), slot_s_store)
 
-		src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while its on your back, prefix your message with ':b'.</b></span>"
+	src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while its on your back, prefix your message with ':b'.</b></span>"

@@ -104,6 +104,9 @@
 /datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
 	M.adjustToxLoss(removed * 2 * toxicity)
+	if (M.water < 0)
+		M.water += 50
+	M.water += removed * 5
 	return
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)

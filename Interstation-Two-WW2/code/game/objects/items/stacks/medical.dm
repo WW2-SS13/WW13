@@ -45,7 +45,7 @@
 	singular_name = "gauze length"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
-	origin_tech = list(TECH_BIO = 1)
+//	origin_tech = list(TECH_BIO = 1)
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -107,7 +107,7 @@
 	singular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 1
-	origin_tech = list(TECH_BIO = 1)
+//	origin_tech = list(TECH_BIO = 1)
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -144,7 +144,7 @@
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
 	heal_brute = 0
-	origin_tech = list(TECH_BIO = 1)
+//	origin_tech = list(TECH_BIO = 1)
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -205,7 +205,7 @@
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
 	heal_burn = 0
-	origin_tech = list(TECH_BIO = 1)
+//	origin_tech = list(TECH_BIO = 1)
 
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)

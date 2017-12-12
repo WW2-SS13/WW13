@@ -59,6 +59,7 @@
 	var/icon/lying_icon = null
 
 	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
+	var/sayverb = "says"
 
 	var/speech_problem_flag = 0
 
@@ -117,7 +118,6 @@
 	// NEW STAT SYSTEM
 	// the 'normal' for all stats is 100
 	// all stats have a corresponding max_stat variable, except for lists
-
 
 	var/stamina = 100
 	var/max_stamina = 100

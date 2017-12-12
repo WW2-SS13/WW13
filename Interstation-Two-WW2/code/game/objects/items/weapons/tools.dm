@@ -24,7 +24,7 @@
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = 2.0
-	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
+//	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 150)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
@@ -98,7 +98,7 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2.0
-	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
+//	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 80)
 	attack_verb = list("pinched", "nipped")
 	sharp = 1
@@ -144,7 +144,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 30)
 
 	//R&D tech level
-	origin_tech = list(TECH_ENGINEERING = 1)
+//	origin_tech = list(TECH_ENGINEERING = 1)
 
 	//Welding tool specific stuff
 	var/welding = 0 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
@@ -367,21 +367,21 @@
 /obj/item/weapon/weldingtool/largetank
 	name = "industrial welding tool"
 	max_fuel = 40
-	origin_tech = list(TECH_ENGINEERING = 2)
+//	origin_tech = list(TECH_ENGINEERING = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 60)
 
 /obj/item/weapon/weldingtool/hugetank
 	name = "upgraded welding tool"
 	max_fuel = 80
 	w_class = 3.0
-	origin_tech = list(TECH_ENGINEERING = 3)
+//	origin_tech = list(TECH_ENGINEERING = 3)
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
 
 /obj/item/weapon/weldingtool/experimental
 	name = "experimental welding tool"
 	max_fuel = 40
 	w_class = 3.0
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_PLASMA = 3)
+//	origin_tech = list(TECH_ENGINEERING = 4, TECH_PLASMA = 3)
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
 	var/last_gen = 0
 
@@ -408,7 +408,7 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	item_state = "crowbar"
 	w_class = 2.0
-	origin_tech = list(TECH_ENGINEERING = 1)
+//	origin_tech = list(TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 
