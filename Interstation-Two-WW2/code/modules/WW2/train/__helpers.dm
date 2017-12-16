@@ -141,14 +141,14 @@
 		return 1
 	if (a == trainobject)
 		return 1
-	if (istype(a, /obj/parallax))
-		return 1
 	if (istype(a, /atom/movable/lighting_overlay))
 		return 1
 	if (istype(a, /obj/structure/wild))
 		qdel(a)
 		return 1
 	if (istype(a, /obj/effect/landmark)) // stop moving these fucker
+		return 1
+	if (istype(a, /obj/snow))
 		return 1
 	if (istype(a, /obj/train_track))
 		return 1
@@ -169,12 +169,12 @@
 /proc/check_object_valid_for_destruction(var/atom/movable/a)
 	if (!isobj(a))
 		return 0
-	if (istype(a, /obj/parallax))
-		return 0
 	if (is_train_object(a))
 		return 0
 	if (istype(a, /obj/train_track))
 		return 0
 	if (istype(a, /obj/effect))
+		return 0
+	if (istype(a, /obj/snow))
 		return 0
 	return 1

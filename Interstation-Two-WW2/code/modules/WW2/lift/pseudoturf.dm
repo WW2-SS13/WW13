@@ -84,8 +84,6 @@ var/turf/floor/plating/under/ref_under_plating = null
 			continue
 		if (istype(o, /obj/effect/landmark))
 			continue
-		if (istype(o, /obj/parallax))
-			continue
 		if (istype(o, /atom/movable/lighting_overlay))
 			continue
 

@@ -339,9 +339,7 @@ proc/admin_notice(var/message, var/rights)
 		<A href='?src=\ref[src];quick_create_object=1'>Quick Create Object</A><br>
 		<A href='?src=\ref[src];create_turf=1'>Create Turf</A><br>
 		<A href='?src=\ref[src];create_mob=1'>Create Mob</A><br>
-		<br><A href='?src=\ref[src];vsc=airflow'>Edit Airflow Settings</A><br>
-		<A href='?src=\ref[src];vsc=plasma'>Edit Plasma Settings</A><br>
-		<A href='?src=\ref[src];vsc=default'>Choose a default ZAS setting</A><br>
+		<A href='?src=\ref[src];debug_global=1'>Debug a Global Variable, List, or Object</A><br>
 		"}
 
 	usr << browse(dat, "window=admin2;size=210x280")

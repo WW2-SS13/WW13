@@ -149,8 +149,8 @@ CHECK_RANDOMIZER
 
 ## TODO: whitelists
 
-## Set to prevent anyone but those ckeys listed in config/whitelist.txt and config/admins.txt from joining your server
-#USEWHITELIST
+## Set to prevent anyone but those with ckeys in the database from joining
+USEWHITELIST
 
 ## Jobs that can be whitelisted are whitelisted, according to a new DB whitelists table
 #USE_JOB_WHITELIST

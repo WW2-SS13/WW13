@@ -320,6 +320,13 @@ proc/listclearnulls(list/list)
 	return (result + R.Copy(Ri, 0))
 
 
+/proc/list_is_assoc(var/list/L)
+	. = FALSE
+	if(L.len > 0)
+		var/a = L[1]
+		if(istext(a) && L[a] != null)
+			. = TRUE
+
 //Mergesort: any value in a list, preserves key=value structure
 /proc/sortAssoc(var/list/L)
 	if(L.len < 2)

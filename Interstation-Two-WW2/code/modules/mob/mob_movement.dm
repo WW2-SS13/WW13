@@ -330,9 +330,12 @@
 						snow_message = "There's way too much snow here to move!"
 						snow_span = "danger"
 
-			if (S && snow_message && world.time >= mob.next_snow_message)
-				mob << "<span class = '[snow_span]'>[snow_message]</span>"
-				mob.next_snow_message = world.time+100
+				if (snow_message && world.time >= mob.next_snow_message)
+					mob << "<span class = '[snow_span]'>[snow_message]</span>"
+					mob.next_snow_message = world.time+100
+			else if (F.muddy)
+				standing_on_snow = rand(2,4)
+				mob << "<span class = 'warning'>The mud slows you down.</span>"
 
 		switch(mob.m_intent)
 			if("run")

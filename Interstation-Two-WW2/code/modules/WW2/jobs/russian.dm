@@ -1,4 +1,5 @@
 /datum/job/russian
+	faction = "Station"
 
 /datum/job/russian/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_russian_name(H.gender)
@@ -7,7 +8,6 @@
 /datum/job/russian/commander
 	title = "Comandir Batalyona"
 	en_meaning = "Commander"
-	faction = "Station"
 	total_positions = 1
 	head_position = 1
 	selection_color = "#530909"
@@ -44,7 +44,6 @@
 /datum/job/russian/staff_officer
 	title = "Ofitser"
 	en_meaning = "Staff Officer"
-	faction = "Station"
 	total_positions = 2
 	head_position = 0
 	selection_color = "#530909"
@@ -79,7 +78,6 @@
 /datum/job/russian/squad_leader
 	title = "Sergant"
 	en_meaning = "Squad Leader"
-	faction = "Station"
 	total_positions = 4
 	head_position = 0
 	selection_color = "#770e0e"
@@ -114,7 +112,6 @@
 /datum/job/russian/medic
 	title = "Sanitar"
 	en_meaning = "Medic"
-	faction = "Station"
 	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -139,7 +136,6 @@
 /datum/job/russian/doctor
 	title = "Doktor"
 	en_meaning = "Doctor"
-	faction = "Station"
 	total_positions = 2
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRADr"
@@ -172,7 +168,6 @@
 /datum/job/russian/sniper
 	title = "Snaiper"
 	en_meaning = "Sniper"
-	faction = "Station"
 	total_positions = 2
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -203,7 +198,6 @@
 /datum/job/russian/engineer
 	title = "Boyevoy saper"
 	en_meaning = "Engineer"
-	faction = "Station"
 	total_positions = 3
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -233,7 +227,6 @@
 /datum/job/russian/heavy_weapon
 	title = "Pulemetchik"
 	en_meaning = "Heavy Weapons Soldier"
-	faction = "Station"
 	total_positions = 3
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -264,7 +257,6 @@
 /datum/job/russian/soldier
 	title = "Sovietsky Soldat"
 	en_meaning = "Infantry Soldier"
-	faction = "Station"
 	total_positions = 50
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -292,7 +284,6 @@
 /datum/job/russian/tankcrew
 	title = "Tank-ekipazh"
 	en_meaning = "Tank Crewman"
-	faction = "Station"
 	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -325,7 +316,6 @@
 /datum/job/russian/anti_tank_crew
 	title = "Protivotankovyy Soldat"
 	en_meaning = "Anti-Tank Soldier"
-	faction = "Station"
 	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -356,7 +346,6 @@
 /datum/job/russian/guard
 	title = "Gvardeyec"
 	en_meaning = "Guard"
-	faction = "Station"
 	total_positions = 3
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRA"
@@ -406,7 +395,6 @@ var/first_guard = 0
 /datum/job/russian/zavhoz
 	title = "Zavhoz"
 	en_meaning = "Quartermaster"
-	faction = "Station"
 	total_positions = 1
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRAQM"
@@ -438,7 +426,6 @@ var/first_guard = 0
 /datum/job/russian/sturmovik
 	title = "Sturmovik"
 	en_meaning = "Elite Infantry Soldier"
-	faction = "Station"
 	total_positions = 3
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -467,7 +454,6 @@ var/first_guard = 0
 /datum/job/russian/chef
 	title = "Povar"
 	en_meaning = "Chef"
-	faction = "Station"
 	total_positions = 1
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRAChef"

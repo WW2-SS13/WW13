@@ -19,10 +19,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area
 	var/fire = null
-	var/atmos = 1
-	var/atmosalm = 0
-	var/poweralm = 1
-	var/party = null
 	level = null
 	name = "Unknown"
 	icon = 'icons/turf/areas.dmi'
@@ -61,6 +57,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 	var/list/snowfall_valid_turfs = list()
 
+	var/is_train_area = 0
 
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
@@ -177,7 +174,7 @@ var/list/ghostteleportlocs = list()
 		eject = 0
 		updateicon()
 	return
-
+/*
 /area/proc/partyalert()
 	if (!( party ))
 		party = 1
@@ -187,16 +184,16 @@ var/list/ghostteleportlocs = list()
 
 /area/proc/partyreset()
 	return
-
+*/
 /area/proc/updateicon()
-	if ((fire || eject || party || atmosalm == 2) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
+	if ((fire || eject) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
 		if(fire)
 			//icon_state = "blue"
 			for(var/obj/machinery/light/L in src)
 				if(istype(L, /obj/machinery/light/small))
 					continue
 				L.set_red()
-		else if (atmosalm == 2)
+	/*	else if (atmosalm == 2)
 			for(var/obj/machinery/light/L in src)
 				if(istype(L, /obj/machinery/light/small))
 					continue
@@ -204,7 +201,7 @@ var/list/ghostteleportlocs = list()
 		else if(!fire && eject && !party && !(atmosalm == 2))
 			icon_state = "red"
 		else if(party && !fire && !eject && !(atmosalm == 2))
-			icon_state = "party"
+			icon_state = "party"*/
 		//else
 			//icon_state = "blue-red"
 	else
@@ -242,7 +239,7 @@ var/list/ghostteleportlocs = list()
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()			// reverify power status (to update icons etc.)
-	if (fire || eject || party)
+	if (fire || eject)
 		updateicon()
 
 /area/proc/usage(var/chan)

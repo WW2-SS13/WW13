@@ -108,8 +108,10 @@
 		if(damage_overlay && overlay == damage_overlay) //No need to update.
 			return
 
-		if(damage_overlay) overlays -= damage_overlays[damage_overlay]
-		overlays += damage_overlays[overlay]
+		if(damage_overlay)
+			overlays -= damage_overlays[damage_overlay]
+		if (damage_overlays.Find(overlay)) // runtime prevention
+			overlays += damage_overlays[overlay]
 		damage_overlay = overlay
 	return
 

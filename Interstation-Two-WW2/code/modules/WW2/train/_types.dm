@@ -11,6 +11,7 @@
 	var/supply_points_per_second_max = 0.3
 	var/obj/item/device/radio/intercom/fu2/announcer = null
 	var/mob/living/carbon/human/mob = null
+	var/here = 1
 
 /datum/train_controller/german_supplytrain_controller/New()
 	..("GERMAN-SUPPLY")

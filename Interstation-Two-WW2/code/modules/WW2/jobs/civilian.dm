@@ -1,6 +1,5 @@
 /datum/job/partisan/civilian
 	title = "Civilian"
-	faction = "Station"
 	total_positions = 5
 	selection_color = "#530909"
 	spawn_location = "JoinLateCivilian"

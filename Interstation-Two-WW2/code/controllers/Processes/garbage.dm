@@ -170,6 +170,10 @@ world/loop_checks = 0
 		if(. && A)
 			A.finalize_qdel()
 
+// helper for testing
+/datum/proc/qdeleted()
+	qdel(src)
+
 /datum/proc/finalize_qdel()
 	if(IsPooled(src))
 		PlaceInPool(src)

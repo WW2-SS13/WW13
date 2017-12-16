@@ -65,6 +65,18 @@ var/global/list/fallschirm_landmarks = list()
 	var/russian_commander_slots = 0
 	var/russian_sturmovik_slots = 0
 
+	// helper factions
+
+	var/allow_helper_factions = list("ITALY" = 0, "UKRAINE" = 0)
+
+	var/italy_soldier_slots = 0
+	var/italy_medic_slots = 0
+	var/italy_SL_slots = 0
+
+	var/ukraine_soldier_slots = 0
+	var/ukraine_medic_slots = 0
+	var/ukraine_SL_slots = 0
+
 	// which squad are we trying to fill right now?
 		// doesn't apply to partisans
 
@@ -410,7 +422,16 @@ var/global/list/fallschirm_landmarks = list()
 				if (istype(j))
 					j.total_positions = german_soldat_slots
 
-		// fixes the weirdest bug
+		// helper jobs
+		for (var/datum/job/J in occupations)
+			if (!allow_helper_factions["ITALY"])
+				if (istype(J, /datum/job/italian))
+					J.total_positions = 0
+			if (!allow_helper_factions["UKRAINE"])
+				if (istype(J, /datum/job/ukrainian))
+					J.total_positions = 0
+
+		// fixes the weirdest bug where total_positions == -1
 		for (var/datum/job/j in occupations)
 			if (j.total_positions == -1)
 				j.total_positions = 0
@@ -1322,7 +1343,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		if (job.uses_keys)
 			spawn_keys(H, rank, job)
-			H << "<i>Click on a door with your <b>keychain</b> to open it. It will select the right key for you.</i>"
+			H << "<i>Click on a door with your <b>keychain</b> to open it. It will select the right key for you. To put the keychain in your hand, <b>drag</b> it.</i>"
 
 		return 1
 

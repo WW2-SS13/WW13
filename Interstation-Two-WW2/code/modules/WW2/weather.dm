@@ -79,6 +79,26 @@
 							++turfs_made_snowy
 							if (turfs_made_snowy >= rand(20*SNOW_GATHERING_RATE,30*SNOW_GATHERING_RATE))
 								break
+	else if (weather == WEATHER_RAIN)
+		// randomize the areas we make muddyk
+		var/list_of_areas = shuffle(all_areas)
+		for (var/area/A in list_of_areas)
+			if (A.snowfall_valid_turfs.len) // even though this is rain, same reqs
+				// randomize the turfs we make muddy
+				var/min_index = 1
+				var/max_index = A.snowfall_valid_turfs.len
+				var/random_indices = list()
+
+				for (var/v in 1 to 40) // 2 to 3x more than snow affects
+					random_indices |= rand(min_index, max_index)
+				for (var/v in random_indices)
+					var/turf/floor/F = A.snowfall_valid_turfs[v]
+					if (!F)
+						A.snowfall_valid_turfs -= F
+						continue
+					if (istype(F))
+						if (prob(33))
+							F.muddy = 1
 
 /proc/modify_weather_somehow()
 	if (weather == WEATHER_NONE)
@@ -164,4 +184,4 @@
 		. = ""
 
 	if (.)
-		world << "<font size=3><span class = 'notice'>[weathertype] is now coming down [.]</span></font>"
+		world << "<font size=3><span class = 'notice'>[capitalize(weathertype)] is now coming down [.].</span></font>"

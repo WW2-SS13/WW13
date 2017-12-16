@@ -5,14 +5,13 @@
 
 	rename
 
-	var/bugname = input("What is a name for this bug?") as text
+	var/bugname = input("What is a name for this bug?") as null|text
+	if (!bugname)
+		return
+
 	if (lentext(bugname) > 50)
 		bugname = copytext(bugname, 1, 51)
 		src << "<span class = 'warning'>Your bug's name was clamped to 50 characters.</span>"
-
-	if (!bugname)
-		src << "<span class = 'warning'>Please put something in the name field.</span>"
-		goto rename
 
 	var/check_name_already_exists = database.execute("SELECT * FROM bug_reports WHERE name = '[bugname]';")
 	if (islist(check_name_already_exists) && !isemptylist(check_name_already_exists))
@@ -91,14 +90,13 @@
 
 	rename
 
-	var/suggname = input("What is a name for this suggestion?") as text
+	var/suggname = input("What is a name for this suggestion?") as null|text
+	if (!suggname)
+		return
+
 	if (lentext(suggname) > 50)
 		suggname = copytext(suggname, 1, 51)
 		src << "<span class = 'warning'>Your suggestion's name was clamped to 50 characters.</span>"
-
-	if (!suggname)
-		src << "<span class = 'warning'>Please put something in the name field.</span>"
-		goto rename
 
 	var/check_name_already_exists = database.execute("SELECT * FROM suggestions WHERE name = '[suggname]';")
 	if (islist(check_name_already_exists) && !isemptylist(check_name_already_exists))

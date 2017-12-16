@@ -117,8 +117,8 @@ var/database/database = null
 // patreon rewards
 
 // actual rewards:
-#define patreon_COLOR "patreon_color"
-#define patreon_CHAT "patreon_chat"
+#define PATREON_COLOR "patreon_color"
+#define PATREON_CHAT "patreon_chat"
 
 #define TEST_SERVER_ACCESS "test_server_access"
 #define CUSTOM_DISCORD_ROLE "custom_discord_role"
@@ -130,7 +130,7 @@ var/database/database = null
 #define TEST_ROLE_ELIGIBILITY "rare_role_eligibility"
 
 // tiers: lists of rewards based on donation amounts
-#define PLEDGE_TIER_1 list(patreon_COLOR, patreon_CHAT)
+#define PLEDGE_TIER_1 list(PATREON_COLOR, PATREON_CHAT)
 #define PLEDGE_TIER_2 list(TEST_SERVER_ACCESS, CUSTOM_DISCORD_ROLE)
 #define PLEDGE_TIER_3 list(ROLE_PREFERENCE, CUSTOM_LOADOUT)
 #define PLEDGE_TIER_4 list(SHORTENED_RESPAWN_TIME, TEST_ROLE_ELIGIBILITY)
@@ -144,11 +144,11 @@ var/database/database = null
 	var/pledge = data["pledge"]
 
 	if (user == C.patreon_id)
-		if (pledge > 0)
+		if (pledge >= 3)
 			. += PLEDGE_TIER_1
 		if (pledge >= 5)
 			. += PLEDGE_TIER_2
-		if (pledge >= 7)
+		if (pledge >= 10)
 			. += PLEDGE_TIER_3
 		if (pledge >= 20)
 			. += PLEDGE_TIER_4

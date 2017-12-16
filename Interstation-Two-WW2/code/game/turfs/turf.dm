@@ -65,7 +65,6 @@ var/list/interior_areas = list(/area/prishtina/houses,
 	var/floor_type= null
 	var/intact = 1
 
-
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)

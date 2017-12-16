@@ -82,7 +82,7 @@
 
 	if(new_admin)
 		database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[adm_ckey]', '[new_rank]', 0)")
-		message_admins("[key_name_admin(usr)] made [key_name_admin(adm_ckey)] an admin with the rank [new_rank]")
+		message_admins("[key_name_admin(usr)] made '[adm_ckey]' an admin with the rank [new_rank]")
 		log_admin("[key_name(usr)] made [key_name(adm_ckey)] an admin with the rank [new_rank]")
 		usr << "\blue New admin added."
 	else

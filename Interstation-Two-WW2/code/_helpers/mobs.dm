@@ -475,7 +475,7 @@ Proc for attack log creation, because really why not
 		if (m.stat == UNCONSCIOUS || m.stat == DEAD)
 			continue
 
-		newmobs += m
+		newmobs[m.real_name] = m
 
 	return newmobs
 

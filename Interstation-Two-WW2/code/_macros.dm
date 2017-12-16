@@ -1,6 +1,7 @@
 #define Clamp(value, low, high) 	(value <= low ? low : (value >= high ? high : value))
 #define CLAMP01(x) 		(Clamp(x, 0, 1))
 
+#define isdatum(A) istype(A, /datum)
 
 //MOB LEVEL
 

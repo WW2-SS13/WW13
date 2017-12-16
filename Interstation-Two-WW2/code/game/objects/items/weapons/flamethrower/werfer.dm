@@ -54,7 +54,7 @@
 	if(!lit || operating)	return
 
 	var/mob/living/carbon/human/my_mob = loc
-	if (!my_mob || !istype(my_mob))
+	if (!my_mob || !istype(my_mob) || src != my_mob.get_active_hand())
 		return
 
 	if (my_mob.back != backpack || !my_mob.back || !backpack)
