@@ -31,6 +31,8 @@
 		if(isnull(M.gcDestroyed))
 			try
 				M.Life()
+				if (world.time - M.last_movement > 7)
+					M.velocity = 0
 			catch(var/exception/e)
 				catchException(e, M)
 			SCHECK

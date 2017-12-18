@@ -112,7 +112,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		icon_state = "1"
 		set_light(3, 1)
 
-	for(var/mob/m in get_turf(src))
+	for(var/mob/m in my_tile)
 		Burn(m)
 
 	for (var/obj/snow/S in get_turf(src))
@@ -218,49 +218,48 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	return (temperature/default_temperature) * default_damage
 
 
-/obj/fire/proc/Burn(var/mob/m)
-	if (!istype(m, /mob/living))
+/obj/fire/proc/Burn(var/mob/living/L)
+	if (!istype(L))
 		return
+
+	var/damage = get_damage()
+
+
+	L.fire_act()
+
+	if (!istype(L, /mob/living/carbon/human))
+		L.apply_damage(damage*5, BURN)
 	else
-		var/mob/living/l = m
-		l.fire_act()
+		var/mob/living/carbon/human/H = L
 
-		if (!istype(m, /mob/living/carbon/human))
-			var/mob/living/L = m
-			L.apply_damage(get_damage(), BURN)
-		else
-			var/mob/living/carbon/human/H = m
+		var/head_exposure = 1
+		var/chest_exposure = 1
+		var/groin_exposure = 1
+		var/legs_exposure = 1
+		var/arms_exposure = 1
 
-			var/damage = get_damage()
+		//Get heat transfer coefficients for clothing.
 
-			var/head_exposure = 1
-			var/chest_exposure = 1
-			var/groin_exposure = 1
-			var/legs_exposure = 1
-			var/arms_exposure = 1
+		for(var/obj/item/clothing/C in src)
+			if(H.l_hand == C || H.r_hand == C)
+				continue
 
-			//Get heat transfer coefficients for clothing.
+			if( C.max_heat_protection_temperature >= temperature )
+				if(C.body_parts_covered & HEAD)
+					head_exposure = 0
+				if(C.body_parts_covered & UPPER_TORSO)
+					chest_exposure = 0
+				if(C.body_parts_covered & LOWER_TORSO)
+					groin_exposure = 0
+				if(C.body_parts_covered & LEGS)
+					legs_exposure = 0
+				if(C.body_parts_covered & ARMS)
+					arms_exposure = 0
 
-			for(var/obj/item/clothing/C in src)
-				if(H.l_hand == C || H.r_hand == C)
-					continue
-
-				if( C.max_heat_protection_temperature >= temperature )
-					if(C.body_parts_covered & HEAD)
-						head_exposure = 0
-					if(C.body_parts_covered & UPPER_TORSO)
-						chest_exposure = 0
-					if(C.body_parts_covered & LOWER_TORSO)
-						groin_exposure = 0
-					if(C.body_parts_covered & LEGS)
-						legs_exposure = 0
-					if(C.body_parts_covered & ARMS)
-						arms_exposure = 0
-
-			H.apply_damage(damage*1.0*head_exposure, BURN, "head", 0, 0, "Fire")
-			H.apply_damage(damage*0.8*chest_exposure, BURN, "chest", 0, 0, "Fire")
-			H.apply_damage(damage*0.8*groin_exposure, BURN, "groin", 0, 0, "Fire")
-			H.apply_damage(damage*0.2*legs_exposure, BURN, "l_leg", 0, 0, "Fire")
-			H.apply_damage(damage*0.2*legs_exposure, BURN, "r_leg", 0, 0, "Fire")
-			H.apply_damage(damage*0.15*arms_exposure, BURN, "l_arm", 0, 0, "Fire")
-			H.apply_damage(damage*0.15*arms_exposure, BURN, "r_arm", 0, 0, "Fire")
+		H.apply_damage(damage*1.0*head_exposure, BURN, "head", 0, 0, "Fire")
+		H.apply_damage(damage*0.8*chest_exposure, BURN, "chest", 0, 0, "Fire")
+		H.apply_damage(damage*0.8*groin_exposure, BURN, "groin", 0, 0, "Fire")
+		H.apply_damage(damage*0.2*legs_exposure, BURN, "l_leg", 0, 0, "Fire")
+		H.apply_damage(damage*0.2*legs_exposure, BURN, "r_leg", 0, 0, "Fire")
+		H.apply_damage(damage*0.15*arms_exposure, BURN, "l_arm", 0, 0, "Fire")
+		H.apply_damage(damage*0.15*arms_exposure, BURN, "r_arm", 0, 0, "Fire")

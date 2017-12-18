@@ -630,7 +630,7 @@ var/global/list/fallschirm_landmarks = list()
 		if(player && player.mind && rank)
 			var/datum/job/job = GetJob(rank)
 			if(!job)	return 0
-			if(jobban_isbanned(player, rank))	return 0
+			if (player.client && player.client.quickBan_isbanned(job)) return 0
 			if(!job.player_old_enough(player.client)) return 0
 			var/position_limit = job.total_positions
 			if((job.current_positions < position_limit) || position_limit == -1)
@@ -790,33 +790,7 @@ var/global/list/fallschirm_landmarks = list()
 
 
 	proc/FillAIPosition()
-		var/ai_selected = 0
-		var/datum/job/job = GetJob("AI")
-		if(!job)	return 0
-		if((job.title == "AI") && (config) && (!config.allow_ai))	return 0
-
-		for(var/i = job.total_positions, i > 0, i--)
-			for(var/level = 1 to 3)
-				var/list/candidates = list()
-				if(ticker.mode.name == "AI malfunction")//Make sure they want to malf if its malf
-					candidates = FindOccupationCandidates(job, level, BE_MALF)
-				else
-					candidates = FindOccupationCandidates(job, level)
-				if(candidates.len)
-					var/mob/new_player/candidate = pick(candidates)
-					if(AssignRole(candidate, "AI"))
-						ai_selected++
-						break
-			//Malf NEEDS an AI so force one if we didn't get a player who wanted it
-			if((ticker.mode.name == "AI malfunction")&&(!ai_selected))
-				unassigned = shuffle(unassigned)
-				for(var/mob/new_player/player in unassigned)
-					if(jobban_isbanned(player, "AI"))	continue
-					if(AssignRole(player, "AI"))
-						ai_selected++
-						break
-			if(ai_selected)	return 1
-			return 0
+		return
 
 
 /** Proc DivideOccupations

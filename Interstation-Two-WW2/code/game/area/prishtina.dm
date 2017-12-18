@@ -25,11 +25,105 @@
 	else
 		name = "(Civilian) [name]"
 
-// base area
+// Basic Area Definitions
 
-/area/prishtina/field
-	name = "Field"
+/* note: BYOND reaches some kind of limit when it encounters areas with massive
+ * contents lists (around 65,000 maybe), causing any movement in those areas
+ * to slow down dramatically. The forest area reached this limit, but only
+ * when there were snow objects, so its been split into 9 separate areas.
+*/
+
+/area/prishtina/forest
 	dynamic_lighting = 0
+	name = "Field"
+	icon_state = ""
+
+/* sector 1 = top left, sector 2 = top center, sector 3 = top right
+   sector 4 = middle left, sector 5 = middle center, sector 6 = middle right
+   sector 7 = bottom left, sector 8 = bottom center, sector 9 = bottom right */
+
+/area/prishtina/forest/sector1
+	name = "Northwestern Forest"
+/area/prishtina/forest/sector1/ss1
+/area/prishtina/forest/sector1/ss2
+/area/prishtina/forest/sector1/ss3
+/area/prishtina/forest/sector1/ss4
+
+/area/prishtina/forest/sector2
+	name = "Northern Forest"
+/area/prishtina/forest/sector2/ss1
+/area/prishtina/forest/sector2/ss2
+/area/prishtina/forest/sector2/ss3
+/area/prishtina/forest/sector2/ss4
+
+/area/prishtina/forest/sector3
+	name = "Northeastern Forest"
+/area/prishtina/forest/sector3/ss1
+/area/prishtina/forest/sector3/ss2
+/area/prishtina/forest/sector3/ss3
+/area/prishtina/forest/sector3/ss4
+
+/area/prishtina/forest/sector4
+	name = "Western Forest"
+/area/prishtina/forest/sector4/ss1
+/area/prishtina/forest/sector4/ss2
+/area/prishtina/forest/sector4/ss3
+/area/prishtina/forest/sector4/ss4
+
+/area/prishtina/forest/sector5
+	name = "Central Forest"
+/area/prishtina/forest/sector5/ss1
+/area/prishtina/forest/sector5/ss2
+/area/prishtina/forest/sector5/ss3
+/area/prishtina/forest/sector5/ss4
+
+/area/prishtina/forest/sector6
+	name = "Eastern Forest"
+/area/prishtina/forest/sector6/ss1
+/area/prishtina/forest/sector6/ss2
+/area/prishtina/forest/sector6/ss3
+/area/prishtina/forest/sector6/ss4
+
+/area/prishtina/forest/sector7
+	name = "Southwestern Forest"
+/area/prishtina/forest/sector7/ss1
+/area/prishtina/forest/sector7/ss2
+/area/prishtina/forest/sector7/ss3
+/area/prishtina/forest/sector7/ss4
+
+/area/prishtina/forest/sector8
+	name = "Southern Forest"
+/area/prishtina/forest/sector8/ss1
+/area/prishtina/forest/sector8/ss2
+/area/prishtina/forest/sector8/ss3
+/area/prishtina/forest/sector8/ss4
+
+/area/prishtina/forest/sector9
+	name = "Southeastern Forest"
+/area/prishtina/forest/sector9/ss1
+/area/prishtina/forest/sector9/ss2
+/area/prishtina/forest/sector9/ss3
+/area/prishtina/forest/sector9/ss4
+
+/area/prishtina/farm1
+	dynamic_lighting = 0
+	name = "Farmland"
+	icon_state = "blue"
+
+/area/prishtina/farm2
+	dynamic_lighting = 0
+	name = "Farmland"
+	icon_state = "blue2"
+
+/area/prishtina/farm3
+	dynamic_lighting = 0
+	name = "Farmland"
+	icon_state = "blue"
+
+/area/prishtina/farm4
+	dynamic_lighting = 0
+	name = "Farmland"
+	icon_state = "blue2"
 
 // admin zone
 
@@ -171,12 +265,6 @@
 	name = "The Sky"
 // end of wormhole areas
 
-// no man's land
-
-/area/prishtina/no_mans_land
-	dynamic_lighting = 0
-	name = "No Man's Land"
-
 // german areas
 
 /area/prishtina/german
@@ -185,6 +273,10 @@
 	name = "German Base"
 	icon_state = "red2"
 	dynamic_lighting = 0
+
+/area/prishtina/german/main_area/sector1
+/area/prishtina/german/main_area/sector2
+/area/prishtina/german/main_area/sector3
 
 /area/prishtina/german/main_area/dogshed
 	name = "German Dogshed"

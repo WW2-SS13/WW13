@@ -48,9 +48,13 @@
 			A.weather_intensity = weather_intensity
 
 // happens every time the weather process ticks, right now 2 seconds
+#define NO_NEW_SNOWFALL
 #define SNOW_GATHERING_RATE 1.0
 /proc/process_weather()
 	if (weather == WEATHER_SNOW)
+		#ifdef NO_NEW_SNOWFALL
+		return
+		#endif
 		var/turfs_made_snowy = 0
 		// randomize the areas we snow in
 		var/list_of_areas = shuffle(all_areas)

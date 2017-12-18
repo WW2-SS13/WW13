@@ -172,7 +172,6 @@ default behaviour is:
 	else
 		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 
-
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
 /mob/living/proc/calculate_affecting_pressure(var/pressure)
@@ -699,9 +698,11 @@ default behaviour is:
 	if(!possession_candidate)
 		possessor << "<span class='warning'>That animal cannot be possessed.</span>"
 		return 0
+	/*
 	if(jobban_isbanned(possessor, "Animal"))
 		possessor << "<span class='warning'>You are banned from animal roles.</span>"
 		return 0
+	*/
 	if(!possessor.MayRespawn(1,ANIMAL_SPAWN_DELAY))
 		return 0
 	return 1

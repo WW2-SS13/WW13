@@ -17,9 +17,10 @@
 	#ifdef WEATHERDEBUG
 	mod_weather_interval = 1000
 	change_weather_interval = 2000
-	#endif
+	#else
 	next_can_mod_weather = world.realtime + 100
-	next_can_change_weather = world.realtime + 100
+	next_can_change_weather = world.realtime + 12000
+	#endif
 
 /datum/controller/process/weather/doWork()
 	if (!roundstart_time)
@@ -35,12 +36,10 @@
 
 	if (prob(prob_of_weather_mod))
 		if (world.realtime >= next_can_mod_weather)
-//			world << "modding weather"
 			modify_weather_somehow()
 			next_can_mod_weather = world.realtime + minimum_mod_weather_delay
 	else if (prob(prob_of_weather_change))
 		if (world.realtime >= next_can_change_weather)
-//			world << "changing weather"
 			if (ticker.mode.vars.Find("season"))
 				change_weather_somehow()
 				next_can_change_weather = world.realtime + minimum_change_weather_delay

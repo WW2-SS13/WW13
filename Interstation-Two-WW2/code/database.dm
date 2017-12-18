@@ -7,8 +7,13 @@ var/database/database = null
 	spawn (1)
 
 		// where we store bans
+		/*
 		if (!execute("TABLE ban EXISTS;"))
 			execute("CREATE TABLE ban (id STRING, bantime STRING, serverip STRING, bantype STRING, reason STRING, job STRING, duration STRING, rounds STRING, expiration_time INTEGER, ckey STRING, computerid STRING, ip STRING, a_ckey STRING, a_computerid STRING, a_ip STRING , who STRING, adminwho STRING, edits STRING, unbanned STRING, unbanned_datetime STRING, unbanned_ckey STRING, unbanned_computerid STRING, unbanned_ip STRING);")
+		*/
+
+		if (!execute("TABLE quick_bans EXISTS;"))
+			execute("CREATE TABLE quick_bans (ckey STRING, cID STRING, ip STRING, type STRING, UID STRING, reason STRING, banned_by STRING, ban_date STRING, expire_realtime STRING, expire_info STRING);")
 
 		// where we store admin data
 		if (!execute("TABLE admin EXISTS;"))
@@ -42,6 +47,9 @@ var/database/database = null
 		if (!execute("TABLE patreon_rewards EXISTS;"))
 			execute("CREATE TABLE patreon_rewards (user STRING, data STRING);")
 
+/database/proc/newUID()
+	return "[rand(1, 1000*1000*1000)]"
+
 /database/proc/Now()
 	if (!global_game_schedule)
 		global_game_schedule = new
@@ -50,7 +58,9 @@ var/database/database = null
 /database/proc/After(minutes = 1, hours = 0)
 	return Now()+(minutes*600)+(hours*600*60)
 
-/database/proc/execute(querytext)
+/* only_execute_once = FALSE is only safe when this is called from a verb
+ * or proc behaving like a verb, otherwise it can bog down other procs */
+/database/proc/execute(querytext, var/only_execute_once = TRUE)
 	. = FALSE
 
 	if (findtext(querytext, regex("TABLE.*EXISTS")))
@@ -78,7 +88,19 @@ var/database/database = null
 	querytext = "[querytext];"
 
 	var/database/query/Q = new(querytext)
-	if (Q.Execute(database))
+
+	// try to execute 10 times over 1 second
+	var/Q_executed = FALSE
+	for (var/v in 1 to 10)
+		if (Q.Execute(database))
+			Q_executed = TRUE
+			goto finishloop
+		if (only_execute_once)
+			goto finishloop
+		sleep(1)
+
+	finishloop
+	if (Q_executed)
 		. = TRUE
 		if (findtext(querytext, "SELECT"))
 

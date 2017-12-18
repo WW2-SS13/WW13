@@ -68,7 +68,7 @@ var/list/global_whitelists[50]
 	if (isclient(_arg))
 		data += _arg:ckey
 	else
-		data += ckey(_arg)
+		data += ckey(_arg) // todo: probably shouldn't do this for other WLs
 	for (var/extrafield in extras)
 		data += "=[extrafield]"
 

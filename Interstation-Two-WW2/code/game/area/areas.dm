@@ -48,7 +48,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
 	var/list/forced_ambience = null
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
-	var/sound_env = STANDARD_STATION
+	var/sound_env = OUTSIDE
 
 	var/location = AREA_OUTSIDE
 
@@ -280,6 +280,7 @@ var/list/mob/living/forced_ambiance_list = new
 
 	if(!L.lastarea)
 		L.lastarea = get_area(L.loc)
+
 	var/area/newarea = get_area(L.loc)
 	var/area/oldarea = L.lastarea
 	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.

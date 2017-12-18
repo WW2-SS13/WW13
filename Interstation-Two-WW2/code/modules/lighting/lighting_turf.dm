@@ -62,9 +62,9 @@
 	var/changed = 0
 
 	for (var/datum/lighting_corner/corner in corners)
-		corner.lum_r = 1.0
-		corner.lum_g = 1.0
-		corner.lum_b = 1.0
+		corner.lum_r = 0.0
+		corner.lum_g = 0.0
+		corner.lum_b = 0.0
 		corner.TOD_lum_r = time_of_day2luminosity[time_of_day]
 		corner.TOD_lum_g = time_of_day2luminosity[time_of_day]
 		corner.TOD_lum_b = time_of_day2luminosity[time_of_day]

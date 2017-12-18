@@ -1,3 +1,21 @@
+/mob/var/velocity = 0
+/mob/var/velocity_lastdir = -1 // turning makes you lose 1 or 2 velocity
+/mob/var/run_delay_maximum = 2.2 / 1.25
+
+/mob/proc/get_run_delay()
+	switch (velocity)
+		if (0 to 3)
+			return run_delay_maximum
+		if (4 to 7)
+			return run_delay_maximum/1.08
+		if (8 to 11)
+			return run_delay_maximum/1.16
+		if (12 to INFINITY)
+			return run_delay_maximum/1.24
+
+// walking
+/mob/var/walk_delay = 3.3 / 1.25
+
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
 	if(air_group || (height==0)) return 1
@@ -215,7 +233,7 @@
 		if (!t)
 			return
 
-	if (!isobserver(mob) && mob.is_on_train() && !mob.buckled)
+	else if (!isobserver(mob) && mob.is_on_train() && !mob.buckled)
 		var/datum/train_controller/tc = mob.get_train()
 		if (tc && tc.moving)
 			if (mob.train_move_check(get_step(mob, direct)) && !mob.lying && mob.stat != UNCONSCIOUS && mob.stat != DEAD)
@@ -337,17 +355,23 @@
 				standing_on_snow = rand(2,4)
 				mob << "<span class = 'warning'>The mud slows you down.</span>"
 
+		if (mob.velocity_lastdir != -1)
+			if (direct != mob.velocity_lastdir)
+				mob.velocity = max(mob.velocity-pick(1,2), 0)
+
 		switch(mob.m_intent)
 			if("run")
+				mob.velocity = min(mob.velocity+1, 15)
+				mob.velocity_lastdir = direct
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 2.2 + standing_on_snow
+				move_delay += mob.get_run_delay() + standing_on_snow
 				if (ishuman(mob))
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.03
 					--H.stamina
 			if("walk")
-				move_delay += 3.3 + standing_on_snow
+				move_delay += mob.walk_delay + standing_on_snow
 				if (ishuman(mob))
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.003
@@ -558,9 +582,9 @@
 ///Return 1 for movement 0 for none
 /mob/proc/Process_Spacemove(var/check_drift = 0)
 
-	if(!Check_Dense_Object()) //Nothing to push off of so end here
+/*	if(!Check_Dense_Object()) //Nothing to push off of so end here
 		update_floating(0)
-		return 0
+		return 0 */
 
 	update_floating(1)
 

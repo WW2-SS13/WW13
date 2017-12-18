@@ -57,7 +57,7 @@
 	establish_db_connection()
 
 	if(!database)
-		usr << "\red Failed to establish database connection"
+		usr << "\red Failed to establish database connection."
 		return
 
 	if(!adm_ckey || !new_rank)
@@ -81,7 +81,7 @@
 		admin_id = text2num(rowdata["id"])
 
 	if(new_admin)
-		database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[adm_ckey]', '[new_rank]', 0)")
+		database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES ('[database.newUID()]', '[adm_ckey]', '[new_rank]', 0)")
 		message_admins("[key_name_admin(usr)] made '[adm_ckey]' an admin with the rank [new_rank]")
 		log_admin("[key_name(usr)] made [key_name(adm_ckey)] an admin with the rank [new_rank]")
 		usr << "\blue New admin added."

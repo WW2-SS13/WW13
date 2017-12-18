@@ -9,7 +9,7 @@
 	if(ticker.mode && ticker.mode.check_antagonists_topic(href, href_list))
 		check_antagonists()
 		return
-
+/*
 	if(href_list["dbsearchckey"] || href_list["dbsearchadmin"])
 
 		var/adminckey = href_list["dbsearchadmin"]
@@ -90,7 +90,7 @@
 		if (playermob && playermob.client)
 			playermob << "<span class = 'danger'>You've been banned. Reason: [reason].</span>"
 			qdel(playermob.client)
-
+*/
 	else if(href_list["editrights"])
 		if(!check_rights(R_PERMISSIONS))
 			message_admins("[key_name_admin(usr)] attempted to edit the admin permissions without sufficient rights.")
@@ -233,7 +233,7 @@
 
 
 	/////////////////////////////////////new ban stuff
-	else if(href_list["unbanf"])
+/*	else if(href_list["unbanf"])
 		if(!check_rights(R_BAN))	return
 
 		var/banfolder = href_list["unbanf"]
@@ -245,10 +245,10 @@
 			else
 				alert(usr, "This ban has already been lifted / does not exist.", "Error", "Ok")
 				unbanpanel()
-
+*/
 	else if(href_list["warn"])
 		usr.client.warn(href_list["warn"])
-
+/*
 	else if(href_list["unbane"])
 		if(!check_rights(R_BAN))	return
 
@@ -296,10 +296,10 @@
 		Banlist["bannedby"] << usr.ckey
 		Banlist.cd = "/base"
 
-		unbanpanel()
+		unbanpanel()*/
 
 	/////////////////////////////////////new ban stuff
-
+/*
 	else if(href_list["jobban2"])
 //		if(!check_rights(R_BAN))	return
 
@@ -688,7 +688,7 @@
 				href_list["jobban2"] = 1 // lets it fall through and refresh
 			return 1
 		return 0 //we didn't do anything!
-
+*/
 	else if(href_list["boot2"])
 		var/mob/M = locate(href_list["boot2"])
 		if (ismob(M))
@@ -703,7 +703,7 @@
 			message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
 			//M.client = null
 			qdel(M.client)
-
+/*
 	else if(href_list["removejobban"])
 		if(!check_rights(R_BAN))	return
 
@@ -790,7 +790,7 @@
 				//qdel(M)
 			if("Cancel")
 				return
-
+*/
 	else if(href_list["mute"])
 		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))  return
 

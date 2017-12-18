@@ -52,9 +52,9 @@ var/list/_client_preferences_by_type
 	description ="Play lobby music"
 	key = "SOUND_LOBBY"
 
-/datum/client_preference/play_lobby_music/toggled(var/mob/preference_mob, var/enabled)
+/datum/client_preference/play_lobby_music/toggled(var/mob/new_player/preference_mob, var/enabled)
 	if(enabled)
-		preference_mob << sound(ticker.login_music, repeat = 1, wait = 0, volume = 85, channel = 1)
+		if (istype(preference_mob)) preference_mob << sound(ticker.login_music, repeat = 1, wait = 0, volume = 85, channel = 1)
 	else
 		preference_mob << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
 

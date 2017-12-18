@@ -13,7 +13,7 @@
 		bugname = copytext(bugname, 1, 51)
 		src << "<span class = 'warning'>Your bug's name was clamped to 50 characters.</span>"
 
-	var/check_name_already_exists = database.execute("SELECT * FROM bug_reports WHERE name = '[bugname]';")
+	var/check_name_already_exists = database.execute("SELECT * FROM bug_reports WHERE name = '[bugname]';", FALSE)
 	if (islist(check_name_already_exists) && !isemptylist(check_name_already_exists))
 		src << "<span class = 'danger'>This bug already exists! Please choose another name.</span>"
 		goto rename
@@ -73,7 +73,7 @@
 
 	if (bugname && bugdesc && bugrep && anything_else)
 		if (database)
-			if (database.execute("INSERT INTO bug_reports (name, desc, steps, other) VALUES ('[bugname]', '[bugdesc]', '[steps2string]', '[anything_else]');"))
+			if (database.execute("INSERT INTO bug_reports (name, desc, steps, other) VALUES ('[bugname]', '[bugdesc]', '[steps2string]', '[anything_else]');", FALSE))
 				src << "<span class = 'notice'>Your bug was successfully reported. Thank you!</span>"
 				message_admins("New bug report received from [key_name(src)], titled '[bugname]'.")
 			else
@@ -98,7 +98,7 @@
 		suggname = copytext(suggname, 1, 51)
 		src << "<span class = 'warning'>Your suggestion's name was clamped to 50 characters.</span>"
 
-	var/check_name_already_exists = database.execute("SELECT * FROM suggestions WHERE name = '[suggname]';")
+	var/check_name_already_exists = database.execute("SELECT * FROM suggestions WHERE name = '[suggname]';", FALSE)
 	if (islist(check_name_already_exists) && !isemptylist(check_name_already_exists))
 		src << "<span class = 'danger'>This suggestion already exists! Please choose another name.</span>"
 		goto rename
@@ -122,7 +122,7 @@
 
 	if (suggname && suggdesc)
 		if (database)
-			if (database.execute("INSERT INTO suggestions (name, desc) VALUES ('[suggname]', '[suggdesc]');"))
+			if (database.execute("INSERT INTO suggestions (name, desc) VALUES ('[suggname]', '[suggdesc]');", FALSE))
 				src << "<span class = 'notice'>Your suggestion was successfully received. Thank you!</span>"
 				message_admins("New suggestion received from [key_name(src)], titled '[suggname]'.")
 			else

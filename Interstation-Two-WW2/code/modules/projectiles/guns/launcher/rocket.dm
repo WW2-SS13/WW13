@@ -37,12 +37,12 @@
 			usr << "\red [src] cannot hold more rockets."
 
 /obj/item/weapon/gun/launcher/rocket/consume_next_projectile()
-	/*if(rockets.len)
+	if(rockets.len)
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
-		var/obj/item/missile/M = new (src)
-		M.primed = 1
+		var/obj/item/projectile/bullet/rifle/missile/M = new (src)
+	//	M.primed = 1
 		rockets -= I
-		return M*/
+		return M
 	return null
 
 /obj/item/weapon/gun/launcher/rocket/handle_post_fire(mob/user, atom/target)

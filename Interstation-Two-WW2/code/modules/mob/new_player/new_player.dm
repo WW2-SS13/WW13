@@ -46,7 +46,7 @@
 		output += "<p><a href='byond://?src=\ref[src];ready=0'>The game has not started yet. Please wait to join.</a></p>"
 	else
 	//	output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
-		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</A></p>"
+		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</a></p>"
 
 	var/height = 300
 	if (reinforcements_master && reinforcements_master.is_ready())
@@ -61,24 +61,6 @@
 				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Russian reinforcement pool.</A></p>"
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
-/*	if(!IsGuestKey(src.key))
-	//	establish_db_connection()
-	//	if(dbcon.IsConnected())
-		var/isadmin = 0
-		if(src.client && src.client.holder)
-			isadmin = 1
-		// TODO: reimplement database interaction
-		var/list/rowdata = database.execute("SELECT id FROM poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM poll_textreply WHERE ckey = \"[ckey]\")")
-		var/newpoll = 0
-		if (islist(rowdata) && !isemptylist(rowdata))
-			newpoll = 1
-			break
-
-		if(newpoll)
-			output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
-		else
-			output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
-*/
 	output += "</div>"
 
 	src << browse(null, "window=playersetup;")
@@ -143,7 +125,11 @@
 
 	if(href_list["observe"])
 
-		if(alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able to respawn!","Player Setup","Yes","No") == "Yes")
+		if (client && client.quickBan_isbanned("Observer"))
+			src << "<span class = 'danger'>You're banned from observing.</span>"
+			return 1
+
+		if(alert(src,"Are you sure you wish to observe?[config.respawn_delay ? " You will have to wait [config.respawn_delay] minutes before being able to respawn!" : ""]","Player Setup","Yes","No") == "Yes")
 			if(!client)	return 1
 			var/mob/observer/ghost/observer = new(150, 317, 1)
 
@@ -177,6 +163,11 @@
 			return 1
 
 	if(href_list["re_german"])
+
+		if (client && client.quickBan_isbanned("Playing"))
+			src << "<span class = 'danger'>You're banned from playing.</span>"
+			return 1
+
 		if (!reinforcements_master.is_permalocked(GERMAN))
 			if (client.prefs.s_tone < -30 && !client.untermensch)
 				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
@@ -185,6 +176,11 @@
 		else
 			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements!</span>"
 	if(href_list["re_russian"])
+
+		if (client && client.quickBan_isbanned("Playing"))
+			src << "<span class = 'danger'>You're banned from playing.</span>"
+			return 1
+
 		if (!reinforcements_master.is_permalocked(RUSSIAN))
 			reinforcements_master.add(src, RUSSIAN)
 		else
@@ -195,6 +191,10 @@
 		reinforcements_master.remove(src, RUSSIAN)
 
 	if(href_list["late_join"])
+
+		if (client && client.quickBan_isbanned("Playing"))
+			src << "<span class = 'danger'>You're banned from playing.</span>"
+			return 1
 
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			usr << "\red The round is either not ready, or has already finished."
@@ -322,9 +322,23 @@
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job)	return 0
 	if(!job.is_position_available(restricted_choices)) return 0
-	if(jobban_isbanned(src,rank))	return 0
 	if(!job.player_old_enough(src.client))	return 0
 	return 1
+
+/mob/new_player/proc/jobBanned(title)
+	if(client && client.quickBan_isbanned("Job", title))
+		return 1
+	return 0
+
+/mob/new_player/proc/factionBanned(title)
+	if(client && client.quickBan_isbanned("Faction", title))
+		return 1
+	return 0
+
+/mob/new_player/proc/officerBanned()
+	if(client && client.quickBan_isbanned("Officer"))
+		return 1
+	return 0
 
 /mob/new_player/proc/LateSpawnForced(rank, needs_random_name = 0)
 
@@ -351,22 +365,36 @@
 
 /mob/new_player/proc/AttemptLateSpawn(rank, var/nomsg = 0)
 
-	if(src != usr)
+	if (src != usr)
 		return 0
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+	if (!ticker || ticker.current_state != GAME_STATE_PLAYING)
 		if (!nomsg)
 			usr << "\red The round is either not ready, or has already finished..."
 		return 0
-	if(!config.enter_allowed)
+	if (!config.enter_allowed)
 		if (!nomsg)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 		return 0
-	if(!IsJobAvailable(rank))
+	if (jobBanned(rank))
+		if (!nomsg)
+			usr << "<span class = 'warning'>You're banned from this role!</span>"
+		return 0
+	if (!IsJobAvailable(rank))
 		if (!nomsg)
 			src << alert("[rank] is not available. Perhaps too many people are already attempting to join as it?")
 		return 0
 
 	var/datum/job/job = job_master.GetJob(rank)
+
+	if (factionBanned(job.base_type_flag(1)))
+		if (!nomsg)
+			usr << "<span class = 'warning'>You're banned from this faction!</span>"
+		return 0
+
+	if (officerBanned() && job.is_officer)
+		if (!nomsg)
+			usr << "<span class = 'warning'>You're banned from officer positions!</span>"
+		return 0
 
 	if(job_master.is_side_locked(job.base_type_flag()))
 		if (!nomsg)
@@ -439,6 +467,18 @@
 		if (job_master.side_is_hardlocked(job.base_type_flag()))
 			job_is_available = 0
 			unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
+
+		if (jobBanned(job.title))
+			job_is_available = 0
+			unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED}</span> "
+
+		if (factionBanned(job.base_type_flag(1)))
+			job_is_available = 0
+			unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM FACTION}</span> "
+
+		if (officerBanned() && job.is_officer)
+			job_is_available = 0
+			unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM OFFICER POSITIONS}</span> "
 
 		// check if the faction is admin-locked
 

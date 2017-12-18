@@ -83,8 +83,10 @@ var/list/admin_verbs_admin = list(
 
 )
 var/list/admin_verbs_ban = list(
-	/client/proc/ban_panel,
-	/client/proc/jobbans
+	/client/proc/quickBan_search,
+	/client/proc/quickBan_person
+//	/client/proc/ban_panel,
+//	/client/proc/jobbans
 	)
 
 var/list/admin_verbs_sounds = list(
@@ -159,8 +161,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/callproc_target,
-	/client/proc/SDQL_query,
-	/client/proc/SDQL2_query,
+//	/client/proc/SDQL_query,
+//	/client/proc/SDQL2_query,
 	/client/proc/Jump,
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
@@ -267,7 +269,7 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/announce,		//priority announce something to all clients.,
 	/datum/admins/proc/show_player_panel,
 	/client/proc/check_antagonists,
-	/client/proc/jobbans,
+//	/client/proc/jobbans,
 	/client/proc/cmd_admin_subtle_message, // send an message to somebody as a 'voice in their head',
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/admin_memo,			//admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
@@ -408,21 +410,21 @@ var/list/admin_verbs_mentor = list(
 				body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
 
 /client/proc/add_ghost_only_admin_verbs()
-	if (mob && holder && check_rights(R_MOD, user = mob))
+	if (mob && holder && check_rights(R_MOD, 0, user = mob))
 		verbs |= /client/proc/see_who_is_in_tank
 		verbs |= /client/proc/eject_from_tank
 		verbs |= /client/proc/Goto_adminzone
 
-		if (check_rights(R_POSSESS, user = mob))
+		if (check_rights(R_POSSESS, 0, user = mob))
 			verbs |= admin_verbs_possess
 
 /client/proc/remove_ghost_only_admin_verbs()
-	if (mob && holder && check_rights(R_MOD, user = mob))
+	if (mob && holder && check_rights(R_MOD, 0, user = mob))
 		verbs -= /client/proc/see_who_is_in_tank
 		verbs -= /client/proc/eject_from_tank
 		verbs -= /client/proc/Goto_adminzone
 
-		if (check_rights(R_POSSESS, user = mob))
+		if (check_rights(R_POSSESS, 0, user = mob))
 			verbs -= admin_verbs_possess
 
 /client/proc/invisimin()
@@ -478,7 +480,7 @@ var/list/admin_verbs_mentor = list(
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
 
 	return
-
+/*
 /client/proc/jobbans()
 	set name = "Display Job bans"
 	set category = "Admin"
@@ -488,8 +490,8 @@ var/list/admin_verbs_mentor = list(
 		else*/
 		holder.DB_ban_panel()
 
-	return
-
+	return*/
+/*
 /client/proc/ban_panel()
 	set name = "Ban Panel"
 	set category = "Admin"
@@ -497,7 +499,7 @@ var/list/admin_verbs_mentor = list(
 		holder.DB_ban_panel()
 
 	return
-
+*/
 /client/proc/game_panel()
 	set name = "Game Panel"
 	set category = "Admin"
@@ -544,49 +546,6 @@ var/list/admin_verbs_mentor = list(
 		message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]", 1)
 
 
-#define MAX_WARNS 3
-#define AUTOBANTIME 10
-
-/client/proc/warn(warned_ckey)
-	if(!check_rights(R_ADMIN))	return
-
-	if(!warned_ckey || !istext(warned_ckey))	return
-	if(warned_ckey in admin_datums)
-		usr << "<font color='red'>Error: warn(): You can't warn admins.</font>"
-		return
-
-	var/datum/preferences/D
-	var/client/C = directory[warned_ckey]
-	if(C)	D = C.prefs
-	else	D = preferences_datums[warned_ckey]
-
-	if(!D)
-		src << "<font color='red'>Error: warn(): No such ckey found.</font>"
-		return
-
-	if(++D.warns >= MAX_WARNS)					//uh ohhhh...you'reee iiiiin trouuuubble O:)
-		ban_unban_log_save("[ckey] warned [warned_ckey], resulting in a [AUTOBANTIME] minute autoban.")
-		if(C)
-			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)] resulting in a [AUTOBANTIME] minute ban.")
-			C << "<font color='red'><BIG><B>You have been autobanned due to a warning by [ckey].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.</font>"
-			del(C)
-		else
-			message_admins("[key_name_admin(src)] has warned [warned_ckey] resulting in a [AUTOBANTIME] minute ban.")
-		AddBan(warned_ckey, D.last_id, "Autobanning due to too many formal warnings", ckey, 1, AUTOBANTIME)
-
-	else
-		var/warns_remain = MAX_WARNS - D.warns
-		if(C)
-			C << "<font color='red'><BIG><B>You have been formally warned by an administrator.</B></BIG><br>Further warnings will result in an autoban.</font>"
-			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)]. They have [warns_remain] strikes remaining.")
-		else
-			message_admins("[key_name_admin(src)] has warned [warned_ckey] (DC). They have [warns_remain] strikes remaining.")
-
-
-
-#undef MAX_WARNS
-#undef AUTOBANTIME
-
 /client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
 	set category = "Special Verbs"
 	set name = "Drop Bomb"
@@ -611,13 +570,13 @@ var/list/admin_verbs_mentor = list(
 			var/flash_range = input("Flash range (in tiles):") as num
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
-
+/*
 
 /client/proc/give_disease2(mob/T as mob in mob_list) // -- Giacom
 	set category = "Fun"
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
-	return
+	return */
 /*
 	var/datum/disease2/disease/D = new /datum/disease2/disease()
 
@@ -676,7 +635,7 @@ var/list/admin_verbs_mentor = list(
 			return
 		for (var/mob/V in hearers(mob.control_object))
 			V.show_message("<b>[mob.control_object.name]</b> says: \"" + msg + "\"", 2)
-
+/*
 
 /client/proc/kill_air() // -- TLE
 	set category = "Debug"
@@ -691,7 +650,7 @@ var/list/admin_verbs_mentor = list(
 
 	log_admin("[key_name(usr)] used 'kill air'.")
 	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", 1)
-
+*/
 /client/proc/readmin_self()
 	set name = "Re-Admin self"
 	set category = "Admin"

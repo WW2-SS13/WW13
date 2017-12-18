@@ -310,7 +310,7 @@ proc/admin_notice(var/message, var/rights)
 
 	dat += "</body></html>"
 	usr << browse(dat, "window=adminplayerinfo;size=480x480")
-
+/*
 /datum/admins/proc/Jobbans()
 	if(!check_rights(R_BAN))	return
 
@@ -321,10 +321,10 @@ proc/admin_notice(var/message, var/rights)
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
 		dat += text("<tr><td>[t] (<A href='?src=\ref[src];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
-	usr << browse(dat, "window=ban;size=400x400")
+	usr << browse(dat, "window=ban;size=400x400")*/
 
 /datum/admins/proc/Game()
-	if(!check_rights(0))	return
+	if(!check_rights(R_ADMIN))	return
 
 	var/dat = {"
 		<center><B>Game Panel</B></center><hr>\n
@@ -561,13 +561,12 @@ proc/admin_notice(var/message, var/rights)
 		world << "<b>The game will start soon.</b>"
 		log_admin("[key_name(usr)] removed the delay.")
 
-
 /datum/admins/proc/adjump()
 	set category = "Server"
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
 	config.allow_admin_jump = !(config.allow_admin_jump)
-	message_admins("\blue Toggled admin jumping to [config.allow_admin_jump].")
+	message_admins("\blue[key_name(usr)] toggled admin jumping to [config.allow_admin_jump].")
 
 
 /datum/admins/proc/adspawn()

@@ -263,7 +263,7 @@
 				aspect.post_activation()
 
 			// train might not be set up yet
-			spawn (30)
+			spawn (100)
 				job_master.german_job_slots *= personnel[GERMAN]
 				job_master.russian_job_slots *= personnel[RUSSIAN]
 
@@ -271,14 +271,14 @@
 				german_supplytrain_master.supply_points_per_second_min *= supplies[GERMAN]
 				german_supplytrain_master.supply_points_per_second_max *= supplies[GERMAN]
 
-				// nerf or buff soviet supplies by editing crates in Soviet territory.
-				spawn (10) // make sure rations are set up?
-					for (var/obj/structure/closet/crate/soviet in world)
-						if (istype(get_area(soviet), /area/prishtina/soviet))
-							soviet.resize(supplies[RUSSIAN])
+			// nerf or buff soviet supplies by editing crates in Soviet territory.
+			spawn (10) // make sure rations are set up?
+				for (var/obj/structure/closet/crate/soviet in world)
+					if (istype(get_area(soviet), /area/prishtina/soviet))
+						soviet.resize(supplies[RUSSIAN])
 
-				// this may have already happened, do it again w/o announce
-				setup_autobalance(0)
+			// this may have already happened, do it again w/o announce
+			setup_autobalance(0)
 
 		world << "<b>The current game mode is World War II!</b>"
 

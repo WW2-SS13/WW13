@@ -39,7 +39,7 @@
 /datum/job/proc/type_flag()
 	return "[type]"
 
-/datum/job/proc/base_type_flag()
+/datum/job/proc/base_type_flag(var/most_specific = 0)
 	if (istype(src, /datum/job/russian))
 		return RUSSIAN
 	else if (istype(src, /datum/job/partisan))
@@ -47,7 +47,16 @@
 			return CIVILIAN
 		return PARTISAN
 	else if (istype(src, /datum/job/german))
-		return GERMAN
+		if (!most_specific)
+			return GERMAN
+		else
+			if (!is_SS)
+				return GERMAN
+			return SCHUTZSTAFFEL
+	else if (istype(src, /datum/job/ukrainian))
+		return UKRAINIAN
+	else if (istype(src, /datum/job/italian))
+		return ITALIAN
 
 /datum/job/proc/get_side_name()
 	return capitalize(lowertext(base_type_flag()))

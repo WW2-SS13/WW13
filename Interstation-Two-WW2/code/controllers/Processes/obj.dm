@@ -21,6 +21,7 @@ var/datum/controller/process/obj/obj_process = null
 		nonvital_processing_objects_4 = list()
 
 /datum/controller/process/obj/doWork()
+
 	for(last_object in processing_objects)
 		var/datum/O = last_object
 		if(isnull(O.gcDestroyed))

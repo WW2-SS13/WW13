@@ -131,11 +131,8 @@
 
 	. = ..()	//calls mob.Login()
 
-	var/list/bantable = world.IsBanned(key, address, computer_id)
-	if (islist(bantable) && !isemptylist(bantable))
-		if (bantable.Find("desc"))
-			src << "<span class = 'danger'>[bantable["desc"]]</span>"
-			del(src)
+	if (quickBan_reject("Server"))
+		del(src)
 		return 0
 
 	/*Admin Authorisation: */
@@ -144,6 +141,11 @@
 
 	holder = admin_datums[ckey]
 
+	// this is here because mob/Login() is called whenever a mob spawns in
+	if(holder)
+		if (ticker && ticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
+			message_admins("Admin login: [key_name(src)]")
+
 	establish_db_connection()
 
 	/* we're the key in host.txt.
@@ -151,17 +153,19 @@
 	 * then delete host.txt?
 	*/
 
-	var/host_file_text = file2text("config/host.txt")
-	if (ckey(host_file_text) == ckey)
-		var/list/admins = database.execute("SELECT * FROM admin;")
-		if ((!islist(admins) || isemptylist(admins)) && !holder)
-			holder = new("Host", 0, ckey)
-			database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
-
 	if(holder)
 		holder.associate(src)
 		admins |= src
 		holder.owner = src
+
+	sleep(1)
+
+	var/host_file_text = file2text("config/host.txt")
+	if (ckey(host_file_text) == ckey && !holder)
+		var/list/admins = database.execute("SELECT * FROM admin;")
+		if ((!islist(admins) || isemptylist(admins)))
+			holder = new("Host", 0, ckey)
+			database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
 
 	if (!holder)
 
@@ -221,11 +225,6 @@
 	//DISCONNECT//
 	//////////////
 /client/Del()
-
-	// this is here because mob/Login() is called whenever a mob spawns in
-	if(admin_datums[ckey])
-		if (ticker && ticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
-			message_admins("Admin login: [key_name(src)]")
 
 	if(holder)
 		holder.owner = null
@@ -323,11 +322,11 @@
 		world << "new player [src]"
 		#endif
 		//New player!! Need to insert all the stuff
-		database.execute("INSERT INTO player (id, ckey, firstseen, lastseen, ip, computerid, lastadminrank) VALUES (null, '[sql_ckey]', '[database.Now()]', '[database.Now()]', '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]');")
+		database.execute("INSERT INTO player (id, ckey, firstseen, lastseen, ip, computerid, lastadminrank) VALUES ('[sql_id]', '[sql_ckey]', '[database.Now()]', '[database.Now()]', '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]');")
 
 	//Logging player access
 	var/serverip = "[world.internet_address]:[world.port]"
-	database.execute("INSERT INTO connection_log (id,datetime,serverip,ckey,ip,computerid) VALUES(null,'[database.Now()]','[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
+	database.execute("INSERT INTO connection_log (id,datetime,serverip,ckey,ip,computerid) VALUES('[database.newUID()]','[database.Now()]','[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
 	//#undef SQLDEBUG
 
 #undef TOPIC_SPAM_DELAY

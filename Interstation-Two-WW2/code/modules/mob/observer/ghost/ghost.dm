@@ -91,8 +91,11 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	if (href_list["track"])
 		if(istype(href_list["track"],/mob))
 			var/mob/target = locate(href_list["track"]) in mob_list
-			if(target)
-				ManualFollow(target)
+			if (target)
+				if (target.real_name == "Supply Announcement System")
+					follow_supplytrain_proc()
+				else
+					ManualFollow(target)
 		else
 			var/atom/target = locate(href_list["track"])
 			if(istype(target))
@@ -341,22 +344,35 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Jump to the Main Train"
 
-	var/datum/train_controller/tc = german_train_master
+	var/oldloc = get_turf(src)
 
-	for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
-		for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
-			ManualFollow(tpt)
-			return
+	var/datum/train_controller/german_train_controller/tc = german_train_master
+
+	if (tc)
+		for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
+			for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
+				ManualFollow(tpt)
+				goto endloop // 1 break statement is not enough
+
+	endloop
+
+	var/newloc = get_turf(src)
+
+	if (oldloc == newloc) // we didn't move: train isn't here
+		loc = locate(127, 454, 1) // take us to the train station
 
 /mob/observer/ghost/verb/follow_supplytrain()
 	set category = "Ghost"
 	set name = "Jump to the Supply Train"
+	follow_supplytrain_proc()
+
+/mob/observer/ghost/proc/follow_supplytrain_proc()
 
 	var/oldloc = get_turf(src)
 
 	var/datum/train_controller/german_supplytrain_controller/tc = german_supplytrain_master
 
-	if (tc.here)
+	if (tc && tc.here)
 		for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
 			for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
 				ManualFollow(tpt)
@@ -419,7 +435,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	destroyed_event.register(following, src, /mob/observer/ghost/proc/stop_following)
 
 	src << "<span class='notice'>Now following \the [following]</span>"
-	move_to_destination(following, following.loc, following.loc)
+
+	var/mob/living/carbon/human/H = target
+	if (istype(H) && H.real_name == "Supply Announcement System")
+		follow_supplytrain_proc()
+	else
+		move_to_destination(following, following.loc, following.loc)
 
 /mob/observer/ghost/proc/stop_following()
 	if(following)
