@@ -86,15 +86,20 @@ proc/get_radio_key_from_channel(var/channel)
 		message = "[uppertext(message)]!!!"
 		verb = pick("yells","roars","hollers")
 		speech_problem_flag = 1
-	if(slurring)
+
+	/* if we're shouting!, don't mess with the message, because
+	  it messes with span classes. Todo: better solution - kachnov */
+	var/shouting_check = dd_hassuffix(message, "!")
+
+	if(slurring && !shouting_check)
 		message = slur(message)
 		verb = pick("slobbers","slurs")
 		speech_problem_flag = 1
-	if(stuttering)
+	if(stuttering && !shouting_check)
 		message = stutter(message)
 		verb = pick("stammers","stutters")
 		speech_problem_flag = 1
-	if(lisp)
+	if(lisp && !shouting_check)
 		message = lisp(message, lisp)
 		speech_problem_flag = 1
 

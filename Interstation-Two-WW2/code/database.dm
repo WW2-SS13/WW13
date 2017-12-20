@@ -95,7 +95,7 @@ var/database/database = null
 	// try to execute 10 times over 1 second
 	var/Q_executed = FALSE
 	for (var/v in 1 to 10)
-		if (Q.Execute(database))
+		if (Q.Execute(src))
 			Q_executed = TRUE
 			goto finishloop
 		if (only_execute_once)

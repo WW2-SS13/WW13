@@ -374,3 +374,7 @@ client/verb/character_setup()
 	set category = "OOC"
 	if(prefs)
 		prefs.ShowChoices(usr)
+
+// for testing
+/client/proc/_winset(arg1, arg2)
+	winset(src, arg1, arg2)

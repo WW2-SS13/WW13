@@ -80,6 +80,11 @@
 					var/list/parts = splittext(command, ";")
 					var/req_word = lowertext(parts[1])
 					var/list/req_ranks = splittext(parts[2], "&")
+					if (!islist(req_ranks))
+						. = list()
+						. += req_ranks
+						req_ranks = .
+
 					for (var/RR in req_ranks)
 						world << "2.5: [RR]"
 						req_ranks += lowertext(RR)

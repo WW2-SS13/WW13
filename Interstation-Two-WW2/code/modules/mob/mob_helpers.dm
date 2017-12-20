@@ -441,7 +441,7 @@ proc/is_blind(A)
 		var/client/C = subject.client
 		keyname = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
 		if(C.mob) //Most of the time this is the dead/observer mob; we can totally use him if there is no better name
-			var/mindname
+		/*	var/mindname
 			var/realname = C.mob.real_name
 			if(C.mob.mind)
 				mindname = C.mob.mind.name
@@ -450,7 +450,10 @@ proc/is_blind(A)
 			if(mindname && mindname != realname)
 				name = "[realname] died as [mindname]"
 			else
-				name = realname
+				name = realname*/
+		//	name = realname
+			name = C.mob.real_name
+
 
 	for(var/mob/M in player_list)
 		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && !is_mentor(M.client))) && M.is_preference_enabled(/datum/client_preference/show_dsay))

@@ -971,10 +971,11 @@ window "chemdispenser"
 window "chemdispenser_reagents"
 	elem "chemdispenser_reagents"
 		type = MAIN
-		pos = 281,0
+		pos = 464,0
 		size = 340x448
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -989,6 +990,7 @@ window "chemdispenser_reagents"
 		size = 64x32
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Dispense"
@@ -1002,6 +1004,7 @@ window "chemdispenser_reagents"
 		anchor1 = none
 		anchor2 = none
 		font-size = 15
+		background-color = none
 		is-visible = false
 		saved-params = ""
 		text = "Chloral Hydrate"
@@ -1127,6 +1130,7 @@ window "rpane"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1140,6 +1144,7 @@ window "rpane"
 		size = 654x904
 		anchor1 = 0,0
 		anchor2 = 100,100
+		background-color = none
 		saved-params = "splitter"
 		right = "outputwindow"
 		is-vert = false
@@ -1150,6 +1155,7 @@ window "rpane"
 		anchor1 = 83,0
 		anchor2 = 100,3
 		text-color = #ff0000
+		background-color = none
 		saved-params = "is-checked"
 		text = "Make A Suggestion"
 		command = "makeasugg"
@@ -1161,6 +1167,7 @@ window "rpane"
 		anchor1 = 65,0
 		anchor2 = 82,3
 		text-color = #ff0000
+		background-color = none
 		saved-params = "is-checked"
 		text = "Report A Bug"
 		command = "reportabug"
@@ -1171,6 +1178,7 @@ window "rpane"
 		size = 60x16
 		anchor1 = 43,0
 		anchor2 = 53,3
+		background-color = none
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
@@ -1181,6 +1189,7 @@ window "rpane"
 		size = 67x16
 		anchor1 = 53,0
 		anchor2 = 64,3
+		background-color = none
 		saved-params = "is-checked"
 		text = "Discord"
 		command = "discord"
@@ -1191,6 +1200,7 @@ window "rpane"
 		size = 60x16
 		anchor1 = 34,0
 		anchor2 = 43,3
+		background-color = none
 		saved-params = "is-checked"
 		text = "Github"
 		command = "github"
@@ -1201,6 +1211,7 @@ window "rpane"
 		size = 60x16
 		anchor1 = 24,0
 		anchor2 = 33,3
+		background-color = none
 		saved-params = "is-checked"
 		text = "Website"
 		command = "website"
@@ -1211,6 +1222,7 @@ window "rpane"
 		size = 60x16
 		anchor1 = 1,0
 		anchor2 = 10,3
+		background-color = none
 		saved-params = "is-checked"
 		text = "Text"
 		command = ".winset \"rpanewindow.left=;\""
@@ -1223,6 +1235,7 @@ window "rpane"
 		size = 60x16
 		anchor1 = 12,0
 		anchor2 = 22,3
+		background-color = none
 		saved-params = "is-checked"
 		text = "Info"
 		command = ".winset \"rpanewindow.left=infowindow\""

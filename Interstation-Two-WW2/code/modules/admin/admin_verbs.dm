@@ -101,7 +101,7 @@ var/list/admin_verbs_fun = list(
 	/client/proc/drop_bomb,
 	/client/proc/everyone_random,
 	/client/proc/cinematic,
-	/datum/admins/proc/toggle_aliens,
+//	/datum/admins/proc/toggle_aliens,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
 	/client/proc/editappear,
@@ -149,7 +149,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_debug_del_all,
-	/client/proc/cmd_debug_tog_aliens,
+//	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/reload_admins,
 	///client/proc/reload_mentors,
 	/client/proc/restart_controller,
@@ -218,7 +218,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
 	/client/proc/cinematic,
-	/datum/admins/proc/toggle_aliens,
+//	/datum/admins/proc/toggle_aliens,
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
 	/client/proc/ToRban,
@@ -243,7 +243,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/debug_controller,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_del_all,
-	/client/proc/cmd_debug_tog_aliens,
+//	/client/proc/cmd_debug_tog_aliens,
 //	/client/proc/air_report,
 	/client/proc/enable_debug_verbs,
 //	/client/proc/roll_dices,
@@ -321,7 +321,9 @@ var/list/admin_verbs_mentor = list(
 		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
 		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
 		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
-		if(holder.rights & R_HOST) verbs += /client/proc/reset_roundstart_autobalance
+		if(holder.rights & R_HOST)
+			verbs += /client/proc/reset_roundstart_autobalance
+			verbs += /client/proc/open_close_game_schedule
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
@@ -847,7 +849,7 @@ var/list/admin_verbs_mentor = list(
 			job_master.FreeRole(job)
 			message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
 			return
-
+/*
 /client/proc/toggleghostwriters()
 	set name = "Toggle ghost writers"
 	set category = "Server"
@@ -861,7 +863,7 @@ var/list/admin_verbs_mentor = list(
 			config.cult_ghostwriter = 1
 			src << "<b>Enabled ghost writers.</b>"
 			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
-
+*//*
 /client/proc/toggledrones()
 	set name = "Toggle maintenance drones"
 	set category = "Server"
@@ -875,7 +877,7 @@ var/list/admin_verbs_mentor = list(
 			config.allow_drone_spawn = 1
 			src << "<b>Enabled maint drones.</b>"
 			message_admins("Admin [key_name_admin(usr)] has enabled maint drones.", 1)
-
+*/
 /client/proc/man_up(mob/T as mob in mob_list)
 	set category = "Fun"
 	set name = "Man Up"

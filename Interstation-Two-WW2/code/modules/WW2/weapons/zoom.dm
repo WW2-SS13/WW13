@@ -247,6 +247,12 @@ Parts of code courtesy of Super3222
 					if(T.scope.zoomed)
 						T.scope.zoom(src, FALSE)
 
+/mob/living/carbon/human/proc/fix_zooms()
+	for(var/datum/action/toggle_scope/T in actions)
+		if(T.scope.zoomed)
+			T.scope.zoom(src, FALSE)
+	fix_action_buttons()
+
 /mob/living/carbon/human/proc/using_zoom()
 	if (stat == CONSCIOUS)
 		if(client && actions.len)

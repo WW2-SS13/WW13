@@ -73,6 +73,11 @@ var/datum/game_schedule/global_game_schedule = null
 /datum/game_schedule/proc/forceClose()
 	forceClosed = 1
 	update()
+	for (var/client/C in clients)
+		if (!C.holder)
+			C << "<span class = 'userdanger'>The server has been closed.</span>"
+			spawn (1)
+				del C
 
 /datum/game_schedule/proc/unforceClose()
 	forceClosed = 0

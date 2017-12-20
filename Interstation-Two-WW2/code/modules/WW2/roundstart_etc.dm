@@ -191,4 +191,4 @@ var/allow_paratroopers = 1
 				grace_period = 0
 				world << "<font size=4>The grace period has ended. Soviets and Partisans may now cross the river.</font>"
 
-	world << "<font size=3>Balance report: [job_master.geforce_count] German, [job_master.ruforce_count] Soviet and [job_master.civilian_count] Civilians/Partisans.</font>"
+	world << "<font size=3>Balance report: [n_of_side(GERMAN)] German, [n_of_side(RUSSIAN)] Soviet and [n_of_side(CIVILIAN)+n_of_side(PARTISAN)] Civilians/Partisans.</font>"

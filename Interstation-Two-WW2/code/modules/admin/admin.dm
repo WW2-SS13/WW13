@@ -531,7 +531,7 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].")
 	world.update_status()
 
-
+/*
 /datum/admins/proc/toggle_aliens()
 	set category = "Server"
 	set desc="Toggle alien mobs"
@@ -540,7 +540,7 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled Aliens to [config.aliens_allowed].")
 	message_admins("[key_name_admin(usr)] toggled Aliens [config.aliens_allowed ? "on" : "off"].", 1)
 
-
+*/
 /datum/admins/proc/delay()
 	set category = "Server"
 	set desc="Delay the game start/end"
@@ -792,7 +792,7 @@ proc/admin_notice(var/message, var/rights)
 	usr << browse(out, "window=edit_mode[src]")
 
 
-
+/*
 /datum/admins/proc/toggletintedweldhelmets()
 	set category = "Debug"
 	set desc="Reduces view range when wearing welding helmets"
@@ -805,7 +805,7 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled welder vision.")
 	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
 
-
+*/
 /datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"

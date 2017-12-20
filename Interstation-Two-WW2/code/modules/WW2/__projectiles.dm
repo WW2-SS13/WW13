@@ -76,15 +76,15 @@
 
 /obj/item/projectile/bullet/rifle/missile/yuge
 	name = "huge HE missle"
-	explosion_ranges = list(1,3,4,8)
+	explosion_ranges = list(1,2,4,5)
 
 /obj/item/projectile/bullet/rifle/missile/tank
 	name = "tank missle"
-	explosion_ranges = list(3,4,5,9)
+	explosion_ranges = list(1,3,4,6)
 
 /obj/item/projectile/bullet/rifle/missile/he
 	name = "HE missle"
-	explosion_ranges = list(1,1,4,8)
+	explosion_ranges = list(1,2,3,4)
 
 /obj/item/projectile/grenade/he
 	name = "he grenade"

@@ -11,8 +11,8 @@
 	num_alternate_languages = 2
 	secondary_langs = list(LANGUAGE_SOL_COMMON)
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
-	min_age = 17
-	max_age = 110
+	min_age = 16
+	max_age = 75
 	teeth_type = /obj/item/stack/teeth/human //Teeth
 
 	spawn_flags = CAN_JOIN

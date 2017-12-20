@@ -200,7 +200,7 @@ OTHER
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/a762
-	name = "M34 drum magazine"
+	name = "Mg34 drum magazine"
 	icon_state = "mg34_drum"
 ////	origin_tech = "combat=2"
 	mag_type = MAGAZINE

@@ -321,6 +321,12 @@ var/global/list/fallschirm_landmarks = list()
 					j.total_positions = german_ss_slots
 				if (j.absolute_limit)
 					j.total_positions = min(j.total_positions, j.absolute_limit)
+
+			// SPECIAL
+			if (istype(j, /datum/job/german/flamethrower_man))
+				if (clients.len <= 5)
+					j.total_positions = 0
+
 		// RUSSIAN jobs
 
 		// decide how many positions of each job type we have based on

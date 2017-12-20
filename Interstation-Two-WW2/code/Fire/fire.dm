@@ -75,7 +75,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "1"
 	light_color = "#ED9200"
-	layer = TURF_LAYER + 0.6 // above train pseudoturfs and stairs
+	layer = MOB_LAYER + 0.01 // above train pseudoturfs, stairs, and now MOBs
 
 	var/firelevel = 1
 	var/default_damage = 6 // 10 was really fucking overpowered if you crossed it a lot
@@ -115,12 +115,23 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	for(var/mob/m in my_tile)
 		Burn(m)
 
-	for (var/obj/snow/S in get_turf(src))
+	for (var/obj/structure/window/W in my_tile)
+		if (!istype(W, /obj/structure/window/sandbag))
+			if (prob((temperature/default_temperature) * 70))
+				W.shatter()
+
+	for (var/obj/structure/grille/G in my_tile)
+		if (prob((temperature/default_temperature) * 30))
+			G.visible_message("<span class = 'warning'>[G] melts.</span>")
+			G.health = 0
+			G.healthcheck()
+
+	for (var/obj/snow/S in my_tile)
 		if (prob(25))
 			S.visible_message("<span class = 'warning'>The snow melts.</span>")
 			qdel(S)
 
-	for (var/obj/structure/wild/W in get_turf(src))
+	for (var/obj/structure/wild/W in my_tile)
 		if (istype(W, /obj/structure/wild/tree))
 			if (prob(15))
 				W.visible_message("<span class = 'warning'>[W] collapses.</span>")
@@ -217,15 +228,14 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 /obj/fire/proc/get_damage()
 	return (temperature/default_temperature) * default_damage
 
-
 /obj/fire/proc/Burn(var/mob/living/L)
 	if (!istype(L))
 		return
 
 	var/damage = get_damage()
 
-
-	L.fire_act()
+	if (prob((temperature/default_temperature) * 40))
+		L.fire_act()
 
 	if (!istype(L, /mob/living/carbon/human))
 		L.apply_damage(damage*5, BURN)

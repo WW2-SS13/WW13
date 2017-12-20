@@ -697,7 +697,7 @@ default behaviour is:
 	log_admin("[key_name(possessor)] took control of \the [src].")
 	src.ckey = possessor.ckey
 	qdel(possessor)
-
+/*
 	if(round_is_spooky(6)) // Six or more active cultists.
 		src << "<span class='notice'>You reach out with tendrils of ectoplasm and invade the mind of \the [src]...</span>"
 		src << "<b>You have assumed direct control of \the [src].</b>"
@@ -705,7 +705,7 @@ default behaviour is:
 		src.universal_speak = 1
 		src.universal_understand = 1
 		//src.cultify() // Maybe another time.
-		return
+		return*/
 
 	src << "<b>You are now \the [src]!</b>"
 	src << "<span class='notice'>Remember to stay in character for a mob of this type!</span>"

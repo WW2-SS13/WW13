@@ -50,6 +50,11 @@
 			else
 				stepnum = steps.len+1
 
+	// this code is a bit problematic
+	// if you have duplicate steps, it won't work right and
+	// it will merge steps
+	// but that doesn't really matter right now
+	// because you shouldn't have two of the same steps - Kachnov
 	var/steps2string = ""
 	for (var/_step in steps)
 		steps2string += _step

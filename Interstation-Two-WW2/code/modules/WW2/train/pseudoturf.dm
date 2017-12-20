@@ -98,7 +98,6 @@
 				if (!istype(a, /obj/structure/simple_door))
 					deadly = 1
 
-
 /obj/train_pseudoturf/proc/save_contents_as_refs()
 	for (var/atom/movable/a in get_turf(src))
 		if (!check_object_invalid_for_moving(src, a))

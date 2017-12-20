@@ -62,6 +62,7 @@
 		qdel(W)
 		flamethrower.ptank = new ptank.type
 		flamethrower.pressure_1 = ptank.air_contents.return_pressure()
+		flamethrower.fueltank += 1.00
 
 /obj/item/weapon/storage/backpack/flammenwerfer/attack_hand(mob/user as mob)
 	if (loc == user)

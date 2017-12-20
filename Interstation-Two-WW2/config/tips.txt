@@ -2,7 +2,7 @@ Drag yourself to a ladder to look up or down it.
 The artillery sprite only faces one way right now, but it fires in any direction.
 Soviets can eat mice when they run out of food. To butcher a dead mouse, use a knife or sharp weapon on it.
 Cannibalism is a feature, but eating other people makes you valid.
-Every round has a 'unique' aspect that gives one or both factions an advantage.
+Every round has a unique aspect that gives one or both factions an advantage.
 Squad Leaders are allowed to shoot men who disobey their orders, and a Commander can shoot anyone for insubordination.
 Repair tanks with a wrench or welding tool. Wrenches can repair more serious damage, but repair less than welding tools. Welding tools can only repair a tank that's at at least 50% of its maximum health.
 The Zavhoz gets a supply lift that leads to a backup armory.

@@ -302,7 +302,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			return list2params(list(branch = revdata.branch, date = revdata.date, revision = revdata.revision))
 		else
 			return "unknown"*/
-
+/*
 	else if(copytext(T,1,5) == "info")
 		var/input[] = params2list(T)
 		if(input["key"] != config.comms_password)
@@ -379,7 +379,8 @@ var/world_topic_spam_protect_time = world.timeofday
 			for(var/mob/M in match)
 				ret[M.key] = M.name
 			return list2params(ret)
-
+*/
+/*
 	else if(copytext(T,1,9) == "adminmsg")
 		/*
 			We got an adminmsg from IRC bot lets split the input then validate the input.
@@ -475,7 +476,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				return "Ckey not found"
 		else
 			return "Database connection failed or not set up"
-
+*/
 
 /world/Reboot(var/reason)
 

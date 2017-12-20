@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/launcher/rocket
 	name = "rocket launcher"
-	desc = "MAGGOT."
+	desc = ""
 	icon_state = "rocket"
 	item_state = "rocket"
 	w_class = 4.0
