@@ -1042,10 +1042,11 @@ var/global/list/fallschirm_landmarks = list()
 		if(!H)	return null
 
 		var/datum/job/job = GetJob(rank)
-		var/list/spawn_in_storage = list()
+	//	var/list/spawn_in_storage = list()
 
 		if(job)
 			// Equip custom gear loadout.
+			/*
 			var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
 			var/list/custom_equip_leftovers = list()
 			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Cyborg" && job.title != "AI")
@@ -1076,7 +1077,7 @@ var/global/list/fallschirm_landmarks = list()
 							else
 								custom_equip_leftovers.Add(thing)
 						else
-							spawn_in_storage += thing
+							spawn_in_storage += thing*/
 			//Equip job items.
 
 			job.equip(H)
@@ -1112,7 +1113,7 @@ var/global/list/fallschirm_landmarks = list()
 					++geforce_count
 
 			//If some custom items could not be equipped before, try again now.
-			for(var/thing in custom_equip_leftovers)
+			/*for(var/thing in custom_equip_leftovers)
 				var/datum/gear/G = gear_datums[thing]
 				if(G.slot in custom_equip_slots)
 					spawn_in_storage += thing
@@ -1122,7 +1123,7 @@ var/global/list/fallschirm_landmarks = list()
 						custom_equip_slots.Add(G.slot)
 					else
 						spawn_in_storage += thing
-
+*/
 			job.assign_faction(H)
 
 			if (!game_started)
@@ -1246,6 +1247,7 @@ var/global/list/fallschirm_landmarks = list()
 				alt_title = H.mind.role_alt_title
 
 				//Deferred item spawning.
+				/*
 				if(spawn_in_storage && spawn_in_storage.len)
 					var/obj/item/weapon/storage/B
 					for(var/obj/item/weapon/storage/S in H.contents)
@@ -1259,7 +1261,7 @@ var/global/list/fallschirm_landmarks = list()
 							new G.path(B)
 					else
 						H << "\red Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug."
-
+*/
 			if(istype(H)) //give humans wheelchairs, if they need them.
 				var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
 				var/obj/item/organ/external/r_foot = H.get_organ("r_foot")

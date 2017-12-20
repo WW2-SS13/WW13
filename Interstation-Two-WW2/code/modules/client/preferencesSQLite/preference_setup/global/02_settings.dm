@@ -1,23 +1,19 @@
-/datum/preferences
-	var/preferences_enabled = list()
-	var/preferences_disabled = list()
-
 /datum/category_item/player_setup_item/player_global/settings
 	name = "Settings"
 	sort_order = 2
-
-/datum/category_item/player_setup_item/player_global/settings/load_preferences(var/savefile/S)
+/*
+/datum/category_item/player_setup_item/player_global/settings/load_preferences()
 	S["lastchangelog"]        >> pref.lastchangelog
 	S["default_slot"]	      >> pref.default_slot
 	S["preferences"]          >> pref.preferences_enabled
 	S["preferences_disabled"] >> pref.preferences_disabled
 
-/datum/category_item/player_setup_item/player_global/settings/save_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/settings/save_preferences()
 	S["lastchangelog"]        << pref.lastchangelog
 	S["default_slot"]         << pref.default_slot
 	S["preferences"]          << pref.preferences_enabled
 	S["preferences_disabled"] << pref.preferences_disabled
-
+*/
 /datum/category_item/player_setup_item/player_global/settings/sanitize_preferences()
 	// Ensure our preferences are lists.
 	if(!istype(pref.preferences_enabled, /list))
@@ -46,8 +42,8 @@
 		if(!(key in client_preference_keys))
 			pref.preferences_disabled -= key
 
-	pref.lastchangelog	= sanitize_text(pref.lastchangelog, initial(pref.lastchangelog))
-	pref.default_slot	= sanitize_integer(pref.default_slot, 1, config.character_slots, initial(pref.default_slot))
+//	pref.lastchangelog	= sanitize_text(pref.lastchangelog, initial(pref.lastchangelog))
+//	pref.default_slot	= sanitize_integer(pref.default_slot, 1, config.character_slots, initial(pref.default_slot))
 
 /datum/category_item/player_setup_item/player_global/settings/content(var/mob/user)
 	. = list()
@@ -79,48 +75,3 @@
 		return TOPIC_REFRESH
 
 	return ..()
-
-/client/proc/is_preference_enabled(var/preference)
-	if(ispath(preference))
-		var/datum/client_preference/cp = get_client_preference_by_type(preference)
-		preference = cp.key
-
-	return (preference in prefs.preferences_enabled)
-
-/client/proc/set_preference(var/preference, var/set_preference)
-	var/datum/client_preference/cp
-	if(ispath(preference))
-		cp = get_client_preference_by_type(preference)
-	else
-		cp = get_client_preference_by_key(preference)
-
-	if(!cp)
-		return FALSE
-
-	var/enabled
-	if(set_preference && !(preference in prefs.preferences_enabled))
-		prefs.preferences_enabled  += preference
-		prefs.preferences_disabled -= preference
-		enabled = TRUE
-		. = TRUE
-	else if(!set_preference && (preference in prefs.preferences_enabled))
-		prefs.preferences_enabled  -= preference
-		prefs.preferences_disabled |= preference
-		enabled = FALSE
-		. = TRUE
-	if(.)
-		cp.toggled(mob, enabled)
-
-/mob/proc/is_preference_enabled(var/preference)
-	if(!client)
-		return FALSE
-	return client.is_preference_enabled(preference)
-
-/mob/proc/set_preference(var/preference, var/set_preference)
-	if(!client)
-		return FALSE
-	if(!client.prefs)
-		log_debug("Client prefs found to be null for mob [src] and client [ckey], this should be investigated.")
-		return FALSE
-
-	return client.set_preference(preference, set_preference)

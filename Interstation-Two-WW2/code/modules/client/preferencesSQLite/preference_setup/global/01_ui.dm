@@ -1,19 +1,19 @@
 /datum/category_item/player_setup_item/player_global/ui
 	name = "UI"
 	sort_order = 1
-
-/datum/category_item/player_setup_item/player_global/ui/load_preferences(var/savefile/S)
+/*
+/datum/category_item/player_setup_item/player_global/ui/load_preferences()
 	S["UI_style"]		>> pref.UI_style
 	S["UI_style_color"]	>> pref.UI_style_color
 	S["UI_style_alpha"]	>> pref.UI_style_alpha
 	S["ooccolor"]		>> pref.ooccolor
 
-/datum/category_item/player_setup_item/player_global/ui/save_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/ui/save_preferences()
 	S["UI_style"]		<< pref.UI_style
 	S["UI_style_color"]	<< pref.UI_style_color
 	S["UI_style_alpha"]	<< pref.UI_style_alpha
 	S["ooccolor"]		<< pref.ooccolor
-
+*/
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
 	pref.UI_style		= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
 	pref.UI_style_color	= sanitize_hexcolor(pref.UI_style_color, initial(pref.UI_style_color))

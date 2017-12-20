@@ -9,8 +9,8 @@ datum/preferences
 datum/preferences/proc/set_biological_gender(var/set_gender)
 	gender = set_gender
 	identifying_gender = set_gender
-
-/datum/category_item/player_setup_item/general/basic/load_character(var/savefile/S)
+/*
+/datum/category_item/player_setup_item/general/basic/load_character()
 	// real names
 	S["real_name"]				>> pref.real_name
 	S["name_is_always_random"]	>> pref.be_random_name
@@ -47,7 +47,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	S["spawnpoint"]				>> pref.spawnpoint
 	S["OOC_Notes"]				>> pref.metadata
 
-/datum/category_item/player_setup_item/general/basic/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/general/basic/save_character()
 	// real names
 	S["real_name"]				<< pref.real_name
 	S["name_is_always_random"]	<< pref.be_random_name
@@ -82,16 +82,17 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	S["age"]					<< pref.age
 	S["spawnpoint"]				<< pref.spawnpoint
 	S["OOC_Notes"]				<< pref.metadata
-
+*/
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
+
 	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
 	pref.age			= sanitize_integer(pref.age, S.min_age, S.max_age, initial(pref.age))
 	pref.gender 		= sanitize_inlist(pref.gender, valid_player_genders, pick(valid_player_genders))
 	pref.german_gender 		= sanitize_inlist(pref.german_gender, valid_player_genders, pick(valid_player_genders))
 	pref.russian_gender 		= sanitize_inlist(pref.russian_gender, valid_player_genders, pick(valid_player_genders))
 	pref.ukrainian_gender 		= sanitize_inlist(pref.ukrainian_gender, valid_player_genders, pick(valid_player_genders))
-	pref.be_jew 		= sanitize_inlist(pref.be_jew, list(0,1), pick(list(0,1)))
-	pref.be_spy 		= sanitize_inlist(pref.be_spy, list(0,1), pick(list(0,1)))
+//	pref.be_jew 		= sanitize_inlist(pref.be_jew, list(0,1), pick(list(0,1)))
+//	pref.be_spy 		= sanitize_inlist(pref.be_spy, list(0,1), pick(list(0,1)))
 	pref.body_build 	= sanitize_inlist(pref.body_build, list("Slim", "Default", "Fat"), "Default")
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.gender
 	pref.real_name		= sanitize_name(pref.real_name, pref.species)
@@ -116,7 +117,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	/*										*/
 
-	pref.spawnpoint		= sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
+//	pref.spawnpoint		= sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
 	pref.be_random_name	= sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 	pref.be_random_name_german	= sanitize_integer(pref.be_random_name_german, 0, 1, initial(pref.be_random_name_german))
 	pref.be_random_name_russian	= sanitize_integer(pref.be_random_name_russian, 0, 1, initial(pref.be_random_name_russian))
@@ -140,22 +141,25 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "<a href='?src=\ref[src];rename_russian=1'><b>[pref.russian_name]</b></a><br>"
 	. += "(<a href='?src=\ref[src];random_name_russian=1'>Random Name</A>) "
 	. += "(<a href='?src=\ref[src];always_random_name_russian=1'>Always Random Name: [pref.be_random_name_russian ? "Yes" : "No"]</a>)"
-	. += "<br>"
+	. += "<br><br>"
 	//ukrainian name
 	. += "<b>Ukrainian Name:</b> "
 	. += "<a href='?src=\ref[src];rename_ukrainian=1'><b>[pref.ukrainian_name]</b></a><br>"
 	. += "(<a href='?src=\ref[src];random_name_ukrainian=1'>Random Name</A>) "
 	. += "(<a href='?src=\ref[src];always_random_name_ukrainian=1'>Always Random Name: [pref.be_random_name_ukrainian ? "Yes" : "No"]</a>)"
-	. += "<br>"
+	. += "<br><br>"
 	//gender
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
+	. += "<br><br>"
 	. += "<b>German Gender:</b> <a href='?src=\ref[src];gender_german=1'><b>[capitalize(lowertext(pref.german_gender))]</b></a><br>"
+	. += "<br><br>"
 	. += "<b>Russian Gender:</b> <a href='?src=\ref[src];gender_russian=1'><b>[capitalize(lowertext(pref.russian_gender))]</b></a><br>"
+	. += "<br><br>"
 	. += "<b>Ukrainian Gender:</b> <a href='?src=\ref[src];gender_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_gender))]</b></a><br>"
-
+	. += "<br><br>"
 	//misc antag stuff
-	. += "<b>Be Jew:</b> <a href='?src=\ref[src];be_jew=1'><b>[capitalize(lowertext(pref.be_jew ? "Yes" : "No"))]</b></a><br>"
-	. += "<b>Be Spy:</b> <a href='?src=\ref[src];be_spy=1'><b>[capitalize(lowertext(pref.be_spy ? "Yes" : "No"))]</b></a><br>"
+//	. += "<b>Be Jew:</b> <a href='?src=\ref[src];be_jew=1'><b>[capitalize(lowertext(pref.be_jew ? "Yes" : "No"))]</b></a><br>"
+//	. += "<b>Be Spy:</b> <a href='?src=\ref[src];be_spy=1'><b>[capitalize(lowertext(pref.be_spy ? "Yes" : "No"))]</b></a><br>"
 
 	var/client/client = pref.client
 	// donor stuff
@@ -165,8 +169,6 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	//. += "<b>Body Shape:</b> <a href='?src=\ref[src];body_build=1'><b>[pref.body_build]</b></a><br>" No. No no no no no no.
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
-	if(config.allow_Metadata)
-		. += "<b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a><br>"
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
 
@@ -269,7 +271,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	else if(href_list["gender_ukrainian"])
 		pref.ukrainian_gender = next_in_list(pref.ukrainian_gender, valid_player_genders)
 		return TOPIC_REFRESH
-
+/*
 	else if(href_list["be_jew"])
 		pref.be_jew = next_in_list(pref.be_jew, list(0,1))
 		return TOPIC_REFRESH
@@ -277,7 +279,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	else if(href_list["be_spy"])
 		pref.be_spy = next_in_list(pref.be_spy, list(0,1))
 		return TOPIC_REFRESH
-
+**/
 
 	else if (href_list["role_preference_ger"])
 
@@ -352,11 +354,11 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 		if(new_age && CanUseTopic(user))
 			pref.age = max(min(round(text2num(new_age)), S.max_age), S.min_age)
 			return TOPIC_REFRESH
-
+/*
 	else if(href_list["metadata"])
 		var/new_metadata = sanitize(input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , pref.metadata)) as message|null
 		if(new_metadata && CanUseTopic(user))
 			pref.metadata = sanitize(new_metadata)
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH*/
 
 	return ..()

@@ -4,15 +4,15 @@
 /datum/category_item/player_setup_item/general/equipment
 	name = "Clothing"
 	sort_order = 4
-
-/datum/category_item/player_setup_item/general/equipment/load_character(var/savefile/S)
+/*
+/datum/category_item/player_setup_item/general/equipment/load_character()
 	S["all_underwear"] >> pref.all_underwear
 	S["backbag"]       >> pref.backbag
 
-/datum/category_item/player_setup_item/general/equipment/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/general/equipment/save_character()
 	S["all_underwear"] << pref.all_underwear
 	S["backbag"]       << pref.backbag
-
+*/
 /datum/category_item/player_setup_item/general/equipment/sanitize_character()
 	if(!istype(pref.all_underwear))
 		pref.all_underwear = list()

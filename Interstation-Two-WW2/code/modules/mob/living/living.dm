@@ -165,13 +165,6 @@ default behaviour is:
 		src << "\blue You have given up life and succumbed to death."
 
 
-/mob/living/proc/updatehealth()
-	if(status_flags & GODMODE)
-		health = 100
-		stat = CONSCIOUS
-	else
-		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
-
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
 /mob/living/proc/calculate_affecting_pressure(var/pressure)
@@ -442,22 +435,6 @@ default behaviour is:
 	return
 
 /mob/living/proc/UpdateDamageIcon()
-	return
-
-
-/mob/living/proc/Examine_OOC()
-	set name = "Examine Meta-Info (OOC)"
-	set category = "OOC"
-	set src in view()
-
-	if(config.allow_Metadata)
-		if(client)
-			usr << "[src]'s Metainfo:<br>[client.prefs.metadata]"
-		else
-			usr << "[src] does not have any stored infomation!"
-	else
-		usr << "OOC Metadata is not supported by this server!"
-
 	return
 
 /mob/living/Move(a, b, flag)

@@ -2,11 +2,7 @@
 
 var/list/preferences_datums = list()
 
-datum/preferences
-	//doohickeys for savefiles
-	var/path
-	var/default_slot = 1				//Holder so it doesn't default to slot 1, rather the last one used
-	var/savefile_version = 0
+/datum/preferences
 
 	//non-preference stuff
 	var/warns = 0
@@ -15,7 +11,6 @@ datum/preferences
 	var/last_id
 
 	//game-preferences
-	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
 	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/list/be_special_role = list()		//Special role selection
 	var/UI_style = "ErisStyleHolo"
@@ -38,7 +33,7 @@ datum/preferences
 	var/ukrainian_gender = MALE // civs
 	var/body_build = "Default"			//character body build name
 	var/age = 30						//age of character
-	var/spawnpoint = "Cryogenic Storage"//where this character will spawn (0-2).
+//	var/spawnpoint = "Cryogenic Storage"//where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/backbag = 2						//backpack type
 	var/h_style = "Bald"				//Hair type
@@ -70,97 +65,19 @@ datum/preferences
 	var/species_preview                 //Used for the species selection window.
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Kanguage prefix keys
-	var/list/gear						//Custom/fluff item loadout.
-
 
 		//Some faction information.
 	var/religion = "None"               //Religious association.
 
-	var/be_spy = 0
-	var/be_jew = 0
+//	var/be_spy = 0
+//	var/be_jew = 0
 
- // TODO?
-/*
-// preferences refactor: 1 preference per faction: german/russian right now
-	var/real_name_german						//our character's name
-	var/be_random_name_german = 0				//whether we are a random name every round
-	var/gender_german = MALE					//gender of character (well duh)
-	var/body_build_german = "Default"			//character body build name
-	var/age_german = 30						//age of character
-	var/spawnpoint_german = "Cryogenic Storage"//where this character will spawn (0-2).
-	var/b_type_german = "A+"					//blood type (not-chooseable)
-	var/backbag_german = 2						//backpack type
-	var/h_style_german = "Bald"				//Hair type
-	var/r_hair_german = 0						//Hair color
-	var/g_hair_german = 0						//Hair color
-	var/b_hair_german = 0						//Hair color
-	var/f_style_german = "Shaved"				//Face hair type
-	var/r_facial_german = 0					//Face hair color
-	var/g_facial_german = 0					//Face hair color
-	var/b_facial_german = 0					//Face hair color
-	var/s_tone_german = 0						//Skin tone
-	var/r_skin_german = 0						//Skin color
-	var/g_skin_german = 0						//Skin color
-	var/b_skin_german = 0						//Skin color
-	var/r_eyes_german = 0						//Eye color
-	var/g_eyes_german = 0						//Eye color
-	var/b_eyes_german = 0						//Eye color
-	var/species_german = "Human"               //Species datum to use.
-	var/species_preview_german                 //Used for the species selection window.
-	var/list/alternate_languages_german = list() //Secondary language(s)
-	var/list/language_prefixes_german = list() //Kanguage prefix keys
-	var/list/gear_german						//Custom/fluff item loadout.
-	var/religion_german = "None"               //Religious association.
-
-	var/real_name_russian						//our character's name
-	var/be_random_name_russian = 0				//whether we are a random name every round
-	var/gender_russian = MALE					//gender of character (well duh)
-	var/body_build_russian = "Default"			//character body build name
-	var/age_russian = 30						//age of character
-	var/spawnpoint_russian = "Cryogenic Storage"//where this character will spawn (0-2).
-	var/b_type_russian = "A+"					//blood type (not-chooseable)
-	var/backbag_russian = 2						//backpack type
-	var/h_style_russian = "Bald"				//Hair type
-	var/r_hair_russian = 0						//Hair color
-	var/g_hair_russian = 0						//Hair color
-	var/b_hair_russian = 0						//Hair color
-	var/f_style_russian = "Shaved"				//Face hair type
-	var/r_facial_russian = 0					//Face hair color
-	var/g_facial_russian = 0					//Face hair color
-	var/b_facial_russian = 0					//Face hair color
-	var/s_tone_russian = 0						//Skin tone
-	var/r_skin_russian = 0						//Skin color
-	var/g_skin_russian = 0						//Skin color
-	var/b_skin_russian = 0						//Skin color
-	var/r_eyes_russian = 0						//Eye color
-	var/g_eyes_russian = 0						//Eye color
-	var/b_eyes_russian = 0						//Eye color
-	var/species_russian = "Human"               //Species datum to use.
-	var/species_preview_russian                 //Used for the species selection window.
-	var/list/alternate_languages_russian = list() //Secondary language(s)
-	var/list/language_prefixes_russian = list() //Kanguage prefix keys
-	var/list/gear_russian						//Custom/fluff item loadout.
-	var/religion_russian = "None"               //Religious association.
-*/
-		//Mob preview
+	//Mob preview
 	var/icon/preview_icon = null
 	var/icon/preview_icon_front = null
 	var/icon/preview_icon_side = null
 
 	var/high_job_title = ""
-
-		//Jobs, uses bitflags
-	var/job_civilian_high = 0
-	var/job_civilian_med = 0
-	var/job_civilian_low = 0
-
-	var/job_medsci_high = 0
-	var/job_medsci_med = 0
-	var/job_medsci_low = 0
-
-	var/job_engsec_high = 0
-	var/job_engsec_med = 0
-	var/job_engsec_low = 0
 
 	//Keeps track of preferrence for not getting any wanted jobs
 	var/alternate_option = 0
@@ -171,29 +88,39 @@ datum/preferences
 	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
 
-	var/flavor_text = ""
-	var/list/flavour_texts_robot = list()
-
+//	var/flavor_text = ""
+//	var/list/flavour_texts_robot = list()
+/*
 	var/med_record = ""
 	var/sec_record = ""
 	var/gen_record = ""
-	var/exploit_record = ""
+	var/exploit_record = ""*/
 	var/disabilities = 0
 
-	var/uplinklocation = "PDA"
+//	var/uplinklocation = "PDA"
 
 	// OOC Metadata:
-	var/metadata = ""
-
+//	var/metadata = ""
 	var/client/client = null
 	var/client_ckey = null
+	var/client_isguest = 0
 
-	var/savefile/loaded_preferences
-	var/savefile/loaded_character
+	// for debugging purposes
+	var/list/internal_table = list()
+
+//	var/savefile/loaded_preferences
+//	var/savefile/loaded_character
 	var/datum/category_collection/player_setup_collection/player_setup
 
 	var/current_character_type = "N/A"
 
+	var/current_slot = 1
+
+	var/list/preferences_enabled = list("SOUND_MIDI", "SOUND_LOBBY", "SOUND_AMBIENCE",
+		"CHAT_GHOSTEARS", "CHAT_GHOSTSIGHT", "CHAT_GHOSTRADIO", "CHAT_SHOWICONS",
+		"SHOW_TYPING", "CHAT_OOC", "CHAT_LOOC", "CHAT_DEAD", "SHOW_PROGRESS",
+		"CHAT_ATTACKLOGS", "CHAT_DEBUGLOGS", "CHAT_PRAYER", "SOUND_ADMINHELP")
+	var/list/preferences_disabled = list()
 
 /datum/preferences/New(client/C)
 
@@ -206,21 +133,23 @@ datum/preferences
 
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
-	gear = list()
-
 	if(istype(C))
 		client = C
 		client_ckey = C.ckey
-		if(!IsGuestKey(C.key))
-			load_path(C.ckey)
-			load_preferences()
-			load_and_update_character()
+		if (IsGuestKey(client_ckey))
+			client_isguest = 1
 
-/datum/preferences/proc/load_and_update_character(var/slot)
-	load_character(slot)
-	if(update_setup(loaded_preferences, loaded_character))
-		save_preferences()
-		save_character()
+		// load our first slot, if we have one
+		if (preferences_exist(1))
+			load_preferences(1)
+		// otherwise, keep using our default values
+
+/datum/preferences/Del()
+	save_preferences(current_slot)
+	..()
+
+/datum/preferences/proc/update_setup()
+	player_setup.update_setup()
 
 /datum/preferences/proc/ShowChoices(mob/user)
 	if(!user || !user.client)	return
@@ -232,12 +161,12 @@ datum/preferences
 
 	var/dat = "<html><body><center>"
 
-	if(path)
-		dat += "Slot - "
-		dat += "<a href='?src=\ref[src];load=1'>Load slot</a> - "
-		dat += "<a href='?src=\ref[src];save=1'>Save slot</a> - "
-		dat += "<a href='?src=\ref[src];reload=1'>Reload slot</a>"
-
+	if(!IsGuestKey(user.key))
+		//dat += "<a href='?src=\ref[src];resetvars=1'>Reset Preferences</a> - "
+		dat += "<a href='?src=\ref[src];savetonewslot=1'>Save to New Slot</a> - "
+		dat += "<a href='?src=\ref[src];load=1'>Load Slot</a> - "
+		dat += "<a href='?src=\ref[src];save=1'>Save Slot</a> - "
+		dat += "<a href='?src=\ref[src];reload=1'>Reload Slot</a>"
 	else
 		dat += "Please create an account to save your preferences."
 
@@ -268,17 +197,58 @@ datum/preferences
 		return 1
 
 	if(href_list["save"])
-		save_preferences()
-		save_character()
+		if (current_slot == 0)
+			open_save_dialog(usr)
+		else
+			if (save_preferences(current_slot))
+				usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot].</span>"
+			else
+				usr << "<span class = 'bad'>FAILED to save current preferences to slot #[current_slot].</span>"
+
+	else if (href_list["savetoslot"])
+		current_slot = text2num(href_list["savetoslot"])
+		if (save_preferences(current_slot))
+			usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot].</span>"
+			close_save_dialog(usr)
+		else
+			usr << "<span class = 'bad'>FAILED to save current preferences to slot #[current_slot].</span>"
+
 	else if(href_list["reload"])
-		load_preferences()
-		load_character()
+		if (current_slot != 0)
+			if (load_preferences(current_slot))
+				usr << "<span class = 'good'>Successfully reloaded current preferences (slot #[current_slot]).</span>"
+			else
+				usr << "<span class = 'bad'>FAILED to reload current preferences (slot #[current_slot]).</span>"
+
 	else if(href_list["load"])
 		if(!IsGuestKey(usr.key))
 			open_load_dialog(usr)
 			return 1
+
+	else if (href_list["savetonewslot"])
+		current_slot = 0
+		usr << "<span class = 'notice'>Now saving to a new slot.</span>"
+/* WIP
+	else if (href_list["resetvars"])
+		var/forbidden_vars = list("client_ckey", "last_id", "type")
+		for (var/varname in vars)
+			var/variable = vars[varname]
+			if (isdatum(variable) || isclient(variable))
+				continue // prevent infinite loops on VV
+			if (islist(variable)) // todo
+				continue
+			if (forbidden_vars.Find(varname))
+				continue
+			vars[varname] = initial(varname)
+		usr << "<span class = 'notice'>Successfully reset preferences to default!</span>"
+		update_setup()
+*/
 	else if(href_list["changeslot"])
-		load_character(text2num(href_list["changeslot"]))
+		current_slot = text2num(href_list["changeslot"])
+		if (load_preferences(current_slot))
+			usr << "<span class = 'good'>Successfully loaded current preferences for slot #[current_slot].</span>"
+		else
+			usr << "<span class = 'bad'>FAILED to load preferences for slot #[current_slot].</span>"
 		close_load_dialog(usr)
 	else
 		return 0
@@ -305,15 +275,15 @@ datum/preferences
 	if(character.dna)
 		character.dna.real_name = character.real_name
 
-	character.flavor_text = flavor_text
+//	character.flavor_text = flavor_text
 
 	character.body_build = get_body_build(gender, body_build)
-
+/*
 	character.med_record = med_record
 	character.sec_record = sec_record
 	character.gen_record = gen_record
 	character.exploit_record = exploit_record
-
+*/
 	character.gender = gender
 	character.age = age
 	character.b_type = b_type
@@ -451,21 +421,82 @@ datum/preferences
 	var/dat = "<body>"
 	dat += "<tt><center>"
 
-	var/savefile/S = new /savefile(path)
-	if(S)
-		dat += "<b>Select a character slot to load</b><hr>"
-		var/name
-		for(var/i=1, i<= config.character_slots, i++)
-			S.cd = "/character[i]"
-			S["real_name"] >> name
-			if(!name)	name = "Character[i]"
-			if(i==default_slot)
-				name = "<b>[name]</b>"
-			dat += "<a href='?src=\ref[src];changeslot=[i]'>[name]</a><br>"
+	dat += "<b>Select a character slot to load</b><hr>"
+	for (var/i in 1 to config.character_slots)
+		if (preferences_exist(i))
+			dat += "<a href='?src=\ref[src];changeslot=[i]'>[i]. [get_DB_preference_value("real_name", i)]</a><br>"
+		else
+			dat += "<a href='?src=\ref[src];changeslot=[i]'>[i]. Empty Slot</a><br>"
 
 	dat += "<hr>"
 	dat += "</center></tt>"
-	user << browse(dat, "window=saves;size=300x390")
+	user << browse(dat, "window=load_dialog;size=300x390")
 
 /datum/preferences/proc/close_load_dialog(mob/user)
-	user << browse(null, "window=saves")
+	user << browse(null, "window=load_dialog")
+
+// save
+
+/datum/preferences/proc/open_save_dialog(mob/user)
+	var/dat = "<body>"
+	dat += "<tt><center>"
+
+	dat += "<b>Select a character slot to save to</b><hr>"
+	for (var/i in 1 to config.character_slots)
+		if (preferences_exist(i))
+			dat += "<a href='?src=\ref[src];savetoslot=[i]'>[i]. [get_DB_preference_value("real_name", i)]</a><br>"
+		else
+			dat += "<a href='?src=\ref[src];savetoslot=[i]'>[i]. Empty Slot</a><br>"
+
+	dat += "<hr>"
+	dat += "</center></tt>"
+	user << browse(dat, "window=save_dialog;size=300x390")
+
+/datum/preferences/proc/close_save_dialog(mob/user)
+	user << browse(null, "window=save_dialog")
+
+/client/proc/is_preference_enabled(var/preference)
+
+	if(ispath(preference))
+		var/datum/client_preference/cp = get_client_preference_by_type(preference)
+		preference = cp.key
+
+	return (preference in prefs.preferences_enabled)
+
+/client/proc/set_preference(var/preference, var/set_preference)
+	var/datum/client_preference/cp
+	if(ispath(preference))
+		cp = get_client_preference_by_type(preference)
+	else
+		cp = get_client_preference_by_key(preference)
+
+	if(!cp)
+		return FALSE
+
+	var/enabled
+	if(set_preference && !(preference in prefs.preferences_enabled))
+		prefs.preferences_enabled  += preference
+		prefs.preferences_disabled -= preference
+		enabled = TRUE
+		. = TRUE
+	else if(!set_preference && (preference in prefs.preferences_enabled))
+		prefs.preferences_enabled  -= preference
+		prefs.preferences_disabled |= preference
+		enabled = FALSE
+		. = TRUE
+	if(.)
+		cp.toggled(mob, enabled)
+
+/mob/proc/is_preference_enabled(var/preference)
+	if(!client)
+		return FALSE
+	return client.is_preference_enabled(preference)
+
+/mob/proc/set_preference(var/preference, var/set_preference)
+	if(!client)
+		return FALSE
+	if(!client.prefs)
+		log_debug("Client prefs found to be null for mob [src] and client [ckey], this should be investigated.")
+		return FALSE
+
+	return client.set_preference(preference, set_preference)

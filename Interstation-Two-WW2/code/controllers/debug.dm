@@ -8,9 +8,9 @@
 		usr.client.debug_variables(antag)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 
-/client/proc/debug_controller(controller in list("processScheduler", "World", "Master","Ticker","Ticker Process","Jobs","Configuration","Nano","Chemistry","Observation","Primary German Train", "German Supply Train", "Russian Supply Lift", "Whitelists", "Game Schedule"))
+/client/proc/debug_controller(controller in list("processScheduler", "World", "Master","Ticker","Ticker Process","Jobs","Mob","Obj","Configuration","Nano","Chemistry","Observation","Primary German Train", "German Supply Train", "Russian Supply Lift", "Whitelists", "Game Schedule"))
 	set category = "Debug"
-	set name = "Debug Controller"
+	set name = "Debug Controller/GlobalObjects"
 	set desc = "Debug various objects and loops for the game (be careful!)"
 
 	if(!holder)	return
@@ -33,6 +33,12 @@
 
 		if("Jobs")
 			debug_variables(job_master)
+
+		if ("Mob")
+			debug_variables(mob_process)
+
+		if ("Obj")
+			debug_variables(obj_process)
 
 		if("Configuration")
 			debug_variables(config)

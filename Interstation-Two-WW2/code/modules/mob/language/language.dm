@@ -207,7 +207,7 @@
 				var/mob/living/carbon/human/H = src
 				if (H.species)
 					if (H.client.prefs.be_random_name_german)
-						H.real_name = H.species.get_random_german_name(H.gender, H.client.prefs.be_jew)
+						H.real_name = H.species.get_random_german_name(H.gender, 0)
 					else
 						H.real_name = H.client.prefs.german_name
 					H.name = H.client.prefs.real_name
@@ -219,7 +219,7 @@
 				var/mob/living/carbon/human/H = src
 				if (H.species)
 					if (H.client.prefs.be_random_name_russian)
-						H.real_name = H.species.get_random_russian_name(H.gender, H.client.prefs.be_jew)
+						H.real_name = H.species.get_random_russian_name(H.gender, 0)
 					else
 						H.real_name = H.client.prefs.russian_name
 					H.name = H.real_name
@@ -230,7 +230,7 @@
 				var/mob/living/carbon/human/H = src
 				if (H.species)
 					if (H.client.prefs.be_random_name_ukrainian)
-						H.real_name = H.species.get_random_ukrainian_name(H.gender, H.client.prefs.be_jew)
+						H.real_name = H.species.get_random_ukrainian_name(H.gender, 0)
 					else
 						H.real_name = H.client.prefs.ukrainian_name
 					H.name = H.real_name

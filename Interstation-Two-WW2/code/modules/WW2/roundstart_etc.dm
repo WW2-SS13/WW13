@@ -52,6 +52,12 @@ var/GRACE_PERIOD_LENGTH = 7
 // this is roundstart because we need to wait for objs to be created
 /hook/roundstart/proc/nature()
 
+	var/nature_chance = 100
+
+	var/datum/game_mode/ww2/mode = ticker.mode
+	if (mode.season == "WINTER")
+		nature_chance = 70
+
 	// create wild grasses in "clumps"
 	world << "<span class = 'notice'>Setting up wild grasses.</span>"
 
@@ -59,7 +65,8 @@ var/GRACE_PERIOD_LENGTH = 7
 		if (!G || G.z > 1)
 			continue
 
-		G.plant()
+		if (prob(nature_chance))
+			G.plant()
 
 	do_seasonal_stuff()
 

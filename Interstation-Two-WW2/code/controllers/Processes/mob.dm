@@ -1,3 +1,5 @@
+var/datum/controller/process/mob/mob_process = null
+
 /datum/controller/process/mob
 	var/tmp/datum/updateQueue/updateQueueInstance
 
@@ -5,6 +7,7 @@
 	name = "mob"
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 16
+	mob_process = src
 
 /datum/controller/process/mob/started()
 	..()

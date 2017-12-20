@@ -2,7 +2,7 @@
 
 /datum/controller/process/weather
 	var/mod_weather_interval = 5000
-	var/change_weather_interval = 18000
+	var/change_weather_interval = 10000
 
 	var/minimum_mod_weather_delay = 1000
 	var/minimum_change_weather_delay = 1000
@@ -28,8 +28,8 @@
 
 	process_weather()
 
-	var/prob_of_weather_mod = (((1/mod_weather_interval) * 10) * 2) * 100
-	var/prob_of_weather_change = (((1/change_weather_interval) * 10) * 2) * 100
+	var/prob_of_weather_mod = (((1/mod_weather_interval) * 10) / 2) * 100
+	var/prob_of_weather_change = (((1/change_weather_interval) / 10) * 2) * 100
 
 //	world << "prob. of weather mod: [prob_of_weather_mod]"
 //	world << "prob. of weather change: [prob_of_weather_change]"

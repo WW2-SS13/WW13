@@ -26,12 +26,14 @@
 		data[newdata[i]] += newdata[newdata[i]]
 	var/totalFlavor = 0
 	for(var/i in 1 to data.len)
-		totalFlavor += data[data[i]]
+		if (data[i])
+			totalFlavor += data[data[i]]
 	for(var/i in 1 to data.len) //cull the tasteless
-		if(data[data[i]]/totalFlavor * 100 < 10)
-			data[data[i]] = null
-			data -= data[i]
-			data -= null
+		if (data[i])
+			if(data[data[i]]/totalFlavor * 100 < 10)
+				data[data[i]] = null
+				data -= data[i]
+				data -= null
 
 /datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(!injectable)
@@ -499,6 +501,10 @@
 	..()
 	M.heal_organ_damage(0.5 * removed, 0)
 	holder.remove_reagent("capsaicin", 10 * removed)
+
+	if (M.water < 0)
+		M.water += rand(20,30)
+	M.water += removed * 10
 
 /datum/reagent/drink/milk/cream
 	name = "Cream"

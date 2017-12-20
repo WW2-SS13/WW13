@@ -221,7 +221,9 @@
 				actual_job = j
 				break
 
-		if (actual_job.base_type_flag() == GERMAN || actual_job.base_type_flag() == RUSSIAN)
+		var/job_flag = actual_job.base_type_flag()
+
+		if (job_flag == GERMAN || job_flag == RUSSIAN)
 			// we're only accepting squad leaders right now
 			if (!job_master.squad_leader_check(src, actual_job))
 				return
@@ -229,7 +231,7 @@
 			if (!job_master.squad_member_check(src, actual_job))
 				return
 
-		if (actual_job.base_type_flag() == GERMAN)
+		if (job_flag == GERMAN)
 			if (client.prefs.s_tone < -30 && !client.untermensch)
 				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
 				return
@@ -239,6 +241,13 @@
 			return
 		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
+			return
+
+		if (job_flag == GERMAN && has_occupied_base(GERMAN))
+			usr << "<span class='danger'>The Russians are currently occupying your base! You can't be deployed right now."
+			return
+		else if (job_flag == RUSSIAN && has_occupied_base(RUSSIAN))
+			usr << "<span class='danger'>The Germans are currently occupying your base! You can't be deployed right now."
 			return
 
 		var/datum/species/S = all_species[client.prefs.species]

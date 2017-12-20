@@ -573,64 +573,64 @@ macro "hotkeymode"
 
 macro "borgmacro"
 	elem 
-		name = "TAB"
+		name = "Tab"
 		command = ".winset \"mainwindow.macro=borghotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#F0F0F0\""
 	elem 
-		name = "CENTER+REP"
+		name = "Center+REP"
 		command = ".center"
 	elem 
-		name = "NORTHEAST"
+		name = "Northeast"
 		command = ".northeast"
 	elem 
-		name = "SOUTHEAST"
+		name = "Southeast"
 		command = ".southeast"
 	elem 
-		name = "SOUTHWEST"
+		name = "Southwest"
 		command = ".southwest"
 	elem 
-		name = "NORTHWEST"
+		name = "Northwest"
 		command = ".northwest"
 	elem 
-		name = "ALT+WEST"
+		name = "ALT+West"
 		command = "westfaceperm"
 	elem 
-		name = "CTRL+WEST"
+		name = "CTRL+West"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
+		name = "West+REP"
 		command = ".moveleft"
 	elem 
-		name = "ALT+NORTH"
+		name = "ALT+North"
 		command = "northfaceperm"
 	elem 
-		name = "CTRL+NORTH"
+		name = "CTRL+North"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
+		name = "North+REP"
 		command = ".moveup"
 	elem 
-		name = "ALT+EAST"
+		name = "ALT+East"
 		command = "eastfaceperm"
 	elem 
-		name = "CTRL+EAST"
+		name = "CTRL+East"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
+		name = "East+REP"
 		command = ".moveright"
 	elem 
-		name = "ALT+SOUTH"
+		name = "ALT+South"
 		command = "southfaceperm"
 	elem 
-		name = "CTRL+SOUTH"
+		name = "CTRL+South"
 		command = "southface"
 	elem 
-		name = "SOUTH+REP"
+		name = "South+REP"
 		command = ".movedown"
 	elem 
-		name = "INSERT"
+		name = "Insert"
 		command = "a-intent right"
 	elem 
-		name = "DELETE"
+		name = "Delete"
 		command = "delete-key-pressed"
 	elem 
 		name = "CTRL+1"
@@ -1015,6 +1015,7 @@ window "mainwindow"
 		size = 640x440
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Space Station 13"
@@ -1027,6 +1028,7 @@ window "mainwindow"
 		size = 80x20
 		anchor1 = 100,100
 		anchor2 = none
+		background-color = none
 		saved-params = ""
 		text = "Hotkey Toggle"
 		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true : mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
@@ -1037,6 +1039,7 @@ window "mainwindow"
 		size = 634x416
 		anchor1 = 0,0
 		anchor2 = 100,100
+		background-color = none
 		saved-params = "splitter"
 		right = "rpane"
 		is-vert = true
@@ -1056,6 +1059,7 @@ window "mainwindow"
 		size = 40x20
 		anchor1 = 100,100
 		anchor2 = none
+		background-color = none
 		saved-params = "is-checked"
 		text = "Chat"
 		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
@@ -1068,6 +1072,7 @@ window "mapwindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1095,6 +1100,7 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1121,7 +1127,6 @@ window "rpane"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1135,7 +1140,6 @@ window "rpane"
 		size = 654x904
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = none
 		saved-params = "splitter"
 		right = "outputwindow"
 		is-vert = false
@@ -1146,7 +1150,6 @@ window "rpane"
 		anchor1 = 83,0
 		anchor2 = 100,3
 		text-color = #ff0000
-		background-color = none
 		saved-params = "is-checked"
 		text = "Make A Suggestion"
 		command = "makeasugg"
@@ -1158,7 +1161,6 @@ window "rpane"
 		anchor1 = 65,0
 		anchor2 = 82,3
 		text-color = #ff0000
-		background-color = none
 		saved-params = "is-checked"
 		text = "Report A Bug"
 		command = "reportabug"
@@ -1169,7 +1171,6 @@ window "rpane"
 		size = 60x16
 		anchor1 = 43,0
 		anchor2 = 53,3
-		background-color = none
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
@@ -1180,7 +1181,6 @@ window "rpane"
 		size = 67x16
 		anchor1 = 53,0
 		anchor2 = 64,3
-		background-color = none
 		saved-params = "is-checked"
 		text = "Discord"
 		command = "discord"
@@ -1191,7 +1191,6 @@ window "rpane"
 		size = 60x16
 		anchor1 = 34,0
 		anchor2 = 43,3
-		background-color = none
 		saved-params = "is-checked"
 		text = "Github"
 		command = "github"
@@ -1202,7 +1201,6 @@ window "rpane"
 		size = 60x16
 		anchor1 = 24,0
 		anchor2 = 33,3
-		background-color = none
 		saved-params = "is-checked"
 		text = "Website"
 		command = "website"
@@ -1213,7 +1211,6 @@ window "rpane"
 		size = 60x16
 		anchor1 = 1,0
 		anchor2 = 10,3
-		background-color = none
 		saved-params = "is-checked"
 		text = "Text"
 		command = ".winset \"rpanewindow.left=;\""
@@ -1226,7 +1223,6 @@ window "rpane"
 		size = 60x16
 		anchor1 = 12,0
 		anchor2 = 22,3
-		background-color = none
 		saved-params = "is-checked"
 		text = "Info"
 		command = ".winset \"rpanewindow.left=infowindow\""
@@ -1240,13 +1236,14 @@ window "browserwindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Browser"
 		is-pane = true
 	elem "browser"
 		type = BROWSER
 		pos = 0,0
-		size = 640x499
+		size = 638x503
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = #ffffff
@@ -1262,6 +1259,7 @@ window "infowindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Info"
 		is-pane = true
@@ -1274,16 +1272,18 @@ window "infowindow"
 		is-default = true
 		saved-params = ""
 		highlight-color = #00aa00
+		tab-background-color = none
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
 
 window "text_editor"
 	elem "text_editor"
 		type = MAIN
-		pos = 281,0
+		pos = 464,0
 		size = 360x488
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		is-visible = false
 		border = sunken
 		saved-params = "pos;size;is-minimized;is-maximized"
@@ -1296,6 +1296,7 @@ window "text_editor"
 		size = 104x24
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "is-checked"
 		text = "Exit without saving"
 		command = ""
@@ -1305,6 +1306,7 @@ window "text_editor"
 		size = 104x24
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "is-checked"
 		text = "Save"
 		command = ""
@@ -1314,6 +1316,7 @@ window "text_editor"
 		size = 104x24
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "is-checked"
 		text = "Save + Exit"
 		command = ""

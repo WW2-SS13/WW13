@@ -5,7 +5,7 @@
 
 
 /datum/category_group/player_setup_category/general_preferences
-	name = "Character Setup"
+	name = "Character"
 	sort_order = 2
 	category_item_type = /datum/category_item/player_setup_item/general
 /*
@@ -53,25 +53,25 @@
 	for(var/datum/category_group/player_setup_category/PS in categories)
 		PS.sanitize_setup()
 
-/datum/category_collection/player_setup_collection/proc/load_character(var/savefile/S)
+/datum/category_collection/player_setup_collection/proc/load_character()
 	for(var/datum/category_group/player_setup_category/PS in categories)
-		PS.load_character(S)
+		PS.load_character()
 
-/datum/category_collection/player_setup_collection/proc/save_character(var/savefile/S)
+/datum/category_collection/player_setup_collection/proc/save_character()
 	for(var/datum/category_group/player_setup_category/PS in categories)
-		PS.save_character(S)
+		PS.save_character()
 
-/datum/category_collection/player_setup_collection/proc/load_preferences(var/savefile/S)
+/datum/category_collection/player_setup_collection/proc/load_preferences()
 	for(var/datum/category_group/player_setup_category/PS in categories)
-		PS.load_preferences(S)
+		PS.load_preferences()
 
-/datum/category_collection/player_setup_collection/proc/save_preferences(var/savefile/S)
+/datum/category_collection/player_setup_collection/proc/save_preferences()
 	for(var/datum/category_group/player_setup_category/PS in categories)
-		PS.save_preferences(S)
+		PS.save_preferences()
 
-/datum/category_collection/player_setup_collection/proc/update_setup(var/savefile/preferences, var/savefile/character)
+/datum/category_collection/player_setup_collection/proc/update_setup()
 	for(var/datum/category_group/player_setup_category/PS in categories)
-		. = . && PS.update_setup(preferences, character)
+		. = . && PS.update_setup()
 
 /datum/category_collection/player_setup_collection/proc/header()
 	var/dat = ""
@@ -117,36 +117,36 @@
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_character()
 
-/datum/category_group/player_setup_category/proc/load_character(var/savefile/S)
+/datum/category_group/player_setup_category/proc/load_character()
 	// Load all data, then sanitize it.
 	// Need due to, for example, the 01_basic module relying on species having been loaded to sanitize correctly but that isn't loaded until module 03_body.
 	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.load_character(S)
+		PI.load_character()
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_character()
 
-/datum/category_group/player_setup_category/proc/save_character(var/savefile/S)
+/datum/category_group/player_setup_category/proc/save_character()
 	// Sanitize all data, then save it
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_character()
 	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.save_character(S)
+		PI.save_character()
 
-/datum/category_group/player_setup_category/proc/load_preferences(var/savefile/S)
+/datum/category_group/player_setup_category/proc/load_preferences()
 	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.load_preferences(S)
+		PI.load_preferences()
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_preferences()
 
-/datum/category_group/player_setup_category/proc/save_preferences(var/savefile/S)
+/datum/category_group/player_setup_category/proc/save_preferences()
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_preferences()
 	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.save_preferences(S)
+		PI.save_preferences()
 
-/datum/category_group/player_setup_category/proc/update_setup(var/savefile/preferences, var/savefile/character)
+/datum/category_group/player_setup_category/proc/update_setup()
 	for(var/datum/category_item/player_setup_item/PI in items)
-		. = . && PI.update_setup(preferences, character)
+		. = . && PI.update_setup()
 
 /datum/category_group/player_setup_category/proc/content(var/mob/user)
 	. = "<table style='width:100%'><tr style='vertical-align:top'><td style='width:50%'>"
@@ -190,31 +190,31 @@
 /*
 * Called when the item is asked to load per character settings
 */
-/datum/category_item/player_setup_item/proc/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/proc/load_character()
 	return
 
 /*
 * Called when the item is asked to save per character settings
 */
-/datum/category_item/player_setup_item/proc/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/proc/save_character()
 	return
 
 /*
 * Called when the item is asked to load user/global settings
 */
-/datum/category_item/player_setup_item/proc/load_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/proc/load_preferences()
 	return
 
 /*
 * Called when the item is asked to save user/global settings
 */
-/datum/category_item/player_setup_item/proc/save_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/proc/save_preferences()
 	return
 
 /*
 * Called when the item is asked to update user/global settings
 */
-/datum/category_item/player_setup_item/proc/update_setup(var/savefile/preferences, var/savefile/character)
+/datum/category_item/player_setup_item/proc/update_setup()
 	return 0
 
 /datum/category_item/player_setup_item/proc/content()
@@ -237,9 +237,26 @@
 	if(!pref_mob || !pref_mob.client)
 		return 1
 
+	var/list/pref_initial_vars = list()
+	for (var/varname in pref.vars)
+		pref_initial_vars[varname] = pref.vars[varname]
+
 	. = OnTopic(href, href_list, usr)
 	if(. == TOPIC_REFRESH)
 		pref_mob.client.prefs.ShowChoices(usr)
+
+	update_setup()
+//	world << "test #1"
+
+	for (var/varname in pref_initial_vars)
+		var/variable = pref.vars[varname]
+		if (isdatum(variable) || isclient(variable))
+			continue // prevent infinite loops on VV
+		if (islist(variable)) // todo
+			continue
+		if (pref_initial_vars[varname] != variable) // variable changed!
+			pref.remember_preference(varname, variable)
+		//	world << "test #2: [varname] = [pref.vars[varname]]"
 
 /datum/category_item/player_setup_item/CanUseTopic(var/mob/user)
 	return 1

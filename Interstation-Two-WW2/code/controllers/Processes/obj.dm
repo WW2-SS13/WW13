@@ -4,11 +4,11 @@ var/datum/controller/process/obj/obj_process = null
 	name = "obj"
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 8
+	obj_process = src
 
 /datum/controller/process/obj/started()
 	..()
-	if(!obj_process)
-		obj_process = src
+
 	if(!processing_objects)
 		processing_objects = list()
 	if(!nonvital_processing_objects_1)

@@ -63,3 +63,6 @@
 	var/turf/floor/F = get_turf(src)
 	if (istype(F))
 		return F.attackby(C, user)
+
+/obj/snow/bullet_act(var/obj/item/projectile/P, var/def_zone)
+	return

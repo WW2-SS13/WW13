@@ -12,6 +12,9 @@ var/database/database = null
 			execute("CREATE TABLE ban (id STRING, bantime STRING, serverip STRING, bantype STRING, reason STRING, job STRING, duration STRING, rounds STRING, expiration_time INTEGER, ckey STRING, computerid STRING, ip STRING, a_ckey STRING, a_computerid STRING, a_ip STRING , who STRING, adminwho STRING, edits STRING, unbanned STRING, unbanned_datetime STRING, unbanned_ckey STRING, unbanned_computerid STRING, unbanned_ip STRING);")
 		*/
 
+		if (!execute("TABLE preferences EXISTS;"))
+			execute("CREATE TABLE preferences (ckey STRING, slot STRING, prefs STRING)")
+
 		if (!execute("TABLE quick_bans EXISTS;"))
 			execute("CREATE TABLE quick_bans (ckey STRING, cID STRING, ip STRING, type STRING, UID STRING, reason STRING, banned_by STRING, ban_date STRING, expire_realtime STRING, expire_info STRING);")
 

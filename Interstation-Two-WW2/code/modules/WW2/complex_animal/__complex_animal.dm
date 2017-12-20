@@ -2,6 +2,7 @@
   AI, require food, and have stamina. */
 
 /mob/living/simple_animal/complex_animal
+
 	var/base_type = /mob/living/simple_animal/complex_animal
 	var/stamina = 100
 	var/nutrition = 500
@@ -32,18 +33,31 @@
 	var/resting_state = null
 	var/dead_state = null
 
+	// can we move outside of the area we started in, or an area we were moved to
+	var/allow_moving_outside_home = 0
+
+	// how likely are we to try and wander each lifetick
+	var/wander_probability = 20
+
 	// simple_animal overrides
 	response_help   = "tries to help"
 	response_disarm = "pushes"
 	response_harm   = "punches"
 
+
 // things we do every life tick: by default, wander every few seconds,
-// rest every ~10 minutes. Deplete nutrition over ~30 minutes
+// rest every ~20 minutes. Deplete nutrition over ~30 minutes
 /mob/living/simple_animal/complex_animal/proc/onEveryLifeTick()
-	if (prob(1) && prob(20) && !resting)
+
+	if (stat == DEAD)
+		return 0
+
+	if (prob(1) && prob(15) && !resting)
 		nap()
 	else if (resting && prob(1))
 		stop_napping()
+
+	// todo: dehydration
 
 	var/nutrition_loss = initial(nutrition)/900
 	if (resting)
@@ -51,26 +65,53 @@
 
 	nutrition -= nutrition_loss
 
+	if (stat == UNCONSCIOUS)
+		return -1
+
+	if (prob(wander_probability) && !resting)
+		for (var/turf/T in range(1, src))
+			if (get_area(T) == get_area(src) || allow_moving_outside_home)
+				if (!T.density)
+					for (var/atom/movable/AM in T.contents)
+						if (AM.density)
+							goto nextturf
+					Move(T, get_dir(loc, T))
+					goto endturfsearch
+			nextturf
+		endturfsearch
+
+	return 1
+
 	// todo: starvation
 
 
 // things we do when someone touches us
 /mob/living/simple_animal/complex_animal/proc/onTouchedBy(var/mob/living/human/H, var/intent = I_HELP)
-	return
+	if (stat == DEAD || stat == UNCONSCIOUS)
+		return 0
+	return 1
 
 // things we do when someone attacks us
 /mob/living/simple_animal/complex_animal/proc/onAttackedBy(var/mob/living/human/H, var/obj/item/weapon/W)
-	return
+	if (stat == DEAD || stat == UNCONSCIOUS)
+		return 0
+	return 1
 
 /* things we do whenever a nearby human moves:
 called after H added to knows_about_mobs() */
 /mob/living/simple_animal/complex_animal/proc/onHumanMovement(var/mob/living/human/H)
-	return
+	if (stat == DEAD || stat == UNCONSCIOUS)
+		return 0
+	return 1
 
 // things we do whenever a mob with our base_type moves
 /mob/living/simple_animal/complex_animal/proc/onEveryBaseTypeMovement(var/mob/living/simple_animal/complex_animal/C)
-	return
+	if (stat == DEAD || stat == UNCONSCIOUS)
+		return 0
+	return 1
 
 // things we do whenever a mob with type 'X' moves
 /mob/living/simple_animal/complex_animal/proc/onEveryXMovement(var/mob/X)
-	return
+	if (stat == DEAD || stat == UNCONSCIOUS)
+		return 0
+	return 1

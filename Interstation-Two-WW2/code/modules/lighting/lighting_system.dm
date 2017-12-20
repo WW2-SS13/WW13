@@ -59,10 +59,10 @@ var/created_lighting_corners_and_overlays = 0
 	if (_time_of_day)
 		time_of_day = _time_of_day
 
-	// change lighting over 5 seconds & 50 loops
+	// change lighting over 12 seconds & 120 loops
 
 	spawn (1)
-		var/max_v = 50
+		var/max_v = 120
 		for (var/v in 1 to max_v)
 			var/iterations_per_loop = ceil(turfs.len/max_v)
 			for (var/vv in 1+(iterations_per_loop*(v-1)) to iterations_per_loop*v)
@@ -87,12 +87,12 @@ var/created_lighting_corners_and_overlays = 0
 			sleep(1)
 
 	if (admincaller)
-		spawn (55)
+		spawn (125)
 			admincaller << "<span class = 'notice'>Updated lights for [time_of_day].</span>"
 			var/M = "[key_name(admincaller)] changed the time of day from [O_time_of_day] to [time_of_day]."
 			log_admin(M)
 			message_admins(M)
 
 	if (announce)
-		spawn (60)
+		spawn (130)
 			world << "<font size=3><span class = 'notice'>It's <b>[lowertext(capitalize(time_of_day))]</b>.</span></font>"

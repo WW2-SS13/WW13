@@ -549,7 +549,7 @@
 
 #define R_MAXPERMISSION 32768 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.
 
-// Preference toggles.
+// Preference toggles: these are no longer bitflags, but list items
 #define SOUND_ADMINHELP 1
 #define SOUND_MIDI      2
 #define SOUND_AMBIENCE  4
@@ -605,8 +605,8 @@ var/list/be_special_flags = list(
 )
 
 // Age limits on a character.
-#define AGE_MIN 17
-#define AGE_MAX 85
+#define AGE_MIN 16
+#define AGE_MAX 75
 
 // Languages.
 #define LANGUAGE_HUMAN  1
@@ -777,13 +777,13 @@ var/list/be_special_flags = list(
 #define EVENT_LEVEL_MUNDANE  1
 #define EVENT_LEVEL_MODERATE 2
 #define EVENT_LEVEL_MAJOR    3
-
+/*
 // Suit sensor levels
 #define SUIT_SENSOR_OFF      0
 #define SUIT_SENSOR_BINARY   1
 #define SUIT_SENSOR_VITAL    2
 #define SUIT_SENSOR_TRACKING 3
-
+*/
 // NanoUI flags
 #define STATUS_INTERACTIVE 2 // GREEN Visability
 #define STATUS_UPDATE 1 // ORANGE Visability
@@ -792,7 +792,7 @@ var/list/be_special_flags = list(
 
 //General-purpose life speed define for plants.
 #define HYDRO_SPEED_MULTIPLIER 1
-
+/*
 // Robot AI notifications
 #define ROBOT_NOTIFICATION_NEW_UNIT 1
 #define ROBOT_NOTIFICATION_NEW_NAME 2
@@ -803,7 +803,7 @@ var/list/be_special_flags = list(
 #define BOMBCAP_HEAVY_RADIUS (max_explosion_range/2)
 #define BOMBCAP_LIGHT_RADIUS max_explosion_range
 #define BOMBCAP_FLASH_RADIUS (max_explosion_range*1.5)
-
+*/
 #define DEFAULT_JOB_TYPE /datum/job/civilian
 
 // Appearance change flags
@@ -855,6 +855,7 @@ var/list/be_special_flags = list(
 /*
 	These are used Bump() code for living mobs, in the mob_bump_flag, mob_swap_flags, and mob_push_flags vars to determine whom can bump/swap with whom.
 */
+
 #define HUMAN 1
 #define MONKEY 2
 #define ALIEN 4
@@ -883,7 +884,7 @@ var/list/be_special_flags = list(
 /////////////////
 ////WIZARD //////
 /////////////////
-
+/*
 /*		WIZARD SPELL FLAGS		*/
 #define GHOSTCAST		1	//can a ghost cast it?
 #define NEEDSCLOTHES	2	//does it need the wizard garb to cast? Nonwizard spells should not have this
@@ -901,25 +902,28 @@ var/list/be_special_flags = list(
 //End split flags
 #define CONSTRUCT_CHECK	256	//used by construct spells - checks for nullrods
 #define NO_BUTTON		512	//spell won't show up in the HUD with this
-
+*/
+/*
 //invocation
 #define SpI_SHOUT	"shout"
 #define SpI_WHISPER	"whisper"
 #define SpI_EMOTE	"emote"
 #define SpI_NONE	"none"
-
+*/
+/*
 //upgrading
 #define Sp_SPEED	"speed"
 #define Sp_POWER	"power"
 #define Sp_TOTAL	"total"
-
+*/
+/*
 //casting costs
 #define Sp_RECHARGE	"recharge"
 #define Sp_CHARGES	"charges"
 #define Sp_HOLDVAR	"holdervar"
-
+*/
 ///////WIZ END/////////
-
+/*
 //singularity defines
 #define STAGE_ONE 	1
 #define STAGE_TWO 	3
@@ -947,8 +951,9 @@ var/list/be_special_flags = list(
 #define NETWORK_SECURITY "Security"
 #define NETWORK_TELECOM "Tcomsat"
 #define NETWORK_THUNDER "thunder"
-
+*/
 // Languages
+/*
 #define LANGUAGE_SOL_COMMON "Sol Common"
 #define LANGUAGE_UNATHI "Sinta'unathi"
 #define LANGUAGE_SIIK_MAAS "Siik'maas"
@@ -956,7 +961,7 @@ var/list/be_special_flags = list(
 #define LANGUAGE_SKRELLIAN "Skrellian"
 #define LANGUAGE_ROOTSPEAK "Rootspeak"
 #define LANGUAGE_TRADEBAND "Tradeband"
-#define LANGUAGE_GUTTER "Gutter"
+#define LANGUAGE_GUTTER "Gutter"*/
 
 #define WALL_CAN_OPEN 1
 #define WALL_OPENING 2
@@ -976,9 +981,10 @@ var/list/be_special_flags = list(
 #ifndef CUSTOM_ITEM_MOB
 #define CUSTOM_ITEM_MOB 'icons/mob/custom_items_mob.dmi'
 #endif
+/*
 #ifndef CUSTOM_ITEM_ROBOT
 #define CUSTOM_ITEM_ROBOT 'icons/mob/custom_synthetic.dmi'
-#endif
+#endif*/
 
 //default item on-mob icons
 #define INV_HEAD_DEF_ICON 'icons/mob/head.dmi'

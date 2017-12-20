@@ -39,9 +39,10 @@
 /obj/item/weapon/gun/launcher/rocket/consume_next_projectile()
 	if(rockets.len)
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
-		var/obj/item/projectile/bullet/rifle/missile/M = new (src)
+		var/obj/item/projectile/bullet/rifle/missile/M = new I.projectile_type (src)
 	//	M.primed = 1
 		rockets -= I
+		qdel(I)
 		return M
 	return null
 

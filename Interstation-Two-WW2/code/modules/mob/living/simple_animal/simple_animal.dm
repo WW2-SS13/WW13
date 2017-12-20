@@ -75,9 +75,6 @@
 		src.client.screen = null
 	..()
 
-/mob/living/simple_animal/updatehealth()
-	return
-
 /mob/living/simple_animal/Life()
 	..()
 

@@ -264,7 +264,6 @@ proc/admin_notice(var/message, var/rights)
 	if(!infos || !infos.len) return 0
 	else return 1
 
-
 /datum/admins/proc/show_player_info(var/key as text)
 	set category = "Admin"
 	set name = "Show Player Info"

@@ -1,13 +1,13 @@
 /datum/category_item/player_setup_item/player_global/language
 	name = "Language"
 	sort_order = 3
-
-/datum/category_item/player_setup_item/player_global/language/load_preferences(var/savefile/S)
+/*
+/datum/category_item/player_setup_item/player_global/language/load_preferences()
 	S["language_prefixes"]	>> pref.language_prefixes
 
-/datum/category_item/player_setup_item/player_global/language/save_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/language/save_preferences()
 	S["language_prefixes"]	<< pref.language_prefixes
-
+*/
 /datum/category_item/player_setup_item/player_global/language/sanitize_preferences()
 	if(isnull(pref.language_prefixes) || !pref.language_prefixes.len)
 		pref.language_prefixes = config.language_prefixes.Copy()
@@ -46,10 +46,10 @@
 	return ..()
 
 
-/datum/category_item/player_setup_item/player_global/language/update_setup(var/savefile/preferences, var/savefile/character)
-	if(preferences["version"] == 11)
-		var/list/prefixes = character["language_prefixes"]
+/datum/category_item/player_setup_item/player_global/language/update_setup()
+	if(pref.internal_table["version"] == 11)
+		var/list/prefixes = pref["language_prefixes"]
 		if(istype(prefixes) && prefixes.len)
-			preferences["language_prefixes"] = prefixes.Copy()
+			pref["language_prefixes"] = prefixes.Copy()
 		return 1
 
