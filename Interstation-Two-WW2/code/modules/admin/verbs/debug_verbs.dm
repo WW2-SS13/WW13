@@ -8,7 +8,7 @@ var/list/debug_verbs = list (
         ,/client/proc/jump_to_dead_group
         ,/client/proc/startSinglo
         ,/client/proc/ticklag
-        ,/client/proc/kaboom
+      //  ,/client/proc/kaboom
         ,/client/proc/cmd_admin_areatest
         ,/client/proc/cmd_admin_rejuvenate
         ,/datum/admins/proc/show_traitor_panel

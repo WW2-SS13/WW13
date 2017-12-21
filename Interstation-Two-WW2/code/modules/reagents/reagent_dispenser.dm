@@ -83,7 +83,6 @@
 		..()
 		reagents.add_reagent("water",500)		//Adds 500 units to the amount, that already is inside. It'll be 1000.
 
-
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
 	desc = "A fueltank. It is used to store high amounts of fuel."
@@ -170,13 +169,14 @@
 
 /obj/structure/reagent_dispensers/fueltank/proc/explode()
 	if (reagents.total_volume > 500)
-		explosion(src.loc,1,2,4)
+		explosion(loc,1,2,4,2)
 	else if (reagents.total_volume > 100)
-		explosion(src.loc,0,1,3)
+		explosion(loc,0,1,3,1)
 	else if (reagents.total_volume > 50)
-		explosion(src.loc,-1,1,2)
+		explosion(loc,-1,1,2,1)
 	if(src)
-		qdel(src)
+		spawn (15)
+			qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(datum/gas_mixture/air, temperature, volume)
 	if (modded)

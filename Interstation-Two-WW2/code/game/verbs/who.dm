@@ -79,7 +79,7 @@
 			if(!C.visible_in_who)
 				continue
 
-			if (C.holder.rank == "Senate Chairman" || C.holder.rank == "Senator" || R_HOST & holder.rights)
+			if (C.holder.rank == "Senate Chairman" || C.holder.rank == "Senator" || findtext(C.holder.rank, "Host") || C.holder.rank == "Manager")
 				highstaff_message += "\t[C] is a [C.holder.rank]"
 
 				if(isobserver(C.mob))

@@ -362,12 +362,15 @@
 		before_move()
 		Move(location.return_turf())
 
-
 		if(!bumped && !isturf(original))
 			if(loc == get_turf(original))
-				if(!(original in permutated))
-					if(Bump(original))
-						return
+				if (istype(src, /obj/item/projectile/bullet/rifle/missile))
+					var/obj/item/projectile/bullet/rifle/missile/M = src
+					M.missile_effect(loc)
+				else
+					if(!(original in permutated))
+						if(Bump(original))
+							return
 
 		if(first_step)
 			muzzle_effect(effect_transform)

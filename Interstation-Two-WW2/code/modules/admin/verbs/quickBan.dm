@@ -95,7 +95,7 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 		goto reenter_bantime
 
 	var/duration_in_deciseconds = duration_in_days * 86400 * 10
-	fields["expire_realtime"] = world.realtime + duration_in_deciseconds
+	fields["expire_realtime"] = "[world.realtime + duration_in_deciseconds]"
 
 	switch (duration_in_days)
 		if (0 to 0.99) // count in hours

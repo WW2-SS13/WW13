@@ -156,7 +156,7 @@
 	// no throwing past the bridge
 	for (var/i in 1 to get_dist(src, target))
 		var/turf/T = locate(x, y+i, z)
-		if (T.check_prishtina_block(src))
+		if (T && T.check_prishtina_block(src))
 			return 0
 
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target

@@ -16,5 +16,6 @@
 	if (explosive)
 		var/e = explosion_ranges
 		explosion(get_turf(hit_atom), e[1], e[2], e[3], e[4])
-		spawn (5)
-			qdel(src)
+		if (src)
+			spawn (15)
+				qdel(src)

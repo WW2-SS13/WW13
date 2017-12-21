@@ -14,11 +14,11 @@
 
 /mob/living/simple_animal/complex_animal/attack_hand(var/mob/living/carbon/human/H as mob)
 	..(H)
-	onTouchedBy(H)
+	onTouchedBy(H, H.a_intent)
 
 /mob/living/simple_animal/complex_animal/attackby(var/obj/item/weapon/W as obj, var/mob/living/carbon/human/H as mob)
 	..(W, H)
-	onAttackedBy(W, H)
+	onAttackedBy(H, W)
 
 // movement detection
 /mob/living/simple_animal/complex_animal/Move()
@@ -44,11 +44,3 @@
 			else
 				if (dist_x <= 10 && dist_y <= 10)
 					C.onEveryXMovement(type)
-
-/mob/living/carbon/human/Move()
-	..()
-	for (var/mob/living/simple_animal/complex_animal/C in living_mob_list)
-		var/dist_x = abs(x - C.x)
-		var/dist_y = abs(x - C.y)
-		if (dist_x <= 10 && dist_y <= 10)
-			C.onHumanMovement(src)

@@ -1,4 +1,4 @@
-// basic dog stuff
+ // basic dog stuff
 /mob/living/simple_animal/complex_animal/canine/dog
 	icon_state = null
 	resting_state = null
@@ -21,15 +21,19 @@
 	"patrol;default;patrol", // wander around the base, overlaps with other cmds
 	"stop patrolling;default;stop_patrol",
 	"be passive;default;passive", // only attack in self-defense
-	"stop;default;stop", // stop doing everything
+	"stop everything;default;stop", // stop doing everything
 	)
 
 	faction = null
 
 	var/attack_mode = -1
-	var/patrolling = 1
+	var/patrolling = 0
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/check_can_command(var/list/ranks, var/mob/living/carbon/human/H)
+	if (!islist(ranks))
+		. = list()
+		. += ranks
+		ranks = .
 	// no 'else's here, because we accept multiple ranks
 	if (ranks.Find("master"))
 		if (H == owner || (!owner && H.original_job && H.original_job.base_type_flag() == faction))
@@ -61,64 +65,69 @@
 // parse messages that people say (WIP)
 	// needs faction, friendly, etc support
 	// commands list needs to be filled
-/mob/living/carbon/human/post_say(var/message)
-	..(message) // handle radio messages
+/mob/living/simple_animal/complex_animal/canine/dog/proc/hear_command(var/message, var/mob/living/carbon/human/H)
 	if (!dd_hassuffix(message, "!"))
 		return
 	message = copytext(message, 1, lentext(message))
-	world << "1. [message]"
+//	world << "1. [message]"
 	// parse message into a command
-	var/rank = original_job ? lowertext(original_job.title) : null
+	var/rank = H.original_job ? lowertext(H.original_job.title) : null
 	if (!rank)
-		world << "1.5: bad"
+	//	world << "1.5: bad"
 		return
-	else
-		for (var/mob/living/simple_animal/complex_animal/canine/dog/pupper in view(world.view, src))
-			if (pupper.stat == CONSCIOUS)
-				world << "2. [pupper]"
-				for (var/command in pupper.commands)
-					var/list/parts = splittext(command, ";")
-					var/req_word = lowertext(parts[1])
-					var/list/req_ranks = splittext(parts[2], "&")
-					if (!islist(req_ranks))
-						. = list()
-						. += req_ranks
-						req_ranks = .
+	else if (stat == CONSCIOUS)
+	//	world << "2. [src]"
+		for (var/command in commands)
+			var/list/parts = splittext(command, ";")
+			var/req_word = lowertext(parts[1])
+			var/list/req_ranks = splittext(parts[2], "&")
+			if (!islist(req_ranks))
+				. = list()
+				. += req_ranks
+				req_ranks = .
 
-					for (var/RR in req_ranks)
-						world << "2.5: [RR]"
-						req_ranks += lowertext(RR)
-						req_ranks -= RR
+			for (var/RR in req_ranks)
+			//	world << "2.5: [RR]"
+				req_ranks += lowertext(RR)
+				req_ranks -= RR
 
-					// DEBUG BLOCK
-					var/d1 = ""
-					for (var/RR in req_ranks)
-						d1 += RR
-						d1 += ";"
-					world << "2.6: [d1]"
-					// END DEBUG BLOCK
+			// DEBUG BLOCK
+			var/d1 = ""
+			for (var/RR in req_ranks)
+				d1 += RR
+				d1 += ";"
+		//	world << "2.6: [d1]"
+			// END DEBUG BLOCK
 
-					for (var/RR in req_ranks)
-						if (RR == "default")
-							req_ranks += "master&^master"
-							req_ranks -= RR
+			for (var/RR in req_ranks)
+				if (RR == "default")
+					req_ranks += "master"
+					req_ranks += "^master"
+					req_ranks -= RR
 
-					// DEBUG BLOCK
-					d1 = ""
-					for (var/RR in req_ranks)
-						d1 += RR
-						d1 += ";"
-					world << "2.7: [d1]"
-					// END DEBUG BLOCK
+			// DEBUG BLOCK
+			d1 = ""
+			for (var/RR in req_ranks)
+				d1 += RR
+				d1 += ";"
+		//	world << "2.7: [d1]"
+			// END DEBUG BLOCK
 
-					var/_call = parts[3]
-					world << "3. [req_word];[req_ranks[1]];[_call]"
+			var/_call = parts[3]
+		//	world << "3. [req_word];[req_ranks[1]];[_call]"
 
-					if (req_ranks.Find(rank) || pupper.check_can_command(req_ranks, src))
-						if (dd_hasprefix(lowertext(message), req_word))
-							if (hascall(pupper, _call))
-								call(pupper, _call)(src)
+			if ((rank != null && req_ranks.Find(rank)) || check_can_command(req_ranks, H))
+			//	world << "3.5"
+				if (dd_hasprefix(lowertext(message), req_word) || lowertext(message) == req_word)
+				//	world << "4. [message] v. [req_word]"
+					if (hascall(src, _call))
+						call(src, _call)(H)
 
+
+/mob/living/simple_animal/complex_animal/canine/dog/can_wander_specialcheck()
+	if (pulledby && check_can_command(list("master", "^master", "team"), pulledby))
+		return 0
+	return 1
 // "frontend" procs
 /mob/living/simple_animal/complex_animal/canine/dog/proc/defend(var/mob/living/carbon/human/H)
 	if (!(attack_mode == "defend"))
@@ -173,12 +182,22 @@
 							return
 // dog combat
 
+/mob/living/simple_animal/complex_animal/canine/dog/var/next_shred = -1
 /mob/living/simple_animal/complex_animal/canine/dog/proc/shred(var/mob/living/carbon/human/H)
-	if (H in range(1, src))
-		visible_message("<span class = 'warning'>The [src] shreds [H] with their teeth!</span>")
-		H.take_overall_damage(10, sharp = 1)
-		if (prob(20))
-			H.stun_effect_act(rand(1,2), rand(2,3))
+	if (stat == CONSCIOUS && !resting && H.stat != DEAD)
+		if (world.time >= next_shred)
+			if (H in range(1, src))
+				visible_message("<span class = 'warning'>The [src] shreds [H] with their teeth!</span>")
+				H.adjustBruteLoss(rand(8,12))
+				playsound(get_turf(src), 'sound/weapons/bite.ogg', rand(70,80))
+			/*	if (prob(20)) // I think this stuns people forever, not sure how
+					H.stun_effect_act(rand(1,2), rand(2,3)) */
+				next_shred = world.time + 20
+				spawn (20)
+					shred(H)
+		else if (H in range(1, src))
+			spawn (20)
+				shred(H)
 
 // things we do when someone touches us
 /mob/living/simple_animal/complex_animal/canine/dog/onTouchedBy(var/mob/living/carbon/human/H, var/intent = I_HELP)
@@ -188,7 +207,8 @@
 				if (H.original_job && H.original_job.base_type_flag() == faction) // ignore it
 					return
 				enemies |= H
-				shred(H)
+				spawn (rand(2,3))
+					shred(H)
 
 // things we do when someone attacks us
 /mob/living/simple_animal/complex_animal/canine/dog/onAttackedBy(var/mob/living/carbon/human/H, var/obj/item/weapon/W)
@@ -197,16 +217,27 @@
 			if (H.original_job && H.original_job.base_type_flag() == faction) // ignore it
 				return
 			enemies |= H
-			shred(H)
+			spawn (rand(2,3))
+				shred(H)
 
 /* called after H added to knows_about_mobs() */
 /mob/living/simple_animal/complex_animal/canine/dog/onHumanMovement(var/mob/living/carbon/human/H)
-	if (..(H))
-		if (!assess_friendlyness(H))
+	if (..(H) && stat == CONSCIOUS)
+		var/modecheck = 0 // when can we attack random enemies who enter our area
+		if (attack_mode == "attack") // wip
+			modecheck = 1
+		if (assess_hostility(H) || ((!H.original_job || H.original_job.base_type_flag() != faction) && modecheck))
 			enemies |= H
-			walk_to(src, H)
-			if (get_dist(src, H) == 1)
+			if (get_dist(src, H) > 1 && H.stat != DEAD)
+				walk_to(src, H, 0, H.run_delay_maximum*1.33)
+
+/mob/living/simple_animal/complex_animal/canine/dog/Move()
+	. = ..()
+	if (stat == CONSCIOUS)
+		for (var/mob/living/carbon/human/H in get_step(src, dir))
+			if (assess_hostility(H))
 				shred(H)
+
 
 /mob/living/simple_animal/complex_animal/canine/dog/onEveryBaseTypeMovement(var/mob/living/simple_animal/complex_animal/C)
 	return

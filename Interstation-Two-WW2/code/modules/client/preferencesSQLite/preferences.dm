@@ -125,6 +125,14 @@ var/list/preferences_datums = list()
 /datum/preferences/New(client/C)
 
 	player_setup = new(src)
+
+    /* don't change any of our preferences from the default anymore:
+     * its counter-intuitive to how the new saving system works: the
+     * preference saving thing assumes that the only things that change
+     * are those which are changed by the user, so if we randomize these
+     * values we will end up loading the default anyway */
+
+	/*
 	gender = pick(MALE, FEMALE)
 	german_gender = pick(MALE, FEMALE)
 	russian_gender = pick(MALE, FEMALE)
@@ -132,6 +140,7 @@ var/list/preferences_datums = list()
 	real_name = random_name(gender,species)
 
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
+   */
 
 	if(istype(C))
 		client = C

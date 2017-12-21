@@ -19,7 +19,7 @@
 	return data
 
 // == Recursive Explosions stuff ==
-
+/*
 /client/proc/kaboom()
 	var/power = input(src, "power?", "power?") as num
 	var/turf/T = get_turf(src.mob)
@@ -28,7 +28,7 @@
 	d.epicenter = T
 	d.rec_pow = power
 	bomb_processor.queue(d)
-
+*/
 /obj
 	var/explosion_resistance
 

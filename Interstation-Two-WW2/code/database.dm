@@ -92,7 +92,7 @@ var/database/database = null
 
 	var/database/query/Q = new(querytext)
 
-	// try to execute 10 times over 1 second
+	// try to execute 10 times over 5 seconds
 	var/Q_executed = FALSE
 	for (var/v in 1 to 10)
 		if (Q.Execute(src))
@@ -100,7 +100,7 @@ var/database/database = null
 			goto finishloop
 		if (only_execute_once)
 			goto finishloop
-		sleep(1)
+		sleep(5)
 
 	finishloop
 	if (Q_executed)

@@ -40,7 +40,7 @@
 	var/wander_probability = 20
 
 	// simple_animal overrides
-	response_help   = "tries to help"
+	response_help   = "pets"
 	response_disarm = "pushes"
 	response_harm   = "punches"
 
@@ -68,7 +68,7 @@
 	if (stat == UNCONSCIOUS)
 		return -1
 
-	if (prob(wander_probability) && !resting)
+	if (prob(wander_probability) && !resting && can_wander_specialcheck())
 		for (var/turf/T in range(1, src))
 			if (get_area(T) == get_area(src) || allow_moving_outside_home)
 				if (!T.density)
@@ -84,6 +84,8 @@
 
 	// todo: starvation
 
+/mob/living/simple_animal/complex_animal/proc/can_wander_specialcheck()
+	return 1
 
 // things we do when someone touches us
 /mob/living/simple_animal/complex_animal/proc/onTouchedBy(var/mob/living/human/H, var/intent = I_HELP)
@@ -115,3 +117,10 @@ called after H added to knows_about_mobs() */
 	if (stat == DEAD || stat == UNCONSCIOUS)
 		return 0
 	return 1
+
+
+/mob/living/simple_animal/complex_animal/bullet_act(var/obj/item/projectile/P, var/def_zone)
+	apply_damage(P.damage)
+	if (P.firer)
+		enemies |= P.firer
+		onHumanMovement(P.firer)

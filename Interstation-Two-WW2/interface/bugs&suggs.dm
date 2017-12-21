@@ -76,6 +76,7 @@
 
 	anything_else += "<br><i>Reported by [src], who was, at the time, [key_name(src)]</i>"
 
+	_tryagain_
 	if (bugname && bugdesc && bugrep && anything_else)
 		if (database)
 			if (database.execute("INSERT INTO bug_reports (name, desc, steps, other) VALUES ('[bugname]', '[bugdesc]', '[steps2string]', '[anything_else]');", FALSE))
@@ -83,6 +84,9 @@
 				message_admins("New bug report received from [key_name(src)], titled '[bugname]'.")
 			else
 				src << "<span class = 'warning'>A database error occured; your bug was NOT reported.</span>"
+				var/tryagain = input(src, "Try to report this bug once more?") in list("Yes", "No")
+				if (tryagain == "Yes")
+					goto _tryagain_
 		else
 			src << "<span class = 'warning'>A database error occured; your bug was NOT reported.</span>"
 	else
@@ -125,6 +129,7 @@
 
 	suggdesc += "<br><i>Suggested by [src], who was, at the time, [key_name(src)]</i>"
 
+	_tryagain_
 	if (suggname && suggdesc)
 		if (database)
 			if (database.execute("INSERT INTO suggestions (name, desc) VALUES ('[suggname]', '[suggdesc]');", FALSE))
@@ -132,6 +137,9 @@
 				message_admins("New suggestion received from [key_name(src)], titled '[suggname]'.")
 			else
 				src << "<span class = 'warning'>A database error occured; your suggestion was NOT sent.</span>"
+				var/tryagain = input(src, "Try to send this suggestion once more?") in list("Yes", "No")
+				if (tryagain == "Yes")
+					goto _tryagain_
 		else
 			src << "<span class = 'warning'>A database error occured; your suggestion was NOT sent.</span>"
 	else

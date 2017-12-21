@@ -42,6 +42,7 @@
 	. = ..()
 
 	var/area/A = get_area(new_turf)
+	// bunker is darker
 	if (A && istype(A, /area/prishtina/soviet/bunker))
 		lum_r = 0.3
 		lum_g = 0.3

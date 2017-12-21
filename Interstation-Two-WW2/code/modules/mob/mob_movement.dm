@@ -369,13 +369,13 @@
 				if(mob.drowsyness > 0)
 					move_delay += 6
 				move_delay += mob.get_run_delay() + standing_on_snow
-				if (ishuman(mob))
+				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.03
 					--H.stamina
 			if("walk")
 				move_delay += mob.walk_delay + standing_on_snow
-				if (ishuman(mob))
+				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.003
 
@@ -425,7 +425,7 @@
 			if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
 				return mob.pulledby.relaymove(mob, direct)
 			else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
-				if(ishuman(mob))
+				if(mob_is_human)
 					var/mob/living/carbon/human/driver = mob
 					var/obj/item/organ/external/l_hand = driver.get_organ("l_hand")
 					var/obj/item/organ/external/r_hand = driver.get_organ("r_hand")
@@ -476,6 +476,14 @@
 			step(mob, pick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
+
+		// make animals acknowledge us
+		if (mob_is_human)
+			for (var/mob/living/simple_animal/complex_animal/C in world) // living_mob_list fails here
+				var/dist_x = abs(mob.x - C.x)
+				var/dist_y = abs(mob.y - C.y)
+				if (dist_x <= 10 && dist_y <= 10)
+					C.onHumanMovement(mob)
 
 		for (var/obj/item/weapon/grab/G in mob)
 			if (G.state == GRAB_NECK)
