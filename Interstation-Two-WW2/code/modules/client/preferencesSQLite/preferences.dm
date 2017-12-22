@@ -67,17 +67,19 @@ var/list/preferences_datums = list()
 	var/list/language_prefixes = list() //Kanguage prefix keys
 
 		//Some faction information.
-	var/religion = "None"               //Religious association.
+//	var/religion = "None"               //Religious association.
 
 //	var/be_spy = 0
 //	var/be_jew = 0
 
 	//Mob preview
-	var/icon/preview_icon = null
-	var/icon/preview_icon_front = null
-	var/icon/preview_icon_side = null
+	var/list/preview_icons = list()
+	var/list/preview_icons_front = list()
+	var/list/preview_icons_back = list()
+	var/list/preview_icons_east = list()
+	var/list/preview_icons_west = list()
 
-	var/high_job_title = ""
+//	var/high_job_title = ""
 
 	//Keeps track of preferrence for not getting any wanted jobs
 	var/alternate_option = 0
@@ -206,6 +208,8 @@ var/list/preferences_datums = list()
 		return 1
 
 	if(href_list["save"])
+//		open_save_dialog(usr)
+
 		if (current_slot == 0)
 			open_save_dialog(usr)
 		else
@@ -227,7 +231,7 @@ var/list/preferences_datums = list()
 			if (load_preferences(current_slot))
 				usr << "<span class = 'good'>Successfully reloaded current preferences (slot #[current_slot]).</span>"
 			else
-				usr << "<span class = 'bad'>FAILED to reload current preferences (slot #[current_slot]).</span>"
+				usr << "<span class = 'bad'>You are now saving to an empty slot (slot #[current_slot]).</span>"
 
 	else if(href_list["load"])
 		if(!IsGuestKey(usr.key))
@@ -235,8 +239,23 @@ var/list/preferences_datums = list()
 			return 1
 
 	else if (href_list["savetonewslot"])
-		current_slot = 0
-		usr << "<span class = 'notice'>Now saving to a new slot.</span>"
+/*
+		var/oldslot = current_slot
+		current_slot = input(usr, "Save to what slot?") as num
+		if (current_slot < 1 || current_slot > 10)
+			usr << "<span class = 'bad'>Invalid slot.</span>"
+			current_slot = oldslot
+			return*/
+		open_save_dialog(usr)
+
+		/*
+
+		if (save_preferences(current_slot))
+			usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot].</span>"
+			close_save_dialog(usr)
+		else
+			usr << "<span class = 'bad'>FAILED to save current preferences to slot #[current_slot].</span>"
+		*/
 /* WIP
 	else if (href_list["resetvars"])
 		var/forbidden_vars = list("client_ckey", "last_id", "type")
@@ -253,11 +272,13 @@ var/list/preferences_datums = list()
 		update_setup()
 */
 	else if(href_list["changeslot"])
+		var/i_current_slot = current_slot
 		current_slot = text2num(href_list["changeslot"])
 		if (load_preferences(current_slot))
 			usr << "<span class = 'good'>Successfully loaded current preferences for slot #[current_slot].</span>"
 		else
 			usr << "<span class = 'bad'>FAILED to load preferences for slot #[current_slot].</span>"
+			current_slot = i_current_slot
 		close_load_dialog(usr)
 	else
 		return 0
@@ -318,7 +339,7 @@ var/list/preferences_datums = list()
 	character.h_style = h_style
 	character.f_style = f_style
 
-	character.religion = religion
+//	character.religion = religion
 
 /*
 	// german
@@ -407,14 +428,14 @@ var/list/preferences_datums = list()
 					I.robotize()
 
 	character.all_underwear.Cut()
-
+/*
 	for(var/underwear_category_name in all_underwear)
 		var/datum/category_group/underwear/underwear_category = global_underwear.categories_by_name[underwear_category_name]
 		if(underwear_category)
 			var/underwear_item_name = all_underwear[underwear_category_name]
 			character.all_underwear[underwear_category_name] = underwear_category.items_by_name[underwear_item_name]
 		else
-			all_underwear -= underwear_category_name
+			all_underwear -= underwear_category_name*/
 
 	if(backbag > 4 || backbag < 1)
 		backbag = 1 //Same as above
@@ -509,3 +530,11 @@ var/list/preferences_datums = list()
 		return FALSE
 
 	return client.set_preference(preference, set_preference)
+
+/client/proc/onload_preferences()
+	var/datum/client_preference/cp = get_client_preference_by_type(/datum/client_preference/play_lobby_music)
+	if (isnewplayer(mob))
+		if (is_preference_enabled(cp.key))
+			mob << sound(ticker.login_music, repeat = 1, wait = 0, volume = 85, channel = 1)
+		else
+			mob << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)

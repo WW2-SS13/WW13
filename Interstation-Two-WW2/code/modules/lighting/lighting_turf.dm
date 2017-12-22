@@ -74,9 +74,9 @@
 		if (lighting_overlay)
 			lighting_overlay.update_overlay()
 
-	spawn (1)
-		for (var/obj/machinery/light/L in src)
-			L.fix_TOD_lights()
+		spawn (1)
+			for (var/obj/machinery/light/L in src)
+				L.fix_TOD_lights()
 
 /turf/proc/fix_corners_and_lighting_overlay() // workaround for broken ice corners
 	if (istype(src, /turf/floor/plating/beach/water/ice))

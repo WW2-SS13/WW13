@@ -52,7 +52,7 @@
 	if (stat == DEAD)
 		return 0
 
-	if (prob(1) && prob(15) && !resting)
+	if (prob(1) && prob(15) && !resting && can_rest_specialcheck())
 		nap()
 	else if (resting && prob(1))
 		stop_napping()
@@ -69,22 +69,58 @@
 		return -1
 
 	if (prob(wander_probability) && !resting && can_wander_specialcheck())
-		for (var/turf/T in range(1, src))
-			if (get_area(T) == get_area(src) || allow_moving_outside_home)
-				if (!T.density)
-					for (var/atom/movable/AM in T.contents)
-						if (AM.density)
-							goto nextturf
-					Move(T, get_dir(loc, T))
-					goto endturfsearch
-			nextturf
-		endturfsearch
+		var/list/possible_wander_locations = list()
+		for (var/turf/T in trange(1, src))
+			if (!T.density)
+				for (var/atom/movable/AM in T.contents)
+					if (AM.density)
+						continue
+				if (get_area(T) != get_area(src))
+					if (!allow_moving_outside_home)
+						continue
+				if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
+					var/mob/living/simple_animal/complex_animal/canine/dog/D = src
+					if (D.last_patrol_area == get_area(T))
+						continue
+
+				possible_wander_locations += T
+
+		// patrolling dogs will always exit their current area if possible
+		var/list/possible_wander_areas = list()
+		var/area/forced_wander_area = null
+
+		for (var/turf/T in possible_wander_locations)
+			possible_wander_areas |= get_area(T)
+
+		// patrolling dogs will always try to exit their area.
+		if (possible_wander_areas.len > 1)
+			for (var/area/A in possible_wander_areas)
+				if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
+					var/mob/living/simple_animal/complex_animal/canine/dog/D = src
+					if (D.patrolling)
+						if (A != get_area(src))
+							forced_wander_area = A
+
+		for (var/turf/T in possible_wander_locations)
+			if (!forced_wander_area || get_area(T) == forced_wander_area)
+
+				if (forced_wander_area)
+					if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
+						var/mob/living/simple_animal/complex_animal/canine/dog/D = src
+						if (get_area(T) == D.last_patrol_area)
+							continue
+						D.last_patrol_area = get_area(D)
+
+				Move(T, get_dir(loc, T))
 
 	return 1
 
 	// todo: starvation
 
 /mob/living/simple_animal/complex_animal/proc/can_wander_specialcheck()
+	return 1
+
+/mob/living/simple_animal/complex_animal/proc/can_rest_specialcheck()
 	return 1
 
 // things we do when someone touches us
@@ -120,7 +156,11 @@ called after H added to knows_about_mobs() */
 
 
 /mob/living/simple_animal/complex_animal/bullet_act(var/obj/item/projectile/P, var/def_zone)
-	apply_damage(P.damage)
+	apply_damage(P.damage * random_decimal(0.7,1.3))
 	if (P.firer)
 		enemies |= P.firer
 		onHumanMovement(P.firer)
+		for (var/mob/living/simple_animal/complex_animal/C in oview(7, src))
+			if (C.faction == faction && C.type == type)
+				C.enemies |= P.firer
+				C.onHumanMovement(P.firer)

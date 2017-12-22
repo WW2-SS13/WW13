@@ -7,6 +7,7 @@
 	throwforce = 5
 	damage = 0
 	nodamage = 1
+	name = "missile"
 
 /obj/item/projectile/bullet/rifle/missile/on_impact(atom/into)
 	if (..(into))
@@ -17,5 +18,5 @@
 		var/e = explosion_ranges
 		explosion(get_turf(hit_atom), e[1], e[2], e[3], e[4])
 		if (src)
-			spawn (15)
+			spawn (1)
 				qdel(src)

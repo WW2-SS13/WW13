@@ -73,10 +73,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(!pref.rlimb_data) pref.rlimb_data = list()
 
 /datum/category_item/player_setup_item/general/body/content(var/mob/user)
-	pref.update_preview_icon()
-	if(pref.preview_icon_front && pref.preview_icon_side)
-		user << browse_rsc(pref.preview_icon_front, "previewicon.png")
-		user << browse_rsc(pref.preview_icon_side, "previewicon2.png")
+	pref.update_preview_icons()
+
+	for (var/v in 1 to pref.preview_icons.len)
+		if (isicon(pref.preview_icons_front[v]))
+			user << browse_rsc(pref.preview_icons_front[v], "previewicon_[v]_front.png")
+		if (isicon(pref.preview_icons_back[v]))
+			user << browse_rsc(pref.preview_icons_back[v], "previewicon_[v]_back.png")
+		if (isicon(pref.preview_icons_east[v]))
+			user << browse_rsc(pref.preview_icons_east[v], "previewicon_[v]_east.png")
+		if (isicon(pref.preview_icons_west[v]))
+			user << browse_rsc(pref.preview_icons_west[v], "previewicon_[v]_west.png")
 
 	var/mob_species = all_species[pref.species]
 	. += "<table><tr style='vertical-align:top'><td><b>Body</b> "
@@ -134,13 +141,22 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					. += "\tRetinal overlayed [organ_name]"
 				else
 					. += "\tMechanically assisted [organ_name]"
-	if(!ind)
+/*	if(!ind)
 		. += "\[...\]<br><br>"
 	else
-		. += "<br><br>"
+		. += "<br><br>"*/
+	. += "<br><br>"
 
-	. += "</td><td><b>Preview</b><br><img src=previewicon.png height=64 width=64><img src=previewicon2.png height=64 width=64>"
-	. += "</td></tr></table>"
+	. += "<b>Preview</b><br>"
+
+	for (var/v in 1 to pref.preview_icons.len)
+		. += "<img src=previewicon_[v]_front.png height=64 width=64>"
+		. += "<img src=previewicon_[v]_back.png height=64 width=64>"
+		. += "<img src=previewicon_[v]_east.png height=64 width=64>"
+		. += "<img src=previewicon_[v]_west.png height=64 width=64>"
+		. += "<br>"
+
+	. += "<br>"
 
 	. += "<b>Hair</b><br>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))

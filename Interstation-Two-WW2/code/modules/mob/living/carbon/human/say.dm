@@ -17,9 +17,9 @@
 		else if (dd_hassuffix(message, "!!"))
 			message = "<span class = 'font-size: 1.2em;'><b>[message]</b></span>"
 
-	..(message, alt_name = alt_name)
+	..(message, alt_name = alt_name, alt_message = message_without_html)
 
-	post_say(message, alt_message = message_without_html)
+	post_say(message)
 
 	for (var/mob/living/simple_animal/complex_animal/canine/dog/D in view(world.view, src))
 		D.hear_command(message_without_html, src)

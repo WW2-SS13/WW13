@@ -323,7 +323,9 @@ var/list/admin_verbs_mentor = list(
 		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
 		if(holder.rights & R_HOST)
 			verbs += /client/proc/reset_roundstart_autobalance
-			verbs += /client/proc/open_close_game_schedule
+			verbs += /client/proc/forceClose_game_schedule
+			verbs += /client/proc/forceOpen_game_schedule
+
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(

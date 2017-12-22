@@ -340,6 +340,25 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (input != "Cancel")
 		ManualFollow(getfitmobs(CIVILIAN)[input])
 
+/proc/getdogs()
+	var/list/dogs = list()
+	for (var/mob/living/simple_animal/complex_animal/canine/dog/D in living_mob_list)
+		var/name = D.name
+		var/nameinc = 1
+		var/oname = name
+		while (dogs.Find(name))
+			name = "[oname] ([++nameinc])"
+		dogs[name] = D
+	return dogs
+
+/mob/observer/ghost/verb/follow_dog(input in getdogs()+"Cancel")
+	set category = "Ghost"
+	set name = "Follow a Dog"
+	set desc = "Follow and haunt a living dog."
+
+	if (input != "Cancel")
+		ManualFollow(getdogs()[input])
+
 /mob/observer/ghost/verb/follow_train()
 	set category = "Ghost"
 	set name = "Jump to the Main Train"

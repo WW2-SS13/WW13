@@ -175,7 +175,7 @@
 	else if (reagents.total_volume > 50)
 		explosion(loc,-1,1,2,1)
 	if(src)
-		spawn (15)
+		spawn (1)
 			qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(datum/gas_mixture/air, temperature, volume)

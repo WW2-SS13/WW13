@@ -475,16 +475,16 @@
 	icon_state = "red2"
 	location = AREA_INSIDE
 
-/area/prishtina/soviet/dogshed
-	name = "Soviet Dogshed"
-	icon_state = "blue-red"
-	dynamic_lighting = 0
-	location = AREA_INSIDE
-
 /area/prishtina/soviet/immediate_outside_defenses
 	name = "Bunker Defenses"
 	icon_state = "blue2"
 	dynamic_lighting = 0
+
+/area/prishtina/soviet/dogshed
+	name = "Soviet Dog Shed"
+	icon_state = "blue-red"
+	dynamic_lighting = 1
+	location = AREA_INSIDE
 
 /area/prishtina/soviet/immediate_outside_defenses/houses
 	icon_state = "purple"

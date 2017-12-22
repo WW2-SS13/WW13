@@ -509,7 +509,6 @@
 #include "code\modules\client\preferencesSQLite\preference_setup\general\01_basic.dm"
 #include "code\modules\client\preferencesSQLite\preference_setup\general\02_language.dm"
 #include "code\modules\client\preferencesSQLite\preference_setup\general\03_body.dm"
-#include "code\modules\client\preferencesSQLite\preference_setup\general\04_equipment.dm"
 #include "code\modules\client\preferencesSQLite\preference_setup\global\01_ui.dm"
 #include "code\modules\client\preferencesSQLite\preference_setup\global\02_settings.dm"
 #include "code\modules\client\preferencesSQLite\preference_setup\global\03_language.dm"

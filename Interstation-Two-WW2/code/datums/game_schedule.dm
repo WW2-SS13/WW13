@@ -28,6 +28,8 @@ var/datum/game_schedule/global_game_schedule = null
 	var/dateInfoString = ""
 	// admin
 	var/forceClosed = 0
+	var/forceOpened = 0
+
 
 /datum/game_schedule/New()
 	update()
@@ -67,6 +69,10 @@ var/datum/game_schedule/global_game_schedule = null
 	else if (days_always_open.Find(day))
 		world_is_open = 1
 
+	if (forceOpened)
+		world_is_open = 1
+
+ 	// overrides forceOpened
 	if (forceClosed)
 		world_is_open = 0
 
@@ -81,6 +87,14 @@ var/datum/game_schedule/global_game_schedule = null
 
 /datum/game_schedule/proc/unforceClose()
 	forceClosed = 0
+	update()
+
+/datum/game_schedule/proc/forceOpen()
+	forceOpened = 1
+	update()
+
+/datum/game_schedule/proc/unforceOpen()
+	forceOpened = 0
 	update()
 
 /datum/game_schedule/proc/getCurrentTime(var/unit = "hours")

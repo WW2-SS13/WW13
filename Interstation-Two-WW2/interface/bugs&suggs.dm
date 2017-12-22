@@ -9,9 +9,9 @@
 	if (!bugname)
 		return
 
-	if (lentext(bugname) > 50)
-		bugname = copytext(bugname, 1, 51)
-		src << "<span class = 'warning'>Your bug's name was clamped to 50 characters.</span>"
+	if (lentext(bugname) > 100)
+		bugname = copytext(bugname, 1, 101)
+		src << "<span class = 'warning'>Your bug's name was clamped to 100 characters.</span>"
 
 	var/check_name_already_exists = database.execute("SELECT * FROM bug_reports WHERE name = '[bugname]';", FALSE)
 	if (islist(check_name_already_exists) && !isemptylist(check_name_already_exists))

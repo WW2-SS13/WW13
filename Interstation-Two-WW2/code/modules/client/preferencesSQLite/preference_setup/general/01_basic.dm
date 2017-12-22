@@ -152,9 +152,9 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
 	. += "<br><br>"
 	. += "<b>German Gender:</b> <a href='?src=\ref[src];gender_german=1'><b>[capitalize(lowertext(pref.german_gender))]</b></a><br>"
-	. += "<br><br>"
+	. += "<br>"
 	. += "<b>Russian Gender:</b> <a href='?src=\ref[src];gender_russian=1'><b>[capitalize(lowertext(pref.russian_gender))]</b></a><br>"
-	. += "<br><br>"
+	. += "<br>"
 	. += "<b>Ukrainian Gender:</b> <a href='?src=\ref[src];gender_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_gender))]</b></a><br>"
 	. += "<br><br>"
 	//misc antag stuff

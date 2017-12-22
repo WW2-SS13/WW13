@@ -147,8 +147,10 @@
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
-			client.prefs.update_preview_icon()
-			observer.icon = client.prefs.preview_icon
+			client.prefs.update_preview_icons()
+
+			if (client.prefs.preview_icons.len)
+				observer.icon = client.prefs.preview_icons[1]
 			observer.alpha = 127
 
 			if(client.prefs.be_random_name)

@@ -1,3 +1,5 @@
+/* Uniform Metadata: Soviet, German, Ukrainian, Italian */
+
 #define SOVIET_UNIFORM_NAME "Soviet uniform"
 #define SOVIET_UNIFORM_DESC "Standard issue Soviet uniform issued to soldiers of the Red Army. You can smell Vodka and see faint borsch stains."
 #define SOVIET_UNIFORM_STATE "sovuni"
@@ -6,6 +8,16 @@
 #define GERMAN_UNIFORM_DESC "Standard issue German uniform issued to soldiers of the Wehrmacht. It looks sturdy and strictly folded."
 #define GERMAN_UNIFORM_STATE "geruni"
 
+#define UKRAINE_UNIFORM_NAME "Ukrainian uniform"
+#define UKRAINE_UNIFORM_DESC "Standard issue Ukrainian uniform issued to foreign soldiers of the Red Army. You can smell Vodka and see faint borsch stains."
+#define UKRAINE_UNIFORM_STATE "ukraineuni"
+
+#define ITALIAN_UNIFORM_NAME "Italian uniform"
+#define ITALIAN_UNIFORM_DESC "Standard issue Italian uniform issued to foreign soldiers of the Wehrmacht."
+#define ITALIAN_UNIFORM_STATE "ukraineuni"
+
+/* Helmet Metadata: Soviet, German, Ukrainian, Italian */
+
 #define SOVIET_HELMET_NAME "Soviet helmet"
 #define SOVIET_HELMET_DESC "Standard issue helmet of the Red Army. Provides some protection against both the elements and flying bullets."
 #define SOVIET_HELMET_STATE "sovhelm"
@@ -13,6 +25,10 @@
 #define GERMAN_HELMET_NAME "German helmet"
 #define GERMAN_HELMET_DESC "Standard issue helmet of the Wehrmacht. Provides some protection against both the elements and flying bullets."
 #define GERMAN_HELMET_STATE "gerhelm"
+
+#define UKRAINE_HELMET_NAME "Soviet helmet"
+#define UKRAINE_HELMET_DESC "Standard issue helmet of the Red Army. Provides some protection against both the elements and flying bullets."
+#define UKRAINE_HELMET_STATE "sovhelm"
 
 /obj/item/clothing/under
 	var/swapped = 0

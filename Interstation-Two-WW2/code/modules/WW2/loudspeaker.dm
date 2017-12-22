@@ -6,6 +6,7 @@
 	listening = 1
 	broadcasting = 0
 	layer = MOB_LAYER + 1
+	anchored = 1
 
 /obj/item/device/radio/intercom/loudspeaker/german
 	frequency = DE_BASE_FREQ

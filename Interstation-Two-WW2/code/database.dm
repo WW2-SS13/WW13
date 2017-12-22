@@ -6,17 +6,14 @@ var/database/database = null
 	// lets make some tables
 	spawn (1)
 
-		// where we store bans
-		/*
-		if (!execute("TABLE ban EXISTS;"))
-			execute("CREATE TABLE ban (id STRING, bantime STRING, serverip STRING, bantype STRING, reason STRING, job STRING, duration STRING, rounds STRING, expiration_time INTEGER, ckey STRING, computerid STRING, ip STRING, a_ckey STRING, a_computerid STRING, a_ip STRING , who STRING, adminwho STRING, edits STRING, unbanned STRING, unbanned_datetime STRING, unbanned_ckey STRING, unbanned_computerid STRING, unbanned_ip STRING);")
-		*/
+		/* WW13 has 10 tables. ALL data should be stored in one of these tables,
+	     * It is fine to make new tables - Kachnov */
 
 		if (!execute("TABLE preferences EXISTS;"))
 			execute("CREATE TABLE preferences (ckey STRING, slot STRING, prefs STRING)")
 
 		if (!execute("TABLE quick_bans EXISTS;"))
-			execute("CREATE TABLE quick_bans (ckey STRING, cID STRING, ip STRING, type STRING, UID STRING, reason STRING, banned_by STRING, ban_date STRING, expire_realtime STRING, expire_info STRING);")
+			execute("CREATE TABLE quick_bans (ckey STRING, cID STRING, ip STRING, type STRING, type_specific_info STRING, UID STRING, reason STRING, banned_by STRING, ban_date STRING, expire_realtime STRING, expire_info STRING);")
 
 		// where we store admin data
 		if (!execute("TABLE admin EXISTS;"))
@@ -42,6 +39,16 @@ var/database/database = null
 		if (!execute("TABLE whitelists EXISTS;"))
 			execute("CREATE TABLE whitelists (key STRING, val STRING);")
 
+		// TODO: simple patreon table (user, pledge, metadata) to replace
+		// these two patreon tables. Why? Because we probably won't have
+		// specific rewards, we don't need a rewards table. But, the metadata
+		// table will be there in case we do need to store more specific reward
+		// info. Otherwise, for example, for the $3 reward, we simply check
+		// if they're a $3 patron (client.isPatron("$3")), and if they are,
+		// give them the OOC color pref. If they're a $5 patreon, when they
+		// try to submit tips, ditto. $10 patreon, let them bypass whitelist
+		// with the same check - Kachnov
+
 		// where we store raw patreon data
 		if (!execute("TABLE patreon EXISTS;"))
 			execute("CREATE TABLE patreon (user STRING, pledge STRING);")
@@ -51,7 +58,7 @@ var/database/database = null
 			execute("CREATE TABLE patreon_rewards (user STRING, data STRING);")
 
 /database/proc/newUID()
-	return "[rand(1, 1000*1000*1000)]"
+	return num2text(rand(1, 1000*1000*1000), 20)
 
 /database/proc/Now()
 	if (!global_game_schedule)
@@ -158,7 +165,6 @@ var/database/database = null
 #define PLEDGE_TIER_1 list(PATREON_COLOR, PATREON_CHAT)
 #define PLEDGE_TIER_2 list(TEST_SERVER_ACCESS, CUSTOM_DISCORD_ROLE)
 #define PLEDGE_TIER_3 list(ROLE_PREFERENCE, CUSTOM_LOADOUT)
-#define PLEDGE_TIER_4 list(SHORTENED_RESPAWN_TIME, TEST_ROLE_ELIGIBILITY)
 
 /database/proc/get_possible_patreon_rewards(var/client/C)
 	. = list()
@@ -175,8 +181,6 @@ var/database/database = null
 			. += PLEDGE_TIER_2
 		if (pledge >= 10)
 			. += PLEDGE_TIER_3
-		if (pledge >= 20)
-			. += PLEDGE_TIER_4
 
 /database/proc/grant_patreon_reward(var/client/C, reward)
 	var/list/possible_rewards = get_possible_patreon_rewards(C)

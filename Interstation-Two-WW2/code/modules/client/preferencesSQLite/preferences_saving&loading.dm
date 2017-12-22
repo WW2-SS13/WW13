@@ -65,6 +65,11 @@
 
 	internal_table = key_val_pairs
 	update_setup()
+
+	for (var/client/C in clients)
+		if (C.ckey == client_ckey)
+			C.onload_preferences()
+
 	return 1
 
 /datum/preferences/proc/save_preferences(var/slot = 1)
