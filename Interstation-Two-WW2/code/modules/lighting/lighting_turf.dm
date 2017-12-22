@@ -57,32 +57,50 @@
 // make this turf have a darkness level based on the time of day
 /turf/proc/adjust_lighting_overlay_to_daylight()
 
+	fix_corners()
+
 	var/changed = 0
 
 	for (var/datum/lighting_corner/corner in corners)
-		if (corner.TOD_lum_r)
-			corner.TOD_lum_r = time_of_day2luminosity[time_of_day]
-			corner.TOD_lum_g = time_of_day2luminosity[time_of_day]
-			corner.TOD_lum_b = time_of_day2luminosity[time_of_day]
-			changed = 1
+		corner.lum_r = 1.0
+		corner.lum_g = 1.0
+		corner.lum_b = 1.0
+		corner.TOD_lum_r = time_of_day2luminosity[time_of_day]
+		corner.TOD_lum_g = time_of_day2luminosity[time_of_day]
+		corner.TOD_lum_b = time_of_day2luminosity[time_of_day]
+		changed = 1
 
 	if (changed)
 		if (lighting_overlay)
 			lighting_overlay.update_overlay()
 
+/turf/proc/fix_corners() // workaround for broken ice corners
+	if (istype(src, /turf/floor/plating/beach/water/ice))
+		for(var/i = 1 to 4)
+			if(corners[i]) // Already have a corner on this direction.
+				continue
+
+			corners[i] = new/datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL[i])
+		for (var/atom/movable/lighting_overlay/LO in contents)
+			lighting_overlay = LO
+			break
+/*
 // make this turf have NO darkness. Used exclusively for trains (for now)
 /turf/proc/adjust_lighting_overlay_to_train_light()
 
 	var/changed = 0
 	for (var/datum/lighting_corner/corner in corners)
 		if (corner.TOD_lum_r)
-			corner.TOD_lum_r = 0.0
-			corner.TOD_lum_g = 0.0
-			corner.TOD_lum_b = 0.0
+			corner.lum_r = 1.0
+			corner.lum_g = 1.0
+			corner.lum_b = 1.0
+			corner.TOD_lum_r = 1.0
+			corner.TOD_lum_g = 1.0
+			corner.TOD_lum_b = 1.0
 			changed = 1
 
 	if (changed)
-		lighting_overlay.update_overlay()
+		lighting_overlay.update_overlay()*/
 
 // Used to get a scaled lumcount.
 /turf/proc/get_lumcount(var/minlum = 0, var/maxlum = 1)
@@ -92,7 +110,7 @@
 	var/totallums = 0
 	for(var/LL in corners)
 		var/datum/lighting_corner/L = LL
-		totallums += L.lum_r + L.lum_b + L.lum_g
+		totallums += L.getLumR() + L.getLumB() + L.getLumG()
 
 	totallums /= 12 // 4 corners, each with 3 channels, get the average.
 

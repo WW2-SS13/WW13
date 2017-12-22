@@ -23,7 +23,7 @@
 	var/moving = 0 // are we moving?
 	var/halting = 0 // did the conductor stop us?
 //	var/finishing_halting = 0 // did we halt recently? don't play movement sounds
-	var/velocity = 3.0 // previously 2.0
+	var/velocity = 2.50 // previously 3.0
 	var/started_moving = 0  // calls train_start hook when set to 1 for the first time
 	var/list/last_played[2] // movement, halting sounds
 	var/playing = "" // ditto

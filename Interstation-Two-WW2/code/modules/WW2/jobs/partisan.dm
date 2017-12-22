@@ -1,4 +1,5 @@
 /datum/job/partisan
+	faction = "Station"
 
 /datum/job/partisan/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_ukrainian_name(H.gender)
@@ -15,7 +16,6 @@
 
 /datum/job/partisan/soldier
 	title = "Partisan Soldier"
-	faction = "Station"
 	total_positions = 4
 	selection_color = "#530909"
 	spawn_location = "JoinLatePartisan"
@@ -37,7 +37,6 @@
 	title = "Partisan Commander"
 	is_officer = 1
 	is_commander = 1
-	faction = "Station"
 	total_positions = 1
 	head_position = 1
 	selection_color = "#2d2d63"

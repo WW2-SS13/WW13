@@ -11,6 +11,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 
 	//process each line seperately
 	for(var/line in Lines)
+
 		if(!length(line))				continue
 		if(copytext(line,1,2) == "#")	continue
 
@@ -46,9 +47,6 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		admin_ranks[rank] = rights
 		previous_rights = rights
 
-//		spawn(100)
-	//		world << "[rank] = [admin_ranks[rank]]"
-
 	#ifdef TESTING
 	var/msg = "Permission Sets Built:\n"
 	for(var/rank in admin_ranks)
@@ -63,13 +61,14 @@ var/loaded_admins = 0
 	return 1
 
 /proc/load_admins(var/force = 0)
-	if (loaded_admins)
+	if (loaded_admins && !force)
 		return
 	//clear the datums references
 	admin_datums.Cut()
 	for(var/client/C in admins)
 		C.remove_admin_verbs()
 		C.holder = null
+
 	admins.Cut()
 
 	load_admin_ranks()

@@ -202,12 +202,12 @@
 				break
 
 		var/turf/H_turf = get_turf(H)
-		if (istype(H_turf) && msg_type == "cold" && locate(/obj/snow) in H_turf)
-			var/obj/snow/S = locate(/obj/snow) in H_turf
-			if (prob(25) && S.amount >= 0.20)
+		if (istype(H_turf) && msg_type == "cold" && (locate(/obj/snow) in H_turf || !H.shoes))
+			if (prob(25))
 				H << "<span class='danger'>Your feet are freezing!</span>"
 				var/base_damage = 1
-				base_damage *= S.amount/0.20
+				for (var/obj/snow/S in H_turf)
+					base_damage += S.amount * 5
 				H.adjustFireLossByPart(base_damage, pick("l_foot", "r_foot"))
 
 		if (!covered)

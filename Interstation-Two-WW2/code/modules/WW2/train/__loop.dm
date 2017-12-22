@@ -54,11 +54,13 @@ var/supplytrain_interval = 1200 // todo: config setting
 					german_supplytrain_master.announce("The Supply Train is now departing from the armory. It will arrive again in [supplytrain_interval/600] minutes.")
 					if (!german_supplytrain_master.invisible)
 						german_supplytrain_master.update_invisibility(1)
+					german_supplytrain_master.here = 0
 				if ("BACKWARDS")
 					german_supplytrain_master.direction = "FORWARDS"
 					german_supplytrain_master.announce("The Supply Train is now arriving at the armory. It will depart in [supplytrain_interval/600] minutes.")
 					if (german_supplytrain_master.invisible)
 						german_supplytrain_master.update_invisibility(0)
+					german_supplytrain_master.here = 1
 
 			german_supplytrain_master.moving = 1
 

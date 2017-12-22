@@ -8,7 +8,7 @@
 		dir = SOUTH
 
 	if (!artillery_master)
-		artillery_master = new/datum/artillery_controller()
+		artillery_master = new/datum/artillery_controller
 
 	var/fake_builder = 0
 
@@ -31,6 +31,9 @@
 
 	qdel(src)
 
+#define BLIND_FIRE_RANGES list("SHORT", "MEDIUM", "LONG")
+#define BLIND_FIRE_DISTANCES list("SHORT" = "25:30", "MEDIUM" = "50:60", "LONG" = "75:90")
+
 //first piece
 /obj/machinery/artillery/base
 	var/list/ejections = list()
@@ -41,11 +44,38 @@
 	var/mob/user = null
 	var/state = "CLOSED"
 	var/casing_state = "casing"
+
+	// setting for 'blind firing'
+	var/blind_fire_toggle = 0
+	var/blind_fire_dir = SOUTH
+	var/blind_fire_dir2 = "NONE"
+	var/blind_fire_range = "SHORT"
+
 	density = 1
 	name = "7,5 cm FK 18"
 	icon = 'icons/WW2/artillery_piece.dmi'
 	icon_state = "base"
 	layer = MOB_LAYER + 1 //just above mobs
+
+	proc/get_blind_fire_dir()
+		switch (blind_fire_dir)
+			if (NORTH)
+				return "NORTH"
+			if (EAST)
+				return "EAST"
+			if (SOUTH)
+				return "SOUTH"
+			if (WEST)
+				return "WEST"
+
+	proc/get_blind_fire_dir2()
+		switch (blind_fire_dir2)
+			if (EAST)
+				return "EAST"
+			if (WEST)
+				return "WEST"
+			if ("NONE")
+				return "NONE"
 
 	proc/do_html(var/mob/m)
 
@@ -77,6 +107,12 @@
 			Offset Y-coordinate:<input type="text" name="yocoord" value="[offset_y]" onchange="set(this);" /><br>
 			Fire At X-coordinate:<input type="text" name="xplusxocoord" value="[offset_x + x]" onchange="set(this);" /><br>
 			Fire At Y-coordinate:<input type="text" name="yplusyocoord" value="[offset_y + y]" onchange="set(this);" /><br>
+			Blind Firing:
+			&nbsp;<a href='?src=\ref[src];blind_fire_toggle=1'>[blind_fire_toggle ? "YES" : "NO"]</a>
+			&nbsp;<a href='?src=\ref[src];blind_fire_dir=1'>[get_blind_fire_dir()]</a>
+			&nbsp;<a href='?src=\ref[src];blind_fire_dir2=1'>[get_blind_fire_dir2()]</a>
+			&nbsp;<a href='?src=\ref[src];blind_fire_dist=1'>[blind_fire_range]</a>
+			<br>
 			<br>
 			<a href='?src=\ref[src];fire=1'><b><big>FIRE!</big></b></a>
 			</center>
@@ -182,26 +218,60 @@
 					user << "<span class='danger'>Close the shell loading slot first.</span>"
 					return
 
+				if (blind_fire_toggle)
+
+					offset_x = 0
+					offset_y = 0
+
+					var/number_range = splittext(BLIND_FIRE_DISTANCES[blind_fire_range], ":")
+					var/lowerbound = text2num(number_range[1])
+					var/upperbound = text2num(number_range[2])
+					var/add = rand(lowerbound, upperbound)
+
+					switch (blind_fire_dir)
+						if (NORTH)
+							offset_y += add
+						if (SOUTH)
+							offset_y -= add
+						if (EAST)
+							offset_x += add
+						if (WEST)
+							offset_x -= add
+
+					if (dir == NORTH || dir == SOUTH)
+						switch (blind_fire_dir2)
+							if (EAST)
+								offset_x += add/2
+							if (WEST)
+								offset_x -= add/2
+
+
 				var/target_x = offset_x + x
 				var/target_y = offset_y + y
 
+				target_x = min(max(target_x, 1), world.maxx)
+				target_y = min(max(target_y, 1), world.maxy)
+
 				var/valid_coords_check = 0
 
-				if (global.valid_coordinates.Find("[target_x],[target_y]"))
-					valid_coords_check = 1
+				if (!blind_fire_toggle)
+					if (global.valid_coordinates.Find("[target_x],[target_y]"))
+						valid_coords_check = 1
+					else
+						for (var/coords in global.valid_coordinates)
+							var/splitcoords = splittext(coords, ",")
+							var/coordx = text2num(splitcoords[1])
+							var/coordy = text2num(splitcoords[2])
+							if (abs(coordx - target_x) <= 15)
+								if (abs(coordy - target_y) <= 15)
+									valid_coords_check = 1
 				else
-					for (var/coords in global.valid_coordinates)
-						var/splitcoords = splittext(coords, ",")
-						var/coordx = text2num(splitcoords[1])
-						var/coordy = text2num(splitcoords[2])
-						if (abs(coordx - target_x) <= 15)
-							if (abs(coordy - target_y) <= 15)
-								valid_coords_check = 1
-
+					valid_coords_check = 1
 
 				if (!valid_coords_check)
 					user << "<span class='danger'>You have no knowledge of this location.</span>"
 					return
+
 				if (abs(offset_x) > 0 || abs(offset_y) > 0)
 					if (abs(offset_x) + abs(offset_y) < 20)
 						user << "<span class='danger'>This location is too close to fire to.</span>"
@@ -209,7 +279,7 @@
 					else
 						var/obj/item/artillery_ammo/shell = other.use_slot()
 						if (shell)
-							other.fire(x + offset_x, y + offset_y, shell)
+							other.fire(target_x, target_y, shell)
 						else
 							user << "<span class='danger'>Load a shell in first.</span>"
 							return
@@ -267,6 +337,52 @@
 
 
 		//	flick("opening", src)
+
+
+		// blind firing
+
+		if (href_list["blind_fire_toggle"])
+			blind_fire_toggle = !blind_fire_toggle
+
+
+		if (href_list["blind_fire_dist"])
+			switch (blind_fire_range)
+				if ("SHORT")
+					blind_fire_range = "MEDIUM"
+				if ("MEDIUM")
+					blind_fire_range = "LONG"
+				if ("LONG")
+					blind_fire_range = "SHORT"
+
+		// no cardinal directions for now
+		if (href_list["blind_fire_dir"])
+
+			switch (blind_fire_dir)
+				if (NORTH)
+					blind_fire_dir = EAST
+				if (EAST)
+					blind_fire_dir = SOUTH
+				if (SOUTH)
+					blind_fire_dir = WEST
+				if (WEST)
+					blind_fire_dir = NORTH
+
+			if (blind_fire_dir != SOUTH && blind_fire_dir != NORTH)
+				blind_fire_dir2 = "NONE"
+
+		if (href_list["blind_fire_dir2"])
+
+			if (blind_fire_dir != SOUTH && blind_fire_dir != NORTH)
+				blind_fire_dir2 = "NONE"
+			else
+				switch (blind_fire_dir2)
+					if ("NONE")
+						blind_fire_dir2 = EAST
+					if (EAST)
+						blind_fire_dir2 = WEST
+					if (WEST)
+						blind_fire_dir2 = "NONE"
+
 
 
 		do_html(user)
@@ -405,6 +521,9 @@
 		y = y + rand(1,-1)
 
 		var/turf/t = locate(x, y, z)
+
+		if (!t)
+			return
 
 		var/area/t_area = get_area(t)
 

@@ -267,91 +267,75 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!thearea)	return
 
 	var/list/L = list()
-	var/holyblock = 0
 
 	if(usr.invisibility <= SEE_INVISIBLE_LIVING)
 		for(var/turf/T in get_area_turfs(thearea.type))
-		/*	if(!T.holy)
-				L+=T
-			else
-				holyblock = 1*/
 			L += T
 	else
 		for(var/turf/T in get_area_turfs(thearea.type))
 			L+=T
 
 	if(!L || !L.len)
-		if(holyblock)
-			usr << "<span class='warning'>This area has been entirely made into sacred grounds, you cannot enter it while you are in this plane of existence!</span>"
-		else
-			usr << "No area available."
+		usr << "No area available."
 
 	stop_following()
 	usr.forceMove(pick(L))
 
-/mob/observer/ghost/verb/follow(input in getfitmobs())
+/mob/observer/ghost/verb/follow(input in getfitmobs()+"Cancel")
 	set category = "Ghost"
 	set name = "Follow" // "Haunt"
 	set desc = "Follow and haunt a mob."
 
-	var/target = input // no longer a map
-	if(!target) return
-	ManualFollow(target)
+	if (input != "Cancel")
+		ManualFollow(getfitmobs()[input])
 
-/mob/observer/ghost/verb/follow_russian(input in getfitmobs(RUSSIAN))
+/mob/observer/ghost/verb/follow_russian(input in getfitmobs(RUSSIAN)+"Cancel")
 	set category = "Ghost"
 	set name = "Follow a Russian"
 	set desc = "Follow and haunt a living Russian."
 
-	var/target = input // not a map
-	if(!target) return
-	ManualFollow(target)
+	if (input != "Cancel")
+		ManualFollow(getfitmobs(RUSSIAN)[input])
 
-/mob/observer/ghost/verb/follow_german(input in getfitmobs(GERMAN))
+/mob/observer/ghost/verb/follow_german(input in getfitmobs(GERMAN)+"Cancel")
 	set category = "Ghost"
 	set name = "Follow a German"
 	set desc = "Follow and haunt a living German."
 
-	var/target = input // not a map
-	if(!target) return
-	ManualFollow(target)
+	if (input != "Cancel")
+		ManualFollow(getfitmobs(GERMAN)[input])
 
-
-/mob/observer/ghost/verb/follow_paratroopers(input in getfitmobs("PARATROOPERS"))
+/mob/observer/ghost/verb/follow_paratroopers(input in getfitmobs("PARATROOPERS")+"Cancel")
 	set category = "Ghost"
 	set name = "Follow a Paratrooper"
 	set desc = "Follow and haunt a living Paratrooper."
 
-	var/target = input // not a map
-	if(!target) return
-	ManualFollow(target)
+	if (input != "Cancel")
+		ManualFollow(getfitmobs("PARATROOPERS")[input])
 
-/mob/observer/ghost/verb/follow_ss(input in getfitmobs("SS"))
+/mob/observer/ghost/verb/follow_ss(input in getfitmobs("SS")+"Cancel")
 	set category = "Ghost"
 	set name = "Follow a SS soldier"
 	set desc = "Follow and haunt a living SS soldier."
 
-	var/target = input // not a map
-	if(!target) return
-	ManualFollow(target)
+	if (input != "Cancel")
+		ManualFollow(getfitmobs("SS")[input])
 
-/mob/observer/ghost/verb/follow_partisan(input in getfitmobs(PARTISAN))
+/mob/observer/ghost/verb/follow_partisan(input in getfitmobs(PARTISAN)+"Cancel")
 	set category = "Ghost"
 	set name = "Follow a Partisan"
 	set desc = "Follow and haunt a living Partisan."
 
-	var/target = input // not a map
-	if(!target) return
-	ManualFollow(target)
+	if (input != "Cancel")
+		ManualFollow(getfitmobs(PARTISAN)[input])
 
-/mob/observer/ghost/verb/follow_civilian(input in getfitmobs(CIVILIAN))
+/mob/observer/ghost/verb/follow_civilian(input in getfitmobs(CIVILIAN)+"Cancel")
 	set category = "Ghost"
 	set name = "Follow a Civilian"
 	set desc = "Follow and haunt a living Civilian."
 
-	var/target = input // not a map
-	if(!target) return
-	ManualFollow(target)
+	if (input != "Cancel")
+		ManualFollow(getfitmobs(CIVILIAN)[input])
 
 /mob/observer/ghost/verb/follow_train()
 	set category = "Ghost"
@@ -370,11 +354,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/oldloc = get_turf(src)
 
-	var/datum/train_controller/tc = german_supplytrain_master
+	var/datum/train_controller/german_supplytrain_controller/tc = german_supplytrain_master
 
-	for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
-		for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
-			ManualFollow(tpt)
+	if (tc.here)
+		for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
+			for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
+				ManualFollow(tpt)
+				goto endloop // 1 break statement is not enough
+
+	endloop
 
 	var/newloc = get_turf(src)
 

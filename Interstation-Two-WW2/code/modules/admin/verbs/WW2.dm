@@ -117,8 +117,7 @@
 	set category = "WW2 (Admin)"
 	set name = "Show battle report"
 
-	if ((input(src, "Are you sure you want to show the battle report? Unless the Battle Controller Process died, it will happen automatically!", "Battle Report") in list ("Yes", "No")) == "Yes")
-		show_global_battle_report(src)
+	show_global_battle_report(src)
 
 /proc/show_global_battle_report(var/shower)
 
@@ -154,23 +153,24 @@
 	var/msg3 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
 	var/msg4 = "Partisans: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
 
-	var/public = alert(usr, "Show it to the entire server?",,"Yes", "No")
+	var/public = alert(shower, "Show it to the entire server?",,"Yes", "No")
 
 	if(public == "Yes")
-		world << "<font size=4>Battle status report:</font>"
-		world << "<font size=3>[msg1]</font>"
-		world << "<font size=3>[msg2]</font>"
-		world << "<font size=3>[msg3]</font>"
-		world << "<font size=3>[msg4]</font>"
-		if (shower)
-			message_admins("[key_name(shower)] showed everyone the battle report.")
-		else
-			message_admins("the <b>Battle Controller Process</b> showed everyone the battle report.")
+		if ((input(shower, "Are you sure you want to show the battle report? Unless the Battle Controller Process died, it will happen automatically!", "Battle Report") in list ("Yes", "No")) == "Yes")
+			world << "<font size=4>Battle status report:</font>"
+			world << "<font size=3>[msg1]</font>"
+			world << "<font size=3>[msg2]</font>"
+			world << "<font size=3>[msg3]</font>"
+			world << "<font size=3>[msg4]</font>"
+			if (shower)
+				message_admins("[key_name(shower)] showed everyone the battle report.")
+			else
+				message_admins("the <b>Battle Controller Process</b> showed everyone the battle report.")
 	else
-		usr << msg1
-		usr << msg2
-		usr << msg3
-		usr << msg4
+		shower << msg1
+		shower << msg2
+		shower << msg3
+		shower << msg4
 
 /client/proc/generate_hit_table()
 	set category = "WW2 (Admin)"

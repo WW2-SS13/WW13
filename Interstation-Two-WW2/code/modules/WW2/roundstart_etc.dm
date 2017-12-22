@@ -94,6 +94,7 @@ var/GRACE_PERIOD_LENGTH = 10
 		var/season = "SPRING"
 		if (ticker.mode.vars.Find("season"))
 			season = ticker.mode:season
+		update_lighting(announce = 0)
 		world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(time_of_day)]</b>, and the season is <b>[capitalize(lowertext(season))]</b>.</span></font>"
 
 	// spawn mice so soviets have something to eat after they start starving
@@ -119,71 +120,6 @@ var/GRACE_PERIOD_LENGTH = 10
 			if (findtext(keydoor.name, "Preparation"))
 				keydoor.Open()
 	return 1
-
-/obj/snow
-	icon = 'icons/turf/snow.dmi'
-	icon_state = ""
-	layer = 2.03 // above grass_edge plant decals
-	alpha = 200
-	name = "snow"
-	anchored = 1
-	special_id = "seasons"
-	var/amount = 0.05 // "meters" of snow
-	var/area/my_area = null
-
-/obj/snow/New()
-	..()
-	amount = pick(0.04, 0.05, 0.06) // around 2 inchesi
-	var/spawntime = 0
-	if (!obj_process)
-		spawntime = 300
-	spawn (spawntime)
-		obj_process.add_nonvital_object(src)
-
-/obj/snow/Destroy()
-	var/spawntime = 0
-	if (!obj_process)
-		spawntime = 300
-	spawn (spawntime)
-		obj_process.remove_nonvital_object(src)
-	..()
-
-/obj/snow/process()
-	if (!my_area)
-		my_area = get_area(src)
-	if (my_area.weather == WEATHER_SNOW)
-		// accumulate about 0.25 meters of snow/2000 seconds (+ randomness)
-		amount += 0.0025 * my_area.weather_intensity
-		if (prob(25))
-			amount *= 0.0025 * my_area.weather_intensity
-	else if (weather == WEATHER_SNOW && my_area.artillery_integrity <= 20)
-		// or, if we're inside, 0.1 meters (+ randomness)
-		amount += 0.0010 * 1.0
-		if (prob(25))
-			amount += 0.0010 * 1.0
-
-/obj/snow/proc/descriptor()
-	switch (amount)
-		if (0 to 0.08) // up to ~1/4 feet
-			return "light snow"
-		if (0.08 to 0.16) // up to ~1/2 feet
-			return "moderately deep snow"
-		if (0.16 to 0.30) // up to a ~1 foot
-			return "deep snow"
-		if (0.30 to 0.75) // ~ 2 to 2.5 feet
-			return "very deep snow"
-		if (0.75 to 1.22) // up to 4 feet!
-			return "extremely deep snow"
-		if (1.22 to INFINITY) // no way we can go through this easily
-			return "incredibly deep snow"
-
-/obj/snow/get_description_info()
-	return "It's about [amount] meters deep. That's [descriptor()]."
-
-/obj/snow/attackby(obj/item/C as obj, mob/user as mob)
-	var/turf/floor/F = get_turf(src)
-	if (istype(F))
-		return F.attackby(C, user)
 
 // this is roundstart because we need to wait for objs to be created
 /hook/roundstart/proc/nature()

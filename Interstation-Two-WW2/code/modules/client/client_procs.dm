@@ -121,6 +121,7 @@
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
+
 	if(!prefs)
 		prefs = new /datum/preferences(src)
 		preferences_datums[ckey] = prefs
@@ -145,36 +146,44 @@
 
 	establish_db_connection()
 
-	/* if there are no admins, and we are the host,
-	  give us host permissions - todo: config setting */
+	/* we're the key in host.txt.
+	 * if there are no admins, and we aren't admin, give us admin
+	 * then delete host.txt?
+	*/
 
-	var/list/admins = database.execute("SELECT * FROM admin;")
-	if ((!islist(admins) || isemptylist(admins)) && !holder)
-		holder = new("Host", 0, ckey)
-		database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
+	var/host_file_text = file2text("config/host.txt")
+	if (ckey(host_file_text) == ckey)
+		var/list/admins = database.execute("SELECT * FROM admin;")
+		if ((!islist(admins) || isemptylist(admins)) && !holder)
+			holder = new("Host", 0, ckey)
+			database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
 
 	if(holder)
 		holder.associate(src)
 		admins |= src
 		holder.owner = src
 
-	if (!world_is_open && !holder)
-		src << "<span class = 'userdanger'>The server is currently closed to non-admins. The game is open [global_game_schedule.getScheduleAsString()].</span>"
-		del(src)
-		return // todo
+	if (!holder)
 
-	else if (world.port == config.hubtesting_port)
-		if (!validate_whitelist("server"))
-			src << "<span class = 'userdanger'>The server is closed to non-admins and non-whitelisted right now, sorry.</span>"
-			message_admins("[src] tried to log in, but was rejected, because they aren't an admin or in the 'server' whitelist, and the server is on hubtesting mode.")
+		if (!world_is_open)
+			src << "<span class = 'userdanger'>The server is currently closed to non-admins. The game is open [global_game_schedule.getScheduleAsString()].</span>"
+			message_admins("[src] tried to log in, but was rejected, the server is closed to non-admins.")
+			del(src)
+			return // todo
+
+/* // removed this for now because its pointless - Kachnov
+		else if (world.port == config.hubtesting_port)
+			if (!validate_whitelist("server"))
+				src << "<span class = 'userdanger'>The server is closed to non-admins and non-whitelisted right now, sorry.</span>"
+				message_admins("[src] tried to log in, but was rejected, because they aren't an admin or in the 'server' whitelist, and the server is on hubtesting mode.")
+				del(src)
+				return
+*/
+		else if (!validate_whitelist("server"))
+			src << "<span class = 'userdanger'>You are not in the server whitelist. You cannot join this server right now, sorry.</span>"
+			message_admins("[src] tried to log in, but was rejected, because they weren't in the 'server' whitelist.")
 			del(src)
 			return
-
-	else if (!validate_whitelist("server"))
-		src << "<span class = 'userdanger'>You are not in the server whitelist. You cannot join this server right now, sorry.</span>"
-		message_admins("[src] tried to log in, but was rejected, because they aren't in the 'server' whitelist.")
-		del(src)
-		return
 
 	if(custom_event_msg && custom_event_msg != "")
 		src << "<h1 class='alert'>Custom Event</h1>"

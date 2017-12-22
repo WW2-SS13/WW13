@@ -19,6 +19,9 @@ var/list/admin_verbs_default = list(
 //	/client/proc/deadchat				//toggles deadchat on/off,
 	)
 var/list/admin_verbs_admin = list(
+	/client/proc/add_to_server_whitelist,
+	/client/proc/remove_from_server_whitelist,
+	/client/proc/view_server_whitelist,
 	/client/proc/player_panel_new,		//shows an interface for all players, with links to various panels,
 	/client/proc/invisimin,				//allows our mob to go invisible/visible,
 //	/datum/admins/proc/show_traitor_panel,	//interface which shows a mob's mind, -Removed due to rare practical use. Moved to debug verbs ~Errorage,
@@ -163,7 +166,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/jumptocoord,
 	/client/proc/dsay,
 	/client/proc/check_positions,
-	/client/proc/recreate_lighting,
+	/client/proc/change_time_of_day,
 	/client/proc/randomly_change_weather,
 	/client/proc/randomly_modify_weather
 	)
@@ -327,6 +330,8 @@ var/list/admin_verbs_mentor = list(
 		admin_verbs_fun,
 		admin_verbs_server,
 		admin_verbs_debug,
+		admin_verbs_mod,
+		admin_verbs_mentor,
 //		admin_verbs_possess,
 		admin_verbs_permissions,
 		/client/proc/stealth,

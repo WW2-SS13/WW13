@@ -1,12 +1,14 @@
 var/datum/game_schedule/global_game_schedule = null
 
 /datum/game_schedule
-	// when the game is open to non-staff, UTC (4 hours ahead of EST)
+	// when the game is open to non-staff, UTC (5 hours ahead of EST)
 	var/starttime = 16
-	// when the game is closed to non-staff, UTC (4 hours ahead of EST)
+	// when the game is closed to non-staff, UTC (5 hours ahead of EST)
 	var/endtime = 21
 	// days the game is CLOSED
 	var/list/days_closed = list()
+	// days the game is always open (WIP!)
+	var/list/days_always_open = list()
 	// a reference realtime, date (in DD-MM-YY format) and day:
 	// this is not 100% accurate, but because starttime, endtime, are
 	// independent of this, it doesn't matter
@@ -48,6 +50,12 @@ var/datum/game_schedule/global_game_schedule = null
 	day = ref_day
 	realtime = world.realtime
 	realtime_as_string = num2text(realtime, 20)
+
+	// hard overrides for opening or closing the world
+	if (days_closed.Find(day))
+		world_is_open = 0
+	else if (days_always_open.Find(day))
+		world_is_open = 1
 
 /datum/game_schedule/proc/getCurrentTime(var/unit = "hours")
 	// first, get the number of seconds that have elapsed since 00:00:00 today

@@ -1,9 +1,7 @@
 // uses /area/prishtina/field
 
 /area/prishtina
-	atmos = 0
-	atmosalm = 0
-	poweralm = 0
+
 	requires_power = 0
 	has_gravity = 1
 	no_air = 0
@@ -12,6 +10,7 @@
 	base_turf = /turf/floor/plating/grass/wild //The base turf type of the area, which can be used to override the z-level's base turf
 	sound_env = STANDARD_STATION
 	icon_state = "none"
+	dynamic_lighting = 1
 
 /area/prishtina/New()
 	..()
@@ -30,6 +29,7 @@
 
 /area/prishtina/field
 	name = "Field"
+	dynamic_lighting = 0
 
 // admin zone
 
@@ -103,6 +103,7 @@
 /area/prishtina/void/caves
 	icon_state = "blue2"
 	name = "the caves"
+	location = AREA_INSIDE
 
 /area/prishtina/void/german
 	icon_state = "red2"
@@ -209,6 +210,8 @@
 	#else
 	dynamic_lighting = 0
 	#endif
+	location = AREA_INSIDE
+	is_train_area = 1
 
 /area/prishtina/german/train_zone/fieldtest
 	name = "Field Zone"
@@ -260,6 +263,7 @@
 	name = "Armory"
 	icon_state = "purple"
 	dynamic_lighting = 0
+	is_train_area = 1
 
 /area/prishtina/german/cafeteria
 	name = "Cafeteria"

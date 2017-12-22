@@ -10,8 +10,11 @@
 	start_delay = 20
 	#ifdef DAYTIME_DEBUG
 	change_time_of_day_interval = 2000
-	#endif
 	next_can_change_time_of_day = world.realtime + 100
+	#else
+	// wait at least a few mins before we change the time of day
+	next_can_change_time_of_day = world.realtime + 1800
+	#endif
 
 /datum/controller/process/time_of_day/doWork()
 	if (!roundstart_time)
@@ -21,5 +24,5 @@
 
 	if (prob(prob_of_time_of_day_change))
 		if (world.realtime >= next_can_change_time_of_day)
-			randomly_update_lighting()
+			progress_time_of_day()
 			next_can_change_time_of_day = world.realtime + minimum_change_time_of_day_delay

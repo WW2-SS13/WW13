@@ -1,5 +1,5 @@
 // this exists because BYOND has a tendency to wipe .dme files
-// this backup is from 10/28/2017 (American date format)
+// this backup is from 12/16/17 (American date format)
 
 // DM Environment file for Interstation-Two-WW2.dme.
 // All manual changes should be made outside the BEGIN_ and END_ blocks.
@@ -10,6 +10,7 @@
 #define FILE_DIR .
 // END_FILE_DIR
 // BEGIN_PREFERENCES
+#define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
 #include "code\_macros.dm"
@@ -94,7 +95,6 @@
 #include "code\_onclick\hud\human.dm"
 #include "code\_onclick\hud\movable_screen_objects.dm"
 #include "code\_onclick\hud\other_mobs.dm"
-#include "code\_onclick\hud\parallax.dm"
 #include "code\_onclick\hud\robot.dm"
 #include "code\_onclick\hud\screen_objects\base_screen_objects.dm"
 #include "code\controllers\configuration.dm"
@@ -203,7 +203,6 @@
 #include "code\game\jobs\job.dm"
 #include "code\game\jobs\job_controller.dm"
 #include "code\game\jobs\jobs.dm"
-#include "code\game\jobs\whitelist.dm"
 #include "code\game\machinery\_machinery.dm"
 #include "code\game\machinery\barricades.dm"
 #include "code\game\machinery\cell_charger.dm"
@@ -462,6 +461,7 @@
 #include "code\modules\admin\verbs\adminpm.dm"
 #include "code\modules\admin\verbs\adminsay.dm"
 #include "code\modules\admin\verbs\BrokenInhands.dm"
+#include "code\modules\admin\verbs\bugs&suggs.dm"
 #include "code\modules\admin\verbs\cinematic.dm"
 #include "code\modules\admin\verbs\counting.dm"
 #include "code\modules\admin\verbs\custom_event.dm"
@@ -482,7 +482,6 @@
 #include "code\modules\admin\verbs\SDQL.dm"
 #include "code\modules\admin\verbs\SDQL_2.dm"
 #include "code\modules\admin\verbs\SDQL_2_parser.dm"
-#include "code\modules\admin\verbs\see_bug_reports.dm"
 #include "code\modules\admin\verbs\see_jews.dm"
 #include "code\modules\admin\verbs\see_soldiers.dm"
 #include "code\modules\admin\verbs\see_spies.dm"
@@ -492,6 +491,7 @@
 #include "code\modules\admin\verbs\toggle_jobs.dm"
 #include "code\modules\admin\verbs\toggle_subfactions.dm"
 #include "code\modules\admin\verbs\weather.dm"
+#include "code\modules\admin\verbs\whitelist.dm"
 #include "code\modules\admin\verbs\WW2.dm"
 #include "code\modules\admin\view_variables\helpers.dm"
 #include "code\modules\admin\view_variables\topic.dm"
@@ -913,11 +913,12 @@
 #include "code\modules\WW2\newspaper.dm"
 #include "code\modules\WW2\noghost.dm"
 #include "code\modules\WW2\officer.dm"
-#include "code\modules\WW2\other.dm"
 #include "code\modules\WW2\phone.dm"
 #include "code\modules\WW2\rockets.dm"
+#include "code\modules\WW2\roundstart_etc.dm"
 #include "code\modules\WW2\signs_portraits_propaganda.dm"
 #include "code\modules\WW2\snacks.dm"
+#include "code\modules\WW2\snow.dm"
 #include "code\modules\WW2\storage.dm"
 #include "code\modules\WW2\tools.dm"
 #include "code\modules\WW2\vending.dm"
@@ -941,10 +942,12 @@
 #include "code\modules\WW2\jobs\faction.dm"
 #include "code\modules\WW2\jobs\german.dm"
 #include "code\modules\WW2\jobs\helpers.dm"
+#include "code\modules\WW2\jobs\italian.dm"
 #include "code\modules\WW2\jobs\job_language.dm"
 #include "code\modules\WW2\jobs\partisan.dm"
 #include "code\modules\WW2\jobs\russian.dm"
 #include "code\modules\WW2\jobs\superiors.dm"
+#include "code\modules\WW2\jobs\ukrainian.dm"
 #include "code\modules\WW2\jobs\whitelist.dm"
 #include "code\modules\WW2\lift\__defines.dm"
 #include "code\modules\WW2\lift\controller.dm"
@@ -1002,10 +1005,11 @@
 #include "code\modules\WW2\weapons\guns\stationary.dm"
 #include "code\modules\xgm\xgm_gas_data.dm"
 #include "code\modules\xgm\xgm_gas_mixture.dm"
-#include "interface\bugs&sugs.dm"
+#include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
 #include "maps\level1.dmm"
 #include "maps\level2.dmm"
 #include "maps\level3.dmm"
 // END_INCLUDE
+

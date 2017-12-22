@@ -220,5 +220,19 @@
 	for (var/obj/tank/T in world)
 		qdel(T)
 
+/datum/game_aspect/ww2/foreign_armies
+	desc = "The German Wehrmacht is being assisted by an Italian division, and the Red Army is being assisted by a Ukrainian division."
+
+/datum/game_aspect/ww2/foreign_armies/activate()
+	. = ..()
+	if (. == FALSE)
+		return .
+	world << "[WW2_ASPECT_SPAN][.]Foreign Armies!</span>"
+	world << "<br><i>[desc]</i>"
+
+	job_master.allow_helper_factions["ITALY"] = 1
+	job_master.allow_helper_factions["UKRAINE"] = 1
+
+
 #undef WW2_ASPECT_SPAN
 #undef WW2_ASPECTDESC_SPAN

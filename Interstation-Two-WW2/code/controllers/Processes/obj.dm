@@ -33,7 +33,8 @@ var/datum/controller/process/obj/obj_process = null
 			catchBadType(O)
 			processing_objects -= O
 
-	if (prob(40))
+	// objects here only process about 1/40 ticks
+	if (prob(10))
 		var/list/nonvital_list = null
 
 		if (prob(25))

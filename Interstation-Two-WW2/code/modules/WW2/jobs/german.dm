@@ -1,4 +1,5 @@
 /datum/job/german
+	faction = "Station"
 
 /datum/job/german/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_german_name(H.gender)
@@ -7,7 +8,6 @@
 /datum/job/german/commander
 	title = "Oberleutnant"
 	en_meaning = "Commander"
-	faction = "Station"
 	total_positions = 1
 	head_position = 1
 	selection_color = "#2d2d63"
@@ -48,7 +48,6 @@
 /datum/job/german/staff_officer
 	title = "Stabsoffizier"
 	en_meaning = "Staff Officer"
-	faction = "Station"
 	total_positions = 2
 	head_position = 0
 	selection_color = "#2d2d63"
@@ -86,7 +85,6 @@
 /datum/job/german/squad_leader
 	title = "Gruppenfuhrer"
 	en_meaning = "Squad Leader"
-	faction = "Station"
 	total_positions = 4
 	head_position = 0
 	selection_color = "#4c4ca5"
@@ -123,7 +121,6 @@
 /datum/job/german/medic
 	title = "Feldarzt"
 	en_meaning = "Medic"
-	faction = "Station"
 	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -147,7 +144,6 @@
 /datum/job/german/doctor
 	title = "Medizinier"
 	en_meaning = "Doctor"
-	faction = "Station"
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerDr"
@@ -180,7 +176,6 @@
 /datum/job/german/flamethrower_man
 	title = "Flammenwerfersoldat"
 	en_meaning = "Flamethrower Soldier"
-	faction = "Station"
 	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -210,7 +205,6 @@
 /datum/job/german/sniper
 	title = "Sharfshutze"
 	en_meaning = "Sniper"
-	faction = "Station"
 	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -240,7 +234,6 @@
 /datum/job/german/engineer
 	title = "Pionier"
 	en_meaning = "Engineer"
-	faction = "Station"
 	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -270,7 +263,6 @@
 /datum/job/german/heavy_weapon
 	title = "Machinegewehrschutze"
 	en_meaning = "Heavy Weapons Soldier"
-	faction = "Station"
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -300,7 +292,6 @@
 /datum/job/german/soldier
 	title = "Soldat"
 	en_meaning = "Infantry Soldier"
-	faction = "Station"
 	total_positions = 50 // this was causing an error with latejoin spawning
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -328,7 +319,6 @@
 /datum/job/german/tankcrew
 	title = "Panzerbesatzung"
 	en_meaning = "Tank Crewman"
-	faction = "Station"
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -360,7 +350,6 @@
 /datum/job/german/anti_tank_crew
 	title = "Panzer-Soldat"
 	en_meaning = "Anti Tank Soldier"
-	faction = "Station"
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -388,7 +377,6 @@ var/first_fallschirm = 1
 /datum/job/german/paratrooper
 	title = "Fallschirmjager"
 	en_meaning = "Paratrooper"
-	faction = "Station"
 	total_positions = 7
 	selection_color = "#4c4ca5"
 	spawn_location = "Fallschirm"
@@ -452,7 +440,6 @@ var/first_fallschirm = 1
 /datum/job/german/stabsgefreiter
 	title = "Stabsgefreiter"
 	en_meaning = "Quartermaster"
-	faction = "Station"
 	total_positions = 1
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerQM"
@@ -483,7 +470,6 @@ var/first_fallschirm = 1
 /datum/job/german/artyman
 	title = "Kanonier"
 	en_meaning = "Artillery Officer"
-	faction = "Station"
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSO"
@@ -524,7 +510,6 @@ var/first_fallschirm = 1
 /datum/job/german/scout
 	title = "Aufklartrupp"
 	en_meaning = "Scout"
-	faction = "Station"
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -561,7 +546,6 @@ var/first_fallschirm = 1
 /datum/job/german/conductor
 	title = "Dirigent"
 	en_meaning = "Train Conductor"
-	faction = "Station"
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSO"
@@ -590,7 +574,6 @@ var/first_fallschirm = 1
 /datum/job/german/squad_leader_ss
 	title = "SS-Untersharffuhrer"
 	en_meaning = "SS Squad Leader"
-	faction = "Station"
 	total_positions = 1
 	head_position = 1
 	selection_color = "#4c4ca5"
@@ -639,7 +622,6 @@ var/first_fallschirm = 1
 /datum/job/german/soldier_ss
 	title = "SS-Schutze"
 	en_meaning = "SS Infantry Soldier"
-	faction = "Station"
 	total_positions = 5 // this was causing an error with latejoin spawning
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS"
@@ -675,7 +657,6 @@ var/first_fallschirm = 1
 /datum/job/german/chef
 	title = "Kuchenchef" // note: SS13 does not like ü in job titles
 	en_meaning = "Chef"
-	faction = "Station"
 	total_positions = 1
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerChef"
@@ -704,7 +685,6 @@ var/first_fallschirm = 1
 /datum/job/german/trainsystem
 	title = "N/A"
 	en_meaning = "N/A"
-	faction = "Station"
 	total_positions = 0
 	head_position = 0
 	is_officer = 0

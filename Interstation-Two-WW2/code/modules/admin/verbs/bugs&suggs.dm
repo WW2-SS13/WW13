@@ -20,7 +20,7 @@ var/sepstring = ""
 			src << "<span class = 'warning'>No bug report selected; cancelling proc.</span>"
 			return
 		else
-			var/option = input("Please select an option for bugreport '[bugreport]'.") in list("View", "Delete", "Cancel")
+			var/option = input(src, "Please select an option for bugreport '[bugreport]'.") in list("View", "Delete", "Cancel")
 			switch (lowertext(option))
 				if ("view")
 
@@ -57,12 +57,16 @@ var/sepstring = ""
 				if ("delete")
 					if (database.execute("DELETE FROM bug_reports WHERE name = '[bugreport]';"))
 						src << "<span class = 'notice'>Bug report '[bugreport]' successfully deleted.</span>"
+						var/M = "[key_name(src)] has deleted the bug report '[bugreport]'"
+						log_admin(M)
+						message_admins(M)
 					else
 						src << "<span class = 'warning'>A database error occured; bugreport '[bugreport]' was not deleted.</span>"
 				if ("cancel")
 					return
 	else
 		src << "<span class = 'danger'>A database error occured; you cannot see bug reports right now.</span>"
+
 // see suggestions
 /client/proc/see_suggestions()
 	set category = "Debug"
@@ -84,7 +88,7 @@ var/sepstring = ""
 			src << "<span class = 'warning'>No suggestion selected; cancelling proc.</span>"
 			return
 		else
-			var/option = input("Please select an option for suggestion '[suggestion]'.") in list("View", "Delete", "Cancel")
+			var/option = input(src, "Please select an option for suggestion '[suggestion]'.") in list("View", "Delete", "Cancel")
 			switch (lowertext(option))
 				if ("view")
 
@@ -112,6 +116,9 @@ var/sepstring = ""
 				if ("delete")
 					if (database.execute("DELETE FROM suggestions WHERE name = '[suggestion]';"))
 						src << "<span class = 'notice'>Suggestion '[suggestion]' successfully deleted.</span>"
+						var/M = "[key_name(src)] has deleted the suggestion '[suggestion]'"
+						log_admin(M)
+						message_admins(M)
 					else
 						src << "<span class = 'warning'>A database error occured; suggestion '[suggestion]' was not deleted.</span>"
 				if ("cancel")

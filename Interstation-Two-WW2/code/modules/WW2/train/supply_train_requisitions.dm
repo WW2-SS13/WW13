@@ -20,6 +20,7 @@
 	"Mp40 Ammo" = /obj/structure/closet/crate/mp40kammo,
 	"Mg34 Ammo" = /obj/structure/closet/crate/mg34ammo,
 	"Mp43 Ammo" = /obj/structure/closet/crate/mp43ammo,
+	"PTRD Ammo" = /obj/structure/closet/crate/ptrdammo,
 	"Mines Ammo" = /obj/structure/closet/crate/bettymines,
 	"Grenades" = /obj/structure/closet/crate/grenade,
 	"Panzerfausts" = /obj/structure/closet/crate/panzerfaust,
@@ -40,6 +41,7 @@
 	"Iron Ingots" = /obj/structure/closet/crate/iron,
 
 	// GUNS & ARTILLERY
+	"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
 	"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 	"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
 	"Luger Crate" = /obj/structure/closet/crate/lugers,
@@ -68,6 +70,7 @@
 	"Mp40 Ammo" = 40,
 	"Mg34 Ammo" = 40,
 	"Mp43 Ammo" = 40,
+	"PTRD Ammo" = 100,
 	"Mines Ammo" = 50,
 	"Grenades" = 65,
 	"Panzerfausts" = 60,
@@ -88,6 +91,7 @@
 	"Iron Ingots" = 125,
 
 	// GUNS & ARTILLERY
+	"PTRD" = 200,
 	"Flammenwerfer" = 250,
 	"7,5 cm FK 18 Artillery Piece" = 300,
 	"Luger Crate" = 400,

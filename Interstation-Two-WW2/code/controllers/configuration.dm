@@ -907,7 +907,9 @@ var/list/gamemode_cache = list()
 
 				else
 					log_misc("Unknown setting in game_options configuration: '[name]'")
+
 		else if (type == "hub")
+
 			if(!value)
 				log_misc("Unknown value for setting [name] in [filename].")
 			value = text2num(value)
@@ -927,6 +929,33 @@ var/list/gamemode_cache = list()
 					config.ww13_hub_hostedby = value
 				if ("postinfo")
 					config.ww13_hub_postinfo = value
+
+		else if (type == "game_schedule")
+
+			if(!value)
+				log_misc("Unknown value for setting [name] in [filename].")
+			value = text2num(value)
+
+			if (!global_game_schedule)
+				global_game_schedule = new
+
+			switch (name)
+				if ("game_schedule_starttime")
+					if (value)
+						global_game_schedule.starttime = text2num(value)
+				if ("game_schedule_endtime")
+					if (value)
+						global_game_schedule.endtime = text2num(value)
+				if ("game_schedule_days_closed")
+					if (value)
+						var/list/days_closed = splittext(value, ",")
+						for (var/day in days_closed)
+							global_game_schedule.days_closed += capitalize(ckey(day))
+				if ("game_schedule_days_always_open")
+					if (value)
+						var/list/days_always_open = splittext(value, ",")
+						for (var/day in days_always_open)
+							global_game_schedule.days_always_open += capitalize(ckey(day))
 
 	if (!config.hub)
 		world.hub_password = "SORRYNOPASSWORD"

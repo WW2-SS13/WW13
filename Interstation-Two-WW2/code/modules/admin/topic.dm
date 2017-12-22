@@ -75,7 +75,6 @@
 				playermob = M
 				break
 
-
 		banreason = "(MANUAL BAN) "+banreason
 
 		if(!playermob)
@@ -128,15 +127,16 @@
 				log_admin_rank_modification(adm_ckey, "Removed")
 
 		else if(task == "rank")
+
 			var/new_rank
 			if(admin_ranks.len)
 				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in (admin_ranks|"*New Rank*")
 			else
 				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in list("Game Master","Game Admin", "Trial Admin", "Admin Observer","*New Rank*")
 
-			var/rights = 0
+	/*		var/rights = 0
 			if(D)
-				rights = D.rights
+				rights = D.rights */
 
 			switch(new_rank)
 				if(null,"") return
@@ -154,17 +154,20 @@
 			else
 				*/
 
-			var/client/C = directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
-			if (C.holder)
-				C.holder.disassociate()
-			D = new /datum/admins(new_rank, rights, adm_ckey)
-			D.associate(C)											//link up with the client and add verbs
+			if (directory.Find(adm_ckey)) // they don't need to be online
+				var/client/C = directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
+				if (C.holder)
+					C.holder.disassociate()
 
-			C << "<b>[key_name_admin(usr)] has set your admin rank to: [new_rank].</b>"
-			message_admins("[key_name_admin(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
-			log_admin("[key_name(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
+				D = new /datum/admins(new_rank, 0, adm_ckey) // initial rights must be 0 or their rights do not change!
+				D.associate(C)											//link up with the client and add verbs
+
+				C << "<b>[key_name_admin(usr)] has set your admin rank to: [new_rank].</b>"
+
+			message_admins("[key_name_admin(usr)] edited the admin rank of [adm_ckey] to [new_rank].")
+			log_admin("[key_name(usr)] edited the admin rank of [adm_ckey] to [new_rank].")
 			log_admin_rank_modification(adm_ckey, new_rank)
-			load_admins(1)
+		//	load_admins(1)
 
 		else if(task == "permissions")
 			if(!D)	return
@@ -1266,7 +1269,30 @@
 	else if(href_list["create_mob"])
 		if(!check_rights(R_SPAWN))	return
 		return create_mob(usr)
-
+/*
+	else if(href_list["debug_global"])
+		if(!check_rights(R_DEBUG))	return
+		var/client/C = isclient(usr) ? usr : usr.client
+		var/which = input(usr, "Debug what global variable?") as text
+		if (global.vars[which])
+			var/thing = global.vars[which]
+			if (isdatum(thing) || isclient(thing))
+				C.debug_variables(thing)
+			else if (!islist(thing))
+				usr << "[thing] = [global.vars[thing]]"
+			else
+				var/list/L = thing
+				if (!L.len)
+					usr << "[thing] is an empty list"
+				else if (list_is_assoc(L))
+					usr << "[thing] is an <b>ASSOCIATIVE</b> list"
+					for (var/i in 1 to L.len)
+						usr << "element [i]: [thing[i]] = [thing[thing[i]]]"
+				else
+					usr << "[thing] is a list"
+					for (var/i in 1 to L.len)
+						usr << "element [i]: [thing[i]]"
+*/
 	else if(href_list["object_list"])			//this is the laggiest thing ever
 		if(!check_rights(R_SPAWN))	return
 

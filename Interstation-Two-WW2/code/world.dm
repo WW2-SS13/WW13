@@ -479,6 +479,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/Reboot(var/reason)
 
+	save_all_whitelists()
+
 	spawn(0)
 		roundabout()
 

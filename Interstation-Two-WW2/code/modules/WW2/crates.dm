@@ -14,6 +14,7 @@
 			if (!contents.len)
 				break
 			contents -= pick(contents)
+	update_capacity(contents.len)
 
 // new crate icons from F13 - most are unused
 
@@ -121,6 +122,12 @@
 
 /obj/structure/closet/crate/mp43ammo
 	name = "Mp43 ammo crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/ptrdammo
+	name = "PTRD ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
@@ -355,6 +362,13 @@
 	update_capacity(21)
 	for (var/v in 1 to 21)
 		new /obj/item/ammo_magazine/a762/akm(src)
+
+/obj/structure/closet/crate/ptrdammo/New()
+	..()
+	update_capacity(12)
+	for (var/v in 1 to 12)
+		new /obj/item/ammo_casing/a145(src)
+
 
 /obj/structure/closet/crate/mg34ammo/New()
 	..()

@@ -28,11 +28,16 @@ var/list/admin_datums = list()
 	if (rights == 0)
 		rights = admin_ranks[ckeyEx(rank)]
 
+//	world << "rights #1: [rights]"
+
 	if (istext(rights))
 		rights = text2num(rights)
+/*
+	for (var/x in admin_ranks)
+		world << "[x] = [admin_ranks[x]]"
 
-//	world << "[ckey]'s rights = [rights]"
-
+	world << "rights for admin_rank [ckeyEx(rank)]/[initial_rank] = [rights]; initial_rights = [initial_rights]"
+*/
 	admin_datums[ckey] = src
 
 /datum/admins/proc/associate(client/C)

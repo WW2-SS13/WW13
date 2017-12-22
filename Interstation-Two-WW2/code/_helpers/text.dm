@@ -16,7 +16,7 @@
 // this is a legacy procedure. Due to how strings work in SQLite, there's
 // no longer any need for anything more complex than a call to sanitize()
 // - Kachnov
-/proc/sanitizeSQL(var/t as text)
+/proc/sanitizeSQL(var/t as text, var/max_length = MAX_MESSAGE_LEN)
 	return sanitize(t)
 
 /*

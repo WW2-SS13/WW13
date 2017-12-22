@@ -27,6 +27,8 @@
 	var/season = "SPRING"
 	var/uses_winter_overlay = 0
 
+	var/muddy = 0
+
 /turf/floor/proc/has_snow()
 	for (var/obj/snow/S in contents)
 		return S
