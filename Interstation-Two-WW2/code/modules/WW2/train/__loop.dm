@@ -38,9 +38,10 @@ var/supplytrain_interval = 1200 // todo: config setting
 							break
 
 			for (var/mob/living/m in living_mob_list)
-				if (istype(get_area(m), /area/prishtina/german/armory/train))
-					stopthetrain = 1
-					break
+				if (!istype(m.loc, /obj/structure/largecrate)) // puppers
+					if (istype(get_area(m), /area/prishtina/german/armory/train))
+						stopthetrain = 1
+						break
 
 			if (stopthetrain)
 				if (world.time > next_supplytrain_message)

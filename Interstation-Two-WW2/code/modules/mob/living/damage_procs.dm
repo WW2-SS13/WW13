@@ -77,3 +77,12 @@
 	if(drowsy)		apply_effect(drowsy, DROWSY, blocked)
 	if(agony)		apply_effect(agony, AGONY, blocked)
 	return 1
+
+/mob/living/proc/updatehealth()
+	if(status_flags & GODMODE)
+		health = 100
+		stat = CONSCIOUS
+	else
+		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+	if (health <= 0) // experimental block
+		death()

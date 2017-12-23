@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/launcher/rocket
 	name = "rocket launcher"
-	desc = "MAGGOT."
+	desc = ""
 	icon_state = "rocket"
 	item_state = "rocket"
 	w_class = 4.0
@@ -37,12 +37,13 @@
 			usr << "\red [src] cannot hold more rockets."
 
 /obj/item/weapon/gun/launcher/rocket/consume_next_projectile()
-	/*if(rockets.len)
+	if(rockets.len)
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
-		var/obj/item/missile/M = new (src)
-		M.primed = 1
+		var/obj/item/projectile/bullet/rifle/missile/M = new I.projectile_type (src)
+	//	M.primed = 1
 		rockets -= I
-		return M*/
+		qdel(I)
+		return M
 	return null
 
 /obj/item/weapon/gun/launcher/rocket/handle_post_fire(mob/user, atom/target)

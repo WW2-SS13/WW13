@@ -1,6 +1,6 @@
 /datum/game_mode/ww2
 	name = "World War 2"
-	config_tag = "ww2"
+	config_tag = "WW2"
 	required_players = 1
 	round_description = ""
 	extended_round_description = ""
@@ -263,7 +263,7 @@
 				aspect.post_activation()
 
 			// train might not be set up yet
-			spawn (30)
+			spawn (100)
 				job_master.german_job_slots *= personnel[GERMAN]
 				job_master.russian_job_slots *= personnel[RUSSIAN]
 
@@ -271,14 +271,14 @@
 				german_supplytrain_master.supply_points_per_second_min *= supplies[GERMAN]
 				german_supplytrain_master.supply_points_per_second_max *= supplies[GERMAN]
 
-				// nerf or buff soviet supplies by editing crates in Soviet territory.
-				spawn (10) // make sure rations are set up?
-					for (var/obj/structure/closet/crate/soviet in world)
-						if (istype(get_area(soviet), /area/prishtina/soviet))
-							soviet.resize(supplies[RUSSIAN])
+			// nerf or buff soviet supplies by editing crates in Soviet territory.
+			spawn (10) // make sure rations are set up?
+				for (var/obj/structure/closet/crate/soviet in world)
+					if (istype(get_area(soviet), /area/prishtina/soviet))
+						soviet.resize(supplies[RUSSIAN])
 
-				// this may have already happened, do it again w/o announce
-				setup_autobalance(0)
+			// this may have already happened, do it again w/o announce
+			setup_autobalance(0)
 
 		world << "<b>The current game mode is World War II!</b>"
 
@@ -286,4 +286,10 @@
 		for (var/mob/new_player/np in world)
 			if (np.client)
 				np.new_player_panel_proc()
+
+		// no tanks on lowpop
+		if (clients.len <= 12)
+			for (var/obj/tank/T in world)
+				qdel(T)
+			world << "<i>Due to lowpop, there are no tanks.</i>"
 

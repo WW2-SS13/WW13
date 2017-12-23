@@ -30,7 +30,7 @@
 	var/turf/loc = get_turf(O)
 	if(loc)
 		var/area/res = loc.loc
-		.= res
+		. = res
 
 /proc/get_area_name(N) //get area by its name
 	for(var/area/A in world)
@@ -513,6 +513,3 @@ datum/projectile_data
 
 /proc/SecondsToTicks(var/seconds)
 	return seconds * 10
-
-/proc/round_is_spooky(var/spookiness_threshold = config.cult_ghostwriter_req_cultists)
-	return 0

@@ -8,12 +8,12 @@ var/list/debug_verbs = list (
         ,/client/proc/jump_to_dead_group
         ,/client/proc/startSinglo
         ,/client/proc/ticklag
-        ,/client/proc/kaboom
+      //  ,/client/proc/kaboom
         ,/client/proc/cmd_admin_areatest
         ,/client/proc/cmd_admin_rejuvenate
         ,/datum/admins/proc/show_traitor_panel
-        ,/client/proc/print_jobban_old
-        ,/client/proc/print_jobban_old_filter
+      //  ,/client/proc/print_jobban_old
+      //  ,/client/proc/print_jobban_old_filter
      //   ,/client/proc/break_all_air_groups
       //  ,/client/proc/regroup_all_air_groups
       //  ,/client/proc/kill_pipe_processing

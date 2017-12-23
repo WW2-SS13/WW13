@@ -4,7 +4,7 @@ var/list/gamemode_cache = list()
 	var/server_name = null				// server name (for world name / status)
 	var/server_suffix = 0				// generate numeric suffix based on server port
 
-	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
+	//var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
 
 	var/list/lobby_screens = list("titlenew") // Which lobby screens are available
 
@@ -46,11 +46,10 @@ var/list/gamemode_cache = list()
 	var/objectives_disabled = 0 			//if objectives are disabled or not
 	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
 	var/continous_rounds = 0			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
-	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
 	var/Ticklag = 0.9
 	var/Tickcomp = 0
-	var/socket_talk	= 0					// use socket_talk to communicate with other processes
+//	var/socket_talk	= 0					// use socket_talk to communicate with other processes
 	var/list/resource_urls = null
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
 	var/antag_hud_restricted = 0                    // Ghosts that turn on Antagovision cannot rejoin the round.
@@ -77,14 +76,14 @@ var/list/gamemode_cache = list()
 	var/automute_on = 0					//enables automuting/spam prevention
 	var/jobs_have_minimal_access = 0	//determines whether jobs use minimal access or expanded access.
 
-	var/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
-	var/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
+//	var/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
+//	var/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
 
 	var/character_slots = 10				// The number of available character slots
 
-	var/max_maint_drones = 5				//This many drones can spawn,
-	var/allow_drone_spawn = 1				//assuming the admin allow them to.
-	var/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
+//	var/max_maint_drones = 5				//This many drones can spawn,
+//	var/allow_drone_spawn = 1				//assuming the admin allow them to.
+//	var/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
 
 	var/disable_player_mice = 0
 	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
@@ -122,17 +121,17 @@ var/list/gamemode_cache = list()
 	var/bones_can_break = 0
 	var/limbs_can_break = 0
 
-	var/revival_pod_plants = 1
-	var/revival_cloning = 1
+//	var/revival_pod_plants = 1
+//	var/revival_cloning = 1
 	var/revival_brain_life = -1
 
-	var/use_loyalty_implants = 0
+//	var/use_loyalty_implants = 0
 
-	var/welder_vision = 1
+//	var/welder_vision = 1
 	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
 
-	var/asteroid_z_levels = list()
+//	var/asteroid_z_levels = list()
 
 	//Used for modifying movement speed for mobs.
 	//Unversal modifiers
@@ -147,24 +146,24 @@ var/list/gamemode_cache = list()
 	var/slime_delay = 0
 	var/animal_delay = 0
 
-	var/use_age_restriction_for_jobs = 0   //Do jobs use account age restrictions?   --requires database
-	var/use_age_restriction_for_antags = 0 //Do antags use account age restrictions? --requires database
+//	var/use_age_restriction_for_jobs = 0   //Do jobs use account age restrictions?   --requires database
+//	var/use_age_restriction_for_antags = 0 //Do antags use account age restrictions? --requires database
 
 	var/simultaneous_pm_warning_timeout = 100
 
 	var/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
 
-	var/assistant_maint = 0 //Do assistants get maint access?
-	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
+//	var/assistant_maint = 0 //Do assistants get maint access?
+//	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
 	var/ghost_interaction = 0
 
-	var/comms_password = ""
+//	var/comms_password = ""
 
 	var/enter_allowed = 1
 
-	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
-	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
-	var/use_overmap = 0
+//	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
+//	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
+//	var/use_overmap = 0
 
 	var/list/station_levels = list(1, 2, 3, 4, 5)	// Defines which Z-levels the station exists on.
 	var/list/admin_levels= list(6)					// Defines which Z-levels which are for admin functionality, for example including such areas as Central Command and the Syndicate Shuttle
@@ -173,27 +172,27 @@ var/list/gamemode_cache = list()
 	var/list/sealed_levels = list() 				// Defines levels that do not allow random transit at the edges.
 
 	// Event settings
-	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
+//	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
 	// If the first delay has a custom start time
 	// No custom time, no custom time, between 80 to 100 minutes respectively.
-	var/list/event_first_run   = list(EVENT_LEVEL_MUNDANE = null, 	EVENT_LEVEL_MODERATE = null,	EVENT_LEVEL_MAJOR = list("lower" = 48000, "upper" = 60000))
+//	var/list/event_first_run   = list(EVENT_LEVEL_MUNDANE = null, 	EVENT_LEVEL_MODERATE = null,	EVENT_LEVEL_MAJOR = list("lower" = 48000, "upper" = 60000))
 	// The lowest delay until next event
 	// 10, 30, 50 minutes respectively
-	var/list/event_delay_lower = list(EVENT_LEVEL_MUNDANE = 6000,	EVENT_LEVEL_MODERATE = 18000,	EVENT_LEVEL_MAJOR = 30000)
+//	var/list/event_delay_lower = list(EVENT_LEVEL_MUNDANE = 6000,	EVENT_LEVEL_MODERATE = 18000,	EVENT_LEVEL_MAJOR = 30000)
 	// The upper delay until next event
 	// 15, 45, 70 minutes respectively
-	var/list/event_delay_upper = list(EVENT_LEVEL_MUNDANE = 9000,	EVENT_LEVEL_MODERATE = 27000,	EVENT_LEVEL_MAJOR = 42000)
+//	var/list/event_delay_upper = list(EVENT_LEVEL_MUNDANE = 9000,	EVENT_LEVEL_MODERATE = 27000,	EVENT_LEVEL_MAJOR = 42000)
 
-	var/aliens_allowed = 0
+//	var/aliens_allowed = 0
 	var/abandon_allowed = 1
 	var/ooc_allowed = 1
 	var/looc_allowed = 1
 	var/dooc_allowed = 1
 	var/dsay_allowed = 1
 
-	var/starlight = 0	// Whether space turfs have ambient light or not
+//	var/starlight = 0	// Whether space turfs have ambient light or not
 
-	var/aggressive_changelog = 0
+//	var/aggressive_changelog = 0
 
 	var/list/language_prefixes = list(",","#","-")//Default language prefixes
 
@@ -435,12 +434,13 @@ var/list/gamemode_cache = list()
 				if ("ban_legacy_system")
 					config.ban_legacy_system = 1
 */
+/*
 				if ("use_age_restriction_for_jobs")
 					config.use_age_restriction_for_jobs = 1
 
 				if ("use_age_restriction_for_antags")
 					config.use_age_restriction_for_antags = 1
-
+*/
 				if ("jobs_have_minimal_access")
 					config.jobs_have_minimal_access = 1
 
@@ -500,13 +500,13 @@ var/list/gamemode_cache = list()
 
 				if ("generate_asteroid")
 					config.generate_asteroid = 1
-
+/*
 				if ("asteroid_z_levels")
 					config.asteroid_z_levels = splittext(value, ";")
 					//Numbers get stored as strings, so we'll fix that right now.
 					for(var/z_level in config.asteroid_z_levels)
 						z_level = text2num(z_level)
-
+*/
 				if ("no_click_cooldown")
 					config.no_click_cooldown = 1
 
@@ -560,10 +560,10 @@ var/list/gamemode_cache = list()
 
 				if ("serversuffix")
 					config.server_suffix = 1
-
+/*
 				if ("nudge_script_path")
 					config.nudge_script_path = value
-
+*/
 				if ("hostedby")
 					config.hostedby = value
 
@@ -631,15 +631,12 @@ var/list/gamemode_cache = list()
 				if ("feature_object_spell_system")
 					config.feature_object_spell_system = 1
 
-				if ("allow_metadata")
-					config.allow_Metadata = 1
-
 				if ("traitor_scaling")
 					config.traitor_scaling = 1
-
+/*
 				if ("aliens_allowed")
 					config.aliens_allowed = 1
-
+*/
 				if ("objectives_disabled")
 					config.objectives_disabled = 1
 
@@ -713,10 +710,10 @@ var/list/gamemode_cache = list()
 					config.antag_hud_allowed = 1
 				if("antag_hud_restricted")
 					config.antag_hud_restricted = 1
-
+/*
 				if("socket_talk")
 					socket_talk = text2num(value)
-
+*/
 				if("tickcomp")
 					Tickcomp = 1
 
@@ -728,13 +725,13 @@ var/list/gamemode_cache = list()
 
 				if("automute_on")
 					automute_on = 1
-
+/*
 				if("assistant_maint")
 					config.assistant_maint = 1
 
 				if("gateway_delay")
 					config.gateway_delay = text2num(value)
-
+*/
 				if("continuous_rounds")
 					config.continous_rounds = 1
 
@@ -746,26 +743,29 @@ var/list/gamemode_cache = list()
 
 				if("uneducated_mice")
 					config.uneducated_mice = 1
-
+/*
 				if("comms_password")
 					config.comms_password = value
-
+*/
+/*
 				if("python_path")
 					if(value)
 						config.python_path = value
-
+*/
+/*
 				if("use_lib_nudge")
 					config.use_lib_nudge = 1
-
+*/
+/*
 				if("allow_cult_ghostwriter")
 					config.cult_ghostwriter = 1
 
 				if("req_cult_ghostwriter")
 					config.cult_ghostwriter_req_cultists = text2num(value)
-
+*/
 				if("character_slots")
 					config.character_slots = text2num(value)
-
+/*
 				if("allow_drone_spawn")
 					config.allow_drone_spawn = text2num(value)
 
@@ -774,10 +774,11 @@ var/list/gamemode_cache = list()
 
 				if("max_maint_drones")
 					config.max_maint_drones = text2num(value)
-
+*/
+/*
 				if("use_overmap")
 					config.use_overmap = 1
-
+*/
 				if("station_levels")
 					config.station_levels = text2numlist(value, ";")
 
@@ -789,16 +790,17 @@ var/list/gamemode_cache = list()
 
 				if("player_levels")
 					config.player_levels = text2numlist(value, ";")
-
+/*
 				if("expected_round_length")
 					config.expected_round_length = MinutesToTicks(text2num(value))
-
+*/
+/*
 				if("disable_welder_vision")
 					config.welder_vision = 0
-
+*/
 				if("allow_extra_antags")
 					config.allow_extra_antags = 1
-
+/*
 				if("event_custom_start_mundane")
 					var/values = text2numlist(value, ";")
 					config.event_first_run[EVENT_LEVEL_MUNDANE] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
@@ -822,14 +824,16 @@ var/list/gamemode_cache = list()
 					config.event_delay_upper[EVENT_LEVEL_MUNDANE] = MinutesToTicks(values[1])
 					config.event_delay_upper[EVENT_LEVEL_MODERATE] = MinutesToTicks(values[2])
 					config.event_delay_upper[EVENT_LEVEL_MAJOR] = MinutesToTicks(values[3])
-
+*/
+/*
 				if("starlight")
 					value = text2num(value)
 					config.starlight = value >= 0 ? value : 0
-
+*/
+/*
 				if("aggressive_changelog")
 					config.aggressive_changelog = 1
-
+*/
 				if("default_language_prefixes")
 					var/list/values = splittext(value, " ")
 					if(values.len > 0)
@@ -859,12 +863,14 @@ var/list/gamemode_cache = list()
 					config.health_threshold_softcrit = value
 				if("health_threshold_dead")
 					config.health_threshold_dead = value
+				/*
 				if("revival_pod_plants")
 					config.revival_pod_plants = value
 				if("revival_cloning")
 					config.revival_cloning = value
 				if("revival_brain_life")
 					config.revival_brain_life = value
+				*/
 				if("organ_health_multiplier")
 					config.organ_health_multiplier = value / 100
 				if("organ_regeneration_multiplier")
@@ -901,9 +907,9 @@ var/list/gamemode_cache = list()
 				if("animal_delay")
 					config.animal_delay = value
 
-
+/*
 				if("use_loyalty_implants")
-					config.use_loyalty_implants = 1
+					config.use_loyalty_implants = 1*/
 
 				else
 					log_misc("Unknown setting in game_options configuration: '[name]'")
@@ -956,6 +962,8 @@ var/list/gamemode_cache = list()
 						var/list/days_always_open = splittext(value, ",")
 						for (var/day in days_always_open)
 							global_game_schedule.days_always_open += capitalize(ckey(day))
+
+			global_game_schedule.update()
 
 	if (!config.hub)
 		world.hub_password = "SORRYNOPASSWORD"
@@ -1067,8 +1075,10 @@ var/list/gamemode_cache = list()
 
 /datum/configuration/proc/post_load()
 	//apply a default value to config.python_path, if needed
+	/*
 	if (!config.python_path)
 		if(world.system_type == UNIX)
 			config.python_path = "/usr/bin/env python2"
 		else //probably windows, if not this should work anyway
 			config.python_path = "python"
+*/

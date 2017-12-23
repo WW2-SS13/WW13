@@ -20,10 +20,14 @@ var/list/time_of_day2luminosity = list(
 	#ifdef ALWAYS_DAY
 	return "Midday"
 	#else
-	if (prob(40))
-		return "Midday"
+	// chance of midday: ~52%. Chance of afternoon: ~27%. Chance of any other: ~21%
+	if (prob(50))
+		if (prob(75))
+			return "Midday"
+		else
+			return "Afternoon"
 	else
-		return pick(c_times_of_day - "Midday")
+		return pick(c_times_of_day)
 	#endif
 
 /proc/progress_time_of_day(var/caller = null)

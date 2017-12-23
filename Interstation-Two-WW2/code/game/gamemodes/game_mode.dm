@@ -36,13 +36,6 @@ var/global/list/additional_antag_types = list()
 
 	var/datum/game_aspect/aspect = null
 
-/datum/game_mode/New()
-	..()
-	// Enforce some formatting.
-	// This will probably break something.
-	name = capitalize(lowertext(name))
-	config_tag = lowertext(config_tag)
-
 /datum/game_mode/Topic(href, href_list[])
 	if(..())
 		return

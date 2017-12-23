@@ -54,7 +54,10 @@
 	"Tool Closet" = /obj/structure/closet/toolcloset,
 
 	// MINES
-	"Betty Mines Crate" = /obj/structure/closet/crate/bettymines
+	"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
+
+	// ANIMAL CRATES
+	"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german
 
 	)
 
@@ -104,7 +107,10 @@
 	"Tool Closet" = 50,
 
 	// MINES
-	"Betty Mines Crate" = 200
+	"Betty Mines Crate" = 200,
+
+	// ANIMAL CRATES
+	"German Shepherd Crate" = 150
 
 	)
 

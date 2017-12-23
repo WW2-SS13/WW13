@@ -2,9 +2,9 @@ var/datum/game_schedule/global_game_schedule = null
 
 /datum/game_schedule
 	// when the game is open to non-staff, UTC (5 hours ahead of EST)
-	var/starttime = 16
+	var/starttime = 16 // MUST be an integer
 	// when the game is closed to non-staff, UTC (5 hours ahead of EST)
-	var/endtime = 21
+	var/endtime = 21 // MUST be an integer
 	// days the game is CLOSED
 	var/list/days_closed = list()
 	// days the game is always open (WIP!)
@@ -26,17 +26,29 @@ var/datum/game_schedule/global_game_schedule = null
 	// other stored strings
 	var/scheduleString = ""
 	var/dateInfoString = ""
+	// admin
+	var/forceClosed = 0
+	var/forceOpened = 0
+
 
 /datum/game_schedule/New()
 	update()
 
 /datum/game_schedule/proc/update()
+
 	time = getCurrentTime()
 
-	if (time >= starttime && time <= endtime)
-		world_is_open = 1
-	else
-		world_is_open = 0
+	world_is_open = 0
+
+	if (time >= starttime)
+		if (time <= endtime)
+			world_is_open = 1
+		else if (time >= endtime)
+			if (endtime <= starttime)
+				world_is_open = 1
+	else if (time <= starttime)
+		if (time <= endtime)
+			world_is_open = 1
 
 	// determine the day by counting from refdate's day
 	var/split = splittext(refdate, ":")
@@ -56,6 +68,34 @@ var/datum/game_schedule/global_game_schedule = null
 		world_is_open = 0
 	else if (days_always_open.Find(day))
 		world_is_open = 1
+
+	if (forceOpened)
+		world_is_open = 1
+
+ 	// overrides forceOpened
+	if (forceClosed)
+		world_is_open = 0
+
+/datum/game_schedule/proc/forceClose()
+	forceClosed = 1
+	update()
+	for (var/client/C in clients)
+		if (!C.holder)
+			C << "<span class = 'userdanger'>The server has been closed.</span>"
+			spawn (1)
+				del C
+
+/datum/game_schedule/proc/unforceClose()
+	forceClosed = 0
+	update()
+
+/datum/game_schedule/proc/forceOpen()
+	forceOpened = 1
+	update()
+
+/datum/game_schedule/proc/unforceOpen()
+	forceOpened = 0
+	update()
 
 /datum/game_schedule/proc/getCurrentTime(var/unit = "hours")
 	// first, get the number of seconds that have elapsed since 00:00:00 today
@@ -82,6 +122,31 @@ var/datum/game_schedule/global_game_schedule = null
 
 /datum/game_schedule/proc/getScheduleAsString()
 	. = "from [starttime] to [endtime] UTC"
+	if (days_closed.len)
+		. += ", but is closed on "
+		if (days_closed.len > 1)
+			for (var/day in days_closed)
+				. += day
+				if (days_closed[days_closed.len] != day)
+					if (days_closed[days_closed.len-1] == day)
+						. += " and "
+					else
+						. += ", "
+		else
+			. += "[days_closed[1]]"
+	if (days_always_open.len)
+		. += ", and is always open on "
+		if (days_always_open.len > 1)
+			for (var/day in days_always_open)
+				. += day
+				if (days_always_open[days_always_open.len] != day)
+					if (days_always_open[days_always_open.len-1] == day)
+						. += " and "
+					else
+						. += ", "
+		else
+			. += "[days_always_open[1]]"
+
 	scheduleString = .
 
 /datum/game_schedule/proc/getDateInfoAsString()

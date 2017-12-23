@@ -35,6 +35,7 @@
 #define SMALL_SOFTFLOOR ROOM
 #define ASTEROID CAVE
 #define SPACE UNDERWATER
+#define OUTSIDE FOREST
 
 var/list/shatter_sound = list('sound/effects/Glassbr1.ogg','sound/effects/Glassbr2.ogg','sound/effects/Glassbr3.ogg')
 var/list/explosion_sound = list('sound/effects/Explosion1.ogg','sound/effects/Explosion2.ogg')
@@ -193,6 +194,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 /client/proc/playtitlemusic()
 	if(!ticker || !ticker.login_music)	return
+	if(!istype(mob, /mob/new_player)) return
 	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
 		src << sound(ticker.login_music, repeat = 1, wait = 0, volume = 85, channel = 1) // MAD JAMS
 		lobby_music_player.announce(src)

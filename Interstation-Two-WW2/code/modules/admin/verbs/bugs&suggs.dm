@@ -1,8 +1,8 @@
 var/sepstring = ""
 // see bug reports
 /client/proc/see_bug_reports()
-	set category = "Debug"
 	set name = "See Bug Reports"
+	set category = "Test"
 
 	establish_db_connection()
 
@@ -69,8 +69,8 @@ var/sepstring = ""
 
 // see suggestions
 /client/proc/see_suggestions()
-	set category = "Debug"
 	set name = "See Suggestions"
+	set category = "Test"
 
 	establish_db_connection()
 

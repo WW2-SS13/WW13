@@ -33,21 +33,42 @@
 /datum/job/var/is_tankuser = 0
 /datum/job/var/absolute_limit = 0 // if this is 0 it's ignored
 
-// type_flag() replaces flag, and base_type_flag() replaces department_flag
-// this is a better solution than bit constants, in my opinion
+/* type_flag() replaces flag, and base_type_flag() replaces department_flag
+ * this is a better solution than bit constants, in my opinion */
+
+/datum/job
+	var/_base_type_flag = -1
 
 /datum/job/proc/type_flag()
 	return "[type]"
 
-/datum/job/proc/base_type_flag()
+/datum/job/proc/base_type_flag(var/most_specific = 0)
+
+	if (_base_type_flag != -1)
+		return _base_type_flag
+
 	if (istype(src, /datum/job/russian))
-		return RUSSIAN
+		. = RUSSIAN
 	else if (istype(src, /datum/job/partisan))
 		if (istype(src, /datum/job/partisan/civilian))
-			return CIVILIAN
-		return PARTISAN
+			. = CIVILIAN
+		else
+			. = PARTISAN
 	else if (istype(src, /datum/job/german))
-		return GERMAN
+		if (!most_specific)
+			. = GERMAN
+		else
+			if (!is_SS)
+				. = GERMAN
+			else
+				. = SCHUTZSTAFFEL
+	else if (istype(src, /datum/job/ukrainian))
+		. = UKRAINIAN
+	else if (istype(src, /datum/job/italian))
+		. = ITALIAN
+
+	_base_type_flag = .
+	return _base_type_flag
 
 /datum/job/proc/get_side_name()
 	return capitalize(lowertext(base_type_flag()))
@@ -191,7 +212,7 @@
 	if (!istype(user))
 		return
 
-	if (!user.client.prefs.be_jew || !istype(src, /datum/job/german/soldier))
+	if (/*!user.client.prefs.be_jew || */!istype(src, /datum/job/german/soldier))
 		return
 
 	if (!job_master.allow_jews)
@@ -227,8 +248,8 @@
 	if (!istype(user))
 		return
 
-	if (!user.client.prefs.be_spy)
-		return
+/*	if (!user.client.prefs.be_spy)
+		return */
 
 	if (!job_master.allow_spies)
 		return

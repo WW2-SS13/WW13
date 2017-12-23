@@ -153,10 +153,13 @@
 	var/msg3 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
 	var/msg4 = "Partisans: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
 
-	var/public = alert(shower, "Show it to the entire server?",,"Yes", "No")
+	var/public = "Yes"
+
+	if (shower)
+		public = alert(shower, "Show it to the entire server?",,"Yes", "No")
 
 	if(public == "Yes")
-		if ((input(shower, "Are you sure you want to show the battle report? Unless the Battle Controller Process died, it will happen automatically!", "Battle Report") in list ("Yes", "No")) == "Yes")
+		if (!shower || (input(shower, "Are you sure you want to show the battle report? Unless the Battle Controller Process died, it will happen automatically!", "Battle Report") in list ("Yes", "No")) == "Yes")
 			world << "<font size=4>Battle status report:</font>"
 			world << "<font size=3>[msg1]</font>"
 			world << "<font size=3>[msg2]</font>"

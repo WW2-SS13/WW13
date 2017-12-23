@@ -9,6 +9,8 @@
 	if (weather == _weather && !bypass_same_weather_check)
 		return
 
+	var/old_weather = weather
+
 	weather = _weather
 
 	var/area_icon = 'icons/effects/weather.dmi'
@@ -47,10 +49,17 @@
 			A.weather = weather
 			A.weather_intensity = weather_intensity
 
+	if (old_weather != weather)
+		announce_weather_change(old_weather, weather)
+
 // happens every time the weather process ticks, right now 2 seconds
+#define NO_NEW_SNOWFALL
 #define SNOW_GATHERING_RATE 1.0
 /proc/process_weather()
 	if (weather == WEATHER_SNOW)
+		#ifdef NO_NEW_SNOWFALL
+		return
+		#endif
 		var/turfs_made_snowy = 0
 		// randomize the areas we snow in
 		var/list_of_areas = shuffle(all_areas)
@@ -116,7 +125,6 @@
 		announce_weather_mod(old_intensity, weather_intensity)
 
 /proc/change_weather_somehow()
-	var/old_weather = weather
 
 	var/list/possibilities = list(WEATHER_NONE)
 	var/list/non_possibilities = list(weather)
@@ -132,9 +140,6 @@
 
 	change_weather(pick(possibilities))
 
-	if (old_weather != weather)
-		announce_weather_change(old_weather, weather)
-
 /proc/get_weather()
 	switch (weather)
 		if (WEATHER_NONE)
@@ -147,17 +152,17 @@
 // global weather variable changed
 /proc/announce_weather_change(var/old, var/_new)
 	switch (_new)
-		if ("none")
+		if (WEATHER_NONE)
 			switch (old)
-				if ("none")
+				if (WEATHER_NONE)
 					. = ""
-				if ("snow", "rain")
-					. = "It's no longer <b>[old]ing</b>."
-		if ("snow", "rain")
+				if (WEATHER_SNOW, WEATHER_RAIN)
+					. = "It's no longer <b>[get_weather()]ing</b>."
+		if (WEATHER_SNOW, WEATHER_RAIN)
 			switch (old)
-				if ("none")
-					. = "It's now <b>[_new]ing</b>."
-				if ("snow", "rain")
+				if (WEATHER_NONE)
+					. = "It's now <b>[get_weather()]ing</b>."
+				if (WEATHER_SNOW,  WEATHER_RAIN)
 					. = ""
 	if (.)
 		world << "<font size=3><span class = 'notice'>[.]</span></font>"

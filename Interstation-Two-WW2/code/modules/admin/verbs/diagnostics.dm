@@ -119,11 +119,11 @@
 
 	return
 	*/
-
+/*
 /client/proc/kill_airgroup()
 	set name = "Kill Local Airgroup"
 	set desc = "Use this to allow manual manupliation of atmospherics."
-	set category = "Debug"
+	set category = "Debug"*/
 	/*
 	if(!holder)
 		src << "Only administrators may use this command."
@@ -142,7 +142,7 @@
 		usr << "Local airgroup is unsimulated!"
 
 	*/
-
+/*
 /client/proc/print_jobban_old()
 	set name = "Print Jobban Log"
 	set desc = "This spams all the active jobban entries for the current round to standard output."
@@ -165,3 +165,4 @@
 	for(var/t in jobban_keylist)
 		if(findtext(t, filter))
 			usr << "[t]"
+*/

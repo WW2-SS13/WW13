@@ -170,6 +170,21 @@ world/loop_checks = 0
 		if(. && A)
 			A.finalize_qdel()
 
+/proc/qdel_list(var/list/L)
+	if (!L)
+		return
+	if(!islist(L))
+		warning("qdel_list() passed non-list object [L]. qdel_list() can only handle /list types.")
+		crash_with("qdel_list() passed non-list object [L]. qdel_list() can only handle /list types.")
+		del(L)
+		if(garbage_collector)
+			garbage_collector.total_dels++
+			garbage_collector.hard_dels++
+	for (var/D in L)
+		L -= D
+		if (isdatum(D))
+			qdel(D)
+
 // helper for testing
 /datum/proc/qdeleted()
 	qdel(src)

@@ -1,9 +1,12 @@
 /mob/living
 	var/datum/language/default_language
 
-/mob/living/verb/set_default_language(language as null|anything in languages)
+/mob/living/verb/set_default_language(language as anything in languages)
 	set name = "Set Default Language"
 	set category = "IC"
+
+	if (!languages.len)
+		return
 
 	if(language)
 		src << "<span class='notice'>You will now speak [language] if you do not specify a language when speaking.</span>"

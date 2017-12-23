@@ -75,9 +75,6 @@
 		src.client.screen = null
 	..()
 
-/mob/living/simple_animal/updatehealth()
-	return
-
 /mob/living/simple_animal/Life()
 	..()
 
@@ -348,9 +345,6 @@
 
 		if(3.0)
 			adjustBruteLoss(30)
-
-/mob/living/simple_animal/adjustBruteLoss(damage)
-	health = Clamp(health - damage, 0, maxHealth)
 
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))

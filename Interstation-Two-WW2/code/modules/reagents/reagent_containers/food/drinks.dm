@@ -208,8 +208,8 @@
 	center_of_mass = list("x"=17, "y"=7)
 
 /obj/item/weapon/reagent_containers/food/drinks/flask
-	name = "Captain's Flask"
-	desc = "A metal flask belonging to the captain"
+	name = "Officer's Flask"
+	desc = "A nice metal flask used by officers"
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)

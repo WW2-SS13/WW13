@@ -1,3 +1,5 @@
+/obj/structure/railing/train_zone_railing
+
 /obj/structure/railing/train_railing
 	icon = 'icons/obj/railing.dmi'
 	icon_state = "railing1"

@@ -9,11 +9,11 @@
 	if (!bugname)
 		return
 
-	if (lentext(bugname) > 50)
-		bugname = copytext(bugname, 1, 51)
-		src << "<span class = 'warning'>Your bug's name was clamped to 50 characters.</span>"
+	if (lentext(bugname) > 100)
+		bugname = copytext(bugname, 1, 101)
+		src << "<span class = 'warning'>Your bug's name was clamped to 100 characters.</span>"
 
-	var/check_name_already_exists = database.execute("SELECT * FROM bug_reports WHERE name = '[bugname]';")
+	var/check_name_already_exists = database.execute("SELECT * FROM bug_reports WHERE name = '[bugname]';", FALSE)
 	if (islist(check_name_already_exists) && !isemptylist(check_name_already_exists))
 		src << "<span class = 'danger'>This bug already exists! Please choose another name.</span>"
 		goto rename
@@ -50,6 +50,11 @@
 			else
 				stepnum = steps.len+1
 
+	// this code is a bit problematic
+	// if you have duplicate steps, it won't work right and
+	// it will merge steps
+	// but that doesn't really matter right now
+	// because you shouldn't have two of the same steps - Kachnov
 	var/steps2string = ""
 	for (var/_step in steps)
 		steps2string += _step
@@ -71,13 +76,17 @@
 
 	anything_else += "<br><i>Reported by [src], who was, at the time, [key_name(src)]</i>"
 
+	_tryagain_
 	if (bugname && bugdesc && bugrep && anything_else)
 		if (database)
-			if (database.execute("INSERT INTO bug_reports (name, desc, steps, other) VALUES ('[bugname]', '[bugdesc]', '[steps2string]', '[anything_else]');"))
+			if (database.execute("INSERT INTO bug_reports (name, desc, steps, other) VALUES ('[bugname]', '[bugdesc]', '[steps2string]', '[anything_else]');", FALSE))
 				src << "<span class = 'notice'>Your bug was successfully reported. Thank you!</span>"
 				message_admins("New bug report received from [key_name(src)], titled '[bugname]'.")
 			else
 				src << "<span class = 'warning'>A database error occured; your bug was NOT reported.</span>"
+				var/tryagain = input(src, "Try to report this bug once more?") in list("Yes", "No")
+				if (tryagain == "Yes")
+					goto _tryagain_
 		else
 			src << "<span class = 'warning'>A database error occured; your bug was NOT reported.</span>"
 	else
@@ -98,7 +107,7 @@
 		suggname = copytext(suggname, 1, 51)
 		src << "<span class = 'warning'>Your suggestion's name was clamped to 50 characters.</span>"
 
-	var/check_name_already_exists = database.execute("SELECT * FROM suggestions WHERE name = '[suggname]';")
+	var/check_name_already_exists = database.execute("SELECT * FROM suggestions WHERE name = '[suggname]';", FALSE)
 	if (islist(check_name_already_exists) && !isemptylist(check_name_already_exists))
 		src << "<span class = 'danger'>This suggestion already exists! Please choose another name.</span>"
 		goto rename
@@ -120,13 +129,17 @@
 
 	suggdesc += "<br><i>Suggested by [src], who was, at the time, [key_name(src)]</i>"
 
+	_tryagain_
 	if (suggname && suggdesc)
 		if (database)
-			if (database.execute("INSERT INTO suggestions (name, desc) VALUES ('[suggname]', '[suggdesc]');"))
+			if (database.execute("INSERT INTO suggestions (name, desc) VALUES ('[suggname]', '[suggdesc]');", FALSE))
 				src << "<span class = 'notice'>Your suggestion was successfully received. Thank you!</span>"
 				message_admins("New suggestion received from [key_name(src)], titled '[suggname]'.")
 			else
 				src << "<span class = 'warning'>A database error occured; your suggestion was NOT sent.</span>"
+				var/tryagain = input(src, "Try to send this suggestion once more?") in list("Yes", "No")
+				if (tryagain == "Yes")
+					goto _tryagain_
 		else
 			src << "<span class = 'warning'>A database error occured; your suggestion was NOT sent.</span>"
 	else

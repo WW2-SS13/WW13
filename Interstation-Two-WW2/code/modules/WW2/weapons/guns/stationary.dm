@@ -115,7 +115,7 @@
 
 /obj/item/weapon/gun/projectile/minigun/proc/update_layer()
 	if(dir == NORTH)
-		layer = OBJ_LAYER
+		layer = OBJ_LAYER+0.1 // above any casings we drop but below mobs
 	else
 		layer = FLY_LAYER
 

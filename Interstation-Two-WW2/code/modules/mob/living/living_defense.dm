@@ -305,7 +305,7 @@ var/obj/human_fire_overlay_lying = null
 
 
 /mob/living/fire_act()
-	adjust_fire_stacks(2)
+	adjust_fire_stacks(1)
 	IgniteMob()
 
 /mob/living/proc/get_cold_protection()

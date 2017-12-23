@@ -11,7 +11,7 @@ em						{font-style: normal;font-weight: bold;}
 
 .motd					{color: #4C6CCD; font-family: "Book Antiqua", Verdana, sans-serif;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6
-						{color: #4C6CCD; text-decoration: underline;}
+						{color: #4C6CCD;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
 						{color: #CD4C6C;}
 

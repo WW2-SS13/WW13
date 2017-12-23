@@ -104,15 +104,17 @@
 /datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
 	M.adjustToxLoss(removed * 2 * toxicity)
-	if (M.water < 0)
-		M.water += 50
-	M.water += removed * 5
+	// apparently this doesn't get called, so moving thirstcode to affect_ingest()
 	return
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
 	M.nutrition += nutriment_factor * removed
 	var/strength_mod = 1
+
+	if (M.water < 0)
+		M.water += rand(20,30)
+	M.water += removed * 10
 
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 

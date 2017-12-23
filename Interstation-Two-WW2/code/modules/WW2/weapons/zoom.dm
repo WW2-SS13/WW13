@@ -186,9 +186,12 @@ Parts of code courtesy of Super3222
 				   work with objects (like radios) */
 				o.invisibility = 100
 	else
-		for (var/obj/o in user.client.screen)
-			if (!istype(o, /obj/screen/movable/action_button))
-				o.invisibility = initial(o.invisibility)
+		user.fix_action_buttons()
+
+/mob/proc/fix_action_buttons()
+	for (var/obj/o in client.screen)
+		if (!istype(o, /obj/screen/movable/action_button))
+			o.invisibility = initial(o.invisibility)
 
 /datum/action/toggle_scope
 	name = "Toggle Sights"
@@ -243,6 +246,12 @@ Parts of code courtesy of Super3222
 				for(var/datum/action/toggle_scope/T in actions)
 					if(T.scope.zoomed)
 						T.scope.zoom(src, FALSE)
+
+/mob/living/carbon/human/proc/fix_zooms()
+	for(var/datum/action/toggle_scope/T in actions)
+		if(T.scope.zoomed)
+			T.scope.zoom(src, FALSE)
+	fix_action_buttons()
 
 /mob/living/carbon/human/proc/using_zoom()
 	if (stat == CONSCIOUS)

@@ -1,3 +1,21 @@
+/mob/var/velocity = 0
+/mob/var/velocity_lastdir = -1 // turning makes you lose 1 or 2 velocity
+/mob/var/run_delay_maximum = 2.2 / 1.25
+
+/mob/proc/get_run_delay()
+	switch (velocity)
+		if (0 to 3)
+			return run_delay_maximum
+		if (4 to 7)
+			return run_delay_maximum/1.08
+		if (8 to 11)
+			return run_delay_maximum/1.16
+		if (12 to INFINITY)
+			return run_delay_maximum/1.24
+
+// walking
+/mob/var/walk_delay = 3.3 / 1.25
+
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
 	if(air_group || (height==0)) return 1
@@ -188,7 +206,11 @@
 	if(!mob)
 		return // Moved here to avoid nullrefs below
 
-	if (istype(mob.loc, /obj/tank))
+	var/mob_is_observer = istype(mob, /mob/observer)
+	var/mob_is_living = istype(mob, /mob/living)
+	var/mob_is_human = istype(mob, /mob/living/carbon/human)
+
+	if (mob_is_living && istype(mob.loc, /obj/tank))
 		var/obj/tank/tank = mob.loc
 		tank.receive_command_from(mob, direct)
 		return 1
@@ -199,23 +221,22 @@
 		mob.dir = direct
 		return 0
 
-	if (t1 && locate(/obj/noghost) in t1)
-		if (isobserver(mob)) // admins can pass
-			if (!mob.client.holder || !check_rights(R_MOD, user = mob))
-				mob.dir = direct
-				return
+	if (mob_is_observer && t1 && locate(/obj/noghost) in t1)
+		if (!mob.client.holder || !check_rights(R_MOD, user = mob))
+			mob.dir = direct
+			return
 
-	if (ishuman(mob))
+	if (mob_is_human)
 		var/mob/living/carbon/human/H = mob
 		if (H.crouching)
 			return
 
-	if(isobserver(mob))
+	if(mob_is_observer)
 		var/turf/t = get_step(mob, direct)
 		if (!t)
 			return
 
-	if (!isobserver(mob) && mob.is_on_train() && !mob.buckled)
+	else if (mob.is_on_train() && !mob.buckled)
 		var/datum/train_controller/tc = mob.get_train()
 		if (tc && tc.moving)
 			if (mob.train_move_check(get_step(mob, direct)) && !mob.lying && mob.stat != UNCONSCIOUS && mob.stat != DEAD)
@@ -227,7 +248,7 @@
 
 	if(mob.control_object)	Move_object(direct)
 
-	if(mob.incorporeal_move && isobserver(mob))
+	if(mob.incorporeal_move && mob_is_observer)
 		Process_Incorpmove(direct)
 		return
 
@@ -240,7 +261,7 @@
 			if(S.victim == mob)
 				return
 
-	if(mob.stat==DEAD && isliving(mob))
+	if(mob.stat==DEAD && mob_is_living)
 		mob.ghostize()
 		return
 
@@ -250,7 +271,7 @@
 
 	if(mob.transforming)	return//This is sota the goto stop mobs from moving var
 
-	if(isliving(mob))
+	if(mob_is_living)
 		var/mob/living/L = mob
 		if(L.incorporeal_move)//Move though walls
 			Process_Incorpmove(direct)
@@ -262,7 +283,7 @@
 		return
 
 	// we can probably move now, so update our eye for ladders
-	if (ishuman(mob))
+	if (mob_is_human)
 		var/mob/living/carbon/human/H = mob
 		H.update_laddervision(null)
 
@@ -337,36 +358,43 @@
 				standing_on_snow = rand(2,4)
 				mob << "<span class = 'warning'>The mud slows you down.</span>"
 
+		if (mob.velocity_lastdir != -1)
+			if (direct != mob.velocity_lastdir)
+				mob.velocity = max(mob.velocity-pick(1,2), 0)
+
 		switch(mob.m_intent)
 			if("run")
+				mob.velocity = min(mob.velocity+1, 15)
+				mob.velocity_lastdir = direct
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 2.2 + standing_on_snow
-				if (ishuman(mob))
+				move_delay += mob.get_run_delay() + standing_on_snow
+				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.03
 					--H.stamina
 			if("walk")
-				move_delay += 3.3 + standing_on_snow
-				if (ishuman(mob))
+				move_delay += mob.walk_delay + standing_on_snow
+				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.003
 
 		var/mob/living/carbon/human/H = mob
 
-		if (istype(H) && H.stamina == (H.max_stamina/2) && H.m_intent == "run" && world.time >= H.next_stamina_message)
-			H << "<span class = 'danger'>You're starting to tire from running so much.</span>"
-			H.next_stamina_message = world.time + 20
+		if (mob_is_human)
+			if (H.stamina == (H.max_stamina/2) && H.m_intent == "run" && world.time >= H.next_stamina_message)
+				H << "<span class = 'danger'>You're starting to tire from running so much.</span>"
+				H.next_stamina_message = world.time + 20
 
-		if (istype(H) && H.stamina <= 0 && H.m_intent == "run")
-			H << "<span class = 'danger'>You're too tired to keep running.</span>"
-			for (var/obj/screen/mov_intent/mov in H.client.screen)
-				H.client.Click(mov)
-				break
-			if (H.m_intent != "walk")
-				H.m_intent = "walk" // in case we don't have a m_intent HUD, somehow
+			if (H.stamina <= 0 && H.m_intent == "run")
+				H << "<span class = 'danger'>You're too tired to keep running.</span>"
+				for (var/obj/screen/mov_intent/mov in H.client.screen)
+					H.client.Click(mov)
+					break
+				if (H.m_intent != "walk")
+					H.m_intent = "walk" // in case we don't have a m_intent HUD, somehow
 
-		if (!isobserver(mob))
+		if (!mob_is_observer)
 			var/turf/T = get_turf(mob)
 			if (istype(T, /turf/floor/plating/beach/water))
 				if (!istype(T, /turf/floor/plating/beach/water/ice))
@@ -397,7 +425,7 @@
 			if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
 				return mob.pulledby.relaymove(mob, direct)
 			else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
-				if(ishuman(mob))
+				if(mob_is_human)
 					var/mob/living/carbon/human/driver = mob
 					var/obj/item/organ/external/l_hand = driver.get_organ("l_hand")
 					var/obj/item/organ/external/r_hand = driver.get_organ("r_hand")
@@ -449,6 +477,14 @@
 		else
 			. = mob.SelfMove(n, direct)
 
+		// make animals acknowledge us
+		if (mob_is_human)
+			for (var/mob/living/simple_animal/complex_animal/C in living_mob_list) // living_mob_list fails here
+				var/dist_x = abs(mob.x - C.x)
+				var/dist_y = abs(mob.y - C.y)
+				if (dist_x <= 10 && dist_y <= 10)
+					C.onHumanMovement(mob)
+
 		for (var/obj/item/weapon/grab/G in mob)
 			if (G.state == GRAB_NECK)
 				mob.set_dir(reverse_dir[direct])
@@ -457,11 +493,6 @@
 			G.adjust_position()
 
 		moving = 0
-
-		#ifdef MOVEDELAYDEBUG
-		world << "world.time [world.time]"
-		world << "move delay [move_delay]"
-		#endif
 
 		mob.last_movement = world.time
 
@@ -558,9 +589,9 @@
 ///Return 1 for movement 0 for none
 /mob/proc/Process_Spacemove(var/check_drift = 0)
 
-	if(!Check_Dense_Object()) //Nothing to push off of so end here
+/*	if(!Check_Dense_Object()) //Nothing to push off of so end here
 		update_floating(0)
-		return 0
+		return 0 */
 
 	update_floating(1)
 

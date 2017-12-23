@@ -62,11 +62,13 @@
 	set category = "Help!"
 	set name = "Staff Who"
 
-	var/msg = ""
+	var/highstaff_message = ""
+	var/adminmsg = ""
 	var/modmsg = ""
 	var/mentmsg = ""
 	var/devmsg = ""
 
+	var/num_highstaff_online = 0
 	var/num_mods_online = 0
 	var/num_admins_online = 0
 	var/num_mentors_online = 0
@@ -76,26 +78,42 @@
 		for(var/client/C in admins)
 			if(!C.visible_in_who)
 				continue
-			if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights))	//Used to determine who shows up in admin rows
+
+			if (C.holder.rank == "Senate Chairman" || C.holder.rank == "Senator" || findtext(C.holder.rank, "Host") || C.holder.rank == "Manager")
+				highstaff_message += "\t[C] is a [C.holder.rank]"
+
+				if(isobserver(C.mob))
+					highstaff_message += " - Observing"
+				else if(istype(C.mob,/mob/new_player))
+					highstaff_message += " - Lobby"
+				else
+					highstaff_message += " - Playing"
+
+				if(C.is_afk())
+					highstaff_message += " (AFK - [C.inactivity2text()])"
+				highstaff_message += "\n"
+				num_highstaff_online++
+
+			else if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights))	//Used to determine who shows up in admin rows
 
 				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))		//Mentors can't see stealthmins
 					continue
 
-				msg += "\t[C] is a [C.holder.rank]"
+				adminmsg += "\t[C] is a [C.holder.rank]"
 
 				if(C.holder.fakekey)
-					msg += " <i>(as [C.holder.fakekey])</i>"
+					adminmsg += " <i>(as [C.holder.fakekey])</i>"
 
 				if(isobserver(C.mob))
-					msg += " - Observing"
+					adminmsg += " - Observing"
 				else if(istype(C.mob,/mob/new_player))
-					msg += " - Lobby"
+					adminmsg += " - Lobby"
 				else
-					msg += " - Playing"
+					adminmsg += " - Playing"
 
 				if(C.is_afk())
-					msg += " (AFK - [C.inactivity2text()])"
-				msg += "\n"
+					adminmsg += " (AFK - [C.inactivity2text()])"
+				adminmsg += "\n"
 
 				num_admins_online++
 
@@ -148,7 +166,7 @@
 		for(var/client/C in admins)
 			if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights))
 				if(!C.holder.fakekey)
-					msg += "\t[C] is a [C.holder.rank]\n"
+					adminmsg += "\t[C] is a [C.holder.rank]\n"
 					num_admins_online++
 			else if (R_MOD & C.holder.rights)
 				modmsg += "\t[C] is a [C.holder.rank]\n"
@@ -160,7 +178,9 @@
 	if(config.admin_irc)
 		src << "<span class='info'>Adminhelps are also sent to IRC. If no admins are available in game try anyway and an admin on IRC may see it and respond.</span>"*/
 
-	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg
+	var/msg = "<b>Current High Staff ([num_highstaff_online]):</b>\n" + highstaff_message
+
+	msg += "\n<b>Current Admins ([num_admins_online]):</b>\n" + adminmsg
 
 	if(config.show_mods)
 		msg += "\n<b> Current Moderators ([num_mods_online]):</b>\n" + modmsg

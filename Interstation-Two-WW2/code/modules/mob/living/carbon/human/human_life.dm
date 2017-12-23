@@ -390,9 +390,9 @@
 	var/difference = abs(current-loc_temp)	//get difference
 	var/increments// = difference/10			//find how many increments apart they are
 	if(difference > 50)
-		increments = difference/5
+		increments = difference/50
 	else
-		increments = difference/10
+		increments = difference/100
 	var/change = increments*boost	// Get the amount to change by (x per increment)
 	var/temp_change
 	if(current < loc_temp)

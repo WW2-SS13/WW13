@@ -1,4 +1,3 @@
-
 /client/verb/ooc(msg as text)
 	set name = "OOC"
 	set category = "OOC"
@@ -12,12 +11,31 @@
 		src << "Guests may not use OOC."
 		return
 
-	msg = sanitize(msg)
-	if(!msg)	return
-
 	if(!is_preference_enabled(/datum/client_preference/show_ooc))
 		src << "<span class='warning'>You have OOC muted.</span>"
 		return
+
+	msg = sanitize(msg)
+	if(!msg)	return
+
+	// mentioning clients with @key or @ckey
+	for (var/client/C in clients)
+		var/imsg = msg
+		msg = replacetext(msg, "@[C.key]", "<span class=\"log_message\">@[capitalize(C.key)]</span>")
+		msg = replacetext(msg, "@[C.ckey]", "<span class=\"log_message\">@[capitalize(C.key)]</span>")
+		if (msg != imsg)
+			winset(C, "mainwindow", "flash=2;")
+			C << sound('sound/machines/ping.ogg')
+
+	// mentioning everyone: staff only
+	if (holder && holder.rights & R_ADMIN)
+		var/imsg = msg
+		msg = replacetext(msg, "@everyone", "<span class=\"log_message\">@everyone</span>")
+		msg = replacetext(msg, "@here", "<span class=\"log_message\">@here</span>")
+		if (msg != imsg)
+			for (var/client/C in clients)
+				winset(C, "mainwindow", "flash=2;")
+				C << sound('sound/machines/ping.ogg')
 
 	if(!holder)
 		if(!config.ooc_allowed)
@@ -58,6 +76,9 @@
 						display_name = "[holder.fakekey]/([src.key])"
 					else
 						display_name = holder.fakekey
+				else
+					display_name = "<span class=\"log_message\">[holder.OOC_rank()]</span> [display_name]"
+
 			if(holder && !holder.fakekey && (holder.rights & R_ADMIN) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
 				target << "<font color='[src.prefs.ooccolor]'><span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
 			else

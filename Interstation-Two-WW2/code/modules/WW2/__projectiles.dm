@@ -68,57 +68,23 @@
 	penetrating = 3
 	hitscan = 1
 
-
 /obj/item/projectile/bullet/chameleon
 	damage = 1 // stop trying to murderbone with a fake gun dumbass!!!
 	embed = 0 // nope
 
-/obj/item/projectile/missile/yuge
-	name = "he missle"
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "missile"
-	throwforce = 5
-	muzzle_type = /obj/effect/projectile/bullet/muzzle
+// missiles
 
-	kill_count = 10
+/obj/item/projectile/bullet/rifle/missile/yuge
+	name = "huge HE missle"
+	explosion_ranges = list(1,2,4,5)
 
-	on_hit(atom/hit_atom)
-		explosion(hit_atom, 1, 3, 4, 8)
-		qdel(src)
-
-	on_impact(atom/hit_atom)
-		on_hit(hit_atom)
-
-/obj/item/projectile/missile/tank
+/obj/item/projectile/bullet/rifle/missile/tank
 	name = "tank missle"
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "missile"
-	throwforce = 5
-	muzzle_type = /obj/effect/projectile/bullet/muzzle
-	kill_count = 10
+	explosion_ranges = list(1,3,4,6)
 
-	on_hit(atom/hit_atom)
-		explosion(hit_atom, 3, 4, 5, 9)
-		qdel(src)
-
-	on_impact(atom/hit_atom)
-		on_hit(hit_atom)
-
-/obj/item/projectile/missile/he
-	name = "he missle"
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "missile"
-	throwforce = 5
-	muzzle_type = /obj/effect/projectile/bullet/muzzle
-
-	kill_count = 10
-
-	on_hit(atom/hit_atom)
-		explosion(hit_atom, 1, 1, 4, 8)
-		qdel(src)
-
-	on_impact(atom/hit_atom)
-		on_hit(hit_atom)
+/obj/item/projectile/bullet/rifle/missile/he
+	name = "HE missle"
+	explosion_ranges = list(1,2,3,4)
 
 /obj/item/projectile/grenade/he
 	name = "he grenade"

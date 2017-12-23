@@ -25,23 +25,24 @@
 // new system for handling time of day and luminosity
 /datum/lighting_corner/proc/getLumR()
 	if (TOD_lum_r != 0.0)
-		return TOD_lum_r
+		return TOD_lum_r + lum_r
 	return lum_r
 
 /datum/lighting_corner/proc/getLumG()
 	if (TOD_lum_g != 0.0)
-		return TOD_lum_g
+		return TOD_lum_g + lum_g
 	return lum_g
 
 /datum/lighting_corner/proc/getLumB()
 	if (TOD_lum_b != 0.0)
-		return TOD_lum_b
+		return TOD_lum_b + lum_b
 	return lum_b
 
 /datum/lighting_corner/New(var/turf/new_turf, var/diagonal)
 	. = ..()
 
 	var/area/A = get_area(new_turf)
+	// bunker is darker
 	if (A && istype(A, /area/prishtina/soviet/bunker))
 		lum_r = 0.3
 		lum_g = 0.3

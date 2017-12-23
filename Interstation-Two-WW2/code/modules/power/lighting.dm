@@ -305,6 +305,9 @@
 			brightness_color = "#FFFFFF"
 		update()
 
+/obj/machinery/light/proc/fix_TOD_lights()
+	if (on)
+		set_light(brightness_range, brightness_power, brightness_color)
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(var/trigger = 1, var/fastupdate = 0, var/nosound = 0)

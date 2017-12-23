@@ -2108,8 +2108,8 @@
 		bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/beetsoup
-	name = "beet soup"
-	desc = "Wait, how do you spell it again..?"
+	name = "borshch"
+	desc = "Delicious beet and tomato soup."
 	icon_state = "beetsoup"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#FAC9FF"
@@ -2118,7 +2118,6 @@
 	nutriment_amt = 8
 	New()
 		..()
-		name = pick(list("borsch","bortsch","borstch","borsh","borshch","borscht"))
 		reagents.add_reagent("protein", 4)
 		reagents.add_reagent("tomatojuice", 5)
 		reagents.add_reagent("imidazoline", 5)

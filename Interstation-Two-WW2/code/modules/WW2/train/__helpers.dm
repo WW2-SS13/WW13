@@ -150,6 +150,8 @@
 		return 1
 	if (istype(a, /obj/snow))
 		return 1
+	if (istype(a, /obj/fire))
+		return 1
 	if (istype(a, /obj/train_track))
 		return 1
 	if (istype(a, /obj/train_connector)) // these do their own thing
@@ -157,6 +159,8 @@
 	if (istype(a, /obj/train_pseudoturf))
 		return 1
 	if (istype(a, /obj/structure/railing/train_railing))
+		return 1
+	if (istype(a, /obj/structure/railing/train_zone_railing))
 		return 1
 	if (!initial)
 		for (var/obj/o in get_turf(a))
@@ -176,5 +180,9 @@
 	if (istype(a, /obj/effect))
 		return 0
 	if (istype(a, /obj/snow))
+		return 0
+	if (istype(a, /obj/fire))
+		return 0
+	if (istype(a, /obj/structure/railing/train_zone_railing))
 		return 0
 	return 1

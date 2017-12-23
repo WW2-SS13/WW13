@@ -1,5 +1,10 @@
 #define CHEMNERF 2 // divide the power of all chems by this for BALANCE - Kachnov
 
+var/mob/living/carbon/human/next_gas_eye_message = -1
+var/mob/living/carbon/human/next_gas_skin_message = -1
+var/mob/living/carbon/human/next_gas_lung_message = -1
+var/mob/living/carbon/human/next_gas_flesh_message = -1
+
 /datum/reagent/proc/mask_check(var/mob/living/carbon/human/m)
 	if (m && istype(m))
 		if (m.wear_mask && istype(m.wear_mask, /obj/item/clothing/mask/gas))
@@ -13,7 +18,9 @@
 	if (m && istype(m) && severity)
 		var/base = ((rand(2,3)) * severity)/CHEMNERF
 		if (base >= 2)
-			m << "<span class = 'danger'>The gas burns your eyes!</span>"
+			if (world.time >= next_gas_eye_message)
+				m << "<span class = 'danger'>The gas burns your eyes!</span>"
+			next_gas_eye_message = world.time + 10
 			if (m.stat != DEAD)
 				m.emote("scream")
 			m.adjustFireLossByPart(base, "eyes")
@@ -24,7 +31,9 @@
 	if (m && istype(m) && severity)
 		var/base = ((rand(2,3)) * severity)/CHEMNERF
 		if (base >= 2)
-			m << "<span class = 'danger'>The gas burns your skin!</span>"
+			if (world.time >= next_gas_skin_message)
+				m << "<span class = 'danger'>The gas burns your skin!</span>"
+			next_gas_skin_message = world.time + 10
 			if (prob(50))
 				if (m.stat != DEAD)
 					m.emote("scream")
@@ -37,7 +46,9 @@
 	if (m && istype(m) && severity)
 		var/base = ((rand(2,3)) * severity)/CHEMNERF
 		if (base >= 2)
-			m << "<span class = 'danger'>The gas burns your lungs!</span>"
+			if (world.time >= next_gas_lung_message)
+				m << "<span class = 'danger'>The gas burns your lungs!</span>"
+			next_gas_lung_message = world.time + 10
 			if (m.stat != DEAD)
 				m.emote("scream")
 			m.adjustFireLossByPart(base, "chest")
@@ -50,7 +61,9 @@
 		base += rand(1,2)
 		base /= CHEMNERF
 		if (base >= 1)
-			m << "<span class = 'danger'>The gas burns the open wounds on your skin!</span>"
+			if (world.time >= next_gas_flesh_message)
+				m << "<span class = 'danger'>The gas burns the flesh on your open wounds!</span>"
+			next_gas_flesh_message = world.time + 10
 			if (prob(50))
 				if (m.stat != DEAD)
 					m.emote("scream")

@@ -40,7 +40,7 @@
 		ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
 		ME.attach(H)
 	..()
-
+*/
 /obj/structure/largecrate/animal
 	icon_state = "mulecrate"
 	var/held_count = 1
@@ -51,6 +51,15 @@
 	for(var/i = 1;i<=held_count;i++)
 		new held_type(src)
 
+/obj/structure/largecrate/animal/dog
+
+/obj/structure/largecrate/animal/dog/german
+	held_type = /mob/living/simple_animal/complex_animal/canine/dog/german_shepherd
+
+/obj/structure/largecrate/animal/dog/soviet
+	held_type = /mob/living/simple_animal/complex_animal/canine/dog/samoyed
+
+/*
 /obj/structure/largecrate/animal/corgi
 	name = "corgi carrier"
 	held_type = /mob/living/simple_animal/corgi

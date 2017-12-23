@@ -1,5 +1,5 @@
 
-proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, is_rec = config.use_recursive_explosions)
+/proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, is_rec = config.use_recursive_explosions)
 	src = null	//so we don't abort once src is deleted
 	var/datum/explosiondata/data = new
 	data.epicenter = epicenter
@@ -19,7 +19,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 	return data
 
 // == Recursive Explosions stuff ==
-
+/*
 /client/proc/kaboom()
 	var/power = input(src, "power?", "power?") as num
 	var/turf/T = get_turf(src.mob)
@@ -28,7 +28,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 	d.epicenter = T
 	d.rec_pow = power
 	bomb_processor.queue(d)
-
+*/
 /obj
 	var/explosion_resistance
 

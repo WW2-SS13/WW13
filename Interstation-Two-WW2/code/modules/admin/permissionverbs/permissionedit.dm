@@ -57,7 +57,7 @@
 	establish_db_connection()
 
 	if(!database)
-		usr << "\red Failed to establish database connection"
+		usr << "\red Failed to establish database connection."
 		return
 
 	if(!adm_ckey || !new_rank)
@@ -71,6 +71,10 @@
 	if(!istext(adm_ckey) || !istext(new_rank))
 		return
 
+	if (new_rank == "Removed")
+		database.execute("DELETE FROM admin WHERE ckey = '[adm_ckey]';")
+		return
+
 	var/list/rowdata = database.execute("SELECT id FROM admin WHERE ckey = '[adm_ckey]';")
 
 	var/new_admin = 1
@@ -81,15 +85,19 @@
 		admin_id = text2num(rowdata["id"])
 
 	if(new_admin)
-		database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[adm_ckey]', '[new_rank]', 0)")
-		message_admins("[key_name_admin(usr)] made '[adm_ckey]' an admin with the rank [new_rank]")
-		log_admin("[key_name(usr)] made [key_name(adm_ckey)] an admin with the rank [new_rank]")
+		database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES ('[database.newUID()]', '[adm_ckey]', '[new_rank]', '[num2text(admin_ranks[ckeyEx(new_rank)])]');")
+		message_admins("[key_name_admin(usr)] made '[adm_ckey]' an admin with the rank [new_rank].")
+		log_admin("[key_name(usr)] made '[adm_ckey]' an admin with the rank [new_rank].")
 		usr << "\blue New admin added."
 	else
+		if(isnull(admin_id) || !isnum(admin_id))
+			admin_id = database.newUID()
+			database.execute("UPDATE admin SET id = '[admin_id]' WHERE ckey = '[adm_ckey]';")
+			admin_id = text2num(admin_id)
 		if(!isnull(admin_id) && isnum(admin_id))
-			database.execute("UPDATE admin SET rank = '[new_rank]' WHERE id = '[admin_id]'")
-			message_admins("[key_name_admin(usr)] changed [key_name_admin(adm_ckey)] admin rank to [new_rank]")
-			log_admin("[key_name(usr)] changed [key_name(adm_ckey)] admin rank to [new_rank]")
+			database.execute("UPDATE admin SET rank = '[new_rank]', flags = '[num2text(admin_ranks[ckeyEx(new_rank)])]' WHERE id = '[num2text(admin_id)]'")
+			message_admins("[key_name_admin(usr)] changed '[adm_ckey]''s admin rank to [new_rank]")
+			log_admin("[key_name(usr)] changed '[adm_ckey]''s  admin rank to [new_rank]")
 			usr << "\blue Admin rank changed."
 
 // see admin/topic.dm

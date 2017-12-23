@@ -3,6 +3,10 @@
 
 #define isdatum(A) istype(A, /datum)
 
+#define isimage(A) istype(A, /image)
+
+#define isicon(A) istype(A, /icon)
+
 //MOB LEVEL
 
 #define ismob(A) istype(A, /mob)

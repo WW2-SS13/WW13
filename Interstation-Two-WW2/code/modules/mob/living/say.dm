@@ -86,6 +86,7 @@ proc/get_radio_key_from_channel(var/channel)
 		message = "[uppertext(message)]!!!"
 		verb = pick("yells","roars","hollers")
 		speech_problem_flag = 1
+
 	if(slurring)
 		message = slur(message)
 		verb = pick("slobbers","slurs")
@@ -123,7 +124,7 @@ proc/get_radio_key_from_channel(var/channel)
 		return "asks"
 	return verb
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="")
+/mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/alt_message=null)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			src << "\red You cannot speak in IC (Muted)."
@@ -173,6 +174,10 @@ proc/get_radio_key_from_channel(var/channel)
 
 	if(!(speaking && (speaking.flags & NO_STUTTER)))
 
+		if (slurring || stuttering || lisp)
+			if (alt_message)
+				message = alt_message // use the message with no HTML, because it gets fucked up
+
 		var/list/handle_s = handle_speech_problems(message, verb)
 		message = handle_s[1]
 		verb = handle_s[2]
@@ -190,21 +195,6 @@ proc/get_radio_key_from_channel(var/channel)
 
 	var/italics = 0
 	var/message_range = world.view
-/*
-	//speaking into radios
-	if(used_radios.len)
-		italics = 1
-		message_range = 1
-		if(speaking)
-			message_range = speaking.get_talkinto_msg_range(message)
-		var/msg
-		if(!speaking || !(speaking.flags & NO_TALK_MSG))
-			msg = "<span class='notice'>\The [src] talks into \the [used_radios[1]]</span>"
-		for(var/mob/living/M in hearers(5, src))
-			if((M != src) && msg)
-				M.show_message(msg)
-			if (speech_sound)
-				sound_vol *= 0.5*/
 
 	var/turf/T = get_turf(src)
 

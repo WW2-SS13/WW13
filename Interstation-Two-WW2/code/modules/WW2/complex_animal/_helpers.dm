@@ -1,3 +1,6 @@
+/mob/living/simple_animal/complex_animal/proc/assess_hostility(var/mob/M)
+	return (enemies.Find(M) || !assess_friendlyness(M))
+
 // return values: 1 = M is a neutral mob, 0 = M is a hostile mob
 /mob/living/simple_animal/complex_animal/proc/assess_neutrality(var/mob/M)
 	if (friendly_to_base_type && M.vars.Find("base_type") && M:base_type == base_type)

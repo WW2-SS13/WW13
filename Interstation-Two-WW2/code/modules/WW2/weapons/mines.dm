@@ -92,9 +92,11 @@
 
 //Triggering
 /obj/item/device/mine/Crossed(AM as mob|obj)
+	if(isobserver(AM)) return
 	Bumped(AM)
 
 /obj/item/device/mine/Bumped(AM as mob|obj)
+	if(isobserver(AM)) return
 	if(!anchored) return //If armed
 	if(triggered) return
 	trigger(AM)

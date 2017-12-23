@@ -52,7 +52,7 @@ datum/controller/game_controller/proc/setup_objects()
 	populate_antag_type_list()
 
 	//Set up spawn points.
-	populate_spawn_points()
+	//populate_spawn_points()
 
 	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
 	sleep(-1)

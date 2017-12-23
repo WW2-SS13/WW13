@@ -264,7 +264,6 @@ proc/admin_notice(var/message, var/rights)
 	if(!infos || !infos.len) return 0
 	else return 1
 
-
 /datum/admins/proc/show_player_info(var/key as text)
 	set category = "Admin"
 	set name = "Show Player Info"
@@ -310,7 +309,7 @@ proc/admin_notice(var/message, var/rights)
 
 	dat += "</body></html>"
 	usr << browse(dat, "window=adminplayerinfo;size=480x480")
-
+/*
 /datum/admins/proc/Jobbans()
 	if(!check_rights(R_BAN))	return
 
@@ -321,10 +320,10 @@ proc/admin_notice(var/message, var/rights)
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
 		dat += text("<tr><td>[t] (<A href='?src=\ref[src];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
-	usr << browse(dat, "window=ban;size=400x400")
+	usr << browse(dat, "window=ban;size=400x400")*/
 
 /datum/admins/proc/Game()
-	if(!check_rights(0))	return
+	if(!check_rights(R_ADMIN))	return
 
 	var/dat = {"
 		<center><B>Game Panel</B></center><hr>\n
@@ -532,7 +531,7 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].")
 	world.update_status()
 
-
+/*
 /datum/admins/proc/toggle_aliens()
 	set category = "Server"
 	set desc="Toggle alien mobs"
@@ -541,7 +540,7 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled Aliens to [config.aliens_allowed].")
 	message_admins("[key_name_admin(usr)] toggled Aliens [config.aliens_allowed ? "on" : "off"].", 1)
 
-
+*/
 /datum/admins/proc/delay()
 	set category = "Server"
 	set desc="Delay the game start/end"
@@ -561,13 +560,12 @@ proc/admin_notice(var/message, var/rights)
 		world << "<b>The game will start soon.</b>"
 		log_admin("[key_name(usr)] removed the delay.")
 
-
 /datum/admins/proc/adjump()
 	set category = "Server"
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
 	config.allow_admin_jump = !(config.allow_admin_jump)
-	message_admins("\blue Toggled admin jumping to [config.allow_admin_jump].")
+	message_admins("\blue[key_name(usr)] toggled admin jumping to [config.allow_admin_jump].")
 
 
 /datum/admins/proc/adspawn()
@@ -794,7 +792,7 @@ proc/admin_notice(var/message, var/rights)
 	usr << browse(out, "window=edit_mode[src]")
 
 
-
+/*
 /datum/admins/proc/toggletintedweldhelmets()
 	set category = "Debug"
 	set desc="Reduces view range when wearing welding helmets"
@@ -807,7 +805,7 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled welder vision.")
 	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
 
-
+*/
 /datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"

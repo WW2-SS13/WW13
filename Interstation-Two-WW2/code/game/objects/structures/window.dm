@@ -85,7 +85,7 @@
 /obj/structure/window/proc/shatter(var/display_message = 1)
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
-		visible_message("[src] shatters!")
+		visible_message("<span class = 'warning'>[src] shatters!</span>")
 	if(dir == SOUTHWEST)
 		var/index = null
 		index = 0

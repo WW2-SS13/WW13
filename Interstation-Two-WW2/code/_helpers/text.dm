@@ -13,12 +13,15 @@
  * SQL sanitization
  */
 
-// this is a legacy procedure. Due to how strings work in SQLite, there's
-// no longer any need for anything more complex than a call to sanitize()
-// - Kachnov
-/proc/sanitizeSQL(var/t as text, var/max_length = MAX_MESSAGE_LEN)
-	return sanitize(t)
+/proc/sanitizeSQL(var/input as text, var/max_length = MAX_MESSAGE_LEN)
+	if (!input)
+		input = ""
 
+	input = remove_characters(input, list("~", "|", "@", ":", "#", "$", "%", "&",  "'",  "*", "+", "\"", ",", "-", "<", ">", "(", ")", "=", "/", "\\", "!", "^"))
+
+	if(length(input) > max_length)
+		input = copytext(input, 1, max_length)
+	return input
 /*
  * Text sanitization
  */
@@ -181,6 +184,12 @@
 	for(var/char in repl_chars)
 		t = replacetext(t, char, repl_chars[char])
 	return t
+
+/proc/remove_characters(var/t, var/list/chars)
+	var/list/repl_chars = list()
+	for (var/val in chars)
+		repl_chars[val] = ""
+	return replace_characters(t, repl_chars)
 
 //Adds 'u' number of zeros ahead of the text 't'
 /proc/add_zero(t, u)

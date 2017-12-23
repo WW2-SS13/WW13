@@ -1,18 +1,28 @@
 /mob/living/carbon/human/say(var/message)
+
+	if (!message)
+		return
+
 	var/alt_name = ""
 
 	if(name != rank_prefix_name(GetVoice()))
 		alt_name = "(as [rank_prefix_name(get_id_name())])"
 
 	message = capitalize_cp1251(sanitize(message))
-	if (dd_hassuffix(message, "!") && !dd_hassuffix(message, "!!"))
-		message = "<span class = 'font-size: 1.1em;'>[message]</span>"
-	else if (dd_hassuffix(message, "!!"))
-		message = "<span class = 'font-size: 1.2em;'><b>[message]</b></span>"
+	var/message_without_html = message
 
-	..(message, alt_name = alt_name)
+	if (!dd_hasprefix(message, ":b") && !dd_hasprefix(message, ":r") && !dd_hasprefix(message, ":l"))
+		if (dd_hassuffix(message, "!") && !dd_hassuffix(message, "!!"))
+			message = "<span class = 'font-size: 1.1em;'>[message]</span>"
+		else if (dd_hassuffix(message, "!!"))
+			message = "<span class = 'font-size: 1.2em;'><b>[message]</b></span>"
+
+	..(message, alt_name = alt_name, alt_message = message_without_html)
 
 	post_say(message)
+
+	for (var/mob/living/simple_animal/complex_animal/canine/dog/D in view(world.view, src))
+		D.hear_command(message_without_html, src)
 
 /mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)

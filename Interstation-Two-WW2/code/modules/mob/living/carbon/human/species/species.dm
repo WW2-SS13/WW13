@@ -37,8 +37,8 @@
 
 	var/teeth_type = /obj/item/stack/teeth/generic 		 //What sort of teeth do the species have
 
-	var/min_age = 17
-	var/max_age = 70
+	var/min_age = 16
+	var/max_age = 75
 
 	// Language/culture vars.
 	var/default_language = "Galactic Common" // Default language is used when 'say' is used without modifiers.
@@ -414,10 +414,10 @@
 
 	if(!H.client)//no client, no screen to update
 		return 1
-
+/*
 	if(config.welder_vision)
 		if((!H.equipment_prescription && (H.disabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
-			H.client.screen += global_hud.vimpaired
+			H.client.screen += global_hud.vimpaired*/
 //	if(H.eye_blurry)	H.client.screen += global_hud.blurry
 //	if(H.druggy)		H.client.screen += global_hud.druggy
 

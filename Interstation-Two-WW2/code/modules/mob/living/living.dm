@@ -165,14 +165,6 @@ default behaviour is:
 		src << "\blue You have given up life and succumbed to death."
 
 
-/mob/living/proc/updatehealth()
-	if(status_flags & GODMODE)
-		health = 100
-		stat = CONSCIOUS
-	else
-		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
-
-
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
 /mob/living/proc/calculate_affecting_pressure(var/pressure)
@@ -230,6 +222,7 @@ default behaviour is:
 /mob/living/proc/adjustBruteLoss(var/amount)
 	if(status_flags & GODMODE)	return 0	//godmode
 	bruteloss = min(max(bruteloss + amount, 0),(maxHealth*2))
+	return 1
 
 /mob/living/proc/getOxyLoss()
 	return oxyloss
@@ -443,22 +436,6 @@ default behaviour is:
 	return
 
 /mob/living/proc/UpdateDamageIcon()
-	return
-
-
-/mob/living/proc/Examine_OOC()
-	set name = "Examine Meta-Info (OOC)"
-	set category = "OOC"
-	set src in view()
-
-	if(config.allow_Metadata)
-		if(client)
-			usr << "[src]'s Metainfo:<br>[client.prefs.metadata]"
-		else
-			usr << "[src] does not have any stored infomation!"
-	else
-		usr << "OOC Metadata is not supported by this server!"
-
 	return
 
 /mob/living/Move(a, b, flag)
@@ -699,9 +676,11 @@ default behaviour is:
 	if(!possession_candidate)
 		possessor << "<span class='warning'>That animal cannot be possessed.</span>"
 		return 0
+	/*
 	if(jobban_isbanned(possessor, "Animal"))
 		possessor << "<span class='warning'>You are banned from animal roles.</span>"
 		return 0
+	*/
 	if(!possessor.MayRespawn(1,ANIMAL_SPAWN_DELAY))
 		return 0
 	return 1
@@ -719,7 +698,7 @@ default behaviour is:
 	log_admin("[key_name(possessor)] took control of \the [src].")
 	src.ckey = possessor.ckey
 	qdel(possessor)
-
+/*
 	if(round_is_spooky(6)) // Six or more active cultists.
 		src << "<span class='notice'>You reach out with tendrils of ectoplasm and invade the mind of \the [src]...</span>"
 		src << "<b>You have assumed direct control of \the [src].</b>"
@@ -727,7 +706,7 @@ default behaviour is:
 		src.universal_speak = 1
 		src.universal_understand = 1
 		//src.cultify() // Maybe another time.
-		return
+		return*/
 
 	src << "<b>You are now \the [src]!</b>"
 	src << "<span class='notice'>Remember to stay in character for a mob of this type!</span>"

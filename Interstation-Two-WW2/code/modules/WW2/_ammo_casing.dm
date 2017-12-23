@@ -119,14 +119,14 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/rocket_he
 	name = "a he rocket"
 	desc = "High explosive rocket."
-	projectile_type = /obj/item/projectile/missile/he
+	projectile_type = /obj/item/projectile/bullet/rifle/missile/he
 	caliber = "rocket"
 
 /obj/item/ammo_casing/rocket/yuge
-	projectile_type = /obj/item/projectile/missile/yuge
+	projectile_type = /obj/item/projectile/bullet/rifle/missile/yuge
 
 /obj/item/ammo_casing/rocket/tank
-	projectile_type = /obj/item/projectile/missile/tank
+	projectile_type = /obj/item/projectile/bullet/rifle/missile/tank
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
