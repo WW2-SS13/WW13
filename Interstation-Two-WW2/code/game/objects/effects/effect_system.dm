@@ -183,6 +183,8 @@ steam.start() -- spawns the effect
 	pixel_x = -32
 	pixel_y = -32
 
+	layer = 6
+
 /obj/effect/effect/smoke/New()
 	..()
 	spawn (time_to_live)

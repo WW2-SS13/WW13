@@ -440,6 +440,11 @@
 	name = "Water"
 	icon_state = "seashallow"
 
+/turf/floor/plating/beach/water/proc/Extinguish(var/mob/living/L)
+	if (istype(L))
+		L.ExtinguishMob()
+		L.fire_stacks = 0
+
 /turf/floor/plating/beach/water/ex_act(severity)
 	return
 

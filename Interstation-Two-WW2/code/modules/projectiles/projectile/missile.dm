@@ -7,12 +7,13 @@
 	throwforce = 5
 	damage = 0
 	nodamage = 1
+	embed = 0
 	name = "missile"
-
+/*
 /obj/item/projectile/bullet/rifle/missile/on_impact(atom/into)
 	if (..(into))
 		missile_effect(into)
-
+*/
 /obj/item/projectile/bullet/rifle/missile/proc/missile_effect(atom/hit_atom)
 	if (explosive)
 		var/e = explosion_ranges

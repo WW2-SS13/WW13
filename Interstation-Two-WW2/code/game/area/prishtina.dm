@@ -28,10 +28,15 @@
 // Basic Area Definitions
 
 /* note: BYOND reaches some kind of limit when it encounters areas with massive
- * contents lists (around 65,000 maybe), causing any movement in those areas
+ * contents lists (around 30,000 - 65,000 maybe), causing any movement in those areas
  * to slow down dramatically. The forest area reached this limit, but only
  * when there were snow objects, so its been split into 9 separate areas.
 */
+
+/area/prishtina/no_mans_land
+	dynamic_lighting = 1
+	name = "No Man's Land"
+	icon_state = ""
 
 /area/prishtina/forest
 	dynamic_lighting = 0
@@ -469,6 +474,10 @@
 
 /area/prishtina/soviet
 	name = "soviet"
+
+/area/prishtina/soviet/main_area
+	name = "Soviet Main Area"
+	icon_state = "red2"
 
 /area/prishtina/soviet/bunker_entrance
 	name = "Bunker Entrance"

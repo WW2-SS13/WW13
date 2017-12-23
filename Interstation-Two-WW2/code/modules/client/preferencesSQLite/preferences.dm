@@ -173,15 +173,15 @@ var/list/preferences_datums = list()
 	var/dat = "<html><body><center>"
 
 	if(!IsGuestKey(user.key))
-		//dat += "<a href='?src=\ref[src];resetvars=1'>Reset Preferences</a> - "
-		dat += "<a href='?src=\ref[src];savetonewslot=1'>Save to New Slot</a> - "
+		dat += "<big><b>"
 		dat += "<a href='?src=\ref[src];load=1'>Load Slot</a> - "
-		dat += "<a href='?src=\ref[src];save=1'>Save Slot</a> - "
-		dat += "<a href='?src=\ref[src];reload=1'>Reload Slot</a>"
+		dat += "<a href='?src=\ref[src];save=1'>Save to Slot</a> - "
+		dat += "<a href='?src=\ref[src];del=1'>Delete Slot</a>"
+		dat += "</big></b>"
 	else
 		dat += "Please create an account to save your preferences."
 
-	dat += "<br>"
+	dat += "<br><br>"
 	dat += player_setup.header()
 	dat += "<br><HR></center>"
 	dat += player_setup.content(user)
@@ -208,78 +208,41 @@ var/list/preferences_datums = list()
 		return 1
 
 	if(href_list["save"])
-//		open_save_dialog(usr)
+		open_save_dialog(usr)
 
-		if (current_slot == 0)
-			open_save_dialog(usr)
-		else
-			if (save_preferences(current_slot))
-				usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot].</span>"
-			else
-				usr << "<span class = 'bad'>FAILED to save current preferences to slot #[current_slot].</span>"
-
-	else if (href_list["savetoslot"])
+	else if(href_list["savetoslot"])
 		current_slot = text2num(href_list["savetoslot"])
-		if (save_preferences(current_slot))
+		if (current_slot != 0 && save_preferences(current_slot))
 			usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot].</span>"
-			close_save_dialog(usr)
 		else
 			usr << "<span class = 'bad'>FAILED to save current preferences to slot #[current_slot].</span>"
-
-	else if(href_list["reload"])
-		if (current_slot != 0)
-			if (load_preferences(current_slot))
-				usr << "<span class = 'good'>Successfully reloaded current preferences (slot #[current_slot]).</span>"
-			else
-				usr << "<span class = 'bad'>You are now saving to an empty slot (slot #[current_slot]).</span>"
+		close_save_dialog(usr)
 
 	else if(href_list["load"])
 		if(!IsGuestKey(usr.key))
 			open_load_dialog(usr)
 			return 1
 
-	else if (href_list["savetonewslot"])
-/*
-		var/oldslot = current_slot
-		current_slot = input(usr, "Save to what slot?") as num
-		if (current_slot < 1 || current_slot > 10)
-			usr << "<span class = 'bad'>Invalid slot.</span>"
-			current_slot = oldslot
-			return*/
-		open_save_dialog(usr)
-
-		/*
-
-		if (save_preferences(current_slot))
-			usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot].</span>"
-			close_save_dialog(usr)
-		else
-			usr << "<span class = 'bad'>FAILED to save current preferences to slot #[current_slot].</span>"
-		*/
-/* WIP
-	else if (href_list["resetvars"])
-		var/forbidden_vars = list("client_ckey", "last_id", "type")
-		for (var/varname in vars)
-			var/variable = vars[varname]
-			if (isdatum(variable) || isclient(variable))
-				continue // prevent infinite loops on VV
-			if (islist(variable)) // todo
-				continue
-			if (forbidden_vars.Find(varname))
-				continue
-			vars[varname] = initial(varname)
-		usr << "<span class = 'notice'>Successfully reset preferences to default!</span>"
-		update_setup()
-*/
-	else if(href_list["changeslot"])
-		var/i_current_slot = current_slot
-		current_slot = text2num(href_list["changeslot"])
-		if (load_preferences(current_slot))
-			usr << "<span class = 'good'>Successfully loaded current preferences for slot #[current_slot].</span>"
-		else
-			usr << "<span class = 'bad'>FAILED to load preferences for slot #[current_slot].</span>"
-			current_slot = i_current_slot
+	else if(href_list["loadfromslot"])
+		current_slot = text2num(href_list["loadfromslot"])
+		if (current_slot != 0)
+			if (load_preferences(current_slot))
+				usr << "<span class = 'good'>Successfully loaded current preferences (slot #[current_slot]).</span>"
+			else
+				usr << "<span class = 'bad'>FAILED to load preferences (slot #[current_slot]).</span>"
 		close_load_dialog(usr)
+
+	else if (href_list["del"])
+		open_del_dialog(usr)
+
+	else if (href_list["delslot"])
+		current_slot = text2num(href_list["delslot"])
+		if (current_slot != 0)
+			if (del_preferences(current_slot))
+				usr << "<span class = 'good'>Successfully DELETED preferences (slot #[current_slot]).</span>"
+			else
+				usr << "<span class = 'good'>failed to DELETE preferences (slot #[current_slot]).</span>"
+		close_del_dialog(usr)
 	else
 		return 0
 
@@ -451,12 +414,12 @@ var/list/preferences_datums = list()
 	var/dat = "<body>"
 	dat += "<tt><center>"
 
-	dat += "<b>Select a character slot to load</b><hr>"
+	dat += "<b>Select a character slot to load from</b><hr>"
 	for (var/i in 1 to config.character_slots)
 		if (preferences_exist(i))
-			dat += "<a href='?src=\ref[src];changeslot=[i]'>[i]. [get_DB_preference_value("real_name", i)]</a><br>"
+			dat += "<a href='?src=\ref[src];loadfromslot=[i]'>[i]. [get_DB_preference_value("real_name", i)]</a><br>"
 		else
-			dat += "<a href='?src=\ref[src];changeslot=[i]'>[i]. Empty Slot</a><br>"
+			dat += "[i]. Empty Slot<br>"
 
 	dat += "<hr>"
 	dat += "</center></tt>"
@@ -484,6 +447,26 @@ var/list/preferences_datums = list()
 
 /datum/preferences/proc/close_save_dialog(mob/user)
 	user << browse(null, "window=save_dialog")
+
+// del
+
+/datum/preferences/proc/open_del_dialog(mob/user)
+	var/dat = "<body>"
+	dat += "<tt><center>"
+
+	dat += "<b>Select a character save to delete</b><hr>"
+	for (var/i in 1 to config.character_slots)
+		if (preferences_exist(i))
+			dat += "<a href='?src=\ref[src];delslot=[i]'>[i]. [get_DB_preference_value("real_name", i)]</a><br>"
+		else
+			dat += "<i>[i]. Empty Slot</i><br>"
+
+	dat += "<hr>"
+	dat += "</center></tt>"
+	user << browse(dat, "window=del_dialog;size=300x390")
+
+/datum/preferences/proc/close_del_dialog(mob/user)
+	user << browse(null, "window=del_dialog")
 
 /client/proc/is_preference_enabled(var/preference)
 

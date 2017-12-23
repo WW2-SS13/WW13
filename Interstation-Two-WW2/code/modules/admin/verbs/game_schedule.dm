@@ -57,18 +57,15 @@
 	set name = "Eject Unwhitelisted Players"
 	set category = "Test"
 
-	if (!check_rights(R_HOST))
-		return
-
-	if (!global_game_schedule)
+	if (!check_rights(R_ADMIN))
 		return
 
 	var/ejected = 0
 
-	if (input(src, "Are you sure you want to kick ALL unwhitelisted players?") in list("Yes", "No") == "Yes")
-		if (input(src, "Seriously?") in list("Yes", "No") == "Yes")
+	if ((input(src, "Are you sure you want to kick ALL unwhitelisted players?") in list("Yes", "No")) == "Yes")
+		if ((input(src, "Seriously?") in list("Yes", "No")) == "Yes")
 			for (var/client/C in clients)
-				if (!C.validate_whitelist("server"))
+				if (!C.holder && !C.validate_whitelist("Server"))
 					++ejected
 					C << "<span class = 'userdanger'>The server has been closed to those who aren't whitelisted for private testing. Get whitelisted on the Discord.</span>"
 					del C

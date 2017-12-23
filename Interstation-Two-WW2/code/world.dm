@@ -595,11 +595,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	if (world.port == config.testing_port)
 		visibility = 0
 
-	//var/original_banner = "http://tny.im/9Bm"
-	//var/cavebob_banner_1 = "http://tny.im/9IQ"
-	//var/cavebob_banner_2 = "http://tny.im/9IS"
-	//var/cavebob_banner_final = "http://tny.im/9IU"
-
 	var/s = ""
 
 	if (config.open_hub_discord_in_new_window)

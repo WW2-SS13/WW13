@@ -71,7 +71,7 @@
 	if (prob(wander_probability) && !resting && can_wander_specialcheck())
 		var/list/possible_wander_locations = list()
 		for (var/turf/T in trange(1, src))
-			if (!T.density)
+			if (!T.density && !istype(T, /turf/wall))
 				for (var/atom/movable/AM in T.contents)
 					if (AM.density)
 						continue
@@ -107,9 +107,12 @@
 				if (forced_wander_area)
 					if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
 						var/mob/living/simple_animal/complex_animal/canine/dog/D = src
-						if (get_area(T) == D.last_patrol_area)
+						if (D.last_patrol_area == get_area(T))
 							continue
-						D.last_patrol_area = get_area(D)
+
+				if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
+					var/mob/living/simple_animal/complex_animal/canine/dog/D = src
+					D.last_patrol_area = get_area(get_turf(D))
 
 				Move(T, get_dir(loc, T))
 

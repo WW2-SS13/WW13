@@ -167,7 +167,7 @@
 			holder = new("Host", 0, ckey)
 			database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
 
-	if (!holder)
+	if (!holder && !isPatron("$10+"))
 
 		if (!world_is_open)
 			src << "<span class = 'userdanger'>The server is currently closed to non-admins. The game is open [global_game_schedule.getScheduleAsString()].</span>"
@@ -370,3 +370,20 @@ client/verb/character_setup()
 // for testing
 /client/proc/_winset(arg1, arg2)
 	winset(src, arg1, arg2)
+
+// Patreon stuff
+/client/proc/isPatron(pledge = "$3+")
+
+	switch (pledge)
+		if ("$3+")
+			if (isPatron("$5+") || isPatron("$10+"))
+				return 1
+		if ("$5+")
+			if (isPatron("$10+"))
+				return 1
+
+	var/list/tables = database.execute("SELECT * FROM patreon WHERE (user == '[ckey]' OR user == '[key]') AND pledge == '[pledge]';")
+	if (islist(tables) && !isemptylist(tables))
+		return 1
+
+	return 0

@@ -39,6 +39,8 @@
 	var/user_old_x = 0
 	var/user_old_y = 0
 
+	var/mob/last_user = null
+
 /obj/item/weapon/gun/projectile/minigun/attack_hand(var/mob/user)
 
 	if(user.using_object == src)
@@ -130,7 +132,7 @@
 						T.scope.zoom(user, FALSE)
 			var/datum/action/toggle_scope/S = A
 			S.scope.zoom(user, TRUE, 1)
-
+			last_user = user
 
 	user.forceMove(src.loc)
 	user.dir = src.dir

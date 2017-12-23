@@ -108,8 +108,14 @@
 /atom/proc/emp_act(var/severity)
 	return
 
+/atom/proc/pre_bullet_act(var/obj/item/projectile/P)
+	if(istype(P, /obj/item/projectile/bullet/rifle/missile))
+		var/obj/item/projectile/bullet/rifle/missile/M = P
+		M.missile_effect(src)
+		return 1
+	return 0
 
-/atom/proc/bullet_act(obj/item/projectile/P, def_zone)
+/atom/proc/bullet_act(var/obj/item/projectile/P, def_zone)
 	P.on_hit(src, 0, def_zone)
 	. = 0
 

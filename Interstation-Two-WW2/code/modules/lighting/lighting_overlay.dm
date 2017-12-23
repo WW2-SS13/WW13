@@ -18,6 +18,9 @@
 
 	var/needs_update = FALSE
 
+/atom/movable/lighting_overlay/pre_bullet_act(var/obj/item/projectile/P)
+	return 0
+
 /atom/movable/lighting_overlay/New(var/atom/loc, var/no_update = FALSE)
 	. = ..()
 	verbs.Cut()

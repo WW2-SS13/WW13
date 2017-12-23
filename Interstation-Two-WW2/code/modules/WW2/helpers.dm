@@ -12,7 +12,10 @@
 
 	for (var/obj/prishtina_block/pb in src)
 		if (!istype(pb, /obj/prishtina_block/attackers) && !istype(pb, /obj/prishtina_block/defenders))
-			return 1 // nobody passes these
+			if (istype(pb, /obj/prishtina_block/singleton))
+				if (grace_period)
+					return 1
+				return 0
 		else
 			if (istype(pb, /obj/prishtina_block/attackers))
 				if (!game_started)
@@ -49,13 +52,6 @@
 		return 0
 
 /obj/prishtina_block/attackers // block the Germans (or whoever is attacking) from attacking early
-	icon = null
-	icon_state = null
-	density = 0
-	anchored = 1.0
-	icon = 'icons/mob/screen1.dmi'
-	icon_state = "x2"
-	name = ""
 
 	New()
 		icon = null
@@ -64,13 +60,13 @@
 
 
 /obj/prishtina_block/defenders // block the Russian (or whoever is defending) from attacking early
-	icon = null
-	icon_state = null
-	density = 0
-	anchored = 1.0
-	icon = 'icons/mob/screen1.dmi'
-	icon_state = "x2"
-	name = ""
+
+	New()
+		icon = null
+		icon_state = null
+		layer = -1000
+
+/obj/prishtina_block/singleton // stop everyone from attacking for 5 minutes
 
 	New()
 		icon = null

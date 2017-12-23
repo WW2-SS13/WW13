@@ -434,10 +434,9 @@
 
 /obj/structure/closet/crate/panzerfaust/New()
 	..()
-	update_capacity(24)
-	for (var/v in 1 to 24)
+	update_capacity(10)
+	for (var/v in 1 to 10)
 		new /obj/item/weapon/gun/launcher/rocket/panzerfaust(src)
-
 
 /obj/structure/closet/crate/gersnade/New()
 	..()
