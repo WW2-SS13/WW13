@@ -191,13 +191,19 @@
 	floor_type = /obj/item/stack/tile/wood
 	stepsound = "wood"
 
-/turf/floor/wood/broken
-	name = "floor"
-	icon_state = "wood-broken"
+/* when this is a subtype of /turf/floor/wood, it doesn't get the right icon.
+ * not sure why right now - kachnov */
 
-/turf/floor/wood/broken/New()
+/turf/floor/wood_broken
+	name = "floor"
+	icon = 'icons/turf/flooring/wood.dmi'
+	icon_state = "broken0"
+	floor_type = /obj/item/stack/tile/wood
+	stepsound = "wood"
+
+/turf/floor/wood_broken/New()
 	..()
-	icon_state = "wood-broken[rand(1,7)]"
+	icon_state = "broken[rand(0,6)]"
 
 /turf/floor/vault
 	icon_state = "rockvault"
@@ -439,6 +445,11 @@
 /turf/floor/plating/beach/water
 	name = "Water"
 	icon_state = "seashallow"
+
+/turf/floor/plating/beach/water/proc/Extinguish(var/mob/living/L)
+	if (istype(L))
+		L.ExtinguishMob()
+		L.fire_stacks = 0
 
 /turf/floor/plating/beach/water/ex_act(severity)
 	return

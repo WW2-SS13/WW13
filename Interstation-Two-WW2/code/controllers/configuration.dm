@@ -6,7 +6,7 @@ var/list/gamemode_cache = list()
 
 	//var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
 
-	var/list/lobby_screens = list("titlenew") // Which lobby screens are available
+	var/list/lobby_screens = list("1") // Which lobby screens are available
 
 	var/lobby_countdown = 120
 	var/round_end_countdown = 60
@@ -964,9 +964,12 @@ var/list/gamemode_cache = list()
 							global_game_schedule.days_always_open += capitalize(ckey(day))
 
 			global_game_schedule.update()
+			global_game_schedule.loadFromDB()
 
-	if (!config.hub)
-		world.hub_password = "SORRYNOPASSWORD"
+	if (config.hub)
+		world.visibility = 1
+	else
+		world.visibility = 0
 
 /datum/configuration/proc/loadsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)

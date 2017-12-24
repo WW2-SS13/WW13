@@ -133,11 +133,13 @@
 	def_zone = target_zone
 
 	if(user == target) //Shooting yourself
+		user.pre_bullet_act(src)
 		user.bullet_act(src, target_zone)
 		on_impact(user)
 		qdel(src)
 		return 0
 	if(targloc == curloc) //Shooting something in the same turf
+		target.pre_bullet_act(src)
 		target.bullet_act(src, target_zone)
 		on_impact(target)
 		qdel(src)
@@ -168,6 +170,7 @@
 		return 1
 
 	if(targloc == get_turf(src)) //Shooting something in the same turf
+		target.pre_bullet_act(src)
 		target.bullet_act(src, "chest")
 		on_impact(target)
 		qdel(src)
@@ -190,6 +193,7 @@
 //called to launch a projectile from a gun
 /obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/weapon/gun/launcher, var/target_zone, var/x_offset=0, var/y_offset=0)
 	if(user == target) //Shooting yourself
+		user.pre_bullet_act(src)
 		user.bullet_act(src, target_zone)
 		qdel(src)
 		return 0
@@ -226,6 +230,7 @@
 
 	if(hit_zone)
 		var/def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
+		target_mob.pre_bullet_act(src)
 		result = target_mob.bullet_act(src, def_zone)
 
 	if(result == PROJECTILE_FORCE_MISS)
@@ -285,15 +290,19 @@
 				visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
 				if(Bump(G.affecting, forced=1))
 					return //If Bump() returns 0 (keep going) then we continue on to attack M.
+			M.pre_bullet_act(src)
 			passthrough = !attack_mob(M, distance)
 		else
 			passthrough = 1 //so ghosts don't stop bullets
 	else
+		A.pre_bullet_act(src)
 		passthrough = (A.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
 		if(isturf(A))
 			for(var/obj/O in A)
+				O.pre_bullet_act(src)
 				O.bullet_act(src, "chest")
 			for(var/mob/living/M in A)
+				M.pre_bullet_act(src)
 				attack_mob(M, distance)
 
 	//penetrating projectiles can pass through things that otherwise would not let them
@@ -336,15 +345,20 @@
 	//plot the initial trajectory
 	setup_trajectory()
 
-	spawn while(src && src.loc)
-		if(kill_count-- < 1)
-			on_impact(src.loc) //for any final impact behaviours
-			qdel(src)
+	spawn while(src && loc)
+		if(--kill_count < 1)
+			loc.pre_bullet_act(src)
+			on_impact(loc) //for any final impact behaviours
+			spawn (1)
+				qdel(src)
 			return
 		if((!( current ) || loc == current))
 			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
 		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
-			qdel(src)
+			loc.pre_bullet_act(src)
+			on_impact(loc)
+			spawn (1)
+				qdel(src)
 			return
 
 		trajectory.increment()	// increment the current location
@@ -362,17 +376,11 @@
 		before_move()
 		Move(location.return_turf())
 
-		if (!istype(src, /obj/item/projectile/bullet/rifle/missile))
-			if(!bumped && !isturf(original))
-				if(loc == get_turf(original))
-					if(!(original in permutated))
-						if(Bump(original))
-							return
-		else
-			if (loc == original || loc == get_turf(original))
-				var/obj/item/projectile/bullet/rifle/missile/M = src
-				M.missile_effect(loc)
-				return
+		if(!bumped && !isturf(original))
+			if(loc == get_turf(original))
+				if(!(original in permutated))
+					if(Bump(original))
+						return
 
 		if(first_step)
 			muzzle_effect(effect_transform)

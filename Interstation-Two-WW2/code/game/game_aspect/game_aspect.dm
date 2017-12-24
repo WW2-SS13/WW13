@@ -222,6 +222,7 @@
 
 /datum/game_aspect/ww2/foreign_armies
 	desc = "The German Wehrmacht is being assisted by an Italian division, and the Red Army is being assisted by a Ukrainian division."
+	required_clients = 1000 // DISABLED
 
 /datum/game_aspect/ww2/foreign_armies/activate()
 	. = ..()
@@ -230,8 +231,8 @@
 	world << "[WW2_ASPECT_SPAN][.]Foreign Armies!</span>"
 	world << "<br><i>[desc]</i>"
 
-	job_master.allow_helper_factions["ITALY"] = 1
-	job_master.allow_helper_factions["UKRAINE"] = 1
+	job_master.allow_italians = 1
+	job_master.allow_ukrainians = 1
 
 
 #undef WW2_ASPECT_SPAN

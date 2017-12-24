@@ -3,6 +3,8 @@
 	if (decimal > 1.0)
 		var/add_crates = max(1, ceil((decimal - 1.0) * contents.len))
 		for (var/v in 1 to add_crates)
+			if (!contents.len)
+				break
 			var/atom/object = pick(contents)
 			if (object)
 				var/object_type = object.type
@@ -434,10 +436,9 @@
 
 /obj/structure/closet/crate/panzerfaust/New()
 	..()
-	update_capacity(24)
-	for (var/v in 1 to 24)
+	update_capacity(10)
+	for (var/v in 1 to 10)
 		new /obj/item/weapon/gun/launcher/rocket/panzerfaust(src)
-
 
 /obj/structure/closet/crate/gersnade/New()
 	..()

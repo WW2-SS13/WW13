@@ -229,14 +229,27 @@ Parts of code courtesy of Super3222
 	if(azoom)
 		azoom.Remove(user)
 
-/mob/living/carbon/human/Move()//Resets zoom on movement
+/mob/living/carbon/human/Move()
 	..()
+	handle_zooms_with_movement()
+
+/mob/living/carbon/human/train_move(_loc)
+	..(_loc)
+	handle_zooms_with_movement()
+
+// resets zoom on movement
+/mob/living/carbon/human/proc/handle_zooms_with_movement()
+
 	if(client && actions.len)
 		if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 			for(var/datum/action/toggle_scope/T in actions)
 				if(T.scope.zoomed && src.m_intent=="run")
 					shake_camera(src, 2, rand(2,3))
-				//	T.scope.zoom(src, FALSE)
+
+	for (var/obj/item/weapon/gun/projectile/minigun/M in range(2, src))
+		if (M.last_user == src)
+			M.stopped_using(src)
+			M.last_user = null
 
 // called from Life()
 /mob/living/carbon/human/proc/handle_zoom_stuff(var/ghosting = FALSE)
@@ -247,12 +260,17 @@ Parts of code courtesy of Super3222
 					if(T.scope.zoomed)
 						T.scope.zoom(src, FALSE)
 
+	for (var/obj/item/weapon/gun/projectile/minigun/M in range(2, src))
+		if (M.last_user == src)
+			M.stopped_using(src)
+			M.last_user = null
+/*
 /mob/living/carbon/human/proc/fix_zooms()
 	for(var/datum/action/toggle_scope/T in actions)
 		if(T.scope.zoomed)
 			T.scope.zoom(src, FALSE)
 	fix_action_buttons()
-
+*/
 /mob/living/carbon/human/proc/using_zoom()
 	if (stat == CONSCIOUS)
 		if(client && actions.len)

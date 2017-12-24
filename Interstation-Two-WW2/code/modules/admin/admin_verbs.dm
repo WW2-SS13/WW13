@@ -22,6 +22,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/add_to_server_whitelist,
 	/client/proc/remove_from_server_whitelist,
 	/client/proc/view_server_whitelist,
+	/client/proc/eject_unwhitelisted,
 	/client/proc/player_panel_new,		//shows an interface for all players, with links to various panels,
 	/client/proc/invisimin,				//allows our mob to go invisible/visible,
 //	/datum/admins/proc/show_traitor_panel,	//interface which shows a mob's mind, -Removed due to rare practical use. Moved to debug verbs ~Errorage,
@@ -325,7 +326,9 @@ var/list/admin_verbs_mentor = list(
 			verbs += /client/proc/reset_roundstart_autobalance
 			verbs += /client/proc/forceClose_game_schedule
 			verbs += /client/proc/forceOpen_game_schedule
-
+			verbs += /client/proc/give_patreon_rewards
+			verbs += /client/proc/toggle_BYOND_hub_visibility
+			verbs += /client/proc/eject_unwhitelisted
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(

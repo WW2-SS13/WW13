@@ -45,7 +45,7 @@
 				return 1
 		else if (friends.Find(M))
 			return 1
-
+/*
 /mob/living/simple_animal/complex_animal/proc/wander()
 	for (var/turf/T in view(1, src))
 		if (T.density)
@@ -55,7 +55,7 @@
 				continue
 		Move(T)
 		break
-
+*/
 /mob/living/simple_animal/complex_animal/proc/nap()
 	for (var/mob/M in knows_about_mobs)
 		if (!assess_friendlyness(M)) // bad time to nap

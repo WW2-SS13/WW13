@@ -148,10 +148,7 @@
 
 	establish_db_connection()
 
-	/* we're the key in host.txt.
-	 * if there are no admins, and we aren't admin, give us admin
-	 * then delete host.txt?
-	*/
+
 
 	if(holder)
 		holder.associate(src)
@@ -160,6 +157,11 @@
 
 	sleep(1)
 
+	/* we're the key in host.txt.
+	 * if there are no admins, and we aren't admin, give us admin
+	 * then delete host.txt?
+	 */
+
 	var/host_file_text = file2text("config/host.txt")
 	if (ckey(host_file_text) == ckey && !holder)
 		var/list/admins = database.execute("SELECT * FROM admin;")
@@ -167,7 +169,11 @@
 			holder = new("Host", 0, ckey)
 			database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
 
-	if (!holder)
+	/* let us profile if we're hosting on our computer */
+	if (holder && (world.host == key || holder.rights & R_HOST))
+		control_freak = 0
+
+	if (!holder && !isPatron("$10+"))
 
 		if (!world_is_open)
 			src << "<span class = 'userdanger'>The server is currently closed to non-admins. The game is open [global_game_schedule.getScheduleAsString()].</span>"
@@ -370,3 +376,20 @@ client/verb/character_setup()
 // for testing
 /client/proc/_winset(arg1, arg2)
 	winset(src, arg1, arg2)
+
+// Patreon stuff
+/client/proc/isPatron(pledge = "$3+")
+
+	switch (pledge)
+		if ("$3+")
+			if (isPatron("$5+") || isPatron("$10+"))
+				return 1
+		if ("$5+")
+			if (isPatron("$10+"))
+				return 1
+
+	var/list/tables = database.execute("SELECT * FROM patreon WHERE (user == '[ckey]' OR user == '[key]') AND pledge == '[pledge]';")
+	if (islist(tables) && !isemptylist(tables))
+		return 1
+
+	return 0

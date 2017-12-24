@@ -6,8 +6,11 @@ var/database/database = null
 	// lets make some tables
 	spawn (1)
 
-		/* WW13 has 10 tables. ALL data should be stored in one of these tables,
+		/* WW13 has 11 tables. ALL data should be stored in one of these tables,
 	     * It is fine to make new tables - Kachnov */
+
+		if (!execute("TABLE misc EXISTS;"))
+			execute("CREATE TABLE misc (key STRING, val STRING);")
 
 		if (!execute("TABLE preferences EXISTS;"))
 			execute("CREATE TABLE preferences (ckey STRING, slot STRING, prefs STRING)")
@@ -53,10 +56,15 @@ var/database/database = null
 		if (!execute("TABLE patreon EXISTS;"))
 			execute("CREATE TABLE patreon (user STRING, pledge STRING);")
 
+		// where we store player tip input
+		if (!execute("TABLE player_tips EXISTS;"))
+			execute("CREATE TABLE player_tips (UID STRING, submitter STRING, tip STRING);")
+
+/*
 		// where we store redeemed patreon rewards
 		if (!execute("TABLE patreon_rewards EXISTS;"))
 			execute("CREATE TABLE patreon_rewards (user STRING, data STRING);")
-
+*/
 /database/proc/newUID()
 	return num2text(rand(1, 1000*1000*1000), 20)
 

@@ -173,6 +173,38 @@ var/global/list/default_ukrainian_channels = list(
 		return
 	var/list/used_radio_turfs = list()
 	var/list/used_radios = list()
+
+	// capitalize the actual said part of the message
+	var/actual_message = ""
+
+	// prefixes without a space
+	if (dd_hasprefix(message, ":b"))
+		actual_message = copytext(message, 1, 3)
+		actual_message = capitalize(actual_message)
+		message = ":b[actual_message]"
+	else if (dd_hasprefix(message, ":l"))
+		actual_message = copytext(message, 1, 3)
+		actual_message = capitalize(actual_message)
+		message = ":l[actual_message]"
+	else if (dd_hasprefix(message, ":r"))
+		actual_message = copytext(message, 1, 3)
+		actual_message = capitalize(actual_message)
+		message = ":r[actual_message]"
+
+	// prefixes with a space ahead of them
+	else if (dd_hasprefix(message, ":b "))
+		actual_message = copytext(message, 1, 4)
+		actual_message = capitalize(actual_message)
+		message = ":b [actual_message]"
+	else if (dd_hasprefix(message, ":l "))
+		actual_message = copytext(message, 1, 4)
+		actual_message = capitalize(actual_message)
+		message = ":l [actual_message]"
+	else if (dd_hasprefix(message, ":r "))
+		actual_message = copytext(message, 1, 4)
+		actual_message = capitalize(actual_message)
+		message = ":r [actual_message]"
+
 	for (var/obj/item/device/radio/radio in range(1, src))
 		if (used_radio_turfs.Find(get_turf(radio)))
 			continue

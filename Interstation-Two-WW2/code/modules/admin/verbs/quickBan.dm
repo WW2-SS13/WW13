@@ -209,33 +209,35 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 		// kick whoever got banned if they're on
 		for (var/client/C in clients)
 			if (C.ckey == ckey)
-				C.quickBan_kicked()
+				C.quickBan_kicked(fields["type"], fields["reason"])
 	else
 		if (banner)
 			banner << "<span class = 'warning'>FAILED to ban [ckey]/[cID]/[ip]! A database error occured.</span>"
 
-/* checking if we're banned & rejecting us */
+/* checking if we're banned & then reject us */
 /client/proc/quickBan_isbanned(var/ban_type = "Server")
-	var/list/bans = database.execute("SELECT * FROM quick_bans WHERE ckey == '[ckey]' or cID == '[computer_id]' or ip == '[address]' AND type == '[ban_type]'", FALSE)
+	var/list/bans = database.execute("SELECT * FROM quick_bans WHERE (ckey = '[ckey]' OR cID = '[computer_id]' OR ip = '[address]') AND type == '[ban_type]';", FALSE)
 	if (islist(bans) && !isemptylist(bans))
-		for (var/table in bans)
-			if (text2num(table["expire_realtime"]) <= world.realtime)
-				database.execute("REMOVE * FROM quick_bans WHERE UID == '[table["UID"]]';")
+		for (var/x in bans)
+		//	world << "[x] = [bans[x]]"
+			if (x == "expire_realtime" && text2num(bans[x]) <= world.realtime)
+				database.execute("DELETE FROM quick_bans WHERE UID == '[bans["UID"]]';")
 				continue
-			return table["reason"]
+			if (x == "reason")
+				return bans[x]
 	return FALSE
 
 /* check if we're banned and tell us why we're banned */
-/client/proc/quickBan_rejected(var/ban_type = "Server")
-	var/banreason = quickBan_isbanned(ban_type)
+/client/proc/quickBan_rejected(var/bantype = "Server")
+	var/banreason = quickBan_isbanned(bantype)
 	if (banreason)
-		src << "<span class = 'userdanger'>You're banned: '[banreason]'</span>"
+		src << "<span class = 'userdanger'>You're [lowertext(bantype)]-banned. Reason: '[banreason]'</span>"
 		return TRUE
 	return FALSE
 
 /* kick us if we just got banned */
 /client/proc/quickBan_kicked(var/bantype, var/reason)
-	src << "<span class = 'userdanger'>You have been given a [bantype]-ban. Reason: '[reason]'</span>"
+	src << "<span class = 'userdanger'>You have been given a [lowertext(bantype)]-ban. Reason: '[reason]'</span>"
 	del src
 
 /* check if we're an admin trying to quickBan another admin */

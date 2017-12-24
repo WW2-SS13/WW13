@@ -499,7 +499,7 @@ default behaviour is:
 									if (istype(location, /turf))
 										location.add_blood(M)
 								//pull damage with injured people
-									if(prob(25))
+								/*	if(prob(25))
 										M.adjustBruteLoss(1)
 										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
 								if(M.pull_damage())
@@ -514,7 +514,7 @@ default behaviour is:
 												var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
 												if(blood_volume > 0)
 													H.vessel.remove_reagent("blood", 1)
-
+										*/
 
 						step(pulling, get_dir(pulling.loc, T))
 						if(t)

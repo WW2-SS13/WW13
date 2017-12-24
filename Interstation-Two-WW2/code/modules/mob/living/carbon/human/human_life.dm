@@ -1428,7 +1428,7 @@
 			if(!isRemoteObserve && client && !client.adminobs)
 				remoteview_target = null
 				reset_view(null, 0)
-	else
+	else if (client)
 		client.perspective = EYE_PERSPECTIVE
 		client.eye = laddervision
 

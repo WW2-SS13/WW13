@@ -27,7 +27,7 @@
 /* Medic */
 
 /datum/job/italian/medic
-	title = "Feldarzt" // WIP
+	title = "Italian Medic" // WIP
 	en_meaning = "Medic"
 	total_positions = 5
 	selection_color = "#4c4ca5"

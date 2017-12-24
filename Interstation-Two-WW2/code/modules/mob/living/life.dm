@@ -29,6 +29,11 @@
 
 		handle_environment()
 
+	// put us out before we check fire stuff
+	if (istype(loc, /turf/floor/plating/beach/water))
+		var/turf/floor/plating/beach/water/W = loc
+		W.Extinguish(src)
+
 	//Check if we're on fire
 	handle_fire()
 

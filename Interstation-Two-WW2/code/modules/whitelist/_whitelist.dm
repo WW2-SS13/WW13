@@ -7,11 +7,11 @@
 
 var/list/global_whitelists[50]
 
-/client/proc/validate_whitelist(name)
+/client/proc/validate_whitelist(name, return_real_val_even_if_whitelist_disabled = 0)
 	for (var/_name in global_whitelists)
 		if (_name == name)
 			var/datum/whitelist/W = global_whitelists[_name]
-			if (W.validate(src))
+			if (W.validate(src, return_real_val_even_if_whitelist_disabled))
 				return 1
 			else
 				return 0
@@ -98,8 +98,8 @@ var/list/global_whitelists[50]
 	cleanup()
 
 // check if a client or ckey is in the whitelist
-/datum/whitelist/proc/validate(_arg)
-	if (!enabled)
+/datum/whitelist/proc/validate(_arg, return_real_val_even_if_whitelist_disabled = 0)
+	if (!enabled && !return_real_val_even_if_whitelist_disabled)
 		return 1
 	var/list/datalist = splittext(data, "&")
 	if (isclient(_arg))

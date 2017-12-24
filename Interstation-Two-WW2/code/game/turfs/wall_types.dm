@@ -1,5 +1,6 @@
 /turf/wall/r_wall
 	icon_state = "rgeneric"
+
 /turf/wall/r_wall/New(var/newloc)
 	..(newloc, "plasteel","plasteel") //3strong
 

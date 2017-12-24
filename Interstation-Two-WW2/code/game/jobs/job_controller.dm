@@ -29,10 +29,13 @@ var/global/list/fallschirm_landmarks = list()
 	var/civilian_count = 0
 	var/partisan_count = 0
 
-	var/allow_jews = 0
-	var/allow_spies = 0
+//	var/allow_jews = 0
+//	var/allow_spies = 0
 	var/allow_civilians = 1
 	var/allow_partisans = 1
+
+	var/allow_ukrainians = 0
+	var/allow_italians = 0
 
 	var/german_job_slots = 40
 	var/russian_job_slots = 40
@@ -64,10 +67,6 @@ var/global/list/fallschirm_landmarks = list()
 	var/russian_soldat_slots = 0
 	var/russian_commander_slots = 0
 	var/russian_sturmovik_slots = 0
-
-	// helper factions
-
-	var/allow_helper_factions = list("ITALY" = 0, "UKRAINE" = 0)
 
 	var/italy_soldier_slots = 0
 	var/italy_medic_slots = 0
@@ -184,20 +183,24 @@ var/global/list/fallschirm_landmarks = list()
 		partisan_job_slots = civilian_job_slots
 
 
-		allow_jews = initial(allow_jews)
-		allow_spies = initial(allow_spies)
+//		allow_jews = initial(allow_jews)
+//		allow_spies = initial(allow_spies)
 		allow_civilians = initial(allow_civilians)
 		allow_partisans = initial(allow_partisans)
+
+		// WIP
+		allow_ukrainians = 0
+		allow_italians = 0
 		// what else do we want to do based on how many players we expect
 
 		switch (expected_players)
 			if (-INFINITY to 24)
-				allow_jews = 0
-				allow_spies = 0
+			//	allow_jews = 0
+			//	allow_spies = 0
 				allow_civilians = 0
 				allow_partisans = 0
 			if (25 to 29)
-				allow_spies = 0
+		//		allow_spies = 0
 				allow_civilians = 0
 				allow_partisans = 0
 			if (30 to 34)
@@ -213,9 +216,26 @@ var/global/list/fallschirm_landmarks = list()
 			for (var/datum/job/partisan/soldier/j in occupations)
 				if (istype(j))
 					j.total_positions = partisan_job_slots-1
+
 			for (var/datum/job/partisan/commander/j in occupations)
 				if (istype(j))
 					j.total_positions = 1
+
+		// disable base job types like '/datum/job/german'
+
+		for (var/datum/job/j in occupations)
+			switch (j.type)
+				if (/datum/job/german)
+					j.total_positions = 0
+				if (/datum/job/russian)
+					j.total_positions = 0
+				if (/datum/job/italian)
+					j.total_positions = 0
+				if (/datum/job/ukrainian)
+					j.total_positions = 0
+				if (/datum/job/partisan)
+					j.total_positions = 0
+				// but NOT /datum/job/partisan/civilian as its a 'singleton'
 
 		// GERMAN jobs
 
@@ -280,6 +300,13 @@ var/global/list/fallschirm_landmarks = list()
 				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 1
 
+		if (!fallschirm_landmarks.len)
+			german_soldat_slots += german_paratrooper_slots
+			german_paratrooper_slots = 0 // forgot why this is even here - kachnovv
+			for (var/datum/job/german/paratrooper/j in occupations)
+				if (istype(j))
+					j.total_positions = 0
+
 		// useful information
 
 		var/primary_german_jobs = 0
@@ -324,7 +351,18 @@ var/global/list/fallschirm_landmarks = list()
 
 			// SPECIAL
 			if (istype(j, /datum/job/german/flamethrower_man))
-				if (clients.len <= 5)
+				if (clients.len <= 15 || !WW2_train_check())
+					j.total_positions = 0
+			else if (istype(j, /datum/job/german/artyman))
+				if (!locate(/obj/machinery/artillery) in world)
+					j.total_positions = 0
+			else if (istype(j, /datum/job/german/anti_tank_crew) || istype(j, /datum/job/german/tankcrew))
+				if (!locate(/obj/tank) in world)
+					j.total_positions = 0
+
+		for (var/datum/job/russian/j in occupations)
+			if (istype(j, /datum/job/russian/anti_tank_crew) || istype(j, /datum/job/russian/tankcrew))
+				if (!locate(/obj/tank) in world)
 					j.total_positions = 0
 
 		// RUSSIAN jobs
@@ -428,12 +466,19 @@ var/global/list/fallschirm_landmarks = list()
 				if (istype(j))
 					j.total_positions = german_soldat_slots
 
-		// helper jobs
+		// helper faction jobs
 		for (var/datum/job/J in occupations)
-			if (!allow_helper_factions["ITALY"])
+			if (allow_italians)
+				if (istype(J, /datum/job/italian))
+					J.total_positions = 1
+			else // not sure why I have to do this
 				if (istype(J, /datum/job/italian))
 					J.total_positions = 0
-			if (!allow_helper_factions["UKRAINE"])
+
+			if (allow_ukrainians)
+				if (istype(J, /datum/job/ukrainian))
+					J.total_positions = 1
+			else
 				if (istype(J, /datum/job/ukrainian))
 					J.total_positions = 0
 
@@ -644,6 +689,7 @@ var/global/list/fallschirm_landmarks = list()
 				player.mind.assigned_role = rank
 				player.mind.assigned_job = job
 				player.original_job = job
+				player.original_job_title = player.original_job.title
 				player.mind.role_alt_title = GetPlayerAltTitle(player, rank)
 				unassigned -= player
 				job.current_positions++
@@ -1140,6 +1186,7 @@ var/global/list/fallschirm_landmarks = list()
 
 			// removed /mob/living/job since it was confusing; it wasn't a job, but a job title
 			H.original_job = job
+			H.original_job_title = H.original_job.title
 
 			#ifdef SPAWNLOC_DEBUG
 			if (H.original_job)

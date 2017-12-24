@@ -18,7 +18,7 @@
 	msg = sanitize(msg)
 	if(!msg)	return
 
-	// mentioning clients with @key or @ckey
+	/* mentioning clients with @key or @ckey */
 	for (var/client/C in clients)
 		var/imsg = msg
 		msg = replacetext(msg, "@[C.key]", "<span class=\"log_message\">@[capitalize(C.key)]</span>")
@@ -27,13 +27,34 @@
 			winset(C, "mainwindow", "flash=2;")
 			C << sound('sound/machines/ping.ogg')
 
-	// mentioning everyone: staff only
+	/* mentioning @everyone: staff only */
 	if (holder && holder.rights & R_ADMIN)
 		var/imsg = msg
 		msg = replacetext(msg, "@everyone", "<span class=\"log_message\">@everyone</span>")
-		msg = replacetext(msg, "@here", "<span class=\"log_message\">@here</span>")
 		if (msg != imsg)
 			for (var/client/C in clients)
+				winset(C, "mainwindow", "flash=2;")
+				C << sound('sound/machines/ping.ogg')
+
+	/* mentioning specific roles: */
+
+	// @admins
+	var/imsg = msg
+	msg = replacetext(msg, "@admins", "<span class=\"log_message\">@admins</span>")
+	msg = replacetext(msg, "@Admins", "<span class=\"log_message\">@admins</span>")
+	if (msg != imsg)
+		for (var/client/C in clients)
+			if (C.holder && C.holder.rights & R_ADMIN && !(C.holder.rights & R_HOST))
+				winset(C, "mainwindow", "flash=2;")
+				C << sound('sound/machines/ping.ogg')
+
+	// @highstaff
+	imsg = msg
+	msg = replacetext(msg, "@highstaff", "<span class=\"log_message\">@highstaff</span>")
+	msg = replacetext(msg, "@Highstaff", "<span class=\"log_message\">@highstaff</span>")
+	if (msg != imsg)
+		for (var/client/C in clients)
+			if (C.holder && C.holder.rights & R_HOST)
 				winset(C, "mainwindow", "flash=2;")
 				C << sound('sound/machines/ping.ogg')
 
@@ -79,7 +100,8 @@
 				else
 					display_name = "<span class=\"log_message\">[holder.OOC_rank()]</span> [display_name]"
 
-			if(holder && !holder.fakekey && (holder.rights & R_ADMIN) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
+			// donors get OOC colors too, now - kachnov
+			if(/*holder && !holder.fakekey && (holder.rights & R_ADMIN) && */config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
 				target << "<font color='[src.prefs.ooccolor]'><span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
 			else
 				target << "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></span>"

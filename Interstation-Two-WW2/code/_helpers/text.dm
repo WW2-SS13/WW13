@@ -20,7 +20,7 @@
 	input = remove_characters(input, list("~", "|", "@", ":", "#", "$", "%", "&",  "'",  "*", "+", "\"", ",", "-", "<", ">", "(", ")", "=", "/", "\\", "!", "^"))
 
 	if(length(input) > max_length)
-		input = copytext(input, 1, max_length)
+		input = copytext(input, 1, max_length+1)
 	return input
 /*
  * Text sanitization
@@ -179,6 +179,7 @@
 /*
  * Text modification
  */
+
 
 /proc/replace_characters(var/t,var/list/repl_chars)
 	for(var/char in repl_chars)

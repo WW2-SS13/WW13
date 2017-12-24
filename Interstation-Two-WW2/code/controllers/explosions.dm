@@ -106,8 +106,6 @@ var/datum/controller/process/explosives/bomb_processor
 			if(M && M.client)
 				var/turf/M_turf = get_turf(M)
 
-
-
 				if(M_turf && M_turf.z == epicenter.z)
 					if (istype(M_turf,/turf/space))
 					//If the person is standing in space, they wont hear

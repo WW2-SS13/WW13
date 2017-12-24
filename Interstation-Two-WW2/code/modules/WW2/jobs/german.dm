@@ -720,3 +720,4 @@ var/first_fallschirm = 1
 	is_officer = 0
 	is_commander = 0
 	absolute_limit = 0
+	faction = "trainsystem"

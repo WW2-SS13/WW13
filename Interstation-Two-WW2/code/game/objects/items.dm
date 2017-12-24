@@ -136,6 +136,7 @@
 	return ..(user, distance, "", "It is a [size] item.")
 
 /obj/item/attack_hand(mob/user as mob)
+	if (isturf(loc) && anchored) return
 	if (!user) return
 	if (hasorgans(user))
 		var/mob/living/carbon/human/H = user
@@ -274,6 +275,7 @@ var/list/global/slot_flags_enumeration = list(
 //Set disable_warning to 1 if you wish it to not give you outputs.
 //Should probably move the bulk of this into mob code some time, as most of it is related to the definition of slots and not item-specific
 /obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = 0)
+
 	if(!slot) return 0
 	if(!M) return 0
 
@@ -386,7 +388,7 @@ var/list/global/slot_flags_enumeration = list(
 	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
 		usr << "<span class='warning'>You can't pick things up!</span>"
 		return
-	if(src.anchored) //Object isn't anchored
+	if(anchored) //Object isn't anchored
 		usr << "<span class='warning'>You can't pick that up!</span>"
 		return
 	if(!usr.hand && usr.r_hand) //Right hand is not full

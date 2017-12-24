@@ -76,7 +76,7 @@ var/world_is_open = 1
 		config.server_name += " #[(world.port % 1000) / 100]"
 
 	if(config && config.log_runtime)
-		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
+		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.txt")
 
 	for (var/W in (typesof(/datum/whitelist) - /datum/whitelist))
 		var/datum/whitelist/whitelist = new W
@@ -594,11 +594,6 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	if (world.port == config.testing_port)
 		visibility = 0
-
-	//var/original_banner = "http://tny.im/9Bm"
-	//var/cavebob_banner_1 = "http://tny.im/9IQ"
-	//var/cavebob_banner_2 = "http://tny.im/9IS"
-	//var/cavebob_banner_final = "http://tny.im/9IU"
 
 	var/s = ""
 

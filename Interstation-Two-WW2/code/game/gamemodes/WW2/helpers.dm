@@ -42,6 +42,8 @@
 	if (istype(a, /area/prishtina/soviet/bunker))
 		if (!istype(a, /area/prishtina/soviet/bunker/tunnel))
 			return 1
+	else if (istype(a, /area/prishtina/soviet/small_map))
+		return 1
 	return 0
 
 /proc/is_german_contested_zone(var/area/a)

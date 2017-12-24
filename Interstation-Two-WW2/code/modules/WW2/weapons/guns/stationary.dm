@@ -39,7 +39,13 @@
 	var/user_old_x = 0
 	var/user_old_y = 0
 
+	var/mob/last_user = null
+
 /obj/item/weapon/gun/projectile/minigun/attack_hand(var/mob/user)
+
+	if (last_user && last_user != user)
+		user << "<span class = 'warning'>\the [src] is already in use.</span>"
+		return
 
 	if(user.using_object == src)
 		if(firemodes.len > 1)
@@ -130,7 +136,7 @@
 						T.scope.zoom(user, FALSE)
 			var/datum/action/toggle_scope/S = A
 			S.scope.zoom(user, TRUE, 1)
-
+			last_user = user
 
 	user.forceMove(src.loc)
 	user.dir = src.dir

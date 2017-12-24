@@ -215,8 +215,8 @@
 	if (/*!user.client.prefs.be_jew || */!istype(src, /datum/job/german/soldier))
 		return
 
-	if (!job_master.allow_jews)
-		return
+//	if (!job_master.allow_jews)
+	//	return
 
 	if (is_officer)
 		return
@@ -251,8 +251,8 @@
 /*	if (!user.client.prefs.be_spy)
 		return */
 
-	if (!job_master.allow_spies)
-		return
+//	if (!job_master.allow_spies)
+	//	return
 
 	if ((prob(20) && istype(src, /datum/job/german/soldier)) || (prob(12) && istype(src, /datum/job/russian/soldier)))
 		if (allow_spies)

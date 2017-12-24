@@ -4,7 +4,7 @@
 	name = "Baystation12"
 	desc = ""
 	icon = 'icons/_LOBBY.dmi'
-	icon_state = "titlenew"
+	icon_state = "1"
 	screen_loc = "WEST,SOUTH"
 
 /obj/effect/lobby_image/initialize()

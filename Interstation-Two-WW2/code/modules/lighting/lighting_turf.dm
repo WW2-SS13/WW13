@@ -62,9 +62,6 @@
 	var/changed = 0
 
 	for (var/datum/lighting_corner/corner in corners)
-		corner.lum_r = 0.0
-		corner.lum_g = 0.0
-		corner.lum_b = 0.0
 		corner.TOD_lum_r = time_of_day2luminosity[time_of_day]
 		corner.TOD_lum_g = time_of_day2luminosity[time_of_day]
 		corner.TOD_lum_b = time_of_day2luminosity[time_of_day]
@@ -73,10 +70,18 @@
 	if (changed)
 		if (lighting_overlay)
 			lighting_overlay.update_overlay()
-
+/*
 		spawn (1)
 			for (var/obj/machinery/light/L in src)
 				L.fix_TOD_lights()
+*/
+// HACKCODE
+
+/turf/proc/fix_broken_daylights()
+	var/area/A = get_area(src)
+	if (!A.dynamic_lighting)
+		adjust_lighting_overlay_to_daylight()
+		reconsider_lights()
 
 /turf/proc/fix_corners_and_lighting_overlay() // workaround for broken ice corners
 	if (istype(src, /turf/floor/plating/beach/water/ice))
