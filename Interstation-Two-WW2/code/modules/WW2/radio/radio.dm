@@ -173,6 +173,22 @@ var/global/list/default_ukrainian_channels = list(
 		return
 	var/list/used_radio_turfs = list()
 	var/list/used_radios = list()
+
+	// capitalize the actual said part of the message
+	var/actual_message = ""
+	if (findtext(message, ":b"))
+		actual_message = replacetext(message, ":b", "")
+		actual_message = capitalize(actual_message)
+		message = ":b[actual_message]"
+	else if (findtext(message, ":l"))
+		actual_message = replacetext(message, ":l", "")
+		actual_message = capitalize(actual_message)
+		message = ":l[actual_message]"
+	else if (findtext(message, ":r"))
+		actual_message = replacetext(message, ":r", "")
+		actual_message = capitalize(actual_message)
+		message = ":r[actual_message]"
+
 	for (var/obj/item/device/radio/radio in range(1, src))
 		if (used_radio_turfs.Find(get_turf(radio)))
 			continue

@@ -3,6 +3,8 @@
 	if (decimal > 1.0)
 		var/add_crates = max(1, ceil((decimal - 1.0) * contents.len))
 		for (var/v in 1 to add_crates)
+			if (!contents.len)
+				break
 			var/atom/object = pick(contents)
 			if (object)
 				var/object_type = object.type

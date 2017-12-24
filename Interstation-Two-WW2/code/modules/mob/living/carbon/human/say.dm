@@ -19,7 +19,7 @@
 
 	..(message, alt_name = alt_name, alt_message = message_without_html)
 
-	post_say(capitalize(message))
+	post_say(message)
 
 	for (var/mob/living/simple_animal/complex_animal/canine/dog/D in view(world.view, src))
 		D.hear_command(message_without_html, src)

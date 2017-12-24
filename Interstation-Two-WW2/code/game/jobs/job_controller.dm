@@ -221,6 +221,22 @@ var/global/list/fallschirm_landmarks = list()
 				if (istype(j))
 					j.total_positions = 1
 
+		// disable base job types like '/datum/job/german'
+
+		for (var/datum/job/j in occupations)
+			switch (j.type)
+				if (/datum/job/german)
+					j.total_positions = 0
+				if (/datum/job/russian)
+					j.total_positions = 0
+				if (/datum/job/italian)
+					j.total_positions = 0
+				if (/datum/job/ukrainian)
+					j.total_positions = 0
+				if (/datum/job/partisan)
+					j.total_positions = 0
+				// but NOT /datum/job/partisan/civilian as its a 'singleton'
+
 		// GERMAN jobs
 
 		// decide how many positions of each job type we have based on
@@ -286,7 +302,10 @@ var/global/list/fallschirm_landmarks = list()
 
 		if (!fallschirm_landmarks.len)
 			german_soldat_slots += german_paratrooper_slots
-			german_paratrooper_slots = 0
+			german_paratrooper_slots = 0 // forgot why this is even here - kachnovv
+			for (var/datum/job/german/paratrooper/j in occupations)
+				if (istype(j))
+					j.total_positions = 0
 
 		// useful information
 
@@ -337,7 +356,12 @@ var/global/list/fallschirm_landmarks = list()
 			else if (istype(j, /datum/job/german/artyman))
 				if (!locate(/obj/machinery/artillery) in world)
 					j.total_positions = 0
-			if (istype(j, /datum/job/german/anti_tank_crew) || istype(j, /datum/job/russian/anti_tank_crew) || istype(j, /datum/job/german/tankcrew) || istype(j, /datum/job/russian/tankcrew))
+			else if (istype(j, /datum/job/german/anti_tank_crew) || istype(j, /datum/job/german/tankcrew))
+				if (!locate(/obj/tank) in world)
+					j.total_positions = 0
+
+		for (var/datum/job/russian/j in occupations)
+			if (istype(j, /datum/job/russian/anti_tank_crew) || istype(j, /datum/job/russian/tankcrew))
 				if (!locate(/obj/tank) in world)
 					j.total_positions = 0
 

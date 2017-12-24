@@ -14,3 +14,21 @@
 		message_admins(M)
 	else
 		src << "<span class = 'danger'>A database error occured.</span>"
+	remove_patreon_table_extras(_ckey)
+
+/* keeps the patreon table small by removing any unecessary data. A person
+ * who donated $10 gets $5 and $3 benefits too, so we don't need to store those,
+ * and likewise, a person who donated $5 gets $3 benefits which are superfluous */
+
+/proc/remove_patreon_table_extras(var/ckey)
+
+	// we have $10, meaning we don't need $5 and $3
+	var/list/_10check = database.execute("SELECT * FROM patreon WHERE ckey = '[ckey]' AND pledge = '$10+';")
+	if (islist(_10check) && !isemptylist(_10check))
+		database.execute("DELETE FROM patreon WHERE ckey = '[ckey]' AND pledge = '$5+';")
+		database.execute("DELETE FROM patreon WHERE ckey = '[ckey]' AND pledge = '$3+';")
+
+	// we have $5, meaning we don't need $3
+	var/list/_5check = database.execute("SELECT * FROM patreon WHERE ckey = '[ckey]' AND pledge = '$5+';")
+	if (islist(_5check) && !isemptylist(_5check))
+		database.execute("DELETE FROM patreon WHERE ckey = '[ckey]' AND pledge = '$3+';")

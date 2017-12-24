@@ -146,7 +146,7 @@ var/datum/reinforcements/reinforcements_master
 	sname[RUSSIAN] = "the Russians"
 	sname[GERMAN] = "the Germans"
 
-	np << "<span class = 'danger'>You have joined a queue for [sname[side]] reinforcements, please wait until the timer reaches 0 to spawn.</span>"
+	np << "<span class = 'danger'>You have joined a queue for [replacetext(sname[side], "s", "")] reinforcements, please wait until the timer reaches 0 to spawn.</span>"
 	var/list/l = reinforcement_pool[side]
 	l += np
 
