@@ -148,10 +148,7 @@
 
 	establish_db_connection()
 
-	/* we're the key in host.txt.
-	 * if there are no admins, and we aren't admin, give us admin
-	 * then delete host.txt?
-	*/
+
 
 	if(holder)
 		holder.associate(src)
@@ -160,12 +157,21 @@
 
 	sleep(1)
 
+	/* we're the key in host.txt.
+	 * if there are no admins, and we aren't admin, give us admin
+	 * then delete host.txt?
+	 */
+
 	var/host_file_text = file2text("config/host.txt")
 	if (ckey(host_file_text) == ckey && !holder)
 		var/list/admins = database.execute("SELECT * FROM admin;")
 		if ((!islist(admins) || isemptylist(admins)))
 			holder = new("Host", 0, ckey)
 			database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
+
+	/* let us profile if we're hosting on our computer */
+	if (holder && (world.host == key || holder.rights & R_HOST))
+		control_freak = 0
 
 	if (!holder && !isPatron("$10+"))
 

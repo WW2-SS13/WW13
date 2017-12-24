@@ -193,11 +193,11 @@
 
 /turf/floor/wood/broken
 	name = "floor"
-	icon_state = "wood-broken"
+	icon_state = "wood-broken1"
 
 /turf/floor/wood/broken/New()
 	..()
-	icon_state = "wood-broken[rand(1,7)]"
+	icon_state = "broken[rand(1,7)]"
 
 /turf/floor/vault
 	icon_state = "rockvault"

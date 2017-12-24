@@ -37,7 +37,7 @@
 /obj/prishtina_block
 	icon = null
 	icon_state = null
-	density = 0
+	density = 1
 	anchored = 1.0
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
@@ -52,23 +52,5 @@
 		return 0
 
 /obj/prishtina_block/attackers // block the Germans (or whoever is attacking) from attacking early
-
-	New()
-		icon = null
-		icon_state = null
-		layer = -1000
-
-
 /obj/prishtina_block/defenders // block the Russian (or whoever is defending) from attacking early
-
-	New()
-		icon = null
-		icon_state = null
-		layer = -1000
-
 /obj/prishtina_block/singleton // stop everyone from attacking for 5 minutes
-
-	New()
-		icon = null
-		icon_state = null
-		layer = -1000

@@ -231,13 +231,13 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 /client/proc/quickBan_rejected(var/bantype = "Server")
 	var/banreason = quickBan_isbanned(bantype)
 	if (banreason)
-		src << "<span class = 'userdanger'>You're banned: '[banreason]'</span>"
+		src << "<span class = 'userdanger'>You're [lowertext(bantype)]-banned. Reason: '[banreason]'</span>"
 		return TRUE
 	return FALSE
 
 /* kick us if we just got banned */
 /client/proc/quickBan_kicked(var/bantype, var/reason)
-	src << "<span class = 'userdanger'>You have been given a [bantype]-ban. Reason: '[reason]'</span>"
+	src << "<span class = 'userdanger'>You have been given a [lowertext(bantype)]-ban. Reason: '[reason]'</span>"
 	del src
 
 /* check if we're an admin trying to quickBan another admin */

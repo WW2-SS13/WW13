@@ -18,7 +18,7 @@
 	msg = sanitize(msg)
 	if(!msg)	return
 
-	// mentioning clients with @key or @ckey
+	/* mentioning clients with @key or @ckey */
 	for (var/client/C in clients)
 		var/imsg = msg
 		msg = replacetext(msg, "@[C.key]", "<span class=\"log_message\">@[capitalize(C.key)]</span>")
@@ -27,7 +27,7 @@
 			winset(C, "mainwindow", "flash=2;")
 			C << sound('sound/machines/ping.ogg')
 
-	// mentioning @everyone: staff only
+	/* mentioning @everyone: staff only */
 	if (holder && holder.rights & R_ADMIN)
 		var/imsg = msg
 		msg = replacetext(msg, "@everyone", "<span class=\"log_message\">@everyone</span>")
@@ -36,7 +36,7 @@
 				winset(C, "mainwindow", "flash=2;")
 				C << sound('sound/machines/ping.ogg')
 
-	// mentioning specific roles:
+	/* mentioning specific roles: */
 
 	// @admins
 	var/imsg = msg
@@ -49,7 +49,7 @@
 				C << sound('sound/machines/ping.ogg')
 
 	// @highstaff
-	var/imsg = msg
+	imsg = msg
 	msg = replacetext(msg, "@highstaff", "<span class=\"log_message\">@highstaff</span>")
 	msg = replacetext(msg, "@Highstaff", "<span class=\"log_message\">@highstaff</span>")
 	if (msg != imsg)
