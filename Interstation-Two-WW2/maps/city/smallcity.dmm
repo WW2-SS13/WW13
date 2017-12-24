@@ -324,7 +324,7 @@
 "gl" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/item/device/radio/intercom/loudspeaker/german{dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
 "gm" = (/obj/machinery/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "gn" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
-"go" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"go" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "gp" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "gq" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "gr" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
@@ -332,13 +332,13 @@
 "gt" = (/obj/structure/barricade,/obj/effect/decal/cleanable/dirt,/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/armory)
 "gu" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/armory)
 "gv" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/road,/area/prishtina/no_mans_land)
-"gw" = (/obj/structure/barricade,/turf/floor/plating/road,/area/prishtina/no_mans_land)
+"gw" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "gx" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "gy" = (/obj/structure/sign/flag/germany{pixel_y = 30},/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "gz" = (/obj/effect/landmark{name = "JoinLateCivilian"},/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "gA" = (/obj/effect/landmark{name = "Observer-Start"},/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "gB" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
-"gC" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"gC" = (/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "gD" = (/obj/effect/decal/cleanable/dirt,/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "gE" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "gF" = (/obj/structure/barricade,/turf/floor/wood_broken,/area/prishtina/houses/nml_one)
@@ -362,7 +362,7 @@
 "gX" = (/obj/effect/decal/cleanable/cobweb,/turf/floor/wood,/area/prishtina/houses/nml_three)
 "gY" = (/turf/floor/wood_broken,/area/prishtina/houses/nml_three)
 "gZ" = (/turf/floor/wood,/area/prishtina/houses/nml_three)
-"ha" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"ha" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "hb" = (/turf/floor/wood,/area/prishtina/houses/nml_four)
 "hc" = (/obj/structure/closet/cabinet,/turf/floor/wood,/area/prishtina/houses/nml_four)
 "hd" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses/nml_four)
@@ -444,7 +444,7 @@
 "iB" = (/obj/structure/barbwire,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iC" = (/obj/effect/decal/cleanable/dirt,/obj/prishtina_block/singleton,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iD" = (/obj/structure/barricade,/obj/prishtina_block/singleton,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/road,/area/prishtina/no_mans_land)
-"iE" = (/obj/structure/barricade,/obj/prishtina_block/singleton,/turf/floor/plating/road,/area/prishtina/no_mans_land)
+"iE" = (/obj/effect/decal/cleanable/dirt,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iF" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/prishtina_block/singleton,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iG" = (/obj/effect/landmark{name = "JoinLateCivilian"},/obj/prishtina_block/singleton,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iH" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/structure/barbwire,/turf/floor/plating/road,/area/prishtina/soviet/small_map/inside/armory)
@@ -471,7 +471,7 @@
 "jc" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "jd" = (/obj/structure/closet,/obj/item/weapon/gun/projectile/boltaction/mosin,/obj/item/weapon/gun/projectile/boltaction/mosin,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside/armory)
 "je" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside/armory)
-"jf" = (/obj/structure/table/steel_reinforced,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside/armory)
+"jf" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/reagent_dispensers/fueltank,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "jg" = (/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside/armory)
 "jh" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/closet/crate/rations/soviet_solids,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside/armory)
 "ji" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/closet/crate/rations/water,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside/armory)
@@ -684,7 +684,7 @@
 "nh" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/wood,/area/prishtina/soviet/small_map/inside)
 "ni" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside)
 "nj" = (/obj/structure/barricade,/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside)
-"nk" = (/obj/structure/reagent_dispensers/fueltank,/turf/floor/wood,/area/prishtina/soviet/small_map/inside)
+"nk" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/gun/projectile/heavysniper/ptrd,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside/armory)
 "nl" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood_broken,/area/prishtina/soviet/small_map/inside)
 "nm" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/turf/floor/wood,/area/prishtina/soviet/small_map/inside)
 "nn" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating,/area/prishtina/soviet/small_map/inside)
@@ -812,6 +812,7 @@
 "pF" = (/turf/wall/iron,/area/prishtina/soviet/small_map/inside/medical)
 "pG" = (/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside/medical)
 "pH" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside/medical)
+"pI" = (/obj/item/weapon/storage/backpack/flammenwerfer,/obj/item/clothing/mask/gas/clown_hat,/obj/item/clothing/shoes/clown_shoes,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 
 (1,1,1) = {"
 aaabababacabababababababacabababababababababacabababababacabababaaadaeafafafagahaiaiaiaiaiaiajajajajajajakakakakakakalalalalalamamamamamamam
@@ -835,32 +836,32 @@ dYdfdAeadAdBeQdfdAeRdfdfdfcTaaaacWdEdhdhdheSeSeSeSeSeSeSdhdEdhdhcWcAaeafafafaUcA
 cTdfdfeadfdfdBdfdAdAdfdfdfcTaaaacWdhdidDdhdhdhdhdhdhdidhdhdDdhdhcWcAaeafafafaUcAfkflfmfnfofmfpdmeIeXeKdmfqfrfsftfufvfwfxfyfzfdfAfBfgfgfgfifj
 cTdfdfdfdfdfdfdfdfdfdfdfdfcTaaaacWdhdhdhdhdhdhdhdhdhdhdhdhdhdhcWcWcAaeafanafaUfCfDfEfmfmfmfFfkdmeIeXfGdmfHfwfwfwfwfwfwfxfyfIfJfhfgfgfgfgfifK
 cTdYcTcTcTdYdYdYcTcTdYdYcTcTaQaQcWcWcWcWcWcWcWcWcWcWcWcWcWfLfLcWcAcAfManafaffMcAfkfNfmfOfOfOfPdmfQeXfRdmfHfwfwfwfwfwfwfwfyfSfdfTfgfgfgfefifU
-cAcAcAcBcAcAcAcAcAcAcAcAcAcAcAcAcAcBcBcBcAcAcAcAcAcAcAfVfWcAcAcBcAfMafanafafaffMcAfDfXfYfZgafkgbgbgbgbgbfHgcgdgegfggghgifygjdwgkgkglgkgkdwfU
-bjbjbjbkbjbkbkbjbjbjbjbkbjbjbjbjbjbjbjbkbkbkbkbjgmbjbjgngobjbjbkblafananafafafafbmbjgpgqgqgqgpgrgrgrgrgreYfafafafafafafagsgtgugugugugugugugu
-afbyafanafafanafafafafafafafafanafafafafafanananafafafgvgwafafafangxanafafafafafafafafgyafafafafafafafafafafafafafafafafafafafafafgyafafafaf
-afgzafanafafafafafafafafafafafanafafafafafanafanafafafgvgwafafafafgxanafgzafafafanafafafafafananafafafafafanafafafafananananafafafafafafgzaf
-afbyangxafafafanafafafafafafananafafafafanafafafafafafgvgwafafafananafananafafanafafafafafananafafafafafafafafafgAafafafafanananafanafafafaf
-ckckclclclckbmafananblckckckclckckclclclclckckckckckckgBgCckckckblafafafanangxafbmckckckclckckckckckckbmafafafbmckckckckckckckckckckckckckck
-cAcAcBcBcAcAdjananafaUcAcAcAgDgEgEgEgEgEgEgEgEgEgEgEcAfVfWfWfWfWcAfMafafananaffMcAcAcAcAcAcAcAcAcAcAcAaeafafafaUcAcAcAcAcAcAcAcAcAcAcAcAcAcA
-gFgGgGgGgGcAaegxananaUcAgHgHgHgIgIgHgHgIgIgHgHgIgIgHgHgHgHgJgJgHgKcAfMafanaffMcAcAgLgLgLgMgMgMgLgLgNfWaeafafafaUcAgOgOgOgPgPgOgOgOgOgPgPgOgO
-gFgQgRgQgScAaeanafanagcAgHgTgTgUgVgWgWgVgVgWgWgVgVgWgWgWgWgJgJgHgHfWaeafafafaUcAgLgNgXgYgYgMgYgZgZgLfWhaafafafaUcAgOhbhbhbhbhbhbhchdhehfhegO
-gGgRhggRgGcAdjafafafaUcAgHgTgThhgWgWhihjgWhkgWgThigWhlhmgWgVgVgVgHfWaeafafafaUcAgLgXgZhnhohphohqgZgLhrhagwgwgwhsfWgPhbhdhdhthdhbhuhbhvhehfgO
-gGgRhggRhwcAdjafafafaUcAgHgThlhxgWhjhyhjgThihlhjhxgTgWhzgWgWgTgWgHcAaeafafafaUfWgLgZgZgZgYgZgZgZgYgNcBdjafafafhsfWgPhdhbhuhbhbhuhbhdhehfhegO
-gGgRgRgRhAcAaeafafafaUhBgHgTgThxgWhjhygWgThxgTgThCgWgWhzgThjhjgWgHcAaeafafafhsfWhDhEhFhGgZgZhngZgZgLhHdjafafafaUfWgOhbhuhbhthbhbhdhdhthdhdgO
-gGgRhIgRhAcAaeafafafaUhBgIhJgWhigWgThigWgWhKgWgThCgWgWhigWgWgWgWgIfWhagwgwgwhsfWhDgZhLhGgZgZhnhMgMgMcAaeananafhNcAhuhuhOhbhdhbhPhQhRhthdhdgO
-gGgRgRgRgGcAdjafafafbmhBgIhJgWhzhjgWhCgWgWhxgThjhigWgWhigTgTgTgWgIfWhahShShShTgEgLgZhUhFhVgZgZhWgZgMcAdjhXanafaUhYhZhbhbhbhbiahuhdhdhdhQhdgO
-gGibibgQgFcAdjananafaUhBgIhJgWhigWhjhxgWgWhxgWgWhhgTgThigWgTgTgWgIfWicafafafaUcAgNgZgZhFgZhGgYidgYgMcAdjananafaUiegOhuhOhdhuhbhbhthdhdhQhdgO
+cAcAcAcBcAcAcAcAcAcAcAcAcAcAcAcAcAcBcBcBcAcAcAcAcAcAcAfVfVcAcAcBcAfMafanafafaffMcAfDfXfYfZgafkgbgbgbgbgbfHgcgdgegfggghgifygjdwgkgkglgkgkdwfU
+bjbjbjbkbjbkbkbjbjbjbjbkbjbjbjbjbjbjbjbkbkbkbkbjgmbjbjgngnbjbjbkblafananafafafafbmbjgpgqgqgqgpgrgrgrgrgreYfafafafafafafagsgtgugugugugugugugu
+afbyafanafafanafafafafafafafafanafafafafafanananafafafgvgvafafafangxanafafafafafafafafgyafafafafafafafafafafafafafafafafafafafafafgyafafafaf
+afgzafanafafafafafafafafafafafanafafafafafanafanafafafgvgvafafafafgxanafgzafafafanafafafafafananafafafafafanafafafafananananafafafafafafgzaf
+afbyangxafafafanafafafafafafananafafafafanafafafafafafgvgvafafafananafananafafanafafafafafananafafafafafafafafafgAafafafafanananafanafafafaf
+ckckclclclckbmafananblckckckclckckclclclclckckckckckckgBgBckckckblafafafanangxafbmckckckclckckckckckckbmafafafbmckckckckckckckckckckckckckck
+cAcAcBcBcAcAdjananafaUcAcAcAgDgEgEgEgEgEgEgEgEgEgEgEcAfVfVfWfWfWcAfMafafananaffMcAcAcAcAcAcAcAcAcAcAcAaeafafafaUcAcAcAcAcAcAcAcAcAcAcAcAcAcA
+gFgGgGgGgGcAaegxananaUcAgHgHgHgIgIgHgHgIgIgHgHgIgIgHgHgHgHgJgJgHgKcAfMafanaffMcAcAgLgLgLgMgMgMgLgLgNgEaeafafafaUcAgOgOgOgPgPgOgOgOgOgPgPgOgO
+gFgQgRgQgScAaeanafanagcAgHgTgTgUgVgWgWgVgVgWgWgVgVgWgWgWgWgJgJgHgHfWaeafafgogwgCgLgNgXgYgYgMgYgZgZgLgEicafafafaUcAgOhbhbhbhbhbhbhchdhehfhegO
+gGgRhggRgGcAdjafafafaUcAgHgTgThhgWgWhihjgWhkgWgThigWhlhmgWgVgVgVgHiehagogogoaUcAgLgXgZhnhohphohqgZgLhrichShShShTgEgPhbhdhdhthdhbhuhbhvhehfgO
+gGgRhggRhwcAdjafafafaUcAgHgThlhxgWhjhyhjgThihlhjhxgTgWhzgWgWgTgWgHcAaeafafafaUgEgLgZgZgZgYgZgZgZgYgNcBdjafafafhTgEgPhdhbhuhbhbhuhbhdhehfhegO
+gGgRgRgRhAcAaeafafafaUhBgHgTgThxgWhjhygWgThxgTgThCgWgWhzgThjhjgWgHcAaeafafafhTgEhDhEhFhGgZgZhngZgZgLhHdjafafafaUgEgOhbhuhbhthbhbhdhdhthdhdgO
+gGgRhIgRhAcAaeafafafaUhBgIhJgWhigWgThigWgWhKgWgThCgWgWhigWgWgWgWgIgEichShShShTgEhDgZhLhGgZgZhnhMgMgMcAaeananafhNcAhuhuhOhbhdhbhPhQhRhthdhdgO
+gGgRgRgRgGcAdjafafafbmhBgIhJgWhzhjgWhCgWgWhxgThjhigWgWhigTgTgTgWgIgEichShShShTgEgLgZhUhFhVgZgZhWgZgMcAdjhXanafaUhYhZhbhbhbhbiahuhdhdhdhQhdgO
+gGibibgQgFcAdjananafaUhBgIhJgWhigWhjhxgWgWhxgWgWhhgTgThigWgTgTgWgIgEicafafafaUcAgNgZgZhFgZhGgYidgYgMcAdjananafaUiegOhuhOhdhuhbhbhthdhdhQhdgO
 gFhghggQhAcAaeafananaghBgIifgWiggThjhihlhlhigWgWhigWgWhzgWgThlgWgIgEaeafananaUcAhDihgZhGgZhqhGgZgZgLcBdjananafiiiegPhuhbhdhbhthdhbhbhuhbhbgO
-gFgQgRgRhAcAaeafafafagijgHikikgWgWgWgWgWgWgWgWgWgWgWgWhjgWgWgWgWgHcAaeanafanaUcAhDgZgYgZgZgYhGgZgZgLcAilimimimiicAgPhbhPhbhdhbhZinhOinhdhbgO
-gGgQgRgQgGcAaeafafafhsioikipipikgWiqiqgWgWiqiqgWgWiqiqgWgWiqiqgWgHcAaeafafafaUcAgLgZhGgZgZgZirhGgZgLfVilafafafaUisgOhuhbhuhbhbhbhuhZhdhuhbgO
+gFgQgRgRhAcAaeafafafagijgHikikgWgWgWgWgWgWgWgWgWgWgWgWhjgWgWgWgWgHcAaeangoiEgwgChDgZgYgZgZgYhGgZgZgLcAilimimimiicAgPhbhPhbhdhbhZinhOinhdhbgO
+gGgQgRgQgGcAaeafafafhsioikipipikgWiqiqgWgWiqiqgWgWiqiqgWgWiqiqgWgHgChagogoafaUcAgLgZhGgZgZgZirhGgZgLfVilafafafaUisgOhuhbhuhbhbhbhuhZhdhuhbgO
 gGgFgFgGgGcAaeafafafaUfWgHgIgIgHgHgIgIgHgHgIgIgHgHgIgIgHgHgIgIgHgHcAaeafafafaUcAgLgLgLhDhDgLgLgLgLgLfVaeanafafaUcAgOgOgOgPgPgOgOhZhZhZgOgOgO
-cAcAcAcAcAcAdjanafafaUcBieieieieieieieieieieieieieieitieieieieiecAcAaeafafafaUcAcAcAcAcAcAgEfWfWcAcAcAaeafafafaUcAcBcAcAcAcAcAcAcAcAcBcAcAcA
-bjbjbjbkbkbkblafafafbmbkbkbkbkbkbkbjbjbjbjbjbmbkbkbjbjbkbkbjbjbjbjbjbmafanafiubjbjbjbjbkbjivivgobjbjbjbmafafanbmbjbjbjbjbjbjbjbjbjbjbjbjbjbj
-iwixixixixixixixixixixixixixixixixixixixixiyiyiyixixixixiyixixixixixixixizafafafafafafafafafhSgwafafafafanafafafafanafafafafanafafafafafafaf
-iAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiBiBiAiAiAiAiAiAiBiBiAiAiAiAafanizixixixiCixixixixixiDiEixixixixiCixixixiCiFixixiCiCixixixixiCixiGix
-iHiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiJiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiAafafafafanafanananafafhSgwafafafafafafafafafafafafafafafafafafiLafafaf
-iMiNiOiPiQiOiOiOiOiOiRiOiOiOiOiOiSiTiUiViUiWiXiYiZiViUiUjajajajajaiUjbiAafafbmclclckckckckckjcgCgCckckblafafafbmckckckckckckckckckckckckckck
-iMjdjejfjgjhjejijejjjejkjejljejmjejnjojpjqjojojojrjpjojsjtjujvjujvjwjxiKjyafagcAcBcAcAcAcAcAgEfWfWcAcAaeafafafaUcAcAcAcAcAcAcAcAcAcAcAcAcAcA
+cAcAcAcAcAcAdjanafafaUcBieieieieieieieieieieieieieieitieieieieiecAcAaeafafafaUcAcAcAcAcAcAgEgEgEcAcAcAaeafafafaUcAcBcAcAcAcAcAcAcAcAcBcAcAcA
+bjbjbjbkbkbkblafafafbmbkbkbkbkbkbkbjbjbjbjbjbmbkbkbjbjbkbkbjbjbjbjbjbmafanafiubjbjbjbjbkbjivivivbjbjbjbmafafanbmbjbjbjbjbjbjbjbjbjbjbjbjbjbj
+iwixixixixixixixixixixixixixixixixixixixixiyiyiyixixixixiyixixixixixixixizafafafafafafafafafhShSafafafafanafafafafanafafafafanafafafafafafaf
+iAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiAiBiBiAiAiAiAiAiAiBiBiAiAiAiAafanizixixixiCixixixixixiDiDixixixixiCixixixiCiFixixiCiCixixixixiCixiGix
+iHiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiJiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiAafafafafanafanananafafhShSafafafafafafafafafafafafafafafafafafiLafafaf
+iMiNiOiPiQiOiOiOiOiOiRiOiOiOiOiOiSiTiUiVjfiWiXiYiZiViUiUjajajajajaiUjbiAafafbmclclckckckckckjcjcjcckckblafafafbmckckckckckckckckckckckckckck
+iMjdjenkjgjhjejijejjjejkjejljejmjejnjojpjqjojojojrjpjojsjtjujvjujvjwjxiKjyafagcAcBcAcAcAcAcAgEgEgEcAcAaeafafafaUcAcAcAcAcAcAcAcAcAcAcAcAcAcA
 iMjzjejAjBjCjejhjDjEjDjFjDjGjDjHjDjIjqjJjKjqjojojLjpjojsjujujujujujwjxiKjyafaUcAjMjMjMjMjNjNjMjMjMjMcAaeananafaUcAjOjOjOjOjOjPjPjOjOjOjOcAcA
 iMjejejejgjQjejRjejSjejTjejUjejHjDjIjqjJjVjojWjXjYjpjojZjvjujujujujwjxiKjyafaUcAjMkakbjMkckdkekfkgjMcAaeafanafaUcAjOkhkhkikhkhkhjOkjkkjOcAcA
 iMjgkljgjgjQjejejejDjejDjejejejekmjnjojpjpknjJjpjpjpjojsjujujujukokpjxiKjyafaUcBjNkbkqkrksksktktkskucAaeafafafaUcBkvkhkhkhkhkhkhkvkkkwjPcAcA
@@ -875,13 +876,13 @@ jojojojojojojojojojojojqjojojojojomljojojojojojojojqjojojojojojojojojxiKjyanaUcA
 mmjqjqjojqjojqjomnmnmomomnmpmqmqmpmpmrmrmsmsmrmrmsmpmqmqmpmtmumumpmvmwiKjyanmxcAcAmycAcAcAcAcAcAcAcAcAaeafafafaUcAcAcAcAcAcAcAcAcAcAcAcAcAcA
 mpmzmAmBmAmBmCmDmEmFmGmHmImJmKmKmLmMmNmNmOmPmNmNmQmzmKmKmzmRmzmzmpmBmSiKjyafbmbjbjmTbjbjbjbjbjbjbjbkbjbmafafafbmbjbjbjbjbkbkbjbjbjbjbjbjbjbj
 mpmzmBmUmBmAmUmzmVmWmXmXmEmzmYmYmzmZnanbncncndnenfngngmzngmzmKnhmqmBniiKjyanafafanafafafafafafanafafafafafafafafafafafafafafafafafanafafafaf
-njnknlnmnnnomAmznpmXnqmXnrmzmzmzmznsnenentnunenenemzngmzmzmzmznvmqmBniiKjyafafafafafafafafanafafafafafafafbLafanafafafgxafafafafanafafafgzaf
+njmznlnmnnnomAmznpmXnqmXnrmzmzmzmznsnenentnunenenemzngmzmzmzmznvmqmBniiKjyafafafafafafafafanafafafafafafafbLafanafafafgxafafafafanafafafgzaf
 mpmzmznmnnnongmAnpmXnwmXnrmzmznxmznsnenenynznenemQmMmMnAnAmMmMmMmpnBnCiKjyafafafafafafafafanafafafanafafafafafafafafafafafafafafanafafafafaf
 njmUmAnmnnnongmzmEmXmXnDmEnEnFnFnFnFnGnHnInGnJnKnJnLnMnNnOnPnQnRnSnTnUiKjyafbmckcknVckckckckckckckckckckckbmckckckclckckckckckckckckckckbmck
 njnlmznmnnnomznWnXnXnYnXnXnZoaoaoanZobocodnGoeofogofofohofofnQofofoiojiKjyafaUcBcAapcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcA
-mMokolomnnnomAmznXonnYonnXnZooopoqornGosotnIoeofogouofofovownQofofofoxiKjyafaUcAoyoyozoyoAoycAoBoBoCoBoBoCoBoBoDoBcAoEoEoFoFoEoEoFoFoEoGoEcA
-njmzoHnmoInomAmznXonnYonnXornZoJnZoKnGoLoMnIoeofoNofofovofofoOofofofoPiKjyanaUcAoyoQoRoSoSoycAoBoToUoVoWoWoWoXoWoBcAoEoYoYoZpaoZoYpaoYoYoEcA
-mMmzmzngmzmzpbmznXonnYpcnXornZnZnZpdnGospenIoeofogpfofofofofofoiofoioPiKjyafaUcAoypgphoRoSoycAoBoWoVpipjpkoWoVoWoBcAoEoYpaoZpaoYoYoZpaoYoEcA
-njmzmUmUmzmzmUmDnXplpmpnnXpopppqproKnGospsnGptofogpuofpvpwpxpyofpzoioxiKjyafagcAoyoSoRoSoSoycAoBpApBoWpBoWoWoWoVoBcAoEoYpCoYpaoZoYoYoZoYoEcA
-njnjmMnjpDnjmpmpnjmpmpmpmppEpEpEpEpEnGnGnGnGpFpFpFpFpFpFpFpFpFpFpFpGpHiKjyafaUcAoyoyoyoyoyoycAoBoBoBoBoBoBoBoBoBoBcAoEoEoEoEoEoEoEoEoEoEoEcA
+mMokolomnnnomAmznXonnYonnXnZooopoqornGosotnIoeofogouofofovownQofofofoxiKjyafaUcAoyoyozoyoAoycAoBoBoCoBoBoCoBoBoDoBcAoEoEoFoFoEoEoFoFoEoGoEaS
+njmzoHnmoInomAmznXonnYonnXornZoJnZoKnGoLoMnIoeofoNofofovofofoOofofofoPiKjyanaUcAoyoQoRoSoSoycAoBoToUoVoWoWoWoXoWoBcAoEoYoYoZpaoZoYpaoYoYoEaS
+mMmzmzngmzmzpbmznXonnYpcnXornZnZnZpdnGospenIoeofogpfofofofofofoiofoioPiKjyafaUcAoypgphoRoSoycAoBoWoVpipjpkoWoVoWoBcAoEoYpaoZpaoYoYoZpaoYoEpI
+njmzmUmUmzmzmUmDnXplpmpnnXpopppqproKnGospsnGptofogpuofpvpwpxpyofpzoioxiKjyafagcAoyoSoRoSoSoycAoBpApBoWpBoWoWoWoVoBcAoEoYpCoYpaoZoYoYoZoYoEaS
+njnjmMnjpDnjmpmpnjmpmpmpmppEpEpEpEpEnGnGnGnGpFpFpFpFpFpFpFpFpFpFpFpGpHiKjyafaUcAoyoyoyoyoyoycAoBoBoBoBoBoBoBoBoBoBcAoEoEoEoEoEoEoEoEoEoEoEaS
 "}
