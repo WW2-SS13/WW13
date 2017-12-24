@@ -175,6 +175,8 @@ var/allow_paratroopers = 1
 	// we're on the big map
 	if (grace_period && WW2_train_check())
 		world << "<font size=3>The Russian side can't attack until after 7 minutes.</font><br>"
+		for (var/obj/prishtina_block/attackers/A in world)
+			A.density = 0
 	// we're on the small map
 	else if (locate(/obj/prishtina_block/singleton) in world)
 		GRACE_PERIOD_LENGTH = 5
@@ -199,10 +201,14 @@ var/allow_paratroopers = 1
 			if (grace_period)
 				grace_period = 0
 				world << "<font size=4>The grace period has ended. Soviets and Partisans may now cross the river.</font>"
+				for (var/obj/prishtina_block/defenders/D in world)
+					D.density = 0
 	else
 		spawn (GRACE_PERIOD_LENGTH MINUTES)
 			if (grace_period)
 				grace_period = 0
 				world << "<font size=4>The grace period has ended. Either side may now advance!</font>"
+				for (var/obj/prishtina_block/singleton/S in world)
+					S.density = 0
 
 	world << "<font size=3>Balance report: [n_of_side(GERMAN)] German, [n_of_side(RUSSIAN)] Soviet and [n_of_side(CIVILIAN)+n_of_side(PARTISAN)] Civilians/Partisans.</font>"

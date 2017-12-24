@@ -76,7 +76,7 @@ var/world_is_open = 1
 		config.server_name += " #[(world.port % 1000) / 100]"
 
 	if(config && config.log_runtime)
-		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
+		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.txt")
 
 	for (var/W in (typesof(/datum/whitelist) - /datum/whitelist))
 		var/datum/whitelist/whitelist = new W

@@ -178,30 +178,30 @@ var/global/list/default_ukrainian_channels = list(
 	var/actual_message = ""
 
 	// prefixes without a space
-	if (findtext(message, ":b"))
-		actual_message = replacetext(message, ":b", "")
+	if (dd_hasprefix(message, ":b"))
+		actual_message = copytext(message, 1, 3)
 		actual_message = capitalize(actual_message)
 		message = ":b[actual_message]"
-	else if (findtext(message, ":l"))
-		actual_message = replacetext(message, ":l", "")
+	else if (dd_hasprefix(message, ":l"))
+		actual_message = copytext(message, 1, 3)
 		actual_message = capitalize(actual_message)
 		message = ":l[actual_message]"
-	else if (findtext(message, ":r"))
-		actual_message = replacetext(message, ":r", "")
+	else if (dd_hasprefix(message, ":r"))
+		actual_message = copytext(message, 1, 3)
 		actual_message = capitalize(actual_message)
 		message = ":r[actual_message]"
 
 	// prefixes with a space ahead of them
-	else if (findtext(message, ":b "))
-		actual_message = replacetext(message, ":b ", "")
+	else if (dd_hasprefix(message, ":b "))
+		actual_message = copytext(message, 1, 4)
 		actual_message = capitalize(actual_message)
 		message = ":b [actual_message]"
-	else if (findtext(message, ":l "))
-		actual_message = replacetext(message, ":l ", "")
+	else if (dd_hasprefix(message, ":l "))
+		actual_message = copytext(message, 1, 4)
 		actual_message = capitalize(actual_message)
 		message = ":l [actual_message]"
-	else if (findtext(message, ":r "))
-		actual_message = replacetext(message, ":r ", "")
+	else if (dd_hasprefix(message, ":r "))
+		actual_message = copytext(message, 1, 4)
 		actual_message = capitalize(actual_message)
 		message = ":r [actual_message]"
 

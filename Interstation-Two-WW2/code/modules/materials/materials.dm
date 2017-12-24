@@ -17,6 +17,7 @@
 			metal
 			solid
 			cult
+			wood
 		DOORS
 			stone
 			metal
@@ -541,6 +542,7 @@ var/list/name_to_material
 
 /material/iron
 	name = "iron"
+	icon_base = "wood"
 	stack_type = /obj/item/stack/material/iron
 	icon_colour = "#5C5454"
 	weight = 22
@@ -575,7 +577,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/wood
 	icon_colour = "#824B28"
 	integrity = 50
-	icon_base = "solid"
+	icon_base = "wood"
 	explosion_resistance = 2
 	shard_type = SHARD_SPLINTER
 	shard_can_repair = 0 // you can't weld splinters back into planks
