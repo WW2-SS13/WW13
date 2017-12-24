@@ -334,6 +334,12 @@ var/global/list/fallschirm_landmarks = list()
 			if (istype(j, /datum/job/german/flamethrower_man))
 				if (clients.len <= 15 || !WW2_train_check())
 					j.total_positions = 0
+			else if (istype(j, /datum/job/german/artyman))
+				if (!locate(/obj/machinery/artillery) in world)
+					j.total_positions = 0
+			if (istype(j, /datum/job/german/anti_tank_crew) || istype(j, /datum/job/russian/anti_tank_crew) || istype(j, /datum/job/german/tankcrew) || istype(j, /datum/job/russian/tankcrew))
+				if (!locate(/obj/tank) in world)
+					j.total_positions = 0
 
 		// RUSSIAN jobs
 
