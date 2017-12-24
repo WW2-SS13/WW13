@@ -332,7 +332,7 @@ var/global/list/fallschirm_landmarks = list()
 
 			// SPECIAL
 			if (istype(j, /datum/job/german/flamethrower_man))
-				if (clients.len <= 5 || !WW2_train_check())
+				if (clients.len <= 15 || !WW2_train_check())
 					j.total_positions = 0
 
 		// RUSSIAN jobs
@@ -659,6 +659,7 @@ var/global/list/fallschirm_landmarks = list()
 				player.mind.assigned_role = rank
 				player.mind.assigned_job = job
 				player.original_job = job
+				player.original_job_title = player.original_job.title
 				player.mind.role_alt_title = GetPlayerAltTitle(player, rank)
 				unassigned -= player
 				job.current_positions++
@@ -1155,6 +1156,7 @@ var/global/list/fallschirm_landmarks = list()
 
 			// removed /mob/living/job since it was confusing; it wasn't a job, but a job title
 			H.original_job = job
+			H.original_job_title = H.original_job.title
 
 			#ifdef SPAWNLOC_DEBUG
 			if (H.original_job)

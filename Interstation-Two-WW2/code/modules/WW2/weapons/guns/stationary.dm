@@ -43,6 +43,10 @@
 
 /obj/item/weapon/gun/projectile/minigun/attack_hand(var/mob/user)
 
+	if (last_user && last_user != user)
+		user << "<span class = 'warning'>\the [src] is already in use.</span>"
+		return
+
 	if(user.using_object == src)
 		if(firemodes.len > 1)
 			switch_firemodes(user)

@@ -42,7 +42,7 @@
 	if (istype(a, /area/prishtina/soviet/bunker))
 		if (!istype(a, /area/prishtina/soviet/bunker/tunnel))
 			return 1
-	if (istype(a, /area/prishtina/soviet/main_area)) // small map
+	else if (istype(a, /area/prishtina/soviet/small_map))
 		return 1
 	return 0
 

@@ -147,6 +147,9 @@
 	else
 		var/fontsize = 2
 
+		if (speaker.original_job.is_officer) // experimental
+			fontsize = 3
+/*
 		if (istype(speaker.original_job, /datum/job/german/commander))
 			fontsize = 3
 		else if (istype(speaker.original_job, /datum/job/german/staff_officer))
@@ -169,7 +172,7 @@
 			fontsize = 3
 		else if (istype(speaker.original_job, /datum/job/russian/zavhoz))
 			fontsize = 3
-
+*/
 		var/full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] [message]</span></font>"
 		if (track)
 			full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] ([track]) [message]</span></font>"

@@ -3,6 +3,8 @@
 	set name = "Give Patreon Rewards"
 	if(!check_rights(R_HOST)) return
 	var/_ckey = input(src, "What ckey?") as text
+	if (!_ckey)
+		return
 	var/pledge = input(src, "What pledge amount?") in list("$3+", "$5+", "$10+")
 	_ckey = sanitizeSQL(_ckey, 50)
 	if (database.execute("INSERT INTO patreon (user, pledge) VALUES ('[_ckey]', '[pledge]');"))

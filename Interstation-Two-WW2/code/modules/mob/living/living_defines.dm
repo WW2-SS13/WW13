@@ -8,7 +8,6 @@
 
 	var/hud_updateflag = 0
 
-
 	var/inventory_shown = 1
 
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS

@@ -379,10 +379,9 @@ proc/admin_notice(var/message, var/rights)
 		return
 	if(confirm == "Yes")
 		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>"
+		world << "<span class='notice'>Click this link to rejoin: <b>byond://[world.address]:[world.port]</b></span>"
 		log_admin("[key_name(usr)] initiated a reboot.")
-
-
-		sleep(50)
+		sleep(20)
 		world.Reboot()
 
 
