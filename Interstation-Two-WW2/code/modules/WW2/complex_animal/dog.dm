@@ -193,15 +193,16 @@
 /mob/living/simple_animal/complex_animal/canine/dog/proc/follow(var/mob/living/carbon/human/H)
 	visible_message("<span class = 'notice'>The [src] starts following [H].</span>")
 	if (following)
-		stop_following()
+		stop_following(H, 0)
 	else
 		walk_to(src, 0)
 	walk_to(src, H, 1, H.run_delay_maximum*1.33)
 	following = H
 
-/mob/living/simple_animal/complex_animal/canine/dog/proc/stop_following(var/mob/living/carbon/human/H)
+/mob/living/simple_animal/complex_animal/canine/dog/proc/stop_following(var/mob/living/carbon/human/H, var/message = 1)
 	if (following)
-		visible_message("<span class = 'notice'>The [src] stops following [following].</span>")
+		if (message)
+			visible_message("<span class = 'notice'>The [src] stops following [following].</span>")
 		walk_to(src, 0)
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/onModeChange()
@@ -216,8 +217,8 @@
 			for (var/mob/living/carbon/human/H in human_mob_list)
 				if (H.client && (!H.original_job || H.original_job.base_type_flag() != faction))
 					var/dist = get_dist(src,H)
-					if (!locate(H) in view(world.view, src) && dist <= 60)
-						if (prob(dist/3))
+					if (!locate(H) in view(world.view, src) && dist <= ((world.maxx + world.maxy) / 6))
+						if (prob(7))
 							visible_message("<span class = 'danger'>The [src] starts barking in fear! It smells an enemy!</span>")
 							return
 

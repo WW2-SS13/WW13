@@ -247,7 +247,7 @@ Parts of code courtesy of Super3222
 					shake_camera(src, 2, rand(2,3))
 
 	for (var/obj/item/weapon/gun/projectile/minigun/M in range(2, src))
-		if (M.last_user == src)
+		if (M.last_user == src && loc != get_turf(M))
 			M.stopped_using(src)
 			M.last_user = null
 
@@ -261,7 +261,7 @@ Parts of code courtesy of Super3222
 						T.scope.zoom(src, FALSE)
 
 	for (var/obj/item/weapon/gun/projectile/minigun/M in range(2, src))
-		if (M.last_user == src)
+		if (M.last_user == src && loc != get_turf(M))
 			M.stopped_using(src)
 			M.last_user = null
 /*

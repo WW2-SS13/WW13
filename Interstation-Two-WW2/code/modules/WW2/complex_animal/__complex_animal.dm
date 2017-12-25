@@ -160,10 +160,14 @@ called after H added to knows_about_mobs() */
 
 /mob/living/simple_animal/complex_animal/bullet_act(var/obj/item/projectile/P, var/def_zone)
 	apply_damage(P.damage * random_decimal(0.7,1.3))
-	if (P.firer)
+	if (P.firer && (P.original == src || !P.firer.original_job || P.firer.original_job.base_type_flag() != faction))
 		enemies |= P.firer
 		onHumanMovement(P.firer)
 		for (var/mob/living/simple_animal/complex_animal/C in oview(7, src))
 			if (C.faction == faction && C.type == type)
 				C.enemies |= P.firer
 				C.onHumanMovement(P.firer)
+
+/mob/living/simple_animal/complex_animal/death(gibbed, deathmessage = "dies!")
+	..(gibbed, deathmessage)
+	walk(src, 0)

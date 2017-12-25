@@ -1,7 +1,11 @@
 /datum/game_mode/ww2
 	name = "World War 2"
 	config_tag = "WW2"
+	#ifdef DEBUG
 	required_players = 1
+	#else
+	required_players = 2
+	#endif
 	round_description = ""
 	extended_round_description = ""
 

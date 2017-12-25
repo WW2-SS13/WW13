@@ -15,8 +15,8 @@
 	max_shells = 1
 	ammo_type = /obj/item/ammo_casing/a145
 	// lower accuracy due to being so powerful
-	accuracy = DEFAULT_MG_ACCURACY - 1
-	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY - 1
+	accuracy = DEFAULT_PTRD_ACCURACY
+	scoped_accuracy = DEFAULT_PTRD_SCOPED_ACCURACY
 
 /obj/item/weapon/gun/projectile/heavysniper/ptrd/update_icon()
 	if(bolt_open)

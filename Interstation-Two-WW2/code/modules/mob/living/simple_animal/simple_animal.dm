@@ -234,7 +234,6 @@
 		if(I_HELP)
 			if (health > 0)
 				M.visible_message("\blue [M] [response_help] \the [src].")
-				playsound(get_turf(M), 'sound/weapons/punchmiss.ogg', 50, 1, -1)
 
 		if(I_DISARM)
 			M.visible_message("\blue [M] [response_disarm] \the [src].")

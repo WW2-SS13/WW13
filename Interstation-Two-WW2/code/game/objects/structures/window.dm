@@ -414,7 +414,20 @@
 		hit(damage_per_fire_tick, 0)
 	..()
 
+/obj/structure/window/classic
+	desc = "A good old window."
+	icon_state = "windownew"
+	basestate = "windownew"
+	glasstype = /obj/item/stack/material/glass
+	maximal_heat = T0C + 100
+	damage_per_fire_tick = 5.0
+	maxhealth = 7.5
 
+/obj/structure/window/classic/update_icon()
+	return
+
+/obj/structure/window/classic/update_nearby_icons()
+	return
 
 /obj/structure/window/basic
 	desc = "It looks thin and flimsy. A few knocks with... anything, really should shatter it."

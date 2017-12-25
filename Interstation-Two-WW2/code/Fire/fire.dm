@@ -78,7 +78,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	layer = MOB_LAYER + 0.01 // above train pseudoturfs, stairs, and now MOBs
 
 	var/firelevel = 1
-	var/default_damage = 6 // 10 was really fucking overpowered if you crossed it a lot
+	var/default_damage = 2
 	var/spread_range = 1
 	var/spread_prob = 10
 	var/spread_fuel_prob = 80
@@ -238,7 +238,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		L.fire_act()
 
 	if (!istype(L, /mob/living/carbon/human))
-		L.apply_damage(damage*5, BURN)
+		L.apply_damage(damage, BURN)
 	else
 		var/mob/living/carbon/human/H = L
 

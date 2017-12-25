@@ -138,8 +138,8 @@
 			S.scope.zoom(user, TRUE, 1)
 			last_user = user
 
-	user.forceMove(src.loc)
-	user.dir = src.dir
+	user.forceMove(loc)
+	user.dir = dir
 
 /obj/item/weapon/gun/projectile/minigun/proc/stopped_using(mob/user as mob)
 	..()

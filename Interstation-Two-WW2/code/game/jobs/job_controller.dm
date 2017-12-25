@@ -353,6 +353,9 @@ var/global/list/fallschirm_landmarks = list()
 			if (istype(j, /datum/job/german/flamethrower_man))
 				if (clients.len <= 15 || !WW2_train_check())
 					j.total_positions = 0
+					for (var/obj/item/weapon/storage/backpack/flammenwerfer/F in world)
+						qdel(F)
+
 			else if (istype(j, /datum/job/german/artyman))
 				if (!locate(/obj/machinery/artillery) in world)
 					j.total_positions = 0

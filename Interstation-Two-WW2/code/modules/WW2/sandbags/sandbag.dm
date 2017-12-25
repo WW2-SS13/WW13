@@ -10,11 +10,12 @@
 	anchored = 1
 
 /obj/structure/window/sandbag/attack_hand(var/mob/user as mob)
-	if (alert(user, "Dismantle the sandbag?", "", "Continue", "Stop") == "Continue")
-		visible_message("<span class='danger'>[user] starts dismantling the sandbag wall.</span>", "<span class='danger'>You start dismantling the sandbag wall.</span>")
-		if (do_after(user, rand(70,80), src))
-			visible_message("<span class='danger'>[user] finishes dismantling the sandbag wall.</span>", "<span class='danger'>You finish dismantling the sandbag wall.</span>")
-			qdel(src)
+	if (locate(src) in get_step(user, user.dir))
+		if (alert(user, "Dismantle the sandbag?", "", "Continue", "Stop") == "Continue")
+			visible_message("<span class='danger'>[user] starts dismantling the sandbag wall.</span>", "<span class='danger'>You start dismantling the sandbag wall.</span>")
+			if (do_after(user, rand(70,80), src))
+				visible_message("<span class='danger'>[user] finishes dismantling the sandbag wall.</span>", "<span class='danger'>You finish dismantling the sandbag wall.</span>")
+				qdel(src)
 /*
 /obj/structure/window/sandbag/verb/crouch()
 	set category = "Sandbag"
@@ -89,6 +90,7 @@
 	qdel(src)
 
 /obj/structure/window/sandbag/incomplete/attackby(obj/O as obj, mob/user as mob)
+	user.dir = get_dir(user, src)
 	if (istype(O, /obj/item/weapon/sandbag))
 		var/obj/item/weapon/sandbag/sandbag = O
 		progress += (sandbag.sand_amount + 1)
