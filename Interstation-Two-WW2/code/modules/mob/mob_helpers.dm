@@ -79,6 +79,7 @@ var/list/global/base_miss_chance = list(
 	"default" = 10,
 )*/
 
+var/list/global/miss = list(
 	"head" = 40,
 	"chest" = 10,
 	"groin" = 75,
