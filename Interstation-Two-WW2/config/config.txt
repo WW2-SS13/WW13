@@ -152,6 +152,9 @@ CHECK_RANDOMIZER
 ## Set to prevent anyone but those ckeys listed in config/whitelist.txt and config/admins.txt from joining your server
 USEWHITELIST
 
+## Set this to give people in the 'teststaff' whitelist admin permissions
+ALLOW_TESTING_STAFF
+
 ## Jobs that can be whitelisted are whitelisted, according to a new DB whitelists table
 #USE_JOB_WHITELIST
 

@@ -41,8 +41,6 @@ var/list/global_whitelists[50]
 /datum/whitelist/New()
 	..()
 	load()
-	if (config.usewhitelist)
-		enabled = 1
 
 // load the whitelist from the database
 /datum/whitelist/proc/load()
@@ -125,4 +123,14 @@ var/list/global_whitelists[50]
 
 /datum/whitelist/server
 	name = "server"
+/datum/whitelist/server/New()
+	..()
+	if (config.usewhitelist)
+		enabled = 1
 
+/datum/whitelist/teststaff
+	name = "teststaff"
+/datum/whitelist/teststaff/New()
+	..()
+	if (config.allow_testing_staff)
+		enabled = 1

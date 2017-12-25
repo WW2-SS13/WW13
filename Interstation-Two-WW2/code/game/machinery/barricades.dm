@@ -102,9 +102,11 @@ for reference:
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		switch(W.damtype)
 			if("fire")
-				src.health -= W.force * 1
+				health -= W.force * 1
 			if("brute")
-				src.health -= W.force * 0.75
+				health -= W.force * 0.75
+
+		playsound(get_turf(src), 'sound/weapons/smash.ogg', 100)
 
 		try_destroy()
 

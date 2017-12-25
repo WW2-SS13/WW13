@@ -251,9 +251,9 @@ Parts of code courtesy of Super3222
 			M.stopped_using(src)
 			M.last_user = null
 
-// called from Life()
-/mob/living/carbon/human/proc/handle_zoom_stuff(var/ghosting = FALSE)
-	if (stat == UNCONSCIOUS || stat == DEAD || ghosting)
+// called from Life(), Weaken(), and more
+/mob/living/carbon/human/proc/handle_zoom_stuff(var/forced = FALSE)
+	if (stat == UNCONSCIOUS || stat == DEAD || forced)
 		if(client && actions.len)
 			if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 				for(var/datum/action/toggle_scope/T in actions)
@@ -264,13 +264,7 @@ Parts of code courtesy of Super3222
 		if (M.last_user == src && loc != get_turf(M))
 			M.stopped_using(src)
 			M.last_user = null
-/*
-/mob/living/carbon/human/proc/fix_zooms()
-	for(var/datum/action/toggle_scope/T in actions)
-		if(T.scope.zoomed)
-			T.scope.zoom(src, FALSE)
-	fix_action_buttons()
-*/
+
 /mob/living/carbon/human/proc/using_zoom()
 	if (stat == CONSCIOUS)
 		if(client && actions.len)

@@ -359,14 +359,20 @@ var/global/list/fallschirm_landmarks = list()
 			else if (istype(j, /datum/job/german/artyman))
 				if (!locate(/obj/machinery/artillery) in world)
 					j.total_positions = 0
+
 			else if (istype(j, /datum/job/german/anti_tank_crew) || istype(j, /datum/job/german/tankcrew))
-				if (!locate(/obj/tank) in world)
-					j.total_positions = 0
+				spawn (5)
+					if (!locate(/obj/tank) in world)
+						j.total_positions = 0
 
 		for (var/datum/job/russian/j in occupations)
 			if (istype(j, /datum/job/russian/anti_tank_crew) || istype(j, /datum/job/russian/tankcrew))
 				if (!locate(/obj/tank) in world)
 					j.total_positions = 0
+
+		for (var/datum/job/j in occupations)
+			if (j.title == "generic job")
+				j.total_positions = 0
 
 		// RUSSIAN jobs
 

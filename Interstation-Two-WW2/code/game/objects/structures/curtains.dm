@@ -1,20 +1,20 @@
 // 2017-07-06: Defeated the curtain man meme (they were unanchored) -- Irra
 
-#define SHOWER_OPEN_LAYER OBJ_LAYER + 0.4
-#define SHOWER_CLOSED_LAYER MOB_LAYER + 0.2
+#define CURTAIN_OPEN_LAYER MOB_LAYER - 0.01
+#define CURTAIN_CLOSED_LAYER MOB_LAYER + 0.01
 
 /obj/structure/curtain
 	name = "curtain"
 	icon = 'icons/obj/curtain.dmi'
 	icon_state = "closed"
-	layer = SHOWER_OPEN_LAYER
+	layer = CURTAIN_CLOSED_LAYER
 	anchored = 1
 	opacity = 1
 	density = 0
 
 /obj/structure/curtain/open
 	icon_state = "open"
-	layer = SHOWER_CLOSED_LAYER
+	layer = CURTAIN_OPEN_LAYER
 	opacity = 0
 
 /obj/structure/curtain/bullet_act(obj/item/projectile/P, def_zone)
@@ -33,10 +33,10 @@
 	opacity = !opacity
 	if(opacity)
 		icon_state = "closed"
-		layer = SHOWER_CLOSED_LAYER
+		layer = CURTAIN_CLOSED_LAYER
 	else
 		icon_state = "open"
-		layer = SHOWER_OPEN_LAYER
+		layer = CURTAIN_OPEN_LAYER
 
 /obj/structure/curtain/black
 	name = "black curtain"

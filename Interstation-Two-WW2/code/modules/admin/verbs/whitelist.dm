@@ -1,3 +1,5 @@
+// todo: merge this with the code in whitelist_teststaff.dm
+
 /client/proc/add_to_server_whitelist()
 	set name = "Add To Server Whitelist"
 	set category = "Test"
