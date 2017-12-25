@@ -314,8 +314,8 @@ var/list/name_to_material
 
 /material/stone/stonebrick
 	name = "brick"
-	icon_base = "brick"
-	icon_colour = "#808080"
+	icon_base = "newbrick"
+	icon_colour = null
 	stack_type = /obj/item/stack/material/marble
 
 /material/stone/marble
