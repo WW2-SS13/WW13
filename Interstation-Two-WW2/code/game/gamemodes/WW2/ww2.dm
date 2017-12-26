@@ -36,7 +36,7 @@
 
 	var/season = "SPRING"
 
-#define WINTER_TESTING
+//#define WINTER_TESTING
 
 /datum/game_mode/ww2/pre_setup()
 	#ifdef WINTER_TESTING
