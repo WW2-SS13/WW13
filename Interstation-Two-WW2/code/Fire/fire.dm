@@ -85,7 +85,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	var/temperature = 500
 	var/default_temperature = 500
 
-	var/time_limit = 4
+	var/time_limit = 2
 
 	var/ticks = 0
 
