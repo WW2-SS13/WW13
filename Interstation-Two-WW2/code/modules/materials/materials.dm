@@ -599,6 +599,11 @@ var/list/name_to_material
 	sheet_plural_name = "planks"
 	hitsound = 'sound/effects/woodhit.ogg'
 
+/material/wood/hard
+	name = "hardwood"
+	integrity = 400
+	hardness = 200
+
 /material/wood/holographic
 	name = "holowood"
 	display_name = "wood"

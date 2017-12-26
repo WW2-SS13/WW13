@@ -346,7 +346,7 @@
 			return
 
 	if(user.drop_item())
-		I.Move(loc)
+		I.forceMove(loc)
 		var/list/click_params = params2list(params)
 		//Center the icon where the user clicked.
 		if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
@@ -401,7 +401,6 @@
  * TABLE CLIMBING
  */
 
-
 /obj/structure/table/proc/climb_table(mob/user)
 	src.add_fingerprint(user)
 	user.visible_message("<span class='warning'>[user] starts climbing onto [src].</span>", \
@@ -413,7 +412,7 @@
 	if(do_mob(user, user, climb_time))
 		if(src.loc) //Checking if table has been destroyed
 			density = 0
-			if(step(user,get_dir(user,src.loc)))
+			if(user.forceMove(loc))
 				user.visible_message("<span class='warning'>[user] climbs onto [src].</span>", \
 									"<span class='notice'>You climb onto [src].</span>")
 				add_logs(user, src, "climbed onto")

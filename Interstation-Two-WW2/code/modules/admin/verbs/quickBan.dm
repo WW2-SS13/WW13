@@ -38,16 +38,27 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 			if (ip && result.Find("ip_[v]") && result["ip_[v]"] != ip)
 				continue
 			if (text2num(result["expire_realtime_[v]"]) <= world.realtime)
-				database.execute("REMOVE * FROM quick_bans WHERE UID == '[result["UID"]]';")
+				database.execute("REMOVE * FROM quick_bans WHERE UID == '[result["UID_v"]]';")
 				continue
-			possibilities += "[result["UID"]]: [result["ckey"]]/[result["cID"]]/[result["ip"]], type [result["type"]] ([result["type_specific_info"]]): banned for '[result["reason"]]' by [result["banned_by"]] on [result["ban_date"]]. [result["expire_info"]]."
+			possibilities += "<big><b>UID [result["UID_v"]]</b> (<a href='byond://?src=\ref[src];quickBan_removeBan=1;quickBan_removeBan_UID=[result["UID_[v]"]];quickBan_removeBan_ckey=[result["ckey_[v]"]];quickBan_removeBan_cID=[result["cID_[v]"]];quickBan_removeBan_ip=[result["ip_[v]"]]'>DELETE</a>)</big>: [result["ckey"]]/[result["cID"]]/[result["ip"]], type [result["type"]] ([result["type_specific_info"]]): banned for '[result["reason"]]' by [result["banned_by"]] on [result["ban_date"]]. <b>[result["expire_info"]]</b>. (After assigned date)"
 
 	for (var/possibility in possibilities)
 		html += "<br>"
 		html += possibility
 
 	src << browse(html, "window=quick_bans_search;")
-	// todo
+
+/client/Topic(href,href_list[],hsrc)
+	..(href, href_list, hsrc)
+	if (href_list["quickBan_removeBan"])
+		var/UID = href_list["quickBan_removeBan_UID"]
+		if (UID)
+			var/confirm = input("Are you sure you want to remove the ban with the UID '[UID]' ?") in list("Yes", "No")
+			if (confirm == "Yes")
+				if (database.execute("REMOVE * FROM quick_bans WHERE UID == '[UID]';"))
+					var/M = "[key_name(usr)] removed quickBan '<b>[UID]</b>' from the database. It belonged to [href_list["ckey"]]/[href_list["cID"]]/[href_list["ip"]]"
+					log_admin(M)
+					message_admins(M)
 
 /client/proc/quickBan_person()
 	set category = "Bans"

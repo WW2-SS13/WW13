@@ -602,7 +602,6 @@
 "lD" = (/obj/effect/landmark{name = "JoinLateRA-S3-Leader"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "lE" = (/obj/effect/landmark{name = "JoinLateRA-S4"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "lF" = (/obj/effect/landmark{name = "JoinLateRA-S4-Leader"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
-"lG" = (/mob/living/simple_animal/complex_animal/canine/dog/samoyed,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "lH" = (/obj/structure/multiz/stairs{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "lI" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/road,/area/prishtina/soviet/small_map/main_area)
 "lJ" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/obj/structure/table/wood,/obj/item/device/flashlight/lamp,/turf/floor/carpet,/area/prishtina/houses/nml_five)
@@ -649,7 +648,6 @@
 "my" = (/obj/structure/sign/flag/soviet,/turf/wall/brick,/area/prishtina/soviet/small_map/inside)
 "mz" = (/obj/structure/multiz/stairs{dir = 1},/obj/structure/simple_door/key_door/russian,/turf/floor/plating/grass/wild,/area/prishtina/soviet/small_map/inside)
 "mA" = (/obj/structure/simple_door/key_door/russian,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside)
-"mB" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside)
 "mC" = (/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/borderfloor{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "mD" = (/obj/effect/decal/cleanable/dirt,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "mE" = (/turf/floor/wood,/area/prishtina/soviet/small_map/inside)
@@ -816,6 +814,7 @@
 "pJ" = (/turf/wall/brick,/area/prishtina/soviet/small_map/inside/medical)
 "pK" = (/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside/medical)
 "pL" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside/medical)
+"pM" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/grille{icon_state = "fence4-8"; name = "fence"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside)
 
 (1,1,1) = {"
 aaabababacabababababababacabababababababababacabababababacabababaaadaeafafafagahaiaiaiaiaiaiajajajajajajakakakakakakalalalalalamamamamamamam
@@ -828,7 +827,7 @@ anbVafafafafafanafafafafafanafafafafafafafanananafafafafanafafafafafanafafafagap
 ckckckckckbmclckckckckckckckckckckckclclclckckckckbmckckclclckckckckblafafafaUcmcncobBbAbAcpcqcdcrcccsawctbDcucvbObDamcwbfbRcxamcybfbfbfczal
 cAcAcAcAcAcAcBcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcBcAcAcAcAaeafafafaUcCbWcDcEcEbAcFawcGcHcHcIawbDcJcKbDcLbDamchcMcMcNamcOcPcQcRcSal
 cTcTcUcUcTcTcTcTcTcTcUcUcTcTcVcVcWcWcWcWcWcWcWcWcWcXcWcWcWcWcWcWcWcAaeafafafagahaiaiaqaqaiaicqajcYcYajajcZcZdadacZcZalaldbdcdddddddddcdcdddd
-cTdedfdfdfdfdfdfdfdfdfdgdfcTaaaacWdhdhdhdhdhdhdhdhdidhdhdhdhdhdhcWcAdjafafafagcAdkdldmdmdmdmdndodmdmdpdqdmdrdmdmdsdmdmdtdudvdwdxdwdydwdzdwdz
+cTdedfdfdfdfdfdfdfdfdfdgdfcTaaaacWdhdhdhdhdhdhdhdhdidhdhdhdhdhdhcWcAdjafafafagcAdkdldmdmdmdmdndodmdpdpdqdmdrdmdmdsdmdmdtdudvdwdxdwdydwdzdwdz
 cTdfdAdBdBdCdfdAdBdfdfdBdfcTaaaacWdhdDdEdhdhdhdFdhdhdhdhdhdEdFdhcWcAdjanafanbmdGdHdIdHdHdJdKdqdLdMdLdLdqdHdHdNdOdHdHdPdQdRdSdTdUdTdVdWdXdTdY
 dZdfdBeadBdBdBdBdBebdfdAdfcTaaaacWdhecdhdhedeeedededededdhdhdhdhcWcAaeanafafafanefefefefegehegefeiejeiekelemelefeneoenekepeqeqeqeqeqeqeqeqeq
 dZdBdBdAdAdfdfdfdAebdfdfdfcTaaaacWdhdhdhdhdhdhdhdhdhdhdidhdhdhdFercAaeafafafafafefefefefegesegefeieieiekelelelefeneneneketeqeqeqeqeueqeqeqev
@@ -871,15 +870,15 @@ iQjlkqjljljVjjjjjjjIjjjIjjjjjjjjkrjsjtjujuksjOjujujujtjxjzjzjzjzktkujCiOjDafaUcB
 iQkCjjjIjjjVjjjIjIjjjjjjjjjjjjjjkDjsjtjtjtjvjtjtjtjtjtjvkEkFkFkFkEjvjCiOjDanaUcAjRjRjRjRjRkGkjkHkxkIcBaeafafafaUcBjTknkmkJkKkLjTjTjTjTjTcAcA
 iQjjjjjjjjjjjIjIjjkMkNkOkPkQkRjjjjjsjtjtjtjtjtjtjtjtjtjtjtkSkTkSjtjtkUiOjDafaUcAjRkVkWkXjRkxkYkxkxjRcAaeafanafaUcBjTkmkmkmkZkmjTlalblcjTcAcA
 ldlelelelelelelelelelelelelelflglhliljljljljlkljljljllllllljljljlllllmlnafafagcAjRlolplqkIkGlrkHkxjScAaeafanafaUcAjUlskmkJltkLjTlulvlwjTcAcA
-jtlxlylxjvlzlAlzjtlBlBlBlBjtjtjtjtjtlClDlCjvlElFlEjtlGlGlGjtjtjtjtjvlHlIafanaUcAjRlJlKlLjRkxkxkxkyjScAaeafafafaUcAjUlMkmkmkmkmjTlNlOlPjTcAcA
+jtlxlylxjvlzlAlzjtlBlBlBlBjtjtjtjtjtlClDlCjvlElFlEjtjtjtjtjtjtjtjtjvlHlIafanaUcAjRlJlKlLjRkxkxkxkyjScAaeafafafaUcAjUlMkmkmkmkmjTlNlOlPjTcAcA
 jtlxlxlxjvlzlzlzjtjtjtjtjtjtjtjtjtjtlClClQjtlElElEjtjtjtjtjtjtjtjtjtlHlRlSanaUcAjSlTlUlqjRkylVlWkxjScBlXafafafaUcAjUkKknlYlZkmjTmamblwjUcAcA
 jtlxlxlxjtlzlzmcjtjtjtjvjtjtjtjtjtjtlClClCjtlElElEjtjtjvjvjtjtjtjtjtmdlRafanaUcAkIlTlplqjRkxmekykxkIcAaeafanafaUcAjTkmkmmfknkmjTmalvlwjTcAcA
 iYiYlkiYiYiYiYmgiYiYiYmgmgiYlkiYiYiYiYiYiYiYmgmgmgmgmhmimhiYiYiYmhmhmjlnafafaUcAjRmkmlmmkwkxkjkjkxjRcAaeafafafaUcAjTkmkmkKkKkmkAmnmompjTcAcA
 jtjtjtjtjtjtjtjtjtjtjtjvjtjtjtjtjtmqjtjtjtjtjtjtjtjvjtjtjtjtjtjtjtjtjCiOjDanaUcAjRjRjRjRjRkIjSjSjRjRcAaeafafanaUcAjTjTjUjUjUjTjTjTjTjTjTcAcA
-mrjvjvjtjvjtjvjtmsmsmtmtmsmumvmvmumumwmwmxmxmwmwmxmumvmvmumymzmzmumAmBiOjDanmCcAcAmDcAcAcAcAcAcAcAcAcAaeafafafaUcAcAcAcAcAcAcAcAcAcAcAcAcAcA
+mrjvjvjtjvjtjvjtmsmsmtmtmsmumvmvmumumwmwmxmxmwmwmxmumvmvmumymzmzmumApMiOjDanmCcAcAmDcAcAcAcAcAcAcAcAcAaeafafafaUcAcAcAcAcAcAcAcAcAcAcAcAcAcA
 mumEmFmGmFmGmHmImJmKmLmMmNmOmPmPmQmRmSmSmTmUmSmSmVmEmPmPmEmWmEmEmumGmXiOjDafbmbjbjmYbjbjbjbjbjbjbjbkbjbmafafafbmbjbjbjbjbkbkbjbjbjbjbjbjbjbj
-mumEmGmZmGmFmZmEnanbncncmJmEndndmEnenfngnhnhninjnknlnlmEnlmEmPnmmvmGmBiOjDanafafanafafafafafafanafafafafafafafafafafafafafafafafafanafafafaf
-nnmEnonpnqnrmFmEnsncntncnumEmEmEmEnvnjnjnwnxnjnjnjmEnlmEmEmEmEnymvmGmBiOjDafafafafafafafafanafafafafafafafbLafanafafafgvafafafafanafafafgxaf
+mumEmGmZmGmFmZmEnanbncncmJmEndndmEnenfngnhnhninjnknlnlmEnlmEmPnmmvmGmXiOjDanafafanafafafafafafanafafafafafafafafafafafafafafafafafanafafafaf
+nnmEnonpnqnrmFmEnsncntncnumEmEmEmEnvnjnjnwnxnjnjnjmEnlmEmEmEmEnymvmGmXiOjDafafafafafafafafanafafafafafafafbLafanafafafgvafafafafanafafafgxaf
 mumEmEnpnqnrnlmFnsncnzncnumEmEnAmEnvnjnjnBnCnjnjmVmRmRnDnDmRmRmRmunEnFiOjDafafafafafafafafanafafafanafafafafafafafafafafafafafafanafafafafaf
 nnmZmFnpnqnrnlmEmJncncnGmJnHnInInInInJnKnLnJnMnNnMnOnPnQnRnSnTnUnVnWnXiOjDafbmckcknYckckckckckckckckckckckbmckckckclckckckckckckckckckckbmck
 nnnomEnpnqnrmEnZoaoaoboaoaocodododocoeofognJohoiojoioiokoioinToioiolomiOjDafaUcBcAapcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcAcA
