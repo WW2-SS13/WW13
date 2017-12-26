@@ -265,7 +265,7 @@ Parts of code courtesy of Super3222
 						success = 1
 
 	for (var/obj/item/weapon/gun/projectile/minigun/M in range(2, src))
-		if (M.last_user == src && loc != get_turf(M))
+		if (M.last_user == src && (loc != get_turf(M) || forced))
 			M.stopped_using(src)
 			M.last_user = null
 			success = 1

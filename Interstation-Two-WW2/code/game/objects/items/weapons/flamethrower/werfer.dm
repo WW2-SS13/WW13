@@ -132,17 +132,22 @@
 	if(usr.stat || usr.restrained() || usr.lying)	return
 	usr.set_machine(src)
 	if(href_list["light"])
+		world << "#1"
 		if(fueltank <= 0) return
 		if(!status)	return
+		world << "#2"
 		lit = !lit
 		if(lit)
 			processing_objects.Add(src)
 	if(href_list["amount"])
 		throw_amount = throw_amount + text2num(href_list["amount"])
 		throw_amount = max(50, min(5000, throw_amount))
+
+	// refresh
 	for(var/mob/M in viewers(1, loc))
 		if((M.client && M.machine == src))
 			attack_self(M)
+
 	update_icon()
 	return
 

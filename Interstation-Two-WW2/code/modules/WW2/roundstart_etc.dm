@@ -87,23 +87,25 @@ var/GRACE_PERIOD_LENGTH = 7
 
 		for (var/turf/floor/G in turfs)
 
-			if (!G || G.z > 1 || !G.uses_winter_overlay)
+			if (!G || G.z > 1 || (!G.uses_winter_overlay && !locate(/obj/snow_maker) in G))
 				continue
 
 			G.season = mode.season
 
 			var/area/A = get_area(G)
 
-			if (A.location == AREA_INSIDE)
+			if (A.location == AREA_INSIDE && !locate(/obj/snow_maker) in G)
 				continue
 
 			if (G.season != "SPRING")
 				G.overlays.Cut()
 
-			if (G.uses_winter_overlay)
+			if (G.uses_winter_overlay || locate(/obj/snow_maker) in G)
 				if (G.season == "WINTER")
 
-					G.color = DEAD_COLOR
+					if (G.uses_winter_overlay)
+						G.color = DEAD_COLOR
+
 					new/obj/snow(G)
 
 					for (var/obj/structure/wild/W in G.contents)
@@ -155,6 +157,9 @@ var/GRACE_PERIOD_LENGTH = 7
 					o.layer = 2.04 // above snow
 					o.alpha = decal.alpha
 					o.name = ""
+
+			for (var/obj/snow_maker/SM in G)
+				qdel(SM)
 
 	return 1
 

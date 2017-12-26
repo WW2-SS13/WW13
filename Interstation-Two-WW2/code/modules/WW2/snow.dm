@@ -1,3 +1,4 @@
+/obj/snow_maker // lets the map know where they can spawn snow
 
 /obj/snow
 	icon = 'icons/turf/snow.dmi'
