@@ -571,7 +571,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
 	config.allow_admin_spawning = !(config.allow_admin_spawning)
-	message_admins("\blue Toggled admin item spawning to [config.allow_admin_spawning].")
+	message_admins("\blue[key_name(usr)] toggled admin item spawning to [config.allow_admin_spawning].")
 
 
 /datum/admins/proc/adrev()

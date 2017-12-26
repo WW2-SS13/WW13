@@ -19,10 +19,10 @@ var/list/preferences_datums = list()
 	var/UI_style_alpha = 255
 
 	//character preferences
-	var/real_name						//our character's name
-	var/german_name
-	var/russian_name
-	var/ukrainian_name
+	var/real_name = "John Doe"						//our character's name
+	var/german_name = "Hans Schneider"
+	var/russian_name = "Boris Borisov"
+	var/ukrainian_name = "Boris Borisov"
 	var/be_random_name = 0				//whether we are a random name every round
 	var/be_random_name_german = 0
 	var/be_random_name_russian = 0

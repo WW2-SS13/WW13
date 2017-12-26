@@ -68,67 +68,69 @@ proc/getsensorlevel(A)
  * becomes verylongrange. Accuracy/scoped accuracy variables are not meaningless,
  * but they aren't as useful at long ranges anymore */
 
+/* since head shots are usually instant kills, they've been heavily nerfed */
+
 var/list/global/hit_chances = list(
 
 	// 0 to 1 tile away
 	"pointblankrange" = list(
-		"head" = 99,
+		"head" = 95,
 		"chest" = 99,
-		"groin" = 99,
-		"l_leg" = 99,
-		"r_leg" = 99,
-		"l_arm" = 99,
-		"r_arm" = 99,
-		"l_hand" = 99,
-		"r_hand" = 99,
-		"l_foot" = 99,
-		"r_foot" = 99,
+		"groin" = 98,
+		"l_leg" = 98,
+		"r_leg" = 98,
+		"l_arm" = 98,
+		"r_arm" = 98,
+		"l_hand" = 98,
+		"r_hand" = 98,
+		"l_foot" = 98,
+		"r_foot" = 98,
 		"default" = 99),
 
-	// 2 to 4 tiles away
+	// 2 to 3 tiles away
 	"shortrange" = list(
-		"head" = 80,
-		"chest" = 95,
-		"groin" = 80,
-		"l_leg" = 90,
-		"r_leg" = 90,
-		"l_arm" = 90,
-		"r_arm" = 90,
-		"l_hand" = 75,
-		"r_hand" = 75,
-		"l_foot" = 75,
-		"r_foot" = 75,
-		"default" = 95),
+		"head" = 30,
+		"chest" = 66,
+		"groin" = 45,
+		"l_leg" = 55,
+		"r_leg" = 55,
+		"l_arm" = 55,
+		"r_arm" = 55,
+		"l_hand" = 40,
+		"r_hand" = 40,
+		"l_foot" = 40,
+		"r_foot" = 40,
+		"default" = 66),
 
-	// 5 to 7 tiles away
+	// 4 to 6 tiles away
 	"medrange" = list(
-		"head" = 40,
-		"chest" = 50,
-		"groin" = 40,
-		"l_leg" = 45,
-		"r_leg" = 45,
-		"l_arm" = 45,
-		"r_arm" = 45,
-		"l_hand" = 35,
-		"r_hand" = 35,
-		"l_foot" = 35,
-		"r_foot" = 35,
-		"default" = 50),
+		"head" = 10,
+		"chest" = 33,
+		"groin" = 25,
+		"l_leg" = 30,
+		"r_leg" = 30,
+		"l_arm" = 30,
+		"r_arm" = 30,
+		"l_hand" = 20,
+		"r_hand" = 20,
+		"l_foot" = 20,
+		"r_foot" = 20,
+		"default" = 33),
 
-	// 8 to INFINITY tiles away
+	// 7 to INFINITY tiles away
 	"longrange" = list(
-		"head" = 40,
-		"chest" = 50,
-		"groin" = 40,
-		"l_leg" = 45,
-		"r_leg" = 45,
-		"l_arm" = 45,
-		"r_arm" = 45,
-		"l_hand" = 35,
-		"r_hand" = 35,
-		"l_foot" = 35,
-		"r_foot" = 35,
-		"default" = 50),
+		"head" = 5,
+		"chest" = 20,
+		"groin" = 15,
+		"l_leg" = 17,
+		"r_leg" = 17,
+		"l_arm" = 17,
+		"r_arm" = 17,
+		"l_hand" = 13,
+		"r_hand" = 13,
+		"l_foot" = 13,
+		"r_foot" = 13,
+		"default" = 20),
 )
 
 /proc/get_miss_chance(var/zone, var/distance, var/accuracy, var/miss_modifier)
@@ -144,7 +146,7 @@ var/list/global/hit_chances = list(
 			. =  100 - hit_chances["longrange"][zone]
 
 	. += miss_modifier
-	. -= (accuracy*3)
+	. -= (accuracy*6)
 	. = max(., 0)
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).

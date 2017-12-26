@@ -32,7 +32,7 @@
 
 	faction = null
 
-	var/attack_mode = -1
+	var/attack_mode = "guard"
 	var/patrolling = 0
 	var/following = null
 
@@ -72,6 +72,7 @@
 	name = "Wild German Shepherd"
 	faction = null
 	allow_moving_outside_home = 1
+	attack_mode = -1
 
 /mob/living/simple_animal/complex_animal/canine/dog/samoyed
 	icon_state = "samoyed"
@@ -81,6 +82,7 @@
 	name = "Wild Samoyed"
 	faction = null
 	allow_moving_outside_home = 1
+	attack_mode = -1
 
 // "backend" procs
 
