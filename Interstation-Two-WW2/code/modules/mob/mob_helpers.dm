@@ -66,7 +66,7 @@ proc/getsensorlevel(A)
  * depending on how far you were from the target when you fired. When a
  * gun is scoped, all the miss chances "move down one", that is, longrange
  * becomes verylongrange. Accuracy/scoped accuracy variables are not meaningless,
- * but they aren't as useful as long ranges anymore */
+ * but they aren't as useful at long ranges anymore */
 
 var/list/global/hit_chances = list(
 
@@ -136,15 +136,15 @@ var/list/global/hit_chances = list(
 	switch (distance)
 		if (0 to 1)
 			. = 100 - hit_chances["pointblankrange"][zone]
-		if (2 to 4)
+		if (2 to 3)
 			. =  100 - hit_chances["shortrange"][zone]
-		if (5 to 7)
+		if (5 to 6)
 			. =  100 - hit_chances["medrange"][zone]
-		if (8 to INFINITY)
+		if (7 to INFINITY)
 			. =  100 - hit_chances["longrange"][zone]
 
 	. += miss_modifier
-	. -= (accuracy*5)
+	. -= (accuracy*3)
 	. = max(., 0)
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
