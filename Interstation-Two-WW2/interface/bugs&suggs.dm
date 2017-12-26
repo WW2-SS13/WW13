@@ -118,8 +118,8 @@
 		if (!suggname)
 			return
 
-		if (lentext(suggname) > 50)
-			suggname = copytext(suggname, 1, 51)
+		if (lentext(suggname) > 100)
+			suggname = copytext(suggname, 1, 101)
 			src << "<span class = 'warning'>Your suggestion's name was clamped to 50 characters.</span>"
 
 		var/check_name_already_exists = database.execute("SELECT * FROM suggestions WHERE name = '[suggname]';", FALSE)

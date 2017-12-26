@@ -224,9 +224,8 @@
 
 	//roll to-hit
 //	miss_modifier = max(15*(distance-2) - round(15*accuracy) + miss_modifier, 0)
-	miss_modifier = get_miss_chance(def_zone, distance, accuracy, miss_modifier)
-
-	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_modifier, ranged_attack=(distance > 1 || original != target_mob), range = abs_dist(target_mob, firer)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
+	var/miss_chance = get_miss_chance(def_zone, distance, accuracy, miss_modifier)
+	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > 1 || original != target_mob), range = abs_dist(target_mob, firer)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 	var/result = PROJECTILE_FORCE_MISS
 
 	if(hit_zone)
@@ -279,8 +278,8 @@
 		return 0
 
 	var/passthrough = 0 //if the projectile should continue flying
-	var/distance = get_dist(starting,loc)
-
+	var/distance = max(abs(loc.x - starting.x), abs(loc.y - starting.y))
+	//get_dist(starting,loc)
 	bumped = 1
 	if(ismob(A))
 		var/mob/M = A

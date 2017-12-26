@@ -165,10 +165,10 @@
 					if (H.original_job.is_commander)
 						command_level_to_dog = COMMAND_LEVEL_2
 
-					if (istype(H.original_job, /datum/job/german/dog_master))
+					if (istype(H.original_job, /datum/job/german/dogmaster))
 						command_level_to_dog = COMMAND_LEVEL_1
 
-					if (istype(H.original_job, /datum/job/russian/dog_master))
+					if (istype(H.original_job, /datum/job/russian/dogmaster))
 						command_level_to_dog = COMMAND_LEVEL_1
 
 					if (command_levels[command_type_sublist] > command_level_to_dog)

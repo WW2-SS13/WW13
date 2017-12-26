@@ -21,7 +21,8 @@ var/list/global_whitelists[50]
 /proc/save_all_whitelists()
 	for (var/key in global_whitelists)
 		var/datum/whitelist/W = global_whitelists[key]
-		W.save()
+		if (W)
+			W.save()
 
 /proc/save_whitelist(whatkey)
 	for (var/key in global_whitelists)

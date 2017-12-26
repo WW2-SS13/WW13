@@ -16,7 +16,7 @@
 
 	for(var/propname in vars)
 		if(!isnull(properties[propname]))
-			src.vars[propname] = properties[propname]
+			vars[propname] = properties[propname]
 
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
 /obj/item/weapon/gun
@@ -87,6 +87,10 @@
 
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
+
+	for (var/datum/firemode/F in firemodes)
+		if (!F.accuracy.len)
+			F.accuracy[1] = accuracy
 
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
@@ -222,14 +226,15 @@
 	user.setMoveCooldown(shoot_time) //no moving while shooting either
 	next_fire_time = world.time + shoot_time
 
+
 	var/held_acc_mod = 0
 	var/held_disp_mod = 0
-
+/*
 	if(requires_two_hands)
 		if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
 			held_acc_mod = -3
 			held_disp_mod = 3
-
+*/
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 	for(var/i in 1 to burst)
@@ -293,7 +298,6 @@
 	var/_burst_delay = isnull(firemode.burst_delay)? src.burst_delay : firemode.burst_delay
 	var/_fire_delay = isnull(firemode.fire_delay)? src.fire_delay : firemode.fire_delay
 	var/_move_delay = firemode.move_delay + (can_wield && !wielded) ? 2 : 0
-
 
 	var/shoot_time = (_burst - 1)*_burst_delay
 	user.next_move = world.time + shoot_time  //no clicking on things while shooting
@@ -435,11 +439,9 @@
 		//As opposed to no-delay pew pew
 		P.accuracy += 2
 
+/* // since weilding was removed
 	if(can_wield && !wielded)
-		P.accuracy -= 2
-
-	if (istype(src, /obj/item/weapon/gun/projectile/minigun))
-		P.accuracy -= 2
+		P.accuracy -= 2 */
 
 //does the actual launching of the projectile
 /obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)

@@ -189,6 +189,10 @@
 	update_held_icon()
 	return
 
+/obj/item/weapon/gun/projectile/automatic/l6_saw
+	accuracy = DEFAULT_MG_ACCURACY
+	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
+
 /obj/item/weapon/gun/projectile/automatic/l6_saw/m240
 	name = "M240"
 	caliber = "a762x51"
