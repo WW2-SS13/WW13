@@ -68,7 +68,10 @@ proc/getsensorlevel(A)
  * becomes verylongrange. Accuracy/scoped accuracy variables are not meaningless,
  * but they aren't as useful at long ranges anymore */
 
-/* since head shots are usually instant kills, they've been heavily nerfed */
+/* since head shots are usually instant kills, they've been heavily nerfed.
+ * Although they're still almost guaranteed at point-blank range. */
+
+/* - kachnov */
 
 var/list/global/hit_chances = list(
 

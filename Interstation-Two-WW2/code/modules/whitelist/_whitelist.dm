@@ -62,6 +62,10 @@ var/list/global_whitelists[50]
 
 // add a client or ckey to the whitelist
 /datum/whitelist/proc/add(_arg, var/list/extras = list())
+
+	if (!extras.len)
+		remove(_arg) // no duplicates
+
 	if (data)
 		data += "&"
 	if (isclient(_arg))

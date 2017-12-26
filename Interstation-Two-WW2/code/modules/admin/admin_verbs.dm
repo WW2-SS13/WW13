@@ -395,7 +395,7 @@ var/list/admin_verbs_mentor = list(
 		if(ghost.can_reenter_corpse)
 			ghost.reenter_corpse()
 		else
-			ghost << "<font color='red'>Error:  Aghost:  Can't reenter corpse, mentors that use adminHUD while aghosting are not permitted to enter their corpse again</font>"
+			ghost << "<font color='red'>Error:  Aghost:  Can't reenter corpse, mentors that use adminHUD while aghosting are not permitted to enter their corpse again.</font>"
 			return
 
 

@@ -5,7 +5,6 @@
 	var copied = 0
 	var iscopy = 0
 
-
 /obj/item/weapon/paper/carbon/update_icon()
 	if(iscopy)
 		if(info)

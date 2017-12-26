@@ -41,7 +41,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	if (isliving(am))
 		var/mob/living/L = am
 		if (fire)
-			fire.Burn(L)
+			fire.Burn(L, 0.33) // sucks to die by trying to walk out of fire
 
 /turf/create_fire(fl, temp, spread = 1)
 
@@ -228,11 +228,11 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 /obj/fire/proc/get_damage()
 	return (temperature/default_temperature) * default_damage
 
-/obj/fire/proc/Burn(var/mob/living/L)
+/obj/fire/proc/Burn(var/mob/living/L, var/power = 1.0)
 	if (!istype(L))
 		return
 
-	var/damage = get_damage()
+	var/damage = get_damage() * power
 
 	if (prob((temperature/default_temperature) * 40))
 		L.fire_act()

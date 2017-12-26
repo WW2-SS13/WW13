@@ -300,12 +300,6 @@ var/global/list/fallschirm_landmarks = list()
 				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 1
 
-		if (!fallschirm_landmarks.len)
-			german_soldat_slots += german_paratrooper_slots
-			german_paratrooper_slots = 0 // forgot why this is even here - kachnovv
-			for (var/datum/job/german/paratrooper/j in occupations)
-				if (istype(j))
-					j.total_positions = 0
 
 		// useful information
 
@@ -364,6 +358,11 @@ var/global/list/fallschirm_landmarks = list()
 				spawn (5)
 					if (!locate(/obj/tank) in world)
 						j.total_positions = 0
+
+			else if (istype(j, /datum/job/german/paratrooper) && !fallschirm_landmarks.len)
+				german_soldat_slots += german_paratrooper_slots
+				german_paratrooper_slots = 0
+				j.total_positions = 0
 
 		for (var/datum/job/russian/j in occupations)
 			if (istype(j, /datum/job/russian/anti_tank_crew) || istype(j, /datum/job/russian/tankcrew))

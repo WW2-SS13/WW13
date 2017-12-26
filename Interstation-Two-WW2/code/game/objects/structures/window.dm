@@ -83,7 +83,7 @@
 	overlays += img
 
 /obj/structure/window/proc/shatter(var/display_message = 1)
-	playsound(src, "shatter", 70, 1)
+	playsound(get_turf(src), "shatter", 70, 1)
 	if(display_message)
 		visible_message("<span class = 'warning'>[src] shatters!</span>")
 	if(dir == SOUTHWEST)
@@ -400,19 +400,24 @@
 			if(W.anchored && W.density && W.type == src.type && W.is_fulltile()) //Only counts anchored, not-destroyed fill-tile windows.
 				dirs += get_dir(src, W)
 
-	var/list/connections = dirs_to_corner_states(dirs)
+/*	var/list/connections = dirs_to_corner_states(dirs)
 
 	icon_state = ""
 	for(var/i = 1 to 4)
 		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
 		overlays += I
-
+*/
 	return
 
 /obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > maximal_heat)
 		hit(damage_per_fire_tick, 0)
 	..()
+
+/obj/structure/classic_window_frame
+	desc = "A good old window frame."
+	icon_state = "windownew_frame"
+	layer = 3.2
 
 /obj/structure/window/classic
 	desc = "A good old window."
@@ -421,7 +426,17 @@
 	glasstype = /obj/item/stack/material/glass
 	maximal_heat = T0C + 100
 	damage_per_fire_tick = 5.0
-	maxhealth = 7.5
+	maxhealth = 20.0
+
+/obj/structure/window/classic/bullet_act(var/obj/item/projectile/P)
+	if (!P.nodamage)
+		shatter()
+
+/obj/structure/window/classic/shatter(var/display_message = 1)
+	var/myturf = get_turf(src)
+	spawn (1)
+		new/obj/structure/classic_window_frame(myturf)
+	..(display_message)
 
 /obj/structure/window/classic/update_icon()
 	return

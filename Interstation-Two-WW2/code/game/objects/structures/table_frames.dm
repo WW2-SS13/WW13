@@ -12,7 +12,7 @@
 /obj/structure/table_frame
 	name = "table frame"
 	desc = "Four metal legs with four framing rods for a table. You could easily pass through this."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures_FO13.dmi'
 	icon_state = "table_frame"
 	density = 0
 	anchored = 0
@@ -24,25 +24,14 @@
 	if(istype(I, /obj/item/weapon/wrench))
 		user << "<span class='notice'>You start disassembling [src]...</span>"
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		if(do_after(user, 30/I.toolspeed, target = src))
+		if(do_after(user, 30, target = src))
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			for(var/i = 1, i <= framestackamount, i++)
 				new framestack(get_turf(src))
 			qdel(src)
 			return
-	if(istype(I, /obj/item/stack/sheet/plasteel))
-		var/obj/item/stack/sheet/plasteel/P = I
-		if(P.get_amount() < 1)
-			user << "<span class='warning'>You need one plasteel sheet to do this!</span>"
-			return
-		user << "<span class='notice'>You start adding [P] to [src]...</span>"
-		if(do_after(user, 50, target = src))
-			P.use(1)
-			new /obj/structure/table/reinforced(src.loc)
-			qdel(src)
-		return
-	if(istype(I, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/M = I
+	if(istype(I, /obj/item/stack/material/iron))
+		var/obj/item/stack/material/iron/M = I
 		if(M.get_amount() < 1)
 			user << "<span class='warning'>You need one metal sheet to do this!</span>"
 			return
@@ -52,8 +41,8 @@
 			new /obj/structure/table(src.loc)
 			qdel(src)
 		return
-	if(istype(I, /obj/item/stack/sheet/glass))
-		var/obj/item/stack/sheet/glass/G = I
+	if(istype(I, /obj/item/stack/material/glass))
+		var/obj/item/stack/material/glass/G = I
 		if(G.get_amount() < 1)
 			user << "<span class='warning'>You need one glass sheet to do this!</span>"
 			return
@@ -64,8 +53,8 @@
 			new /obj/structure/table/glass(src.loc)
 			qdel(src)
 		return
-	if(istype(I, /obj/item/stack/sheet/mineral/silver))
-		var/obj/item/stack/sheet/mineral/silver/S = I
+	if(istype(I, /obj/item/stack/material/silver))
+		var/obj/item/stack/material/silver/S = I
 		if(S.get_amount() < 1)
 			user << "<span class='warning'>You need one silver sheet to do this!</span>"
 			return
@@ -84,15 +73,14 @@
 	name = "wooden table frame"
 	desc = "Four wooden legs with four framing wooden rods for a wooden table. You could easily pass through this."
 	icon_state = "wood_frame"
-	framestack = /obj/item/stack/sheet/mineral/wood
+	framestack = /obj/item/stack/material/wood
 	framestackamount = 2
-	burn_state = FLAMMABLE
 
 /obj/structure/table_frame/wood/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/wrench))
 		..()
-	if(istype(I, /obj/item/stack/sheet/mineral/wood))
-		var/obj/item/stack/sheet/mineral/wood/W = I
+	if(istype(I, /obj/item/stack/material/wood))
+		var/obj/item/stack/material/wood/W = I
 		if(W.get_amount() < 1)
 			user << "<span class='warning'>You need one wood sheet to do this!</span>"
 			return

@@ -20,24 +20,27 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 
 	var/html = "<center><big>List of Quick Bans</big></center>"
 
-	var/list/possibilities = list()
-	if (ban_type == "All")
-		database.execute("SELECT * FROM quick_bans;", FALSE)
-	else
-		database.execute("SELECT * FROM quick_bans WHERE ban_type == '[ban_type]';", FALSE)
+	var/list/result = list()
 
-	if (islist(possibilities) && !isemptylist(possibilities))
-		for (var/list/table in possibilities)
-			if (_ckey && table.Find("ckey") && table["ckey"] != _ckey)
+	if (ban_type == "All")
+		result = database.execute("SELECT * FROM quick_bans;", FALSE)
+	else
+		result = database.execute("SELECT * FROM quick_bans WHERE ban_type == '[ban_type]';", FALSE)
+
+	var/list/possibilities = list()
+
+	if (islist(result) && !isemptylist(result))
+		for (var/v in 1 to 100)
+			if (_ckey && result.Find("ckey_[v]") && result["ckey_[v]"] != _ckey)
 				continue
-			if (cID && table.Find("cID") && table["cID"] != cID)
+			if (cID && result.Find("cID_[v]") && result["cID_[v]"] != cID)
 				continue
-			if (ip && table.Find("ip") && table["ip"] != ip)
+			if (ip && result.Find("ip_[v]") && result["ip_[v]"] != ip)
 				continue
-			if (text2num(table["expire_realtime"]) <= world.realtime)
-				database.execute("REMOVE * FROM quick_bans WHERE UID == '[table["UID"]]';")
+			if (text2num(result["expire_realtime_[v]"]) <= world.realtime)
+				database.execute("REMOVE * FROM quick_bans WHERE UID == '[result["UID"]]';")
 				continue
-			possibilities += "[table["UID"]]: [table["ckey"]]/[table["cID"]]/[table["ip"]], type [table["type"]] ([table["type_specific_info"]]): banned for '[table["reason"]]' by [table["banned_by"]] on [table["ban_date"]]. [table["expire_info"]]."
+			possibilities += "[result["UID"]]: [result["ckey"]]/[result["cID"]]/[result["ip"]], type [result["type"]] ([result["type_specific_info"]]): banned for '[result["reason"]]' by [result["banned_by"]] on [result["ban_date"]]. [result["expire_info"]]."
 
 	for (var/possibility in possibilities)
 		html += "<br>"
@@ -224,6 +227,9 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 				database.execute("DELETE FROM quick_bans WHERE UID == '[bans["UID"]]';")
 				continue
 			if (x == "reason")
+				if (bans.Find("expire_realtime") && text2num(bans["expire_realtime"]) <= world.realtime)
+					database.execute("DELETE FROM quick_bans WHERE UID == '[bans["UID"]]';")
+					continue
 				return bans[x]
 	return FALSE
 

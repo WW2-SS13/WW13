@@ -57,7 +57,6 @@
 			return 1
 	return 1
 
-
 /obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
 
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))

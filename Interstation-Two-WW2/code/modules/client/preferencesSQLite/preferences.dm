@@ -133,13 +133,17 @@ var/list/preferences_datums = list()
      * preference saving thing assumes that the only things that change
      * are those which are changed by the user, so if we randomize these
      * values we will end up loading the default anyway */
-
 	/*
+
 	gender = pick(MALE, FEMALE)
 	german_gender = pick(MALE, FEMALE)
 	russian_gender = pick(MALE, FEMALE)
 	ukrainian_gender = pick(MALE, FEMALE)
 	real_name = random_name(gender,species)
+
+	/* changing names from the default is neccessary, however, and it occurs
+	 * below. */
+
 
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
    */
@@ -153,6 +157,12 @@ var/list/preferences_datums = list()
 		// load our first slot, if we have one
 		if (preferences_exist(1))
 			load_preferences(1)
+		else
+			real_name = random_name(gender, species)
+			german_name = random_german_name(gender, species)
+			russian_name = random_russian_name(gender, species)
+			ukrainian_name = random_ukrainian_name(gender, species)
+
 		// otherwise, keep using our default values
 
 /datum/preferences/Del()
