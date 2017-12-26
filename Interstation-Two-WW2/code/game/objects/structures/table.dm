@@ -324,7 +324,6 @@
 		tablepush(I, user)
 		return
 
-
 	if (istype(I, /obj/item/weapon/screwdriver))
 		if(istype(src, /obj/structure/table/reinforced))
 			var/obj/structure/table/reinforced/RT = src
@@ -345,16 +344,15 @@
 			table_destroy(3, user)
 			return
 
-	if(user.drop_item())
-		I.forceMove(loc)
-	/*	var/list/click_params = params2list(params)
-		//Center the icon where the user clicked.
-		if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
-			return
-		//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
-		I.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
-		I.pixel_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
-*/
+	user.drop_item(loc)
+	var/list/click_params = params2list(params)
+	//Center the icon where the user clicked.
+	if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
+		return
+	//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
+	I.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+	I.pixel_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+
 /*
  * TABLE DESTRUCTION/DECONSTRUCTION
  */
