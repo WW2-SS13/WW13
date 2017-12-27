@@ -351,12 +351,12 @@
 		return 1
 	return 0
 
-/mob/new_player/proc/LateSpawnForced(rank, needs_random_name = 0)
+/mob/new_player/proc/LateSpawnForced(rank, needs_random_name = 0, var/reinforcements = 0)
 
 	spawning = 1
 	close_spawn_windows()
 
-	job_master.AssignRole(src, rank, 1)
+	job_master.AssignRole(src, rank, 1, reinforcements)
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 

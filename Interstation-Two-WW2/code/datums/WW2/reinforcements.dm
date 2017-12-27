@@ -185,7 +185,7 @@ var/datum/reinforcements/reinforcements_master
 		return ret
 	for (var/mob/new_player/np in l)
 		if (np)
-			np.LateSpawnForced("Sovietsky Soldat", 1)
+			np.LateSpawnForced("Sovietsky Soldat", 1, 1)
 			reinforcements_granted[RUSSIAN] = reinforcements_granted[RUSSIAN]+1
 			ret = 1
 	reinforcement_pool[RUSSIAN] = list()
@@ -206,7 +206,7 @@ var/datum/reinforcements/reinforcements_master
 		return ret
 	for (var/mob/new_player/np in l)
 		if (np) // maybe helps with logged out nps
-			np.LateSpawnForced("Soldat", 1)
+			np.LateSpawnForced("Soldat", 1, 1)
 			reinforcements_granted[GERMAN] = reinforcements_granted[GERMAN]+1
 			ret = 1
 	reinforcement_pool[GERMAN] = list()
