@@ -48,18 +48,6 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 
 	src << browse(html, "window=quick_bans_search;")
 
-/client/Topic(href,href_list[],hsrc)
-	..(href, href_list, hsrc)
-	if (href_list["quickBan_removeBan"])
-		var/UID = href_list["quickBan_removeBan_UID"]
-		if (UID)
-			var/confirm = input("Are you sure you want to remove the ban with the UID '[UID]' ?") in list("Yes", "No")
-			if (confirm == "Yes")
-				if (database.execute("REMOVE * FROM quick_bans WHERE UID == '[UID]';"))
-					var/M = "[key_name(usr)] removed quickBan '<b>[UID]</b>' from the database. It belonged to [href_list["ckey"]]/[href_list["cID"]]/[href_list["ip"]]"
-					log_admin(M)
-					message_admins(M)
-
 /client/proc/quickBan_person()
 	set category = "Bans"
 

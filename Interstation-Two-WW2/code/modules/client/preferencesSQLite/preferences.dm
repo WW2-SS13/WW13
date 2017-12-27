@@ -33,7 +33,7 @@ var/list/preferences_datums = list()
 	var/ukrainian_gender = MALE // civs
 	var/body_build = "Default"			//character body build name
 	var/age = 30						//age of character
-//	var/spawnpoint = "Cryogenic Storage"//where this character will spawn (0-2).
+
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/backbag = 2						//backpack type
 	var/h_style = "Bald"				//Hair type
@@ -66,20 +66,12 @@ var/list/preferences_datums = list()
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Kanguage prefix keys
 
-		//Some faction information.
-//	var/religion = "None"               //Religious association.
-
-//	var/be_spy = 0
-//	var/be_jew = 0
-
 	//Mob preview
 	var/list/preview_icons = list()
 	var/list/preview_icons_front = list()
 	var/list/preview_icons_back = list()
 	var/list/preview_icons_east = list()
 	var/list/preview_icons_west = list()
-
-//	var/high_job_title = ""
 
 	//Keeps track of preferrence for not getting any wanted jobs
 	var/alternate_option = 0
@@ -90,28 +82,14 @@ var/list/preferences_datums = list()
 	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
 
-//	var/flavor_text = ""
-//	var/list/flavour_texts_robot = list()
-/*
-	var/med_record = ""
-	var/sec_record = ""
-	var/gen_record = ""
-	var/exploit_record = ""*/
 	var/disabilities = 0
 
-//	var/uplinklocation = "PDA"
-
-	// OOC Metadata:
-//	var/metadata = ""
 	var/client/client = null
 	var/client_ckey = null
 	var/client_isguest = 0
 
-	// for debugging purposes
 	var/list/internal_table = list()
 
-//	var/savefile/loaded_preferences
-//	var/savefile/loaded_character
 	var/datum/category_collection/player_setup_collection/player_setup
 
 	var/current_character_type = "N/A"
@@ -162,6 +140,10 @@ var/list/preferences_datums = list()
 			german_name = random_german_name(gender, species)
 			russian_name = random_russian_name(gender, species)
 			ukrainian_name = random_ukrainian_name(gender, species)
+			remember_preference("real_name", real_name)
+			remember_preference("german_name", german_name)
+			remember_preference("russian_name", russian_name)
+			remember_preference("ukrainian_name", ukrainian_name)
 
 		// otherwise, keep using our default values
 

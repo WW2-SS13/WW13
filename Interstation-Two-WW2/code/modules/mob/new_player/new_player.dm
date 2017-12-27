@@ -659,7 +659,8 @@
 	return "Human"
 
 /mob/new_player/get_gender()
-	if(!client || !client.prefs) ..()
+	if(!client || !client.prefs)
+		return ..()
 	return client.prefs.gender
 
 /mob/new_player/is_ready()

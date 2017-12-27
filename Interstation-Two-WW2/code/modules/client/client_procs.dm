@@ -23,8 +23,6 @@
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
-	..(href, href_list, hsrc)
-
 	//search the href for script injection
 	if( findtext(href,"<script",1,0) )
 		world.log << "Attempted use of scripts within a topic call, by [src]"
@@ -50,6 +48,17 @@
 			return
 		cmd_admin_irc_pm(href_list["irc_msg"])
 		return
+
+	// see quickBan.dm
+	if (href_list["quickBan_removeBan"])
+		var/UID = href_list["quickBan_removeBan_UID"]
+		if (UID)
+			var/confirm = input("Are you sure you want to remove the ban with the UID '[UID]' ?") in list("Yes", "No")
+			if (confirm == "Yes")
+				if (database.execute("REMOVE * FROM quick_bans WHERE UID == '[UID]';"))
+					var/M = "[key_name(usr)] removed quickBan '<b>[UID]</b>' from the database. It belonged to [href_list["ckey"]]/[href_list["cID"]]/[href_list["ip"]]"
+					log_admin(M)
+					message_admins(M)
 
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)

@@ -229,6 +229,7 @@
 /datum/category_item/player_setup_item/Topic(var/href,var/list/href_list)
 	if(..())
 		return 1
+
 	var/mob/pref_mob = preference_mob()
 
 	if(isnull(pref_mob))
