@@ -40,7 +40,7 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 			if (text2num(result["expire_realtime_[v]"]) <= world.realtime)
 				database.execute("REMOVE * FROM quick_bans WHERE UID == '[result["UID_v"]]';")
 				continue
-			possibilities += "<big><b>UID [result["UID_v"]]</b> (<a href='byond://?src=\ref[src];quickBan_removeBan=1;quickBan_removeBan_UID=[result["UID_[v]"]];quickBan_removeBan_ckey=[result["ckey_[v]"]];quickBan_removeBan_cID=[result["cID_[v]"]];quickBan_removeBan_ip=[result["ip_[v]"]]'>DELETE</a>)</big>: [result["ckey"]]/[result["cID"]]/[result["ip"]], type [result["type"]] ([result["type_specific_info"]]): banned for '[result["reason"]]' by [result["banned_by"]] on [result["ban_date"]]. <b>[result["expire_info"]]</b>. (After assigned date)"
+			possibilities += "<big><b>UID [result["UID_[v]"]]</b> (<a href='byond://?src=\ref[src];quickBan_removeBan=1;quickBan_removeBan_UID=[result["UID_[v]"]];quickBan_removeBan_ckey=[result["ckey_[v]"]];quickBan_removeBan_cID=[result["cID_[v]"]];quickBan_removeBan_ip=[result["ip_[v]"]]'>DELETE</a>)</big>: [result["ckey_[v]"]]/[result["cID_[v]"]]/[result["ip_[v]"]], type '[result["type_[v]"]]' ([result["type_specific_info_[v]"]]): banned for '[result["reason_[v]"]]' by [result["banned_by_[v]"]] on [result["ban_date_[v]"]]. <b>[result["expire_info_[v]"]]</b>. (After assigned date)"
 
 	for (var/possibility in possibilities)
 		html += "<br>"
@@ -224,13 +224,25 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 		if (lowertext(fields["type"]) == "server")
 			for (var/client/C in clients)
 				if (C.ckey == ckey)
-					C.quickBan_kicked(fields["type"], fields["reason"])
+					C.quickBan_kicked(fields["type"], fields["reason"], fields["expire_info"])
+					break
+		else
+			if (fields["type_specific_info"])
+				for (var/client/C in clients)
+					if (C.ckey == ckey)
+						C << "<span class = 'userdanger'>You have been [fields["type"]]-banned ([fields["type_specific_info"]]). Reason: '[fields["reason"]]'. This ban [lowertext(expire_info)]."
+						break
+			else
+				for (var/client/C in clients)
+					if (C.ckey == ckey)
+						C << "<span class = 'userdanger'>You have been [fields["type"]]-banned. Reason: '[fields["reason"]]'. This ban [lowertext(expire_info)]."
+						break
 	else
 		if (banner)
 			banner << "<span class = 'warning'>FAILED to ban [ckey]/[cID]/[ip]! A database error occured.</span>"
 
 /* checking if we're banned & then reject us */
-/client/proc/quickBan_isbanned(var/ban_type = "Server")
+/client/proc/quickBan_isbanned(var/ban_type = "Server", var/type_specific_info = "nil")
 	var/list/bans = database.execute("SELECT * FROM quick_bans WHERE (ckey = '[ckey]' OR cID = '[computer_id]' OR ip = '[address]') AND type == '[ban_type]';", FALSE)
 	if (islist(bans) && !isemptylist(bans))
 		for (var/x in bans)
@@ -242,7 +254,10 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 				if (bans.Find("expire_realtime") && text2num(bans["expire_realtime"]) <= world.realtime)
 					database.execute("DELETE FROM quick_bans WHERE UID == '[bans["UID"]]';")
 					continue
-				return bans[x]
+				if (bans.Find("type_specific_info"))
+					if (bans["type_specific_info"] == type_specific_info)
+						return bans[x]
+				return FALSE
 	return FALSE
 
 /* check if we're banned and tell us why we're banned */
@@ -254,8 +269,8 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 	return FALSE
 
 /* kick us if we just got banned */
-/client/proc/quickBan_kicked(var/bantype, var/reason)
-	src << "<span class = 'userdanger'>You have been given a [lowertext(bantype)]-ban. Reason: '[reason]'</span>"
+/client/proc/quickBan_kicked(var/bantype, var/reason, var/expire_info)
+	src << "<span class = 'userdanger'>You have been given a [lowertext(bantype)]-ban. Reason: '[reason]'. [expire_info].</span>"
 	del src
 
 /* check if we're an admin trying to quickBan another admin */

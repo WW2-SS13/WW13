@@ -341,8 +341,8 @@
 		return 1
 	return 0
 
-/mob/new_player/proc/factionBanned(title)
-	if(client && client.quickBan_isbanned("Faction", title))
+/mob/new_player/proc/factionBanned(faction)
+	if(client && client.quickBan_isbanned("Faction", faction))
 		return 1
 	return 0
 
