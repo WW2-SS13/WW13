@@ -202,6 +202,7 @@ var/list/gamemode_cache = list()
 	// hub stuff
 
 	var/hub = 0
+	var/jojoreference = 0
 	var/testing_port = -1
 	var/hubtesting_port = -2
 	var/open_hub_discord_in_new_window = 1
@@ -375,6 +376,8 @@ var/list/gamemode_cache = list()
 
 				if ("hub")
 					config.hub = 1
+				if ("jojoreference")
+					config.jojoreference = 1
 				if ("testing_port")
 					config.testing_port = text2num(value)
 				if ("hubtesting_port")

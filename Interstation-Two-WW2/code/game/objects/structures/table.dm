@@ -30,6 +30,7 @@
 	var/deconstructable = 1
 	var/flipped = 0 // WIP?
 	var/health = 100
+	throwpass = 1
 
 /obj/structure/table/New()
 	..()

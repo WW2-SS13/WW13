@@ -259,7 +259,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	else if(href_list["gender_german"])
 		var/next_gender = next_in_list(pref.german_gender, valid_player_genders)
 		if (next_gender == FEMALE && !pref.client.untermensch)
-			user << "<span class = 'danger'>Germans can't be females.</span>"
+			user << "<span class = 'danger'>Germans can't be female.</span>"
 			return
 		pref.german_gender = next_in_list(pref.german_gender, valid_player_genders)
 		return TOPIC_REFRESH

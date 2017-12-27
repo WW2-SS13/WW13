@@ -221,9 +221,10 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 		log_admin(M)
 		message_admins(M)
 		// kick whoever got banned if they're on
-		for (var/client/C in clients)
-			if (C.ckey == ckey)
-				C.quickBan_kicked(fields["type"], fields["reason"])
+		if (lowertext(fields["type"]) == "server")
+			for (var/client/C in clients)
+				if (C.ckey == ckey)
+					C.quickBan_kicked(fields["type"], fields["reason"])
 	else
 		if (banner)
 			banner << "<span class = 'warning'>FAILED to ban [ckey]/[cID]/[ip]! A database error occured.</span>"

@@ -485,7 +485,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click this link to rejoin: <b>byond://[world.internet_address]:[world.port]</b></span>"
 
 	spawn(0)
-		roundabout()
+		if (config.jojoreference)
+			roundabout()
 
 	spawn (100)
 

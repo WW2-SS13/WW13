@@ -327,6 +327,7 @@ var/list/admin_verbs_mentor = list(
 			verbs += /client/proc/forceClose_game_schedule
 			verbs += /client/proc/forceOpen_game_schedule
 			verbs += /client/proc/give_patreon_rewards
+			verbs += /client/proc/remove_patreon_rewards
 			verbs += /client/proc/toggle_BYOND_hub_visibility
 			verbs += /client/proc/eject_unwhitelisted
 

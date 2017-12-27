@@ -195,13 +195,13 @@ var/global/list/string_slot_flags = list(
 	for(var/T in paths)
 		var/datum/poster/P = new T
 		poster_designs += P
-
+/*
 	//Corporations
 	paths = typesof(/datum/corporation) - /datum/corporation
 	for(var/T in paths)
 		var/datum/corporation/C = new T
 		global.global_corporations[C.name] = C
-
+*/
 	paths = typesof(/datum/hud) - /datum/hud
 	for(var/T in paths)
 		var/datum/hud/C = new T

@@ -528,7 +528,7 @@
 "kh" = (/obj/effect/decal/cleanable/cobweb,/turf/floor/wood,/area/prishtina/houses/nml_five)
 "ki" = (/obj/item/weapon/material/shard,/turf/floor/wood,/area/prishtina/houses/nml_five)
 "kj" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/houses/nml_five)
-"kk" = (/obj/structure/table/wood,/obj/item/trash/raisins,/turf/floor/wood,/area/prishtina/houses/nml_five)
+"kk" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/beetsoup,/turf/floor/wood,/area/prishtina/houses/nml_five)
 "kl" = (/obj/machinery/microwave/oven,/turf/floor/wood,/area/prishtina/houses/nml_five)
 "km" = (/turf/floor/wood,/area/prishtina/houses/nml_six)
 "kn" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses/nml_six)
@@ -608,7 +608,7 @@
 "lJ" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/obj/structure/table/wood,/obj/item/device/flashlight/lamp,/turf/floor/carpet,/area/prishtina/houses/nml_five)
 "lK" = (/turf/floor/carpet,/area/prishtina/houses/nml_five)
 "lL" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/obj/effect/decal/cleanable/dirt,/turf/floor/carpet,/area/prishtina/houses/nml_five)
-"lM" = (/obj/structure/table/wood,/obj/item/trash/raisins,/turf/floor/wood,/area/prishtina/houses/nml_six)
+"lM" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/beetsoup,/turf/floor/wood,/area/prishtina/houses/nml_six)
 "lN" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/obj/structure/table/wood,/obj/item/device/flashlight/lamp,/turf/floor/carpet,/area/prishtina/houses/nml_six)
 "lO" = (/turf/floor/carpet,/area/prishtina/houses/nml_six)
 "lP" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/obj/effect/decal/cleanable/dirt,/turf/floor/carpet,/area/prishtina/houses/nml_six)
@@ -823,6 +823,8 @@
 "pQ" = (/obj/item/device/radio/intercom/loudspeaker/russian{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "pR" = (/turf/wall/brick,/area/prishtina/soviet/small_map/main_area)
 "pS" = (/obj/item/weapon/shovel/spade/russia,/obj/item/weapon/shovel/spade/russia,/obj/item/weapon/shovel/spade/russia,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
+"pT" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,/turf/floor/wood,/area/prishtina/houses/nml_five)
+"pU" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,/turf/floor/wood,/area/prishtina/houses/nml_six)
 "qa" = (/obj/effect/landmark{name = "JoinLateCivilian"},/obj/effect/decal/cleanable/dirt,/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 
 (1,1,1) = {"
@@ -874,13 +876,13 @@ iLiMiMiMiMiMiMiMiMiMiMiMiMiMiMiMiMiNiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiOiPaTaTaTaTef
 iQiRiSiTiUiSiSiSiSiSiViSiSiSiSiSiWiXiYiZjajbjcjdjeiZiYiYjfjfjfjfjfiYjgiPaTaTbmclclckckckckckjhjhjhckckblaTaTaTbmckckckckckckckckckckckckckck
 iQjijjjkjljmjjjnjjjojjjpjjjqjjjrjjjsjtjujvjtjtjtjwjujtjxjyjzjAjzjAjBjCiOlEaTagcAcBcAcAcAcAcAgBgBgBcAcAaeaTaTaTaUcAcAcAcAcAcAcAcAcAcAcAcAcAcA
 iQjEjjjFjGjHjjjmjIjJjIjKjIjLjIjMjIjNjvjOjPjvjtjtjQjujtjxjzjzjzjzjzjBjCiOlEaTaUcAjRjRjRjRjSjSjRjRjRjRcAaeefefaTaUcAjTjTjTjTjTjUjUjTjTjTjTcAcA
-iQjjjjjjjljVjjjWjjjXjjjYjjjZjjjMjIjNjvjOkajtkbkckdjujtkejAjzjzjzjzjBjCiOlEaTaUcAjRkfkgjRkhkikjkkkljRcAaeaTefaTaUcAjTkmkmknkmkmkmjTkokpjTcAcA
+iQjjjjjjjljVjjjWjjjXjjjYjjjZjjjMjIjNjvjOkajtkbkckdjujtkejAjzjzjzjzjBjCiOlEaTaUcAjRkfkgjRkhkipTkkkljRcAaeaTefaTaUcAjTkmkmknkmkmkmjTkokpjTcAcA
 iQjlkqjljljVjjjjjjjIjjjIjjjjjjjjkrjsjtjujuksjOjujujujtjxjzjzjzjzktkujCiOlEaTaUcBjSkgkvkwkxkxkykykxkzcAaeaTaTaTaUcBkAkmkmkmkmkmkmkAkpkBjUcAcA
 iQkCjjjIjjjVjjjIjIjjjjjjjjjjjjjjkDjsjtjtjtjvjtjtjtjtjtjvkEkFkFkFkEjvjCiOlEefaUcAjRjRjRjRjRkGkjkHkxkIcBaeaTaTaTaUcBjTknkmkJkKkLjTjTjTjTjTcAcA
 iQjjjjjjjjjjjIjIjjkMkNkOkPkQkRjjjjjsjtjtjtjtjtjtjtjtjtjtjtkSkTkSjtjtkUiOlEaTaUcAjRkVkWkXjRkxkYkxkxjRcAaeaTefaTaUcBjTkmkmkmkZkmjTlalblcjTcAcA
 ldlelelelelelelelelelelelelelflglhliljljljljlkljljljllllllljljljlllllmlnaTaTagcAjRlolplqkIkGlrkHkxjScAaeaTefaTaUcAjUlskmkJltkLjTlulvlwjTcAcA
 lFlGlHlGlIlQlRlQlFlSlSlSlSlFlFlFlFlFmcmdmclImgmhmglFlFlFlFlFlFlFlFlImimjhvefaUcAjRlJlKlLjRkxkxkxkyjScAaeaTaTaTaUcAjUlMkmkmkmkmjTlNlOlPjTcAcA
-lFlGlGlGlIlQlQlQlFlFlFlFlFlFlFlFlFlFmcmcmqlFmgmgmglFlFlFlFlFlFlFlFlFmimrmBefaUcAjSlTlUlqjRkylVlWkxjScBlXaTaTaTaUcAjUkKknlYlZkmjTmamblwjUcAcA
+lFlGlGlGlIlQlQlQlFlFlFlFlFlFlFlFlFlFmcmcmqlFmgmgmglFlFlFlFlFlFlFlFlFmimrmBefaUcAjSlTlUlqjRkylVlWkxjScBlXaTaTaTaUcAjUpUknlYlZkmjTmamblwjUcAcA
 lFlGlGlGlFlQlQpNlFlFlFlIlFlFlFlFlFlFmcmcmclFmgmgmglFlFlIlIlFlFlFlFlFpOmrhvefaUcAkIlTlplqjRkxmekykxkIcAaeaTefaTaUcAjTkmkmmfknkmjTmalvlwjTcAcA
 iYiYlkiYiYiYiYbyiYiYiYbybyiYlkiYiYiYiYiYiYiYbybybybybLbVbLiYiYiYbLbLpPlnaTaTaUcAjRmkmlmmkwkxkjkjkxjRcAaeaTaTaTaUcAjTkmkmkKkKkmkAmnmompjTcAcA
 jtjtjtjtjtjtjtjtjtjtjtjvjtjtjtjtjtpQjtjtjtjtjtjtjtjvjtjtjtjtjtjtjtjtjCiOlEefaUcAjRjRjRjRjRkIjSjSjRjRcAaeaTaTefaUcAjTjTjUjUjUjTjTjTjTjTjTcAcA

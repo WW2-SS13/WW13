@@ -395,3 +395,12 @@ client/verb/character_setup()
 		return 1
 
 	return 0
+
+/client/proc/highest_patreon_level()
+	if (isPatron("$3+"))
+		if (isPatron("$5+"))
+			if (isPatron("$10+"))
+				return "$10+"
+			return "$5+"
+		return "$3+"
+	return null

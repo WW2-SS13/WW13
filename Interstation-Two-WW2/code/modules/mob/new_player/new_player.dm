@@ -125,7 +125,7 @@
 
 	if(href_list["observe"])
 
-		if (client && client.quickBan_isbanned("Observer"))
+		if (client && client.quickBan_isbanned("Observe"))
 			src << "<span class = 'danger'>You're banned from observing.</span>"
 			return 1
 

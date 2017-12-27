@@ -102,7 +102,7 @@ var/datum/game_schedule/global_game_schedule = null
 	loadToDB()
 
 /datum/game_schedule/proc/loadToDB()
-	var/list/tablecheck = database.execute("SELECT * FROM misc WHERE key == 'game_schedule_metadata';")
+	var/list/tablecheck = database.execute("SELECT * FROM misc WHERE key = 'game_schedule_metadata';")
 	if (!islist(tablecheck) || isemptylist(tablecheck))
 		database.execute("INSERT INTO misc (key, val) VALUES ('game_schedule_metadata', '');")
 	database.execute("UPDATE misc WHERE key = 'game_schedule_metadata' SET val = '[forceOpened]&[forceClosed]';")
@@ -110,7 +110,7 @@ var/datum/game_schedule/global_game_schedule = null
 /datum/game_schedule/proc/loadFromDB()
 	var/list/tables = database.execute("SELECT * FROM misc WHERE key = 'game_schedule_metadata';")
 	if (islist(tables) && !isemptylist(tables))
-		var/list/metadata = splittext(tables["val"], ";")
+		var/list/metadata = splittext(tables["val"], "&")
 		forceOpened = text2num(metadata[1])
 		forceClosed = text2num(metadata[2])
 
