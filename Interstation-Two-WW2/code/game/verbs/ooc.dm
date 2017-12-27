@@ -105,7 +105,7 @@
 			var/admin_patron_check = 0
 			if (holder && !holder.fakekey && (holder.rights & R_ADMIN))
 				admin_patron_check = 1
-			if (isPatron("$10+"))
+			if (isPatron("$3+"))
 				admin_patron_check = 1
 
 			if(admin_patron_check && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins

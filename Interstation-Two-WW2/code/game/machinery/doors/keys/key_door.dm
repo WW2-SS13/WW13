@@ -19,6 +19,8 @@ var/list/nonbreaking_types = list(
 	material = "iron"
 	var/starts_open = 0
 
+	icon = 'icons/obj/doors/material_doors_leonister.dmi'
+
 /obj/structure/simple_door/key_door/New(_loc, _material = null)
 
 	var/map_door_name = name

@@ -40,6 +40,8 @@
 
 	var/command_levels = list() // "command" = COMMAND_LEVEL
 
+	var/next_bork = -1
+
 	maxHealth = 50
 
 
@@ -273,8 +275,9 @@
 				if (H.client && (!H.original_job || H.original_job.base_type_flag() != faction))
 					var/dist = get_dist(src,H)
 					if (!locate(H) in view(world.view, src) && dist <= ((world.maxx + world.maxy) / 6))
-						if (prob(7))
+						if (prob(7) && world.time >= next_bork)
 							visible_message("<span class = 'danger'>The [src] starts barking in fear! It smells an enemy!</span>")
+							next_bork = world.time + 200
 							return
 
 // dog combat

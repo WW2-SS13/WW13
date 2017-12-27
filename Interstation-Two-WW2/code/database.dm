@@ -81,6 +81,9 @@ var/database/database = null
 /database/proc/execute(querytext, var/only_execute_once = TRUE)
 	. = FALSE
 
+	// fixes a common SQL typo
+	querytext = replacetext(querytext, " == ", " = ")
+
 	if (findtext(querytext, regex("TABLE.*EXISTS")))
 		querytext = replacetext(querytext, " ", "")
 		querytext = replacetext(querytext, "TABLE", "")

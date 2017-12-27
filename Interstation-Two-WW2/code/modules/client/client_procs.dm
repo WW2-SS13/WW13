@@ -399,7 +399,7 @@ client/verb/character_setup()
 			if (isPatron("$10+"))
 				return 1
 
-	var/list/tables = database.execute("SELECT * FROM patreon WHERE (user == '[ckey]' OR user == '[key]') AND pledge == '[pledge]';")
+	var/list/tables = database.execute("SELECT * FROM patreon WHERE (user = '[ckey]' OR user = '[key]') AND pledge = '[pledge]';")
 	if (islist(tables) && !isemptylist(tables))
 		return 1
 

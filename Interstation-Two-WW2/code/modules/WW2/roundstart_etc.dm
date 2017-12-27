@@ -117,7 +117,8 @@ var/GRACE_PERIOD_LENGTH = 7
 							W.icon = W_icon
 
 				else if (G.season == "SUMMER")
-					G.color = SUMMER_COLOR
+					if (G.uses_winter_overlay)
+						G.color = SUMMER_COLOR
 					for (var/obj/structure/wild/W in G.contents)
 						if (istype(W))
 							var/obj/W_overlay = new(G)
@@ -132,7 +133,8 @@ var/GRACE_PERIOD_LENGTH = 7
 							W_overlay.special_id = "seasons"
 
 				else if (G.season == "FALL")
-					G.color = FALL_COLOR
+					if (G.uses_winter_overlay)
+						G.color = FALL_COLOR
 					for (var/obj/structure/wild/W in G.contents)
 						if (istype(W))
 							var/obj/W_overlay = new(G)
@@ -146,7 +148,7 @@ var/GRACE_PERIOD_LENGTH = 7
 							W_overlay.color = FALL_COLOR
 							W_overlay.special_id = "seasons"
 
-			if (G.season != "SPRING")
+			if (G.season != "SPRING" && G.uses_winter_overlay)
 				for (var/cache_key in G.floor_decal_cache_keys)
 					var/image/decal = floor_decals[cache_key]
 					var/obj/o = new(G)

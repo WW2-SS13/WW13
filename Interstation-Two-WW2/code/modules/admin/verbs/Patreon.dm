@@ -5,8 +5,13 @@
 	var/_ckey = input(src, "What ckey?") as text
 	if (!_ckey)
 		return
-	var/pledge = input(src, "What pledge amount?") in list("$3+", "$5+", "$10+")
 	_ckey = ckey(_ckey)
+	var/extra = ""
+	for (var/client/C in clients)
+		if (C.ckey == _ckey)
+			if (C.highest_patreon_level())
+				extra = " They are a [C.highest_patreon_level()] patron."
+	var/pledge = input(src, "What pledge amount?[extra]") in list("$3+", "$5+", "$10+")
 	_ckey = sanitizeSQL(_ckey, 50)
 	if (database.execute("INSERT INTO patreon (user, pledge) VALUES ('[_ckey]', '[pledge]');"))
 		src << "<span class = 'good'>Successfully added '[_ckey]' as a [pledge] patron."

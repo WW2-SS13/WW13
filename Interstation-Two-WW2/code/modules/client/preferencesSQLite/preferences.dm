@@ -492,6 +492,8 @@ var/list/preferences_datums = list()
 	if(.)
 		cp.toggled(mob, enabled)
 
+	prefs.save_preferences(prefs.current_slot)
+
 /mob/proc/is_preference_enabled(var/preference)
 	if(!client)
 		return FALSE

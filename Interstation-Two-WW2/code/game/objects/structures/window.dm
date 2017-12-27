@@ -417,7 +417,7 @@
 /obj/structure/classic_window_frame
 	desc = "A good old window frame."
 	icon_state = "windownew_frame"
-	layer = 3.2
+	layer = 4.01
 
 /obj/structure/window/classic
 	desc = "A good old window."
@@ -427,6 +427,7 @@
 	maximal_heat = T0C + 100
 	damage_per_fire_tick = 5.0
 	maxhealth = 20.0
+	layer = 4.02
 
 /obj/structure/window/classic/bullet_act(var/obj/item/projectile/P)
 	if (!P.nodamage)
