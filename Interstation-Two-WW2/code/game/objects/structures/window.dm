@@ -418,6 +418,17 @@
 	desc = "A good old window frame."
 	icon_state = "windownew_frame"
 	layer = 4.01
+/*
+/obj/structure/classic_window_frame/Crossed(mover)
+	if (isliving(mover))
+		visible_message("<span class = 'warning'>[mover] starts climbing through the window frame.</span>")
+		if (do_after(mover, rand(25,35), src))
+			visible_message("<span class = 'warning'>[mover] climbs through the window frame.</span>")
+			return ..(mover)
+		return 0
+	else
+		return ..(mover)
+*/
 
 /obj/structure/window/classic
 	desc = "A good old window."
