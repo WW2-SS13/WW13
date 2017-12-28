@@ -60,11 +60,6 @@ var/database/database = null
 		if (!execute("TABLE player_tips EXISTS;"))
 			execute("CREATE TABLE player_tips (UID STRING, submitter STRING, tip STRING);")
 
-/*
-		// where we store redeemed patreon rewards
-		if (!execute("TABLE patreon_rewards EXISTS;"))
-			execute("CREATE TABLE patreon_rewards (user STRING, data STRING);")
-*/
 /database/proc/newUID()
 	return num2text(rand(1, 1000*1000*1000), 20)
 
@@ -156,64 +151,3 @@ var/database/database = null
 	if (Q.Execute(database) && Q.NextRow())
 		return TRUE
 	return FALSE
-
-// patreon rewards
-
-// actual rewards:
-#define PATREON_COLOR "patreon_color"
-#define PATREON_CHAT "patreon_chat"
-
-#define TEST_SERVER_ACCESS "test_server_access"
-#define CUSTOM_DISCORD_ROLE "custom_discord_role"
-
-#define ROLE_PREFERENCE "role_preference"
-#define CUSTOM_LOADOUT "custom_loadout"
-
-#define SHORTENED_RESPAWN_TIME "delayed_respawn_time"
-#define TEST_ROLE_ELIGIBILITY "rare_role_eligibility"
-
-// tiers: lists of rewards based on donation amounts
-#define PLEDGE_TIER_1 list(PATREON_COLOR, PATREON_CHAT)
-#define PLEDGE_TIER_2 list(TEST_SERVER_ACCESS, CUSTOM_DISCORD_ROLE)
-#define PLEDGE_TIER_3 list(ROLE_PREFERENCE, CUSTOM_LOADOUT)
-
-/database/proc/get_possible_patreon_rewards(var/client/C)
-	. = list()
-	var/list/data = execute("SELECT * FROM patreon WHERE user = '[C.patreon_id]'")
-	if (!islist(data) || isemptylist(data))
-		return .
-	var/user = data["user"]
-	var/pledge = data["pledge"]
-
-	if (user == C.patreon_id)
-		if (pledge >= 3)
-			. += PLEDGE_TIER_1
-		if (pledge >= 5)
-			. += PLEDGE_TIER_2
-		if (pledge >= 10)
-			. += PLEDGE_TIER_3
-
-/database/proc/grant_patreon_reward(var/client/C, reward)
-	var/list/possible_rewards = get_possible_patreon_rewards(C)
-	if (!possible_rewards.Find(reward))
-		return
-	var/data = execute("SELECT * FROM patreon_rewards WHERE user = '[C.ckey]'")
-	if (!findtext(data, reward))
-		data += ";[reward]"
-	execute("INSERT INTO patreon_rewards data VALUES ('[data]');")
-	C.update_patreon_rewards()
-
-/database/proc/remove_patreon_reward(var/client/C, reward)
-	var/data = execute("SELECT * FROM patreon_rewards WHERE user = '[C.ckey]'")
-	if (findtext(";[data]", reward))
-		data = replacetext(data, ";[reward]", "")
-	else if (findtext(data, reward))
-		data = replacetext(data, reward, "")
-
-	execute("INSERT INTO patreon_rewards data VALUES ('[data]');")
-	C.update_patreon_rewards()
-
-/client/var/list/patreon_rewards = list()
-/client/var/patreon_id = "not_a_patron"
-/client/proc/update_patreon_rewards()
-	// get data from database, parse into rewards list
