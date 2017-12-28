@@ -132,10 +132,8 @@
 	if(usr.stat || usr.restrained() || usr.lying)	return
 	usr.set_machine(src)
 	if(href_list["light"])
-		world << "#1"
 		if(fueltank <= 0) return
 		if(!status)	return
-		world << "#2"
 		lit = !lit
 		if(lit)
 			processing_objects.Add(src)
@@ -154,7 +152,8 @@
 /obj/item/weapon/flamethrower/flammenwerfer/proc/get_throw_coeff()
 	. = 1.0
 	. += ((throw_amount-100)/100)/3
-	. = max(., 5.0) // don't get too hot
+	. = max(., 3.0) // don't get too hot
+	. += ((throw_amount-100)/100)/50 // give us a bit of extra heat if we're super high
 
 /obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target, flamedir)
 	var/throw_coeff = get_throw_coeff()

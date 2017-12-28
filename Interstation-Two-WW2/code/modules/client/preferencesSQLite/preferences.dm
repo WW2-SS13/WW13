@@ -144,6 +144,7 @@ var/list/preferences_datums = list()
 			remember_preference("german_name", german_name)
 			remember_preference("russian_name", russian_name)
 			remember_preference("ukrainian_name", ukrainian_name)
+			save_preferences(1)
 
 		// otherwise, keep using our default values
 

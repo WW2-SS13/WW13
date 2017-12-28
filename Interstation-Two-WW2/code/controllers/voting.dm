@@ -73,6 +73,7 @@ datum/controller/vote
 			total_votes += votes
 			if(votes > greatest_votes)
 				greatest_votes = votes
+		/* // no more - kachnov
 		//default-vote for everyone who didn't vote
 		if(!config.vote_no_default && choices.len)
 			var/non_voters = (clients.len - total_votes)
@@ -86,7 +87,7 @@ datum/controller/vote
 						choices[master_mode] += non_voters
 						if(choices[master_mode] >= greatest_votes)
 							greatest_votes = choices[master_mode]
-
+		*/
 
 		//get all options with that many votes and return them in a list
 		. = list()

@@ -26,7 +26,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger/colt(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H), slot_r_hand)
-	world << "<b>[H.client.prefs.russian_name] is the [title] of the Soviet forces!</b>"
+	world << "<b><big>[H.client.prefs.russian_name] is the [title] of the Soviet forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the Russian forces and lead them to victory. You take orders from the <b>Soviet High Command</b>.</span>"
 	H.give_radio()
 	return 1

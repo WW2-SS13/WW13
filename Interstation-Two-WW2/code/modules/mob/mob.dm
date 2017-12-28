@@ -339,7 +339,7 @@
 
 /mob/verb/abandon_mob()
 	set name = "Respawn"
-	set category = "OOC"
+	set category = "IC"
 
 	if (!( config.abandon_allowed ))
 		usr << "<span class='notice'>Respawn is disabled.</span>"

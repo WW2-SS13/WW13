@@ -113,6 +113,8 @@
 	var/_clients = input("How many clients?") as num
 	job_master.toggle_roundstart_autobalance(_clients)
 
+	message_admins("[key_name(src)] reset the roundstart autobalance for [_clients] players.")
+
 /client/proc/show_battle_report()
 	set category = "WW2 (Admin)"
 	set name = "Show battle report"

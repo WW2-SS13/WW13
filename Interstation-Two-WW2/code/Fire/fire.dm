@@ -205,7 +205,12 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	processing_objects += src
 
 	spawn (200)
-		qdel(src) // crappy workaround because fire won't process aaa
+		if (src)
+			qdel(src) // crappy workaround because fire won't process aaa
+
+	for (var/obj/fire/F in get_turf(src))
+		if (F != src)
+			qdel(F)
 
 /obj/fire/proc/fire_color(var/env_temperature)
 	//var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)
