@@ -186,8 +186,8 @@ var/allow_paratroopers = 1
 			A.density = 0
 	// we're on the small map
 	else if (locate(/obj/prishtina_block/singleton) in world)
-		GRACE_PERIOD_LENGTH = 5
-		world << "<font size=3>Neither side can attack until after 5 minutes.</font><br>"
+		GRACE_PERIOD_LENGTH = 7
+		world << "<font size=3>Neither side can attack until after 7 minutes.</font><br>"
 
 	game_started = 1
 
