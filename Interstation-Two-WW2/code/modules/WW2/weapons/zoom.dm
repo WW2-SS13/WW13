@@ -247,30 +247,34 @@ Parts of code courtesy of Super3222
 					shake_camera(src, 2, rand(2,3))
 
 	for (var/obj/item/weapon/gun/projectile/minigun/M in range(2, src))
-		if (M.last_user == src)
+		if (M.last_user == src && loc != get_turf(M))
 			M.stopped_using(src)
 			M.last_user = null
 
-// called from Life()
-/mob/living/carbon/human/proc/handle_zoom_stuff(var/ghosting = FALSE)
-	if (stat == UNCONSCIOUS || stat == DEAD || ghosting)
+// reset all zooms - called from Life(), Weaken(), ghosting and more
+/mob/living/carbon/human/proc/handle_zoom_stuff(var/forced = FALSE)
+
+	var/success = 0
+
+	if (stat == UNCONSCIOUS || stat == DEAD || forced)
 		if(client && actions.len)
 			if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 				for(var/datum/action/toggle_scope/T in actions)
 					if(T.scope.zoomed)
 						T.scope.zoom(src, FALSE)
+						success = 1
 
 	for (var/obj/item/weapon/gun/projectile/minigun/M in range(2, src))
-		if (M.last_user == src)
+		if (M.last_user == src && (loc != get_turf(M) || forced))
 			M.stopped_using(src)
 			M.last_user = null
-/*
-/mob/living/carbon/human/proc/fix_zooms()
-	for(var/datum/action/toggle_scope/T in actions)
-		if(T.scope.zoomed)
-			T.scope.zoom(src, FALSE)
-	fix_action_buttons()
-*/
+			success = 1
+
+	if (success && client)
+		client.pixel_x = 0
+		client.pixel_y = 0
+		client.view = world.view
+
 /mob/living/carbon/human/proc/using_zoom()
 	if (stat == CONSCIOUS)
 		if(client && actions.len)

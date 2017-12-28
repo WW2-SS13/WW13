@@ -20,31 +20,33 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 
 	var/html = "<center><big>List of Quick Bans</big></center>"
 
-	var/list/possibilities = list()
-	if (ban_type == "All")
-		database.execute("SELECT * FROM quick_bans;", FALSE)
-	else
-		database.execute("SELECT * FROM quick_bans WHERE ban_type == '[ban_type]';", FALSE)
+	var/list/result = list()
 
-	if (islist(possibilities) && !isemptylist(possibilities))
-		for (var/list/table in possibilities)
-			if (_ckey && table.Find("ckey") && table["ckey"] != _ckey)
+	if (ban_type == "All")
+		result = database.execute("SELECT * FROM quick_bans;", FALSE)
+	else
+		result = database.execute("SELECT * FROM quick_bans WHERE ban_type == '[ban_type]';", FALSE)
+
+	var/list/possibilities = list()
+
+	if (islist(result) && !isemptylist(result))
+		for (var/v in 1 to 100)
+			if (_ckey && result.Find("ckey_[v]") && result["ckey_[v]"] != _ckey)
 				continue
-			if (cID && table.Find("cID") && table["cID"] != cID)
+			if (cID && result.Find("cID_[v]") && result["cID_[v]"] != cID)
 				continue
-			if (ip && table.Find("ip") && table["ip"] != ip)
+			if (ip && result.Find("ip_[v]") && result["ip_[v]"] != ip)
 				continue
-			if (text2num(table["expire_realtime"]) <= world.realtime)
-				database.execute("REMOVE * FROM quick_bans WHERE UID == '[table["UID"]]';")
+			if (text2num(result["expire_realtime_[v]"]) <= world.realtime)
+				database.execute("REMOVE * FROM quick_bans WHERE UID = '[result["UID_v"]]';")
 				continue
-			possibilities += "[table["UID"]]: [table["ckey"]]/[table["cID"]]/[table["ip"]], type [table["type"]] ([table["type_specific_info"]]): banned for '[table["reason"]]' by [table["banned_by"]] on [table["ban_date"]]. [table["expire_info"]]."
+			possibilities += "<big><b>UID [result["UID_[v]"]]</b> (<a href='byond://?src=\ref[src];quickBan_removeBan=1;quickBan_removeBan_UID=[result["UID_[v]"]];quickBan_removeBan_ckey=[result["ckey_[v]"]];quickBan_removeBan_cID=[result["cID_[v]"]];quickBan_removeBan_ip=[result["ip_[v]"]]'>DELETE</a>)</big>: [result["ckey_[v]"]]/[result["cID_[v]"]]/[result["ip_[v]"]], type '[result["type_[v]"]]' ([result["type_specific_info_[v]"]]): banned for '[result["reason_[v]"]]' by [result["banned_by_[v]"]] on [result["ban_date_[v]"]]. <b>[result["expire_info_[v]"]]</b>. (After assigned date)"
 
 	for (var/possibility in possibilities)
 		html += "<br>"
 		html += possibility
 
 	src << browse(html, "window=quick_bans_search;")
-	// todo
 
 /client/proc/quickBan_person()
 	set category = "Bans"
@@ -207,24 +209,43 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 		log_admin(M)
 		message_admins(M)
 		// kick whoever got banned if they're on
-		for (var/client/C in clients)
-			if (C.ckey == ckey)
-				C.quickBan_kicked(fields["type"], fields["reason"])
+		if (lowertext(fields["type"]) == "server")
+			for (var/client/C in clients)
+				if (C.ckey == ckey)
+					C.quickBan_kicked(fields["type"], fields["reason"], fields["expire_info"])
+					break
+		else
+			if (fields["type_specific_info"])
+				for (var/client/C in clients)
+					if (C.ckey == ckey)
+						C << "<span class = 'userdanger'>You have been [fields["type"]]-banned ([fields["type_specific_info"]]). Reason: '[fields["reason"]]'. This ban [lowertext(expire_info)]."
+						break
+			else
+				for (var/client/C in clients)
+					if (C.ckey == ckey)
+						C << "<span class = 'userdanger'>You have been [fields["type"]]-banned. Reason: '[fields["reason"]]'. This ban [lowertext(expire_info)]."
+						break
 	else
 		if (banner)
 			banner << "<span class = 'warning'>FAILED to ban [ckey]/[cID]/[ip]! A database error occured.</span>"
 
 /* checking if we're banned & then reject us */
-/client/proc/quickBan_isbanned(var/ban_type = "Server")
-	var/list/bans = database.execute("SELECT * FROM quick_bans WHERE (ckey = '[ckey]' OR cID = '[computer_id]' OR ip = '[address]') AND type == '[ban_type]';", FALSE)
+/client/proc/quickBan_isbanned(var/ban_type = "Server", var/type_specific_info = "nil")
+	var/list/bans = database.execute("SELECT * FROM quick_bans WHERE (ckey = '[ckey]' OR cID = '[computer_id]' OR ip = '[address]') AND type = '[ban_type]';", FALSE)
 	if (islist(bans) && !isemptylist(bans))
 		for (var/x in bans)
 		//	world << "[x] = [bans[x]]"
 			if (x == "expire_realtime" && text2num(bans[x]) <= world.realtime)
-				database.execute("DELETE FROM quick_bans WHERE UID == '[bans["UID"]]';")
+				database.execute("DELETE FROM quick_bans WHERE UID = '[bans["UID"]]';")
 				continue
 			if (x == "reason")
-				return bans[x]
+				if (bans.Find("expire_realtime") && text2num(bans["expire_realtime"]) <= world.realtime)
+					database.execute("DELETE FROM quick_bans WHERE UID = '[bans["UID"]]';")
+					continue
+				if (bans.Find("type_specific_info"))
+					if (bans["type_specific_info"] == type_specific_info)
+						return bans[x]
+				return FALSE
 	return FALSE
 
 /* check if we're banned and tell us why we're banned */
@@ -236,24 +257,24 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 	return FALSE
 
 /* kick us if we just got banned */
-/client/proc/quickBan_kicked(var/bantype, var/reason)
-	src << "<span class = 'userdanger'>You have been given a [lowertext(bantype)]-ban. Reason: '[reason]'</span>"
+/client/proc/quickBan_kicked(var/bantype, var/reason, var/expire_info)
+	src << "<span class = 'userdanger'>You have been given a [lowertext(bantype)]-ban. Reason: '[reason]'. [expire_info].</span>"
 	del src
 
 /* check if we're an admin trying to quickBan another admin */
 /client/proc/trying_to_quickBan_admin(_ckey, cID, ip)
 	// check to see if we're trying to ban an admin by ckey
-	var/list/admincheck = database.execute("SELECT * FROM admin WHERE ckey == '[_ckey]';")
+	var/list/admincheck = database.execute("SELECT * FROM admin WHERE ckey = '[_ckey]';")
 	if (islist(admincheck) && !isemptylist(admincheck))
 		src << "<span class = 'danger'>You can't ban admins!</span>"
 		return 1
 
-	var/list/playercheck = database.execute("SELECT * FROM connection_log WHERE ckey == '[_ckey]' OR ip == '[ip]' OR computerid == '[cID]';")
+	var/list/playercheck = database.execute("SELECT * FROM connection_log WHERE ckey = '[_ckey]' OR ip = '[ip]' OR computerid = '[cID]';")
 	if (islist(playercheck) && !isemptylist(playercheck))
 		if (playercheck.Find("ckey"))
 			var/player_ckey = playercheck["ckey"]
 			if (player_ckey)
-				admincheck = database.execute("SELECT * FROM admin WHERE ckey == '[player_ckey]';")
+				admincheck = database.execute("SELECT * FROM admin WHERE ckey = '[player_ckey]';")
 				if (islist(admincheck) && !isemptylist(admincheck))
 					src << "<span class = 'danger'>You can't ban admins!</span>"
 					return 1

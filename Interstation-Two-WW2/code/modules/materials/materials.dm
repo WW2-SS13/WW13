@@ -312,6 +312,12 @@ var/list/name_to_material
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
 
+/material/stone/stonebrick
+	name = "brick"
+	icon_base = "newbrick"
+	icon_colour = "#808080"
+	stack_type = /obj/item/stack/material/marble
+
 /material/stone/marble
 	name = "marble"
 	icon_colour = "#AAAAAA"
@@ -542,7 +548,7 @@ var/list/name_to_material
 
 /material/iron
 	name = "iron"
-	icon_base = "wood"
+	icon_base = "metal"
 	stack_type = /obj/item/stack/material/iron
 	icon_colour = "#5C5454"
 	weight = 22
@@ -592,6 +598,11 @@ var/list/name_to_material
 	sheet_singular_name = "plank"
 	sheet_plural_name = "planks"
 	hitsound = 'sound/effects/woodhit.ogg'
+
+/material/wood/hard
+	name = "hardwood"
+	integrity = 400
+	hardness = 200
 
 /material/wood/holographic
 	name = "holowood"

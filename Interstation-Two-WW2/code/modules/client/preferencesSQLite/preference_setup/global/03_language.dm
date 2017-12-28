@@ -47,9 +47,8 @@
 
 
 /datum/category_item/player_setup_item/player_global/language/update_setup()
-	if(pref.internal_table["version"] == 11)
-		var/list/prefixes = pref["language_prefixes"]
-		if(istype(prefixes) && prefixes.len)
-			pref["language_prefixes"] = prefixes.Copy()
-		return 1
+	var/list/prefixes = pref["language_prefixes"]
+	if(istype(prefixes) && prefixes.len)
+		pref["language_prefixes"] = prefixes.Copy()
+	return 1
 

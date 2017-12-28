@@ -379,7 +379,6 @@ proc/admin_notice(var/message, var/rights)
 		return
 	if(confirm == "Yes")
 		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>"
-		world << "<span class='notice'>Click this link to rejoin: <b>byond://[world.address]:[world.port]</b></span>"
 		log_admin("[key_name(usr)] initiated a reboot.")
 		sleep(50)
 		world.Reboot()
@@ -572,7 +571,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
 	config.allow_admin_spawning = !(config.allow_admin_spawning)
-	message_admins("\blue Toggled admin item spawning to [config.allow_admin_spawning].")
+	message_admins("\blue[key_name(usr)] toggled admin item spawning to [config.allow_admin_spawning].")
 
 
 /datum/admins/proc/adrev()

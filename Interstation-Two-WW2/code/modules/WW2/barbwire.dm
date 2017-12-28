@@ -16,7 +16,6 @@
 /obj/structure/barbwire/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return 1
 
-
 /obj/structure/barbwire/proc/check_cover(obj/item/projectile/P, turf/from)
 	var/turf/cover = get_turf(src)
 	if(!cover)
@@ -30,7 +29,6 @@
 		return 0
 	else
 		return 1
-
 
 /obj/structure/barbwire/Crossed(AM as mob|obj)
 	if(ismob(AM))
@@ -86,7 +84,7 @@
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 			qdel(src)
 			return
-			
+
 	else if(istype(W, /obj/item/weapon/material/knife))
 		if(anchored)
 			user.visible_message("\blue \The [user] starts to cut through \the [src] with [W].")
@@ -106,7 +104,7 @@
 						affecting = H.get_organ("l_hand")
 					else
 						affecting = H.get_organ("r_hand")
-						
+
 					user << "\red <B>Your hand slips, causing \the [src] to cut your [affecting.name] open!</B>"
 					playsound(src.loc, 'sound/effects/glass_step.ogg', 50, 1)
 					if(affecting.status & ORGAN_ROBOT)

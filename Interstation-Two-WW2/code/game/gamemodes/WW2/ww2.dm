@@ -1,7 +1,11 @@
 /datum/game_mode/ww2
 	name = "World War 2"
 	config_tag = "WW2"
+	#ifdef DEBUG
 	required_players = 1
+	#else
+	required_players = 2
+	#endif
 	round_description = ""
 	extended_round_description = ""
 
@@ -32,8 +36,14 @@
 
 	var/season = "SPRING"
 
+//#define WINTER_TESTING
+
 /datum/game_mode/ww2/pre_setup()
+	#ifdef WINTER_TESTING
+	season = "WINTER"
+	#else
 	season = pick("SPRING", "SUMMER", "FALL", "WINTER")
+	#endif
 
 // because we don't use readying up, we override can_start()
 /datum/game_mode/ww2/can_start(var/do_not_spawn)

@@ -128,14 +128,17 @@
 
 /mob/living/carbon/human/Stun(amount)
 	if(HULK in mutations)	return
+	handle_zoom_stuff(1)
 	..()
 
 /mob/living/carbon/human/Weaken(amount)
 	if(HULK in mutations)	return
+	handle_zoom_stuff(1) // prevents gun deletion bug
 	..()
 
 /mob/living/carbon/human/Paralyse(amount)
 	if(HULK in mutations)	return
+	handle_zoom_stuff(1)
 	// Notify our AI if they can now control the suit.
 	..()
 

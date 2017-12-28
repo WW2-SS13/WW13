@@ -62,20 +62,95 @@ proc/getsensorlevel(A)
 
 //TODO: Integrate defence zones and targeting body parts with the actual organ system, move these into organ definitions.
 
-//The base miss chance for the different defence zones
-var/list/global/base_miss_chance = list(
-	"head" = 40,
-	"chest" = 10,
-	"groin" = 75,
-	"l_leg" = 50,
-	"r_leg" = 50,
-	"l_arm" = 50,
-	"r_arm" = 50,
-	"l_hand" = 90,
-	"r_hand" = 90,
-	"l_foot" = 90,
-	"r_foot" = 90,
+/* This is the new accuracy system. Guns have different miss chances
+ * depending on how far you were from the target when you fired. When a
+ * gun is scoped, all the miss chances "move down one", that is, longrange
+ * becomes verylongrange. Accuracy/scoped accuracy variables are not meaningless,
+ * but they aren't as useful at long ranges anymore */
+
+/* since head shots are usually instant kills, they've been heavily nerfed.
+ * Although they're still almost guaranteed at point-blank range. */
+
+/* - kachnov */
+
+var/list/global/hit_chances = list(
+
+	// 0 to 1 tile away
+	"pointblankrange" = list(
+		"head" = 95,
+		"chest" = 99,
+		"groin" = 98,
+		"l_leg" = 98,
+		"r_leg" = 98,
+		"l_arm" = 98,
+		"r_arm" = 98,
+		"l_hand" = 98,
+		"r_hand" = 98,
+		"l_foot" = 98,
+		"r_foot" = 98,
+		"default" = 99),
+
+	// 2 to 3 tiles away
+	"shortrange" = list(
+		"head" = 30,
+		"chest" = 66,
+		"groin" = 45,
+		"l_leg" = 55,
+		"r_leg" = 55,
+		"l_arm" = 55,
+		"r_arm" = 55,
+		"l_hand" = 40,
+		"r_hand" = 40,
+		"l_foot" = 40,
+		"r_foot" = 40,
+		"default" = 66),
+
+	// 4 to 6 tiles away
+	"medrange" = list(
+		"head" = 10,
+		"chest" = 33,
+		"groin" = 25,
+		"l_leg" = 30,
+		"r_leg" = 30,
+		"l_arm" = 30,
+		"r_arm" = 30,
+		"l_hand" = 20,
+		"r_hand" = 20,
+		"l_foot" = 20,
+		"r_foot" = 20,
+		"default" = 33),
+
+	// 7 to INFINITY tiles away
+	"longrange" = list(
+		"head" = 5,
+		"chest" = 20,
+		"groin" = 15,
+		"l_leg" = 17,
+		"r_leg" = 17,
+		"l_arm" = 17,
+		"r_arm" = 17,
+		"l_hand" = 13,
+		"r_hand" = 13,
+		"l_foot" = 13,
+		"r_foot" = 13,
+		"default" = 20),
 )
+
+/proc/get_miss_chance(var/zone, var/distance, var/accuracy, var/miss_modifier)
+	. = 0
+	switch (distance)
+		if (0 to 1)
+			. = 100 - hit_chances["pointblankrange"][zone]
+		if (2 to 3)
+			. =  100 - hit_chances["shortrange"][zone]
+		if (5 to 6)
+			. =  100 - hit_chances["medrange"][zone]
+		if (7 to INFINITY)
+			. =  100 - hit_chances["longrange"][zone]
+
+	. += miss_modifier
+	. -= (accuracy*6)
+	. = max(., 0)
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
@@ -132,7 +207,7 @@ var/list/global/organ_rel_size = list(
 // Emulates targetting a specific body part, and miss chances
 // May return null if missed
 // miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0, var/ranged_attack=0, var/range = -1)
+/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance = 0, var/ranged_attack=0, var/range = -1)
 
 	zone = check_zone(zone)
 
@@ -145,45 +220,14 @@ var/list/global/organ_rel_size = list(
 			if(G.state >= GRAB_AGGRESSIVE)
 				return zone
 
-	var/miss_chance = 10
-
-	if (zone in base_miss_chance)
-		miss_chance = base_miss_chance[zone]
-
-	miss_chance = max(miss_chance + miss_chance_mod, 0)
-
 	if (target.lying) //you should probably hit someone who is lying.
 		miss_chance /= 5
 
 	if (target.buckled) //frankly, not being able to hit a buckled dude is stupid as fuck - kachnov
 		miss_chance = 0
 
-	// makes missing at a close distance much less stupid - Kachnov
-
-	if (range != -1)
-		if (range < 6 && range > 3)
-			if (!target.lying)
-				miss_chance/=2
-			else
-				miss_chance = 0
-		else if (range < 3)
-			if (!target.lying)
-				miss_chance/=4
-			else
-				miss_chance = 0
-		else if (range > 6)
-			miss_chance*=1.25
-
-	// don't let people miss more than 95% of the time, no matter what.
-	miss_chance = min(miss_chance, 95)
-
 	if(prob(miss_chance))
-		if(prob(90))
-			return null
-		else if (prob(90)) // stop missing so much plz - Kachnov
-			return zone
-		else
-			return pick(base_miss_chance)
+		return null
 	return zone
 
 

@@ -23,6 +23,9 @@ HUBTESTING_PORT 12346
 ## Put on byond hub: uncomment this to put your server on the byond hub.
 HUB
 
+## Allow roundend jojo memes 
+#JOJOREFERENCE
+
 # Lobby time: This is the amount of time between rounds that players have to setup their characters and be ready.
 LOBBY_COUNTDOWN 90
 
@@ -151,6 +154,9 @@ CHECK_RANDOMIZER
 
 ## Set to prevent anyone but those ckeys listed in config/whitelist.txt and config/admins.txt from joining your server
 USEWHITELIST
+
+## Set this to give people in the 'teststaff' whitelist admin permissions
+ALLOW_TESTING_STAFF
 
 ## Jobs that can be whitelisted are whitelisted, according to a new DB whitelists table
 #USE_JOB_WHITELIST

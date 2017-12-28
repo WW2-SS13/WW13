@@ -64,6 +64,7 @@ var/list/gamemode_cache = list()
 	var/respawn_delay = 30
 	var/guest_jobban = 1
 	var/usewhitelist = 0
+	var/allow_testing_staff = 0
 	var/use_job_whitelist =  0
 	var/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
 	var/show_mods = 0
@@ -201,6 +202,7 @@ var/list/gamemode_cache = list()
 	// hub stuff
 
 	var/hub = 0
+	var/jojoreference = 0
 	var/testing_port = -1
 	var/hubtesting_port = -2
 	var/open_hub_discord_in_new_window = 1
@@ -374,6 +376,8 @@ var/list/gamemode_cache = list()
 
 				if ("hub")
 					config.hub = 1
+				if ("jojoreference")
+					config.jojoreference = 1
 				if ("testing_port")
 					config.testing_port = text2num(value)
 				if ("hubtesting_port")
@@ -624,6 +628,9 @@ var/list/gamemode_cache = list()
 
 				if ("usewhitelist")
 					config.usewhitelist = 1
+
+				if ("allow_testing_staff")
+					config.allow_testing_staff = 1
 
 				if ("use_job_whitelist")
 					config.use_job_whitelist = 1

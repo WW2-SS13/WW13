@@ -64,6 +64,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 				if(pregame_timeleft == 20)
 					if (roundstart_tips.len)
 						world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(roundstart_tips)]</span>"
+						roundstart_tips.Cut() // prevent tip spam if we're paused here
 				if(pregame_timeleft <= 0)
 					current_state = GAME_STATE_SETTING_UP
 		while (!setup())

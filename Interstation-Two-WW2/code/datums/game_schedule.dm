@@ -80,7 +80,7 @@ var/datum/game_schedule/global_game_schedule = null
 	forceClosed = 1
 	update()
 	for (var/client/C in clients)
-		if (!C.holder)
+		if (!C.holder && !C.isPatron("$10+"))
 			C << "<span class = 'userdanger'>The server has been closed.</span>"
 			spawn (1)
 				del C
@@ -102,17 +102,22 @@ var/datum/game_schedule/global_game_schedule = null
 	loadToDB()
 
 /datum/game_schedule/proc/loadToDB()
-	var/list/tablecheck = database.execute("SELECT * FROM misc WHERE key == 'game_schedule_metadata';")
+	var/list/tablecheck = database.execute("SELECT * FROM misc WHERE key = 'game_schedule_metadata';")
 	if (!islist(tablecheck) || isemptylist(tablecheck))
-		database.execute("INSERT INTO misc (key, val) VALUES ('game_schedule_metadata', '');")
-	database.execute("UPDATE misc WHERE key = 'game_schedule_metadata' SET val = '[forceOpened]&[forceClosed]';")
+		var/emptystr = ""
+		database.execute("INSERT INTO misc (key, val) VALUES ('game_schedule_metadata', '[emptystr]');")
+	spawn (5)
+		database.execute("UPDATE misc SET val = '[forceOpened]&[forceClosed]' WHERE key = 'game_schedule_metadata';")
 
 /datum/game_schedule/proc/loadFromDB()
+	if (!database)
+		sleep(100)
 	var/list/tables = database.execute("SELECT * FROM misc WHERE key = 'game_schedule_metadata';")
 	if (islist(tables) && !isemptylist(tables))
-		var/list/metadata = splittext(tables["val"], ";")
-		forceOpened = text2num(metadata[1])
-		forceClosed = text2num(metadata[2])
+		if (tables["val"])
+			var/list/metadata = splittext(tables["val"], "&")
+			forceOpened = text2num(metadata[1])
+			forceClosed = text2num(metadata[2])
 
 /datum/game_schedule/proc/getCurrentTime(var/unit = "hours")
 	// first, get the number of seconds that have elapsed since 00:00:00 today

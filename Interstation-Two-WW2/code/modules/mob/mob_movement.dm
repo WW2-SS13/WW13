@@ -282,6 +282,17 @@
 	if(!mob.canmove)
 		return
 
+	if (mob_is_living)
+		if (locate(/obj/structure/classic_window_frame) in mob.loc)
+			mob.visible_message("<span class = 'warning'>[mob] starts climbing through the window frame.</span>")
+			mob.canmove = 0
+			var/oloc = mob.loc
+			sleep(rand(25,35))
+			mob.canmove = 1
+			if (mob.lying || mob.stat == DEAD || mob.stat == UNCONSCIOUS || mob.loc != oloc)
+				return
+			mob.visible_message("<span class = 'warning'>[mob] climbs through the window frame.</span>")
+
 	// we can probably move now, so update our eye for ladders
 	if (mob_is_human)
 		var/mob/living/carbon/human/H = mob

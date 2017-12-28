@@ -41,7 +41,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	if (isliving(am))
 		var/mob/living/L = am
 		if (fire)
-			fire.Burn(L)
+			fire.Burn(L, 0.33) // sucks to die by trying to walk out of fire
 
 /turf/create_fire(fl, temp, spread = 1)
 
@@ -78,14 +78,14 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	layer = MOB_LAYER + 0.01 // above train pseudoturfs, stairs, and now MOBs
 
 	var/firelevel = 1
-	var/default_damage = 6 // 10 was really fucking overpowered if you crossed it a lot
+	var/default_damage = 2
 	var/spread_range = 1
 	var/spread_prob = 10
 	var/spread_fuel_prob = 80
 	var/temperature = 500
 	var/default_temperature = 500
 
-	var/time_limit = 4
+	var/time_limit = 2
 
 	var/ticks = 0
 
@@ -205,7 +205,12 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	processing_objects += src
 
 	spawn (200)
-		qdel(src) // crappy workaround because fire won't process aaa
+		if (src)
+			qdel(src) // crappy workaround because fire won't process aaa
+
+	for (var/obj/fire/F in get_turf(src))
+		if (F != src)
+			qdel(F)
 
 /obj/fire/proc/fire_color(var/env_temperature)
 	//var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)
@@ -228,17 +233,17 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 /obj/fire/proc/get_damage()
 	return (temperature/default_temperature) * default_damage
 
-/obj/fire/proc/Burn(var/mob/living/L)
+/obj/fire/proc/Burn(var/mob/living/L, var/power = 1.0)
 	if (!istype(L))
 		return
 
-	var/damage = get_damage()
+	var/damage = get_damage() * power
 
 	if (prob((temperature/default_temperature) * 40))
 		L.fire_act()
 
 	if (!istype(L, /mob/living/carbon/human))
-		L.apply_damage(damage*5, BURN)
+		L.apply_damage(damage, BURN)
 	else
 		var/mob/living/carbon/human/H = L
 

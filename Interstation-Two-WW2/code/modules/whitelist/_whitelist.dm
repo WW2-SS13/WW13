@@ -21,7 +21,8 @@ var/list/global_whitelists[50]
 /proc/save_all_whitelists()
 	for (var/key in global_whitelists)
 		var/datum/whitelist/W = global_whitelists[key]
-		W.save()
+		if (W)
+			W.save()
 
 /proc/save_whitelist(whatkey)
 	for (var/key in global_whitelists)
@@ -41,8 +42,6 @@ var/list/global_whitelists[50]
 /datum/whitelist/New()
 	..()
 	load()
-	if (config.usewhitelist)
-		enabled = 1
 
 // load the whitelist from the database
 /datum/whitelist/proc/load()
@@ -63,6 +62,10 @@ var/list/global_whitelists[50]
 
 // add a client or ckey to the whitelist
 /datum/whitelist/proc/add(_arg, var/list/extras = list())
+
+	if (!extras.len)
+		remove(_arg) // no duplicates
+
 	if (data)
 		data += "&"
 	if (isclient(_arg))
@@ -125,4 +128,14 @@ var/list/global_whitelists[50]
 
 /datum/whitelist/server
 	name = "server"
+/datum/whitelist/server/New()
+	..()
+	if (config.usewhitelist)
+		enabled = 1
 
+/datum/whitelist/teststaff
+	name = "teststaff"
+/datum/whitelist/teststaff/New()
+	..()
+	if (config.allow_testing_staff)
+		enabled = 1

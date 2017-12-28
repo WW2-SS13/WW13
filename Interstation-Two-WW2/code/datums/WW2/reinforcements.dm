@@ -143,10 +143,10 @@ var/datum/reinforcements/reinforcements_master
 
 	var/sname[0]
 
-	sname[RUSSIAN] = "the Russians"
-	sname[GERMAN] = "the Germans"
+	sname[RUSSIAN] = "Russian"
+	sname[GERMAN] = "German"
 
-	np << "<span class = 'danger'>You have joined a queue for [replacetext(sname[side], "s", "")] reinforcements, please wait until the timer reaches 0 to spawn.</span>"
+	np << "<span class = 'danger'>You have joined a queue for [sname[side]] reinforcements, please wait until the timer reaches 0 to spawn.</span>"
 	var/list/l = reinforcement_pool[side]
 	l += np
 
@@ -185,12 +185,12 @@ var/datum/reinforcements/reinforcements_master
 		return ret
 	for (var/mob/new_player/np in l)
 		if (np)
-			np.LateSpawnForced("Sovietsky Soldat", 1)
+			np.LateSpawnForced("Sovietsky Soldat", 1, 1)
 			reinforcements_granted[RUSSIAN] = reinforcements_granted[RUSSIAN]+1
 			ret = 1
 	reinforcement_pool[RUSSIAN] = list()
 	lock_check()
-	world << "<font size=3>Fireteams report: New Russian squadron has been deployed.</font>"
+	world << "<font size=3>A new Russian squadron has been deployed.</font>"
 	return ret
 
 /datum/reinforcements/proc/reset_german_timer()
@@ -206,12 +206,12 @@ var/datum/reinforcements/reinforcements_master
 		return ret
 	for (var/mob/new_player/np in l)
 		if (np) // maybe helps with logged out nps
-			np.LateSpawnForced("Soldat", 1)
+			np.LateSpawnForced("Soldat", 1, 1)
 			reinforcements_granted[GERMAN] = reinforcements_granted[GERMAN]+1
 			ret = 1
 	reinforcement_pool[GERMAN] = list()
 	lock_check()
-	world << "<font size=3>Fireteams report: New German squadron has been deployed.</font>"
+	world << "<font size=3>A new German squadron has been deployed.</font>"
 	return ret
 
 /datum/reinforcements/proc/r_german()

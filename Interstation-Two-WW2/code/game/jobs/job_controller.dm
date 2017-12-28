@@ -300,12 +300,6 @@ var/global/list/fallschirm_landmarks = list()
 				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 1
 
-		if (!fallschirm_landmarks.len)
-			german_soldat_slots += german_paratrooper_slots
-			german_paratrooper_slots = 0 // forgot why this is even here - kachnovv
-			for (var/datum/job/german/paratrooper/j in occupations)
-				if (istype(j))
-					j.total_positions = 0
 
 		// useful information
 
@@ -353,17 +347,31 @@ var/global/list/fallschirm_landmarks = list()
 			if (istype(j, /datum/job/german/flamethrower_man))
 				if (clients.len <= 15 || !WW2_train_check())
 					j.total_positions = 0
+					for (var/obj/item/weapon/storage/backpack/flammenwerfer/F in world)
+						qdel(F)
+
 			else if (istype(j, /datum/job/german/artyman))
 				if (!locate(/obj/machinery/artillery) in world)
 					j.total_positions = 0
+
 			else if (istype(j, /datum/job/german/anti_tank_crew) || istype(j, /datum/job/german/tankcrew))
-				if (!locate(/obj/tank) in world)
-					j.total_positions = 0
+				spawn (5)
+					if (!locate(/obj/tank) in world)
+						j.total_positions = 0
+
+			else if (istype(j, /datum/job/german/paratrooper) && !fallschirm_landmarks.len)
+				german_soldat_slots += german_paratrooper_slots
+				german_paratrooper_slots = 0
+				j.total_positions = 0
 
 		for (var/datum/job/russian/j in occupations)
 			if (istype(j, /datum/job/russian/anti_tank_crew) || istype(j, /datum/job/russian/tankcrew))
 				if (!locate(/obj/tank) in world)
 					j.total_positions = 0
+
+		for (var/datum/job/j in occupations)
+			if (j.title == "generic job")
+				j.total_positions = 0
 
 		// RUSSIAN jobs
 
@@ -676,21 +684,23 @@ var/global/list/fallschirm_landmarks = list()
 		return player.original_job.title
 	//	return player.client.prefs.GetPlayerAltTitle(GetJob(rank))
 
-	proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0)
+	proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0, var/reinforcements = 0)
 		Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
-		if(player && player.mind && rank)
+		if(player && rank)
 			var/datum/job/job = GetJob(rank)
 			if(!job)	return 0
 			if (player.client && player.client.quickBan_isbanned(job)) return 0
 			if(!job.player_old_enough(player.client)) return 0
 			var/position_limit = job.total_positions
-			if((job.current_positions < position_limit) || position_limit == -1)
+			if((job.current_positions < position_limit) || position_limit == -1 || reinforcements)
 				Debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
-				player.mind.assigned_role = rank
-				player.mind.assigned_job = job
+				if (player.mind)
+					player.mind.assigned_role = rank
+					player.mind.assigned_job = job
 				player.original_job = job
 				player.original_job_title = player.original_job.title
-				player.mind.role_alt_title = GetPlayerAltTitle(player, rank)
+				if (player.mind)
+					player.mind.role_alt_title = GetPlayerAltTitle(player, rank)
 				unassigned -= player
 				job.current_positions++
 				return 1

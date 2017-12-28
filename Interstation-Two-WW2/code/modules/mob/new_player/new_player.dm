@@ -125,7 +125,7 @@
 
 	if(href_list["observe"])
 
-		if (client && client.quickBan_isbanned("Observer"))
+		if (client && client.quickBan_isbanned("Observe"))
 			src << "<span class = 'danger'>You're banned from observing.</span>"
 			return 1
 
@@ -341,8 +341,8 @@
 		return 1
 	return 0
 
-/mob/new_player/proc/factionBanned(title)
-	if(client && client.quickBan_isbanned("Faction", title))
+/mob/new_player/proc/factionBanned(faction)
+	if(client && client.quickBan_isbanned("Faction", faction))
 		return 1
 	return 0
 
@@ -351,12 +351,12 @@
 		return 1
 	return 0
 
-/mob/new_player/proc/LateSpawnForced(rank, needs_random_name = 0)
+/mob/new_player/proc/LateSpawnForced(rank, needs_random_name = 0, var/reinforcements = 0)
 
 	spawning = 1
 	close_spawn_windows()
 
-	job_master.AssignRole(src, rank, 1)
+	job_master.AssignRole(src, rank, 1, reinforcements)
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 
@@ -468,8 +468,7 @@
 		var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
 
 		if (job.is_paratrooper)
-			job_is_available = allow_paratroopers
-
+			job_is_available = (allow_paratroopers && fallschirm_landmarks.len)
 
 		if (!job.validate(src))
 			job_is_available = 0
@@ -660,7 +659,8 @@
 	return "Human"
 
 /mob/new_player/get_gender()
-	if(!client || !client.prefs) ..()
+	if(!client || !client.prefs)
+		return ..()
 	return client.prefs.gender
 
 /mob/new_player/is_ready()

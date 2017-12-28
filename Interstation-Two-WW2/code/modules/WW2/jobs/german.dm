@@ -26,7 +26,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H), slot_r_hand)
-	world << "<b>[H.client.prefs.german_name] is the [title] of the German forces!</b>"
+	world << "<b><big>[H.client.prefs.german_name] is the [title] of the German forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the German forces and lead them to victory, while working alongside the <b>SS-Untersharffuhrer</b>. You take orders from the <b>German High Command</b>.</span>"
 	H.give_radio()
 	return 1
@@ -334,6 +334,23 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the master of the dogs.</span>"
+	H << "<span class = 'warning'>See your notes for dog commands.</span>"
+
+	H.add_memory("As a Hunden Trainer, you have access to a number of dog commands. To use them, simply shout! them near a dog which belongs to your faction. These are listed below:")
+	H.add_memory("")
+	H.add_memory("defend! - attack armed enemies.")
+	H.add_memory("attack! - attack armed or unarmed enemies.")
+	H.add_memory("guard! - attack enemies who come near us.")
+	H.add_memory("patrol! - start patrolling.")
+	H.add_memory("stop patrolling! - stop patrolling.")
+	H.add_memory("be passive! - only attack in self defense.")
+	H.add_memory("stop everything! - stop patrolling and be passive.")
+	H.add_memory("follow! - follow me.")
+	H.add_memory("stop following! - stop following whoever you're following.")
+	H.add_memory("")
+	H.add_memory("Some commands overlap. There are three categories of commands: attack modes, patrol modes, and follow modes. Each type of command can be used in tandem with commands of the other types.")
+	H.add_memory("")
+
 	H.give_radio()
 	return 1
 

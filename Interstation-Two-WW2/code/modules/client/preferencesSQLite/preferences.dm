@@ -19,10 +19,10 @@ var/list/preferences_datums = list()
 	var/UI_style_alpha = 255
 
 	//character preferences
-	var/real_name						//our character's name
-	var/german_name
-	var/russian_name
-	var/ukrainian_name
+	var/real_name = "John Doe"						//our character's name
+	var/german_name = "Hans Schneider"
+	var/russian_name = "Boris Borisov"
+	var/ukrainian_name = "Boris Borisov"
 	var/be_random_name = 0				//whether we are a random name every round
 	var/be_random_name_german = 0
 	var/be_random_name_russian = 0
@@ -33,7 +33,7 @@ var/list/preferences_datums = list()
 	var/ukrainian_gender = MALE // civs
 	var/body_build = "Default"			//character body build name
 	var/age = 30						//age of character
-//	var/spawnpoint = "Cryogenic Storage"//where this character will spawn (0-2).
+
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/backbag = 2						//backpack type
 	var/h_style = "Bald"				//Hair type
@@ -66,20 +66,12 @@ var/list/preferences_datums = list()
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Kanguage prefix keys
 
-		//Some faction information.
-//	var/religion = "None"               //Religious association.
-
-//	var/be_spy = 0
-//	var/be_jew = 0
-
 	//Mob preview
 	var/list/preview_icons = list()
 	var/list/preview_icons_front = list()
 	var/list/preview_icons_back = list()
 	var/list/preview_icons_east = list()
 	var/list/preview_icons_west = list()
-
-//	var/high_job_title = ""
 
 	//Keeps track of preferrence for not getting any wanted jobs
 	var/alternate_option = 0
@@ -90,28 +82,14 @@ var/list/preferences_datums = list()
 	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
 
-//	var/flavor_text = ""
-//	var/list/flavour_texts_robot = list()
-/*
-	var/med_record = ""
-	var/sec_record = ""
-	var/gen_record = ""
-	var/exploit_record = ""*/
 	var/disabilities = 0
 
-//	var/uplinklocation = "PDA"
-
-	// OOC Metadata:
-//	var/metadata = ""
 	var/client/client = null
 	var/client_ckey = null
 	var/client_isguest = 0
 
-	// for debugging purposes
 	var/list/internal_table = list()
 
-//	var/savefile/loaded_preferences
-//	var/savefile/loaded_character
 	var/datum/category_collection/player_setup_collection/player_setup
 
 	var/current_character_type = "N/A"
@@ -133,13 +111,17 @@ var/list/preferences_datums = list()
      * preference saving thing assumes that the only things that change
      * are those which are changed by the user, so if we randomize these
      * values we will end up loading the default anyway */
-
 	/*
+
 	gender = pick(MALE, FEMALE)
 	german_gender = pick(MALE, FEMALE)
 	russian_gender = pick(MALE, FEMALE)
 	ukrainian_gender = pick(MALE, FEMALE)
 	real_name = random_name(gender,species)
+
+	/* changing names from the default is neccessary, however, and it occurs
+	 * below. */
+
 
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
    */
@@ -153,6 +135,17 @@ var/list/preferences_datums = list()
 		// load our first slot, if we have one
 		if (preferences_exist(1))
 			load_preferences(1)
+		else
+			real_name = random_name(gender, species)
+			german_name = random_german_name(gender, species)
+			russian_name = random_russian_name(gender, species)
+			ukrainian_name = random_ukrainian_name(gender, species)
+			remember_preference("real_name", real_name)
+			remember_preference("german_name", german_name)
+			remember_preference("russian_name", russian_name)
+			remember_preference("ukrainian_name", ukrainian_name)
+			save_preferences(1)
+
 		// otherwise, keep using our default values
 
 /datum/preferences/Del()
@@ -499,6 +492,8 @@ var/list/preferences_datums = list()
 		. = TRUE
 	if(.)
 		cp.toggled(mob, enabled)
+
+	prefs.save_preferences(prefs.current_slot)
 
 /mob/proc/is_preference_enabled(var/preference)
 	if(!client)

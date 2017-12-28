@@ -49,6 +49,17 @@
 		cmd_admin_irc_pm(href_list["irc_msg"])
 		return
 
+	// see quickBan.dm
+	if (href_list["quickBan_removeBan"])
+		var/UID = href_list["quickBan_removeBan_UID"]
+		if (UID)
+			var/confirm = input("Are you sure you want to remove the ban with the UID '[UID]' ?") in list("Yes", "No")
+			if (confirm == "Yes")
+				if (database.execute("REMOVE * FROM quick_bans WHERE UID == '[UID]';"))
+					var/M = "[key_name(usr)] removed quickBan '<b>[UID]</b>' from the database. It belonged to [href_list["ckey"]]/[href_list["cID"]]/[href_list["ip"]]"
+					log_admin(M)
+					message_admins(M)
+
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
 		href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
@@ -388,8 +399,17 @@ client/verb/character_setup()
 			if (isPatron("$10+"))
 				return 1
 
-	var/list/tables = database.execute("SELECT * FROM patreon WHERE (user == '[ckey]' OR user == '[key]') AND pledge == '[pledge]';")
+	var/list/tables = database.execute("SELECT * FROM patreon WHERE (user = '[ckey]' OR user = '[key]') AND pledge = '[pledge]';")
 	if (islist(tables) && !isemptylist(tables))
 		return 1
 
 	return 0
+
+/client/proc/highest_patreon_level()
+	if (isPatron("$3+"))
+		if (isPatron("$5+"))
+			if (isPatron("$10+"))
+				return "$10+"
+			return "$5+"
+		return "$3+"
+	return null
