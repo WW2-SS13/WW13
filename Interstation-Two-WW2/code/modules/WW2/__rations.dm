@@ -15,6 +15,11 @@ var/added_plants_to_rations = 0
 	vodka.pixel_y = 0
 	return vodka
 
+/proc/beer_ration()
+	var/obj/beer = new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer
+	beer.pixel_x = 0
+	beer.pixel_y = 0
+	return beer
 
 /proc/new_ration(faction, sort)
 

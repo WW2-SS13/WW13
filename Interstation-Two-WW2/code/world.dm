@@ -244,7 +244,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		serverswap_close_server()
 
 	// wait for serverswap to do its magic - kachnov
-	spawn (50)
+	spawn (90)
 
 		if (serverswap.Find("snext"))
 			if (serverswap.Find(serverswap["snext"]))
@@ -261,7 +261,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			if (config.jojoreference)
 				roundabout()
 
-		spawn (50)
+		spawn (10)
 
 			processScheduler.stop()
 
@@ -510,39 +510,31 @@ var/setting_up_db_connection = 0
 					wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"
 					if (fexists(wdir))
 						fdel(wdir)
-				else
+			/*	else
 					F = file("test_[waiting_on_id].txt")
 					fdel(F)
-					F << "hello world!"
+					F << "hello world!"*/
 			if (1) // we're going to send updates every second in the form of text files telling the server after us what to do
 
-				if (!serverswap_closed)
-
+		/*		if (!serverswap_closed)
 					// delete the other file, if it exists
 					if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"))
 						DEBUG_SERVERSWAP("13.29")
-						fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt")
+						fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt")*/
 
-					wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt"
-					F = file(wdir)
-					fdel(F)
-					F << "testing"
-					DEBUG_SERVERSWAP("13.3: [wdir]")
+				wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt"
+				F = file(wdir)
+				fdel(F)
+				F << "testing"
+				DEBUG_SERVERSWAP("13.3: [wdir]")
 				// otherwise do nothing - code moved to serverswap_close_server()
 
 		sleep(10)
-/*
-#ifdef SERVERSWAP_DEBUGGING
-/mob/verb/call_serverswap_close_server()
-	set category = "Debugging"
-	serverswap_pre_close_server()
-	spawn (20)
-		serverswap_close_server()
-#endif
-*/
+
 /proc/serverswap_pre_close_server()
-	// don't let the loop delete any file we create
+	// don't let the loop delete any file we create or make any new files
 	serverswap_closed = 1
+	serverswap_open_status = 0
 
 /proc/serverswap_close_server()
 
@@ -553,6 +545,3 @@ var/setting_up_db_connection = 0
 	var/F = file("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt")
 	fdel(F)
 	F << "testing"
-
-	// time to close this server
-	serverswap_open_status = 0

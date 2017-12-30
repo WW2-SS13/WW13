@@ -274,6 +274,13 @@
 			else
 				contents += water_ration()
 
+	else if (findtext(textpath, "alcohol"))
+		for (var/v in 1 to rand(20,30))
+			if (findtext(textpath, "soviet"))
+				contents += vodka_ration()
+			else
+				contents += beer_ration()
+
 /obj/structure/closet/crate/rations/german_solids
 	name = "Rations: solids"
 
@@ -286,6 +293,9 @@
 /obj/structure/closet/crate/rations/german_meat
 	name = "Rations: meat"
 
+/obj/structure/closet/crate/rations/german_alcohol
+	name = "Rations: bier"
+
 /obj/structure/closet/crate/rations/soviet_solids
 	name = "Rations: solids"
 
@@ -297,6 +307,9 @@
 
 /obj/structure/closet/crate/rations/soviet_meat
 	name = "Rations: meat"
+
+/obj/structure/closet/crate/rations/soviet_alcohol
+	name = "Rations: vodka"
 
 /obj/structure/closet/crate/rations/water
 	name = "Rations: H20"
