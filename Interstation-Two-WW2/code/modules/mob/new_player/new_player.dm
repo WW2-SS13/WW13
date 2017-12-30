@@ -209,8 +209,8 @@
 				src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
 				return 0
 
-		if (next_normal_respawn > world.time)
-			var/wait = (next_normal_respawn-world.time)/60
+		if (client.next_normal_respawn > world.time)
+			var/wait = (client.next_normal_respawn-world.time)/60
 			if (check_rights(R_ADMIN, 0))
 				if ((input("If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
 					goto latechoices
