@@ -40,10 +40,24 @@
 	if(isGlass && istype(M) && M.a_intent == I_HURT)
 		var/throw_dist = get_dist(throw_source, loc)
 		if(speed >= throw_speed && smash_check(throw_dist)) //not as reliable as smashing directly
+			var/alcohol_power = calculate_alcohol_power()
 			if(reagents)
 				hit_atom.visible_message("<span class='notice'>The contents of \the [src] splash all over [hit_atom]!</span>")
 				reagents.splash(hit_atom, reagents.total_volume)
-			src.smash(loc, hit_atom)
+			smash(loc, hit_atom, alcohol_power)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/calculate_alcohol_power()
+	. = 0
+	for (var/datum/reagent/R in reagents.reagent_list)
+		if (istype(R, /datum/reagent/ethanol))
+			var/datum/reagent/ethanol/E = R
+			. += (min(max(E.strength, 25), 50) * E.volume)
+
+	if (rag)
+		for (var/datum/reagent/R in rag.reagents.reagent_list)
+			if (istype(R, /datum/reagent/ethanol))
+				var/datum/reagent/ethanol/E = R
+				. += (min(max(E.strength, 25), 50) * E.volume)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash_check(var/distance)
 	if(!isGlass || !smash_duration)
@@ -69,7 +83,7 @@
 			smash(get_turf(A), A)
 	..(A, yes)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null)
+/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null, var/alcohol_power = 0)
 
 	if(rag && rag.on_fire)
 
@@ -81,16 +95,7 @@
 
 		#define testmolotovs
 
-		var/explosion_power = 0
-		for (var/datum/reagent/R in reagents.reagent_list)
-			if (istype(R, /datum/reagent/ethanol))
-				var/datum/reagent/ethanol/E = R
-				explosion_power += (min(max(E.strength, 25), 50) * E.volume)
-
-		for (var/datum/reagent/R in rag.reagents.reagent_list)
-			if (istype(R, /datum/reagent/ethanol))
-				var/datum/reagent/ethanol/E = R
-				explosion_power += (min(max(E.strength, 25), 50) * E.volume)
+		var/explosion_power = alcohol_power
 
 		qdel(rag)
 
@@ -200,13 +205,15 @@
 		user.visible_message("<span class='danger'>\The [user] smashes [src] into [target]!</span>")
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
+	var/alcohol_power = calculate_alcohol_power()
 	if(reagents)
 		spawn (1) // wait until after our explosion, if we have one
 			user.visible_message("<span class='notice'>The contents of \the [src] splash all over [target]!</span>")
 			if (reagents) reagents.splash(target, reagents.total_volume)
 
 	//Finally, smash the bottle. This kills (qdel) the bottle.
-	var/obj/item/weapon/broken_bottle/B = smash(target.loc, target)
+
+	var/obj/item/weapon/broken_bottle/B = smash(target.loc, target, alcohol_power)
 	user.put_in_active_hand(B)
 
 //Keeping this here for now, I'll ask if I should keep it here.

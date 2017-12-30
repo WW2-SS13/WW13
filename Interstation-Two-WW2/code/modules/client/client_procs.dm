@@ -142,7 +142,9 @@
 
 	if(!serverswap_open_status)
 		if (serverswap.Find("snext"))
-			src << "<span class = 'userdanger'>This server is not open! Please head over to <b>byond://[world.internet_address]:[serverswap[serverswap["snext"]]]</b> to play.</span>"
+			var/linked = "byond://[world.internet_address]:[serverswap[serverswap["snext"]]]"
+			src << "<span class = 'userdanger'>This server is not open! Redirecting you to the linked server - if it doesn't automatically take you there, click this: <b>[linked]</b>.</span>"
+			src << link(linked)
 		del(src)
 		return 0
 

@@ -896,6 +896,7 @@
 #include "code\modules\WW2\snacks.dm"
 #include "code\modules\WW2\snow.dm"
 #include "code\modules\WW2\storage.dm"
+#include "code\modules\WW2\structures.dm"
 #include "code\modules\WW2\tools.dm"
 #include "code\modules\WW2\vending.dm"
 #include "code\modules\WW2\wax.dm"
@@ -985,5 +986,7 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\city\smallcity.dmm"
+#include "maps\main\level1.dmm"
+#include "maps\main\level2.dmm"
+#include "maps\main\level3.dmm"
 // END_INCLUDE

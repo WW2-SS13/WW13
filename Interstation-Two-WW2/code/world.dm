@@ -248,7 +248,10 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		if (serverswap.Find("snext"))
 			if (serverswap.Find(serverswap["snext"]))
-				world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to join the linked server: <b>byond://[world.internet_address]:[serverswap[serverswap["snext"]]]</b></span>"
+				var/new_address = "byond://[world.internet_address]:[serverswap[serverswap["snext"]]]"
+				world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>If you aren't taken there automatically, click here to join the linked server: <b>[new_address]</b></span>"
+				for (var/client/C in clients)
+					C << link(new_address)
 			else
 				world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to rejoin (It may take a minute or two): <b>byond://[world.internet_address]:[port]</b></span>"
 		else

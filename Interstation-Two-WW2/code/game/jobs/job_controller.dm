@@ -366,8 +366,9 @@ var/global/list/fallschirm_landmarks = list()
 
 		for (var/datum/job/russian/j in occupations)
 			if (istype(j, /datum/job/russian/anti_tank_crew) || istype(j, /datum/job/russian/tankcrew))
-				if (!locate(/obj/tank) in world)
-					j.total_positions = 0
+				spawn (5)
+					if (!locate(/obj/tank) in world)
+						j.total_positions = 0
 
 		for (var/datum/job/j in occupations)
 			if (j.title == "generic job")
@@ -1340,6 +1341,10 @@ var/global/list/fallschirm_landmarks = list()
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO before spawnID()"
 			#endif
+
+			// if its night give H a lantern
+			if (isDarkOutside())
+				H.equip_to_slot_or_del(new/obj/item/device/flashlight/lantern(get_turf(H)), SLOT_BELT)
 			// this spawns keys now
 			spawnKeys(H, rank, alt_title)
 
@@ -1396,7 +1401,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		if (!H.belt) // first, try to equip it as their belt
 			H.equip_to_slot_or_del(keychain, slot_belt)
-		else // DISABLED because bugs, failing that
+		else // DISABLED because bugs
 			if (istype(H.belt, /obj/item/weapon/storage/belt) && 0 == 1) // try to put it in their belt
 				var/obj/item/weapon/storage/belt/belt = H.belt
 				if (belt.can_be_inserted(keychain))

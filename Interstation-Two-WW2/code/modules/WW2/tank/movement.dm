@@ -170,6 +170,9 @@
 			update_damage_status()
 			return 0 // halt us too
 
+		if (istype(o, /obj/prishtina_block))
+			return 0 // no passing
+
 		if (istype(o, /obj/item/weapon/grenade))
 			return 1 // pass over it
 

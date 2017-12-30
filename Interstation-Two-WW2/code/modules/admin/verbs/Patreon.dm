@@ -11,6 +11,11 @@
 		if (C.ckey == _ckey)
 			if (C.highest_patreon_level())
 				extra = " They are a [C.highest_patreon_level()] patron."
+	if (!extra)
+		var/list/table = database.execute("SELECT * FROM patreon WHERE user = '[_ckey]';")
+		if (islist(table) && !isemptylist(table))
+			extra = " They are a [table["pledge"]] patron."
+
 	var/pledge = input(src, "What pledge amount?[extra]") in list("$3+", "$5+", "$10+")
 	_ckey = sanitizeSQL(_ckey, 50)
 	if (database.execute("INSERT INTO patreon (user, pledge) VALUES ('[_ckey]', '[pledge]');"))

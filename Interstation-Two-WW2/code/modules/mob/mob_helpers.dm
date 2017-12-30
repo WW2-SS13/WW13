@@ -139,9 +139,9 @@ var/list/global/hit_chances = list(
 /proc/get_miss_chance(var/zone, var/distance, var/accuracy, var/miss_modifier)
 	. = 0
 	switch (distance)
-		if (0 to 1)
+		if (0)
 			. = 100 - hit_chances["pointblankrange"][zone]
-		if (2 to 3)
+		if (1 to 3)
 			. =  100 - hit_chances["shortrange"][zone]
 		if (5 to 6)
 			. =  100 - hit_chances["medrange"][zone]

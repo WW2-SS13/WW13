@@ -190,7 +190,7 @@ var/datum/reinforcements/reinforcements_master
 			ret = 1
 	reinforcement_pool[RUSSIAN] = list()
 	lock_check()
-	world << "<font size=3>A new Russian squadron has been deployed.</font>"
+	world << "<font size=3>A new <b>Russian</b> squadron has been deployed.</font>"
 	return ret
 
 /datum/reinforcements/proc/reset_german_timer()
@@ -211,7 +211,7 @@ var/datum/reinforcements/reinforcements_master
 			ret = 1
 	reinforcement_pool[GERMAN] = list()
 	lock_check()
-	world << "<font size=3>A new German squadron has been deployed.</font>"
+	world << "<font size=3>A new <b>German</b> squadron has been deployed.</font>"
 	return ret
 
 /datum/reinforcements/proc/r_german()

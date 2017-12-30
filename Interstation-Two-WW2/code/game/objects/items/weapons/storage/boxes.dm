@@ -137,6 +137,20 @@
 		new /obj/item/weapon/reagent_containers/glass/beaker( src )
 		new /obj/item/weapon/reagent_containers/glass/beaker( src )
 		new /obj/item/weapon/reagent_containers/glass/beaker( src )
+
+/obj/item/weapon/storage/box/beakers_large
+	name = "box of large beakers"
+	icon_state = "beaker"
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/glass/beaker/large( src )
+		new /obj/item/weapon/reagent_containers/glass/beaker/large( src )
+		new /obj/item/weapon/reagent_containers/glass/beaker/large( src )
+		new /obj/item/weapon/reagent_containers/glass/beaker/large( src )
+		new /obj/item/weapon/reagent_containers/glass/beaker/large( src )
+		new /obj/item/weapon/reagent_containers/glass/beaker/large( src )
+		new /obj/item/weapon/reagent_containers/glass/beaker/large( src )
 /*
 /obj/item/weapon/storage/box/injectors
 	name = "box of DNA injectors"

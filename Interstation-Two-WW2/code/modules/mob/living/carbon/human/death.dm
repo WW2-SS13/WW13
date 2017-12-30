@@ -56,6 +56,9 @@
 			playsound(loc, species.death_sound, 80, 1, 1)
 	handle_hud_list()
 
+	if (client)
+		client.next_normal_respawn = world.time + 1800
+
 /mob/living/carbon/human/proc/ChangeToHusk()
 	if(HUSK in mutations)	return
 

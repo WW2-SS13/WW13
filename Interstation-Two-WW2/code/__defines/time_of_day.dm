@@ -1,5 +1,7 @@
 //#define ALWAYS_DAY
 
+
+
 var/time_of_day = "Morning"
 var/list/times_of_day = list("Early Morning", "Morning", "Afternoon", "Midday", "Evening", "Night", "Midnight")
 // from lightest to darkest: midday, afternoon, morning, early morning, evening, night, midnight
@@ -11,6 +13,11 @@ var/list/time_of_day2luminosity = list(
 	"Evening" = 0.4,
 	"Night" = 0.2,
 	"Midnight" = 0.1)
+
+/proc/isDarkOutside()
+	if (time_of_day in list("Early Morning", "Evening", "Night", "Midnight"))
+		return 1
+	return 0
 
 /proc/pick_TOD()
 	// attempt to fix broken BYOND probability

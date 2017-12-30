@@ -269,7 +269,10 @@
 
 	else if (findtext(textpath, "water"))
 		for (var/v in 1 to rand(20,30))
-			contents += water_ration()
+			if (findtext(textpath, "soviet") && prob(50))
+				contents += vodka_ration()
+			else
+				contents += water_ration()
 
 /obj/structure/closet/crate/rations/german_solids
 	name = "Rations: solids"

@@ -49,13 +49,14 @@
 				displayed_damage_message["97-INFINITY"] = 1
 
 /obj/tank/proc/tank_message(x)
+	var/ox = x
 	x = replacetext(x, "The tank", istype(src, /obj/tank/german) ? "German Panzer" : "Soviet Tank")
 	visible_message(x)
 	internal_tank_message(x)
 	for (var/obj/tank/other in range(10, src))
 		if (other != src)
 			for (var/mob/m in other)
-				m << x // they aren't in the same tank so they get normal messages
+				m << ox // they aren't in the same tank so they get normal messages
 
 /obj/tank/proc/internal_tank_message(x)
 	for (var/mob/m in src)
