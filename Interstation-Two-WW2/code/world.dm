@@ -1,4 +1,8 @@
 
+var/global/list/serverswap = list()
+var/global/serverswap_open_status = 1 // if this is 1, we're the active server
+var/global/serverswap_closing = 0
+
 /*
 	The initialization of the game happens roughly like this:
 
@@ -47,7 +51,6 @@ var/global/datum/global_init/init = new ()
 		game_id = "[c[(t % l) + 1]][game_id]"
 		t = round(t / l)
 
-
 var/world_is_open = 1
 
 /world
@@ -67,7 +70,7 @@ var/world_is_open = 1
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
-		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND"
+		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
 
 	config.post_load()
 
@@ -75,8 +78,9 @@ var/world_is_open = 1
 		// dumb and hardcoded but I don't care~
 		config.server_name += " #[(world.port % 1000) / 100]"
 
-	if(config && config.log_runtime)
-		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.txt")
+	if(config && config.log_runtimes)
+		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
+		log << "STARTED RUNTIME LOGGING"
 
 	for (var/W in (typesof(/datum/whitelist) - /datum/whitelist))
 		var/datum/whitelist/whitelist = new W
@@ -87,7 +91,7 @@ var/world_is_open = 1
 //	load_mods()
 	//end-emergency fix
 
-	src.update_status()
+	update_status()
 
 	// make the database, or connect to it
 	establish_db_connection()
@@ -116,8 +120,6 @@ var/world_is_open = 1
 #ifdef UNIT_TEST
 		initialize_unit_tests()
 #endif
-
-
 
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
@@ -150,31 +152,6 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
 	diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
-
-	/* patreon data: we send nothing back
-	  example: "patreon.data.user,pledge" */
-
-	/* How this works: the WW13 hub uses patreon's PHP library
-	  to obtain info from the patreon. Then the WW13 hub pings
-	  the server with this data. */
-
-	// todo: patreon_ids that go in player preferences.
-	// WW13 hub should send patreon data every 0.5 minutes,
-	// but only retrieve it every 10 minutes
-
-	if (findtext(T, "patreon.data"))
-		var/list/datalist = splittext(T, ".")
-		var/data = datalist[datalist.len]
-		var/list/data_kvs = splittext(data, ",")
-		var/user = data_kvs["user"]
-		var/pledge = data_kvs["pledge"]
-		establish_db_connection()
-
-		var/list/patrons = database.execute("SELECT * FROM player WHERE patreon_id = '[user]';")
-		if (islist(patrons) && !isemptylist(patrons))
-			database.execute("INSERT INTO patreon user, pledge VALUES('[user]', '[pledge]');")
-
-		return ""
 
 	// custom WW13 hub modules
 
@@ -261,232 +238,18 @@ var/world_topic_spam_protect_time = world.timeofday
 			s["admins"] = admins
 
 		return list2params(s)
-/*
-	else if(T == "manifest")
-		var/list/positions = list()
-		var/list/set_names = list(
-				"heads" = command_positions,
-				"sec" = security_positions,
-				"eng" = engineering_positions,
-				"med" = medical_positions,
-				"sci" = science_positions,
-				"car" = cargo_positions,
-				"civ" = civilian_positions,
-				"bot" = nonhuman_positions
-			)
-
-		for(var/datum/data/record/t in data_core.general)
-			var/name = t.fields["name"]
-			var/rank = t.fields["rank"]
-			var/real_rank = make_list_rank(t.fields["real_rank"])
-
-			var/department = 0
-			for(var/k in set_names)
-				if(real_rank in set_names[k])
-					if(!positions[k])
-						positions[k] = list()
-					positions[k][name] = rank
-					department = 1
-			if(!department)
-				if(!positions["misc"])
-					positions["misc"] = list()
-				positions["misc"][name] = rank
-
-		for(var/k in positions)
-			positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Captain", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
-
-		return list2params(positions)*/
-/*
-	else if(T == "revision")
-		if(revdata.revision)
-			return list2params(list(branch = revdata.branch, date = revdata.date, revision = revdata.revision))
-		else
-			return "unknown"*/
-/*
-	else if(copytext(T,1,5) == "info")
-		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
-
-			world_topic_spam_protect_time = world.time
-			world_topic_spam_protect_ip = addr
-
-			return "Bad Key"
-
-		var/list/search = params2list(input["info"])
-		var/list/ckeysearch = list()
-		for(var/text in search)
-			ckeysearch += ckey(text)
-
-		var/list/match = list()
-
-		for(var/mob/M in mob_list)
-			var/strings = list(M.name, M.ckey)
-			if(M.mind)
-				strings += M.mind.assigned_role
-				strings += M.mind.special_role
-			for(var/text in strings)
-				if(ckey(text) in ckeysearch)
-					match[M] += 10 // an exact match is far better than a partial one
-				else
-					for(var/searchstr in search)
-						if(findtext(text, searchstr))
-							match[M] += 1
-
-		var/maxstrength = 0
-		for(var/mob/M in match)
-			maxstrength = max(match[M], maxstrength)
-		for(var/mob/M in match)
-			if(match[M] < maxstrength)
-				match -= M
-
-		if(!match.len)
-			return "No matches"
-		else if(match.len == 1)
-			var/mob/M = match[1]
-			var/info = list()
-			info["key"] = M.key
-			info["name"] = M.name == M.real_name ? M.name : "[M.name] ([M.real_name])"
-			info["role"] = M.mind ? (M.mind.assigned_role ? M.mind.assigned_role : "No role") : "No mind"
-			var/turf/MT = get_turf(M)
-			info["loc"] = M.loc ? "[M.loc]" : "null"
-			info["turf"] = MT ? "[MT] @ [MT.x], [MT.y], [MT.z]" : "null"
-			info["area"] = MT ? "[MT.loc]" : "null"
-			info["antag"] = M.mind ? (M.mind.special_role ? M.mind.special_role : "Not antag") : "No mind"
-			info["hasbeenrev"] = M.mind ? M.mind.has_been_rev : "No mind"
-			info["stat"] = M.stat
-			info["type"] = M.type
-			if(isliving(M))
-				var/mob/living/L = M
-				info["damage"] = list2params(list(
-							oxy = L.getOxyLoss(),
-							tox = L.getToxLoss(),
-							fire = L.getFireLoss(),
-							brute = L.getBruteLoss(),
-							clone = L.getCloneLoss(),
-							brain = L.getBrainLoss()
-						))
-			else
-				info["damage"] = "non-living"
-			info["gender"] = M.gender
-			return list2params(info)
-		else
-			var/list/ret = list()
-			for(var/mob/M in match)
-				ret[M.key] = M.name
-			return list2params(ret)
-*/
-/*
-	else if(copytext(T,1,9) == "adminmsg")
-		/*
-			We got an adminmsg from IRC bot lets split the input then validate the input.
-			expected output:
-				1. adminmsg = ckey of person the message is to
-				2. msg = contents of message, parems2list requires
-				3. validatationkey = the key the bot has, it should match the gameservers commspassword in it's configuration.
-				4. sender = the ircnick that send the message.
-		*/
-
-
-		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
-
-			world_topic_spam_protect_time = world.time
-			world_topic_spam_protect_ip = addr
-
-			return "Bad Key"
-
-		var/client/C
-		var/req_ckey = ckey(input["adminmsg"])
-
-		for(var/client/K in clients)
-			if(K.ckey == req_ckey)
-				C = K
-				break
-		if(!C)
-			return "No client with that name on server"
-
-		var/rank = input["rank"]
-		if(!rank)
-			rank = "Admin"
-
-		var/message =	"<font color='red'>IRC-[rank] PM from <b><a href='?irc_msg=[input["sender"]]'>IRC-[input["sender"]]</a></b>: [input["msg"]]</font>"
-		var/amessage =  "<font color='blue'>IRC-[rank] PM from <a href='?irc_msg=[input["sender"]]'>IRC-[input["sender"]]</a> to <b>[key_name(C)]</b> : [input["msg"]]</font>"
-
-		C.received_irc_pm = world.time
-		C.irc_admin = input["sender"]
-
-		C << 'sound/effects/adminhelp.ogg'
-		C << message
-
-
-		for(var/client/A in admins)
-			if(A != C)
-				A << amessage
-
-		return "Message Successful"
-
-	else if(copytext(T,1,6) == "notes")
-		/*
-			We got a request for notes from the IRC Bot
-			expected output:
-				1. notes = ckey of person the notes lookup is for
-				2. validationkey = the key the bot has, it should match the gameservers commspassword in it's configuration.
-		*/
-		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
-
-			world_topic_spam_protect_time = world.time
-			world_topic_spam_protect_ip = addr
-			return "Bad Key"
-
-		return show_player_info_irc(ckey(input["notes"]))
-
-	else if(copytext(T,1,4) == "age")
-		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
-
-			world_topic_spam_protect_time = world.time
-			world_topic_spam_protect_ip = addr
-			return "Bad Key"
-
-		var/age = get_player_age(input["age"])
-		if(isnum(age))
-			if(age >= 0)
-				return "[age]"
-			else
-				return "Ckey not found"
-		else
-			return "Database connection failed or not set up"
-*/
 
 /world/Reboot(var/reason)
 
 	save_all_whitelists()
 
-	world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click this link to rejoin (You may have to wait anywhere from 20 seconds to a few minutes): <b>byond://[world.internet_address]:[world.port]</b></span>"
+	world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click this link to rejoin (You may have to wait anywhere from 20 seconds to a few minutes): <b>byond://[world.internet_address]:[serverswap.Find("snext") ? serverswap[serverswap["snext"]] : world.port]</b></span>"
 
 	spawn(0)
 		if (config.jojoreference)
 			roundabout()
+
+	serverswap_closing = 1
 
 	spawn (100)
 
@@ -537,62 +300,9 @@ var/world_topic_spam_protect_time = world.timeofday
 	config = new /datum/configuration()
 	config.load("config/config.txt")
 	config.load("config/game_options.txt","game_options")
-	// new
 	config.load("config/hub.txt", "hub")
 	config.load("config/game_schedule.txt", "game_schedule")
-	// being phased out
-	//config.loadsql("config/dbconfig.txt")
-	//config.loadforumsql("config/forumdbconfig.txt")
-/*
-/hook/startup/proc/loadMods()
-	world.load_mods()
-	world.load_mentors() // no need to write another hook.
-	return 1
 
-/world/proc/load_mods()
-	return
-/*	if(config.admin_legacy_system)
-		var/text = file2text("config/moderators.txt")
-		if (!text)
-			error("Failed to load config/mods.txt")
-		else
-			var/list/lines = splittext(text, "\n")
-			for(var/line in lines)
-				if (!line)
-					continue
-
-				if (copytext(line, 1, 2) == ";")
-					continue
-
-				var/title = "Moderator"
-				var/rights = admin_ranks[title]
-
-				var/ckey = copytext(line, 1, length(line)+1)
-				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
-*/
-/world/proc/load_mentors()
-	return
-/*	if(config.admin_legacy_system)
-		var/text = file2text("config/mentors.txt")
-		if (!text)
-			error("Failed to load config/mentors.txt")
-		else
-			var/list/lines = splittext(text, "\n")
-			for(var/line in lines)
-				if (!line)
-					continue
-				if (copytext(line, 1, 2) == ";")
-					continue
-
-				var/title = "Mentor"
-				var/rights = admin_ranks[title]
-
-				var/ckey = copytext(line, 1, length(line)+1)
-				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
-*/
-*/
 /world/proc/update_status()
 
 	if (world.port == config.testing_port)
@@ -647,7 +357,11 @@ var/setting_up_db_connection = 0
 	else
 		return 1
 
-proc/setup_database_connection()
+
+/proc/DEBUG_SERVERSWAP(var/x)
+	world.log << "SERVERSWAP DEBUG: [x]"
+
+/proc/setup_database_connection()
 
 	if (setting_up_db_connection)
 		return
@@ -659,7 +373,63 @@ proc/setup_database_connection()
 		return 0
 
 	if(!database)
-		database = new("SQL/database.db")
+		if (fexists("config/serverswap.txt"))
+			DEBUG_SERVERSWAP(3)
+			var/list/lines = file2list("config/serverswap.txt")
+			for (var/line in lines)
+				var/split = splittext(line, " = ")
+				var/p1 = split[1]
+				var/p2 = split[2]
+				var/numcheck = text2num(p2)
+				if (isnum(numcheck) && !isnull(numcheck))
+					// "s1" = 2000
+					serverswap[p1] = text2num(p2)
+				else if (p1 == "this" || p1 == "sfinal" || p1 == "snext")
+					// "this" = "s1" or "sfinal" = "s2" or "snext" = "s2"
+					serverswap[p1] = p2
+				else if (p1 == "masterdir")
+					// "masterdir" = "server/WW13/..."
+					if (p2 == "nil")
+						serverswap.Cut()
+						goto end_serverswap
+					else
+						serverswap[p1] = p2
+				else if (p1 == "enabled")
+					if (p2 == "false")
+						serverswap.Cut()
+						goto end_serverswap
+
+			end_serverswap
+
+			for (var/x in serverswap)
+				DEBUG_SERVERSWAP("4.5: [x] = [serverswap[x]]")
+
+			DEBUG_SERVERSWAP(5)
+
+			if (serverswap.Find("this"))
+				if (serverswap["this"] == "s1")
+					DEBUG_SERVERSWAP(5.1)
+					serverswap_open_status = 1
+				else
+					DEBUG_SERVERSWAP(5.2)
+					serverswap_open_status = 0
+
+			DEBUG_SERVERSWAP(6)
+			if (serverswap.Find("masterdir"))
+				DEBUG_SERVERSWAP(7.1)
+				database = new("[serverswap["masterdir"]]/SQL/database.db")
+				if (!database)
+					DEBUG_SERVERSWAP(7.15)
+			else
+				DEBUG_SERVERSWAP(7.2)
+				database = new("SQL/database.db")
+				if (!database)
+					DEBUG_SERVERSWAP(7.25)
+
+			if (serverswap.len)
+				serverswap["ready"] = 1
+		else
+			database = new("SQL/database.db")
 
 	. = TRUE
 	if ( . )
@@ -672,3 +442,74 @@ proc/setup_database_connection()
 	return .
 
 #undef FAILED_DB_CONNECTION_CUTOFF
+
+var/global/serverswap_loop_cooldown = 0
+
+/proc/start_serverswap_loop()
+	spawn while (1)
+		DEBUG_SERVERSWAP(8)
+		if (!serverswap.len)
+			break
+		DEBUG_SERVERSWAP(9)
+		if (!serverswap.Find("masterdir")) // we can't do anything without this!
+			break
+		DEBUG_SERVERSWAP(10)
+		if (!serverswap.Find("this")) // ditto
+			break
+		DEBUG_SERVERSWAP(11)
+		if (!serverswap.Find("sfinal")) // ditto
+			break
+		DEBUG_SERVERSWAP(12)
+		var/wdir = ""
+		var/F = ""
+		DEBUG_SERVERSWAP("13 = [serverswap_open_status]")
+		switch (serverswap_open_status)
+			if (0) // we're waiting for the server before us or the very last server to tell us its ok to go up
+				var/our_server_id = serverswap["this"] // "s1"
+				var/our_number = text2num(replacetext(our_server_id, "s", "")) // '1'
+				var/waiting_on_id = null
+				if (our_number > 1)
+					waiting_on_id = "s[our_number-1]" // "s2" waits on "s1", "s3" waits on "s2"
+				else if (our_number == 1)
+					waiting_on_id = serverswap["sfinal"]
+				if (fexists("[serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_normal.txt"))
+					// do nothing for now
+				else if (fexists("[serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_closing.txt"))
+					// other server is closing, time to open
+					serverswap_open_status = 1
+					// don't start looping until other server is closed
+					serverswap_loop_cooldown = 25
+					DEBUG_SERVERSWAP("13.1")
+			if (1) // we're going to send updates every second in the form of text files telling the server after us what to do
+
+				if (!serverswap_closing)
+
+					// delete the other file, if it exists
+					if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closing.txt"))
+						DEBUG_SERVERSWAP("13.29")
+						fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closing.txt")
+
+					wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt"
+					F = file(wdir)
+					fdel(F)
+					F << "testing"
+					DEBUG_SERVERSWAP("13.3: [wdir]")
+				else
+					// delete the other file, if it exists
+					if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt"))
+						DEBUG_SERVERSWAP("13.39")
+						fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt")
+
+					wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closing.txt"
+					F = file(wdir)
+					fdel(F)
+					F << "testing"
+					DEBUG_SERVERSWAP("13.4: [wdir]")
+
+					// time to close this server
+					serverswap_open_status = 0
+					// don't start looping again until other server is open
+					serverswap_loop_cooldown = 25
+
+		sleep(10+serverswap_loop_cooldown)
+		serverswap_loop_cooldown = 0

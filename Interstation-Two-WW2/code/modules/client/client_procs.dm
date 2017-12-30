@@ -114,7 +114,7 @@
 	if(byond_version < MIN_CLIENT_VERSION)		//Out of date client.
 		return null
 
-	if (src.key != world.host)
+	if (key != world.host)
 		if(!config.guests_allowed && IsGuestKey(key))
 			alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
 			del(src)
@@ -142,10 +142,6 @@
 
 	. = ..()	//calls mob.Login()
 
-	if (quickBan_rejected("Server"))
-		del(src)
-		return 0
-
 	/*Admin Authorisation: */
 
 	load_admins()
@@ -159,7 +155,19 @@
 
 	establish_db_connection()
 
+	// this server is not open for anyone
+	if(!serverswap_open_status)
+		if (serverswap.Find("snext"))
+			src << "<span class = 'userdanger'>This server is not open! Please head over to <b>byond://[world.internet_address]:[serverswap[serverswap["snext"]]]</b> to play.</span>"
+	/*	if (holder)
+			for (var/key in serverswap)
+				src << "SERVERSWAP: [key] = [serverswap[key]]"*/
+		del(src)
+		return 0
 
+	if (quickBan_rejected("Server"))
+		del(src)
+		return 0
 
 	if(holder)
 		holder.associate(src)
@@ -190,7 +198,7 @@
 			src << "<span class = 'userdanger'>The server is currently closed to non-admins. The game is open [global_game_schedule.getScheduleAsString()].</span>"
 			message_admins("[src] tried to log in, but was rejected, the server is closed to non-admins.")
 			del(src)
-			return // todo
+			return
 
 		else if (!validate_whitelist("server"))
 			src << "<span class = 'userdanger'>You are not in the server whitelist. You cannot join this server right now, sorry.</span>"

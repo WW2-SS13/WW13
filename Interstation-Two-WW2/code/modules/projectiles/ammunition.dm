@@ -176,7 +176,7 @@
 
 
 /obj/item/ammo_magazine/update_icon()
-	if(multiple_sprites)
+	if(multiple_sprites && icon_keys.len)
 		//find the lowest key greater than or equal to stored_ammo.len
 		var/new_state = null
 		for(var/idx in 1 to icon_keys.len)
@@ -203,6 +203,8 @@
 	M.ammo_states = magazine_icondata_states[typestr]
 
 /proc/magazine_icondata_cache_add(var/obj/item/ammo_magazine/M)
+	if (!M.icon)
+		return
 	var/list/icon_keys = list()
 	var/list/ammo_states = list()
 	var/list/states = icon_states(M.icon)

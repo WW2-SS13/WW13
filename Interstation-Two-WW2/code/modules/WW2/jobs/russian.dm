@@ -140,6 +140,7 @@
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRADr"
 	is_nonmilitary = 1
+	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 
 /datum/job/russian/doctor/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
