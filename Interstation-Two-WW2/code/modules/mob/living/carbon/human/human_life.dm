@@ -1008,7 +1008,7 @@
 
 /mob/living/carbon/human/proc/handle_dehydration()//Making this it's own proc for my sanity's sake - Matt
 
-	if(water < 350 && water >= 250)
+	if(water < 300 && water >= 250)
 		if (prob(1))
 			src << "<span class = 'warning'>You're getting a bit thirsty.</span>"
 

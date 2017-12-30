@@ -5,9 +5,13 @@
 /mob/new_player/Login()
 	winset(src, null, "mainwindow.title='[station_name()]'")//For displaying the server name.
 	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
+
+	/* if our client was deleted (for example if we're banned), don't show the MOTD */
 	if(join_motd)
-		src << "<div class=\"motd\">[join_motd]</div>"
-	src << "<div class='info'>Game ID: <div class='danger'>[game_id]</div></div>"
+		spawn (1)
+			if (client)
+				src << "<div class='info'>Game ID: <div class='danger'>[game_id]</div></div>"
+				src << "<div class=\"motd\">[join_motd]</div>"
 
 	if(!mind)
 		mind = new /datum/mind(key)

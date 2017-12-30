@@ -125,8 +125,6 @@
 		src.preload_rsc = pick(config.resource_urls)
 	else src.preload_rsc = 1 // If config.resource_urls is not set, preload like normal.
 
-	src << "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears."
-
 	clients += src
 	directory[ckey] = src
 
@@ -142,6 +140,18 @@
 
 	. = ..()	//calls mob.Login()
 
+	if(!serverswap_open_status)
+		if (serverswap.Find("snext"))
+			src << "<span class = 'userdanger'>This server is not open! Please head over to <b>byond://[world.internet_address]:[serverswap[serverswap["snext"]]]</b> to play.</span>"
+		del(src)
+		return 0
+
+	if (quickBan_rejected("Server"))
+		del(src)
+		return 0
+
+	src << "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears."
+
 	/*Admin Authorisation: */
 
 	load_admins()
@@ -154,20 +164,6 @@
 			message_admins("Admin login: [key_name(src)]")
 
 	establish_db_connection()
-
-	// this server is not open for anyone
-	if(!serverswap_open_status)
-		if (serverswap.Find("snext"))
-			src << "<span class = 'userdanger'>This server is not open! Please head over to <b>byond://[world.internet_address]:[serverswap[serverswap["snext"]]]</b> to play.</span>"
-	/*	if (holder)
-			for (var/key in serverswap)
-				src << "SERVERSWAP: [key] = [serverswap[key]]"*/
-		del(src)
-		return 0
-
-	if (quickBan_rejected("Server"))
-		del(src)
-		return 0
 
 	if(holder)
 		holder.associate(src)

@@ -1,7 +1,7 @@
 
 var/global/list/serverswap = list()
 var/global/serverswap_open_status = 1 // if this is 1, we're the active server
-var/global/serverswap_closing = 0
+var/global/serverswap_closed = 0
 
 /*
 	The initialization of the game happens roughly like this:
@@ -98,11 +98,8 @@ var/world_is_open = 1
 
 	. = ..()
 
-#ifndef UNIT_TEST
-
-	sleep_offline = 1
-
-#else
+// removed the 'sleep_offline' = 1 here, it interferes with serverswap - kachnov
+#ifdef UNIT_TEST
 	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
 	load_unit_test_changes()
 #endif
@@ -242,24 +239,30 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/Reboot(var/reason)
 
 	save_all_whitelists()
+	serverswap_pre_close_server()
+	spawn (20)
+		serverswap_close_server()
 
-	world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click this link to rejoin (You may have to wait anywhere from 20 seconds to a few minutes): <b>byond://[world.internet_address]:[serverswap.Find("snext") ? serverswap[serverswap["snext"]] : world.port]</b></span>"
+	// wait for serverswap to do its magic - kachnov
+	spawn (50)
 
-	spawn(0)
-		if (config.jojoreference)
-			roundabout()
+		if (serverswap.Find("snext"))
+			if (serverswap.Find(serverswap["snext"]))
+				world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to join the linked server: <b>byond://[world.internet_address]:[serverswap[serverswap["snext"]]]</b></span>"
+			else
+				world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to rejoin (It may take a minute or two): <b>byond://[world.internet_address]:[port]</b></span>"
+		else
+			world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to rejoin (It may take a minute or two): <b>byond://[world.internet_address]:[port]</b></span>"
 
-	serverswap_closing = 1
+		spawn(0)
+			if (config.jojoreference)
+				roundabout()
 
-	spawn (100)
+		spawn (50)
 
-		processScheduler.stop()
+			processScheduler.stop()
 
-		for(var/client/C in clients)
-			if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-				C << link("byond://[config.server]")
-
-		..(reason)
+			..(reason)
 
 #define COLOR_LIGHT_SEPIA "#D4C6B8"
 /world/proc/roundabout() // yes i know this is dumb - kachnov
@@ -358,8 +361,11 @@ var/setting_up_db_connection = 0
 		return 1
 
 
+//#define SERVERSWAP_DEBUGGING
 /proc/DEBUG_SERVERSWAP(var/x)
+	#ifdef SERVERSWAP_DEBUGGING
 	world.log << "SERVERSWAP DEBUG: [x]"
+	#endif
 
 /proc/setup_database_connection()
 
@@ -408,8 +414,23 @@ var/setting_up_db_connection = 0
 
 			if (serverswap.Find("this"))
 				if (serverswap["this"] == "s1")
+				/*
+					// we're starting up for the first time, so clear the sharedinfo folder
+					for (var/i in 1 to 10)
+						var/d1 = "[serverswap["masterdir"]]/sharedinfo/s[i]_normal.txt"
+						var/d2 = "[serverswap["masterdir"]]/sharedinfo/s[i]_closed.txt"
+						if (fexists(d1))
+							fdel(d1)
+						if (fexists(d2))
+							fdel(d2)
+						*/
 					DEBUG_SERVERSWAP(5.1)
-					serverswap_open_status = 1
+					if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"))
+						serverswap_open_status = 0
+						DEBUG_SERVERSWAP(5.11)
+					else
+						serverswap_open_status = 1
+						DEBUG_SERVERSWAP(5.12)
 				else
 					DEBUG_SERVERSWAP(5.2)
 					serverswap_open_status = 0
@@ -443,8 +464,6 @@ var/setting_up_db_connection = 0
 
 #undef FAILED_DB_CONNECTION_CUTOFF
 
-var/global/serverswap_loop_cooldown = 0
-
 /proc/start_serverswap_loop()
 	spawn while (1)
 		DEBUG_SERVERSWAP(8)
@@ -472,44 +491,65 @@ var/global/serverswap_loop_cooldown = 0
 					waiting_on_id = "s[our_number-1]" // "s2" waits on "s1", "s3" waits on "s2"
 				else if (our_number == 1)
 					waiting_on_id = serverswap["sfinal"]
-				if (fexists("[serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_normal.txt"))
-					// do nothing for now
-				else if (fexists("[serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_closing.txt"))
-					// other server is closing, time to open
+
+				DEBUG_SERVERSWAP("13.01 = [waiting_on_id]")
+				DEBUG_SERVERSWAP("13.02 = [serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_closed.txt")
+				DEBUG_SERVERSWAP("13.03 = [serverswap_open_status]")
+				DEBUG_SERVERSWAP("13.04 = [serverswap_closed]")
+
+				if (fexists("[serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_closed.txt"))
+					// other server is closed, time to open (if we aren't already open)
 					serverswap_open_status = 1
-					// don't start looping until other server is closed
-					serverswap_loop_cooldown = 25
+					serverswap_closed = 0
 					DEBUG_SERVERSWAP("13.1")
+
+					// make sure we aren't marked as closed anymore
+					wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"
+					if (fexists(wdir))
+						fdel(wdir)
+				else
+					F = file("test_[waiting_on_id].txt")
+					fdel(F)
+					F << "hello world!"
 			if (1) // we're going to send updates every second in the form of text files telling the server after us what to do
 
-				if (!serverswap_closing)
+				if (!serverswap_closed)
 
 					// delete the other file, if it exists
-					if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closing.txt"))
+					if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"))
 						DEBUG_SERVERSWAP("13.29")
-						fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closing.txt")
+						fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt")
 
 					wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt"
 					F = file(wdir)
 					fdel(F)
 					F << "testing"
 					DEBUG_SERVERSWAP("13.3: [wdir]")
-				else
-					// delete the other file, if it exists
-					if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt"))
-						DEBUG_SERVERSWAP("13.39")
-						fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt")
+				// otherwise do nothing - code moved to serverswap_close_server()
 
-					wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closing.txt"
-					F = file(wdir)
-					fdel(F)
-					F << "testing"
-					DEBUG_SERVERSWAP("13.4: [wdir]")
+		sleep(10)
+/*
+#ifdef SERVERSWAP_DEBUGGING
+/mob/verb/call_serverswap_close_server()
+	set category = "Debugging"
+	serverswap_pre_close_server()
+	spawn (20)
+		serverswap_close_server()
+#endif
+*/
+/proc/serverswap_pre_close_server()
+	// don't let the loop delete any file we create
+	serverswap_closed = 1
 
-					// time to close this server
-					serverswap_open_status = 0
-					// don't start looping again until other server is open
-					serverswap_loop_cooldown = 25
+/proc/serverswap_close_server()
 
-		sleep(10+serverswap_loop_cooldown)
-		serverswap_loop_cooldown = 0
+	if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt"))
+		DEBUG_SERVERSWAP("13.39")
+		fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt")
+
+	var/F = file("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt")
+	fdel(F)
+	F << "testing"
+
+	// time to close this server
+	serverswap_open_status = 0
