@@ -1,3 +1,5 @@
+enabled = false
+masterdir = nil
 s1 = 2000
 s2 = 3000
 sfinal = s2
