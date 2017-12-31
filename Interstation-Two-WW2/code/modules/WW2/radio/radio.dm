@@ -60,12 +60,14 @@ var/const/UK_FREQ = 1007
 // channel = access
 var/global/list/default_german_channels = list(
 	num2text(DE_COMM_FREQ),
-	num2text(DE_BASE_FREQ)
+	num2text(DE_BASE_FREQ),
+	num2text(DE_SUPPLY_FREQ)
 )
 
 var/global/list/default_russian_channels = list(
 	num2text(RU_COMM_FREQ),
-	num2text(RU_BASE_FREQ)
+	num2text(RU_BASE_FREQ),
+	num2text(RU_SUPPLY_FREQ)
 )
 
 var/global/list/default_ukrainian_channels = list(
@@ -442,7 +444,6 @@ var/global/list/default_ukrainian_channels = list(
 
 /obj/item/device/radio/intercom/a7b/New()
 	internal_channels = default_russian_channels.Copy()
-	internal_channels += RU_SUPPLY_FREQ
 	..()
 
 /obj/item/device/radio/intercom/a7b/process()
@@ -492,7 +493,6 @@ var/global/list/default_ukrainian_channels = list(
 
 /obj/item/device/radio/intercom/fu2/New()
 	internal_channels = default_german_channels.Copy()
-	internal_channels += DE_SUPPLY_FREQ
 	..()
 
 /obj/item/device/radio/intercom/fu2/process()
@@ -645,6 +645,7 @@ var/global/list/default_ukrainian_channels = list(
 	// our personal radio. Yes, even though we're a radio. Works better this way.
 	announcer = new
 	announcer.broadcasting = 1
+	announcer.faction = faction
 
 	// hackish code because radios need a mob, with a language, to announce
 	mob = new
@@ -657,4 +658,9 @@ var/global/list/default_ukrainian_channels = list(
 /obj/item/device/radio/proc/announce(msg)
 	if (!announcer)
 		return
+	switch (faction)
+		if (GERMAN)
+			announcer.frequency = DE_SUPPLY_FREQ
+		if (RUSSIAN)
+			announcer.frequency = RU_SUPPLY_FREQ
 	announcer.broadcast(msg, mob)
