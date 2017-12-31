@@ -321,8 +321,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	else
 		s += "<center><a href=\"[config.discordurl]\"><b>[station_name()]</b></center><br>"
 
-	if (map)
-		s += "<center><b>Map: [map.ID]</b></center><br>"
 	// for the custom WW13 hub only!
 
 	// we can't execute code in config settings, so this is a workaround.
@@ -338,6 +336,9 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	if (config.hub_features)
 		s += "<b>[config.hub_features]</b><br>"
+
+	if (map)
+		s += "<b>Map: [map.ID]</b><br>"
 
 	if (config.hub_banner_url)
 		s += config.hub_banner_url
