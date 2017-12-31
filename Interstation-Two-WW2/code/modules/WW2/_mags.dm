@@ -287,7 +287,7 @@ OTHER
 	ammo_type = /obj/item/ammo_casing/a762x39
 	max_ammo = 41
 	multiple_sprites = 1
-	w_class = 3
+	w_class = 2
 
 /obj/item/ammo_magazine/a762/m240
 	name = "M240 ammo"

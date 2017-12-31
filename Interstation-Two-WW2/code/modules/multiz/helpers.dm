@@ -1,7 +1,7 @@
 // If you add a more comprehensive system, just untick this file.
 // WARNING: Only works for up to 17 z-levels!
 var/z_levels = 0 // Each bit represents a connection between adjacent levels.  So the first bit means levels 1 and 2 are connected.
-
+/*
 // If the height is more than 1, we mark all contained levels as connected.
 /obj/effect/landmark/map_data/New()
 	ASSERT(height > 1)
@@ -9,7 +9,7 @@ var/z_levels = 0 // Each bit represents a connection between adjacent levels.  S
 
 	for(var/i = (height-1); i--;)
 		z_levels |= (1 << (z+i-1))
-
+*/
 // The storage of connections between adjacent levels means some bitwise magic is needed.
 proc/HasAbove(var/z)
 	if(z >= world.maxz || z > 16 || z < 1)

@@ -321,6 +321,10 @@ var/world_topic_spam_protect_time = world.timeofday
 	else
 		s += "<center><a href=\"[config.discordurl]\"><b>[station_name()]</b></center><br>"
 
+	if (map)
+		s += "<center><b>Map: [map.ID]</b></center><br>"
+	// for the custom WW13 hub only!
+
 	// we can't execute code in config settings, so this is a workaround.
 	config.hub_body = replacetext(config.hub_body, "TIME_OF_DAY", lowertext(time_of_day))
 
@@ -504,6 +508,8 @@ var/setting_up_db_connection = 0
 					// other server is closed, time to open (if we aren't already open)
 					serverswap_open_status = 1
 					serverswap_closed = 0
+					if (ticker)
+						ticker.pregame_timeleft = initial(ticker.pregame_timeleft)
 					DEBUG_SERVERSWAP("13.1")
 
 					// make sure we aren't marked as closed anymore

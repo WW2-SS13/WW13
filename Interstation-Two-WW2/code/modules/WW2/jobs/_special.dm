@@ -208,61 +208,10 @@
 
 
 /datum/job/proc/try_make_jew(var/mob/living/carbon/human/user)
+	return // disabled
 
-	if (!istype(user))
-		return
-
-	if (/*!user.client.prefs.be_jew || */!istype(src, /datum/job/german/soldier))
-		return
-
-//	if (!job_master.allow_jews)
-	//	return
-
-	if (is_officer)
-		return
-
-	if (clients.len < config.min_players_for_jews && !config.debug) // too lowpop for spies! Todo: config setting
-		return
-
-	user << "<span class = 'danger'>You are the Jew.</span><br>"
-	user << "<span class = 'notice'>Objective #1: Survive.</span>"
-
-	user.add_memory("Jew Objectives")
-	user.add_memory("")
-	user.add_memory("")
-	user.add_memory("Survive. Make sure nobody sees your face or knows your last name.")
-
-	user.change_hair("Very Long Hair")
-	user.change_facial_hair("Neckbeard")
-
-	user.is_jew = 1
-
-	user.real_name = user.species.get_random_german_name(user.gender, 1)
-	user.name = user.real_name
-
-// try to make someone a spy if they DONT spawn in a reinforcement wave
-//: 12% chance for soldats only. Now 20% for German soldats,
-// because Germans have so many more roles
 /datum/job/proc/try_make_initial_spy(var/mob/living/carbon/human/user)
-
-	if (!istype(user))
-		return
-
-/*	if (!user.client.prefs.be_spy)
-		return */
-
-//	if (!job_master.allow_spies)
-	//	return
-
-	if ((prob(20) && istype(src, /datum/job/german/soldier)) || (prob(12) && istype(src, /datum/job/russian/soldier)))
-		if (allow_spies)
-			make_spy(user)
-			user.give_radio()
-			return 1
-	else
-		if (prob(20)) // give 20% of soldats radios so it's not suspicious when spies get them
-			user.give_radio()
-	return 0
+	return // disabled
 
 /datum/job/proc/try_make_latejoin_spy(var/mob/user)
 	return //disabled

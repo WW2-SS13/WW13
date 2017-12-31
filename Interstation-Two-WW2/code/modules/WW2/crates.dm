@@ -253,6 +253,9 @@
 		if (findtext(textpath, "meat"))
 			for (var/v in 1 to rand(10,15))
 				contents += new_ration(GERMAN, "meat")
+		if (findtext(textpath, "alcohol"))
+			for (var/v in 1 to rand(10,15))
+				contents += beer_ration()
 	else if (findtext(textpath, "soviet"))
 		if (findtext(textpath, "solids"))
 			for (var/v in 1 to rand(10,15))
@@ -266,20 +269,17 @@
 		if (findtext(textpath, "meat"))
 			for (var/v in 1 to rand(10,15))
 				contents += new_ration(RUSSIAN, "meat")
+		if (findtext(textpath, "alcohol"))
+			for (var/v in 1 to rand(10,15))
+				contents += vodka_ration()
 
 	else if (findtext(textpath, "water"))
 		for (var/v in 1 to rand(20,30))
-			if (findtext(textpath, "soviet") && prob(50))
-				contents += vodka_ration()
-			else
-				contents += water_ration()
+			contents += water_ration()
 
-	else if (findtext(textpath, "alcohol"))
-		for (var/v in 1 to rand(20,30))
-			if (findtext(textpath, "soviet"))
-				contents += vodka_ration()
-			else
-				contents += beer_ration()
+	update_capacity(min(30, contents.len+5))
+
+
 
 /obj/structure/closet/crate/rations/german_solids
 	name = "Rations: solids"

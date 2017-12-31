@@ -102,7 +102,7 @@
 //	Formatting is the same as food.
 
 /obj/item/weapon/reagent_containers/food/drinks/milk
-	name = "Space Milk"
+	name = "Milk"
 	desc = "It's milk. White and nutritious goodness!"
 	icon_state = "milk"
 	item_state = "carton"
@@ -132,7 +132,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/tea
 	name = "Duke Purple Tea"
-	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
+	desc = "An insult to Duke Purple is an insult to the Queen! Any proper gentleman will fight you, if you sully this tea."
 	icon_state = "teacup"
 	item_state = "coffee"
 	center_of_mass = list("x"=16, "y"=14)
@@ -151,7 +151,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate
 	name = "Dutch Hot Coco"
-	desc = "Made in Space South America."
+	desc = "Made in South America."
 	icon_state = "hot_coco"
 	item_state = "coffee"
 	center_of_mass = list("x"=15, "y"=13)

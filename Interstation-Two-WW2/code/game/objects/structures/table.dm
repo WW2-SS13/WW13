@@ -353,7 +353,7 @@
 	//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
 	I.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
 	I.pixel_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
-
+	I.invisibility = 0 // we might have been scoping
 /*
  * TABLE DESTRUCTION/DECONSTRUCTION
  */

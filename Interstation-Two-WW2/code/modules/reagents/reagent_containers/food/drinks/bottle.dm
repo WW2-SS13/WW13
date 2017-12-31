@@ -34,13 +34,14 @@
 
 //when thrown on impact, bottles smash and spill their contents
 /obj/item/weapon/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, var/speed)
+	var/alcohol_power = calculate_alcohol_power()
+
 	..()
 
 	var/mob/M = thrower
-	if(isGlass && istype(M) && M.a_intent == I_HURT)
+	if(isGlass && istype(M)/* && M.a_intent == I_HURT*/)
 		var/throw_dist = get_dist(throw_source, loc)
 		if(speed >= throw_speed && smash_check(throw_dist)) //not as reliable as smashing directly
-			var/alcohol_power = calculate_alcohol_power()
 			if(reagents)
 				hit_atom.visible_message("<span class='notice'>The contents of \the [src] splash all over [hit_atom]!</span>")
 				reagents.splash(hit_atom, reagents.total_volume)
@@ -75,27 +76,31 @@
 		while (src && throwing)
 			sleep(1)
 		if (src && !throwing)
-			Bump(target, 1)
+			Bump(target, 1, calculate_alcohol_power())
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Bump(atom/A, yes)
 	if (src)
 		if (isliving(A) || isturf(A))
-			smash(get_turf(A), A)
+			smash(get_turf(A), A, calculate_alcohol_power())
 	..(A, yes)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null, var/alcohol_power = 0)
+
+
+	if (!newloc)
+		newloc = get_turf(src)
 
 	if(rag && rag.on_fire)
 
 		forceMove(newloc)
 
-		if (isliving(against))
+		if (against && isliving(against))
 			var/mob/living/L = against
 			L.IgniteMob()
 
-		#define testmolotovs
+//		#define testmolotovs
 
-		var/explosion_power = alcohol_power
+		var/explosion_power = alcohol_power/2
 
 		qdel(rag)
 
@@ -206,6 +211,7 @@
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	var/alcohol_power = calculate_alcohol_power()
+
 	if(reagents)
 		spawn (1) // wait until after our explosion, if we have one
 			user.visible_message("<span class='notice'>The contents of \the [src] splash all over [target]!</span>")
@@ -240,7 +246,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/gin
 	name = "Griffeater Gin"
-	desc = "A bottle of high quality gin, produced in the New London Space Station."
+	desc = "A bottle of high quality gin, produced in the New London Station."
 	icon_state = "ginbottle"
 	center_of_mass = list("x"=16, "y"=4)
 	New()
@@ -306,7 +312,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/patron
 	name = "Wrapp Artiste Patron"
-	desc = "Silver laced tequilla, served in space night clubs across the galaxy."
+	desc = "Silver laced tequilla, served in night clubs across the earth."
 	icon_state = "patronbottle"
 	center_of_mass = list("x"=16, "y"=6)
 	New()
@@ -413,8 +419,8 @@
 		reagents.add_reagent("grenadine", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cola
-	name = "\improper Space Cola"
-	desc = "Cola. in space"
+	name = "\improper Cola"
+	desc = "Cola"
 	icon_state = "colabottle"
 	center_of_mass = list("x"=16, "y"=6)
 	New()
@@ -431,7 +437,7 @@
 		reagents.add_reagent("space_up", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind
-	name = "\improper Space Mountain Wind"
+	name = "\improper Mountain Wind"
 	desc = "Blows right through you like a space wind."
 	icon_state = "space_mountain_wind_bottle"
 	center_of_mass = list("x"=16, "y"=6)
@@ -502,7 +508,7 @@
 	rag_underlay = "rag_small"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer
-	name = "space beer"
+	name = "beer"
 	desc = "Contains only water, malt and hops."
 	icon_state = "beer"
 	center_of_mass = list("x"=16, "y"=12)

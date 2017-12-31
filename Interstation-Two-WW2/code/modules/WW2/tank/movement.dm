@@ -171,7 +171,7 @@
 			return 0 // halt us too
 
 		if (istype(o, /obj/prishtina_block))
-			return 0 // no passing
+			return 1 // pass over it - we already checked PBs in _Move()
 
 		if (istype(o, /obj/item/weapon/grenade))
 			return 1 // pass over it

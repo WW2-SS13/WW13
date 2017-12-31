@@ -7,16 +7,22 @@
 		return
 	_ckey = ckey(_ckey)
 	var/extra = ""
+	var/cpledge = ""
 	for (var/client/C in clients)
 		if (C.ckey == _ckey)
 			if (C.highest_patreon_level())
-				extra = " They are a [C.highest_patreon_level()] patron."
+				cpledge = C.highest_patreon_level()
+				extra = " They are a [cpledge] patron."
 	if (!extra)
 		var/list/table = database.execute("SELECT * FROM patreon WHERE user = '[_ckey]';")
 		if (islist(table) && !isemptylist(table))
-			extra = " They are a [table["pledge"]] patron."
+			cpledge = table["pledge"]
+			extra = " They are a [cpledge] patron."
 
 	var/pledge = input(src, "What pledge amount?[extra]") in list("$3+", "$5+", "$10+")
+	if (pledge == cpledge)
+		src << "<span class = 'bad'>This is their current patron level.</span>"
+		return
 	_ckey = sanitizeSQL(_ckey, 50)
 	if (database.execute("INSERT INTO patreon (user, pledge) VALUES ('[_ckey]', '[pledge]');"))
 		src << "<span class = 'good'>Successfully added '[_ckey]' as a [pledge] patron."

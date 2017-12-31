@@ -211,6 +211,10 @@ var/global/list/fallschirm_landmarks = list()
 			for (var/datum/job/partisan/civilian/j in occupations)
 				if (istype(j))
 					j.total_positions = civilian_job_slots
+		else
+			for (var/datum/job/partisan/civilian/j in occupations)
+				if (istype(j))
+					j.total_positions = 0
 
 		if (allow_partisans)
 			for (var/datum/job/partisan/soldier/j in occupations)
@@ -220,6 +224,14 @@ var/global/list/fallschirm_landmarks = list()
 			for (var/datum/job/partisan/commander/j in occupations)
 				if (istype(j))
 					j.total_positions = 1
+		else
+			for (var/datum/job/partisan/soldier/j in occupations)
+				if (istype(j))
+					j.total_positions = 0
+
+			for (var/datum/job/partisan/commander/j in occupations)
+				if (istype(j))
+					j.total_positions = 0
 
 		// disable base job types like '/datum/job/german'
 
@@ -461,6 +473,7 @@ var/global/list/fallschirm_landmarks = list()
 
 				if (j.absolute_limit)
 					j.total_positions = min(j.total_positions, j.absolute_limit)
+
 		// equalize amount of jobs
 
 		while (total_german_slots() > total_russian_slots())

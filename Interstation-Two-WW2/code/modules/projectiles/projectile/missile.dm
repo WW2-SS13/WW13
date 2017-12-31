@@ -9,11 +9,10 @@
 	nodamage = 1
 	embed = 0
 	name = "missile"
-/*
-/obj/item/projectile/bullet/rifle/missile/on_impact(atom/into)
-	if (..(into))
-		missile_effect(into)
-*/
+
+/obj/item/projectile/bullet/rifle/missile/throw_impact(atom/hit_atom)
+	missile_effect(hit_atom)
+
 /obj/item/projectile/bullet/rifle/missile/proc/missile_effect(atom/hit_atom)
 	if (explosive)
 		var/e = explosion_ranges

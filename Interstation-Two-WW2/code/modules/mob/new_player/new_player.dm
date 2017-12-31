@@ -48,7 +48,7 @@
 	//	output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</a></p>"
 
-	var/height = 300
+	var/height = 350
 	if (reinforcements_master && reinforcements_master.is_ready())
 		height = 450
 		if (!reinforcements_master.has(src))
@@ -59,6 +59,9 @@
 				output += "<p><a href='byond://?src=\ref[src];unre_german=1'>Leave the German reinforcement pool.</A></p>"
 			else if (reinforcements_master.has(src, RUSSIAN))
 				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Russian reinforcement pool.</A></p>"
+	else
+		output += "<p><i>Reinforcements won't be available until after the train is sent.</i></p>"
+
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
 	output += "</div>"
@@ -211,15 +214,16 @@
 
 		if (client.next_normal_respawn > world.time)
 			var/wait = (client.next_normal_respawn-world.time)/600
-			if (check_rights(R_ADMIN, 0))
-				if ((input("If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
-					goto latechoices
+			if (check_rights(R_ADMIN, 0, src))
+				if ((input(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
+					LateChoices()
+					return 1
 			src << alert("Because you died in combat, you must wait [wait] more minutes to respawn. You can still join as a reinforcement.")
 			return 0
+		else
+			LateChoices()
+			return 1
 
-		latechoices
-
-		LateChoices()
 /*
 	if(href_list["manifest"])
 		ViewManifest()*/
