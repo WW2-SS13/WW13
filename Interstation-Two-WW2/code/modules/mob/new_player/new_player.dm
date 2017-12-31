@@ -209,7 +209,7 @@
 			var/datum/species/S = all_species[client.prefs.species]
 
 			if(!(S.spawn_flags & CAN_JOIN))
-				src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
+				alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
 				return 0
 
 		if (client.next_normal_respawn > world.time)
@@ -218,11 +218,10 @@
 				if ((input(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
 					LateChoices()
 					return 1
-			src << alert("Because you died in combat, you must wait [wait] more minutes to respawn. You can still join as a reinforcement.")
+			alert(src, "Because you died in combat, you must wait [wait] more minutes to respawn. You can still join as a reinforcement.")
 			return 0
-		else
-			LateChoices()
-			return 1
+		LateChoices()
+		return 1
 
 /*
 	if(href_list["manifest"])
@@ -448,6 +447,8 @@
 	return 1
 
 /mob/new_player/proc/LateChoices()
+
+	src << browse(null, "window=latechoices")
 
 	var/dat = "<html><body><center>"
 	dat += "<b>Welcome, [key].<br></b>"

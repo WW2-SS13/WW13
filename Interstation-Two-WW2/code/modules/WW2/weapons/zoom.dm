@@ -237,6 +237,21 @@ Parts of code courtesy of Super3222
 	..(_loc)
 	handle_zooms_with_movement()
 
+// item helpers
+/obj/item/proc/is_zoomable_object()
+	for (var/datum/action/toggle_scope/A in actions)
+		if (A)
+			return 1
+	return 0
+
+/obj/item/proc/has_zooming_scope()
+	for (var/datum/action/toggle_scope/A in actions)
+		if (A && A.scope.zoomed)
+			return 1
+	return 0
+
+// human helpers
+
 // resets zoom on movement
 /mob/living/carbon/human/proc/handle_zooms_with_movement()
 

@@ -32,5 +32,10 @@ var/global/datum/controller/process/ticker/tickerProcess
 
 	ticker.process()
 
+	// todo: relocate this code - Kachnov
+	for (var/obj/item/device/radio/intercom/I in world)
+		I.supply_points += (rand(0.1*100, 0.3*100))/100
+
+
 /datum/controller/process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration

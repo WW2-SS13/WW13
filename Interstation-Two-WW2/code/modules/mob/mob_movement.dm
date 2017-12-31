@@ -219,6 +219,7 @@
 
 	if (t1 && t1.check_prishtina_block(mob, 1))
 		mob.dir = direct
+		mob << "<span class = 'warning'>You cannot pass the invisible wall until the Grace Period has ended.</span>"
 		return 0
 
 	if (mob_is_observer && t1 && locate(/obj/noghost) in t1)

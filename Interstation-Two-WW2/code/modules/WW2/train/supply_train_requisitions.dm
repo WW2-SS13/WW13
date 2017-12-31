@@ -8,7 +8,7 @@
 
 	var/memo = ""
 
-	var/list/crate_types = list(
+	var/static/list/crate_types = list(
 
 	// AMMO AND MISC.
 	"Flammenwerfer Fuel Tanks" = /obj/structure/closet/crate/flammenwerfer_fueltanks,
@@ -61,7 +61,7 @@
 
 	)
 
-	var/list/costs = list(
+	var/static/list/costs = list(
 
 	// AMMO AND MISC.
 	"Flammenwerfer Fuel Tanks" = 50,

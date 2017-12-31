@@ -91,6 +91,14 @@
 	// Number of deciseconds to delay before starting the process
 	var/start_delay = 0
 
+	// are we paused (admin-initiated only)
+	var/paused = 0
+
+	// are our non-vital processes paused (admin-initiated only)
+	// currently only implemented for the obj process
+	var/paused_nonvital = 0
+
+
 /datum/controller/process/New(var/datum/controller/processScheduler/scheduler)
 	..()
 	main = scheduler
@@ -130,7 +138,8 @@
 
 /datum/controller/process/proc/process()
 	started()
-	doWork()
+	if (!paused)
+		doWork()
 	finished()
 
 /datum/controller/process/proc/running()

@@ -232,9 +232,6 @@ var/list/gamemode_cache = list()
 	var/german_reinforcements_at_once = 10
 	var/russian_reinforcements_at_once = 10
 
-	var/min_players_for_spies = 10
-	var/min_players_for_jews = 10
-
 	var/paratrooper_drop_time = 3000
 
 	//WW2 donor shit
@@ -419,12 +416,6 @@ var/list/gamemode_cache = list()
 
 				if ("russian_reinforcements_at_once")
 					config.russian_reinforcements_at_once = text2num(value)
-
-				if ("min_players_for_spies")
-					config.min_players_for_spies = text2num(value)
-
-				if ("min_players_for_jews")
-					config.min_players_for_jews = text2num(value)
 
 				if ("paratrooper_drop_time")
 					config.paratrooper_drop_time = text2num(value)

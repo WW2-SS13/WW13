@@ -25,8 +25,10 @@
 		last_movement = world.time
 		var/turf/target = get_step(src, direct)
 
-		if (target && target.check_prishtina_block(src.front_seat()))
+		var/driver = front_seat()
+		if (target && target.check_prishtina_block(driver))
 			play_movement_sound()
+			driver << "<span class = 'warning'>You cannot pass the invisible wall until the Grace Period has ended.</span>"
 			return
 
 		if (istype(target, /turf/floor/plating/beach/water))

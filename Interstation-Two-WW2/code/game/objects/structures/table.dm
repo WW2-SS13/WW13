@@ -345,15 +345,20 @@
 			table_destroy(3, user)
 			return
 
+	// are we scoping with this gun/binoculars? Don't let us drop it
+	if (I.has_zooming_scope())
+		return
+
 	user.drop_item(loc)
+
+	//Center the icon where the user clicked if we can.
 	var/list/click_params = params2list(params)
-	//Center the icon where the user clicked.
 	if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
 		return
 	//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
 	I.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
 	I.pixel_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
-	I.invisibility = 0 // we might have been scoping
+
 /*
  * TABLE DESTRUCTION/DECONSTRUCTION
  */

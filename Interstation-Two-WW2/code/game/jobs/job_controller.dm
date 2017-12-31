@@ -604,17 +604,17 @@ var/global/list/fallschirm_landmarks = list()
 			if (j.is_officer) // handle officer
 				if (must_have_squad_leader(j.base_type_flag())) // only accept SLs
 					if (!istype(j, /datum/job/german/squad_leader) && !istype(j, /datum/job/russian/squad_leader))
-						np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
+						np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
 						return 0
 					else // we're joining as the SL, chill fam
 						return 1
 			else
 				if (must_have_squad_leader(j.base_type_flag())) // only accept SLs
-					np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
+					np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
 					return 0
 		else
 			if (must_have_squad_leader(j.base_type_flag()))
-				np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
+				np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
 				return 0
 		return 1
 
@@ -1355,9 +1355,14 @@ var/global/list/fallschirm_landmarks = list()
 			world << "[H] ([rank]) GOT TO before spawnID()"
 			#endif
 
-			// if its night give H a lantern
+			/* if its night give H a lantern
+			 * use our belt slot since keys can go in the ID slot
+			 * some roles have stuff in their belt slot but most people
+			 * will get lanterns - Kachnov */
+
 			if (isDarkOutside())
-				H.equip_to_slot_or_del(new/obj/item/device/flashlight/lantern(get_turf(H)), SLOT_BELT)
+				H.equip_to_slot_or_del(new/obj/item/device/flashlight/lantern(H), slot_belt)
+
 			// this spawns keys now
 			spawnKeys(H, rank, alt_title)
 

@@ -36,7 +36,7 @@
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
 			var/turflist = getturfsbetween(user, target_turf)
-			flame_turf(turflist, get_dir(get_turf(user), target_turf))
+			flame_turfs(turflist, get_dir(get_turf(user), target_turf))
 
 /obj/item/weapon/flamethrower/flammenwerfer/process()
 	if(!lit)
@@ -51,7 +51,7 @@
 	return
 
 // this has better range checking so we don't burn/overheat ourselves
-/obj/item/weapon/flamethrower/flammenwerfer/flame_turf(turflist, var/flamedir)
+/obj/item/weapon/flamethrower/flammenwerfer/flame_turfs(turflist, var/flamedir)
 
 	var/turf/my_turf = get_turf(loc)
 
@@ -73,13 +73,26 @@
 	operating = 1
 	playsound(my_turf, 'sound/weapons/flamethrower.ogg', 100, 1)
 
+	var/blocking_turfs = list()
+
 	for(var/turf/T in turflist)
 
 		if (T == my_turf)
 			continue
 
-		if(T.density || istype(T, /turf/space))
+		if (abs(my_turf.x - T.x) > 5 || abs(my_turf.y - T.y) > 5)
 			continue
+
+		if (T != get_step(my_turf, my_mob.dir) && prob(get_dist(my_turf, T)*2))
+			continue
+
+		if(T.density)
+			blocking_turfs += T
+			continue
+
+		for (var/turf/TT in blocking_turfs)
+			if (get_step(TT, my_mob.dir) == T)
+				continue
 
 		if (my_turf)
 			if (T.x <= my_turf.x)
@@ -98,7 +111,8 @@
 		if (fueltank <= 0.00)
 			break
 
-		ignite_turf(T, flamedir)
+		spawn (get_dist(my_turf, T))
+			ignite_turf(T, flamedir)
 		// we run out of fuel after flamming 4000 turfs (on min fuel)
 		fueltank -= (1/4000) * get_throw_coeff()
 		fueltank = max(fueltank, 0.00)
@@ -157,7 +171,16 @@
 
 /obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target, flamedir)
 	var/throw_coeff = get_throw_coeff()
-	target.create_fire(5, rand(250,300) * throw_coeff, 0)
+	var/dist_coeff = 1.0
+	switch (get_dist(get_turf(src), target))
+		if (0 to 5)
+			dist_coeff = 1.00
+		if (5 to 10)
+			dist_coeff = 1.50 // the center is hottest I guess - Kachnov
+		if (10 to INFINITY)
+			dist_coeff = 1.00
+
+	target.create_fire(5, rand(250,300) * throw_coeff * dist_coeff, 0)
 	spawn (rand(120*throw_coeff, 150*throw_coeff))
 		for (var/obj/fire/fire in target)
 			qdel(fire) // shitty workaround #2

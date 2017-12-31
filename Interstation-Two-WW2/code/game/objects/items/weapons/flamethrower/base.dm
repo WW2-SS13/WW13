@@ -67,7 +67,7 @@
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
 			var/turflist = getline(user, target_turf, 1)
-			flame_turf(turflist)
+			flame_turfs(turflist)
 
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
 	if(user.stat || user.restrained() || user.lying)	return
@@ -162,9 +162,8 @@
 	update_icon()
 	return
 
-
 //Called from turf.dm turf/dblclick
-/obj/item/weapon/flamethrower/proc/flame_turf(turflist)
+/obj/item/weapon/flamethrower/proc/flame_turfs(turflist)
 	var/turf/my_turf = get_turf(loc)
 	if(!lit || operating)	return
 	operating = 1

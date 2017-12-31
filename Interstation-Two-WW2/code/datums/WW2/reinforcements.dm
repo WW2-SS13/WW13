@@ -20,6 +20,9 @@ var/datum/reinforcements/reinforcements_master
 	var/german_reinforcements_at_once = 9
 	var/russian_reinforcements_at_once = 12
 
+	var/max_german_reinforcements = 100
+	var/max_russian_reinforcements = 100
+
 	var/reinforcement_add_limit = 7
 	var/reinforcement_add_limit_german = 7
 	var/reinforcement_add_limit_russian = 7
@@ -76,9 +79,16 @@ var/datum/reinforcements/reinforcements_master
 	if (clients.len <= 20 && reinforcement_spawn_req != 1)
 		reinforcement_spawn_req = 1
 		world << "<span class = 'danger'>Reinforcements require <b>one</b> person to fill a queue.</span>"
+		max_german_reinforcements = config.max_german_reinforcements/2
+		max_russian_reinforcements = config.max_russian_reinforcements/2
 	else if (clients.len > 20 && reinforcement_spawn_req == 1)
 		reinforcement_spawn_req = initial(reinforcement_spawn_req)
 		world << "<span class = 'danger'>Reinforcements require <b>three</b> people to fill a queue.</span>"
+		max_german_reinforcements = config.max_german_reinforcements
+		max_russian_reinforcements = config.max_russian_reinforcements
+	else
+		max_german_reinforcements = config.max_german_reinforcements
+		max_russian_reinforcements = config.max_russian_reinforcements
 
 	spawn while (1)
 
@@ -262,10 +272,10 @@ var/datum/reinforcements/reinforcements_master
 /datum/reinforcements/proc/is_permalocked(side)
 	switch (side)
 		if (GERMAN)
-			if (reinforcements_granted[GERMAN] > config.max_german_reinforcements)
+			if (reinforcements_granted[GERMAN] > max_german_reinforcements)
 				return 1
 		if (RUSSIAN)
-			if (reinforcements_granted[RUSSIAN] > config.max_russian_reinforcements)
+			if (reinforcements_granted[RUSSIAN] > max_russian_reinforcements)
 				return 1
 	return 0
 
