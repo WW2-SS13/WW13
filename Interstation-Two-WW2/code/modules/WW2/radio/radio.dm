@@ -603,10 +603,9 @@ var/global/list/default_ukrainian_channels = list(
 				var/tries = 0
 				retry
 				var/turf/T = pick(german_supplydrop_spots)
-				if (!T.density && !locate(/obj/structure) in T)
-					new path (T)
-					for (var/mob/living/L in T)
-						L.crush()
+				if (!T.density && !locate(/obj/structure) in T && !locate(/mob/living) in T)
+					var/atom/A = new path (T)
+					A.visible_message("<span class = 'notice'>[A] falls from the sky!</span>")
 					dropped = 1
 				else
 					++tries
@@ -618,10 +617,9 @@ var/global/list/default_ukrainian_channels = list(
 				var/tries = 0
 				retry
 				var/turf/T = pick(soviet_supplydrop_spots)
-				if (!T.density && !locate(/obj/structure) in T)
-					new path (T)
-					for (var/mob/living/L in T)
-						L.crush()
+				if (!T.density && !locate(/obj/structure) in T && !locate(/mob/living) in T)
+					var/atom/A = new path (T)
+					A.visible_message("<span class = 'notice'>[A] falls from the sky!</span>")
 					dropped = 1
 				else
 					++tries
@@ -660,7 +658,11 @@ var/global/list/default_ukrainian_channels = list(
 		return
 	switch (faction)
 		if (GERMAN)
+			mob.languages.Cut()
+			mob.default_language = new/datum/language/german
 			announcer.frequency = DE_SUPPLY_FREQ
 		if (RUSSIAN)
+			mob.languages.Cut()
+			mob.default_language = new/datum/language/russian
 			announcer.frequency = RU_SUPPLY_FREQ
 	announcer.broadcast(msg, mob)

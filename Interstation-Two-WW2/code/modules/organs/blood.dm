@@ -1,4 +1,5 @@
-#define BLOOD_NERF 3
+#define BLEEDING_NERF 7.5
+#define SEVERE_BLEEDING_NERF 7.5
 /****************************************************
 				BLOOD SYSTEM
 ****************************************************/
@@ -59,9 +60,9 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 			continue
 		for(var/datum/wound/W in temp.wounds)
 			if(W.bleeding())
-				blood_max += (W.damage / 40 / BLOOD_NERF)
+				blood_max += (W.damage / 40 / BLEEDING_NERF)
 		if (temp.open)
-			blood_max += 2  //Yer stomach is cut open
+			blood_max += 2/SEVERE_BLEEDING_NERF  //Yer stomach is cut open
 
 	if (blood_max) // we're bleeding
 		drip(blood_max)

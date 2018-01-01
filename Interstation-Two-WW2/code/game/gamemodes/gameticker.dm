@@ -356,7 +356,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 			spawn(50)
 				if(!round_end_announced) // Spam Prevention. Now it should announce only once.
-					world << "<span class='danger'>The round has ended!</span>"
+					if (!istype(mode, /datum/game_mode/ww2))
+						world << "<span class='danger'>The round has ended!</span>"
 					round_end_announced = 1
 
 		return 1

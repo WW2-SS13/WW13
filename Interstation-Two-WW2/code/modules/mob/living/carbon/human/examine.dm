@@ -109,8 +109,6 @@
 		msg += "<span class='warning'>[T.He] [T.has] [(hand_blood_color != "#030303") ? "blood" : "oil"]-stained hands!</span>\n"
 
 	//handcuffed?
-
-	//handcuffed?
 	if(handcuffed)
 		if(istype(handcuffed, /obj/item/weapon/handcuffs/cable))
 			msg += "<span class='warning'>[T.He] [T.is] \icon[handcuffed] restrained with cable!</span>\n"
@@ -201,15 +199,6 @@
 		msg += "<span class='warning'>[T.He] [T.is]n't responding to anything around [T.him] and seems to be asleep.</span>\n"
 		if((stat == DEAD || src.losebreath) && distance <= 3)
 			msg += "<span class='warning'>[T.He] [T.does] not appear to be breathing.</span>\n"
-		/*if(istype(usr, /mob/living/carbon/human) && !usr.stat && Adjacent(usr))
-			usr.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
-		spawn(15)
-			if(distance <= 1 && usr.stat != 1) //How the fuck would you know whether or not he has a pulse just by fucking looking at him anyway. Fuck this game.
-				if(pulse() == PULSE_NONE)
-					usr << "<span class='deadsay'>[T.He] [T.has] no pulse[src.client ? "" : " and [T.his] soul has departed"]...</span>"
-				else
-					usr << "<span class='deadsay'>[T.He] [T.has] a pulse!</span>"
-			*/
 
 	if(fire_stacks)
 		msg += "[T.He] [T.is] covered in some liquid.\n"
@@ -357,7 +346,8 @@
 		msg += wound_flavor_text["right foot"]
 	else if(is_bleeding["right foot"])
 		display_shoes = 1
-
+*/
+/*
 	if(display_chest)
 		msg += "<span class='danger'>[src] [T.has] blood soaking through from under [T.his] clothing!</span>\n"
 	if(display_shoes)
@@ -422,8 +412,6 @@
 
 		else if (isobserver(user))
 			msg += "<br><i>[T.He] [T.is] a [original_job.title].</i>"
-
-
 
 	for (var/v in 1 to embedded.len)
 		msg += "<a href='?src=\ref[user];remove_embedded=[v]'>Remove [embedded[v]]</a>"

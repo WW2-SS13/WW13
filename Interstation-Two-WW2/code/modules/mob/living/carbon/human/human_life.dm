@@ -1123,6 +1123,7 @@
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
+
 	else if(health < config.health_threshold_softcrit)
 		shock_stage = max(shock_stage, 61)
 	else
@@ -1163,7 +1164,6 @@
 
 	if(shock_stage >= 150)
 		Weaken(20)
-
 /*
 	Called by life(), instead of having the individual hud items update icons each tick and check for status changes
 	we only set those statuses and icons upon changes.  Then those HUD items will simply add those pre-made images.

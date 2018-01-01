@@ -272,14 +272,14 @@
 	. = ..()
 	if (. == 1 && faction)
 		for (var/mob/living/carbon/human/H in human_mob_list)
-			if (H.client && (!H.original_job || H.original_job.base_type_flag() != faction))
+			if (H.client && H.original_job && H.stat == CONSCIOUS && H.original_job.base_type_flag() != faction)
 				var/dist = max(abs(x - H.x), abs(y - H.y))
 				// 112 range on big map, 13 range on small map - kachnov
 				var/maxdist = ((world.maxx + world.maxy) / 6) - 5
 				if (!locate(H) in view(world.view, src) && dist <= maxdist)
 					if (prob(5) && world.time >= next_bork)
 						visible_message("<span class = 'danger'>The [src] starts barking in fear! It smells an enemy!</span>")
-						next_bork = world.time + 200
+						next_bork = world.time + 500 // shut the fuck up dogs - kachnov
 						return
 
 // dog combat

@@ -14,15 +14,7 @@
 	var/special_id = 0
 
 /obj/examine(mob/user,distance=-1)
-//	if(..(user,2))
-	/*	if (corporation)
-			if (corporation in global.global_corporations)
-				var/datum/corporation/C = global_corporations[corporation]
-				user << "<font color='[C.textcolor]'>You think this [src.name] create a \
-				<IMG CLASS=icon SRC=\ref[C.icon] ICONSTATE='[C.icon_state]'>\
-				[C.name]. [C.about]</font>"
-			else
-				user << "You think this [src.name] create a [corporation]."*/
+	..(user,distance)
 	return distance == -1 || (get_dist(src, user) <= distance)
 
 
