@@ -647,42 +647,7 @@ var/global/list/default_ukrainian_channels = list(
 		return
 	announce("[itemname] has been purchased and will arrive soon.")
 	supply_points -= pointcost
-	spawn (rand(50,200))
-		var/dropped = 0
-		switch (faction)
-			if (GERMAN)
-				var/tries = 0
-				retry
-				var/turf/T = pick(german_supplydrop_spots)
-				if (!T.density && !locate(/obj/structure) in T && !locate(/mob/living) in T)
-					var/atom/A = new path (T)
-					A.visible_message("<span class = 'notice'>[A] falls from the sky!</span>")
-					playsound(T, 'sound/effects/bamf.ogg', rand(70,80))
-					dropped = 1
-				else
-					++tries
-					if (tries > 9) // we already tried 10 turfs (retried 9 times)
-						goto finish
-					else
-						goto retry
-			if (RUSSIAN)
-				var/tries = 0
-				retry
-				var/turf/T = pick(soviet_supplydrop_spots)
-				if (!T.density && !locate(/obj/structure) in T && !locate(/mob/living) in T)
-					var/atom/A = new path (T)
-					A.visible_message("<span class = 'notice'>[A] falls from the sky!</span>")
-					playsound(T, 'sound/effects/bamf.ogg', rand(70,80))
-					dropped = 1
-				else
-					++tries
-					if (tries > 9) // we already tried 10 turfs (retried 9 times)
-						goto finish
-					else
-						goto retry
-		finish
-		if (!dropped)
-			supply_points += pointcost
+	supplydrop_process.add(path, faction)
 
 // shitcode copied from the german supplytrain system - Kachnov
 /obj/item/device/radio

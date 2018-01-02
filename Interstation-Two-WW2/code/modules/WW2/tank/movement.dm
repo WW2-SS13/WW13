@@ -148,7 +148,7 @@
 		if (!wall.tank_destroyable)
 			return 0
 		var/wall_integrity = wall.material ? wall.material.integrity : 150
-		if (prob(min(wall_integrity/2, 97)))
+		if (prob(min(95, (wall_integrity/5) + 40)))
 			tank_message("<span class = 'danger'>The tank smashes against [wall]!</span>")
 			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 			return 0
@@ -190,11 +190,22 @@
 
 		if (istype(o, /obj/structure/girder))
 			if (prob(10))
-				tank_message("<span class = 'danger'>The tank plows through the sandbag wall!</span>")
+				tank_message("<span class = 'danger'>The tank plows through the wall girder!</span>")
 				qdel(o)
 				return 1
 			else
 				tank_message("<span class = 'danger'>The tank smashes against the wall girder!</span>")
+				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+				return 0
+
+		if (istype(o, /obj/structure/simple_door))
+			var/obj/structure/simple_door/S = o
+			if ((S.material && prob(max(5, 100 - (S.material.integrity/5) - 10))) || prob(95))
+				tank_message("<span class = 'danger'>The tank plows through \the [S]!</span>")
+				qdel(o)
+				return 1
+			else
+				tank_message("<span class = 'danger'>The tank smashes against \the [S]!</span>")
 				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
 				return 0
 

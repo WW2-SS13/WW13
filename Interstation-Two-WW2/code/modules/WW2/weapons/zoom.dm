@@ -180,9 +180,9 @@ Parts of code courtesy of Super3222
 		user.visible_message("[zoomdevicename ? "[user] looks up from \the [src.name]" : "[user] lowers \the [src.name]"].")
 
 	if (zoomed)
-		for (var/obj/o in user.client.screen)
-			if (!istype(o, /obj/screen/movable/action_button))
-				zoom_process.add(o)
+		for (var/obj/O in user.client.screen)
+			if (!istype(O, /obj/screen/movable/action_button))
+				zoom_process.add(O)
 
 /datum/action/toggle_scope
 	name = "Toggle Sights"

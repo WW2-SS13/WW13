@@ -2,6 +2,7 @@
 	name = "item"
 	icon = 'icons/obj/items.dmi'
 	w_class = 3.0
+	layer = 3.01 // stops supply drop items from appearing under their crate
 
 	var/nodrop = 0
 	var/list/actions = list() //list of /datum/action's that this item has.
@@ -62,8 +63,6 @@
 	var/requires_two_hands = 0
 	var/wielded_icon = null
 	var/worn_state = null
-
-	var/scoped_invisible = 0
 
 /obj/item/equipped()
 	..()

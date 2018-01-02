@@ -111,6 +111,7 @@
 #include "code\controllers\Processes\nanoui.dm"
 #include "code\controllers\Processes\obj.dm"
 #include "code\controllers\Processes\scheduler.dm"
+#include "code\controllers\Processes\supplydrop.dm"
 #include "code\controllers\Processes\ticker.dm"
 #include "code\controllers\Processes\time_of_day.dm"
 #include "code\controllers\Processes\vote.dm"

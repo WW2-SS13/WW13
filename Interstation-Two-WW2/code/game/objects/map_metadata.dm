@@ -30,17 +30,19 @@ var/global/obj/map_metadata/map = null
 	last_crossing_block_status[RUSSIAN] = soviets_can_cross_blocks()
 
 /obj/map_metadata/proc/check_prishtina_block(var/mob/living/carbon/human/H, var/turf/T)
+	if (!istype(H) || !istype(T))
+		return 0
 	var/area/A = get_area(T)
 	if (A.type == prishtina_blocking_area_type)
-		if (!H.faction)
-			return 1
+		if (!H.original_job)
+			return 0
 		else
-			switch (H.faction)
+			switch (H.original_job.base_type_flag())
 				if (PARTISAN, CIVILIAN, RUSSIAN)
-					return soviets_can_cross_blocks()
+					return !soviets_can_cross_blocks()
 				if (GERMAN)
-					return germans_can_cross_blocks()
-	return 1
+					return !germans_can_cross_blocks()
+	return 0
 
 /obj/map_metadata/proc/soviets_can_cross_blocks()
 	return 1
@@ -59,11 +61,12 @@ var/global/obj/map_metadata/map = null
 	return mission_announced
 
 /obj/map_metadata/forest/soviets_can_cross_blocks()
-	if (mission_announced && tickerProcess.time_elapsed >= 6000)
+	if (mission_announced && tickerProcess.time_elapsed >= 4200)
 		return 1
+	return 0
 
 /obj/map_metadata/forest/announce_mission_start(var/preparation_time = 0)
-	world << "<font size=4>The German assault has started after [preparation_time / 600] minutes of preparation.</font><br>"
+	world << "<font size=4>The German assault has started after <b>[preparation_time / 600] minutes</b> of preparation. The Soviet side may not attack until after <b>7 minutes</b>.</font><br>"
 
 /obj/map_metadata/minicity
 	ID = "City Map (70x70)"
@@ -76,4 +79,4 @@ var/global/obj/map_metadata/map = null
 	return tickerProcess.time_elapsed >= 7200
 
 /obj/map_metadata/minicity/announce_mission_start(var/preparation_time)
-	return 1
+	world << "<font size=4>Both sides have <b>12 minutes</b> to prepare before combat will begin!</font>"

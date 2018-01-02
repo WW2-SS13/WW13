@@ -60,24 +60,27 @@
 		var/obj/item/weapon/storage/belt/keychain/kc = W
 		//var/list/keylist = kc.keys
 
-		for (var/obj/item/weapon/key/german/command_intermediate/key in kc.keys)
-			if(istype(key))
-				if (locked == 1)
-					tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
-					locked = 0
-				else
-					tank_message("<span class = 'notice'>[user] locks [my_name()].</span>")
-					locked = 1
-				return 0
-		for (var/obj/item/weapon/key/russian/command_intermediate/key in kc.keys)
-			if(istype(key))
-				if (locked == 1)
-					tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
-					locked = 0
-				else
-					tank_message("<span class = 'notice'>[user] locks [my_name()].</span>")
-					locked = 1
-				return 0
+		if (istype(src, /obj/tank/german))
+			for (var/obj/item/weapon/key/german/command_intermediate/key in kc.keys)
+				if(istype(key))
+					if (locked == 1)
+						tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
+						locked = 0
+					else
+						tank_message("<span class = 'notice'>[user] locks [my_name()].</span>")
+						locked = 1
+					return 0
+
+		else if (istype(src, /obj/tank/soviet))
+			for (var/obj/item/weapon/key/russian/command_intermediate/key in kc.keys)
+				if(istype(key))
+					if (locked == 1)
+						tank_message("<span class = 'notice'>[user] unlocks [my_name()].</span>")
+						locked = 0
+					else
+						tank_message("<span class = 'notice'>[user] locks [my_name()].</span>")
+						locked = 1
+					return 0
 		user << "<span class = 'danger'>None of your keys seem to fit!</span>"
 		return 0
 	else if (istype(W, /obj/item/weapon/key/german/command_intermediate) || istype(W, /obj/item/weapon/key/russian/command_intermediate))

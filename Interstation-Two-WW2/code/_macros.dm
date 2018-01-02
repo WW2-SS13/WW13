@@ -7,6 +7,9 @@
 
 #define isicon(A) istype(A, /icon)
 
+#define isscreen(A) istype(A, /obj/screen)
+#define ishud(A) istype(A, /obj/screen)
+
 //MOB LEVEL
 
 #define ismob(A) istype(A, /mob)

@@ -55,9 +55,11 @@
 
 /obj/structure/largecrate/animal/dog/german
 	held_type = /mob/living/simple_animal/complex_animal/canine/dog/german_shepherd
+	name = "German Shepherd Crate"
 
 /obj/structure/largecrate/animal/dog/soviet
 	held_type = /mob/living/simple_animal/complex_animal/canine/dog/samoyed
+	name = "Samoyed Crate"
 
 /*
 /obj/structure/largecrate/animal/corgi

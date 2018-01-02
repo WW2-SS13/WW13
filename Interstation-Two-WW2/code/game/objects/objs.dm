@@ -12,6 +12,7 @@
 	var/armor_penetration = 0
 //	var/corporation = null
 	var/special_id = 0
+	var/scoped_invisible = 0
 
 /obj/examine(mob/user,distance=-1)
 	..(user,distance)
