@@ -115,9 +115,18 @@
 
 	message_admins("[key_name(src)] reset the roundstart autobalance for [_clients] players.")
 
+/client/proc/end_all_grace_periods()
+	set category = "WW2 (Admin)"
+	set name = "End All Grace Periods"
+	var/conf = input(src, "Are you sure you want to end all grace periods?") in list("Yes", "No")
+	if (conf == "Yes")
+		map.admin_ended_all_grace_periods = 1
+		message_admins("[key_name(src)] ended all grace periods!")
+		log_admin("[key_name(src)] ended all grace periods.")
+
 /client/proc/show_battle_report()
 	set category = "WW2 (Admin)"
-	set name = "Show battle report"
+	set name = "Show Battle Report"
 
 	show_global_battle_report(src)
 

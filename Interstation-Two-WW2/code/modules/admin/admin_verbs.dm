@@ -75,6 +75,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/allow_join_ruforce,
 	/client/proc/allow_join_geforce,
 	/client/proc/show_battle_report,
+	/client/proc/end_all_grace_periods,
 //	/client/proc/generate_hit_table, // REALLY FUCKING LAGGY WARNING
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/removeEmptyCases,

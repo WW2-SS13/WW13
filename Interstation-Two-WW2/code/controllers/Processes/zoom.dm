@@ -16,8 +16,6 @@ var/datum/controller/process/zoom/zoom_process = null
 		if(isnull(O.gcDestroyed))
 			try
 				var/check = 0
-				if (isturf(O.loc) || isobj(O.loc))
-					check = 1
 				if (ishud(O))
 					var/obj/screen/S = O
 					if (S.parentmob)
@@ -27,7 +25,9 @@ var/datum/controller/process/zoom/zoom_process = null
 							var/mob/living/carbon/human/H = S.parentmob
 							if (!H.using_zoom())
 								check = 1
-				if (ismob(O.loc))
+				else if (isturf(O.loc) || isobj(O.loc))
+					check = 1
+				else if (ismob(O.loc))
 					var/mob/M = O.loc
 					if (!ishuman(M))
 						check = 1
@@ -56,4 +56,4 @@ var/datum/controller/process/zoom/zoom_process = null
 /datum/controller/process/zoom/proc/add(var/obj/O)
 	O.scoped_invisible = 1
 	O.invisibility = 100
-	zoom_processing_objects += O
+	zoom_processing_objects |= O

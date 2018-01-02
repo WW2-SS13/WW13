@@ -365,13 +365,15 @@ var/global/list/fallschirm_landmarks = list()
 			else if (istype(j, /datum/job/german/artyman))
 				if (!locate(/obj/machinery/artillery) in world)
 					j.total_positions = 0
+				else if (clients.len <= 15)
+					j.total_positions = 0
 
 			else if (istype(j, /datum/job/german/anti_tank_crew) || istype(j, /datum/job/german/tankcrew))
 				spawn (5)
 					if (!locate(/obj/tank) in world)
 						j.total_positions = 0
 
-			else if (istype(j, /datum/job/german/paratrooper) && !fallschirm_landmarks.len)
+			else if (istype(j, /datum/job/german/paratrooper) && (!fallschirm_landmarks.len || clients.len <= 20))
 				german_soldat_slots += german_paratrooper_slots
 				german_paratrooper_slots = 0
 				j.total_positions = 0

@@ -8,8 +8,9 @@ var/global/obj/map_metadata/map = null
 	simulated = 0
 	invisibility = 101
 	var/ID = null
-	var/prishtina_blocking_area_type = null
+	var/list/prishtina_blocking_area_types = list()
 	var/last_crossing_block_status[2]
+	var/admin_ended_all_grace_periods = 0
 
 /obj/map_metadata/New()
 	..()
@@ -33,7 +34,7 @@ var/global/obj/map_metadata/map = null
 	if (!istype(H) || !istype(T))
 		return 0
 	var/area/A = get_area(T)
-	if (A.type == prishtina_blocking_area_type)
+	if (prishtina_blocking_area_types.Find(A.type))
 		if (!H.original_job)
 			return 0
 		else
@@ -55,12 +56,16 @@ var/global/obj/map_metadata/map = null
 
 /obj/map_metadata/forest
 	ID = "Forest Map (200x529)"
-	prishtina_blocking_area_type = /area/prishtina/forest/invisible_wall
+	prishtina_blocking_area_types = list(
+		/area/prishtina/forest/north/invisible_wall,
+		/area/prishtina/forest/south/invisible_wall)
 
 /obj/map_metadata/forest/germans_can_cross_blocks()
-	return mission_announced
+	return (mission_announced || admin_ended_all_grace_periods)
 
 /obj/map_metadata/forest/soviets_can_cross_blocks()
+	if (admin_ended_all_grace_periods)
+		return 1
 	if (mission_announced && tickerProcess.time_elapsed >= 4200)
 		return 1
 	return 0
@@ -70,13 +75,13 @@ var/global/obj/map_metadata/map = null
 
 /obj/map_metadata/minicity
 	ID = "City Map (70x70)"
-	prishtina_blocking_area_type = /area/prishtina/no_mans_land/invisible_wall
+	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 
 /obj/map_metadata/minicity/germans_can_cross_blocks()
-	return tickerProcess.time_elapsed >= 7200
+	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/minicity/soviets_can_cross_blocks()
-	return tickerProcess.time_elapsed >= 7200
+	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/minicity/announce_mission_start(var/preparation_time)
 	world << "<font size=4>Both sides have <b>12 minutes</b> to prepare before combat will begin!</font>"

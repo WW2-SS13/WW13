@@ -39,10 +39,12 @@
 
 /area/prishtina/forest
 	dynamic_lighting = 0
-	name = "Field"
+	name = "The Forest"
 	icon_state = "purple1"
 
-/area/prishtina/forest/invisible_wall
+/area/prishtina/forest/north/invisible_wall
+
+/area/prishtina/forest/south/invisible_wall
 
 /* sector 1 = top left, sector 2 = top center, sector 3 = top right
    sector 4 = middle left, sector 5 = middle center, sector 6 = middle right

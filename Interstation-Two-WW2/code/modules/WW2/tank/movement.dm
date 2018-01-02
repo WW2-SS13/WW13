@@ -200,7 +200,7 @@
 
 		if (istype(o, /obj/structure/simple_door))
 			var/obj/structure/simple_door/S = o
-			if ((S.material && prob(max(5, 100 - (S.material.integrity/5) - 10))) || prob(95))
+			if ((S.material && prob(max(5, 100 - (S.material.integrity/5) - 10))) || (!S.material && prob(80)))
 				tank_message("<span class = 'danger'>The tank plows through \the [S]!</span>")
 				qdel(o)
 				return 1
