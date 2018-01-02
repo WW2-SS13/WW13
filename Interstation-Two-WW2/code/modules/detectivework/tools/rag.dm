@@ -39,7 +39,7 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/attackby(obj/item/W, mob/user)
 	if(!on_fire)
-		if(istype(W, /obj/item/weapon/flame))
+		if(istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/device/flashlight/flare) && W:on))
 			var/obj/item/weapon/flame/F = W
 			if(F.lit)
 				ignite()
@@ -211,6 +211,8 @@
 	update_name()
 	update_icon()
 
+#define BURNING_RAG_LIFE_TICKS 1000
+
 /obj/item/weapon/reagent_containers/glass/rag/process()
 	if(!can_ignite())
 		visible_message("<span class='warning'>\The [src] burns out.</span>")
@@ -230,6 +232,6 @@
 		qdel(src)
 		return
 
-	reagents.remove_reagent("fuel", reagents.maximum_volume/25)
+	reagents.remove_reagent("fuel", reagents.maximum_volume/BURNING_RAG_LIFE_TICKS)
 	update_name()
 	burn_time--

@@ -38,23 +38,23 @@
 
 	/* mentioning specific roles: */
 
-	// @admins
+	// @admins: ping secondary admins, primary admins, and the head admin.
 	var/imsg = msg
 	msg = replacetext(msg, "@admins", "<span class=\"log_message\">@admins</span>")
 	msg = replacetext(msg, "@Admins", "<span class=\"log_message\">@admins</span>")
 	if (msg != imsg)
 		for (var/client/C in clients)
-			if (C.holder && C.holder.rights & R_ADMIN && !(C.holder.rights & R_HOST))
+			if (C.holder && C.holder.rights & R_MOD && !(C.holder.rights & R_PERMISSIONS))
 				winset(C, "mainwindow", "flash=2;")
 				C << sound('sound/machines/ping.ogg')
 
-	// @highstaff
+	// @highstaff: ping managers, hosts, and senators
 	imsg = msg
 	msg = replacetext(msg, "@highstaff", "<span class=\"log_message\">@highstaff</span>")
 	msg = replacetext(msg, "@Highstaff", "<span class=\"log_message\">@highstaff</span>")
 	if (msg != imsg)
 		for (var/client/C in clients)
-			if (C.holder && C.holder.rights & R_HOST)
+			if (C.holder && C.holder.rights & R_PERMISSIONS)
 				winset(C, "mainwindow", "flash=2;")
 				C << sound('sound/machines/ping.ogg')
 

@@ -345,10 +345,6 @@
 			table_destroy(3, user)
 			return
 
-	// are we scoping with this gun/binoculars? Don't let us drop it
-	if (I.has_zooming_scope())
-		return
-
 	user.drop_item(loc)
 
 	//Center the icon where the user clicked if we can.

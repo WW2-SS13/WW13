@@ -187,7 +187,7 @@
 	return speech_verb
 
 // Language handling.
-/mob/proc/add_language(var/language)
+/mob/proc/add_language(var/language, var/allow_name_changing = 0)
 
 	var/datum/language/new_language = all_languages[language]
 
@@ -201,7 +201,7 @@
 			else if (istype(l, /datum/language/russian))
 				cname_check = 0
 
-	if (cname_check)
+	if (cname_check && allow_name_changing)
 		if (istype(new_language, /datum/language/german))
 			if (ishuman(src))
 				var/mob/living/carbon/human/H = src

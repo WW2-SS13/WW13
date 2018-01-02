@@ -217,7 +217,7 @@
 
 	var/turf/t1 = n
 
-	if (t1 && t1.check_prishtina_block(mob, 1))
+	if (t1 && map.check_prishtina_block(mob, t1))
 		mob.dir = direct
 		mob << "<span class = 'warning'>You cannot pass the invisible wall until the Grace Period has ended.</span>"
 		return 0

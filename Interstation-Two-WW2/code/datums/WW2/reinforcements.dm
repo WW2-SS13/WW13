@@ -23,7 +23,6 @@ var/datum/reinforcements/reinforcements_master
 	var/max_german_reinforcements = 100
 	var/max_russian_reinforcements = 100
 
-	var/reinforcement_add_limit = 7
 	var/reinforcement_add_limit_german = 7
 	var/reinforcement_add_limit_russian = 7
 
@@ -77,10 +76,20 @@ var/datum/reinforcements/reinforcements_master
 /datum/reinforcements/proc/tick()
 
 	if (clients.len <= 20 && reinforcement_spawn_req != 1)
+
 		reinforcement_spawn_req = 1
 		world << "<span class = 'danger'>Reinforcements require <b>one</b> person to fill a queue.</span>"
+
+		// half everything
 		max_german_reinforcements = config.max_german_reinforcements/2
 		max_russian_reinforcements = config.max_russian_reinforcements/2
+		german_reinforcements_at_once = round(german_reinforcements_at_once/2)
+		russian_reinforcements_at_once = round(russian_reinforcements_at_once/2)
+		reinforcement_add_limit_german = round(reinforcement_add_limit_german/2)
+		reinforcement_add_limit_russian = round(reinforcement_add_limit_russian/2)
+		// but make this 1/3rd for b a l a n c e
+		reinforcement_difference_cutoff = round(reinforcement_difference_cutoff/3)
+
 	else if (clients.len > 20 && reinforcement_spawn_req == 1)
 		reinforcement_spawn_req = initial(reinforcement_spawn_req)
 		world << "<span class = 'danger'>Reinforcements require <b>three</b> people to fill a queue.</span>"

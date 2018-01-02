@@ -63,6 +63,8 @@
 	var/wielded_icon = null
 	var/worn_state = null
 
+	var/scoped_invisible = 0
+
 /obj/item/equipped()
 	..()
 	var/mob/M = loc

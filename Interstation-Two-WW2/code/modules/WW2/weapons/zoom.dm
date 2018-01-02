@@ -182,16 +182,7 @@ Parts of code courtesy of Super3222
 	if (zoomed)
 		for (var/obj/o in user.client.screen)
 			if (!istype(o, /obj/screen/movable/action_button))
-				/* 100 invisibility is better than 101 so we can still
-				   work with objects (like radios) */
-				o.invisibility = 100
-	else
-		user.fix_action_buttons()
-
-/mob/proc/fix_action_buttons()
-	for (var/obj/o in client.screen)
-		if (!istype(o, /obj/screen/movable/action_button))
-			o.invisibility = initial(o.invisibility)
+				zoom_process.add(o)
 
 /datum/action/toggle_scope
 	name = "Toggle Sights"

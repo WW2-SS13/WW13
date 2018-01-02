@@ -26,7 +26,7 @@
 		var/turf/target = get_step(src, direct)
 
 		var/driver = front_seat()
-		if (target && target.check_prishtina_block(driver))
+		if (target && map.check_prishtina_block(driver, target))
 			play_movement_sound()
 			driver << "<span class = 'warning'>You cannot pass the invisible wall until the Grace Period has ended.</span>"
 			return
@@ -172,14 +172,31 @@
 			update_damage_status()
 			return 0 // halt us too
 
-		if (istype(o, /obj/prishtina_block))
-			return 1 // pass over it - we already checked PBs in _Move()
-
 		if (istype(o, /obj/item/weapon/grenade))
 			return 1 // pass over it
 
 		if (istype(o, /obj/train_lever))
 			return 1 // pass over it
+
+		if (istype(o, /obj/structure/window/sandbag))
+			if (prob(20))
+				tank_message("<span class = 'danger'>The tank plows through the sandbag wall!</span>")
+				qdel(o)
+				return 1
+			else
+				tank_message("<span class = 'danger'>The tank smashes against the sandbag wall!</span>")
+				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+				return 0
+
+		if (istype(o, /obj/structure/girder))
+			if (prob(10))
+				tank_message("<span class = 'danger'>The tank plows through the sandbag wall!</span>")
+				qdel(o)
+				return 1
+			else
+				tank_message("<span class = 'danger'>The tank smashes against the wall girder!</span>")
+				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+				return 0
 
 		if (istype(o, /obj/train_pseudoturf))
 			if (o.density)
@@ -192,7 +209,7 @@
 					tank_message("<span class = 'danger'>The tank smashes its way through [o]!</span>")
 					qdel(o)
 					return 1
-			else // you can no longer drive tanks into trains.
+			else // you can no longer drive tanks in to or on to trains.
 				return 0
 
 		else if (istype(o, /obj/tank))

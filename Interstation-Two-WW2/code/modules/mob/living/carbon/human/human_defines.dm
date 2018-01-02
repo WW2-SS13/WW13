@@ -131,3 +131,5 @@
 	var/knows_tools = list()
 	var/knows_weapons = list()
 	var/knows_guns = list()
+
+	var/shoveling_snow = 0

@@ -243,11 +243,11 @@
 
 	if (istype(src, /datum/job/german))
 		if (!H.languages.Find(RUSSIAN))
-			H.add_language(RUSSIAN)
+			H.add_language(RUSSIAN, 1)
 		H.spy_faction = new/datum/faction/russian()
 	else
 		if (!H.languages.Find(GERMAN))
-			H.add_language(GERMAN)
+			H.add_language(GERMAN, 1)
 		H.spy_faction = new/datum/faction/german()
 
 

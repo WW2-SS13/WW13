@@ -115,7 +115,6 @@
 			var/flashrange = max(1, round(devrange*4))
 			explosion(get_turf(src), devrange, heavyrange, lightrange, flashrange)
 
-
 	if (src)
 		if(ismob(loc))
 			var/mob/M = loc

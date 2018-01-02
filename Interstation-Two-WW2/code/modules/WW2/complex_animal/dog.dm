@@ -78,7 +78,7 @@
 
 /mob/living/simple_animal/complex_animal/canine/dog/samoyed
 	icon_state = "samoyed"
-	name = "Samoyed"
+	name = "Soviet Samoyed"
 	faction = RUSSIAN
 /mob/living/simple_animal/complex_animal/canine/dog/samoyed/wild
 	name = "Wild Samoyed"

@@ -445,7 +445,7 @@
 	if(direction)
 
 		var/turf/target = get_step(src, direction)
-		if (target.check_prishtina_block(src))
+		if (map.check_prishtina_block(src, target))
 			return 0
 
 		scrambling = 1

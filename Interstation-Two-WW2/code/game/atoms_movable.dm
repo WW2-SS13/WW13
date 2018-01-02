@@ -153,21 +153,12 @@
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
 	if(!target || !src)	return 0
 
-	var/obj/item/I = src
-	if (I.has_zooming_scope())
-		return
-
-	if (thrower && ishuman(thrower))
-		var/mob/living/carbon/human/H = thrower
-		if (H.using_zoom())
-			if (invisibility == 100)
-				invisibility = 0
-
 	// no throwing past the bridge
-	for (var/i in 1 to get_dist(src, target))
-		var/turf/T = locate(x, y+i, z)
-		if (T && T.check_prishtina_block(src))
-			return 0
+	if (thrower)
+		for (var/i in 1 to get_dist(src, target))
+			var/turf/T = locate(x, y+i, z)
+			if (T && map.check_prishtina_block(thrower, T))
+				return 0
 
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 

@@ -33,8 +33,6 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	var/can_latejoin_ruforce = 1
 	var/can_latejoin_geforce = 1
 
-	var/role_preference_grace_period = -1
-
 /datum/controller/gameticker/proc/pregame()
 
 	spawn (0)
@@ -149,10 +147,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		start_train_loop()
 		handle_lifts()
 		setup_autobalance()
+		reinforcements_master = new
 
-		reinforcements_master = new()
-
-		role_preference_grace_period = world.time + 450
 
 	//close_jobs()//Makes certain jobs unselectable past roundstart. Unneeded atm.
 	//start_events() //handles random events and space dust.

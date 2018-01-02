@@ -20,7 +20,6 @@
 	var/on_welcome_popup = 0
 
 
-
 /mob/new_player/New()
 	mob_list += src
 
@@ -33,6 +32,7 @@
 	new_player_panel_proc()
 
 /mob/new_player/proc/new_player_panel_proc()
+	loc = null // so sometimes when people serverswap (tm) they get this window despite not being on the title screen - Kachnov
 	var/output = "<div align='center'><b>Welcome, [key]!</b>"
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character & Preferences</A></p>"
@@ -202,7 +202,7 @@
 			return 1
 
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-			usr << "\red The round is either not ready, or has already finished."
+			src << "\red The round is either not ready, or has already finished."
 			return
 
 		if(!check_rights(R_ADMIN, 0))
@@ -456,20 +456,6 @@
 
 	var/list/restricted_choices = list()
 
-	if (world.time <= ticker.role_preference_grace_period) // people with preference get 45 seconds to choose
-
-		for (var/client/c in clients)
-			if (c.role_preference_sov && c.role_preference_sov != client.role_preference_sov)
-				if (!restricted_choices[c.role_preference_sov])
-					restricted_choices[c.role_preference_sov] = 0
-				else
-					restricted_choices[c.role_preference_sov]++
-			if (c.role_preference_ger && c.role_preference_ger != client.role_preference_ger)
-				if (!restricted_choices[c.role_preference_ger])
-					restricted_choices[c.role_preference_ger] = 0
-				else
-					restricted_choices[c.role_preference_ger]++
-
 	var/prev_side = 0
 
 	dat += "Choose from the following open positions:<br>"
@@ -569,7 +555,6 @@
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")
-
 
 /mob/new_player/proc/create_character()
 

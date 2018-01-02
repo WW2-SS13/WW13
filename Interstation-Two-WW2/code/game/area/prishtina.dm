@@ -1,7 +1,4 @@
-// uses /area/prishtina/field
-
 /area/prishtina
-
 	requires_power = 0
 	has_gravity = 1
 	no_air = 0
@@ -38,10 +35,14 @@
 	name = "No Man's Land"
 	icon_state = "purple1"
 
+/area/prishtina/no_mans_land/invisible_wall
+
 /area/prishtina/forest
 	dynamic_lighting = 0
 	name = "Field"
 	icon_state = "purple1"
+
+/area/prishtina/forest/invisible_wall
 
 /* sector 1 = top left, sector 2 = top center, sector 3 = top right
    sector 4 = middle left, sector 5 = middle center, sector 6 = middle right

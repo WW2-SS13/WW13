@@ -17,15 +17,15 @@
 /datum/job/update_character(var/mob/living/carbon/human/H)
 	. = ..()
 
-	H.add_language(src.default_language)
-	H.default_language = all_languages[src.default_language]
+	H.add_language(default_language, 1)
+	H.default_language = all_languages[default_language]
 
-	if (src.additional_languages && src.additional_languages.len > 0)
-		for(var/language_name in src.additional_languages)
-			var/probability = src.additional_languages[language_name]
+	if (additional_languages && additional_languages.len > 0)
+		for(var/language_name in additional_languages)
+			var/probability = additional_languages[language_name]
 
 			if (prob(probability))
-				H.add_language(language_name)
+				H.add_language(language_name, 0)
 				H.show_message("<b>You know the [language_name] language!</b>")
 
 	if (istype(H.languages[1], /datum/language/common))
