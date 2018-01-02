@@ -144,10 +144,10 @@
 		user.update_laddervision(target) // stop looking up/down
 		return
 
-	visible_message("<span class = 'notice'>[user] starts to look [target.laddervision_direction()] the ladder.</span>")
+	visible_message("<span class = 'notice'>[user] starts to look [target.laddervision_direction()] \the [src].</span>")
 	if (do_after(user, 12, src))
 		user.update_laddervision(target)
-		visible_message("<span class = 'notice'>[user] looks [user.laddervision_direction()] the ladder.</span>")
+		visible_message("<span class = 'notice'>[user] looks [user.laddervision_direction()] \the [src].</span>")
 
 /mob/living/carbon/human/proc/update_laddervision(var/obj/structure/multiz/ladder/ladder)
 	if (ladder && istype(ladder))
@@ -174,7 +174,7 @@
 		return "up"
 	return "down"
 
-//// 1 Z LEVEL LADDERS - Kachnov ////
+/* 1 Z LEVEL LADDERS - Kachnov */
 
 /obj/structure/multiz/ladder/ww2
 	var/ladder_id = null
@@ -197,8 +197,48 @@
 		qdel(target)
 	return ..()
 
+/* manholes! These are just ww2 ladders. The top manhole should be paired
+ * with a bottom ladder that has the same ID */
 
+/obj/structure/multiz/ladder/ww2/manhole
+	icon_state = "manhole"
+	density = 0
+	name = "manhole"
 
+/obj/structure/multiz/ladder/ww2/manhole/proc/fell(var/mob/living/M)
+	if (icon_state == "manhole-open" && target)
+		M.visible_message("<span class = 'warning'>[M] falls down the manhole!</span>", "<span class = 'userdanger'>You fall down the manhole!</span>")
+		M.adjustBruteLoss(rand(10,20))
+		M.loc = get_turf(target)
+
+/obj/structure/multiz/ladder/ww2/manhole/attack_hand(var/mob/M)
+	switch (icon_state)
+		if ("manhole")
+			visible_message("<span class = 'danger'>[M] starts to move the cover off of the manhole.</span>")
+			icon_state = "manhole-opening"
+			if (do_after(M, 35, src)) // it takes 3.5 seconds for the animation
+				visible_message("<span class = 'danger'>[M] moves the cover off of the manhole.</span>")
+				icon_state = "manhole-open"
+			else
+				icon_state = "manhole"
+		if ("manhole-opening")
+			return
+		if ("manhole-open")
+			var/I = input(M, "Climb down the manhole or put the cover back on?") in list("Climb Down", "Replace the Cover", "Cancel")
+			if (I == "Cancel")
+				return
+			else
+				switch (I)
+					if ("Climb Down")
+						return ..(M)
+					if ("Replace the Cover")
+						visible_message("<span class = 'danger'>[M] starts to replace the cover back on to the manhole.</span>")
+						icon_state = "manhole-closing"
+						if (do_after(M, 35, src)) // it takes 3.5 seconds for the animation
+							visible_message("<span class = 'danger'>[M] moves the cover off of the manhole.</span>")
+							icon_state = "manhole"
+						else
+							icon_state = "manhole-open"
 ////STAIRS////
 /*
 //Spizjeno by guap and then by bo20202

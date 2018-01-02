@@ -388,6 +388,7 @@
 "hx" = (/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina/houses/nml_three)
 "hy" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/ash,/turf/floor/wood,/area/prishtina/houses/nml_three)
 "hz" = (/obj/effect/decal/cleanable/cobweb,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"hA" = (/obj/snow_maker,/obj/structure/multiz/ladder/ww2/manhole{area_id = "sewers-1"},/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "hB" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "hC" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood_broken,/area/prishtina/houses/nml_four)
 "hD" = (/turf/floor/wood_broken,/area/prishtina/houses/nml_four)
@@ -448,6 +449,7 @@
 "iG" = (/obj/snow_maker,/obj/map_metadata/minicity,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iH" = (/obj/effect/floor_decal/borderfloor/full,/obj/machinery/light/floor/streetlight,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "iI" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"iJ" = (/obj/snow_maker,/obj/structure/multiz/ladder/ww2/up{area_id = "sewers-1"},/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iK" = (/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iN" = (/obj/snow_maker,/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iO" = (/obj/structure/barbwire,/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land)
@@ -840,14 +842,14 @@ iKbyiKiRiRiKiKiRiRiKiKiKiRiRiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiRiKiKaUap
 iKbLiRiRiKiKiKiRiKiKiKiKiKiRiKiKiKiKiKiKiKiKiKiRiKiKiKiRiKiKiKiKiKiKiKiRiKiKaUbMaibNbAbAbAbAbCaZaZaZaZbCbDbObDbObDbDbPbQbfbRbfbSbfbfbfbTbUal
 iRbViKiKiKiKiKiRiKiKiKiKiKiRiKiKiKiKiKiKiKiRiRiRiKiKiKiKiRiKiKiKiKiKiRiKiKiKagapbWbXbBbYbAbZawcacbcccdawbDbDcecfbDcgamchbfbRciamcjbfbfbfbfal
 ckckckckckbmclckckckckckckckckckckckclclclckckckckbmckckclclckckckckbliKiKiKaUcmcncobBbAbAcpcqcrcsccctawcubDcvcwbObDamcxbfbRcyamczbfbfbfcAal
-cBcBcBcBcBcBcCcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcCcBcBcBcBaeiKiKiKaUcDbWcEcFcFbAcGawcHcIcIcJawbDcKcLbDcMbDamchcNcNcOamcPcQcRcScTal
+cBcBcBcBcBcBcCcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcBcCcBcBcBcBaeiKhAiKaUcDbWcEcFcFbAcGawcHcIcIcJawbDcKcLbDcMbDamchcNcNcOamcPcQcRcScTal
 cUcUcVcVcUcUcUcUcUcUcVcVcUcUcWcWcXcXcXcXcXcXcXcXcXcYcXcXcXcXcXcXcXcBaeiKiKiKagahaiaiaqaqaiaicqajcZcZajajdadadbdbdadaalaldcdddededededddddede
 cUdfdgdgdgdgdgdgdgdgdgdhdgcUdidicXdjdjdjdjdjdjdjdjdkdjdjdjdjdjdjcXcBdliKiKiKagcBdmdndododododpdqdodrdrdsdodtdododudododvdwdxdydzdydAdydBdydB
 cUdgdCdDdDdEdgdCdDdgdgdDdgcUdidicXdjdFdGdjdjdjdHdjdjdjdjdjdGdHdjcXcBdliRiKiRbmdIdJdKdJdJdLdMdsdNdOdNdNdsdJdJdPdQdJdJdRdSdTdUdVdWdVdXdYdZdVea
 ebdgdDecdDdDdDdDdDeddgdCdgcUdidicXdjeedjdjefegefefefefefdjdjdjdjcXcBaeiRiKiKiKiReheheheheiejeiehekelekemeneoenehepeqepemereseseseseseseseses
 ebdDdDdCdCdgdgdgdCeddgdgdgcUdidicXdjdjdjdjdjdjdjdjdjdjdkdjdjdjdHetcBaeiKiKiKiKiKeheheheheieueiehekekekemenenenehepepepemevesesesesewesesesex
 cUdgdgdgdgeddgeddgdgdgdgdgcUdidicXdHdjdjdHdjdjdjdHdjdjdHdjdjdjdHetcBaeiKiKiKaTiKeheheheheieieiehekekekehenenenehepepepeheyezeseseseseseseses
-cUdgdgdgdgdCdCdgdDdDeAdgdgcUdidicXdjdjdjdjdjdkdkdjdjdjdjdHdjdjdjcXcBaeiKiKiRbmckeBeCeBeBeBeBeBeBeBeBeBeBeDeBeBeBeBeBeBeBeEeFeGeGeGeHeGeGeGeI
+cUdgdgdgdgdCdCdgdDdDeAdgdgcUdidicXdjdjdjdjdjdkdkdjdjdjdjdHdjdjdjcXcBaeiKiJiRbmckeBeCeBeBeBeBeBeBeBeBeBeBeDeBeBeBeBeBeBeBeEeFeGeGeGeHeGeGeGeI
 ebdgdDdDdCeddgeddDdDdCdgdgcUdidicXdjdjdHdkdjdjdHdjdjdFdjdjdkdjdHetcBaeiKiKiRaUcBdodndoeJeKeKeKdoeLeMeNeKeOdodododododoePdweQdyeReReReReRdyeS
 ebdgdCeddCdDeTdgdCeUdgdgdgcUdidicXdHdjdjdjeVeVeVeVeVeVeVdjdHdjdjcXcBaeiKiKiKaUcBeWeXeXeYeYeYeYeZeLfaeNdofbfcfcfdfcfdfdfdfefffgfhfifjfjfkflfm
 cUdgdgeddgdgdDdgdCdCdgdgdgcUdidicXdjdkdGdjdjdjdjdjdjdkdjdjdGdjdjcXcBaeiKiKiKaUcBfnfofpfqfrfsftdoeLfaeNdofufvfwfxfyfzfAfBfCfDfgfEfFfjfjfjflfm

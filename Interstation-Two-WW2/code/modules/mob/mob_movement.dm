@@ -489,6 +489,10 @@
 		else
 			. = mob.SelfMove(n, direct)
 
+		for (var/obj/structure/multiz/ladder/ww2/manhole/M in mob.loc)
+			spawn (1)
+				M.fell(mob)
+
 		// make animals acknowledge us
 		if (mob_is_human)
 			for (var/mob/living/simple_animal/complex_animal/C in living_mob_list) // living_mob_list fails here
