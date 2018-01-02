@@ -91,11 +91,11 @@ var/list/train_halting_sounds = list( 'sound/effects/train/halting.ogg' )
 		if(!M || !M.client)
 			continue
 
-		if (M in excluded)
+		if (excluded.Find(M))
 			continue
 
 		var/distance = get_dist(M, turf_source)
-		if(distance <= (world.view + extrarange) * 3)
+		if(distance <= ((world.view * 3) + extrarange))
 			var/turf/T = get_turf(M)
 			if(T && T.z == turf_source.z)
 				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global)
@@ -106,7 +106,7 @@ var/list/train_halting_sounds = list( 'sound/effects/train/halting.ogg' )
 var/const/FALLOFF_SOUNDS = 0.5
 
 /mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global)
-	if(!src.client || ear_deaf > 0)	return
+	if(!client || ear_deaf > 0)	return
 	soundin = get_sfx(soundin)
 
 	var/sound/S = sound(soundin)
@@ -120,9 +120,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 		else
 			S.frequency = get_rand_frequency()
 
-	//sound volume falloff with pressure
-	var/pressure_factor = 1.0
-
 	if(isturf(turf_source))
 		// 3D sounds, the technology is here!
 		var/turf/T = get_turf(src)
@@ -130,23 +127,8 @@ var/const/FALLOFF_SOUNDS = 0.5
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
 
-		S.volume -= max(distance - world.view, 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
-
-		var/datum/gas_mixture/hearer_env = T.return_air()
-		var/datum/gas_mixture/source_env = turf_source.return_air()
-
-		if (hearer_env && source_env)
-			var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
-
-			if (pressure < ONE_ATMOSPHERE)
-				pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
-		else //in space
-			pressure_factor = 0
-
-		if (distance <= 1)
-			pressure_factor = max(pressure_factor, 0.15)	//hearing through contact
-
-		S.volume *= pressure_factor
+		S.volume -= (max(distance - world.view, 0) * 2)//multiplicative falloff to add on top of natural audio falloff.
+		S.volume = max(S.volume, rand(5,9))
 
 		if (S.volume <= 0)
 			return	//no volume means no sound
@@ -173,14 +155,9 @@ var/const/FALLOFF_SOUNDS = 0.5
 				S.environment = DIZZY
 			else if (M.sleeping)
 				S.environment = UNDERWATER
-			else if (pressure_factor < 0.5)
-				S.environment = SPACE
 			else
 				var/area/A = get_area(src)
 				S.environment = A.sound_env
-
-		else if (pressure_factor < 0.5)
-			S.environment = SPACE
 		else
 			var/area/A = get_area(src)
 			S.environment = A.sound_env

@@ -254,7 +254,7 @@
 
 /obj/structure/bed/roller/Move(var/turf/newloc)
 
-	if (buckled_mob && newloc.check_prishtina_block(buckled_mob))
+	if (buckled_mob && map.check_prishtina_block(buckled_mob, newloc))
 		return 0
 
 	..(newloc)

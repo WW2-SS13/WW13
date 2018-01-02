@@ -22,7 +22,7 @@
 
 		for (var/aspecttype in possible_subtypes)
 			var/datum/game_aspect/A = new aspecttype
-			if (A && clients.len >= A.required_clients)
+			if (A && clients.len >= A.required_clients && A.specialcheck())
 				real_aspects += A
 
 		if (prob(100 - default_aspect_chance))
@@ -35,6 +35,9 @@
 		for (var/x in real_aspects)
 			if (x != M.aspect)
 				qdel(x)
+
+/datum/game_aspect/proc/specialcheck()
+	return 1
 
 /datum/game_aspect/proc/activate()
 	if (!mode)
@@ -200,6 +203,9 @@
 /datum/game_aspect/ww2/german_logistical_disadvantage
 	desc = "The German High Command has disallowed sending the train until after 15 minutes for this round."
 
+/datum/game_aspect/ww2/german_logistical_disadvantage/specialcheck()
+	return locate(/obj/effect/landmark/train/german_train_start) in world
+
 /datum/game_aspect/ww2/german_logistical_disadvantage/activate()
 	. = ..()
 	if (. == FALSE)
@@ -207,6 +213,8 @@
 	world << "[WW2_ASPECT_SPAN][.]German Logistical Disadvantage!</span>"
 	world << "<br><i>[desc]</i>"
 	GRACE_PERIOD_LENGTH = 15
+
+
 
 /datum/game_aspect/ww2/no_tanks
 	desc = "There are no tanks, hooray!"

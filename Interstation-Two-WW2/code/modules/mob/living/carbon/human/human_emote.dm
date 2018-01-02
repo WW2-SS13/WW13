@@ -531,12 +531,21 @@
 					message = "makes a very loud noise."
 					m_type = 2
 
+		if ("dab")
+			m_type = 1
+			if (!restrained())
+				var/mob/M = locate() in get_step(src, dir)
+				if (M)
+					message = "dabs on [M]."
+				else
+					message = "dabs."
+
 		if ("help")
 			src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
 cry, custom, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,
 grin, laugh, look-(none)/mob, moan, mumble, nod, pale, point-atom, raise, salute, shake, shiver, shrug,
 sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, tremble, twitch, twitch_s, whimper,
-wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"}
+wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag, dab"}
 
 		else
 			src << "\blue Unusable emote '[act]'. Say *help for a list."

@@ -162,6 +162,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.handle_zoom_stuff(TRUE)
+		if (client)
+			client.next_normal_respawn = world.time + 1800
+			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
 	else
 		var/response
 		if(src.client && src.client.holder)
@@ -174,7 +177,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 					H.handle_zoom_stuff(TRUE)
 				src.client.admin_ghost()
 		else
-			response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to play this round for another 30 minutes! You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
+			response = alert(src, "Are you sure you want to ghost?\n(You may respawn with the 'Respawn' verb in the IC tab)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
 		if(response != "Ghost")
 			return
 		resting = 1
@@ -182,6 +185,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.handle_zoom_stuff(TRUE)
+		if (client && (stat == UNCONSCIOUS || getTotalLoss() >= 100))
+			client.next_normal_respawn = world.time + 1800
+			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
 		message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		log_game("[key_name_admin(usr)] has ghosted.")
 		var/mob/observer/ghost/ghost = ghostize(0)	//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3

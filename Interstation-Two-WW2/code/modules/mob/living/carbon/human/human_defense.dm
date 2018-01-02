@@ -43,6 +43,7 @@ meteor_act
 		return PROJECTILE_FORCE_MISS //if they don't have the organ in question then the projectile just passes by.
 
 	var/obj/item/organ/external/organ = get_organ()
+
 	//Shields
 	var/shield_check = check_shields(P.damage*5, P, null, def_zone, "the [P.name]")
 
@@ -52,6 +53,9 @@ meteor_act
 		else
 			P.on_hit(src, 2, def_zone)
 			return 2
+	else
+		if (prob(P.KD_chance))
+			Weaken(rand(2,3))
 
 	//Shrapnel
 	if(P.can_embed())

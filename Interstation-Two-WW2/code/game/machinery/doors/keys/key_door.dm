@@ -16,9 +16,8 @@ var/list/nonbreaking_types = list(
 	var/keyslot_type = null
 	var/showed_damage_messages[4]
 	var/unique_door_name = null
-	material = "iron"
 	var/starts_open = 0
-
+	material = "iron"
 	icon = 'icons/obj/doors/material_doors_leonister.dmi'
 
 /obj/structure/simple_door/key_door/New(_loc, _material = null)

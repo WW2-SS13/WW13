@@ -23,6 +23,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/remove_from_server_whitelist,
 	/client/proc/view_server_whitelist,
 	/client/proc/eject_unwhitelisted,
+	/client/proc/enable_disable_server_whitelist,
 	/client/proc/player_panel_new,		//shows an interface for all players, with links to various panels,
 	/client/proc/invisimin,				//allows our mob to go invisible/visible,
 //	/datum/admins/proc/show_traitor_panel,	//interface which shows a mob's mind, -Removed due to rare practical use. Moved to debug verbs ~Errorage,
@@ -74,6 +75,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/allow_join_ruforce,
 	/client/proc/allow_join_geforce,
 	/client/proc/show_battle_report,
+	/client/proc/end_all_grace_periods,
 //	/client/proc/generate_hit_table, // REALLY FUCKING LAGGY WARNING
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/removeEmptyCases,

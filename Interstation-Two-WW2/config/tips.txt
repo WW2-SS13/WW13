@@ -14,3 +14,6 @@ It's a bad idea to run on train tracks.
 The Quartermaster for either side can shoot anyone who comes in the Armory without permission.
 You can build locked doors in the same way as regular doors. You have to have a key in one hand and metal/wood in the other (active) hand.
 Flammenwerfers can melt snow and burn down trees and plants.
+Use a rifle's 'Field Strip' verb to remove its attachments.
+Use a lighter on a wet rag and put it in a bottle of vodka. You now have a Molotov.
+Panzerfausts, Molotovs, mines, and PTRDs are great weapons against tanks, with PTRDs being the best, but you can take down a tank with normal bullets. Just keep your distance and don't stop firing.

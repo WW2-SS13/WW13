@@ -318,7 +318,17 @@
 		var/disp = firemode.dispersion[min(i, firemode.dispersion.len)]
 		process_accuracy(projectile, user, target, acc, disp)
 
-		if(pointblank)
+		if (istype(projectile, /obj/item/projectile))
+			var/obj/item/projectile/P = projectile
+			if (istype(src, /obj/item/weapon/gun/projectile/boltaction))
+				P.KD_chance *= 10
+			else if (istype(src, /obj/item/weapon/gun/projectile/heavysniper))
+				P.KD_chance *= 15
+
+		if(pointblank) // oh so this is how pointblank works. Todo: delet this
+			if (istype(projectile, /obj/item/projectile))
+				var/obj/item/projectile/P = projectile
+				P.KD_chance *= 10
 			process_point_blank(projectile, user, target)
 
 		if(process_projectile(projectile, user, target, user.targeted_organ, clickparams))
@@ -368,9 +378,9 @@
 //called after successfully firing
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(silenced)
-		playsound(user, fire_sound, 10, 1)
+		playsound(get_turf(user), fire_sound, 10, 1, 50)
 	else
-		playsound(user, fire_sound, 50, 1)
+		playsound(get_turf(user), fire_sound, 100, 1, 50)
 
 		/*
 		if(reflex)

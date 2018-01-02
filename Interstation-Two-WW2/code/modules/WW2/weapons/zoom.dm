@@ -180,18 +180,9 @@ Parts of code courtesy of Super3222
 		user.visible_message("[zoomdevicename ? "[user] looks up from \the [src.name]" : "[user] lowers \the [src.name]"].")
 
 	if (zoomed)
-		for (var/obj/o in user.client.screen)
-			if (!istype(o, /obj/screen/movable/action_button))
-				/* 100 invisibility is better than 101 so we can still
-				   work with objects (like radios) */
-				o.invisibility = 100
-	else
-		user.fix_action_buttons()
-
-/mob/proc/fix_action_buttons()
-	for (var/obj/o in client.screen)
-		if (!istype(o, /obj/screen/movable/action_button))
-			o.invisibility = initial(o.invisibility)
+		for (var/obj/O in user.client.screen)
+			if (!istype(O, /obj/screen/movable/action_button))
+				zoom_process.add(O)
 
 /datum/action/toggle_scope
 	name = "Toggle Sights"
@@ -236,6 +227,21 @@ Parts of code courtesy of Super3222
 /mob/living/carbon/human/train_move(_loc)
 	..(_loc)
 	handle_zooms_with_movement()
+
+// item helpers
+/obj/item/proc/is_zoomable_object()
+	for (var/datum/action/toggle_scope/A in actions)
+		if (A)
+			return 1
+	return 0
+
+/obj/item/proc/has_zooming_scope()
+	for (var/datum/action/toggle_scope/A in actions)
+		if (A && A.scope.zoomed)
+			return 1
+	return 0
+
+// human helpers
 
 // resets zoom on movement
 /mob/living/carbon/human/proc/handle_zooms_with_movement()

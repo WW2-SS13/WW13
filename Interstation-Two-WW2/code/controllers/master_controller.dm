@@ -11,7 +11,7 @@ var/global/air_processing_killed = 0
 var/global/pipe_processing_killed = 0
 
 datum/controller/game_controller
-	var/list/shuttle_list	                    // For debugging and VV
+	//var/list/shuttle_list	                    // For debugging and VV
 
 datum/controller/game_controller/New()
 	//There can be only one master_controller. Out with the old and in with the new.

@@ -77,9 +77,6 @@
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
 
-		if (time_of_day)
-			stat("Time of Day: ", time_of_day)
-
 		if (istype(loc, /obj/tank))
 			var/obj/tank/tank = loc
 			var/fuel_slot_screwed = tank.fuel_slot_screwed ? "Screwed," : "Unscrewed,"

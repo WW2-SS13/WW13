@@ -165,6 +165,10 @@ var/list/slot_equipment_priority = list( \
 		if(!Target)
 			Target = loc
 
+		if (W.scoped_invisible)
+			if (W.invisibility > 0)
+				W.invisibility = 0
+
 		remove_from_mob(W)
 		if(!(W && W.loc)) return 1 // self destroying objects (tk, grabs)
 

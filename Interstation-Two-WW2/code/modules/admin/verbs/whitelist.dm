@@ -65,3 +65,24 @@
 
 	var/datum/whitelist/W = global_whitelists["server"]
 	src << W.data
+
+/client/proc/enable_disable_server_whitelist()
+	set name = "Enable/Disable Server Whitelist"
+	set category = "Test"
+
+	if(!check_rights(R_ADMIN))
+		src << "<span class = 'danger'>You don't have the permissions.</span>"
+		return
+
+	var/datum/whitelist/W = global_whitelists["server"]
+	W.enabled = !W.enabled
+	if (W.enabled)
+		src << "<span class = 'notice'>The server whitelist is now <b>ENABLED</b>.</span>"
+		var/M = "[key_name(src)] ENABLED the server whitelist."
+		log_admin(M)
+		message_admins(M)
+	else
+		src << "<span class = 'notice'>The server whitelist is now <b>DISABLED</b>.</span>"
+		var/M = "[key_name(src)] DISABLED the server whitelist."
+		log_admin(M)
+		message_admins(M)

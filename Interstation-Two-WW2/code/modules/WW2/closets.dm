@@ -1,4 +1,4 @@
-/obj/structure/closet/engineering_welding_ww2
+/obj/structure/closet/welding
 	name = "welding supplies"
 	icon_state = "secureengweld1"
 	icon_closed = "secureengweld"

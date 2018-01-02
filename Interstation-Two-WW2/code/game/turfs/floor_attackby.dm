@@ -15,13 +15,18 @@
 
 	else if (istype(C, /obj/item/weapon/shovel))
 		var/obj/snow/S = has_snow()
-		if (S)
+		var/mob/living/carbon/human/H = user
+		if (S && istype(H) && !H.shoveling_snow)
+			H.shoveling_snow = 1
 			var/time_modifier = S.amount/0.05
 			time_modifier = min(time_modifier, 30)
 			visible_message("<span class = 'notice'>[user] starts to shovel the [S.descriptor()] from [src].</span>", "<span class = 'notice'>You start to shovel the snow from [src].</span>")
 			if (do_after(user, rand(9*time_modifier,12*time_modifier)))
 				visible_message("<span class = 'notice'>[user] shovels the [S.descriptor()] from [src].</span>", "<span class = 'notice'>You shovel the snow from [src].</span>")
+				H.shoveling_snow = 0
 				qdel(S)
+			else
+				H.shoveling_snow = 0
 		else
 			return ..(C, user)
 

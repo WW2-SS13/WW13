@@ -346,8 +346,9 @@
 			return
 
 	user.drop_item(loc)
+
+	//Center the icon where the user clicked if we can.
 	var/list/click_params = params2list(params)
-	//Center the icon where the user clicked.
 	if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
 		return
 	//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)

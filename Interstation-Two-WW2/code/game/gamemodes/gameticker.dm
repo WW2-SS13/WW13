@@ -33,8 +33,6 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	var/can_latejoin_ruforce = 1
 	var/can_latejoin_geforce = 1
 
-	var/role_preference_grace_period = -1
-
 /datum/controller/gameticker/proc/pregame()
 
 	spawn (0)
@@ -46,8 +44,9 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 		do
 			pregame_timeleft = 180
-			world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
-			world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+			if (serverswap_open_status)
+				world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
+				world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
 			while(current_state == GAME_STATE_PREGAME)
 				for(var/i=0, i<10, i++)
 					sleep(1)
@@ -63,8 +62,9 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 								vote.process()
 				if(pregame_timeleft == 20)
 					if (roundstart_tips.len)
-						world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(roundstart_tips)]</span>"
-						roundstart_tips.Cut() // prevent tip spam if we're paused here
+						if (serverswap_open_status)
+							world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(roundstart_tips)]</span>"
+							roundstart_tips.Cut() // prevent tip spam if we're paused here
 				if(pregame_timeleft <= 0)
 					current_state = GAME_STATE_SETTING_UP
 		while (!setup())
@@ -79,7 +79,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	if((master_mode=="random") || (master_mode=="secret"))
 		if(!runnable_modes.len)
 			current_state = GAME_STATE_PREGAME
-			world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
+			if (serverswap_open_status)
+				world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
 			return 0
 		if(secret_force_mode != "secret")
 			src.mode = config.pick_mode(secret_force_mode)
@@ -93,7 +94,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	if(!src.mode)
 		current_state = GAME_STATE_PREGAME
-		world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
+		if (serverswap_open_status)
+			world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
 		return 0
 
 	job_master.ResetOccupations()
@@ -102,7 +104,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!src.mode.can_start())
-		world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
+		if (serverswap_open_status)
+			world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
 		mode.fail_setup()
 		mode = null
@@ -144,10 +147,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		start_train_loop()
 		handle_lifts()
 		setup_autobalance()
+		reinforcements_master = new
 
-		reinforcements_master = new()
-
-		role_preference_grace_period = world.time + 450
 
 	//close_jobs()//Makes certain jobs unselectable past roundstart. Unneeded atm.
 	//start_events() //handles random events and space dust.
@@ -351,7 +352,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 			spawn(50)
 				if(!round_end_announced) // Spam Prevention. Now it should announce only once.
-					world << "<span class='danger'>The round has ended!</span>"
+					if (!istype(mode, /datum/game_mode/ww2))
+						world << "<span class='danger'>The round has ended!</span>"
 					round_end_announced = 1
 
 		return 1

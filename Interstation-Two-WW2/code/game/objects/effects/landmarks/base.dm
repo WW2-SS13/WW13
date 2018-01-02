@@ -526,6 +526,17 @@ var/area/partisan_stockpile = null
 			qdel(src)
 			return
 
+		// supply
+		if ("german_supplydrop_spot")
+			german_supplydrop_spots += loc
+			qdel(src)
+			return
+
+		if ("soviet_supplydrop_spot")
+			soviet_supplydrop_spots += loc
+			qdel(src)
+			return
+
 	landmarks_list += src
 	return 1
 

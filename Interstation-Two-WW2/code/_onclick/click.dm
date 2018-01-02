@@ -201,12 +201,12 @@
 					if (!A.Adjacent(src)) // no punching people with werfers from a distance
 						return
 
-			else if (W && istype(W, /obj/item/weapon/sandbag) && A.rangedAdjacent(src))
-				if (src.get_active_hand() != W)
+			else if (W && istype(W, /obj/item/weapon/sandbag) && A.rangedAdjacent(src) && (isturf(A) || istype(A, /obj/structure/window/sandbag/incomplete)))
+				if (get_active_hand() != W)
 					return
 
 				if (!istype(A, /obj/structure/window/sandbag/incomplete))
-					A = get_turf(A) // make sure we flame a mob's turf, not them
+					A = get_turf(A)
 				else
 					if (!A.Adjacent(src)) // if we're adding to a sandbag wall, let us stand anywhere in range(1)
 						return
@@ -445,7 +445,7 @@
 	if(direction)
 
 		var/turf/target = get_step(src, direction)
-		if (target.check_prishtina_block(src))
+		if (map.check_prishtina_block(src, target))
 			return 0
 
 		scrambling = 1

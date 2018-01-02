@@ -601,7 +601,7 @@ var/list/name_to_material
 
 /material/wood/hard
 	name = "hardwood"
-	integrity = 400
+	integrity = 175
 	hardness = 200
 
 /material/wood/holographic

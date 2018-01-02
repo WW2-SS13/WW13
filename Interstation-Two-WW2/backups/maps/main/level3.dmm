@@ -30,230 +30,222 @@
 "aD" = (/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/wood,/area/prishtina/void/german/ss_train/command)
 "aE" = (/obj/structure/closet/crate/mp43ammo,/turf/floor/wood,/area/prishtina/void/german/ss_train/command)
 "aF" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/command/office)
-"aG" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void/german/ss_train/command/office)
-"aH" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/wall/r_wall,/area/prishtina/void/german/ss_train/command/office)
-"aI" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/floor/wood,/area/prishtina/void/german/ss_train/command/office)
-"aJ" = (/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/smokebomb/gernade,/obj/item/weapon/grenade/smokebomb/gernade,/obj/item/weapon/gun/projectile/pistol/luger,/obj/item/weapon/handcuffs,/obj/item/weapon/melee/classic_baton,/obj/item/weapon/plastique,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/weapon/storage/belt/security/tactical,/obj/item/weapon/storage/backpack/german,/obj/item/clothing/accessory/storage/webbing,/obj/item/attachment/bayonet,/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
-"aK" = (/obj/structure/filingcabinet,/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
-"aL" = (/obj/item/target,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
-"aM" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void/german/ss_train/command/office)
-"aN" = (/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
-"aO" = (/obj/structure/simple_door/key_door/german/command_intermediate{name = "S.S Commander Room"},/turf/floor/wood,/area/prishtina/void/german/ss_train/command/office)
-"aP" = (/obj/structure/table/reinforced,/obj/item/device/flashlight/lamp/green,/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
-"aQ" = (/obj/structure/bed/chair/comfy/black{dir = 8},/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
-"aR" = (/obj/structure/table/reinforced,/obj/item/weapon/paper_bin,/obj/item/weapon/pen/multi,/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
-"aS" = (/obj/structure/safe/floor,/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
-"aT" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
-"aU" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 8},/turf/floor/wood,/area/prishtina/void/german/ss_train/command)
-"aV" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/command)
-"aW" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train/command)
-"aX" = (/obj/structure/railing{dir = 8},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/command)
-"aY" = (/turf/sky,/area/prishtina/void/skybox/five)
-"aZ" = (/turf/sky,/area/prishtina/void/skybox/six)
-"ba" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bb" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bc" = (/obj/machinery/light/small{dir = 8},/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bd" = (/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"be" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 8},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bf" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bg" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bh" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bi" = (/obj/item/weapon/grenade/smokebomb/gernade,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/belt/security/tactical,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/melee/classic_baton,/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bj" = (/obj/item/weapon/grenade/smokebomb/gernade,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/belt/security/tactical,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/melee/classic_baton,/obj/machinery/light/small{dir = 1},/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bk" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bl" = (/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bm" = (/obj/structure/simple_door/key_door/german/SS{name = "S.S Dorms"},/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bn" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bo" = (/obj/structure/table/reinforced,/obj/item/weapon/paper_bin,/obj/item/weapon/pen/multi,/obj/machinery/light/small,/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bp" = (/obj/machinery/light/small{dir = 8},/obj/item/device/radio/intercom/loudspeaker/german{dir = 1},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bq" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"br" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bs" = (/obj/structure/railing{dir = 8},/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bt" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bu" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bv" = (/obj/machinery/light/small{dir = 8},/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bw" = (/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bx" = (/turf/sky,/area/prishtina/void/skybox/seven)
-"by" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/closet/crate/bayonets,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bz" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/train_decal/cargo/outline/grey,/obj/structure/closet/crate/gasmasks,/obj/machinery/light/small{dir = 1},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bA" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bB" = (/obj/structure/simple_door/key_door/german/SS{name = "S.S Armory"},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bC" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/item/clothing/accessory/storage/webbing,/obj/item/weapon/gun/projectile/automatic/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/structure/closet,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/weapon/gun/projectile/automatic/mp40,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bD" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/closet/crate/flammenwerfer_fueltanks,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bE" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/item/weapon/gun/projectile/boltaction/kar98k,/obj/item/attachment/scope/adjustable/sniper_scope,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/clothing/accessory/storage/webbing,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/structure/closet,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bF" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/table/rack,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/device/mine/betty,/obj/item/device/mine/betty,/obj/item/device/mine/betty,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bG" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/table/rack,/obj/machinery/light{dir = 8},/obj/item/weapon/grenade/smokebomb/gernade,/obj/item/weapon/grenade/smokebomb/gernade,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bH" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/machinery/light/small,/obj/item/weapon/storage/backpack/flammenwerfer,/obj/item/weapon/gun/projectile/pistol/luger,/obj/structure/table/rack,/obj/item/ammo_magazine/luger,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bI" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/table/rack,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/weapon/gun/projectile/automatic/l6_saw,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bJ" = (/obj/machinery/light/small{dir = 8},/obj/item/device/radio/intercom/loudspeaker/german{dir = 1},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bK" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bL" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bM" = (/obj/structure/railing{dir = 8},/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bN" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/entrance)
-"bO" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
-"bP" = (/obj/train_decal/cargo/outline/grey,/obj/machinery/light{dir = 8},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
-"bQ" = (/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
-"bR" = (/obj/effect/landmark{name = "JoinLateSS-Officer"},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
-"bS" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
-"bT" = (/obj/train_decal/cargo/outline/grey,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
-"bU" = (/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
-"bV" = (/turf/wall/r_wall,/area/prishtina/train/german/cabin/storage_horizontal)
-"bW" = (/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
-"bX" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/multiz/ladder/ww2{area_id = "ss"},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
-"bY" = (/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/train/german/cabin/storage_horizontal)
-"bZ" = (/obj/train_decal/cargo/outline/grey,/obj/machinery/light/small{dir = 1},/turf/floor/wood,/area/prishtina/train/german/cabin/storage_horizontal)
-"ca" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "ss"},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
-"cb" = (/obj/structure/simple_door/key_door/anyone/train,/turf/floor/wood,/area/prishtina/train/german/cabin/storage_horizontal)
-"cc" = (/turf/floor/wood,/area/prishtina/train/german/cabin/storage_horizontal)
-"cd" = (/obj/train_decal/cargo/outline/grey,/obj/machinery/light/small,/turf/floor/wood,/area/prishtina/train/german/cabin/storage_horizontal)
-"ce" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison)
-"cf" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train/prison)
-"cg" = (/obj/structure/railing{dir = 8},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison)
-"ch" = (/turf/wall/r_wall,/area/prishtina/train/german/cabin/storage)
-"ci" = (/obj/structure/simple_door/key_door/anyone/train,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
-"cj" = (/turf/wall/r_wall,/area/prishtina/train/german/cabin/soldier)
-"ck" = (/obj/structure/simple_door/key_door/anyone/train,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"cl" = (/turf/wall/r_wall,/area/prishtina/void)
-"cm" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/void)
-"cn" = (/obj/machinery/light{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 1},/turf/floor/wood,/area/prishtina/void)
-"co" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 1},/turf/floor/wood,/area/prishtina/void)
-"cp" = (/obj/train_decal/cargo/outline/grey,/obj/item/roller,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
-"cq" = (/obj/train_decal/cargo/outline/grey,/obj/item/device/radio/intercom/loudspeaker/german,/obj/item/roller,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
-"cr" = (/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
-"cs" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/obj/structure/bed/chair/wood,/obj/item/device/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"ct" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"cu" = (/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"cv" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"cw" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed,/obj/item/weapon/handcuffs,/turf/floor/wood,/area/prishtina/void)
-"cx" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void)
-"cy" = (/turf/floor/wood,/area/prishtina/void)
-"cz" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/wall/r_wall,/area/prishtina/void)
-"cA" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison/cell3)
-"cB" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison)
-"cC" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison/cell1)
-"cD" = (/obj/machinery/light/small{dir = 8},/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
-"cE" = (/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
-"cF" = (/obj/machinery/light/small{dir = 4},/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
-"cG" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"cH" = (/obj/machinery/light/small{dir = 8},/turf/floor/wood,/area/prishtina/void)
-"cI" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/floor/wood,/area/prishtina/void)
-"cJ" = (/obj/item/weapon/grenade/smokebomb/gernade,/obj/item/weapon/melee/classic_baton,/obj/item/weapon/handcuffs,/turf/floor/carpet,/area/prishtina/void)
-"cK" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/item/weapon/grenade/smokebomb/gernade,/obj/item/weapon/melee/classic_baton,/obj/item/weapon/handcuffs,/turf/floor/carpet,/area/prishtina/void)
-"cL" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed,/obj/item/weapon/handcuffs,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell3)
-"cM" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell3)
-"cN" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison)
-"cO" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell1)
-"cP" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed,/obj/item/weapon/handcuffs,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell1)
-"cQ" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/structure/simple_door/key_door/anyone/train,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
-"cR" = (/obj/structure/multiz/ladder/ww2/up{area_id = "ss"},/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
-"cS" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/structure/simple_door/key_door/anyone/train,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
-"cT" = (/obj/structure/bed,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"cU" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 2"},/turf/floor/wood,/area/prishtina/void)
-"cV" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 4"},/turf/floor/wood,/area/prishtina/void)
-"cW" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/void)
-"cX" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void)
-"cY" = (/turf/floor/carpet,/area/prishtina/void)
-"cZ" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell3)
-"da" = (/obj/machinery/light/small{dir = 8},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison)
-"db" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell1)
-"dc" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"dd" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/carpet,/area/prishtina/void)
-"de" = (/obj/structure/table/reinforced,/obj/item/device/flashlight/lamp/green,/turf/floor/carpet,/area/prishtina/void)
-"df" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 2"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell3)
-"dg" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 4"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell1)
-"dh" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/floor/carpet,/area/prishtina/void)
-"di" = (/obj/structure/table/reinforced,/obj/item/weapon/paper_bin,/obj/item/weapon/pen/multi,/turf/floor/carpet,/area/prishtina/void)
-"dj" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison)
-"dk" = (/obj/structure/curtain/open/bed,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"dl" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/floor/carpet,/area/prishtina/void)
-"dm" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison/cell4)
-"dn" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed,/obj/item/weapon/handcuffs,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell4)
-"do" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell4)
-"dp" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell2)
-"dq" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed,/obj/item/weapon/handcuffs,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell2)
-"dr" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison/cell2)
-"ds" = (/obj/machinery/light/small,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"dt" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 1"},/turf/floor/plating/road,/area/prishtina/void)
-"du" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 3"},/turf/floor/wood,/area/prishtina/void)
-"dv" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell4)
-"dw" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell2)
-"dx" = (/obj/machinery/light{dir = 8},/obj/structure/window/reinforced,/obj/structure/window/reinforced,/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void)
-"dy" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced,/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void)
-"dz" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 1"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell4)
-"dA" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 3"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell2)
-"dB" = (/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 4},/turf/floor/plating,/area/prishtina/void)
-"dC" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/gas_chamber)
-"dD" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
-"dE" = (/obj/structure/railing{dir = 8},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/gas_chamber)
-"dF" = (/turf/wall/r_wall,/area/prishtina/train/german/cabin/conductor)
-"dG" = (/obj/structure/simple_door/key_door/german/train{name = "Driver's cabin"},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"dH" = (/turf/wall/r_wall,/area/prishtina/train/german/cabin/officer)
-"dI" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/plating,/area/prishtina/void)
-"dJ" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/gas_chamber)
-"dK" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
-"dL" = (/obj/structure/reagent_dispensers/watertank,/obj/machinery/light/small/red{dir = 1},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"dM" = (/obj/structure/reagent_dispensers/fueltank,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"dN" = (/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"dO" = (/obj/structure/table/iron,/obj/item/weapon/storage/toolbox/emergency,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"dP" = (/obj/structure/table/iron,/obj/item/weapon/wrench,/obj/machinery/light/small/red{dir = 1},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"dQ" = (/obj/structure/table/wood,/obj/item/weapon/phone,/obj/machinery/light{dir = 1},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"dR" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/combat,/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"dS" = (/obj/structure/table/wood,/obj/item/weapon/flame/lighter/zippo,/obj/item/clothing/mask/smokable/cigarette/cigar/cohiba,/obj/structure/sign/portrait/hitler{step_x = 0; pixel_x = 0; pixel_y = 29},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"dT" = (/obj/structure/table/wood,/obj/item/weapon/storage/briefcase,/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"dU" = (/obj/structure/table/wood,/obj/item/glass_jar,/obj/machinery/light{dir = 1},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"dV" = (/turf/floor/plating,/area/prishtina/void)
-"dW" = (/obj/machinery/light/small,/turf/floor/plating,/area/prishtina/void)
-"dX" = (/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/plating,/area/prishtina/void)
-"dY" = (/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/void)
-"dZ" = (/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/wood,/area/prishtina/void)
-"ea" = (/obj/structure/closet,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
-"eb" = (/obj/machinery/light/small,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
-"ec" = (/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
-"ed" = (/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
-"ee" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"ef" = (/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"eg" = (/obj/structure/bed/chair/comfy/brown,/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"eh" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/floor/plating,/area/prishtina/void)
-"ei" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
-"ej" = (/obj/structure/table/wood,/obj/item/device/flashlight/lamp/green,/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"ek" = (/obj/structure/table/wood,/obj/item/weapon/paper_bin,/obj/item/weapon/pen,/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"el" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"em" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/floor/plating,/area/prishtina/void)
-"en" = (/obj/machinery/light/small{dir = 8},/turf/floor/plating,/area/prishtina/void)
-"eo" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/multiz/ladder/up,/turf/floor/wood,/area/prishtina/void)
-"ep" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/multiz/ladder/up,/turf/floor/wood,/area/prishtina/void)
-"eq" = (/obj/gasser,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber/gas_room)
-"er" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/obj/gasser,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber/gas_room)
-"es" = (/obj/machinery/light/small{dir = 8},/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
-"et" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/item/weapon/gun/projectile/minigun/maximstat{tag = "icon-maximstat (WEST)"; icon_state = "maximstat"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/railing{dir = 8},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"eu" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/item/weapon/gun/projectile/minigun/maximstat{tag = "icon-maximstat (EAST)"; icon_state = "maximstat"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/railing{dir = 4},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"ev" = (/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
-"ew" = (/obj/structure/bed/chair{dir = 4},/obj/item/weapon/handcuffs,/turf/floor/plating,/area/prishtina/void)
-"ex" = (/obj/structure/simple_door/key_door/german/soldat{name = "Gas Chamber"},/turf/floor/wood,/area/prishtina/void)
-"ey" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/up,/turf/floor/wood,/area/prishtina/void)
-"ez" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/up,/turf/floor/wood,/area/prishtina/void)
-"eA" = (/obj/structure/bed/chair{dir = 4},/obj/item/weapon/handcuffs,/obj/gasser,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber/gas_room)
-"eB" = (/obj/structure/simple_door/key_door/german/SS{name = "Gas Chamber"},/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
-"eC" = (/obj/gas_lever,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
-"eD" = (/obj/machinery/light/small/red{dir = 8},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"eE" = (/obj/machinery/light/small/red{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"eF" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
-"eG" = (/mob/living/simple_animal/corgi/puppy,/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
-"eH" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"eI" = (/obj/item/weapon/stool,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"eJ" = (/obj/structure/table/wood,/obj/item/device/radio/feldfu,/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"eK" = (/obj/structure/closet,/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,/obj/item/weapon/storage/box/cups,/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
-"eL" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/table/iron,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"eM" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/table/iron,/obj/item/device/radio/intercom/fu2,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"eN" = (/obj/train_lever/german,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"eO" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/table/iron,/obj/item/ammo_magazine/maxim,/obj/item/ammo_magazine/maxim,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"eP" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/structure/table/iron,/obj/machinery/light/small/red,/obj/item/ammo_magazine/maxim,/obj/item/ammo_magazine/maxim,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
-"eQ" = (/obj/structure/table/wood,/obj/item/device/radio/intercom/fu2,/obj/machinery/light{dir = 8},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"eR" = (/obj/structure/bed/chair/wood{dir = 8},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
-"eS" = (/obj/structure/bed,/obj/machinery/light{dir = 4},/obj/item/weapon/bedsheet/rd,/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
-"eT" = (/obj/machinery/light/small{dir = 1},/turf/floor/plating,/area/prishtina/void)
-"eU" = (/obj/machinery/light/small{dir = 1},/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
-"eV" = (/obj/structure/simple_door/key_door/german/command_high{name = "Commander's Cabin"},/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
+"aG" = (/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/void/german/ss_train/command/office)
+"aH" = (/obj/structure/window/classic,/turf/wall/r_wall,/area/prishtina/void/german/ss_train/command/office)
+"aI" = (/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/structure/closet/crate/german_smoke_grenade,/obj/structure/closet/crate/german_smoke_grenade,/obj/item/weapon/gun/projectile/pistol/luger,/obj/item/weapon/handcuffs,/obj/item/weapon/melee/classic_baton,/obj/item/weapon/plastique,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/weapon/storage/belt/security/tactical,/obj/item/weapon/storage/backpack/german,/obj/item/clothing/accessory/storage/webbing,/obj/item/attachment/bayonet,/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
+"aJ" = (/obj/structure/filingcabinet,/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
+"aK" = (/obj/item/target,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
+"aL" = (/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
+"aM" = (/obj/structure/simple_door/key_door/german/command_intermediate{name = "S.S Commander Room"},/turf/floor/wood,/area/prishtina/void/german/ss_train/command/office)
+"aN" = (/obj/structure/table/reinforced,/obj/item/device/flashlight/lamp/green,/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
+"aO" = (/obj/structure/bed/chair/comfy/black{dir = 8},/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
+"aP" = (/obj/structure/table/reinforced,/obj/item/weapon/paper_bin,/obj/item/weapon/pen/multi,/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
+"aQ" = (/obj/structure/safe/floor,/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
+"aR" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/floor/carpet,/area/prishtina/void/german/ss_train/command/office)
+"aS" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 8},/turf/floor/wood,/area/prishtina/void/german/ss_train/command)
+"aT" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/command)
+"aU" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train/command)
+"aV" = (/obj/structure/railing{dir = 8},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/command)
+"aW" = (/turf/sky,/area/prishtina/void/skybox/five)
+"aX" = (/turf/sky,/area/prishtina/void/skybox/six)
+"aY" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"aZ" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"ba" = (/obj/machinery/light/small{dir = 8},/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bb" = (/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bc" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 8},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bd" = (/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"be" = (/obj/structure/window/classic,/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bf" = (/obj/structure/closet/crate/german_smoke_grenade,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/belt/security/tactical,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/melee/classic_baton,/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bg" = (/obj/structure/closet/crate/german_smoke_grenade,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/belt/security/tactical,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/melee/classic_baton,/obj/machinery/light/small{dir = 1},/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bh" = (/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bi" = (/obj/structure/simple_door/key_door/german/SS{name = "S.S Dorms"},/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bj" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bk" = (/obj/structure/table/reinforced,/obj/item/weapon/paper_bin,/obj/item/weapon/pen/multi,/obj/machinery/light/small,/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bl" = (/obj/machinery/light/small{dir = 8},/obj/item/device/radio/intercom/loudspeaker/german{dir = 1},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bm" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bn" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bo" = (/obj/structure/railing{dir = 8},/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bp" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bq" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"br" = (/obj/machinery/light/small{dir = 8},/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bs" = (/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bt" = (/turf/sky,/area/prishtina/void/skybox/seven)
+"bu" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/closet/crate/bayonets,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bv" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/train_decal/cargo/outline/grey,/obj/structure/closet/crate/gasmasks,/obj/machinery/light/small{dir = 1},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bw" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bx" = (/obj/structure/simple_door/key_door/german/SS{name = "S.S Armory"},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"by" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/item/clothing/accessory/storage/webbing,/obj/item/weapon/gun/projectile/automatic/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/structure/closet,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/weapon/gun/projectile/automatic/mp40,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bz" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/closet/crate/flammenwerfer_fueltanks,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bA" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/item/weapon/gun/projectile/boltaction/kar98k,/obj/item/attachment/scope/adjustable/sniper_scope,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/clothing/accessory/storage/webbing,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/structure/closet,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bB" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/table/rack,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/device/mine/betty,/obj/item/device/mine/betty,/obj/item/device/mine/betty,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bC" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/table/rack,/obj/machinery/light{dir = 8},/obj/structure/closet/crate/german_smoke_grenade,/obj/structure/closet/crate/german_smoke_grenade,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bD" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/machinery/light/small,/obj/item/weapon/storage/backpack/flammenwerfer,/obj/item/weapon/gun/projectile/pistol/luger,/obj/structure/table/rack,/obj/item/ammo_magazine/luger,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bE" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/table/rack,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/weapon/gun/projectile/automatic/l6_saw,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bF" = (/obj/machinery/light/small{dir = 8},/obj/item/device/radio/intercom/loudspeaker/german{dir = 1},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bG" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bH" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bI" = (/obj/structure/railing{dir = 8},/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
+"bJ" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/entrance)
+"bK" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
+"bL" = (/obj/train_decal/cargo/outline/grey,/obj/machinery/light{dir = 8},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
+"bM" = (/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
+"bN" = (/obj/effect/landmark{name = "JoinLateSS-Officer"},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
+"bO" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
+"bP" = (/obj/train_decal/cargo/outline/grey,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
+"bQ" = (/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
+"bR" = (/turf/wall/r_wall,/area/prishtina/train/german/cabin/storage_horizontal)
+"bS" = (/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
+"bT" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/multiz/ladder/ww2{area_id = "ss"},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
+"bU" = (/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/train/german/cabin/storage_horizontal)
+"bV" = (/obj/train_decal/cargo/outline/grey,/obj/machinery/light/small{dir = 1},/turf/floor/wood,/area/prishtina/train/german/cabin/storage_horizontal)
+"bW" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/ww2{area_id = "ss"},/turf/floor/wood,/area/prishtina/void/german/ss_train/entrance)
+"bX" = (/obj/structure/simple_door/key_door/anyone/train,/turf/floor/wood,/area/prishtina/train/german/cabin/storage_horizontal)
+"bY" = (/turf/floor/wood,/area/prishtina/train/german/cabin/storage_horizontal)
+"bZ" = (/obj/train_decal/cargo/outline/grey,/obj/machinery/light/small,/turf/floor/wood,/area/prishtina/train/german/cabin/storage_horizontal)
+"ca" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison)
+"cb" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train/prison)
+"cc" = (/obj/structure/railing{dir = 8},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison)
+"cd" = (/turf/wall/r_wall,/area/prishtina/train/german/cabin/storage)
+"ce" = (/obj/structure/simple_door/key_door/anyone/train,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
+"cf" = (/turf/wall/r_wall,/area/prishtina/train/german/cabin/soldier)
+"cg" = (/obj/structure/simple_door/key_door/anyone/train,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
+"ch" = (/turf/wall/r_wall,/area/prishtina/void)
+"ci" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/void)
+"cj" = (/obj/machinery/light{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 1},/turf/floor/wood,/area/prishtina/void)
+"ck" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 1},/turf/floor/wood,/area/prishtina/void)
+"cl" = (/obj/train_decal/cargo/outline/grey,/obj/item/roller,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
+"cm" = (/obj/train_decal/cargo/outline/grey,/obj/item/device/radio/intercom/loudspeaker/german,/obj/item/roller,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
+"cn" = (/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
+"co" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/obj/structure/bed/chair/wood,/obj/item/device/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
+"cp" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
+"cq" = (/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
+"cr" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
+"cs" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed,/obj/item/weapon/handcuffs,/turf/floor/wood,/area/prishtina/void)
+"ct" = (/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/void)
+"cu" = (/turf/floor/wood,/area/prishtina/void)
+"cv" = (/obj/structure/window/classic,/turf/wall/r_wall,/area/prishtina/void)
+"cw" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison/cell1)
+"cx" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison)
+"cy" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison/cell2)
+"cz" = (/obj/machinery/light/small{dir = 8},/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
+"cA" = (/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
+"cB" = (/obj/machinery/light/small{dir = 4},/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
+"cC" = (/obj/structure/bed/chair/wood{dir = 1},/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
+"cD" = (/obj/machinery/light/small{dir = 8},/turf/floor/wood,/area/prishtina/void)
+"cE" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/floor/wood,/area/prishtina/void)
+"cF" = (/obj/structure/closet/crate/german_smoke_grenade,/obj/item/weapon/melee/classic_baton,/obj/item/weapon/handcuffs,/turf/floor/carpet,/area/prishtina/void)
+"cG" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/structure/closet/crate/german_smoke_grenade,/obj/item/weapon/melee/classic_baton,/obj/item/weapon/handcuffs,/turf/floor/carpet,/area/prishtina/void)
+"cH" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed,/obj/item/weapon/handcuffs,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell1)
+"cI" = (/obj/machinery/light/small{dir = 8},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison)
+"cJ" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed,/obj/item/weapon/handcuffs,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell2)
+"cK" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/structure/simple_door/key_door/anyone/train,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
+"cL" = (/obj/structure/multiz/ladder/ww2/up{area_id = "ss"},/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
+"cM" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/structure/simple_door/key_door/anyone/train,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
+"cN" = (/obj/structure/bed,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
+"cO" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 2"},/turf/floor/wood,/area/prishtina/void)
+"cP" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 4"},/turf/floor/wood,/area/prishtina/void)
+"cQ" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/void)
+"cR" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void)
+"cS" = (/turf/floor/carpet,/area/prishtina/void)
+"cT" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell1)
+"cU" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 1"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell1)
+"cV" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison)
+"cW" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 2"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell2)
+"cX" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell2)
+"cY" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
+"cZ" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/carpet,/area/prishtina/void)
+"da" = (/obj/structure/table/reinforced,/obj/item/device/flashlight/lamp/green,/turf/floor/carpet,/area/prishtina/void)
+"db" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/floor/carpet,/area/prishtina/void)
+"dc" = (/obj/structure/table/reinforced,/obj/item/weapon/paper_bin,/obj/item/weapon/pen/multi,/turf/floor/carpet,/area/prishtina/void)
+"dd" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison)
+"de" = (/obj/structure/curtain/open/bed,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
+"df" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/turf/floor/carpet,/area/prishtina/void)
+"dg" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison/cell3)
+"dh" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed,/obj/item/weapon/handcuffs,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell3)
+"di" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison/cell4)
+"dj" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed,/obj/item/weapon/handcuffs,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell4)
+"dk" = (/obj/machinery/light/small,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
+"dl" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 1"},/turf/floor/plating/road,/area/prishtina/void)
+"dm" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 3"},/turf/floor/wood,/area/prishtina/void)
+"dn" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell3)
+"do" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 3"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell3)
+"dp" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 4"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell4)
+"dq" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell4)
+"dr" = (/obj/machinery/light{dir = 8},/obj/structure/window/reinforced,/obj/structure/window/reinforced,/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void)
+"ds" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced,/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void)
+"dt" = (/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 4},/turf/floor/plating,/area/prishtina/void)
+"du" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/gas_chamber)
+"dv" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
+"dw" = (/obj/structure/railing{dir = 8},/turf/wall/r_wall,/area/prishtina/void/german/ss_train/gas_chamber)
+"dx" = (/turf/wall/r_wall,/area/prishtina/train/german/cabin/conductor)
+"dy" = (/obj/structure/simple_door/key_door/german/train{name = "Driver's cabin"},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"dz" = (/turf/wall/r_wall,/area/prishtina/train/german/cabin/officer)
+"dA" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/plating,/area/prishtina/void)
+"dB" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/gas_chamber)
+"dC" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
+"dD" = (/obj/structure/reagent_dispensers/watertank,/obj/machinery/light/small/red{dir = 1},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"dE" = (/obj/structure/reagent_dispensers/fueltank,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"dF" = (/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"dG" = (/obj/structure/table/iron,/obj/item/weapon/storage/toolbox/emergency,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"dH" = (/obj/structure/table/iron,/obj/item/weapon/wrench,/obj/machinery/light/small/red{dir = 1},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"dI" = (/obj/structure/table/wood,/obj/item/weapon/phone,/obj/machinery/light{dir = 1},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"dJ" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/combat,/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"dK" = (/obj/structure/table/wood,/obj/item/weapon/flame/lighter/zippo,/obj/item/clothing/mask/smokable/cigarette/cigar/cohiba,/obj/structure/sign/portrait/hitler{step_x = 0; pixel_x = 0; pixel_y = 29},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"dL" = (/obj/structure/table/wood,/obj/item/weapon/storage/briefcase,/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"dM" = (/obj/structure/table/wood,/obj/item/glass_jar,/obj/machinery/light{dir = 1},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"dN" = (/turf/floor/plating,/area/prishtina/void)
+"dO" = (/obj/machinery/light/small,/turf/floor/plating,/area/prishtina/void)
+"dP" = (/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/plating,/area/prishtina/void)
+"dQ" = (/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/void)
+"dR" = (/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/wood,/area/prishtina/void)
+"dS" = (/obj/structure/closet,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
+"dT" = (/obj/machinery/light/small,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
+"dU" = (/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
+"dV" = (/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
+"dW" = (/obj/structure/window/classic,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"dX" = (/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"dY" = (/obj/structure/bed/chair/comfy/brown,/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"dZ" = (/obj/structure/window/classic,/turf/floor/plating,/area/prishtina/void)
+"ea" = (/obj/structure/window/classic,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
+"eb" = (/obj/structure/table/wood,/obj/item/device/flashlight/lamp/green,/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"ec" = (/obj/structure/table/wood,/obj/item/weapon/paper_bin,/obj/item/weapon/pen,/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"ed" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"ee" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/floor/plating,/area/prishtina/void)
+"ef" = (/obj/machinery/light/small{dir = 8},/turf/floor/plating,/area/prishtina/void)
+"eg" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/multiz/ladder/up,/turf/floor/wood,/area/prishtina/void)
+"eh" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/multiz/ladder/up,/turf/floor/wood,/area/prishtina/void)
+"ei" = (/obj/gasser,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber/gas_room)
+"ej" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/obj/gasser,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber/gas_room)
+"ek" = (/obj/machinery/light/small{dir = 8},/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
+"el" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/item/weapon/gun/projectile/minigun/maximstat{tag = "icon-maximstat (WEST)"; icon_state = "maximstat"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/railing{dir = 8},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"em" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/item/weapon/gun/projectile/minigun/maximstat{tag = "icon-maximstat (EAST)"; icon_state = "maximstat"; dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/railing{dir = 4},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"en" = (/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
+"eo" = (/obj/structure/bed/chair{dir = 4},/obj/item/weapon/handcuffs,/turf/floor/plating,/area/prishtina/void)
+"ep" = (/obj/structure/simple_door/key_door/german/soldat{name = "Gas Chamber"},/turf/floor/wood,/area/prishtina/void)
+"eq" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/up,/turf/floor/wood,/area/prishtina/void)
+"er" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/up,/turf/floor/wood,/area/prishtina/void)
+"es" = (/obj/structure/bed/chair{dir = 4},/obj/item/weapon/handcuffs,/obj/gasser,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber/gas_room)
+"et" = (/obj/structure/simple_door/key_door/german/SS{name = "Gas Chamber"},/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
+"eu" = (/obj/gas_lever,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
+"ev" = (/obj/machinery/light/small/red{dir = 8},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"ew" = (/obj/machinery/light/small/red{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"ex" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
+"ey" = (/mob/living/simple_animal/corgi/puppy,/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
+"ez" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"eA" = (/obj/item/weapon/stool,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"eB" = (/obj/structure/table/wood,/obj/item/device/radio/feldfu,/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"eC" = (/obj/structure/closet,/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,/obj/item/weapon/storage/box/cups,/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
+"eD" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/table/iron,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"eE" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/table/iron,/obj/item/device/radio/intercom/fu2,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"eF" = (/obj/train_lever/german,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"eG" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/structure/table/iron,/obj/item/ammo_magazine/maxim,/obj/item/ammo_magazine/maxim,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"eH" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/structure/table/iron,/obj/machinery/light/small/red,/obj/item/ammo_magazine/maxim,/obj/item/ammo_magazine/maxim,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
+"eI" = (/obj/structure/table/wood,/obj/item/device/radio/intercom/fu2,/obj/machinery/light{dir = 8},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"eJ" = (/obj/structure/bed/chair/wood{dir = 8},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
+"eK" = (/obj/structure/bed,/obj/machinery/light{dir = 4},/obj/item/weapon/bedsheet/rd,/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
+"eL" = (/obj/machinery/light/small{dir = 1},/turf/floor/plating,/area/prishtina/void)
+"eM" = (/obj/machinery/light/small{dir = 1},/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
+"eN" = (/obj/structure/simple_door/key_door/german/command_high{name = "Commander's Cabin"},/turf/floor/wood,/area/prishtina/train/german/cabin/officer)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -287,73 +279,73 @@ aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabaaaaaaaaaa
 aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazazazaAazazazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaBaCaDaCaEazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaFaGaFaHazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaIaJaKaLazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaMaNaNaNazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaOaNaNaNazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaIaPaQaNazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaMaRaSaTazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaGaIaJaKazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaGaLaLaLazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaMaLaLaLazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaGaNaOaLazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaGaPaQaRazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaCaFaGaFaGazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaBaCaCaCaUazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabababababababababababababababababababababababababababababababababazazaVaWaXazazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabababababababababababababababababababababababababababababababababaaaaaVaWaXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabaaaaaVaWaXaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbabababbbababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbabcbdbdbdbebaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbabdbabfbabgbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbabdbhbibjbibaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbabdbkblblbibaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbabdbmblblbibaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbabdbhbnblbnbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbabdbkbnbobnbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbabdbabfbabfbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbabpbdbdbdbdbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbabababbbababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabaaaabqbrbsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabaaaabqbrbsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaYaYaYaYaYaYaYaYaYaYaYaYaYaYaYabaZaZaZaZaZaZaZaZaZaZaZaZaZaZaZabbtbtbtbubtbtbtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabababababababababababababababababababababababababababababababababbtbvbwbwbwbwbtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabtbwbtbtbtbtbtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabtbwbtbybzbAbtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabtbwbBbAbAbCbtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabtbwbtbDbAbEbtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabtbwbtbFbAbEbtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabtbwbtbGbHbIbtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabtbwbtbtbtbtbtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabtbJbwbwbwbwbtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabtbtbtbubtbtbtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabKbLbMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabKbLbMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabNbNbNbObNbNbNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabNbPbQbRbSbTbNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabNbUbSbSbSbUbNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaabVbVbVbVbVaaaabNbUbWbXbWbUbNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbxbxbxbxbxbxbxbxbxbxbxbxbxbxbxabaaaaaaaaaaaaaaaaaabVbYbZbYbVaaaabNbUbWcabWbUbNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabababababababababababababababababaaaaaaaaaaaaaaaaaacbcccccccbaaaabNbUbWcabWbUbNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabVbYcdbYbVaaaabNbUbSbSbSbUbNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabVbVbVbVbVaaaabNbPbSbSbSbTbNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabNbNbNbObNbNbNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacecfcgaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaachchchcichchchaacjcjcjckcjcjcjaaclclclcmclclclaaclcncocmcococlaaaaaacecfcgaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaachcpcqcrcpcpchaacjcsctcuctcvcjaaclcwcxcycxcwclaaclcyclcxclczclaacAcAcAcBcCcCcCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaachcDcEcrcEcFchaacjcGcGcucGcGcjaaclcyclcHclcyclaaclcycIcJcJcKclaacAcLcMcNcOcPcCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacQcrcEcRcEcrcSaacjcTcucucucTcjaaclcycUcycVcyclaaclcWcXcYcYcYclaacAcZcAdacCdbcCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacQcrcEcRcEcrcSaacjdcdccudcdccjaaclclclcyclclclaaclcyddcYcYdeclaacAcZdfcNdgdbcCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacQcrcEcRcEcrcSaacjcGcGcucGcGcjaaclcwcxcycxcwclaaclcycIdhcYdiclaacAcAcAdjcCcCcCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaachcDcEcrcEcFchaacjcjcjdkcjcjcjaaclcyclcHclcyclaaclcycXdhcYdlclaadmdndocNdpdqdraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaachcpcpcrcpcpchaackcudscudscuckaaclcydtcyducyclaaclcyclcxclcxclaadmdvdmdadrdwdraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaachchchcichchchaacjcjcjckcjcjcjaaclclclcmclclclaacldxdycmdydyclaadmdvdzcNdAdwdraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadBaaaaaaaadmdmdmcBdrdrdraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadBaaaaaaaaaaaadCdDdEaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadBaaaaaaaaaaaadCdDdEaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadFdFdFdGdFdFdFaadHdHdHdHdHdHdHaaclclcldIclclclaaclclclcmclclclaadJdJdJdKdJdJdJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadFdLdMdNdOdPdFaadHdQdRdSdTdUdHaacldVdWdVdVdXclaacldYdZcycydYclaadJeaebececeddJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaeedNdNdNdNdNeeaadHefefegefefdHaaclehclehcldVclaacldYcycycydYclaadJeidJeidJecdJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadFdNdNdNdNdNdFaadHefejekelefdHaacldVemdVehenclaacldYeocyepdYclaadJeqereqeiesdJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaetdNdNdNdNdNeuaadHevevevevevdHaacldVewdVexdVclaacldYeycyezdYclaadJeqeAeqeBeceCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadFeDdNdNdNeEdFaadHeFeveGevevdHaacldVdVdVehenclaacldYcycycydYclaadJeqeqeqeiesdJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadFeHdNeIdNdNdFaadHeJefeveveKdHaaclehclehcldVclaacldYcycycydYclaadJeidJeidJecdJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadFeLeMeNeOePdFaadHeQeReveveSdHaacldVeTdVdVdVclaacldYcycycydYclaadJeceUecececdJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadFdFeedFeedFdFaadHdHdHeVdHdHdHaaclclcldIclclclaaclclclcmclclclaadJdJdJdJdJdJdJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabatatatatatatatatatatatatatatatabauauauauauauauauauauauauauauauabazaBaCaCaCaSazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabababababababababababababababababababababababababababababababababazazaTaUaVazazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabababababababababababababababababababababababababababababababababaaaaaTaUaVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaaaaaTaUaVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYaYaYaZaYaYaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbabbbbbbbcaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbaYbdaYbeaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbbdbfbgbfaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbbdbhbhbfaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbbibhbhbfaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbbdbjbhbjaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbbdbjbkbjaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbaYbdaYbdaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYblbbbbbbbbaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYaYaYaZaYaYaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaaaabmbnboaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaaaabmbnboaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabbpbpbpbqbpbpbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabababababababababababababababababababababababababababababababababbpbrbsbsbsbsbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbpbpbpbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbubvbwbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbxbwbwbybpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbzbwbAbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbBbwbAbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbCbDbEbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbpbpbpbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbFbsbsbsbsbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbpbpbqbpbpbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabGbHbIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabGbHbIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabJbJbJbKbJbJbJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabJbLbMbNbObPbJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabJbQbObObObQbJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaabRbRbRbRbRaaaabJbQbSbTbSbQbJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaabRbUbVbUbRaaaabJbQbSbWbSbQbJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabababababababababababababababababaaaaaaaaaaaaaaaaaabXbYbYbYbXaaaabJbQbSbWbSbQbJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabRbUbZbUbRaaaabJbQbObObObQbJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabRbRbRbRbRaaaabJbLbObObObPbJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabJbJbJbKbJbJbJaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacbccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacdcdcdcecdcdcdaacfcfcfcgcfcfcfaachchchcichchchaachcjckcickckchaaaaaacacbccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacdclcmcnclclcdaacfcocpcqcpcrcfaachcsctcuctcschaachcuchctchcvchaacwcwcwcxcycycyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacdczcAcncAcBcdaacfcCcCcqcCcCcfaachcuchcDchcuchaachcucEcFcFcGchaacwcHcwcIcycJcyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacKcncAcLcAcncMaacfcNcqcqcqcNcfaachcucOcucPcuchaachcQcRcScScSchaacwcTcUcVcWcXcyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacKcncAcLcAcncMaacfcYcYcqcYcYcfaachchchcuchchchaachcucZcScSdachaacwcTcwcIcycXcyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacKcncAcLcAcncMaacfcCcCcqcCcCcfaachcsctcuctcschaachcuctdbcSdcchaacwcwcwddcycycyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacdczcAcncAcBcdaacfcfcfdecfcfcfaachcuchcDchcuchaachcuctdbcSdfchaadgdhdgcIdidjdiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacdclclcnclclcdaacgcqdkcqdkcqcgaachcudlcudmcuchaachcuchctchctchaadgdndocVdpdqdiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacdcdcdcecdcdcdaacfcfcfcgcfcfcfaachchchcichchchaachdrdscidsdschaadgdndgcIdidqdiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadtaaaaaaaadgdgdgcxdididiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadtaaaaaaaaaaaadudvdwaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadtaaaaaaaaaaaadudvdwaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxdxdxdydxdxdxaadzdzdzdzdzdzdzaachchchdAchchchaachchchcichchchaadBdBdBdCdBdBdBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxdDdEdFdGdHdxaadzdIdJdKdLdMdzaachdNdOdNdNdPchaachdQdRcucudQchaadBdSdTdUdUdVdBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadWdFdFdFdFdFdWaadzdXdXdYdXdXdzaachdZchdZchdNchaachdQcucucudQchaadBeadBeadBdUdBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxdFdFdFdFdFdxaadzdXebeceddXdzaachdNeedNdZefchaachdQegcuehdQchaadBeiejeieaekdBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaeldFdFdFdFdFemaadzenenenenendzaachdNeodNepdNchaachdQeqcuerdQchaadBeieseietdUeuaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxevdFdFdFewdxaadzexeneyenendzaachdNdNdNdZefchaachdQcucucudQchaadBeieieieaekdBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxezdFeAdFdFdxaadzeBdXeneneCdzaachdZchdZchdNchaachdQcucucudQchaadBeadBeadBdUdBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxeDeEeFeGeHdxaadzeIeJeneneKdzaachdNeLdNdNdNchaachdQcucucudQchaadBdUeMdUdUdUdBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxdxdWdxdWdxdxaadzdzdzeNdzdzdzaachchchdAchchchaachchchcichchchaadBdBdBdBdBdBdBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}

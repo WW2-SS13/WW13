@@ -1116,7 +1116,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	limb_name = "chest"
 	icon_name = "torso"
 	max_damage = 100
-	min_broken_damage = 35
+	min_broken_damage = 50
 	w_class = 5
 	body_part = UPPER_TORSO
 	vital = 1

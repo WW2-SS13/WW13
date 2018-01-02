@@ -207,7 +207,7 @@
 	set name = "Examine"
 	set category = "IC"
 
-	if((is_blind(src) || usr.stat) && !isobserver(src))
+	if((is_blind(src) || stat) && !isobserver(src))
 		src << "<span class='notice'>Something is there but you can't see it.</span>"
 		return 1
 
@@ -638,9 +638,10 @@
 
 	if(.)
 		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
-			//stat("Station Time", stationtime2text())
+			stat("People Online", clients.len)
 			stat("Round Duration", roundduration2text())
 			stat("Time of Day", "[time_of_day]")
+			stat("Season", "[(ticker.mode && ticker.mode.vars.Find("season")) ? capitalize(lowertext(ticker.mode:season)) : "Spring"]")
 
 		if(client.holder)
 			if(statpanel("Status"))

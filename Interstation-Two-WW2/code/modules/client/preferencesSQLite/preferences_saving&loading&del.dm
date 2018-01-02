@@ -32,6 +32,11 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 	if (!islist(table) || isemptylist(table))
 		return 0
 
+	if (internal_table.Find(slot))
+		var/list/L = internal_table[slot]
+		if (L)
+			L.Cut()
+
 	var/params = table["prefs"]
 	var/list/key_val_pairs = splittext(params, "&")
 
@@ -81,10 +86,17 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 	if (text2num(slot) == 0)
 		return 0
 	if (database.execute("DELETE FROM preferences WHERE ckey = '[client_ckey]' AND slot = '[slot]';"))
+		if (internal_table.Find(slot))
+			var/list/L = internal_table[slot]
+			if (L)
+				L.Cut()
 		return 1
 	return 0
 
-/datum/preferences/proc/save_preferences(var/slot = 1)
+/datum/preferences/proc/save_preferences(var/slot = 1, var/slot_name = null)
+
+	if (!slot_name)
+		slot_name = real_name
 
 	if (text2num(slot) == 0)
 		return 0

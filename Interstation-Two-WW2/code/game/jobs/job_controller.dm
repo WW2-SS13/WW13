@@ -211,6 +211,10 @@ var/global/list/fallschirm_landmarks = list()
 			for (var/datum/job/partisan/civilian/j in occupations)
 				if (istype(j))
 					j.total_positions = civilian_job_slots
+		else
+			for (var/datum/job/partisan/civilian/j in occupations)
+				if (istype(j))
+					j.total_positions = 0
 
 		if (allow_partisans)
 			for (var/datum/job/partisan/soldier/j in occupations)
@@ -220,6 +224,14 @@ var/global/list/fallschirm_landmarks = list()
 			for (var/datum/job/partisan/commander/j in occupations)
 				if (istype(j))
 					j.total_positions = 1
+		else
+			for (var/datum/job/partisan/soldier/j in occupations)
+				if (istype(j))
+					j.total_positions = 0
+
+			for (var/datum/job/partisan/commander/j in occupations)
+				if (istype(j))
+					j.total_positions = 0
 
 		// disable base job types like '/datum/job/german'
 
@@ -353,21 +365,24 @@ var/global/list/fallschirm_landmarks = list()
 			else if (istype(j, /datum/job/german/artyman))
 				if (!locate(/obj/machinery/artillery) in world)
 					j.total_positions = 0
+				else if (clients.len <= 15)
+					j.total_positions = 0
 
 			else if (istype(j, /datum/job/german/anti_tank_crew) || istype(j, /datum/job/german/tankcrew))
 				spawn (5)
 					if (!locate(/obj/tank) in world)
 						j.total_positions = 0
 
-			else if (istype(j, /datum/job/german/paratrooper) && !fallschirm_landmarks.len)
+			else if (istype(j, /datum/job/german/paratrooper) && (!fallschirm_landmarks.len || clients.len <= 20))
 				german_soldat_slots += german_paratrooper_slots
 				german_paratrooper_slots = 0
 				j.total_positions = 0
 
 		for (var/datum/job/russian/j in occupations)
 			if (istype(j, /datum/job/russian/anti_tank_crew) || istype(j, /datum/job/russian/tankcrew))
-				if (!locate(/obj/tank) in world)
-					j.total_positions = 0
+				spawn (5)
+					if (!locate(/obj/tank) in world)
+						j.total_positions = 0
 
 		for (var/datum/job/j in occupations)
 			if (j.title == "generic job")
@@ -460,6 +475,7 @@ var/global/list/fallschirm_landmarks = list()
 
 				if (j.absolute_limit)
 					j.total_positions = min(j.total_positions, j.absolute_limit)
+
 		// equalize amount of jobs
 
 		while (total_german_slots() > total_russian_slots())
@@ -590,17 +606,17 @@ var/global/list/fallschirm_landmarks = list()
 			if (j.is_officer) // handle officer
 				if (must_have_squad_leader(j.base_type_flag())) // only accept SLs
 					if (!istype(j, /datum/job/german/squad_leader) && !istype(j, /datum/job/russian/squad_leader))
-						np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
+						np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
 						return 0
 					else // we're joining as the SL, chill fam
 						return 1
 			else
 				if (must_have_squad_leader(j.base_type_flag())) // only accept SLs
-					np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
+					np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
 					return 0
 		else
 			if (must_have_squad_leader(j.base_type_flag()))
-				np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
+				np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
 				return 0
 		return 1
 
@@ -1340,6 +1356,15 @@ var/global/list/fallschirm_landmarks = list()
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO before spawnID()"
 			#endif
+
+			/* if its night give H a lantern
+			 * use our belt slot since keys can go in the ID slot
+			 * some roles have stuff in their belt slot but most people
+			 * will get lanterns - Kachnov */
+
+			if (isDarkOutside())
+				H.equip_to_slot_or_del(new/obj/item/device/flashlight/lantern(H), slot_belt)
+
 			// this spawns keys now
 			spawnKeys(H, rank, alt_title)
 
@@ -1396,7 +1421,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		if (!H.belt) // first, try to equip it as their belt
 			H.equip_to_slot_or_del(keychain, slot_belt)
-		else // DISABLED because bugs, failing that
+		else // DISABLED because bugs
 			if (istype(H.belt, /obj/item/weapon/storage/belt) && 0 == 1) // try to put it in their belt
 				var/obj/item/weapon/storage/belt/belt = H.belt
 				if (belt.can_be_inserted(keychain))

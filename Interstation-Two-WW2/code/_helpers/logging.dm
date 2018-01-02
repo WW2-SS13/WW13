@@ -34,7 +34,7 @@
 
 	for(var/client/C in admins)
 		if(C.is_preference_enabled(/datum/client_preference/admin/show_debug_logs))
-			C << "DEBUG: [text]"
+			C << "<span class=\"log_message\">DEBUG: [text]</span>"
 
 /proc/log_game(text)
 	if (config.log_game)

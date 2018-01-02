@@ -147,7 +147,6 @@
 		return 0
 	return 1
 
-
 /obj/structure/window/hitby(AM as mob|obj)
 	..()
 	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
@@ -417,7 +416,7 @@
 /obj/structure/classic_window_frame
 	desc = "A good old window frame."
 	icon_state = "windownew_frame"
-	layer = 4.01
+	layer = MOB_LAYER + 0.01
 /*
 /obj/structure/classic_window_frame/Crossed(mover)
 	if (isliving(mover))
@@ -438,7 +437,10 @@
 	maximal_heat = T0C + 100
 	damage_per_fire_tick = 5.0
 	maxhealth = 20.0
-	layer = 4.02
+	layer = MOB_LAYER + 0.02
+
+/obj/structure/window/classic/is_full_window()
+	return 1
 
 /obj/structure/window/classic/bullet_act(var/obj/item/projectile/P)
 	if (!P.nodamage)

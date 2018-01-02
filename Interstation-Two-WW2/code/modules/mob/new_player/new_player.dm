@@ -20,7 +20,6 @@
 	var/on_welcome_popup = 0
 
 
-
 /mob/new_player/New()
 	mob_list += src
 
@@ -33,6 +32,7 @@
 	new_player_panel_proc()
 
 /mob/new_player/proc/new_player_panel_proc()
+	loc = null // so sometimes when people serverswap (tm) they get this window despite not being on the title screen - Kachnov
 	var/output = "<div align='center'><b>Welcome, [key]!</b>"
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character & Preferences</A></p>"
@@ -48,7 +48,7 @@
 	//	output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</a></p>"
 
-	var/height = 300
+	var/height = 350
 	if (reinforcements_master && reinforcements_master.is_ready())
 		height = 450
 		if (!reinforcements_master.has(src))
@@ -59,6 +59,9 @@
 				output += "<p><a href='byond://?src=\ref[src];unre_german=1'>Leave the German reinforcement pool.</A></p>"
 			else if (reinforcements_master.has(src, RUSSIAN))
 				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Russian reinforcement pool.</A></p>"
+	else
+		output += "<p><i>Reinforcements won't be available until after the train is sent.</i></p>"
+
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
 	output += "</div>"
@@ -199,17 +202,27 @@
 			return 1
 
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-			usr << "\red The round is either not ready, or has already finished."
+			src << "\red The round is either not ready, or has already finished."
 			return
 
 		if(!check_rights(R_ADMIN, 0))
 			var/datum/species/S = all_species[client.prefs.species]
 
 			if(!(S.spawn_flags & CAN_JOIN))
-				src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
+				alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
 				return 0
 
+		if (client.next_normal_respawn > world.time)
+			var/wait = (client.next_normal_respawn-world.time)/600
+			if (check_rights(R_ADMIN, 0, src))
+				if ((input(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
+					LateChoices()
+					return 1
+			alert(src, "Because you died in combat, you must wait [wait] more minutes to respawn. You can still join as a reinforcement.")
+			return 0
 		LateChoices()
+		return 1
+
 /*
 	if(href_list["manifest"])
 		ViewManifest()*/
@@ -435,25 +448,13 @@
 
 /mob/new_player/proc/LateChoices()
 
+	src << browse(null, "window=latechoices")
+
 	var/dat = "<html><body><center>"
 	dat += "<b>Welcome, [key].<br></b>"
 	dat += "Round Duration: [roundduration2text()]<br>"
 
 	var/list/restricted_choices = list()
-
-	if (world.time <= ticker.role_preference_grace_period) // people with preference get 45 seconds to choose
-
-		for (var/client/c in clients)
-			if (c.role_preference_sov && c.role_preference_sov != client.role_preference_sov)
-				if (!restricted_choices[c.role_preference_sov])
-					restricted_choices[c.role_preference_sov] = 0
-				else
-					restricted_choices[c.role_preference_sov]++
-			if (c.role_preference_ger && c.role_preference_ger != client.role_preference_ger)
-				if (!restricted_choices[c.role_preference_ger])
-					restricted_choices[c.role_preference_ger] = 0
-				else
-					restricted_choices[c.role_preference_ger]++
 
 	var/prev_side = 0
 
@@ -468,7 +469,7 @@
 		var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
 
 		if (job.is_paratrooper)
-			job_is_available = (allow_paratroopers && fallschirm_landmarks.len)
+			job_is_available = (allow_paratroopers && fallschirm_landmarks.len && clients.len >= 20)
 
 		if (!job.validate(src))
 			job_is_available = 0
@@ -554,7 +555,6 @@
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=600x640;can_close=1")
-
 
 /mob/new_player/proc/create_character()
 

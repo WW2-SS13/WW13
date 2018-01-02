@@ -49,6 +49,10 @@
 
 		ticker.mode.check_win()
 
+	if (client)
+		client.next_normal_respawn = world.time + 1800
+		client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
+
 	. = ..(gibbed)//,species.death_message)
 	if(!gibbed)
 		handle_organs()

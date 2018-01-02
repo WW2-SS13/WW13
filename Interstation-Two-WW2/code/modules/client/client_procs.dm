@@ -114,7 +114,7 @@
 	if(byond_version < MIN_CLIENT_VERSION)		//Out of date client.
 		return null
 
-	if (src.key != world.host)
+	if (key != world.host)
 		if(!config.guests_allowed && IsGuestKey(key))
 			alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
 			del(src)
@@ -124,8 +124,6 @@
 	if(config.resource_urls)
 		src.preload_rsc = pick(config.resource_urls)
 	else src.preload_rsc = 1 // If config.resource_urls is not set, preload like normal.
-
-	src << "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears."
 
 	clients += src
 	directory[ckey] = src
@@ -142,9 +140,19 @@
 
 	. = ..()	//calls mob.Login()
 
+	if(!serverswap_open_status)
+		if (serverswap.Find("snext"))
+			var/linked = "byond://[world.internet_address]:[serverswap[serverswap["snext"]]]"
+			src << "<span class = 'notice'><font size = 3>This server is not open, so you will be automatically redirected you to the linked server - if it doesn't automatically take you there, click this: <b>[linked]</b>.</font></span>"
+			src << link(linked)
+		del(src)
+		return 0
+
 	if (quickBan_rejected("Server"))
 		del(src)
 		return 0
+
+	src << "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears."
 
 	/*Admin Authorisation: */
 
@@ -158,8 +166,6 @@
 			message_admins("Admin login: [key_name(src)]")
 
 	establish_db_connection()
-
-
 
 	if(holder)
 		holder.associate(src)
@@ -190,7 +196,7 @@
 			src << "<span class = 'userdanger'>The server is currently closed to non-admins. The game is open [global_game_schedule.getScheduleAsString()].</span>"
 			message_admins("[src] tried to log in, but was rejected, the server is closed to non-admins.")
 			del(src)
-			return // todo
+			return
 
 		else if (!validate_whitelist("server"))
 			src << "<span class = 'userdanger'>You are not in the server whitelist. You cannot join this server right now, sorry.</span>"

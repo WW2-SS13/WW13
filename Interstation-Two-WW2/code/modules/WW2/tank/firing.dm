@@ -1,9 +1,8 @@
 /obj/tank/var/last_fire = -1
-/obj/tank/var/fire_delay = 100
+/obj/tank/var/fire_delay = 200
 
 #define MIN_RANGE 5
 #define MAX_RANGE 6
-
 
 /obj/tank/proc/density_check(var/turf/_loc)
 	if (_loc.density)

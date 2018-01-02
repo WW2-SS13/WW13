@@ -24,7 +24,7 @@ var/list/gamemode_cache = list()
 	var/log_adminchat = 0				// log admin chat messages
 	var/log_adminwarn = 0				// log warnings admins get about bomb construction and such
 	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
-	var/log_runtime = 0					// logs world.log to a file
+	var/log_runtimes = 0				// logs world.log to a file
 	var/log_world_output = 0			// log world.log << messages
 	var/sql_enabled = 1					// for sql switching
 	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
@@ -232,9 +232,6 @@ var/list/gamemode_cache = list()
 	var/german_reinforcements_at_once = 10
 	var/russian_reinforcements_at_once = 10
 
-	var/min_players_for_spies = 10
-	var/min_players_for_jews = 10
-
 	var/paratrooper_drop_time = 3000
 
 	//WW2 donor shit
@@ -270,10 +267,10 @@ var/list/gamemode_cache = list()
 					src.votable_modes += M.config_tag
 	src.votable_modes += "secret"
 
-	// this doesn't have to happen compile time unlike, for example, #DEBUG, therefore it is better.
-	// I can't conditionally compile, but I don't absolutely need to - Kachnov
+	/* this doesn't have to happen compile time unlike, for example, #DEBUG, therefore it is better.
+	 * I can't conditionally compile with it, but I don't absolutely need to - Kachnov */
 	if (fexists("config/debug.txt"))
-		src.debug = 1
+		debug = 1
 
 	var/fstring = "config/donors/job_specific_custom_loadout.txt"
 
@@ -420,12 +417,6 @@ var/list/gamemode_cache = list()
 				if ("russian_reinforcements_at_once")
 					config.russian_reinforcements_at_once = text2num(value)
 
-				if ("min_players_for_spies")
-					config.min_players_for_spies = text2num(value)
-
-				if ("min_players_for_jews")
-					config.min_players_for_jews = text2num(value)
-
 				if ("paratrooper_drop_time")
 					config.paratrooper_drop_time = text2num(value)
 
@@ -499,8 +490,8 @@ var/list/gamemode_cache = list()
 				if ("log_hrefs")
 					config.log_hrefs = 1
 
-				if ("log_runtime")
-					config.log_runtime = 1
+				if ("log_runtimes")
+					config.log_runtimes = 1
 
 				if ("generate_asteroid")
 					config.generate_asteroid = 1

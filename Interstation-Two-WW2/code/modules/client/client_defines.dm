@@ -48,9 +48,11 @@
 	preload_rsc = 1 // This was 0, so Bay12 can set it to an URL once the player logs in and have them download the resources from a different server. But we change it.
 
 	// WW2 donor benefits
-
+	// todo: remove
 	var/list/donor_spawn_stuff = list()
 	var/role_preference = 0
 	var/role_preference_sov = "N/A"
 	var/role_preference_ger = "N/A"
 	var/untermensch = 0
+
+	var/next_normal_respawn = -1

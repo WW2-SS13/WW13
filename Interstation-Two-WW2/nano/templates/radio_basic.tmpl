@@ -79,6 +79,7 @@ Used In File(s): /code/game/objects/item/devices/radio/radio.dm
 	</div>
 {{/if}}
 
+
 <div class="item">
 	<div class="itemLabelWide">
 		Frequency: {{:data.freq}}
@@ -107,4 +108,20 @@ Used In File(s): /code/game/objects/item/devices/radio/radio.dm
 			{{/if}}
 		</div>
 	{{/for}}
+{{/if}}
+
+{{if data.is_supply_radio}}
+	<div class="item">
+		<div class="itemContentWide">
+			Supply Points: {{:data.supply_points}}<br>
+			<big>Supply Drop Crates:</big>
+			{{for data.supply_crate_objects}}	
+				<br>
+				{{:value}}
+				<br>
+				<center>{{:helper.link("Purchase", null, {'purchase' : value})}}</center>
+				<br>
+			{{/for}}
+		</div>
+	</div>
 {{/if}}

@@ -286,6 +286,9 @@ default behaviour is:
 	if(status_flags & GODMODE)	return 0	//godmode
 	halloss = amount
 
+/mob/living/proc/getTotalLoss()
+	return getBruteLoss() + getOxyLoss() + getToxLoss() + getFireLoss() + getCloneLoss() + getBrainLoss() + getHalLoss()
+
 /mob/living/proc/getMaxHealth()
 	return maxHealth
 

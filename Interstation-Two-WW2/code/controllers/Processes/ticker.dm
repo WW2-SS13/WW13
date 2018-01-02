@@ -3,6 +3,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 /datum/controller/process/ticker
 	var/lastTickerTimeDuration
 	var/lastTickerTime
+	var/time_elapsed = 0
 
 /datum/controller/process/ticker/setup()
 	name = "ticker"
@@ -18,6 +19,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 	spawn(0)
 		if(ticker)
 			ticker.pregame()
+		start_serverswap_loop()
 
 /datum/controller/process/ticker/doWork()
 	var/currentTime = world.timeofday
@@ -30,6 +32,18 @@ var/global/datum/controller/process/ticker/tickerProcess
 	lastTickerTime = currentTime
 
 	ticker.process()
+
+	// todo: relocate this code - Kachnov
+	for (var/obj/item/device/radio/intercom/I in world)
+		I.supply_points += (rand(0.1*100, 0.3*100))/100
+
+	// for keeping track of time - Kachnov
+	time_elapsed += schedule_interval
+
+	// do map related stuff
+	if (map)
+		map.tick()
+
 
 /datum/controller/process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration

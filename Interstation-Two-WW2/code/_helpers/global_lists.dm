@@ -76,6 +76,10 @@ var/global/list/escape_list = list()
 var/global/list/endgame_exits = list()
 var/global/list/endgame_safespawns = list()
 
+// supply
+var/global/list/german_supplydrop_spots = list()
+var/global/list/soviet_supplydrop_spots = list()
+
 // for mass deletion
 var/global/list/bullet_casings = list()
 var/global/list/blood = list()

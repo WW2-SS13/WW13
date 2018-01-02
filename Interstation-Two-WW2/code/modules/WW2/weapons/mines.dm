@@ -23,6 +23,9 @@
 		//"incendiary" //New bay//
 	*/
 
+	// failsafe to stop a horrible mine bug - kachnov
+	var/nextCanExplode = -1
+
 //Arming
 /obj/item/device/mine/attack_self(mob/living/user as mob)
 	if(locate(/obj/item/device/mine) in get_turf(src))
@@ -31,9 +34,10 @@
 
 	if(!anchored)
 		user.visible_message("\blue \The [user] starts to deploy the \the [src]")
-		if(!do_after(user,40))
+		if(!do_after(user,rand(30,40)))
 			user.visible_message("\blue \The [user] decides not to deploy the \the [src].")
 			return
+		nextCanExplode = world.time + 5
 		user.visible_message("\blue \The [user] finishes deploying the \the [src].")
 		anchored = 1
 		layer = TURF_LAYER + 0.01
@@ -103,6 +107,8 @@
 
 
 /obj/item/device/mine/proc/trigger(atom/movable/AM)
+	if (world.time < nextCanExplode)
+		return
 	for(var/mob/O in viewers(world.view, src.loc))
 		O << "<font color='red'>[AM] triggered the [src]!</font>"
 	triggered = 1
@@ -118,7 +124,6 @@
 	explosion(src.loc,-1,-1,3)
 	spawn(0)
 		del(src)
-
 
 /obj/item/device/mine/betty
 	name = "S-mine 'Bouncing Betty'"

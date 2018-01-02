@@ -25,8 +25,10 @@
 		last_movement = world.time
 		var/turf/target = get_step(src, direct)
 
-		if (target && target.check_prishtina_block(src.front_seat()))
+		var/driver = front_seat()
+		if (target && map.check_prishtina_block(driver, target))
 			play_movement_sound()
+			driver << "<span class = 'warning'>You cannot pass the invisible wall until the Grace Period has ended.</span>"
 			return
 
 		if (istype(target, /turf/floor/plating/beach/water))
@@ -146,7 +148,7 @@
 		if (!wall.tank_destroyable)
 			return 0
 		var/wall_integrity = wall.material ? wall.material.integrity : 150
-		if (prob(min(wall_integrity/2, 97)))
+		if (prob(min(95, (wall_integrity/5) + 40)))
 			tank_message("<span class = 'danger'>The tank smashes against [wall]!</span>")
 			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 			return 0
@@ -176,6 +178,37 @@
 		if (istype(o, /obj/train_lever))
 			return 1 // pass over it
 
+		if (istype(o, /obj/structure/window/sandbag))
+			if (prob(20))
+				tank_message("<span class = 'danger'>The tank plows through the sandbag wall!</span>")
+				qdel(o)
+				return 1
+			else
+				tank_message("<span class = 'danger'>The tank smashes against the sandbag wall!</span>")
+				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+				return 0
+
+		if (istype(o, /obj/structure/girder))
+			if (prob(10))
+				tank_message("<span class = 'danger'>The tank plows through the wall girder!</span>")
+				qdel(o)
+				return 1
+			else
+				tank_message("<span class = 'danger'>The tank smashes against the wall girder!</span>")
+				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+				return 0
+
+		if (istype(o, /obj/structure/simple_door))
+			var/obj/structure/simple_door/S = o
+			if ((S.material && prob(max(5, 100 - (S.material.integrity/5) - 10))) || (!S.material && prob(80)))
+				tank_message("<span class = 'danger'>The tank plows through \the [S]!</span>")
+				qdel(o)
+				return 1
+			else
+				tank_message("<span class = 'danger'>The tank smashes against \the [S]!</span>")
+				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+				return 0
+
 		if (istype(o, /obj/train_pseudoturf))
 			if (o.density)
 				var/wall_integrity = 500 // trains are hard as fuck
@@ -187,7 +220,7 @@
 					tank_message("<span class = 'danger'>The tank smashes its way through [o]!</span>")
 					qdel(o)
 					return 1
-			else // you can no longer drive tanks into trains.
+			else // you can no longer drive tanks in to or on to trains.
 				return 0
 
 		else if (istype(o, /obj/tank))

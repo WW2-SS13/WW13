@@ -20,6 +20,12 @@ var/datum/controller/process/obj/obj_process = null
 	if(!nonvital_processing_objects_4)
 		nonvital_processing_objects_4 = list()
 
+/datum/controller/process/obj/proc/clear_nonvital_processing_objects()
+	nonvital_processing_objects_1.Cut()
+	nonvital_processing_objects_2.Cut()
+	nonvital_processing_objects_3.Cut()
+	nonvital_processing_objects_4.Cut()
+
 /datum/controller/process/obj/doWork()
 
 	for(last_object in processing_objects)
@@ -35,7 +41,7 @@ var/datum/controller/process/obj/obj_process = null
 			processing_objects -= O
 
 	// objects here only process about 1/40 ticks
-	if (prob(10))
+	if (prob(10) && !paused_nonvital)
 		var/list/nonvital_list = null
 
 		if (prob(25))

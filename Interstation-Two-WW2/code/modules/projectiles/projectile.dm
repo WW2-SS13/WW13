@@ -73,6 +73,11 @@
 
 	var/speed = 1.5 // was 1.0
 
+	/* since a lot of WW2 guns use similar ammo, this is calculated during runtime
+	 * based on gun type and the distance between the firer and person hit.
+	 * Right now, only boltactions & heavysniper guns get a high KD chance. */
+	var/KD_chance = 5
+
 //TODO: make it so this is called more reliably, instead of sometimes by bullet_act() and sometimes not
 /obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	if(blocked >= 2)		return 0//Full block
