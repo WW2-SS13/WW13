@@ -464,6 +464,14 @@
 	framestack = /obj/item/stack/material/iron
 	buildstack = /obj/item/stack/material/iron
 
+/obj/structure/table/marble
+	name = "marble table"
+	desc = "A very hard table."
+	icon_state = "table"
+	frame = /obj/structure/table_frame
+	framestack = /obj/item/stack/material/marble
+	buildstack = /obj/item/stack/material/marble
+
 /*
  * Wooden tables
  */
