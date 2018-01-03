@@ -159,7 +159,11 @@ called after H added to knows_about_mobs() */
 
 
 /mob/living/simple_animal/complex_animal/bullet_act(var/obj/item/projectile/P, var/def_zone)
-	apply_damage(P.damage * random_decimal(0.7,1.3))
+	var/dmg = P.damage * random_decimal(0.7,1.3)
+	if (prob(33))
+		dmg /= rand(5,10)
+		visible_message("<span class = 'warning'>/the [P] just grazes /the [src].</span>")
+	apply_damage(dmg)
 	if (P.firer && (P.original == src || !P.firer.original_job || P.firer.original_job.base_type_flag() != faction))
 		enemies |= P.firer
 		onHumanMovement(P.firer)

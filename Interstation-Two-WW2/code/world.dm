@@ -141,11 +141,13 @@ var/world_topic_spam_protect_time = world.timeofday
 	T = replacetext(T, "{WEATHER}", "clear skies")
 
 	if (ticker.mode.vars.Find("season"))
-		T = replacetext(T, "{SEASON}", ticker.mode:season)
+		T = replacetext(T, "{SEASON}", capitalize(lowertext(ticker.mode:season)))
 	else
 		T = replacetext(T, "{SEASON}", "Spring")
 
 	T = replacetext(T, "{ROUNDTIME}", roundduration2text())
+
+	return T
 
 /world/Topic(T, addr, master, key)
 	diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
@@ -175,7 +177,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	// normal ss13 stuff
 
-	if (T == "ping")
+	else if (T == "ping")
 		var/x = 1
 		for (var/client/C)
 			x++

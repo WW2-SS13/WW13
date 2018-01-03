@@ -33,14 +33,14 @@
 
 #### other stuff
 
-# null, Null, and NULL = nothing
+# null, Null, NULL, nil, Nil, NILL = nothing
 
 #### Actual definitions
 
-PREINFO null
-TITLE World War II Revival: Official Server
-OOCDESC The official server, running the bleeding edge of the WW13 codebase.
-ICDESC {TIMEOFDAY}, {WEATHER}, {SEASON}, Ukraine. The current round time is {ROUNDTIME}.
-RPLEVEL Medium Roleplay
-HOSTEDBY Kachnov
-POSTINFO null
+PREINFO nil
+TITLE Lebensraum
+OOCDESC The official WW13 server, running the bleeding edge of the WW13 codebase.
+ICDESC {TIMEOFDAY}, {WEATHER}, {SEASON}, Ukraine. The round time is {ROUNDTIME}.
+RPLEVEL Low-Medium Roleplay
+HOSTEDBY Harcourt
+POSTINFO nil
