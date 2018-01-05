@@ -240,7 +240,11 @@
 
 	var/list/pref_initial_vars = list()
 	for (var/varname in pref.vars)
-		pref_initial_vars[varname] = pref.vars[varname]
+		pref_initial_vars[varname] = initial(pref.vars[varname])
+
+
+//	for (var/x in pref_initial_vars)
+//		world << "1. [x] = [pref_initial_vars[x]]"
 
 	. = OnTopic(href, href_list, usr)
 	if(. == TOPIC_REFRESH)
@@ -257,6 +261,8 @@
 			continue
 		if (pref_initial_vars[varname] != variable) // variable changed!
 			pref.remember_preference(varname, variable)
+		else if (pref_initial_vars[varname] == variable) // variable set back to default!
+			pref.unremember_preference(varname)
 		//	world << "test #2: [varname] = [pref.vars[varname]]"
 
 /datum/category_item/player_setup_item/CanUseTopic(var/mob/user)

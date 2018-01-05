@@ -10,18 +10,18 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 
-/obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if (!istype(M))
-		user << "<span class='warning'>\The [src] cannot be applied to [M]!</span>"
+/obj/item/stack/medical/attack(mob/living/carbon/C as mob, mob/user as mob)
+	if (!istype(C) )
+		if (!istype(C, /mob/living/simple_animal))
+			user << "<span class='warning'>\The [src] cannot be applied to [C]!</span>"
 		return 1
 
-	if ( ! (istype(user, /mob/living/carbon/human) || \
-			istype(user, /mob/living/silicon)) )
+	if (!istype(user, /mob/living/carbon/human))
 		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(C, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = C
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 		if(affecting.status & ORGAN_ROBOT)
@@ -30,16 +30,17 @@
 
 		H.UpdateDamageIcon()
 
-	else
+		H.updatehealth()
 
-		M.heal_organ_damage((src.heal_brute/2), (src.heal_burn/2))
+	else if (istype(C, /mob/living/carbon))
+		C.heal_organ_damage((heal_brute/2), (heal_burn/2))
 		user.visible_message( \
-			"<span class='notice'>[M] has been applied with [src] by [user].</span>", \
-			"<span class='notice'>You apply \the [src] to [M].</span>" \
+			"<span class='notice'>[C] has been applied with [src] by [user].</span>", \
+			"<span class='notice'>You apply \the [src] to [C].</span>" \
 		)
 		use(1)
 
-	M.updatehealth()
+		C.updatehealth()
 
 /obj/item/stack/medical/bruise_pack
 	name = "roll of gauze"
@@ -100,23 +101,22 @@
 					return
 			else
 				user << "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>"
-	else if (istype(M, /mob/living/simple_animal/complex_animal))
+/*	else if (istype(M, /mob/living/simple_animal/complex_animal))
 		var/mob/living/simple_animal/complex_animal/C = M
-		if(C.health == C.maxHealth)
+		if(C.health >= C.maxHealth)
 			user << "<span class='warning'>The wounds on \the [C] have already been treated.</span>"
 			return 1
 		else
 			user.visible_message("<span class='notice'>\The [user] starts treating \the [C]'s wounds.</span>", \
 					             "<span class='notice'>You start treating \the [C]'s wounds.</span>")
-			C.health = min(C.maxHealth, C.health+(C.maxHealth/3))
+			C.adjustBruteLoss(-(C.maxHealth/3))
 			if(amount == 1)
-				if(C.health == C.maxHealth)
+				if(C.health >= C.maxHealth)
 					user << "<span class='warning'>\The [src] is used up.</span>"
 				else
 					user << "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [C].</span>"
 			use(1)
-			return
-
+*/
 /obj/item/stack/medical/ointment
 	name = "ointment"
 	desc = "Used to treat those nasty burns."

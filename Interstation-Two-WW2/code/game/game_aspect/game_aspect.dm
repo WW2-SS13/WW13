@@ -214,10 +214,11 @@
 	world << "<br><i>[desc]</i>"
 	GRACE_PERIOD_LENGTH = 15
 
-
-
 /datum/game_aspect/ww2/no_tanks
 	desc = "There are no tanks, hooray!"
+
+/datum/game_aspect/ww2/no_tanks/specialcheck()
+	return locate(/obj/tank) in world
 
 /datum/game_aspect/ww2/no_tanks/activate()
 	. = ..()

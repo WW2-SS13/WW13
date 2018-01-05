@@ -59,6 +59,33 @@
 				return 1
 	if(href_list["hair_color"])
 		if(can_change(APPEARANCE_HAIR_COLOR))
+			/* New hair system, no more anime character hair - Kachnov */
+			var/new_hair = input(owner, "Please select a hair color.", "Hair Color") in list("Black", "Light Brown", "Dark Brown", "Red", "Orange", "Blond", "Cancel")
+			if (new_hair == "Cancel")
+				return
+			var/hex_hair = "#000000"
+			switch (new_hair)
+				if ("Black")
+					// no changes
+				if ("Light Brown")
+					hex_hair = "#A0522D"
+				if ("Dark Brown")
+					hex_hair = "#8B4513"
+				if ("Red")
+					hex_hair = "#800000"
+				if ("Orange")
+					hex_hair = "#F4A460"
+				if ("Blond")
+					hex_hair = "#FFF8DC"
+
+			if(hex_hair && can_still_topic(state))
+				var/r_hair = hex2num(copytext(hex_hair, 2, 4))
+				var/g_hair = hex2num(copytext(hex_hair, 4, 6))
+				var/b_hair = hex2num(copytext(hex_hair, 6, 8))
+				if(owner.change_hair_color(r_hair, g_hair, b_hair))
+					update_dna()
+					return 1
+			/*
 			var/new_hair = input("Please select hair color.", "Hair Color", rgb(owner.r_hair, owner.g_hair, owner.b_hair)) as color|null
 			if(new_hair && can_still_topic(state))
 				var/r_hair = hex2num(copytext(new_hair, 2, 4))
@@ -66,7 +93,7 @@
 				var/b_hair = hex2num(copytext(new_hair, 6, 8))
 				if(owner.change_hair_color(r_hair, g_hair, b_hair))
 					update_dna()
-					return 1
+					return 1*/
 	if(href_list["facial_hair"])
 		if(can_change(APPEARANCE_FACIAL_HAIR) && (href_list["facial_hair"] in valid_facial_hairstyles))
 			if(owner.change_facial_hair(href_list["facial_hair"]))

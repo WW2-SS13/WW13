@@ -191,6 +191,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		return n
 
 	else if (copytext(T,1,7) == "status")
+		if (!serverswap_open_status)
+			return "ERROR #3"
 		var/input[] = params2list(T)
 		var/list/s = list()
 		s["version"] = game_version

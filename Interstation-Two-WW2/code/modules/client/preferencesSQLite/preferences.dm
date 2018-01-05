@@ -204,21 +204,17 @@ var/list/preferences_datums = list()
 		open_save_dialog(usr)
 
 	else if(href_list["savetoslot"])
+		var/previous_slot = text2num(current_slot)
 		current_slot = text2num(href_list["savetoslot"])
 
-		var/other_slots_with_our_real_name = 0
-		for (var/textnum in internal_table)
-			var/list/L = internal_table[textnum]
-			if (L.Find("real_name"))
-				if (L["real_name"] == current_slot["real_name"])
-					++other_slots_with_our_real_name
+		if (current_slot == 0)
+			current_slot = 1 // if we delete all our slots, still let us save
 
-		var/slot_name = null
-		if (other_slots_with_our_real_name > 0)
-			slot_name = "[real_name] ([other_slots_with_our_real_name])"
-
-		if (current_slot != 0 && save_preferences(current_slot, slot_name))
-			usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot].</span>"
+		if (current_slot != 0 && save_preferences(current_slot, previous_slot))
+			if (internal_table.len > 1 && current_slot != previous_slot)
+				usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot] (With a new name).</span>"
+			else
+				usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot].</span>"
 		else
 			usr << "<span class = 'bad'>FAILED to save current preferences to slot #[current_slot].</span>"
 		close_save_dialog(usr)
@@ -230,6 +226,8 @@ var/list/preferences_datums = list()
 
 	else if(href_list["loadfromslot"])
 		current_slot = text2num(href_list["loadfromslot"])
+		if (current_slot == 0)
+			current_slot = 1
 		if (current_slot != 0)
 			if (load_preferences(current_slot))
 				usr << "<span class = 'good'>Successfully loaded preferences (slot #[current_slot]).</span>"

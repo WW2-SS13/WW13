@@ -43,7 +43,7 @@
 	var/next_bork = -1
 
 	maxHealth = 50
-
+	health = 50
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/check_can_command(var/list/ranks, var/mob/living/carbon/human/H)
 	if (!islist(ranks))
@@ -155,7 +155,6 @@
 				if (dd_hasprefix(lowertext(message), req_word) || lowertext(message) == req_word)
 				//	world << "4. [message] v. [req_word]"
 
-
 					var/command_type_sublist = null
 					for (var/key in command_types)
 						if (locate(req_word) in command_types[key])
@@ -175,8 +174,13 @@
 					if (istype(H.original_job, /datum/job/russian/dogmaster))
 						command_level_to_dog = COMMAND_LEVEL_1
 
+					// daga kotowaru
+					if (command_level_to_dog == COMMAND_LEVEL_4)
+						visible_message("<span class = 'warning'>The [name] refuses to listen.</span>")
+						continue
+
 					if (command_levels[command_type_sublist] > command_level_to_dog)
-						visible_message("<span class = 'warning'>The [name] refuses to listen, because it already has an overriding order from its master.</span>")
+						visible_message("<span class = 'warning'>The [name] refuses to listen, because it already has a contradicting order from its master.</span>")
 						continue
 					else if (hascall(src, _call))
 						call(src, _call)(H)
@@ -188,7 +192,7 @@
 							if ("patrol", "stop patrolling", "follow")
 								command_levels["patrol"] = command_level_to_dog
 								command_levels["anything"] = command_level_to_dog
-
+s
 /mob/living/simple_animal/complex_animal/canine/dog/can_wander_specialcheck()
 	if (faction && pulledby && check_can_command(list("master", "^master", "team"), pulledby))
 		return 0

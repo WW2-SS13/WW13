@@ -68,7 +68,10 @@ world/loop_checks = 0
 			LocateReferences(A)
 			#endif
 			// Something's still referring to the qdel'd object.  Kill it.
-			testing("GC: -- \ref[A] | [A.type] was unable to be GC'd and was deleted --")
+
+			// hey stop fucking spamming me when I start up the server - Kachnov
+			if (world.time > 6000)
+				testing("GC: -- \ref[A] | [A.type] was unable to be GC'd and was deleted --")
 			logging["[A.type]"]++
 			del(A)
 

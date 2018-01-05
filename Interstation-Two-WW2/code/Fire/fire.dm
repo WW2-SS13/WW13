@@ -243,7 +243,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		L.fire_act()
 
 	if (!istype(L, /mob/living/carbon/human))
-		L.apply_damage(damage, BURN)
+		L.apply_damage(damage*5)
 	else
 		var/mob/living/carbon/human/H = L
 

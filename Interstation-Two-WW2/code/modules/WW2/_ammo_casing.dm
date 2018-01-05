@@ -106,7 +106,6 @@ WW 2 WEAPONS MAGS N AMMO
 	projectile_type = /obj/item/projectile/grenade/smoke
 	caliber = "grenade"
 
-
 /obj/item/ammo_casing/a9x39
 	desc = "a 9x39 bullet casing"
 	projectile_type = /obj/item/projectile/bullet/rifle/a9x39

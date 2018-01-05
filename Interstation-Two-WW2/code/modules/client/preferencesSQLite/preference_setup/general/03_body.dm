@@ -195,12 +195,36 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["hair_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
+		/*
 		var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference", rgb(pref.r_hair, pref.g_hair, pref.b_hair)) as color|null
 		if(new_hair && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
 			pref.r_hair = hex2num(copytext(new_hair, 2, 4))
 			pref.g_hair = hex2num(copytext(new_hair, 4, 6))
 			pref.b_hair = hex2num(copytext(new_hair, 6, 8))
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH*/
+			/* New hair system, no more anime character hair - Kachnov */
+		var/new_hair = input(user, "Choose your character's hair color:", "Hair Color") in list("Black", "Light Brown", "Dark Brown", "Red", "Orange", "Blond", "Cancel")
+		if (new_hair == "Cancel")
+			return
+		var/hex_hair = "#000000"
+		switch (new_hair)
+			if ("Black")
+				// no changes
+			if ("Light Brown")
+				hex_hair = "#A0522D"
+			if ("Dark Brown")
+				hex_hair = "#8B4513"
+			if ("Red")
+				hex_hair = "#800000"
+			if ("Orange")
+				hex_hair = "#F4A460"
+			if ("Blond")
+				hex_hair = "#FFF8DC"
+
+		pref.r_hair = hex2num(copytext(hex_hair, 2, 4))
+		pref.g_hair = hex2num(copytext(hex_hair, 4, 6))
+		pref.b_hair = hex2num(copytext(hex_hair, 6, 8))
+		return TOPIC_REFRESH
 
 	else if(href_list["hair_style"])
 		var/list/valid_hairstyles = list()
@@ -219,12 +243,35 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["facial_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
+			/*
 		var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference", rgb(pref.r_facial, pref.g_facial, pref.b_facial)) as color|null
 		if(new_facial && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
 			pref.r_facial = hex2num(copytext(new_facial, 2, 4))
 			pref.g_facial = hex2num(copytext(new_facial, 4, 6))
 			pref.b_facial = hex2num(copytext(new_facial, 6, 8))
-			return TOPIC_REFRESH
+			return TOPIC_REFRESH*/
+		var/new_hair = input(user, "Choose your character's facial-hair color:", "Hair Color") in list("Black", "Light Brown", "Dark Brown", "Red", "Orange", "Blond", "Cancel")
+		if (new_hair == "Cancel")
+			return
+		var/hex_hair = "#000000"
+		switch (new_hair)
+			if ("Black")
+				// no changes
+			if ("Light Brown")
+				hex_hair = "#A0522D"
+			if ("Dark Brown")
+				hex_hair = "#8B4513"
+			if ("Red")
+				hex_hair = "#800000"
+			if ("Orange")
+				hex_hair = "#F4A460"
+			if ("Blond")
+				hex_hair = "#FFF8DC"
+
+		pref.r_facial = hex2num(copytext(hex_hair, 2, 4))
+		pref.g_facial = hex2num(copytext(hex_hair, 4, 6))
+		pref.b_facial = hex2num(copytext(hex_hair, 6, 8))
+		return TOPIC_REFRESH
 
 	else if(href_list["eye_color"])
 		if(!has_flag(mob_species, HAS_EYE_COLOR))

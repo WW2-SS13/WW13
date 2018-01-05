@@ -163,6 +163,7 @@
 	singular_name = "bint length"
 	icon = 'icons/WW2/medical.dmi'
 	icon_state = "bint"
+	heal_brute = 10 // for healing dogs and other animals
 
 /obj/item/weapon/gauze_pack/gauze
 	name = "pack of gauze"
@@ -175,4 +176,4 @@
 	singular_name = "gauze length"
 	icon = 'icons/WW2/medical.dmi'
 	icon_state = "gauze"
-
+	heal_brute = 10 // for healing dogs and other animals

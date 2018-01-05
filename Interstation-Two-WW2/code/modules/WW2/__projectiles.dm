@@ -98,8 +98,6 @@
 	on_impact(atom/hit_atom)
 		on_hit(hit_atom)
 
-
-
 /obj/item/projectile/grenade/smoke
 	name = "smoke grenade"
 

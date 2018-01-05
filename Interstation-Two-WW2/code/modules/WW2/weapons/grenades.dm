@@ -14,16 +14,16 @@
 	desc = "German smoke grenade. Won't blow up."
 	name = "Smoke grenade"
 	icon = 'icons/obj/grenade.dmi'
-	icon_state = "ssgranate"
+	icon_state = "smoke_grenade"
 	det_time = 20
-	item_state = "ssgranate"
+	item_state = "smoke_grenade"
 	slot_flags = SLOT_BELT
 
 /obj/item/weapon/grenade/smokebomb/soviet
 	desc = "Soviet smoke grenade. Won't blow up."
 	name = "Smoke grenade"
 	icon = 'icons/obj/grenade.dmi'
-	icon_state = "ssgranate"
+	icon_state = "smoke_grenade"
 	det_time = 20
-	item_state = "ssgranate"
+	item_state = "smoke_grenade"
 	slot_flags = SLOT_BELT

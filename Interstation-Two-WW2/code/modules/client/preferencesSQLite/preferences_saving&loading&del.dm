@@ -32,6 +32,9 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 	if (!islist(table) || isemptylist(table))
 		return 0
 
+	if (current_slot == slot)
+		save_preferences(slot)
+
 	if (internal_table.Find(slot))
 		var/list/L = internal_table[slot]
 		if (L)
@@ -93,29 +96,40 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 		return 1
 	return 0
 
-/datum/preferences/proc/save_preferences(var/slot = 1, var/slot_name = null)
-
-	if (!slot_name)
-		slot_name = real_name
+/datum/preferences/proc/save_preferences(var/slot = 1, var/prevslot = -1)
 
 	if (text2num(slot) == 0)
 		return 0
 
-	if (!knows_preference("real_name"))
-		remember_preference("real_name", real_name, 0) // don't save or inf. loop
-
-	slot = num2text(slot)
 	if (!client_ckey)
 		return 0
 
-	if (!internal_table.Find(slot))
-		internal_table[slot] = list()
+	var/name_to_remember = real_name
+	for (var/num in 1 to internal_table.len)
+		if (num != text2num(slot))
+			var/list/table = internal_table["[num]"]
+			if (table["real_name"] == real_name)
+				name_to_remember = random_name(gender,species)
+
+	slot = num2text(slot)
+
+	if (prevslot == -1)
+		if (!internal_table.Find(slot))
+			internal_table[slot] = list()
+		remember_preference("real_name", name_to_remember, 0) // don't save or inf. loop
+	else
+	//	world << "0: [prevslot]"
+		var/internal_table_prev_slot = internal_table["[prevslot]"]
+	//	world << "#1: [internal_table_prev_slot]["german_name"]"
+		internal_table[slot] = copylist(internal_table_prev_slot)
+		remember_preference("real_name", name_to_remember, 0)
 
 	var/params = ""
 	for (var/key in internal_table[slot])
 		if (!vars.Find(key))
 			continue
 		if (internal_table[slot][key] == initial(vars[key]))
+	//		world << "#2: [key]"
 			continue
 		if (params != "")
 			params += "&"
@@ -172,6 +186,21 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 	if (!internal_table.Find(slot))
 		internal_table[slot] = list()
 	internal_table[slot][pref] = value
+
+	if (save)
+		save_preferences(current_slot)
+	return 1
+
+/datum/preferences/proc/unremember_preference(pref, var/save = 1)
+	if (!vars.Find(pref))
+		return 0
+	if (forbidden_pref_save_varnames.Find(pref))
+		return 0
+
+	var/slot = num2text(current_slot)
+	if (!internal_table.Find(slot))
+		internal_table[slot] = list()
+	internal_table[slot] -= pref
 
 	if (save)
 		save_preferences(current_slot)

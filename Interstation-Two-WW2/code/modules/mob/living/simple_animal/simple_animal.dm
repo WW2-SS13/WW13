@@ -279,13 +279,15 @@
 					for(var/mob/M in viewers(src, null))
 						if ((M.client && !( M.blinded )))
 							M.show_message("<span class='notice'>[user] applies the [MED] on [src].</span>")
+					return 1
 		else
 			user << "<span class='notice'>\The [src] is dead, medical items won't bring \him back to life.</span>"
+			return 1
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
 			harvest(user)
 	else
-		if(!O.force)
+		if(!O.force && !istype(O, /obj/item/stack/medical/bruise_pack))
 			visible_message("<span class='notice'>[user] gently taps [src] with \the [O].</span>")
 		else
 			O.attack(src, user, user.targeted_organ)
