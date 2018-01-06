@@ -173,7 +173,7 @@ var/allow_paratroopers = 1
 	if(mission_announced)
 		return 1
 
-	mission_announced = 1
+	mission_announced = tickerProcess.time_elapsed
 
 	var/preparation_time = world.time - roundstart_time
 

@@ -9,8 +9,6 @@ var/global/datum/controller/occupations/job_master
 
 #define SL_LIMIT 4
 
-var/global/list/fallschirm_landmarks = list()
-
 /proc/setup_autobalance(var/announce = 1)
 	spawn (0)
 		if (job_master)
@@ -1287,7 +1285,7 @@ var/global/list/fallschirm_landmarks = list()
 								H << german_squad_info[current_german_squad]
 						else
 							spawn (2)
-								H << "<i>Your squad, #[current_german_squad], does not have a Squad Leader yet. Wait for one before deploying.</i>"
+								H << "<i>Your squad, #[current_german_squad], does not have a Squad Leader yet. Consider waiting for one before deploying.</i>"
 
 			else if (isrussiansquadmember_or_leader(H))
 				if (isrussiansquadleader(H))
@@ -1303,7 +1301,7 @@ var/global/list/fallschirm_landmarks = list()
 								H << russian_squad_info[current_russian_squad]
 						else
 							spawn (2)
-								H << "<i>Your squad, #[current_russian_squad], does not have a Squad Leader yet. Wait for one before deploying.</i>"
+								H << "<i>Your squad, #[current_russian_squad], does not have a Squad Leader yet. Consider waiting for one before deploying.</i>"
 
 			else if (H.original_job.is_officer && H.original_job.base_type_flag() == RUSSIAN)
 				spawn (5)

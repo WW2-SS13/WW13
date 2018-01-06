@@ -33,6 +33,8 @@
 
 /mob/new_player/proc/new_player_panel_proc()
 	loc = null // so sometimes when people serverswap (tm) they get this window despite not being on the title screen - Kachnov
+	// don't know if the above actually works
+
 	var/output = "<div align='center'><b>Welcome, [key]!</b>"
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character & Preferences</A></p>"
@@ -204,16 +206,16 @@
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			src << "\red The round is either not ready, or has already finished."
 			return
-
+/*
 		if(!check_rights(R_ADMIN, 0))
 			var/datum/species/S = all_species[client.prefs.species]
 
 			if(!(S.spawn_flags & CAN_JOIN))
 				alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
 				return 0
-
-		if (client.next_normal_respawn > world.time)
-			var/wait = (client.next_normal_respawn-world.time)/600
+*/
+		if (client.next_normal_respawn > world.realtime)
+			var/wait = (client.next_normal_respawn-world.realtime)/600
 			if (check_rights(R_ADMIN, 0, src))
 				if ((input(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
 					LateChoices()
@@ -461,100 +463,104 @@
 	dat += "Choose from the following open positions:<br>"
 	for(var/datum/job/job in job_master.occupations)
 
-		var/unavailable_message = ""
+		try
 
-		if(job && !job.train_check())
-			continue
+			var/unavailable_message = ""
 
-		var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
+			if(job && !job.train_check())
+				continue
 
-		if (job.is_paratrooper)
-			job_is_available = (allow_paratroopers && fallschirm_landmarks.len && clients.len >= 20)
+			var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
 
-		if (!job.validate(src))
-			job_is_available = 0
-			unavailable_message = " <span class = 'color: rgb(255,215,0);'>{WHITELISTED}</span> "
+			if (job.is_paratrooper)
+				job_is_available = (allow_paratroopers && fallschirm_landmarks.len && clients.len >= 20)
 
-		if (job_master.side_is_hardlocked(job.base_type_flag()))
-			job_is_available = 0
-			unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
+			if (!job.validate(src))
+				job_is_available = 0
+				unavailable_message = " <span class = 'color: rgb(255,215,0);'>{WHITELISTED}</span> "
 
-		if (jobBanned(job.title))
-			job_is_available = 0
-			unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED}</span> "
+			if (job_master.side_is_hardlocked(job.base_type_flag()))
+				job_is_available = 0
+				unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
 
-		if (factionBanned(job.base_type_flag(1)))
-			job_is_available = 0
-			unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM FACTION}</span> "
+			if (jobBanned(job.title))
+				job_is_available = 0
+				unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED}</span> "
 
-		if (officerBanned() && job.is_officer)
-			job_is_available = 0
-			unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM OFFICER POSITIONS}</span> "
+			if (factionBanned(job.base_type_flag(1)))
+				job_is_available = 0
+				unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM FACTION}</span> "
 
-		// check if the faction is admin-locked
+			if (officerBanned() && job.is_officer)
+				job_is_available = 0
+				unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM OFFICER POSITIONS}</span> "
 
-		if (istype(job, /datum/job/german/paratrooper) && !paratroopers_toggled)
-			job_is_available = 0
+			// check if the faction is admin-locked
 
-		if ((istype(job, /datum/job/german/soldier_ss) || istype(job, /datum/job/german/squad_leader_ss)) && !SS_toggled)
-			job_is_available = 0
+			if (istype(job, /datum/job/german/paratrooper) && !paratroopers_toggled)
+				job_is_available = 0
 
-		if (istype(job, /datum/job/partisan) && !istype(job, /datum/job/partisan/civilian) && !partisans_toggled)
-			job_is_available = 0
+			if ((istype(job, /datum/job/german/soldier_ss) || istype(job, /datum/job/german/squad_leader_ss)) && !SS_toggled)
+				job_is_available = 0
 
-		if (istype(job, /datum/job/partisan/civilian) && !civilians_toggled)
-			job_is_available = 0
+			if (istype(job, /datum/job/partisan) && !istype(job, /datum/job/partisan/civilian) && !partisans_toggled)
+				job_is_available = 0
 
-		// check if the job is admin-locked or disabled codewise
+			if (istype(job, /datum/job/partisan/civilian) && !civilians_toggled)
+				job_is_available = 0
 
-		if (!job.enabled)
-			job_is_available = 0
+			// check if the job is admin-locked or disabled codewise
 
-		// check if the faction is autobalance-locked
+			if (!job.enabled)
+				job_is_available = 0
 
-		if (istype(job, /datum/job/partisan) && !istype(job, /datum/job/partisan/civilian) && !job_master.allow_partisans)
-			job_is_available = 0
+			// check if the faction is autobalance-locked
 
-		if (istype(job, /datum/job/partisan/civilian) && !job_master.allow_civilians)
-			job_is_available = 0
+			if (istype(job, /datum/job/partisan) && !istype(job, /datum/job/partisan/civilian) && !job_master.allow_partisans)
+				job_is_available = 0
 
-		// check if the job is autobalance-locked
+			if (istype(job, /datum/job/partisan/civilian) && !job_master.allow_civilians)
+				job_is_available = 0
 
-		if(job)
-			var/active = 0
-			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
-				active++
-			if(job.base_type_flag() != prev_side)
-				prev_side = job.base_type_flag()
-				var/side_name = "<b>[job.get_side_name()]</b>"
-				if(side_name)
-					dat += "[side_name]<br>"
+			// check if the job is autobalance-locked
 
-			var/extra_span = ""
-			var/end_extra_span = ""
+			if(job)
+				var/active = 0
+				// Only players with the job assigned and AFK for less than 10 minutes count as active
+				for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
+					active++
+				if(job.base_type_flag() != prev_side)
+					prev_side = job.base_type_flag()
+					var/side_name = "<b>[job.get_side_name()]</b>"
+					if(side_name)
+						dat += "[side_name]<br>"
 
-			if (job.is_officer && !job.is_commander)
-				extra_span = "<span style = 'font-size: 1.5em;'>"
-				end_extra_span = "</span>"
-			else if (job.is_commander)
-				extra_span = "<span style = 'font-size: 2.0em;'>"
-				end_extra_span = "</span>"
+				var/extra_span = ""
+				var/end_extra_span = ""
 
-			if (!job.en_meaning)
-				if (job_is_available)
-					dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
+				if (job.is_officer && !job.is_commander)
+					extra_span = "<span style = 'font-size: 1.5em;'>"
+					end_extra_span = "</span>"
+				else if (job.is_commander)
+					extra_span = "<span style = 'font-size: 2.0em;'>"
+					end_extra_span = "</span>"
+
+				if (!job.en_meaning)
+					if (job_is_available)
+						dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
+					else
+						dat += "<span style = 'color:red'><strike>[unavailable_message][job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
+
 				else
-					dat += "<span style = 'color:red'><strike>[unavailable_message][job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
-
-			else
-				if (job_is_available)
-					dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
-				else
-					dat += "<span style = 'color:red'><strike>[unavailable_message][job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
+					if (job_is_available)
+						dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
+					else
+						dat += "<span style = 'color:red'><strike>[unavailable_message][job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
+		catch ()
 
 	dat += "</center>"
-	src << browse(dat, "window=latechoices;size=600x640;can_close=1")
+	spawn (1)
+		src << browse(dat, "window=latechoices;size=600x640;can_close=1")
 
 /mob/new_player/proc/create_character()
 

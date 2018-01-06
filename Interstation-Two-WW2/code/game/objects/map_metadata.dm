@@ -66,7 +66,7 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/forest/soviets_can_cross_blocks()
 	if (admin_ended_all_grace_periods)
 		return 1
-	if (mission_announced && tickerProcess.time_elapsed >= 4200)
+	if (mission_announced && tickerProcess.time_elapsed - mission_announced >= 4200)
 		return 1
 	return 0
 

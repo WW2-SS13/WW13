@@ -293,7 +293,7 @@
 /datum/job/german/soldier
 	title = "Soldat"
 	en_meaning = "Infantry Soldier"
-	total_positions = 50 // this was causing an error with latejoin spawning
+	total_positions = 200 // this was causing an error with latejoin spawning
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	allow_spies = 1

@@ -63,7 +63,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 		fire.time_limit += rand(10,20)
 
-	return 0
+	return fire
 
 /obj/fire
 

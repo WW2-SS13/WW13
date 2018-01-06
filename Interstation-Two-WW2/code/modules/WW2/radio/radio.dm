@@ -161,8 +161,10 @@ var/global/list/default_ukrainian_channels = list(
 		"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german
+		"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german,
 
+		// MEDICAL STUFF
+		"Medical Crate" = /obj/structure/closet/crate/medical
 	)
 
 	var/static/list/soviet_supply_crate_types = list(
@@ -204,7 +206,10 @@ var/global/list/default_ukrainian_channels = list(
 		"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
 
 		// ANIMAL CRATES
-		"Samoyed Crate" = /obj/structure/largecrate/animal/dog/soviet
+		"Samoyed Crate" = /obj/structure/largecrate/animal/dog/soviet,
+
+		// MEDICAL STUFF
+		"Medical Crate" = /obj/structure/closet/crate/medical
 
 	)
 
@@ -215,12 +220,19 @@ var/global/list/default_ukrainian_channels = list(
 		"Vehicle Fuel Tanks" = 75,
 		"Maxim Belts" = 40,
 		"Guaze" = 35,
+		"Bint" = 30,
 		"Luger Ammo" = 30,
 		"Kar Ammo" = 35,
 		"Mp40 Ammo" = 40,
 		"Mg34 Ammo" = 40,
 		"Mp43 Ammo" = 40,
 		"PTRD Ammo" = 100,
+
+		".45 Ammo" = 30,
+		"Mosin Ammo" = 35,
+		"PPSH Ammo" = 50,
+		"DP Ammo" = 50,
+
 		"Mines Ammo" = 50,
 		"Grenades" = 65,
 		"Panzerfausts" = 60,
@@ -258,7 +270,10 @@ var/global/list/default_ukrainian_channels = list(
 
 		// ANIMAL CRATES
 		"German Shepherd Crate" = 150,
-		"Samoyed Crate" = 150
+		"Samoyed Crate" = 150,
+
+		// MEDICAL STUFF
+		"Medical Crate" = 75
 
 	)
 
@@ -357,10 +372,12 @@ var/global/list/default_ukrainian_channels = list(
 /* Hearing radios, less stupid and telecomms free edition - Kachnov */
 
 /mob/living/carbon/human/proc/post_say(var/message)
+
 	if (!locate(/obj/item/device/radio) in range(1, src))
 		return
 	if (stat != CONSCIOUS)
 		return
+
 	var/list/used_radio_turfs = list()
 	var/list/used_radios = list()
 
@@ -374,10 +391,12 @@ var/global/list/default_ukrainian_channels = list(
 		if (!radio.on)
 			continue
 		if (radio == s_store)
-			if (!dd_hasprefix(message, ":b"))
-				continue
-			else
+			if (dd_hasprefix(message, ":b"))
 				message = copytext(message, 3)
+			else if (dd_hasprefix(message, ";"))
+				message = copytext(message, 2)
+			else
+				continue
 		else if (radio == l_hand)
 			if (!dd_hasprefix(message, ":l"))
 				continue

@@ -1,6 +1,6 @@
 /obj/item/weapon/paper/supply_train_requisitions_sheet
 	name = "Supply Train Requisitions"
-	desc = "Must be signed by an Officer to be valid."
+	desc = "You have to sign this with a pen or it won't be accepted. Only Officer signatures are valid."
 
 	var/list/purchases = list()
 
@@ -58,7 +58,10 @@
 		"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german
+		"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german,
+
+		// MEDICAL STUFF
+		"Medical Crate" = /obj/structure/closet/crate/medical
 
 	)
 
@@ -112,7 +115,10 @@
 		"Betty Mines Crate" = 200,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = 150
+		"German Shepherd Crate" = 150,
+
+		// MEDICAL STUFF
+		"Medical Crate" = 75
 
 	)
 

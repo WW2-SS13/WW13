@@ -133,7 +133,7 @@
 		switch (ticker.mode:season)
 			if ("WINTER")
 				possibilities += WEATHER_SNOW
-			if ("SPRING")
+			if ("SPRING", "SUMMER")
 				possibilities += WEATHER_RAIN
 
 	possibilities -= non_possibilities

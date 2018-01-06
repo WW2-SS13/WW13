@@ -258,7 +258,7 @@
 /datum/job/russian/soldier
 	title = "Sovietsky Soldat"
 	en_meaning = "Infantry Soldier"
-	total_positions = 50
+	total_positions = 200
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	allow_spies = 1

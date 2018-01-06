@@ -180,9 +180,17 @@ Parts of code courtesy of Super3222
 		user.visible_message("[zoomdevicename ? "[user] looks up from \the [src.name]" : "[user] lowers \the [src.name]"].")
 
 	if (zoomed)
+		for (var/obj/item/weapon/storage/S in user.contents)
+			S.close_all() // prevent scopes from bugging out opened storage objs
+		for (var/obj/item/clothing/under/U in user.contents)
+			for (var/obj/item/clothing/accessory/storage/S in U.accessories)
+				S.hold.close_all()
 		for (var/obj/O in user.client.screen)
-			if (!istype(O, /obj/screen/movable/action_button))
-				zoom_process.add(O)
+			if (istype(O, /obj/screen/movable/action_button))
+				var/obj/screen/movable/action_button/A = O
+				if (A.name == "Toggle Sights" || (A.owner && istype(A.owner, /datum/action/toggle_scope)))
+					continue
+			zoom_process.add(O)
 
 /datum/action/toggle_scope
 	name = "Toggle Sights"

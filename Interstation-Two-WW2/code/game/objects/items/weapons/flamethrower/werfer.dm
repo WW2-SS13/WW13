@@ -185,7 +185,16 @@
 		if (10 to INFINITY)
 			dist_coeff = 1.00
 
-	target.create_fire(5, rand(250,300) * throw_coeff * dist_coeff, 0)
+	var/time_limit = pick(2,3)
+	var/extra_temp = 0
+	for (var/obj/fire/F in get_turf(src))
+		extra_temp += ((F.temperature / 100) * rand(15,25))
+		time_limit += 2
+		qdel(F)
+
+	var/obj/fire/F = target.create_fire(5, (rand(250,300) * throw_coeff * dist_coeff) + extra_temp, 0)
+	F.time_limit = time_limit
+
 	spawn (rand(120*throw_coeff, 150*throw_coeff))
 		for (var/obj/fire/fire in target)
 			qdel(fire) // shitty workaround #2

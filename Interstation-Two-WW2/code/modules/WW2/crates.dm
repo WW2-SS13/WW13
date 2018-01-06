@@ -80,6 +80,12 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/medical
+	name = "Medical crate"
+	icon_state = "freezer"
+	icon_opened = "freezeropen"
+	icon_closed = "freezer"
+
 /obj/structure/closet/crate/mosinammo
 	name = "Mosin ammo crate"
 	icon_state = "mil_crate_closed"
@@ -442,6 +448,18 @@
 	update_capacity(17)
 	for (var/v in 1 to 17)
 		new /obj/item/weapon/gauze_pack/gauze(src)
+
+/obj/structure/closet/crate/medical/New()
+	..()
+	update_capacity(10)
+	for (var/v in 1 to 1)
+		new /obj/item/weapon/storage/firstaid/toxin(src)
+		new /obj/item/weapon/storage/firstaid/fire(src)
+		new /obj/item/weapon/storage/firstaid/o2(src)
+		new /obj/item/weapon/storage/firstaid/regular(src)
+		new /obj/item/weapon/storage/firstaid/injectorpack(src)
+		new /obj/item/weapon/storage/firstaid/combat(src)
+
 
 /obj/structure/closet/crate/soviet_grenade/New()
 	..()
