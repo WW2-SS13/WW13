@@ -144,3 +144,4 @@
 		))
 
 /material/barbedwire/generate_recipes()
+	recipes = list(new/datum/stack_recipe("barbwire", /obj/structure/barbwire, time = 30))
