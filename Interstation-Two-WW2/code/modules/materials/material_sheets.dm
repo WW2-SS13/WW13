@@ -103,12 +103,10 @@
 	icon_state = "sheet-diamond"
 	default_type = "diamond"
 
-
 /obj/item/stack/material/barbwire
 	name = "Barbwire"
 	icon_state = "barbwire_stack"
 	default_type = "barbedwire"
-
 
 /obj/item/stack/material/uranium
 	name = "uranium"

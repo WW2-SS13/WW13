@@ -2,4 +2,4 @@
 <h3>This is an <b>ALPHA</b> build of a new World War 2 server. We are not up 24/7. You can find our code at the <a href = "https://github.com/WW2-SS13/WW13/issues">Github</a>.<br>
 <h3>Our custom hub, which contains other useful links, can be found <a href = "https://mechahitler.co.nf">here</a>.<br>
 <h3>If you wish to play when the public server is down, you can apply to be private tester <a href = "https://discord.gg/zWHaTWU">here</a>.<br>
-<h3>Want to donate? <a href = "https://www.patreon.com/worldwar2inspace">Here's our Patreon</a>. Donate and we can get a custom PHP hub and a faster server, and you'll get a few Patron benefits for it.<br></h3>
+<h3>Want to donate? <a href = "https://www.patreon.com/worldwar2inspace">Here's our Patreon</a>. Our current goal is $60/month. Patrons get minor benefits like a custom OOC font color.<br></h3>

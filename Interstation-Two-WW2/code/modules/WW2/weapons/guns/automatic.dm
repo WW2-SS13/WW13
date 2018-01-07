@@ -47,7 +47,7 @@
 	item_state = "stg"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK
-	w_class = 5
+	w_class = 4
 	caliber = "a792x33"
 	fire_sound = 'sound/weapons/stg.ogg'
 	load_magazine_sound = 'sound/weapons/stg_reload.ogg'
@@ -83,7 +83,7 @@
 	item_state = "stg"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK
-	w_class = 5
+	w_class = 4
 	caliber = "a792x33"
 	magazine_type = /obj/item/ammo_magazine/a762/akm
 
@@ -159,7 +159,7 @@
 	icon_state = "dp"
 	item_state = "dp"
 	load_method = MAGAZINE
-	w_class = 5
+	w_class = 4
 	accuracy = DEFAULT_MG_ACCURACY+1
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY+1
 	caliber = "a762x39"
@@ -207,7 +207,7 @@
 	item_state = "val_loaded"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK
-	w_class = 5
+	w_class = 4
 	caliber = "a9x39"
 	fire_sound = 'sound/weapons/val.ogg'
 	magazine_type = /obj/item/ammo_magazine/a9x39

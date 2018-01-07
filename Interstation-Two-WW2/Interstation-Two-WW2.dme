@@ -916,6 +916,7 @@
 #include "code\modules\WW2\complex_animal\dog.dm"
 #include "code\modules\WW2\complex_animal\wolf.dm"
 #include "code\modules\WW2\items\health\doctor_handbook.dm"
+#include "code\modules\WW2\jobs\_defines.dm"
 #include "code\modules\WW2\jobs\_special.dm"
 #include "code\modules\WW2\jobs\civilian.dm"
 #include "code\modules\WW2\jobs\faction.dm"

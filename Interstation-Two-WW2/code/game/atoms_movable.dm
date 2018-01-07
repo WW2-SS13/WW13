@@ -153,11 +153,20 @@
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
 	if(!target || !src)	return 0
 
-	// no throwing past the bridge
+	// no throwing past the bridge or other inivisble walls
 	if (thrower)
 		for (var/i in 1 to get_dist(src, target))
 			var/turf/T = locate(x, y+i, z)
 			if (T && map.check_prishtina_block(thrower, T))
+				return 0
+			var/turf/T2 = locate(x, y-i, z)
+			if (T2 && map.check_prishtina_block(thrower, T2))
+				return 0
+			var/turf/T3 = locate(x+i, y, z)
+			if (T3 && map.check_prishtina_block(thrower, T3))
+				return 0
+			var/turf/T4 = locate(x-i, y, z)
+			if (T4 && map.check_prishtina_block(thrower, T4))
 				return 0
 
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target

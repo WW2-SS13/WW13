@@ -142,3 +142,5 @@
 		new/datum/stack_recipe("white folder", /obj/item/weapon/folder/white), \
 		new/datum/stack_recipe("yellow folder", /obj/item/weapon/folder/yellow), \
 		))
+
+/material/barbedwire/generate_recipes()

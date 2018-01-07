@@ -105,9 +105,12 @@
 					if (!F)
 						A.snowfall_valid_turfs -= F
 						continue
-					if (istype(F))
+					if (istype(F) && F.uses_winter_overlay)
 						if (prob(33))
 							F.muddy = 1
+						if (prob(75))
+							for (var/obj/effect/decal/cleanable/C in F)
+								qdel(C)
 
 /proc/modify_weather_somehow()
 	if (weather == WEATHER_NONE)
@@ -140,8 +143,8 @@
 
 	change_weather(pick(possibilities))
 
-/proc/get_weather()
-	switch (weather)
+/proc/get_weather(var/_weather)
+	switch (_weather ? _weather : weather)
 		if (WEATHER_NONE)
 			return "none"
 		if (WEATHER_SNOW)
@@ -157,11 +160,11 @@
 				if (WEATHER_NONE)
 					. = ""
 				if (WEATHER_SNOW, WEATHER_RAIN)
-					. = "It's no longer <b>[get_weather()]ing</b>."
+					. = "It's no longer <b>[get_weather(old)]ing</b>."
 		if (WEATHER_SNOW, WEATHER_RAIN)
 			switch (old)
 				if (WEATHER_NONE)
-					. = "It's now <b>[get_weather()]ing</b>."
+					. = "It's now <b>[get_weather(_new)]ing</b>."
 				if (WEATHER_SNOW,  WEATHER_RAIN)
 					. = ""
 	if (.)

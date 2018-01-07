@@ -77,6 +77,13 @@
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
 
+		stat("<br>STATS<br>")
+		for (var/statname in stats)
+			if (statname != "mg")
+				stat("[capitalize(statname)]: ", "[getStatCoeff(statname)]x average")
+			else
+				stat("[uppertext(statname)]: ", "[getStatCoeff(statname)]x average")
+
 		if (istype(loc, /obj/tank))
 			var/obj/tank/tank = loc
 			var/fuel_slot_screwed = tank.fuel_slot_screwed ? "Screwed," : "Unscrewed,"

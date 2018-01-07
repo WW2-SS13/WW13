@@ -270,7 +270,7 @@
 		var/datum/species/S = all_species[client.prefs.species]
 
 		if(!(S.spawn_flags & CAN_JOIN))
-			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
+			alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
 			return 0
 
 		if (actual_job.spawn_delay)
@@ -407,7 +407,7 @@
 		return 0
 	if (!IsJobAvailable(rank))
 		if (!nomsg)
-			src << alert("[rank] is not available. Perhaps too many people are already attempting to join as it?")
+			alert(src, "[rank] is not available. Perhaps too many people are already attempting to join as it?")
 		return 0
 
 	var/datum/job/job = job_master.GetJob(rank)

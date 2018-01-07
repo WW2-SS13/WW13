@@ -115,21 +115,41 @@
 
 	var/job_spawn_location = null // used to override job.spawn_location for a single mob
 
-	// NEW STAT SYSTEM
-	// the 'normal' for all stats is 100
-	// all stats have a corresponding max_stat variable, except for lists
-
 	var/stamina = 100
 	var/max_stamina = 100
 
-	var/strength = 100
-	var/max_strength = 100
-
-	var/speed = 100
-	var/max_speed = 100
-
-	var/knows_tools = list()
-	var/knows_weapons = list()
-	var/knows_guns = list()
-
 	var/shoveling_snow = 0
+
+	/* These are stats. They affect how fast and how well you can do certain
+	 * actions. All stats have a min (stats[stat][1]) and a max (stats[stat][2]),
+	 * but currently no stats 'deteriorate' (in the future strength will),
+	 * so stats will remain the same over the entire round. */
+
+	/* All stat names MUST be lowercase. */
+
+	var/list/stats = list(
+		"strength" = list(100,100),
+		"engineering" = list(100,100),
+		"rifle" = list(100,100),
+		"mg" = list(100,100),
+		"medical" = list(100,100))
+
+/mob/living/carbon/human/proc/getStat(statname)
+	return stats[lowertext(statname)][1]
+
+/mob/living/carbon/human/proc/getMaxStat(statname)
+	return stats[lowertext(statname)][2]
+
+/mob/living/carbon/human/proc/getStatCoeff(statname)
+	return stats[lowertext(statname)][1]/100
+
+/mob/living/carbon/human/proc/setStat(statname, statval)
+	statval += rand(-5,5)
+	// realism + balancing
+	if (gender == FEMALE)
+		switch (statname)
+			if ("strength")
+				statval -= 4
+			if ("medical")
+				statval += 4
+	stats[statname] = list(statval, statval)

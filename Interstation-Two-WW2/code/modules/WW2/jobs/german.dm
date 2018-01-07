@@ -29,11 +29,15 @@
 	world << "<b><big>[H.client.prefs.german_name] is the [title] of the German forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the German forces and lead them to victory, while working alongside the <b>SS-Untersharffuhrer</b>. You take orders from the <b>German High Command</b>.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_VERY_LOW)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_VERY_LOW)
 	return 1
 
 /datum/job/german/commander/update_character(var/mob/living/carbon/human/H)
 	..()
-
 	H.make_artillery_officer()
 
 /datum/job/german/commander/get_keys()
@@ -66,11 +70,15 @@
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the German forces. Your job is to take orders from the <b>Feldwebel</b> and coordinate with squad leaders.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_VERY_LOW)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_VERY_LOW)
 	return 1
 
 /datum/job/german/staff_officer/update_character(var/mob/living/carbon/human/H)
 	..()
-
 	H.make_artillery_officer()
 
 /datum/job/german/staff_officer/get_keys()
@@ -104,6 +112,11 @@
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the German force according to the <b>Feldwebel</b>'s and <b>Stabsoffizier</b>en's orders.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_LOW)
 	return 1
 
 /datum/job/german/squad_leader/update_character(var/mob/living/carbon/human/H)
@@ -136,6 +149,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a medic. Your job is to keep the army healthy and in good condition.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_MEDIUM_HIGH)
 	return 1
 
 /datum/job/german/medic/get_keys()
@@ -163,6 +181,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a doctor. Your job is to stay back at base and treat wounded that come in from the front, as well as treat prisoners and base personnel.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_LOW)
+	H.setStat("engineering", STAT_VERY_LOW)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_VERY_LOW)
+	H.setStat("medical", STAT_VERY_HIGH)
 	return 1
 
 /datum/job/german/doctor/get_keys()
@@ -193,6 +216,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a flamethrower unit. Your job is incinerate the enemy!</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_LOW)
 	return 1
 
 /datum/job/german/flamethrower_man/get_keys()
@@ -222,6 +250,11 @@
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/sniper_scope(H), slot_r_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a sniper. Your job is to assist normal <b>Soldat</b> from behind defenses.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_VERY_LOW)
 	return 1
 
 /datum/job/german/sniper/get_keys()
@@ -251,6 +284,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an engineer. Your job is to build forward defenses.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_HIGH)
+	H.setStat("engineering", STAT_VERY_HIGH)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_VERY_LOW)
 	return 1
 
 /datum/job/german/engineer/get_keys()
@@ -280,6 +318,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_l_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a heavy weapons unit. Your job is to assist normal <b>Soldat</b>en in front line combat.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("medical", STAT_LOW)
 	return 1
 
 /datum/job/german/heavy_weapon/get_keys()
@@ -308,6 +351,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
 	return 1
 
 /datum/job/german/soldier/get_keys()
@@ -350,8 +398,12 @@
 	H.add_memory("")
 	H.add_memory("Some commands overlap. There are three categories of commands: attack modes, patrol modes, and follow modes. Each type of command can be used in tandem with commands of the other types.")
 	H.add_memory("")
-
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_MEDIUM_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_MEDIUM_LOW)
 	return 1
 
 /datum/job/german/dogmaster/get_keys()
@@ -383,6 +435,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a tank crewman. Your job is to work with another crewman to operate a tank.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_MEDIUM_LOW)
 	return 1
 
 /datum/job/german/tankcrew/get_keys()
@@ -413,6 +470,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/anti_tank_crew, slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an anti-tank infantry unit. Your job is to destroy enemy tanks.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
 	return 1
 
 /datum/job/german/anti_tank_crew/get_keys()
@@ -473,6 +535,12 @@ var/first_fallschirm = 1
 
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a paratrooper. Your job is to help any other units that need assistance.</span>"
 	H.give_radio()
+	// Paratroopers are elite so they have very nicu stats - Kachnov
+	H.setStat("strength", STAT_MEDIUM_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("medical", STAT_MEDIUM_HIGH)
 	return 1
 
 /datum/job/german/paratrooper/get_keys()
@@ -503,6 +571,11 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a Quartermaster. Your job is to keep the army well armed and supplied. Use a pen to sign supply requisition sheets.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_HIGH)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_VERY_LOW)
 	return 1
 
 /datum/job/german/stabsgefreiter/get_keys()
@@ -533,6 +606,11 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an artillery officer. Your job is to bomb the shit out of the enemy.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_LOW)
+	H.setStat("rifle", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_VERY_LOW)
 	return 1
 
 /datum/job/german/artyman/update_character(var/mob/living/carbon/human/H)
@@ -569,6 +647,11 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a scout. Your job is to assist the <b>Kanonier</b> by getting coordinates.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_NORMAL)
 	return 1
 
 /datum/job/german/scout/update_character(var/mob/living/carbon/human/H)
@@ -608,6 +691,11 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a train conductor. Your job is take men to and from the front.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_LOW)
 	return 1
 
 /datum/job/german/conductor/get_keys()
@@ -641,9 +729,14 @@ var/first_fallschirm = 1
 	if (secret_ladder_message)
 		H << "<br>[secret_ladder_message]"
 
-	H.stamina = 150
-	H.max_stamina = 150
-
+	H.stamina *= 1.5
+	H.max_stamina *= 1.5
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("medical", STAT_LOW)
 	return 1
 
 /datum/job/german/squad_leader_ss/update_character(var/mob/living/carbon/human/H)
@@ -684,7 +777,12 @@ var/first_fallschirm = 1
 
 	H.stamina *= 1.5
 	H.max_stamina *= 1.5
-
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_LOW)
 	return 1
 
 /datum/job/german/soldier_ss/get_keys()
@@ -718,6 +816,11 @@ var/first_fallschirm = 1
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a front chef. Your job is to keep the Wehrmacht well fed.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_MEDIUM_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_MEDIUM_LOW)
 	return 1
 
 /datum/job/german/chef/get_keys()

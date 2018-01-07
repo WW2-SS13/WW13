@@ -316,14 +316,26 @@
 
 		var/acc = firemode.accuracy[min(i, firemode.accuracy.len)]
 		var/disp = firemode.dispersion[min(i, firemode.dispersion.len)]
-		process_accuracy(projectile, user, target, acc, disp)
 
 		if (istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
-			if (istype(src, /obj/item/weapon/gun/projectile/boltaction))
+			if (istype(src, /obj/item/weapon/gun/projectile/boltaction) || istype(src, /obj/item/weapon/gun/projectile/svt))
 				P.KD_chance *= 10
+				if (ishuman(user))
+					var/mob/living/carbon/human/H = user
+					P.KD_chance *= H.getStatCoeff("rifle")
+					acc += max(H.getStatCoeff("rifle")-1, 0)
+
 			else if (istype(src, /obj/item/weapon/gun/projectile/heavysniper))
 				P.KD_chance *= 15
+
+			else if (istype(src, /obj/item/weapon/gun/projectile/automatic) || istype(src, /obj/item/weapon/gun/projectile/minigun))
+				if (ishuman(user))
+					var/mob/living/carbon/human/H = user
+					P.KD_chance *= H.getStatCoeff("mg")
+					acc += max(H.getStatCoeff("mg")-1, 0)
+
+		process_accuracy(projectile, user, target, acc, disp)
 
 		if(pointblank) // oh so this is how pointblank works. Todo: delet this
 			if (istype(projectile, /obj/item/projectile))

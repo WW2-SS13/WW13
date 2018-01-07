@@ -310,7 +310,7 @@
 "fX" = (/obj/structure/closet/crate/ptrdammo,/obj/effect/landmark{name = "german_supplydrop_spot"},/turf/floor/plating{tag = "icon-asteroidplating"; icon_state = "asteroidplating"},/area/prishtina/german/armory)
 "fY" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/kar98kammo,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
 "fZ" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
-"ga" = (/obj/structure/table/reinforced,/obj/item/stack/material/barbwire,/obj/item/stack/material/barbwire,/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
+"ga" = (/obj/structure/table/reinforced,/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/item/stack/material/barbwire{amount = 10},/obj/item/stack/material/barbwire{amount = 10},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "gb" = (/obj/structure/table/iron,/obj/item/stack/material/glass{amount = 30},/obj/item/stack/material/glass/reinforced{amount = 10},/obj/item/stack/material/steel{amount = 30},/obj/structure/table/reinforced,/obj/structure/window/sandbag,/obj/item/stack/material/steel{amount = 30},/obj/item/stack/material/wood{amount = 30},/obj/item/stack/material/wood{amount = 30},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "gc" = (/obj/structure/table/reinforced,/obj/item/weapon/plastique,/obj/item/weapon/plastique,/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "gd" = (/obj/structure/closet/toolcloset,/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
@@ -388,6 +388,7 @@
 "hx" = (/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina/houses/nml_three)
 "hy" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/ash,/turf/floor/wood,/area/prishtina/houses/nml_three)
 "hz" = (/obj/effect/decal/cleanable/cobweb,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
+"hA" = (/obj/structure/table/reinforced,/obj/effect/floor_decal/borderfloor{dir = 1},/obj/item/weapon/flame/lighter,/obj/item/stack/material/barbwire{amount = 10},/obj/item/stack/material/barbwire{amount = 10},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "hB" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land)
 "hC" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood_broken,/area/prishtina/houses/nml_four)
 "hD" = (/turf/floor/wood_broken,/area/prishtina/houses/nml_four)
@@ -474,7 +475,6 @@
 "jj" = (/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "jk" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "jl" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/reagent_dispensers/fueltank,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
-"jm" = (/obj/structure/table/reinforced,/obj/item/stack/material/barbwire,/obj/item/stack/material/barbwire,/obj/effect/floor_decal/borderfloor{dir = 1},/obj/item/weapon/flame/lighter,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "jn" = (/obj/structure/table/iron,/obj/item/stack/material/glass{amount = 30},/obj/item/stack/material/glass/reinforced{amount = 10},/obj/item/stack/material/steel{amount = 30},/obj/structure/table/reinforced,/obj/effect/floor_decal/borderfloor{dir = 1},/obj/item/stack/material/steel{amount = 30},/obj/item/stack/material/wood{amount = 30},/obj/item/stack/material/wood{amount = 30},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "jo" = (/obj/structure/closet/toolcloset,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "jp" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
@@ -877,7 +877,7 @@ bjbjbjbkbkbkbliKiKiKbmbkbkbkbkbkbkbjbjbjbjbjbmbkbkbjbjbkbkbjbjbjbjbjbmiKiRiKiHbj
 afanananananangygygyananananananananananangAgAgAanananangAananananananangygyanananananananangBgBanananangCgygyanangAanananangAananananananan
 iOiOiOiOiOiOiOiPiPiPiOiOiOiOiOiOiOiOiOiOiQiQiOiOiOiOiOiOiQiQiOiOiOiOiKiRiNiNiKiKiRiKiKiKiKiKiSiSiKiKiKiKiTiNiNiKiRiUiKiKiRiRiKiKiKiKiRiKiViK
 iWiXiXiXiXiXiXiXiXiXiXiXiXiXiXiXiXiYiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiZiOiKiKiKiKiRiKiRiRiRiKiKiSiSiKiKiKiKiNiNiNiKiKiKiKiKiKiKiKiKiKiKjaiKiKiK
-jbjcjdjejfjdjdjdjdjdjgjdjdjdjdjdjhjijjjkjljjjmjnjojkjjjjjpjpjpjpjpjjjqiOiKiKbmclclckckckckckjrjrjrckckbliKiKiKbmckckckckckckckckckckckckckck
+jbjcjdjejfjdjdjdjdjdjgjdjdjdjdjdjhjijjjkjljjhAjnjojkjjjjjpjpjpjpjpjjjqiOiKiKbmclclckckckckckjrjrjrckckbliKiKiKbmckckckckckckckckckckckckckck
 jbjsjtjujvjwjtjxjtjyjtjzjtjAjtjBjtjCjDjEjFjDjDjDjGjEjDjHjIjJjKjJjKjLjMiZjNiKagcBcCcBcBcBcBcBgGgGgGcBcBaeiKiKiKaUcBcBcBcBcBcBcBcBcBcBcBcBcBcB
 jbjOjtjPjQjRjtjwjSjTjSjUjSjVjSjWjSjXjFjYjZjFjDjDkajEjDjHjJjJjJjJjJjLjMiZjNiKaUcBkbkbkbkbkckckbkbkbkbcBaeiRiRiKaUcBkdkdkdkdkdkekekdkdkdkdcBcB
 jbjtjtjtjvkfjtkgjtkhjtkijtkjjtjWjSjXjFjYkkjDklkmknjEjDkojKjJjJjJjJjLjMiZjNiKaUcBkbkpkqkbkrksktkukvkbcBaeiKiRiKaUcBkdkwkwkxkwkwkwkdkykzkdcBcB

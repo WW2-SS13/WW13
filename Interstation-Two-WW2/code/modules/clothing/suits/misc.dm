@@ -7,7 +7,7 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	allowed = list (/obj/item/weapon/material/knife)
+	allowed = list(/obj/item/weapon/material/knife, /obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
 
 //Chef
 /obj/item/clothing/suit/chef/classic

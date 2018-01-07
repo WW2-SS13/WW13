@@ -19,11 +19,13 @@
 	var/blood_level = 0
 
 	//returns how well tool is suited for this step
-	proc/tool_quality(obj/item/tool)
+	proc/tool_quality(obj/item/tool, var/mob/living/carbon/human/user)
+		. = 0
 		for (var/T in allowed_tools)
 			if (istype(tool,T))
-				return allowed_tools[T]
-		return 0
+				. = min(allowed_tools[T], 72)
+		if (istype(user))
+			. *= user.getStatCoeff("medical")
 
 	// Checks if this step applies to the user mob at all
 	proc/is_valid_target(mob/living/carbon/human/target)
@@ -88,7 +90,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return 1
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
-		if(S.tool_quality(tool))
+		if(S.tool_quality(tool, user))
 			var/step_is_valid = S.can_use(user, M, zone, tool)
 			if(step_is_valid && S.is_valid_target(M))
 				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
@@ -96,7 +98,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				M.op_stage.in_progress += zone
 				S.begin_step(user, M, zone, tool)		//start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
-				if(prob(S.tool_quality(tool)) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
+				if(prob(S.tool_quality(tool, user)) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
 					S.end_step(user, M, zone, tool)		//finish successfully
 				else if ((tool in user.contents) && user.Adjacent(M))			//or
 					S.fail_step(user, M, zone, tool)		//malpractice~

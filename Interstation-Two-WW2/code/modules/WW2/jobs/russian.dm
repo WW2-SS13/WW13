@@ -29,6 +29,11 @@
 	world << "<b><big>[H.client.prefs.russian_name] is the [title] of the Soviet forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the Russian forces and lead them to victory. You take orders from the <b>Soviet High Command</b>.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_VERY_LOW)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_VERY_LOW)
 	return 1
 
 /datum/job/russian/commander/get_keys()
@@ -63,6 +68,11 @@
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the Russian forces. Your job is to take orders from the <b>Commandir</b> and coordinate with squad leaders.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_VERY_LOW)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_VERY_LOW)
 	return 1
 
 /datum/job/russian/staff_officer/get_keys()
@@ -97,6 +107,11 @@
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H), slot_r_hand)
 	H.visible_message("<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the Russian force according to the <b>Commandir</b>'s and the <b>Ofitser</b>'s orders.</span>")
 	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_LOW)
 	return 1
 
 /datum/job/russian/squad_leader/get_keys()
@@ -127,6 +142,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a medic. Your job is to keep the army healthy and in good condition.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_MEDIUM_HIGH)
 	return 1
 
 /datum/job/russian/medic/get_keys()
@@ -155,6 +175,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a doctor. Your job is to stay back at base and treat wounded that come in from the front, as well as treat prisoners and base personnel.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_LOW)
+	H.setStat("engineering", STAT_VERY_LOW)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_VERY_LOW)
+	H.setStat("medical", STAT_VERY_HIGH)
 	return 1
 
 /datum/job/russian/doctor/get_keys()
@@ -185,6 +210,11 @@
 	H.equip_to_slot_or_del(new /obj/item/attachment/scope/adjustable/sniper_scope(H), slot_r_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a sniper. Your job is to assist normal <b>Soldat</b> from behind defenses.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_VERY_LOW)
 	return 1
 
 /datum/job/russian/sniper/get_keys()
@@ -215,6 +245,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an engineer. Your job is to build forward defenses.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_HIGH)
+	H.setStat("engineering", STAT_VERY_HIGH)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_VERY_LOW)
 	return 1
 
 /datum/job/russian/engineer/get_keys()
@@ -244,6 +279,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/russian(H), slot_l_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a heavy weapons unit. Your job is to assist normal <b>Soldat</b>i in front line combat.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("medical", STAT_LOW)
 	return 1
 
 /datum/job/russian/heavy_weapon/get_keys()
@@ -273,6 +313,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
 	return 1
 
 /datum/job/russian/soldier/get_keys()
@@ -317,6 +362,11 @@
 	H.add_memory("")
 
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_MEDIUM_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_MEDIUM_LOW)
 	return 1
 
 /datum/job/russian/dogmaster/get_keys()
@@ -347,6 +397,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m4(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a tank crewman. Your job is to work with another crewman to operate a tank.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_MEDIUM_LOW)
 	return 1
 
 /datum/job/russian/tankcrew/get_keys()
@@ -378,6 +433,11 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/anti_tank_crew(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an anti-tank infantry unit. Your job is to destroy enemy tanks.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
 	return 1
 
 /datum/job/russian/anti_tank_crew/get_keys()
@@ -426,6 +486,11 @@ var/first_guard = 0
 		H.equip_to_slot_or_del(belt, slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a guard. Your job is to operate the minigun.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
 	return 1
 
 /datum/job/russian/guard/get_keys()
@@ -457,6 +522,11 @@ var/first_guard = 0
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a Quartermaster. Your job is to keep the army well armed and supplied.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_HIGH)
+	H.setStat("engineering", STAT_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("medical", STAT_VERY_LOW)
 	return 1
 
 /datum/job/russian/zavhoz/get_keys()
@@ -486,6 +556,12 @@ var/first_guard = 0
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/bulletproof/cn42(H), slot_wear_suit)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an elite infantry soldier. Your job is assist normal <b>Soldat</b>i in front line combat.</span>"
 	H.give_radio()
+	// glorious sturmovik stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_LOW)
 	return 1
 
 /datum/job/russian/sturmovik/get_keys()
@@ -518,6 +594,11 @@ var/first_guard = 0
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a front chef. Your job is to keep the Red Army well fed.</span>"
 	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_MEDIUM_LOW)
+	H.setStat("rifle", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("medical", STAT_MEDIUM_LOW)
 	return 1
 
 /datum/job/russian/chef/get_keys()

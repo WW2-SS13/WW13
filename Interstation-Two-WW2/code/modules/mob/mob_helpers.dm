@@ -138,6 +138,7 @@ var/list/global/hit_chances = list(
 
 /proc/get_miss_chance(var/zone, var/distance, var/accuracy, var/miss_modifier)
 	. = 0
+	zone = check_zone(zone)
 	switch (distance)
 		if (0)
 			. = 100 - hit_chances["pointblankrange"][zone]

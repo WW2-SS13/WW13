@@ -54,6 +54,12 @@ meteor_act
 			P.on_hit(src, 2, def_zone)
 			return 2
 	else
+		// get knocked back once in a while
+		if (prob(P.KD_chance/2))
+			var/behind = behind()
+			if (behind)
+				forceMove(behind)
+		// get weakened too
 		if (prob(P.KD_chance))
 			Weaken(rand(2,3))
 

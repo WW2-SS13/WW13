@@ -361,6 +361,10 @@
 			spawn (1)
 				qdel(src)
 			return
+		if (firer && map.check_prishtina_block(firer, loc))
+			spawn (1)
+				qdel(src)
+			return
 		if((!( current ) || loc == current))
 			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
 		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))

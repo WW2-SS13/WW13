@@ -391,6 +391,12 @@
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.003
 
+		if (mob.pulling)
+			if (istype(mob.pulling, /mob))
+				move_delay += 1.0
+			else if (istype(mob.pulling, /obj/structure))
+				move_delay += 0.75
+
 		var/mob/living/carbon/human/H = mob
 
 		if (mob_is_human)

@@ -149,8 +149,14 @@
 		return
 
 	if (recipe.time)
+		var/buildtime = recipe.time
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
+			buildtime /= H.getStatCoeff("strength")
+			buildtime /= (H.getStatCoeff("engineering") * H.getStatCoeff("engineering"))
+
 		user << "<span class='notice'>Building [recipe.title] ...</span>"
-		if (!do_after(user, recipe.time))
+		if (!do_after(user, buildtime))
 			return
 
 	if (use(required))

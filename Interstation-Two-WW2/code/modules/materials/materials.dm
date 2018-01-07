@@ -244,6 +244,17 @@ var/list/name_to_material
 	hardness = 100
 	stack_origin_tech = list(TECH_MATERIAL = 6)
 
+/material/barbedwire
+	name = "barbedwire"
+	stack_type = /obj/item/stack/material/barbwire
+	flags = MATERIAL_UNMELTABLE
+	cut_delay = 10
+	icon_colour = "#FFFFFF"
+	shard_type = SHARD_SHARD
+	tableslam_noise = 'sound/effects/Glasshit.ogg'
+	hardness = 30
+	stack_origin_tech = list(TECH_MATERIAL = 6)
+
 /material/gold
 	name = "gold"
 	stack_type = /obj/item/stack/material/gold

@@ -3,12 +3,14 @@
 	icon_state = "stgnade"
 	item_state = "stgnade"
 	throw_speed = 2
+	slot_flags = SLOT_BELT|SLOT_MASK
 
 /obj/item/weapon/grenade/explosive/rgd
 	name = "RGD-33"
 	icon_state = "rgd"
 	item_state = "rgd"
 	throw_speed = 1
+	slot_flags = SLOT_BELT|SLOT_MASK
 
 /obj/item/weapon/grenade/smokebomb/german
 	desc = "German smoke grenade. Won't blow up."
@@ -17,7 +19,7 @@
 	icon_state = "smoke_grenade"
 	det_time = 20
 	item_state = "smoke_grenade"
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT|SLOT_MASK
 
 /obj/item/weapon/grenade/smokebomb/soviet
 	desc = "Soviet smoke grenade. Won't blow up."
@@ -26,4 +28,4 @@
 	icon_state = "smoke_grenade"
 	det_time = 20
 	item_state = "smoke_grenade"
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT|SLOT_MASK

@@ -48,10 +48,8 @@
 
 		if (ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if (istype(H.original_job, /datum/job/german/engineer))
-				sandbag_time = 20
-			if (istype(H.original_job, /datum/job/russian/engineer))
-				sandbag_time = 20
+			sandbag_time /= H.getStatCoeff("strength")
+			sandbag_time /= (H.getStatCoeff("engineering") * H.getStatCoeff("engineering"))
 
 		if (src == get_step(user, user.dir))
 			if (alert(user, "This will start building a sandbag [your_dir] of you.", "", "Continue", "Stop") == "Continue")
