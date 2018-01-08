@@ -404,6 +404,7 @@
 			if (lever)
 				lever.icon_state = lever.none_state
 				lever.direction = "NONE"
+			train_arrived = 1
 
 /datum/train_controller/proc/move_connectors(var/reverse = 0)
 

@@ -79,10 +79,13 @@
 
 		stat("<br>STATS<br>")
 		for (var/statname in stats)
+			var/coeff = getStatCoeff(statname)
+			if (coeff == 1)
+				coeff = "1.00" // OCD
 			if (statname != "mg")
-				stat("[capitalize(statname)]: ", "[getStatCoeff(statname)]x average")
+				stat("[capitalize(statname)]: ", "[coeff]x average")
 			else
-				stat("[uppertext(statname)]: ", "[getStatCoeff(statname)]x average")
+				stat("[uppertext(statname)]: ", "[coeff]x average")
 
 		if (istype(loc, /obj/tank))
 			var/obj/tank/tank = loc

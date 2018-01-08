@@ -148,10 +148,25 @@
 		user << "<span class='warning'>\The [recipe.title] must be constructed on the floor!</span>"
 		return
 
+	var/mob/living/carbon/human/H = null
+	if (ishuman(user))
+		H = user
+
+	if (recipe.result_type == /obj/structure/barbwire)
+		if (H)
+			if (H.original_job)
+				if (H.original_job.base_type_flag() == GERMAN)
+					if (istype(get_area(src), /area/prishtina/german))
+						user << "<span class = 'warning'>This isn't a great place for barbwire.</span>"
+						return
+				else if (H.original_job.base_type_flag() == RUSSIAN)
+					if (istype(get_area(src), /area/prishtina/soviet))
+						user << "<span class = 'warning'>This isn't a great place for barbwire.</span>"
+						return
+
 	if (recipe.time)
 		var/buildtime = recipe.time
-		if (ishuman(user))
-			var/mob/living/carbon/human/H = user
+		if (H)
 			buildtime /= H.getStatCoeff("strength")
 			buildtime /= (H.getStatCoeff("engineering") * H.getStatCoeff("engineering"))
 

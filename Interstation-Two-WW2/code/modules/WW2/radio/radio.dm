@@ -78,6 +78,7 @@ var/global/list/default_ukrainian_channels = list(
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
+	desc = "A communication device. You can speak through it with ; or :b when its on your back, and :l or :r when its in your hand."
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
@@ -508,6 +509,7 @@ var/global/list/default_ukrainian_channels = list(
 	speech_sound = 'sound/effects/roger_beep.ogg'
 	is_supply_radio = 1
 	faction = RUSSIAN
+	supply_points = 500 // soviets get more supplies
 
 /obj/item/device/radio/intercom/a7b/New()
 	internal_channels = default_russian_channels.Copy()
@@ -557,6 +559,7 @@ var/global/list/default_ukrainian_channels = list(
 	speech_sound = 'sound/effects/roger_beep2.ogg'
 	is_supply_radio = 1
 	faction = GERMAN
+	supply_points = 400
 
 /obj/item/device/radio/intercom/fu2/New()
 	internal_channels = default_german_channels.Copy()

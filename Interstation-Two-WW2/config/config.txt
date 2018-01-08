@@ -3,7 +3,7 @@
 SERVER_NAME Lebensraum
 
 ## What features do you want to advertise on your hub message?
-HUB_FEATURES A new light-medium RP WW2 Server
+HUB_FEATURES A new light-medium roleplay WW2 Server
 
 ## The main content of your hub message
 HUB_BODY <i>1942, SEASON, TIME_OF_DAY, Ukraine</i><br>

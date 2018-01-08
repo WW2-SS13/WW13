@@ -88,7 +88,7 @@
 				if (abs(my_turf.x - T.x) > 3 || abs(my_turf.y - T.y) > 5)
 					continue
 
-		if (T != get_step(my_turf, my_mob.dir) && prob(get_dist(my_turf, T)+7))
+		if (T != get_step(my_turf, my_mob.dir) && prob(get_dist(my_turf, T)+10))
 			continue
 
 		if(T.density)

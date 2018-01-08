@@ -1,5 +1,5 @@
 /obj/tank/var/last_movement = -1
-/obj/tank/var/movement_delay = 4.8 // about 1.4 - 1.5x slower than walking humans
+/obj/tank/var/movement_delay = 6.0 // nerfed even more, somehow tanks were outrunning people - Kachnov
 /obj/tank/var/last_movement_sound = -1
 /obj/tank/var/movement_sound_delay = 30
 /obj/tank/var/last_gibbed = -1
@@ -75,7 +75,7 @@
 				return 0
 
 		loc = target
-		fuel -= pick(0.33,0.5,0.75)
+		fuel -= pick(0.33,0.66,0.99)
 
 /obj/tank/proc/play_movement_sound()
 	if (world.time - last_movement_sound > movement_sound_delay || last_movement_sound == -1)
@@ -179,7 +179,7 @@
 			return 1 // pass over it
 
 		if (istype(o, /obj/structure/window/sandbag))
-			if (prob(20))
+			if (prob(15))
 				tank_message("<span class = 'danger'>The tank plows through the sandbag wall!</span>")
 				qdel(o)
 				return 1
@@ -189,13 +189,23 @@
 				return 0
 
 		if (istype(o, /obj/structure/girder))
-			if (prob(10))
+			if (prob(7))
 				tank_message("<span class = 'danger'>The tank plows through the wall girder!</span>")
 				qdel(o)
 				return 1
 			else
 				tank_message("<span class = 'danger'>The tank smashes against the wall girder!</span>")
-				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				return 0
+
+		if (istype(o, /obj/structure/barricade))
+			if (prob(5))
+				tank_message("<span class = 'danger'>The tank plows through the barricade!</span>")
+				qdel(o)
+				return 1
+			else
+				tank_message("<span class = 'danger'>The tank smashes against the barricade!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 				return 0
 
 		if (istype(o, /obj/structure/simple_door))
@@ -206,7 +216,7 @@
 				return 1
 			else
 				tank_message("<span class = 'danger'>The tank smashes against \the [S]!</span>")
-				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 				return 0
 
 		if (istype(o, /obj/train_pseudoturf))

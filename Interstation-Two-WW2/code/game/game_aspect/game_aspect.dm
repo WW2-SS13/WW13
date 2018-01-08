@@ -65,6 +65,7 @@
 		/datum/game_aspect/ww2/german_logistical_disadvantage,
 
 		/datum/game_aspect/ww2/no_tanks,
+		/datum/game_aspect/ww2/no_artillery
 
 		)
 
@@ -215,7 +216,7 @@
 	GRACE_PERIOD_LENGTH = 15
 
 /datum/game_aspect/ww2/no_tanks
-	desc = "There are no tanks, hooray!"
+	desc = "There are no tanks this battle."
 
 /datum/game_aspect/ww2/no_tanks/specialcheck()
 	return locate(/obj/tank) in world
@@ -228,6 +229,21 @@
 	world << "<br><i>[desc]</i>"
 	for (var/obj/tank/T in world)
 		qdel(T)
+
+/datum/game_aspect/ww2/no_artillery
+	desc = "The Germans have no artillery for this battle."
+
+/datum/game_aspect/ww2/no_artillery/specialcheck()
+	return locate(/obj/machinery/artillery) in world
+
+/datum/game_aspect/ww2/no_artillery/activate()
+	. = ..()
+	if (. == FALSE)
+		return .
+	world << "[WW2_ASPECT_SPAN][.]No artillery!</span>"
+	world << "<br><i>[desc]</i>"
+	for (var/obj/machinery/artillery/A in world)
+		qdel(A)
 
 /datum/game_aspect/ww2/foreign_armies
 	desc = "The German Wehrmacht is being assisted by an Italian division, and the Red Army is being assisted by a Ukrainian division."

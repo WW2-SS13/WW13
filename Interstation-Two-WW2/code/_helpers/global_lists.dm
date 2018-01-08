@@ -118,6 +118,19 @@ var/global/list/string_slot_flags = list(
 	"holster" = SLOT_HOLSTER
 )
 
+// new hair colors
+var/list/hair_colors = list(
+	"Black" = "#000000",
+	"Light Brown" = "#A0522D",
+	"Dark Brown" = "#53290B",
+	"Red" = "#800000",
+	"Orange" = "#EF7B18",
+	"Light Blond" = "#FFF8DC",
+	"Blond" = "#FBF4D0",
+	"Dirty Blond" = "#FFD57D",
+	"Light Grey" = "#d3d3d3",
+	"Grey" = "#808080"
+)
 //////////////////////////
 /////Initial Building/////
 //////////////////////////

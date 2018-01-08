@@ -29,39 +29,40 @@
 	var/spread_range = 7
 
 /obj/item/weapon/grenade/explosive/prime()
-	set waitfor = 0
-	..()
+	if (active)
+		set waitfor = 0
+		..()
 
-	var/turf/O = get_turf(src)
-	if(!O) return
+		var/turf/O = get_turf(src)
+		if(!O) return
 
-	if(explosion_size)
-		on_explosion(O)
+		if(explosion_size)
+			on_explosion(O)
 
-	var/list/target_turfs = getcircle(O, spread_range)
-	var/fragments_per_projectile = round(num_fragments/target_turfs.len)
+		var/list/target_turfs = getcircle(O, spread_range)
+		var/fragments_per_projectile = round(num_fragments/target_turfs.len)
 
-	for(var/turf/T in target_turfs)
-		sleep(0)
-		var/obj/item/projectile/bullet/pellet/fragment/P = new fragment_type(O)
+		for(var/turf/T in target_turfs)
+			sleep(0)
+			var/obj/item/projectile/bullet/pellet/fragment/P = new fragment_type(O)
 
-		P.damage = fragment_damage
-		P.pellets = fragments_per_projectile
-		P.range_step = damage_step
-		P.shot_from = src.name
+			P.damage = fragment_damage
+			P.pellets = fragments_per_projectile
+			P.range_step = damage_step
+			P.shot_from = src.name
 
-		P.launch_fragment(T)
+			P.launch_fragment(T)
 
-		//Make sure to hit any mobs in the source turf
-		for(var/mob/living/M in O)
-			//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
-			//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
-			if(M.lying && isturf(src.loc))
-				P.attack_mob(M, 0, 0)
-			else
-				P.attack_mob(M, 0, 100) //otherwise, allow a decent amount of fragments to pass
+			//Make sure to hit any mobs in the source turf
+			for(var/mob/living/M in O)
+				//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
+				//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
+				if(M.lying && isturf(src.loc))
+					P.attack_mob(M, 0, 0)
+				else
+					P.attack_mob(M, 0, 100) //otherwise, allow a decent amount of fragments to pass
 
-	qdel(src)
+		qdel(src)
 
 /obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/O)
 	if(explosion_size)

@@ -297,8 +297,9 @@
 				np.new_player_panel_proc()
 
 		// no tanks on lowpop
-		if (clients.len <= 12)
-			for (var/obj/tank/T in world)
-				qdel(T)
-			world << "<i>Due to lowpop, there are no tanks.</i>"
+		if (!istype(aspect, /datum/game_aspect/ww2/no_tanks))
+			if (clients.len <= 12)
+				for (var/obj/tank/T in world)
+					qdel(T)
+				world << "<i>Due to lowpop, there are no tanks.</i>"
 

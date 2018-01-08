@@ -166,6 +166,7 @@ var/GRACE_PERIOD_LENGTH = 7
 	return 1
 
 var/mission_announced = 0
+var/train_arrived = 0
 var/allow_paratroopers = 1
 
 /hook/train_move/proc/announce_mission_start()
@@ -188,4 +189,8 @@ var/allow_paratroopers = 1
 			if (np.client)
 				np.new_player_panel_proc()
 
-	world << "<font size=3>Balance report: [n_of_side(GERMAN)] German, [n_of_side(RUSSIAN)] Soviet and [n_of_side(CIVILIAN)+n_of_side(PARTISAN)] Civilians/Partisans.</font>"
+	var/show_report_after = 0
+	if (istype(map, /obj/map_metadata/minicity))
+		show_report_after = 600
+	spawn (show_report_after)
+		world << "<font size=3>Balance report: [n_of_side(GERMAN)] German, [n_of_side(RUSSIAN)] Soviet and [n_of_side(CIVILIAN)+n_of_side(PARTISAN)] Civilians/Partisans.</font>"

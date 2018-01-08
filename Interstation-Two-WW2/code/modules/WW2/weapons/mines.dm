@@ -32,6 +32,19 @@
 		src << "There's already a mine at this position!"
 		return
 
+	if (ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if (H.original_job)
+			if (H.original_job.base_type_flag() == GERMAN)
+				if (istype(get_area(src), /area/prishtina/german))
+					user << "<span class = 'warning'>This isn't a great place for mines.</span>"
+					return
+			else if (H.original_job.base_type_flag() == RUSSIAN)
+				if (istype(get_area(src), /area/prishtina/soviet))
+					user << "<span class = 'warning'>This isn't a great place for mines.</span>"
+					return
+
+
 	if(!anchored)
 		user.visible_message("\blue \The [user] starts to deploy the \the [src]")
 		if(!do_after(user,rand(30,40)))

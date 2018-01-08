@@ -64,11 +64,7 @@ var/global/obj/map_metadata/map = null
 	return (mission_announced || admin_ended_all_grace_periods)
 
 /obj/map_metadata/forest/soviets_can_cross_blocks()
-	if (admin_ended_all_grace_periods)
-		return 1
-	if (mission_announced && tickerProcess.time_elapsed - mission_announced >= 4200)
-		return 1
-	return 0
+	return ((mission_announced && train_arrived) || admin_ended_all_grace_periods)
 
 /obj/map_metadata/forest/announce_mission_start(var/preparation_time = 0)
 	world << "<font size=4>The German assault has started after <b>[preparation_time / 600] minutes</b> of preparation. The Soviet side may not attack until after <b>7 minutes</b>.</font><br>"

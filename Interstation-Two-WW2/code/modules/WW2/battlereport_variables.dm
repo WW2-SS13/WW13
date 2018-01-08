@@ -13,6 +13,8 @@ var/list/dead_russians = list()
 var/list/dead_civilians = list()
 var/list/dead_partisans = list()
 
+var/list/recently_died = list()
+
 /mob/living/carbon/human/proc/get_battle_report_lists()
 
 	var/list/alive = list()
@@ -40,24 +42,28 @@ var/list/dead_partisans = list()
 	return list(alive, dead, injured)
 
 /mob/living/carbon/human/death()
+
+	var/list/lists = get_battle_report_lists()
+	var/list/alive = lists[1]
+	var/list/dead = lists[2]
+	var/list/injured = lists[3]
+
+	alive -= src
+	injured -= src
+	dead += src
+	recently_died += src
+
+	// prevent one last Life() from potentially undoing this
+	spawn (200)
+		recently_died -= src
+
 	..()
 
-	spawn (100) // make sure what we do undone by Life()
-
-		var/list/lists = get_battle_report_lists()
-		var/list/alive = lists[1]
-		var/list/dead = lists[2]
-		var/list/injured = lists[3]
-
-		// give these lists starting values to prevent runtimes.
-		alive -= src
-		injured -= src
-		dead += src
 
 /mob/living/carbon/human/Life()
 	..()
 
-	if (stat == DEAD)
+	if (recently_died.Find(src))
 		return
 
 	var/list/lists = get_battle_report_lists()
@@ -68,6 +74,7 @@ var/list/dead_partisans = list()
 	alive -= src
 	injured -= src
 	dead -= src
+
 	// give these lists starting values to prevent runtimes.
 	if (stat == CONSCIOUS)
 		alive |= src
