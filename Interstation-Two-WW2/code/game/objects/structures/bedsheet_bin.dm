@@ -6,7 +6,7 @@ LINEN BINS
 
 /obj/item/weapon/bedsheet
 	name = "bedsheet"
-	desc = "A surprisingly soft linen bedsheet."
+	desc = "A soft linen bedsheet."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "sheet"
 	item_state = "bedsheet"
