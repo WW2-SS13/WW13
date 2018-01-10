@@ -1,8 +1,8 @@
 //copy pasta of the space piano, don't hurt me -Pete
 
 /obj/item/device/violin
-	name = "space violin"
-	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
+	name = "Violin"
+	desc = "Labeled, \"No. 6, Made by Rudolf Olsen, Violin & Bow Maker, 651 Third Avenue, New York City, anno 1918.\" "
 	icon = 'icons/obj/musician.dmi'
 	icon_state = "violin"
 	item_state = "violin"
