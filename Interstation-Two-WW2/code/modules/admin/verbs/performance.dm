@@ -37,7 +37,7 @@ var/hyperefficiency_mode = 0
 			weather_process.paused = 1
 			time_of_day_process.paused = 1
 			battlereport.paused = 1 // this breaks the battlereport, which only works every 10 minutes anyway, so removed
-			inactivity_process.paused = 1 // process is gone
+//			inactivity_process.paused = 1 // process is gone
 
 			// slow down some vital processes a bit
 			tickerProcess.schedule_interval *= PROCESS_MED_SLOWDOWN
@@ -65,7 +65,7 @@ var/hyperefficiency_mode = 0
 			weather_process.paused = 0
 			time_of_day_process.paused = 0
 			battlereport.paused = 0
-			inactivity_process.paused = 0 // process is gone
+//			inactivity_process.paused = 0 // process is gone
 
 			// undo slowdown
 			tickerProcess.schedule_interval /= PROCESS_MED_SLOWDOWN
