@@ -85,6 +85,12 @@
 	faction = null
 	allow_moving_outside_home = 1
 	attack_mode = -1
+/mob/living/simple_animal/complex_animal/canine/dog/awooo
+	icon_state = "awooo"
+	name = "Momiji Inubashiri"
+	faction = null
+	allow_moving_outside_home = 1
+	attack_mode = -1
 
 // "backend" procs
 
