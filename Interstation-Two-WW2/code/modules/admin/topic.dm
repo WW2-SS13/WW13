@@ -211,26 +211,45 @@
 		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]]; deletemob=[delmob]")
 		message_admins("\blue [key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]]; deletemob=[delmob]", 1)
 
+		// only way we can transform ourselves
+		var/usr_client = usr.client
+
+		var/mob/New = null
 		switch(href_list["simplemake"])
-			if("observer")			M.change_mob_type( /mob/observer/ghost , null, null, delmob )
-			if("larva")				M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
-			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
-			if("slime")				M.change_mob_type( /mob/living/carbon/slime , null, null, delmob )
-			if("monkey")			M.change_mob_type( /mob/living/carbon/human/monkey , null, null, delmob )
-			if("robot")				M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
-			if("cat")				M.change_mob_type( /mob/living/simple_animal/cat , null, null, delmob )
-			if("runtime")			M.change_mob_type( /mob/living/simple_animal/cat/fluff/Runtime , null, null, delmob )
-			if("corgi")				M.change_mob_type( /mob/living/simple_animal/corgi , null, null, delmob )
-			if("ian")				M.change_mob_type( /mob/living/simple_animal/corgi/Ian , null, null, delmob )
-			if("crab")				M.change_mob_type( /mob/living/simple_animal/crab , null, null, delmob )
-			if("coffee")			M.change_mob_type( /mob/living/simple_animal/crab/Coffee , null, null, delmob )
+			if("observer")			New = M.change_mob_type( /mob/observer/ghost , null, null, delmob )
+			if("larva")				New = M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
+			if("human")				New = M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
+			if("slime")				New = M.change_mob_type( /mob/living/carbon/slime , null, null, delmob )
+			if("monkey")			New = M.change_mob_type( /mob/living/carbon/human/monkey , null, null, delmob )
+			if("robot")				New = M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
+			if("cat")				New = M.change_mob_type( /mob/living/simple_animal/cat , null, null, delmob )
+			if("runtime")			New = M.change_mob_type( /mob/living/simple_animal/cat/fluff/Runtime , null, null, delmob )
+			if("corgi")				New = M.change_mob_type( /mob/living/simple_animal/corgi , null, null, delmob )
+			if("ian")				New = M.change_mob_type( /mob/living/simple_animal/corgi/Ian , null, null, delmob )
+			if("crab")				New = M.change_mob_type( /mob/living/simple_animal/crab , null, null, delmob )
+			if("coffee")			New = M.change_mob_type( /mob/living/simple_animal/crab/Coffee , null, null, delmob )
 //			if("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
 	//		if("polyparrot")		M.change_mob_type( /mob/living/simple_animal/parrot/Poly , null, null, delmob )
-			if("constructarmoured")	M.change_mob_type( /mob/living/simple_animal/construct/armoured , null, null, delmob )
-			if("constructbuilder")	M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
-			if("constructwraith")	M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
-			if("shade")				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
+			if("constructarmoured")	New = M.change_mob_type( /mob/living/simple_animal/construct/armoured , null, null, delmob )
+			if("constructbuilder")	New = M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
+			if("constructwraith")	New = M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
+			if("shade")				New = M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
+		if (New)
+			if (ishuman(New))
+				var/mob/living/carbon/human/H = New
+				if ((input(usr_client, "Assign [H] a new job?") in list("Yes", "No")) == "Yes")
 
+					var/list/job_master_occupation_names = list()
+					for (var/datum/job/J in job_master.occupations)
+						if (J.title)
+							job_master_occupation_names[J.title] = J
+
+					var/J = input(usr_client, "Which job?") in (list("Cancel") | job_master_occupation_names)
+					if (J != "Cancel")
+						H.original_job_title = J
+						H.original_job = job_master_occupation_names[J]
+						spawn (5)
+							H.original_job.equip(H)
 
 	/////////////////////////////////////new ban stuff
 /*	else if(href_list["unbanf"])

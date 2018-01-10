@@ -701,6 +701,7 @@ var/global/list/default_ukrainian_channels = list(
 	H.name = aname
 	H.real_name = aname
 	H.original_job = new/datum/job/german/trainsystem
+	H.special_job_title = null
 	H.sayverb = "announces"
 	H.languages.Cut()
 

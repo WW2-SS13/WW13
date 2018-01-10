@@ -86,6 +86,8 @@
 
 			<html>
 
+			<body style='background-color:#1D2951; color:#ffffff'>
+
 			<script language="javascript">
 
 			function set(input) {
@@ -116,6 +118,8 @@
 			<br>
 			<a href='?src=\ref[src];fire=1'><b><big>FIRE!</big></b></a>
 			</center>
+
+			</body>
 
 			</html>
 			"},  "window=artillery_window;border=1;can_close=1;can_resize=1;can_minimize=0;titlebar=1;size=500x500")

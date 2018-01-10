@@ -120,6 +120,7 @@
 	// from a new_player mob
 	var/datum/job/original_job
 	var/original_job_title = null
+	var/special_job_title = -1
 
 	var/can_pull_size = 10              // Maximum w_class the mob can pull.
 	var/can_pull_mobs = MOB_PULL_LARGER // Whether or not the mob can pull other mobs.

@@ -475,7 +475,7 @@
 	var/list/restricted_choices = list()
 	var/list/available_jobs_per_side = list(
 		GERMAN = 0,
-		SOVIET = 0,
+		RUSSIAN = 0,
 		PARTISAN = 0,
 		CIVILIAN = 0,
 		ITALIAN = 0,
@@ -606,7 +606,7 @@
 				if (findtext(dat[v], "&[key]&") && !findtext(dat[v], "&&[key]&&"))
 					dat[v] = replacetext(dat[v], "&[key]&", "")
 				else if (!replaced_faction_title && findtext(dat[v], "&&[key]&&"))
-					dat[v] = "[replacetext(dat[v], "&&[key]&&", "")]"
+					dat[v] = replacetext(dat[v], "&&[key]&&", "")
 					replaced_faction_title = 1
 
 

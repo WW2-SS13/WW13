@@ -990,7 +990,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\main\level1.dmm"
-#include "maps\main\level2.dmm"
-#include "maps\main\level3.dmm"
+#include "maps\city\smallcity.dmm"
 // END_INCLUDE
