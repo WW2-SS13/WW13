@@ -7,7 +7,6 @@
 #define FILE_DIR .
 // END_FILE_DIR
 // BEGIN_PREFERENCES
-#define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
 #include "code\_macros.dm"
@@ -112,12 +111,10 @@
 #include "code\controllers\Processes\nanoui.dm"
 #include "code\controllers\Processes\obj.dm"
 #include "code\controllers\Processes\scheduler.dm"
-#include "code\controllers\Processes\supplydrop.dm"
 #include "code\controllers\Processes\ticker.dm"
 #include "code\controllers\Processes\time_of_day.dm"
 #include "code\controllers\Processes\vote.dm"
 #include "code\controllers\Processes\weather.dm"
-#include "code\controllers\Processes\zoom.dm"
 #include "code\controllers\ProcessScheduler\core\process.dm"
 #include "code\controllers\ProcessScheduler\core\processScheduler.dm"
 #include "code\datums\browser.dm"
@@ -191,7 +188,7 @@
 #include "code\game\gamemodes\objective.dm"
 #include "code\game\gamemodes\setupgame.dm"
 #include "code\game\gamemodes\WW2\helpers.dm"
-#include "code\game\gamemodes\WW2\WW2.dm"
+#include "code\game\gamemodes\WW2\ww2.dm"
 #include "code\game\jobs\_access_defs.dm"
 #include "code\game\jobs\access.dm"
 #include "code\game\jobs\access_datum.dm"
@@ -472,7 +469,6 @@
 #include "code\modules\admin\verbs\mentorhelp.dm"
 #include "code\modules\admin\verbs\modifyvariables.dm"
 #include "code\modules\admin\verbs\Patreon.dm"
-#include "code\modules\admin\verbs\performance.dm"
 #include "code\modules\admin\verbs\playsound.dm"
 #include "code\modules\admin\verbs\possess.dm"
 #include "code\modules\admin\verbs\quickBan.dm"
@@ -917,7 +913,6 @@
 #include "code\modules\WW2\complex_animal\dog.dm"
 #include "code\modules\WW2\complex_animal\wolf.dm"
 #include "code\modules\WW2\items\health\doctor_handbook.dm"
-#include "code\modules\WW2\jobs\_defines.dm"
 #include "code\modules\WW2\jobs\_special.dm"
 #include "code\modules\WW2\jobs\civilian.dm"
 #include "code\modules\WW2\jobs\faction.dm"
