@@ -13,10 +13,24 @@ var/global/datum/controller/occupations/job_master
 	spawn (0)
 		if (job_master)
 			job_master.toggle_roundstart_autobalance(0, announce)
+	var/list/faction_organized_occupations_separate_lists = list()
+	for (var/datum/job/J in job_master.occupations)
+		var/Jflag = J.base_type_flag()
+		if (!faction_organized_occupations_separate_lists.Find(Jflag))
+			faction_organized_occupations_separate_lists[Jflag] = list()
+		faction_organized_occupations_separate_lists[Jflag] += J
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[GERMAN]
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[RUSSIAN]
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[ITALIAN]
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[UKRAINIAN]
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[CIVILIAN]
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[PARTISAN]
 
 /datum/controller/occupations
 		//List of all jobs
 	var/list/occupations = list()
+		//List of all jobs ordered by faction: German, Russian, Italian, Ukrainian, Civilian, Partisan
+	var/list/faction_organized_occupations = list()
 		//Players who need jobs
 	var/list/unassigned = list()
 		//Debug info
@@ -323,11 +337,6 @@ var/global/datum/controller/occupations/job_master
 				else if (j.is_secondary)
 					++secondary_german_jobs
 
-
-		#ifdef OCCDEBUG
-		world << "german primary slots/jobs = [round(german_primary_job_slots/primary_german_jobs)]"
-		world << "german secondary slots/jobs = [round(german_secondary_job_slots/secondary_german_jobs)]"
-		#endif
 
 		for (var/datum/job/german/j in occupations)
 

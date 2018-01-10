@@ -66,6 +66,9 @@ var/list/recently_died = list()
 	if (recently_died.Find(src))
 		return
 
+	if (istype(original_job, /datum/job/german/trainsystem))
+		return
+
 	var/list/lists = get_battle_report_lists()
 	var/list/alive = lists[1]
 	var/list/dead = lists[2]

@@ -154,28 +154,6 @@
 	. = 1
 	if(!target || !src)	return 0
 
-	// no throwing past the bridge or other inivisble walls
-	if (thrower)
-		for (var/i in 1 to get_dist(src, target))
-			var/turf/T = locate(x, y+i, z)
-			if (T && map.check_prishtina_block(thrower, T))
-				. = 0
-			var/turf/T2 = locate(x, y-i, z)
-			if (T2 && map.check_prishtina_block(thrower, T2))
-				. = 0
-			var/turf/T3 = locate(x+i, y, z)
-			if (T3 && map.check_prishtina_block(thrower, T3))
-				. = 0
-			var/turf/T4 = locate(x-i, y, z)
-			if (T4 && map.check_prishtina_block(thrower, T4))
-				. = 0
-		if (. == 0)
-			if (istype(src, /obj/item/weapon/grenade))
-				var/obj/item/weapon/grenade/G = src
-				if (G.active)
-					G.active = 0
-			return .
-
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 
 	src.throwing = 1
@@ -215,6 +193,11 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
+				if (map.check_prishtina_block(thrower, get_turf(step)))
+					if (istype(src, /obj/item/weapon/grenade))
+						var/obj/item/weapon/grenade/G = src
+						G.active = 0
+					break
 				src.Move(step)
 				hit_check(speed)
 				error += dist_x
@@ -226,6 +209,11 @@
 			else
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+					break
+				if (map.check_prishtina_block(thrower, get_turf(step)))
+					if (istype(src, /obj/item/weapon/grenade))
+						var/obj/item/weapon/grenade/G = src
+						G.active = 0
 					break
 				src.Move(step)
 				hit_check(speed)
@@ -244,6 +232,11 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
+				if (map.check_prishtina_block(thrower, get_turf(step)))
+					if (istype(src, /obj/item/weapon/grenade))
+						var/obj/item/weapon/grenade/G = src
+						G.active = 0
+					break
 				src.Move(step)
 				hit_check(speed)
 				error += dist_y
@@ -255,6 +248,11 @@
 			else
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+					break
+				if (map.check_prishtina_block(thrower, get_turf(step)))
+					if (istype(src, /obj/item/weapon/grenade))
+						var/obj/item/weapon/grenade/G = src
+						G.active = 0
 					break
 				src.Move(step)
 				hit_check(speed)

@@ -33,28 +33,28 @@
 		set waitfor = 0
 		..()
 
-		var/turf/O = get_turf(src)
-		if(!O) return
+		var/turf/T = get_turf(src)
+		if(!T) return
 
 		if(explosion_size)
-			on_explosion(O)
+			on_explosion(T)
 
-		var/list/target_turfs = getcircle(O, spread_range)
+		var/list/target_turfs = getcircle(T, spread_range)
 		var/fragments_per_projectile = round(num_fragments/target_turfs.len)
 
-		for(var/turf/T in target_turfs)
+		for(var/turf/TT in target_turfs)
 			sleep(0)
-			var/obj/item/projectile/bullet/pellet/fragment/P = new fragment_type(O)
+			var/obj/item/projectile/bullet/pellet/fragment/P = new fragment_type(TT)
 
 			P.damage = fragment_damage
 			P.pellets = fragments_per_projectile
 			P.range_step = damage_step
 			P.shot_from = src.name
 
-			P.launch_fragment(T)
+			P.launch_fragment(TT)
 
 			//Make sure to hit any mobs in the source turf
-			for(var/mob/living/M in O)
+			for(var/mob/living/M in TT)
 				//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
 				//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
 				if(M.lying && isturf(src.loc))
@@ -64,9 +64,9 @@
 
 		qdel(src)
 
-/obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/O)
+/obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/T)
 	if(explosion_size)
-		explosion(O, -1, -1, 2, round(explosion_size/2), 0)
+		explosion(T, 1, -1, 2, round(explosion_size/2), 0)
 
 /obj/item/weapon/grenade/explosive/frag
 	name = "fragmentation grenade"
@@ -78,4 +78,4 @@
 
 /obj/item/weapon/grenade/explosive/frag/on_explosion(var/turf/O)
 	if(explosion_size)
-		explosion(O, -1, round(explosion_size/2), explosion_size, round(explosion_size/2), 0)
+		explosion(O, 1, round(explosion_size/2), explosion_size, round(explosion_size/2), 0)

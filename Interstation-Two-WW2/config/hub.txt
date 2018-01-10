@@ -1,18 +1,16 @@
 ## Hub settings
 
 #### First, a list of valid constants and their purpose (MUST be enclosed in {brackets}): 
-
-## (!!!todo) assuming you want a different form of capitalization for the value represented
-## by your constant, you can do the following - assuming {SEASON} is a constant representing "Spring"
-## - {SEASON} for "SPRING", {Season} for "Spring", {season} for "spring"
-## For constants that don't need capitalization, you should should be able to use any format:
-## TIMEOFDAY, timeofday, Timeofday, tImEofDAY, etc
+#### Text constants have three forms: Capitalized, UPPERCASE, and lowercase. For example, {Season} = Spring, {SEASON} = SPRING, {season} = spring.
 
 # CLIENTS = number of clients online
 # PLAYERS = number of mobs with clients attached
 # MOBS = number of mobs online
 # LIVING = number of /mob/living(s) online
 # HUMANS = number of /mob/living/carbon/human(s) online
+# HUMAN_CLIENTS = number of /mob/living/carbon/human (s) online that have clients
+# DEAD = number of /mob/dead online
+# OBSERVERS = number of /mob/dead/observer online that have clients
 
 #### Some notes about the above constants:
 
@@ -30,6 +28,7 @@
 #### meta game things
 
 # ROUNDTIME = displays the current round time
+# MAP = displays the active map's ID
 
 #### other stuff
 
@@ -40,7 +39,7 @@
 PREINFO nil
 TITLE <font color = red>Lebensraum</font>
 OOCDESC The official WW13 server, running the bleeding edge of the WW13 codebase.
-ICDESC {TIMEOFDAY}, {WEATHER}, {SEASON}, Ukraine.<br>The round time is {ROUNDTIME}.
+ICDESC {TIMEOFDAY}, {WEATHER}, {SEASON}, Ukraine.<br>The round time is {ROUNDTIME}. Map: {MAP}.
 RPLEVEL Low-Medium Roleplay
 HOSTEDBY <b>Kachnov</b>
 POSTINFO nil

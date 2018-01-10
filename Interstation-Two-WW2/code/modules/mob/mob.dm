@@ -49,6 +49,9 @@
 		if (!isobserver(src) && client)
 			client.remove_ghost_only_admin_verbs()
 
+	if (!isnewplayer(src))
+		src << browse(null, "window=playersetup;")
+
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
 	if(!client)	return
@@ -640,8 +643,9 @@
 		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
 			stat("People Online", clients.len)
 			stat("Round Duration", roundduration2text())
-			stat("Time of Day", "[time_of_day]")
-			stat("Season", "[(ticker.mode && ticker.mode.vars.Find("season")) ? capitalize(lowertext(ticker.mode:season)) : "Spring"]")
+			stat("Time of Day", time_of_day)
+			stat("Season", ticker.mode.season())
+			stat("Weather", ticker.mode.weather())
 
 		if(client.holder)
 			if(statpanel("Status"))

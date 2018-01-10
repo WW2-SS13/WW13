@@ -18,7 +18,7 @@
 	if(add_scope)
 		if(bolt_open)
 			icon_state = "mosin_scope_open"
-			item_state = "mosin_scope_open"
+			item_state = "mosin_scope"
 			return
 		else
 			icon_state = "mosin_scope"
@@ -38,7 +38,7 @@
 	name = "Kar-98K"
 	desc = "German bolt-action rifle chambered in 7.92x57mm Mauser ammunition. It looks clean and well-fabricated."
 	icon_state = "kar98k"
-	item_state = "kar98k" //placeholder
+	item_state = "kar98k"
 	caliber = "a792x57"
 	fire_sound = 'sound/weapons/kar_shot.ogg'
 	ammo_type = /obj/item/ammo_casing/a792x57
@@ -54,7 +54,7 @@
 	if(add_scope)
 		if(bolt_open)
 			icon_state = "kar98k_scope_open"
-			item_state = "kar98k_scope_open"
+			item_state = "kar98k_scope"
 			return
 		else
 			icon_state = "kar98k_scope"

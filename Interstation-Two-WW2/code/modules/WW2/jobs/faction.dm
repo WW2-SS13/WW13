@@ -116,7 +116,7 @@ var/global/squad_members[3]
 		squadmsg = replacetext(squadmsg, "<span class = 'danger'>", "")
 		squadmsg = replacetext(squadmsg, "</span>", "")
 
-		H.add_memory(squadmsg)
+	//	H.add_memory(squadmsg)
 
 		..(H, J)
 

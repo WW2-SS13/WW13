@@ -329,11 +329,12 @@
 		ick_ock = 0
 
 	if (msg)
-		for (var/mob/living/carbon/human/H in player_list)
-			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.base_type_flag() == RUSSIAN)
-					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE SOVIET HIGH COMMAND:</b>" : "<b>MESSAGE TO THE RUSSIAN TEAM FROM ADMINS:</b>"
-					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+		if (!ick_ock || !radio2soviets(msg))
+			for (var/mob/living/carbon/human/H in player_list)
+				if (istype(H) && H.client)
+					if (H.original_job && H.original_job.base_type_flag() == RUSSIAN)
+						var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE SOVIET HIGH COMMAND:</b>" : "<b>MESSAGE TO THE RUSSIAN TEAM FROM ADMINS:</b>"
+						H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
 		src << "You sent '[msg]' to the Russian team."
 		message_admins("[key_name(src)] sent '[msg]' to the Russian team.")
@@ -352,11 +353,12 @@
 		ick_ock = 0
 
 	if (msg)
-		for (var/mob/living/carbon/human/H in player_list)
-			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.base_type_flag() == GERMAN)
-					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND:</b>" : "<b>MESSAGE TO THE GERMAN TEAM FROM ADMINS:</b>"
-					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+		if (!ick_ock || !radio2germans(msg))
+			for (var/mob/living/carbon/human/H in player_list)
+				if (istype(H) && H.client)
+					if (H.original_job && H.original_job.base_type_flag() == GERMAN)
+						var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND:</b>" : "<b>MESSAGE TO THE GERMAN TEAM FROM ADMINS:</b>"
+						H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
 		src << "You sent '[msg]' to the German team."
 		message_admins("[key_name(src)] sent '[msg]' to the German team.")

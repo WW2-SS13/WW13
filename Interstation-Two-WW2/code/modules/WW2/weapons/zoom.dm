@@ -180,17 +180,12 @@ Parts of code courtesy of Super3222
 		user.visible_message("[zoomdevicename ? "[user] looks up from \the [src.name]" : "[user] lowers \the [src.name]"].")
 
 	if (zoomed)
+		// prevent scopes from bugging out opened storage objs in mob process
 		for (var/obj/item/weapon/storage/S in user.contents)
-			S.close_all() // prevent scopes from bugging out opened storage objs
+			S.close_all()
 		for (var/obj/item/clothing/under/U in user.contents)
 			for (var/obj/item/clothing/accessory/storage/S in U.accessories)
 				S.hold.close_all()
-		for (var/obj/O in user.client.screen)
-			if (istype(O, /obj/screen/movable/action_button))
-				var/obj/screen/movable/action_button/A = O
-				if (A.name == "Toggle Sights" || (A.owner && istype(A.owner, /datum/action/toggle_scope)))
-					continue
-			zoom_process.add(O)
 
 /datum/action/toggle_scope
 	name = "Toggle Sights"
@@ -235,7 +230,7 @@ Parts of code courtesy of Super3222
 /mob/living/carbon/human/train_move(_loc)
 	..(_loc)
 	handle_zooms_with_movement()
-
+/*
 // item helpers
 /obj/item/proc/is_zoomable_object()
 	for (var/datum/action/toggle_scope/A in actions)
@@ -247,7 +242,7 @@ Parts of code courtesy of Super3222
 	for (var/datum/action/toggle_scope/A in actions)
 		if (A && A.scope.zoomed)
 			return 1
-	return 0
+	return 0*/
 
 // human helpers
 

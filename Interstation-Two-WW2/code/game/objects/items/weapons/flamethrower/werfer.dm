@@ -88,7 +88,8 @@
 				if (abs(my_turf.x - T.x) > 3 || abs(my_turf.y - T.y) > 5)
 					continue
 
-		if (T != get_step(my_turf, my_mob.dir) && prob(get_dist(my_turf, T)+10))
+		// higher temperature = less missed turfs
+		if (T != get_step(my_turf, my_mob.dir) && prob((get_dist(my_turf, T)+10)/get_temperature_coeff()))
 			continue
 
 		if(T.density)
@@ -119,7 +120,7 @@
 		spawn (get_dist(my_turf, T))
 			ignite_turf(T, flamedir)
 		// we run out of fuel after flamming 4000 turfs (on min fuel)
-		fueltank -= (1/4000) * get_throw_coeff()
+		fueltank -= (1/4000) * get_temperature_coeff()
 		fueltank = max(fueltank, 0.00)
 
 	previousturf = null
@@ -168,14 +169,21 @@
 	update_icon()
 	return
 
-/obj/item/weapon/flamethrower/flammenwerfer/proc/get_throw_coeff()
+// how much fuel do we use based on throw_amount
+/obj/item/weapon/flamethrower/flammenwerfer/proc/get_temperature_coeff()
+	return 1.0 + (throw_amount-100)/100
+
+// what is the multiplier put on our fire's heat based on throw_amount
+// you will notice that the most efficient throw_amount is the default one,
+// and at throw amounts > 700 its downright inefficient as the fire barely gets hotter
+/obj/item/weapon/flamethrower/flammenwerfer/proc/get_heat_coeff()
 	. = 1.0
 	. += ((throw_amount-100)/100)/3
 	. = max(., 3.0) // don't get too hot
 	. += ((throw_amount-100)/100)/50 // give us a bit of extra heat if we're super high
 
 /obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target, flamedir)
-	var/throw_coeff = get_throw_coeff()
+	var/throw_coeff = get_heat_coeff()
 	var/dist_coeff = 1.0
 	switch (get_dist(get_turf(src), target))
 		if (0 to 5)

@@ -387,6 +387,8 @@
 
 	character.lastarea = get_area(loc)
 
+
+
 	qdel(src)
 
 /mob/new_player/proc/AttemptLateSpawn(rank, var/nomsg = 0)
@@ -444,7 +446,20 @@
 
 	character.lastarea = get_area(loc)
 
-	qdel(src)
+	if (character.original_job)
+		if (character.original_job.base_type_flag() == RUSSIAN)
+			var/obj/item/device/radio/R = main_radios[RUSSIAN]
+			if (R && R.loc)
+				spawn (5)
+					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcement System")
+		else if (character.original_job.base_type_flag() == GERMAN)
+			var/obj/item/device/radio/R = main_radios[GERMAN]
+			if (R && R.loc)
+				spawn (5)
+					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcement System")
+
+	spawn (10)
+		qdel(src)
 
 	return 1
 
@@ -452,22 +467,33 @@
 
 	src << browse(null, "window=latechoices")
 
-	var/dat = "<html><body><center>"
+	var/list/dat = list("<html><body style='background-color:#1D2951; color:#ffffff'><center>")
 	dat += "<b>Welcome, [key].<br></b>"
 	dat += "Round Duration: [roundduration2text()]<br>"
+	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans and [alive_russians.len] Russians.<br>"
 
 	var/list/restricted_choices = list()
+	var/list/available_jobs_per_side = list(
+		GERMAN = 0,
+		SOVIET = 0,
+		PARTISAN = 0,
+		CIVILIAN = 0,
+		ITALIAN = 0,
+		UKRAINIAN = 0)
 
 	var/prev_side = 0
 
-	dat += "Choose from the following open positions:<br>"
-	for(var/datum/job/job in job_master.occupations)
+	dat += "<b>Choose from the following open positions:</b><br>"
+
+	for(var/datum/job/job in job_master.faction_organized_occupations)
 
 		try
 
-			var/unavailable_message = ""
+		//	var/unavailable_message = ""
+			if (job.title == "generic job")
+				continue
 
-			if(job && !job.train_check())
+			if (job && !job.train_check())
 				continue
 
 			var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
@@ -477,23 +503,23 @@
 
 			if (!job.validate(src))
 				job_is_available = 0
-				unavailable_message = " <span class = 'color: rgb(255,215,0);'>{WHITELISTED}</span> "
+			//	unavailable_message = " <span class = 'color: rgb(255,215,0);'>{WHITELISTED}</span> "
 
 			if (job_master.side_is_hardlocked(job.base_type_flag()))
 				job_is_available = 0
-				unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
+			//	unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
 
 			if (jobBanned(job.title))
 				job_is_available = 0
-				unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED}</span> "
+			//	unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED}</span> "
 
 			if (factionBanned(job.base_type_flag(1)))
 				job_is_available = 0
-				unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM FACTION}</span> "
+			//	unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM FACTION}</span> "
 
 			if (officerBanned() && job.is_officer)
 				job_is_available = 0
-				unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM OFFICER POSITIONS}</span> "
+			//	unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM OFFICER POSITIONS}</span> "
 
 			// check if the faction is admin-locked
 
@@ -531,7 +557,7 @@
 					active++
 				if(job.base_type_flag() != prev_side)
 					prev_side = job.base_type_flag()
-					var/side_name = "<b>[job.get_side_name()]</b>"
+					var/side_name = "<b><span style = 'font-size: 3.0em;'>[job.get_side_name()]</span></b>&&[job.base_type_flag()]&&"
 					if(side_name)
 						dat += "[side_name]<br>"
 
@@ -547,20 +573,51 @@
 
 				if (!job.en_meaning)
 					if (job_is_available)
-						dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
-					else
-						dat += "<span style = 'color:red'><strike>[unavailable_message][job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
-
+						dat += "&[job.base_type_flag()]&[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
+						++available_jobs_per_side[job.base_type_flag()]
+				/*	else
+						dat += "&[job.base_type_flag()]&[unavailable_message]<span style = 'color:red'><strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
+					*/
 				else
 					if (job_is_available)
-						dat += "[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
-					else
-						dat += "<span style = 'color:red'><strike>[unavailable_message][job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
+						dat += "&[job.base_type_flag()]&[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
+						++available_jobs_per_side[job.base_type_flag()]
+			/*		else
+						dat += "&[job.base_type_flag()]&[unavailable_message]<span style = 'color:red'><strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
+					*/
 		catch ()
 
 	dat += "</center>"
+
+	// shitcode to hide jobs that aren't available
+	for (var/key in available_jobs_per_side)
+		var/val = available_jobs_per_side[key]
+		if (val == 0)
+			var/replaced_faction_title = 0
+			for (var/v in 1 to dat.len)
+				if (findtext(dat[v], "&[key]&") && !findtext(dat[v], "&&[key]&&"))
+					dat[v] = null
+				else if (!replaced_faction_title && findtext(dat[v], "&&[key]&&"))
+					dat[v] = "[replacetext(dat[v], "&&[key]&&", "")] (<span style = 'color:red'>DISABLED BY AUTOBALANCE</span>)"
+					replaced_faction_title = 1
+		else
+			var/replaced_faction_title = 0
+			for (var/v in 1 to dat.len)
+				if (findtext(dat[v], "&[key]&") && !findtext(dat[v], "&&[key]&&"))
+					dat[v] = replacetext(dat[v], "&[key]&", "")
+				else if (!replaced_faction_title && findtext(dat[v], "&&[key]&&"))
+					dat[v] = "[replacetext(dat[v], "&&[key]&&", "")]"
+					replaced_faction_title = 1
+
+
+	var/data = ""
+	for (var/line in dat)
+		if (line != null)
+			data += line
+			data += "<br>"
+
 	spawn (1)
-		src << browse(dat, "window=latechoices;size=600x640;can_close=1")
+		src << browse(data, "window=latechoices;size=600x640;can_close=1")
 
 /mob/new_player/proc/create_character()
 

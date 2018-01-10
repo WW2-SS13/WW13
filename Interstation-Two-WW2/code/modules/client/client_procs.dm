@@ -246,6 +246,10 @@
 		admins -= src
 	directory -= ckey
 	clients -= src
+	if (observer_mob_list.Find(mob))
+		observer_mob_list -= mob
+	if (human_clients_mob_list.Find(mob))
+		human_clients_mob_list -= mob
 	return ..()
 
 

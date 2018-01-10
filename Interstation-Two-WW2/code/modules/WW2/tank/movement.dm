@@ -199,12 +199,13 @@
 				return 0
 
 		if (istype(o, /obj/structure/barricade))
-			if (prob(5))
-				tank_message("<span class = 'danger'>The tank plows through the barricade!</span>")
+			var/obj/structure/barricade/B = o
+			if ((B.material && prob(max(3, 100 - (B.material.integrity/4) - 10))) || (!B.material && prob(80)))
+				tank_message("<span class = 'danger'>The tank plows through \the [B]!</span>")
 				qdel(o)
 				return 1
 			else
-				tank_message("<span class = 'danger'>The tank smashes against the barricade!</span>")
+				tank_message("<span class = 'danger'>The tank smashes against \the [B]!</span>")
 				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 				return 0
 

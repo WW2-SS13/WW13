@@ -1,5 +1,6 @@
 /mob/living/carbon/human/examine(mob/user)
 	user.visible_message("<small>[user] looks at [src].</small>")
+
 	var/skipgloves = 0
 	var/skipsuitstorage = 0
 	var/skipjumpsuit = 0
@@ -381,34 +382,35 @@
 	if (original_job)
 		if (ishuman(user) && user != src)
 			var/mob/living/carbon/human/H = user
-			if (H.original_job.base_type_flag() == original_job.base_type_flag()) // when you ghost, mind.assigned_job is set to null
-				if (original_job.en_meaning)
-					msg += "<br><i>You recognize [T.him] as a <b>[original_job.title] ([original_job.en_meaning])</b>.</i>"
-				else
-					msg += "<br><i>You recognize [T.him] as a <b>[original_job.title]</b>.</i>"
-			else // examining someone on another team
+			if (H.original_job)
+				if (H.original_job.base_type_flag() == original_job.base_type_flag()) // when you ghost, mind.assigned_job is set to null
+					if (original_job.en_meaning)
+						msg += "<br><i>You recognize [T.him] as a <b>[original_job.title] ([original_job.en_meaning])</b>.</i>"
+					else
+						msg += "<br><i>You recognize [T.him] as a <b>[original_job.title]</b>.</i>"
+				else // examining someone on another team
 
-				// make partisans show up as civs
-				var/team = original_job.base_type_flag()
-				if (team == PARTISAN)
-					team = CIVILIAN
+					// make partisans show up as civs
+					var/team = original_job.base_type_flag()
+					if (team == PARTISAN)
+						team = CIVILIAN
 
-				msg += "<br><i>He's a <b>[capitalize(lowertext(original_job.base_type_flag()))]</b>.</i>"
+					msg += "<br><i>He's a <b>[capitalize(lowertext(original_job.base_type_flag()))]</b>.</i>"
 
-			if (istype(original_job, /datum/job/german))
-				if (is_jew && !wear_mask)
-					msg += "<br><big>Mein gott, it's a jew!</big>"
-			if (istype(original_job, /datum/job/russian) || istype(original_job, /datum/job/partisan))
-				if (is_jew && !wear_mask)
-					msg += "<br><big>Oy blin, it's a jew!</big>"
+				if (istype(original_job, /datum/job/german))
+					if (is_jew && !wear_mask)
+						msg += "<br><big>Mein gott, it's a jew!</big>"
+				if (istype(original_job, /datum/job/russian) || istype(original_job, /datum/job/partisan))
+					if (is_jew && !wear_mask)
+						msg += "<br><big>Oy blin, it's a jew!</big>"
 
-			if (original_job.base_type_flag() == H.original_job.base_type_flag() && (original_job.base_type_flag() == RUSSIAN || original_job.base_type_flag() == GERMAN))
-				if (isleader(src, H))
-					msg += "<br><b>[T.He] [T.is] your squad leader.</b>"
-				else if (isleader(H, src))
-					msg += "<br><b>[T.He] [T.is] your soldat.</b>"
-				else if (getsquad(H) == getsquad(src) && getsquad(H) != null)
-					msg += "<br><b>[T.He] [T.is] in your squad.</b>"
+				if (original_job.base_type_flag() == H.original_job.base_type_flag() && (original_job.base_type_flag() == RUSSIAN || original_job.base_type_flag() == GERMAN))
+					if (isleader(src, H))
+						msg += "<br><b>[T.He] [T.is] your squad leader.</b>"
+					else if (isleader(H, src))
+						msg += "<br><b>[T.He] [T.is] your soldat.</b>"
+					else if (getsquad(H) == getsquad(src) && getsquad(H) != null)
+						msg += "<br><b>[T.He] [T.is] in your squad.</b>"
 
 		else if (isobserver(user))
 			msg += "<br><i>[T.He] [T.is] a [original_job.title].</i>"

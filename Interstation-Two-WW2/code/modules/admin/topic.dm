@@ -840,7 +840,7 @@
 		log_admin("[key_name(usr)] set the mode as [master_mode].")
 		message_admins("\blue [key_name_admin(usr)] set the mode as [master_mode].", 1)
 		world << "\blue <b>The mode is now: [master_mode]</b>"
-		Game() // updates the main game menu
+		game_panel() // updates the main game menu
 		world.save_mode(master_mode)
 		.(href, list("c_mode"=1))
 
@@ -854,7 +854,7 @@
 		secret_force_mode = href_list["f_secret2"]
 		log_admin("[key_name(usr)] set the forced secret mode as [secret_force_mode].")
 		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [secret_force_mode].", 1)
-		Game() // updates the main game menu
+		game_panel() // updates the main game menu
 		.(href, list("f_secret"=1))
 /*
 	else if(href_list["monkeyone"])
@@ -1273,19 +1273,19 @@
 	else if(href_list["debug_global"])
 		if(!check_rights(R_DEBUG))	return
 		var/client/C = isclient(usr) ? usr : usr.client
-		var/which = input(usr, "Debug what global variable?") as text
-		if (global.vars[which])
-			var/thing = global.vars[which]
+		var/somevar = input(usr, "Debug what global variable?") as text
+		if (global.vars[somevar])
+			var/thing = global.vars[somevar]
 			if (isdatum(thing) || isclient(thing))
 				C.debug_variables(thing)
 			else if (!islist(thing))
-				usr << "[thing] = [global.vars[thing]]"
+				usr << "[somevar] = [global.vars[thing]]"
 			else
 				var/list/L = thing
 				if (!L.len)
-					usr << "[thing] is an empty list"
+					usr << "[somevar] is an empty list"
 				else if (list_is_assoc(L))
-					usr << "[thing] is an <b>ASSOCIATIVE</b> list"
+					usr << "[somevar] is an <b>ASSOCIATIVE</b> list"
 					for (var/i in 1 to L.len)
 						usr << "element [i]: [thing[i]] = [thing[thing[i]]]"
 				else

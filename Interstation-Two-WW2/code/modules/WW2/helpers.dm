@@ -9,6 +9,23 @@
 		if (H.stat == CONSCIOUS && H.original_job && H.original_job.base_type_flag() == RUSSIAN)
 			if (H.client)
 				H << msg
+
+/proc/radio2germans(msg)
+	var/obj/item/device/radio/R = main_radios[GERMAN]
+	if (R && R.loc)
+		spawn (3)
+			R.announce(msg, "High Command Announcement System")
+		return 1
+	return 0
+
+/proc/radio2soviets(msg)
+	var/obj/item/device/radio/R = main_radios[RUSSIAN]
+	if (R && R.loc)
+		spawn (3)
+			R.announce(msg, "High Command Announcement System")
+		return 1
+	return 0
+
 /*
 /turf/proc/check_prishtina_block(var/mob/m, var/actual_movement = 0)
 

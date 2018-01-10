@@ -4,3 +4,4 @@
 
 /datum/controller/process/vote/doWork()
 	vote.process()
+	SCHECK

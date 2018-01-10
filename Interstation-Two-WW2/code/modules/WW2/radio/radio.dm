@@ -78,36 +78,36 @@ var/global/list/default_ukrainian_channels = list(
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
-	desc = "A communication device. You can speak through it with ; or :b when its on your back, and :l or :r when its in your hand."
+	desc = "A communication device. You can speak through it with ; or :b when it's on your back, and :l or :r when its in your hand."
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
 
 	var/on = 1 // 0 for off
-	var/last_transmission
-	var/frequency = DEFAULT_FREQ //common chat
-	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
+//	var/last_transmission
+	var/frequency = DEFAULT_FREQ
+//	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
 	var/canhear_range = 3 // the range which mobs can hear this radio from
 	var/datum/wires/radio/wires = null
-	var/b_stat = 0
+//	var/b_stat = 0
 	var/broadcasting = 0
 	var/listening = 1
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/list/listening_on_channel = list()
-	var/subspace_transmission = 0
-	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
+//	var/subspace_transmission = 0
+//	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2
 	matter = list("glass" = 25,DEFAULT_WALL_MATERIAL = 75)
-	var/const/FREQ_LISTENING = 1
+//	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 	var/last_tick = -1
 	var/datum/nanoui/UI
 	var/speech_sound = null
-	var/freerange = 1
+//	var/freerange = 1
 	var/last_broadcast = -1
 	var/notyetmoved = 1 // shitty hack to prevent radio piles from broadcasting
 	var/is_supply_radio = 0
@@ -288,8 +288,18 @@ var/global/list/default_ukrainian_channels = list(
 	if (!isturf(loc))
 		notyetmoved = 0
 
-	if (istype(src, /obj/item/device/radio/intercom))
+	if (istype(src, /obj/item/device/radio/intercom) && !istype(src, /obj/item/device/radio/intercom/loudspeaker))
 		notyetmoved = 0
+		if (loc)
+			setup_announcement_system("Supplydrop Announcement System", (faction == GERMAN ? DE_SUPPLY_FREQ : RU_SUPPLY_FREQ))
+			setup_announcement_system("Reinforcements Announcement System", (faction == GERMAN ? DE_BASE_FREQ : RU_BASE_FREQ))
+			setup_announcement_system("High Command Announcement System", (faction == GERMAN ? DE_BASE_FREQ : RU_BASE_FREQ))
+			setup_announcement_system("Arrivals Announcement System", (faction == GERMAN ? DE_BASE_FREQ : RU_BASE_FREQ))
+			switch (faction)
+				if (GERMAN)
+					main_radios[GERMAN] = src
+				if (RUSSIAN)
+					main_radios[RUSSIAN] = src
 
 /obj/item/device/radio/Move()
 	..()
@@ -502,7 +512,7 @@ var/global/list/default_ukrainian_channels = list(
 	name = "A-7-B"
 	icon_state = "a7b"
 	item_state = "a7b"
-	freerange = 0
+//	freerange = 0
 	frequency = RU_BASE_FREQ
 	anchored = 1
 	canhear_range = 1
@@ -537,7 +547,7 @@ var/global/list/default_ukrainian_channels = list(
 	name = "RBS1"
 	icon_state = "rbs1"
 	item_state = "rbs1"
-	freerange = 0
+//	freerange = 0
 	frequency = RU_COMM_FREQ
 	canhear_range = 1
 	w_class = 5
@@ -552,7 +562,7 @@ var/global/list/default_ukrainian_channels = list(
 	name = "Torn.Fu.d2"
 	icon_state = "fud2"
 	item_state = "fud2"
-	freerange = 0
+//	freerange = 0
 	frequency = DE_BASE_FREQ
 	anchored = 1
 	canhear_range = 1
@@ -589,7 +599,7 @@ var/global/list/default_ukrainian_channels = list(
 	name = "Feldfu.f"
 	icon_state = "feldfu"
 	item_state = "feldfu"
-	freerange = 0
+//	freerange = 0
 	frequency = DE_COMM_FREQ
 	canhear_range = 1
 	w_class = 4
@@ -607,7 +617,7 @@ var/global/list/default_ukrainian_channels = list(
 	name = "Feldfu.f"
 	icon_state = "feldfu"
 	item_state = "feldfu"
-	freerange = 0
+//	freerange = 0
 	frequency = UK_FREQ
 	canhear_range = 1
 	w_class = 4
@@ -664,45 +674,54 @@ var/global/list/default_ukrainian_channels = list(
 /obj/item/device/radio/proc/purchase(var/itemname, var/path, var/pointcost = 0)
 	if (locate(/obj/effect/landmark/train/german_supplytrain_start) in world)
 		return
-	setup_announcement_system()
 	if (supply_points <= pointcost)
 		return
-	announce("[itemname] has been purchased and will arrive soon.")
+	announce("[itemname] has been purchased and will arrive soon.", "Supplydrop Announcement System")
 	supply_points -= pointcost
 	supplydrop_process.add(path, faction)
 
 // shitcode copied from the german supplytrain system - Kachnov
 /obj/item/device/radio
+	var/list/announcers = list()
+	var/list/mobs = list()
+
+/obj/item/device/radio/proc/setup_announcement_system(aname, channel)
+
+	// our personal radio. Yes, even though we're a radio. Works better this way.
+	announcers[aname] = new /obj/item/device/radio
+	var/obj/item/device/radio/announcer = announcers[aname]
+	announcer.broadcasting = 1
+	announcer.faction = faction
+	announcer.frequency = channel
+	announcer.speech_sound = speech_sound
+
+	// hackish code because radios need a mob, with a language, to announce
+	mobs[aname] = new/mob/living/carbon/human
+	var/mob/living/carbon/human/H = mobs[aname]
+	H.name = aname
+	H.real_name = aname
+	H.original_job = new/datum/job/german/trainsystem
+	H.sayverb = "announces"
+	H.languages.Cut()
+
+	switch (faction)
+		if (GERMAN)
+			H.languages = list(new/datum/language/german)
+		if (RUSSIAN)
+			H.languages = list(new/datum/language/russian)
+
+	H.default_language = H.languages[1]
+
+/obj/item/device/radio/proc/announce(msg, _announcer)
 	var/obj/item/device/radio/intercom/fu2/announcer = null
 	var/mob/living/carbon/human/mob = null
 
-/obj/item/device/radio/proc/setup_announcement_system()
-	if (announcer)
-		return
+	if (!announcers.Find(_announcer))
+		return 0
 
-	// our personal radio. Yes, even though we're a radio. Works better this way.
-	announcer = new
-	announcer.broadcasting = 1
-	announcer.faction = faction
+	announcer = announcers[_announcer]
+	mob = mobs[_announcer]
 
-	// hackish code because radios need a mob, with a language, to announce
-	mob = new
-	mob.default_language = new/datum/language/german
-	mob.real_name = "Supply Announcement System"
-	mob.name = mob.real_name
-	mob.original_job = new/datum/job/german/trainsystem
-	mob.sayverb = "announces"
-
-/obj/item/device/radio/proc/announce(msg)
-	if (!announcer)
-		return
-	switch (faction)
-		if (GERMAN)
-			mob.languages.Cut()
-			mob.default_language = new/datum/language/german
-			announcer.frequency = DE_SUPPLY_FREQ
-		if (RUSSIAN)
-			mob.languages.Cut()
-			mob.default_language = new/datum/language/russian
-			announcer.frequency = RU_SUPPLY_FREQ
 	announcer.broadcast(msg, mob)
+
+	return 1

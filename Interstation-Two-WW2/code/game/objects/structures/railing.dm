@@ -1,6 +1,6 @@
 /obj/structure/railing
 	name = "railing"
-	desc = "A standart steel railing. Prevents from human stupidity."
+	desc = "An ordinary steel railing. Prevents from human stupidity."
 	icon = 'icons/obj/railing.dmi'
 	density = 1
 	throwpass = 1

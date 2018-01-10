@@ -404,7 +404,6 @@
 			if (lever)
 				lever.icon_state = lever.none_state
 				lever.direction = "NONE"
-			train_arrived = 1
 
 /datum/train_controller/proc/move_connectors(var/reverse = 0)
 
@@ -515,9 +514,11 @@
 						switch (orientation)
 							if (VERTICAL)
 								if (tpt.y + getMoveInc() < limit_point.y) // since y decreases as we go down
+									if (istype(src, /datum/train_controller/german_train_controller))
+										train_arrived = 1
 									return 0 // + getMoveInc() because getMoveInc() handles signs
 							if (HORIZONTAL)
-								if (tpt.x + getMoveInc() > limit_point.x) // since y decreases as we go down
+								if (tpt.x + getMoveInc() > limit_point.x)
 									return 0 // + getMoveInc() because getMoveInc() handles signs
 
 		if ("BACKWARDS")

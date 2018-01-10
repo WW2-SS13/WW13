@@ -1,6 +1,9 @@
+var/datum/controller/process/inactivity/inactivity_process = null
+
 /datum/controller/process/inactivity/setup()
 	name = "inactivity"
 	schedule_interval = 600 // Once every minute (approx.)
+	inactivity_process = src
 
 /datum/controller/process/inactivity/doWork()
 	if(config.kick_inactive)

@@ -322,7 +322,7 @@ proc/admin_notice(var/message, var/rights)
 	dat += "</table>"
 	usr << browse(dat, "window=ban;size=400x400")*/
 
-/datum/admins/proc/Game()
+/datum/admins/proc/game_panel()
 	if(!check_rights(R_ADMIN))	return
 
 	var/dat = {"

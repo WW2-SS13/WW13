@@ -30,7 +30,10 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 		if (client)
 			client.add_ghost_only_admin_verbs()
 
+	observer_mob_list |= src
+
 /mob/observer/Destroy()
+	observer_mob_list -= src
 	if (ghost_image)
 		ghost_darkness_images -= ghost_image
 		ghost_sightless_images -= ghost_image

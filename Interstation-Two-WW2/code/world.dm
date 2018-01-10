@@ -62,6 +62,10 @@ var/world_is_open = 1
 
 #define RECOMMENDED_VERSION 509
 /world/New()
+
+	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
+	log << "STARTED RUNTIME LOGGING"
+
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
@@ -78,10 +82,6 @@ var/world_is_open = 1
 		// dumb and hardcoded but I don't care~
 		config.server_name += " #[(world.port % 1000) / 100]"
 
-	if(config && config.log_runtimes)
-		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
-		log << "STARTED RUNTIME LOGGING"
-
 	for (var/W in (typesof(/datum/whitelist) - /datum/whitelist))
 		var/datum/whitelist/whitelist = new W
 		global_whitelists[whitelist.name] = whitelist
@@ -96,7 +96,7 @@ var/world_is_open = 1
 	// make the database, or connect to it
 	establish_db_connection()
 
-	. = ..()
+	..()
 
 // removed the 'sleep_offline' = 1 here, it interferes with serverswap - kachnov
 #ifdef UNIT_TEST
@@ -129,23 +129,35 @@ var/world_is_open = 1
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
+
 // todo: add aspect to this
 /world/proc/replace_custom_hub_text(T)
 
-	T = replacetext(T, "{CLIENTS}", clients.len)
-	T = replacetext(T, "{PLAYERS}", player_list.len)
-	T = replacetext(T, "{MOBS}", mob_list.len)
-	T = replacetext(T, "{LIVING}", living_mob_list.len)
-	T = replacetext(T, "{HUMAN}", human_mob_list)
-	T = replacetext(T, "{TIMEOFDAY}", time_of_day)
-	T = replacetext(T, "{WEATHER}", "clear skies")
-
-	if (ticker.mode.vars.Find("season"))
-		T = replacetext(T, "{SEASON}", capitalize(lowertext(ticker.mode:season)))
-	else
-		T = replacetext(T, "{SEASON}", "Spring")
-
+	// numerical constants
+	T = replacetext(T, "{CLIENTS}", clients.len) // # of clients
+	T = replacetext(T, "{PLAYERS}", player_list.len) // # of mobs w/ clients
+	T = replacetext(T, "{MOBS}", mob_list.len) // # of mobs
+	T = replacetext(T, "{LIVING}", living_mob_list.len) // # of /mob/living
+	T = replacetext(T, "{HUMAN}", human_mob_list) // # of humans
+	T = replacetext(T, "{HUMAN_CLIENTS}", human_clients_mob_list) // # of humans w/clients
+	T = replacetext(T, "{DEAD}", dead_mob_list.len) // # of dead mobs
+	T = replacetext(T, "{OBSERVERS}", observer_mob_list.len) // # of observers w/clients
 	T = replacetext(T, "{ROUNDTIME}", roundduration2text())
+	// UPPERCASE constants
+	T = replacetext(T, "{TIMEOFDAY}", uppertext(time_of_day))
+	T = replacetext(T, "{WEATHER}", uppertext(ticker.mode.weather()))
+	T = replacetext(T, "{SEASON}", uppertext(ticker.mode.season()))
+	T = replacetext(T, "{MAP}", uppertext(map.ID)) // name of the map
+	// Capitalized constants - no change
+	T = replacetext(T, "{Timeofday}", time_of_day)
+	T = replacetext(T, "{Weather}", ticker.mode.weather())
+	T = replacetext(T, "{Season}", ticker.mode.season())
+	T = replacetext(T, "{Map}", map.ID) // name of the map
+	// lowercase constants
+	T = replacetext(T, "{timeofday}", lowertext(time_of_day))
+	T = replacetext(T, "{weather}", lowertext(ticker.mode.weather()))
+	T = replacetext(T, "{season}", lowertext(ticker.mode.season()))
+	T = replacetext(T, "{map}", lowertext(map.ID)) // name of the map
 
 	return T
 
@@ -446,7 +458,7 @@ var/setting_up_db_connection = 0
 					serverswap_open_status = 0
 
 			DEBUG_SERVERSWAP(6)
-			if (serverswap.Find("masterdir"))
+			if (serverswap.Find("masterdir") && serverswap["masterdir"] != "nil")
 				DEBUG_SERVERSWAP(7.1)
 				database = new("[serverswap["masterdir"]]/SQL/database.db")
 				if (!database)

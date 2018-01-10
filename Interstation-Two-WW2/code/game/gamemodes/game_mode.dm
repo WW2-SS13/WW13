@@ -368,6 +368,17 @@ var/global/list/additional_antag_types = list()
 /datum/game_mode/proc/check_victory()
 	return
 
+/datum/game_mode/proc/season()
+	if (vars.Find("season"))
+		return capitalize(lowertext(src:season))
+	return "Spring"
+
+/datum/game_mode/proc/weather()
+	. = capitalize(get_weather())
+	if (. == "None")
+		return "Clear skies"
+	return .
+
 //////////////////////////
 //Reports player logouts//
 //////////////////////////

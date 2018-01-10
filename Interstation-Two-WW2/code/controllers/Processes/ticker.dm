@@ -35,7 +35,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 
 	// todo: relocate this code - Kachnov
 	for (var/obj/item/device/radio/intercom/I in world)
-		I.supply_points += (rand(0.1*100, 0.3*100))/100
+		I.supply_points += (rand(0.2*100, 0.3*100))/100
 
 	// for keeping track of time - Kachnov
 	time_elapsed += schedule_interval
@@ -44,6 +44,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 	if (map)
 		map.tick()
 
+	SCHECK
 
 /datum/controller/process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration

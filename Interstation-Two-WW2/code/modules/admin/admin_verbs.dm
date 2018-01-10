@@ -332,6 +332,7 @@ var/list/admin_verbs_mentor = list(
 			verbs += /client/proc/remove_patreon_rewards
 			verbs += /client/proc/toggle_BYOND_hub_visibility
 			verbs += /client/proc/eject_unwhitelisted
+			verbs += /client/proc/toggle_hyperefficiency_mode
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
@@ -514,7 +515,7 @@ var/list/admin_verbs_mentor = list(
 	set name = "Game Panel"
 	set category = "Admin"
 	if(holder)
-		holder.Game()
+		holder.game_panel()
 
 	return
 

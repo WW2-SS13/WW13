@@ -33,6 +33,8 @@ var/datum/game_schedule/global_game_schedule = null
 
 /datum/game_schedule/New()
 	update()
+	loadFromDB()
+	saveToDB()
 
 /datum/game_schedule/proc/update()
 
@@ -84,40 +86,46 @@ var/datum/game_schedule/global_game_schedule = null
 			C << "<span class = 'userdanger'>The server has been closed.</span>"
 			spawn (1)
 				del C
-	loadToDB()
+	saveToDB()
 
 /datum/game_schedule/proc/unforceClose()
 	forceClosed = 0
 	update()
-	loadToDB()
+	saveToDB()
 
 /datum/game_schedule/proc/forceOpen()
 	forceOpened = 1
 	update()
-	loadToDB()
+	saveToDB()
 
 /datum/game_schedule/proc/unforceOpen()
 	forceOpened = 0
 	update()
-	loadToDB()
+	saveToDB()
 
-/datum/game_schedule/proc/loadToDB()
-	var/list/tablecheck = database.execute("SELECT * FROM misc WHERE key = 'game_schedule_metadata';")
-	if (!islist(tablecheck) || isemptylist(tablecheck))
-		var/emptystr = ""
-		database.execute("INSERT INTO misc (key, val) VALUES ('game_schedule_metadata', '[emptystr]');")
-	spawn (5)
-		database.execute("UPDATE misc SET val = '[forceOpened]&[forceClosed]' WHERE key = 'game_schedule_metadata';")
+/datum/game_schedule/proc/saveToDB()
+	var/spawntime = 0
+	if (!database)
+		spawntime = 100
+	spawn (spawntime)
+		var/list/tablecheck = database.execute("SELECT * FROM misc WHERE key = 'game_schedule_metadata';")
+		if (!islist(tablecheck) || isemptylist(tablecheck))
+			var/emptystr = ""
+			database.execute("INSERT INTO misc (key, val) VALUES ('game_schedule_metadata', '[emptystr]');")
+		spawn (5)
+			database.execute("UPDATE misc SET val = '[forceOpened]&[forceClosed]' WHERE key = 'game_schedule_metadata';")
 
 /datum/game_schedule/proc/loadFromDB()
+	var/spawntime = 0
 	if (!database)
-		sleep(100)
-	var/list/tables = database.execute("SELECT * FROM misc WHERE key = 'game_schedule_metadata';")
-	if (islist(tables) && !isemptylist(tables))
-		if (tables["val"])
-			var/list/metadata = splittext(tables["val"], "&")
-			forceOpened = text2num(metadata[1])
-			forceClosed = text2num(metadata[2])
+		spawntime = 100
+	spawn (spawntime)
+		var/list/tables = database.execute("SELECT * FROM misc WHERE key = 'game_schedule_metadata';")
+		if (islist(tables) && !isemptylist(tables))
+			if (tables["val"])
+				var/list/metadata = splittext(tables["val"], "&")
+				forceOpened = text2num(metadata[1])
+				forceClosed = text2num(metadata[2])
 
 /datum/game_schedule/proc/getCurrentTime(var/unit = "hours")
 	// first, get the number of seconds that have elapsed since 00:00:00 today
