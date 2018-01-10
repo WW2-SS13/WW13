@@ -6,7 +6,7 @@
 	var/tempo = 5
 
 /obj/structure/device/piano
-	name = "space minimoog"
+	name = "Upright Piano"
 	icon = 'icons/obj/musician.dmi'
 	icon_state = "minimoog"
 	anchored = 1
@@ -19,8 +19,8 @@
 
 /obj/structure/device/piano/New()
 	if(prob(50))
-		name = "space minimoog"
-		desc = "This is a minimoog, like a space piano, but more spacey!"
+		name = "Pohlmann and Son Upright Piano"
+		desc = "Overstrung piano. Beautiful veneer with marquetry detail. Minor damage to veneer on legs and to edge of lid."
 		icon_state = "minimoog"
 	else
 		name = "piano"
