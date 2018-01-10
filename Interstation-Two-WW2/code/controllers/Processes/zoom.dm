@@ -52,7 +52,7 @@ var/datum/controller/process/zoom/zoom_process = null
 
 		if(isnull(H.gcDestroyed))
 			try
-				if (H.using_zoom())
+				if (H.client && H.using_zoom())
 					for (var/obj/O in H.client.screen)
 						if (O.invisibility)
 							continue
