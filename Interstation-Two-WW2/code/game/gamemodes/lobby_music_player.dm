@@ -6,7 +6,8 @@
 	var/song_title = null
     // format is 'title:probability_multiplier = ogg'
 	var/list/songs = list(
-		"Bots - Was Wollen Wir Trinken (Edit):1" = 'sound/music/WW2/BotsWaswollenwirtrinkenWehrmachtHarcourt.ogg'
+		"Bots - Was Wollen Wir Trinken (Edit):1" = 'sound/music/WW2/BotsWaswollenwirtrinkenWehrmachtHarcourt.ogg',
+		"MASH - Sucide Is Painless (Edit)" = 'sound/music/WW2/SuicideEdit.ogg'
 		// HARDBASS
 	//	"Dj Blyatman - Tsar Bomb:1" = 'sound/music/WW2/tsarbomb.ogg',
 	//	"Dj Blyatman - Chernobyl:1" = 'sound/music/WW2/chernobyl.ogg',
