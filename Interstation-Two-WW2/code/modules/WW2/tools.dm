@@ -30,3 +30,24 @@
 	name = "lopata"
 	icon_state = "lopata"
 	item_state = "lopata"
+
+/obj/item/weapon/wirecutters/boltcutters
+	name = "boltcutters"
+	desc = "This cuts bolts and other things."
+	icon_state = "boltcutters"
+
+/obj/item/weapon/crowbar/prybar
+	name = "prybar"
+	icon_state = "prybar"
+
+/obj/item/weapon/weldingtool/ww2
+	name = "welding tool"
+	icon_state = "ww2_welder_off"
+	on_state = "ww2_welder_on"
+	off_state = "ww2_welder_off"
+
+/obj/item/device/flashlight/ww2
+	name = "flashlight"
+	icon_state = "ww2_welder_off"
+	on_state = "ww2_welder_on"
+	off_state = "ww2_welder_off"

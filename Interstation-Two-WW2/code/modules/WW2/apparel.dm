@@ -114,6 +114,14 @@
 	item_state = "sovuniofficer"
 	worn_state = "sovuniofficer"
 
+/obj/item/clothing/under/sovuni/MP
+	name = "soviet MP's uniform"
+	desc = "A fancier, more pressed uniform of the Red Army, given to Soviet military police."
+	icon_state = "sovuni_MP"
+	item_state = "sovuni_MP"
+	worn_state = "sovuni_MP"
+
+
 /obj/item/clothing/under/geruni
 	name = GERMAN_UNIFORM_NAME
 	desc = GERMAN_UNIFORM_DESC
@@ -129,6 +137,12 @@
 	item_state = "geruniofficer"
 	worn_state = "geruniofficer"
 
+/obj/item/clothing/under/geruni/MP
+	name = "german MP's uniform"
+	desc = "A fancier, more pressed uniform of the Nazi Army, given to German military police."
+	icon_state = "geruni_MP"
+	item_state = "geruni_MP"
+	worn_state = "geruni_MP"
 
 /obj/item/clothing/under/geruni/verb/roll_sleeves()
 	set category = null
@@ -221,6 +235,18 @@
 	icon_state = "sshelm"
 	item_state = "sshelm"
 
+/obj/item/clothing/head/helmet/tactical/gerhelm/MP
+	name = "German MP helmet"
+	desc =  "A metal helmet issued to German military police."
+	icon_state = "gerhelm_MP"
+	item_state = "gerhelm_MP"
+
+/obj/item/clothing/head/helmet/tactical/gerhelm/medic
+	name = "German medic helmet"
+	desc =  "A metal helmet issued to German combat medics."
+	icon_state = "gerhelm_CM"
+	item_state = "gerhelm_CM"
+
 /obj/item/clothing/head/helmet/tactical/sovhelm
 	name = SOVIET_HELMET_NAME
 	desc = SOVIET_HELMET_DESC
@@ -235,6 +261,18 @@
 	worn_state = GERMAN_HELMET_STATE
 	item_state_slots["slot_head"] = GERMAN_HELMET_STATE
 	update_clothing_icon()
+
+/obj/item/clothing/head/helmet/tactical/sovhelm/MP
+	name = "Soviet MP helmet"
+	desc =  "A metal helmet issued to Soviet military police."
+	icon_state = "sovhelm_MP"
+	item_state = "sovhelm_MP"
+
+/obj/item/clothing/head/helmet/tactical/sovhelm/medic
+	name = "Soviet medic helmet"
+	desc =  "A metal helmet issued to Soviet combat medics."
+	icon_state = "sovhelm_CM"
+	item_state = "sovhelm_CM"
 
 /obj/item/clothing/suit/armor/bulletproof/cn42
 	name = "CN-42 bulletproof vest"

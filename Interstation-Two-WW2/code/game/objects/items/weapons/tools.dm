@@ -105,9 +105,10 @@
 	edge = 1
 
 /obj/item/weapon/wirecutters/New()
-	if(prob(50))
-		icon_state = "cutters-y"
-		item_state = "cutters_yellow"
+	if (!istype(src, /obj/item/weapon/wirecutters/boltcutters))
+		if(prob(50))
+			icon_state = "cutters-y"
+			item_state = "cutters_yellow"
 	..()
 
 /obj/item/weapon/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
@@ -129,7 +130,9 @@
 /obj/item/weapon/weldingtool
 	name = "welding tool"
 	icon = 'icons/obj/items.dmi'
-	icon_state = "welder"
+	icon_state = "welder_off"
+	var/on_state = "welder_on"
+	var/off_state = "welder_off"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 
@@ -280,7 +283,7 @@
 
 /obj/item/weapon/weldingtool/update_icon()
 	..()
-	icon_state = welding ? "welder1" : "welder"
+	icon_state = welding ? on_state : off_state
 	var/mob/M = loc
 	if(istype(M))
 		M.update_inv_l_hand()

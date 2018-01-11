@@ -2,7 +2,9 @@
 	name = "flashlight"
 	desc = "A hand-held emergency light."
 	icon = 'icons/obj/lighting.dmi'
-	icon_state = "flashlight"
+	icon_state = "flashlight_off"
+	var/off_state = "flashlight_off"
+	var/on_state = "flashlight_on"
 	item_state = "flashlight"
 	w_class = 2
 	flags = CONDUCT
@@ -21,10 +23,10 @@
 
 /obj/item/device/flashlight/update_icon()
 	if(on)
-		icon_state = "[initial(icon_state)]-on"
+		icon_state = on_state
 		set_light(brightness_on)
 	else
-		icon_state = "[initial(icon_state)]"
+		icon_state = off_state
 		set_light(0)
 
 /obj/item/device/flashlight/attack_self(mob/user)
@@ -97,33 +99,6 @@
 	slot_flags = SLOT_EARS
 	brightness_on = 2
 	w_class = 1
-
-/obj/item/device/flashlight/drone
-	name = "low-power flashlight"
-	desc = "A miniature lamp, that might be used by small robots."
-	icon_state = "penlight"
-	item_state = ""
-	flags = CONDUCT
-	brightness_on = 2
-	w_class = 1
-
-/obj/item/device/flashlight/heavy
-	name = "heavy duty flashlight"
-	desc = "A hand-held heavy-duty light."
-	icon = 'icons/obj/lighting.dmi'
-	//icon_state = "heavyduty"
-	//item_state = "heavyduty"
-	brightness_on = 6
-
-/obj/item/device/flashlight/seclite
-	name = "security flashlight"
-	desc = "A hand-held security flashlight. Very robust."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "seclite"
-	item_state = "seclite"
-	brightness_on = 5
-	force = WEAPON_FORCE_NORMAL
-	hitsound = 'sound/weapons/genhit1.ogg'
 
 // the desk lamps are a bit special
 /obj/item/device/flashlight/lamp
