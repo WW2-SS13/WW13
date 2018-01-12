@@ -1,6 +1,6 @@
 /mob/living/carbon/human/movement_delay()
 
-	var/tally = 0
+	var/tally = FALSE
 
 	if(species.slowdown)
 		tally = species.slowdown
@@ -19,7 +19,7 @@
 	if (!(species && (species.flags & NO_PAIN)))
 		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
-	if (nutrition <= 0)
+	if (nutrition <= FALSE)
 		var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
 		if (hungry >= 100) tally += hungry/70
 
@@ -57,32 +57,32 @@
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
 
-	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
+	tally += max(2 * stance_damage, FALSE) //damaged/missing feet or legs is slow
 
 	if(mRun in mutations)
-		tally = 0
+		tally = FALSE
 
 	// no more huge speedups from wearing shoes
 	return max(0, (tally+config.human_delay))
 
-/mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
-	return 0
+/mob/living/carbon/human/Process_Spacemove(var/check_drift = FALSE)
+	return FALSE
 
 /mob/living/carbon/human/slip_chance(var/prob_slip = 5)
 	if(!..())
-		return 0
+		return FALSE
 
 	//Check hands and mod slip
 	if(!l_hand)	prob_slip -= 2
-	else if(l_hand.w_class <= 2)	prob_slip -= 1
+	else if(l_hand.w_class <= 2)	prob_slip -= TRUE
 	if (!r_hand)	prob_slip -= 2
-	else if(r_hand.w_class <= 2)	prob_slip -= 1
+	else if(r_hand.w_class <= 2)	prob_slip -= TRUE
 
 	return prob_slip
 
 /mob/living/carbon/human/Check_Shoegrip()
 	if(species.flags & NO_SLIP)
-		return 1
+		return TRUE
 	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
-		return 1
-	return 0
+		return TRUE
+	return FALSE

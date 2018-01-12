@@ -74,7 +74,7 @@ var/global/list/stool_cache = list() //haha stool
 		user.visible_message("<span class='danger'>[user] breaks [src] over [M]'s back!</span>")
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(M)
-		
+
 		user.remove_from_mob(src)
 		dismantle()
 		qdel(src)
@@ -107,7 +107,7 @@ var/global/list/stool_cache = list() //haha stool
 
 /obj/item/weapon/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		dismantle()
 		qdel(src)
 	else if(istype(W,/obj/item/stack))
@@ -115,7 +115,7 @@ var/global/list/stool_cache = list() //haha stool
 			user << "\The [src] is already padded."
 			return
 		var/obj/item/stack/C = W
-		if(C.get_amount() < 1) // How??
+		if(C.get_amount() < TRUE) // How??
 			user.drop_from_inventory(C)
 			qdel(C)
 			return
@@ -141,7 +141,7 @@ var/global/list/stool_cache = list() //haha stool
 			user << "\The [src] has no padding to remove."
 			return
 		user << "You remove the padding from \the [src]."
-		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(src, 'sound/items/Wirecutter.ogg', 100, TRUE)
 		remove_padding()
 	else
 		..()

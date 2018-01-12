@@ -7,9 +7,9 @@
 	name = "conveyor belt"
 	desc = "A conveyor belt."
 	layer = 2			// so they appear under stuff
-	anchored = 1
-	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
-	var/operable = 1	// true if can operate (no broken segments in this belt run)
+	anchored = TRUE
+	var/operating = FALSE	// TRUE if running forward, -1 if backwards, FALSE if off
+	var/operable = TRUE	// true if can operate (no broken segments in this belt run)
 	var/forwards		// this is the default (forward) direction, set by the map dir
 	var/backwards		// hopefully self-explanatory
 	var/movedir			// the actual direction to move stuff in
@@ -21,7 +21,7 @@
 	id = "round_end_belt"
 
 	// create a conveyor
-/obj/machinery/conveyor/New(loc, newdir, on = 0)
+/obj/machinery/conveyor/New(loc, newdir, on = FALSE)
 	..(loc)
 	if(newdir)
 		set_dir(newdir)
@@ -34,28 +34,28 @@
 		backwards = turn(dir, 180)
 
 	if(on)
-		operating = 1
+		operating = TRUE
 		setmove()
 
 
 
 /obj/machinery/conveyor/proc/setmove()
-	if(operating == 1)
+	if(operating == TRUE)
 		movedir = forwards
 	else if(operating == -1)
 		movedir = backwards
-	else operating = 0
+	else operating = FALSE
 	update()
 
 /obj/machinery/conveyor/proc/update()
 	if(stat & BROKEN)
 		icon_state = "conveyor-broken"
-		operating = 0
+		operating = FALSE
 		return
 	if(!operable)
-		operating = 0
+		operating = FALSE
 	if(stat & NOPOWER)
-		operating = 0
+		operating = FALSE
 	icon_state = "conveyor[operating]"
 
 	// machine process
@@ -69,7 +69,7 @@
 
 	affecting = loc.contents - src		// moved items will be all in loc
 	spawn(1)	// slight delay to prevent infinite propagation due to map order	//TODO: please no spawn() in process(). It's a very bad idea
-		var/items_moved = 0
+		var/items_moved = FALSE
 		for(var/atom/movable/A in affecting)
 			if(!A.anchored)
 				if(A.loc == src.loc) // prevents the object from being affected if it's not currently here.
@@ -100,7 +100,7 @@
 		return
 	if (user.pulling.anchored)
 		return
-	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
+	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > TRUE))
 		return
 	if (ismob(user.pulling))
 		var/mob/M = user.pulling
@@ -121,11 +121,11 @@
 
 	var/obj/machinery/conveyor/C = locate() in get_step(src, dir)
 	if(C)
-		C.set_operable(dir, id, 0)
+		C.set_operable(dir, id, FALSE)
 
 	C = locate() in get_step(src, turn(dir,180))
 	if(C)
-		C.set_operable(turn(dir,180), id, 0)
+		C.set_operable(turn(dir,180), id, FALSE)
 
 
 //set the operable var if ID matches, propagating in the given direction
@@ -161,14 +161,14 @@
 	desc = "A conveyor control switch."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
-	var/position = 0			// 0 off, -1 reverse, 1 forward
+	var/position = FALSE			// FALSE off, -1 reverse, TRUE forward
 	var/last_pos = -1			// last direction setting
-	var/operated = 1			// true if just operated
+	var/operated = TRUE			// true if just operated
 
 	var/id = "" 				// must match conveyor IDs to control them
 
 	var/list/conveyors		// the list of converyors that are controlled by this switch
-	anchored = 1
+	anchored = TRUE
 
 
 
@@ -202,7 +202,7 @@
 /obj/machinery/conveyor_switch/process()
 	if(!operated)
 		return
-	operated = 0
+	operated = FALSE
 
 	for(var/obj/machinery/conveyor/C in conveyors)
 		C.operating = position
@@ -210,24 +210,21 @@
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)
-	if(!allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
-		return
 
 	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)
-	if(position == 0)
-		if(last_pos < 0)
-			position = 1
-			last_pos = 0
+	if(position == FALSE)
+		if(last_pos < FALSE)
+			position = TRUE
+			last_pos = FALSE
 		else
 			position = -1
-			last_pos = 0
+			last_pos = FALSE
 	else
 		last_pos = position
-		position = 0
+		position = FALSE
 
 
-	operated = 1
+	operated = TRUE
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
@@ -246,18 +243,18 @@
 		qdel(src)
 
 /obj/machinery/conveyor_switch/oneway
-	var/convdir = 1 //Set to 1 or -1 depending on which way you want the convayor to go. (In other words keep at 1 and set the proper dir on the belts.)
+	var/convdir = TRUE //Set to TRUE or -1 depending on which way you want the convayor to go. (In other words keep at TRUE and set the proper dir on the belts.)
 	desc = "A conveyor control switch. It appears to only go in one direction."
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/oneway/attack_hand(mob/user)
 	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)
-	if(position == 0)
+	if(position == FALSE)
 		position = convdir
 	else
-		position = 0
+		position = FALSE
 
-	operated = 1
+	operated = TRUE
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
@@ -318,10 +315,10 @@
 /obj/item/conveyor_switch_construct/afterattack(atom/A, mob/user, proximity)
 	if(!proximity || !istype(A, /turf/floor) || user.incapacitated())
 		return
-	var/found = 0
+	var/found = FALSE
 	for(var/obj/machinery/conveyor/C in view())
 		if(C.id == src.id)
-			found = 1
+			found = TRUE
 			break
 	if(!found)
 		user << "\icon[src]<span class=notice>The conveyor switch did not detect any linked conveyor belts in range.</span>"
@@ -336,8 +333,8 @@
 	desc = "Completely impassable - or are they?"
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = 4
 	explosion_resistance = 5
 	var/list/mobs_can_pass = list(
@@ -352,10 +349,10 @@
 
 	var/obj/structure/bed/B = A
 	if (istype(A, /obj/structure/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
-		return 0
+		return FALSE
 
 	if(istype(A, /obj/vehicle))	//no vehicles
-		return 0
+		return FALSE
 
 	var/mob/living/M = A
 	if(istype(M))

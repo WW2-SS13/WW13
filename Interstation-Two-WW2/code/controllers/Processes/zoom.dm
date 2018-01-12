@@ -29,12 +29,12 @@ var/datum/controller/process/zoom/zoom_process = null
 		if(isnull(S.gcDestroyed))
 			try
 				if (S.scoped_invisible)
-					S.invisibility = 0
-					S.scoped_invisible = 0
+					S.invisibility = FALSE
+					S.scoped_invisible = FALSE
 				else if (istype(S.loc, /obj/item/weapon/gun))
 					var/obj/item/weapon/gun/G = S.loc
-					G.invisibility = 0
-					G.scoped_invisible = 0
+					G.invisibility = FALSE
+					G.scoped_invisible = FALSE
 				recent_scopes -= S
 			catch(var/exception/e)
 				catchException(e, S)
@@ -61,7 +61,7 @@ var/datum/controller/process/zoom/zoom_process = null
 							if (A.name == "Toggle Sights" || (A.owner && istype(A.owner, /datum/action/toggle_scope)))
 								continue
 						O.invisibility = 100
-						O.scoped_invisible = 1
+						O.scoped_invisible = TRUE
 						if (istype(O, /obj/item/weapon/attachment/scope))
 							recent_scopes |= O
 						else if (istype(O, /obj/item/weapon/gun))
@@ -71,7 +71,7 @@ var/datum/controller/process/zoom/zoom_process = null
 				else
 					for (var/obj/O in H.client.screen)
 						if (O.scoped_invisible)
-							O.invisibility = 0
+							O.invisibility = FALSE
 			catch(var/exception/e)
 				catchException(e, H)
 			SCHECK

@@ -10,7 +10,7 @@
 //	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	w_class = 3
 	matter = list(DEFAULT_WALL_MATERIAL = 1000)
-	recoil = 1
+	recoil = TRUE
 
 	var/caliber = "357"		//determines which casings will fit
 	var/handle_casings = EJECT_CASINGS	//determines how spent casings should be handled
@@ -24,21 +24,21 @@
 	var/bulletinsert_sound 	= 'sound/weapons/guns/interact/bullet_insert.ogg'
 
 	//For SINGLE_CASING or SPEEDLOADER guns
-	var/max_shells = 0			//the number of casings that will fit inside
+	var/max_shells = FALSE			//the number of casings that will fit inside
 	var/ammo_type = null		//the type of ammo that the gun comes preloaded with
 	var/list/loaded = list()	//stored ammo
 
 	//For MAGAZINE guns
 	var/magazine_type = null	//the type of magazine that the gun comes preloaded with
 	var/obj/item/ammo_magazine/ammo_magazine = null //stored magazine
-	var/auto_eject = 0			//if the magazine should automatically eject itself when empty.
+	var/auto_eject = FALSE			//if the magazine should automatically eject itself when empty.
 	var/auto_eject_sound = null
 	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
 	//TODO generalize ammo icon states for guns
-	//var/magazine_states = 0
+	//var/magazine_states = FALSE
 	//var/list/icon_keys = list()		//keys
 	//var/list/ammo_states = list()	//values
-	var/magazine_based = 1
+	var/magazine_based = TRUE
 	attachment_slots = ATTACH_IRONSIGHTS
 
 	var/load_shell_sound = 'sound/weapons/empty.ogg'
@@ -47,7 +47,7 @@
 /obj/item/weapon/gun/projectile/New()
 	..()
 	if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
-		for(var/i in 1 to max_shells)
+		for(var/i in TRUE to max_shells)
 			loaded += new ammo_type(src)
 	if(ispath(magazine_type) && (load_method & MAGAZINE))
 		ammo_magazine = new magazine_type(src)
@@ -57,10 +57,10 @@
 	spawn_add_attachment(A, src)
 
 /obj/item/weapon/gun/projectile/proc/cock_gun(mob/user)
-	set waitfor = 0
+	set waitfor = FALSE
 	if(cocked_sound)
 		sleep(3)
-		if(user && loc) playsound(src.loc, cocked_sound, 75, 1)
+		if(user && loc) playsound(src.loc, cocked_sound, 75, TRUE)
 
 /obj/item/weapon/gun/projectile/consume_next_projectile()
 	//get the next casing
@@ -103,7 +103,7 @@
 	switch(handle_casings)
 		if(EJECT_CASINGS) //eject casing onto ground.
 			chambered.loc = get_turf(src)
-			playsound(src.loc, casing_sound, 50, 1)
+			playsound(src.loc, casing_sound, 50, TRUE)
 		if(CYCLE_CASINGS) //cycle the casing back to the end.
 			if(ammo_magazine)
 				ammo_magazine.stored_ammo += chambered
@@ -143,13 +143,13 @@
 				AM.loc = src
 				ammo_magazine = AM
 
-				if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
+				if(reload_sound) playsound(src.loc, reload_sound, 75, TRUE)
 				cock_gun(user)
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
 					user << "<span class='warning'>[src] is full!</span>"
 					return
-				var/count = 0
+				var/count = FALSE
 				for(var/obj/item/ammo_casing/C in AM.stored_ammo)
 					if(loaded.len >= max_shells)
 						break
@@ -160,7 +160,7 @@
 						count++
 				if(count)
 					user.visible_message("[user] reloads [src].", "<span class='notice'>You load [count] round\s into \the [src].</span>")
-					if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
+					if(reload_sound) playsound(src.loc, reload_sound, 75, TRUE)
 					cock_gun(user)
 		AM.update_icon()
 
@@ -176,22 +176,22 @@
 		C.loc = src
 		loaded.Insert(1, C) //add to the head of the list
 		user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
-		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
+		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, TRUE)
 
 	update_icon()
 
-//attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
+//attempts to unload src. If allow_dump is set to FALSE, the speedloader unloading method will be disabled
 /obj/item/weapon/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
 	if(ammo_magazine)
 		user.put_in_hands(ammo_magazine)
 
-		if(unload_sound) playsound(src.loc, unload_sound, 75, 1)
+		if(unload_sound) playsound(src.loc, unload_sound, 75, TRUE)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
 	else if(loaded.len)
 		//presumably, if it can be speed-loaded, it can be speed-unloaded.
 		if(allow_dump && (load_method & SPEEDLOADER))
-			var/count = 0
+			var/count = FALSE
 			var/turf/T = get_turf(user)
 			if(T)
 				for(var/obj/item/ammo_casing/C in loaded)
@@ -200,7 +200,7 @@
 				loaded.Cut()
 			if(count)
 				user.visible_message("[user] unloads [src].", "<span class='notice'>You unload [count] round\s from [src].</span>")
-				if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
+				if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, TRUE)
 		else if(load_method & SINGLE_CASING)
 			var/obj/item/ammo_casing/C = loaded[loaded.len]
 			loaded.len--
@@ -210,7 +210,7 @@
 				var/obj/item/weapon/gun/projectile/boltaction/B = src
 				if(B.bolt_safety && !B.loaded.len)
 					B.check_bolt_lock++
-			if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
+			if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, TRUE)
 	else
 		user << "<span class='warning'>[src] is empty.</span>"
 	update_icon()
@@ -221,7 +221,7 @@
 		load_ammo(A, user)
 
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
-	if(firemodes.len > 1)
+	if(firemodes.len > TRUE)
 		..()
 	else
 		unload_ammo(user)
@@ -241,7 +241,7 @@
 			"<span class='notice'>[ammo_magazine] falls out and clatters on the floor!</span>"
 			)
 		if(auto_eject_sound)
-			playsound(user, auto_eject_sound, 40, 1)
+			playsound(user, auto_eject_sound, 40, TRUE)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
 		update_icon() //make sure to do this after unsetting ammo_magazine
@@ -255,13 +255,13 @@
 	return
 
 /obj/item/weapon/gun/projectile/proc/getAmmo()
-	var/bullets = 0
+	var/bullets = FALSE
 	if(loaded)
 		bullets += loaded.len
 	if(ammo_magazine && ammo_magazine.stored_ammo)
 		bullets += ammo_magazine.stored_ammo.len
 	if(chambered)
-		bullets += 1
+		bullets += TRUE
 	return bullets
 
 /obj/item/weapon/gun/projectile/proc/inexactAmmo()
@@ -275,9 +275,9 @@
 				message = "It feels very heavy."
 			if(ammo > 3 && ammo < 6)
 				message = "It feels heavy."
-			if(ammo <= 3 && ammo != 0)
+			if(ammo <= 3 && ammo != FALSE)
 				message = "It feels light."
-			if(ammo == 0)
+			if(ammo == FALSE)
 				message = "It feels empty."
 	return message
 

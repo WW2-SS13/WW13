@@ -5,8 +5,8 @@ datum/objective
 	var/datum/mind/owner = null			//Who owns the objective.
 	var/explanation_text = "Nothing"	//What that person is supposed to do.
 	var/datum/mind/target = null		//If they are focused on a particular person.
-	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
-	var/completed = 0					//currently only used for custom objectives.
+	var/target_amount = FALSE				//If they are focused on a particular number. Steal objectives have their own counter.
+	var/completed = FALSE					//currently only used for custom objectives.
 
 	New(var/text)
 		all_objectives |= src
@@ -26,7 +26,7 @@ datum/objective
 		for(var/datum/mind/possible_target in ticker.minds)
 			if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2))
 				possible_targets += possible_target
-		if(possible_targets.len > 0)
+		if(possible_targets.len > FALSE)
 			target = pick(possible_targets)
 
 
@@ -60,9 +60,9 @@ datum/objective/assassinate
 	check_completion()
 		if(target && target.current)
 			if(target.current.stat == DEAD || issilicon(target.current) || isbrain(target.current) || target.current.z > 6 || !target.current.ckey) //Borgs/brains/AIs count as dead for traitor objectives. --NeoFite
-				return 1
-			return 0
-		return 1
+				return TRUE
+			return FALSE
+		return TRUE
 
 
 datum/objective/anti_revolution/execute
@@ -86,12 +86,12 @@ datum/objective/anti_revolution/execute
 	check_completion()
 		if(target && target.current)
 			if(target.current.stat == DEAD || !ishuman(target.current))
-				return 1
-			return 0
-		return 1
+				return TRUE
+			return FALSE
+		return TRUE
 
 datum/objective/anti_revolution/brig
-	var/already_completed = 0
+	var/already_completed = FALSE
 
 	find_target()
 		..()
@@ -112,16 +112,16 @@ datum/objective/anti_revolution/brig
 
 	check_completion()
 		if(already_completed)
-			return 1
+			return TRUE
 
 		if(target && target.current)
 			if(target.current.stat == DEAD)
-				return 0
+				return FALSE
 			if(target.is_brigged(10 * 60 * 10))
-				already_completed = 1
-				return 1
-			return 0
-		return 0
+				already_completed = TRUE
+				return TRUE
+			return FALSE
+		return FALSE
 
 datum/objective/anti_revolution/demote
 	find_target()
@@ -141,7 +141,7 @@ datum/objective/anti_revolution/demote
 		return target
 
 	check_completion()
-		return 0
+		return FALSE
 
 datum/objective/debrain//I want braaaainssss
 	find_target()
@@ -162,7 +162,7 @@ datum/objective/debrain//I want braaaainssss
 		return target
 
 	check_completion()
-		return 0
+		return FALSE
 
 
 datum/objective/protect//The opposite of killing a dude.
@@ -185,39 +185,39 @@ datum/objective/protect//The opposite of killing a dude.
 
 	check_completion()
 		if(!target)			//If it's a free objective.
-			return 1
+			return TRUE
 		if(target.current)
 			if(target.current.stat == DEAD || issilicon(target.current) || isbrain(target.current))
-				return 0
-			return 1
-		return 0
+				return FALSE
+			return TRUE
+		return FALSE
 
 
 datum/objective/hijack
 	explanation_text = "Hijack the emergency shuttle by escaping alone."
 
 	check_completion()
-		return 0
+		return FALSE
 
 datum/objective/block
 	explanation_text = "Do not allow any organic lifeforms to escape on the shuttle alive."
 
 
 	check_completion()
-		return 0
+		return FALSE
 
 datum/objective/silence
 	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
 
 	check_completion()
-		return 0
+		return FALSE
 
 datum/objective/escape
 	explanation_text = "Escape on the shuttle or an escape pod alive and free."
 
 
 	check_completion()
-		return 0
+		return FALSE
 
 
 
@@ -226,14 +226,14 @@ datum/objective/survive
 
 	check_completion()
 		if(!owner.current || owner.current.stat == DEAD || isbrain(owner.current))
-			return 0		//Brains no longer win survive objectives. --NEO
+			return FALSE		//Brains no longer win survive objectives. --NEO
 		if(issilicon(owner.current) && owner.current != owner.original)
-			return 0
-		return 1
+			return FALSE
+		return TRUE
 
 // Similar to the anti-rev objective, but for traitors
 datum/objective/brig
-	var/already_completed = 0
+	var/already_completed = FALSE
 
 	find_target()
 		..()
@@ -254,21 +254,21 @@ datum/objective/brig
 
 	check_completion()
 		if(already_completed)
-			return 1
+			return TRUE
 
 		if(target && target.current)
 			if(target.current.stat == DEAD)
-				return 0
+				return FALSE
 			// Make the actual required time a bit shorter than the official time
 			if(target.is_brigged(10 * 60 * 5))
-				already_completed = 1
-				return 1
-			return 0
-		return 0
+				already_completed = TRUE
+				return TRUE
+			return FALSE
+		return FALSE
 
 // Harm a crew member, making an example of them
 datum/objective/harm
-	var/already_completed = 0
+	var/already_completed = FALSE
 
 	find_target()
 		..()
@@ -289,31 +289,31 @@ datum/objective/harm
 
 	check_completion()
 		if(already_completed)
-			return 1
+			return TRUE
 
 		if(target && target.current && istype(target.current, /mob/living/carbon/human))
 			if(target.current.stat == DEAD)
-				return 0
+				return FALSE
 
 			var/mob/living/carbon/human/H = target.current
 			for(var/obj/item/organ/external/E in H.organs)
 				if(E.status & ORGAN_BROKEN)
-					return 1
+					return TRUE
 			for(var/limb_tag in H.species.has_limbs) //todo check prefs for robotic limbs and amputations.
 				var/list/organ_data = H.species.has_limbs[limb_tag]
 				var/limb_type = organ_data["path"]
 				var/found
 				for(var/obj/item/organ/external/E in H.organs)
 					if(limb_type == E.type)
-						found = 1
+						found = TRUE
 						break
 				if(!found)
-					return 1
+					return TRUE
 
 			var/obj/item/organ/external/head/head = H.get_organ("head")
 			if(head.disfigured)
-				return 1
-		return 0
+				return TRUE
+		return FALSE
 
 
 datum/objective/nuclear
@@ -386,16 +386,16 @@ datum/objective/steal
 		return steal_target
 
 	check_completion()
-		return 0
+		return FALSE
 
 
 
 datum/objective/download
 	proc/gen_amount_goal()
-		return 0
+		return FALSE
 
 	check_completion()
-		return 0
+		return FALSE
 
 datum/objective/capture
 	proc/gen_amount_goal()
@@ -405,15 +405,15 @@ datum/objective/capture
 
 
 	check_completion()//Basically runs through all the mobs in the area to determine how much they are worth.
-		return 0
+		return FALSE
 
 
 /datum/objective/absorb
 	proc/gen_amount_goal(var/lowbound = 4, var/highbound = 6)
-		return 0
+		return FALSE
 
 	check_completion()
-		return 0
+		return FALSE
 
 // Heist objectives.
 datum/objective/heist
@@ -434,9 +434,9 @@ datum/objective/heist/kidnap
 						priority_targets += possible_target
 						continue
 
-		if(priority_targets.len > 0)
+		if(priority_targets.len > FALSE)
 			target = pick(priority_targets)
-		else if(possible_targets.len > 0)
+		else if(possible_targets.len > FALSE)
 			target = pick(possible_targets)
 
 		if(target && target.current)
@@ -454,7 +454,7 @@ datum/objective/heist/loot
 		return null
 
 	check_completion()
-		return 0
+		return FALSE
 
 datum/objective/heist/salvage
 
@@ -463,26 +463,26 @@ datum/objective/heist/salvage
 
 	check_completion()
 
-		return 0
+		return FALSE
 
 /datum/objective/heist/preserve_crew
 	explanation_text = "Do not leave anyone behind, alive or dead."
 
 	check_completion()
-		return 0
+		return FALSE
 
 //Borer objective(s).
 /datum/objective/borer_survive
 	explanation_text = "Survive in a host until the end of the round."
 
 /datum/objective/borer_survive/check_completion()
-	return 0
+	return FALSE
 
 /datum/objective/borer_reproduce
 	explanation_text = "Reproduce at least once."
 
 /datum/objective/borer_reproduce/check_completion()
-	return 0
+	return FALSE
 
 /datum/objective/cult/survive
 	explanation_text = "Our knowledge must live on."
@@ -493,22 +493,22 @@ datum/objective/heist/salvage
 	explanation_text = "Our knowledge must live on. Make sure at least [target_amount] acolytes escape on the shuttle to spread their work on an another station."
 
 /datum/objective/cult/survive/check_completion()
-	return 0
+	return FALSE
 
 /datum/objective/cult/eldergod
 	explanation_text = "Summon Nar-Sie via the use of the appropriate rune (Hell join self). It will only work if nine cultists stand on and around it. The convert rune is join blood self."
 
 /datum/objective/cult/eldergod/check_completion()
-	return 0
+	return FALSE
 
 /datum/objective/cult/sacrifice
 	explanation_text = "Conduct a ritual sacrifice for the glory of Nar-Sie."
 
 /datum/objective/cult/sacrifice/find_target()
-	return 0
+	return FALSE
 
 /datum/objective/cult/sacrifice/check_completion()
-	return 0
+	return FALSE
 
 /datum/objective/rev/find_target()
 	..()
@@ -528,5 +528,5 @@ datum/objective/heist/salvage
 	return target
 
 /datum/objective/rev/check_completion()
-	return 0
+	return FALSE
 */

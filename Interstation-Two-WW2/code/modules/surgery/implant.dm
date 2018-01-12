@@ -5,22 +5,22 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/cavity
-	priority = 1
+	priority = TRUE
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(!hasorgans(target))
-			return 0
+			return FALSE
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.open == (affected.encased ? 3 : 2) && !(affected.status & ORGAN_BLEEDING)
 
 	proc/get_max_wclass(var/obj/item/organ/external/affected)
 		switch (affected.name)
 			if ("head")
-				return 1
+				return TRUE
 			if ("upper body")
 				return 3
 			if ("lower body")
 				return 2
-		return 0
+		return FALSE
 
 	proc/get_cavity(var/obj/item/organ/external/affected)
 		switch (affected.name)
@@ -58,7 +58,7 @@
 		user.visible_message("[user] starts making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].", \
 		"You start making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]." )
 		target.custom_pain("The pain in your chest is living hell!",1)
-		affected.cavity = 1
+		affected.cavity = TRUE
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -88,7 +88,7 @@
 		user.visible_message("[user] starts mending [target]'s [get_cavity(affected)] cavity wall with \the [tool].", \
 		"You start mending [target]'s [get_cavity(affected)] cavity wall with \the [tool]." )
 		target.custom_pain("The pain in your chest is living hell!",1)
-		affected.cavity = 0
+		affected.cavity = FALSE
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -97,7 +97,7 @@
 		"\blue You mend [target]'s [get_cavity(affected)] cavity walls with \the [tool]." )
 
 /datum/surgery_step/cavity/place_item
-	priority = 0
+	priority = FALSE
 	allowed_tools = list(/obj/item = 100)
 
 	min_duration = 80
@@ -121,7 +121,7 @@
 		user.visible_message("[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.", \
 		"You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity." )
 		target.custom_pain("The pain in your chest is living hell!",1)
-		playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
+		playsound(target.loc, 'sound/effects/squelch1.ogg', 50, TRUE)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -133,11 +133,11 @@
 			user << "\red You tear some blood vessels trying to fit such a big object in this cavity."
 			var/datum/wound/internal_bleeding/I = new (10)
 			affected.wounds += I
-			affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)
+			affected.owner.custom_pain("You feel something rip in your [affected.name]!", TRUE)
 		user.drop_item()
 		affected.implants += tool
 		tool.loc = affected
-		affected.cavity = 0
+		affected.cavity = FALSE
 
 //////////////////////////////////////////////////////////////////
 //					IMPLANT/ITEM REMOVAL SURGERY						//
@@ -167,7 +167,7 @@
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 
-		var/find_prob = 0
+		var/find_prob = FALSE
 
 		if (affected.implants.len)
 
@@ -195,8 +195,8 @@
 				if(istype(obj,/obj/item/weapon/implant))
 					var/obj/item/weapon/implant/imp = obj
 					imp.imp_in = null
-					imp.implanted = 0
-				playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
+					imp.implanted = FALSE
+				playsound(target.loc, 'sound/effects/squelch1.ogg', 50, TRUE)
 			else
 				user.visible_message("\blue [user] removes \the [tool] from [target]'s [affected.name].", \
 				"\blue There's something inside [target]'s [affected.name], but you just missed it this time." )
@@ -213,7 +213,7 @@
 			if (prob(fail_prob))
 				var/obj/item/weapon/implant/imp = affected.implants[1]
 				user.visible_message("\red Something beeps inside [target]'s [affected.name]!")
-				playsound(imp.loc, 'sound/items/countdown.ogg', 75, 1, -3)
+				playsound(imp.loc, 'sound/items/countdown.ogg', 75, TRUE, -3)
 				spawn(25)
 					imp.activate()
 

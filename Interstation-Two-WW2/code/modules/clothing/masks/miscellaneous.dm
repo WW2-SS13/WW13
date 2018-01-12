@@ -6,7 +6,7 @@
 	body_parts_covered = FACE
 	w_class = 2
 	gas_transfer_coefficient = 0.90
-	voicechange = 1
+	voicechange = TRUE
 
 /obj/item/clothing/mask/muzzle/tape
 	name = "length of tape"
@@ -14,7 +14,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape_cross"
 	item_state = null
-	w_class = 1
+	w_class = TRUE
 
 /obj/item/clothing/mask/muzzle/New()
     ..()
@@ -24,7 +24,7 @@
 // Clumsy folks can't take the mask off themselves.
 /obj/item/clothing/mask/muzzle/attack_hand(mob/user as mob)
 	if(user.wear_mask == src && !user.IsAdvancedToolUser())
-		return 0
+		return FALSE
 	..()
 
 /obj/item/clothing/mask/surgical
@@ -37,21 +37,21 @@
 	item_flags = FLEXIBLEMATERIAL
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = 60, rad = FALSE)
 
 /obj/item/clothing/mask/fakemoustache
 	name = "fake moustache"
 	desc = "Warning: moustache is fake."
 	icon_state = "fake-moustache"
 	flags_inv = HIDEFACE
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/mask/snorkel
 	name = "Snorkel"
 	desc = "For the Swimming Savant."
 	icon_state = "snorkel"
 	flags_inv = HIDEFACE
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 //scarves (fit in in mask slot)
 //None of these actually have on-mob sprites...
@@ -94,7 +94,7 @@
 	item_flags = FLEXIBLEMATERIAL
 	w_class = 2
 	gas_transfer_coefficient = 0.90
-	siemens_coefficient = 0
+	siemens_coefficient = FALSE
 
 /obj/item/clothing/mask/pig
 	name = "pig mask"

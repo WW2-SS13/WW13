@@ -1,4 +1,4 @@
-#define DRYING_TIME 5 * 60*10                        //for 1 unit of depth in puddle (amount var)
+#define DRYING_TIME 5 * 60*10                        //for TRUE unit of depth in puddle (amount var)
 
 var/global/list/image/splatter_cache=list()
 
@@ -8,8 +8,8 @@ var/global/list/image/splatter_cache=list()
 	desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
 	var/drydesc = "It's dry and crusty. Someone is not doing their job."
 	gender = PLURAL
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
@@ -24,15 +24,15 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
 /*	if(!fluorescent)
-		fluorescent = 1*/
+		fluorescent = TRUE*/
 	basecolor = COLOR_LUMINOL
 	update_icon()
 
 /obj/effect/decal/cleanable/blood/clean_blood()
-//	fluorescent = 0
+//	fluorescent = FALSE
 	if(invisibility != 100)
 		invisibility = 100
-		amount = 0
+		amount = FALSE
 		processing_objects -= src
 	..(ignore=1)
 
@@ -68,14 +68,14 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
 	if (!istype(perp))
 		return
-	if(amount < 1)
+	if(amount < TRUE)
 		return
 
 	var/obj/item/organ/external/l_foot = perp.get_organ("l_foot")
 	var/obj/item/organ/external/r_foot = perp.get_organ("r_foot")
-	var/hasfeet = 1
+	var/hasfeet = TRUE
 	if((!l_foot || l_foot.is_stump()) && (!r_foot || r_foot.is_stump()))
-		hasfeet = 0
+		hasfeet = FALSE
 	if(perp.shoes && !perp.buckled)//Adding blood to shoes
 		var/obj/item/clothing/shoes/S = perp.shoes
 		if(istype(S))
@@ -110,7 +110,7 @@ var/global/list/image/splatter_cache=list()
 	name = dryname
 	desc = drydesc
 	color = adjust_brightness(color, -50)
-	amount = 0
+	amount = FALSE
 	processing_objects -= src
 
 /obj/effect/decal/cleanable/blood/attack_hand(mob/living/carbon/human/user)
@@ -140,7 +140,7 @@ var/global/list/image/splatter_cache=list()
 	icon = 'icons/effects/drip.dmi'
 	icon_state = "1"
 	random_icon_states = list("1","2","3","4","5")
-	amount = 0
+	amount = FALSE
 	var/list/drips = list()
 
 /obj/effect/decal/cleanable/blood/drip/New()
@@ -152,7 +152,7 @@ var/global/list/image/splatter_cache=list()
 	desc = "It looks like a writing in blood."
 	gender = NEUTER
 	random_icon_states = list("writing1","writing2","writing3","writing4","writing5")
-	amount = 0
+	amount = FALSE
 	var/message
 
 /obj/effect/decal/cleanable/blood/writing/New()
@@ -172,8 +172,8 @@ var/global/list/image/splatter_cache=list()
 	name = "gibs"
 	desc = "They look bloody and gruesome."
 	gender = PLURAL
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gibbl5"
@@ -217,14 +217,14 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/blood/gibs/proc/streak(var/list/directions)
         spawn (0)
                 var/direction = pick(directions)
-                for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
+                for (var/i = FALSE, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
                         sleep(3)
-                        if (i > 0)
+                        if (i > FALSE)
                                 var/obj/effect/decal/cleanable/blood/b = PoolOrNew(/obj/effect/decal/cleanable/blood/splatter, src.loc)
                                 b.basecolor = src.basecolor
                                 b.update_icon()
 
-                        if (step_to(src, get_step(src, direction), 0))
+                        if (step_to(src, get_step(src, direction), FALSE))
                                 break
 
 
@@ -232,8 +232,8 @@ var/global/list/image/splatter_cache=list()
 	name = "mucus"
 	desc = "Disgusting mucus."
 	gender = PLURAL
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mucus"

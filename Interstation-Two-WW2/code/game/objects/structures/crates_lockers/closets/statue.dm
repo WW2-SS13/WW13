@@ -3,20 +3,20 @@
 	desc = "An incredibly lifelike marble carving"
 	icon = 'icons/obj/statue.dmi'
 	icon_state = "human_male"
-	density = 1
-	anchored = 1
-	health = 0 //destroying the statue kills the mob within
-	var/intialTox = 0 	//these are here to keep the mob from taking damage from things that logically wouldn't affect a rock
-	var/intialFire = 0	//it's a little sloppy I know but it was this or the GODMODE flag. Lesser of two evils.
-	var/intialBrute = 0
-	var/intialOxy = 0
+	density = TRUE
+	anchored = TRUE
+	health = FALSE //destroying the statue kills the mob within
+	var/intialTox = FALSE 	//these are here to keep the mob from taking damage from things that logically wouldn't affect a rock
+	var/intialFire = FALSE	//it's a little sloppy I know but it was this or the GODMODE flag. Lesser of two evils.
+	var/intialBrute = FALSE
+	var/intialOxy = FALSE
 	var/timer = 240 //eventually the person will be freed
 
 /obj/structure/closet/statue/New(loc, var/mob/living/L)
 	if(L && (ishuman(L) || iscorgi(L)))
 		if(L.buckled)
-			L.buckled = 0
-			L.anchored = 0
+			L.buckled = FALSE
+			L.anchored = FALSE
 		if(L.client)
 			L.client.perspective = EYE_PERSPECTIVE
 			L.client.eye = src
@@ -36,7 +36,7 @@
 			icon_state = "corgi"
 			desc = "If it takes forever, I will wait for you..."
 
-	if(health == 0) //meaning if the statue didn't find a valid target
+	if(health == FALSE) //meaning if the statue didn't find a valid target
 		qdel(src)
 		return
 
@@ -50,7 +50,7 @@
 		M.adjustFireLoss(intialFire - M.getFireLoss())
 		M.adjustBruteLoss(intialBrute - M.getBruteLoss())
 		M.setOxyLoss(intialOxy)
-	if (timer <= 0)
+	if (timer <= FALSE)
 		dump_contents()
 		processing_objects.Remove(src)
 		qdel(src)
@@ -78,7 +78,7 @@
 	return
 
 /obj/structure/closet/statue/proc/check_health()
-	if(health <= 0)
+	if(health <= FALSE)
 		for(var/mob/M in src)
 			shatter(M)
 

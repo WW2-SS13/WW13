@@ -9,13 +9,13 @@
 /datum/dna/gene/disability
 	name="DISABILITY"
 
-	// Mutation to give (or 0)
+	// Mutation to give (or FALSE)
 	var/mutation=0
 
-	// Disability to give (or 0)
+	// Disability to give (or FALSE)
 	var/disability=0
 
-	// SDisability to give (or 0)
+	// SDisability to give (or FALSE)
 	var/sdisability=0
 
 	// Activation message
@@ -25,7 +25,7 @@
 	var/deactivation_message=""
 
 /datum/dna/gene/disability/can_activate(var/mob/M,var/flags)
-	return 1 // Always set!
+	return TRUE // Always set!
 
 /datum/dna/gene/disability/activate(var/mob/M, var/connected, var/flags)
 	if(mutation && !(mutation in M.mutations))
@@ -118,7 +118,7 @@
 
 	activate(var/mob/M, var/connected, var/flags)
 		..(M,connected,flags)
-		M.ear_deaf = 1
+		M.ear_deaf = TRUE
 
 /datum/dna/gene/disability/nearsighted
 	name="Nearsightedness"

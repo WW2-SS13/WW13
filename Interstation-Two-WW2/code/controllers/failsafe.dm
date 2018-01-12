@@ -27,7 +27,7 @@ var/datum/controller/failsafe/Failsafe
 			if(!master_controller)		new /datum/controller/game_controller()	//replace the missing master_controller! This should never happen.
 
 			if(processing)
-				if(lighting_controller.processing)
+			/*	if(lighting_controller.processing)
 					if(lighting_iteration == lighting_controller.iteration)	//master_controller hasn't finished processing in the defined interval
 						switch(lighting_defcon)
 							if(0 to 3)
@@ -43,6 +43,7 @@ var/datum/controller/failsafe/Failsafe
 					else
 						lighting_defcon = 0
 						lighting_iteration = lighting_controller.iteration
+						*/
 			else
 				MC_defcon = 0
 				lighting_defcon = 0

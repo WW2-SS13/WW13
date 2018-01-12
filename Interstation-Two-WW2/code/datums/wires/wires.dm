@@ -11,11 +11,11 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 /datum/wires
 
-	var/random = 0 // Will the wires be different for every single instance.
+	var/random = FALSE // Will the wires be different for every single instance.
 	var/atom/holder = null // The holder
 	var/holder_type = null // The holder type; used to make sure that the holder is the correct type.
-	var/wire_count = 0 // Max is 16
-	var/wires_status = 0 // BITFLAG OF WIRES
+	var/wire_count = FALSE // Max is 16
+	var/wires_status = FALSE // BITFLAG OF WIRES
 
 	var/list/wires = list()
 	var/list/signallers = list()
@@ -54,7 +54,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	var/list/colours_to_pick = wireColours.Copy() // Get a copy, not a reference.
 	var/list/indexes_to_pick = list()
 	//Generate our indexes
-	for(var/i = 1; i < MAX_FLAG && i < (1 << wire_count); i += i)
+	for(var/i = TRUE; i < MAX_FLAG && i < (1 << wire_count); i += i)
 		indexes_to_pick += i
 	colours_to_pick.len = wire_count // Downsize it to our specifications.
 
@@ -164,12 +164,12 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	return
 
 /datum/wires/proc/CanUse(var/mob/living/L)
-	return 1
+	return TRUE
 
 // Example of use:
 /*
 
-var/const/BOLTED= 1
+var/const/BOLTED= TRUE
 var/const/SHOCKED = 2
 var/const/SAFETY = 4
 var/const/POWER = 8
@@ -198,7 +198,7 @@ var/const/POWER = 8
 /datum/wires/proc/PulseIndex(var/index)
 	if(IsIndexCut(index))
 		return
-	playsound(holder.loc, 'sound/items/multitool_pulse.ogg', 100, 1)
+	playsound(holder.loc, 'sound/items/multitool_pulse.ogg', 100, TRUE)
 	UpdatePulsed(index)
 
 /datum/wires/proc/GetIndex(var/colour)
@@ -225,8 +225,8 @@ var/const/POWER = 8
 
 /datum/wires/proc/IsAttached(var/colour)
 	if(signallers[colour])
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/wires/proc/GetAttached(var/colour)
 	if(signallers[colour])
@@ -253,31 +253,31 @@ var/const/POWER = 8
 /datum/wires/proc/CutWireIndex(var/index)
 	if(IsIndexCut(index))
 		wires_status &= ~index
-		UpdateCut(index, 1)
+		UpdateCut(index, TRUE)
 	else
 		wires_status |= index
-		UpdateCut(index, 0)
+		UpdateCut(index, FALSE)
 
 /datum/wires/proc/RandomCut()
 	var/r = rand(1, wires.len)
 	CutWireIndex(r)
 
 /datum/wires/proc/RandomCutAll(var/probability = 10)
-	for(var/i = 1; i < MAX_FLAG && i < (1 << wire_count); i += i)
+	for(var/i = TRUE; i < MAX_FLAG && i < (1 << wire_count); i += i)
 		if(prob(probability))
 			CutWireIndex(i)
 
 /datum/wires/proc/CutAll()
-	for(var/i = 1; i < MAX_FLAG && i < (1 << wire_count); i += i)
+	for(var/i = TRUE; i < MAX_FLAG && i < (1 << wire_count); i += i)
 		CutWireIndex(i)
 
 /datum/wires/proc/IsAllCut()
-	if(wires_status == (1 << wire_count) - 1)
-		return 1
-	return 0
+	if(wires_status == (1 << wire_count) - TRUE)
+		return TRUE
+	return FALSE
 
 /datum/wires/proc/MendAll()
-	for(var/i = 1; i < MAX_FLAG && i < (1 << wire_count); i += i)
+	for(var/i = TRUE; i < MAX_FLAG && i < (1 << wire_count); i += i)
 		if(IsIndexCut(i))
 			CutWireIndex(i)
 
@@ -286,5 +286,5 @@ var/const/POWER = 8
 //
 
 /datum/wires/proc/Shuffle()
-	wires_status = 0
+	wires_status = FALSE
 	GenerateWires()

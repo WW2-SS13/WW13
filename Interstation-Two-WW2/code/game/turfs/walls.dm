@@ -5,17 +5,17 @@ var/list/global/wall_cache = list()
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "generic"
-	opacity = 1
-	density = 1
-//	blocks_air = 1
+	opacity = TRUE
+	density = TRUE
+//	blocks_air = TRUE
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
-	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
+	heat_capacity = 312500 //a little over 5 cm thick , 312500 for TRUE m by 2.5 m by 0.25 m plasteel wall
 
-	var/damage = 0
-	var/damage_overlay = 0
+	var/damage = FALSE
+	var/damage_overlay = FALSE
 	var/global/damage_overlays[16]
 	var/active
-	var/can_open = 0
+	var/can_open = FALSE
 	var/material/material
 	var/material/reinf_material
 	var/last_state
@@ -23,18 +23,18 @@ var/list/global/wall_cache = list()
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	var/list/wall_connections = list("0", "0", "0", "0")
 	var/ref_state = "generic"
-	var/tank_destroyable = 1
+	var/tank_destroyable = TRUE
 
 /turf/wall/void
 	icon_state = "void"
 	damage = -100000
-	tank_destroyable = 0
+	tank_destroyable = FALSE
 
 /turf/wall/rockwall
 	name = "cave wall"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
-	tank_destroyable = 0
+	tank_destroyable = FALSE
 	layer = TURF_LAYER + 0.02 // above lifts
 
 /turf/wall/rockwall/update_icon()
@@ -177,7 +177,7 @@ var/list/global/wall_cache = list()
 
 /turf/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
 
-	playsound(src, 'sound/items/Welder.ogg', 100, 1)
+	playsound(src, 'sound/items/Welder.ogg', 100, TRUE)
 	if(!no_product)
 		if(reinf_material)
 			reinf_material.place_dismantled_girder(src, reinf_material)
@@ -225,8 +225,8 @@ var/list/global/wall_cache = list()
 
 /turf/wall/proc/can_melt()
 	if(material.flags & MATERIAL_UNMELTABLE)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /turf/wall/proc/thermitemelt(mob/user as mob)
 	if(!can_melt())
@@ -236,8 +236,8 @@ var/list/global/wall_cache = list()
 	O.desc = "Looks hot."
 	O.icon = 'icons/effects/fire.dmi'
 	O.icon_state = "2"
-	O.anchored = 1
-	O.density = 1
+	O.anchored = TRUE
+	O.density = TRUE
 	O.layer = 5
 
 	src.ChangeTurf(/turf/floor/plating)
@@ -254,7 +254,7 @@ var/list/global/wall_cache = list()
 	return
 
 /turf/wall/proc/radiate()
-	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0)
+	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : FALSE)
 	if(!total_radiation)
 		return
 

@@ -3,7 +3,7 @@
 	desc = "A lightweight support lattice."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "latticefull"
-	density = 0
+	density = FALSE
 	anchored = 1.0
 	w_class = 3
 	layer = 2.3 //under pipes
@@ -68,7 +68,7 @@
 			R.use(2)
 			user << "<span class='notice'>You start connecting [R.name] to [src.name] ...</span>"
 			if(do_after(user,50))
-				src.alpha = 0
+				src.alpha = FALSE
 				new /obj/structure/catwalk(src.loc)
 				qdel(src)
 			return
@@ -80,7 +80,7 @@
 	spawn(1)
 		overlays = list()
 
-		var/dir_sum = 0
+		var/dir_sum = FALSE
 
 		var/turf/T
 		for (var/direction in cardinal)

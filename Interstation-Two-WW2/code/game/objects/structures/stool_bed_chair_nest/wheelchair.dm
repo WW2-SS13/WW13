@@ -2,10 +2,10 @@
 	name = "wheelchair"
 	desc = "You sit in this. Either by will or force."
 	icon_state = "wheelchair"
-	anchored = 0
-	buckle_movable = 1
+	anchored = FALSE
+	buckle_movable = TRUE
 
-	var/driving = 0
+	var/driving = FALSE
 	var/mob/living/pulling = null
 	var/bloodiness
 
@@ -43,7 +43,7 @@
 		return
 	if(propelled)
 		return
-	if(pulling && (get_dist(src, pulling) > 1))
+	if(pulling && (get_dist(src, pulling) > TRUE))
 		pulling = null
 		user.pulledby = null
 		if(user==pulling)
@@ -56,7 +56,7 @@
 		return
 
 	// Let's roll
-	driving = 1
+	driving = TRUE
 	var/turf/T = null
 	//--1---Move occupant---1--//
 	if(buckled_mob)
@@ -66,7 +66,7 @@
 	//--2----Move driver----2--//
 	if(pulling)
 		T = pulling.loc
-		if(get_dist(src, pulling) >= 1)
+		if(get_dist(src, pulling) >= TRUE)
 			step(pulling, get_dir(pulling.loc, src.loc))
 	//--3--Move wheelchair--3--//
 	step(src, direction)
@@ -78,13 +78,13 @@
 			pulling.forceMove(T)
 		else
 			spawn(0)
-			if(get_dist(src, pulling) > 1) // We are too far away? Losing control.
+			if(get_dist(src, pulling) > TRUE) // We are too far away? Losing control.
 				pulling = null
 				user.pulledby = null
 			pulling.set_dir(get_dir(pulling, src)) // When everything is right, face the wheelchair
 	if(bloodiness)
 		create_track()
-	driving = 0
+	driving = FALSE
 
 /obj/structure/bed/chair/wheelchair/Move()
 	..()
@@ -101,7 +101,7 @@
 							Bump(O)
 				else
 					unbuckle_mob()
-			if (pulling && (get_dist(src, pulling) > 1))
+			if (pulling && (get_dist(src, pulling) > TRUE))
 				pulling.pulledby = null
 				pulling << "<span class='warning'>You lost your grip!</span>"
 				pulling = null
@@ -154,7 +154,7 @@
 		occupant.apply_effect(6, WEAKEN, blocked)
 		occupant.apply_effect(6, STUTTER, blocked)
 		occupant.apply_damage(10, BRUTE, def_zone)
-		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
+		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 		if(istype(A, /mob/living))
 			var/mob/living/victim = A
 			def_zone = ran_zone()
@@ -180,7 +180,7 @@
 	else
 		newdir = newdir | dir
 		if(newdir == 3)
-			newdir = 1
+			newdir = TRUE
 		else if(newdir == 12)
 			newdir = 4
 		B.set_dir(newdir)

@@ -25,7 +25,7 @@
 	var/tile_overlay = null
 	var/overlay_limit = null
 
-	var/flags = 0
+	var/flags = FALSE
 
 /hook/startup/proc/generateGasData()
 	gas_data = new
@@ -43,4 +43,4 @@
 		if(gas.overlay_limit) gas_data.overlay_limit[gas.id] = gas.overlay_limit
 		gas_data.flags[gas.id] = gas.flags
 
-	return 1
+	return TRUE

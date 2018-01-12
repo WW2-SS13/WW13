@@ -1,7 +1,7 @@
 /obj/item/projectile/energy
 	name = "energy"
 	icon_state = "spark"
-	damage = 0
+	damage = FALSE
 	damage_type = BURN
 	check_armour = "energy"
 
@@ -13,7 +13,7 @@
 	damage = 5
 	agony = 10
 	kill_count = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
-	var/flash_range = 0
+	var/flash_range = FALSE
 	var/brightness = 7
 	var/light_duration = 5
 
@@ -28,7 +28,7 @@
 				flick("e_flash", M.HUDtech["flash"])
 
 	//snap pop
-	playsound(src, 'sound/effects/snap.ogg', 50, 1)
+	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 	src.visible_message("<span class='warning'>\The [src] explodes in a bright flash!</span>")
 
 	new /obj/effect/decal/cleanable/ash(src.loc) //always use src.loc so that ash doesn't end up inside windows
@@ -38,15 +38,15 @@
 //blinds people like the flash round, but can also be used for temporary illumination
 /obj/item/projectile/energy/flash/flare
 	damage = 10
-	flash_range = 1
+	flash_range = TRUE
 	brightness = 9 //similar to a flare
 	light_duration = 200
 
 /obj/item/projectile/energy/electrode
 	name = "electrode"
 	icon_state = "spark"
-	nodamage = 1
-	taser_effect = 1
+	nodamage = TRUE
+	taser_effect = TRUE
 	agony = 40
 	damage_type = HALLOSS
 	//Damage will be handled on the MOB side, to prevent window shattering.
@@ -54,13 +54,13 @@
 /obj/item/projectile/energy/electrode/stunshot
 	name = "stunshot"
 	damage = 5
-	taser_effect = 1
+	taser_effect = TRUE
 	agony = 80
 
 /obj/item/projectile/energy/declone
 	name = "declone"
 	icon_state = "declone"
-	nodamage = 1
+	nodamage = TRUE
 	damage_type = CLONE
 	irradiate = 40
 
@@ -78,7 +78,7 @@
 	icon_state = "cbbolt"
 	damage = 10
 	damage_type = TOX
-	nodamage = 0
+	nodamage = FALSE
 	agony = 40
 	stutter = 10
 

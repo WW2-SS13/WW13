@@ -8,8 +8,8 @@
 	var/savefile/F = new(TORFILE)
 	if(F)
 		if( ip_address in F.dir )
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /proc/ToRban_autoupdate()
 	var/savefile/F = new(TORFILE)
@@ -34,13 +34,13 @@
 				if( copytext(line,1,12) == "ExitAddress" )
 					var/cleaned = copytext(line,13,length(line)-19)
 					if(!cleaned)	continue
-					F[cleaned] << 1
+					F[cleaned] << TRUE
 			F["last_update"] << world.realtime
 			log_misc("ToR data updated!")
 			if(usr)	usr << "ToRban updated."
-			return 1
+			return TRUE
 		log_misc("ToR data update aborted: no data.")
-		return 0
+		return FALSE
 
 /client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
 	set name = "ToRban"
@@ -52,10 +52,10 @@
 		if("toggle")
 			if(config)
 				if(config.ToRban)
-					config.ToRban = 0
+					config.ToRban = FALSE
 					message_admins("<font color='red'>ToR banning disabled.</font>")
 				else
-					config.ToRban = 1
+					config.ToRban = TRUE
 					message_admins("<font colot='green'>ToR banning enabled.</font>")
 		if("show")
 			var/savefile/F = new(TORFILE)

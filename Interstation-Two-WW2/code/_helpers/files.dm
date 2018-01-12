@@ -1,7 +1,7 @@
 //checks if a file exists and contains text
 //returns text as a string if these conditions are met
 /proc/return_file_text(filename)
-	if(fexists(filename) == 0)
+	if(fexists(filename) == FALSE)
 		error("File not found ([filename])")
 		return
 
@@ -52,9 +52,9 @@
 	PLEASE USE RESPONSIBLY, Some log files canr each sizes of 4MB!	*/
 /client/proc/file_spam_check()
 	var/time_to_wait = fileaccess_timer - world.time
-	if(time_to_wait > 0)
+	if(time_to_wait > FALSE)
 		src << "<font color='red'>Error: file_spam_check(): Spam. Please wait [round(time_to_wait/10)] seconds.</font>"
-		return 1
+		return TRUE
 	fileaccess_timer = world.time + FTPDELAY
-	return 0
+	return FALSE
 #undef FTPDELAY

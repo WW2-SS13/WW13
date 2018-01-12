@@ -7,9 +7,9 @@
 	plane = OPENSPACE_PLANE
 	name = "shadow"
 	desc = "Z-level shadow"
-	anchored = 1
-	unacidable = 1
-	density = 0
+	anchored = TRUE
+	unacidable = TRUE
+	density = FALSE
 	var/mob/owner = null
 
 /mob/shadow/New(var/mob/L)

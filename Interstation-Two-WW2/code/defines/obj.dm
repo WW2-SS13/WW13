@@ -1,8 +1,8 @@
 /obj/structure/signpost
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "signpost"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		return attack_hand(user)
@@ -20,15 +20,15 @@
 		var/mark = ""
 		icon = 'icons/misc/mark.dmi'
 		icon_state = "blank"
-		anchored = 1
+		anchored = TRUE
 		layer = 99
-		mouse_opacity = 0
-	//	unacidable = 1//Just to be sure.
+		mouse_opacity = FALSE
+	//	unacidable = TRUE//Just to be sure.
 
 /obj/effect/beam
 	name = "beam"
-	density = 0
-//	unacidable = 1//Just to be sure.
+	density = FALSE
+//	unacidable = TRUE//Just to be sure.
 	var/def_zone
 	flags = PROXMOVE
 	pass_flags = PASSTABLE
@@ -39,7 +39,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "begin"
 	anchored = 1.0
-//	unacidable = 1
+//	unacidable = TRUE
 
 /*
  * This item is completely unused, but removing it will break something in R&D and Radio code causing PDA and Ninja code to fail on compile
@@ -49,7 +49,7 @@
 
 /proc/make_list_rank(rank)
 	for(var/prefix in acting_rank_prefixes)
-		if(findtext(rank, "[prefix] ", 1, 2+length(prefix)))
+		if(findtext(rank, "[prefix] ", TRUE, 2+length(prefix)))
 			return copytext(rank, 2+length(prefix))
 	return rank
 
@@ -83,54 +83,54 @@ var/global/ManifestJSON
 		var/real_rank = make_list_rank(t.fields["real_rank"])
 
 		var/isactive = t.fields["p_stat"]
-		var/department = 0
-		var/depthead = 0 			// Department Heads will be placed at the top of their lists.
+		var/department = FALSE
+		var/depthead = FALSE 			// Department Heads will be placed at the top of their lists.
 		if(real_rank in command_positions)
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
-			department = 1
-			depthead = 1
-			if(rank=="Captain" && heads.len != 1)
+			department = TRUE
+			depthead = TRUE
+			if(rank=="Captain" && heads.len != TRUE)
 				heads.Swap(1,heads.len)
 
 		if(real_rank in security_positions)
 			sec[++sec.len] = list("name" = name, "rank" = rank, "active" = isactive)
-			department = 1
-			if(depthead && sec.len != 1)
+			department = TRUE
+			if(depthead && sec.len != TRUE)
 				sec.Swap(1,sec.len)
 
 		if(real_rank in engineering_positions)
 			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
-			department = 1
-			if(depthead && eng.len != 1)
+			department = TRUE
+			if(depthead && eng.len != TRUE)
 				eng.Swap(1,eng.len)
 
 		if(real_rank in medical_positions)
 			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
-			department = 1
-			if(depthead && med.len != 1)
+			department = TRUE
+			if(depthead && med.len != TRUE)
 				med.Swap(1,med.len)
 
 		if(real_rank in science_positions)
 			sci[++sci.len] = list("name" = name, "rank" = rank, "active" = isactive)
-			department = 1
-			if(depthead && sci.len != 1)
+			department = TRUE
+			if(depthead && sci.len != TRUE)
 				sci.Swap(1,sci.len)
 
 		if(real_rank in cargo_positions)
 			car[++car.len] = list("name" = name, "rank" = rank, "active" = isactive)
-			department = 1
-			if(depthead && car.len != 1)
+			department = TRUE
+			if(depthead && car.len != TRUE)
 				car.Swap(1,car.len)
 
 		if(real_rank in civilian_positions)
 			civ[++civ.len] = list("name" = name, "rank" = rank, "active" = isactive)
-			department = 1
-			if(depthead && civ.len != 1)
+			department = TRUE
+			if(depthead && civ.len != TRUE)
 				civ.Swap(1,civ.len)
 
 		if(real_rank in nonhuman_positions)
 			bot[++bot.len] = list("name" = name, "rank" = rank, "active" = isactive)
-			department = 1
+			department = TRUE
 
 		if(!department && !(name in heads))
 			misc[++misc.len] = list("name" = name, "rank" = rank, "active" = isactive)
@@ -188,9 +188,9 @@ var/global/ManifestJSON
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "showcase_1"
 	desc = "A stand with the empty body of a cyborg bolted to it."
-	density = 1
-	anchored = 1
-//	unacidable = 1//temporary until I decide whether the borg can be removed. -veyveyr
+	density = TRUE
+	anchored = TRUE
+//	unacidable = TRUE//temporary until I decide whether the borg can be removed. -veyveyr
 
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
@@ -199,12 +199,12 @@ var/global/ManifestJSON
 	icon_state = "ball"
 	name = "beach ball"
 	item_state = "beachball"
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	w_class = 4
 	force = 0.0
 	throwforce = 0.0
-	throw_speed = 1
+	throw_speed = TRUE
 	throw_range = 20
 	flags = CONDUCT
 

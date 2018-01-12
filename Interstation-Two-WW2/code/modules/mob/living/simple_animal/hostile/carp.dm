@@ -7,7 +7,7 @@
 	icon_living = "carp"
 	icon_dead = "carp_dead"
 	icon_gib = "carp_gib"
-	speak_chance = 0
+	speak_chance = FALSE
 	turns_per_move = 5
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat
 	response_help = "pets the"
@@ -24,22 +24,22 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	//Space carp aren't affected by atmos.
-	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
-	max_tox = 0
-	min_co2 = 0
-	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
-	minbodytemp = 0
+	min_oxy = FALSE
+	max_oxy = FALSE
+	min_tox = FALSE
+	max_tox = FALSE
+	min_co2 = FALSE
+	max_co2 = FALSE
+	min_n2 = FALSE
+	max_n2 = FALSE
+	minbodytemp = FALSE
 
 	break_stuff_probability = 15
 
 	faction = "carp"
 
-/mob/living/simple_animal/hostile/carp/Process_Spacemove(var/check_drift = 0)
-	return 1	//No drifting in space for space carp!	//original comments do not steal
+/mob/living/simple_animal/hostile/carp/Process_Spacemove(var/check_drift = FALSE)
+	return TRUE	//No drifting in space for space carp!	//original comments do not steal
 
 /mob/living/simple_animal/hostile/carp/FindTarget()
 	. = ..()

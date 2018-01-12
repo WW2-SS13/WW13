@@ -10,7 +10,7 @@ var/sepstring = ""
 		var/list/bugreports = database.execute("SELECT * FROM bug_reports;")
 		var/list/bugreport_names = list()
 		if (islist(bugreports) && !isemptylist(bugreports))
-			for (var/v in 1 to bugreports["occurences_of_name"])
+			for (var/v in TRUE to bugreports["occurences_of_name"])
 				bugreport_names += bugreports["name_[v]"]
 		else
 			src << "<span class = 'danger'>There are no open bug reports right now.</span>"
@@ -30,7 +30,7 @@ var/sepstring = ""
 						return
 
 					if (!sepstring)
-						for (var/v in 1 to 50)
+						for (var/v in TRUE to 50)
 							sepstring += "-"
 
 					src << "<span class = 'notice'>[sepstring]</span>"
@@ -47,7 +47,7 @@ var/sepstring = ""
 					var/steps = bugreports["steps"]
 					if (lentext(steps))
 						var/list/stepslist = splittext(steps, "&")
-						var/stepnum = 0
+						var/stepnum = FALSE
 						src << "<br><br>***TO REPRODUCE ERROR***<br><br>"
 						for (var/_step in stepslist)
 							src << "Step #[++stepnum]: [_step]<br>"
@@ -78,7 +78,7 @@ var/sepstring = ""
 		var/list/suggestions = database.execute("SELECT * FROM suggestions;")
 		var/list/suggestion_names = list()
 		if (islist(suggestions) && !isemptylist(suggestions))
-			for (var/v in 1 to suggestions["occurences_of_name"])
+			for (var/v in TRUE to suggestions["occurences_of_name"])
 				suggestion_names += suggestions["name_[v]"]
 		else
 			src << "<span class = 'danger'>There are no open suggestions right now.</span>"
@@ -98,7 +98,7 @@ var/sepstring = ""
 						return
 
 					if (!sepstring)
-						for (var/v in 1 to 50)
+						for (var/v in TRUE to 50)
 							sepstring += "-"
 
 					src << "<span class = 'notice'>[sepstring]</span>"

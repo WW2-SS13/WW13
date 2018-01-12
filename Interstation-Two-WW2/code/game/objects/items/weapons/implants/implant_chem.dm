@@ -1,7 +1,7 @@
 /obj/item/weapon/implant/chem
 	name = "chemical implant"
 	desc = "Injects things."
-	allow_reagents = 1
+	allow_reagents = TRUE
 //	origin_tech = list(TECH_MATERIAL=3, TECH_BIO=4)
 
 /obj/item/weapon/implant/chem/get_data()
@@ -37,7 +37,7 @@
 
 
 /obj/item/weapon/implant/chem/activate(var/cause)
-	if((!cause) || (!src.imp_in))	return 0
+	if((!cause) || (!src.imp_in))	return FALSE
 	var/mob/living/carbon/R = src.imp_in
 	src.reagents.trans_to_mob(R, cause, CHEM_BLOOD)
 	R << "You hear a faint *beep*."

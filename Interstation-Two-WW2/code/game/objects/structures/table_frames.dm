@@ -14,8 +14,8 @@
 	desc = "Four metal legs with four framing rods for a table. You could easily pass through this."
 	icon = 'icons/obj/structures_FO13.dmi'
 	icon_state = "table_frame"
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	layer = 2.8
 	var/framestack = /obj/item/stack/rods
 	var/framestackamount = 2
@@ -23,16 +23,16 @@
 /obj/structure/table_frame/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/wrench))
 		user << "<span class='notice'>You start disassembling [src]...</span>"
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		if(do_after(user, 30, target = src))
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-			for(var/i = 1, i <= framestackamount, i++)
+			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, TRUE)
+			for(var/i = TRUE, i <= framestackamount, i++)
 				new framestack(get_turf(src))
 			qdel(src)
 			return
 	if(istype(I, /obj/item/stack/material/iron))
 		var/obj/item/stack/material/iron/M = I
-		if(M.get_amount() < 1)
+		if(M.get_amount() < TRUE)
 			user << "<span class='warning'>You need one metal sheet to do this!</span>"
 			return
 		user << "<span class='notice'>You start adding [M] to [src]...</span>"
@@ -43,7 +43,7 @@
 		return
 	if(istype(I, /obj/item/stack/material/glass))
 		var/obj/item/stack/material/glass/G = I
-		if(G.get_amount() < 1)
+		if(G.get_amount() < TRUE)
 			user << "<span class='warning'>You need one glass sheet to do this!</span>"
 			return
 		user << "<span class='notice'>You start adding [G] to [src]...</span>"
@@ -55,7 +55,7 @@
 		return
 	if(istype(I, /obj/item/stack/material/silver))
 		var/obj/item/stack/material/silver/S = I
-		if(S.get_amount() < 1)
+		if(S.get_amount() < TRUE)
 			user << "<span class='warning'>You need one silver sheet to do this!</span>"
 			return
 		user << "<span class='notice'>You start adding [S] to [src]...</span>"
@@ -81,7 +81,7 @@
 		..()
 	if(istype(I, /obj/item/stack/material/wood))
 		var/obj/item/stack/material/wood/W = I
-		if(W.get_amount() < 1)
+		if(W.get_amount() < TRUE)
 			user << "<span class='warning'>You need one wood sheet to do this!</span>"
 			return
 		user << "<span class='notice'>You start adding [W] to [src]...</span>"
@@ -92,7 +92,7 @@
 		return
 	if(istype(I, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = I
-		if(C.get_amount() < 1)
+		if(C.get_amount() < TRUE)
 			user << "<span class='warning'>You need one carpet sheet to do this!</span>"
 			return
 		user << "<span class='notice'>You start adding [C] to [src]...</span>"

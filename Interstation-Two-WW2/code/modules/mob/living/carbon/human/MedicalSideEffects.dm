@@ -2,8 +2,8 @@
 // ========================
 /datum/medical_effect
 	var/name = "None"
-	var/strength = 0
-	var/start = 0
+	var/strength = FALSE
+	var/start = FALSE
 	var/list/triggers
 	var/list/cures
 	var/cure_message
@@ -11,11 +11,11 @@
 /datum/medical_effect/proc/manifest(mob/living/carbon/human/H)
 	for(var/R in cures)
 		if(H.reagents.has_reagent(R))
-			return 0
+			return FALSE
 	for(var/R in triggers)
 		if(H.reagents.get_reagent_amount(R) >= triggers[R])
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /datum/medical_effect/proc/on_life(mob/living/carbon/human/H, strength)
 	return
@@ -25,15 +25,15 @@
 		if(H.reagents.has_reagent(R))
 			if (cure_message)
 				H <<"\blue [cure_message]"
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 
 // MOB HELPERS
 // ===========
 /mob/living/carbon/human/var/list/datum/medical_effect/side_effects = list()
-/mob/proc/add_side_effect(name, strength = 0)
-/mob/living/carbon/human/add_side_effect(name, strength = 0)
+/mob/proc/add_side_effect(name, strength = FALSE)
+/mob/living/carbon/human/add_side_effect(name, strength = FALSE)
 	for(var/datum/medical_effect/M in src.side_effects)
 		if(M.name == name)
 			M.strength = max(M.strength, 10)
@@ -53,8 +53,8 @@
 
 /mob/living/carbon/human/proc/handle_medical_side_effects()
 	//Going to handle those things only every few ticks.
-	if(life_tick % 15 != 0)
-		return 0
+	if(life_tick % 15 != FALSE)
+		return FALSE
 
 	var/list/L = typesof(/datum/medical_effect)-/datum/medical_effect
 	for(var/T in L)
@@ -73,7 +73,7 @@
 				side_effects -= M
 				M = null
 			else
-				if(life_tick % 45 == 0)
+				if(life_tick % 45 == FALSE)
 					M.on_life(src, strength_percent*M.strength)
 				// Effect slowly growing stronger
 				M.strength+=0.08

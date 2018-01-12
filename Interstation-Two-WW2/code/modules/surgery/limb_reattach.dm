@@ -5,13 +5,13 @@
 
 /datum/surgery_step/limb/
 	priority = 3 // Must be higher than /datum/surgery_step/internal
-	can_infect = 0
+	can_infect = FALSE
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (!hasorgans(target))
-			return 0
+			return FALSE
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if (affected)
-			return 0
+			return FALSE
 		var/list/organ_data = target.species.has_limbs["[target_zone]"]
 		return !isnull(organ_data)
 
@@ -48,7 +48,7 @@
 	/obj/item/stack/cable_coil = 75, 	\
 	/obj/item/device/assembly/mousetrap = 20
 	)
-	can_infect = 1
+	can_infect = TRUE
 
 	min_duration = 100
 	max_duration = 120

@@ -1,14 +1,14 @@
 /mob/living/carbon/human/examine(mob/user)
 	user.visible_message("<small>[user] looks at [src].</small>")
 
-	var/skipgloves = 0
-	var/skipsuitstorage = 0
-	var/skipjumpsuit = 0
-	var/skipshoes = 0
-	var/skipmask = 0
-	var/skipears = 0
-	var/skipeyes = 0
-	var/skipface = 0
+	var/skipgloves = FALSE
+	var/skipsuitstorage = FALSE
+	var/skipjumpsuit = FALSE
+	var/skipshoes = FALSE
+	var/skipmask = FALSE
+	var/skipears = FALSE
+	var/skipeyes = FALSE
+	var/skipface = FALSE
 
 	//exosuits and helmets obscure our view and stuff.
 	if(wear_suit)
@@ -170,7 +170,7 @@
 		else if(istype(wear_id, /obj/item/weapon/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
 			var/obj/item/weapon/card/id/idcard = wear_id
 			id = idcard.registered_name
-		if(id && (id != real_name) && (get_dist(src, usr) <= 1) && prob(10))
+		if(id && (id != real_name) && (get_dist(src, usr) <= TRUE) && prob(10))
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[wear_id] \a [wear_id] yet something doesn't seem right...</span>\n"
 		else*/
 		msg += "[T.He] [T.is] wearing \icon[wear_id] \a [wear_id].\n"
@@ -195,7 +195,7 @@
 
 	var/distance = get_dist(usr,src)
 	if(isghost(usr) || usr.stat == DEAD) // ghosts can see anything
-		distance = 1
+		distance = TRUE
 	if (src.stat)
 		msg += "<span class='warning'>[T.He] [T.is]n't responding to anything around [T.him] and seems to be asleep.</span>\n"
 		if((stat == DEAD || src.losebreath) && distance <= 3)
@@ -267,7 +267,7 @@
 					continue
 				else
 					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] a robot [temp.name]. It has[temp.get_wounds_desc()]!</span>\n"
-			else if(temp.wounds.len > 0 || temp.open)
+			else if(temp.wounds.len > FALSE || temp.open)
 				/*if(temp.is_stump() && temp.parent_organ && organs_by_name[temp.parent_organ])
 					var/obj/item/organ/external/parent = organs_by_name[temp.parent_organ]
 					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] [temp.get_wounds_desc()] on [T.his] [parent.name].</span><br>"
@@ -291,9 +291,9 @@
 	// ***********************************************************************************
 
 	/*
-	var/display_chest = 0
-	var/display_shoes = 0
-	var/display_gloves = 0
+	var/display_chest = FALSE
+	var/display_shoes = FALSE
+	var/display_gloves = FALSE
 
 	if(wound_flavor_text["head"] && (is_destroyed["head"] || (!skipmask && !(wear_mask && istype(wear_mask, /obj/item/clothing/mask/gas)))))
 		msg += wound_flavor_text["head"]
@@ -303,50 +303,50 @@
 	if(wound_flavor_text["upper body"] && !w_uniform && !skipjumpsuit) //No need.  A missing chest gibs you.
 		msg += wound_flavor_text["upper body"]
 	else if(is_bleeding["upper body"])
-		display_chest = 1
+		display_chest = TRUE
 
 	if(wound_flavor_text["left arm"] && (is_destroyed["left arm"] || (!w_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["left arm"]
 	else if(is_bleeding["left arm"])
-		display_chest = 1
+		display_chest = TRUE
 
 	if(wound_flavor_text["left hand"] && (is_destroyed["left hand"] || (!gloves && !skipgloves)))
 		msg += wound_flavor_text["left hand"]
 	else if(is_bleeding["left hand"])
-		display_gloves = 1
+		display_gloves = TRUE
 
 	if(wound_flavor_text["right arm"] && (is_destroyed["right arm"] || (!w_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["right arm"]
 	else if(is_bleeding["right arm"])
-		display_chest = 1
+		display_chest = TRUE
 
 	if(wound_flavor_text["right hand"] && (is_destroyed["right hand"] || (!gloves && !skipgloves)))
 		msg += wound_flavor_text["right hand"]
 	else if(is_bleeding["right hand"])
-		display_gloves = 1
+		display_gloves = TRUE
 
 	if(wound_flavor_text["lower body"] && (is_destroyed["lower body"] || (!w_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["lower body"]
 	else if(is_bleeding["lower body"])
-		display_chest = 1
+		display_chest = TRUE
 
 	if(wound_flavor_text["left leg"] && (is_destroyed["left leg"] || (!w_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["left leg"]
 	else if(is_bleeding["left leg"])
-		display_chest = 1
+		display_chest = TRUE
 
 	if(wound_flavor_text["left foot"]&& (is_destroyed["left foot"] || (!shoes && !skipshoes)))
 		msg += wound_flavor_text["left foot"]
 	else if(is_bleeding["left foot"])
-		display_shoes = 1
+		display_shoes = TRUE
 	if(wound_flavor_text["right leg"] && (is_destroyed["right leg"] || (!w_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["right leg"]
 	else if(is_bleeding["right leg"])
-		display_chest = 1
+		display_chest = TRUE
 	if(wound_flavor_text["right foot"]&& (is_destroyed["right foot"] || (!shoes  && !skipshoes)))
 		msg += wound_flavor_text["right foot"]
 	else if(is_bleeding["right foot"])
-		display_shoes = 1
+		display_shoes = TRUE
 */
 /*
 	if(display_chest)
@@ -369,13 +369,13 @@
 
 	var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in organs
 	if(O && O.get_teeth() < O.max_teeth)
-		msg += "<span class='warning'>[O.get_teeth() <= 0 ? "All" : "[O.max_teeth - O.get_teeth()]"] of [T.his] teeth are missing!</span>\n"
+		msg += "<span class='warning'>[O.get_teeth() <= FALSE ? "All" : "[O.max_teeth - O.get_teeth()]"] of [T.his] teeth are missing!</span>\n"
 
 	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
 
 	msg += "*---------*</span>"
 	if (pose)
-		if( findtext(pose,".",lentext(pose)) == 0 && findtext(pose,"!",lentext(pose)) == 0 && findtext(pose,"?",lentext(pose)) == 0 )
+		if( findtext(pose,".",lentext(pose)) == FALSE && findtext(pose,"!",lentext(pose)) == FALSE && findtext(pose,"?",lentext(pose)) == FALSE )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\n[T.He] [T.is] [pose]"
 
@@ -400,11 +400,11 @@
 				if (istype(original_job, /datum/job/german))
 					if (is_jew && !wear_mask)
 						msg += "<br><big>Mein gott, it's a jew!</big>"
-				if (istype(original_job, /datum/job/russian) || istype(original_job, /datum/job/partisan))
+				if (istype(original_job, /datum/job/soviet) || istype(original_job, /datum/job/partisan))
 					if (is_jew && !wear_mask)
 						msg += "<br><big>Oy blin, it's a jew!</big>"
 
-				if (original_job.base_type_flag() == H.original_job.base_type_flag() && (original_job.base_type_flag() == RUSSIAN || original_job.base_type_flag() == GERMAN))
+				if (original_job.base_type_flag() == H.original_job.base_type_flag() && (original_job.base_type_flag() == SOVIET || original_job.base_type_flag() == GERMAN))
 					if (isleader(src, H))
 						msg += "<br><b>[T.He] [T.is] your squad leader.</b>"
 					else if (isleader(H, src))
@@ -415,7 +415,7 @@
 		else if (isobserver(user))
 			msg += "<br><i>[T.He] [T.is] a [original_job.title].</i>"
 
-	for (var/v in 1 to embedded.len)
+	for (var/v in TRUE to embedded.len)
 		msg += "<a href='?src=\ref[user];remove_embedded=[v]'>Remove [embedded[v]]</a>"
 
 	user << msg

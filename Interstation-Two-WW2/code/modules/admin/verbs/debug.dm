@@ -4,11 +4,11 @@
 	if(!check_rights(R_DEBUG))	return
 
 	if(Debug2)
-		Debug2 = 0
+		Debug2 = FALSE
 		message_admins("[key_name(src)] toggled debugging off.")
 		log_admin("[key_name(src)] toggled debugging off.")
 	else
-		Debug2 = 1
+		Debug2 = TRUE
 		message_admins("[key_name(src)] toggled debugging on.")
 		log_admin("[key_name(src)] toggled debugging on.")
 
@@ -33,13 +33,13 @@
 	for(var/g in env.gas)
 		t += "\blue [g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa\n"
 
-	usr.show_message(t, 1)
+	usr.show_message(t, TRUE)
 
 
 /client/proc/cmd_admin_robotize(var/mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make Robot"
-	return 0
+	return FALSE
 
 /client/proc/cmd_admin_animalize(var/mob/M in mob_list)
 	set category = "Fun"
@@ -75,7 +75,7 @@
 			M:slimeize()
 
 		log_admin("[key_name(usr)] made [key_name(M)] into a slime.")
-		message_admins("\blue [key_name_admin(usr)] made [key_name(M)] into a slime.", 1)
+		message_admins("\blue [key_name_admin(usr)] made [key_name(M)] into a slime.", TRUE)
 	else
 		alert("Invalid mob")
 
@@ -182,7 +182,7 @@
 			if(istype(O, hsbitem))
 				qdel(O)
 		log_admin("[key_name(src)] has deleted all instances of [hsbitem].")
-		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
+		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", FALSE)
 
 
 /client/proc/cmd_debug_make_powernets()
@@ -190,7 +190,7 @@
 	set name = "Make Powernets"
 	makepowernets()
 	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
-	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", 0)
+	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", FALSE)
 /*
 /client/proc/cmd_debug_tog_aliens()
 	set category = "Server"
@@ -198,7 +198,7 @@
 
 	config.aliens_allowed = !config.aliens_allowed
 	log_admin("[key_name(src)] has turned aliens [config.aliens_allowed ? "on" : "off"].")
-	message_admins("[key_name_admin(src)] has turned aliens [config.aliens_allowed ? "on" : "off"].", 0)
+	message_admins("[key_name_admin(src)] has turned aliens [config.aliens_allowed ? "on" : "off"].", FALSE)
 */
 /client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
 	set category = "Admin"
@@ -212,7 +212,7 @@
 		else
 			var/mob/observer/ghost/ghost = new/mob/observer/ghost(M,1)
 			ghost.ckey = M.ckey
-	message_admins("\blue [key_name_admin(usr)] assumed direct control of [M].", 1)
+	message_admins("\blue [key_name_admin(usr)] assumed direct control of [M].", TRUE)
 	log_admin("[key_name(usr)] assumed direct control of [M].")
 	var/mob/adminmob = src.mob
 	M.ckey = src.ckey
@@ -463,7 +463,7 @@
 	M.regenerate_icons()
 
 	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
-	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode]..", 1)
+	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode]..", TRUE)
 	return
 
 /client/proc/check_positions()
@@ -543,7 +543,7 @@
 			continue
 		qdel(B)
 	log_admin("[key_name(usr)] has removed all empty bullet casings.")
-	message_admins("<span class='notice'>[key_name_admin(usr)] has removed all empty bullet casings.</span>", 1)
+	message_admins("<span class='notice'>[key_name_admin(usr)] has removed all empty bullet casings.</span>", TRUE)
 
 /client/proc/removeHalfEmptyCases()
 	set category = "Debug"
@@ -551,7 +551,7 @@
 	set desc = "Removes half of the empty bullet casings from the map"
 
 	var/limit = bullet_casings.len/2
-	var/counter = 0
+	var/counter = FALSE
 	for(var/A in bullet_casings)
 		var/obj/item/ammo_casing/B = A
 		if(B.BB || counter > limit)
@@ -559,7 +559,7 @@
 		counter ++
 		qdel(B)
 	log_admin("[key_name(usr)] has removed half of all empty bullet casings.")
-	message_admins("<span class='notice'>[key_name_admin(usr)] has removed half of all empty bullet casings.</span>", 1)
+	message_admins("<span class='notice'>[key_name_admin(usr)] has removed half of all empty bullet casings.</span>", TRUE)
 
 /client/proc/removeAllBlood()
 	set category = "Debug"
@@ -571,4 +571,4 @@
 			qdel(B)
 
 	log_admin("[key_name(usr)] has removed all blood.")
-	message_admins("<span class='notice'>[key_name_admin(usr)] has removed all blood.</span>", 1)
+	message_admins("<span class='notice'>[key_name_admin(usr)] has removed all blood.</span>", TRUE)

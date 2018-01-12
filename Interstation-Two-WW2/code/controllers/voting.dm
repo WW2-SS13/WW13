@@ -14,7 +14,7 @@ datum/controller/vote
 	var/list/voting = list()
 	var/list/current_votes = list()
 	var/list/additional_text = list()
-	var/auto_muted = 0
+	var/auto_muted = FALSE
 
 	New()
 		if(vote != src)
@@ -50,7 +50,7 @@ datum/controller/vote
 
 	proc/autogamemode()
 		return//I hate autogamemode vote.
-		//initiate_vote("gamemode","the server", 1)
+		//initiate_vote("gamemode","the server", TRUE)
 		//log_debug("The server has called a gamemode vote")
 
 	proc/reset()
@@ -102,7 +102,7 @@ datum/controller/vote
 		var/text
 		if(winners.len > 0)
 			if(winners.len > 1)
-				if(mode != "gamemode" || ticker.hide_mode == 0) // Here we are making sure we don't announce potential game modes
+				if(mode != "gamemode" || ticker.hide_mode == FALSE) // Here we are making sure we don't announce potential game modes
 					text = "<b>Vote Tied Between:</b>\n"
 					for(var/option in winners)
 						text += "\t[option]\n"
@@ -111,7 +111,7 @@ datum/controller/vote
 			for(var/key in current_votes)
 				if(choices[current_votes[key]] == .)
 					round_voters += key // Keep track of who voted for the winning round.
-			if((mode == "gamemode" && . == "Extended") || ticker.hide_mode == 0) // Announce Extended gamemode, but not other gamemodes
+			if((mode == "gamemode" && . == "Extended") || ticker.hide_mode == FALSE) // Announce Extended gamemode, but not other gamemodes
 				text += "<b>Vote Result: [.]</b>"
 			else
 				if(mode != "gamemode")
@@ -122,35 +122,35 @@ datum/controller/vote
 		else
 			text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 			if(mode == "add_antagonist")
-				antag_add_failed = 1
+				antag_add_failed = TRUE
 		log_vote(text)
 		world << "<font color='purple'>[text]</font>"
 		return .
 
 	proc/result()
 		. = announce_result()
-		var/restart = 0
+		var/restart = FALSE
 		if(.)
 			switch(mode)
 				if("restart")
 					if(. == "Restart Round")
-						restart = 1
+						restart = TRUE
 				if("gamemode")
 					if(master_mode != .)
 						world.save_mode(.)
 						if(ticker && ticker.mode)
-							restart = 1
+							restart = TRUE
 						else
 							master_mode = .
 				if("add_antagonist")
 					if(isnull(.) || . == "None")
-						antag_add_failed = 1
+						antag_add_failed = TRUE
 					else
 						additional_antag_types |= antag_names_to_ids[.]
 
 		if(mode == "gamemode") //fire this even if the vote fails.
 			if(!round_progressing)
-				round_progressing = 1
+				round_progressing = TRUE
 				world << "<font color='red'><b>The round will start soon.</b></font>"
 
 		if(restart)
@@ -164,22 +164,22 @@ datum/controller/vote
 	proc/submit_vote(var/ckey, var/vote)
 		if(mode)
 			if(config.vote_no_dead && usr.stat == DEAD && !usr.client.holder)
-				return 0
-			if(vote && vote >= 1 && vote <= choices.len)
+				return FALSE
+			if(vote && vote >= TRUE && vote <= choices.len)
 				if(current_votes[ckey])
 					choices[choices[current_votes[ckey]]]--
 				voted += usr.ckey
 				choices[choices[vote]]++	//check this
 				current_votes[ckey] = vote
 				return vote
-		return 0
+		return FALSE
 
-	proc/initiate_vote(var/vote_type, var/initiator_key, var/automatic = 0)
+	proc/initiate_vote(var/vote_type, var/initiator_key, var/automatic = FALSE)
 		if(!mode)
 			if(started_time != null && !(check_rights(R_ADMIN) || automatic))
 				var/next_allowed_time = (started_time + config.vote_delay)
 				if(next_allowed_time > world.time)
-					return 0
+					return FALSE
 
 			reset()
 			switch(vote_type)
@@ -187,7 +187,7 @@ datum/controller/vote
 					choices.Add("Restart Round","Continue Playing")
 				if("gamemode")
 					if(ticker.current_state >= 2)
-						return 0
+						return FALSE
 					choices.Add(config.votable_modes)
 					for (var/F in choices)
 						var/datum/game_mode/M = gamemode_cache[F]
@@ -198,7 +198,7 @@ datum/controller/vote
 					gamemode_names["secret"] = "Secret"
 				if("add_antagonist")
 					if(!config.allow_extra_antags || ticker.current_state >= 2)
-						return 0
+						return FALSE
 					for(var/antag_type in all_antag_types)
 						var/datum/antagonist/antag = all_antag_types[antag_type]
 						if(!(antag.id in additional_antag_types) && antag.is_votable())
@@ -206,13 +206,13 @@ datum/controller/vote
 					choices.Add("None")
 				if("custom")
 					cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
-					if(!question)	return 0
+					if(!question)	return FALSE
 					for(var/i=1,i<=10,i++)
 						var/option = cp1251_to_utf8(capitalize(rhtml_encode(input(usr,"Please enter an option or hit cancel to finish") as text|null)))
 						if(!option || mode || !usr.client)	break
 						choices.Add(option)
 				else
-					return 0
+					return FALSE
 			mode = vote_type
 			initiator = initiator_key
 			started_time = world.time
@@ -224,25 +224,25 @@ datum/controller/vote
 			world << "<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>"
 			switch(vote_type)
 				if("gamemode")
-					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
+					world << sound('sound/ambience/alarm4.ogg', repeat = FALSE, wait = FALSE, volume = 50, channel = 3)
 				if("custom")
-					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
+					world << sound('sound/ambience/alarm4.ogg', repeat = FALSE, wait = FALSE, volume = 50, channel = 3)
 			if(mode == "gamemode" && round_progressing)
-				round_progressing = 0
+				round_progressing = FALSE
 				world << "<font color='red'><b>Round start has been delayed.</b></font>"
 
 			time_remaining = round(config.vote_period/10)
-			return 1
-		return 0
+			return TRUE
+		return FALSE
 
 	proc/interface(var/client/C)
 		if(!C)	return
-		var/admin = 0
-		var/trialmin = 0
+		var/admin = FALSE
+		var/trialmin = FALSE
 		if(C.holder)
 			if(C.holder.rights & R_ADMIN)
-				admin = 1
-				trialmin = 1 // don't know why we use both of these it's really weird, but I'm 2 lasy to refactor this all to use just admin.
+				admin = TRUE
+				trialmin = TRUE // don't know why we use both of these it's really weird, but I'm 2 lasy to refactor this all to use just admin.
 		voting |= C
 
 		. = "<html><head><title>Voting Panel</title></head><body>"
@@ -253,7 +253,7 @@ datum/controller/vote
 			. += "<table width = '100%'><tr><td align = 'center'><b>Choices</b></td><td align = 'center'><b>Votes</b></td>"
 			if(capitalize(mode) == "Gamemode") .+= "<td align = 'center'><b>Minimum Players</b></td></tr>"
 
-			for(var/i = 1, i <= choices.len, i++)
+			for(var/i = TRUE, i <= choices.len, i++)
 				var/votes = choices[choices[i]]
 				if(!votes)	votes = 0
 				. += "<tr>"
@@ -337,7 +337,7 @@ datum/controller/vote
 					initiate_vote("custom",usr.key)
 			else
 				var/t = round(text2num(href_list["vote"]))
-				if(t) // It starts from 1, so there's no problem
+				if(t) // It starts from TRUE, so there's no problem
 					submit_vote(usr.ckey, t)
 		usr.vote()
 

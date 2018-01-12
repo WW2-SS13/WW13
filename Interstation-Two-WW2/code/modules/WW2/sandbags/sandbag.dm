@@ -1,13 +1,13 @@
 // this now inherits from window as its an easy way to give it the same
 // multidirectional collision behavior
 
-/mob/living/carbon/human/var/crouching = 0
+/mob/living/carbon/human/var/crouching = FALSE
 
 /obj/structure/window/sandbag
 	name = "sandbag"
 	icon_state = "sandbag"
 	layer = MOB_LAYER + 0.01 //just above mobs
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/window/sandbag/attack_hand(var/mob/user as mob)
 	if (locate(src) in get_step(user, user.dir))
@@ -24,11 +24,11 @@
 				     * place
 				*/
 				if (!istype(src, /obj/structure/window/sandbag/incomplete))
-					for (var/v in 1 to rand(4,6))
+					for (var/v in TRUE to rand(4,6))
 						new /obj/item/weapon/sandbag(turf)
 				else
 					var/obj/structure/window/sandbag/incomplete/I = src
-					for (var/v in 1 to (1 + pick(I.progress-1, I.progress)))
+					for (var/v in TRUE to (1 + pick(I.progress-1, I.progress)))
 						new /obj/item/weapon/sandbag(turf)
 				qdel(src)
 /*
@@ -44,11 +44,11 @@
 		if (locate(src) in get_step(H, H.dir) || locate(src) in get_step(get_step(H, H.dir), H.dir))
 			// shitcode inbound - Kachnov
 			if (H.crouching)
-				H.pixel_y -= 16
+				H.pixel_y -= TRUE6
 				H.layer = MOB_LAYER - 0.06
 				H << "<span class = 'warning'>You squat behind the sandbag wall.</span>"
 			else
-				H.pixel_y += 16
+				H.pixel_y += TRUE6
 				H.layer = initial(H.layer)
 				H << "<span class = 'warning'>You stop squatting behind the sandbag wall.</span>"
 	else
@@ -82,22 +82,22 @@
 	switch (dir)
 		if (NORTH)
 			layer = MOB_LAYER - 0.01
-			pixel_y = 0
+			pixel_y = FALSE
 		if (SOUTH)
 			layer = MOB_LAYER + 0.01
-			pixel_y = 0
+			pixel_y = FALSE
 		if (EAST)
 			layer = MOB_LAYER - 0.05
-			pixel_x = 0
+			pixel_x = FALSE
 		if (WEST)
 			layer = MOB_LAYER - 0.05
-			pixel_x = 0
+			pixel_x = FALSE
 
 //incomplete sandbag structures
 /obj/structure/window/sandbag/incomplete
 	name = "incomplete sandbag"
 	icon_state = "sandbag_33%"
-	var/progress = 0
+	var/progress = FALSE
 	var/maxProgress = 5
 
 
@@ -108,7 +108,7 @@
 	user.dir = get_dir(user, src)
 	if (istype(O, /obj/item/weapon/sandbag))
 		var/obj/item/weapon/sandbag/sandbag = O
-		progress += (sandbag.sand_amount + 1)
+		progress += (sandbag.sand_amount + TRUE)
 		if (progress >= maxProgress/2)
 			icon_state = "sandbag_66%"
 			if (progress >= maxProgress)
@@ -126,26 +126,26 @@
 // sandbag window overrides
 
 /obj/structure/window/sandbag/attackby(obj/O as obj, mob/user as mob)
-	return 0
+	return FALSE
 
 /obj/structure/window/sandbag/examine(mob/user)
 	user << "That's a sandbag."
-	return 1
+	return TRUE
 
-/obj/structure/window/sandbag/take_damage(var/damage = 0, var/sound_effect = 1)
-	return 0
+/obj/structure/window/sandbag/take_damage(var/damage = FALSE, var/sound_effect = TRUE)
+	return FALSE
 
 /obj/structure/window/sandbag/apply_silicate(var/amount)
-	return 0
+	return FALSE
 
 /obj/structure/window/sandbag/updateSilicate()
-	return 0
+	return FALSE
 
-/obj/structure/window/sandbag/shatter(var/display_message = 1)
-	return 0
+/obj/structure/window/sandbag/shatter(var/display_message = TRUE)
+	return FALSE
 
 /obj/structure/window/sandbag/bullet_act(var/obj/item/projectile/Proj)
-	return 0
+	return FALSE
 
 /obj/structure/window/sandbag/ex_act(severity)
 	switch(severity)
@@ -160,28 +160,28 @@
 				qdel(src)
 
 /obj/structure/window/sandbag/is_full_window()
-	return 0
+	return FALSE
 
 /obj/structure/window/sandbag/proc/is_beyond(var/atom/a)
 	if (dir == EAST && x > a.x)
-		return 1
+		return TRUE
 	if (dir == WEST && x < a.x)
-		return 1
+		return TRUE
 	if (dir == NORTH && y > a.y)
-		return 1
+		return TRUE
 	if (dir == SOUTH && y < a.y)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 
 /obj/structure/window/hitby(AM as mob|obj)
-	return 0 // don't move
+	return FALSE // don't move
 
 /obj/structure/window/sandbag/attack_tk(mob/user as mob)
-	return 0
+	return FALSE
 
 /obj/structure/window/sandbag/attack_generic(var/mob/user, var/damage)
-	return 0
+	return FALSE
 
 /obj/structure/window/sandbag/rotate()
 	return
@@ -191,7 +191,7 @@
 	return
 
 /obj/structure/window/sandbag/is_fulltile()
-	return 0
+	return FALSE
 
 /obj/structure/window/sandbag/update_verbs()
 	verbs -= /obj/structure/window/proc/rotate
@@ -208,5 +208,5 @@
 	name = "sandbag"
 	icon_state = "sandbag"
 	icon = 'icons/obj/items.dmi'
-	w_class = 1
-	var/sand_amount = 0
+	w_class = TRUE
+	var/sand_amount = FALSE

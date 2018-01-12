@@ -7,10 +7,10 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light1"
 	anchored = 1.0
-	use_power = 1
+	use_power = TRUE
 	idle_power_usage = 20
 	power_channel = LIGHT
-	var/on = 1
+	var/on = TRUE
 	var/area/area = null
 	var/otherarea = null
 
@@ -41,7 +41,7 @@
 		layer = LIGHTING_LAYER+0.1
 
 /obj/machinery/light_switch/examine(mob/user)
-	if(..(user, 1))
+	if(..(user, TRUE))
 		user << "A light switch. It is [on? "on" : "off"]."
 
 /obj/machinery/light_switch/attack_hand(mob/user)
@@ -50,7 +50,7 @@
 
 	area.lightswitch = on
 	area.updateicon()
-	playsound(src, 'sound/machines/button.ogg', 100, 1, 0)
+	playsound(src, 'sound/machines/button.ogg', 100, TRUE, FALSE)
 
 	for(var/obj/machinery/light_switch/L in area)
 		L.on = on

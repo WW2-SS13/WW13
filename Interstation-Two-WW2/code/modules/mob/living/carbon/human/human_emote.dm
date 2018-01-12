@@ -3,16 +3,16 @@
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 	var/param = null
 
-	if (findtext(act, "-", 1, null))
-		var/t1 = findtext(act, "-", 1, null)
-		param = copytext(act, t1 + 1, length(act) + 1)
-		act = copytext(act, 1, t1)
+	if (findtext(act, "-", TRUE, null))
+		var/t1 = findtext(act, "-", TRUE, null)
+		param = copytext(act, t1 + TRUE, length(act) + TRUE)
+		act = copytext(act, TRUE, t1)
 
 	if(findtext(act,"s",-1) && !findtext(act,"_",-2))//Removes ending s's unless they are prefixed with a '_'
 		act = copytext(act,1,length(act))
 
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)
-	//var/m_type = 1
+	//var/m_type = TRUE
 
 	for (var/obj/item/weapon/implant/I in src)
 		if (I.implanted)
@@ -25,15 +25,15 @@
 		if ("airguitar")
 			if (!src.restrained())
 				message = "is strumming the air and headbanging like a safari chimp."
-				m_type = 1
+				m_type = TRUE
 
 		if ("blink")
 			message = "blinks."
-			m_type = 1
+			m_type = TRUE
 
 		if ("blink_r")
 			message = "blinks rapidly."
-			m_type = 1
+			m_type = TRUE
 
 		if ("bow")
 			if (!src.buckled)
@@ -50,7 +50,7 @@
 					message = "bows to [param]."
 				else
 					message = "bows."
-			m_type = 1
+			m_type = TRUE
 
 		if ("custom")
 			var/input = sanitize(input("Choose an emote to display.") as text|null)
@@ -58,7 +58,7 @@
 				return
 			var/input2 = input("Is this a visible or hearable emote?") in list("Visible","Hearable")
 			if (input2 == "Visible")
-				m_type = 1
+				m_type = TRUE
 			else if (input2 == "Hearable")
 				if (src.miming)
 					return
@@ -70,7 +70,7 @@
 
 		if ("me")
 
-			//if(silent && silent > 0 && findtext(message,"\"",1, null) > 0)
+			//if(silent && silent > FALSE && findtext(message,"\"",1, null) > FALSE)
 			//	return //This check does not work and I have no idea why, I'm leaving it in for reference.
 
 			if (src.client)
@@ -100,12 +100,12 @@
 					message = "salutes to [param]."
 				else
 					message = "salutes."
-			m_type = 1
+			m_type = TRUE
 
 		if ("choke")
 			if(miming)
 				message = "clutches [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] throat desperately!"
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "chokes!"
@@ -119,33 +119,33 @@
 				message = "claps."
 				m_type = 2
 				if(miming)
-					m_type = 1
+					m_type = TRUE
 		if ("flap")
 			if (!src.restrained())
 				message = "flaps [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] wings."
 				m_type = 2
 				if(miming)
-					m_type = 1
+					m_type = TRUE
 
 		if ("aflap")
 			if (!src.restrained())
 				message = "flaps [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] wings ANGRILY!"
 				m_type = 2
 				if(miming)
-					m_type = 1
+					m_type = TRUE
 
 		if ("drool")
 			message = "drools."
-			m_type = 1
+			m_type = TRUE
 
 		if ("eyebrow")
 			message = "raises an eyebrow."
-			m_type = 1
+			m_type = TRUE
 
 		if ("chuckle")
 			if(miming)
 				message = "appears to chuckle."
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "chuckles."
@@ -156,23 +156,23 @@
 
 		if ("twitch")
 			message = "twitches violently."
-			m_type = 1
+			m_type = TRUE
 
 		if ("twitch_s")
 			message = "twitches."
-			m_type = 1
+			m_type = TRUE
 
 		if ("faint")
 			message = "faints."
 			if(src.sleeping)
 				return //Can't faint while asleep
 			src.sleeping += 10 //Short-short nap
-			m_type = 1
+			m_type = TRUE
 
 		if ("cough")
 			if(miming)
 				message = "appears to cough!"
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "coughs!"
@@ -183,24 +183,24 @@
 
 		if ("frown")
 			message = "frowns."
-			m_type = 1
+			m_type = TRUE
 
 		if ("nod")
 			message = "nods."
-			m_type = 1
+			m_type = TRUE
 
 		if ("blush")
 			message = "blushes."
-			m_type = 1
+			m_type = TRUE
 
 		if ("wave")
 			message = "waves."
-			m_type = 1
+			m_type = TRUE
 
 		if ("gasp")
 			if(miming)
 				message = "appears to be gasping!"
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "gasps!"
@@ -212,7 +212,7 @@
 		if ("giggle")
 			if(miming)
 				message = "giggles silently!"
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "giggles."
@@ -266,16 +266,16 @@
 				message = "looks at [param]."
 			else
 				message = "looks."
-			m_type = 1
+			m_type = TRUE
 
 		if ("grin")
 			message = "grins."
-			m_type = 1
+			m_type = TRUE
 
 		if ("cry")
 			if(miming)
 				message = "cries."
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "cries."
@@ -287,7 +287,7 @@
 		if ("sigh")
 			if(miming)
 				message = "sighs."
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "sighs."
@@ -299,7 +299,7 @@
 		if ("laugh")
 			if(miming)
 				message = "acts out a laugh."
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "laughs."
@@ -312,12 +312,12 @@
 			message = "mumbles!"
 			m_type = 2
 			if(miming)
-				m_type = 1
+				m_type = TRUE
 
 		if ("grumble")
 			if(miming)
 				message = "grumbles!"
-				m_type = 1
+				m_type = TRUE
 			if (!muzzled)
 				message = "grumbles!"
 				m_type = 2
@@ -328,7 +328,7 @@
 		if ("groan")
 			if(miming)
 				message = "appears to groan!"
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "groans!"
@@ -340,7 +340,7 @@
 		if ("moan")
 			if(miming)
 				message = "appears to moan!"
-				m_type = 1
+				m_type = TRUE
 			else
 				message = "moans!"
 				m_type = 2
@@ -354,7 +354,7 @@
 			else
 				if(miming)
 					message = "takes a drag from a cigarette and blows \"[M]\" out in smoke."
-					m_type = 1
+					m_type = TRUE
 				else
 					message = "says, \"[M], please. He had a family.\" [src.name] takes a drag from a cigarette and blows his name out in smoke."
 					m_type = 2
@@ -376,20 +376,20 @@
 				if (M)
 					message = "points to [M]."
 				else
-			m_type = 1
+			m_type = TRUE
 
 		if ("raise")
 			if (!src.restrained())
 				message = "raises a hand."
-			m_type = 1
+			m_type = TRUE
 
 		if("shake")
 			message = "shakes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] head."
-			m_type = 1
+			m_type = TRUE
 
 		if ("shrug")
 			message = "shrugs."
-			m_type = 1
+			m_type = TRUE
 
 		if ("signal")
 			if (!src.restrained())
@@ -399,30 +399,30 @@
 						message = "raises [t1] finger\s."
 					else if (t1 <= 10 && (!src.r_hand && !src.l_hand))
 						message = "raises [t1] finger\s."
-			m_type = 1
+			m_type = TRUE
 
 		if ("smile")
 			message = "smiles."
-			m_type = 1
+			m_type = TRUE
 
 		if ("shiver")
 			message = "shivers."
 			m_type = 2
 			if(miming)
-				m_type = 1
+				m_type = TRUE
 
 		if ("pale")
 			message = "goes pale for a second."
-			m_type = 1
+			m_type = TRUE
 
 		if ("tremble")
 			message = "trembles in fear!"
-			m_type = 1
+			m_type = TRUE
 
 		if ("sneeze")
 			if (miming)
 				message = "sneezes."
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "sneezes."
@@ -435,12 +435,12 @@
 			message = "sniffs."
 			m_type = 2
 			if(miming)
-				m_type = 1
+				m_type = TRUE
 
 		if ("snore")
 			if (miming)
 				message = "sleeps soundly."
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "snores."
@@ -452,7 +452,7 @@
 		if ("whimper")
 			if (miming)
 				message = "appears hurt."
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "whimpers."
@@ -463,24 +463,24 @@
 
 		if ("wink")
 			message = "winks."
-			m_type = 1
+			m_type = TRUE
 
 		if ("yawn")
 			if (!muzzled)
 				message = "yawns."
 				m_type = 2
 				if(miming)
-					m_type = 1
+					m_type = TRUE
 
 		if ("collapse")
 			Paralyse(2)
 			message = "collapses!"
 			m_type = 2
 			if(miming)
-				m_type = 1
+				m_type = TRUE
 
 		if("hug")
-			m_type = 1
+			m_type = TRUE
 			if (!src.restrained())
 				var/M = null
 				if (param)
@@ -497,7 +497,7 @@
 					message = "hugs [get_visible_gender() == MALE ? "himself" : get_visible_gender() == FEMALE ? "herself" : "themselves"]."
 
 		if ("handshake")
-			m_type = 1
+			m_type = TRUE
 			if (!src.restrained() && !src.r_hand)
 				var/mob/M = null
 				if (param)
@@ -521,18 +521,18 @@
 			last_scream = world.time
 			if (miming)
 				message = "acts out a scream!"
-				m_type = 1
+				m_type = TRUE
 			else
 				if (!muzzled)
 					message = "screams!"
 					m_type = 2
-					scream_sound(src, 0)
+					scream_sound(src, FALSE)
 				else
 					message = "makes a very loud noise."
 					m_type = 2
 
 		if ("dab")
-			m_type = 1
+			m_type = TRUE
 			if (!restrained())
 				var/mob/M = locate() in get_step(src, dir)
 				if (M)

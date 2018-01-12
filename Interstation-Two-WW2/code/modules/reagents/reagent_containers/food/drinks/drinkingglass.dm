@@ -6,7 +6,7 @@
 	volume = 30
 	center_of_mass = list("x"=16, "y"=10)
 	var/glass_type = "highball"
-	var/salted = 0
+	var/salted = FALSE
 	var/umbrella = null
 	var/cocktail_food = null
 	var/image/fluid_image
@@ -23,16 +23,16 @@
 	src.overlays = null
 	if(umbrella)
 		var/umbrella_icon = icon('icons/obj/drinks.dmi', "[glass_type]-umbrella[umbrella]")
-		src.overlays += image("icon" = umbrella_icon, "layer" = FLOAT_LAYER - 1)
+		src.overlays += image("icon" = umbrella_icon, "layer" = FLOAT_LAYER - TRUE)
 	if(cocktail_food)
 		var/cocktail_food_icon = icon('icons/obj/drinks.dmi', "[glass_type]-[cocktail_food]")
-		src.overlays += image("icon" = cocktail_food_icon, "layer" = FLOAT_LAYER - 1)
+		src.overlays += image("icon" = cocktail_food_icon, "layer" = FLOAT_LAYER - TRUE)
 	if(salted)
 		var/salted_icon = icon('icons/obj/drinks.dmi', "[glass_type]-salted")
 		src.overlays += image("icon" = salted_icon, "layer" = FLOAT_LAYER)
-	if(src.reagents.total_volume == 0)
+	if(src.reagents.total_volume == FALSE)
 		return
-	if(src.reagents.total_volume > 0)
+	if(src.reagents.total_volume > FALSE)
 		if(!fluid_image)
 			fluid_image = image('icons/obj/drinks.dmi', "fluid-[glass_type]")
 		fluid_image.color = reagents.get_color()
@@ -64,7 +64,7 @@
 		else if(W.reagents.get_reagent_amount("sodiumchloride") >= 5)
 			user << "<span class='notice'>You salt the rim of [src.name].</span>"
 			W.reagents.remove_reagent("sodiumchloride", 5)
-			src.salted = 1
+			src.salted = TRUE
 			src.update_icon()
 			return
 		else

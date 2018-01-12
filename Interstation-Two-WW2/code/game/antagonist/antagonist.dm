@@ -34,7 +34,7 @@
 	// Spawn values (autotraitor and game mode)
 	var/hard_cap = 3                        // Autotraitor var. Won't spawn more than this many antags.
 	var/hard_cap_round = 5                  // As above but 'core' round antags ie. roundstart.
-	var/initial_spawn_req = 1               // Gamemode using this template won't start without this # candidates.
+	var/initial_spawn_req = TRUE               // Gamemode using this template won't start without this # candidates.
 	var/initial_spawn_target = 3            // Gamemode will attempt to spawn this many antags.
 	var/announced                           // Has an announcement been sent?
 	var/spawn_announcement                  // When the datum spawn proc is called, does it announce to the world? (ie. xenos)
@@ -49,14 +49,14 @@
 	var/bantype = "Syndicate"               // Ban to check when spawning this antag.
 	var/minimum_player_age = 7            	// Players need to be at least minimum_player_age days old before they are eligable for auto-spawning
 	var/suspicion_chance = 50               // Prob of being on the initial Command report
-	var/flags = 0                           // Various runtime options.
+	var/flags = FALSE                           // Various runtime options.
 
 	// Used for setting appearance.
 	var/list/valid_species =       list("Human")
 
 	// Runtime vars.
 	var/datum/mind/leader                   // Current leader, if any.
-	var/cur_max = 0                         // Autotraitor current effective maximum.
+	var/cur_max = FALSE                         // Autotraitor current effective maximum.
 	var/spawned_nuke                        // Has a bomb been spawned?
 	var/nuke_spawn_loc                      // If so, where should it be placed?
 	var/list/current_antagonists = list()   // All marked antagonists for this type.
@@ -89,7 +89,7 @@
 		if(faction_role_text) hud_icon_reference[faction_role_text] = antaghud_indicator
 
 /datum/antagonist/proc/tick()
-	return 1
+	return TRUE
 
 // Get the raw list of potential players.
 /datum/antagonist/proc/build_candidate_list(var/ghosts_only)
@@ -123,7 +123,7 @@
 
 /datum/antagonist/proc/attempt_auto_spawn()
 	if(!can_late_spawn())
-		return 0
+		return FALSE
 
 	update_current_antag_max()
 	var/active_antags = get_active_antag_count()
@@ -131,26 +131,26 @@
 
 	if(active_antags >= cur_max)
 		log_debug("Could not auto-spawn a [role_text], active antag limit reached.")
-		return 0
+		return FALSE
 
 	build_candidate_list(flags & (ANTAG_OVERRIDE_MOB|ANTAG_OVERRIDE_JOB))
 	if(!candidates.len)
 		log_debug("Could not auto-spawn a [role_text], no candidates found.")
-		return 0
+		return FALSE
 
 	attempt_spawn(1) //auto-spawn antags one at a time
 	if(!pending_antagonists.len)
 		log_debug("Could not auto-spawn a [role_text], none of the available candidates could be selected.")
-		return 0
+		return FALSE
 
 	var/datum/mind/player = pending_antagonists[1]
 	if(!add_antagonist(player,0,0,0,1,1))
 		log_debug("Could not auto-spawn a [role_text], failed to add antagonist.")
-		return 0
+		return FALSE
 
 	reset_antag_selection()
 
-	return 1
+	return TRUE
 
 //Selects players that will be spawned in the antagonist role from the potential candidates
 //Selected players are added to the pending_antagonists lists.
@@ -163,7 +163,7 @@
 
 	// Update our boundaries.
 	if(!candidates.len)
-		return 0
+		return FALSE
 
 	//Grab candidates randomly until we have enough.
 	while(candidates.len && pending_antagonists.len < spawn_target)
@@ -171,19 +171,19 @@
 		candidates -= player
 		draft_antagonist(player)
 
-	return 1
+	return TRUE
 
 /datum/antagonist/proc/draft_antagonist(var/datum/mind/player)
 	//Check if the player can join in this antag role, or if the player has already been given an antag role.
 	if(!can_become_antag(player))
 		log_debug("[player.key] was selected for [role_text] by lottery, but is not allowed to be that role.")
-		return 0
+		return FALSE
 	if(player.special_role)
 		log_debug("[player.key] was selected for [role_text] by lottery, but they already have a special role.")
-		return 0
+		return FALSE
 	if(!(flags & ANTAG_OVERRIDE_JOB) && (!player.current || istype(player.current, /mob/new_player)))
 		log_debug("[player.key] was selected for [role_text] by lottery, but they have not joined the game.")
-		return 0
+		return FALSE
 
 	pending_antagonists |= player
 	log_debug("[player.key] has been selected for [role_text] by lottery.")
@@ -195,7 +195,7 @@
 	//Ensure that a player cannot be drafted for multiple antag roles, taking up slots for antag roles that they will not fill.
 	player.special_role = role_text
 
-	return 1
+	return TRUE
 
 //Spawns all pending_antagonists. This is done separately from attempt_spawn in case the game mode setup fails.
 /datum/antagonist/proc/finalize_spawn()

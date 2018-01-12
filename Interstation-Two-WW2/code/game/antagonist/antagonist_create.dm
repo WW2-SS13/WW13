@@ -6,7 +6,7 @@
 	update_antag_mob(target, preserve_appearance)
 	if(!target.current)
 		remove_antagonist(target)
-		return 0
+		return FALSE
 	if(flags & ANTAG_CHOOSE_NAME)
 		spawn(1)
 			set_antag_name(target.current)
@@ -28,11 +28,11 @@
 	M.real_name = source.real_name
 	M.name = M.real_name
 	M.ckey = source.ckey
-	add_antagonist(M.mind, 1, 0, 1) // Equip them and move them to spawn.
+	add_antagonist(M.mind, TRUE, FALSE, TRUE) // Equip them and move them to spawn.
 	return M
 
-/datum/antagonist/proc/create_id(var/assignment, var/mob/living/carbon/human/player, var/equip = 1)
-	return 0
+/datum/antagonist/proc/create_id(var/assignment, var/mob/living/carbon/human/player, var/equip = TRUE)
+	return FALSE
 	/*
 	var/obj/item/weapon/card/id/W = new id_type(player)
 	if(!W) return
@@ -47,7 +47,7 @@
 	return null
 
 /datum/antagonist/proc/create_nuke(var/atom/paper_spawn_loc, var/datum/mind/code_owner)
-	return 0
+	return FALSE
 
 /datum/antagonist/proc/greet(var/datum/mind/player)
 
@@ -68,7 +68,7 @@
 		if (player.current.mind.assigned_role == "Clown")
 			player.current << "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself."
 			player.current.mutations.Remove(CLUMSY)
-	return 1
+	return TRUE
 
 /datum/antagonist/proc/set_antag_name(var/mob/living/player)
 	// Choose a name, if any.

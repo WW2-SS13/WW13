@@ -2,8 +2,8 @@
 	name = "paper"
 	icon_state = "paper_stack"
 	item_state = "paper"
-	var copied = 0
-	var iscopy = 0
+	var copied = FALSE
+	var iscopy = FALSE
 
 /obj/item/weapon/paper/carbon/update_icon()
 	if(iscopy)
@@ -29,7 +29,7 @@
 	set category = "Object"
 	set src in usr
 
-	if (copied == 0)
+	if (copied == FALSE)
 		var/obj/item/weapon/paper/carbon/c = src
 		var/copycontents = rhtml_decode(c.info)
 		var/obj/item/weapon/paper/carbon/copy = new /obj/item/weapon/paper/carbon (usr.loc)
@@ -42,8 +42,8 @@
 		copy.fields = c.fields
 		copy.updateinfolinks()
 		usr << "<span class='notice'>You tear off the carbon-copy!</span>"
-		c.copied = 1
-		copy.iscopy = 1
+		c.copied = TRUE
+		copy.iscopy = TRUE
 		copy.update_icon()
 		c.update_icon()
 	else

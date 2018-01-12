@@ -16,7 +16,7 @@ meteor_act
 		user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
 		if (do_after(user, 30, src))
 			user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
-			for (var/v in 1 to rand(5,7))
+			for (var/v in TRUE to rand(5,7))
 				var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
 				meat.name = "[name] meatsteak"
 			crush()
@@ -30,7 +30,7 @@ meteor_act
 	if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
 		say("GOD DAMN IT HURTS", src.languages.Find(GERMAN))
 
-	if (src.is_spy && istype(src.spy_faction, /datum/faction/russian))
+	if (src.is_spy && istype(src.spy_faction, /datum/faction/soviet))
 		say("GOD DAMN IT HURTS", src.languages.Find(RUSSIAN))
 
 	if (def_zone == "chest" && P.firer && (P.firer.dir == src.dir || P.firer.lying))
@@ -48,7 +48,7 @@ meteor_act
 	var/shield_check = check_shields(P.damage*5, P, null, def_zone, "the [P.name]")
 
 	if(shield_check)
-		if(shield_check < 0)
+		if(shield_check < FALSE)
 			return shield_check
 		else
 			P.on_hit(src, 2, def_zone)
@@ -96,30 +96,30 @@ meteor_act
 
 				drop_from_inventory(c_hand)
 				if (affected.status & ORGAN_ROBOT)
-					emote("me", 1, "drops what they were holding, their [affected.name] malfunctioning!")
+					emote("me", TRUE, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-					emote("me", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
+					emote("me", TRUE, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
 
 		else
 			if (agony_amount > 10)
 				if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
 					say("OH GOD THE PAIN", src.languages.Find(GERMAN))
 
-				if (src.is_spy && istype(src.spy_faction, /datum/faction/russian))
+				if (src.is_spy && istype(src.spy_faction, /datum/faction/soviet))
 					say("OH GOD THE PAIN", src.languages.Find(RUSSIAN))
 		else
 			if (agony_amount > 10)
 				if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
 					say("OH GOD THE PAIN", src.languages.Find(GERMAN))
 
-				if (src.is_spy && istype(src.spy_faction, /datum/faction/russian))
+				if (src.is_spy && istype(src.spy_faction, /datum/faction/soviet))
 					say("OH GOD THE PAIN", src.languages.Find(RUSSIAN))
 	..(stun_amount, agony_amount, def_zone)
 
 /mob/living/carbon/human/getarmor(var/def_zone, var/type)
-	var/armorval = 0
-	var/total = 0
+	var/armorval = FALSE
+	var/total = FALSE
 
 	if(def_zone)
 		if(isorgan(def_zone))
@@ -137,7 +137,7 @@ meteor_act
 				var/weight = organ_rel_size[organ_name]
 				armorval += getarmor_organ(organ, type) * weight
 				total += weight
-	return (armorval/max(total, 1))
+	return (armorval/max(total, TRUE))
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(var/obj/item/organ/external/def_zone)
@@ -155,8 +155,8 @@ meteor_act
 
 //this proc returns the armour value for a particular external organ.
 /mob/living/carbon/human/proc/getarmor_organ(var/obj/item/organ/external/def_zone, var/type)
-	if(!type || !def_zone) return 0
-	var/protection = 0
+	if(!type || !def_zone) return FALSE
+	var/protection = FALSE
 	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
 	for(var/gear in protective_gear)
 		if(gear && istype(gear ,/obj/item/clothing))
@@ -173,8 +173,8 @@ meteor_act
 		if(bp && istype(bp ,/obj/item/clothing))
 			var/obj/item/clothing/C = bp
 			if(C.body_parts_covered & HEAD)
-				return 1
-	return 0
+				return TRUE
+	return FALSE
 
 //Used to check if they can be fed food/drinks/pills
 /mob/living/carbon/human/proc/check_mouth_coverage()
@@ -184,12 +184,12 @@ meteor_act
 			return gear
 	return null
 
-/mob/living/carbon/human/proc/check_shields(var/damage = 0, var/atom/damage_source = null, var/mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/mob/living/carbon/human/proc/check_shields(var/damage = FALSE, var/atom/damage_source = null, var/mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	for(var/obj/item/shield in list(l_hand, r_hand, wear_suit))
 		if(!shield) continue
 		. = shield.handle_shield(src, damage, damage_source, attacker, def_zone, attack_text)
 		if(.) return
-	return 0
+	return FALSE
 
 /mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	if(check_attack_throat(I, user))
@@ -230,17 +230,17 @@ meteor_act
 /mob/living/carbon/human/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
-		return 0
+		return FALSE
 
 	// Handle striking to cripple.
 	if(user.a_intent == I_DISARM)
 		effective_force /= 2 //half the effective force
 		if(!..(I, effective_force, blocked, hit_zone))
-			return 0
+			return FALSE
 
 		attack_joint(affecting, I, blocked) //but can dislocate joints
 	else if(!..())
-		return 0
+		return FALSE
 
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
@@ -257,7 +257,7 @@ meteor_act
 					visible_message("<span class='danger'>[src] has been knocked down!</span>")
 					apply_effect(6, WEAKEN, blocked)
 	var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in src.organs
-	if(prob(I.force * (hit_zone == "mouth" ? 5 : 0)) && O) //Will the teeth fly out?
+	if(prob(I.force * (hit_zone == "mouth" ? 5 : FALSE)) && O) //Will the teeth fly out?
 		if(O.knock_out_teeth(get_dir(user, src), round(rand(28, 38) * ((I.force*1.5)/100))))
 			src.visible_message("<span class='danger'>Some of [src]'s teeth sail off in an arc!</span>", \
 								"<span class='userdanger'>Some of [src]'s teeth sail off in an arc!</span>")
@@ -271,7 +271,7 @@ meteor_act
 				location.add_blood(src)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
-				if(get_dist(H, src) <= 1) //people with TK won't get smeared with blood
+				if(get_dist(H, src) <= TRUE) //people with TK won't get smeared with blood
 					H.bloody_body(src)
 					H.bloody_hands(src)
 
@@ -289,16 +289,16 @@ meteor_act
 				if("chest")
 					bloody_body(src)
 
-	return 1
+	return TRUE
 
 /mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W, var/blocked)
 	if(!organ || (organ.dislocated == 2) || (organ.dislocated == -1) || blocked >= 2)
-		return 0
+		return FALSE
 	if(prob(W.force / (blocked+1)))
 		visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
 		organ.dislocate(1)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
@@ -327,7 +327,7 @@ meteor_act
 		var/miss_chance = 15
 		if (O.throw_source)
 			var/distance = get_dist(O.throw_source, loc)
-			miss_chance = max(15*(distance-2), 0)
+			miss_chance = max(15*(distance-2), FALSE)
 		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1)
 
 		if(zone && O.thrower != src)
@@ -341,7 +341,7 @@ meteor_act
 			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
 			return
 
-		O.throwing = 0		//it hit, so stop moving
+		O.throwing = FALSE		//it hit, so stop moving
 
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
@@ -400,7 +400,7 @@ meteor_act
 				if(T)
 					src.loc = T
 					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
-					src.anchored = 1
+					src.anchored = TRUE
 					src.pinned += O
 
 /mob/living/carbon/human/embed(var/obj/O, var/def_zone=null)
@@ -433,7 +433,7 @@ meteor_act
 	return
 
 /mob/living/carbon/human/reagent_permeability()
-	var/perm = 0
+	var/perm = FALSE
 
 	var/list/perm_by_part = list(
 		"head" = THERMAL_PROTECTION_HEAD,
@@ -446,7 +446,7 @@ meteor_act
 		)
 
 	for(var/obj/item/clothing/C in src.get_equipped_items())
-		if(C.permeability_coefficient == 1 || !C.body_parts_covered)
+		if(C.permeability_coefficient == TRUE || !C.body_parts_covered)
 			continue
 		if(C.body_parts_covered & HEAD)
 			perm_by_part["head"] *= C.permeability_coefficient

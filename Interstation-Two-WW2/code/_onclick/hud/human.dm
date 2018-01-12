@@ -40,7 +40,7 @@
 
 		if(slot_data["toggle"])
 			src.other += inv_box
-			has_hidden_gear = 1
+			has_hidden_gear = TRUE
 		else
 			src.adding += inv_box
 
@@ -75,7 +75,7 @@
 		var/icon/ico
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+		ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
 		using = new /obj/screen( src )
 		using.name = I_HELP
@@ -87,7 +87,7 @@
 		help_intent = using
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+		ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
 		using = new /obj/screen( src )
 		using.name = I_DISARM
@@ -99,7 +99,7 @@
 		disarm_intent = using
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+		ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
 		using = new /obj/screen( src )
 		using.name = I_GRAB
@@ -111,7 +111,7 @@
 		grab_intent = using
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+		ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
 		using = new /obj/screen( src )
 		using.name = I_HURT
@@ -162,7 +162,7 @@
 		inv_box.name = "r_hand"
 		inv_box.icon = ui_style
 		inv_box.icon_state = "r_hand_inactive"
-		if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
+		if(mymob && !mymob.hand)	//This being FALSE or null means the right hand is in use
 			inv_box.icon_state = "r_hand_active"
 		inv_box.screen_loc = ui_rhand
 		inv_box.slot_id = slot_r_hand
@@ -177,7 +177,7 @@
 		inv_box.name = "l_hand"
 		inv_box.icon = ui_style
 		inv_box.icon_state = "l_hand_inactive"
-		if(mymob && mymob.hand)	//This being 1 means the left hand is in use
+		if(mymob && mymob.hand)	//This being TRUE means the left hand is in use
 			inv_box.icon_state = "l_hand_active"
 		inv_box.screen_loc = ui_lhand
 		inv_box.slot_id = slot_l_hand
@@ -303,9 +303,9 @@
 	mymob.blind.icon_state = "blackimageoverlay"
 	mymob.blind.name = " "
 	mymob.blind.screen_loc = "1,1"
-	mymob.blind.mouse_opacity = 0
+	mymob.blind.mouse_opacity = FALSE
 	mymob.blind.layer = 18
-	mymob.blind.alpha = 0
+	mymob.blind.alpha = FALSE
 	hud_elements |= mymob.blind
 
 	mymob.damageoverlay = new /obj/screen()
@@ -313,7 +313,7 @@
 	mymob.damageoverlay.icon_state = "oxydamageoverlay0"
 	mymob.damageoverlay.name = "dmg"
 	mymob.damageoverlay.screen_loc = "1,1"
-	mymob.damageoverlay.mouse_opacity = 0
+	mymob.damageoverlay.mouse_opacity = FALSE
 	mymob.damageoverlay.layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	hud_elements |= mymob.damageoverlay
 
@@ -361,7 +361,7 @@
 
 	mymob.client.screen += hud_elements
 	mymob.client.screen += src.adding + src.hotkeybuttons
-	inventory_shown = 0;
+	inventory_shown = FALSE;
 
 	return*/
 
@@ -373,10 +373,10 @@
 
 /*	if(hud_used.hotkey_ui_hidden)
 		client.screen += hud_used.hotkeybuttons
-		hud_used.hotkey_ui_hidden = 0
+		hud_used.hotkey_ui_hidden = FALSE
 	else
 		client.screen -= hud_used.hotkeybuttons
-		hud_used.hotkey_ui_hidden = 1*/
+		hud_used.hotkey_ui_hidden = TRUE*/
 
 //Used for new human mobs created by cloning/goleming/etc.
 /mob/living/carbon/human/proc/set_cloned_appearance()

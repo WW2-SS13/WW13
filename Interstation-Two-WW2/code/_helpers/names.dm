@@ -108,9 +108,9 @@ var/syndicate_code_response//Code response for traitors.
 
 	for(words,words>0,words--)//Randomly picks from one of the choices below.
 
-		if(words==1&&(1 in safety)&&(2 in safety))//If there is only one word remaining and choice 1 or 2 have not been selected.
-			safety = list(pick(1,2))//Select choice 1 or 2.
-		else if(words==1&&maxwords==2)//Else if there is only one word remaining (and there were two originally), and 1 or 2 were chosen,
+		if(words==1&&(1 in safety)&&(2 in safety))//If there is only one word remaining and choice TRUE or 2 have not been selected.
+			safety = list(pick(1,2))//Select choice TRUE or 2.
+		else if(words==1&&maxwords==2)//Else if there is only one word remaining (and there were two originally), and TRUE or 2 were chosen,
 			safety = list(3)//Default to list 3
 
 		switch(pick(safety))//Chance based on the safety list.
@@ -125,7 +125,7 @@ var/syndicate_code_response//Code response for traitors.
 							code_phrase += pick(last_names)
 					if(2)
 						code_phrase += pick(joblist)//Returns a job.
-				safety -= 1
+				safety -= TRUE
 			if(2)
 				switch(rand(1,2))//Places or things.
 					if(1)

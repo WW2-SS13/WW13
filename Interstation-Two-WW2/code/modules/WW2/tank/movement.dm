@@ -18,7 +18,7 @@
 /obj/tank/proc/_Move(direct)
 	if (world.time - last_movement > movement_delay || last_movement == -1)
 
-		if (fuel <= 0)
+		if (fuel <= FALSE)
 			internal_tank_message("<span class = 'danger'><big>Out of fuel!</big></danger>")
 			return
 
@@ -62,17 +62,17 @@
 				icon = vertical_icon
 
 		if (!handle_passing_target_turf(target))
-			return 0
+			return FALSE
 
 		play_movement_sound()
 
 		for (var/obj/o in get_step(src, direct))
 			if (!handle_passing_obj(o))
-				return 0
+				return FALSE
 
 		for (var/mob/m in get_step(src, direct))
 			if (!handle_passing_mob(m))
-				return 0
+				return FALSE
 
 		loc = target
 		fuel -= pick(0.33,0.66,0.99)
@@ -126,42 +126,42 @@
 
 	for (var/turf/tt in turfs_in_the_way)
 		if (!handle_passing_turf(tt))
-			return 0
+			return FALSE
 		for (var/atom/movable/am in tt)
 			if (isobj(am))
 				if (!handle_passing_obj(am))
-					return 0
+					return FALSE
 			else if (ismob(am))
 				if (!handle_passing_mob(am))
-					return 0
-	return 1
+					return FALSE
+	return TRUE
 
 /obj/tank/proc/handle_passing_turf(var/turf/t)
 	if (!t.density)
-		return 1
+		return TRUE
 	if (!istype(t, /turf/wall))
-		return 1
+		return TRUE
 	if (istype(t,  /turf/wall/rockwall))
-		return 0
+		return FALSE
 	if (istype(t, /turf/wall))
 		var/turf/wall/wall = t
 		if (!wall.tank_destroyable)
-			return 0
+			return FALSE
 		var/wall_integrity = wall.material ? wall.material.integrity : 150
 		if (prob(min(95, (wall_integrity/5) + 40)))
 			tank_message("<span class = 'danger'>The tank smashes against [wall]!</span>")
 			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-			return 0
+			return FALSE
 		else // defenses [b]roke
 			tank_message("<span class = 'danger'>The tank smashes its way through [wall]!</span>")
 			qdel(wall)
-			return 1
-	return 1
+			return TRUE
+	return TRUE
 
 /obj/tank/proc/handle_passing_obj(var/obj/o)
 
 	if (o == src)
-		return 1
+		return TRUE
 
 	if (istype(o))
 
@@ -170,55 +170,55 @@
 			mine.trigger(src)
 			damage += x_percent_of_max_damage(rand(5,7))
 			update_damage_status()
-			return 0 // halt us too
+			return FALSE // halt us too
 
 		if (istype(o, /obj/item/weapon/grenade))
-			return 1 // pass over it
+			return TRUE // pass over it
 
 		if (istype(o, /obj/train_lever))
-			return 1 // pass over it
+			return TRUE // pass over it
 
 		if (istype(o, /obj/structure/window/sandbag))
 			if (prob(15))
 				tank_message("<span class = 'danger'>The tank plows through the sandbag wall!</span>")
 				qdel(o)
-				return 1
+				return TRUE
 			else
 				tank_message("<span class = 'danger'>The tank smashes against the sandbag wall!</span>")
 				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
-				return 0
+				return FALSE
 
 		if (istype(o, /obj/structure/girder))
 			if (prob(7))
 				tank_message("<span class = 'danger'>The tank plows through the wall girder!</span>")
 				qdel(o)
-				return 1
+				return TRUE
 			else
 				tank_message("<span class = 'danger'>The tank smashes against the wall girder!</span>")
 				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-				return 0
+				return FALSE
 
 		if (istype(o, /obj/structure/barricade))
 			var/obj/structure/barricade/B = o
 			if ((B.material && prob(max(3, 100 - (B.material.integrity/4) - 10))) || (!B.material && prob(80)))
 				tank_message("<span class = 'danger'>The tank plows through \the [B]!</span>")
 				qdel(o)
-				return 1
+				return TRUE
 			else
 				tank_message("<span class = 'danger'>The tank smashes against \the [B]!</span>")
 				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-				return 0
+				return FALSE
 
 		if (istype(o, /obj/structure/simple_door))
 			var/obj/structure/simple_door/S = o
 			if ((S.material && prob(max(5, 100 - (S.material.integrity/5) - 10))) || (!S.material && prob(80)))
 				tank_message("<span class = 'danger'>The tank plows through \the [S]!</span>")
 				qdel(o)
-				return 1
+				return TRUE
 			else
 				tank_message("<span class = 'danger'>The tank smashes against \the [S]!</span>")
 				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-				return 0
+				return FALSE
 
 		if (istype(o, /obj/train_pseudoturf))
 			if (o.density)
@@ -226,13 +226,13 @@
 				if (prob(min(wall_integrity/2, 98)))
 					tank_message("<span class = 'danger'>The tank smashes against [o]!</span>")
 					playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-					return 0
+					return FALSE
 				else
 					tank_message("<span class = 'danger'>The tank smashes its way through [o]!</span>")
 					qdel(o)
-					return 1
+					return TRUE
 			else // you can no longer drive tanks in to or on to trains.
-				return 0
+				return FALSE
 
 		else if (istype(o, /obj/tank))
 			tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
@@ -259,27 +259,27 @@
 			if (prob(other.critical_damage_chance()))
 				other.critical_damage()
 
-			return 0
+			return FALSE
 		else
 			if (!o.density && !istype(o, /obj/item))
-				return 1
-			if ((istype(o, /obj/item) && o.w_class == 1) || (istype(o, /obj/item) && o.anchored) || istype(o, /obj/item/ammo_casing) || istype(o, /obj/item/ammo_magazine) || istype(o, /obj/item/organ))
-				return 1
+				return TRUE
+			if ((istype(o, /obj/item) && o.w_class == TRUE) || (istype(o, /obj/item) && o.anchored) || istype(o, /obj/item/ammo_casing) || istype(o, /obj/item/ammo_magazine) || istype(o, /obj/item/organ))
+				return TRUE
 			else
 				tank_message("<span class = 'warning'>The tank crushes [o].</span>")
 				qdel(o)
-				return 1
+				return TRUE
 			if (istype(o, /obj/structure))
 				if (prob(40) || !o.density)
 					tank_message("<span class = 'danger'>The tank crushes [o]!</span>")
 					qdel(o)
-					return 1
+					return TRUE
 				else
 					tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
 					playsound(get_turf(src), 'sound/effects/clang.ogg', rand(60,70))
-					return 0
+					return FALSE
 
-	return 1
+	return TRUE
 
 /obj/tank/proc/handle_passing_mob(var/mob/living/m)
 
@@ -293,4 +293,4 @@
 			m.crush()
 			last_movement = world.time + 25
 
-	return 1
+	return TRUE

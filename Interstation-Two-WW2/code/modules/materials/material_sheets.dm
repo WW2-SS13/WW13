@@ -22,7 +22,7 @@
 	material = get_material_by_name("[default_type]")
 	if(!material)
 		qdel(src)
-		return 0
+		return FALSE
 
 	recipes = material.get_recipes()
 	stacktype = material.stack_type
@@ -37,7 +37,7 @@
 
 	matter = material.get_matter()
 	update_strings()
-	return 1
+	return TRUE
 
 /obj/item/stack/material/get_material()
 	return material
@@ -63,7 +63,7 @@
 /obj/item/stack/material/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
 	var/obj/item/stack/material/M = S
 	if(!istype(M) || material.name != M.material.name)
-		return 0
+		return FALSE
 	var/transfer = ..(S,tamount,1)
 	if(src) update_strings()
 	if(M) M.update_strings()
@@ -86,7 +86,7 @@
 	name = "iron"
 	icon_state = "sheet-silver"
 	default_type = "iron"
-	apply_colour = 1
+	apply_colour = TRUE
 
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
@@ -150,13 +150,13 @@
 	name = "tritium"
 	icon_state = "sheet-silver"
 	default_type = "tritium"
-	apply_colour = 1
+	apply_colour = TRUE
 
 /obj/item/stack/material/osmium
 	name = "osmium"
 	icon_state = "sheet-silver"
 	default_type = "osmium"
-	apply_colour = 1
+	apply_colour = TRUE
 
 /obj/item/stack/material/steel
 	name = DEFAULT_WALL_MATERIAL

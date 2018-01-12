@@ -1,6 +1,6 @@
 /obj/tank/var/mob/fire_back_seat = null
 /obj/tank/var/mob/drive_front_seat = null
-/obj/tank/var/accepting_occupant = 0
+/obj/tank/var/accepting_occupant = FALSE
 
 /obj/tank/proc/front_seat()
 	return drive_front_seat
@@ -10,13 +10,13 @@
 
 /obj/tank/proc/next_seat()
 	if (!fire_back_seat && !drive_front_seat)
-		return 1
+		return TRUE
 	else if (!fire_back_seat && drive_front_seat)
-		return 1
+		return TRUE
 	else if (!drive_front_seat && fire_back_seat)
-		return 1
+		return TRUE
 	else if (fire_back_seat && drive_front_seat)
-		return 0
+		return FALSE
 
 /obj/tank/proc/next_seat_name()
 	if (!fire_back_seat && !drive_front_seat)
@@ -36,10 +36,10 @@
 	else if (!drive_front_seat && fire_back_seat)
 		drive_front_seat = user
 	else if (fire_back_seat && drive_front_seat)
-		return 0
+		return FALSE
 	user.loc = src
 	user.client.eye = src
-	return 1
+	return TRUE
 
 /obj/tank/proc/forcibly_eject_everyone()
 	var/turf/exitturf = get_turf(src)
@@ -72,7 +72,7 @@
 /obj/tank/proc/handle_seat_exit(var/mob/user)
 
 	if (!istype(user))
-		return 0
+		return FALSE
 
 	user << "<span class = 'notice'><big>You start leaving [my_name()].</big></span>"
 	if (do_after(user, 30, src))

@@ -18,10 +18,10 @@
  *    transfers reagents from prerequisite objects,
  *    deletes all prerequisite objects (even not needed for recipe at the moment).
  *
- *  /proc/select_recipe(list/datum/recipe/avaiable_recipes, obj/obj as obj, exact = 1)
+ *  /proc/select_recipe(list/datum/recipe/avaiable_recipes, obj/obj as obj, exact = TRUE)
  *    Wonderful function that select suitable recipe for you.
  *    obj is a machine (or magik hat) with prerequisites,
- *    exact = 0 forces algorithm to ignore superfluous stuff.
+ *    exact = FALSE forces algorithm to ignore superfluous stuff.
  *
  *
  *  Functions you do not need to call directly but could:
@@ -35,41 +35,41 @@
 	var/list/items    // example: = list(/obj/item/weapon/crowbar, /obj/item/weapon/welder) // place /foo/bar before /foo
 	var/list/fruit    // example: = list("fruit" = 3)
 	var/result        // example: = /obj/item/weapon/reagent_containers/food/snacks/donut/normal
-	var/time = 100    // 1/10 part of second
+	var/time = 100    // TRUE/10 part of second
 
 /datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
-	. = 1
+	. = TRUE
 	for (var/r_r in reagents)
 		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)
 		if (!(abs(aval_r_amnt - reagents[r_r])<0.5)) //if NOT equals
 			if (aval_r_amnt>reagents[r_r])
-				. = 0
+				. = FALSE
 			else
 				return -1
 	if ((reagents?(reagents.len):(0)) < avail_reagents.reagent_list.len)
-		return 0
+		return FALSE
 	return .
 
 /datum/recipe/proc/check_fruit(var/obj/container)
-	. = 1
+	. = TRUE
 
 /datum/recipe/proc/check_items(var/obj/container as obj)
-	. = 1
+	. = TRUE
 	if (items && items.len)
 		var/list/checklist = list()
 		checklist = items.Copy() // You should really trust Copy
 		for(var/obj/O in container)
 			if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown))
 				continue // Fruit is handled in check_fruit().
-			var/found = 0
-			for(var/i = 1; i < checklist.len+1; i++)
+			var/found = FALSE
+			for(var/i = TRUE; i < checklist.len+1; i++)
 				var/item_type = checklist[i]
 				if (istype(O,item_type))
 					checklist.Cut(i, i+1)
-					found = 1
+					found = TRUE
 					break
 			if (!found)
-				. = 0
+				. = FALSE
 		if (checklist.len)
 			. = -1
 	return .
@@ -100,7 +100,7 @@
 
 /proc/select_recipe(var/list/datum/recipe/avaiable_recipes, var/obj/obj as obj, var/exact)
 	var/list/datum/recipe/possible_recipes = new
-	var/target = exact ? 0 : 1
+	var/target = exact ? FALSE : TRUE
 	for (var/datum/recipe/recipe in avaiable_recipes)
 		if((recipe.check_reagents(obj.reagents) < target) || (recipe.check_items(obj) < target) || (recipe.check_fruit(obj) < target))
 			continue
@@ -110,7 +110,7 @@
 	else if (possible_recipes.len==1)
 		return possible_recipes[1]
 	else //okay, let's select the most complicated recipe
-		var/highest_count = 0
+		var/highest_count = FALSE
 		. = possible_recipes[1]
 		for (var/datum/recipe/recipe in possible_recipes)
 			var/count = ((recipe.items)?(recipe.items.len):0) + ((recipe.reagents)?(recipe.reagents.len):0) + ((recipe.fruit)?(recipe.fruit.len):0)

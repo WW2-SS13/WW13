@@ -3,51 +3,51 @@
 	icon_state = "bullet"
 	damage = 60
 	damage_type = BRUTE
-	nodamage = 0
+	nodamage = FALSE
 	check_armour = "bullet"
-	embed = 0
-	sharp = 1
+	embed = FALSE
+	sharp = TRUE
 	hitsound_wall = "ric_sound"
-	var/mob_passthrough_check = 0
+	var/mob_passthrough_check = FALSE
 	var/move_tiles = -1
-	var/moved_tiles = 0
+	var/moved_tiles = FALSE
 
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
 
 /obj/item/projectile/bullet/get_structure_damage()
 	if(damage_type == BRUTE || damage_type == BURN)
 		return damage/5 // bullets should no longer obliterate walls
-	return 0
+	return FALSE
 
-/obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = FALSE)
 	if (..(target, blocked))
 		var/mob/living/L = target
 		shake_camera(L, 3, 2)
 
 /obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
-	if(penetrating > 0 && damage > 20 && prob(damage))
-		mob_passthrough_check = 1
+	if(penetrating > FALSE && damage > 20 && prob(damage))
+		mob_passthrough_check = TRUE
 	else
-		mob_passthrough_check = 0
+		mob_passthrough_check = FALSE
 	return ..()
 
 /obj/item/projectile/bullet/can_embed()
 	//prevent embedding if the projectile is passing through the mob
 	if(mob_passthrough_check)
-		return 0
+		return FALSE
 	return ..()
 
 /obj/item/projectile/bullet/check_penetrate(var/atom/A)
-	if(!A || !A.density) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
+	if(!A || !A.density) return TRUE //if whatever it was got destroyed when we hit it, then I guess we can just keep going
 
 	if(ismob(A))
 		if(!mob_passthrough_check)
-			return 0
+			return FALSE
 		if(iscarbon(A))
 			damage *= 0.7 //squishy mobs absorb KE
-		return 1
+		return TRUE
 
-	var/chance = 0
+	var/chance = FALSE
 	if(istype(A, /turf/wall))
 		var/turf/wall/W = A
 		chance = round(damage/(W.material ? W.material.integrity : 150)*180)
@@ -60,9 +60,9 @@
 		if(A.opacity)
 			//display a message so that people on the other side aren't so confused
 			A.visible_message("<span class='warning'>\The [src] pierces through \the [A]!</span>")
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
 
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
@@ -77,25 +77,25 @@
 
 /obj/item/projectile/bullet/pellet/Bumped()
 	. = ..()
-	bumped = 0 //can hit all mobs in a tile. pellets is decremented inside attack_mob so this should be fine.
+	bumped = FALSE //can hit all mobs in a tile. pellets is decremented inside attack_mob so this should be fine.
 
 /obj/item/projectile/bullet/pellet/proc/get_pellets(var/distance)
-	var/pellet_loss = round((distance - 1)/range_step) //pellets lost due to distance
-	return max(pellets - pellet_loss, 1)
+	var/pellet_loss = round((distance - TRUE)/range_step) //pellets lost due to distance
+	return max(pellets - pellet_loss, TRUE)
 
 /obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
-	if (pellets < 0) return 1
+	if (pellets < FALSE) return TRUE
 
 	var/total_pellets = get_pellets(distance)
-	var/spread = max(base_spread - (spread_step*distance), 0)
+	var/spread = max(base_spread - (spread_step*distance), FALSE)
 
 	//shrapnel explosions miss prone mobs with a chance that increases with distance
-	var/prone_chance = 0
+	var/prone_chance = FALSE
 	if(!base_spread)
-		prone_chance = max(spread_step*(distance - 2), 0)
+		prone_chance = max(spread_step*(distance - 2), FALSE)
 
-	var/hits = 0
-	for (var/i in 1 to total_pellets)
+	var/hits = FALSE
+	for (var/i in TRUE to total_pellets)
 		if(target_mob.lying && target_mob != original && prob(prone_chance))
 			continue
 
@@ -107,9 +107,9 @@
 		def_zone = old_zone //restore the original zone the projectile was aimed at
 
 	pellets -= hits //each hit reduces the number of pellets left
-	if (hits >= total_pellets || pellets <= 0)
-		return 1
-	return 0
+	if (hits >= total_pellets || pellets <= FALSE)
+		return TRUE
+	return FALSE
 
 /obj/item/projectile/bullet/pellet/get_structure_damage()
 	var/distance = get_dist(loc, starting)
@@ -145,8 +145,8 @@
 	check_armour = "melee"
 	damage = 5
 	agony = 25
-	embed = 0
-	sharp = 0
+	embed = FALSE
+	sharp = FALSE
 
 /* shotgun projectiles */
 
@@ -160,23 +160,23 @@
 	check_armour = "melee"
 	damage = 20
 	agony = 60
-	embed = 0
-	sharp = 0
+	embed = FALSE
+	sharp = FALSE
 
-//Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
+//Should do about 80 damage at TRUE tile distance (adjacent), and 50 damage at 3 tiles distance.
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	damage = 13
 	pellets = 6
-	range_step = 1
+	range_step = TRUE
 	spread_step = 10
 
 /* "Rifle" rounds */
 
 /obj/item/projectile/bullet/rifle
 	armor_penetration = 20
-	penetrating = 1
+	penetrating = TRUE
 
 /obj/item/projectile/bullet/rifle/a762
 	damage = 25
@@ -199,18 +199,18 @@
 /obj/item/projectile/bullet/burstbullet
 	name = "exploding bullet"
 	damage = 20
-	embed = 0
-	edge = 1
+	embed = FALSE
+	edge = TRUE
 
-/obj/item/projectile/bullet/gyro/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/bullet/gyro/on_hit(var/atom/target, var/blocked = FALSE)
 	if(isturf(target))
-		explosion(target, -1, 0, 2)
+		explosion(target, -1, FALSE, 2)
 	..()
 
 /obj/item/projectile/bullet/blank
 	invisibility = 101
-	damage = 1
-	embed = 0
+	damage = TRUE
+	embed = FALSE
 
 /* Practice */
 
@@ -227,10 +227,10 @@
 /obj/item/projectile/bullet/pistol/cap
 	name = "cap"
 	damage_type = HALLOSS
-	damage = 0
-	nodamage = 1
-	embed = 0
-	sharp = 0
+	damage = FALSE
+	nodamage = TRUE
+	embed = FALSE
+	sharp = FALSE
 
 /obj/item/projectile/bullet/pistol/cap/process()
 	loc = null
@@ -241,41 +241,41 @@
 /obj/item/projectile/bullet/SMG_sol/rubber
 	damage = 7
 	agony = 20
-	embed = 0
-	sharp = 0
+	embed = FALSE
+	sharp = FALSE
 
 /obj/item/projectile/bullet/SMG_sol/brute
 	damage = 20
-	sharp = 0
+	sharp = FALSE
 
 /obj/item/projectile/bullet/cl44/rubber
 	damage = 10
 	agony = 80
-	embed = 0
-	sharp = 0
+	embed = FALSE
+	sharp = FALSE
 
 /obj/item/projectile/bullet/cl44/brute
 	damage = 40
 
 /obj/item/projectile/bullet/cl38/brute
 	damage = 30
-	sharp = 0
+	sharp = FALSE
 
 /obj/item/projectile/bullet/cl38/rubber
 	damage = 10
 	agony = 45
-	embed = 0
-	sharp = 0
+	embed = FALSE
+	sharp = FALSE
 
 //gun vendors stuff
 
 /obj/item/projectile/bullet/cl32/brute
 	damage = 20
-	sharp = 0
+	sharp = FALSE
 
 /obj/item/projectile/bullet/cl32/rubber
 	damage = 6
 	agony = 30
-	embed = 0
-	sharp = 0
+	embed = FALSE
+	sharp = FALSE
 

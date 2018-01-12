@@ -79,7 +79,7 @@
 		if(COLD_RESISTANCE in M.mutations)
 			_prob=5
 		if(probinj(_prob,(flags&MUTCHK_FORCED)))
-			return 1
+			return TRUE
 
 	OnDrawUnderlays(var/mob/M,var/g,var/fat)
 		return "cold[fat]_s"
@@ -95,14 +95,14 @@
 
 	can_activate(var/mob/M,var/flags)
 		if(flags & MUTCHK_FORCED)
-			return 1
+			return TRUE
 		//	return !(/datum/dna/gene/basic/heat_resist in M.active_genes)
 		// Probability check
 		var/_prob=30
 		//if(mHeatres in M.mutations)
 		//	_prob=5
 		if(probinj(_prob,(flags&MUTCHK_FORCED)))
-			return 1
+			return TRUE
 
 	OnDrawUnderlays(var/mob/M,var/g,var/fat)
 		return "fire[fat]_s"
@@ -134,12 +134,12 @@
 	can_activate(var/mob/M,var/flags)
 		// Can't be big and small.
 		if(HULK in M.mutations)
-			return 0
+			return FALSE
 		return ..(M,flags)
 
 	activate(var/mob/M, var/connected, var/flags)
 		..(M,connected,flags)
-		M.pass_flags |= 1
+		M.pass_flags |= TRUE
 
 	deactivate(var/mob/M, var/connected, var/flags)
 		..(M,connected,flags)
@@ -156,7 +156,7 @@
 	can_activate(var/mob/M,var/flags)
 		// Can't be big and small.
 		if(mSmallsize in M.mutations)
-			return 0
+			return FALSE
 		return ..(M,flags)
 
 	OnDrawUnderlays(var/mob/M,var/g,var/fat)
@@ -164,7 +164,7 @@
 			return "hulk_[fat]_s"
 		else
 			return "hulk_[g]_s"
-		return 0
+		return FALSE
 
 	OnMobLife(var/mob/living/carbon/human/M)
 		if(!istype(M)) return

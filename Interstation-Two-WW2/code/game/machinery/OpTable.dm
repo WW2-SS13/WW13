@@ -3,10 +3,10 @@
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	density = 1
+	density = TRUE
 	anchored = 1.0
-	use_power = 1
-	idle_power_usage = 1
+	use_power = TRUE
+	idle_power_usage = TRUE
 	active_power_usage = 5
 	var/mob/living/carbon/human/victim = null
 	var/strapped = 0.0
@@ -33,24 +33,24 @@
 				return
 		if(3.0)
 			if (prob(25))
-				src.density = 0
+				src.density = FALSE
 		else
 	return
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
 	if (HULK in usr.mutations)
 		visible_message("<span class='danger'>\The [usr] destroys \the [src]!</span>")
-		src.density = 0
+		src.density = FALSE
 		qdel(src)
 	return
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+	if(air_group || (height==0)) return TRUE
 
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 
 /obj/machinery/optable/MouseDrop_T(obj/O as obj, mob/user as mob)
@@ -68,10 +68,10 @@
 		if(M.lying)
 			src.victim = M
 			icon_state = M.pulse() ? "table2-active" : "table2-idle"
-			return 1
+			return TRUE
 	src.victim = null
 	icon_state = "table2-idle"
-	return 0
+	return FALSE
 
 /obj/machinery/optable/process()
 	check_victim()
@@ -84,7 +84,7 @@
 	if (C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
-	C.resting = 1
+	C.resting = TRUE
 	C.loc = src.loc
 	for(var/obj/O in src)
 		O.loc = src.loc
@@ -128,8 +128,8 @@
 	check_victim()
 	if(src.victim && get_turf(victim) == get_turf(src) && victim.lying)
 		usr << "<span class='warning'>\The [src] is already occupied!</span>"
-		return 0
+		return FALSE
 	if(patient.buckled)
 		usr << "<span class='notice'>Unbuckle \the [patient] first!</span>"
-		return 0
-	return 1
+		return FALSE
+	return TRUE

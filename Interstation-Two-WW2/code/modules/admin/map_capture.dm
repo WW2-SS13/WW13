@@ -13,12 +13,12 @@
 		usr << "Target coordinates specify bottom left corner of the capture, range defines render distance to opposite corner."
 		return
 
-	if(range > 32 || range <= 0)
-		usr << "Capturing range is incorrect, it must be within 1-32."
+	if(range > 32 || range <= FALSE)
+		usr << "Capturing range is incorrect, it must be within TRUE-32."
 		return
 
 	if(locate(tx,ty,tz))
-		var/cap = generate_image(tx ,ty ,tz ,range, CAPTURE_MODE_PARTIAL, null, 1, 1)
+		var/cap = generate_image(tx ,ty ,tz ,range, CAPTURE_MODE_PARTIAL, null, TRUE, TRUE)
 		var/file_name = "map_capture_x[tx]_y[ty]_z[tz]_r[range].png"
 		usr << "Saved capture in cache as [file_name]."
 		usr << browse_rsc(cap, file_name)

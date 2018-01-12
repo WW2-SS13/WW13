@@ -4,20 +4,20 @@
 	name = "train"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "latticefull"
-	density = 0
+	density = FALSE
 	anchored = 1.0
 	w_class = 3
 	layer = 2.3 //under pipes
 	//	flags = CONDUCT
-	var/occupied = 0
+	var/occupied = FALSE
 	var/last_loc = null
 	var/datum/train_controller/master = null
 	var/list/saved_contents = list()
-	uses_initial_density = 1
-	initial_density = 0
+	uses_initial_density = TRUE
+	initial_density = FALSE
 
-	uses_initial_opacity = 1
-	initial_opacity = 0
+	uses_initial_opacity = TRUE
+	initial_opacity = FALSE
 
 // #define TCDEBUG
 
@@ -99,11 +99,11 @@
 						var/moved = m.train_move(locate(m.x-1, m.y, m.z))
 						if (p && moved) p.train_move(m.behind())
 
-				if (p && get_dist(m, p) <= 1)
+				if (p && get_dist(m, p) <= TRUE)
 					m.start_pulling(p) // start_pulling checks for p on its own
 
 				m.next_train_movement = null
-				m.train_gib_immunity = 0
+				m.train_gib_immunity = FALSE
 				m.last_moved_on_train = world.time
 
 /obj/train_connector/ex_act(severity)

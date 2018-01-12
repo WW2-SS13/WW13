@@ -7,7 +7,7 @@
 
 /mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
 	if(!effective_force || blocked >= 2)
-		return 0
+		return FALSE
 
 	//Hulk modifier
 	if(HULK in user.mutations)
@@ -17,8 +17,8 @@
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
 	if(prob(getarmor(hit_zone, "melee"))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
-		weapon_sharp = 0
-		weapon_edge = 0
+		weapon_sharp = FALSE
+		weapon_edge = FALSE
 
 	apply_damage(effective_force, I.damtype, hit_zone, blocked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
 
@@ -36,7 +36,7 @@
 		if((weapon_sharp && damage > (10*I.w_class)) || (damage > embed_threshold && prob(embed_chance)))
 			src.embed(I, hit_zone)
 
-	return 1
+	return TRUE
 
 // Attacking someone with a weapon while they are neck-grabbed = throat slitting
 /mob/living/carbon/proc/check_attack_throat(obj/item/W, mob/user)
@@ -44,22 +44,22 @@
 		for(var/obj/item/weapon/grab/G in src.grabbed_by)
 			if(G.assailant == user && G.state >= GRAB_NECK)
 				if(attack_throat(W, G, user))
-					return 1
-	return 0
+					return TRUE
+	return FALSE
 
 // Knifing
 /mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/weapon/grab/G, mob/user, delay = 20)
 
 	if(!W.has_edge() || !W.force || W.damtype != BRUTE)
-		return 0 //unsuitable weapon
+		return FALSE //unsuitable weapon
 
 	user.visible_message("<span class='danger'>\The [user] begins to slit [src]'s throat with \the [W]!</span>")
 
 	user.next_move = world.time + delay //also should prevent user from triggering this repeatedly
 	if(!do_after(user, delay, progress=0))
-		return 0
+		return FALSE
 	if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
-		return 0
+		return FALSE
 
 	var/base_damage_mod = 4.0
 	var/damage_mod = base_damage_mod
@@ -69,10 +69,10 @@
 		//we don't do an armor_check here because this is not an impact effect like a weapon swung with momentum, that either penetrates or glances off.
 		damage_mod = base_damage_mod - (helmet.armor["melee"]/100)
 
-	var/total_damage = 0
-	for(var/i in 1 to 3)
+	var/total_damage = FALSE
+	for(var/i in TRUE to 3)
 		var/damage = min(W.force*1.5, 20)*damage_mod
-		apply_damage(damage, W.damtype, "head", 0, sharp=W.sharp, edge=W.edge)
+		apply_damage(damage, W.damtype, "head", FALSE, sharp=W.sharp, edge=W.edge)
 		total_damage += damage
 
 	var/oxyloss = total_damage
@@ -88,7 +88,7 @@
 			user.visible_message("<span class='danger'>\The [user] cut [src]'s neck with \the [W]!</span>")
 
 		if(W.hitsound)
-			playsound(loc, W.hitsound, 50, 1, -1)
+			playsound(loc, W.hitsound, 50, TRUE, -1)
 
 	G.last_action = world.time
 	flick(G.hud.icon_state, G.hud)
@@ -98,4 +98,4 @@
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> slit [name]'s throat ([ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
 	src.attack_log += "\[[time_stamp()]\]<font color='orange'> got throatslit by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
 	msg_admin_attack("[key_name(user)] slit [key_name(src)]'s throat with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])" )
-	return 1
+	return TRUE

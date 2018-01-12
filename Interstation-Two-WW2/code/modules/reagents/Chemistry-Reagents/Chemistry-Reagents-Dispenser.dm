@@ -57,8 +57,8 @@
 	ingest_met = REM * 5
 
 /datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
-		var/effect = 1 / (M.ingested.reagent_list.len - 1)
+	if(M.ingested && M.ingested.reagent_list.len > TRUE) // Need to have at least 2 reagents - cabon and something to remove
+		var/effect = TRUE / (M.ingested.reagent_list.len - TRUE)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(R == src)
 				continue
@@ -88,14 +88,14 @@
 	reagent_state = LIQUID
 	color = "#404030"
 	touch_met = 5
-	var/nutriment_factor = 0
+	var/nutriment_factor = FALSE
 	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
-	var/toxicity = 1
+	var/toxicity = TRUE
 
-	var/druggy = 0
-	var/adj_temp = 0
+	var/druggy = FALSE
+	var/adj_temp = FALSE
 	var/targ_temp = 310
-	var/halluci = 0
+	var/halluci = FALSE
 
 /datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
@@ -110,13 +110,13 @@
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
 	M.nutrition += nutriment_factor * removed
-	var/strength_mod = 1
+	var/strength_mod = TRUE
 
-	if (M.water < 0)
+	if (M.water < FALSE)
 		M.water += rand(20,30)
 	M.water += removed * 10
 
-	M.add_chemical_effect(CE_ALCOHOL, 1)
+	M.add_chemical_effect(CE_ALCOHOL, TRUE)
 
 	if(dose * strength_mod >= strength) // Early warning
 		M.make_dizzy(6) // It is decreased at the speed of 3 per tick
@@ -134,12 +134,12 @@
 		M.paralysis = max(M.paralysis, 20)
 		M.sleeping  = max(M.sleeping, 30)
 
-	if(druggy != 0)
+	if(druggy != FALSE)
 		M.druggy = max(M.druggy, druggy)
 
-	if(adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
+	if(adj_temp > FALSE && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(adj_temp < 0 && M.bodytemperature > targ_temp)
+	if(adj_temp < FALSE && M.bodytemperature > targ_temp)
 		M.bodytemperature = min(targ_temp, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
 	if(halluci)
@@ -210,7 +210,7 @@
 	name = "Mercury"
 	id = "mercury"
 	description = "A chemical element."
-	taste_mult = 0 //mercury apparently is tasteless. IDK
+	taste_mult = FALSE //mercury apparently is tasteless. IDK
 	reagent_state = LIQUID
 	color = "#484848"
 
@@ -267,7 +267,7 @@
 				H.update_inv_head(1)
 				H.update_hair(1)
 				removed -= meltdose
-		if(removed <= 0)
+		if(removed <= FALSE)
 			return
 
 		if(H.wear_mask)
@@ -281,7 +281,7 @@
 				H.update_inv_wear_mask(1)
 				H.update_hair(1)
 				removed -= meltdose
-		if(removed <= 0)
+		if(removed <= FALSE)
 			return
 
 		if(H.glasses)
@@ -294,13 +294,13 @@
 				qdel(H.glasses)
 				H.update_inv_glasses(1)
 				removed -= meltdose / 2
-		if(removed <= 0)
+		if(removed <= FALSE)
 			return
 
 	if(volume < meltdose) // Not enough to melt anything
 		M.take_organ_damage(0, removed * power * 0.2) //burn damage, since it causes chemical burns. Acid doesn't make bones shatter, like brute trauma would.
 		return
-	if(!M.unacidable && removed > 0)
+	if(!M.unacidable && removed > FALSE)
 		if(istype(M, /mob/living/carbon/human) && volume >= meltdose)
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/external/affecting = H.get_organ("head")
@@ -374,6 +374,6 @@
 	name = "Tungsten"
 	id = "tungsten"
 	description = "A chemical element, and a strong oxidising agent."
-	taste_mult = 0 //no taste
+	taste_mult = FALSE //no taste
 	reagent_state = SOLID
 	color = "#DCDCDC"

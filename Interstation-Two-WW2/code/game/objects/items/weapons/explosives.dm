@@ -11,7 +11,7 @@
 	var/datum/wires/explosive/c4/wires = null
 	var/timer = 10
 	var/atom/target = null
-	var/open_panel = 0
+	var/open_panel = FALSE
 	var/image_overlay = null
 
 /obj/item/weapon/plastique/New()

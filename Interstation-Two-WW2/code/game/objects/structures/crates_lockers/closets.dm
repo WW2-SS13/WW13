@@ -3,23 +3,23 @@
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "closed"
-	density = 1
+	density = TRUE
 	w_class = 5
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
-	var/opened = 0
-	var/welded = 0
-	var/wall_mounted = 0 //never solid (You can always pass over it)
+	var/opened = FALSE
+	var/welded = FALSE
+	var/wall_mounted = FALSE //never solid (You can always pass over it)
 	var/health = 100
-	var/breakout = 0 //if someone is currently breaking out. mutex
+	var/breakout = FALSE //if someone is currently breaking out. mutex
 	var/storage_capacity = 2 * MOB_MEDIUM //This is so that someone can't pack hundreds of items in a locker/crate
 							  //then open it in a populated area to crash clients.
 	var/open_sound = 'sound/machines/Custom_closetopen.ogg'
 	var/close_sound = 'sound/machines/Custom_closetclose.ogg'
 
-	var/store_misc = 1
-	var/store_items = 1
-	var/store_mobs = 1
+	var/store_misc = TRUE
+	var/store_items = TRUE
+	var/store_mobs = TRUE
 
 /obj/structure/closet/initialize()
 	..()
@@ -29,7 +29,7 @@
 			if(I.density || I.anchored || I == src) continue
 			I.forceMove(src)
 		// adjust locker size to hold all items with 5 units of free store room
-		var/content_size = 0
+		var/content_size = FALSE
 		for(I in src.contents)
 			content_size += Ceiling(I.w_class/2)
 		if(content_size > storage_capacity-5)
@@ -40,8 +40,8 @@
 	storage_capacity = ((4/2) * items) + 5
 
 /obj/structure/closet/examine(mob/user)
-	if(..(user, 1) && !opened)
-		var/content_size = 0
+	if(..(user, TRUE) && !opened)
+		var/content_size = FALSE
 		for(var/obj/item/I in src.contents)
 			if(!I.anchored)
 				content_size += Ceiling(I.w_class/2)
@@ -57,19 +57,19 @@
 			user << "It is full."
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0 || wall_mounted)) return 1
+	if(air_group || (height==0 || wall_mounted)) return TRUE
 	return (!density)
 
 /obj/structure/closet/proc/can_open()
 	if(src.welded)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/structure/closet/proc/can_close()
 	for(var/obj/structure/closet/closet in get_turf(src))
 		if(closet != src)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/structure/closet/proc/dump_contents()
 	//Cham Projector Exception
@@ -84,26 +84,26 @@
 
 /obj/structure/closet/proc/open()
 	if(src.opened)
-		return 0
+		return FALSE
 
 	if(!src.can_open())
-		return 0
+		return FALSE
 
 	src.dump_contents()
 
 	src.icon_state = src.icon_opened
-	src.opened = 1
-	playsound(src.loc, open_sound, 100, 1, -3)
-	density = 0
-	return 1
+	src.opened = TRUE
+	playsound(src.loc, open_sound, 100, TRUE, -3)
+	density = FALSE
+	return TRUE
 
 /obj/structure/closet/proc/close()
 	if(!src.opened)
-		return 0
+		return FALSE
 	if(!src.can_close())
-		return 0
+		return FALSE
 
-	var/stored_units = 0
+	var/stored_units = FALSE
 
 	if(store_misc)
 		stored_units += store_misc(stored_units)
@@ -113,19 +113,19 @@
 		stored_units += store_mobs(stored_units)
 
 	src.icon_state = src.icon_closed
-	src.opened = 0
+	src.opened = FALSE
 
-	playsound(src.loc, close_sound, 100, 1, -3)
-	density = 1
-	return 1
+	playsound(src.loc, close_sound, 100, TRUE, -3)
+	density = TRUE
+	return TRUE
 
 //Cham Projector Exception
 /obj/structure/closet/proc/store_misc(var/stored_units)
-	var/added_units = 0
+	var/added_units = FALSE
 	return added_units
 
 /obj/structure/closet/proc/store_items(var/stored_units)
-	var/added_units = 0
+	var/added_units = FALSE
 	for(var/obj/item/I in src.loc)
 		var/item_size = Ceiling(I.w_class / 2)
 		if(stored_units + added_units + item_size > storage_capacity)
@@ -136,7 +136,7 @@
 	return added_units
 
 /obj/structure/closet/proc/store_mobs(var/stored_units)
-	var/added_units = 0
+	var/added_units = FALSE
 	for(var/mob/living/M in src.loc)
 		if(M.buckled || M.pinned.len)
 			continue
@@ -161,13 +161,13 @@
 		if(1)
 			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
 				A.forceMove(src.loc)
-				A.ex_act(severity + 1)
+				A.ex_act(severity + TRUE)
 			qdel(src)
 		if(2)
 			if(prob(50))
 				for (var/atom/movable/A as mob|obj in src)
 					A.forceMove(src.loc)
-					A.ex_act(severity + 1)
+					A.ex_act(severity + TRUE)
 				qdel(src)
 		if(3)
 			if(prob(5))
@@ -177,7 +177,7 @@
 
 /obj/structure/closet/proc/damage(var/damage)
 	health -= damage
-	if(health <= 0)
+	if(health <= FALSE)
 		for(var/atom/movable/A in src)
 			A.forceMove(src.loc)
 		qdel(src)
@@ -197,9 +197,9 @@
 		if(istype(W, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = W
 			src.MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
-			return 0
+			return FALSE
 		if(istype(W,/obj/item/tk_grab))
-			return 0
+			return FALSE
 		if(istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
 			if(!WT.remove_fuel(0,user))
@@ -304,14 +304,14 @@
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
 	dump_contents()
 	spawn(1) qdel(src)
-	return 1
+	return TRUE
 
 /obj/structure/closet/proc/req_breakout()
 	if(opened)
-		return 0 //Door's open... wait, why are you in it's contents then?
+		return FALSE //Door's open... wait, why are you in it's contents then?
 	if(!welded)
-		return 0 //closed but not welded...
-	return 1
+		return FALSE //closed but not welded...
+	return TRUE
 
 /obj/structure/closet/proc/mob_breakout(var/mob/living/escapee)
 	var/breakout_time = 2 //2 minutes by default
@@ -326,39 +326,39 @@
 
 	visible_message("<span class='danger'>\The [src] begins to shake violently!</span>")
 
-	breakout = 1 //can't think of a better way to do this right now.
-	for(var/i in 1 to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
+	breakout = TRUE //can't think of a better way to do this right now.
+	for(var/i in TRUE to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
 		if(!do_after(escapee, 50, src)) //5 seconds
-			breakout = 0
+			breakout = FALSE
 			return
 		if(!escapee || escapee.incapacitated() || escapee.loc != src)
-			breakout = 0
+			breakout = FALSE
 			return //closet/user destroyed OR user dead/unconcious OR user no longer in closet OR closet opened
 		//Perform the same set of checks as above for weld and lock status to determine if there is even still a point in 'resisting'...
 		if(!req_breakout())
-			breakout = 0
+			breakout = FALSE
 			return
 
-		playsound(src.loc, 'sound/effects/grillehit.ogg', 100, 1)
+		playsound(src.loc, 'sound/effects/grillehit.ogg', 100, TRUE)
 		animate_shake()
 		add_fingerprint(escapee)
 
 	//Well then break it!
-	breakout = 0
+	breakout = FALSE
 	escapee << "<span class='warning'>You successfully break out!</span>"
 	visible_message("<span class='danger'>\The [escapee] successfully broke out of \the [src]!</span>")
-	playsound(src.loc, 'sound/effects/grillehit.ogg', 100, 1)
+	playsound(src.loc, 'sound/effects/grillehit.ogg', 100, TRUE)
 	break_open()
 	animate_shake()
 
 /obj/structure/closet/proc/break_open()
-	welded = 0
+	welded = FALSE
 	update_icon()
 	//Do this to prevent contents from being opened into nullspace (read: bluespace)
 	open()
 
 /obj/structure/closet/proc/animate_shake()
 	var/init_px = pixel_x
-	var/shake_dir = pick(-1, 1)
+	var/shake_dir = pick(-1, TRUE)
 	animate(src, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
 	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)

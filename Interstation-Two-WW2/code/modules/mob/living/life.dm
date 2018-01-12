@@ -1,5 +1,5 @@
 /mob/living/Life()
-	set invisibility = 0
+	set invisibility = FALSE
 	set background = BACKGROUND_ENABLED
 
 	..()
@@ -25,7 +25,7 @@
 		//Random events (vomiting etc)
 		handle_random_events()
 
-		. = 1
+		. = TRUE
 
 		handle_environment()
 
@@ -45,7 +45,7 @@
 	for(var/obj/item/weapon/grab/G in src)
 		G.process()
 
-	blinded = 0 // Placing this here just show how out of place it is.
+	blinded = FALSE // Placing this here just show how out of place it is.
 	// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
 	if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
 		handle_disabilities() // eye, ear, brain damages
@@ -93,7 +93,7 @@
 			stat = UNCONSCIOUS
 		else
 			stat = CONSCIOUS
-		return 1
+		return TRUE
 
 //this updates all special effects: stunned, sleeping, weakened, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
@@ -112,15 +112,15 @@
 /mob/living/proc/handle_disabilities()
 	//Eyes
 	if(sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
-		eye_blind = max(eye_blind, 1)
+		eye_blind = max(eye_blind, TRUE)
 	else if(eye_blind)			//blindness, heals slowly over time
 		eye_blind = max(eye_blind-1,0)
 	else if(eye_blurry)			//blurry eyes heal slowly
-		eye_blurry = max(eye_blurry-1, 0)
+		eye_blurry = max(eye_blurry-1, FALSE)
 
 	//Ears
 	if(sdisabilities & DEAF)		//disabled-deaf, doesn't get better on its own
-		setEarDamage(-1, max(ear_deaf, 1))
+		setEarDamage(-1, max(ear_deaf, TRUE))
 	else
 		// deafness heals slowly over time, unless ear_damage is over 100
 		if(ear_damage < 100)
@@ -128,12 +128,12 @@
 
 //this handles hud updates. Calls update_vision() and handle_hud_icons()
 /mob/living/proc/handle_regular_hud_updates()
-	if(!client)	return 0
+	if(!client)	return FALSE
 
 	handle_hud_icons()
 	handle_vision()
 
-	return 1
+	return TRUE
 
 /mob/living/proc/handle_vision()
 //	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
@@ -145,7 +145,7 @@
 /*	if(eye_blind)
 		blind.alpha = 255
 	else
-		blind.alpha = 0
+		blind.alpha = FALSE
 		if (disabilities & NEARSIGHTED)
 			client.screen += global_hud.vimpaired
 		if (eye_blurry)
@@ -154,18 +154,18 @@
 			client.screen += global_hud.druggy*/
 	if(machine)
 		var/viewflags = machine.check_eye(src)
-		if(viewflags < 0)
-			reset_view(null, 0)
+		if(viewflags < FALSE)
+			reset_view(null, FALSE)
 		else if(viewflags)
 			sight |= viewflags
-	else if(eyeobj)
+/*	else if(eyeobj)
 		if(eyeobj.owner != src)
-			reset_view(null)
+			reset_view(null)*/
 	else if(!client.adminobs)
 		reset_view(null)
 
 /mob/living/proc/update_sight()
-	if(stat == DEAD || eyeobj)
+	if(stat == DEAD/* || eyeobj*/)
 		update_dead_sight()
 	else
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)

@@ -5,13 +5,13 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = null
 	var/bitesize = 1
-	var/bitecount = 0
+	var/bitecount = FALSE
 	var/trash = null
 	var/slice_path
 	var/slices_num
 	var/dried_type = null
-	var/dry = 0
-	var/nutriment_amt = 0
+	var/dry = FALSE
+	var/nutriment_amt = FALSE
 	var/list/nutriment_desc = list("food" = 1)
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = 2
@@ -45,7 +45,7 @@
 		user << "<span class='danger'>None of [src] left!</span>"
 		user.drop_from_inventory(src)
 		qdel(src)
-		return 0
+		return FALSE
 
 	if(istype(M, /mob/living/carbon))
 		//TODO: replace with standard_feed_mob() call.
@@ -73,7 +73,7 @@
 				C << "<span class='notice'>You unwillingly chew a bit of [src].</span>"
 			if (fullness > 580)
 				C << "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>"
-				return 0
+				return FALSE
 		else
 			if(!M.can_force_feed(user, src))
 				return
@@ -82,7 +82,7 @@
 				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
 			else
 				user.visible_message("<span class='danger'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
-				return 0
+				return FALSE
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			if(!do_mob(user, M)) return
@@ -94,7 +94,7 @@
 			user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
 
 		if(reagents)								//Handle ingestion of the reagent.
-			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), TRUE)
 			if(reagents.total_volume)
 				if(reagents.total_volume > bitesize)
 					reagents.trans_to_mob(M, bitesize, CHEM_INGEST)
@@ -102,12 +102,12 @@
 					reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 				bitecount++
 				On_Consume(M)
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 /obj/item/weapon/reagent_containers/food/snacks/examine(mob/user)
-	if(!..(user, 1))
+	if(!..(user, TRUE))
 		return
 	if (bitecount==0)
 		return
@@ -130,7 +130,7 @@
 			if(!U.reagents)
 				U.create_reagents(5)
 
-			if (U.reagents.total_volume > 0)
+			if (U.reagents.total_volume > FALSE)
 				user << "<span class='warning'>You already have something on your [U].</span>"
 				return
 
@@ -148,7 +148,7 @@
 
 			reagents.trans_to_obj(U, min(reagents.total_volume,5))
 
-			if (reagents.total_volume <= 0)
+			if (reagents.total_volume <= FALSE)
 				qdel(src)
 			return
 
@@ -173,7 +173,7 @@
 				user << "<span class='warning'>You cannot slice \the [src] here! You need a table or at least a tray to do it.</span>"
 				return
 
-			var/slices_lost = 0
+			var/slices_lost = FALSE
 			if (W.w_class > 3)
 				user.visible_message("<span class='notice'>\The [user] crudely slices \the [src] with [W]!</span>", "<span class='notice'>You crudely slice \the [src] with your [W]!</span>")
 				slices_lost = rand(1,min(1,round(slices_num/2)))
@@ -188,7 +188,7 @@
 			return
 
 /obj/item/weapon/reagent_containers/food/snacks/proc/is_sliceable()
-	return (slices_num && slice_path && slices_num > 0)
+	return (slices_num && slice_path && slices_num > FALSE)
 
 /obj/item/weapon/reagent_containers/food/snacks/Destroy()
 	if(contents)
@@ -718,13 +718,13 @@
 	desc = "The food of choice for the veteran. Do <B>NOT</B> overconsume."
 	filling_color = "#6D6D00"
 	heated_reagents = list("doctorsdelight" = 5, "hyperzine" = 0.75, "synaptizine" = 0.25)
-	var/has_been_heated = 0
+	var/has_been_heated = FALSE
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)
 	if(has_been_heated)
 		user << "<span class='notice'>The heating chemicals have already been spent.</span>"
 		return
-	has_been_heated = 1
+	has_been_heated = TRUE
 	user.visible_message("<span class='notice'>[user] crushes \the [src] package.</span>", "You crush \the [src] package and feel a comfortable heat build up.")
 	spawn(200)
 		user << "You think \the [src] is ready to eat about now."
@@ -742,10 +742,10 @@
 		..()
 		reagents.add_reagent("protein", 2)
 
-	var/warm = 0
+	var/warm = FALSE
 	var/list/heated_reagents = list("tricordrazine" = 5)
 	proc/heat()
-		warm = 1
+		warm = TRUE
 		for(var/reagent in heated_reagents)
 			reagents.add_reagent(reagent, heated_reagents[reagent])
 		bitesize = 6
@@ -755,7 +755,7 @@
 	proc/cooltime()
 		if (src.warm)
 			spawn(4200)
-				src.warm = 0
+				src.warm = FALSE
 				for(var/reagent in heated_reagents)
 					src.reagents.del_reagent(reagent)
 				src.name = initial(name)
@@ -922,7 +922,7 @@
 	filling_color = "#FFF9A8"
 	center_of_mass = list("x"=16, "y"=13)
 
-	//var/herp = 0
+	//var/herp = FALSE
 	New()
 		..()
 		reagents.add_reagent("protein", 8)
@@ -1171,7 +1171,7 @@
 	desc = "Now let's find some cinema."
 	icon_state = "popcorn"
 	trash = /obj/item/trash/popcorn
-	var/unpopped = 0
+	var/unpopped = FALSE
 	filling_color = "#FFFAD4"
 	center_of_mass = list("x"=16, "y"=8)
 	nutriment_desc = list("popcorn" = 3)
@@ -1586,7 +1586,7 @@
 	filling_color = "#ADAC7F"
 	center_of_mass = list("x"=16, "y"=14)
 
-	var/wrapped = 0
+	var/wrapped = FALSE
 	var/monkey_type = "Monkey"
 
 	New()
@@ -1605,13 +1605,13 @@
 		H.name = H.real_name
 		src.loc = null
 		qdel(src)
-		return 1
+		return TRUE
 
 	proc/Unwrap(mob/user as mob)
 		icon_state = "monkeycube"
 		desc = "Just add water!"
 		user << "You unwrap the cube."
-		wrapped = 0
+		wrapped = FALSE
 		flags |= OPENCONTAINER
 		return
 
@@ -1622,8 +1622,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped
 	desc = "Still wrapped in some paper."
 	icon_state = "monkeycubewrap"
-	flags = 0
-	wrapped = 1
+	flags = FALSE
+	wrapped = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/spellburger
 	name = "Spell Burger"
@@ -2704,8 +2704,8 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "pizzabox1"
 
-	var/open = 0 // Is the box open?
-	var/ismessy = 0 // Fancy mess on the lid
+	var/open = FALSE // Is the box open?
+	var/ismessy = FALSE // Fancy mess on the lid
 	var/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pizza // Content pizza
 	var/list/boxes = list() // If the boxes are stacked, they come here
 	var/boxtag = ""
@@ -2717,7 +2717,7 @@
 	// Set appropriate description
 	if( open && pizza )
 		desc = "A box suited for pizzas. It appears to have a [pizza.name] inside."
-	else if( boxes.len > 0 )
+	else if( boxes.len > FALSE )
 		desc = "A pile of boxes suited for pizzas. There appears to be [boxes.len + 1] boxes in the pile."
 
 		var/obj/item/pizzabox/topbox = boxes[boxes.len]
@@ -2745,14 +2745,14 @@
 		return
 	else
 		// Stupid code because byondcode sucks
-		var/doimgtag = 0
-		if( boxes.len > 0 )
+		var/doimgtag = FALSE
+		if( boxes.len > FALSE )
 			var/obj/item/pizzabox/topbox = boxes[boxes.len]
 			if( topbox.boxtag != "" )
-				doimgtag = 1
+				doimgtag = TRUE
 		else
 			if( boxtag != "" )
-				doimgtag = 1
+				doimgtag = TRUE
 
 		if( doimgtag )
 			var/image/tagimg = image("food.dmi", icon_state = "pizzabox_tag")
@@ -2771,7 +2771,7 @@
 		update_icon()
 		return
 
-	if( boxes.len > 0 )
+	if( boxes.len > FALSE )
 		if( user.get_inactive_hand() != src )
 			..()
 			return
@@ -2788,13 +2788,13 @@
 
 /obj/item/pizzabox/attack_self( mob/user as mob )
 
-	if( boxes.len > 0 )
+	if( boxes.len > FALSE )
 		return
 
 	open = !open
 
 	if( open && pizza )
-		ismessy = 1
+		ismessy = TRUE
 
 	update_icon()
 
@@ -2849,10 +2849,10 @@
 		var/t = sanitize(input("Enter what you want to add to the tag:", "Write", null, null) as text, 30)
 
 		var/obj/item/pizzabox/boxtotagto = src
-		if( boxes.len > 0 )
+		if( boxes.len > FALSE )
 			boxtotagto = boxes[boxes.len]
 
-		boxtotagto.boxtag = copytext("[boxtotagto.boxtag][t]", 1, 30)
+		boxtotagto.boxtag = copytext("[boxtotagto.boxtag][t]", TRUE, 30)
 
 		update_icon()
 		return

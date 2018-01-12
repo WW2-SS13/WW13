@@ -2,9 +2,9 @@
 	name = "bookcase"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book-0"
-	anchored = 1
-	density = 1
-	opacity = 1
+	anchored = TRUE
+	density = TRUE
+	opacity = TRUE
 
 /obj/structure/bookcase/initialize()
 	for(var/obj/item/I in loc)
@@ -24,11 +24,11 @@
 		else
 			name = ("bookcase ([newname])")
 	else if(istype(O,/obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 		user << (anchored ? "<span class='notice'>You unfasten \the [src] from the floor.</span>" : "<span class='notice'>You secure \the [src] to the floor.</span>")
 		anchored = !anchored
 	else if(istype(O,/obj/item/weapon/screwdriver))
-		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+		playsound(loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
 		user << "<span class='notice'>You begin dismantling \the [src].</span>"
 		if(do_after(user,25,src))
 			user << "<span class='notice'>You dismantle \the [src].</span>"

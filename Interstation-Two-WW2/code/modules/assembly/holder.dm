@@ -9,7 +9,7 @@
 	throw_speed = 3
 	throw_range = 10
 
-	var/secured = 0
+	var/secured = FALSE
 	var/obj/item/device/assembly/a_left = null
 	var/obj/item/device/assembly/a_right = null
 	var/obj/special_assembly = null
@@ -28,13 +28,13 @@
 
 
 	IsAssemblyHolder()
-		return 1
+		return TRUE
 
 
 	attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
-		if((!D)||(!D2))	return 0
-		if((!isassembly(D))||(!isassembly(D2)))	return 0
-		if((D:secured)||(D2:secured))	return 0
+		if((!D)||(!D2))	return FALSE
+		if((!isassembly(D))||(!isassembly(D2)))	return FALSE
+		if((D:secured)||(D2:secured))	return FALSE
 		if(user)
 			user.remove_from_mob(D)
 			user.remove_from_mob(D2)
@@ -48,12 +48,12 @@
 		update_icon()
 		usr.put_in_hands(src)
 
-		return 1
+		return TRUE
 
 
 	attach_special(var/obj/O, var/mob/user)
 		if(!O)	return
-		if(!O.IsSpecialAssembly())	return 0
+		if(!O.IsSpecialAssembly())	return FALSE
 
 /*		if(O:Attach_Holder())
 			special_assembly = O
@@ -182,7 +182,7 @@
 					a_right.attack_self(user)
 		else
 			var/turf/T = get_turf(src)
-			if(!T)	return 0
+			if(!T)	return FALSE
 			if(a_left)
 				a_left:holder = null
 				a_left.loc = T
@@ -194,8 +194,8 @@
 		return
 
 
-	process_activation(var/obj/D, var/normal = 1, var/special = 1)
-		if(!D)	return 0
+	process_activation(var/obj/D, var/normal = TRUE, var/special = TRUE)
+		if(!D)	return FALSE
 		if(!secured)
 			visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
 		if((normal) && (a_right) && (a_left))
@@ -208,7 +208,7 @@
 //		if(special && special_assembly)
 //			if(!special_assembly == D)
 //				special_assembly.dothings()
-		return 1
+		return TRUE
 
 
 /obj/item/device/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking)
@@ -227,16 +227,16 @@
 		..()
 
 		var/obj/item/device/assembly/igniter/ign = new(src)
-		ign.secured = 1
+		ign.secured = TRUE
 		ign.holder = src
 		var/obj/item/device/assembly/timer/tmr = new(src)
 		tmr.time=5
-		tmr.secured = 1
+		tmr.secured = TRUE
 		tmr.holder = src
 		processing_objects.Add(tmr)
 		a_left = tmr
 		a_right = ign
-		secured = 1
+		secured = TRUE
 		update_icon()
 		name = initial(name) + " ([tmr.time] secs)"
 

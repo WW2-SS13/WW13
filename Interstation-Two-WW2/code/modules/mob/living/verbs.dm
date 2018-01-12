@@ -3,13 +3,13 @@
 	set category = "Object"
 
 	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
-		return 0
+		return FALSE
 	if(istype(A, /obj/effect/decal/point))
-		return 0
+		return FALSE
 
 	var/tile = get_turf(A)
 	if (!tile)
-		return 0
+		return FALSE
 
 	var/obj/P = new /obj/effect/decal/point(tile)
 	P.invisibility = invisibility
@@ -18,4 +18,4 @@
 			qdel(P)	// qdel
 
 	face_atom(A)
-	return 1
+	return TRUE

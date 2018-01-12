@@ -1,9 +1,9 @@
-#define AB_ITEM 1
+#define AB_ITEM TRUE
 #define AB_SPELL 2
 #define AB_INNATE 3
 #define AB_GENERIC 4
 
-#define AB_CHECK_RESTRAINED 1
+#define AB_CHECK_RESTRAINED TRUE
 #define AB_CHECK_STUNNED 2
 #define AB_CHECK_LYING 4
 #define AB_CHECK_ALIVE 8
@@ -15,9 +15,9 @@
 	var/action_type = AB_ITEM
 	var/procname = null
 	var/atom/movable/target = null
-	var/check_flags = 0
-	var/processing = 0
-	var/active = 0
+	var/check_flags = FALSE
+	var/processing = FALSE
+	var/active = FALSE
 	var/obj/screen/movable/action_button/button = null
 	var/button_icon = 'icons/mob/actions.dmi'
 	var/button_icon_state = "default"
@@ -62,8 +62,8 @@
 
 /datum/action/proc/Trigger()
 	if(!IsAvailable())
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /datum/action/proc/Activate()
 	return
@@ -74,27 +74,27 @@
 /datum/action/proc/Process()
 	return
 
-/datum/action/proc/CheckRemoval(mob/living/user) // 1 if action is no longer valid for this mob and should be removed
-	return 0
+/datum/action/proc/CheckRemoval(mob/living/user) // TRUE if action is no longer valid for this mob and should be removed
+	return FALSE
 
 /datum/action/proc/IsAvailable()
 	if(!owner)
-		return 0
+		return FALSE
 	if(check_flags & AB_CHECK_RESTRAINED)
 		if(owner.restrained())
-			return 0
+			return FALSE
 	if(check_flags & AB_CHECK_STUNNED)
 		if(owner.stunned)
-			return 0
+			return FALSE
 	if(check_flags & AB_CHECK_LYING)
 		if(owner.lying)
-			return 0
+			return FALSE
 	if(check_flags & AB_CHECK_ALIVE)
 		if(owner.stat)
-			return 0
+			return FALSE
 	if(check_flags & AB_CHECK_INSIDE)
 		if(!(target in owner))
-			return 0
+			return FALSE
 
 /datum/action/proc/UpdateName()
 	return name
@@ -106,12 +106,12 @@
 /obj/screen/movable/action_button/Click(location,control,params)
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"])
-		moved = 0
-		return 1
+		moved = FALSE
+		return TRUE
 	if(usr.next_move >= world.time) // Is this needed ?
 		return
 	owner.Trigger()
-	return 1
+	return TRUE
 
 /obj/screen/movable/action_button/proc/UpdateIcon()
 	if(!owner)
@@ -126,8 +126,8 @@
 		img = image(I.icon, src , I.icon_state)
 	else if(owner.button_icon && owner.button_icon_state)
 		img = image(owner.button_icon,src,owner.button_icon_state)
-	img.pixel_x = 0
-	img.pixel_y = 0
+	img.pixel_x = FALSE
+	img.pixel_y = FALSE
 	overlays += img
 
 	if(!owner.IsAvailable())
@@ -140,7 +140,7 @@
 	name = "Hide Buttons"
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "bg_default"
-	var/hidden = 0
+	var/hidden = FALSE
 
 /obj/screen/movable/action_button/hide_toggle/Click()
 	//usr.hud_used.action_buttons_hidden = !usr.hud_used.action_buttons_hidden
@@ -178,7 +178,7 @@
 
 /datum/hud/proc/ButtonNumberToScreenCoords(var/number) // TODO : Make this zero-indexed for readabilty
 	var/row = round((number-1)/AB_MAX_COLUMNS)
-	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
+	var/col = ((number - TRUE)%(AB_MAX_COLUMNS)) + TRUE
 	var/coord_col = "+[col-1]"
 	var/coord_col_offset = AB_WEST_OFFSET+2*col
 	var/coord_row = "[-1 - row]"
@@ -187,7 +187,7 @@
 
 /datum/hud/proc/SetButtonCoords(var/obj/screen/button,var/number)
 	var/row = round((number-1)/AB_MAX_COLUMNS)
-	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
+	var/col = ((number - TRUE)%(AB_MAX_COLUMNS)) + TRUE
 	var/x_offset = 32*(col-1) + AB_WEST_OFFSET + 2*col
 	var/y_offset = -32*(row+1) + AB_NORTH_OFFSET
 

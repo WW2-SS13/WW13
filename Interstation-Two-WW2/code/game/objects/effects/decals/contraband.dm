@@ -5,15 +5,15 @@
 	name = "contraband item"
 	desc = "You probably shouldn't be holding this."
 	icon = 'icons/obj/contraband.dmi'
-	force = 0
+	force = FALSE
 
 
 /obj/item/weapon/contraband/poster
 	name = "rolled-up poster"
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
 	icon_state = "rolled_poster"
-	var/serial_number = 0
-	var/ruined = 0
+	var/serial_number = FALSE
+	var/ruined = FALSE
 	var/datum/poster/design = null
 
 /obj/item/weapon/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
@@ -25,7 +25,7 @@
 
 /obj/item/weapon/contraband/poster/placed
 	icon_state = "random"
-	anchored = 1
+	anchored = TRUE
 	New(turf/loc)
 		if(icon_state != "random")
 			for(var/datum/poster/new_design in poster_designs)
@@ -53,8 +53,8 @@
 			if(!Adjacent(user))
 				return
 			visible_message("<span class='warning'>[user] rips [src] in a single, decisive motion!</span>" )
-			playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
-			ruined = 1
+			playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, TRUE)
+			ruined = TRUE
 			icon = initial(icon)
 			icon_state = "poster_ripped"
 			name = "ripped poster"
@@ -65,7 +65,7 @@
 
 /obj/item/weapon/contraband/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wirecutters))
-		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(loc, 'sound/items/Wirecutter.ogg', 100, TRUE)
 		if(ruined)
 			user << "<span class='notice'>You remove the remnants of the poster.</span>"
 			qdel(src)
@@ -75,9 +75,9 @@
 		return
 
 /obj/item/weapon/contraband/poster/proc/roll_and_drop()
-	anchored = 0
-	pixel_x = 0
-	pixel_y = 0
+	anchored = FALSE
+	pixel_x = FALSE
+	pixel_y = FALSE
 	icon = initial(icon)
 	icon_state = initial(icon_state)
 	name = initial(name)
@@ -131,9 +131,9 @@
 			pixel_x = 32
 		else if(placement_dir&EAST)
 			pixel_x = -32
-		anchored = 1
+		anchored = TRUE
 		flick("poster_being_set", src)
-		playsound(W, 'sound/items/poster_being_created.ogg', 100, 1)
+		playsound(W, 'sound/items/poster_being_created.ogg', 100, TRUE)
 		design.set_design(src)
 
 /datum/poster
@@ -149,4 +149,4 @@
 	P.desc = desc
 	P.icon_state = icon_state
 	P.icon = icon
-	return 1
+	return TRUE

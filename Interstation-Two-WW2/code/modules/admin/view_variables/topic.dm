@@ -30,7 +30,7 @@
 			usr << "This can only be used on instances of types /client or /datum"
 			return
 
-		modify_variables(D, href_list["varnameedit"], 1)
+		modify_variables(D, href_list["varnameedit"], TRUE)
 
 	else if(href_list["varnamechange"] && href_list["datumchange"])
 		if(!check_rights(R_VAREDIT))	return
@@ -40,7 +40,7 @@
 			usr << "This can only be used on instances of types /client or /datum"
 			return
 
-		modify_variables(D, href_list["varnamechange"], 0)
+		modify_variables(D, href_list["varnamechange"], FALSE)
 
 	else if(href_list["varnamemass"] && href_list["datummass"])
 		if(!check_rights(R_VAREDIT))	return
@@ -160,7 +160,7 @@
 		var/O_type = O.type
 		switch(action_type)
 			if("Strict type")
-				var/i = 0
+				var/i = FALSE
 				for(var/obj/Obj in world)
 					if(Obj.type == O_type)
 						i++
@@ -171,7 +171,7 @@
 				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)")
 				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)</span>")
 			if("Type and subtypes")
-				var/i = 0
+				var/i = FALSE
 				for(var/obj/Obj in world)
 					if(istype(Obj,O_type))
 						i++
@@ -479,7 +479,7 @@
 				usr << "You caused an error. DEBUG: Text:[Text] Mob:[L]"
 				return
 
-		if(amount != 0)
+		if(amount != FALSE)
 			log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [L]")
 			message_admins("<span class='notice'>[key_name(usr)] dealt [amount] amount of [Text] damage to [L]</span>")
 			href_list["datumrefresh"] = href_list["mobToDamage"]

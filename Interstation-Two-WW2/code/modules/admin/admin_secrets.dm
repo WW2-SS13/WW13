@@ -34,16 +34,16 @@ var/datum/admin_secrets/admin_secrets = new()
 /datum/admin_secret_category/proc/can_view(var/mob/user)
 	for(var/datum/admin_secret_item/item in items)
 		if(item.can_view(user))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /datum/admin_secret_item
 	var/name = ""
 	var/category = null
-	var/log = 1
-	//var/feedback = 1
+	var/log = TRUE
+	//var/feedback = TRUE
 	var/permissions = R_HOST
-	var/warn_before_use = 0
+	var/warn_before_use = FALSE
 
 /datum/admin_secret_item/dd_SortValue()
 	return "[name]"
@@ -52,22 +52,22 @@ var/datum/admin_secrets/admin_secrets = new()
 	return name
 
 /datum/admin_secret_item/proc/can_view(var/mob/user)
-	return check_rights(permissions, 0, user)
+	return check_rights(permissions, FALSE, user)
 
 /datum/admin_secret_item/proc/can_execute(var/mob/user)
 	if(can_view(user))
 		if(!warn_before_use || alert("Execute the command '[name]'?", name, "No","Yes") == "Yes")
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /datum/admin_secret_item/proc/execute(var/mob/user)
 	if(!can_execute(user))
-		return 0
+		return FALSE
 
 	if(log)
 		log_and_message_admins("used secret '[name]'", user)
 
-	return 1
+	return TRUE
 
 /*************************
 * Pre-defined categories *
@@ -90,18 +90,18 @@ var/datum/admin_secrets/admin_secrets = new()
 *************************/
 /datum/admin_secret_item/admin_secret
 	category = /datum/admin_secret_category/admin_secrets
-	log = 0
+	log = FALSE
 	permissions = R_ADMIN
 
 /datum/admin_secret_item/random_event
 	category = /datum/admin_secret_category/random_events
 	permissions = R_FUN
-	warn_before_use = 1
+	warn_before_use = TRUE
 
 /datum/admin_secret_item/fun_secret
 	category = /datum/admin_secret_category/fun_secrets
 	permissions = R_FUN
-	warn_before_use = 1
+	warn_before_use = TRUE
 
 /datum/admin_secret_item/final_solution
 	category = /datum/admin_secret_category/final_solutions

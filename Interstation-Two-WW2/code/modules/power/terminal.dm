@@ -7,10 +7,10 @@
 	name = "terminal"
 	icon_state = "term"
 	desc = "It's an underfloor wiring terminal for power equipment."
-	level = 1
+	level = TRUE
 	layer = TURF_LAYER
 	var/obj/machinery/power/master = null
-	anchored = 1
+	anchored = TRUE
 	layer = 2.6 // a bit above wires
 
 
@@ -33,4 +33,4 @@
 // Needed so terminals are not removed from machines list.
 // Powernet rebuilds need this to work properly.
 /obj/machinery/power/terminal/process()
-	return 1
+	return TRUE

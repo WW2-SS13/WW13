@@ -10,11 +10,11 @@
 	if(!flooring || !(flooring.flags & TURF_CAN_BREAK) || !isnull(broken))
 		return
 	if(rust)
-		broken = flooring.has_damage_range + 1
+		broken = flooring.has_damage_range + TRUE
 	else if(flooring.has_damage_range)
 		broken = rand(0,flooring.has_damage_range)
 	else
-		broken = 0
+		broken = FALSE
 	update_icon()
 
 /turf/floor/proc/burn_tile()
@@ -23,5 +23,5 @@
 	if(flooring.has_burn_range)
 		burnt = rand(0,flooring.has_burn_range)
 	else
-		burnt = 0
+		burnt = FALSE
 	update_icon()

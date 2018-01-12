@@ -16,10 +16,10 @@
 
 //  Generic non-item
 /obj/item/weapon/storage/bag
-	allow_quick_gather = 1
-	allow_quick_empty = 1
-	display_contents_with_number = 0 // UNStABLE AS FuCK, turn on when it stops crashing clients
-	use_to_pickup = 1
+	allow_quick_gather = TRUE
+	allow_quick_empty = TRUE
+	display_contents_with_number = FALSE // UNStABLE AS FuCK, turn on when it stops crashing clients
+	use_to_pickup = TRUE
 	slot_flags = SLOT_BELT
 
 // -----------------------------
@@ -37,7 +37,7 @@
 	can_hold = list() // any
 
 /obj/item/weapon/storage/bag/trash/update_icon()
-	if(contents.len == 0)
+	if(contents.len == FALSE)
 		icon_state = "trashbag0"
 	else if(contents.len < 12)
 		icon_state = "trashbag1"
@@ -106,35 +106,35 @@
 	w_class = 3
 	storage_slots = 7
 
-	allow_quick_empty = 1 // this function is superceded
+	allow_quick_empty = TRUE // this function is superceded
 	New()
 		..()
 		//verbs -= /obj/item/weapon/storage/verb/quick_empty
 		//verbs += /obj/item/weapon/storage/bag/sheetsnatcher/quick_empty
 
-	can_be_inserted(obj/item/W as obj, stop_messages = 0)
+	can_be_inserted(obj/item/W as obj, stop_messages = FALSE)
 		if(!istype(W,/obj/item/stack/material))
 			if(!stop_messages)
 				usr << "The snatcher does not accept [W]."
-			return 0
-		var/current = 0
+			return FALSE
+		var/current = FALSE
 		for(var/obj/item/stack/material/S in contents)
 			current += S.amount
 		if(capacity == current)//If it's full, you're done
 			if(!stop_messages)
 				usr << "<span class='warning'>The snatcher is full.</span>"
-			return 0
-		return 1
+			return FALSE
+		return TRUE
 
 
 // Modified handle_item_insertion.  Would prefer not to, but...
-	handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+	handle_item_insertion(obj/item/W as obj, prevent_warning = FALSE)
 		var/obj/item/stack/material/S = W
-		if(!istype(S)) return 0
+		if(!istype(S)) return FALSE
 
 		var/amount
-		var/inserted = 0
-		var/current = 0
+		var/inserted = FALSE
+		var/current = FALSE
 		for(var/obj/item/stack/material/S2 in contents)
 			current += S2.amount
 		if(capacity < current + S.amount)//If the stack will fill it up
@@ -146,7 +146,7 @@
 			if(S.type == sheet.type) // we are violating the amount limitation because these are not sane objects
 				sheet.amount += amount	// they should only be removed through procs in this file, which split them up.
 				S.amount -= amount
-				inserted = 1
+				inserted = TRUE
 				break
 
 		if(!inserted || !S.amount)
@@ -164,7 +164,7 @@
 		if(usr.s_active)
 			usr.s_active.show_to(usr)
 		update_icon()
-		return 1
+		return TRUE
 
 
 // Sets up numbered display to show the stack size of each stored mineral
@@ -176,14 +176,14 @@
 		var/list/datum/numbered_display/numbered_contents
 		if(display_contents_with_number)
 			numbered_contents = list()
-			adjusted_contents = 0
+			adjusted_contents = FALSE
 			for(var/obj/item/stack/material/I in contents)
 				adjusted_contents++
 				var/datum/numbered_display/D = new/datum/numbered_display(I)
 				D.number = I.amount
 				numbered_contents.Add( D )
 
-		var/row_num = 0
+		var/row_num = FALSE
 		var/col_count = min(7,storage_slots) -1
 		if (adjusted_contents > 7)
 			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
@@ -210,7 +210,7 @@
 // Instead of removing
 	remove_from_storage(obj/item/W as obj, atom/new_location)
 		var/obj/item/stack/material/S = W
-		if(!istype(S)) return 0
+		if(!istype(S)) return FALSE
 
 		//I would prefer to drop a new stack, but the item/attack_hand code
 		// that calls this can't recieve a different object than you clicked on.

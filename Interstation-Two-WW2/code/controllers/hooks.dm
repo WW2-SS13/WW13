@@ -11,9 +11,9 @@
  * @code
 	hook/foo/proc/bar()
 		if(1)
-			return 1 //Sucessful
+			return TRUE //Sucessful
 		else
-			return 0 //Error, or runtime.
+			return FALSE //Error, or runtime.
  * @endcode
  * All hooks must return nonzero on success, as runtimes will force return null.
  */
@@ -21,19 +21,19 @@
 /**
  * Calls a hook, executing every piece of code that's attached to it.
  * @param hook	Identifier of the hook to call.
- * @returns		1 if all hooked code runs successfully, 0 otherwise.
+ * @returns		1 if all hooked code runs successfully, FALSE otherwise.
  */
 /proc/callHook(hook, list/args=null)
 	var/hook_path = text2path("/hook/[hook]")
 	if(!hook_path)
 		error("Invalid hook '/hook/[hook]' called.")
-		return 0
+		return FALSE
 
 	var/caller = new hook_path
-	var/status = 1
+	var/status = TRUE
 	for(var/P in typesof("[hook_path]/proc"))
 		if(!call(caller, P)(arglist(args)))
 			error("Hook '[P]' failed or runtimed.")
-			status = 0
+			status = FALSE
 
 	return status

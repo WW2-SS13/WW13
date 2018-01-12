@@ -73,5 +73,5 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 	switch (faction)
 		if (GERMAN)
 			supplydrop_processing_objects_german += object_path
-		if (RUSSIAN)
+		if (SOVIET)
 			supplydrop_processing_objects_soviet += object_path

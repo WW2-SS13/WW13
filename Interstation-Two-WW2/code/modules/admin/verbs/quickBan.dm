@@ -86,7 +86,7 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 			var/datum/job/J = input("What job?") in possibilities
 			fields["type_specific_info"] = J.title
 		if ("Faction")
-			var/faction = input("What faction?") in list(GERMAN, RUSSIAN, ITALIAN, UKRAINIAN, SCHUTZSTAFFEL, PARTISAN, CIVILIAN)
+			var/faction = input("What faction?") in list(GERMAN, SOVIET, ITALIAN, UKRAINIAN, SCHUTZSTAFFEL, PARTISAN, CIVILIAN)
 			fields["type_specific_info"] = faction
 
 	reenter_bantime
@@ -267,7 +267,7 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 	var/list/admincheck = database.execute("SELECT * FROM admin WHERE ckey = '[_ckey]';")
 	if (islist(admincheck) && !isemptylist(admincheck))
 		src << "<span class = 'danger'>You can't ban admins!</span>"
-		return 1
+		return TRUE
 
 	var/list/playercheck = database.execute("SELECT * FROM connection_log WHERE ckey = '[_ckey]' OR ip = '[ip]' OR computerid = '[cID]';")
 	if (islist(playercheck) && !isemptylist(playercheck))
@@ -277,5 +277,5 @@ var/list/ban_types = list("Job Ban", "Faction Ban", "Officer Ban", "Server Ban",
 				admincheck = database.execute("SELECT * FROM admin WHERE ckey = '[player_ckey]';")
 				if (islist(admincheck) && !isemptylist(admincheck))
 					src << "<span class = 'danger'>You can't ban admins!</span>"
-					return 1
-	return 0
+					return TRUE
+	return FALSE

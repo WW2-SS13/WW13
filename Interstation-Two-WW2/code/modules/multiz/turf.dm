@@ -2,7 +2,7 @@
 	name = "open space"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "black"
-	density = 0
+	density = FALSE
 	plane = OPENSPACE_PLANE
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 
@@ -52,7 +52,7 @@
 		return
 */
 	// See if something prevents us from falling.
-	var/soft = 0
+	var/soft = FALSE
 	for(var/atom/A in below)
 		if(A.density)
 			if(!istype(A, /obj/structure/window))
@@ -63,7 +63,7 @@
 					return
 		// Dont break here, since we still need to be sure that it isnt blocked
 		if(istype(A, /obj/structure/stairs))
-			soft = 1
+			soft = TRUE
 
 	// We've made sure we can move, now.
 	mover.Move(below)
@@ -84,7 +84,7 @@
 
 			// Handle people getting hurt, it's funny!
 			if (istype(mover, /mob/living/carbon/human))
-				playsound(mover.loc, 'sound/effects/gore/fallsmash.ogg', 50, 1)
+				playsound(mover.loc, 'sound/effects/gore/fallsmash.ogg', 50, TRUE)
 				var/mob/living/carbon/human/H = mover
 				var/damage = 10
 				H.apply_damage(rand(0, damage), BRUTE, "head")
@@ -110,7 +110,7 @@
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
 			user << "<span class='notice'>Constructing support lattice ...</span>"
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, TRUE)
 			ReplaceWithLattice()
 		return
 
@@ -118,10 +118,10 @@
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
 			var/obj/item/stack/tile/floor/S = C
-			if (S.get_amount() < 1)
+			if (S.get_amount() < TRUE)
 				return
 			qdel(L)
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, TRUE)
 			S.use(1)
 			ChangeTurf(/turf/floor/airless)
 			return
@@ -137,7 +137,7 @@
 	if(user.resting)//Can't climb down if you're lying down.
 		return
 
-	playsound(user.loc, 'sound/effects/climb.ogg', 50, 1)
+	playsound(user.loc, 'sound/effects/climb.ogg', 50, TRUE)
 	spawn(15)
 		user.visible_message("<span class='notice'>[user] climbs down.","<span class='notice'>You climb down.")
 		user.Move(below)

@@ -57,23 +57,23 @@ About the Holder:
 		handle_reactions()
 			Checks reagents and triggers any reactions that happen. Usually called automatically.
 
-		add_reagent(var/id, var/amount, var/data = null, var/safety = 0)
-			Adds [amount] units of [id] reagent. [data] will be passed to reagent's mix_data() or initialize_data(). If [safety] is 0, handle_reactions() will be called. Returns 1 if successful, 0 otherwise.
+		add_reagent(var/id, var/amount, var/data = null, var/safety = FALSE)
+			Adds [amount] units of [id] reagent. [data] will be passed to reagent's mix_data() or initialize_data(). If [safety] is FALSE, handle_reactions() will be called. Returns TRUE if successful, FALSE otherwise.
 
-		remove_reagent(var/id, var/amount, var/safety = 0)
-			Ditto, but removes reagent. Returns 1 if successful, 0 otherwise.
+		remove_reagent(var/id, var/amount, var/safety = FALSE)
+			Ditto, but removes reagent. Returns TRUE if successful, FALSE otherwise.
 
 		del_reagent(var/id)
 			Removes all of the reagent.
 
-		has_reagent(var/id, var/amount = 0)
-			Checks if holder has at least [amount] of [id] reagent. Returns 1 if the reagent is found and volume is above [amount]. Returns 0 otherwise.
+		has_reagent(var/id, var/amount = FALSE)
+			Checks if holder has at least [amount] of [id] reagent. Returns TRUE if the reagent is found and volume is above [amount]. Returns FALSE otherwise.
 
 		clear_reagents()
 			Removes all reagents.
 
 		get_reagent_amount(var/id)
-			Returns reagent volume. Returns 0 if reagent is not found.
+			Returns reagent volume. Returns FALSE if reagent is not found.
 
 		get_data(var/id)
 			Returns get_data() of the reagent.
@@ -81,11 +81,11 @@ About the Holder:
 		get_reagents()
 			Returns a string containing all reagent ids and volumes, e.g. "carbon(4),nittrogen(5)".
 
-		remove_any(var/amount = 1)
+		remove_any(var/amount = TRUE)
 			Removes up to [amount] of reagents from [src]. Returns actual amount removed.
 
-		trans_to_holder(var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
-			Transfers [amount] reagents from [src] to [target], multiplying them by [multiplier]. Returns actual amount removed from [src] (not amount transferred to [target]). If [copy] is 1, copies reagents instead.
+		trans_to_holder(var/datum/reagents/target, var/amount = TRUE, var/multiplier = TRUE, var/copy = FALSE)
+			Transfers [amount] reagents from [src] to [target], multiplying them by [multiplier]. Returns actual amount removed from [src] (not amount transferred to [target]). If [copy] is TRUE, copies reagents instead.
 
 		touch(var/atom/target)
 			When applying reagents to an atom externally, touch() is called to trigger any on-touch effects of the reagent.
@@ -104,27 +104,27 @@ About the Holder:
 		touch_obj(var/obj/target)
 			Calls each reagent's touch_obj(target).
 
-		trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
+		trans_to(var/atom/target, var/amount = TRUE, var/multiplier = TRUE, var/copy = FALSE)
 			The general proc for applying reagents to things externally (as opposed to directly injected into the contents).
 			It first calls touch, then the appropriate trans_to_*() or splash_mob().
 			If for some reason you want touch effects to be bypassed (e.g. injecting stuff directly into a reagent container or person), call the appropriate trans_to_*() proc.
 
 			Calls touch() before checking the type of [target], calling splash_mob(target, amount), trans_to_turf(target, amount, multiplier, copy), or trans_to_obj(target, amount, multiplier, copy).
 
-		trans_id_to(var/atom/target, var/id, var/amount = 1)
+		trans_id_to(var/atom/target, var/id, var/amount = TRUE)
 			Transfers [amount] of [id] to [target]. Returns amount transferred.
 
-		splash_mob(var/mob/target, var/amount = 1, var/clothes = 1)
-			Checks mob's clothing if [clothes] is 1 and transfers [amount] reagents to mob's skin.
+		splash_mob(var/mob/target, var/amount = TRUE, var/clothes = TRUE)
+			Checks mob's clothing if [clothes] is TRUE and transfers [amount] reagents to mob's skin.
 			Don't call this directly. Call apply_to() instead.
 
-		trans_to_mob(var/mob/target, var/amount = 1, var/type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0)
+		trans_to_mob(var/mob/target, var/amount = TRUE, var/type = CHEM_BLOOD, var/multiplier = TRUE, var/copy = FALSE)
 			Transfers [amount] reagents to the mob's appropriate holder, depending on [type]. Ignores protection.
 
-		trans_to_turf(var/turf/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
+		trans_to_turf(var/turf/target, var/amount = TRUE, var/multiplier = TRUE, var/copy = FALSE)
 			Turfs don't currently have any reagents. Puts [amount] reagents into a temporary holder, calls touch_turf(target) from it, and deletes it.
 
-		trans_to_obj(var/turf/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
+		trans_to_obj(var/turf/target, var/amount = TRUE, var/multiplier = TRUE, var/copy = FALSE)
 			If target has reagents, transfers [amount] to it. Otherwise, same as trans_to_turf().
 
 		atom/proc/create_reagents(var/max_vol)
@@ -177,10 +177,10 @@ About Reagents:
 			If [dose] is bigger than [overdose], overdose() proc is called every tick.
 
 		scannable
-			If set to 1, will show up on health analyzers by name.
+			If set to TRUE, will show up on health analyzers by name.
 
 		affects_dead
-			If set to 1, will affect dead players. Used by Adminordrazine.
+			If set to TRUE, will affect dead players. Used by Adminordrazine.
 
 		glass_center_of_mass
 			Used for glass placement on tables.
@@ -263,7 +263,7 @@ About Recipes:
 	Procs:
 
 		can_happen(var/datum/reagents/holder)
-			Customizable. If it returns 0, reaction will not happen. Defaults to always returning 1. Used by slime core reactions.
+			Customizable. If it returns FALSE, reaction will not happen. Defaults to always returning 1. Used by slime core reactions.
 
 		on_reaction(var/datum/reagents/holder, var/created_volume)
 			Called when reaction happens. Used by explosives.
@@ -287,9 +287,9 @@ About the Tools:
 
 		atom/proc/is_open_container()
 			Checks atom/var/flags & OPENCONTAINER.
-			If this returns 1 , you can use syringes, beakers etc
+			If this returns TRUE , you can use syringes, beakers etc
 			to manipulate the contents of this object.
-			If it's 0, you'll need to write your own custom reagent
+			If it's FALSE, you'll need to write your own custom reagent
 			transfer code since you will not be able to use the standard
 			tools to manipulate it.
 

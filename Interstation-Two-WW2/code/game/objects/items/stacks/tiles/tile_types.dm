@@ -31,8 +31,8 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
-//	origin_tech = list(TECH_BIO = 1)
+	flags = FALSE
+//	origin_tech = list(TECH_BIO = TRUE)
 
 /*
  * Wood
@@ -46,12 +46,12 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = FALSE
 
 /obj/item/stack/tile/wood/cyborg
 	name = "wood floor tile synthesizer"
 	desc = "A device that makes wood floor tiles."
-	uses_charge = 1
+	uses_charge = TRUE
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/wood
 	build_type = /obj/item/stack/tile/wood
@@ -68,7 +68,7 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = FALSE
 
 /obj/item/stack/tile/carpet/bcarpet
 	icon_state = "tile-bcarpet"
@@ -136,7 +136,7 @@
 	desc = "A device that makes floor tiles."
 	gender = NEUTER
 	matter = null
-	uses_charge = 1
+	uses_charge = TRUE
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/floor
 	build_type = /obj/item/stack/tile/floor
@@ -150,4 +150,4 @@
 	throwforce = 1.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = FALSE

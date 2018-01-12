@@ -7,8 +7,8 @@
 	icon_state = "book1"
 	item_state = "bible" // I couldn't find any better placeholder for now
 	slot_flags = SLOT_BELT | SLOT_POCKET
-	force = 1
-	throwforce = 1
+	force = TRUE
+	throwforce = TRUE
 	w_class = 2.0
 	throw_speed = 5
 	throw_range = 10
@@ -27,16 +27,16 @@
 	if (ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 
-		var/severity_blood_loss = 0
-		var/severity_poisoning = 0
-		var/severity_malnourishment = 0
+		var/severity_blood_loss = FALSE
+		var/severity_poisoning = FALSE
+		var/severity_malnourishment = FALSE
 
 		// GENERAL BLOOD LOSS
 		if (H.vessel) // look for any reference to "vessel"
 			var/blood_percent = round((H.vessel.get_reagent_amount("blood") / H.species.blood_volume)*100)
 			switch (blood_percent)
-				if (91 to 100)	severity_blood_loss = 0
-				if (81 to 90) 	severity_blood_loss = 1
+				if (91 to 100)	severity_blood_loss = FALSE
+				if (81 to 90) 	severity_blood_loss = TRUE
 				if (71 to 80)		severity_blood_loss = 2
 				if (61 to 70) 	severity_blood_loss = 3
 				if (51 to 60) 	severity_blood_loss = 4
@@ -47,43 +47,43 @@
 
 		// HUNGER
 		switch (H.nutrition)
-			if (41 to 50) severity_malnourishment = 1
+			if (41 to 50) severity_malnourishment = TRUE
 			if (31 to 40) severity_malnourishment = 2
 			if (21 to 30) severity_malnourishment = 3
 			if (11 to 20) severity_malnourishment = 4
 			if (0 to 10)  severity_malnourishment = 5
-			else severity_malnourishment = 0
+			else severity_malnourishment = FALSE
 
 		// Begin displaying
 		user.show_message("<b>----------</b>")
 		user.show_message("Consulting [src], you've concluded that [victim] [victim.stat == DEAD ? "is dead. [G.He] " : "" ]has signs of:")
 
-		var/is_bad = 0	// I hate myself
+		var/is_bad = FALSE	// I hate myself
 		if (severity_blood_loss)
-			is_bad = 1
+			is_bad = TRUE
 			user.show_message("<span class='warning'>* [capitalize(severity_adj[severity_blood_loss])] blood loss.</span>")
 		if (severity_poisoning)
-			is_bad = 1
+			is_bad = TRUE
 			user.show_message("<span class='warning'>* [capitalize(severity_adj[severity_poisoning])] general poisoning.</span>")
 		if (severity_malnourishment)
-			is_bad = 1
+			is_bad = TRUE
 			user.show_message("<span class='warning'>* [capitalize(severity_adj[severity_malnourishment])] malnourishment.</span>")
 		if (!is_bad)
 			user.show_message("<span class='notice'>* No general health issues.</span>")
 
-		var/count = 0
+		var/count = FALSE
 		var/list/unsplinted_limbs = list()
 		user.show_message("[victim] has:")
 		for (var/name in H.organs_by_name)
 			var/obj/item/organ/external/e = H.organs_by_name[name]
 
-			var/wounds = 0
-			var/infected = 0
-			var/broken = 0
-			var/internal = 0
-			var/open = 0
-			var/bleeding = 0
-			var/foreign = 0 // sharpnel, implants, and etcera
+			var/wounds = FALSE
+			var/infected = FALSE
+			var/broken = FALSE
+			var/internal = FALSE
+			var/open = FALSE
+			var/bleeding = FALSE
+			var/foreign = FALSE // sharpnel, implants, and etcera
 
 			if (!e)
 				continue
@@ -92,28 +92,28 @@
 				count++
 				continue
 			if (e.status & ORGAN_BROKEN)
-				broken = 1
+				broken = TRUE
 				if (e.limb_name == "l_arm" || e.limb_name == "r_arm" || e.limb_name == "l_leg" || e.limb_name == "r_leg" && !(e.status & ORGAN_SPLINTED))
 					unsplinted_limbs.Add(e.name)
 			if (e.has_infected_wound())
-				infected = 1
+				infected = TRUE
 			if (e.implants.len)
-				foreign = 1
+				foreign = TRUE
 			for (var/datum/wound/W in e.wounds)
 				if (W.damage > 2)					wounds++
-				if (W.internal)						internal = 1
-				if (W.bleeding())					bleeding = 1
-				if (W.can_be_infected()) 	open = 1 // returns 1 when it can be infected, then cosnidered as an open wound
+				if (W.internal)						internal = TRUE
+				if (W.bleeding())					bleeding = TRUE
+				if (W.can_be_infected()) 	open = TRUE // returns TRUE when it can be infected, then cosnidered as an open wound
 
 			if (wounds || infected || broken || internal || open || bleeding || internal || foreign)
 				var/string = "<span class='warning'>* "
 				var/inner = ""
 				if (wounds || infected || broken || internal || open || bleeding)
-					inner += "[wounds > 1 ? "multiple" : (open ? "an" : "a") ]"
+					inner += "[wounds > TRUE ? "multiple" : (open ? "an" : "a") ]"
 					inner += "[open ? " open" : ""]"
 					inner += "[bleeding ? " bleeding" : ""]"
 					inner += "[infected && e.germ_level > 175 ? " infected" : ""]"
-					inner += " wound[wounds > 1 ? "s" : ""]"
+					inner += " wound[wounds > TRUE ? "s" : ""]"
 					inner += " [foreign || internal || broken || e.burn_dam > 2 || e.brute_dam > 2 ? "and " : "at"]"
 				if (e.brute_dam > 2)
 					var/sev = pick_severity(e.brute_dam)
@@ -137,17 +137,17 @@
 				count++
 		if(!count)
 			user.show_message("<span class='notice'>* No local injuries.</span>")
-		if(unsplinted_limbs.len >= 1)
+		if(unsplinted_limbs.len >= TRUE)
 			var/string = "[G.His] "
-			var/Count = 1
+			var/Count = TRUE
 			for (var/limb_name in unsplinted_limbs)
 				string += limb_name
 				if (Count < unsplinted_limbs.len)
 				 string += ", "
-				 if (Count + 1 == unsplinted_limbs.len)
+				 if (Count + TRUE == unsplinted_limbs.len)
 				 	string += "and "
 				Count++
-			string += " need[count == 1 ? "s" : ""] splinting for safe transport."
+			string += " need[count == TRUE ? "s" : ""] splinting for safe transport."
 		user.show_message("<b>----------</b>")
 
 

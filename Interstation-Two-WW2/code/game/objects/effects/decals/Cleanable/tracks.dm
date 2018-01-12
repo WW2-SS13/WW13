@@ -1,7 +1,7 @@
 // Stolen en masse from N3X15 of /vg/station with much gratitude.
 
 // The idea is to have 4 bits for coming and 4 for going.
-#define TRACKS_COMING_NORTH 1
+#define TRACKS_COMING_NORTH TRUE
 #define TRACKS_COMING_SOUTH 2
 #define TRACKS_COMING_EAST  4
 #define TRACKS_COMING_WEST  8
@@ -38,7 +38,7 @@ var/global/list/image/fluidtrack_cache=list()
 
 // Footprints, tire trails...
 /obj/effect/decal/cleanable/blood/tracks
-	amount = 0
+	amount = FALSE
 	random_icon_states = null
 	var/dirs=0
 	icon = 'icons/effects/fluidtracks.dmi'
@@ -67,7 +67,7 @@ var/global/list/image/fluidtrack_cache=list()
 	*
 	* @param DNA bloodDNA to add to collection.
 	* @param comingdir Direction tracks come from, or 0.
-	* @param goingdir Direction tracks are going to (or 0).
+	* @param goingdir Direction tracks are going to (or FALSE).
 	* @param bloodcolor Color of the blood when wet.
 	*/
 	proc/AddTracks(var/list/DNA, var/comingdir, var/goingdir, var/bloodcolor="#A10808")
@@ -158,7 +158,7 @@ var/global/list/image/fluidtrack_cache=list()
 	drydesc = "Whoops..."
 	coming_state = "human1"
 	going_state  = "human2"
-	amount = 0
+	amount = FALSE
 
 /obj/effect/decal/cleanable/blood/tracks/wheels
 	name = "wet tracks"
@@ -170,4 +170,4 @@ var/global/list/image/fluidtrack_cache=list()
 	desc = "They look like tracks left by wheels."
 	gender = PLURAL
 	random_icon_states = null
-	amount = 0
+	amount = FALSE

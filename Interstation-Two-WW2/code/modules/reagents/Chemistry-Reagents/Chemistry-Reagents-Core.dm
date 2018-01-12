@@ -25,9 +25,9 @@
 	if(!istype(T) || volume < 3)
 		return
 	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
-		blood_splatter(T, src, 1)
+		blood_splatter(T, src, TRUE)
 	else if(istype(data["donor"], /mob/living/carbon/alien))
-		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, 1)
+		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, TRUE)
 		if(B)
 			B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
 
@@ -99,7 +99,7 @@
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
 	//	var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-	//	lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
+	//	lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), FALSE)
 	//	lowertemp.react()
 	//	T.assume_air(lowertemp)
 		qdel(hotspot)
@@ -123,7 +123,7 @@
 	if(istype(L))
 		var/needed = L.fire_stacks * 10
 		if(amount > needed)
-			L.fire_stacks = 0
+			L.fire_stacks = FALSE
 			L.ExtinguishMob()
 			remove_self(needed)
 		else
@@ -131,7 +131,7 @@
 			remove_self(amount)
 
 /datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if (M.water < 0)
+	if (M.water < FALSE)
 		M.water += rand(40,50)
 	M.water += removed * 15
 

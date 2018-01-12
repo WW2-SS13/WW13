@@ -16,7 +16,7 @@
 	icon_state = "pen"
 	item_state = "pen"
 	slot_flags = SLOT_BELT | SLOT_EARS
-	throwforce = 0
+	throwforce = FALSE
 	w_class = 1.0
 	throw_speed = 7
 	throw_range = 15
@@ -36,12 +36,12 @@
 
 /obj/item/weapon/pen/multi
 	desc = "It's a pen with multiple colors of ink!"
-	var/selectedColor = 1
+	var/selectedColor = TRUE
 	var/colors = list("black","blue","red")
 
 /obj/item/weapon/pen/multi/attack_self(mob/user)
 	if(++selectedColor > 3)
-		selectedColor = 1
+		selectedColor = TRUE
 
 	colour = colors[selectedColor]
 
@@ -188,7 +188,7 @@
 	colour = "#FF0000" //RGB
 	var/shadeColour = "#220000" //RGB
 	var/uses = 30 //0 for unlimited uses
-	var/instant = 0
+	var/instant = FALSE
 	var/colourName = "red" //for updateIcon purposes
 
 	New()

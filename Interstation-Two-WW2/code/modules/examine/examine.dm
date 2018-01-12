@@ -64,7 +64,7 @@
 //override examinate verb to update description holders when things are examined
 /mob/examinate(atom/A as mob|obj|turf in view())
 	if(..())
-		return 1
+		return TRUE
 
 	var/is_antag = ((mind && mind.special_role) || isghost(src)) //ghosts don't have minds
 	if(client)

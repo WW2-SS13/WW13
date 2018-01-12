@@ -5,7 +5,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/verb/quick_equip()
 	set name = "quick-equip"
-	set hidden = 1
+	set hidden = TRUE
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -21,9 +21,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 		else
 			H << "\red You are unable to equip that."
 
-/mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
+/mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = TRUE)
 	for (var/slot in slots)
-		if (equip_to_slot_if_possible(W, slots[slot], del_on_fail = 0))
+		if (equip_to_slot_if_possible(W, slots[slot], del_on_fail = FALSE))
 			return slot
 	if (del_on_fail)
 		qdel(W)
@@ -53,7 +53,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			return has_organ("chest")
 		if(slot_wear_id)
 			// the only relevant check for this is the uniform check
-			return 1
+			return TRUE
 		if(slot_l_ear)
 			return has_organ("head")
 		if(slot_r_ear)
@@ -77,12 +77,12 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_s_store)
 			return has_organ("chest")
 		if(slot_in_backpack)
-			return 1
+			return TRUE
 		if(slot_tie)
-			return 1
+			return TRUE
 
 /mob/living/carbon/human/u_equip(obj/W as obj)
-	if(!W)	return 0
+	if(!W)	return FALSE
 
 	if (W == wear_suit)
 		if(s_store)
@@ -178,16 +178,16 @@ This saves us from having to call add_fingerprint() any time something is put in
 			update_inv_l_hand()
 		update_inv_l_hand()
 	else
-		return 0
+		return FALSE
 
 	update_action_buttons()
-	return 1
+	return TRUE
 
 
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
-//set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot, redraw_mob = 1)
+//set redraw_mob to FALSE if you don't wish the hud to be updated - if you're doing it manually in your own proc.
+/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot, redraw_mob = TRUE)
 
 	if(!slot) return
 	if(!istype(W)) return
@@ -312,12 +312,12 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(W.action_button_name)
 		update_action_buttons()
 
-	return 1
+	return TRUE
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
 /mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
 	var/obj/item/covering = null
-	var/check_flags = 0
+	var/check_flags = FALSE
 
 	switch(slot)
 		if(slot_wear_mask)
@@ -331,8 +331,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	if(covering && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
 		user << "<span class='warning'>\The [covering] is in the way.</span>"
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/get_equipped_item(var/slot)
 	switch(slot)
@@ -357,7 +357,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_r_ear)      return r_ear
 	return ..()
 
-/mob/living/carbon/human/get_equipped_items(var/include_carried = 0)
+/mob/living/carbon/human/get_equipped_items(var/include_carried = FALSE)
 	var/list/items = new/list()
 
 	if(back) items += back

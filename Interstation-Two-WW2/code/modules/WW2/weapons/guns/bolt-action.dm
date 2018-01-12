@@ -14,7 +14,7 @@
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
-/obj/item/weapon/gun/projectile/boltaction/mosin/update_icon(var/add_scope = 0)
+/obj/item/weapon/gun/projectile/boltaction/mosin/update_icon(var/add_scope = FALSE)
 	if(add_scope)
 		if(bolt_open)
 			icon_state = "mosin_scope_open"
@@ -46,11 +46,11 @@
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = DEFAULT_BOLTACTION_ACCURACY
 	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
-	bolt_safety = 1
+	bolt_safety = TRUE
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
-/obj/item/weapon/gun/projectile/boltaction/kar98k/update_icon(var/add_scope = 0)
+/obj/item/weapon/gun/projectile/boltaction/kar98k/update_icon(var/add_scope = FALSE)
 	if(add_scope)
 		if(bolt_open)
 			icon_state = "kar98k_scope_open"

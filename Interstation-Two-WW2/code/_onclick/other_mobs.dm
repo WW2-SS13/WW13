@@ -1,6 +1,6 @@
 // Generic damage proc (slimes and monkeys).
 /atom/proc/attack_generic(mob/user as mob)
-	return 0
+	return FALSE
 
 /*
 	Humans:
@@ -14,7 +14,7 @@
 		return
 
 	// Special glove functions:
-	// If the gloves do anything, have them return 1 to stop
+	// If the gloves do anything, have them return TRUE to stop
 	// normal attack_hand() here.
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
 	if(istype(G) && G.Touch(A,1))
@@ -53,7 +53,7 @@
 /mob/living/carbon/alien/UnarmedAttack(var/atom/A, var/proximity)
 
 	if(!..())
-		return 0
+		return FALSE
 
 	A.attack_generic(src,rand(5,6),"bitten")
 
@@ -83,9 +83,9 @@
 			if (I_HELP) // We just poke the other
 				M.visible_message("<span class='notice'>[src] gently pokes [M]!</span>", "<span class='notice'>[src] gently pokes you!</span>")
 			if (I_DISARM) // We stun the target, with the intention to feed
-				var/stunprob = 1
+				var/stunprob = TRUE
 				var/power = max(0, min(10, (powerlevel + rand(0, 3))))
-				if (powerlevel > 0 && !istype(A, /mob/living/carbon/slime))
+				if (powerlevel > FALSE && !istype(A, /mob/living/carbon/slime))
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
 						stunprob *= H.species.siemens_coefficient
@@ -108,7 +108,7 @@
 					M.stuttering = max(M.stuttering, power)
 
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-					s.set_up(5, 1, M)
+					s.set_up(5, TRUE, M)
 					s.start()
 
 					if(prob(stunprob) && powerlevel >= 8)
@@ -141,10 +141,10 @@
 	if(!..())
 		return
 
-	if(melee_damage_upper == 0 && istype(A,/mob/living))
+	if(melee_damage_upper == FALSE && istype(A,/mob/living))
 		custom_emote(1,"[friendly] [A]!")
 		return
 
 	var/damage = rand(melee_damage_lower, melee_damage_upper)
 	if(A.attack_generic(src,damage,attacktext,environment_smash) && loc && attack_sound)
-		playsound(loc, attack_sound, 50, 1, 1)
+		playsound(loc, attack_sound, 50, TRUE, TRUE)

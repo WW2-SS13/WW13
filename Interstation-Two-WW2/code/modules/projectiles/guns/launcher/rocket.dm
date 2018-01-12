@@ -8,13 +8,13 @@
 	throw_range = 10
 	force = 5.0
 	flags =  CONDUCT
-	slot_flags = 0
+	slot_flags = FALSE
 //	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 5)
 	fire_sound = 'sound/effects/bang.ogg'
 
 	release_force = 15
 	throw_distance = 30
-	var/max_rockets = 1
+	var/max_rockets = TRUE
 	var/list/rockets = new/list()
 
 /obj/item/weapon/gun/launcher/rocket/examine(mob/user)
@@ -24,7 +24,7 @@
 
 /obj/item/weapon/gun/launcher/rocket/attackby(obj/item/I as obj, mob/user as mob)
 	if (..()) // handle attachments
-		return 1
+		return TRUE
 
 	if(istype(I, /obj/item/ammo_casing/rocket))
 		if(rockets.len < max_rockets)
@@ -40,7 +40,7 @@
 	if(rockets.len)
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
 		var/obj/item/projectile/bullet/rifle/missile/M = new I.projectile_type (src)
-	//	M.primed = 1
+	//	M.primed = TRUE
 		rockets -= I
 		qdel(I)
 		return M

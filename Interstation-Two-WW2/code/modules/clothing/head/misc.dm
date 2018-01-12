@@ -9,14 +9,14 @@
 		)
 	desc = "It's good to be emperor."
 	siemens_coefficient = 0.9
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/hairflower
 	name = "hair flower pin"
 	icon_state = "hairflower"
 	desc = "Smells nice."
 	slot_flags = SLOT_HEAD | SLOT_EARS
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
@@ -30,14 +30,14 @@
 	icon_state = "tophat"
 	item_state = "tophat"
 	siemens_coefficient = 0.9
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 
 /obj/item/clothing/head/mailman
 	name = "station cap"
 	icon_state = "mailman"
 	desc = "<i>Choo-choo</i>!"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/plaguedoctorhat
 	name = "plague doctor's hat"
@@ -45,7 +45,7 @@
 	icon_state = "plaguedoctor"
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/hasturhood
 	name = "hastur's hood"
@@ -59,7 +59,7 @@
 	desc = "It allows quick identification of trained medical personnel."
 	icon_state = "nursehat"
 	siemens_coefficient = 0.9
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/syndicatefake
 	name = "red space-helmet replica"
@@ -78,8 +78,8 @@
 	desc = "It's a green bandana with some fine nanotech lining."
 	icon_state = "greenbandana"
 	item_state = "greenbandana"
-	flags_inv = 0
-	body_parts_covered = 0
+	flags_inv = FALSE
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/cardborg
 	name = "cardborg helmet"
@@ -112,7 +112,7 @@
 	name = "rabbit ears"
 	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
 	icon_state = "bunny"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/flatcap
 	name = "flat cap"
@@ -128,13 +128,13 @@
 	name = "pirate hat"
 	desc = "Yarr."
 	icon_state = "pirate"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/hgpiratecap
 	name = "pirate hat"
 	desc = "Yarr."
 	icon_state = "hgpiratecap"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/bandana
 	name = "pirate bandana"
@@ -145,7 +145,7 @@
 	name = "bowler-hat"
 	desc = "Gentleman, elite aboard!"
 	icon_state = "bowler"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 //stylish bs12 hats
 
@@ -153,7 +153,7 @@
 	name = "bowler hat"
 	icon_state = "bowler_hat"
 	desc = "For the gentleman of distinction."
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/beaverhat
 	name = "beaver hat"
@@ -230,30 +230,30 @@
 		)
 	flags_inv = BLOCKHAIR
 	siemens_coefficient = 2.0 //why is it so conductive?!
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/orangebandana //themij: Taryn Kifer
 	name = "orange bandana"
 	desc = "An orange piece of cloth, worn on the head."
 	icon_state = "orange_bandana"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/hijab
 	name = "hijab"
 	desc = "A veil that is wrapped to cover the head and chest"
 	icon_state = "hijab"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 	flags_inv = BLOCKHAIR
 
 /obj/item/clothing/head/kippa
 	name = "kippa"
 	desc = "A small, brimless cap."
 	icon_state = "kippa"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/turban
 	name = "turban"
 	desc = "A cloth used to wind around the head"
 	icon_state = "turban"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 	flags_inv = BLOCKHAIR

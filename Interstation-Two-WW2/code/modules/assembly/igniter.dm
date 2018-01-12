@@ -2,14 +2,14 @@
 	name = "igniter"
 	desc = "A small electronic device able to ignite combustable substances."
 	icon_state = "igniter"
-//	origin_tech = list(TECH_MAGNET = 1)
+//	origin_tech = list(TECH_MAGNET = TRUE)
 	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 50, "waste" = 10)
 
-	secured = 1
+	secured = TRUE
 	wires = WIRE_RECEIVE
 
 	activate()
-		if(!..())	return 0//Cooldown check
+		if(!..())	return FALSE//Cooldown check
 
 		if(holder && istype(holder.loc,/obj/item/weapon/grenade/chem_grenade))
 			var/obj/item/weapon/grenade/chem_grenade/grenade = holder.loc
@@ -25,10 +25,10 @@
 						tank.explode()
 
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-			s.set_up(3, 1, src)
+			s.set_up(3, TRUE, src)
 			s.start()
 
-		return 1
+		return TRUE
 
 
 	attack_self(mob/user as mob)

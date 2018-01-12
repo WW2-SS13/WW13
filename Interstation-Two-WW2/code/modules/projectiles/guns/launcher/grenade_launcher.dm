@@ -8,7 +8,7 @@
 
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
-	recoil = 0
+	recoil = FALSE
 	throw_distance = 7
 	release_force = 5
 
@@ -19,7 +19,7 @@
 
 //revolves the magazine, allowing players to choose between multiple grenade types
 /obj/item/weapon/gun/launcher/grenade/proc/pump(mob/M as mob)
-	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
+	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, TRUE)
 
 	var/obj/item/weapon/grenade/next
 	if(grenades.len)
@@ -37,7 +37,7 @@
 
 /obj/item/weapon/gun/launcher/grenade/examine(mob/user)
 	if(..(user, 2))
-		var/grenade_count = grenades.len + (chambered? 1 : 0)
+		var/grenade_count = grenades.len + (chambered? TRUE : FALSE)
 		user << "Has [grenade_count] grenade\s remaining."
 		if(chambered)
 			user << "\A [chambered] is chambered."
@@ -72,7 +72,7 @@
 
 /obj/item/weapon/gun/launcher/grenade/attackby(obj/item/I, mob/user)
 	if (..()) // handle attachments
-		return 1
+		return TRUE
 
 	if((istype(I, /obj/item/weapon/grenade)))
 		load(I, user)
@@ -103,7 +103,7 @@
 	desc = "Not much more than a tube and a firing mechanism, this grenade launcher is designed to be fitted to a rifle."
 	w_class = 3
 	force = 5
-	max_grenades = 0
+	max_grenades = FALSE
 
 /obj/item/weapon/gun/launcher/grenade/underslung/attack_self()
 	return
@@ -141,13 +141,13 @@
 	force = 10
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
-	recoil = 0
+	recoil = FALSE
 	throw_distance = 10
 	release_force = 5
 
 /obj/item/weapon/gun/launcher/grenade/lenar/proc/update_charge()
-	var/ratio = (grenades.len + (chambered? 1 : 0)) / (max_grenades + 1)
-	if(ratio < 0.33 && ratio != 0)
+	var/ratio = (grenades.len + (chambered? TRUE : FALSE)) / (max_grenades + TRUE)
+	if(ratio < 0.33 && ratio != FALSE)
 		ratio = 0.33
 	ratio = round(ratio, 0.33) * 100
 	overlays += "grenademag_[ratio]"

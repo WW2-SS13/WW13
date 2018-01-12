@@ -12,7 +12,7 @@
 	var/type_path = text2path(type_text)
 	if(!type_path) return
 
-	var/count = 1
+	var/count = TRUE
 
 	var/list/atom/atom_list = list()
 
@@ -30,9 +30,9 @@
 					atom_list += A
 	/*
 	var/atom/temp_atom
-	for(var/i = 0; i <= (atom_list.len/10); i++)
+	for(var/i = FALSE; i <= (atom_list.len/10); i++)
 		var/line = ""
-		for(var/j = 1; j <= 10; j++)
+		for(var/j = TRUE; j <= 10; j++)
 			if(i*10+j <= atom_list.len)
 				temp_atom = atom_list[i*10+j]
 				line += " no.[i+10+j]@\[[temp_atom.x], [temp_atom.y], [temp_atom.z]\]; "
@@ -50,16 +50,16 @@
 	var/type_path = text2path(type_text)
 	if(!type_path) return
 
-	var/count = 0
+	var/count = FALSE
 
 	for(var/atom/A in world)
 		if(istype(A,type_path))
 			count++
 	/*
 	var/atom/temp_atom
-	for(var/i = 0; i <= (atom_list.len/10); i++)
+	for(var/i = FALSE; i <= (atom_list.len/10); i++)
 		var/line = ""
-		for(var/j = 1; j <= 10; j++)
+		for(var/j = TRUE; j <= 10; j++)
 			if(i*10+j <= atom_list.len)
 				temp_atom = atom_list[i*10+j]
 				line += " no.[i+10+j]@\[[temp_atom.x], [temp_atom.y], [temp_atom.z]\]; "

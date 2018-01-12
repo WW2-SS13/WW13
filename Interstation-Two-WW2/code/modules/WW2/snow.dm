@@ -6,7 +6,7 @@
 	layer = 2.03 // above grass_edge plant decals
 	alpha = 200
 	name = "snow"
-	anchored = 1
+	anchored = TRUE
 	special_id = "seasons"
 	var/amount = 0.05 // "meters" of snow
 	var/area/my_area = null
@@ -14,14 +14,14 @@
 /obj/snow/New()
 	..()
 	amount = pick(0.04, 0.05, 0.06) // around 2 inchesi
-	var/spawntime = 0
+	var/spawntime = FALSE
 	if (!obj_process)
 		spawntime = 300
 	spawn (spawntime)
 		obj_process.add_nonvital_object(src)
 
 /obj/snow/Destroy()
-	var/spawntime = 0
+	var/spawntime = FALSE
 	if (!obj_process)
 		spawntime = 300
 	spawn (spawntime)

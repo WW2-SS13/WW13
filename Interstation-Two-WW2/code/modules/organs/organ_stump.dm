@@ -18,11 +18,11 @@
 			robotize() //if both limb and the parent are robotic, the stump is robotic too
 
 /obj/item/organ/external/stump/is_stump()
-	return 1
+	return TRUE
 
 /obj/item/organ/external/stump/removed()
 	..()
 	qdel(src)
 
 /obj/item/organ/external/stump/is_usable()
-	return 0
+	return FALSE

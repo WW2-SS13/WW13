@@ -86,7 +86,7 @@ var/global/list/limb_icon_cache = list()
 
 	return mob_icon
 
-/obj/item/organ/external/update_icon(var/regenerate = 0)
+/obj/item/organ/external/update_icon(var/regenerate = FALSE)
 	if (!owner)//special check
 		qdel(src)
 		return
@@ -116,7 +116,7 @@ var/global/list/limb_icon_cache = list()
 		mob_icon.SetIntensity(0.7)
 
 	if(s_tone)
-		if(s_tone >= 0)
+		if(s_tone >= FALSE)
 			mob_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 		else
 			mob_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)

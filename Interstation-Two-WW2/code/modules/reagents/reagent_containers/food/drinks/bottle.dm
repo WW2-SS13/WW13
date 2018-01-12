@@ -8,7 +8,7 @@
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	force = 5
 	var/smash_duration = 5 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
-	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
+	var/isGlass = TRUE //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 
 	var/obj/item/weapon/reagent_containers/glass/rag/rag = null
 	var/rag_underlay = "rag"
@@ -48,7 +48,7 @@
 			smash(loc, hit_atom, alcohol_power)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/calculate_alcohol_power()
-	. = 0
+	. = FALSE
 	for (var/datum/reagent/R in reagents.reagent_list)
 		if (istype(R, /datum/reagent/ethanol))
 			var/datum/reagent/ethanol/E = R
@@ -62,12 +62,12 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash_check(var/distance)
 	if(!isGlass || !smash_duration)
-		return 0
+		return FALSE
 
-	var/list/chance_table = list(90, 90, 85, 85, 60, 35, 15) //starting from distance 0
-	var/idx = max(distance + 1, 1) //since list indices start at 1
+	var/list/chance_table = list(90, 90, 85, 85, 60, 35, 15) //starting from distance FALSE
+	var/idx = max(distance + TRUE, TRUE) //since list indices start at TRUE
 	if(idx > chance_table.len)
-		return 0
+		return FALSE
 	return prob(chance_table[idx])
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/throw_at(atom/target, range, speed, thrower)
@@ -76,7 +76,7 @@
 		while (src && throwing)
 			sleep(1)
 		if (src && !throwing)
-			Bump(target, 1, calculate_alcohol_power())
+			Bump(target, TRUE, calculate_alcohol_power())
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Bump(atom/A, yes)
 	if (src)
@@ -84,7 +84,7 @@
 			smash(get_turf(A), A, calculate_alcohol_power())
 	..(A, yes)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null, var/alcohol_power = 0)
+/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null, var/alcohol_power = FALSE)
 
 
 	if (!newloc)
@@ -108,7 +108,7 @@
 		world << "testing molotov with an explosion_power of [explosion_power]."
 		#endif
 
-		if (explosion_power > 0)
+		if (explosion_power > FALSE)
 			var/devrange = min(1, round(explosion_power/1000))
 			var/heavyrange = max(1, round(devrange*2))
 			var/lightrange = max(1, round(devrange*3))
@@ -127,8 +127,8 @@
 		B.icon_state = src.icon_state
 
 		var/icon/I = new('icons/obj/drinks.dmi', src.icon_state)
-		I.Blend(B.broken_outline, ICON_OVERLAY, rand(5), 1)
-		I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
+		I.Blend(B.broken_outline, ICON_OVERLAY, rand(5), TRUE)
+		I.SwapColor(rgb(255, FALSE, 220, 255), rgb(0, FALSE, FALSE, FALSE))
 		B.icon = I
 
 		playsound(src,'sound/effects/GLASS_Rattle_Many_Fragments_01_stereo.wav',100,1)
@@ -195,7 +195,7 @@
 		return //won't always break on the first hit
 
 	// You are going to knock someone out for longer if they are not wearing a helmet.
-	var/weaken_duration = 0
+	var/weaken_duration = FALSE
 	if(blocked < 2)
 		weaken_duration = smash_duration + min(0, force - target.getarmor(hit_zone, "melee") + 10)
 
@@ -234,12 +234,12 @@
 	throw_range = 5
 	item_state = "beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
-	sharp = 1
-	edge = 0
+	sharp = TRUE
+	edge = FALSE
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
 /obj/item/weapon/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
 	return ..()
 
 
@@ -461,7 +461,7 @@
 	icon_state = "orangejuice"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=7)
-	isGlass = 0
+	isGlass = FALSE
 	New()
 		..()
 		reagents.add_reagent("orangejuice", 100)
@@ -472,7 +472,7 @@
 	icon_state = "cream"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
-	isGlass = 0
+	isGlass = FALSE
 	New()
 		..()
 		reagents.add_reagent("cream", 100)
@@ -483,7 +483,7 @@
 	icon_state = "tomatojuice"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
-	isGlass = 0
+	isGlass = FALSE
 	New()
 		..()
 		reagents.add_reagent("tomatojuice", 100)
@@ -494,7 +494,7 @@
 	icon_state = "limejuice"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
-	isGlass = 0
+	isGlass = FALSE
 	New()
 		..()
 		reagents.add_reagent("limejuice", 100)
@@ -502,8 +502,8 @@
 //Small bottles
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small
 	volume = 50
-	smash_duration = 1
-	flags = 0 //starts closed
+	smash_duration = TRUE
+	flags = FALSE //starts closed
 	rag_underlay = "rag_small"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer

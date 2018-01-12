@@ -27,7 +27,7 @@
 	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
 	var/allow_quick_empty	//Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
 	var/allow_quick_gather	//Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
-	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
+	var/collection_mode = TRUE;  //0 = pick one at a time, TRUE = pick all on tile
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 
 /obj/item/weapon/storage/Destroy()
@@ -148,7 +148,7 @@
 
 /obj/item/weapon/storage/proc/open(mob/user as mob)
 	if (src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src.loc, src.use_sound, 50, TRUE, -5)
 
 	orient2hud(user)
 	if (user.s_active)
@@ -163,7 +163,7 @@
 /obj/item/weapon/storage/proc/close_all()
 	for(var/mob/M in can_see_contents())
 		close(M)
-		. = 1
+		. = TRUE
 
 /obj/item/weapon/storage/proc/can_see_contents()
 	var/list/cansee = list()
@@ -175,7 +175,7 @@
 	return cansee
 
 //This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
-//The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
+//The numbers are calculated from the bottom-left The bottom-left slot being TRUE,1.
 /obj/item/weapon/storage/proc/orient_objs(tx, ty, mx, my)
 	var/cx = tx
 	var/cy = ty
@@ -199,7 +199,7 @@
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
-			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
+			ND.sample_object.maptext = "<font color='white'>[(ND.number > TRUE)? "[ND.number]" : ""]</font>"
 			ND.sample_object.layer = 20
 			cx++
 			if (cx > (Xcord+cols))
@@ -234,11 +234,11 @@
 	src.storage_continue.screen_loc = "[Xcord]:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],[Ycord]:16"
 	src.storage_end.screen_loc = "[Xcord]:[19+storage_width-storage_cap_width],[Ycord]:16"
 
-	var/startpoint = 0
-	var/endpoint = 1
+	var/startpoint = FALSE
+	var/endpoint = TRUE
 
 	for(var/obj/item/O in contents)
-		startpoint = endpoint + 1
+		startpoint = endpoint + TRUE
 		endpoint += storage_width * O.get_storage_cost()/max_storage_space
 
 		var/matrix/M_start = matrix()
@@ -270,7 +270,7 @@
 		if(!istype(sample))
 			qdel(src)
 		sample_object = sample
-		number = 1
+		number = TRUE
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/weapon/storage/proc/orient2hud(mob/user as mob)
@@ -295,13 +295,13 @@
 	var/list/datum/numbered_display/numbered_contents
 	if(display_contents_with_number)
 		numbered_contents = list()
-		adjusted_contents = 0
+		adjusted_contents = FALSE
 		for(var/obj/item/I in contents)
-			var/found = 0
+			var/found = FALSE
 			for(var/datum/numbered_display/ND in numbered_contents)
 				if(ND.sample_object.type == I.type)
 					ND.number++
-					found = 1
+					found = TRUE
 					break
 			if(!found)
 				adjusted_contents++
@@ -310,52 +310,52 @@
 	if(storage_slots == null)
 		src.space_orient_objs(numbered_contents,Xcor,Ycor)
 	else
-		var/row_num = 0
+		var/row_num = FALSE
 		var/col_count = min(ColCountDatum,storage_slots) -1
 		if (adjusted_contents > ColCountDatum)
 			row_num = round((adjusted_contents-1) / ColCountDatum) // ColCountDatum is the maximum allowed width.
 		src.slot_orient_objs(row_num, col_count, numbered_contents,Xslot,Yslot)
 	return
 
-//This proc return 1 if the item can be picked up and 0 if it can't.
+//This proc return TRUE if the item can be picked up and FALSE if it can't.
 //Set the stop_messages to stop it from printing messages
-/obj/item/weapon/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+/obj/item/weapon/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = FALSE)
 	if(!istype(W)) return //Not an item
 
 	if(usr && usr.isEquipped(W) && !usr.canUnEquip(W))
-		return 0
+		return FALSE
 
 	if(src.loc == W)
-		return 0 //Means the item is already in the storage item
+		return FALSE //Means the item is already in the storage item
 
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(!stop_messages)
 			usr << "<span class='notice'>[src] is full, make some space.</span>"
-		return 0 //Storage item is full
+		return FALSE //Storage item is full
 
 	if(W.anchored)
-		return 0
+		return FALSE
 
 	if(can_hold.len)
 		if(!is_type_in_list(W, can_hold))
 			if(!stop_messages)
 				usr << "<span class='notice'>[src] cannot hold \the [W].</span>"
-			return 0
+			return FALSE
 		var/max_instances = can_hold[W.type]
 		if(max_instances && instances_of_type_in_list(W, contents) >= max_instances)
 			if(!stop_messages)
 				usr << "<span class='notice'>[src] has no more space specifically for \the [W].</span>"
-			return 0
+			return FALSE
 
 	if(cant_hold.len && is_type_in_list(W, cant_hold))
 		if(!stop_messages)
 			usr << "<span class='notice'>[src] cannot hold [W].</span>"
-		return 0
+		return FALSE
 
 	if (max_w_class != null && W.w_class > max_w_class)
 		if(!stop_messages)
 			usr << "<span class='notice'>[W] is too long for this [src].</span>"
-		return 0
+		return FALSE
 
 	var/total_storage_space = W.get_storage_cost()
 	for(var/obj/item/I in contents)
@@ -364,20 +364,20 @@
 	if(total_storage_space > max_storage_space)
 		if(!stop_messages)
 			usr << "<span class='notice'>[src] is too full, make some space.</span>"
-		return 0
+		return FALSE
 
 	if(W.w_class >= src.w_class && (istype(W, /obj/item/weapon/storage)))
 		if(!stop_messages)
 			usr << "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>"
-		return 0 //To prevent the stacking of same sized storage items.
+		return FALSE //To prevent the stacking of same sized storage items.
 
-	return 1
+	return TRUE
 
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
-/obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
-	if(!istype(W)) return 0
+/obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = FALSE)
+	if(!istype(W)) return FALSE
 	if(usr)
 		usr.remove_from_mob(W)
 		usr.update_icons()	//update our overlays
@@ -402,11 +402,11 @@
 		if(usr.s_active)
 			usr.s_active.show_to(usr)
 	update_icon()
-	return 1
+	return TRUE
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/weapon/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
-	if(!istype(W)) return 0
+	if(!istype(W)) return FALSE
 
 
 	for(var/mob/M in range(1, src.loc))
@@ -433,7 +433,7 @@
 		W.maptext = ""
 	W.on_exit_storage(src)
 	update_icon()
-	return 1
+	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
@@ -447,7 +447,7 @@
 
 	if(istype(W, /obj/item/weapon/tray))
 		var/obj/item/weapon/tray/T = W
-		if(T.calc_carry() > 0)
+		if(T.calc_carry() > FALSE)
 			if(prob(85))
 				user << "<span class='warning'>The tray won't fit in [src].</span>"
 				return
@@ -523,7 +523,7 @@
 		verbs -= /obj/item/weapon/storage/verb/toggle_gathering_mode
 
 	spawn(5)
-		var/total_storage_space = 0
+		var/total_storage_space = FALSE
 		for(var/obj/item/I in contents)
 			total_storage_space += I.get_storage_cost()
 		max_storage_space = max(total_storage_space,max_storage_space) //prevents spawned containers from being too small for their contents
@@ -581,14 +581,14 @@
 	if(user.get_active_hand() == src)
 		if(src.verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
 			src.quick_empty()
-			return 1
+			return TRUE
 
 /obj/item/weapon/storage/proc/make_exact_fit()
 	storage_slots = contents.len
 
 	can_hold.Cut()
-	max_w_class = 0
-	max_storage_space = 0
+	max_w_class = FALSE
+	max_storage_space = FALSE
 	for(var/obj/item/I in src)
 		can_hold[I.type]++
 		max_w_class = max(I.w_class, max_w_class)
@@ -597,7 +597,7 @@
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
 //Returns -1 if the atom was not found on container.
 /atom/proc/storage_depth(atom/container)
-	var/depth = 0
+	var/depth = FALSE
 	var/atom/cur_atom = src
 
 	while (cur_atom && !(cur_atom in container.contents))
@@ -615,7 +615,7 @@
 //Like storage depth, but returns the depth to the nearest turf
 //Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
 /atom/proc/storage_depth_turf()
-	var/depth = 0
+	var/depth = FALSE
 	var/atom/cur_atom = src
 
 	while (cur_atom && !isturf(cur_atom))
@@ -634,8 +634,8 @@
 	if (storage_cost)
 		return storage_cost
 	else
-		if(w_class == 1)
-			return 1
+		if(w_class == TRUE)
+			return TRUE
 		if(w_class == 2)
 			return 2
 		if(w_class == 3)

@@ -7,13 +7,13 @@
 	icon_state = "acid"
 	icon = 'icons/mob/alien.dmi'
 
-	density = 0
-	opacity = 0
-	anchored = 1
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
 
 	var/atom/target
-	var/ticks = 0
-	var/target_strength = 0
+	var/ticks = FALSE
+	var/target_strength = FALSE
 
 /obj/effect/acid/New(loc, supplied_target)
 	..(loc)
@@ -47,6 +47,6 @@
 			visible_message("<span class='alium'>\The [src.target]\s structure is being melted by the acid!</span>")
 		if(2)
 			visible_message("<span class='alium'>\The [src.target] is struggling to withstand the acid!</span>")
-		if(0 to 1)
+		if(0 to TRUE)
 			visible_message("<span class='alium'>\The [src.target] begins to crumble under the acid!</span>")
 	spawn(rand(150, 200)) tick()

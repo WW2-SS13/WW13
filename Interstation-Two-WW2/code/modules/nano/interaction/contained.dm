@@ -11,8 +11,8 @@
 
 /atom/proc/contains(var/atom/location)
 	if(!location)
-		return 0
+		return FALSE
 	if(location == src)
-		return 1
+		return TRUE
 
 	return contains(location.loc)

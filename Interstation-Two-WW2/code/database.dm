@@ -68,7 +68,7 @@ var/database/database = null
 		global_game_schedule = new
 	return global_game_schedule.getNewRealtime()
 
-/database/proc/After(minutes = 1, hours = 0)
+/database/proc/After(minutes = TRUE, hours = FALSE)
 	return Now()+(minutes*600)+(hours*600*60)
 
 /* only_execute_once = FALSE is only safe when this is called from a verb
@@ -93,13 +93,13 @@ var/database/database = null
 
 	// clean up extra spaces in querytext
 	var/empty_space = " " // don't replace single spaces
-	for (var/v in 1 to 10)
+	for (var/v in TRUE to 10)
 		empty_space += " " // replaces up to 11 spaces at once
 		querytext = replacetext(querytext, empty_space, v)
 
 	// ensure we end with ;
 	if (dd_hassuffix(querytext, ";"))
-		querytext = copytext(querytext, 1, length(querytext))
+		querytext = copytext(querytext, TRUE, length(querytext))
 
 	querytext = "[querytext];"
 
@@ -107,7 +107,7 @@ var/database/database = null
 
 	// try to execute 10 times over 5 seconds
 	var/Q_executed = FALSE
-	for (var/v in 1 to 10)
+	for (var/v in TRUE to 10)
 		if (Q.Execute(src))
 			Q_executed = TRUE
 			goto finishloop
@@ -128,7 +128,7 @@ var/database/database = null
 					if (!.[x])
 						.[x] = Q.GetRowData()[x]
 						.["[x]_1"] = .[x]
-						occurences_of[x] = 1
+						occurences_of[x] = TRUE
 					else // handle duplicate values
 						var/occ = ++occurences_of[x]
 						.["[x]_[occ]"] = Q.GetRowData()[x]

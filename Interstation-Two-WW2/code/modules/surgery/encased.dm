@@ -4,12 +4,12 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/open_encased
 	priority = 2
-	can_infect = 1
-	blood_level = 1
+	can_infect = TRUE
+	blood_level = TRUE
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		if (!hasorgans(target))
-			return 0
+			return FALSE
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && !(affected.status & ORGAN_ROBOT) && affected.encased && affected.open >= 2
@@ -172,7 +172,7 @@
 
 		affected.createwound(BRUISE, 20)
 		affected.fracture()
-		
+
 		if(affected.internal_organs && affected.internal_organs.len)
 			if(prob(40))
 				var/obj/item/organ/O = pick(affected.internal_organs) //TODO weight by organ size

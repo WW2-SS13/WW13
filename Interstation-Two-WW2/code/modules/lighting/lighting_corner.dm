@@ -1,5 +1,5 @@
 // Because we can control each corner of every lighting overlay.
-// And corners get shared between multiple turfs (unless you're on the corners of the map, then 1 corner doesn't).
+// And corners get shared between multiple turfs (unless you're on the corners of the map, then TRUE corner doesn't).
 // For the record: these should never ever ever be deleted, even if the turf doesn't have dynamic lighting.
 
 // This list is what the code that assigns corners listens to, the order in this list is the order in which corners are added to the /turf/corners list.
@@ -10,8 +10,8 @@
 	var/list/datum/light_source/affecting = list() // Light sources affecting us.
 	var/active                            = FALSE  // TRUE if one of our masters has dynamic lighting.
 
-	var/x     = 0
-	var/y     = 0
+	var/x     = FALSE
+	var/y     = FALSE
 
 	var/lum_r = 0.5
 	var/lum_g = 0.5
@@ -51,7 +51,7 @@
 
 	masters[new_turf] = turn(diagonal, 180)
 
-	var/vertical   = diagonal & ~(diagonal - 1) // The horizontal directions (4 and 8) are bigger than the vertical ones (1 and 2), so we can reliably say the lsb is the horizontal direction.
+	var/vertical   = diagonal & ~(diagonal - TRUE) // The horizontal directions (4 and 8) are bigger than the vertical ones (1 and 2), so we can reliably say the lsb is the horizontal direction.
 	var/horizontal = diagonal & ~vertical       // Now that we know the horizontal one we can get the vertical one.
 
 	x = new_turf.x + (horizontal == EAST  ? 0.5 : -0.5)

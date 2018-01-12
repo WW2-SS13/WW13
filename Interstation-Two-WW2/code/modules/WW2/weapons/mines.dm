@@ -13,10 +13,10 @@
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
-//	unacidable = 1
-	anchored = 0
+//	unacidable = TRUE
+	anchored = FALSE
 
-	var/triggered = 0
+	var/triggered = FALSE
 	var/triggertype = "explosive" //Calls that proc
 	/*
 		"explosive"
@@ -39,7 +39,7 @@
 				if (istype(get_area(src), /area/prishtina/german))
 					user << "<span class = 'warning'>This isn't a great place for mines.</span>"
 					return
-			else if (H.original_job.base_type_flag() == RUSSIAN)
+			else if (H.original_job.base_type_flag() == SOVIET)
 				if (istype(get_area(src), /area/prishtina/soviet))
 					user << "<span class = 'warning'>This isn't a great place for mines.</span>"
 					return
@@ -52,7 +52,7 @@
 			return
 		nextCanExplode = world.time + 5
 		user.visible_message("\blue \The [user] finishes deploying the \the [src].")
-		anchored = 1
+		anchored = TRUE
 		layer = TURF_LAYER + 0.01
 		icon_state = "mine_armed"
 		user.drop_item()
@@ -68,7 +68,7 @@
 				return
 			if(prob(95))
 				user.visible_message("\blue \The [user] finishes disarming the \the [src]!")
-				anchored = 0
+				anchored = FALSE
 				icon_state = "betty"
 				layer = initial(layer)
 				return
@@ -81,7 +81,7 @@
 				return
 			if(prob(50))
 				user.visible_message("\blue \The [user] finishes disarming the \the [src]!")
-				anchored = 0
+				anchored = FALSE
 				icon_state = "betty"
 				layer = initial(layer)
 				return
@@ -98,7 +98,7 @@
 			return
 		if(prob(15))
 			user.visible_message("\blue \The [user] finishes digging up the \the [src], disarming it!")
-			anchored = 0
+			anchored = FALSE
 			icon_state = "betty"
 			layer = initial(layer)
 			return
@@ -124,7 +124,7 @@
 		return
 	for(var/mob/O in viewers(world.view, src.loc))
 		O << "<font color='red'>[AM] triggered the [src]!</font>"
-	triggered = 1
+	triggered = TRUE
 	visible_message("\red <b>Click!</b>")
 	explosion(get_turf(src),-1,1,3)
 	spawn(0)
@@ -148,5 +148,5 @@
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
-//	unacidable = 1
-	anchored = 0
+//	unacidable = TRUE
+	anchored = FALSE

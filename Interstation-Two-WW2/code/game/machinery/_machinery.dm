@@ -8,8 +8,8 @@ Class Variables:
    use_power (num)
       current state of auto power use.
       Possible Values:
-         0 -- no auto power use
-         1 -- machine is using power at its idle power level
+         FALSE -- no auto power use
+         TRUE -- machine is using power at its idle power level
          2 -- machine is using power at its active power level
 
    active_power_usage (num)
@@ -98,20 +98,20 @@ Class Procs:
 	icon = 'icons/obj/stationobjs.dmi'
 	w_class = 10
 
-	var/stat = 0
-	var/emagged = 0
-	var/use_power = 1
+	var/stat = FALSE
+	var/emagged = FALSE
+	var/use_power = TRUE
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
-	var/idle_power_usage = 0
-	var/active_power_usage = 0
+	var/idle_power_usage = FALSE
+	var/active_power_usage = FALSE
 	var/power_channel = EQUIP //EQUIP, ENVIRON or LIGHT
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
-	var/panel_open = 0
-	var/global/gl_uid = 1
-	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
+	var/panel_open = FALSE
+	var/global/gl_uid = TRUE
+	var/interact_offline = FALSE // Can the machine be interacted with while de-powered.
 
 /obj/machinery/New(l, d=0)
 	..(l)
@@ -121,7 +121,7 @@ Class Procs:
 		dd_insertObjectList(machines, src)
 	else
 		machines += src
-		machinery_sort_required = 1
+		machinery_sort_required = TRUE
 
 /obj/machinery/Destroy()
 	machines -= src
@@ -144,14 +144,14 @@ Class Procs:
 	return
 
 /obj/machinery/emp_act(severity)
-	if(use_power && stat == 0)
+	if(use_power && stat == FALSE)
 		use_power(7500/severity)
 
 		var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, src.loc)
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
-		pulse2.anchored = 1
+		pulse2.anchored = TRUE
 		pulse2.set_dir(pick(cardinal))
 
 		spawn(10)
@@ -181,20 +181,20 @@ Class Procs:
 /obj/machinery/proc/auto_use_power()
 
 	if(!powered(power_channel))
-		return 0
-	if(src.use_power == 1)
-		use_power(idle_power_usage,power_channel, 1)
+		return FALSE
+	if(src.use_power == TRUE)
+		use_power(idle_power_usage,power_channel, TRUE)
 	else if(src.use_power >= 2)
-		use_power(active_power_usage,power_channel, 1)
-	return 1
+		use_power(active_power_usage,power_channel, TRUE)
+	return TRUE
 
 /proc/is_operable(var/obj/machinery/M, var/mob/user)
 	return istype(M) && M.operable()
 
-/obj/machinery/proc/operable(var/additional_flags = 0)
+/obj/machinery/proc/operable(var/additional_flags = FALSE)
 	return !inoperable(additional_flags)
 
-/obj/machinery/proc/inoperable(var/additional_flags = 0)
+/obj/machinery/proc/inoperable(var/additional_flags = FALSE)
 	return (stat & (NOPOWER|BROKEN|additional_flags))
 
 /obj/machinery/CanUseTopic(var/mob/user)
@@ -217,26 +217,26 @@ Class Procs:
 
 /obj/machinery/attack_hand(mob/user as mob)
 	if(inoperable(MAINT))
-		return 1
+		return TRUE
 	if(user.lying || user.stat)
-		return 1
+		return TRUE
 	if ( ! (istype(usr, /mob/living/carbon/human) || \
 			istype(usr, /mob/living/silicon)))
 		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
-		return 1
+		return TRUE
 /*
 	//distance checks are made by atom/proc/DblClick
-	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !istype(user, /mob/living/silicon))
-		return 1
+	if ((get_dist(src, user) > TRUE || !istype(src.loc, /turf)) && !istype(user, /mob/living/silicon))
+		return TRUE
 */
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 55)
 			visible_message("<span class='warning'>[H] stares cluelessly at \the [src].</span>")
-			return 1
+			return TRUE
 		else if(prob(H.getBrainLoss()))
 			user << "<span class='warning'>You momentarily forget how to use \the [src].</span>"
-			return 1
+			return TRUE
 
 	src.add_fingerprint(user)
 
@@ -258,15 +258,15 @@ Class Procs:
 		text = "\The [src] pings."
 
 	state(text, "blue")
-	playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
+	playsound(src.loc, 'sound/machines/ping.ogg', 50, FALSE)
 
 /obj/machinery/proc/shock(mob/user, prb)
 	if(inoperable())
-		return 0
+		return FALSE
 	if(!prob(prb))
-		return 0
+		return FALSE
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-	s.set_up(5, 1, src)
+	s.set_up(5, TRUE, src)
 	s.start()
 	if (electrocute_mob(user, get_area(src), src, 0.7))
 	//	var/area/temp_area = get_area(src)
@@ -276,31 +276,31 @@ Class Procs:
 			if(temp_apc && temp_apc.terminal && temp_apc.terminal.powernet)
 				temp_apc.terminal.powernet.trigger_warning()*/
 		if(user.stunned)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/weapon/crowbar/C)
 	if(!istype(C))
-		return 0
+		return FALSE
 	if(!panel_open)
-		return 0
+		return FALSE
 	. = dismantle()
 
 /obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
 	if(!istype(S))
-		return 0
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		return FALSE
+	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, TRUE)
 	panel_open = !panel_open
 	user << "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of \the [src].</span>"
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
-	return 0
+	return FALSE
 /*	if(!istype(R))
-		return 0
+		return FALSE
 	if(!component_parts)
-		return 0
+		return FALSE
 /*	if(panel_open)
 		var/obj/item/weapon/circuitboard/CB = locate(/obj/item/weapon/circuitboard) in component_parts
 		var/P
@@ -314,7 +314,7 @@ Class Procs:
 				if(istype(B, P) && istype(A, P))
 					if(B.rating > A.rating)
 						R.remove_from_storage(B, src)
-						R.handle_item_insertion(A, 1)
+						R.handle_item_insertion(A, TRUE)
 						component_parts -= A
 						component_parts += B
 						B.loc = null
@@ -326,10 +326,10 @@ Class Procs:
 	user << "<span class='notice'>Following parts detected in the machine:</span>"
 	for(var/var/obj/item/C in component_parts)
 		user << "<span class='notice'>    [C.name]</span>"
-	return 1
+	return TRUE
 */
 /obj/machinery/proc/dismantle()
-	playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+	playsound(loc, 'sound/items/Crowbar.ogg', 50, TRUE)
 //	var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
 //	M.set_dir(src.dir)
 //	M.state = 2
@@ -337,4 +337,4 @@ Class Procs:
 	for(var/obj/I in component_parts)
 		I.loc = loc
 	qdel(src)
-	return 1
+	return TRUE

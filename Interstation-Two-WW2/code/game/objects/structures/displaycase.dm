@@ -3,12 +3,12 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "glassbox1"
 	desc = "A display case for prized possessions. It taunts you to kick it."
-	density = 1
-	anchored = 1
-//	unacidable = 1//Dissolving the case would also delete the gun.
+	density = TRUE
+	anchored = TRUE
+//	unacidable = TRUE//Dissolving the case would also delete the gun.
 	var/health = 30
-	var/occupied = 1
-	var/destroyed = 0
+	var/occupied = TRUE
+	var/destroyed = FALSE
 
 /obj/structure/displaycase/ex_act(severity)
 	switch(severity)
@@ -16,7 +16,7 @@
 			new /obj/item/weapon/material/shard( src.loc )
 			if (occupied)
 				new /obj/item/weapon/gun/energy/captain( src.loc )
-				occupied = 0
+				occupied = FALSE
 			qdel(src)
 		if (2)
 			if (prob(50))
@@ -35,15 +35,15 @@
 	return
 
 /obj/structure/displaycase/proc/healthcheck()
-	if (src.health <= 0)
+	if (src.health <= FALSE)
 		if (!( src.destroyed ))
-			src.density = 0
-			src.destroyed = 1
+			src.density = FALSE
+			src.destroyed = TRUE
 			new /obj/item/weapon/material/shard( src.loc )
-			playsound(src, "shatter", 70, 1)
+			playsound(src, "shatter", 70, TRUE)
 			update_icon()
 	else
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
 	return
 
 /obj/structure/displaycase/update_icon()
@@ -65,7 +65,7 @@
 	if (src.destroyed && src.occupied)
 		new /obj/item/weapon/gun/energy/captain( src.loc )
 		user << "<span class='notice'>You deactivate the hover field built into the case.</span>"
-		src.occupied = 0
+		src.occupied = FALSE
 		src.add_fingerprint(user)
 		update_icon()
 		return

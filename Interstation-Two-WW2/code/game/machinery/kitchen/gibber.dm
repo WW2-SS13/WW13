@@ -4,17 +4,17 @@
 	desc = "The name isn't descriptive enough?"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "grinder"
-	density = 1
-	anchored = 1
-	req_access = list(access_kitchen,access_morgue)
+	density = TRUE
+	anchored = TRUE
+//	req_access = list(access_kitchen,access_morgue)
 
-	var/operating = 0 //Is it on?
-	var/dirty = 0 // Does it need cleaning?
+	var/operating = FALSE //Is it on?
+	var/dirty = FALSE // Does it need cleaning?
 	var/mob/living/occupant // Mob who has been put inside
 	var/gib_time = 40        // Time from starting until meat appears
 	var/gib_throw_dir = WEST // Direction to spit meat and gibs in.
 
-	use_power = 1
+	use_power = TRUE
 	idle_power_usage = 2
 	active_power_usage = 500
 
@@ -110,7 +110,7 @@
 	set name = "Empty Gibber"
 	set src in oview(1)
 
-	if (usr.stat != 0)
+	if (usr.stat != FALSE)
 		return
 	src.go_out()
 	add_fingerprint(usr)
@@ -138,7 +138,7 @@
 		return
 	use_power(1000)
 	visible_message("<span class='danger'>You hear a loud squelchy grinding sound.</span>")
-	src.operating = 1
+	src.operating = TRUE
 	update_icon()
 
 	var/slab_name = occupant.name
@@ -182,12 +182,12 @@
 
 	spawn(gib_time)
 
-		src.operating = 0
+		src.operating = FALSE
 		src.occupant.gib()
 		qdel(src.occupant)
 
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
-		operating = 0
+		playsound(src.loc, 'sound/effects/splat.ogg', 50, TRUE)
+		operating = FALSE
 		for (var/obj/thing in contents)
 			// Todo: unify limbs and internal organs
 			// There's a chance that the gibber will fail to destroy some evidence.

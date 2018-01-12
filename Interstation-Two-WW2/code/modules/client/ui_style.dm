@@ -1,8 +1,7 @@
 
 
 /var/all_ui_styles = list(
-	"ErisStyle",
-	"ErisStyleHolo",
+	"WW13Style"
 	)
 	/*"Midnight"     = 'icons/mob/screen/midnight.dmi',
 	"Orange"       = 'icons/mob/screen/orange.dmi',

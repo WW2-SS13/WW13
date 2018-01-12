@@ -1,5 +1,5 @@
 /datum/access
-	var/id = 0
+	var/id = FALSE
 	var/desc = ""
 	var/region = ACCESS_REGION_NONE
 	var/access_type = ACCESS_TYPE_STATION
@@ -10,7 +10,7 @@
 /*****************
 * Station access *
 *****************/
-/var/const/access_security = 1
+/var/const/access_security = TRUE
 /datum/access/security
 	id = access_security
 	desc = "Security Equipment"
@@ -64,61 +64,61 @@
 	desc = "Genetics Lab"
 	region = ACCESS_REGION_MEDBAY
 
-/var/const/access_engine = 10
+/var/const/access_engine = TRUE0
 /datum/access/engine
 	id = access_engine
 	desc = "Engineering"
 	region = ACCESS_REGION_ENGINEERING
 
-/var/const/access_engine_equip = 11
+/var/const/access_engine_equip = TRUE1
 /datum/access/engine_equip
 	id = access_engine_equip
 	desc = "Engine Room"
 	region = ACCESS_REGION_ENGINEERING
 
-/var/const/access_maint_tunnels = 12
+/var/const/access_maint_tunnels = TRUE2
 /datum/access/maint_tunnels
 	id = access_maint_tunnels
 	desc = "Maintenance"
 	region = ACCESS_REGION_ENGINEERING
 
-/var/const/access_external_airlocks = 13
+/var/const/access_external_airlocks = TRUE3
 /datum/access/external_airlocks
 	id = access_external_airlocks
 	desc = "External Airlocks"
 	region = ACCESS_REGION_ENGINEERING
 
-/var/const/access_emergency_storage = 14
+/var/const/access_emergency_storage = TRUE4
 /datum/access/emergency_storage
 	id = access_emergency_storage
 	desc = "Emergency Storage"
 	region = ACCESS_REGION_ENGINEERING
 
-/var/const/access_change_ids = 15
+/var/const/access_change_ids = TRUE5
 /datum/access/change_ids
 	id = access_change_ids
 	desc = "ID Computer"
 	region = ACCESS_REGION_COMMAND
 
-/var/const/access_ai_upload = 16
+/var/const/access_ai_upload = TRUE6
 /datum/access/ai_upload
 	id = access_ai_upload
 	desc = "AI Upload"
 	region = ACCESS_REGION_COMMAND
 
-/var/const/access_teleporter = 17
+/var/const/access_teleporter = TRUE7
 /datum/access/teleporter
 	id = access_teleporter
 	desc = "Teleporter"
 	region = ACCESS_REGION_COMMAND
 
-/var/const/access_eva = 18
+/var/const/access_eva = TRUE8
 /datum/access/eva
 	id = access_eva
 	desc = "EVA"
 	region = ACCESS_REGION_COMMAND
 
-/var/const/access_heads = 19
+/var/const/access_heads = TRUE9
 /datum/access/heads
 	id = access_heads
 	desc = "Bridge"
@@ -398,55 +398,55 @@
 /******************
 * Central Command *
 ******************/
-/var/const/access_cent_general = 101//General facilities.
+/var/const/access_cent_general = TRUE01//General facilities.
 /datum/access/cent_general
 	id = access_cent_general
 	desc = "Code Grey"
 	access_type = ACCESS_TYPE_CENTCOM
 
-/var/const/access_cent_thunder = 102//Thunderdome.
+/var/const/access_cent_thunder = TRUE02//Thunderdome.
 /datum/access/cent_thunder
 	id = access_cent_thunder
 	desc = "Code Yellow"
 	access_type = ACCESS_TYPE_CENTCOM
 
-/var/const/access_cent_specops = 103//Special Ops.
+/var/const/access_cent_specops = TRUE03//Special Ops.
 /datum/access/cent_specops
 	id = access_cent_specops
 	desc = "Code Black"
 	access_type = ACCESS_TYPE_CENTCOM
 
-/var/const/access_cent_medical = 104//Medical/Research
+/var/const/access_cent_medical = TRUE04//Medical/Research
 /datum/access/cent_medical
 	id = access_cent_medical
 	desc = "Code White"
 	access_type = ACCESS_TYPE_CENTCOM
 
-/var/const/access_cent_living = 105//Living quarters.
+/var/const/access_cent_living = TRUE05//Living quarters.
 /datum/access/cent_living
 	id = access_cent_living
 	desc = "Code Green"
 	access_type = ACCESS_TYPE_CENTCOM
 
-/var/const/access_cent_storage = 106//Generic storage areas.
+/var/const/access_cent_storage = TRUE06//Generic storage areas.
 /datum/access/cent_storage
 	id = access_cent_storage
 	desc = "Code Orange"
 	access_type = ACCESS_TYPE_CENTCOM
 
-/var/const/access_cent_teleporter = 107//Teleporter.
+/var/const/access_cent_teleporter = TRUE07//Teleporter.
 /datum/access/cent_teleporter
 	id = access_cent_teleporter
 	desc = "Code Blue"
 	access_type = ACCESS_TYPE_CENTCOM
 
-/var/const/access_cent_creed = 108//Creed's office.
+/var/const/access_cent_creed = TRUE08//Creed's office.
 /datum/access/cent_creed
 	id = access_cent_creed
 	desc = "Code Silver"
 	access_type = ACCESS_TYPE_CENTCOM
 
-/var/const/access_cent_captain = 109//Captain's office/ID comp/AI.
+/var/const/access_cent_captain = TRUE09//Captain's office/ID comp/AI.
 /datum/access/cent_captain
 	id = access_cent_captain
 	desc = "Code Gold"
@@ -455,7 +455,7 @@
 /***************
 * Antag access *
 ***************/
-/var/const/access_syndicate = 150//General Syndicate Access
+/var/const/access_syndicate = TRUE50//General Syndicate Access
 /datum/access/syndicate
 	id = access_syndicate
 	access_type = ACCESS_TYPE_SYNDICATE
@@ -463,7 +463,7 @@
 /*******
 * Misc *
 *******/
-/var/const/access_synth = 199
+/var/const/access_synth = TRUE99
 /datum/access/synthetic
 	id = access_synth
 	desc = "Synthetic"

@@ -3,8 +3,8 @@
 	desc = "A much more powerful version of the standard recharger that is specially designed for charging power cells."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "ccharger0"
-	anchored = 1
-	use_power = 1
+	anchored = TRUE
+	use_power = TRUE
 	idle_power_usage = 5
 	active_power_usage = 40000	//40 kW. (this the power drawn when charging)
 	power_channel = EQUIP
@@ -12,7 +12,7 @@
 	var/chargelevel = -1
 
 /obj/machinery/cell_charger/update_icon()
-	icon_state = "ccharger[charging ? 1 : 0]"
+	icon_state = "ccharger[charging ? TRUE : FALSE]"
 
 	if(charging && !(stat & (BROKEN|NOPOWER)) )
 
@@ -48,7 +48,7 @@
 			var/area/a = loc.loc // Gets our locations location, like a dream within a dream
 			if(!isarea(a))
 				return
-			if(a.power_equip == 0) // There's no APC in this area, don't try to cheat power!
+			if(a.power_equip == FALSE) // There's no APC in this area, don't try to cheat power!
 				user << "<span class='warning'>The [name] blinks red as you try to insert the cell!</span>"
 				return
 
@@ -65,7 +65,7 @@
 
 		anchored = !anchored
 		user << "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground"
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, TRUE)
 
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	if(charging)

@@ -3,7 +3,7 @@
 
 /obj/tank/proc/set_name(x)
 	name = x
-	named = 1
+	named = TRUE
 
 /obj/tank/var/displayed_damage_message[10]
 
@@ -15,38 +15,38 @@
 	switch (damage_percentage)
 		if (0 to 5) // who cares
 			if (!displayed_damage_message["0-5"])
-				displayed_damage_message["6-15"] = 0
+				displayed_damage_message["6-15"] = FALSE
 		//		tank_message("<span class = 'danger'>[src] looks a bit damaged.</span>")
-				displayed_damage_message["0-5"] = 1
+				displayed_damage_message["0-5"] = TRUE
 		if (6 to 15)
 			if (!displayed_damage_message["6-15"])
-				displayed_damage_message["16-25"] = 0
+				displayed_damage_message["16-25"] = FALSE
 				tank_message("<span class = 'danger'>[src] looks a bit damaged.</span>")
-				displayed_damage_message["6-15"] = 1
+				displayed_damage_message["6-15"] = TRUE
 		if (16 to 25)
 			if (!displayed_damage_message["16-25"])
-				displayed_damage_message["25-49"] = 0
+				displayed_damage_message["25-49"] = FALSE
 				tank_message("<span class = 'danger'>[src] looks damaged.</span>")
-				displayed_damage_message["16-25"] = 1
+				displayed_damage_message["16-25"] = TRUE
 		if (25 to 49)
 			if (!displayed_damage_message["25-49"])
-				displayed_damage_message["50-79"] = 0
+				displayed_damage_message["50-79"] = FALSE
 				tank_message("<span class = 'danger'>[src] looks quite damaged.</span>")
-				displayed_damage_message["25-49"] = 1
+				displayed_damage_message["25-49"] = TRUE
 		if (50 to 79)
 			if (!displayed_damage_message["50-79"])
-				displayed_damage_message["80-97"] = 0
+				displayed_damage_message["80-97"] = FALSE
 				tank_message("<span class = 'danger'>[src] looks really damaged!</span>")
-				displayed_damage_message["50-79"] = 1
+				displayed_damage_message["50-79"] = TRUE
 		if (80 to 97)
 			if (!displayed_damage_message["80-97"])
-				displayed_damage_message["97-INFINITY"] = 0
+				displayed_damage_message["97-INFINITY"] = FALSE
 				tank_message("<span class = 'danger'>[src] looks extremely damaged!</span>")
-				displayed_damage_message["80-97"] = 1
+				displayed_damage_message["80-97"] = TRUE
 		if (97 to INFINITY)
 			if (!displayed_damage_message["97-INFINITY"])
 				tank_message("<span class = 'danger'><big>[src] looks like its going to explode!!</big></span>")
-				displayed_damage_message["97-INFINITY"] = 1
+				displayed_damage_message["97-INFINITY"] = TRUE
 
 /obj/tank/proc/tank_message(x)
 	var/ox = x

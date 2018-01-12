@@ -1,7 +1,7 @@
 /obj/structure/wild
 	icon = 'icons/obj/wild.dmi'
-	anchored = 1
-	var/sways = 0
+	anchored = TRUE
+	var/sways = FALSE
 /*
 /obj/structure/wild/New()
 	..()*/
@@ -32,9 +32,9 @@
 /obj/structure/wild/tree
 	name = "tree"
 	icon_state = "tree"
-	opacity = 1
-	density = 1
-	sways = 1
+	opacity = TRUE
+	density = TRUE
+	sways = TRUE
 
 /obj/structure/wild/tree/New()
 	..()
@@ -43,8 +43,8 @@
 /obj/structure/wild/bush
 	name = "bush"
 	icon_state = "small_bush"
-	opacity = 0
-	density = 0
+	opacity = FALSE
+	density = FALSE
 
 /* todo: bush sounds
 /obj/structure/wild/bush/Crossed(var/atom/movable/am)

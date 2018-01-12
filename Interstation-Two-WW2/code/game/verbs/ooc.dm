@@ -102,11 +102,11 @@
 
 			// patrons get OOC colors too, now - kachnov
 
-			var/admin_patron_check = 0
+			var/admin_patron_check = FALSE
 			if (holder && !holder.fakekey && (holder.rights & R_ADMIN))
-				admin_patron_check = 1
+				admin_patron_check = TRUE
 			if (isPatron("$3+"))
-				admin_patron_check = 1
+				admin_patron_check = TRUE
 
 			if(admin_patron_check && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
 				target << "<font color='[src.prefs.ooccolor]'><span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
@@ -192,12 +192,12 @@
 		for(var/mob/M in player_list)
 			if(!M.is_preference_enabled(/datum/client_preference/show_looc))
 				continue
-			if(isAI(M))
+		/*	if(isAI(M))
 				var/mob/living/silicon/ai/A = M
 				if(A.eyeobj && (A.eyeobj.locs[1] in hearturfs))
 					eye_heard |= M.client
 					listening |= M.client
-					continue
+					continue*/
 
 			if(M.loc && M.locs[1] in hearturfs)
 				listening |= M.client
@@ -228,7 +228,3 @@
 /mob/proc/get_looc_source()
 	return src
 
-/mob/living/silicon/ai/get_looc_source()
-	if(eyeobj)
-		return eyeobj
-	return src

@@ -7,8 +7,6 @@
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(access_medical_equip)
-
 
 	New()
 		..()
@@ -35,8 +33,6 @@
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(access_surgery)
-
 
 	New()
 		..()
@@ -52,7 +48,6 @@
 
 /obj/structure/closet/secure_closet/medical3
 	name = "medical doctor's locker"
-	req_access = list(access_medical_equip)
 	icon_state = "securemed1"
 	icon_closed = "securemed"
 	icon_locked = "securemed1"
@@ -98,7 +93,6 @@
 
 /obj/structure/closet/secure_closet/CMO
 	name = "chief medical officer's locker"
-	req_access = list(access_cmo)
 	icon_state = "cmosecure1"
 	icon_closed = "cmosecure"
 	icon_locked = "cmosecure1"
@@ -134,9 +128,6 @@
 		new /obj/item/weapon/reagent_containers/hypospray(src)
 		return
 
-
-
-
 /obj/structure/closet/secure_closet/chemical
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
@@ -146,8 +137,6 @@
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(access_chemistry)
-
 
 	New()
 		..()
@@ -164,10 +153,9 @@
 	icon_opened = "medical_wall_open"
 	icon_broken = "medical_wall_spark"
 	icon_off = "medical_wall_off"
-	anchored = 1
-	density = 0
-	wall_mounted = 1
-	req_access = list(access_medical_equip)
+	anchored = TRUE
+	density = FALSE
+	wall_mounted = TRUE
 
 /obj/structure/closet/secure_closet/medical_wall/update_icon()
 	if(broken)

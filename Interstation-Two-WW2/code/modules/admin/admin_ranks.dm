@@ -4,7 +4,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 /proc/load_admin_ranks()
 	admin_ranks.Cut()
 
-	var/previous_rights = 0
+	var/previous_rights = FALSE
 
 	//load text from file
 	var/list/Lines = file2list("config/admin_ranks.txt")
@@ -23,7 +23,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 			if(null,"")		continue
 			if("Removed")	continue				//Reserved
 
-		var/rights = 0
+		var/rights = FALSE
 		for(var/i=2, i<=List.len, i++)
 			switch(ckey(List[i]))
 				if("@","prev")					rights |= previous_rights
@@ -54,13 +54,13 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 	testing(msg)
 	#endif
 
-var/loaded_admins = 0
+var/loaded_admins = FALSE
 
 /hook/startup/proc/loadAdmins()
 	load_admins()
-	return 1
+	return TRUE
 
-/proc/load_admins(var/force = 0)
+/proc/load_admins(var/force = FALSE)
 	if (loaded_admins && !force)
 		return
 	//clear the datums references
@@ -76,13 +76,13 @@ var/loaded_admins = 0
 	establish_db_connection()
 
 	if(!database)
-		loaded_admins = 1
+		loaded_admins = TRUE
 		return
 
 	var/list/rowdata = database.execute("SELECT ckey, rank, flags FROM admin;")
 
 	if (islist(rowdata) && !isemptylist(rowdata))
-		for (var/v in 1 to rowdata.len)
+		for (var/v in TRUE to rowdata.len)
 			var/ckey = lowertext(rowdata["ckey_[v]"])
 			var/rank = rowdata["rank_[v]"]
 			if(rank == "Removed") goto deadminned	//This person was de-adminned. They are only in the admin list for archive purposes.
@@ -105,9 +105,9 @@ var/loaded_admins = 0
 	if(!admin_datums)
 		/*error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 		log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
-		config.admin_legacy_system = 1
+		config.admin_legacy_system = TRUE
 		load_admins()*/
-		loaded_admins = 1
+		loaded_admins = TRUE
 		return
 
 	#ifdef TESTING
@@ -120,7 +120,7 @@ var/loaded_admins = 0
 	testing(msg)
 	#endif
 
-	loaded_admins = 1
+	loaded_admins = TRUE
 
 #ifdef TESTING
 /client/verb/changerank(newrank in admin_ranks)

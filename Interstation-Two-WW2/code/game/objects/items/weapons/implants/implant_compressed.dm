@@ -9,7 +9,7 @@
 
 /obj/item/weapon/implant/compressed/trigger(emote, mob/source as mob)
 	if (src.scanned == null)
-		return 0
+		return FALSE
 
 	if (emote == src.activation_emote)
 		source << "The air glows as \the [src.scanned.name] uncompresses."
@@ -27,7 +27,7 @@
 	..()
 	src.activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	if (source.mind)
-		source.mind.store_memory("Compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
+		source.mind.store_memory("Compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", FALSE, FALSE)
 	source << "The implanted compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
 
 

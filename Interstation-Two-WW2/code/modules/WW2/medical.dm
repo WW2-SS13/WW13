@@ -5,7 +5,7 @@
 	name = "pill pack"
 	desc = "Pills in sterile and handy pack."
 	icon = 'icons/WW2/medical.dmi'
-	w_class = 1//Packed very effective
+	w_class = TRUE//Packed very effective
 	icon_state = "pill_pack"
 	var/pill_type = null
 	var/pop_sound = 'sound/effects/pop_pill.ogg'
@@ -14,16 +14,16 @@
 	..()
 
 	if(ispath(pill_type))
-		for(var/i = 1 to 6)
+		for(var/i = TRUE to 6)
 			new pill_type(src)
 
 	update_icon()
 
 /obj/item/weapon/pill_pack/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
-		if(src.contents.len > 0)
+		if(src.contents.len > FALSE)
 			if(pop_sound)
-				playsound(src.loc, pop_sound, 50, 1)
+				playsound(src.loc, pop_sound, 50, TRUE)
 			var/obj/item/weapon/reagent_containers/pill/pill = contents[1]
 			user << "<span class='notice'>You take one [pill.name] from [src.name].</span>"
 			user.put_in_active_hand(pill)
@@ -34,11 +34,11 @@
 		..()
 
 /obj/item/weapon/pill_pack/attack_self(mob/user as mob)
-	if(src.contents.len > 0)
+	if(src.contents.len > FALSE)
 		var/obj/item/weapon/reagent_containers/pill/pill = contents[1]
 		if(prob(70))
 			if(pop_sound)
-				playsound(src.loc, pop_sound, 50, 1)
+				playsound(src.loc, pop_sound, 50, TRUE)
 			user << "<span class='notice'>You take one [pill.name] from [src.name].</span>"
 			pill.loc = user.loc
 			update_icon()
@@ -97,8 +97,8 @@
 	name = "pack of nothing"
 	desc = "Contains nothing."
 	icon = 'icons/WW2/medical.dmi'
-	w_class = 1 //Packed very effective
-	var/packed = 1
+	w_class = TRUE //Packed very effective
+	var/packed = TRUE
 	var/rip_sound = 'sound/effects/rip_pack.ogg'
 
 /obj/item/weapon/gauze_pack/New()
@@ -111,9 +111,9 @@
 
 /obj/item/weapon/gauze_pack/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src && packed)
-		packed = 0
+		packed = FALSE
 		if(rip_sound)
-			playsound(src.loc, rip_sound, 50, 1)
+			playsound(src.loc, rip_sound, 50, TRUE)
 		if(contents.len)
 			var/obj/O = contents[1]
 			user.put_in_active_hand(O)
@@ -128,9 +128,9 @@
 /obj/item/weapon/gauze_pack/attack_self(mob/user as mob)
 	if(packed)
 		if(prob(50))
-			packed = 0
+			packed = FALSE
 			if(rip_sound)
-				playsound(src.loc, rip_sound, 50, 1)
+				playsound(src.loc, rip_sound, 50, TRUE)
 			if(contents.len)
 				var/obj/O = contents[1]
 				O.loc = user.loc

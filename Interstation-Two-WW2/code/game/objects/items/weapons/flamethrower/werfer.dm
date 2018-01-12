@@ -9,9 +9,9 @@
 	icon_state = "fw_off"
 	item_state = "fw_off"
 	var/pressure_1 = 100
-	status = 1
-	nothrow = 1
-	var/fueltank = 1
+	status = TRUE
+	nothrow = TRUE
+	var/fueltank = TRUE
 	var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = null
 
 /obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
@@ -70,8 +70,8 @@
 		my_mob << "<span class = 'danger'>Put the backpack on first.</span>"
 		return
 
-	operating = 1
-	playsound(my_turf, 'sound/weapons/flamethrower.ogg', 100, 1)
+	operating = TRUE
+	playsound(my_turf, 'sound/weapons/flamethrower.ogg', 100, TRUE)
 
 	var/blocking_turfs = list()
 
@@ -124,7 +124,7 @@
 		fueltank = max(fueltank, 0.00)
 
 	previousturf = null
-	operating = 0
+	operating = FALSE
 	for(var/mob/M in viewers(1, loc))
 		if((M.client && M.machine == src))
 			attack_self(M)
@@ -152,7 +152,7 @@
 	if(usr.stat || usr.restrained() || usr.lying)	return
 	usr.set_machine(src)
 	if(href_list["light"])
-		if(fueltank <= 0) return
+		if(fueltank <= FALSE) return
 		if(!status)	return
 		lit = !lit
 		if(lit)
@@ -194,13 +194,13 @@
 			dist_coeff = 1.00
 
 	var/time_limit = pick(2,3)
-	var/extra_temp = 0
+	var/extra_temp = FALSE
 	for (var/obj/fire/F in get_turf(src))
 		extra_temp += ((F.temperature / 100) * rand(15,25))
 		time_limit += 2
 		qdel(F)
 
-	var/obj/fire/F = target.create_fire(5, (rand(250,300) * throw_coeff * dist_coeff) + extra_temp, 0)
+	var/obj/fire/F = target.create_fire(5, (rand(250,300) * throw_coeff * dist_coeff) + extra_temp, FALSE)
 	F.time_limit = time_limit
 
 	spawn (rand(120*throw_coeff, 150*throw_coeff))

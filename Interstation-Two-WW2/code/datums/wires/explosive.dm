@@ -1,7 +1,7 @@
 /datum/wires/explosive
-	wire_count = 1
+	wire_count = TRUE
 
-var/const/WIRE_EXPLODE = 1
+var/const/WIRE_EXPLODE = TRUE
 
 /datum/wires/explosive/proc/explode()
 	return
@@ -23,8 +23,8 @@ var/const/WIRE_EXPLODE = 1
 /datum/wires/explosive/c4/CanUse(var/mob/living/L)
 	var/obj/item/weapon/plastique/P = holder
 	if(P.open_panel)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/wires/explosive/c4/explode()
 	var/obj/item/weapon/plastique/P = holder

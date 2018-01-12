@@ -40,7 +40,7 @@
 	colour = "#FFFFFF"
 	shadeColour = "#000000"
 	colourName = "mime"
-	uses = 0
+	uses = FALSE
 
 /obj/item/weapon/pen/crayon/mime/attack_self(mob/living/user as mob) //inversion
 	if(colour != "#FFFFFF" && shadeColour != "#000000")
@@ -58,7 +58,7 @@
 	colour = "#FFF000"
 	shadeColour = "#000FFF"
 	colourName = "rainbow"
-	uses = 0
+	uses = FALSE
 
 /obj/item/weapon/pen/crayon/rainbow/attack_self(mob/living/user as mob)
 	colour = input(user, "Please select the main colour.", "Crayon colour") as color
@@ -94,11 +94,11 @@
 /obj/item/weapon/pen/crayon/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(istype(M) && M == user)
 		M << "You take a bite of the crayon and swallow it."
-		M.nutrition += 1
+		M.nutrition += TRUE
 		M.reagents.add_reagent("crayon_dust",min(5,uses)/3)
 		if(uses)
 			uses -= 5
-			if(uses <= 0)
+			if(uses <= FALSE)
 				M << "<span class='warning'>You ate your crayon!</span>"
 				qdel(src)
 	else

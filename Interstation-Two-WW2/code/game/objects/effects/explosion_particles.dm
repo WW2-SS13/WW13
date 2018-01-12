@@ -2,9 +2,9 @@
 	name = "explosive particles"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "explosion_particle"
-	opacity = 1
-	anchored = 1
-	mouse_opacity = 0
+	opacity = TRUE
+	anchored = TRUE
+	mouse_opacity = FALSE
 
 /obj/effect/expl_particles/New()
 	..()
@@ -19,7 +19,7 @@
 /datum/effect/system/expl_particles
 	var/number = 10
 	var/turf/location
-	var/total_particles = 0
+	var/total_particles = FALSE
 
 /datum/effect/system/expl_particles/proc/set_up(n = 10, loca)
 	number = n
@@ -27,7 +27,7 @@
 	else location = get_turf(loca)
 
 /datum/effect/system/expl_particles/proc/start()
-	var/i = 0
+	var/i = FALSE
 	for(i=0, i<src.number, i++)
 		spawn(0)
 			var/obj/effect/expl_particles/expl = new /obj/effect/expl_particles(src.location)
@@ -40,9 +40,9 @@
 	name = "explosive particles"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "explosion"
-	opacity = 1
-	anchored = 1
-	mouse_opacity = 0
+	opacity = TRUE
+	anchored = TRUE
+	mouse_opacity = FALSE
 	pixel_x = -32
 	pixel_y = -32
 

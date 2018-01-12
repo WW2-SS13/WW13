@@ -19,7 +19,7 @@
 
 
 /obj/item/weapon/implant/adrenalin/trigger(emote, mob/source as mob)
-	if (src.uses < 1)	return 0
+	if (src.uses < TRUE)	return FALSE
 	if (emote == "pale")
 		src.uses--
 		source << "<span class='notice'>You feel a sudden surge of energy!</span>"
@@ -31,7 +31,7 @@
 
 /obj/item/weapon/implant/adrenalin/install(mob/living/carbon/human/H)
 	..()
-	H.mind.store_memory("A implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.", 0, 0)
+	H.mind.store_memory("A implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.", FALSE, FALSE)
 	H << "The implanted freedom implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate."
 
 

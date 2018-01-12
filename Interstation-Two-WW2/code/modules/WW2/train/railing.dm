@@ -4,13 +4,13 @@
 	icon = 'icons/obj/railing.dmi'
 	icon_state = "railing1"
 	name = "train railing"
-	var/occupied = 0
+	var/occupied = FALSE
 	var/datum/train_controller/master = null
-	uses_initial_density = 1
-	initial_density = 1
+	uses_initial_density = TRUE
+	initial_density = TRUE
 
-	uses_initial_opacity = 1
-	initial_opacity = 0
+	uses_initial_opacity = TRUE
+	initial_opacity = FALSE
 
 /obj/structure/railing/train_railing/proc/_Move()
 	for (var/atom/movable/a in get_turf(src))

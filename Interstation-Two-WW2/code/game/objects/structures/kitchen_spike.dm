@@ -5,9 +5,9 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "spike"
 	desc = "A spike for collecting meat from animals."
-	density = 1
-	anchored = 1
-	var/meat = 0
+	density = TRUE
+	anchored = TRUE
+	var/meat = FALSE
 	var/occupied
 	var/meat_type
 	var/victim_name = "corpse"
@@ -33,28 +33,28 @@
 	if(istype(victim, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = victim
 		if(!issmall(H))
-			return 0
+			return FALSE
 		meat_type = H.species.meat_type
 		icon_state = "spikebloody"
 	else if(istype(victim, /mob/living/carbon/alien))
 		meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
 		icon_state = "spikebloodygreen"
 	else
-		return 0
+		return FALSE
 
 	victim_name = victim.name
-	occupied = 1
+	occupied = TRUE
 	meat = 5
-	return 1
+	return TRUE
 
 /obj/structure/kitchenspike/attack_hand(mob/user as mob)
 	if(..() || !occupied)
 		return
 	meat--
 	new meat_type(get_turf(src))
-	if(src.meat > 1)
+	if(src.meat > TRUE)
 		user << "You remove some meat from \the [victim_name]."
-	else if(src.meat == 1)
+	else if(src.meat == TRUE)
 		user << "You remove the last piece of meat from \the [victim_name]!"
 		icon_state = "spike"
-		occupied = 0
+		occupied = FALSE

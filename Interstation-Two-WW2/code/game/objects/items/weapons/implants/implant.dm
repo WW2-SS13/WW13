@@ -1,17 +1,17 @@
-#define MALFUNCTION_TEMPORARY 1
+#define MALFUNCTION_TEMPORARY TRUE
 #define MALFUNCTION_PERMANENT 2
 
 /obj/item/weapon/implant
 	name = "implant"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "implant"
-	w_class = 1
+	w_class = TRUE
 	var/implanted = null
 	var/mob/imp_in = null
 	var/obj/item/organ/external/part = null
 	var/implant_color = "b"
-	var/allow_reagents = 0
-	var/malfunction = 0
+	var/allow_reagents = FALSE
+	var/malfunction = FALSE
 	var/legal = TRUE
 
 /obj/item/weapon/implant/proc/trigger(emote, source as mob)

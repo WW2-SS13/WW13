@@ -20,8 +20,8 @@
 
 /obj/item/weapon/grenade/smokebomb/prime()
 	if (active)
-		playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
-		src.smoke.set_up(10, 0, usr.loc)
+		playsound(src.loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
+		src.smoke.set_up(10, FALSE, usr.loc)
 		spawn(0)
 			src.smoke.start()
 			sleep(10)

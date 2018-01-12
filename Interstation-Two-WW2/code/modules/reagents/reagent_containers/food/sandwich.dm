@@ -44,14 +44,14 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/proc/update()
 	var/fullname = "" //We need to build this from the contents of the var.
-	var/i = 0
+	var/i = FALSE
 
 	overlays.Cut()
 
 	for(var/obj/item/weapon/reagent_containers/food/snacks/O in ingredients)
 
 		i++
-		if(i == 1)
+		if(i == TRUE)
 			fullname += "[O.name]"
 		else if(i == ingredients.len)
 			fullname += " and [O.name]"

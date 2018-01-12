@@ -5,10 +5,10 @@ var/area/partisan_stockpile = null
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
 	anchored = 1.0
-//	unacidable = 1
-	simulated = 0
+//	unacidable = TRUE
+	simulated = FALSE
 	invisibility = 101
-	var/delete_me = 0
+	var/delete_me = FALSE
 
 /obj/effect/landmark/New()
 	..()
@@ -17,15 +17,15 @@ var/area/partisan_stockpile = null
 	switch(name)			//some of these are probably obsolete
 		if("monkey")
 			monkeystart += loc
-			delete_me = 1
+			delete_me = TRUE
 			return
 		if("start")
 			newplayer_start += loc
-			delete_me = 1
+			delete_me = TRUE
 			return
 		if("JoinLate")
 			latejoin += loc
-			delete_me = 1
+			delete_me = TRUE
 			return
 		if("JoinLateGhost")
 			if(!latejoin_turfs["Ghost"])
@@ -35,19 +35,19 @@ var/area/partisan_stockpile = null
 			return
 		if("JoinLateGateway")
 			latejoin_gateway += loc
-			delete_me = 1
+			delete_me = TRUE
 			return
 		if("JoinLateCryo")
 			latejoin_cryo += loc
-			delete_me = 1
+			delete_me = TRUE
 			return
 		if("JoinLateCyborg")
 			latejoin_cyborg += loc
-			delete_me = 1
+			delete_me = TRUE
 			return
 		if("prisonwarp")
 			prisonwarp += loc
-			delete_me = 1
+			delete_me = TRUE
 			return
 		if("Holding Facility")
 			holdingfacility += loc
@@ -61,19 +61,19 @@ var/area/partisan_stockpile = null
 			tdomeobserve += loc
 		if("prisonsecuritywarp")
 			prisonsecuritywarp += loc
-			delete_me = 1
+			delete_me = TRUE
 			return
 		if("xeno_spawn")
 			xeno_spawn += loc
-			delete_me = 1
+			delete_me = TRUE
 			return
 		if("endgame_exit")
 			endgame_safespawns += loc
-			delete_me = 1
+			delete_me = TRUE
 			return
 		if("bluespacerift")
 			endgame_exits += loc
-			delete_me = 1
+			delete_me = TRUE
 			return
 		if("monkey")
 			monkeystart += loc
@@ -262,7 +262,7 @@ var/area/partisan_stockpile = null
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
-		// NEW RUSSIAN LANDMARKS
+		// NEW SOVIET LANDMARKS
 
 		if("JoinLateRA")
 			if(!latejoin_turfs[name])
@@ -390,7 +390,7 @@ var/area/partisan_stockpile = null
 			var/turf/turf = loc
 			var/list/possible_turfs = list()
 
-			for (var/turf/t in range(turf, 1))
+			for (var/turf/t in range(turf, TRUE))
 				if (t.density)
 					continue
 				for (var/obj/o in t)
@@ -412,7 +412,7 @@ var/area/partisan_stockpile = null
 				var/i = rand(1,3)
 				switch (i)
 					if (1) // meds
-						for (var/v in 1 to rand(2,3))
+						for (var/v in TRUE to rand(2,3))
 							if (prob(33))
 								new/obj/item/weapon/pill_pack/antitox(pick(possible_turfs))
 							if (prob(33))
@@ -428,7 +428,7 @@ var/area/partisan_stockpile = null
 							if (prob(33))
 								new/obj/item/weapon/gauze_pack/bint(pick(possible_turfs))
 					if (2) // tools
-						for (var/v in 1 to rand(2,3))
+						for (var/v in TRUE to rand(2,3))
 							if (prob(50))
 								new/obj/item/weapon/wrench(pick(possible_turfs))
 							if (prob(50))
@@ -438,13 +438,13 @@ var/area/partisan_stockpile = null
 							if (prob(50))
 								new/obj/item/weapon/screwdriver(pick(possible_turfs))
 					if (3) // materials
-						for (var/v in 1 to rand(3,5))
+						for (var/v in TRUE to rand(3,5))
 							var/type = pick(/obj/item/stack/material/steel, /obj/item/stack/material/wood)
 							var/obj/item/stack/sheets = new type (pick(possible_turfs))
 							sheets.amount = rand(10,30)
 
 				if (prob(30))
-					for (var/v in 1 to rand(2,3))
+					for (var/v in TRUE to rand(2,3))
 						new/obj/item/weapon/reagent_containers/glass/rag(pick(possible_turfs))
 
 
@@ -460,7 +460,7 @@ var/area/partisan_stockpile = null
 
 		if ("PartisanStockpile")
 			var/turf/turf = get_turf(loc)
-			for (var/v in 1 to 5)
+			for (var/v in TRUE to 5)
 				if (prob(50))
 					new /obj/item/weapon/gun/projectile/pistol/luger(turf)
 				if (prob(75))
@@ -470,7 +470,7 @@ var/area/partisan_stockpile = null
 				if (prob(50))
 					new /obj/item/weapon/melee/classic_baton/MP/soviet/old(turf)
 			// ptrd ammo
-			for (var/v in 1 to rand(10,20))
+			for (var/v in TRUE to rand(10,20))
 				new /obj/item/ammo_casing/a145 (turf)
 
 			partisan_stockpile = get_area(turf)
@@ -538,10 +538,10 @@ var/area/partisan_stockpile = null
 			return
 
 	landmarks_list += src
-	return 1
+	return TRUE
 
 /obj/effect/landmark/proc/delete()
-	delete_me = 1
+	delete_me = TRUE
 
 /obj/effect/landmark/initialize()
 	..()
@@ -562,7 +562,7 @@ var/area/partisan_stockpile = null
 /obj/effect/landmark/start/New()
 	..()
 	tag = "start*[name]"
-	return 1
+	return TRUE
 
 //Costume spawner landmarks
 /obj/effect/landmark/costume/New() //costume spawner, selects a random subclass and disappears
@@ -570,4 +570,4 @@ var/area/partisan_stockpile = null
 	var/list/options = typesof(/obj/effect/landmark/costume)
 	var/PICK= options[rand(1,options.len)]
 	new PICK(src.loc)
-	delete_me = 1
+	delete_me = TRUE

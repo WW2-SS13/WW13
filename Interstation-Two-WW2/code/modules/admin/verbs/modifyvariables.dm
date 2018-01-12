@@ -140,11 +140,11 @@ var/list/VVckey_edit = list("key", "ckey")
 		if(confirm != "Continue")
 			return
 
-	var/assoc = 0
-	if(L.len > 0)
+	var/assoc = FALSE
+	if(L.len > FALSE)
 		var/a = L[1]
 		if(istext(a) && L[a] != null)
-			assoc = 1 //This is pretty weak test but i can't think of anything else
+			assoc = TRUE //This is pretty weak test but i can't think of anything else
 			usr << "List appears to be associative."
 
 	var/list/names = null
@@ -186,7 +186,7 @@ var/list/VVckey_edit = list("key", "ckey")
 	else if(isnum(variable))
 		usr << "Variable appears to be <b>NUM</b>."
 		default = "num"
-		dir = 1
+		dir = TRUE
 
 	else if(istext(variable))
 		usr << "Variable appears to be <b>TEXT</b>."
@@ -351,7 +351,7 @@ var/list/VVckey_edit = list("key", "ckey")
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: [original_var]=[new_var]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s varlist [objectvar]: [original_var]=[new_var]")
 
-/client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
+/client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = FALSE)
 	if(!check_rights(R_VAREDIT))	return
 
 	for(var/p in forbidden_varedit_object_types)
@@ -387,7 +387,7 @@ var/list/VVckey_edit = list("key", "ckey")
 			else if(isnum(var_value))
 				usr << "Variable appears to be <b>NUM</b>."
 				class = "num"
-				dir = 1
+				dir = TRUE
 
 			else if(istext(var_value))
 				usr << "Variable appears to be <b>TEXT</b>."
@@ -447,7 +447,7 @@ var/list/VVckey_edit = list("key", "ckey")
 		else if(isnum(var_value))
 			usr << "Variable appears to be <b>NUM</b>."
 			default = "num"
-			dir = 1
+			dir = TRUE
 
 		else if(istext(var_value))
 			usr << "Variable appears to be <b>TEXT</b>."

@@ -17,9 +17,9 @@
 	mymob.blind.icon_state = "blackimageoverlay"
 	mymob.blind.name = " "
 	mymob.blind.screen_loc = "1,1"
-	mymob.blind.mouse_opacity = 0
+	mymob.blind.mouse_opacity = FALSE
 	mymob.blind.layer = 18
-	mymob.blind.alpha = 0*/
+	mymob.blind.alpha = FALSE*/
 
 //mob/living/silicon/ai/instantiate_hud(var/datum/hud/HUD)
 //	HUD.ai_hud()
@@ -68,7 +68,7 @@
 	var/icon/ico
 
 	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+	ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
 	using = new /obj/screen( src )
 	using.name = I_HELP
@@ -79,7 +79,7 @@
 	help_intent = using
 
 	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+	ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
 	using = new /obj/screen( src )
 	using.name = I_DISARM
@@ -90,7 +90,7 @@
 	disarm_intent = using
 
 	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+	ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
 	using = new /obj/screen( src )
 	using.name = I_GRAB
@@ -101,7 +101,7 @@
 	grab_intent = using
 
 	ico = new(ui_style, "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+	ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
 	using = new /obj/screen( src )
 	using.name = I_HURT
@@ -159,7 +159,7 @@
 
 		mymob.zone_sel = new /obj/screen/zone_sel()
 		mymob.zone_sel.icon = 'icons/mob/screen1_construct.dmi'
-		mymob.zone_sel.overlays.len = 0
+		mymob.zone_sel.overlays.len = FALSE
 		mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
 
 		mymob.purged = new /obj/screen()

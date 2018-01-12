@@ -10,21 +10,21 @@
 	/obj/item/weapon/FixOVein = 100, \
 	/obj/item/stack/cable_coil = 75
 	)
-	can_infect = 1
-	blood_level = 1
+	can_infect = TRUE
+	blood_level = TRUE
 
 	min_duration = 70
 	max_duration = 90
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(!hasorgans(target))
-			return 0
+			return FALSE
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(!affected) return
-		var/internal_bleeding = 0
+		var/internal_bleeding = FALSE
 		for(var/datum/wound/W in affected.wounds) if(W.internal)
-			internal_bleeding = 1
+			internal_bleeding = TRUE
 			break
 
 		return affected.open == (affected.encased ? 3 : 2) && internal_bleeding
@@ -44,13 +44,13 @@
 		for(var/datum/wound/W in affected.wounds) if(W.internal)
 			affected.wounds -= W
 			affected.update_damages()
-		if (ishuman(user) && prob(40)) user:bloody_hands(target, 0)
+		if (ishuman(user) && prob(40)) user:bloody_hands(target, FALSE)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("\red [user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!" , \
 		"\red Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!")
-		affected.take_damage(5, 0)
+		affected.take_damage(5, FALSE)
 
 /datum/surgery_step/fix_dead_tissue		//Debridement
 	priority = 2
@@ -60,7 +60,7 @@
 		/obj/item/weapon/material/shard = 50, 		\
 	)
 
-	can_infect = 1
+	can_infect = TRUE
 	blood_level = 1
 
 	min_duration = 110
@@ -68,10 +68,10 @@
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(!hasorgans(target))
-			return 0
+			return FALSE
 
 		if (target_zone == "mouth" || target_zone == "eyes")
-			return 0
+			return FALSE
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -89,13 +89,13 @@
 		user.visible_message("\blue [user] has cut away necrotic tissue in [target]'s [affected.name] with \the [tool].", \
 			"\blue You have cut away necrotic tissue in [target]'s [affected.name] with \the [tool].")
 		affected.status &= ~ORGAN_DEAD
-		playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
+		playsound(target.loc, 'sound/effects/squelch1.ogg', 50, TRUE)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("\red [user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!", \
 		"\red Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!")
-		affected.createwound(CUT, 20, 1)
+		affected.createwound(CUT, 20, TRUE)
 
 /datum/surgery_step/treat_necrosis
 	priority = 2
@@ -107,25 +107,25 @@
 		/obj/item/weapon/reagent_containers/glass/bucket = 50,
 	)
 
-	can_infect = 0
-	blood_level = 0
+	can_infect = FALSE
+	blood_level = FALSE
 
 	min_duration = 50
 	max_duration = 60
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (!istype(tool, /obj/item/weapon/reagent_containers))
-			return 0
+			return FALSE
 
 		var/obj/item/weapon/reagent_containers/container = tool
 		if(!container.reagents.has_reagent("peridaxon"))
-			return 0
+			return FALSE
 
 		if(!hasorgans(target))
-			return 0
+			return FALSE
 
 		if (target_zone == "mouth" || target_zone == "eyes")
-			return 0
+			return FALSE
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.open == 3 && (affected.status & ORGAN_DEAD)
@@ -146,7 +146,7 @@
 		var/obj/item/weapon/reagent_containers/container = tool
 
 		var/trans = container.reagents.trans_to_mob(target, container.amount_per_transfer_from_this, CHEM_BLOOD) //technically it's contact, but the reagents are being applied to internal tissue
-		if (trans > 0)
+		if (trans > FALSE)
 
 			if(container.reagents.has_reagent("peridaxon"))
 				affected.status &= ~ORGAN_DEAD

@@ -10,22 +10,22 @@
 	speak_emote = list("purrs", "meows")
 	emote_hear = list("meows","mews")
 	emote_see = list("shakes their head", "shivers")
-	speak_chance = 1
+	speak_chance = TRUE
 	turns_per_move = 5
 	see_in_dark = 6
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	var/turns_since_scan = 0
+	var/turns_since_scan = FALSE
 	var/mob/living/simple_animal/mouse/movement_target
 	var/mob/flee_target
 	min_oxy = 16 //Require atleast 16kPA oxygen
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323	//Above 50 Degrees Celcius
-	holder_type = /obj/item/weapon/holder/cat
+//	holder_type = /obj/item/weapon/holder/cat
 	mob_size = MOB_SMALL
-	possession_candidate = 1
+	possession_candidate = TRUE
 
 /mob/living/simple_animal/cat/Life()
 	//MICE!
@@ -36,7 +36,7 @@
 					M.splat()
 					visible_emote(pick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
 					movement_target = null
-					stop_automated_movement = 0
+					stop_automated_movement = FALSE
 					break
 
 	..()
@@ -52,7 +52,7 @@
 	turns_since_scan++
 	if (turns_since_scan > 5)
 		walk_to(src,0)
-		turns_since_scan = 0
+		turns_since_scan = FALSE
 
 		if (flee_target) //fleeing takes precendence
 			handle_flee_target()
@@ -75,29 +75,29 @@
 	//if our target is neither inside a turf or inside a human(???), stop
 	if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
 		movement_target = null
-		stop_automated_movement = 0
+		stop_automated_movement = FALSE
 	//if we have no target or our current one is out of sight/too far away
 	if( !movement_target || !(movement_target.loc in oview(src, 4)) )
 		movement_target = null
-		stop_automated_movement = 0
+		stop_automated_movement = FALSE
 		for(var/mob/living/simple_animal/mouse/snack in oview(src)) //search for a new target
 			if(isturf(snack.loc) && !snack.stat)
 				movement_target = snack
 				break
 
 	if(movement_target)
-		stop_automated_movement = 1
+		stop_automated_movement = TRUE
 		walk_to(src,movement_target,0,3)
 
 /mob/living/simple_animal/cat/proc/handle_flee_target()
 	//see if we should stop fleeing
 	if (flee_target && !(flee_target.loc in view(src)))
 		flee_target = null
-		stop_automated_movement = 0
+		stop_automated_movement = FALSE
 
 	if (flee_target)
 		if(prob(25)) say("HSSSSS")
-		stop_automated_movement = 1
+		stop_automated_movement = TRUE
 		walk_away(src, flee_target, 7, 2)
 
 /mob/living/simple_animal/cat/proc/set_flee_target(atom/A)
@@ -126,7 +126,7 @@
 /mob/living/simple_animal/cat/hitby(atom/movable/AM)
 	. = ..()
 	set_flee_target(AM.thrower? AM.thrower : src.loc)
-
+/*
 /mob/living/simple_animal/cat/MouseDrop(atom/over_object)
 
 	var/mob/living/carbon/H = over_object
@@ -137,7 +137,7 @@
 		return
 	else
 		return ..()
-
+*/
 //Basic friend AI
 /mob/living/simple_animal/cat/fluff
 	var/mob/living/carbon/human/friend
@@ -147,20 +147,20 @@
 	if (friend)
 		var/follow_dist = 5
 		if (friend.stat >= DEAD || friend.health <= config.health_threshold_softcrit) //danger
-			follow_dist = 1
+			follow_dist = TRUE
 		else if (friend.stat || friend.health <= 50) //danger or just sleeping
 			follow_dist = 2
-		var/near_dist = max(follow_dist - 2, 1)
+		var/near_dist = max(follow_dist - 2, TRUE)
 		var/current_dist = get_dist(src, friend)
 
 		if (movement_target != friend)
 			if (current_dist > follow_dist && !istype(movement_target, /mob/living/simple_animal/mouse) && (friend in oview(src)))
 				//stop existing movement
 				walk_to(src,0)
-				turns_since_scan = 0
+				turns_since_scan = FALSE
 
 				//walk to friend
-				stop_automated_movement = 1
+				stop_automated_movement = TRUE
 				movement_target = friend
 				walk_to(src, movement_target, near_dist, 4)
 
@@ -168,7 +168,7 @@
 		else if (current_dist <= near_dist)
 			walk_to(src,0)
 			movement_target = null
-			stop_automated_movement = 0
+			stop_automated_movement = FALSE
 			if (prob(10))
 				say("Meow!")
 
@@ -179,7 +179,7 @@
 	..()
 	if (stat || !friend)
 		return
-	if (get_dist(src, friend) <= 1)
+	if (get_dist(src, friend) <= TRUE)
 		if (friend.stat >= DEAD || friend.health <= config.health_threshold_softcrit)
 			if (prob((friend.stat < DEAD)? 50 : 15))
 				var/verb = pick("meows", "mews", "mrowls")
@@ -252,7 +252,7 @@
 	item_state = "cat3"
 	icon_living = "cat3"
 	icon_dead = "cat3_dead"
-	holder_type = /obj/item/weapon/holder/cat/fluff/bones
+//	holder_type = /obj/item/weapon/holder/cat/fluff/bones
 	var/friend_name = "Erstatz Vryroxes"
 
 /mob/living/simple_animal/cat/kitten/New()

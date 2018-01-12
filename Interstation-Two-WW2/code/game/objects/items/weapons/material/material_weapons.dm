@@ -8,16 +8,16 @@
 	throw_speed = 3
 	throw_range = 7
 	w_class = 3
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 
-	var/applies_material_colour = 1
+	var/applies_material_colour = TRUE
 	var/unbreakable
 	var/force_divisor = 0.5
 	var/thrown_force_divisor = 0.5
 	var/default_material = DEFAULT_WALL_MATERIAL
 	var/material/material
-	var/drops_debris = 1
+	var/drops_debris = TRUE
 
 /obj/item/weapon/material/New(var/newloc, var/material_key)
 	..(newloc)
@@ -68,7 +68,7 @@
 	..()
 	if(!unbreakable)
 		if(material.is_brittle())
-			health = 0
+			health = FALSE
 		else if(!prob(material.hardness))
 			health--
 		check_health()
@@ -83,7 +83,7 @@
 	if(istype(loc, /mob/living))
 		var/mob/living/M = loc
 		M.drop_from_inventory(src)
-	playsound(src, "shatter", 70, 1)
+	playsound(src, "shatter", 70, TRUE)
 	if(!consumed && drops_debris) material.place_shard(T)
 	qdel(src)
 /*

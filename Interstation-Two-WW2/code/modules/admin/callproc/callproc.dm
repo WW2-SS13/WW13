@@ -7,7 +7,7 @@
 	if(config.debugparanoid && !check_rights(R_ADMIN)) return
 
 	var/target = null
-	var/targetselected = 0
+	var/targetselected = FALSE
 
 	switch(alert("Proc owned by something?",, "Yes", "No", "Cancel"))
 		if("Yes")
@@ -62,7 +62,7 @@
 			return
 
 	var/list/arguments = list()
-	var/done = 0
+	var/done = FALSE
 	var/current = null
 
 	while(!done)
@@ -76,7 +76,7 @@
 				return
 
 			if("finished")
-				done = 1
+				done = TRUE
 
 			if("null")
 				current = null

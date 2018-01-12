@@ -1,28 +1,28 @@
 /datum/antagonist/proc/create_global_objectives()
 	if(config.objectives_disabled)
-		return 0
+		return FALSE
 	if(global_objectives && global_objectives.len)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /datum/antagonist/proc/create_objectives(var/datum/mind/player)
 	if(config.objectives_disabled)
-		return 0
+		return FALSE
 	if(create_global_objectives() || global_objectives.len)
 		player.objectives |= global_objectives
-	return 1
+	return TRUE
 
 /datum/antagonist/proc/get_special_objective_text()
 	return ""
 
 /datum/antagonist/proc/check_victory()
-	var/result = 1
+	var/result = TRUE
 	if(config.objectives_disabled)
-		return 1
+		return TRUE
 	if(global_objectives && global_objectives.len)
 		for(var/datum/objective/O in global_objectives)
 			if(!O.completed && !O.check_completion())
-				result = 0
+				result = FALSE
 		if(result && victory_text)
 			world << "<span class='danger'><font size = 3>[victory_text]</font></span>"
 

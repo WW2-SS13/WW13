@@ -20,7 +20,7 @@
 	spawn_location = "JoinLatePartisan"
 
 /datum/job/partisan/soldier/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	equip_random_uniform(H)
 	if (prob(40))
@@ -36,20 +36,20 @@
 	H.setStat("rifle", pick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
 	H.setStat("mg", pick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
 	H.setStat("medical", civ_stat())
-	return 1
+	return TRUE
 
 /datum/job/partisan/commander
 	title = "Partisan Commander"
-	is_officer = 1
-	is_commander = 1
-	total_positions = 1
-	head_position = 1
+	is_officer = TRUE
+	is_commander = TRUE
+	total_positions = TRUE
+	head_position = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLatePartisanLeader"
 	additional_languages = list( "Russian" = 100, "German" = 100)
 
 /datum/job/partisan/commander/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	equip_random_uniform(H)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
@@ -65,4 +65,4 @@
 	H.setStat("rifle", pick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
 	H.setStat("mg", pick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
 	H.setStat("medical", civ_stat())
-	return 1
+	return TRUE

@@ -11,8 +11,8 @@
 	flags = CONDUCT
 	max_amount = 60
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "smashed")
-	var/on = 1
-	var/state //0 = fine, 1 = flickering, 2 = breaking, 3 = broken
+	var/on = TRUE
+	var/state //0 = fine, TRUE = flickering, 2 = breaking, 3 = broken
 
 /obj/item/stack/tile/light/New(var/loc, var/amount=null)
 	..()
@@ -21,9 +21,9 @@
 	else if(prob(5))
 		state = 2 //breaking
 	else if(prob(10))
-		state = 1 //flickering occasionally
+		state = TRUE //flickering occasionally
 	else
-		state = 0 //fine
+		state = FALSE //fine
 
 /obj/item/stack/tile/light/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	..()
@@ -31,6 +31,6 @@
 		new/obj/item/stack/material/steel(user.loc)
 		amount--
 		new/obj/item/stack/light_w(user.loc)
-		if(amount <= 0)
+		if(amount <= FALSE)
 			user.drop_from_inventory(src)
 			qdel(src)

@@ -4,7 +4,7 @@
 	holder_type = /obj/machinery/vending
 	wire_count = 4
 
-var/const/VENDING_WIRE_THROW = 1
+var/const/VENDING_WIRE_THROW = TRUE
 var/const/VENDING_WIRE_CONTRABAND = 2
 var/const/VENDING_WIRE_ELECTRIFY = 4
 var/const/VENDING_WIRE_IDSCAN = 8
@@ -14,10 +14,10 @@ var/const/VENDING_WIRE_IDSCAN = 8
 	if(!istype(L, /mob/living/silicon))
 		if(V.seconds_electrified)
 			if(V.shock(L, 100))
-				return 0
+				return FALSE
 	if(V.panel_open)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/wires/vending/GetInteractWindow()
 	var/obj/machinery/vending/V = holder
@@ -45,11 +45,11 @@ var/const/VENDING_WIRE_IDSCAN = 8
 		if(VENDING_WIRE_THROW)
 			V.shoot_inventory = !mended
 		if(VENDING_WIRE_CONTRABAND)
-			V.categories &= ~CAT_HIDDEN  
+			V.categories &= ~CAT_HIDDEN
 		if(VENDING_WIRE_ELECTRIFY)
 			if(mended)
-				V.seconds_electrified = 0
+				V.seconds_electrified = FALSE
 			else
 				V.seconds_electrified = -1
 		if(VENDING_WIRE_IDSCAN)
-			V.scan_id = 1
+			V.scan_id = TRUE

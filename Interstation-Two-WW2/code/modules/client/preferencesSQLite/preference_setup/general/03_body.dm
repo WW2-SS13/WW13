@@ -51,31 +51,31 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 /datum/category_item/player_setup_item/general/body/sanitize_character()
 	if(!pref.species || !(pref.species in playable_species))
 		pref.species = "Human"
-	pref.r_hair			= sanitize_integer(pref.r_hair, 0, 255, initial(pref.r_hair))
-	pref.g_hair			= sanitize_integer(pref.g_hair, 0, 255, initial(pref.g_hair))
-	pref.b_hair			= sanitize_integer(pref.b_hair, 0, 255, initial(pref.b_hair))
-	pref.r_facial		= sanitize_integer(pref.r_facial, 0, 255, initial(pref.r_facial))
-	pref.g_facial		= sanitize_integer(pref.g_facial, 0, 255, initial(pref.g_facial))
-	pref.b_facial		= sanitize_integer(pref.b_facial, 0, 255, initial(pref.b_facial))
+	pref.r_hair			= sanitize_integer(pref.r_hair, FALSE, 255, initial(pref.r_hair))
+	pref.g_hair			= sanitize_integer(pref.g_hair, FALSE, 255, initial(pref.g_hair))
+	pref.b_hair			= sanitize_integer(pref.b_hair, FALSE, 255, initial(pref.b_hair))
+	pref.r_facial		= sanitize_integer(pref.r_facial, FALSE, 255, initial(pref.r_facial))
+	pref.g_facial		= sanitize_integer(pref.g_facial, FALSE, 255, initial(pref.g_facial))
+	pref.b_facial		= sanitize_integer(pref.b_facial, FALSE, 255, initial(pref.b_facial))
 	pref.s_tone			= sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
-	pref.r_skin			= sanitize_integer(pref.r_skin, 0, 255, initial(pref.r_skin))
-	pref.g_skin			= sanitize_integer(pref.g_skin, 0, 255, initial(pref.g_skin))
-	pref.b_skin			= sanitize_integer(pref.b_skin, 0, 255, initial(pref.b_skin))
+	pref.r_skin			= sanitize_integer(pref.r_skin, FALSE, 255, initial(pref.r_skin))
+	pref.g_skin			= sanitize_integer(pref.g_skin, FALSE, 255, initial(pref.g_skin))
+	pref.b_skin			= sanitize_integer(pref.b_skin, FALSE, 255, initial(pref.b_skin))
 	pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
 	pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
-	pref.r_eyes			= sanitize_integer(pref.r_eyes, 0, 255, initial(pref.r_eyes))
-	pref.g_eyes			= sanitize_integer(pref.g_eyes, 0, 255, initial(pref.g_eyes))
-	pref.b_eyes			= sanitize_integer(pref.b_eyes, 0, 255, initial(pref.b_eyes))
+	pref.r_eyes			= sanitize_integer(pref.r_eyes, FALSE, 255, initial(pref.r_eyes))
+	pref.g_eyes			= sanitize_integer(pref.g_eyes, FALSE, 255, initial(pref.g_eyes))
+	pref.b_eyes			= sanitize_integer(pref.b_eyes, FALSE, 255, initial(pref.b_eyes))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
 
-	pref.disabilities	= sanitize_integer(pref.disabilities, 0, 65535, initial(pref.disabilities))
+	pref.disabilities	= sanitize_integer(pref.disabilities, FALSE, 65535, initial(pref.disabilities))
 	if(!pref.organ_data) pref.organ_data = list()
 	if(!pref.rlimb_data) pref.rlimb_data = list()
 
 /datum/category_item/player_setup_item/general/body/content(var/mob/user)
 	pref.update_preview_icons()
 
-	for (var/v in 1 to pref.preview_icons.len)
+	for (var/v in TRUE to pref.preview_icons.len)
 		if (isicon(pref.preview_icons_front[v]))
 			user << browse_rsc(pref.preview_icons_front[v], "previewicon_[v]_front.png")
 		if (isicon(pref.preview_icons_back[v]))
@@ -97,7 +97,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	// . += "Internal Organs: <a href='?src=\ref[src];organs=1'>Adjust</a><br>"
 
 	//display limbs below
-	var/ind = 0
+	var/ind = FALSE
 	for(var/name in pref.organ_data)
 		var/status = pref.organ_data[name]
 		var/organ_name = null
@@ -125,12 +125,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 		if(status == "amputated")
 			++ind
-			if(ind > 1)
+			if(ind > TRUE)
 				. += ", "
 			. += "\tAmputated [organ_name]"
 		else if(status == "assisted")
 			++ind
-			if(ind > 1)
+			if(ind > TRUE)
 				. += ", "
 			switch(organ_name)
 				if("heart")
@@ -149,7 +149,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	. += "<b>Preview</b><br>"
 
-	for (var/v in 1 to pref.preview_icons.len)
+	for (var/v in TRUE to pref.preview_icons.len)
 		. += "<img src=previewicon_[v]_front.png height=64 width=64>"
 		. += "<img src=previewicon_[v]_back.png height=64 width=64>"
 		. += "<img src=previewicon_[v]_east.png height=64 width=64>"
@@ -243,7 +243,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["skin_tone"])
 		if(!has_flag(mob_species, HAS_SKIN_TONE))
 			return TOPIC_NOACTION
-		var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference", (-pref.s_tone) + 35)  as num|null
+		var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light TRUE - 220 Dark)", "Character Preference", (-pref.s_tone) + 35)  as num|null
 		if (new_s_tone > 55 && user.client.prefs.current_character_type == GERMAN)
 			user << "<span class = 'danger'>This skin is too dark for a German.</span>"
 			return

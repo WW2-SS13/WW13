@@ -1,6 +1,6 @@
 /atom
-	var/light_power = 1 // Intensity of the light.
-	var/light_range = 0 // Range in tiles of the light.
+	var/light_power = TRUE // Intensity of the light.
+	var/light_range = FALSE // Range in tiles of the light.
 	var/light_color     // Hexadecimal RGB string representing the colour of the light.
 
 	var/tmp/datum/light_source/light // Our light source. Don't fuck with this directly unless you have a good reason!
@@ -60,7 +60,7 @@
 /atom/movable/Destroy()
 	var/turf/T = loc
 	if(opacity && istype(T))
-		opacity = 0
+		opacity = FALSE
 		T.recalc_atom_opacity()
 		T.reconsider_lights()
 	return ..()

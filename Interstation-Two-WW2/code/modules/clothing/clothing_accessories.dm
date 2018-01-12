@@ -2,11 +2,11 @@
 	if(valid_accessory_slots && istype(A) && (A.slot in valid_accessory_slots))
 		.=1
 	else
-		return 0
+		return FALSE
 	if(accessories.len && restricted_accessory_slots && (A.slot in restricted_accessory_slots))
 		for(var/obj/item/clothing/accessory/AC in accessories)
 			if (AC.slot == A.slot)
-				return 0
+				return FALSE
 
 /obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
@@ -86,7 +86,7 @@
 	if(usr.stat) return
 	if(!accessories.len) return
 	var/obj/item/clothing/accessory/A
-	if(accessories.len > 1)
+	if(accessories.len > TRUE)
 		A = input("Select an accessory to remove from [src]") as null|anything in accessories
 	else
 		A = accessories[1]

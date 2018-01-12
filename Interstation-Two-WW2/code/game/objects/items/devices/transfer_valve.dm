@@ -7,14 +7,14 @@
 	var/obj/item/weapon/tank/tank_two
 	var/obj/item/device/attached_device
 	var/mob/attacher = null
-	var/valve_open = 0
-	var/toggle = 1
+	var/valve_open = FALSE
+	var/toggle = TRUE
 	flags = PROXMOVE
 
 /obj/item/device/transfer_valve/proc/process_activation(var/obj/item/device/D)
 
 /obj/item/device/transfer_valve/IsAssemblyHolder()
-	return 1
+	return TRUE
 
 /obj/item/device/transfer_valve/attackby(obj/item/item, mob/user)
 	var/turf/location = get_turf(src) // For admin logs
@@ -71,14 +71,14 @@
 /obj/item/device/transfer_valve/attack_self(mob/user as mob)
 	ui_interact(user)
 
-/obj/item/device/transfer_valve/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/device/transfer_valve/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
 
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["attachmentOne"] = tank_one ? tank_one.name : null
 	data["attachmentTwo"] = tank_two ? tank_two.name : null
 	data["valveAttachment"] = attached_device ? attached_device.name : null
-	data["valveOpen"] = valve_open ? 1 : 0
+	data["valveOpen"] = valve_open ? TRUE : FALSE
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -96,9 +96,9 @@
 /obj/item/device/transfer_valve/Topic(href, href_list)
 	..()
 	if ( usr.stat || usr.restrained() )
-		return 0
+		return FALSE
 	if (src.loc != usr)
-		return 0
+		return FALSE
 	if(tank_one && href_list["tankone"])
 		remove_tank(tank_one)
 	else if(tank_two && href_list["tanktwo"])
@@ -114,14 +114,14 @@
 		if(href_list["device"])
 			attached_device.attack_self(usr)
 	src.add_fingerprint(usr)
-	return 1 // Returning 1 sends an update to attached UIs
+	return TRUE // Returning TRUE sends an update to attached UIs
 
 /obj/item/device/transfer_valve/process_activation(var/obj/item/device/D)
 	if(toggle)
-		toggle = 0
+		toggle = FALSE
 		toggle_valve()
 		spawn(50) // To stop a signal being spammed from a proxy sensor constantly going off or whatever
-			toggle = 1
+			toggle = TRUE
 
 /obj/item/device/transfer_valve/update_icon()
 	overlays.Cut()
@@ -150,7 +150,7 @@
 		tank_two = null
 	else
 		return
-	
+
 	T.loc = get_turf(src)
 	update_icon()
 
@@ -161,23 +161,23 @@
 	var/datum/gas_mixture/temp
 	temp = tank_one.air_contents.remove_ratio(1)
 	tank_two.air_contents.merge(temp)
-	valve_open = 1
+	valve_open = TRUE
 
 /obj/item/device/transfer_valve/proc/split_gases()
 	if(!valve_open)
 		return
-	
-	valve_open = 0
-	
+
+	valve_open = FALSE
+
 	if(deleted(tank_one) || deleted(tank_two))
 		return
-	
+
 	var/ratio1 = tank_one.air_contents.volume/tank_two.air_contents.volume
 	var/datum/gas_mixture/temp
 	temp = tank_two.air_contents.remove_ratio(ratio1)
 	tank_one.air_contents.merge(temp)
 	tank_two.air_contents.volume -=  tank_one.air_contents.volume
-	
+
 
 	/*
 	Exadv1: I know this isn't how it's going to work, but this was just to check
@@ -208,7 +208,7 @@
 
 		log_str += " Last touched by: [src.fingerprintslast][last_touch_info]"
 		bombers += log_str
-		message_admins(log_str, 0, 1)
+		message_admins(log_str, FALSE, TRUE)
 		log_game(log_str)
 		merge_gases()
 

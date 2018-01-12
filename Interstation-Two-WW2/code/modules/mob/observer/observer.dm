@@ -1,10 +1,10 @@
-var/const/GHOST_IMAGE_NONE = 0
-var/const/GHOST_IMAGE_DARKNESS = 1
+var/const/GHOST_IMAGE_NONE = FALSE
+var/const/GHOST_IMAGE_DARKNESS = TRUE
 var/const/GHOST_IMAGE_SIGHTLESS = 2
 var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 
 /mob/observer
-	density = 0
+	density = FALSE
 	invisibility = INVISIBILITY_OBSERVER
 	layer = 11 // above areas now
 	see_invisible = SEE_INVISIBLE_OBSERVER

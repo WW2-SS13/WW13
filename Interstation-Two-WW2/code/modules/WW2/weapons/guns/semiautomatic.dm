@@ -5,7 +5,7 @@
 	item_state = "svt"
 	w_class = 4
 	load_method = SPEEDLOADER | MAGAZINE
-	max_shells = 0
+	max_shells = FALSE
 	caliber = "a762x54"
 //	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK
@@ -34,7 +34,7 @@
 	item_state = "" //to-do
 	w_class = 4
 	load_method = SPEEDLOADER | MAGAZINE
-	max_shells = 0
+	max_shells = FALSE
 	caliber = "a792x57"
 //	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK

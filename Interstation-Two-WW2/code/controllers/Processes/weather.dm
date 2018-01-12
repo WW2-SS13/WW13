@@ -10,7 +10,7 @@ var/datum/controller/process/weather/weather_process = null
 	var/next_can_mod_weather = -1
 	var/next_can_change_weather = -1
 
-	var/enabled = 1
+	var/enabled = TRUE
 
 /datum/controller/process/weather/setup()
 	name = "weather"

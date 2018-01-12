@@ -46,7 +46,7 @@
 			cards += P
 
 
-	for(var/i = 0,i<2,i++)
+	for(var/i = FALSE,i<2,i++)
 		P = new()
 		P.name = "joker"
 		P.card_icon = "joker"
@@ -127,7 +127,7 @@
 
 	H.cards += cards[1]
 	cards -= cards[1]
-	H.concealed = 1
+	H.concealed = TRUE
 	H.update_icon()
 	if(user==target)
 		user.visible_message("\The [user] deals a card to \himself.")
@@ -175,7 +175,7 @@
 
 	icon_state = "card_pack"
 	icon = 'icons/obj/playing_cards.dmi'
-	w_class = 1
+	w_class = TRUE
 	var/list/cards = list()
 
 
@@ -196,9 +196,9 @@
 	desc = "Some playing cards."
 	icon = 'icons/obj/playing_cards.dmi'
 	icon_state = "empty"
-	w_class = 1
+	w_class = TRUE
 
-	var/concealed = 0
+	var/concealed = FALSE
 	var/list/cards = list()
 
 /obj/item/weapon/hand/verb/discard()
@@ -219,7 +219,7 @@
 	var/obj/item/weapon/hand/H = new(src.loc)
 	H.cards += card
 	cards -= card
-	H.concealed = 0
+	H.concealed = FALSE
 	H.update_icon()
 	src.update_icon()
 	usr.visible_message("\The [usr] plays \the [discarding].")
@@ -240,12 +240,12 @@
 		for(var/datum/playingcard/P in cards)
 			user << "The [P.name]."
 
-/obj/item/weapon/hand/update_icon(var/direction = 0)
+/obj/item/weapon/hand/update_icon(var/direction = FALSE)
 
 	if(!cards.len)
 		qdel(src)
 		return
-	else if(cards.len > 1)
+	else if(cards.len > TRUE)
 		name = "hand of cards"
 		desc = "Some playing cards."
 	else
@@ -256,7 +256,7 @@
 	overlays.Cut()
 
 
-	if(cards.len == 1)
+	if(cards.len == TRUE)
 		var/datum/playingcard/P = cards[1]
 		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
 		I.pixel_x += (-5+rand(10))
@@ -270,16 +270,16 @@
 	if(direction)
 		switch(direction)
 			if(NORTH)
-				M.Translate( 0,  0)
+				M.Translate( FALSE,  FALSE)
 			if(SOUTH)
-				M.Translate( 0,  4)
+				M.Translate( FALSE,  4)
 			if(WEST)
 				M.Turn(90)
-				M.Translate( 3,  0)
+				M.Translate( 3,  FALSE)
 			if(EAST)
 				M.Turn(90)
-				M.Translate(-2,  0)
-	var/i = 0
+				M.Translate(-2,  FALSE)
+	var/i = FALSE
 	for(var/datum/playingcard/P in cards)
 		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
 		//I.pixel_x = origin+(offset*i)

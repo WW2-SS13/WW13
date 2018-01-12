@@ -1,6 +1,6 @@
 /var/list/lighting_update_lights    = list()    // List of lighting sources  queued for update.
 
-/var/lighting_processing            = 1
+/var/lighting_processing            = TRUE
 
 /world/New()
 	. = ..()

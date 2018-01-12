@@ -83,34 +83,34 @@ var/global/list/default_ukrainian_channels = list(
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
 
-	var/on = 1 // 0 for off
+	var/on = TRUE // FALSE for off
 //	var/last_transmission
 	var/frequency = DEFAULT_FREQ
-//	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
+//	var/traitor_frequency = FALSE //tune to frequency to unlock traitor supplies
 	var/canhear_range = 3 // the range which mobs can hear this radio from
 	var/datum/wires/radio/wires = null
-//	var/b_stat = 0
-	var/broadcasting = 0
-	var/listening = 1
+//	var/b_stat = FALSE
+	var/broadcasting = FALSE
+	var/listening = TRUE
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/list/listening_on_channel = list()
-//	var/subspace_transmission = 0
-//	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
+//	var/subspace_transmission = FALSE
+//	var/syndie = FALSE//Holder to see if it's a syndicate encrypted radio
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2
 	matter = list("glass" = 25,DEFAULT_WALL_MATERIAL = 75)
-//	var/const/FREQ_LISTENING = 1
+//	var/const/FREQ_LISTENING = TRUE
 	var/list/internal_channels
 	var/last_tick = -1
 	var/datum/nanoui/UI
 	var/speech_sound = null
-//	var/freerange = 1
+//	var/freerange = TRUE
 	var/last_broadcast = -1
-	var/notyetmoved = 1 // shitty hack to prevent radio piles from broadcasting
-	var/is_supply_radio = 0
+	var/notyetmoved = TRUE // shitty hack to prevent radio piles from broadcasting
+	var/is_supply_radio = FALSE
 	var/supply_points = 350
 
 	var/static/list/german_supply_crate_types = list(
@@ -283,13 +283,13 @@ var/global/list/default_ukrainian_channels = list(
 /obj/item/device/radio/New()
 	..()
 	for (var/channel in internal_channels)
-		listening_on_channel[radio_freq2name(channel)] = 1
+		listening_on_channel[radio_freq2name(channel)] = TRUE
 
 	if (!isturf(loc))
-		notyetmoved = 0
+		notyetmoved = FALSE
 
 	if (istype(src, /obj/item/device/radio/intercom) && !istype(src, /obj/item/device/radio/intercom/loudspeaker))
-		notyetmoved = 0
+		notyetmoved = FALSE
 		if (loc)
 			setup_announcement_system("Supplydrop Announcement System", (faction == GERMAN ? DE_SUPPLY_FREQ : RU_SUPPLY_FREQ))
 			setup_announcement_system("Reinforcements Announcement System", (faction == GERMAN ? DE_BASE_FREQ : RU_BASE_FREQ))
@@ -298,16 +298,16 @@ var/global/list/default_ukrainian_channels = list(
 			switch (faction)
 				if (GERMAN)
 					main_radios[GERMAN] = src
-				if (RUSSIAN)
-					main_radios[RUSSIAN] = src
+				if (SOVIET)
+					main_radios[SOVIET] = src
 
 /obj/item/device/radio/Move()
 	..()
-	notyetmoved = 0
+	notyetmoved = FALSE
 
 /obj/item/device/radio/pickup(mob/user)
 	..(user)
-	notyetmoved = 0
+	notyetmoved = FALSE
 
 /obj/item/device/radio/proc/list_internal_channels(var/mob/user)
 	var/dat[0]
@@ -339,11 +339,11 @@ var/global/list/default_ukrainian_channels = list(
 
 /obj/item/device/radio/interact(mob/user)
 	if(!user)
-		return 0
+		return FALSE
 
 	return ui_interact(user)
 
-/obj/item/device/radio/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/device/radio/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
 	var/data[0]
 
 	data["mic_status"] = broadcasting
@@ -359,7 +359,7 @@ var/global/list/default_ukrainian_channels = list(
 	switch (faction)
 		if (GERMAN)
 			supply_crate_objects = german_supply_crate_types.Copy()
-		if (RUSSIAN)
+		if (SOVIET)
 			supply_crate_objects = soviet_supply_crate_types.Copy()
 
 	for (var/key in supply_crate_objects)
@@ -430,14 +430,14 @@ var/global/list/default_ukrainian_channels = list(
 
 		spawn (5)
 			if (!stuttering || stuttering < 4)
-				radio.broadcast(rhtml_encode(message), src, 0)
+				radio.broadcast(rhtml_encode(message), src, FALSE)
 			else
-				radio.broadcast(rhtml_encode(message), src, 1)
+				radio.broadcast(rhtml_encode(message), src, TRUE)
 
-/obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = 0)
+/obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = FALSE)
 
 	// ignore emotes.
-	if (copytext(msg, 1, 2) == "*")
+	if (dd_hasprefix(msg, "*"))
 		return
 
 	if (!can_broadcast())
@@ -497,13 +497,13 @@ var/global/list/default_ukrainian_channels = list(
 
 /obj/item/device/radio/proc/can_broadcast()
 	if (last_broadcast > world.time)
-		return 0
+		return FALSE
 	for (var/obj/item/device/radio/radio in get_turf(src))
 		// the reason radio.can_broadcast() is not checked is because
 		// it might cause an infinite loop
 		if (radio.last_broadcast > world.time)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/item/device/radio/proc/post_broadcast()
 	last_broadcast = world.time + 5
@@ -512,13 +512,13 @@ var/global/list/default_ukrainian_channels = list(
 	name = "A-7-B"
 	icon_state = "a7b"
 	item_state = "a7b"
-//	freerange = 0
+//	freerange = FALSE
 	frequency = RU_BASE_FREQ
-	anchored = 1
+	anchored = TRUE
 	canhear_range = 1
 	speech_sound = 'sound/effects/roger_beep.ogg'
-	is_supply_radio = 1
-	faction = RUSSIAN
+	is_supply_radio = TRUE
+	faction = SOVIET
 	supply_points = 500 // soviets get more supplies
 
 /obj/item/device/radio/intercom/a7b/New()
@@ -530,11 +530,11 @@ var/global/list/default_ukrainian_channels = list(
 		last_tick = world.time
 
 		if(!src.loc)
-			on = 0
+			on = FALSE
 		else
 			var/area/A = src.loc.loc
 			if(!A || !isarea(A))
-				on = 0
+				on = FALSE
 			else
 				on = A.powered(EQUIP) // set "on" to the power status
 
@@ -547,12 +547,12 @@ var/global/list/default_ukrainian_channels = list(
 	name = "RBS1"
 	icon_state = "rbs1"
 	item_state = "rbs1"
-//	freerange = 0
+//	freerange = FALSE
 	frequency = RU_COMM_FREQ
 	canhear_range = 1
 	w_class = 5
 	speech_sound = 'sound/effects/roger_beep.ogg'
-	faction = RUSSIAN
+	faction = SOVIET
 
 /obj/item/device/radio/rbs/New()
 	internal_channels = default_russian_channels.Copy()
@@ -562,12 +562,12 @@ var/global/list/default_ukrainian_channels = list(
 	name = "Torn.Fu.d2"
 	icon_state = "fud2"
 	item_state = "fud2"
-//	freerange = 0
+//	freerange = FALSE
 	frequency = DE_BASE_FREQ
-	anchored = 1
+	anchored = TRUE
 	canhear_range = 1
 	speech_sound = 'sound/effects/roger_beep2.ogg'
-	is_supply_radio = 1
+	is_supply_radio = TRUE
 	faction = GERMAN
 	supply_points = 400
 
@@ -580,11 +580,11 @@ var/global/list/default_ukrainian_channels = list(
 		last_tick = world.time
 
 		if(!src.loc)
-			on = 0
+			on = FALSE
 		else
 			var/area/A = src.loc.loc
 			if(!A || !isarea(A))
-				on = 0
+				on = FALSE
 			else
 				on = A.powered(EQUIP) // set "on" to the power status
 
@@ -599,7 +599,7 @@ var/global/list/default_ukrainian_channels = list(
 	name = "Feldfu.f"
 	icon_state = "feldfu"
 	item_state = "feldfu"
-//	freerange = 0
+//	freerange = FALSE
 	frequency = DE_COMM_FREQ
 	canhear_range = 1
 	w_class = 4
@@ -617,7 +617,7 @@ var/global/list/default_ukrainian_channels = list(
 	name = "Feldfu.f"
 	icon_state = "feldfu"
 	item_state = "feldfu"
-//	freerange = 0
+//	freerange = FALSE
 	frequency = UK_FREQ
 	canhear_range = 1
 	w_class = 4
@@ -632,25 +632,25 @@ var/global/list/default_ukrainian_channels = list(
 
 /obj/item/device/radio/Topic(href, href_list)
 	if(..())
-		return 1
+		return TRUE
 
 	usr.set_machine(src)
 
 	if (href_list["freq"])
 		var/new_frequency = (frequency + text2num(href_list["freq"]))
-		if ((new_frequency != 0))
+		if ((new_frequency != FALSE))
 			new_frequency = radio_sanitize_frequency(new_frequency)
 		frequency = new_frequency
-		. = 1
+		. = TRUE
 	else if (href_list["talk"])
 		broadcasting = !broadcasting
-		. = 1
+		. = TRUE
 	else if (href_list["listen"])
 		listening = !listening
-		. = 1
+		. = TRUE
 	else if(href_list["spec_freq"])
 		frequency = (text2num(href_list["spec_freq"]))
-		. = 1
+		. = TRUE
 	else if (href_list["purchase"])
 		var/split_purchase = splittext(href_list["purchase"], " (")
 		var/item = split_purchase[1]
@@ -659,19 +659,19 @@ var/global/list/default_ukrainian_channels = list(
 		switch (faction)
 			if (GERMAN)
 				choices = german_supply_crate_types | soviet_supply_crate_types
-			if (RUSSIAN)
+			if (SOVIET)
 				choices = soviet_supply_crate_types | soviet_supply_crate_types
 		purchase(item, choices[item], points)
 
 	for (var/channel in internal_channels)
-		listening_on_channel[radio_freq2name(channel)] = 1
+		listening_on_channel[radio_freq2name(channel)] = TRUE
 
 	if(.)
 		nanomanager.update_uis(src)
 
-	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, TRUE)
 
-/obj/item/device/radio/proc/purchase(var/itemname, var/path, var/pointcost = 0)
+/obj/item/device/radio/proc/purchase(var/itemname, var/path, var/pointcost = FALSE)
 	if (locate(/obj/effect/landmark/train/german_supplytrain_start) in world)
 		return
 	if (supply_points <= pointcost)
@@ -690,7 +690,7 @@ var/global/list/default_ukrainian_channels = list(
 	// our personal radio. Yes, even though we're a radio. Works better this way.
 	announcers[aname] = new /obj/item/device/radio
 	var/obj/item/device/radio/announcer = announcers[aname]
-	announcer.broadcasting = 1
+	announcer.broadcasting = TRUE
 	announcer.faction = faction
 	announcer.frequency = channel
 	announcer.speech_sound = speech_sound
@@ -708,7 +708,7 @@ var/global/list/default_ukrainian_channels = list(
 	switch (faction)
 		if (GERMAN)
 			H.languages = list(new/datum/language/german)
-		if (RUSSIAN)
+		if (SOVIET)
 			H.languages = list(new/datum/language/russian)
 
 	H.default_language = H.languages[1]
@@ -718,11 +718,11 @@ var/global/list/default_ukrainian_channels = list(
 	var/mob/living/carbon/human/mob = null
 
 	if (!announcers.Find(_announcer))
-		return 0
+		return FALSE
 
 	announcer = announcers[_announcer]
 	mob = mobs[_announcer]
 
 	announcer.broadcast(msg, mob)
 
-	return 1
+	return TRUE

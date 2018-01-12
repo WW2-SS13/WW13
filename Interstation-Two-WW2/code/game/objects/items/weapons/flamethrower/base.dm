@@ -7,15 +7,15 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_NORMAL
-	throw_speed = 1
+	throw_speed = TRUE
 	throw_range = 5
 	w_class = 3.0
-//	origin_tech = list(TECH_COMBAT = 1, TECH_PLASMA = 1)
+//	origin_tech = list(TECH_COMBAT = TRUE, TECH_PLASMA = TRUE)
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
-	var/status = 0
+	var/status = FALSE
 	var/throw_amount = 100
-	var/lit = 0	//on or off
-	var/operating = 0//cooldown
+	var/lit = FALSE	//on or off
+	var/operating = FALSE//cooldown
 	var/turf/previousturf = null
 	var/obj/item/weapon/weldingtool/weldtool = null
 	var/obj/item/device/assembly/igniter/igniter = null
@@ -66,7 +66,7 @@
 	if(user && user.get_active_hand() == src)
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
-			var/turflist = getline(user, target_turf, 1)
+			var/turflist = getline(user, target_turf, TRUE)
 			flame_turfs(turflist)
 
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
@@ -141,7 +141,7 @@
 	usr.set_machine(src)
 	if(href_list["light"])
 		if(!ptank)	return
-		if(ptank.air_contents.gas["plasma"] < 1)	return
+		if(ptank.air_contents.gas["plasma"] < TRUE)	return
 		if(!status)	return
 		lit = !lit
 		if(lit)
@@ -153,7 +153,7 @@
 		if(!ptank)	return
 		usr.put_in_hands(ptank)
 		ptank = null
-		lit = 0
+		lit = FALSE
 		usr.unset_machine()
 		usr << browse(null, "window=flamethrower")
 	for(var/mob/M in viewers(1, loc))
@@ -166,8 +166,8 @@
 /obj/item/weapon/flamethrower/proc/flame_turfs(turflist)
 	var/turf/my_turf = get_turf(loc)
 	if(!lit || operating)	return
-	operating = 1
-	playsound(my_turf, 'sound/weapons/flamethrower.ogg', 100, 1)
+	operating = TRUE
+	playsound(my_turf, 'sound/weapons/flamethrower.ogg', 100, TRUE)
 	for(var/turf/T in turflist)
 		if (T == my_turf)
 			continue
@@ -181,7 +181,7 @@
 		ignite_turf(T)
 		sleep(1)
 	previousturf = null
-	operating = 0
+	operating = FALSE
 	for(var/mob/M in viewers(1, loc))
 		if((M.client && M.machine == src))
 			attack_self(M)
@@ -194,7 +194,7 @@
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.02*(throw_amount/100))
 	//air_transfer.toxins = air_transfer.toxins * 5 // This is me not comprehending the air system. I realize this is retarded and I could probably make it work without fucking it up like this, but there you have it. -- TLE
 	new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(target,air_transfer.gas["plasma"],get_dir(loc,target))
-	air_transfer.gas["plasma"] = 0
+	air_transfer.gas["plasma"] = FALSE
 	target.assume_air(air_transfer)
 	//Burn it based on transfered gas
 	//target.hotspot_expose(part4.air_contents.temperature*2,300)
@@ -206,9 +206,9 @@
 /obj/item/weapon/flamethrower/full/New(var/loc)
 	..()
 	weldtool = new /obj/item/weapon/weldingtool(src)
-	weldtool.status = 0
+	weldtool.status = FALSE
 	igniter = new /obj/item/device/assembly/igniter(src)
-	igniter.secured = 0
-	status = 1
+	igniter.secured = FALSE
+	status = TRUE
 	update_icon()
 	return

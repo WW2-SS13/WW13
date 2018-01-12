@@ -35,7 +35,7 @@
 
 	player.rev_cooldown = world.time+100
 	var/choice = alert(player.current,"Asked by [src]: Do you want to join the [faction.faction_descriptor]?","Join the [faction.faction_descriptor]?","No!","Yes!")
-	if(choice == "Yes!" && faction.add_antagonist_mind(player, 0, faction.faction_role_text, faction.faction_welcome))
+	if(choice == "Yes!" && faction.add_antagonist_mind(player, FALSE, faction.faction_role_text, faction.faction_welcome))
 		src << "<span class='notice'>\The [player.current] joins the [faction.faction_descriptor]!</span>"
 		return
 	if(choice == "No!")
@@ -45,4 +45,4 @@
 /mob/living/proc/convert_to_loyalist(mob/M as mob in oview(src))
 	set name = "Convert Recidivist"
 	set category = "Abilities"
-	return 0*/
+	return FALSE*/

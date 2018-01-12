@@ -1,6 +1,6 @@
 // At minimum every mob has a hear_say proc.
 
-/mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+/mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = FALSE, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	if(!client)
 		return
 
@@ -11,7 +11,7 @@
 
 	//make sure the air can transmit speech - hearer's side
 
-	if(sleeping || stat == 1)
+	if(sleeping || stat == TRUE)
 		hear_sleep(message)
 		return
 
@@ -65,19 +65,19 @@
 			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
 		if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
-			src.playsound_local(source, speech_sound, sound_vol, 1)
+			src.playsound_local(source, speech_sound, sound_vol, TRUE)
 
 /mob/proc/on_hear_say(var/message)
 	src << message
 
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/device/radio/source, var/hard_to_hear = 0)
+/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/device/radio/source, var/hard_to_hear = FALSE)
 
 	if(!client)
 		return
 
 	message = capitalize(message)
 
-	playsound(loc, 'sound/effects/radio_chatter.ogg', 25, 0, -1)//They won't always be able to read the message, but the sound will play regardless.
+	playsound(loc, 'sound/effects/radio_chatter.ogg', 25, FALSE, -1)//They won't always be able to read the message, but the sound will play regardless.
 
 	if(sleeping || stat==1) //If unconscious or sleeping
 		hear_sleep(message)
@@ -213,7 +213,7 @@
 		var/list/messages = splittext(message, " ")
 		var/R = rand(1, messages.len)
 		var/heardword = messages[R]
-		if(copytext(heardword,1, 1) in punctuation)
+		if(copytext(heardword,1, TRUE) in punctuation)
 			heardword = copytext(heardword,2)
 		if(copytext(heardword,-1) in punctuation)
 			heardword = copytext(heardword,1,lentext(heardword))

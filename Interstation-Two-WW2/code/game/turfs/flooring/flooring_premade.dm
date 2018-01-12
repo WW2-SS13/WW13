@@ -67,7 +67,7 @@
 	name = "dirt"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "dirt"
-	uses_winter_overlay = 1
+	uses_winter_overlay = TRUE
 
 /turf/floor/hull
 	name = "hull"
@@ -201,34 +201,34 @@
 	initial_flooring = /decl/flooring/reinforced
 
 /turf/floor/reinforced/airless
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 
 /turf/floor/reinforced/airmix
 //	oxygen = MOLES_O2ATMOS
 //	nitrogen = MOLES_N2ATMOS
 
 /turf/floor/reinforced/nitrogen
-//	oxygen = 0
+//	oxygen = FALSE
 //	nitrogen = ATMOSTANK_NITROGEN
 
 /turf/floor/reinforced/oxygen
 	//oxygen = ATMOSTANK_OXYGEN
-	//nitrogen = 0
+	//nitrogen = FALSE
 
 /turf/floor/reinforced/plasma
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 //	plasma = ATMOSTANK_PLASMA
 
 /turf/floor/reinforced/carbon_dioxide
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 //	carbon_dioxide = ATMOSTANK_CO2
 
 /turf/floor/reinforced/n20
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 
 /turf/floor/reinforced/n20/New()
 	..()
@@ -253,8 +253,8 @@
 	initial_flooring = /decl/flooring/tiling/steel
 
 /turf/floor/tiled/steel/airless
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 
 /turf/floor/tiled/white
 	name = "floor"
@@ -275,41 +275,41 @@
 //ATMOS PREMADES
 /turf/floor/reinforced/airless
 	name = "reinforced floor"
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 	temperature = TCMB
 
 /turf/floor/airless
 	name = "plating"
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 	temperature = TCMB
 
 /turf/floor/tiled/airless
 	name = "floor"
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 	temperature = TCMB
 
 /turf/floor/bluegrid/airless
 	name = "floor"
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 	temperature = TCMB
 
 /turf/floor/greengrid/airless
 	name = "floor"
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 	temperature = TCMB
 
 /turf/floor/greengrid/nitrogen
-//	oxygen = 0
+//	oxygen = FALSE
 
 /turf/floor/tiled/white/airless
 	name = "floor"
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 	temperature = TCMB
 
 // Placeholders

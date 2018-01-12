@@ -38,7 +38,7 @@
 	slot_flags = SLOT_BELT
 	w_class = 2
 	force = 3
-	var/on = 0
+	var/on = FALSE
 
 
 /obj/item/weapon/melee/telebaton/attack_self(mob/user as mob)
@@ -67,10 +67,10 @@
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
-	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+	playsound(src.loc, 'sound/weapons/empty.ogg', 50, TRUE)
 	add_fingerprint(user)
 
-	if(blood_overlay && blood_DNA && (blood_DNA.len >= 1)) //updates blood overlay, if any
+	if(blood_overlay && blood_DNA && (blood_DNA.len >= TRUE)) //updates blood overlay, if any
 		overlays.Cut()//this might delete other item overlays as well but eeeeeeeh
 
 		var/icon/I = new /icon(src.icon, src.icon_state)
@@ -94,7 +94,7 @@
 				user.take_organ_damage(2*force)
 			return
 		if(..())
-			//playsound(src.loc, "swing_hit", 50, 1, -1)
+			//playsound(src.loc, "swing_hit", 50, TRUE, -1)
 			return
 	else
 		return ..()

@@ -46,7 +46,7 @@
 
 /obj/screen/movable/proc/encode_screen_X(X)
 	if(X > usr.client.view+1)
-		. = "EAST-[usr.client.view*2 + 1-X]"
+		. = "EAST-[usr.client.view*2 + TRUE-X]"
 	else if(X < usr.client.view+1)
 		. = "WEST+[X-1]"
 	else
@@ -57,19 +57,19 @@
 	if(findtext(X,"EAST-"))
 		var/num = text2num(copytext(X,6)) //Trim EAST-
 		if(!num)
-			num = 0
-		. = usr.client.view*2 + 1 - num
+			num = FALSE
+		. = usr.client.view*2 + TRUE - num
 	else if(findtext(X,"WEST+"))
 		var/num = text2num(copytext(X,6)) //Trim WEST+
 		if(!num)
-			num = 0
+			num = FALSE
 		. = num+1
 	else if(findtext(X,"CENTER"))
 		. = usr.client.view+1
 
 /obj/screen/movable/proc/encode_screen_Y(Y)
 	if(Y > usr.client.view+1)
-		. = "NORTH-[usr.client.view*2 + 1-Y]"
+		. = "NORTH-[usr.client.view*2 + TRUE-Y]"
 	else if(Y < usr.client.view+1)
 		. = "SOUTH+[Y-1]"
 	else
@@ -79,12 +79,12 @@
 	if(findtext(Y,"NORTH-"))
 		var/num = text2num(copytext(Y,7)) //Trim NORTH-
 		if(!num)
-			num = 0
-		. = usr.client.view*2 + 1 - num
+			num = FALSE
+		. = usr.client.view*2 + TRUE - num
 	else if(findtext(Y,"SOUTH+"))
 		var/num = text2num(copytext(Y,7)) //Time SOUTH+
 		if(!num)
-			num = 0
+			num = FALSE
 		. = num+1
 	else if(findtext(Y,"CENTER"))
 		. = usr.client.view+1

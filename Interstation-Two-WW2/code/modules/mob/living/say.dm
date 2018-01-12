@@ -70,34 +70,34 @@ proc/get_radio_key_from_channel(var/channel)
 	return key
 
 /mob/living/proc/binarycheck()
-	return 0
+	return FALSE
 
 /mob/living/proc/get_default_language()
 	return default_language
 
 /mob/living/proc/is_muzzled()
-	return 0
+	return FALSE
 
 /mob/living/proc/handle_speech_problems(var/message, var/verb)
 	var/list/returns[3]
-	var/speech_problem_flag = 0
+	var/speech_problem_flag = FALSE
 
 	if((HULK in mutations) && health >= 25 && length(message))
 		message = "[uppertext(message)]!!!"
 		verb = pick("yells","roars","hollers")
-		speech_problem_flag = 1
+		speech_problem_flag = TRUE
 
 	if(slurring)
 		message = slur(message)
 		verb = pick("slobbers","slurs")
-		speech_problem_flag = 1
+		speech_problem_flag = TRUE
 	if(stuttering)
 		message = stutter(message)
 		verb = pick("stammers","stutters")
-		speech_problem_flag = 1
+		speech_problem_flag = TRUE
 	if(lisp)
 		message = lisp(message, lisp)
-		speech_problem_flag = 1
+		speech_problem_flag = TRUE
 
 	returns[1] = message
 	returns[2] = verb
@@ -109,7 +109,7 @@ proc/get_radio_key_from_channel(var/channel)
 		for(var/obj/item/device/radio/intercom/I in view(1, null))
 			I.talk_into(src, message, verb, speaking)
 			used_radios += I
-	return 0
+	return FALSE
 
 /mob/living/proc/handle_speech_sound()
 	var/list/returns[2]
@@ -162,7 +162,7 @@ proc/get_radio_key_from_channel(var/channel)
 	// irrespective of distance or anything else.
 	if(speaking && (speaking.flags & HIVEMIND))
 		speaking.broadcast(src,trim(message))
-		return 1
+		return TRUE
 
 	verb = say_quote(message, speaking)
 
@@ -183,17 +183,17 @@ proc/get_radio_key_from_channel(var/channel)
 		verb = handle_s[2]
 
 	if(!message || message == "")
-		return 0
+		return FALSE
 
 	var/list/obj/item/used_radios = new
 	if(handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name))
-		return 1
+		return TRUE
 
 	var/list/handle_v = handle_speech_sound()
 	var/sound/speech_sound = handle_v[1]
 	var/sound_vol = handle_v[2]
 
-	var/italics = 0
+	var/italics = FALSE
 	var/message_range = world.view
 
 	var/turf/T = get_turf(src)
@@ -246,12 +246,12 @@ proc/get_radio_key_from_channel(var/channel)
 				O.hear_talk(src, message, verb, speaking)
 
 	log_say("[name]/[key] : [message]")
-	return 1
+	return TRUE
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
 	for (var/mob/O in viewers(src, null))
 		O.hear_signlang(message, verb, language, src)
-	return 1
+	return TRUE
 
 /obj/effect/speech_bubble
 	var/mob/parent

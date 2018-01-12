@@ -3,10 +3,10 @@
 	desc = "This is where your commandant shouts at you from."
 	icon_state = "loudspeaker"
 	canhear_range = 7
-	listening = 1
-	broadcasting = 0
-	layer = MOB_LAYER + 1
-	anchored = 1
+	listening = TRUE
+	broadcasting = FALSE
+	layer = MOB_LAYER + TRUE
+	anchored = TRUE
 
 /obj/item/device/radio/intercom/loudspeaker/german
 	frequency = DE_BASE_FREQ

@@ -4,22 +4,22 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/generic/
-	can_infect = 1
+	can_infect = TRUE
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (isslime(target))
-			return 0
+			return FALSE
 		if (target_zone == "eyes")	//there are specific steps for eye surgery
-			return 0
+			return FALSE
 		if (!hasorgans(target))
-			return 0
+			return FALSE
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if (affected == null)
-			return 0
+			return FALSE
 		if (affected.is_stump())
-			return 0
+			return FALSE
 		if (affected.status & ORGAN_ROBOT)
-			return 0
-		return 1
+			return FALSE
+		return TRUE
 
 /datum/surgery_step/generic/cut_with_laser
 	allowed_tools = list(
@@ -35,7 +35,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != "mouth"
+			return affected && affected.open == FALSE && target_zone != "mouth"
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -49,12 +49,12 @@
 		user.visible_message("\blue [user] has made a bloodless incision on [target]'s [affected.name] with \the [tool].", \
 		"\blue You have made a bloodless incision on [target]'s [affected.name] with \the [tool].",)
 		//Could be cleaner ...
-		affected.open = 1
+		affected.open = TRUE
 
 		if(istype(target) && !(target.species.flags & NO_BLOOD))
 			affected.status |= ORGAN_BLEEDING
 
-		affected.createwound(CUT, 1)
+		affected.createwound(CUT, TRUE)
 		affected.clamp()
 		spread_germs_to_organ(affected, user)
 
@@ -76,7 +76,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != "mouth"
+			return affected && affected.open == FALSE && target_zone != "mouth"
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -89,12 +89,12 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("\blue [user] has constructed a prepared incision on and within [target]'s [affected.name] with \the [tool].", \
 		"\blue You have constructed a prepared incision on and within [target]'s [affected.name] with \the [tool].",)
-		affected.open = 1
+		affected.open = TRUE
 
 		if(istype(target) && !(target.species.flags & NO_BLOOD))
 			affected.status |= ORGAN_BLEEDING
 
-		affected.createwound(CUT, 1)
+		affected.createwound(CUT, TRUE)
 		affected.clamp()
 		affected.open = 2
 
@@ -118,7 +118,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != "mouth"
+			return affected && affected.open == FALSE && target_zone != "mouth"
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -131,13 +131,13 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("\blue [user] has made an incision on [target]'s [affected.name] with \the [tool].", \
 		"\blue You have made an incision on [target]'s [affected.name] with \the [tool].",)
-		affected.open = 1
+		affected.open = TRUE
 
 		if(istype(target) && !(target.species.flags & NO_BLOOD))
 			affected.status |= ORGAN_BLEEDING
-		playsound(target.loc, 'sound/weapons/bladeslice.ogg', 50, 1)
+		playsound(target.loc, 'sound/weapons/bladeslice.ogg', 50, TRUE)
 
-		affected.createwound(CUT, 1)
+		affected.createwound(CUT, TRUE)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -173,7 +173,7 @@
 		"\blue You clamp bleeders in [target]'s [affected.name] with \the [tool].")
 		affected.clamp()
 		spread_germs_to_organ(affected, user)
-		playsound(target.loc, 'sound/items/Welder.ogg', 50, 1)
+		playsound(target.loc, 'sound/items/Welder.ogg', 50, TRUE)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -194,7 +194,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 1 //&& !(affected.status & ORGAN_BLEEDING)
+			return affected && affected.open == TRUE //&& !(affected.status & ORGAN_BLEEDING)
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -263,8 +263,8 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("\blue [user] cauterizes the incision on [target]'s [affected.name] with \the [tool].", \
 		"\blue You cauterize the incision on [target]'s [affected.name] with \the [tool].")
-		affected.open = 0
-		affected.germ_level = 0
+		affected.open = FALSE
+		affected.germ_level = FALSE
 		affected.status &= ~ORGAN_BLEEDING
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -284,12 +284,12 @@
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (target_zone == "eyes")	//there are specific steps for eye surgery
-			return 0
+			return FALSE
 		if (!hasorgans(target))
-			return 0
+			return FALSE
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if (affected == null)
-			return 0
+			return FALSE
 		return !affected.cannot_amputate
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

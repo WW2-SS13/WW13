@@ -1,7 +1,7 @@
 #define PROCESS_HIGH_SLOWDOWN 3
 #define PROCESS_MED_SLOWDOWN 2
 
-var/hyperefficiency_mode = 0
+var/hyperefficiency_mode = FALSE
 
 /client/proc/toggle_hyperefficiency_mode()
 	set category = "Debug"
@@ -34,10 +34,10 @@ var/hyperefficiency_mode = 0
 			machinery_process.schedule_interval *= PROCESS_HIGH_SLOWDOWN
 
 			// pause unecessary processes
-			weather_process.paused = 1
-			time_of_day_process.paused = 1
-			battlereport.paused = 1 // this breaks the battlereport, which only works every 10 minutes anyway, so removed
-//			inactivity_process.paused = 1 // process is gone
+			weather_process.paused = TRUE
+			time_of_day_process.paused = TRUE
+			battlereport.paused = TRUE // this breaks the battlereport, which only works every 10 minutes anyway, so removed
+//			inactivity_process.paused = TRUE // process is gone
 
 			// slow down some vital processes a bit
 			tickerProcess.schedule_interval *= PROCESS_MED_SLOWDOWN
@@ -62,10 +62,10 @@ var/hyperefficiency_mode = 0
 			machinery_process.schedule_interval /= PROCESS_HIGH_SLOWDOWN
 
 			// turn on unecessary processes
-			weather_process.paused = 0
-			time_of_day_process.paused = 0
-			battlereport.paused = 0
-//			inactivity_process.paused = 0 // process is gone
+			weather_process.paused = FALSE
+			time_of_day_process.paused = FALSE
+			battlereport.paused = FALSE
+//			inactivity_process.paused = FALSE // process is gone
 
 			// undo slowdown
 			tickerProcess.schedule_interval /= PROCESS_MED_SLOWDOWN

@@ -87,7 +87,7 @@
 					break
 			//If it gets to here it means it did not find a suitable stack on the tile.
 			var/obj/item/stack/material/hairlesshide/HS = new(usr.loc)
-			HS.amount = 1
+			HS.amount = TRUE
 			src.use(1)
 	else
 		..()
@@ -100,7 +100,7 @@
 	..()
 	if(exposed_temperature >= drying_threshold_temperature)
 		wetness--
-		if(wetness == 0)
+		if(wetness == FALSE)
 			//Try locating an exisitng stack on the tile and add to there if possible
 			for(var/obj/item/stack/material/leather/HS in src.loc)
 				if(HS.amount < 50)
@@ -110,6 +110,6 @@
 					break
 			//If it gets to here it means it did not find a suitable stack on the tile.
 			var/obj/item/stack/material/leather/HS = new(src.loc)
-			HS.amount = 1
+			HS.amount = TRUE
 			wetness = initial(wetness)
 			src.use(1)

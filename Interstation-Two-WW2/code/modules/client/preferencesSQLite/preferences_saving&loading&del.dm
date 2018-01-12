@@ -1,13 +1,13 @@
 var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 
-/datum/preferences/proc/preferences_exist(var/slot = 1)
+/datum/preferences/proc/preferences_exist(var/slot = TRUE)
 	slot = text2num(slot)
 	var/list/table = database.execute("SELECT * FROM preferences WHERE ckey = '[client_ckey]' AND slot = '[slot]';")
 	if (islist(table) && !isemptylist(table))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
-/datum/preferences/proc/get_DB_preference_value(name, slot = 1)
+/datum/preferences/proc/get_DB_preference_value(name, slot = TRUE)
 	if (!preferences_exist(slot))
 		return ""
 	var/table = database.execute("SELECT prefs FROM preferences WHERE ckey = '[client_ckey]' AND slot = '[slot]';")
@@ -19,18 +19,18 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 		if (key == name)
 			return val
 
-/datum/preferences/proc/load_preferences(var/slot = 1)
+/datum/preferences/proc/load_preferences(var/slot = TRUE)
 
-	if (text2num(slot) == 0)
-		return 0
+	if (text2num(slot) == FALSE)
+		return FALSE
 
 	slot = num2text(slot)
 	if (!client_ckey)
-		return 0
+		return FALSE
 
 	var/list/table = database.execute("SELECT * FROM preferences WHERE ckey = '[client_ckey]' AND slot = '[slot]';")
 	if (!islist(table) || isemptylist(table))
-		return 0
+		return FALSE
 
 	if (current_slot == slot)
 		save_preferences(slot)
@@ -83,29 +83,29 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 		if (C.ckey == client_ckey)
 			C.onload_preferences()
 
-	return 1
+	return TRUE
 
-/datum/preferences/proc/del_preferences(var/slot = 1)
-	if (text2num(slot) == 0)
-		return 0
+/datum/preferences/proc/del_preferences(var/slot = TRUE)
+	if (text2num(slot) == FALSE)
+		return FALSE
 	if (database.execute("DELETE FROM preferences WHERE ckey = '[client_ckey]' AND slot = '[slot]';"))
 		if (internal_table.Find(slot))
 			var/list/L = internal_table[slot]
 			if (L)
 				L.Cut()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
-/datum/preferences/proc/save_preferences(var/slot = 1, var/prevslot = -1)
+/datum/preferences/proc/save_preferences(var/slot = TRUE, var/prevslot = -1)
 
-	if (text2num(slot) == 0)
-		return 0
+	if (text2num(slot) == FALSE)
+		return FALSE
 
 	if (!client_ckey)
-		return 0
+		return FALSE
 
 	var/name_to_remember = real_name
-	for (var/num in 1 to internal_table.len)
+	for (var/num in TRUE to internal_table.len)
 		if (num != text2num(slot))
 			var/list/table = internal_table["[num]"]
 			if (table["real_name"] == real_name)
@@ -116,13 +116,13 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 	if (prevslot == -1)
 		if (!internal_table.Find(slot))
 			internal_table[slot] = list()
-		remember_preference("real_name", name_to_remember, 0) // don't save or inf. loop
+		remember_preference("real_name", name_to_remember, FALSE) // don't save or inf. loop
 	else
 	//	world << "0: [prevslot]"
 		var/internal_table_prev_slot = internal_table["[prevslot]"]
 	//	world << "#1: [internal_table_prev_slot]["german_name"]"
 		internal_table[slot] = copylist(internal_table_prev_slot)
-		remember_preference("real_name", name_to_remember, 0)
+		remember_preference("real_name", name_to_remember, FALSE)
 
 	var/params = ""
 	for (var/key in internal_table[slot])
@@ -146,7 +146,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 			params += ";"
 
 	if (dd_hassuffix(params, ";"))
-		params = copytext(params, 1, lentext(params))
+		params = copytext(params, TRUE, lentext(params))
 
 	if (preferences_disabled.len)
 		if (params)
@@ -158,29 +158,29 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 			params += ";"
 
 	if (dd_hassuffix(params, ";"))
-		params = copytext(params, 1, lentext(params))
+		params = copytext(params, TRUE, lentext(params))
 
 	var/list/prefs_exist_check = database.execute("SELECT * FROM preferences WHERE ckey = '[client_ckey]' AND slot = '[slot]';")
 	if (islist(prefs_exist_check) && !isemptylist(prefs_exist_check))
 		database.execute("UPDATE preferences SET prefs = '[params]' WHERE ckey = '[client_ckey]' AND slot = '[slot]';")
 	else
 		database.execute("INSERT INTO preferences (ckey, slot, prefs) VALUES ('[client_ckey]', '[slot]', '[params]');")
-	return 1
+	return TRUE
 
 /datum/preferences/proc/knows_preference(pref)
 	var/slot = num2text(current_slot)
 	if (!internal_table.Find(slot))
-		return 0
+		return FALSE
 	var/list/L = internal_table[slot]
 	return L.Find(pref)
 
-/datum/preferences/proc/remember_preference(pref, value, var/save = 1)
+/datum/preferences/proc/remember_preference(pref, value, var/save = TRUE)
 	if (!vars.Find(pref))
-		return 0
+		return FALSE
 	if (value == initial(vars[pref]))
-		return 0
+		return FALSE
 	if (forbidden_pref_save_varnames.Find(pref))
-		return 0
+		return FALSE
 
 	var/slot = num2text(current_slot)
 	if (!internal_table.Find(slot))
@@ -189,13 +189,13 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 
 	if (save)
 		save_preferences(current_slot)
-	return 1
+	return TRUE
 
-/datum/preferences/proc/unremember_preference(pref, var/save = 1)
+/datum/preferences/proc/unremember_preference(pref, var/save = TRUE)
 	if (!vars.Find(pref))
-		return 0
+		return FALSE
 	if (forbidden_pref_save_varnames.Find(pref))
-		return 0
+		return FALSE
 
 	var/slot = num2text(current_slot)
 	if (!internal_table.Find(slot))
@@ -204,4 +204,4 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 
 	if (save)
 		save_preferences(current_slot)
-	return 1
+	return TRUE

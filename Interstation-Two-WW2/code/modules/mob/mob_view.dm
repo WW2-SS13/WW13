@@ -4,7 +4,7 @@
 /mob/proc/reset_zoom()
 	if (client)
 		client.view = world.view
-		client.pixel_x = 0
-		client.pixel_y = 0
-		return 1
-	return 0
+		client.pixel_x = FALSE
+		client.pixel_y = FALSE
+		return TRUE
+	return FALSE

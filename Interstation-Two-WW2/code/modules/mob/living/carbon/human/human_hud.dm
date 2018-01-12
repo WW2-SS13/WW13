@@ -4,7 +4,7 @@
 		return
 
 //	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-	var/recreate_flag = 0
+	var/recreate_flag = FALSE
 
 	if(!check_HUDdatum())//проверка настроек клиента на правильность
 		log_debug("[H] try check a HUD, but HUDdatums not have \"[H.client.prefs.UI_style]!\"")
@@ -33,34 +33,34 @@
 	for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
 
 		if (HUDinv.color != H.client.prefs.UI_style_color || HUDinv.alpha != H.client.prefs.UI_style_alpha)
-			return 0
+			return FALSE
 
 	for (var/p in HUDneed)
 		var/obj/screen/HUDelm = HUDneed[p]
 		if (HUDelm.color != H.client.prefs.UI_style_color || HUDelm.alpha != H.client.prefs.UI_style_alpha)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /mob/living/carbon/human/check_HUDdatum()//correct a datum?
 	var/mob/living/carbon/human/H = src
 
 	if (H.client.prefs.UI_style && !(H.client.prefs.UI_style == "")) //если у клиента моба прописан стиль\тип ХУДа
 		if(global.HUDdatums.Find(H.client.prefs.UI_style))//Если существует такой тип ХУДА
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 /*/mob/living/carbon/human/check_HUDinventory()//correct a HUDinventory?
 	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
 	var/mob/living/carbon/human/H = src
 
-	if ((H.HUDinventory.len != 0) && (H.HUDinventory.len == species.hud.gear.len) && !(recreate_flag))
+	if ((H.HUDinventory.len != FALSE) && (H.HUDinventory.len == species.hud.gear.len) && !(recreate_flag))
 		for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
 			if(!(HUDdatum.slot_data.Find(HUDinv.slot_id) && species.hud.gear.Find(HUDinv.slot_id))) //Если данного slot_id нет в датуме худа и в датуме расы.
-				recreate_flag = 1
+				recreate_flag = TRUE
 				break //то нахуй это дерьмо
 	else
-		recreate_flag = 1
+		recreate_flag = TRUE
 
 	return
 
@@ -68,13 +68,13 @@
 	var/mob/living/carbon/human/H = src
 	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
 
-	if ((H.HUDneed.len != 0) && (H.HUDneed.len == species.hud.ProcessHUD.len)) //Если у моба есть ХУД и кол-во эл. худа соотвсетсвует заявленному
+	if ((H.HUDneed.len != FALSE) && (H.HUDneed.len == species.hud.ProcessHUD.len)) //Если у моба есть ХУД и кол-во эл. худа соотвсетсвует заявленному
 		for (var/i=1,i<=HUDneed.len,i++)
 			if(!(HUDdatum.HUDneed.Find(HUDneed[i]) && species.hud.ProcessHUD.Find(HUDneed[i]))) //Если данного худа нет в датуме худа и в датуме расы.
-				recreate_flag = 1
+				recreate_flag = TRUE
 				break //то нахуй это дерьмо
 	else
-		recreate_flag = 1
+		recreate_flag = TRUE
 	return
 
 /mob/living/carbon/human/check_HUDfrippery()

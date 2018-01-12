@@ -35,20 +35,20 @@
 
 /obj/item/weapon/reagent_containers/proc/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target) // This goes into afterattack
 	if(!istype(target))
-		return 0
+		return FALSE
 
 	if(!target.reagents || !target.reagents.total_volume)
 		user << "<span class='notice'>[target] is empty.</span>"
-		return 1
+		return TRUE
 
 	if(reagents && !reagents.get_free_space())
 		user << "<span class='notice'>[src] is full.</span>"
-		return 1
+		return TRUE
 
 	var/trans = target.reagents.trans_to_obj(src, target:amount_per_transfer_from_this)
 	user << "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>"
-	playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
-	return 1
+	playsound(loc, 'sound/effects/watersplash.ogg', 100, TRUE)
+	return TRUE
 
 /obj/item/weapon/reagent_containers/proc/standard_splash_mob(var/mob/user, var/mob/target) // This goes into afterattack
 	if(!istype(target))
@@ -56,11 +56,11 @@
 
 	if(!reagents || !reagents.total_volume)
 		user << "<span class='notice'>[src] is empty.</span>"
-		return 1
+		return TRUE
 
 	if(target.reagents && !target.reagents.get_free_space())
 		user << "<span class='notice'>[target] is full.</span>"
-		return 1
+		return TRUE
 
 	var/contained = reagentlist()
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been splashed with [name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
@@ -69,7 +69,7 @@
 
 	user.visible_message("<span class='danger'>[target] has been splashed with something by [user]!</span>", "<span class = 'notice'>You splash the solution onto [target].</span>")
 	reagents.splash(target, reagents.total_volume)
-	return 1
+	return TRUE
 
 /obj/item/weapon/reagent_containers/proc/self_feed_message(var/mob/user)
 	user << "<span class='notice'>You eat \the [src]</span>"
@@ -85,11 +85,11 @@
 
 /obj/item/weapon/reagent_containers/proc/standard_feed_mob(var/mob/user, var/mob/target) // This goes into attack
 	if(!istype(target))
-		return 0
+		return FALSE
 
 	if(!reagents || !reagents.total_volume)
 		user << "<span class='notice'>\The [src] is empty.</span>"
-		return 1
+		return TRUE
 
 	if(target == user)
 		if(istype(user, /mob/living/carbon/human))
@@ -107,7 +107,7 @@
 		reagents.trans_to_mob(user, issmall(user) ? ceil(amount_per_transfer_from_this/2) : amount_per_transfer_from_this, CHEM_INGEST)
 		user.bladder += amount_per_transfer_from_this
 		feed_sound(user)
-		return 1
+		return TRUE
 	else
 		if(istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = target
@@ -138,27 +138,27 @@
 		target.bladder += amount_per_transfer_from_this
 		feed_sound(user)
 
-		return 1
+		return TRUE
 
 /obj/item/weapon/reagent_containers/proc/standard_pour_into(var/mob/user, var/atom/target) // This goes into afterattack and yes, it's atom-level
 	if(!target.reagents)
-		return 0
+		return FALSE
 
 	// Ensure we don't splash beakers and similar containers.
 	if(!target.is_open_container() && istype(target, /obj/item/weapon/reagent_containers))
 		user << "<span class='notice'>\The [target] is closed.</span>"
-		return 1
+		return TRUE
 	// Otherwise don't care about splashing.
 	else if(!target.is_open_container())
-		return 0
+		return FALSE
 
 	if(!reagents || !reagents.total_volume)
 		user << "<span class='notice'>[src] is empty.</span>"
-		return 1
+		return TRUE
 
 	if(!target.reagents.get_free_space())
 		user << "<span class='notice'>[target] is full.</span>"
-		return 1
+		return TRUE
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	playsound(src,'sound/effects/Liquid_transfer_mono.wav',50,1)
@@ -169,5 +169,5 @@
 		var/obj/item/weapon/reagent_containers/glass/rag/R = target
 		R.update_name()
 
-	return 1
+	return TRUE
 

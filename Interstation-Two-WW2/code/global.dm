@@ -47,7 +47,7 @@ var/game_version        = "Interstation-Two-WW2"
 var/changelog_hash      = ""
 //var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
-var/round_progressing = 1
+var/round_progressing = TRUE
 var/master_mode       = "WW2" // "extended"
 var/secret_force_mode = "WW2"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
 
@@ -84,7 +84,7 @@ var/list/cardinal    = list(NORTH, SOUTH, EAST, WEST)
 var/list/cornerdirs  = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 var/list/alldirs     = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
-	 2,  1,  3,  8, 10,  9, 11,  4,  6,  5,  7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42,
+	 2,  TRUE,  3,  8, 10,  9, 11,  4,  6,  5,  7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42,
 	41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21,
 	23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63
 )
@@ -99,12 +99,12 @@ var/list/adminlog  = list()
 
 var/list/powernets = list()
 
-var/Debug2 = 0
+var/Debug2 = FALSE
 var/datum/debug/debugobj
 
 var/datum/moduletypes/mods = new()
 
-var/gravity_is_on = 1
+var/gravity_is_on = TRUE
 
 var/join_motd = null
 
@@ -123,7 +123,7 @@ var/sqlpass    = ""
 var/sqlfdbkdb    = "test"
 var/sqlfdbklogin = "root"
 var/sqlfdbkpass  = ""
-var/sqllogging   = 0 // Should we log deaths, population stats, etc.?
+var/sqllogging   = FALSE // Should we log deaths, population stats, etc.?
 
 // Forum MySQL configuration. (for use with forum account/key authentication)
 // These are all default values that will load should the forumdbconfig.txt file fail to read for whatever reason.
@@ -137,7 +137,7 @@ var/forum_authenticated_group = "10"
 
 // For FTP requests. (i.e. downloading runtime logs.)
 // However it'd be ok to use for accessing attack logs and such too, which are even laggier.
-var/fileaccess_timer = 0
+var/fileaccess_timer = FALSE
 var/custom_event_msg = null
 
 /*

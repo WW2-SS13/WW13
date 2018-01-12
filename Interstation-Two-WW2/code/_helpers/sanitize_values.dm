@@ -40,7 +40,7 @@
 	for(var/i=2,i<=len,i++)
 		var/ascii = text2ascii(color,i)
 		switch(ascii)
-			if(48 to 57)	. += ascii2text(ascii)		//numbers 0 to 9
+			if(48 to 57)	. += ascii2text(ascii)		//numbers FALSE to 9
 			if(97 to 102)	. += ascii2text(ascii)		//letters a to f
 			if(65 to 70)	. += ascii2text(ascii+32)	//letters A to F - translates to lowercase
 			else			return default

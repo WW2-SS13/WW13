@@ -11,7 +11,7 @@
 	slot_flags = SLOT_BACK
 //	origin_tech = "combat=4;materials=2;syndicate=8"
 	caliber = "a792x54"
-	recoil = 1 //extra kickback
+	recoil = TRUE //extra kickback
 	//fire_sound = 'sound/weapons/sniper.ogg'
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING | SPEEDLOADER
@@ -19,12 +19,12 @@
 	magazine_type = /obj/item/ammo_magazine/mosin
 	load_shell_sound = 'sound/weapons/clip_reload.ogg'
 	//+2 accuracy over the LWAP because only one shot
-	accuracy = 1
+	accuracy = TRUE
 	scoped_accuracy = 2
-	var/bolt_open = 0
-	var/check_bolt = 0 //Keeps the bolt from being interfered with
-	var/check_bolt_lock = 0 //For locking the bolt. Didn't put this in with check_bolt to avoid issues
-	var/bolt_safety = 0 //If true, locks the bolt when gun is empty
+	var/bolt_open = FALSE
+	var/check_bolt = FALSE //Keeps the bolt from being interfered with
+	var/check_bolt_lock = FALSE //For locking the bolt. Didn't put this in with check_bolt to avoid issues
+	var/bolt_safety = FALSE //If true, locks the bolt when gun is empty
 
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/attachment))
@@ -36,7 +36,7 @@
 /obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user)
 	if(!check_bolt)//Keeps people from spamming the bolt
 		check_bolt++
-		if(!do_after(user, 2, src, 0, 1,INCAPACITATION_DEFAULT, 1))//Delays the bolt
+		if(!do_after(user, 2, src, FALSE, TRUE,INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
 			check_bolt--
 			return
 	else return
@@ -47,7 +47,7 @@
 	bolt_open = !bolt_open
 	if(bolt_open)
 		if(chambered)
-			playsound(src.loc, 'sound/weapons/bolt_open.ogg', 50, 1)
+			playsound(src.loc, 'sound/weapons/bolt_open.ogg', 50, TRUE)
 			user << "<span class='notice'>You work the bolt open, ejecting [chambered]!</span>"
 			chambered.loc = get_turf(src)
 			loaded -= chambered
@@ -57,12 +57,12 @@
 					check_bolt_lock++
 					user << "<span class='notice'>The bolt is locked!</span>"
 		else
-			playsound(src.loc, 'sound/weapons/bolt_open.ogg', 50, 1)
+			playsound(src.loc, 'sound/weapons/bolt_open.ogg', 50, TRUE)
 			user << "<span class='notice'>You work the bolt open.</span>"
 	else
-		playsound(src.loc, 'sound/weapons/bolt_close.ogg', 50, 1)
+		playsound(src.loc, 'sound/weapons/bolt_close.ogg', 50, TRUE)
 		user << "<span class='notice'>You work the bolt closed.</span>"
-		bolt_open = 0
+		bolt_open = FALSE
 	add_fingerprint(user)
 	update_icon()
 	check_bolt--
@@ -70,7 +70,7 @@
 /obj/item/weapon/gun/projectile/boltaction/special_check(mob/user)
 	if(bolt_open)
 		user << "<span class='warning'>You can't fire [src] while the bolt is open!</span>"
-		return 0
+		return FALSE
 	return ..()
 
 /obj/item/weapon/gun/projectile/boltaction/load_ammo(var/obj/item/A, mob/user)

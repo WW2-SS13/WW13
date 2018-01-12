@@ -3,7 +3,7 @@
 	desc = "Apply to head repeatedly."
 	icon_state ="bible"
 	item_state = "bible"
-	throw_speed = 1
+	throw_speed = TRUE
 	throw_range = 5
 	w_class = 3.0
 	var/mob/affecting = null
@@ -32,5 +32,5 @@
 
 /obj/item/weapon/storage/bible/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src.loc, src.use_sound, 50, TRUE, -5)
 	..()

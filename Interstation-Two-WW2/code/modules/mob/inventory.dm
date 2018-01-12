@@ -10,19 +10,19 @@
 	else
 		equip_to_slot_if_possible(W, slot)
 
-/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
+/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, disable_warning = TRUE, redraw_mob = TRUE)
 	if(equip_to_slot_if_possible(W, slot_l_hand, del_on_fail, disable_warning, redraw_mob))
-		return 1
+		return TRUE
 	else if(equip_to_slot_if_possible(W, slot_r_hand, del_on_fail, disable_warning, redraw_mob))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //This is a SAFE proc. Use this instead of equip_to_slot()!
 //set del_on_fail to have it delete W if it fails to equip
 //set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1)
-	if(!istype(W)) return 0
+/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE)
+	if(!istype(W)) return FALSE
 
 	if(!W.mob_can_equip(src, slot))
 		if(del_on_fail)
@@ -30,10 +30,10 @@
 		else
 			if(!disable_warning)
 				src << "\red You are unable to equip that." //Only print if del_on_fail is false
-		return 0
+		return FALSE
 
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
-	return 1
+	return TRUE
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 //In most cases you will want to use equip_to_slot_if_possible()
@@ -42,10 +42,10 @@
 
 //This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot)
-	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE)
 
 /mob/proc/equip_to_slot_or_drop(obj/item/W as obj, slot)
-	if (!equip_to_slot_if_possible(W, slot, 1, 1, 0))
+	if (!equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE))
 		W.loc = get_turf(src)
 
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
@@ -70,33 +70,33 @@ var/list/slot_equipment_priority = list( \
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
 /mob/proc/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
-	return 1
+	return TRUE
 
 //puts the item "W" into an appropriate slot in a human's inventory
-//returns 0 if it cannot, 1 if successful
+//returns FALSE if it cannot, TRUE if successful
 /mob/proc/equip_to_appropriate_slot(obj/item/W)
-	if(!istype(W)) return 0
+	if(!istype(W)) return FALSE
 
 	for(var/slot in slot_equipment_priority)
 		if(equip_to_slot_if_possible(W, slot, del_on_fail=0, disable_warning=1, redraw_mob=1))
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 /mob/proc/equip_to_storage(obj/item/newitem)
 	// Try put it in their backpack
 	if(istype(src.back,/obj/item/weapon/storage))
 		var/obj/item/weapon/storage/backpack = src.back
-		if(backpack.can_be_inserted(newitem, 1))
+		if(backpack.can_be_inserted(newitem, TRUE))
 			newitem.forceMove(src.back)
-			return 1
+			return TRUE
 
 	// Try to place it in any item that can store stuff, on the mob.
 	for(var/obj/item/weapon/storage/S in src.contents)
-		if(S.can_be_inserted(newitem, 1))
+		if(S.can_be_inserted(newitem, TRUE))
 			newitem.forceMove(S)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 //These procs handle putting s tuff in your hand. It's probably best to use these rather than setting l_hand = ...etc
 //as they handle all relevant stuff like adding it to the player's screen and updating their overlays.
@@ -111,46 +111,46 @@ var/list/slot_equipment_priority = list( \
 	if(hand)	return r_hand
 	else		return l_hand
 
-//Puts the item into your l_hand if possible and calls all necessary triggers/updates. returns 1 on success.
+//Puts the item into your l_hand if possible and calls all necessary triggers/updates. returns TRUE on success.
 /mob/proc/put_in_l_hand(var/obj/item/W)
 	if(lying || !istype(W))
-		return 0
+		return FALSE
 	W.pixel_x = initial(W.pixel_x)
 	W.pixel_y = initial(W.pixel_y)
 	W.layer = initial(W.layer)
-	return 1
+	return TRUE
 
-//Puts the item into your r_hand if possible and calls all necessary triggers/updates. returns 1 on success.
+//Puts the item into your r_hand if possible and calls all necessary triggers/updates. returns TRUE on success.
 /mob/proc/put_in_r_hand(var/obj/item/W)
 	if(lying || !istype(W))
-		return 0
+		return FALSE
 	W.pixel_x = initial(W.pixel_x)
 	W.pixel_y = initial(W.pixel_y)
 	W.layer = initial(W.layer)
-	return 1
+	return TRUE
 
-//Puts the item into our active hand if possible. returns 1 on success.
+//Puts the item into our active hand if possible. returns TRUE on success.
 /mob/proc/put_in_active_hand(var/obj/item/W)
-	return 0 // Moved to human procs because only they need to use hands.
+	return FALSE // Moved to human procs because only they need to use hands.
 
-//Puts the item into our inactive hand if possible. returns 1 on success.
+//Puts the item into our inactive hand if possible. returns TRUE on success.
 /mob/proc/put_in_inactive_hand(var/obj/item/W)
-	return 0 // As above.
+	return FALSE // As above.
 
-//Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
+//Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns TRUE on success.
 //If both fail it drops it on the floor and returns 0.
 //This is probably the main one you need to know :)
 /mob/proc/put_in_hands(var/obj/item/W)
 	if(!W)
-		return 0
+		return FALSE
 	W.forceMove(get_turf(src))
 	W.layer = initial(W.layer)
 	W.dropped()
-	return 0
+	return FALSE
 
 //Checks if mob has one or more empty hands, depending on input param:
-//	both: if 0 (false), it returns true if at least one hand is free, otherwise 1 for checking both
-/mob/proc/has_empty_hand(var/both = 0)
+//	both: if FALSE (false), it returns true if at least one hand is free, otherwise TRUE for checking both
+/mob/proc/has_empty_hand(var/both = FALSE)
 	if (both)
 		return src.l_hand == null && src.r_hand == null
 	return src.l_hand == null || src.r_hand == null
@@ -160,23 +160,23 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 	if(W)
 		if (W.nodrop || W.nodrop_special_check())
-			return 0
+			return FALSE
 
 		if(!Target)
 			Target = loc
 
 		if (W.scoped_invisible)
-			if (W.invisibility > 0)
-				W.invisibility = 0
+			if (W.invisibility > FALSE)
+				W.invisibility = FALSE
 
 		remove_from_mob(W)
-		if(!(W && W.loc)) return 1 // self destroying objects (tk, grabs)
+		if(!(W && W.loc)) return TRUE // self destroying objects (tk, grabs)
 
 		if(W.loc != Target)
 			W.forceMove(Target, MOVED_DROP)
 		update_icons()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Drops the item in our left hand
 /mob/proc/drop_l_hand(var/atom/Target)
@@ -191,7 +191,7 @@ var/list/slot_equipment_priority = list( \
 		return drop_r_hand(Target)
 	else if(hand)
 		return drop_l_hand(Target)
-	return 0
+	return FALSE
 
 /mob/proc/drop_active_hand(var/atom/Target)
 	return drop_item(Target)
@@ -229,17 +229,17 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/isEquipped(obj/item/I)
 	if(!I)
-		return 0
-	return get_inventory_slot(I) != 0
+		return FALSE
+	return get_inventory_slot(I) != FALSE
 
 /mob/proc/canUnEquip(obj/item/I)
 	if(!I) //If there's nothing to drop, the drop is automatically successful.
-		return 1
+		return TRUE
 	var/slot = get_inventory_slot(I)
 	return slot && I.mob_can_unequip(src, slot)
 
 /mob/proc/get_inventory_slot(obj/item/I)
-	var/slot = 0
+	var/slot = FALSE
 	for(var/s in slot_back to slot_tie) //kind of worries me
 		if(get_equipped_item(s) == I)
 			slot = s
@@ -247,11 +247,11 @@ var/list/slot_equipment_priority = list( \
 	return slot
 
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
-/mob/proc/unEquip(obj/item/I, force = 0, var/atom/Target = null) //Force overrides NODROP for things like wizarditis and admin undress.
+/mob/proc/unEquip(obj/item/I, force = FALSE, var/atom/Target = null) //Force overrides NODROP for things like wizarditis and admin undress.
 	if(!(force || canUnEquip(I)))
 		return
 	drop_from_inventory(I,Target)
-	return 1
+	return TRUE
 
 //Attemps to remove an object on a mob.
 /mob/proc/remove_from_mob(var/obj/O)
@@ -264,7 +264,7 @@ var/list/slot_equipment_priority = list( \
 		var/obj/item/I = O
 		I.forceMove(src.loc, MOVED_DROP)
 		I.dropped(src)
-	return 1
+	return TRUE
 
 
 //Returns the item equipped to the specified slot, if any.

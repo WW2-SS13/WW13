@@ -16,7 +16,7 @@
 /proc/ruppertext(text as text)
 	text = uppertext(text)
 	var/t = ""
-	for(var/i = 1, i <= length(text), i++)
+	for(var/i = TRUE, i <= length(text), i++)
 		var/a = text2ascii(text, i)
 		if (a > 223)
 			t += ascii2text(a - 32)
@@ -29,7 +29,7 @@
 /proc/rlowertext(text as text)
 	text = lowertext(text)
 	var/t = ""
-	for(var/i = 1, i <= length(text), i++)
+	for(var/i = TRUE, i <= length(text), i++)
 		var/a = text2ascii(text, i)
 		if (a > 191 && a < 224)
 			t += ascii2text(a + 32)
@@ -45,7 +45,7 @@ sanitize_simple(var/t,var/list/repl_chars = list("\n"="#","\t"="#","ÿ"="&#255;",
 	for(var/char in repl_chars)
 		var/index = findtext(t, char)
 		while(index)
-			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
+			t = copytext(t, TRUE, index) + repl_chars[char] + copytext(t, index+1)
 			index = findtext(t, char)
 	return t
 */
@@ -95,10 +95,10 @@ var/global/list/rkeys = list(
 /proc/capitalize_cp1251(var/t as text)
 	var/s = 2
 	if (copytext(t,1,2) == ";")
-		s += 1
+		s += TRUE
 	else if (copytext(t,1,2) == ":")
 		s += 2
-	return ruppertext(copytext(t, 1, s)) + copytext(t, s)
+	return ruppertext(copytext(t, TRUE, s)) + copytext(t, s)
 
 /proc/intonation(text)
 	if (copytext(text,-1) == "!")

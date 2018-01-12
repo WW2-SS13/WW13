@@ -11,14 +11,14 @@
 
 /obj/item/stack
 	gender = PLURAL
-//	origin_tech = list(TECH_MATERIAL = 1)
+//	origin_tech = list(TECH_MATERIAL = TRUE)
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
-	var/amount = 1
+	var/amount = TRUE
 	var/max_amount //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
 	var/stacktype //determines whether different stack types can merge
 	var/build_type = null //used when directly applied to a turf
-	var/uses_charge = 0
+	var/uses_charge = FALSE
 	var/list/charge_costs = null
 	var/list/datum/matter_synth/synths = null
 
@@ -32,15 +32,15 @@
 
 /obj/item/stack/Destroy()
 	if(uses_charge)
-		return 1
+		return TRUE
 	if (src && usr && usr.machine == src)
 		usr << browse(null, "window=stack")
 	return ..()
 
 /obj/item/stack/examine(mob/user)
-	if(..(user, 1))
+	if(..(user, TRUE))
 		if(!uses_charge)
-			user << "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack."
+			user << "There [src.amount == TRUE ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack."
 		else
 			user << "There is enough charge for [get_amount()]."
 
@@ -50,7 +50,7 @@
 /obj/item/stack/proc/list_recipes(mob/user as mob, recipes_sublist)
 	if (!recipes)
 		return
-	if (!src || get_amount() <= 0)
+	if (!src || get_amount() <= FALSE)
 		user << browse(null, "window=stack")
 	user.set_machine(src) //for correct work of onclose
 	var/list/recipe_list = recipes
@@ -75,7 +75,7 @@
 			var/datum/stack_recipe/R = E
 			var/max_multiplier = round(src.get_amount() / R.req_amount)
 			var/title as text
-			var/can_build = 1
+			var/can_build = TRUE
 			can_build = can_build && (max_multiplier>0)
 			if (R.res_amount>1)
 				title+= "[R.res_amount]x [R.title]\s"
@@ -159,7 +159,7 @@
 					if (istype(get_area(src), /area/prishtina/german))
 						user << "<span class = 'warning'>This isn't a great place for barbwire.</span>"
 						return
-				else if (H.original_job.base_type_flag() == RUSSIAN)
+				else if (H.original_job.base_type_flag() == SOVIET)
 					if (istype(get_area(src), /area/prishtina/soviet))
 						user << "<span class = 'warning'>This isn't a great place for barbwire.</span>"
 						return
@@ -209,7 +209,7 @@
 		list_recipes(usr, text2num(href_list["sublist"]))
 
 	if (href_list["make"])
-		if (src.get_amount() < 1) qdel(src) //Never should happen
+		if (src.get_amount() < TRUE) qdel(src) //Never should happen
 
 		var/list/recipes_list = recipes
 		if (href_list["sublist"])
@@ -218,54 +218,54 @@
 
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		if (!multiplier || (multiplier <= 0)) //href exploit protection
+		if (!multiplier || (multiplier <= FALSE)) //href exploit protection
 			return
 
 		src.produce_recipe(R, multiplier, usr)
 
 	if (src && usr.machine==src) //do not reopen closed window
-		spawn( 0 )
+		spawn( FALSE )
 			src.interact(usr)
 			return
 	return
 
-//Return 1 if an immediate subsequent call to use() would succeed.
+//Return TRUE if an immediate subsequent call to use() would succeed.
 //Ensures that code dealing with stacks uses the same logic
 /obj/item/stack/proc/can_use(var/used)
 	if (get_amount() < used)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/item/stack/proc/use(var/used)
 	if (!can_use(used))
-		return 0
+		return FALSE
 	if(!uses_charge)
 		amount -= used
-		if (amount <= 0)
+		if (amount <= FALSE)
 			if(usr)
 				usr.remove_from_mob(src)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
-		return 1
+		return TRUE
 	else
 		if(get_amount() < used)
-			return 0
-		for(var/i = 1 to charge_costs.len)
+			return FALSE
+		for(var/i = TRUE to charge_costs.len)
 			var/datum/matter_synth/S = synths[i]
 			S.use_charge(charge_costs[i] * used) // Doesn't need to be deleted
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/stack/proc/add(var/extra)
 	if(!uses_charge)
 		if(amount + extra > get_max_amount())
-			return 0
+			return FALSE
 		else
 			amount += extra
-		return 1
+		return TRUE
 	else if(!synths || synths.len < uses_charge)
-		return 0
+		return FALSE
 	else
-		for(var/i = 1 to uses_charge)
+		for(var/i = TRUE to uses_charge)
 			var/datum/matter_synth/S = synths[i]
 			S.add_charge(charge_costs[i] * extra)
 
@@ -278,13 +278,13 @@
 //attempts to transfer amount to S, and returns the amount actually transferred
 /obj/item/stack/proc/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
 	if (!get_amount())
-		return 0
+		return FALSE
 	if ((stacktype != S.stacktype) && !type_verified)
-		return 0
+		return FALSE
 	if (isnull(tamount))
 		tamount = src.get_amount()
 
-	var/transfer = max(min(tamount, src.get_amount(), (S.get_max_amount() - S.get_amount())), 0)
+	var/transfer = max(min(tamount, src.get_amount(), (S.get_max_amount() - S.get_amount())), FALSE)
 
 	var/orig_amount = src.get_amount()
 	if (transfer && src.use(transfer))
@@ -294,7 +294,7 @@
 			if(blood_DNA)
 				S.blood_DNA |= blood_DNA
 		return transfer
-	return 0
+	return FALSE
 
 //creates a new stack with the specified amount
 /obj/item/stack/proc/split(var/tamount)
@@ -303,7 +303,7 @@
 	if(uses_charge)
 		return null
 
-	var/transfer = max(min(tamount, src.amount, initial(max_amount)), 0)
+	var/transfer = max(min(tamount, src.amount, initial(max_amount)), FALSE)
 
 	var/orig_amount = src.amount
 	if (transfer && src.use(transfer))
@@ -319,10 +319,10 @@
 /obj/item/stack/proc/get_amount()
 	if(uses_charge)
 		if(!synths || synths.len < uses_charge)
-			return 0
+			return FALSE
 		var/datum/matter_synth/S = synths[1]
 		. = round(S.get_charge() / charge_costs[1])
-		if(charge_costs.len > 1)
+		if(charge_costs.len > TRUE)
 			for(var/i = 2 to charge_costs.len)
 				S = synths[i]
 				. = min(., round(S.get_charge() / charge_costs[i]))
@@ -332,10 +332,10 @@
 /obj/item/stack/proc/get_max_amount()
 	if(uses_charge)
 		if(!synths || synths.len < uses_charge)
-			return 0
+			return FALSE
 		var/datum/matter_synth/S = synths[1]
 		. = round(S.max_energy / charge_costs[1])
-		if(uses_charge > 1)
+		if(uses_charge > TRUE)
 			for(var/i = 2 to uses_charge)
 				S = synths[i]
 				. = min(., round(S.max_energy / charge_costs[i]))
@@ -370,7 +370,7 @@
 	if (istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
 		if (user.get_inactive_hand()==src)
-			src.transfer_to(S, 1)
+			src.transfer_to(S, TRUE)
 		else
 			src.transfer_to(S)
 
@@ -388,15 +388,15 @@
 /datum/stack_recipe
 	var/title = "ERROR"
 	var/result_type
-	var/req_amount = 1 //amount of material needed for this recipe
-	var/res_amount = 1 //amount of stuff that is produced in one batch (e.g. 4 for floor tiles)
-	var/max_res_amount = 1
-	var/time = 0
-	var/one_per_turf = 0
-	var/on_floor = 0
+	var/req_amount = TRUE //amount of material needed for this recipe
+	var/res_amount = TRUE //amount of stuff that is produced in one batch (e.g. 4 for floor tiles)
+	var/max_res_amount = TRUE
+	var/time = FALSE
+	var/one_per_turf = FALSE
+	var/on_floor = FALSE
 	var/use_material
 
-	New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = 0, on_floor = 0, supplied_material = null)
+	New(title, result_type, req_amount = TRUE, res_amount = TRUE, max_res_amount = TRUE, time = FALSE, one_per_turf = FALSE, on_floor = FALSE, supplied_material = null)
 
 		src.title = title
 		src.result_type = result_type

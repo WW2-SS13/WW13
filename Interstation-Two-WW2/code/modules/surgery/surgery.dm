@@ -1,7 +1,7 @@
 /* SURGERY STEPS */
 
 /datum/surgery_step
-	var/priority = 0	//steps with higher priority would be attempted first
+	var/priority = FALSE	//steps with higher priority would be attempted first
 
 	// type path referencing tools that can be used for this step, and how well are they suited for it
 	var/list/allowed_tools = null
@@ -10,17 +10,17 @@
 	var/list/disallowed_species = null
 
 	// duration of the step
-	var/min_duration = 0
-	var/max_duration = 0
+	var/min_duration = FALSE
+	var/max_duration = FALSE
 
 	// evil infection stuff that will make everyone hate me
-	var/can_infect = 0
-	//How much blood this step can get on surgeon. 1 - hands, 2 - full body.
-	var/blood_level = 0
+	var/can_infect = FALSE
+	//How much blood this step can get on surgeon. TRUE - hands, 2 - full body.
+	var/blood_level = FALSE
 
 	//returns how well tool is suited for this step
 	proc/tool_quality(obj/item/tool, var/mob/living/carbon/human/user)
-		. = 0
+		. = FALSE
 		for (var/T in allowed_tools)
 			if (istype(tool,T))
 				. = min(allowed_tools[T], 72)
@@ -30,24 +30,24 @@
 	// Checks if this step applies to the user mob at all
 	proc/is_valid_target(mob/living/carbon/human/target)
 		if(!hasorgans(target))
-			return 0
+			return FALSE
 
 		if(allowed_species)
 			for(var/species in allowed_species)
 				if(target.species.get_bodytype() == species)
-					return 1
+					return TRUE
 
 		if(disallowed_species)
 			for(var/species in disallowed_species)
 				if(target.species.get_bodytype() == species)
-					return 0
+					return FALSE
 
-		return 1
+		return TRUE
 
 
 	// checks whether this step can be applied with the given user and target
 	proc/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		return 0
+		return FALSE
 
 	// does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
 	proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -58,7 +58,7 @@
 			var/mob/living/carbon/human/H = user
 			if (blood_level)
 				H.bloody_hands(target,0)
-			if (blood_level > 1)
+			if (blood_level > TRUE)
 				H.bloody_body(target,0)
 		return
 
@@ -81,20 +81,20 @@ proc/spread_germs_to_organ(var/obj/item/organ/external/E, var/mob/living/carbon/
 
 proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!istype(M))
-		return 0
+		return FALSE
 	if (user.a_intent == I_HURT)	//check for Hippocratic Oath
-		return 0
+		return FALSE
 	var/zone = user.targeted_organ
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
 		user << "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>"
-		return 1
+		return TRUE
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(tool, user))
 			var/step_is_valid = S.can_use(user, M, zone, tool)
 			if(step_is_valid && S.is_valid_target(M))
 				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
-					return 1
+					return TRUE
 				M.op_stage.in_progress += zone
 				S.begin_step(user, M, zone, tool)		//start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
@@ -112,27 +112,27 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 	if (user.a_intent == I_HELP)
 		user << "<span class='warning'>You can't see any useful way to use [tool] on [M].</span>"
-	return 0
+	return FALSE
 
 proc/sort_surgeries()
 	var/gap = surgery_steps.len
-	var/swapped = 1
-	while (gap > 1 || swapped)
-		swapped = 0
-		if(gap > 1)
+	var/swapped = TRUE
+	while (gap > TRUE || swapped)
+		swapped = FALSE
+		if(gap > TRUE)
 			gap = round(gap / 1.247330950103979)
-		if(gap < 1)
-			gap = 1
-		for(var/i = 1; gap + i <= surgery_steps.len; i++)
+		if(gap < TRUE)
+			gap = TRUE
+		for(var/i = TRUE; gap + i <= surgery_steps.len; i++)
 			var/datum/surgery_step/l = surgery_steps[i]		//Fucking hate
 			var/datum/surgery_step/r = surgery_steps[gap+i]	//how lists work here
 			if(l.priority < r.priority)
 				surgery_steps.Swap(i, gap + i)
-				swapped = 1
+				swapped = TRUE
 
 /datum/surgery_status/
 	var/eyes	=	0
 	var/face	=	0
-	var/head_reattach = 0
+	var/head_reattach = FALSE
 	var/current_organ = "organ"
 	var/list/in_progress = list()

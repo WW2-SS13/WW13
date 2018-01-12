@@ -41,10 +41,10 @@
 		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
 		return
 
-	var/message_range = 1
+	var/message_range = TRUE
 	var/eavesdropping_range = 2
 	var/watching_range = 5
-	var/italics = 1
+	var/italics = TRUE
 
 	var/not_heard //the message displayed to people who could not hear the whispering
 	if (speaking)
@@ -86,10 +86,10 @@
 			voice_sub = changer.voice
 
 	if(voice_sub == "Unknown")
-		if(copytext(message, 1, 2) != "*")
+		if(copytext(message, TRUE, 2) != "*")
 			var/list/temp_message = splittext(message, " ")
 			var/list/pick_list = list()
-			for(var/i = 1, i <= temp_message.len, i++)
+			for(var/i = TRUE, i <= temp_message.len, i++)
 				pick_list += i
 			for(var/i=1, i <= abs(temp_message.len/3), i++)
 				var/H = pick(pick_list)

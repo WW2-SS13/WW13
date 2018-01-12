@@ -46,4 +46,4 @@
 	tank.forcibly_eject_everyone()
 
 	log_admin("[key_name(usr)] tried to eject everyone from [tank]")
-	message_admins("[key_name_admin(usr)] tried to eject everyone from [tank]", 1)
+	message_admins("[key_name_admin(usr)] tried to eject everyone from [tank]", TRUE)

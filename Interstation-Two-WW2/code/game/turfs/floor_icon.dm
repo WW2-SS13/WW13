@@ -27,7 +27,7 @@ var/list/flooring_cache = list()
 
 		// Apply edges, corners, and inner corners.
 		overlays.Cut()
-		var/has_border = 0
+		var/has_border = FALSE
 		if(flooring.flags & SMOOTH_ONLY_WITH_ITSELF) // for carpets and stuff like that
 			if(isnull(set_update_icon) && (flooring.flags & TURF_HAS_EDGES))
 				for(var/step_dir in cardinal)
@@ -123,12 +123,12 @@ var/list/flooring_cache = list()
 			overlays |= get_flooring_overlay("[flooring.icon_base]-burned-[burnt]", "burned[burnt]")
 
 	if(update_neighbors)
-		for(var/turf/floor/F in range(src, 1))
+		for(var/turf/floor/F in range(src, TRUE))
 			if(F == src)
 				continue
 			F.update_icon()
 
-/turf/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
+/turf/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = FALSE)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = flooring.icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer

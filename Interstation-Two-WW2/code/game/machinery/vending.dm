@@ -1,4 +1,4 @@
-#define CAT_NORMAL 1
+#define CAT_NORMAL TRUE
 #define CAT_HIDDEN 2  // also used in corresponding wires/vending.dm
 #define CAT_COIN   4
 
@@ -8,14 +8,14 @@
 /datum/data/vending_product
 	var/product_name = "generic" // Display name for the product
 	var/product_path = null
-	var/amount = 0            // The original amount held in the vending machine
+	var/amount = FALSE            // The original amount held in the vending machine
 	var/list/instances
-	var/price = 0              // Price to buy one
+	var/price = FALSE              // Price to buy one
 	var/display_color = null   // Display color for vending machine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
 	var/vending_machine        // The vending machine we belong to
 
-/datum/data/vending_product/New(var/vending_machine, var/path, var/name = null, var/amount = 1, var/price = 0, var/color = null, var/category = CAT_NORMAL)
+/datum/data/vending_product/New(var/vending_machine, var/path, var/name = null, var/amount = TRUE, var/price = FALSE, var/color = null, var/category = CAT_NORMAL)
 	..()
 
 	src.product_path = path
@@ -45,7 +45,7 @@
 
 /datum/data/vending_product/proc/add_product(var/atom/movable/product)
 	if(product.type != product_path)
-		return 0
+		return FALSE
 	init_products()
 	product.forceMove(vending_machine)
 	instances += product
@@ -64,7 +64,7 @@
 	if(instances)
 		return
 	instances = list()
-	for(var/i = 1 to amount)
+	for(var/i = TRUE to amount)
 		var/new_product = new product_path(vending_machine)
 		instances += new_product
 
@@ -77,25 +77,25 @@
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "generic"
 	layer = 2.9
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
 
 	// Power
-	use_power = 1
+	use_power = TRUE
 	idle_power_usage = 10
 	var/vend_power_usage = 150 //actuators and stuff
 
 	// Vending-related
-	var/active = 1 //No sales pitches if off!
-	var/vend_ready = 1 //Are we ready to vend?? Is it time??
+	var/active = TRUE //No sales pitches if off!
+	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
 	var/vend_delay = 10 //How long does it take to vend?
 	var/categories = CAT_NORMAL // Bitmask of cats we're currently showing
 	var/datum/data/vending_product/currently_vending = null // What we're requesting payment for right now
 	var/status_message = "" // Status screen messages like "insufficient funds", displayed in NanoUI
-	var/status_error = 0 // Set to 1 if status_message is an error
+	var/status_error = FALSE // Set to TRUE if status_message is an error
 
 	/*
 		Variables used to initialize the product list
@@ -119,18 +119,18 @@
 
 	// Stuff relating vocalizations
 	var/list/slogan_list = list()
-	var/shut_up = 0 //Let spouting those godawful pitches!
+	var/shut_up = FALSE //Let spouting those godawful pitches!
 	var/vend_reply //Thank you for shopping!
-	var/last_reply = 0
-	var/last_slogan = 0 //When did we last pitch?
+	var/last_reply = FALSE
+	var/last_slogan = FALSE //When did we last pitch?
 	var/slogan_delay = 6000 //How long until we can pitch again?
 
 	// Things that can go wrong
-	emagged = 0 //Ignores if somebody doesn't have card access to that machine.
-	var/seconds_electrified = 0 //Shock customers like an airlock.
-	var/shoot_inventory = 0 //Fire items at customers! We're broken!
+	emagged = FALSE //Ignores if somebody doesn't have card access to that machine.
+	var/seconds_electrified = FALSE //Shock customers like an airlock.
+	var/shoot_inventory = FALSE //Fire items at customers! We're broken!
 
-	var/scan_id = 1
+	var/scan_id = TRUE
 	var/obj/item/weapon/coin/coin
 	var/datum/wires/vending/wires = null
 
@@ -175,8 +175,8 @@
 		for(var/entry in current_list[1])
 			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry)
 
-			product.price = (entry in src.prices) ? src.prices[entry] : 0
-			product.amount = (current_list[1][entry]) ? current_list[1][entry] : 1
+			product.price = (entry in src.prices) ? src.prices[entry] : FALSE
+			product.amount = (current_list[1][entry]) ? current_list[1][entry] : TRUE
 			product.category = category
 
 			src.product_records.Add(product)
@@ -215,22 +215,22 @@
 	var/obj/item/weapon/card/id/I = W.GetID()
 
 	if (currently_vending && vendor_account && !vendor_account.suspended)
-		var/paid = 0
-		var/handled = 0
+		var/paid = FALSE
+		var/handled = FALSE
 
 		if (I) //for IDs and PDAs and wallets with IDs
 			paid = pay_with_card(I,W)
-			handled = 1
-			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
+			handled = TRUE
+			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, TRUE)
 		else if (istype(W, /obj/item/weapon/spacecash/ewallet))
 			var/obj/item/weapon/spacecash/ewallet/C = W
 			paid = pay_with_ewallet(C)
-			handled = 1
-			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
+			handled = TRUE
+			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, TRUE)
 		else if (istype(W, /obj/item/weapon/spacecash/bundle))
 			var/obj/item/weapon/spacecash/bundle/C = W
 			paid = pay_with_cash(C)
-			handled = 1
+			handled = TRUE
 
 		if(paid)
 			src.vend(currently_vending, usr)
@@ -245,7 +245,7 @@
 
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if (src.panel_open)
-			playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
+			playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, TRUE)
 			src.panel_open = !src.panel_open
 			user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
 			src.overlays.Cut()
@@ -254,7 +254,7 @@
 			nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
 			return
 		else
-			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, 1)
+			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, TRUE)
 			src.panel_open = !src.panel_open
 			user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
 			src.overlays.Cut()
@@ -266,7 +266,7 @@
 		if(src.panel_open)
 			attack_hand(user)
 		return*/
-/*	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
+/*	else if(istype(W, /obj/item/weapon/coin) && premium.len > FALSE)
 		user.drop_item()
 		W.loc = src
 		coin = W
@@ -275,7 +275,7 @@
 		nanomanager.update_uis(src)
 		return*/
 	else if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 		if(anchored)
 			user.visible_message("[user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
 		else
@@ -292,7 +292,7 @@
 		for(var/datum/data/vending_product/R in product_records)
 			if(istype(W, R.product_path))
 				stock(W, R, user)
-				return 1
+				return TRUE
 		..()
 
 /**
@@ -305,12 +305,12 @@
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
 		usr << "\icon[cashmoney] <span class='warning'>That is not enough money.</span>"
-		return 0
+		return FALSE
 
 	visible_message("<span class='info'>\The [usr] inserts some cash into \the [src].</span>")
 	cashmoney.worth -= currently_vending.price
 
-	if(cashmoney.worth <= 0)
+	if(cashmoney.worth <= FALSE)
 		usr.drop_from_inventory(cashmoney)
 		qdel(cashmoney)
 	else
@@ -318,31 +318,31 @@
 
 	// Vending machines have no idea who paid with cash
 	credit_purchase("(cash)")
-	return 1*/
+	return TRUE*/
 
 /**
  * Scan a chargecard and deduct payment from it.
  *
- * Takes payment for whatever is the currently_vending item. Returns 1 if
- * successful, 0 if failed.
+ * Takes payment for whatever is the currently_vending item. Returns TRUE if
+ * successful, FALSE if failed.
  */
 /obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/weapon/spacecash/ewallet/wallet)
-	return 0
+	return FALSE
 /*	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
 	if(currently_vending.price > wallet.worth)
 		src.status_message = "Insufficient funds on chargecard."
-		src.status_error = 1
-		return 0
+		src.status_error = TRUE
+		return FALSE
 	else
 		wallet.worth -= currently_vending.price
 		credit_purchase("[wallet.owner_name] (chargecard)")
-		return 1*/
+		return TRUE*/
 
 /**
  * Scan a card and attempt to transfer payment from associated account.
  *
- * Takes payment for whatever is the currently_vending item. Returns 1 if
- * successful, 0 if failed
+ * Takes payment for whatever is the currently_vending item. Returns TRUE if
+ * successful, FALSE if failed
  */
 /obj/machinery/vending/proc/pay_with_card(var/obj/item/weapon/card/id/I, var/obj/item/ID_container)
 	return
@@ -353,29 +353,29 @@
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if (!customer_account)
 		src.status_message = "Error: Unable to access account. Please contact technical support if problem persists."
-		src.status_error = 1
-		return 0
+		src.status_error = TRUE
+		return FALSE
 
 	if(customer_account.suspended)
 		src.status_message = "Unable to access account: account suspended."
-		src.status_error = 1
-		return 0
+		src.status_error = TRUE
+		return FALSE
 
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
 	// empty at high security levels
-	if(customer_account.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
+	if(customer_account.security_level != FALSE) //If card requires pin authentication (ie seclevel TRUE or 2)
 		var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!customer_account)
 			src.status_message = "Unable to access account: incorrect credentials."
-			src.status_error = 1
-			return 0
+			src.status_error = TRUE
+			return FALSE
 
 	if(currently_vending.price > customer_account.money)
 		src.status_message = "Insufficient funds in account."
-		src.status_error = 1
-		return 0
+		src.status_error = TRUE
+		return FALSE
 	else
 		// Okay to move the money at this point
 
@@ -386,7 +386,7 @@
 		var/datum/transaction/T = new()
 		T.target_name = "[vendor_account.owner_name] (via [src.name])"
 		T.purpose = "Purchase of [currently_vending.product_name]"
-		if(currently_vending.price > 0)
+		if(currently_vending.price > FALSE)
 			T.amount = "([currently_vending.price])"
 		else
 			T.amount = "[currently_vending.price]"
@@ -399,7 +399,7 @@
 		// that purchases made with stolen/borrowed card will look like the card
 		// owner made them
 		credit_purchase(customer_account.owner_name)
-		return 1
+		return TRUE
 */
 /**
  *  Add money for current purchase to the vendor account.
@@ -417,13 +417,13 @@
 	T.date = current_date_string
 	T.time = stationtime2text()
 	vendor_account.transaction_log.Add(T)*/
-	return 0
+	return FALSE
 
 /obj/machinery/vending/attack_hand(mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))
 		return
 
-	if(src.seconds_electrified != 0)
+	if(src.seconds_electrified != FALSE)
 		if(src.shock(user, 100))
 			return
 
@@ -435,22 +435,22 @@
  *
  *  See NanoUI documentation for details.
  */
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
 	user.set_machine(src)
 
 	var/list/data = list()
 	if(currently_vending)
-		data["mode"] = 1
+		data["mode"] = TRUE
 		data["product"] = currently_vending.product_name
 		data["price"] = currently_vending.price
-		data["message_err"] = 0
+		data["message_err"] = FALSE
 		data["message"] = src.status_message
 		data["message_err"] = src.status_error
 	else
-		data["mode"] = 0
+		data["mode"] = FALSE
 		var/list/listed_products = list()
 
-		for(var/key = 1 to src.product_records.len)
+		for(var/key = TRUE to src.product_records.len)
 			var/datum/data/vending_product/I = src.product_records[key]
 
 			if(!(I.category & src.categories))
@@ -469,10 +469,10 @@
 		data["coin"] = src.coin.name
 */
 	if(src.panel_open)
-		data["panel"] = 1
-		data["speaker"] = src.shut_up ? 0 : 1
+		data["panel"] = TRUE
+		data["speaker"] = src.shut_up ? FALSE : TRUE
 	else
-		data["panel"] = 0
+		data["panel"] = FALSE
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -500,7 +500,7 @@
 */
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		if ((href_list["vend"]) && (src.vend_ready) && (!currently_vending))
-			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
+			if(!emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 				usr << "<span class='warning'>Access denied.</span>"	//Unless emagged of course
 				flick(icon_deny,src)
 				return
@@ -512,7 +512,7 @@
 			if(!(R.category & src.categories))
 				return
 
-			if(R.price <= 0)
+			if(R.price <= FALSE)
 				src.vend(R, usr)
 			else if(istype(usr,/mob/living/silicon)) //If the item is not free, provide feedback if a synth is trying to buy something.
 				usr << "<span class='danger'>Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled.</span>"
@@ -520,7 +520,7 @@
 			else
 				src.currently_vending = R
 				src.status_message = "Please swipe a card or insert cash to pay for the item."
-				src.status_error = 0
+				src.status_error = FALSE
 
 		else if (href_list["cancelpurchase"])
 			src.currently_vending = null
@@ -529,17 +529,17 @@
 			src.shut_up = !src.shut_up
 
 		src.add_fingerprint(usr)
-		playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
+		playsound(usr.loc, 'sound/machines/button.ogg', 100, TRUE)
 		nanomanager.update_uis(src)
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
-	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
+	if(!emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 		usr << "<span class='warning'>Access denied.</span>"	//Unless emagged of course
 		flick(src.icon_deny,src)
 		return
-	src.vend_ready = 0 //One thing at a time!!
+	src.vend_ready = FALSE //One thing at a time!!
 	src.status_message = "Vending..."
-	src.status_error = 0
+	src.status_error = FALSE
 	nanomanager.update_uis(src)
 /*
 	if (R.category & CAT_COIN)
@@ -567,10 +567,10 @@
 		flick(src.icon_vend,src)
 	spawn(src.vend_delay)
 		R.get_product(get_turf(src))
-		playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
+		playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, TRUE)
 		src.status_message = ""
-		src.status_error = 0
-		src.vend_ready = 1
+		src.status_error = FALSE
+		src.vend_ready = TRUE
 		currently_vending = null
 		nanomanager.update_uis(src)
 
@@ -596,11 +596,11 @@
 	if(!src.active)
 		return
 
-	if(src.seconds_electrified > 0)
+	if(src.seconds_electrified > FALSE)
 		src.seconds_electrified--
 
 	//Pitch to the people!  Really sell it!
-	if(((src.last_slogan + src.slogan_delay) <= world.time) && (src.slogan_list.len > 0) && (!src.shut_up) && prob(5))
+	if(((src.last_slogan + src.slogan_delay) <= world.time) && (src.slogan_list.len > FALSE) && (!src.shut_up) && prob(5))
 		var/slogan = pick(src.slogan_list)
 		src.speak(slogan)
 		src.last_slogan = world.time
@@ -648,7 +648,7 @@
 	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
-		return 0
+		return FALSE
 
 	for(var/datum/data/vending_product/R in src.product_records)
 		throw_item = R.get_product(loc)
@@ -656,11 +656,11 @@
 			continue
 		break
 	if (!throw_item)
-		return 0
+		return FALSE
 	spawn(0)
 		throw_item.throw_at(target, 16, 3, src)
 	src.visible_message("<span class='warning'>\The [src] launches \a [throw_item] at \the [target]!</span>")
-	return 1
+	return TRUE
 
 /*
  * Vending machine types
@@ -688,7 +688,7 @@
 	icon_state = "dispenser"
 	product_paths = "/obj/item/weapon/tank/oxygen;/obj/item/weapon/tank/plasma;/obj/item/weapon/tank/emergency_oxygen;/obj/item/weapon/tank/emergency_oxygen/engi;/obj/item/clothing/mask/breath"
 	productamounts = "10;10;10;5;25"
-	vend_delay = 0
+	vend_delay = FALSE
 */
 /*
 /obj/machinery/vending/boozeomat
@@ -724,7 +724,7 @@
 
 /obj/machinery/vending/assist
 	products = list(	/obj/item/device/assembly/prox_sensor = 5,/obj/item/device/assembly/igniter = 3,/obj/item/device/assembly/signaler = 4,
-						/obj/item/weapon/wirecutters = 1, /obj/item/weapon/cartridge/signal = 4)
+						/obj/item/weapon/wirecutters = TRUE, /obj/item/weapon/cartridge/signal = 4)
 	contraband = list(/obj/item/device/flashlight = 5,/obj/item/device/assembly/timer = 2)
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 
@@ -754,9 +754,9 @@
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 6,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 6,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 6,
 					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 6, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 6)
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 3)
-	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
-					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 1,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 1,
-					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2)
+	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = TRUE,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,/obj/item/weapon/reagent_containers/food/snacks/chips = TRUE,
+					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = TRUE,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = TRUE,
+					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = TRUE, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2)
 
 
 /obj/machinery/vending/weapon_machine
@@ -776,16 +776,16 @@
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_ads = "Refreshing!;Hope you're thirsty!;Over TRUE million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 10, /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 10)
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko = 5, /obj/item/weapon/reagent_containers/food/snacks/liquidfood = 6)
-	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 1,/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 1,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 1,/obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 1,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2,/obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 1,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 1,/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 1)
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = TRUE,/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = TRUE,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = TRUE,/obj/item/weapon/reagent_containers/food/drinks/cans/starkist = TRUE,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2,/obj/item/weapon/reagent_containers/food/drinks/cans/space_up = TRUE,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = TRUE,/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = TRUE)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 //This one's from bay12
@@ -810,7 +810,7 @@
 	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10,/obj/item/weapon/storage/box/matches = 10,/obj/item/weapon/flame/lighter/random = 4)
 	contraband = list(/obj/item/weapon/flame/lighter/zippo = 4)
 	premium = list(/obj/item/weapon/storage/fancy/cigar = 5,/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5 )
-	prices = list(/obj/item/weapon/storage/fancy/cigarettes = 15,/obj/item/weapon/storage/box/matches = 1,/obj/item/weapon/flame/lighter/random = 2)
+	prices = list(/obj/item/weapon/storage/fancy/cigarettes = 15,/obj/item/weapon/storage/box/matches = TRUE,/obj/item/weapon/flame/lighter/random = 2)
 
 
 /obj/machinery/vending/medical
@@ -876,7 +876,7 @@
 					/obj/item/seeds/cabbageseed = 3,/obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3,/obj/item/seeds/cherryseed = 3,/obj/item/seeds/plastiseed = 3,/obj/item/seeds/riceseed = 3)
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
 					  /obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
-	premium = list(/obj/item/toy/waterflower = 1)
+	premium = list(/obj/item/toy/waterflower = TRUE)
 
 /**
  *  Populate hydroseeds product_records
@@ -898,8 +898,8 @@
 			var/name = S.name
 			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry, name)
 
-			product.price = (entry in src.prices) ? src.prices[entry] : 0
-			product.amount = (current_list[1][entry]) ? current_list[1][entry] : 1
+			product.price = (entry in src.prices) ? src.prices[entry] : FALSE
+			product.amount = (current_list[1][entry]) ? current_list[1][entry] : TRUE
 			product.category = category
 
 			src.product_records.Add(product)
@@ -912,7 +912,7 @@
 	vend_delay = 15
 	vend_reply = "Have an enchanted evening!"
 	product_ads = "FJKLFJSD;AJKFLBJAKL;1234 LOONIES LOL!;>MFW;Kill them fuckers!;GET DAT FUKKEN DISK;HONK!;EI NATH;Destroy the station!;Admin conspiracies since forever!;Space-time bending hardware!"
-	products = list(/obj/item/clothing/head/wizard = 1,/obj/item/clothing/suit/wizrobe = 1,/obj/item/clothing/head/wizard/red = 1,/obj/item/clothing/suit/wizrobe/red = 1,/obj/item/clothing/shoes/sandal = 1,/obj/item/weapon/staff = 2)
+	products = list(/obj/item/clothing/head/wizard = TRUE,/obj/item/clothing/suit/wizrobe = TRUE,/obj/item/clothing/head/wizard/red = TRUE,/obj/item/clothing/suit/wizrobe/red = TRUE,/obj/item/clothing/shoes/sandal = TRUE,/obj/item/weapon/staff = 2)
 
 /obj/machinery/vending/dinnerware
 	name = "Dinnerware"
@@ -940,7 +940,7 @@
 	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/weapon/crowbar = 5,/obj/item/weapon/weldingtool = 3,/obj/item/weapon/wirecutters = 5,
 					/obj/item/weapon/wrench = 5,/obj/item/device/analyzer = 5,/obj/item/device/t_scanner = 5,/obj/item/weapon/screwdriver = 5)
 	contraband = list(/obj/item/weapon/weldingtool/hugetank = 2,/obj/item/clothing/gloves/insulated/cheap  = 2)
-	premium = list(/obj/item/clothing/gloves/insulated = 1)
+	premium = list(/obj/item/clothing/gloves/insulated = TRUE)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
@@ -987,8 +987,8 @@
 	name = "prop dispenser"
 	desc = "All the props an actor could need. Probably."
 	icon_state = "Theater"
-	products = list(/obj/structure/flora/pottedplant = 2, /obj/item/device/flashlight/lamp = 2, /obj/item/device/flashlight/lamp/green = 2, /obj/item/weapon/reagent_containers/food/drinks/jar = 1,
-					/obj/item/weapon/nullrod = 1, /obj/item/toy/cultsword = 4, /obj/item/toy/katana = 2, /obj/item/weapon/phone = 3)
+	products = list(/obj/structure/flora/pottedplant = 2, /obj/item/device/flashlight/lamp = 2, /obj/item/device/flashlight/lamp/green = 2, /obj/item/weapon/reagent_containers/food/drinks/jar = TRUE,
+					/obj/item/weapon/nullrod = TRUE, /obj/item/toy/cultsword = 4, /obj/item/toy/katana = 2, /obj/item/weapon/phone = 3)
 
 //FOR ACTORS GUILD - Containers
 /obj/machinery/vending/containers

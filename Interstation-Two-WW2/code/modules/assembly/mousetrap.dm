@@ -2,9 +2,9 @@
 	name = "mousetrap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
-//	origin_tech = list(TECH_COMBAT = 1)
+//	origin_tech = list(TECH_COMBAT = TRUE)
 	matter = list(DEFAULT_WALL_MATERIAL = 100, "waste" = 10)
-	var/armed = 0
+	var/armed = FALSE
 
 
 	examine(mob/user)
@@ -36,16 +36,16 @@
 						affecting = H.get_organ(type)
 						H.Stun(3)
 			if(affecting)
-				if(affecting.take_damage(1, 0))
+				if(affecting.take_damage(1, FALSE))
 					H.UpdateDamageIcon()
 				H.updatehealth()
 		else if(ismouse(target))
 			var/mob/living/simple_animal/mouse/M = target
 			visible_message("\red <b>SPLAT!</b>")
 			M.splat()
-		playsound(target.loc, 'sound/effects/snap.ogg', 50, 1)
+		playsound(target.loc, 'sound/effects/snap.ogg', 50, TRUE)
 		layer = MOB_LAYER - 0.2
-		armed = 0
+		armed = FALSE
 		update_icon()
 		pulse(0)
 
@@ -65,7 +65,7 @@
 			user << "<span class='notice'>You disarm [src].</span>"
 		armed = !armed
 		update_icon()
-		playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
+		playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, TRUE, -3)
 
 
 	attack_hand(mob/living/user as mob)
@@ -99,8 +99,8 @@
 			finder.visible_message("<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>", \
 								   "<span class='warning'>You accidentally trigger [src]!</span>")
 			triggered(finder, finder.hand ? "l_hand" : "r_hand")
-			return 1	//end the search!
-		return 0
+			return TRUE	//end the search!
+		return FALSE
 
 
 	hitby(A as mob|obj)
@@ -112,7 +112,7 @@
 
 /obj/item/device/assembly/mousetrap/armed
 	icon_state = "mousetraparmed"
-	armed = 1
+	armed = TRUE
 
 
 /obj/item/device/assembly/mousetrap/verb/hide_under()

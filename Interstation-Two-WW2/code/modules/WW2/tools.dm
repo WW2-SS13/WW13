@@ -14,8 +14,8 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 //	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
-	sharp = 0
-	edge = 1
+	sharp = FALSE
+	edge = TRUE
 
 /obj/item/weapon/shovel/spade
 	name = "spade"

@@ -2,25 +2,25 @@
 	name = "railing"
 	desc = "An ordinary steel railing. Prevents from human stupidity."
 	icon = 'icons/obj/railing.dmi'
-	density = 1
-	throwpass = 1
-	climbable = 1
+	density = TRUE
+	throwpass = TRUE
+	climbable = TRUE
 	layer = 3.2//Just above doors
 	//pressure_resistance = 4*ONE_ATMOSPHERE
-	anchored = 1
+	anchored = TRUE
 	flags = ON_BORDER
 	icon_state = "railing0"
-	var/broken = 0
+	var/broken = FALSE
 	var/health=70
 	var/maxhealth=70
 	//var/LeftSide = list(0,0,0)// Нужны для хранения данных
 	//var/RightSide = list(0,0,0)
-	var/check = 0
+	var/check = FALSE
 
 /obj/structure/railing/New(loc, constructed=0)
 	..()
 	if (constructed)	//player-constructed railings
-		anchored = 0
+		anchored = FALSE
 /*	if(climbable)
 		verbs += /obj/structure/proc/climb_on*/
 	if(src.anchored)
@@ -30,21 +30,21 @@
 /obj/structure/railing/Destroy()
 	anchored = null
 	flags = null
-	broken = 1
-	for(var/obj/structure/railing/R in oview(src, 1))
+	broken = TRUE
+	for(var/obj/structure/railing/R in oview(src, TRUE))
 		R.update_icon()
 	..()
 
 /obj/structure/railing/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(!mover)
-		return 1
+		return TRUE
 
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	if(get_dir(loc, target) == dir)
 		return !density
 	else
-		return 1
+		return TRUE
 //32 и 4 - в той же клетке
 
 /obj/structure/railing/examine(mob/user)
@@ -60,40 +60,40 @@
 
 /obj/structure/railing/proc/take_damage(amount)
 	health -= amount
-	if(health <= 0)
+	if(health <= FALSE)
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
-		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+		playsound(loc, 'sound/effects/grillehit.ogg', 50, TRUE)
 		new /obj/item/stack/rods(get_turf(usr))
 		qdel(src)
 
-/obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
-	check = 0
+/obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = TRUE)
+	check = FALSE
 	//if (!anchored) return
 	var/Rturn = turn(src.dir, -90)
 	var/Lturn = turn(src.dir, 90)
 
 	for(var/obj/structure/railing/R in src.loc)// Анализ клетки, где находится сам объект
 		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
-			//src.LeftSide[1] = 1
+			//src.LeftSide[1] = TRUE
 			check |= 32
 			if (UpdateNeighbors)
 				R.update_icon(0)
 		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
-			//src.RightSide[1] = 1
+			//src.RightSide[1] = TRUE
 			check |= 2
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
 	for (var/obj/structure/railing/R in get_step(src, Lturn))//Анализ левой клетки от направления объекта
 		if ((R.dir == src.dir) && R.anchored)
-			//src.LeftSide[2] = 1
+			//src.LeftSide[2] = TRUE
 			check |= 16
 			if (UpdateNeighbors)
 				R.update_icon(0)
 	for (var/obj/structure/railing/R in get_step(src, Rturn))//Анализ правой клетки от направления объекта
 		if ((R.dir == src.dir) && R.anchored)
-			//src.RightSide[2] = 1
-			check |= 1
+			//src.RightSide[2] = TRUE
+			check |= TRUE
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
@@ -111,14 +111,14 @@
 
 /*	for(var/obj/structure/railing/R in get_step(src, src.dir))
 		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
-			src.LeftSide[3] = 1
+			src.LeftSide[3] = TRUE
 		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
-			src.RightSide[3] = 1*/
+			src.RightSide[3] = TRUE*/
 	//check <<"check: [check]"
 	//world << "dir = [src.dir]"
 	//world << "railing[LeftSide[1]][LeftSide[2]][LeftSide[3]]-[RightSide[1]][RightSide[2]][RightSide[3]]"
 
-/obj/structure/railing/update_icon(var/UpdateNeighgors = 1)
+/obj/structure/railing/update_icon(var/UpdateNeighgors = TRUE)
 	NeighborsCheck(UpdateNeighgors)
 	//icon_state = "railing[LeftSide[1]][LeftSide[2]][LeftSide[3]]-[RightSide[1]][RightSide[2]][RightSide[3]]"
 	overlays.Cut()
@@ -133,7 +133,7 @@
 		if ((check & 16) || !(check & 32) || (check & 64))
 			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_l")
 			//world << "16 check"
-		if (!(check & 2) || (check & 1) || (check & 4))
+		if (!(check & 2) || (check & TRUE) || (check & 4))
 			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_r")
 			//world << "no 4 or 2 check"
 			if(check & 4)
@@ -153,15 +153,15 @@
 
 /obj/structure/railing/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	if(get_dir(O.loc, target) == dir)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
 	// Dismantle
 	if(istype(W, /obj/item/weapon/wrench) && !anchored)
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		if(do_after(user, 20, src))
 			user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>", "<span class='notice'>You dismantle \the [src].</span>")
 			new /obj/item/stack/material/steel(get_turf(usr))
@@ -173,7 +173,7 @@
 	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/F = W
 		if(F.welding)
-			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Welder.ogg', 50, TRUE)
 			if(do_after(user, 20, src))
 				user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>", "<span class='notice'>You repair some damage to \the [src].</span>")
 				health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
@@ -182,7 +182,7 @@
 	// Install
 	if(istype(W, /obj/item/weapon/screwdriver))
 		user.visible_message(anchored ? "<span class='notice'>\The [user] begins unscrew \the [src].</span>" : "<span class='notice'>\The [user] begins fasten \the [src].</span>" )
-		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+		playsound(loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
 		if(do_after(user, 10, src))
 			user << (anchored ? "<span class='notice'>You have unfastened \the [src] from the floor.</span>" : "<span class='notice'>You have fastened \the [src] to the floor.</span>")
 			anchored = !anchored
@@ -204,7 +204,7 @@
 					M.apply_damage(8,def_zone = "head")
 					take_damage(8)
 					visible_message("<span class='danger'>[G.assailant] slams [G.affecting]'s face against \the [src]!</span>")
-					playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+					playsound(loc, 'sound/effects/grillehit.ogg', 50, TRUE)
 				else
 					user << "<span class='danger'>You need a better grip to do that!</span>"
 					return
@@ -219,7 +219,7 @@
 			return
 
 	else
-		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+		playsound(loc, 'sound/effects/grillehit.ogg', 50, TRUE)
 		take_damage(W.force)
 
 	return ..()

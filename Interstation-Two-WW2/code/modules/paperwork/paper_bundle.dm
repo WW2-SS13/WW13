@@ -4,13 +4,13 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper"
 	item_state = "paper"
-	throwforce = 0
+	throwforce = FALSE
 	w_class = 2
 	throw_range = 2
-	throw_speed = 1
+	throw_speed = TRUE
 	layer = 4
 	attack_verb = list("bapped")
-	var/page = 1    // current page
+	var/page = TRUE    // current page
 	var/list/pages = list()  // Ordered list of pages as they are to be displayed. Can be different order than src.contents.
 
 
@@ -43,7 +43,7 @@
 		qdel(W)
 	else
 		if(istype(W, /obj/item/weapon/tape_roll))
-			return 0
+			return FALSE
 		if(istype(W, /obj/item/weapon/pen))
 			usr << browse("", "window=[name]") //Closes the dialog
 		var/obj/P = pages[page]
@@ -93,7 +93,7 @@
 				user << "\red You must hold \the [P] steady to burn \the [src]."
 
 /obj/item/weapon/paper_bundle/examine(mob/user)
-	if(..(user, 1))
+	if(..(user, TRUE))
 		src.show_content(user)
 	else
 		user << "<span class='notice'>It is too far away.</span>"
@@ -104,7 +104,7 @@
 	var/obj/item/weapon/W = pages[page]
 
 	// first
-	if(page == 1)
+	if(page == TRUE)
 		dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>Front</A></DIV>"
 		dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(W, /obj/item/weapon/paper)) ? "paper" : "photo"]</A></DIV>"
 		dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
@@ -151,13 +151,13 @@
 				insert_sheet_at(usr, page+1, in_hand)
 			else if(page != pages.len)
 				page++
-				playsound(src.loc, "pageturn", 50, 1)
+				playsound(src.loc, "pageturn", 50, TRUE)
 		if(href_list["prev_page"])
 			if(in_hand && (istype(in_hand, /obj/item/weapon/paper) || istype(in_hand, /obj/item/weapon/photo)))
 				insert_sheet_at(usr, page, in_hand)
-			else if(page > 1)
+			else if(page > TRUE)
 				page--
-				playsound(src.loc, "pageturn", 50, 1)
+				playsound(src.loc, "pageturn", 50, TRUE)
 		if(href_list["remove"])
 			var/obj/item/weapon/W = pages[page]
 			usr.put_in_hands(W)
@@ -165,7 +165,7 @@
 
 			usr << "<span class='notice'>You remove the [W.name] from the bundle.</span>"
 
-			if(pages.len <= 1)
+			if(pages.len <= TRUE)
 				var/obj/item/weapon/paper/P = src[1]
 				usr.drop_from_inventory(src)
 				usr.put_in_hands(P)
@@ -189,7 +189,7 @@
 	set src in usr
 
 	var/n_name = sanitizeSafe(input(usr, "What would you like to label the bundle?", "Bundle Labelling", null)  as text, MAX_NAME_LEN)
-	if((loc == usr || loc.loc && loc.loc == usr) && usr.stat == 0)
+	if((loc == usr || loc.loc && loc.loc == usr) && usr.stat == FALSE)
 		name = "[(n_name ? text("[n_name]") : "paper")]"
 	add_fingerprint(usr)
 	return
@@ -214,8 +214,8 @@
 	var/obj/item/weapon/paper/P = pages[1]
 	icon_state = P.icon_state
 	overlays = P.overlays
-	underlays = 0
-	var/i = 0
+	underlays = FALSE
+	var/i = FALSE
 	var/photo
 	for(var/obj/O in src)
 		var/image/img = image('icons/obj/bureaucracy.dmi')
@@ -223,14 +223,14 @@
 			img.icon_state = O.icon_state
 			img.pixel_x -= min(1*i, 2)
 			img.pixel_y -= min(1*i, 2)
-			pixel_x = min(0.5*i, 1)
-			pixel_y = min(  1*i, 2)
+			pixel_x = min(0.5*i, TRUE)
+			pixel_y = min(  TRUE*i, 2)
 			underlays += img
 			i++
 		else if(istype(O, /obj/item/weapon/photo))
 			var/obj/item/weapon/photo/Ph = O
 			img = Ph.tiny
-			photo = 1
+			photo = TRUE
 			overlays += img
 	if(i>1)
 		desc =  "[i] papers clipped to each other."

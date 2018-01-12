@@ -12,14 +12,14 @@
 	desc = "This is used to lie in, sleep in or strap on."
 	icon = 'icons/obj/furniture.dmi'
 	icon_state = "bed"
-	anchored = 1
-	can_buckle = 1
+	anchored = TRUE
+	can_buckle = TRUE
 	buckle_dir = SOUTH
-	buckle_lying = 1
+	buckle_lying = TRUE
 	var/material/material
 	var/material/padding_material
 	var/base_icon = "bed"
-	var/applies_material_colour = 1
+	var/applies_material_colour = TRUE
 
 /obj/structure/bed/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc)
@@ -70,7 +70,7 @@
 
 /obj/structure/bed/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	else
 		return ..()
 
@@ -90,7 +90,7 @@
 
 /obj/structure/bed/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		dismantle()
 		qdel(src)
 	else if(istype(W,/obj/item/stack))
@@ -98,7 +98,7 @@
 			user << "\The [src] is already padded."
 			return
 		var/obj/item/stack/C = W
-		if(C.get_amount() < 1) // How??
+		if(C.get_amount() < TRUE) // How??
 			user.drop_from_inventory(C)
 			qdel(C)
 			return
@@ -125,7 +125,7 @@
 			user << "\The [src] has no padding to remove."
 			return
 		user << "You remove the padding from \the [src]."
-		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(src, 'sound/items/Wirecutter.ogg', 100, TRUE)
 		remove_padding()
 
 	else if(istype(W, /obj/item/weapon/grab))
@@ -185,7 +185,7 @@
 	name = "roller bed"
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/bed/roller/update_icon()
 	return // Doesn't care about material or anything else.
@@ -255,7 +255,7 @@
 /obj/structure/bed/roller/Move(var/turf/newloc)
 
 	if (buckled_mob && map.check_prishtina_block(buckled_mob, newloc))
-		return 0
+		return FALSE
 
 	..(newloc)
 
@@ -268,18 +268,18 @@
 		if (buckled_mob && buckled_mob.is_on_train())
 			buckled_mob.last_moved_on_train = world.time
 
-	return 1
+	return TRUE
 
 /obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
 	if(M == buckled_mob)
 		M.pixel_y = 6
 		M.old_y = 6
-		density = 1
+		density = TRUE
 		icon_state = "up"
 	else
-		M.pixel_y = 0
-		M.old_y = 0
-		density = 0
+		M.pixel_y = FALSE
+		M.old_y = FALSE
+		density = FALSE
 		icon_state = "down"
 
 	return ..()
@@ -288,7 +288,7 @@
 	..()
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
 		if(!ishuman(usr))	return
-		if(buckled_mob)	return 0
+		if(buckled_mob)	return FALSE
 		visible_message("[usr] collapses \the [src.name].")
 		new/obj/item/roller(get_turf(src))
 		spawn(0)

@@ -9,10 +9,10 @@
 
 	wires = WIRE_PULSE
 
-	secured = 0
+	secured = FALSE
 
-	var/on = 0
-	var/visible = 0
+	var/on = FALSE
+	var/visible = FALSE
 	var/obj/effect/beam/i_beam/first = null
 
 	proc
@@ -20,10 +20,10 @@
 
 
 	activate()
-		if(!..())	return 0//Cooldown check
+		if(!..())	return FALSE//Cooldown check
 		on = !on
 		update_icon()
-		return 1
+		return TRUE
 
 
 	toggle_secure()
@@ -31,7 +31,7 @@
 		if(secured)
 			processing_objects.Add(src)
 		else
-			on = 0
+			on = FALSE
 			if(first)	qdel(first)
 			processing_objects.Remove(src)
 		update_icon()
@@ -59,11 +59,11 @@
 		if((!(first) && (secured && (istype(loc, /turf) || (holder && istype(holder.loc, /turf))))))
 			var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam((holder ? holder.loc : loc) )
 			I.master = src
-			I.density = 1
+			I.density = TRUE
 			I.set_dir(dir)
 			step(I, I.dir)
 			if(I)
-				I.density = 0
+				I.density = FALSE
 				first = I
 				I.vis_spread(visible)
 				spawn(0)
@@ -91,14 +91,14 @@
 
 
 	holder_movement()
-		if(!holder)	return 0
+		if(!holder)	return FALSE
 //		set_dir(holder.dir)
 		qdel(first)
-		return 1
+		return TRUE
 
 
 	trigger_beam()
-		if((!secured)||(!on)||(cooldown > 0))	return 0
+		if((!secured)||(!on)||(cooldown > FALSE))	return FALSE
 		pulse(0)
 		if(!holder)
 			visible_message("\icon[src] *beep* *beep*")
@@ -120,7 +120,7 @@
 
 
 	Topic(href, href_list)
-		if(..()) return 1
+		if(..()) return TRUE
 		if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 			usr << browse(null, "window=infra")
 			onclose(usr, "infra")
@@ -192,21 +192,21 @@
 		qdel(src)
 		return
 
-	if(left > 0)
+	if(left > FALSE)
 		left--
-	if(left < 1)
+	if(left < TRUE)
 		if(!(visible))
 			invisibility = 101
 		else
-			invisibility = 0
+			invisibility = FALSE
 	else
-		invisibility = 0
+		invisibility = FALSE
 
 
 	//world << "now [src.left] left"
 	var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam(loc)
 	I.master = master
-	I.density = 1
+	I.density = TRUE
 	I.set_dir(dir)
 	//world << "created new beam \ref[I] at [I.x] [I.y] [I.z]"
 	step(I, I.dir)
@@ -215,14 +215,14 @@
 		//world << "step worked, now at [I.x] [I.y] [I.z]"
 		if(!(next))
 			//world << "no next"
-			I.density = 0
+			I.density = FALSE
 			//world << "spreading"
 			I.vis_spread(visible)
 			next = I
 			spawn(0)
 				//world << "limit = [limit] "
-				if((I && limit > 0))
-					I.limit = limit - 1
+				if((I && limit > FALSE))
+					I.limit = limit - TRUE
 					//world << "calling next process"
 					I.process()
 				return

@@ -12,7 +12,7 @@
 	fire_sound = 'sound/weapons/WW2/ptrd_fire.ogg'
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING | SPEEDLOADER
-	max_shells = 1
+	max_shells = TRUE
 	ammo_type = /obj/item/ammo_casing/a145
 	// lower accuracy due to being so powerful
 	accuracy = DEFAULT_PTRD_ACCURACY
@@ -35,12 +35,12 @@
 	caliber = "a556x45"
 	magazine_type = /obj/item/ammo_magazine/a556x45
 
-	accuracy = DEFAULT_BOLTACTION_ACCURACY + 1
-	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY + 1
+	accuracy = DEFAULT_BOLTACTION_ACCURACY + TRUE
+	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY + TRUE
 
-	can_wield = 1
-	must_wield = 1
-	can_scope = 1
+	can_wield = TRUE
+	must_wield = TRUE
+	can_scope = TRUE
 
 	firemodes = list(
 		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, dispersion = list(0))

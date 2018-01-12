@@ -9,7 +9,7 @@
 
 */
 
-#define TEAM_RU 1
+#define TEAM_RU TRUE
 #define TEAM_GE 2
 #define TEAM_PN 3
 
@@ -80,30 +80,30 @@ var/global/squad_members[3]
 	icon_state = "ss_commander"
 	title = "Feldwebel"
 	team = TEAM_GE
-// you appear to be a russian soldier to all other russians
-/datum/faction/russian
-	icon_state = "russian_soldier"
-	title = "Russian Soldier"
+// you appear to be a soviet soldier to all other sovivets
+/datum/faction/soviet
+	icon_state = "soviet_soldier"
+	title = "Soviet Soldier"
 	team = TEAM_RU
 
-/datum/faction/russian/base_type()
-	return "/datum/faction/russian"
-// you appear to be an officer to all other russians
-/datum/faction/russian/officer
-	icon_state = "russian_officer"
+/datum/faction/soviet/base_type()
+	return "/datum/faction/soviet"
+// you appear to be an officer to all other soviets
+/datum/faction/soviet/officer
+	icon_state = "soviet_officer"
 	team = TEAM_RU
-// you appear to be a russian leader to all other russians
-/datum/faction/russian/commander
-	icon_state = "russian_commander"
+// you appear to be a soviet leader to all other soviets
+/datum/faction/soviet/commander
+	icon_state = "soviet_commander"
 	team = TEAM_RU
-// squads: both german and russian use the same types. What squad you appear
+// squads: both german and soviet use the same types. What squad you appear
 // to be in, and to whom, depends on your true faction. Spies
 
 /datum/faction/squad
 	var/squad = null
-	var/is_leader = 0
+	var/is_leader = FALSE
 	var/number = "#1"
-	var/actual_number = 1
+	var/actual_number = TRUE
 	New(var/mob/living/carbon/human/H, var/datum/job/J)
 
 		var/squadmsg = ""
@@ -124,10 +124,10 @@ var/global/squad_members[3]
 	icon_state = "squad_one"
 	squad = "one"
 	number = "#1"
-	actual_number = 1
+	actual_number = TRUE
 /datum/faction/squad/one/leader
 	icon_state = "squad_one_leader"
-	is_leader = 1
+	is_leader = TRUE
 
 /datum/faction/squad/two
 	icon_state = "squad_two"
@@ -136,7 +136,7 @@ var/global/squad_members[3]
 	actual_number = 2
 /datum/faction/squad/two/leader
 	icon_state = "squad_two_leader"
-	is_leader = 1
+	is_leader = TRUE
 
 /datum/faction/squad/three
 	icon_state = "squad_three"
@@ -145,7 +145,7 @@ var/global/squad_members[3]
 	actual_number = 3
 /datum/faction/squad/three/leader
 	icon_state = "squad_three_leader"
-	is_leader = 1
+	is_leader = TRUE
 
 /datum/faction/squad/four
 	icon_state = "squad_four"
@@ -154,7 +154,7 @@ var/global/squad_members[3]
 	actual_number = 4
 /datum/faction/squad/four/leader
 	icon_state = "squad_four_leader"
-	is_leader = 1
+	is_leader = TRUE
 
 // spies use normal faction types
 
@@ -169,22 +169,22 @@ var/global/squad_members[3]
 	if (findtext("[type]", "leader"))
 		if (istype(J, /datum/job/german))
 			squad_leaders[GERMAN]++
-		else if (istype(J, /datum/job/russian))
-			squad_leaders[RUSSIAN]++
+		else if (istype(J, /datum/job/soviet))
+			squad_leaders[SOVIET]++
 		else if (istype(J, /datum/job/partisan))
 			squad_leaders[PARTISAN]++
 	else if (findtext("[type]", "officer"))
 		if (istype(J, /datum/job/german))
 			officers[GERMAN]++
-		else if (istype(J, /datum/job/russian))
-			officers[RUSSIAN]++
+		else if (istype(J, /datum/job/soviet))
+			officers[SOVIET]++
 		else if (istype(J, /datum/job/partisan))
 			officers[PARTISAN]++
 	else if (findtext("[type]", "commander"))
 		if (istype(J, /datum/job/german))
 			commanders[GERMAN]++
-		else if (istype(J, /datum/job/russian))
-			commanders[RUSSIAN]++
+		else if (istype(J, /datum/job/soviet))
+			commanders[SOVIET]++
 		else if (istype(J, /datum/job/partisan))
 			commanders[PARTISAN]++
 	else if (!J.is_officer && !J.is_commander && !J.is_squad_leader)
@@ -193,11 +193,11 @@ var/global/squad_members[3]
 				soldiers[GERMAN]++
 			else if (findtext("[type]", "squad") && !src:is_leader)
 				squad_members[GERMAN]++
-		else if (istype(J, /datum/job/russian))
-			if ("[type]" == "/datum/faction/russian")
-				soldiers[RUSSIAN]++
+		else if (istype(J, /datum/job/soviet))
+			if ("[type]" == "/datum/faction/soviet")
+				soldiers[SOVIET]++
 			else if (findtext("[type]", "squad") && !src:is_leader)
-				squad_members[RUSSIAN]++
+				squad_members[SOVIET]++
 		else if (istype(J, /datum/job/partisan))
 			if ("[type]" == "/datum/faction/partisan")
 				soldiers[PARTISAN]++
@@ -210,13 +210,13 @@ var/global/squad_members[3]
 
 /proc/issquadleader(var/mob/living/carbon/human/H)
 	if (H.squad_faction && H.squad_faction.is_leader)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/issquadmember(var/mob/living/carbon/human/H)
 	if (H.squad_faction && !H.squad_faction.is_leader)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/getsquad(var/mob/living/carbon/human/H)
 	if (H.squad_faction)
@@ -229,16 +229,16 @@ var/global/squad_members[3]
 /proc/isgermansquadleader(var/mob/living/carbon/human/H)
 	return (istype(H.original_job, /datum/job/german) && issquadleader(H))
 
-/proc/isrussiansquadmember_or_leader(var/mob/living/carbon/human/H)
-	return (istype(H.original_job, /datum/job/russian) && getsquad(H))
+/proc/issovietsquadmember_or_leader(var/mob/living/carbon/human/H)
+	return (istype(H.original_job, /datum/job/soviet) && getsquad(H))
 
-/proc/isrussiansquadleader(var/mob/living/carbon/human/H)
-	return (istype(H.original_job, /datum/job/russian) && issquadleader(H))
+/proc/issovietsquadleader(var/mob/living/carbon/human/H)
+	return (istype(H.original_job, /datum/job/soviet) && issquadleader(H))
 
 /proc/sharesquads(var/mob/living/carbon/human/H, var/mob/living/carbon/human/HH)
 	return (getsquad(H) == getsquad(HH) && getsquad(H))
 
 /proc/isleader(var/mob/living/carbon/human/H, var/mob/living/carbon/human/HH)
 	if (issquadleader(H) && issquadmember(HH) && getsquad(H) == getsquad(HH))
-		return 1
-	return 0
+		return TRUE
+	return FALSE

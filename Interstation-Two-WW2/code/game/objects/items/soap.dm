@@ -6,7 +6,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "soap"
 	w_class = 2.0
-	throwforce = 0
+	throwforce = FALSE
 	throw_speed = 4
 	throw_range = 20
 

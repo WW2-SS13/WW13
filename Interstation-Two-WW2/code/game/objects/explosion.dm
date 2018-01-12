@@ -1,5 +1,5 @@
 
-/proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, is_rec = config.use_recursive_explosions)
+/proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, z_transfer = UP|DOWN, is_rec = config.use_recursive_explosions)
 	src = null	//so we don't abort once src is deleted
 	var/datum/explosiondata/data = new
 	data.epicenter = epicenter
@@ -24,7 +24,7 @@
 	var/power = input(src, "power?", "power?") as num
 	var/turf/T = get_turf(src.mob)
 	var/datum/explosiondata/d = new
-	d.is_rec = 1
+	d.is_rec = TRUE
 	d.epicenter = T
 	d.rec_pow = power
 	bomb_processor.queue(d)
@@ -39,19 +39,19 @@
 	explosion_resistance = 3
 
 /turf/floor
-	explosion_resistance = 1
+	explosion_resistance = TRUE
 
 /turf/mineral
 	explosion_resistance = 2
 
 /turf/shuttle/floor
-	explosion_resistance = 1
+	explosion_resistance = TRUE
 
 /turf/shuttle/floor4
-	explosion_resistance = 1
+	explosion_resistance = TRUE
 
 /turf/shuttle/plating
-	explosion_resistance = 1
+	explosion_resistance = TRUE
 
 /turf/shuttle/wall
 	explosion_resistance = 10

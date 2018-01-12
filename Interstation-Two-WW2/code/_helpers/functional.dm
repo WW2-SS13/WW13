@@ -1,7 +1,7 @@
 /proc/all_predicates_true(var/list/input, var/list/predicates)
 	functional_sanity(input, predicates)
 
-	for(var/i = 1 to predicates.len)
+	for(var/i = TRUE to predicates.len)
 		if(!call(predicates[i])(arglist(input)))
 			return FALSE
 	return TRUE
@@ -12,7 +12,7 @@
 	if(!predicates.len)
 		return TRUE
 
-	for(var/i = 1 to predicates.len)
+	for(var/i = TRUE to predicates.len)
 		if(call(predicates[i])(arglist(input)))
 			return TRUE
 	return FALSE

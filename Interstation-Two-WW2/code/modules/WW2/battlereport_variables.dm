@@ -26,7 +26,7 @@ var/list/recently_died = list()
 			dead = dead_germans
 			injured = heavily_injured_germans
 			alive = alive_germans
-		if (RUSSIAN)
+		if (SOVIET)
 			dead = dead_russians
 			injured = heavily_injured_russians
 			alive = alive_russians
@@ -81,5 +81,5 @@ var/list/recently_died = list()
 	// give these lists starting values to prevent runtimes.
 	if (stat == CONSCIOUS)
 		alive |= src
-	else if (stat == UNCONSCIOUS || (health <= 0 && stat != DEAD))
+	else if (stat == UNCONSCIOUS || (health <= FALSE && stat != DEAD))
 		injured |= src

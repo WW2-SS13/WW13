@@ -13,9 +13,9 @@
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	force = WEAPON_FORCE_WEAK
-	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = FALSE, rad = FALSE)
 	siemens_coefficient = 0.7
-	can_hold_knife = 1
+	can_hold_knife = TRUE
 
 
 /obj/item/clothing/shoes/inspector
@@ -24,7 +24,7 @@
 	icon_state = "inspector"
 	item_state = "inspector"
 	force = 2
-	armor = list(melee = 10, bullet = 5, laser = 5, energy = 5, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 5, laser = 5, energy = 5, bomb = FALSE, bio = FALSE, rad = FALSE)
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/shoes/jackboots/unathi
@@ -39,6 +39,6 @@
 	desc = "A pair of steel-toed work boots designed for use in industrial settings. Safety first."
 	icon_state = "workboots"
 	item_state = "workboots"
-	armor = list(melee = 40, bullet = 0, laser = 0, energy = 15, bomb = 20, bio = 0, rad = 20)
+	armor = list(melee = 40, bullet = FALSE, laser = FALSE, energy = 15, bomb = 20, bio = FALSE, rad = 20)
 	siemens_coefficient = 0.7
-	can_hold_knife = 1
+	can_hold_knife = TRUE

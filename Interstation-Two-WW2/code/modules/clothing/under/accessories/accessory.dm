@@ -102,11 +102,11 @@
 
 				var/sound = "heartbeat"
 				var/sound_strength = "cannot hear"
-				var/heartbeat = 0
+				var/heartbeat = FALSE
 				if(M.species && M.species.has_organ["heart"])
 					var/obj/item/organ/heart/heart = M.internal_organs_by_name["heart"]
 					if(heart && !heart.robotic)
-						heartbeat = 1
+						heartbeat = TRUE
 				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
 					sound_strength = "cannot hear"
 					sound = "anything"

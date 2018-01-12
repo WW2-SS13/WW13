@@ -9,7 +9,7 @@ WW 2 WEAPONS MAGS N AMMO
 	max_ammo = 30
 	caliber = "a792x33"
 	ammo_type = /obj/item/ammo_casing/a792x33
-	multiple_sprites = 0
+	multiple_sprites = FALSE
 
 /obj/item/ammo_magazine/mosin
 	name = "Clip (7.62x54mm)"
@@ -18,7 +18,7 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
 	ammo_type = /obj/item/ammo_casing/a762x54
 	max_ammo = 5
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/mosinbox
 	name = "magazine box (7.62x54mm)"
@@ -30,8 +30,8 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a762x54
 	max_ammo = 50
-	multiple_sprites = 1
-	is_box = 1
+	multiple_sprites = TRUE
+	is_box = TRUE
 
 /obj/item/ammo_magazine/kar98k
 	name = "Clip (7.92x57mm)"
@@ -40,7 +40,7 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
 	ammo_type = /obj/item/ammo_casing/a792x57
 	max_ammo = 5
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/kar98kbox
 	name = "magazine box (7.92x57mm)"
@@ -52,8 +52,8 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a792x57
 	max_ammo = 50
-	multiple_sprites = 1
-	is_box = 1
+	multiple_sprites = TRUE
+	is_box = TRUE
 
 /obj/item/ammo_magazine/mp40
 	name = "magazine (9mm)"
@@ -65,7 +65,7 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a9_parabellum
 	max_ammo = 32
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/maxim
 	name = "Maxim ammo belt"
@@ -77,7 +77,7 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a762x54
 	max_ammo = 100
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 	var/slot = "decor"
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
@@ -135,7 +135,7 @@ WW 2 WEAPONS MAGS N AMMO
 	caliber = "a9mm_para"
 	ammo_type = /obj/item/ammo_casing/a9_parabellum
 	max_ammo = 8
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /***********************************
 OTHER
@@ -150,10 +150,10 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1500)
 	ammo_type = "/obj/item/ammo_casing/a12mm"
 	max_ammo = 20
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a12mm/empty
-	initial_ammo = 0
+	initial_ammo = FALSE
 
 /obj/item/ammo_magazine/a556
 	name = "PPSh Drum Magazine"
@@ -164,10 +164,10 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a762x25
 	max_ammo = 71
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a556/empty
-	initial_ammo = 0
+	initial_ammo = FALSE
 
 /obj/item/ammo_magazine/a556/practice
 	name = "magazine (5.56mm practice)"
@@ -182,10 +182,10 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1260)
 	ammo_type = /obj/item/ammo_casing/a50
 	max_ammo = 7
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a50/empty
-	initial_ammo = 0
+	initial_ammo = FALSE
 
 /obj/item/ammo_magazine/a75
 	name = "ammo magazine (20mm)"
@@ -193,11 +193,11 @@ OTHER
 	mag_type = MAGAZINE
 	caliber = "75"
 	ammo_type = /obj/item/ammo_casing/a75
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 	max_ammo = 4
 
 /obj/item/ammo_magazine/a75/empty
-	initial_ammo = 0
+	initial_ammo = FALSE
 
 /obj/item/ammo_magazine/a762
 	name = "Mg34 drum magazine"
@@ -209,10 +209,10 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a792x57
 	max_ammo = 100
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a762x39/empty
-	initial_ammo = 0
+	initial_ammo = FALSE
 
 /obj/item/ammo_magazine/a762x39
 	name = "magazine box (7.62mm x 39mm)"
@@ -223,11 +223,11 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 50
-	multiple_sprites = 1
-	is_box = 1
+	multiple_sprites = TRUE
+	is_box = TRUE
 
 /obj/item/ammo_magazine/a762x51/empty
-	initial_ammo = 0
+	initial_ammo = FALSE
 
 /obj/item/ammo_magazine/a762x51
 	name = "magazine box (7.62mm x 51mm)"
@@ -238,11 +238,11 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 50
-	multiple_sprites = 1
-	is_box = 1
+	multiple_sprites = TRUE
+	is_box = TRUE
 
 /obj/item/ammo_magazine/a762/empty
-	initial_ammo = 0
+	initial_ammo = FALSE
 
 /obj/item/ammo_magazine/c762
 	name = "magazine (7.62mm)"
@@ -252,7 +252,7 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 20
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/chameleon
 	name = "magazine (.45)"
@@ -261,16 +261,16 @@ OTHER
 	caliber = ".45"
 	ammo_type = /obj/item/ammo_casing/chameleon
 	max_ammo = 7
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 	matter = list()
 
 /obj/item/ammo_magazine/chameleon/empty
-	initial_ammo = 0
+	initial_ammo = FALSE
 
 /obj/item/ammo_magazine/a556/m4
 	icon_state = "ppshmag"
 	max_ammo = 81
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a762/akm
 	name = "Stg magazine"
@@ -278,7 +278,7 @@ OTHER
 	caliber = "a792x33"
 	ammo_type = /obj/item/ammo_casing/a792x33
 	max_ammo = 30
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a762/pkm
 	name = "DP ammo disk"
@@ -286,7 +286,7 @@ OTHER
 	caliber = "a762x39"
 	ammo_type = /obj/item/ammo_casing/a762x39
 	max_ammo = 41
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 	w_class = 2
 
 /obj/item/ammo_magazine/a762/m240
@@ -294,7 +294,7 @@ OTHER
 	caliber = "a762x51"
 	ammo_type = /obj/item/ammo_casing/a762x51
 	max_ammo = 100
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 	w_class = 3
 
 /obj/item/ammo_magazine/a9x39
@@ -305,7 +305,7 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a9x39
 	max_ammo = 20
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a556x45
 	name = "magazine (5.56x45)"
@@ -315,7 +315,7 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a556x45
 	max_ammo = 20
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a127x108
 	name = "magazine (12.7x108)"
@@ -325,7 +325,7 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a127x108
 	max_ammo = 100
-	multiple_sprites = 0
+	multiple_sprites = FALSE
 
 /obj/item/ammo_magazine/svt
 	name = "magazine (12.7x108)"
@@ -335,7 +335,7 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a762x54
 	max_ammo = 10
-	multiple_sprites = 0
+	multiple_sprites = FALSE
 
 /obj/item/ammo_magazine/g41
 	name = "magazine (7.92x57)"
@@ -345,7 +345,7 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a792x57
 	max_ammo = 10
-	multiple_sprites = 0
+	multiple_sprites = FALSE
 
 /*
 //unused garbage
@@ -355,14 +355,14 @@ OTHER
 	icon_state = "418"
 	ammo_type = "/obj/item/ammo_casing/a418"
 	max_ammo = 7
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a666
 	name = "ammo box (.666)"
 	icon_state = "666"
 	ammo_type = "/obj/item/ammo_casing/a666"
 	max_ammo = 4
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 */
 
 /obj/item/ammo_magazine/a9x39
@@ -373,7 +373,7 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a9x39
 	max_ammo = 20
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -386,10 +386,10 @@ OTHER
 	icon_state = ""
 	caliber = "flare"
 	ammo_type = /obj/item/ammo_casing/flare
-	multiple_sprites = 0
+	multiple_sprites = FALSE
 	mag_type = MAGAZINE
-	initial_ammo = 1
-	max_ammo = 1
+	initial_ammo = TRUE
+	max_ammo = TRUE
 
 /obj/item/ammo_magazine/flare/red
 	name = "red flare"

@@ -6,12 +6,12 @@
 	icon             = 'icons/effects/icon.png'
 	color            = LIGHTING_BASE_MATRIX
 
-	mouse_opacity    = 0
+	mouse_opacity    = FALSE
 	layer            = LIGHTING_LAYER
 	invisibility     = INVISIBILITY_LIGHTING
 
-	simulated = 0
-	anchored = 1
+	simulated = FALSE
+	anchored = TRUE
 	flags = NOREACT
 
 	blend_mode       = BLEND_MULTIPLY
@@ -19,7 +19,7 @@
 	var/needs_update = FALSE
 
 /atom/movable/lighting_overlay/pre_bullet_act(var/obj/item/projectile/P)
-	return 0
+	return FALSE
 
 /atom/movable/lighting_overlay/New(var/atom/loc, var/no_update = FALSE)
 	. = ..()
@@ -58,10 +58,10 @@
 		qdel(src)
 
 	var/list/L = src.color:Copy() // For some dumb reason BYOND won't allow me to use [] on a colour matrix directly.
-	var/anylums = 0
+	var/anylums = FALSE
 
 	for(var/datum/lighting_corner/C in T.corners)
-		var/i = 0
+		var/i = FALSE
 
 		// Huge switch to determine i based on D.
 		switch(turn(C.masters[T], 180))
@@ -77,15 +77,15 @@
 			if(NORTHWEST)
 				i = BR
 
-		var/mx = max(C.getLumR(), C.getLumG(), C.getLumB()) // Scale it so 1 is the strongest lum, if it is above 1.
+		var/mx = max(C.getLumR(), C.getLumG(), C.getLumB()) // Scale it so TRUE is the strongest lum, if it is above 1.
 		anylums += mx
-		. = 1 // factor
-		if(mx > 1)
-			. = 1 / mx
+		. = TRUE // factor
+		if(mx > TRUE)
+			. = TRUE / mx
 
-		L[i + 0]   = C.getLumR() * .
-		L[i + 1]   = C.getLumG() * .
+		L[i + FALSE]   = C.getLumR() * .
+		L[i + TRUE]   = C.getLumG() * .
 		L[i + 2]   = C.getLumB() * .
 
 	src.color  = L
-	luminosity = (anylums > 0)
+	luminosity = (anylums > FALSE)

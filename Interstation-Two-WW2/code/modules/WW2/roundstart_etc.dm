@@ -1,17 +1,17 @@
-var/roundstart_time = 0
-var/grace_period = 1
-var/game_started = 0
-var/train_checked = 0
+var/roundstart_time = FALSE
+var/grace_period = TRUE
+var/game_started = FALSE
+var/train_checked = FALSE
 var/secret_ladder_message = null
 var/list/list_of_germans_who_crossed_the_river = list()
 var/GRACE_PERIOD_LENGTH = 7
 
 /proc/WW2_train_check()
 	if (locate(/obj/effect/landmark/train/german_train_start) in world || train_checked)
-		train_checked = 1
-		return 1
+		train_checked = TRUE
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /hook/roundstart/proc/game_start()
 
@@ -22,12 +22,12 @@ var/GRACE_PERIOD_LENGTH = 7
 		var/season = "SPRING"
 		if (ticker.mode.vars.Find("season"))
 			season = ticker.mode:season
-		update_lighting(announce = 0)
+		update_lighting(announce = FALSE)
 		world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(time_of_day)]</b>, and the season is <b>[capitalize(lowertext(season))]</b>.</span></font>"
 
 	// spawn mice so soviets have something to eat after they start starving
 
-	var/mice_spawned = 0
+	var/mice_spawned = FALSE
 	var/max_mice = rand(40,50)
 
 	for (var/area/prishtina/soviet/bunker/area in world)
@@ -40,14 +40,14 @@ var/GRACE_PERIOD_LENGTH = 7
 				new/mob/living/simple_animal/mouse/gray(t)
 				++mice_spawned
 				if (mice_spawned > max_mice)
-					return 1
+					return TRUE
 
 	// open squad preparation doors
 	for (var/obj/structure/simple_door/key_door/keydoor in world)
 		if (findtext(keydoor.name, "Squad"))
 			if (findtext(keydoor.name, "Preparation"))
 				keydoor.Open()
-	return 1
+	return TRUE
 
 // this is roundstart because we need to wait for objs to be created
 /hook/roundstart/proc/nature()
@@ -62,7 +62,7 @@ var/GRACE_PERIOD_LENGTH = 7
 	world << "<span class = 'notice'>Setting up wild grasses.</span>"
 
 	for (var/turf/floor/plating/grass/G in grass_turf_list)
-		if (!G || G.z > 1)
+		if (!G || G.z > TRUE)
 			continue
 
 		if (prob(nature_chance))
@@ -87,7 +87,7 @@ var/GRACE_PERIOD_LENGTH = 7
 
 		for (var/turf/floor/G in turfs)
 
-			if (!G || G.z > 1 || (!G.uses_winter_overlay && !locate(/obj/snow_maker) in G))
+			if (!G || G.z > TRUE || (!G.uses_winter_overlay && !locate(/obj/snow_maker) in G))
 				continue
 
 			G.season = mode.season
@@ -163,16 +163,16 @@ var/GRACE_PERIOD_LENGTH = 7
 			for (var/obj/snow_maker/SM in G)
 				qdel(SM)
 
-	return 1
+	return TRUE
 
-var/mission_announced = 0
-var/train_arrived = 0
-var/allow_paratroopers = 1
+var/mission_announced = FALSE
+var/train_arrived = FALSE
+var/allow_paratroopers = TRUE
 
 /hook/train_move/proc/announce_mission_start()
 
 	if(mission_announced)
-		return 1
+		return TRUE
 
 	mission_announced = tickerProcess.time_elapsed
 
@@ -181,7 +181,7 @@ var/allow_paratroopers = 1
 	if (map)
 		map.announce_mission_start(preparation_time)
 
-	game_started = 1
+	game_started = TRUE
 
 	// let the new players see reinforcements now
 	spawn (1)
@@ -189,8 +189,8 @@ var/allow_paratroopers = 1
 			if (np.client)
 				np.new_player_panel_proc()
 
-	var/show_report_after = 0
+	var/show_report_after = FALSE
 	if (istype(map, /obj/map_metadata/minicity))
 		show_report_after = 600
 	spawn (show_report_after)
-		world << "<font size=3>Balance report: [n_of_side(GERMAN)] German, [n_of_side(RUSSIAN)] Soviet and [n_of_side(CIVILIAN)+n_of_side(PARTISAN)] Civilians/Partisans.</font>"
+		world << "<font size=3>Balance report: [n_of_side(GERMAN)] German, [n_of_side(SOVIET)] Soviet and [n_of_side(CIVILIAN)+n_of_side(PARTISAN)] Civilians/Partisans.</font>"

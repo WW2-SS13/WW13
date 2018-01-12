@@ -25,7 +25,7 @@
 
 	for (var/title_mult in random_order_songs)
 		var/split_title_mult = splittext(title_mult, ":")
-		var/multiplier = (text2num(split_title_mult[2]) || 1)
+		var/multiplier = (text2num(split_title_mult[2]) || TRUE)
 		if (prob(default_prob * multiplier))
 			song_title = title_mult // yes, not title
 			break

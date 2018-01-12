@@ -4,24 +4,24 @@
 
 var/global/list/valid_coordinates = list()
 /mob/living/carbon/human/var/checking_coords[4]
-/mob/living/carbon/human/var/can_check_distant_coordinates = 0
+/mob/living/carbon/human/var/can_check_distant_coordinates = FALSE
 
 /mob/living/carbon/human/proc/make_artillery_officer()
 	verbs += /mob/living/carbon/human/proc/Check_Coordinates
 	verbs += /mob/living/carbon/human/proc/Reset_Coordinates
-	can_check_distant_coordinates = 1
+	can_check_distant_coordinates = TRUE
 
 /mob/living/carbon/human/proc/make_artillery_scout()
 	verbs += /mob/living/carbon/human/proc/Check_Coordinates_Chump
 	verbs += /mob/living/carbon/human/proc/Reset_Coordinates_Chump
-	can_check_distant_coordinates = 1
+	can_check_distant_coordinates = TRUE
 
 /mob/living/carbon/human/proc/Check_Coordinates()
 	set category = "Officer"
 	if (checking_coords[1] && checking_coords[2])
 		checking_coords[3] = x
 		checking_coords[4] = y
-		valid_coordinates["[x],[y]"] = 1
+		valid_coordinates["[x],[y]"] = TRUE
 		var/dist = "[checking_coords[3] - checking_coords[1]],[checking_coords[4] - checking_coords[2]]"
 		usr << "<span class = 'notice'>You finished tracking coordinates at <b>[x],[y]</b>. You moved an offset of <b>[dist]</b>.[kanonier_msg]</span>"
 		checking_coords[3] = null
@@ -50,7 +50,7 @@ var/global/list/valid_coordinates = list()
 	if (checking_coords[1] && checking_coords[2])
 		checking_coords[3] = x
 		checking_coords[4] = y
-		valid_coordinates["[x],[y]"] = 1
+		valid_coordinates["[x],[y]"] = TRUE
 		var/dist = "[checking_coords[3] - checking_coords[1]],[checking_coords[4] - checking_coords[2]]"
 		usr << "<span class = 'notice'>You finished tracking coordinates at <b>[x],[y]</b>. You moved an offset of <b>[dist]</b>.[kanonier_msg]</span>"
 		checking_coords[3] = null
@@ -79,7 +79,7 @@ var/global/list/valid_coordinates = list()
 			var/offset_x = t.x - x
 			var/offset_y = t.y - y
 			src << "<span class = 'notice'>This turf has an offset of <b>[offset_x],[offset_y]</b> and coordinates of <b>[t.x],[t.y]</b>.[kanonier_msg]</span>"
-			valid_coordinates["[t.x],[t.y]"] = 1
+			valid_coordinates["[t.x],[t.y]"] = TRUE
 	else
 		return ..()
 
@@ -88,8 +88,8 @@ var/global/list/valid_coordinates = list()
 //WIP - I need sounds - Kachnov
 /mob/living/carbon/human/proc/officer_command_attack()
 	var/job_type = null
-	if (istype(mind.assigned_job, /datum/job/russian))
-		job_type = /datum/job/russian
+	if (istype(mind.assigned_job, /datum/job/soviet))
+		job_type = /datum/job/soviet
 	else if (istype(mind.assigned_job, /datum/job/german))
 		job_type = /datum/job/german
 	if (!job_type)

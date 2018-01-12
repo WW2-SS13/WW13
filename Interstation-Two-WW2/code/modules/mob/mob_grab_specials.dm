@@ -28,16 +28,16 @@
 	if(!do_mob(user, H, 10))
 		user << "<span class='notice'>You must stand still to check [H]'s skin for abnormalities.</span>"
 	else
-		var/bad = 0
+		var/bad = FALSE
 		if(H.getToxLoss() >= 40)
 			user << "<span class='warning'>[H] has an unhealthy skin discoloration.</span>"
-			bad = 1
+			bad = TRUE
 		if(H.getOxyLoss() >= 20)
 			user << "<span class='warning'>[H]'s skin is unusaly pale.</span>"
-			bad = 1
+			bad = TRUE
 		if(E.status & ORGAN_DEAD)
 			user << "<span class='warning'>[E] is decaying!</span>"
-			bad = 1
+			bad = TRUE
 		if(!bad)
 			user << "<span class='notice'>[H]'s skin is normal.</span>"
 
@@ -101,7 +101,7 @@
 		target.apply_effect(20, PARALYZE)
 		target.visible_message("<span class='danger'>[target] [target.species.knockout_message]</span>")
 
-	playsound(attacker.loc, "swing_hit", 25, 1, -1)
+	playsound(attacker.loc, "swing_hit", 25, TRUE, -1)
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Headbutted [target.name] ([target.ckey])</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Headbutted by [attacker.name] ([attacker.ckey])</font>")
 	msg_admin_attack("[key_name(attacker)] has headbutted [key_name(target)]")
@@ -116,7 +116,7 @@
 		attacker << "<span class='warning'>You require a better grab to do this.</span>"
 		return
 	if(target.grab_joint(attacker, target_zone))
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		return
 
 /obj/item/weapon/grab/proc/pin_down(mob/target, mob/attacker)
@@ -133,9 +133,9 @@
 		apply_pinning(target, attacker)
 
 /obj/item/weapon/grab/proc/apply_pinning(mob/target, mob/attacker)
-	force_down = 1
+	force_down = TRUE
 	target.Weaken(3)
-	target.lying = 1
+	target.lying = TRUE
 	step_to(attacker, target)
 	attacker.set_dir(EAST) //face the victim
 	target.set_dir(SOUTH) //face up
@@ -143,14 +143,14 @@
 /obj/item/weapon/grab/proc/devour(mob/target, mob/user)
 	var/can_eat
 	if((FAT in user.mutations) && issmall(target))
-		can_eat = 1
+		can_eat = TRUE
 	else
 		var/mob/living/carbon/human/H = user
 		if(istype(H) && H.species.gluttonous && (iscarbon(target) || isanimal(target)))
 			if(H.species.gluttonous == GLUT_TINY && (target.mob_size <= MOB_TINY) && !ishuman(target)) // Anything MOB_TINY or smaller
-				can_eat = 1
+				can_eat = TRUE
 			else if(H.species.gluttonous == GLUT_SMALLER && (H.mob_size > target.mob_size)) // Anything we're larger than
-				can_eat = 1
+				can_eat = TRUE
 			else if(H.species.gluttonous == GLUT_ANYTHING) // Eat anything ever
 				can_eat = 2
 

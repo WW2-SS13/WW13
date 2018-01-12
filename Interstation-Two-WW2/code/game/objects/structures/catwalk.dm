@@ -4,7 +4,7 @@
 	icon_state = "catwalk"
 	name = "catwalk"
 	desc = "Cats really don't like these things."
-	density = 0
+	density = FALSE
 	anchored = 1.0
 
 	New()
@@ -22,13 +22,13 @@
 						L.update_icon() //so siding get updated properly
 	proc
 		is_catwalk()
-			return 1
+			return TRUE
 
 
 
 
 /obj/structure/catwalk/update_icon()
-	var/connectdir = 0
+	var/connectdir = FALSE
 	for(var/direction in cardinal)
 		if(locate(/obj/structure/catwalk, get_step(src, direction)))
 			connectdir |= direction
@@ -37,11 +37,11 @@
 	//istype((locate(/obj/structure/catwalk) in get_step(src, dir)), /obj/structure/catwalk)
 
 	//Check the diagonal connections for corners, where you have, for example, connections both north and east. In this case it checks for a north-east connection to determine whether to add a corner marker or not.
-	var/diagonalconnect = 0 //1 = NE; 2 = SE; 4 = NW; 8 = SW
+	var/diagonalconnect = FALSE //1 = NE; 2 = SE; 4 = NW; 8 = SW
 	//NORTHEAST
 	if(connectdir & NORTH && connectdir & EAST)
 		if(locate(/obj/structure/catwalk, get_step(src, NORTHEAST)))
-			diagonalconnect |= 1
+			diagonalconnect |= TRUE
 	//SOUTHEAST
 	if(connectdir & SOUTH && connectdir & EAST)
 		if(locate(/obj/structure/catwalk, get_step(src, SOUTHEAST)))
@@ -75,7 +75,7 @@
 	if (istype(C, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			playsound(src, 'sound/items/Welder.ogg', 100, TRUE)
 			user << "\blue Slicing lattice joints ..."
 			new /obj/item/stack/rods(src.loc)
 			new /obj/item/stack/rods(src.loc)

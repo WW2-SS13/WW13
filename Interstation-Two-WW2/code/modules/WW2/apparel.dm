@@ -31,7 +31,7 @@
 #define UKRAINE_HELMET_STATE "sovhelm"
 
 /obj/item/clothing/under
-	var/swapped = 0
+	var/swapped = FALSE
 
 /obj/item/clothing/under/proc/add_alternative_setting()
 	verbs += /obj/item/clothing/under/proc/Swap
@@ -58,7 +58,7 @@
 			if (SOVIET_UNIFORM_NAME)
 				m << "<span class = 'danger'>You change back into your spy uniform.</span>"
 
-	return 0
+	return FALSE
 
 /obj/item/clothing/under/proc/transform2soviet()
 
@@ -128,7 +128,7 @@
 	icon_state = GERMAN_UNIFORM_STATE
 	item_state = GERMAN_UNIFORM_STATE
 	worn_state = GERMAN_UNIFORM_STATE
-	var/rolled = 0
+	var/rolled = FALSE
 
 /obj/item/clothing/under/geruni/gerofficer
 	name = "german officer's uniform"
@@ -152,13 +152,13 @@
 		worn_state = "geruni"
 		item_state_slots["slot_w_uniform"] = "geruni"
 		usr << "<span class = 'danger'>You roll down your uniform's sleeves.</span>"
-		rolled = 0
+		rolled = FALSE
 	else if (!rolled)
 		item_state = "gerunirolledup"
 		worn_state = "gerunirolledup"
 		item_state_slots["slot_w_uniform"] = "gerunirolledup"
 		usr << "<span class = 'danger'>You roll up your uniform's sleeves.</span>"
-		rolled = 1
+		rolled = TRUE
 	update_clothing_icon()
 
 /obj/item/clothing/under/geruni/falluni
@@ -278,7 +278,7 @@
 	name = "CN-42 bulletproof vest"
 	desc = "A heavy vest used by Soviet shock troops."
 	icon_state = "cn42"
-	armor = list(melee = 30, bullet = 60, laser = 10, energy = 10, bomb = 15, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 60, laser = 10, energy = 10, bomb = 15, bio = FALSE, rad = FALSE)
 	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
 
 /obj/item/weapon/storage/belt/soviet
@@ -304,7 +304,7 @@
 /obj/item/weapon/storage/belt/soviet/anti_tank_crew/New()
 	..()
 
-	for (var/v in 1 to 10)
+	for (var/v in TRUE to 10)
 		new /obj/item/ammo_casing/a145(src)
 
 /obj/item/weapon/storage/belt/soviet/MP/New()
@@ -339,7 +339,7 @@
 /obj/item/weapon/storage/belt/german/anti_tank_crew/New()
 	..()
 
-	for (var/v in 1 to 10)
+	for (var/v in TRUE to 10)
 		new /obj/item/ammo_casing/a145(src)
 
 /obj/item/weapon/storage/belt/german/fallofficer
@@ -395,7 +395,7 @@
 	name = "\improper wrapped boots"
 	icon_state = "wrappedboots"
 	force = WEAPON_FORCE_WEAK
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
+	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = FALSE)
 	item_flags = NOSLIP
 	siemens_coefficient = 0.6
 
@@ -422,3 +422,35 @@
 	icon_state = "civuni3"
 	item_state = "civuni3"
 	worn_state = "civuni3"
+
+
+/obj/item/weapon/storage/backpack/german
+	name = "german backpack"
+	desc = "You wear this on your back and put items into it."
+	icon_state = "germanpack"
+	item_state_slots = null
+
+//portable rations
+
+/obj/item/weapon/storage/backpack/german/rations
+
+/obj/item/weapon/storage/backpack/german/rations/New()
+	..()
+	for (var/v in TRUE to 3)
+		contents += new_ration(GERMAN, "solid")
+
+/obj/item/weapon/storage/backpack/german/paratrooper
+
+/obj/item/weapon/storage/backpack/german/paratrooper/New()
+	..()
+	for (var/v in TRUE to 3)
+		contents += new_ration(GERMAN, "solid")
+	contents += new/obj/item/device/flashlight/lantern()
+
+// todo: needs a new icon
+
+/obj/item/weapon/storage/backpack/soviet
+	name = "soviet backpack"
+	desc = "You wear this on your back and put items into it."
+	icon_state = "russianpack"
+	item_state_slots = null

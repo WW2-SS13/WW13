@@ -81,7 +81,7 @@
 
 	if(ticker.mode.antag_scaling_coeff)
 
-		var/count = 0
+		var/count = FALSE
 		for(var/mob/living/M in player_list)
 			if(M.client)
 				count++

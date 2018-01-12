@@ -5,34 +5,34 @@ var/datum/reinforcements/reinforcements_master
 	return l.len
 
 /datum/reinforcements
-	var/russian_countdown = 50
+	var/soviet_countdown = 50
 	var/german_countdown = 50
 
-	var/tick_len = 1 // a decisecond
+	var/tick_len = TRUE // a decisecond
 
 	// for now
-	var/russian_countdown_failure_reset = 50
+	var/soviet_countdown_failure_reset = 50
 	var/german_countdown_failure_reset = 50
 
-	var/russian_countdown_success_reset = 300
+	var/soviet_countdown_success_reset = 300
 	var/german_countdown_success_reset = 300
 
 	var/german_reinforcements_at_once = 9
-	var/russian_reinforcements_at_once = 12
+	var/soviet_reinforcements_at_once = 12
 
 	var/max_german_reinforcements = 100
-	var/max_russian_reinforcements = 100
+	var/max_soviet_reinforcements = 100
 
 	var/reinforcement_add_limit_german = 7
-	var/reinforcement_add_limit_russian = 7
+	var/reinforcement_add_limit_soviet = 7
 
 	var/reinforcement_spawn_req = 3
 
 	var/reinforcement_difference_cutoff = 12 // once one side has this many more reinforcements than the other, lock it until that's untrue
 
-	var/reinforcements_granted[2] // keep track of how many troops we've given to germans, how many to russians, for autobalance
+	var/reinforcements_granted[2] // keep track of how many troops we've given to germans, how many to soviets, for autobalance
 
-	var/locked[2] // lock german or russian based on reinforcements_granted[]
+	var/locked[2] // lock german or soviet based on reinforcements_granted[]
 
 	var/reinforcement_pool[2] // how many people are trying to join for each side
 
@@ -44,28 +44,28 @@ var/datum/reinforcements/reinforcements_master
 	..()
 
 	reinforcement_add_limit_german = german_reinforcements_at_once
-	reinforcement_add_limit_russian = russian_reinforcements_at_once
+	reinforcement_add_limit_soviet = soviet_reinforcements_at_once
 
 	if (config && config.debug)
-		russian_countdown = 10
+		soviet_countdown = 10
 		german_countdown = 10
-		russian_countdown_failure_reset = 10
+		soviet_countdown_failure_reset = 10
 		german_countdown_failure_reset = 10
 
-	reinforcements_granted[RUSSIAN] = 0
-	reinforcements_granted[GERMAN] = 0
+	reinforcements_granted[SOVIET] = FALSE
+	reinforcements_granted[GERMAN] = FALSE
 
-	locked[RUSSIAN] = 0
-	locked[GERMAN] = 0
+	locked[SOVIET] = FALSE
+	locked[GERMAN] = FALSE
 
-	reinforcement_pool[RUSSIAN] = list()
+	reinforcement_pool[SOVIET] = list()
 	reinforcement_pool[GERMAN] = list()
 
-	allow_quickspawn[RUSSIAN] = 0
-	allow_quickspawn[GERMAN] = 0
+	allow_quickspawn[SOVIET] = FALSE
+	allow_quickspawn[GERMAN] = FALSE
 
-	showed_permalock_message[GERMAN] = 0
-	showed_permalock_message[RUSSIAN] = 0
+	showed_permalock_message[GERMAN] = FALSE
+	showed_permalock_message[SOVIET] = FALSE
 
 	tick()
 
@@ -75,55 +75,55 @@ var/datum/reinforcements/reinforcements_master
 
 /datum/reinforcements/proc/tick()
 
-	if (clients.len <= 20 && reinforcement_spawn_req != 1)
+	if (clients.len <= 20 && reinforcement_spawn_req != TRUE)
 
-		reinforcement_spawn_req = 1
+		reinforcement_spawn_req = TRUE
 		world << "<span class = 'danger'>Reinforcements require <b>one</b> person to fill a queue.</span>"
 
 		// half everything
 		max_german_reinforcements = config.max_german_reinforcements/2
-		max_russian_reinforcements = config.max_russian_reinforcements/2
+		max_soviet_reinforcements = config.max_soviet_reinforcements/2
 		german_reinforcements_at_once = round(german_reinforcements_at_once/2)
-		russian_reinforcements_at_once = round(russian_reinforcements_at_once/2)
+		soviet_reinforcements_at_once = round(soviet_reinforcements_at_once/2)
 		reinforcement_add_limit_german = round(reinforcement_add_limit_german/2)
-		reinforcement_add_limit_russian = round(reinforcement_add_limit_russian/2)
-		// but make this 1/3rd for b a l a n c e
+		reinforcement_add_limit_soviet = round(reinforcement_add_limit_soviet/2)
+		// but make this TRUE/3rd for b a l a n c e
 		reinforcement_difference_cutoff = round(reinforcement_difference_cutoff/3)
 
-	else if (clients.len > 20 && reinforcement_spawn_req == 1)
+	else if (clients.len > 20 && reinforcement_spawn_req == TRUE)
 		reinforcement_spawn_req = initial(reinforcement_spawn_req)
 		world << "<span class = 'danger'>Reinforcements require <b>three</b> people to fill a queue.</span>"
 		max_german_reinforcements = config.max_german_reinforcements
-		max_russian_reinforcements = config.max_russian_reinforcements
+		max_soviet_reinforcements = config.max_soviet_reinforcements
 	else
 		max_german_reinforcements = config.max_german_reinforcements
-		max_russian_reinforcements = config.max_russian_reinforcements
+		max_soviet_reinforcements = config.max_soviet_reinforcements
 
 	spawn while (1)
 
-		if (reinforcement_pool[RUSSIAN] && reinforcement_pool[GERMAN])
-			for (var/mob/new_player/np in reinforcement_pool[RUSSIAN])
+		if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
+			for (var/mob/new_player/np in reinforcement_pool[SOVIET])
 				if (!np || !np.client)
-					reinforcement_pool[RUSSIAN] -= np
+					reinforcement_pool[SOVIET] -= np
 			for (var/mob/new_player/np in reinforcement_pool[GERMAN])
 				if (!np || !np.client)
 					reinforcement_pool[GERMAN] -= np
 
-		russian_countdown = russian_countdown - tick_len
-		if (russian_countdown < 1)
-			if (!reset_russian_timer())
-				russian_countdown = russian_countdown_failure_reset
+		soviet_countdown = soviet_countdown - tick_len
+		if (soviet_countdown < TRUE)
+			if (!reset_soviet_timer())
+				soviet_countdown = soviet_countdown_failure_reset
 			else
-				russian_countdown = russian_countdown_success_reset
-				allow_quickspawn[RUSSIAN] = 0
+				soviet_countdown = soviet_countdown_success_reset
+				allow_quickspawn[SOVIET] = FALSE
 
 		german_countdown = german_countdown - tick_len
-		if (german_countdown < 1)
+		if (german_countdown < TRUE)
 			if (!reset_german_timer())
 				german_countdown = german_countdown_failure_reset
 			else
 				german_countdown = german_countdown_success_reset
-				allow_quickspawn[GERMAN] = 0
+				allow_quickspawn[GERMAN] = FALSE
 
 		sleep(10)
 
@@ -132,16 +132,16 @@ var/datum/reinforcements/reinforcements_master
 	var/nope[2]
 
 	switch (side)
-		if (RUSSIAN)
-			if (len(reinforcement_pool[RUSSIAN]) >= reinforcement_add_limit_russian)
-				nope[RUSSIAN] = 1
+		if (SOVIET)
+			if (len(reinforcement_pool[SOVIET]) >= reinforcement_add_limit_soviet)
+				nope[SOVIET] = TRUE
 			else
-				nope[RUSSIAN] = 0
+				nope[SOVIET] = FALSE
 		if (GERMAN)
 			if (len(reinforcement_pool[GERMAN]) >= reinforcement_add_limit_german)
-				nope[GERMAN] = 1
+				nope[GERMAN] = TRUE
 			else
-				nope[GERMAN] = 0
+				nope[GERMAN] = FALSE
 
 	if (locked[side])
 		np << "<span class = 'danger'>This side is locked.</span>"
@@ -152,7 +152,7 @@ var/datum/reinforcements/reinforcements_master
 		return
 
 	//remove them from all pools, just in case
-	var/list/r = reinforcement_pool[RUSSIAN]
+	var/list/r = reinforcement_pool[SOVIET]
 	var/list/g = reinforcement_pool[GERMAN]
 
 	if (r.Find(np))
@@ -162,10 +162,10 @@ var/datum/reinforcements/reinforcements_master
 
 	var/sname[0]
 
-	sname[RUSSIAN] = "Russian"
+	sname[SOVIET] = "SOVIET"
 	sname[GERMAN] = "German"
 
-	np << "<span class = 'danger'>You have joined a queue for [sname[side]] reinforcements, please wait until the timer reaches 0 to spawn.</span>"
+	np << "<span class = 'danger'>You have joined a queue for [sname[side]] reinforcements, please wait until the timer reaches FALSE to spawn.</span>"
 	var/list/l = reinforcement_pool[side]
 	l += np
 
@@ -180,44 +180,44 @@ var/datum/reinforcements/reinforcements_master
 		var/side = side_or_null
 		var/list/l = reinforcement_pool[side]
 		if (l.Find(np))
-			return 1
+			return TRUE
 	else
-		var/list/r = reinforcement_pool[RUSSIAN]
+		var/list/r = reinforcement_pool[SOVIET]
 		var/list/g = reinforcement_pool[GERMAN]
 
 		if (r.Find(np) || g.Find(np))
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
-/datum/reinforcements/proc/reset_russian_timer()
+/datum/reinforcements/proc/reset_soviet_timer()
 
-	var/ret = 0
-	var/list/l = reinforcement_pool[RUSSIAN]
-	if (l.len < reinforcement_spawn_req && !allow_quickspawn[RUSSIAN])
+	var/ret = FALSE
+	var/list/l = reinforcement_pool[SOVIET]
+	if (l.len < reinforcement_spawn_req && !allow_quickspawn[SOVIET])
 		for (var/mob/new_player/np in l)
-			np << "<span class='danger'>Failed to spawn a new Russian squadron. [reinforcement_spawn_req - l.len] more draftees needed."
+			np << "<span class='danger'>Failed to spawn a new Soviet squadron. [reinforcement_spawn_req - l.len] more draftees needed."
 		return ret
-	else if (has_occupied_base(RUSSIAN))
+	else if (has_occupied_base(SOVIET))
 		for (var/mob/new_player/np in l)
 			np << "<span class='danger'>The Germans are currently occupying the bunker! Reinforcements can't be sent."
 		return ret
 	for (var/mob/new_player/np in l)
 		if (np)
-			np.LateSpawnForced("Sovietsky Soldat", 1, 1)
-			reinforcements_granted[RUSSIAN] = reinforcements_granted[RUSSIAN]+1
-			ret = 1
-	reinforcement_pool[RUSSIAN] = list()
+			np.LateSpawnForced("Sovietsky Soldat", TRUE, TRUE)
+			reinforcements_granted[SOVIET] = reinforcements_granted[SOVIET]+1
+			ret = TRUE
+	reinforcement_pool[SOVIET] = list()
 	lock_check()
-	var/obj/item/device/radio/R = main_radios[RUSSIAN]
+	var/obj/item/device/radio/R = main_radios[SOVIET]
 	if (R && R.loc)
 		spawn (10)
 			R.announce("A new squadron has been deployed.", "Reinforcements Announcement System")
-	world << "<font size=3>A new <b>Russian</b> squadron has been deployed.</font>"
+	world << "<font size=3>A new <b>Soviet</b> squadron has been deployed.</font>"
 	return ret
 
 /datum/reinforcements/proc/reset_german_timer()
-	var/ret = 0
+	var/ret = FALSE
 	var/list/l = reinforcement_pool[GERMAN]
 	if (l.len < reinforcement_spawn_req && !allow_quickspawn[GERMAN])
 		for (var/mob/new_player/np in l)
@@ -225,13 +225,13 @@ var/datum/reinforcements/reinforcements_master
 		return ret
 	else if (has_occupied_base(GERMAN))
 		for (var/mob/new_player/np in l)
-			np << "<span class='danger'>The Russians are currently occupying your base! Reinforcements can't be sent."
+			np << "<span class='danger'>The Soviets are currently occupying your base! Reinforcements can't be sent."
 		return ret
 	for (var/mob/new_player/np in l)
 		if (np) // maybe helps with logged out nps
-			np.LateSpawnForced("Soldat", 1, 1)
+			np.LateSpawnForced("Soldat", TRUE, TRUE)
 			reinforcements_granted[GERMAN] = reinforcements_granted[GERMAN]+1
-			ret = 1
+			ret = TRUE
 	reinforcement_pool[GERMAN] = list()
 	lock_check()
 	var/obj/item/device/radio/R = main_radios[GERMAN]
@@ -245,56 +245,56 @@ var/datum/reinforcements/reinforcements_master
 	var/list/l = reinforcement_pool[GERMAN]
 	return l.len
 
-/datum/reinforcements/proc/r_russian()
-	var/list/l = reinforcement_pool[RUSSIAN]
+/datum/reinforcements/proc/r_soviet()
+	var/list/l = reinforcement_pool[SOVIET]
 	return l.len
 
 /datum/reinforcements/proc/lock_check()
 
-	var/r = reinforcements_granted[RUSSIAN]
+	var/r = reinforcements_granted[SOVIET]
 	var/g = reinforcements_granted[GERMAN]
 
 	if (abs(r-g) >= reinforcement_difference_cutoff)
 
 		if (max(r,g) == r)
-			locked[RUSSIAN] = 1
+			locked[SOVIET] = TRUE
 		else
-			locked[GERMAN] = 1
+			locked[GERMAN] = TRUE
 
 	else
-		locked[RUSSIAN] = 0
-		locked[GERMAN] = 0
+		locked[SOVIET] = FALSE
+		locked[GERMAN] = FALSE
 
-	if (is_permalocked(RUSSIAN))
+	if (is_permalocked(SOVIET))
 
-		if (!showed_permalock_message[RUSSIAN])
+		if (!showed_permalock_message[SOVIET])
 			world << "<font size = 3>The Soviet Army is all out of reinforcements.</font>"
-			showed_permalock_message[RUSSIAN] = 1
+			showed_permalock_message[SOVIET] = TRUE
 
-		locked[RUSSIAN] = 1
-		locked[GERMAN] = 1 // since russians get more reinforcements,
+		locked[SOVIET] = TRUE
+		locked[GERMAN] = TRUE // since soviets get more reinforcements,
 		 // if they are locked german must also be
 
 	if (is_permalocked(GERMAN))
 
 		if (!showed_permalock_message[GERMAN])
 			world << "<font size = 3>The German Army is all out of reinforcements.</font>"
-			showed_permalock_message[GERMAN] = 1
+			showed_permalock_message[GERMAN] = TRUE
 
-		locked[GERMAN] = 1
+		locked[GERMAN] = TRUE
 
-		if (!is_permalocked(RUSSIAN))
-			locked[RUSSIAN] = 0 // if germans are permalocked but not russians, russians must be unlocked
+		if (!is_permalocked(SOVIET))
+			locked[SOVIET] = FALSE // if germans are permalocked but not soviets, soviets must be unlocked
 
 /datum/reinforcements/proc/is_permalocked(side)
 	switch (side)
 		if (GERMAN)
 			if (reinforcements_granted[GERMAN] > max_german_reinforcements)
-				return 1
-		if (RUSSIAN)
-			if (reinforcements_granted[RUSSIAN] > max_russian_reinforcements)
-				return 1
-	return 0
+				return TRUE
+		if (SOVIET)
+			if (reinforcements_granted[SOVIET] > max_soviet_reinforcements)
+				return TRUE
+	return FALSE
 
 /datum/reinforcements/proc/get_status_addendums()
 
@@ -303,10 +303,10 @@ var/datum/reinforcements/reinforcements_master
 	l += "Deployed: [reinforcements_granted[GERMAN]]"
 	l += "Deploying: [r_german()]/[reinforcement_add_limit_german] in [german_countdown] seconds"
 	l += "Locked: [locked[GERMAN] ? "Yes" : "No"]"
-	l += "RUSSIAN REINFORCEMENTS:"
-	l += "Deployed: [reinforcements_granted[RUSSIAN]]"
-	l += "Deploying: [r_russian()]/[reinforcement_add_limit_russian] in [russian_countdown] seconds"
-	l += "Locked: [locked[RUSSIAN] ? "Yes" : "No"]"
+	l += "SOVIET REINFORCEMENTS:"
+	l += "Deployed: [reinforcements_granted[SOVIET]]"
+	l += "Deploying: [r_soviet()]/[reinforcement_add_limit_soviet] in [soviet_countdown] seconds"
+	l += "Locked: [locked[SOVIET] ? "Yes" : "No"]"
 
 	return l
 

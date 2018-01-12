@@ -1,4 +1,4 @@
-/* 
+/*
 plot_vector is a helper datum for plotting a path in a straight line towards a target turf.
 This datum converts from world space (turf.x and turf.y) to pixel space, which the datum keeps track of itself. This
 should work with any size turfs (i.e. 32x32, 64x64) as it references world.icon_size (note: not actually tested with
@@ -6,9 +6,9 @@ anything other than 32x32 turfs).
 
 setup()
 	This should be called after creating a new instance of a plot_vector datum.
-	This does the initial setup and calculations. Since we are travelling in a straight line we only need to calculate 
-	the	vector and x/y steps once. x/y steps are capped to 1 full turf, whichever is further. If we are travelling along
-	the y axis each step will be +/- 1 y, and the x movement reduced based on the angle (tangent calculation). After
+	This does the initial setup and calculations. Since we are travelling in a straight line we only need to calculate
+	the	vector and x/y steps once. x/y steps are capped to TRUE full turf, whichever is further. If we are travelling along
+	the y axis each step will be +/- TRUE y, and the x movement reduced based on the angle (tangent calculation). After
 	this every subsequent step will be incremented based on these calculations.
 	Inputs:
 		source - the turf the object is starting from
@@ -26,40 +26,40 @@ return_angle()
              90°
               ^
               |
-  (W) 180° <--+--> 0° (E)
+  (W) 180° <--+--> FALSE° (E)
               |
               v
              -90°
              (S)
 
 return_hypotenuse()
-	Returns the distance of travel for each step of the vector, relative to each full step of movement. 1 is a full turf 
+	Returns the distance of travel for each step of the vector, relative to each full step of movement. TRUE is a full turf
 	length. Currently used as a multiplier for scaling effects that should be contiguous, like laser beams.
 
 return_location()
-	Returns a vector_loc datum containing the current location data of the object (see /datum/vector_loc). This includes 
-	the turf it currently should be at, as well as the pixel offset from the centre of that turf. Typically increment() 
+	Returns a vector_loc datum containing the current location data of the object (see /datum/vector_loc). This includes
+	the turf it currently should be at, as well as the pixel offset from the centre of that turf. Typically increment()
 	would be called before this if you are going to move an object based on it's vector data.
 */
 
 /datum/plot_vector
 	var/turf/source
 	var/turf/target
-	var/angle = 0	// direction of travel in degrees
-	var/loc_x = 0	// in pixels from the left edge of the map
-	var/loc_y = 0	// in pixels from the bottom edge of the map
-	var/loc_z = 0	// loc z is in world space coordinates (i.e. z level) - we don't care about measuring pixels for this
-	var/offset_x = 0	// distance to increment each step
-	var/offset_y = 0
+	var/angle = FALSE	// direction of travel in degrees
+	var/loc_x = FALSE	// in pixels from the left edge of the map
+	var/loc_y = FALSE	// in pixels from the bottom edge of the map
+	var/loc_z = FALSE	// loc z is in world space coordinates (i.e. z level) - we don't care about measuring pixels for this
+	var/offset_x = FALSE	// distance to increment each step
+	var/offset_y = FALSE
 
-/datum/plot_vector/proc/setup(var/turf/S, var/turf/T, var/xo = 0, var/yo = 0, var/angle_offset=0)
+/datum/plot_vector/proc/setup(var/turf/S, var/turf/T, var/xo = FALSE, var/yo = FALSE, var/angle_offset=0)
 	source = S
 	target = T
-	
+
 	if(!istype(source))
 		source = get_turf(source)
 	if(!istype(target))
-		target = get_turf(target)	
+		target = get_turf(target)
 
 	if(!istype(source) || !istype(target))
 		return
@@ -68,13 +68,13 @@ return_location()
 	loc_x = source.x * world.icon_size + xo
 	loc_y = source.y * world.icon_size + yo
 	loc_z = source.z
-	
+
 	// calculate initial x and y difference
 	var/dx = target.x - source.x
 	var/dy = target.y - source.y
 
 	// if we aren't moving anywhere; quit now
-	if(dx == 0 && dy == 0)
+	if(dx == FALSE && dy == FALSE)
 		return
 
 	// calculate the angle
@@ -98,7 +98,7 @@ return_location()
 	else
 		offset_x = sign(dx)
 		offset_y = Tan(angle)
-		if(dx < 0)
+		if(dx < FALSE)
 			offset_y = -offset_y
 
 	// multiply the offset by the turf pixel size
@@ -118,14 +118,14 @@ return_location()
 /datum/plot_vector/proc/return_location(var/datum/vector_loc/data)
 	if(!data)
 		data = new()
-	data.loc = locate(round(loc_x / world.icon_size, 1), round(loc_y / world.icon_size, 1), loc_z)
+	data.loc = locate(round(loc_x / world.icon_size, TRUE), round(loc_y / world.icon_size, TRUE), loc_z)
 	if(!data.loc)
 		return
 	data.pixel_x = loc_x - (data.loc.x * world.icon_size)
 	data.pixel_y = loc_y - (data.loc.y * world.icon_size)
 	return data
 
-/* 
+/*
 vector_loc is a helper datum for returning precise location data from plot_vector. It includes the turf the object is in
 as well as the pixel offsets.
 

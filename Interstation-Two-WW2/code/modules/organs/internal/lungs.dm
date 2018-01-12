@@ -13,7 +13,7 @@
 
 	var/safe_exhaled_max = 10
 	var/safe_toxins_max = 0.2
-	var/SA_para_min = 1
+	var/SA_para_min = TRUE
 	var/SA_sleep_min = 5
 
 /obj/item/organ/lungs/set_dna(var/datum/dna/new_dna)
@@ -22,7 +22,7 @@
 	min_breath_pressure = species.breath_pressure
 	breath_type = species.breath_type ? species.breath_type : "oxygen"
 	poison_type = species.poison_type ? species.poison_type : "plasma"
-	exhale_type = species.exhale_type ? species.exhale_type : 0
+	exhale_type = species.exhale_type ? species.exhale_type : FALSE
 */
 /obj/item/organ/lungs/process()
 	..()
@@ -36,22 +36,22 @@
 
 	if(is_bruised())
 		if(prob(2))
-			spawn owner.emote("me", 1, "coughs up blood!")
+			spawn owner.emote("me", TRUE, "coughs up blood!")
 			owner.drip(10)
 		if(prob(4))
-			spawn owner.emote("me", 1, "gasps for air!")
+			spawn owner.emote("me", TRUE, "gasps for air!")
 			owner.losebreath += 15
 
 
 /obj/item/organ/lungs/proc/handle_breath(datum/gas_mixture/breath)
 	if(!owner)
-		return 0
+		return FALSE
 	if(!breath)
-		return 0
+		return FALSE
 	//exposure to extreme pressures can rupture lungs
 	if(breath.total_moles < BREATH_MOLES / 5 || breath.total_moles > BREATH_MOLES * 5)
 		if(is_bruised() && prob(5))
-			owner.custom_pain("You feel a stabbing pain in your chest!", 1)
+			owner.custom_pain("You feel a stabbing pain in your chest!", TRUE)
 			bruise()
 
 	var/safe_pressure_min = min_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
@@ -63,12 +63,12 @@
 
 	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
 
-	var/failed_inhale = 0
-	var/failed_exhale = 0
+	var/failed_inhale = FALSE
+	var/failed_exhale = FALSE
 
 	var/inhaling = breath.gas[breath_type]
 	var/poison = breath.gas[poison_type]
-	var/exhaling = exhale_type ? breath.gas[exhale_type] : 0
+	var/exhaling = exhale_type ? breath.gas[exhale_type] : FALSE
 
 	var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
 	var/toxins_pp = (poison/breath.total_moles)*breath_pressure
@@ -79,16 +79,16 @@
 			owner.emote("gasp")
 
 		var/ratio = inhale_pp/safe_pressure_min
-		owner.adjustOxyLoss(max(HUMAN_MAX_OXYLOSS*(1-ratio), 0))	// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
-		failed_inhale = 1
+		owner.adjustOxyLoss(max(HUMAN_MAX_OXYLOSS*(1-ratio), FALSE))	// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
+		failed_inhale = TRUE
 
 	owner.oxygen_alert = failed_inhale
 
 	var/inhaled_gas_used = inhaling/6
-	breath.adjust_gas(breath_type, -inhaled_gas_used, update = 0) //update afterwards
+	breath.adjust_gas(breath_type, -inhaled_gas_used, update = FALSE) //update afterwards
 
 	if(exhale_type)
-		breath.adjust_gas_temp(exhale_type, inhaled_gas_used, owner.bodytemperature, update = 0) //update afterwards
+		breath.adjust_gas_temp(exhale_type, inhaled_gas_used, owner.bodytemperature, update = FALSE) //update afterwards
 		// Too much exhaled gas in the air
 		var/word
 		var/warn_prob
@@ -99,21 +99,21 @@
 			word = pick("extremely dizzy","short of breath","faint","confused")
 			warn_prob = 15
 			oxyloss = HUMAN_MAX_OXYLOSS
-			alert = 1
-			failed_exhale = 1
+			alert = TRUE
+			failed_exhale = TRUE
 		else if(exhaled_pp > safe_exhaled_max * 0.7)
 			word = pick("dizzy","short of breath","faint","momentarily confused")
-			warn_prob = 1
-			alert = 1
-			failed_exhale = 1
+			warn_prob = TRUE
+			alert = TRUE
+			failed_exhale = TRUE
 			var/ratio = 1.0 - (safe_exhaled_max - exhaled_pp)/(safe_exhaled_max*0.3)
 			if (owner.getOxyLoss() < 50*ratio)
 				oxyloss = HUMAN_MAX_OXYLOSS
 		else if(exhaled_pp > safe_exhaled_max * 0.6)
 			word = pick("a little dizzy","short of breath")
-			warn_prob = 1
+			warn_prob = TRUE
 		else
-			owner.co2_alert = 0
+			owner.co2_alert = FALSE
 
 		if(!owner.co2_alert && word && prob(warn_prob))
 			owner << "<span class='warning'>You feel [word].</span>"
@@ -124,10 +124,10 @@
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
 		owner.reagents.add_reagent("toxin", Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
-		breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
-		owner.plasma_alert = 1
+		breath.adjust_gas(poison_type, -poison/6, update = FALSE) //update after
+		owner.plasma_alert = TRUE
 	else
-		owner.plasma_alert = 0
+		owner.plasma_alert = FALSE
 
 	// If there's some other shit in the air lets deal with it here.
 	if(breath.gas["sleeping_agent"])
@@ -140,7 +140,7 @@
 			if(prob(20))
 				owner.emote(pick("giggle", "laugh"))
 
-		breath.adjust_gas("sleeping_agent", -breath.gas["sleeping_agent"]/6, update = 0) //update after
+		breath.adjust_gas("sleeping_agent", -breath.gas["sleeping_agent"]/6, update = FALSE) //update after
 
 	// Were we able to breathe?
 	var/failed_breath = failed_inhale || failed_exhale
@@ -156,7 +156,7 @@
 	return
 /*	// Hot air hurts :(
 	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in owner.mutations))
-		var/damage = 0
+		var/damage = FALSE
 		if(breath.temperature <= species.cold_level_1)
 			if(prob(20))
 				owner << "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>"
@@ -170,7 +170,7 @@
 					damage = COLD_GAS_DAMAGE_LEVEL_1
 
 			owner.apply_damage(damage, BURN, "head", used_weapon = "Excessive Cold")
-			owner.fire_alert = 1
+			owner.fire_alert = TRUE
 		else if(breath.temperature >= species.heat_level_1)
 			if(prob(20))
 				owner << "<span class='danger'>You feel your face burning and a searing heat in your lungs!</span>"
@@ -188,7 +188,7 @@
 
 		//breathing in hot/cold air also heats/cools you a bit
 		var/temp_adj = breath.temperature - owner.bodytemperature
-		if (temp_adj < 0)
+		if (temp_adj < FALSE)
 			temp_adj /= (BODYTEMP_COLD_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
 		else
 			temp_adj /= (BODYTEMP_HEAT_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed

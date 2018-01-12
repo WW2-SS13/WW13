@@ -8,18 +8,18 @@
 /datum/job/german/commander
 	title = "Oberleutnant"
 	en_meaning = "Commander"
-	total_positions = 1
-	head_position = 1
+	total_positions = TRUE
+	head_position = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerCO"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
-	is_officer = 1
-	is_commander = 1
-	absolute_limit = 1
-	whitelisted = 1
+	is_officer = TRUE
+	is_commander = TRUE
+	absolute_limit = TRUE
+	whitelisted = TRUE
 
 /datum/job/german/commander/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
@@ -34,7 +34,7 @@
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/commander/update_character(var/mob/living/carbon/human/H)
 	..()
@@ -53,15 +53,15 @@
 	title = "Stabsoffizier"
 	en_meaning = "Staff Officer"
 	total_positions = 2
-	head_position = 0
+	head_position = FALSE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerSO"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
-	is_officer = 1
+	is_officer = TRUE
 	absolute_limit = 3
 
 /datum/job/german/staff_officer/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
@@ -75,7 +75,7 @@
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/staff_officer/update_character(var/mob/living/carbon/human/H)
 	..()
@@ -100,7 +100,7 @@
 	absolute_limit = 3
 
 /datum/job/german/MP/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/MP(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm/MP(H), slot_head)
@@ -112,7 +112,7 @@
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/MP/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
@@ -127,15 +127,15 @@
 	title = "Gruppenfuhrer"
 	en_meaning = "Squad Leader"
 	total_positions = 4
-	head_position = 0
+	head_position = FALSE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSL"
 	additional_languages = list( "Russian" = 33 )
-	is_officer = 1
-	is_squad_leader = 1
+	is_officer = TRUE
+	is_squad_leader = TRUE
 
 /datum/job/german/squad_leader/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
@@ -150,7 +150,7 @@
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/squad_leader/update_character(var/mob/living/carbon/human/H)
 	..()
@@ -172,7 +172,7 @@
 	spawn_location = "JoinLateHeer"
 
 /datum/job/german/medic/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -187,7 +187,7 @@
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_NORMAL)
 	H.setStat("medical", STAT_MEDIUM_HIGH)
-	return 1
+	return TRUE
 
 /datum/job/german/medic/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic)
@@ -198,11 +198,11 @@
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerDr"
-	is_nonmilitary = 1
+	is_nonmilitary = TRUE
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
 
 /datum/job/german/doctor/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/white(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/doctor(H), slot_w_uniform)
@@ -219,7 +219,7 @@
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_VERY_LOW)
 	H.setStat("medical", STAT_VERY_HIGH)
-	return 1
+	return TRUE
 
 /datum/job/german/doctor/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/command_intermediate)
@@ -236,11 +236,11 @@
 	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	is_primary = 0
-	is_secondary = 1
+	is_primary = FALSE
+	is_secondary = TRUE
 
 /datum/job/german/flamethrower_man/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -254,7 +254,7 @@
 	H.setStat("rifle", STAT_NORMAL)
 	H.setStat("mg", STAT_NORMAL)
 	H.setStat("medical", STAT_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/flamethrower_man/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
@@ -270,11 +270,11 @@
 	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	is_primary = 0
-	is_secondary = 1
+	is_primary = FALSE
+	is_secondary = TRUE
 
 /datum/job/german/sniper/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -288,7 +288,7 @@
 	H.setStat("rifle", STAT_VERY_HIGH)
 	H.setStat("mg", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/sniper/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
@@ -306,7 +306,7 @@
 	spawn_location = "JoinLateHeer"
 
 /datum/job/german/engineer/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -322,7 +322,7 @@
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_VERY_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/engineer/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/engineer)
@@ -338,11 +338,11 @@
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	is_primary = 0
-	is_secondary = 1
+	is_primary = FALSE
+	is_secondary = TRUE
 
 /datum/job/german/heavy_weapon/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -356,7 +356,7 @@
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_VERY_HIGH)
 	H.setStat("medical", STAT_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/heavy_weapon/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
@@ -372,10 +372,10 @@
 	total_positions = 200 // this was causing an error with latejoin spawning
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	allow_spies = 1
+	allow_spies = TRUE
 
 /datum/job/german/soldier/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -389,7 +389,7 @@
 	H.setStat("rifle", STAT_NORMAL)
 	H.setStat("mg", STAT_NORMAL)
 	H.setStat("medical", STAT_NORMAL)
-	return 1
+	return TRUE
 
 /datum/job/german/soldier/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
@@ -405,10 +405,10 @@
 	total_positions = 50
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	allow_spies = 1
+	allow_spies = TRUE
 
 /datum/job/german/dogmaster/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -437,7 +437,7 @@
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_MEDIUM_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/dogmaster/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
@@ -454,13 +454,13 @@
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	is_primary = 0
-	is_secondary = 1
+	is_primary = FALSE
+	is_secondary = TRUE
 	absolute_limit = 4
-	is_tankuser = 1
+	is_tankuser = TRUE
 
 /datum/job/german/tankcrew/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gertankeruni(H), slot_w_uniform)
@@ -473,7 +473,7 @@
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_MEDIUM_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/tankcrew/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/command_intermediate)
@@ -489,12 +489,12 @@
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	is_primary = 0
-	is_secondary = 1
+	is_primary = FALSE
+	is_secondary = TRUE
 	absolute_limit = 4
 
 /datum/job/german/anti_tank_crew/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -508,12 +508,12 @@
 	H.setStat("rifle", STAT_NORMAL)
 	H.setStat("mg", STAT_NORMAL)
 	H.setStat("medical", STAT_NORMAL)
-	return 1
+	return TRUE
 
 /datum/job/german/anti_tank_crew/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
 
-var/first_fallschirm = 1
+var/first_fallschirm = TRUE
 
 /datum/job/german/paratrooper
 	title = "Fallschirmjager"
@@ -524,14 +524,14 @@ var/first_fallschirm = 1
 	additional_languages = list( "Russian" = 100 )
 	spawn_delay = 3000
 	delayed_spawn_message = "<span class = 'danger'><big>You are parachuting behind Russian lines. You won't spawn until 5 minutes.</big></span>"
-	is_paratrooper = 1
+	is_paratrooper = TRUE
 	var/fallschirm_spawnzone = null
 	var/list/fallschirm_spawnpoints = list()
 
 /datum/job/german/paratrooper/equip(var/mob/living/carbon/human/H)
 	spawn_delay = config.paratrooper_drop_time
 
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/falluni(H), slot_w_uniform)
 
@@ -554,7 +554,7 @@ var/first_fallschirm = 1
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/fallsoldier(H), slot_belt)
 
-	first_fallschirm = 0
+	first_fallschirm = FALSE
 
 	if(!fallschirm_spawnzone)
 		fallschirm_spawnzone = pick(fallschirm_landmarks)
@@ -574,7 +574,7 @@ var/first_fallschirm = 1
 	H.setStat("rifle", STAT_VERY_HIGH)
 	H.setStat("mg", STAT_VERY_HIGH)
 	H.setStat("medical", STAT_MEDIUM_HIGH)
-	return 1
+	return TRUE
 
 /datum/job/german/paratrooper/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
@@ -587,16 +587,16 @@ var/first_fallschirm = 1
 /datum/job/german/stabsgefreiter
 	title = "Stabsgefreiter"
 	en_meaning = "Quartermaster"
-	total_positions = 1
+	total_positions = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerQM"
 
 	additional_languages = list( "Russian" = 100 )
-	is_officer = 1
-	absolute_limit = 1
+	is_officer = TRUE
+	absolute_limit = TRUE
 
 /datum/job/german/stabsgefreiter/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -609,7 +609,7 @@ var/first_fallschirm = 1
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/stabsgefreiter/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate)
@@ -625,11 +625,11 @@ var/first_fallschirm = 1
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSO"
-	is_officer = 1
+	is_officer = TRUE
 	absolute_limit = 2
 
 /datum/job/german/artyman/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -644,7 +644,7 @@ var/first_fallschirm = 1
 	H.setStat("rifle", STAT_MEDIUM_HIGH)
 	H.setStat("mg", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/artyman/update_character(var/mob/living/carbon/human/H)
 	..()
@@ -671,7 +671,7 @@ var/first_fallschirm = 1
 	spawn_location = "JoinLateHeer"
 
 /datum/job/german/scout/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -685,7 +685,7 @@ var/first_fallschirm = 1
 	H.setStat("rifle", STAT_NORMAL)
 	H.setStat("mg", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_NORMAL)
-	return 1
+	return TRUE
 
 /datum/job/german/scout/update_character(var/mob/living/carbon/human/H)
 	..()
@@ -709,14 +709,14 @@ var/first_fallschirm = 1
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSO"
-	is_officer = 1
-	absolute_limit = 1
+	is_officer = TRUE
+	absolute_limit = TRUE
 
 /datum/job/german/conductor/train_check() // if there's no train, don't let people be conductors!
 	return WW2_train_check()
 
 /datum/job/german/conductor/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -729,7 +729,7 @@ var/first_fallschirm = 1
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/conductor/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/train,
@@ -739,18 +739,18 @@ var/first_fallschirm = 1
 /datum/job/german/squad_leader_ss
 	title = "SS-Untersharffuhrer"
 	en_meaning = "SS Squad Leader"
-	total_positions = 1
-	head_position = 1
+	total_positions = TRUE
+	head_position = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS-Officer"
-	is_SS = 1
+	is_SS = TRUE
 	additional_languages = list( "Russian" = 10 )
-	is_officer = 1
-	is_commander = 1 // not a squad leader despite the title
-	is_petty_commander = 1
+	is_officer = TRUE
+	is_commander = TRUE // not a squad leader despite the title
+	is_petty_commander = TRUE
 
 /datum/job/german/squad_leader_ss/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
@@ -770,7 +770,7 @@ var/first_fallschirm = 1
 	H.setStat("rifle", STAT_VERY_HIGH)
 	H.setStat("mg", STAT_VERY_HIGH)
 	H.setStat("medical", STAT_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/squad_leader_ss/update_character(var/mob/living/carbon/human/H)
 	..()
@@ -795,10 +795,10 @@ var/first_fallschirm = 1
 	total_positions = 5 // this was causing an error with latejoin spawning
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS"
-	is_SS = 1
+	is_SS = TRUE
 
 /datum/job/german/soldier_ss/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
@@ -816,7 +816,7 @@ var/first_fallschirm = 1
 	H.setStat("rifle", STAT_VERY_HIGH)
 	H.setStat("mg", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/soldier_ss/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/SS)
@@ -831,16 +831,16 @@ var/first_fallschirm = 1
 /datum/job/german/chef
 	title = "Kuchenchef" // note: SS13 does not like ü in job titles
 	en_meaning = "Chef"
-	total_positions = 1
+	total_positions = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerChef"
-	is_nonmilitary = 1
-	is_primary = 0
-	is_secondary = 1
-	absolute_limit = 1
+	is_nonmilitary = TRUE
+	is_primary = FALSE
+	is_secondary = TRUE
+	absolute_limit = TRUE
 
 /datum/job/german/chef/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
@@ -854,7 +854,7 @@ var/first_fallschirm = 1
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_MEDIUM_LOW)
-	return 1
+	return TRUE
 
 /datum/job/german/chef/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
@@ -863,9 +863,9 @@ var/first_fallschirm = 1
 /datum/job/german/trainsystem
 	title = "N/A"
 	en_meaning = "N/A"
-	total_positions = 0
-	head_position = 0
-	is_officer = 0
-	is_commander = 0
-	absolute_limit = 0
+	total_positions = FALSE
+	head_position = FALSE
+	is_officer = FALSE
+	is_commander = FALSE
+	absolute_limit = FALSE
 	faction = "trainsystem"

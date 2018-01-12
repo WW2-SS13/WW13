@@ -34,7 +34,7 @@
 
 	Spray_at(A, user, proximity)
 
-	playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1, -6)
+	playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 
 	user.setClickCooldown(4)
 
@@ -73,7 +73,7 @@
 	user << "<span class='notice'>You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray.</span>"
 
 /obj/item/weapon/reagent_containers/spray/examine(mob/user)
-	if(..(user, 0) && loc == user)
+	if(..(user, FALSE) && loc == user)
 		user << "[round(reagents.total_volume)] units left."
 	return
 
@@ -119,14 +119,14 @@
 	item_state = "pepperspray"
 	possible_transfer_amounts = null
 	volume = 40
-	var/safety = 1
+	var/safety = TRUE
 
 /obj/item/weapon/reagent_containers/spray/pepper/New()
 	..()
 	reagents.add_reagent("condensedcapsaicin", 40)
 
 /obj/item/weapon/reagent_containers/spray/pepper/examine(mob/user)
-	if(..(user, 1))
+	if(..(user, TRUE))
 		user << "The safety is [safety ? "on" : "off"]."
 
 /obj/item/weapon/reagent_containers/spray/pepper/attack_self(var/mob/user)
@@ -145,7 +145,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
-	amount_per_transfer_from_this = 1
+	amount_per_transfer_from_this = TRUE
 	possible_transfer_amounts = null
 	volume = 10
 
@@ -172,9 +172,9 @@
 	var/turf/T2 = get_step(T,turn(direction, -90))
 	var/list/the_targets = list(T, T1, T2)
 
-	for(var/a = 1 to 3)
+	for(var/a = TRUE to 3)
 		spawn(0)
-			if(reagents.total_volume < 1) break
+			if(reagents.total_volume < TRUE) break
 			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
 			var/turf/my_target = the_targets[a]
 			D.create_reagents(amount_per_transfer_from_this)

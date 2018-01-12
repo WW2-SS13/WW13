@@ -69,8 +69,8 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 var/global/list/exclude_jobs = list(/*/datum/job/ai,/datum/job/cyborg*/)
 
 // Visual nets
-var/list/datum/visualnet/visual_nets = list()
-var/datum/visualnet/cult/cultnet = new()
+//var/list/datum/visualnet/visual_nets = list()
+//var/datum/visualnet/cult/cultnet = new()
 
 //spawn
 var/global/list/latejoin_turfs = list()
@@ -88,8 +88,6 @@ var/global/list/soviet_supplydrop_spots = list()
 // for mass deletion
 var/global/list/bullet_casings = list()
 var/global/list/blood = list()
-
-var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
 
 // Strings which corraspond to bodypart covering flags, useful for outputting what something covers.
 var/global/list/string_part_flags = list(
@@ -199,7 +197,7 @@ var/list/hair_colors = list(
 		if(!(L.flags & NONGLOBAL))
 			language_keys[lowertext(L.key)] = L
 
-	var/rkey = 0
+	var/rkey = FALSE
 	paths = typesof(/datum/species)-/datum/species
 	for(var/T in paths)
 		rkey++
@@ -229,7 +227,7 @@ var/list/hair_colors = list(
 		var/datum/hud/C = new T
 		global.HUDdatums[C.name] = C
 
-	return 1
+	return TRUE
 
 /* // Uncomment to debug chemical reaction list.
 /client/verb/debug_chemical_list()

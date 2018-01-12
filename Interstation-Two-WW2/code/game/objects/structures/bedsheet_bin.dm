@@ -12,7 +12,7 @@ LINEN BINS
 	item_state = "bedsheet"
 	layer = 4.0
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 1
+	throw_speed = TRUE
 	throw_range = 2
 	w_class = 2.0
 
@@ -30,7 +30,7 @@ LINEN BINS
 		user.visible_message("<span class='notice'>\The [user] begins cutting up \the [src] with \a [I].</span>", "<span class='notice'>You begin cutting up \the [src] with \the [I].</span>")
 		if(do_after(user, 50, src))
 			user << "<span class='notice'>You cut \the [src] into pieces!</span>"
-			for(var/i in 1 to rand(2,5))
+			for(var/i in TRUE to rand(2,5))
 				new /obj/item/weapon/reagent_containers/glass/rag(get_turf(src))
 			qdel(src)
 		return
@@ -90,7 +90,7 @@ LINEN BINS
 	desc = "A linen bin. It looks rather cosy."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "linenbin-full"
-	anchored = 1
+	anchored = TRUE
 	var/amount = 20
 	var/list/sheets = list()
 	var/obj/item/hidden = null
@@ -99,10 +99,10 @@ LINEN BINS
 /obj/structure/bedsheetbin/examine(mob/user)
 	..(user)
 
-	if(amount < 1)
+	if(amount < TRUE)
 		user << "There are no bed sheets in the bin."
 		return
-	if(amount == 1)
+	if(amount == TRUE)
 		user << "There is one bed sheet in the bin."
 		return
 	user << "There are [amount] bed sheets in the bin."
@@ -129,11 +129,11 @@ LINEN BINS
 		user << "<span class='notice'>You hide [I] among the sheets.</span>"
 
 /obj/structure/bedsheetbin/attack_hand(mob/user as mob)
-	if(amount >= 1)
+	if(amount >= TRUE)
 		amount--
 
 		var/obj/item/weapon/bedsheet/B
-		if(sheets.len > 0)
+		if(sheets.len > FALSE)
 			B = sheets[sheets.len]
 			sheets.Remove(B)
 
@@ -153,11 +153,11 @@ LINEN BINS
 	add_fingerprint(user)
 
 /obj/structure/bedsheetbin/attack_tk(mob/user as mob)
-	if(amount >= 1)
+	if(amount >= TRUE)
 		amount--
 
 		var/obj/item/weapon/bedsheet/B
-		if(sheets.len > 0)
+		if(sheets.len > FALSE)
 			B = sheets[sheets.len]
 			sheets.Remove(B)
 

@@ -5,7 +5,7 @@
 
 /obj/item/weapon/storage/box/he_grenades/New()
 	..()
-	for(var/i = 0; i < 7; i++)
+	for(var/i = FALSE; i < 7; i++)
 		new /obj/item/ammo_casing/grenade/he(src)
 
 /obj/item/weapon/storage/box/smoke_grenades
@@ -14,5 +14,5 @@
 
 /obj/item/weapon/storage/box/smoke_grenades/New()
 	..()
-	for(var/i = 0; i < 7; i++)
+	for(var/i = FALSE; i < 7; i++)
 		new /obj/item/ammo_casing/grenade/smoke(src)

@@ -1,6 +1,6 @@
 
-var/global/BSACooldown = 0
-var/global/floorIsLava = 0
+var/global/BSACooldown = FALSE
+var/global/floorIsLava = FALSE
 
 
 ////////////////////////////////
@@ -22,7 +22,7 @@ var/global/floorIsLava = 0
 
 proc/admin_notice(var/message, var/rights)
 	for(var/mob/M in mob_list)
-		if(check_rights(rights, 0, M))
+		if(check_rights(rights, FALSE, M))
 			M << message
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
@@ -175,19 +175,19 @@ proc/admin_notice(var/message, var/rights)
 			"}
 	if (M.client)
 		body += {" |
-			<A href='?src=\ref[src];tdome1=\ref[M]'>Thunderdome 1</A> |
+			<A href='?src=\ref[src];tdome1=\ref[M]'>Thunderdome TRUE</A> |
 			<A href='?src=\ref[src];tdome2=\ref[M]'>Thunderdome 2</A> |
 			<A href='?src=\ref[src];tdomeadmin=\ref[M]'>Thunderdome Admin</A> |
 			<A href='?src=\ref[src];tdomeobserve=\ref[M]'>Thunderdome Observer</A> |
 		"}
 	// language toggles
 	body += "<br><br><b>Languages:</b><br>"
-	var/f = 1
+	var/f = TRUE
 	for(var/k in all_languages)
 		var/datum/language/L = all_languages[k]
 		if(!(L.flags & INNATE))
 			if(!f) body += " | "
-			else f = 0
+			else f = FALSE
 			if(L in M.languages)
 				body += "<a href='?src=\ref[src];toglang=\ref[M];lang=[rhtml_encode(k)]' style='color:#006600'>[k]</a>"
 			else
@@ -232,13 +232,13 @@ proc/admin_notice(var/message, var/rights)
 		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
 		// Emulate ceil(why does BYOND not have ceil)
 		if(number_pages != round(number_pages))
-			number_pages = round(number_pages) + 1
-		var/page_index = page - 1
-		if(page_index < 0 || page_index >= number_pages)
+			number_pages = round(number_pages) + TRUE
+		var/page_index = page - TRUE
+		if(page_index < FALSE || page_index >= number_pages)
 			return
 
-		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
-		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
+		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + TRUE
+		var/upper_bound = (page_index + TRUE) * PLAYER_NOTES_ENTRIES_PER_PAGE
 		upper_bound = min(upper_bound, note_keys.len)
 		for(var/index = lower_bound, index <= upper_bound, index++)
 			var/t = note_keys[index]
@@ -247,7 +247,7 @@ proc/admin_notice(var/message, var/rights)
 		dat += "</table><br>"
 
 		// Display a footer to select different pages
-		for(var/index = 1, index <= number_pages, index++)
+		for(var/index = TRUE, index <= number_pages, index++)
 			if(index == page)
 				dat += "<b>"
 			dat += "<a href='?src=\ref[src];notes=list;index=[index]'>[index]</a> "
@@ -258,11 +258,11 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/player_has_info(var/key as text)
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/savefile/info = new("data/player_saves/[copytext(key, TRUE, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || !infos.len) return 0
-	else return 1
+	if(!infos || !infos.len) return FALSE
+	else return TRUE
 
 /datum/admins/proc/show_player_info(var/key as text)
 	set category = "Admin"
@@ -282,22 +282,22 @@ proc/admin_notice(var/message, var/rights)
 			break
 	dat +="<span style='color:#000000; font-weight: bold'>Player age: [p_age]</span><br>"
 
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/savefile/info = new("data/player_saves/[copytext(key, TRUE, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos)
 		dat += "No information found on the given key.<br>"
 	else
-		var/update_file = 0
-		var/i = 0
+		var/update_file = FALSE
+		var/i = FALSE
 		for(var/datum/player_info/I in infos)
-			i += 1
+			i += TRUE
 			if(!I.timestamp)
 				I.timestamp = "Pre-4/3/2012"
-				update_file = 1
+				update_file = TRUE
 			if(!I.rank)
 				I.rank = "N/A"
-				update_file = 1
+				update_file = TRUE
 			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
 			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
 				dat += "<A href='?src=\ref[src];remove_player_info=[key];remove_index=[i]'>Remove</A>"
@@ -317,7 +317,7 @@ proc/admin_notice(var/message, var/rights)
 	for(var/t in jobban_keylist)
 		var/r = t
 		if( findtext(r,"##") )
-			r = copytext( r, 1, findtext(r,"##") )//removes the description
+			r = copytext( r, TRUE, findtext(r,"##") )//removes the description
 		dat += text("<tr><td>[t] (<A href='?src=\ref[src];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
 	usr << browse(dat, "window=ban;size=400x400")*/
@@ -393,7 +393,7 @@ proc/admin_notice(var/message, var/rights)
 	var/message = russian_to_cp1251(input("Global message to send:", "Admin Announce", null, null))  as message
 	if(message)
 		if(!check_rights(R_SERVER,0))
-			message = sanitize(message, 500, extra = 0)
+			message = sanitize(message, 500, extra = FALSE)
 		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
 		world << "<span class=notice><b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b><p style='text-indent: 50px'>[message]</p></span>"
 		log_admin("Announce: [key_name(usr)] : [message]")
@@ -446,7 +446,7 @@ proc/admin_notice(var/message, var/rights)
 	else
 		world << "<B>Deadchat has been globally disabled!</B>"
 	log_admin("[key_name(usr)] toggled deadchat.")
-	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
+	message_admins("[key_name_admin(usr)] toggled deadchat.", TRUE)
 
 
 /datum/admins/proc/toggleoocdead()
@@ -459,7 +459,7 @@ proc/admin_notice(var/message, var/rights)
 
 	config.dooc_allowed = !( config.dooc_allowed )
 	log_admin("[key_name(usr)] toggled Dead OOC.")
-	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
+	message_admins("[key_name_admin(usr)] toggled Dead OOC.", TRUE)
 
 
 
@@ -469,7 +469,7 @@ proc/admin_notice(var/message, var/rights)
 	set name="Toggle Traitor Scaling"
 	config.traitor_scaling = !config.traitor_scaling
 	log_admin("[key_name(usr)] toggled Traitor Scaling to [config.traitor_scaling].")
-	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [config.traitor_scaling ? "on" : "off"].", 1)
+	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [config.traitor_scaling ? "on" : "off"].", TRUE)
 
 
 /datum/admins/proc/startnow()
@@ -484,10 +484,10 @@ proc/admin_notice(var/message, var/rights)
 		log_admin("[usr.key] has started the game.")
 		message_admins("<font color='blue'>[usr.key] has started the game.</font>")
 
-		return 1
+		return TRUE
 	else
 		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"
-		return 0
+		return FALSE
 
 /datum/admins/proc/toggleenter()
 	set category = "Server"
@@ -499,7 +499,7 @@ proc/admin_notice(var/message, var/rights)
 	else
 		world << "<B>New players may now enter the game.</B>"
 	log_admin("[key_name(usr)] toggled new player game entering.")
-	message_admins("\blue [key_name_admin(usr)] toggled new player game entering.", 1)
+	message_admins("\blue [key_name_admin(usr)] toggled new player game entering.", TRUE)
 	world.update_status()
 
 
@@ -525,7 +525,7 @@ proc/admin_notice(var/message, var/rights)
 		world << "<B>You may now respawn.</B>"
 	else
 		world << "<B>You may no longer respawn :(</B>"
-	message_admins("\blue [key_name_admin(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].", 1)
+	message_admins("\blue [key_name_admin(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].", TRUE)
 	log_admin("[key_name(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].")
 	world.update_status()
 
@@ -536,7 +536,7 @@ proc/admin_notice(var/message, var/rights)
 	set name="Toggle Aliens"
 	config.aliens_allowed = !config.aliens_allowed
 	log_admin("[key_name(usr)] toggled Aliens to [config.aliens_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Aliens [config.aliens_allowed ? "on" : "off"].", 1)
+	message_admins("[key_name_admin(usr)] toggled Aliens [config.aliens_allowed ? "on" : "off"].", TRUE)
 
 */
 /datum/admins/proc/delay()
@@ -548,7 +548,7 @@ proc/admin_notice(var/message, var/rights)
 	if (!ticker || ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", TRUE)
 		return //alert("Round end delayed", null, null, null, null, null)
 	round_progressing = !round_progressing
 	if (!round_progressing)
@@ -605,7 +605,7 @@ proc/admin_notice(var/message, var/rights)
 	if (M.z == 6)
 		if (config.allow_admin_jump)
 			M.loc = pick(latejoin)
-			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
+			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", TRUE)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 		else
 			alert("Admin jumping disabled")
@@ -615,11 +615,11 @@ proc/admin_notice(var/message, var/rights)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
-/proc/is_special_character(mob/M as mob) // returns 1 for specail characters and 2 for heroes of gamemode
+/proc/is_special_character(mob/M as mob) // returns TRUE for specail characters and 2 for heroes of gamemode
 	if(!ticker || !ticker.mode)
-		return 0
+		return FALSE
 	if (!istype(M))
-		return 0
+		return FALSE
 
 	if(M.mind)
 		if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
@@ -627,9 +627,9 @@ proc/admin_notice(var/message, var/rights)
 				if(antag.is_antagonist(M.mind))
 					return 2
 		else if(M.mind.special_role)
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 	/*
 /datum/admins/proc/spawn_custom_item()
@@ -768,7 +768,7 @@ proc/admin_notice(var/message, var/rights)
 
 	if(ticker.mode.round_autoantag)
 		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];toggle=autotraitor'>enabled</a></b>."
-		if(ticker.mode.antag_scaling_coeff > 0)
+		if(ticker.mode.antag_scaling_coeff > FALSE)
 			out += " (scaling with <a href='?src=\ref[ticker.mode];set=antag_scaling'>[ticker.mode.antag_scaling_coeff]</a>)"
 		else
 			out += " (not currently scaling, <a href='?src=\ref[ticker.mode];set=antag_scaling'>set a coefficient</a>)"
@@ -801,7 +801,7 @@ proc/admin_notice(var/message, var/rights)
 	else
 		world << "<B>Reduced welder vision has been disabled!</B>"
 	log_admin("[key_name(usr)] toggled welder vision.")
-	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
+	message_admins("[key_name_admin(usr)] toggled welder vision.", TRUE)
 
 */
 /datum/admins/proc/toggleguests()
@@ -814,11 +814,11 @@ proc/admin_notice(var/message, var/rights)
 	else
 		world << "<B>Guests may now enter the game.</B>"
 	log_admin("[key_name(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.")
-	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.", 1)
+	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.", TRUE)
 
 
 /datum/admins/proc/output_ai_laws()
-	return 0
+	return FALSE
 
 /client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
 	set category = "Admin"
@@ -839,15 +839,15 @@ proc/admin_notice(var/message, var/rights)
 /proc/is_mentor(client/C)
 
 	if(!istype(C))
-		return 0
+		return FALSE
 	if(!C.holder)
-		return 0
+		return FALSE
 
 	if(C.holder.rights == R_MENTOR)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
-/proc/get_options_bar(whom, detail = 2, name = 0, link = 1, highlight_special = 1)
+/proc/get_options_bar(whom, detail = 2, name = FALSE, link = TRUE, highlight_special = TRUE)
 	if(!whom)
 		return "<b>(*null*)</b>"
 	var/mob/M
@@ -882,7 +882,7 @@ proc/admin_notice(var/message, var/rights)
 
 /proc/ishost(whom)
 	if(!whom)
-		return 0
+		return FALSE
 	var/client/C
 	var/mob/M
 	if(istype(whom, /client))
@@ -891,35 +891,35 @@ proc/admin_notice(var/message, var/rights)
 		M = whom
 		C = M.client
 	if(R_HOST & C.holder.rights)
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 //
 //
 //ALL DONE
 //*********************************************************************************************************
 //
 
-//Returns 1 to let the dragdrop code know we are trapping this event
-//Returns 0 if we don't plan to trap the event
+//Returns TRUE to let the dragdrop code know we are trapping this event
+//Returns FALSE if we don't plan to trap the event
 /datum/admins/proc/cmd_ghost_drag(var/mob/observer/ghost/frommob, var/mob/living/tomob)
 	if(!istype(frommob))
 		return //Extra sanity check to make sure only observers are shoved into things
 
 	//Same as assume-direct-control perm requirements.
 	if (!check_rights(R_VAREDIT,0) || !check_rights(R_ADMIN|R_DEBUG,0))
-		return 0
+		return FALSE
 	if (!frommob.ckey)
-		return 0
+		return FALSE
 	var/question = ""
 	if (tomob.ckey)
 		question = "This mob already has a user ([tomob.key]) in control of it! "
 	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
 	var/ask = alert(question, "Place ghost in control of mob?", "Yes", "No")
 	if (ask != "Yes")
-		return 1
+		return TRUE
 	if (!frommob || !tomob) //make sure the mobs don't go away while we waited for a response
-		return 1
+		return TRUE
 	if(tomob.client) //No need to ghostize if there is no client
 		tomob.ghostize(0)
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.ckey] in control of [tomob.name].</span>")
@@ -927,7 +927,7 @@ proc/admin_notice(var/message, var/rights)
 
 	tomob.ckey = frommob.ckey
 	qdel(frommob)
-	return 1
+	return TRUE
 
 /datum/admins/proc/force_antag_latespawn()
 	set category = "Admin"
@@ -979,10 +979,10 @@ proc/admin_notice(var/message, var/rights)
 	var/msg
 
 	if(check_rights(R_ADMIN))
-		if (H.paralysis == 0)
+		if (H.paralysis == FALSE)
 			H.paralysis = 8000
 			msg = "has paralyzed [key_name(H)]."
 		else
-			H.paralysis = 0
+			H.paralysis = FALSE
 			msg = "has unparalyzed [key_name(H)]."
 		log_and_message_admins(msg)

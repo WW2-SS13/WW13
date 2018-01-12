@@ -2,11 +2,11 @@
 	damage = 10
 	range_step = 2
 
-	base_spread = 0 //causes it to be treated as a shrapnel explosion instead of cone
+	base_spread = FALSE //causes it to be treated as a shrapnel explosion instead of cone
 	spread_step = 20
 
-	silenced = 1 //embedding messages are still produced so it's kind of weird when enabled.
-	no_attack_log = 1
+	silenced = TRUE //embedding messages are still produced so it's kind of weird when enabled.
+	no_attack_log = TRUE
 	muzzle_type = null
 
 /obj/item/projectile/bullet/pellet/fragment/strong
@@ -30,7 +30,7 @@
 
 /obj/item/weapon/grenade/explosive/prime()
 	if (active)
-		set waitfor = 0
+		set waitfor = FALSE
 		..()
 
 		var/turf/T = get_turf(src)
@@ -58,15 +58,15 @@
 				//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
 				//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
 				if(M.lying && isturf(src.loc))
-					P.attack_mob(M, 0, 0)
+					P.attack_mob(M, FALSE, FALSE)
 				else
-					P.attack_mob(M, 0, 100) //otherwise, allow a decent amount of fragments to pass
+					P.attack_mob(M, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
 
 		qdel(src)
 
 /obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/T)
 	if(explosion_size)
-		explosion(T, 1, -1, 2, round(explosion_size/2), 0)
+		explosion(T, TRUE, -1, 2, round(explosion_size/2), FALSE)
 
 /obj/item/weapon/grenade/explosive/frag
 	name = "fragmentation grenade"
@@ -78,4 +78,4 @@
 
 /obj/item/weapon/grenade/explosive/frag/on_explosion(var/turf/O)
 	if(explosion_size)
-		explosion(O, 1, round(explosion_size/2), explosion_size, round(explosion_size/2), 0)
+		explosion(O, TRUE, round(explosion_size/2), explosion_size, round(explosion_size/2), FALSE)

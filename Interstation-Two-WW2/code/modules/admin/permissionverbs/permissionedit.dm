@@ -77,11 +77,11 @@
 
 	var/list/rowdata = database.execute("SELECT id FROM admin WHERE ckey = '[adm_ckey]';")
 
-	var/new_admin = 1
+	var/new_admin = TRUE
 	var/admin_id
 
 	if (islist(rowdata) && !isemptylist(rowdata))
-		new_admin = 0
+		new_admin = FALSE
 		admin_id = text2num(rowdata["id"])
 
 	if(new_admin)

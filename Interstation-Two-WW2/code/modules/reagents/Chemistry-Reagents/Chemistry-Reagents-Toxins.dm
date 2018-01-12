@@ -81,7 +81,7 @@
 /datum/reagent/toxin/cyanide/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.adjustOxyLoss(20 * removed)
-	M.sleeping += 1
+	M.sleeping += TRUE
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
@@ -90,19 +90,19 @@
 	taste_description = "salt"
 	reagent_state = SOLID
 	color = "#FFFFFF"
-	strength = 0
+	strength = FALSE
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/toxin/potassium_chloride/overdose(var/mob/living/carbon/M, var/alien)
 	..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.stat != 1)
+		if(H.stat != TRUE)
 			if(H.losebreath >= 10)
 				H.losebreath = max(10, H.losebreath - 10)
 			H.adjustOxyLoss(2)
 			H.Weaken(10)
-		M.add_chemical_effect(CE_NOPULSE, 1)
+		M.add_chemical_effect(CE_NOPULSE, TRUE)
 
 
 /datum/reagent/toxin/potassium_chlorophoride
@@ -119,12 +119,12 @@
 	..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.stat != 1)
+		if(H.stat != TRUE)
 			if(H.losebreath >= 10)
 				H.losebreath = max(10, M.losebreath-10)
 			H.adjustOxyLoss(2)
 			H.Weaken(10)
-		M.add_chemical_effect(CE_NOPULSE, 1)
+		M.add_chemical_effect(CE_NOPULSE, TRUE)
 
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"
@@ -143,7 +143,7 @@
 	M.Weaken(10)
 	M.silent = max(M.silent, 10)
 	M.tod = stationtime2text()
-	M.add_chemical_effect(CE_NOPULSE, 1)
+	M.add_chemical_effect(CE_NOPULSE, TRUE)
 
 /datum/reagent/toxin/zombiepowder/Destroy()
 	if(holder && holder.my_atom && ismob(holder.my_atom))
@@ -177,7 +177,7 @@
 	name = "Plant-B-Gone"
 	id = "plantbgone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
-	taste_mult = 1
+	taste_mult = TRUE
 	reagent_state = LIQUID
 	color = "#49002E"
 	strength = 4
@@ -214,7 +214,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/lexorin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.take_organ_damage(3 * removed, 0)
+	M.take_organ_damage(3 * removed, FALSE)
 	if(M.losebreath < 15)
 		M.losebreath++
 
@@ -232,7 +232,7 @@
 		M << "<span class='danger'>Your insides are burning!</span>"
 		M.adjustToxLoss(rand(100, 300) * removed)
 	else if(prob(40))
-		M.heal_organ_damage(25 * removed, 0)
+		M.heal_organ_damage(25 * removed, FALSE)
 
 /datum/reagent/soporific
 	name = "Soporific"
@@ -249,7 +249,7 @@
 	if(issmall(M))
 		effective_dose *= 2
 
-	if(effective_dose < 1)
+	if(effective_dose < TRUE)
 		if(effective_dose == metabolism * 2 || prob(5))
 			M.emote("yawn")
 	else if(effective_dose < 1.5)
@@ -287,7 +287,7 @@
 	else
 		M.sleeping = max(M.sleeping, 30)
 
-	if(effective_dose > 1)
+	if(effective_dose > TRUE)
 		M.adjustToxLoss(removed)
 
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
@@ -358,7 +358,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/impedrezene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.jitteriness = max(M.jitteriness - 5, 0)
+	M.jitteriness = max(M.jitteriness - 5, FALSE)
 	if(prob(80))
 		M.adjustBrainLoss(0.1 * removed)
 	if(prob(50))
@@ -393,7 +393,7 @@
 
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
-	if(effective_dose < 1)
+	if(effective_dose < TRUE)
 		M.apply_effect(3, STUTTER)
 		M.make_dizzy(5)
 		if(prob(5))
@@ -423,7 +423,7 @@
 
 /datum/reagent/nicotine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.add_chemical_effect(CE_PULSE, 1)
+	M.add_chemical_effect(CE_PULSE, TRUE)
 
 /* Transformations */
 
@@ -454,8 +454,8 @@
 	if(M.transforming)
 		return
 	M << "<span class='danger'>Your flesh rapidly mutates!</span>"
-	M.transforming = 1
-	M.canmove = 0
+	M.transforming = TRUE
+	M.canmove = FALSE
 	M.icon = null
 	M.overlays.Cut()
 	M.invisibility = 101
@@ -468,7 +468,7 @@
 		W.dropped(M)
 	var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
 	new_mob.a_intent = "hurt"
-	new_mob.universal_speak = 1
+	new_mob.universal_speak = TRUE
 	if(M.mind)
 		M.mind.transfer_to(new_mob)
 	else

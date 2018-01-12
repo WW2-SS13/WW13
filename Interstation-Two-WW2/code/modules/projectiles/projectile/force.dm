@@ -8,14 +8,14 @@
 /obj/item/projectile/forcebolt/strong
 	name = "force bolt"
 
-/obj/item/projectile/forcebolt/on_hit(var/atom/movable/target, var/blocked = 0)
+/obj/item/projectile/forcebolt/on_hit(var/atom/movable/target, var/blocked = FALSE)
 	if(istype(target))
 		var/throwdir = get_dir(firer,target)
 		target.throw_at(get_edge_target_turf(target, throwdir),10,10)
-		return 1
+		return TRUE
 
 /*
-/obj/item/projectile/forcebolt/strong/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/forcebolt/strong/on_hit(var/atom/target, var/blocked = FALSE)
 
 	// NONE OF THIS WORKS. DO NOT USE.
 	var/throwdir = null

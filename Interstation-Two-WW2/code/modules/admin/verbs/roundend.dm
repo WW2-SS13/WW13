@@ -17,7 +17,7 @@
 		return
 
 	var/datum/game_mode/ww2/WW2 = ticker.mode
-	WW2.admins_triggered_roundend = 1
+	WW2.admins_triggered_roundend = TRUE
 
 	message_admins("[key_name(src)] ended the round!")
 	log_admin("[key_name(src)] ended the round!")

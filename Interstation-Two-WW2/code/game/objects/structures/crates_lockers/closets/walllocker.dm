@@ -6,8 +6,8 @@
 	name = "Wall Locker"
 	icon = 'icons/obj/walllocker.dmi'
 	icon_state = "wall-locker"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	icon_closed = "wall-locker"
 	icon_opened = "wall-lockeropen"
 

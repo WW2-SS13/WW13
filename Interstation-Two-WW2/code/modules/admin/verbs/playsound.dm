@@ -5,7 +5,7 @@ var/list/sounds_cache = list()
 	set name = "Play Global Sound"
 	if(!check_rights(R_SOUNDS))	return
 
-	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
+	var/sound/uploaded_sound = sound(S, repeat = FALSE, wait = TRUE, channel = 777)
 	uploaded_sound.priority = 250
 
 	sounds_cache += S
@@ -14,7 +14,7 @@ var/list/sounds_cache = list()
 		return
 
 	log_admin("[key_name(src)] played sound [S]")
-	message_admins("[key_name_admin(src)] played sound [S]", 1)
+	message_admins("[key_name_admin(src)] played sound [S]", TRUE)
 	for(var/mob/M in player_list)
 		if(M.is_preference_enabled(/datum/client_preference/play_admin_midis))
 			M << uploaded_sound
@@ -27,8 +27,8 @@ var/list/sounds_cache = list()
 	if(!check_rights(R_SOUNDS))	return
 
 	log_admin("[key_name(src)] played a local sound [S]")
-	message_admins("[key_name_admin(src)] played a local sound [S]", 1)
-	playsound(get_turf(src.mob), S, volume, 0, 0)
+	message_admins("[key_name_admin(src)] played a local sound [S]", TRUE)
+	playsound(get_turf(src.mob), S, volume, FALSE, FALSE)
 
 
 /client/proc/play_server_sound()
@@ -52,7 +52,7 @@ var/list/sounds_cache = list()
 	set category = "Fun"
 	set name = "Cuban Pete Time"
 
-	message_admins("[key_name_admin(usr)] has declared Cuban Pete Time!", 1)
+	message_admins("[key_name_admin(usr)] has declared Cuban Pete Time!", TRUE)
 	for(var/mob/M in world)
 		if(M.client)
 			if(M.client.midis)
@@ -68,7 +68,7 @@ var/list/sounds_cache = list()
 	set category = "Fun"
 	set name = "Banana Phone"
 
-	message_admins("[key_name_admin(usr)] has activated Banana Phone!", 1)
+	message_admins("[key_name_admin(usr)] has activated Banana Phone!", TRUE)
 	for(var/mob/M in world)
 		if(M.client)
 			if(M.client.midis)
@@ -79,7 +79,7 @@ client/proc/space_asshole()
 	set category = "Fun"
 	set name = "Space Asshole"
 
-	message_admins("[key_name_admin(usr)] has played the Space Asshole Hymn.", 1)
+	message_admins("[key_name_admin(usr)] has played the Space Asshole Hymn.", TRUE)
 	for(var/mob/M in world)
 		if(M.client)
 			if(M.client.midis)
@@ -90,7 +90,7 @@ client/proc/honk_theme()
 	set category = "Fun"
 	set name = "Honk"
 
-	message_admins("[key_name_admin(usr)] has creeped everyone out with Blackest Honks.", 1)
+	message_admins("[key_name_admin(usr)] has creeped everyone out with Blackest Honks.", TRUE)
 	for(var/mob/M in world)
 		if(M.client)
 			if(M.client.midis)

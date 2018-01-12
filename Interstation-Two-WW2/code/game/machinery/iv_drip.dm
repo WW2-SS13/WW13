@@ -1,12 +1,12 @@
 /obj/machinery/iv_drip
 	name = "\improper IV drip"
 	icon = 'icons/obj/iv_drip.dmi'
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 
 
 /obj/machinery/iv_drip/var/mob/living/carbon/human/attached = null
-/obj/machinery/iv_drip/var/mode = 1 // 1 is injecting, 0 is taking blood.
+/obj/machinery/iv_drip/var/mode = TRUE // TRUE is injecting, FALSE is taking blood.
 /obj/machinery/iv_drip/var/obj/item/weapon/reagent_containers/beaker = null
 
 /obj/machinery/iv_drip/update_icon()
@@ -44,7 +44,7 @@
 		src.update_icon()
 		return
 
-	if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= 1)
+	if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= TRUE)
 		visible_message("[usr] attaches \the [src] to \the [over_object].")
 		src.attached = over_object
 		src.update_icon()
@@ -67,11 +67,11 @@
 
 
 /obj/machinery/iv_drip/process()
-	set background = 1
+	set background = TRUE
 
 	if(src.attached)
 
-		if(!(get_dist(src, src.attached) <= 1 && isturf(src.attached.loc)))
+		if(!(get_dist(src, src.attached) <= TRUE && isturf(src.attached.loc)))
 			visible_message("The needle is ripped out of [src.attached], doesn't that hurt?")
 			src.attached:apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
 			src.attached = null
@@ -81,7 +81,7 @@
 	if(src.attached && src.beaker)
 		// Give blood
 		if(mode)
-			if(src.beaker.volume > 0)
+			if(src.beaker.volume > FALSE)
 				var/transfer_amount = REM
 				if(istype(src.beaker, /obj/item/weapon/reagent_containers/blood))
 					// speed up transfer on blood packs
@@ -94,7 +94,7 @@
 			var/amount = beaker.reagents.maximum_volume - beaker.reagents.total_volume
 			amount = min(amount, 4)
 			// If the beaker is full, ping
-			if(amount == 0)
+			if(amount == FALSE)
 				if(prob(5)) visible_message("\The [src] pings.")
 				return
 
@@ -164,5 +164,5 @@
 
 /obj/machinery/iv_drip/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(height && istype(mover) && mover.checkpass(PASSTABLE)) //allow bullets, beams, thrown objects, mice, drones, and the like through.
-		return 1
+		return TRUE
 	return ..()

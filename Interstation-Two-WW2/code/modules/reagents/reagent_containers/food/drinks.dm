@@ -18,7 +18,7 @@
 			open(user)
 
 	proc/open(mob/user)
-		playsound(loc,'sound/effects/canopen.ogg', rand(10,50), 1)
+		playsound(loc,'sound/effects/canopen.ogg', rand(10,50), TRUE)
 		user << "<span class='notice'>You open [src] with an audible pop!</span>"
 		flags |= OPENCONTAINER
 
@@ -29,7 +29,7 @@
 		if(standard_feed_mob(user, M))
 			return
 
-		return 0
+		return FALSE
 
 	afterattack(obj/target, mob/user, proximity)
 		if(!proximity) return
@@ -43,31 +43,31 @@
 	standard_feed_mob(var/mob/user, var/mob/target)
 		if(!is_open_container())
 			user << "<span class='notice'>You need to open [src]!</span>"
-			return 1
+			return TRUE
 		return ..()
 
 	standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
 		if(!is_open_container())
 			user << "<span class='notice'>You need to open [src]!</span>"
-			return 1
+			return TRUE
 		return ..()
 
 	standard_pour_into(var/mob/user, var/atom/target)
 		if(!is_open_container())
 			user << "<span class='notice'>You need to open [src]!</span>"
-			return 1
+			return TRUE
 		return ..()
 
 	self_feed_message(var/mob/user)
 		user << "<span class='notice'>You swallow a gulp from \the [src].</span>"
 
 	feed_sound(var/mob/user)
-		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
+		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)
 
 	examine(mob/user)
-		if(!..(user, 1))
+		if(!..(user, TRUE))
 			return
-		if(!reagents || reagents.total_volume == 0)
+		if(!reagents || reagents.total_volume == FALSE)
 			user << "<span class='notice'>\The [src] is empty!</span>"
 		else if (reagents.total_volume <= volume * 0.25)
 			user << "<span class='notice'>\The [src] is almost empty!</span>"
@@ -256,7 +256,7 @@
 	name = "snackarooni cocktailarooni"
 	desc = "Something's off about this."
 	icon = 'icons/obj/drinks.dmi'
-	var/is_edible = 0
+	var/is_edible = FALSE
 	w_class = 1.0
 
 /obj/item/cocktail_stuff/attack(mob/M as mob, mob/user as mob)
@@ -268,7 +268,7 @@
 	else
 		M << "<span class='notice'>You eat [src]. Yum!</span>"
 		user.visible_message("<span class='warning'><b>[user]</b> sticks [src] into <b>[M]</b>'s mouth.</span>")
-	playsound(usr.loc,"sound/items/eatfood.ogg", rand(10,50), 1)
+	playsound(usr.loc,"sound/items/eatfood.ogg", rand(10,50), TRUE)
 	qdel(src)
 	..()
 
@@ -287,16 +287,16 @@
 	name = "maraschino cherry"
 	desc = "A maraschino cherry, or cocktail cherry, is a preserved, artificially colored and sweetened cherry. Very common to see in many cocktails."
 	icon_state = "highball-cherry"
-	is_edible = 1
+	is_edible = TRUE
 
 /obj/item/cocktail_stuff/cocktail_olive
 	name = "cocktail olive"
 	desc = "An olive on a toothpick. This has no purpose in the drink's flavor, but hey, free olives!"
 	icon_state = "highball-olive"
-	is_edible = 1
+	is_edible = TRUE
 
 /obj/item/cocktail_stuff/celery
 	name = "celery stick"
 	desc = "A stick of celery. Ants not included."
 	icon_state = "highball-celery"
-	is_edible = 1
+	is_edible = TRUE

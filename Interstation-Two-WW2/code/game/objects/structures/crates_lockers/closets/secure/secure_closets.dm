@@ -3,31 +3,31 @@
 	desc = "It's a card-locked storage unit."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "secure1"
-	density = 1
-	opened = 0
-	var/locked = 1
-	var/broken = 0
-	var/large = 1
+	density = TRUE
+	opened = FALSE
+	var/locked = TRUE
+	var/broken = FALSE
+	var/large = TRUE
 	icon_closed = "secure"
 	var/icon_locked = "secure1"
 	icon_opened = "secureopen"
 	var/icon_broken = "securebroken"
 	var/icon_off = "secureoff"
-	wall_mounted = 0 //never solid (You can always pass over it)
+	wall_mounted = FALSE //never solid (You can always pass over it)
 	health = 200
 
 /obj/structure/closet/secure_closet/can_open()
 	if(src.locked)
-		return 0
+		return FALSE
 	return ..()
 
 /obj/structure/closet/secure_closet/close()
 	if(..())
 		if(broken)
 			icon_state = src.icon_off
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/structure/closet/secure_closet/emp_act(severity)
 	for(var/obj/O in src)
@@ -59,7 +59,7 @@
 		for(var/mob/O in viewers(user, 3))
 			if((O.client && !( O.blinded )))
 				O << "<span class='notice'>The locker has been [locked ? null : "un"]locked by [user].</span>"
-				playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
+				playsound(loc, 'sound/machines/id_swipe.ogg', 100, TRUE)
 		update_icon()
 	else
 		user << "<span class='notice'>Access Denied</span>"
@@ -89,12 +89,12 @@
 		user << "You start hack a locker"
 		for (var/i=1, i <= 3 , i++)
 			user << "Pick [i] of 3"
-			playsound(src.loc, 'sound/machines/lockreset.ogg', 50, 1)
+			playsound(src.loc, 'sound/machines/lockreset.ogg', 50, TRUE)
 			if(!do_after(user,300))
 				return
-		playsound(src.loc, "sparks", 50, 1)
+		playsound(src.loc, "sparks", 50, TRUE)
 		user << "Done!"
-		src.locked = 0
+		src.locked = FALSE
 		update_icon()*/
 	else
 		togglelock(user)
@@ -136,11 +136,11 @@
 		icon_state = icon_opened
 
 /obj/structure/closet/secure_closet/req_breakout()
-	if(!opened && locked) return 1
+	if(!opened && locked) return TRUE
 	return ..() //It's a secure closet, but isn't locked.
 
 /obj/structure/closet/secure_closet/break_open()
 	desc += " It appears to be broken."
-	broken = 1
-	locked = 0
+	broken = TRUE
+	locked = FALSE
 	..()

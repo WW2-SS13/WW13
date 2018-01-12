@@ -1,7 +1,7 @@
 /var/global/weather = WEATHER_NONE
 /var/global/weather_intensity = 1.0
 
-/proc/change_weather(_weather = WEATHER_NONE, var/bypass_same_weather_check = 0)
+/proc/change_weather(_weather = WEATHER_NONE, var/bypass_same_weather_check = FALSE)
 
 	if (_weather == null)
 		return
@@ -42,7 +42,7 @@
 					area_alpha = 125
 
 	for (var/area/prishtina/A in all_areas)
-		if (istype(A) && A.location == AREA_OUTSIDE && A.z == 1)
+		if (istype(A) && A.location == AREA_OUTSIDE && A.z == TRUE)
 			A.icon = area_icon
 			A.icon_state = area_icon_state
 			A.alpha = area_alpha
@@ -60,17 +60,17 @@
 		#ifdef NO_NEW_SNOWFALL
 		return
 		#endif
-		var/turfs_made_snowy = 0
+		var/turfs_made_snowy = FALSE
 		// randomize the areas we snow in
 		var/list_of_areas = shuffle(all_areas)
 		for (var/area/A in list_of_areas)
 			if (A.snowfall_valid_turfs.len)
 				// randomize the turfs we snow in
-				var/min_index = 1
+				var/min_index = TRUE
 				var/max_index = A.snowfall_valid_turfs.len
 				var/random_indices = list()
 
-				for (var/v in 1 to 15)
+				for (var/v in TRUE to 15)
 					random_indices |= rand(min_index, max_index)
 				for (var/v in random_indices)
 					var/turf/floor/F = A.snowfall_valid_turfs[v]
@@ -94,11 +94,11 @@
 		for (var/area/A in list_of_areas)
 			if (A.snowfall_valid_turfs.len) // even though this is rain, same reqs
 				// randomize the turfs we make muddy
-				var/min_index = 1
+				var/min_index = TRUE
 				var/max_index = A.snowfall_valid_turfs.len
 				var/random_indices = list()
 
-				for (var/v in 1 to 40) // 2 to 3x more than snow affects
+				for (var/v in TRUE to 40) // 2 to 3x more than snow affects
 					random_indices |= rand(min_index, max_index)
 				for (var/v in random_indices)
 					var/turf/floor/F = A.snowfall_valid_turfs[v]
@@ -107,7 +107,7 @@
 						continue
 					if (istype(F) && F.uses_winter_overlay)
 						if (prob(33))
-							F.muddy = 1
+							F.muddy = TRUE
 					if (prob(75))
 						for (var/obj/effect/decal/cleanable/C in F)
 							qdel(C)
@@ -122,7 +122,7 @@
 		++weather_intensity
 	else if (weather_intensity > 1.0)
 		--weather_intensity
-	change_weather(weather, 1)
+	change_weather(weather, TRUE)
 
 	if (old_intensity != weather_intensity)
 		announce_weather_mod(old_intensity, weather_intensity)

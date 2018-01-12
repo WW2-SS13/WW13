@@ -1,4 +1,4 @@
-/var/global/machinery_sort_required = 0
+/var/global/machinery_sort_required = FALSE
 
 /var/datum/controller/process/machinery/machinery_process = null
 
@@ -17,7 +17,7 @@
 
 /datum/controller/process/machinery/proc/internal_sort()
 	if(machinery_sort_required)
-		machinery_sort_required = 0
+		machinery_sort_required = FALSE
 		machines = dd_sortedObjectList(machines)
 
 /datum/controller/process/machinery/proc/internal_process_machinery()
@@ -25,7 +25,7 @@
 		var/obj/machinery/M = last_object
 		if(M && !M.gcDestroyed)
 			if(M.process() == PROCESS_KILL)
-				//M.inMachineList = 0 We don't use this debugging function
+				//M.inMachineList = FALSE We don't use this debugging function
 				machines.Remove(M)
 				continue
 
@@ -49,7 +49,7 @@
 /*	// Currently only used by powersinks. These items get priority processed before machinery
 	for(last_object in processing_power_items)
 		var/obj/item/I = last_object
-		if(!I.pwr_drain()) // 0 = Process Kill, remove from processing list.
+		if(!I.pwr_drain()) // FALSE = Process Kill, remove from processing list.
 			processing_power_items.Remove(I)
 		SCHECK*/
 

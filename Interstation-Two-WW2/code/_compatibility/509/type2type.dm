@@ -1,11 +1,11 @@
 #if DM_VERSION < 510
 // Concatenates a list of strings into a single string.  A seperator may optionally be provided.
 /proc/jointext(list/ls, sep)
-	if (ls.len <= 1) // Early-out code for empty or singleton lists.
+	if (ls.len <= TRUE) // Early-out code for empty or singleton lists.
 		return ls.len ? ls[1] : ""
 
 	var/l = ls.len // Made local for sanic speed.
-	var/i = 0      // Incremented every time a list index is accessed.
+	var/i = FALSE      // Incremented every time a list index is accessed.
 
 	if (sep <> null)
 		// Macros expand to long argument lists like so: sep, ls[++i], sep, ls[++i], sep, ls[++i], etc...
@@ -17,8 +17,8 @@
 		. = "[ls[++i]]" // Make sure the initial element is converted to text.
 
 		// Having the small concatenations come before the large ones boosted speed by an average of at least 5%.
-		if (l-1 & 0x01) // 'i' will always be 1 here.
-			. = text("[][][]", ., S1) // Append 1 element if the remaining elements are not a multiple of 2.
+		if (l-1 & 0x01) // 'i' will always be TRUE here.
+			. = text("[][][]", ., S1) // Append TRUE element if the remaining elements are not a multiple of 2.
 		if (l-i & 0x02)
 			. = text("[][][][][]", ., S1, S1) // Append 2 elements if the remaining elements are not a multiple of 4.
 		if (l-i & 0x04)
@@ -58,8 +58,8 @@
 
 		. = "[ls[++i]]" // Make sure the initial element is converted to text.
 
-		if (l-1 & 0x01) // 'i' will always be 1 here.
-			. += S1 // Append 1 element if the remaining elements are not a multiple of 2.
+		if (l-1 & 0x01) // 'i' will always be TRUE here.
+			. += S1 // Append TRUE element if the remaining elements are not a multiple of 2.
 		if (l-i & 0x02)
 			. = text("[][][]", ., S1, S1) // Append 2 elements if the remaining elements are not a multiple of 4.
 		if (l-i & 0x04)
@@ -87,15 +87,15 @@
 // Converts a string into a list by splitting the string at each delimiter found. (discarding the seperator)
 /proc/splittext(text, delimiter="\n")
 	var/delim_len = length(delimiter)
-	if (delim_len < 1)
+	if (delim_len < TRUE)
 		return list(text)
 
 	. = list()
-	var/last_found = 1
+	var/last_found = TRUE
 	var/found
 
 	do
-		found       = findtext(text, delimiter, last_found, 0)
+		found       = findtext(text, delimiter, last_found, FALSE)
 		.          += copytext(text, last_found, found)
 		last_found  = found + delim_len
 	while (found)

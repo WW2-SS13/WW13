@@ -10,25 +10,25 @@
 	if (!artillery_master)
 		artillery_master = new/datum/artillery_controller()
 
-	var/fake_builder = 0
+	var/fake_builder = FALSE
 
 	if (builder == null && dir != null)
 		builder = new/mob(loc)
 		builder.dir = dir
-		fake_builder = 1
+		fake_builder = TRUE
 
 	var/obj/machinery/artillery/base/nebel/base = new/obj/machinery/artillery/base/nebel(loc)
 	var/obj/machinery/artillery/tube/nebel/tube = new/obj/machinery/artillery/tube/nebel(get_step(base, base.dir))
 
-	for (var/v in 1 to 6)
+	for (var/v in TRUE to 6)
 		base.lloaded[v] = new/obj/item/artillery_ammo/none()
 
 	base.dir = builder.dir
 	tube.dir = builder.dir
 	base.other = tube
 	tube.other = base
-	base.anchored = 0
-	tube.anchored = 1
+	base.anchored = FALSE
+	tube.anchored = TRUE
 
 	if (fake_builder)
 		qdel(builder)
@@ -47,7 +47,7 @@
 
 /obj/machinery/artillery/base/nebel/New()
 
-	for (var/v in 1 to 20)
+	for (var/v in TRUE to 20)
 		var/obj/item/weapon/material/shard/shard = new/obj/item/weapon/material/shard/shrapnel(src)
 		ejections.Add(shard)
 
@@ -139,13 +139,13 @@
 				if (state == "OPEN")
 					user << "<span class='danger'>Close the shell loading slot first.</span>"
 					return
-				if (abs(offset_x) > 0 || abs(offset_y) > 0)
+				if (abs(offset_x) > FALSE || abs(offset_y) > FALSE)
 					if (abs(offset_x) + abs(offset_y) < 20)
 						user << "<span class='danger'>This location is too close to fire to.</span>"
 						return
 					else
 						if (other.use_slot())
-							for (var/v in 1 to 6)
+							for (var/v in TRUE to 6)
 								spawn (v * 2)
 									other.fire(x + offset_x + rand(3,-3), y + offset_y + rand(3,-3), rand(14,20))
 						else
@@ -166,7 +166,7 @@
 					new/obj/item/artillery_ammo/casing(get_step(src, src.dir))
 					user << "<span class='danger'>The casing falls out of the artillery.</span>"
 					other.drop_casing = FALSE
-					playsound(get_turf(src), 'sound/effects/Stamp.wav', 100, 1)
+					playsound(get_turf(src), 'sound/effects/Stamp.wav', 100, TRUE)
 
 		if (href_list["close"])
 			if (state == "CLOSED")
@@ -175,7 +175,7 @@
 			spawn (12)
 				state = "CLOSED"
 
-		for (var/i in 1 to 10)
+		for (var/i in TRUE to 10)
 			if (href_list["load_slot_[i]"])
 				if (state == "CLOSED")
 					user << "<span class = 'danger'>The shell loading slot must be open to add a shell.</span>"
@@ -202,7 +202,7 @@
 
 	var/obj/machinery/artillery/base/nebel/other_arty = other
 
-	for (var/v in 1 to 6)
+	for (var/v in TRUE to 6)
 		if (istype(other_arty.lloaded[v], /obj/item/artillery_ammo))
 			if (!istype(other_arty.lloaded[v], /obj/item/artillery_ammo/none))
 				if (!istype(other_arty.lloaded[v], /obj/item/artillery_ammo/casing))
@@ -210,14 +210,14 @@
 				else
 					if (other_arty.user)
 						other_arty.user << "<span class = 'danger'>Every slot must be loaded for the Nebelwerfer to fire.</span>"
-						return 0
+						return FALSE
 			else
 				if (other_arty.user)
 					other_arty.user << "<span class = 'danger'>Every slot must be loaded for the Nebelwerfer to fire.</span>"
-				return 0
+				return FALSE
 		else
 			if (other_arty.user)
 				other_arty.user << "<span class = 'danger'>Every slot must be loaded for the Nebelwerfer to fire.</span>"
-			return 0
+			return FALSE
 
-	return 1
+	return TRUE

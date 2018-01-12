@@ -1,5 +1,5 @@
 // All mobs should have custom emote, really..
-//m_type == 1 --> visual.
+//m_type == TRUE --> visual.
 //m_type == 2 --> audible
 /mob/proc/custom_emote(var/m_type=1,var/message = null)
 
@@ -38,17 +38,17 @@
 			if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_sight) && !(M in viewers(src,null)))
 				M.show_message(message, m_type)
 
-		if (m_type & 1)
+		if (m_type & TRUE)
 			var/list/see = get_mobs_or_objects_in_view(world.view,src) | viewers(get_turf(src), null)
 			for(var/I in see)
 				if(isobj(I))
 					spawn(0)
 						if(I) //It's possible that it could be deleted in the meantime.
 							var/obj/O = I
-							O.see_emote(src, message, 1)
+							O.see_emote(src, message, TRUE)
 				else if(ismob(I))
 					var/mob/M = I
-					M.show_message(message, 1)
+					M.show_message(message, TRUE)
 
 		else if (m_type & 2)
 			var/list/hear = get_mobs_or_objects_in_view(world.view,src)

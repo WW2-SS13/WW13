@@ -4,20 +4,20 @@ var/list/dreams = list(
 	)
 
 mob/living/carbon/proc/dream()
-	dreaming = 1
+	dreaming = TRUE
 
 	spawn(0)
-		for(var/i = rand(1,4),i > 0, i--)
+		for(var/i = rand(1,4),i > FALSE, i--)
 			src << "\blue <i>... [pick(dreams)] ...</i>"
 			sleep(rand(40,70))
-			if(paralysis <= 0)
-				dreaming = 0
-				return 0
-		dreaming = 0
-		return 1
+			if(paralysis <= FALSE)
+				dreaming = FALSE
+				return FALSE
+		dreaming = FALSE
+		return TRUE
 
 mob/living/carbon/proc/handle_dreams()
 	if(client && !dreaming && prob(5))
 		dream()
 
-mob/living/carbon/var/dreaming = 0
+mob/living/carbon/var/dreaming = FALSE

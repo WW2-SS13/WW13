@@ -7,14 +7,14 @@
 	name = "window grille spawner"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "wingrille"
-	density = 1
+	density = TRUE
 	anchored = 1.0
 	var/win_path = /obj/structure/window/basic
 	var/activated
 
 // stops ZAS expanding zones past us, the windows will block the zone anyway
 /obj/effect/wingrille_spawn/CanPass()
-	return 0
+	return FALSE
 
 /obj/effect/wingrille_spawn/attack_hand()
 	attack_generic()
@@ -46,7 +46,7 @@
 			if(locate(/obj/structure/grille) in T)
 				for(var/obj/structure/window/W in T)
 					if(W.type == win_path && W.dir == get_dir(T,src))
-						found_connection = 1
+						found_connection = TRUE
 						qdel(W)
 			if(!found_connection)
 				var/obj/structure/window/new_win = PoolOrNew(win_path, src.loc)
@@ -54,7 +54,7 @@
 				handle_window_spawn(new_win)
 		else
 			neighbours |= other
-	activated = 1
+	activated = TRUE
 	for(var/obj/effect/wingrille_spawn/other in neighbours)
 		if(!other.activated) other.activate()
 	qdel(src)

@@ -11,9 +11,9 @@
 	icon = 'icons/obj/power.dmi'
 	anchored = 1.0
 	var/datum/powernet/powernet = null
-	use_power = 0
-	idle_power_usage = 0
-	active_power_usage = 0
+	use_power = FALSE
+	idle_power_usage = FALSE
+	active_power_usage = FALSE
 
 /obj/machinery/power/Destroy()
 	disconnect_from_network()
@@ -26,9 +26,9 @@
 //////////////////////////////
 
 // common helper procs for all power machines
-/obj/machinery/power/drain_power(var/drain_check, var/surge, var/amount = 0)
+/obj/machinery/power/drain_power(var/drain_check, var/surge, var/amount = FALSE)
 	if(drain_check)
-		return 1
+		return TRUE
 
 	if(powernet && powernet.avail)
 		powernet.trigger_warning()
@@ -37,25 +37,25 @@
 /obj/machinery/power/proc/add_avail(var/amount)
 	if(powernet)
 		powernet.newavail += amount
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/power/proc/draw_power(var/amount)
 	if(powernet)
 		return powernet.draw_power(amount)
-	return 0
+	return FALSE
 
 /obj/machinery/power/proc/surplus()
 	if(powernet)
 		return powernet.avail-powernet.load
 	else
-		return 0
+		return FALSE
 
 /obj/machinery/power/proc/avail()
 	if(powernet)
 		return powernet.avail
 	else
-		return 0
+		return FALSE
 
 /obj/machinery/power/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
 	return
@@ -65,19 +65,19 @@
 /obj/machinery/proc/powered(var/chan = -1) // defaults to power_channel
 
 	if (config.machinery_does_not_use_power)
-		return 1
+		return TRUE
 
 	if(!src.loc)
-		return 0
+		return FALSE
 
-	//Don't do this. It allows machines that set use_power to 0 when off (many machines) to
+	//Don't do this. It allows machines that set use_power to FALSE when off (many machines) to
 	//be turned on again and used after a power failure because they never gain the NOPOWER flag.
 	//if(!use_power)
-	//	return 1
+	//	return TRUE
 
 	var/area/A = src.loc.loc		// make sure it's in an area
 	if(!A || !isarea(A))
-		return 0					// if not, then not powered
+		return FALSE					// if not, then not powered
 	if(chan == -1)
 		chan = power_channel
 	return A.powered(chan)			// return power status of the area
@@ -105,21 +105,21 @@
 /obj/machinery/power/proc/connect_to_network()
 	var/turf/T = src.loc
 	if(!T || !istype(T))
-		return 0
+		return FALSE
 
 	var/obj/structure/cable/C = T.get_cable_node() //check if we have a node cable on the machine turf, the first found is picked
 	if(!C || !C.powernet)
-		return 0
+		return FALSE
 
 	C.powernet.add_machine(src)
-	return 1
+	return TRUE
 
 // remove and disconnect the machine from its current powernet
 /obj/machinery/power/proc/disconnect_from_network()
 	if(!powernet)
-		return 0
+		return FALSE
 	powernet.remove_machine(src)
-	return 1
+	return TRUE
 
 // attach a wire to a power machine - leads from the turf you are standing on
 //almost never called, overwritten by all power machines but terminal and generator
@@ -134,7 +134,7 @@
 		if(!T.is_plating() || !istype(T, /turf/floor))
 			return
 
-		if(get_dist(src, user) > 1)
+		if(get_dist(src, user) > TRUE)
 			return
 
 		coil.turf_place(T, user)
@@ -189,7 +189,7 @@
 	. = list()
 	for(var/obj/structure/cable/C in loc)
 		if(C.powernet)	continue
-		if(C.d1 == 0) // the cable is a node cable
+		if(C.d1 == FALSE) // the cable is a node cable
 			. += C
 	return .
 
@@ -201,9 +201,9 @@
 // returns a list of all power-related objects (nodes, cable, junctions) in turf,
 // excluding source, that match the direction d
 // if unmarked==1, only return those with no powernet
-/proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = 0)
+/proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = FALSE)
 	. = list()
-	var/fdir = (!d)? 0 : turn(d, 180)			// the opposite direction to d (or 0 if d==0)
+	var/fdir = (!d)? FALSE : turn(d, 180)			// the opposite direction to d (or FALSE if d==0)
 ///// Z-Level Stuff
 	var/Zdir
 	if(d==11)
@@ -218,10 +218,10 @@
 
 		if(!cable_only && istype(AM,/obj/machinery/power))
 			var/obj/machinery/power/P = AM
-			if(P.powernet == 0)	continue		// exclude APCs which have powernet=0
+			if(P.powernet == FALSE)	continue		// exclude APCs which have powernet=0
 
 			if(!unmarked || !P.powernet)		//if unmarked=1 we only return things with no powernet
-				if(d == 0)
+				if(d == FALSE)
 					. += P
 
 		else if(istype(AM,/obj/structure/cable))
@@ -250,14 +250,14 @@
 			var/datum/powernet/NewPN = new()
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
-	return 1
+	return TRUE
 
 //remove the old powernet and replace it with a new one throughout the network.
 /proc/propagate_network(var/obj/O, var/datum/powernet/PN)
 	//world.log << "propagating new network"
 	var/list/worklist = list()
 	var/list/found_machines = list()
-	var/index = 1
+	var/index = TRUE
 	var/obj/P = null
 
 	worklist+=O //start propagating from the passed object
@@ -338,21 +338,21 @@
 		if (apc.terminal)
 			PN = apc.terminal.powernet*/
 	else if (!power_source)
-		return 0
+		return FALSE
 	else
 		log_admin("ERROR: /proc/electrocute_mob([M], [power_source], [source]): wrong power_source")
-		return 0
+		return FALSE
 	//Triggers powernet warning, but only for 5 ticks (if applicable)
 	//If following checks determine user is protected we won't alarm for long.
 	if(PN)
 		PN.trigger_warning(5)
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		if(H.species.siemens_coefficient == 0)
+		if(H.species.siemens_coefficient == FALSE)
 			return
 		if(H.gloves)
 			var/obj/item/clothing/gloves/G = H.gloves
-			if(G.siemens_coefficient == 0)	return 0		//to avoid spamming with insulated glvoes on
+			if(G.siemens_coefficient == FALSE)	return FALSE		//to avoid spamming with insulated glvoes on
 
 	//Checks again. If we are still here subject will be shocked, trigger standard 20 tick warning
 	//Since this one is longer it will override the original one.
@@ -360,14 +360,14 @@
 		PN.trigger_warning()
 
 	if (!cell && !PN)
-		return 0
-	var/PN_damage = 0
-	var/cell_damage = 0
+		return FALSE
+	var/PN_damage = FALSE
+	var/cell_damage = FALSE
 	if (PN)
 		PN_damage = PN.get_electrocute_damage()
 	if (cell)
 		cell_damage = cell.get_electrocute_damage()
-	var/shock_damage = 0
+	var/shock_damage = FALSE
 	if (PN_damage>=cell_damage)
 		power_source = PN
 		shock_damage = PN_damage

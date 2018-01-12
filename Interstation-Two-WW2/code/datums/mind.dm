@@ -34,7 +34,7 @@
 	var/name				//replaces mob/var/original_name
 	var/mob/living/current
 	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
-	var/active = 0
+	var/active = FALSE
 
 	var/memory
 
@@ -48,12 +48,12 @@
 	var/list/datum/objective/objectives = list()
 	var/list/datum/objective/special_verbs = list()
 
-	var/has_been_rev = 0//Tracks if this mind has been a rev or not
+	var/has_been_rev = FALSE//Tracks if this mind has been a rev or not
 
 	var/datum/faction/faction 			//associated faction
 	var/datum/changeling/changeling		//changeling holder
 
-	var/rev_cooldown = 0
+	var/rev_cooldown = FALSE
 
 	// the world.time since the mob has been brigged, or -1 if not at all
 	var/brigged_since = -1
@@ -91,7 +91,7 @@
 	if(objectives.len>0)
 		output += "<HR><B>Objectives:</B>"
 
-		var/obj_count = 1
+		var/obj_count = TRUE
 		for(var/datum/objective/objective in objectives)
 			output += "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
 			obj_count++
@@ -115,7 +115,7 @@
 	out += "<b>Objectives</b></br>"
 
 	if(objectives && objectives.len)
-		var/num = 1
+		var/num = TRUE
 		for(var/datum/objective/O in objectives)
 			out += "<b>Objective #[num]:</b> [O.explanation_text] "
 			if(O.completed)
@@ -138,7 +138,7 @@
 	if(href_list["add_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
 		if(antag)
-			if(antag.add_antagonist(src, 1, 1, 0, 1, 1)) // Ignore equipment and role type for this.
+			if(antag.add_antagonist(src, TRUE, TRUE, FALSE, TRUE, TRUE)) // Ignore equipment and role type for this.
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 			else
 				usr << "<span class='warning'>[src] could not be made into a [antag.role_text]!</span>"
@@ -194,7 +194,7 @@
 			/*
 			if ("assassinate","protect","debrain", "harm", "brig")
 				//To determine what to name the objective in explanation text.
-				var/objective_type_capital = uppertext(copytext(new_obj_type, 1,2))//Capitalize first letter.
+				var/objective_type_capital = uppertext(copytext(new_obj_type, TRUE,2))//Capitalize first letter.
 				var/objective_type_text = copytext(new_obj_type, 2)//Leave the rest of the text.
 				var/objective_type = "[objective_type_capital][objective_type_text]"//Add them together into a text string.
 
@@ -311,7 +311,7 @@
 				memory = null//Remove any memory they may have had.
 
 	else if (href_list["obj_announce"])
-		var/obj_count = 1
+		var/obj_count = TRUE
 		current << "\blue Your current objectives:"
 		for(var/datum/objective/objective in objectives)
 			current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
@@ -322,13 +322,13 @@
 	return null
 
 /datum/mind/proc/take_uplink()
-	return 0
+	return FALSE
 
 
 // check whether this mind's mob has been brigged for the given duration
 // have to call this periodically for the duration to work properly
 /datum/mind/proc/is_brigged(duration)
-	return 0
+	return FALSE
 
 /datum/mind/proc/reset()
 	assigned_role =   null
@@ -338,8 +338,8 @@
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
 	objectives =      list()
 	special_verbs =   list()
-	has_been_rev =    0
-	rev_cooldown =    0
+	has_been_rev =    FALSE
+	rev_cooldown =    FALSE
 	brigged_since =   -1
 
 //Antagonist role check
@@ -348,9 +348,9 @@
 		if(!role)
 			return mind.special_role
 		else
-			return (mind.special_role == role) ? 1 : 0
+			return (mind.special_role == role) ? TRUE : FALSE
 	else
-		return 0
+		return FALSE
 
 //Initialisation procs
 /mob/living/proc/mind_initialize()

@@ -1,4 +1,4 @@
-/obj/tank/var/did_critical_damage = 0
+/obj/tank/var/did_critical_damage = FALSE
 /obj/tank/var/next_ex_act = -1
 
 /obj/tank/bullet_act(var/obj/item/projectile/P, var/def_zone)
@@ -17,7 +17,7 @@
 	if (P.armor_penetration < 50)
 		dam /= 8
 
-	dam += 1 // minimum damage
+	dam += TRUE // minimum damage
 
 	damage += dam
 
@@ -26,7 +26,7 @@
 		critical_damage()
 	tank_message("<span class = 'danger'>The tank is hit by [P]!</span>")
 
-/obj/tank/ex_act(severity, var/forced = 0)
+/obj/tank/ex_act(severity, var/forced = FALSE)
 
 	if (world.time < next_ex_act && !forced)
 		return
@@ -51,7 +51,7 @@
 	if (prob(critical_damage_chance()))
 		critical_damage()
 
-	return 1
+	return TRUE
 
 
 /obj/tank/proc/health_percentage() // text!
@@ -66,7 +66,7 @@
 /obj/tank/proc/critical_damage_chance()
 	var/damage_coeff = damage/max_damage
 	if (damage_coeff < 0.7)
-		return 0
+		return FALSE
 	else
 		if (damage_coeff >= 0.7 && damage_coeff <= 0.9)
 			return 5
@@ -78,12 +78,12 @@
 	if (did_critical_damage)
 		return
 
-	did_critical_damage = 1
+	did_critical_damage = TRUE
 	tank_message("<span class = 'danger'><big>[src] starts to shake and fall apart!</big></span>")
 	spawn (rand(100,200))
 		tank_message("<span class = 'danger'>You can smell burning from inside [src].</danger>")
 		for (var/mob/living/m in src)
-			m.on_fire = 1
+			m.on_fire = TRUE
 			m.fire_stacks += rand(5,15)
 			m << "<span class = 'danger'><big>You're on fire.</big></danger>"
 			if (prob(30))
@@ -92,7 +92,7 @@
 
 	spawn (rand(250, 350))
 		tank_message("<span class = 'danger'>[src] is falling apart[pick("!", "!!")]</span>")
-		for (var/v in 1 to 10)
+		for (var/v in TRUE to 10)
 			spawn (v * 5)
 				for (var/mob/living/m in src)
 					m.apply_damage(rand(1,2), BRUTE)
@@ -100,6 +100,6 @@
 		tank_message("<span class = 'danger'><big>[src] explodes.</big></span>")
 		for (var/mob/m in src)
 			m.gib()
-		explosion(get_turf(src), 1, 3, 5, 6)
+		explosion(get_turf(src), TRUE, 3, 5, 6)
 		spawn (20)
 			qdel(src)

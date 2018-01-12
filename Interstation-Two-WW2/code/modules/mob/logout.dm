@@ -8,4 +8,4 @@
 			message_admins("Admin logout: [key_name(src)]")
 
 	..()
-	return 1
+	return TRUE

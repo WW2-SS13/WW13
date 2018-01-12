@@ -5,15 +5,15 @@
 	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toilet00"
-	density = 0
-	anchored = 1
-	var/open = 0			//if the lid is up
-	var/cistern = 0			//if the cistern bit is open
-	var/w_items = 0			//the combined w_class of all the items in the cistern
+	density = FALSE
+	anchored = TRUE
+	var/open = FALSE			//if the lid is up
+	var/cistern = FALSE			//if the cistern bit is open
+	var/w_items = FALSE			//the combined w_class of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
 
 /obj/structure/toilet/New()
-	open = round(rand(0, 1))
+	open = round(rand(0, TRUE))
 	update_icon()
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
@@ -45,7 +45,7 @@
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/weapon/crowbar))
 		user << "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>"
-		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, TRUE)
 		if(do_after(user, 30, src))
 			user.visible_message("<span class='notice'>[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!</span>", "<span class='notice'>You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!</span>", "You hear grinding porcelain.")
 			cistern = !cistern
@@ -105,8 +105,8 @@
 	desc = "The HU-452, an experimental urinal."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "urinal"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 
 /obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/grab))
@@ -129,14 +129,14 @@
 	desc = "The HS-451. Installed in the 2550s by the Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
-	density = 0
-	anchored = 1
-	use_power = 0
-	var/on = 0
+	density = FALSE
+	anchored = TRUE
+	use_power = FALSE
+	var/on = FALSE
 	var/obj/effect/mist/mymist = null
-	var/ismist = 0				//needs a var so we can make it linger~
+	var/ismist = FALSE				//needs a var so we can make it linger~
 	var/watertemp = "normal"	//freezing, normal, or boiling
-	var/is_washing = 0
+	var/is_washing = FALSE
 	var/list/temperature_settings = list("normal" = 310, "boiling" = T0C+100, "freezing" = T0C)
 
 /obj/machinery/shower/New()
@@ -149,9 +149,9 @@
 	name = "mist"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mist"
-	layer = MOB_LAYER + 1
-	anchored = 1
-	mouse_opacity = 0
+	layer = MOB_LAYER + TRUE
+	anchored = TRUE
+	mouse_opacity = FALSE
 
 /obj/machinery/shower/attack_hand(mob/M as mob)
 	on = !on
@@ -169,7 +169,7 @@
 	if(istype(I, /obj/item/weapon/wrench))
 		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
 		user << "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>"
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		if(do_after(user, 50, src))
 			watertemp = newtemp
 			user.visible_message("<span class='notice'>\The [user] adjusts \the [src] with \the [I].</span>", "<span class='notice'>You adjust the shower with \the [I].</span>")
@@ -182,25 +182,25 @@
 		mymist = null
 
 	if(on)
-		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
+		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + TRUE, dir)
 		if(temperature_settings[watertemp] < T20C)
 			return //no mist for cold water
 		if(!ismist)
 			spawn(50)
 				if(src && on)
-					ismist = 1
+					ismist = TRUE
 					mymist = PoolOrNew(/obj/effect/mist,loc)
 		else
-			ismist = 1
+			ismist = TRUE
 			mymist = PoolOrNew(/obj/effect/mist,loc)
 	else if(ismist)
-		ismist = 1
+		ismist = TRUE
 		mymist = PoolOrNew(/obj/effect/mist,loc)
 		spawn(250)
 			if(src && !on)
 				qdel(mymist)
 				mymist = null
-				ismist = 0
+				ismist = FALSE
 
 //Yes, showers are super powerful as far as washing goes.
 /obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
@@ -228,11 +228,11 @@
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/washgloves = 1
-			var/washshoes = 1
-			var/washmask = 1
-			var/washears = 1
-			var/washglasses = 1
+			var/washgloves = TRUE
+			var/washshoes = TRUE
+			var/washmask = TRUE
+			var/washears = TRUE
+			var/washglasses = TRUE
 
 			if(H.wear_suit)
 				washgloves = !(H.wear_suit.flags_inv & HIDEGLOVES)
@@ -312,12 +312,12 @@
 /obj/machinery/shower/proc/wash_floor()
 	if(!ismist && is_washing)
 		return
-	is_washing = 1
+	is_washing = TRUE
 	var/turf/T = get_turf(src)
 	reagents.splash(T, reagents.total_volume)
 	T.clean(src)
 	spawn(100)
-		is_washing = 0
+		is_washing = FALSE
 
 /obj/machinery/shower/proc/process_heat(mob/living/M)
 	if(!on || !istype(M)) return
@@ -347,8 +347,8 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
-	anchored = 1
-	var/busy = 0 	//Something's being washed at the moment
+	anchored = TRUE
+	var/busy = FALSE 	//Something's being washed at the moment
 
 /obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
 	..()
@@ -356,7 +356,7 @@
 		return ..()
 	if(!usr.Adjacent(src))
 		return ..()
-	if(!thing.reagents || thing.reagents.total_volume == 0)
+	if(!thing.reagents || thing.reagents.total_volume == FALSE)
 		usr << "<span class='warning'>\The [thing] is empty.</span>"
 		return
 	// Clear the vessel.
@@ -386,11 +386,11 @@
 
 	usr << "<span class='notice'>You start washing your hands.</span>"
 
-	playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
+	playsound(loc, 'sound/effects/watersplash.ogg', 100, TRUE)
 
-	busy = 1
+	busy = TRUE
 	sleep(40)
-	busy = 0
+	busy = FALSE
 
 	if(!Adjacent(user)) return		//Person has moved away from the sink
 
@@ -409,13 +409,13 @@
 	if (istype(RG) && RG.is_open_container() && do_after(user, 15, src))
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'>[user] fills \the [RG] using \the [src].</span>","<span class='notice'>You fill \the [RG] using \the [src].</span>")
-		playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
-		return 1
+		playsound(loc, 'sound/effects/watersplash.ogg', 100, TRUE)
+		return TRUE
 /*
 	else if (istype(O, /obj/item/weapon/melee/baton))
 		var/obj/item/weapon/melee/baton/B = O
 		if(B.bcell)
-			if(B.bcell.charge > 0 && B.status == 1)
+			if(B.bcell.charge > FALSE && B.status == TRUE)
 				flick("baton_active", src)
 				user.Stun(10)
 				user.stuttering = 10
@@ -424,11 +424,11 @@
 				user.visible_message( \
 					"<span class='danger'>[user] was stunned by \his wet [O]!</span>", \
 					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>")
-				return 1*/
+				return TRUE*/
 	else if(istype(O, /obj/item/weapon/mop))
 		O.reagents.add_reagent("water", 5)
 		user << "<span class='notice'>You wet \the [O] in \the [src].</span>"
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 		return
 
 	var/turf/location = user.loc
@@ -439,9 +439,9 @@
 
 	usr << "<span class='notice'>You start washing \the [I].</span>"
 
-	busy = 1
+	busy = TRUE
 	sleep(40)
-	busy = 0
+	busy = FALSE
 
 	if(user.loc != location) return				//User has moved
 	if(!I) return 								//Item's been destroyed while washing

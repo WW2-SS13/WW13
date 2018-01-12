@@ -17,7 +17,7 @@
 		/obj/item/weapon/gauze_pack/bint = 10
 
 	)
-	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = FALSE //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/sovietharms
 	name = "Soviet heavy arms rack"
@@ -29,12 +29,12 @@
 		/obj/item/ammo_magazine/a762/pkm = 20,
 		/obj/item/weapon/gun/projectile/colt = 5,
 		/obj/item/ammo_magazine/c45m = 15,
-		//obj/item/weapon/gun/launcher/rocket/one_use/pzfaust = 1,
+		//obj/item/weapon/gun/launcher/rocket/one_use/pzfaust = TRUE,
 		/obj/item/weapon/storage/backpack = 2
 
 
 	)
-	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = FALSE //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/sovietsapp
 	name = "Soviet sapper rack"
@@ -51,7 +51,7 @@
 		/obj/item/weapon/storage/backpack/industrial = 5
 
 	)
-	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = FALSE //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/sovietapparel
 	name = "Soviet apparel rack"
@@ -67,7 +67,7 @@
 		/obj/item/clothing/head/ushanka = 10
 
 	)
-	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = FALSE //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/germanarms
 	name = "German arms rack"
@@ -89,7 +89,7 @@
 
 
 	)
-	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = FALSE //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/germansapp
 	name = "German pioneer arms rack"
@@ -106,7 +106,7 @@
 
 
 	)
-	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = FALSE //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/germanharms
 	name = "German heavy arms rack"
@@ -123,7 +123,7 @@
 
 
 	)
-	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = FALSE //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/germanapparel
 	name = "German apparel rack"
@@ -139,8 +139,7 @@
 
 
 	)
-	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-
+	idle_power_usage = FALSE //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/wallmed1
 	name = "NanoMed"
@@ -149,10 +148,10 @@
 	icon_state = "wallmed"
 	light_color = "#e6fff2"
 	icon_deny = "wallmed-deny"
-	req_access = list(access_medical)
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+//	req_access = list(access_medical)
+	density = FALSE //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4)
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
+	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = TRUE)
 
 /obj/machinery/vending/wallmed2
 	name = "NanoMed"
@@ -160,8 +159,8 @@
 	icon_state = "wallmed"
 	light_color = "#e6fff2"
 	icon_deny = "wallmed-deny"
-	req_access = list(access_medical)
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+//	req_access = list(access_medical)
+	density = FALSE //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
 					/obj/item/stack/medical/ointment =3)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)

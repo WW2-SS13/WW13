@@ -4,12 +4,12 @@
 	name = "Emergency Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
-	density = 1
-	var/on = 0
+	density = TRUE
+	var/on = FALSE
 	var/obj/item/weapon/cell/high/cell = null
 	var/use = 200 // 200W light
-	var/unlocked = 0
-	var/open = 0
+	var/unlocked = FALSE
+	var/open = FALSE
 	var/brightness_on = 8		//can't remember what the maxed out value is
 	light_power = 2
 
@@ -41,23 +41,23 @@
 	cell.use(use*CELLRATE)
 
 
-// Returns 0 on failure and 1 on success
-/obj/machinery/floodlight/proc/turn_on(var/loud = 0)
+// Returns FALSE on failure and TRUE on success
+/obj/machinery/floodlight/proc/turn_on(var/loud = FALSE)
 	if(!cell)
-		return 0
+		return FALSE
 	if(cell.charge < (use * CELLRATE))
-		return 0
+		return FALSE
 
-	on = 1
+	on = TRUE
 	set_light(brightness_on, brightness_on / 2)
 	update_icon()
 	if(loud)
 		visible_message("\The [src] turns on.")
-	return 1
+	return TRUE
 
-/obj/machinery/floodlight/proc/turn_off(var/loud = 0)
-	on = 0
-	set_light(0, 0)
+/obj/machinery/floodlight/proc/turn_off(var/loud = FALSE)
+	on = FALSE
+	set_light(0, FALSE)
 	update_icon()
 	if(loud)
 		visible_message("\The [src] shuts down.")
@@ -75,7 +75,7 @@
 		cell.update_icon()
 
 		src.cell = null
-		on = 0
+		on = FALSE
 		set_light(0)
 		user << "You remove the power cell"
 		update_icon()
@@ -94,21 +94,21 @@
 	if (istype(W, /obj/item/weapon/screwdriver))
 		if (!open)
 			if(unlocked)
-				unlocked = 0
+				unlocked = FALSE
 				user << "You screw the battery panel in place."
 			else
-				unlocked = 1
+				unlocked = TRUE
 				user << "You unscrew the battery panel."
 
 	if (istype(W, /obj/item/weapon/crowbar))
 		if(unlocked)
 			if(open)
-				open = 0
+				open = FALSE
 				overlays = null
 				user << "You crowbar the battery panel in place."
 			else
 				if(unlocked)
-					open = 1
+					open = TRUE
 					user << "You remove the battery panel."
 
 	if (istype(W, /obj/item/weapon/cell))

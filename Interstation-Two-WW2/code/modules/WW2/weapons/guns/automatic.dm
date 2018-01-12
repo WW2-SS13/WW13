@@ -12,8 +12,8 @@
 	w_class = 4
 	caliber = "a9mm_para"
 	magazine_type = /obj/item/ammo_magazine/mp40
-	can_wield = 1
-	//must_wield = 1
+	can_wield = TRUE
+	//must_wield = TRUE
 
 	accuracy = DEFAULT_MG_ACCURACY+1
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY+1
@@ -56,8 +56,8 @@
 	accuracy = DEFAULT_MG_ACCURACY
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 
-	can_wield = 1
-	//must_wield = 1
+	can_wield = TRUE
+	//must_wield = TRUE
 
 /obj/item/weapon/gun/projectile/automatic/stg/update_icon()
 	if(ammo_magazine)
@@ -90,8 +90,8 @@
 	accuracy = DEFAULT_MG_ACCURACY
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 
-	can_wield = 1
-	//must_wield = 1
+	can_wield = TRUE
+	//must_wield = TRUE
 
 	firemodes = list(
 		list(name="single shot",	burst=1, burst_delay=1.8, move_delay=4, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
@@ -134,8 +134,8 @@
 		list(name="long bursts",	burst=8, burst_delay=1.1, move_delay=7, dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)
 
-	can_wield = 1
-	//must_wield = 1
+	can_wield = TRUE
+	//must_wield = TRUE
 
 /obj/item/weapon/gun/projectile/automatic/m4/update_icon()
 	if(ammo_magazine)
@@ -164,8 +164,8 @@
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY+1
 	caliber = "a762x39"
 	magazine_type = /obj/item/ammo_magazine/a762/pkm
-	can_wield = 0
-	must_wield = 0
+	can_wield = FALSE
+	must_wield = FALSE
 
 	firemodes = list(
 		list(name="single shot",	burst=1, burst_delay=2, move_delay=3, dispersion = list(0.9, 1.0, 1.0, 1.0, 1.1)),
@@ -211,11 +211,11 @@
 	caliber = "a9x39"
 	fire_sound = 'sound/weapons/val.ogg'
 	magazine_type = /obj/item/ammo_magazine/a9x39
-	silenced = 1
-	can_wield = 1
+	silenced = TRUE
+	can_wield = TRUE
 	accuracy = DEFAULT_MG_ACCURACY
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY+1
-	//must_wield = 1
+	//must_wield = TRUE
 
 /obj/item/weapon/gun/projectile/automatic/val/update_icon()
 	if(ammo_magazine)

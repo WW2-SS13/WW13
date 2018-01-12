@@ -11,13 +11,13 @@
 
 /proc/is_on_same_plane_or_station(var/z1, var/z2)
 	if(z1 == z2)
-		return 1
+		return TRUE
 	if((z1 in config.station_levels) &&	(z2 in config.station_levels))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/max_default_z_level()
-	var/max_z = 0
+	var/max_z = FALSE
 	for(var/z in config.station_levels)
 		max_z = max(z, max_z)
 	for(var/z in config.admin_levels)
@@ -36,7 +36,7 @@
 	for(var/area/A in world)
 		if(A.name == N)
 			return A
-	return 0
+	return FALSE
 
 /proc/get_area_master(const/O)
 	var/area/A = get_area(O)
@@ -44,21 +44,21 @@
 		return A
 
 /proc/in_range(source, user)
-	if(get_dist(source, user) <= 1)
-		return 1
+	if(get_dist(source, user) <= TRUE)
+		return TRUE
 
-	return 0 //not in range and not telekinetic
+	return FALSE //not in range and not telekinetic
 
 /proc/get_carginal_dir(atom/start, atom/finish)
 	var/dx = finish.x - start.x
 	var/dy = finish.y - start.y
 	if(abs(dy) > abs(dx))
-		if(dy > 0)
+		if(dy > FALSE)
 			return NORTH
 		else
 			return SOUTH
 	else
-		if(dx > 0)
+		if(dx > FALSE)
 			return EAST
 		else
 			return WEST
@@ -120,11 +120,11 @@
 	//turfs += centerturf
 	return atoms
 
-/proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
+/proc/trange(rad = FALSE, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
 	if(!centre)
 		return
 
-	var/turf/x1y1 = locate(((centre.x-rad)<1 ? 1 : centre.x-rad),((centre.y-rad)<1 ? 1 : centre.y-rad),centre.z)
+	var/turf/x1y1 = locate(((centre.x-rad)<1 ? TRUE : centre.x-rad),((centre.y-rad)<1 ? TRUE : centre.y-rad),centre.z)
 	var/turf/x2y2 = locate(((centre.x+rad)>world.maxx ? world.maxx : centre.x+rad),((centre.y+rad)>world.maxy ? world.maxy : centre.y+rad),centre.z)
 	return block(x1y1,x2y2)
 
@@ -164,7 +164,7 @@
 
 // Returns a list of mobs and/or objects in range of R from source. Used in radio and say code.
 
-/proc/get_mobs_or_objects_in_view(var/R, var/atom/source, var/include_mobs = 1, var/include_objects = 1)
+/proc/get_mobs_or_objects_in_view(var/R, var/atom/source, var/include_mobs = TRUE, var/include_objects = TRUE)
 
 	var/turf/T = get_turf(source)
 	var/list/hear = list()
@@ -189,7 +189,7 @@
 
 /proc/get_mobs_in_radio_ranges(var/list/obj/item/device/radio/radios)
 
-	set background = 1
+	set background = TRUE
 
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
@@ -216,7 +216,7 @@
 
 
 	// Try to find all the players who can hear the message
-	for(var/i = 1; i <= player_list.len; i++)
+	for(var/i = TRUE; i <= player_list.len; i++)
 		var/mob/M = player_list[i]
 		if(M)
 			var/turf/ear = get_turf(M)
@@ -233,14 +233,14 @@ proc
 		var/turf/T
 		if(X1==X2)
 			if(Y1==Y2)
-				return 1 //Light cannot be blocked on same tile
+				return TRUE //Light cannot be blocked on same tile
 			else
 				var/s = SIGN(Y2-Y1)
 				Y1+=s
 				while(Y1!=Y2)
 					T=locate(X1,Y1,Z)
 					if(T.opacity)
-						return 0
+						return FALSE
 					Y1+=s
 		else
 			var/m=(32*(Y2-Y1)+(PY2-PY1))/(32*(X2-X1)+(PX2-PX1))
@@ -256,8 +256,8 @@ proc
 					X1+=signX //Line exits tile horizontally
 				T=locate(X1,Y1,Z)
 				if(T.opacity)
-					return 0
-		return 1
+					return FALSE
+		return TRUE
 #undef SIGN
 
 proc/isInSight(var/atom/A, var/atom/B)
@@ -265,25 +265,25 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/turf/Bturf = get_turf(B)
 
 	if(!Aturf || !Bturf)
-		return 0
+		return FALSE
 
 	if(inLineOfSight(Aturf.x,Aturf.y, Bturf.x,Bturf.y,Aturf.z))
-		return 1
+		return TRUE
 
 	else
-		return 0
+		return FALSE
 
 /proc/get_cardinal_step_away(atom/start, atom/finish) //returns the position of a step from start away from finish, in one of the cardinal directions
 	//returns only NORTH, SOUTH, EAST, or WEST
 	var/dx = finish.x - start.x
 	var/dy = finish.y - start.y
-	if(abs(dy) > abs (dx)) //slope is above 1:1 (move horizontally in a tie)
-		if(dy > 0)
+	if(abs(dy) > abs (dx)) //slope is above TRUE:1 (move horizontally in a tie)
+		if(dy > FALSE)
 			return get_step(start, SOUTH)
 		else
 			return get_step(start, NORTH)
 	else
-		if(dx > 0)
+		if(dx > FALSE)
 			return get_step(start, WEST)
 		else
 			return get_step(start, EAST)
@@ -296,11 +296,11 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 
 // Will return a list of active candidates. It increases the buffer 5 times until it finds a candidate which is active within the buffer.
-/proc/get_active_candidates(var/buffer = 1)
+/proc/get_active_candidates(var/buffer = TRUE)
 
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
-	var/i = 0
-	while(candidates.len <= 0 && i < 5)
+	var/i = FALSE
+	while(candidates.len <= FALSE && i < 5)
 		for(var/mob/observer/ghost/G in player_list)
 			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
@@ -312,8 +312,8 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 /proc/get_alien_candidates()
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
-	var/i = 0
-	while(candidates.len <= 0 && i < 5)
+	var/i = FALSE
+	while(candidates.len <= FALSE && i < 5)
 		for(var/mob/observer/ghost/G in player_list)
 			if(MODE_XENOMORPH in G.client.prefs.be_special_role)
 				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
@@ -407,7 +407,7 @@ datum/projectile_data
 	var/list/greens = list()
 	var/list/weights = list()
 
-	for (var/i = 0, ++i <= colors.len)
+	for (var/i = FALSE, ++i <= colors.len)
 		reds.Add(GetRedPart(colors[i]))
 		blues.Add(GetBluePart(colors[i]))
 		greens.Add(GetGreenPart(colors[i]))
@@ -420,27 +420,27 @@ datum/projectile_data
 
 /proc/mixOneColor(var/list/weight, var/list/color)
 	if (!weight || !color || length(weight)!=length(color))
-		return 0
+		return FALSE
 
 	var/contents = length(weight)
 	var/i
 
 	//normalize weights
-	var/listsum = 0
+	var/listsum = FALSE
 	for(i=1; i<=contents; i++)
 		listsum += weight[i]
 	for(i=1; i<=contents; i++)
 		weight[i] /= listsum
 
 	//mix them
-	var/mixedcolor = 0
+	var/mixedcolor = FALSE
 	for(i=1; i<=contents; i++)
 		mixedcolor += weight[i]*color[i]
 	mixedcolor = round(mixedcolor)
 
 	//until someone writes a formal proof for this algorithm, let's keep this in
 //	if(mixedcolor<0x00 || mixedcolor>0xFF)
-//		return 0
+//		return FALSE
 	//that's not the kind of operation we are running here, nerd
 	mixedcolor=min(max(mixedcolor,0),255)
 
@@ -479,7 +479,7 @@ datum/projectile_data
 		var/direction
 		switch(dir)
 			if(NORTH)
-				direction = 1
+				direction = TRUE
 			if(SOUTH)
 				direction = 2
 			if(EAST)

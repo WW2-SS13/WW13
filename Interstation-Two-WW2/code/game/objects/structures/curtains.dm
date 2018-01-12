@@ -5,13 +5,13 @@
 	icon = 'icons/obj/curtain.dmi'
 	icon_state = "closed"
 	layer = MOB_LAYER + 0.03 // above new windows
-	anchored = 1
-	opacity = 1
-	density = 0
+	anchored = TRUE
+	opacity = TRUE
+	density = FALSE
 
 /obj/structure/curtain/open
 	icon_state = "open"
-	opacity = 0
+	opacity = FALSE
 
 /obj/structure/curtain/bullet_act(obj/item/projectile/P, def_zone)
 	if(!P.nodamage)
@@ -21,7 +21,7 @@
 		..(P, def_zone)
 
 /obj/structure/curtain/attack_hand(mob/user)
-	playsound(get_turf(loc), "rustle", 15, 1, -5)
+	playsound(get_turf(loc), "rustle", 15, TRUE, -5)
 	toggle()
 	..()
 

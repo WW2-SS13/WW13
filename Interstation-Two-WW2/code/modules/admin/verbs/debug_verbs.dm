@@ -50,7 +50,7 @@ var/list/debug_verbs = list (
 	verbs -= debug_verbs
 
 //This proc is intended to detect lag problems relating to communication procs
-var/global/say_disabled = 0
+var/global/say_disabled = FALSE
 /client/proc/disable_communication()
 	set category = "Mapping"
 	set name = "Disable all communication verbs"
@@ -64,7 +64,7 @@ var/global/say_disabled = 0
 		message_admins("[src.ckey] used 'Disable all communication verbs', restoring all communication methods.")*/
 
 //This proc is intended to detect lag problems relating to movement
-var/global/movement_disabled = 0
+var/global/movement_disabled = FALSE
 var/global/movement_disabled_exception //This is the client that calls the proc, so he can continue to run around to gauge any change to lag.
 /client/proc/disable_movement()
 	set category = "Mapping"

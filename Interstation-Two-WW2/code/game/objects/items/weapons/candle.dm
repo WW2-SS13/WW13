@@ -4,7 +4,7 @@
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle1"
 	item_state = "candle1"
-	w_class = 1
+	w_class = TRUE
 	light_color = "#E09D37"
 	var/wax = 2000
 
@@ -15,7 +15,7 @@
 /obj/item/weapon/flame/candle/update_icon()
 	var/i
 	if(wax > 1500)
-		i = 1
+		i = TRUE
 	else if(wax > 800)
 		i = 2
 	else i = 3
@@ -44,10 +44,10 @@
 
 /obj/item/weapon/flame/candle/proc/light(var/flavor_text = "<span class='notice'>\The [usr] lights the [name].</span>")
 	if(!src.lit)
-		src.lit = 1
+		src.lit = TRUE
 		//src.damtype = "fire"
 		for(var/mob/O in viewers(usr, null))
-			O.show_message(flavor_text, 1)
+			O.show_message(flavor_text, TRUE)
 		set_light(CANDLE_LUM)
 		processing_objects.Add(src)
 
@@ -68,6 +68,6 @@
 
 /obj/item/weapon/flame/candle/attack_self(mob/user as mob)
 	if(lit)
-		lit = 0
+		lit = FALSE
 		update_icon()
 		set_light(0)

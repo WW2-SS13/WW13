@@ -11,7 +11,7 @@
 		src << "<font color='red'>Error: Admin-PM: You cannot send adminhelps (Muted).</font>"
 		return
 
-	adminhelped = 1 //Determines if they get the message to reply by clicking the name.
+	adminhelped = TRUE //Determines if they get the message to reply by clicking the name.
 
 	if(src.handle_spam_prevention(msg,MUTE_ADMINHELP))
 		return
@@ -32,7 +32,7 @@
 		src << "<i>If no admins are online, please ping @Admin Team <a href = '[config.discordurl]'>in the discord</a>.</i>"
 	log_admin("HELP: [key_name(src)]: [msg]")
 
-	msg = "\blue <b><font color=red>Request for Help:: </font>[get_options_bar(mob, 2, 1, 1)]:</b> [msg]"
+	msg = "\blue <b><font color=red>Request for Help:: </font>[get_options_bar(mob, 2, TRUE, TRUE)]:</b> [msg]"
 
 	for(var/client/X in admins)
 		if((R_ADMIN|R_MOD) & X.holder.rights)

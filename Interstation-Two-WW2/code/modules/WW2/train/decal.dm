@@ -1,8 +1,8 @@
 /obj/train_decal
-	layer = TURF_LAYER + 1
+	layer = TURF_LAYER + TRUE
 	icon = null
 	icon_state = null
-	anchored = 1
+	anchored = TRUE
 
 /obj/train_decal/cargo
 

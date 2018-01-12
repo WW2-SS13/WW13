@@ -6,12 +6,12 @@
 /obj/structure/transit_tube
 	icon = 'icons/obj/pipes/transit_tube.dmi'
 	icon_state = "E-W"
-	density = 1
+	density = TRUE
 	layer = 3.1
 	anchored = 1.0
 	var/list/tube_dirs = null
 	var/exit_delay = 2
-	var/enter_delay = 1
+	var/enter_delay = TRUE
 
 	// alldirs in global.dm is the same list of directions, but since
 	//  the specific order matters to get a usable icon_state, it is
@@ -28,7 +28,7 @@
 	icon_state = "closed"
 	exit_delay = 2
 	enter_delay = 3
-	var/pod_moving = 0
+	var/pod_moving = FALSE
 	var/automatic_launch_time = 100
 
 	var/const/OPEN_DURATION = 6
@@ -41,8 +41,8 @@
 	icon_state = "pod"
 	animate_movement = FORWARD_STEPS
 	anchored = 1.0
-	density = 1
-	var/moving = 0
+	density = TRUE
+	var/moving = FALSE
 	var/datum/gas_mixture/air_contents = new()
 
 
@@ -158,7 +158,7 @@ obj/structure/ex_act(severity)
 	for(var/obj/structure/transit_tube_pod/pod in loc)
 		if(!pod.moving && pod.dir in directions())
 			spawn(5)
-				pod_moving = 1
+				pod_moving = TRUE
 				close_animation()
 				sleep(CLOSE_DURATION + 2)
 
@@ -175,7 +175,7 @@ obj/structure/ex_act(severity)
 				if(icon_state == "closed" && pod)
 					pod.follow_tube()
 
-				pod_moving = 0
+				pod_moving = FALSE
 
 			return
 
@@ -183,12 +183,12 @@ obj/structure/ex_act(severity)
 
 // Called to check if a pod should stop upon entering this tube.
 /obj/structure/transit_tube/proc/should_stop_pod(pod, from_dir)
-	return 0
+	return FALSE
 
 
 
 /obj/structure/transit_tube/station/should_stop_pod(pod, from_dir)
-	return 1
+	return TRUE
 
 
 
@@ -199,16 +199,16 @@ obj/structure/ex_act(severity)
 
 
 /obj/structure/transit_tube/station/pod_stopped(obj/structure/transit_tube_pod/pod, from_dir)
-	pod_moving = 1
+	pod_moving = TRUE
 	spawn(5)
 		open_animation()
 		sleep(OPEN_DURATION + 2)
-		pod_moving = 0
+		pod_moving = FALSE
 		pod.mix_air()
 
 		if(automatic_launch_time)
 			var/const/wait_step = 5
-			var/i = 0
+			var/i = FALSE
 			while(i < automatic_launch_time)
 				sleep(wait_step)
 				i += wait_step
@@ -233,25 +233,25 @@ obj/structure/ex_act(severity)
 
 	for(var/direction in directions())
 		if(direction == from_dir)
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 
 
 /obj/structure/transit_tube/proc/has_exit(in_dir)
 	for(var/direction in directions())
 		if(direction == in_dir)
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 
 
 // Searches for an exit direction within 45 degrees of the
-//  specified dir. Returns that direction, or 0 if none match.
+//  specified dir. Returns that direction, or FALSE if none match.
 /obj/structure/transit_tube/proc/get_exit(in_dir)
-	var/near_dir = 0
+	var/near_dir = FALSE
 	var/in_dir_cw = turn(in_dir, -45)
 	var/in_dir_ccw = turn(in_dir, 45)
 
@@ -286,13 +286,13 @@ obj/structure/ex_act(severity)
 	if(moving)
 		return
 
-	moving = 1
+	moving = TRUE
 
 	spawn()
 		var/obj/structure/transit_tube/current_tube = null
 		var/next_dir
 		var/next_loc
-		var/last_delay = 0
+		var/last_delay = FALSE
 		var/exit_delay
 
 		for(var/obj/structure/transit_tube/tube in loc)
@@ -334,7 +334,7 @@ obj/structure/ex_act(severity)
 				current_tube.pod_stopped(src, dir)
 				break
 
-		density = 1
+		density = TRUE
 
 		// If the pod is no longer in a tube, move in a line until stopped or slowed to a halt.
 		//  /turf/inertial_drift appears to only work on mobs, and re-implementing some of the
@@ -351,7 +351,7 @@ obj/structure/ex_act(severity)
 
 			while(isturf(loc) && Move(get_step(loc, dir)))
 
-		moving = 0
+		moving = FALSE
 
 /obj/structure/transit_tube_pod/return_air()
 	return air_contents
@@ -370,7 +370,7 @@ obj/structure/ex_act(severity)
 
 	//note that share_ratio assumes both gas mixes have the same volume,
 	//so if the volume is changed this may need to be changed as well.
-	air_contents.share_ratio(environment, 1)
+	air_contents.share_ratio(environment, TRUE)
 
 // When the player moves, check if the pos is currently stopped at a station.
 //  if it is, check the direction. If the direction matches the direction of
@@ -426,8 +426,8 @@ obj/structure/ex_act(severity)
 	else
 		tube_dirs = parse_dirs(icon_state)
 
-		if(copytext(icon_state, 1, 3) == "D-" || findtextEx(icon_state, "Pass"))
-			density = 0
+		if(copytext(icon_state, TRUE, 3) == "D-" || findtextEx(icon_state, "Pass"))
+			density = FALSE
 
 
 
@@ -473,11 +473,11 @@ obj/structure/ex_act(severity)
 //  135 degree angle, and return a list containing the pair.
 //  If none exist, return list(connected[1], turn(connected[1], 180)
 /obj/structure/transit_tube/proc/select_automatic_dirs(connected)
-	if(length(connected) < 1)
+	if(length(connected) < TRUE)
 		return list()
 
-	for(var/i = 1, i <= length(connected), i++)
-		for(var/j = i + 1, j <= length(connected), j++)
+	for(var/i = TRUE, i <= length(connected), i++)
+		for(var/j = i + TRUE, j <= length(connected), j++)
 			var/d1 = connected[i]
 			var/d2 = connected[j]
 
@@ -553,7 +553,7 @@ obj/structure/ex_act(severity)
 	for(var/text_part in split_text)
 		var/direction = text2dir_extended(text_part)
 
-		if(direction > 0)
+		if(direction > FALSE)
 			directions += direction
 
 	direction_table[text] = directions
@@ -562,11 +562,11 @@ obj/structure/ex_act(severity)
 
 
 // A copy of text2dir, extended to accept one and two letter
-//  directions, and to clearly return 0 otherwise.
+//  directions, and to clearly return FALSE otherwise.
 /obj/structure/transit_tube/proc/text2dir_extended(direction)
 	switch(uppertext(direction))
 		if("NORTH", "N")
-			return 1
+			return TRUE
 		if("SOUTH", "S")
 			return 2
 		if("EAST", "E")
@@ -582,7 +582,7 @@ obj/structure/ex_act(severity)
 		if("SOUTHWEST", "SW")
 			return 10
 		else
-	return 0
+	return FALSE
 
 
 

@@ -12,7 +12,7 @@
 	attack_verb = list("whipped", "lashed", "disciplined", "tickled")
 
 /obj/item/weapon/wire/proc/update()
-	if (src.amount > 1)
+	if (src.amount > TRUE)
 		src.icon_state = "spool_wire"
 		src.desc = text("This is just spool of regular insulated wire. It consists of about [] unit\s of wire.", src.amount)
 	else
@@ -22,7 +22,7 @@
 
 /obj/item/weapon/wire/attack_self(mob/user as mob)
 	if (src.laying)
-		src.laying = 0
+		src.laying = FALSE
 		user << "<span class='notice'>You're done laying wire!</span>"
 	else
 		user << "<span class='warning'>You are not using this to lay wire...</span>"

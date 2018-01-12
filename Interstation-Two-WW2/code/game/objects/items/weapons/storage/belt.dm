@@ -10,7 +10,7 @@
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 
-	var/show_above_suit = 0
+	var/show_above_suit = FALSE
 	var/obj/item/weapon/storage/belt/keychain/keychain = null
 
 /obj/item/weapon/storage/belt/verb/toggle_layer()
@@ -133,7 +133,7 @@
 	desc = "Proves to the world that you are the strongest!"
 	icon_state = "championbelt"
 	item_state = "champion"
-	storage_slots = 1
+	storage_slots = TRUE
 	can_hold = list(
 		"/obj/item/clothing/mask/luchador"
 		)

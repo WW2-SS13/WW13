@@ -4,12 +4,12 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	//w_class = 2.0
 	//slot_flags = SLOT_EYES
-	//var/vision_flags = 0
-	//var/darkness_view = 0//Base human is 2
-	var/prescription = 0
-	var/toggleable = 0
+	//var/vision_flags = FALSE
+	//var/darkness_view = FALSE//Base human is 2
+	var/prescription = FALSE
+	var/toggleable = FALSE
 	var/off_state = "degoggles"
-	var/active = 1
+	var/active = TRUE
 	var/activation_sound = 'sound/items/goggles_charge.ogg'
 	var/obj/screen/overlay = null
 	var/obj/item/clothing/glasses/hud/hud = null	// Hud glasses, if any
@@ -17,14 +17,14 @@
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
 		if(active)
-			active = 0
+			active = FALSE
 			icon_state = off_state
 			user.update_inv_glasses()
 			flash_protection = FLASH_PROTECTION_NONE
 			tint = TINT_NONE
 			usr << "You deactivate the optical matrix on the [src]."
 		else
-			active = 1
+			active = TRUE
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
 			if(activation_sound)
@@ -41,7 +41,7 @@
 	item_state = "glasses"
 	action_button_name = "Toggle Goggles"
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
-	toggleable = 1
+	toggleable = TRUE
 	vision_flags = SEE_TURFS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 
@@ -52,14 +52,14 @@
 /obj/item/clothing/glasses/meson/prescription
 	name = "prescription mesons"
 	desc = "Optical Meson Scanner with prescription lenses."
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/science
 	name = "Science Goggles"
 	desc = "The goggles do nothing!"
 	icon_state = "purple"
 	item_state = "glasses"
-	toggleable = 1
+	toggleable = TRUE
 
 /obj/item/clothing/glasses/science/New()
 	..()
@@ -72,7 +72,7 @@
 	item_state = "glasses"
 //	origin_tech = list(TECH_MAGNET = 2)
 	darkness_view = 7
-	toggleable = 1
+	toggleable = TRUE
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	off_state = "denight"
 
@@ -85,14 +85,14 @@
 	desc = "Yarr."
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/glasses/material
 	name = "Optical Material Scanner"
@@ -100,7 +100,7 @@
 	icon_state = "material"
 	item_state = "glasses"
 //	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
-	toggleable = 1
+	toggleable = TRUE
 	vision_flags = SEE_OBJS
 
 /obj/item/clothing/glasses/regular
@@ -108,8 +108,8 @@
 	desc = "Made by Nerd. Co."
 	icon_state = "glasses"
 	item_state = "glasses"
-	prescription = 1
-	body_parts_covered = 0
+	prescription = TRUE
+	body_parts_covered = FALSE
 
 /obj/item/clothing/glasses/regular/scanners
 	name = "Scanning Goggles"
@@ -127,14 +127,14 @@
 	name = "3D glasses"
 	icon_state = "3d"
 	item_state = "3d"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/glasses/gglasses
 	name = "Green Glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
 	item_state = "gglasses"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/glasses/sunglasses
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
@@ -151,7 +151,7 @@
 	item_state = "welding-g"
 	action_button_name = "Flip Welding Goggles"
 	matter = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 1000)
-	var/up = 0
+	var/up = FALSE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_HEAVY
 
@@ -204,11 +204,11 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape_cross"
 	item_state = null
-	w_class = 1
+	w_class = TRUE
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
@@ -237,7 +237,7 @@
 	item_state = "glasses"
 	action_button_name = "Toggle Goggles"
 	origin_tech = list(TECH_MAGNET = 3)
-	toggleable = 1
+	toggleable = TRUE
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	flash_protection = FLASH_PROTECTION_REDUCED
@@ -267,7 +267,7 @@
 	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 
 /obj/item/clothing/glasses/thermal/plain
-	toggleable = 0
+	toggleable = FALSE
 	activation_sound = null
 	action_button_name = null
 
@@ -277,14 +277,14 @@
 	icon_state = "thermoncle"
 	flags = null //doesn't protect eyes because it's a monocle, duh
 
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/glasses/thermal/plain/eyepatch
 	name = "Optical Thermal Eyepatch"
 	desc = "An eyepatch with built-in thermal optics"
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/glasses/thermal/plain/jensen
 	name = "Optical Thermal Implants"

@@ -3,7 +3,7 @@
 	desc = "A hefty wooden crate."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "densecrate"
-	density = 1
+	density = TRUE
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	user << "<span class='notice'>You need a crowbar to pry this open!</span>"
@@ -43,12 +43,12 @@
 */
 /obj/structure/largecrate/animal
 	icon_state = "mulecrate"
-	var/held_count = 1
+	var/held_count = TRUE
 	var/held_type
 
 /obj/structure/largecrate/animal/New()
 	..()
-	for(var/i = 1;i<=held_count;i++)
+	for(var/i = TRUE;i<=held_count;i++)
 		new held_type(src)
 
 /obj/structure/largecrate/animal/dog

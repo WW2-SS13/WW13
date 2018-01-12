@@ -20,8 +20,8 @@
 		slot_r_hand_str = "welding",
 		)
 	matter = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 1000)
-	var/up = 0
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/up = FALSE
+	armor = list(melee = 10, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = FALSE, rad = FALSE)
 	flags_inv = (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 	body_parts_covered = HEAD|FACE|EYES
 	action_button_name = "Flip Welding Mask"
@@ -71,7 +71,7 @@
 	desc = "It's tasty looking!"
 	icon_state = "cake0"
 	item_state = "cake0"
-	var/onfire = 0
+	var/onfire = FALSE
 	body_parts_covered = HEAD
 
 /obj/item/clothing/head/cakehat/process()
@@ -86,7 +86,7 @@
 			location = M.loc
 
 	if (istype(location, /turf))
-		location.hotspot_expose(700, 1)
+		location.hotspot_expose(700, TRUE)
 
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
 	src.onfire = !( src.onfire )

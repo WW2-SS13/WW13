@@ -10,15 +10,15 @@ FLOOR SAFES
 	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and assistant resistant.\""
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "safe"
-	anchored = 1
-	density = 1
-	var/open = 0		//is the safe open?
-	var/tumbler_1_pos	//the tumbler position- from 0 to 72
-	var/tumbler_1_open	//the tumbler position to open at- 0 to 72
+	anchored = TRUE
+	density = TRUE
+	var/open = FALSE		//is the safe open?
+	var/tumbler_1_pos	//the tumbler position- from FALSE to 72
+	var/tumbler_1_open	//the tumbler position to open at- FALSE to 72
 	var/tumbler_2_pos
 	var/tumbler_2_open
-	var/dial = 0		//where is the dial pointing?
-	var/space = 0		//the combined w_class of everything in the safe
+	var/dial = FALSE		//where is the dial pointing?
+	var/space = FALSE		//the combined w_class of everything in the safe
 	var/maxspace = 24	//the maximum combined w_class of stuff in the safe
 
 
@@ -47,21 +47,21 @@ FLOOR SAFES
 			user << "<span class='notice'>You hear a [pick("tink", "krink", "plink")] from [src].</span>"
 	if(tumbler_1_pos == tumbler_1_open && tumbler_2_pos == tumbler_2_open)
 		if(user) visible_message("<b>[pick("Spring", "Sprang", "Sproing", "Clunk", "Krunk")]!</b>")
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 
 /obj/structure/safe/proc/decrement(num)
-	num -= 1
-	if(num < 0)
+	num -= TRUE
+	if(num < FALSE)
 		num = 71
 	return num
 
 
 /obj/structure/safe/proc/increment(num)
-	num += 1
+	num += TRUE
 	if(num > 71)
-		num = 0
+		num = FALSE
 	return num
 
 
@@ -89,9 +89,9 @@ FLOOR SAFES
 	if(!ishuman(usr))	return
 	var/mob/living/carbon/human/user = usr
 
-	var/canhear = 0
+	var/canhear = FALSE
 	if(istype(user.l_hand, /obj/item/clothing/accessory/stethoscope) || istype(user.r_hand, /obj/item/clothing/accessory/stethoscope))
-		canhear = 1
+		canhear = TRUE
 
 	if(href_list["open"])
 		if(check_unlocked())
@@ -106,7 +106,7 @@ FLOOR SAFES
 
 	if(href_list["decrement"])
 		dial = decrement(dial)
-		if(dial == tumbler_1_pos + 1 || dial == tumbler_1_pos - 71)
+		if(dial == tumbler_1_pos + TRUE || dial == tumbler_1_pos - 71)
 			tumbler_1_pos = decrement(tumbler_1_pos)
 			if(canhear)
 				user << "<span class='notice'>You hear a [pick("clack", "scrape", "clank")] from [src].</span>"
@@ -120,7 +120,7 @@ FLOOR SAFES
 
 	if(href_list["increment"])
 		dial = increment(dial)
-		if(dial == tumbler_1_pos - 1 || dial == tumbler_1_pos + 71)
+		if(dial == tumbler_1_pos - TRUE || dial == tumbler_1_pos + 71)
 			tumbler_1_pos = increment(tumbler_1_pos)
 			if(canhear)
 				user << "<span class='notice'>You hear a [pick("clack", "scrape", "clank")] from [src].</span>"
@@ -167,8 +167,8 @@ obj/structure/safe/ex_act(severity)
 /obj/structure/safe/floor
 	name = "floor safe"
 	icon_state = "floorsafe"
-	density = 0
-	level = 1	//underfloor
+	density = FALSE
+	level = TRUE	//underfloor
 	layer = 2.5
 
 /obj/structure/safe/floor/initialize()
@@ -179,7 +179,7 @@ obj/structure/safe/ex_act(severity)
 	update_icon()
 
 /obj/structure/safe/floor/hide(var/intact)
-	invisibility = intact ? 101 : 0
+	invisibility = intact ? 101 : FALSE
 
 /obj/structure/safe/floor/hides_under_flooring()
-	return 1
+	return TRUE

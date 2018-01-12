@@ -1,5 +1,5 @@
 
-/mob/living/carbon/human/get_visible_implants(var/class = 0)
+/mob/living/carbon/human/get_visible_implants(var/class = FALSE)
 
 	var/list/visible_implants = list()
 	for(var/obj/item/organ/external/organ in src.organs)
@@ -13,8 +13,8 @@
 	for(var/obj/item/organ/external/organ in src.organs)
 		for(var/obj/item/O in organ.implants)
 			if(!istype(O, /obj/item/weapon/implant)) //implant type items do not cause embedding effects, see handle_embedded_objects()
-				return 1
-	return 0
+				return TRUE
+	return FALSE
 
 /mob/living/carbon/human/proc/handle_embedded_objects()
 
@@ -33,7 +33,7 @@
 						"<span class='warning'>Your movement jostles [O] in your [organ.name] painfully.</span>")
 					src << msg
 
-				organ.take_damage(rand(1,3), 0, 0)
+				organ.take_damage(rand(1,3), FALSE, FALSE)
 				if(!(organ.status & ORGAN_ROBOT) && !(species.flags & NO_BLOOD)) //There is no blood in protheses.
 					organ.status |= ORGAN_BLEEDING
 					src.adjustToxLoss(rand(1,3))

@@ -5,13 +5,13 @@
 
 /datum/surgery_step/face
 	priority = 2
-	can_infect = 0
+	can_infect = FALSE
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (!hasorgans(target))
-			return 0
+			return FALSE
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if (!affected || (affected.status & ORGAN_ROBOT))
-			return 0
+			return FALSE
 		return target_zone == "mouth"
 
 /datum/surgery_step/generic/cut_face
@@ -25,7 +25,7 @@
 	max_duration = 110
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		return ..() && target_zone == "mouth" && target.op_stage.face == 0
+		return ..() && target_zone == "mouth" && target.op_stage.face == FALSE
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] starts to cut open [target]'s face and neck with \the [tool].", \
@@ -35,7 +35,7 @@
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("\blue [user] has cut open [target]'s face and neck with \the [tool]." , \
 		"\blue You have cut open [target]'s face and neck with \the [tool].",)
-		target.op_stage.face = 1
+		target.op_stage.face = TRUE
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -55,7 +55,7 @@
 	max_duration = 90
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		return ..() && target.op_stage.face == 1
+		return ..() && target.op_stage.face == TRUE
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] starts mending [target]'s vocal cords with \the [tool].", \
@@ -112,7 +112,7 @@
 	max_duration = 100
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		return ..() && target.op_stage.face > 0
+		return ..() && target.op_stage.face > FALSE
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] is beginning to cauterize the incision on [target]'s face and neck with \the [tool]." , \
@@ -123,12 +123,12 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("\blue [user] cauterizes the incision on [target]'s face and neck with \the [tool].", \
 		"\blue You cauterize the incision on [target]'s face and neck with \the [tool].")
-		affected.open = 0
+		affected.open = FALSE
 		affected.status &= ~ORGAN_BLEEDING
 		if (target.op_stage.face == 3)
 			var/obj/item/organ/external/head/h = affected
-			h.disfigured = 0
-		target.op_stage.face = 0
+			h.disfigured = FALSE
+		target.op_stage.face = FALSE
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)

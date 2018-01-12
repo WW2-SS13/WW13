@@ -6,28 +6,28 @@ var/global/list/additional_antag_types = list()
 	var/round_description = "How did you even vote this in?"
 	var/extended_round_description = "This roundtype should not be spawned, let alone votable. Someone contact a developer and tell them the game's broken again."
 	var/config_tag = null
-	var/votable = 1
-	var/probability = 0
+	var/votable = TRUE
+	var/probability = FALSE
 
-	var/required_players = 0                 // Minimum players for round to start if voted in.
-	var/required_enemies = 0                 // Minimum antagonists for round to start.
+	var/required_players = FALSE                 // Minimum players for round to start if voted in.
+	var/required_enemies = FALSE                 // Minimum antagonists for round to start.
 	var/newscaster_announcements = null
-	var/end_on_antag_death = 0               // Round will end when all antagonists are dead.
-	var/deny_respawn = 0	                 // Disable respawn during this round.
+	var/end_on_antag_death = FALSE               // Round will end when all antagonists are dead.
+	var/deny_respawn = FALSE	                 // Disable respawn during this round.
 
 	var/list/disabled_jobs = list()           // Mostly used for Malf.  This check is performed in job_controller so it doesn't spawn a regular AI.
 
-	var/shuttle_delay = 1                    // Shuttle transit time is multiplied by this.
-	var/auto_recall_shuttle = 0              // Will the shuttle automatically be recalled?
+	var/shuttle_delay = TRUE                    // Shuttle transit time is multiplied by this.
+	var/auto_recall_shuttle = FALSE              // Will the shuttle automatically be recalled?
 
 	var/list/antag_tags = list()             // Core antag templates to spawn.
 	var/list/antag_templates                 // Extra antagonist types to include.
-	var/round_autoantag = 0                  // Will this round attempt to periodically spawn more antagonists?
+	var/round_autoantag = FALSE                  // Will this round attempt to periodically spawn more antagonists?
 	var/antag_scaling_coeff = 5              // Coefficient for scaling max antagonists to player count.
-	var/require_all_templates = 0            // Will only start if all templates are checked and can spawn.
+	var/require_all_templates = FALSE            // Will only start if all templates are checked and can spawn.
 
-	var/station_was_nuked = 0                // See nuclearbomb.dm and malfunction.dm.
-	var/explosion_in_progress = 0            // Sit back and relax
+	var/station_was_nuked = FALSE                // See nuclearbomb.dm and malfunction.dm.
+	var/explosion_in_progress = FALSE            // Sit back and relax
 	var/waittime_l = 600                     // Lower bound on time before intercept arrives (in tenths of seconds)
 	var/waittime_h = 1800                    // Upper bound on time before intercept arrives (in tenths of seconds)
 
@@ -53,12 +53,12 @@ var/global/list/additional_antag_types = list()
 		switch(href_list["set"])
 			if("shuttle_delay")
 				choice = input("Enter a new shuttle delay multiplier") as num
-				if(!choice || choice < 1 || choice > 20)
+				if(!choice || choice < TRUE || choice > 20)
 					return
 				shuttle_delay = choice
 			if("antag_scaling")
 				choice = input("Enter a new antagonist cap scaling coefficient.") as num
-				if(isnull(choice) || choice < 0 || choice > 100)
+				if(isnull(choice) || choice < FALSE || choice > 100)
 					return
 				antag_scaling_coeff = choice
 		message_admins("Admin [key_name_admin(usr)] set game mode option '[href_list["set"]]' to [choice].")
@@ -103,9 +103,9 @@ var/global/list/additional_antag_types = list()
 	if(round_autoantag) world << "Antagonists will be added to the round automagically as needed."
 	if(antag_templates && antag_templates.len)
 		var/antag_summary = "<b>Possible antagonist types:</b> "
-		var/i = 1
+		var/i = TRUE
 		for(var/datum/antagonist/antag in antag_templates)
-			if(i > 1)
+			if(i > TRUE)
 				if(i == antag_templates.len)
 					antag_summary += " and "
 				else
@@ -113,7 +113,7 @@ var/global/list/additional_antag_types = list()
 			antag_summary += "[antag.role_text_plural]"
 			i++
 		antag_summary += "."
-		if(antag_templates.len > 1 && master_mode != "secret")
+		if(antag_templates.len > TRUE && master_mode != "secret")
 			world << "[antag_summary]"
 		else
 			message_admins("[antag_summary]")
@@ -123,18 +123,18 @@ var/global/list/additional_antag_types = list()
 ///can_start()
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
 /datum/game_mode/proc/can_start(var/do_not_spawn)
-	var/playerC = 0
+	var/playerC = FALSE
 	for(var/mob/new_player/player in player_list)
 		if((player.client)&&(player.ready))
 			playerC++
 
 	if(playerC < required_players)
-		return 0
+		return FALSE
 
 	if(!(antag_templates && antag_templates.len))
-		return 1
+		return TRUE
 
-	var/enemy_count = 0
+	var/enemy_count = FALSE
 	if(antag_tags && antag_tags.len)
 		for(var/antag_tag in antag_tags)
 			var/datum/antagonist/antag = all_antag_types[antag_tag]
@@ -147,11 +147,11 @@ var/global/list/additional_antag_types = list()
 				potential = antag.candidates
 			if(islist(potential))
 				if(require_all_templates && potential.len < antag.initial_spawn_req)
-					return 0
+					return FALSE
 				enemy_count += potential.len
 				if(enemy_count >= required_enemies)
-					return 1
-	return 0
+					return TRUE
+	return FALSE
 
 /datum/game_mode/proc/pre_setup()
 	for(var/datum/antagonist/antag in antag_templates)
@@ -177,7 +177,7 @@ var/global/list/additional_antag_types = list()
 			antag.attempt_spawn() //select antags to be spawned
 		antag.finalize_spawn() //actually spawn antags
 
-	return 1
+	return TRUE
 
 /datum/game_mode/proc/fail_setup()
 	for(var/datum/antagonist/antag in antag_templates)
@@ -186,16 +186,16 @@ var/global/list/additional_antag_types = list()
 
 /datum/game_mode/proc/check_finished()
 	if(station_was_nuked)
-		return 1
+		return TRUE
 	if(end_on_antag_death && antag_templates && antag_templates.len)
 		for(var/datum/antagonist/antag in antag_templates)
 			if(!antag.antags_are_dead())
-				return 0
+				return FALSE
 		if(config.continous_rounds)
-		//	emergency_shuttle.auto_recall = 0
-			return 0
-		return 1
-	return 0
+		//	emergency_shuttle.auto_recall = FALSE
+			return FALSE
+		return TRUE
+	return FALSE
 
 /datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
 	return
@@ -214,10 +214,10 @@ var/global/list/additional_antag_types = list()
 		print_ownerless_uplinks()
 
 /*
-	var/surviving_total = 0
-	var/ghosts = 0
+	var/surviving_total = FALSE
+	var/ghosts = FALSE
 
-	var/escaped_total = 0*/
+	var/escaped_total = FALSE*/
 /*
 	var/list/area/escape_locations = list(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom)
 
@@ -235,7 +235,7 @@ var/global/list/additional_antag_types = list()
 				ghosts++
 
 	var/text = ""
-	if(surviving_total > 0)
+	if(surviving_total > FALSE)
 		text += "<br>There [surviving_total>1 ? "were <b>[surviving_total] survivors</b>" : "was <b>one survivor</b>"]"
 	//	text += " (<b>[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]</b>) and <b>[ghosts] ghosts</b>.<br>"
 	else
@@ -243,10 +243,10 @@ var/global/list/additional_antag_types = list()
 	world << text
 
 */
-	return 0
+	return FALSE
 
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
-	return 0
+	return FALSE
 
 /datum/game_mode/proc/send_intercept()
 
@@ -277,7 +277,7 @@ var/global/list/additional_antag_types = list()
 			suspects += man
 
 	for(var/mob/M in suspects)
-		if(player_is_antag(M.mind, only_offstation_roles = 1))
+		if(player_is_antag(M.mind, only_offstation_roles = TRUE))
 			continue
 		switch(rand(1, 100))
 			if(1 to 50)
@@ -335,18 +335,18 @@ var/global/list/additional_antag_types = list()
 							//			Less if there are not enough valid players in the game entirely to make required_enemies.
 
 /datum/game_mode/proc/num_players()
-	. = 0
+	. = FALSE
 	for(var/mob/new_player/P in player_list)
 		if(P.client && P.ready)
 			. ++
 
 /datum/game_mode/proc/check_antagonists_topic(href, href_list[])
-	return 0
+	return FALSE
 
 /datum/game_mode/proc/create_antagonists()
 
 	if(!config.traitor_scaling)
-		antag_scaling_coeff = 0
+		antag_scaling_coeff = FALSE
 
 	if(antag_tags && antag_tags.len)
 		antag_templates = list()
@@ -387,10 +387,10 @@ proc/display_roundstart_logout_report()
 	for(var/mob/living/carbon/human/H in mob_list)
 
 		if(H.ckey)
-			var/found = 0
+			var/found = FALSE
 			for(var/client/C in clients)
 				if(C.ckey == H.ckey)
-					found = 1
+					found = TRUE
 					break
 			if(!found)
 				msg += "<b>[H.name]</b> ([H.ckey]), the [H.original_job ? H.original_job.title : "nobody"] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
@@ -446,7 +446,7 @@ proc/display_roundstart_logout_report()
 		show_generic_antag_text(player)
 		return
 
-	var/obj_count = 1
+	var/obj_count = TRUE
 	player.current << "<span class='notice'>Your current objectives:</span>"
 	for(var/datum/objective/objective in player.objectives)
 		player.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"

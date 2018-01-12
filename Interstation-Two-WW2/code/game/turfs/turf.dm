@@ -14,85 +14,85 @@ var/list/interior_areas = list(/area/prishtina/houses,
 ///turf/var/zone/zone
 /turf/var/open_directions
 
-///turf/var/needs_air_update = 0
+///turf/var/needs_air_update = FALSE
 ///turf/var/datum/gas_mixture/air
 
 
 /turf
 	name = "station"
 	icon = 'icons/turf/floors.dmi'
-	level = 1
-//	var/holy = 0
+	level = TRUE
+//	var/holy = FALSE
 
 	// Initial air contents (in moles)
-//	var/oxygen = 0
-//	var/carbon_dioxide = 0
-//	var/nitrogen = 0
-//	var/plasma = 0
+//	var/oxygen = FALSE
+//	var/carbon_dioxide = FALSE
+//	var/nitrogen = FALSE
+//	var/plasma = FALSE
 
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
-	var/heat_capacity = 1
+	var/heat_capacity = TRUE
 
 	//Properties for both
 	var/temperature = T20C      // Initial turf temperature.
-//	var/blocks_air = 0          // Does this turf contain air/let air through?
+//	var/blocks_air = FALSE          // Does this turf contain air/let air through?
 
 	// General properties.
 	var/icon_old = null
-	var/pathweight = 1          // How much does it cost to pathfind over this turf?
-//	var/blessed = 0             // Has the turf been blessed?
+	var/pathweight = TRUE          // How much does it cost to pathfind over this turf?
+//	var/blessed = FALSE             // Has the turf been blessed?
 
 	var/list/decals
 
-	var/wet = 0
+	var/wet = FALSE
 	var/image/wet_overlay = null
 
 	//Mining resources (for the large drills).
 //	var/has_resources
 //	var/list/resources
 
-//	var/thermite = 0
+//	var/thermite = FALSE
 //	oxygen = MOLES_O2STANDARD
 //	nitrogen = MOLES_N2STANDARD
-	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
-	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
-	var/dirt = 0
+	var/to_be_destroyed = FALSE //Used for fire, if a melting temperature was reached, it will be destroyed
+	var/max_fire_temperature_sustained = FALSE //The max temperature of the fire which it was subjected to
+	var/dirt = FALSE
 
 	var/datum/scheduled_task/unwet_task
-	var/interior = 1
+	var/interior = TRUE
 	var/stepsound = null
 	var/floor_type= null
-	var/intact = 1
+	var/intact = TRUE
 
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
-		spawn( 0 )
+		spawn( FALSE )
 			src.Entered(AM)
 			return
 	turfs |= src
 
 
 /turf/CanPass(atom/movable/mover, turf/target, height=1.5,air_group=0)
-	if(!target) return 0
+	if(!target) return FALSE
 
 	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
 		return !density
 
 	else // Now, doing more detailed checks for air movement and air group formation
 	/*	if(target.blocks_air||blocks_air)
-			return 0*/
+			return FALSE*/
 
 		for(var/obj/obstacle in src)
 			if(!obstacle.CanPass(mover, target, height, air_group))
-				return 0
+				return FALSE
 		if(target != src)
 			for(var/obj/obstacle in target)
 				if(!obstacle.CanPass(mover, src, height, air_group))
-					return 0
+					return FALSE
 
-		return 1
+		return TRUE
 
 /turf/proc/update_icon()
 	return
@@ -113,21 +113,21 @@ var/list/interior_areas = list(/area/prishtina/houses,
 	..()
 
 /turf/ex_act(severity)
-	return 0
+	return FALSE
 
 /turf/proc/is_space()
-	return 0
+	return FALSE
 
 /turf/proc/is_intact()
-	return 0
+	return FALSE
 
 /turf/attack_hand(mob/user)
 	if(!(user.canmove) || user.restrained() || !(user.pulling))
-		return 0
+		return FALSE
 	if(user.pulling.anchored || !isturf(user.pulling.loc))
-		return 0
-	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1)
-		return 0
+		return FALSE
+	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > TRUE)
+		return FALSE
 	if(ismob(user.pulling))
 		var/mob/M = user.pulling
 		var/atom/movable/t = M.pulling
@@ -136,7 +136,7 @@ var/list/interior_areas = list(/area/prishtina/houses,
 		M.start_pulling(t)
 	else
 		step(user.pulling, get_dir(user.pulling.loc, src))
-	return 1
+	return TRUE
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
@@ -146,41 +146,41 @@ var/list/interior_areas = list(/area/prishtina/houses,
 	..()
 
 	if (!mover || !isturf(mover.loc) || isobserver(mover))
-		return 1
+		return TRUE
 
 	//First, check objects to block exit that are not on the border
 	for(var/obj/obstacle in mover.loc)
 		if(!(obstacle.flags & ON_BORDER) && (mover != obstacle) && (forget != obstacle))
 			if(!obstacle.CheckExit(mover, src))
-				mover.Bump(obstacle, 1)
-				return 0
+				mover.Bump(obstacle, TRUE)
+				return FALSE
 
 	//Now, check objects to block exit that are on the border
 	for(var/obj/border_obstacle in mover.loc)
 		if((border_obstacle.flags & ON_BORDER) && (mover != border_obstacle) && (forget != border_obstacle))
 			if(!border_obstacle.CheckExit(mover, src))
-				mover.Bump(border_obstacle, 1)
-				return 0
+				mover.Bump(border_obstacle, TRUE)
+				return FALSE
 
 	//Next, check objects to block entry that are on the border
 	for(var/obj/border_obstacle in src)
 		if(border_obstacle.flags & ON_BORDER)
-			if(!border_obstacle.CanPass(mover, mover.loc, 1, 0) && (forget != border_obstacle))
-				mover.Bump(border_obstacle, 1)
-				return 0
+			if(!border_obstacle.CanPass(mover, mover.loc, TRUE, FALSE) && (forget != border_obstacle))
+				mover.Bump(border_obstacle, TRUE)
+				return FALSE
 
 	//Then, check the turf itself
 	if (!src.CanPass(mover, src))
-		mover.Bump(src, 1)
-		return 0
+		mover.Bump(src, TRUE)
+		return FALSE
 
 	//Finally, check objects/mobs to block entry that are not on the border
 	for(var/atom/movable/obstacle in src)
 		if(!(obstacle.flags & ON_BORDER))
-			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && (forget != obstacle))
-				mover.Bump(obstacle, 1)
-				return 0
-	return 1 //Nothing found to block so return success!
+			if(!obstacle.CanPass(mover, mover.loc, TRUE, FALSE) && (forget != obstacle))
+				mover.Bump(obstacle, TRUE)
+				return FALSE
+	return TRUE //Nothing found to block so return success!
 
 var/const/enterloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
@@ -199,36 +199,36 @@ var/const/enterloopsanity = 100
 		var/mob/M = A
 		if(!M.lastarea)
 			M.lastarea = get_area(M.loc)
-		if(M.lastarea.has_gravity == 0)
+		if(M.lastarea.has_gravity == FALSE)
 			inertial_drift(M)
 		else if(is_space())
-			M.inertia_dir = 0
+			M.inertia_dir = FALSE
 			M.make_floating(0)
 
-	var/objects = 0
+	var/objects = FALSE
 	if(A && (A.flags & PROXMOVE))
 		for(var/atom/movable/thing in range(1))
 			if(objects > enterloopsanity) break
 			objects++
 			spawn(0)
 				if(A)
-					A.HasProximity(thing, 1)
+					A.HasProximity(thing, TRUE)
 					if ((thing && A) && (thing.flags & PROXMOVE))
-						thing.HasProximity(A, 1)
+						thing.HasProximity(A, TRUE)
 	return
 
 /turf/proc/adjacent_fire_act(turf/floor/source, temperature, volume)
 	return
 
 /turf/proc/is_plating()
-	return 0
+	return FALSE
 
 /turf/proc/inertial_drift(atom/movable/A as mob|obj)
 	if(!(A.last_move))	return
-	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
+	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - TRUE) && src.y > 2 && src.y < (world.maxy-1)))
 		var/mob/M = A
 		if(M.Process_Spacemove(1))
-			M.inertia_dir  = 0
+			M.inertia_dir  = FALSE
 			return
 		spawn(5)
 			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
@@ -259,7 +259,7 @@ var/const/enterloopsanity = 100
 	return L
 
 /turf/proc/Distance(turf/t)
-	if(get_dist(src,t) == 1)
+	if(get_dist(src,t) == TRUE)
 		var/cost = (src.x - t.x) * (src.x - t.x) + (src.y - t.y) * (src.y - t.y)
 		cost *= (pathweight+t.pathweight)/2
 		return cost
@@ -279,30 +279,30 @@ var/const/enterloopsanity = 100
 
 /turf/proc/contains_dense_objects()
 	if(density)
-		return 1
+		return TRUE
 	for(var/atom/A in src)
 		if(A.density && !(A.flags & ON_BORDER))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 //expects an atom containing the reagents used to clean the turf
 /turf/proc/clean(atom/source, mob/user)
-	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
+	if(source.reagents.has_reagent("water", TRUE) || source.reagents.has_reagent("cleaner", TRUE))
 		clean_blood()
 		if(istype(src, /turf))
 			var/turf/T = src
-			T.dirt = 0
+			T.dirt = FALSE
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
 	else
 		user << "<span class='warning'>\The [source] is too dry to wash that.</span>"
-	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
+	source.reagents.trans_to_turf(src, TRUE, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 
 /turf/proc/update_blood_overlays()
 	return
 .
-/turf/proc/wet_floor(var/wet_val = 1)
+/turf/proc/wet_floor(var/wet_val = TRUE)
 	if(wet_val < wet)
 		return
 
@@ -326,7 +326,7 @@ var/const/enterloopsanity = 100
 	if(check_very_wet && wet >= 2)
 		return
 
-	wet = 0
+	wet = FALSE
 	if(wet_overlay)
 		overlays -= wet_overlay
 		wet_overlay = null
@@ -385,7 +385,7 @@ var/const/enterloopsanity = 100
 			if(H.shoes)
 				var/obj/item/clothing/shoes/S = H.shoes
 				if(istype(S))
-					S.handle_movement(src,(H.m_intent == "run" ? 1 : 0))
+					S.handle_movement(src,(H.m_intent == "run" ? TRUE : FALSE))
 					if(S.track_blood && S.blood_DNA)
 						bloodDNA = S.blood_DNA
 						bloodcolor=S.blood_color
@@ -433,15 +433,15 @@ var/const/enterloopsanity = 100
 
 			if(istype(H.shoes, /obj/item/clothing/shoes))
 				if(M.m_intent == "run")
-					if(M.footstep >= 0) // Every step.
-						M.footstep = 0
-						playsound(src, footstepsound, 100, 1)
+					if(M.footstep >= FALSE) // Every step.
+						M.footstep = FALSE
+						playsound(src, footstepsound, 100, TRUE)
 					else
 						M.footstep++
 				else
-					if(M.footstep >= 1) // Every two steps.
-						M.footstep = 0
-						playsound(src, footstepsound, 100, 1)
+					if(M.footstep >= TRUE) // Every two steps.
+						M.footstep = FALSE
+						playsound(src, footstepsound, 100, TRUE)
 					else
 						M.footstep++
 
@@ -449,10 +449,10 @@ var/const/enterloopsanity = 100
 
 		if(src.wet)
 
-			if(M.buckled || (src.wet == 1 && M.m_intent == "walk"))
+			if(M.buckled || (src.wet == TRUE && M.m_intent == "walk"))
 				return
 
-			var/slip_dist = 1
+			var/slip_dist = TRUE
 			var/slip_stun = 6
 			var/floor_type = "wet"
 
@@ -466,20 +466,20 @@ var/const/enterloopsanity = 100
 					slip_stun = 4
 
 			if(M.slip("the [floor_type] floor",slip_stun))
-				for(var/i = 0;i<slip_dist;i++)
+				for(var/i = FALSE;i<slip_dist;i++)
 					step(M, M.dir)
 					sleep(1)
 			else
-				M.inertia_dir = 0
+				M.inertia_dir = FALSE
 		else
-			M.inertia_dir = 0
+			M.inertia_dir = FALSE
 
 	..()
 
-//returns 1 if made bloody, returns 0 otherwise
+//returns TRUE if made bloody, returns FALSE otherwise
 /turf/add_blood(mob/living/carbon/human/M as mob)
 	if (!..())
-		return 0
+		return FALSE
 
 	if(istype(M))
 		for(var/obj/effect/decal/cleanable/blood/B in contents)
@@ -488,10 +488,10 @@ var/const/enterloopsanity = 100
 			if(!B.blood_DNA[M.dna.unique_enzymes])
 				B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 				B.virus2 = virus_copylist(M.virus2)*/
-			return 1 //we bloodied the floor
+			return TRUE //we bloodied the floor
 		blood_splatter(src,M.get_blood(M.vessel),1)
-		return 1 //we bloodied the floor
-	return 0
+		return TRUE //we bloodied the floor
+	return FALSE
 
 // Only adds blood on the floor -- Skie
 /turf/proc/add_blood_floor(mob/living/carbon/M as mob)
@@ -502,7 +502,7 @@ var/const/enterloopsanity = 100
 		new /obj/effect/decal/cleanable/blood/oil(src)
 
 /turf/proc/can_build_cable(var/mob/user)
-	return 0
+	return FALSE
 
 /turf/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/stack/cable_coil) && can_build_cable(user))

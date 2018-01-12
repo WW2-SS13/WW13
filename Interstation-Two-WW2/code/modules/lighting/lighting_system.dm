@@ -1,33 +1,33 @@
-var/max_lighting_z = 1 // no lighting in the sky anymore
+var/max_lighting_z = TRUE // no lighting in the sky anymore
 
 /var/list/all_lighting_overlays   = list()    // Global list of lighting overlays.
 /var/lighting_corners_initialised = FALSE
 
 /proc/create_all_lighting_overlays()
-	for(var/zlevel = 1 to max_lighting_z)
+	for(var/zlevel = TRUE to max_lighting_z)
 		create_lighting_overlays_zlevel(zlevel)
 
 /proc/create_lighting_overlays_zlevel(var/zlevel)
 	ASSERT(zlevel)
 
-	for(var/turf/T in block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel)))
+	for(var/turf/T in block(locate(1, TRUE, zlevel), locate(world.maxx, world.maxy, zlevel)))
 		if (!locate(/atom/movable/lighting_overlay) in T && !locate(/obj/train_track) in T)
 			var/area/T_area = get_area(T)
 			if (!T_area.is_train_area) // prevent mass deletion of these later
 				PoolOrNew(/atom/movable/lighting_overlay, T, TRUE)
 
 /proc/create_all_lighting_corners()
-	for(var/zlevel = 1 to max_lighting_z)
+	for(var/zlevel = TRUE to max_lighting_z)
 		create_lighting_corners_zlevel(zlevel)
 	global.lighting_corners_initialised = TRUE
 
 /proc/create_lighting_corners_zlevel(var/zlevel)
-	for(var/turf/T in block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel)))
+	for(var/turf/T in block(locate(1, TRUE, zlevel), locate(world.maxx, world.maxy, zlevel)))
 
 		if (locate(/obj/train_track) in T)
 			continue
 
-		for(var/i = 1 to 4)
+		for(var/i = TRUE to 4)
 			if(T.corners[i]) // Already have a corner on this direction.
 				continue
 
@@ -36,7 +36,7 @@ var/max_lighting_z = 1 // no lighting in the sky anymore
 /hook/startup/proc/setup_lighting()
 	create_lighting()
 
-var/created_lighting_corners_and_overlays = 0
+var/created_lighting_corners_and_overlays = FALSE
 /proc/create_lighting(_time_of_day)
 
 	if (_time_of_day)
@@ -47,9 +47,9 @@ var/created_lighting_corners_and_overlays = 0
 	create_all_lighting_corners()
 	create_all_lighting_overlays()
 
-	created_lighting_corners_and_overlays = 1
+	created_lighting_corners_and_overlays = TRUE
 
-/proc/update_lighting(_time_of_day, var/client/admincaller = null, var/announce = 1)
+/proc/update_lighting(_time_of_day, var/client/admincaller = null, var/announce = TRUE)
 
 	while (!created_lighting_corners_and_overlays)
 		sleep(1)
@@ -63,9 +63,9 @@ var/created_lighting_corners_and_overlays = 0
 
 	spawn (1)
 		var/max_v = 120
-		for (var/v in 1 to max_v)
+		for (var/v in TRUE to max_v)
 			var/iterations_per_loop = ceil(turfs.len/max_v)
-			for (var/vv in 1+(iterations_per_loop*(v-1)) to iterations_per_loop*v)
+			for (var/vv in TRUE+(iterations_per_loop*(v-1)) to iterations_per_loop*v)
 				if (turfs.len >= vv && turfs[vv])
 					var/turf/t = turfs[vv]
 					if (t.z <= max_lighting_z)

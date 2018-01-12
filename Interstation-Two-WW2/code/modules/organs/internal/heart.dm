@@ -5,9 +5,9 @@
 	parent_organ = "chest"
 	dead_icon = "heart-off"
 	var/pulse = PULSE_NORM
-	var/heartbeat = 0
+	var/heartbeat = FALSE
 	var/beat_sound = 'sound/effects/singlebeat.ogg'
-	var/efficiency = 1
+	var/efficiency = TRUE
 
 /obj/item/organ/heart/process()
 	if(owner)
@@ -20,7 +20,7 @@
 	if(owner.stat == DEAD || status & ORGAN_ROBOT)
 		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
 		return
-	if(owner.life_tick % 5 == 0)//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
+	if(owner.life_tick % 5 == FALSE)//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 		pulse = PULSE_NORM
 
 		if(round(owner.vessel.get_reagent_amount("blood")) <= BLOOD_VOLUME_BAD)	//how much blood do we have
@@ -39,7 +39,7 @@
 		var/rate = (PULSE_THREADY - pulse)/2
 
 		if(heartbeat >= rate)
-			heartbeat = 0
+			heartbeat = FALSE
 			//owner << sound(beat_sound,0,0,0,50)//Heartbeating sounds are really fucking annoying.
 		else
 			heartbeat++
@@ -60,7 +60,7 @@
 		blood_volume *= 0.3
 	else if(is_bruised())
 		blood_volume *= 0.6
-	else if(damage > 1)
+	else if(damage > TRUE)
 		blood_volume *= 0.8
 
 	//Effects of bloodloss
@@ -119,8 +119,8 @@
 
 	if(is_bruised())
 		if(prob(2))
-			spawn owner.emote("me", 1, "coughs up blood!")
+			spawn owner.emote("me", TRUE, "coughs up blood!")
 			owner.drip(10)
 		if(prob(4))
-			spawn owner.emote("me", 1, "gasps for air!")
+			spawn owner.emote("me", TRUE, "gasps for air!")
 			owner.losebreath += 15

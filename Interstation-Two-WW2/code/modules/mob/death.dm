@@ -11,8 +11,8 @@
 
 		lastgib = world.time
 		death(1)
-		transforming = 1
-		canmove = 0
+		transforming = TRUE
+		canmove = FALSE
 		icon = null
 		invisibility = 101
 		update_canmove()
@@ -40,8 +40,8 @@
 
 		lastgib = world.time
 		death(1)
-		transforming = 1
-		canmove = 0
+		transforming = TRUE
+		canmove = FALSE
 		icon = null
 		invisibility = 101
 		update_canmove()
@@ -70,8 +70,8 @@
 /mob/proc/dust(anim="dust-m",remains=/obj/effect/decal/cleanable/ash)
 	death(1)
 	var/atom/movable/overlay/animation = null
-	transforming = 1
-	canmove = 0
+	transforming = TRUE
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 
@@ -92,7 +92,7 @@
 /mob/proc/death(gibbed,deathmessage="seizes up and falls limp...")
 
 	if(stat == DEAD)
-		return 0
+		return FALSE
 
 	facing_dir = null
 
@@ -100,8 +100,8 @@
 
 	update_canmove()
 
-	dizziness = 0
-	jitteriness = 0
+	dizziness = FALSE
+	jitteriness = FALSE
 
 	layer = MOB_LAYER
 
@@ -119,7 +119,7 @@
 			H.icon_state = "health7"
 
 	timeofdeath = world.time
-	if(mind) mind.store_memory("Time of death: [stationtime2text()]", 0)
+	if(mind) mind.store_memory("Time of death: [stationtime2text()]", FALSE)
 	living_mob_list -= src
 	dead_mob_list |= src
 
@@ -131,4 +131,4 @@
 	if (client)
 		ghostize()
 
-	return 1
+	return TRUE

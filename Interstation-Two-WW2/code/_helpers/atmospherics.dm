@@ -8,10 +8,10 @@
 		user << "<span class='notice'>Results of the analysis[src == A ? "" : " of \the [A]"]</span>"
 		for(var/line in result)
 			user << "<span class='notice'>[line]</span>"
-		return 1
+		return TRUE
 
 	user << "<span class='warning'>Your [src] flashes a red light as it fails to analyze \the [A].</span>"
-	return 0
+	return FALSE
 
 /proc/atmosanalyzer_scan(var/obj/target, var/datum/gas_mixture/mixture, var/mob/user)
 	var/pressure = mixture.return_pressure()

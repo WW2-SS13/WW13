@@ -22,24 +22,24 @@
 
 /proc/get_area_width(var/area/a) //takes an actual area or a type
 	var/list/turfs = get_area_turfs(a)
-	var/maxDistX = 0
+	var/maxDistX = FALSE
 
 	for (var/turf/t in turfs)
 		for (var/turf/tt in turfs)
 			if (istype(t) && istype(tt))
 				maxDistX = max(maxDistX, abs(t.x - tt.x))
 
-	return maxDistX + 1
+	return maxDistX + TRUE
 
 /proc/get_area_height(var/area/a)
 	var/list/turfs = get_area_turfs(a)
-	var/maxDistY = 0
+	var/maxDistY = FALSE
 	for (var/turf/t in turfs)
 		for (var/turf/tt in turfs)
 			if (istype(t) && istype(tt))
 				maxDistY = max(maxDistY, abs(t.y - tt.y))
 
-	return maxDistY + 1
+	return maxDistY + TRUE
 
 /proc/min_area_x(var/area/a) //takes an actual area or a type
 	var/list/turfs = get_area_turfs(a)
@@ -63,7 +63,7 @@
 
 /proc/max_area_x(var/area/a) //takes an actual area or a type
 	var/list/turfs = get_area_turfs(a)
-	var/max_x = 0
+	var/max_x = FALSE
 
 	for (var/turf/t in turfs)
 		if (istype(t))
@@ -73,7 +73,7 @@
 
 /proc/max_area_y(var/area/a)
 	var/list/turfs = get_area_turfs(a)
-	var/max_y = 0
+	var/max_y = FALSE
 
 	for (var/turf/t in turfs)
 		if (istype(t))

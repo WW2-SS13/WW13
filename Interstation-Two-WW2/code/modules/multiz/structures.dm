@@ -20,11 +20,11 @@
 
 /obj/structure/multiz
 	name = "ladder"
-	density = 0
-	opacity = 0
-	anchored = 1
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
 	icon = 'icons/obj/stairs.dmi'
-	var/istop = 1
+	var/istop = TRUE
 	var/obj/structure/multiz/target
 
 	New()
@@ -72,7 +72,7 @@
 
 /obj/structure/multiz/ladder/up
 	icon_state = "ladderup"
-	istop = 0
+	istop = FALSE
 
 /obj/structure/multiz/ladder/Destroy()
 	if(target && istop)
@@ -105,7 +105,7 @@
 	if(do_after(M, 10, src))
 		if (target.loc && locate(/obj/train_pseudoturf) in target.loc)
 			T = target.loc // this is to prevent the train teleporting error
-		playsound(src.loc, 'sound/effects/ladder.ogg', 50, 1, -1)
+		playsound(src.loc, 'sound/effects/ladder.ogg', 50, TRUE, -1)
 		var/was_pulling = null
 		if (M.pulling)
 			was_pulling = M.pulling
@@ -174,7 +174,7 @@
 		return "up"
 	return "down"
 
-/* 1 Z LEVEL LADDERS - Kachnov */
+/* TRUE Z LEVEL LADDERS - Kachnov */
 
 /obj/structure/multiz/ladder/ww2
 	var/ladder_id = null
@@ -190,7 +190,7 @@
 
 /obj/structure/multiz/ladder/ww2/up
 	icon_state = "ladderup"
-	istop = 0
+	istop = FALSE
 
 /obj/structure/multiz/ladder/ww2/Destroy()
 	if(target && istop)
@@ -202,7 +202,7 @@
 
 /obj/structure/multiz/ladder/ww2/manhole
 	icon_state = "manhole"
-	density = 0
+	density = FALSE
 	name = "manhole"
 
 /obj/structure/multiz/ladder/ww2/manhole/proc/fell(var/mob/living/M)
@@ -248,10 +248,10 @@
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "rampup"
 	layer = 2.4
-	density = 0
-	opacity = 0
-	anchored = 1
-	var/istop = 1
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	var/istop = TRUE
 
 	CanPass(obj/mover, turf/source, height, airflow)
 		return airflow || !density
@@ -261,20 +261,20 @@
 
 /obj/structure/stairs/enter/bottom
 	icon_state = "rampbottom"
-	istop = 0
+	istop = FALSE
 
 /obj/structure/stairs/active
-	density = 1
+	density = TRUE
 
 /obj/structure/stairs/active/Bumped(var/atom/movable/M)
 	if(istype(src, /obj/structure/stairs/active/bottom) && !locate(/obj/structure/stairs/enter) in M.loc)
 		return //If on bottom, only let them go up stairs if they've moved to the entry tile first.
 	//If it's the top, they can fall down just fine.
 	if(ismob(M) && M:client)
-		M:client.moving = 1
+		M:client.moving = TRUE
 	M.Move(locate(src.x, src.y, targetZ()))
 	if (ismob(M) && M:client)
-		M:client.moving = 0
+		M:client.moving = FALSE
 
 /obj/structure/stairs/active/attack_hand(mob/user)
 	. = ..()
@@ -284,14 +284,14 @@
 
 /obj/structure/stairs/active/bottom
 	icon_state = "rampdark"
-	istop = 0
-	opacity = 1
+	istop = FALSE
+	opacity = TRUE
 
 /obj/structure/attack_tk(mob/user as mob)
 	return
 
 /obj/structure/stairs/proc/targetZ()
-	return src.z + (istop ? -1 : 1)
+	return src.z + (istop ? -1 : TRUE)
 */
 
 /obj/structure/multiz/stairs
@@ -305,10 +305,10 @@
 
 /obj/structure/multiz/stairs/enter/bottom
 	icon_state = "rampbottom"
-	istop = 0
+	istop = FALSE
 
 /obj/structure/multiz/stairs/active
-	density = 1
+	density = TRUE
 
 /obj/structure/multiz/stairs/active/find_target()
 	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
@@ -319,9 +319,9 @@
 		return
 
 	if(ismob(M) && usr.client)
-		usr.client.moving = 1
+		usr.client.moving = TRUE
 		usr.Move(get_turf(target))
-		usr.client.moving = 0
+		usr.client.moving = FALSE
 	else
 		M.Move(get_turf(target))
 
@@ -333,7 +333,7 @@
 
 /obj/structure/multiz/stairs/active/bottom
 	icon_state = "rampdark"
-	istop = 0
+	istop = FALSE
 
 /obj/structure/multiz/stairs/active/bottom/Bumped(var/atom/movable/M)
 	//If on bottom, only let them go up stairs if they've moved to the entry tile first.

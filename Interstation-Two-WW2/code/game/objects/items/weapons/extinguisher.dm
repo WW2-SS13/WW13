@@ -18,7 +18,7 @@
 	var/spray_amount = 10	//units of liquid per particle
 	var/max_water = 300
 	var/last_use = 1.0
-	var/safety = 1
+	var/safety = TRUE
 	var/sprite_name = "fire_extinguisher"
 
 /obj/item/weapon/extinguisher/mini
@@ -40,7 +40,7 @@
 	..()
 
 /obj/item/weapon/extinguisher/examine(mob/user)
-	if(..(user, 0))
+	if(..(user, FALSE))
 		user << text("\icon[] [] contains [] units of water left!", src, src.name, src.reagents.total_volume)
 	return
 
@@ -58,14 +58,14 @@
 	if(istype(O, /obj/structure/bed/chair))
 		C = O
 
-	var/list/move_speed = list(1, 1, 1, 2, 2, 3)
-	for(var/i in 1 to 6)
+	var/list/move_speed = list(1, TRUE, TRUE, 2, 2, 3)
+	for(var/i in TRUE to 6)
 		if(C) C.propelled = (6-i)
 		O.Move(get_step(user,movementdirection), movementdirection)
 		sleep(move_speed[i])
 
 	//additional movement
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		O.Move(get_step(user,movementdirection), movementdirection)
 		sleep(3)
 
@@ -76,11 +76,11 @@
 		var/obj/o = target
 		var/amount = o.reagents.trans_to_obj(src, 50)
 		user << "<span class='notice'>You fill [src] with [amount] units of the contents of [target].</span>"
-		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+		playsound(src.loc, 'sound/effects/refill.ogg', 50, TRUE, -6)
 		return
 
 	if (!safety)
-		if (src.reagents.total_volume < 1)
+		if (src.reagents.total_volume < TRUE)
 			usr << "<span class='notice'>\The [src] is empty.</span>"
 			return
 
@@ -89,7 +89,7 @@
 
 		src.last_use = world.time
 
-		playsound(src.loc, 'sound/effects/extinguish.ogg', 75, 1, -3)
+		playsound(src.loc, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
 
 		var/direction = get_dir(src,target)
 
@@ -103,7 +103,7 @@
 
 		var/list/the_targets = list(T,T1,T2)
 
-		for(var/a = 1 to spray_particles)
+		for(var/a = TRUE to spray_particles)
 			spawn(0)
 				if(!src || !reagents.total_volume) return
 
@@ -118,7 +118,7 @@
 				W.set_color()
 				W.set_up(my_target)
 
-		if((istype(usr.loc, /turf/space)) || (usr.lastarea.has_gravity == 0))
+		if((istype(usr.loc, /turf/space)) || (usr.lastarea.has_gravity == FALSE))
 			user.inertia_dir = get_dir(target, user)
 			step(user, user.inertia_dir)
 	else

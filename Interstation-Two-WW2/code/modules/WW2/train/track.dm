@@ -2,7 +2,7 @@
 	name = "train track"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "traintrack"
-	density = 0
+	density = FALSE
 	anchored = 1.0
 	w_class = 3
 	layer = 2.01 //just above floors

@@ -16,7 +16,7 @@
 	icon_state = "apronchef"
 	item_state = "apronchef"
 	blood_overlay_type = "armor"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 // todo: make this more WW2-ish and give it to officers?
 
@@ -29,7 +29,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter)
-	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = FALSE, bio = FALSE, rad = FALSE)
 
 /obj/item/clothing/suit/storage/det_trench
 	name = "brown trenchcoat"
@@ -39,7 +39,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter)
-	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = FALSE, bio = FALSE, rad = FALSE)
 
 /obj/item/clothing/suit/storage/det_trench/grey
 	name = "grey trenchcoat"

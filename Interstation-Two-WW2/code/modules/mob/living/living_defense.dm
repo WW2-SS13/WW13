@@ -10,24 +10,24 @@
 	1 - halfblock
 	2 - fullblock
 */
-/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
+/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = FALSE, var/absorb_text = null, var/soften_text = null)
 	if(armour_pen >= 100)
-		return 0 //might as well just skip the processing
+		return FALSE //might as well just skip the processing
 
 	var/armor = getarmor(def_zone, attack_flag)
-	var/absorb = 0
+	var/absorb = FALSE
 
 	//Roll armour
 	if(prob(armor))
-		absorb += 1
+		absorb += TRUE
 	if(prob(armor))
-		absorb += 1
+		absorb += TRUE
 
 	//Roll penetration
 	if(prob(armour_pen))
-		absorb -= 1
+		absorb -= TRUE
 	if(prob(armour_pen))
-		absorb -= 1
+		absorb -= TRUE
 
 	if(absorb >= 2)
 		if(absorb_text)
@@ -35,18 +35,18 @@
 		else
 			show_message("<span class='warning'>Your armor absorbs the blow!</span>")
 		return 2
-	if(absorb == 1)
+	if(absorb == TRUE)
 		if(absorb_text)
 			show_message("[soften_text]",4)
 		else
 			show_message("<span class='warning'>Your armor softens the blow!</span>")
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
 /mob/living/proc/getarmor(var/def_zone, var/type)
-	return 0
+	return FALSE
 
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
@@ -64,11 +64,11 @@
 	var/proj_sharp = is_sharp(P)
 	var/proj_edge = has_edge(P)
 	if ((proj_sharp || proj_edge) && prob(getarmor(def_zone, P.check_armour)))
-		proj_sharp = 0
-		proj_edge = 0
+		proj_sharp = FALSE
+		proj_edge = FALSE
 
 	if(!P.nodamage)
-		apply_damage(P.damage, P.damage_type, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
+		apply_damage(P.damage, P.damage_type, def_zone, absorb, FALSE, P, sharp=proj_sharp, edge=proj_edge)
 
 	P.on_hit(src, absorb, def_zone)
 
@@ -85,12 +85,12 @@
 		apply_effect(EYE_BLUR, stun_amount)
 
 	if (agony_amount)
-		apply_damage(agony_amount, HALLOSS, def_zone, 0, used_weapon)
+		apply_damage(agony_amount, HALLOSS, def_zone, FALSE, used_weapon)
 		apply_effect(STUTTER, agony_amount/10)
 		apply_effect(EYE_BLUR, agony_amount/10)
 
 /mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
-	  return 0 //only carbon liveforms have this proc
+	  return FALSE //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity)
 	var/list/L = src.get_contents()
@@ -114,10 +114,10 @@
 
 	return blocked
 
-//returns 0 if the effects failed to apply for some reason, 1 otherwise.
+//returns FALSE if the effects failed to apply for some reason, TRUE otherwise.
 /mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
 	if(!effective_force || blocked >= 2)
-		return 0
+		return FALSE
 
 	//Hulk modifier
 	if(HULK in user.mutations)
@@ -126,13 +126,13 @@
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
-	if(prob(max(getarmor(hit_zone, "melee") - I.armor_penetration, 0))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
-		weapon_sharp = 0
-		weapon_edge = 0
+	if(prob(max(getarmor(hit_zone, "melee") - I.armor_penetration, FALSE))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
+		weapon_sharp = FALSE
+		weapon_edge = FALSE
 
 	apply_damage(effective_force, I.damtype, hit_zone, blocked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
 
-	return 1
+	return TRUE
 
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
@@ -144,11 +144,11 @@
 		var/miss_chance = 15
 		if (O.throw_source)
 			var/distance = get_dist(O.throw_source, loc)
-			miss_chance = max(15*(distance-2), 0)
+			miss_chance = max(15*(distance-2), FALSE)
 
 		if (prob(miss_chance))
 			visible_message("\blue \The [O] misses [src] narrowly!")
-			playsound(src, "miss_sound", 50, 1, -6)
+			playsound(src, "miss_sound", 50, TRUE, -6)
 			return
 
 		src.visible_message("\red [src] has been hit by [O].")
@@ -157,7 +157,7 @@
 		if(armor < 2)
 			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
 
-		O.throwing = 0		//it hit, so stop moving
+		O.throwing = FALSE		//it hit, so stop moving
 
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower
@@ -192,7 +192,7 @@
 				if(T)
 					src.loc = T
 					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
-					src.anchored = 1
+					src.anchored = TRUE
 					src.pinned += O
 
 /mob/living/proc/embed(var/obj/O, var/def_zone=null)
@@ -207,7 +207,7 @@
 /mob/living/proc/near_wall(var/direction,var/distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
 	var/turf/last_turf = src.loc
-	var/i = 1
+	var/i = TRUE
 
 	while(i>0 && i<=distance)
 		if(T.density) //Turf is a wall!
@@ -216,7 +216,7 @@
 		last_turf = T
 		T = get_step(T,direction)
 
-	return 0
+	return FALSE
 
 // End BS12 momentum-transfer code.
 
@@ -231,18 +231,18 @@
 	src.visible_message("<span class='danger'>[user] has [attack_message] [src]!</span>")
 	user.do_attack_animation(src)
 	spawn(1) updatehealth()
-	return 1
+	return TRUE
 
 /mob/living/proc/IgniteMob()
-	if(fire_stacks > 0 && !on_fire)
-		on_fire = 1
+	if(fire_stacks > FALSE && !on_fire)
+		on_fire = TRUE
 		set_light(light_range + 3)
 		update_fire()
 
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)
-		on_fire = 0
-		fire_stacks = 0
+		on_fire = FALSE
+		fire_stacks = FALSE
 		set_light(max(0, light_range - 3))
 		update_fire()
 
@@ -262,23 +262,23 @@ var/obj/human_fire_overlay_lying = null
 		overlays -= generic_living_fire_overlay
 		overlays -= human_fire_overlay
 
-	if(fire_stacks < 0)
+	if(fire_stacks < FALSE)
 		fire_stacks = min(0, ++fire_stacks) //If we've doused ourselves in water to avoid fire, dry off slowly
 
 	if(!on_fire)
-		return 1
+		return TRUE
 
-	else if(fire_stacks <= 0)
+	else if(fire_stacks <= FALSE)
 		ExtinguishMob() //Fire's been put out.
-		return 1
+		return TRUE
 /*
 	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment
-	if(G.gas["oxygen"] < 1)
+	if(G.gas["oxygen"] < TRUE)
 		ExtinguishMob() //If there's no oxygen in the tile we're on, put out the fire
-		return 1
+		return TRUE
 
 	var/turf/location = get_turf(src)
-	location.hotspot_expose(fire_burn_temperature(), 50, 1)
+	location.hotspot_expose(fire_burn_temperature(), 50, TRUE)
 */
 	if (!human_fire_overlay)
 		human_fire_overlay = new
@@ -291,7 +291,7 @@ var/obj/human_fire_overlay_lying = null
 		generic_living_fire_overlay.icon = 'icons/mob/OnFire.dmi'
 		generic_living_fire_overlay.icon_state = "Generic_mob_burning"
 
-	apply_damage(ceil(fire_stacks/3), BURN, "chest", 0) // because fire does 0.2 damage per tick
+	apply_damage(ceil(fire_stacks/3), BURN, "chest", FALSE) // because fire does 0.2 damage per tick
 
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -309,22 +309,22 @@ var/obj/human_fire_overlay_lying = null
 	IgniteMob()
 
 /mob/living/proc/get_cold_protection()
-	return 0
+	return FALSE
 
 /mob/living/proc/get_heat_protection()
-	return 0
+	return FALSE
 
 //Finds the effective temperature that the mob is burning at.
 /mob/living/proc/fire_burn_temperature()
-	if (fire_stacks <= 0)
-		return 0
+	if (fire_stacks <= FALSE)
+		return FALSE
 
 	//Scale quadratically so that single digit numbers of fire stacks don't burn ridiculously hot.
 	//lower limit of 700 K, same as matches and roughly the temperature of a cool flame.
 	return max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700)
 
 /mob/living/proc/reagent_permeability()
-	return 1
+	return TRUE
 	return round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2)
 
 /mob/living/proc/handle_actions()
@@ -348,7 +348,7 @@ var/obj/human_fire_overlay_lying = null
 	if(!hud_used) return
 	if(!client) return
 
-	//if(hud_used.hud_shown != 1)	//Hud toggled to minimal
+	//if(hud_used.hud_shown != TRUE)	//Hud toggled to minimal
 	//	return
 
 	//client.screen -= hud_used.hide_actions_toggle
@@ -368,7 +368,7 @@ var/obj/human_fire_overlay_lying = null
 		client.screen += hud_used.hide_actions_toggle
 		return
 */
-	var/button_number = 0
+	var/button_number = FALSE
 	for(var/datum/action/A in actions)
 		button_number++
 		if(A.button == null)
@@ -388,7 +388,7 @@ var/obj/human_fire_overlay_lying = null
 			B.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number)
 			//hud_used.SetButtonCoords(B,button_number)
 
-//	if(button_number > 0)
+//	if(button_number > FALSE)
 		/*if(!hud_used.hide_actions_toggle)
 			hud_used.hide_actions_toggle = new(hud_used)
 			hud_used.hide_actions_toggle.InitialiseIcon(src)

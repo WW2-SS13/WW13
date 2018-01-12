@@ -3,9 +3,9 @@
 	desc = "A board for pinning important notices upon."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nboard00"
-	density = 0
-	anchored = 1
-	var/notices = 0
+	density = FALSE
+	anchored = TRUE
+	var/notices = FALSE
 
 /obj/structure/noticeboard/initialize()
 	for(var/obj/item/I in loc)

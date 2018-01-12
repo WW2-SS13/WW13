@@ -15,7 +15,7 @@
 	var/list/knows_about_mobs = list()
 
 	// who are we going to kill or not kill: by default we do NOT kill anyone
-	var/friendly_to_base_type = 1
+	var/friendly_to_base_type = TRUE
 	var/list/unfriendly_types = list()
 
 	// if a mob is in unfriendly_types() but friendly_factions(), faction wins
@@ -34,7 +34,7 @@
 	var/dead_state = null
 
 	// can we move outside of the area we started in, or an area we were moved to
-	var/allow_moving_outside_home = 0
+	var/allow_moving_outside_home = FALSE
 
 	// how likely are we to try and wander each lifetick
 	var/wander_probability = 20
@@ -50,7 +50,7 @@
 /mob/living/simple_animal/complex_animal/proc/onEveryLifeTick()
 
 	if (stat == DEAD)
-		return 0
+		return FALSE
 
 	if (prob(1) && prob(15) && !resting && can_rest_specialcheck())
 		nap()
@@ -93,7 +93,7 @@
 			possible_wander_areas |= get_area(T)
 
 		// patrolling dogs will always try to exit their area.
-		if (possible_wander_areas.len > 1)
+		if (possible_wander_areas.len > TRUE)
 			for (var/area/A in possible_wander_areas)
 				if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
 					var/mob/living/simple_animal/complex_animal/canine/dog/D = src
@@ -116,46 +116,46 @@
 
 				Move(T, get_dir(loc, T))
 
-	return 1
+	return TRUE
 
 	// todo: starvation
 
 /mob/living/simple_animal/complex_animal/proc/can_wander_specialcheck()
-	return 1
+	return TRUE
 
 /mob/living/simple_animal/complex_animal/proc/can_rest_specialcheck()
-	return 1
+	return TRUE
 
 // things we do when someone touches us
 /mob/living/simple_animal/complex_animal/proc/onTouchedBy(var/mob/living/human/H, var/intent = I_HELP)
 	if (stat == DEAD || stat == UNCONSCIOUS)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 // things we do when someone attacks us
 /mob/living/simple_animal/complex_animal/proc/onAttackedBy(var/mob/living/human/H, var/obj/item/weapon/W)
 	if (stat == DEAD || stat == UNCONSCIOUS)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /* things we do whenever a nearby human moves:
 called after H added to knows_about_mobs() */
 /mob/living/simple_animal/complex_animal/proc/onHumanMovement(var/mob/living/human/H)
 	if (stat == DEAD || stat == UNCONSCIOUS)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 // things we do whenever a mob with our base_type moves
 /mob/living/simple_animal/complex_animal/proc/onEveryBaseTypeMovement(var/mob/living/simple_animal/complex_animal/C)
 	if (stat == DEAD || stat == UNCONSCIOUS)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 // things we do whenever a mob with type 'X' moves
 /mob/living/simple_animal/complex_animal/proc/onEveryXMovement(var/mob/X)
 	if (stat == DEAD || stat == UNCONSCIOUS)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 
 /mob/living/simple_animal/complex_animal/bullet_act(var/obj/item/projectile/P, var/def_zone)
@@ -174,4 +174,4 @@ called after H added to knows_about_mobs() */
 
 /mob/living/simple_animal/complex_animal/death(gibbed, deathmessage = "dies!")
 	..(gibbed, deathmessage)
-	walk(src, 0)
+	walk(src, FALSE)

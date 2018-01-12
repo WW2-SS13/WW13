@@ -1,28 +1,28 @@
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
 /proc/isxenomorph(A)
-	return 0
+	return FALSE
 
 /proc/issmall(A)
 	if(A && istype(A, /mob/living))
 		var/mob/living/L = A
 		return L.mob_size <= MOB_SMALL
-	return 0
+	return FALSE
 
 /mob/living/proc/isSynthetic()
-	return 0
+	return FALSE
 
 /mob/living/carbon/human/isSynthetic()
 	// If they are 100% robotic, they count as synthetic.
 	for(var/obj/item/organ/external/E in organs)
 		if(!(E.status & ORGAN_ROBOT))
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return (M.sdisabilities & DEAF) || M.ear_deaf
-	return 0
+	return FALSE
 
 proc/hasorgans(A) // Fucking really??
 	return ishuman(A)
@@ -31,15 +31,15 @@ proc/iscuffed(A)
 	if(istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
 		if(C.handcuffed)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 proc/hassensorlevel(A, var/level)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode >= level
-	return 0
+	return FALSE
 
 proc/getsensorlevel(A)
 	var/mob/living/carbon/human/H = A
@@ -50,7 +50,7 @@ proc/getsensorlevel(A)
 
 
 /proc/is_admin(var/mob/user)
-	return check_rights(R_ADMIN, 0, user) != 0
+	return check_rights(R_ADMIN, FALSE, user) != FALSE
 
 
 /proc/hsl2rgb(h, s, l)
@@ -75,7 +75,7 @@ proc/getsensorlevel(A)
 
 var/list/global/hit_chances = list(
 
-	// 0 to 1 tile away
+	// FALSE to TRUE tile away
 	"pointblankrange" = list(
 		"head" = 95,
 		"chest" = 99,
@@ -137,7 +137,7 @@ var/list/global/hit_chances = list(
 )
 
 /proc/get_miss_chance(var/zone, var/distance, var/accuracy, var/miss_modifier)
-	. = 0
+	. = FALSE
 	zone = check_zone(zone)
 	switch (distance)
 		if (0)
@@ -151,7 +151,7 @@ var/list/global/hit_chances = list(
 
 	. += miss_modifier
 	. -= (accuracy*6)
-	. = max(., 0)
+	. = max(., FALSE)
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
@@ -208,7 +208,7 @@ var/list/global/organ_rel_size = list(
 // Emulates targetting a specific body part, and miss chances
 // May return null if missed
 // miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance = 0, var/ranged_attack=0, var/range = -1)
+/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance = FALSE, var/ranged_attack=0, var/range = -1)
 
 	zone = check_zone(zone)
 
@@ -225,7 +225,7 @@ var/list/global/organ_rel_size = list(
 		miss_chance /= 5
 
 	if (target.buckled) //frankly, not being able to hit a buckled dude is stupid as fuck - kachnov
-		miss_chance = 0
+		miss_chance = FALSE
 
 	if(prob(miss_chance))
 		return null
@@ -235,7 +235,7 @@ var/list/global/organ_rel_size = list(
 /proc/stars(n, pr)
 	if (pr == null)
 		pr = 25
-	if (pr <= 0)
+	if (pr <= FALSE)
 		return null
 	else
 		if (pr >= 100)
@@ -244,10 +244,10 @@ var/list/global/organ_rel_size = list(
 	var/t = ""
 	n = length(n)
 	var/p = null
-	p = 1
-	var/intag = 0
+	p = TRUE
+	var/intag = FALSE
 	while(p <= n)
-		var/char = copytext(te, p, p + 1)
+		var/char = copytext(te, p, p + TRUE)
 		if (char == "<") //let's try to not break tags
 			intag = !intag
 		if (intag || char == " " || prob(pr))
@@ -287,9 +287,9 @@ proc/slur(phrase)
 	var/t = ""//placed before the message. Not really sure what it's for.
 	n = length(n)//length of the entire word
 	var/p = null
-	p = 1//1 is the start of any word
-	while(p <= n)//while P, which starts at 1 is less or equal to N which is the length.
-		var/n_letter = copytext(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
+	p = TRUE//1 is the start of any word
+	while(p <= n)//while P, which starts at TRUE is less or equal to N which is the length.
+		var/n_letter = copytext(te, p, p + TRUE)//copies text from a certain distance. In this case, only one letter at a time.
 		if (prob(80) && (ckey(n_letter) in list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z")))
 			if (prob(10))
 				n_letter = text("[n_letter]-[n_letter]-[n_letter]-[n_letter]")//replaces the current letter with this instead.
@@ -318,14 +318,14 @@ proc/slur(phrase)
 proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
-	for(var/i = 1, i <= length(t), i++)
+	for(var/i = TRUE, i <= length(t), i++)
 
 		var/letter = copytext(t, i, i+1)
 		if(prob(50))
 			if(p >= 70)
 				letter = ""
 
-			for(var/j = 1, j <= rand(0, 2), j++)
+			for(var/j = TRUE, j <= rand(0, 2), j++)
 				letter += pick("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
 
 		returntext += letter
@@ -335,14 +335,14 @@ proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 fo
 
 /proc/ninjaspeak(n)
 /*
-The difference with stutter is that this proc can stutter more than 1 letter
+The difference with stutter is that this proc can stutter more than TRUE letter
 The issue here is that anything that does not have a space is treated as one word (in many instances). For instance, "LOOKING," is a word, including the comma.
 It's fairly easy to fix if dealing with single letters but not so much with compounds of letters./N
 */
 	var/te = rhtml_decode(n)
 	var/t = ""
 	n = length(n)
-	var/p = 1
+	var/p = TRUE
 	while(p <= n)
 		var/n_letter
 		var/n_mod = rand(1,4)
@@ -365,7 +365,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /proc/shake_camera(mob/M, duration, strength=1)
 	if(!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
 		return
-	M.shakecamera = 1
+	M.shakecamera = TRUE
 	spawn(1)
 		if(isnull(M))
 			return
@@ -380,32 +380,32 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 			M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
 			sleep(1)
 		M.client.eye=oldeye
-		M.shakecamera = 0
+		M.shakecamera = FALSE
 
 
 /proc/findname(msg)
 	for(var/mob/M in mob_list)
 		if (M.real_name == text("[msg]"))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 
-/mob/proc/abiotic(var/full_body = 0)
+/mob/proc/abiotic(var/full_body = FALSE)
 	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask)))
-		return 1
+		return TRUE
 
 	if((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )))
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
 
 //converts intent-strings into numbers and back
 var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 /proc/intent_numeric(argument)
 	if(istext(argument))
 		switch(argument)
-			if(I_HELP)		return 0
-			if(I_DISARM)	return 1
+			if(I_HELP)		return FALSE
+			if(I_DISARM)	return TRUE
 			if(I_GRAB)		return 2
 			else			return 3
 	else
@@ -418,7 +418,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 //change a mob's act-intent. Input the intent as a string such as "help" or use "right"/"left
 /mob/verb/a_intent_change(input as text)
 	set name = "a-intent"
-	set hidden = 1
+	set hidden = TRUE
 
 	if(ishuman(src) || isbrain(src) || isslime(src))
 		switch(input)
@@ -453,8 +453,8 @@ proc/is_blind(A)
 	if(istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
 		if(C.sdisabilities & BLIND || C.blinded)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 /*
 /proc/broadcast_security_hud_message(var/message, var/broadcast_source)
 	broadcast_hud_message(message, broadcast_source, sec_hud_users, /obj/item/clothing/glasses/hud/security)
@@ -467,7 +467,7 @@ proc/is_blind(A)
 	for(var/mob/M in targets)
 		var/turf/targetturf = get_turf(M)
 		if((targetturf.z == sourceturf.z))
-			M.show_message("<span class='info'>\icon[icon] [message]</span>", 1)
+			M.show_message("<span class='info'>\icon[icon] [message]</span>", TRUE)
 */
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = new
@@ -525,7 +525,7 @@ proc/is_blind(A)
 			M << "<span class='deadsay'>" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]</span>"
 
 //Announces that a ghost has joined/left, mainly for use with wizards
-/proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
+/proc/announce_ghost_joinleave(O, var/joined_ghosts = TRUE, var/message = "")
 	var/client/C
 	//Accept any type, sort what we want here
 	if(istype(O, /mob))
@@ -560,21 +560,21 @@ proc/is_blind(A)
 			say_dead_direct("<span class='name'>[name]</span> no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
 // Returns true if the mob has a client which has been active in the last given X minutes.
-/mob/proc/is_client_active(var/active = 1)
+/mob/proc/is_client_active(var/active = TRUE)
 	return client && client.inactivity < active MINUTES
 
 /mob/proc/can_eat()
-	return 1
+	return TRUE
 
 /mob/proc/can_force_feed()
-	return 1
+	return TRUE
 
 #define SAFE_PERP -50
 /mob/living/proc/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
 	if(stat == DEAD)
 		return SAFE_PERP
 
-	return 0
+	return FALSE
 
 /mob/living/carbon/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
 	if(handcuffed)
@@ -596,9 +596,11 @@ proc/is_blind(A)
 	else if(id && istype(id, /obj/item/weapon/card/id/centcom))
 		return SAFE_PERP
 */
+/*
 	if(check_access && !access_obj.allowed(src))
 		threatcount += 4
-
+*/
+/*
 	if(auth_weapons && !access_obj.allowed(src))
 		if(istype(l_hand, /obj/item/weapon/gun) || istype(l_hand, /obj/item/weapon/melee))
 			threatcount += 4
@@ -610,7 +612,7 @@ proc/is_blind(A)
 			threatcount += 2
 
 		if(species.name != "Human")
-			threatcount += 2
+			threatcount += 2*/
 /*
 	if(check_records || check_arrest)
 		var/perpname = name

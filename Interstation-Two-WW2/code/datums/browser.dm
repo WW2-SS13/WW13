@@ -2,8 +2,8 @@
 	var/mob/user
 	var/title
 	var/window_id // window_id is used as the window name for browse and onclose
-	var/width = 0
-	var/height = 0
+	var/width = FALSE
+	var/height = FALSE
 	var/atom/ref = null
 	var/window_options = "focus=0;can_close=1;can_minimize=1;can_maximize=0;can_resize=1;titlebar=1;" // window option is set using window_id
 	var/stylesheets[0]
@@ -16,7 +16,7 @@
 	var/title_buttons = ""
 
 
-/datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, var/atom/nref = null)
+/datum/browser/New(nuser, nwindow_id, ntitle = FALSE, nwidth = FALSE, nheight = FALSE, var/atom/nref = null)
 
 	user = nuser
 	window_id = nwindow_id
@@ -100,7 +100,7 @@
 	[get_footer()]
 	"}
 
-/datum/browser/proc/open(var/use_onclose = 1)
+/datum/browser/proc/open(var/use_onclose = TRUE)
 	var/window_size = ""
 	if (width && height)
 		window_size = "size=[width]x[height];"
@@ -117,7 +117,7 @@
 /mob/proc/browse_rsc_icon(icon, icon_state, dir = -1)
 	/*
 	var/icon/I
-	if (dir >= 0)
+	if (dir >= FALSE)
 		I = new /icon(icon, icon_state, dir)
 	else
 		I = new /icon(icon, icon_state)
@@ -160,7 +160,7 @@
 // otherwise, just reset the client mob's machine var.
 //
 /client/verb/windowclose(var/atomref as text)
-	set hidden = 1						// hide this verb from the user's panel
+	set hidden = TRUE						// hide this verb from the user's panel
 	set name = ".windowclose"			// no autocomplete on cmd line
 
 	//world << "windowclose: [atomref]"

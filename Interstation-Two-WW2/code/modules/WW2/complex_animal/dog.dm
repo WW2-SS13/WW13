@@ -1,12 +1,12 @@
 #define COMMAND_LEVEL_1 4
 #define COMMAND_LEVEL_2 3
 #define COMMAND_LEVEL_3 2
-#define COMMAND_LEVEL_4 1
+#define COMMAND_LEVEL_4 TRUE
 
 /mob/living/simple_animal/complex_animal/canine/dog
 	icon_state = null
 	resting_state = null
-	wander = 0
+	wander = FALSE
 	var/mob/owner = null
 
 	// COMMANDS
@@ -33,7 +33,7 @@
 	faction = null
 
 	var/attack_mode = "guard"
-	var/patrolling = 0
+	var/patrolling = FALSE
 	var/following = null
 
 	var/last_patrol_area = null
@@ -53,16 +53,16 @@
 	// no 'else's here, because we accept multiple ranks
 	if (ranks.Find("master"))
 		if (H == owner || (!owner && H.original_job && H.original_job.base_type_flag() == faction))
-			return 1
+			return TRUE
 	if (ranks.Find("^master"))
 		if ((owner && H.is_superior_of(owner)) || (!owner && H.original_job && H.original_job.base_type_flag() == faction))
-			return 1
+			return TRUE
 	if (ranks.Find("team"))
 		if (H.original_job && H.original_job.base_type_flag() == faction)
-			return 1
+			return TRUE
 	if (ranks.Find("everyone"))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 // types of dogs
 
@@ -73,17 +73,17 @@
 /mob/living/simple_animal/complex_animal/canine/dog/german_shepherd/wild
 	name = "Wild German Shepherd"
 	faction = null
-	allow_moving_outside_home = 1
+	allow_moving_outside_home = TRUE
 	attack_mode = -1
 
 /mob/living/simple_animal/complex_animal/canine/dog/samoyed
 	icon_state = "samoyed"
 	name = "Soviet Samoyed"
-	faction = RUSSIAN
+	faction = SOVIET
 /mob/living/simple_animal/complex_animal/canine/dog/samoyed/wild
 	name = "Wild Samoyed"
 	faction = null
-	allow_moving_outside_home = 1
+	allow_moving_outside_home = TRUE
 	attack_mode = -1
 
 // "backend" procs
@@ -96,7 +96,7 @@
 		return
 	if (!dd_hassuffix(message, "!"))
 		return
-	message = copytext(message, 1, lentext(message))
+	message = copytext(message, TRUE, lentext(message))
 //	world << "1. [message]"
 	// parse message into a command
 	var/rank = H.original_job ? lowertext(H.original_job.title) : null
@@ -171,7 +171,7 @@
 					if (istype(H.original_job, /datum/job/german/dogmaster))
 						command_level_to_dog = COMMAND_LEVEL_1
 
-					if (istype(H.original_job, /datum/job/russian/dogmaster))
+					if (istype(H.original_job, /datum/job/soviet/dogmaster))
 						command_level_to_dog = COMMAND_LEVEL_1
 
 					// daga kotowaru
@@ -195,14 +195,14 @@
 s
 /mob/living/simple_animal/complex_animal/canine/dog/can_wander_specialcheck()
 	if (faction && pulledby && check_can_command(list("master", "^master", "team"), pulledby))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /mob/living/simple_animal/complex_animal/canine/dog/can_rest_specialcheck()
 	if (!can_wander_specialcheck())
-		return 0
+		return FALSE
 	if (attack_mode != -1 || patrolling)
-		return 0
+		return FALSE
 
 // "frontend" procs
 /mob/living/simple_animal/complex_animal/canine/dog/proc/defend(var/mob/living/carbon/human/H)
@@ -226,16 +226,16 @@ s
 /mob/living/simple_animal/complex_animal/canine/dog/proc/patrol(var/mob/living/carbon/human/H)
 	if (!patrolling)
 		visible_message("<span class = 'warning'>The [src] starts patrolling.</span>")
-	patrolling = 1
-	allow_moving_outside_home = 1
+	patrolling = TRUE
+	allow_moving_outside_home = TRUE
 	wander_probability = 80
 	onModeChange()
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/stop_patrol(var/mob/living/carbon/human/H)
 	if (patrolling)
 		visible_message("<span class = 'warning'>The [src] stops patrolling.</span>")
-	patrolling = 0
-	allow_moving_outside_home = 0
+	patrolling = FALSE
+	allow_moving_outside_home = FALSE
 	wander_probability = 20
 	onModeChange()
 
@@ -254,17 +254,17 @@ s
 /mob/living/simple_animal/complex_animal/canine/dog/proc/follow(var/mob/living/carbon/human/H)
 	visible_message("<span class = 'notice'>The [src] starts following [H].</span>")
 	if (following)
-		stop_following(H, 0)
+		stop_following(H, FALSE)
 	else
-		walk_to(src, 0)
-	walk_to(src, H, 1, H.run_delay_maximum*1.33)
+		walk_to(src, FALSE)
+	walk_to(src, H, TRUE, H.run_delay_maximum*1.33)
 	following = H
 
-/mob/living/simple_animal/complex_animal/canine/dog/proc/stop_following(var/mob/living/carbon/human/H, var/message = 1)
+/mob/living/simple_animal/complex_animal/canine/dog/proc/stop_following(var/mob/living/carbon/human/H, var/message = TRUE)
 	if (following)
 		if (message)
 			visible_message("<span class = 'notice'>The [src] stops following [following].</span>")
-		walk_to(src, 0)
+		walk_to(src, FALSE)
 		following = null
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/onModeChange()
@@ -274,7 +274,7 @@ s
 // dog life
 /mob/living/simple_animal/complex_animal/canine/dog/onEveryLifeTick()
 	. = ..()
-	if (. == 1 && faction)
+	if (. == TRUE && faction)
 		for (var/mob/living/carbon/human/H in human_mob_list)
 			if (H.client && H.original_job && H.stat == CONSCIOUS && H.original_job.base_type_flag() != faction)
 
@@ -351,15 +351,15 @@ s
 
 /* check if we should go after an enemy */
 /mob/living/simple_animal/complex_animal/canine/dog/proc/shouldGoAfter(var/mob/living/carbon/human/H)
-	. = 0 // when can we attack random enemies who enter our area
+	. = FALSE // when can we attack random enemies who enter our area
 	if (attack_mode == "attack") // wip
-		. = 1
+		. = TRUE
 	else if (attack_mode == "defend")
 		if (istype(H.l_hand, /obj/item/weapon/gun) || istype(H.r_hand, /obj/item/weapon/gun))
-			. = 1
+			. = TRUE
 	else if (attack_mode == "guard")
 		if (get_area(H) == get_area(src))
-			. = 1
+			. = TRUE
 
 /* called after H added to knows_about_mobs() */
 /mob/living/simple_animal/complex_animal/canine/dog/onHumanMovement(var/mob/living/carbon/human/H)
@@ -367,14 +367,14 @@ s
 		if (shouldGoAfter(H) || enemies.Find(H))
 			if (assess_hostility(H) || ((!H.original_job || H.original_job.base_type_flag() != faction)))
 				enemies |= H
-				if (get_dist(src, H) > 1 && H.stat != DEAD)
-					walk_to(src, H, 1, H.run_delay_maximum*1.33)
+				if (get_dist(src, H) > TRUE && H.stat != DEAD)
+					walk_to(src, H, TRUE, H.run_delay_maximum*1.33)
 				else
 					shred(H)
 	else if (following)
-		walk_to(src, following, 1, H.run_delay_maximum*1.33)
+		walk_to(src, following, TRUE, H.run_delay_maximum*1.33)
 	else if (stat != CONSCIOUS || resting)
-		walk_to(src, 0)
+		walk_to(src, FALSE)
 
 /mob/living/simple_animal/complex_animal/canine/dog/Move()
 	. = ..()

@@ -397,7 +397,7 @@ var/list/admin_verbs_mentor = list(
 		//re-enter
 		var/mob/observer/ghost/ghost = mob
 		if(!is_mentor(usr.client))
-			ghost.can_reenter_corpse = 1
+			ghost.can_reenter_corpse = TRUE
 		if(ghost.can_reenter_corpse)
 			ghost.reenter_corpse()
 		else
@@ -416,28 +416,28 @@ var/list/admin_verbs_mentor = list(
 
 		var/mob/body = mob
 		var/mob/observer/ghost/ghost = body.ghostize(1)
-		ghost.admin_ghosted = 1
+		ghost.admin_ghosted = TRUE
 		if(body)
 			body.teleop = ghost
 			if(!body.key)
 				body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
 
 /client/proc/add_ghost_only_admin_verbs()
-	if (mob && holder && check_rights(R_MOD, 0, user = mob))
+	if (mob && holder && check_rights(R_MOD, FALSE, user = mob))
 		verbs |= /client/proc/see_who_is_in_tank
 		verbs |= /client/proc/eject_from_tank
 		verbs |= /client/proc/Goto_adminzone
 
-		if (check_rights(R_POSSESS, 0, user = mob))
+		if (check_rights(R_POSSESS, FALSE, user = mob))
 			verbs |= admin_verbs_possess
 
 /client/proc/remove_ghost_only_admin_verbs()
-	if (mob && holder && check_rights(R_MOD, 0, user = mob))
+	if (mob && holder && check_rights(R_MOD, FALSE, user = mob))
 		verbs -= /client/proc/see_who_is_in_tank
 		verbs -= /client/proc/eject_from_tank
 		verbs -= /client/proc/Goto_adminzone
 
-		if (check_rights(R_POSSESS, 0, user = mob))
+		if (check_rights(R_POSSESS, FALSE, user = mob))
 			verbs -= admin_verbs_possess
 
 /client/proc/invisimin()
@@ -457,7 +457,7 @@ var/list/admin_verbs_mentor = list(
 			mob << "\green <b>Invisimin on. You are now as invisible as a ghost.</b>"
 			mob.alpha = max(mob.alpha - 100, 0)
 
-/client/var/visible_in_who = 1
+/client/var/visible_in_who = TRUE
 /client/proc/who_invisimin()
 	set name = "Toggle Staffwho Visibility"
 	set category = "Admin"
@@ -569,7 +569,7 @@ var/list/admin_verbs_mentor = list(
 	var/choice = input("What size explosion would you like to produce?") in choices
 	switch(choice)
 		if(null)
-			return 0
+			return FALSE
 		if("Small Bomb")
 			explosion(epicenter, 1, 2, 3, 3)
 		if("Medium Bomb")
@@ -593,10 +593,10 @@ var/list/admin_verbs_mentor = list(
 /*
 	var/datum/disease2/disease/D = new /datum/disease2/disease()
 
-	var/severity = 1
+	var/severity = TRUE
 	var/greater = input("Is this a lesser, greater, or badmin disease?", "Give Disease") in list("Lesser", "Greater", "Badmin")
 	switch(greater)
-		if ("Lesser") severity = 1
+		if ("Lesser") severity = TRUE
 		if ("Greater") severity = 2
 		if ("Badmin") severity = 99
 
@@ -615,7 +615,7 @@ var/list/admin_verbs_mentor = list(
 
 
 	log_admin("[key_name(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].")
-	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].", 1)
+	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].", TRUE)
 */
 /client/proc/make_sound(var/obj/O in range(world.view)) // -- TLE
 	set category = "Special Verbs"
@@ -628,7 +628,7 @@ var/list/admin_verbs_mentor = list(
 		for (var/mob/V in hearers(O))
 			V.show_message(message, 2)
 		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
-		message_admins("\blue [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound", 1)
+		message_admins("\blue [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound", TRUE)
 
 
 /*
@@ -655,14 +655,14 @@ var/list/admin_verbs_mentor = list(
 	set name = "Kill Air"
 	set desc = "Toggle Air Processing"
 	if(air_processing_killed)
-		air_processing_killed = 0
+		air_processing_killed = FALSE
 		usr << "<b>Enabled air processing.</b>"
 	else
-		air_processing_killed = 1
+		air_processing_killed = TRUE
 		usr << "<b>Disabled air processing.</b>"
 
 	log_admin("[key_name(usr)] used 'kill air'.")
-	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", 1)
+	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", TRUE)
 */
 /client/proc/readmin_self()
 	set name = "Re-Admin self"
@@ -671,7 +671,7 @@ var/list/admin_verbs_mentor = list(
 	if(deadmin_holder)
 		deadmin_holder.reassociate()
 		log_admin("[src] re-admined themself.")
-		message_admins("[src] re-admined themself.", 1)
+		message_admins("[src] re-admined themself.", TRUE)
 		src << "<span class='interface'>You now have the keys to control the planet, or atleast a small space station</span>"
 		verbs -= /client/proc/readmin_self
 
@@ -682,7 +682,7 @@ var/list/admin_verbs_mentor = list(
 	if(holder)
 		if(alert("Confirm self-deadmin for the round? You can re-admin yourself at any time.",,"Yes","No") == "Yes")
 			log_admin("[src] deadmined themself.")
-			message_admins("[src] deadmined themself.", 1)
+			message_admins("[src] deadmined themself.", TRUE)
 			deadmin()
 			src << "<span class='interface'>You are now a normal player.</span>"
 			verbs |= /client/proc/readmin_self
@@ -694,27 +694,27 @@ var/list/admin_verbs_mentor = list(
 	if(!holder)	return
 	if(config)
 		if(config.log_hrefs)
-			config.log_hrefs = 0
+			config.log_hrefs = FALSE
 			src << "<b>Stopped logging hrefs</b>"
 		else
-			config.log_hrefs = 1
+			config.log_hrefs = TRUE
 			src << "<b>Started logging hrefs</b>"
 
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
 	set category = "Admin"
-	return 0
+	return FALSE
 
 /client/proc/rename_silicon()
 	set name = "Rename Silicon"
 	set category = "Admin"
-	return 0
+	return FALSE
 
 
 /client/proc/manage_silicon_laws()
 	set name = "Manage Silicon Laws"
 	set category = "Admin"
-	return 0
+	return FALSE
 
 /client/proc/change_human_appearance_admin()
 	set name = "Change Mob Appearance - Admin"
@@ -727,7 +727,7 @@ var/list/admin_verbs_mentor = list(
 	if(!H) return
 
 	log_and_message_admins("is altering the appearance of [H].")
-	H.change_appearance(APPEARANCE_ALL, usr, usr, check_species_whitelist = 0, state = admin_state)
+	H.change_appearance(APPEARANCE_ALL, usr, usr, check_species_whitelist = FALSE, state = admin_state)
 
 
 /client/proc/change_human_appearance_self()
@@ -747,10 +747,10 @@ var/list/admin_verbs_mentor = list(
 	switch(alert("Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
 		if("Yes")
 			log_and_message_admins("has allowed [H] to change \his appearance, including races that requires whitelisting")
-			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 0)
+			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = FALSE)
 		if("No")
 			log_and_message_admins("has allowed [H] to change \his appearance, excluding races that requires whitelisting.")
-			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
+			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = TRUE)
 
 
 /client/proc/change_security_level()
@@ -860,35 +860,7 @@ var/list/admin_verbs_mentor = list(
 			job_master.FreeRole(job)
 			message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
 			return
-/*
-/client/proc/toggleghostwriters()
-	set name = "Toggle ghost writers"
-	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(config.cult_ghostwriter)
-			config.cult_ghostwriter = 0
-			src << "<b>Disallowed ghost writers.</b>"
-			message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
-		else
-			config.cult_ghostwriter = 1
-			src << "<b>Enabled ghost writers.</b>"
-			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
-*//*
-/client/proc/toggledrones()
-	set name = "Toggle maintenance drones"
-	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(config.allow_drone_spawn)
-			config.allow_drone_spawn = 0
-			src << "<b>Disallowed maint drones.</b>"
-			message_admins("Admin [key_name_admin(usr)] has disabled maint drones.", 1)
-		else
-			config.allow_drone_spawn = 1
-			src << "<b>Enabled maint drones.</b>"
-			message_admins("Admin [key_name_admin(usr)] has enabled maint drones.", 1)
-*/
+
 /client/proc/man_up(mob/T as mob in mob_list)
 	set category = "Fun"
 	set name = "Man Up"
@@ -898,7 +870,7 @@ var/list/admin_verbs_mentor = list(
 	T << "<span class='notice'>Move on.</span>"
 
 	log_admin("[key_name(usr)] told [key_name(T)] to man up and deal with it.")
-	message_admins("\blue [key_name_admin(usr)] told [key_name(T)] to man up and deal with it.", 1)
+	message_admins("\blue [key_name_admin(usr)] told [key_name(T)] to man up and deal with it.", TRUE)
 
 /client/proc/global_man_up()
 	set category = "Fun"
@@ -910,4 +882,4 @@ var/list/admin_verbs_mentor = list(
 		T << 'sound/voice/ManUp1.ogg'
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
-	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
+	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", TRUE)

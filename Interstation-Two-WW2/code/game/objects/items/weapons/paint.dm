@@ -26,7 +26,7 @@ var/global/list/cached_icons = list()
 			return ..()
 
 	New()
-		if(paint_type && lentext(paint_type) > 0)
+		if(paint_type && lentext(paint_type) > FALSE)
 			name = paint_type + " " + name
 		..()
 		reagents.add_reagent("water", volume*3/5)

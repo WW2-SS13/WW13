@@ -3,15 +3,15 @@
 
 /obj/structure/window/sandbag/incomplete/check_cover(obj/item/projectile/P, turf/from)
 
-	var/effectiveness_coeff = (progress + 1)/maxProgress
+	var/effectiveness_coeff = (progress + TRUE)/maxProgress
 	var/turf/cover = get_turf(src)
 	if(!cover)
-		return 1
-	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
-		return 1
+		return TRUE
+	if (get_dist(P.starting, loc) <= TRUE) //Tables won't help you if people are THIS close
+		return TRUE
 
 	var/base_chance = SANDBAG_BLOCK_ITEMS_CHANCE - (P.penetrating * 3)
-	var/extra_chance = 0
+	var/extra_chance = FALSE
 
 	if (ismob(P.original)) // what the firer clicked
 		var/mob/m = P.original
@@ -25,21 +25,21 @@
 	var/chance = base_chance + extra_chance
 
 	if(prob(chance * effectiveness_coeff))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 
 // how much do we cover mobs behind full sandbags?
 /obj/structure/window/sandbag/proc/check_cover(obj/item/projectile/P, turf/from)
 	var/turf/cover = get_turf(src)
 	if(!cover)
-		return 1
-	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
-		return 1
+		return TRUE
+	if (get_dist(P.starting, loc) <= TRUE) //Tables won't help you if people are THIS close
+		return TRUE
 
 	var/base_chance = SANDBAG_BLOCK_ITEMS_CHANCE - (P.penetrating * 3)
-	var/extra_chance = 0
+	var/extra_chance = FALSE
 
 	if (ismob(P.original)) // what the firer clicked
 		var/mob/m = P.original
@@ -53,9 +53,9 @@
 	var/chance = base_chance + extra_chance
 
 	if(prob(chance))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 // what is our chance of deflecting bullets regardless?
 /proc/bullet_deflection_chance(obj/item/projectile/proj)

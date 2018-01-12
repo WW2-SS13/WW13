@@ -1,5 +1,5 @@
 
-/mob/var/train_gib_immunity = 0 // can the train make us splat?
+/mob/var/train_gib_immunity = FALSE // can the train make us splat?
 /mob/var/next_train_movement = -1 // when will we move again?
 /mob/var/last_train_movement_attempt = -1 // when did we last try to move?
 /mob/var/last_train_movement= -1 // when did we last successfully move intentionally?
@@ -8,18 +8,18 @@
 
 /atom/movable/proc/train_move_check(var/turf/loc)
 	if (!istype(loc))
-		return 0
+		return FALSE
 	if (loc.density)
-		return 0
+		return FALSE
 	for (var/obj/o in loc)
 		if (o.density)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /atom/movable/proc/train_move(var/turf/_loc)
 
-	var/SUCCESS = 1
-	var/FAILURE = 0
+	var/SUCCESS = TRUE
+	var/FAILURE = FALSE
 
 	var/list/nonblocking_types = list(/obj/structure/simple_door/key_door/anyone/train)
 	var/list/blocking_types = list(/obj/structure/window) // includes sandbags
@@ -41,7 +41,7 @@
 				if (ismob(src) && istype(o, /obj/structure/simple_door/key_door))
 					var/obj/structure/simple_door/key_door/door = o
 					if (door.keyslot.check_user(src))
-						door.keyslot.locked = 0
+						door.keyslot.locked = FALSE
 						door.Bumped(src)
 						train_setloc(_loc)
 						return SUCCESS
@@ -62,8 +62,8 @@
 /mob/proc/is_on_train()
 	for (var/atom/movable/a in get_turf(src))
 		if (is_train_object(a))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /mob/proc/get_train()
 	for (var/atom/movable/a in get_turf(src))
@@ -79,19 +79,19 @@
 
 /proc/is_train_object(var/atom/movable/a)
 	if (!a || !istype(a))
-		return 0
+		return FALSE
 	if (istype(a, /obj/train_connector))
-		return 1
+		return TRUE
 	if (istype(a, /obj/train_pseudoturf))
-		return 1
+		return TRUE
 	if (istype(a, /obj/structure/railing/train_railing))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/isMovingTrainObject(var/atom/a)
 	var/_1 = (is_train_object(a))
 	if (!_1)
-		return 0
+		return FALSE
 	var/datum/train_controller/tc = null
 	if (a.vars.Find("master") && istype(a:master, /datum/train_controller))
 		tc = a:master
@@ -100,9 +100,9 @@
 
 	if (tc && tc.moving)
 		if (_1)
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 /proc/getAreaDimensions(var/datum/train_controller/controller, what)
 
@@ -119,7 +119,7 @@
 					checking_area = locate(/area/prishtina/train/german/cabin/soldier)
 				if ("conductor")
 					checking_area = locate(/area/prishtina/train/german/cabin/conductor)
-		if (RUSSIAN) // not implemented lmao, make it return dimensions of german officer's area anyway
+		if (SOVIET) // not implemented lmao, make it return dimensions of german officer's area anyway
 			checking_area = locate(/area/prishtina/train/german/cabin/officer)
 		if ("GERMAN-SUPPLY")
 			checking_area = locate(/area/prishtina/train/german/cabin/storage_horizontal)
@@ -136,53 +136,53 @@
 
 	return l
 
-/proc/check_object_invalid_for_moving(var/obj/trainobject, var/atom/movable/a, var/initial = 0)
+/proc/check_object_invalid_for_moving(var/obj/trainobject, var/atom/movable/a, var/initial = FALSE)
 	if (!istype(a))
-		return 1
+		return TRUE
 	if (a == trainobject)
-		return 1
+		return TRUE
 	if (istype(a, /atom/movable/lighting_overlay))
-		return 1
+		return TRUE
 	if (istype(a, /obj/structure/wild))
 		qdel(a)
-		return 1
+		return TRUE
 	if (istype(a, /obj/effect/landmark)) // stop moving these fucker
-		return 1
+		return TRUE
 	if (istype(a, /obj/snow))
-		return 1
+		return TRUE
 	if (istype(a, /obj/fire))
-		return 1
+		return TRUE
 	if (istype(a, /obj/train_track))
-		return 1
+		return TRUE
 	if (istype(a, /obj/train_connector)) // these do their own thing
-		return 1
+		return TRUE
 	if (istype(a, /obj/train_pseudoturf))
-		return 1
+		return TRUE
 	if (istype(a, /obj/structure/railing/train_railing))
-		return 1
+		return TRUE
 	if (istype(a, /obj/structure/railing/train_zone_railing))
-		return 1
+		return TRUE
 	if (!initial)
 		for (var/obj/o in get_turf(a))
 			if (is_train_object(o))
-				return 0
-		return 1
+				return FALSE
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /proc/check_object_valid_for_destruction(var/atom/movable/a)
 	if (!isobj(a))
-		return 0
+		return FALSE
 	if (is_train_object(a))
-		return 0
+		return FALSE
 	if (istype(a, /obj/train_track))
-		return 0
+		return FALSE
 	if (istype(a, /obj/effect))
-		return 0
+		return FALSE
 	if (istype(a, /obj/snow))
-		return 0
+		return FALSE
 	if (istype(a, /obj/fire))
-		return 0
+		return FALSE
 	if (istype(a, /obj/structure/railing/train_zone_railing))
-		return 0
-	return 1
+		return FALSE
+	return TRUE

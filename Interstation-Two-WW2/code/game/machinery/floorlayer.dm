@@ -3,9 +3,9 @@
 	name = "automatic floor layer"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
+	density = TRUE
 	var/turf/old_turf
-	var/on = 0
+	var/on = FALSE
 	var/obj/item/stack/tile/T
 	var/list/mode = list("dismantle"=0,"laying"=0,"collect"=0)
 
@@ -86,8 +86,8 @@
 /obj/machinery/floorlayer/proc/TakeNewStack()
 	for(var/obj/item/stack/tile/tile in contents)
 		T = tile
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/floorlayer/proc/SortStacks()
 	for(var/obj/item/stack/tile/tile1 in contents)
@@ -97,9 +97,9 @@
 /obj/machinery/floorlayer/proc/layFloor(var/turf/w_turf)
 	if(!T)
 		if(!TakeNewStack())
-			return 0
+			return FALSE
 	w_turf.attackby(T , src)
-	return 1
+	return TRUE
 
 /obj/machinery/floorlayer/proc/TakeTile(var/obj/item/stack/tile/tile)
 	if(!T)	T = tile

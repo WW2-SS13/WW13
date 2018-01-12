@@ -9,12 +9,12 @@
 	var/active_groups = air_master.active_zones
 	var/inactive_groups = air_master.zones.len - active_groups
 
-	var/hotspots = 0
+	var/hotspots = FALSE
 	for(var/obj/fire/hotspot in world)
 		hotspots++
 
-	var/active_on_main_station = 0
-	var/inactive_on_main_station = 0
+	var/active_on_main_station = FALSE
+	var/inactive_on_main_station = FALSE
 	for(var/zone/zone in air_master.zones)
 		var/turf/simulated/turf = locate() in zone.contents
 		if(turf && turf.z in config.station_levels)
@@ -44,8 +44,8 @@
 /client/proc/fix_next_move()
 	set category = "Debug"
 	set name = "Unfreeze Everyone"
-	var/largest_move_time = 0
-	var/largest_click_time = 0
+	var/largest_move_time = FALSE
+	var/largest_click_time = FALSE
 	var/mob/largest_move_mob = null
 	var/mob/largest_click_mob = null
 	for(var/mob/M in world)
@@ -56,26 +56,26 @@
 			if(M.next_move > world.time)
 				largest_move_time = M.next_move - world.time
 			else
-				largest_move_time = 1
+				largest_move_time = TRUE
 		if(M.next_click >= largest_click_time)
 			largest_click_mob = M
 			if(M.next_click > world.time)
 				largest_click_time = M.next_click - world.time
 			else
-				largest_click_time = 0
+				largest_click_time = FALSE
 		log_admin("DEBUG: [key_name(M)]  next_move = [M.next_move]  next_click = [M.next_click]  world.time = [world.time]")
-		M.next_move = 1
-		M.next_click = 0
-	message_admins("[key_name_admin(largest_move_mob)] had the largest move delay with [largest_move_time] frames / [largest_move_time/10] seconds!", 1)
-	message_admins("[key_name_admin(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [largest_click_time/10] seconds!", 1)
-	message_admins("world.time = [world.time]", 1)
+		M.next_move = TRUE
+		M.next_click = FALSE
+	message_admins("[key_name_admin(largest_move_mob)] had the largest move delay with [largest_move_time] frames / [largest_move_time/10] seconds!", TRUE)
+	message_admins("[key_name_admin(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [largest_click_time/10] seconds!", TRUE)
+	message_admins("world.time = [world.time]", TRUE)
 
 	return
 
 /client/proc/radio_report()
 	set category = "Debug"
 	set name = "Radio report"
-	return 0
+	return FALSE
 
 
 /client/proc/reload_admins()
@@ -137,7 +137,7 @@
 	if(istype(T, /turf/simulated))
 		var/datum/air_group/AG = T:parent
 		AG.next_check = 30
-		AG.group_processing = 0
+		AG.group_processing = FALSE
 	else
 		usr << "Local airgroup is unsimulated!"
 

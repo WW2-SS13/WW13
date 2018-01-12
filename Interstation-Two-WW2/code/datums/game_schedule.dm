@@ -27,8 +27,8 @@ var/datum/game_schedule/global_game_schedule = null
 	var/scheduleString = ""
 	var/dateInfoString = ""
 	// admin
-	var/forceClosed = 0
-	var/forceOpened = 0
+	var/forceClosed = FALSE
+	var/forceOpened = FALSE
 
 
 /datum/game_schedule/New()
@@ -40,17 +40,17 @@ var/datum/game_schedule/global_game_schedule = null
 
 	time = getCurrentTime()
 
-	world_is_open = 0
+	world_is_open = FALSE
 
 	if (time >= starttime)
 		if (time <= endtime)
-			world_is_open = 1
+			world_is_open = TRUE
 		else if (time >= endtime)
 			if (endtime <= starttime)
-				world_is_open = 1
+				world_is_open = TRUE
 	else if (time <= starttime)
 		if (time <= endtime)
-			world_is_open = 1
+			world_is_open = TRUE
 
 	// determine the day by counting from refdate's day
 	var/split = splittext(refdate, ":")
@@ -58,7 +58,7 @@ var/datum/game_schedule/global_game_schedule = null
 //	var/ref_date = split[2] // currently unused: commented out to avoid errors
 	var/ref_day = split[3]
 	var/days_elapsed = round((world.realtime - ref_realtime)/864000)
-	for (var/v in 1 to days_elapsed)
+	for (var/v in TRUE to days_elapsed)
 		ref_day = nextDay(ref_day)
 
 	day = ref_day
@@ -67,19 +67,19 @@ var/datum/game_schedule/global_game_schedule = null
 
 	// hard overrides for opening or closing the world
 	if (days_closed.Find(day))
-		world_is_open = 0
+		world_is_open = FALSE
 	else if (days_always_open.Find(day))
-		world_is_open = 1
+		world_is_open = TRUE
 
 	if (forceOpened)
-		world_is_open = 1
+		world_is_open = TRUE
 
  	// overrides forceOpened
 	if (forceClosed)
-		world_is_open = 0
+		world_is_open = FALSE
 
 /datum/game_schedule/proc/forceClose()
-	forceClosed = 1
+	forceClosed = TRUE
 	update()
 	for (var/client/C in clients)
 		if (!C.holder && !C.isPatron("$10+"))
@@ -89,22 +89,22 @@ var/datum/game_schedule/global_game_schedule = null
 	saveToDB()
 
 /datum/game_schedule/proc/unforceClose()
-	forceClosed = 0
+	forceClosed = FALSE
 	update()
 	saveToDB()
 
 /datum/game_schedule/proc/forceOpen()
-	forceOpened = 1
+	forceOpened = TRUE
 	update()
 	saveToDB()
 
 /datum/game_schedule/proc/unforceOpen()
-	forceOpened = 0
+	forceOpened = FALSE
 	update()
 	saveToDB()
 
 /datum/game_schedule/proc/saveToDB()
-	var/spawntime = 0
+	var/spawntime = FALSE
 	if (!database)
 		spawntime = 100
 	spawn (spawntime)
@@ -116,7 +116,7 @@ var/datum/game_schedule/global_game_schedule = null
 			database.execute("UPDATE misc SET val = '[forceOpened]&[forceClosed]' WHERE key = 'game_schedule_metadata';")
 
 /datum/game_schedule/proc/loadFromDB()
-	var/spawntime = 0
+	var/spawntime = FALSE
 	if (!database)
 		spawntime = 100
 	spawn (spawntime)
@@ -128,7 +128,7 @@ var/datum/game_schedule/global_game_schedule = null
 				forceClosed = text2num(metadata[2])
 
 /datum/game_schedule/proc/getCurrentTime(var/unit = "hours")
-	// first, get the number of seconds that have elapsed since 00:00:00 today
+	// first, get the number of seconds that have elapsed since FALSE0:00:00 today
 	. = world.timeofday/10
 	// now convert that to minutes
 	. /= 60
@@ -154,7 +154,7 @@ var/datum/game_schedule/global_game_schedule = null
 	. = "from [starttime] to [endtime] UTC"
 	if (days_closed.len)
 		. += ", but is closed on "
-		if (days_closed.len > 1)
+		if (days_closed.len > TRUE)
 			for (var/day in days_closed)
 				. += day
 				if (days_closed[days_closed.len] != day)
@@ -166,7 +166,7 @@ var/datum/game_schedule/global_game_schedule = null
 			. += "[days_closed[1]]"
 	if (days_always_open.len)
 		. += ", and is always open on "
-		if (days_always_open.len > 1)
+		if (days_always_open.len > TRUE)
 			for (var/day in days_always_open)
 				. += day
 				if (days_always_open[days_always_open.len] != day)

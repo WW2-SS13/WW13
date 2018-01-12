@@ -5,7 +5,7 @@
 	set category = "Object"
 	set src in oview(1, usr)
 	if (!locate(src) in get_step(usr, usr.dir))
-		return 0
+		return FALSE
 	visible_message("<span class = 'danger'>[usr] starts to tear down [src]...</span>")
 	if (do_after(usr, 30, get_turf(src)))
 		visible_message("<span class = 'danger'>[usr] tears down [src]!</span>")

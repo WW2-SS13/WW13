@@ -9,11 +9,11 @@ Add attached bayonet sprite
 
 Current Defines (_defines/attachment.dm)
 
-#define ATTACH_IRONSIGHTS 1
+#define ATTACH_IRONSIGHTS TRUE
 #define ATTACH_SCOPE 2
 #define ATTACH_STOCK 4
 #define ATTACH_BARREL 8
-#define ATTACH_UNDER 16
+#define ATTACH_UNDER TRUE6
 */
 
 /obj/item/weapon/attachment
@@ -175,8 +175,8 @@ Current Defines (_defines/attachment.dm)
 	icon_state = "bayonet"
 	item_state = "knife"
 	flags = CONDUCT
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	force = WEAPON_FORCE_DANGEROUS/1.5
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	attachment_type = ATTACH_BARREL

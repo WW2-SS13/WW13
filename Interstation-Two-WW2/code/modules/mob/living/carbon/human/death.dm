@@ -57,7 +57,7 @@
 	if(!gibbed)
 		handle_organs()
 		if(species.death_sound)
-			playsound(loc, species.death_sound, 80, 1, 1)
+			playsound(loc, species.death_sound, 80, TRUE, TRUE)
 	handle_hud_list()
 
 /mob/living/carbon/human/proc/ChangeToHusk()

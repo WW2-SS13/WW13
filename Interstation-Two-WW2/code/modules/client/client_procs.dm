@@ -77,29 +77,29 @@
 		src.last_message_count++
 		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
 			src << "\red You have exceeded the spam filter limit for identical messages. An auto-mute was applied."
-			cmd_admin_mute(src.mob, mute_type, 1)
-			return 1
+			cmd_admin_mute(src.mob, mute_type, TRUE)
+			return TRUE
 		if(src.last_message_count >= SPAM_TRIGGER_WARNING)
 			src << "\red You are nearing the spam filter limit for identical messages."
-			return 0
+			return FALSE
 	else
 		last_message = message
-		src.last_message_count = 0
-		return 0
+		src.last_message_count = FALSE
+		return FALSE
 
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
 	if(filelength > UPLOAD_LIMIT)
 		src << "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>"
-		return 0
+		return FALSE
 /*	//Don't need this at the moment. But it's here if it's needed later.
 	//Helps prevent multiple files being uploaded at once. Or right after eachother.
 	var/time_to_wait = fileaccess_timer - world.time
-	if(time_to_wait > 0)
+	if(time_to_wait > FALSE)
 		src << "<font color='red'>Error: AllowUpload(): Spam prevention. Please wait [round(time_to_wait/10)] seconds.</font>"
-		return 0
+		return FALSE
 	fileaccess_timer = world.time + FTPDELAY	*/
-	return 1
+	return TRUE
 
 	///////////
 	//CONNECT//
@@ -123,7 +123,7 @@
 	// Change the way they should download resources.
 	if(config.resource_urls)
 		src.preload_rsc = pick(config.resource_urls)
-	else src.preload_rsc = 1 // If config.resource_urls is not set, preload like normal.
+	else src.preload_rsc = TRUE // If config.resource_urls is not set, preload like normal.
 
 	clients += src
 	directory[ckey] = src
@@ -143,14 +143,14 @@
 	if(!serverswap_open_status)
 		if (serverswap.Find("snext"))
 			var/linked = "byond://[world.internet_address]:[serverswap[serverswap["snext"]]]"
-			src << "<span class = 'notice'><font size = 1>This server is not open, so you will be automatically redirected you to the linked server - if it doesn't automatically take you there, click this: <b>[linked]</b>.</font></span>"
+			src << "<span class = 'notice'><font size = TRUE>This server is not open, so you will be automatically redirected you to the linked server - if it doesn't automatically take you there, click this: <b>[linked]</b>.</font></span>"
 			src << link(linked)
 		del(src)
-		return 0
+		return FALSE
 
 	if (quickBan_rejected("Server"))
 		del(src)
-		return 0
+		return FALSE
 
 	src << "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears."
 
@@ -183,12 +183,12 @@
 	if (ckey(host_file_text) == ckey && !holder)
 		var/list/admins = database.execute("SELECT * FROM admin;")
 		if ((!islist(admins) || isemptylist(admins)))
-			holder = new("Host", 0, ckey)
+			holder = new("Host", FALSE, ckey)
 			database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
 
 	/* let us profile if we're hosting on our computer */
 	if (holder && (world.host == key || holder.rights & R_HOST))
-		control_freak = 0
+		control_freak = FALSE
 
 	if (!holder && !isPatron("$10+"))
 
@@ -285,7 +285,7 @@
 	var/sql_ckey = sql_sanitize_text(src.ckey)
 	var/list/rowdata = database.execute("SELECT id, datediff(Now(),firstseen) as age FROM player WHERE ckey = '[sql_ckey]';")
 	var/sql_id = getSQL_id()
-	player_age = 0	// New players won't have an entry so knowing we have a connection we set this to zero to be updated if their is a record.
+	player_age = FALSE	// New players won't have an entry so knowing we have a connection we set this to zero to be updated if their is a record.
 
 	if (islist(rowdata) && !isemptylist(rowdata))
 		if (rowdata["id"] != null)
@@ -356,7 +356,7 @@
 //3000 frames = 5 minutes
 /client/proc/is_afk(duration=3000)
 	if(inactivity > duration)	return inactivity
-	return 0
+	return FALSE
 
 /client/proc/inactivity2text()
 	var/seconds = inactivity/10
@@ -379,14 +379,14 @@
 		getFilesSlow(src, asset_cache.cache, register_asset = FALSE)
 
 mob/proc/MayRespawn()
-	return 0
+	return FALSE
 
 client/proc/MayRespawn()
 	if(mob)
 		return mob.MayRespawn()
 
 	// Something went wrong, client is usually kicked or transfered to a new mob at this point
-	return 0
+	return FALSE
 
 client/verb/character_setup()
 	set name = "Character & Preferences Setup"
@@ -404,16 +404,16 @@ client/verb/character_setup()
 	switch (pledge)
 		if ("$3+")
 			if (isPatron("$5+") || isPatron("$10+"))
-				return 1
+				return TRUE
 		if ("$5+")
 			if (isPatron("$10+"))
-				return 1
+				return TRUE
 
 	var/list/tables = database.execute("SELECT * FROM patreon WHERE (user = '[ckey]' OR user = '[key]') AND pledge = '[pledge]';")
 	if (islist(tables) && !isemptylist(tables))
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
 
 /client/proc/highest_patreon_level()
 	if (isPatron("$3+"))

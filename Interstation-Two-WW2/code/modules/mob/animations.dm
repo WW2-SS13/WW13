@@ -4,12 +4,12 @@ use this rather than directly changing var/dizziness
 since this ensures that the dizzy_process proc is started
 currently only humans get dizzy
 
-value of dizziness ranges from 0 to 1000
+value of dizziness ranges from FALSE to 1000
 below 100 is not dizzy
 */
 
-/mob/var/dizziness = 0//Carbon
-/mob/var/is_dizzy = 0
+/mob/var/dizziness = FALSE//Carbon
+/mob/var/is_dizzy = FALSE
 
 /mob/proc/make_dizzy(var/amount)
 	if(!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
@@ -28,23 +28,23 @@ spawned from make_dizzy(), will terminate automatically when dizziness gets <100
 note dizziness decrements automatically in the mob's Life() proc.
 */
 /mob/proc/dizzy_process()
-	is_dizzy = 1
+	is_dizzy = TRUE
 	while(dizziness > 100)
 		if(client)
-			var/amplitude = dizziness*(sin(dizziness * 0.044 * world.time) + 1) / 70
+			var/amplitude = dizziness*(sin(dizziness * 0.044 * world.time) + TRUE) / 70
 			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
 			client.pixel_y = amplitude * cos(0.008 * dizziness * world.time)
 
 		sleep(1)
 	//endwhile - reset the pixel offsets to zero
-	is_dizzy = 0
+	is_dizzy = FALSE
 	if(client)
-		client.pixel_x = 0
-		client.pixel_y = 0
+		client.pixel_x = FALSE
+		client.pixel_y = FALSE
 
 // jitteriness - copy+paste of dizziness
-/mob/var/is_jittery = 0
-/mob/var/jitteriness = 0//Carbon
+/mob/var/is_jittery = FALSE
+/mob/var/jitteriness = FALSE//Carbon
 /mob/proc/make_jittery(var/amount)
 	if(!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
 		return
@@ -60,9 +60,9 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/proc/jittery_process()
 	//var/old_x = pixel_x
 	//var/old_y = pixel_y
-	is_jittery = 1
+	is_jittery = TRUE
 	while(jitteriness > 100)
-//		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + 1) / 70
+//		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + TRUE) / 70
 //		pixel_x = amplitude * sin(0.008 * jitteriness * world.time)
 //		pixel_y = amplitude * cos(0.008 * jitteriness * world.time)
 
@@ -72,14 +72,14 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 		sleep(1)
 	//endwhile - reset the pixel offsets to zero
-	is_jittery = 0
+	is_jittery = FALSE
 	pixel_x = old_x
 	pixel_y = old_y
 
 
 //handles up-down floaty effect in space and zero-gravity
-/mob/var/is_floating = 0
-/mob/var/floatiness = 0
+/mob/var/is_floating = FALSE
+/mob/var/floatiness = FALSE
 
 /mob/proc/update_floating(var/dense_object=0)
 
@@ -121,7 +121,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /mob/proc/start_floating()
 
-	is_floating = 1
+	is_floating = TRUE
 
 	var/amplitude = 2 //maximum displacement from original position
 	var/period = 36 //time taken for the mob to go up >> down >> original position, in deciseconds. Should be multiple of 4
@@ -138,12 +138,12 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/proc/stop_floating()
 	animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING | EASE_IN) //halt animation
 	//reset the pixel offsets to zero
-	is_floating = 0
+	is_floating = FALSE
 
 /atom/movable/proc/do_attack_animation(atom/A)
 
-	var/pixel_x_diff = 0
-	var/pixel_y_diff = 0
+	var/pixel_x_diff = FALSE
+	var/pixel_y_diff = FALSE
 	var/direction = get_dir(src, A)
 	switch(direction)
 		if(NORTH)
@@ -171,14 +171,14 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /mob/do_attack_animation(atom/A)
 	..()
-	is_floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
+	is_floating = FALSE // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
 
 	// What icon do we use for the attack?
 	var/image/I
 	if(hand && l_hand) // Attacked with item in left hand.
-		I = image(l_hand.icon, A, l_hand.icon_state, A.layer + 1)
+		I = image(l_hand.icon, A, l_hand.icon_state, A.layer + TRUE)
 	else if (!hand && r_hand) // Attacked with item in right hand.
-		I = image(r_hand.icon, A, r_hand.icon_state, A.layer + 1)
+		I = image(r_hand.icon, A, r_hand.icon_state, A.layer + TRUE)
 	else // Attacked with a fist?
 		return
 
@@ -207,7 +207,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		I.pixel_z = 16
 
 	// And animate the attack!
-	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
+	animate(I, alpha = 175, pixel_x = FALSE, pixel_y = FALSE, pixel_z = FALSE, time = 3)
 
 /mob/proc/spin(spintime, speed)
 	spawn()

@@ -83,7 +83,7 @@ proc/process_faction_hud(var/mob/M, var/mob/Alt)
 		else
 			// one of us is a spy, allowing us to recognize true factions
 
-			// condition 1: they're the spy
+			// condition TRUE: they're the spy
 			// condition 2: we're the spy
 			// condition 3: they're just an enemy
 
@@ -109,12 +109,12 @@ proc/arrange_hud_process(var/mob/M, var/mob/Alt, var/list/hud_list)
 
 proc/can_process_hud(var/mob/M)
 	if(!M)
-		return 0
+		return FALSE
 	if(!M.client)
-		return 0
+		return FALSE
 	if(M.stat != CONSCIOUS)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 //Deletes the current HUD images so they can be refreshed with new ones.
 mob/proc/handle_hud_glasses() //Used in the life.dm of mobs that can use HUDs.

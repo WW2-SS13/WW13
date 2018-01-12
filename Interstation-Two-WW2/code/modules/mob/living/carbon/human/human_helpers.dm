@@ -7,27 +7,27 @@
 	flash_protection += C.flash_protection; \
 	equipment_tint_total += C.tint;
 
-/mob/living/carbon/human/can_eat(var/food, var/feedback = 1)
+/mob/living/carbon/human/can_eat(var/food, var/feedback = TRUE)
 	var/list/status = can_eat_status()
 	if(status[1] == HUMAN_EATING_NO_ISSUE)
-		return 1
+		return TRUE
 	if(feedback)
 		if(status[1] == HUMAN_EATING_NO_MOUTH)
 			src << "Where do you intend to put \the [food]? You don't have a mouth!"
 		else if(status[1] == HUMAN_EATING_BLOCKED_MOUTH)
 			src << "<span class='warning'>\The [status[2]] is in the way!</span>"
-	return 0
+	return FALSE
 
-/mob/living/carbon/human/can_force_feed(var/feeder, var/food, var/feedback = 1)
+/mob/living/carbon/human/can_force_feed(var/feeder, var/food, var/feedback = TRUE)
 	var/list/status = can_eat_status()
 	if(status[1] == HUMAN_EATING_NO_ISSUE)
-		return 1
+		return TRUE
 	if(feedback)
 		if(status[1] == HUMAN_EATING_NO_MOUTH)
 			feeder << "Where do you intend to put \the [food]? \The [src] doesn't have a mouth!"
 		else if(status[1] == HUMAN_EATING_BLOCKED_MOUTH)
 			feeder << "<span class='warning'>\The [status[2]] is in the way!</span>"
-	return 0
+	return FALSE
 
 /mob/living/carbon/human/proc/can_eat_status()
 	if(!check_has_mouth())
@@ -42,12 +42,12 @@
 #undef HUMAN_EATING_BLOCKED_MOUTH
 
 /mob/living/carbon/human/proc/update_equipment_vision()
-	flash_protection = 0
-	equipment_tint_total = 0
-	equipment_see_invis	= 0
-	equipment_vision_flags = 0
-	equipment_prescription = 0
-	equipment_darkness_modifier = 0
+	flash_protection = FALSE
+	equipment_tint_total = FALSE
+	equipment_see_invis	= FALSE
+	equipment_vision_flags = FALSE
+	equipment_prescription = FALSE
+	equipment_darkness_modifier = FALSE
 //	equipment_overlays.Cut()
 
 	if(istype(src.head, /obj/item/clothing/head))
@@ -63,7 +63,7 @@
 		equipment_vision_flags |= G.vision_flags
 		equipment_prescription = equipment_prescription || G.prescription
 
-		if(G.see_invisible >= 0)
+		if(G.see_invisible >= FALSE)
 			if(equipment_see_invis)
 				equipment_see_invis = min(equipment_see_invis, G.see_invisible)
 			else

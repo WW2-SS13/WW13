@@ -166,7 +166,7 @@
 
 	info_links += "<br><br><b>Purchasing:</b><br><br>"
 
-	var/total_cost = 0
+	var/total_cost = FALSE
 
 	for (var/purchase in purchases)
 		info_links += "<i>[purchase]</i><br>"
@@ -229,17 +229,17 @@
 
 	memo = ""
 
-	var/SO_sig = 0
-	var/QM_sig = 0
-	var/CO_sig = 0
+	var/SO_sig = FALSE
+	var/QM_sig = FALSE
+	var/CO_sig = FALSE
 
 	for (var/signature in signatures)
 		if (findtext(signature, "Stabsgefreiter"))
-			QM_sig = 1
+			QM_sig = TRUE
 		if (findtext(signature, "Stabsoffizier"))
-			SO_sig = 1
+			SO_sig = TRUE
 		if (findtext(signature, "Oberleutnant"))
-			CO_sig = 1
+			CO_sig = TRUE
 
 	if (!QM_sig && !SO_sig && !CO_sig)
 		memo = "<i>We didn't find any valid signatures, so your requisition has been rejected.</span><br>"
@@ -295,4 +295,4 @@
 
 	regenerate_info()
 
-	return 1
+	return TRUE

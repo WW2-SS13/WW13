@@ -1,6 +1,6 @@
 
-#define MIDDLE_CLICK 0
-#define ALT_CLICK 1
+#define MIDDLE_CLICK FALSE
+#define ALT_CLICK TRUE
 #define CTRL_CLICK 2
 #define MAX_HARDSUIT_CLICK_MODE 2
 
@@ -14,7 +14,7 @@
 
 	hardsuit_click_mode++
 	if(hardsuit_click_mode > MAX_HARDSUIT_CLICK_MODE)
-		hardsuit_click_mode = 0
+		hardsuit_click_mode = FALSE
 
 	switch(hardsuit_click_mode)
 		if(MIDDLE_CLICK)
@@ -25,7 +25,7 @@
 			src << "Hardsuit activation mode set to control-click."
 		else
 			// should never get here, but just in case:
-			soft_assert(0, "Bad hardsuit click mode: [hardsuit_click_mode] - expected 0 to [MAX_HARDSUIT_CLICK_MODE]")
+			soft_assert(0, "Bad hardsuit click mode: [hardsuit_click_mode] - expected FALSE to [MAX_HARDSUIT_CLICK_MODE]")
 			src << "Somehow you bugged the system. Setting your hardsuit mode to middle-click."
 			hardsuit_click_mode = MIDDLE_CLICK
 */
@@ -48,16 +48,16 @@
 	..()
 
 /mob/living/proc/can_use_rig()
-	return 0
+	return FALSE
 
 /mob/living/carbon/human/can_use_rig()
-	return 1
+	return TRUE
 
 /mob/living/carbon/brain/can_use_rig()
-	return 0
+	return FALSE
 
-/mob/living/proc/HardsuitClickOn(var/atom/A, var/alert_ai = 0)
-	return 0
+/mob/living/proc/HardsuitClickOn(var/atom/A, var/alert_ai = FALSE)
+	return FALSE
 
 #undef MIDDLE_CLICK
 #undef ALT_CLICK

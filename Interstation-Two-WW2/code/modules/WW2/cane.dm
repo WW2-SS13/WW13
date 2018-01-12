@@ -24,7 +24,7 @@
 	if(concealed_blade)
 		user.visible_message("<span class='warning'>[user] has unsheathed \a [concealed_blade] from \his [src]!</span>", "You unsheathe \the [concealed_blade] from \the [src].")
 		// Calling drop/put in hands to properly call item drop/pickup procs
-		playsound(user.loc, 'sound/weapons/flipblade.ogg', 50, 1)
+		playsound(user.loc, 'sound/weapons/flipblade.ogg', 50, TRUE)
 		user.drop_from_inventory(src)
 		user.put_in_hands(concealed_blade)
 		user.put_in_hands(src)

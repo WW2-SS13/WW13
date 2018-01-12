@@ -1,7 +1,7 @@
 /turf/floor/attackby(obj/item/C as obj, mob/user as mob)
 
 	if(!C || !user)
-		return 0
+		return FALSE
 
 	if(istype(C, /obj/item/stack/cable_coil) || (flooring && istype(C, /obj/item/stack/rods)))
 		return ..(C, user)
@@ -17,16 +17,16 @@
 		var/obj/snow/S = has_snow()
 		var/mob/living/carbon/human/H = user
 		if (S && istype(H) && !H.shoveling_snow)
-			H.shoveling_snow = 1
+			H.shoveling_snow = TRUE
 			var/time_modifier = S.amount/0.05
 			time_modifier = min(time_modifier, 30)
 			visible_message("<span class = 'notice'>[user] starts to shovel the [S.descriptor()] from [src].</span>", "<span class = 'notice'>You start to shovel the snow from [src].</span>")
 			if (do_after(user, rand(9*time_modifier,12*time_modifier)))
 				visible_message("<span class = 'notice'>[user] shovels the [S.descriptor()] from [src].</span>", "<span class = 'notice'>You shovel the snow from [src].</span>")
-				H.shoveling_snow = 0
+				H.shoveling_snow = FALSE
 				qdel(S)
 			else
-				H.shoveling_snow = 0
+				H.shoveling_snow = FALSE
 		else
 			return ..(C, user)
 
@@ -77,24 +77,24 @@
 				make_plating(1)
 			else
 				return
-			playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
+			playsound(src, 'sound/items/Crowbar.ogg', 80, TRUE)
 			return
 		else if(istype(C, /obj/item/weapon/screwdriver) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 			if(broken || burnt)
 				return
 			user << "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>"
 			make_plating(1)
-			playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
+			playsound(src, 'sound/items/Screwdriver.ogg', 80, TRUE)
 			return
 		else if(istype(C, /obj/item/weapon/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
 			user << "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>"
 			make_plating(1)
-			playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
+			playsound(src, 'sound/items/Ratchet.ogg', 80, TRUE)
 			return
 		else if(istype(C, /obj/item/weapon/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
 			user << "<span class='notice'>You shovel off the [flooring.descriptor].</span>"
 			make_plating(1)
-			playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
+			playsound(src, 'sound/items/Deconstruct.ogg', 80, TRUE)
 			return
 		else if(istype(C, /obj/item/stack/cable_coil))
 			user << "<span class='warning'>You must remove the [flooring.descriptor] first.</span>"
@@ -126,7 +126,7 @@
 				return
 			if(S.use(use_flooring.build_cost))
 				set_flooring(use_flooring)
-				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 80, TRUE)
 				return
 		// Repairs.
 		else if(istype(C, /obj/item/weapon/weldingtool))
@@ -135,7 +135,7 @@
 				if(broken || burnt)
 					if(welder.remove_fuel(0,user))
 						user << "<span class='notice'>You fix some dents on the broken plating.</span>"
-						playsound(src, 'sound/items/Welder.ogg', 80, 1)
+						playsound(src, 'sound/items/Welder.ogg', 80, TRUE)
 						icon_state = "plating"
 						burnt = null
 						broken = null
@@ -148,8 +148,8 @@
 /turf/floor/can_build_cable(var/mob/user)
 	if(!is_plating() || flooring)
 		user << "<span class='warning'>Removing the tiling first.</span>"
-		return 0
+		return FALSE
 	if(broken || burnt)
 		user << "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>"
-		return 0
-	return 1
+		return FALSE
+	return TRUE

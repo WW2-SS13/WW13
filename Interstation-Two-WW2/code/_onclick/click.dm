@@ -3,8 +3,8 @@
 	~Sayu
 */
 
-// 1 decisecond click delay (above and beyond mob/next_move)
-/mob/var/next_click = 0
+// TRUE decisecond click delay (above and beyond mob/next_move)
+/mob/var/next_click = FALSE
 
 /*
 	Before anything else, defer these calls to a per-mobtype handler.  This allows us to
@@ -42,7 +42,7 @@
 	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
 		return
 
-	next_click = world.time + 1
+	next_click = world.time + TRUE
 
 	/*if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
@@ -51,19 +51,19 @@
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
-		return 1
+		return TRUE
 	if(modifiers["middle"])
 		MiddleClickOn(A)
-		return 1
+		return TRUE
 	if(modifiers["shift"])
 		ShiftClickOn(A)
-		return 0
+		return FALSE
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
 		AltClickOn(A)
-		return 1
+		return TRUE
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
-		return 1
+		return TRUE
 
 	if(lying && istype(A, /turf/) && !istype(A, /turf/space/))
 		if(A.Adjacent(src))
@@ -94,12 +94,12 @@
 	if(restrained())
 		setClickCooldown(10)
 		RestrainedClickOn(A)
-		return 1
+		return TRUE
 
 	if(in_throw_mode)
 		if(isturf(A) || isturf(A.loc))
 			throw_item(A)
-			return 1
+			return TRUE
 		throw_mode_off()
 
 	var/obj/item/W = get_active_hand()
@@ -112,29 +112,29 @@
 			var/datum/firemode/current_mode = mg.firemodes[mg.sel_mode]
 			var/rate = current_mode.burst
 
-			var/can_fire = 0
+			var/can_fire = FALSE
 
 			switch (mg.dir)
 				if (EAST)
 					if (A.x > mg.x)
-						can_fire = 1
+						can_fire = TRUE
 					else
-						can_fire = 0
+						can_fire = FALSE
 				if (WEST)
 					if (A.x < mg.x)
-						can_fire = 1
+						can_fire = TRUE
 					else
-						can_fire = 0
+						can_fire = FALSE
 				if (NORTH)
 					if (A.y > mg.y)
-						can_fire = 1
+						can_fire = TRUE
 					else
-						can_fire = 0
+						can_fire = FALSE
 				if (SOUTH)
 					if (A.y < mg.y)
-						can_fire = 1
+						can_fire = TRUE
 					else
-						can_fire = 0
+						can_fire = FALSE
 
 			if (!can_fire)
 				goto skip
@@ -144,8 +144,8 @@
 			var/turf/atom_turf = get_turf(A)
 			var/list/neighbors = atom_turf.neighbors()
 
-			for (var/v in 1 to max(rate/5, 2))
-				spawn (v * 1)
+			for (var/v in TRUE to max(rate/5, 2))
+				spawn (v * TRUE)
 					if (prob(20))
 						mg.force_fire(pick(neighbors), src)
 					else
@@ -160,12 +160,12 @@
 			update_inv_l_hand(0)
 		else
 			update_inv_r_hand(0)
-		return 1
+		return TRUE
 
 	//Atoms on your person
 	// A is your location but is not a turf; or is on you (backpack); or is on something on you (box in backpack); sdepth is needed here because contents depth does not equate inventory storage depth.
 	var/sdepth = A.storage_depth(src)
-	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1))
+	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= TRUE))
 		// faster access to objects already on you
 		if(A.loc != src)
 			setMoveCooldown(10) //getting something out of a backpack
@@ -173,12 +173,12 @@
 		if(W)
 			var/resolved = W.resolve_attackby(A, src)
 			if(!resolved && A && W)
-				W.afterattack(A, src, 1, params) // 1 indicates adjacency
+				W.afterattack(A, src, TRUE, params) // TRUE indicates adjacency
 		else
 			if(ismob(A)) // No instant mob attacking
 				setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			UnarmedAttack(A, 1)
-		return 1
+			UnarmedAttack(A, TRUE)
+		return TRUE
 
 	if(!isturf(loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
 		return
@@ -186,7 +186,7 @@
 	//Atoms on turfs (not on your person)
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)
 	sdepth = A.storage_depth_turf()
-	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
+	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= TRUE))
 		if(A.Adjacent(src) || (W && (istype(W, /obj/item/weapon/flamethrower/flammenwerfer) || istype(W, /obj/item/weapon/sandbag))) && A.rangedAdjacent(src)) // see adjacent.dm
 
 			dir = get_dir(src, A)
@@ -221,29 +221,29 @@
 			setMoveCooldown(5)
 
 			if(W)
-				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
+				// Return TRUE in attackby() to prevent afterattack() effects (when safely moving items for example)
 				var/resolved = W.resolve_attackby(A,src)
 				if(!resolved && A && W)
-					W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
+					W.afterattack(A, src, TRUE, params) // TRUE: clicking something Adjacent
 			else
 				if(ismob(A)) // No instant mob attacking
 					setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				UnarmedAttack(A, 1)
+				UnarmedAttack(A, TRUE)
 			return
 		else // non-adjacent click
 			if(W)
-				W.afterattack(A, src, 0, params) // 0: not Adjacent
+				W.afterattack(A, src, FALSE, params) // FALSE: not Adjacent
 			else
 				RangedAttack(A, params)
-	return 1
+	return TRUE
 
 /mob/proc/setClickCooldown(var/timeout)
 	next_move = max(world.time + timeout, next_move)
 
 /mob/proc/canClick()
 	if(config.no_click_cooldown || next_move <= world.time)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 // Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
 /mob/proc/DblClickOn(var/atom/A, var/params)
@@ -266,12 +266,12 @@
 
 	if(!ticker)
 		src << "You cannot attack people before the game has started."
-		return 0
+		return FALSE
 
 	if(stat)
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 /*
 	Ranged unarmed attack:
@@ -362,7 +362,7 @@
 		else
 			user.listed_turf = T
 			user.client.statpanel = "Turf"
-	return 1
+	return TRUE
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
@@ -394,7 +394,7 @@
 	var/obj/item/projectile/beam/LE = new (T)
 	LE.icon = 'icons/effects/genetics.dmi'
 	LE.icon_state = "eyelasers"
-	playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, 1)
+	playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, TRUE)
 	LE.launch(A)
 /mob/living/carbon/human/LaserEyes()
 	if(nutrition>0)
@@ -413,10 +413,10 @@
 
 	var/direction
 	if(abs(dx) < abs(dy))
-		if(dy > 0)	direction = NORTH
+		if(dy > FALSE)	direction = NORTH
 		else		direction = SOUTH
 	else
-		if(dx > 0)	direction = EAST
+		if(dx > FALSE)	direction = EAST
 		else		direction = WEST
 	if(direction != dir)
 		facedir(direction)
@@ -437,21 +437,21 @@
 	if(!dx && !dy) return
 
 	if(abs(dx) < abs(dy))
-		if(dy > 0)	direction = NORTH
+		if(dy > FALSE)	direction = NORTH
 		else		direction = SOUTH
 	else
-		if(dx > 0)	direction = EAST
+		if(dx > FALSE)	direction = EAST
 		else		direction = WEST
 	if(direction)
 
 		var/turf/target = get_step(src, direction)
 		if (map.check_prishtina_block(src, target))
-			return 0
+			return FALSE
 
-		scrambling = 1
+		scrambling = TRUE
 		sleep(2)
 		src.visible_message("\red <b>[src]</b> crawls!")
 		sleep(11)
 		Move(target)
-		scrambling = 0
+		scrambling = FALSE
 		dir = 2

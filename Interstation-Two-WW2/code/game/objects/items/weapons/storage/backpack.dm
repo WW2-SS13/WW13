@@ -24,18 +24,18 @@
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src.loc, src.use_sound, 50, TRUE, -5)
 	..()
 
 /obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)
 	if (slot == slot_back && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src.loc, src.use_sound, 50, TRUE, -5)
 	..(user, slot)
 
 /*
 /obj/item/weapon/storage/backpack/dropped(mob/user as mob)
 	if (loc == user && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src.loc, src.use_sound, 50, TRUE, -5)
 	..(user)
 */
 
@@ -64,9 +64,9 @@
 		..()
 
 	//Please don't clutter the parent storage item with stupid hacks.
-	can_be_inserted(obj/item/W as obj, stop_messages = 0)
+	can_be_inserted(obj/item/W as obj, stop_messages = FALSE)
 		if(istype(W, /obj/item/weapon/storage/backpack/holding))
-			return 1
+			return TRUE
 		return ..()
 
 /obj/item/weapon/storage/backpack/santabag

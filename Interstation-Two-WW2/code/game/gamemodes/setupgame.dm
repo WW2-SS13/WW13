@@ -10,7 +10,7 @@
 
 /*	if(blocksLeft.len==0)
 		warning("[name]: No more blocks left to assign!")
-		return 0
+		return FALSE
 	var/assigned = pick(blocksLeft)
 	blocksLeft.Remove(assigned)
 	assigned_blocks[assigned]=name

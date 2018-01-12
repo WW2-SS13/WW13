@@ -47,7 +47,7 @@
 		return
 
 	overlays.Cut()
-	damage_overlay = 0
+	damage_overlay = FALSE
 
 	if(!wall_cache["[new_state]-[material.icon_colour]"])
 		var/image/I = image(icon='icons/turf/wall_masks.dmi',icon_state="[new_state]")
@@ -92,16 +92,16 @@
 	else
 		set_wall_state("[material.icon_base]fwall_open")
 
-	if(damage == 0)
-		if(damage_overlay != 0)
+	if(damage == FALSE)
+		if(damage_overlay != FALSE)
 			overlays -= damage_overlays[damage_overlay]
-		damage_overlay = 0
+		damage_overlay = FALSE
 	else if(density)
 		var/integrity = material.integrity
 		if(reinf_material)
 			integrity += reinf_material.integrity
 
-		var/overlay = round(damage / integrity * damage_overlays.len) + 1
+		var/overlay = round(damage / integrity * damage_overlays.len) + TRUE
 		if(overlay > damage_overlays.len)
 			overlay = damage_overlays.len
 
@@ -118,10 +118,10 @@
 /turf/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / damage_overlays.len
 
-	for(var/i = 1; i <= damage_overlays.len; i++)
+	for(var/i = TRUE; i <= damage_overlays.len; i++)
 		var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
 		img.blend_mode = BLEND_MULTIPLY
-		img.alpha = (i * alpha_inc) - 1
+		img.alpha = (i * alpha_inc) - TRUE
 		damage_overlays[i] = img
 
 //Smoothwall code. update_self for relativewall(), not for relativewall_neighbors()
@@ -130,7 +130,7 @@
 		return
 	var/junction
 	if(update_self)
-		junction = 0
+		junction = FALSE
 	for(var/checkdir in cardinal)
 		var/turf/wall/T = get_step(src, checkdir)
 		if(!istype(T) || !T.material)
@@ -146,5 +146,5 @@
 
 /turf/wall/proc/can_join_with(var/turf/wall/W)
 	if(material && W.material && material.icon_base == W.material.icon_base)
-		return 1
-	return 0
+		return TRUE
+	return FALSE

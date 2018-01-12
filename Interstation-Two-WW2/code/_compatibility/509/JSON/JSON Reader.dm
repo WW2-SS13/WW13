@@ -19,7 +19,7 @@ json_reader
 			sequences 	= list("b" = 8, "t" = 9, "n" = 10, "f" = 12, "r" = 13)
 			tokens
 		json
-		i = 1
+		i = TRUE
 
 
 	proc
@@ -27,7 +27,7 @@ json_reader
 		ScanJson(json)
 			src.json = json
 			. = new/list()
-			src.i = 1
+			src.i = TRUE
 			while(src.i <= lentext(json))
 				var/char = get_char()
 				if(is_whitespace(char))
@@ -105,7 +105,7 @@ json_reader
 		ReadObject(list/tokens)
 			src.tokens = tokens
 			. = new/list()
-			i = 1
+			i = TRUE
 			read_token("{", /json_token/symbol)
 			while(i <= tokens.len)
 				var/json_token/K = get_token()

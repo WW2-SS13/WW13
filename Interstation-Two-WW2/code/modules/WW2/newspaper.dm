@@ -5,9 +5,9 @@
 	icon_state = "newspaper"
 	w_class = 2	//Let's make it fit in trashbags!
 	attack_verb = list("bapped")
-	var/screen = 0
-	var/pages = 0
-	var/curr_page = 0
+	var/screen = FALSE
+	var/pages = FALSE
+	var/curr_page = FALSE
 	var/list/datum/feed_channel/news_content = list()
 	var/datum/feed_message/important_message = null
 	var/scribble=""
@@ -18,7 +18,7 @@
 	/*if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/dat
-		src.pages = 0
+		src.pages = FALSE
 		switch(screen)
 			if(0) //Cover
 				dat+="<DIV ALIGN='center'><B><FONT SIZE=6>The Griffon</FONT></B></div>"
@@ -54,7 +54,7 @@
 						dat+="No Feed stories stem from this channel..."
 					else
 						dat+="<ul>"
-						var/i = 0
+						var/i = FALSE
 						for(var/datum/feed_message/MESSAGE in C.messages)
 							++i
 							dat+="-[MESSAGE.body] <BR>"
@@ -106,22 +106,22 @@
 			if(src.curr_page == src.pages) //We're at the middle, get to the end
 				src.screen = 2
 			else
-				if(curr_page == 0) //We're at the start, get to the middle
+				if(curr_page == FALSE) //We're at the start, get to the middle
 					src.screen=1
 			src.curr_page++
-			playsound(src.loc, "pageturn", 50, 1)
+			playsound(src.loc, "pageturn", 50, TRUE)
 
 		else if(href_list["prev_page"])
-			if(curr_page == 0)
+			if(curr_page == FALSE)
 				return
-			if(curr_page == 1)
-				src.screen = 0
+			if(curr_page == TRUE)
+				src.screen = FALSE
 
 			else
 				if(curr_page == src.pages+1) //we're at the end, let's go back to the middle.
-					src.screen = 1
+					src.screen = TRUE
 			src.curr_page--
-			playsound(src.loc, "pageturn", 50, 1)
+			playsound(src.loc, "pageturn", 50, TRUE)
 
 		if (istype(src.loc, /mob))
 			src.attack_self(src.loc)

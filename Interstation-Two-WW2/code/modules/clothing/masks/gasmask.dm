@@ -10,16 +10,16 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
-	var/gas_filter_strength = 1			//For gas mask filters
+	var/gas_filter_strength = TRUE			//For gas mask filters
 	var/list/filtered_gases = list("plasma", "sleeping_agent")
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 75, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE, energy = FALSE, bomb = FALSE, bio = 75, rad = FALSE)
 
 /obj/item/clothing/mask/gas/proc/check_can_block(var/datum/reagent/r)
 	if ((filtered_gases.Find(r.id) && prob(83)) || (filtered_gases.Find("zyklon_b") && r.id == "zyklon_b")) /*
 ?Lord Taemin? - Yesterday at 3:01 PM
 -Gas mask should protect you only 83%*/
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/clothing/mask/gas/german
 	icon_state = "gas_ww2"
@@ -46,7 +46,7 @@
 	desc = "A modernised version of the classic design, this mask will not only filter out plasma but it can also be connected to an air supply."
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
-	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = 2,energy = 2, bomb = FALSE, bio = 90, rad = FALSE)
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/mask/gas/swat

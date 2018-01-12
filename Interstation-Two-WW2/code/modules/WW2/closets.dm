@@ -67,3 +67,68 @@
 		icon_state = icon_closed
 	else
 		icon_state = icon_opened
+
+/obj/structure/closet/chemical
+	name = "chemical closet"
+	desc = "Store dangerous chemicals in here."
+	icon_state = "medical1"
+	icon_closed = "medical"
+	icon_opened = "medicalopen"
+
+	New()
+		..()
+		new /obj/item/weapon/storage/box/pillbottles(src)
+		new /obj/item/weapon/storage/box/pillbottles(src)
+
+/obj/structure/closet/freezer
+
+/obj/structure/closet/freezer/update_icon()
+	if(!opened)
+		icon_state = icon_closed
+	else
+		icon_state = icon_opened
+
+/obj/structure/closet/freezer/kitchen
+	name = "kitchen cabinet"
+
+	New()
+		..()
+		for(var/i = FALSE, i < 6, i++)
+			new /obj/item/weapon/reagent_containers/food/condiment/flour(src)
+		new /obj/item/weapon/reagent_containers/food/condiment/sugar(src)
+		for(var/i = FALSE, i < 3, i++)
+			new /obj/item/weapon/reagent_containers/food/snacks/meat/monkey(src)
+		return
+
+
+/obj/structure/closet/freezer/meat
+	name = "meat fridge"
+	icon_state = "fridge1"
+	icon_closed = "fridge"
+	icon_opened = "fridgeopen"
+
+	New()
+		..()
+		for(var/i = FALSE, i < 4, i++)
+			new /obj/item/weapon/reagent_containers/food/snacks/meat/monkey(src)
+		return
+
+
+
+/obj/structure/closet/freezer/fridge
+	name = "refrigerator"
+	icon_state = "fridge1"
+	icon_closed = "fridge"
+	icon_opened = "fridgeopen"
+
+
+	New()
+		..()
+		for(var/i = FALSE, i < 5, i++)
+			new /obj/item/weapon/reagent_containers/food/drinks/milk(src)
+		for(var/i = FALSE, i < 3, i++)
+			new /obj/item/weapon/reagent_containers/food/drinks/soymilk(src)
+		for(var/i = FALSE, i < 2, i++)
+			new /obj/item/weapon/storage/fancy/egg_box(src)
+		return
+

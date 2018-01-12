@@ -79,8 +79,8 @@
 	return
 
 /datum/reagent/paint/mix_data(var/newdata, var/newamount)
-	var/list/colors = list(0, 0, 0, 0)
-	var/tot_w = 0
+	var/list/colors = list(0, FALSE, FALSE, FALSE)
+	var/tot_w = FALSE
 
 	var/hex1 = uppertext(color)
 	var/hex2 = uppertext(newdata)
@@ -113,7 +113,7 @@
 	taste_description = "100% abuse"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	affects_dead = 1 //This can even heal dead people.
+	affects_dead = TRUE //This can even heal dead people.
 
 /datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	affect_blood(M, alien, removed)
@@ -121,25 +121,25 @@
 /datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.setCloneLoss(0)
 	M.setOxyLoss(0)
-	M.radiation = 0
+	M.radiation = FALSE
 	M.heal_organ_damage(5,5)
 	M.adjustToxLoss(-5)
-	M.hallucination = 0
+	M.hallucination = FALSE
 	M.setBrainLoss(0)
-	M.disabilities = 0
-	M.sdisabilities = 0
-	M.eye_blurry = 0
-	M.eye_blind = 0
+	M.disabilities = FALSE
+	M.sdisabilities = FALSE
+	M.eye_blurry = FALSE
+	M.eye_blind = FALSE
 	M.SetWeakened(0)
 	M.SetStunned(0)
 	M.SetParalysis(0)
-	M.silent = 0
-	M.dizziness = 0
-	M.drowsyness = 0
-	M.stuttering = 0
-	M.confused = 0
-	M.sleeping = 0
-	M.jitteriness = 0
+	M.silent = FALSE
+	M.dizziness = FALSE
+	M.drowsyness = FALSE
+	M.stuttering = FALSE
+	M.confused = FALSE
+	M.sleeping = FALSE
+	M.jitteriness = FALSE
 
 /datum/reagent/gold
 	name = "Gold"
@@ -169,7 +169,7 @@
 	affect_ingest(M, alien, removed)
 
 /datum/reagent/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.apply_effect(5 * removed, IRRADIATE, 0)
+	M.apply_effect(5 * removed, IRRADIATE, FALSE)
 
 /datum/reagent/uranium/touch_turf(var/turf/T)
 	if(volume >= 3)
@@ -202,7 +202,7 @@
 	..()
 
 /datum/reagent/water/holywater/touch_turf(var/turf/T)
-	return 0
+	return FALSE
 
 /datum/reagent/diethylamine
 	name = "Diethylamine"
@@ -241,7 +241,7 @@
 	if(volume >= 5)
 		if(istype(T, /turf/wall))
 			var/turf/wall/W = T
-			W.thermite = 1
+			W.thermite = TRUE
 			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 			remove_self(5)
 	return
@@ -266,10 +266,10 @@
 	O.clean_blood()
 
 /datum/reagent/space_cleaner/touch_turf(var/turf/T)
-	if(volume >= 1)
+	if(volume >= TRUE)
 		if(istype(T, /turf))
 			var/turf/S = T
-			S.dirt = 0
+			S.dirt = FALSE
 		T.clean_blood()
 
 		for(var/mob/living/carbon/slime/M in T)
@@ -313,7 +313,7 @@
 /datum/reagent/lube/touch_turf(var/turf/T)
 	if(!istype(T))
 		return
-	if(volume >= 1)
+	if(volume >= TRUE)
 		T.wet_floor(2)
 
 /datum/reagent/silicate

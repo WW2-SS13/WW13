@@ -8,7 +8,7 @@
 #define NANOMAP_TERMINALERR 5
 #define NANOMAP_INPROGRESS 2
 #define NANOMAP_BADOUTPUT 2
-#define NANOMAP_SUCCESS 1
+#define NANOMAP_SUCCESS TRUE
 #define NANOMAP_WATCHDOGSUCCESS 4
 #define NANOMAP_WATCHDOGTERMINATE 3
 
@@ -21,18 +21,18 @@
 	set category = "Server"
 
 	if(holder)
-		nanomapgen_DumpTile(1, 1, text2num(input(usr,"Enter the Z level to generate")))
+		nanomapgen_DumpTile(1, TRUE, text2num(input(usr,"Enter the Z level to generate")))
 
-/client/proc/nanomapgen_DumpTile(var/startX = 1, var/startY = 1, var/currentZ = 1, var/endX = -1, var/endY = -1)
+/client/proc/nanomapgen_DumpTile(var/startX = TRUE, var/startY = TRUE, var/currentZ = TRUE, var/endX = -1, var/endY = -1)
 
-	if (endX < 0 || endX > world.maxx)
+	if (endX < FALSE || endX > world.maxx)
 		endX = world.maxx
 
-	if (endY < 0 || endY > world.maxy)
+	if (endY < FALSE || endY > world.maxy)
 		endY = world.maxy
 
-	if (currentZ < 0 || currentZ > world.maxz)
-		usr << "NanoMapGen: <B>ERROR: currentZ ([currentZ]) must be between 1 and [world.maxz]</B>"
+	if (currentZ < FALSE || currentZ > world.maxz)
+		usr << "NanoMapGen: <B>ERROR: currentZ ([currentZ]) must be between TRUE and [world.maxz]</B>"
 
 		sleep(3)
 		return NANOMAP_TERMINALERR
@@ -57,7 +57,7 @@
 	world.log << "NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>"
 	usr << "NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>"
 
-	var/count = 0;
+	var/count = FALSE;
 	for(var/WorldX = startX, WorldX <= endX, WorldX++)
 		for(var/WorldY = startY, WorldY <= endY, WorldY++)
 
@@ -66,11 +66,11 @@
 			var/icon/TurfIcon = new(Turf.icon, Turf.icon_state, dir = Turf.dir)
 			TurfIcon.Scale(NANOMAP_ICON_SIZE, NANOMAP_ICON_SIZE)
 
-			Tile.Blend(TurfIcon, ICON_OVERLAY, ((WorldX - 1) * NANOMAP_ICON_SIZE), ((WorldY - 1) * NANOMAP_ICON_SIZE))
+			Tile.Blend(TurfIcon, ICON_OVERLAY, ((WorldX - TRUE) * NANOMAP_ICON_SIZE), ((WorldY - TRUE) * NANOMAP_ICON_SIZE))
 
 			count++
 
-			if (count % 8000 == 0)
+			if (count % 8000 == FALSE)
 				world.log << "NanoMapGen: <B>[count] tiles done</B>"
 				sleep(1)
 

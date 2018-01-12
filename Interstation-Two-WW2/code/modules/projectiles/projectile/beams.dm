@@ -6,8 +6,8 @@
 	damage_type = BURN
 	check_armour = "laser"
 	eyeblur = 4
-	var/frequency = 1
-	hitscan = 1
+	var/frequency = TRUE
+	hitscan = TRUE
 	invisibility = 101	//beam projectiles are invisible as they are rendered by the effect engine
 
 	muzzle_type = /obj/effect/projectile/laser/muzzle
@@ -18,7 +18,7 @@
 	name = "laser"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage = 0
+	damage = FALSE
 	damage_type = BURN
 	check_armour = "laser"
 	eyeblur = 2
@@ -57,7 +57,7 @@
 	tracer_type = /obj/effect/projectile/laser_pulse/tracer
 	impact_type = /obj/effect/projectile/laser_pulse/impact
 
-/obj/item/projectile/beam/pulse/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/beam/pulse/on_hit(var/atom/target, var/blocked = FALSE)
 	if(isturf(target))
 		target.ex_act(2)
 	..()
@@ -65,7 +65,7 @@
 /obj/item/projectile/beam/emitter
 	name = "emitter beam"
 	icon_state = "emitter"
-	damage = 0 // The actual damage is computed in /code/modules/power/singularity/emitter.dm
+	damage = FALSE // The actual damage is computed in /code/modules/power/singularity/emitter.dm
 
 	muzzle_type = /obj/effect/projectile/emitter/muzzle
 	tracer_type = /obj/effect/projectile/emitter/tracer
@@ -87,8 +87,8 @@
 /obj/item/projectile/beam/stun
 	name = "stun beam"
 	icon_state = "stun"
-	nodamage = 1
-	taser_effect = 1
+	nodamage = TRUE
+	taser_effect = TRUE
 	agony = 40
 	damage_type = HALLOSS
 

@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 //NOTE: Breathing happens once per FOUR TICKS, unless the last breath fails. In which case it happens once per ONE TICK! So oxyloss healing is done once per 4 ticks while oxyloss damage is applied once per tick!
-#define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
+#define HUMAN_MAX_OXYLOSS TRUE //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
 #define HUMAN_CRIT_MAX_OXYLOSS ( 2.0 / 6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average
 
 #define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
@@ -26,19 +26,19 @@
 //#define RADIATION_SPEED_COEFFICIENT 0.1
 
 /mob/living/carbon/human
-	var/oxygen_alert = 0
-	var/plasma_alert = 0
-	var/co2_alert = 0
-	var/fire_alert = 0
-	var/pressure_alert = 0
-	var/temperature_alert = 0
-	var/in_stasis = 0
-	var/heartbeat = 0
+	var/oxygen_alert = FALSE
+	var/plasma_alert = FALSE
+	var/co2_alert = FALSE
+	var/fire_alert = FALSE
+	var/pressure_alert = FALSE
+	var/temperature_alert = FALSE
+	var/in_stasis = FALSE
+	var/heartbeat = FALSE
 	var/global/list/overlays_cache = null
 
 
 /mob/living/carbon/human/Life()
-	set invisibility = 0
+	set invisibility = FALSE
 	set background = BACKGROUND_ENABLED
 
 	handle_zoom_stuff()
@@ -52,7 +52,7 @@
 			if (flamethrower_backpack.flamethrower && flamethrower_backpack.flamethrower.loc != flamethrower_backpack)
 				flamethrower_backpack.reclaim_flamethrower()
 
-	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
+	fire_alert = FALSE //Reset this here, because both breathe() and handle_environment() have a chance to set it.
 
 	//TODO: seperate this out
 	// update the current life tick, can be used to e.g. only do something every 4 ticks
@@ -117,8 +117,8 @@
 
 /mob/living/carbon/human/proc/handle_some_updates()
 	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk mobs spawned like the clowns on the clown shuttle
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/breathe()
 	if(!in_stasis)
@@ -132,39 +132,39 @@
 		vision = internal_organs_by_name[species.vision_organ]
 
 	if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
-		eye_blind =  0
-		blinded =    0
-		eye_blurry = 0
+		eye_blind =  FALSE
+		blinded =    FALSE
+		eye_blurry = FALSE
 	else if(!vision || (vision && vision.is_broken()))   // Vision organs cut out or broken? Permablind.
-		eye_blind =  1
-		blinded =    1
-		eye_blurry = 1
+		eye_blind =  TRUE
+		blinded =    TRUE
+		eye_blurry = TRUE
 	else
 		//blindness
 		if(!(sdisabilities & BLIND))
 			if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
-				eye_blurry = max(eye_blurry-2, 0)
+				eye_blurry = max(eye_blurry-2, FALSE)
 
 	if (disabilities & EPILEPSY)
-		if ((prob(1) && paralysis < 1))
+		if ((prob(1) && paralysis < TRUE))
 			src << "\red You have a seizure!"
 			for(var/mob/O in viewers(src, null))
 				if(O == src)
 					continue
-				O.show_message(text("<span class='danger'>[src] starts having a seizure!</span>"), 1)
+				O.show_message(text("<span class='danger'>[src] starts having a seizure!</span>"), TRUE)
 			Paralyse(10)
 			make_jittery(1000)
 	if (disabilities & COUGHING)
-		if ((prob(5) && paralysis <= 1))
+		if ((prob(5) && paralysis <= TRUE))
 			drop_item()
-			spawn( 0 )
+			spawn( FALSE )
 				emote("cough")
 				return
 	if (disabilities & TOURETTES)
-		speech_problem_flag = 1
-		if ((prob(10) && paralysis <= 1))
+		speech_problem_flag = TRUE
+		if ((prob(10) && paralysis <= TRUE))
 			Stun(10)
-			spawn( 0 )
+			spawn( FALSE )
 				switch(rand(1, 3))
 					if(1)
 						emote("twitch")
@@ -173,7 +173,7 @@
 				make_jittery(100)
 				return
 	if (disabilities & NERVOUS)
-		speech_problem_flag = 1
+		speech_problem_flag = TRUE
 		if (prob(10))
 			stuttering = max(10, stuttering)
 
@@ -183,7 +183,7 @@
 			if(0 <= rn && rn <= 3)
 				custom_pain("Your head feels numb and painful.")
 		if(getBrainLoss() >= 15)
-			if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
+			if(4 <= rn && rn <= 6) if(eye_blurry <= FALSE)
 				src << "<span class='warning'>It becomes hard to see for some reason.</span>"
 				eye_blurry = 10
 		if(getBrainLoss() >= 35)
@@ -238,7 +238,7 @@
 
 	//check if we actually need to process breath
 	if(!breath)
-		failed_last_breath = 1
+		failed_last_breath = TRUE
 		if(prob(20))
 			emote("gasp")
 		if(health > config.health_threshold_crit)
@@ -246,14 +246,14 @@
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
-		oxygen_alert = max(oxygen_alert, 1)
-		return 0
+		oxygen_alert = max(oxygen_alert, TRUE)
+		return FALSE
 	var/obj/item/organ/lungs/L = internal_organs_by_name["lungs"]
 	if(L && L.handle_breath(breath))
-		failed_last_breath = 0
+		failed_last_breath = FALSE
 	else
-		failed_last_breath = 1
-	return 1
+		failed_last_breath = TRUE
+	return TRUE
 
 /mob/living/carbon/human/var/loc_temperature = -1 // for debugging.
 /mob/living/carbon/human/handle_environment()
@@ -329,14 +329,14 @@
 		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 	//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
-	var/temp_adj = 0
+	var/temp_adj = FALSE
 	if(loc_temp < bodytemperature)			//Place is colder than we are
-		var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-		if(thermal_protection < 1)
+		var/thermal_protection = get_cold_protection(loc_temp) //This returns a FALSE - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		if(thermal_protection < TRUE)
 			temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
 	else if (loc_temp > bodytemperature)			//Place is hotter than we are
-		var/thermal_protection = get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-		if(thermal_protection < 1)
+		var/thermal_protection = get_heat_protection(loc_temp) //This returns a FALSE - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		if(thermal_protection < TRUE)
 			temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 
 	//Use heat transfer as proportional to the gas density. However, we only care about the relative density vs standard 101 kPa/20 C air. Therefore we can use mole ratios
@@ -346,9 +346,9 @@
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature >= species.heat_level_1)
 		//Body temperature is too hot.
-		fire_alert = max(fire_alert, 1)
-		if(status_flags & GODMODE)	return 1	//godmode
-		var/burn_dam = 0
+		fire_alert = max(fire_alert, TRUE)
+		if(status_flags & GODMODE)	return TRUE	//godmode
+		var/burn_dam = FALSE
 		switch(bodytemperature)
 			if(species.heat_level_1 to species.heat_level_2)
 				burn_dam = HEAT_DAMAGE_LEVEL_1
@@ -360,11 +360,11 @@
 		fire_alert = max(fire_alert, 2)
 
 	else if(bodytemperature <= species.cold_level_1)
-		fire_alert = max(fire_alert, 1)
-		if(status_flags & GODMODE)	return 1	//godmode
+		fire_alert = max(fire_alert, TRUE)
+		if(status_flags & GODMODE)	return TRUE	//godmode
 
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			var/burn_dam = 0
+			var/burn_dam = FALSE
 			switch(bodytemperature)
 				if(-INFINITY to species.cold_level_3)
 					burn_dam = COLD_DAMAGE_LEVEL_3
@@ -373,7 +373,7 @@
 				if(species.cold_level_2 to species.cold_level_1)
 					burn_dam = COLD_DAMAGE_LEVEL_1
 			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
-			fire_alert = max(fire_alert, 1)
+			fire_alert = max(fire_alert, TRUE)
 
 	// tell src they're dying
 	species.get_environment_discomfort(src, "cold")
@@ -381,7 +381,7 @@
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
-	if(status_flags & GODMODE)	return 1	//godmode
+	if(status_flags & GODMODE)	return TRUE	//godmode
 
 	return
 
@@ -438,7 +438,7 @@
 
 //This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
-	. = 0
+	. = FALSE
 	//Handle normal clothing
 	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
 		if(C)
@@ -447,7 +447,7 @@
 
 //See proc/get_heat_protection_flags(temperature) for the description of this proc.
 /mob/living/carbon/human/proc/get_cold_protection_flags(temperature)
-	. = 0
+	. = FALSE
 	//Handle normal clothing
 	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
 		if(C)
@@ -460,7 +460,7 @@
 
 /mob/living/carbon/human/get_cold_protection(temperature)
 	if(COLD_RESISTANCE in mutations)
-		return 1 //Fully protected from the cold.
+		return TRUE //Fully protected from the cold.
 
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
 	var/thermal_protection_flags = get_cold_protection_flags(temperature)
@@ -499,7 +499,7 @@
 
 	if(reagents)
 		chem_effects.Cut()
-		analgesic = 0
+		analgesic = FALSE
 
 		if(touching) touching.metabolize()
 		if(ingested) ingested.metabolize()
@@ -508,16 +508,16 @@
 		if(CE_PAINKILLER in chem_effects)
 			analgesic = chem_effects[CE_PAINKILLER]
 
-		var/total_plasmaloss = 0
+		var/total_plasmaloss = FALSE
 	/*	for(var/obj/item/I in src)
 			if(I.contaminated)
 				total_plasmaloss += vsc.plc.CONTAMINATION_LOSS*/
 		if(!(status_flags & GODMODE)) adjustToxLoss(total_plasmaloss)
 
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)	return FALSE	//godmode
 
 	if(species.light_dam)
-		var/light_amount = 0
+		var/light_amount = FALSE
 		if(isturf(loc))
 			var/turf/T = loc
 			light_amount = round((T.get_lumcount()*10)-5)
@@ -528,7 +528,7 @@
 			heal_overall_damage(1,1)
 /*
 	// nutrition decrease
-	if (nutrition > 0 && stat != 2)
+	if (nutrition > FALSE && stat != 2)
 		nutrition = max (0, nutrition - species.hunger_factor)*/
 
 	// TODO: stomach and bloodstream organ.
@@ -540,24 +540,24 @@
 
 /mob/living/carbon/human/handle_regular_status_updates()
 	if(!handle_some_updates())
-		return 0
+		return FALSE
 
-	if(status_flags & GODMODE)	return 0
+	if(status_flags & GODMODE)	return FALSE
 
 	//SSD check, if a logged player is awake put them back to sleep!
 	if(species.show_ssd && !client && !teleop)
 		Sleeping(2)
 	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
-		blinded = 1
-		silent = 0
+		blinded = TRUE
+		silent = FALSE
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
 		if(health <= config.health_threshold_dead || (species.has_organ["brain"] && !has_brain()))
 			death()
-			blinded = 1
-			silent = 0
-			return 1
+			blinded = TRUE
+			silent = FALSE
+			return TRUE
 
 		//UNCONSCIOUS. NO-ONE IS HOME
 		if((getOxyLoss() > (species.total_health/2)) || (health <= config.health_threshold_crit))
@@ -565,7 +565,7 @@
 
 
 		if(paralysis || sleeping)
-			blinded = 1
+			blinded = TRUE
 			stat = UNCONSCIOUS
 			animate_tail_reset()
 			adjustHalLoss(-3)
@@ -574,7 +574,7 @@
 			AdjustParalysis(-1)
 
 		else if(sleeping)
-			speech_problem_flag = 1
+			speech_problem_flag = TRUE
 			handle_dreams()
 			if (mind)
 				//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
@@ -592,18 +592,18 @@
 		//Periodically double-check embedded_flag
 		if(embedded_flag && !(life_tick % 10))
 			if(!embedded_needs_process())
-				embedded_flag = 0
+				embedded_flag = FALSE
 
 		//Ears
 		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
-			ear_deaf = max(ear_deaf, 1)
+			ear_deaf = max(ear_deaf, TRUE)
 		else if(ear_deaf)			//deafness, heals slowly over time
-			ear_deaf = max(ear_deaf-1, 0)
+			ear_deaf = max(ear_deaf-1, FALSE)
 		else if(istype(l_ear, /obj/item/clothing/ears/earmuffs) || istype(r_ear, /obj/item/clothing/ears/earmuffs))	//resting your ears with earmuffs heals ear damage faster
-			ear_damage = max(ear_damage-0.15, 0)
-			ear_deaf = max(ear_deaf, 1)
+			ear_damage = max(ear_damage-0.15, FALSE)
+			ear_deaf = max(ear_deaf, TRUE)
 		else if(ear_damage < 25)	//ear damage heals slowly under this threshold. otherwise you'll need earmuffs
-			ear_damage = max(ear_damage-0.05, 0)
+			ear_damage = max(ear_damage-0.05, FALSE)
 
 		//Resting
 		if(resting)
@@ -622,16 +622,16 @@
 			drowsyness--
 			eye_blurry = max(2, eye_blurry)
 			if (prob(5))
-				sleeping += 1
+				sleeping += TRUE
 				Paralyse(5)
 
-		confused = max(0, confused - 1)
+		confused = max(0, confused - TRUE)
 
 		// If you're dirty, your gloves will become dirty, too.
 		if(gloves && germ_level > gloves.germ_level && prob(10))
-			gloves.germ_level += 1
+			gloves.germ_level += TRUE
 
-	return 1
+	return TRUE
 
 /mob/living/carbon/human/handle_regular_hud_updates()
 	for (var/obj/screen/H in HUDprocess)
@@ -677,7 +677,7 @@
 
 /*	if(stat == UNCONSCIOUS)
 		//Critical damage passage overlay
-		if(health <= 0)
+		if(health <= FALSE)
 			var/image/I
 			switch(health)
 				if(-20 to -10)
@@ -724,7 +724,7 @@
 
 		//Fire and Brute damage overlay (BSSR)
 		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp
-		damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
+		damageoverlaytemp = FALSE // We do this so we can detect if someone hits us or not.
 		if(hurtdamage)
 			var/image/I
 			switch(hurtdamage)
@@ -751,7 +751,7 @@
 					if(2)	healths.icon_state = "health7"
 					else
 						//switch(health - halloss)
-						switch(100 - ((species.flags & NO_PAIN) ? 0 : traumatic_shock))
+						switch(100 - ((species.flags & NO_PAIN) ? FALSE : traumatic_shock))
 							if(100 to INFINITY)		healths.icon_state = "health0"
 							if(80 to 100)			healths.icon_state = "health1"
 							if(60 to 80)			healths.icon_state = "health2"
@@ -781,7 +781,7 @@
 			if(hal_screwyhud == 3 || oxygen_alert)	oxygen.icon_state = "oxy1"
 			else									oxygen.icon_state = "oxy0"
 		if(fire)
-			if(fire_alert)							fire.icon_state = "fire[fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
+			if(fire_alert)							fire.icon_state = "fire[fire_alert]" //fire_alert is either FALSE if no alert, TRUE for cold and 2 for heat.
 			else									fire.icon_state = "fire0"
 
 		if(bodytemp)
@@ -831,7 +831,7 @@
 					else
 						bodytemp.icon_state = "temp0"
 */
-	return 1
+	return TRUE
 
 /mob/living/carbon/human/handle_random_events()
 	if(in_stasis)
@@ -843,10 +843,10 @@
 			vomit()
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
-	if(isturf(loc) && rand(1,1000) == 1)
+	if(isturf(loc) && rand(1,1000) == TRUE)
 		var/turf/T = loc
-		if(T.get_lumcount() == 0)
-			playsound_local(src,pick(scarySounds),50, 1, -1)
+		if(T.get_lumcount() == FALSE)
+			playsound_local(src,pick(scarySounds),50, TRUE, -1)
 
 /mob/living/carbon/human/handle_stomach()
 	spawn(0)
@@ -867,7 +867,7 @@
 /*Hardcore mode stuff. This was moved here because constants that are only used
   at one spot in the code shouldn't be in the __defines folder */
 
-#define STARVATION_MIN 0 //If you have less nutrition than this value, the hunger indicator starts flashing
+#define STARVATION_MIN FALSE //If you have less nutrition than this value, the hunger indicator starts flashing
 
 #define STARVATION_NOTICE -15 //If you have more nutrition than this value, you get an occasional message reminding you that you're going to starve soon
 
@@ -882,7 +882,7 @@
 #define STARVATION_OXY_DAMAGE 2.5
 #define STARVATION_TOX_DAMAGE 2.5
 #define STARVATION_BRAIN_DAMAGE 2.5
-#define STARVATION_OXY_HEAL_RATE 1 //While starving, THIS much oxygen damage is restored per life tick (instead of the default 5)
+#define STARVATION_OXY_HEAL_RATE TRUE //While starving, THIS much oxygen damage is restored per life tick (instead of the default 5)
 
 /mob/living/carbon/human/var/list/informed_starvation[4]
 
@@ -906,7 +906,7 @@
 			"If you don't eat something very soon, you're going to starve to death."
 			)
 
-		//When you're starving, the rate at which oxygen damage is healed is reduced by 80% (you only restore 1 oxygen damage per life tick, instead of 5)
+		//When you're starving, the rate at which oxygen damage is healed is reduced by 80% (you only restore TRUE oxygen damage per life tick, instead of 5)
 
 		switch(nutrition)
 			if(STARVATION_NOTICE to STARVATION_MIN)
@@ -915,10 +915,10 @@
 				if (!informed_starvation[num2text(-STARVATION_NOTICE)])
 					src << "<span class='warning'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
 
-				informed_starvation[num2text(-STARVATION_NOTICE)] = 1
-				informed_starvation[num2text(-STARVATION_WEAKNESS)] = 0
-				informed_starvation[num2text(-STARVATION_NEARDEATH)] = 0
-				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = 0
+				informed_starvation[num2text(-STARVATION_NOTICE)] = TRUE
+				informed_starvation[num2text(-STARVATION_WEAKNESS)] = FALSE
+				informed_starvation[num2text(-STARVATION_NEARDEATH)] = FALSE
+				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = FALSE
 
 				if(prob(10))
 					src << "<span class='warning'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
@@ -929,10 +929,10 @@
 				if (!informed_starvation[num2text(-STARVATION_WEAKNESS)])
 					src << "<span class='danger'>[pick(hunger_phrases)]</span>"
 
-				informed_starvation[num2text(-STARVATION_NOTICE)] = 1
-				informed_starvation[num2text(-STARVATION_WEAKNESS)] = 1
-				informed_starvation[num2text(-STARVATION_NEARDEATH)] = 0
-				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = 0
+				informed_starvation[num2text(-STARVATION_NOTICE)] = TRUE
+				informed_starvation[num2text(-STARVATION_WEAKNESS)] = TRUE
+				informed_starvation[num2text(-STARVATION_NEARDEATH)] = FALSE
+				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = FALSE
 
 				if(prob(6)) //6% chance of a tiny amount of oxygen damage (1-5)
 
@@ -946,23 +946,23 @@
 					adjustOxyLoss(rand(1,15))
 					src << "<span class='danger'>You're starving! The lack of strength makes you black out for a few moments...</span>"
 
-			if(STARVATION_NEARDEATH to STARVATION_WEAKNESS) //5-30, 5% chance of weakening and 1-230 oxygen damage. 5% chance of a seizure. 10% chance of dropping item
+			if(STARVATION_NEARDEATH to STARVATION_WEAKNESS) //5-30, 5% chance of weakening and TRUE-230 oxygen damage. 5% chance of a seizure. 10% chance of dropping item
 				if(sleeping) return
 
 				if (!informed_starvation[num2text(-STARVATION_NEARDEATH)])
 					src << "<span class='danger'>You're starving. You feel your life force slowly leaving your body...</span>"
 
-				informed_starvation[num2text(-STARVATION_NOTICE)] = 1
-				informed_starvation[num2text(-STARVATION_WEAKNESS)] = 1
-				informed_starvation[num2text(-STARVATION_NEARDEATH)] = 1
-				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = 0
+				informed_starvation[num2text(-STARVATION_NOTICE)] = TRUE
+				informed_starvation[num2text(-STARVATION_WEAKNESS)] = TRUE
+				informed_starvation[num2text(-STARVATION_NEARDEATH)] = TRUE
+				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = FALSE
 
 				if(prob(7))
 
 					adjustOxyLoss(rand(1,20))
 					src << "<span class='danger'>You're starving. You feel your life force slowly leaving your body...</span>"
 					eye_blurry += 20
-					if(weakened < 1) Weaken(20)
+					if(weakened < TRUE) Weaken(20)
 
 				else if(paralysis<1 && prob(7)) //Mini seizure (25% duration and strength of a normal seizure)
 
@@ -978,10 +978,10 @@
 				if (!informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)])
 					src << "<span class='danger'>You are dying from starvation!</span>"
 
-				informed_starvation[num2text(-STARVATION_NOTICE)] = 1
-				informed_starvation[num2text(-STARVATION_WEAKNESS)] = 1
-				informed_starvation[num2text(-STARVATION_NEARDEATH)] = 1
-				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = 1
+				informed_starvation[num2text(-STARVATION_NOTICE)] = TRUE
+				informed_starvation[num2text(-STARVATION_WEAKNESS)] = TRUE
+				informed_starvation[num2text(-STARVATION_NEARDEATH)] = TRUE
+				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = TRUE
 
 				if (prob(10))
 					src << "<span class='danger'>You are dying from starvation!</span>"
@@ -993,7 +993,7 @@
 				if(prob(10))
 					Weaken(15)
 
-#define DEHYDRATION_MIN 0
+#define DEHYDRATION_MIN FALSE
 #define DEHYDRATION_NOTICE -15
 #define DEHYDRATION_WEAKNESS -40
 #define DEHYDRATION_NEARDEATH -55
@@ -1002,7 +1002,7 @@
 #define DEHYDRATION_OXY_DAMAGE 2.5
 #define DEHYDRATION_TOX_DAMAGE 2.5
 #define DEHYDRATION_BRAIN_DAMAGE 2.5
-#define DEHYDRATION_OXY_HEAL_RATE 1
+#define DEHYDRATION_OXY_HEAL_RATE TRUE
 
 /mob/living/carbon/human/var/list/informed_dehydration[4]
 
@@ -1026,7 +1026,7 @@
 			"If you don't drink something very soon, you're going to dehydrate to death."
 			)
 
-		//When you're starving, the rate at which oxygen damage is healed is reduced by 80% (you only restore 1 oxygen damage per life tick, instead of 5)
+		//When you're starving, the rate at which oxygen damage is healed is reduced by 80% (you only restore TRUE oxygen damage per life tick, instead of 5)
 
 		switch(water)
 			if(DEHYDRATION_NOTICE to DEHYDRATION_MIN)
@@ -1035,10 +1035,10 @@
 				if (!informed_dehydration[num2text(-DEHYDRATION_NOTICE)])
 					src << "<span class='warning'>[pick("You're very thirsty.","You really could use some water right now.")]</span>"
 
-				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = 1
-				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = 0
-				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = 0
-				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = 0
+				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = TRUE
+				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = FALSE
+				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = FALSE
+				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = FALSE
 
 				if(prob(10))
 					src << "<span class='warning'>[pick("You're very thirsty.","You really could use some water right now.")]</span>"
@@ -1049,10 +1049,10 @@
 				if (!informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)])
 					src << "<span class='danger'>[pick(thirst_phrases)]</span>"
 
-				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = 1
-				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = 1
-				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = 0
-				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = 0
+				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = TRUE
+				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = TRUE
+				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = FALSE
+				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = FALSE
 
 				if(prob(6)) //6% chance of a tiny amount of oxygen damage (1-5)
 
@@ -1066,23 +1066,23 @@
 					adjustOxyLoss(rand(1,15))
 					src << "<span class='danger'>You're dehydrating! The lack of strength makes you black out for a few moments...</span>"
 
-			if(DEHYDRATION_NEARDEATH to DEHYDRATION_WEAKNESS) //5-30, 5% chance of weakening and 1-230 oxygen damage. 5% chance of a seizure. 10% chance of dropping item
+			if(DEHYDRATION_NEARDEATH to DEHYDRATION_WEAKNESS) //5-30, 5% chance of weakening and TRUE-230 oxygen damage. 5% chance of a seizure. 10% chance of dropping item
 				if(sleeping) return
 
 				if (!informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)])
 					src << "<span class='danger'>You're dehydrating. You feel your life force slowly leaving your body...</span>"
 
-				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = 1
-				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = 1
-				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = 1
-				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = 0
+				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = TRUE
+				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = TRUE
+				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = TRUE
+				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = FALSE
 
 				if(prob(7))
 
 					adjustOxyLoss(rand(1,20))
 					src << "<span class='danger'>You're dehydrating. You feel your life force slowly leaving your body...</span>"
 					eye_blurry += 20
-					if(weakened < 1) Weaken(20)
+					if(weakened < TRUE) Weaken(20)
 
 				else if(paralysis<1 && prob(7)) //Mini seizure (25% duration and strength of a normal seizure)
 
@@ -1098,10 +1098,10 @@
 				if (!informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)])
 					src << "<span class='danger'>You are dying from dehydration!</span>"
 
-				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = 1
-				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = 1
-				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = 1
-				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = 1
+				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = TRUE
+				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = TRUE
+				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = TRUE
+				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = TRUE
 
 				if (prob(10))
 					src << "<span class='danger'>You are dying from dehydration!</span>"
@@ -1115,20 +1115,20 @@
 
 /mob/living/carbon/human/handle_shock()
 	..()
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)	return FALSE	//godmode
 	if(species && species.flags & NO_PAIN) return
 
-	if(health < config.health_threshold_softcrit)// health 0 makes you immediately collapse
+	if(health < config.health_threshold_softcrit)// health FALSE makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
 
 	if(traumatic_shock >= 80)
-		shock_stage += 1
+		shock_stage += TRUE
 
 	else if(health < config.health_threshold_softcrit)
 		shock_stage = max(shock_stage, 61)
 	else
 		shock_stage = min(shock_stage, 160)
-		shock_stage = max(shock_stage-1, 0)
+		shock_stage = max(shock_stage-1, FALSE)
 		return
 
 	if(shock_stage == 10)
@@ -1171,7 +1171,7 @@
 */
 
 
-/mob/living/carbon/human/var/never_updated_hud_list = 1
+/mob/living/carbon/human/var/never_updated_hud_list = TRUE
 
 /mob/living/carbon/human/proc/handle_hud_list()
 
@@ -1179,7 +1179,7 @@
 	world << "called [src]'s handle_hud_list()"
 	#endif
 
-	never_updated_hud_list = 0
+	never_updated_hud_list = FALSE
 
 	if (original_job && base_faction)
 
@@ -1196,7 +1196,7 @@
 			var/image/holder = hud_list[SPY_FACTION]
 			holder.icon = 'icons/mob/hud_WW2.dmi'
 			switch (original_job.base_type_flag())
-				if (RUSSIAN)
+				if (SOVIET)
 					holder.icon_state = spy_faction.icon_state
 				if (GERMAN)
 					holder.icon_state = spy_faction.icon_state
@@ -1213,7 +1213,7 @@
 			var/image/holder = hud_list[OFFICER_FACTION]
 			holder.icon = 'icons/mob/hud_WW2.dmi'
 			switch (original_job.base_type_flag())
-				if (RUSSIAN)
+				if (SOVIET)
 					holder.icon_state = officer_faction.icon_state
 				if (GERMAN)
 					holder.icon_state = officer_faction.icon_state
@@ -1230,7 +1230,7 @@
 			var/image/holder = hud_list[BASE_FACTION]
 			holder.icon = 'icons/mob/hud_WW2.dmi'
 			switch (original_job.base_type_flag())
-				if (RUSSIAN)
+				if (SOVIET)
 					holder.icon_state = base_faction.icon_state
 				if (GERMAN)
 					holder.icon_state = base_faction.icon_state
@@ -1247,7 +1247,7 @@
 			var/image/holder = hud_list[SQUAD_FACTION]
 			holder.icon = 'icons/mob/hud_WW2.dmi'
 			switch (original_job.base_type_flag())
-				if (RUSSIAN)
+				if (SOVIET)
 					holder.icon_state = squad_faction.icon_state
 				if (GERMAN)
 					holder.icon_state = squad_faction.icon_state
@@ -1278,10 +1278,10 @@
 		hud_list[LIFE_HUD] = holder
 
 	if (BITTEST(hud_updateflag, STATUS_HUD))
-		var/foundVirus = 0
+		var/foundVirus = FALSE
 	/*	for (var/ID in virus2)
 			if (ID in virusDB)
-				foundVirus = 1
+				foundVirus = TRUE
 				break*/
 
 		var/image/holder = hud_list[STATUS_HUD]
@@ -1366,29 +1366,29 @@
 			else
 				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder
-	hud_updateflag = 0
+	hud_updateflag = FALSE
 
 /mob/living/carbon/human/handle_silent()
 	if(..())
-		speech_problem_flag = 1
+		speech_problem_flag = TRUE
 	return silent
 
 /mob/living/carbon/human/handle_slurring()
 	if(..())
-		speech_problem_flag = 1
+		speech_problem_flag = TRUE
 	return slurring
 
 /mob/living/carbon/human/handle_stunned()
 	if(species.flags & NO_PAIN)
-		stunned = 0
-		return 0
+		stunned = FALSE
+		return FALSE
 	if(..())
-		speech_problem_flag = 1
+		speech_problem_flag = TRUE
 	return stunned
 
 /mob/living/carbon/human/handle_stuttering()
 	if(..())
-		speech_problem_flag = 1
+		speech_problem_flag = TRUE
 	return stuttering
 
 /mob/living/carbon/human/handle_fire()
@@ -1398,8 +1398,8 @@
 	var/burn_temperature = fire_burn_temperature()
 	var/thermal_protection = get_heat_protection(burn_temperature)
 
-	if (thermal_protection < 1 && bodytemperature < burn_temperature)
-		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), 1)
+	if (thermal_protection < TRUE && bodytemperature < burn_temperature)
+		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), TRUE)
 
 /mob/living/carbon/human/rejuvenate()
 	restore_blood()
@@ -1413,21 +1413,21 @@
 	if (!laddervision)
 		if(machine)
 			var/viewflags = machine.check_eye(src)
-			if(viewflags < 0)
-				reset_view(null, 0)
+			if(viewflags < FALSE)
+				reset_view(null, FALSE)
 			else if(viewflags)
 				sight |= viewflags
-		else if(eyeobj)
+	/*	else if(eyeobj)
 			if(eyeobj.owner != src)
-				reset_view(null)
+				reset_view(null)*/
 		else
-			var/isRemoteObserve = 0
+			var/isRemoteObserve = FALSE
 			if((mRemote in mutations) && remoteview_target)
 				if(remoteview_target.stat==CONSCIOUS)
-					isRemoteObserve = 1
+					isRemoteObserve = TRUE
 			if(!isRemoteObserve && client && !client.adminobs)
 				remoteview_target = null
-				reset_view(null, 0)
+				reset_view(null, FALSE)
 	else if (client)
 		client.perspective = EYE_PERSPECTIVE
 		client.eye = laddervision

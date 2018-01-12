@@ -1,7 +1,7 @@
 /datum/progressbar
-	var/goal = 1
+	var/goal = TRUE
 	var/image/bar
-	var/shown = 0
+	var/shown = FALSE
 	var/mob/user
 	var/client/client
 
@@ -28,16 +28,16 @@
 /datum/progressbar/proc/update(progress)
 	//world << "Update [progress] - [goal] - [(progress / goal)] - [((progress / goal) * 100)] - [round(((progress / goal) * 100), 5)]"
 	if (!user || !user.client)
-		shown = 0
+		shown = FALSE
 		return
 	if (user.client != client)
 		if (client)
 			client.images -= bar
-			shown = 0
+			shown = FALSE
 		client = user.client
 
-	progress = Clamp(progress, 0, goal)
+	progress = Clamp(progress, FALSE, goal)
 	bar.icon_state = "prog_bar_[round(((progress / goal) * 100), 5)]"
 	if (!shown && user.is_preference_enabled(/datum/client_preference/show_progress_bar))
 		user.client.images += bar
-		shown = 1
+		shown = TRUE

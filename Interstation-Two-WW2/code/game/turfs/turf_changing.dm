@@ -11,7 +11,7 @@
 		qdel(L)
 
 //Creates a new turf
-/turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
+/turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = FALSE)
 	if (!N)
 		return
 
@@ -89,9 +89,9 @@
 
 	for(var/atom/A in contents)
 		if(A.light)
-			A.light.force_update = 1
+			A.light.force_update = TRUE
 
-	for(var/i = 1 to 4)//Generate more light corners when needed. If removed - pitch black shuttles will come for your soul!
+	for(var/i = TRUE to 4)//Generate more light corners when needed. If removed - pitch black shuttles will come for your soul!
 		if(corners[i]) // Already have a corner on this direction.
 			continue
 		corners[i] = new/datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL[i])

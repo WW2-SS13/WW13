@@ -21,13 +21,13 @@
 	var/set_update_icon
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
-//	var/lava = 0
+//	var/lava = FALSE
 	var/overrided_icon_state
 
 	var/season = "SPRING"
-	var/uses_winter_overlay = 0
+	var/uses_winter_overlay = FALSE
 
-	var/muddy = 0
+	var/muddy = FALSE
 
 /turf/floor/proc/has_snow()
 	for (var/obj/snow/S in contents)
@@ -44,7 +44,7 @@
 		set_flooring(get_flooring_data(floortype))
 
 /turf/floor/proc/set_flooring(var/decl/flooring/newflooring)
-	make_plating(defer_icon_update = 1)
+	make_plating(defer_icon_update = TRUE)
 	flooring = newflooring
 	update_icon(1)
 	levelupdate()

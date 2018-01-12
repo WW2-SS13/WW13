@@ -3,7 +3,7 @@
 	set name = "Mass Edit Variables"
 	set desc="(target) Edit all instances of a target item's variables"
 
-	var/method = 0	//0 means strict type detection while 1 means this type and all subtypes (IE: /obj/item with this set to 1 will set it to ALL itms)
+	var/method = FALSE	//0 means strict type detection while TRUE means this type and all subtypes (IE: /obj/item with this set to TRUE will set it to ALL itms)
 
 	if(!check_rights(R_VAREDIT))	return
 
@@ -11,9 +11,9 @@
 		if(typesof(A.type))
 			switch(input("Strict object type detection?") as null|anything in list("Strictly this type","This type and subtypes", "Cancel"))
 				if("Strictly this type")
-					method = 0
+					method = FALSE
 				if("This type and subtypes")
-					method = 1
+					method = TRUE
 				if("Cancel")
 					return
 				if(null)
@@ -23,7 +23,7 @@
 
 
 
-/client/proc/massmodify_variables(var/atom/O, var/var_name = "", var/method = 0)
+/client/proc/massmodify_variables(var/atom/O, var/var_name = "", var/method = FALSE)
 	if(!check_rights(R_VAREDIT))	return
 
 	var/list/locked = list("vars", "key", "ckey", "client")
@@ -60,7 +60,7 @@
 	else if(isnum(var_value))
 		usr << "Variable appears to be <b>NUM</b>."
 		default = "num"
-		dir = 1
+		dir = TRUE
 
 	else if(istext(var_value))
 		usr << "Variable appears to be <b>TEXT</b>."
@@ -372,4 +372,4 @@
 							A.vars[variable] = O.vars[variable]
 
 	log_admin("[key_name(src)] mass modified [original_name]'s [variable] to [O.vars[variable]]")
-	message_admins("[key_name_admin(src)] mass modified [original_name]'s [variable] to [O.vars[variable]]", 1)
+	message_admins("[key_name_admin(src)] mass modified [original_name]'s [variable] to [O.vars[variable]]", TRUE)
