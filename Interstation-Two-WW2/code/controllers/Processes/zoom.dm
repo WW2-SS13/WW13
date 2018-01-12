@@ -21,7 +21,7 @@ var/datum/controller/process/zoom/zoom_process = null
 
 /datum/controller/process/zoom/doWork()
 	for(last_object in recent_scopes)
-		var/obj/item/attachment/scope/S = last_object
+		var/obj/item/weapon/attachment/scope/S = last_object
 
 		if(isnull(S))
 			continue
@@ -62,11 +62,11 @@ var/datum/controller/process/zoom/zoom_process = null
 								continue
 						O.invisibility = 100
 						O.scoped_invisible = 1
-						if (istype(O, /obj/item/attachment/scope))
+						if (istype(O, /obj/item/weapon/attachment/scope))
 							recent_scopes |= O
 						else if (istype(O, /obj/item/weapon/gun))
 							var/obj/item/weapon/gun/G = O
-							for (var/obj/item/attachment/scope/S in G.attachments)
+							for (var/obj/item/weapon/attachment/scope/S in G.attachments)
 								recent_scopes |= S
 				else
 					for (var/obj/O in H.client.screen)

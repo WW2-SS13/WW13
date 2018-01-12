@@ -241,6 +241,8 @@
 /obj/structure/railing/do_climb(var/mob/living/user)
 	if(!can_climb(user))
 		return
+	if (map.check_prishtina_block(user, get_turf(src)))
+		return
 
 	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 	climbers |= user

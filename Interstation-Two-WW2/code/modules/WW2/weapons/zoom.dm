@@ -3,7 +3,7 @@ Should be used for all zoom mechanics
 Parts of code courtesy of Super3222
 */
 
-/obj/item/attachment/scope
+/obj/item/weapon/attachment/scope
 	name = "generic scope"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "binoculars"
@@ -14,20 +14,20 @@ Parts of code courtesy of Super3222
 	attachment_type = ATTACH_SCOPE
 	slot_flags = SLOT_POCKET
 
-/obj/item/attachment/scope/New()
+/obj/item/weapon/attachment/scope/New()
 	..()
 	build_zooming()
 
-/obj/item/attachment/scope/adjustable
+/obj/item/weapon/attachment/scope/adjustable
 	name = "generic adjustable scope"
 	var/min_zoom = 3
 	var/max_zoom = 3
 
-/obj/item/attachment/scope/adjustable/New()
+/obj/item/weapon/attachment/scope/adjustable/New()
 	..()
 	zoom_amt = max_zoom // this really makes more sense IMO, 95% of people will just set it to the max - Kachnov
 
-/obj/item/attachment/scope/adjustable/sniper_scope/zoom()
+/obj/item/weapon/attachment/scope/adjustable/sniper_scope/zoom()
 	..()
 	if(A_attached)
 		var/obj/item/weapon/gun/L = loc //loc is the gun this is attached to
@@ -42,23 +42,23 @@ Parts of code courtesy of Super3222
 			L.recoil = initial(L.recoil)
 
 //Not actually an attachment
-/obj/item/attachment/scope/adjustable/binoculars
+/obj/item/weapon/attachment/scope/adjustable/binoculars
 	name = "binoculars"
 	desc = "A pair of binoculars."
 	max_zoom = 25
 	attachable = FALSE
 
-/obj/item/attachment/scope/adjustable/verb/adjust_scope_verb()
+/obj/item/weapon/attachment/scope/adjustable/verb/adjust_scope_verb()
 	set name = "Adjust Zoom"
 	set category = "Weapons"
 	var/mob/living/carbon/human/user = usr
 	if(istype(src, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = src
-		for(var/obj/item/attachment/scope/adjustable/A in G.attachments)
+		for(var/obj/item/weapon/attachment/scope/adjustable/A in G.attachments)
 			src = A
 	adjust_scope(user)
 
-/obj/item/attachment/scope/adjustable/proc/adjust_scope(mob/living/carbon/human/user)
+/obj/item/weapon/attachment/scope/adjustable/proc/adjust_scope(mob/living/carbon/human/user)
 
 	if(!Adjacent(user))
 		return
@@ -98,7 +98,7 @@ Parts of code courtesy of Super3222
 //	devicename: name of what device you are peering through, set by zoom()
 //	silent: boolean controlling whether it should tell the user why they can't zoom in or not
 // I am sorry for creating this abomination -- Irra
-/obj/item/attachment/scope/proc/can_zoom(mob/living/user, var/silent = 0)
+/obj/item/weapon/attachment/scope/proc/can_zoom(mob/living/user, var/silent = 0)
 	if(user.stat || !ishuman(user))
 		if(!silent) user << "You are unable to focus through \the [src]."
 		return 0
@@ -119,7 +119,7 @@ Parts of code courtesy of Super3222
 		return 0
 	return 1
 
-/obj/item/attachment/scope/proc/zoom(mob/living/user, forced_zoom, var/bypass_can_zoom = 0)
+/obj/item/weapon/attachment/scope/proc/zoom(mob/living/user, forced_zoom, var/bypass_can_zoom = 0)
 
 	if(!user || !user.client)
 		return
@@ -191,7 +191,7 @@ Parts of code courtesy of Super3222
 	name = "Toggle Sights"
 	check_flags = AB_CHECK_ALIVE|AB_CHECK_RESTRAINED|AB_CHECK_STUNNED|AB_CHECK_LYING
 	button_icon_state = "sniper_zoom"
-	var/obj/item/attachment/scope/scope = null
+	var/obj/item/weapon/attachment/scope/scope = null
 
 /datum/action/toggle_scope/IsAvailable()
 	. = ..()
@@ -208,17 +208,17 @@ Parts of code courtesy of Super3222
 	..()
 
 //Proc, so that gun accessories/scopes/etc. can easily add zooming.
-/obj/item/attachment/scope/proc/build_zooming()
+/obj/item/weapon/attachment/scope/proc/build_zooming()
 	azoom = new()
 	azoom.scope = src
 	actions += azoom
 
-/obj/item/attachment/scope/pickup(mob/user)
+/obj/item/weapon/attachment/scope/pickup(mob/user)
 	..()
 	if(azoom)
 		azoom.Grant(user)
 
-/obj/item/attachment/scope/dropped(mob/user)
+/obj/item/weapon/attachment/scope/dropped(mob/user)
 	..()
 	if(azoom)
 		azoom.Remove(user)

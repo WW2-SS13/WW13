@@ -100,7 +100,7 @@
 
 //		#define testmolotovs
 
-		var/explosion_power = alcohol_power/2
+		var/explosion_power = alcohol_power/3
 
 		qdel(rag)
 

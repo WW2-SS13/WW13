@@ -27,8 +27,8 @@
 	var/bolt_safety = 0 //If true, locks the bolt when gun is empty
 
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/attachment))
-		var/obj/item/attachment/A = I
+	if(istype(I, /obj/item/weapon/attachment))
+		var/obj/item/weapon/attachment/A = I
 		if(A.attachable)
 			try_attach(A, user)
 	..()

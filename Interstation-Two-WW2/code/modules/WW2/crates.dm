@@ -522,7 +522,7 @@
 
 	update_capacity(20)
 	for (var/v in 1 to 20)
-		new /obj/item/attachment/bayonet(src)
+		new /obj/item/weapon/attachment/bayonet(src)
 
 /obj/structure/closet/crate/supply_req_sheets/New()
 	..()

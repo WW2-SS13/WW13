@@ -466,9 +466,9 @@ var/area/partisan_stockpile = null
 				if (prob(75))
 					new /obj/item/ammo_magazine/luger(turf)
 				if (prob(60))
-					new /obj/item/attachment/bayonet(turf)
+					new /obj/item/weapon/attachment/bayonet(turf)
 				if (prob(50))
-					new /obj/item/weapon/melee/classic_baton/mp_baton/russian_baton/old(turf)
+					new /obj/item/weapon/melee/classic_baton/MP/soviet/old(turf)
 			// ptrd ammo
 			for (var/v in 1 to rand(10,20))
 				new /obj/item/ammo_casing/a145 (turf)

@@ -4,6 +4,7 @@
 	item_state = "stgnade"
 	throw_speed = 2
 	slot_flags = SLOT_BELT|SLOT_MASK
+	explosion_size = 3
 
 /obj/item/weapon/grenade/explosive/rgd
 	name = "RGD-33"
@@ -11,6 +12,18 @@
 	item_state = "rgd"
 	throw_speed = 1
 	slot_flags = SLOT_BELT|SLOT_MASK
+	explosion_size = 3
+
+/* these two icons need sprites */
+/obj/item/weapon/grenade/explosive/f1
+	name = "RGD-5"
+	icon_state = "rgd5"
+	throw_speed = 1
+
+/obj/item/weapon/grenade/explosive/l2a2
+	name = "l2a2 grenade"
+	icon_state = "l2a2"
+	throw_speed = 1
 
 /obj/item/weapon/grenade/smokebomb/german
 	desc = "German smoke grenade. Won't blow up."

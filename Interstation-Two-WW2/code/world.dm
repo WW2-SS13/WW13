@@ -66,6 +66,9 @@ var/world_is_open = 1
 	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 	log << "STARTED RUNTIME LOGGING"
 
+	attack_log = file("data/logs/attack/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-attack.log")
+	log << "STARTED ATTACK LOGGING"
+
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
@@ -144,20 +147,20 @@ var/world_topic_spam_protect_time = world.timeofday
 	T = replacetext(T, "{OBSERVERS}", observer_mob_list.len) // # of observers w/clients
 	T = replacetext(T, "{ROUNDTIME}", roundduration2text())
 	// UPPERCASE constants
-	T = replacetext(T, "{TIMEOFDAY}", uppertext(time_of_day))
-	T = replacetext(T, "{WEATHER}", uppertext(ticker.mode.weather()))
-	T = replacetext(T, "{SEASON}", uppertext(ticker.mode.season()))
-	T = replacetext(T, "{MAP}", uppertext(map.ID)) // name of the map
+	T = replacetextEx(T, "{TIMEOFDAY}", uppertext(time_of_day))
+	T = replacetextEx(T, "{WEATHER}", uppertext(ticker.mode.weather()))
+	T = replacetextEx(T, "{SEASON}", uppertext(ticker.mode.season()))
+	T = replacetextEx(T, "{MAP}", uppertext(map.ID)) // name of the map
 	// Capitalized constants - no change
-	T = replacetext(T, "{Timeofday}", time_of_day)
-	T = replacetext(T, "{Weather}", ticker.mode.weather())
-	T = replacetext(T, "{Season}", ticker.mode.season())
-	T = replacetext(T, "{Map}", map.ID) // name of the map
+	T = replacetextEx(T, "{Timeofday}", time_of_day)
+	T = replacetextEx(T, "{Weather}", ticker.mode.weather())
+	T = replacetextEx(T, "{Season}", ticker.mode.season())
+	T = replacetextEx(T, "{Map}", map.ID) // name of the map
 	// lowercase constants
-	T = replacetext(T, "{timeofday}", lowertext(time_of_day))
-	T = replacetext(T, "{weather}", lowertext(ticker.mode.weather()))
-	T = replacetext(T, "{season}", lowertext(ticker.mode.season()))
-	T = replacetext(T, "{map}", lowertext(map.ID)) // name of the map
+	T = replacetextEx(T, "{timeofday}", lowertext(time_of_day))
+	T = replacetextEx(T, "{weather}", lowertext(ticker.mode.weather()))
+	T = replacetextEx(T, "{season}", lowertext(ticker.mode.season()))
+	T = replacetextEx(T, "{map}", lowertext(map.ID)) // name of the map
 
 	return T
 

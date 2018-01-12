@@ -10,7 +10,7 @@
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
-	if(CE_SPEEDBOOST in chem_effects)
+	if (chem_effects.Find(CE_SPEEDBOOST))
 		return -1
 
 	var/health_deficiency = (maxHealth - health)
@@ -62,7 +62,8 @@
 	if(mRun in mutations)
 		tally = 0
 
-	return (tally+config.human_delay)
+	// no more huge speedups from wearing shoes
+	return max(0, (tally+config.human_delay))
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	return 0

@@ -1460,8 +1460,10 @@ var/global/datum/controller/occupations/job_master
 			if (side_is_hardlocked(side))
 				return 2
 			return !ticker.can_latejoin_geforce
-		else if (side == PARTISAN) // does this account for civs?
-			return game_started
+		else if (side == CIVILIAN)
+			return map.game_really_started()
+		else if (side == PARTISAN)
+			return map.game_really_started()
 		return 0
 
 	// this is a solution to 5 germans and 1 russian, on lowpop.

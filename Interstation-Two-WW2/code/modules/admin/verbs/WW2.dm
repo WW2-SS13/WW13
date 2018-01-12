@@ -455,3 +455,22 @@
 
 		src << "You sent '[msg]' to all Partisans."
 		message_admins("[key_name(src)] sent '[msg]' to all Partisans")
+
+var/german_civilian_mode = 0
+var/soviet_civilian_mode = 0
+
+/client/proc/toggle_german_civilian_mode()
+	set category = "WW2 (Admin)"
+	set name = "Toggle German Civilian Mode"
+	german_civilian_mode = !german_civilian_mode
+	var/M = "[key_name(src)] [german_civilian_mode ? "enabled" : "disabled"] German Civilian Mode - Civilians will [german_civilian_mode ? "now" : "no longer"] count towards the amount of Germans."
+	message_admins(M)
+	log_admin(M)
+
+/client/proc/toggle_soviet_civilian_mode()
+	set category = "WW2 (Admin)"
+	set name = "Toggle Soviet Civilian Mode"
+	soviet_civilian_mode = !soviet_civilian_mode
+	var/M = "[key_name(src)] [soviet_civilian_mode ? "enabled" : "disabled"] Soviet Civilian Mode - Civilians will [soviet_civilian_mode ? "now" : "no longer"] count towards the amount of Soviets."
+	message_admins(M)
+	log_admin(M)

@@ -250,7 +250,6 @@
 						H.original_job = job_master_occupation_names[J]
 						spawn (7)
 							H.original_job.equip(H)
-							H.regenerate_icons() // fixes weird overlay bug where overlays float around in the screen
 
 	/////////////////////////////////////new ban stuff
 /*	else if(href_list["unbanf"])

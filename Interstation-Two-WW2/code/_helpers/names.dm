@@ -1,4 +1,4 @@
-var/command_name = null
+/*var/command_name = null
 /proc/command_name()
 	if (command_name)
 		return command_name
@@ -13,7 +13,7 @@ var/command_name = null
 	command_name = name
 
 	return name
-
+*/
 /proc/system_name()
 	return "Nyx"
 

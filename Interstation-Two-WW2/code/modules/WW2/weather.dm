@@ -108,9 +108,9 @@
 					if (istype(F) && F.uses_winter_overlay)
 						if (prob(33))
 							F.muddy = 1
-						if (prob(75))
-							for (var/obj/effect/decal/cleanable/C in F)
-								qdel(C)
+					if (prob(75))
+						for (var/obj/effect/decal/cleanable/C in F)
+							qdel(C)
 
 /proc/modify_weather_somehow()
 	if (weather == WEATHER_NONE)

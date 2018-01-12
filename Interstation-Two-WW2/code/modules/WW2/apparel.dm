@@ -290,14 +290,14 @@
 	max_w_class = 3
 	max_storage_space = 28
 	can_hold = list(
-		/obj/item/ammo_magazine/a792x33/stgmag,
-		/obj/item/ammo_magazine/kar98k,
-		/obj/item/ammo_magazine/mp40,
-		/obj/item/weapon/material/knife,
-		/obj/item/weapon/gauze_pack/gauze,
-		/obj/item/weapon/grenade/explosive/stgnade,
-		/obj/item/weapon/gun/projectile/pistol/luger,
-		/obj/item/ammo_magazine/luger
+		/obj/item/ammo_magazine,
+		/obj/item/weapon/material,
+		/obj/item/weapon/gauze_pack,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/attachment,
+		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/melee/classic_baton,
+		/obj/item/device/flashlight
 		)
 
 /obj/item/weapon/storage/belt/soviet/anti_tank_crew
@@ -306,6 +306,15 @@
 
 	for (var/v in 1 to 10)
 		new /obj/item/ammo_casing/a145(src)
+
+/obj/item/weapon/storage/belt/soviet/MP/New()
+	..()
+	new /obj/item/weapon/melee/classic_baton/MP/soviet(src)
+	new /obj/item/weapon/gun/projectile/pistol/luger/colt(src)
+	new /obj/item/device/flashlight(src)
+	new /obj/item/weapon/handcuffs(src)
+	new /obj/item/weapon/handcuffs(src)
+	new /obj/item/weapon/handcuffs(src)
 
 /obj/item/weapon/storage/belt/german
 	name = "German belt pouch"
@@ -316,14 +325,14 @@
 	max_w_class = 3
 	max_storage_space = 28
 	can_hold = list(
-		/obj/item/ammo_magazine/a792x33/stgmag,
-		/obj/item/ammo_magazine/kar98k,
-		/obj/item/ammo_magazine/mp40,
-		/obj/item/weapon/material/knife,
-		/obj/item/weapon/gauze_pack/gauze,
-		/obj/item/weapon/grenade/explosive/stgnade,
-		/obj/item/weapon/gun/projectile/pistol/luger,
-		/obj/item/ammo_magazine/luger
+		/obj/item/ammo_magazine,
+		/obj/item/weapon/material,
+		/obj/item/weapon/gauze_pack,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/attachment,
+		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/melee/classic_baton,
+		/obj/item/device/flashlight
 		)
 
 /obj/item/weapon/storage/belt/german/anti_tank_crew
@@ -338,8 +347,6 @@
 	desc = "Can hold gear like pistol, ammo and other thingies."
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
-	storage_slots = 6
-	max_w_class = 3
 	max_storage_space = 20
 
 /obj/item/weapon/storage/belt/german/fallofficer/New()
@@ -356,8 +363,6 @@
 	desc = "Can hold gear like pistol, ammo and other thingies."
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
-	storage_slots = 6
-	max_w_class = 3
 	max_storage_space = 20
 
 /obj/item/weapon/storage/belt/german/fallsoldier/New()
@@ -365,9 +370,18 @@
 	new /obj/item/ammo_magazine/kar98k(src)
 	new /obj/item/ammo_magazine/kar98k(src)
 	new /obj/item/ammo_magazine/kar98k(src)
-	new /obj/item/attachment/bayonet(src)
+	new /obj/item/weapon/attachment/bayonet(src)
 	new /obj/item/weapon/gauze_pack/gauze(src)
 	new /obj/item/weapon/grenade/explosive/stgnade(src)
+
+/obj/item/weapon/storage/belt/german/MP/New()
+	..()
+	new /obj/item/weapon/melee/classic_baton/MP/german(src)
+	new /obj/item/weapon/gun/projectile/pistol/luger(src)
+	new /obj/item/device/flashlight(src)
+	new /obj/item/weapon/handcuffs(src)
+	new /obj/item/weapon/handcuffs(src)
+	new /obj/item/weapon/handcuffs(src)
 
 /obj/item/clothing/under/doctor
 	name = "doctor's uniform"

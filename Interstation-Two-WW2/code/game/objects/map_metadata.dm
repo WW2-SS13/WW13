@@ -54,6 +54,9 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/proc/announce_mission_start(var/preparation_time = 0)
 	return 1
 
+/obj/map_metadata/proc/game_really_started()
+	return (soviets_can_cross_blocks() && germans_can_cross_blocks())
+
 /obj/map_metadata/forest
 	ID = "Forest Map (200x529)"
 	prishtina_blocking_area_types = list(

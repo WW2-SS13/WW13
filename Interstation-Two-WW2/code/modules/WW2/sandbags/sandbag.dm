@@ -13,8 +13,23 @@
 	if (locate(src) in get_step(user, user.dir))
 		if (alert(user, "Dismantle the sandbag?", "", "Continue", "Stop") == "Continue")
 			visible_message("<span class='danger'>[user] starts dismantling the sandbag wall.</span>", "<span class='danger'>You start dismantling the sandbag wall.</span>")
-			if (do_after(user, rand(70,80), src))
+			if (do_after(user, rand(90,110), src))
 				visible_message("<span class='danger'>[user] finishes dismantling the sandbag wall.</span>", "<span class='danger'>You finish dismantling the sandbag wall.</span>")
+				var/turf = get_turf(src)
+				/* it takes 6 sandbags to make a full sandbag.
+				  * so:
+				    * give people 4 to 6 sandbags back for full sandbags
+				    * give people the amount of sandbags (-1 or -0) back
+				     * that it took them to make the structure in the first
+				     * place
+				*/
+				if (!istype(src, /obj/structure/window/sandbag/incomplete))
+					for (var/v in 1 to rand(4,6))
+						new /obj/item/weapon/sandbag(turf)
+				else
+					var/obj/structure/window/sandbag/incomplete/I = src
+					for (var/v in 1 to (1 + pick(I.progress-1, I.progress)))
+						new /obj/item/weapon/sandbag(turf)
 				qdel(src)
 /*
 /obj/structure/window/sandbag/verb/crouch()

@@ -75,7 +75,7 @@
 	var/list/burst_accuracy = list(0)
 	var/list/dispersion = list(0)
 
-	var/obj/item/attachment/bayonet = null
+	var/obj/item/weapon/attachment/bayonet = null
 
 /obj/item/weapon/gun/New()
 	..()
@@ -198,7 +198,7 @@
 				if (prob(35) && l != user && !l.lying)
 					visible_message("<span class = 'danger'>[user] tries to bayonet [l], but they miss!</span>")
 				else
-					var/obj/item/attachment/bayonet/a = bayonet
+					var/obj/item/weapon/attachment/bayonet/a = bayonet
 					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
 					visible_message("<span class = 'danger'>[user] impales [l] with their gun's bayonet!</span>")
 					l.apply_damage(a.force * 2, BRUTE, def_zone)
@@ -207,7 +207,7 @@
 						l.emote("scream")
 					playsound(get_turf(src), a.attack_sound, rand(90,100))
 			else
-				var/obj/item/attachment/bayonet/a = bayonet
+				var/obj/item/weapon/attachment/bayonet/a = bayonet
 				playsound(get_turf(src), a.attack_sound, rand(90,100))
 
 		else

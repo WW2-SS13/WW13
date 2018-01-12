@@ -62,7 +62,7 @@
 		/obj/item/clothing/accessory/storage/webbing = 20,
 		/obj/item/clothing/under/sovuni = 20,
 		/obj/item/clothing/head/helmet/tactical/sovhelm = 20,
-		/obj/item/clothing/shoes/swat = 20,
+		/obj/item/clothing/shoes/swat/wrappedboots = 20,
 	//	/obj/item/clothing/head/caphat/sovcap = 5
 		/obj/item/clothing/head/ushanka = 10
 

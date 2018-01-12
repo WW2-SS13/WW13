@@ -298,7 +298,7 @@
 
 		// no tanks on lowpop
 		if (!istype(aspect, /datum/game_aspect/ww2/no_tanks))
-			if (clients.len <= 12)
+			if (clients.len <= TANK_LOWPOP_THRESHOLD)
 				for (var/obj/tank/T in world)
 					qdel(T)
 				world << "<i>Due to lowpop, there are no tanks.</i>"

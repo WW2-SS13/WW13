@@ -22,7 +22,7 @@ mob/var/next_pain_time = 0
 
 // partname is the name of a body part
 // amount is a num from 1 to 100
-mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
+/mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
 	if(stat >= 1)
 		return
 	if(species && (species.flags & NO_PAIN))
@@ -31,6 +31,12 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 		return
 	if(world.time < next_pain_time && !force)
 		return
+	if (bloodstr)
+		var/no_pain_prob = 0
+		for (var/datum/reagent/ethanol/E in ingested.reagent_list)
+			no_pain_prob += E.volume
+		if (prob(no_pain_prob))
+			return
 	if(amount > 10 && istype(src,/mob/living/carbon/human))
 		if(src:paralysis)
 			src:paralysis = max(0, src:paralysis-round(amount/10))
@@ -141,9 +147,9 @@ mob/living/carbon/human/proc/handle_pain()
 
 /mob/living/carbon/human/proc/painchecks()
 	if(stat >= 2)
-		return 
+		return
 	if(species.flags & NO_PAIN)
-		return 
+		return
 	if(reagents.has_reagent("paracetamol"))
 		return
 	if(reagents.has_reagent("tramadol"))
@@ -153,8 +159,8 @@ mob/living/carbon/human/proc/handle_pain()
 	if(reagents.has_reagent("morphine"))
 		return
 	if(analgesic)
-		return 
-	else 
+		return
+	else
 		return 1
 
 /*mob/living/carbon/human/proc/suffer_well(var/prob)//Subber well pupper.

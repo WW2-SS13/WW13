@@ -291,6 +291,8 @@ var/list/admin_verbs_mod = list(
 	/client/proc/message_civilians,
 	/client/proc/message_partisans,
 	/client/proc/send_german_train,
+	/client/proc/toggle_german_civilian_mode,
+	/client/proc/toggle_soviet_civilian_mode
 )
 
 var/list/admin_verbs_mentor = list(

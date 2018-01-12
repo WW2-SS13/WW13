@@ -2,6 +2,7 @@
 
 #define WW2_ASPECT_SPAN "<span class = 'notice' style = 'font-size: 2.0em;'>"
 #define WW2_ASPECTDESC_SPAN "<span class = 'notice' style = 'font-size: 1.33em;'>"
+#define TANK_LOWPOP_THRESHOLD 12
 
 /datum/game_aspect
 	var/game_mode_type = null
@@ -219,7 +220,7 @@
 	desc = "There are no tanks this battle."
 
 /datum/game_aspect/ww2/no_tanks/specialcheck()
-	return locate(/obj/tank) in world
+	return (locate(/obj/tank) in world && clients.len > TANK_LOWPOP_THRESHOLD)
 
 /datum/game_aspect/ww2/no_tanks/activate()
 	. = ..()

@@ -6,22 +6,8 @@
 	var/song_title = null
     // format is 'title:probability_multiplier = ogg'
 	var/list/songs = list(
-		"Bots - Was Wollen Wir Trinken (Edit):1" = 'sound/music/WW2/BotsWaswollenwirtrinkenWehrmachtHarcourt.ogg'
-		// HARDBASS
-	//	"Dj Blyatman - Tsar Bomb:1" = 'sound/music/WW2/tsarbomb.ogg',
-	//	"Dj Blyatman - Chernobyl:1" = 'sound/music/WW2/chernobyl.ogg',
-	//	"Dj Snat - Choose Your Power (Gopnik Mcblyat Remix):1" = 'sound/music/WW2/chooseyourpower.ogg',
-	//	"Gopnik Mcblyat - Snakes In Tracksuits:1" = 'sound/music/WW2/snakesintracksuits.ogg',
-		// actual ww2 stuff
-	//	"Katyusha:1" = 'sound/music/WW2/katyusha.ogg',
-	//	"Latvian SS Anthem:1" = 'sound/music/WW2/latvianss.ogg',
-	//	"ERIKA:1" = 'sound/music/WW2/ERIKA.ogg'
-		// other stupid shit
-	//	"Falco - Der Kommissar:1" = 'sound/music/WW2/derkommissar.ogg',
-	//	"DJ Blyatman - Dragunov:1" = 'sound/music/WW2/dragunov.ogg',
-	/*	"M.O.O.N._-_Dust_Official_Hotline_Miami_2_OST:1" = 'sound/music/WW2/moon.ogg'*/)
-
-
+		"Bots - Was Wollen Wir Trinken (Harcourt Edit):1" = 'sound/music/WW2/BotsWaswollenwirtrinkenWehrmachtHarcourt.ogg',
+		"Farewell of Slavianka:1" = 'sound/music/WW2/FarewellofSlavianka.ogg')
 
 /datum/lobby_music_player/New()
 	..()
@@ -29,9 +15,9 @@
 
 /datum/lobby_music_player/proc/choose_song()
 
-	// for some reason byond is horrible with randomness and overwhelmingly
-	// plays the first few songs in the list. The solution is randomizing the list
-	// - Kachnov
+	/* for some reason byond is horrible with randomness and overwhelmingly
+	 * plays the first few songs in the list. The solution is randomizing the list
+	 * - Kachnov */
 
 	var/last_song_title = song_title
 	var/list/random_order_songs = shuffle(songs)

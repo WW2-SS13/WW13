@@ -784,7 +784,7 @@
 				</body>
 			</html>
 		"}
-
+/*
 
 /obj/item/weapon/book/manual/security_space_law
 	name = "Corporate Regulations"
@@ -808,7 +808,7 @@
 
 		"}
 
-
+*/
 
 /obj/item/weapon/book/manual/medical_diagnostics_manual
 	name = "Medical Diagnostics Manual"
@@ -834,7 +834,7 @@
 				<br>
 				<h1>The Oath</h1>
 
-				<i>The Medical Oath sworn by recognised medical practitioners in the employ of [company_name]</i><br>
+				<i>The Medical Oath sworn by all recognised medical practitioners.</i><br>
 
 				<ol>
 					<li>Now, as a new doctor, I solemnly promise that I will, to the best of my ability, serve humanity-caring for the sick, promoting good health, and alleviating pain and suffering.</li>

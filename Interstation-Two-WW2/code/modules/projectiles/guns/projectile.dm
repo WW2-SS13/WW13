@@ -53,7 +53,7 @@
 		ammo_magazine = new magazine_type(src)
 	update_icon()
 
-	var/obj/item/attachment/A = new /obj/item/attachment/scope/iron_sights(src)
+	var/obj/item/weapon/attachment/A = new /obj/item/weapon/attachment/scope/iron_sights(src)
 	spawn_add_attachment(A, src)
 
 /obj/item/weapon/gun/projectile/proc/cock_gun(mob/user)

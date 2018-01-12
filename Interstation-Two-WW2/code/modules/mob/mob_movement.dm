@@ -322,7 +322,7 @@
 			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
 			return 0
 
-		move_delay = world.time//set move delay
+		move_delay = world.time + mob.movement_delay()//set move delay
 
 		// removed config.run_speed, config.walk_speed from move_delays
 		// for some reason they kept defaulting to values different from

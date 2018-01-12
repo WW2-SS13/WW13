@@ -23,6 +23,9 @@
 /proc/game_log(category, text)
 	diary << "\[[time_stamp()]] [game_id] [category]: [text][log_end]"
 
+/proc/attack_log(category, text)
+	attack_log << "\[[time_stamp()]] [game_id] [category]: [text][log_end]"
+
 /proc/log_admin(text)
 	admin_log.Add(text)
 	if (config.log_admin)
@@ -66,7 +69,7 @@
 
 /proc/log_attack(text)
 	if (config.log_attack)
-		game_log("ATTACK", text)
+		attack_log("ATTACK", text)
 
 /proc/log_adminsay(text)
 	if (config.log_adminchat)

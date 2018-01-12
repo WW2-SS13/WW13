@@ -37,7 +37,7 @@ datum/objective
 				break
 
 
-
+/*
 datum/objective/assassinate
 	find_target()
 		..()
@@ -529,3 +529,4 @@ datum/objective/heist/salvage
 
 /datum/objective/rev/check_completion()
 	return 0
+*/

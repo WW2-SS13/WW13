@@ -27,7 +27,7 @@
 				traumatic_shock += 30
 
 	if (bloodstr)
-		for (var/datum/reagent/ethanol/E in bloodstr.reagent_list)
+		for (var/datum/reagent/ethanol/E in ingested.reagent_list)
 			traumatic_shock -= E.volume
 
 	if(traumatic_shock < 0)

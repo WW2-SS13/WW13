@@ -39,7 +39,7 @@
 PREINFO nil
 TITLE <font color = red>Lebensraum</font>
 OOCDESC The official WW13 server, running the bleeding edge of the WW13 codebase.
-ICDESC {TIMEOFDAY}, {WEATHER}, {SEASON}, Ukraine.<br>The round time is {ROUNDTIME}. Map: {MAP}.
+ICDESC {Timeofday}, {Weather}, {Season}, Ukraine.<br>The round time is {ROUNDTIME}. Map: {Map}.
 RPLEVEL Low-Medium Roleplay
 HOSTEDBY <b>Kachnov</b>
 POSTINFO nil

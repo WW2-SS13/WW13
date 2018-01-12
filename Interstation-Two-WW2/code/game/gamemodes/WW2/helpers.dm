@@ -68,13 +68,13 @@
 
 		var/H_side = ""
 
-		if (istype(H.original_job, /datum/job/russian))
+		if (istype(H.original_job, /datum/job/russian) || (istype(H.original_job, /datum/job/partisan) && soviet_civilian_mode))
 			if (H.is_spy)
 				H_side = GERMAN
 			else
 				H_side = RUSSIAN
 
-		if (istype(H.original_job, /datum/job/german))
+		if (istype(H.original_job, /datum/job/german) || (istype(H.original_job, /datum/job/partisan) && german_civilian_mode))
 			if (H.is_spy)
 				H_side = RUSSIAN
 			else
