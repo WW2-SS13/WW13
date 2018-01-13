@@ -20,6 +20,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 		if(ticker)
 			ticker.pregame()
 		start_serverswap_loop()
+//		start_serverdata_loop()
 
 /datum/controller/process/ticker/doWork()
 	var/currentTime = world.timeofday

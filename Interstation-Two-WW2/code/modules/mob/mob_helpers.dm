@@ -151,7 +151,7 @@ var/list/global/hit_chances = list(
 
 	. += miss_modifier
 	. -= (accuracy*6)
-	. = max(., FALSE)
+	. = max(., 0)
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.

@@ -238,7 +238,7 @@
 	..()
 	update_capacity(20)
 	for (var/v in TRUE to 20)
-		new/obj/item/weapon/gun/projectile/pistol/luger/colt(src)
+		new/obj/item/weapon/gun/projectile/pistol/_45(src)
 
 // rations crates
 

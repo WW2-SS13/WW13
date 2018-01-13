@@ -480,6 +480,7 @@
 /area/prishtina/soviet/small_map/inside
 	name = "Soviet Inside Area"
 	icon_state = "red2"
+	location = AREA_INSIDE
 
 /area/prishtina/soviet/small_map/inside/armory
 	name = "Soviet Armory"

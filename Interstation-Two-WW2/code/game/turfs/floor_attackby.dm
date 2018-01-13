@@ -61,6 +61,9 @@
 					var/obj/structure/window/sandbag/incomplete/sandbag = new/obj/structure/window/sandbag/incomplete(src, user)
 					sandbag.progress = progress
 					visible_message("<span class='danger'>[user] finishes constructing the base of a sandbag wall. Anyone can now add to it.</span>")
+					if (ishuman(user))
+						var/mob/living/carbon/human/H = user
+						H.adaptStat("engineering", 1)
 				return
 
 

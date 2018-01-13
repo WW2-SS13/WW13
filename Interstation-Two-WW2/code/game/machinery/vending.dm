@@ -500,10 +500,10 @@
 */
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		if ((href_list["vend"]) && (src.vend_ready) && (!currently_vending))
-			if(!emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
+		/*	if(!emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 				usr << "<span class='warning'>Access denied.</span>"	//Unless emagged of course
 				flick(icon_deny,src)
-				return
+				return*/
 
 			var/key = text2num(href_list["vend"])
 			var/datum/data/vending_product/R = product_records[key]
@@ -533,10 +533,10 @@
 		nanomanager.update_uis(src)
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
-	if(!emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
+/*	if(!emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 		usr << "<span class='warning'>Access denied.</span>"	//Unless emagged of course
 		flick(src.icon_deny,src)
-		return
+		return*/
 	src.vend_ready = FALSE //One thing at a time!!
 	src.status_message = "Vending..."
 	src.status_error = FALSE

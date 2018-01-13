@@ -17,4 +17,5 @@
 	H.setStat("rifle", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 	H.setStat("mg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 	H.setStat("medical", civ_stat())
+	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE

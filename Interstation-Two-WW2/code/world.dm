@@ -488,6 +488,15 @@ var/setting_up_db_connection = FALSE
 	return .
 
 #undef FAILED_DB_CONNECTION_CUTOFF
+/*
+/proc/start_serverdata_loop()
+	spawn while (1)
+		var/F = file("serverdata.txt")
+		if (fexists("serverdata.txt"))
+			fdel(F)
+		if (!serverswap.len || !serverswap.Find("masterdir") || serverswap_open_status)
+			F << get_packaged_server_status_data()
+		sleep (100)*/
 
 /proc/start_serverswap_loop()
 	spawn while (1)

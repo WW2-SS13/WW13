@@ -106,6 +106,8 @@ var/global/datum/controller/occupations/job_master
 	var/german_officer_squad_info[4]
 	var/soviet_officer_squad_info[4]
 
+	var/expected_clients = 0
+
 	proc/total_german_slots()
 		. = FALSE
 		. += german_primary_job_slots = FALSE
@@ -157,23 +159,20 @@ var/global/datum/controller/occupations/job_master
 	// ~90% of clients in the lobby will join as a role prior to the train
 	// being sent
 
-	proc/toggle_roundstart_autobalance(var/_clients = FALSE, var/announce = TRUE)
+	proc/toggle_roundstart_autobalance(var/_clients = 0, var/announce = TRUE)
 
-		// how many unique clients we expect to play
-		var/expected_players = FALSE
+		if (_clients != 0)
+			expected_clients = _clients
 
-		#ifdef DEBUG_AUTOBALANCE
-		if (!_clients)
-			_clients = 100
-		#else
-		if (!_clients)
+		if (expected_clients)
+			_clients = expected_clients
+		else
 			_clients = clients.len
-		#endif
 
 		if (announce)
 			world << "<span class = 'warning'>Setting up roundstart autobalance for [_clients] players.</span>"
 
-		expected_players = _clients * 0.9
+		var/expected_players = _clients * 0.9
 
 		// number of roles, between both sides, that will be open.
 		// greater than the number of expected players to account for
@@ -1178,6 +1177,14 @@ var/global/datum/controller/occupations/job_master
 							if (gun.magazine_type)
 								H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_l_store)
 						break // but only the first gun we find
+					for (var/obj/item/weapon/gun/projectile/gun in H.belt)
+						if (!H.r_store)
+							if (gun.magazine_type)
+								H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_r_store)
+						if (!H.l_store)
+							if (gun.magazine_type)
+								H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_l_store)
+						break // but only the first gun we find
 
 			// get our new real name based on jobspecific language ( and more
 			job.update_character(H)
@@ -1370,10 +1377,15 @@ var/global/datum/controller/occupations/job_master
 			 * will get lanterns - Kachnov */
 
 			if (isDarkOutside())
-				H.equip_to_slot_or_del(new/obj/item/device/flashlight/lantern(H), slot_belt)
+				H.equip_to_slot_or_del(new/obj/item/device/flashlight(H), slot_belt)
 
 			// this spawns keys now
 			spawnKeys(H, rank, alt_title)
+
+			// free belt slot, give us a flashlight anyway
+			if (!slot_belt)
+				H.equip_to_slot_or_del(new/obj/item/device/flashlight(H), slot_belt)
+
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO after spawnID()"
@@ -1400,7 +1412,6 @@ var/global/datum/controller/occupations/job_master
 			relocate(H)
 
 			return H
-
 
 	proc/spawnKeys(var/mob/living/carbon/human/H, rank, title)
 
@@ -1491,3 +1502,5 @@ var/global/datum/controller/occupations/job_master
 				if (player_list.len >= 2 && player_list.len <= 20)
 					if (soviets >= ceil(player_list.len/2))
 						return TRUE
+			if (UKRAINIAN, ITALIAN)
+				return TRUE

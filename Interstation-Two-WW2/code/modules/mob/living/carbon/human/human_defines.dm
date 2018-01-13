@@ -132,24 +132,5 @@
 		"engineering" = list(100,100),
 		"rifle" = list(100,100),
 		"mg" = list(100,100),
-		"medical" = list(100,100))
-
-/mob/living/carbon/human/proc/getStat(statname)
-	return stats[lowertext(statname)][1]
-
-/mob/living/carbon/human/proc/getMaxStat(statname)
-	return stats[lowertext(statname)][2]
-
-/mob/living/carbon/human/proc/getStatCoeff(statname)
-	return stats[lowertext(statname)][1]/100
-
-/mob/living/carbon/human/proc/setStat(statname, statval)
-	statval += rand(-5,5)
-	// realism + balancing
-	if (gender == FEMALE)
-		switch (statname)
-			if ("strength")
-				statval -= 4
-			if ("medical")
-				statval += 4
-	stats[statname] = list(statval, statval)
+		"medical" = list(100,100),
+		"survival" = list(100,100))

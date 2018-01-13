@@ -301,6 +301,14 @@ var/global/list/default_ukrainian_channels = list(
 				if (SOVIET)
 					main_radios[SOVIET] = src
 
+	spawn (100)
+		if (map)
+			if (map.uses_supply_train)
+				is_supply_radio = FALSE
+
+	if (locate(/obj/effect/landmark/train/german_supplytrain_start) in world)
+		is_supply_radio = FALSE
+
 /obj/item/device/radio/Move()
 	..()
 	notyetmoved = FALSE
@@ -512,7 +520,6 @@ var/global/list/default_ukrainian_channels = list(
 	name = "A-7-B"
 	icon_state = "a7b"
 	item_state = "a7b"
-//	freerange = FALSE
 	frequency = RU_BASE_FREQ
 	anchored = TRUE
 	canhear_range = 1
@@ -547,7 +554,6 @@ var/global/list/default_ukrainian_channels = list(
 	name = "RBS1"
 	icon_state = "rbs1"
 	item_state = "rbs1"
-//	freerange = FALSE
 	frequency = RU_COMM_FREQ
 	canhear_range = 1
 	w_class = 5
@@ -562,7 +568,6 @@ var/global/list/default_ukrainian_channels = list(
 	name = "Torn.Fu.d2"
 	icon_state = "fud2"
 	item_state = "fud2"
-//	freerange = FALSE
 	frequency = DE_BASE_FREQ
 	anchored = TRUE
 	canhear_range = 1
@@ -599,7 +604,6 @@ var/global/list/default_ukrainian_channels = list(
 	name = "Feldfu.f"
 	icon_state = "feldfu"
 	item_state = "feldfu"
-//	freerange = FALSE
 	frequency = DE_COMM_FREQ
 	canhear_range = 1
 	w_class = 4
@@ -617,7 +621,6 @@ var/global/list/default_ukrainian_channels = list(
 	name = "Feldfu.f"
 	icon_state = "feldfu"
 	item_state = "feldfu"
-//	freerange = FALSE
 	frequency = UK_FREQ
 	canhear_range = 1
 	w_class = 4

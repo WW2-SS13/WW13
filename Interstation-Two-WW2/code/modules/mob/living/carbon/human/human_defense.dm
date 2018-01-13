@@ -26,6 +26,15 @@ meteor_act
 
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
+	// if we hit a client who's not on our team, increase our stats
+	if (client && P.firer && ishuman(P.firer) && P.firedfrom)
+		var/mob/living/carbon/human/H = P.firer
+		if (!H.original_job || !original_job || H.original_job.base_type_flag() != original_job.base_type_flag())
+			if (istype(P.firedfrom, /obj/item/weapon/gun/projectile/boltaction) || istype(P.firedfrom, /obj/item/weapon/gun/projectile/svt))
+				H.adaptStat("rifle", 1)
+			else if (istype(P.firedfrom, /obj/item/weapon/gun/projectile/automatic) || istype(P.firedfrom, /obj/item/weapon/gun/projectile/minigun))
+				H.adaptStat("MG", 1)
+
 	def_zone = check_zone(def_zone)
 	if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
 		say("GOD DAMN IT HURTS", src.languages.Find(GERMAN))
@@ -33,10 +42,10 @@ meteor_act
 	if (src.is_spy && istype(src.spy_faction, /datum/faction/soviet))
 		say("GOD DAMN IT HURTS", src.languages.Find(RUSSIAN))
 
-	if (def_zone == "chest" && P.firer && (P.firer.dir == src.dir || P.firer.lying))
+	if (P.firer && (P.firer.dir == src.dir || P.firer.lying))
 		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower = back
-			if (prob(15) || (world.time - last_movement >= 50))
+			if (prob(20) || (world.time - last_movement >= 50))
 				flamethrower.explode()
 
 	if(!has_organ(def_zone))

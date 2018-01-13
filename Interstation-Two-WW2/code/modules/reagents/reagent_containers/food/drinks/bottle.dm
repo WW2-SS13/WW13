@@ -64,10 +64,10 @@
 	if(!isGlass || !smash_duration)
 		return FALSE
 
-	var/list/chance_table = list(90, 90, 85, 85, 60, 35, 15) //starting from distance FALSE
-	var/idx = max(distance + TRUE, TRUE) //since list indices start at TRUE
+	var/list/chance_table = list(50, 75, 90, 95, 100, 100, 100) //starting from distance 0
+	var/idx = max(distance + 1, 1) //since list indices start at 1
 	if(idx > chance_table.len)
-		return FALSE
+		return 0
 	return prob(chance_table[idx])
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/throw_at(atom/target, range, speed, thrower)
@@ -100,7 +100,7 @@
 
 //		#define testmolotovs
 
-		var/explosion_power = alcohol_power/3
+		var/explosion_power = alcohol_power/2.5
 
 		qdel(rag)
 

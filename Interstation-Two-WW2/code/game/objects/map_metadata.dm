@@ -11,6 +11,7 @@ var/global/obj/map_metadata/map = null
 	var/list/prishtina_blocking_area_types = list()
 	var/last_crossing_block_status[2]
 	var/admin_ended_all_grace_periods = FALSE
+	var/uses_supply_train = FALSE
 
 /obj/map_metadata/New()
 	..()
@@ -62,6 +63,7 @@ var/global/obj/map_metadata/map = null
 	prishtina_blocking_area_types = list(
 		/area/prishtina/forest/north/invisible_wall,
 		/area/prishtina/forest/south/invisible_wall)
+	uses_supply_train = TRUE
 
 /obj/map_metadata/forest/germans_can_cross_blocks()
 	return (mission_announced || admin_ended_all_grace_periods)

@@ -412,7 +412,7 @@ var/area/partisan_stockpile = null
 				var/i = rand(1,3)
 				switch (i)
 					if (1) // meds
-						for (var/v in TRUE to rand(2,3))
+						for (var/v in 1 to rand(2,3))
 							if (prob(33))
 								new/obj/item/weapon/pill_pack/antitox(pick(possible_turfs))
 							if (prob(33))
@@ -428,7 +428,7 @@ var/area/partisan_stockpile = null
 							if (prob(33))
 								new/obj/item/weapon/gauze_pack/bint(pick(possible_turfs))
 					if (2) // tools
-						for (var/v in TRUE to rand(2,3))
+						for (var/v in 1 to rand(2,3))
 							if (prob(50))
 								new/obj/item/weapon/wrench(pick(possible_turfs))
 							if (prob(50))
@@ -438,16 +438,14 @@ var/area/partisan_stockpile = null
 							if (prob(50))
 								new/obj/item/weapon/screwdriver(pick(possible_turfs))
 					if (3) // materials
-						for (var/v in TRUE to rand(3,5))
+						for (var/v in 1 to rand(3,5))
 							var/type = pick(/obj/item/stack/material/steel, /obj/item/stack/material/wood)
 							var/obj/item/stack/sheets = new type (pick(possible_turfs))
 							sheets.amount = rand(10,30)
 
 				if (prob(30))
-					for (var/v in TRUE to rand(2,3))
+					for (var/v in 1 to rand(2,3))
 						new/obj/item/weapon/reagent_containers/glass/rag(pick(possible_turfs))
-
-
 			qdel(src)
 			return
 
@@ -464,7 +462,8 @@ var/area/partisan_stockpile = null
 				if (prob(50))
 					new /obj/item/weapon/gun/projectile/pistol/luger(turf)
 				if (prob(75))
-					new /obj/item/ammo_magazine/luger(turf)
+					for (var/vv in 1 to rand(1,3))
+						new /obj/item/ammo_magazine/luger(turf)
 				if (prob(60))
 					new /obj/item/weapon/attachment/bayonet(turf)
 				if (prob(50))

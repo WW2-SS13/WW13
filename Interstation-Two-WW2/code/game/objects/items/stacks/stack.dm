@@ -174,6 +174,9 @@
 		if (!do_after(user, buildtime))
 			return
 
+		if (H)
+			H.adaptStat("engineering", 1)
+
 	if (use(required))
 		var/atom/O
 		if(recipe.use_material)

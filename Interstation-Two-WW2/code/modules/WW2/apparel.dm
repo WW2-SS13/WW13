@@ -310,7 +310,7 @@
 /obj/item/weapon/storage/belt/soviet/MP/New()
 	..()
 	new /obj/item/weapon/melee/classic_baton/MP/soviet(src)
-	new /obj/item/weapon/gun/projectile/pistol/luger/colt(src)
+	new /obj/item/weapon/gun/projectile/pistol/_45(src)
 	new /obj/item/device/flashlight(src)
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)

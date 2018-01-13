@@ -6,8 +6,8 @@
 	var/song_title = null
     // format is 'title:probability_multiplier = ogg'
 	var/list/songs = list(
-		"Bots - Was Wollen Wir Trinken (Harcourt Edit):1" = 'sound/music/WW2/BotsWaswollenwirtrinkenWehrmachtHarcourt.ogg',
-		"Farewell of Slavianka:1" = 'sound/music/WW2/FarewellofSlavianka.ogg')
+		"Bots - Was Wollen Wir Trinken (Harcourt Edit):1" = 'sound/music/BotsWaswollenwirtrinkenWehrmachtHarcourt.ogg',
+		"Farewell of Slavianka:1" = 'sound/music/FarewellofSlavianka.ogg')
 
 /datum/lobby_music_player/New()
 	..()

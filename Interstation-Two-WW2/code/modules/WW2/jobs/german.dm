@@ -25,7 +25,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_hand)
 	world << "<b><big>[H.client.prefs.german_name] is the [title] of the German forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the German forces and lead them to victory, while working alongside the <b>SS-Untersharffuhrer</b>. You take orders from the <b>German High Command</b>.</span>"
 	H.give_radio()
@@ -67,7 +66,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the German forces. Your job is to take orders from the <b>Feldwebel</b> and coordinate with squad leaders.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
@@ -98,6 +96,7 @@
 	spawn_location = "JoinLateHeer"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 33 )
 	absolute_limit = 3
+	is_officer = TRUE
 
 /datum/job/german/MP/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -142,7 +141,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the German force according to the <b>Feldwebel</b>'s and <b>Stabsoffizier</b>en's orders.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_NORMAL)

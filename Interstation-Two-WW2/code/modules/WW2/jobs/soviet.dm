@@ -23,9 +23,8 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovofficercap(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger/colt(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/_45(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_hand)
 	world << "<b><big>[H.client.prefs.russian_name] is the [title] of the Soviet forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the Russian forces and lead them to victory. You take orders from the <b>Soviet High Command</b>.</span>"
 	H.give_radio()
@@ -63,9 +62,8 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovofficercap(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger/colt(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/_45(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the Russian forces. Your job is to take orders from the <b>Commandir</b> and coordinate with squad leaders.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
@@ -92,6 +90,7 @@
 	spawn_location = "JoinLateRA"
 	additional_languages = list( "German" = 100, "Ukrainian" = 33 )
 	absolute_limit = 3
+	is_officer = TRUE
 
 /datum/job/soviet/MP/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -137,7 +136,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m4(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_hand)
 	H.visible_message("<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the Russian force according to the <b>Commandir</b>'s and the <b>Ofitser</b>'s orders.</span>")
 	H.give_radio()
 	H.setStat("strength", STAT_NORMAL)
@@ -552,7 +550,6 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovcap/fieldcap(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a Quartermaster. Your job is to keep the army well armed and supplied.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_HIGH)

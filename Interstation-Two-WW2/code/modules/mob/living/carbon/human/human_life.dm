@@ -62,11 +62,11 @@
 
 	switch (stat)
 		if (CONSCIOUS) // takes about 1333 ticks to start starving, or ~44 minutes
-			nutrition -= 0.30
-			water -= 0.30
+			nutrition -= 0.30/getStatCoeff("survival")
+			water -= 0.30/getStatCoeff("survival")
 		if (UNCONSCIOUS) // takes over an hour to starve
-			nutrition -= 0.20
-			water -= 0.20
+			nutrition -= 0.20/getStatCoeff("survival")
+			water -= 0.20/getStatCoeff("survival")
 
 	if (stamina == max_stamina-1 && m_intent == "walk")
 		src << "<span class = 'good'>You feel like you can run for a while.</span>"
