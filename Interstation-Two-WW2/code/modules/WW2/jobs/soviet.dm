@@ -187,7 +187,7 @@
 /datum/job/soviet/doctor
 	title = "Doktor"
 	en_meaning = "Doctor"
-	total_positions = 2
+	total_positions = 3
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRADr"
 	is_nonmilitary = TRUE

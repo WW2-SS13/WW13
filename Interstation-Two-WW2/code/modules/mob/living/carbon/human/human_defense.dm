@@ -27,7 +27,7 @@ meteor_act
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
 	// if we hit a client who's not on our team, increase our stats
-	if (client && P.firer && ishuman(P.firer) && P.firedfrom)
+	if (client && stat == CONSCIOUS && P.firer && ishuman(P.firer) && P.firedfrom)
 		var/mob/living/carbon/human/H = P.firer
 		if (!H.original_job || !original_job || H.original_job.base_type_flag() != original_job.base_type_flag())
 			if (istype(P.firedfrom, /obj/item/weapon/gun/projectile/boltaction) || istype(P.firedfrom, /obj/item/weapon/gun/projectile/svt))

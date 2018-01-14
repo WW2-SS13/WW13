@@ -1,3 +1,4 @@
+#define PROCESS_SUPER_SLOWDOWN 4
 #define PROCESS_HIGH_SLOWDOWN 3
 #define PROCESS_MED_SLOWDOWN 2
 
@@ -22,7 +23,7 @@ var/hyperefficiency_mode = FALSE
 				german_train_master.velocity /= 1.25
 
 			// slow down the mob process considerably
-			mob_process.schedule_interval *= PROCESS_HIGH_SLOWDOWN
+			mob_process.schedule_interval *= PROCESS_SUPER_SLOWDOWN
 
 			// slow down the zoom process considerably
 			zoom_process.schedule_interval *= PROCESS_HIGH_SLOWDOWN
@@ -31,7 +32,7 @@ var/hyperefficiency_mode = FALSE
 			obj_process.schedule_interval *= PROCESS_HIGH_SLOWDOWN
 
 			// slow down the machinery process considerably
-			machinery_process.schedule_interval *= PROCESS_HIGH_SLOWDOWN
+		//	machinery_process.schedule_interval *= PROCESS_HIGH_SLOWDOWN
 
 			// pause unecessary processes
 			weather_process.paused = TRUE
@@ -50,7 +51,7 @@ var/hyperefficiency_mode = FALSE
 				german_train_master.velocity = initial(german_train_master.velocity)
 
 			// undo slowdown
-			mob_process.schedule_interval /= PROCESS_HIGH_SLOWDOWN
+			mob_process.schedule_interval /= PROCESS_SUPER_SLOWDOWN
 
 			// undo slowdown
 			zoom_process.schedule_interval /= PROCESS_HIGH_SLOWDOWN
@@ -59,7 +60,7 @@ var/hyperefficiency_mode = FALSE
 			obj_process.schedule_interval /= PROCESS_HIGH_SLOWDOWN
 
 			// undo slowdown
-			machinery_process.schedule_interval /= PROCESS_HIGH_SLOWDOWN
+		//	machinery_process.schedule_interval /= PROCESS_HIGH_SLOWDOWN
 
 			// turn on unecessary processes
 			weather_process.paused = FALSE

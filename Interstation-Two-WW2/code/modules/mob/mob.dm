@@ -185,7 +185,7 @@
 #undef FULLY_BUCKLED
 
 /mob/proc/restrained()
-	return
+	return FALSE
 
 /mob/proc/reset_view(atom/A)
 	if (client)
@@ -638,7 +638,6 @@
 /mob/Stat()
 	..()
 	. = (is_client_active(10 MINUTES))
-
 	if(.)
 		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
 			stat("People Online", clients.len)
@@ -650,7 +649,7 @@
 		if(client.holder)
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")
-				stat("CPU:","[world.cpu]")
+				stat("CPU/Tick Usage:","[world.cpu]/[world.tick_usage]")
 				stat("Instances:","[world.contents.len]")
 			if(statpanel("Processes"))
 				if(processScheduler)

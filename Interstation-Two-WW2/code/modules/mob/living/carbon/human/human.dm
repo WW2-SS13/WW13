@@ -69,37 +69,38 @@
 	return ..()
 
 /mob/living/carbon/human/Stat()
-	..()
-	if(statpanel("Status"))
-		stat("Intent:", "[a_intent]")
-		stat("Move Mode:", "[m_intent]")
-		if (internal)
-			if (!internal.air_contents)
-				qdel(internal)
-			else
-				stat("Internal Atmosphere Info", internal.name)
-				stat("Tank Pressure", internal.air_contents.return_pressure())
-				stat("Distribution Pressure", internal.distribute_pressure)
+	. = ..()
+	if (.)
+		if(statpanel("Status"))
+			stat("Intent:", "[a_intent]")
+			stat("Move Mode:", "[m_intent]")
+			if (internal)
+				if (!internal.air_contents)
+					qdel(internal)
+				else
+					stat("Internal Atmosphere Info", internal.name)
+					stat("Tank Pressure", internal.air_contents.return_pressure())
+					stat("Distribution Pressure", internal.distribute_pressure)
 
-		stat("<br>STATS<br>")
-		for (var/statname in stats)
-			var/coeff = getStatCoeff(statname)
-			if (coeff == TRUE)
-				coeff = "1.00" // OCD
-			if (statname != "mg")
-				stat("[capitalize(statname)]: ", "[coeff]x average")
-			else
-				stat("[uppertext(statname)]: ", "[coeff]x average")
+			stat("<br>STATS<br>")
+			for (var/statname in stats)
+				var/coeff = getStatCoeff(statname)
+				if (coeff == TRUE)
+					coeff = "1.00" // OCD
+				if (statname != "mg")
+					stat("[capitalize(statname)]: ", "[coeff]x average")
+				else
+					stat("[uppertext(statname)]: ", "[coeff]x average")
 
-		if (istype(loc, /obj/tank))
-			var/obj/tank/tank = loc
-			var/fuel_slot_screwed = tank.fuel_slot_screwed ? "Screwed," : "Unscrewed,"
-			var/fuel_slot_open = tank.fuel_slot_open ? " open" : " closed"
-			stat("<br>TANK INFORMATION<br>")
-			stat("Tank Integrity:", tank.health_percentage())
-			stat("Ready to fire?:", (world.time - tank.last_fire > tank.fire_delay || tank.last_fire == -1) ? "Yes" : "No")
-			stat("Fuel Slot:", "[fuel_slot_screwed][fuel_slot_open].")
-			stat("Fuel:", "[round((tank.fuel/tank.max_fuel)*100)]%")
+			if (istype(loc, /obj/tank))
+				var/obj/tank/tank = loc
+				var/fuel_slot_screwed = tank.fuel_slot_screwed ? "Screwed," : "Unscrewed,"
+				var/fuel_slot_open = tank.fuel_slot_open ? " open" : " closed"
+				stat("<br>TANK INFORMATION<br>")
+				stat("Tank Integrity:", tank.health_percentage())
+				stat("Ready to fire?:", (world.time - tank.last_fire > tank.fire_delay || tank.last_fire == -1) ? "Yes" : "No")
+				stat("Fuel Slot:", "[fuel_slot_screwed][fuel_slot_open].")
+				stat("Fuel:", "[round((tank.fuel/tank.max_fuel)*100)]%")
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)

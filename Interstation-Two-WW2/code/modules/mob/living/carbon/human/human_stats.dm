@@ -7,6 +7,14 @@
 /mob/living/carbon/human/proc/getStatCoeff(statname)
 	return stats[lowertext(statname)][1]/100
 
+/* if strength were '1.5' and engineering '1.6', then
+ * getLesserStatCombinedCoeff(list("strength", "engineering")) would
+ * return 1.31 */
+/mob/living/carbon/human/proc/getLesserStatCombinedCoeff(var/list/statnames = list())
+	. = 1 - (statnames.len/10)
+	for (var/statname in statnames)
+		. += stats[lowertext(statname)][1]/1000
+
 /mob/living/carbon/human/proc/setStat(statname, statval)
 	statname = lowertext(statname)
 	if (!stats.Find(statname))
@@ -28,8 +36,11 @@
 		return
 
 	if (statname == "mg")
-		stats[statname][1] *= (1 + (multiplier/300))
-		stats[statname][2] *= (1 + (multiplier/300))
+		stats[statname][1] *= (1 + (multiplier/400))
+		stats[statname][2] *= (1 + (multiplier/400))
+	else if (statname == "rifle")
+		stats[statname][1] *= (1 + (multiplier/200))
+		stats[statname][2] *= (1 + (multiplier/200))
 	else
 		stats[statname][1] *= (1 + (multiplier/100))
 		stats[statname][2] *= (1 + (multiplier/100))

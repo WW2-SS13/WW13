@@ -445,6 +445,7 @@
 /turf/floor/plating/beach/water
 	name = "Water"
 	icon_state = "seashallow"
+	move_delay = 3
 
 /turf/floor/plating/beach/water/proc/Extinguish(var/mob/living/L)
 	if (istype(L))
@@ -462,6 +463,7 @@
 /turf/floor/plating/beach/water/ice
 	name = "Ice"
 	icon_state = "seashallow_frozen"
+	move_delay = 0
 
 /turf/floor/plating/dirt
 	name = "dirt"

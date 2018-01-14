@@ -250,6 +250,19 @@
 						H.original_job = job_master_occupation_names[J]
 						spawn (7)
 							H.original_job.equip(H)
+							H.languages.Cut()
+							H.add_language(H.original_job.default_language, TRUE)
+							H.default_language = H.languages[1]
+							switch (H.original_job.default_language)
+								if ("German")
+									H.name = H.client.prefs.german_name
+									H.real_name = H.client.prefs.german_name
+								if ("Russian")
+									H.name = H.client.prefs.russian_name
+									H.real_name = H.client.prefs.russian_name
+								if ("Ukrainian")
+									H.name = H.client.prefs.ukrainian_name
+									H.real_name = H.client.prefs.ukrainian_name
 
 	/////////////////////////////////////new ban stuff
 /*	else if(href_list["unbanf"])

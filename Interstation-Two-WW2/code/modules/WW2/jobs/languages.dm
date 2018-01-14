@@ -17,10 +17,11 @@
 /datum/job/update_character(var/mob/living/carbon/human/H)
 	. = ..()
 
+	H.languages.Cut()
 	H.add_language(default_language, TRUE)
 	H.default_language = all_languages[default_language]
 
-	if (additional_languages && additional_languages.len > FALSE)
+	if (additional_languages && additional_languages.len > 0)
 		for(var/language_name in additional_languages)
 			var/probability = additional_languages[language_name]
 
@@ -28,5 +29,6 @@
 				H.add_language(language_name, FALSE)
 				H.show_message("<b>You know the [language_name] language!</b>")
 
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
+	for (var/datum/language/L in H.languages)
+		if (istype(L, /datum/language/common))
+			H.languages -= L

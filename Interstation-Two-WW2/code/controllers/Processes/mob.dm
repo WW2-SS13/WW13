@@ -48,7 +48,7 @@ var/datum/controller/process/mob/mob_process = null
 
 		if(isnull(M.gcDestroyed))
 			try
-				M.Life()
+				M.Life(schedule_interval)
 				if (world.time - M.last_movement > 7)
 					M.velocity = 0
 				if (ishuman(M) && M.client)

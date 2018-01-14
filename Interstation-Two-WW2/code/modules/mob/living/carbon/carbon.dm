@@ -360,7 +360,7 @@
 /mob/living/carbon/restrained()
 	if (handcuffed)
 		return TRUE
-	return
+	return FALSE
 
 /mob/living/carbon/u_equip(obj/item/W as obj)
 	if(!W)	return FALSE

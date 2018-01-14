@@ -367,6 +367,9 @@
 		started_moving = TRUE
 		if (faction != "GERMAN-SUPPLY")
 			callHook("train_move")
+			spawn (1200)
+				if (istype(src, /datum/train_controller/german_train_controller))
+					train_arrived = TRUE
 
 /datum/train_controller/proc/getMoveInc()
 	return inc[direction] * TRUE

@@ -9,9 +9,13 @@
 
 	for (var/obj/structure/multiz/ladder/ww2/ladder in world) // todo: remove
 		if (ladder.istop)
+			if (!top_ladders[ladder.area_id])
+				top_ladders[ladder.area_id] = 0
 			++top_ladders[ladder.area_id]
 			ladder.ladder_id = "ww2-l-[ladder.area_id]-[top_ladders[ladder.area_id]]"
 		else
+			if (!bottom_ladders[ladder.area_id])
+				bottom_ladders[ladder.area_id] = 0
 			++bottom_ladders[ladder.area_id]
 			ladder.ladder_id = "ww2-l-[ladder.area_id]-[bottom_ladders[ladder.area_id]]"
 
@@ -154,11 +158,10 @@
 		client.perspective = EYE_PERSPECTIVE
 		laddervision = ladder
 		client.eye = laddervision
-	else if (!ladder)
-		if (laddervision)
-			client.perspective = MOB_PERSPECTIVE
-			client.eye = src
-			laddervision = null
+	else if (!ladder && laddervision)
+		client.perspective = MOB_PERSPECTIVE
+		client.eye = src
+		laddervision = null
 
 /obj/structure/multiz/proc/laddervision_direction()
 	if (istop)

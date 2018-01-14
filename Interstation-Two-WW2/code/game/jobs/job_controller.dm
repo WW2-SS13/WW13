@@ -586,10 +586,10 @@ var/global/datum/controller/occupations/job_master
 	proc/must_have_squad_leader(var/team)
 		switch (team)
 			if (GERMAN)
-				if (full_squads(team) > german_squad_leaders)
+				if (full_squads(team) > german_squad_leaders && !(german_squad_leaders == 4))
 					return TRUE
 			if (SOVIET)
-				if (full_squads(team) > soviet_squad_leaders)
+				if (full_squads(team) > soviet_squad_leaders && !(soviet_squad_leaders == 4))
 					return TRUE
 		return FALSE // not relevant for other teams
 

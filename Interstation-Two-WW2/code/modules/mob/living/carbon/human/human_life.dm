@@ -60,13 +60,15 @@
 
 	// handle nutrition stuff before we handle stomach stuff in the callback
 
+	var/nutrition_water_loss_multiplier = mob_process.schedule_interval/20
+
 	switch (stat)
 		if (CONSCIOUS) // takes about 1333 ticks to start starving, or ~44 minutes
-			nutrition -= 0.30/getStatCoeff("survival")
-			water -= 0.30/getStatCoeff("survival")
+			nutrition -= (0.30/getStatCoeff("survival")) * nutrition_water_loss_multiplier
+			water -= (0.30/getStatCoeff("survival")) * nutrition_water_loss_multiplier
 		if (UNCONSCIOUS) // takes over an hour to starve
-			nutrition -= 0.20/getStatCoeff("survival")
-			water -= 0.20/getStatCoeff("survival")
+			nutrition -= (0.20/getStatCoeff("survival")) * nutrition_water_loss_multiplier
+			water -= (0.20/getStatCoeff("survival")) * nutrition_water_loss_multiplier
 
 	if (stamina == max_stamina-1 && m_intent == "walk")
 		src << "<span class = 'good'>You feel like you can run for a while.</span>"

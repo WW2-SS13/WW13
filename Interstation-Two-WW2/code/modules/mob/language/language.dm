@@ -193,7 +193,7 @@
 
 	var/cname_check = TRUE
 
-	for (var/v in TRUE to languages.len)
+	for (var/v in 1 to languages.len)
 		var/datum/language/l = languages[v]
 		if (l)
 			if (istype(l, /datum/language/german))

@@ -335,6 +335,16 @@
 					P.KD_chance *= H.getStatCoeff("mg")
 					acc += max(H.getStatCoeff("mg")-1, FALSE)
 
+			else if (istype(src, /obj/item/weapon/gun/projectile/pistol))
+			//	log_debug("[P.KD_chance]")
+			//	log_debug("[acc]")
+				if (ishuman(user))
+					var/mob/living/carbon/human/H = user
+					P.KD_chance *= H.getLesserStatCombinedCoeff(list("mg", "rifle"))
+					acc += max(H.getLesserStatCombinedCoeff(list("mg", "rifle"))-1, 0)
+				//	log_debug("[P.KD_chance]")
+				//	log_debug("[acc]")
+
 		process_accuracy(projectile, user, target, acc, disp)
 
 		if(pointblank) // oh so this is how pointblank works. Todo: delet this

@@ -117,11 +117,11 @@ Class Procs:
 	..(l)
 	if(d)
 		set_dir(d)
-	if(!machinery_sort_required && ticker)
+/*	if(!machinery_sort_required && ticker)
 		dd_insertObjectList(machines, src)
 	else
 		machines += src
-		machinery_sort_required = TRUE
+		machinery_sort_required = TRUE*/
 
 /obj/machinery/Destroy()
 	machines -= src

@@ -209,9 +209,10 @@
 	var/mob_is_observer = istype(mob, /mob/observer)
 	var/mob_is_living = istype(mob, /mob/living)
 	var/mob_is_human = istype(mob, /mob/living/carbon/human)
+	var/mob_loc = mob.loc
 
-	if (mob_is_living && istype(mob.loc, /obj/tank))
-		var/obj/tank/tank = mob.loc
+	if (mob_is_living && istype(mob_loc, /obj/tank))
+		var/obj/tank/tank = mob_loc
 		tank.receive_command_from(mob, direct)
 		return TRUE
 
@@ -257,12 +258,11 @@
 
 	if(world.time < move_delay)	return
 
-	if(locate(/obj/effect/stop/, mob.loc))
-		for(var/obj/effect/stop/S in mob.loc)
-			if(S.victim == mob)
-				return
+	for(var/obj/effect/stop/S in mob.loc)
+		if(S.victim == mob)
+			return
 
-	if(mob.stat==DEAD && mob_is_living)
+	if(mob_is_living && mob.stat == DEAD)
 		mob.ghostize()
 		return
 
@@ -284,7 +284,7 @@
 		return
 
 	if (mob_is_living)
-		if (locate(/obj/structure/classic_window_frame) in mob.loc)
+		for (var/obj/structure/classic_window_frame/W in mob.loc)
 			mob.visible_message("<span class = 'warning'>[mob] starts climbing through the window frame.</span>")
 			mob.canmove = FALSE
 			var/oloc = mob.loc
@@ -293,6 +293,7 @@
 			if (mob.lying || mob.stat == DEAD || mob.stat == UNCONSCIOUS || mob.loc != oloc)
 				return
 			mob.visible_message("<span class = 'warning'>[mob] climbs through the window frame.</span>")
+			break
 
 	// we can probably move now, so update our eye for ladders
 	if (mob_is_human)
@@ -300,17 +301,16 @@
 		H.update_laddervision(null)
 
 	if(!mob.lastarea)
-		mob.lastarea = get_area(mob.loc)
+		mob.lastarea = get_area(mob_loc)
 
-	if(isobj(mob.loc) || ismob(mob.loc))//Inside an object, tell it we moved
-		var/atom/O = mob.loc
+	if(isobj(mob_loc) || ismob(mob_loc))//Inside an object, tell it we moved
+		var/atom/O = mob_loc
 		if (!istype(O, /obj/tank))
 			return O.relaymove(mob, direct)
 
-	if(isturf(mob.loc))
-
+	if(isturf(mob_loc))
 		if(mob.restrained())//Why being pulled while cuffed prevents you from moving
-			for(var/mob/M in range(mob, TRUE))
+			for(var/mob/M in range(mob, 1))
 				if(M.pulling == mob)
 					if(!M.restrained() && M.stat == FALSE && M.canmove && mob.Adjacent(M))
 						src << "\blue You're restrained! You can't move!"
@@ -329,10 +329,11 @@
 		// the ones specified in the config.
 
 
-		var/turf/floor/F = get_turf(mob)
+		var/turf/floor/F = mob_loc
+		var/F_is_valid_floor = istype(F)
 		var/standing_on_snow = FALSE
 
-		if (F && istype(F))
+		if (F && F_is_valid_floor)
 			var/obj/snow/S = F.has_snow()
 			var/snow_message = ""
 			var/snow_span = "notice"
@@ -404,7 +405,7 @@
 				H << "<span class = 'danger'>You're starting to tire from running so much.</span>"
 				H.next_stamina_message = world.time + 20
 
-			if (H.stamina <= FALSE && H.m_intent == "run")
+			if (H.stamina <= 0 && H.m_intent == "run")
 				H << "<span class = 'danger'>You're too tired to keep running.</span>"
 				for (var/obj/screen/mov_intent/mov in H.client.screen)
 					H.client.Click(mov)
@@ -412,11 +413,8 @@
 				if (H.m_intent != "walk")
 					H.m_intent = "walk" // in case we don't have a m_intent HUD, somehow
 
-		if (!mob_is_observer)
-			var/turf/T = get_turf(mob)
-			if (istype(T, /turf/floor/plating/beach/water))
-				if (!istype(T, /turf/floor/plating/beach/water/ice))
-					move_delay += 3
+		if (!mob_is_observer && F_is_valid_floor)
+			move_delay += F.move_delay
 
 		var/tickcomp = FALSE //moved this out here so we can use it for vehicles
 		if(config.Tickcomp)
@@ -424,7 +422,7 @@
 			tickcomp = ((1/(world.tick_lag))*1.3) - 1.3
 			move_delay += tickcomp
 
-		if(istype(mob.buckled, /obj/vehicle))
+		if(mob.buckled && istype(mob.buckled, /obj/vehicle))
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
 			move_delay = world.time + tickcomp
@@ -433,13 +431,11 @@
 				direct = pick(cardinal)
 			return mob.buckled.relaymove(mob,direct)
 
-		if(istype(mob.machine, /obj/machinery))
+		if(mob.machine && istype(mob.machine, /obj/machinery))
 			if(mob.machine.relaymove(mob,direct))
 				return
 
 		if(mob.pulledby || mob.buckled) // Wheelchair driving!
-			if(istype(mob.loc, /turf/space))
-				return // No wheelchair driving in space
 			if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
 				return mob.pulledby.relaymove(mob, direct)
 			else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
@@ -495,9 +491,11 @@
 		else
 			. = mob.SelfMove(n, direct)
 
-		for (var/obj/structure/multiz/ladder/ww2/manhole/M in mob.loc)
-			spawn (1)
-				M.fell(mob)
+		if (!mob_is_observer)
+			for (var/obj/structure/multiz/ladder/ww2/manhole/M in mob.loc)
+				spawn (1)
+					M.fell(mob)
+				break
 
 		// make animals acknowledge us
 		if (mob_is_human)
@@ -511,6 +509,7 @@
 			if (G.state == GRAB_NECK)
 				mob.set_dir(reverse_dir[direct])
 			G.adjust_position()
+
 		for (var/obj/item/weapon/grab/G in mob.grabbed_by)
 			G.adjust_position()
 

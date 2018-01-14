@@ -29,9 +29,12 @@
 
 	var/muddy = FALSE
 
+	var/move_delay = 0
+
 /turf/floor/proc/has_snow()
 	for (var/obj/snow/S in contents)
 		return S
+	return FALSE
 
 /turf/floor/is_plating()
 	return !flooring

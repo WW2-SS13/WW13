@@ -1,6 +1,8 @@
 //Updates the mob's health from organs and mob damage variables
 /mob/living/carbon/human/updatehealth()
 
+	next_calculate_tally = world.timeofday - 1
+
 	if(status_flags & GODMODE)
 		health = maxHealth
 		stat = CONSCIOUS
@@ -22,6 +24,7 @@
 	//TODO: fix husking
 	if( ((maxHealth - total_burn) < config.health_threshold_dead) && stat == DEAD)
 		ChangeToHusk()
+
 	return
 
 /mob/living/carbon/human/adjustBrainLoss(var/amount)

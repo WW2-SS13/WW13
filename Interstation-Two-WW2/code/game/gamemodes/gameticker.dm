@@ -65,8 +65,14 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 						if (serverswap_open_status)
 							world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(roundstart_tips)]</span>"
 							roundstart_tips.Cut() // prevent tip spam if we're paused here
-				if(pregame_timeleft <= FALSE)
+				if(pregame_timeleft <= 0)
 					current_state = GAME_STATE_SETTING_UP
+					/* if we were force started, still show the tip */
+					if (roundstart_tips.len)
+						if (serverswap_open_status)
+							world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(roundstart_tips)]</span>"
+							roundstart_tips.Cut() // prevent tip spam if we're paused here
+
 		while (!setup())
 
 
@@ -130,6 +136,10 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	equip_characters()
 //	data_core.manifest()
 
+	// trains setup before roundstart hooks called because SS train ladders rely on it
+	if (map.uses_main_train)
+		start_train_loop()
+
 	callHook("roundstart")
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
@@ -144,7 +154,6 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		//Holiday Round-start stuff	~Carn
 
 		// todo: make these hooks. Apparently they all fail on /hook/roundstart
-		start_train_loop()
 		handle_lifts()
 		setup_autobalance()
 		reinforcements_master = new

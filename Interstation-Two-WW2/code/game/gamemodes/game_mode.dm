@@ -377,7 +377,7 @@ var/global/list/additional_antag_types = list()
 	. = capitalize(get_weather())
 	if (. == "None")
 		return "Clear skies"
-	return .
+	return "It's [lowertext(.)]ing"
 
 //////////////////////////
 //Reports player logouts//

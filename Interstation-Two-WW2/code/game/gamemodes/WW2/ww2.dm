@@ -43,6 +43,8 @@
 	season = "WINTER"
 	#else
 	season = pick("SPRING", "SUMMER", "FALL", "WINTER")
+	if (prob(50) && season == "WINTER")
+		season = pick("SPRING", "SUMMER", "FALL")
 	#endif
 
 // because we don't use readying up, we override can_start()

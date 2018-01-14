@@ -11,11 +11,15 @@ var/supplytrain_interval = 1200 // todo: config setting
 	spawn while (1)
 		// main train
 		german_train_master.Process()
-		german_train_master.sound_loop()
+
+		if (german_train_master.moving)
+			german_train_master.sound_loop()
 
 		// supply train
 		german_supplytrain_master.Process()
-		german_supplytrain_master.sound_loop()
+
+		if (german_supplytrain_master.moving)
+			german_supplytrain_master.sound_loop()
 
 		train_loop_interval = round(8/german_train_master.velocity)
 

@@ -1,6 +1,12 @@
+/mob/living/carbon/human/var/stored_tally = 0
+/mob/living/carbon/human/var/next_calculate_tally = -1
+
 /mob/living/carbon/human/movement_delay()
 
-	var/tally = FALSE
+	if (world.timeofday <= next_calculate_tally)
+		return stored_tally
+
+	var/tally = 0
 
 	if(species.slowdown)
 		tally = species.slowdown
@@ -19,14 +25,14 @@
 	if (!(species && (species.flags & NO_PAIN)))
 		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
-	if (nutrition <= FALSE)
+	if (nutrition <= 0)
 		var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
 		if (hungry >= 100) tally += hungry/70
 
 	if(wear_suit)
 		tally += wear_suit.slowdown
 
-	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
+	if(buckled && istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm"))
 			var/obj/item/organ/external/E = get_organ(organ_name)
 			if(!E || E.is_stump())
@@ -60,10 +66,13 @@
 	tally += max(2 * stance_damage, FALSE) //damaged/missing feet or legs is slow
 
 	if(mRun in mutations)
-		tally = FALSE
+		tally = 0
 
 	// no more huge speedups from wearing shoes
-	return max(0, (tally+config.human_delay))
+	. = max(0, (tally+config.human_delay))
+	stored_tally = .
+
+	next_calculate_tally = world.timeofday + 50
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = FALSE)
 	return FALSE
