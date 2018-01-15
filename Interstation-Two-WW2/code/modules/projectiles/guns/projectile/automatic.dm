@@ -22,6 +22,8 @@
 		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1,-2,-2), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		)
 
+	gun_type = GUN_TYPE_MG
+
 /obj/item/weapon/gun/projectile/automatic/mini_uzi
 	name = "\improper Uzi"
 	desc = "The UZI is a lightweight, fast firing gun. For when you want someone dead. Uses .45 rounds."

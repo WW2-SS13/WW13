@@ -214,5 +214,6 @@
 
 /obj/tank/proc/receive_backseat_command(x)
 	if (x == "FIRE")
-		Fire()
+		if (!did_critical_damage)
+			Fire()
 

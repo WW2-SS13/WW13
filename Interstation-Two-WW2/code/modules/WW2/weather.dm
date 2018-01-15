@@ -89,7 +89,7 @@
 							if (turfs_made_snowy >= rand(20*SNOW_GATHERING_RATE,30*SNOW_GATHERING_RATE))
 								break
 	else if (weather == WEATHER_RAIN)
-		// randomize the areas we make muddyk
+		// randomize the areas we make muddy
 		var/list_of_areas = shuffle(all_areas)
 		for (var/area/A in list_of_areas)
 			if (A.snowfall_valid_turfs.len) // even though this is rain, same reqs
@@ -108,6 +108,10 @@
 					if (istype(F) && F.uses_winter_overlay)
 						if (prob(33))
 							F.muddy = TRUE
+							spawn (rand(15000,25000))
+								if (weather != WEATHER_RAIN)
+									F.muddy = FALSE
+
 					if (prob(75))
 						for (var/obj/effect/decal/cleanable/C in F)
 							qdel(C)

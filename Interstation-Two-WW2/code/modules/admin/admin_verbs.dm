@@ -120,6 +120,7 @@ var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/spawn_atom,		// allows us to spawn instances,
 	/client/proc/respawn_character,
 	)
+
 var/list/admin_verbs_server = list(
 	/datum/admins/proc/capture_map,
 	/client/proc/ToRban,
@@ -305,6 +306,17 @@ var/list/admin_verbs_mentor = list(
 	/client/proc/cmd_admin_subtle_message
 )
 
+var/list/admin_verbs_host = list(
+	/client/proc/reset_roundstart_autobalance,
+	/client/proc/forceClose_game_schedule,
+	/client/proc/forceOpen_game_schedule,
+	/client/proc/give_patreon_rewards,
+	/client/proc/remove_patreon_rewards,
+	/client/proc/toggle_BYOND_hub_visibility,
+	/client/proc/eject_unwhitelisted,
+	/client/proc/toggle_hyperefficiency_mode
+)
+
 /client/proc/add_admin_verbs()
 	if(holder)
 //		world << "[src] getting [holder]([holder.rights]) admin verbs."
@@ -327,14 +339,7 @@ var/list/admin_verbs_mentor = list(
 		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
 		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
 		if(holder.rights & R_HOST)
-			verbs += /client/proc/reset_roundstart_autobalance
-			verbs += /client/proc/forceClose_game_schedule
-			verbs += /client/proc/forceOpen_game_schedule
-			verbs += /client/proc/give_patreon_rewards
-			verbs += /client/proc/remove_patreon_rewards
-			verbs += /client/proc/toggle_BYOND_hub_visibility
-			verbs += /client/proc/eject_unwhitelisted
-			verbs += /client/proc/toggle_hyperefficiency_mode
+			verbs += admin_verbs_host
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
@@ -353,7 +358,8 @@ var/list/admin_verbs_mentor = list(
 		admin_verbs_rejuv,
 		admin_verbs_sounds,
 		admin_verbs_spawn,
-		debug_verbs
+		debug_verbs,
+		admin_verbs_host
 		)
 	remove_ghost_only_admin_verbs()
 

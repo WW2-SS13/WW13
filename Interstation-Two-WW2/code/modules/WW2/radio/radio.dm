@@ -462,7 +462,7 @@ var/global/list/default_ukrainian_channels = list(
 		if (tried_mobs.Find(hearer))
 			continue
 		tried_mobs += hearer
-		if (istype(hearer) && hearer.stat == CONSCIOUS)
+		if (hearer.stat == CONSCIOUS)
 			var/list/radios = list()
 			for (var/obj/item/device/radio/radio in view(world.view, hearer))
 				radios |= radio
@@ -484,17 +484,8 @@ var/global/list/default_ukrainian_channels = list(
 				if (radio.listening_on_channel[radio_freq2name(frequency)])
 					hearer.hear_radio(msg, speaker.sayverb, speaker.default_language, speaker, src, hardtohear)
 	// let observers hear it
-	for (var/mob/observer/o in mob_list)
-		if (istype(o))
-			// first, try to find an actual radio that the message could be sent to (to get the right radio icon)
-			for (var/obj/item/device/radio/radio in world)
-				if (radio.listening_on_channel[radio_freq2name(frequency)])
-					o.hear_radio(msg, "says", speaker.default_language, speaker, src, hardtohear)
-					return
-			// failing that, pick the first radio we can find.
-			for (var/obj/item/device/radio/radio in world)
-				o.hear_radio(msg, "says", speaker.default_language, speaker, src, hardtohear)
-				return
+	for (var/mob/observer/O in mob_list)
+		O.hear_radio(msg, speaker.sayverb, speaker.default_language, speaker, src, hardtohear)
 
 	post_broadcast()
 

@@ -1,3 +1,3 @@
 <h2>Welcome to <b><span style = "font-size: 1.2em;">Lebensraum</span></b></h2>
 <h3>This is an <b>ALPHA</b> build of a new World War 2 server. Expect bugs. We are not up 24/7. You can find various useful links, such as our Github and Discord, at <a href = "https://mechahitler.co.nf/index.php">our custom hub</a>.<br>
-<h3>Want to donate? <a href = "https://www.patreon.com/worldwar2inspace">Here's our Patreon</a>. Our current goal is $60/month or more, which we will use to buy a <em>much</em> faster server! Patrons get minor benefits like a custom OOC font color.<br></h3>
+<h3><h2>Want to donate? <a href = "https://www.patreon.com/worldwar2inspace">Here's our Patreon</a>.</h2> Our current goal is $60/month or more, which we will use to buy a <em>much</em> faster server! Patrons get minor benefits like a custom OOC font color.<br></h3>

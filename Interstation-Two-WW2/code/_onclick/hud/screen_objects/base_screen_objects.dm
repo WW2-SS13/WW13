@@ -401,14 +401,12 @@
 	process_flag = TRUE
 
 /obj/screen/health/process()
-	//var/mob/living/carbon/human/H = parentmob
-	if(parentmob:stat != DEAD) // They are dead, let death() handle their hud update on this.
-		if (parentmob:analgesic > 100)
-			icon_state = "health_numb"
+	if(parentmob.stat != DEAD)
+		var/mob/living/carbon/human/H = parentmob
+		if (istype(H) && H.analgesic > 100)
+			icon_state = "health0"
 		else
-		//switch(health - halloss)
 			switch(100 - ((parentmob:species.flags & NO_PAIN) ? FALSE : parentmob:traumatic_shock))
-			//switch(100 - parentmob.traumatic_shock)
 				if(100 to INFINITY)		icon_state = "health0"
 				if(80 to 100)			icon_state = "health1"
 				if(60 to 80)			icon_state = "health2"
@@ -416,6 +414,8 @@
 				if(20 to 40)			icon_state = "health4"
 				if(0 to 20)				icon_state = "health5"
 				else					icon_state = "health6"
+	else
+		icon_state = "health7"
 
 /obj/screen/health/Click()
 	if(ishuman(parentmob))

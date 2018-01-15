@@ -598,7 +598,7 @@
 				if (findtext(dat[v], "&[key]&") && !findtext(dat[v], "&&[key]&&"))
 					dat[v] = null
 				else if (!replaced_faction_title && findtext(dat[v], "&&[key]&&"))
-					dat[v] = "[replacetext(dat[v], "&&[key]&&", "")] (<span style = 'color:red'>DISABLED BY AUTOBALANCE</span>)"
+					dat[v] = "[replacetext(dat[v], "&&[key]&&", "")] (<span style = 'color:red'>FACTION DISABLED BY AUTOBALANCE</span>)"
 					replaced_faction_title = TRUE
 		else
 			var/replaced_faction_title = FALSE

@@ -79,5 +79,4 @@ var/list/admin_datums = list()
 /client/proc/deadmin()
 	if(holder)
 		holder.disassociate()
-		//qdel(holder)
 	return TRUE

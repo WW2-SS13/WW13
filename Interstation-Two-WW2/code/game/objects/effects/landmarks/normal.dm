@@ -458,9 +458,11 @@ var/area/partisan_stockpile = null
 
 		if ("PartisanStockpile")
 			var/turf/turf = get_turf(loc)
-			for (var/v in TRUE to 5)
+			for (var/v in 1 to 5)
 				if (prob(50))
 					new /obj/item/weapon/gun/projectile/pistol/luger(turf)
+				if (prob(40))
+					new /obj/item/clothing/accessory/storage/webbing(turf)
 				if (prob(75))
 					for (var/vv in 1 to rand(1,3))
 						new /obj/item/ammo_magazine/luger(turf)
@@ -469,7 +471,7 @@ var/area/partisan_stockpile = null
 				if (prob(50))
 					new /obj/item/weapon/melee/classic_baton/MP/soviet/old(turf)
 			// ptrd ammo
-			for (var/v in TRUE to rand(10,20))
+			for (var/v in 1 to rand(10,20))
 				new /obj/item/ammo_casing/a145 (turf)
 
 			partisan_stockpile = get_area(turf)

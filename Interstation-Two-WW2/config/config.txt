@@ -181,7 +181,7 @@ DISCORDURL https://discord.gg/PVqjqCv
 WIKIURL http://noml.wikia.com/wiki/No_Man%27s_Land_Wiki
 
 ## Website address
-WEBSITEURL http://noml.wikia.com/wiki/No_Man%27s_Land_Wiki
+WEBSITEURL http://mechahitler.co.nf/
 
 ##Rules address
 # RULESURL http://www.tgstation13.org/wiki/Rules
@@ -322,12 +322,8 @@ ANIMAL_DELAY 0
 
 ##WW2 stuff
 
-MACHINERY_DOES_NOT_USE_POWER 1
 LIGHTING_IS_RUSTIC 0
-MAX_GERMAN_REINFORCEMENTS 45
-MAX_SOVIET_REINFORCEMENTS 60
-GERMAN_REINFORCEMENTS_AT_ONCE 10
-SOVIET_REINFORCEMENTS_AT_ONCE 10
+MACHINERY_DOES_NOT_USE_POWER 1
 
 ##Train stuff
 

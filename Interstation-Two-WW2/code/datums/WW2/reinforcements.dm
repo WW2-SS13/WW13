@@ -17,14 +17,11 @@ var/datum/reinforcements/reinforcements_master
 	var/soviet_countdown_success_reset = 300
 	var/german_countdown_success_reset = 300
 
-	var/german_reinforcements_at_once = 9
-	var/soviet_reinforcements_at_once = 12
-
 	var/max_german_reinforcements = 100
 	var/max_soviet_reinforcements = 100
 
-	var/reinforcement_add_limit_german = 7
-	var/reinforcement_add_limit_soviet = 7
+	var/reinforcement_add_limit_german = 9
+	var/reinforcement_add_limit_soviet = 12
 
 	var/reinforcement_spawn_req = 3
 
@@ -42,9 +39,6 @@ var/datum/reinforcements/reinforcements_master
 
 /datum/reinforcements/New()
 	..()
-
-	reinforcement_add_limit_german = german_reinforcements_at_once
-	reinforcement_add_limit_soviet = soviet_reinforcements_at_once
 
 	if (config && config.debug)
 		soviet_countdown = 10
@@ -75,29 +69,17 @@ var/datum/reinforcements/reinforcements_master
 
 /datum/reinforcements/proc/tick()
 
-	if (clients.len <= 20 && reinforcement_spawn_req != TRUE)
+	/* new formulas for determining how reinforcements work, directly determined
+	 * by the number of clients when we start up. */
 
-		reinforcement_spawn_req = TRUE
-		world << "<span class = 'danger'>Reinforcements require <b>one</b> person to fill a queue.</span>"
+	max_german_reinforcements = max(1, round(clients.len * 0.4))
+	max_soviet_reinforcements = max(1, round(clients.len * 0.6))
+	reinforcement_add_limit_german = max(3, round(clients.len * 0.12))
+	reinforcement_add_limit_soviet = max(3, round(clients.len * 0.15))
+	reinforcement_spawn_req = max(1, round(clients.len * 0.10))
+	reinforcement_difference_cutoff = max(3, round(clients.len * 0.12))
 
-		// half everything
-		max_german_reinforcements = config.max_german_reinforcements/2
-		max_soviet_reinforcements = config.max_soviet_reinforcements/2
-		german_reinforcements_at_once = round(german_reinforcements_at_once/2)
-		soviet_reinforcements_at_once = round(soviet_reinforcements_at_once/2)
-		reinforcement_add_limit_german = round(reinforcement_add_limit_german/2)
-		reinforcement_add_limit_soviet = round(reinforcement_add_limit_soviet/2)
-		// but make this TRUE/3rd for b a l a n c e
-		reinforcement_difference_cutoff = round(reinforcement_difference_cutoff/3)
-
-	else if (clients.len > 20 && reinforcement_spawn_req == TRUE)
-		reinforcement_spawn_req = initial(reinforcement_spawn_req)
-		world << "<span class = 'danger'>Reinforcements require <b>three</b> people to fill a queue.</span>"
-		max_german_reinforcements = config.max_german_reinforcements
-		max_soviet_reinforcements = config.max_soviet_reinforcements
-	else
-		max_german_reinforcements = config.max_german_reinforcements
-		max_soviet_reinforcements = config.max_soviet_reinforcements
+	world << "<span class = 'danger'>Reinforcements require <b>[reinforcement_spawn_req]</b> people to fill a queue.</span>"
 
 	spawn while (1)
 

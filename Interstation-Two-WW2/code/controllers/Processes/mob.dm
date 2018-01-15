@@ -53,6 +53,8 @@ var/datum/controller/process/mob/mob_process = null
 					M.velocity = 0
 				if (ishuman(M) && M.client)
 					zoom_processing_objects |= M
+				else
+					zoom_processing_objects -= M
 			catch(var/exception/e)
 				catchException(e, M)
 			SCHECK

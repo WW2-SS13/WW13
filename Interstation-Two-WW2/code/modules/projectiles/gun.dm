@@ -1,4 +1,3 @@
-
 /datum/firemode
 	var/name = "default"
 	var/burst = TRUE
@@ -47,7 +46,7 @@
 	var/recoil = FALSE		//screen shake
 	var/silenced = FALSE
 	var/muzzle_flash = 3
-	var/accuracy = FALSE   //accuracy is measured in tiles. +1 accuracy means that everything is effectively one tile closer for the purpose of miss chance, -1 means the opposite. launchers are not supported, at the moment.
+	var/accuracy = 0   //accuracy is measured in tiles. +1 accuracy means that everything is effectively one tile closer for the purpose of miss chance, -1 means the opposite. launchers are not supported, at the moment.
 	var/scoped_accuracy = null
 
 	var/next_fire_time = FALSE
@@ -76,6 +75,8 @@
 	var/list/dispersion = list(0)
 
 	var/obj/item/weapon/attachment/bayonet = null
+
+	var/gun_type = GUN_TYPE_GENERIC
 
 /obj/item/weapon/gun/New()
 	..()
@@ -317,33 +318,39 @@
 		var/acc = firemode.accuracy[min(i, firemode.accuracy.len)]
 		var/disp = firemode.dispersion[min(i, firemode.dispersion.len)]
 
+
 		if (istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
-			if (istype(src, /obj/item/weapon/gun/projectile/boltaction) || istype(src, /obj/item/weapon/gun/projectile/svt))
+	//		log_debug("[P.KD_chance]")
+	//		log_debug("[acc]")
+
+			if (gun_type == GUN_TYPE_RIFLE)
 				P.KD_chance *= 10
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("rifle")
 					acc += max(H.getStatCoeff("rifle")-1, FALSE)
 
-			else if (istype(src, /obj/item/weapon/gun/projectile/heavysniper))
+			else if (gun_type == GUN_TYPE_HEAVY)
 				P.KD_chance *= 15
+				if (ishuman(user))
+					var/mob/living/carbon/human/H = user
+					P.KD_chance *= H.getStatCoeff("heavyweapon")
+					acc += max(H.getStatCoeff("heavyweapon")-1, FALSE)
 
-			else if (istype(src, /obj/item/weapon/gun/projectile/automatic) || istype(src, /obj/item/weapon/gun/projectile/minigun))
+			else if (gun_type == GUN_TYPE_MG)
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("mg")
 					acc += max(H.getStatCoeff("mg")-1, FALSE)
 
-			else if (istype(src, /obj/item/weapon/gun/projectile/pistol))
-			//	log_debug("[P.KD_chance]")
-			//	log_debug("[acc]")
+			else if (gun_type == GUN_TYPE_PISTOL)
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
-					P.KD_chance *= H.getLesserStatCombinedCoeff(list("mg", "rifle"))
-					acc += max(H.getLesserStatCombinedCoeff(list("mg", "rifle"))-1, 0)
-				//	log_debug("[P.KD_chance]")
-				//	log_debug("[acc]")
+					P.KD_chance *= H.getStatCoeff("pistol")
+					acc += max(H.getStatCoeff("pistol")-1, FALSE)
+	//		log_debug("[P.KD_chance]")
+	//		log_debug("[acc]")
 
 		process_accuracy(projectile, user, target, acc, disp)
 

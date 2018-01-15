@@ -135,7 +135,7 @@
 		speaker_name = "unknown"
 
 	if(isghost(src))
-		if(speaker_name != speaker.real_name && !isAI(speaker)) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
+		if(speaker_name != speaker.real_name) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
 			speaker_name = "[speaker.real_name] ([speaker_name])"
 		track = /*"[speaker_name] */"([ghost_follow_link(speaker, src)])"
 
@@ -150,32 +150,9 @@
 	else
 		var/fontsize = 2
 
-		if (speaker.original_job.is_officer) // experimental
+		if (speaker.original_job.is_officer)
 			fontsize = 3
-/*
-		if (istype(speaker.original_job, /datum/job/german/commander))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/staff_officer))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/squad_leader))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/stabsgefreiter))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/artyman))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/conductor))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/squad_leader_ss))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/russian/commander))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/russian/staff_officer))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/russian/squad_leader))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/russian/zavhoz))
-			fontsize = 3
-*/
+
 		var/full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] [message]</span></font>"
 		if (track)
 			full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] ([track]) [message]</span></font>"

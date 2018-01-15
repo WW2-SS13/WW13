@@ -30,6 +30,7 @@
 #include "code\__defines\damage_organs.dm"
 #include "code\__defines\dna.dm"
 #include "code\__defines\gamemode.dm"
+#include "code\__defines\gun.dm"
 #include "code\__defines\items_clothing.dm"
 #include "code\__defines\lighting.dm"
 #include "code\__defines\machinery.dm"
@@ -969,5 +970,7 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\city\city.dmm"
+#include "maps\main\level1.dmm"
+#include "maps\main\level2.dmm"
+#include "maps\main\level3.dmm"
 // END_INCLUDE

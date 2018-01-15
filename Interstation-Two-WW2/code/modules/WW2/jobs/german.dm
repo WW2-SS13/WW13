@@ -32,6 +32,8 @@
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
 	return TRUE
 
@@ -72,6 +74,8 @@
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
 	return TRUE
 
@@ -110,6 +114,8 @@
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_LOW)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
 	return TRUE
 
@@ -147,6 +153,8 @@
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_LOW)
+	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_LOW)
 	return TRUE
 
@@ -184,6 +192,8 @@
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_MEDIUM_HIGH)
 	return TRUE
 
@@ -216,6 +226,8 @@
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_VERY_LOW)
+	H.setStat("pistol", STAT_MEDIUM_LOW)
+	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_VERY_HIGH)
 	return TRUE
 
@@ -251,6 +263,8 @@
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
 	H.setStat("mg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_LOW)
 	return TRUE
 
@@ -285,6 +299,8 @@
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_VERY_HIGH)
 	H.setStat("mg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
 	return TRUE
 
@@ -319,6 +335,8 @@
 	H.setStat("engineering", STAT_VERY_HIGH)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
 	return TRUE
 
@@ -353,6 +371,8 @@
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL) // misleading statname, heavyweapons soldiers are best with MGs
 	H.setStat("medical", STAT_LOW)
 	return TRUE
 
@@ -386,6 +406,8 @@
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
 	H.setStat("mg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_NORMAL)
 	return TRUE
 
@@ -434,6 +456,8 @@
 	H.setStat("engineering", STAT_MEDIUM_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_MEDIUM_LOW)
 	return TRUE
 
@@ -470,6 +494,8 @@
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_MEDIUM_LOW)
 	return TRUE
 
@@ -505,6 +531,8 @@
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
 	H.setStat("mg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_VERY_HIGH)
 	H.setStat("medical", STAT_NORMAL)
 	return TRUE
 
@@ -571,6 +599,8 @@ var/first_fallschirm = TRUE
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_VERY_HIGH)
 	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_MEDIUM_HIGH)
+	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_MEDIUM_HIGH)
 	return TRUE
 
@@ -606,6 +636,8 @@ var/first_fallschirm = TRUE
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
 	return TRUE
 
@@ -641,6 +673,8 @@ var/first_fallschirm = TRUE
 	H.setStat("engineering", STAT_MEDIUM_LOW)
 	H.setStat("rifle", STAT_MEDIUM_HIGH)
 	H.setStat("mg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
 	return TRUE
 
@@ -682,6 +716,8 @@ var/first_fallschirm = TRUE
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
 	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_NORMAL)
 	return TRUE
 
@@ -726,6 +762,8 @@ var/first_fallschirm = TRUE
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_LOW)
 	return TRUE
 
@@ -767,6 +805,8 @@ var/first_fallschirm = TRUE
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_VERY_HIGH)
 	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_LOW)
 	return TRUE
 
@@ -813,6 +853,8 @@ var/first_fallschirm = TRUE
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_VERY_HIGH)
 	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_LOW)
 	return TRUE
 
@@ -851,6 +893,8 @@ var/first_fallschirm = TRUE
 	H.setStat("engineering", STAT_MEDIUM_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_MEDIUM_LOW)
 	return TRUE
 

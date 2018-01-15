@@ -17,6 +17,8 @@
 		list(name="single shot",burst=1, move_delay=4, fire_delay=10)
 		)
 
+	gun_type = GUN_TYPE_RIFLE
+
 /obj/item/weapon/gun/projectile/svt/update_icon()
 	..()
 	if(ammo_magazine)

@@ -10,6 +10,7 @@
 /* if strength were '1.5' and engineering '1.6', then
  * getLesserStatCombinedCoeff(list("strength", "engineering")) would
  * return 1.31 */
+
 /mob/living/carbon/human/proc/getLesserStatCombinedCoeff(var/list/statnames = list())
 	. = 1 - (statnames.len/10)
 	for (var/statname in statnames)
@@ -28,6 +29,7 @@
 				statval -= 4
 			if ("medical")
 				statval += 4
+
 	stats[statname] = list(statval, statval)
 
 /mob/living/carbon/human/proc/adaptStat(statname, multiplier)
@@ -38,7 +40,7 @@
 	if (statname == "mg")
 		stats[statname][1] *= (1 + (multiplier/400))
 		stats[statname][2] *= (1 + (multiplier/400))
-	else if (statname == "rifle")
+	else if (statname == "rifle" || statname == "pistol" || statname == "heavy")
 		stats[statname][1] *= (1 + (multiplier/200))
 		stats[statname][2] *= (1 + (multiplier/200))
 	else

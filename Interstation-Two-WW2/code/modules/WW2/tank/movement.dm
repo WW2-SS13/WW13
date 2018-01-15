@@ -238,7 +238,10 @@
 			tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
 			var/obj/tank/other = o
 			if (prob(50))
-				other.damage += other.x_percent_of_max_damage(2)
+				if (!did_critical_damage)
+					other.damage += other.x_percent_of_max_damage(2)
+				else
+					other.damage += other.x_percent_of_max_damage(0.5)
 			else
 				visible_message("<span class = 'danger'>The hit bounces off [other]!</span>")
 

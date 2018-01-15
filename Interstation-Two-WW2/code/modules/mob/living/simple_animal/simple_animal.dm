@@ -283,14 +283,20 @@
 		else
 			user << "<span class='notice'>\The [src] is dead, medical items won't bring \him back to life.</span>"
 			return TRUE
-	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
-		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
-			harvest(user)
-	else
+	else if (!O.sharp)
 		if(!O.force && !istype(O, /obj/item/stack/medical/bruise_pack))
 			visible_message("<span class='notice'>[user] gently taps [src] with \the [O].</span>")
 		else
 			O.attack(src, user, user.targeted_organ)
+	else if (!istype(O, /obj/item/weapon/reagent_containers) && user.a_intent == I_HURT)
+		user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
+		if (do_after(user, 30, src))
+			user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
+			for (var/v in TRUE to rand(5,7))
+				var/obj/item/weapon/reagent_containers/food/snacks/meat/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat(get_turf(src))
+				meat.name = "[name] meatsteak"
+			crush()
+			qdel(src)
 
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
@@ -369,7 +375,7 @@
 /mob/living/simple_animal/put_in_hands(var/obj/item/W) // No hands.
 	W.loc = get_turf(src)
 	return TRUE
-
+/*
 // Harvest an animal's delicious byproducts
 /mob/living/simple_animal/proc/harvest(var/mob/user)
 	var/actual_meat_amount = max(1,(meat_amount/2))
@@ -384,7 +390,7 @@
 		else
 			user.visible_message("<span class='danger'>[user] butchers \the [src] messily!</span>")
 			gib()
-
+*/
 /mob/living/simple_animal/handle_fire()
 	return
 

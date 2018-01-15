@@ -41,6 +41,8 @@
 
 	var/mob/last_user = null
 
+	gun_type = GUN_TYPE_MG
+
 /obj/item/weapon/gun/projectile/minigun/attack_hand(var/mob/user)
 
 	if (last_user && last_user != user)

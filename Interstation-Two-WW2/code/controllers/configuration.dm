@@ -175,7 +175,7 @@ var/list/gamemode_cache = list()
 	var/hub_features = ""
 	var/hub_banner_url = ""
 
-	//TRAINS
+	// TRAINS
 
 	var/german_train_cars_officer = TRUE
 	var/german_train_cars_storage = TRUE
@@ -189,13 +189,8 @@ var/list/gamemode_cache = list()
 
 	//WW2
 
-	var/machinery_does_not_use_power = FALSE
 	var/lighting_is_rustic = FALSE
-	var/max_german_reinforcements = 45
-	var/max_soviet_reinforcements = 60
-
-	var/german_reinforcements_at_once = 10
-	var/soviet_reinforcements_at_once = 10
+	var/machinery_does_not_use_power = FALSE
 
 	var/paratrooper_drop_time = 3000
 
@@ -352,7 +347,13 @@ var/list/gamemode_cache = list()
 					config.hub_features = value
 				if ("hub_banner_url")
 					config.hub_banner_url = value
-				//TRAINS
+
+				// WW2 MISC
+				if ("machinery_does_not_use_power")
+					config.machinery_does_not_use_power = text2num(value)
+
+				// TRAINS
+
 				if ("german_train_cars_officer")
 					config.german_train_cars_officer = text2num(value)
 				if ("german_train_cars_storage")
@@ -364,23 +365,8 @@ var/list/gamemode_cache = list()
 				if ("german_supplytrain_cars")
 					config.german_train_cars_supply = text2num(value)
 
-				if ("machinery_does_not_use_power")
-					config.machinery_does_not_use_power = text2num(value)
-
 				if ("lighting_is_rustic")
 					config.lighting_is_rustic = text2num(value)
-
-				if ("max_german_reinforcements")
-					config.max_german_reinforcements = text2num(value)
-
-				if ("max_soviet_reinforcements")
-					config.max_soviet_reinforcements = text2num(value)
-
-				if ("german_reinforcements_at_once")
-					config.german_reinforcements_at_once = text2num(value)
-
-				if ("soviet_reinforcements_at_once")
-					config.soviet_reinforcements_at_once = text2num(value)
 
 				if ("paratrooper_drop_time")
 					config.paratrooper_drop_time = text2num(value)
@@ -498,10 +484,7 @@ var/list/gamemode_cache = list()
 
 				if ("serversuffix")
 					config.server_suffix = TRUE
-/*
-				if ("nudge_script_path")
-					config.nudge_script_path = value
-*/
+
 				if ("hostedby")
 					config.hostedby = value
 
@@ -617,24 +600,6 @@ var/list/gamemode_cache = list()
 				if("mod_job_tempban_max")
 					config.mod_job_tempban_max = text2num(value)
 
-		/*		if("alert_red_upto")
-					config.alert_desc_red_upto = value
-
-				if("alert_red_downto")
-					config.alert_desc_red_downto = value
-
-				if("alert_blue_downto")
-					config.alert_desc_blue_downto = value
-
-				if("alert_blue_upto")
-					config.alert_desc_blue_upto = value
-
-				if("alert_green")
-					config.alert_desc_green = value
-
-				if("alert_delta")
-					config.alert_desc_delta = value */
-
 				if("popup_admin_pm")
 					config.popup_admin_pm = TRUE
 
@@ -643,6 +608,7 @@ var/list/gamemode_cache = list()
 
 				if("allow_antag_hud")
 					config.antag_hud_allowed = TRUE
+
 				if("antag_hud_restricted")
 					config.antag_hud_restricted = TRUE
 

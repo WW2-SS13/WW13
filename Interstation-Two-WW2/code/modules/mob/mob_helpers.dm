@@ -153,6 +153,8 @@ var/list/global/hit_chances = list(
 	. -= (accuracy*6)
 	. = max(., 0)
 
+//	log_debug("MC: [.]")
+
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
 var/list/global/organ_rel_size = list(
@@ -208,7 +210,7 @@ var/list/global/organ_rel_size = list(
 // Emulates targetting a specific body part, and miss chances
 // May return null if missed
 // miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance = FALSE, var/ranged_attack=0, var/range = -1)
+/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance = 0, var/ranged_attack=0, var/range = -1)
 
 	zone = check_zone(zone)
 
@@ -220,12 +222,6 @@ var/list/global/organ_rel_size = list(
 		for(var/obj/item/weapon/grab/G in target.grabbed_by)
 			if(G.state >= GRAB_AGGRESSIVE)
 				return zone
-
-	if (target.lying) //you should probably hit someone who is lying.
-		miss_chance /= 5
-
-	if (target.buckled) //frankly, not being able to hit a buckled dude is stupid as fuck - kachnov
-		miss_chance = FALSE
 
 	if(prob(miss_chance))
 		return null

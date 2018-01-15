@@ -70,8 +70,8 @@
 	return transfer
 
 /obj/item/stack/material/attack_self(var/mob/user)
-	if(!material.build_windows(user, src))
-		..()
+//	if(!material.build_windows(user, src))
+	..()
 
 /obj/item/stack/material/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W,/obj/item/stack/cable_coil))

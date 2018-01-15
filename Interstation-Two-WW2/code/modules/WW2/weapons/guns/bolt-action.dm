@@ -1,5 +1,6 @@
 /obj/item/weapon/gun/projectile/boltaction
 	recoil = 2
+	gun_type = GUN_TYPE_RIFLE
 
 /obj/item/weapon/gun/projectile/boltaction/mosin
 	name = "Mosin-Nagant"

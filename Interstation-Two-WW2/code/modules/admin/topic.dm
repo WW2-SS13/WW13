@@ -1311,7 +1311,7 @@
 			if (isdatum(thing) || isclient(thing))
 				C.debug_variables(thing)
 			else if (!islist(thing))
-				usr << "[somevar] = [global.vars[thing]]"
+				usr << "[somevar] = [thing]"
 			else
 				var/list/L = thing
 				if (!L.len)
@@ -1324,6 +1324,24 @@
 					usr << "[thing] is a list"
 					for (var/i in TRUE to L.len)
 						usr << "element [i]: [thing[i]]"
+
+	else if(href_list["modify_global"])
+		if(!check_rights(R_DEBUG))	return
+		var/somevar = input(usr, "Modify what global variable?") as text
+		if (global.vars[somevar])
+			var/thing = global.vars[somevar]
+			if (isdatum(thing) || isclient(thing) || islist(thing))
+				usr << "[somevar] is a datum, client, or list. You can't edit it here. For datums & clients, use the 'View/Debug a global' to edit their variables."
+				return
+			else
+				var/changeto = input(usr, "Change this global variable to what type?") in list("Empty List", "Text", "Num")
+				switch (lowertext(changeto))
+					if ("empty list")
+						global.vars[somevar] = list()
+					if ("text")
+						global.vars[somevar] = input(usr, "What text?") as text
+					if ("num")
+						global.vars[somevar] = input(usr, "What num?") as num
 
 	else if(href_list["object_list"])			//this is the laggiest thing ever
 		if(!check_rights(R_SPAWN))	return

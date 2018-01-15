@@ -100,7 +100,7 @@ var/list/name_to_material
 	var/created_window
 	var/rod_product
 	var/wire_product
-	var/list/window_options = list()
+//	var/list/window_options = list()
 
 	// Damage values.
 	var/hardness = 60            // Prob of wall destruction by hulk, used for edge damage in weapons.
@@ -155,11 +155,11 @@ var/list/name_to_material
 		use_name = display_name
 	if(!shard_icon)
 		shard_icon = shard_type
-
+/*
 // This is a placeholder for proper integration of windows/windoors into the system.
 /material/proc/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
 	return FALSE
-
+*/
 // Weapons handle applying a divisor for this value locally.
 /material/proc/get_blunt_damage()
 	return weight //todo
@@ -388,11 +388,11 @@ var/list/name_to_material
 	weight = 15
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
-	window_options = list("One Direction" = TRUE, "Full Window" = 4)
+//	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/basic
 	rod_product = /obj/item/stack/material/glass/reinforced
 	hitsound = 'sound/effects/Glasshit.ogg'
-
+/*
 /material/glass/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
 
 	if(!user || !used_stack || !created_window || !window_options.len)
@@ -460,7 +460,7 @@ var/list/name_to_material
 	used_stack.use(sheets_needed)
 	new build_path(T, build_dir, TRUE)*/
 	return TRUE
-
+*/
 /material/glass/proc/is_reinforced()
 	return (hardness > 35) //todo
 
@@ -478,7 +478,7 @@ var/list/name_to_material
 	weight = 30
 	stack_origin_tech = "materials=2"
 	composite_material = list(DEFAULT_WALL_MATERIAL = 1875,"glass" = 3750)
-	window_options = list("One Direction" = TRUE, "Full Window" = 4, "Windoor" = 5)
+//	window_options = list("One Direction" = TRUE, "Full Window" = 4, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
 	wire_product = null
 	rod_product = null

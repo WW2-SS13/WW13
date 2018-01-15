@@ -8,10 +8,10 @@ var/list/heavily_injured_russians = list()
 var/list/heavily_injured_civilians = list()
 var/list/heavily_injured_partisans = list()
 
-var/list/dead_germans = list()
-var/list/dead_russians = list()
-var/list/dead_civilians = list()
-var/list/dead_partisans = list()
+var/dead_germans = 0
+var/dead_russians = 0
+var/dead_civilians = 0
+var/dead_partisans = 0
 
 var/list/recently_died = list()
 
@@ -19,7 +19,7 @@ var/list/recently_died = list()
 
 	var/list/alive = list()
 	var/list/injured = list()
-	var/list/dead = list()
+	var/dead = 0
 
 	switch (original_job.base_type_flag())
 		if (GERMAN)
@@ -45,13 +45,13 @@ var/list/recently_died = list()
 
 	var/list/lists = get_battle_report_lists()
 	var/list/alive = lists[1]
-	var/list/dead = lists[2]
 	var/list/injured = lists[3]
 
 	alive -= src
 	injured -= src
-	dead += src
 	recently_died += src
+
+	++lists[2]
 
 	// prevent one last Life() from potentially undoing this
 	spawn (200)
@@ -61,6 +61,11 @@ var/list/recently_died = list()
 
 
 /mob/living/carbon/human/Life()
+
+	var/list/lists = get_battle_report_lists()
+	var/list/alive = lists[1]
+	var/list/injured = lists[3]
+
 	..()
 
 	if (recently_died.Find(src))
@@ -69,14 +74,8 @@ var/list/recently_died = list()
 	if (istype(original_job, /datum/job/german/trainsystem))
 		return
 
-	var/list/lists = get_battle_report_lists()
-	var/list/alive = lists[1]
-	var/list/dead = lists[2]
-	var/list/injured = lists[3]
-
 	alive -= src
 	injured -= src
-	dead -= src
 
 	// give these lists starting values to prevent runtimes.
 	if (stat == CONSCIOUS)

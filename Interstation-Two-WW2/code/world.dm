@@ -193,17 +193,10 @@ var/world_topic_spam_protect_time = world.timeofday
 	// normal ss13 stuff
 
 	else if (T == "ping")
-		var/x = TRUE
-		for (var/client/C)
-			x++
-		return x
+		return clients.len + 1
 
 	else if(T == "players")
-		var/n = FALSE
-		for(var/mob/M in player_list)
-			if(M.client)
-				n++
-		return n
+		return clients.len
 
 	else if (copytext(T,1,7) == "status")
 		var/input[] = params2list(T)

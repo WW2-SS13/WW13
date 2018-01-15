@@ -17,6 +17,8 @@
 	accuracy = DEFAULT_PTRD_ACCURACY
 	scoped_accuracy = DEFAULT_PTRD_SCOPED_ACCURACY
 
+	gun_type = GUN_TYPE_HEAVY
+
 /obj/item/weapon/gun/projectile/heavysniper/ptrd/update_icon()
 	if(bolt_open)
 		icon_state = "ptrd"

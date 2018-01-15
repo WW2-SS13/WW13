@@ -132,5 +132,7 @@
 		"engineering" = list(100,100),
 		"rifle" = list(100,100),
 		"mg" = list(100,100),
+		"pistol" = list(100,100),
+		"heavyweapon" = list(100,100),
 		"medical" = list(100,100),
 		"survival" = list(100,100))

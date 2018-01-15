@@ -132,37 +132,37 @@
 
 /proc/show_global_battle_report(var/shower)
 
-	var/total_germans = alive_germans.len + dead_germans.len + heavily_injured_germans.len
-	var/total_russians = alive_russians.len + dead_russians.len + heavily_injured_russians.len
-	var/total_civilians = alive_civilians.len + dead_civilians.len + heavily_injured_civilians.len
-	var/total_partisans = alive_partisans.len + dead_partisans.len + heavily_injured_partisans.len
+	var/total_germans = alive_germans.len + dead_germans + heavily_injured_germans.len
+	var/total_russians = alive_russians.len + dead_russians + heavily_injured_russians.len
+	var/total_civilians = alive_civilians.len + dead_civilians + heavily_injured_civilians.len
+	var/total_partisans = alive_partisans.len + dead_partisans + heavily_injured_partisans.len
 
 	var/mortality_coefficient_german = FALSE
 	var/mortality_coefficient_russian = FALSE
 	var/mortality_coefficient_civilian = FALSE
 	var/mortality_coefficient_partisan = FALSE
 
-	if (dead_germans.len > FALSE)
-		mortality_coefficient_german = dead_germans.len/total_germans
+	if (dead_germans > 0)
+		mortality_coefficient_german = dead_germans/total_germans
 
-	if (dead_russians.len > FALSE)
-		mortality_coefficient_russian = dead_russians.len/total_russians
+	if (dead_russians > 0)
+		mortality_coefficient_russian = dead_russians/total_russians
 
-	if (dead_civilians.len > FALSE)
-		mortality_coefficient_civilian = dead_civilians.len/total_civilians
+	if (dead_civilians > 0)
+		mortality_coefficient_civilian = dead_civilians/total_civilians
 
-	if (dead_partisans.len > FALSE)
-		mortality_coefficient_partisan = dead_partisans.len/total_partisans
+	if (dead_partisans > 0)
+		mortality_coefficient_partisan = dead_partisans/total_partisans
 
 	var/mortality_german = round(mortality_coefficient_german*100)
 	var/mortality_russian = round(mortality_coefficient_russian*100)
 	var/mortality_civilian = round(mortality_coefficient_civilian*100)
 	var/mortality_partisan = round(mortality_coefficient_partisan*100)
 
-	var/msg1 = "German Side: [alive_germans.len] alive, [heavily_injured_germans.len] heavily injured or unconscious, [dead_germans.len] deceased. Mortality rate: [mortality_german]%"
-	var/msg2 = "Soviet Side: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, [dead_russians.len] deceased. Mortality rate: [mortality_russian]%"
-	var/msg3 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
-	var/msg4 = "Partisans: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
+	var/msg1 = "German Side: [alive_germans.len] alive, [heavily_injured_germans.len] heavily injured or unconscious, [dead_germans] deceased. Mortality rate: [mortality_german]%"
+	var/msg2 = "Soviet Side: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, [dead_russians] deceased. Mortality rate: [mortality_russian]%"
+	var/msg3 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, [dead_civilians] deceased. Mortality rate: [mortality_civilian]%"
+	var/msg4 = "Partisans: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, [dead_partisans] deceased. Mortality rate: [mortality_partisan]%"
 
 	var/public = "Yes"
 
@@ -337,7 +337,7 @@
 						H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
 		src << "You sent '[msg]' to the Russian team."
-		message_admins("[key_name(src)] sent '[msg]' to the Russian team.")
+		message_admins("[key_name(src)] sent '[msg]' to the Russian team. (IC = [ick_ock ? "yes" : "no"])")
 
 /client/proc/message_germans()
 	set category = "WW2 (Admin)"
@@ -361,7 +361,7 @@
 						H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
 		src << "You sent '[msg]' to the German team."
-		message_admins("[key_name(src)] sent '[msg]' to the German team.")
+		message_admins("[key_name(src)] sent '[msg]' to the German team. (IC = [ick_ock ? "yes" : "no"])")
 
 /client/proc/message_SS()
 	set category = "WW2 (Admin)"

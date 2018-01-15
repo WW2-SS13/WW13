@@ -333,12 +333,14 @@ proc/admin_notice(var/message, var/rights)
 		dat += "<A href='?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"
 
 	dat += {"
-		<BR>
+		<br>
 		<A href='?src=\ref[src];create_object=1'>Create Object</A><br>
 		<A href='?src=\ref[src];quick_create_object=1'>Quick Create Object</A><br>
 		<A href='?src=\ref[src];create_turf=1'>Create Turf</A><br>
 		<A href='?src=\ref[src];create_mob=1'>Create Mob</A><br>
-		<A href='?src=\ref[src];debug_global=1'>Debug a Global Variable, List, or Object</A><br>
+		<A href='?src=\ref[src];debug_global=1'>View/Debug a Global Variable, List, or Object</A><br>
+		<br>
+		<A href='?src=\ref[src];modify_global=1'>Modify a Global Variable (may not be an object or list)</A><br>
 		"}
 
 	usr << browse(dat, "window=admin2;size=210x280")

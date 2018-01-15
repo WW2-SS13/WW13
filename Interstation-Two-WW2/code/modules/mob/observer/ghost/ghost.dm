@@ -163,7 +163,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/mob/living/carbon/human/H = src
 			H.handle_zoom_stuff(TRUE)
 		if (client)
-			client.next_normal_respawn = world.realtime + 1800
+			client.next_normal_respawn = world.realtime + 3000
 			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
 	else
 		var/response

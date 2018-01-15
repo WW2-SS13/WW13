@@ -1,3 +1,6 @@
+/obj/item/weapon/gun/projectile/pistol
+	gun_type = GUN_TYPE_PISTOL
+
 /obj/item/weapon/gun/projectile/colt
 	name = "vintage .45 pistol"
 	desc = "A cheap Martian knock-off of a Colt M1911. Uses .45 rounds."
