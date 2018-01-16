@@ -916,7 +916,6 @@ var/list/gamemode_cache = list()
 
 			if(!value)
 				log_misc("Unknown value for setting [name] in [filename].")
-			value = text2num(value)
 
 			switch (name)
 				if ("preinfo")

@@ -80,7 +80,7 @@
 		if (T == my_turf)
 			continue
 
-		if (abs(my_turf.x - T.x) > 5 || abs(my_turf.y - T.y) > 5)
+		if (abs(my_turf.x - T.x) > 3 || abs(my_turf.y - T.y) > 5)
 			continue
 
 		if (T != get_step(my_turf, my_mob.dir) && prob(get_dist(my_turf, T)*2))

@@ -987,5 +987,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\city\smallcity.dmm"
+#include "maps\test\city_test.dmm"
 // END_INCLUDE
