@@ -357,16 +357,16 @@ datum/projectile_data
 	var/dest_x
 	var/dest_y
 
-/datum/projectile_data/New(var/src_x, var/src_y, var/time, var/distance, \
-						   var/power_x, var/power_y, var/dest_x, var/dest_y)
-	src_x = src_x
-	src_y = src_y
-	time = time
-	distance = distance
-	power_x = power_x
-	power_y = power_y
-	dest_x = dest_x
-	dest_y = dest_y
+/datum/projectile_data/New(var/_src_x, var/_src_y, var/_time, var/_distance, \
+						   var/_power_x, var/_power_y, var/_dest_x, var/_dest_y)
+	src_x = _src_x
+	src_y = _src_y
+	time = _time
+	distance = _distance
+	power_x = _power_x
+	power_y = _power_y
+	dest_x = _dest_x
+	dest_y = _dest_y
 
 /proc/projectile_trajectory(var/src_x, var/src_y, var/rotation, var/angle, var/power)
 

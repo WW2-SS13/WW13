@@ -8,13 +8,13 @@
 	Returns
 	standard FALSE if fail
 */
-/mob/living/proc/apply_damage(var/damage = FALSE,var/damagetype = BRUTE, var/def_zone = null, var/blocked = FALSE, var/used_weapon = null, var/sharp = FALSE, var/edge = FALSE)
+/mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = FALSE, var/used_weapon = null, var/sharp = FALSE, var/edge = FALSE)
 	if(!damage || (blocked >= 2))	return FALSE
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage/(blocked+1))
 		if(BURN)
-			if(COLD_RESISTANCE in mutations)	damage = FALSE
+			if(COLD_RESISTANCE in mutations)	damage = 0
 			adjustFireLoss(damage/(blocked+1))
 		if(TOX)
 			adjustToxLoss(damage/(blocked+1))

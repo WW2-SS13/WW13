@@ -77,13 +77,13 @@
 	var/task_after_process
 	var/list/task_after_process_args
 
-/datum/scheduled_task/New(var/trigger_time, var/procedure, var/list/arguments, var/proc/task_after_process, var/list/task_after_process_args)
+/datum/scheduled_task/New(var/_trigger_time, var/_procedure, var/list/_arguments, var/proc/_task_after_process, var/list/_task_after_process_args)
 	..()
-	trigger_time = trigger_time
-	procedure = procedure
-	arguments = arguments ? arguments : list()
-	task_after_process = task_after_process ? task_after_process : /proc/destroy_scheduled_task
-	task_after_process_args = istype(task_after_process_args) ? task_after_process_args : list()
+	trigger_time = _trigger_time
+	procedure = _procedure
+	arguments = _arguments ? _arguments : list()
+	task_after_process = _task_after_process ? _task_after_process : /proc/destroy_scheduled_task
+	task_after_process_args = istype(_task_after_process_args) ? _task_after_process_args : list()
 	task_after_process_args += src
 
 /datum/scheduled_task/Destroy()
@@ -110,8 +110,8 @@
 /datum/scheduled_task/source
 	var/datum/source
 
-/datum/scheduled_task/source/New(var/trigger_time, var/datum/source, var/procedure, var/list/arguments, var/proc/task_after_process, var/list/task_after_process_args)
-	source = source
+/datum/scheduled_task/source/New(var/trigger_time, var/datum/_source, var/procedure, var/list/arguments, var/proc/task_after_process, var/list/task_after_process_args)
+	source = _source
 	destroyed_event.register(source, src, /datum/scheduled_task/source/proc/source_destroyed)
 	..(trigger_time, procedure, arguments, task_after_process, task_after_process_args)
 

@@ -36,10 +36,22 @@
 	var/heartbeat = FALSE
 	var/global/list/overlays_cache = null
 
-
+/mob/living/carbon/human/var/next_weather_sound = -1
 /mob/living/carbon/human/Life()
 	set invisibility = FALSE
 	set background = BACKGROUND_ENABLED
+
+	if (client)
+		if (world.timeofday >= next_weather_sound)
+			var/area/A = get_area(src)
+			if (A.weather == WEATHER_RAIN)
+				src << sound('sound/ambience/rain.ogg', channel = 777)
+				next_weather_sound = world.timeofday + 1500
+		else
+			var/area/A = get_area(src)
+			if (A.weather == WEATHER_NONE)
+				src << sound(null, channel = 777)
+				next_weather_sound = world.timeofday
 
 	handle_zoom_stuff()
 

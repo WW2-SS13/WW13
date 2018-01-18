@@ -26,9 +26,9 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	var/window_x = 370
 	var/window_y = 470
 
-/datum/wires/New(var/atom/holder)
+/datum/wires/New(var/atom/_holder)
 	..()
-	holder = holder
+	holder = _holder
 	if(!istype(holder, holder_type))
 		CRASH("Our holder is null/the wrong type!")
 		return
@@ -43,8 +43,8 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 			GenerateWires()
 			same_wires[holder_type] = wires.Copy()
 		else
-			var/list/wires = same_wires[holder_type]
-			wires = wires // Reference the wires list.
+			var/list/_wires = same_wires[holder_type]
+			wires = _wires // Reference the wires list.
 
 /datum/wires/Destroy()
 	holder = null

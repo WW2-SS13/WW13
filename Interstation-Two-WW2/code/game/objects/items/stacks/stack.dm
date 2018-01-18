@@ -22,12 +22,12 @@
 	var/list/charge_costs = null
 	var/list/datum/matter_synth/synths = null
 
-/obj/item/stack/New(var/loc, var/amount=null)
+/obj/item/stack/New(var/loc, var/_amount=0)
 	..()
 	if (!stacktype)
 		stacktype = type
-	if (amount)
-		amount = amount
+	if (_amount)
+		amount = _amount
 	return
 
 /obj/item/stack/Destroy()
@@ -399,17 +399,17 @@
 	var/on_floor = FALSE
 	var/use_material
 
-	New(title, result_type, req_amount = TRUE, res_amount = TRUE, max_res_amount = TRUE, time = FALSE, one_per_turf = FALSE, on_floor = FALSE, supplied_material = null)
+	New(_title, _result_type, _req_amount = TRUE, _res_amount = TRUE, _max_res_amount = TRUE, _time = 0, _one_per_turf = FALSE, _on_floor = FALSE, _supplied_material = null)
 
-		title = title
-		result_type = result_type
-		req_amount = req_amount
-		res_amount = res_amount
-		max_res_amount = max_res_amount
-		time = time
-		one_per_turf = one_per_turf
-		on_floor = on_floor
-		use_material = supplied_material
+		title = _title
+		result_type = _result_type
+		req_amount = _req_amount
+		res_amount = _res_amount
+		max_res_amount = _max_res_amount
+		time = _time
+		one_per_turf = _one_per_turf
+		on_floor = _on_floor
+		use_material = _supplied_material
 
 /*
  * Recipe list datum
@@ -417,6 +417,6 @@
 /datum/stack_recipe_list
 	var/title = "ERROR"
 	var/list/recipes = null
-	New(title, recipes)
-		title = title
-		recipes = recipes
+	New(_title, _recipes)
+		title = _title
+		recipes = _recipes

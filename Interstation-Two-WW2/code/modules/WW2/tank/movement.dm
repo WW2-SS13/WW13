@@ -300,18 +300,18 @@
 	if (istype(m) && (world.time - last_gibbed > 5 || last_gibbed == -1))
 
 		// crushing allies is no longer possible
-		if (ishuman(m))
+		if (ishuman(m) && m.stat != DEAD)
 			var/mob/living/carbon/human/H = m
 			if (H.original_job && drive_front_seat.original_job)
 				if (H.original_job.base_type_flag() == drive_front_seat.original_job.base_type_flag())
-					return TRUE
+					return FALSE
 
 		// crushing allied dogs is no longer possible
-		else if (istype(m, /mob/living/simple_animal/complex_animal/canine/dog))
+		else if (istype(m, /mob/living/simple_animal/complex_animal/canine/dog) && m.stat != DEAD)
 			var/mob/living/simple_animal/complex_animal/canine/dog/D = m
 			if (drive_front_seat.original_job && D.faction)
 				if (drive_front_seat.original_job.base_type_flag() == D.faction)
-					return TRUE
+					return FALSE
 
 		last_gibbed = world.time
 		tank_message("<span class = 'danger'>The tank crushes [m]!</span>")

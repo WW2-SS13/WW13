@@ -41,14 +41,14 @@
 /client/proc/admin_memo_delete()
 	var/savefile/F = new(MEMOFILE)
 	if(F)
-		var/ckey
+		var/_ckey
 		if(check_rights(R_SERVER,0))	//high ranking admins can delete other admin's memos
-			ckey = input(src,"Whose memo shall we remove?","Remove Memo",null) as null|anything in F.dir
+			_ckey = input(src,"Whose memo shall we remove?","Remove Memo",null) as null|anything in F.dir
 		else
-			ckey = ckey
-		if(ckey)
-			F.dir.Remove(ckey)
-			src << "<b>Removed Memo created by [ckey].</b>"
+			_ckey = ckey
+		if(_ckey)
+			F.dir.Remove(_ckey)
+			src << "<b>Removed Memo created by [_ckey].</b>"
 
 #undef MEMOFILE
 #undef ENABLE_MEMOS

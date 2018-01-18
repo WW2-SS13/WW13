@@ -54,7 +54,7 @@
 	var/tmp/list/desc_list = list()
 	var/tmp/list/damage_list = list()
 
-	New(var/damage)
+	New(var/_damage)
 
 		created = world.time
 
@@ -64,18 +64,18 @@
 			desc_list += V
 			damage_list += stages[V]
 
-		damage = damage
+		damage = _damage
 
 		// initialize with the appropriate stage
-		init_stage(damage)
+		init_stage(_damage)
 
-		bleed_timer += damage
+		bleed_timer += _damage
 
 	// returns TRUE if there's a next stage, FALSE otherwise
 	proc/init_stage(var/initial_damage)
 		current_stage = stages.len
 
-		while(current_stage > TRUE && damage_list[current_stage-1] <= initial_damage / amount)
+		while(current_stage > 1 && damage_list[current_stage-1] <= initial_damage / amount)
 			current_stage--
 
 		min_damage = damage_list[current_stage]
@@ -179,11 +179,11 @@
 		return amount
 
 	// opens the wound again
-	proc/open_wound(damage)
-		damage += damage
-		bleed_timer += damage
+	proc/open_wound(_damage)
+		damage += _damage
+		bleed_timer += _damage
 
-		while(current_stage > TRUE && damage_list[current_stage-1] <= damage / amount)
+		while(current_stage > 1 && damage_list[current_stage-1] <= damage / amount)
 			current_stage--
 
 		desc = desc_list[current_stage]
@@ -191,18 +191,18 @@
 
 	// returns whether this wound can absorb the given amount of damage.
 	// this will prevent large amounts of damage being trapped in less severe wound types
-	proc/can_worsen(damage_type, damage)
-		if (damage_type != damage_type)
+	proc/can_worsen(_damage_type, _damage)
+		if (damage_type != _damage_type)
 			return FALSE	//incompatible damage types
 
-		if (amount > TRUE)
+		if (amount > 1)
 			return FALSE
 
 		//with 1.5*, a shallow cut will be able to carry at most 30 damage,
 		//37.5 for a deep cut
 		//52.5 for a flesh wound, etc.
 		var/max_wound_damage = 1.5*damage_list[1]
-		if (damage + damage > max_wound_damage)
+		if (damage + _damage > max_wound_damage)
 			return FALSE
 
 		return TRUE

@@ -61,8 +61,8 @@
 	//put this here for easier tracking ingame
 	var/datum/money_account/initial_account
 
-/datum/mind/New(var/key)
-	key = key
+/datum/mind/New(var/_key)
+	key = _key
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)

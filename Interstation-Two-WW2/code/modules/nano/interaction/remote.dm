@@ -7,10 +7,10 @@
 	var/datum/remote_target
 	var/datum/topic_state/remoter_state
 
-/datum/topic_state/remote/New(var/remoter, var/remote_target, var/datum/topic_state/remoter_state = default_state)
-	remoter = remoter
-	remote_target = remote_target
-	remoter_state = remoter_state
+/datum/topic_state/remote/New(var/_remoter, var/_remote_target, var/datum/topic_state/_remoter_state = default_state)
+	remoter = _remoter
+	remote_target = _remote_target
+	remoter_state = _remoter_state
 	..()
 
 /datum/topic_state/remote/Destroy()

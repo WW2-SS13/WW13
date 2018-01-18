@@ -8,14 +8,14 @@
 /datum/data/vending_product
 	var/product_name = "generic" // Display name for the product
 	var/product_path = null
-	var/amount = FALSE            // The original amount held in the vending machine
+	var/amount = 0            // The original amount held in the vending machine
 	var/list/instances
-	var/price = FALSE              // Price to buy one
+	var/price = 0              // Price to buy one
 	var/display_color = null   // Display color for vending machine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
 	var/vending_machine        // The vending machine we belong to
 
-/datum/data/vending_product/New(var/vending_machine, var/path, var/name = null, var/amount = TRUE, var/price = FALSE, var/color = null, var/category = CAT_NORMAL)
+/datum/data/vending_product/New(var/_vending_machine, var/path, var/name = null, var/_amount = 1, var/_price = 0, var/_color = null, var/_category = CAT_NORMAL)
 	..()
 
 	product_path = path
@@ -26,11 +26,11 @@
 	else
 		product_name = name
 
-	amount = amount
-	price = price
-	display_color = color
-	category = category
-	vending_machine = vending_machine
+	amount = _amount
+	price = _price
+	display_color = _color
+	category = _category
+	vending_machine = _vending_machine
 
 /datum/data/vending_product/Destroy()
 	vending_machine = null
@@ -420,7 +420,7 @@
 	return FALSE
 
 /obj/machinery/vending/attack_hand(mob/user as mob)
-	if(stat & (BROKEN|NOPOWER))
+	if(stat & BROKEN)
 		return
 
 	if(seconds_electrified != FALSE)
@@ -481,7 +481,7 @@
 		ui.open()
 
 /obj/machinery/vending/Topic(href, href_list)
-	if(stat & (BROKEN|NOPOWER))
+	if(stat & BROKEN)
 		return
 	if(usr.stat || usr.restrained())
 		return

@@ -13,6 +13,8 @@
 	nothrow = TRUE
 	var/fueltank = TRUE
 	var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = null
+	var/vrange = 5
+	var/hrange = 3
 
 /obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
 	return nodrop_special_check()
@@ -82,10 +84,10 @@
 
 		switch (my_mob.dir)
 			if (EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-				if (abs(my_turf.x - T.x) > 5 || abs(my_turf.y - T.y) > 3)
+				if (abs(my_turf.x - T.x) > vrange || abs(my_turf.y - T.y) > hrange)
 					continue
 			if (NORTH, SOUTH)
-				if (abs(my_turf.x - T.x) > 3 || abs(my_turf.y - T.y) > 5)
+				if (abs(my_turf.x - T.x) > hrange || abs(my_turf.y - T.y) > vrange)
 					continue
 
 		// higher temperature = less missed turfs
@@ -136,7 +138,13 @@
 	if(!ptank)
 		user << "<span class='notice'>Attach a plasma tank first!</span>"
 		return
-	var/dat = text("<TT><B>Das Flammenwerfer (<a href='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</B><BR>\n Fullness: [fullness_percentage()]%<BR>\nAmount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n - <A HREF='?src=\ref[src];close=1'>Close</A></TT>")
+	var/dat = text({"<TT><B>Das Flammenwerfer (<a href='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</B><BR>\n
+	Fullness: [fullness_percentage()]%<BR>\n
+	Amount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n
+	Horizontal Range ([hrange]): <A HREF='?src=\ref[src];hrange=-1'>-</A> <A HREF='?src=\ref[src];hrange=+1'>+</A>
+	Vertical Range ([vrange]): <A HREF='?src=\ref[src];vrange=-1'>-</A> <A HREF='?src=\ref[src];vrange=+1'>+</A>
+	<br>
+	<A HREF='?src=\ref[src];close=1'>Close</A></TT>"})
 	user << browse(dat, "window=flamethrower;size=600x300")
 	onclose(user, "flamethrower")
 	return
@@ -160,6 +168,12 @@
 	if(href_list["amount"])
 		throw_amount = throw_amount + text2num(href_list["amount"])
 		throw_amount = max(50, min(5000, throw_amount))
+	if(href_list["hrange"])
+		hrange = hrange + text2num(href_list["hrange"])
+		hrange = Clamp(hrange, 1, 3)
+	if(href_list["vrange"])
+		vrange = vrange + text2num(href_list["vrange"])
+		vrange = Clamp(vrange, 1, 5)
 
 	// refresh
 	for(var/mob/M in viewers(1, loc))

@@ -439,8 +439,8 @@
 
 	H.add_memory("As a Hunden Trainer, you have access to a number of dog commands. To use them, simply shout! them near a dog which belongs to your faction. These are listed below:")
 	H.add_memory("")
-	H.add_memory("defend! - attack armed enemies.")
-	H.add_memory("attack! - attack armed or unarmed enemies.")
+	H.add_memory("attack! - attack armed enemies.")
+	H.add_memory("kill! - kill armed or unarmed enemies.")
 	H.add_memory("guard! - attack enemies who come near us.")
 	H.add_memory("patrol! - start patrolling.")
 	H.add_memory("stop patrolling! - stop patrolling.")
@@ -448,6 +448,7 @@
 	H.add_memory("stop everything! - stop patrolling and be passive.")
 	H.add_memory("follow! - follow me.")
 	H.add_memory("stop following! - stop following whoever you're following.")
+	H.add_memory("prioritize {following/attacking}! - tells the dog if it should stop following you when it finds a target to attack.")
 	H.add_memory("")
 	H.add_memory("Some commands overlap. There are three categories of commands: attack modes, patrol modes, and follow modes. Each type of command can be used in tandem with commands of the other types.")
 	H.add_memory("")

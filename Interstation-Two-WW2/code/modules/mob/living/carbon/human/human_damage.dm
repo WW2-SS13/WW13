@@ -7,6 +7,7 @@
 		health = maxHealth
 		stat = CONSCIOUS
 		return
+
 	var/total_burn  = FALSE
 	var/total_brute = FALSE
 	for(var/obj/item/organ/external/O in organs)	//hardcoded to streamline things a bit

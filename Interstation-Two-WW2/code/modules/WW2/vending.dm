@@ -10,7 +10,6 @@
 		/obj/item/clothing/shoes/swat/wrappedboots = 20,
 		/obj/item/clothing/head/ushanka = 10,
 		/obj/item/weapon/material/kitchen/utensil/knife/boot = 5
-
 	)
 	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 

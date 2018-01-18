@@ -28,6 +28,8 @@
 	"stop everything;default;stop", // stop doing everything
 	"follow;default;follow", // makes the dog follow you
 	"stop following;default;stop_following", // makes the stop following who its following
+	"prioritize following;default;prioritize_following",
+	"prioritize attacking;default;prioritize_attacking"
 	)
 
 	faction = null
@@ -35,6 +37,8 @@
 	var/attack_mode = "guard"
 	var/patrolling = FALSE
 	var/following = null
+
+	var/prioritizes = "attacking"
 
 	var/last_patrol_area = null
 
@@ -80,6 +84,7 @@
 	icon_state = "samoyed"
 	name = "Soviet Samoyed"
 	faction = SOVIET
+
 /mob/living/simple_animal/complex_animal/canine/dog/samoyed/wild
 	name = "Wild Samoyed"
 	faction = null
@@ -145,7 +150,7 @@
 		//	world << "3. [req_word];[req_ranks[1]];[_call]"
 
 			var/list/command_types = list(
-				"attack_mode" = list("defend", "attack", "guard"),
+				"attack_mode" = list("attack", "kill", "guard"),
 				"patrol" = list("patrol", "stop patrolling"),
 				"anything" = list("be passive", "stop everything",
 					"follow", "stop following"))
@@ -186,7 +191,7 @@
 						call(src, _call)(H)
 
 						switch (req_word)
-							if ("defend", "attack", "guard")
+							if ("attack", "kill", "guard")
 								command_levels["attack_mode"] = command_level_to_dog
 								command_levels["anything"] = command_level_to_dog
 							if ("patrol", "stop patrolling", "follow")
@@ -206,15 +211,15 @@ s
 
 // "frontend" procs
 /mob/living/simple_animal/complex_animal/canine/dog/proc/defend(var/mob/living/carbon/human/H)
-	if (!(attack_mode == "defend"))
+	if (!(attack_mode == "attack"))
 		visible_message("<span class = 'warning'>The [src] looks around defensively.</span>")
-	attack_mode = "defend"
+	attack_mode = "attack"
 	onModeChange()
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/attack(var/mob/living/carbon/human/H)
-	if (!(attack_mode == "attack"))
+	if (!(attack_mode == "kill"))
 		visible_message("<span class = 'warning'>The [src] looks around aggressively.</span>")
-	attack_mode = "attack"
+	attack_mode = "kill"
 	onModeChange()
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/guard(var/mob/living/carbon/human/H)
@@ -266,6 +271,18 @@ s
 			visible_message("<span class = 'notice'>The [src] stops following [following].</span>")
 		walk_to(src, FALSE)
 		following = null
+
+/mob/living/simple_animal/complex_animal/canine/dog/proc/prioritize_following(var/mob/living/carbon/human/H)
+	var/o_prioritizes = prioritizes
+	prioritizes = "following"
+	if (o_prioritizes != prioritizes)
+		visible_message("<span class = 'notice'>The [src] will no longer attack enemies when it is following somebody.</span>")
+
+/mob/living/simple_animal/complex_animal/canine/dog/proc/prioritize_attacking(var/mob/living/carbon/human/H)
+	var/o_prioritizes = prioritizes
+	prioritizes = "attacking"
+	if (o_prioritizes != prioritizes)
+		visible_message("<span class = 'notice'>The [src] will no longer follow you when it is attacking somebody.</span>")
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/onModeChange()
 	for (var/mob/living/carbon/human/H in view(10, src))
@@ -349,25 +366,44 @@ s
 					D.enemies |= H
 					D.onHumanMovement(H)
 
+/mob/living/simple_animal/complex_animal/canine/dog/proc/hostileCheck(var/mob/living/carbon/human/H)
+	if (!H.original_job)
+		return TRUE
+	switch (H.original_job.base_type_flag())
+		if (CIVILIAN)
+			. = (istype(H.l_hand, /obj/item/weapon/gun) || istype(H.r_hand, /obj/item/weapon/gun))
+		if (PARTISAN)
+			. = (istype(H.l_hand, /obj/item/weapon/gun) || istype(H.r_hand, /obj/item/weapon/gun))
+		if (SCHUTZSTAFFEL)
+			. = faction == SOVIET
+		if (GERMAN)
+			. = faction == SOVIET
+		if (SOVIET)
+			. = faction == GERMAN
+	if (. && H.original_job.is_nonmilitary)
+		. = (istype(H.l_hand, /obj/item/weapon/gun) || istype(H.r_hand, /obj/item/weapon/gun))
+
 /* check if we should go after an enemy */
 /mob/living/simple_animal/complex_animal/canine/dog/proc/shouldGoAfter(var/mob/living/carbon/human/H)
 	. = FALSE // when can we attack random enemies who enter our area
-	if (attack_mode == "attack") // wip
+	if (attack_mode == "kill")
 		. = TRUE
-	else if (attack_mode == "defend")
-		if (istype(H.l_hand, /obj/item/weapon/gun) || istype(H.r_hand, /obj/item/weapon/gun))
+	else if (attack_mode == "attack")
+		if (hostileCheck(H))
 			. = TRUE
 	else if (attack_mode == "guard")
-		if (get_area(H) == get_area(src))
+		if (get_area(H) == get_area(src) && hostileCheck(H))
 			. = TRUE
 
 /* called after H added to knows_about_mobs() */
 /mob/living/simple_animal/complex_animal/canine/dog/onHumanMovement(var/mob/living/carbon/human/H)
-	if (..(H) && stat == CONSCIOUS && !resting && !following)
+	if (..(H) && stat == CONSCIOUS && !resting && (!following || prioritizes == "attacking"))
 		if (shouldGoAfter(H) || enemies.Find(H))
 			if (assess_hostility(H) || ((!H.original_job || H.original_job.base_type_flag() != faction)))
 				enemies |= H
 				if (get_dist(src, H) > TRUE && H.stat != DEAD)
+					if (prioritizes == "attacking" && following)
+						stop_following()
 					walk_to(src, H, TRUE, H.run_delay_maximum*1.33)
 				else
 					shred(H)

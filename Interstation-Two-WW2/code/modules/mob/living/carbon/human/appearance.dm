@@ -17,11 +17,11 @@
 	reset_hair()
 	return TRUE
 
-/mob/living/carbon/human/proc/change_gender(var/gender)
-	if(gender == gender)
+/mob/living/carbon/human/proc/change_gender(var/_gender)
+	if(gender == _gender)
 		return
 
-	gender = gender
+	gender = _gender
 	reset_hair()
 	update_body()
 	update_dna()

@@ -3,6 +3,7 @@
 	..()
 	resting_state = "[icon_state]_rest"
 	dead_state = "[icon_state]_dead"
+	icon_dead = dead_state
 
 /mob/living/simple_animal/complex_animal/Life()
 	..()

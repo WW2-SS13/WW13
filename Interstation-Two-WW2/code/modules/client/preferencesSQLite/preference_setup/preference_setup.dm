@@ -39,8 +39,8 @@
 	var/datum/preferences/preferences
 	var/datum/category_group/player_setup_category/selected_category = null
 
-/datum/category_collection/player_setup_collection/New(var/datum/preferences/preferences)
-	preferences = preferences
+/datum/category_collection/player_setup_collection/New(var/datum/preferences/_preferences)
+	preferences = _preferences
 	..()
 	selected_category = categories[1]
 

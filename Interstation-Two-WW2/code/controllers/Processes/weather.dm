@@ -2,7 +2,7 @@ var/datum/controller/process/weather/weather_process = null
 
 /datum/controller/process/weather
 	var/mod_weather_interval = 3500
-	var/change_weather_interval = 7000
+	var/change_weather_interval = 3500
 
 	var/minimum_mod_weather_delay = 1000
 	var/minimum_change_weather_delay = 1000
