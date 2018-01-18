@@ -142,7 +142,7 @@
 		wall_fake = TRUE
 
 	var/turf/Tsrc = get_turf(src)
-	Tsrc.TChangeTurf(/turf/wall)
+	Tsrc.ChangeTurf(/turf/wall)
 	var/turf/wall/T = get_turf(src)
 	T.set_material(M, reinf_material)
 	if(wall_fake)
