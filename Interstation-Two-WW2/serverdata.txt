@@ -1,1 +1,0 @@
-<b>Server Status</b>: Online;<b>Address</b>: byond://:0;<b>Map</b>: City Map (70x70);<b>Players</b>: 1;<b>Whitelist</b>: Enabled
