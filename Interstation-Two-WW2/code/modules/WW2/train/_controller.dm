@@ -39,7 +39,7 @@
 
 /datum/train_controller/proc/get_lever()
 	for (var/obj/train_lever/lever in world)
-		if (lever.loc && lever.faction == src.faction && lever.real)
+		if (lever.loc && lever.faction == faction && lever.real)
 			return lever
 	return null
 

@@ -70,21 +70,21 @@
 		if("prefs")		return prefs.process_link(usr,href_list)
 		if("vars")		return view_var_Topic(href,href_list,hsrc)
 
-	..()	//redirect to hsrc.Topic()
+	..()	//redirect to hTopic()
 
 /client/proc/handle_spam_prevention(var/message, var/mute_type)
-	if(config.automute_on && !holder && src.last_message == message)
-		src.last_message_count++
-		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
+	if(config.automute_on && !holder && last_message == message)
+		last_message_count++
+		if(last_message_count >= SPAM_TRIGGER_AUTOMUTE)
 			src << "\red You have exceeded the spam filter limit for identical messages. An auto-mute was applied."
-			cmd_admin_mute(src.mob, mute_type, TRUE)
+			cmd_admin_mute(mob, mute_type, TRUE)
 			return TRUE
-		if(src.last_message_count >= SPAM_TRIGGER_WARNING)
+		if(last_message_count >= SPAM_TRIGGER_WARNING)
 			src << "\red You are nearing the spam filter limit for identical messages."
 			return FALSE
 	else
 		last_message = message
-		src.last_message_count = FALSE
+		last_message_count = FALSE
 		return FALSE
 
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
@@ -122,8 +122,8 @@
 
 	// Change the way they should download resources.
 	if(config.resource_urls)
-		src.preload_rsc = pick(config.resource_urls)
-	else src.preload_rsc = TRUE // If config.resource_urls is not set, preload like normal.
+		preload_rsc = pick(config.resource_urls)
+	else preload_rsc = TRUE // If config.resource_urls is not set, preload like normal.
 
 	clients += src
 	directory[ckey] = src
@@ -228,7 +228,7 @@
 		src << "<span class='info'>You have unread updates in the changelog.</span>"
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
-			src.changes()*/
+			changes()*/
 
 	fix_nanoUI()
 
@@ -276,13 +276,13 @@
 
 /client/proc/log_to_db()
 
-	if ( IsGuestKey(src.key) )
+	if ( IsGuestKey(key) )
 		return
 
 	if (!database)
 		establish_db_connection()
 
-	var/sql_ckey = sql_sanitize_text(src.ckey)
+	var/sql_ckey = sql_sanitize_text(ckey)
 	var/list/rowdata = database.execute("SELECT id, datediff(Now(),firstseen) as age FROM player WHERE ckey = '[sql_ckey]';")
 	var/sql_id = getSQL_id()
 	player_age = FALSE	// New players won't have an entry so knowing we have a connection we set this to zero to be updated if their is a record.
@@ -311,11 +311,11 @@
 			return*/
 
 	var/admin_rank = "Player"
-	if(src.holder)
-		admin_rank = src.holder.rank
+	if(holder)
+		admin_rank = holder.rank
 
-	var/sql_ip = sql_sanitize_text(src.address)
-	var/sql_computerid = sql_sanitize_text(src.computer_id)
+	var/sql_ip = sql_sanitize_text(address)
+	var/sql_computerid = sql_sanitize_text(computer_id)
 	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
 	if (sql_ip == null)

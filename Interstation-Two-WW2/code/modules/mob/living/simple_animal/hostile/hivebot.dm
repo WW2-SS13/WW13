@@ -47,7 +47,7 @@
 /mob/living/simple_animal/hostile/hivebot/death()
 	..()
 	visible_message("<b>[src]</b> blows apart!")
-	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)
+	new /obj/effect/decal/cleanable/blood/gibs/robot(loc)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, TRUE, src)
 	s.start()
@@ -77,10 +77,10 @@
 	New()
 		..()
 		var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
-		smoke.set_up(5, FALSE, src.loc)
+		smoke.set_up(5, FALSE, loc)
 		smoke.start()
 		visible_message("\red <B>The [src] warps in!</B>")
-		playsound(src.loc, 'sound/effects/EMPulse.ogg', 25, TRUE)
+		playsound(loc, 'sound/effects/EMPulse.ogg', 25, TRUE)
 
 	warpbots()
 		icon_state = "def_radar"

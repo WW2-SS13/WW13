@@ -18,7 +18,7 @@
 
 /obj/item/weapon/reagent_containers/spray/New()
 	..()
-	src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
+	verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 
 /obj/item/weapon/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
 	if(istype(A, /obj/item/weapon/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/closet) || istype(A, /obj/item/weapon/reagent_containers) || istype(A, /obj/structure/sink) /*|| istype(A, /obj/structure/janitorialcart)*/)
@@ -34,7 +34,7 @@
 
 	Spray_at(A, user, proximity)
 
-	playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE, -6)
+	playsound(loc, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 
 	user.setClickCooldown(4)
 
@@ -106,10 +106,12 @@
 /obj/item/weapon/reagent_containers/spray/sterilizine
 	name = "sterilizine"
 	desc = "Great for hiding incriminating bloodstains and sterilizing scalpels."
+	volume = 75
 
 /obj/item/weapon/reagent_containers/spray/sterilizine/New()
 	..()
-	reagents.add_reagent("sterilizine", volume)
+	reagents.add_reagent("sterilizine", volume * 0.66)
+	reagents.add_reagent("cleaner", volume * 0.34)
 
 /obj/item/weapon/reagent_containers/spray/pepper
 	name = "pepperspray"

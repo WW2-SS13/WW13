@@ -216,7 +216,7 @@
 
 //Used to change the direction of the projectile in flight.
 /obj/item/projectile/proc/redirect(var/new_x, var/new_y, var/atom/starting_loc, var/mob/new_firer=null)
-	var/turf/new_target = locate(new_x, new_y, src.z)
+	var/turf/new_target = locate(new_x, new_y, z)
 
 	original = new_target
 	if(new_firer)
@@ -259,9 +259,9 @@
 	if(!no_attack_log)
 		if(istype(firer, /mob))
 
-			var/attacker_message = "shot with \a [src.type]"
-			var/victim_message = "shot with \a [src.type]"
-			var/admin_message = "shot (\a [src.type])"
+			var/attacker_message = "shot with \a [type]"
+			var/victim_message = "shot with \a [type]"
+			var/admin_message = "shot (\a [type])"
 
 			admin_attack_log(firer, target_mob, attacker_message, victim_message, admin_message)
 		else
@@ -348,13 +348,13 @@
 
 
 /obj/item/projectile/process()
-	var/first_step = TRUE
+	var/first_step = 1
 
 	//plot the initial trajectory
 	setup_trajectory()
 
 	spawn while(src && loc)
-		if(--kill_count < TRUE)
+		if(--kill_count < 1)
 			loc.pre_bullet_act(src)
 			on_impact(loc) //for any final impact behaviours
 			spawn (1)
@@ -366,7 +366,7 @@
 			return
 		if((!( current ) || loc == current))
 			current = locate(min(max(x + xo, TRUE), world.maxx), min(max(y + yo, TRUE), world.maxy), z)
-		if((x == TRUE || x == world.maxx || y == TRUE || y == world.maxy))
+		if((x == 1 || x == world.maxx || y == TRUE || y == world.maxy))
 			loc.pre_bullet_act(src)
 			on_impact(loc)
 			spawn (1)
@@ -403,73 +403,9 @@
 		if(!hitscan)
 			if (prob(100/speed))
 				sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon
-/*
-/obj/item/projectile/process()
-	var/first_step = TRUE
 
-	spawn while(src && src.loc)
-		if(kill_count-- < TRUE)
-			on_impact(src.loc) //for any final impact behaviours
-			qdel(src)
-			return
-		if((!( current ) || loc == current))
-			current = locate(min(max(x + xo, TRUE), world.maxx), min(max(y + yo, TRUE), world.maxy), z)
-		if((x == TRUE || x == world.maxx || y == TRUE || y == world.maxy))
-			qdel(src)
-			return
-
-		trajectory.increment()	// increment the current location
-		location = trajectory.return_location(location)		// update the locally stored location data
-
-		if(!location)
-			qdel(src)	// if it's left the world... kill it
-			return
-
-		before_move()
-		Move(location.return_turf())
-
-		if(!bumped && !isturf(original))
-			if(loc == get_turf(original))
-				if(!(original in permutated))
-					if(Bump(original))
-						return
-
-		if(first_step)
-			muzzle_effect(effect_transform)
-			first_step = FALSE
-		else if(!bumped)
-			tracer_effect(effect_transform)
-
-		if(!hitscan)
-			sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon
-*/
 /obj/item/projectile/proc/before_move()
 	return FALSE
-/*
-/obj/item/projectile/proc/setup_trajectory(turf/startloc, turf/targloc, var/x_offset = FALSE, var/y_offset = FALSE)
-	// setup projectile state
-	starting = startloc
-	current = startloc
-//	yo = targloc.y - startloc.y + y_offset
-//	xo = targloc.x - startloc.x + x_offset
-
-	// trajectory dispersion
-	var/offset = FALSE
-	if(dispersion)
-		var/radius = round(dispersion*9, TRUE)
-		offset = rand(-radius, radius)
-
-	// plot the initial trajectory
-	trajectory = new()
-	trajectory.setup(starting, original, pixel_x, pixel_y, angle_offset=offset)
-
-	// generate this now since all visual effects the projectile makes can use it
-	effect_transform = new()
-	effect_transform.Scale(trajectory.return_hypotenuse(), TRUE)
-	effect_transform.Turn(-trajectory.return_angle())		//no idea why this has to be inverted, but it works
-
-	transform = turn(transform, -(trajectory.return_angle() + 90)) //no idea why 90 needs to be added, but it works
-*/
 
 /obj/item/projectile/proc/setup_trajectory()
 	// trajectory dispersion

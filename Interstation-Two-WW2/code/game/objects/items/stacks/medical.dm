@@ -216,6 +216,11 @@
 			else
 				user << "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>"
 
+		if (affecting.open == FALSE)
+			if (affecting.is_bandaged() && affecting.is_disinfected())
+				affecting.wounds.Cut()
+				H.bad_external_organs -= affecting
+
 /obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"
 	singular_name = "advanced burn kit"
@@ -270,7 +275,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 		var/limb = affecting.name
-		if(!(affecting.limb_name in list("l_arm","r_arm","l_leg","r_leg")))
+		if(!(affecting.limb_name in list("chest", "head", "groin", "l_arm","r_arm","l_leg","r_leg", "l_hand", "r_hand", "l_foot", "r_foot")))
 			user << "<span class='danger'>You can't apply a splint there!</span>"
 			return
 		if(affecting.status & ORGAN_SPLINTED)

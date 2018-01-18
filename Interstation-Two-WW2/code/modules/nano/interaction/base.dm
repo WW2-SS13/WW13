@@ -15,7 +15,7 @@
 	return STATUS_CLOSE
 
 /mob/proc/shared_nano_interaction()
-	if (src.stat || !client)
+	if (stat || !client)
 		return STATUS_CLOSE						// no updates, close the interface
 	else if (incapacitated())
 		return STATUS_UPDATE					// update only (orange visibility)

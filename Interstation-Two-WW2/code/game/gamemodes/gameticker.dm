@@ -79,7 +79,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 /datum/controller/gameticker/proc/setup()
 	//Create and announce mode
 	if(master_mode=="secret")
-		src.hide_mode = TRUE
+		hide_mode = TRUE
 
 	var/list/runnable_modes = config.get_runnable_modes()
 	if((master_mode=="random") || (master_mode=="secret"))
@@ -89,27 +89,27 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 				world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
 			return FALSE
 		if(secret_force_mode != "secret")
-			src.mode = config.pick_mode(secret_force_mode)
-		if(!src.mode)
+			mode = config.pick_mode(secret_force_mode)
+		if(!mode)
 			var/list/weighted_modes = list()
 			for(var/datum/game_mode/GM in runnable_modes)
 				weighted_modes[GM.config_tag] = config.probabilities[GM.config_tag]
-			src.mode = gamemode_cache[pickweight(weighted_modes)]
+			mode = gamemode_cache[pickweight(weighted_modes)]
 	else
-		src.mode = config.pick_mode(master_mode)
+		mode = config.pick_mode(master_mode)
 
-	if(!src.mode)
+	if(!mode)
 		current_state = GAME_STATE_PREGAME
 		if (serverswap_open_status)
 			world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
 		return FALSE
 
 	job_master.ResetOccupations()
-	src.mode.create_antagonists()
-	src.mode.pre_setup()
+	mode.create_antagonists()
+	mode.pre_setup()
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!src.mode.can_start())
+	if(!mode.can_start())
 		if (serverswap_open_status)
 			world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
@@ -128,7 +128,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			if(tmpmodes.len)
 				world << "<B>Possibilities:</B> [english_list(tmpmodes)]"
 	else
-		src.mode.announce()
+		mode.announce()
 
 	current_state = GAME_STATE_PLAYING
 	create_characters() //Create player characters and transfer them

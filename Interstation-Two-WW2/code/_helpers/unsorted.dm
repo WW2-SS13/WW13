@@ -629,7 +629,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 
 	if(!A || !src) return FALSE
 
-	var/list/turfs_src = get_area_turfs(src.type)
+	var/list/turfs_src = get_area_turfs(type)
 	var/list/turfs_trg = get_area_turfs(A.type)
 
 	var/src_min_x = FALSE
@@ -783,7 +783,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = FALSE , var/sameloc = FALSE
 
 	if(!A || !src) return FALSE
 
-	var/list/turfs_src = get_area_turfs(src.type)
+	var/list/turfs_src = get_area_turfs(type)
 	var/list/turfs_trg = get_area_turfs(A.type)
 
 	var/src_min_x = FALSE

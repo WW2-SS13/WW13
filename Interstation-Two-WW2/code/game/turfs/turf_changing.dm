@@ -1,8 +1,8 @@
 
 /turf/proc/ReplaceWithLattice()
-	src.ChangeTurf(get_base_turf_by_area(src))
+	ChangeTurf(get_base_turf_by_area(src))
 	spawn()
-		new /obj/structure/lattice( locate(src.x, src.y, src.z) )
+		new /obj/structure/lattice( locate(x, y, z) )
 
 // Removes all signs of lattice on the pos of the turf -Donkieyo
 /turf/proc/RemoveLattice()
@@ -28,7 +28,7 @@
 	var/old_lighting_overlay = lighting_overlay
 	var/list/old_lighting_corners = corners
 
-	//world << "Replacing [src.type] with [N]"
+	//world << "Replacing [type] with [N]"
 
 	//if(connections) connections.erase_all()
 /*
@@ -40,7 +40,7 @@
 		if(S.zone) S.zone.rebuild()*/
 
 	if(ispath(N, /turf/floor))
-		var/turf/W = new N( locate(src.x, src.y, src.z) )
+		var/turf/W = new N( locate(x, y, z) )
 		if (istype(W, /turf/floor/plating/grass))
 			if (ticker.mode.vars.Find("season"))
 				switch (ticker.mode:season)
@@ -69,7 +69,7 @@
 
 	else
 
-		var/turf/W = new N( locate(src.x, src.y, src.z) )
+		var/turf/W = new N( locate(x, y, z) )
 
 		if(old_fire)
 			old_fire.RemoveFire()

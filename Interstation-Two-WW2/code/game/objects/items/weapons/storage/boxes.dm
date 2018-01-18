@@ -34,20 +34,20 @@
 	if ( contents.len )
 		return
 
-	if ( !ispath(src.foldable) )
+	if ( !ispath(foldable) )
 		return
 	var/found = FALSE
 	// Close any open UI windows first
 	for(var/mob/M in range(1))
 		if (M.s_active == src)
-			src.close(M)
+			close(M)
 		if ( M == user )
 			found = TRUE
 	if ( !found )	// User is too far away
 		return
 	// Now make the cardboard
 	user << "<span class='notice'>You fold [src] flat.</span>"
-	new src.foldable(get_turf(src))
+	new foldable(get_turf(src))
 	qdel(src)
 
 /obj/item/weapon/storage/box/survival/
@@ -442,7 +442,7 @@
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube)
 	New()
 		..()
-		if(src.type == /obj/item/weapon/storage/box/monkeycubes)
+		if(type == /obj/item/weapon/storage/box/monkeycubes)
 			for(var/i = TRUE; i <= 5; i++)
 				new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
 
@@ -521,13 +521,13 @@
 	attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
 		if(istype(W) && !W.lit && !W.burnt)
 			if(prob(50))
-				playsound(src.loc, 'sound/items/matchstick_lit.ogg', 25, FALSE, -1)
+				playsound(loc, 'sound/items/matchstick_lit.ogg', 25, FALSE, -1)
 				W.lit = TRUE
 				W.damtype = "burn"
 				W.icon_state = "match_lit"
 				processing_objects.Add(W)
 			else
-				playsound(src.loc, 'sound/items/matchstick_hit.ogg', 25, FALSE, -1)
+				playsound(loc, 'sound/items/matchstick_hit.ogg', 25, FALSE, -1)
 		W.update_icon()
 		return
 

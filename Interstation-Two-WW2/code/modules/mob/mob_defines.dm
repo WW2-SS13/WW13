@@ -5,6 +5,7 @@
 	flags = PROXMOVE
 
 	var/last_movement = -1
+	var/movement_speed_multiplier = 1.0
 	var/atom/movable/attached_to_object = null
 
 	var/datum/mind/mind

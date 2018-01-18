@@ -147,7 +147,7 @@ Class Procs:
 	if(use_power && stat == FALSE)
 		use_power(7500/severity)
 
-		var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, src.loc)
+		var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, loc)
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
@@ -182,9 +182,9 @@ Class Procs:
 
 	if(!powered(power_channel))
 		return FALSE
-	if(src.use_power == TRUE)
+	if(use_power == TRUE)
 		use_power(idle_power_usage,power_channel, TRUE)
-	else if(src.use_power >= 2)
+	else if(use_power >= 2)
 		use_power(active_power_usage,power_channel, TRUE)
 	return TRUE
 
@@ -226,7 +226,7 @@ Class Procs:
 		return TRUE
 /*
 	//distance checks are made by atom/proc/DblClick
-	if ((get_dist(src, user) > TRUE || !istype(src.loc, /turf)) && !istype(user, /mob/living/silicon))
+	if ((get_dist(src, user) > TRUE || !istype(loc, /turf)) && !istype(user, /mob/living/silicon))
 		return TRUE
 */
 	if (ishuman(user))
@@ -238,7 +238,7 @@ Class Procs:
 			user << "<span class='warning'>You momentarily forget how to use \the [src].</span>"
 			return TRUE
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	return ..()
 
@@ -258,7 +258,7 @@ Class Procs:
 		text = "\The [src] pings."
 
 	state(text, "blue")
-	playsound(src.loc, 'sound/machines/ping.ogg', 50, FALSE)
+	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
 
 /obj/machinery/proc/shock(mob/user, prb)
 	if(inoperable())
@@ -289,7 +289,7 @@ Class Procs:
 /obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
 	if(!istype(S))
 		return FALSE
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, TRUE)
+	playsound(loc, 'sound/items/Screwdriver.ogg', 50, TRUE)
 	panel_open = !panel_open
 	user << "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of \the [src].</span>"
 	update_icon()
@@ -331,7 +331,7 @@ Class Procs:
 /obj/machinery/proc/dismantle()
 	playsound(loc, 'sound/items/Crowbar.ogg', 50, TRUE)
 //	var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
-//	M.set_dir(src.dir)
+//	M.set_dir(dir)
 //	M.state = 2
 //	M.icon_state = "box_1"
 	for(var/obj/I in component_parts)

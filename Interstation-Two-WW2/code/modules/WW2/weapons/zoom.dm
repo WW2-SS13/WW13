@@ -170,14 +170,14 @@ Parts of code courtesy of Super3222
 					animate(user.client, pixel_x = FALSE, pixel_y = FALSE)
 					user.client.pixel_x = world.icon_size*_x
 					user.client.pixel_y = world.icon_size*_y
-				user.visible_message("[user] peers through the [zoomdevicename ? "[zoomdevicename] of \the [src.name]" : "[src.name]"].")
+				user.visible_message("[user] peers through the [zoomdevicename ? "[zoomdevicename] of \the [name]" : "[name]"].")
 			else
 				zoomed = FALSE
 	else //Resets everything
 		user.client.pixel_x = FALSE
 		user.client.pixel_y = FALSE
 		user.client.view = world.view
-		user.visible_message("[zoomdevicename ? "[user] looks up from \the [src.name]" : "[user] lowers \the [src.name]"].")
+		user.visible_message("[zoomdevicename ? "[user] looks up from \the [name]" : "[user] lowers \the [name]"].")
 
 	if (zoomed)
 		// prevent scopes from bugging out opened storage objs in mob process
@@ -252,7 +252,7 @@ Parts of code courtesy of Super3222
 	if(client && actions.len)
 		if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 			for(var/datum/action/toggle_scope/T in actions)
-				if(T.scope.zoomed && src.m_intent=="run")
+				if(T.scope.zoomed && m_intent=="run")
 					shake_camera(src, 2, rand(2,3))
 
 	for (var/obj/item/weapon/gun/projectile/minigun/M in range(2, src))

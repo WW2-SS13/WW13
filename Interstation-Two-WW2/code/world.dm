@@ -132,7 +132,6 @@ var/world_is_open = TRUE
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
-
 // todo: add aspect to this
 /world/proc/replace_custom_hub_text(T)
 
@@ -303,7 +302,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	fdel(F)
 	F << the_mode
 
-
 /hook/startup/proc/loadMOTD()
 	world.load_motd()
 	return TRUE
@@ -314,10 +312,15 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /proc/load_configuration()
 	config = new /datum/configuration()
-	config.load("config/config.txt")
+	config.load("config/config.txt", "config")
 	config.load("config/game_options.txt","game_options")
 	config.load("config/hub.txt", "hub")
 	config.load("config/game_schedule.txt", "game_schedule")
+
+	/* config options get overwritten by global config options
+	 * only useful for serverswap memery - Kachnov */
+	if (config.global_config_path)
+		config.load(config.global_config_path, "config")
 
 /world/proc/update_status()
 
@@ -481,7 +484,20 @@ var/setting_up_db_connection = FALSE
 	return .
 
 #undef FAILED_DB_CONNECTION_CUTOFF
-/*
+
+/proc/get_packaged_server_status_data()
+	. = ""
+	. += "<b>Server Status</b>: Online"
+	. += ";"
+	. += "<b>Address</b>: byond://[world.internet_address]:[world.port]"
+	. += ";"
+	. += "<b>Map</b>: [map.ID]"
+	. += ";"
+	. += "<b>Players</b>: [clients.len]"
+	if (config.usewhitelist)
+		. += ";"
+		. += "<b>Whitelist</b>: Enabled"
+
 /proc/start_serverdata_loop()
 	spawn while (1)
 		var/F = file("serverdata.txt")
@@ -489,7 +505,7 @@ var/setting_up_db_connection = FALSE
 			fdel(F)
 		if (!serverswap.len || !serverswap.Find("masterdir") || serverswap_open_status)
 			F << get_packaged_server_status_data()
-		sleep (100)*/
+		sleep (100)
 
 /proc/start_serverswap_loop()
 	spawn while (1)

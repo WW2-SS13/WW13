@@ -40,7 +40,7 @@
 
 /obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
 	if(shattered)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
+		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 		return
 
 	if(prob(I.force * 2))
@@ -48,12 +48,12 @@
 		shatter()
 	else
 		visible_message("<span class='warning'>[user] hits [src] with [I]!</span>")
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 70, TRUE)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 70, TRUE)
 
 /obj/structure/mirror/attack_generic(var/mob/user, var/damage)
 	attack_animation(user)
 	if(shattered)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
+		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 		return FALSE
 
 	if(damage)

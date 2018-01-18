@@ -17,7 +17,7 @@
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
 	if (language && (language.flags & NONVERBAL))
-		if (!speaker || (src.sdisabilities & BLIND || src.blinded) || !(speaker in view(src)))
+		if (!speaker || (sdisabilities & BLIND || blinded) || !(speaker in view(src)))
 			message = stars(message)
 
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
@@ -63,9 +63,9 @@
 			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, verb)]</span>")
 		else
 			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
-		if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
+		if (speech_sound && (get_dist(speaker, src) <= world.view && z == speaker.z))
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
-			src.playsound_local(source, speech_sound, sound_vol, TRUE)
+			playsound_local(source, speech_sound, sound_vol, TRUE)
 
 /mob/proc/on_hear_say(var/message)
 	src << message
@@ -74,6 +74,9 @@
 
 	if(!client)
 		return
+
+	if (speaker && language && speaker.languages.len && language != speaker.languages[1])
+		verb = "[verb] in [language.name]"
 
 	message = capitalize(message)
 
@@ -88,7 +91,7 @@
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
 	if (language && (language.flags & NONVERBAL))
-		if (!speaker || (src.sdisabilities & BLIND || src.blinded) || !(speaker in view(src)))
+		if (!speaker || (sdisabilities & BLIND || blinded) || !(speaker in view(src)))
 			message = stars(message)
 
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
@@ -176,12 +179,12 @@
 	else
 		message = "<B>[src]</B> [verb]."
 
-	if(src.status_flags & PASSEMOTES)
-		for(var/obj/item/weapon/holder/H in src.contents)
+	if(status_flags & PASSEMOTES)
+		for(var/obj/item/weapon/holder/H in contents)
 			H.show_message(message)
-		for(var/mob/living/M in src.contents)
+		for(var/mob/living/M in contents)
 			M.show_message(message)
-	src.show_message(message)
+	show_message(message)
 
 /mob/proc/hear_sleep(var/message)
 	var/heard = ""

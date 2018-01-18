@@ -67,13 +67,13 @@
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
-	playsound(src.loc, 'sound/weapons/empty.ogg', 50, TRUE)
+	playsound(loc, 'sound/weapons/empty.ogg', 50, TRUE)
 	add_fingerprint(user)
 
 	if(blood_overlay && blood_DNA && (blood_DNA.len >= TRUE)) //updates blood overlay, if any
 		overlays.Cut()//this might delete other item overlays as well but eeeeeeeh
 
-		var/icon/I = new /icon(src.icon, src.icon_state)
+		var/icon/I = new /icon(icon, icon_state)
 		I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
 		I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY)
 		blood_overlay = I
@@ -94,7 +94,7 @@
 				user.take_organ_damage(2*force)
 			return
 		if(..())
-			//playsound(src.loc, "swing_hit", 50, TRUE, -1)
+			//playsound(loc, "swing_hit", 50, TRUE, -1)
 			return
 	else
 		return ..()

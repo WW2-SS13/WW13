@@ -6,8 +6,8 @@
 		..(spread = _spread, dest_turf = _destination)
 
 		for (var/datum/reagent/r in reagents.reagent_list)
-			src.color = r.color
-			src.alpha = r.alpha
+			color = r.color
+			alpha = r.alpha
 
 /obj/effect/effect/smoke/chem/payload/chlorine_gas
 	reagent_id = "chlorine_gas"

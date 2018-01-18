@@ -57,35 +57,35 @@ proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
 
 /mob/living/update_vision_cone()
 	var/delay = 10
-	if(src.client && src.fov)
+	if(client && fov)
 		var/image/I = null
-		for(I in src.client.hidden_atoms)
+		for(I in client.hidden_atoms)
 			I.override = FALSE
 			spawn(delay)
 				qdel(I)
 			delay += 10
 		rest_cone_act()
-		src.client.hidden_atoms = list()
-		src.client.hidden_mobs = list()
-		src.fov.dir = src.dir
+		client.hidden_atoms = list()
+		client.hidden_mobs = list()
+		fov.dir = dir
 		if(fov.alpha != FALSE)
 			var/mob/living/M
-			for(M in cone(src, OPPOSITE_DIR(src.dir), view(10, src)))
+			for(M in cone(src, OPPOSITE_DIR(dir), view(10, src)))
 				I = image("split", M)
 				I.override = TRUE
-				src.client.images += I
-				src.client.hidden_atoms += I
-				src.client.hidden_mobs += M
-				if(src.pulling == M)//If we're pulling them we don't want them to be invisible, too hard to play like that.
+				client.images += I
+				client.hidden_atoms += I
+				client.hidden_mobs += M
+				if(pulling == M)//If we're pulling them we don't want them to be invisible, too hard to play like that.
 					I.override = FALSE
 
 			//Optional items can be made invisible too. Uncomment this part if you wish to items to be invisible.
 			//var/obj/item/O
-			//for(O in cone(src, OPPOSITE_DIR(src.dir), oview(src)))
+			//for(O in cone(src, OPPOSITE_DIR(dir), oview(src)))
 			//	I = image("split", O)
 			//	I.override = TRUE
-			//	src.client.images += I
-			//	src.client.hidden_atoms += I
+			//	client.images += I
+			//	client.hidden_atoms += I
 
 	else
 		return
@@ -98,9 +98,9 @@ mob/proc/rest_cone_act()//For showing and hiding the cone when you rest or lie d
 
 //Making these generic procs so you can call them anywhere.
 mob/proc/show_cone()
-	if(src.fov)
-		src.fov.alpha = 255
+	if(fov)
+		fov.alpha = 255
 
 mob/proc/hide_cone()
-	if(src.fov)
-		src.fov.alpha = FALSE
+	if(fov)
+		fov.alpha = FALSE

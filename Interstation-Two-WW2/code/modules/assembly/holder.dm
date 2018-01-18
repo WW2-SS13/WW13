@@ -58,7 +58,7 @@
 /*		if(O:Attach_Holder())
 			special_assembly = O
 			update_icon()
-			src.name = "[a_left.name] [a_right.name] [special_assembly.name] assembly"
+			name = "[a_left.name] [a_right.name] [special_assembly.name] assembly"
 */
 		return
 
@@ -70,7 +70,7 @@
 			for(var/O in a_left.attached_overlays)
 				overlays += "[O]_l"
 		if(a_right)
-			src.overlays += "[a_right.icon_state]_right"
+			overlays += "[a_right.icon_state]_right"
 			for(var/O in a_right.attached_overlays)
 				overlays += "[O]_r"
 		if(master)
@@ -79,15 +79,15 @@
 /*		if(special_assembly)
 			special_assembly.update_icon()
 			if(special_assembly:small_icon_state)
-				src.overlays += special_assembly:small_icon_state
+				overlays += special_assembly:small_icon_state
 				for(var/O in special_assembly:small_icon_state_overlays)
-					src.overlays += O
+					overlays += O
 */
 
 	examine(mob/user)
 		..(user)
-		if ((in_range(src, user) || src.loc == user))
-			if (src.secured)
+		if ((in_range(src, user) || loc == user))
+			if (secured)
 				user << "\The [src] is ready!"
 			else
 				user << "\The [src] can be attached!"
@@ -165,8 +165,8 @@
 
 
 	attack_self(mob/user as mob)
-		src.add_fingerprint(user)
-		if(src.secured)
+		add_fingerprint(user)
+		if(secured)
 			if(!a_left || !a_right)
 				user << "\red Assembly part missing!"
 				return

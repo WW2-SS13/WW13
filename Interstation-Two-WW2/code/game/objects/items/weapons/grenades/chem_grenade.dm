@@ -21,7 +21,7 @@
 	attack_self(mob/user as mob)
 		if(!stage || stage==1)
 			if(detonator)
-//				detonator.loc=src.loc
+//				detonator.loc=loc
 				detonator.detached()
 				usr.put_in_hands(detonator)
 				detonator=null
@@ -57,7 +57,7 @@
 				return
 			path = TRUE
 			user << "<span class='notice'>You add [W] to the metal casing.</span>"
-			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, -3)
+			playsound(loc, 'sound/items/Screwdriver2.ogg', 25, -3)
 			user.remove_from_mob(det)
 			det.loc = src
 			detonator = det
@@ -80,7 +80,7 @@
 //					user << "<span class='warning'>You need to add at least one beaker before locking the assembly.</span>"
 					user << "<span class='notice'>You lock the empty assembly.</span>"
 					name = "fake grenade"
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
+				playsound(loc, 'sound/items/Screwdriver.ogg', 25, -3)
 				icon_state = initial(icon_state) +"_locked"
 				stage = 2
 			else if(stage == 2)
@@ -90,7 +90,7 @@
 					return
 				else
 					user << "<span class='notice'>You unlock the assembly.</span>"
-					playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
+					playsound(loc, 'sound/items/Screwdriver.ogg', 25, -3)
 					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 					icon_state = initial(icon_state) + (detonator?"_ass":"")
 					stage = TRUE
@@ -148,7 +148,7 @@
 		active = FALSE
 		if(!has_reagents)
 			icon_state = initial(icon_state) +"_locked"
-			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 50, TRUE)
+			playsound(loc, 'sound/items/Screwdriver2.ogg', 50, TRUE)
 			spawn(0) //Otherwise det_time is erroneously set to FALSE after this
 				if(istimer(detonator.a_left)) //Make sure description reflects that the timer has been reset
 					var/obj/item/device/assembly/timer/T = detonator.a_left
@@ -158,20 +158,20 @@
 					det_time = 10*T.time
 			return
 
-		playsound(src.loc, 'sound/effects/bamf.ogg', 50, TRUE)
+		playsound(loc, 'sound/effects/bamf.ogg', 50, TRUE)
 
 		for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
 			G.reagents.trans_to_obj(src, G.reagents.total_volume)
 
-		if(src.reagents.total_volume) //The possible reactions didnt use up all reagents.
+		if(reagents.total_volume) //The possible reactions didnt use up all reagents.
 			var/datum/effect/effect/system/steam_spread/steam = new /datum/effect/effect/system/steam_spread()
 			steam.set_up(10, FALSE, get_turf(src))
 			steam.attach(src)
 			steam.start()
 
-			for(var/atom/A in view(affected_area, src.loc))
+			for(var/atom/A in view(affected_area, loc))
 				if( A == src ) continue
-				src.reagents.touch(A)
+				reagents.touch(A)
 
 		if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
 			var/mob/living/carbon/C = loc

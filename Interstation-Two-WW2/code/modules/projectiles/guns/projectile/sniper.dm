@@ -28,7 +28,7 @@
 		icon_state = "heavysniper"
 
 /obj/item/weapon/gun/projectile/heavysniper/attack_self(mob/user as mob)
-	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, TRUE)
+	playsound(loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, TRUE)
 	bolt_open = !bolt_open
 	if(bolt_open)
 		if(chambered)
@@ -40,7 +40,7 @@
 			user << "<span class='notice'>You work the bolt open.</span>"
 	else
 		user << "<span class='notice'>You work the bolt closed.</span>"
-		playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, TRUE)
+		playsound(loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, TRUE)
 		bolt_open = FALSE
 	add_fingerprint(user)
 	update_icon()

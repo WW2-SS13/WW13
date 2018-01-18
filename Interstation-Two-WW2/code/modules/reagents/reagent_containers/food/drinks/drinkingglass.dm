@@ -17,55 +17,55 @@
 	update_icon()
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
-	src.update_icon()
+	update_icon()
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/update_icon()
-	src.overlays = null
+	overlays = null
 	if(umbrella)
 		var/umbrella_icon = icon('icons/obj/drinks.dmi', "[glass_type]-umbrella[umbrella]")
-		src.overlays += image("icon" = umbrella_icon, "layer" = FLOAT_LAYER - TRUE)
+		overlays += image("icon" = umbrella_icon, "layer" = FLOAT_LAYER - TRUE)
 	if(cocktail_food)
 		var/cocktail_food_icon = icon('icons/obj/drinks.dmi', "[glass_type]-[cocktail_food]")
-		src.overlays += image("icon" = cocktail_food_icon, "layer" = FLOAT_LAYER - TRUE)
+		overlays += image("icon" = cocktail_food_icon, "layer" = FLOAT_LAYER - TRUE)
 	if(salted)
 		var/salted_icon = icon('icons/obj/drinks.dmi', "[glass_type]-salted")
-		src.overlays += image("icon" = salted_icon, "layer" = FLOAT_LAYER)
-	if(src.reagents.total_volume == FALSE)
+		overlays += image("icon" = salted_icon, "layer" = FLOAT_LAYER)
+	if(reagents.total_volume == FALSE)
 		return
-	if(src.reagents.total_volume > FALSE)
+	if(reagents.total_volume > FALSE)
 		if(!fluid_image)
 			fluid_image = image('icons/obj/drinks.dmi', "fluid-[glass_type]")
 		fluid_image.color = reagents.get_color()
-		src.overlays += src.fluid_image
+		overlays += fluid_image
 	return
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/cocktail_stuff))
-		if(src.umbrella || src.cocktail_food)
+		if(umbrella || cocktail_food)
 			user << "<span class='warning'>There's not enough room to add [W.name]!</span>"
 			return
-		user << "<span class='notice'>You add [W.name] to [src.name].</span>"
+		user << "<span class='notice'>You add [W.name] to [name].</span>"
 		if(istype(W, /obj/item/cocktail_stuff/umbrella))
 			var/obj/item/cocktail_stuff/umbrella/C = W
-			src.umbrella = "[C.umbrella_color]"
+			umbrella = "[C.umbrella_color]"
 		else if(istype(W, /obj/item/cocktail_stuff/maraschino_cherry))
-			src.cocktail_food = "cherry"
+			cocktail_food = "cherry"
 		else if(istype(W, /obj/item/cocktail_stuff/cocktail_olive))
-			src.cocktail_food = "olive"
+			cocktail_food = "olive"
 		else if(istype(W, /obj/item/cocktail_stuff/celery))
-			src.cocktail_food = "celery"
+			cocktail_food = "celery"
 		qdel(W)
-		src.update_icon()
+		update_icon()
 		return
 	else if(istype(W, /obj/item/weapon/reagent_containers) && W.is_open_container() && W.reagents.has_reagent("sodiumchloride"))
-		if (src.salted)
-			user << "<span class='warning'>The rim of [src.name] is already salted!</span>"
+		if (salted)
+			user << "<span class='warning'>The rim of [name] is already salted!</span>"
 			return
 		else if(W.reagents.get_reagent_amount("sodiumchloride") >= 5)
-			user << "<span class='notice'>You salt the rim of [src.name].</span>"
+			user << "<span class='notice'>You salt the rim of [name].</span>"
 			W.reagents.remove_reagent("sodiumchloride", 5)
-			src.salted = TRUE
-			src.update_icon()
+			salted = TRUE
+			update_icon()
 			return
 		else
 			user << "<span class='warning'>There's not enough salt in [W.name] to salt the rim!</span>"
@@ -77,10 +77,10 @@
 	var/mob/living/carbon/human/H = user
 	var/list/actions = list()
 
-	if(src.umbrella)
+	if(umbrella)
 		actions += "Remove the umbrella"
-	if(src.cocktail_food)
-		actions += "Remove the [src.cocktail_food]"
+	if(cocktail_food)
+		actions += "Remove the [cocktail_food]"
 	if(!actions.len)
 		user << "<span class='warning'>You can't think of anything to do with the glass.</span>"
 		return
@@ -89,18 +89,18 @@
 	switch(action)
 		if("Remove the umbrella")
 			var/obj/item/cocktail_stuff/umbrella/U = new(H.loc)
-			U.umbrella_color = src.umbrella
-			src.umbrella = null
+			U.umbrella_color = umbrella
+			umbrella = null
 		if("Remove the cherry")
 			new /obj/item/cocktail_stuff/maraschino_cherry(H.loc)
-			src.cocktail_food = null
+			cocktail_food = null
 		if("Remove the olive")
 			new /obj/item/cocktail_stuff/cocktail_olive(H.loc)
-			src.cocktail_food = null
+			cocktail_food = null
 		if("Remove the celery")
 			new /obj/item/cocktail_stuff/celery(H.loc)
-			src.cocktail_food = null
-	src.update_icon()
+			cocktail_food = null
+	update_icon()
 	return
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shot

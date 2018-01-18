@@ -71,7 +71,7 @@
 		if(!(def_zone in list("chest", "groin")))
 			reflectchance /= 2
 		if(P.starting && prob(reflectchance))
-			visible_message("<span class='danger'>\The [user]'s [src.name] reflects [attack_text]!</span>")
+			visible_message("<span class='danger'>\The [user]'s [name] reflects [attack_text]!</span>")
 
 			// Find a turf near or on the original location to bounce to
 			var/new_x = P.starting.x + pick(0, FALSE, FALSE, FALSE, FALSE, -1, TRUE, -2, 2)
@@ -146,22 +146,22 @@
 	return FALSE
 
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
-	src.active = !( src.active )
-	if (src.active)
+	active = !( active )
+	if (active)
 		user << "\blue The reactive armor is now active."
-		src.icon_state = "reactive"
-		src.item_state = "reactive"
+		icon_state = "reactive"
+		item_state = "reactive"
 	else
 		user << "\blue The reactive armor is now inactive."
-		src.icon_state = "reactiveoff"
-		src.item_state = "reactiveoff"
-		src.add_fingerprint(user)
+		icon_state = "reactiveoff"
+		item_state = "reactiveoff"
+		add_fingerprint(user)
 	return
 
 /obj/item/clothing/suit/armor/reactive/emp_act(severity)
 	active = FALSE
-	src.icon_state = "reactiveoff"
-	src.item_state = "reactiveoff"
+	icon_state = "reactiveoff"
+	item_state = "reactiveoff"
 	..()
 
 /obj/item/clothing/suit/armor/tactical

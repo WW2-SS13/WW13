@@ -162,5 +162,5 @@
 	New()
 		..()
 		reagents.add_reagent("flour", 30)
-		src.pixel_x = rand(-10.0, 10)
-		src.pixel_y = rand(-10.0, 10)
+		pixel_x = rand(-10.0, 10)
+		pixel_y = rand(-10.0, 10)

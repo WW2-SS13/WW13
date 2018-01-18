@@ -168,13 +168,13 @@
 		var/hsrc = locate(atomref)	// find the reffed atom
 		if(hsrc)
 			//world << "[src] Topic [href] [hsrc]"
-			usr = src.mob
-			src.Topic("close=1", list("close"="1"), hsrc)	// this will direct to the atom's
+			usr = mob
+			Topic("close=1", list("close"="1"), hsrc)	// this will direct to the atom's
 			return										// Topic() proc via client.Topic()
 
 	// no atomref specified (or not found)
 	// so just reset the user mob's machine var
-	if(src && src.mob)
-		//world << "[src] was [src.mob.machine], setting to null"
-		src.mob.unset_machine()
+	if(src && mob)
+		//world << "[src] was [mob.machine], setting to null"
+		mob.unset_machine()
 	return

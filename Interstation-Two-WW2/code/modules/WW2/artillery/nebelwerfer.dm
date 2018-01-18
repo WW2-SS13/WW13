@@ -163,7 +163,7 @@
 				state = "OPEN"
 			spawn (6)
 				if (other.drop_casing)
-					new/obj/item/artillery_ammo/casing(get_step(src, src.dir))
+					new/obj/item/artillery_ammo/casing(get_step(src, dir))
 					user << "<span class='danger'>The casing falls out of the artillery.</span>"
 					other.drop_casing = FALSE
 					playsound(get_turf(src), 'sound/effects/Stamp.wav', 100, TRUE)

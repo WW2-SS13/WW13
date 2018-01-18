@@ -28,7 +28,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Destroy()
 	if(rag)
-		rag.forceMove(src.loc)
+		rag.forceMove(loc)
 	rag = null
 	return ..()
 
@@ -124,15 +124,15 @@
 		var/obj/item/weapon/broken_bottle/B = new /obj/item/weapon/broken_bottle(newloc)
 		if(prob(33))
 			new/obj/item/weapon/material/shard(newloc) // Create a glass shard at the target's location!
-		B.icon_state = src.icon_state
+		B.icon_state = icon_state
 
-		var/icon/I = new('icons/obj/drinks.dmi', src.icon_state)
+		var/icon/I = new('icons/obj/drinks.dmi', icon_state)
 		I.Blend(B.broken_outline, ICON_OVERLAY, rand(5), TRUE)
 		I.SwapColor(rgb(255, FALSE, 220, 255), rgb(0, FALSE, FALSE, FALSE))
 		B.icon = I
 
 		playsound(src,'sound/effects/GLASS_Rattle_Many_Fragments_01_stereo.wav',100,1)
-		src.transfer_fingerprints_to(B)
+		transfer_fingerprints_to(B)
 
 		qdel(src)
 		return B

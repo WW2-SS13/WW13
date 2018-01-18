@@ -89,6 +89,17 @@
 							if (turfs_made_snowy >= rand(20*SNOW_GATHERING_RATE,30*SNOW_GATHERING_RATE))
 								break
 	else if (weather == WEATHER_RAIN)
+
+		// delete cleanable decals that are outside
+		var/deleted = 0
+		for (var/obj/effect/decal/cleanable/C in world)
+			var/area/A = get_area(C)
+			if (A.weather == weather)
+				qdel(C)
+				++deleted
+				if (deleted >= 100)
+					break
+
 		// randomize the areas we make muddy
 		var/list_of_areas = shuffle(all_areas)
 		for (var/area/A in list_of_areas)
@@ -111,10 +122,6 @@
 							spawn (rand(15000,25000))
 								if (weather != WEATHER_RAIN)
 									F.muddy = FALSE
-
-					if (prob(75))
-						for (var/obj/effect/decal/cleanable/C in F)
-							qdel(C)
 
 /proc/modify_weather_somehow()
 	if (weather == WEATHER_NONE)

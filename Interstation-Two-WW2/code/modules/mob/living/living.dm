@@ -4,15 +4,15 @@
 	set category = "Object"
 
 	if(AM.Adjacent(src))
-		src.start_pulling(AM)
+		start_pulling(AM)
 
 	return
 
 //mob verbs are faster than object verbs. See above.
 /mob/living/pointed(atom/A as mob|obj|turf in view())
-	if(src.stat || !src.canmove || src.restrained())
+	if(stat || !canmove || restrained())
 		return FALSE
-	if(src.status_flags & FAKEDEATH)
+	if(status_flags & FAKEDEATH)
 		return FALSE
 	if(!..())
 		return FALSE
@@ -85,11 +85,11 @@ default behaviour is:
 			if(!can_move_mob(tmob, FALSE, FALSE))
 				now_pushing = FALSE
 				return
-			if(a_intent == I_HELP || src.restrained())
+			if(a_intent == I_HELP || restrained())
 				now_pushing = FALSE
 				return
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
-				if(prob(40) && !(FAT in src.mutations))
+				if(prob(40) && !(FAT in mutations))
 					src << "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>"
 					now_pushing = FALSE
 					return
@@ -144,7 +144,7 @@ default behaviour is:
 	if(tmob.buckled || buckled)
 		return FALSE
 	//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-	if(!(tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())))
+	if(!(tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || restrained())))
 		return FALSE
 	if(!tmob.canmove || !canmove)
 		return FALSE
@@ -159,9 +159,9 @@ default behaviour is:
 
 /mob/living/verb/succumb()
 	set hidden = TRUE
-	if ((src.health < FALSE && src.health > (5-src.maxHealth))) // Health below Zero but above 5-away-from-death, as before, but variable
-		src.adjustOxyLoss(src.health + src.maxHealth * 2) // Deal 2x health in OxyLoss damage, as before but variable.
-		src.health = src.maxHealth - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
+	if ((health < FALSE && health > (5-maxHealth))) // Health below Zero but above 5-away-from-death, as before, but variable
+		adjustOxyLoss(health + maxHealth * 2) // Deal 2x health in OxyLoss damage, as before but variable.
+		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 		src << "\blue You have given up life and succumbed to death."
 
 
@@ -175,9 +175,9 @@ default behaviour is:
 /mob/living/proc/burn_skin(burn_amount)
 	if(istype(src, /mob/living/carbon/human))
 		//world << "DEBUG: burn_skin(), mutations=[mutations]"
-		if(mShock in src.mutations) //shockproof
+		if(mShock in mutations) //shockproof
 			return FALSE
-		if (COLD_RESISTANCE in src.mutations) //fireproof
+		if (COLD_RESISTANCE in mutations) //fireproof
 			return FALSE
 		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
 		var/divided_damage = (burn_amount)/(H.organs.len)
@@ -208,7 +208,7 @@ default behaviour is:
 		if(actual < desired)
 			temperature = desired
 //	if(istype(src, /mob/living/carbon/human))
-//		world << "[src] ~ [src.bodytemperature] ~ [temperature]"
+//		world << "[src] ~ [bodytemperature] ~ [temperature]"
 	return temperature
 
 
@@ -310,14 +310,14 @@ default behaviour is:
 
 	else
 
-		L += src.contents
-		for(var/obj/item/weapon/storage/S in src.contents)	//Check for storage items
+		L += contents
+		for(var/obj/item/weapon/storage/S in contents)	//Check for storage items
 			L += get_contents(S)
 
 		return L
 
 /mob/living/proc/check_contents_for(A)
-	var/list/L = src.get_contents()
+	var/list/L = get_contents()
 
 	for(var/obj/B in L)
 		if(B.type == A)
@@ -341,27 +341,27 @@ default behaviour is:
 /mob/living/proc/heal_organ_damage(var/brute, var/burn)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
-	src.updatehealth()
+	updatehealth()
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
 /mob/living/proc/take_organ_damage(var/brute, var/burn, var/emp=0)
 	if(status_flags & GODMODE)	return FALSE	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
-	src.updatehealth()
+	updatehealth()
 
 // heal MANY external organs, in random order
 /mob/living/proc/heal_overall_damage(var/brute, var/burn)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
-	src.updatehealth()
+	updatehealth()
 
 // damage MANY external organs, in random order
 /mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
 	if(status_flags & GODMODE)	return FALSE	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
-	src.updatehealth()
+	updatehealth()
 
 /mob/living/proc/restore_all_organs()
 	return
@@ -559,8 +559,8 @@ default behaviour is:
 
 /mob/living/proc/process_resist()
 	//Getting out of someone's inventory.
-	if(istype(src.loc, /obj/item/weapon/holder))
-		escape_inventory(src.loc)
+	if(istype(loc, /obj/item/weapon/holder))
+		escape_inventory(loc)
 		return
 
 	//unbuckling yourself
@@ -569,13 +569,13 @@ default behaviour is:
 		return TRUE
 
 	//Breaking out of a locker?
-	if( src.loc && (istype(src.loc, /obj/structure/closet)) )
+	if( loc && (istype(loc, /obj/structure/closet)) )
 		var/obj/structure/closet/C = loc
 		spawn() C.mob_breakout(src)
 		return TRUE
 
 /mob/living/proc/escape_inventory(obj/item/weapon/holder/H)
-	if(H != src.loc) return
+	if(H != loc) return
 
 	var/mob/M = H.loc //Get our mob holder (if any).
 
@@ -693,22 +693,22 @@ default behaviour is:
 	if(!(istype(possessor) && possessor.ckey))
 		return FALSE
 
-	if(src.ckey || src.client)
+	if(ckey || client)
 		possessor << "<span class='warning'>\The [src] already has a player.</span>"
 		return FALSE
 
 	message_admins("<span class='adminnotice'>[key_name_admin(possessor)] has taken control of \the [src].</span>")
 	log_admin("[key_name(possessor)] took control of \the [src].")
-	src.ckey = possessor.ckey
+	ckey = possessor.ckey
 	qdel(possessor)
 /*
 	if(round_is_spooky(6)) // Six or more active cultists.
 		src << "<span class='notice'>You reach out with tendrils of ectoplasm and invade the mind of \the [src]...</span>"
 		src << "<b>You have assumed direct control of \the [src].</b>"
 		src << "<span class='notice'>Due to the spookiness of the round, you have taken control of the poor animal as an invading, possessing spirit - roleplay accordingly.</span>"
-		src.universal_speak = TRUE
-		src.universal_understand = TRUE
-		//src.cultify() // Maybe another time.
+		universal_speak = TRUE
+		universal_understand = TRUE
+		//cultify() // Maybe another time.
 		return*/
 
 	src << "<b>You are now \the [src]!</b>"
@@ -716,18 +716,18 @@ default behaviour is:
 	return TRUE
 
 /mob/living/throw_mode_off()
-	src.in_throw_mode = FALSE
+	in_throw_mode = FALSE
 	if (HUDneed.Find("throw"))
 		var/obj/screen/HUDthrow/HUD = HUDneed["throw"]
 		HUD.update_icon()
 
 /mob/living/throw_mode_on()
-	src.in_throw_mode = TRUE
+	in_throw_mode = TRUE
 	if (HUDneed.Find("throw"))
 		var/obj/screen/HUDthrow/HUD = HUDneed["throw"]
 		HUD.update_icon()
 
-	/*if (var/obj/screen/HUDthrow/HUD in src.client.screen)
+	/*if (var/obj/screen/HUDthrow/HUD in client.screen)
 		if(HUD.name == "throw") //in case we don't have the HUD and we use the hotkey
 			HUD.toggle_throw_mode()
 			break*/
@@ -749,7 +749,7 @@ default behaviour is:
 
 /mob/living/start_pulling(var/atom/movable/AM)
 
-	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if ( !AM || !usr || src==AM || !isturf(loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
 	if (AM.anchored)
@@ -793,7 +793,7 @@ default behaviour is:
 		if(pulling_old == AM)
 			return
 
-	src.pulling = AM
+	pulling = AM
 	AM.pulledby = src
 
 	/*if(pullin)

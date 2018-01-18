@@ -27,7 +27,7 @@
 	if (!stacktype)
 		stacktype = type
 	if (amount)
-		src.amount = amount
+		amount = amount
 	return
 
 /obj/item/stack/Destroy()
@@ -40,7 +40,7 @@
 /obj/item/stack/examine(mob/user)
 	if(..(user, TRUE))
 		if(!uses_charge)
-			user << "There [src.amount == TRUE ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack."
+			user << "There [amount == TRUE ? "is" : "are"] [amount] [singular_name]\s in the stack."
 		else
 			user << "There is enough charge for [get_amount()]."
 
@@ -57,7 +57,7 @@
 	if (recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
 		recipe_list = srl.recipes
-	var/t1 = text("<HTML><HEAD><title>Constructions from []</title></HEAD><body><TT>Amount Left: []<br>", src, src.get_amount())
+	var/t1 = text("<HTML><HEAD><title>Constructions from []</title></HEAD><body><TT>Amount Left: []<br>", src, get_amount())
 	for(var/i=1;i<=recipe_list.len,i++)
 		var/E = recipe_list[i]
 		if (isnull(E))
@@ -73,7 +73,7 @@
 
 		if (istype(E, /datum/stack_recipe))
 			var/datum/stack_recipe/R = E
-			var/max_multiplier = round(src.get_amount() / R.req_amount)
+			var/max_multiplier = round(get_amount() / R.req_amount)
 			var/title as text
 			var/can_build = TRUE
 			can_build = can_build && (max_multiplier>0)
@@ -81,7 +81,7 @@
 				title+= "[R.res_amount]x [R.title]\s"
 			else
 				title+= "[R.title]"
-			title+= " ([R.req_amount] [src.singular_name]\s)"
+			title+= " ([R.req_amount] [singular_name]\s)"
 			if (can_build)
 				t1 += text("<A href='?src=\ref[src];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  ")
 			else
@@ -212,7 +212,7 @@
 		list_recipes(usr, text2num(href_list["sublist"]))
 
 	if (href_list["make"])
-		if (src.get_amount() < TRUE) qdel(src) //Never should happen
+		if (get_amount() < TRUE) qdel(src) //Never should happen
 
 		var/list/recipes_list = recipes
 		if (href_list["sublist"])
@@ -224,11 +224,11 @@
 		if (!multiplier || (multiplier <= FALSE)) //href exploit protection
 			return
 
-		src.produce_recipe(R, multiplier, usr)
+		produce_recipe(R, multiplier, usr)
 
 	if (src && usr.machine==src) //do not reopen closed window
 		spawn( FALSE )
-			src.interact(usr)
+			interact(usr)
 			return
 	return
 
@@ -285,12 +285,12 @@
 	if ((stacktype != S.stacktype) && !type_verified)
 		return FALSE
 	if (isnull(tamount))
-		tamount = src.get_amount()
+		tamount = get_amount()
 
-	var/transfer = max(min(tamount, src.get_amount(), (S.get_max_amount() - S.get_amount())), FALSE)
+	var/transfer = max(min(tamount, get_amount(), (S.get_max_amount() - S.get_amount())), FALSE)
 
-	var/orig_amount = src.get_amount()
-	if (transfer && src.use(transfer))
+	var/orig_amount = get_amount()
+	if (transfer && use(transfer))
 		S.add(transfer)
 		if (prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
@@ -306,11 +306,11 @@
 	if(uses_charge)
 		return null
 
-	var/transfer = max(min(tamount, src.amount, initial(max_amount)), FALSE)
+	var/transfer = max(min(tamount, amount, initial(max_amount)), FALSE)
 
-	var/orig_amount = src.amount
-	if (transfer && src.use(transfer))
-		var/obj/item/stack/newstack = new src.type(loc, transfer)
+	var/orig_amount = amount
+	if (transfer && use(transfer))
+		var/obj/item/stack/newstack = new type(loc, transfer)
 		newstack.color = color
 		if (prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(newstack)
@@ -349,7 +349,7 @@
 	for (var/obj/item/stack/item in user.loc)
 		if (item==src)
 			continue
-		var/transfer = src.transfer_to(item)
+		var/transfer = transfer_to(item)
 		if (transfer)
 			user << "<span class='notice'>You add a new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s.</span>"
 		if(!amount)
@@ -357,14 +357,14 @@
 
 /obj/item/stack/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
-		var/obj/item/stack/F = src.split(1)
+		var/obj/item/stack/F = split(1)
 		if (F)
 			user.put_in_hands(F)
-			src.add_fingerprint(user)
+			add_fingerprint(user)
 			F.add_fingerprint(user)
 			spawn(0)
 				if (src && usr.machine==src)
-					src.interact(usr)
+					interact(usr)
 	else
 		..()
 	return
@@ -373,15 +373,15 @@
 	if (istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
 		if (user.get_inactive_hand()==src)
-			src.transfer_to(S, TRUE)
+			transfer_to(S, TRUE)
 		else
-			src.transfer_to(S)
+			transfer_to(S)
 
 		spawn(0) //give the stacks a chance to delete themselves if necessary
 			if (S && usr.machine==S)
 				S.interact(usr)
 			if (src && usr.machine==src)
-				src.interact(usr)
+				interact(usr)
 	else
 		return ..()
 
@@ -401,15 +401,15 @@
 
 	New(title, result_type, req_amount = TRUE, res_amount = TRUE, max_res_amount = TRUE, time = FALSE, one_per_turf = FALSE, on_floor = FALSE, supplied_material = null)
 
-		src.title = title
-		src.result_type = result_type
-		src.req_amount = req_amount
-		src.res_amount = res_amount
-		src.max_res_amount = max_res_amount
-		src.time = time
-		src.one_per_turf = one_per_turf
-		src.on_floor = on_floor
-		src.use_material = supplied_material
+		title = title
+		result_type = result_type
+		req_amount = req_amount
+		res_amount = res_amount
+		max_res_amount = max_res_amount
+		time = time
+		one_per_turf = one_per_turf
+		on_floor = on_floor
+		use_material = supplied_material
 
 /*
  * Recipe list datum
@@ -418,5 +418,5 @@
 	var/title = "ERROR"
 	var/list/recipes = null
 	New(title, recipes)
-		src.title = title
-		src.recipes = recipes
+		title = title
+		recipes = recipes

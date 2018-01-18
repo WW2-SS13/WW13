@@ -140,7 +140,7 @@
 		var/obj/item/weapon/hand/H = O
 		for(var/datum/playingcard/P in cards)
 			H.cards += P
-		H.concealed = src.concealed
+		H.concealed = concealed
 		user.drop_from_inventory(src,user.loc)
 		qdel(src)
 		H.update_icon()
@@ -216,12 +216,12 @@
 
 	var/datum/playingcard/card = to_discard[discarding]
 
-	var/obj/item/weapon/hand/H = new(src.loc)
+	var/obj/item/weapon/hand/H = new(loc)
 	H.cards += card
 	cards -= card
 	H.concealed = FALSE
 	H.update_icon()
-	src.update_icon()
+	update_icon()
 	usr.visible_message("\The [usr] plays \the [discarding].")
 	H.loc = get_step(usr,usr.dir)
 
@@ -235,7 +235,7 @@
 
 /obj/item/weapon/hand/examine(mob/user)
 	..(user)
-	if((!concealed || src.loc == user) && cards.len)
+	if((!concealed || loc == user) && cards.len)
 		user << "It contains: "
 		for(var/datum/playingcard/P in cards)
 			user << "The [P.name]."
@@ -258,7 +258,7 @@
 
 	if(cards.len == TRUE)
 		var/datum/playingcard/P = cards[1]
-		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
+		var/image/I = new(icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
 		I.pixel_x += (-5+rand(10))
 		I.pixel_y += (-5+rand(10))
 		overlays += I
@@ -281,7 +281,7 @@
 				M.Translate(-2,  FALSE)
 	var/i = FALSE
 	for(var/datum/playingcard/P in cards)
-		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
+		var/image/I = new(icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
 		//I.pixel_x = origin+(offset*i)
 		switch(direction)
 			if(SOUTH)
@@ -298,9 +298,9 @@
 
 /obj/item/weapon/hand/dropped(mob/user as mob)
 	if(locate(/obj/structure/table, loc))
-		src.update_icon(user.dir)
+		update_icon(user.dir)
 	else
 		update_icon()
 
 /obj/item/weapon/hand/pickup(mob/user as mob)
-	src.update_icon()
+	update_icon()

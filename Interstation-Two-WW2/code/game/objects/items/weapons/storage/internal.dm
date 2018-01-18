@@ -33,7 +33,7 @@
 	if (ishuman(user) || issmall(user)) //so monkeys can take off their backpacks -- Urist
 
 		if(over_object == user && Adjacent(user)) // this must come before the screen objects only block
-			src.open(user)
+			open(user)
 			return FALSE
 
 		if (!( istype(over_object, /obj/screen) ))
@@ -81,14 +81,14 @@
 			H.r_store = null
 			return FALSE
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if (master_item.loc == user)
-		src.open(user)
+		open(user)
 		return FALSE
 
 	for(var/mob/M in range(1, master_item.loc))
 		if (M.s_active == src)
-			src.close(M)
+			close(M)
 	return TRUE
 
 /obj/item/weapon/storage/internal/Adjacent(var/atom/neighbor)

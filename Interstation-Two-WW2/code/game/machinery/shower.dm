@@ -50,7 +50,7 @@
 
 /obj/machinery/cellshower/proc/spray()
 	visible_message("<span class='warning'>[src] clicks and distributes some pain.")
-	playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE)
+	playsound(loc, 'sound/effects/spray2.ogg', 50, TRUE)
 	for(var/turf/T in range(1, locate(x, y, z - TRUE)))
 		if(T.density)
 			continue
@@ -71,10 +71,10 @@
 
 /obj/effect/shower/New()
 	..()
-	for(var/mob/living/carbon/C in src.loc)
+	for(var/mob/living/carbon/C in loc)
 		wash(C)
 		check_heat(C)
-	for (var/atom/movable/G in src.loc)
+	for (var/atom/movable/G in loc)
 		G.clean_blood()
 
 /obj/effect/shower/update_icon()

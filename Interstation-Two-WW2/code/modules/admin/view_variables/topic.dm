@@ -1,7 +1,7 @@
 
 /client/proc/view_var_Topic(href, href_list, hsrc)
 	//This should all be moved over to datum/admins/Topic() or something ~Carn
-	if( (usr.client != src) || !src.holder )
+	if( (usr.client != src) || !holder )
 		return
 	if(href_list["Vars"])
 		debug_variables(locate(href_list["Vars"]))
@@ -60,7 +60,7 @@
 			usr << "This can only be used on instances of type /mob"
 			return
 
-		src.holder.show_player_panel(M)
+		holder.show_player_panel(M)
 		href_list["datumrefresh"] = href_list["mob_player_panel"]
 /*
 	else if(href_list["give_disease2"])
@@ -71,7 +71,7 @@
 			usr << "This can only be used on instances of type /mob"
 			return
 
-		src.give_disease2(M)
+		give_disease2(M)
 		href_list["datumrefresh"] = href_list["give_spell"]
 */
 	else if(href_list["godmode"])
@@ -82,7 +82,7 @@
 			usr << "This can only be used on instances of type /mob"
 			return
 
-		src.cmd_admin_godmode(M)
+		cmd_admin_godmode(M)
 		href_list["datumrefresh"] = href_list["godmode"]
 
 	else if(href_list["gib"])
@@ -93,7 +93,7 @@
 			usr << "This can only be used on instances of type /mob"
 			return
 
-		src.cmd_admin_gib(M)
+		cmd_admin_gib(M)
 /*
 	else if(href_list["build_mode"])
 		if(!check_rights(R_BUILDMODE))	return
@@ -190,7 +190,7 @@
 			usr << "This can only be done to instances of type /obj, /mob and /turf"
 			return
 
-		src.cmd_admin_explosion(A)
+		cmd_admin_explosion(A)
 		href_list["datumrefresh"] = href_list["explode"]
 
 	else if(href_list["emp"])
@@ -201,7 +201,7 @@
 			usr << "This can only be done to instances of type /obj, /mob and /turf"
 			return
 
-		src.cmd_admin_emp(A)
+		cmd_admin_emp(A)
 		href_list["datumrefresh"] = href_list["emp"]
 
 	else if(href_list["mark_object"])
@@ -212,7 +212,7 @@
 			usr << "This can only be done to instances of type /datum"
 			return
 
-		src.holder.marked_datum_weak = weakref(D)
+		holder.marked_datum_weak = weakref(D)
 		href_list["datumrefresh"] = href_list["mark_object"]
 
 	else if(href_list["rotatedatum"])

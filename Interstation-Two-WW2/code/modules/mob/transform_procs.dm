@@ -119,7 +119,7 @@
 	for(var/t in organs)
 		qdel(t)
 
-	var/mob/new_mob = new mobpath(src.loc)
+	var/mob/new_mob = new mobpath(loc)
 
 	new_mob.key = key
 	new_mob.a_intent = I_HURT
@@ -139,7 +139,7 @@
 		usr << "\red Sorry but this mob type is currently unavailable."
 		return
 
-	var/mob/new_mob = new mobpath(src.loc)
+	var/mob/new_mob = new mobpath(loc)
 
 	new_mob.key = key
 	new_mob.a_intent = I_HURT

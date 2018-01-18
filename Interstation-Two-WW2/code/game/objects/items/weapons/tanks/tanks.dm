@@ -32,9 +32,9 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/weapon/tank/New()
 	..()
 
-	src.air_contents = new /datum/gas_mixture()
-	src.air_contents.volume = volume //liters
-	src.air_contents.temperature = T20C
+	air_contents = new /datum/gas_mixture()
+	air_contents.volume = volume //liters
+	air_contents.temperature = T20C
 	processing_objects.Add(src)
 	update_gauge()
 	return
@@ -74,8 +74,8 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/weapon/tank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	/*
-	if (istype(src.loc, /obj/item/assembly))
-		icon = src.loc*/
+	if (istype(loc, /obj/item/assembly))
+		icon = loc*/
 
 /*	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= TRUE)
 		var/obj/item/device/analyzer/A = W
@@ -84,7 +84,7 @@ var/list/global/tank_gauge_cache = list()
 	//	bomb_assemble(W,user)
 
 /obj/item/weapon/tank/attack_self(mob/user as mob)
-	if (!(src.air_contents))
+	if (!(air_contents))
 		return
 
 	ui_interact(user)
@@ -143,18 +143,18 @@ var/list/global/tank_gauge_cache = list()
 	..()
 	if (usr.stat|| usr.restrained())
 		return FALSE
-	if (src.loc != usr)
+	if (loc != usr)
 		return FALSE
 
 	if (href_list["dist_p"])
 		if (href_list["dist_p"] == "reset")
-			src.distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
+			distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
 		else if (href_list["dist_p"] == "max")
-			src.distribute_pressure = TANK_MAX_RELEASE_PRESSURE
+			distribute_pressure = TANK_MAX_RELEASE_PRESSURE
 		else
 			var/cp = text2num(href_list["dist_p"])
-			src.distribute_pressure += cp
-		src.distribute_pressure = min(max(round(src.distribute_pressure), FALSE), TANK_MAX_RELEASE_PRESSURE)
+			distribute_pressure += cp
+		distribute_pressure = min(max(round(distribute_pressure), FALSE), TANK_MAX_RELEASE_PRESSURE)
 	if (href_list["stat"])
 		if(istype(loc,/mob/living/carbon))
 			var/mob/living/carbon/location = loc
@@ -189,7 +189,7 @@ var/list/global/tank_gauge_cache = list()
 				else
 					usr << "<span class='warning'>You need something to connect to \the [src].</span>"
 
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	return TRUE
 
 
@@ -251,9 +251,9 @@ var/list/global/tank_gauge_cache = list()
 
 	var/pressure = air_contents.return_pressure()
 	if(pressure > my_tank_fragment_pressure)
-		if(!istype(src.loc,/obj/item/device/transfer_valve))
-			message_admins("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
-			log_game("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
+		if(!istype(loc,/obj/item/device/transfer_valve))
+			message_admins("Explosive tank rupture! last key to touch the tank was [fingerprintslast].")
+			log_game("Explosive tank rupture! last key to touch the tank was [fingerprintslast].")
 
 		//Give the gas a chance to build up more pressure through reacting
 		air_contents.react()
@@ -282,7 +282,7 @@ var/list/global/tank_gauge_cache = list()
 			if(!T)
 				return
 			T.assume_air(air_contents)
-			playsound(src.loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
+			playsound(loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
 			qdel(src)
 		else
 			integrity--

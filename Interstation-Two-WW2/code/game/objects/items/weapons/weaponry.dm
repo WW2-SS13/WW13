@@ -71,7 +71,7 @@
 
 	if(health <=0)
 		density = FALSE
-		src.visible_message("The energy net is torn apart!")
+		visible_message("The energy net is torn apart!")
 		qdel(src)
 	return
 
@@ -127,7 +127,7 @@
 	var/mob/living/carbon/human/H = user
 	if(istype(H))
 		if(H.species.can_shred(H))
-			playsound(src.loc, 'sound/weapons/slash.ogg', 80, TRUE)
+			playsound(loc, 'sound/weapons/slash.ogg', 80, TRUE)
 			health -= rand(10, 20)
 		else
 			health -= rand(1,3)

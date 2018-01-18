@@ -22,7 +22,7 @@
 		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/breadslice))
 			sandwich_limit += 4
 
-	if(src.contents.len > sandwich_limit)
+	if(contents.len > sandwich_limit)
 		user << "\red If you put anything else on \the [src] it's going to collapse."
 		return
 	else if(istype(W,/obj/item/weapon/material/shard))
@@ -58,13 +58,13 @@
 		else
 			fullname += ", [O.name]"
 
-		var/image/I = new(src.icon, "sandwich_filling")
+		var/image/I = new(icon, "sandwich_filling")
 		I.color = O.filling_color
 		I.pixel_x = pick(list(-1,0,1))
 		I.pixel_y = (i*2)+1
 		overlays += I
 
-	var/image/T = new(src.icon, "sandwich_top")
+	var/image/T = new(icon, "sandwich_top")
 	T.pixel_x = pick(list(-1,0,1))
 	T.pixel_y = (ingredients.len * 2)+1
 	overlays += T

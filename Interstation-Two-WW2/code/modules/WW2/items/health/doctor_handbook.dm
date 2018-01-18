@@ -56,8 +56,9 @@
 
 		// Begin displaying
 		user.show_message("<b>----------</b>")
-		user.show_message("Consulting [src], you've concluded that [victim] [victim.stat == DEAD ? "is dead. [G.He] " : "" ]has signs of:")
+		user.show_message("Consulting [src], you've concluded that [victim] [victim.stat == DEAD ? "is dead. [G.He] " : "" ]has:")
 
+		user.show_message("<span class='notice'>* [H.b_type] blood type.</span>")
 		var/is_bad = FALSE	// I hate myself
 		if (severity_blood_loss)
 			is_bad = TRUE
@@ -71,11 +72,14 @@
 		if (!is_bad)
 			user.show_message("<span class='notice'>* No general health issues.</span>")
 
-		var/count = FALSE
+		var/ecount = 0
+		var/icount = 0
+
 		var/list/unsplinted_limbs = list()
 		user.show_message("[victim] has:")
-		for (var/name in H.organs_by_name)
-			var/obj/item/organ/external/e = H.organs_by_name[name]
+
+		// check external organs first
+		for (var/obj/item/organ/external/e in H.organs)
 
 			var/wounds = FALSE
 			var/infected = FALSE
@@ -89,7 +93,7 @@
 				continue
 			if (e.status & ORGAN_DESTROYED && !e.is_stump())
 				user.show_message("<span class='warning'>* [capitalize(e.name)] is gored at [e.amputation_point] and needs to be amputated properly.</span>")
-				count++
+				ecount++
 				continue
 			if (e.status & ORGAN_BROKEN)
 				broken = TRUE
@@ -134,9 +138,36 @@
 					inner += " in"
 				string += "[capitalize(inner)] [G.his] [e.name].</span>"
 				user.show_message(string)
-				count++
-		if(!count)
+				ecount++
+		if(!ecount)
 			user.show_message("<span class='notice'>* No local injuries.</span>")
+
+		// check internal organs afterwards
+		for (var/obj/item/organ/e in H.internal_organs)
+
+			var/broken = FALSE
+
+			if (!e)
+				continue
+			if (e.status & ORGAN_DESTROYED)
+				user.show_message("<span class='warning'>* [capitalize(e.name)] has been destroyed.</span>")
+				icount++
+				continue
+			if (e.status & ORGAN_BROKEN)
+				broken = TRUE
+			if (broken)
+				var/string = "<span class='warning'>* "
+				var/inner = ""
+				if (broken)
+					inner += " [broken ? "and " : "at"]"
+				if (broken)
+					inner += "injuries at"
+				string += "[capitalize(inner)] [G.his] [e.name].</span>"
+				user.show_message(string)
+				icount++
+		if(!icount)
+			user.show_message("<span class='notice'>* No organ damage.</span>")
+
 		if(unsplinted_limbs.len >= TRUE)
 			var/string = "[G.His] "
 			var/Count = TRUE
@@ -147,7 +178,7 @@
 				 if (Count + TRUE == unsplinted_limbs.len)
 				 	string += "and "
 				Count++
-			string += " need[count == TRUE ? "s" : ""] splinting for safe transport."
+			string += " need[ecount == TRUE ? "s" : ""] splinting for safe transport."
 		user.show_message("<b>----------</b>")
 
 

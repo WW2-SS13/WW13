@@ -23,8 +23,8 @@
 	var/g_skin = FALSE
 	var/b_skin = FALSE
 
-	var/size_multiplier = TRUE //multiplier for the mob's icon size
-	var/damage_multiplier = TRUE //multiplies melee combat damage
+	var/size_multiplier = 1.0 //multiplier for the mob's icon size
+	var/damage_multiplier = 1.0 //multiplies melee combat damage
 	var/icon_update = TRUE //whether icon updating shall take place
 
 	var/datum/body_build/body_build = null

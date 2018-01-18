@@ -33,12 +33,12 @@
 /obj/item/weapon/storage/Destroy()
 	close_all()
 	qdel(boxes)
-	qdel(src.storage_start)
-	qdel(src.storage_continue)
-	qdel(src.storage_end)
-	qdel(src.stored_start)
-	qdel(src.stored_continue)
-	qdel(src.stored_end)
+	qdel(storage_start)
+	qdel(storage_continue)
+	qdel(storage_end)
+	qdel(stored_start)
+	qdel(stored_continue)
+	qdel(stored_end)
 	qdel(closer)
 	..()
 
@@ -49,7 +49,7 @@
 	if ((ishuman(usr) || issmall(usr)) && !ismouse(usr)) //so monkeys can take off their backpacks -- Urist
 
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
-			src.open(usr)
+			open(usr)
 			return
 
 		if (!( istype(over_object, /obj/screen) ))
@@ -57,14 +57,14 @@
 
 		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
 		//there's got to be a better way of doing this.
-		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
+		if (!(loc == usr) || (loc && loc.loc == usr))
 			return
 
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
 
-		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+		if ((loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
 			return
 
 /*		switch(over_object.name)
@@ -94,14 +94,14 @@
 			else
 				usr << "<span class='notice'>Your hand is too busy to grab the [src].</span>"
 
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 
 
 /obj/item/weapon/storage/proc/return_inv()
 
 	var/list/L = list(  )
 
-	L += src.contents
+	L += contents
 
 	for(var/obj/item/weapon/storage/S in src)
 		L += S.return_inv()
@@ -114,20 +114,20 @@
 				return
 	if(user.s_active)
 		user.s_active.hide_from(user)
-	user.client.screen -= src.boxes
-	user.client.screen -= src.storage_start
-	user.client.screen -= src.storage_continue
-	user.client.screen -= src.storage_end
-	user.client.screen -= src.closer
-	user.client.screen -= src.contents
-	user.client.screen += src.closer
-	user.client.screen += src.contents
+	user.client.screen -= boxes
+	user.client.screen -= storage_start
+	user.client.screen -= storage_continue
+	user.client.screen -= storage_end
+	user.client.screen -= closer
+	user.client.screen -= contents
+	user.client.screen += closer
+	user.client.screen += contents
 	if(storage_slots)
-		user.client.screen += src.boxes
+		user.client.screen += boxes
 	else
-		user.client.screen += src.storage_start
-		user.client.screen += src.storage_continue
-		user.client.screen += src.storage_end
+		user.client.screen += storage_start
+		user.client.screen += storage_continue
+		user.client.screen += storage_end
 	user.s_active = src
 	is_seeing |= user
 	return
@@ -136,19 +136,19 @@
 
 	if(!user.client)
 		return
-	user.client.screen -= src.boxes
-	user.client.screen -= src.storage_start
-	user.client.screen -= src.storage_continue
-	user.client.screen -= src.storage_end
-	user.client.screen -= src.closer
-	user.client.screen -= src.contents
+	user.client.screen -= boxes
+	user.client.screen -= storage_start
+	user.client.screen -= storage_continue
+	user.client.screen -= storage_end
+	user.client.screen -= closer
+	user.client.screen -= contents
 	if(user.s_active == src)
 		user.s_active = null
 	is_seeing -= user
 
 /obj/item/weapon/storage/proc/open(mob/user as mob)
-	if (src.use_sound)
-		playsound(src.loc, src.use_sound, 50, TRUE, -5)
+	if (use_sound)
+		playsound(loc, use_sound, 50, TRUE, -5)
 
 	orient2hud(user)
 	if (user.s_active)
@@ -156,7 +156,7 @@
 	show_to(user)
 
 /obj/item/weapon/storage/proc/close(mob/user as mob)
-	src.hide_from(user)
+	hide_from(user)
 	user.s_active = null
 	return
 
@@ -179,22 +179,22 @@
 /obj/item/weapon/storage/proc/orient_objs(tx, ty, mx, my)
 	var/cx = tx
 	var/cy = ty
-	src.boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
-	for(var/obj/O in src.contents)
+	boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
+	for(var/obj/O in contents)
 		O.screen_loc = "[cx],[cy]"
 		O.layer = 20
 		cx++
 		if (cx > mx)
 			cx = tx
 			cy--
-	src.closer.screen_loc = "[mx+1],[my]"
+	closer.screen_loc = "[mx+1],[my]"
 	return
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
 /obj/item/weapon/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents, Xcord=4, Ycord=2)
 	var/cx = Xcord
 	var/cy = Ycord+rows
-	src.boxes.screen_loc = "[Xcord]:16,2:16 to [Xcord+cols]:16,[Ycord+rows]:16"
+	boxes.screen_loc = "[Xcord]:16,2:16 to [Xcord+cols]:16,[Ycord+rows]:16"
 
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
@@ -214,7 +214,7 @@
 			if (cx > (Xcord+cols))
 				cx = Xcord
 				cy--
-	src.closer.screen_loc = "[Xcord+cols+1]:16,[Ycord]:16"
+	closer.screen_loc = "[Xcord+cols+1]:16,[Ycord]:16"
 	return
 
 /obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents,var/Xcord = 4,var/Ycord = 2)
@@ -228,11 +228,11 @@
 
 	var/matrix/M = matrix()
 	M.Scale((storage_width-storage_cap_width*2+3)/32,1)
-	src.storage_continue.transform = M
+	storage_continue.transform = M
 
-	src.storage_start.screen_loc = "[Xcord]:16,[Ycord]:16"
-	src.storage_continue.screen_loc = "[Xcord]:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],[Ycord]:16"
-	src.storage_end.screen_loc = "[Xcord]:[19+storage_width-storage_cap_width],[Ycord]:16"
+	storage_start.screen_loc = "[Xcord]:16,[Ycord]:16"
+	storage_continue.screen_loc = "[Xcord]:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],[Ycord]:16"
+	storage_end.screen_loc = "[Xcord]:[19+storage_width-storage_cap_width],[Ycord]:16"
 
 	var/startpoint = FALSE
 	var/endpoint = TRUE
@@ -248,18 +248,18 @@
 		M_continue.Scale((endpoint-startpoint-stored_cap_width*2)/32,1)
 		M_continue.Translate(startpoint+stored_cap_width+(endpoint-startpoint-stored_cap_width*2)/2 - 16,0)
 		M_end.Translate(endpoint-stored_cap_width,0)
-		src.stored_start.transform = M_start
-		src.stored_continue.transform = M_continue
-		src.stored_end.transform = M_end
-		storage_start.overlays += src.stored_start
-		storage_start.overlays += src.stored_continue
-		storage_start.overlays += src.stored_end
+		stored_start.transform = M_start
+		stored_continue.transform = M_continue
+		stored_end.transform = M_end
+		storage_start.overlays += stored_start
+		storage_start.overlays += stored_continue
+		storage_start.overlays += stored_end
 
 		O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]:16"
 		O.maptext = ""
 		O.layer = 20
 
-	src.closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
+	closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
 	return
 
 /datum/numbered_display
@@ -308,13 +308,13 @@
 				numbered_contents.Add( new/datum/numbered_display(I) )
 
 	if(storage_slots == null)
-		src.space_orient_objs(numbered_contents,Xcor,Ycor)
+		space_orient_objs(numbered_contents,Xcor,Ycor)
 	else
 		var/row_num = FALSE
 		var/col_count = min(ColCountDatum,storage_slots) -1
 		if (adjusted_contents > ColCountDatum)
 			row_num = round((adjusted_contents-1) / ColCountDatum) // ColCountDatum is the maximum allowed width.
-		src.slot_orient_objs(row_num, col_count, numbered_contents,Xslot,Yslot)
+		slot_orient_objs(row_num, col_count, numbered_contents,Xslot,Yslot)
 	return
 
 //This proc return TRUE if the item can be picked up and FALSE if it can't.
@@ -325,7 +325,7 @@
 	if(usr && usr.isEquipped(W) && !usr.canUnEquip(W))
 		return FALSE
 
-	if(src.loc == W)
+	if(loc == W)
 		return FALSE //Means the item is already in the storage item
 
 	if(storage_slots != null && contents.len >= storage_slots)
@@ -366,7 +366,7 @@
 			usr << "<span class='notice'>[src] is too full, make some space.</span>"
 		return FALSE
 
-	if(W.w_class >= src.w_class && (istype(W, /obj/item/weapon/storage)))
+	if(W.w_class >= w_class && (istype(W, /obj/item/weapon/storage)))
 		if(!stop_messages)
 			usr << "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>"
 		return FALSE //To prevent the stacking of same sized storage items.
@@ -398,7 +398,7 @@
 				else if (W && W.w_class >= 3) //Otherwise they can only see large or normal items from a distance...
 					M.show_message("<span class='notice'>\The [usr] puts [W] into [src].</span>")
 
-		src.orient2hud(usr)
+		orient2hud(usr)
 		if(usr.s_active)
 			usr.s_active.show_to(usr)
 	update_icon()
@@ -409,7 +409,7 @@
 	if(!istype(W)) return FALSE
 
 
-	for(var/mob/M in range(1, src.loc))
+	for(var/mob/M in range(1, loc))
 		if (M.s_active == src)
 			if (M.client)
 				M.client.screen -= W
@@ -426,7 +426,7 @@
 		W.loc = get_turf(src)
 
 	if(usr)
-		src.orient2hud(usr)
+		orient2hud(usr)
 		if(usr.s_active)
 			usr.s_active.show_to(usr)
 	if(W.maptext)
@@ -476,14 +476,14 @@
 			H.r_store = null
 			return
 
-	if (src.loc == user)
-		src.open(user)
+	if (loc == user)
+		open(user)
 	else
 		..()
 		for(var/mob/M in range(1))
 			if (M.s_active == src)
-				src.close(M)
-	src.add_fingerprint(user)
+				close(M)
+	add_fingerprint(user)
 	return
 
 /obj/item/weapon/storage/verb/toggle_gathering_mode()
@@ -502,7 +502,7 @@
 	set name = "Empty Contents"
 	set category = "Object"
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	if((!ishuman(usr) && (loc != usr)) || usr.stat || usr.restrained())
 		return
 
 	var/turf/T = get_turf(src)
@@ -528,50 +528,50 @@
 			total_storage_space += I.get_storage_cost()
 		max_storage_space = max(total_storage_space,max_storage_space) //prevents spawned containers from being too small for their contents
 
-	src.boxes = new /obj/screen/storage(  )
-	src.boxes.name = "storage"
-	src.boxes.master = src
-	src.boxes.icon_state = "block"
-	src.boxes.screen_loc = "7,7 to 10,8"
-	src.boxes.layer = 19
+	boxes = new /obj/screen/storage(  )
+	boxes.name = "storage"
+	boxes.master = src
+	boxes.icon_state = "block"
+	boxes.screen_loc = "7,7 to 10,8"
+	boxes.layer = 19
 
-	src.storage_start = new /obj/screen/storage(  )
-	src.storage_start.name = "storage"
-	src.storage_start.master = src
-	src.storage_start.icon_state = "storage_start"
-	src.storage_start.screen_loc = "7,7 to 10,8"
-	src.storage_start.layer = 19
-	src.storage_continue = new /obj/screen/storage(  )
-	src.storage_continue.name = "storage"
-	src.storage_continue.master = src
-	src.storage_continue.icon_state = "storage_continue"
-	src.storage_continue.screen_loc = "7,7 to 10,8"
-	src.storage_continue.layer = 19
-	src.storage_end = new /obj/screen/storage(  )
-	src.storage_end.name = "storage"
-	src.storage_end.master = src
-	src.storage_end.icon_state = "storage_end"
-	src.storage_end.screen_loc = "7,7 to 10,8"
-	src.storage_end.layer = 19
+	storage_start = new /obj/screen/storage(  )
+	storage_start.name = "storage"
+	storage_start.master = src
+	storage_start.icon_state = "storage_start"
+	storage_start.screen_loc = "7,7 to 10,8"
+	storage_start.layer = 19
+	storage_continue = new /obj/screen/storage(  )
+	storage_continue.name = "storage"
+	storage_continue.master = src
+	storage_continue.icon_state = "storage_continue"
+	storage_continue.screen_loc = "7,7 to 10,8"
+	storage_continue.layer = 19
+	storage_end = new /obj/screen/storage(  )
+	storage_end.name = "storage"
+	storage_end.master = src
+	storage_end.icon_state = "storage_end"
+	storage_end.screen_loc = "7,7 to 10,8"
+	storage_end.layer = 19
 
-	src.stored_start = new /obj //we just need these to hold the icon
-	src.stored_start.icon_state = "stored_start"
-	src.stored_start.layer = 19
-	src.stored_continue = new /obj
-	src.stored_continue.icon_state = "stored_continue"
-	src.stored_continue.layer = 19
-	src.stored_end = new /obj
-	src.stored_end.icon_state = "stored_end"
-	src.stored_end.layer = 19
+	stored_start = new /obj //we just need these to hold the icon
+	stored_start.icon_state = "stored_start"
+	stored_start.layer = 19
+	stored_continue = new /obj
+	stored_continue.icon_state = "stored_continue"
+	stored_continue.layer = 19
+	stored_end = new /obj
+	stored_end.icon_state = "stored_end"
+	stored_end.layer = 19
 
-	src.closer = new /obj/screen/close(  )
-	src.closer.master = src
-	src.closer.icon_state = "x"
-	src.closer.layer = 20
+	closer = new /obj/screen/close(  )
+	closer.master = src
+	closer.icon_state = "x"
+	closer.layer = 20
 	orient2hud()
 
 /obj/item/weapon/storage/emp_act(severity)
-	if(!istype(src.loc, /mob/living))
+	if(!istype(loc, /mob/living))
 		for(var/obj/O in contents)
 			O.emp_act(severity)
 	..()
@@ -579,8 +579,8 @@
 /obj/item/weapon/storage/attack_self(mob/user as mob)
 	//Clicking on itself will empty it, if it has the verb to do that.
 	if(user.get_active_hand() == src)
-		if(src.verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
-			src.quick_empty()
+		if(verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
+			quick_empty()
 			return TRUE
 
 /obj/item/weapon/storage/proc/make_exact_fit()

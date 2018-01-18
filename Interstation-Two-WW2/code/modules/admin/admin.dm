@@ -151,6 +151,13 @@ proc/admin_notice(var/message, var/rights)
 				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Sentinel;mob=\ref[M]'>Sentinel</A>
 				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Queen;mob=\ref[M]'>Queen</A> \] |
 				\[ Crew: <A href='?src=\ref[src];simplemake=human;mob=\ref[M]'>Human</A>
+
+				\[ Admin Memery: <A href='?src=\ref[src];simplemake=mechahitler;mob=\ref[M]'>Mecha Hitler</A>,
+				<A href='?src=\ref[src];simplemake=megastalin;mob=\ref[M]'>Mega Stalin</A>
+				<A href='?src=\ref[src];simplemake=nazicyborg;mob=\ref[M]'>Nazi Cyborg</A>
+				<A href='?src=\ref[src];simplemake=pillarman;mob=\ref[M]'>Pillar Man</A>
+				<A href='?src=\ref[src];simplemake=vampire;mob=\ref[M]'>Vampire</A> \]
+
 				<A href='?src=\ref[src];simplemake=nymph;mob=\ref[M]'>Nymph</A>
 				\[ slime: <A href='?src=\ref[src];simplemake=slime;mob=\ref[M]'>Baby</A>,
 				<A href='?src=\ref[src];simplemake=adultslime;mob=\ref[M]'>Adult</A> \]
@@ -338,6 +345,7 @@ proc/admin_notice(var/message, var/rights)
 		<A href='?src=\ref[src];quick_create_object=1'>Quick Create Object</A><br>
 		<A href='?src=\ref[src];create_turf=1'>Create Turf</A><br>
 		<A href='?src=\ref[src];create_mob=1'>Create Mob</A><br>
+		<br>
 		<A href='?src=\ref[src];debug_global=1'>View/Debug a Global Variable, List, or Object</A><br>
 		<br>
 		<A href='?src=\ref[src];modify_global=1'>Modify a Global Variable (may not be an object or list)</A><br>

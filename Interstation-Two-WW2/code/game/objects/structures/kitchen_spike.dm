@@ -53,9 +53,9 @@
 		return
 	meat--
 	new meat_type(get_turf(src))
-	if(src.meat > TRUE)
+	if(meat > TRUE)
 		user << "You remove some meat from \the [victim_name]."
-	else if(src.meat == TRUE)
+	else if(meat == TRUE)
 		user << "You remove the last piece of meat from \the [victim_name]!"
 		icon_state = "spike"
 		occupied = FALSE

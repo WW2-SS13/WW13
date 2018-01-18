@@ -13,60 +13,60 @@
 /obj/structure/displaycase/ex_act(severity)
 	switch(severity)
 		if (1)
-			new /obj/item/weapon/material/shard( src.loc )
+			new /obj/item/weapon/material/shard( loc )
 			if (occupied)
-				new /obj/item/weapon/gun/energy/captain( src.loc )
+				new /obj/item/weapon/gun/energy/captain( loc )
 				occupied = FALSE
 			qdel(src)
 		if (2)
 			if (prob(50))
-				src.health -= 15
-				src.healthcheck()
+				health -= 15
+				healthcheck()
 		if (3)
 			if (prob(50))
-				src.health -= 5
-				src.healthcheck()
+				health -= 5
+				healthcheck()
 
 
 /obj/structure/displaycase/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	..()
-	src.healthcheck()
+	healthcheck()
 	return
 
 /obj/structure/displaycase/proc/healthcheck()
-	if (src.health <= FALSE)
-		if (!( src.destroyed ))
-			src.density = FALSE
-			src.destroyed = TRUE
-			new /obj/item/weapon/material/shard( src.loc )
+	if (health <= FALSE)
+		if (!( destroyed ))
+			density = FALSE
+			destroyed = TRUE
+			new /obj/item/weapon/material/shard( loc )
 			playsound(src, "shatter", 70, TRUE)
 			update_icon()
 	else
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
 	return
 
 /obj/structure/displaycase/update_icon()
-	if(src.destroyed)
-		src.icon_state = "glassboxb[src.occupied]"
+	if(destroyed)
+		icon_state = "glassboxb[occupied]"
 	else
-		src.icon_state = "glassbox[src.occupied]"
+		icon_state = "glassbox[occupied]"
 	return
 
 
 /obj/structure/displaycase/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	src.health -= W.force
-	src.healthcheck()
+	health -= W.force
+	healthcheck()
 	..()
 	return
 
 /obj/structure/displaycase/attack_hand(mob/user as mob)
-	if (src.destroyed && src.occupied)
-		new /obj/item/weapon/gun/energy/captain( src.loc )
+	if (destroyed && occupied)
+		new /obj/item/weapon/gun/energy/captain( loc )
 		user << "<span class='notice'>You deactivate the hover field built into the case.</span>"
-		src.occupied = FALSE
-		src.add_fingerprint(user)
+		occupied = FALSE
+		add_fingerprint(user)
 		update_icon()
 		return
 	else
@@ -74,6 +74,6 @@
 		for(var/mob/O in oviewers())
 			if ((O.client && !( O.blinded )))
 				O << "<span class='warning'>[usr] kicks the display case.</span>"
-		src.health -= 2
+		health -= 2
 		healthcheck()
 		return

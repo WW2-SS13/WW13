@@ -72,7 +72,7 @@
 		var/items_moved = FALSE
 		for(var/atom/movable/A in affecting)
 			if(!A.anchored)
-				if(A.loc == src.loc) // prevents the object from being affected if it's not currently here.
+				if(A.loc == loc) // prevents the object from being affected if it's not currently here.
 					step(A,movedir)
 					items_moved++
 			if(items_moved >= 10)
@@ -82,7 +82,7 @@
 /obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/crowbar))
 		if(!(stat & BROKEN))
-			var/obj/item/conveyor_construct/C = new/obj/item/conveyor_construct(src.loc)
+			var/obj/item/conveyor_construct/C = new/obj/item/conveyor_construct(loc)
 			C.id = id
 			transfer_fingerprints_to(C)
 		user << "<span class='notice'>You remove the conveyor belt.</span>"
@@ -144,7 +144,7 @@
 /*
 /obj/machinery/conveyor/verb/destroy()
 	set src in view()
-	src.broken()
+	broken()
 */
 
 /obj/machinery/conveyor/power_change()
@@ -229,14 +229,14 @@
 
 	// find any switches with same id as this one, and set their positions to match us
 	for(var/obj/machinery/conveyor_switch/S in world)
-		if(S.id == src.id)
+		if(S.id == id)
 			S.position = position
 			S.update()
 
 
 /obj/machinery/conveyor_switch/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/crowbar))
-		var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
+		var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(loc)
 		C.id = id
 		transfer_fingerprints_to(C)
 		user << "<span class='notice'>You deattach the conveyor switch.</span>"
@@ -259,7 +259,7 @@
 
 	// find any switches with same id as this one, and set their positions to match us
 	for(var/obj/machinery/conveyor_switch/S in world)
-		if(S.id == src.id)
+		if(S.id == id)
 			S.position = position
 			S.update()
 
@@ -317,7 +317,7 @@
 		return
 	var/found = FALSE
 	for(var/obj/machinery/conveyor/C in view())
-		if(C.id == src.id)
+		if(C.id == id)
 			found = TRUE
 			break
 	if(!found)

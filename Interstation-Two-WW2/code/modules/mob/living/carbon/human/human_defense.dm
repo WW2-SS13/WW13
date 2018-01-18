@@ -41,13 +41,13 @@ meteor_act
 					H.adaptStat("heavyweapon", 1)
 
 	def_zone = check_zone(def_zone)
-	if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
-		say("GOD DAMN IT HURTS", src.languages.Find(GERMAN))
+	if (is_spy && istype(spy_faction, /datum/faction/german))
+		say("GOD DAMN IT HURTS", languages.Find(GERMAN))
 
-	if (src.is_spy && istype(src.spy_faction, /datum/faction/soviet))
-		say("GOD DAMN IT HURTS", src.languages.Find(RUSSIAN))
+	if (is_spy && istype(spy_faction, /datum/faction/soviet))
+		say("GOD DAMN IT HURTS", languages.Find(RUSSIAN))
 
-	if (P.firer && (P.firer.dir == src.dir || P.firer.lying))
+	if (P.firer && (P.firer.dir == dir || P.firer.lying))
 		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower = back
 			if (prob(20) || (world.time - last_movement >= 50))
@@ -70,9 +70,23 @@ meteor_act
 	else
 		// get knocked back once in a while
 		if (prob(P.KD_chance/2))
-			var/behind = behind()
+			var/turf/behind = behind()
 			if (behind)
-				forceMove(behind)
+				if (behind.density || locate(/obj/structure) in behind)
+					var/turf/slammed_into = behind
+					if (!slammed_into.density)
+						for (var/obj/structure/S in slammed_into)
+							slammed_into = S
+							break
+
+					visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
+					Weaken(rand(5,7))
+					adjustBruteLoss(rand(20,30))
+					playsound(get_turf(src), 'sound/effects/gore/fallsmash.ogg', 100)
+				else
+					forceMove(behind)
+					visible_message("<span class = 'danger'>[src] flies back from the force of the blast!</span>")
+
 		// get weakened too
 		if (prob(P.KD_chance))
 			Weaken(rand(2,3))
@@ -106,7 +120,7 @@ meteor_act
 				c_hand = r_hand
 
 			if(c_hand && (stun_amount || agony_amount > 10))
-				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
+				msg_admin_attack("[name] ([ckey]) was disarmed by a stun effect")
 
 				drop_from_inventory(c_hand)
 				if (affected.status & ORGAN_ROBOT)
@@ -117,18 +131,18 @@ meteor_act
 
 		else
 			if (agony_amount > 10)
-				if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
-					say("OH GOD THE PAIN", src.languages.Find(GERMAN))
+				if (is_spy && istype(spy_faction, /datum/faction/german))
+					say("OH GOD THE PAIN", languages.Find(GERMAN))
 
-				if (src.is_spy && istype(src.spy_faction, /datum/faction/soviet))
-					say("OH GOD THE PAIN", src.languages.Find(RUSSIAN))
+				if (is_spy && istype(spy_faction, /datum/faction/soviet))
+					say("OH GOD THE PAIN", languages.Find(RUSSIAN))
 		else
 			if (agony_amount > 10)
-				if (src.is_spy && istype(src.spy_faction, /datum/faction/german))
-					say("OH GOD THE PAIN", src.languages.Find(GERMAN))
+				if (is_spy && istype(spy_faction, /datum/faction/german))
+					say("OH GOD THE PAIN", languages.Find(GERMAN))
 
-				if (src.is_spy && istype(src.spy_faction, /datum/faction/soviet))
-					say("OH GOD THE PAIN", src.languages.Find(RUSSIAN))
+				if (is_spy && istype(spy_faction, /datum/faction/soviet))
+					say("OH GOD THE PAIN", languages.Find(RUSSIAN))
 	..(stun_amount, agony_amount, def_zone)
 
 /mob/living/carbon/human/getarmor(var/def_zone, var/type)
@@ -270,10 +284,10 @@ meteor_act
 				if(prob(effective_force + 10))
 					visible_message("<span class='danger'>[src] has been knocked down!</span>")
 					apply_effect(6, WEAKEN, blocked)
-	var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in src.organs
+	var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in organs
 	if(prob(I.force * (hit_zone == "mouth" ? 5 : FALSE)) && O) //Will the teeth fly out?
 		if(O.knock_out_teeth(get_dir(user, src), round(rand(28, 38) * ((I.force*1.5)/100))))
-			src.visible_message("<span class='danger'>Some of [src]'s teeth sail off in an arc!</span>", \
+			visible_message("<span class='danger'>Some of [src]'s teeth sail off in an arc!</span>", \
 								"<span class='userdanger'>Some of [src]'s teeth sail off in an arc!</span>")
 		//Apply blood
 		if(!(I.flags & NOBLOODY))
@@ -360,7 +374,7 @@ meteor_act
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
 
-		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
+		visible_message("\red [src] has been hit in the [hit_area] by [O].")
 		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 
 		if(armor < 2)
@@ -370,10 +384,10 @@ meteor_act
 			var/mob/M = O.thrower
 			var/client/assailant = M.client
 			if(assailant)
-				src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been hit with a [O], thrown by [M.name] ([assailant.ckey])</font>")
-				M.attack_log += text("\[[time_stamp()]\] <font color='red'>Hit [src.name] ([src.ckey]) with a thrown [O]</font>")
+				attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been hit with a [O], thrown by [M.name] ([assailant.ckey])</font>")
+				M.attack_log += text("\[[time_stamp()]\] <font color='red'>Hit [name] ([ckey]) with a thrown [O]</font>")
 				if(!istype(src,/mob/living/simple_animal/mouse))
-					msg_admin_attack("[src.name] ([src.ckey]) was hit by a [O], thrown by [M.name] ([assailant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
+					msg_admin_attack("[name] ([ckey]) was hit by a [O], thrown by [M.name] ([assailant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 
 		//thrown weapon embedded object code.
 		if(dtype == BRUTE && istype(O,/obj/item))
@@ -404,7 +418,7 @@ meteor_act
 			var/dir = get_dir(O.throw_source, src)
 
 			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!")
-			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
+			throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return
 
@@ -412,10 +426,10 @@ meteor_act
 				var/turf/T = near_wall(dir,2)
 
 				if(T)
-					src.loc = T
+					loc = T
 					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
-					src.anchored = TRUE
-					src.pinned += O
+					anchored = TRUE
+					pinned += O
 
 /mob/living/carbon/human/embed(var/obj/O, var/def_zone=null)
 	if(!def_zone) ..()
@@ -459,7 +473,7 @@ meteor_act
 		"hands" = THERMAL_PROTECTION_HAND_LEFT + THERMAL_PROTECTION_HAND_RIGHT
 		)
 
-	for(var/obj/item/clothing/C in src.get_equipped_items())
+	for(var/obj/item/clothing/C in get_equipped_items())
 		if(C.permeability_coefficient == TRUE || !C.body_parts_covered)
 			continue
 		if(C.body_parts_covered & HEAD)

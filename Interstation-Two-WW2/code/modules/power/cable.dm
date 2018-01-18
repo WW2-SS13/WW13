@@ -88,7 +88,7 @@ var/list/possible_cable_coil_colours = list(
 
 	d2 = text2num( copytext( icon_state, dash+1 ) )
 
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = loc			// hide if turf is not intact
 	if(level==1) hide(!T.is_plating())
 	cable_list += src //add it to the global cable list
 
@@ -131,7 +131,7 @@ var/list/possible_cable_coil_colours = list(
 //
 /obj/structure/cable/attackby(obj/item/W, mob/user)
 
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(!T.is_plating())
 		return
 
@@ -147,7 +147,7 @@ var/list/possible_cable_coil_colours = list(
 		if (shock(user, 50))
 			return
 
-		if(src.d1)	// FALSE-X cables are TRUE unit, X-X cables are 2 units long
+		if(d1)	// FALSE-X cables are TRUE unit, X-X cables are 2 units long
 			new/obj/item/stack/cable_coil(T, 2, color)
 		else
 			new/obj/item/stack/cable_coil(T, TRUE, color)
@@ -189,7 +189,7 @@ var/list/possible_cable_coil_colours = list(
 		if (W.flags & CONDUCT)
 			shock(user, 50, 0.7)
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 // shock the user with probability prb
 /obj/structure/cable/proc/shock(mob/user, prb, var/siemens_coeff = 1.0)
@@ -210,12 +210,12 @@ var/list/possible_cable_coil_colours = list(
 			qdel(src)
 		if(2.0)
 			if (prob(50))
-				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : TRUE, color)
+				new/obj/item/stack/cable_coil(loc, d1 ? 2 : TRUE, color)
 				qdel(src)
 
 		if(3.0)
 			if (prob(25))
-				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : TRUE, color)
+				new/obj/item/stack/cable_coil(loc, d1 ? 2 : TRUE, color)
 				qdel(src)
 	return
 
@@ -486,7 +486,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
 	..()
-	src.amount = length
+	amount = length
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
 		color = param_color
 	pixel_x = rand(-2,2)
@@ -573,13 +573,13 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
 		if(!istype(usr.loc,/turf)) return
-		if(src.amount <= 14)
+		if(amount <= 14)
 			usr << "\red You need at least 15 lengths to make restraints!"
 			return
 		var/obj/item/weapon/handcuffs/cable/B = new /obj/item/weapon/handcuffs/cable(usr.loc)
 		B.color = color
 		usr << "<span class='notice'>You wind some cable together to make some restraints.</span>"
-		src.use(15)
+		use(15)
 	else
 		usr << "\blue You cannot do that."
 	..()
@@ -844,7 +844,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/cut/New(loc)
 	..()
-	src.amount = rand(1,2)
+	amount = rand(1,2)
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
 	update_icon()

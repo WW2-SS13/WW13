@@ -35,11 +35,11 @@
 		..()
 
 /obj/item/weapon/cane/concealed/attackby(var/obj/item/weapon/material/butterfly/W, var/mob/user)
-	if(!src.concealed_blade && istype(W))
+	if(!concealed_blade && istype(W))
 		user.visible_message("<span class='warning'>[user] has sheathed \a [W] into \his [src]!</span>", "You sheathe \the [W] into \the [src].")
 		user.drop_from_inventory(W)
 		W.loc = src
-		src.concealed_blade = W
+		concealed_blade = W
 		update_icon()
 	else
 		..()

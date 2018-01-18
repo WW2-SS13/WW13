@@ -136,11 +136,11 @@
 			return
 		else
 			R.use(2)
-			user << "<span class='notice'>You start connecting [R.name]s to [src.name], creating catwalk ...</span>"
+			user << "<span class='notice'>You start connecting [R.name]s to [name], creating catwalk ...</span>"
 			if(do_after(user,50))
-				src.alpha = FALSE
-				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(src.loc)
-				src.contents += CT
+				alpha = FALSE
+				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(loc)
+				contents += CT
 			return
 	return
 

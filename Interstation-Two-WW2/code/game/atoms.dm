@@ -121,7 +121,7 @@
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
 	if(ispath(container))
-		if(istype(src.loc, container))
+		if(istype(loc, container))
 			return TRUE
 	else if(src in container)
 		return TRUE
@@ -282,19 +282,19 @@ its easier to just keep the beam vertical.
 		if (!istype(H.dna, /datum/dna))
 			return FALSE
 		if (H.gloves)
-			if(src.fingerprintslast != H.key)
-				src.fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []",H.real_name, H.key)
-				src.fingerprintslast = H.key
+			if(fingerprintslast != H.key)
+				fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []",H.real_name, H.key)
+				fingerprintslast = H.key
 			return FALSE
-		if (!( src.fingerprints ))
-			if(src.fingerprintslast != H.key)
-				src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",H.real_name, H.key)
-				src.fingerprintslast = H.key
+		if (!( fingerprints ))
+			if(fingerprintslast != H.key)
+				fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",H.real_name, H.key)
+				fingerprintslast = H.key
 			return TRUE
 	else
-		if(src.fingerprintslast != M.key)
-			src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",M.real_name, M.key)
-			src.fingerprintslast = M.key
+		if(fingerprintslast != M.key)
+			fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",M.real_name, M.key)
+			fingerprintslast = M.key
 	return
 
 /atom/proc/add_fingerprint(mob/living/M as mob, ignoregloves = FALSE)
@@ -455,7 +455,7 @@ its easier to just keep the beam vertical.
 	if(!simulated)
 		return
 //	fluorescent = FALSE
-	src.germ_level = FALSE
+	germ_level = FALSE
 	if(istype(blood_DNA, /list))
 		blood_DNA = null
 		return TRUE
@@ -467,7 +467,7 @@ its easier to just keep the beam vertical.
 	var/list/y_arr = null
 	for(cur_x=1,cur_x<=global_map.len,cur_x++)
 		y_arr = global_map[cur_x]
-		cur_y = y_arr.Find(src.z)
+		cur_y = y_arr.Find(z)
 		if(cur_y)
 			break
 //	world << "X = [cur_x]; Y = [cur_y]"

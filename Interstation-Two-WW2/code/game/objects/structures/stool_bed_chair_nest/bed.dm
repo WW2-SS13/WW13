@@ -90,7 +90,7 @@
 
 /obj/structure/bed/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		dismantle()
 		qdel(src)
 	else if(istype(W,/obj/item/stack))
@@ -113,9 +113,9 @@
 			user << "You cannot pad \the [src] with that."
 			return
 		C.use(1)
-		if(!istype(src.loc, /turf))
+		if(!istype(loc, /turf))
 			user.drop_from_inventory(src)
-			src.loc = get_turf(src)
+			loc = get_turf(src)
 		user << "You add padding to \the [src]."
 		add_padding(padding_type)
 		return
@@ -197,7 +197,7 @@
 		if(buckled_mob)
 			user_unbuckle_mob(user)
 		else
-			visible_message("[user] collapses \the [src.name].")
+			visible_message("[user] collapses \the [name].")
 			new/obj/item/roller(get_turf(src))
 			spawn(0)
 				qdel(src)
@@ -222,7 +222,7 @@
 		var/obj/item/roller_holder/RH = W
 		if(!RH.held)
 			user << "<span class='notice'>You collect the roller bed.</span>"
-			src.loc = RH
+			loc = RH
 			RH.held = src
 			return
 
@@ -261,7 +261,7 @@
 
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
-			buckled_mob.loc = src.loc
+			buckled_mob.loc = loc
 		else
 			buckled_mob = null
 
@@ -289,7 +289,7 @@
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
 		if(!ishuman(usr))	return
 		if(buckled_mob)	return FALSE
-		visible_message("[usr] collapses \the [src.name].")
+		visible_message("[usr] collapses \the [name].")
 		new/obj/item/roller(get_turf(src))
 		spawn(0)
 			qdel(src)

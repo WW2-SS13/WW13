@@ -60,7 +60,7 @@
 	set waitfor = FALSE
 	if(cocked_sound)
 		sleep(3)
-		if(user && loc) playsound(src.loc, cocked_sound, 75, TRUE)
+		if(user && loc) playsound(loc, cocked_sound, 75, TRUE)
 
 /obj/item/weapon/gun/projectile/consume_next_projectile()
 	//get the next casing
@@ -103,7 +103,7 @@
 	switch(handle_casings)
 		if(EJECT_CASINGS) //eject casing onto ground.
 			chambered.loc = get_turf(src)
-			playsound(src.loc, casing_sound, 50, TRUE)
+			playsound(loc, casing_sound, 50, TRUE)
 		if(CYCLE_CASINGS) //cycle the casing back to the end.
 			if(ammo_magazine)
 				ammo_magazine.stored_ammo += chambered
@@ -117,7 +117,7 @@
 //Maybe this should be broken up into separate procs for each load method?
 /obj/item/weapon/gun/projectile/proc/load_ammo(var/obj/item/A, mob/user)
 
-	// special scenario: A is an ammo box, src a PTRD or something
+	// special scenario: A is an ammo box, src is a PTRD or something
 	// turn A from the ammo magazine to the first bullet in the ammo magazine
 	if (istype(A, /obj/item/ammo_magazine) && A.vars.Find("is_box") && A:is_box && A:ammo_type == ammo_type)
 		var/obj/item/ammo_magazine/AM = A
@@ -143,7 +143,7 @@
 				AM.loc = src
 				ammo_magazine = AM
 
-				if(reload_sound) playsound(src.loc, reload_sound, 75, TRUE)
+				if(reload_sound) playsound(loc, reload_sound, 75, TRUE)
 				cock_gun(user)
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
@@ -160,7 +160,7 @@
 						count++
 				if(count)
 					user.visible_message("[user] reloads [src].", "<span class='notice'>You load [count] round\s into \the [src].</span>")
-					if(reload_sound) playsound(src.loc, reload_sound, 75, TRUE)
+					if(reload_sound) playsound(loc, reload_sound, 75, TRUE)
 					cock_gun(user)
 		AM.update_icon()
 
@@ -176,16 +176,16 @@
 		C.loc = src
 		loaded.Insert(1, C) //add to the head of the list
 		user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
-		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, TRUE)
+		if(bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, TRUE)
 
 	update_icon()
 
-//attempts to unload src. If allow_dump is set to FALSE, the speedloader unloading method will be disabled
+//attempts to unload  If allow_dump is set to FALSE, the speedloader unloading method will be disabled
 /obj/item/weapon/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
 	if(ammo_magazine)
 		user.put_in_hands(ammo_magazine)
 
-		if(unload_sound) playsound(src.loc, unload_sound, 75, TRUE)
+		if(unload_sound) playsound(loc, unload_sound, 75, TRUE)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
 	else if(loaded.len)
@@ -200,7 +200,7 @@
 				loaded.Cut()
 			if(count)
 				user.visible_message("[user] unloads [src].", "<span class='notice'>You unload [count] round\s from [src].</span>")
-				if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, TRUE)
+				if(bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, TRUE)
 		else if(load_method & SINGLE_CASING)
 			var/obj/item/ammo_casing/C = loaded[loaded.len]
 			loaded.len--
@@ -210,7 +210,7 @@
 				var/obj/item/weapon/gun/projectile/boltaction/B = src
 				if(B.bolt_safety && !B.loaded.len)
 					B.check_bolt_lock++
-			if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, TRUE)
+			if(bulletinsert_sound) playsound(loc, bulletinsert_sound, 75, TRUE)
 	else
 		user << "<span class='warning'>[src] is empty.</span>"
 	update_icon()
@@ -235,7 +235,7 @@
 /obj/item/weapon/gun/projectile/afterattack(atom/A, mob/living/user)
 	..()
 	if(auto_eject && ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len)
-		ammo_magazine.loc = get_turf(src.loc)
+		ammo_magazine.loc = get_turf(loc)
 		user.visible_message(
 			"[ammo_magazine] falls out and clatters on the floor!",
 			"<span class='notice'>[ammo_magazine] falls out and clatters on the floor!</span>"

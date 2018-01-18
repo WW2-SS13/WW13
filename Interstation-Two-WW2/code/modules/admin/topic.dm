@@ -1,7 +1,7 @@
 /datum/admins/Topic(href, href_list)
 	..()
 
-	if(usr.client != src.owner || !check_rights(0))
+	if(usr.client != owner || !check_rights(0))
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
 		message_admins("[usr.key] has attempted to override the admin panel!")
 		return
@@ -234,8 +234,13 @@
 			if("constructbuilder")	New = M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
 			if("constructwraith")	New = M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
 			if("shade")				New = M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
+			if("mechahitler")		New = M.change_mob_type( /mob/living/carbon/human/mechahitler , null, null, delmob, href_list["species"])
+			if("megastalin")		New = M.change_mob_type( /mob/living/carbon/human/megastalin , null, null, delmob, href_list["species"])
+			if("nazicyborg")			New = M.change_mob_type( /mob/living/carbon/human/nazicyborg , null, null, delmob, href_list["species"])
+			if("pillarman")		New = M.change_mob_type( /mob/living/carbon/human/pillarman , null, null, delmob, href_list["species"])
+			if("vampire")			New = M.change_mob_type( /mob/living/carbon/human/vampire , null, null, delmob, href_list["species"])
 		if (New)
-			if (ishuman(New))
+			if (New.type == /mob/living/carbon/human)
 				var/mob/living/carbon/human/H = New
 				if ((input(usr_client, "Assign [H] a new job?") in list("Yes", "No")) == "Yes")
 
@@ -244,15 +249,15 @@
 						if (J.title)
 							job_master_occupation_names[J.title] = J
 
+					var/oloc_H = H.loc
+
 					var/J = input(usr_client, "Which job?") in (list("Cancel") | job_master_occupation_names)
 					if (J != "Cancel")
-						H.original_job_title = J
+						job_master.EquipRank(H, J)
 						H.original_job = job_master_occupation_names[J]
-						spawn (7)
-							H.original_job.equip(H)
-							H.languages.Cut()
-							H.add_language(H.original_job.default_language, TRUE)
-							H.default_language = H.languages[1]
+						spawn (1)
+							H.loc = oloc_H
+
 							switch (H.original_job.default_language)
 								if ("German")
 									H.name = H.client.prefs.german_name
@@ -937,6 +942,20 @@
 
 		if(config.allow_admin_rev)
 			L.revive()
+			if (ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.nutrition = H.max_nutrition
+				H.water = H.max_water
+				for (var/obj/item/organ/external/E in H.bad_external_organs)
+					E.wounds.Cut()
+					H.bad_external_organs -= E
+				var/obj/item/organ/external/head/U = locate() in H.organs
+				if(istype(U))
+					U.teeth_list.Cut() //Clear out their mouth of teeth
+					var/obj/item/stack/teeth/T = new H.species.teeth_type(U)
+					U.max_teeth = T.max_amount //Set max teeth for the head based on teeth spawntype
+					T.amount = T.max_amount
+					U.teeth_list += T
 			message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", TRUE)
 			log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
 		else
@@ -1050,12 +1069,12 @@
 			if(MALE,FEMALE)	gender_description = "[M.gender]"
 			else			gender_description = "<font color='red'><b>[M.gender]</b></font>"
 
-		src.owner << "<b>Info about [M.name]:</b> "
-		src.owner << "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]"
-		src.owner << "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;"
-		src.owner << "Location = [location_description];"
-		src.owner << "[special_role_description]"
-		src.owner << "(<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>) (<A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[M]'>VV</A>) (<A HREF='?src=\ref[src];subtlemessage=\ref[M]'>SM</A>) ([admin_jump_link(M, src)]) (<A HREF='?src=\ref[src];secretsadmin=check_antagonist'>CA</A>)"
+		owner << "<b>Info about [M.name]:</b> "
+		owner << "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]"
+		owner << "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;"
+		owner << "Location = [location_description];"
+		owner << "[special_role_description]"
+		owner << "(<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>) (<A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[M]'>VV</A>) (<A HREF='?src=\ref[src];subtlemessage=\ref[M]'>SM</A>) ([admin_jump_link(M, src)]) (<A HREF='?src=\ref[src];secretsadmin=check_antagonist'>CA</A>)"
 
 	else if(href_list["adminspawncookie"])
 		if(!check_rights(R_ADMIN|R_FUN))	return
@@ -1069,15 +1088,15 @@
 		if(!(istype(H.l_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
 			H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_r_hand )
 			if(!(istype(H.r_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
-				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
-				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
+				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(owner)].")
+				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(owner)].")
 				return
 			else
 				H.update_inv_r_hand()//To ensure the icon appears in the HUD
 		else
 			H.update_inv_l_hand()
-		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
-		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
+		log_admin("[key_name(H)] got their cookie, spawned by [key_name(owner)]")
+		message_admins("[key_name(H)] got their cookie, spawned by [key_name(owner)]")
 
 		H << "\blue Your prayers have been answered!! You received the <b>best cookie</b>!"
 /*
@@ -1089,11 +1108,11 @@
 			usr << "This can only be used on instances of type /mob/living"
 			return
 
-		if(alert(src.owner, "Are you sure you wish to hit [key_name(M)] with Blue Space Artillery?",  "Confirm Firing?" , "Yes" , "No") != "Yes")
+		if(alert(owner, "Are you sure you wish to hit [key_name(M)] with Blue Space Artillery?",  "Confirm Firing?" , "Yes" , "No") != "Yes")
 			return
 
 		if(BSACooldown)
-			src.owner << "Standby!  Reload cycle in progress!  Gunnary crews ready in five seconds!"
+			owner << "Standby!  Reload cycle in progress!  Gunnary crews ready in five seconds!"
 			return
 
 		BSACooldown = TRUE
@@ -1101,8 +1120,8 @@
 			BSACooldown = FALSE
 
 		M << "You've been hit by bluespace artillery!"
-		log_admin("[key_name(M)] has been hit by Bluespace Artillery fired by [src.owner]")
-		message_admins("[key_name(M)] has been hit by Bluespace Artillery fired by [src.owner]")
+		log_admin("[key_name(M)] has been hit by Bluespace Artillery fired by [owner]")
+		message_admins("[key_name(M)] has been hit by Bluespace Artillery fired by [owner]")
 
 		var/obj/effect/stop/S
 		S = new /obj/effect/stop
@@ -1155,10 +1174,10 @@
 
 		if (istype(bundle.pages[page], /obj/item/weapon/paper))
 			var/obj/item/weapon/paper/P = bundle.pages[page]
-			P.show_content(src.owner, TRUE)
+			P.show_content(owner, TRUE)
 		else if (istype(bundle.pages[page], /obj/item/weapon/photo))
 			var/obj/item/weapon/photo/H = bundle.pages[page]
-			H.show(src.owner)
+			H.show(owner)
 		return
 
 	else if(href_list["CentcommFaxReply"])
@@ -1166,10 +1185,10 @@
 		var/obj/machinery/photocopier/faxmachine/fax = locate(href_list["originfax"])
 
 		//todo: sanitize
-		var/input = russian_to_utf8(input(src.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null)
+		var/input = russian_to_utf8(input(owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null)
 		if(!input)	return
 
-		var/customname = russian_to_utf8(input(src.owner, "Pick a title for the report", "Title") as text|null)
+		var/customname = russian_to_utf8(input(owner, "Pick a title for the report", "Title") as text|null)
 
 		// Create the reply message
 		var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( null ) //hopefully the null loc won't cause trouble for us
@@ -1187,11 +1206,11 @@
 		P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
 		if(fax.recievefax(P))
-			src.owner << "\blue Message reply to transmitted successfully."
-			log_admin("[key_name(src.owner)] replied to a fax message from [key_name(sender)]: [input]")
-			message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(sender)]", TRUE)
+			owner << "\blue Message reply to transmitted successfully."
+			log_admin("[key_name(owner)] replied to a fax message from [key_name(sender)]: [input]")
+			message_admins("[key_name_admin(owner)] replied to a fax message from [key_name_admin(sender)]", TRUE)
 		else
-			src.owner << "\red Message reply failed."
+			owner << "\red Message reply failed."
 
 		spawn(100)
 			qdel(P)
@@ -1203,10 +1222,10 @@
 		var/mob/living/carbon/human/H = locate(href_list["SolGovFaxReply"])
 		var/obj/machinery/photocopier/faxmachine/fax = locate(href_list["originfax"])
 
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
+		var/input = input(owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
 		if(!input)	return
 
-		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
+		var/customname = input(owner, "Pick a title for the report", "Title") as text|null
 
 		for(var/obj/machinery/photocopier/faxmachine/F in machines)
 			if(F == fax)
@@ -1233,11 +1252,11 @@
 						P.overlays += stampoverlay
 						P.stamps += "<HR><i>This paper has been stamped and encrypted by the Sol Government Quantum Relay.</i>"
 
-				src.owner << "Message reply to transmitted successfully."
-				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [input]")
-				message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(H)]", TRUE)
+				owner << "Message reply to transmitted successfully."
+				log_admin("[key_name(owner)] replied to a fax message from [key_name(H)]: [input]")
+				message_admins("[key_name_admin(owner)] replied to a fax message from [key_name_admin(H)]", TRUE)
 				return
-		src.owner << "/red Unable to locate fax!"
+		owner << "/red Unable to locate fax!"
 		*/
 
 */
@@ -1445,7 +1464,7 @@
 /*
 	else if(href_list["populate_inactive_customitems"])
 		if(check_rights(R_ADMIN|R_SERVER))
-			populate_inactive_customitems_list(src.owner)*/
+			populate_inactive_customitems_list(owner)*/
 /*
 	else if(href_list["vsc"])
 		if(check_rights(R_ADMIN|R_SERVER))

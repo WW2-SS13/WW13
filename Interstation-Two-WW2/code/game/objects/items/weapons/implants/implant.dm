@@ -21,12 +21,12 @@
 	return
 
 /obj/item/weapon/implant/proc/install(var/mob/living/carbon/human/H, affected_organ)
-	src.loc = H
-	src.imp_in = H
-	src.implanted = TRUE
+	loc = H
+	imp_in = H
+	implanted = TRUE
 	var/obj/item/organ/external/affected = H.get_organ(affected_organ)
 	affected.implants += src
-	src.part = affected
+	part = affected
 	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 
 /obj/item/weapon/implant/proc/get_data()

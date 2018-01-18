@@ -18,15 +18,15 @@
 	if(carved)
 		if(store)
 			user << "<span class='notice'>[store] falls out of [title]!</span>"
-			store.loc = get_turf(src.loc)
+			store.loc = get_turf(loc)
 			store = null
 			return
 		else
 			user << "<span class='notice'>The pages of [title] have been cut out!</span>"
 			return
-	if(src.dat)
+	if(dat)
 		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
-		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
+		user.visible_message("[user] opens a book titled \"[title]\" and begins reading intently.")
 		onclose(user, "book")
 	else
 		user << "This book is completely blank!"
@@ -58,22 +58,22 @@
 					usr << "The title is invalid."
 					return
 				else
-					src.name = newtitle
-					src.title = newtitle
+					name = newtitle
+					title = newtitle
 			if("Contents")
 				var/content = sanitize(input("Write your book's contents (HTML NOT allowed):") as message|null, MAX_BOOK_MESSAGE_LEN)
 				if(!content)
 					usr << "The content is invalid."
 					return
 				else
-					src.dat += content
+					dat += content
 			if("Author")
 				var/newauthor = sanitize(input(usr, "Write the author's name:"))
 				if(!newauthor)
 					usr << "The name is invalid."
 					return
 				else
-					src.author = newauthor
+					author = newauthor
 			else
 				return
 	else if(istype(W, /obj/item/weapon/material/knife) || istype(W, /obj/item/weapon/wirecutters))

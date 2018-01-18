@@ -50,11 +50,11 @@
 	equipment_darkness_modifier = FALSE
 //	equipment_overlays.Cut()
 
-	if(istype(src.head, /obj/item/clothing/head))
+	if(istype(head, /obj/item/clothing/head))
 		add_clothing_protection(head)
-	if(istype(src.glasses, /obj/item/clothing/glasses))
+	if(istype(glasses, /obj/item/clothing/glasses))
 		process_glasses(glasses)
-	if(istype(src.wear_mask, /obj/item/clothing/mask))
+	if(istype(wear_mask, /obj/item/clothing/mask))
 		add_clothing_protection(wear_mask)
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)

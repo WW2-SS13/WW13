@@ -22,7 +22,7 @@
 /*
 /client/proc/kaboom()
 	var/power = input(src, "power?", "power?") as num
-	var/turf/T = get_turf(src.mob)
+	var/turf/T = get_turf(mob)
 	var/datum/explosiondata/d = new
 	d.is_rec = TRUE
 	d.epicenter = T

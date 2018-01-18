@@ -23,7 +23,7 @@
 /obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
 	if(istype(tool, /obj/item/weapon/screwdriver) && !istype(src, /obj/structure/sign/double))
 		user << "You unfasten the sign with your [tool]."
-		var/obj/item/sign/S = new(src.loc)
+		var/obj/item/sign/S = new(loc)
 		S.name = name
 		S.desc = desc
 		S.icon_state = icon_state

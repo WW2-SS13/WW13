@@ -1,5 +1,9 @@
 /mob/living/carbon/human/say(var/message)
 
+	// workaround for language bug that happens when you're spawned in
+	if (!languages.len)
+		languages[1] = default_language
+
 	if (!message)
 		return
 
@@ -75,7 +79,7 @@
 
 	//This is already covered by mob/say_understands()
 	//if (istype(other, /mob/living/simple_animal))
-	//	if((other.universal_speak && !speaking) || src.universal_speak || src.universal_understand)
+	//	if((other.universal_speak && !speaking) || universal_speak || universal_understand)
 	//		return TRUE
 	//	return FALSE
 
@@ -130,6 +134,9 @@
 		else if(ending == "?")
 			verb="asks"
 
+	if (speaking != languages[1])
+		verb = "[verb] in [speaking.name]"
+
 	return verb
 
 /mob/living/carbon/human/handle_speech_problems(var/message, var/verb)
@@ -159,7 +166,7 @@
 /mob/living/carbon/human/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	switch(message_mode)
 		if("intercom")
-			if(!src.restrained())
+			if(!restrained())
 				for(var/obj/item/device/radio/intercom/I in view(1))
 					I.talk_into(src, message, null, verb, speaking)
 					I.add_fingerprint(src)

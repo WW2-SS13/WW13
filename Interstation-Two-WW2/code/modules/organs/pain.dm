@@ -120,7 +120,7 @@ mob/living/carbon/human/proc/handle_pain()
 		if(I.status & (ORGAN_DEAD|ORGAN_ROBOT)) continue
 		if(I.damage > 2) if(prob(2))
 			var/obj/item/organ/external/parent = get_organ(I.parent_organ)
-			src.custom_pain("You feel a sharp pain in your [parent.name]", TRUE)
+			custom_pain("You feel a sharp pain in your [parent.name]", TRUE)
 
 	var/toxDamageMessage = null
 	var/toxMessageProb = TRUE
@@ -142,7 +142,7 @@ mob/living/carbon/human/proc/handle_pain()
 			toxDamageMessage = "Your body aches all over, it's driving you mad."
 
 	if(toxDamageMessage && prob(toxMessageProb))
-		src.custom_pain(toxDamageMessage, getToxLoss() >= 15)
+		custom_pain(toxDamageMessage, getToxLoss() >= 15)
 
 
 /mob/living/carbon/human/proc/painchecks()
@@ -169,5 +169,5 @@ mob/living/carbon/human/proc/handle_pain()
 		Weaken(10)
 		shake_camera(src, 20, 3)
 		if(!stat)//So this doesn't get displayed when you're asleep.
-			src.visible_message("<span class='warning'>[src] gives into the pain!</span>")
+			visible_message("<span class='warning'>[src] gives into the pain!</span>")
 			*/ //to be finished soon.

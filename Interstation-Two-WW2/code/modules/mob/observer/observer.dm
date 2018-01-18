@@ -17,7 +17,7 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 
 /mob/observer/New()
 	..()
-	ghost_image = image(src.icon,src)
+	ghost_image = image(icon,src)
 	ghost_image.appearance = src
 	ghost_image.appearance_flags = RESET_ALPHA
 	if(ghost_image_flag & GHOST_IMAGE_DARKNESS)

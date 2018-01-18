@@ -80,7 +80,7 @@
 		m.drop_from_inventory(src)
 		m.update_inv_r_hand()
 		m.update_inv_l_hand()
-		src.loc = null
+		loc = null
 	return ..()
 
 /obj/item/proc/has_edge()
@@ -98,8 +98,8 @@
 
 //Checks if the item is being held by a mob, and if so, updates the held icons
 /obj/item/proc/update_held_icon()
-	if(ismob(src.loc))
-		var/mob/M = src.loc
+	if(ismob(loc))
+		var/mob/M = loc
 		if(M.l_hand == src)
 			M.update_inv_l_hand()
 		else if(M.r_hand == src)
@@ -123,7 +123,7 @@
 
 /obj/item/examine(mob/user, var/distance = -1)
 	var/size
-	switch(src.w_class)
+	switch(w_class)
 		if(1.0)
 			size = "tiny"
 		if(2.0)
@@ -151,16 +151,16 @@
 			user << "<span class='notice'>You try to use your hand, but realize it is no longer attached!</span>"
 			return
 	pickup(user)
-	if (istype(src.loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = src.loc
+	if (istype(loc, /obj/item/weapon/storage))
+		var/obj/item/weapon/storage/S = loc
 		S.remove_from_storage(src)
 
-	src.throwing = FALSE
-	if (src.loc == user)
+	throwing = FALSE
+	if (loc == user)
 		if(!user.unEquip(src))
 			return
 	else
-		if(isliving(src.loc))
+		if(isliving(loc))
 			return
 	pickup(user)
 	user.put_in_active_hand(src)
@@ -173,12 +173,12 @@
 		var/obj/item/weapon/storage/S = W
 		if(S.use_to_pickup)
 			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
-				if(isturf(src.loc))
+				if(isturf(loc))
 					var/list/rejections = list()
 					var/success = FALSE
 					var/failure = FALSE
 
-					for(var/obj/item/I in src.loc)
+					for(var/obj/item/I in loc)
 						if(I.type in rejections) // To limit bag spamming: any given type only complains once
 							continue
 						if(!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
@@ -398,7 +398,7 @@ var/list/global/slot_flags_enumeration = list(
 	if(usr.hand && usr.l_hand) //Left hand is not full
 		usr << "<span class='warning'>Your left hand is full.</span>"
 		return
-	if(!istype(src.loc, /turf)) //Object is on a turf
+	if(!istype(loc, /turf)) //Object is on a turf
 		usr << "<span class='warning'>You can't pick that up!</span>"
 		return
 	//All checks are done, time to pick it up!
@@ -439,14 +439,14 @@ var/list/global/slot_flags_enumeration = list(
 		user << "<span class='warning'>You cannot locate any eyes on [M]!</span>"
 		return
 
-	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
-	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
-	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)") //BS12 EDIT ALG
+	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
+	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
+	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)") //BS12 EDIT ALG
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	//if((CLUMSY in user.mutations) && prob(50))
 	//	M = user
 		/*

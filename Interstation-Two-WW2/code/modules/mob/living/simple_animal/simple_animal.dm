@@ -71,8 +71,8 @@
 	verbs -= /mob/verb/observe
 
 /mob/living/simple_animal/Login()
-	if(src && src.client)
-		src.client.screen = null
+	if(src && client)
+		client.screen = null
 	..()
 
 /mob/living/simple_animal/Life()
@@ -103,7 +103,7 @@
 
 	//Movement
 	if(!client && !stop_automated_movement && wander && !anchored)
-		if(isturf(src.loc) && !resting && !buckled && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
+		if(isturf(loc) && !resting && !buckled && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
@@ -151,7 +151,7 @@
 	//Atmos
 	var/atmos_suitable = TRUE
 
-	var/atom/A = src.loc
+	var/atom/A = loc
 
 	if(istype(A,/turf))
 		var/turf/T = A
@@ -259,7 +259,7 @@
 			M.do_attack_animation(src)
 
 		if(I_HURT)
-			adjustBruteLoss(harm_intent_damage)
+			adjustBruteLoss(harm_intent_damage*M.getStatCoeff("strength"))
 			M.visible_message("\red [M] [response_harm] \the [src].")
 			M.do_attack_animation(src)
 			playsound(get_turf(M), "punch", 50, TRUE, -1)
@@ -382,7 +382,7 @@
 	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
 		for(var/i=0;i<actual_meat_amount;i++)
 			var/obj/item/meat = new meat_type(get_turf(src))
-			meat.name = "[src.name] [meat.name]"
+			meat.name = "[name] [meat.name]"
 		if(issmall(src))
 			user.visible_message("<span class='danger'>[user] chops up \the [src]!</span>")
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))

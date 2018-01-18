@@ -11,7 +11,7 @@
 	layer = 4
 	attack_verb = list("bapped")
 	var/page = TRUE    // current page
-	var/list/pages = list()  // Ordered list of pages as they are to be displayed. Can be different order than src.contents.
+	var/list/pages = list()  // Ordered list of pages as they are to be displayed. Can be different order than contents.
 
 
 /obj/item/weapon/paper_bundle/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -39,7 +39,7 @@
 			O.add_fingerprint(usr)
 			pages.Add(O)
 
-		user << "<span class='notice'>You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>"
+		user << "<span class='notice'>You add \the [W.name] to [(name == "paper bundle") ? "the paper bundle" : name].</span>"
 		qdel(W)
 	else
 		if(istype(W, /obj/item/weapon/tape_roll))
@@ -56,9 +56,9 @@
 
 /obj/item/weapon/paper_bundle/proc/insert_sheet_at(mob/user, var/index, obj/item/weapon/sheet)
 	if(istype(sheet, /obj/item/weapon/paper))
-		user << "<span class='notice'>You add [(sheet.name == "paper") ? "the paper" : sheet.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>"
+		user << "<span class='notice'>You add [(sheet.name == "paper") ? "the paper" : sheet.name] to [(name == "paper bundle") ? "the paper bundle" : name].</span>"
 	else if(istype(sheet, /obj/item/weapon/photo))
-		user << "<span class='notice'>You add [(sheet.name == "photo") ? "the photo" : sheet.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>"
+		user << "<span class='notice'>You add [(sheet.name == "photo") ? "the photo" : sheet.name] to [(name == "paper bundle") ? "the paper bundle" : name].</span>"
 
 	user.drop_from_inventory(sheet)
 	sheet.loc = src
@@ -86,7 +86,7 @@
 				if(user.get_inactive_hand() == src)
 					user.drop_from_inventory(src)
 
-				new /obj/effect/decal/cleanable/ash(src.loc)
+				new /obj/effect/decal/cleanable/ash(loc)
 				qdel(src)
 
 			else
@@ -94,7 +94,7 @@
 
 /obj/item/weapon/paper_bundle/examine(mob/user)
 	if(..(user, TRUE))
-		src.show_content(user)
+		show_content(user)
 	else
 		user << "<span class='notice'>It is too far away.</span>"
 	return
@@ -136,14 +136,14 @@
 		+ "</body></html>", "window=[name]")
 
 /obj/item/weapon/paper_bundle/attack_self(mob/user as mob)
-	src.show_content(user)
+	show_content(user)
 	add_fingerprint(usr)
 	update_icon()
 	return
 
 /obj/item/weapon/paper_bundle/Topic(href, href_list)
 	..()
-	if((src in usr.contents) || (istype(src.loc, /obj/item/weapon/folder) && (src.loc in usr.contents)))
+	if((src in usr.contents) || (istype(loc, /obj/item/weapon/folder) && (loc in usr.contents)))
 		usr.set_machine(src)
 		var/obj/item/weapon/in_hand = usr.get_active_hand()
 		if(href_list["next_page"])
@@ -151,13 +151,13 @@
 				insert_sheet_at(usr, page+1, in_hand)
 			else if(page != pages.len)
 				page++
-				playsound(src.loc, "pageturn", 50, TRUE)
+				playsound(loc, "pageturn", 50, TRUE)
 		if(href_list["prev_page"])
 			if(in_hand && (istype(in_hand, /obj/item/weapon/paper) || istype(in_hand, /obj/item/weapon/photo)))
 				insert_sheet_at(usr, page, in_hand)
 			else if(page > TRUE)
 				page--
-				playsound(src.loc, "pageturn", 50, TRUE)
+				playsound(loc, "pageturn", 50, TRUE)
 		if(href_list["remove"])
 			var/obj/item/weapon/W = pages[page]
 			usr.put_in_hands(W)
@@ -179,8 +179,8 @@
 			update_icon()
 	else
 		usr << "<span class='notice'>You need to hold it in hands!</span>"
-	if (istype(src.loc, /mob) ||istype(src.loc.loc, /mob))
-		src.attack_self(usr)
+	if (istype(loc, /mob) ||istype(loc.loc, /mob))
+		attack_self(usr)
 		updateUsrDialog()
 
 /obj/item/weapon/paper_bundle/verb/rename()

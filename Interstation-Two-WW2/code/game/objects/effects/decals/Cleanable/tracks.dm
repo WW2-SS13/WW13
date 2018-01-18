@@ -25,9 +25,9 @@ var/global/list/image/fluidtrack_cache=list()
 	var/image/overlay
 
 	New(_direction,_color,_wet)
-		src.direction=_direction
-		src.basecolor=_color
-		src.wet=_wet
+		direction=_direction
+		basecolor=_color
+		wet=_wet
 
 /obj/effect/decal/cleanable/blood/tracks/reveal_blood()
 //	if(!fluorescent)

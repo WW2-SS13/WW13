@@ -34,7 +34,7 @@
 
 /obj/structure/table/New()
 	..()
-	for(var/obj/structure/table/T in src.loc)
+	for(var/obj/structure/table/T in loc)
 		if(T != src)
 			qdel(T)
 	update_icon()
@@ -55,7 +55,7 @@
 		var/dir_sum = FALSE
 		for(var/direction in list(1,2,4,8,5,6,9,10))
 			var/skip_sum = FALSE
-			for(var/obj/structure/window/W in src.loc)
+			for(var/obj/structure/window/W in loc)
 				if(W.dir == direction) //So smooth tables don't go smooth through windows
 					skip_sum = TRUE
 					continue
@@ -108,7 +108,7 @@
 			if(dir_sum%16 == 12) //12 doesn't exist as a dir.
 				dir_sum = 4
 		if(dir_sum%16 in list(5,6,9,10))
-			if(locate(/obj/structure/table,get_step(src.loc,dir_sum%16)))
+			if(locate(/obj/structure/table,get_step(loc,dir_sum%16)))
 				table_type = 3 //full table (not the TRUE tile thick one, but one of the 'tabledir' tables)
 			else
 				table_type = 2 //1 tile thick, corner table (treated the same as streight tables in code later on)
@@ -272,7 +272,7 @@
 		return
 	if(!user.drop_item())
 		return
-	if (O.loc != src.loc)
+	if (O.loc != loc)
 		step(O, get_dir(O, src))
 	return
 
@@ -303,7 +303,7 @@
 			return FALSE
 		if(!G.confirm())
 			return FALSE
-		G.affecting.loc = src.loc
+		G.affecting.loc = loc
 		if(istype(src, /obj/structure/table/optable))
 			var/obj/structure/table/optable/OT = src
 			G.affecting.resting = TRUE
@@ -377,9 +377,9 @@
 
 	if(destroy_type == TBL_DISASSEMBLE)
 		user << "<span class='notice'>You start disassembling [src]...</span>"
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, TRUE)
+		playsound(loc, 'sound/items/Screwdriver.ogg', 50, TRUE)
 		if(do_after(user, 20, target = src))
-			new frame(src.loc)
+			new frame(loc)
 			for(var/i = TRUE, i <= buildstackamount, i++)
 				new buildstack(get_turf(src))
 			qdel(src)
@@ -387,13 +387,13 @@
 
 	if(destroy_type == TBL_DECONSTRUCT)
 		user << "<span class='notice'>You start deconstructing [src]...</span>"
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		if(do_after(user, 40, target = src))
 			for(var/i = TRUE, i <= framestackamount, i++)
 				new framestack(get_turf(src))
 			for(var/i = TRUE, i <= buildstackamount, i++)
 				new buildstack(get_turf(src))
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, TRUE)
+			playsound(loc, 'sound/items/Deconstruct.ogg', 50, TRUE)
 			qdel(src)
 			return
 
@@ -402,7 +402,12 @@
  */
 
 /obj/structure/table/proc/climb_table(mob/user)
-	src.add_fingerprint(user)
+	for (var/obj/structure/S in get_turf(src))
+		if (S == src)
+			continue
+		else if (S.density)
+			return
+	add_fingerprint(user)
 	user.visible_message("<span class='warning'>[user] starts climbing onto [src].</span>", \
 								"<span class='notice'>You start climbing onto [src]...</span>")
 	var/climb_time = 20
@@ -410,7 +415,7 @@
 		climb_time *= 2
 	tableclimber = user
 	if(do_mob(user, user, climb_time))
-		if(src.loc) //Checking if table has been destroyed
+		if(loc) //Checking if table has been destroyed
 			density = FALSE
 			if(user.forceMove(loc))
 				user.visible_message("<span class='warning'>[user] climbs onto [src].</span>", \
@@ -438,17 +443,17 @@
 /obj/structure/table/glass/tablepush(obj/item/I, mob/user)
 	if(..())
 		visible_message("<span class='warning'>[src] breaks!</span>")
-		playsound(src.loc, "shatter", 50, TRUE)
-		new frame(src.loc)
-		new /obj/item/weapon/material/shard(src.loc)
+		playsound(loc, "shatter", 50, TRUE)
+		new frame(loc)
+		new /obj/item/weapon/material/shard(loc)
 		qdel(src)
 
 /obj/structure/table/glass/climb_table(mob/user)
 	if(..())
 		visible_message("<span class='warning'>[src] breaks!</span>")
-		playsound(src.loc, "shatter", 50, TRUE)
-		new frame(src.loc)
-		new /obj/item/weapon/material/shard(src.loc)
+		playsound(loc, "shatter", 50, TRUE)
+		new frame(loc)
+		new /obj/item/weapon/material/shard(loc)
 		qdel(src)
 		user.Weaken(5)
 
@@ -513,20 +518,20 @@
 	if (istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			if(src.status == 2)
+			if(status == 2)
 				user << "<span class='notice'>You start weakening the reinforced table...</span>"
-				playsound(src.loc, 'sound/items/Welder.ogg', 50, TRUE)
+				playsound(loc, 'sound/items/Welder.ogg', 50, TRUE)
 				if (do_after(user, 50, target = src))
 					if(!src || !WT.isOn()) return
 					user << "<span class='notice'>You weaken the table.</span>"
-					src.status = TRUE
+					status = TRUE
 			else
 				user << "<span class='notice'>You start strengthening the reinforced table...</span>"
-				playsound(src.loc, 'sound/items/Welder.ogg', 50, TRUE)
+				playsound(loc, 'sound/items/Welder.ogg', 50, TRUE)
 				if (do_after(user, 50, target = src))
 					if(!src || !WT.isOn()) return
 					user << "<span class='notice'>You strengthen the table.</span>"
-					src.status = 2
+					status = 2
 			return
 	..()
 

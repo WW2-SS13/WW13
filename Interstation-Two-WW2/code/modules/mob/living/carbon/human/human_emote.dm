@@ -21,19 +21,19 @@
 		if(findtext(act,"s",-1) && !findtext(act,"_",-2))//Removes ending s's unless they are prefixed with a '_'
 			act = copytext(act,1,length(act))
 
-		var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)
+		var/muzzled = istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(wear_mask, /obj/item/weapon/grenade)
 		//var/m_type = TRUE
 
 		for (var/obj/item/weapon/implant/I in src)
 			if (I.implanted)
 				I.trigger(act, src)
 
-		if(src.stat == 2.0 && (act != "deathgasp"))
+		if(stat == 2.0 && (act != "deathgasp"))
 			return
 
 		switch(act)
 			if ("airguitar")
-				if (!src.restrained())
+				if (!restrained())
 					message = "is strumming the air and headbanging like a safari chimp."
 					m_type = TRUE
 
@@ -46,7 +46,7 @@
 				m_type = TRUE
 
 			if ("bow")
-				if (!src.buckled)
+				if (!buckled)
 					var/M = null
 					if (param)
 						for (var/mob/A in view(null, null))
@@ -70,7 +70,7 @@
 				if (input2 == "Visible")
 					m_type = TRUE
 				else if (input2 == "Hearable")
-					if (src.miming)
+					if (miming)
 						return
 					m_type = 2
 				else
@@ -83,11 +83,11 @@
 				//if(silent && silent > FALSE && findtext(message,"\"",1, null) > FALSE)
 				//	return //This check does not work and I have no idea why, I'm leaving it in for reference.
 
-				if (src.client)
+				if (client)
 					if (client.prefs.muted & MUTE_IC)
 						src << "\red You cannot send IC messages (muted)."
 						return
-					if (src.client.handle_spam_prevention(message,MUTE_IC))
+					if (client.handle_spam_prevention(message,MUTE_IC))
 						return
 				if (stat)
 					return
@@ -96,7 +96,7 @@
 				return custom_emote(m_type, message)
 
 			if ("salute")
-				if (!src.buckled)
+				if (!buckled)
 					var/M = null
 					if (param)
 						for (var/mob/A in view(null, null))
@@ -125,20 +125,20 @@
 						m_type = 2
 
 			if ("clap")
-				if (!src.restrained())
+				if (!restrained())
 					message = "claps."
 					m_type = 2
 					if(miming)
 						m_type = TRUE
 			if ("flap")
-				if (!src.restrained())
+				if (!restrained())
 					message = "flaps [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] wings."
 					m_type = 2
 					if(miming)
 						m_type = TRUE
 
 			if ("aflap")
-				if (!src.restrained())
+				if (!restrained())
 					message = "flaps [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] wings ANGRILY!"
 					m_type = 2
 					if(miming)
@@ -174,9 +174,9 @@
 
 			if ("faint")
 				message = "faints."
-				if(src.sleeping)
+				if(sleeping)
 					return //Can't faint while asleep
-				src.sleeping += 10 //Short-short nap
+				sleeping += 10 //Short-short nap
 				m_type = TRUE
 
 			if ("cough")
@@ -366,11 +366,11 @@
 						message = "takes a drag from a cigarette and blows \"[M]\" out in smoke."
 						m_type = TRUE
 					else
-						message = "says, \"[M], please. He had a family.\" [src.name] takes a drag from a cigarette and blows his name out in smoke."
+						message = "says, \"[M], please. He had a family.\" [name] takes a drag from a cigarette and blows his name out in smoke."
 						m_type = 2
 
 			if ("point")
-				if (!src.restrained())
+				if (!restrained())
 					var/mob/M = null
 					if (param)
 						for (var/atom/A as mob|obj|turf|area in view(null, null))
@@ -389,7 +389,7 @@
 				m_type = TRUE
 
 			if ("raise")
-				if (!src.restrained())
+				if (!restrained())
 					message = "raises a hand."
 				m_type = TRUE
 
@@ -402,12 +402,12 @@
 				m_type = TRUE
 
 			if ("signal")
-				if (!src.restrained())
+				if (!restrained())
 					var/t1 = round(text2num(param))
 					if (isnum(t1))
-						if (t1 <= 5 && (!src.r_hand || !src.l_hand))
+						if (t1 <= 5 && (!r_hand || !l_hand))
 							message = "raises [t1] finger\s."
-						else if (t1 <= 10 && (!src.r_hand && !src.l_hand))
+						else if (t1 <= 10 && (!r_hand && !l_hand))
 							message = "raises [t1] finger\s."
 				m_type = TRUE
 
@@ -491,7 +491,7 @@
 
 			if("hug")
 				m_type = TRUE
-				if (!src.restrained())
+				if (!restrained())
 					var/M = null
 					if (param)
 						for (var/mob/A in view(1, null))
@@ -508,7 +508,7 @@
 
 			if ("handshake")
 				m_type = TRUE
-				if (!src.restrained() && !src.r_hand)
+				if (!restrained() && !r_hand)
 					var/mob/M = null
 					if (param)
 						for (var/mob/A in view(1, null))

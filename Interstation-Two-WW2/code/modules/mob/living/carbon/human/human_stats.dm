@@ -46,3 +46,8 @@
 	else
 		stats[statname][1] *= (1 + (multiplier/100))
 		stats[statname][2] *= (1 + (multiplier/100))
+
+	// stats may not go over 500
+	for (var/sname in stats)
+		stats[sname][1] = min(stats[sname][1], 500.00)
+		stats[sname][2] = min(stats[sname][1], 500.00)

@@ -21,23 +21,23 @@
 
 /obj/machinery/gibber/New()
 	..()
-	src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+	overlays += image('icons/obj/kitchen.dmi', "grjam")
 
 /obj/machinery/gibber/update_icon()
 	overlays.Cut()
 	if (dirty)
-		src.overlays += image('icons/obj/kitchen.dmi', "grbloody")
+		overlays += image('icons/obj/kitchen.dmi', "grbloody")
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if (!occupant)
-		src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+		overlays += image('icons/obj/kitchen.dmi', "grjam")
 	else if (operating)
-		src.overlays += image('icons/obj/kitchen.dmi', "gruse")
+		overlays += image('icons/obj/kitchen.dmi', "gruse")
 	else
-		src.overlays += image('icons/obj/kitchen.dmi', "gridle")
+		overlays += image('icons/obj/kitchen.dmi', "gridle")
 
 /obj/machinery/gibber/relaymove(mob/user as mob)
-	src.go_out()
+	go_out()
 	return
 
 /obj/machinery/gibber/attack_hand(mob/user as mob)
@@ -47,7 +47,7 @@
 		user << "<span class='danger'>The gibber is locked and running, wait for it to finish.</span>"
 		return
 	else
-		src.startgibbing(user)
+		startgibbing(user)
 
 /obj/machinery/gibber/examine()
 	..()
@@ -73,7 +73,7 @@
 
 /obj/machinery/gibber/proc/move_into_gibber(var/mob/user,var/mob/living/victim)
 
-	if(src.occupant)
+	if(occupant)
 		user << "<span class='danger'>The gibber is full, empty it first!</span>"
 		return
 
@@ -95,14 +95,14 @@
 		return
 
 	user.visible_message("<span class='danger'>[user] starts to put [victim] into the gibber!</span>")
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(do_after(user, 30, src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
 		user.visible_message("<span class='danger'>\The [user] stuffs \the [victim] into the gibber!</span>")
 		if(victim.client)
 			victim.client.perspective = EYE_PERSPECTIVE
 			victim.client.eye = src
 		victim.loc = src
-		src.occupant = victim
+		occupant = victim
 		update_icon()
 
 /obj/machinery/gibber/verb/eject()
@@ -112,33 +112,33 @@
 
 	if (usr.stat != FALSE)
 		return
-	src.go_out()
+	go_out()
 	add_fingerprint(usr)
 	return
 
 /obj/machinery/gibber/proc/go_out()
-	if(operating || !src.occupant)
+	if(operating || !occupant)
 		return
 	for(var/obj/O in src)
-		O.loc = src.loc
-	if (src.occupant.client)
-		src.occupant.client.eye = src.occupant.client.mob
-		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
-	src.occupant = null
+		O.loc = loc
+	if (occupant.client)
+		occupant.client.eye = occupant.client.mob
+		occupant.client.perspective = MOB_PERSPECTIVE
+	occupant.loc = loc
+	occupant = null
 	update_icon()
 	return
 
 
 /obj/machinery/gibber/proc/startgibbing(mob/user as mob)
-	if(src.operating)
+	if(operating)
 		return
-	if(!src.occupant)
+	if(!occupant)
 		visible_message("<span class='danger'>You hear a loud metallic grinding sound.</span>")
 		return
 	use_power(1000)
 	visible_message("<span class='danger'>You hear a loud squelchy grinding sound.</span>")
-	src.operating = TRUE
+	operating = TRUE
 	update_icon()
 
 	var/slab_name = occupant.name
@@ -150,19 +150,19 @@
 		slab_nutrition = C.nutrition / 15
 
 	// Some mobs have specific meat item types.
-	if(istype(src.occupant,/mob/living/simple_animal))
-		var/mob/living/simple_animal/critter = src.occupant
+	if(istype(occupant,/mob/living/simple_animal))
+		var/mob/living/simple_animal/critter = occupant
 		if(critter.meat_amount)
 			slab_count = critter.meat_amount
 		if(critter.meat_type)
 			slab_type = critter.meat_type
-	else if(istype(src.occupant,/mob/living/carbon/human))
+	else if(istype(occupant,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = occupant
-		slab_name = src.occupant.real_name
+		slab_name = occupant.real_name
 		slab_type = H.species.meat_type
 
 	// Small mobs don't give as much nutrition.
-	if(issmall(src.occupant))
+	if(issmall(occupant))
 		slab_nutrition *= 0.5
 	slab_nutrition /= slab_count
 
@@ -171,22 +171,22 @@
 		new_meat.name = "[slab_name] [new_meat.name]"
 		new_meat.reagents.add_reagent("nutriment",slab_nutrition)
 
-		if(src.occupant.reagents)
-			src.occupant.reagents.trans_to_obj(new_meat, round(occupant.reagents.total_volume/slab_count,1))
+		if(occupant.reagents)
+			occupant.reagents.trans_to_obj(new_meat, round(occupant.reagents.total_volume/slab_count,1))
 
-	src.occupant.attack_log += "\[[time_stamp()]\] Was gibbed by <b>[user]/[user.ckey]</b>" //One shall not simply gib a mob unnoticed!
-	user.attack_log += "\[[time_stamp()]\] Gibbed <b>[src.occupant]/[src.occupant.ckey]</b>"
-	msg_admin_attack("[user.name] ([user.ckey]) gibbed [src.occupant] ([src.occupant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+	occupant.attack_log += "\[[time_stamp()]\] Was gibbed by <b>[user]/[user.ckey]</b>" //One shall not simply gib a mob unnoticed!
+	user.attack_log += "\[[time_stamp()]\] Gibbed <b>[occupant]/[occupant.ckey]</b>"
+	msg_admin_attack("[user.name] ([user.ckey]) gibbed [occupant] ([occupant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-	src.occupant.ghostize()
+	occupant.ghostize()
 
 	spawn(gib_time)
 
-		src.operating = FALSE
-		src.occupant.gib()
-		qdel(src.occupant)
+		operating = FALSE
+		occupant.gib()
+		qdel(occupant)
 
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, TRUE)
+		playsound(loc, 'sound/effects/splat.ogg', 50, TRUE)
 		operating = FALSE
 		for (var/obj/thing in contents)
 			// Todo: unify limbs and internal organs

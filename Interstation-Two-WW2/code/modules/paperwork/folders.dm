@@ -59,7 +59,7 @@
 	if((usr.stat || usr.restrained()))
 		return
 
-	if(src.loc == usr)
+	if(loc == usr)
 
 		if(href_list["remove"])
 			var/obj/item/P = locate(href_list["remove"])

@@ -21,7 +21,7 @@
 	var/throwdir = null
 
 	for(var/mob/M in hearers(2, src))
-		if(M.loc != src.loc)
+		if(M.loc != loc)
 			throwdir = get_dir(src,target)
 			M.throw_at(get_edge_target_turf(M, throwdir),15,1)
 	return ..()

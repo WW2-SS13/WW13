@@ -10,7 +10,7 @@
 /obj/machinery/iv_drip/var/obj/item/weapon/reagent_containers/beaker = null
 
 /obj/machinery/iv_drip/update_icon()
-	if(src.attached)
+	if(attached)
 		icon_state = "hooked"
 	else
 		icon_state = ""
@@ -39,28 +39,28 @@
 	..()
 
 	if(attached)
-		visible_message("[src.attached] is detached from \the [src]")
-		src.attached = null
-		src.update_icon()
+		visible_message("[attached] is detached from \the [src]")
+		attached = null
+		update_icon()
 		return
 
 	if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= TRUE)
 		visible_message("[usr] attaches \the [src] to \the [over_object].")
-		src.attached = over_object
-		src.update_icon()
+		attached = over_object
+		update_icon()
 
 
 /obj/machinery/iv_drip/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/reagent_containers))
-		if(!isnull(src.beaker))
+		if(!isnull(beaker))
 			user << "There is already a reagent container loaded!"
 			return
 
 		user.drop_item()
 		W.loc = src
-		src.beaker = W
+		beaker = W
 		user << "You attach \the [W] to \the [src]."
-		src.update_icon()
+		update_icon()
 		return
 	else
 		return ..()
@@ -69,24 +69,24 @@
 /obj/machinery/iv_drip/process()
 	set background = TRUE
 
-	if(src.attached)
+	if(attached)
 
-		if(!(get_dist(src, src.attached) <= TRUE && isturf(src.attached.loc)))
-			visible_message("The needle is ripped out of [src.attached], doesn't that hurt?")
-			src.attached:apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
-			src.attached = null
-			src.update_icon()
+		if(!(get_dist(src, attached) <= TRUE && isturf(attached.loc)))
+			visible_message("The needle is ripped out of [attached], doesn't that hurt?")
+			attached:apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
+			attached = null
+			update_icon()
 			return
 
-	if(src.attached && src.beaker)
+	if(attached && beaker)
 		// Give blood
 		if(mode)
-			if(src.beaker.volume > FALSE)
+			if(beaker.volume > FALSE)
 				var/transfer_amount = REM
-				if(istype(src.beaker, /obj/item/weapon/reagent_containers/blood))
+				if(istype(beaker, /obj/item/weapon/reagent_containers/blood))
 					// speed up transfer on blood packs
 					transfer_amount = 4
-				src.beaker.reagents.trans_to_mob(src.attached, transfer_amount, CHEM_BLOOD)
+				beaker.reagents.trans_to_mob(attached, transfer_amount, CHEM_BLOOD)
 				update_icon()
 
 		// Take blood
@@ -123,9 +123,9 @@
 				update_icon()
 
 /obj/machinery/iv_drip/attack_hand(mob/user as mob)
-	if(src.beaker)
-		src.beaker.loc = get_turf(src)
-		src.beaker = null
+	if(beaker)
+		beaker.loc = get_turf(src)
+		beaker = null
 		update_icon()
 	else
 		return ..()
@@ -148,7 +148,7 @@
 
 /obj/machinery/iv_drip/examine(mob/user)
 	..(user)
-	if (!(user in view(2)) && user!=src.loc) return
+	if (!(user in view(2)) && user!=loc) return
 
 	user << "The IV drip is [mode ? "injecting" : "taking blood"]."
 

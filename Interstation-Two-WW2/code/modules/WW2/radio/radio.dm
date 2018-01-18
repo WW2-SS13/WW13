@@ -84,30 +84,23 @@ var/global/list/default_ukrainian_channels = list(
 	item_state = "walkietalkie"
 
 	var/on = TRUE // FALSE for off
-//	var/last_transmission
 	var/frequency = DEFAULT_FREQ
-//	var/traitor_frequency = FALSE //tune to frequency to unlock traitor supplies
 	var/canhear_range = 3 // the range which mobs can hear this radio from
 	var/datum/wires/radio/wires = null
-//	var/b_stat = FALSE
 	var/broadcasting = FALSE
 	var/listening = TRUE
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/list/listening_on_channel = list()
-//	var/subspace_transmission = FALSE
-//	var/syndie = FALSE//Holder to see if it's a syndicate encrypted radio
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2
 	matter = list("glass" = 25,DEFAULT_WALL_MATERIAL = 75)
-//	var/const/FREQ_LISTENING = TRUE
 	var/list/internal_channels
 	var/last_tick = -1
 	var/datum/nanoui/UI
 	var/speech_sound = null
-//	var/freerange = TRUE
 	var/last_broadcast = -1
 	var/notyetmoved = TRUE // shitty hack to prevent radio piles from broadcasting
 	var/is_supply_radio = FALSE
@@ -150,6 +143,7 @@ var/global/list/default_ukrainian_channels = list(
 		"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 		"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
 		"Luger Crate" = /obj/structure/closet/crate/lugers,
+		"Maxim" = /obj/item/weapon/gun/projectile/minigun/kord/maxim,
 
 		// ARTILLERY AMMO
 		"Artillery Ballistic Shells Crate" = /obj/structure/closet/crate/artillery,
@@ -199,6 +193,7 @@ var/global/list/default_ukrainian_channels = list(
 
 		// GUNS & ARTILLERY
 		"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
+		"Maxim" = /obj/item/weapon/gun/projectile/minigun/kord/maxim,
 
 		// CLOSETS
 		"Tool Closet" = /obj/structure/closet/toolcloset,
@@ -236,7 +231,7 @@ var/global/list/default_ukrainian_channels = list(
 
 		"Mines Ammo" = 50,
 		"Grenades" = 65,
-		"Panzerfausts" = 60,
+		"Panzerfausts" = 120,
 		"Smoke Grenades" = 55, // too lazy to fix this typo rn
 		"Sandbags" = 20,
 		"Flaregun Ammo" = 15,
@@ -258,6 +253,7 @@ var/global/list/default_ukrainian_channels = list(
 		"Flammenwerfer" = 250,
 		"7,5 cm FK 18 Artillery Piece" = 300,
 		"Luger Crate" = 400,
+		"Maxim" = 225,
 
 		// ARTILLERY AMMO
 		"Artillery Ballistic Shells Crate" = 100,
@@ -270,8 +266,8 @@ var/global/list/default_ukrainian_channels = list(
 		"Betty Mines Crate" = 200,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = 150,
-		"Samoyed Crate" = 150,
+		"German Shepherd Crate" = 50,
+		"Samoyed Crate" = 50,
 
 		// MEDICAL STUFF
 		"Medical Crate" = 75
@@ -527,10 +523,10 @@ var/global/list/default_ukrainian_channels = list(
 	if(world.time - last_tick > 30 || last_tick == -1)
 		last_tick = world.time
 
-		if(!src.loc)
+		if(!loc)
 			on = FALSE
 		else
-			var/area/A = src.loc.loc
+			var/area/A = loc.loc
 			if(!A || !isarea(A))
 				on = FALSE
 			else
@@ -575,10 +571,10 @@ var/global/list/default_ukrainian_channels = list(
 	if(world.time - last_tick > 30 || last_tick == -1)
 		last_tick = world.time
 
-		if(!src.loc)
+		if(!loc)
 			on = FALSE
 		else
-			var/area/A = src.loc.loc
+			var/area/A = loc.loc
 			if(!A || !isarea(A))
 				on = FALSE
 			else

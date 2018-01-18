@@ -41,13 +41,13 @@
 
 /obj/item/weapon/extinguisher/examine(mob/user)
 	if(..(user, FALSE))
-		user << text("\icon[] [] contains [] units of water left!", src, src.name, src.reagents.total_volume)
+		user << text("\icon[] [] contains [] units of water left!", src, name, reagents.total_volume)
 	return
 
 /obj/item/weapon/extinguisher/attack_self(mob/user as mob)
 	safety = !safety
-	src.icon_state = "[sprite_name][!safety]"
-	src.desc = "The safety is [safety ? "on" : "off"]."
+	icon_state = "[sprite_name][!safety]"
+	desc = "The safety is [safety ? "on" : "off"]."
 	user << "The safety is [safety ? "on" : "off"]."
 	return
 
@@ -76,20 +76,20 @@
 		var/obj/o = target
 		var/amount = o.reagents.trans_to_obj(src, 50)
 		user << "<span class='notice'>You fill [src] with [amount] units of the contents of [target].</span>"
-		playsound(src.loc, 'sound/effects/refill.ogg', 50, TRUE, -6)
+		playsound(loc, 'sound/effects/refill.ogg', 50, TRUE, -6)
 		return
 
 	if (!safety)
-		if (src.reagents.total_volume < TRUE)
+		if (reagents.total_volume < TRUE)
 			usr << "<span class='notice'>\The [src] is empty.</span>"
 			return
 
-		if (world.time < src.last_use + 20)
+		if (world.time < last_use + 20)
 			return
 
-		src.last_use = world.time
+		last_use = world.time
 
-		playsound(src.loc, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
+		playsound(loc, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
 
 		var/direction = get_dir(src,target)
 

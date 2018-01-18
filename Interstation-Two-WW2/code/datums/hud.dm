@@ -28,16 +28,14 @@
 		"flash" =  list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 		"pain" = list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 		"drugeffect" = list("type" = /obj/screen/drugoverlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
-		"fov"		  = list("type" = /obj/screen/fov,		  "loc" = "1,1"),
+		"fov"		  = list("type" = /obj/screen/fov,		  "loc" = "1,1", "icon_state" = "blank"),
 		"glassesoverlay" = list("type" = /obj/screen/glasses_overlay, "loc" = "1,1", "icon_state" = "blank")
 	)
 	HUDneed = list(
 		"health"      = list("type" = /obj/screen/health,     "loc" = "15,7"),
 		"nutrition"   = list("type" = /obj/screen/nutrition,  "loc" = "15,6"),
 		"bodytemp"    = list("type" = /obj/screen/bodytemp,   "loc" = "15,8"),
-	//	"pressure"    = list("type" = /obj/screen/pressure,   "loc" = "15,14"),
 		"toxin"       = list("type" = /obj/screen/toxin,      "loc" = "15,11"),
-	//	"oxygen"      = list("type" = /obj/screen/oxygen,     "loc" = "15,13"),
 		"fire"        = list("type" = /obj/screen/fire,       "loc" = "15,10"),
 		"throw"       = list("type" = /obj/screen/HUDthrow,   "loc" = "14,2"),
 		"pull"        = list("type" = /obj/screen/pull,       "loc" = "15,2"),
@@ -51,7 +49,6 @@
 		"harm"        = list("type" = /obj/screen/fastintent/harm,     "loc" = "13,1"),
 		"grab"        = list("type" = /obj/screen/fastintent/grab,     "loc" = "13,1"),
 		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "15,1"),
-	//	"internal"    = list("type" = /obj/screen/internal,   "loc" = "15,15"),
 		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "7,2"),
 		"toggle gun mode"   = list("type" = /obj/screen/gun/mode,       "loc" = "15,3"),
 		"allow movement"   = list("type" = /obj/screen/gun/move,       "loc" = "15,4"),
@@ -59,7 +56,6 @@
 		"allow radio use"   = list("type" = /obj/screen/gun/radio,       "loc" = "14,4"),
 		"toggle invetory"   = list("type" = /obj/screen/toggle_invetory,       "loc" = "1,1")
 		)
-
 
 	slot_data = list (
 		"i_clothing" =   list("loc" = "1,2",  "name" = "Uniform",         "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG),

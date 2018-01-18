@@ -119,7 +119,7 @@
 		B.loc = src
 		beakers += B
 		user << "\blue You slot [B] into [src]."
-		src.updateUsrDialog()
+		updateUsrDialog()
 		return TRUE
 	..()
 
@@ -172,7 +172,7 @@
 
 /obj/item/weapon/gun/projectile/dartgun/Topic(href, href_list)
 	if(..()) return TRUE
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	if(href_list["stop_mix"])
 		var/index = text2num(href_list["stop_mix"])
 		if(index <= beakers.len)
@@ -195,7 +195,7 @@
 				B.loc = get_turf(src)
 	else if (href_list["eject_cart"])
 		unload_ammo(usr)
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return
 
 /obj/item/weapon/gun/projectile/dartgun/vox

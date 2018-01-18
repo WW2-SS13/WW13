@@ -51,7 +51,7 @@
 
 	var/next_fire_time = FALSE
 
-	var/sel_mode = TRUE //index of the currently selected mode
+	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
 	var/firemode_type = /datum/firemode //for subtypes that need custom firemode data
 
@@ -224,7 +224,7 @@
 
 	var/shoot_time = (burst - TRUE)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
-	user.setMoveCooldown(shoot_time) //no moving while shooting either
+//	user.setMoveCooldown(shoot_time) //no moving while shooting either
 	next_fire_time = world.time + shoot_time
 
 
@@ -264,7 +264,7 @@
 
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	user.setMoveCooldown(move_delay)
+//	user.setMoveCooldown(move_delay)
 	next_fire_time = world.time + fire_delay
 
 	if(muzzle_flash)
@@ -296,8 +296,8 @@
 	//unpack firemode data
 	var/datum/firemode/firemode = firemodes[sel_mode]
 	var/_burst = firemode.burst
-	var/_burst_delay = isnull(firemode.burst_delay)? src.burst_delay : firemode.burst_delay
-	var/_fire_delay = isnull(firemode.fire_delay)? src.fire_delay : firemode.fire_delay
+	var/_burst_delay = isnull(firemode.burst_delay)? burst_delay : firemode.burst_delay
+	var/_fire_delay = isnull(firemode.fire_delay)? fire_delay : firemode.fire_delay
 	var/_move_delay = firemode.move_delay + (can_wield && !wielded) ? 2 : FALSE
 
 	var/shoot_time = (_burst - TRUE)*_burst_delay
@@ -321,11 +321,9 @@
 
 		if (istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
-	//		log_debug("[P.KD_chance]")
-	//		log_debug("[acc]")
 
 			if (gun_type == GUN_TYPE_RIFLE)
-				P.KD_chance *= 10
+				P.KD_chance *= 12
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("rifle")
@@ -339,18 +337,18 @@
 					acc += max(H.getStatCoeff("heavyweapon")-1, FALSE)
 
 			else if (gun_type == GUN_TYPE_MG)
+				P.KD_chance *= 3
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("mg")
 					acc += max(H.getStatCoeff("mg")-1, FALSE)
 
 			else if (gun_type == GUN_TYPE_PISTOL)
+				P.KD_chance *= 2
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("pistol")
 					acc += max(H.getStatCoeff("pistol")-1, FALSE)
-	//		log_debug("[P.KD_chance]")
-	//		log_debug("[acc]")
 
 		process_accuracy(projectile, user, target, acc, disp)
 
@@ -402,7 +400,7 @@
 	else
 		visible_message("*click click*")
 
-	playsound(src.loc, 'sound/weapons/empty.ogg', 100, TRUE)
+	playsound(loc, 'sound/weapons/empty.ogg', 100, TRUE)
 
 //called after successfully firing
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
@@ -564,7 +562,7 @@
 	if(wielded)
 		return
 
-	src.wielded = TRUE
+	wielded = TRUE
 	update_icon()
 
 	var/obj/item/weapon/offhand/O = new(src)
@@ -577,7 +575,7 @@
 	if(!wielded)
 		return
 
-	src.wielded = FALSE
+	wielded = FALSE
 	update_icon()
 
 	var/obj/item/weapon/offhand/O = user.get_inactive_hand()
@@ -641,9 +639,9 @@
 	set name = "Wield"
 	set category = "Weapons"
 
-	var/obj/item/weapon/gun/G = src.get_active_hand()
+	var/obj/item/weapon/gun/G = get_active_hand()
 	if(!G || !istype(G))
-		G = src.get_inactive_hand()
+		G = get_inactive_hand()
 		if(!G || !istype(G))
 			src << "\red You can't wield anything in your hands."
 			return
@@ -664,9 +662,9 @@
 	set name = "Unwield"
 	set category = "Weapons"
 
-	var/obj/item/weapon/gun/G = src.get_active_hand()
+	var/obj/item/weapon/gun/G = get_active_hand()
 	if(!G || !istype(G))
-		G = src.get_inactive_hand()
+		G = get_inactive_hand()
 		if(!G || !istype(G))
 			src << "\red You can't unwield anything in your hands."
 			return
@@ -685,9 +683,9 @@
 	set name = "Eject magazine"
 	set category = "Weapons"
 
-	var/obj/item/weapon/gun/projectile/G = src.get_active_hand()
+	var/obj/item/weapon/gun/projectile/G = get_active_hand()
 	if(!G || !istype(G))
-		G = src.get_inactive_hand()
+		G = get_inactive_hand()
 		if(!G || !istype(G))
 			src << "\red You can't unload magazine from anything in your hands."
 			return
@@ -699,8 +697,8 @@
 	//if(G.wielded)
 	//	G.unwield()
 
-	G.ammo_magazine.loc = get_turf(src.loc)
-	src.visible_message(
+	G.ammo_magazine.loc = get_turf(loc)
+	visible_message(
 		"[G.ammo_magazine] falls out and clatters on the floor!",
 		"<span class='notice'>[G.ammo_magazine] falls out and clatters on the floor!</span>"
 		)
@@ -712,9 +710,9 @@
 	set name = "Toggle firerate"
 	set category = "Weapons"
 
-	var/obj/item/weapon/gun/G = src.get_active_hand()
+	var/obj/item/weapon/gun/G = get_active_hand()
 	if(!G || !istype(G))
-		G = src.get_inactive_hand()
+		G = get_inactive_hand()
 		if(!G || !istype(G))
 			src << "\red You have no weapon in hands."
 			return

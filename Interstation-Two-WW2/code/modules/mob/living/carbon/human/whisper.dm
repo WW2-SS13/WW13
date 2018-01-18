@@ -7,20 +7,20 @@
 		return
 
 	message = sanitize(message)
-	log_whisper("[src.name]/[src.key] : [message]")
+	log_whisper("[name]/[key] : [message]")
 
-	if (src.client)
-		if (src.client.prefs.muted & MUTE_IC)
+	if (client)
+		if (client.prefs.muted & MUTE_IC)
 			src << "\red You cannot whisper (muted)."
 			return
 
-		if (src.client.handle_spam_prevention(message,MUTE_IC))
+		if (client.handle_spam_prevention(message,MUTE_IC))
 			return
 
-	if (src.stat == 2)
-		return src.say_dead(message)
+	if (stat == 2)
+		return say_dead(message)
 
-	if (src.stat)
+	if (stat)
 		return
 
 	if(name != GetVoice())
@@ -37,7 +37,7 @@
 //This is used by both the whisper verb and human/say() to handle whispering
 /mob/living/carbon/human/proc/whisper_say(var/message, var/datum/language/speaking = null, var/alt_name="", var/verb="whispers")
 
-	if (istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade))
+	if (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(wear_mask, /obj/item/weapon/grenade))
 		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
 		return
 
@@ -151,6 +151,6 @@
 			M.hear_say(new_message, verb, speaking, alt_name, italics, src)
 
 	if (watching.len)
-		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> [not_heard].</span>"
+		var/rendered = "<span class='game say'><span class='name'>[name]</span> [not_heard].</span>"
 		for (var/mob/M in watching)
 			M.show_message(rendered, 2)

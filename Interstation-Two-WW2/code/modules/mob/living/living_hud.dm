@@ -3,7 +3,7 @@
 
 /mob/living/proc/destroy_HUD()
 	var/mob/living/H = src
-	src.client.screen.Cut()
+	client.screen.Cut()
 	H.HUDprocess.Cut()
 	for (var/i=1,i<=H.HUDneed.len,i++)
 		var/p = H.HUDneed[i]
@@ -21,18 +21,18 @@
 	H.HUDfrippery.Cut()
 
 /mob/living/proc/show_HUD()
-	if(src.client)
-		src.client.screen.Cut()
+	if(client)
+		client.screen.Cut()
 		for (var/i=1,i<=HUDneed.len,i++)
 			var/p = HUDneed[i]
-			src.client.screen += HUDneed[p]
-		for (var/obj/screen/HUDinv in src.HUDinventory)
-			src.client.screen += HUDinv
-		for (var/obj/screen/frippery/HUDfri in src.HUDfrippery)
-			src.client.screen += HUDfri
+			client.screen += HUDneed[p]
+		for (var/obj/screen/HUDinv in HUDinventory)
+			client.screen += HUDinv
+		for (var/obj/screen/frippery/HUDfri in HUDfrippery)
+			client.screen += HUDfri
 		for (var/i=1,i<=HUDtech.len,i++)
 			var/p = HUDtech[i]
-			src.client.screen += HUDtech[p]
+			client.screen += HUDtech[p]
 //For HUD checking needs
 
 /mob/living/proc/recolor_HUD(var/_color, var/_alpha)
@@ -41,7 +41,7 @@
 		var/obj/screen/HUDelm = HUDneed[p]
 		HUDelm.color = _color
 		HUDelm.alpha = _alpha
-	for (var/obj/screen/HUDinv in src.HUDinventory)
+	for (var/obj/screen/HUDinv in HUDinventory)
 		HUDinv.color = _color
 		HUDinv.alpha = _alpha
 	return
@@ -81,13 +81,13 @@
 		log_debug("[src] try check HUDdatum, but default or target arg is empty")
 		return FALSE
 
-	if((src.client.prefs.UI_style != null) && (src.defaultHUD == null || src.defaultHUD == ""))
-		if (!(global.HUDdatums.Find(src.client.prefs.UI_style))) // Проверка наличии данных
-			log_debug("[H] try update a HUD, but HUDdatums not have [src.client.prefs.UI_style]!")
+	if((client.prefs.UI_style != null) && (defaultHUD == null || defaultHUD == ""))
+		if (!(global.HUDdatums.Find(client.prefs.UI_style))) // Проверка наличии данных
+			log_debug("[H] try update a HUD, but HUDdatums not have [client.prefs.UI_style]!")
 			src << "Some problem hase accure, use default HUD type"
-			src.defaultHUD = "ErisStyle"
+			defaultHUD = "ErisStyle"
 		else
-			src.defaultHUD = H.client.prefs.UI_style
+			defaultHUD = H.client.prefs.UI_style
 		return TRUE
 	return FALSE
 

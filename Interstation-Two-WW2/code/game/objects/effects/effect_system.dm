@@ -71,13 +71,13 @@ steam.start() -- spawns the effect
 
 	start()
 		var/i = FALSE
-		for(i=0, i<src.number, i++)
+		for(i=0, i<number, i++)
 			spawn(0)
 				if(holder)
-					src.location = get_turf(holder)
-				var/obj/effect/effect/steam/steam = PoolOrNew(/obj/effect/effect/steam, src.location)
+					location = get_turf(holder)
+				var/obj/effect/effect/steam/steam = PoolOrNew(/obj/effect/effect/steam, location)
 				var/direction
-				if(src.cardinals)
+				if(cardinals)
 					direction = pick(cardinal)
 				else
 					direction = pick(alldirs)
@@ -103,8 +103,8 @@ steam.start() -- spawns the effect
 
 /obj/effect/sparks/New()
 	..()
-	playsound(src.loc, "sparks", 100, TRUE)
-	var/turf/T = src.loc
+	playsound(loc, "sparks", 100, TRUE)
+	var/turf/T = loc
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
 
@@ -113,14 +113,14 @@ steam.start() -- spawns the effect
 	schedule_task_in(10 SECONDS, /proc/qdel, list(src))
 
 /obj/effect/sparks/Destroy()
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
 	return ..()
 
 /obj/effect/sparks/Move()
 	..()
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
 
@@ -139,16 +139,16 @@ steam.start() -- spawns the effect
 
 	start()
 		var/i = FALSE
-		for(i=0, i<src.number, i++)
-			if(src.total_sparks > 20)
+		for(i=0, i<number, i++)
+			if(total_sparks > 20)
 				return
 			spawn(0)
 				if(holder)
-					src.location = get_turf(holder)
-				var/obj/effect/sparks/sparks = PoolOrNew(/obj/effect/sparks, src.location)
-				src.total_sparks++
+					location = get_turf(holder)
+				var/obj/effect/sparks/sparks = PoolOrNew(/obj/effect/sparks, location)
+				total_sparks++
 				var/direction
-				if(src.cardinals)
+				if(cardinals)
 					direction = pick(cardinal)
 				else
 					direction = pick(alldirs)
@@ -158,7 +158,7 @@ steam.start() -- spawns the effect
 				spawn(20)
 					if(sparks)
 						qdel(sparks)
-					src.total_sparks--
+					total_sparks--
 
 
 
@@ -326,26 +326,26 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/smoke_spread/start()
 	var/i = FALSE
-	for(i=0, i<src.number, i++)
-		if(src.total_smoke > 20)
+	for(i=0, i<number, i++)
+		if(total_smoke > 20)
 			return
 		spawn(0)
 			if(holder)
-				src.location = get_turf(holder)
-			var/obj/effect/effect/smoke/smoke = PoolOrNew(smoke_type, src.location)
-			src.total_smoke++
-			var/direction = src.direction
-			if(!direction)
-				if(src.cardinals)
-					direction = pick(cardinal)
+				location = get_turf(holder)
+			var/obj/effect/effect/smoke/smoke = PoolOrNew(smoke_type, location)
+			total_smoke++
+			var/src_direction = direction
+			if(!src_direction)
+				if(cardinals)
+					src_direction = pick(cardinal)
 				else
-					direction = pick(alldirs)
+					src_direction = pick(alldirs)
 			for(i=0, i<pick(0,1,1,1,2,2,2,3), i++)
 				sleep(10)
-				step(smoke,direction)
+				step(smoke,src_direction)
 			spawn(smoke.time_to_live*0.75+rand(10,30))
 				if (smoke) qdel(smoke)
-				src.total_smoke--
+				total_smoke--
 
 
 /datum/effect/effect/system/smoke_spread/bad
@@ -381,35 +381,35 @@ steam.start() -- spawns the effect
 		oldposition = get_turf(atom)
 
 	start()
-		if(!src.on)
-			src.on = TRUE
-			src.processing = TRUE
-		if(src.processing)
-			src.processing = FALSE
+		if(!on)
+			on = TRUE
+			processing = TRUE
+		if(processing)
+			processing = FALSE
 			spawn(0)
-				var/turf/T = get_turf(src.holder)
-				if(T != src.oldposition)
+				var/turf/T = get_turf(holder)
+				if(T != oldposition)
 					if(istype(T, /turf/space))
-						var/obj/effect/effect/ion_trails/I = PoolOrNew(/obj/effect/effect/ion_trails, src.oldposition)
-						src.oldposition = T
-						I.set_dir(src.holder.dir)
+						var/obj/effect/effect/ion_trails/I = PoolOrNew(/obj/effect/effect/ion_trails, oldposition)
+						oldposition = T
+						I.set_dir(holder.dir)
 						flick("ion_fade", I)
 						I.icon_state = "blank"
 						spawn( 20 )
 							qdel(I)
 					spawn(2)
-						if(src.on)
-							src.processing = TRUE
-							src.start()
+						if(on)
+							processing = TRUE
+							start()
 				else
 					spawn(2)
-						if(src.on)
-							src.processing = TRUE
-							src.start()
+						if(on)
+							processing = TRUE
+							start()
 
 	proc/stop()
-		src.processing = FALSE
-		src.on = FALSE
+		processing = FALSE
+		on = FALSE
 
 
 
@@ -429,33 +429,33 @@ steam.start() -- spawns the effect
 		oldposition = get_turf(atom)
 
 	start()
-		if(!src.on)
-			src.on = TRUE
-			src.processing = TRUE
-		if(src.processing)
-			src.processing = FALSE
+		if(!on)
+			on = TRUE
+			processing = TRUE
+		if(processing)
+			processing = FALSE
 			spawn(0)
-				if(src.number < 3)
-					var/obj/effect/effect/steam/I = PoolOrNew(/obj/effect/effect/steam, src.oldposition)
-					src.number++
-					src.oldposition = get_turf(holder)
-					I.set_dir(src.holder.dir)
+				if(number < 3)
+					var/obj/effect/effect/steam/I = PoolOrNew(/obj/effect/effect/steam, oldposition)
+					number++
+					oldposition = get_turf(holder)
+					I.set_dir(holder.dir)
 					spawn(10)
 						qdel(I)
-						src.number--
+						number--
 					spawn(2)
-						if(src.on)
-							src.processing = TRUE
-							src.start()
+						if(on)
+							processing = TRUE
+							start()
 				else
 					spawn(2)
-						if(src.on)
-							src.processing = TRUE
-							src.start()
+						if(on)
+							processing = TRUE
+							start()
 
 	proc/stop()
-		src.processing = FALSE
-		src.on = FALSE
+		processing = FALSE
+		on = FALSE
 
 /datum/effect/effect/system/reagents_explosion
 	var/amount 						// TNT equivalent

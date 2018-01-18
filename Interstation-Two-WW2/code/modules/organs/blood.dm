@@ -103,11 +103,11 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	/*
 	if (!B.data["virus2"])
 		B.data["virus2"] = list()
-	B.data["virus2"] |= virus_copylist(src.virus2)
+	B.data["virus2"] |= virus_copylist(virus2)
 	*/
-	B.data["antibodies"] = src.antibodies
-	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
-	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
+	B.data["antibodies"] = antibodies
+	B.data["blood_DNA"] = copytext(dna.unique_enzymes,1,0)
+	B.data["blood_type"] = copytext(dna.b_type,1,0)
 
 	// Putting this here due to return shenanigans.
 	if(istype(src,/mob/living/carbon/human))
@@ -116,7 +116,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		B.color = B.data["blood_colour"]
 
 	var/list/temp_chem = list()
-	for(var/datum/reagent/R in src.reagents.reagent_list)
+	for(var/datum/reagent/R in reagents.reagent_list)
 		temp_chem += R.id
 		temp_chem[R.id] = R.volume
 	B.data["trace_chem"] = list2params(temp_chem)
@@ -148,7 +148,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	var/list/chems = list()
 	chems = params2list(injected.data["trace_chem"])
 	for(var/C in chems)
-		src.reagents.add_reagent(C, (text2num(chems[C]) / species.blood_volume) * amount)//adds trace chemicals to owner's blood
+		reagents.add_reagent(C, (text2num(chems[C]) / species.blood_volume) * amount)//adds trace chemicals to owner's blood
 	reagents.update_total()
 
 //Transfers blood from reagents to vessel, respecting blood types compatability.

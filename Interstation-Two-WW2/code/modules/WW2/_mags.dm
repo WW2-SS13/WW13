@@ -116,7 +116,7 @@ WW 2 WEAPONS MAGS N AMMO
 	has_suit.overlays += get_inv_overlay()
 
 	user << "<span class='notice'>You attach [src] to [has_suit].</span>"
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 /obj/item/ammo_magazine/maxim/proc/on_removed(mob/user as mob)
 	if(!has_suit)
@@ -124,7 +124,7 @@ WW 2 WEAPONS MAGS N AMMO
 	has_suit.overlays -= get_inv_overlay()
 	has_suit = null
 	usr.put_in_hands(src)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 /obj/item/ammo_magazine/luger
 	name = "Luger magazine"

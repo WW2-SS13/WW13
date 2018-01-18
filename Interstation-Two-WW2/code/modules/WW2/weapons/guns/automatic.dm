@@ -24,6 +24,8 @@
 		list(name="long bursts",	burst=5, burst_delay=1.5, move_delay=6, dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)
 
+	sel_mode = 2
+
 /obj/item/weapon/gun/projectile/automatic/mp40/update_icon()
 	if(ammo_magazine)
 		icon_state = "mp40"
@@ -57,7 +59,6 @@
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 
 	can_wield = TRUE
-	//must_wield = TRUE
 
 /obj/item/weapon/gun/projectile/automatic/stg/update_icon()
 	if(ammo_magazine)
@@ -99,6 +100,8 @@
 		list(name="long bursts",	burst=5, burst_delay=1.8, move_delay=8, dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)
 
+	sel_mode = 2
+
 /obj/item/weapon/gun/projectile/automatic/akm/update_icon()
 	if(ammo_magazine)
 		icon_state = "stg"
@@ -135,7 +138,8 @@
 		)
 
 	can_wield = TRUE
-	//must_wield = TRUE
+
+	sel_mode = 2
 
 /obj/item/weapon/gun/projectile/automatic/m4/update_icon()
 	if(ammo_magazine)
@@ -172,6 +176,8 @@
 		list(name="short bursts",	burst=5, burst_delay=2, move_delay=6, dispersion = list(0.9, 1.0, 1.0, 1.0, 1.1)),
 		list(name="long bursts",	burst=8, burst_delay=2, move_delay=8, dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)
+
+	sel_mode = 2
 
 /obj/item/weapon/gun/projectile/automatic/pkm/update_icon()
 	if(ammo_magazine)

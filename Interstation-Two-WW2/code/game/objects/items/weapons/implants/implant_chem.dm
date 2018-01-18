@@ -32,16 +32,16 @@
 
 /obj/item/weapon/implant/chem/trigger(emote, source as mob)
 	if(emote == "deathgasp")
-		src.activate(src.reagents.total_volume)
+		activate(reagents.total_volume)
 	return
 
 
 /obj/item/weapon/implant/chem/activate(var/cause)
-	if((!cause) || (!src.imp_in))	return FALSE
-	var/mob/living/carbon/R = src.imp_in
-	src.reagents.trans_to_mob(R, cause, CHEM_BLOOD)
+	if((!cause) || (!imp_in))	return FALSE
+	var/mob/living/carbon/R = imp_in
+	reagents.trans_to_mob(R, cause, CHEM_BLOOD)
 	R << "You hear a faint *beep*."
-	if(!src.reagents.total_volume)
+	if(!reagents.total_volume)
 		R << "You hear a faint click from your chest."
 		spawn(0)
 			qdel(src)

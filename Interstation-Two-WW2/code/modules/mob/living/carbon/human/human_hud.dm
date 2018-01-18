@@ -112,7 +112,7 @@
 	create_HUDneed()
 	create_HUDfrippery()
 	create_HUDtech()
-	recolor_HUD(src.client.prefs.UI_style_color, src.client.prefs.UI_style_alpha)
+	recolor_HUD(client.prefs.UI_style_color, client.prefs.UI_style_alpha)
 
 /mob/living/carbon/human/create_HUDinventory()
 	var/mob/living/carbon/human/H = src

@@ -19,7 +19,7 @@
 				if(null)
 					return
 
-	src.massmodify_variables(A, var_name, method)
+	massmodify_variables(A, var_name, method)
 
 
 
@@ -116,7 +116,7 @@
 			usr << "If a direction, direction is: [dir]"
 
 	var/class = input("What kind of variable?","Variable Type",default) as null|anything in list("text",
-		"num","type","icon","file","edit referenced object","restore to default")
+		"num","type","icon","file","empty list", "proccall","edit referenced object","restore to default")
 
 	if(!class)
 		return
@@ -370,6 +370,77 @@
 					for(var/turf/A in world)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
+
+		if ("empty list")
+
+			if(method)
+				if(istype(O, /mob))
+					for(var/mob/M in mob_list)
+						if ( istype(M , O.type) )
+							M.vars[variable] = list()
+
+				else if(istype(O, /obj))
+					for(var/obj/A in world)
+						if ( istype(A , O.type) )
+							A.vars[variable] = list()
+
+				else if(istype(O, /turf))
+					for(var/turf/A in world)
+						if ( istype(A , O.type) )
+							A.vars[variable] = list()
+
+			else
+				if(istype(O, /mob))
+					for(var/mob/M in mob_list)
+						if ( istype(M , O.type) )
+							M.vars[variable] = list()
+
+				else if(istype(O, /obj))
+					for(var/obj/A in world)
+						if ( istype(A , O.type) )
+							A.vars[variable] = list()
+
+				else if(istype(O, /turf))
+					for(var/turf/A in world)
+						if ( istype(A , O.type) )
+							A.vars[variable] = list()
+
+		if ("proccall")
+			var/proccall = input("Call what procedure?") as text
+			var/result = call(proccall)()
+			var/cont = input("[proccall]() returned [result]. Continue?") in list("Yes", "No")
+			if (cont == "Yes")
+				if(method)
+					if(istype(O, /mob))
+						for(var/mob/M in mob_list)
+							if ( istype(M , O.type) )
+								M.vars[variable] = result
+
+					else if(istype(O, /obj))
+						for(var/obj/A in world)
+							if ( istype(A , O.type) )
+								A.vars[variable] = result
+
+					else if(istype(O, /turf))
+						for(var/turf/A in world)
+							if ( istype(A , O.type) )
+								A.vars[variable] = result
+
+				else
+					if(istype(O, /mob))
+						for(var/mob/M in mob_list)
+							if ( istype(M , O.type) )
+								M.vars[variable] = result
+
+					else if(istype(O, /obj))
+						for(var/obj/A in world)
+							if ( istype(A , O.type) )
+								A.vars[variable] = result
+
+					else if(istype(O, /turf))
+						for(var/turf/A in world)
+							if ( istype(A , O.type) )
+								A.vars[variable] = result
 
 	log_admin("[key_name(src)] mass modified [original_name]'s [variable] to [O.vars[variable]]")
 	message_admins("[key_name_admin(src)] mass modified [original_name]'s [variable] to [O.vars[variable]]", TRUE)

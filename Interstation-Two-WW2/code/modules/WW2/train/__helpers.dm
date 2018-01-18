@@ -26,7 +26,7 @@
 
 	// don't invoke Move()
 
-	if (ismob(src) || src.pulledby)
+	if (ismob(src) || pulledby)
 		for (var/obj/o in _loc)
 			if (o == src)
 				continue

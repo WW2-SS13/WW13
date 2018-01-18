@@ -131,8 +131,8 @@ for reference:
 			qdel(src)
 			return
 		if(2.0)
-			src.health -= 25
-			if (src.health <= FALSE)
+			health -= 25
+			if (health <= FALSE)
 				visible_message("<span class='danger'>\The [src] is blown apart!</span>")
 				dismantle()
 			return
@@ -178,19 +178,19 @@ for reference:
 	New()
 		..()
 
-		src.icon_state = "barrier[src.locked]"
+		icon_state = "barrier[locked]"
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/weapon/card/id/))
-			if (src.allowed(user))
-				if	(src.emagged < 2.0)
-					src.locked = !src.locked
-					src.anchored = !src.anchored
-					src.icon_state = "barrier[src.locked]"
-					if ((src.locked == 1.0) && (src.emagged < 2.0))
+			if (allowed(user))
+				if	(emagged < 2.0)
+					locked = !locked
+					anchored = !anchored
+					icon_state = "barrier[locked]"
+					if ((locked == 1.0) && (emagged < 2.0))
 						user << "Barrier lock toggled on."
 						return
-					else if ((src.locked == 0.0) && (src.emagged < 2.0))
+					else if ((locked == 0.0) && (emagged < 2.0))
 						user << "Barrier lock toggled off."
 						return
 				else
@@ -201,38 +201,38 @@ for reference:
 					return
 			return
 		else if (istype(W, /obj/item/weapon/wrench))
-			if (src.health < src.maxhealth)
-				src.health = src.maxhealth
-				src.emagged = FALSE
-				src.req_access = list(access_security)
+			if (health < maxhealth)
+				health = maxhealth
+				emagged = FALSE
+				req_access = list(access_security)
 				visible_message("<span class='warning'>[user] repairs \the [src]!</span>")
 				return
-			else if (src.emagged > FALSE)
-				src.emagged = FALSE
-				src.req_access = list(access_security)
+			else if (emagged > FALSE)
+				emagged = FALSE
+				req_access = list(access_security)
 				visible_message("<span class='warning'>[user] repairs \the [src]!</span>")
 				return
 			return
 		else
 			switch(W.damtype)
 				if("fire")
-					src.health -= W.force * 0.75
+					health -= W.force * 0.75
 				if("brute")
-					src.health -= W.force * 0.5
+					health -= W.force * 0.5
 				else
-			if (src.health <= FALSE)
-				src.explode()
+			if (health <= FALSE)
+				explode()
 			..()
 
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				src.explode()
+				explode()
 				return
 			if(2.0)
-				src.health -= 25
-				if (src.health <= FALSE)
-					src.explode()
+				health -= 25
+				if (health <= FALSE)
+					explode()
 				return
 	emp_act(severity)
 		if(stat & (BROKEN|NOPOWER))
@@ -240,7 +240,7 @@ for reference:
 		if(prob(50/severity))
 			locked = !locked
 			anchored = !anchored
-			icon_state = "barrier[src.locked]"
+			icon_state = "barrier[locked]"
 
 	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 		if(air_group || (height==0))
@@ -262,24 +262,24 @@ for reference:
 		s.set_up(3, TRUE, src)
 		s.start()
 
-		explosion(src.loc,-1,-1,0)
+		explosion(loc,-1,-1,0)
 		if(src)
 			qdel(src)
 
 
 /obj/machinery/deployable/barrier/emag_act(var/remaining_charges, var/mob/user)
-	if (src.emagged == FALSE)
-		src.emagged = TRUE
-		src.req_access.Cut()
-		src.req_one_access.Cut()
+	if (emagged == FALSE)
+		emagged = TRUE
+		req_access.Cut()
+		req_one_access.Cut()
 		user << "You break the ID authentication lock on \the [src]."
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, TRUE, src)
 		s.start()
 		visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
 		return TRUE
-	else if (src.emagged == TRUE)
-		src.emagged = 2
+	else if (emagged == TRUE)
+		emagged = 2
 		user << "You short out the anchoring mechanism on \the [src]."
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, TRUE, src)

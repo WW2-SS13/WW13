@@ -63,13 +63,13 @@
 				step_to(src,movement_target,1)
 
 				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < src.x)
+					if (movement_target.loc.x < x)
 						set_dir(WEST)
-					else if (movement_target.loc.x > src.x)
+					else if (movement_target.loc.x > x)
 						set_dir(EAST)
-					else if (movement_target.loc.y < src.y)
+					else if (movement_target.loc.y < y)
 						set_dir(SOUTH)
-					else if (movement_target.loc.y > src.y)
+					else if (movement_target.loc.y > y)
 						set_dir(NORTH)
 					else
 						set_dir(SOUTH)

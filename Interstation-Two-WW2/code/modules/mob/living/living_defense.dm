@@ -93,7 +93,7 @@
 	  return FALSE //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity)
-	var/list/L = src.get_contents()
+	var/list/L = get_contents()
 	for(var/obj/O in L)
 		O.emp_act(severity)
 	..()
@@ -151,7 +151,7 @@
 			playsound(src, "miss_sound", 50, TRUE, -6)
 			return
 
-		src.visible_message("\red [src] has been hit by [O].")
+		visible_message("\red [src] has been hit by [O].")
 		var/armor = run_armor_check(null, "melee")
 
 		if(armor < 2)
@@ -163,10 +163,10 @@
 			var/mob/M = O.thrower
 			var/client/assailant = M.client
 			if(assailant)
-				src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been hit with a [O], thrown by [M.name] ([assailant.ckey])</font>")
-				M.attack_log += text("\[[time_stamp()]\] <font color='red'>Hit [src.name] ([src.ckey]) with a thrown [O]</font>")
+				attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been hit with a [O], thrown by [M.name] ([assailant.ckey])</font>")
+				M.attack_log += text("\[[time_stamp()]\] <font color='red'>Hit [name] ([ckey]) with a thrown [O]</font>")
 				if(!istype(src,/mob/living/simple_animal/mouse))
-					msg_admin_attack("[src.name] ([src.ckey]) was hit by a [O], thrown by [M.name] ([assailant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
+					msg_admin_attack("[name] ([ckey]) was hit by a [O], thrown by [M.name] ([assailant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 
 		// Begin BS12 momentum-transfer code.
 		var/mass = 1.5
@@ -179,7 +179,7 @@
 			var/dir = get_dir(O.throw_source, src)
 
 			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!")
-			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
+			throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return
 
@@ -190,23 +190,23 @@
 				var/turf/T = near_wall(dir,2)
 
 				if(T)
-					src.loc = T
+					loc = T
 					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
-					src.anchored = TRUE
-					src.pinned += O
+					anchored = TRUE
+					pinned += O
 
 /mob/living/proc/embed(var/obj/O, var/def_zone=null)
 	O.loc = src
-	src.embedded += O
-	src.verbs += /mob/proc/yank_out_object
+	embedded += O
+	verbs += /mob/proc/yank_out_object
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(var/turf/T, var/speed)
-	src.take_organ_damage(speed*5)
+	take_organ_damage(speed*5)
 
 /mob/living/proc/near_wall(var/direction,var/distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
-	var/turf/last_turf = src.loc
+	var/turf/last_turf = loc
 	var/i = TRUE
 
 	while(i>0 && i<=distance)
@@ -226,9 +226,9 @@
 		return
 
 	adjustBruteLoss(damage)
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
-	src.visible_message("<span class='danger'>[user] has [attack_message] [src]!</span>")
+	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
+	visible_message("<span class='danger'>[user] has [attack_message] [src]!</span>")
 	user.do_attack_animation(src)
 	spawn(1) updatehealth()
 	return TRUE

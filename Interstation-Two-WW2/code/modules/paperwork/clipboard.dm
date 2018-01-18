@@ -97,7 +97,7 @@
 	if((usr.stat || usr.restrained()))
 		return
 
-	if(src.loc == usr)
+	if(loc == usr)
 
 		if(href_list["pen"])
 			if(istype(haspen) && (haspen.loc == src))

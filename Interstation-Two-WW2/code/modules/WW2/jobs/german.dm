@@ -547,7 +547,7 @@ var/first_fallschirm = TRUE
 	total_positions = 7
 	selection_color = "#4c4ca5"
 	spawn_location = "Fallschirm"
-	additional_languages = list( "Russian" = 100 )
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 100 )
 	spawn_delay = 3000
 	delayed_spawn_message = "<span class = 'danger'><big>You are parachuting behind Russian lines. You won't spawn until 5 minutes.</big></span>"
 	is_paratrooper = TRUE

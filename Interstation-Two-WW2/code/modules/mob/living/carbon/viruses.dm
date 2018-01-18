@@ -36,7 +36,7 @@
 			if(!V) continue
 
 			// check if we're immune
-			var/list/common_antibodies = V.antigen & src.antibodies
+			var/list/common_antibodies = V.antigen & antibodies
 			if(common_antibodies.len)
 				V.dead = TRUE
 

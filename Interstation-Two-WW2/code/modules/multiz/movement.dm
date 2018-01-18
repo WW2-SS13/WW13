@@ -3,7 +3,7 @@
 	set category = "Ghost"
 	var/turf/T = GetAbove(get_turf(src))
 	if(T)
-		src.Move(T)
+		Move(T)
 
 
 /mob/observer/ghost/verb/movedown()
@@ -11,4 +11,4 @@
 	set category = "Ghost"
 	var/turf/T = GetBelow(get_turf(src))
 	if(T)
-		src.Move(T)
+		Move(T)

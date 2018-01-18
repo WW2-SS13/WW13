@@ -52,7 +52,7 @@
 		usr << "<span class='danger'>Speech is currently admin-disabled.</span>"
 		return
 
-	if(!src.client.holder)
+	if(!client.holder)
 		if(!config.dsay_allowed)
 			src << "<span class='danger'>Deadchat is globally muted.</span>"
 			return
@@ -65,11 +65,11 @@
 
 /mob/proc/say_understands(var/mob/other,var/datum/language/speaking = null)
 
-	if (src.stat == 2)		//Dead
+	if (stat == 2)		//Dead
 		return TRUE
 
 	//Universal speak makes everything understandable, for obvious reasons.
-	else if(src.universal_speak || src.universal_understand)
+	else if(universal_speak || universal_understand)
 		return TRUE
 
 	//Languages are handled after.
@@ -80,7 +80,7 @@
 			return TRUE
 		if(isAI(src) && ispAI(other))
 			return TRUE
-		if (istype(other, src.type) || istype(src, other.type))
+		if (istype(other, type) || istype(src, other.type))
 			return TRUE
 		return FALSE
 
@@ -88,7 +88,7 @@
 		return TRUE
 
 	//Language check.
-	for(var/datum/language/L in src.languages)
+	for(var/datum/language/L in languages)
 		if(speaking.name == L.name)
 			return TRUE
 

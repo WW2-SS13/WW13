@@ -29,7 +29,7 @@
 
 /mob/living/simple_animal/cat/Life()
 	//MICE!
-	if((src.loc) && isturf(src.loc))
+	if((loc) && isturf(loc))
 		if(!stat && !resting && !buckled)
 			for(var/mob/living/simple_animal/mouse/M in loc)
 				if(!M.stat)
@@ -108,7 +108,7 @@
 /mob/living/simple_animal/cat/attackby(var/obj/item/O, var/mob/user)
 	. = ..()
 	if(O.force)
-		set_flee_target(user? user : src.loc)
+		set_flee_target(user? user : loc)
 
 /mob/living/simple_animal/cat/attack_hand(mob/living/carbon/human/M as mob)
 	. = ..()
@@ -117,15 +117,15 @@
 
 /mob/living/simple_animal/cat/ex_act()
 	. = ..()
-	set_flee_target(src.loc)
+	set_flee_target(loc)
 
 /mob/living/simple_animal/cat/bullet_act(var/obj/item/projectile/proj)
 	. = ..()
-	set_flee_target(proj.firer? proj.firer : src.loc)
+	set_flee_target(proj.firer? proj.firer : loc)
 
 /mob/living/simple_animal/cat/hitby(atom/movable/AM)
 	. = ..()
-	set_flee_target(AM.thrower? AM.thrower : src.loc)
+	set_flee_target(AM.thrower? AM.thrower : loc)
 /*
 /mob/living/simple_animal/cat/MouseDrop(atom/over_object)
 

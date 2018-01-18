@@ -8,7 +8,7 @@
 			src << "You are unable to emote."
 		return
 
-	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade)
+	var/muzzled = istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(wear_mask, /obj/item/weapon/grenade)
 	if(m_type == 2 && muzzled) return
 
 	var/input
@@ -72,7 +72,7 @@
 		src << "<span class='danger'>You have deadchat muted.</span>"
 		return
 
-	if(!src.client.holder)
+	if(!client.holder)
 		if(!config.dsay_allowed)
 			src << "<span class='danger'>Deadchat is globally muted.</span>"
 			return
@@ -85,5 +85,5 @@
 		input = message
 
 	if(input)
-		log_emote("Ghost/[src.key] : [input]")
+		log_emote("Ghost/[key] : [input]")
 		say_dead_direct(input, src)

@@ -57,7 +57,7 @@
 		target_mob = null
 		stance = COMMANDED_HEAL
 		return FALSE
-	src.visible_message("\The [src] glows green for a moment, healing \the [target_mob]'s wounds.")
+	visible_message("\The [src] glows green for a moment, healing \the [target_mob]'s wounds.")
 	health -= 3
 	target_mob.adjustBruteLoss(-5)
 	target_mob.adjustFireLoss(-5)
@@ -73,7 +73,7 @@
 			return TRUE
 		var/list/targets = get_targets_by_name(text)
 		if(targets.len > TRUE || !targets.len)
-			src.say("ERROR. TARGET COULD NOT BE PARSED.")
+			say("ERROR. TARGET COULD NOT BE PARSED.")
 			return FALSE
 		target_mob = targets[1]
 		stance = COMMANDED_HEAL
@@ -81,15 +81,15 @@
 	if(findtext(text,"emergency protocol"))
 		if(findtext(text,"deactivate"))
 			if(emergency_protocols)
-				src.say("EMERGENCY PROTOCOLS DEACTIVATED.")
+				say("EMERGENCY PROTOCOLS DEACTIVATED.")
 			emergency_protocols = FALSE
 			return TRUE
 		if(findtext(text,"activate"))
 			if(!emergency_protocols)
-				src.say("EMERGENCY PROTOCOLS ACTIVATED.")
+				say("EMERGENCY PROTOCOLS ACTIVATED.")
 			emergency_protocols = TRUE
 			return TRUE
 		if(findtext(text,"check"))
-			src.say("EMERGENCY PROTOCOLS [emergency_protocols ? "ACTIVATED" : "DEACTIVATED"].")
+			say("EMERGENCY PROTOCOLS [emergency_protocols ? "ACTIVATED" : "DEACTIVATED"].")
 			return TRUE
 	return FALSE

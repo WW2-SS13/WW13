@@ -18,7 +18,7 @@
 		if (!hasorgans(target))
 			return FALSE
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && !(affected.status & ORGAN_ROBOT) && affected.open >= 2 && affected.stage == FALSE
+		return affected && !(affected.status & ORGAN_ROBOT) && affected.open >= 2 && affected.stage == 0
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -141,8 +141,9 @@
 			"\blue You have mended the damaged bones in [target]'s [affected.name] with \the [tool]." )
 		affected.status &= ~ORGAN_BROKEN
 		affected.status &= ~ORGAN_SPLINTED
-		affected.stage = FALSE
-		affected.perma_injury = FALSE
+		affected.stage = 0
+		affected.perma_injury = 0
+		affected.damage = 0
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)

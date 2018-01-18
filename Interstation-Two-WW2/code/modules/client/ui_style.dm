@@ -38,8 +38,8 @@
 	prefs.save_preferences()
 //	usr:update_hud()
 	usr:regenerate_icons()
-//	src.mob:check_HUD()
-//	var/mob/living/trg = src.mob
+//	mob:check_HUD()
+//	var/mob/living/trg = mob
 //	trg.check_HUD()
 	/*var/UI_style_new = input(usr, "Select a style. White is recommended for customization") as null|anything in all_ui_styles
 	if(!UI_style_new) return

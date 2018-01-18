@@ -78,10 +78,10 @@ nanoui is used to open and update nano browser uis
 	ui_key = nui_key
 	window_id = "[ui_key]\ref[src_object]"
 
-	src.master_ui = master_ui
+	master_ui = master_ui
 	if(master_ui)
 		master_ui.children += src
-	src.state = state
+	state = state
 
 	// add the passed template filename as the "main" template, this is required
 	add_template("main", ntemplate_filename)

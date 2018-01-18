@@ -33,7 +33,7 @@
 	if(!..(user, 2))
 		return
 
-	switch(src.stage)
+	switch(stage)
 		if(1)
 			user << "It's an empty frame."
 			return
@@ -45,84 +45,84 @@
 			return
 
 /obj/machinery/light_construct/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if (istype(W, /obj/item/weapon/wrench))
-		if (src.stage == TRUE)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, TRUE)
+		if (stage == TRUE)
+			playsound(loc, 'sound/items/Ratchet.ogg', 75, TRUE)
 			usr << "You begin deconstructing \a [src]."
 			if (!do_after(usr, 30,src))
 				return
-			new /obj/item/stack/material/steel( get_turf(src.loc), sheets_refunded )
+			new /obj/item/stack/material/steel( get_turf(loc), sheets_refunded )
 			user.visible_message("[user.name] deconstructs [src].", \
 				"You deconstruct [src].", "You hear a noise.")
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 75, TRUE)
+			playsound(loc, 'sound/items/Deconstruct.ogg', 75, TRUE)
 			qdel(src)
-		if (src.stage == 2)
+		if (stage == 2)
 			usr << "You have to remove the wires first."
 			return
 
-		if (src.stage == 3)
+		if (stage == 3)
 			usr << "You have to unscrew the case first."
 			return
 
 	if(istype(W, /obj/item/weapon/wirecutters))
-		if (src.stage != 2) return
-		src.stage = TRUE
+		if (stage != 2) return
+		stage = TRUE
 		switch(fixture_type)
 			if ("tube")
 				if (!istype(src, /obj/machinery/light_construct/floor)) // TODO Переделать это
-					src.icon_state = "tube-construct-stage1"
+					icon_state = "tube-construct-stage1"
 				else
-					src.icon_state = "floortube-construct-stage1"
+					icon_state = "floortube-construct-stage1"
 			if("bulb")
-				src.icon_state = "bulb-construct-stage1"
-		new /obj/item/stack/cable_coil(get_turf(src.loc), TRUE, "red")
+				icon_state = "bulb-construct-stage1"
+		new /obj/item/stack/cable_coil(get_turf(loc), TRUE, "red")
 		user.visible_message("[user.name] removes the wiring from [src].", \
 			"You remove the wiring from [src].", "You hear a noise.")
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, TRUE)
+		playsound(loc, 'sound/items/Wirecutter.ogg', 100, TRUE)
 		return
 
 	if(istype(W, /obj/item/stack/cable_coil))
-		if (src.stage != TRUE) return
+		if (stage != TRUE) return
 		var/obj/item/stack/cable_coil/coil = W
 		if (coil.use(1))
 			switch(fixture_type)
 				if ("tube")
 					if (!istype(src, /obj/machinery/light_construct/floor)) // TODO Переделать это
-						src.icon_state = "tube-construct-stage2"
+						icon_state = "tube-construct-stage2"
 					else
-						src.icon_state = "floortube-construct-stage2"
+						icon_state = "floortube-construct-stage2"
 				if("bulb")
-					src.icon_state = "bulb-construct-stage2"
-			src.stage = 2
+					icon_state = "bulb-construct-stage2"
+			stage = 2
 			user.visible_message("[user.name] adds wires to [src].", \
 				"You add wires to [src].")
 		return
 
 	if(istype(W, /obj/item/weapon/screwdriver))
-		if (src.stage == 2)
+		if (stage == 2)
 			switch(fixture_type)
 				if ("tube")
-					src.icon_state = "tube-empty"
+					icon_state = "tube-empty"
 				if("bulb")
-					src.icon_state = "bulb-empty"
-			src.stage = 3
+					icon_state = "bulb-empty"
+			stage = 3
 			user.visible_message("[user.name] closes [src]'s casing.", \
 				"You close [src]'s casing.", "You hear a noise.")
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
+			playsound(loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
 
 			switch(fixture_type)
 
 				if("tube")
 					if (!istype(src, /obj/machinery/light_construct/floor))
-						newlight = new /obj/machinery/light/built(src.loc)
+						newlight = new /obj/machinery/light/built(loc)
 					else
-						newlight = new /obj/machinery/light/floor/built(src.loc)
+						newlight = new /obj/machinery/light/floor/built(loc)
 				if ("bulb")
-					newlight = new /obj/machinery/light/small/built(src.loc)
+					newlight = new /obj/machinery/light/small/built(loc)
 
-			newlight.dir = src.dir
-			src.transfer_fingerprints_to(newlight)
+			newlight.dir = dir
+			transfer_fingerprints_to(newlight)
 			qdel(src)
 			return
 	..()
@@ -244,7 +244,7 @@
 		if(A && !A.requires_power)
 			on = TRUE
 
-		if(src.z == TRUE || src.z == 5)
+		if(z == TRUE || z == 5)
 			switch(fitting)
 				if("tube","bulb")
 					if(prob(2))
@@ -317,7 +317,7 @@
 	if(on == TRUE)
 		if(needsound == TRUE)
 			if (!nosound)
-				playsound(src.loc, 'sound/effects/Custom_lights.ogg', 65, TRUE)
+				playsound(loc, 'sound/effects/Custom_lights.ogg', 65, TRUE)
 				needsound = FALSE
 	else
 		needsound = TRUE
@@ -398,7 +398,7 @@
 			user << "There is a [fitting] already inserted."
 			return
 		else
-			src.add_fingerprint(user)
+			add_fingerprint(user)
 			var/obj/item/weapon/light/L = W
 			if(istype(L, light_type))
 				status = L.status
@@ -449,23 +449,23 @@
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
 		if(istype(W, /obj/item/weapon/screwdriver)) //If it's a screwdriver open it.
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
+			playsound(loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
 			user.visible_message("[user.name] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
 			var/obj/machinery/light_construct/newlight = null
 			switch(fitting)
 				if("tube")
-					newlight = new /obj/machinery/light_construct(src.loc)
+					newlight = new /obj/machinery/light_construct(loc)
 					newlight.icon_state = "tube-construct-stage2"
 
 				if("bulb")
-					newlight = new /obj/machinery/light_construct/small(src.loc)
+					newlight = new /obj/machinery/light_construct/small(loc)
 					newlight.icon_state = "bulb-construct-stage2"
-			newlight.dir = src.dir
+			newlight.dir = dir
 			newlight.stage = 2
-			newlight.fingerprints = src.fingerprints
-			newlight.fingerprintshidden = src.fingerprintshidden
-			newlight.fingerprintslast = src.fingerprintslast
+			newlight.fingerprints = fingerprints
+			newlight.fingerprintshidden = fingerprintshidden
+			newlight.fingerprintslast = fingerprintslast
 			qdel(src)
 			return
 
@@ -597,7 +597,7 @@
 
 	if(!skip_sound_and_sparks)
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
+			playsound(loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
 		if(on)
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, TRUE, src)
@@ -656,7 +656,7 @@
 // explode the light
 
 /obj/machinery/light/proc/explode()
-	var/turf/T = get_turf(src.loc)
+	var/turf/T = get_turf(loc)
 	spawn(0)
 		broken()	// break it first to give a warning
 		sleep(2)
@@ -784,9 +784,9 @@
 
 /obj/item/weapon/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		src.visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
+		visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
 		status = LIGHT_BROKEN
 		force = WEAPON_FORCE_WEAK
 		sharp = TRUE
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
 		update()

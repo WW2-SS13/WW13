@@ -9,7 +9,7 @@
 	var/horizontal_icon = 'icons/WW2/tank_large_horizontal.dmi'
 	var/vertical_icon = 'icons/WW2/tank_large_vertical.dmi'
 	icon_state = "ger"
-	layer = MOB_LAYER - 0.01
+	layer = MOB_LAYER + 0.01
 	var/fuel_slot_screwed = TRUE
 	var/fuel_slot_open = FALSE
 	var/fuel = 750
@@ -156,13 +156,7 @@
 	if (!ishuman(user))
 		return FALSE
 
-	var/mob/living/carbon/human/H = user
-
 	if (locked == FALSE)
-		if (H.is_jew)
-			user << "<span class = 'danger'>You don't know how to use [my_name()].</span>"
-			return FALSE
-
 		if (next_seat() && !accepting_occupant)
 			tank_message("<span class = 'warning'>[user] starts to go in the [next_seat_name()] of [my_name()].</span>")
 			accepting_occupant = TRUE

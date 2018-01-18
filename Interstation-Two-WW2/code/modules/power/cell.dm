@@ -76,9 +76,9 @@
 		return
 
 	if(maxcharge <= 2500)
-		user << "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
+		user << "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(percent() )]%."
 	else
-		user << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
+		user << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(percent() )]%."
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
@@ -98,7 +98,7 @@
 
 
 /obj/item/weapon/cell/proc/explode()
-	var/turf/T = get_turf(src.loc)
+	var/turf/T = get_turf(loc)
 /*
  * 1000-cell	explosion(T, -1, FALSE, TRUE, TRUE)
  * 2500-cell	explosion(T, -1, FALSE, TRUE, TRUE)

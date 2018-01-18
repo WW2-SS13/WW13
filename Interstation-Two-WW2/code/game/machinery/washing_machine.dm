@@ -76,7 +76,7 @@
 
 	sleep(20)
 	if(state in list(1,3,6) )
-		usr.loc = src.loc
+		usr.loc = loc
 
 
 /obj/machinery/washing_machine/update_icon()
@@ -159,13 +159,13 @@
 		if(2)
 			state = TRUE
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.loc = loc
 		if(3)
 			state = 4
 		if(4)
 			state = 3
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.loc = loc
 			crayon = null
 			state = TRUE
 		if(5)
@@ -179,7 +179,7 @@
 					var/mob/M = locate(/mob,contents)
 					M.gib()
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.loc = loc
 			crayon = null
 			state = TRUE
 

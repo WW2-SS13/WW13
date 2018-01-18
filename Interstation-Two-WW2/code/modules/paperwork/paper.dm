@@ -291,7 +291,7 @@
 				if(user.get_inactive_hand() == src)
 					user.drop_from_inventory(src)
 
-				new /obj/effect/decal/cleanable/ash(src.loc)
+				new /obj/effect/decal/cleanable/ash(loc)
 				qdel(src)
 
 			else
@@ -328,7 +328,7 @@
 
 
 		// if paper is not in usr, then it must be near them, or in a clipboard or folder, which must be in or near usr
-		if(src.loc != usr && !src.Adjacent(usr) && !((istype(src.loc, /obj/item/weapon/clipboard) || istype(src.loc, /obj/item/weapon/folder)) && (src.loc.loc == usr || src.loc.Adjacent(usr)) ) )
+		if(loc != usr && !Adjacent(usr) && !((istype(loc, /obj/item/weapon/clipboard) || istype(loc, /obj/item/weapon/folder)) && (loc.loc == usr || loc.Adjacent(usr)) ) )
 			return
 /*
 		t = checkhtml(t)
@@ -385,7 +385,7 @@
 				user << "<span class='notice'>Take off the carbon copy first.</span>"
 				add_fingerprint(user)
 				return
-		var/obj/item/weapon/paper_bundle/B = new(src.loc)
+		var/obj/item/weapon/paper_bundle/B = new(loc)
 		if (name != "paper")
 			B.name = name
 		else if (P.name != "paper" && P.name != "photo")
@@ -414,12 +414,12 @@
 			else if (h_user.head == src)
 				h_user.u_equip(src)
 				h_user.put_in_hands(B)
-			else if (!istype(src.loc, /turf))
-				src.loc = get_turf(h_user)
+			else if (!istype(loc, /turf))
+				loc = get_turf(h_user)
 				if(h_user.client)	h_user.client.screen -= src
 				h_user.put_in_hands(B)
-		user << "<span class='notice'>You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].</span>"
-		src.loc = B
+		user << "<span class='notice'>You clip the [P.name] to [(name == "paper") ? "the paper" : name].</span>"
+		loc = B
 		P.loc = B
 
 		B.pages.Add(src)

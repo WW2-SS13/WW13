@@ -49,7 +49,7 @@
 	if(!..())
 		if(shoes) 	//Put the old shoes back on if the check fails.
 			if(H.equip_to_slot_if_possible(shoes, slot_shoes))
-				src.shoes = null
+				shoes = null
 		return FALSE
 
 	if (shoes)
@@ -64,7 +64,7 @@
 	if(shoes)
 		if(!H.equip_to_slot_if_possible(shoes, slot_shoes))
 			shoes.forceMove(get_turf(src))
-		src.shoes = null
+		shoes = null
 	wearer = null
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)

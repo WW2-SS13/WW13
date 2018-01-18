@@ -18,34 +18,34 @@
 	/*if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/dat
-		src.pages = FALSE
+		pages = FALSE
 		switch(screen)
 			if(0) //Cover
 				dat+="<DIV ALIGN='center'><B><FONT SIZE=6>The Griffon</FONT></B></div>"
 				dat+="<DIV ALIGN='center'><FONT SIZE=2>[company_name]-standard newspaper, for use on [company_name]© Space Facilities</FONT></div><HR>"
-				if(isemptylist(src.news_content))
-					if(src.important_message)
-						dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [src.pages+2]\]</FONT><BR></ul>"
+				if(isemptylist(news_content))
+					if(important_message)
+						dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR></ul>"
 					else
 						dat+="<I>Other than the title, the rest of the newspaper is unprinted...</I>"
 				else
 					dat+="Contents:<BR><ul>"
-					for(var/datum/feed_channel/NP in src.news_content)
-						src.pages++
-					if(src.important_message)
-						dat+="<B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [src.pages+2]\]</FONT><BR>"
+					for(var/datum/feed_channel/NP in news_content)
+						pages++
+					if(important_message)
+						dat+="<B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR>"
 					var/temp_page=0
-					for(var/datum/feed_channel/NP in src.news_content)
+					for(var/datum/feed_channel/NP in news_content)
 						temp_page++
 						dat+="<B>[NP.channel_name]</B> <FONT SIZE=2>\[page [temp_page+1]\]</FONT><BR>"
 					dat+="</ul>"
 				if(scribble_page==curr_page)
-					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[src.scribble]\"</I>"
+					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
 				dat+= "<HR><DIV STYLE='float:right;'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV> <div style='float:left;'><A href='?src=\ref[human_user];mach_close=newspaper_main'>Done reading</A></DIV>"
 			if(1) // X channel pages inbetween.
-				for(var/datum/feed_channel/NP in src.news_content)
-					src.pages++ //Let's get it right again.
-				var/datum/feed_channel/C = src.news_content[src.curr_page]
+				for(var/datum/feed_channel/NP in news_content)
+					pages++ //Let's get it right again.
+				var/datum/feed_channel/C = news_content[curr_page]
 				dat+="<FONT SIZE=4><B>[C.channel_name]</B></FONT><FONT SIZE=1> \[created by: <FONT COLOR='maroon'>[C.author]</FONT>\]</FONT><BR><BR>"
 				if(C.censored)
 					dat+="This channel was deemed dangerous to the general welfare of the station and therefore marked with a <B><FONT COLOR='red'>D-Notice</B></FONT>. Its contents were not transferred to the newspaper at the time of printing."
@@ -65,12 +65,12 @@
 							dat+="<FONT SIZE=1>\[[MESSAGE.message_type] by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR><BR>"
 						dat+="</ul>"
 				if(scribble_page==curr_page)
-					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[src.scribble]\"</I>"
+					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
 				dat+= "<BR><HR><DIV STYLE='float:left;'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV> <DIV STYLE='float:right;'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV>"
 			if(2) //Last page
-				for(var/datum/feed_channel/NP in src.news_content)
-					src.pages++
-				if(src.important_message!=null)
+				for(var/datum/feed_channel/NP in news_content)
+					pages++
+				if(important_message!=null)
 					dat+="<DIV STYLE='float:center;'><FONT SIZE=4><B>Wanted Issue:</B></FONT SIZE></DIV><BR><BR>"
 					dat+="<B>Criminal name</B>: <FONT COLOR='maroon'>[important_message.author]</FONT><BR>"
 					dat+="<B>Description</B>: [important_message.body]<BR>"
@@ -83,12 +83,12 @@
 				else
 					dat+="<I>Apart from some uninteresting Classified ads, there's nothing on this page...</I>"
 				if(scribble_page==curr_page)
-					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[src.scribble]\"</I>"
+					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
 				dat+= "<HR><DIV STYLE='float:left;'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
 			else
 				dat+="I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
 
-		dat+="<BR><HR><div align='center'>[src.curr_page+1]</div>"
+		dat+="<BR><HR><div align='center'>[curr_page+1]</div>"
 		human_user << browse(dat, "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
 	else
@@ -101,44 +101,44 @@
 	if ((src in U.contents) || ( istype(loc, /turf) && in_range(src, U) ))
 		U.set_machine(src)
 		if(href_list["next_page"])
-			if(curr_page==src.pages+1)
+			if(curr_page==pages+1)
 				return //Don't need that at all, but anyway.
-			if(src.curr_page == src.pages) //We're at the middle, get to the end
-				src.screen = 2
+			if(curr_page == pages) //We're at the middle, get to the end
+				screen = 2
 			else
 				if(curr_page == FALSE) //We're at the start, get to the middle
-					src.screen=1
-			src.curr_page++
-			playsound(src.loc, "pageturn", 50, TRUE)
+					screen=1
+			curr_page++
+			playsound(loc, "pageturn", 50, TRUE)
 
 		else if(href_list["prev_page"])
 			if(curr_page == FALSE)
 				return
 			if(curr_page == TRUE)
-				src.screen = FALSE
+				screen = FALSE
 
 			else
-				if(curr_page == src.pages+1) //we're at the end, let's go back to the middle.
-					src.screen = TRUE
-			src.curr_page--
-			playsound(src.loc, "pageturn", 50, TRUE)
+				if(curr_page == pages+1) //we're at the end, let's go back to the middle.
+					screen = TRUE
+			curr_page--
+			playsound(loc, "pageturn", 50, TRUE)
 
-		if (istype(src.loc, /mob))
-			src.attack_self(src.loc)
+		if (istype(loc, /mob))
+			attack_self(loc)
 
 
 obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen))
-		if(src.scribble_page == src.curr_page)
+		if(scribble_page == curr_page)
 			user << "<FONT COLOR='blue'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>"
 		else
 			var/s = cp1251_to_utf8(sanitize(input(user, "Write something", "Newspaper", "")))
 			s = sanitize(s)
 			if (!s)
 				return
-			if (!in_range(src, usr) && src.loc != usr)
+			if (!in_range(src, usr) && loc != usr)
 				return
-			src.scribble_page = src.curr_page
-			src.scribble = s
-			src.attack_self(user)
+			scribble_page = curr_page
+			scribble = s
+			attack_self(user)
 		return

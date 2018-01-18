@@ -31,7 +31,7 @@ var/list/floor_light_cache = list()
 		if(!WT.remove_fuel(0, user))
 			user << "<span class='warning'>\The [src] must be on to complete this task.</span>"
 			return
-		playsound(src.loc, 'sound/items/Welder.ogg', 50, TRUE)
+		playsound(loc, 'sound/items/Welder.ogg', 50, TRUE)
 		if(!do_after(user, 20, src))
 			return
 		if(!src || !WT.isOn())
@@ -60,7 +60,7 @@ var/list/floor_light_cache = list()
 			stat |= BROKEN
 		else
 			visible_message("<span class='danger'>\The [user] attacks \the [src]!</span>")
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
+			playsound(loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
 			if(isnull(damaged)) damaged = FALSE
 		update_brightness()
 		return
@@ -172,7 +172,7 @@ var/list/floor_light_cache = list()
 			stat |= BROKEN
 		else
 			visible_message("<span class='danger'>\The [user] attacks \the [src]!</span>")
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
+			playsound(loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
 			if(isnull(damaged)) damaged = FALSE
 		update_brightness()
 		return

@@ -4,7 +4,7 @@ json_token
 	var
 		value
 	New(v)
-		src.value = v
+		value = v
 	text
 	number
 	word
@@ -25,10 +25,10 @@ json_reader
 	proc
 		// scanner
 		ScanJson(json)
-			src.json = json
+			json = json
 			. = new/list()
-			src.i = TRUE
-			while(src.i <= lentext(json))
+			i = TRUE
+			while(i <= lentext(json))
 				var/char = get_char()
 				if(is_whitespace(char))
 					i++
@@ -103,7 +103,7 @@ json_reader
 
 		// parser
 		ReadObject(list/tokens)
-			src.tokens = tokens
+			tokens = tokens
 			. = new/list()
 			i = TRUE
 			read_token("{", /json_token/symbol)

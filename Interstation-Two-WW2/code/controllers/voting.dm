@@ -28,7 +28,7 @@ datum/controller/vote
 			// 3 is GAME_STATE_PLAYING, but that #define is undefined for some reason
 			if(mode == "gamemode" && ticker.current_state >= 2)
 				world << "<b>Voting aborted due to game start.</b>"
-				src.reset()
+				reset()
 				return
 
 			// Calculate how much time is remaining by comparing current time, to time of vote start,

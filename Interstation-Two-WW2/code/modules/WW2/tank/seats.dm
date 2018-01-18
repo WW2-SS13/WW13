@@ -1,5 +1,5 @@
-/obj/tank/var/mob/fire_back_seat = null
-/obj/tank/var/mob/drive_front_seat = null
+/obj/tank/var/mob/living/carbon/human/fire_back_seat = null
+/obj/tank/var/mob/living/carbon/human/drive_front_seat = null
 /obj/tank/var/accepting_occupant = FALSE
 
 /obj/tank/proc/front_seat()

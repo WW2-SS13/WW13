@@ -82,20 +82,31 @@
 		playsound(get_turf(src), 'sound/weapons/WW2/tank_move.ogg', 100)
 		last_movement_sound = world.time
 
+// bound_x, bound_width, bound_height need this or movement speed gets fucked
+/proc/round_to_multiple_of_32(n, upper = FALSE)
+	. = n - n%32
+	if (upper)
+		. += 32
+
 /obj/tank/proc/update_bounding_rectangle()
 	switch (dir)
 		if (EAST)
-			bound_width = 160
-			bound_height = 96
+			bound_x = round_to_multiple_of_32(32)
+			bound_width = round_to_multiple_of_32(142)
+			bound_height = round_to_multiple_of_32(75)
 		if (WEST)
-			bound_width = 160
-			bound_height = 96
+			bound_x = round_to_multiple_of_32(96)
+			bound_width = round_to_multiple_of_32(142)
+			bound_height = round_to_multiple_of_32(75)
 		if (NORTH)
-			bound_width = 96
-			bound_height = 160
+			bound_y = -round_to_multiple_of_32(64)
+			bound_x = round_to_multiple_of_32(64)
+			bound_width = round_to_multiple_of_32(113, TRUE)
+			bound_height = round_to_multiple_of_32(89)
 		if (SOUTH)
-			bound_width = 96
-			bound_height = 160
+			bound_x = round_to_multiple_of_32(64)
+			bound_width = round_to_multiple_of_32(113, TRUE)
+			bound_height = round_to_multiple_of_32(89)
 
 /obj/tank/proc/handle_passing_target_turf(var/turf/t)
 
@@ -116,9 +127,9 @@
 			turfs_in_the_way += locate(t.x, t.y+1, t.z)
 		//	turfs_in_the_way += locate(t.x-1, t.y+2, t.z) // doesn't work with the current sprite
 		if (NORTH)
-			turfs_in_the_way += locate(t.x, t.y+4, t.z)
-			turfs_in_the_way += locate(t.x+1, t.y+4, t.z)
-			turfs_in_the_way += locate(t.x+2, t.y+4, t.z)
+			turfs_in_the_way += locate(t.x, t.y+1, t.z)
+			turfs_in_the_way += locate(t.x+1, t.y+1, t.z)
+			turfs_in_the_way += locate(t.x+2, t.y+1, t.z)
 		if (SOUTH)
 			turfs_in_the_way += locate(t.x, t.y, t.z)
 			turfs_in_the_way += locate(t.x+1, t.y, t.z)
@@ -132,7 +143,7 @@
 				if (!handle_passing_obj(am))
 					return FALSE
 			else if (ismob(am))
-				if (!handle_passing_mob(am))
+				if (!handle_passing_mob(am, TRUE))
 					return FALSE
 	return TRUE
 
@@ -287,10 +298,26 @@
 /obj/tank/proc/handle_passing_mob(var/mob/living/m)
 
 	if (istype(m) && (world.time - last_gibbed > 5 || last_gibbed == -1))
+
+		// crushing allies is no longer possible
+		if (ishuman(m))
+			var/mob/living/carbon/human/H = m
+			if (H.original_job && drive_front_seat.original_job)
+				if (H.original_job.base_type_flag() == drive_front_seat.original_job.base_type_flag())
+					return TRUE
+
+		// crushing allied dogs is no longer possible
+		else if (istype(m, /mob/living/simple_animal/complex_animal/canine/dog))
+			var/mob/living/simple_animal/complex_animal/canine/dog/D = m
+			if (drive_front_seat.original_job && D.faction)
+				if (drive_front_seat.original_job.base_type_flag() == D.faction)
+					return TRUE
+
 		last_gibbed = world.time
 		tank_message("<span class = 'danger'>The tank crushes [m]!</span>")
 		m.crush()
 		last_movement = world.time + 25
+
 	else if (istype(m))
 		spawn (5)
 			m.crush()

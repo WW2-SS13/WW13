@@ -31,6 +31,6 @@
 			A.reagents.add_reagent("holywater",water2holy)
 
 /obj/item/weapon/storage/bible/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (src.use_sound)
-		playsound(src.loc, src.use_sound, 50, TRUE, -5)
+	if (use_sound)
+		playsound(loc, use_sound, 50, TRUE, -5)
 	..()

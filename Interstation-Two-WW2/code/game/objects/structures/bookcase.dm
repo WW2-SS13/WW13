@@ -24,7 +24,7 @@
 		else
 			name = ("bookcase ([newname])")
 	else if(istype(O,/obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, TRUE)
+		playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 		user << (anchored ? "<span class='notice'>You unfasten \the [src] from the floor.</span>" : "<span class='notice'>You secure \the [src] to the floor.</span>")
 		anchored = !anchored
 	else if(istype(O,/obj/item/weapon/screwdriver))

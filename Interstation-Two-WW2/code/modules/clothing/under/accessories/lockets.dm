@@ -25,7 +25,7 @@
 		if(held)
 			user << "\The [held] falls out!"
 			held.loc = get_turf(user)
-			src.held = null
+			held = null
 	else
 		icon_state = "[base_icon]"
 
@@ -41,6 +41,6 @@
 			usr << "You slip [O] into [src]."
 			user.drop_item()
 			O.loc = src
-			src.held = O
+			held = O
 		return
 	..()

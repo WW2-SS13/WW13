@@ -23,9 +23,9 @@
 /obj/structure/table_frame/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/wrench))
 		user << "<span class='notice'>You start disassembling [src]...</span>"
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		if(do_after(user, 30, target = src))
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, TRUE)
+			playsound(loc, 'sound/items/Deconstruct.ogg', 50, TRUE)
 			for(var/i = TRUE, i <= framestackamount, i++)
 				new framestack(get_turf(src))
 			qdel(src)
@@ -38,7 +38,7 @@
 		user << "<span class='notice'>You start adding [M] to [src]...</span>"
 		if(do_after(user, 20, target = src))
 			M.use(1)
-			new /obj/structure/table(src.loc)
+			new /obj/structure/table(loc)
 			qdel(src)
 		return
 	if(istype(I, /obj/item/stack/material/glass))
@@ -50,7 +50,7 @@
 		if(do_after(user, 20, target = src))
 			G.use(1)
 
-			new /obj/structure/table/glass(src.loc)
+			new /obj/structure/table/glass(loc)
 			qdel(src)
 		return
 	if(istype(I, /obj/item/stack/material/silver))
@@ -61,7 +61,7 @@
 		user << "<span class='notice'>You start adding [S] to [src]...</span>"
 		if(do_after(user, 20, target = src))
 			S.use(1)
-			new /obj/structure/table/optable(src.loc)
+			new /obj/structure/table/optable(loc)
 			qdel(src)
 		return
 
@@ -87,7 +87,7 @@
 		user << "<span class='notice'>You start adding [W] to [src]...</span>"
 		if(do_after(user, 20, target = src))
 			W.use(1)
-			new /obj/structure/table/wood/settler(src.loc)
+			new /obj/structure/table/wood/settler(loc)
 			qdel(src)
 		return
 	if(istype(I, /obj/item/stack/tile/carpet))
@@ -98,6 +98,6 @@
 		user << "<span class='notice'>You start adding [C] to [src]...</span>"
 		if(do_after(user, 20, target = src))
 			C.use(1)
-			new /obj/structure/table/wood/poker(src.loc)
+			new /obj/structure/table/wood/poker(loc)
 			qdel(src)
 		return

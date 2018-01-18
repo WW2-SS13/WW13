@@ -57,8 +57,9 @@ var/list/global_whitelists[50]
 	establish_db_connection()
 	if (!database)
 		return
-	database.execute("DELETE FROM whitelists WHERE key = '[name]';")
-	database.execute("INSERT INTO whitelists (key, val) VALUES ('[name]', '[data]');")
+	database.execute("DELETE FROM whitelists WHERE key = '[name]';", FALSE)
+	spawn (10)
+		database.execute("INSERT INTO whitelists (key, val) VALUES ('[name]', '[data]');", FALSE)
 
 // add a client or ckey to the whitelist
 /datum/whitelist/proc/add(_arg, var/list/extras = list())

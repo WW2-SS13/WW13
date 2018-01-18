@@ -34,7 +34,7 @@
 		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
 		return FALSE
 	on = !on
-	playsound(src.loc, turn_on_sound, 75, TRUE)
+	playsound(loc, turn_on_sound, 75, TRUE)
 	update_icon()
 	user.update_action_buttons()
 	return TRUE
@@ -158,18 +158,18 @@
 	if(!fuel || !on)
 		turn_off()
 		if(!fuel)
-			src.icon_state = "[initial(icon_state)]-empty"
+			icon_state = "[initial(icon_state)]-empty"
 		processing_objects -= src
 
 /obj/item/device/flashlight/flare/proc/turn_off()
 	on = FALSE
-	src.force = initial(src.force)
-	src.damtype = initial(src.damtype)
+	force = initial(force)
+	damtype = initial(damtype)
 	update_icon()
 
 /obj/item/device/flashlight/flare/attack_self(mob/user)
 	if(turn_on(user))
-		playsound(src.loc, turn_on_sound, 75, TRUE)
+		playsound(loc, turn_on_sound, 75, TRUE)
 		user.visible_message("<span class='notice'>\The [user] activates \the [src].</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
 
 /obj/item/device/flashlight/flare/proc/turn_on(var/mob/user)

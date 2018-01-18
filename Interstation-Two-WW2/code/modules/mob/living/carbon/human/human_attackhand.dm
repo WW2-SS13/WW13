@@ -95,7 +95,7 @@
 		if(I_GRAB)
 			if(M == src || anchored)
 				return FALSE
-			for(var/obj/item/weapon/grab/G in src.grabbed_by)
+			for(var/obj/item/weapon/grab/G in grabbed_by)
 				if(G.assailant == M)
 					M << "<span class='notice'>You already grabbed [src].</span>"
 					return
@@ -141,21 +141,21 @@
 				M << "<span class='danger'>They are missing that limb!</span>"
 				return TRUE
 
-			switch(src.a_intent)
+			switch(a_intent)
 				if(I_HELP)
 					// We didn't see this coming, so we get the full blow
 					rand_damage = 5
 					accurate = TRUE
 				if(I_HURT, I_GRAB)
 					// We're in a fighting stance, there's a chance we block
-					if(src.canmove && src!=H && prob(20))
+					if(canmove && src!=H && prob(20))
 						block = TRUE
 
 			if (M.grabbed_by.len)
 				// Someone got a good grip on them, they won't be able to do much damage
 				rand_damage = max(1, rand_damage - 2)
 
-			if(src.grabbed_by.len || src.buckled || !src.canmove || src==H)
+			if(grabbed_by.len || buckled || !canmove || src==H)
 				accurate = TRUE // certain circumstances make it impossible for us to evade punches
 				rand_damage = 5
 
@@ -190,11 +190,11 @@
 				if(prob(80))
 					hit_zone = ran_zone(hit_zone)
 				if(prob(15) && hit_zone != "chest") // Missed!
-					if(!src.lying)
+					if(!lying)
 						attack_message = "[H] attempted to strike [src], but missed!"
 					else
 						attack_message = "[H] attempted to strike [src], but \he rolled out of the way!"
-						src.set_dir(pick(cardinal))
+						set_dir(pick(cardinal))
 					miss_type = TRUE
 
 			if(!miss_type && block)
@@ -205,7 +205,7 @@
 			if(istype(affecting, /obj/item/organ/external/head) && prob(hitcheck * (hit_zone == "mouth" ? 5 : TRUE))) //MUCH higher chance to knock out teeth if you aim for mouth
 				var/obj/item/organ/external/head/U = affecting
 				if(U.knock_out_teeth(get_dir(H, src), round(rand(28, 38) * ((hitcheck*2)/100))))
-					src.visible_message("<span class='danger'>Some of [src]'s teeth sail off in an arc!</span>", \
+					visible_message("<span class='danger'>Some of [src]'s teeth sail off in an arc!</span>", \
 										"<span class='userdanger'>Some of [src]'s teeth sail off in an arc!</span>")
 
 			// See what attack they use
@@ -220,8 +220,8 @@
 				H.visible_message("<span class='danger'>[attack_message]</span>")
 
 			playsound(loc, ((miss_type) ? (miss_type == TRUE ? attack.miss_sound : 'sound/weapons/thudswoosh.ogg') : attack.attack_sound), 25, TRUE, -1)
-			H.attack_log += text("\[[time_stamp()]\] <font color='red'>[miss_type ? (miss_type == TRUE ? "Missed" : "Blocked") : "[pick(attack.attack_verb)]"] [src.name] ([src.ckey])</font>")
-			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>[miss_type ? (miss_type == TRUE ? "Was missed by" : "Has blocked") : "Has Been [pick(attack.attack_verb)]"] by [H.name] ([H.ckey])</font>")
+			H.attack_log += text("\[[time_stamp()]\] <font color='red'>[miss_type ? (miss_type == TRUE ? "Missed" : "Blocked") : "[pick(attack.attack_verb)]"] [name] ([ckey])</font>")
+			attack_log += text("\[[time_stamp()]\] <font color='orange'>[miss_type ? (miss_type == TRUE ? "Was missed by" : "Has blocked") : "Has Been [pick(attack.attack_verb)]"] by [H.name] ([H.ckey])</font>")
 			msg_admin_attack("[key_name(H)] [miss_type ? (miss_type == TRUE ? "has missed" : "was blocked by") : "has [pick(attack.attack_verb)]"] [key_name(src)]")
 
 			if(miss_type)
@@ -248,10 +248,10 @@
 			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, armour, sharp=attack.sharp, edge=attack.edge)
 
 		if(I_DISARM)
-			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
-			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>")
+			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [name] ([ckey])</font>")
+			attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>")
 
-			msg_admin_attack("[key_name(M)] disarmed [src.name] ([src.ckey])")
+			msg_admin_attack("[key_name(M)] disarmed [name] ([ckey])")
 			M.do_attack_animation(src)
 
 			if(w_uniform)
@@ -308,9 +308,9 @@
 	if(!damage || !istype(user))
 		return
 
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
-	src.visible_message("<span class='danger'>[user] has [attack_message] [src]!</span>")
+	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
+	visible_message("<span class='danger'>[user] has [attack_message] [src]!</span>")
 	user.do_attack_animation(src)
 
 	var/dam_zone = pick(organs_by_name)
@@ -342,7 +342,7 @@
 	user.visible_message("<span class='warning'>[user] begins to dislocate [src]'s [organ.joint]!</span>")
 	if(do_after(user, 100, progress = FALSE))
 		organ.dislocate(1)
-		src.visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
+		visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
 		return TRUE
 	return FALSE
 

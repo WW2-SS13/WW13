@@ -19,7 +19,7 @@
 			sleep(3)
 			if (i > FALSE)
 				if (prob(40))
-					var/obj/effect/decal/cleanable/blood/oil/streak = new(src.loc)
+					var/obj/effect/decal/cleanable/blood/oil/streak = new(loc)
 					streak.update_icon()
 				else if (prob(10))
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread

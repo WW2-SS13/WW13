@@ -33,11 +33,8 @@ var/list/admin_datums = list()
 		qdel(src)
 		return
 
-	if (!config || !config.debug)
-		rank = initial_rank
-		rights = initial_rights
-	else
-		rank = "Debug Host"
+	rank = initial_rank
+	rights = initial_rights
 
 	if (rights == FALSE)
 		rights = admin_ranks[ckeyEx(rank)]

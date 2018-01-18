@@ -19,7 +19,7 @@
 		reagents = R
 		R.my_atom = src
 		if (!possible_transfer_amounts)
-			src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
+			verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
 		..()
 
 	examine(mob/user)
@@ -47,12 +47,12 @@
 				return
 			if(2.0)
 				if (prob(50))
-					new /obj/effect/effect/water(src.loc)
+					new /obj/effect/effect/water(loc)
 					qdel(src)
 					return
 			if(3.0)
 				if (prob(5))
-					new /obj/effect/effect/water(src.loc)
+					new /obj/effect/effect/water(loc)
 					qdel(src)
 					return
 			else
@@ -121,7 +121,7 @@
 			overlays = new/list()
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if (istype(W,/obj/item/weapon/wrench))
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 			"You wrench [src]'s faucet [modded ? "closed" : "open"]")
@@ -193,7 +193,7 @@
 
 	amount = min(amount, reagents.total_volume)
 	reagents.remove_reagent("fuel",amount)
-	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
+	new /obj/effect/decal/cleanable/liquid_fuel(loc, amount,1)
 
 /obj/structure/reagent_dispensers/peppertank
 	name = "Pepper Spray Refiller"
@@ -222,7 +222,7 @@
 
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W,/obj/item/weapon/wrench))
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		if(anchored)
 			user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
 		else

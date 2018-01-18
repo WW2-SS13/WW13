@@ -23,13 +23,13 @@
 	var/hideflag = FALSE
 
 /obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
-	src.parentmob = _parentmob
-	src.name = _name
-	src.screen_loc = _screen_loc
+	parentmob = _parentmob
+	name = _name
+	screen_loc = _screen_loc
 	if (_icon)
-		src.icon = _icon
+		icon = _icon
 	if (_icon_state)
-		src.icon_state = _icon_state
+		icon_state = _icon_state
 ///obj/screen/New()
 //	set in usr.client.screen
 //screen_loc = "[x_pos],[y_pos]"
@@ -348,12 +348,12 @@
 	layer = 19
 
 /obj/screen/inventory/New(_name = "unnamed", _screen_loc = "7,7", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)
-	src.name = _name
-	src.screen_loc = _screen_loc
-	src.icon = _icon
-	src.slot_id = _slot_id
-	src.icon_state = _icon_state
-	src.parentmob = _parentmob
+	name = _name
+	screen_loc = _screen_loc
+	icon = _icon
+	slot_id = _slot_id
+	icon_state = _icon_state
+	parentmob = _parentmob
 
 /obj/screen/inventory/Click()
 	// At this point in client Click() code we have passed the TRUE/10 sec check and little else
@@ -380,16 +380,16 @@
 
 /obj/screen/inventory/hand/Click()
 	var/mob/living/carbon/C = parentmob
-	if (src.slot_id == slot_l_hand)
+	if (slot_id == slot_l_hand)
 		C.activate_hand("l")
 	else
 		C.activate_hand("r")
 
 /obj/screen/inventory/hand/update_icon()
-	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
-		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
+	if (slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
+		icon_state = "act_hand[slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
-		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
+		icon_state = "hand[slot_id==slot_l_hand ? "-l" : "-r"]"
 //--------------------------------------------------inventory end---------------------------------------------------------
 
 //--------------------------------------------------health---------------------------------------------------------
@@ -614,7 +614,7 @@
 
 /obj/screen/fire/New()
 	..()
-	ovrl = new /image/no_recolor(icon = src.icon, icon_state ="fire1")
+	ovrl = new /image/no_recolor(icon = icon, icon_state ="fire1")
 //	ovrl.appearance_flags = RESET_COLOR
 
 /obj/screen/fire/process()
@@ -622,7 +622,7 @@
 
 /obj/screen/fire/update_icon()
 	var/mob/living/carbon/human/H = parentmob
-	src.overlays.Cut()
+	overlays.Cut()
 	if (H.fire_alert)
 		overlays += ovrl
 //	icon_state = "fire[H.fire_alert]"
@@ -862,7 +862,7 @@
 
 /obj/screen/swap/New()
 	..()
-	overlays += image(icon = src.icon, icon_state =  "swap-r", pixel_x = 32)
+	overlays += image(icon = icon, icon_state =  "swap-r", pixel_x = 32)
 
 /obj/screen/swap/Click()
 	parentmob.swap_hand()
@@ -1070,10 +1070,10 @@
 	name = ""
 
 /obj/screen/frippery/New(_icon_state,_screen_loc = "7,7",_dir, mob/living/_parentmob)
-	src.parentmob = _parentmob
-	src.screen_loc = _screen_loc
-	src.icon_state = _icon_state
-	src.dir = _dir
+	parentmob = _parentmob
+	screen_loc = _screen_loc
+	icon_state = _icon_state
+	dir = _dir
 
 /obj/screen/glasses_overlay
 	icon = null

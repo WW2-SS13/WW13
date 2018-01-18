@@ -214,8 +214,8 @@
 			ghost.ckey = M.ckey
 	message_admins("\blue [key_name_admin(usr)] assumed direct control of [M].", TRUE)
 	log_admin("[key_name(usr)] assumed direct control of [M].")
-	var/mob/adminmob = src.mob
-	M.ckey = src.ckey
+	var/mob/adminmob = mob
+	M.ckey = ckey
 	if(isghost(adminmob))
 		qdel(adminmob)
 

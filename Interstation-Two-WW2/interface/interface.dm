@@ -205,7 +205,7 @@ Any-Mode: (hotkey doesn't need to be on)
 \tPGDN = activate held object
 </font>"}
 
-	if(isrobot(src.mob))
+	if(isrobot(mob))
 		src << robot_hotkey_mode
 		src << robot_other
 	else

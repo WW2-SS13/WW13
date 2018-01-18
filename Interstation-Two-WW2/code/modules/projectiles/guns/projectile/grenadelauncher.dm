@@ -32,8 +32,8 @@
 
 /obj/item/weapon/gun/projectile/rocket/handle_post_fire(mob/user, atom/target)
 	..()
-	message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]) at [target].")
-	log_game("[key_name_admin(user)] used a rocket launcher ([src.name]) at [target].")
+	message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([name]) at [target].")
+	log_game("[key_name_admin(user)] used a rocket launcher ([name]) at [target].")
 
 //////////////////////////////////////////////
 /obj/item/weapon/gun/projectile/rocket/one_use
@@ -220,7 +220,7 @@
 	update_held_icon()
 
 /obj/item/weapon/gun/projectile/grenade/handle_post_fire(mob/user)
-	message_admins("[key_name_admin(user)] fired a grenade from a grenade launcher ([src.name]).")
+	message_admins("[key_name_admin(user)] fired a grenade from a grenade launcher ([name]).")
 	log_game("[key_name_admin(user)] used a grenade.")
 	chambered = null
 	if(loaded.len)
@@ -279,22 +279,22 @@
 
 	New()
 		..()
-		src.smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/bad)
-		src.smoke.attach(src)
+		smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/bad)
+		smoke.attach(src)
 
 	throw_impact(atom/hit_atom)
 		if(primed)
 			name += " (Used)"
-			playsound(src.loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
-			src.smoke.set_up(5, FALSE, usr.loc)
+			playsound(loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
+			smoke.set_up(5, FALSE, usr.loc)
 			spawn(0)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 		else
 			..()
 		return
@@ -305,22 +305,22 @@
 
 	New()
 		..()
-		src.smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/tear)
-		src.smoke.attach(src)
+		smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/tear)
+		smoke.attach(src)
 
 	throw_impact(atom/hit_atom)
 		if(primed)
 			name += " (Used)"
-			playsound(src.loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
-			src.smoke.set_up(5, FALSE, usr.loc)
+			playsound(loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
+			smoke.set_up(5, FALSE, usr.loc)
 			spawn(0)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 		else
 			..()
 		return

@@ -375,7 +375,7 @@
 		else if(href_list["import"])
 			var/t = ""
 			do
-				t = rhtml_encode(input(usr, "Please paste the entire song, formatted:", text("[]", src.name), t)  as message)
+				t = rhtml_encode(input(usr, "Please paste the entire song, formatted:", text("[]", name), t)  as message)
 				if (!in_range(src, usr))
 					return
 
@@ -414,22 +414,22 @@
 /obj/structure/device/piano/attackby(obj/item/O as obj, mob/user as mob)
 	if (istype(O, /obj/item/weapon/wrench))
 		if (anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
+			playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 			user << "<span class='notice'>You begin to loosen \the [src]'s casters...</span>"
 			if (do_after(user, 40, src))
 				user.visible_message( \
 					"[user] loosens \the [src]'s casters.", \
 					"<span class='notice'>You have loosened \the [src]. Now it can be pulled somewhere else.</span>", \
 					"You hear ratchet.")
-				src.anchored = FALSE
+				anchored = FALSE
 		else
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
+			playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 			user << "<span class='notice'>You begin to tighten \the [src] to the floor...</span>"
 			if (do_after(user, 20, src))
 				user.visible_message( \
 					"[user] tightens \the [src]'s casters.", \
 					"<span class='notice'>You have tightened \the [src]'s casters. Now it can be played again</span>.", \
 					"You hear ratchet.")
-				src.anchored = TRUE
+				anchored = TRUE
 	else
 		..()

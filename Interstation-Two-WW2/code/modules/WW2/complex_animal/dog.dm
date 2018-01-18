@@ -302,7 +302,7 @@ s
 			if (H in range(1, src))
 				dir = get_dir(src, H)
 				visible_message("<span class = 'warning'>The [src] shreds [H] with their teeth!</span>")
-				H.adjustBruteLoss(rand(8,12))
+				H.adjustBruteLoss(rand(8,12)/H.getStatCoeff("strength"))
 				playsound(get_turf(src), 'sound/weapons/bite.ogg', rand(70,80))
 			/*	if (prob(20)) // I think this stuns people forever, not sure how
 					H.stun_effect_act(rand(1,2), rand(2,3)) */

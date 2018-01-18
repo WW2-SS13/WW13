@@ -23,10 +23,10 @@ var/list/floor_decals = list()
 	if(istype(T, /turf/floor))
 		var/cache_key = "[alpha]-[color]-[dir]-[icon_state]-[layer]"
 		if(!floor_decals[cache_key])
-			var/image/I = image(icon = src.icon, icon_state = src.icon_state, dir = src.dir)
+			var/image/I = image(icon = icon, icon_state = icon_state, dir = dir)
 			I.layer = T.layer
-			I.color = src.color
-			I.alpha = src.alpha
+			I.color = color
+			I.alpha = alpha
 			floor_decals[cache_key] = I
 		if(!T.decals) T.decals = list()
 		T.decals |= floor_decals[cache_key]

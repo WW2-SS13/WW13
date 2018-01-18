@@ -53,7 +53,7 @@
 			user << "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>"
 
 /obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 30, TRUE, -2)
+	playsound(loc, cuff_sound, 30, TRUE, -2)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))

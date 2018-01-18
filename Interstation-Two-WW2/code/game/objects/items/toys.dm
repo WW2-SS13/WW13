@@ -49,8 +49,8 @@
 	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= TRUE)
 		A.reagents.trans_to_obj(src, 10)
 		user << "<span class='notice'>You fill the balloon with the contents of [A].</span>"
-		src.desc = "A translucent balloon with some form of liquid sloshing around in it."
-		src.update_icon()
+		desc = "A translucent balloon with some form of liquid sloshing around in it."
+		update_icon()
 	return
 
 /obj/item/toy/balloon/attackby(obj/O as obj, mob/user as mob)
@@ -64,26 +64,26 @@
 					O.reagents.splash(user, reagents.total_volume)
 					qdel(src)
 				else
-					src.desc = "A translucent balloon with some form of liquid sloshing around in it."
+					desc = "A translucent balloon with some form of liquid sloshing around in it."
 					user << "<span class='notice'>You fill the balloon with the contents of [O].</span>"
 					O.reagents.trans_to_obj(src, 10)
-	src.update_icon()
+	update_icon()
 	return
 
 /obj/item/toy/balloon/throw_impact(atom/hit_atom)
-	if(src.reagents.total_volume >= TRUE)
-		src.visible_message("<span class='warning'>\The [src] bursts!</span>","You hear a pop and a splash.")
-		src.reagents.touch_turf(get_turf(hit_atom))
+	if(reagents.total_volume >= TRUE)
+		visible_message("<span class='warning'>\The [src] bursts!</span>","You hear a pop and a splash.")
+		reagents.touch_turf(get_turf(hit_atom))
 		for(var/atom/A in get_turf(hit_atom))
-			src.reagents.touch(A)
-		src.icon_state = "burst"
+			reagents.touch(A)
+		icon_state = "burst"
 		spawn(5)
 			if(src)
 				qdel(src)
 	return
 
 /obj/item/toy/balloon/update_icon()
-	if(src.reagents.total_volume >= TRUE)
+	if(reagents.total_volume >= TRUE)
 		icon_state = "waterballoon"
 		item_state = "balloon"
 	else
@@ -170,7 +170,7 @@
 		if(!isturf(target.loc) || target == user) return
 		if(flag) return
 
-		if (locate (/obj/structure/table, src.loc))
+		if (locate (/obj/structure/table, loc))
 			return
 		else if (bullets)
 			var/turf/trg = get_turf(target)
@@ -215,11 +215,11 @@
 
 
 	attack(mob/M as mob, mob/user as mob)
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 
 // ******* Check
 
-		if (src.bullets > FALSE && M.lying)
+		if (bullets > FALSE && M.lying)
 
 			for(var/mob/O in viewers(M, null))
 				if(O.client)
@@ -228,8 +228,8 @@
 
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, TRUE)
 			new /obj/item/toy/ammo/crossbow(M.loc)
-			src.bullets--
-		else if (M.lying && src.bullets == FALSE)
+			bullets--
+		else if (M.lying && bullets == FALSE)
 			for(var/mob/O in viewers(M, null))
 				if (O.client)	O.show_message(text("<span class='danger'>\The [] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>", user, M), TRUE, "<span class='warning'>You hear someone fall</span>", 2)
 			user.Weaken(5)
@@ -266,26 +266,26 @@
 	attack_verb = list("attacked", "struck", "hit")
 
 	attack_self(mob/user as mob)
-		src.active = !( src.active )
-		if (src.active)
+		active = !( active )
+		if (active)
 			user << "<span class='notice'>You extend the plastic blade with a quick flick of your wrist.</span>"
 			playsound(user, 'sound/weapons/saberon.ogg', 50, TRUE)
-			src.icon_state = "swordblue"
-			src.item_state = "swordblue"
-			src.w_class = 4
+			icon_state = "swordblue"
+			item_state = "swordblue"
+			w_class = 4
 		else
 			user << "<span class='notice'>You push the plastic blade back down into the handle.</span>"
 			playsound(user, 'sound/weapons/saberoff.ogg', 50, TRUE)
-			src.icon_state = "sword0"
-			src.item_state = "sword0"
-			src.w_class = 2
+			icon_state = "sword0"
+			item_state = "sword0"
+			w_class = 2
 
 		if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
 			H.update_inv_l_hand()
 			H.update_inv_r_hand()
 
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		return
 
 /obj/item/toy/katana
@@ -316,8 +316,8 @@
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, TRUE, src)
 		s.start()
-		new /obj/effect/decal/cleanable/ash(src.loc)
-		src.visible_message("<span class='warning'>The [src.name] explodes!</span>","<span class='warning'>You hear a snap!</span>")
+		new /obj/effect/decal/cleanable/ash(loc)
+		visible_message("<span class='warning'>The [name] explodes!</span>","<span class='warning'>You hear a snap!</span>")
 		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 		qdel(src)
 
@@ -330,8 +330,8 @@
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(2, FALSE, src)
 			s.start()
-			new /obj/effect/decal/cleanable/ash(src.loc)
-			src.visible_message("<span class='warning'>The [src.name] explodes!</span>","<span class='warning'>You hear a snap!</span>")
+			new /obj/effect/decal/cleanable/ash(loc)
+			visible_message("<span class='warning'>The [name] explodes!</span>","<span class='warning'>You hear a snap!</span>")
 			playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 			qdel(src)
 
@@ -361,7 +361,7 @@
 	if (istype(A, /obj/item/weapon/storage/backpack ))
 		return
 
-	else if (locate (/obj/structure/table, src.loc))
+	else if (locate (/obj/structure/table, loc))
 		return
 
 	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= TRUE)
@@ -369,13 +369,13 @@
 		user << "<span class='notice'>You refill your flower!</span>"
 		return
 
-	else if (src.reagents.total_volume < TRUE)
-		src.empty = TRUE
+	else if (reagents.total_volume < TRUE)
+		empty = TRUE
 		user << "<span class='notice'>Your flower has run dry!</span>"
 		return
 
 	else
-		src.empty = FALSE
+		empty = FALSE
 
 
 		var/obj/effect/decal/D = new/obj/effect/decal/(get_turf(src))
@@ -383,8 +383,8 @@
 		D.icon = 'icons/obj/chemical.dmi'
 		D.icon_state = "chempuff"
 		D.create_reagents(5)
-		src.reagents.trans_to_obj(D, TRUE)
-		playsound(src.loc, 'sound/effects/spray3.ogg', 50, TRUE, -6)
+		reagents.trans_to_obj(D, TRUE)
+		playsound(loc, 'sound/effects/spray3.ogg', 50, TRUE, -6)
 
 		spawn(0)
 			for(var/i=0, i<1, i++)
@@ -401,7 +401,7 @@
 
 /obj/item/toy/waterflower/examine(mob/user)
 	if(..(user, FALSE))
-		user << text("\icon[] [] units of water left!", src, src.reagents.total_volume)
+		user << text("\icon[] [] units of water left!", src, reagents.total_volume)
 
 /*
  * Bosun's whistle

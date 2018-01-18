@@ -33,14 +33,14 @@
 				return
 		if(3.0)
 			if (prob(25))
-				src.density = FALSE
+				density = FALSE
 		else
 	return
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
 	if (HULK in usr.mutations)
 		visible_message("<span class='danger'>\The [usr] destroys \the [src]!</span>")
-		src.density = FALSE
+		density = FALSE
 		qdel(src)
 	return
 
@@ -58,18 +58,18 @@
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
 		return
 	user.drop_item()
-	if (O.loc != src.loc)
+	if (O.loc != loc)
 		step(O, get_dir(O, src))
 	return
 
 /obj/machinery/optable/proc/check_victim()
-	if(locate(/mob/living/carbon/human, src.loc))
-		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, src.loc)
+	if(locate(/mob/living/carbon/human, loc))
+		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, loc)
 		if(M.lying)
-			src.victim = M
+			victim = M
 			icon_state = M.pulse() ? "table2-active" : "table2-idle"
 			return TRUE
-	src.victim = null
+	victim = null
 	icon_state = "table2-idle"
 	return FALSE
 
@@ -85,13 +85,13 @@
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
 	C.resting = TRUE
-	C.loc = src.loc
+	C.loc = loc
 	for(var/obj/O in src)
-		O.loc = src.loc
-	src.add_fingerprint(user)
+		O.loc = loc
+	add_fingerprint(user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		src.victim = H
+		victim = H
 		icon_state = H.pulse() ? "table2-active" : "table2-idle"
 	else
 		icon_state = "table2-idle"
@@ -126,7 +126,7 @@
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	check_victim()
-	if(src.victim && get_turf(victim) == get_turf(src) && victim.lying)
+	if(victim && get_turf(victim) == get_turf(src) && victim.lying)
 		usr << "<span class='warning'>\The [src] is already occupied!</span>"
 		return FALSE
 	if(patient.buckled)

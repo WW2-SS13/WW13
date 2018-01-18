@@ -323,7 +323,7 @@
 	for (var/obj/snow/S in get_turf(src))
 		loc_temp -= (S.amount * 20)
 
-	src.loc_temperature = loc_temp
+	loc_temperature = loc_temp
 
 	// todo: wind adjusting effective loc_temp
 
@@ -725,7 +725,7 @@
 			damageoverlay.overlays += I
 
 		//Fire and Brute damage overlay (BSSR)
-		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp
+		var/hurtdamage = getBruteLoss() + getFireLoss() + damageoverlaytemp
 		damageoverlaytemp = FALSE // We do this so we can detect if someone hits us or not.
 		if(hurtdamage)
 			var/image/I
@@ -894,11 +894,15 @@
 		if (prob(3))
 			src << "<span class = 'warning'>You're getting a bit hungry.</span>"
 
-	if(nutrition < 200)
-		if (prob(4))
+	else if(nutrition < 200 && nutrition >= 100)
+		if (prob(5))
 			src << "<span class = 'warning'>You're pretty hungry.</span>"
 
-	if(nutrition < 20) //Nutrition is below 20 = starvation
+	else if (nutrition < 100 && nutrition >= 20)
+		if (prob(8))
+			src << "<span class = 'danger'>You're getting really hungry!</span>"
+
+	else if (nutrition < 20) //Nutrition is below 20 = starvation
 
 		var/list/hunger_phrases = list(
 			"You feel weak and malnourished. You must find something to eat now!",
@@ -1010,15 +1014,19 @@
 
 /mob/living/carbon/human/proc/handle_dehydration()//Making this it's own proc for my sanity's sake - Matt
 
-	if(water < 300 && water >= 250)
-		if (prob(1))
+	if (water < 300 && water >= 200)
+		if (prob(3))
 			src << "<span class = 'warning'>You're getting a bit thirsty.</span>"
 
-	if(water < 250)
-		if (prob(2))
+	else if (water < 200 && water >= 100)
+		if (prob(5))
 			src << "<span class = 'warning'>You're pretty thirsty.</span>"
 
-	if(water < 20) //Nutrition is below 20 = dehydration
+	else if (water < 100 && water >= 20)
+		if (prob(8))
+			src << "<span class = 'danger'>You're really thirsty.</span>"
+
+	else if (water < 20) //Nutrition is below 20 = dehydration
 
 		var/list/thirst_phrases = list(
 			"You feel weak and malnourished. You must find something to drink now!",

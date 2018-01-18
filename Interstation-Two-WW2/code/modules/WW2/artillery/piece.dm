@@ -141,7 +141,7 @@
 	Move()
 		global.valid_coordinates["[x],[y]"] = FALSE
 		..()
-		other.loc = (get_step(src, src.dir) || loc)
+		other.loc = (get_step(src, dir) || loc)
 		global.valid_coordinates["[x],[y]"] = TRUE
 
 
@@ -300,7 +300,7 @@
 				state = "OPEN"
 			spawn (6)
 				if (other.drop_casing)
-					var/obj/o = new/obj/item/artillery_ammo/casing(get_step(src, src.dir))
+					var/obj/o = new/obj/item/artillery_ammo/casing(get_step(src, dir))
 					o.icon_state = casing_state
 					user << "<span class='danger'>The casing falls out of the artillery.</span>"
 					other.drop_casing = FALSE
@@ -399,14 +399,14 @@
 /obj/machinery/artillery/base/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
 		if (anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, TRUE)
+			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 			user << "<span class='notice'>Now unsecuring the artillery piece...</span>"
 			if(do_after(user,20))
 				if(!src) return
 				user << "<span class='notice'>You unsecured the artillery piece.</span>"
 				anchored = FALSE
 		else if(!anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, TRUE)
+			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 			user << "<span class='notice'>Now securing the artillery piece...</span>"
 			if(do_after(user, 20))
 				if (!src) return

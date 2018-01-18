@@ -90,11 +90,11 @@
 
 	for(var/client/target in clients)
 		if(target.is_preference_enabled(/datum/client_preference/show_ooc))
-			var/display_name = src.key
+			var/display_name = key
 			if(holder)
 				if(holder.fakekey)
 					if(target.holder)
-						display_name = "[holder.fakekey]/([src.key])"
+						display_name = "[holder.fakekey]/([key])"
 					else
 						display_name = holder.fakekey
 				else
@@ -108,8 +108,8 @@
 			if (isPatron("$3+"))
 				admin_patron_check = TRUE
 
-			if(admin_patron_check && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
-				target << "<font color='[src.prefs.ooccolor]'><span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
+			if(admin_patron_check && config.allow_admin_ooccolor && (prefs.ooccolor != initial(prefs.ooccolor))) // keeping this for the badmins
+				target << "<font color='[prefs.ooccolor]'><span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
 			else
 				target << "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></span>"
 

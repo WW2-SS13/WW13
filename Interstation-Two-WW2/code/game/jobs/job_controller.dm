@@ -711,7 +711,6 @@ var/global/datum/controller/occupations/job_master
 		if(player && rank)
 			var/datum/job/job = GetJob(rank)
 			if(!job)	return FALSE
-			if (player.client && player.client.quickBan_isbanned(job)) return FALSE
 			if(!job.player_old_enough(player.client)) return FALSE
 			var/position_limit = job.total_positions
 			if((job.current_positions < position_limit) || position_limit == -1 || reinforcements)
@@ -1379,7 +1378,6 @@ var/global/datum/controller/occupations/job_master
 			if (isDarkOutside())
 				H.equip_to_slot_or_del(new/obj/item/device/flashlight(H), slot_belt)
 
-			// this spawns keys now
 			spawnKeys(H, rank, alt_title)
 
 			// free belt slot, give us a flashlight anyway

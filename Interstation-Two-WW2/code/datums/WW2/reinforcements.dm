@@ -40,12 +40,6 @@ var/datum/reinforcements/reinforcements_master
 /datum/reinforcements/New()
 	..()
 
-	if (config && config.debug)
-		soviet_countdown = 10
-		german_countdown = 10
-		soviet_countdown_failure_reset = 10
-		german_countdown_failure_reset = 10
-
 	reinforcements_granted[SOVIET] = FALSE
 	reinforcements_granted[GERMAN] = FALSE
 
@@ -72,11 +66,11 @@ var/datum/reinforcements/reinforcements_master
 	/* new formulas for determining how reinforcements work, directly determined
 	 * by the number of clients when we start up. */
 
-	max_german_reinforcements = max(1, round(clients.len * 0.4))
-	max_soviet_reinforcements = max(1, round(clients.len * 0.6))
+	max_german_reinforcements = max(1, round(clients.len * 0.45))
+	max_soviet_reinforcements = max(1, round(clients.len * 0.55))
 	reinforcement_add_limit_german = max(3, round(clients.len * 0.12))
 	reinforcement_add_limit_soviet = max(3, round(clients.len * 0.15))
-	reinforcement_spawn_req = max(1, round(clients.len * 0.10))
+	reinforcement_spawn_req = max(1, round(clients.len * 0.06))
 	reinforcement_difference_cutoff = max(3, round(clients.len * 0.12))
 
 	world << "<span class = 'danger'>Reinforcements require <b>[reinforcement_spawn_req]</b> people to fill a queue.</span>"
@@ -144,10 +138,10 @@ var/datum/reinforcements/reinforcements_master
 
 	var/sname[0]
 
-	sname[SOVIET] = "SOVIET"
+	sname[SOVIET] = "Soviet"
 	sname[GERMAN] = "German"
 
-	np << "<span class = 'danger'>You have joined a queue for [sname[side]] reinforcements, please wait until the timer reaches 0 to spawn.</span>"
+	np << "<span class = 'danger'>You have joined a queue for [sname[side]] reinforcements; please wait until the timer reaches 0 to spawn.</span>"
 	var/list/l = reinforcement_pool[side]
 	l += np
 
@@ -255,7 +249,9 @@ var/datum/reinforcements/reinforcements_master
 
 		locked[SOVIET] = TRUE
 		locked[GERMAN] = TRUE // since soviets get more reinforcements,
-		 // if they are locked german must also be
+
+		if (!is_permalocked(GERMAN))
+			locked[GERMAN] = FALSE
 
 	if (is_permalocked(GERMAN))
 
@@ -266,7 +262,7 @@ var/datum/reinforcements/reinforcements_master
 		locked[GERMAN] = TRUE
 
 		if (!is_permalocked(SOVIET))
-			locked[SOVIET] = FALSE // if germans are permalocked but not soviets, soviets must be unlocked
+			locked[SOVIET] = FALSE
 
 /datum/reinforcements/proc/is_permalocked(side)
 	switch (side)

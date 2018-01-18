@@ -146,9 +146,9 @@ var/global/photo_count = FALSE
 /obj/item/device/camera/attack_self(mob/user as mob)
 	on = !on
 	if(on)
-		src.icon_state = icon_on
+		icon_state = icon_on
 	else
-		src.icon_state = icon_off
+		icon_state = icon_off
 	user << "You switch the camera [on ? "on" : "off"]."
 	return
 
@@ -203,8 +203,8 @@ var/global/photo_count = FALSE
 /mob/living/proc/can_capture_turf(turf/T)
 	var/mob/dummy = new(T)	//Go go visibility check dummy
 	var/viewer = src
-	if(src.client)		//To make shooting through security cameras possible
-		viewer = src.client.eye
+	if(client)		//To make shooting through security cameras possible
+		viewer = client.eye
 	var/can_see = (dummy in viewers(world.view, viewer))
 
 	qdel(dummy)

@@ -47,14 +47,14 @@
 
 	if(!(user.targeted_organ == ("eyes" || "head"))) //////////////hitting anything else other than the eyes
 		if(prob(33))
-			src.add_blood(H)
+			add_blood(H)
 			var/turf/location = H.loc
 			if (istype(location, /turf))
 				location.add_blood(H)     ///Plik plik, the sound of blood
 
-		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been attacked with [src.name] by [user.name] ([user.ckey])</font>")
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to attack [M.name] ([M.ckey])</font>")
-		msg_admin_attack("[user.name] ([user.ckey]) used the [src.name] to attack [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been attacked with [name] by [user.name] ([user.ckey])</font>")
+		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to attack [M.name] ([M.ckey])</font>")
+		msg_admin_attack("[user.name] ([user.ckey]) used the [name] to attack [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 		if(prob(15))
 			M.Weaken(3)
@@ -83,7 +83,7 @@
 	if(protected)
 		M << "<span class='warning'>You get slammed in the face with the tray, against your mask!</span>"
 		if(prob(33))
-			src.add_blood(H)
+			add_blood(H)
 			if (H.wear_mask)
 				H.wear_mask.add_blood(H)
 			if (H.head)
@@ -113,7 +113,7 @@
 	else //No eye or head protection, tough luck!
 		M << "<span class='warning'>You get slammed in the face with the tray!</span>"
 		if(prob(33))
-			src.add_blood(M)
+			add_blood(M)
 			var/turf/location = H.loc
 			if (istype(location, /turf))
 				location.add_blood(H)
@@ -193,7 +193,7 @@
 /obj/item/weapon/tray/dropped(mob/user)
 
 	var/mob/living/M
-	for(M in src.loc) //to handle hand switching
+	for(M in loc) //to handle hand switching
 		return
 
 	var/foundtable = FALSE

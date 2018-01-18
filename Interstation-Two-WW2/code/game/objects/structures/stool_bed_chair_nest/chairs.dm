@@ -55,10 +55,10 @@
 		overlays |= stool_cache[cache_key]
 
 /obj/structure/bed/chair/proc/update_layer()
-	if(src.dir == NORTH)
-		src.layer = FLY_LAYER
+	if(dir == NORTH)
+		layer = FLY_LAYER
 	else
-		src.layer = OBJ_LAYER
+		layer = OBJ_LAYER
 
 /obj/structure/bed/chair/set_dir()
 	..()
@@ -72,7 +72,7 @@
 	set src in oview(1)
 
 	if(config.ghost_interaction)
-		src.set_dir(turn(src.dir, 90))
+		set_dir(turn(dir, 90))
 
 		return
 
@@ -84,7 +84,7 @@
 		if(usr.stat || usr.restrained())
 			return
 
-		src.set_dir(turn(src.dir, 90))
+		set_dir(turn(dir, 90))
 		playsound(src,'sound/effects/CREAK_Wood_Tree_Creak_10_Bright_Very_Subtle_mono.wav',100,1)
 		return
 
@@ -145,11 +145,11 @@
 	if(buckled_mob)
 		var/mob/living/occupant = buckled_mob
 		occupant.buckled = null
-		occupant.Move(src.loc)
+		occupant.Move(loc)
 		occupant.buckled = src
-		if (occupant && (src.loc != occupant.loc))
+		if (occupant && (loc != occupant.loc))
 			if (propelled)
-				for (var/mob/O in src.loc)
+				for (var/mob/O in loc)
 					if (O != occupant)
 						Bump(O)
 			else
@@ -169,7 +169,7 @@
 		occupant.apply_effect(6, WEAKEN, blocked)
 		occupant.apply_effect(6, STUTTER, blocked)
 		occupant.apply_damage(10, BRUTE, def_zone, blocked)
-		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
+		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 		if(istype(A, /mob/living))
 			var/mob/living/victim = A
 			def_zone = ran_zone()

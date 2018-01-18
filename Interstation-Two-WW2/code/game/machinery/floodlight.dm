@@ -14,7 +14,7 @@
 	light_power = 2
 
 /obj/machinery/floodlight/New()
-	src.cell = new(src)
+	cell = new(src)
 	cell.maxcharge = 1000
 	cell.charge = 1000 // 41minutes @ 200W
 	..()
@@ -74,7 +74,7 @@
 		cell.add_fingerprint(user)
 		cell.update_icon()
 
-		src.cell = null
+		cell = null
 		on = FALSE
 		set_light(0)
 		user << "You remove the power cell"

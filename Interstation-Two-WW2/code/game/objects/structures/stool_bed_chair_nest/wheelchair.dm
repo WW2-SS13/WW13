@@ -15,7 +15,7 @@
 /obj/structure/bed/chair/wheelchair/set_dir()
 	..()
 	overlays = null
-	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", layer = FLY_LAYER, dir = src.dir)
+	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", layer = FLY_LAYER, dir = dir)
 	overlays += O
 	if(buckled_mob)
 		buckled_mob.set_dir(dir)
@@ -48,7 +48,7 @@
 		user.pulledby = null
 		if(user==pulling)
 			return
-	if(pulling && (get_dir(src.loc, pulling.loc) == direction))
+	if(pulling && (get_dir(loc, pulling.loc) == direction))
 		user << "<span class='warning'>You cannot go there.</span>"
 		return
 	if(pulling && buckled_mob && (buckled_mob == user))
@@ -67,14 +67,14 @@
 	if(pulling)
 		T = pulling.loc
 		if(get_dist(src, pulling) >= TRUE)
-			step(pulling, get_dir(pulling.loc, src.loc))
+			step(pulling, get_dir(pulling.loc, loc))
 	//--3--Move wheelchair--3--//
 	step(src, direction)
 	if(buckled_mob) // Make sure it stays beneath the occupant
 		Move(buckled_mob.loc)
 	set_dir(direction)
 	if(pulling) // Driver
-		if(pulling.loc == src.loc) // We moved onto the wheelchair? Revert!
+		if(pulling.loc == loc) // We moved onto the wheelchair? Revert!
 			pulling.forceMove(T)
 		else
 			spawn(0)
@@ -92,11 +92,11 @@
 		var/mob/living/occupant = buckled_mob
 		if(!driving)
 			occupant.buckled = null
-			occupant.Move(src.loc)
+			occupant.Move(loc)
 			occupant.buckled = src
-			if (occupant && (src.loc != occupant.loc))
+			if (occupant && (loc != occupant.loc))
 				if (propelled)
-					for (var/mob/O in src.loc)
+					for (var/mob/O in loc)
 						if (O != occupant)
 							Bump(O)
 				else
@@ -106,8 +106,8 @@
 				pulling << "<span class='warning'>You lost your grip!</span>"
 				pulling = null
 		else
-			if (occupant && (src.loc != occupant.loc))
-				src.forceMove(occupant.loc) // Failsafe to make sure the wheelchair stays beneath the occupant after driving
+			if (occupant && (loc != occupant.loc))
+				forceMove(occupant.loc) // Failsafe to make sure the wheelchair stays beneath the occupant after driving
 
 /obj/structure/bed/chair/wheelchair/attack_hand(mob/living/user as mob)
 	if (pulling)
@@ -154,7 +154,7 @@
 		occupant.apply_effect(6, WEAKEN, blocked)
 		occupant.apply_effect(6, STUTTER, blocked)
 		occupant.apply_damage(10, BRUTE, def_zone)
-		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
+		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 		if(istype(A, /mob/living))
 			var/mob/living/victim = A
 			def_zone = ran_zone()

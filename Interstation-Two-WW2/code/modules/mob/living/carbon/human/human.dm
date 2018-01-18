@@ -45,6 +45,7 @@
 
 	if (client)
 		human_clients_mob_list |= src
+
 	var/obj/item/organ/external/head/U = locate() in organs
 	if(istype(U))
 		U.teeth_list.Cut() //Clear out their mouth of teeth
@@ -336,11 +337,11 @@ var/list/rank_prefix = list(\
 
 	if (href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])
-		src.examinate(I)
+		examinate(I)
 
 	if (href_list["lookmob"])
 		var/mob/M = locate(href_list["lookmob"])
-		src.examinate(M)
+		examinate(M)
 
 	..()
 	return
@@ -388,10 +389,10 @@ var/list/rank_prefix = list(\
 	return FALSE
 
 /mob/living/carbon/human/abiotic(var/full_body = FALSE)
-	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask || src.head || src.shoes || src.w_uniform || src.wear_suit || src.glasses || src.l_ear || src.r_ear || src.gloves)))
+	if(full_body && ((l_hand && !( l_hand.abstract )) || (r_hand && !( r_hand.abstract )) || (back || wear_mask || head || shoes || w_uniform || wear_suit || glasses || l_ear || r_ear || gloves)))
 		return TRUE
 
-	if( (src.l_hand && !src.l_hand.abstract) || (src.r_hand && !src.r_hand.abstract) )
+	if( (l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract) )
 		return TRUE
 
 	return FALSE
@@ -407,7 +408,7 @@ var/list/rank_prefix = list(\
 	return species.name
 
 /mob/living/carbon/human/proc/play_xylophone()
-	if(!src.xylophone)
+	if(!xylophone)
 		visible_message("\red \The [src] begins playing \his ribcage like a xylophone. It's quite spooky.","\blue You begin to play a spooky refrain on your ribcage.","\red You hear a spooky xylophone melody.")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(loc, song, 50, TRUE, -1)
@@ -437,7 +438,7 @@ var/list/rank_prefix = list(\
 			spawn(100)	//and you have 10 more for mad dash to the bucket
 				Stun(5)
 
-				src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
+				visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
 				playsound(loc, 'sound/effects/splat.ogg', 50, TRUE)
 
 				var/turf/location = loc
@@ -459,7 +460,7 @@ var/list/rank_prefix = list(\
 		return
 
 	if(!(mMorph in mutations))
-		src.verbs -= /mob/living/carbon/human/proc/morph
+		verbs -= /mob/living/carbon/human/proc/morph
 		return
 
 	var/new_facial = input("Please select facial hair color.", "Character Generation",rgb(r_facial,g_facial,b_facial)) as color
@@ -538,8 +539,8 @@ var/list/rank_prefix = list(\
 		remoteview_target = null
 		return
 
-	if(!(mRemotetalk in src.mutations))
-		src.verbs -= /mob/living/carbon/human/proc/remotesay
+	if(!(mRemotetalk in mutations))
+		verbs -= /mob/living/carbon/human/proc/remotesay
 		return
 	var/list/creatures = list()
 	for(var/mob/living/carbon/h in world)
@@ -550,7 +551,7 @@ var/list/rank_prefix = list(\
 
 	var/say = sanitize(input("What do you wish to say"))
 	if(mRemotetalk in target.mutations)
-		target.show_message("\blue You hear [src.real_name]'s voice: [say]")
+		target.show_message("\blue You hear [real_name]'s voice: [say]")
 	else
 		target.show_message("\blue You hear a voice that seems to echo around the room: [say]")
 	usr.show_message("\blue You project your mind into [target.real_name]: [say]")
@@ -567,10 +568,10 @@ var/list/rank_prefix = list(\
 		reset_view(0)
 		return
 
-	if(!(mRemote in src.mutations))
+	if(!(mRemote in mutations))
 		remoteview_target = null
 		reset_view(0)
-		src.verbs -= /mob/living/carbon/human/proc/remoteobserve
+		verbs -= /mob/living/carbon/human/proc/remoteobserve
 		return
 
 	if(client.eye != client.mob)
@@ -619,7 +620,7 @@ var/list/rank_prefix = list(\
 	if(!client || !key) //Don't boot out anyone already in the mob.
 		for (var/obj/item/organ/brain/H in world)
 			if(H.brainmob)
-				if(H.brainmob.real_name == src.real_name)
+				if(H.brainmob.real_name == real_name)
 					if(H.brainmob.mind)
 						H.brainmob.mind.transfer_to(src)
 						qdel(H)
@@ -641,7 +642,7 @@ var/list/rank_prefix = list(\
 	var/obj/item/organ/lungs/L = internal_organs_by_name["lungs"]
 
 	if(L && !L.is_bruised())
-		src.custom_pain("You feel a stabbing pain in your chest!", TRUE)
+		custom_pain("You feel a stabbing pain in your chest!", TRUE)
 		L.bruise()
 
 /*
@@ -684,7 +685,7 @@ var/list/rank_prefix = list(\
 		if(!blood_DNA[M.dna.unique_enzymes])
 			blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 	hand_blood_color = blood_color
-	src.update_inv_gloves()	//handles bloody hands overlays and updating
+	update_inv_gloves()	//handles bloody hands overlays and updating
 //	verbs += /mob/living/carbon/human/proc/bloody_doodle
 	return TRUE //we applied blood to the item
 
@@ -728,7 +729,7 @@ var/list/rank_prefix = list(\
 
 	usr << "You must[self ? "" : " both"] remain still until counting is finished."
 	if(do_mob(usr, src, 60))
-		usr << "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>"
+		usr << "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [get_pulse(GETPULSE_HAND)].</span>"
 	else
 		usr << "<span class='warning'>You failed to check the pulse. Try again.</span>"
 
@@ -783,7 +784,7 @@ var/list/rank_prefix = list(\
 	icon_state = lowertext(species.name)
 
 	species.create_organs(src)
-	src.sync_organ_dna()
+	sync_organ_dna()
 	species.handle_post_spawn(src)
 
 	maxHealth = species.total_health
@@ -816,7 +817,7 @@ var/list/rank_prefix = list(\
 	set name = "Write in blood"
 	set desc = "Use blood on your hands to write a short message on the floor or a wall, murder mystery style."
 
-	if (src.stat)
+	if (stat)
 		return
 
 	if (usr != src)
@@ -825,11 +826,11 @@ var/list/rank_prefix = list(\
 	if (!bloody_hands)
 		verbs -= /mob/living/carbon/human/proc/bloody_doodle
 
-	if (src.gloves)
-		src << "<span class='warning'>Your [src.gloves] are getting in the way.</span>"
+	if (gloves)
+		src << "<span class='warning'>Your [gloves] are getting in the way.</span>"
 		return
 
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if (!istype(T)) //to prevent doodling out of mechs and lockers
 		src << "<span class='warning'>You cannot reach the floor.</span>"
 		return
@@ -901,7 +902,7 @@ var/list/rank_prefix = list(\
 	if(istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = usr
 		if(!stat)
-			src.visible_message("\blue [src] examines [src.gender==MALE?"himself":"herself"].")
+			visible_message("\blue [src] examines [gender==MALE?"himself":"herself"].")
 
 		for(var/obj/item/organ/external/org in H.organs)
 			var/status = ""
@@ -960,14 +961,14 @@ var/list/rank_prefix = list(\
 
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = TRUE)
-	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
+	var/list/equipment = list(head,wear_mask,glasses,w_uniform,wear_suit,gloves,shoes)
 
 	for(var/obj/item/clothing/C in equipment)
 		if(C.body_parts_covered & FACE)
 			// Do not show flavor if face is hidden
 			return
 
-	flavor_text = src.flavor_text
+	flavor_text = flavor_text
 
 	if (flavor_text && flavor_text != "" && !shrink)
 		var/msg = trim(replacetext(flavor_text, "\n", " "))

@@ -14,9 +14,9 @@
 /datum/nano_module/appearance_changer/New(var/location, var/mob/living/carbon/human/H, var/check_species_whitelist = TRUE, var/list/species_whitelist = list(), var/list/species_blacklist = list())
 	..()
 	owner = H
-	src.check_whitelist = check_species_whitelist
-	src.whitelist = species_whitelist
-	src.blacklist = species_blacklist
+	check_whitelist = check_species_whitelist
+	whitelist = species_whitelist
+	blacklist = species_blacklist
 
 /datum/nano_module/appearance_changer/Topic(ref, href_list, var/datum/topic_state/state = default_state)
 	if(..())

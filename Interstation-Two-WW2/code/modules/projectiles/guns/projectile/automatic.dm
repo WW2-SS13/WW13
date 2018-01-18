@@ -231,14 +231,14 @@
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_self(mob/user as mob)
 	if(cover_open)
 		toggle_cover(user) //close the cover
-		playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, TRUE)
+		playsound(loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, TRUE)
 	else
 		return ..() //once closed, behave like normal
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_hand(mob/user as mob)
 	if(!cover_open && user.get_inactive_hand() == src)
 		toggle_cover(user) //open the cover
-		playsound(src.loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, TRUE)
+		playsound(loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, TRUE)
 	else
 		return ..() //once open, behave like normal
 

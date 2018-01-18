@@ -10,7 +10,7 @@
 	attack_hand(mob/user as mob)
 		switch(alert("Travel back to ss13?",,"Yes","No"))
 			if("Yes")
-				if(user.z != src.z)	return
+				if(user.z != z)	return
 				user.loc.loc.Exited(user)
 				user.loc = pick(latejoin)
 			if("No")
@@ -210,7 +210,7 @@ var/global/ManifestJSON
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 		user.drop_item()
-		src.throw_at(target, throw_range, throw_speed, user)
+		throw_at(target, throw_range, throw_speed, user)
 
 /obj/effect/stop
 	var/victim = null

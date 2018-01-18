@@ -35,22 +35,22 @@
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
 	if(.)
-		if(src.nutrition && src.stat != 2)
-			src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-			if(src.m_intent == "run")
-				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-		if((FAT in src.mutations) && src.m_intent == "run" && src.bodytemperature <= 360)
-			src.bodytemperature += 2
+		if(nutrition && stat != 2)
+			nutrition -= DEFAULT_HUNGER_FACTOR/10
+			if(m_intent == "run")
+				nutrition -= DEFAULT_HUNGER_FACTOR/10
+		if((FAT in mutations) && m_intent == "run" && bodytemperature <= 360)
+			bodytemperature += 2
 
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 			germ_level++
 
 /mob/living/carbon/relaymove(var/mob/living/user, direction)
-	if((user in src.stomach_contents) && istype(user))
+	if((user in stomach_contents) && istype(user))
 		if(user.last_special <= world.time)
 			user.last_special = world.time + 50
-			src.visible_message("<span class='danger'>You hear something rumbling inside [src]'s stomach...</span>")
+			visible_message("<span class='danger'>You hear something rumbling inside [src]'s stomach...</span>")
 			var/obj/item/I = user.get_active_hand()
 			if(I && I.force)
 				var/d = rand(round(I.force / 4), I.force)
@@ -62,21 +62,21 @@
 							H.UpdateDamageIcon()
 					H.updatehealth()
 				else
-					src.take_organ_damage(d)
+					take_organ_damage(d)
 				user.visible_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>")
 				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, TRUE)
 
-				if(prob(src.getBruteLoss() - 50))
+				if(prob(getBruteLoss() - 50))
 					for(var/atom/movable/A in stomach_contents)
 						A.loc = loc
 						stomach_contents.Remove(A)
-					src.gib()
+					gib()
 
 /mob/living/carbon/gib()
 	for(var/mob/M in src)
-		if(M in src.stomach_contents)
-			src.stomach_contents.Remove(M)
-		M.loc = src.loc
+		if(M in stomach_contents)
+			stomach_contents.Remove(M)
+		M.loc = loc
 		for(var/mob/N in viewers(src, null))
 			if(N.client)
 				N.show_message(text("\red <B>[M] bursts out of [src]!</B>"), 2)
@@ -101,10 +101,10 @@
 	if (shock_damage<1)
 		return FALSE
 
-	src.apply_damage(shock_damage, BURN, def_zone, used_weapon="Electrocution")
+	apply_damage(shock_damage, BURN, def_zone, used_weapon="Electrocution")
 	playsound(loc, "sparks", 50, TRUE, -1)
 	if (shock_damage > 15)
-		src.visible_message(
+		visible_message(
 			"\red [src] was shocked by the [source]!", \
 			"\red <B>You feel a powerful shock course through your body!</B>", \
 			"\red You hear a heavy electrical crack." \
@@ -112,7 +112,7 @@
 		Stun(10)//This should work for now, more is really silly and makes you lay there forever
 		Weaken(10)
 	else
-		src.visible_message(
+		visible_message(
 			"\red [src] was mildly shocked by the [source].", \
 			"\red You feel a mild shock course through your body.", \
 			"\red You hear a light zapping." \
@@ -125,8 +125,8 @@
 	return shock_damage
 
 /mob/living/carbon/swap_hand()
-	src.hand = !( src.hand )
-	for (var/obj/screen/inventory/hand/H in src.HUDinventory)
+	hand = !( hand )
+	for (var/obj/screen/inventory/hand/H in HUDinventory)
 		H.update_icon()
 	return
 
@@ -140,16 +140,16 @@
 		if(selhand == "left" || selhand == "l")
 			selhand = TRUE
 
-	if(selhand != src.hand)
+	if(selhand != hand)
 		swap_hand()
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if (src.health >= config.health_threshold_crit)
+	if (health >= config.health_threshold_crit)
 		if(src == M && istype(src, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = src
 			H.exam_self()
-			/*src.visible_message( \
-				text("\blue [src] examines [].",src.gender==MALE?"himself":"herself"), \
+			/*visible_message( \
+				text("\blue [src] examines [].",gender==MALE?"himself":"herself"), \
 				"\blue You check yourself for injuries." \
 				)
 
@@ -191,14 +191,14 @@
 				if(!org.is_usable())
 					status += "dangling uselessly"
 				if(status.len)
-					src.show_message("My [org.name] is <span class='warning'> [english_list(status)].</span>",1)
+					show_message("My [org.name] is <span class='warning'> [english_list(status)].</span>",1)
 				else
-					src.show_message("My [org.name] is <span class='notice'> OK.</span>",1)
+					show_message("My [org.name] is <span class='notice'> OK.</span>",1)
 			*/
 			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
 				H.play_xylophone()
 		else if (on_fire)
-			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 			if (M.on_fire)
 				M.visible_message("<span class='warning'>[M] tries to pat out [src]'s flames, but to no avail!</span>",
 				"<span class='warning'>You try to pat out [src]'s flames, but to no avail! Put yourself out first!</span>")
@@ -206,7 +206,7 @@
 				M.visible_message("<span class='warning'>[M] tries to pat out [src]'s flames!</span>",
 				"<span class='warning'>You try to pat out [src]'s flames! Hot!</span>")
 				if(do_mob(M, src, 15))
-					src.fire_stacks -= 0.5
+					fire_stacks -= 0.5
 					if (prob(10) && (M.fire_stacks <= FALSE))
 						M.fire_stacks += TRUE
 					M.IgniteMob()
@@ -214,17 +214,17 @@
 						M.visible_message("<span class='danger'>The fire spreads from [src] to [M]!</span>",
 						"<span class='danger'>The fire spreads to you as well!</span>")
 					else
-						src.fire_stacks -= 0.5 //Less effective than stop, drop, and roll - also accounting for the fact that it takes half as long.
-						if (src.fire_stacks <= FALSE)
+						fire_stacks -= 0.5 //Less effective than stop, drop, and roll - also accounting for the fact that it takes half as long.
+						if (fire_stacks <= FALSE)
 							M.visible_message("<span class='warning'>[M] successfully pats out [src]'s flames.</span>",
 							"<span class='warning'>You successfully pat out [src]'s flames.</span>")
-							src.ExtinguishMob()
-							src.fire_stacks = FALSE
+							ExtinguishMob()
+							fire_stacks = FALSE
 		else
 			var/t_him = "it"
-			if (src.gender == MALE)
+			if (gender == MALE)
 				t_him = "him"
-			else if (src.gender == FEMALE)
+			else if (gender == FEMALE)
 				t_him = "her"
 			if (istype(src,/mob/living/carbon/human) && src:w_uniform)
 				var/mob/living/carbon/human/H = src
@@ -236,10 +236,10 @@
 			if(show_ssd && !client && !teleop)
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!</span>", \
 				"<span class='notice'>You shake [src], but they do not respond... Maybe they have S.S.D?</span>")
-			else if(lying || src.sleeping)
-				src.sleeping = max(0,src.sleeping-5)
-				if(src.sleeping == FALSE)
-					src.resting = FALSE
+			else if(lying || sleeping)
+				sleeping = max(0,sleeping-5)
+				if(sleeping == FALSE)
+					resting = FALSE
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!</span>", \
 									"<span class='notice'>You shake [src] trying to wake [t_him] up!</span>")
 			else
@@ -249,16 +249,16 @@
 				else
 					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
 								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>")
-				if(M.fire_stacks >= (src.fire_stacks + 3))
-					src.fire_stacks += TRUE
+				if(M.fire_stacks >= (fire_stacks + 3))
+					fire_stacks += TRUE
 					M.fire_stacks -= TRUE
 				if(M.on_fire)
-					src.IgniteMob()
+					IgniteMob()
 			AdjustParalysis(-3)
 			AdjustStunned(-3)
 			AdjustWeakened(-3)
 
-			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 
 /mob/living/carbon/proc/eyecheck()
 	return FALSE
@@ -295,12 +295,12 @@
 	return
 
 /mob/living/carbon/throw_item(atom/target)
-	src.throw_mode_off()
+	throw_mode_off()
 	if(usr.stat || !target)
 		return
 	if(target.type == /obj/screen) return
 
-	var/atom/movable/item = src.get_active_hand()
+	var/atom/movable/item = get_active_hand()
 
 	if(!item) return
 
@@ -322,23 +322,23 @@
 	if(!item || item.nothrow) return //Grab processing has a chance of returning null
 
 	playsound(src, 'sound/effects/throw.ogg', 50, TRUE)
-	src.remove_from_mob(item)
-	item.loc = src.loc
+	remove_from_mob(item)
+	item.loc = loc
 
 	//actually throw it!
 	if (item)
-		src.visible_message("\red [src] has thrown [item].")
+		visible_message("\red [src] has thrown [item].")
 
-		if(!src.lastarea)
-			src.lastarea = get_area(src.loc)
-		if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == FALSE))
-			src.inertia_dir = get_dir(target, src)
+		if(!lastarea)
+			lastarea = get_area(loc)
+		if((istype(loc, /turf/space)) || (lastarea.has_gravity == FALSE))
+			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
 
 /*
-		if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
-			src.inertia_dir = get_dir(target, src)
+		if(istype(loc, /turf/space) || (flags & NOGRAV)) //they're in space, move em one space in the opposite direction
+			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 */
 
@@ -402,7 +402,7 @@
 		return FALSE
 	stop_pulling()
 	src << "<span class='warning'>You slipped on [slipped_on]!</span>"
-	playsound(src.loc, 'sound/misc/slip.ogg', 50, TRUE, -3)
+	playsound(loc, 'sound/misc/slip.ogg', 50, TRUE, -3)
 	Stun(stun_duration)
 	Weaken(Floor(stun_duration/2))
 	return TRUE

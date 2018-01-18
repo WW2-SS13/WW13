@@ -92,7 +92,7 @@
 		for(var/mob/M in nearby)
 			if ((M.client && M.machine == src))
 				is_in_use = TRUE
-				src.attack_hand(M)
+				attack_hand(M)
 
 		// check for TK users
 
@@ -101,7 +101,7 @@
 				if(!(usr in nearby))
 					if(usr.client && usr.machine==src)
 						is_in_use = TRUE
-						src.attack_hand(usr)
+						attack_hand(usr)
 		in_use = is_in_use
 
 /obj/proc/updateDialog()
@@ -112,7 +112,7 @@
 		for(var/mob/M in nearby)
 			if ((M.client && M.machine == src))
 				is_in_use = TRUE
-				src.interact(M)
+				interact(M)
 		if(!is_in_use)
 			in_use = FALSE
 
@@ -127,19 +127,19 @@
 	return
 
 /mob/proc/unset_machine()
-	src.machine = null
+	machine = null
 
 /mob/proc/set_machine(var/obj/O)
-	if(src.machine)
+	if(machine)
 		unset_machine()
-	src.machine = O
+	machine = O
 	if(istype(O))
 		O.in_use = TRUE
 
 /obj/item/proc/updateSelfDialog()
-	var/mob/M = src.loc
+	var/mob/M = loc
 	if(istype(M) && M.client && M.machine == src)
-		src.attack_self(M)
+		attack_self(M)
 
 /obj/proc/hide(var/hide)
 	invisibility = hide ? INVISIBILITY_MAXIMUM : initial(invisibility)

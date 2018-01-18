@@ -9,7 +9,7 @@
 
 	// Plating data.
 	var/base_name = "plating"
-	var/base_desc = "The naked hull."
+	var/base_desc = "A destroyed floor."
 	var/base_icon = 'icons/turf/flooring/plating.dmi'
 	var/base_icon_state = "plating"
 
@@ -82,4 +82,4 @@
 
 /turf/floor/levelupdate()
 	for(var/obj/O in src)
-		O.hide(O.hides_under_flooring() && src.flooring)
+		O.hide(O.hides_under_flooring() && flooring)

@@ -250,7 +250,7 @@
 	volume = 100
 
 	on_reagent_change()
-		switch(src.reagents.total_volume)
+		switch(reagents.total_volume)
 			if(0)
 				icon_state = "blender_jug_e"
 			if(1 to 75)

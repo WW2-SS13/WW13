@@ -545,7 +545,7 @@
 
 /mob/proc/start_pulling(var/atom/movable/AM)
 
-	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if ( !AM || !usr || src==AM || !isturf(loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
 	if (AM.anchored)
@@ -589,7 +589,7 @@
 		if(pulling_old == AM)
 			return
 
-	src.pulling = AM
+	pulling = AM
 	AM.pulledby = src
 
 	/*if(pullin)
@@ -842,7 +842,7 @@ mob/proc/yank_out_object()
 		visible_message("<span class='warning'><b>[usr] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[usr] rips [selection] out of your body.</b></span>")
 	valid_objects = get_visible_implants(0)
 	if(valid_objects.len == TRUE) //Yanking out last object - removing verb.
-		src.verbs -= /mob/proc/yank_out_object
+		verbs -= /mob/proc/yank_out_object
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -1009,26 +1009,26 @@ mob/proc/yank_out_object()
 //Throwing stuff
 
 /mob/proc/toggle_throw_mode()
-	if (src.in_throw_mode)
+	if (in_throw_mode)
 		throw_mode_off()
 	else
 		throw_mode_on()
 
 /mob/proc/throw_mode_off()
-	src.in_throw_mode = FALSE
-	/*for (var/obj/screen/HUDthrow/HUD in src.client.screen.)
+	in_throw_mode = FALSE
+	/*for (var/obj/screen/HUDthrow/HUD in client.screen.)
 		if(HUD.name == "throw") //in case we don't have the HUD and we use the hotkey
-			//src.throw_icon.icon_state = "act_throw_off"
+			//throw_icon.icon_state = "act_throw_off"
 			HUD.toggle_throw_mode()
 			break*/
 
 /mob/proc/throw_mode_on()
-	src.in_throw_mode = TRUE
-	/*if(src.throw_icon)
-		src.throw_icon.icon_state = "act_throw_on"*/
-	/*for (var/obj/screen/HUDthrow/HUD in src.client.screen.)
+	in_throw_mode = TRUE
+	/*if(throw_icon)
+		throw_icon.icon_state = "act_throw_on"*/
+	/*for (var/obj/screen/HUDthrow/HUD in client.screen.)
 		if(HUD.name == "throw") //in case we don't have the HUD and we use the hotkey
-			//src.throw_icon.icon_state = "act_throw_off"
+			//throw_icon.icon_state = "act_throw_off"
 			HUD.toggle_throw_mode()
 			break*/
 

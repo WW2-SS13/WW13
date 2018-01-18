@@ -24,8 +24,8 @@
 	update_icon()
 
 /obj/item/weapon/storage/update_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.update_inv_belt()
 
 
@@ -36,19 +36,15 @@
 	item_state = "utility"
 	can_hold = list(
 		///obj/item/weapon/combitool,
-		/obj/item/weapon/crowbar,
+		/obj/item/weapon/crowbar/prybar,
 		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/wirecutters,
+		/obj/item/weapon/weldingtool/ww2,
+		/obj/item/weapon/wirecutters/boltcutters,
 		/obj/item/weapon/wrench,
-//		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
 		/obj/item/stack/cable_coil,
-	//	/obj/item/device/analyzer,
-//		/obj/item/taperoll/engineering,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
-//		/obj/item/device/analyzer/plant_analyzer,
 		/obj/item/weapon/extinguisher/mini
 		)
 
@@ -57,9 +53,9 @@
 	..()
 	new /obj/item/weapon/screwdriver(src)
 	new /obj/item/weapon/wrench(src)
-	new /obj/item/weapon/weldingtool(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/wirecutters(src)
+	new /obj/item/weapon/weldingtool/ww2(src)
+	new /obj/item/weapon/crowbar/prybar(src)
+	new /obj/item/weapon/wirecutters/boltcutters(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 
 
@@ -67,9 +63,9 @@
 	..()
 	new /obj/item/weapon/screwdriver(src)
 	new /obj/item/weapon/wrench(src)
-	new /obj/item/weapon/weldingtool(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/wirecutters(src)
+	new /obj/item/weapon/weldingtool/ww2(src)
+	new /obj/item/weapon/crowbar/prybar(src)
+	new /obj/item/weapon/wirecutters/boltcutters(src)
 
 /obj/item/weapon/storage/belt/medical
 	name = "medical belt"
@@ -77,8 +73,6 @@
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
-	//	/obj/item/device/healthanalyzer,
-	//	/obj/item/weapon/dnainjector,
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/reagent_containers/glass/beaker,
 		/obj/item/weapon/reagent_containers/glass/bottle,
@@ -92,8 +86,7 @@
 		/obj/item/clothing/head/surgery,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/weapon/reagent_containers/hypospray,
-//		/obj/item/clothing/glasses/hud/health,
-		/obj/item/weapon/crowbar,
+		/obj/item/weapon/crowbar/prybar,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/extinguisher/mini
 		)
@@ -103,40 +96,6 @@
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "emsbelt"
 	item_state = "emsbelt"
-/*
-/obj/item/weapon/storage/belt/security
-	name = "security belt"
-	desc = "Can hold security gear like handcuffs and flashes."
-	icon_state = "securitybelt"
-	item_state = "security"
-	can_hold = list(
-		/obj/item/weapon/grenade,
-		/obj/item/weapon/reagent_containers/spray/pepper,
-		/obj/item/weapon/handcuffs,
-		/obj/item/clothing/glasses,
-		/obj/item/ammo_casing/shotgun,
-		/obj/item/ammo_magazine,
-		/obj/item/weapon/reagent_containers/food/snacks/donut/,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/gun/energy/taser,
-		/obj/item/weapon/flame/lighter,
-		/obj/item/clothing/glasses/hud/security,
-		/obj/item/device/flashlight,
-		/obj/item/device/megaphone,
-		/obj/item/weapon/melee,
-		/obj/item/weapon/gun/projectile/sec,
-	//	/obj/item/taperoll/police
-		)
-*/
-/obj/item/weapon/storage/belt/champion
-	name = "championship belt"
-	desc = "Proves to the world that you are the strongest!"
-	icon_state = "championbelt"
-	item_state = "champion"
-	storage_slots = TRUE
-	can_hold = list(
-		"/obj/item/clothing/mask/luchador"
-		)
 
 /obj/item/weapon/storage/belt/security/tactical
 	name = "combat belt"

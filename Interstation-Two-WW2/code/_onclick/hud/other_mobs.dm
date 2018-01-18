@@ -50,7 +50,7 @@
 
 /datum/hud/proc/slime_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
 
-	src.adding = list()
+	adding = list()
 
 	var/obj/screen/using
 
@@ -61,7 +61,7 @@
 	using.icon_state = "intent_"+mymob.a_intent
 	using.screen_loc = ui_zonesel
 	using.layer = 20
-	src.adding += using
+	adding += using
 	action_intent = using
 
 	//intent small hud objects
@@ -75,7 +75,7 @@
 	using.icon = ico
 	using.screen_loc = ui_zonesel
 	using.layer = 21
-	src.adding += using
+	adding += using
 	help_intent = using
 
 	ico = new(ui_style, "black")
@@ -86,7 +86,7 @@
 	using.icon = ico
 	using.screen_loc = ui_zonesel
 	using.layer = 21
-	src.adding += using
+	adding += using
 	disarm_intent = using
 
 	ico = new(ui_style, "black")
@@ -97,7 +97,7 @@
 	using.icon = ico
 	using.screen_loc = ui_zonesel
 	using.layer = 21
-	src.adding += using
+	adding += using
 	grab_intent = using
 
 	ico = new(ui_style, "black")
@@ -108,11 +108,11 @@
 	using.icon = ico
 	using.screen_loc = ui_zonesel
 	using.layer = 21
-	src.adding += using
+	adding += using
 	hurt_intent = using
 
 	mymob.client.screen = null
-	mymob.client.screen += src.adding
+	mymob.client.screen += adding
 
 	return*/
 

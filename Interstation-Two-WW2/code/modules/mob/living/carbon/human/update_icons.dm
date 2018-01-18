@@ -158,12 +158,12 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Turn(90)
 		M.Scale(size_multiplier)
 		M.Translate(1,-6)
-		src.transform = M
+		transform = M
 	else
 		var/matrix/M = matrix()
 		M.Scale(size_multiplier)
 		M.Translate(0, 16*(size_multiplier-1))
-		src.transform = M
+		transform = M
 	..()
 
 var/global/list/damage_icon_parts = list()
@@ -216,10 +216,10 @@ var/global/list/damage_icon_parts = list()
 	var/husk_color_mod = rgb(96,88,80)
 	var/hulk_color_mod = rgb(48,224,40)
 
-	var/husk = (HUSK in src.mutations)
+	var/husk = (HUSK in mutations)
 	var/fat = body_build ? body_build.index : ""
-	var/hulk = (HULK in src.mutations)
-	var/skeleton = (SKELETON in src.mutations)
+	var/hulk = (HULK in mutations)
+	var/skeleton = (SKELETON in mutations)
 
 	//CACHING: Generate an index key from visible bodyparts.
 	//0 = destroyed, TRUE = normal, 2 = robotic, 3 = necrotic.
@@ -347,7 +347,7 @@ var/global/list/damage_icon_parts = list()
 
 	if(f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
-		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype() in facial_hair_style.species_allowed))
+		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
@@ -356,7 +356,7 @@ var/global/list/damage_icon_parts = list()
 
 	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
 		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
-		if(hair_style && (src.species.get_bodytype() in hair_style.species_allowed))
+		if(hair_style && (species.get_bodytype() in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
@@ -905,10 +905,10 @@ var/global/list/damage_icon_parts = list()
 			standing = image(icon = body_build.misk_icon, icon_state = "legcuff1")
 		overlays_standing[LEGCUFF_LAYER] = standing
 
-		if(src.m_intent != "walk")
-			src.m_intent = "walk"
-			//if(src.hud_used && src.hud_used.move_intent)
-			//	src.hud_used.move_intent.icon_state = "walking"
+		if(m_intent != "walk")
+			m_intent = "walk"
+			//if(hud_used && hud_used.move_intent)
+			//	hud_used.move_intent.icon_state = "walking"
 
 	else
 		overlays_standing[LEGCUFF_LAYER]	= null

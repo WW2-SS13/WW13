@@ -18,10 +18,10 @@
 	return TRUE
 
 /mob/living/carbon/human/proc/change_gender(var/gender)
-	if(src.gender == gender)
+	if(gender == gender)
 		return
 
-	src.gender = gender
+	gender = gender
 	reset_hair()
 	update_body()
 	update_dna()

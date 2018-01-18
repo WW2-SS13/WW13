@@ -13,7 +13,7 @@
 
 	adminhelped = TRUE //Determines if they get the message to reply by clicking the name.
 
-	if(src.handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if(handle_spam_prevention(msg,MUTE_ADMINHELP))
 		return
 
 	//clean the input msg

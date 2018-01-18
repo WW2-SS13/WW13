@@ -14,8 +14,8 @@
 	New(location, var/fleshcolor, var/bloodcolor)
 		..()
 
-		if(fleshcolor) src.fleshcolor = fleshcolor
-		if(bloodcolor) src.bloodcolor = bloodcolor
+		if(fleshcolor) fleshcolor = fleshcolor
+		if(bloodcolor) bloodcolor = bloodcolor
 		Gib(loc)
 
 	proc/Gib(atom/location)

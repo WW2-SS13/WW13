@@ -171,7 +171,7 @@
 							if (step(src, WEST))
 								step(src, SOUTH)
 	else
-		var/atom/A = src.loc
+		var/atom/A = loc
 
 		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
 		. = ..()
@@ -179,11 +179,11 @@
 			dir = olddir
 			set_dir(direct)
 
-		src.move_speed = world.time - src.l_move_time
-		src.l_move_time = world.time
-		src.m_flag = TRUE
-		if ((A != src.loc && A && A.z == src.z))
-			src.last_move = get_dir(A, src.loc)
+		move_speed = world.time - l_move_time
+		l_move_time = world.time
+		m_flag = TRUE
+		if ((A != loc && A && A.z == z))
+			last_move = get_dir(A, loc)
 	return
 
 /client/proc/Move_object(direct)
@@ -205,6 +205,12 @@
 
 	if(!mob)
 		return // Moved here to avoid nullrefs below
+
+	if(mob.lying && istype(n, /turf))
+		var/turf/T = n
+		if(T.Adjacent(mob))
+			mob.scramble(T)
+			return
 
 	var/mob_is_observer = istype(mob, /mob/observer)
 	var/mob_is_living = istype(mob, /mob/living)
@@ -381,16 +387,18 @@
 				mob.velocity_lastdir = direct
 				if(mob.drowsyness > FALSE)
 					move_delay += 6
-				move_delay += mob.get_run_delay() + standing_on_snow
+				move_delay += mob.get_run_delay()/mob.movement_speed_multiplier + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.03
+					H.water -= 0.03
 					--H.stamina
 			if("walk")
-				move_delay += mob.walk_delay + standing_on_snow
+				move_delay += mob.walk_delay/mob.movement_speed_multiplier + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.003
+					H.water -= 0.003
 
 		if (mob.pulling)
 			if (istype(mob.pulling, /mob))
@@ -622,8 +630,8 @@
 	//Check to see if we slipped
 	if(prob(slip_chance(5)) && !buckled)
 		src << "<span class='warning'>You slipped!</span>"
-		src.inertia_dir = src.last_move
-		step(src, src.inertia_dir)
+		inertia_dir = last_move
+		step(src, inertia_dir)
 		return FALSE
 	//If not then we can reset inertia and move
 	inertia_dir = FALSE

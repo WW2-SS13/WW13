@@ -49,7 +49,7 @@
 			P.damage = fragment_damage
 			P.pellets = fragments_per_projectile
 			P.range_step = damage_step
-			P.shot_from = src.name
+			P.shot_from = name
 
 			P.launch_fragment(TT)
 
@@ -57,7 +57,7 @@
 			for(var/mob/living/M in TT)
 				//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
 				//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
-				if(M.lying && isturf(src.loc))
+				if(M.lying && isturf(loc))
 					P.attack_mob(M, FALSE, FALSE)
 				else
 					P.attack_mob(M, FALSE, 100) //otherwise, allow a decent amount of fragments to pass

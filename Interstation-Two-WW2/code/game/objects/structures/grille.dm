@@ -93,7 +93,7 @@
 		. = PROJECTILE_CONTINUE
 		damage = between(0, (damage - Proj.damage)*(Proj.damage_type == BRUTE? 0.4 : TRUE), 10) //if the bullet passes through then the grille avoids most of the damage
 
-	src.health -= damage*0.2
+	health -= damage*0.2
 	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
 
 /obj/structure/grille/attackby(obj/item/weapon/W as obj, mob/user as mob)

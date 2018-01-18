@@ -76,11 +76,11 @@
 
 /obj/item/projectile/bullet/rifle/missile/yuge
 	name = "huge HE missle"
-	explosion_ranges = list(1,2,4,5)
+	explosion_ranges = list(1,2,3,4)
 
 /obj/item/projectile/bullet/rifle/missile/tank
 	name = "tank missle"
-	explosion_ranges = list(1,3,4,6)
+	explosion_ranges = list(1,3,4,5)
 
 /obj/item/projectile/bullet/rifle/missile/he
 	name = "HE missle"
@@ -107,21 +107,21 @@
 
 	New()
 		..()
-		src.smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/bad)
-		src.smoke.attach(src)
+		smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/bad)
+		smoke.attach(src)
 
 	on_hit(atom/hit_atom)
 		name += " (Used)"
-		playsound(src.loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
-		src.smoke.set_up(5, FALSE, usr.loc)
+		playsound(loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
+		smoke.set_up(5, FALSE, usr.loc)
 		spawn(0)
-			src.smoke.start()
+			smoke.start()
 			sleep(10)
-			src.smoke.start()
+			smoke.start()
 			sleep(10)
-			src.smoke.start()
+			smoke.start()
 			sleep(10)
-			src.smoke.start()
+			smoke.start()
 
 	on_impact(atom/hit_atom)
 		on_hit(hit_atom)

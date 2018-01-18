@@ -62,7 +62,7 @@
 	var/datum/money_account/initial_account
 
 /datum/mind/New(var/key)
-	src.key = key
+	key = key
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
@@ -149,15 +149,15 @@
 
 	else if(href_list["equip_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["equip_antagonist"]]
-		if(antag) antag.equip(src.current)
+		if(antag) antag.equip(current)
 
 	else if(href_list["unequip_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["unequip_antagonist"]]
-		if(antag) antag.unequip(src.current)
+		if(antag) antag.unequip(current)
 
 	else if(href_list["move_antag_to_spawn"])
 		var/datum/antagonist/antag = all_antag_types[href_list["move_antag_to_spawn"]]
-		if(antag) antag.place_mob(src.current)
+		if(antag) antag.place_mob(current)
 
 	else if (href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist

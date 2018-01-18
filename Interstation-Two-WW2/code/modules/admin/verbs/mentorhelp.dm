@@ -13,7 +13,7 @@
 
 	mentorhelped = TRUE //Determines if they get the message to reply by clicking the name.
 
-	if(src.handle_spam_prevention(msg,MUTE_MENTORHELP))
+	if(handle_spam_prevention(msg,MUTE_MENTORHELP))
 		return
 
 	//clean the input msg

@@ -5,7 +5,7 @@
 		if(istype(loc,/turf))
 			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
-	for(var/obj/item/organ/external/E in src.organs)
+	for(var/obj/item/organ/external/E in organs)
 		E.droplimb(0,DROPLIMB_EDGE,1)
 
 	sleep(1)
@@ -80,7 +80,7 @@
 	return
 
 /mob/living/carbon/human/proc/ChangeToSkeleton()
-	if(SKELETON in src.mutations)	return
+	if(SKELETON in mutations)	return
 
 	if(f_style)
 		f_style = "Shaved"

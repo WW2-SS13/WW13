@@ -28,7 +28,7 @@ var/list/sounds_cache = list()
 
 	log_admin("[key_name(src)] played a local sound [S]")
 	message_admins("[key_name_admin(src)] played a local sound [S]", TRUE)
-	playsound(get_turf(src.mob), S, volume, FALSE, FALSE)
+	playsound(get_turf(mob), S, volume, FALSE, FALSE)
 
 
 /client/proc/play_server_sound()

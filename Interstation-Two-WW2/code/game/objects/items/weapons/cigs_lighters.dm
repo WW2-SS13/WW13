@@ -60,7 +60,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	//not before lighting up the turf we land on, though.
 	if(lit)
 		spawn(0)
-			var/turf/location = src.loc
+			var/turf/location = loc
 			if(istype(location))
 				location.hotspot_expose(700, 5)
 			burn_out()
@@ -117,8 +117,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			reagents.remove_any(REM)
 
 /obj/item/clothing/mask/smokable/proc/light(var/flavor_text = "[usr] lights the [name].")
-	if(!src.lit)
-		src.lit = TRUE
+	if(!lit)
+		lit = TRUE
 		damtype = "fire"
 		playsound(src, 'sound/items/cig_light.ogg', 75, TRUE, -1)//Play the nice sound.
 		if(reagents.get_reagent_amount("plasma")) // the plasma explodes when exposed to fire
@@ -331,8 +331,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "empty [initial(name)]"
 
 /obj/item/clothing/mask/smokable/pipe/light(var/flavor_text = "[usr] lights the [name].")
-	if(!src.lit && src.smoketime)
-		src.lit = TRUE
+	if(!lit && smoketime)
+		lit = TRUE
 		damtype = "fire"
 		icon_state = icon_on
 		item_state = icon_on

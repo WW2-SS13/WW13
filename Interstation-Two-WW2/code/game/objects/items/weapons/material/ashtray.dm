@@ -15,8 +15,8 @@ var/global/list/ashtray_cache = list()
 		qdel(src)
 		return
 	max_butts = round(material.hardness/10) //This is arbitrary but whatever.
-	src.pixel_y = rand(-5, 5)
-	src.pixel_x = rand(-6, 6)
+	pixel_y = rand(-5, 5)
+	pixel_x = rand(-6, 6)
 	update_icon()
 	return
 
@@ -56,7 +56,7 @@ var/global/list/ashtray_cache = list()
 		if (istype(W,/obj/item/clothing/mask/smokable/cigarette))
 			var/obj/item/clothing/mask/smokable/cigarette/cig = W
 			if (cig.lit == TRUE)
-				src.visible_message("[user] crushes [cig] in \the [src], putting it out.")
+				visible_message("[user] crushes [cig] in \the [src], putting it out.")
 				processing_objects.Remove(cig)
 				var/obj/item/butt = new cig.type_butt(src)
 				cig.transfer_fingerprints_to(butt)
@@ -67,7 +67,7 @@ var/global/list/ashtray_cache = list()
 			else if (cig.lit == FALSE)
 				user << "You place [cig] in [src] without even smoking it. Why would you do that?"
 
-		src.visible_message("[user] places [W] in [src].")
+		visible_message("[user] places [W] in [src].")
 		user.update_inv_l_hand()
 		user.update_inv_r_hand()
 		add_fingerprint(user)
@@ -83,9 +83,9 @@ var/global/list/ashtray_cache = list()
 	if (health > FALSE)
 		health = max(0,health - 3)
 		if (contents.len)
-			src.visible_message("<span class='danger'>\The [src] slams into [hit_atom], spilling its contents!</span>")
+			visible_message("<span class='danger'>\The [src] slams into [hit_atom], spilling its contents!</span>")
 		for (var/obj/item/clothing/mask/smokable/cigarette/O in contents)
-			O.loc = src.loc
+			O.loc = loc
 		if (health < TRUE)
 			shatter()
 			return

@@ -31,12 +31,12 @@
 	var/turf/T0 = get_turf(neighbor)
 	if(T0 == src)
 		return TRUE
-	if(get_dist(src,T0) > TRUE || (src.z!=T0.z))
+	if(get_dist(src,T0) > TRUE || (z!=T0.z))
 		return FALSE
 
 	if(T0.x == x || T0.y == y)
 		// Check for border blockages
-		return T0.ClickCross(get_dir(T0,src), border_only = TRUE) && src.ClickCross(get_dir(src,T0), border_only = TRUE, target_atom = target)
+		return T0.ClickCross(get_dir(T0,src), border_only = TRUE) && ClickCross(get_dir(src,T0), border_only = TRUE, target_atom = target)
 
 	// Not orthagonal
 	var/in_dir = get_dir(neighbor,src) // eg. northwest (1+8)
@@ -51,7 +51,7 @@
 		if(!T1 || T1.density || !T1.ClickCross(get_dir(T1,T0) | get_dir(T1,src), border_only = FALSE))
 			continue // couldn't enter or couldn't leave T1
 
-		if(!src.ClickCross(get_dir(src,T1), border_only = TRUE, target_atom = target))
+		if(!ClickCross(get_dir(src,T1), border_only = TRUE, target_atom = target))
 			continue // could not enter src
 
 		return TRUE // we don't care about our own density
@@ -61,12 +61,12 @@
 	var/turf/T0 = get_turf(neighbor)
 	if(T0 == src)
 		return TRUE
-	if(get_dist(src,T0) > 5 || (src.z!=T0.z))
+	if(get_dist(src,T0) > 5 || (z!=T0.z))
 		return FALSE
 
 	if(T0.x == x || T0.y == y)
 		// Check for border blockages
-		return T0.ClickCross(get_dir(T0,src), border_only = TRUE) && src.ClickCross(get_dir(src,T0), border_only = TRUE, target_atom = target)
+		return T0.ClickCross(get_dir(T0,src), border_only = TRUE) && ClickCross(get_dir(src,T0), border_only = TRUE, target_atom = target)
 
 	// Not orthagonal
 	var/in_dir = get_dir(neighbor,src) // eg. northwest (1+8)
@@ -81,7 +81,7 @@
 		if(!T1 || T1.density || !T1.ClickCross(get_dir(T1,T0) | get_dir(T1,src), border_only = FALSE))
 			continue // couldn't enter or couldn't leave T1
 
-		if(!src.ClickCross(get_dir(src,T1), border_only = TRUE, target_atom = target))
+		if(!ClickCross(get_dir(src,T1), border_only = TRUE, target_atom = target))
 			continue // could not enter src
 
 		return TRUE // we don't care about our own density
@@ -97,7 +97,7 @@ Quick adjacency (to turf):
 	if(T0 == src)
 		return TRUE
 
-	if(get_dist(src,T0) > TRUE || (src.z!=T0.z))
+	if(get_dist(src,T0) > TRUE || (z!=T0.z))
 		return FALSE
 
 	return TRUE

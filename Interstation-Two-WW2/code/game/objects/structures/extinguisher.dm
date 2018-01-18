@@ -21,7 +21,7 @@
 			contents += O
 			has_extinguisher = O
 			user << "<span class='notice'>You place [O] in [src].</span>"
-			playsound(src.loc, 'sound/machines/Custom_extin.ogg', 50, FALSE)
+			playsound(loc, 'sound/machines/Custom_extin.ogg', 50, FALSE)
 		else
 			opened = !opened
 	else
@@ -43,7 +43,7 @@
 	if(has_extinguisher)
 		user.put_in_hands(has_extinguisher)
 		user << "<span class='notice'>You take [has_extinguisher] from [src].</span>"
-		playsound(src.loc, 'sound/machines/Custom_extout.ogg', 50, FALSE)
+		playsound(loc, 'sound/machines/Custom_extout.ogg', 50, FALSE)
 		has_extinguisher = null
 		opened = TRUE
 	else

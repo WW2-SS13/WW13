@@ -1,4 +1,4 @@
-var/roundstart_time = FALSE
+var/roundstart_time = 0
 var/grace_period = TRUE
 var/game_started = FALSE
 var/train_checked = FALSE
@@ -15,7 +15,7 @@ var/GRACE_PERIOD_LENGTH = 7
 
 /hook/roundstart/proc/game_start()
 
-	roundstart_time = world.time
+	roundstart_time = world.realtime
 
 	// after the game mode has been announced.
 	spawn (5)
@@ -80,10 +80,14 @@ var/GRACE_PERIOD_LENGTH = 7
 
 	if (istype(mode))
 
+		var/use_snow = FALSE
+
 		// first, make all water into ice if it's winter
 		if (mode.season == "WINTER")
 			for (var/turf/floor/plating/beach/water/W in turfs)
 				new /turf/floor/plating/beach/water/ice (W)
+			if (prob(50))
+				use_snow = TRUE
 
 		for (var/turf/floor/G in turfs)
 
@@ -106,15 +110,17 @@ var/GRACE_PERIOD_LENGTH = 7
 					if (G.uses_winter_overlay)
 						G.color = DEAD_COLOR
 
-					new/obj/snow(G)
+					if (use_snow)
+						new/obj/snow(G)
 
 					for (var/obj/structure/wild/W in G.contents)
 						if (istype(W))
 
 							W.color = DEAD_COLOR
 							var/icon/W_icon = icon(W.icon, W.icon_state)
-							W_icon.Blend(icon('icons/turf/snow.dmi', (istype(W, /obj/structure/wild/tree) ? "wild_overlay" : "tree_overlay")), ICON_MULTIPLY)
-							W.icon = W_icon
+							if (use_snow)
+								W_icon.Blend(icon('icons/turf/snow.dmi', (istype(W, /obj/structure/wild/tree) ? "wild_overlay" : "tree_overlay")), ICON_MULTIPLY)
+								W.icon = W_icon
 
 				else if (G.season == "SUMMER")
 					if (G.uses_winter_overlay)
@@ -165,6 +171,11 @@ var/GRACE_PERIOD_LENGTH = 7
 
 	return TRUE
 
+/hook/roundstart/proc/show_battle_report()
+	if (istype(map, /obj/map_metadata/forest))
+		spawn (600)
+			world << "<font size=3>Balance report: [n_of_side(GERMAN)] German, [n_of_side(SOVIET)] Soviet and [n_of_side(CIVILIAN)+n_of_side(PARTISAN)] Civilians/Partisans.</font>"
+
 var/mission_announced = FALSE
 var/train_arrived = FALSE
 var/allow_paratroopers = TRUE
@@ -176,7 +187,7 @@ var/allow_paratroopers = TRUE
 
 	mission_announced = tickerProcess.time_elapsed
 
-	var/preparation_time = world.time - roundstart_time
+	var/preparation_time = world.realtime - roundstart_time
 
 	if (map)
 		map.announce_mission_start(preparation_time)
@@ -189,7 +200,7 @@ var/allow_paratroopers = TRUE
 			if (np.client)
 				np.new_player_panel_proc()
 
-	var/show_report_after = FALSE
+	var/show_report_after = 0
 	if (istype(map, /obj/map_metadata/minicity))
 		show_report_after = 600
 	spawn (show_report_after)

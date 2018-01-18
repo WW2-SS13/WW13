@@ -570,5 +570,5 @@ var/area/partisan_stockpile = null
 
 	var/list/options = typesof(/obj/effect/landmark/costume)
 	var/PICK= options[rand(1,options.len)]
-	new PICK(src.loc)
+	new PICK(loc)
 	delete_me = TRUE

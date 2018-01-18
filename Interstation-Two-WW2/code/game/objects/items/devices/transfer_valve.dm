@@ -97,7 +97,7 @@
 	..()
 	if ( usr.stat || usr.restrained() )
 		return FALSE
-	if (src.loc != usr)
+	if (loc != usr)
 		return FALSE
 	if(tank_one && href_list["tankone"])
 		remove_tank(tank_one)
@@ -113,7 +113,7 @@
 			update_icon()
 		if(href_list["device"])
 			attached_device.attack_self(usr)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	return TRUE // Returning TRUE sends an update to attached UIs
 
 /obj/item/device/transfer_valve/process_activation(var/obj/item/device/D)
@@ -201,12 +201,12 @@
 		if(attacher)
 			log_str += "(<A HREF='?_src_=holder;adminmoreinfo=\ref[attacher]'>?</A>)"
 
-		var/mob/mob = get_mob_by_key(src.fingerprintslast)
+		var/mob/mob = get_mob_by_key(fingerprintslast)
 		var/last_touch_info = ""
 		if(mob)
 			last_touch_info = "(<A HREF='?_src_=holder;adminmoreinfo=\ref[mob]'>?</A>)"
 
-		log_str += " Last touched by: [src.fingerprintslast][last_touch_info]"
+		log_str += " Last touched by: [fingerprintslast][last_touch_info]"
 		bombers += log_str
 		message_admins(log_str, FALSE, TRUE)
 		log_game(log_str)
@@ -215,7 +215,7 @@
 	else if(valve_open==1 && (tank_one && tank_two))
 		split_gases()
 
-	src.update_icon()
+	update_icon()
 
 // this doesn't do anything but the timer etc. expects it to be here
 // eventually maybe have it update icon to show state (timer, prox etc.) like old bombs

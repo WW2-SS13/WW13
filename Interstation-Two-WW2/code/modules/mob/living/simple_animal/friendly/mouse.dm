@@ -83,10 +83,10 @@
 	desc = "It's a small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 
 /mob/living/simple_animal/mouse/proc/splat()
-	src.health = FALSE
-	src.death()
-	src.icon_dead = "mouse_[body_color]_splat"
-	src.icon_state = "mouse_[body_color]_splat"
+	health = FALSE
+	death()
+	icon_dead = "mouse_[body_color]_splat"
+	icon_state = "mouse_[body_color]_splat"
 /*
 /mob/living/simple_animal/mouse/MouseDrop(atom/over_object)
 

@@ -260,7 +260,7 @@
 	w_class = 1.0
 
 /obj/item/cocktail_stuff/attack(mob/M as mob, mob/user as mob)
-	if(!src.is_edible)
+	if(!is_edible)
 		return
 	if(user == M)
 		user << "<span class='notice'>You eat [src]. Yum!</span>"

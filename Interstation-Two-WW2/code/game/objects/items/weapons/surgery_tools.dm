@@ -19,7 +19,6 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	flags = CONDUCT
 	w_class = 2.0
-//	origin_tech = list(TECH_MATERIAL = TRUE, TECH_BIO = TRUE)
 /*
  * Hemostat
  */

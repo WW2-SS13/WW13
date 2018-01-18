@@ -29,31 +29,31 @@
 
 	examine(mob/user)
 		if(..(user, TRUE))
-			user << text("The service panel is [src.open ? "open" : "closed"].")
+			user << text("The service panel is [open ? "open" : "closed"].")
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(locked)
 
 			if (istype(W, /obj/item/weapon/screwdriver))
 				if (do_after(user, 20, src))
-					src.open =! src.open
-					user.show_message(text("<span class='notice'>You [] the service panel.</span>", (src.open ? "open" : "close")))
+					open =! open
+					user.show_message(text("<span class='notice'>You [] the service panel.</span>", (open ? "open" : "close")))
 				return
-			if (/*(istype(W, /obj/item/device/multitool)) && */(src.open == TRUE)&& (!src.l_hacking))
+			if (/*(istype(W, /obj/item/device/multitool)) && */(open == TRUE)&& (!l_hacking))
 				user.show_message("<span class='notice'>Now attempting to reset internal memory, please hold.</span>", TRUE)
-				src.l_hacking = TRUE
+				l_hacking = TRUE
 				if (do_after(usr, 100, src))
 					if (prob(40))
-						src.l_setshort = TRUE
-						src.l_set = FALSE
+						l_setshort = TRUE
+						l_set = FALSE
 						user.show_message("<span class='notice'>Internal memory reset. Please give it a few seconds to reinitialize.</span>", TRUE)
 						sleep(80)
-						src.l_setshort = FALSE
-						src.l_hacking = FALSE
+						l_setshort = FALSE
+						l_hacking = FALSE
 					else
 						user.show_message("<span class='warning'>Unable to reset internal memory.</span>", TRUE)
-						src.l_hacking = FALSE
-				else	src.l_hacking = FALSE
+						l_hacking = FALSE
+				else	l_hacking = FALSE
 				return
 			//At this point you have exhausted all the special things to do when locked
 			// ... but it's still locked.
@@ -65,23 +65,23 @@
 
 	MouseDrop(over_object, src_location, over_location)
 		if (locked)
-			src.add_fingerprint(usr)
+			add_fingerprint(usr)
 			return
 		..()
 
 
 	attack_self(mob/user as mob)
 		user.set_machine(src)
-		var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (src.locked ? "LOCKED" : "UNLOCKED"))
+		var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (locked ? "LOCKED" : "UNLOCKED"))
 		var/message = "Code"
-		if ((src.l_set == FALSE) && (!src.emagged) && (!src.l_setshort))
+		if ((l_set == FALSE) && (!emagged) && (!l_setshort))
 			dat += text("<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW PASSCODE.</b>")
-		if (src.emagged)
+		if (emagged)
 			dat += text("<p>\n<font color=red><b>LOCKING SYSTEM ERROR - 1701</b></font>")
-		if (src.l_setshort)
+		if (l_setshort)
 			dat += text("<p>\n<font color=red><b>ALERT: MEMORY SYSTEM ERROR - 6040 201</b></font>")
-		message = text("[]", src.code)
-		if (!src.locked)
+		message = text("[]", code)
+		if (!locked)
 			message = "*****"
 		dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
 		user << browse(dat, "window=caselock;size=300x280")
@@ -92,30 +92,30 @@
 			return
 		if (href_list["type"])
 			if (href_list["type"] == "E")
-				if ((src.l_set == FALSE) && (length(src.code) == 5) && (!src.l_setshort) && (src.code != "ERROR"))
-					src.l_code = src.code
-					src.l_set = TRUE
-				else if ((src.code == src.l_code) && (src.emagged == FALSE) && (src.l_set == TRUE))
-					src.locked = FALSE
-					src.overlays = null
+				if ((l_set == FALSE) && (length(code) == 5) && (!l_setshort) && (code != "ERROR"))
+					l_code = code
+					l_set = TRUE
+				else if ((code == l_code) && (emagged == FALSE) && (l_set == TRUE))
+					locked = FALSE
+					overlays = null
 					overlays += image('icons/obj/storage.dmi', icon_opened)
-					src.code = null
+					code = null
 				else
-					src.code = "ERROR"
+					code = "ERROR"
 			else
-				if ((href_list["type"] == "R") && (src.emagged == FALSE) && (!src.l_setshort))
-					src.locked = TRUE
-					src.overlays = null
-					src.code = null
-					src.close(usr)
+				if ((href_list["type"] == "R") && (emagged == FALSE) && (!l_setshort))
+					locked = TRUE
+					overlays = null
+					code = null
+					close(usr)
 				else
-					src.code += text("[]", href_list["type"])
-					if (length(src.code) > 5)
-						src.code = "ERROR"
-			src.add_fingerprint(usr)
-			for(var/mob/M in viewers(1, src.loc))
+					code += text("[]", href_list["type"])
+					if (length(code) > 5)
+						code = "ERROR"
+			add_fingerprint(usr)
+			for(var/mob/M in viewers(1, loc))
 				if ((M.client && M.machine == src))
-					src.attack_self(M)
+					attack_self(M)
 				return
 		return
 
@@ -135,16 +135,16 @@
 	w_class = 4.0
 
 	attack_hand(mob/user as mob)
-		if ((src.loc == user) && (src.locked == TRUE))
+		if ((loc == user) && (locked == TRUE))
 			usr << "<span class='warning'>[src] is locked and cannot be opened!</span>"
-		else if ((src.loc == user) && (!src.locked))
-			src.open(usr)
+		else if ((loc == user) && (!locked))
+			open(usr)
 		else
 			..()
 			for(var/mob/M in range(1))
 				if (M.s_active == src)
-					src.close(M)
-		src.add_fingerprint(user)
+					close(M)
+		add_fingerprint(user)
 		return
 
 // -----------------------------

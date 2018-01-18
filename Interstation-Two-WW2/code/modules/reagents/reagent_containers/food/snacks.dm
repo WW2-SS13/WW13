@@ -87,9 +87,9 @@
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			if(!do_mob(user, M)) return
 
-			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
-			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
+			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
+			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
+			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
 
 			user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
 
@@ -119,7 +119,7 @@
 		user << "<span class='notice'>\The [src] was bitten multiple times!</span>"
 
 /obj/item/weapon/reagent_containers/food/snacks/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/storage))
+	if(istype(W,/obj/item/weapon/storage) && user.a_intent != I_HURT)
 		..() // -> item/attackby()
 		return
 
@@ -139,11 +139,11 @@
 				"<span class='notice'>You scoop up some [src] with \the [U]!</span>" \
 			)
 
-			src.bitecount++
+			bitecount++
 			U.overlays.Cut()
 			U.loaded = "[src]"
 			var/image/I = new(U.icon, "loadedfood")
-			I.color = src.filling_color
+			I.color = filling_color
 			U.overlays += I
 
 			reagents.trans_to_obj(U, min(reagents.total_volume,5))
@@ -154,11 +154,11 @@
 
 	if (is_sliceable())
 		//these are used to allow hiding edge items in food that is not on a table/tray
-		var/can_slice_here = isturf(src.loc) && ((locate(/obj/structure/table) in src.loc) || (locate(/obj/machinery/optable) in src.loc) || (locate(/obj/item/weapon/tray) in src.loc))
+		var/can_slice_here = isturf(loc) && ((locate(/obj/structure/table) in loc) || (locate(/obj/machinery/optable) in loc) || (locate(/obj/item/weapon/tray) in loc))
 		var/hide_item = !has_edge(W) || !can_slice_here
 
 		if (hide_item)
-			if (W.w_class >= src.w_class || is_robot_module(W))
+			if (W.w_class >= w_class || is_robot_module(W))
 				return
 
 			user << "<span class='warning'>You slip \the [W] inside \the [src].</span>"
@@ -182,7 +182,7 @@
 
 			var/reagents_per_slice = reagents.total_volume/slices_num
 			for(var/i=1 to (slices_num-slices_lost))
-				var/obj/slice = new slice_path (src.loc)
+				var/obj/slice = new slice_path (loc)
 				reagents.trans_to_obj(slice, reagents_per_slice)
 			qdel(src)
 			return
@@ -368,11 +368,11 @@
 	New()
 		..()
 		reagents.add_reagent("sprinkles", 1)
-		src.bitesize = 3
+		bitesize = 3
 		if(prob(30))
-			src.icon_state = "donut2"
-			src.overlay_state = "box-donut2"
-			src.name = "frosted donut"
+			icon_state = "donut2"
+			overlay_state = "box-donut2"
+			name = "frosted donut"
 			reagents.add_reagent("sprinkles", 2)
 			center_of_mass = list("x"=19, "y"=16)
 
@@ -409,9 +409,9 @@
 			if(10)
 				reagents.add_reagent("tricordrazine", 3)
 		if(prob(30))
-			src.icon_state = "donut2"
-			src.overlay_state = "box-donut2"
-			src.name = "Frosted Chaos Donut"
+			icon_state = "donut2"
+			overlay_state = "box-donut2"
+			name = "Frosted Chaos Donut"
 			reagents.add_reagent("sprinkles", 2)
 
 
@@ -428,9 +428,9 @@
 		reagents.add_reagent("berryjuice", 5)
 		bitesize = 5
 		if(prob(30))
-			src.icon_state = "jdonut2"
-			src.overlay_state = "box-donut2"
-			src.name = "Frosted Jelly Donut"
+			icon_state = "jdonut2"
+			overlay_state = "box-donut2"
+			name = "Frosted Jelly Donut"
 			reagents.add_reagent("sprinkles", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
@@ -446,9 +446,9 @@
 		reagents.add_reagent("slimejelly", 5)
 		bitesize = 5
 		if(prob(30))
-			src.icon_state = "jdonut2"
-			src.overlay_state = "box-donut2"
-			src.name = "Frosted Jelly Donut"
+			icon_state = "jdonut2"
+			overlay_state = "box-donut2"
+			name = "Frosted Jelly Donut"
 			reagents.add_reagent("sprinkles", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly
@@ -464,9 +464,9 @@
 		reagents.add_reagent("cherryjelly", 5)
 		bitesize = 5
 		if(prob(30))
-			src.icon_state = "jdonut2"
-			src.overlay_state = "box-donut2"
-			src.name = "Frosted Jelly Donut"
+			icon_state = "jdonut2"
+			overlay_state = "box-donut2"
+			name = "Frosted Jelly Donut"
 			reagents.add_reagent("sprinkles", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg
@@ -493,9 +493,9 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/throw_impact(atom/hit_atom)
 	..()
-	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
-	src.reagents.splash(hit_atom, reagents.total_volume)
-	src.visible_message("<span class='warning'>\The [src] has been squashed!</span>","<span class='warning'>You hear a smack.</span>")
+	new/obj/effect/decal/cleanable/egg_smudge(loc)
+	reagents.splash(hit_atom, reagents.total_volume)
+	visible_message("<span class='warning'>\The [src] has been squashed!</span>","<span class='warning'>You hear a smack.</span>")
 	qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -572,7 +572,7 @@
 		..()
 		reagents.add_reagent("protein", rand(3,5))
 		reagents.add_reagent("toxin", rand(1,3))
-		src.bitesize = 3
+		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/tofu
 	name = "Tofu"
@@ -584,7 +584,7 @@
 	nutriment_desc = list("tofu" = 3, "goeyness" = 3)
 	New()
 		..()
-		src.bitesize = 3
+		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/tofurkey
 	name = "Tofurkey"
@@ -623,7 +623,7 @@
 		..()
 		reagents.add_reagent("protein", 3)
 		reagents.add_reagent("carpotoxin", 3)
-		src.bitesize = 6
+		bitesize = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers
 	name = "Fish Fingers"
@@ -649,7 +649,7 @@
 	New()
 		..()
 		reagents.add_reagent("psilocybin", 3)
-		src.bitesize = 6
+		bitesize = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/tomatomeat
 	name = "tomato slice"
@@ -661,7 +661,7 @@
 	nutriment_desc = list("raw" = 2, "tomato" = 3)
 	New()
 		..()
-		src.bitesize = 6
+		bitesize = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/bearmeat
 	name = "bear meat"
@@ -674,7 +674,7 @@
 		..()
 		reagents.add_reagent("protein", 12)
 		reagents.add_reagent("hyperzine", 5)
-		src.bitesize = 3
+		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/xenomeat
 	name = "meat"
@@ -687,7 +687,7 @@
 		..()
 		reagents.add_reagent("protein", 6)
 		reagents.add_reagent("pacid",6)
-		src.bitesize = 6
+		bitesize = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/meatball
 	name = "meatball"
@@ -753,12 +753,12 @@
 		cooltime()
 
 	proc/cooltime()
-		if (src.warm)
+		if (warm)
 			spawn(4200)
-				src.warm = FALSE
+				warm = FALSE
 				for(var/reagent in heated_reagents)
-					src.reagents.del_reagent(reagent)
-				src.name = initial(name)
+					reagents.del_reagent(reagent)
+				name = initial(name)
 		return
 
 /obj/item/weapon/reagent_containers/food/snacks/brainburger
@@ -957,8 +957,8 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/throw_impact(atom/hit_atom)
 	..()
-	new/obj/effect/decal/cleanable/pie_smudge(src.loc)
-	src.visible_message("<span class='danger'>\The [src.name] splats.</span>","<span class='danger'>You hear a splat.</span>")
+	new/obj/effect/decal/cleanable/pie_smudge(loc)
+	visible_message("<span class='danger'>\The [name] splats.</span>","<span class='danger'>You hear a splat.</span>")
 	qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/berryclafoutis
@@ -1541,7 +1541,7 @@
 		reagents.add_reagent("water", 10)
 		bitesize = 5
 		if(prob(25))
-			src.desc = "A wish come true!"
+			desc = "A wish come true!"
 			reagents.add_reagent("nutriment", 8, list("something good" = 8))
 
 /obj/item/weapon/reagent_containers/food/snacks/hotchili
@@ -1598,12 +1598,12 @@
 			Unwrap(user)
 
 	proc/Expand()
-		src.visible_message("<span class='notice'>\The [src] expands!</span>")
+		visible_message("<span class='notice'>\The [src] expands!</span>")
 		var/mob/living/carbon/human/H = new(get_turf(src))
 		H.set_species(monkey_type)
 		H.real_name = H.species.get_random_name()
 		H.name = H.real_name
-		src.loc = null
+		loc = null
 		qdel(src)
 		return TRUE
 
@@ -2766,8 +2766,8 @@
 	if( open && pizza )
 		user.put_in_hands( pizza )
 
-		user << "<span class='warning'>You take \the [src.pizza] out of \the [src].</span>"
-		src.pizza = null
+		user << "<span class='warning'>You take \the [pizza] out of \the [src].</span>"
+		pizza = null
 		update_icon()
 		return
 
@@ -2802,7 +2802,7 @@
 	if( istype(I, /obj/item/pizzabox/) )
 		var/obj/item/pizzabox/box = I
 
-		if( !box.open && !src.open )
+		if( !box.open && !open )
 			// Make a list of all boxes to be added
 			var/list/boxestoadd = list()
 			boxestoadd += box
@@ -2814,7 +2814,7 @@
 
 				box.loc = src
 				box.boxes = list() // Clear the box boxes so we don't have boxes inside boxes. - Xzibit
-				src.boxes.Add( boxestoadd )
+				boxes.Add( boxestoadd )
 
 				box.update_icon()
 				update_icon()
@@ -2829,10 +2829,10 @@
 
 	if( istype(I, /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/) ) // Long ass fucking object name
 
-		if( src.open )
+		if( open )
 			user.drop_item()
 			I.loc = src
-			src.pizza = I
+			pizza = I
 
 			update_icon()
 
@@ -2843,7 +2843,7 @@
 
 	if( istype(I, /obj/item/weapon/pen/) )
 
-		if( src.open )
+		if( open )
 			return
 
 		var/t = sanitize(input("Enter what you want to add to the tag:", "Write", null, null) as text, 30)

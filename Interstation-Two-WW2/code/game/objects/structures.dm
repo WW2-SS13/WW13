@@ -79,7 +79,7 @@
 	return FALSE
 
 /obj/structure/proc/neighbor_turf_passable()
-	var/turf/T = get_step(src, src.dir)
+	var/turf/T = get_step(src, dir)
 	if(!T || !istype(T))
 		return FALSE
 	if(T.density == TRUE)

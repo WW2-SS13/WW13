@@ -56,14 +56,14 @@
 /obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench) && state == FALSE)
 		if(anchored && !reinf_material)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, TRUE)
+			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 			user << "<span class='notice'>Now disassembling the girder...</span>"
 			if(do_after(user, 40,src))
 				if(!src) return
 				user << "<span class='notice'>You dissasembled the girder!</span>"
 				dismantle()
 		else if(!anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, TRUE)
+			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 			user << "<span class='notice'>Now securing the girder...</span>"
 			if(get_turf(user, 40))
 				user << "<span class='notice'>You secured the girder!</span>"
@@ -71,19 +71,19 @@
 
 	else if(istype(W, /obj/item/weapon/screwdriver))
 		if(state == 2)
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, TRUE)
+			playsound(loc, 'sound/items/Screwdriver.ogg', 100, TRUE)
 			user << "<span class='notice'>Now unsecuring support struts...</span>"
 			if(do_after(user, 40,src))
 				if(!src) return
 				user << "<span class='notice'>You unsecured the support struts!</span>"
 				state = TRUE
 		else if(anchored && !reinf_material)
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, TRUE)
+			playsound(loc, 'sound/items/Screwdriver.ogg', 100, TRUE)
 			reinforcing = !reinforcing
 			user << "<span class='notice'>\The [src] can now be [reinforcing? "reinforced" : "constructed"]!</span>"
 
 	else if(istype(W, /obj/item/weapon/wirecutters) && state == TRUE)
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, TRUE)
+		playsound(loc, 'sound/items/Wirecutter.ogg', 100, TRUE)
 		user << "<span class='notice'>Now removing support struts...</span>"
 		if(do_after(user, 40,src))
 			if(!src) return
@@ -93,7 +93,7 @@
 			reset_girder()
 
 	else if(istype(W, /obj/item/weapon/crowbar) && state == FALSE && anchored)
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, TRUE)
+		playsound(loc, 'sound/items/Crowbar.ogg', 100, TRUE)
 		user << "<span class='notice'>Now dislodging the girder...</span>"
 		if(do_after(user, 40,src))
 			if(!src) return
@@ -142,7 +142,7 @@
 		wall_fake = TRUE
 
 	var/turf/Tsrc = get_turf(src)
-	Tsrc.ChangeTurf(/turf/wall)
+	Tsrc.TChangeTurf(/turf/wall)
 	var/turf/wall/T = get_turf(src)
 	T.set_material(M, reinf_material)
 	if(wall_fake)
@@ -221,7 +221,7 @@
 
 /obj/structure/girder/cult/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, TRUE)
+		playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 		user << "<span class='notice'>Now disassembling the girder...</span>"
 		if(do_after(user,40,src))
 			user << "<span class='notice'>You dissasembled the girder!</span>"

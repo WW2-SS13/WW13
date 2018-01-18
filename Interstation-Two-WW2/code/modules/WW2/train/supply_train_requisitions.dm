@@ -46,6 +46,7 @@
 		"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 		"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
 		"Luger Crate" = /obj/structure/closet/crate/lugers,
+		"Maxim" = /obj/item/weapon/gun/projectile/minigun/kord/maxim,
 
 		// ARTILLERY AMMO
 		"Artillery Ballistic Shells Crate" = /obj/structure/closet/crate/artillery,
@@ -80,7 +81,7 @@
 		"PTRD Ammo" = 100,
 		"Mines Ammo" = 50,
 		"Grenades" = 65,
-		"Panzerfausts" = 60,
+		"Panzerfausts" = 120,
 		"Smoke Grenades" = 55, // too lazy to fix this typo rn
 		"Sandbags" = 20,
 		"Flaregun Ammo" = 15,
@@ -103,6 +104,7 @@
 		"Flammenwerfer" = 250,
 		"7,5 cm FK 18 Artillery Piece" = 300,
 		"Luger Crate" = 400,
+		"Maxim" = 225,
 
 		// ARTILLERY AMMO
 		"Artillery Ballistic Shells Crate" = 100,
@@ -115,7 +117,7 @@
 		"Betty Mines Crate" = 200,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = 150,
+		"German Shepherd Crate" = 50,
 
 		// MEDICAL STUFF
 		"Medical Crate" = 75
@@ -146,11 +148,11 @@
 			var/mob/living/carbon/human/H = user
 			if (!istype(H) || !H.original_job)
 				return
-			var/sign = input("Sign the [src.name]?") in list("Yes", "No")
+			var/sign = input("Sign the [name]?") in list("Yes", "No")
 			if (sign == "Yes")
 				if (do_after(H, 20, get_turf(H)))
 					if (loc == H)
-						visible_message("<span class = 'notice'>[H] signs [src.name].</span>")
+						visible_message("<span class = 'notice'>[H] signs [name].</span>")
 						signatures += "<i>[H.real_name] - [H.original_job.title]</i>"
 						regenerate_info()
 						show_content(H)

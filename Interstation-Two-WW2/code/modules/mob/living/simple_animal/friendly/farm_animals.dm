@@ -40,7 +40,7 @@
 		if(enemies.len && prob(10))
 			enemies = list()
 			LoseTarget()
-			src.visible_message("\blue [src] calms down.")
+			visible_message("\blue [src] calms down.")
 
 		if(stat == CONSCIOUS)
 			if(udder && prob(5))
@@ -182,7 +182,7 @@
 	if(!stat)
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
-			new /mob/living/simple_animal/chicken(src.loc)
+			new /mob/living/simple_animal/chicken(loc)
 			qdel(src)
 
 var/const/MAX_CHICKENS = 50

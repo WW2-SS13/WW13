@@ -132,7 +132,7 @@ var/list/global/wall_cache = list()
 	if(!can_melt())
 		return
 
-	src.ChangeTurf(/turf/floor/plating)
+	ChangeTurf(/turf/floor/plating)
 
 	var/turf/floor/F = src
 	if(!F)
@@ -185,7 +185,7 @@ var/list/global/wall_cache = list()
 			material.place_dismantled_girder(src)
 		material.place_dismantled_product(src,devastated)
 
-	for(var/obj/O in src.contents) //Eject contents!
+	for(var/obj/O in contents) //Eject contents!
 		if(istype(O,/obj/item/weapon/contraband/poster))
 			var/obj/item/weapon/contraband/poster/P = O
 			P.roll_and_drop(src)
@@ -203,7 +203,7 @@ var/list/global/wall_cache = list()
 /turf/wall/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			src.ChangeTurf(get_base_turf(src.z))
+			ChangeTurf(get_base_turf(z))
 			return
 		if(2.0)
 			if(prob(75))
@@ -240,7 +240,7 @@ var/list/global/wall_cache = list()
 	O.density = TRUE
 	O.layer = 5
 
-	src.ChangeTurf(/turf/floor/plating)
+	ChangeTurf(/turf/floor/plating)
 
 	var/turf/floor/F = src
 	F.burn_tile()
@@ -266,6 +266,6 @@ var/list/global/wall_cache = list()
 	if(material.combustion_effect(src, temperature, 0.7))
 		spawn(2)
 			new /obj/structure/girder(src)
-			src.ChangeTurf(/turf/floor)
+			ChangeTurf(/turf/floor)
 			for(var/turf/wall/W in range(3,src))
 				W.burn((temperature/4))

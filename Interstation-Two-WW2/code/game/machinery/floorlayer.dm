@@ -56,7 +56,7 @@
 			var/obj/item/stack/tile/E = input("Choose remove tile type.", "Tiles") as null|anything in contents
 			if(E)
 				user <<  "<span class='notice'>You remove the [E] from /the [src].</span>"
-				E.loc = src.loc
+				E.loc = loc
 				T = null
 		return
 

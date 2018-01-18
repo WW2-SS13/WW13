@@ -23,7 +23,7 @@
 		anchored = FALSE
 /*	if(climbable)
 		verbs += /obj/structure/proc/climb_on*/
-	if(src.anchored)
+	if(anchored)
 		spawn(5)
 			update_icon(0)
 
@@ -69,53 +69,53 @@
 /obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = TRUE)
 	check = FALSE
 	//if (!anchored) return
-	var/Rturn = turn(src.dir, -90)
-	var/Lturn = turn(src.dir, 90)
+	var/Rturn = turn(dir, -90)
+	var/Lturn = turn(dir, 90)
 
-	for(var/obj/structure/railing/R in src.loc)// Анализ клетки, где находится сам объект
+	for(var/obj/structure/railing/R in loc)// Анализ клетки, где находится сам объект
 		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
-			//src.LeftSide[1] = TRUE
+			//LeftSide[1] = TRUE
 			check |= 32
 			if (UpdateNeighbors)
 				R.update_icon(0)
 		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
-			//src.RightSide[1] = TRUE
+			//RightSide[1] = TRUE
 			check |= 2
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
 	for (var/obj/structure/railing/R in get_step(src, Lturn))//Анализ левой клетки от направления объекта
-		if ((R.dir == src.dir) && R.anchored)
-			//src.LeftSide[2] = TRUE
+		if ((R.dir == dir) && R.anchored)
+			//LeftSide[2] = TRUE
 			check |= 16
 			if (UpdateNeighbors)
 				R.update_icon(0)
 	for (var/obj/structure/railing/R in get_step(src, Rturn))//Анализ правой клетки от направления объекта
-		if ((R.dir == src.dir) && R.anchored)
-			//src.RightSide[2] = TRUE
+		if ((R.dir == dir) && R.anchored)
+			//RightSide[2] = TRUE
 			check |= TRUE
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-	for (var/obj/structure/railing/R in get_step(src, (Lturn + src.dir)))//Анализ передней-левой диагонали относительно направления объекта.
+	for (var/obj/structure/railing/R in get_step(src, (Lturn + dir)))//Анализ передней-левой диагонали относительно направления объекта.
 		if ((R.dir == Rturn) && R.anchored)
 			check |= 64
 			if (UpdateNeighbors)
 				R.update_icon(0)
-	for (var/obj/structure/railing/R in get_step(src, (Rturn + src.dir)))//Анализ передней-правой диагонали относительно направления объекта.
+	for (var/obj/structure/railing/R in get_step(src, (Rturn + dir)))//Анализ передней-правой диагонали относительно направления объекта.
 		if ((R.dir == Lturn) && R.anchored)
 			check |= 4
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
 
-/*	for(var/obj/structure/railing/R in get_step(src, src.dir))
+/*	for(var/obj/structure/railing/R in get_step(src, dir))
 		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
-			src.LeftSide[3] = TRUE
+			LeftSide[3] = TRUE
 		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
-			src.RightSide[3] = TRUE*/
+			RightSide[3] = TRUE*/
 	//check <<"check: [check]"
-	//world << "dir = [src.dir]"
+	//world << "dir = [dir]"
 	//world << "railing[LeftSide[1]][LeftSide[2]][LeftSide[3]]-[RightSide[1]][RightSide[2]][RightSide[3]]"
 
 /obj/structure/railing/update_icon(var/UpdateNeighgors = TRUE)
@@ -137,7 +137,7 @@
 			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_r")
 			//world << "no 4 or 2 check"
 			if(check & 4)
-				switch (src.dir)
+				switch (dir)
 					if (NORTH)
 						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_x = 32)
 					if (SOUTH)
@@ -161,7 +161,7 @@
 /obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
 	// Dismantle
 	if(istype(W, /obj/item/weapon/wrench) && !anchored)
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		if(do_after(user, 20, src))
 			user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>", "<span class='notice'>You dismantle \the [src].</span>")
 			new /obj/item/stack/material/steel(get_turf(usr))
@@ -173,7 +173,7 @@
 	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/F = W
 		if(F.welding)
-			playsound(src.loc, 'sound/items/Welder.ogg', 50, TRUE)
+			playsound(loc, 'sound/items/Welder.ogg', 50, TRUE)
 			if(do_after(user, 20, src))
 				user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>", "<span class='notice'>You repair some damage to \the [src].</span>")
 				health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
@@ -210,7 +210,7 @@
 					return
 			else
 				if (get_turf(G.affecting) == get_turf(src))
-					G.affecting.forceMove(get_step(src, src.dir))
+					G.affecting.forceMove(get_step(src, dir))
 				else
 					G.affecting.forceMove(get_turf(src))
 				G.affecting.Weaken(5)
@@ -261,7 +261,7 @@
 		return
 
 	if(get_turf(user) == get_turf(src))
-		usr.forceMove(get_step(src, src.dir))
+		usr.forceMove(get_step(src, dir))
 	else
 		usr.forceMove(get_turf(src))
 

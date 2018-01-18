@@ -109,7 +109,7 @@
 	if(do_after(M, 10, src))
 		if (target.loc && locate(/obj/train_pseudoturf) in target.loc)
 			T = target.loc // this is to prevent the train teleporting error
-		playsound(src.loc, 'sound/effects/ladder.ogg', 50, TRUE, -1)
+		playsound(loc, 'sound/effects/ladder.ogg', 50, TRUE, -1)
 		var/was_pulling = null
 		if (M.pulling)
 			was_pulling = M.pulling
@@ -275,7 +275,7 @@
 	//If it's the top, they can fall down just fine.
 	if(ismob(M) && M:client)
 		M:client.moving = TRUE
-	M.Move(locate(src.x, src.y, targetZ()))
+	M.Move(locate(x, y, targetZ()))
 	if (ismob(M) && M:client)
 		M:client.moving = FALSE
 
@@ -294,7 +294,7 @@
 	return
 
 /obj/structure/stairs/proc/targetZ()
-	return src.z + (istop ? -1 : TRUE)
+	return z + (istop ? -1 : TRUE)
 */
 
 /obj/structure/multiz/stairs

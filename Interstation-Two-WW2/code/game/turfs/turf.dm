@@ -69,7 +69,7 @@ var/list/interior_areas = list(/area/prishtina/houses,
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn( FALSE )
-			src.Entered(AM)
+			Entered(AM)
 			return
 	turfs |= src
 
@@ -170,7 +170,7 @@ var/list/interior_areas = list(/area/prishtina/houses,
 				return FALSE
 
 	//Then, check the turf itself
-	if (!src.CanPass(mover, src))
+	if (!CanPass(mover, src))
 		mover.Bump(src, TRUE)
 		return FALSE
 
@@ -225,7 +225,7 @@ var/const/enterloopsanity = 100
 
 /turf/proc/inertial_drift(atom/movable/A as mob|obj)
 	if(!(A.last_move))	return
-	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - TRUE) && src.y > 2 && src.y < (world.maxy-1)))
+	if((istype(A, /mob/) && x > 2 && x < (world.maxx - TRUE) && y > 2 && y < (world.maxy-1)))
 		var/mob/M = A
 		if(M.Process_Spacemove(1))
 			M.inertia_dir  = FALSE
@@ -254,13 +254,13 @@ var/const/enterloopsanity = 100
 /turf/proc/CardinalTurfs()
 	var/L[] = new()
 	for(var/turf/T in AdjacentTurfs())
-		if(T.x == src.x || T.y == src.y)
+		if(T.x == x || T.y == y)
 			L.Add(T)
 	return L
 
 /turf/proc/Distance(turf/t)
 	if(get_dist(src,t) == TRUE)
-		var/cost = (src.x - t.x) * (src.x - t.x) + (src.y - t.y) * (src.y - t.y)
+		var/cost = (x - t.x) * (x - t.x) + (y - t.y) * (y - t.y)
 		cost *= (pathweight+t.pathweight)/2
 		return cost
 	else
@@ -397,7 +397,7 @@ var/const/enterloopsanity = 100
 					H.track_blood--
 
 			if (bloodDNA)
-				src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
+				AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
 				var/turf/from = get_step(H,reverse_direction(H.dir))
 				if(istype(from) && from)
 					from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
@@ -447,16 +447,16 @@ var/const/enterloopsanity = 100
 
 
 
-		if(src.wet)
+		if(wet)
 
-			if(M.buckled || (src.wet == TRUE && M.m_intent == "walk"))
+			if(M.buckled || (wet == TRUE && M.m_intent == "walk"))
 				return
 
 			var/slip_dist = TRUE
 			var/slip_stun = 6
 			var/floor_type = "wet"
 
-			switch(src.wet)
+			switch(wet)
 				if(2) // Lube
 					floor_type = "slippery"
 					slip_dist = 4

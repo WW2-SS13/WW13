@@ -165,8 +165,8 @@
 	set src in usr
 
 	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(src.up)
-			src.up = !src.up
+		if(up)
+			up = !up
 			flags_inv |= HIDEEYES
 			body_parts_covered |= EYES
 			icon_state = initial(icon_state)
@@ -174,7 +174,7 @@
 			tint = initial(tint)
 			usr << "You flip \the [src] down to protect your eyes."
 		else
-			src.up = !src.up
+			up = !up
 			flags_inv &= ~HIDEEYES
 			body_parts_covered &= ~EYES
 			icon_state = "[initial(icon_state)]up"
@@ -222,7 +222,7 @@
 
 	New()
 		..()
-		src.hud = new/obj/item/clothing/glasses/hud/security(src)
+		hud = new/obj/item/clothing/glasses/hud/security(src)
 		return
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
@@ -243,8 +243,8 @@
 	flash_protection = FLASH_PROTECTION_REDUCED
 
 	emp_act(severity)
-		if(istype(src.loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/M = src.loc
+		if(istype(loc, /mob/living/carbon/human))
+			var/mob/living/carbon/human/M = loc
 			M << "<span class='danger'>The Optical Thermal Scanner overloads and blinds you!</span>"
 			if(M.glasses == src)
 				M.eye_blind = 3

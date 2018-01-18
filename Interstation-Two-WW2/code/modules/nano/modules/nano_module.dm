@@ -7,7 +7,7 @@
 /datum/nano_module/New(var/host, var/program)
 	//program = program
 	// Machinery-based computers wouldn't work w/o this as nano will assume they're items inside containers.
-	src.host = host
+	host = host
 
 /datum/nano_module/Topic(href, href_list)
 	// Calls forwarded to PROGRAM itself should begin with "PRG_"

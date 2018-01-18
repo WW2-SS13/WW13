@@ -12,17 +12,17 @@
 	body_parts_covered = FALSE
 
 /obj/item/clothing/head/soft/dropped()
-	src.icon_state = initial(icon_state)
-	src.flipped=0
+	icon_state = initial(icon_state)
+	flipped=0
 	..()
 
 /obj/item/clothing/head/soft/attack_self(mob/user)
-	src.flipped = !src.flipped
-	if(src.flipped)
+	flipped = !flipped
+	if(flipped)
 		icon_state = "[icon_state]_flipped"
 		user << "You flip the hat backwards."
 	else
-		src.icon_state = initial(icon_state)
+		icon_state = initial(icon_state)
 		user << "You flip the hat back in normal position."
 	update_clothing_icon()	//so our mob-overlays update
 

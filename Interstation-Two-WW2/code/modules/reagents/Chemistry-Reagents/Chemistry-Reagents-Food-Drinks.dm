@@ -821,6 +821,9 @@
 
 // Basic
 
+/datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.add_chemical_effect(CE_PAINKILLER, 5 * removed)
+
 /datum/reagent/ethanol/absinthe
 	name = "Absinthe"
 	id = "absinthe"
@@ -845,7 +848,7 @@
 	taste_description = "beer"
 	color = "#664300"
 	strength = 50
-	nutriment_factor = TRUE
+	nutriment_factor = 1
 
 /datum/reagent/ethanol/beer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -999,6 +1002,7 @@
 	taste_description = "bitter sweetness"
 	color = "#7E4043" // rgb: 126, 64, 67
 	strength = 15
+	nutriment_factor = 1
 
 // Cocktails
 

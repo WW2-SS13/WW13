@@ -41,12 +41,12 @@
 			icon_state = "keychain_many"
 
 /obj/item/weapon/storage/belt/keychain/attack_hand(mob/user as mob)
-	if (src.loc == user)
+	if (loc == user)
 		if (!keys.len)
 			return
 		else
 			var/obj/item/weapon/key/which = input("Take out which key?") as null|anything in keys
-			if (which && which.loc == src && (src.loc == user || locate(src) in get_step(user, user.dir) || locate(src) in get_turf(user)))
+			if (which && which.loc == src && (loc == user || locate(src) in get_step(user, user.dir) || locate(src) in get_turf(user)))
 				user.put_in_hands(which)
 				keys -= which
 				update_icon_state()

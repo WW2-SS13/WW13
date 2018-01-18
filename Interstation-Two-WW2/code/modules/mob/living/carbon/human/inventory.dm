@@ -196,67 +196,67 @@ This saves us from having to call add_fingerprint() any time something is put in
 	W.forceMove(src)
 	switch(slot)
 		if(slot_back)
-			src.back = W
+			back = W
 			W.equipped(src, slot)
 			update_inv_back(redraw_mob)
 		if(slot_wear_mask)
-			src.wear_mask = W
+			wear_mask = W
 			if(wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 			W.equipped(src, slot)
 			update_inv_wear_mask(redraw_mob)
 		if(slot_handcuffed)
-			src.handcuffed = W
+			handcuffed = W
 			update_inv_handcuffed(redraw_mob)
 		if(slot_legcuffed)
-			src.legcuffed = W
+			legcuffed = W
 			W.equipped(src, slot)
 			update_inv_legcuffed(redraw_mob)
 		if(slot_l_hand)
-			src.l_hand = W
+			l_hand = W
 			W.equipped(src, slot)
 			update_inv_l_hand(redraw_mob)
 		if(slot_r_hand)
-			src.r_hand = W
+			r_hand = W
 			W.equipped(src, slot)
 			update_inv_r_hand(redraw_mob)
 		if(slot_belt)
-			src.belt = W
+			belt = W
 			W.equipped(src, slot)
 			update_inv_belt(redraw_mob)
 		if(slot_wear_id)
-			src.wear_id = W
+			wear_id = W
 			W.equipped(src, slot)
 			update_inv_wear_id(redraw_mob)
 		if(slot_l_ear)
-			src.l_ear = W
+			l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
 				O.forceMove(src)
-				src.r_ear = O
+				r_ear = O
 				O.layer = 20
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
 		if(slot_r_ear)
-			src.r_ear = W
+			r_ear = W
 			if(r_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
 				O.forceMove(src)
-				src.l_ear = O
+				l_ear = O
 				O.layer = 20
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
 		if(slot_glasses)
-			src.glasses = W
+			glasses = W
 			W.equipped(src, slot)
 			update_inv_glasses(redraw_mob)
 		if(slot_gloves)
-			src.gloves = W
+			gloves = W
 			W.equipped(src, slot)
 			update_inv_gloves(redraw_mob)
 		if(slot_head)
-			src.head = W
+			head = W
 			if(head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|HIDEMASK))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
@@ -264,47 +264,47 @@ This saves us from having to call add_fingerprint() any time something is put in
 			W.equipped(src, slot)
 			update_inv_head(redraw_mob)
 		if(slot_shoes)
-			src.shoes = W
+			shoes = W
 			W.equipped(src, slot)
 			update_inv_shoes(redraw_mob)
 		if(slot_wear_suit)
-			src.wear_suit = W
+			wear_suit = W
 			if(wear_suit.flags_inv & HIDESHOES)
 				update_inv_shoes(0)
 			W.equipped(src, slot)
 			update_inv_wear_suit(redraw_mob)
 		if(slot_w_uniform)
-			src.w_uniform = W
+			w_uniform = W
 			W.equipped(src, slot)
 			update_inv_w_uniform(redraw_mob)
 		if(slot_l_store)
-			src.l_store = W
+			l_store = W
 			W.equipped(src, slot)
 			update_inv_pockets(redraw_mob)
 		if(slot_r_store)
-			src.r_store = W
+			r_store = W
 			W.equipped(src, slot)
 			update_inv_pockets(redraw_mob)
 		if(slot_s_store)
-			src.s_store = W
+			s_store = W
 			W.equipped(src, slot)
 			update_inv_s_store(redraw_mob)
 		if(slot_in_backpack)
-			if(src.get_active_hand() == W)
-				src.remove_from_mob(W)
-			W.forceMove(src.back)
+			if(get_active_hand() == W)
+				remove_from_mob(W)
+			W.forceMove(back)
 		if(slot_tie)
-			var/obj/item/clothing/under/uniform = src.w_uniform
+			var/obj/item/clothing/under/uniform = w_uniform
 			uniform.attackby(W,src)
 		else
 			src << "<span class='danger'>You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]</span>"
 			return
 
-	if((W == src.l_hand) && (slot != slot_l_hand))
-		src.l_hand = null
+	if((W == l_hand) && (slot != slot_l_hand))
+		l_hand = null
 		update_inv_l_hand() //So items actually disappear from hands.
-	else if((W == src.r_hand) && (slot != slot_r_hand))
-		src.r_hand = null
+	else if((W == r_hand) && (slot != slot_r_hand))
+		r_hand = null
 		update_inv_r_hand()
 
 	W.layer = 20
@@ -321,13 +321,13 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	switch(slot)
 		if(slot_wear_mask)
-			covering = src.head
+			covering = head
 			check_flags = FACE
 		if(slot_glasses)
-			covering = src.head
+			covering = head
 			check_flags = EYES
 		if(slot_gloves, slot_w_uniform)
-			covering = src.wear_suit
+			covering = wear_suit
 
 	if(covering && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
 		user << "<span class='warning'>\The [covering] is in the way.</span>"

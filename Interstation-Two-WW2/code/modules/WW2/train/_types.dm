@@ -7,8 +7,8 @@
 
 /datum/train_controller/german_supplytrain_controller
 	var/supply_points = 200
-	var/supply_points_per_second_min = 0.1
-	var/supply_points_per_second_max = 0.3
+	var/supply_points_per_second_min = 0.4
+	var/supply_points_per_second_max = 0.5
 	var/obj/item/device/radio/intercom/fu2/announcer = null
 	var/mob/living/carbon/human/mob = null
 	var/here = TRUE

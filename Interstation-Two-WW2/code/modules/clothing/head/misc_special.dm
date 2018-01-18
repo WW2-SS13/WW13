@@ -43,8 +43,8 @@
 	set src in usr
 
 	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(src.up)
-			src.up = !src.up
+		if(up)
+			up = !up
 			body_parts_covered |= (EYES|FACE)
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			flash_protection = initial(flash_protection)
@@ -52,7 +52,7 @@
 			icon_state = base_state
 			usr << "You flip the [src] down to protect your eyes."
 		else
-			src.up = !src.up
+			up = !up
 			body_parts_covered &= ~(EYES|FACE)
 			flash_protection = FLASH_PROTECTION_NONE
 			tint = TINT_NONE
@@ -79,7 +79,7 @@
 		processing_objects.Remove(src)
 		return
 
-	var/turf/location = src.loc
+	var/turf/location = loc
 	if(istype(location, /mob/))
 		var/mob/living/carbon/human/M = location
 		if(M.l_hand == src || M.r_hand == src || M.head == src)
@@ -89,18 +89,18 @@
 		location.hotspot_expose(700, TRUE)
 
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
-	src.onfire = !( src.onfire )
-	if (src.onfire)
-		src.force = 3
-		src.damtype = "fire"
-		src.icon_state = "cake1"
-		src.item_state = "cake1"
+	onfire = !( onfire )
+	if (onfire)
+		force = 3
+		damtype = "fire"
+		icon_state = "cake1"
+		item_state = "cake1"
 		processing_objects.Add(src)
 	else
-		src.force = null
-		src.damtype = "brute"
-		src.icon_state = "cake0"
-		src.item_state = "cake0"
+		force = null
+		damtype = "brute"
+		icon_state = "cake0"
+		item_state = "cake0"
 	return
 
 
@@ -114,11 +114,11 @@
 	flags_inv = HIDEEARS
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
-	if(src.icon_state == "ushankadown")
-		src.icon_state = "ushankaup"
+	if(icon_state == "ushankadown")
+		icon_state = "ushankaup"
 		user << "You raise the ear flaps on the ushanka."
 	else
-		src.icon_state = "ushankadown"
+		icon_state = "ushankadown"
 		user << "You lower the ear flaps on the ushanka."
 
 /*

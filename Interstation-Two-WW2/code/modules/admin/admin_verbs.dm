@@ -8,10 +8,9 @@ var/list/admin_verbs_default = list(
 	/client/proc/hide_verbs,			//hides all our adminverbs,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify,
-//	/client/proc/check_antagonists,		//shows all antags,
 	/client/proc/cmd_mentor_check_new_players,
-	/client/proc/see_spies,
-	/client/proc/see_jews,
+//	/client/proc/see_spies,
+//	/client/proc/see_jews,
 	/client/proc/see_soldiers,
 	/client/proc/see_bug_reports,
 	/client/proc/see_suggestions,
@@ -293,7 +292,8 @@ var/list/admin_verbs_mod = list(
 	/client/proc/message_partisans,
 	/client/proc/send_german_train,
 	/client/proc/toggle_german_civilian_mode,
-	/client/proc/toggle_soviet_civilian_mode
+	/client/proc/toggle_soviet_civilian_mode,
+	/client/proc/toggle_respawn_delays
 )
 
 var/list/admin_verbs_mentor = list(
@@ -641,8 +641,8 @@ var/list/admin_verbs_host = list(
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Special Verbs"
-	if(src.mob)
-		togglebuildmode(src.mob)
+	if(mob)
+		togglebuildmode(mob)
 */
 
 /client/proc/object_talk(var/msg as text) // -- TLE

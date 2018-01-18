@@ -79,7 +79,7 @@
 	var/mob/living/M = A
 	if (istype(M))
 
-		switch(src.a_intent)
+		switch(a_intent)
 			if (I_HELP) // We just poke the other
 				M.visible_message("<span class='notice'>[src] gently pokes [M]!</span>", "<span class='notice'>[src] gently pokes you!</span>")
 			if (I_DISARM) // We stun the target, with the intention to feed

@@ -214,7 +214,7 @@
 				alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
 				return FALSE
 */
-		if (client.next_normal_respawn > world.realtime)
+		if (client.next_normal_respawn > world.realtime && respawn_delays)
 			var/wait = ceil((client.next_normal_respawn-world.realtime)/600)
 			if (check_rights(R_ADMIN, FALSE, src))
 				if ((input(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
@@ -300,7 +300,7 @@
 		if(istext(pollid))
 			pollid = text2num(pollid)
 		if(isnum(pollid))
-			src.poll_player(pollid)
+			poll_player(pollid)
 		return
 
 	if(href_list["votepollid"] && href_list["votetype"])
@@ -348,7 +348,7 @@
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job)	return FALSE
 	if(!job.is_position_available(restricted_choices)) return FALSE
-	if(!job.player_old_enough(src.client))	return FALSE
+	if(!job.player_old_enough(client))	return FALSE
 	return TRUE
 
 /mob/new_player/proc/jobBanned(title)
@@ -409,7 +409,7 @@
 		return FALSE
 	if (!IsJobAvailable(rank))
 		if (!nomsg)
-			alert(src, "[rank] is not available. Perhaps too many people are already attempting to join as it?")
+			alert(src, "[rank] has already been taken by someone else.")
 		return FALSE
 
 	var/datum/job/job = job_master.GetJob(rank)
@@ -509,16 +509,16 @@
 				job_is_available = FALSE
 			//	unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
 
-			if (jobBanned(job.title))
-				job_is_available = FALSE
+		//	if (jobBanned(job.title))
+		//		job_is_available = FALSE
 			//	unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED}</span> "
 
-			if (factionBanned(job.base_type_flag(1)))
-				job_is_available = FALSE
+		//	if (factionBanned(job.base_type_flag(1)))
+			//	job_is_available = FALSE
 			//	unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM FACTION}</span> "
 
-			if (officerBanned() && job.is_officer)
-				job_is_available = FALSE
+		//	if (officerBanned() && job.is_officer)
+			//	job_is_available = FALSE
 			//	unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM OFFICER POSITIONS}</span> "
 
 			// check if the faction is admin-locked

@@ -3,8 +3,8 @@
 
 /*/datum/hud/proc/larva_hud()
 
-	src.adding = list()
-	src.other = list()
+	adding = list()
+	other = list()
 
 	var/obj/screen/using
 
@@ -15,7 +15,7 @@
 	using.icon_state = (mymob.m_intent == "run" ? "running" : "walking")
 	using.screen_loc = ui_acti
 	using.layer = 20
-	src.adding += using
+	adding += using
 	move_intent = using
 
 	mymob.healths = new /obj/screen()
@@ -48,4 +48,4 @@
 
 	mymob.client.screen = null
 	mymob.client.screen += list( mymob.healths, mymob.blind, mymob.flash, mymob.fire) //, mymob.rest, mymob.sleep, mymob.mach )
-	mymob.client.screen += src.adding + src.other*/
+	mymob.client.screen += adding + other*/

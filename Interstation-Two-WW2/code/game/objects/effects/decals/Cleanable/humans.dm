@@ -46,9 +46,9 @@ var/global/list/image/splatter_cache=list()
 	update_icon()
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
-	if(src.type == /obj/effect/decal/cleanable/blood)
-		if(src.loc && isturf(src.loc))
-			for(var/obj/effect/decal/cleanable/blood/B in src.loc)
+	if(type == /obj/effect/decal/cleanable/blood)
+		if(loc && isturf(loc))
+			for(var/obj/effect/decal/cleanable/blood/B in loc)
 				if(B != src)
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
@@ -220,8 +220,8 @@ var/global/list/image/splatter_cache=list()
                 for (var/i = FALSE, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
                         sleep(3)
                         if (i > FALSE)
-                                var/obj/effect/decal/cleanable/blood/b = PoolOrNew(/obj/effect/decal/cleanable/blood/splatter, src.loc)
-                                b.basecolor = src.basecolor
+                                var/obj/effect/decal/cleanable/blood/b = PoolOrNew(/obj/effect/decal/cleanable/blood/splatter, loc)
+                                b.basecolor = basecolor
                                 b.update_icon()
 
                         if (step_to(src, get_step(src, direction), FALSE))

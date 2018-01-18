@@ -44,24 +44,24 @@
 
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/pen))
-		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
+		var/t = input(user, "What would you like the label to be?", text("[]", name), null)  as text
 		if (user.get_active_hand() != W)
 			return
-		if (!in_range(src, user) && src.loc != user)
+		if (!in_range(src, user) && loc != user)
 			return
 		t = sanitizeSafe(t, MAX_NAME_LEN)
 		if (t)
-			src.name = "body bag - "
-			src.name += t
-			src.overlays += image(src.icon, "bodybag_label")
+			name = "body bag - "
+			name += t
+			overlays += image(icon, "bodybag_label")
 		else
-			src.name = "body bag"
+			name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
 	else if(istype(W, /obj/item/weapon/wirecutters))
 		user << "You cut the tag off the bodybag"
-		src.name = "body bag"
-		src.overlays.Cut()
+		name = "body bag"
+		overlays.Cut()
 		return
 
 /obj/structure/closet/body_bag/store_mobs(var/stored_units)
@@ -80,7 +80,7 @@
 		if(!ishuman(usr))	return
 		if(opened)	return FALSE
 		if(contents.len)	return FALSE
-		visible_message("[usr] folds up the [src.name]")
+		visible_message("[usr] folds up the [name]")
 		new item_path(get_turf(src))
 		spawn(0)
 			qdel(src)
@@ -133,9 +133,9 @@
 /obj/structure/closet/body_bag/cryobag/open()
 	. = ..()
 	if(used)
-		var/obj/item/O = new/obj/item(src.loc)
+		var/obj/item/O = new/obj/item(loc)
 		O.name = "used stasis bag"
-		O.icon = src.icon
+		O.icon = icon
 		O.icon_state = "bodybag_used"
 		O.desc = "Pretty useless now.."
 		qdel(src)
@@ -144,7 +144,7 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.in_stasis = TRUE
-		src.used = TRUE
+		used = TRUE
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Exited(atom/movable/AM)

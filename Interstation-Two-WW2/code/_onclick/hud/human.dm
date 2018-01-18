@@ -11,9 +11,9 @@
 	if(hud_data.icon)
 		ui_style = hud_data.icon
 
-	src.adding = list()
-	src.other = list()
-	src.hotkeybuttons = list() //These can be disabled for hotkey usersx
+	adding = list()
+	other = list()
+	hotkeybuttons = list() //These can be disabled for hotkey usersx
 
 	var/list/hud_elements = list()
 	var/obj/screen/using
@@ -39,10 +39,10 @@
 			inv_box.set_dir(slot_data["dir"])
 
 		if(slot_data["toggle"])
-			src.other += inv_box
+			other += inv_box
 			has_hidden_gear = TRUE
 		else
-			src.adding += inv_box
+			adding += inv_box
 
 	if(has_hidden_gear)
 		using = new /obj/screen()
@@ -53,7 +53,7 @@
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding += using
 
 	// Draw the attack intent dialogue.
 	if(hud_data.has_a_intent)
@@ -66,7 +66,7 @@
 		using.color = ui_color
 		using.alpha = ui_alpha
 		using.layer = 20
-		src.adding += using
+		adding += using
 		action_intent = using
 
 		hud_elements |= using
@@ -83,7 +83,7 @@
 		using.screen_loc = ui_acti
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding += using
 		help_intent = using
 
 		ico = new(ui_style, "black")
@@ -95,7 +95,7 @@
 		using.screen_loc = ui_acti
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding += using
 		disarm_intent = using
 
 		ico = new(ui_style, "black")
@@ -107,7 +107,7 @@
 		using.screen_loc = ui_acti
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding += using
 		grab_intent = using
 
 		ico = new(ui_style, "black")
@@ -119,7 +119,7 @@
 		using.screen_loc = ui_acti
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding += using
 		hurt_intent = using
 		//end intent small hud objects
 
@@ -132,7 +132,7 @@
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding += using
 		move_intent = using
 
 	if(hud_data.has_drop)
@@ -144,7 +144,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.hotkeybuttons += using
+		hotkeybuttons += using
 
 	if(hud_data.has_hands)
 
@@ -156,7 +156,7 @@
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding += using
 
 		inv_box = new /obj/screen/inventory()
 		inv_box.name = "r_hand"
@@ -170,8 +170,8 @@
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 
-		src.r_hand_hud_object = inv_box
-		src.adding += inv_box
+		r_hand_hud_object = inv_box
+		adding += inv_box
 
 		inv_box = new /obj/screen/inventory()
 		inv_box.name = "l_hand"
@@ -184,8 +184,8 @@
 		inv_box.layer = 19
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
-		src.l_hand_hud_object = inv_box
-		src.adding += inv_box
+		l_hand_hud_object = inv_box
+		adding += inv_box
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"
@@ -195,7 +195,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding += using
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"
@@ -205,7 +205,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding += using
 
 	if(hud_data.has_resist)
 		using = new /obj/screen()
@@ -216,7 +216,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.hotkeybuttons += using
+		hotkeybuttons += using
 
 	if(hud_data.has_throw)
 		mymob.throw_icon = new /obj/screen()
@@ -226,7 +226,7 @@
 		mymob.throw_icon.screen_loc = ui_drop_throw
 		mymob.throw_icon.color = ui_color
 		mymob.throw_icon.alpha = ui_alpha
-		src.hotkeybuttons += mymob.throw_icon
+		hotkeybuttons += mymob.throw_icon
 		hud_elements |= mymob.throw_icon
 
 		mymob.pullin = new /obj/screen()
@@ -234,7 +234,7 @@
 		mymob.pullin.icon_state = "pull0"
 		mymob.pullin.name = "pull"
 		mymob.pullin.screen_loc = ui_pull_resist
-		src.hotkeybuttons += mymob.pullin
+		hotkeybuttons += mymob.pullin
 		hud_elements |= mymob.pullin
 
 	if(hud_data.has_internals)
@@ -360,7 +360,7 @@
 	mymob.client.screen = null
 
 	mymob.client.screen += hud_elements
-	mymob.client.screen += src.adding + src.hotkeybuttons
+	mymob.client.screen += adding + hotkeybuttons
 	inventory_shown = FALSE;
 
 	return*/

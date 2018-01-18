@@ -12,10 +12,10 @@
 /obj/structure/lattice/initialize()
 	..()
 ///// Z-Level Stuff
-	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/open) || istype(src.loc, /turf/floor/hull))) // || istype(src.loc, /turf/floor/open)
+	if(!(istype(loc, /turf/space) || istype(loc, /turf/open) || istype(loc, /turf/floor/hull))) // || istype(loc, /turf/floor/open)
 ///// Z-Level Stuff
 		qdel(src)
-	for(var/obj/structure/lattice/LAT in src.loc)
+	for(var/obj/structure/lattice/LAT in loc)
 		if(LAT != src)
 			qdel(LAT)
 	icon = 'icons/obj/smoothlattice.dmi'
@@ -32,7 +32,7 @@
 		var/obj/structure/lattice/L
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
-			L.updateOverlays(src.loc)
+			L.updateOverlays(loc)
 	..()
 
 /obj/structure/lattice/ex_act(severity)
@@ -58,7 +58,7 @@
 		var/obj/item/weapon/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
 			user << "<span class='notice'>Slicing lattice joints ...</span>"
-		PoolOrNew(/obj/item/stack/rods, src.loc)
+		PoolOrNew(/obj/item/stack/rods, loc)
 		qdel(src)
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = C
@@ -66,16 +66,16 @@
 			return
 		else
 			R.use(2)
-			user << "<span class='notice'>You start connecting [R.name] to [src.name] ...</span>"
+			user << "<span class='notice'>You start connecting [R.name] to [name] ...</span>"
 			if(do_after(user,50))
-				src.alpha = FALSE
-				new /obj/structure/catwalk(src.loc)
+				alpha = FALSE
+				new /obj/structure/catwalk(loc)
 				qdel(src)
 			return
 	return
 
 /obj/structure/lattice/proc/updateOverlays()
-	//if(!(istype(src.loc, /turf/space)))
+	//if(!(istype(loc, /turf/space)))
 	//	qdel(src)
 	spawn(1)
 		overlays = list()

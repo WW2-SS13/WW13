@@ -6,7 +6,7 @@
 	set category = "Minigun"
 	set name = "Eject magazine"
 	set src in range(1, usr)
-	src.try_remove_mag(usr)
+	try_remove_mag(usr)
 
 /////////////////////////////
 ////Stationary Machinegun////
@@ -54,9 +54,9 @@
 			switch_firemodes(user)
 	else
 		var/grip_dir = reverse_direction(dir)
-		var/turf/T = get_step(src.loc, grip_dir)
+		var/turf/T = get_step(loc, grip_dir)
 		if(user.loc == T)
-			if(user.has_empty_hand(both = TRUE) && !src.is_used_by(user))
+			if(user.has_empty_hand(both = TRUE) && !is_used_by(user))
 				user.use_object(src)
 			else
 				user.show_message("\red You need both hands to use a minigun.")
@@ -64,7 +64,7 @@
 			user.show_message("<span class='warning'>You're too far from the handles.</span>")
 /*
 /obj/item/weapon/gun/projectile/minigun/proc/try_use_sights(mob/user)
-	if (src.is_used_by(user))
+	if (is_used_by(user))
 		//toggle_scope(2.0)
 	else
 		user.visible_message("<span class='warning'>You aren't using \the [src].</span>")*/
@@ -88,9 +88,9 @@
 /obj/item/weapon/gun/projectile/minigun/proc/try_remove_mag(mob/user)
 	if(!ishuman(user))
 		return
-	if (!src.is_used_by(user))
+	if (!is_used_by(user))
 		if (user.has_empty_hand())
-			src.unload_ammo(user)
+			unload_ammo(user)
 		else
 			user.show_message("<span class='warning'>You need an empty hand for this.</span>")
 	else
@@ -107,7 +107,7 @@
 		update_layer()
 
 /obj/item/weapon/gun/projectile/minigun/proc/check_direction(mob/user, atom/A)
-	if(get_turf(A) == src.loc)
+	if(get_turf(A) == loc)
 		return FALSE
 
 	var/shot_dir = get_carginal_dir(src, A)
@@ -152,7 +152,7 @@
 			S.scope.zoom(user, FALSE)
 
 /obj/item/weapon/gun/projectile/minigun/proc/is_used_by(mob/user)
-	return user.using_object == src && user.loc == src.loc
+	return user.using_object == src && user.loc == loc
 
 /obj/item/weapon/gun/projectile/minigun/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return TRUE
@@ -186,8 +186,8 @@
 	//if(zoomed)
 		//zoom(user, FALSE) //Stop Zoom
 
-	user.forceMove(src.loc)
-	user.dir = src.dir
+	user.forceMove(loc)
+	user.dir = dir
 
 
 /obj/item/weapon/gun/projectile/minigun/kord/maxim

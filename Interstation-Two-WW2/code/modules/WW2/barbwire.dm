@@ -36,7 +36,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if (prob (33))
-				playsound(src.loc, 'sound/effects/glass_step.ogg', 50, TRUE)
+				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
 					return
@@ -48,7 +48,7 @@
 				M << "\red <B>Your [affecting.name] gets slightly cut by \the [src]!</B>"
 				return ..()
 			if (prob (33))
-				playsound(src.loc, 'sound/effects/glass_step.ogg', 50, TRUE)
+				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
 					return
@@ -60,7 +60,7 @@
 				M << "\red <B>Your [affecting.name] gets cut by \the [src]!</B>"
 				return ..()
 			if (prob (33))
-				playsound(src.loc, 'sound/effects/glass_step.ogg', 50, TRUE)
+				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
 					return
@@ -81,7 +81,7 @@
 				user.visible_message("\blue \The [user] decides not to cut through the \the [src].")
 				return
 			user.visible_message("\blue \The [user] finishes cutting through \the [src]!")
-			playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, TRUE)
+			playsound(loc, 'sound/items/Wirecutter.ogg', 50, TRUE)
 			qdel(src)
 			return
 
@@ -93,7 +93,7 @@
 				return
 			if(prob(40))
 				user.visible_message("\blue \The [user] finishes cutting through \the [src]!")
-				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, TRUE)
+				playsound(loc, 'sound/items/Wirecutter.ogg', 50, TRUE)
 				qdel(src)
 				return
 			else
@@ -106,7 +106,7 @@
 						affecting = H.get_organ("r_hand")
 
 					user << "\red <B>Your hand slips, causing \the [src] to cut your [affecting.name] open!</B>"
-					playsound(src.loc, 'sound/effects/glass_step.ogg', 50, TRUE)
+					playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
 					if(affecting.status & ORGAN_ROBOT)
 						return
 					if(affecting.take_damage(10, FALSE))

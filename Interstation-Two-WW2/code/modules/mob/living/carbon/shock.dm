@@ -7,14 +7,14 @@
 		traumatic_shock = FALSE
 		return FALSE
 
-	src.traumatic_shock = 			\
-	1	* src.getOxyLoss() + 		\
-	0.7	* src.getToxLoss() + 		\
-	1.5	* src.getFireLoss() + 		\
-	1.2	* src.getBruteLoss() + 		\
-	1.7	* src.getCloneLoss() + 		\
-	2	* src.halloss + 			\
-	-1	* src.analgesic
+	traumatic_shock = 			\
+	1	* getOxyLoss() + 		\
+	0.7	* getToxLoss() + 		\
+	1.5	* getFireLoss() + 		\
+	1.2	* getBruteLoss() + 		\
+	1.7	* getCloneLoss() + 		\
+	2	* halloss + 			\
+	-1	* analgesic
 
 	if(slurring)
 		traumatic_shock -= 20

@@ -19,7 +19,7 @@
 /obj/item/weapon/material/kitchen/utensil/New()
 	..()
 	if (prob(60))
-		src.pixel_y = rand(0, 4)
+		pixel_y = rand(0, 4)
 	create_reagents(5)
 	return
 

@@ -50,8 +50,8 @@
 	if(config.allow_admin_jump)
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", TRUE)
-		if(src.mob)
-			var/mob/A = src.mob
+		if(mob)
+			var/mob/A = mob
 			var/turf/T = get_turf(M)
 			if(T && isturf(T))
 
@@ -70,8 +70,8 @@
 		return
 
 	if (config.allow_admin_jump)
-		if(src.mob)
-			var/mob/A = src.mob
+		if(mob)
+			var/mob/A = mob
 			A.on_mob_jump()
 			A.x = tx
 			A.y = ty

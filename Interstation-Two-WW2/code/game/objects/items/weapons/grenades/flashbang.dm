@@ -16,14 +16,14 @@
 		for(var/mob/living/carbon/M in hear(7, get_turf(src)))
 			bang(get_turf(src), M)
 
-		new/obj/effect/sparks(src.loc)
-		new/obj/effect/effect/smoke/illumination(src.loc, brightness=15)
+		new/obj/effect/sparks(loc)
+		new/obj/effect/effect/smoke/illumination(loc, brightness=15)
 		qdel(src)
 		return
 
 	proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
 		M << "<span class='danger'>BANG</span>"						// Called during the loop that bangs people in lockers/containers and when banging
-		playsound(src.loc, 'sound/effects/bang.ogg', 50, TRUE, 5)		// people in normal view.  Could theroetically be called during other explosions.
+		playsound(loc, 'sound/effects/bang.ogg', 50, TRUE, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																	// -- Polymorph
 
 //Checking for protections
@@ -49,14 +49,14 @@
 
 
 //Now applying sound
-		if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
+		if((get_dist(M, T) <= 2 || loc == M.loc || loc == M))
 			if(ear_safety > FALSE)
 				M.Stun(2)
 				M.Weaken(1)
 			else
 				M.Stun(10)
 				M.Weaken(3)
-				if ((prob(14) || (M == src.loc && prob(70))))
+				if ((prob(14) || (M == loc && prob(70))))
 					M.ear_damage += rand(1, 10)
 				else
 					M.ear_damage += rand(0, 5)
@@ -109,13 +109,13 @@
 
 	for(,numspawned > FALSE, numspawned--)
 		spawn(0)
-			new /obj/item/weapon/grenade/flashbang/cluster(src.loc)//Launches flashbangs
-			playsound(src.loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
+			new /obj/item/weapon/grenade/flashbang/cluster(loc)//Launches flashbangs
+			playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
 
 	for(,again > FALSE, again--)
 		spawn(0)
-			new /obj/item/weapon/grenade/flashbang/clusterbang/segment(src.loc)//Creates a 'segment' that launches a few more flashbangs
-			playsound(src.loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
+			new /obj/item/weapon/grenade/flashbang/clusterbang/segment(loc)//Creates a 'segment' that launches a few more flashbangs
+			playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
 	qdel(src)
 	return
 
@@ -130,7 +130,7 @@
 	active = TRUE
 	banglet = TRUE
 	var/stepdist = rand(1,4)//How far to step
-	var/temploc = src.loc//Saves the current location to know where to step away from
+	var/temploc = loc//Saves the current location to know where to step away from
 	walk_away(src,temploc,stepdist)//I must go, my people need me
 	var/dettime = rand(15,60)
 	spawn(dettime)
@@ -145,8 +145,8 @@
 
 	for(,numspawned > FALSE, numspawned--)
 		spawn(0)
-			new /obj/item/weapon/grenade/flashbang/cluster(src.loc)
-			playsound(src.loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
+			new /obj/item/weapon/grenade/flashbang/cluster(loc)
+			playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
 	qdel(src)
 	return
 
@@ -156,7 +156,7 @@
 		active = TRUE
 		banglet = TRUE
 		var/stepdist = rand(1,3)
-		var/temploc = src.loc
+		var/temploc = loc
 		walk_away(src,temploc,stepdist)
 		var/dettime = rand(15,60)
 		spawn(dettime)

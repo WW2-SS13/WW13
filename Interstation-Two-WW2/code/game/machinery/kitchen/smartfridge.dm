@@ -134,10 +134,10 @@
 /obj/machinery/smartfridge/process()
 	if(stat & (BROKEN|NOPOWER))
 		return
-	if(src.seconds_electrified > FALSE)
-		src.seconds_electrified--
-	if(src.shoot_inventory && prob(2))
-		src.throw_item()
+	if(seconds_electrified > FALSE)
+		seconds_electrified--
+	if(shoot_inventory && prob(2))
+		throw_item()
 
 /obj/machinery/smartfridge/power_change()
 	var/old_stat = stat
@@ -249,7 +249,7 @@
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "smartfridge.tmpl", src.name, 400, 500)
+		ui = new(user, src, ui_key, "smartfridge.tmpl", name, 400, 500)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -259,7 +259,7 @@
 	var/mob/user = usr
 	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	if(href_list["close"])
 		user.unset_machine()
@@ -300,7 +300,7 @@
 		item_quants[O]--
 		for(var/obj/T in contents)
 			if(T.name == O)
-				T.loc = src.loc
+				T.loc = loc
 				throw_item = T
 				break
 		break
@@ -308,7 +308,7 @@
 		return FALSE
 	spawn(0)
 		throw_item.throw_at(target,16,3,src)
-	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target.name]!</span>")
+	visible_message("<span class='warning'>[src] launches [throw_item.name] at [target.name]!</span>")
 	return TRUE
 
 /************************

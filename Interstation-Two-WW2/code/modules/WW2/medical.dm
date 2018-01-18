@@ -21,11 +21,11 @@
 
 /obj/item/weapon/pill_pack/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
-		if(src.contents.len > FALSE)
+		if(contents.len > FALSE)
 			if(pop_sound)
-				playsound(src.loc, pop_sound, 50, TRUE)
+				playsound(loc, pop_sound, 50, TRUE)
 			var/obj/item/weapon/reagent_containers/pill/pill = contents[1]
-			user << "<span class='notice'>You take one [pill.name] from [src.name].</span>"
+			user << "<span class='notice'>You take one [pill.name] from [name].</span>"
 			user.put_in_active_hand(pill)
 			update_icon()
 		else
@@ -34,16 +34,16 @@
 		..()
 
 /obj/item/weapon/pill_pack/attack_self(mob/user as mob)
-	if(src.contents.len > FALSE)
+	if(contents.len > FALSE)
 		var/obj/item/weapon/reagent_containers/pill/pill = contents[1]
 		if(prob(70))
 			if(pop_sound)
-				playsound(src.loc, pop_sound, 50, TRUE)
-			user << "<span class='notice'>You take one [pill.name] from [src.name].</span>"
+				playsound(loc, pop_sound, 50, TRUE)
+			user << "<span class='notice'>You take one [pill.name] from [name].</span>"
 			pill.loc = user.loc
 			update_icon()
 		else
-			user << "<span class='warning'>You tried to take one [pill.name] from [src.name] by one hand, but failed.</span>"
+			user << "<span class='warning'>You tried to take one [pill.name] from [name] by one hand, but failed.</span>"
 	else
 		user << "<span class='warning'>[name] is empty!</span>"
 
@@ -113,13 +113,13 @@
 	if(user.get_inactive_hand() == src && packed)
 		packed = FALSE
 		if(rip_sound)
-			playsound(src.loc, rip_sound, 50, TRUE)
+			playsound(loc, rip_sound, 50, TRUE)
 		if(contents.len)
 			var/obj/O = contents[1]
 			user.put_in_active_hand(O)
-			user << "<span class='notice'>You ripped the [src.name] and took out an [O.name].</span>"
+			user << "<span class='notice'>You ripped the [name] and took out an [O.name].</span>"
 		else
-			user << "<span class='warning'>You ripped the [src.name] but it's empty!</span>"
+			user << "<span class='warning'>You ripped the [name] but it's empty!</span>"
 	else
 		..()
 
@@ -130,15 +130,15 @@
 		if(prob(50))
 			packed = FALSE
 			if(rip_sound)
-				playsound(src.loc, rip_sound, 50, TRUE)
+				playsound(loc, rip_sound, 50, TRUE)
 			if(contents.len)
 				var/obj/O = contents[1]
 				O.loc = user.loc
-				user << "<span class='notice'>You ripped the [src.name] by one hand and [O] falls out.</span>"
+				user << "<span class='notice'>You ripped the [name] by one hand and [O] falls out.</span>"
 			else
-				user << "<span class='warning'>You ripped the [src.name] but it's empty!</span>"
+				user << "<span class='warning'>You ripped the [name] but it's empty!</span>"
 		else
-			user << "<span class='warning'>You tried to rip the [src.name] but failed!</span>"
+			user << "<span class='warning'>You tried to rip the [name] but failed!</span>"
 	else
 		user << "<span class='warning'>[name] is already unpacked!</span>"
 

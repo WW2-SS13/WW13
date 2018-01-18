@@ -65,7 +65,7 @@
 
 		anchored = !anchored
 		user << "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground"
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, TRUE)
+		playsound(loc, 'sound/items/Ratchet.ogg', 75, TRUE)
 
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	if(charging)
@@ -73,7 +73,7 @@
 		charging.add_fingerprint(user)
 		charging.update_icon()
 
-		src.charging = null
+		charging = null
 		user.visible_message("[user] removes the cell from the charger.", "You remove the cell from the charger.")
 		chargelevel = -1
 		update_icon()

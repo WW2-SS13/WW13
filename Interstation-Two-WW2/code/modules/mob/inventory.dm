@@ -85,14 +85,14 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/equip_to_storage(obj/item/newitem)
 	// Try put it in their backpack
-	if(istype(src.back,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/backpack = src.back
+	if(istype(back,/obj/item/weapon/storage))
+		var/obj/item/weapon/storage/backpack = back
 		if(backpack.can_be_inserted(newitem, TRUE))
-			newitem.forceMove(src.back)
+			newitem.forceMove(back)
 			return TRUE
 
 	// Try to place it in any item that can store stuff, on the mob.
-	for(var/obj/item/weapon/storage/S in src.contents)
+	for(var/obj/item/weapon/storage/S in contents)
 		if(S.can_be_inserted(newitem, TRUE))
 			newitem.forceMove(S)
 			return TRUE
@@ -152,8 +152,8 @@ var/list/slot_equipment_priority = list( \
 //	both: if FALSE (false), it returns true if at least one hand is free, otherwise TRUE for checking both
 /mob/proc/has_empty_hand(var/both = FALSE)
 	if (both)
-		return src.l_hand == null && src.r_hand == null
-	return src.l_hand == null || src.r_hand == null
+		return l_hand == null && r_hand == null
+	return l_hand == null || r_hand == null
 
 // Removes an item from inventory and places it in the target atom.
 // If canremove or other conditions need to be checked then use unEquip instead.
@@ -255,14 +255,14 @@ var/list/slot_equipment_priority = list( \
 
 //Attemps to remove an object on a mob.
 /mob/proc/remove_from_mob(var/obj/O)
-	src.u_equip(O)
-	if (src.client)
-		src.client.screen -= O
+	u_equip(O)
+	if (client)
+		client.screen -= O
 	O.layer = initial(O.layer)
 	O.screen_loc = null
 	if(istype(O, /obj/item))
 		var/obj/item/I = O
-		I.forceMove(src.loc, MOVED_DROP)
+		I.forceMove(loc, MOVED_DROP)
 		I.dropped(src)
 	return TRUE
 

@@ -20,8 +20,8 @@
 	var/icon_type = "donut"
 
 /obj/item/weapon/storage/fancy/update_icon(var/itemremoved = FALSE)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "[src.icon_type]box[total_contents]"
+	var/total_contents = contents.len - itemremoved
+	icon_state = "[icon_type]box[total_contents]"
 	return
 
 /obj/item/weapon/storage/fancy/examine(mob/user)
@@ -29,11 +29,11 @@
 		return
 
 	if(contents.len <= FALSE)
-		user << "There are no [src.icon_type]s left in the box."
+		user << "There are no [icon_type]s left in the box."
 	else if(contents.len == TRUE)
-		user << "There is one [src.icon_type] left in the box."
+		user << "There is one [icon_type] left in the box."
 	else
-		user << "There are [src.contents.len] [src.icon_type]s in the box."
+		user << "There are [contents.len] [icon_type]s in the box."
 
 	return
 
@@ -260,9 +260,9 @@
 	update_icon()
 
 /obj/item/weapon/storage/lockbox/vials/update_icon(var/itemremoved = FALSE)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "vialbox[total_contents]"
-	src.overlays.Cut()
+	var/total_contents = contents.len - itemremoved
+	icon_state = "vialbox[total_contents]"
+	overlays.Cut()
 	if (!broken)
 		overlays += image(icon, src, "led[locked]")
 		if(locked)

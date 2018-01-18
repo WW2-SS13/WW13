@@ -107,7 +107,7 @@ var/global/list/stool_cache = list() //haha stool
 
 /obj/item/weapon/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, TRUE)
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		dismantle()
 		qdel(src)
 	else if(istype(W,/obj/item/stack))
@@ -130,9 +130,9 @@ var/global/list/stool_cache = list() //haha stool
 			user << "You cannot pad \the [src] with that."
 			return
 		C.use(1)
-		if(!istype(src.loc, /turf))
+		if(!istype(loc, /turf))
 			user.drop_from_inventory(src)
-			src.loc = get_turf(src)
+			loc = get_turf(src)
 		user << "You add padding to \the [src]."
 		add_padding(padding_type)
 		return

@@ -31,8 +31,12 @@
 	"sodium","aluminum","silicon","phosphorus","sulfur","hclacid","potassium","iron",
 	"copper","mercury","radium","water","ethanol","sugar","sacid","tungsten")
 
+/obj/machinery/chemical_dispenser/New()
+	..()
+	processing_objects += src
+
 /obj/machinery/chemical_dispenser/proc/recharge()
-	if(stat & (BROKEN|NOPOWER)) return
+	if(stat & BROKEN) return
 	var/addenergy = 2
 	var/oldenergy = energy
 	energy = min(energy + addenergy, max_energy)
@@ -45,11 +49,11 @@
 	nanomanager.update_uis(src) // update all UIs attached to src
 
 /obj/machinery/chemical_dispenser/process()
-	if(recharged <= FALSE)
+	if(recharged <= 0)
 		recharge()
 		recharged = 15
 	else
-		recharged -= TRUE
+		recharged -= 1
 
 	if (stat & BROKEN)
 		icon_state = "dispenser_broken"
@@ -140,7 +144,7 @@
 
 	if(href_list["dispense"])
 		if (dispensable_reagents.Find(href_list["dispense"]) && beaker != null && beaker.is_open_container())
-			var/obj/item/weapon/reagent_containers/B = src.beaker
+			var/obj/item/weapon/reagent_containers/B = beaker
 			var/datum/reagents/R = B.reagents
 			var/space = R.maximum_volume - R.total_volume
 
@@ -161,13 +165,13 @@
 /obj/machinery/chemical_dispenser/attackby(var/obj/item/weapon/reagent_containers/B as obj, var/mob/user as mob)
 	if(isrobot(user))
 		return
-	if(src.beaker)
+	if(beaker)
 		user << "Something is already loaded into the machine."
 		return
 	if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B, /obj/item/weapon/reagent_containers/food))
 		if(!accept_glass && istype(B,/obj/item/weapon/reagent_containers/food))
 			user << "<span class='notice'>This machine only accepts beakers</span>"
-		src.beaker =  B
+		beaker =  B
 		user.drop_item()
 		B.loc = src
 		user << "You set [B] on the machine."
@@ -290,27 +294,27 @@
 
 	if(istype(B, /obj/item/weapon/reagent_containers/glass))
 
-		if(src.beaker)
+		if(beaker)
 			user << "A beaker is already loaded into the machine."
 			return
-		src.beaker = B
+		beaker = B
 		user.drop_item()
 		B.loc = src
 		user << "You add the beaker to the machine!"
-		src.updateUsrDialog()
+		updateUsrDialog()
 		icon_state = "mixer1"
 
 	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
 
-		if(src.loaded_pill_bottle)
+		if(loaded_pill_bottle)
 			user << "A pill bottle is already loaded into the machine."
 			return
 
-		src.loaded_pill_bottle = B
+		loaded_pill_bottle = B
 		user.drop_item()
 		B.loc = src
 		user << "You add the pill bottle into the dispenser slot!"
-		src.updateUsrDialog()
+		updateUsrDialog()
 	return
 
 /obj/machinery/chem_master/Topic(href, href_list)
@@ -319,7 +323,7 @@
 
 	if (href_list["ejectp"])
 		if(loaded_pill_bottle)
-			loaded_pill_bottle.loc = src.loc
+			loaded_pill_bottle.loc = loc
 			loaded_pill_bottle = null
 	else if(href_list["close"])
 		usr << browse(null, "window=chemmaster")
@@ -360,7 +364,7 @@
 			var/id = href_list["addcustom"]
 			useramount = input("Select the amount to transfer.", 30, useramount) as num
 			useramount = Clamp(useramount, FALSE, 200)
-			src.Topic(null, list("amount" = "[useramount]", "add" = "[id]"))
+			Topic(null, list("amount" = "[useramount]", "add" = "[id]"))
 
 		else if (href_list["remove"])
 
@@ -378,7 +382,7 @@
 			var/id = href_list["removecustom"]
 			useramount = input("Select the amount to transfer.", 30, useramount) as num
 			useramount = Clamp(useramount, FALSE, 200)
-			src.Topic(null, list("amount" = "[useramount]", "remove" = "[id]"))
+			Topic(null, list("amount" = "[useramount]", "remove" = "[id]"))
 
 		else if (href_list["toggle"])
 			mode = !mode
@@ -388,7 +392,7 @@
 			return
 		else if (href_list["eject"])
 			if(beaker)
-				beaker:loc = src.loc
+				beaker:loc = loc
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"
@@ -413,22 +417,22 @@
 			if(reagents.total_volume/count < TRUE) //Sanity checking.
 				return
 			while (count--)
-				var/obj/item/weapon/reagent_containers/pill/P = new/obj/item/weapon/reagent_containers/pill(src.loc)
+				var/obj/item/weapon/reagent_containers/pill/P = new/obj/item/weapon/reagent_containers/pill(loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = "[name] pill"
 				P.pixel_x = rand(-7, 7) //random position
 				P.pixel_y = rand(-7, 7)
 				P.icon_state = "pill"+pillsprite
 				reagents.trans_to_obj(P,amount_per_pill)
-				if(src.loaded_pill_bottle)
+				if(loaded_pill_bottle)
 					if(loaded_pill_bottle.contents.len < loaded_pill_bottle.storage_slots)
 						P.loc = loaded_pill_bottle
-						src.updateUsrDialog()
+						updateUsrDialog()
 
 		else if (href_list["createbottle"])
 			if(!condi)
 				var/name = sanitizeSafe(input(usr,"Name:","Name your bottle!",reagents.get_master_reagent_name()), MAX_NAME_LEN)
-				var/obj/item/weapon/reagent_containers/glass/bottle/P = new/obj/item/weapon/reagent_containers/glass/bottle(src.loc)
+				var/obj/item/weapon/reagent_containers/glass/bottle/P = new/obj/item/weapon/reagent_containers/glass/bottle(loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = "[name] bottle"
 				P.pixel_x = rand(-7, 7) //random position
@@ -437,7 +441,7 @@
 				reagents.trans_to_obj(P,60)
 				P.update_icon()
 			else
-				var/obj/item/weapon/reagent_containers/food/condiment/P = new/obj/item/weapon/reagent_containers/food/condiment(src.loc)
+				var/obj/item/weapon/reagent_containers/food/condiment/P = new/obj/item/weapon/reagent_containers/food/condiment(loc)
 				reagents.trans_to_obj(P,50)
 		else if(href_list["change_pill"])
 			#define MAX_PILL_SPRITE 20 //max icon state of the pill sprites
@@ -460,7 +464,7 @@
 			bottlesprite = href_list["bottle_sprite"]
 
 	playsound(loc, 'sound/machines/button.ogg', 100, TRUE)
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return
 
 /obj/machinery/chem_master/attack_hand(mob/user as mob)
@@ -477,7 +481,7 @@
 	var/dat = ""
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
-		if(src.loaded_pill_bottle)
+		if(loaded_pill_bottle)
 			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.storage_slots]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
@@ -485,7 +489,7 @@
 	else
 		var/datum/reagents/R = beaker:reagents
 		dat += "<A href='?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
-		if(src.loaded_pill_bottle)
+		if(loaded_pill_bottle)
 			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.storage_slots]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
@@ -575,11 +579,11 @@
 		if (beaker)
 			return TRUE
 		else
-			src.beaker =  O
+			beaker =  O
 			user.drop_item()
 			O.loc = src
 			update_icon()
-			src.updateUsrDialog()
+			updateUsrDialog()
 			return FALSE
 
 	if(holdingitems && holdingitems.len >= limit)
@@ -596,7 +600,7 @@
 	user.remove_from_mob(O)
 	O.loc = src
 	holdingitems += O
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return FALSE
 
 /obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
@@ -662,7 +666,7 @@
 		if ("detach")
 			detach()
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, TRUE)
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return TRUE
 
 /obj/machinery/reagentgrinder/proc/detach()
@@ -671,7 +675,7 @@
 		return
 	if (!beaker)
 		return
-	beaker.loc = src.loc
+	beaker.loc = loc
 	beaker = null
 	update_icon()
 
@@ -683,7 +687,7 @@
 		return
 
 	for(var/obj/item/O in holdingitems)
-		O.loc = src.loc
+		O.loc = loc
 		holdingitems -= O
 	holdingitems.Cut()
 
@@ -697,7 +701,7 @@
 	if (!beaker || (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume))
 		return
 
-	playsound(src.loc, 'sound/machines/blender.ogg', 50, TRUE)
+	playsound(loc, 'sound/machines/blender.ogg', 50, TRUE)
 	inuse = TRUE
 
 	// Reset the machine.

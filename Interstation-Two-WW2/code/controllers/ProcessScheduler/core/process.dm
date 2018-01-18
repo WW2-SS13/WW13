@@ -177,7 +177,7 @@
 	log_debug(msg)
 	message_admins(msg)
 
-	main.restartProcess(src.name)
+	main.restartProcess(name)
 
 /datum/controller/process/proc/kill()
 	if (!killed)

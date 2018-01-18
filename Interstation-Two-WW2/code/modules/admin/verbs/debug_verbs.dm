@@ -59,9 +59,9 @@ var/global/say_disabled = FALSE
 
 	/*say_disabled = !say_disabled
 	if(say_disabled)
-		message_admins("[src.ckey] used 'Disable all communication verbs', killing all communication methods.")
+		message_admins("[ckey] used 'Disable all communication verbs', killing all communication methods.")
 	else
-		message_admins("[src.ckey] used 'Disable all communication verbs', restoring all communication methods.")*/
+		message_admins("[ckey] used 'Disable all communication verbs', restoring all communication methods.")*/
 
 //This proc is intended to detect lag problems relating to movement
 var/global/movement_disabled = FALSE
@@ -74,10 +74,10 @@ var/global/movement_disabled_exception //This is the client that calls the proc,
 
 	/*movement_disabled = !movement_disabled
 	if(movement_disabled)
-		message_admins("[src.ckey] used 'Disable all movement', killing all movement.")
+		message_admins("[ckey] used 'Disable all movement', killing all movement.")
 		movement_disabled_exception = usr.ckey
 	else
-		message_admins("[src.ckey] used 'Disable all movement', restoring all movement.")*/
+		message_admins("[ckey] used 'Disable all movement', restoring all movement.")*/
 
 /client/proc/see_world_realtime()
 	set category = "Debug"

@@ -145,7 +145,7 @@ Works together with spawning an observer, noted above.
 	if(key)
 		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
-		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
+		ghost.timeofdeath = stat == DEAD ? timeofdeath : world.time
 		ghost.key = key
 		return ghost
 
@@ -167,15 +167,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
 	else
 		var/response
-		if(src.client && src.client.holder)
+		if(client && client.holder)
 			response = alert(src, "You have the ability to Admin-Ghost. The regular Ghost verb will announce your presence to dead chat. Both variants will allow you to return to your body using 'aghost'.\n\nWhat do you wish to do?", "Are you sure you want to ghost?", "Ghost", "Admin Ghost", "Stay in body")
 			if(response == "Admin Ghost")
-				if(!src.client)
+				if(!client)
 					return
 				if (ishuman(src))
 					var/mob/living/carbon/human/H = src
 					H.handle_zoom_stuff(TRUE)
-				src.client.admin_ghost()
+				client.admin_ghost()
 		else
 			response = alert(src, "Are you sure you want to ghost?\n(You may respawn with the 'Respawn' verb in the IC tab)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
 		if(response != "Ghost")
@@ -219,6 +219,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		announce_ghost_joinleave(mind, FALSE, "They now occupy their body again.")
 
 	mind.current.regenerate_icons()
+
+	// workaround for language bug that happens when you're spawned in
+	var/mob/living/carbon/human/H = mind.current
+	if (istype(H))
+		if (!H.languages.Find(H.default_language))
+			H.languages.Insert(1, H.default_language)
+
 	return TRUE
 
 /mob/observer/ghost/verb/toggle_medHUD()
@@ -601,7 +608,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(config.uneducated_mice)
 			host.universal_understand = FALSE
 		announce_ghost_joinleave(src, FALSE, "They are now a mouse.")
-		host.ckey = src.ckey
+		host.ckey = ckey
 		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
 */
 /*
@@ -648,7 +655,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "\red That verb is not currently permitted."
 		return
 
-	if (!src.stat)
+	if (!stat)
 		return
 
 	if (usr != src)
@@ -670,7 +677,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/effect/decal/cleanable/blood/choice = input(src,"What blood would you like to use?") in null|choices
 
 	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if (direction != "Here")
 		T = get_step(T,text2dir(direction))
 
@@ -678,7 +685,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "<span class='warning'>You cannot doodle there.</span>"
 		return
 
-	if(!choice || choice.amount == FALSE || !(src.Adjacent(choice)))
+	if(!choice || choice.amount == FALSE || !(Adjacent(choice)))
 		return
 
 	var/doodle_color = (choice.basecolor) ? choice.basecolor : "#A10808"
@@ -720,7 +727,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		is_manifest = TRUE
 		verbs += /mob/observer/ghost/proc/toggle_visibility
 
-	if(src.invisibility != FALSE)
+	if(invisibility != FALSE)
 		user.visible_message( \
 			"<span class='warning'>\The [user] drags ghost, [src], to our plane of reality!</span>", \
 			"<span class='warning'>You drag [src] to our plane of reality!</span>" \
@@ -771,7 +778,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Toggle Anonymous Chat"
 	set desc = "Toggles showing your key in dead chat."
 
-	src.anonsay = !src.anonsay
+	anonsay = !anonsay
 	if(anonsay)
 		src << "<span class='info'>Your key won't be shown when you speak in dead chat.</span>"
 	else

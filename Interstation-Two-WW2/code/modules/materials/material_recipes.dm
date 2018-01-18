@@ -14,7 +14,8 @@
 	//	recipes += new/datum/stack_recipe("[display_name] door", /obj/machinery/door/unpowered/simple, 10, time = 50, one_per_turf = TRUE, on_floor = TRUE, supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] barricade", /obj/structure/barricade, 5, time = 50, one_per_turf = TRUE, on_floor = TRUE, supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] stool", /obj/item/weapon/stool, one_per_turf = TRUE, on_floor = TRUE, supplied_material = "[name]")
-		recipes += new/datum/stack_recipe("[display_name] chair", /obj/structure/bed/chair, one_per_turf = TRUE, on_floor = TRUE, supplied_material = "[name]")
+		if (!istype(src, /material/wood))
+			recipes += new/datum/stack_recipe("[display_name] chair", /obj/structure/bed/chair, one_per_turf = TRUE, on_floor = TRUE, supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] bed", /obj/structure/bed, 2, one_per_turf = TRUE, on_floor = TRUE, supplied_material = "[name]")
 
 	if(hardness>50)
@@ -116,10 +117,7 @@
 	recipes += new/datum/stack_recipe("wooden sandals", /obj/item/clothing/shoes/sandal, TRUE)
 	recipes += new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, TRUE, 4, 20)
 	recipes += new/datum/stack_recipe("wooden chair", /obj/structure/bed/chair/wood, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE)
-//	recipes += new/datum/stack_recipe("crossbow frame", /obj/item/weapon/crossbowframe, 5, time = 25, one_per_turf = FALSE, on_floor = FALSE)
 	recipes += new/datum/stack_recipe("coffin", /obj/structure/closet/coffin, 5, time = 15, one_per_turf = TRUE, on_floor = TRUE)
-//	recipes += new/datum/stack_recipe("beehive assembly", /obj/item/beehive_assembly, 4)
-//	recipes += new/datum/stack_recipe("beehive frame", /obj/item/honey_frame, TRUE)
 	recipes += new/datum/stack_recipe("book shelf", /obj/structure/bookcase, 5, time = 15, one_per_turf = TRUE, on_floor = TRUE)
 	recipes += new/datum/stack_recipe("unlocked wood door", /obj/structure/simple_door/key_door/anyone/wood, 5, time = 50, one_per_turf = TRUE, on_floor = TRUE)
 	recipes += new/datum/stack_recipe("locked wood door", /obj/structure/simple_door/key_door/anyone/wood, 5, time = 50, one_per_turf = TRUE, on_floor = TRUE)
@@ -147,4 +145,4 @@
 	recipes = list(new/datum/stack_recipe("barbwire", /obj/structure/barbwire, time = 30))
 
 /material/glass/generate_recipes()
-	recipes = list(new/datum/stack_recipe("window", /obj/structure/window/classic, time = 50))
+	recipes = list(new/datum/stack_recipe("window", /obj/structure/window/classic, time = 50, one_per_turf = TRUE, on_floor = TRUE))

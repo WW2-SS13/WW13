@@ -2,7 +2,7 @@
 	set name = "Point To"
 	set category = "Object"
 
-	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
+	if(!src || !isturf(loc) || !(A in view(loc)))
 		return FALSE
 	if(istype(A, /obj/effect/decal/point))
 		return FALSE

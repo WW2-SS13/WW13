@@ -20,7 +20,7 @@
 			user.drop_item()
 			accessories += A
 			A.on_attached(src, user)
-			src.verbs |= /obj/item/clothing/proc/removetie_verb
+			verbs |= /obj/item/clothing/proc/removetie_verb
 			if(istype(loc, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = loc
 				H.update_inv_w_uniform()
@@ -38,7 +38,7 @@
 
 /obj/item/clothing/attack_hand(var/mob/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
-	if(accessories.len && src.loc == user)
+	if(accessories.len && loc == user)
 		for(var/obj/item/clothing/accessory/A in accessories)
 			A.attack_hand(user)
 		return
@@ -47,7 +47,7 @@
 /obj/item/clothing/MouseDrop(var/obj/over_object)
 	if (ishuman(usr) || issmall(usr))
 		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
-		if (!(src.loc == usr))
+		if (!(loc == usr))
 			return
 
 		if (( usr.restrained() ) || ( usr.stat ))
@@ -62,7 +62,7 @@
 					usr.put_in_r_hand(src)
 				if(slot_l_hand)
 					usr.put_in_l_hand(src)
-		src.add_fingerprint(usr)
+		add_fingerprint(usr)
 
 /obj/item/clothing/examine(var/mob/user)
 	..(user)
@@ -90,9 +90,9 @@
 		A = input("Select an accessory to remove from [src]") as null|anything in accessories
 	else
 		A = accessories[1]
-	src.remove_accessory(usr,A)
+	remove_accessory(usr,A)
 	if(!accessories.len)
-		src.verbs -= /obj/item/clothing/proc/removetie_verb
+		verbs -= /obj/item/clothing/proc/removetie_verb
 
 /obj/item/clothing/emp_act(severity)
 	if(accessories.len)

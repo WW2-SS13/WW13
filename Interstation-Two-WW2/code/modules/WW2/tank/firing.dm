@@ -39,7 +39,7 @@
 	if (_loc)
 		return _loc
 
-	return get_step(src, src.dir)
+	return get_step(src, dir)
 
 /mob/verb/use_tank_guns()
 

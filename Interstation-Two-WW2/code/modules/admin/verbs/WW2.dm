@@ -474,3 +474,12 @@ var/soviet_civilian_mode = FALSE
 	var/M = "[key_name(src)] [soviet_civilian_mode ? "enabled" : "disabled"] Soviet Civilian Mode - Civilians will [soviet_civilian_mode ? "now" : "no longer"] count towards the amount of Soviets."
 	message_admins(M)
 	log_admin(M)
+
+var/respawn_delays = TRUE
+/client/proc/toggle_respawn_delays()
+	set category = "WW2 (Admin)"
+	set name = "Toggle Respawn Delays"
+	respawn_delays = !respawn_delays
+	var/M = "[key_name(src)] [respawn_delays ? "enabled" : "disabled"] respawn delays."
+	message_admins(M)
+	log_admin(M)

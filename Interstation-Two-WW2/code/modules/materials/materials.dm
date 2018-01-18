@@ -211,7 +211,7 @@ var/list/name_to_material
 // As above.
 /material/proc/place_shard(var/turf/target)
 	if(shard_type)
-		return new /obj/item/weapon/material/shard(target, src.name)
+		return new /obj/item/weapon/material/shard(target, name)
 
 // Used by walls and weapons to determine if they break or not.
 /material/proc/is_brittle()

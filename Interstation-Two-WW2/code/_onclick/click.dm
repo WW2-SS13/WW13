@@ -65,7 +65,7 @@
 		CtrlClickOn(A)
 		return TRUE
 
-	if(lying && istype(A, /turf/) && !istype(A, /turf/space/))
+	if(lying && istype(A, /turf))
 		if(A.Adjacent(src))
 			scramble(A)
 
@@ -167,8 +167,8 @@
 	var/sdepth = A.storage_depth(src)
 	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= TRUE))
 		// faster access to objects already on you
-		if(A.loc != src)
-			setMoveCooldown(10) //getting something out of a backpack
+	//	if(A.loc != src)
+	//		setMoveCooldown(10) //getting something out of a backpack
 
 		if(W)
 			var/resolved = W.resolve_attackby(A, src)
@@ -192,7 +192,7 @@
 			dir = get_dir(src, A)
 
 			if (W && istype(W, /obj/item/weapon/flamethrower/flammenwerfer) && A.rangedAdjacent(src))
-				if (src.get_active_hand() != W)
+				if (get_active_hand() != W)
 					return
 				var/obj/item/weapon/flamethrower/flammenwerfer/fw = W
 				if (fw.lit)
@@ -214,11 +214,11 @@
 				var/needs_to_be_in_front = istype(A, /turf)
 
 				if (needs_to_be_in_front) // but if we're making a new sandbag wall, we have to click right in front of us.
-					if (A != get_step(src, src.dir))
+					if (A != get_step(src, dir))
 						return
 
 
-			setMoveCooldown(5)
+		//	setMoveCooldown(5)
 
 			if(W)
 				// Return TRUE in attackby() to prevent afterattack() effects (when safely moving items for example)
@@ -425,7 +425,7 @@
 	var/direction
 	if(stat || buckled || paralysis || stunned || sleeping || (status_flags & FAKEDEATH) || restrained() || (weakened > 5))
 		return
-	if(!istype(src.loc, /turf/))
+	if(!istype(loc, /turf/))
 		return
 	if(!A || !x || !y || !A.x || !A.y) return
 	if(scrambling)
@@ -450,7 +450,7 @@
 
 		scrambling = TRUE
 		sleep(2)
-		src.visible_message("\red <b>[src]</b> crawls!")
+		visible_message("\red <b>[src]</b> crawls!")
 		sleep(11)
 		Move(target)
 		scrambling = FALSE

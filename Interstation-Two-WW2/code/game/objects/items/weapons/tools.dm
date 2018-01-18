@@ -72,7 +72,7 @@
 			item_state = "screwdriver_yellow"
 
 	if (prob(75))
-		src.pixel_y = rand(0, 16)
+		pixel_y = rand(0, 16)
 	..()
 
 /obj/item/weapon/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -169,7 +169,7 @@
 
 /obj/item/weapon/weldingtool/examine(mob/user)
 	if(..(user, FALSE))
-		user << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
+		user << text("\icon[] [] contains []/[] units of fuel!", src, name, get_fuel(),max_fuel )
 
 
 /obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
@@ -182,14 +182,14 @@
 			user << "<span class='notice'>You secure the welder.</span>"
 		else
 			user << "<span class='notice'>The welder can now be attached and modified.</span>"
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		return
 
 	if((!status) && (istype(W,/obj/item/stack/rods)))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
 		var/obj/item/weapon/flamethrower/F = new/obj/item/weapon/flamethrower(user.loc)
-		src.loc = F
+		loc = F
 		F.weldtool = src
 		if (user.client)
 			user.client.screen -= src
@@ -197,13 +197,13 @@
 			user.remove_from_mob(src)
 		else
 			user.remove_from_mob(src)
-		src.master = F
-		src.layer = initial(src.layer)
+		master = F
+		layer = initial(layer)
 		user.remove_from_mob(src)
 		if (user.client)
 			user.client.screen -= src
-		src.loc = F
-		src.add_fingerprint(user)
+		loc = F
+		add_fingerprint(user)
 		return
 
 	..()
@@ -220,7 +220,7 @@
 
 	//I'm not sure what this does. I assume it has to do with starting fires...
 	//...but it doesnt check to see if the welder is on or not.
-	var/turf/location = src.loc
+	var/turf/location = loc
 	if(istype(location, /mob/))
 		var/mob/M = location
 		if(M.l_hand == src || M.r_hand == src)
@@ -231,19 +231,19 @@
 
 /obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= TRUE && !src.welding)
+	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= TRUE && !welding)
 		O.reagents.trans_to_obj(src, max_fuel)
 		user << "<span class='notice'>Welder refueled</span>"
-		playsound(src.loc, 'sound/effects/refill.ogg', 50, TRUE, -6)
+		playsound(loc, 'sound/effects/refill.ogg', 50, TRUE, -6)
 		return
-	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= TRUE && src.welding)
+	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= TRUE && welding)
 		message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
 		log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
 		user << "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>"
 		var/obj/structure/reagent_dispensers/fueltank/tank = O
 		tank.explode()
 		return
-	if (src.welding)
+	if (welding)
 		remove_fuel(1)
 		var/turf/location = get_turf(user)
 		if(isliving(O))
@@ -279,7 +279,7 @@
 
 //Returns whether or not the welding tool is currently on.
 /obj/item/weapon/weldingtool/proc/isOn()
-	return src.welding
+	return welding
 
 /obj/item/weapon/weldingtool/update_icon()
 	..()
@@ -302,9 +302,9 @@
 				M << "<span class='notice'>You switch the [src] on.</span>"
 			else if(T)
 				T.visible_message("<span class='danger'>\The [src] turns on.</span>")
-			src.force = WEAPON_FORCE_PAINFUL
-			src.damtype = "fire"
-			src.w_class = 4
+			force = WEAPON_FORCE_PAINFUL
+			damtype = "fire"
+			w_class = 4
 			welding = TRUE
 			update_icon()
 			set_light(l_range = 1.4, l_power = TRUE, l_color = COLOR_ORANGE)
@@ -320,10 +320,10 @@
 			M << "<span class='notice'>You switch \the [src] off.</span>"
 		else if(T)
 			T.visible_message("<span class='warning'>\The [src] turns off.</span>")
-		src.force = WEAPON_FORCE_WEAK
-		src.damtype = "brute"
-		src.w_class = initial(src.w_class)
-		src.welding = FALSE
+		force = WEAPON_FORCE_WEAK
+		damtype = "brute"
+		w_class = initial(w_class)
+		welding = FALSE
 		update_icon()
 		set_light(l_range = FALSE, l_power = FALSE, l_color = COLOR_ORANGE)
 
