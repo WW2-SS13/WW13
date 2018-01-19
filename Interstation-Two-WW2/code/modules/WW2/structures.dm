@@ -3,6 +3,7 @@
 
 /obj/structure/flag
 	icon = 'icons/obj/flags.dmi'
+	layer = MOB_LAYER + 0.01
 
 /obj/structure/flag/soviet
 	icon_state = "soviet"

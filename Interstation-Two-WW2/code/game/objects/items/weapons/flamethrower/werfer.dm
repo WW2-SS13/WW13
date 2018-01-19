@@ -13,8 +13,8 @@
 	nothrow = TRUE
 	var/fueltank = TRUE
 	var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = null
-	var/vrange = 5
-	var/hrange = 3
+	var/rwidth = 7
+	var/rheight = 3
 
 /obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
 	return nodrop_special_check()
@@ -75,7 +75,7 @@
 	operating = TRUE
 	playsound(my_turf, 'sound/weapons/flamethrower.ogg', 100, TRUE)
 
-	var/blocking_turfs = list()
+	var/list/blocking_turfs = list()
 
 	for(var/turf/T in turflist)
 
@@ -84,10 +84,10 @@
 
 		switch (my_mob.dir)
 			if (EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-				if (abs(my_turf.x - T.x) > vrange || abs(my_turf.y - T.y) > hrange)
+				if (abs(my_turf.x - T.x) > rwidth || abs(my_turf.y - T.y) > rheight)
 					continue
 			if (NORTH, SOUTH)
-				if (abs(my_turf.x - T.x) > hrange || abs(my_turf.y - T.y) > vrange)
+				if (abs(my_turf.x - T.x) > rheight || abs(my_turf.y - T.y) > rwidth)
 					continue
 
 		// higher temperature = less missed turfs
@@ -96,6 +96,13 @@
 
 		if(T.density)
 			blocking_turfs += T
+		else
+			for (var/obj/structure/S in T)
+				if (S.density)
+					blocking_turfs += T
+					break
+
+		if (blocking_turfs.Find(T))
 			continue
 
 		for (var/turf/TT in blocking_turfs)
@@ -141,8 +148,8 @@
 	var/dat = text({"<TT><B>Das Flammenwerfer (<a href='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</B><BR>\n
 	Fullness: [fullness_percentage()]%<BR>\n
 	Amount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n
-	Horizontal Range ([hrange]): <A HREF='?src=\ref[src];hrange=-1'>-</A> <A HREF='?src=\ref[src];hrange=+1'>+</A>
-	Vertical Range ([vrange]): <A HREF='?src=\ref[src];vrange=-1'>-</A> <A HREF='?src=\ref[src];vrange=+1'>+</A>
+	Fire Width ([rwidth]): <A HREF='?src=\ref[src];rwidth=-1'>-</A> <A HREF='?src=\ref[src];rwidth=+1'>+</A>
+	Fire Height ([rheight]): <A HREF='?src=\ref[src];rheight=-1'>-</A> <A HREF='?src=\ref[src];rheight=+1'>+</A>
 	<br>
 	<A HREF='?src=\ref[src];close=1'>Close</A></TT>"})
 	user << browse(dat, "window=flamethrower;size=600x300")
@@ -168,12 +175,12 @@
 	if(href_list["amount"])
 		throw_amount = throw_amount + text2num(href_list["amount"])
 		throw_amount = max(50, min(5000, throw_amount))
-	if(href_list["hrange"])
-		hrange = hrange + text2num(href_list["hrange"])
-		hrange = Clamp(hrange, 1, 3)
-	if(href_list["vrange"])
-		vrange = vrange + text2num(href_list["vrange"])
-		vrange = Clamp(vrange, 1, 5)
+	if(href_list["rwidth"])
+		rwidth = rwidth + text2num(href_list["rwidth"])
+		rwidth = Clamp(rwidth, 1, 7)
+	if(href_list["rheight"])
+		rheight = rheight + text2num(href_list["rheight"])
+		rheight = Clamp(rheight, 1, 3)
 
 	// refresh
 	for(var/mob/M in viewers(1, loc))
@@ -194,7 +201,11 @@
 	. = 1.0
 	. += ((throw_amount-100)/100)/3
 	. = max(., 3.0) // don't get too hot
-	. += ((throw_amount-100)/100)/50 // give us a bit of extra heat if we're super high
+	. += ((throw_amount-100)/100)/20 // give us a bit of extra heat if we're super high
+	// for example, 200 throw amount = 1.38x
+	// 500 = 2.53x
+	// 700 = 3.3x
+	// 1500 = 3.7x
 
 /obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target, flamedir)
 	var/throw_coeff = get_heat_coeff()

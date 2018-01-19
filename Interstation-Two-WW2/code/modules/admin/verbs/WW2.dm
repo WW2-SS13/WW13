@@ -483,3 +483,4 @@ var/respawn_delays = TRUE
 	var/M = "[key_name(src)] [respawn_delays ? "enabled" : "disabled"] respawn delays."
 	message_admins(M)
 	log_admin(M)
+	world << "<font size = 3><span class = 'notice'>Respawn delays are now <b>[respawn_delays ? "enabled" : "disabled"]</b>.</span></font>"

@@ -368,8 +368,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		return TRUE
 
 /datum/controller/gameticker/proc/declare_completion()
-	world << "<br><br><br><H1>A round of [mode.name] has ended!</H1>"
 	if (!istype(mode, /datum/game_mode/ww2))
+		world << "<br><br><br><H1>A round of [mode.name] has ended!</H1>"
 		for(var/mob/Player in player_list)
 			if(Player.mind && !isnewplayer(Player))
 

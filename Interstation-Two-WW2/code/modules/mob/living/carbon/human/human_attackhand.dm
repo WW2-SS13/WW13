@@ -239,6 +239,7 @@
 
 			// Apply stat effects
 			real_damage *= H.getStatCoeff("strength")
+			real_damage /= getStatCoeff("strength")
 
 			var/armour = run_armor_check(affecting, "melee")
 			// Apply additional unarmed effects.

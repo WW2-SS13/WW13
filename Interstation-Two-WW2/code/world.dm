@@ -135,6 +135,9 @@ var/world_topic_spam_protect_time = world.timeofday
 // todo: add aspect to this
 /world/proc/replace_custom_hub_text(T)
 
+	if (!ticker || !ticker.mode)
+		return ""
+
 	// numerical constants
 	T = replacetext(T, "{CLIENTS}", clients.len) // # of clients
 	T = replacetext(T, "{PLAYERS}", player_list.len) // # of mobs w/ clients

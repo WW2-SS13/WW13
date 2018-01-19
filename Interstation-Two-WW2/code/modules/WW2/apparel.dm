@@ -454,3 +454,45 @@
 	desc = "You wear this on your back and put items into it."
 	icon_state = "russianpack"
 	item_state_slots = null
+
+// coats
+
+/obj/item/clothing/suit/coat
+	name = "generic coat"
+	desc = "generic desc"
+	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
+
+/obj/item/clothing/suit/coat/civilian
+	name = "Civilian's Coat"
+	desc = "An ordinary winter coat."
+	icon_state = "winter_coat"
+	item_state = "winter_coat"
+	worn_state = "winter_coat"
+
+/obj/item/clothing/suit/coat/german
+	name = "German Soldier's Coat"
+	desc = "An ordinary winter coat for a Wehrmacht soldier."
+	icon_state = "nazi_coat"
+	item_state = "nazi_coat"
+	worn_state = "nazi_coat"
+
+/obj/item/clothing/suit/coat/german/officer
+	name = "German Officer's Coat"
+	desc = "An ordinary winter coat for a Wehrmacht officer."
+	icon_state = "nazimp_coat"
+	item_state = "nazimp_coat"
+	worn_state = "nazimp_coat"
+
+/obj/item/clothing/suit/coat/soviet
+	name = "Soviet Soldier's Coat"
+	desc = "An ordinary winter coat for a Soviet soldier."
+	icon_state = "soviet_coat"
+	item_state = "soviet_coat"
+	worn_state = "soviet_coat"
+
+/obj/item/clothing/suit/coat/soviet/officer
+	name = "Soviet Officer's Coat"
+	desc = "An ordinary winter coat for a Soviet officer."
+	icon_state = "sovofficer_coat"
+	item_state = "sovofficer_coat"
+	worn_state = "sovofficer_coat"

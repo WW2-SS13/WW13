@@ -67,8 +67,14 @@
 		proj_sharp = FALSE
 		proj_edge = FALSE
 
+	var/damage = P.damage
+	if (ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if (H.takes_less_bullet_damage)
+			damage /= H.getStatCoeff("strength")
+
 	if(!P.nodamage)
-		apply_damage(P.damage, P.damage_type, def_zone, absorb, FALSE, P, sharp=proj_sharp, edge=proj_edge)
+		apply_damage(damage, P.damage_type, def_zone, absorb, FALSE, P, sharp=proj_sharp, edge=proj_edge)
 
 	P.on_hit(src, absorb, def_zone)
 

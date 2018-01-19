@@ -19,11 +19,15 @@
 
 	gun_type = GUN_TYPE_HEAVY
 
+/obj/item/weapon/gun/projectile/heavysniper/ptrd/german
+	name = "14.5mm PaB 783"
+
 /obj/item/weapon/gun/projectile/heavysniper/ptrd/update_icon()
 	if(bolt_open)
 		icon_state = "ptrd"
 	else
 		icon_state = "ptrd"
+
 
 /obj/item/weapon/gun/projectile/mk12
 	name = "\improper MK12"

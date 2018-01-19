@@ -5,7 +5,7 @@
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 
-	var/release_force = FALSE
+	var/release_force = 0
 	var/throw_distance = 10
 	muzzle_flash = FALSE
 	fire_sound_text = "a launcher firing"
@@ -20,7 +20,7 @@
 	return
 
 /obj/item/weapon/gun/launcher/proc/update_release_force(obj/item/projectile)
-	return FALSE
+	return 0
 
 /obj/item/weapon/gun/launcher/process_projectile(obj/item/projectile, mob/user, atom/target, var/target_zone, var/params=null, var/pointblank=0, var/reflex=0)
 	update_release_force(projectile)

@@ -19,8 +19,8 @@
 		//'default' - alias for "master&^master"
 
 	var/list/commands = list(
-	"defend;default;defend", // attack armed enemies
-	"attack;default;attack", // attack enemies, armed or unarmed
+	"attack;default;attack", // attack armed enemies
+	"kill;default;kill", // attack enemies, armed or unarmed
 	"guard;default;guard", // attack people who come into our area
 	"patrol;default;patrol", // wander around the base, overlaps with other cmds
 	"stop patrolling;default;stop_patrol",
@@ -210,15 +210,15 @@ s
 		return FALSE
 
 // "frontend" procs
-/mob/living/simple_animal/complex_animal/canine/dog/proc/defend(var/mob/living/carbon/human/H)
+/mob/living/simple_animal/complex_animal/canine/dog/proc/attack(var/mob/living/carbon/human/H)
 	if (!(attack_mode == "attack"))
-		visible_message("<span class = 'warning'>The [src] looks around defensively.</span>")
+		visible_message("<span class = 'warning'>The [src] looks around aggressively.</span>")
 	attack_mode = "attack"
 	onModeChange()
 
-/mob/living/simple_animal/complex_animal/canine/dog/proc/attack(var/mob/living/carbon/human/H)
+/mob/living/simple_animal/complex_animal/canine/dog/proc/kill(var/mob/living/carbon/human/H)
 	if (!(attack_mode == "kill"))
-		visible_message("<span class = 'warning'>The [src] looks around aggressively.</span>")
+		visible_message("<span class = 'warning'>The [src] looks around murderously.</span>")
 	attack_mode = "kill"
 	onModeChange()
 
@@ -325,10 +325,12 @@ s
 					H.stun_effect_act(rand(1,2), rand(2,3)) */
 				next_shred = world.time + 20
 				spawn (20)
-					shred(H)
+					if (!client)
+						shred(H)
 		else if (H in range(1, src))
 			spawn (20)
-				shred(H)
+				if (!client)
+					shred(H)
 
 // things we do when someone touches us
 /mob/living/simple_animal/complex_animal/canine/dog/onTouchedBy(var/mob/living/carbon/human/H, var/intent = I_HELP)
@@ -416,8 +418,10 @@ s
 	. = ..()
 	if (stat == CONSCIOUS && !resting)
 		for (var/mob/living/carbon/human/H in get_step(src, dir))
-			if (assess_hostility(H) && shouldGoAfter(H))
+			if (assess_hostility(H) && shouldGoAfter(H) && !client)
 				shred(H)
+			else if (client)
+				walk_to(src, FALSE)
 
 /mob/living/simple_animal/complex_animal/canine/dog/onEveryBaseTypeMovement(var/mob/living/simple_animal/complex_animal/C)
 	return

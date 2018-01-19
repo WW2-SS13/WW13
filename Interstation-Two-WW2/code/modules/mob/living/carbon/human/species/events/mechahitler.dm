@@ -1,4 +1,5 @@
 /mob/living/carbon/human/mechahitler
+	takes_less_bullet_damage = TRUE
 	movement_speed_multiplier = 1.50
 	size_multiplier = 2.50
 	stats = list(

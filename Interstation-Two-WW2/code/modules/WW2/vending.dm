@@ -4,12 +4,15 @@
 	icon_state = "sovarmsvend2.0"
 	product_ads = "Kill fascist!;The best stuff for you!;Only the finest tools!;This stuff saves your life!;Don't you want some?;Slava Sovetskomu Soyuzu!"
 	products = list(
+		/obj/item/clothing/suit/coat/soviet = 20,
 		/obj/item/clothing/accessory/storage/webbing = 20,
 		/obj/item/clothing/under/sovuni = 20,
 		/obj/item/clothing/head/helmet/tactical/sovhelm = 20,
 		/obj/item/clothing/shoes/swat/wrappedboots = 20,
 		/obj/item/clothing/head/ushanka = 10,
-		/obj/item/weapon/material/kitchen/utensil/knife/boot = 5
+		/obj/item/weapon/material/kitchen/utensil/knife/boot = 10,
+		/obj/item/weapon/attachment/bayonet = 10,
+		/obj/item/weapon/gauze_pack/bint = 10
 	)
 	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
@@ -19,11 +22,14 @@
 	icon_state = "gearmsvend2.0"
 	product_ads = "Kill soviet pigs!;The best stuff for you!;Only the finest tools!;This stuff saves your life!;Don't you want some?;Heil Hitler!"
 	products = list(
+		/obj/item/clothing/suit/coat/german = 20,
 		/obj/item/clothing/accessory/storage/webbing = 20,
 		/obj/item/clothing/under/geruni = 20,
 		/obj/item/clothing/head/helmet/tactical/gerhelm = 20,
 		/obj/item/clothing/shoes/swat = 20,
-		/obj/item/weapon/material/kitchen/utensil/knife/boot = 5
+		/obj/item/weapon/material/kitchen/utensil/knife/boot = 10,
+		/obj/item/weapon/attachment/bayonet = 10,
+		/obj/item/weapon/gauze_pack/gauze = 10
 	)
 	idle_power_usage = 0 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 

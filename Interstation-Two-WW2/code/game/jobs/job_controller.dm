@@ -1165,6 +1165,19 @@ var/global/datum/controller/occupations/job_master
 
 			job.equip(H)
 
+			// civs and partisans
+			if (istype(job, /datum/job/partisan))
+				H.equip_coat(/obj/item/clothing/suit/coat/civilian)
+			else if (istype(job, /datum/job/german))
+				if (job.is_officer)
+					H.equip_coat(/obj/item/clothing/suit/coat/german/officer)
+				else
+					H.equip_coat(/obj/item/clothing/suit/coat/german)
+			else if (istype(job, /datum/job/soviet))
+				if (job.is_officer)
+					H.equip_coat(/obj/item/clothing/suit/coat/soviet/officer)
+				else
+					H.equip_coat(/obj/item/clothing/suit/coat/soviet)
 			// Give the guy some ammo for his gun
 			spawn (0)
 				if (istype(ticker.mode, /datum/game_mode/ww2))

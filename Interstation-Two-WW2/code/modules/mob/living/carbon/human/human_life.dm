@@ -288,7 +288,7 @@
 
 		switch (game_season)
 			if ("WINTER")
-				loc_temp = 264
+				loc_temp = 264 - 20
 			if ("FALL")
 				loc_temp = 285
 			if ("SUMMER")

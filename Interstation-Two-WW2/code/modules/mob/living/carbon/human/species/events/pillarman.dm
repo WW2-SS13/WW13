@@ -1,5 +1,6 @@
 // poor stats with the exception of strength & survival
 /mob/living/carbon/human/pillarman
+	takes_less_bullet_damage = TRUE
 	movement_speed_multiplier = 1.50
 	size_multiplier = 1.50
 	stats = list(

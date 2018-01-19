@@ -475,8 +475,8 @@
 
 /obj/structure/closet/crate/panzerfaust/New()
 	..()
-	update_capacity(10)
-	for (var/v in TRUE to 10)
+	update_capacity(5)
+	for (var/v in 1 to 5)
 		new /obj/item/weapon/gun/launcher/rocket/panzerfaust(src)
 
 /obj/structure/closet/crate/german_smoke_grenade/New()

@@ -1,4 +1,5 @@
 /mob/living/carbon/human/nazicyborg
+	takes_less_bullet_damage = TRUE
 	movement_speed_multiplier = 1.75
 	stats = list(
 		"strength" = list(250,250),

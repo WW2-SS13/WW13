@@ -139,6 +139,8 @@
 	light_power = 2
 	light_color = "#e58775"
 	icon_state = "flare"
+	off_state = "flare"
+	on_state = "flare-on"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.
 	var/fuel = FALSE

@@ -296,6 +296,9 @@ var/datum/quickBan_handler/quickBan_handler = null
 /* check if we're banned and tell us why we're banned */
 /client/proc/quickBan_rejected(var/bantype = "Server")
 	var/list/fields = quickBan_isbanned(bantype)
+	if (!fields.Find("reason"))
+		return FALSE
+
 	var/reason = fields["reason"]
 	var/date = fields["ban_date"]
 	var/expire_info = fields["expire_info"]

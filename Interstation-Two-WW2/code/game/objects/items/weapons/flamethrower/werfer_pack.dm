@@ -85,10 +85,12 @@
 			t.hotspot_expose((ptank.air_contents.temperature*2) + 380,500)
 
 		//if (m.get_active_hand() == flamethrower || m.get_inactive_hand() == flamethrower)
-		m.u_equip(flamethrower)
+		m.remove_from_mob(flamethrower)
 		flamethrower.loc = null
 
 		qdel(src)
 
+		spawn (1)
+			m.regenerate_icons()
 
 

@@ -47,7 +47,7 @@ meteor_act
 	if (is_spy && istype(spy_faction, /datum/faction/soviet))
 		say("GOD DAMN IT HURTS", languages.Find(RUSSIAN))
 
-	if (P.firer && (P.firer.dir == dir || P.firer.lying))
+	if (P.firer && (P.firer.dir == dir || lying))
 		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower = back
 			if (prob(20) || (world.time - last_movement >= 50))

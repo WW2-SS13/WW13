@@ -78,7 +78,7 @@ var/global/list/default_ukrainian_channels = list(
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
-	desc = "A communication device. You can speak through it with ; or :b when it's on your back, and :l or :r when its in your hand."
+	desc = "A communication device. You can speak through it with ';' or ':b' when it's in your suit storage slot, and ':l' or ':r' when its in your hand."
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
@@ -390,6 +390,7 @@ var/global/list/default_ukrainian_channels = list(
 
 	if (!locate(/obj/item/device/radio) in range(1, src))
 		return
+
 	if (stat != CONSCIOUS)
 		return
 
@@ -397,7 +398,9 @@ var/global/list/default_ukrainian_channels = list(
 	var/list/used_radios = list()
 
 	for (var/obj/item/device/radio/radio in range(1, src))
-		if (used_radio_turfs.Find(get_turf(radio)))
+		if (!used_radio_turfs.Find(radio.faction))
+			used_radio_turfs[radio.faction] = list()
+		if (used_radio_turfs[radio.faction].Find(get_turf(radio)))
 			continue
 		if (used_radios.Find(radio))
 			continue
@@ -408,19 +411,23 @@ var/global/list/default_ukrainian_channels = list(
 		if (radio == s_store)
 			if (dd_hasprefix(message, ":b"))
 				message = copytext(message, 3)
+				log_debug("0 = [radio.name]")
 			else if (dd_hasprefix(message, ";"))
 				message = copytext(message, 2)
+				log_debug("1 = [radio.name]")
 			else
 				continue
 		else if (radio == l_hand)
 			if (!dd_hasprefix(message, ":l"))
 				continue
 			else
+				log_debug("2 = [radio.name]")
 				message = copytext(message, 3)
 		else if (radio == r_hand)
 			if (!dd_hasprefix(message, ":r"))
 				continue
 			else
+				log_debug("3 = [radio.name]")
 				message = copytext(message, 3)
 		else if (istype(radio.loc, /turf) && !radio.broadcasting)
 			continue
@@ -428,7 +435,7 @@ var/global/list/default_ukrainian_channels = list(
 		message = capitalize(trim_left(message))
 
 		if (!istype(loc, /obj/tank))
-			used_radio_turfs += get_turf(radio)
+			used_radio_turfs[radio.faction] += get_turf(radio)
 
 		used_radios += radio
 
