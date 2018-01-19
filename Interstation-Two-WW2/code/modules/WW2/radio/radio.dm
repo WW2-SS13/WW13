@@ -411,23 +411,23 @@ var/global/list/default_ukrainian_channels = list(
 		if (radio == s_store)
 			if (dd_hasprefix(message, ":b"))
 				message = copytext(message, 3)
-				log_debug("0 = [radio.name]")
+			//	log_debug("0 = [radio.name]")
 			else if (dd_hasprefix(message, ";"))
 				message = copytext(message, 2)
-				log_debug("1 = [radio.name]")
+			//	log_debug("1 = [radio.name]")
 			else
 				continue
 		else if (radio == l_hand)
 			if (!dd_hasprefix(message, ":l"))
 				continue
 			else
-				log_debug("2 = [radio.name]")
+			//	log_debug("2 = [radio.name]")
 				message = copytext(message, 3)
 		else if (radio == r_hand)
 			if (!dd_hasprefix(message, ":r"))
 				continue
 			else
-				log_debug("3 = [radio.name]")
+			//	log_debug("3 = [radio.name]")
 				message = copytext(message, 3)
 		else if (istype(radio.loc, /turf) && !radio.broadcasting)
 			continue
@@ -441,8 +441,10 @@ var/global/list/default_ukrainian_channels = list(
 
 		spawn (5)
 			if (!stuttering || stuttering < 4)
+			//	log_debug("4")
 				radio.broadcast(rhtml_encode(message), src, FALSE)
 			else
+			//	log_debug("5")
 				radio.broadcast(rhtml_encode(message), src, TRUE)
 
 /obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = FALSE)
@@ -472,7 +474,9 @@ var/global/list/default_ukrainian_channels = list(
 			for (var/obj/item/device/radio/radio in hearer.contents)
 				radios |= radio
 			for (var/obj/item/device/radio/radio in radios)
-				if (used_radio_turfs.Find(get_turf(radio)))
+				if (!used_radio_turfs.Find(radio.faction))
+					used_radio_turfs[radio.faction] = list()
+				if (used_radio_turfs[radio.faction].Find(get_turf(radio)))
 					continue
 				if (used_radios.Find(radio))
 					continue
@@ -482,7 +486,7 @@ var/global/list/default_ukrainian_channels = list(
 					continue
 				if (!radio.listening)
 					continue
-				used_radio_turfs += get_turf(radio)
+				used_radio_turfs[radio.faction] += get_turf(radio)
 				used_radios += radio
 				if (radio.listening_on_channel[radio_freq2name(frequency)])
 					hearer.hear_radio(msg, speaker.sayverb, speaker.default_language, speaker, src, hardtohear)
