@@ -54,13 +54,13 @@
 "bb" = (/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
 "bc" = (/obj/item/device/radio/intercom/loudspeaker/german{dir = 8},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
 "bd" = (/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"be" = (/obj/structure/window/classic,/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"be" = (/obj/machinery/light/small,/obj/structure/closet/crate/rations/german_solids,/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
 "bf" = (/obj/structure/closet/crate/german_smoke_grenade,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/belt/security/tactical,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/melee/classic_baton,/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
 "bg" = (/obj/structure/closet/crate/german_smoke_grenade,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/belt/security/tactical,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/melee/classic_baton,/obj/machinery/light/small{dir = 1},/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
 "bh" = (/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
 "bi" = (/obj/structure/simple_door/key_door/german/SS{name = "S.S Dorms"},/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
 "bj" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"bk" = (/obj/structure/table/reinforced,/obj/item/weapon/paper_bin,/obj/item/weapon/pen/multi,/obj/machinery/light/small,/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
+"bk" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/item/weapon/gun/projectile/boltaction/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/clothing/accessory/storage/webbing,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/structure/closet,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
 "bl" = (/obj/machinery/light/small{dir = 8},/obj/item/device/radio/intercom/loudspeaker/german{dir = 1},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
 "bm" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
 "bn" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
@@ -291,12 +291,12 @@ aaaaabababababababababababababababababababababababababababababababababaaaaaTaUaV
 aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaaaaaTaUaVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYaYaYaZaYaYaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbabbbbbbbcaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbaYbdaYbeaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbaYbdaYbdaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbbdbfbgbfaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbbdbhbhbfaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbbibhbhbfaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbbdbjbhbjaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbbdbjbkbjaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbbdbjbebjaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYbbaYbdaYbdaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYblbbbbbbbbaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabaWaWaWaWaWaWaWaWaWaWaWaWaWaWaWabaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaYaYaYaZaYaYaYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -308,7 +308,7 @@ aaaaabababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbpbp
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbubvbwbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbxbwbwbybpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbzbwbAbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbBbwbAbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbBbwbkbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbCbDbEbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbpbpbpbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbFbsbsbsbsbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
