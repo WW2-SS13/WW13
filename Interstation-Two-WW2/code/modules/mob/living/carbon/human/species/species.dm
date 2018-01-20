@@ -221,6 +221,9 @@
 		if (properly_clothed)
 			return
 
+		if (istype(H.loc, /obj/tank))
+			return
+
 		var/turf/H_turf = get_turf(H)
 		if (istype(H_turf) && msg_type == "cold" && (locate(/obj/snow) in H_turf || !H.shoes))
 			if (prob(25 - (H.shoes ? 15 : 0)))

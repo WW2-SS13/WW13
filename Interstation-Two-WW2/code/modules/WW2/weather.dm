@@ -94,7 +94,7 @@
 		var/deleted = 0
 		for (var/obj/effect/decal/cleanable/C in world)
 			var/area/A = get_area(C)
-			if (A.weather == weather)
+			if (A.weather == WEATHER_RAIN)
 				qdel(C)
 				++deleted
 				if (deleted >= 100)

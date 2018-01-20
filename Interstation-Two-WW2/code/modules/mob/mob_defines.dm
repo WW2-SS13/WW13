@@ -195,3 +195,10 @@
 	var/bladder = FALSE //For pissing
 
 	var/using_object = null
+
+	var/roundUID = 0
+
+/mob/proc/getRoundUID()
+	if (!roundUID)
+		roundUID = rand(1, 10000000)
+	return roundUID

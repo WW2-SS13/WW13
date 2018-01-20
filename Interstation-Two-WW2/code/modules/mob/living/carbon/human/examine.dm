@@ -415,6 +415,12 @@
 		else if (isobserver(user))
 			msg += "<br><i>[T.He] [T.is] a [original_job.title].</i>"
 
+		else if (ishuman(user) && user == src)
+			var/mob/living/carbon/human/H = user
+			if (H.original_job)
+				msg += "<br><i>You are a <b>[H.original_job.title]</b>.</i>"
+
+
 	for (var/v in TRUE to embedded.len)
 		msg += "<a href='?src=\ref[user];remove_embedded=[v]'>Remove [embedded[v]]</a>"
 

@@ -142,6 +142,8 @@ Works together with spawning an observer, noted above.
 	return TRUE
 
 /mob/proc/ghostize(var/can_reenter_corpse = TRUE)
+	// remove weather sounds
+	src << sound(null, channel = 777)
 	if(key)
 		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse

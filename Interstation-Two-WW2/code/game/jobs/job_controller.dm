@@ -1171,6 +1171,8 @@ var/global/datum/controller/occupations/job_master
 			else if (istype(job, /datum/job/german))
 				if (job.is_officer)
 					H.equip_coat(/obj/item/clothing/suit/coat/german/officer)
+				else if (job.is_SS)
+					H.equip_coat(/obj/item/clothing/suit/coat/german/SS)
 				else
 					H.equip_coat(/obj/item/clothing/suit/coat/german)
 			else if (istype(job, /datum/job/soviet))

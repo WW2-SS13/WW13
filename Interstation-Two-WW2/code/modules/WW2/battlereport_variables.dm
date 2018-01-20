@@ -8,10 +8,10 @@ var/list/heavily_injured_russians = list()
 var/list/heavily_injured_civilians = list()
 var/list/heavily_injured_partisans = list()
 
-var/dead_germans = 0
-var/dead_russians = 0
-var/dead_civilians = 0
-var/dead_partisans = 0
+var/list/dead_germans = list()
+var/list/dead_russians = list()
+var/list/dead_civilians = list()
+var/list/dead_partisans = list()
 
 var/list/recently_died = list()
 
@@ -19,7 +19,7 @@ var/list/recently_died = list()
 
 	var/list/alive = list()
 	var/list/injured = list()
-	var/dead = 0
+	var/list/dead = list()
 
 	switch (original_job.base_type_flag())
 		if (GERMAN)
@@ -45,17 +45,18 @@ var/list/recently_died = list()
 
 	var/list/lists = get_battle_report_lists()
 	var/list/alive = lists[1]
+	var/list/dead = lists[2]
 	var/list/injured = lists[3]
 
-	alive -= src
-	injured -= src
-	recently_died += src
-
-	++lists[2]
+	alive -= getRoundUID()
+	injured -= getRoundUID()
+	dead |= getRoundUID()
 
 	// prevent one last Life() from potentially undoing this
+	var/storedRoundUID = getRoundUID() // in case we're getting gibbed
+	recently_died += storedRoundUID
 	spawn (200)
-		recently_died -= src
+		recently_died -= storedRoundUID
 
 	..()
 
@@ -64,21 +65,26 @@ var/list/recently_died = list()
 
 	var/list/lists = get_battle_report_lists()
 	var/list/alive = lists[1]
+	var/list/dead = lists[2]
 	var/list/injured = lists[3]
 
 	..()
 
-	if (recently_died.Find(src))
-		return
-
 	if (istype(original_job, /datum/job/german/trainsystem))
 		return
 
-	alive -= src
-	injured -= src
+	if (recently_died.Find(getRoundUID()))
+		return
+
+	if (stat == DEAD)
+		return
+
+	alive -= getRoundUID()
+	injured -= getRoundUID()
+	dead -= getRoundUID()
 
 	// give these lists starting values to prevent runtimes.
 	if (stat == CONSCIOUS)
-		alive |= src
+		alive |= getRoundUID()
 	else if (stat == UNCONSCIOUS || (health <= FALSE && stat != DEAD))
-		injured |= src
+		injured |= getRoundUID()

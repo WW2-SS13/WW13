@@ -69,8 +69,9 @@ meteor_act
 			return 2
 	else
 		// get knocked back once in a while
-		if (prob(P.KD_chance/2))
-			var/turf/behind = behind()
+		// unless we're on a train because bugs
+		if (prob(P.KD_chance/2) && !is_on_train())
+			var/turf/behind = get_step(src, P.dir)
 			if (behind)
 				if (behind.density || locate(/obj/structure) in behind)
 					var/turf/slammed_into = behind
@@ -83,6 +84,8 @@ meteor_act
 					Weaken(rand(5,7))
 					adjustBruteLoss(rand(20,30))
 					playsound(get_turf(src), 'sound/effects/gore/fallsmash.ogg', 100)
+					for (var/obj/structure/window/W in get_turf(slammed_into))
+						W.shatter()
 				else
 					forceMove(behind)
 					visible_message("<span class = 'danger'>[src] flies back from the force of the blast!</span>")
@@ -405,7 +408,8 @@ meteor_act
 				//Sharp objects will always embed if they do enough damage.
 				//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
 				if((sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
-					affecting.embed(I)
+					if (I.w_class <= 2.0)
+						affecting.embed(I)
 
 		// Begin BS12 momentum-transfer code.
 		var/mass = 1.5

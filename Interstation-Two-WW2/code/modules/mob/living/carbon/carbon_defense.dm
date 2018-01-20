@@ -34,7 +34,8 @@
 
 		//Sharp objects will always embed if they do enough damage.
 		if((weapon_sharp && damage > (10*I.w_class)) || (damage > embed_threshold && prob(embed_chance)))
-			embed(I, hit_zone)
+			if (I.w_class <= 2.0)
+				embed(I, hit_zone)
 
 	return TRUE
 

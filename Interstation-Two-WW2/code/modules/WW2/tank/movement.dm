@@ -5,6 +5,22 @@
 /obj/tank/var/last_gibbed = -1
 /obj/tank/var/lastdir = -1
 
+/obj/tank/proc/set_eye_location(var/mob/m)
+	if (m.client)
+		m.client.perspective = EYE_PERSPECTIVE
+		/* fucking BYOND ree
+		switch (dir)
+			if (EAST, NORTHEAST, SOUTHEAST)
+				m.client.eye = locate(x, y-2, z)
+			if (WEST, NORTHWEST, SOUTHWEST)
+				m.client.eye = locate(x+2, y-2, z)
+			if (SOUTH)
+				m.client.eye = locate(x+2, y-2, z)
+			if (NORTH)
+				m.client.eye = locate(x+2, y-2, z)
+		*/
+		m.client.eye = src
+
 /obj/tank/Move()
 	switch (dir)
 		if (EAST, WEST)
@@ -13,7 +29,14 @@
 			icon = vertical_icon
 
 	update_bounding_rectangle()
+
 	..()
+
+	if (drive_front_seat && drive_front_seat.client)
+		set_eye_location(drive_front_seat)
+
+	if (fire_back_seat && fire_back_seat.client)
+		set_eye_location(fire_back_seat)
 
 /obj/tank/proc/_Move(direct)
 	if (world.time - last_movement > movement_delay || last_movement == -1)
@@ -91,20 +114,20 @@
 /obj/tank/proc/update_bounding_rectangle()
 	switch (dir)
 		if (EAST)
-			bound_x = round_to_multiple_of_32(32)
+		//	bound_x = round_to_multiple_of_32(32)
 			bound_width = round_to_multiple_of_32(142)
 			bound_height = round_to_multiple_of_32(75)
 		if (WEST)
-			bound_x = round_to_multiple_of_32(96)
+		//	bound_x = round_to_multiple_of_32(96)
 			bound_width = round_to_multiple_of_32(142)
 			bound_height = round_to_multiple_of_32(75)
 		if (NORTH)
-			bound_y = -round_to_multiple_of_32(64)
-			bound_x = round_to_multiple_of_32(64)
+		//	bound_y = -round_to_multiple_of_32(64)
+		//	bound_x = round_to_multiple_of_32(64)
 			bound_width = round_to_multiple_of_32(113, TRUE)
 			bound_height = round_to_multiple_of_32(89)
 		if (SOUTH)
-			bound_x = round_to_multiple_of_32(64)
+		//	bound_x = round_to_multiple_of_32(64)
 			bound_width = round_to_multiple_of_32(113, TRUE)
 			bound_height = round_to_multiple_of_32(89)
 

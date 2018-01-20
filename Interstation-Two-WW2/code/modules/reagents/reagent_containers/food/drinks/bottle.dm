@@ -48,7 +48,7 @@
 			smash(loc, hit_atom, alcohol_power)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/calculate_alcohol_power()
-	. = FALSE
+	. = 0
 	for (var/datum/reagent/R in reagents.reagent_list)
 		if (istype(R, /datum/reagent/ethanol))
 			var/datum/reagent/ethanol/E = R
@@ -108,11 +108,11 @@
 		world << "testing molotov with an explosion_power of [explosion_power]."
 		#endif
 
-		if (explosion_power > FALSE)
-			var/devrange = min(1, round(explosion_power/1000))
-			var/heavyrange = max(1, round(devrange*2))
-			var/lightrange = max(1, round(devrange*3))
-			var/flashrange = max(1, round(devrange*4))
+		if (explosion_power > 0)
+			var/devrange = max(1, round(explosion_power/1000))
+			var/heavyrange = max(1, devrange*2)
+			var/lightrange = max(1, devrange*3)
+			var/flashrange = max(1, devrange*4)
 			explosion(get_turf(src), devrange, heavyrange, lightrange, flashrange)
 
 	if (src)
