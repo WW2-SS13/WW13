@@ -15,7 +15,14 @@
 		src << "<span class='warning'>You have OOC muted.</span>"
 		return
 
+	var/msg_prefix = ""
+
+	if (dd_hasprefix(msg, ">>") && (isPatron("$3+") || holder.rights))
+		msg = copytext(msg, 3, lentext(msg)+1)
+		msg_prefix = "<span style = 'color:green'>></span>"
+
 	msg = sanitize(msg)
+	msg = "[msg_prefix][msg]"
 	if(!msg)	return
 
 	/* mentioning clients with @key or @ckey */

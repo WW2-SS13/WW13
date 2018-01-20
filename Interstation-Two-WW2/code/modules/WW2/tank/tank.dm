@@ -19,6 +19,8 @@
 	var/heal_damage[2]
 	var/named = FALSE
 
+	pixel_x = -32
+
 /obj/tank/New()
 	..()
 	update_bounding_rectangle()

@@ -85,7 +85,8 @@ var/GRACE_PERIOD_LENGTH = 7
 		// first, make all water into ice if it's winter
 		if (mode.season == "WINTER")
 			for (var/turf/floor/plating/beach/water/W in turfs)
-				new /turf/floor/plating/beach/water/ice (W)
+				if (!istype(W, /turf/floor/plating/beach/water/sewage))
+					new /turf/floor/plating/beach/water/ice (W)
 			if (prob(50))
 				use_snow = TRUE
 

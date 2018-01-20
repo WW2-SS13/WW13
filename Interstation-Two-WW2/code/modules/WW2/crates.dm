@@ -459,8 +459,9 @@
 		new /obj/item/weapon/storage/firstaid/regular(src)
 		new /obj/item/weapon/storage/firstaid/injectorpack(src)
 		new /obj/item/weapon/storage/firstaid/combat(src)
+		new /obj/item/weapon/gauze_pack/gauze(src)
 
-
+		new /obj/item/weapon/doctor_handbook(src)
 /obj/structure/closet/crate/soviet_grenade/New()
 	..()
 	update_capacity(24)

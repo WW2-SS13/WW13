@@ -211,10 +211,12 @@
 /obj/structure/multiz/ladder/ww2/manhole/proc/fell(var/mob/living/M)
 	if (icon_state == "manhole-open" && target)
 		M.visible_message("<span class = 'warning'>[M] falls down the manhole!</span>", "<span class = 'userdanger'>You fall down the manhole!</span>")
-		M.adjustBruteLoss(rand(10,20))
+		M.adjustBruteLoss(rand(15,20))
 		M.loc = get_turf(target)
 
 /obj/structure/multiz/ladder/ww2/manhole/attack_hand(var/mob/M)
+	if (isobserver(M))
+		return ..(M)
 	switch (icon_state)
 		if ("manhole")
 			visible_message("<span class = 'danger'>[M] starts to move the cover off of the manhole.</span>")

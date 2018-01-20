@@ -193,19 +193,25 @@
 		Fire(A, user, pointblank=1)
 	else
 		if(bayonet && isliving(A))
-			var/mob/living/l = A
+			var/mob/living/L = A
 			var/mob/living/carbon/C = A
 			if (!istype(C) || !C.check_attack_throat(src, user))
-				if (prob(35) && l != user && !l.lying)
-					visible_message("<span class = 'danger'>[user] tries to bayonet [l], but they miss!</span>")
+				if (prob(40) && L != user && !L.lying)
+					visible_message("<span class = 'danger'>[user] tries to bayonet [L], but they miss!</span>")
 				else
 					var/obj/item/weapon/attachment/bayonet/a = bayonet
 					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
-					visible_message("<span class = 'danger'>[user] impales [l] with their gun's bayonet!</span>")
-					l.apply_damage(a.force * 2, BRUTE, def_zone)
-					l.Weaken(rand(1,2))
-					if (l.stat == CONSCIOUS)
-						l.emote("scream")
+					visible_message("<span class = 'danger'>[user] impales [L] with their gun's bayonet!</span>")
+					if (ishuman(L))
+						var/mob/living/carbon/human/H = L
+						if (H.takes_less_bullet_damage) // mechahitler/megastalin
+							H.apply_damage(a.force, BRUTE, def_zone)
+							goto __playsound__
+					L.apply_damage(a.force * 2, BRUTE, def_zone)
+					L.Weaken(rand(1,2))
+					if (L.stat == CONSCIOUS && prob(50))
+						L.emote("scream")
+					__playsound__
 					playsound(get_turf(src), a.attack_sound, rand(90,100))
 			else
 				var/obj/item/weapon/attachment/bayonet/a = bayonet

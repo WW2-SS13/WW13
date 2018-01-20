@@ -68,6 +68,7 @@
 		proj_edge = FALSE
 
 	var/damage = P.damage
+
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_bullet_damage)

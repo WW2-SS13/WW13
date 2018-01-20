@@ -1,5 +1,5 @@
 /datum/progressbar
-	var/goal = TRUE
+	var/goal = 1
 	var/image/bar
 	var/shown = FALSE
 	var/mob/user

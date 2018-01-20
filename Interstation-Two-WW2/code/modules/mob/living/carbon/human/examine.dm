@@ -395,14 +395,8 @@
 					if (team == PARTISAN)
 						team = CIVILIAN
 
-					msg += "<br><i>He's a <b>[capitalize(lowertext(original_job.base_type_flag()))]</b>.</i>"
+					msg += "<br><i>[T.he] [T.is] a <b>[capitalize(lowertext(original_job.base_type_flag()))]</b>.</i>"
 
-				if (istype(original_job, /datum/job/german))
-					if (is_jew && !wear_mask)
-						msg += "<br><big>Mein gott, it's a jew!</big>"
-				if (istype(original_job, /datum/job/soviet) || istype(original_job, /datum/job/partisan))
-					if (is_jew && !wear_mask)
-						msg += "<br><big>Oy blin, it's a jew!</big>"
 
 				if (original_job.base_type_flag() == H.original_job.base_type_flag() && (original_job.base_type_flag() == SOVIET || original_job.base_type_flag() == GERMAN))
 					if (isleader(src, H))

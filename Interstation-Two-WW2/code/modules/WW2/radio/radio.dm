@@ -299,7 +299,7 @@ var/global/list/default_ukrainian_channels = list(
 
 	spawn (100)
 		if (map)
-			if (map.uses_supply_train)
+			if (map.uses_supply_train && faction == GERMAN)
 				is_supply_radio = FALSE
 
 	if (locate(/obj/effect/landmark/train/german_supplytrain_start) in world)
@@ -673,8 +673,6 @@ var/global/list/default_ukrainian_channels = list(
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, TRUE)
 
 /obj/item/device/radio/proc/purchase(var/itemname, var/path, var/pointcost = FALSE)
-	if (locate(/obj/effect/landmark/train/german_supplytrain_start) in world)
-		return
 	if (supply_points <= pointcost)
 		return
 	announce("[itemname] has been purchased and will arrive soon.", "Supplydrop Announcement System")

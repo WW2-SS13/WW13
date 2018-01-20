@@ -62,7 +62,7 @@ meteor_act
 	var/shield_check = check_shields(P.damage*5, P, null, def_zone, "the [P.name]")
 
 	if(shield_check)
-		if(shield_check < FALSE)
+		if(shield_check < 0)
 			return shield_check
 		else
 			P.on_hit(src, 2, def_zone)
@@ -92,7 +92,8 @@ meteor_act
 
 		// get weakened too
 		if (prob(P.KD_chance))
-			Weaken(rand(2,3))
+			Weaken(rand(3,4))
+			stamina = max(stamina - 50, 0)
 
 	//Shrapnel
 	if(P.can_embed())

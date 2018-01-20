@@ -13,7 +13,7 @@
 	fire_sound = 'sound/effects/bang.ogg'
 
 	release_force = 3
-	throw_distance = 30
+	throw_distance = 10
 	var/max_rockets = TRUE
 	var/list/rockets = new/list()
 

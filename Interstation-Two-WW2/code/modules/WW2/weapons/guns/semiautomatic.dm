@@ -18,6 +18,7 @@
 		)
 
 	gun_type = GUN_TYPE_RIFLE
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
 
 /obj/item/weapon/gun/projectile/svt/update_icon()
 	..()

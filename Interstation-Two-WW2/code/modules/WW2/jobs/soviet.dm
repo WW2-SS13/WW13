@@ -562,7 +562,7 @@ var/first_guard = FALSE
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/datum/job/soviet/zavhoz
+/datum/job/soviet/QM
 	title = "Zavhoz"
 	en_meaning = "Quartermaster"
 	total_positions = TRUE
@@ -572,7 +572,7 @@ var/first_guard = FALSE
 	is_officer = TRUE
 	absolute_limit = TRUE
 
-/datum/job/soviet/zavhoz/equip(var/mob/living/carbon/human/H)
+/datum/job/soviet/QM/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
@@ -590,8 +590,8 @@ var/first_guard = FALSE
 	H.setStat("medical", STAT_VERY_LOW)
 	return TRUE
 
-/datum/job/soviet/zavhoz/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat,  new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/bunker_doors, new/obj/item/weapon/key/soviet/command_intermediate)
+/datum/job/soviet/QM/get_keys()
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat,  new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/bunker_doors, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/engineer)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

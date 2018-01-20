@@ -447,6 +447,11 @@
 	icon_state = "seashallow"
 	move_delay = 3
 
+/turf/floor/plating/beach/water/sewage
+	name = "Sewage Water"
+	move_delay = 3
+	color = "#94B21C"
+
 /turf/floor/plating/beach/water/proc/Extinguish(var/mob/living/L)
 	if (istype(L))
 		L.ExtinguishMob()
@@ -458,7 +463,12 @@
 /turf/floor/plating/beach/water/New()
 	..()
 	if (!istype(src, /turf/floor/plating/beach/water/ice))
-		overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+		if (!istype(src, /turf/floor/plating/beach/water/sewage))
+			overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+		else
+			var/image/I = image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=layer+0.1)
+			I.color = color
+			overlays += I
 
 /turf/floor/plating/beach/water/ice
 	name = "Ice"

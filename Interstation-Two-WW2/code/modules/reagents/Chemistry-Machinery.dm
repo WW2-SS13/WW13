@@ -25,7 +25,6 @@
 	var/amount = 30
 	var/accept_glass = FALSE //At FALSE ONLY accepts glass containers. Kinda misleading varname.
 	var/atom/beaker = null
-	var/recharged = FALSE
 	var/hackedcheck = FALSE
 	var/list/dispensable_reagents = list("hydrazine","lithium","carbon","ammonia","acetone",
 	"sodium","aluminum","silicon","phosphorus","sulfur","hclacid","potassium","iron",
@@ -37,7 +36,7 @@
 
 /obj/machinery/chemical_dispenser/proc/recharge()
 	if(stat & BROKEN) return
-	var/addenergy = 2
+	var/addenergy = 1 * (obj_process.schedule_interval/20)
 	var/oldenergy = energy
 	energy = min(energy + addenergy, max_energy)
 	if(energy != oldenergy)
@@ -49,11 +48,7 @@
 	nanomanager.update_uis(src) // update all UIs attached to src
 
 /obj/machinery/chemical_dispenser/process()
-	if(recharged <= 0)
-		recharge()
-		recharged = 15
-	else
-		recharged -= 1
+	recharge()
 
 	if (stat & BROKEN)
 		icon_state = "dispenser_broken"
@@ -64,7 +59,6 @@
 	..()
 	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
-
 
 /obj/machinery/chemical_dispenser/ex_act(severity)
 	switch(severity)
@@ -248,11 +242,8 @@
 	amount = 30
 	accept_glass = FALSE //At FALSE ONLY accepts glass containers. Kinda misleading varname.
 	beaker = null
-	recharged = FALSE
 	hackedcheck = FALSE
 	dispensable_reagents = list("inaprovaline","ryetalyn","paracetamol","tramadol","oxycodone","sterilizine","leporazine","kelotane","dermaline","dexalin","dexalinp","tricordrazine","anti_toxin","synaptizine","hyronalin","arithrazine","alkysine","imidazoline","peridaxon","bicaridine","hyperzine","rezadone","spaceacillin","ethylredoxrazine","stoxin","chloralhydrate","cryoxadone","clonexadone")
-
-
 
 /obj/machinery/chem_master
 	name = "ChemMaster 3000"

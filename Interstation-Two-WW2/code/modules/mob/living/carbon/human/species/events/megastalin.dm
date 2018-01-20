@@ -12,7 +12,7 @@
 		"medical" = list(350,350),
 		"survival" = list(350,350))
 
-	f_style = "Square Mustache"
+	f_style = "Selleck Mustache"
 
 /mob/living/carbon/human/megastalin/New()
 	..()

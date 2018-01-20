@@ -613,7 +613,7 @@ var/first_fallschirm = TRUE
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/datum/job/german/stabsgefreiter
+/datum/job/german/QM
 	title = "Stabsgefreiter"
 	en_meaning = "Quartermaster"
 	total_positions = TRUE
@@ -624,7 +624,7 @@ var/first_fallschirm = TRUE
 	is_officer = TRUE
 	absolute_limit = TRUE
 
-/datum/job/german/stabsgefreiter/equip(var/mob/living/carbon/human/H)
+/datum/job/german/QM/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
@@ -642,8 +642,8 @@ var/first_fallschirm = TRUE
 	H.setStat("medical", STAT_VERY_LOW)
 	return TRUE
 
-/datum/job/german/stabsgefreiter/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate)
+/datum/job/german/QM/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/engineer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

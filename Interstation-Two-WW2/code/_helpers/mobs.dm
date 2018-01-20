@@ -93,7 +93,7 @@ proc/random_german_name(gender, species = "Human")
 
 proc/russify(var/list/name_list, gender)
 	var/list/l = name_list.Copy()
-	for (var/v in TRUE to l.len)
+	for (var/v in 1 to l.len)
 		var/name = l[v]
 		if (gender == FEMALE)
 			name = replacetext(name, "ovich", "ovna")
@@ -154,7 +154,7 @@ proc/skintone2racedescription(tone)
 
 proc/age2agedescription(age)
 	switch(age)
-		if(0 to TRUE)			return "infant"
+		if(0 to 1)			return "infant"
 		if(1 to 3)			return "toddler"
 		if(3 to 13)			return "child"
 		if(13 to 19)		return "teenager"
@@ -209,7 +209,7 @@ proc/RoundHealth(health)
 			return "health10"
 		if(1 to 5)
 			return "health1"
-		if(-99 to FALSE)
+		if(-99 to 0)
 			return "health0"
 		else
 			return "health-100"

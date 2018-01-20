@@ -30,12 +30,13 @@ proc/makejson()
 	var/admins = "no"
 	for(var/client/C)
 		playerscount++
-		if(C.holder && C.holder.level >= 0)		// make sure retired admins don't make nt think admins are on
-			if(!C.stealth)
+		if(C.holder && C.holder.rights >= 0)		// make sure retired admins don't make nt think admins are on
+			if(!C.holder.fakekey)
 				admins = "yes"
 				players += "[C.key];"
 			else
-				players += "[C.fakekey];"
+				if (C.holder)
+					players += "[C.holder.fakekey];"
 		else
 			players += "[C.key];"
 	F << "{\"mode\":\"[mode]\",\"players\" : \"[players]\",\"playercount\" : \"[playerscount]\",\"admin\" : \"[admins]\",\"time\" : \"[time2text(world.realtime,"MM/DD - hh:mm")]\"}"

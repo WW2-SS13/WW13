@@ -14,7 +14,8 @@
 	var/fueltank = TRUE
 	var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = null
 	var/rwidth = 7
-	var/rheight = 3
+	var/rheight = 1
+	var/max_total_range = 8
 
 /obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
 	return nodrop_special_check()
@@ -176,10 +177,16 @@
 		throw_amount = throw_amount + text2num(href_list["amount"])
 		throw_amount = max(50, min(5000, throw_amount))
 	if(href_list["rwidth"])
-		rwidth = rwidth + text2num(href_list["rwidth"])
+		var/mod = text2num(href_list["rwidth"])
+		if (rwidth + mod + rheight > max_total_range)
+			return
+		rwidth = rwidth + mod
 		rwidth = Clamp(rwidth, 1, 7)
 	if(href_list["rheight"])
-		rheight = rheight + text2num(href_list["rheight"])
+		var/mod = text2num(href_list["rheight"])
+		if (rheight + mod + rwidth > max_total_range)
+			return
+		rheight = rheight + mod
 		rheight = Clamp(rheight, 1, 3)
 
 	// refresh
@@ -218,7 +225,7 @@
 		if (10 to INFINITY)
 			dist_coeff = 1.00
 
-	var/time_limit = pick(2,3)
+	var/time_limit = pick(2,3,4)
 	var/extra_temp = FALSE
 	for (var/obj/fire/F in get_turf(src))
 		extra_temp += ((F.temperature / 100) * rand(15,25))

@@ -451,7 +451,7 @@
 		scrambling = TRUE
 		sleep(2)
 		visible_message("\red <b>[src]</b> crawls!")
-		sleep(11)
+		sleep(7)
 		Move(target)
 		scrambling = FALSE
 		dir = 2

@@ -67,8 +67,10 @@ var/list/admin_verbs_admin = list(
 	///client/proc/check_customitem_activity,
 	/client/proc/allow_character_respawn,    // Allows a ghost to respawn ,
 //	/client/proc/aooc,
-	/client/proc/change_human_appearance_admin,	// Allows an admin to change the basic appearance of human-based mobs ,
-	/client/proc/change_human_appearance_self,	// Allows the human-based mob itself change its basic appearance ,
+
+// these break the game, they'll be added back when they don't
+//	/client/proc/change_human_appearance_admin,	// Allows an admin to change the basic appearance of human-based mobs ,
+//	/client/proc/change_human_appearance_self,	// Allows the human-based mob itself change its basic appearance ,
 	/client/proc/change_security_level,
 	/client/proc/view_chemical_reaction_logs,
 	/client/proc/allow_join_ruforce,

@@ -247,7 +247,7 @@
 	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 	climbers |= user
 
-	if(!do_after(user,(issmall(user) ? 20 : 34)))
+	if(!do_after(user,(issmall(user) ? 20 : 34), src))
 		climbers -= user
 		return
 

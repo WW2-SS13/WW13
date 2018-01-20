@@ -25,8 +25,10 @@
 	switch (dir)
 		if (EAST, WEST)
 			icon = horizontal_icon
+			pixel_x = 0
 		if (NORTH, SOUTH)
 			icon = vertical_icon
+			pixel_x = -32
 
 	update_bounding_rectangle()
 
