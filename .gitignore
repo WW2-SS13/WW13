@@ -5,18 +5,8 @@
 *.rsc
 *.int
 *.lk
-*.backup
 *.log
 
-build_log.txt
-
-data/
-cfg/
-
-# ignore config, but not subdirs (like config/example)
-config/*
-!config/*/
-Interstation-Two-WW2/SQL/database.db
+Interstation-Two-WW2/data/*
+Interstation-Two-WW2/SQL/*
 Interstation-Two-WW2/serverdata.txt
-*.db-shm
-*.db
