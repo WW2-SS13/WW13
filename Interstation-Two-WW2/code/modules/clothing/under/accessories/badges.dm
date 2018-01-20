@@ -32,9 +32,9 @@
 
 	if(isliving(user))
 		if(stored_name)
-			user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [stored_name], [badge_string].</span>","<span class='notice'>You display your [src.name].\nIt reads: [stored_name], [badge_string].</span>")
+			user.visible_message("<span class='notice'>[user] displays their [name].\nIt reads: [stored_name], [badge_string].</span>","<span class='notice'>You display your [name].\nIt reads: [stored_name], [badge_string].</span>")
 		else
-			user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [src.name]. It reads: [badge_string].</span>")
+			user.visible_message("<span class='notice'>[user] displays their [name].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [name]. It reads: [badge_string].</span>")
 
 /obj/item/clothing/accessory/badge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))

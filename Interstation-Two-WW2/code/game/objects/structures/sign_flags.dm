@@ -1,17 +1,17 @@
 /obj/structure/sign/flag
-	var/ripped = 0
+	var/ripped = FALSE
 
 /obj/structure/sign/flag/attack_hand(mob/user as mob)
 	if(!ripped)
-		playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
-		for(var/i = 0 to 3)
+		playsound(loc, 'sound/items/poster_ripped.ogg', 100, TRUE)
+		for(var/i = FALSE to 3)
 			if(do_after(user, 10))
-				playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
+				playsound(loc, 'sound/items/poster_ripped.ogg', 100, TRUE)
 			else
 				return
 		visible_message("<span class='warning'>[user] rips [src]!</span>" )
 		icon_state += "_ripped"
-		ripped = 1
+		ripped = TRUE
 
 /obj/structure/sign/flag/russian
 	name = "\improper Russian flag"
@@ -47,7 +47,7 @@
 	name = "Slatino sign"
 	desc = "Heeey! That's not Prishtina! That's Slatino!"
 	icon_state = "slatino"
-	density = 1
+	density = TRUE
 
 /obj/structure/sign/flag/germany
 	name = "Third Reich flag"

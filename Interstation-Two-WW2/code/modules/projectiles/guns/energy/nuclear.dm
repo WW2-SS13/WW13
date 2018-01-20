@@ -17,8 +17,8 @@
 
 /obj/item/weapon/gun/energy/gun/mounted
 	name = "mounted energy gun"
-	self_recharge = 1
-	use_external_power = 1
+	self_recharge = TRUE
+	use_external_power = TRUE
 
 /obj/item/weapon/gun/energy/gun/nuclear
 	name = "advanced energy gun"
@@ -27,7 +27,7 @@
 //	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_PAINFUL //looks heavier than a pistol
-	self_recharge = 1
+	self_recharge = TRUE
 	modifystate = null
 
 	firemodes = list(
@@ -35,18 +35,18 @@
 		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
 		)
 
-	var/lightfail = 0
+	var/lightfail = FALSE
 
 //override for failcheck behaviour
 /obj/item/weapon/gun/energy/gun/nuclear/process()
 	charge_tick++
-	if(charge_tick < 4) return 0
-	charge_tick = 0
-	if(!power_supply) return 0
-	if((power_supply.charge / power_supply.maxcharge) != 1)
+	if(charge_tick < 4) return FALSE
+	charge_tick = FALSE
+	if(!power_supply) return FALSE
+	if((power_supply.charge / power_supply.maxcharge) != TRUE)
 		power_supply.give(charge_cost)
 		update_icon()
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/energy/gun/nuclear/proc/update_charge()
 	var/ratio = power_supply.charge / power_supply.maxcharge
@@ -82,7 +82,7 @@
 	item_state = "gun"
 	fire_sound = 'sound/weapons/Taser.ogg'
 	max_shots = 2
-	charge_meter = 0
+	charge_meter = FALSE
 	w_class = 2
 	projectile_type = /obj/item/projectile/beam/stun
 //	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)

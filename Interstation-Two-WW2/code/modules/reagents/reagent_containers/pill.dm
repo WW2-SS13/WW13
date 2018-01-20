@@ -8,7 +8,7 @@
 	icon_state = null
 	item_state = "pill"
 	possible_transfer_amounts = null
-	w_class = 1
+	w_class = TRUE
 	slot_flags = SLOT_EARS
 	volume = 60
 
@@ -29,7 +29,7 @@
 			if(reagents.total_volume)
 				reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 			qdel(src)
-			return 1
+			return TRUE
 
 		else if(istype(M, /mob/living/carbon/human))
 			if(!M.can_force_feed(user, src))
@@ -53,9 +53,9 @@
 				reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 			qdel(src)
 
-			return 1
+			return TRUE
 
-		return 0
+		return FALSE
 
 	afterattack(obj/target, mob/user, proximity)
 		if(!proximity) return
@@ -71,7 +71,7 @@
 
 			reagents.trans_to(target, reagents.total_volume)
 			for(var/mob/O in viewers(2, user))
-				O.show_message("<span class='warning'>[user] puts something in \the [target].</span>", 1)
+				O.show_message("<span class='warning'>[user] puts something in \the [target].</span>", TRUE)
 
 			qdel(src)
 

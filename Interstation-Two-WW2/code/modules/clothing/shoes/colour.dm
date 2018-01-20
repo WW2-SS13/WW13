@@ -53,23 +53,23 @@
 	var/obj/item/weapon/handcuffs/chained = null
 
 /obj/item/clothing/shoes/color/orange/proc/attach_cuffs(var/obj/item/weapon/handcuffs/cuffs, mob/user as mob)
-	if (src.chained) return
+	if (chained) return
 
 	user.drop_item()
 	cuffs.loc = src
-	src.chained = cuffs
-	src.slowdown = 15
-	src.icon_state = "orange1"
+	chained = cuffs
+	slowdown = 15
+	icon_state = "orange1"
 
 /obj/item/clothing/shoes/color/orange/proc/remove_cuffs(mob/user as mob)
-	if (!src.chained) return
+	if (!chained) return
 
-	user.put_in_hands(src.chained)
-	src.chained.add_fingerprint(user)
+	user.put_in_hands(chained)
+	chained.add_fingerprint(user)
 
-	src.slowdown = initial(slowdown)
-	src.icon_state = "orange"
-	src.chained = null
+	slowdown = initial(slowdown)
+	icon_state = "orange"
+	chained = null
 
 /obj/item/clothing/shoes/color/orange/attack_self(mob/user as mob)
 	..()

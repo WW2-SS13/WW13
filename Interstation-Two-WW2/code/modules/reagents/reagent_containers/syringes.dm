@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Syringes.
 ////////////////////////////////////////////////////////////////////////////////
-#define SYRINGE_DRAW 0
-#define SYRINGE_INJECT 1
+#define SYRINGE_DRAW FALSE
+#define SYRINGE_INJECT TRUE
 #define SYRINGE_BROKEN 2
 
 /obj/item/weapon/reagent_containers/syringe
@@ -15,9 +15,9 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null
 	volume = 15
-	w_class = 1
+	w_class = TRUE
 	slot_flags = SLOT_EARS
-	sharp = 1
+	sharp = TRUE
 	var/mode = SYRINGE_DRAW
 	var/image/filling //holds a reference to the current filling overlay
 	var/visible_name = "a syringe"
@@ -109,7 +109,7 @@
 							reagents.handle_reactions()
 						user << "<span class='notice'>You take a blood sample from [target].</span>"
 						for(var/mob/O in viewers(4, user))
-							O.show_message("<span class='notice'>[user] takes a blood sample from [target].</span>", 1)
+							O.show_message("<span class='notice'>[user] takes a blood sample from [target].</span>", TRUE)
 
 				else //if not mob
 					if(!target.reagents.total_volume)
@@ -159,13 +159,13 @@
 
 					if(istype(H))
 						if(H.wear_suit)
-							if(!H.can_inject(user, 1))
+							if(!H.can_inject(user, TRUE))
 								return
 
 					else if(isliving(target))
 
 						var/mob/living/M = target
-						if(!M.can_inject(user, 1))
+						if(!M.can_inject(user, TRUE))
 							return
 
 					if(injtime == time)
@@ -188,8 +188,8 @@
 					admin_inject_log(user, target, src, contained, trans)
 				else
 					trans = reagents.trans_to(target, amount_per_transfer_from_this)
-				user << "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>"
-				if (reagents.total_volume <= 0 && mode == SYRINGE_INJECT)
+				user << "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [reagents.total_volume] units.</span>"
+				if (reagents.total_volume <= FALSE && mode == SYRINGE_INJECT)
 					mode = SYRINGE_DRAW
 					update_icon()
 
@@ -242,23 +242,23 @@
 
 			if (target != user && H.getarmor(target_zone, "melee") > 5 && prob(50))
 				for(var/mob/O in viewers(world.view, user))
-					O.show_message(text("\red <B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B>"), 1)
+					O.show_message(text("\red <B>[user] tries to stab [target] in \the [hit_area] with [name], but the attack is deflected by armor!</B>"), TRUE)
 				user.remove_from_mob(src)
 				qdel(src)
 
 				user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [target.name] ([target.ckey]) with \the [src] (INTENT: HARM).</font>"
-				target.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: HARM).</font>"
-				msg_admin_attack("[key_name_admin(user)] attacked [key_name_admin(target)] with [src.name] (INTENT: HARM) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+				target.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [name] (INTENT: HARM).</font>"
+				msg_admin_attack("[key_name_admin(user)] attacked [key_name_admin(target)] with [name] (INTENT: HARM) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 				return
 
-			user.visible_message("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src.name]!</span>")
+			user.visible_message("<span class='danger'>[user] stabs [target] in \the [hit_area] with [name]!</span>")
 
 			if(affecting.take_damage(3))
 				H.UpdateDamageIcon()
 
 		else
-			user.visible_message("<span class='danger'>[user] stabs [target] with [src.name]!</span>")
+			user.visible_message("<span class='danger'>[user] stabs [target] with [name]!</span>")
 			target.take_organ_damage(3)// 7 is the same as crowbar punch
 
 
@@ -266,7 +266,7 @@
 		var/syringestab_amount_transferred = rand(0, (reagents.total_volume - 5)) //nerfed by popular demand
 		var/contained_reagents = reagents.get_reagents()
 		var/trans = reagents.trans_to_mob(target, syringestab_amount_transferred, CHEM_BLOOD)
-		if(isnull(trans)) trans = 0
+		if(isnull(trans)) trans = FALSE
 		admin_inject_log(user, target, src, contained_reagents, trans, violent=1)
 		break_syringe(target, user)
 

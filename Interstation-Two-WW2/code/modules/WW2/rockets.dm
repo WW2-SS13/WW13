@@ -2,7 +2,7 @@
 	name = "Panzerfaust"
 	icon_state = "panzerfaust"
 	item_state = "panzerfaust"
-	recoil = 1
+	recoil = TRUE
 
 /obj/item/weapon/gun/launcher/rocket/panzerfaust/New()
 	..()

@@ -1,13 +1,13 @@
 /area/prishtina
-	requires_power = 0
-	has_gravity = 1
-	no_air = 0
+	requires_power = FALSE
+	has_gravity = TRUE
+	no_air = FALSE
 	ambience = list()
 	forced_ambience = null
 	base_turf = /turf/floor/plating/grass/wild //The base turf type of the area, which can be used to override the z-level's base turf
 	sound_env = STANDARD_STATION
 	icon_state = "purple1"
-	dynamic_lighting = 1
+	dynamic_lighting = TRUE
 
 /area/prishtina/New()
 	..()
@@ -31,14 +31,14 @@
 */
 
 /area/prishtina/no_mans_land
-	dynamic_lighting = 1
+	dynamic_lighting = TRUE
 	name = "No Man's Land"
 	icon_state = "purple1"
 
 /area/prishtina/no_mans_land/invisible_wall
 
 /area/prishtina/forest
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	name = "The Forest"
 	icon_state = "purple1"
 
@@ -46,7 +46,7 @@
 
 /area/prishtina/forest/south/invisible_wall
 
-/* sector 1 = top left, sector 2 = top center, sector 3 = top right
+/* sector TRUE = top left, sector 2 = top center, sector 3 = top right
    sector 4 = middle left, sector 5 = middle center, sector 6 = middle right
    sector 7 = bottom left, sector 8 = bottom center, sector 9 = bottom right */
 
@@ -114,22 +114,22 @@
 /area/prishtina/forest/sector9/ss4
 
 /area/prishtina/farm1
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	name = "Farmland"
 	icon_state = "red3"
 
 /area/prishtina/farm2
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	name = "Farmland"
 	icon_state = "red3"
 
 /area/prishtina/farm3
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	name = "Farmland"
 	icon_state = "red3"
 
 /area/prishtina/farm4
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	name = "Farmland"
 	icon_state = "red3"
 
@@ -280,7 +280,7 @@
 /area/prishtina/german/main_area
 	name = "German Base"
 	icon_state = "red1"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/prishtina/german/main_area/sector1
 /area/prishtina/german/main_area/sector2
@@ -289,7 +289,7 @@
 /area/prishtina/german/main_area/dogshed
 	name = "German Dogshed"
 	icon_state = "red2"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/outside
@@ -300,28 +300,28 @@
 /area/prishtina/german/gas_chamber
 	name = "German Gas Chamber"
 	icon_state = "red3"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/prishtina/german/train_zone
 	name = "Train Zone"
 	icon_state = "blue1"
 	#ifdef USE_TRAIN_LIGHTS
-	dynamic_lighting = 1
+	dynamic_lighting = TRUE
 	#else
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	#endif
 	location = AREA_INSIDE
-	is_train_area = 1
+	is_train_area = TRUE
 
 /area/prishtina/german/train_starting_zone
 	icon_state = "blue2"
 	name = "Train Boarding"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/prishtina/german/train_landing_zone
 	icon_state = "blue2"
 	name = "Train Unboarding"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/prishtina/german/resting_area_1
 	name = "Resting Area #1"
@@ -358,8 +358,8 @@
 /area/prishtina/german/armory/train
 	name = "Armory"
 	icon_state = "blue3"
-	dynamic_lighting = 0
-	is_train_area = 1
+	dynamic_lighting = FALSE
+	is_train_area = TRUE
 
 /area/prishtina/german/cafeteria
 	name = "Cafeteria"
@@ -374,37 +374,37 @@
 /area/prishtina/german/shower1
 	name = "Showers #1"
 	icon_state = "red2"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/shower2
 	name = "Showers #2"
 	icon_state = "red2"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/shower3
 	name = "Showers #3"
 	icon_state = "red2"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/drying1
 	name = "Drying Room #1"
 	icon_state = "blue2"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/drying2
 	name = "Drying Room #2"
 	icon_state = "blue2"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/drying3
 	name = "Drying Room #3"
 	icon_state = "blue2"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/ss_torture_room
@@ -440,12 +440,12 @@
 /area/prishtina/german/briefing
 	name = "Briefing"
 	icon_state = "green1"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/prishtina/german/base_defenses
 	name = "Base Defenses"
 	icon_state = "green2"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 // prevents snowing on some walls
 /area/prishtina/german/base_defenses/wall
@@ -480,6 +480,7 @@
 /area/prishtina/soviet/small_map/inside
 	name = "Soviet Inside Area"
 	icon_state = "red2"
+	location = AREA_INSIDE
 
 /area/prishtina/soviet/small_map/inside/armory
 	name = "Soviet Armory"
@@ -519,23 +520,23 @@
 /area/prishtina/soviet/immediate_outside_defenses
 	name = "Bunker Defenses"
 	icon_state = "red3"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/prishtina/soviet/dogshed
 	name = "Soviet Dog Shed"
 	icon_state = "blue1"
-	dynamic_lighting = 1
+	dynamic_lighting = TRUE
 	location = AREA_INSIDE
 
 /area/prishtina/soviet/immediate_outside_defenses/houses
 	icon_state = "blue2"
-	dynamic_lighting = 1
+	dynamic_lighting = TRUE
 	location = AREA_INSIDE
 
 /area/prishtina/soviet/forward_defenses
 	name = "Bunker Defenses"
 	icon_state = "blue3"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 // bunker areas
 
 /area/prishtina/soviet/bunker

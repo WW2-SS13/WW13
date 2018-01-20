@@ -1,13 +1,13 @@
 /obj/item/projectile/bullet/rifle/missile
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
-	var/explosive = 1
+	var/explosive = TRUE
 	var/explosion_ranges = list(1,2,4,5)
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "missile"
 	throwforce = 5
-	damage = 0
-	nodamage = 1
-	embed = 0
+	damage = FALSE
+	nodamage = TRUE
+	embed = FALSE
 	name = "missile"
 
 /obj/item/projectile/bullet/rifle/missile/throw_impact(atom/hit_atom)

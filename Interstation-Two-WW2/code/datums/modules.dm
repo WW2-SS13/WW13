@@ -3,8 +3,8 @@
 // actual modules needed is referenced through modulestypes and the object type
 
 /datum/module
-	var/status				// bits set if working, 0 if broken
-	var/installed			// bits set if installed, 0 if missing
+	var/status				// bits set if working, FALSE if broken
+	var/installed			// bits set if installed, FALSE if missing
 
 // moduletypes datum
 // this is per-object type, and shows the modules needed for a type of object
@@ -44,11 +44,11 @@ var/list/modules = list(			// global associative list
 		return 2**count-1
 
 	var/modtext = modules["[type]"]
-	var/num = 1
-	var/pos = 1
+	var/num = TRUE
+	var/pos = TRUE
 
 	while(1)
-		pos = findtext(modtext, ",", pos, 0)
+		pos = findtext(modtext, ",", pos, FALSE)
 		if(!pos)
 			break
 		else

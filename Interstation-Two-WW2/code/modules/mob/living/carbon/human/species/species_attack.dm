@@ -1,9 +1,9 @@
 /datum/unarmed_attack/bite/sharp //eye teeth
 	attack_verb = list("bit", "chomped on")
 	attack_sound = 'sound/weapons/bite.ogg'
-	shredding = 0
-	sharp = 1
-	edge = 1
+	shredding = FALSE
+	sharp = TRUE
+	edge = TRUE
 
 /datum/unarmed_attack/claws
 	attack_verb = list("scratched", "clawed", "slashed")
@@ -12,17 +12,17 @@
 	eye_attack_text_victim = "sharp claws"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 
 /datum/unarmed_attack/claws/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 
-	attack_damage = Clamp(attack_damage, 1, 5)
+	attack_damage = Clamp(attack_damage, TRUE, 5)
 
 	if(target == user)
 		user.visible_message("<span class='danger'>[user] [pick(attack_verb)] \himself in the [affecting.name]!</span>")
-		return 0
+		return FALSE
 
 	switch(zone)
 		if("head", "mouth", "eyes")
@@ -47,12 +47,12 @@
 /datum/unarmed_attack/claws/strong
 	attack_verb = list("slashed")
 	damage = 5
-	shredding = 1
+	shredding = TRUE
 
 /datum/unarmed_attack/bite/strong
 	attack_verb = list("mauled")
 	damage = 8
-	shredding = 1
+	shredding = TRUE
 
 /datum/unarmed_attack/slime_glomp
 	attack_verb = list("glomped")
@@ -72,4 +72,4 @@
 /datum/unarmed_attack/stomp/weak/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	user.visible_message("<span class='warning'>[user] jumped up and down on \the [target]'s [affecting.name]!</span>")
-	playsound(user.loc, attack_sound, 25, 1, -1)
+	playsound(user.loc, attack_sound, 25, TRUE, -1)

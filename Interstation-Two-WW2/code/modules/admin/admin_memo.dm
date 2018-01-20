@@ -1,5 +1,5 @@
 #define MEMOFILE "data/memo.sav"	//where the memos are saved
-#define ENABLE_MEMOS 1				//using a define because screw making a config variable for it. This is more efficient and purty.
+#define ENABLE_MEMOS TRUE				//using a define because screw making a config variable for it. This is more efficient and purty.
 
 //switch verb so we don't spam up the verb lists with like, 3 verbs for this feature.
 /client/proc/admin_memo(task in list("write","show","delete"))
@@ -41,14 +41,14 @@
 /client/proc/admin_memo_delete()
 	var/savefile/F = new(MEMOFILE)
 	if(F)
-		var/ckey
+		var/_ckey
 		if(check_rights(R_SERVER,0))	//high ranking admins can delete other admin's memos
-			ckey = input(src,"Whose memo shall we remove?","Remove Memo",null) as null|anything in F.dir
+			_ckey = input(src,"Whose memo shall we remove?","Remove Memo",null) as null|anything in F.dir
 		else
-			ckey = src.ckey
-		if(ckey)
-			F.dir.Remove(ckey)
-			src << "<b>Removed Memo created by [ckey].</b>"
+			_ckey = ckey
+		if(_ckey)
+			F.dir.Remove(_ckey)
+			src << "<b>Removed Memo created by [_ckey].</b>"
 
 #undef MEMOFILE
 #undef ENABLE_MEMOS

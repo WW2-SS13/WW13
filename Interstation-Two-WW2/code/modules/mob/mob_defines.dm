@@ -1,10 +1,11 @@
 /mob
-	density = 1
+	density = TRUE
 	layer = 4.0
 	animate_movement = 2
 	flags = PROXMOVE
 
 	var/last_movement = -1
+	var/movement_speed_multiplier = 1.0
 	var/atom/movable/attached_to_object = null
 
 	var/datum/mind/mind
@@ -12,7 +13,7 @@
 	var/lastKnownIP = null
 	var/computer_id = null
 
-	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
+	var/stat = FALSE //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
 
 //	var/obj/screen/flash = null
 //	var/obj/screen/blind = null
@@ -49,12 +50,12 @@
 	*/
 	var/obj/screen/zone_sel/zone_sel = null
 
-	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
-	var/damageoverlaytemp = 0
+	var/use_me = TRUE //Allows all mobs to use the me verb by default, will have to manually specify they cannot
+	var/damageoverlaytemp = FALSE
 	var/obj/machinery/machine = null
 	var/poll_answer = 0.0
-	var/sdisabilities = 0	//Carbon
-	var/disabilities = 0	//Carbon
+	var/sdisabilities = FALSE	//Carbon
+	var/disabilities = FALSE	//Carbon
 
 	var/atom/movable/pulling = null
 	var/other_mobs = null
@@ -63,25 +64,25 @@
 	var/hand = null
 	var/real_name = null
 
-	var/bhunger = 0			//Carbon
-	var/ajourn = 0
-	var/seer = 0 //for cult//Carbon, probably Human
+	var/bhunger = FALSE			//Carbon
+	var/ajourn = FALSE
+	var/seer = FALSE //for cult//Carbon, probably Human
 
-	var/druggy = 0			//Carbon
-	var/confused = 0		//Carbon
-	var/sleeping = 0		//Carbon
-	var/resting = 0			//Carbon
-	var/lying = 0
-	var/lying_prev = 0
-	var/canmove = 1
+	var/druggy = FALSE			//Carbon
+	var/confused = FALSE		//Carbon
+	var/sleeping = FALSE		//Carbon
+	var/resting = FALSE			//Carbon
+	var/lying = FALSE
+	var/lying_prev = FALSE
+	var/canmove = TRUE
 	//Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
-	var/incorporeal_move = 0 //0 is off, 1 is normal, 2 is for ninjas.
-	var/unacidable = 0
+	var/incorporeal_move = FALSE //0 is off, TRUE is normal, 2 is for ninjas.
+	var/unacidable = FALSE
 	var/list/pinned = list()            // List of things pinning this creature to walls (see living_defense.dm)
 	var/list/embedded = list()          // Embedded items, since simple mobs don't have organs.
 	var/list/languages = list()         // For speaking/listening.
 	var/list/speak_emote = list("says") // Verbs used when speaking. Defaults to 'say' if speak_emote is null.
-	var/emote_type = 1		// Define emote default type, 1 for seen emotes, 2 for heard emotes
+	var/emote_type = TRUE		// Define emote default type, TRUE for seen emotes, 2 for heard emotes
 	var/facing_dir = null   // Used for the ancient art of moonwalking.
 
 	var/name_archive //For admin things like possession
@@ -89,10 +90,10 @@
 	var/timeofdeath = 0.0
 
 	var/bodytemperature = 310.055	//98.7 F
-	var/old_x = 0
-	var/old_y = 0
+	var/old_x = FALSE
+	var/old_y = FALSE
 
-	var/shakecamera = 0
+	var/shakecamera = FALSE
 	var/a_intent = I_HELP//Living
 	var/m_intent = "walk"//Living
 	var/obj/buckled = null//Living
@@ -108,9 +109,9 @@
 	var/list/grabbed_by = list(  )
 	var/list/requests = list(  )
 
-	var/in_throw_mode = 0
+	var/in_throw_mode = FALSE
 
-	var/inertia_dir = 0
+	var/inertia_dir = FALSE
 
 	var/targeted_organ = "chest"
 
@@ -120,6 +121,7 @@
 	// from a new_player mob
 	var/datum/job/original_job
 	var/original_job_title = null
+	var/special_job_title = -1
 
 	var/can_pull_size = 10              // Maximum w_class the mob can pull.
 	var/can_pull_mobs = MOB_PULL_LARGER // Whether or not the mob can pull other mobs.
@@ -134,7 +136,7 @@
 	var/voice_name = "unidentifiable voice"
 
 	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
-	var/captured = 0 //Functionally, should give the same effect as being buckled into a chair when true.
+	var/captured = FALSE //Functionally, should give the same effect as being buckled into a chair when true.
 
 	var/blinded = null
 	var/ear_deaf = null		//Carbon
@@ -147,19 +149,19 @@
 
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
-	var/update_icon = 1 //Set to 1 to trigger update_icons() at the next life() call
+	var/update_icon = TRUE //Set to TRUE to trigger update_icons() at the next life() call
 
 	var/status_flags = CANSTUN|CANWEAKEN|CANPARALYSE|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 
 	var/area/lastarea = null
 
-	var/digitalcamo = 0 // Can they be tracked by the AI?
+	var/digitalcamo = FALSE // Can they be tracked by the AI?
 
 	var/obj/control_object //Used by admins to possess objects. All mobs should have this var
 
 	//Whether or not mobs can understand other mobtypes. These stay in /mob so that ghosts can hear everything.
-	var/universal_speak = 0 // Set to 1 to enable the mob to speak to everyone -- TLE
-	var/universal_understand = 0 // Set to 1 to enable the mob to understand everyone, not necessarily speak
+	var/universal_speak = FALSE // Set to TRUE to enable the mob to speak to everyone -- TLE
+	var/universal_understand = FALSE // Set to TRUE to enable the mob to understand everyone, not necessarily speak
 
 	//If set, indicates that the client "belonging" to this (clientless) mob is currently controlling some other mob
 	//so don't treat them as being SSD even though their client var is null.
@@ -170,9 +172,9 @@
 
 	var/mob_size = MOB_MEDIUM
 
-	var/paralysis = 0
-	var/stunned = 0
-	var/weakened = 0
+	var/paralysis = FALSE
+	var/stunned = FALSE
+	var/weakened = FALSE
 	var/drowsyness = 0.0//Carbon
 
 	var/memory = ""
@@ -186,10 +188,17 @@
 	var/list/HUDtech = list()
 	var/defaultHUD = "" //Default mob hud
 
-	var/footstep = 0 //Probably should go under living.
-	var/scrambling = 0 //For crawling.
-	var/has_limbs = 1 //Whether this mob have any limbs he can move with
-	var/bowels = 0 //For pooping
-	var/bladder = 0 //For pissing
+	var/footstep = FALSE //Probably should go under living.
+	var/scrambling = FALSE //For crawling.
+	var/has_limbs = TRUE //Whether this mob have any limbs he can move with
+	var/bowels = FALSE //For pooping
+	var/bladder = FALSE //For pissing
 
 	var/using_object = null
+
+	var/roundUID = 0
+
+/mob/proc/getRoundUID()
+	if (!roundUID)
+		roundUID = rand(1, 10000000)
+	return roundUID

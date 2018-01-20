@@ -2,17 +2,17 @@
 	//Used to store information about the contents of the object.
 	var/list/matter
 	var/w_class // Size of the object.
-//	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
+//	var/unacidable = FALSE //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
-	var/throwforce = 1
-	var/sharp = 0		// whether this object cuts
-	var/edge = 0		// whether this object is more likely to dismember
-	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
+	var/throwforce = TRUE
+	var/sharp = FALSE		// whether this object cuts
+	var/edge = FALSE		// whether this object is more likely to dismember
+	var/in_use = FALSE // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
-	var/armor_penetration = 0
+	var/armor_penetration = FALSE
 //	var/corporation = null
-	var/special_id = 0
-	var/scoped_invisible = 0
+	var/special_id = FALSE
+	var/scoped_invisible = FALSE
 
 /obj/examine(mob/user,distance=-1)
 	..(user,distance)
@@ -25,16 +25,16 @@
 
 /obj/Topic(href, href_list, var/datum/topic_state/state = default_state)
 	if(..())
-		return 1
+		return TRUE
 
 	// In the far future no checks are made in an overriding Topic() beyond if(..()) return
 	// Instead any such checks are made in CanUseTopic()
 	if(CanUseTopic(usr, state, href_list) == STATUS_INTERACTIVE)
 		CouldUseTopic(usr)
-		return 0
+		return FALSE
 
 	CouldNotUseTopic(usr)
-	return 1
+	return TRUE
 
 /obj/CanUseTopic(var/mob/user, var/datum/topic_state/state)
 	if(user.CanUseObjTopic(src))
@@ -43,7 +43,7 @@
 	return STATUS_CLOSE
 
 /mob/proc/CanUseObjTopic()
-	return 1
+	return TRUE
 
 /obj/proc/CouldUseTopic(var/mob/user)
 	user.AddTopicPrint(src)
@@ -65,7 +65,7 @@
 
 /obj/proc/process()
 	processing_objects.Remove(src)
-	return 0
+	return FALSE
 
 /obj/assume_air(datum/gas_mixture/giver)
 	if(loc)
@@ -87,12 +87,12 @@
 
 /obj/proc/updateUsrDialog()
 	if(in_use)
-		var/is_in_use = 0
+		var/is_in_use = FALSE
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
 			if ((M.client && M.machine == src))
-				is_in_use = 1
-				src.attack_hand(M)
+				is_in_use = TRUE
+				attack_hand(M)
 
 		// check for TK users
 
@@ -100,21 +100,21 @@
 			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
 				if(!(usr in nearby))
 					if(usr.client && usr.machine==src)
-						is_in_use = 1
-						src.attack_hand(usr)
+						is_in_use = TRUE
+						attack_hand(usr)
 		in_use = is_in_use
 
 /obj/proc/updateDialog()
 	// Check that people are actually using the machine. If not, don't update anymore.
 	if(in_use)
 		var/list/nearby = viewers(1, src)
-		var/is_in_use = 0
+		var/is_in_use = FALSE
 		for(var/mob/M in nearby)
 			if ((M.client && M.machine == src))
-				is_in_use = 1
-				src.interact(M)
+				is_in_use = TRUE
+				interact(M)
 		if(!is_in_use)
-			in_use = 0
+			in_use = FALSE
 
 /obj/attack_ghost(mob/user)
 	ui_interact(user)
@@ -127,25 +127,25 @@
 	return
 
 /mob/proc/unset_machine()
-	src.machine = null
+	machine = null
 
 /mob/proc/set_machine(var/obj/O)
-	if(src.machine)
+	if(machine)
 		unset_machine()
-	src.machine = O
+	machine = O
 	if(istype(O))
-		O.in_use = 1
+		O.in_use = TRUE
 
 /obj/item/proc/updateSelfDialog()
-	var/mob/M = src.loc
+	var/mob/M = loc
 	if(istype(M) && M.client && M.machine == src)
-		src.attack_self(M)
+		attack_self(M)
 
 /obj/proc/hide(var/hide)
 	invisibility = hide ? INVISIBILITY_MAXIMUM : initial(invisibility)
 
 /obj/proc/hides_under_flooring()
-	return level == 1
+	return level == TRUE
 
 /obj/proc/hear_talk(mob/M as mob, text, verb, datum/language/speaking)
 	//if(talking_atom)

@@ -1,6 +1,6 @@
 // At minimum every mob has a hear_say proc.
 
-/mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+/mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = FALSE, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	if(!client)
 		return
 
@@ -11,13 +11,13 @@
 
 	//make sure the air can transmit speech - hearer's side
 
-	if(sleeping || stat == 1)
+	if(sleeping || stat == TRUE)
 		hear_sleep(message)
 		return
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
 	if (language && (language.flags & NONVERBAL))
-		if (!speaker || (src.sdisabilities & BLIND || src.blinded) || !(speaker in view(src)))
+		if (!speaker || (sdisabilities & BLIND || blinded) || !(speaker in view(src)))
 			message = stars(message)
 
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
@@ -34,7 +34,10 @@
 	var/speaker_name = speaker.name
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
-		speaker_name = H.rank_prefix_name(H.GetVoice())
+		if (H.special_job_title != null)
+			speaker_name = H.rank_prefix_name(H.GetVoice())
+		else
+			speaker_name = "[H.GetVoice()] (N/A)"
 
 	if(italics)
 		message = "<i>[message]</i>"
@@ -60,21 +63,24 @@
 			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, verb)]</span>")
 		else
 			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
-		if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
+		if (speech_sound && (get_dist(speaker, src) <= world.view && z == speaker.z))
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
-			src.playsound_local(source, speech_sound, sound_vol, 1)
+			playsound_local(source, speech_sound, sound_vol, TRUE)
 
 /mob/proc/on_hear_say(var/message)
 	src << message
 
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/device/radio/source, var/hard_to_hear = 0)
+/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/device/radio/source, var/hard_to_hear = FALSE)
 
 	if(!client)
 		return
 
+	if (speaker && language && speaker.languages.len && language != speaker.languages[1])
+		verb = "[verb] in [language.name]"
+
 	message = capitalize(message)
 
-	playsound(loc, 'sound/effects/radio_chatter.ogg', 25, 0, -1)//They won't always be able to read the message, but the sound will play regardless.
+	playsound(loc, 'sound/effects/radio_chatter.ogg', 25, FALSE, -1)//They won't always be able to read the message, but the sound will play regardless.
 
 	if(sleeping || stat==1) //If unconscious or sleeping
 		hear_sleep(message)
@@ -85,7 +91,7 @@
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
 	if (language && (language.flags & NONVERBAL))
-		if (!speaker || (src.sdisabilities & BLIND || src.blinded) || !(speaker in view(src)))
+		if (!speaker || (sdisabilities & BLIND || blinded) || !(speaker in view(src)))
 			message = stars(message)
 
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
@@ -132,7 +138,7 @@
 		speaker_name = "unknown"
 
 	if(isghost(src))
-		if(speaker_name != speaker.real_name && !isAI(speaker)) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
+		if(speaker_name != speaker.real_name) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
 			speaker_name = "[speaker.real_name] ([speaker_name])"
 		track = /*"[speaker_name] */"([ghost_follow_link(speaker, src)])"
 
@@ -147,32 +153,9 @@
 	else
 		var/fontsize = 2
 
-		if (speaker.original_job.is_officer) // experimental
+		if (speaker.original_job.is_officer)
 			fontsize = 3
-/*
-		if (istype(speaker.original_job, /datum/job/german/commander))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/staff_officer))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/squad_leader))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/stabsgefreiter))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/artyman))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/conductor))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/german/squad_leader_ss))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/russian/commander))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/russian/staff_officer))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/russian/squad_leader))
-			fontsize = 3
-		else if (istype(speaker.original_job, /datum/job/russian/zavhoz))
-			fontsize = 3
-*/
+
 		var/full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] [message]</span></font>"
 		if (track)
 			full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] ([track]) [message]</span></font>"
@@ -196,12 +179,12 @@
 	else
 		message = "<B>[src]</B> [verb]."
 
-	if(src.status_flags & PASSEMOTES)
-		for(var/obj/item/weapon/holder/H in src.contents)
+	if(status_flags & PASSEMOTES)
+		for(var/obj/item/weapon/holder/H in contents)
 			H.show_message(message)
-		for(var/mob/living/M in src.contents)
+		for(var/mob/living/M in contents)
 			M.show_message(message)
-	src.show_message(message)
+	show_message(message)
 
 /mob/proc/hear_sleep(var/message)
 	var/heard = ""
@@ -210,7 +193,7 @@
 		var/list/messages = splittext(message, " ")
 		var/R = rand(1, messages.len)
 		var/heardword = messages[R]
-		if(copytext(heardword,1, 1) in punctuation)
+		if(copytext(heardword,1, TRUE) in punctuation)
 			heardword = copytext(heardword,2)
 		if(copytext(heardword,-1) in punctuation)
 			heardword = copytext(heardword,1,lentext(heardword))

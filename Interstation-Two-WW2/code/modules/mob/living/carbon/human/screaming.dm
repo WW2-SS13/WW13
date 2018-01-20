@@ -1,10 +1,10 @@
-/proc/scream_sound(var/mob/m, var/dying = 0)
+/proc/scream_sound(var/mob/m, var/dying = FALSE)
 
 	if (!ishuman(m))
-		return 0
+		return FALSE
 
 	if (m.stat == UNCONSCIOUS || m.stat == DEAD)
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = m
 

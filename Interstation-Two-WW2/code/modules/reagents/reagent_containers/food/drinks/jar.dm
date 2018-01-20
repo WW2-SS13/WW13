@@ -10,7 +10,7 @@
 	center_of_mass = list("x"=15, "y"=8)
 
 /obj/item/weapon/reagent_containers/food/drinks/jar/on_reagent_change()
-	if (reagents.reagent_list.len > 0)
+	if (reagents.reagent_list.len > FALSE)
 		icon_state ="jar_what"
 		name = "jar of something"
 		desc = "You can't really tell what this is."

@@ -5,17 +5,17 @@ var/list/preferences_datums = list()
 /datum/preferences
 
 	//non-preference stuff
-	var/warns = 0
-	var/muted = 0
+	var/warns = FALSE
+	var/muted = FALSE
 	var/last_ip
 	var/last_id
 
 	//game-preferences
 	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/list/be_special_role = list()		//Special role selection
-	var/UI_style = "ErisStyleHolo"
-	var/UI_useborder = 0
-	var/UI_style_color = "#92CE81"
+	var/UI_style = "WW13Style"
+	var/UI_useborder = FALSE
+	var/UI_style_color = "#FFFFFF"
 	var/UI_style_alpha = 255
 
 	//character preferences
@@ -23,10 +23,10 @@ var/list/preferences_datums = list()
 	var/german_name = "Hans Schneider"
 	var/russian_name = "Boris Borisov"
 	var/ukrainian_name = "Boris Borisov"
-	var/be_random_name = 0				//whether we are a random name every round
-	var/be_random_name_german = 0
-	var/be_random_name_russian = 0
-	var/be_random_name_ukrainian = 0
+	var/be_random_name = FALSE				//whether we are a random name every round
+	var/be_random_name_german = FALSE
+	var/be_random_name_russian = FALSE
+	var/be_random_name_ukrainian = FALSE
 	var/gender = MALE					//gender of character (well duh)
 	var/german_gender = MALE
 	var/russian_gender = MALE
@@ -37,30 +37,30 @@ var/list/preferences_datums = list()
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/backbag = 2						//backpack type
 	var/h_style = "Bald"				//Hair type
-	var/r_hair = 0						//Hair color
-	var/g_hair = 0						//Hair color
-	var/b_hair = 0						//Hair color
+	var/r_hair = FALSE						//Hair color
+	var/g_hair = FALSE						//Hair color
+	var/b_hair = FALSE						//Hair color
 	var/f_style = "Shaved"				//Face hair type
-	var/r_facial = 0					//Face hair color
-	var/g_facial = 0					//Face hair color
-	var/b_facial = 0					//Face hair color
-	var/s_tone = 0						//Skin tone
+	var/r_facial = FALSE					//Face hair color
+	var/g_facial = FALSE					//Face hair color
+	var/b_facial = FALSE					//Face hair color
+	var/s_tone = FALSE						//Skin tone
 
-	var/r_skin = 0						//Skin color
-	var/g_skin = 0						//Skin color
-	var/b_skin = 0						//Skin color
+	var/r_skin = FALSE						//Skin color
+	var/g_skin = FALSE						//Skin color
+	var/b_skin = FALSE						//Skin color
 
-	var/german_r_skin = 0						//Skin color
-	var/german_g_skin = 0						//Skin color
-	var/german_b_skin = 0						//Skin color
+	var/german_r_skin = FALSE						//Skin color
+	var/german_g_skin = FALSE						//Skin color
+	var/german_b_skin = FALSE						//Skin color
 
-	var/russian_r_skin = 0						//Skin color
-	var/russian_g_skin = 0						//Skin color
-	var/russian_b_skin = 0						//Skin color
+	var/russian_r_skin = FALSE						//Skin color
+	var/russian_g_skin = FALSE						//Skin color
+	var/russian_b_skin = FALSE						//Skin color
 
-	var/r_eyes = 0						//Eye color
-	var/g_eyes = 0						//Eye color
-	var/b_eyes = 0						//Eye color
+	var/r_eyes = FALSE						//Eye color
+	var/g_eyes = FALSE						//Eye color
+	var/b_eyes = FALSE						//Eye color
 	var/species = "Human"               //Species datum to use.
 	var/species_preview                 //Used for the species selection window.
 	var/list/alternate_languages = list() //Secondary language(s)
@@ -74,7 +74,7 @@ var/list/preferences_datums = list()
 	var/list/preview_icons_west = list()
 
 	//Keeps track of preferrence for not getting any wanted jobs
-	var/alternate_option = 0
+	var/alternate_option = FALSE
 
 	// maps each organ to either null(intact), "cyborg" or "amputated"
 	// will probably not be able to do this for head and torso ;)
@@ -82,11 +82,11 @@ var/list/preferences_datums = list()
 	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
 
-	var/disabilities = 0
+	var/disabilities = FALSE
 
 	var/client/client = null
 	var/client_ckey = null
-	var/client_isguest = 0
+	var/client_isguest = FALSE
 
 	var/list/internal_table = list()
 
@@ -94,7 +94,7 @@ var/list/preferences_datums = list()
 
 	var/current_character_type = "N/A"
 
-	var/current_slot = 1
+	var/current_slot = TRUE
 
 	var/list/preferences_enabled = list("SOUND_MIDI", "SOUND_LOBBY", "SOUND_AMBIENCE",
 		"CHAT_GHOSTEARS", "CHAT_GHOSTSIGHT", "CHAT_GHOSTRADIO", "CHAT_SHOWICONS",
@@ -123,14 +123,14 @@ var/list/preferences_datums = list()
 	 * below. */
 
 
-	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
+	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", TRUE;"B-", 20;"B+", TRUE;"AB-", 5;"AB+")
    */
 
 	if(istype(C))
 		client = C
 		client_ckey = C.ckey
 		if (IsGuestKey(client_ckey))
-			client_isguest = 1
+			client_isguest = TRUE
 
 		// load our first slot, if we have one
 		if (preferences_exist(1))
@@ -194,31 +194,27 @@ var/list/preferences_datums = list()
 			user << "<span class='danger'>The forum URL is not set in the server configuration.</span>"
 			return
 	ShowChoices(usr)
-	return 1
+	return TRUE
 
 /datum/preferences/Topic(href, list/href_list)
 	if(..())
-		return 1
+		return TRUE
 
 	if(href_list["save"])
 		open_save_dialog(usr)
 
 	else if(href_list["savetoslot"])
+		var/previous_slot = text2num(current_slot)
 		current_slot = text2num(href_list["savetoslot"])
 
-		var/other_slots_with_our_real_name = 0
-		for (var/textnum in internal_table)
-			var/list/L = internal_table[textnum]
-			if (L.Find("real_name"))
-				if (L["real_name"] == current_slot["real_name"])
-					++other_slots_with_our_real_name
+		if (current_slot == FALSE)
+			current_slot = TRUE // if we delete all our slots, still let us save
 
-		var/slot_name = null
-		if (other_slots_with_our_real_name > 0)
-			slot_name = "[real_name] ([other_slots_with_our_real_name])"
-
-		if (current_slot != 0 && save_preferences(current_slot, slot_name))
-			usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot].</span>"
+		if (current_slot != FALSE && save_preferences(current_slot, previous_slot))
+			if (internal_table.len > TRUE && current_slot != previous_slot)
+				usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot] (With a new name).</span>"
+			else
+				usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot].</span>"
 		else
 			usr << "<span class = 'bad'>FAILED to save current preferences to slot #[current_slot].</span>"
 		close_save_dialog(usr)
@@ -226,11 +222,13 @@ var/list/preferences_datums = list()
 	else if(href_list["load"])
 		if(!IsGuestKey(usr.key))
 			open_load_dialog(usr)
-			return 1
+			return TRUE
 
 	else if(href_list["loadfromslot"])
 		current_slot = text2num(href_list["loadfromslot"])
-		if (current_slot != 0)
+		if (current_slot == FALSE)
+			current_slot = TRUE
+		if (current_slot != FALSE)
 			if (load_preferences(current_slot))
 				usr << "<span class = 'good'>Successfully loaded preferences (slot #[current_slot]).</span>"
 			else
@@ -242,19 +240,19 @@ var/list/preferences_datums = list()
 
 	else if (href_list["delslot"])
 		current_slot = text2num(href_list["delslot"])
-		if (current_slot != 0)
+		if (current_slot != FALSE)
 			if (del_preferences(current_slot))
 				usr << "<span class = 'good'>Successfully DELETED preferences (slot #[current_slot]).</span>"
 			else
 				usr << "<span class = 'good'>failed to DELETE preferences (slot #[current_slot]).</span>"
 		close_del_dialog(usr)
 	else
-		return 0
+		return FALSE
 
 	ShowChoices(usr)
-	return 1
+	return TRUE
 
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = 0)
+/datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = FALSE)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
 	if(be_random_name)
@@ -373,7 +371,7 @@ var/list/preferences_datums = list()
 		var/status = organ_data[name]
 		var/obj/item/organ/external/O = character.organs_by_name[name]
 		if(O)
-			O.status = 0
+			O.status = FALSE
 			if(status == "amputated")
 				character.organs_by_name[O.limb_name] = null
 				character.organs -= O
@@ -405,8 +403,8 @@ var/list/preferences_datums = list()
 		else
 			all_underwear -= underwear_category_name*/
 
-	if(backbag > 4 || backbag < 1)
-		backbag = 1 //Same as above
+	if(backbag > 4 || backbag < TRUE)
+		backbag = TRUE //Same as above
 	character.backbag = backbag
 
 	//Debugging report to track down a bug, which randomly assigned the plural gender to people.
@@ -420,7 +418,7 @@ var/list/preferences_datums = list()
 	dat += "<tt><center>"
 
 	dat += "<b>Select a character slot to load from</b><hr>"
-	for (var/i in 1 to config.character_slots)
+	for (var/i in TRUE to config.character_slots)
 		if (preferences_exist(i))
 			dat += "<a href='?src=\ref[src];loadfromslot=[i]'>[i]. [get_DB_preference_value("real_name", i)]</a><br>"
 		else
@@ -440,7 +438,7 @@ var/list/preferences_datums = list()
 	dat += "<tt><center>"
 
 	dat += "<b>Select a character slot to save to</b><hr>"
-	for (var/i in 1 to config.character_slots)
+	for (var/i in TRUE to config.character_slots)
 		if (preferences_exist(i))
 			dat += "<a href='?src=\ref[src];savetoslot=[i]'>[i]. [get_DB_preference_value("real_name", i)]</a><br>"
 		else
@@ -460,7 +458,7 @@ var/list/preferences_datums = list()
 	dat += "<tt><center>"
 
 	dat += "<b>Select a character save to delete</b><hr>"
-	for (var/i in 1 to config.character_slots)
+	for (var/i in TRUE to config.character_slots)
 		if (preferences_exist(i))
 			dat += "<a href='?src=\ref[src];delslot=[i]'>[i]. [get_DB_preference_value("real_name", i)]</a><br>"
 		else
@@ -525,6 +523,6 @@ var/list/preferences_datums = list()
 	var/datum/client_preference/cp = get_client_preference_by_type(/datum/client_preference/play_lobby_music)
 	if (isnewplayer(mob))
 		if (is_preference_enabled(cp.key))
-			mob << sound(ticker.login_music, repeat = 1, wait = 0, volume = 85, channel = 1)
+			mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE)
 		else
-			mob << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
+			mob << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE)

@@ -5,8 +5,8 @@
 */
 
 // What each index means:
-#define DNA_OFF_LOWERBOUND 0
-#define DNA_OFF_UPPERBOUND 1
+#define DNA_OFF_LOWERBOUND FALSE
+#define DNA_OFF_UPPERBOUND TRUE
 #define DNA_ON_LOWERBOUND  2
 #define DNA_ON_UPPERBOUND  3
 
@@ -17,7 +17,7 @@
 #define DNA_HARD_BOUNDS    list(1,3490,3500,4095)
 
 // UI Indices (can change to mutblock style, if desired)
-#define DNA_UI_HAIR_R      1
+#define DNA_UI_HAIR_R      TRUE
 #define DNA_UI_HAIR_G      2
 #define DNA_UI_HAIR_B      3
 #define DNA_UI_BEARD_R     4
@@ -56,11 +56,11 @@ var/global/list/datum/dna/gene/dna_genes[0]
 /////////////////
 // Skip checking if it's already active.
 // Used for genes that check for value rather than a binary on/off.
-#define GENE_ALWAYS_ACTIVATE 1
+#define GENE_ALWAYS_ACTIVATE TRUE
 
 // Skip checking if it's already active.
 // Used for genes that check for value rather than a binary on/off.
-#define GENE_ALWAYS_ACTIVATE 1
+#define GENE_ALWAYS_ACTIVATE TRUE
 
 /datum/dna
 	// READ-ONLY, GETS OVERWRITTEN
@@ -129,27 +129,27 @@ var/global/list/datum/dna/gene/dna_genes[0]
 		character.f_style = "Shaved"
 	var/beard	= facial_hair_styles_list.Find(character.f_style)
 
-	SetUIValueRange(DNA_UI_HAIR_R,    character.r_hair,    255,    1)
-	SetUIValueRange(DNA_UI_HAIR_G,    character.g_hair,    255,    1)
-	SetUIValueRange(DNA_UI_HAIR_B,    character.b_hair,    255,    1)
+	SetUIValueRange(DNA_UI_HAIR_R,    character.r_hair,    255,    TRUE)
+	SetUIValueRange(DNA_UI_HAIR_G,    character.g_hair,    255,    TRUE)
+	SetUIValueRange(DNA_UI_HAIR_B,    character.b_hair,    255,    TRUE)
 
-	SetUIValueRange(DNA_UI_BEARD_R,   character.r_facial,  255,    1)
-	SetUIValueRange(DNA_UI_BEARD_G,   character.g_facial,  255,    1)
-	SetUIValueRange(DNA_UI_BEARD_B,   character.b_facial,  255,    1)
+	SetUIValueRange(DNA_UI_BEARD_R,   character.r_facial,  255,    TRUE)
+	SetUIValueRange(DNA_UI_BEARD_G,   character.g_facial,  255,    TRUE)
+	SetUIValueRange(DNA_UI_BEARD_B,   character.b_facial,  255,    TRUE)
 
-	SetUIValueRange(DNA_UI_EYES_R,    character.r_eyes,    255,    1)
-	SetUIValueRange(DNA_UI_EYES_G,    character.g_eyes,    255,    1)
-	SetUIValueRange(DNA_UI_EYES_B,    character.b_eyes,    255,    1)
+	SetUIValueRange(DNA_UI_EYES_R,    character.r_eyes,    255,    TRUE)
+	SetUIValueRange(DNA_UI_EYES_G,    character.g_eyes,    255,    TRUE)
+	SetUIValueRange(DNA_UI_EYES_B,    character.b_eyes,    255,    TRUE)
 
-	SetUIValueRange(DNA_UI_SKIN_R,    character.r_skin,    255,    1)
-	SetUIValueRange(DNA_UI_SKIN_G,    character.g_skin,    255,    1)
-	SetUIValueRange(DNA_UI_SKIN_B,    character.b_skin,    255,    1)
+	SetUIValueRange(DNA_UI_SKIN_R,    character.r_skin,    255,    TRUE)
+	SetUIValueRange(DNA_UI_SKIN_G,    character.g_skin,    255,    TRUE)
+	SetUIValueRange(DNA_UI_SKIN_B,    character.b_skin,    255,    TRUE)
 
-	SetUIValueRange(DNA_UI_SKIN_TONE, 35-character.s_tone, 220,    1) // Value can be negative.
+	SetUIValueRange(DNA_UI_SKIN_TONE, 35-character.s_tone, 220,    TRUE) // Value can be negative.
 
-	SetUIState(DNA_UI_GENDER,         character.gender!=MALE,        1)
+	SetUIState(DNA_UI_GENDER,         character.gender!=MALE,        TRUE)
 
-	SetUIValueRange(DNA_UI_HAIR_STYLE,  hair,  hair_styles_list.len,       1)
+	SetUIValueRange(DNA_UI_HAIR_STYLE,  hair,  hair_styles_list.len,       TRUE)
 	SetUIValueRange(DNA_UI_BEARD_STYLE, beard, facial_hair_styles_list.len,1)
 
 	UpdateUI()
@@ -166,14 +166,14 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 // Get a DNA UI block's raw value.
 /datum/dna/proc/GetUIValue(var/block)
-	if (block<=0) return 0
+	if (block<=0) return FALSE
 	return UI[block]
 
 // Set a DNA UI block's value, given a value and a max possible value.
 // Used in hair and facial styles (value being the index and maxvalue being the len of the hairstyle list)
 /datum/dna/proc/SetUIValueRange(var/block,var/value,var/maxvalue,var/defer=0)
 	if (block<=0) return
-	if (value==0) value = 1   // FIXME: hair/beard/eye RGB values if they are 0 are not set, this is a work around we'll encode it in the DNA to be 1 instead.
+	if (value==0) value = TRUE   // FIXME: hair/beard/eye RGB values if they are FALSE are not set, this is a work around we'll encode it in the DNA to be TRUE instead.
 	ASSERT(maxvalue<=4095)
 	var/range = (4095 / maxvalue)
 	if(value)
@@ -181,7 +181,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 // Getter version of above.
 /datum/dna/proc/GetUIValueRange(var/block,var/maxvalue)
-	if (block<=0) return 0
+	if (block<=0) return FALSE
 	var/value = GetUIValue(block)
 	return round(1 +(value / 4096)*maxvalue)
 
@@ -237,7 +237,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 // "Zeroes out" all of the blocks.
 /datum/dna/proc/ResetSE()
-	for(var/i = 1, i <= DNA_SE_LENGTH, i++)
+	for(var/i = TRUE, i <= DNA_SE_LENGTH, i++)
 		SetSEValue(i,rand(1,1024),1)
 	UpdateSE()
 
@@ -253,7 +253,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 // Get a DNA SE block's raw value.
 /datum/dna/proc/GetSEValue(var/block)
-	if (block<=0) return 0
+	if (block<=0) return FALSE
 	return SE[block]
 
 // Set a DNA SE block's value, given a value and a max possible value.
@@ -267,13 +267,13 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 // Getter version of above.
 /datum/dna/proc/GetSEValueRange(var/block,var/maxvalue)
-	if (block<=0) return 0
+	if (block<=0) return FALSE
 	var/value = GetSEValue(block)
 	return round(1 +(value / 4096)*maxvalue)
 
 // Is the block "on" (1) or "off" (0)? (Un-assigned genes are always off.)
 /datum/dna/proc/GetSEState(var/block)
-	if (block<=0) return 0
+	if (block<=0) return FALSE
 	var/list/BOUNDS=GetDNABounds(block)
 	var/value=GetSEValue(block)
 	return (value > BOUNDS[DNA_ON_LOWERBOUND])
@@ -325,7 +325,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	return add_zero2(num2hex(value,1), 3)
 
 /datum/dna/proc/UpdateUI()
-	src.uni_identity=""
+	uni_identity=""
 	for(var/block in UI)
 		uni_identity += EncodeDNABlock(block)
 	//testing("New UI: [uni_identity]")

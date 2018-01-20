@@ -7,7 +7,7 @@
 	icon_state = "director"
 	item_state = "lb_suit"
 
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = 10, rad = FALSE)
 
 
 
@@ -18,7 +18,7 @@
 	item_state = "w_suit"
 
 	permeability_coefficient = 0.50
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = 10, bio = FALSE, rad = FALSE)
 
 
 /obj/item/clothing/under/rank/chemist
@@ -28,7 +28,7 @@
 	item_state = "w_suit"
 
 	permeability_coefficient = 0.50
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = 10, rad = FALSE)
 
 /*
  * Medical
@@ -40,7 +40,7 @@
 	item_state = "w_suit"
 
 	permeability_coefficient = 0.50
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = 10, rad = FALSE)
 
 /obj/item/clothing/under/rank/geneticist
 	desc = "It's made of a special fiber that gives special protection against biohazards. It has a genetics rank stripe on it."
@@ -49,7 +49,7 @@
 	item_state = "w_suit"
 
 	permeability_coefficient = 0.50
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = 10, rad = FALSE)
 
 /obj/item/clothing/under/rank/virologist
 	desc = "It's made of a special fiber that gives special protection against biohazards. It has a virologist rank stripe on it."
@@ -58,7 +58,7 @@
 	item_state = "w_suit"
 
 	permeability_coefficient = 0.50
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = 10, rad = FALSE)
 
 
 
@@ -69,7 +69,7 @@
 	item_state = "w_suit"
 
 	permeability_coefficient = 0.50
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = 10, rad = FALSE)
 
 
 /obj/item/clothing/under/rank/medical/blue

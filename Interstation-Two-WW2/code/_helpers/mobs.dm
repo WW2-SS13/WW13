@@ -93,7 +93,7 @@ proc/random_german_name(gender, species = "Human")
 
 proc/russify(var/list/name_list, gender)
 	var/list/l = name_list.Copy()
-	for (var/v in 1 to l.len)
+	for (var/v in TRUE to l.len)
 		var/name = l[v]
 		if (gender == FEMALE)
 			name = replacetext(name, "ovich", "ovna")
@@ -154,7 +154,7 @@ proc/skintone2racedescription(tone)
 
 proc/age2agedescription(age)
 	switch(age)
-		if(0 to 1)			return "infant"
+		if(0 to TRUE)			return "infant"
 		if(1 to 3)			return "toddler"
 		if(3 to 13)			return "child"
 		if(13 to 19)		return "teenager"
@@ -209,7 +209,7 @@ proc/RoundHealth(health)
 			return "health10"
 		if(1 to 5)
 			return "health1"
-		if(-99 to 0)
+		if(-99 to FALSE)
 			return "health0"
 		else
 			return "health-100"
@@ -235,7 +235,7 @@ Proc for attack log creation, because really why not
 
 //checks whether this item is a module of the robot it is located in.
 /proc/is_robot_module(var/obj/item/thing)
-	return 0
+	return FALSE
 
 /proc/get_exposed_defense_zone(var/atom/movable/target)
 	var/obj/item/weapon/grab/G = locate() in target
@@ -244,9 +244,9 @@ Proc for attack log creation, because really why not
 	else
 		return pick("chest", "groin")
 
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1)
+/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = FALSE, progress = TRUE)
 	if(!user || !target)
-		return 0
+		return FALSE
 	var/user_loc = user.loc
 	var/target_loc = target.loc
 
@@ -257,35 +257,35 @@ Proc for attack log creation, because really why not
 
 	var/endtime = world.time+time
 	var/starttime = world.time
-	. = 1
+	. = TRUE
 	while (world.time < endtime)
 		sleep(1)
 		if (progress)
 			progbar.update(world.time - starttime)
 		if(!user || !target)
-			. = 0
+			. = FALSE
 			break
 		if(uninterruptible)
 			continue
 
 		if(!user || user.incapacitated() || user.loc != user_loc)
-			. = 0
+			. = FALSE
 			break
 
 		if(target.loc != target_loc)
-			. = 0
+			. = FALSE
 			break
 
 		if(user.get_active_hand() != holding)
-			. = 0
+			. = FALSE
 			break
 
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, can_move = 0)
+/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, var/incapacitation_flags = INCAPACITATION_DEFAULT, can_move = FALSE)
 	if(!user)
-		return 0
+		return FALSE
 
 	var/atom/target_loc = null
 	var/last_train_move_time = null
@@ -308,23 +308,23 @@ Proc for attack log creation, because really why not
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
-	. = 1
+	. = TRUE
 	while (world.time < endtime)
 		sleep(1)
 		if (progress)
 			progbar.update(world.time - starttime)
 
 		if(!user || user.incapacitated(incapacitation_flags))
-			. = 0
+			. = FALSE
 			break
 
 		if(target_loc && (!target || target_loc != target.loc))
-			. = 0
+			. = FALSE
 			break
 
 		if(!can_move)
 			if(user.loc != original_loc && !last_train_move_time)
-				. = 0
+				. = FALSE
 				break
 
 
@@ -333,12 +333,12 @@ Proc for attack log creation, because really why not
 		// - Kachnov
 		if (last_train_move_time)
 			if (user.last_moved_on_train != last_train_move_time || !user.is_on_train())
-				. = 0
+				. = FALSE
 				break
 
 		if(needhand)
 			if(user.get_active_hand() != holding)
-				. = 0
+				. = FALSE
 				break
 
 	if (progbar)
@@ -358,7 +358,7 @@ Proc for attack log creation, because really why not
 			name = "[name] ([namecounts[name]])"
 		else
 			names.Add(name)
-			namecounts[name] = 1
+			namecounts[name] = TRUE
 		if (M.real_name && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
 		if (M.stat == 2)
@@ -370,8 +370,8 @@ Proc for attack log creation, because really why not
 
 	return creatures
 
-/proc/getrussianmobs(var/alive = 0)
-	var/list/russians = list()
+/proc/getsovietmobs(var/alive = FALSE)
+	var/list/soviets = list()
 	for (var/mob/living/carbon/human/H in mob_list)
 		if (!istype(H))
 			continue
@@ -379,13 +379,13 @@ Proc for attack log creation, because really why not
 			continue
 		if (!H.loc)
 			continue
-		if (!istype(H.original_job, /datum/job/russian))
+		if (!istype(H.original_job, /datum/job/soviet))
 			continue
-		russians += H
+		soviets += H
 
-	return russians
+	return soviets
 
-/proc/getgermanmobs(var/alive = 0)
+/proc/getgermanmobs(var/alive = FALSE)
 	var/list/germans = list()
 	for (var/mob/living/carbon/human/H in mob_list)
 		if (!istype(H))
@@ -400,7 +400,7 @@ Proc for attack log creation, because really why not
 
 	return germans
 
-/proc/getukrainianmobs(var/alive = 0)
+/proc/getukrainianmobs(var/alive = FALSE)
 	var/list/ukrainians = list()
 	for (var/mob/living/carbon/human/H in mob_list)
 		if (!istype(H))
@@ -415,7 +415,7 @@ Proc for attack log creation, because really why not
 
 	return ukrainians
 
-/proc/getgermanparatroopers(var/alive = 0)
+/proc/getgermanparatroopers(var/alive = FALSE)
 	var/list/germans = getgermanmobs(alive)
 	var/list/paratroopers = list()
 	for (var/mob/living/carbon/human/H in germans)
@@ -423,7 +423,7 @@ Proc for attack log creation, because really why not
 			paratroopers += H
 	return paratroopers
 
-/proc/getSS(var/alive = 0)
+/proc/getSS(var/alive = FALSE)
 	var/list/germans = getgermanmobs(alive)
 	var/list/SS = list()
 	for (var/mob/living/carbon/human/H in germans)
@@ -431,7 +431,7 @@ Proc for attack log creation, because really why not
 			SS += H
 	return SS
 
-/proc/getcivilians(var/alive = 0)
+/proc/getcivilians(var/alive = FALSE)
 	var/list/ukrainians = getukrainianmobs(alive)
 	var/list/civilians = list()
 	for (var/mob/living/carbon/human/H in ukrainians)
@@ -439,7 +439,7 @@ Proc for attack log creation, because really why not
 			civilians += H
 	return civilians
 
-/proc/getpartisans(var/alive = 0)
+/proc/getpartisans(var/alive = FALSE)
 	var/list/ukrainians = getukrainianmobs(alive)
 	var/list/partisans = list()
 	for (var/mob/living/carbon/human/H in ukrainians)
@@ -460,8 +460,8 @@ Proc for attack log creation, because really why not
 			mobs = mob_list // we want actual mobs, not name = mob
 		if (GERMAN)
 			mobs = getgermanmobs(1)
-		if (RUSSIAN, "SOVIET")
-			mobs = getrussianmobs(1)
+		if (SOVIET, "SOVIET")
+			mobs = getsovietmobs(1)
 		if ("PARATROOPERS")
 			mobs = getgermanparatroopers(1)
 		if ("SS")

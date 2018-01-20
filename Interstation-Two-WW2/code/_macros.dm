@@ -1,5 +1,5 @@
 #define Clamp(value, low, high) 	(value <= low ? low : (value >= high ? high : value))
-#define CLAMP01(x) 		(Clamp(x, 0, 1))
+#define CLAMP01(x) 		(Clamp(x, FALSE, TRUE))
 
 #define isdatum(A) istype(A, /datum)
 

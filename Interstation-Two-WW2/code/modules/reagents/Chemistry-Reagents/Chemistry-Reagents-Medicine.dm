@@ -9,12 +9,12 @@
 	color = "#00BFFF"
 	overdose = REAGENTS_OVERDOSE * 2
 	metabolism = REM * 0.5
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_STABLE)
 	M.add_chemical_effect(CE_PAINKILLER, 25)
-	M.add_chemical_effect(CE_PULSE, 1)
+	M.add_chemical_effect(CE_PULSE, TRUE)
 
 /datum/reagent/bicaridine
 	name = "Bicaridine"
@@ -25,10 +25,10 @@
 	reagent_state = LIQUID
 	color = "#BF0000"
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.heal_organ_damage(6 * removed, 0)
+	M.heal_organ_damage(6 * removed, FALSE)
 
 /datum/reagent/kelotane
 	name = "Kelotane"
@@ -38,7 +38,7 @@
 	reagent_state = LIQUID
 	color = "#FFA800"
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/kelotane/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.heal_organ_damage(0, 6 * removed)
@@ -52,7 +52,7 @@
 	reagent_state = LIQUID
 	color = "#FF8000"
 	overdose = REAGENTS_OVERDOSE * 0.5
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/dermaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.heal_organ_damage(0, 12 * removed)
@@ -64,7 +64,7 @@
 	taste_description = "a roll of gauze"
 	reagent_state = LIQUID
 	color = "#00A000"
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/dylovene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.drowsyness = max(0, M.drowsyness - 6 * removed)
@@ -79,7 +79,7 @@
 	reagent_state = LIQUID
 	color = "#0080FF"
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustOxyLoss(-15 * removed)
@@ -93,7 +93,7 @@
 	reagent_state = LIQUID
 	color = "#0040FF"
 	overdose = REAGENTS_OVERDOSE * 0.5
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustOxyLoss(-300 * removed)
@@ -106,7 +106,7 @@
 	taste_description = "grossness"
 	reagent_state = LIQUID
 	color = "#8040FF"
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustOxyLoss(-6 * removed)
@@ -121,7 +121,7 @@
 	reagent_state = LIQUID
 	color = "#8080FF"
 	metabolism = REM * 0.5
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/cryoxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.bodytemperature < 170)
@@ -139,7 +139,7 @@
 	reagent_state = LIQUID
 	color = "#80BFFF"
 	metabolism = REM * 0.5
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/clonexadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.bodytemperature < 170)
@@ -159,7 +159,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose = 60
-	scannable = 1
+	scannable = TRUE
 	metabolism = 0.02
 
 /datum/reagent/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -177,7 +177,7 @@
 	reagent_state = LIQUID
 	color = "#CB68FC"
 	overdose = 30
-	scannable = 1
+	scannable = TRUE
 	metabolism = 0.02
 
 /datum/reagent/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -216,10 +216,10 @@
 	color = "#99CCFF"
 	metabolism = REM * 0.05
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/synaptizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.drowsyness = max(M.drowsyness - 5, 0)
+	M.drowsyness = max(M.drowsyness - 5, FALSE)
 	M.AdjustParalysis(-1)
 	M.AdjustStunned(-1)
 	M.AdjustWeakened(-1)
@@ -237,7 +237,7 @@
 	color = "#FFFF66"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustBrainLoss(-30 * removed)
@@ -251,17 +251,17 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/imidazoline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.eye_blurry = max(M.eye_blurry - 5, 0)
-	M.eye_blind = max(M.eye_blind - 5, 0)
+	M.eye_blurry = max(M.eye_blurry - 5, FALSE)
+	M.eye_blind = max(M.eye_blind - 5, FALSE)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(E && istype(E))
-			if(E.damage > 0)
-				E.damage = max(E.damage - 5 * removed, 0)
+			if(E.damage > FALSE)
+				E.damage = max(E.damage - 5 * removed, FALSE)
 
 /datum/reagent/peridaxon
 	name = "Peridaxon"
@@ -271,15 +271,15 @@
 	reagent_state = LIQUID
 	color = "#561EC3"
 	overdose = 10
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/peridaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
 		for(var/obj/item/organ/I in H.internal_organs)
-			if((I.damage > 0) && (I.robotic != 2)) //Peridaxon heals only non-robotic organs
-				I.damage = max(I.damage - removed, 0)
+			if((I.damage > FALSE) && (I.robotic != 2)) //Peridaxon heals only non-robotic organs
+				I.damage = max(I.damage - removed, FALSE)
 
 /datum/reagent/ryetalyn
 	name = "Ryetalyn"
@@ -291,11 +291,11 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/ryetalyn/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/needs_update = M.mutations.len > 0
+	var/needs_update = M.mutations.len > FALSE
 
 	M.mutations = list()
-	M.disabilities = 0
-	M.sdisabilities = 0
+	M.disabilities = FALSE
+	M.sdisabilities = FALSE
 
 	// Might need to update appearance for hulk etc.
 	if(needs_update && ishuman(M))
@@ -315,7 +315,7 @@
 /datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
-	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	M.add_chemical_effect(CE_SPEEDBOOST, TRUE)
 	M.add_chemical_effect(CE_PULSE, 2)
 
 /datum/reagent/ethylredoxrazine
@@ -327,14 +327,14 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/ethylredoxrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.dizziness = 0
-	M.drowsyness = 0
-	M.stuttering = 0
-	M.confused = 0
+	M.dizziness = FALSE
+	M.drowsyness = FALSE
+	M.stuttering = FALSE
+	M.confused = FALSE
 	if(M.ingested)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
-				R.dose = max(R.dose - removed * 5, 0)
+				R.dose = max(R.dose - removed * 5, FALSE)
 
 /datum/reagent/hyronalin
 	name = "Hyronalin"
@@ -345,10 +345,10 @@
 	color = "#408000"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/hyronalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.radiation = max(M.radiation - 30 * removed, 0)
+	M.radiation = max(M.radiation - 30 * removed, FALSE)
 
 /datum/reagent/arithrazine
 	name = "Arithrazine"
@@ -358,13 +358,13 @@
 	color = "#008000"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/arithrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.radiation = max(M.radiation - 70 * removed, 0)
+	M.radiation = max(M.radiation - 70 * removed, FALSE)
 	M.adjustToxLoss(-10 * removed)
 	if(prob(60))
-		M.take_organ_damage(4 * removed, 0)
+		M.take_organ_damage(4 * removed, FALSE)
 
 /datum/reagent/spaceacillin
 	name = "Spaceacillin"
@@ -375,7 +375,7 @@
 	color = "#C1C1C1"
 	metabolism = REM * 0.05
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/sterilizine
 	name = "Sterilizine"
@@ -411,7 +411,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/leporazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.bodytemperature > 310)
@@ -431,7 +431,7 @@
 	reagent_state = LIQUID
 	color = "#BF80BF"
 	metabolism = 0.01
-	data = 0
+	data = FALSE
 
 /datum/reagent/methylphenidate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(volume <= 0.1 && data != -1)
@@ -450,7 +450,7 @@
 	reagent_state = LIQUID
 	color = "#FF80FF"
 	metabolism = 0.01
-	data = 0
+	data = FALSE
 
 /datum/reagent/citalopram/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(volume <= 0.1 && data != -1)
@@ -468,7 +468,7 @@
 	reagent_state = LIQUID
 	color = "#FF80BF"
 	metabolism = 0.01
-	data = 0
+	data = FALSE
 
 /datum/reagent/paroxetine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(volume <= 0.1 && data != -1)
@@ -491,7 +491,7 @@
 	reagent_state = SOLID
 	color = "#669900"
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
+	scannable = TRUE
 
 /datum/reagent/rezadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustCloneLoss(-20 * removed)
@@ -535,5 +535,5 @@
 /datum/reagent/pervitin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
-	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	M.add_chemical_effect(CE_SPEEDBOOST, TRUE)
 	M.add_chemical_effect(CE_PULSE, 2)

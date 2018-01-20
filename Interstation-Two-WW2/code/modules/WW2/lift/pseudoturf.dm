@@ -4,7 +4,7 @@
 var/turf/floor/plating/under/ref_under_plating = null
 
 /obj/lift_pseudoturf
-	anchored = 1
+	anchored = TRUE
 	name = "lift" // so we can edit it
 	layer = TURF_LAYER + 0.01
 	var/obj/lift_controller/master = null

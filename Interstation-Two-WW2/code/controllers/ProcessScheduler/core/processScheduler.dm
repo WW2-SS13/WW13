@@ -36,7 +36,7 @@ var/global/datum/controller/processScheduler/processScheduler
 	var/tmp/scheduler_sleep_interval
 
 	// Controls whether the scheduler is running or not
-	var/tmp/isRunning = 0
+	var/tmp/isRunning = FALSE
 
 	// Setup for these processes will be deferred until all the other processes are set up.
 	var/tmp/list/deferredSetupList = new
@@ -73,7 +73,7 @@ var/global/datum/controller/processScheduler/processScheduler
 	// There can be only one
 	if(processScheduler && (processScheduler != src))
 		del(src)
-		return 0
+		return FALSE
 
 	var/process
 	// Add all the processes we can find, except for the ticker
@@ -85,7 +85,7 @@ var/global/datum/controller/processScheduler/processScheduler
 		addProcess(new process(src))
 
 /datum/controller/processScheduler/proc/start()
-	isRunning = 1
+	isRunning = TRUE
 	// tick_lag will have been set by now, so re-initialize these
 	scheduler_sleep_interval = world.tick_lag
 	timeAllowance = world.tick_lag * 0.5
@@ -108,7 +108,7 @@ var/global/datum/controller/processScheduler/processScheduler
 		sleep(scheduler_sleep_interval)
 
 /datum/controller/processScheduler/proc/stop()
-	isRunning = 0
+	isRunning = FALSE
 
 /datum/controller/processScheduler/proc/checkRunningProcesses()
 	for(var/datum/controller/process/p in running)
@@ -315,7 +315,7 @@ var/global/datum/controller/processScheduler/processScheduler
 
 /datum/controller/processScheduler/proc/hasProcess(var/processName as text)
 	if (nameToProcessMap[processName])
-		return 1
+		return TRUE
 
 /datum/controller/processScheduler/proc/killProcess(var/processName as text)
 	restartProcess(processName)

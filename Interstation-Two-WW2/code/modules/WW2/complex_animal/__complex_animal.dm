@@ -15,7 +15,7 @@
 	var/list/knows_about_mobs = list()
 
 	// who are we going to kill or not kill: by default we do NOT kill anyone
-	var/friendly_to_base_type = 1
+	var/friendly_to_base_type = TRUE
 	var/list/unfriendly_types = list()
 
 	// if a mob is in unfriendly_types() but friendly_factions(), faction wins
@@ -34,7 +34,7 @@
 	var/dead_state = null
 
 	// can we move outside of the area we started in, or an area we were moved to
-	var/allow_moving_outside_home = 0
+	var/allow_moving_outside_home = FALSE
 
 	// how likely are we to try and wander each lifetick
 	var/wander_probability = 20
@@ -50,12 +50,13 @@
 /mob/living/simple_animal/complex_animal/proc/onEveryLifeTick()
 
 	if (stat == DEAD)
-		return 0
+		return FALSE
 
-	if (prob(1) && prob(15) && !resting && can_rest_specialcheck())
-		nap()
-	else if (resting && prob(1))
-		stop_napping()
+	if (!client)
+		if (prob(1) && prob(15) && !resting && can_rest_specialcheck())
+			nap()
+		else if (resting && prob(1))
+			stop_napping()
 
 	// todo: dehydration
 
@@ -68,110 +69,112 @@
 	if (stat == UNCONSCIOUS)
 		return -1
 
-	if (prob(wander_probability) && !resting && can_wander_specialcheck())
-		var/list/possible_wander_locations = list()
-		for (var/turf/T in trange(1, src))
-			if (!T.density && !istype(T, /turf/wall))
-				for (var/atom/movable/AM in T.contents)
-					if (AM.density)
-						continue
-				if (get_area(T) != get_area(src))
-					if (!allow_moving_outside_home)
-						continue
-				if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
-					var/mob/living/simple_animal/complex_animal/canine/dog/D = src
-					if (D.last_patrol_area == get_area(T))
-						continue
-
-				possible_wander_locations += T
-
-		// patrolling dogs will always exit their current area if possible
-		var/list/possible_wander_areas = list()
-		var/area/forced_wander_area = null
-
-		for (var/turf/T in possible_wander_locations)
-			possible_wander_areas |= get_area(T)
-
-		// patrolling dogs will always try to exit their area.
-		if (possible_wander_areas.len > 1)
-			for (var/area/A in possible_wander_areas)
-				if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
-					var/mob/living/simple_animal/complex_animal/canine/dog/D = src
-					if (D.patrolling)
-						if (A != get_area(src))
-							forced_wander_area = A
-
-		for (var/turf/T in possible_wander_locations)
-			if (!forced_wander_area || get_area(T) == forced_wander_area)
-
-				if (forced_wander_area)
+	if (!client)
+		if (prob(wander_probability) && !resting && can_wander_specialcheck())
+			var/list/possible_wander_locations = list()
+			for (var/turf/T in trange(1, src))
+				if (!T.density && !istype(T, /turf/wall))
+					for (var/atom/movable/AM in T.contents)
+						if (AM.density)
+							continue
+					if (get_area(T) != get_area(src))
+						if (!allow_moving_outside_home)
+							continue
 					if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
 						var/mob/living/simple_animal/complex_animal/canine/dog/D = src
 						if (D.last_patrol_area == get_area(T))
 							continue
 
-				if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
-					var/mob/living/simple_animal/complex_animal/canine/dog/D = src
-					D.last_patrol_area = get_area(get_turf(D))
+					possible_wander_locations += T
 
-				Move(T, get_dir(loc, T))
+			// patrolling dogs will always exit their current area if possible
+			var/list/possible_wander_areas = list()
+			var/area/forced_wander_area = null
 
-	return 1
+			for (var/turf/T in possible_wander_locations)
+				possible_wander_areas |= get_area(T)
+
+			// patrolling dogs will always try to exit their area.
+			if (possible_wander_areas.len > TRUE)
+				for (var/area/A in possible_wander_areas)
+					if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
+						var/mob/living/simple_animal/complex_animal/canine/dog/D = src
+						if (D.patrolling)
+							if (A != get_area(src))
+								forced_wander_area = A
+
+			for (var/turf/T in possible_wander_locations)
+				if (!forced_wander_area || get_area(T) == forced_wander_area)
+
+					if (forced_wander_area)
+						if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
+							var/mob/living/simple_animal/complex_animal/canine/dog/D = src
+							if (D.last_patrol_area == get_area(T))
+								continue
+
+					if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
+						var/mob/living/simple_animal/complex_animal/canine/dog/D = src
+						D.last_patrol_area = get_area(get_turf(D))
+
+					Move(T, get_dir(loc, T))
+
+	return TRUE
 
 	// todo: starvation
 
 /mob/living/simple_animal/complex_animal/proc/can_wander_specialcheck()
-	return 1
+	return TRUE
 
 /mob/living/simple_animal/complex_animal/proc/can_rest_specialcheck()
-	return 1
+	return TRUE
 
 // things we do when someone touches us
 /mob/living/simple_animal/complex_animal/proc/onTouchedBy(var/mob/living/human/H, var/intent = I_HELP)
-	if (stat == DEAD || stat == UNCONSCIOUS)
-		return 0
-	return 1
+	if (stat == DEAD || stat == UNCONSCIOUS || client)
+		return FALSE
+	return TRUE
 
 // things we do when someone attacks us
 /mob/living/simple_animal/complex_animal/proc/onAttackedBy(var/mob/living/human/H, var/obj/item/weapon/W)
-	if (stat == DEAD || stat == UNCONSCIOUS)
-		return 0
-	return 1
+	if (stat == DEAD || stat == UNCONSCIOUS || client)
+		return FALSE
+	return TRUE
 
 /* things we do whenever a nearby human moves:
 called after H added to knows_about_mobs() */
 /mob/living/simple_animal/complex_animal/proc/onHumanMovement(var/mob/living/human/H)
-	if (stat == DEAD || stat == UNCONSCIOUS)
-		return 0
-	return 1
+	if (stat == DEAD || stat == UNCONSCIOUS || client)
+		return FALSE
+	return TRUE
 
 // things we do whenever a mob with our base_type moves
 /mob/living/simple_animal/complex_animal/proc/onEveryBaseTypeMovement(var/mob/living/simple_animal/complex_animal/C)
-	if (stat == DEAD || stat == UNCONSCIOUS)
-		return 0
-	return 1
+	if (stat == DEAD || stat == UNCONSCIOUS || client)
+		return FALSE
+	return TRUE
 
 // things we do whenever a mob with type 'X' moves
 /mob/living/simple_animal/complex_animal/proc/onEveryXMovement(var/mob/X)
-	if (stat == DEAD || stat == UNCONSCIOUS)
-		return 0
-	return 1
+	if (stat == DEAD || stat == UNCONSCIOUS || client)
+		return FALSE
+	return TRUE
 
 
 /mob/living/simple_animal/complex_animal/bullet_act(var/obj/item/projectile/P, var/def_zone)
 	var/dmg = P.damage * random_decimal(0.7,1.3)
 	if (prob(33))
 		dmg /= rand(5,10)
-		visible_message("<span class = 'warning'>/the [P] just grazes /the [src].</span>")
+		visible_message("<span class = 'warning'>\the [P] just grazes \the [src].</span>")
 	apply_damage(dmg)
-	if (P.firer && (P.original == src || !P.firer.original_job || P.firer.original_job.base_type_flag() != faction))
-		enemies |= P.firer
-		onHumanMovement(P.firer)
-		for (var/mob/living/simple_animal/complex_animal/C in oview(7, src))
-			if (C.faction == faction && C.type == type)
-				C.enemies |= P.firer
-				C.onHumanMovement(P.firer)
+	if (client)
+		if (P.firer && (P.original == src || !P.firer.original_job || P.firer.original_job.base_type_flag() != faction))
+			enemies |= P.firer
+			onHumanMovement(P.firer)
+			for (var/mob/living/simple_animal/complex_animal/C in oview(7, src))
+				if (C.faction == faction && C.type == type)
+					C.enemies |= P.firer
+					C.onHumanMovement(P.firer)
 
 /mob/living/simple_animal/complex_animal/death(gibbed, deathmessage = "dies!")
 	..(gibbed, deathmessage)
-	walk(src, 0)
+	walk(src, FALSE)

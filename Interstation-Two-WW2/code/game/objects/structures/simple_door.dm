@@ -1,15 +1,15 @@
 /obj/structure/simple_door
 	name = "door"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	icon = 'icons/obj/doors/material_doors.dmi'
 	icon_state = "metal"
 
 	var/material/material
-	var/state = 0 //closed, 1 == open
-	var/isSwitchingStates = 0
-	var/hardness = 1
+	var/state = FALSE //closed, TRUE == open
+	var/isSwitchingStates = FALSE
+	var/hardness = TRUE
 	var/oreAmount = 7
 
 	var/override_material_state = null
@@ -26,7 +26,7 @@
 	visible_message("<span class = 'danger'>[src] is hit by the bullet!</span>")
 	if (istype(src, /obj/structure/simple_door/key_door))
 		src:damage_display()
-	if (health <= 0)
+	if (health <= FALSE)
 		qdel(src)
 
 /obj/structure/simple_door/proc/TemperatureAct(temperature)
@@ -50,9 +50,9 @@
 	name = "[material.display_name] door"
 	color = material.icon_colour
 	if(material.opacity < 0.5)
-		opacity = 0
+		opacity = FALSE
 	else
-		opacity = 1
+		opacity = TRUE
 	if(material.products_need_process())
 		processing_objects |= src
 	update_nearby_tiles(need_rebuild=1)
@@ -75,19 +75,19 @@
 	return TryToSwitchState(user)
 
 /obj/structure/simple_door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return 0
+	if(air_group) return FALSE
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
 	return !density
 
 /obj/structure/simple_door/proc/TryToSwitchState(atom/user)
-	if(isSwitchingStates) return 0
+	if(isSwitchingStates) return FALSE
 	if(ismob(user) && canOpen(user))
 		var/mob/M = user
 		if(!material.can_open_material_door(user))
-			return 0
+			return FALSE
 		if(world.time - user.last_bumped <= 60)
-			return 0
+			return FALSE
 		if(M.client)
 			if(iscarbon(M))
 				var/mob/living/carbon/C = M
@@ -95,7 +95,7 @@
 					SwitchState()
 			else
 				SwitchState()
-	return 1
+	return TRUE
 
 
 
@@ -108,33 +108,33 @@
 
 /obj/structure/simple_door/proc/canOpen(var/mob/user as mob)
 	if (!user || !istype(user))
-		return 0
+		return FALSE
 	else
-		return 1
+		return TRUE
 
 
 /obj/structure/simple_door/proc/Open()
-	isSwitchingStates = 1
-	playsound(loc, material.dooropen_noise, 100, 1)
+	isSwitchingStates = TRUE
+	playsound(loc, material.dooropen_noise, 100, TRUE)
 	flick("[material.door_icon_base]opening",src)
 	spawn (10)
-		density = 0
-		opacity = 0
-		state = 1
+		density = FALSE
+		opacity = FALSE
+		state = TRUE
 		update_icon()
-		isSwitchingStates = 0
+		isSwitchingStates = FALSE
 		update_nearby_tiles()
 
 /obj/structure/simple_door/proc/Close()
-	isSwitchingStates = 1
-	playsound(loc, material.dooropen_noise, 100, 1)
+	isSwitchingStates = TRUE
+	playsound(loc, material.dooropen_noise, 100, TRUE)
 	flick("[material.door_icon_base]closing",src)
 	spawn (10)
-		density = 1
-		opacity = 1
-		state = 0
+		density = TRUE
+		opacity = TRUE
+		state = FALSE
 		update_icon()
-		isSwitchingStates = 0
+		isSwitchingStates = FALSE
 		update_nearby_tiles()
 
 /obj/structure/simple_door/update_icon()
@@ -154,17 +154,17 @@
 			TemperatureAct(150)
 	else
 		attack_hand(user)
-	return 1 // for key_doors
+	return TRUE // for key_doors
 
 /obj/structure/simple_door/proc/CheckHardness()
-	if(hardness <= 0)
+	if(hardness <= FALSE)
 		Dismantle(1)
 
-/obj/structure/simple_door/proc/Dismantle(devastated = 0)
+/obj/structure/simple_door/proc/Dismantle(devastated = FALSE)
 	material.place_dismantled_product(get_turf(src))
 	qdel(src)
 
-/obj/structure/simple_door/ex_act(severity = 1)
+/obj/structure/simple_door/ex_act(severity = TRUE)
 	switch(severity)
 		if(1)
 			Dismantle(1)

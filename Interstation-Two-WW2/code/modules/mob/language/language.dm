@@ -14,7 +14,7 @@
 	var/signlang_verb = list("signs") // list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
 	var/colour = "body"               // CSS style to use for strings in this language.
 	var/key = "x"                     // Character used to speak in language eg. :o for Unathi.
-	var/flags = 0                     // Various language flags.
+	var/flags = FALSE                     // Various language flags.
 	var/native                        // If set, non-native speakers will have trouble speaking.
 	var/list/syllables                // Used when scrambling text for a non-speaker.
 	var/list/space_chance = 55        // Likelihood of getting a space in the random scramble string
@@ -29,7 +29,7 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = 0;i<name_count;i++)
+	for(var/i = FALSE;i<name_count;i++)
 		new_name = ""
 		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
@@ -47,7 +47,7 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = 0;i<name_count;i++)
+	for(var/i = FALSE;i<name_count;i++)
 		new_name = ""
 		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
@@ -66,7 +66,7 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = 0;i<name_count;i++)
+	for(var/i = FALSE;i<name_count;i++)
 		new_name = ""
 		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
@@ -84,7 +84,7 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = 0;i<name_count;i++)
+	for(var/i = FALSE;i<name_count;i++)
 		new_name = ""
 		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
@@ -109,18 +109,18 @@
 
 	var/input_size = length(input)
 	var/scrambled_text = ""
-	var/capitalize = 1
+	var/capitalize = TRUE
 
 	while(length(scrambled_text) < input_size)
 		var/next = pick(syllables)
 		if(capitalize)
 			next = capitalize(next)
-			capitalize = 0
+			capitalize = FALSE
 		scrambled_text += next
 		var/chance = rand(100)
 		if(chance <= 5)
 			scrambled_text += ". "
-			capitalize = 1
+			capitalize = TRUE
 		else if(chance > 5 && chance <= space_chance)
 			scrambled_text += " "
 
@@ -150,7 +150,7 @@
 
 /datum/language/proc/get_talkinto_msg_range(message)
 	// if you yell, you'll be heard from two tiles over instead of one
-	return (copytext(message, length(message)) == "!") ? 2 : 1
+	return (copytext(message, length(message)) == "!") ? 2 : TRUE
 
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	log_say("[key_name(speaker)] : ([name]) [message]")
@@ -176,7 +176,7 @@
 		src << "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>"
 
 /datum/language/proc/check_special_condition(var/mob/other)
-	return 1
+	return TRUE
 
 /datum/language/proc/get_spoken_verb(var/msg_end)
 	switch(msg_end)
@@ -187,19 +187,19 @@
 	return speech_verb
 
 // Language handling.
-/mob/proc/add_language(var/language, var/allow_name_changing = 0)
+/mob/proc/add_language(var/language, var/allow_name_changing = FALSE)
 
 	var/datum/language/new_language = all_languages[language]
 
-	var/cname_check = 1
+	var/cname_check = TRUE
 
 	for (var/v in 1 to languages.len)
 		var/datum/language/l = languages[v]
 		if (l)
 			if (istype(l, /datum/language/german))
-				cname_check = 0
+				cname_check = FALSE
 			else if (istype(l, /datum/language/russian))
-				cname_check = 0
+				cname_check = FALSE
 
 	if (cname_check && allow_name_changing)
 		if (istype(new_language, /datum/language/german))
@@ -207,7 +207,7 @@
 				var/mob/living/carbon/human/H = src
 				if (H.species)
 					if (H.client.prefs.be_random_name_german)
-						H.real_name = H.species.get_random_german_name(H.gender, 0)
+						H.real_name = H.species.get_random_german_name(H.gender, FALSE)
 					else
 						H.real_name = H.client.prefs.german_name
 					H.name = H.client.prefs.real_name
@@ -219,7 +219,7 @@
 				var/mob/living/carbon/human/H = src
 				if (H.species)
 					if (H.client.prefs.be_random_name_russian)
-						H.real_name = H.species.get_random_russian_name(H.gender, 0)
+						H.real_name = H.species.get_random_russian_name(H.gender, FALSE)
 					else
 						H.real_name = H.client.prefs.russian_name
 					H.name = H.real_name
@@ -230,17 +230,17 @@
 				var/mob/living/carbon/human/H = src
 				if (H.species)
 					if (H.client.prefs.be_random_name_ukrainian)
-						H.real_name = H.species.get_random_ukrainian_name(H.gender, 0)
+						H.real_name = H.species.get_random_ukrainian_name(H.gender, FALSE)
 					else
 						H.real_name = H.client.prefs.ukrainian_name
 					H.name = H.real_name
 					H.gender = H.client.prefs.ukrainian_gender
 
 	if(!istype(new_language) || (new_language in languages))
-		return 0
+		return FALSE
 
 	languages.Add(new_language)
-	return 1
+	return TRUE
 
 /mob/proc/remove_language(var/rem_language)
 	var/datum/language/L = all_languages[rem_language]
@@ -255,7 +255,7 @@
 
 // Can we speak this language, as opposed to just understanding it?
 /mob/proc/can_speak(datum/language/speaking)
-	return (universal_speak || (speaking && speaking.flags & INNATE) || speaking in src.languages)
+	return (universal_speak || (speaking && speaking.flags & INNATE) || speaking in languages)
 
 /mob/proc/get_language_prefix()
 	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
@@ -308,7 +308,7 @@
 			if(L && (L in languages))
 				set_default_language(L)
 		check_languages()
-		return 1
+		return TRUE
 	else
 		return ..()
 

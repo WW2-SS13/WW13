@@ -1,5 +1,5 @@
 /client/verb/reportabug()
-	set hidden = 1
+	set hidden = TRUE
 
 	establish_db_connection()
 
@@ -10,7 +10,7 @@
 		return
 
 	if (lentext(bugname) > 100)
-		bugname = copytext(bugname, 1, 101)
+		bugname = copytext(bugname, TRUE, 101)
 		src << "<span class = 'warning'>Your bug's name was clamped to 100 characters.</span>"
 
 	var/check_name_already_exists = database.execute("SELECT * FROM bug_reports WHERE name = '[bugname]';", FALSE)
@@ -24,7 +24,7 @@
 
 	var/bugdesc = input("What is the bug's description?") as text
 	if (lentext(bugdesc) > 500)
-		bugdesc = copytext(bugdesc, 1, 501)
+		bugdesc = copytext(bugdesc, TRUE, 501)
 		src << "<span class = 'warning'>Your bug's description was clamped to 500 characters.</span>"
 
 	if (!bugdesc)
@@ -41,7 +41,7 @@
 			var/step = input("What is a description of step number #[stepnum]?") as text
 			step = sanitizeSQL(step)
 			if (lentext(step) > 200)
-				step = copytext(step, 1, 201)
+				step = copytext(step, TRUE, 201)
 				src << "<span class = 'warning'>[step] #[stepnum] was clamped to 200 characters.</span>"
 			steps += step
 			if (stepnum == 10)
@@ -65,7 +65,7 @@
 
 	var/anything_else = input("Anything else?") as text
 	if (lentext(anything_else) > 1000)
-		bugdesc = copytext(anything_else, 1, 1001)
+		bugdesc = copytext(anything_else, TRUE, 1001)
 		src << "<span class = 'warning'>Your bug's 'anything else' value was clamped to 1000 characters.</span>"
 
 	if (!anything_else)
@@ -93,7 +93,7 @@
 		src << "<span class = 'warning'>Please fill in all fields!</span>"
 
 /client/verb/makeasugg()
-	set hidden = 1
+	set hidden = TRUE
 
 	if (isPatron("$5+") && (input(src, "You are a Patron. Would you like to submit a tip that will be displayed at roundstart?") in list("Yes", "No")) == "Yes")
 		establish_db_connection()
@@ -101,7 +101,7 @@
 		if (!tip)
 			return
 		if (lentext(tip) > 500)
-			tip = copytext(tip, 1, 501)
+			tip = copytext(tip, TRUE, 501)
 			src << "<span class = 'warning'>Your tip's name was clamped to 500 characters.</span>"
 		tip = sanitizeSQL(tip, 500)
 		if (database.execute("INSERT INTO player_tips (UID, submitter, tip) VALUES ('[database.newUID()]', '[ckey]', '[tip]');"))
@@ -119,7 +119,7 @@
 			return
 
 		if (lentext(suggname) > 100)
-			suggname = copytext(suggname, 1, 101)
+			suggname = copytext(suggname, TRUE, 101)
 			src << "<span class = 'warning'>Your suggestion's name was clamped to 50 characters.</span>"
 
 		var/check_name_already_exists = database.execute("SELECT * FROM suggestions WHERE name = '[suggname]';", FALSE)
@@ -133,7 +133,7 @@
 
 		var/suggdesc = input("What is the suggestions's description?") as text
 		if (lentext(suggdesc) > 500)
-			suggdesc = copytext(suggdesc, 1, 501)
+			suggdesc = copytext(suggdesc, TRUE, 501)
 			src << "<span class = 'warning'>Your suggestion's description was clamped to 500 characters.</span>"
 
 		if (!suggdesc)

@@ -6,7 +6,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
-	throw_speed = 1
+	throw_speed = TRUE
 	throw_range = 4
 	w_class = 4
 	max_w_class = 3

@@ -30,9 +30,9 @@
 			if(isnum(C.player_age))
 				age = C.player_age
 			else
-				age = 0
+				age = FALSE
 
-			if(age <= 1)
+			if(age <= TRUE)
 				age = "<font color='#ff0000'><b>[age]</b></font>"
 			else if(age < 10)
 				age = "<font color='#ff8c00'><b>[age]</b></font>"
@@ -68,18 +68,18 @@
 	var/mentmsg = ""
 	var/devmsg = ""
 
-	var/num_highstaff_online = 0
-	var/num_mods_online = 0
-	var/num_admins_online = 0
-	var/num_mentors_online = 0
-	var/num_devs_online = 0
+	var/num_highstaff_online = FALSE
+	var/num_mods_online = FALSE
+	var/num_admins_online = FALSE
+	var/num_mentors_online = FALSE
+	var/num_devs_online = FALSE
 
 	if(holder)
 		for(var/client/C in admins)
 			if(!C.visible_in_who)
 				continue
 
-			if (C.holder.rank == "Senate Chairman" || C.holder.rank == "Senator" || findtext(C.holder.rank, "Host") || C.holder.rank == "Manager")
+			if (C.holder.rank == "SenateChairman" || C.holder.rank == "Senator" || findtext(C.holder.rank, "Host") || C.holder.rank == "Manager")
 				highstaff_message += "\t[C] is a [C.holder.rank]"
 
 				if(isobserver(C.mob))

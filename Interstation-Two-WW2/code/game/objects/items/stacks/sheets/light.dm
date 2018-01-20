@@ -18,7 +18,7 @@
 		CC.amount = 5
 		amount--
 		new/obj/item/stack/material/glass(user.loc)
-		if(amount <= 0)
+		if(amount <= FALSE)
 			user.drop_from_inventory(src)
 			qdel(src)
 

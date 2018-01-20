@@ -6,9 +6,9 @@
 			continue
 		drop_from_inventory(W)
 	regenerate_icons()
-	transforming = 1
-	canmove = 0
-	stunned = 1
+	transforming = TRUE
+	canmove = FALSE
+	stunned = TRUE
 	icon = null
 	invisibility = 101
 	for(var/t in organs)
@@ -21,8 +21,8 @@
 	sleep(48)
 	//animation = null
 
-	transforming = 0
-	stunned = 0
+	transforming = FALSE
+	stunned = FALSE
 	update_canmove()
 	invisibility = initial(invisibility)
 
@@ -47,8 +47,8 @@
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
 	regenerate_icons()
-	transforming = 1
-	canmove = 0
+	transforming = TRUE
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 	for(var/t in organs)
@@ -67,7 +67,7 @@
 	else
 		new_slime = new /mob/living/carbon/slime(loc)
 		if(adult)
-			new_slime.is_adult = 1
+			new_slime.is_adult = TRUE
 		else
 	new_slime.key = key
 
@@ -81,8 +81,8 @@
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
 	regenerate_icons()
-	transforming = 1
-	canmove = 0
+	transforming = TRUE
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 	for(var/t in organs)	//this really should not be necessary
@@ -111,15 +111,15 @@
 		drop_from_inventory(W)
 
 	regenerate_icons()
-	transforming = 1
-	canmove = 0
+	transforming = TRUE
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 
 	for(var/t in organs)
 		qdel(t)
 
-	var/mob/new_mob = new mobpath(src.loc)
+	var/mob/new_mob = new mobpath(loc)
 
 	new_mob.key = key
 	new_mob.a_intent = I_HURT
@@ -139,7 +139,7 @@
 		usr << "\red Sorry but this mob type is currently unavailable."
 		return
 
-	var/mob/new_mob = new mobpath(src.loc)
+	var/mob/new_mob = new mobpath(loc)
 
 	new_mob.key = key
 	new_mob.a_intent = I_HURT
@@ -156,40 +156,40 @@
 
 //Bad mobs! - Remember to add a comment explaining what's wrong with the mob
 	if(!MP)
-		return 0	//Sanity, this should never happen.
+		return FALSE	//Sanity, this should never happen.
 /*
 	if(ispath(MP, /mob/living/simple_animal/space_worm))
-		return 0 //Unfinished. Very buggy, they seem to just spawn additional space worms everywhere and eating your own tail results in new worms spawning.
+		return FALSE //Unfinished. Very buggy, they seem to just spawn additional space worms everywhere and eating your own tail results in new worms spawning.
 */
 	if(ispath(MP, /mob/living/simple_animal/construct/armoured))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
+		return FALSE //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
 
 	if(ispath(MP, /mob/living/simple_animal/construct/wraith))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
+		return FALSE //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
 
 	if(ispath(MP, /mob/living/simple_animal/construct/builder))
-		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
+		return FALSE //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
 
 //Good mobs!
 	if(ispath(MP, /mob/living/simple_animal/cat))
-		return 1
+		return TRUE
 	if(ispath(MP, /mob/living/simple_animal/corgi))
-		return 1
+		return TRUE
 	if(ispath(MP, /mob/living/simple_animal/crab))
-		return 1
+		return TRUE
 	if(ispath(MP, /mob/living/simple_animal/hostile/carp))
-		return 1
+		return TRUE
 	if(ispath(MP, /mob/living/simple_animal/shade))
-		return 1
+		return TRUE
 	if(ispath(MP, /mob/living/simple_animal/tomato))
-		return 1
+		return TRUE
 	if(ispath(MP, /mob/living/simple_animal/mouse))
-		return 1 //It is impossible to pull up the player panel for mice (Fixed! - Nodrak)
+		return TRUE //It is impossible to pull up the player panel for mice (Fixed! - Nodrak)
 	if(ispath(MP, /mob/living/simple_animal/hostile/bear))
-		return 1 //Bears will auto-attack mobs, even if they're player controlled (Fixed! - Nodrak)
+		return TRUE //Bears will auto-attack mobs, even if they're player controlled (Fixed! - Nodrak)
 
 	//Not in here? Must be untested!
-	return 0
+	return FALSE
 
 
 

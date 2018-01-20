@@ -13,11 +13,11 @@
 
 /hook/startup/proc/resetInvestigate()
 	investigate_reset()
-	return 1
+	return TRUE
 
 /proc/investigate_reset()
-	if(fdel(INVESTIGATE_DIR))	return 1
-	return 0
+	if(fdel(INVESTIGATE_DIR))	return TRUE
+	return FALSE
 
 /atom/proc/investigate_log(var/message, var/subject)
 	if(!message)	return

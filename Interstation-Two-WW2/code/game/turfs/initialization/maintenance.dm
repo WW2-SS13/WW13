@@ -10,7 +10,7 @@
 	T.dirt = rand(10, 50) + rand(0, 50)
 	// If a neighbor is dirty, then we get dirtier.
 	var/how_dirty = dirty_neighbors(cardinal_turfs)
-	for(var/i = 0; i < how_dirty; i++)
+	for(var/i = FALSE; i < how_dirty; i++)
 		T.dirt += rand(0,10)
 	T.update_dirt()
 
@@ -37,7 +37,7 @@ var/global/list/random_junk
 	return pick(random_junk)
 
 /datum/turf_initializer/maintenance/proc/dirty_neighbors(var/list/cardinal_turfs)
-	var/how_dirty = 0
+	var/how_dirty = FALSE
 	for(var/turf/T in cardinal_turfs)
 		// Considered dirty if more than halfway to visible dirt
 		if(T.dirt > 25)
@@ -49,7 +49,7 @@ var/global/list/random_junk
 	if(!north_turf || !north_turf.density)
 		return
 
-	for(var/dir in list(WEST, EAST))	// For the sake of efficiency, west wins over east in the case of 1-tile valid spots, rather than doing pick()
+	for(var/dir in list(WEST, EAST))	// For the sake of efficiency, west wins over east in the case of TRUE-tile valid spots, rather than doing pick()
 		var/turf/neighbour = get_step(T, dir)
 		if(neighbour && neighbour.density)
 			if(dir == WEST)

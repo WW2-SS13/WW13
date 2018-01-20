@@ -16,21 +16,21 @@
 	for (var/turf/t in target_area.contents)
 		target_turfs += t
 
-	for (var/v in 1 to rand(2,3))
+	for (var/v in TRUE to rand(2,3))
 		spawn ((v*2) - 2)
-			var/obj/effect/effect/smoke/chem/smoke = new/obj/effect/effect/smoke/chem/payload/zyklon_b(get_turf(src), _spread = 1, _destination = get_step(src, EAST))
-			smoke.dontmove = 1
+			var/obj/effect/effect/smoke/chem/smoke = new/obj/effect/effect/smoke/chem/payload/zyklon_b(get_turf(src), _spread = TRUE, _destination = get_step(src, EAST))
+			smoke.dontmove = TRUE
 			chemsmokes += smoke
 
 	// make the smoke randomly move around
-	for (var/v in 1 to 10)
+	for (var/v in TRUE to 10)
 		spawn (v * 20)
 			for (var/obj/effect/effect/smoke/chem/smoke in chemsmokes)
 				walk_to(smoke, pick(target_turfs),0,rand(2,3),0)
 
 /obj/gas_lever // same icon as the train lever for now
 	anchored = 1.0
-	density = 1
+	density = TRUE
 	icon = 'icons/WW2/train_lever.dmi'
 	icon_state = "lever_none"
 	var/none_state = "lever_none"

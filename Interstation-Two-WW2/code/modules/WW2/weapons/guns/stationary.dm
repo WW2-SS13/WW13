@@ -6,7 +6,7 @@
 	set category = "Minigun"
 	set name = "Eject magazine"
 	set src in range(1, usr)
-	src.try_remove_mag(usr)
+	try_remove_mag(usr)
 
 /////////////////////////////
 ////Stationary Machinegun////
@@ -17,14 +17,14 @@
 	icon_state = "minigun"
 	item_state = ""
 	layer = FLY_LAYER
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	w_class = 6
 	load_method = SINGLE_CASING
 	handle_casings = REMOVE_CASINGS
 	max_shells = 6000
 	caliber = "4mm"
-	slot_flags = 0
+	slot_flags = FALSE
 	ammo_type = /obj/item/ammo_casing/c4mm
 	accuracy = DEFAULT_MG_ACCURACY
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
@@ -34,12 +34,14 @@
 		list(name="6000 rpm", burst=20, burst_delay=0.05, fire_delay=0.2, dispersion=list(1.5))
 		)
 
-	var/maximum_use_range = 0 // user loc at minigun's current loc (used in use_object.dm)
+	var/maximum_use_range = FALSE // user loc at minigun's current loc (used in use_object.dm)
 
-	var/user_old_x = 0
-	var/user_old_y = 0
+	var/user_old_x = FALSE
+	var/user_old_y = FALSE
 
 	var/mob/last_user = null
+
+	gun_type = GUN_TYPE_MG
 
 /obj/item/weapon/gun/projectile/minigun/attack_hand(var/mob/user)
 
@@ -48,13 +50,13 @@
 		return
 
 	if(user.using_object == src)
-		if(firemodes.len > 1)
+		if(firemodes.len > TRUE)
 			switch_firemodes(user)
 	else
 		var/grip_dir = reverse_direction(dir)
-		var/turf/T = get_step(src.loc, grip_dir)
+		var/turf/T = get_step(loc, grip_dir)
 		if(user.loc == T)
-			if(user.has_empty_hand(both = 1) && !src.is_used_by(user))
+			if(user.has_empty_hand(both = TRUE) && !is_used_by(user))
 				user.use_object(src)
 			else
 				user.show_message("\red You need both hands to use a minigun.")
@@ -62,7 +64,7 @@
 			user.show_message("<span class='warning'>You're too far from the handles.</span>")
 /*
 /obj/item/weapon/gun/projectile/minigun/proc/try_use_sights(mob/user)
-	if (src.is_used_by(user))
+	if (is_used_by(user))
 		//toggle_scope(2.0)
 	else
 		user.visible_message("<span class='warning'>You aren't using \the [src].</span>")*/
@@ -77,18 +79,18 @@
 ///obj/item/weapon/gun/projectile/minigun/can_zoom(mob/user, var/devicename, var/silent)
 	//if(user.stat || !ishuman(user))
 		//if (!silent) user.show_message("You are unable to focus through the [devicename]")
-		//return 0
+		//return FALSE
 	//else if(!zoomed && global_hud.darkMask[1] in user.client.screen)
 		//if (!silent) user.show_message("Your visor gets in the way of looking through the [devicename]")
-		//return 0
-	return 1
+		//return FALSE
+	return TRUE
 
 /obj/item/weapon/gun/projectile/minigun/proc/try_remove_mag(mob/user)
 	if(!ishuman(user))
 		return
-	if (!src.is_used_by(user))
+	if (!is_used_by(user))
 		if (user.has_empty_hand())
-			src.unload_ammo(user)
+			unload_ammo(user)
 		else
 			user.show_message("<span class='warning'>You need an empty hand for this.</span>")
 	else
@@ -99,25 +101,25 @@
 		switch_firemodes(user)
 
 	if(check_direction(user, A))
-		afterattack(A, user, 0, params)
+		afterattack(A, user, FALSE, params)
 	else
 	//	rotate_to(user, A)
 		update_layer()
 
 /obj/item/weapon/gun/projectile/minigun/proc/check_direction(mob/user, atom/A)
-	if(get_turf(A) == src.loc)
-		return 0
+	if(get_turf(A) == loc)
+		return FALSE
 
 	var/shot_dir = get_carginal_dir(src, A)
 
 	if(shot_dir != dir)
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/projectile/minigun/proc/rotate_to(mob/user, atom/A)
 	user.show_message("<span class='warning'>You can't turn the [name] there.</span>")
-	return 0
+	return FALSE
 
 /obj/item/weapon/gun/projectile/minigun/proc/update_layer()
 	if(dir == NORTH)
@@ -135,7 +137,7 @@
 					if(T.scope.zoomed)
 						T.scope.zoom(user, FALSE)
 			var/datum/action/toggle_scope/S = A
-			S.scope.zoom(user, TRUE, 1)
+			S.scope.zoom(user, TRUE, TRUE)
 			last_user = user
 
 	user.forceMove(loc)
@@ -150,13 +152,13 @@
 			S.scope.zoom(user, FALSE)
 
 /obj/item/weapon/gun/projectile/minigun/proc/is_used_by(mob/user)
-	return user.using_object == src && user.loc == src.loc
+	return user.using_object == src && user.loc == loc
 
 /obj/item/weapon/gun/projectile/minigun/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+	if(air_group || (height==0)) return TRUE
 	if(istype(mover, /obj/item/projectile))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 ///////////////////////
 ////Stationary KORD////
@@ -169,7 +171,7 @@
 	handle_casings = EJECT_CASINGS
 	caliber = "a127x108"
 	magazine_type = /obj/item/ammo_magazine/a127x108
-	max_shells = 0
+	max_shells = FALSE
 
 	fire_sound = 'sound/weapons/WW2/kord1.ogg'
 
@@ -184,8 +186,8 @@
 	//if(zoomed)
 		//zoom(user, FALSE) //Stop Zoom
 
-	user.forceMove(src.loc)
-	user.dir = src.dir
+	user.forceMove(loc)
+	user.dir = dir
 
 
 /obj/item/weapon/gun/projectile/minigun/kord/maxim
@@ -196,9 +198,9 @@
 	handle_casings = EJECT_CASINGS
 	caliber = "a762x54"
 	magazine_type = /obj/item/ammo_magazine/maxim
-	max_shells = 0
-	anchored = 0
-	auto_eject = 1
+	max_shells = FALSE
+	anchored = FALSE
+	auto_eject = TRUE
 	fire_sound = 'sound/weapons/maxim_shot.ogg'
 	firemodes = list(
 		list(name="default", burst=3, burst_delay=2.5, fire_delay=1.0, dispersion=list(0.4), accuracy=list(2))
@@ -228,17 +230,17 @@
 	icon_state = "maximstat"
 	item_state = "maximstat"
 	layer = FLY_LAYER
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	w_class = 6
 	magazine_type = /obj/item/ammo_magazine/maxim
-	auto_eject = 1
+	auto_eject = TRUE
 	load_method = MAGAZINE
 	handle_casings = EJECT_CASINGS
-	max_shells = 0
+	max_shells = FALSE
 	caliber = "a762x54"
 	fire_sound = 'sound/weapons/maxim_shot.ogg'
-	slot_flags = 0
+	slot_flags = FALSE
 	ammo_type = /obj/item/ammo_casing/a762x54
 
 	firemodes = list(	// changed burst from 3 to 6, burst_delay from 2.5 to 0.1 to make this more mg-ish - Kachnov

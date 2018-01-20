@@ -4,18 +4,18 @@
 	new gibber_type(location,fleshcolor,bloodcolor)
 
 /obj/effect/gibspawner
-	var/sparks = 0 //whether sparks spread on Gib()
+	var/sparks = FALSE //whether sparks spread on Gib()
 	var/list/gibtypes = list()
 	var/list/gibamounts = list()
 	var/list/gibdirections = list() //of lists
 	var/fleshcolor //Used for gibbed humans.
 	var/bloodcolor //Used for gibbed humans.
 
-	New(location, var/fleshcolor, var/bloodcolor)
+	New(location, var/_fleshcolor, var/_bloodcolor)
 		..()
 
-		if(fleshcolor) src.fleshcolor = fleshcolor
-		if(bloodcolor) src.bloodcolor = bloodcolor
+		if(fleshcolor) fleshcolor = _fleshcolor
+		if(bloodcolor) bloodcolor = _bloodcolor
 		Gib(loc)
 
 	proc/Gib(atom/location)
@@ -25,13 +25,13 @@
 
 		if(sparks)
 			var/datum/effect/effect/system/spark_spread/s = PoolOrNew(/datum/effect/effect/system/spark_spread)
-			s.set_up(2, 1, get_turf(location)) // Not sure if it's safe to pass an arbitrary object to set_up, todo
+			s.set_up(2, TRUE, get_turf(location)) // Not sure if it's safe to pass an arbitrary object to set_up, todo
 			s.start()
 
 		var/obj/effect/decal/cleanable/blood/gibs/gib = null
-		for(var/i = 1, i<= gibtypes.len, i++)
+		for(var/i = TRUE, i<= gibtypes.len, i++)
 			if(gibamounts[i])
-				for(var/j = 1, j<= gibamounts[i], j++)
+				for(var/j = TRUE, j<= gibamounts[i], j++)
 					var/gibType = gibtypes[i]
 					gib = new gibType(location)
 

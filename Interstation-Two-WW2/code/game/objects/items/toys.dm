@@ -20,10 +20,10 @@
 
 
 /obj/item/toy
-	throwforce = 0
+	throwforce = FALSE
 	throw_speed = 4
 	throw_range = 20
-	force = 0
+	force = FALSE
 
 
 /*
@@ -46,44 +46,44 @@
 
 /obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
 	if(!proximity) return
-	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
+	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= TRUE)
 		A.reagents.trans_to_obj(src, 10)
 		user << "<span class='notice'>You fill the balloon with the contents of [A].</span>"
-		src.desc = "A translucent balloon with some form of liquid sloshing around in it."
-		src.update_icon()
+		desc = "A translucent balloon with some form of liquid sloshing around in it."
+		update_icon()
 	return
 
 /obj/item/toy/balloon/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/reagent_containers/glass))
 		if(O.reagents)
-			if(O.reagents.total_volume < 1)
+			if(O.reagents.total_volume < TRUE)
 				user << "The [O] is empty."
-			else if(O.reagents.total_volume >= 1)
-				if(O.reagents.has_reagent("pacid", 1))
+			else if(O.reagents.total_volume >= TRUE)
+				if(O.reagents.has_reagent("pacid", TRUE))
 					user << "The acid chews through the balloon!"
 					O.reagents.splash(user, reagents.total_volume)
 					qdel(src)
 				else
-					src.desc = "A translucent balloon with some form of liquid sloshing around in it."
+					desc = "A translucent balloon with some form of liquid sloshing around in it."
 					user << "<span class='notice'>You fill the balloon with the contents of [O].</span>"
 					O.reagents.trans_to_obj(src, 10)
-	src.update_icon()
+	update_icon()
 	return
 
 /obj/item/toy/balloon/throw_impact(atom/hit_atom)
-	if(src.reagents.total_volume >= 1)
-		src.visible_message("<span class='warning'>\The [src] bursts!</span>","You hear a pop and a splash.")
-		src.reagents.touch_turf(get_turf(hit_atom))
+	if(reagents.total_volume >= TRUE)
+		visible_message("<span class='warning'>\The [src] bursts!</span>","You hear a pop and a splash.")
+		reagents.touch_turf(get_turf(hit_atom))
 		for(var/atom/A in get_turf(hit_atom))
-			src.reagents.touch(A)
-		src.icon_state = "burst"
+			reagents.touch(A)
+		icon_state = "burst"
 		spawn(5)
 			if(src)
 				qdel(src)
 	return
 
 /obj/item/toy/balloon/update_icon()
-	if(src.reagents.total_volume >= 1)
+	if(reagents.total_volume >= TRUE)
 		icon_state = "waterballoon"
 		item_state = "balloon"
 	else
@@ -93,10 +93,10 @@
 /obj/item/toy/syndicateballoon
 	name = "criminal balloon"
 	desc = "There is a tag on the back that reads \"FUK NT!11!\"."
-	throwforce = 0
+	throwforce = FALSE
 	throw_speed = 4
 	throw_range = 20
-	force = 0
+	force = FALSE
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "syndballoon"
 	item_state = "syndballoon"
@@ -105,10 +105,10 @@
 /obj/item/toy/nanotrasenballoon
 	name = "criminal balloon"
 	desc = "Across the balloon the following is printed: \"Man, I love NanoTrasen soooo much. I use only NT products. You have NO idea.\""
-	throwforce = 0
+	throwforce = FALSE
 	throw_speed = 4
 	throw_range = 20
-	force = 0
+	force = FALSE
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "ntballoon"
 	item_state = "ntballoon"
@@ -170,7 +170,7 @@
 		if(!isturf(target.loc) || target == user) return
 		if(flag) return
 
-		if (locate (/obj/structure/table, src.loc))
+		if (locate (/obj/structure/table, loc))
 			return
 		else if (bullets)
 			var/turf/trg = get_turf(target)
@@ -178,7 +178,7 @@
 			bullets--
 			D.icon_state = "foamdart"
 			D.name = "foam dart"
-			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
+			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, TRUE)
 
 			for(var/i=0, i<6, i++)
 				if (D)
@@ -189,7 +189,7 @@
 						if(!istype(M,/mob/living)) continue
 						if(M == user) continue
 						for(var/mob/O in viewers(world.view, D))
-							O.show_message(text("<span class='warning'>\The [] was hit by the foam dart!</span>", M), 1)
+							O.show_message(text("<span class='warning'>\The [] was hit by the foam dart!</span>", M), TRUE)
 						new /obj/item/toy/ammo/crossbow(M.loc)
 						qdel(D)
 						return
@@ -208,30 +208,30 @@
 					qdel(D)
 
 			return
-		else if (bullets == 0)
+		else if (bullets == FALSE)
 			user.Weaken(5)
 			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("<span class='warning'>\The [] realized they were out of ammo and starting scrounging for some!</span>", user), 1)
+				O.show_message(text("<span class='warning'>\The [] realized they were out of ammo and starting scrounging for some!</span>", user), TRUE)
 
 
 	attack(mob/M as mob, mob/user as mob)
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 
 // ******* Check
 
-		if (src.bullets > 0 && M.lying)
+		if (bullets > FALSE && M.lying)
 
 			for(var/mob/O in viewers(M, null))
 				if(O.client)
-					O.show_message(text("<span class='danger'>\The [] casually lines up a shot with []'s head and pulls the trigger!</span>", user, M), 1, "<span class='warning'>You hear the sound of foam against skull</span>", 2)
-					O.show_message(text("<span class='warning'>\The [] was hit in the head by the foam dart!</span>", M), 1)
+					O.show_message(text("<span class='danger'>\The [] casually lines up a shot with []'s head and pulls the trigger!</span>", user, M), TRUE, "<span class='warning'>You hear the sound of foam against skull</span>", 2)
+					O.show_message(text("<span class='warning'>\The [] was hit in the head by the foam dart!</span>", M), TRUE)
 
-			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
+			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, TRUE)
 			new /obj/item/toy/ammo/crossbow(M.loc)
-			src.bullets--
-		else if (M.lying && src.bullets == 0)
+			bullets--
+		else if (M.lying && bullets == FALSE)
 			for(var/mob/O in viewers(M, null))
-				if (O.client)	O.show_message(text("<span class='danger'>\The [] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>", user, M), 1, "<span class='warning'>You hear someone fall</span>", 2)
+				if (O.client)	O.show_message(text("<span class='danger'>\The [] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>", user, M), TRUE, "<span class='warning'>You hear someone fall</span>", 2)
 			user.Weaken(5)
 		return
 
@@ -248,8 +248,8 @@
 	desc = ""
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "null"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 
 
 /*
@@ -266,26 +266,26 @@
 	attack_verb = list("attacked", "struck", "hit")
 
 	attack_self(mob/user as mob)
-		src.active = !( src.active )
-		if (src.active)
+		active = !( active )
+		if (active)
 			user << "<span class='notice'>You extend the plastic blade with a quick flick of your wrist.</span>"
-			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
-			src.icon_state = "swordblue"
-			src.item_state = "swordblue"
-			src.w_class = 4
+			playsound(user, 'sound/weapons/saberon.ogg', 50, TRUE)
+			icon_state = "swordblue"
+			item_state = "swordblue"
+			w_class = 4
 		else
 			user << "<span class='notice'>You push the plastic blade back down into the handle.</span>"
-			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
-			src.icon_state = "sword0"
-			src.item_state = "sword0"
-			src.w_class = 2
+			playsound(user, 'sound/weapons/saberoff.ogg', 50, TRUE)
+			icon_state = "sword0"
+			item_state = "sword0"
+			w_class = 2
 
 		if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
 			H.update_inv_l_hand()
 			H.update_inv_r_hand()
 
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		return
 
 /obj/item/toy/katana
@@ -309,16 +309,16 @@
 	desc = "Wow!"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "snappop"
-	w_class = 1
+	w_class = TRUE
 
 	throw_impact(atom/hit_atom)
 		..()
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-		s.set_up(3, 1, src)
+		s.set_up(3, TRUE, src)
 		s.start()
-		new /obj/effect/decal/cleanable/ash(src.loc)
-		src.visible_message("<span class='warning'>The [src.name] explodes!</span>","<span class='warning'>You hear a snap!</span>")
-		playsound(src, 'sound/effects/snap.ogg', 50, 1)
+		new /obj/effect/decal/cleanable/ash(loc)
+		visible_message("<span class='warning'>The [name] explodes!</span>","<span class='warning'>You hear a snap!</span>")
+		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 		qdel(src)
 
 /obj/item/toy/snappop/Crossed(H as mob|obj)
@@ -328,11 +328,11 @@
 			M << "<span class='warning'>You step on the snap pop!</span>"
 
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-			s.set_up(2, 0, src)
+			s.set_up(2, FALSE, src)
 			s.start()
-			new /obj/effect/decal/cleanable/ash(src.loc)
-			src.visible_message("<span class='warning'>The [src.name] explodes!</span>","<span class='warning'>You hear a snap!</span>")
-			playsound(src, 'sound/effects/snap.ogg', 50, 1)
+			new /obj/effect/decal/cleanable/ash(loc)
+			visible_message("<span class='warning'>The [name] explodes!</span>","<span class='warning'>You hear a snap!</span>")
+			playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 			qdel(src)
 
 /*
@@ -344,7 +344,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
-	var/empty = 0
+	var/empty = FALSE
 	flags
 
 /obj/item/toy/waterflower/New()
@@ -361,21 +361,21 @@
 	if (istype(A, /obj/item/weapon/storage/backpack ))
 		return
 
-	else if (locate (/obj/structure/table, src.loc))
+	else if (locate (/obj/structure/table, loc))
 		return
 
-	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
+	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= TRUE)
 		A.reagents.trans_to(src, 10)
 		user << "<span class='notice'>You refill your flower!</span>"
 		return
 
-	else if (src.reagents.total_volume < 1)
-		src.empty = 1
+	else if (reagents.total_volume < TRUE)
+		empty = TRUE
 		user << "<span class='notice'>Your flower has run dry!</span>"
 		return
 
 	else
-		src.empty = 0
+		empty = FALSE
 
 
 		var/obj/effect/decal/D = new/obj/effect/decal/(get_turf(src))
@@ -383,8 +383,8 @@
 		D.icon = 'icons/obj/chemical.dmi'
 		D.icon_state = "chempuff"
 		D.create_reagents(5)
-		src.reagents.trans_to_obj(D, 1)
-		playsound(src.loc, 'sound/effects/spray3.ogg', 50, 1, -6)
+		reagents.trans_to_obj(D, TRUE)
+		playsound(loc, 'sound/effects/spray3.ogg', 50, TRUE, -6)
 
 		spawn(0)
 			for(var/i=0, i<1, i++)
@@ -400,8 +400,8 @@
 		return
 
 /obj/item/toy/waterflower/examine(mob/user)
-	if(..(user, 0))
-		user << text("\icon[] [] units of water left!", src, src.reagents.total_volume)
+	if(..(user, FALSE))
+		user << text("\icon[] [] units of water left!", src, reagents.total_volume)
 
 /*
  * Bosun's whistle
@@ -412,14 +412,14 @@
 	desc = "A genuine Admiral Krush Bosun's Whistle, for the aspiring ship's captain! Suitable for ages 8 and up, do not swallow."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "bosunwhistle"
-	var/cooldown = 0
-	w_class = 1
+	var/cooldown = FALSE
+	w_class = TRUE
 	slot_flags = SLOT_EARS
 
 /obj/item/toy/bosunwhistle/attack_self(mob/user as mob)
 	if(cooldown < world.time - 35)
 		user << "<span class='notice'>You blow on [src], creating an ear-splitting noise!</span>"
-		playsound(user, 'sound/misc/boatswain.ogg', 20, 1)
+		playsound(user, 'sound/misc/boatswain.ogg', 20, TRUE)
 		cooldown = world.time
 
 /*
@@ -428,27 +428,27 @@
 /obj/item/toy/prize
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ripleytoy"
-	var/cooldown = 0
+	var/cooldown = FALSE
 
 //all credit to skasi for toy mech fun ideas
 /obj/item/toy/prize/attack_self(mob/user as mob)
 	if(cooldown < world.time - 8)
 		user << "<span class='notice'>You play with [src].</span>"
-		playsound(user, 'sound/mecha/mechstep.ogg', 20, 1)
+		playsound(user, 'sound/mecha/mechstep.ogg', 20, TRUE)
 		cooldown = world.time
 
 /obj/item/toy/prize/attack_hand(mob/user as mob)
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			user << "<span class='notice'>You play with [src].</span>"
-			playsound(user, 'sound/mecha/mechturn.ogg', 20, 1)
+			playsound(user, 'sound/mecha/mechturn.ogg', 20, TRUE)
 			cooldown = world.time
 			return
 	..()
 
 /obj/item/toy/prize/ripley
 	name = "toy ripley"
-	desc = "Mini-Mecha action figure! Collect them all! 1/11."
+	desc = "Mini-Mecha action figure! Collect them all! TRUE/11."
 
 /obj/item/toy/prize/fireripley
 	name = "toy firefighting ripley"
@@ -701,7 +701,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "therapyred"
 	item_state = "egg4" // It's the red egg in items_left/righthand
-	w_class = 1
+	w_class = TRUE
 
 /obj/item/toy/therapy_purple
 	name = "purple therapy doll"
@@ -709,7 +709,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "therapypurple"
 	item_state = "egg1" // It's the magenta egg in items_left/righthand
-	w_class = 1
+	w_class = TRUE
 
 /obj/item/toy/therapy_blue
 	name = "blue therapy doll"
@@ -717,7 +717,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "therapyblue"
 	item_state = "egg2" // It's the blue egg in items_left/righthand
-	w_class = 1
+	w_class = TRUE
 
 /obj/item/toy/therapy_yellow
 	name = "yellow therapy doll"
@@ -725,7 +725,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "therapyyellow"
 	item_state = "egg5" // It's the yellow egg in items_left/righthand
-	w_class = 1
+	w_class = TRUE
 
 /obj/item/toy/therapy_orange
 	name = "orange therapy doll"
@@ -733,7 +733,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "therapyorange"
 	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
-	w_class = 1
+	w_class = TRUE
 
 /obj/item/toy/therapy_green
 	name = "green therapy doll"
@@ -741,7 +741,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "therapygreen"
 	item_state = "egg3" // It's the green egg in items_left/righthand
-	w_class = 1
+	w_class = TRUE
 
 /*
  * Plushies
@@ -753,8 +753,8 @@
 	desc = "A very generic plushie. It seems to not want to exist."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ianplushie"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	var/phrase = "I don't want to exist anymore!"
 
 /obj/structure/plushie/attack_hand(mob/user)

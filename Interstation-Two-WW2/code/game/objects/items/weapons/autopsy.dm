@@ -9,7 +9,7 @@
 	icon_state = ""
 	flags = CONDUCT
 	w_class = 2.0
-//	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
+//	origin_tech = list(TECH_MATERIAL = TRUE, TECH_BIO = TRUE)
 	var/list/datum/autopsy_data_scanner/wdata = list()
 	var/list/datum/autopsy_data_scanner/chemtraces = list()
 	var/target_name = null
@@ -24,9 +24,9 @@
 /datum/autopsy_data
 	var/weapon = null
 	var/pretend_weapon = null
-	var/damage = 0
-	var/hits = 0
-	var/time_inflicted = 0
+	var/damage = FALSE
+	var/hits = FALSE
+	var/time_inflicted = FALSE
 
 	proc/copy()
 		var/datum/autopsy_data/W = new()
@@ -72,12 +72,12 @@
 		D.organs_scanned[O.name] = W.copy()
 
 	for(var/V in O.trace_chemicals)
-		if(O.trace_chemicals[V] > 0 && !chemtraces.Find(V))
+		if(O.trace_chemicals[V] > FALSE && !chemtraces.Find(V))
 			chemtraces += V
 
 /obj/item/weapon/autopsy_scanner/verb/print_data()
 	set category = "Object"
-	set src in view(usr, 1)
+	set src in view(usr, TRUE)
 	set name = "Print Data"
 	if(usr.stat || !(istype(usr,/mob/living/carbon/human)))
 		usr << "No."
@@ -88,13 +88,13 @@
 	if(timeofdeath)
 		scan_data += "<b>Time of death:</b> [worldtime2stationtime(timeofdeath)]<br><br>"
 
-	var/n = 1
+	var/n = TRUE
 	for(var/wdata_idx in wdata)
 		var/datum/autopsy_data_scanner/D = wdata[wdata_idx]
-		var/total_hits = 0
-		var/total_score = 0
+		var/total_hits = FALSE
+		var/total_score = FALSE
 		var/list/weapon_chances = list() // maps weapon names to a score
-		var/age = 0
+		var/age = FALSE
 
 		for(var/wound_idx in D.organs_scanned)
 			var/datum/autopsy_data/W = D.organs_scanned[wound_idx]
@@ -103,7 +103,7 @@
 			var/wname = W.pretend_weapon
 
 			if(wname in weapon_chances) weapon_chances[wname] += W.damage
-			else weapon_chances[wname] = max(W.damage, 1)
+			else weapon_chances[wname] = max(W.damage, TRUE)
 			total_score+=W.damage
 
 
@@ -112,7 +112,7 @@
 
 		var/damage_desc
 
-		var/damaging_weapon = (total_score != 0)
+		var/damaging_weapon = (total_score != FALSE)
 
 		// total score happens to be the total damage
 		switch(total_score)
@@ -150,7 +150,7 @@
 			scan_data += "<br>"
 
 	for(var/mob/O in viewers(usr))
-		O.show_message("<span class='notice'>\The [src] rattles and prints out a sheet of paper.</span>", 1)
+		O.show_message("<span class='notice'>\The [src] rattles and prints out a sheet of paper.</span>", TRUE)
 
 	sleep(10)
 
@@ -170,8 +170,8 @@
 			usr.l_hand = P
 			P.layer = 20
 
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.update_inv_l_hand()
 		M.update_inv_r_hand()
 
@@ -184,12 +184,12 @@
 
 	if(target_name != M.name)
 		target_name = M.name
-		src.wdata = list()
-		src.chemtraces = list()
-		src.timeofdeath = null
+		wdata = list()
+		chemtraces = list()
+		timeofdeath = null
 		user << "<span class='notice'>A new patient has been registered.. Purging data for previous patient.</span>"
 
-	src.timeofdeath = M.timeofdeath
+	timeofdeath = M.timeofdeath
 
 	var/obj/item/organ/external/S = M.get_organ(user.targeted_organ)
 	if(!S)
@@ -199,8 +199,8 @@
 		usr << "<span class='warning'>You have to cut the limb open first!</span>"
 		return
 	for(var/mob/O in viewers(M))
-		O.show_message("<span class='notice'>\The [user] scans the wounds on [M.name]'s [S.name] with \the [src]</span>", 1)
+		O.show_message("<span class='notice'>\The [user] scans the wounds on [M.name]'s [S.name] with \the [src]</span>", TRUE)
 
-	src.add_data(S)
+	add_data(S)
 
-	return 1
+	return TRUE

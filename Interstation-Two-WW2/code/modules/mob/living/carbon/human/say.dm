@@ -1,5 +1,9 @@
 /mob/living/carbon/human/say(var/message)
 
+	// workaround for language bug that happens when you're spawned in
+	if (!languages.len)
+		languages[1] = default_language
+
 	if (!message)
 		return
 
@@ -11,7 +15,7 @@
 	message = capitalize_cp1251(sanitize(message))
 	var/message_without_html = message
 
-	if (!dd_hasprefix(message, ":b") && !dd_hasprefix(message, ":r") && !dd_hasprefix(message, ":l"))
+	if (!dd_hasprefix(message, ";") && !dd_hasprefix(message, ":b") && !dd_hasprefix(message, ":r") && !dd_hasprefix(message, ":l"))
 		if (dd_hassuffix(message, "!") && !dd_hassuffix(message, "!!"))
 			message = "<span class = 'font-size: 1.1em;'>[message]</span>"
 		else if (dd_hassuffix(message, "!!"))
@@ -27,26 +31,26 @@
 /mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)
 		if(client)
-			var/virgin = 1	//has the text been modified yet?
+			var/virgin = TRUE	//has the text been modified yet?
 			var/temp = winget(client, "input", "text")
-			if(findtextEx(temp, "Say \"", 1, 7) && length(temp) > 5)	//case sensitive means
+			if(findtextEx(temp, "Say \"", TRUE, 7) && length(temp) > 5)	//case sensitive means
 
 				temp = replacetext(temp, ";", "")	//general radio
 
 				if(findtext(trim_left(temp), ":", 6, 7))	//dept radio
 					temp = copytext(trim_left(temp), 8)
-					virgin = 0
+					virgin = FALSE
 
 				if(virgin)
 					temp = copytext(trim_left(temp), 6)	//normal speech
-					virgin = 0
+					virgin = FALSE
 
-				while(findtext(trim_left(temp), ":", 1, 2))	//dept radio again (necessary)
+				while(findtext(trim_left(temp), ":", TRUE, 2))	//dept radio again (necessary)
 					temp = copytext(trim_left(temp), 3)
 
-				if(findtext(temp, "*", 1, 2))	//emotes
+				if(findtext(temp, "*", TRUE, 2))	//emotes
 					return
-				temp = copytext(trim_left(temp), 1, rand(5,8))
+				temp = copytext(trim_left(temp), TRUE, rand(5,8))
 
 				var/trimmed = trim_left(temp)
 				if(length(trimmed))
@@ -59,25 +63,25 @@
 /mob/living/carbon/human/say_understands(var/mob/other,var/datum/language/speaking = null)
 
 	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
-		return 1
+		return TRUE
 
 	if(species.can_understand(other))
-		return 1
+		return TRUE
 
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
 		if (istype(other, /mob/living/silicon))
-			return 1
+			return TRUE
 		if (istype(other, /mob/living/carbon/brain))
-			return 1
+			return TRUE
 		if (istype(other, /mob/living/carbon/slime))
-			return 1
+			return TRUE
 
 	//This is already covered by mob/say_understands()
 	//if (istype(other, /mob/living/simple_animal))
-	//	if((other.universal_speak && !speaking) || src.universal_speak || src.universal_understand)
-	//		return 1
-	//	return 0
+	//	if((other.universal_speak && !speaking) || universal_speak || universal_understand)
+	//		return TRUE
+	//	return FALSE
 
 	return ..()
 
@@ -130,25 +134,28 @@
 		else if(ending == "?")
 			verb="asks"
 
+	if (speaking != languages[1])
+		verb = "[verb] in [speaking.name]"
+
 	return verb
 
 /mob/living/carbon/human/handle_speech_problems(var/message, var/verb)
 	if(silent || (sdisabilities & MUTE))
 		message = ""
-		speech_problem_flag = 1
+		speech_problem_flag = TRUE
 	else if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
 		if(M.voicechange)
 			message = pick(M.say_messages)
 			verb = pick(M.say_verbs)
-			speech_problem_flag = 1
+			speech_problem_flag = TRUE
 
 	if(message != "")
 		var/list/parent = ..()
 		message = parent[1]
 		verb = parent[2]
 		if(parent[3])
-			speech_problem_flag = 1
+			speech_problem_flag = TRUE
 
 	var/list/returns[3]
 	returns[1] = message
@@ -159,7 +166,7 @@
 /mob/living/carbon/human/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	switch(message_mode)
 		if("intercom")
-			if(!src.restrained())
+			if(!restrained())
 				for(var/obj/item/device/radio/intercom/I in view(1))
 					I.talk_into(src, message, null, verb, speaking)
 					I.add_fingerprint(src)
@@ -175,40 +182,40 @@
 				used_radios += r_ear
 		if("right ear")
 			var/obj/item/device/radio/R
-			var/has_radio = 0
+			var/has_radio = FALSE
 			if(r_ear && istype(r_ear,/obj/item/device/radio))
 				R = r_ear
-				has_radio = 1
+				has_radio = TRUE
 			if(r_hand && istype(r_hand, /obj/item/device/radio))
 				R = r_hand
-				has_radio = 1
+				has_radio = TRUE
 			if(has_radio)
 				R.talk_into(src,message,null,verb,speaking)
 				used_radios += R
 		if("left ear")
 			var/obj/item/device/radio/R
-			var/has_radio = 0
+			var/has_radio = FALSE
 			if(l_ear && istype(l_ear,/obj/item/device/radio))
 				R = l_ear
-				has_radio = 1
+				has_radio = TRUE
 			if(l_hand && istype(l_hand,/obj/item/device/radio))
 				R = l_hand
-				has_radio = 1
+				has_radio = TRUE
 			if(has_radio)
 				R.talk_into(src,message,null,verb,speaking)
 				used_radios += R
 		if("harness")
 			var/obj/item/device/radio/R
-			var/has_radio = 0
+			var/has_radio = FALSE
 			if(s_store && istype(s_store,/obj/item/device/radio))
 				R = s_store
-				has_radio = 1
+				has_radio = TRUE
 			if(has_radio)
 				R.talk_into(src,message,null,verb,speaking)
 				used_radios += R
 		if("whisper")
 			whisper_say(message, speaking, alt_name)
-			return 1
+			return TRUE
 		else
 			if(message_mode)
 				if(l_ear && istype(l_ear,/obj/item/device/radio))

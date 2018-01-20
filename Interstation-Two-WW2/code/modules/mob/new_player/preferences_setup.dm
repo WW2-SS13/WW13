@@ -39,11 +39,11 @@
 			if("blonde")
 				red = 255
 				green = 255
-				blue = 0
+				blue = FALSE
 			if("black")
-				red = 0
-				green = 0
-				blue = 0
+				red = FALSE
+				green = FALSE
+				blue = FALSE
 			if("chestnut")
 				red = 153
 				green = 102
@@ -51,11 +51,11 @@
 			if("copper")
 				red = 255
 				green = 153
-				blue = 0
+				blue = FALSE
 			if("brown")
 				red = 102
 				green = 51
-				blue = 0
+				blue = FALSE
 			if("wheat")
 				red = 255
 				green = 255
@@ -69,9 +69,9 @@
 				green = rand (0, 255)
 				blue = rand (0, 255)
 
-		red = max(min(red + rand (-25, 25), 255), 0)
-		green = max(min(green + rand (-25, 25), 255), 0)
-		blue = max(min(blue + rand (-25, 25), 255), 0)
+		red = max(min(red + rand (-25, 25), 255), FALSE)
+		green = max(min(green + rand (-25, 25), 255), FALSE)
+		blue = max(min(blue + rand (-25, 25), 255), FALSE)
 
 		switch(target)
 			if("hair")
@@ -91,9 +91,9 @@
 		var/col = pick ("black", "grey", "brown", "chestnut", "blue", "lightblue", "green", "albino")
 		switch(col)
 			if("black")
-				red = 0
-				green = 0
-				blue = 0
+				red = FALSE
+				green = FALSE
+				blue = FALSE
 			if("grey")
 				red = rand (100, 200)
 				green = red
@@ -101,11 +101,11 @@
 			if("brown")
 				red = 102
 				green = 51
-				blue = 0
+				blue = FALSE
 			if("chestnut")
 				red = 153
 				green = 102
-				blue = 0
+				blue = FALSE
 			if("blue")
 				red = 51
 				green = 102
@@ -115,17 +115,17 @@
 				green = 204
 				blue = 255
 			if("green")
-				red = 0
+				red = FALSE
 				green = 102
-				blue = 0
+				blue = FALSE
 			if("albino")
 				red = rand (200, 255)
 				green = rand (0, 150)
 				blue = rand (0, 150)
 
-		red = max(min(red + rand (-25, 25), 255), 0)
-		green = max(min(green + rand (-25, 25), 255), 0)
-		blue = max(min(blue + rand (-25, 25), 255), 0)
+		red = max(min(red + rand (-25, 25), 255), FALSE)
+		green = max(min(green + rand (-25, 25), 255), FALSE)
+		blue = max(min(blue + rand (-25, 25), 255), FALSE)
 
 		r_eyes = red
 		g_eyes = green
@@ -139,9 +139,9 @@
 		var/col = pick ("black", "grey", "brown", "chestnut", "blue", "lightblue", "green", "albino")
 		switch(col)
 			if("black")
-				red = 0
-				green = 0
-				blue = 0
+				red = FALSE
+				green = FALSE
+				blue = FALSE
 			if("grey")
 				red = rand (100, 200)
 				green = red
@@ -149,11 +149,11 @@
 			if("brown")
 				red = 102
 				green = 51
-				blue = 0
+				blue = FALSE
 			if("chestnut")
 				red = 153
 				green = 102
-				blue = 0
+				blue = FALSE
 			if("blue")
 				red = 51
 				green = 102
@@ -163,17 +163,17 @@
 				green = 204
 				blue = 255
 			if("green")
-				red = 0
+				red = FALSE
 				green = 102
-				blue = 0
+				blue = FALSE
 			if("albino")
 				red = rand (200, 255)
 				green = rand (0, 150)
 				blue = rand (0, 150)
 
-		red = max(min(red + rand (-25, 25), 255), 0)
-		green = max(min(green + rand (-25, 25), 255), 0)
-		blue = max(min(blue + rand (-25, 25), 255), 0)
+		red = max(min(red + rand (-25, 25), 255), FALSE)
+		green = max(min(green + rand (-25, 25), 255), FALSE)
+		blue = max(min(blue + rand (-25, 25), 255), FALSE)
 
 		r_skin = red
 		g_skin = green
@@ -201,7 +201,7 @@
 		else
 			icobase = 'icons/mob/human_races/r_human.dmi'
 
-		for (var/v in 1 to 3)
+		for (var/v in TRUE to 3)
 
 			var/icon/I = new /icon(icobase, "torso[g][body.index]")
 			I.Blend(new /icon(icobase, "groin[g][body.index]"), ICON_OVERLAY)
@@ -224,7 +224,7 @@
 
 			// Skin tone
 			if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
-				if (s_tone >= 0)
+				if (s_tone >= FALSE)
 					I.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 				else
 					I.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
@@ -299,7 +299,7 @@
 				var/obj/item/clothing/head/HT = J.hat
 				if(HT) clothes.Blend(new /icon(body.hat_icon, initial(HT.icon_state)), ICON_OVERLAY)
 
-				if( backbag > 1 )
+				if( backbag > TRUE )
 					var/obj/item/weapon/storage/backpack/BP = J.backpacks[backbag-1]
 					clothes.Blend(new /icon(body.backpack_icon, initial(BP.icon_state)), ICON_OVERLAY)
 

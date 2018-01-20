@@ -1,4 +1,10 @@
+/mob/living/carbon/human/var/stored_tally = 0
+/mob/living/carbon/human/var/next_calculate_tally = -1
+
 /mob/living/carbon/human/movement_delay()
+
+	if (world.timeofday <= next_calculate_tally)
+		return stored_tally
 
 	var/tally = 0
 
@@ -10,7 +16,7 @@
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
-	if(CE_SPEEDBOOST in chem_effects)
+	if (chem_effects.Find(CE_SPEEDBOOST))
 		return -1
 
 	var/health_deficiency = (maxHealth - health)
@@ -26,7 +32,7 @@
 	if(wear_suit)
 		tally += wear_suit.slowdown
 
-	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
+	if(buckled && istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm"))
 			var/obj/item/organ/external/E = get_organ(organ_name)
 			if(!E || E.is_stump())
@@ -52,36 +58,40 @@
 
 	if(aiming && aiming.aiming_at) tally += 5 // Iron sights make you slower, it's a well-known fact.
 
-	if(FAT in src.mutations)
+	if(FAT in mutations)
 		tally += 1.5
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
 
-	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
+	tally += max(2 * stance_damage, FALSE) //damaged/missing feet or legs is slow
 
 	if(mRun in mutations)
 		tally = 0
 
-	return (tally+config.human_delay)
+	// no more huge speedups from wearing shoes
+	. = max(0, (tally+config.human_delay))
+	stored_tally = .
 
-/mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
-	return 0
+	next_calculate_tally = world.timeofday + 50
+
+/mob/living/carbon/human/Process_Spacemove(var/check_drift = FALSE)
+	return FALSE
 
 /mob/living/carbon/human/slip_chance(var/prob_slip = 5)
 	if(!..())
-		return 0
+		return FALSE
 
 	//Check hands and mod slip
 	if(!l_hand)	prob_slip -= 2
-	else if(l_hand.w_class <= 2)	prob_slip -= 1
+	else if(l_hand.w_class <= 2)	prob_slip -= TRUE
 	if (!r_hand)	prob_slip -= 2
-	else if(r_hand.w_class <= 2)	prob_slip -= 1
+	else if(r_hand.w_class <= 2)	prob_slip -= TRUE
 
 	return prob_slip
 
 /mob/living/carbon/human/Check_Shoegrip()
 	if(species.flags & NO_SLIP)
-		return 1
+		return TRUE
 	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
-		return 1
-	return 0
+		return TRUE
+	return FALSE

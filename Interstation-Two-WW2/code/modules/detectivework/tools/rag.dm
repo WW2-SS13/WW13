@@ -1,15 +1,15 @@
 
 /obj/item/clothing/gloves
-	var/transfer_blood = 0
+	var/transfer_blood = FALSE
 	var/mob/living/carbon/human/bloody_hands_mob
 
 /obj/item/clothing/shoes/
-	var/track_blood = 0
+	var/track_blood = FALSE
 
 /obj/item/weapon/reagent_containers/glass/rag
 	name = "rag"
 	desc = "For cleaning up messes, you suppose."
-	w_class = 1
+	w_class = TRUE
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "rag"
 	amount_per_transfer_from_this = 5
@@ -18,7 +18,7 @@
 	can_be_placed_into = null
 	flags = OPENCONTAINER | NOBLUDGEON
 
-	var/on_fire = 0
+	var/on_fire = FALSE
 	var/burn_time = 20 //if the rag burns for too long it turns to ashes
 
 /obj/item/weapon/reagent_containers/glass/rag/New()
@@ -39,15 +39,19 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/attackby(obj/item/W, mob/user)
 	if(!on_fire)
-		if(istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/device/flashlight/flare) && W:on))
-			var/cont = 0
+		if(istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/device/flashlight/flare) && W:on) || (istype(W, /obj/item/weapon/weldingtool) && W:welding))
+			var/cont = FALSE
 			var/obj/item/weapon/flame/F = W
 			if (istype(F) && F.lit)
-				cont = 1
+				cont = TRUE
 			else if (istype(W, /obj/item/device/flashlight))
 				var/obj/item/device/flashlight/FL = W
 				if (FL.on)
-					cont = 1
+					cont = TRUE
+			else if (istype(W, /obj/item/weapon/weldingtool))
+				var/obj/item/weapon/weldingtool/WT = W
+				if (WT.welding)
+					cont = TRUE
 
 			if(cont)
 				ignite()
@@ -102,7 +106,7 @@
 		var/target_text = trans_dest? "\the [trans_dest]" : "\the [user.loc]"
 		user.visible_message("<span class='danger'>\The [user] begins to wring out [src] over [target_text].</span>", "<span class='notice'>You begin to wring out [src] over [target_text].</span>")
 
-		if(do_after(user, reagents.total_volume*5, progress = 0)) //50 for a fully soaked rag
+		if(do_after(user, reagents.total_volume*5, progress = FALSE)) //50 for a fully soaked rag
 			if(trans_dest)
 				reagents.trans_to(trans_dest, reagents.total_volume)
 			else
@@ -115,9 +119,9 @@
 		user << "<span class='warning'>The [initial(name)] is dry!</span>"
 	else
 		user.visible_message("\The [user] starts to wipe down [A] with [src]!")
-		reagents.splash(A, 1) //get a small amount of liquid on the thing we're wiping.
+		reagents.splash(A, TRUE) //get a small amount of liquid on the thing we're wiping.
 		update_name()
-		if(do_after(user,30, progress = 0))
+		if(do_after(user,30, progress = FALSE))
 			user.visible_message("\The [user] finishes wiping off the [A]!")
 			A.clean_blood()
 
@@ -194,23 +198,23 @@
 	if(reagents.get_reagent_amount("plasma")) // the plasma explodes when exposed to fire
 		visible_message("<span class='danger'>\The [src] conflagrates violently!</span>")
 		var/datum/effect/effect/system/reagents_explosion/e = new()
-		e.set_up(round(reagents.get_reagent_amount("plasma") / 2.5, 1), get_turf(src), 0, 0)
+		e.set_up(round(reagents.get_reagent_amount("plasma") / 2.5, TRUE), get_turf(src), FALSE, FALSE)
 		e.start()
 		qdel(src)
 		return
 
 	processing_objects += src
 	set_light(2, null, "#E38F46")
-	on_fire = 1
+	on_fire = TRUE
 	update_name()
 	update_icon()
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/extinguish()
 	processing_objects -= src
 	set_light(0)
-	on_fire = 0
+	on_fire = FALSE
 
-	//rags sitting around with 1 second of burn time left is dumb.
+	//rags sitting around with TRUE second of burn time left is dumb.
 	//ensures players always have a few seconds of burn time left when they light their rag
 	if(burn_time <= 5)
 		visible_message("<span class='warning'>\The [src] falls apart!</span>")
@@ -234,7 +238,7 @@
 	if(location)
 		location.hotspot_expose(700, 5)
 
-	if(burn_time <= 0)
+	if(burn_time <= FALSE)
 		processing_objects -= src
 		new /obj/effect/decal/cleanable/ash(location)
 		qdel(src)

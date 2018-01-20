@@ -5,7 +5,7 @@ var/datum/controller/process/explosives/bomb_processor
 	var/ticks_without_work = 0
 	var/list/explosion_turfs
 	var/explosion_in_progress
-	var/powernet_update_pending = 0
+	var/powernet_update_pending = FALSE
 
 /datum/controller/process/explosives/setup()
 	name = "explosives"
@@ -21,11 +21,11 @@ var/datum/controller/process/explosives/bomb_processor
 		ticks_without_work++
 		if (powernet_update_pending && ticks_without_work > 5)
 			makepowernets()
-			powernet_update_pending = 0
+			powernet_update_pending = FALSE
 		return
 
 	ticks_without_work = 0
-	powernet_update_pending = 1
+	powernet_update_pending = TRUE
 
 	for (var/A in work_queue)
 		var/datum/explosiondata/data = A
@@ -60,9 +60,9 @@ var/datum/controller/process/explosives/bomb_processor
 	// Handles recursive propagation of explosions.
 	if(devastation_range > 2 || heavy_impact_range > 2)
 		if(HasAbove(epicenter.z) && z_transfer & UP)
-			explosion(GetAbove(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), 0, UP)
+			explosion(GetAbove(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), FALSE, UP)
 		if(HasBelow(epicenter.z) && z_transfer & DOWN)
-			explosion(GetAbove(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), 0, DOWN)
+			explosion(GetAbove(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), FALSE, DOWN)
 
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
@@ -86,14 +86,14 @@ var/datum/controller/process/explosives/bomb_processor
 	var/closedist = round(max_range + world.view - 2, 1)
 
 	//Whether or not this explosion causes enough vibration to send sound or shockwaves through the station
-	var/vibration = 1
+	var/vibration = TRUE
 	if (istype(epicenter,/turf/space))
-		vibration = 0
+		vibration = FALSE
 		for (var/turf/T in range(src, max_range))
 			if (!istype(T,/turf/space))
 		//If there is a nonspace tile within the explosion radius
 		//Then we can reverberate shockwaves through that, and allow it to be felt in a vacuum
-				vibration = 1
+				vibration = TRUE
 
 	if (vibration)
 		for(var/mob/M in player_list)
@@ -110,27 +110,27 @@ var/datum/controller/process/explosives/bomb_processor
 					if (istype(M_turf,/turf/space))
 					//If the person is standing in space, they wont hear
 						//But they may still feel the shaking
-						reception = 0
+						reception = FALSE
 						for (var/turf/T in range(M, 1))
 							if (!istype(T,/turf/space))
 							//If theyre touching the hull or on some extruding part of the station
-								reception = 1//They will get screenshake
+								reception = TRUE//They will get screenshake
 								break
 
 					if (!reception)
 						continue
 
 					var/dist = get_dist(M_turf, epicenter)
-					if (reception == 2 && (M.ear_deaf <= 0 || !M.ear_deaf))//Dont play sounds to deaf people
+					if (reception == 2 && (M.ear_deaf <= FALSE || !M.ear_deaf))//Dont play sounds to deaf people
 						// If inside the blast radius + world.view - 2
 						if(dist <= closedist)
-							M.playsound_local(epicenter, get_sfx("explosion"), min(100, volume), 1, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
+							M.playsound_local(epicenter, get_sfx("explosion"), min(100, volume), TRUE, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
 							//You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 
 						else
-							volume = M.playsound_local(epicenter, 'sound/effects/explosionfar.ogg', volume, 1, frequency, usepressure = 0, falloff = 1000)
+							volume = M.playsound_local(epicenter, 'sound/effects/explosionfar.ogg', volume, TRUE, frequency, usepressure = FALSE, falloff = 1000)
 							//Playsound local will return the final volume the sound is actually played at
-							//It will return 0 if the sound volume falls to 0 due to falloff or pressure
+							//It will return FALSE if the sound volume falls to FALSE due to falloff or pressure
 							//Also return zero if sound playing failed for some other reason
 
 					//Deaf people will feel vibrations though
@@ -188,10 +188,10 @@ var/datum/controller/process/explosives/bomb_processor
 	message_admins("Explosion with size ([power]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z])")
 	log_game("Explosion with size ([power]) in area [epicenter.loc.name] ")
 
-	playsound(epicenter, 'sound/effects/explosionfar.ogg', 100, 1, round(power*2,1) )
-	playsound(epicenter, "explosion", 100, 1, round(power,1) )
+	playsound(epicenter, 'sound/effects/explosionfar.ogg', 100, TRUE, round(power*2,1) )
+	playsound(epicenter, "explosion", 100, TRUE, round(power,1) )
 
-	explosion_in_progress = 1
+	explosion_in_progress = TRUE
 	explosion_turfs = list()
 
 	explosion_turfs[epicenter] = power
@@ -208,7 +208,7 @@ var/datum/controller/process/explosives/bomb_processor
 		if(!T) continue
 
 		//Wow severity looks confusing to calculate... Fret not, I didn't leave you with any additional instructions or help. (just kidding, see the line under the calculation)
-		var/severity = 4 - round(max(min( 3, ((explosion_turfs[T] - T.explosion_resistance) / (max(3,(power/3)))) ) ,1), 1)								//sanity			effective power on tile				divided by either 3 or one third the total explosion power
+		var/severity = 4 - round(max(min( 3, ((explosion_turfs[T] - T.explosion_resistance) / (max(3,(power/3)))) ) ,1), TRUE)								//sanity			effective power on tile				divided by either 3 or one third the total explosion power
 								//															One third because there are three power levels and I
 								//															want each one to take up a third of the crater
 		var/x = T.x
@@ -221,7 +221,7 @@ var/datum/controller/process/explosives/bomb_processor
 			A.ex_act(severity)
 			SCHECK
 
-	explosion_in_progress = 0
+	explosion_in_progress = FALSE
 
 /datum/controller/process/explosives/proc/explosion_spread(turf/s, power, direction)
 	SCHECK

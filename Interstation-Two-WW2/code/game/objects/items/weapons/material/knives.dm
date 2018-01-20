@@ -4,7 +4,7 @@
 	icon_state = "butterflyknife"
 	item_state = null
 	hitsound = null
-	var/active = 0
+	var/active = FALSE
 	w_class = 2
 	attack_verb = list("patted", "tapped")
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
@@ -12,8 +12,8 @@
 
 /obj/item/weapon/material/butterfly/update_force()
 	if(active)
-		edge = 1
-		sharp = 1
+		edge = TRUE
+		sharp = TRUE
 		..() //Updates force.
 		throwforce = max(3,force-3)
 		hitsound = 'sound/weapons/bladeslice.ogg'
@@ -22,8 +22,8 @@
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
 		force = WEAPON_FORCE_WEAK
-		edge = 0
-		sharp = 0
+		edge = FALSE
+		sharp = FALSE
 		hitsound = initial(hitsound)
 		icon_state = initial(icon_state)
 		w_class = initial(w_class)
@@ -33,13 +33,13 @@
 	name = "switchblade"
 	desc = "A classic switchblade with gold engraving. Just holding it makes you feel like a gangster."
 	icon_state = "switchblade"
-	unbreakable = 1
+	unbreakable = TRUE
 
 /obj/item/weapon/material/butterfly/attack_self(mob/user)
 	active = !active
 	if(active)
 		user << "<span class='notice'>You flip out \the [src].</span>"
-		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
+		playsound(user, 'sound/weapons/flipblade.ogg', 15, TRUE)
 	else
 		user << "<span class='notice'>\The [src] can now be concealed.</span>"
 	update_force()
@@ -54,13 +54,13 @@
 	icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
 	flags = CONDUCT
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
 	matter = list(DEFAULT_WALL_MATERIAL = 12000)
 //	origin_tech = "materials=1"
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	unbreakable = 1
+	unbreakable = TRUE
 
 /obj/item/weapon/material/knife/hook
 	name = "meat hook"
@@ -73,7 +73,7 @@
 	desc = "The unearthly energies that once powered this blade are now dormant."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
-	applies_material_colour = 0
+	applies_material_colour = FALSE
 	drawsound = 'sound/items/unholster_knife.ogg'
 
 /obj/item/weapon/material/knife/butch

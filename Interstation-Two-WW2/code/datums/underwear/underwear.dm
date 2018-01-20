@@ -15,7 +15,7 @@ datum/category_group/underwear/dd_SortValue()
 
 /datum/category_group/underwear/top
 	name = "Underwear, top"
-	sort_order = 1
+	sort_order = TRUE
 	category_item_type = /datum/category_item/underwear/top
 
 /datum/category_group/underwear/bottom

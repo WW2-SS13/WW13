@@ -3,14 +3,14 @@
 	desc = "For those documents you don't want seen."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "papershredder0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/max_paper = 10
-	var/paperamount = 0
+	var/paperamount = FALSE
 	var/list/shred_amounts = list(
-		/obj/item/weapon/photo = 1,
-		/obj/item/weapon/shreddedp = 1,
-		/obj/item/weapon/paper = 1,
+		/obj/item/weapon/photo = TRUE,
+		/obj/item/weapon/shreddedp = TRUE,
+		/obj/item/weapon/paper = TRUE,
 	//	/obj/item/weapon/newspaper = 3,
 	//	/obj/item/weapon/card/id = 3,
 		/obj/item/weapon/paper_bundle = 3,
@@ -33,7 +33,7 @@
 			paperamount += paper_result
 			user.drop_from_inventory(W)
 			qdel(W)
-			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
+			playsound(loc, 'sound/items/pshred.ogg', 75, TRUE)
 			if(paperamount > max_paper)
 				user <<"<span class='danger'>\The [src] was too full, and shredded paper goes everywhere!</span>"
 				for(var/i=(paperamount-max_paper);i>0;i--)
@@ -127,10 +127,10 @@
 	name = "shredded paper"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "shredp"
-	throwforce = 0
-	w_class = 1
+	throwforce = FALSE
+	w_class = TRUE
 	throw_range = 3
-	throw_speed = 1
+	throw_speed = TRUE
 
 /obj/item/weapon/shreddedp/New()
 	..()

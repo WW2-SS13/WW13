@@ -18,7 +18,7 @@
 		if(new_location)
 			usr.loc = new_location
 			log_admin("[key_name(usr)] jumped to [A]")
-			message_admins("[key_name_admin(usr)] jumped to [A]", 1)
+			message_admins("[key_name_admin(usr)] jumped to [A]", TRUE)
 		else
 			alert("Admin jump failed due to missing [A] area turfs.")
 
@@ -32,7 +32,7 @@
 		return
 	if(config.allow_admin_jump)
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
-		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", 1)
+		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", TRUE)
 		usr.on_mob_jump()
 		usr.loc = T
 
@@ -49,9 +49,9 @@
 
 	if(config.allow_admin_jump)
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
-		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
-		if(src.mob)
-			var/mob/A = src.mob
+		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", TRUE)
+		if(mob)
+			var/mob/A = mob
 			var/turf/T = get_turf(M)
 			if(T && isturf(T))
 
@@ -70,8 +70,8 @@
 		return
 
 	if (config.allow_admin_jump)
-		if(src.mob)
-			var/mob/A = src.mob
+		if(mob)
+			var/mob/A = mob
 			A.on_mob_jump()
 			A.x = tx
 			A.y = ty
@@ -99,7 +99,7 @@
 			return
 		var/mob/M = selection:mob
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
-		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
+		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", TRUE)
 		usr.on_mob_jump()
 		usr.loc = M.loc
 
@@ -114,7 +114,7 @@
 		return
 	if(config.allow_admin_jump)
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
-		message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)]", 1)
+		message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)]", TRUE)
 		M.on_mob_jump()
 		M.loc = get_turf(usr)
 
@@ -131,7 +131,7 @@ var/turf/default_adminzone_turf = null
 		return
 
 	log_admin("[key_name(usr)] went to the admin zone")
-	message_admins("[key_name_admin(usr)] went to the admin zone", 1)
+	message_admins("[key_name_admin(usr)] went to the admin zone", TRUE)
 
 	if (!default_adminzone_turf)
 		default_adminzone_turf = locate(90, 92, 3)
@@ -139,14 +139,14 @@ var/turf/default_adminzone_turf = null
 	if (default_adminzone_turf)
 		if (istype(get_area(default_adminzone_turf), /area/prishtina/admin))
 			mob.loc = default_adminzone_turf
-			return 1
+			return TRUE
 
 	var/area/prishtina/admin/admin_zone = locate() in world
 	for (var/turf/T in admin_zone.contents)
 		mob.loc = T
 		break
 
-	return 0
+	return FALSE
 
 
 /client/proc/Getkey()
@@ -169,7 +169,7 @@ var/turf/default_adminzone_turf = null
 		if(!M)
 			return
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
-		message_admins("[key_name_admin(usr)] teleported [key_name(M)]", 1)
+		message_admins("[key_name_admin(usr)] teleported [key_name(M)]", TRUE)
 		if(M)
 			M.on_mob_jump()
 			M.loc = get_turf(usr)
@@ -190,6 +190,6 @@ var/turf/default_adminzone_turf = null
 
 
 			log_admin("[key_name(usr)] teleported [key_name(M)] to [A]")
-			message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)] to [A]", 1)
+			message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)] to [A]", TRUE)
 		else
 			alert("Admin jumping disabled")

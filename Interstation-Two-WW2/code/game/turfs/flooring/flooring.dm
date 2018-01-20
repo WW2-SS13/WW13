@@ -9,10 +9,10 @@ var/list/flooring_types
 
 // State values:
 // [icon_base]: initial base icon_state without edges or corners.
-// if has_base_range is set, append 0-has_base_range ie.
+// if has_base_range is set, append FALSE-has_base_range ie.
 //   [icon_base][has_base_range]
 // [icon_base]_broken: damaged overlay.
-// if has_damage_range is set, append 0-damage_range for state ie.
+// if has_damage_range is set, append FALSE-damage_range for state ie.
 //   [icon_base]_broken[has_damage_range]
 // [icon_base]_edges: directional overlays for edges.
 // [icon_base]_corners: directional overlays for non-edge corners.
@@ -31,8 +31,8 @@ var/list/flooring_types
 	var/apply_heat_capacity
 
 	var/build_type      // Unbuildable if not set. Must be /obj/item/stack.
-	var/build_cost = 1  // Stack units.
-	var/build_time = 0  // BYOND ticks.
+	var/build_cost = TRUE  // Stack units.
+	var/build_time = FALSE  // BYOND ticks.
 
 	var/descriptor = "tiles"
 	var/flags
@@ -64,7 +64,7 @@ var/list/flooring_types
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_USE0ICON
 	build_type = null
 	has_base_range = 35
-	//try_update_icon = 0
+	//try_update_icon = FALSE
 
 /decl/flooring/carpet
 	name = "carpet"
@@ -119,7 +119,7 @@ var/list/flooring_types
 	damage_temperature = T0C+1400
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 	build_type = /obj/item/stack/tile/floor
-	can_paint = 1
+	can_paint = TRUE
 
 /decl/flooring/tiling/tech
 //	name = "techfloor"
@@ -172,7 +172,7 @@ var/list/flooring_types
 	desc = "It's like the 2390's all over again."
 	icon = 'icons/turf/flooring/linoleum.dmi'
 	icon_base = "lino"
-	can_paint = 1
+	can_paint = TRUE
 	build_type = /obj/item/stack/tile/linoleum
 	flags = TURF_REMOVE_SCREWDRIVER
 
@@ -221,7 +221,7 @@ var/list/flooring_types
 	build_time = 30
 	apply_thermal_conductivity = 0.025
 	apply_heat_capacity = 325000
-	can_paint = 1
+	can_paint = TRUE
 
 /decl/flooring/reinforced/circuit
 	name = "processing strata"
@@ -229,7 +229,7 @@ var/list/flooring_types
 	icon_base = "bcircuit"
 	build_type = null
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
-	can_paint = 1
+	can_paint = TRUE
 
 /decl/flooring/reinforced/circuit/green
 	name = "processing strata"

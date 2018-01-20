@@ -25,11 +25,11 @@
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/shoes/swat
-	name = "\improper SWAT shoes"
+	name = "\improper German military boots"
 	desc = "When you want to turn up the heat."
 	icon_state = "swat"
 	force = WEAPON_FORCE_WEAK
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
+	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = FALSE)
 	item_flags = NOSLIP
 	siemens_coefficient = 0.6
 
@@ -38,7 +38,7 @@
 	desc = "When you REALLY want to turn up the heat"
 	icon_state = "swat"
 	force = WEAPON_FORCE_WEAK
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
+	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = FALSE)
 	item_flags = NOSLIP
 	siemens_coefficient = 0.6
 
@@ -52,7 +52,7 @@
 	name = "sandals"
 	icon_state = "wizard"
 	species_restricted = null
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "A pair of magic, black shoes."
@@ -66,19 +66,19 @@
 	icon_state = "clown"
 	item_state = "clown_shoes"
 	slowdown = SHOES_SLOWDOWN+1
-	force = 0
-	var/footstep = 1	//used for squeeks whilst walking
+	force = FALSE
+	var/footstep = TRUE	//used for squeeks whilst walking
 	species_restricted = null
 
 /obj/item/clothing/shoes/clown_shoes/handle_movement(var/turf/walking, var/running)
 	if(running)
 		if(footstep >= 2)
-			footstep = 0
-			playsound(src, "clownstep", 50, 1) // this will get annoying very fast.
+			footstep = FALSE
+			playsound(src, "clownstep", 50, TRUE) // this will get annoying very fast.
 		else
 			footstep++
 	else
-		playsound(src, "clownstep", 20, 1)
+		playsound(src, "clownstep", 20, TRUE)
 
 /obj/item/clothing/shoes/cult
 	name = "boots"
@@ -104,7 +104,7 @@
 	desc = "Fluffy!"
 	icon_state = "slippers"
 	item_state = "slippers"
-	force = 0
+	force = FALSE
 	species_restricted = null
 	w_class = 2
 
@@ -113,7 +113,7 @@
 	desc = "Fluffy..."
 	icon_state = "slippers_worn"
 	item_state = "slippers_worn"
-	force = 0
+	force = FALSE
 	w_class = 2
 
 /obj/item/clothing/shoes/laceup

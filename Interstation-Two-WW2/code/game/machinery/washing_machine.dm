@@ -2,9 +2,9 @@
 	name = "Washing Machine"
 	icon = 'icons/obj/machines/washing_machine.dmi'
 	icon_state = "wm_10"
-	density = 1
+	density = TRUE
 	anchored = 1.0
-	var/state = 1
+	var/state = TRUE
 	//1 = empty, open door
 	//2 = empty, closed door
 	//3 = full, open door
@@ -13,13 +13,13 @@
 	//6 = blood, open door
 	//7 = blood, closed door
 	//8 = blood, running
-	var/panel = 0
+	var/panel = FALSE
 	//0 = closed
 	//1 = open
-	var/hacked = 1 //Bleh, screw hacking, let's have it hacked by default.
+	var/hacked = TRUE //Bleh, screw hacking, let's have it hacked by default.
 	//0 = not hacked
 	//1 = hacked
-	var/gibs_ready = 0
+	var/gibs_ready = FALSE
 	var/obj/crayon
 
 /obj/machinery/washing_machine/Destroy()
@@ -64,7 +64,7 @@
 
 	if( locate(/mob,contents) )
 		state = 7
-		gibs_ready = 1
+		gibs_ready = TRUE
 	else
 		state = 4
 	update_icon()
@@ -76,7 +76,7 @@
 
 	sleep(20)
 	if(state in list(1,3,6) )
-		usr.loc = src.loc
+		usr.loc = loc
 
 
 /obj/machinery/washing_machine/update_icon()
@@ -97,7 +97,7 @@
 		else
 			..()
 	else if(istype(W,/obj/item/weapon/grab))
-		if( (state == 1) && hacked)
+		if( (state == TRUE) && hacked)
 			var/obj/item/weapon/grab/G = W
 			if(ishuman(G.assailant) && iscorgi(G.affecting))
 				G.affecting.loc = src
@@ -157,31 +157,31 @@
 		if(1)
 			state = 2
 		if(2)
-			state = 1
+			state = TRUE
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.loc = loc
 		if(3)
 			state = 4
 		if(4)
 			state = 3
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.loc = loc
 			crayon = null
-			state = 1
+			state = TRUE
 		if(5)
 			user << "<span class='warning'>The [src] is busy.</span>"
 		if(6)
 			state = 7
 		if(7)
 			if(gibs_ready)
-				gibs_ready = 0
+				gibs_ready = FALSE
 				if(locate(/mob,contents))
 					var/mob/M = locate(/mob,contents)
 					M.gib()
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.loc = loc
 			crayon = null
-			state = 1
+			state = TRUE
 
 
 	update_icon()

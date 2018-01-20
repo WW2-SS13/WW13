@@ -21,7 +21,7 @@
 //		. += "- [S.default_language]<br>"
 //	if(S.num_alternate_languages)
 //		if(pref.alternate_languages.len)
-//			for(var/i = 1 to pref.alternate_languages.len)
+//			for(var/i = TRUE to pref.alternate_languages.len)
 //				var/lang = pref.alternate_languages[i]
 //				. += "- [lang] - <a href='?src=\ref[src];remove_language=[i]'>remove</a><br>"
 //

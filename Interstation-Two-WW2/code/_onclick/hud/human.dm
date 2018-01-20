@@ -11,9 +11,9 @@
 	if(hud_data.icon)
 		ui_style = hud_data.icon
 
-	src.adding = list()
-	src.other = list()
-	src.hotkeybuttons = list() //These can be disabled for hotkey usersx
+	adding = list()
+	other = list()
+	hotkeybuttons = list() //These can be disabled for hotkey usersx
 
 	var/list/hud_elements = list()
 	var/obj/screen/using
@@ -39,10 +39,10 @@
 			inv_box.set_dir(slot_data["dir"])
 
 		if(slot_data["toggle"])
-			src.other += inv_box
-			has_hidden_gear = 1
+			other += inv_box
+			has_hidden_gear = TRUE
 		else
-			src.adding += inv_box
+			adding += inv_box
 
 	if(has_hidden_gear)
 		using = new /obj/screen()
@@ -53,7 +53,7 @@
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding += using
 
 	// Draw the attack intent dialogue.
 	if(hud_data.has_a_intent)
@@ -66,7 +66,7 @@
 		using.color = ui_color
 		using.alpha = ui_alpha
 		using.layer = 20
-		src.adding += using
+		adding += using
 		action_intent = using
 
 		hud_elements |= using
@@ -75,7 +75,7 @@
 		var/icon/ico
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+		ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
 		using = new /obj/screen( src )
 		using.name = I_HELP
@@ -83,11 +83,11 @@
 		using.screen_loc = ui_acti
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding += using
 		help_intent = using
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+		ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
 		using = new /obj/screen( src )
 		using.name = I_DISARM
@@ -95,11 +95,11 @@
 		using.screen_loc = ui_acti
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding += using
 		disarm_intent = using
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+		ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
 		using = new /obj/screen( src )
 		using.name = I_GRAB
@@ -107,11 +107,11 @@
 		using.screen_loc = ui_acti
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding += using
 		grab_intent = using
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
+		ico.MapColors(0,0,0,0, FALSE,0,0,0, FALSE,0,0,0, FALSE,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
 		using = new /obj/screen( src )
 		using.name = I_HURT
@@ -119,7 +119,7 @@
 		using.screen_loc = ui_acti
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding += using
 		hurt_intent = using
 		//end intent small hud objects
 
@@ -132,7 +132,7 @@
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding += using
 		move_intent = using
 
 	if(hud_data.has_drop)
@@ -144,7 +144,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.hotkeybuttons += using
+		hotkeybuttons += using
 
 	if(hud_data.has_hands)
 
@@ -156,13 +156,13 @@
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding += using
 
 		inv_box = new /obj/screen/inventory()
 		inv_box.name = "r_hand"
 		inv_box.icon = ui_style
 		inv_box.icon_state = "r_hand_inactive"
-		if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
+		if(mymob && !mymob.hand)	//This being FALSE or null means the right hand is in use
 			inv_box.icon_state = "r_hand_active"
 		inv_box.screen_loc = ui_rhand
 		inv_box.slot_id = slot_r_hand
@@ -170,22 +170,22 @@
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 
-		src.r_hand_hud_object = inv_box
-		src.adding += inv_box
+		r_hand_hud_object = inv_box
+		adding += inv_box
 
 		inv_box = new /obj/screen/inventory()
 		inv_box.name = "l_hand"
 		inv_box.icon = ui_style
 		inv_box.icon_state = "l_hand_inactive"
-		if(mymob && mymob.hand)	//This being 1 means the left hand is in use
+		if(mymob && mymob.hand)	//This being TRUE means the left hand is in use
 			inv_box.icon_state = "l_hand_active"
 		inv_box.screen_loc = ui_lhand
 		inv_box.slot_id = slot_l_hand
 		inv_box.layer = 19
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
-		src.l_hand_hud_object = inv_box
-		src.adding += inv_box
+		l_hand_hud_object = inv_box
+		adding += inv_box
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"
@@ -195,7 +195,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding += using
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"
@@ -205,7 +205,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding += using
 
 	if(hud_data.has_resist)
 		using = new /obj/screen()
@@ -216,7 +216,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.hotkeybuttons += using
+		hotkeybuttons += using
 
 	if(hud_data.has_throw)
 		mymob.throw_icon = new /obj/screen()
@@ -226,7 +226,7 @@
 		mymob.throw_icon.screen_loc = ui_drop_throw
 		mymob.throw_icon.color = ui_color
 		mymob.throw_icon.alpha = ui_alpha
-		src.hotkeybuttons += mymob.throw_icon
+		hotkeybuttons += mymob.throw_icon
 		hud_elements |= mymob.throw_icon
 
 		mymob.pullin = new /obj/screen()
@@ -234,7 +234,7 @@
 		mymob.pullin.icon_state = "pull0"
 		mymob.pullin.name = "pull"
 		mymob.pullin.screen_loc = ui_pull_resist
-		src.hotkeybuttons += mymob.pullin
+		hotkeybuttons += mymob.pullin
 		hud_elements |= mymob.pullin
 
 	if(hud_data.has_internals)
@@ -303,9 +303,9 @@
 	mymob.blind.icon_state = "blackimageoverlay"
 	mymob.blind.name = " "
 	mymob.blind.screen_loc = "1,1"
-	mymob.blind.mouse_opacity = 0
+	mymob.blind.mouse_opacity = FALSE
 	mymob.blind.layer = 18
-	mymob.blind.alpha = 0
+	mymob.blind.alpha = FALSE
 	hud_elements |= mymob.blind
 
 	mymob.damageoverlay = new /obj/screen()
@@ -313,7 +313,7 @@
 	mymob.damageoverlay.icon_state = "oxydamageoverlay0"
 	mymob.damageoverlay.name = "dmg"
 	mymob.damageoverlay.screen_loc = "1,1"
-	mymob.damageoverlay.mouse_opacity = 0
+	mymob.damageoverlay.mouse_opacity = FALSE
 	mymob.damageoverlay.layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	hud_elements |= mymob.damageoverlay
 
@@ -360,8 +360,8 @@
 	mymob.client.screen = null
 
 	mymob.client.screen += hud_elements
-	mymob.client.screen += src.adding + src.hotkeybuttons
-	inventory_shown = 0;
+	mymob.client.screen += adding + hotkeybuttons
+	inventory_shown = FALSE;
 
 	return*/
 
@@ -373,10 +373,10 @@
 
 /*	if(hud_used.hotkey_ui_hidden)
 		client.screen += hud_used.hotkeybuttons
-		hud_used.hotkey_ui_hidden = 0
+		hud_used.hotkey_ui_hidden = FALSE
 	else
 		client.screen -= hud_used.hotkeybuttons
-		hud_used.hotkey_ui_hidden = 1*/
+		hud_used.hotkey_ui_hidden = TRUE*/
 
 //Used for new human mobs created by cloning/goleming/etc.
 /mob/living/carbon/human/proc/set_cloned_appearance()

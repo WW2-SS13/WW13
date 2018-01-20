@@ -3,7 +3,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper_bin1"
 	item_state = "sheet-metal"
-	throwforce = 1
+	throwforce = TRUE
 	w_class = 3
 	throw_speed = 3
 	throw_range = 7
@@ -40,18 +40,18 @@
 			user << "<span class='notice'>You try to move your [temp.name], but cannot!</span>"
 			return
 	var/response = ""
-	if(!papers.len > 0)
+	if(!papers.len > FALSE)
 		response = alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", "Regular", "Carbon-Copy", "Cancel")
 		if (response != "Regular" && response != "Carbon-Copy")
 			add_fingerprint(user)
 			return
-	if(amount >= 1)
+	if(amount >= TRUE)
 		amount--
 		if(amount==0)
 			update_icon()
 
 		var/obj/item/weapon/paper/P
-		if(papers.len > 0)	//If there's any custom paper on the stack, use that instead of creating a new paper.
+		if(papers.len > FALSE)	//If there's any custom paper on the stack, use that instead of creating a new paper.
 			P = papers[papers.len]
 			papers.Remove(P)
 		else
@@ -83,16 +83,16 @@
 
 
 /obj/item/weapon/paper_bin/examine(mob/user)
-	if(get_dist(src, user) <= 1)
+	if(get_dist(src, user) <= TRUE)
 		if(amount)
-			user << "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
+			user << "<span class='notice'>There " + (amount > TRUE ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
 		else
 			user << "<span class='notice'>There are no papers in the bin.</span>"
 	return
 
 
 /obj/item/weapon/paper_bin/update_icon()
-	if(amount < 1)
+	if(amount < TRUE)
 		icon_state = "paper_bin0"
 	else
 		icon_state = "paper_bin1"

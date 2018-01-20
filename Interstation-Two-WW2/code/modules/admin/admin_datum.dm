@@ -3,7 +3,7 @@ var/list/admin_datums = list()
 /datum/admins
 	var/rank			= "Temporary Admin"
 	var/client/owner	= null
-	var/rights = 0
+	var/rights = FALSE
 	var/fakekey			= null
 
 	var/datum/weakref/marked_datum_weak
@@ -26,20 +26,17 @@ var/list/admin_datums = list()
 	if(marked_datum_weak)
 		return marked_datum_weak.resolve()
 
-/datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
+/datum/admins/New(initial_rank = "Temporary Admin", initial_rights = FALSE, ckey)
 
 	if(!ckey)
 		error("Admin datum created without a ckey argument. Datum has been deleted")
 		qdel(src)
 		return
 
-	if (!config || !config.debug)
-		rank = initial_rank
-		rights = initial_rights
-	else
-		rank = "Debug Host"
+	rank = initial_rank
+	rights = initial_rights
 
-	if (rights == 0)
+	if (rights == FALSE)
 		rights = admin_ranks[ckeyEx(rank)]
 
 //	world << "rights #1: [rights]"
@@ -79,5 +76,4 @@ var/list/admin_datums = list()
 /client/proc/deadmin()
 	if(holder)
 		holder.disassociate()
-		//qdel(holder)
-	return 1
+	return TRUE

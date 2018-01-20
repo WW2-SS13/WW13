@@ -1,37 +1,37 @@
 /proc/check_for_german_train_conductors()
 	if (!game_started)
-		return 1 // if we haven't started the game yet
+		return TRUE // if we haven't started the game yet
 	if (initial(grace_period) == grace_period)
-		return 1 // if we started with a grace period and we're still in that
+		return TRUE // if we started with a grace period and we're still in that
 	for (var/mob/living/carbon/human/H in world)
-		var/cont = 0
+		var/cont = FALSE
 		if (locate(/obj/item/weapon/key/german/train) in H)
-			cont = 1
+			cont = TRUE
 		for (var/obj/item/clothing/clothing in H)
 			if (locate(/obj/item/weapon/key/german/train) in clothing)
-				cont = 1
+				cont = TRUE
 				break
 		if (cont)
 			if (H.stat == CONSCIOUS && H.mind.assigned_job.base_type_flag() == GERMAN)
-				return 1 // found a conscious german dude with the key
-	return 0
+				return TRUE // found a conscious german dude with the key
+	return FALSE
 
-/datum/job/var/allow_spies = 0
-/datum/job/var/is_officer = 0
-/datum/job/var/is_squad_leader = 0
-/datum/job/var/is_commander = 0
-/datum/job/var/is_petty_commander = 0
-/datum/job/var/is_nonmilitary = 0
-/datum/job/var/spawn_delay = 0
+/datum/job/var/allow_spies = FALSE
+/datum/job/var/is_officer = FALSE
+/datum/job/var/is_squad_leader = FALSE
+/datum/job/var/is_commander = FALSE
+/datum/job/var/is_petty_commander = FALSE
+/datum/job/var/is_nonmilitary = FALSE
+/datum/job/var/spawn_delay = FALSE
 /datum/job/var/delayed_spawn_message = ""
-/datum/job/var/is_SS = 0
-/datum/job/var/is_primary = 1
-/datum/job/var/is_secondary = 0
-/datum/job/var/is_paratrooper = 0
-/datum/job/var/is_sturmovik = 0
-/datum/job/var/is_guard = 0
-/datum/job/var/is_tankuser = 0
-/datum/job/var/absolute_limit = 0 // if this is 0 it's ignored
+/datum/job/var/is_SS = FALSE
+/datum/job/var/is_primary = TRUE
+/datum/job/var/is_secondary = FALSE
+/datum/job/var/is_paratrooper = FALSE
+/datum/job/var/is_sturmovik = FALSE
+/datum/job/var/is_guard = FALSE
+/datum/job/var/is_tankuser = FALSE
+/datum/job/var/absolute_limit = FALSE // if this is FALSE it's ignored
 
 /* type_flag() replaces flag, and base_type_flag() replaces department_flag
  * this is a better solution than bit constants, in my opinion */
@@ -42,13 +42,13 @@
 /datum/job/proc/type_flag()
 	return "[type]"
 
-/datum/job/proc/base_type_flag(var/most_specific = 0)
+/datum/job/proc/base_type_flag(var/most_specific = FALSE)
 
 	if (_base_type_flag != -1)
 		return _base_type_flag
 
-	if (istype(src, /datum/job/russian))
-		. = RUSSIAN
+	if (istype(src, /datum/job/soviet))
+		. = SOVIET
 	else if (istype(src, /datum/job/partisan))
 		if (istype(src, /datum/job/partisan/civilian))
 			. = CIVILIAN
@@ -76,47 +76,47 @@
 /datum/job/proc/assign_faction(var/mob/living/carbon/human/user)
 
 	if (!spies[GERMAN])
-		spies[GERMAN] = 0
-	if (!spies[RUSSIAN])
-		spies[RUSSIAN] = 0
+		spies[GERMAN] = FALSE
+	if (!spies[SOVIET])
+		spies[SOVIET] = FALSE
 	if (!spies[PARTISAN])
-		spies[PARTISAN] = 0
+		spies[PARTISAN] = FALSE
 
 	if (!squad_leaders[GERMAN])
-		squad_leaders[GERMAN] = 0
-	if (!squad_leaders[RUSSIAN])
-		squad_leaders[RUSSIAN] = 0
+		squad_leaders[GERMAN] = FALSE
+	if (!squad_leaders[SOVIET])
+		squad_leaders[SOVIET] = FALSE
 	if (!squad_leaders[PARTISAN])
-		squad_leaders[PARTISAN] = 0
+		squad_leaders[PARTISAN] = FALSE
 
 	if (!officers[GERMAN])
-		officers[GERMAN] = 0
-	if (!officers[RUSSIAN])
-		officers[RUSSIAN] = 0
+		officers[GERMAN] = FALSE
+	if (!officers[SOVIET])
+		officers[SOVIET] = FALSE
 	if (!officers[PARTISAN])
-		officers[PARTISAN] = 0
+		officers[PARTISAN] = FALSE
 
 	if (!commanders[GERMAN])
-		commanders[GERMAN] = 0
-	if (!commanders[RUSSIAN])
-		commanders[RUSSIAN] = 0
+		commanders[GERMAN] = FALSE
+	if (!commanders[SOVIET])
+		commanders[SOVIET] = FALSE
 	if (!commanders[PARTISAN])
-		commanders[PARTISAN] = 0
+		commanders[PARTISAN] = FALSE
 
 	if (!soldiers[GERMAN])
-		soldiers[GERMAN] = 0
-	if (!soldiers[RUSSIAN])
-		soldiers[RUSSIAN] = 0
+		soldiers[GERMAN] = FALSE
+	if (!soldiers[SOVIET])
+		soldiers[SOVIET] = FALSE
 	if (!soldiers[PARTISAN])
-		soldiers[PARTISAN] = 0
+		soldiers[PARTISAN] = FALSE
 
 
 	if (!squad_members[GERMAN])
-		squad_members[GERMAN] = 0
-	if (!squad_members[RUSSIAN])
-		squad_members[RUSSIAN] = 0
+		squad_members[GERMAN] = FALSE
+	if (!squad_members[SOVIET])
+		squad_members[SOVIET] = FALSE
 	if (!squad_members[PARTISAN])
-		squad_members[PARTISAN] = 0
+		squad_members[PARTISAN] = FALSE
 
 	if (!istype(user))
 		return
@@ -169,17 +169,17 @@
 						else
 							user.squad_faction = new/datum/faction/squad/four(user, src)
 
-	else if (istype(src, /datum/job/russian))
-		user.base_faction = new/datum/faction/russian(user, src)
+	else if (istype(src, /datum/job/soviet))
+		user.base_faction = new/datum/faction/soviet(user, src)
 
 		if (is_officer && !is_commander)
-			user.officer_faction = new/datum/faction/russian/officer(user, src)
+			user.officer_faction = new/datum/faction/soviet/officer(user, src)
 
 		else if (is_commander)
-			user.officer_faction = new/datum/faction/russian/commander(user, src)
+			user.officer_faction = new/datum/faction/soviet/commander(user, src)
 
 		if (is_squad_leader)
-			switch (squad_leaders[RUSSIAN])
+			switch (squad_leaders[SOVIET])
 				if (0)
 					user.squad_faction = new/datum/faction/squad/one/leader(user, src)
 				if (1)
@@ -189,7 +189,7 @@
 				if (3)
 					user.squad_faction = new/datum/faction/squad/four/leader(user, src)
 		else if (!is_officer && !is_commander && !is_nonmilitary && !is_guard && !is_tankuser)
-			switch (squad_members[RUSSIAN]) // non officers
+			switch (squad_members[SOVIET]) // non officers
 				if (0 to 7-1)
 					user.squad_faction = new/datum/faction/squad/one(user, src)
 				if (8-1 to 14-1)
@@ -232,7 +232,7 @@
 	user.add_memory("")
 	user.add_memory("Sabotage your own team wherever possible. To change your uniform and radio to the [opposite_faction_name()] one, right click your uniform and use 'Swap'. You know both Russian and German; to change your language, use the IC tab.")
 
-	user.is_spy = 1 // lets admins see who's a spy
+	user.is_spy = TRUE // lets admins see who's a spy
 
 	var/mob/living/carbon/human/H = user
 
@@ -243,11 +243,11 @@
 
 	if (istype(src, /datum/job/german))
 		if (!H.languages.Find(RUSSIAN))
-			H.add_language(RUSSIAN, 1)
-		H.spy_faction = new/datum/faction/russian()
+			H.add_language(RUSSIAN, TRUE)
+		H.spy_faction = new/datum/faction/soviet()
 	else
 		if (!H.languages.Find(GERMAN))
-			H.add_language(GERMAN, 1)
+			H.add_language(GERMAN, TRUE)
 		H.spy_faction = new/datum/faction/german()
 
 
@@ -256,7 +256,7 @@
 		return "Waffen-S.S."
 	if(side == PARTISAN)
 		return CIVILIAN
-	if(side == RUSSIAN)
+	if(side == SOVIET)
 		return "Red Army"
 	if(side == GERMAN)
 		return "German Wehrmacht"
@@ -268,14 +268,14 @@
 // so now there's this magical function that equips a human with a radio and harness
 //	- Kachnov
 
-/mob/living/carbon/human/var/gave_radio = 0
+/mob/living/carbon/human/var/gave_radio = FALSE
 
 /mob/living/carbon/human/proc/give_radio()
 
 	if (gave_radio)
 		return
 
-	gave_radio = 1
+	gave_radio = TRUE
 
 	spawn (1)
 
@@ -284,7 +284,7 @@
 			equip_to_slot_or_del(new /obj/item/clothing/suit/radio_harness(src), slot_wear_suit)
 
 		spawn (0)
-			if (istype(original_job, /datum/job/russian))
+			if (istype(original_job, /datum/job/soviet))
 				equip_to_slot_or_del(new /obj/item/device/radio/rbs(src), slot_s_store)
 			else if (istype(original_job, /datum/job/german))
 				equip_to_slot_or_del(new /obj/item/device/radio/feldfu(src), slot_s_store)

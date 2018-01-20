@@ -10,7 +10,7 @@
 	speak_emote = list("barks", "woofs")
 	emote_hear = list("barks", "woofs", "yaps","pants")
 	emote_see = list("shakes its head", "shivers")
-	speak_chance = 1
+	speak_chance = TRUE
 	turns_per_move = 10
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
 	meat_amount = 3
@@ -19,7 +19,7 @@
 	response_harm   = "kicks"
 	see_in_dark = 5
 	mob_size = 8
-	possession_candidate = 1
+	possession_candidate = TRUE
 
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
@@ -30,7 +30,7 @@
 	real_name = "Ian"	//Intended to hold the name without altering it.
 	gender = MALE
 	desc = "It's a corgi."
-	var/turns_since_scan = 0
+	var/turns_since_scan = FALSE
 	var/obj/movement_target
 	response_help  = "pets"
 	response_disarm = "bops"
@@ -43,19 +43,19 @@
 	if(!stat && !resting && !buckled)
 		turns_since_scan++
 		if(turns_since_scan > 5)
-			turns_since_scan = 0
+			turns_since_scan = FALSE
 			if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
 				movement_target = null
-				stop_automated_movement = 0
+				stop_automated_movement = FALSE
 			if( !movement_target || !(movement_target.loc in oview(src, 3)) )
 				movement_target = null
-				stop_automated_movement = 0
+				stop_automated_movement = FALSE
 				for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3))
 					if(isturf(S.loc) || ishuman(S.loc))
 						movement_target = S
 						break
 			if(movement_target)
-				stop_automated_movement = 1
+				stop_automated_movement = TRUE
 				step_to(src,movement_target,1)
 				sleep(3)
 				step_to(src,movement_target,1)
@@ -63,13 +63,13 @@
 				step_to(src,movement_target,1)
 
 				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < src.x)
+					if (movement_target.loc.x < x)
 						set_dir(WEST)
-					else if (movement_target.loc.x > src.x)
+					else if (movement_target.loc.x > x)
 						set_dir(EAST)
-					else if (movement_target.loc.y < src.y)
+					else if (movement_target.loc.y < y)
 						set_dir(SOUTH)
-					else if (movement_target.loc.y > src.y)
+					else if (movement_target.loc.y > y)
 						set_dir(NORTH)
 					else
 						set_dir(SOUTH)
@@ -95,7 +95,7 @@
 
 	if(inventory_head)
 		var/head_icon_state = inventory_head.icon_state
-		if(health <= 0)
+		if(health <= FALSE)
 			head_icon_state += "2"
 
 		var/icon/head_icon = image('icons/mob/corgi_head.dmi',head_icon_state)
@@ -104,7 +104,7 @@
 
 	if(inventory_back)
 		var/back_icon_state = inventory_back.icon_state
-		if(health <= 0)
+		if(health <= FALSE)
 			back_icon_state += "2"
 
 		var/icon/back_icon = image('icons/mob/corgi_back.dmi',back_icon_state)
@@ -141,8 +141,8 @@
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
-	var/turns_since_scan = 0
-	var/puppies = 0
+	var/turns_since_scan = FALSE
+	var/puppies = FALSE
 
 //Lisa already has a cute bow!
 /mob/living/simple_animal/corgi/Lisa/Topic(href, href_list)
@@ -157,18 +157,18 @@
 	if(!stat && !resting && !buckled)
 		turns_since_scan++
 		if(turns_since_scan > 15)
-			turns_since_scan = 0
-			var/alone = 1
-			var/ian = 0
+			turns_since_scan = FALSE
+			var/alone = TRUE
+			var/ian = FALSE
 			for(var/mob/M in oviewers(7, src))
 				if(istype(M, /mob/living/simple_animal/corgi/Ian))
 					if(M.client)
-						alone = 0
+						alone = FALSE
 						break
 					else
 						ian = M
 				else
-					alone = 0
+					alone = FALSE
 					break
 			if(alone && ian && puppies < 4)
 				new /mob/living/simple_animal/corgi/puppy(loc)

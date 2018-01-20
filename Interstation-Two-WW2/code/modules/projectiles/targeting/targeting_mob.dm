@@ -15,7 +15,7 @@
 		src << "<span class='warning'>This verb may only be used by living mobs, sorry.</span>"
 	return
 
-/mob/living/proc/stop_aiming(var/obj/item/thing, var/no_message = 0)
+/mob/living/proc/stop_aiming(var/obj/item/thing, var/no_message = FALSE)
 	if(!aiming)
 		aiming = new(src)
 	if(thing && aiming.aiming_with != thing)

@@ -1,23 +1,23 @@
 /atom/movable
 	layer = 3
 	var/last_move = null
-	var/anchored = 0
+	var/anchored = FALSE
 	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10
-	var/l_move_time = 1
-	var/m_flag = 1
-	var/throwing = 0
+	var/l_move_time = TRUE
+	var/m_flag = TRUE
+	var/throwing = FALSE
 	var/thrower
 	var/turf/throw_source = null
 	var/turf/last_throw_source = null // when we need a longterm reference
 	var/throw_speed = 2
 	var/throw_range = 7
-	var/moved_recently = 0
+	var/moved_recently = FALSE
 	var/mob/pulledby = null
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
 
-	var/auto_init = 1
-	var/nothrow = 0
+	var/auto_init = TRUE
+	var/nothrow = FALSE
 
 /atom/movable/New()
 	..()
@@ -49,12 +49,12 @@
 //Convenience function for atoms to update turfs they occupy
 /atom/movable/proc/update_nearby_tiles(need_rebuild)
 /*	if(!air_master)
-		return 0
+		return FALSE
 
 	for(var/turf/turf in locs)
 		air_master.mark_for_update(turf)*/
 
-	return 1
+	return TRUE
 
 /atom/movable/proc/initialize()
 	if(!isnull(gcDestroyed))
@@ -62,9 +62,9 @@
 
 /atom/movable/Bump(var/atom/A, yes)
 
-	if(src.throwing)
-		src.throw_impact(A)
-		src.throwing = 0
+	if(throwing)
+		throw_impact(A)
+		throwing = FALSE
 
 	spawn(0)
 		if (A && yes)
@@ -77,7 +77,7 @@
 
 /atom/movable/proc/forceMove(atom/destination, var/special_event)
 	if(loc == destination)
-		return 0
+		return FALSE
 
 	var/is_origin_turf = isturf(loc)
 	var/is_destination_turf = isturf(destination)
@@ -105,7 +105,7 @@
 					AM.Crossed(src)
 			if(is_new_area && is_destination_turf)
 				destination.loc.Entered(src, origin)
-	return 1
+	return TRUE
 
 /atom/movable/proc/forceMoveOld(atom/destination)
 	if(destination)
@@ -113,8 +113,8 @@
 			loc.Exited(src)
 		loc = destination
 		loc.Entered(src)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
@@ -125,167 +125,181 @@
 	else if(isobj(hit_atom))
 		var/obj/O = hit_atom
 		if(!O.anchored)
-			step(O, src.last_move)
+			step(O, last_move)
 		O.hitby(src,speed)
 
 	else if(isturf(hit_atom))
-		src.throwing = 0
+		throwing = FALSE
 		var/turf/T = hit_atom
 		if(T.density)
 			spawn(2)
-				step(src, turn(src.last_move, 180))
+				step(src, turn(last_move, 180))
 			if(istype(src,/mob/living))
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
 
 //decided whether a movable atom being thrown can pass through the turf it is in.
 /atom/movable/proc/hit_check(var/speed)
-	if(src.throwing)
+	if(throwing)
 		for(var/atom/A in get_turf(src))
 			if(A == src) continue
 			if(istype(A,/mob/living))
 				if(A:lying) continue
-				src.throw_impact(A,speed)
+				throw_impact(A,speed)
 			if(isobj(A))
 				if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
-					src.throw_impact(A,speed)
+					throw_impact(A,speed)
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
-	if(!target || !src)	return 0
-
-	// no throwing past the bridge
-	if (thrower)
-		for (var/i in 1 to get_dist(src, target))
-			var/turf/T = locate(x, y+i, z)
-			if (T && map.check_prishtina_block(thrower, T))
-				return 0
+	. = TRUE
+	if(!target || !src)	return FALSE
 
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 
-	src.throwing = 1
-	if(target.allow_spin && src.allow_spin)
+	throwing = TRUE
+	if(target.allow_spin && allow_spin)
 		SpinAnimation(5,1)
-	src.thrower = thrower
-	src.throw_source = get_turf(src)	//store the origin turf
-	src.last_throw_source = src.throw_source
+	thrower = thrower
+	throw_source = get_turf(src)	//store the origin turf
+	last_throw_source = throw_source
 
 	if(usr)
 		if(HULK in usr.mutations)
-			src.throwing = 2 // really strong throw!
+			throwing = 2 // really strong throw!
 
-	var/dist_x = abs(target.x - src.x)
-	var/dist_y = abs(target.y - src.y)
+	var/dist_x = abs(target.x - x)
+	var/dist_y = abs(target.y - y)
 
 	var/dx
-	if (target.x > src.x)
+	if (target.x > x)
 		dx = EAST
 	else
 		dx = WEST
 
 	var/dy
-	if (target.y > src.y)
+	if (target.y > y)
 		dy = NORTH
 	else
 		dy = SOUTH
-	var/dist_travelled = 0
-	var/dist_since_sleep = 0
-	var/area/a = get_area(src.loc)
+	var/dist_travelled = FALSE
+	var/dist_since_sleep = FALSE
+	var/area/a = get_area(loc)
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
 
-		while(src && target &&((((src.x < target.x && dx == EAST) || (src.x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/space)) && src.throwing && istype(src.loc, /turf))
+		while(src && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == FALSE)  || istype(loc, /turf/space)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
-			if(error < 0)
+			if(error < FALSE)
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
+				if (map.check_prishtina_block(thrower, get_turf(step)))
+					if (istype(src, /obj/item/weapon/grenade))
+						var/obj/item/weapon/grenade/G = src
+						G.active = FALSE
+					break
+				Move(step)
 				hit_check(speed)
 				error += dist_x
 				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
+					dist_since_sleep = FALSE
 					sleep(1)
 			else
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
+				if (map.check_prishtina_block(thrower, get_turf(step)))
+					if (istype(src, /obj/item/weapon/grenade))
+						var/obj/item/weapon/grenade/G = src
+						G.active = FALSE
+					break
+				Move(step)
 				hit_check(speed)
 				error -= dist_y
 				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
+					dist_since_sleep = FALSE
 					sleep(1)
-			a = get_area(src.loc)
+			a = get_area(loc)
 	else
 		var/error = dist_y/2 - dist_x
-		while(src && target &&((((src.y < target.y && dy == NORTH) || (src.y > target.y && dy == SOUTH)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/space)) && src.throwing && istype(src.loc, /turf))
+		while(src && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || (a && a.has_gravity == FALSE)  || istype(loc, /turf/space)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
-			if(error < 0)
+			if(error < FALSE)
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
+				if (map.check_prishtina_block(thrower, get_turf(step)))
+					if (istype(src, /obj/item/weapon/grenade))
+						var/obj/item/weapon/grenade/G = src
+						G.active = FALSE
+					break
+				Move(step)
 				hit_check(speed)
 				error += dist_y
 				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
+					dist_since_sleep = FALSE
 					sleep(1)
 			else
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
+				if (map.check_prishtina_block(thrower, get_turf(step)))
+					if (istype(src, /obj/item/weapon/grenade))
+						var/obj/item/weapon/grenade/G = src
+						G.active = FALSE
+					break
+				Move(step)
 				hit_check(speed)
 				error -= dist_x
 				dist_travelled++
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
+					dist_since_sleep = FALSE
 					sleep(1)
 
-			a = get_area(src.loc)
+			a = get_area(loc)
 
 	//done throwing, either because it hit something or it finished moving
 	var/turf/new_loc = get_turf(src)
-	if(isobj(src)) src.throw_impact(new_loc,speed)
+	if(isobj(src)) throw_impact(new_loc,speed)
 	if (src && new_loc)
 		new_loc.Entered(src)
-		src.throwing = 0
-		src.thrower = null
-		src.throw_source = null
+		throwing = FALSE
+		thrower = null
+		throw_source = null
 
 
 //Overlays
 /atom/movable/overlay
 	var/atom/master = null
-	anchored = 1
+	anchored = TRUE
 
 /atom/movable/overlay/New()
-	for(var/x in src.verbs)
-		src.verbs -= x
+	for(var/x in verbs)
+		verbs -= x
 	..()
 
 /atom/movable/overlay/attackby(a, b)
-	if (src.master)
-		return src.master.attackby(a, b)
+	if (master)
+		return master.attackby(a, b)
 	return
 
 /atom/movable/overlay/attack_hand(a, b, c)
-	if (src.master)
-		return src.master.attack_hand(a, b, c)
+	if (master)
+		return master.attack_hand(a, b, c)
 	return
 
 /atom/movable/proc/touch_map_edge()
 	if(z in config.sealed_levels)
 		return
 
-	var/move_to_z = src.get_transit_zlevel()
+	var/move_to_z = get_transit_zlevel()
 	if(move_to_z)
 		z = move_to_z
 
@@ -293,16 +307,16 @@
 			x = world.maxx - TRANSITIONEDGE - 2
 			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
-		else if (x >= (world.maxx - TRANSITIONEDGE + 1))
-			x = TRANSITIONEDGE + 1
+		else if (x >= (world.maxx - TRANSITIONEDGE + TRUE))
+			x = TRANSITIONEDGE + TRUE
 			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
 		else if (y <= TRANSITIONEDGE)
 			y = world.maxy - TRANSITIONEDGE -2
 			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
-		else if (y >= (world.maxy - TRANSITIONEDGE + 1))
-			y = TRANSITIONEDGE + 1
+		else if (y >= (world.maxy - TRANSITIONEDGE + TRUE))
+			y = TRANSITIONEDGE + TRUE
 			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
 		spawn(0)
@@ -314,7 +328,7 @@ var/list/accessible_z_levels = list("1" = 5, "3" = 10, "4" = 15, "6" = 60)
 //by default, transition randomly to another zlevel
 /atom/movable/proc/get_transit_zlevel()
 	var/list/candidates = accessible_z_levels.Copy()
-	candidates.Remove("[src.z]")
+	candidates.Remove("[z]")
 
 	if(!candidates.len)
 		return null

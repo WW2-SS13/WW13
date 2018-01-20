@@ -1,5 +1,6 @@
 /obj/item/weapon/gun/projectile/boltaction
 	recoil = 2
+	gun_type = GUN_TYPE_RIFLE
 
 /obj/item/weapon/gun/projectile/boltaction/mosin
 	name = "Mosin-Nagant"
@@ -14,11 +15,11 @@
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
-/obj/item/weapon/gun/projectile/boltaction/mosin/update_icon(var/add_scope = 0)
+/obj/item/weapon/gun/projectile/boltaction/mosin/update_icon(var/add_scope = FALSE)
 	if(add_scope)
 		if(bolt_open)
 			icon_state = "mosin_scope_open"
-			item_state = "mosin_scope_open"
+			item_state = "mosin_scope"
 			return
 		else
 			icon_state = "mosin_scope"
@@ -38,7 +39,7 @@
 	name = "Kar-98K"
 	desc = "German bolt-action rifle chambered in 7.92x57mm Mauser ammunition. It looks clean and well-fabricated."
 	icon_state = "kar98k"
-	item_state = "kar98k" //placeholder
+	item_state = "kar98k"
 	caliber = "a792x57"
 	fire_sound = 'sound/weapons/kar_shot.ogg'
 	ammo_type = /obj/item/ammo_casing/a792x57
@@ -46,15 +47,15 @@
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = DEFAULT_BOLTACTION_ACCURACY
 	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
-	bolt_safety = 1
+	bolt_safety = TRUE
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
-/obj/item/weapon/gun/projectile/boltaction/kar98k/update_icon(var/add_scope = 0)
+/obj/item/weapon/gun/projectile/boltaction/kar98k/update_icon(var/add_scope = FALSE)
 	if(add_scope)
 		if(bolt_open)
 			icon_state = "kar98k_scope_open"
-			item_state = "kar98k_scope_open"
+			item_state = "kar98k_scope"
 			return
 		else
 			icon_state = "kar98k_scope"

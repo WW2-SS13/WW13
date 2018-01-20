@@ -8,10 +8,10 @@
 		user << "<span class='notice'>Results of the analysis[src == A ? "" : " of \the [A]"]</span>"
 		for(var/line in result)
 			user << "<span class='notice'>[line]</span>"
-		return 1
+		return TRUE
 
 	user << "<span class='warning'>Your [src] flashes a red light as it fails to analyze \the [A].</span>"
-	return 0
+	return FALSE
 
 /proc/atmosanalyzer_scan(var/obj/target, var/datum/gas_mixture/mixture, var/mob/user)
 	var/pressure = mixture.return_pressure()
@@ -32,16 +32,16 @@
 	return
 
 /obj/item/weapon/tank/atmosanalyze(var/mob/user)
-	return atmosanalyzer_scan(src, src.air_contents, user)
+	return atmosanalyzer_scan(src, air_contents, user)
 /*
 /obj/machinery/portable_atmospherics/atmosanalyze(var/mob/user)
-	return atmosanalyzer_scan(src, src.air_contents, user)*/
+	return atmosanalyzer_scan(src, air_contents, user)*/
 /*
 /obj/machinery/atmospherics/pipe/atmosanalyze(var/mob/user)
-	return atmosanalyzer_scan(src, src.parent.air, user)*/
+	return atmosanalyzer_scan(src, parent.air, user)*/
 /*
 /obj/machinery/power/rad_collector/atmosanalyze(var/mob/user)
-	if(P)	return atmosanalyzer_scan(src, src.P.air_contents, user)
+	if(P)	return atmosanalyzer_scan(src, P.air_contents, user)
 */
 /obj/item/weapon/flamethrower/atmosanalyze(var/mob/user)
 	if(ptank)	return atmosanalyzer_scan(src, ptank.air_contents, user)

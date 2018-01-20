@@ -1,11 +1,11 @@
 // the parent for this is in swords_axes_etc.dm
 
-/obj/item/weapon/melee/classic_baton/mp_baton
+/obj/item/weapon/melee/classic_baton/MP
 	name = "police baton"
 	desc = ""
 	var/weakens = 2
 
-/obj/item/weapon/melee/classic_baton/mp_baton/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/weapon/melee/classic_baton/MP/attack(mob/M as mob, mob/living/user as mob)
 
 	switch (user.a_intent) // harm intent lets us murder people, others not so much - Kachnov
 		if (I_HURT)
@@ -25,23 +25,23 @@
 	force = initial(force)
 
 
-/obj/item/weapon/melee/classic_baton/mp_baton/ss_baton
+/obj/item/weapon/melee/classic_baton/MP/SS
 	name = "SS police baton"
 	desc = "A wooden police baton perfect for subduing Untermensch."
 	weakens = 5
 
-/obj/item/weapon/melee/classic_baton/mp_baton/russian_baton
+/obj/item/weapon/melee/classic_baton/MP/soviet
 	name = "Soviet police baton"
 	desc = "A wooden police baton perfect for subduing fascists."
 	weakens = 3
 
-/obj/item/weapon/melee/classic_baton/mp_baton/russian_baton/old
+/obj/item/weapon/melee/classic_baton/MP/soviet/old
 	name = "Old Soviet police baton"
 	weakens = 2
 
-/obj/item/weapon/melee/classic_baton/mp_baton/german_baton
+/obj/item/weapon/melee/classic_baton/MP/german
 	name = "Wehrmacht police baton"
-	desc = "A wooden police baton perfect for subduing commies."
+	desc = "A wooden police baton perfect for subduing communists."
 	weakens = 4
 
 

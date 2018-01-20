@@ -42,9 +42,9 @@
 	if(!owner)
 		return
 	eye_colour = list(
-		owner.r_eyes ? owner.r_eyes : 0,
-		owner.g_eyes ? owner.g_eyes : 0,
-		owner.b_eyes ? owner.b_eyes : 0
+		owner.r_eyes ? owner.r_eyes : FALSE,
+		owner.g_eyes ? owner.g_eyes : FALSE,
+		owner.b_eyes ? owner.b_eyes : FALSE
 		)
 
 /obj/item/organ/eyes/take_damage(amount, var/silent=0)
@@ -82,13 +82,13 @@
 		if(prob(1))
 			spawn owner.vomit()
 
-	if(owner.life_tick % PROCESS_ACCURACY == 0)
+	if(owner.life_tick % PROCESS_ACCURACY == FALSE)
 
 		//High toxins levels are dangerous
 		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("anti_toxin"))
 			//Healthy liver suffers on its own
-			if (src.damage < min_broken_damage)
-				src.damage += 0.2 * PROCESS_ACCURACY
+			if (damage < min_broken_damage)
+				damage += 0.2 * PROCESS_ACCURACY
 			//Damaged one shares the fun
 			else
 				var/obj/item/organ/O = pick(owner.internal_organs)
@@ -96,16 +96,16 @@
 					O.damage += 0.2  * PROCESS_ACCURACY
 
 		//Detox can heal small amounts of damage
-		if (src.damage && src.damage < src.min_bruised_damage && owner.reagents.has_reagent("anti_toxin"))
-			src.damage -= 0.2 * PROCESS_ACCURACY
+		if (damage && damage < min_bruised_damage && owner.reagents.has_reagent("anti_toxin"))
+			damage -= 0.2 * PROCESS_ACCURACY
 
-		if(src.damage < 0)
-			src.damage = 0
+		if(damage < FALSE)
+			damage = FALSE
 
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3
 		if(is_bruised())
-			filter_effect -= 1
+			filter_effect -= TRUE
 		if(is_broken())
 			filter_effect -= 2
 
@@ -121,7 +121,7 @@
 	icon_state = "appendix"
 	parent_organ = "groin"
 	organ_tag = "appendix"
-	var/inflamed = 0
+	var/inflamed = FALSE
 
 /obj/item/organ/appendix/update_icon()
 	..()

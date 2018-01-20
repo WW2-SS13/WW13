@@ -223,19 +223,19 @@
 /obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/D, mob/user as mob)
 
 	if(istype(D, /obj/item/weapon/mop))
-		if(reagents.total_volume < 1)
+		if(reagents.total_volume < TRUE)
 			user << "<span class='warning'>\The [src] is empty!</span>"
 		else
 			reagents.trans_to_obj(D, 5)
 			user << "<span class='notice'>You wet \the [D] in \the [src].</span>"
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 		return
 	else
 		return ..()
 
 /obj/item/weapon/reagent_containers/glass/bucket/update_icon()
 	overlays.Cut()
-	if(reagents.total_volume >= 1)
+	if(reagents.total_volume >= TRUE)
 		overlays += "water_bucket"
 	if (!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
@@ -250,7 +250,7 @@
 	volume = 100
 
 	on_reagent_change()
-		switch(src.reagents.total_volume)
+		switch(reagents.total_volume)
 			if(0)
 				icon_state = "blender_jug_e"
 			if(1 to 75)
@@ -265,7 +265,7 @@
 	icon_state = "canister"
 	item_state = "canister"
 	m_amt = 300
-	g_amt = 0
+	g_amt = FALSE
 	w_class = 4.0
 
 	amount_per_transfer_from_this = 20

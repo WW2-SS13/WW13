@@ -17,24 +17,24 @@
 	desc = "A square piece of metal standing on four metal legs. It can not move."
 	icon = 'icons/obj/structures_FO13.dmi'
 	icon_state = "table"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	layer = 2.8
 	var/frame = /obj/structure/table_frame
 	var/framestack = /obj/item/stack/rods
 	var/buildstack = /obj/item/stack/material/iron
-	var/busy = 0
-	var/buildstackamount = 1
+	var/busy = FALSE
+	var/buildstackamount = TRUE
 	var/framestackamount = 2
 	var/mob/tableclimber
-	var/deconstructable = 1
-	var/flipped = 0 // WIP?
+	var/deconstructable = TRUE
+	var/flipped = FALSE // WIP?
 	var/health = 100
-	throwpass = 1
+	throwpass = TRUE
 
 /obj/structure/table/New()
 	..()
-	for(var/obj/structure/table/T in src.loc)
+	for(var/obj/structure/table/T in loc)
 		if(T != src)
 			qdel(T)
 	update_icon()
@@ -52,19 +52,19 @@
 
 /obj/structure/table/update_icon()
 	spawn(2) //So it properly updates when deleting
-		var/dir_sum = 0
+		var/dir_sum = FALSE
 		for(var/direction in list(1,2,4,8,5,6,9,10))
-			var/skip_sum = 0
-			for(var/obj/structure/window/W in src.loc)
+			var/skip_sum = FALSE
+			for(var/obj/structure/window/W in loc)
 				if(W.dir == direction) //So smooth tables don't go smooth through windows
-					skip_sum = 1
+					skip_sum = TRUE
 					continue
 			var/inv_direction //inverse direction
 			switch(direction)
 				if(1)
 					inv_direction = 2
 				if(2)
-					inv_direction = 1
+					inv_direction = TRUE
 				if(4)
 					inv_direction = 8
 				if(8)
@@ -79,7 +79,7 @@
 					inv_direction = 5
 			for(var/obj/structure/window/W in get_step(src,direction))
 				if(W.dir == inv_direction) //So smooth tables don't go smooth through windows when the window is on the other table's tile
-					skip_sum = 1
+					skip_sum = TRUE
 					continue
 			if(!skip_sum) //means there is a window between the two tiles in this direction
 				if(locate(/obj/structure/table,get_step(src,direction)))
@@ -97,9 +97,9 @@
 						if(direction == 9)
 							dir_sum += 128
 
-		var/table_type = 0 //stand_alone table
+		var/table_type = FALSE //stand_alone table
 		if(dir_sum%16 in cardinal)
-			table_type = 1 //endtable
+			table_type = TRUE //endtable
 			dir_sum %= 16
 		if(dir_sum%16 in list(3,12))
 			table_type = 2 //1 tile thick, streight table
@@ -108,8 +108,8 @@
 			if(dir_sum%16 == 12) //12 doesn't exist as a dir.
 				dir_sum = 4
 		if(dir_sum%16 in list(5,6,9,10))
-			if(locate(/obj/structure/table,get_step(src.loc,dir_sum%16)))
-				table_type = 3 //full table (not the 1 tile thick one, but one of the 'tabledir' tables)
+			if(locate(/obj/structure/table,get_step(loc,dir_sum%16)))
+				table_type = 3 //full table (not the TRUE tile thick one, but one of the 'tabledir' tables)
 			else
 				table_type = 2 //1 tile thick, corner table (treated the same as streight tables in code later on)
 			dir_sum %= 16
@@ -148,13 +148,13 @@
 						dir_sum = 6
 						table_type = 6
 					else if(dir_sum == 189 || dir_sum == 221 || dir_sum == 253 || dir_sum == 157)
-						dir_sum = 1
+						dir_sum = TRUE
 						table_type = 3
 					else
-						dir_sum = 1
+						dir_sum = TRUE
 				if(14)
 					if(dir_sum == 46)
-						dir_sum = 1
+						dir_sum = TRUE
 						table_type = 6
 					else if(dir_sum == 78)
 						dir_sum = 2
@@ -202,21 +202,21 @@
 	return
 
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+	if(air_group || (height==0)) return TRUE
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
-	if (flipped == 1)
+	if (flipped == TRUE)
 		if (get_dir(loc, target) == dir)
 			return !density
 		else
-			return 1
+			return TRUE
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	if(locate(/obj/structure/table) in get_turf(mover))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
-//checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
+//checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns TRUE if it can, FALSE if bullet stops.
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
 	var/turf/cover
 	if(flipped==1)
@@ -224,9 +224,9 @@
 	else if(flipped==0)
 		cover = get_step(loc, get_dir(from, loc))
 	if(!cover)
-		return 1
-	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
-		return 1
+		return TRUE
+	if (get_dist(P.starting, loc) <= TRUE) //Tables won't help you if people are THIS close
+		return TRUE
 	if (get_turf(P.original) == cover)
 		var/chance = 20
 		if (ismob(P.original))
@@ -237,27 +237,27 @@
 			if(get_dir(loc, from) == dir)	//Flipped tables catch mroe bullets
 				chance += 20
 			else
-				return 1					//But only from one side
+				return TRUE					//But only from one side
 		if(prob(chance))
 			health -= P.damage/2
-			if (health > 0)
+			if (health > FALSE)
 				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
-				return 0
+				return FALSE
 			else
 				visible_message("<span class='warning'>[src] breaks down!</span>")
 				break_to_parts()
-				return 1
-	return 1
+				return TRUE
+	return TRUE
 
 /obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	if (flipped==1)
 		if (get_dir(loc, target) == dir)
 			return !density
 		else
-			return 1
-	return 1
+			return TRUE
+	return TRUE
 
 
 /obj/structure/table/MouseDrop_T(atom/movable/O, mob/user)
@@ -272,11 +272,11 @@
 		return
 	if(!user.drop_item())
 		return
-	if (O.loc != src.loc)
+	if (O.loc != loc)
 		step(O, get_dir(O, src))
 	return
 
-/obj/structure/table/proc/break_to_parts(full_return = 0)
+/obj/structure/table/proc/break_to_parts(full_return = FALSE)
 	var/list/shards = list()
 	var/obj/item/weapon/material/shard/S = null
 	if(buildstack)
@@ -297,27 +297,27 @@
 		var/obj/item/weapon/grab/G = I
 		if(G.affecting.buckled)
 			user << "<span class='warning'>[G.affecting] is buckled to [G.affecting.buckled]!</span>"
-			return 0
+			return FALSE
 		if(G.state < GRAB_AGGRESSIVE)
 			user << "<span class='warning'>You need a better grip to do that!</span>"
-			return 0
+			return FALSE
 		if(!G.confirm())
-			return 0
-		G.affecting.loc = src.loc
+			return FALSE
+		G.affecting.loc = loc
 		if(istype(src, /obj/structure/table/optable))
 			var/obj/structure/table/optable/OT = src
-			G.affecting.resting = 1
+			G.affecting.resting = TRUE
 			visible_message("<span class='notice'>[G.assailant] has laid [G.affecting] on [src].</span>")
 			OT.patient = G.affecting
 			OT.check_patient()
 			qdel(I)
-			return 1
+			return TRUE
 		G.affecting.Weaken(2)
 		G.affecting.visible_message("<span class='danger'>[G.assailant] pushes [G.affecting] onto [src].</span>", \
 									"<span class='userdanger'>[G.assailant] pushes [G.affecting] onto [src].</span>")
 		add_logs(G.assailant, G.affecting, "pushed")
 		qdel(I)
-		return 1
+		return TRUE
 	qdel(I)
 
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
@@ -328,7 +328,7 @@
 	if (istype(I, /obj/item/weapon/screwdriver))
 		if(istype(src, /obj/structure/table/reinforced))
 			var/obj/structure/table/reinforced/RT = src
-			if(RT.status == 1)
+			if(RT.status == TRUE)
 				table_destroy(2, user)
 				return
 		else
@@ -338,7 +338,7 @@
 	if (istype(I, /obj/item/weapon/wrench))
 		if(istype(src, /obj/structure/table/reinforced))
 			var/obj/structure/table/reinforced/RT = src
-			if(RT.status == 1)
+			if(RT.status == TRUE)
 				table_destroy(3, user)
 				return
 		else
@@ -359,7 +359,7 @@
  * TABLE DESTRUCTION/DECONSTRUCTION
  */
 
-#define TBL_DESTROY 1
+#define TBL_DESTROY TRUE
 #define TBL_DISASSEMBLE 2
 #define TBL_DECONSTRUCT 3
 
@@ -368,32 +368,32 @@
 		return
 
 	if(destroy_type == TBL_DESTROY)
-		for(var/i = 1, i <= framestackamount, i++)
+		for(var/i = TRUE, i <= framestackamount, i++)
 			new framestack(get_turf(src))
-		for(var/i = 1, i <= buildstackamount, i++)
+		for(var/i = TRUE, i <= buildstackamount, i++)
 			new buildstack(get_turf(src))
 		qdel(src)
 		return
 
 	if(destroy_type == TBL_DISASSEMBLE)
 		user << "<span class='notice'>You start disassembling [src]...</span>"
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		playsound(loc, 'sound/items/Screwdriver.ogg', 50, TRUE)
 		if(do_after(user, 20, target = src))
-			new frame(src.loc)
-			for(var/i = 1, i <= buildstackamount, i++)
+			new frame(loc)
+			for(var/i = TRUE, i <= buildstackamount, i++)
 				new buildstack(get_turf(src))
 			qdel(src)
 			return
 
 	if(destroy_type == TBL_DECONSTRUCT)
 		user << "<span class='notice'>You start deconstructing [src]...</span>"
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		if(do_after(user, 40, target = src))
-			for(var/i = 1, i <= framestackamount, i++)
+			for(var/i = TRUE, i <= framestackamount, i++)
 				new framestack(get_turf(src))
-			for(var/i = 1, i <= buildstackamount, i++)
+			for(var/i = TRUE, i <= buildstackamount, i++)
 				new buildstack(get_turf(src))
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+			playsound(loc, 'sound/items/Deconstruct.ogg', 50, TRUE)
 			qdel(src)
 			return
 
@@ -402,7 +402,12 @@
  */
 
 /obj/structure/table/proc/climb_table(mob/user)
-	src.add_fingerprint(user)
+	for (var/obj/structure/S in get_turf(src))
+		if (S == src)
+			continue
+		else if (S.density)
+			return
+	add_fingerprint(user)
 	user.visible_message("<span class='warning'>[user] starts climbing onto [src].</span>", \
 								"<span class='notice'>You start climbing onto [src]...</span>")
 	var/climb_time = 20
@@ -410,8 +415,8 @@
 		climb_time *= 2
 	tableclimber = user
 	if(do_mob(user, user, climb_time))
-		if(src.loc) //Checking if table has been destroyed
-			density = 0
+		if(loc) //Checking if table has been destroyed
+			density = FALSE
 			if(user.forceMove(loc))
 				user.visible_message("<span class='warning'>[user] climbs onto [src].</span>", \
 									"<span class='notice'>You climb onto [src].</span>")
@@ -419,11 +424,11 @@
 				user.Stun(2)
 			else
 				user << "<span class='warning'>You fail to climb onto [src].</span>"
-			density = 1
+			density = TRUE
 			tableclimber = null
-			return 1
+			return TRUE
 	tableclimber = null
-	return 0
+	return FALSE
 
 
 /*
@@ -438,17 +443,17 @@
 /obj/structure/table/glass/tablepush(obj/item/I, mob/user)
 	if(..())
 		visible_message("<span class='warning'>[src] breaks!</span>")
-		playsound(src.loc, "shatter", 50, 1)
-		new frame(src.loc)
-		new /obj/item/weapon/material/shard(src.loc)
+		playsound(loc, "shatter", 50, TRUE)
+		new frame(loc)
+		new /obj/item/weapon/material/shard(loc)
 		qdel(src)
 
 /obj/structure/table/glass/climb_table(mob/user)
 	if(..())
 		visible_message("<span class='warning'>[src] breaks!</span>")
-		playsound(src.loc, "shatter", 50, 1)
-		new frame(src.loc)
-		new /obj/item/weapon/material/shard(src.loc)
+		playsound(loc, "shatter", 50, TRUE)
+		new frame(loc)
+		new /obj/item/weapon/material/shard(loc)
 		qdel(src)
 		user.Weaken(5)
 
@@ -513,20 +518,20 @@
 	if (istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			if(src.status == 2)
+			if(status == 2)
 				user << "<span class='notice'>You start weakening the reinforced table...</span>"
-				playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+				playsound(loc, 'sound/items/Welder.ogg', 50, TRUE)
 				if (do_after(user, 50, target = src))
 					if(!src || !WT.isOn()) return
 					user << "<span class='notice'>You weaken the table.</span>"
-					src.status = 1
+					status = TRUE
 			else
 				user << "<span class='notice'>You start strengthening the reinforced table...</span>"
-				playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+				playsound(loc, 'sound/items/Welder.ogg', 50, TRUE)
 				if (do_after(user, 50, target = src))
 					if(!src || !WT.isOn()) return
 					user << "<span class='notice'>You strengthen the table.</span>"
-					src.status = 2
+					status = 2
 			return
 	..()
 
@@ -540,8 +545,8 @@
 	icon = 'icons/obj/surgery_FO13.dmi'
 	icon_state = "optable"
 	buildstack = /obj/item/stack/material/silver
-	can_buckle = 1
-	buckle_lying = 1
+	can_buckle = TRUE
+	buckle_lying = TRUE
 	var/mob/living/carbon/human/patient = null
 
 /obj/structure/table/optable/proc/check_patient()
@@ -549,7 +554,7 @@
 	if(M)
 		if(M.resting)
 			patient = M
-			return 1
+			return TRUE
 	else
 		patient = null
-		return 0
+		return FALSE

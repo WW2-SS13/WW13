@@ -3,7 +3,7 @@
 
 /mob/living/proc/destroy_HUD()
 	var/mob/living/H = src
-	src.client.screen.Cut()
+	client.screen.Cut()
 	H.HUDprocess.Cut()
 	for (var/i=1,i<=H.HUDneed.len,i++)
 		var/p = H.HUDneed[i]
@@ -21,18 +21,18 @@
 	H.HUDfrippery.Cut()
 
 /mob/living/proc/show_HUD()
-	if(src.client)
-		src.client.screen.Cut()
+	if(client)
+		client.screen.Cut()
 		for (var/i=1,i<=HUDneed.len,i++)
 			var/p = HUDneed[i]
-			src.client.screen += HUDneed[p]
-		for (var/obj/screen/HUDinv in src.HUDinventory)
-			src.client.screen += HUDinv
-		for (var/obj/screen/frippery/HUDfri in src.HUDfrippery)
-			src.client.screen += HUDfri
+			client.screen += HUDneed[p]
+		for (var/obj/screen/HUDinv in HUDinventory)
+			client.screen += HUDinv
+		for (var/obj/screen/frippery/HUDfri in HUDfrippery)
+			client.screen += HUDfri
 		for (var/i=1,i<=HUDtech.len,i++)
 			var/p = HUDtech[i]
-			src.client.screen += HUDtech[p]
+			client.screen += HUDtech[p]
 //For HUD checking needs
 
 /mob/living/proc/recolor_HUD(var/_color, var/_alpha)
@@ -41,7 +41,7 @@
 		var/obj/screen/HUDelm = HUDneed[p]
 		HUDelm.color = _color
 		HUDelm.alpha = _alpha
-	for (var/obj/screen/HUDinv in src.HUDinventory)
+	for (var/obj/screen/HUDinv in HUDinventory)
 		HUDinv.color = _color
 		HUDinv.alpha = _alpha
 	return
@@ -79,38 +79,38 @@
 /*/mob/living/proc/check_HUDdatum(default, target)// NEED REWORK
 	if (((!default) || (default = "")) && ((!target) || (target = "")))
 		log_debug("[src] try check HUDdatum, but default or target arg is empty")
-		return 0
+		return FALSE
 
-	if((src.client.prefs.UI_style != null) && (src.defaultHUD == null || src.defaultHUD == ""))
-		if (!(global.HUDdatums.Find(src.client.prefs.UI_style))) // Проверка наличии данных
-			log_debug("[H] try update a HUD, but HUDdatums not have [src.client.prefs.UI_style]!")
+	if((client.prefs.UI_style != null) && (defaultHUD == null || defaultHUD == ""))
+		if (!(global.HUDdatums.Find(client.prefs.UI_style))) // Проверка наличии данных
+			log_debug("[H] try update a HUD, but HUDdatums not have [client.prefs.UI_style]!")
 			src << "Some problem hase accure, use default HUD type"
-			src.defaultHUD = "ErisStyle"
+			defaultHUD = "ErisStyle"
 		else
-			src.defaultHUD = H.client.prefs.UI_style
-		return 1
-	return 0
+			defaultHUD = H.client.prefs.UI_style
+		return TRUE
+	return FALSE
 
 /mob/living/proc/check_HUDneed()
 	var/datum/hud/HUDdatum = global.HUDdatums[H.defaultHUD]
 	if ((HUDneed.len) && (HUDneed.len == HUDdatums.HUDneed.len)) //Если у моба есть ХУД и кол-во эл. худа соотвсетсвует заявленному
 		for (var/i=1,i<=HUDneed.len,i++)
 			if(!(HUDdatum.HUDneed.Find(HUDneed[i])) //Если данного худа нет в датуме худа.
-				return 0
+				return FALSE
 				break //то нахуй это дерьмо
 	else
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /mob/living/proc/check_HUDinventory()
 	var/datum/hud/HUDdatum = global.HUDdatums[H.defaultHUD]
-	if ((H.HUDinventory.len != 0) && (H.HUDinventory.len == species.hud.gear.len) && !(recreate_flag))
+	if ((H.HUDinventory.len != FALSE) && (H.HUDinventory.len == species.hud.gear.len) && !(recreate_flag))
 		for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
 			if(!(HUDdatum.slot_data.Find(HUDinv.slot_id) && species.hud.gear.Find(HUDinv.slot_id))) //Если данного slot_id нет в датуме худа и в датуме расы.
-				recreate_flag = 1
+				recreate_flag = TRUE
 				break //то нахуй это дерьмо
 	else
-		recreate_flag = 1*/
+		recreate_flag = TRUE*/
 
 /*/mob/living/carbon/human/HUD_check()
 	var/mob/living/carbon/human/H = src
@@ -126,22 +126,22 @@
 
 	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
 
-	var/recreate_flag = 0
-	if ((H.HUDneed.len != 0) && (H.HUDneed.len == species.hud.ProcessHUD.len)) //Если у моба есть ХУД и кол-во эл. худа соотвсетсвует заявленному
+	var/recreate_flag = FALSE
+	if ((H.HUDneed.len != FALSE) && (H.HUDneed.len == species.hud.ProcessHUD.len)) //Если у моба есть ХУД и кол-во эл. худа соотвсетсвует заявленному
 		for (var/i=1,i<=HUDneed.len,i++)
 			if(!(HUDdatum.HUDneed.Find(HUDneed[i]) && species.hud.ProcessHUD.Find(HUDneed[i]))) //Если данного худа нет в датуме худа и в датуме расы.
-				recreate_flag = 1
+				recreate_flag = TRUE
 				break //то нахуй это дерьмо
 	else
-		recreate_flag = 1
+		recreate_flag = TRUE
 
-	if ((H.HUDinventory.len != 0) && (H.HUDinventory.len == species.hud.gear.len) && !(recreate_flag))
+	if ((H.HUDinventory.len != FALSE) && (H.HUDinventory.len == species.hud.gear.len) && !(recreate_flag))
 		for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
 			if(!(HUDdatum.slot_data.Find(HUDinv.slot_id) && species.hud.gear.Find(HUDinv.slot_id))) //Если данного slot_id нет в датуме худа и в датуме расы.
-				recreate_flag = 1
+				recreate_flag = TRUE
 				break //то нахуй это дерьмо
 	else
-		recreate_flag = 1
+		recreate_flag = TRUE
 
 	if (recreate_flag)
 		H.destroy_HUD()

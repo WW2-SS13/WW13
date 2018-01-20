@@ -1,3 +1,6 @@
+/obj/item/weapon/gun/projectile/pistol
+	gun_type = GUN_TYPE_PISTOL
+
 /obj/item/weapon/gun/projectile/colt
 	name = "vintage .45 pistol"
 	desc = "A cheap Martian knock-off of a Colt M1911. Uses .45 rounds."
@@ -17,17 +20,17 @@
 	set desc = "Rename your gun. If you're the detective."
 
 	var/mob/M = usr
-	if(!M.mind)	return 0
+	if(!M.mind)	return FALSE
 	if(!M.mind.assigned_role == "Detective")
 		M << "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>"
-		return 0
+		return FALSE
 
 	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
 		M << "You name the gun [input]. Say hello to your new friend."
-		return 1
+		return TRUE
 
 /obj/item/weapon/gun/projectile/sec
 	name = ".45 pistol"
@@ -53,7 +56,7 @@
 	icon_state = "silenced_pistol"
 	w_class = 3
 	caliber = ".45"
-	silenced = 1
+	silenced = TRUE
 //	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c45m
@@ -67,7 +70,7 @@
 	caliber = ".50"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a50
-	auto_eject = 1
+	auto_eject = TRUE
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
@@ -97,7 +100,7 @@
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a75
-	auto_eject = 1
+	auto_eject = TRUE
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
@@ -117,7 +120,7 @@
 	item_state = null
 	w_class = 2
 	caliber = "9mm"
-	silenced = 0
+	silenced = FALSE
 //	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
@@ -135,7 +138,7 @@
 				return
 			user << "<span class='notice'>You unscrew [silenced] from [src].</span>"
 			user.put_in_hands(silenced)
-			silenced = 0
+			silenced = FALSE
 			w_class = 2
 			update_icon()
 			return
@@ -143,7 +146,7 @@
 
 /obj/item/weapon/gun/projectile/pistol/attackby(obj/item/I as obj, mob/user as mob)
 	if (..()) // handle attachments
-		return 1
+		return TRUE
 
 	if(istype(I, /obj/item/weapon/silencer))
 		if(user.l_hand != src && user.r_hand != src)	//if we're not in his hands
@@ -180,7 +183,7 @@
 	handle_casings = CYCLE_CASINGS //player has to take the old casing out manually before reloading
 	load_method = SINGLE_CASING
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-	max_shells = 1 //literally just a barrel
+	max_shells = TRUE //literally just a barrel
 
 	var/global/list/ammo_types = list(
 		/obj/item/ammo_casing/a357,
@@ -242,7 +245,7 @@
 	fire_delay = 0.6
 //	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 	load_method = MAGAZINE
-	accuracy = 1
+	accuracy = TRUE
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()

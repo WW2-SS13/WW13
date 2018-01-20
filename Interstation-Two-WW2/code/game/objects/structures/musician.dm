@@ -6,21 +6,21 @@
 	var/tempo = 5
 
 /obj/structure/device/piano
-	name = "space minimoog"
+	name = "Upright Piano"
 	icon = 'icons/obj/musician.dmi'
 	icon_state = "minimoog"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/datum/song/song
-	var/playing = 0
-	var/help = 0
-	var/edit = 1
-	var/repeat = 0
+	var/playing = FALSE
+	var/help = FALSE
+	var/edit = TRUE
+	var/repeat = FALSE
 
 /obj/structure/device/piano/New()
 	if(prob(50))
-		name = "space minimoog"
-		desc = "This is a minimoog, like a space piano, but more spacey!"
+		name = "Pohlmann and Son Upright Piano"
+		desc = "Overstrung piano. Beautiful veneer with marquetry detail. Minor damage to veneer on legs and to edge of lid."
 		icon_state = "minimoog"
 	else
 		name = "piano"
@@ -214,7 +214,7 @@
 	do
 		var/cur_oct[7]
 		var/cur_acc[7]
-		for(var/i = 1 to 7)
+		for(var/i = TRUE to 7)
 			cur_oct[i] = "3"
 			cur_acc[i] = "n"
 
@@ -226,13 +226,13 @@
 				for(var/note in splittext(notes[1], "-"))
 					//world << "note: [note]"
 					if(!playing || !anchored)//If the piano is playing, or is loose
-						playing = 0
+						playing = FALSE
 						return
-					if(lentext(note) == 0)
+					if(lentext(note) == FALSE)
 						continue
 					//world << "Parse: [copytext(note,1,2)]"
 					var/cur_note = text2ascii(note) - 96
-					if(cur_note < 1 || cur_note > 7)
+					if(cur_note < TRUE || cur_note > 7)
 						continue
 					for(var/i=2 to lentext(note))
 						var/ni = copytext(note,i,i+1)
@@ -248,10 +248,10 @@
 					sleep(song.tempo / text2num(notes[2]))
 				else
 					sleep(song.tempo)
-		if(repeat > 0)
+		if(repeat > FALSE)
 			repeat-- //Infinite loops are baaaad.
-	while(repeat > 0)
-	playing = 0
+	while(repeat > FALSE)
+	playing = FALSE
 	updateUsrDialog()
 
 /obj/structure/device/piano/attack_hand(var/mob/user as mob)
@@ -262,7 +262,7 @@
 	var/dat = "<HEAD><TITLE>Piano</TITLE></HEAD><BODY>"
 
 	if(song)
-		if(song.lines.len > 0 && !(playing))
+		if(song.lines.len > FALSE && !(playing))
 			dat += "<A href='?src=\ref[src];play=1'>Play Song</A><BR><BR>"
 			dat += "<A href='?src=\ref[src];repeat=1'>Repeat Song: [repeat] times.</A><BR><BR>"
 		if(playing)
@@ -277,9 +277,9 @@
 		if(song)
 			var/calctempo = (10/song.tempo)*60
 			dat += "Tempo : <A href='?src=\ref[src];tempo=10'>-</A><A href='?src=\ref[src];tempo=1'>-</A> [calctempo] BPM <A href='?src=\ref[src];tempo=-1'>+</A><A href='?src=\ref[src];tempo=-10'>+</A><BR><BR>"
-			var/linecount = 0
+			var/linecount = FALSE
 			for(var/line in song.lines)
-				linecount += 1
+				linecount += TRUE
 				dat += "Line [linecount]: [line] <A href='?src=\ref[src];deleteline=[linecount]'>Delete Line</A> <A href='?src=\ref[src];modifyline=[linecount]'>Modify Line</A><BR>"
 			dat += "<A href='?src=\ref[src];newline=1'>Add Line</A><BR><BR>"
 		if(help)
@@ -322,18 +322,18 @@
 			var/tempnum = input("How many times do you want to repeat this piece? (max:10)") as num|null
 			if(tempnum > 10)
 				tempnum = 10
-			if(tempnum < 0)
-				tempnum = 0
+			if(tempnum < FALSE)
+				tempnum = FALSE
 			repeat = round(tempnum)
 
 		else if(href_list["tempo"])
 			song.tempo += round(text2num(href_list["tempo"]))
-			if(song.tempo < 1)
-				song.tempo = 1
+			if(song.tempo < TRUE)
+				song.tempo = TRUE
 
 		else if(href_list["play"])
 			if(song)
-				playing = 1
+				playing = TRUE
 				spawn() playsong()
 
 		else if(href_list["newline"])
@@ -343,12 +343,12 @@
 			if(song.lines.len > 200)
 				return
 			if(lentext(newline) > 50)
-				newline = copytext(newline, 1, 50)
+				newline = copytext(newline, TRUE, 50)
 			song.lines.Add(newline)
 
 		else if(href_list["deleteline"])
 			var/num = round(text2num(href_list["deleteline"]))
-			if(num > song.lines.len || num < 1)
+			if(num > song.lines.len || num < TRUE)
 				return
 			song.lines.Cut(num, num+1)
 
@@ -358,24 +358,24 @@
 			if(!content)
 				return
 			if(lentext(content) > 50)
-				content = copytext(content, 1, 50)
-			if(num > song.lines.len || num < 1)
+				content = copytext(content, TRUE, 50)
+			if(num > song.lines.len || num < TRUE)
 				return
 			song.lines[num] = content
 
 		else if(href_list["stop"])
-			playing = 0
+			playing = FALSE
 
 		else if(href_list["help"])
-			help = text2num(href_list["help"]) - 1
+			help = text2num(href_list["help"]) - TRUE
 
 		else if(href_list["edit"])
-			edit = text2num(href_list["edit"]) - 1
+			edit = text2num(href_list["edit"]) - TRUE
 
 		else if(href_list["import"])
 			var/t = ""
 			do
-				t = rhtml_encode(input(usr, "Please paste the entire song, formatted:", text("[]", src.name), t)  as message)
+				t = rhtml_encode(input(usr, "Please paste the entire song, formatted:", text("[]", name), t)  as message)
 				if (!in_range(src, usr))
 					return
 
@@ -395,7 +395,7 @@
 				if(lines.len > 200)
 					usr << "Too many lines!"
 					lines.Cut(201)
-				var/linenum = 1
+				var/linenum = TRUE
 				for(var/l in lines)
 					if(lentext(l) > 50)
 						usr << "Line [linenum] too long!"
@@ -414,22 +414,22 @@
 /obj/structure/device/piano/attackby(obj/item/O as obj, mob/user as mob)
 	if (istype(O, /obj/item/weapon/wrench))
 		if (anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 			user << "<span class='notice'>You begin to loosen \the [src]'s casters...</span>"
 			if (do_after(user, 40, src))
 				user.visible_message( \
 					"[user] loosens \the [src]'s casters.", \
 					"<span class='notice'>You have loosened \the [src]. Now it can be pulled somewhere else.</span>", \
 					"You hear ratchet.")
-				src.anchored = 0
+				anchored = FALSE
 		else
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 			user << "<span class='notice'>You begin to tighten \the [src] to the floor...</span>"
 			if (do_after(user, 20, src))
 				user.visible_message( \
 					"[user] tightens \the [src]'s casters.", \
 					"<span class='notice'>You have tightened \the [src]'s casters. Now it can be played again</span>.", \
 					"You hear ratchet.")
-				src.anchored = 1
+				anchored = TRUE
 	else
 		..()

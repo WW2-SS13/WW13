@@ -15,7 +15,7 @@
 */
 
 // Antagonist datum flags.
-#define ANTAG_OVERRIDE_JOB        1 // Assigned job is set to MODE when spawning.
+#define ANTAG_OVERRIDE_JOB        TRUE // Assigned job is set to MODE when spawning.
 #define ANTAG_OVERRIDE_MOB        2 // Mob is recreated from datum mob_type var when spawning.
 #define ANTAG_CLEAR_EQUIPMENT     4 // All preexisting equipment is purged.
 #define ANTAG_CHOOSE_NAME         8 // Antagonists are prompted to enter a name.
@@ -47,7 +47,7 @@ var/global/list/antag_names_to_ids = list()
 	for(var/antag_type in all_antag_types)
 		var/datum/antagonist/antag = all_antag_types[antag_type]
 		if(!implanted || !(antag.flags & ANTAG_IMPLANT_IMMUNE))
-			antag.remove_antagonist(player, 1, implanted)
+			antag.remove_antagonist(player, TRUE, implanted)
 
 /proc/update_antag_icons(var/datum/mind/player)
 	for(var/antag_type in all_antag_types)
@@ -72,13 +72,13 @@ var/global/list/antag_names_to_ids = list()
 		return antag.current_antagonists
 	return list()
 
-/proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = 0)
+/proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = FALSE)
 	for(var/antag_type in all_antag_types)
 		var/datum/antagonist/antag = all_antag_types[antag_type]
 		if(only_offstation_roles && !(antag.flags & ANTAG_OVERRIDE_JOB))
 			continue
 		if(player in antag.current_antagonists)
-			return 1
+			return TRUE
 		if(player in antag.pending_antagonists)
-			return 1
-	return 0
+			return TRUE
+	return FALSE

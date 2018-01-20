@@ -7,20 +7,20 @@
 	// Main controller ref
 	var/tmp/datum/controller/processScheduler/main
 
-	// 1 if process is not running or queued
-	var/tmp/idle = 1
+	// TRUE if process is not running or queued
+	var/tmp/idle = TRUE
 
-	// 1 if process is queued
-	var/tmp/queued = 0
+	// TRUE if process is queued
+	var/tmp/queued = FALSE
 
-	// 1 if process is running
-	var/tmp/running = 0
+	// TRUE if process is running
+	var/tmp/running = FALSE
 
-	// 1 if process is blocked up
-	var/tmp/hung = 0
+	// TRUE if process is blocked up
+	var/tmp/hung = FALSE
 
-	// 1 if process was killed
-	var/tmp/killed = 0
+	// TRUE if process was killed
+	var/tmp/killed = FALSE
 
 	// Status text var
 	var/tmp/status
@@ -28,8 +28,8 @@
 	// Previous status text var
 	var/tmp/previousStatus
 
-	// 1 if process is disabled
-	var/tmp/disabled = 0
+	// TRUE if process is disabled
+	var/tmp/disabled = FALSE
 
 	/**
 	 * Config vars
@@ -50,13 +50,13 @@
 	// processes to execute concurrently.
 	var/tmp/sleep_interval
 
-	// hang_warning_time - this is the time (in 1/10 seconds) after which the server will begin to show "maybe hung" in the context window
+	// hang_warning_time - this is the time (in TRUE/10 seconds) after which the server will begin to show "maybe hung" in the context window
 	var/tmp/hang_warning_time = PROCESS_DEFAULT_HANG_WARNING_TIME
 
-	// hang_alert_time - After this much time(in 1/10 seconds), the server will send an admin debug message saying the process may be hung
+	// hang_alert_time - After this much time(in TRUE/10 seconds), the server will send an admin debug message saying the process may be hung
 	var/tmp/hang_alert_time = PROCESS_DEFAULT_HANG_ALERT_TIME
 
-	// hang_restart_time - After this much time(in 1/10 seconds), the server will automatically kill and restart the process.
+	// hang_restart_time - After this much time(in TRUE/10 seconds), the server will automatically kill and restart the process.
 	var/tmp/hang_restart_time = PROCESS_DEFAULT_HANG_RESTART_TIME
 
 	// How many times in the current run has the process deferred work till the next tick?
@@ -92,7 +92,7 @@
 	var/start_delay = 0
 
 	// are we paused (admin-initiated only)
-	var/paused = 0
+	var/paused = FALSE
 
 	// are our non-vital processes paused (admin-initiated only)
 	// currently only implemented for the obj process
@@ -143,28 +143,28 @@
 	finished()
 
 /datum/controller/process/proc/running()
-	idle = 0
-	queued = 0
-	running = 1
-	hung = 0
+	idle = FALSE
+	queued = FALSE
+	running = TRUE
+	hung = FALSE
 	setStatus(PROCESS_STATUS_RUNNING)
 
 /datum/controller/process/proc/idle()
-	queued = 0
-	running = 0
-	idle = 1
-	hung = 0
+	queued = FALSE
+	running = FALSE
+	idle = TRUE
+	hung = FALSE
 	setStatus(PROCESS_STATUS_IDLE)
 
 /datum/controller/process/proc/queued()
-	idle = 0
-	running = 0
-	queued = 1
-	hung = 0
+	idle = FALSE
+	running = FALSE
+	queued = TRUE
+	hung = FALSE
 	setStatus(PROCESS_STATUS_QUEUED)
 
 /datum/controller/process/proc/hung()
-	hung = 1
+	hung = TRUE
 	setStatus(PROCESS_STATUS_HUNG)
 
 /datum/controller/process/proc/handleHung()
@@ -177,7 +177,7 @@
 	log_debug(msg)
 	message_admins(msg)
 
-	main.restartProcess(src.name)
+	main.restartProcess(name)
 
 /datum/controller/process/proc/kill()
 	if (!killed)
@@ -193,8 +193,8 @@
 		del(src)
 
 // Do not call this directly - use SHECK or SCHECK_EVERY
-/datum/controller/process/proc/sleepCheck(var/tickId = 0)
-	calls_since_last_scheck = 0
+/datum/controller/process/proc/sleepCheck(var/tickId = FALSE)
+	calls_since_last_scheck = FALSE
 	if (killed)
 		// The kill proc is the only place where killed is set.
 		// The kill proc should have deleted this datum, and all sleeping procs that are
@@ -257,7 +257,7 @@
 /datum/controller/process/proc/getStatus()
 	return status
 
-/datum/controller/process/proc/getStatusText(var/s = 0)
+/datum/controller/process/proc/getStatusText(var/s = FALSE)
 	if(!s)
 		s = status
 	switch(s)
@@ -312,10 +312,10 @@
 /datum/controller/process/proc/onFinish()
 
 /datum/controller/process/proc/disable()
-	disabled = 1
+	disabled = TRUE
 
 /datum/controller/process/proc/enable()
-	disabled = 0
+	disabled = FALSE
 
 /datum/controller/process/proc/getAverageRunTime()
 	return main.averageRunTime(src)
@@ -350,7 +350,7 @@
 		if(exceptions[eid]++ >= 10)
 			return
 	else
-		exceptions[eid] = 1
+		exceptions[eid] = TRUE
 	if(istype(thrower, /datum))
 		var/datum/D = thrower
 		ptext = " processing [D.type]"

@@ -10,7 +10,7 @@
 			"<span class='notice'>You stop, drop, and roll!</span>"
 			)
 		sleep(30)
-		if(fire_stacks <= 0)
+		if(fire_stacks <= FALSE)
 			visible_message(
 				"<span class='danger'>[src] has successfully extinguished themselves!</span>",
 				"<span class='notice'>You extinguish yourself.</span>"
@@ -102,7 +102,7 @@
 
 /mob/living/carbon/proc/can_break_cuffs()
 	if(HULK in mutations)
-		return 1
+		return TRUE
 
 /mob/living/carbon/proc/break_handcuffs()
 	visible_message(
@@ -148,7 +148,7 @@
 
 /mob/living/carbon/human/can_break_cuffs()
 	if(species.can_shred(src,1))
-		return 1
+		return TRUE
 	return ..()
 
 /mob/living/carbon/escape_buckle()

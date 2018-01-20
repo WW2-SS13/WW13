@@ -4,7 +4,7 @@
 	desc = "A shooting target."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "target_h"
-	density = 0
+	density = FALSE
 	var/hp = 1800
 	var/icon/virtualIcon
 	var/list/bulletholes = list()
@@ -14,7 +14,7 @@
 		for(var/obj/structure/target_stake/T in view(3,src))
 			if(T.pinned_target == src)
 				T.pinned_target = null
-				T.density = 1
+				T.density = TRUE
 				break
 		..() // delete target
 
@@ -22,12 +22,12 @@
 		..()
 		// After target moves, check for nearby stakes. If associated, move to target
 		for(var/obj/structure/target_stake/M in view(3,src))
-			if(M.density == 0 && M.pinned_target == src)
+			if(M.density == FALSE && M.pinned_target == src)
 				M.loc = loc
 
 		// This may seem a little counter-intuitive but I assure you that's for a purpose.
 		// Stakes are the ones that carry targets, yes, but in the stake code we set
-		// a stake's density to 0 meaning it can't be pushed anymore. Instead of pushing
+		// a stake's density to FALSE meaning it can't be pushed anymore. Instead of pushing
 		// the stake now, we have to push the target.
 
 
@@ -51,8 +51,8 @@
 
 		if(stake)
 			if(stake.pinned_target)
-				stake.density = 1
-				density = 0
+				stake.density = TRUE
+				density = FALSE
 				layer = OBJ_LAYER
 
 				loc = user.loc
@@ -61,7 +61,7 @@
 						user.put_in_hands(src)
 						user << "You take the target out of the stake."
 				else
-					src.loc = get_turf(user)
+					loc = get_turf(user)
 					user << "You take the target out of the stake."
 
 				stake.pinned_target = null
@@ -82,7 +82,7 @@
 /obj/item/target/bullet_act(var/obj/item/projectile/Proj)
 	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
 	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1)
-	var/decaltype = 1 // 1 - scorch, 2 - bullet
+	var/decaltype = TRUE // TRUE - scorch, 2 - bullet
 
 	if(istype(/obj/item/projectile/bullet, Proj))
 		decaltype = 2
@@ -93,7 +93,7 @@
 	if( virtualIcon.GetPixel(p_x, p_y) ) // if the located pixel isn't blank (null)
 
 		hp -= Proj.damage
-		if(hp <= 0)
+		if(hp <= FALSE)
 			for(var/mob/O in oviewers())
 				if ((O.client && !( O.blinded )))
 					O << "<span class='warning'>\The [src] breaks into tiny pieces and collapses!</span>"
@@ -107,7 +107,7 @@
 		bmark.layer = 3.5
 		bmark.icon_state = "scorch"
 
-		if(decaltype == 1)
+		if(decaltype == TRUE)
 			// Energy weapons are hot. they scorch!
 
 			// offset correction
@@ -152,16 +152,16 @@
 // Small memory holder entity for transparent bullet holes
 /datum/bullethole
 	// First box
-	var/b1x1 = 0
-	var/b1x2 = 0
-	var/b1y = 0
+	var/b1x1 = FALSE
+	var/b1x2 = FALSE
+	var/b1y = FALSE
 
 	// Second box
-	var/b2x = 0
-	var/b2y1 = 0
-	var/b2y2 = 0
+	var/b2x = FALSE
+	var/b2y1 = FALSE
+	var/b2y2 = FALSE
 
-	New(var/obj/item/target/Target, var/pixel_x = 0, var/pixel_y = 0)
+	New(var/obj/item/target/Target, var/pixel_x = FALSE, var/pixel_y = FALSE)
 		if(!Target) return
 
 		// Randomize the first box

@@ -1,7 +1,7 @@
 /obj/item/weapon/beartrap
 	name = "mechanical trap"
 	throw_speed = 2
-	throw_range = 1
+	throw_range = TRUE
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "beartrap0"
@@ -10,7 +10,7 @@
 	w_class = 3
 //	origin_tech = "materials=1"
 	matter = list(DEFAULT_WALL_MATERIAL = 18750)
-	var/deployed = 0
+	var/deployed = FALSE
 
 /obj/item/weapon/beartrap/proc/can_use(mob/user)
 	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
@@ -31,10 +31,10 @@
 				"You hear a latch click loudly."
 				)
 
-			deployed = 1
+			deployed = TRUE
 			user.drop_from_inventory(src)
 			update_icon()
-			anchored = 1
+			anchored = TRUE
 
 /obj/item/weapon/beartrap/attack_hand(mob/user as mob)
 	if(buckled_mob && can_use(user))
@@ -45,7 +45,7 @@
 		if(do_after(user, 60, src))
 			user.visible_message("<span class='notice'>[buckled_mob] has been freed from \the [src] by [user].</span>")
 			unbuckle_mob()
-			anchored = 0
+			anchored = FALSE
 	else if(deployed && can_use(user))
 		user.visible_message(
 			"<span class='danger'>[user] starts to disarm \the [src].</span>",
@@ -57,8 +57,8 @@
 				"<span class='danger'>[user] has disarmed \the [src].</span>",
 				"<span class='notice'>You have disarmed \the [src]!</span>"
 				)
-			deployed = 0
-			anchored = 0
+			deployed = FALSE
+			anchored = FALSE
 			update_icon()
 	else
 		..()
@@ -78,15 +78,15 @@
 		return
 
 	if(!L.apply_damage(30, BRUTE, target_zone, blocked, used_weapon=src))
-		return 0
+		return FALSE
 
 	//trap the victim in place
 	if(!blocked)
 		set_dir(L.dir)
-		can_buckle = 1
+		can_buckle = TRUE
 		buckle_mob(L)
 		L << "<span class='danger'>The steel jaws of \the [src] bite into you, trapping you in place!</span>"
-		deployed = 0
+		deployed = FALSE
 		can_buckle = initial(can_buckle)
 
 /obj/item/weapon/beartrap/Crossed(AM as mob|obj)
@@ -100,8 +100,8 @@
 				)
 			attack_mob(L)
 			if(!buckled_mob)
-				anchored = 0
-			deployed = 0
+				anchored = FALSE
+			deployed = FALSE
 			update_icon()
 	..()
 

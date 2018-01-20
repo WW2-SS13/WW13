@@ -54,9 +54,9 @@ var/list/_client_preferences_by_type
 
 /datum/client_preference/play_lobby_music/toggled(var/mob/new_player/preference_mob, var/enabled)
 	if(enabled)
-		if (istype(preference_mob)) preference_mob << sound(ticker.login_music, repeat = 1, wait = 0, volume = 85, channel = 1)
+		if (istype(preference_mob)) preference_mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE)
 	else
-		preference_mob << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
+		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE)
 
 /datum/client_preference/play_ambiance
 	description ="Play ambience"
@@ -64,8 +64,8 @@ var/list/_client_preferences_by_type
 
 /datum/client_preference/play_ambiance/toggled(var/mob/preference_mob, var/enabled)
 	if(!enabled)
-		preference_mob << sound(null, repeat = 0, wait = 0, volume = 0, channel = 1)
-		preference_mob << sound(null, repeat = 0, wait = 0, volume = 0, channel = 2)
+		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = FALSE, channel = TRUE)
+		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = FALSE, channel = 2)
 
 /datum/client_preference/ghost_ears
 	description ="Ghost ears"
@@ -129,7 +129,7 @@ var/list/_client_preferences_by_type
 * Admin Preferences *
 ********************/
 /datum/client_preference/admin/may_toggle(var/mob/preference_mob)
-	return check_rights(R_ADMIN, 0, preference_mob)
+	return check_rights(R_ADMIN, FALSE, preference_mob)
 
 /datum/client_preference/admin/show_attack_logs
 	description = "Attack Log Messages"

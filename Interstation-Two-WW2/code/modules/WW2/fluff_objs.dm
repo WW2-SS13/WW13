@@ -32,17 +32,17 @@
 /obj/item/weapon/ore/iron
 	name = "hematite"
 	icon_state = "ore_iron"
-//	origin_tech = list(TECH_MATERIAL = 1)
+//	origin_tech = list(TECH_MATERIAL = TRUE)
 
 /obj/item/weapon/ore/coal
 	name = "raw carbon"
 	icon_state = "ore_coal"
-//	origin_tech = list(TECH_MATERIAL = 1)
+//	origin_tech = list(TECH_MATERIAL = TRUE)
 
 /obj/item/weapon/ore/glass
 	name = "sand"
 	icon_state = "ore_glass"
-//	origin_tech = list(TECH_MATERIAL = 1)
+//	origin_tech = list(TECH_MATERIAL = TRUE)
 	slot_flags = SLOT_HOLSTER
 
 /obj/item/weapon/ore/plasma
@@ -88,5 +88,5 @@
 	name = "production machine console"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE

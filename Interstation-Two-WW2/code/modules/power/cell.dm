@@ -1,5 +1,5 @@
 // the power cell
-// charge from 0 to 100%
+// charge from FALSE to 100%
 // fits in APC to provide backup power
 
 /obj/item/weapon/cell/New()
@@ -10,13 +10,13 @@
 	..()
 	update_icon()
 
-/obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = 0)
+/obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = FALSE)
 
 	if(drain_check)
-		return 1
+		return TRUE
 
-	if(charge <= 0)
-		return 0
+	if(charge <= FALSE)
+		return FALSE
 
 	var/cell_amt = power * CELLRATE
 
@@ -44,9 +44,9 @@
 
 // use power from a cell, returns the amount actually used
 /obj/item/weapon/cell/proc/use(var/amount)
-	if(rigged && amount > 0)
+	if(rigged && amount > FALSE)
 		explode()
-		return 0
+		return FALSE
 	var/used = min(charge, amount)
 	charge -= used
 	return used
@@ -55,30 +55,30 @@
 // from the cell and returns 1. Otherwise does nothing and returns 0.
 /obj/item/weapon/cell/proc/checked_use(var/amount)
 	if(!check_charge(amount))
-		return 0
+		return FALSE
 	use(amount)
-	return 1
+	return TRUE
 
 // recharge the cell
 /obj/item/weapon/cell/proc/give(var/amount)
-	if(rigged && amount > 0)
+	if(rigged && amount > FALSE)
 		explode()
-		return 0
+		return FALSE
 
-	if(maxcharge < amount)	return 0
+	if(maxcharge < amount)	return FALSE
 	var/amount_used = min(maxcharge-charge,amount)
 	charge += amount_used
 	return amount_used
 
 
 /obj/item/weapon/cell/examine(mob/user)
-	if(get_dist(src, user) > 1)
+	if(get_dist(src, user) > TRUE)
 		return
 
 	if(maxcharge <= 2500)
-		user << "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
+		user << "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(percent() )]%."
 	else
-		user << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
+		user << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(percent() )]%."
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
@@ -89,7 +89,7 @@
 
 		if(S.reagents.has_reagent("plasma", 5))
 
-			rigged = 1
+			rigged = TRUE
 
 			log_admin("LOG: [user.name] ([user.ckey]) injected a power cell with plasma, rigging it to explode.")
 			message_admins("LOG: [user.name] ([user.ckey]) injected a power cell with plasma, rigging it to explode.")
@@ -98,11 +98,11 @@
 
 
 /obj/item/weapon/cell/proc/explode()
-	var/turf/T = get_turf(src.loc)
+	var/turf/T = get_turf(loc)
 /*
- * 1000-cell	explosion(T, -1, 0, 1, 1)
- * 2500-cell	explosion(T, -1, 0, 1, 1)
- * 10000-cell	explosion(T, -1, 1, 3, 3)
+ * 1000-cell	explosion(T, -1, FALSE, TRUE, TRUE)
+ * 2500-cell	explosion(T, -1, FALSE, TRUE, TRUE)
+ * 10000-cell	explosion(T, -1, TRUE, 3, 3)
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
 	if (charge==0)
@@ -112,10 +112,10 @@
 	var/light_impact_range = round(sqrt(charge)/30)
 	var/flash_range = light_impact_range
 	if (light_impact_range==0)
-		rigged = 0
+		rigged = FALSE
 		corrupt()
 		return
-	//explosion(T, 0, 1, 2, 2)
+	//explosion(T, FALSE, TRUE, 2, 2)
 
 	log_admin("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
 	message_admins("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
@@ -128,7 +128,7 @@
 	charge /= 2
 	maxcharge /= 2
 	if (prob(10))
-		rigged = 1 //broken batterys are dangerous
+		rigged = TRUE //broken batterys are dangerous
 
 /obj/item/weapon/cell/ex_act(severity)
 
@@ -177,4 +177,4 @@
 		if (1000 to 50000-1)
 			return min(rand(10,20),rand(10,20))
 		else
-			return 0
+			return FALSE

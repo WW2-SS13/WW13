@@ -4,7 +4,7 @@
 	desc = "A piece of juicy meat found in a person's head."
 	organ_tag = "brain"
 	parent_organ = "head"
-	vital = 1
+	vital = TRUE
 	icon_state = "brain2"
 	force = 1.0
 	w_class = 2.0
@@ -35,7 +35,7 @@
 	..()
 
 /obj/item/organ/brain/proc/transfer_identity(var/mob/living/carbon/H)
-	name = "\the [H]'s [initial(src.name)]"
+	name = "\the [H]'s [initial(name)]"
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
@@ -44,7 +44,7 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 
-	brainmob << "<span class='notice'>You feel slightly disoriented. That's normal when you're just a [initial(src.name)].</span>"
+	brainmob << "<span class='notice'>You feel slightly disoriented. That's normal when you're just a [initial(name)].</span>"
 	callHook("debrain", list(brainmob))
 
 	if (brainmob.client)

@@ -1,7 +1,7 @@
-/datum/game_mode/var/next_spawn = 0
+/datum/game_mode/var/next_spawn = FALSE
 /datum/game_mode/var/min_autotraitor_delay = 4200  // Approx 7 minutes.
 /datum/game_mode/var/max_autotraitor_delay = 12000 // Approx 20 minutes.
-/datum/game_mode/var/process_count = 0
+/datum/game_mode/var/process_count = FALSE
 
 ///process()
 ///Called by the gameticker
@@ -11,7 +11,7 @@
 
 //This can be overriden in case a game mode needs to do stuff when a player latejoins
 /datum/game_mode/proc/handle_latejoin(var/mob/living/carbon/human/character)
-	return 0
+	return FALSE
 
 /datum/game_mode/proc/process_autoantag()
 	message_admins("[uppertext(name)]: Attempting autospawn.")
@@ -24,7 +24,7 @@
 
 	if(!usable_templates.len)
 		message_admins("[uppertext(name)]: Failed to find configured mode spawn templates, please re-enable auto-antagonists after one is added.")
-		round_autoantag = 0
+		round_autoantag = FALSE
 		return
 
 	while(usable_templates.len)

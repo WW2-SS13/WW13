@@ -9,9 +9,9 @@
 		src << "<span class = 'danger'>What (((jews)))?</span>"
 		return
 
-	print_jews(src, 1)
+	print_jews(src, TRUE)
 
-/proc/print_jews(whomst, var/notroundend = 0)
+/proc/print_jews(whomst, var/notroundend = FALSE)
 
 	var/list/jews = list()
 	for (var/mob/living/carbon/human/H in mob_list)
@@ -36,7 +36,7 @@
 			var/spanstyle = (H.stat == DEAD ? "warning" : "notice")
 			if (istype(H.original_job, /datum/job/german))
 				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - German soldier jew. ([H_stat]) ([is_ghosted])</span><br>"
-			else if (istype(H.original_job, /datum/job/russian))
-				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - Russian soldierjew. ([H_stat]) ([is_ghosted])</span><br>"
+			else if (istype(H.original_job, /datum/job/soviet))
+				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - Soviet soldier jew. ([H_stat]) ([is_ghosted])</span><br>"
 			if (!notroundend && H.stat == CONSCIOUS && !H.restrained())
 				whomst << "<span class = 'notice'>The Jew survived!</span><br>"

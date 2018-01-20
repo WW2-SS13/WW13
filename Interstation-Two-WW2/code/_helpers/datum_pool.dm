@@ -8,7 +8,7 @@ Creation/Deletion is laggy, so let's reduce reuse and recycle!
 
 */
 #define ATOM_POOL_COUNT 100
-// "define DEBUG_ATOM_POOL 1
+// "define DEBUG_ATOM_POOL TRUE
 var/global/list/GlobalPool = list()
 
 //You'll be using this proc 90% of the time.
@@ -38,17 +38,17 @@ var/global/list/GlobalPool = list()
 
 /proc/GetFromPool(var/get_type,var/second_arg)
 	if(isnull(GlobalPool[get_type]))
-		return 0
+		return FALSE
 
-	if(length(GlobalPool[get_type]) == 0)
-		return 0
+	if(length(GlobalPool[get_type]) == FALSE)
+		return FALSE
 
 	var/datum/D = pick_n_take(GlobalPool[get_type])
 	if(D)
 		D.ResetVars()
 		D.Prepare(second_arg)
 		return D
-	return 0
+	return FALSE
 
 /proc/PlaceInPool(var/datum/D)
 	if(!istype(D))
@@ -77,8 +77,8 @@ var/global/list/GlobalPool = list()
 
 /proc/IsPooled(var/datum/D)
 	if(isnull(GlobalPool[D.type]))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /datum/proc/Prepare(args)
 	if(islist(args))

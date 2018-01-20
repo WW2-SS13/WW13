@@ -10,10 +10,10 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 		if (m.wear_mask && istype(m.wear_mask, /obj/item/clothing/mask/gas))
 			var/obj/item/clothing/mask/gas/mask = m.wear_mask
 			if (mask.check_can_block(src))
-				return 1
-	return 0
+				return TRUE
+	return FALSE
 
-/datum/reagent/proc/eye_damage(var/mob/living/carbon/human/m, var/severity = 1) // damage eyes
+/datum/reagent/proc/eye_damage(var/mob/living/carbon/human/m, var/severity = TRUE) // damage eyes
 	if (mask_check(m)) return
 	if (m && istype(m) && severity)
 		var/base = ((rand(2,3)) * severity)/CHEMNERF
@@ -25,9 +25,9 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 				m.emote("scream")
 			m.adjustFireLossByPart(base, "eyes")
 			m.Weaken(rand(2,3))
-			m.eye_blurry = max(m.eye_blurry+2, 0)
+			m.eye_blurry = max(m.eye_blurry+2, FALSE)
 
-/datum/reagent/proc/external_damage(var/mob/living/carbon/human/m, var/severity = 1) // damage skin
+/datum/reagent/proc/external_damage(var/mob/living/carbon/human/m, var/severity = TRUE) // damage skin
 	if (m && istype(m) && severity)
 		var/base = ((rand(2,3)) * severity)/CHEMNERF
 		if (base >= 2)
@@ -41,7 +41,7 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 			if (prob(50))
 				m.Weaken(rand(4,5))
 
-/datum/reagent/proc/internal_damage(var/mob/living/carbon/human/m, var/severity = 1) // damage things like lungs
+/datum/reagent/proc/internal_damage(var/mob/living/carbon/human/m, var/severity = TRUE) // damage things like lungs
 	if (mask_check(m)) return
 	if (m && istype(m) && severity)
 		var/base = ((rand(2,3)) * severity)/CHEMNERF
@@ -55,12 +55,12 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 			if (prob(70))
 				m.Weaken(rand(3,4))
 
-/datum/reagent/proc/open_wound_damage(var/mob/living/carbon/human/m, var/severity = 1) // damage wounded skin
+/datum/reagent/proc/open_wound_damage(var/mob/living/carbon/human/m, var/severity = TRUE) // damage wounded skin
 	if (m && istype(m) && severity)
 		var/base = ((m.getBruteLoss() + m.getFireLoss())/10) * severity
 		base += rand(1,2)
 		base /= CHEMNERF
-		if (base >= 1)
+		if (base >= TRUE)
 			if (world.time >= next_gas_flesh_message)
 				m << "<span class = 'danger'>The gas burns the flesh on your open wounds!</span>"
 			next_gas_flesh_message = world.time + 10
@@ -74,9 +74,9 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 /proc/get_severity(var/amount)
 	switch (amount)
 		if (0)
-			return 0
+			return FALSE
 		if (1 to 5)
-			return 1
+			return TRUE
 		if (6 to 10)
 			return 2
 		if (11 to INFINITY)
@@ -159,8 +159,8 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 	description = "A deadly gas used for killing non-combatants."
 	reagent_state = GAS
 	color = "#00a0b0"
-	strength = 0
-	touch_met = 0
+	strength = FALSE
+	touch_met = FALSE
 	alpha = 50
 //	meltdose = 4
 

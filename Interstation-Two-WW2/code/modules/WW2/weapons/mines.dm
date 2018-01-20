@@ -13,10 +13,10 @@
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
-//	unacidable = 1
-	anchored = 0
+//	unacidable = TRUE
+	anchored = FALSE
 
-	var/triggered = 0
+	var/triggered = FALSE
 	var/triggertype = "explosive" //Calls that proc
 	/*
 		"explosive"
@@ -32,6 +32,19 @@
 		src << "There's already a mine at this position!"
 		return
 
+	if (ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if (H.original_job)
+			if (H.original_job.base_type_flag() == GERMAN)
+				if (istype(get_area(src), /area/prishtina/german))
+					user << "<span class = 'warning'>This isn't a great place for mines.</span>"
+					return
+			else if (H.original_job.base_type_flag() == SOVIET)
+				if (istype(get_area(src), /area/prishtina/soviet))
+					user << "<span class = 'warning'>This isn't a great place for mines.</span>"
+					return
+
+
 	if(!anchored)
 		user.visible_message("\blue \The [user] starts to deploy the \the [src]")
 		if(!do_after(user,rand(30,40)))
@@ -39,7 +52,7 @@
 			return
 		nextCanExplode = world.time + 5
 		user.visible_message("\blue \The [user] finishes deploying the \the [src].")
-		anchored = 1
+		anchored = TRUE
 		layer = TURF_LAYER + 0.01
 		icon_state = "mine_armed"
 		user.drop_item()
@@ -55,7 +68,7 @@
 				return
 			if(prob(95))
 				user.visible_message("\blue \The [user] finishes disarming the \the [src]!")
-				anchored = 0
+				anchored = FALSE
 				icon_state = "betty"
 				layer = initial(layer)
 				return
@@ -68,7 +81,7 @@
 				return
 			if(prob(50))
 				user.visible_message("\blue \The [user] finishes disarming the \the [src]!")
-				anchored = 0
+				anchored = FALSE
 				icon_state = "betty"
 				layer = initial(layer)
 				return
@@ -85,7 +98,7 @@
 			return
 		if(prob(15))
 			user.visible_message("\blue \The [user] finishes digging up the \the [src], disarming it!")
-			anchored = 0
+			anchored = FALSE
 			icon_state = "betty"
 			layer = initial(layer)
 			return
@@ -109,9 +122,9 @@
 /obj/item/device/mine/proc/trigger(atom/movable/AM)
 	if (world.time < nextCanExplode)
 		return
-	for(var/mob/O in viewers(world.view, src.loc))
+	for(var/mob/O in viewers(world.view, loc))
 		O << "<font color='red'>[AM] triggered the [src]!</font>"
-	triggered = 1
+	triggered = TRUE
 	visible_message("\red <b>Click!</b>")
 	explosion(get_turf(src),-1,1,3)
 	spawn(0)
@@ -121,7 +134,7 @@
 //TYPES//
 //Explosive
 /obj/item/device/mine/proc/explosive(obj)
-	explosion(src.loc,-1,-1,3)
+	explosion(loc,-1,-1,3)
 	spawn(0)
 		del(src)
 
@@ -135,5 +148,5 @@
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
-//	unacidable = 1
-	anchored = 0
+//	unacidable = TRUE
+	anchored = FALSE

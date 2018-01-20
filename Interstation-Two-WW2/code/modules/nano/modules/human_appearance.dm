@@ -11,34 +11,34 @@
 	var/list/whitelist
 	var/list/blacklist
 
-/datum/nano_module/appearance_changer/New(var/location, var/mob/living/carbon/human/H, var/check_species_whitelist = 1, var/list/species_whitelist = list(), var/list/species_blacklist = list())
+/datum/nano_module/appearance_changer/New(var/location, var/mob/living/carbon/human/H, var/check_species_whitelist = TRUE, var/list/species_whitelist = list(), var/list/species_blacklist = list())
 	..()
 	owner = H
-	src.check_whitelist = check_species_whitelist
-	src.whitelist = species_whitelist
-	src.blacklist = species_blacklist
+	check_whitelist = check_species_whitelist
+	whitelist = species_whitelist
+	blacklist = species_blacklist
 
 /datum/nano_module/appearance_changer/Topic(ref, href_list, var/datum/topic_state/state = default_state)
 	if(..())
-		return 1
+		return TRUE
 
 	if(href_list["race"])
 		if(can_change(APPEARANCE_RACE) && (href_list["race"] in valid_species))
 			if(owner.change_species(href_list["race"]))
 				cut_and_generate_data()
-				return 1
+				return TRUE
 	if(href_list["gender"])
 		if(can_change(APPEARANCE_GENDER))
 			if(owner.change_gender(href_list["gender"]))
 				cut_and_generate_data()
-				return 1
+				return TRUE
 	if(href_list["gender_id"])
 		if(can_change(APPEARANCE_GENDER) && (href_list["gender_id"] in all_genders_define_list))
 			owner.identifying_gender = href_list["gender_id"]
-			return 1
+			return TRUE
 	if(href_list["skin_tone"])
 		if(can_change_skin_tone())
-			var/new_s_tone = input(usr, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Skin Tone", -owner.s_tone + 35) as num|null
+			var/new_s_tone = input(usr, "Choose your character's skin-tone:\n(Light TRUE - 220 Dark)", "Skin Tone", -owner.s_tone + 35) as num|null
 			if(isnum(new_s_tone) && can_still_topic(state))
 				new_s_tone = 35 - max(min( round(new_s_tone), 220),1)
 				return owner.change_skin_tone(new_s_tone)
@@ -51,37 +51,43 @@
 				var/b_skin = hex2num(copytext(new_skin, 6, 8))
 				if(owner.change_skin_color(r_skin, g_skin, b_skin))
 					update_dna()
-					return 1
+					return TRUE
 	if(href_list["hair"])
 		if(can_change(APPEARANCE_HAIR) && (href_list["hair"] in valid_hairstyles))
 			if(owner.change_hair(href_list["hair"]))
 				update_dna()
-				return 1
+				return TRUE
 	if(href_list["hair_color"])
 		if(can_change(APPEARANCE_HAIR_COLOR))
-			var/new_hair = input("Please select hair color.", "Hair Color", rgb(owner.r_hair, owner.g_hair, owner.b_hair)) as color|null
-			if(new_hair && can_still_topic(state))
-				var/r_hair = hex2num(copytext(new_hair, 2, 4))
-				var/g_hair = hex2num(copytext(new_hair, 4, 6))
-				var/b_hair = hex2num(copytext(new_hair, 6, 8))
+			/* New hair system, no more anime character hair - Kachnov */
+			var/new_hair = input(owner, "Please select a hair color.", "Hair Color") in hair_colors
+			if (new_hair == "Cancel")
+				return
+			var/hex_hair = hair_colors[new_hair]
+			if(hex_hair && can_still_topic(state))
+				var/r_hair = hex2num(copytext(hex_hair, 2, 4))
+				var/g_hair = hex2num(copytext(hex_hair, 4, 6))
+				var/b_hair = hex2num(copytext(hex_hair, 6, 8))
 				if(owner.change_hair_color(r_hair, g_hair, b_hair))
 					update_dna()
-					return 1
+					return TRUE
+
 	if(href_list["facial_hair"])
 		if(can_change(APPEARANCE_FACIAL_HAIR) && (href_list["facial_hair"] in valid_facial_hairstyles))
 			if(owner.change_facial_hair(href_list["facial_hair"]))
 				update_dna()
-				return 1
+				return TRUE
 	if(href_list["facial_hair_color"])
 		if(can_change(APPEARANCE_FACIAL_HAIR_COLOR))
-			var/new_facial = input("Please select facial hair color.", "Facial Hair Color", rgb(owner.r_facial, owner.g_facial, owner.b_facial)) as color|null
+			var/new_facial = input("Please select facial hair color.", "Facial Hair Color") in hair_colors
+			new_facial = hair_colors[new_facial]
 			if(new_facial && can_still_topic(state))
 				var/r_facial = hex2num(copytext(new_facial, 2, 4))
 				var/g_facial = hex2num(copytext(new_facial, 4, 6))
 				var/b_facial = hex2num(copytext(new_facial, 6, 8))
 				if(owner.change_facial_hair_color(r_facial, g_facial, b_facial))
 					update_dna()
-					return 1
+					return TRUE
 	if(href_list["eye_color"])
 		if(can_change(APPEARANCE_EYE_COLOR))
 			var/new_eyes = input("Please select eye color.", "Eye Color", rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes)) as color|null
@@ -91,11 +97,11 @@
 				var/b_eyes = hex2num(copytext(new_eyes, 6, 8))
 				if(owner.change_eye_color(r_eyes, g_eyes, b_eyes))
 					update_dna()
-					return 1
+					return TRUE
 
-	return 0
+	return FALSE
 
-/datum/nano_module/appearance_changer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+/datum/nano_module/appearance_changer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE, var/datum/topic_state/state = default_state)
 	if(!owner || !owner.species)
 		return
 
@@ -166,5 +172,5 @@
 	if(!valid_species.len)
 		valid_species = owner.generate_valid_species(check_whitelist, whitelist, blacklist)
 	if(!valid_hairstyles.len || !valid_facial_hairstyles.len)
-		valid_hairstyles = owner.generate_valid_hairstyles(check_gender = 0)
+		valid_hairstyles = owner.generate_valid_hairstyles(check_gender = FALSE)
 		valid_facial_hairstyles = owner.generate_valid_facial_hairstyles()

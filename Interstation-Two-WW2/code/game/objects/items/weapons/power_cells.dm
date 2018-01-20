@@ -4,16 +4,16 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 	item_state = "cell"
-//	origin_tech = list(TECH_POWER = 1)
+//	origin_tech = list(TECH_POWER = TRUE)
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 5
 	w_class = 3.0
-	var/charge = 0	// note %age conveted to actual charge in New
+	var/charge = FALSE	// note %age conveted to actual charge in New
 	var/maxcharge = 1000
-	var/rigged = 0		// true if rigged to explode
-	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
+	var/rigged = FALSE		// true if rigged to explode
+	var/minor_fault = FALSE //If not 100% reliable, it will build up faults.
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
 
 //currently only used by energy-type guns, that may change in the future.
@@ -36,27 +36,27 @@
 /obj/item/weapon/cell/crap
 	name = "\improper rechargable AA battery"
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
-//	origin_tech = list(TECH_POWER = 0)
+//	origin_tech = list(TECH_POWER = FALSE)
 	maxcharge = 500
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 40)
 
 /obj/item/weapon/cell/crap/empty/New()
 	..()
-	charge = 0
+	charge = FALSE
 
 /obj/item/weapon/cell/secborg
 	name = "security borg rechargable D battery"
-//	origin_tech = list(TECH_POWER = 0)
+//	origin_tech = list(TECH_POWER = FALSE)
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 40)
 
 /obj/item/weapon/cell/secborg/empty/New()
 	..()
-	charge = 0
+	charge = FALSE
 
 /obj/item/weapon/cell/apc
 	name = "heavy-duty power cell"
-//	origin_tech = list(TECH_POWER = 1)
+//	origin_tech = list(TECH_POWER = TRUE)
 	maxcharge = 5000
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
 
@@ -76,7 +76,7 @@
 
 /obj/item/weapon/cell/high/empty/New()
 	..()
-	charge = 0
+	charge = FALSE
 
 /obj/item/weapon/cell/super
 	name = "super-capacity power cell"
@@ -87,7 +87,7 @@
 
 /obj/item/weapon/cell/super/empty/New()
 	..()
-	charge = 0
+	charge = FALSE
 
 /obj/item/weapon/cell/hyper
 	name = "hyper-capacity power cell"
@@ -98,7 +98,7 @@
 
 /obj/item/weapon/cell/hyper/empty/New()
 	..()
-	charge = 0
+	charge = FALSE
 
 /obj/item/weapon/cell/infinite
 	name = "infinite-capacity power cell!"
@@ -108,17 +108,17 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 80)
 
 	check_charge()
-		return 1
+		return TRUE
 	use()
-		return 1
+		return TRUE
 /*
 /obj/item/weapon/cell/potato
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
-//	origin_tech = list(TECH_POWER = 1)
+//	origin_tech = list(TECH_POWER = TRUE)
 	icon = 'icons/obj/power.dmi' //'icons/obj/harvest.dmi'
 	icon_state = "potato_cell" //"potato_battery"
 	charge = 100
 	maxcharge = 300
-	minor_fault = 1
+	minor_fault = TRUE
 */

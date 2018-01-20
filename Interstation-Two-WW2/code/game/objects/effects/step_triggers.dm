@@ -1,13 +1,13 @@
 /* Simple object type, calls a proc when "stepped" on by something */
 
 /obj/effect/step_trigger
-	var/affect_ghosts = 0
-	var/stopper = 1 // stops throwers
+	var/affect_ghosts = FALSE
+	var/stopper = TRUE // stops throwers
 	invisibility = 101 // nope cant see this shit
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/step_trigger/proc/Trigger(var/atom/movable/A)
-	return 0
+	return FALSE
 
 /obj/effect/step_trigger/Crossed(H as mob|obj)
 	..()
@@ -23,19 +23,19 @@
 
 /obj/effect/step_trigger/thrower
 	var/direction = SOUTH // the direction of throw
-	var/tiles = 3	// if 0: forever until atom hits a stopper
-	var/immobilize = 1 // if nonzero: prevents mobs from moving while they're being flung
-	var/speed = 1	// delay of movement
-	var/facedir = 0 // if 1: atom faces the direction of movement
-	var/nostop = 0 // if 1: will only be stopped by teleporters
+	var/tiles = 3	// if FALSE: forever until atom hits a stopper
+	var/immobilize = TRUE // if nonzero: prevents mobs from moving while they're being flung
+	var/speed = TRUE	// delay of movement
+	var/facedir = FALSE // if TRUE: atom faces the direction of movement
+	var/nostop = FALSE // if TRUE: will only be stopped by teleporters
 	var/list/affecting = list()
 
 	Trigger(var/atom/A)
 		if(!A || !istype(A, /atom/movable))
 			return
 		var/atom/movable/AM = A
-		var/curtiles = 0
-		var/stopthrow = 0
+		var/curtiles = FALSE
+		var/stopthrow = FALSE
 		for(var/obj/effect/step_trigger/thrower/T in orange(2, src))
 			if(AM in T.affecting)
 				return
@@ -43,14 +43,14 @@
 		if(ismob(AM))
 			var/mob/M = AM
 			if(immobilize)
-				M.canmove = 0
+				M.canmove = FALSE
 
 		affecting.Add(AM)
 		while(AM && !stopthrow)
 			if(tiles)
 				if(curtiles >= tiles)
 					break
-			if(AM.z != src.z)
+			if(AM.z != z)
 				break
 
 			curtiles++
@@ -61,11 +61,11 @@
 			if(!nostop)
 				for(var/obj/effect/step_trigger/T in get_step(AM, direction))
 					if(T.stopper && T != src)
-						stopthrow = 1
+						stopthrow = TRUE
 			else
 				for(var/obj/effect/step_trigger/teleporter/T in get_step(AM, direction))
 					if(T.stopper)
-						stopthrow = 1
+						stopthrow = TRUE
 
 			if(AM)
 				var/predir = AM.dir
@@ -80,7 +80,7 @@
 		if(ismob(AM))
 			var/mob/M = AM
 			if(immobilize)
-				M.canmove = 1
+				M.canmove = TRUE
 
 /* Stops things thrown by a thrower, doesn't do anything */
 
@@ -89,9 +89,9 @@
 /* Instant teleporter */
 
 /obj/effect/step_trigger/teleporter
-	var/teleport_x = 0	// teleportation coordinates (if one is null, then no teleport!)
-	var/teleport_y = 0
-	var/teleport_z = 0
+	var/teleport_x = FALSE	// teleportation coordinates (if one is null, then no teleport!)
+	var/teleport_y = FALSE
+	var/teleport_z = FALSE
 
 	Trigger(var/atom/movable/A)
 		if(teleport_x && teleport_y && teleport_z)
@@ -103,9 +103,9 @@
 /* Random teleporter, teleports atoms to locations ranging from teleport_x - teleport_x_offset, etc */
 
 /obj/effect/step_trigger/teleporter/random
-	var/teleport_x_offset = 0
-	var/teleport_y_offset = 0
-	var/teleport_z_offset = 0
+	var/teleport_x_offset = FALSE
+	var/teleport_y_offset = FALSE
+	var/teleport_z_offset = FALSE
 
 	Trigger(var/atom/movable/A)
 		if(teleport_x && teleport_y && teleport_z)
@@ -118,7 +118,7 @@
 /* Step trigger to display message if *TRIGGERED* */
 /obj/effect/step_trigger/message
 	var/message	//the message to give to the mob
-	var/once = 1
+	var/once = TRUE
 
 /obj/effect/step_trigger/message/Trigger(mob/M as mob)
 	if(M.client)

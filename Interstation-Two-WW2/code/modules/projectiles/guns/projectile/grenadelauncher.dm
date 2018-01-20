@@ -10,7 +10,7 @@
 	throw_range = 10
 	force = 5.0
 	flags = CONDUCT | USEDELAY
-	slot_flags = 0
+	slot_flags = FALSE
 //	origin_tech = "combat=8;materials=5"
 	fire_sound = 'sound/effects/bang.ogg'
 
@@ -23,7 +23,7 @@
 
 /obj/item/weapon/gun/projectile/rocket/attackby(obj/item/I as obj, mob/user as mob)
 	if (..()) // handle attachments
-		return 1
+		return TRUE
 
 	if(istype(I, /obj/item/ammo_casing/rocket))
 		load_ammo(I, user)
@@ -32,24 +32,24 @@
 
 /obj/item/weapon/gun/projectile/rocket/handle_post_fire(mob/user, atom/target)
 	..()
-	message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]) at [target].")
-	log_game("[key_name_admin(user)] used a rocket launcher ([src.name]) at [target].")
+	message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([name]) at [target].")
+	log_game("[key_name_admin(user)] used a rocket launcher ([name]) at [target].")
 
 //////////////////////////////////////////////
 /obj/item/weapon/gun/projectile/rocket/one_use
 	name = "one use rocket launcher"
-	max_shells = 1
+	max_shells = TRUE
 	ammo_type = /obj/item/ammo_casing/rocket_he
 	load_method = SINGLE_CASING
 	handle_casings = REMOVE_CASINGS
 
 	recoil = 4
-	can_wield = 1
-	must_wield = 1
+	can_wield = TRUE
+	must_wield = TRUE
 
 /obj/item/weapon/gun/projectile/rocket/one_use/attackby(obj/item/I as obj, mob/user as mob)
 	if (..()) // handle attachments
-		return 1
+		return TRUE
 
 	return
 
@@ -73,7 +73,7 @@
 /obj/item/weapon/gun/projectile/rocket/one_use/examine(mob/user)
 	if(!..(user, 2))
 		return
-	if(loaded.len > 0)
+	if(loaded.len > FALSE)
 		var/obj/item/ammo_casing/rocket_he/rocket = loaded[1]
 		user << "\blue Rocket fuse is set to [rocket.BB.kill_count]."
 	else
@@ -112,18 +112,18 @@
 	fire_sound = 'sound/weapons/m32_grenshoot.ogg'
 	load_shell_sound = 'sound/weapons/m32_grenload.ogg'
 	fire_sound_text = "a metallic thunk"
-	recoil = 0
+	recoil = FALSE
 
 	slot_flags = SLOT_BACK
-	var/opened = 0
+	var/opened = FALSE
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 
-	can_wield = 1
-	must_wield = 1
+	can_wield = TRUE
+	must_wield = TRUE
 
 //revolves the magazine, allowing players to choose between multiple grenade types
 /obj/item/weapon/gun/projectile/grenade/proc/pump(mob/M as mob)
-	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
+	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, TRUE)
 	var/obj/item/weapon/grenade/next
 	if(loaded.len)
 		next = loaded[1] //get this first, so that the chambered grenade can still be removed if the grenades list is empty
@@ -140,7 +140,7 @@
 
 /obj/item/weapon/gun/projectile/grenade/examine(mob/user)
 	if(..(user, 2))
-		var/grenade_count = loaded.len + (chambered ? 1 : 0)
+		var/grenade_count = loaded.len + (chambered ? TRUE : FALSE)
 		user << "Has [grenade_count] grenade\s remaining."
 		if(chambered)
 			user << "\A [chambered] is chambered. Grenade fuse is set to [chambered.BB.kill_count]."
@@ -149,7 +149,7 @@
 	if(grenades.len >= max_grenades)
 		user << "<span class='warning'>[src] is full.</span>"
 		return
-	playsound(user, 'sound/weapons/m32_grenload.ogg', 60, 1)
+	playsound(user, 'sound/weapons/m32_grenload.ogg', 60, TRUE)
 	user.remove_from_mob(G)
 	G.loc = src
 	grenades.Insert(1, G) //add to the head of the list, so that it is loaded on the next pump
@@ -168,7 +168,7 @@
 /obj/item/weapon/gun/projectile/grenade/attack_self(mob/user)
 	if(opened)
 		user << "\red You closed the [name]'s loading chamber."
-		opened = 0
+		opened = FALSE
 		update_icon()
 		return
 	if(wielded)
@@ -179,7 +179,7 @@
 
 /obj/item/weapon/gun/projectile/grenade/attackby(obj/item/I, mob/user)
 	if (..()) // handle attachments
-		return 1
+		return TRUE
 
 	if(istype(I, /obj/item/ammo_casing/grenade))
 		if(opened)
@@ -195,7 +195,7 @@
 			unload_ammo(user)
 		else
 			user << "\red You opened the [name]'s loading chamber."
-			opened = 1
+			opened = TRUE
 			update_icon()
 	else
 		..()
@@ -203,7 +203,7 @@
 /obj/item/weapon/gun/projectile/grenade/consume_next_projectile()
 	if(chambered)
 		var/obj/item/gl_grenade/grenade = new chambered.projectile_type(src)
-		grenade.primed = 1
+		grenade.primed = TRUE
 		return grenade
 	return null
 */
@@ -220,7 +220,7 @@
 	update_held_icon()
 
 /obj/item/weapon/gun/projectile/grenade/handle_post_fire(mob/user)
-	message_admins("[key_name_admin(user)] fired a grenade from a grenade launcher ([src.name]).")
+	message_admins("[key_name_admin(user)] fired a grenade from a grenade launcher ([name]).")
 	log_game("[key_name_admin(user)] used a grenade.")
 	chambered = null
 	if(loaded.len)
@@ -233,7 +233,7 @@
 	desc = "Not much more than a tube and a firing mechanism, this grenade launcher is designed to be fitted to a rifle."
 	w_class = 3
 	force = 5
-	max_grenades = 0
+	max_grenades = FALSE
 
 /obj/item/weapon/gun/launcher/grenade/underslung/attack_self()
 	return
@@ -260,14 +260,14 @@
 /obj/item/gl_grenade
 	name = "grenade"
 
-	var/primed = 0
+	var/primed = FALSE
 
 /obj/item/gl_grenade/he
 	name = "he grenade"
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, 0, 0, 2, 6)
+			explosion(hit_atom, FALSE, FALSE, 2, 6)
 			qdel(src)
 		else
 			..()
@@ -279,22 +279,22 @@
 
 	New()
 		..()
-		src.smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/bad)
-		src.smoke.attach(src)
+		smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/bad)
+		smoke.attach(src)
 
 	throw_impact(atom/hit_atom)
 		if(primed)
 			name += " (Used)"
-			playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
-			src.smoke.set_up(5, 0, usr.loc)
+			playsound(loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
+			smoke.set_up(5, FALSE, usr.loc)
 			spawn(0)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 		else
 			..()
 		return
@@ -305,22 +305,22 @@
 
 	New()
 		..()
-		src.smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/tear)
-		src.smoke.attach(src)
+		smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/tear)
+		smoke.attach(src)
 
 	throw_impact(atom/hit_atom)
 		if(primed)
 			name += " (Used)"
-			playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
-			src.smoke.set_up(5, 0, usr.loc)
+			playsound(loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
+			smoke.set_up(5, FALSE, usr.loc)
 			spawn(0)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 				sleep(10)
-				src.smoke.start()
+				smoke.start()
 		else
 			..()
 		return

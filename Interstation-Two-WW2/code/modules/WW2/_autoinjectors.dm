@@ -82,7 +82,7 @@
 		..()
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/combat/update_icon()
-	if(reagents.total_volume >= 0)
+	if(reagents.total_volume >= FALSE)
 		if(cap)
 			icon_state = "injector_[cap_color]"
 		else
@@ -147,7 +147,7 @@
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/ww2/update_icon()
-	if(reagents.total_volume >= 0)
+	if(reagents.total_volume >= FALSE)
 		icon_state = "ww2_injector_full"
 	else
 		icon_state = "ww2_injector_empty"

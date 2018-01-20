@@ -3,14 +3,14 @@
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bigscanner"
 	var/insert_anim = "bigscanner1"
-	anchored = 1
-	density = 1
-	use_power = 1
+	anchored = TRUE
+	density = TRUE
+	use_power = TRUE
 	idle_power_usage = 30
 	active_power_usage = 200
 	power_channel = EQUIP
 	var/obj/item/copyitem = null	//what's in the copier!
-	var/copies = 1	//how many copies to print!
+	var/copies = TRUE	//how many copies to print!
 	var/toner = 30 //how much toner is left! woooooo~
 	var/maxcopies = 10	//how many copies can be copied at once- idea shamelessly stolen from bs12's copier!
 
@@ -41,8 +41,8 @@
 		if(stat & (BROKEN|NOPOWER))
 			return
 
-		for(var/i = 0, i < copies, i++)
-			if(toner <= 0)
+		for(var/i = FALSE, i < copies, i++)
+			if(toner <= FALSE)
 				break
 
 			if (istype(copyitem, /obj/item/weapon/paper))
@@ -68,7 +68,7 @@
 			copyitem = null
 			updateUsrDialog()
 	else if(href_list["min"])
-		if(copies > 1)
+		if(copies > TRUE)
 			copies--
 			updateUsrDialog()
 	else if(href_list["add"])
@@ -120,7 +120,7 @@
 		else
 			user << "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>"
 	else if(istype(O, /obj/item/weapon/wrench))
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, TRUE)
 		anchored = !anchored
 		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
 	return
@@ -133,14 +133,14 @@
 			if(prob(50))
 				qdel(src)
 			else
-				if(toner > 0)
+				if(toner > FALSE)
 					new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
-					toner = 0
+					toner = FALSE
 		else
 			if(prob(50))
-				if(toner > 0)
+				if(toner > FALSE)
 					new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
-					toner = 0
+					toner = FALSE
 	return
 
 /obj/machinery/photocopier/proc/copy(var/obj/item/weapon/paper/copy)
@@ -163,7 +163,7 @@
 	c.offset_y = copy.offset_y
 	var/list/temp_overlays = copy.overlays       //Iterates through stamps
 	var/image/img                                //and puts a matching
-	for (var/j = 1, j <= min(temp_overlays.len, copy.ico.len), j++) //gray overlay onto the copy
+	for (var/j = TRUE, j <= min(temp_overlays.len, copy.ico.len), j++) //gray overlay onto the copy
 		if (findtext(copy.ico[j], "cap") || findtext(copy.ico[j], "cent"))
 			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-circle")
 		else if (findtext(copy.ico[j], "deny"))
@@ -175,14 +175,14 @@
 		c.overlays += img
 	c.updateinfolinks()
 	toner--
-	if(toner == 0)
+	if(toner == FALSE)
 		visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
 	return c
 
 
 /obj/machinery/photocopier/proc/photocopy(var/obj/item/weapon/photo/photocopy)
 	var/obj/item/weapon/photo/p = photocopy.copy()
-	p.loc = src.loc
+	p.loc = loc
 
 	var/icon/I = icon(photocopy.icon, photocopy.icon_state)
 	if(toner > 10)	//plenty of toner, go straight greyscale
@@ -195,18 +195,18 @@
 		p.tiny.MapColors(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(100,100,100))
 	p.icon = I
 	toner -= 5	//photos use a lot of ink!
-	if(toner < 0)
-		toner = 0
+	if(toner < FALSE)
+		toner = FALSE
 		visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
 
 	return p
 
-//If need_toner is 0, the copies will still be lightened when low on toner, however it will not be prevented from printing. TODO: Implement print queues for fax machines and get rid of need_toner
+//If need_toner is FALSE, the copies will still be lightened when low on toner, however it will not be prevented from printing. TODO: Implement print queues for fax machines and get rid of need_toner
 /obj/machinery/photocopier/proc/bundlecopy(var/obj/item/weapon/paper_bundle/bundle, var/need_toner=1)
 	var/obj/item/weapon/paper_bundle/p = new /obj/item/weapon/paper_bundle (src)
 	for(var/obj/item/weapon/W in bundle.pages)
-		if(toner <= 0 && need_toner)
-			toner = 0
+		if(toner <= FALSE && need_toner)
+			toner = FALSE
 			visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
 			break
 
@@ -217,7 +217,7 @@
 		W.loc = p
 		p.pages += W
 
-	p.loc = src.loc
+	p.loc = loc
 	p.update_icon()
 	p.icon_state = "paper_words"
 	p.name = bundle.name

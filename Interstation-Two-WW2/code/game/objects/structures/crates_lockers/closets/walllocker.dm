@@ -6,8 +6,8 @@
 	name = "Wall Locker"
 	icon = 'icons/obj/walllocker.dmi'
 	icon_state = "wall-locker"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	icon_closed = "wall-locker"
 	icon_opened = "wall-lockeropen"
 
@@ -21,7 +21,7 @@
 	icon_state = "emerg"
 
 /obj/structure/closet/walllocker/emerglocker/toggle(mob/user as mob)
-	src.attack_hand(user)
+	attack_hand(user)
 	return
 
 /obj/structure/closet/walllocker/emerglocker/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -36,7 +36,7 @@
 	if(amount)
 		usr << "<spawn class='notice'>You take out some items from \the [src]."
 		for(var/path in spawnitems)
-			new path(src.loc)
+			new path(loc)
 		amount--
 	return
 

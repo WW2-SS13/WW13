@@ -8,7 +8,7 @@ var/datum/controller/process/garbage_collector/garbage_collector
 var/list/delayed_garbage = list()
 
 /datum/controller/process/garbage_collector
-	var/garbage_collect = 1			// Whether or not to actually do work
+	var/garbage_collect = TRUE			// Whether or not to actually do work
 	var/total_dels 	= 0			// number of total del()'s
 	var/tick_dels 	= 0			// number of del()'s we've done this tick
 	var/soft_dels	= 0
@@ -34,7 +34,7 @@ var/list/delayed_garbage = list()
 	delayed_garbage = null
 
 #ifdef GC_FINDREF
-world/loop_checks = 0
+world/loop_checks = FALSE
 #endif
 
 /datum/controller/process/garbage_collector/doWork()
@@ -68,7 +68,10 @@ world/loop_checks = 0
 			LocateReferences(A)
 			#endif
 			// Something's still referring to the qdel'd object.  Kill it.
-			testing("GC: -- \ref[A] | [A.type] was unable to be GC'd and was deleted --")
+
+			// hey stop fucking spamming me when I start up the server - Kachnov
+			if (world.time > 6000)
+				testing("GC: -- \ref[A] | [A.type] was unable to be GC'd and was deleted --")
 			logging["[A.type]"]++
 			del(A)
 
@@ -238,7 +241,7 @@ world/loop_checks = 0
 /atom/verb/find_references()
 	set category = "Debug"
 	set name = "Find References"
-	set background = 1
+	set background = TRUE
 	set src in world
 
 	if(!usr || !usr.client)
@@ -271,10 +274,10 @@ world/loop_checks = 0
 		for(var/varname in thing.vars)
 			var/variable = thing.vars[varname]
 			if(variable == src)
-				testing("Found [src.type] \ref[src] in [thing.type]'s [varname] var.")
+				testing("Found [type] \ref[src] in [thing.type]'s [varname] var.")
 			else if(islist(variable))
 				if(src in variable)
-					testing("Found [src.type] \ref[src] in [thing.type]'s [varname] list var.")
+					testing("Found [type] \ref[src] in [thing.type]'s [varname] list var.")
 	testing("Completed search for references to a [type].")
 	usr.client.running_find_references = null
 

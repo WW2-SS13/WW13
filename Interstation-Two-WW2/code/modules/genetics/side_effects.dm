@@ -3,7 +3,7 @@
 	var/symptom // description of the symptom of the side effect
 	var/treatment // description of the treatment of the side effect
 	var/effect // description of what happens when not treated
-	var/duration = 0 // delay between start() and finish()
+	var/duration = FALSE // delay between start() and finish()
 
 	proc/start(mob/living/carbon/human/H)
 		// start the side effect, this should give some cue as to what's happening,
@@ -21,13 +21,13 @@
 	duration = 10*30
 
 	start(mob/living/carbon/human/H)
-		H.emote("me", 1, "starts turning very red..")
+		H.emote("me", TRUE, "starts turning very red..")
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("dexalin"))
 			for(var/organ_name in list("chest","l_arm","r_arm","r_leg","l_leg","head","groin"))
 				var/obj/item/organ/external/E = H.get_organ(organ_name)
-				E.take_damage(0, 5, 0)
+				E.take_damage(0, 5, FALSE)
 
 /datum/genetics/side_effect/bone_snap
 	name = "Bone Snap"
@@ -37,13 +37,13 @@
 	duration = 10*60
 
 	start(mob/living/carbon/human/H)
-		H.emote("me", 1, "'s limbs start shivering uncontrollably.")
+		H.emote("me", TRUE, "'s limbs start shivering uncontrollably.")
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("bicaridine"))
 			var/organ_name = pick("chest","l_arm","r_arm","r_leg","l_leg","head","groin")
 			var/obj/item/organ/external/E = H.get_organ(organ_name)
-			E.take_damage(20, 0, 0)
+			E.take_damage(20, FALSE, FALSE)
 			E.fracture()
 
 /*/datum/genetics/side_effect/monkey
@@ -54,7 +54,7 @@
 	duration = 10*90
 
 	start(mob/living/carbon/human/H)
-		H.emote("me", 1, "has drool running down from [H.gender == MALE ? "his" : H.gender == FEMALE ? "her" : "their"] mouth.")
+		H.emote("me", TRUE, "has drool running down from [H.gender == MALE ? "his" : H.gender == FEMALE ? "her" : "their"] mouth.")
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("anti_toxin"))
@@ -68,7 +68,7 @@
 	duration = 10*30
 
 	start(mob/living/carbon/human/H)
-		H.emote("me", 1, "has drool running down from [H.gender == MALE ? "his" : H.gender == FEMALE ? "her" : "their"] mouth.")
+		H.emote("me", TRUE, "has drool running down from [H.gender == MALE ? "his" : H.gender == FEMALE ? "her" : "their"] mouth.")
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("anti_toxin"))

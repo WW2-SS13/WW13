@@ -7,9 +7,9 @@
 	icon_state = "crate"
 	icon_opened = "crateopen"
 	icon_closed = "crate"
-	climbable = 1
+	climbable = TRUE
 //	mouse_drag_pointer = MOUSE_ACTIVE_POINTER	//???
-	var/rigged = 0
+	var/rigged = FALSE
 
 // climbing crates - Kachnov
 /obj/structure/closet/crate/MouseDrop_T(mob/target, mob/user)
@@ -23,35 +23,35 @@
 		return ..(target, user)
 
 /obj/structure/closet/crate/can_open()
-	return 1
+	return TRUE
 
 /obj/structure/closet/crate/can_close()
-	return 1
+	return TRUE
 
 /obj/structure/closet/crate/open()
-	if(src.opened)
-		return 0
-	if(!src.can_open())
-		return 0
+	if(opened)
+		return FALSE
+	if(!can_open())
+		return FALSE
 
-	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
+	playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
 	for(var/obj/O in src)
 		O.forceMove(get_turf(src))
 	icon_state = icon_opened
-	src.opened = 1
+	opened = TRUE
 
 	if(climbable)
 		structure_shaken()
-	return 1
+	return TRUE
 
 /obj/structure/closet/crate/close()
-	if(!src.opened)
-		return 0
-	if(!src.can_close())
-		return 0
+	if(!opened)
+		return FALSE
+	if(!can_close())
+		return FALSE
 
-	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
-	var/itemcount = 0
+	playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
+	var/itemcount = FALSE
 	for(var/obj/O in get_turf(src))
 		if(itemcount >= storage_capacity)
 			break
@@ -65,8 +65,8 @@
 		itemcount++
 
 	icon_state = icon_closed
-	src.opened = 0
-	return 1
+	opened = FALSE
+	return TRUE
 
 /obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(opened)
@@ -78,25 +78,25 @@
 			return
 		if (C.use(1))
 			user  << "<span class='notice'>You rig [src].</span>"
-			rigged = 1
+			rigged = TRUE
 			return
 	else if(istype(W, /obj/item/weapon/wirecutters))
 		if(rigged)
 			user  << "<span class='notice'>You cut away the wiring.</span>"
-			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
-			rigged = 0
+			playsound(loc, 'sound/items/Wirecutter.ogg', 100, TRUE)
+			rigged = FALSE
 			return
 	else return attack_hand(user)
 
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/obj/O in src.contents)
+			for(var/obj/O in contents)
 				qdel(O)
 			qdel(src)
 			return
 		if(2.0)
-			for(var/obj/O in src.contents)
+			for(var/obj/O in contents)
 				if(prob(50))
 					qdel(O)
 			qdel(src)
@@ -107,7 +107,7 @@
 			return
 		else
 	return
-
+/*
 /obj/structure/closet/crate/secure
 	desc = "A secure crate."
 	name = "Secure crate"
@@ -118,8 +118,8 @@
 	var/greenlight = "securecrateg"
 	var/sparks = "securecratesparks"
 	var/emag = "securecrateemag"
-	var/broken = 0
-	var/locked = 1
+	var/broken = FALSE
+	var/locked = TRUE
 
 /obj/structure/closet/crate/secure/New()
 	..()
@@ -134,13 +134,13 @@
 	return !locked
 
 /obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
-	if(src.opened)
+	if(opened)
 		user << "<span class='notice'>Close the crate first.</span>"
 		return
-	if(src.broken)
+	if(broken)
 		user << "<span class='warning'>The crate appears to be broken.</span>"
 		return
-	if(src.allowed(user))
+	if(allowed(user))
 		set_locked(!locked, user)
 	else
 		user << "<span class='notice'>Access Denied</span>"
@@ -151,7 +151,7 @@
 	locked = newlocked
 	if(user)
 		for(var/mob/O in viewers(user, 3))
-			O.show_message( "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>", 1)
+			O.show_message( "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>", TRUE)
 	overlays.Cut()
 	overlays += locked ? redlight : greenlight
 
@@ -164,23 +164,23 @@
 		return
 
 	if(ishuman(usr))
-		src.add_fingerprint(usr)
-		src.togglelock(usr)
+		add_fingerprint(usr)
+		togglelock(usr)
 	else
 		usr << "<span class='warning'>This mob type can't use this verb.</span>"
 
 /obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(locked)
-		src.togglelock(user)
+		togglelock(user)
 	else
-		src.toggle(user)
+		toggle(user)
 
 /obj/structure/closet/crate/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(is_type_in_list(W, list(/obj/item/stack/cable_coil, /obj/item/weapon/wirecutters)))
 		return ..()
 	if(!opened)
-		src.togglelock(user)
+		togglelock(user)
 		return
 	return ..()
 
@@ -189,7 +189,7 @@
 		O.emp_act(severity)
 	if(!broken && !opened  && prob(50/severity))
 		if(!locked)
-			src.locked = 1
+			locked = TRUE
 			overlays.Cut()
 			overlays += redlight
 		else
@@ -197,16 +197,16 @@
 			overlays += emag
 			overlays += sparks
 			spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-			playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
-			src.locked = 0
+			playsound(loc, 'sound/effects/sparks4.ogg', 75, TRUE)
+			locked = FALSE
 	if(!opened && prob(20/severity))
 		if(!locked)
 			open()
 		else
-			src.req_access = list()
-			src.req_access += pick(get_all_station_access())
+			req_access = list()
+			req_access += pick(get_all_station_access())
 	..()
-
+*/
 /obj/structure/closet/crate/plastic
 	name = "plastic crate"
 	desc = "A rectangular plastic crate."
@@ -323,7 +323,7 @@
 	new /obj/item/clothing/head/radiation(src)
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)
-
+/*
 /obj/structure/closet/crate/secure/weapon
 	name = "weapons crate"
 	desc = "A secure weapons crate."
@@ -362,7 +362,7 @@
 	greenlight = "largebing"
 	sparks = "largebinsparks"
 	emag = "largebinemag"
-
+*/
 /obj/structure/closet/crate/large
 	name = "large crate"
 	desc = "A hefty metal crate."
@@ -374,21 +374,21 @@
 /obj/structure/closet/crate/large/close()
 	. = ..()
 	if (.)//we can hold up to one large item
-		var/found = 0
-		for(var/obj/structure/S in src.loc)
+		var/found = FALSE
+		for(var/obj/structure/S in loc)
 			if(S == src)
 				continue
 			if(!S.anchored)
-				found = 1
+				found = TRUE
 				S.forceMove(src)
 				break
 		if(!found)
-			for(var/obj/machinery/M in src.loc)
+			for(var/obj/machinery/M in loc)
 				if(!M.anchored)
 					M.forceMove(src)
 					break
 	return
-
+/*
 /obj/structure/closet/crate/secure/large
 	name = "large crate"
 	desc = "A hefty metal crate with an electronic locking system."
@@ -402,16 +402,16 @@
 /obj/structure/closet/crate/secure/large/close()
 	. = ..()
 	if (.)//we can hold up to one large item
-		var/found = 0
-		for(var/obj/structure/S in src.loc)
+		var/found = FALSE
+		for(var/obj/structure/S in loc)
 			if(S == src)
 				continue
 			if(!S.anchored)
-				found = 1
+				found = TRUE
 				S.forceMove(src)
 				break
 		if(!found)
-			for(var/obj/machinery/M in src.loc)
+			for(var/obj/machinery/M in loc)
 				if(!M.anchored)
 					M.forceMove(src)
 					break
@@ -423,7 +423,7 @@
 	icon_state = "largermetal"
 	icon_opened = "largermetalopen"
 	icon_closed = "largermetal"
-
+*/
 /obj/structure/closet/crate/hydroponics
 	name = "hydroponics crate"
 	desc = "All you need to destroy those pesky weeds and pests."

@@ -2,7 +2,7 @@
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
-	mouse_opacity = 0
+	mouse_opacity = FALSE
 	pass_flags = PASSTABLE | PASSGRILLE
 
 /obj/effect/effect/water/New(loc)
@@ -17,7 +17,7 @@
 /obj/effect/effect/water/proc/set_up(var/turf/target, var/step_count = 5, var/delay = 5)
 	if(!target)
 		return
-	for(var/i = 1 to step_count)
+	for(var/i = TRUE to step_count)
 		if(!loc)
 			return
 		step_towards(src, target)
@@ -41,7 +41,7 @@
 
 /obj/effect/effect/water/Move(turf/newloc)
 	if(newloc.density)
-		return 0
+		return FALSE
 	. = ..()
 
 /obj/effect/effect/water/Bump(atom/A)

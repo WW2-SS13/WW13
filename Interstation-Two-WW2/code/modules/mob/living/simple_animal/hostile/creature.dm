@@ -18,17 +18,17 @@
 /mob/living/simple_animal/hostile/creature/cult
 	faction = "cult"
 
-	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
-	max_tox = 0
-	min_co2 = 0
-	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
-	minbodytemp = 0
+	min_oxy = FALSE
+	max_oxy = FALSE
+	min_tox = FALSE
+	max_tox = FALSE
+	min_co2 = FALSE
+	max_co2 = FALSE
+	min_n2 = FALSE
+	max_n2 = FALSE
+	minbodytemp = FALSE
 
-	supernatural = 1
+	supernatural = TRUE
 
 /mob/living/simple_animal/hostile/creature/cult/Life()
 	..()

@@ -17,7 +17,7 @@ remember you first need to setup an /icon var like so:
 
 var/icon/my_icon = new('iconfile.dmi')
 
-icon/ChangeOpacity(amount = 1)
+icon/ChangeOpacity(amount = TRUE)
     A very common operation in DM is to try to make an icon more or less transparent. Making an icon more
     transparent is usually much easier than making it less so, however. This proc basically is a frontend
     for MapColors() which can change opacity any way you like, in much the same way that SetIntensity()
@@ -61,16 +61,16 @@ RGB isn't the only way to represent color. Sometimes it's more useful to work wi
     and no value at all is black.
 
 Just as BYOND uses "#rrggbb" to represent RGB values, a similar format is used for HSV: "#hhhssvv". The hue is three
-hex digits because it ranges from 0 to 0x5FF.
+hex digits because it ranges from FALSE to 0x5FF.
 
-    * 0 to 0xFF - red to yellow
+    * FALSE to 0xFF - red to yellow
     * 0x100 to 0x1FF - yellow to green
     * 0x200 to 0x2FF - green to cyan
     * 0x300 to 0x3FF - cyan to blue
     * 0x400 to 0x4FF - blue to magenta
     * 0x500 to 0x5FF - magenta to red
 
-Knowing this, you can figure out that red is "#000ffff" in HSV format, which is hue 0 (red), saturation 255 (as colorful as possible),
+Knowing this, you can figure out that red is "#000ffff" in HSV format, which is hue FALSE (red), saturation 255 (as colorful as possible),
 value 255 (as bright as possible). Green is "#200ffff" and blue is "#400ffff".
 
 More than one HSV color can match the same RGB color.
@@ -91,22 +91,22 @@ RGBtoHSV(rgb)
 HSVtoRGB(hsv)
     Takes an HSV or HSVA string like "#080aaff" and converts it into an RGB or RGBA color such as "#ff55aa".
 BlendRGB(rgb1, rgb2, amount)
-    Blends between two RGB or RGBA colors using regular RGB blending. If amount is 0, the first color is the result;
-    if 1, the second color is the result. 0.5 produces an average of the two. Values outside the 0 to 1 range are allowed as well.
+    Blends between two RGB or RGBA colors using regular RGB blending. If amount is FALSE, the first color is the result;
+    if TRUE, the second color is the result. 0.5 produces an average of the two. Values outside the FALSE to TRUE range are allowed as well.
     The returned value is an RGB or RGBA color.
 BlendHSV(hsv1, hsv2, amount)
     Blends between two HSV or HSVA colors using HSV blending, which tends to produce nicer results than regular RGB
-    blending because the brightness of the color is left intact. If amount is 0, the first color is the result; if 1,
-    the second color is the result. 0.5 produces an average of the two. Values outside the 0 to 1 range are allowed as well.
+    blending because the brightness of the color is left intact. If amount is FALSE, the first color is the result; if TRUE,
+    the second color is the result. 0.5 produces an average of the two. Values outside the FALSE to TRUE range are allowed as well.
     The returned value is an HSV or HSVA color.
 BlendRGBasHSV(rgb1, rgb2, amount)
     Like BlendHSV(), but the colors used and the return value are RGB or RGBA colors. The blending is done in HSV form.
 HueToAngle(hue)
-    Converts a hue to an angle range of 0 to 360. Angle 0 is red, 120 is green, and 240 is blue.
+    Converts a hue to an angle range of FALSE to 360. Angle FALSE is red, 120 is green, and 240 is blue.
 AngleToHue(hue)
     Converts an angle to a hue in the valid range.
 RotateHue(hsv, angle)
-    Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from 0 to 360.
+    Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from FALSE to 360.
     (Rotating red by 60° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
     as the original, but a different hue.
 GrayScale(rgb)
@@ -159,7 +159,7 @@ mob
 		Browse_Icon()
 			set name = "1. Browse Icon"
 			// Give it a name for the cache
-			var/iconName = "[ckey(src.name)]_flattened.dmi"
+			var/iconName = "[ckey(name)]_flattened.dmi"
 			// Send the icon to src's local cache
 			src<<browse_rsc(getFlatIcon(src), iconName)
 			// Display the icon in their browser
@@ -172,7 +172,7 @@ mob
 		Label_Icon()
 			set name = "3. Label Icon"
 			// Give it a name for the cache
-			var/iconName = "[ckey(src.name)]_flattened.dmi"
+			var/iconName = "[ckey(name)]_flattened.dmi"
 			// Copy the file to the rsc manually
 			var/icon/I = fcopy_rsc(getFlatIcon(src))
 			// Send the icon to src's local cache
@@ -186,7 +186,7 @@ mob
 
 		Stress_Test()
 			set name = "5. Stress Test"
-			for(var/i = 0 to 1000)
+			for(var/i = FALSE to 1000)
 				// The third parameter forces it to generate a new one, even if it's already cached
 				getFlatIcon(src,0,2)
 				if(prob(5))
@@ -195,7 +195,7 @@ mob
 
 		Cache_Test()
 			set name = "6. Cache Test"
-			for(var/i = 0 to 1000)
+			for(var/i = FALSE to 1000)
 				getFlatIcon(src)
 			Browse_Icon()
 
@@ -210,7 +210,7 @@ world
 	view = "7x7"
 	maxx = 20
 	maxy = 20
-	maxz = 1
+	maxz = TRUE
 */
 
 #define TO_HEX_DIGIT(n) ascii2text((n&15) + ((n&15)<10 ? 48 : 87))
@@ -228,27 +228,27 @@ icon
 
 	// Multiply all alpha values by this float
 	proc/ChangeOpacity(opacity = 1.0)
-		MapColors(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,opacity, 0,0,0,0)
+		MapColors(1,0,0,0, FALSE,1,0,0, FALSE,0,1,0, FALSE,0,0,opacity, FALSE,0,0,0)
 
 	// Convert to grayscale
 	proc/GrayScale()
-		MapColors(0.3,0.3,0.3, 0.59,0.59,0.59, 0.11,0.11,0.11, 0,0,0)
+		MapColors(0.3,0.3,0.3, 0.59,0.59,0.59, 0.11,0.11,0.11, FALSE,0,0)
 
 	proc/ColorTone(tone)
 		GrayScale()
 
 		var/list/TONE = ReadRGB(tone)
-		var/gray = round(TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11, 1)
+		var/gray = round(TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11, TRUE)
 
 		var/icon/upper = (255-gray) ? new(src) : null
 
 		if(gray)
-			MapColors(255/gray,0,0, 0,255/gray,0, 0,0,255/gray, 0,0,0)
+			MapColors(255/gray,0,0, FALSE,255/gray,0, FALSE,0,255/gray, FALSE,0,0)
 			Blend(tone, ICON_MULTIPLY)
 		else SetIntensity(0)
 		if(255-gray)
 			upper.Blend(rgb(gray,gray,gray), ICON_SUBTRACT)
-			upper.MapColors((255-TONE[1])/(255-gray),0,0,0, 0,(255-TONE[2])/(255-gray),0,0, 0,0,(255-TONE[3])/(255-gray),0, 0,0,0,0, 0,0,0,1)
+			upper.MapColors((255-TONE[1])/(255-gray),0,0,0, FALSE,(255-TONE[2])/(255-gray),0,0, FALSE,0,(255-TONE[3])/(255-gray),0, FALSE,0,0,0, FALSE,0,0,1)
 			Blend(upper, ICON_ADD)
 
 	// Take the minimum color of two icons; combine transparency as if blending with ICON_ADD
@@ -277,13 +277,13 @@ icon
 	// make this icon fully opaque--transparent pixels become black
 	proc/Opaque(background = "#000000")
 		SwapColor(null, background)
-		MapColors(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,0, 0,0,0,1)
+		MapColors(1,0,0,0, FALSE,1,0,0, FALSE,0,1,0, FALSE,0,0,0, FALSE,0,0,1)
 
 	// Change a grayscale icon into a white icon where the original color becomes the alpha
 	// I.e., black -> transparent, gray -> translucent white, white -> solid white
 	proc/BecomeAlphaMask()
 		SwapColor(null, "#000000ff")	// don't let transparent become gray
-		MapColors(0,0,0,0.3, 0,0,0,0.59, 0,0,0,0.11, 0,0,0,0, 1,1,1,0)
+		MapColors(0,0,0,0.3, FALSE,0,0,0.59, FALSE,0,0,0.11, FALSE,0,0,0, TRUE,1,1,0)
 
 	proc/UseAlphaMask(mask)
 		Opaque()
@@ -298,7 +298,7 @@ icon
 /*
 	HSV format is represented as "#hhhssvv" or "#hhhssvvaa"
 
-	Hue ranges from 0 to 0x5ff (1535)
+	Hue ranges from FALSE to 0x5ff (1535)
 
 		0x000 = red
 		0x100 = yellow
@@ -307,12 +307,12 @@ icon
 		0x400 = blue
 		0x500 = magenta
 
-	Saturation is from 0 to 0xff (255)
+	Saturation is from FALSE to 0xff (255)
 
 		More saturation = more color
 		Less saturation = more gray
 
-	Value ranges from 0 to 0xff (255)
+	Value ranges from FALSE to 0xff (255)
 
 		Higher value means brighter color
  */
@@ -333,7 +333,7 @@ proc/ReadRGB(rgb)
 
 	var/single = digits < 6
 	if(digits != 3 && digits != 4 && digits != 6 && digits != 8) return
-	if(digits == 4 || digits == 8) usealpha = 1
+	if(digits == 4 || digits == 8) usealpha = TRUE
 	for(i=start, digits>0, ++i)
 		ch = text2ascii(rgb, i)
 		if(ch >= 48 && ch <= 57) ch -= 48
@@ -347,19 +347,19 @@ proc/ReadRGB(rgb)
 				if(single)
 					r |= r << 4
 					++which
-				else if(!(digits & 1)) ++which
+				else if(!(digits & TRUE)) ++which
 			if(1)
 				g = (g << 4) | ch
 				if(single)
 					g |= g << 4
 					++which
-				else if(!(digits & 1)) ++which
+				else if(!(digits & TRUE)) ++which
 			if(2)
 				b = (b << 4) | ch
 				if(single)
 					b |= b << 4
 					++which
-				else if(!(digits & 1)) ++which
+				else if(!(digits & TRUE)) ++which
 			if(3)
 				alpha = (alpha << 4) | ch
 				if(single) alpha |= alpha << 4
@@ -380,7 +380,7 @@ proc/ReadHSV(hsv)
 		if(ch < 48 || (ch > 57 && ch < 65) || (ch > 70 && ch < 97) || ch > 102) break
 		++digits
 		if(digits == 9) break
-	if(digits > 7) usealpha = 1
+	if(digits > 7) usealpha = TRUE
 	if(digits <= 4) ++which
 	if(digits <= 2) ++which
 	for(i=start, digits>0, ++i)
@@ -399,7 +399,7 @@ proc/ReadHSV(hsv)
 				if(digits == (usealpha ? 4 : 2)) ++which
 			if(2)
 				val = (val << 4) | ch
-				if(digits == (usealpha ? 2 : 0)) ++which
+				if(digits == (usealpha ? 2 : FALSE)) ++which
 			if(3)
 				alpha = (alpha << 4) | ch
 
@@ -421,8 +421,8 @@ proc/HSVtoRGB(hsv)
 
 	var/hi,mid,lo,r,g,b
 	hi = val
-	lo = round((255 - sat) * val / 255, 1)
-	mid = lo + round(abs(round(hue, 510) - hue) * (hi - lo) / 255, 1)
+	lo = round((255 - sat) * val / 255, TRUE)
+	mid = lo + round(abs(round(hue, 510) - hue) * (hi - lo) / 255, TRUE)
 	if(hue >= 765)
 		if(hue >= 1275)      {r=hi;  g=lo;  b=mid}
 		else if(hue >= 1020) {r=mid; g=lo;  b=hi }
@@ -446,8 +446,8 @@ proc/RGBtoHSV(rgb)
 	var/lo = min(r,g,b)
 
 	var/val = hi
-	var/sat = hi ? round((hi-lo) * 255 / hi, 1) : 0
-	var/hue = 0
+	var/sat = hi ? round((hi-lo) * 255 / hi, TRUE) : FALSE
+	var/hue = FALSE
 
 	if(sat)
 		var/dir
@@ -461,19 +461,19 @@ proc/RGBtoHSV(rgb)
 		else if(hi == b)
 			if(lo == g) {hue=1024; dir=1; mid=r}
 			else {hue=1023; dir=-1; mid=g}
-		hue += dir * round((mid-lo) * 255 / (hi-lo), 1)
+		hue += dir * round((mid-lo) * 255 / (hi-lo), TRUE)
 
 	return hsv(hue, sat, val, (RGB.len>3 ? RGB[4] : null))
 
 proc/hsv(hue, sat, val, alpha)
-	if(hue < 0 || hue >= 1536) hue %= 1536
-	if(hue < 0) hue += 1536
+	if(hue < FALSE || hue >= 1536) hue %= 1536
+	if(hue < FALSE) hue += 1536
 	if((hue & 0xFF) == 0xFF)
 		++hue
-		if(hue >= 1536) hue = 0
-	if(sat < 0) sat = 0
+		if(hue >= 1536) hue = FALSE
+	if(sat < FALSE) sat = FALSE
 	if(sat > 255) sat = 255
-	if(val < 0) val = 0
+	if(val < FALSE) val = FALSE
 	if(val > 255) val = 255
 	. = "#"
 	. += TO_HEX_DIGIT(hue >> 8)
@@ -484,7 +484,7 @@ proc/hsv(hue, sat, val, alpha)
 	. += TO_HEX_DIGIT(val >> 4)
 	. += TO_HEX_DIGIT(val)
 	if(!isnull(alpha))
-		if(alpha < 0) alpha = 0
+		if(alpha < FALSE) alpha = FALSE
 		if(alpha > 255) alpha = 255
 		. += TO_HEX_DIGIT(alpha >> 4)
 		. += TO_HEX_DIGIT(alpha)
@@ -510,10 +510,10 @@ proc/BlendHSV(hsv1, hsv2, amount)
 	// normalize hsv values in case anything is screwy
 	if(HSV1[1] > 1536) HSV1[1] %= 1536
 	if(HSV2[1] > 1536) HSV2[1] %= 1536
-	if(HSV1[1] < 0) HSV1[1] += 1536
-	if(HSV2[1] < 0) HSV2[1] += 1536
-	if(!HSV1[3]) {HSV1[1] = 0; HSV1[2] = 0}
-	if(!HSV2[3]) {HSV2[1] = 0; HSV2[2] = 0}
+	if(HSV1[1] < FALSE) HSV1[1] += 1536
+	if(HSV2[1] < FALSE) HSV2[1] += 1536
+	if(!HSV1[3]) {HSV1[1] = FALSE; HSV1[2] = FALSE}
+	if(!HSV2[3]) {HSV2[1] = FALSE; HSV2[2] = FALSE}
 
 	// no value for one color means don't change saturation
 	if(!HSV1[3]) HSV1[2] = HSV2[2]
@@ -530,14 +530,14 @@ proc/BlendHSV(hsv1, hsv2, amount)
 	if(hue_diff > 765) hue_diff -= 1530
 	else if(hue_diff <= -765) hue_diff += 1530
 
-	var/hue = round(HSV1[1] + hue_diff * amount, 1)
-	var/sat = round(HSV1[2] + (HSV2[2] - HSV1[2]) * amount, 1)
-	var/val = round(HSV1[3] + (HSV2[3] - HSV1[3]) * amount, 1)
-	var/alpha = usealpha ? round(HSV1[4] + (HSV2[4] - HSV1[4]) * amount, 1) : null
+	var/hue = round(HSV1[1] + hue_diff * amount, TRUE)
+	var/sat = round(HSV1[2] + (HSV2[2] - HSV1[2]) * amount, TRUE)
+	var/val = round(HSV1[3] + (HSV2[3] - HSV1[3]) * amount, TRUE)
+	var/alpha = usealpha ? round(HSV1[4] + (HSV2[4] - HSV1[4]) * amount, TRUE) : null
 
 	// normalize hue
-	if(hue < 0 || hue >= 1530) hue %= 1530
-	if(hue < 0) hue += 1530
+	if(hue < FALSE || hue >= 1530) hue %= 1530
+	if(hue < FALSE) hue += 1530
 	// decompress hue
 	hue += round(hue / 255)
 
@@ -561,10 +561,10 @@ proc/BlendRGB(rgb1, rgb2, amount)
 	else if(RGB2.len < RGB1.len) RGB2 += 255
 	var/usealpha = RGB1.len > 3
 
-	var/r = round(RGB1[1] + (RGB2[1] - RGB1[1]) * amount, 1)
-	var/g = round(RGB1[2] + (RGB2[2] - RGB1[2]) * amount, 1)
-	var/b = round(RGB1[3] + (RGB2[3] - RGB1[3]) * amount, 1)
-	var/alpha = usealpha ? round(RGB1[4] + (RGB2[4] - RGB1[4]) * amount, 1) : null
+	var/r = round(RGB1[1] + (RGB2[1] - RGB1[1]) * amount, TRUE)
+	var/g = round(RGB1[2] + (RGB2[2] - RGB1[2]) * amount, TRUE)
+	var/b = round(RGB1[3] + (RGB2[3] - RGB1[3]) * amount, TRUE)
+	var/alpha = usealpha ? round(RGB1[4] + (RGB2[4] - RGB1[4]) * amount, TRUE) : null
 
 	return isnull(alpha) ? rgb(r, g, b) : rgb(r, g, b, alpha)
 
@@ -573,15 +573,15 @@ proc/BlendRGBasHSV(rgb1, rgb2, amount)
 
 proc/HueToAngle(hue)
 	// normalize hsv in case anything is screwy
-	if(hue < 0 || hue >= 1536) hue %= 1536
-	if(hue < 0) hue += 1536
+	if(hue < FALSE || hue >= 1536) hue %= 1536
+	if(hue < FALSE) hue += 1536
 	// Compress hue into easier-to-manage range
 	hue -= hue >> 8
 	return hue / (1530/360)
 
 proc/AngleToHue(angle)
 	// normalize hsv in case anything is screwy
-	if(angle < 0 || angle >= 360) angle -= 360 * round(angle / 360)
+	if(angle < FALSE || angle >= 360) angle -= 360 * round(angle / 360)
 	var/hue = angle * (1530/360)
 	// Decompress hue
 	hue += round(hue / 255)
@@ -594,17 +594,17 @@ proc/RotateHue(hsv, angle)
 
 	// normalize hsv in case anything is screwy
 	if(HSV[1] >= 1536) HSV[1] %= 1536
-	if(HSV[1] < 0) HSV[1] += 1536
+	if(HSV[1] < FALSE) HSV[1] += 1536
 
 	// Compress hue into easier-to-manage range
 	HSV[1] -= HSV[1] >> 8
 
-	if(angle < 0 || angle >= 360) angle -= 360 * round(angle / 360)
-	HSV[1] = round(HSV[1] + angle * (1530/360), 1)
+	if(angle < FALSE || angle >= 360) angle -= 360 * round(angle / 360)
+	HSV[1] = round(HSV[1] + angle * (1530/360), TRUE)
 
 	// normalize hue
-	if(HSV[1] < 0 || HSV[1] >= 1530) HSV[1] %= 1530
-	if(HSV[1] < 0) HSV[1] += 1530
+	if(HSV[1] < FALSE || HSV[1] >= 1530) HSV[1] %= 1530
+	if(HSV[1] < FALSE) HSV[1] += 1530
 	// decompress hue
 	HSV[1] += round(HSV[1] / 255)
 
@@ -624,8 +624,8 @@ proc/ColorTone(rgb, tone)
 	var/gray = RGB[1]*0.3 + RGB[2]*0.59 + RGB[3]*0.11
 	var/tone_gray = TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11
 
-	if(gray <= tone_gray) return BlendRGB("#000000", tone, gray/(tone_gray || 1))
-	else return BlendRGB(tone, "#ffffff", (gray-tone_gray)/((255-tone_gray) || 1))
+	if(gray <= tone_gray) return BlendRGB("#000000", tone, gray/(tone_gray || TRUE))
+	else return BlendRGB(tone, "#ffffff", (gray-tone_gray)/((255-tone_gray) || TRUE))
 
 
 /*
@@ -635,12 +635,12 @@ The _flatIcons list is a cache for generated icon files.
 */
 
 proc // Creates a single icon from a given /atom or /image.  Only the first argument is required.
-	getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
+	getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = FALSE)
 		// We start with a blank canvas, otherwise some icon procs crash silently
 		var/icon/flat = icon('icons/effects/effects.dmi', "icon_state"="nothing") // Final flattened icon
 		if(!A)
 			return flat
-		if(A.alpha <= 0)
+		if(A.alpha <= FALSE)
 			return flat
 		var/noIcon = FALSE
 
@@ -690,7 +690,7 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 
 		// Loop through the underlays, then overlays, sorting them into the layers list
 		var/list/process = A.underlays // Current list being processed
-		var/pSet=0 // Which list is being processed: 0 = underlays, 1 = overlays
+		var/pSet=0 // Which list is being processed: FALSE = underlays, TRUE = overlays
 		var/curIndex=1 // index of 'current' in list being processed
 		var/current // Current overlay being sorted
 		var/currentLayer // Calculated layer that overlay appears on (special case for FLOAT_LAYER)
@@ -703,7 +703,7 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 					currentLayer = current:layer
 					if(currentLayer<0) // Special case for FLY_LAYER
 						if(currentLayer <= -1000) return flat
-						if(pSet == 0) // Underlay
+						if(pSet == FALSE) // Underlay
 							currentLayer = A.layer+currentLayer/1000
 						else // Overlay
 							currentLayer = A.layer+(1000+currentLayer)/1000
@@ -719,9 +719,9 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 						layers[current]=currentLayer // Place at end
 
 				curIndex++
-			else if(pSet == 0) // Switch to overlays
-				curIndex = 1
-				pSet = 1
+			else if(pSet == FALSE) // Switch to overlays
+				curIndex = TRUE
+				pSet = TRUE
 				process = A.overlays
 			else // All done
 				break
@@ -735,14 +735,14 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 
 		for(var/I in layers)
 
-			if(I:alpha == 0)
+			if(I:alpha == FALSE)
 				continue
 
 			if(I == copy) // 'I' is an /image based on the object being flattened.
 				curblend = BLEND_OVERLAY
 				add = icon(I:icon, I:icon_state, I:dir)
 				// This checks for a silent failure mode of the icon routine. If the requested dir
-				// doesn't exist in this icon state it returns a 32x32 icon with 0 alpha.
+				// doesn't exist in this icon state it returns a 32x32 icon with FALSE alpha.
 				if (I:dir != SOUTH && add.Width() == 32 && add.Height() == 32)
 					// Check every pixel for blank (computationally expensive, but the process is limited
 					// by the amount of film on the station, only happens when we hit something that's
@@ -755,14 +755,14 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 								break
 						if(!blankpixel)
 							break
-					// If we ALWAYS returned a null (which happens when GetPixel encounters something with alpha 0)
+					// If we ALWAYS returned a null (which happens when GetPixel encounters something with alpha FALSE)
 					if (blankpixel)
 						// Pull the default direction.
 						add = icon(I:icon, I:icon_state)
 			else // 'I' is an appearance object.
 				if(istype(A,/obj/machinery/atmospherics) && I in A.underlays)
 					var/image/Im = I
-					add = getFlatIcon(new/image(I), Im.dir, curicon, curstate, curblend, 1)
+					add = getFlatIcon(new/image(I), Im.dir, curicon, curstate, curblend, TRUE)
 				else
 					add = getFlatIcon(new/image(I), curdir, curicon, curstate, curblend, always_use_defdir)
 
@@ -829,10 +829,10 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 
 //For photo camera.
 /proc/build_composite_icon(atom/A)
-	var/icon/composite = icon(A.icon, A.icon_state, A.dir, 1)
+	var/icon/composite = icon(A.icon, A.icon_state, A.dir, TRUE)
 	for(var/O in A.overlays)
 		var/image/I = O
-		composite.Blend(icon(I.icon, I.icon_state, I.dir, 1), ICON_OVERLAY)
+		composite.Blend(icon(I.icon, I.icon_state, I.dir, TRUE), ICON_OVERLAY)
 	return composite
 
 proc/adjust_brightness(var/color, var/value)
@@ -849,19 +849,19 @@ proc/sort_atoms_by_layer(var/list/atoms)
 	// Comb sort icons based on levels
 	var/list/result = atoms.Copy()
 	var/gap = result.len
-	var/swapped = 1
-	while (gap > 1 || swapped)
-		swapped = 0
-		if(gap > 1)
+	var/swapped = TRUE
+	while (gap > TRUE || swapped)
+		swapped = FALSE
+		if(gap > TRUE)
 			gap = round(gap / 1.3) // 1.3 is the emperic comb sort coefficient
-		if(gap < 1)
-			gap = 1
-		for(var/i = 1; gap + i <= result.len; i++)
+		if(gap < TRUE)
+			gap = TRUE
+		for(var/i = TRUE; gap + i <= result.len; i++)
 			var/atom/l = result[i]		//Fucking hate
 			var/atom/r = result[gap+i]	//how lists work here
 			if(l.layer > r.layer)		//no "result[i].layer" for me
 				result.Swap(i, gap + i)
-				swapped = 1
+				swapped = TRUE
 	return result
 /*
 generate_image function generates image of specified range and location
@@ -869,11 +869,11 @@ arguments tx, ty, tz are target coordinates (requred), range defines render dist
 cap_mode is capturing mode (optional), user is capturing mob (requred only wehen cap_mode = CAPTURE_MODE_REGULAR),
 lighting determines lighting capturing (optional), suppress_errors suppreses errors and continues to capture (optional).
 */
-proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/lighting = 1, var/suppress_errors = 1)
+proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/lighting = TRUE, var/suppress_errors = TRUE)
 	var/list/turfstocapture = list()
 	//Lines below determine what tiles will be rendered
-	for(var/xoff = 0 to range)
-		for(var/yoff = 0 to range)
+	for(var/xoff = FALSE to range)
+		for(var/yoff = FALSE to range)
 			var/turf/T = locate(tx + xoff,ty + yoff,tz)
 			if(T)
 				if(cap_mode == CAPTURE_MODE_REGULAR)

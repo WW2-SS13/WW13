@@ -2,23 +2,23 @@
 	var/list/cables = list()	// all cables & junctions
 	var/list/nodes = list()		// all connected machines
 
-	var/load = 0				// the current load on the powernet, increased by each machine at processing
-	var/newavail = 0			// what available power was gathered last tick, then becomes...
-	var/avail = 0				//...the current available power in the powernet
-	var/viewload = 0			// the load as it appears on the power console (gradually updated)
-	var/number = 0				// Unused //TODEL
+	var/load = FALSE				// the current load on the powernet, increased by each machine at processing
+	var/newavail = FALSE			// what available power was gathered last tick, then becomes...
+	var/avail = FALSE				//...the current available power in the powernet
+	var/viewload = FALSE			// the load as it appears on the power console (gradually updated)
+	var/number = FALSE				// Unused //TODEL
 
-	var/smes_demand = 0			// Amount of power demanded by all SMESs from this network. Needed for load balancing.
+	var/smes_demand = FALSE			// Amount of power demanded by all SMESs from this network. Needed for load balancing.
 	var/list/inputting = list()	// List of SMESs that are demanding power from this network. Needed for load balancing.
 
-	var/smes_avail = 0			// Amount of power (avail) from SMESes. Used by SMES load balancing
-	var/smes_newavail = 0		// As above, just for newavail
+	var/smes_avail = FALSE			// Amount of power (avail) from SMESes. Used by SMES load balancing
+	var/smes_newavail = FALSE		// As above, just for newavail
 
-	var/perapc = 0			// per-apc avilability
-	var/perapc_excess = 0
-	var/netexcess = 0			// excess power on the powernet (typically avail-load)
+	var/perapc = FALSE			// per-apc avilability
+	var/perapc_excess = FALSE
+	var/netexcess = FALSE			// excess power on the powernet (typically avail-load)
 
-	var/problem = 0				// If this is not 0 there is some sort of issue in the powernet. Monitors will display warnings.
+	var/problem = FALSE				// If this is not FALSE there is some sort of issue in the powernet. Monitors will display warnings.
 
 /datum/powernet/New()
 	powernets += src
@@ -37,7 +37,7 @@
 //Returns the amount of excess power (before refunding to SMESs) from last tick.
 //This is for machines that might adjust their power consumption using this data.
 /datum/powernet/proc/last_surplus()
-	return max(avail - load, 0)
+	return max(avail - load, FALSE)
 
 /datum/powernet/proc/draw_power(var/amount)
 	var/draw = between(0, amount, avail - load)
@@ -96,10 +96,10 @@
 //handles the power changes in the powernet
 //called every ticks by the powernet controller
 /datum/powernet/proc/reset()
-	var/numapc = 0
+	var/numapc = FALSE
 
-	if(problem > 0)
-		problem = max(problem - 1, 0)
+	if(problem > FALSE)
+		problem = max(problem - TRUE, FALSE)
 
 	if(nodes && nodes.len) // Added to fix a bad list bug -- TLE
 
@@ -113,10 +113,10 @@
 		//very simple load balancing. If there was a net excess this tick then it must have been that some APCs used less than perapc, since perapc*numapc = avail
 		//Therefore we can raise the amount of power rationed out to APCs on the assumption that those APCs that used less than perapc will continue to do so.
 		//If that assumption fails, then some APCs will miss out on power next tick, however it will be rebalanced for the tick after.
-		if (netexcess >= 0)
+		if (netexcess >= FALSE)
 			perapc_excess += min(netexcess/numapc, (avail - perapc) - perapc_excess)
 		else
-			perapc_excess = 0
+			perapc_excess = FALSE
 
 		perapc = avail/numapc + perapc_excess
 
@@ -138,23 +138,23 @@
 	viewload = round(load)
 
 	//reset the powernet
-	load = 0
+	load = FALSE
 	avail = newavail
 	smes_avail = smes_newavail
 	inputting.Cut()
-	smes_demand = 0
-	newavail = 0
-	smes_newavail = 0
+	smes_demand = FALSE
+	newavail = FALSE
+	smes_newavail = FALSE
 
-/datum/powernet/proc/get_percent_load(var/smes_only = 0)
+/datum/powernet/proc/get_percent_load(var/smes_only = FALSE)
 	if(smes_only)
 		var/smes_used = load - (avail - smes_avail) 			// SMESs are always last to provide power
-		if(!smes_used || smes_used < 0 || !smes_avail)			// SMES power isn't available or being used at all, SMES load is therefore 0%
-			return 0
+		if(!smes_used || smes_used < FALSE || !smes_avail)			// SMES power isn't available or being used at all, SMES load is therefore FALSE%
+			return FALSE
 		return between(0, (smes_used / smes_avail) * 100, 100)	// Otherwise return percentage load of SMESs.
 	else
 		if(!load)
-			return 0
+			return FALSE
 		return between(0, (avail / load) * 100, 100)
 
 /datum/powernet/proc/get_electrocute_damage()
@@ -170,7 +170,7 @@
 		if (1000 to 50000)
 			return min(rand(10,20),rand(10,20))
 		else
-			return 0
+			return FALSE
 
 ////////////////////////////////////////////////
 // Misc.
@@ -183,7 +183,7 @@
 	if(!istype(src, /turf))
 		return null
 	for(var/obj/structure/cable/C in src)
-		if(C.d1 == 0)
+		if(C.d1 == FALSE)
 			return C
 	return null
 

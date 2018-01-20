@@ -90,11 +90,11 @@
 
 	for(var/client/target in clients)
 		if(target.is_preference_enabled(/datum/client_preference/show_ooc))
-			var/display_name = src.key
+			var/display_name = key
 			if(holder)
 				if(holder.fakekey)
 					if(target.holder)
-						display_name = "[holder.fakekey]/([src.key])"
+						display_name = "[holder.fakekey]/([key])"
 					else
 						display_name = holder.fakekey
 				else
@@ -102,14 +102,14 @@
 
 			// patrons get OOC colors too, now - kachnov
 
-			var/admin_patron_check = 0
+			var/admin_patron_check = FALSE
 			if (holder && !holder.fakekey && (holder.rights & R_ADMIN))
-				admin_patron_check = 1
+				admin_patron_check = TRUE
 			if (isPatron("$3+"))
-				admin_patron_check = 1
+				admin_patron_check = TRUE
 
-			if(admin_patron_check && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
-				target << "<font color='[src.prefs.ooccolor]'><span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
+			if(admin_patron_check && config.allow_admin_ooccolor && (prefs.ooccolor != initial(prefs.ooccolor))) // keeping this for the badmins
+				target << "<font color='[prefs.ooccolor]'><span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
 			else
 				target << "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></span>"
 
@@ -192,12 +192,12 @@
 		for(var/mob/M in player_list)
 			if(!M.is_preference_enabled(/datum/client_preference/show_looc))
 				continue
-			if(isAI(M))
+		/*	if(isAI(M))
 				var/mob/living/silicon/ai/A = M
 				if(A.eyeobj && (A.eyeobj.locs[1] in hearturfs))
 					eye_heard |= M.client
 					listening |= M.client
-					continue
+					continue*/
 
 			if(M.loc && M.locs[1] in hearturfs)
 				listening |= M.client
@@ -228,7 +228,3 @@
 /mob/proc/get_looc_source()
 	return src
 
-/mob/living/silicon/ai/get_looc_source()
-	if(eyeobj)
-		return eyeobj
-	return src

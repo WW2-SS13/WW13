@@ -1,7 +1,7 @@
 /obj/item/weapon/material/harpoon
 	name = "harpoon"
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	desc = "Tharr she blows!"
 	icon_state = "harpoon"
 	item_state = "harpoon"
@@ -16,11 +16,11 @@
 	force_divisor = 0.2 // 12 with hardness 60 (steel)
 	thrown_force_divisor = 0.75 // 15 with weight 20 (steel)
 	w_class = 2
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 //	origin_tech = "materials=2;combat=1"
 	attack_verb = list("chopped", "torn", "cut")
-	applies_material_colour = 0
+	applies_material_colour = FALSE
 
 /obj/item/weapon/material/hatchet/unathiknife
 	name = "duelling knife"
@@ -37,7 +37,7 @@
 	icon_state = "tacknife"
 	item_state = "knife"
 	attack_verb = list("stabbed", "chopped", "cut")
-	applies_material_colour = 1
+	applies_material_colour = TRUE
 	drawsound = 'sound/items/unholster_knife.ogg'
 
 /obj/item/weapon/material/minihoe // -- Numbers
@@ -57,9 +57,9 @@
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
 	force_divisor = 0.275 // 16 with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 with weight 20 (steel)
-	sharp = 1
-	edge = 1
-	throw_speed = 1
+	sharp = TRUE
+	edge = TRUE
+	throw_speed = TRUE
 	throw_range = 3
 	w_class = 4
 	slot_flags = SLOT_BACK

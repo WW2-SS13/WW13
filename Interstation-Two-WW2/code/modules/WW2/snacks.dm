@@ -6,7 +6,7 @@
 
 	New()
 		..()
-		reagents.add_reagent("pervitin", 1)
+		reagents.add_reagent("pervitin", TRUE)
 		reagents.add_reagent("nutriment", 2)
 		reagents.add_reagent("sugar", 2)
 		reagents.add_reagent("coco", 2)

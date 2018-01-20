@@ -4,10 +4,10 @@
 	var/available_to_ai = TRUE
 //	var/datum/computer_file/program/program = null	// Program-Based computer program that runs this nano module. Defaults to null.
 
-/datum/nano_module/New(var/host, var/program)
+/datum/nano_module/New(var/_host, var/program)
 	//program = program
 	// Machinery-based computers wouldn't work w/o this as nano will assume they're items inside containers.
-	src.host = host
+	host = _host
 
 /datum/nano_module/Topic(href, href_list)
 	// Calls forwarded to PROGRAM itself should begin with "PRG_"

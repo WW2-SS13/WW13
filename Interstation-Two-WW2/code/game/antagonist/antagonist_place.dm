@@ -10,15 +10,15 @@
 	if(spawn_announcement)
 		if(announced)
 			return
-		announced = 1
+		announced = TRUE
 		spawn(0)
 			if(spawn_announcement_delay)
 				sleep(spawn_announcement_delay)
-			if(spawn_announcement_sound)
+		/*	if(spawn_announcement_sound)
 				command_announcement.Announce("[spawn_announcement]", "[spawn_announcement_title ? spawn_announcement_title : "Priority Alert"]", new_sound = spawn_announcement_sound)
 			else
 				command_announcement.Announce("[spawn_announcement]", "[spawn_announcement_title ? spawn_announcement_title : "Priority Alert"]")
-	return
+*/	return
 
 /datum/antagonist/proc/place_mob(var/mob/living/mob)
 	if(!starting_locations || !starting_locations.len)

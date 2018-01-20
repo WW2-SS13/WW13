@@ -8,15 +8,15 @@
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_opening", src)
 		sleep(15)
-		density = 0
-		opacity = 0
+		density = FALSE
+		opacity = FALSE
 		update_icon()
 		set_light(0)
 	else
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_closing", src)
-		density = 1
-		opacity = 1
+		density = TRUE
+		opacity = TRUE
 		update_icon()
 		sleep(15)
 		set_light(1)
@@ -42,16 +42,16 @@
 		else
 			user << "<span class='danger'>\The [material.display_name] crumbles under your touch!</span>"
 			dismantle_wall()
-			return 1
+			return TRUE
 
-	if(..()) return 1
+	if(..()) return TRUE
 
 	if(!can_open)
 		user << "<span class='notice'>You push the wall, but nothing happens.</span>"
-		playsound(src, hitsound, 25, 1)
+		playsound(src, hitsound, 25, TRUE)
 	else
 		toggle_open(user)
-	return 0
+	return FALSE
 
 
 /turf/wall/attack_hand(var/mob/user)
@@ -65,7 +65,7 @@
 			success_smash(user)
 		else
 			fail_smash(user)
-			return 1
+			return TRUE
 
 	try_touch(user, rotting)
 
@@ -111,16 +111,16 @@
 			var/obj/item/weapon/weldingtool/WT = W
 			if( WT.remove_fuel(0,user) )
 				user << "<span class='notice'>You burn away the fungi with \the [WT].</span>"
-				playsound(src, 'sound/items/Welder.ogg', 10, 1)
+				playsound(src, 'sound/items/Welder.ogg', 10, TRUE)
 				for(var/obj/effect/overlay/wallrot/WR in src)
 					qdel(WR)
 				return
 		else if(!is_sharp(W) && W.force >= 10 || W.force >= 20)
 			user << "<span class='notice'>\The [src] crumbles away under the force of your [W.name].</span>"
-			src.dismantle_wall(1)
+			dismantle_wall(1)
 			return
 
-	//THERMITE related stuff. Calls src.thermitemelt() which handles melting walls and the relevant effects
+	//THERMITE related stuff. Calls thermitemelt() which handles melting walls and the relevant effects
 /*	if(thermite)
 		if( istype(W, /obj/item/weapon/weldingtool) )
 			var/obj/item/weapon/weldingtool/WT = W
@@ -142,7 +142,7 @@
 
 		if(WT.remove_fuel(0,user))
 			user << "<span class='notice'>You start repairing the damage to [src].</span>"
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			playsound(src, 'sound/items/Welder.ogg', 100, TRUE)
 			if(do_after(user, max(5, damage / 5), src) && WT && WT.isOn())
 				user << "<span class='notice'>You finish repairing the damage to [src].</span>"
 				take_damage(-damage)
@@ -173,10 +173,10 @@
 
 			user << "<span class='notice'>You begin [dismantle_verb] through the outer plating.</span>"
 			if(dismantle_sound)
-				playsound(src, dismantle_sound, 100, 1)
+				playsound(src, dismantle_sound, 100, TRUE)
 
 			if(cut_delay<0)
-				cut_delay = 0
+				cut_delay = FALSE
 
 			if(!do_after(user,cut_delay,src))
 				return
@@ -191,7 +191,7 @@
 		switch(construction_stage)
 			if(6)
 				if (istype(W, /obj/item/weapon/wirecutters))
-					playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
+					playsound(src, 'sound/items/Wirecutter.ogg', 100, TRUE)
 					construction_stage = 5
 					new /obj/item/stack/rods( src )
 					user << "<span class='notice'>You cut the outer grille.</span>"
@@ -200,7 +200,7 @@
 			if(5)
 				if (istype(W, /obj/item/weapon/screwdriver))
 					user << "<span class='notice'>You begin removing the support lines.</span>"
-					playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+					playsound(src, 'sound/items/Screwdriver.ogg', 100, TRUE)
 					if(!do_after(user,40,src) || !istype(src, /turf/wall) || construction_stage != 5)
 						return
 					construction_stage = 4
@@ -228,7 +228,7 @@
 						return
 				if(cut_cover)
 					user << "<span class='notice'>You begin slicing through the metal cover.</span>"
-					playsound(src, 'sound/items/Welder.ogg', 100, 1)
+					playsound(src, 'sound/items/Welder.ogg', 100, TRUE)
 					if(!do_after(user, 60, src) || !istype(src, /turf/wall) || construction_stage != 4)
 						return
 					construction_stage = 3
@@ -238,7 +238,7 @@
 			if(3)
 				if (istype(W, /obj/item/weapon/crowbar))
 					user << "<span class='notice'>You struggle to pry off the cover.</span>"
-					playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
+					playsound(src, 'sound/items/Crowbar.ogg', 100, TRUE)
 					if(!do_after(user,100,src) || !istype(src, /turf/wall) || construction_stage != 3)
 						return
 					construction_stage = 2
@@ -248,10 +248,10 @@
 			if(2)
 				if (istype(W, /obj/item/weapon/wrench))
 					user << "<span class='notice'>You start loosening the anchoring bolts which secure the support rods to their frame.</span>"
-					playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
+					playsound(src, 'sound/items/Ratchet.ogg', 100, TRUE)
 					if(!do_after(user,40,src) || !istype(src, /turf/wall) || construction_stage != 2)
 						return
-					construction_stage = 1
+					construction_stage = TRUE
 					update_icon()
 					user << "<span class='notice'>You remove the bolts anchoring the support rods.</span>"
 					return
@@ -266,10 +266,10 @@
 						return
 				if(cut_cover)
 					user << "<span class='notice'>You begin slicing through the support rods.</span>"
-					playsound(src, 'sound/items/Welder.ogg', 100, 1)
-					if(!do_after(user,70,src) || !istype(src, /turf/wall) || construction_stage != 1)
+					playsound(src, 'sound/items/Welder.ogg', 100, TRUE)
+					if(!do_after(user,70,src) || !istype(src, /turf/wall) || construction_stage != TRUE)
 						return
-					construction_stage = 0
+					construction_stage = FALSE
 					update_icon()
 					new /obj/item/stack/rods(src)
 					user << "<span class='notice'>The support rods drop out as you cut them loose from the frame.</span>"
@@ -277,7 +277,7 @@
 			if(0)
 				if(istype(W, /obj/item/weapon/crowbar))
 					user << "<span class='notice'>You struggle to pry off the outer sheath.</span>"
-					playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
+					playsound(src, 'sound/items/Crowbar.ogg', 100, TRUE)
 					sleep(100)
 					if(!istype(src, /turf/wall) || !user || !W || !T )	return
 					if(user.loc == T && user.get_active_hand() == W )
@@ -298,7 +298,7 @@
 			dam_threshhold = ceil(max(dam_threshhold,reinf_material.integrity)/2)
 		var/dam_prob = min(100,material.hardness*1.5)
 		if(dam_prob < 100 && W.force > (dam_threshhold/10))
-			playsound(src, hitsound, 80, 1)
+			playsound(src, hitsound, 80, TRUE)
 			if(!prob(dam_prob))
 				visible_message("<span class='danger'>\The [user] attacks \the [src] with \the [W] and it [material.destruction_desc]!</span>")
 				dismantle_wall(1)

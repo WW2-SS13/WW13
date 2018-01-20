@@ -2,7 +2,9 @@
 	name = "flashlight"
 	desc = "A hand-held emergency light."
 	icon = 'icons/obj/lighting.dmi'
-	icon_state = "flashlight"
+	icon_state = "flashlight_off"
+	var/off_state = "flashlight_off"
+	var/on_state = "flashlight_on"
 	item_state = "flashlight"
 	w_class = 2
 	flags = CONDUCT
@@ -11,7 +13,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
 	action_button_name = "Toggle Flashlight"
-	var/on = 0
+	var/on = FALSE
 	var/brightness_on = 5 //luminosity when on
 	var/turn_on_sound = 'sound/effects/Custom_flashlight.ogg'
 
@@ -21,21 +23,21 @@
 
 /obj/item/device/flashlight/update_icon()
 	if(on)
-		icon_state = "[initial(icon_state)]-on"
+		icon_state = on_state
 		set_light(brightness_on)
 	else
-		icon_state = "[initial(icon_state)]"
+		icon_state = off_state
 		set_light(0)
 
 /obj/item/device/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
 		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
-		return 0
+		return FALSE
 	on = !on
-	playsound(src.loc, turn_on_sound, 75, 1)
+	playsound(loc, turn_on_sound, 75, TRUE)
 	update_icon()
 	user.update_action_buttons()
-	return 1
+	return TRUE
 
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
@@ -96,34 +98,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_EARS
 	brightness_on = 2
-	w_class = 1
-
-/obj/item/device/flashlight/drone
-	name = "low-power flashlight"
-	desc = "A miniature lamp, that might be used by small robots."
-	icon_state = "penlight"
-	item_state = ""
-	flags = CONDUCT
-	brightness_on = 2
-	w_class = 1
-
-/obj/item/device/flashlight/heavy
-	name = "heavy duty flashlight"
-	desc = "A hand-held heavy-duty light."
-	icon = 'icons/obj/lighting.dmi'
-	//icon_state = "heavyduty"
-	//item_state = "heavyduty"
-	brightness_on = 6
-
-/obj/item/device/flashlight/seclite
-	name = "security flashlight"
-	desc = "A hand-held security flashlight. Very robust."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "seclite"
-	item_state = "seclite"
-	brightness_on = 5
-	force = WEAPON_FORCE_NORMAL
-	hitsound = 'sound/weapons/genhit1.ogg'
+	w_class = TRUE
 
 // the desk lamps are a bit special
 /obj/item/device/flashlight/lamp
@@ -135,7 +110,7 @@
 	w_class = 4
 	flags = CONDUCT
 
-	on = 1
+	on = TRUE
 
 
 // green-shaded desk lamp
@@ -164,9 +139,11 @@
 	light_power = 2
 	light_color = "#e58775"
 	icon_state = "flare"
+	off_state = "flare"
+	on_state = "flare-on"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.
-	var/fuel = 0
+	var/fuel = FALSE
 	var/on_damage = 7
 	var/produce_heat = 1500
 	turn_on_sound = 'sound/effects/Custom_flare.ogg'
@@ -179,22 +156,22 @@
 	var/turf/pos = get_turf(src)
 	if(pos)
 		pos.hotspot_expose(produce_heat, 5)
-	fuel = max(fuel - 1, 0)
+	fuel = max(fuel - TRUE, FALSE)
 	if(!fuel || !on)
 		turn_off()
 		if(!fuel)
-			src.icon_state = "[initial(icon_state)]-empty"
+			icon_state = "[initial(icon_state)]-empty"
 		processing_objects -= src
 
 /obj/item/device/flashlight/flare/proc/turn_off()
-	on = 0
-	src.force = initial(src.force)
-	src.damtype = initial(src.damtype)
+	on = FALSE
+	force = initial(force)
+	damtype = initial(damtype)
 	update_icon()
 
 /obj/item/device/flashlight/flare/attack_self(mob/user)
 	if(turn_on(user))
-		playsound(src.loc, turn_on_sound, 75, 1)
+		playsound(loc, turn_on_sound, 75, TRUE)
 		user.visible_message("<span class='notice'>\The [user] activates \the [src].</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
 
 /obj/item/device/flashlight/flare/proc/turn_on(var/mob/user)
@@ -209,7 +186,7 @@
 	damtype = "fire"
 	processing_objects += src
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/item/device/flashlight/glowstick
 	name = "green glowstick"
@@ -219,7 +196,7 @@
 	icon_state = "glowstick"
 	item_state = "glowstick"
 	action_button_name = null
-	var/fuel = 0
+	var/fuel = FALSE
 
 /obj/item/device/flashlight/glowstick/New()
 	pixel_x = rand(-12,12)
@@ -229,14 +206,14 @@
 	..()
 
 /obj/item/device/flashlight/glowstick/process()
-	fuel = max(fuel - 1, 0)
+	fuel = max(fuel - TRUE, FALSE)
 	if(!fuel)
 		turn_off()
 		processing_objects -= src
 		update_icon()
 
 /obj/item/device/flashlight/glowstick/proc/turn_off()
-	on = 0
+	on = FALSE
 	update_icon()
 
 /obj/item/device/flashlight/glowstick/update_icon()
@@ -250,7 +227,7 @@
 		I.blend_mode = BLEND_ADD
 		overlays += I
 		item_state = "glowstick-on"
-		set_light(2.5, 1)
+		set_light(2.5, TRUE)
 	else
 		icon_state = "glowstick"
 	var/mob/M = loc
@@ -306,9 +283,9 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
-	w_class = 1
+	w_class = TRUE
 	brightness_on = 6
-	on = 1 //Bio-luminesence has one setting, on.
+	on = TRUE //Bio-luminesence has one setting, on.
 
 /obj/item/device/flashlight/slime/New()
 	..()

@@ -7,40 +7,40 @@
 ****************************************************/
 /datum/wound
 	// number representing the current stage
-	var/current_stage = 0
+	var/current_stage = FALSE
 
 	// description of the wound
 	var/desc = "wound" //default in case something borks
 
 	// amount of damage this wound causes
-	var/damage = 0
+	var/damage = FALSE
 	// ticks of bleeding left.
-	var/bleed_timer = 0
+	var/bleed_timer = FALSE
 	// amount of damage the current wound type requires(less means we need to apply the next healing stage)
-	var/min_damage = 0
+	var/min_damage = FALSE
 
 	// is the wound bandaged?
-	var/bandaged = 0
+	var/bandaged = FALSE
 	// Similar to bandaged, but works differently
-	var/clamped = 0
+	var/clamped = FALSE
 	// is the wound salved?
-	var/salved = 0
+	var/salved = FALSE
 	// is the wound disinfected?
-	var/disinfected = 0
-	var/created = 0
+	var/disinfected = FALSE
+	var/created = FALSE
 	// number of wounds of this type
-	var/amount = 1
+	var/amount = TRUE
 	// amount of germs in the wound
-	var/germ_level = 0
+	var/germ_level = FALSE
 
 	/*  These are defined by the wound type and should not be changed */
 
 	// stages such as "cut", "deep cut", etc.
 	var/list/stages
 	// internal wounds can only be fixed through surgery
-	var/internal = 0
+	var/internal = FALSE
 	// maximum stage at which bleeding should still happen. Beyond this stage bleeding is prevented.
-	var/max_bleeding_stage = 0
+	var/max_bleeding_stage = FALSE
 	// one of CUT, PIERCE, BRUISE, BURN
 	var/damage_type = CUT
 	// whether this wound needs a bandage/salve to heal at all
@@ -54,7 +54,7 @@
 	var/tmp/list/desc_list = list()
 	var/tmp/list/damage_list = list()
 
-	New(var/damage)
+	New(var/_damage)
 
 		created = world.time
 
@@ -64,30 +64,30 @@
 			desc_list += V
 			damage_list += stages[V]
 
-		src.damage = damage
+		damage = _damage
 
 		// initialize with the appropriate stage
-		src.init_stage(damage)
+		init_stage(_damage)
 
-		bleed_timer += damage
+		bleed_timer += _damage
 
-	// returns 1 if there's a next stage, 0 otherwise
+	// returns TRUE if there's a next stage, FALSE otherwise
 	proc/init_stage(var/initial_damage)
 		current_stage = stages.len
 
-		while(src.current_stage > 1 && src.damage_list[current_stage-1] <= initial_damage / src.amount)
-			src.current_stage--
+		while(current_stage > 1 && damage_list[current_stage-1] <= initial_damage / amount)
+			current_stage--
 
-		src.min_damage = damage_list[current_stage]
-		src.desc = desc_list[current_stage]
+		min_damage = damage_list[current_stage]
+		desc = desc_list[current_stage]
 
 	// the amount of damage per wound
 	proc/wound_damage()
-		return src.damage / src.amount
+		return damage / amount
 
 	proc/can_autoheal()
-		if(src.wound_damage() <= autoheal_cutoff)
-			return 1
+		if(wound_damage() <= autoheal_cutoff)
+			return TRUE
 
 		return is_treated()
 
@@ -98,41 +98,41 @@
 		else if(damage_type == BURN)
 			return salved
 
-	// Checks whether other other can be merged into src.
+	// Checks whether other other can be merged into
 	proc/can_merge(var/datum/wound/other)
-		if (other.type != src.type) return 0
-		if (other.current_stage != src.current_stage) return 0
-		if (other.damage_type != src.damage_type) return 0
-		if (!(other.can_autoheal()) != !(src.can_autoheal())) return 0
-		if (!(other.bandaged) != !(src.bandaged)) return 0
-		if (!(other.clamped) != !(src.clamped)) return 0
-		if (!(other.salved) != !(src.salved)) return 0
-		if (!(other.disinfected) != !(src.disinfected)) return 0
-		//if (other.germ_level != src.germ_level) return 0
-		return 1
+		if (other.type != type) return FALSE
+		if (other.current_stage != current_stage) return FALSE
+		if (other.damage_type != damage_type) return FALSE
+		if (!(other.can_autoheal()) != !(can_autoheal())) return FALSE
+		if (!(other.bandaged) != !(bandaged)) return FALSE
+		if (!(other.clamped) != !(clamped)) return FALSE
+		if (!(other.salved) != !(salved)) return FALSE
+		if (!(other.disinfected) != !(disinfected)) return FALSE
+		//if (other.germ_level != germ_level) return FALSE
+		return TRUE
 
 	proc/merge_wound(var/datum/wound/other)
-		src.damage += other.damage
-		src.amount += other.amount
-		src.bleed_timer += other.bleed_timer
-		src.germ_level = max(src.germ_level, other.germ_level)
-		src.created = max(src.created, other.created)	//take the newer created time
+		damage += other.damage
+		amount += other.amount
+		bleed_timer += other.bleed_timer
+		germ_level = max(germ_level, other.germ_level)
+		created = max(created, other.created)	//take the newer created time
 
 	// proc for checking whether the wound is considered open enough for infections
 	// this is not the proc that instantizes an infection in a wound - use infection_check() instead!
 	proc/can_be_infected()
 		if (damage < 10)	//small cuts, tiny bruises, and moderate burns shouldn't be infectable.
-			return 0
+			return FALSE
 		if (is_treated() && damage < 25)	//anything less than a flesh wound (or equivalent) isn't infectable if treated properly
-			return 0
+			return FALSE
 		if (disinfected)
-			germ_level = 0	//reset this, just in case
-			return 0
+			germ_level = FALSE	//reset this, just in case
+			return FALSE
 
 		if (damage_type == BRUISE && !bleeding()) //bruises only infectable if bleeding
-			return 0
+			return FALSE
 
-		return 1
+		return TRUE
 
 	// checks if wound is considered open for external infections
 	// untreated cuts (and bleeding bruises) and burns are possibly infectable, chance higher if wound is bigger
@@ -147,80 +147,80 @@
 				if (CUT)
 					return prob(dam_coef*20)
 
-		return 0
+		return FALSE
 
 	proc/bandage()
-		bandaged = 1
+		bandaged = TRUE
 
 	proc/salve()
-		salved = 1
+		salved = TRUE
 
 	proc/disinfect()
-		disinfected = 1
+		disinfected = TRUE
 
 	// heal the given amount of damage, and if the given amount of damage was more
 	// than what needed to be healed, return how much heal was left
 	// set @heals_internal to also heal internal organ damage
-	proc/heal_damage(amount, heals_internal = 0)
-		if(src.internal && !heals_internal)
+	proc/heal_damage(amount, heals_internal = FALSE)
+		if(internal && !heals_internal)
 			// heal nothing
 			return amount
 
-		var/healed_damage = min(src.damage, amount)
+		var/healed_damage = min(damage, amount)
 		amount -= healed_damage
-		src.damage -= healed_damage
+		damage -= healed_damage
 
-		while(src.wound_damage() < damage_list[current_stage] && current_stage < src.desc_list.len)
+		while(wound_damage() < damage_list[current_stage] && current_stage < desc_list.len)
 			current_stage++
 		desc = desc_list[current_stage]
-		src.min_damage = damage_list[current_stage]
+		min_damage = damage_list[current_stage]
 
 		// return amount of healing still leftover, can be used for other wounds
 		return amount
 
 	// opens the wound again
-	proc/open_wound(damage)
-		src.damage += damage
-		bleed_timer += damage
+	proc/open_wound(_damage)
+		damage += _damage
+		bleed_timer += _damage
 
-		while(src.current_stage > 1 && src.damage_list[current_stage-1] <= src.damage / src.amount)
-			src.current_stage--
+		while(current_stage > 1 && damage_list[current_stage-1] <= damage / amount)
+			current_stage--
 
-		src.desc = desc_list[current_stage]
-		src.min_damage = damage_list[current_stage]
+		desc = desc_list[current_stage]
+		min_damage = damage_list[current_stage]
 
 	// returns whether this wound can absorb the given amount of damage.
 	// this will prevent large amounts of damage being trapped in less severe wound types
-	proc/can_worsen(damage_type, damage)
-		if (src.damage_type != damage_type)
-			return 0	//incompatible damage types
+	proc/can_worsen(_damage_type, _damage)
+		if (damage_type != _damage_type)
+			return FALSE	//incompatible damage types
 
-		if (src.amount > 1)
-			return 0
+		if (amount > 1)
+			return FALSE
 
 		//with 1.5*, a shallow cut will be able to carry at most 30 damage,
 		//37.5 for a deep cut
 		//52.5 for a flesh wound, etc.
-		var/max_wound_damage = 1.5*src.damage_list[1]
-		if (src.damage + damage > max_wound_damage)
-			return 0
+		var/max_wound_damage = 1.5*damage_list[1]
+		if (damage + _damage > max_wound_damage)
+			return FALSE
 
-		return 1
+		return TRUE
 
 	proc/bleeding()
-		if (src.internal)
-			return 0	// internal wounds don't bleed in the sense of this function
+		if (internal)
+			return FALSE	// internal wounds don't bleed in the sense of this function
 
 		if (current_stage > max_bleeding_stage)
-			return 0
+			return FALSE
 
 		if (bandaged||clamped)
-			return 0
+			return FALSE
 
-		if (wound_damage() <= 30 && bleed_timer <= 0)
-			return 0	//Bleed timer has run out. Wounds with more than 30 damage don't stop bleeding on their own.
+		if (wound_damage() <= 30 && bleed_timer <= FALSE)
+			return FALSE	//Bleed timer has run out. Wounds with more than 30 damage don't stop bleeding on their own.
 
-		return 1
+		return TRUE
 
 /** WOUND DEFINITIONS **/
 
@@ -281,65 +281,65 @@
 	// Minor cuts have max_bleeding_stage set to the stage that bears the wound type's name.
 	// The major cut types have the max_bleeding_stage set to the clot stage (which is accordingly given the "blood soaked" descriptor).
 	max_bleeding_stage = 3
-	stages = list("ugly ripped cut" = 20, "ripped cut" = 10, "cut" = 5, "healing cut" = 2, "small scab" = 0)
+	stages = list("ugly ripped cut" = 20, "ripped cut" = 10, "cut" = 5, "healing cut" = 2, "small scab" = FALSE)
 	damage_type = CUT
 
 /datum/wound/cut/deep
 	max_bleeding_stage = 3
-	stages = list("ugly deep ripped cut" = 25, "deep ripped cut" = 20, "deep cut" = 15, "clotted cut" = 8, "scab" = 2, "fresh skin" = 0)
+	stages = list("ugly deep ripped cut" = 25, "deep ripped cut" = 20, "deep cut" = 15, "clotted cut" = 8, "scab" = 2, "fresh skin" = FALSE)
 	damage_type = CUT
 
 /datum/wound/cut/flesh
 	max_bleeding_stage = 4
-	stages = list("ugly ripped flesh wound" = 35, "ugly flesh wound" = 30, "flesh wound" = 25, "blood soaked clot" = 15, "large scab" = 5, "fresh skin" = 0)
+	stages = list("ugly ripped flesh wound" = 35, "ugly flesh wound" = 30, "flesh wound" = 25, "blood soaked clot" = 15, "large scab" = 5, "fresh skin" = FALSE)
 	damage_type = CUT
 
 /datum/wound/cut/gaping
 	max_bleeding_stage = 3
-	stages = list("gaping wound" = 50, "large blood soaked clot" = 25, "blood soaked clot" = 15, "small angry scar" = 5, "small straight scar" = 0)
+	stages = list("gaping wound" = 50, "large blood soaked clot" = 25, "blood soaked clot" = 15, "small angry scar" = 5, "small straight scar" = FALSE)
 	damage_type = CUT
 
 /datum/wound/cut/gaping_big
 	max_bleeding_stage = 3
-	stages = list("big gaping wound" = 60, "healing gaping wound" = 40, "large blood soaked clot" = 25, "large angry scar" = 10, "large straight scar" = 0)
+	stages = list("big gaping wound" = 60, "healing gaping wound" = 40, "large blood soaked clot" = 25, "large angry scar" = 10, "large straight scar" = FALSE)
 	damage_type = CUT
 
 datum/wound/cut/massive
 	max_bleeding_stage = 3
-	stages = list("massive wound" = 70, "massive healing wound" = 50, "massive blood soaked clot" = 25, "massive angry scar" = 10,  "massive jagged scar" = 0)
+	stages = list("massive wound" = 70, "massive healing wound" = 50, "massive blood soaked clot" = 25, "massive angry scar" = 10,  "massive jagged scar" = FALSE)
 	damage_type = CUT
 
 /** PUNCTURES **/
 /datum/wound/puncture/can_worsen(damage_type, damage)
-	return 0
+	return FALSE
 /datum/wound/puncture/can_merge(var/datum/wound/other)
-	return 0
+	return FALSE
 /datum/wound/puncture/bleeding()
 	return ..() && wound_damage() >= 5
 
 /datum/wound/puncture/small
 	max_bleeding_stage = 2
-	stages = list("puncture" = 5, "healing puncture" = 2, "small scab" = 0)
+	stages = list("puncture" = 5, "healing puncture" = 2, "small scab" = FALSE)
 	damage_type = PIERCE
 
 /datum/wound/puncture/flesh
 	max_bleeding_stage = 2
-	stages = list("puncture wound" = 15, "blood soaked clot" = 5, "large scab" = 2, "small round scar" = 0)
+	stages = list("puncture wound" = 15, "blood soaked clot" = 5, "large scab" = 2, "small round scar" = FALSE)
 	damage_type = PIERCE
 
 /datum/wound/puncture/gaping
 	max_bleeding_stage = 3
-	stages = list("gaping hole" = 30, "large blood soaked clot" = 15, "blood soaked clot" = 10, "small angry scar" = 5, "small round scar" = 0)
+	stages = list("gaping hole" = 30, "large blood soaked clot" = 15, "blood soaked clot" = 10, "small angry scar" = 5, "small round scar" = FALSE)
 	damage_type = PIERCE
 
 /datum/wound/puncture/gaping_big
 	max_bleeding_stage = 3
-	stages = list("big gaping hole" = 50, "healing gaping hole" = 20, "large blood soaked clot" = 15, "large angry scar" = 10, "large round scar" = 0)
+	stages = list("big gaping hole" = 50, "healing gaping hole" = 20, "large blood soaked clot" = 15, "large angry scar" = 10, "large round scar" = FALSE)
 	damage_type = PIERCE
 
 datum/wound/puncture/massive
 	max_bleeding_stage = 3
-	stages = list("massive wound" = 60, "massive healing wound" = 30, "massive blood soaked clot" = 25, "massive angry scar" = 10,  "massive jagged scar" = 0)
+	stages = list("massive wound" = 60, "massive healing wound" = 30, "massive blood soaked clot" = 25, "massive angry scar" = 10,  "massive jagged scar" = FALSE)
 	damage_type = PIERCE
 
 /** BRUISES **/
@@ -355,33 +355,33 @@ datum/wound/puncture/massive
 
 /** BURNS **/
 /datum/wound/burn
-	max_bleeding_stage = 0
+	max_bleeding_stage = FALSE
 /datum/wound/burn/bleeding()
-	return 0
+	return FALSE
 
 /datum/wound/burn/moderate
-	stages = list("ripped burn" = 10, "moderate burn" = 5, "healing moderate burn" = 2, "fresh skin" = 0)
+	stages = list("ripped burn" = 10, "moderate burn" = 5, "healing moderate burn" = 2, "fresh skin" = FALSE)
 	damage_type = BURN
 
 /datum/wound/burn/large
-	stages = list("ripped large burn" = 20, "large burn" = 15, "healing large burn" = 5, "fresh skin" = 0)
+	stages = list("ripped large burn" = 20, "large burn" = 15, "healing large burn" = 5, "fresh skin" = FALSE)
 	damage_type = BURN
 
 /datum/wound/burn/severe
-	stages = list("ripped severe burn" = 35, "severe burn" = 30, "healing severe burn" = 10, "burn scar" = 0)
+	stages = list("ripped severe burn" = 35, "severe burn" = 30, "healing severe burn" = 10, "burn scar" = FALSE)
 	damage_type = BURN
 
 /datum/wound/burn/deep
-	stages = list("ripped deep burn" = 45, "deep burn" = 40, "healing deep burn" = 15,  "large burn scar" = 0)
+	stages = list("ripped deep burn" = 45, "deep burn" = 40, "healing deep burn" = 15,  "large burn scar" = FALSE)
 	damage_type = BURN
 
 /datum/wound/burn/carbonised
-	stages = list("carbonised area" = 50, "healing carbonised area" = 20, "massive burn scar" = 0)
+	stages = list("carbonised area" = 50, "healing carbonised area" = 20, "massive burn scar" = FALSE)
 	damage_type = BURN
 
 /** INTERNAL BLEEDING **/
 /datum/wound/internal_bleeding
-	internal = 1
+	internal = TRUE
 	stages = list("severed artery" = 30, "cut artery" = 20, "damaged artery" = 10, "bruised artery" = 5)
 	autoheal_cutoff = 5
 	max_bleeding_stage = 4	//all stages bleed. It's called internal bleeding after all.
@@ -401,7 +401,7 @@ datum/wound/puncture/massive
 				"ripped stump" = damage_amt*1.3,
 				"bloody stump" = damage_amt,
 				"clotted stump" = damage_amt*0.5,
-				"scarred stump" = 0
+				"scarred stump" = FALSE
 				)
 		if(DROPLIMB_BURN)
 			damage_type = BURN
@@ -409,10 +409,10 @@ datum/wound/puncture/massive
 				"ripped charred stump" = damage_amt*1.3,
 				"charred stump" = damage_amt,
 				"scarred stump" = damage_amt*0.5,
-				"scarred stump" = 0
+				"scarred stump" = FALSE
 				)
 
 	..(damage_amt)
 
 /datum/wound/lost_limb/can_merge(var/datum/wound/other)
-	return 0 //cannot be merged
+	return FALSE //cannot be merged

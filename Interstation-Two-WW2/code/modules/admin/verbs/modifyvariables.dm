@@ -11,7 +11,7 @@ var/list/VVckey_edit = list("key", "ckey")
 	set category = "Debug"
 	set name = "Edit Variables"
 	set desc="(target) Edit a target item's variables"
-	src.modify_variables(O)
+	modify_variables(O)
 
 */
 
@@ -22,13 +22,13 @@ var/list/VVckey_edit = list("key", "ckey")
 	if (ticker == null)
 		src << "Game hasn't started yet."
 	else
-		src.modify_variables(ticker)
+		modify_variables(ticker)
 
 
 /client/proc/mod_list_add_ass()
 	var/class = "text"
-	var/list/class_input = list("text","num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default")
-	if(src.holder)
+	var/list/class_input = list("text","num","type","reference","mob reference", "icon","file","list", "empty list", "edit referenced object","restore to default")
+	if(holder)
 		var/datum/marked_datum = holder.marked_datum()
 		if(marked_datum)
 			class_input += "marked datum ([marked_datum.type])"
@@ -69,6 +69,9 @@ var/list/VVckey_edit = list("key", "ckey")
 		if("marked datum")
 			var_value = holder.marked_datum()
 
+		if ("empty list")
+			var_value = list()
+
 	if(!var_value) return
 
 	return var_value
@@ -77,8 +80,8 @@ var/list/VVckey_edit = list("key", "ckey")
 /client/proc/mod_list_add(var/list/L, atom/O, original_name, objectvar)
 
 	var/class = "text"
-	var/list/class_input = list("text","num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default")
-	if(src.holder)
+	var/list/class_input = list("text","num","type","reference","mob reference", "icon","file","list","empty list","edit referenced object","restore to default")
+	if(holder)
 		var/datum/marked_datum = holder.marked_datum()
 		if(marked_datum)
 			class_input += "marked datum ([marked_datum.type])"
@@ -119,6 +122,9 @@ var/list/VVckey_edit = list("key", "ckey")
 		if("marked datum")
 			var_value = holder.marked_datum()
 
+		if ("empty list")
+			var_value = list()
+
 	if(!var_value) return
 
 	switch(alert("Would you like to associate a var with the list entry?",,"Yes","No"))
@@ -140,11 +146,11 @@ var/list/VVckey_edit = list("key", "ckey")
 		if(confirm != "Continue")
 			return
 
-	var/assoc = 0
-	if(L.len > 0)
+	var/assoc = FALSE
+	if(L.len > FALSE)
 		var/a = L[1]
 		if(istext(a) && L[a] != null)
-			assoc = 1 //This is pretty weak test but i can't think of anything else
+			assoc = TRUE //This is pretty weak test but i can't think of anything else
 			usr << "List appears to be associative."
 
 	var/list/names = null
@@ -186,7 +192,7 @@ var/list/VVckey_edit = list("key", "ckey")
 	else if(isnum(variable))
 		usr << "Variable appears to be <b>NUM</b>."
 		default = "num"
-		dir = 1
+		dir = TRUE
 
 	else if(istext(variable))
 		usr << "Variable appears to be <b>TEXT</b>."
@@ -243,9 +249,9 @@ var/list/VVckey_edit = list("key", "ckey")
 			usr << "If a direction, direction is: [dir]"
 
 	var/class = "text"
-	var/list/class_input = list("text","num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default")
+	var/list/class_input = list("text","num","type","reference","mob reference", "icon","file","list","empty list","edit referenced object","restore to default")
 
-	if(src.holder)
+	if(holder)
 		var/datum/marked_datum = holder.marked_datum()
 		if(marked_datum)
 			class_input += "marked datum ([marked_datum.type])"
@@ -347,11 +353,17 @@ var/list/VVckey_edit = list("key", "ckey")
 			else
 				L[L.Find(variable)] = new_var
 
+		if ("empty list")
+			if(assoc)
+				L[assoc_key] = list()
+			else
+				L[L.Find(variable)] = list()
+
 	world.log << "### ListVarEdit by [src]: [O.type] [objectvar]: [original_var]=[new_var]"
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: [original_var]=[new_var]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s varlist [objectvar]: [original_var]=[new_var]")
 
-/client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
+/client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = FALSE)
 	if(!check_rights(R_VAREDIT))	return
 
 	for(var/p in forbidden_varedit_object_types)
@@ -387,7 +399,7 @@ var/list/VVckey_edit = list("key", "ckey")
 			else if(isnum(var_value))
 				usr << "Variable appears to be <b>NUM</b>."
 				class = "num"
-				dir = 1
+				dir = TRUE
 
 			else if(istext(var_value))
 				usr << "Variable appears to be <b>TEXT</b>."
@@ -447,7 +459,7 @@ var/list/VVckey_edit = list("key", "ckey")
 		else if(isnum(var_value))
 			usr << "Variable appears to be <b>NUM</b>."
 			default = "num"
-			dir = 1
+			dir = TRUE
 
 		else if(istext(var_value))
 			usr << "Variable appears to be <b>TEXT</b>."
@@ -502,8 +514,8 @@ var/list/VVckey_edit = list("key", "ckey")
 			if(dir)
 				usr << "If a direction, direction is: [dir]"
 
-		var/list/class_input = list("text","num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default")
-		if(src.holder)
+		var/list/class_input = list("text","num","type","reference","mob reference", "icon","file","list","empty list","edit referenced object","restore to default")
+		if(holder)
 			var/datum/marked_datum = holder.marked_datum()
 			if(marked_datum)
 				class_input += "marked datum ([marked_datum.type])"
@@ -587,6 +599,9 @@ var/list/VVckey_edit = list("key", "ckey")
 
 		if("marked datum")
 			O.vars[variable] = holder.marked_datum()
+
+		if ("empty list")
+			O.vars[variable] = list()
 
 	world.log << "### VarEdit by [src]: [O.type] [variable]=[html_encode("[O.vars[variable]]")]"
 	log_admin("[key_name(src)] modified [original_name]'s [variable] to [O.vars[variable]]")

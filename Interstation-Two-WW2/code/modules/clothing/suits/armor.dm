@@ -17,7 +17,7 @@
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = FALSE, rad = FALSE)
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
@@ -39,8 +39,8 @@
 	icon_state = "riot"
 	item_state = "swat_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	slowdown = 1
-	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+	slowdown = TRUE
+	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = FALSE, bio = FALSE, rad = FALSE)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 
@@ -51,7 +51,7 @@
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list(melee = 10, bullet = 80, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 80, laser = 10, energy = 10, bomb = FALSE, bio = FALSE, rad = FALSE)
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/laserproof
@@ -60,8 +60,8 @@
 	icon_state = "armor_reflec"
 	item_state = "armor_reflec"
 	blood_overlay_type = "armor"
-	armor = list(melee = 10, bullet = 10, laser = 80, energy = 50, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 0
+	armor = list(melee = 10, bullet = 10, laser = 80, energy = 50, bomb = FALSE, bio = FALSE, rad = FALSE)
+	siemens_coefficient = FALSE
 
 /obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
@@ -71,11 +71,11 @@
 		if(!(def_zone in list("chest", "groin")))
 			reflectchance /= 2
 		if(P.starting && prob(reflectchance))
-			visible_message("<span class='danger'>\The [user]'s [src.name] reflects [attack_text]!</span>")
+			visible_message("<span class='danger'>\The [user]'s [name] reflects [attack_text]!</span>")
 
 			// Find a turf near or on the original location to bounce to
-			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
-			var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
+			var/new_x = P.starting.x + pick(0, FALSE, FALSE, FALSE, FALSE, -1, TRUE, -2, 2)
+			var/new_y = P.starting.y + pick(0, FALSE, FALSE, FALSE, FALSE, -1, TRUE, -2, 2)
 			var/turf/curloc = get_turf(user)
 
 			// redirect the projectile
@@ -93,7 +93,7 @@
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
-	slowdown = 1
+	slowdown = TRUE
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 100)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
@@ -107,7 +107,7 @@
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
-	flags_inv = 0
+	flags_inv = FALSE
 	body_parts_covered = UPPER_TORSO|ARMS
 
 //Reactive armor
@@ -119,8 +119,8 @@
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
-	slowdown = 1
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	slowdown = TRUE
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE, energy = FALSE, bomb = FALSE, bio = FALSE, rad = FALSE)
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(prob(50))
@@ -137,31 +137,31 @@
 		if(!isturf(picked)) return
 
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
-		spark_system.set_up(5, 0, user.loc)
+		spark_system.set_up(5, FALSE, user.loc)
 		spark_system.start()
-		playsound(user.loc, "sparks", 50, 1)
+		playsound(user.loc, "sparks", 50, TRUE)
 
 		user.loc = picked
 		return PROJECTILE_FORCE_MISS
-	return 0
+	return FALSE
 
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
-	src.active = !( src.active )
-	if (src.active)
+	active = !( active )
+	if (active)
 		user << "\blue The reactive armor is now active."
-		src.icon_state = "reactive"
-		src.item_state = "reactive"
+		icon_state = "reactive"
+		item_state = "reactive"
 	else
 		user << "\blue The reactive armor is now inactive."
-		src.icon_state = "reactiveoff"
-		src.item_state = "reactiveoff"
-		src.add_fingerprint(user)
+		icon_state = "reactiveoff"
+		item_state = "reactiveoff"
+		add_fingerprint(user)
 	return
 
 /obj/item/clothing/suit/armor/reactive/emp_act(severity)
-	active = 0
-	src.icon_state = "reactiveoff"
-	src.item_state = "reactiveoff"
+	active = FALSE
+	icon_state = "reactiveoff"
+	item_state = "reactiveoff"
 	..()
 
 /obj/item/clothing/suit/armor/tactical
@@ -171,8 +171,8 @@
 	item_state = "armor"
 	var/obj/item/weapon/gun/holstered = null
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	slowdown = 1
-	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 20, bio = 0, rad = 0)
+	slowdown = TRUE
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 20, bio = FALSE, rad = FALSE)
 	siemens_coefficient = 0.7
 	var/obj/item/clothing/accessory/holster/holster
 
@@ -209,7 +209,7 @@
 	name = "webbed armor vest"
 	desc = "A synthetic armor vest. This one has added webbing and ballistic plates."
 	icon_state = "webvest"
-	armor = list(melee = 50, bullet = 40, laser = 50, energy = 25, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 40, laser = 50, energy = 25, bomb = 30, bio = FALSE, rad = FALSE)
 	allowed = list(/obj/item/weapon/gun/energy,/obj/item/device/radio,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
@@ -227,7 +227,7 @@
 	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
-	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = FALSE, rad = FALSE)
 
 
 //All of the armor below is mostly unused
@@ -242,7 +242,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	slowdown = 3
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 0
+	siemens_coefficient = FALSE
 
 /obj/item/clothing/suit/armor/tdome
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
@@ -253,11 +253,11 @@
 	desc = "Reddish armor."
 	icon_state = "tdred"
 	item_state = "tdred"
-	siemens_coefficient = 1
+	siemens_coefficient = TRUE
 
 /obj/item/clothing/suit/armor/tdome/green
 	name = "Thunderdome suit (green)"
 	desc = "Pukish armor."
 	icon_state = "tdgreen"
 	item_state = "tdgreen"
-	siemens_coefficient = 1
+	siemens_coefficient = TRUE

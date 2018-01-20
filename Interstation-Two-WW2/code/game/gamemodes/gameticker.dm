@@ -6,32 +6,32 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	var/const/restart_timeout = 300
 	var/current_state = GAME_STATE_PREGAME
 
-	var/hide_mode = 0
+	var/hide_mode = FALSE
 	var/datum/game_mode/mode = null
-	var/post_game = 0
+	var/post_game = FALSE
 	var/event_time = null
-	var/event = 0
+	var/event = FALSE
 
 	var/login_music			// music played in pregame lobby
 
 	var/list/datum/mind/minds = list()//The people in the game. Used for objective tracking.
 
-	var/random_players = 0 	// if set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
+	var/random_players = FALSE 	// if set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
 
 	var/list/syndicate_coalition = list() // list of traitor-compatible factions
 	var/list/factions = list()			  // list of all factions
 	var/list/availablefactions = list()	  // list of factions with openings
 
-	var/pregame_timeleft = 0
+	var/pregame_timeleft = FALSE
 
-	var/delay_end = 0	//if set to nonzero, the round will not restart on it's own
+	var/delay_end = FALSE	//if set to nonzero, the round will not restart on it's own
 
-//	var/triai = 0//Global holder for Triumvirate
+//	var/triai = FALSE//Global holder for Triumvirate
 
-	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
+	var/round_end_announced = FALSE // Spam Prevention. Announce round end only once.
 
-	var/can_latejoin_ruforce = 1
-	var/can_latejoin_geforce = 1
+	var/can_latejoin_ruforce = TRUE
+	var/can_latejoin_geforce = TRUE
 
 /datum/controller/gameticker/proc/pregame()
 
@@ -67,13 +67,19 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 							roundstart_tips.Cut() // prevent tip spam if we're paused here
 				if(pregame_timeleft <= 0)
 					current_state = GAME_STATE_SETTING_UP
+					/* if we were force started, still show the tip */
+					if (roundstart_tips.len)
+						if (serverswap_open_status)
+							world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(roundstart_tips)]</span>"
+							roundstart_tips.Cut() // prevent tip spam if we're paused here
+
 		while (!setup())
 
 
 /datum/controller/gameticker/proc/setup()
 	//Create and announce mode
 	if(master_mode=="secret")
-		src.hide_mode = 1
+		hide_mode = TRUE
 
 	var/list/runnable_modes = config.get_runnable_modes()
 	if((master_mode=="random") || (master_mode=="secret"))
@@ -81,36 +87,36 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			current_state = GAME_STATE_PREGAME
 			if (serverswap_open_status)
 				world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
-			return 0
+			return FALSE
 		if(secret_force_mode != "secret")
-			src.mode = config.pick_mode(secret_force_mode)
-		if(!src.mode)
+			mode = config.pick_mode(secret_force_mode)
+		if(!mode)
 			var/list/weighted_modes = list()
 			for(var/datum/game_mode/GM in runnable_modes)
 				weighted_modes[GM.config_tag] = config.probabilities[GM.config_tag]
-			src.mode = gamemode_cache[pickweight(weighted_modes)]
+			mode = gamemode_cache[pickweight(weighted_modes)]
 	else
-		src.mode = config.pick_mode(master_mode)
+		mode = config.pick_mode(master_mode)
 
-	if(!src.mode)
+	if(!mode)
 		current_state = GAME_STATE_PREGAME
 		if (serverswap_open_status)
 			world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
-		return 0
+		return FALSE
 
 	job_master.ResetOccupations()
-	src.mode.create_antagonists()
-	src.mode.pre_setup()
+	mode.create_antagonists()
+	mode.pre_setup()
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!src.mode.can_start())
+	if(!mode.can_start())
 		if (serverswap_open_status)
 			world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
 		mode.fail_setup()
 		mode = null
 		job_master.ResetOccupations()
-		return 0
+		return FALSE
 
 	if(hide_mode)
 		world << "<B>The current game mode is - Secret!</B>"
@@ -122,13 +128,17 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			if(tmpmodes.len)
 				world << "<B>Possibilities:</B> [english_list(tmpmodes)]"
 	else
-		src.mode.announce()
+		mode.announce()
 
 	current_state = GAME_STATE_PLAYING
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
 //	data_core.manifest()
+
+	// trains setup before roundstart hooks called because SS train ladders rely on it
+	if (map.uses_main_train)
+		start_train_loop()
 
 	callHook("roundstart")
 
@@ -144,7 +154,6 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		//Holiday Round-start stuff	~Carn
 
 		// todo: make these hooks. Apparently they all fail on /hook/roundstart
-		start_train_loop()
 		handle_lifts()
 		setup_autobalance()
 		reinforcements_master = new
@@ -155,22 +164,22 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	//new random event system is handled from the MC.
 
 	/* TODO: discord bot - Kachnov
-	var/admins_number = 0
+	var/admins_number = FALSE
 	for(var/client/C)
 		if(C.holder)
 			admins_number++
 
-	if(admins_number == 0)
+	if(admins_number == FALSE)
 		send2adminirc("Round has started with no admins online.")*/
 
 	processScheduler.start()
 
-	return 1
+	return TRUE
 
 /datum/controller/gameticker/proc/close_jobs()
 	for(var/datum/job/job in job_master.occupations)
 		if(job.title == "Captain")
-			job.total_positions = 0
+			job.total_positions = FALSE
 
 /datum/controller/gameticker
 	//station_explosion used to be a variable for every mob's hud. Which was a waste!
@@ -186,7 +195,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		cinematic.icon = 'icons/effects/station_explosion.dmi'
 		cinematic.icon_state = "station_intact"
 		cinematic.layer = 20
-		cinematic.mouse_opacity = 0
+		cinematic.mouse_opacity = FALSE
 		cinematic.screen_loc = "1,0"
 
 		var/obj/structure/bed/temp_buckle = new(src)
@@ -196,7 +205,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 				M.buckled = temp_buckle				//buckles the mob so it can't do anything
 				if(M.client)
 					M.client.screen += cinematic	//show every client the cinematic
-		else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
+		else	//nuke kills everyone on z-level TRUE to prevent "hurr-durr I survived"
 			for(var/mob/living/M in living_mob_list)
 				M.buckled = temp_buckle
 				if(M.client)
@@ -206,10 +215,10 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 					if(0)	//inside a crate or something
 						var/turf/T = get_turf(M)
 						if(T && T.z in config.station_levels)				//we don't use M.death(0) because it calls a for(/mob) loop and
-							M.health = 0
+							M.health = FALSE
 							M.stat = DEAD
-					if(1)	//on a z-level 1 turf.
-						M.health = 0
+					if(1)	//on a z-level TRUE turf.
+						M.health = FALSE
 						M.stat = DEAD
 
 		//Now animate the cinematic
@@ -298,8 +307,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			if(player && player.mind && player.mind.assigned_role)
 				if(player.mind.assigned_role == "Captain")
 					captainless=0
-				if(!player_is_antag(player.mind, only_offstation_roles = 1))
-					job_master.EquipRank(player, player.mind.assigned_role, 0)
+				if(!player_is_antag(player.mind, only_offstation_roles = TRUE))
+					job_master.EquipRank(player, player.mind.assigned_role, FALSE)
 			//		equip_custom_items(player)
 		if(captainless)
 			for(var/mob/M in player_list)
@@ -309,14 +318,14 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	proc/process()
 		if(current_state != GAME_STATE_PLAYING)
-			return 0
+			return FALSE
 
 		mode.process()
 
 //		emergency_shuttle.process() //handled in scheduler
 
-		var/game_finished = 0
-		var/mode_finished = 0
+		var/game_finished = FALSE
+		var/mode_finished = FALSE
 		if (config.continous_rounds)
 			game_finished = (mode.station_was_nuked)
 			mode_finished = (!post_game && mode.check_finished())
@@ -346,7 +355,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 					world << "<span class='notice'><b>An admin has delayed the round end</b></span>"
 
 		else if (mode_finished)
-			post_game = 1
+			post_game = TRUE
 
 			mode.cleanup()
 
@@ -354,13 +363,13 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 				if(!round_end_announced) // Spam Prevention. Now it should announce only once.
 					if (!istype(mode, /datum/game_mode/ww2))
 						world << "<span class='danger'>The round has ended!</span>"
-					round_end_announced = 1
+					round_end_announced = TRUE
 
-		return 1
+		return TRUE
 
 /datum/controller/gameticker/proc/declare_completion()
-	world << "<br><br><br><H1>A round of [mode.name] has ended!</H1>"
 	if (!istype(mode, /datum/game_mode/ww2))
+		world << "<br><br><br><H1>A round of [mode.name] has ended!</H1>"
 		for(var/mob/Player in player_list)
 			if(Player.mind && !isnewplayer(Player))
 
@@ -399,4 +408,4 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	for(var/i in total_antagonists)
 		log_game("[i]s[total_antagonists[i]].")
 
-	return 1
+	return TRUE

@@ -14,15 +14,15 @@
 	if (!istext(hex))
 		return
 
-	var/num   = 0
-	var/power = 1
+	var/num   = FALSE
+	var/power = TRUE
 	var/i     = length(hex)
 
 	while (i)
 		var/char = text2ascii(hex, i)
 		switch(char)
-			if(48)                                  // 0 -- do nothing
-			if(49 to 57) num += (char - 48) * power // 1-9
+			if(48)                                  // FALSE -- do nothing
+			if(49 to 57) num += (char - 48) * power // TRUE-9
 			if(97,  65)  num += power * 10          // A
 			if(98,  66)  num += power * 11          // B
 			if(99,  67)  num += power * 12          // C
@@ -40,14 +40,14 @@
 	var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
 
 	. = ""
-	while(num > 0)
-		var/hexdigit = hexdigits[(num & 0xF) + 1]
+	while(num > FALSE)
+		var/hexdigit = hexdigits[(num & 0xF) + TRUE]
 		. = "[hexdigit][.]"
 		num >>= 4 //go to the next half-byte
 
 	//pad with zeroes
 	var/left = padlength - length(.)
-	while (left-- > 0)
+	while (left-- > FALSE)
 		. = "0[.]"
 
 
@@ -86,7 +86,7 @@
 // Turns text into proper directions
 /proc/text2dir(direction)
 	switch (uppertext(direction))
-		if ("NORTH")     return 1
+		if ("NORTH")     return TRUE
 		if ("SOUTH")     return 2
 		if ("EAST")      return 4
 		if ("WEST")      return 8
@@ -110,7 +110,7 @@
 // Returns the north-zero clockwise angle in degrees, given a direction
 /proc/dir2angle(var/D)
 	switch (D)
-		if (NORTH)     return 0
+		if (NORTH)     return FALSE
 		if (SOUTH)     return 180
 		if (EAST)      return 90
 		if (WEST)      return 270
@@ -174,24 +174,24 @@
 		. = 255
 	else
 		if(temp <= 16)
-			. = 0
+			. = FALSE
 		else
 			. = max(0, min(255, 138.5177312231 * log(temp - 10) - 305.0447927307))
 
 // Very ugly, BYOND doesn't support unix time and rounding errors make it really hard to convert it to BYOND time.
 // returns "YYYY-MM-DD" by default
 /proc/unix2date(timestamp, seperator = "-")
-	if(timestamp < 0)
-		return 0 //Do not accept negative values
+	if(timestamp < FALSE)
+		return FALSE //Do not accept negative values
 
 	var/const/dayInSeconds = 86400 //60secs*60mins*24hours
 	var/const/daysInYear = 365 //Non Leap Year
-	var/const/daysInLYear = daysInYear + 1//Leap year
+	var/const/daysInLYear = daysInYear + TRUE//Leap year
 	var/days = round(timestamp / dayInSeconds) //Days passed since UNIX Epoc
 	var/year = 1970 //Unix Epoc begins 1970-01-01
-	var/tmpDays = days + 1 //If passed (timestamp < dayInSeconds), it will return 0, so add 1
+	var/tmpDays = days + TRUE //If passed (timestamp < dayInSeconds), it will return FALSE, so add TRUE
 	var/monthsInDays = list() //Months will be in here ***Taken from the PHP source code***
-	var/month = 1 //This will be the returned MONTH NUMBER.
+	var/month = TRUE //This will be the returned MONTH NUMBER.
 	var/day //This will be the returned day number.
 
 	while(tmpDays > daysInYear) //Start adding years to 1970
@@ -206,8 +206,8 @@
 	else
 		monthsInDays = list(0,31,59,90,120,151,181,212,243,273,304,334)
 
-	var/mDays = 0;
-	var/monthIndex = 0;
+	var/mDays = FALSE;
+	var/monthIndex = FALSE;
 
 	for(var/m in monthsInDays)
 		monthIndex++
@@ -220,4 +220,4 @@
 	return "[year][seperator][((month < 10) ? "0[month]" : month)][seperator][((day < 10) ? "0[day]" : day)]"
 
 /proc/isLeap(y)
-	return ((y) % 4 == 0 && ((y) % 100 != 0 || (y) % 400 == 0))
+	return ((y) % 4 == FALSE && ((y) % 100 != FALSE || (y) % 400 == FALSE))

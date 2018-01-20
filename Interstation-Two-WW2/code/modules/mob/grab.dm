@@ -12,20 +12,20 @@
 	name = "grab"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "reinforce"
-	flags = 0
+	flags = FALSE
 	var/obj/screen/grab/hud = null
 	var/mob/living/affecting = null
 	var/mob/living/carbon/human/assailant = null
 	var/state = GRAB_PASSIVE
 
-	var/allow_upgrade = 1
-	var/last_action = 0
-	var/last_hit_zone = 0
+	var/allow_upgrade = TRUE
+	var/last_action = FALSE
+	var/last_hit_zone = FALSE
 	var/force_down //determines if the affecting mob will be pinned to the ground
 	var/dancing //determines if assailant and affecting keep looking at each other. Basically a wrestling position
 
 	layer = 21
-	abstract = 1
+	abstract = TRUE
 	item_state = "nothing"
 	w_class = 5.0
 
@@ -52,9 +52,9 @@
 	if(assailant.grabbed_by)
 		for (var/obj/item/weapon/grab/G in assailant.grabbed_by)
 			if(G.assailant == affecting && G.affecting == assailant)
-				G.dancing = 1
+				G.dancing = TRUE
 				G.adjust_position()
-				dancing = 1
+				dancing = TRUE
 	adjust_position()
 
 //Used by throw code to hand over the mob, instead of throwing the grab. The grab is then deleted by the throw code.
@@ -63,7 +63,7 @@
 		if(affecting.buckled)
 			return null
 		if(state >= GRAB_AGGRESSIVE)
-			animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1)
+			animate(affecting, pixel_x = FALSE, pixel_y = FALSE, 4, TRUE)
 			return affecting
 	return null
 
@@ -71,11 +71,11 @@
 //This makes sure that the grab screen object is displayed in the correct hand.
 /obj/item/weapon/grab/proc/synch()
 	if(affecting)
-		hud.screen_loc = src.screen_loc
+		hud.screen_loc = screen_loc
 //		if(assailant.r_hand == src)
-//			hud.screen_loc = src.screen_loc
+//			hud.screen_loc = screen_loc
 //		else
-//			hud.screen_loc = src.screen_loc
+//			hud.screen_loc = screen_loc
 
 /obj/item/weapon/grab/process()
 	if(gcDestroyed) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
@@ -94,22 +94,22 @@
 		assailant.stop_pulling()
 
 	if(state <= GRAB_AGGRESSIVE)
-		allow_upgrade = 1
+		allow_upgrade = TRUE
 		//disallow upgrading if we're grabbing more than one person
 		if((assailant.l_hand && assailant.l_hand != src && istype(assailant.l_hand, /obj/item/weapon/grab)))
 			var/obj/item/weapon/grab/G = assailant.l_hand
 			if(G.affecting != affecting)
-				allow_upgrade = 0
+				allow_upgrade = FALSE
 		if((assailant.r_hand && assailant.r_hand != src && istype(assailant.r_hand, /obj/item/weapon/grab)))
 			var/obj/item/weapon/grab/G = assailant.r_hand
 			if(G.affecting != affecting)
-				allow_upgrade = 0
+				allow_upgrade = FALSE
 
 		//disallow upgrading past aggressive if we're being grabbed aggressively
 		for(var/obj/item/weapon/grab/G in affecting.grabbed_by)
 			if(G == src) continue
 			if(G.state >= GRAB_AGGRESSIVE)
-				allow_upgrade = 0
+				allow_upgrade = FALSE
 
 		if(allow_upgrade)
 			if(state < GRAB_AGGRESSIVE)
@@ -128,7 +128,7 @@
 
 		if(force_down)
 			if(affecting.loc != assailant.loc)
-				force_down = 0
+				force_down = FALSE
 			else
 				affecting.Weaken(2)
 
@@ -171,14 +171,14 @@
 //Gets called on process, when the grab gets upgraded or the assailant moves
 /obj/item/weapon/grab/proc/adjust_position()
 	if(affecting.buckled)
-		animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
+		animate(affecting, pixel_x = FALSE, pixel_y = FALSE, 4, TRUE, LINEAR_EASING)
 		return
 	if(affecting.lying && state != GRAB_KILL)
-		animate(affecting, pixel_x = 0, pixel_y = 0, 5, 1, LINEAR_EASING)
+		animate(affecting, pixel_x = FALSE, pixel_y = FALSE, 5, TRUE, LINEAR_EASING)
 		if(force_down)
 			affecting.set_dir(SOUTH) //face up
 		return
-	var/shift = 0
+	var/shift = FALSE
 	var/adir = get_dir(assailant, affecting)
 	affecting.layer = 4
 	switch(state)
@@ -195,21 +195,21 @@
 			affecting.set_dir(assailant.dir)
 			affecting.loc = assailant.loc
 		if(GRAB_KILL)
-			shift = 0
-			adir = 1
+			shift = FALSE
+			adir = TRUE
 			affecting.set_dir(SOUTH) //face up
 			affecting.loc = assailant.loc
 
 	switch(adir)
 		if(NORTH)
-			animate(affecting, pixel_x = 0, pixel_y =-shift, 5, 1, LINEAR_EASING)
+			animate(affecting, pixel_x = FALSE, pixel_y =-shift, 5, TRUE, LINEAR_EASING)
 			affecting.layer = 3.9
 		if(SOUTH)
-			animate(affecting, pixel_x = 0, pixel_y = shift, 5, 1, LINEAR_EASING)
+			animate(affecting, pixel_x = FALSE, pixel_y = shift, 5, TRUE, LINEAR_EASING)
 		if(WEST)
-			animate(affecting, pixel_x = shift, pixel_y = 0, 5, 1, LINEAR_EASING)
+			animate(affecting, pixel_x = shift, pixel_y = FALSE, 5, TRUE, LINEAR_EASING)
 		if(EAST)
-			animate(affecting, pixel_x =-shift, pixel_y = 0, 5, 1, LINEAR_EASING)
+			animate(affecting, pixel_x =-shift, pixel_y = FALSE, 5, TRUE, LINEAR_EASING)
 
 /obj/item/weapon/grab/proc/s_click(obj/screen/S)
 	if(!affecting)
@@ -267,21 +267,21 @@
 		affecting.set_dir(WEST)
 		if(iscarbon(affecting))
 			var/mob/living/carbon/C = affecting
-			C.losebreath += 1
+			C.losebreath += TRUE
 	adjust_position()
 
 //This is used to make sure the victim hasn't managed to yackety sax away before using the grab.
 /obj/item/weapon/grab/proc/confirm()
 	if(!assailant || !affecting)
 		qdel(src)
-		return 0
+		return FALSE
 
 	if(affecting)
-		if(!isturf(assailant.loc) || ( !isturf(affecting.loc) || assailant.loc != affecting.loc && get_dist(assailant, affecting) > 1) )
+		if(!isturf(assailant.loc) || ( !isturf(affecting.loc) || assailant.loc != affecting.loc && get_dist(assailant, affecting) > TRUE) )
 			qdel(src)
-			return 0
+			return FALSE
 
-	return 1
+	return TRUE
 
 /obj/item/weapon/grab/attack(mob/M, mob/living/user)
 	if(!affecting)
@@ -301,7 +301,7 @@
 				if(I_HELP)
 					if(force_down)
 						assailant << "<span class='warning'>You are no longer pinning [affecting] to the ground.</span>"
-						force_down = 0
+						force_down = FALSE
 						return
 					inspect_organ(affecting, assailant, hit_zone)
 
@@ -335,10 +335,10 @@
 		state = GRAB_NECK
 
 /obj/item/weapon/grab
-	var/destroying = 0
+	var/destroying = FALSE
 
 /obj/item/weapon/grab/Destroy()
-	animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
+	animate(affecting, pixel_x = FALSE, pixel_y = FALSE, 4, TRUE, LINEAR_EASING)
 	affecting.layer = 4
 	if(affecting)
 		affecting.grabbed_by -= src
@@ -349,5 +349,5 @@
 		assailant = null
 	qdel(hud)
 	hud = null
-	destroying = 1 // stops us calling qdel(src) on dropped()
+	destroying = TRUE // stops us calling qdel(src) on dropped()
 	..()

@@ -8,7 +8,7 @@
 	icon_state = "dropper0"
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(1,2,3,4,5)
-	w_class = 1
+	w_class = TRUE
 	slot_flags = SLOT_EARS
 	volume = 5
 
@@ -25,7 +25,7 @@
 				user << "<span class='notice'>You cannot directly fill this object.</span>"
 				return
 
-			var/trans = 0
+			var/trans = FALSE
 
 			if(ismob(target))
 

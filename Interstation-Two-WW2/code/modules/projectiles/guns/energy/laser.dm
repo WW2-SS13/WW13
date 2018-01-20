@@ -10,12 +10,12 @@
 //	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 	projectile_type = /obj/item/projectile/beam/midlaser
-	requires_two_hands = 1
+	requires_two_hands = TRUE
 	wielded_icon = "laser-wielded"
 
 /obj/item/weapon/gun/energy/laser/mounted
-	self_recharge = 1
-	use_external_power = 1
+	self_recharge = TRUE
+	use_external_power = TRUE
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "practice laser carbine"
@@ -32,7 +32,7 @@ obj/item/weapon/gun/energy/retro
 	w_class = 3
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
-	requires_two_hands = 0
+	requires_two_hands = FALSE
 
 /obj/item/weapon/gun/energy/captain
 	name = "antique laser gun"
@@ -46,8 +46,8 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam
 //	origin_tech = null
 	max_shots = 5 //to compensate a bit for self-recharging
-	self_recharge = 1
-	requires_two_hands = 0
+	self_recharge = TRUE
+	requires_two_hands = FALSE
 
 /obj/item/weapon/gun/energy/lasercannon
 	name = "laser cannon"
@@ -64,8 +64,8 @@ obj/item/weapon/gun/energy/retro
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
-	self_recharge = 1
-	use_external_power = 1
+	self_recharge = TRUE
+	use_external_power = TRUE
 	recharge_time = 10
 
 /obj/item/weapon/gun/energy/xray
@@ -78,8 +78,8 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam/xray
 	charge_cost = 100
 	max_shots = 20
-	fire_delay = 1
-	requires_two_hands = 0
+	fire_delay = TRUE
+	requires_two_hands = FALSE
 
 /obj/item/weapon/gun/energy/sniperrifle
 	name = "marksman energy rifle"
@@ -96,4 +96,4 @@ obj/item/weapon/gun/energy/retro
 	force = 10
 	w_class = 4
 	accuracy = -3 //shooting at the hip
-	scoped_accuracy = 0
+	scoped_accuracy = FALSE

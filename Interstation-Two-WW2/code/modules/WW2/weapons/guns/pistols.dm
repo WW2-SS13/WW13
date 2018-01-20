@@ -1,7 +1,7 @@
 /obj/item/weapon/gun/projectile/pistol/attackby(obj/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/attachment/bayonet))
+	if (istype(W, /obj/item/weapon/attachment/bayonet))
 		user << "<span class = 'danger'>That won't fit on there.</span>"
-		return 0
+		return FALSE
 	else
 		return ..()
 
@@ -12,8 +12,6 @@
 	item_state = "gun"
 	w_class = 2
 	caliber = "a9mm_para"
-	silenced = 0
-//	origin_tech = "combat=2;materials=2;syndicate=2"
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/luger
@@ -21,14 +19,18 @@
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 
 // new soviet officer gun
-/obj/item/weapon/gun/projectile/pistol/luger/colt
+/obj/item/weapon/gun/projectile/pistol/_45
 	name = "vintage .45 pistol"
 	desc = "a Colt M1911. Uses .45 rounds."
-	magazine_type = /obj/item/ammo_magazine/c45m
 	icon_state = "colt"
+	item_state = "gun"
+	w_class = 2
 	caliber = ".45"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/c45m
+	accuracy = DEFAULT_PISTOL_ACCURACY
+	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

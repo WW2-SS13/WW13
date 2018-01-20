@@ -5,7 +5,7 @@
 	for(var/type in typesof(/datum/gender))
 		var/datum/gender/G = new type
 		gender_datums[G.key] = G
-	return 1
+	return TRUE
 
 /datum/gender
 	var/key  = "plural"

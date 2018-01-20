@@ -6,10 +6,10 @@
 	w_class = 2.0
 	force = WEAPON_FORCE_HARMLESS
 	det_time = null
-//	unacidable = 1
-	var/stage = 0
-	var/state = 0
-	var/path = 0
+//	unacidable = TRUE
+	var/stage = FALSE
+	var/state = FALSE
+	var/path = FALSE
 	var/obj/item/device/assembly_holder/detonator = null
 	var/list/beakers = new/list()
 	var/list/allowed_containers = list(/obj/item/weapon/reagent_containers/glass/beaker, /obj/item/weapon/reagent_containers/glass/bottle)
@@ -21,7 +21,7 @@
 	attack_self(mob/user as mob)
 		if(!stage || stage==1)
 			if(detonator)
-//				detonator.loc=src.loc
+//				detonator.loc=loc
 				detonator.detached()
 				usr.put_in_hands(detonator)
 				detonator=null
@@ -34,7 +34,7 @@
 						beakers -= B
 						user.put_in_hands(B)
 			name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
-		if(stage > 1 && !active && clown_check(user))
+		if(stage > TRUE && !active && clown_check(user))
 			user << "<span class='warning'>You prime \the [name]!</span>"
 
 			msg_admin_attack("[user.name] ([user.ckey]) primed \a [src]. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
@@ -55,9 +55,9 @@
 			if(!det.secured)
 				user << "<span class='warning'>Assembly must be secured with screwdriver.</span>"
 				return
-			path = 1
+			path = TRUE
 			user << "<span class='notice'>You add [W] to the metal casing.</span>"
-			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, -3)
+			playsound(loc, 'sound/items/Screwdriver2.ogg', 25, -3)
 			user.remove_from_mob(det)
 			det.loc = src
 			detonator = det
@@ -69,10 +69,10 @@
 				det_time = 10*T.time
 			icon_state = initial(icon_state) +"_ass"
 			name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
-			stage = 1
+			stage = TRUE
 		else if(istype(W,/obj/item/weapon/screwdriver) && path != 2)
-			if(stage == 1)
-				path = 1
+			if(stage == TRUE)
+				path = TRUE
 				if(beakers.len)
 					user << "<span class='notice'>You lock the assembly.</span>"
 					name = "grenade"
@@ -80,7 +80,7 @@
 //					user << "<span class='warning'>You need to add at least one beaker before locking the assembly.</span>"
 					user << "<span class='notice'>You lock the empty assembly.</span>"
 					name = "fake grenade"
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
+				playsound(loc, 'sound/items/Screwdriver.ogg', 25, -3)
 				icon_state = initial(icon_state) +"_locked"
 				stage = 2
 			else if(stage == 2)
@@ -90,13 +90,13 @@
 					return
 				else
 					user << "<span class='notice'>You unlock the assembly.</span>"
-					playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
+					playsound(loc, 'sound/items/Screwdriver.ogg', 25, -3)
 					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 					icon_state = initial(icon_state) + (detonator?"_ass":"")
-					stage = 1
-					active = 0
+					stage = TRUE
+					active = FALSE
 		else if(is_type_in_list(W, allowed_containers) && (!stage || stage==1) && path != 2)
-			path = 1
+			path = TRUE
 			if(beakers.len == 2)
 				user << "<span class='warning'>The grenade can not hold more containers.</span>"
 				return
@@ -106,7 +106,7 @@
 					user.drop_item()
 					W.loc = src
 					beakers += W
-					stage = 1
+					stage = TRUE
 					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 				else
 					user << "<span class='warning'>\The [W] is empty.</span>"
@@ -122,10 +122,10 @@
 		if(detonator)
 			if(!isigniter(detonator.a_left))
 				detonator.a_left.activate()
-				active = 1
+				active = TRUE
 			if(!isigniter(detonator.a_right))
 				detonator.a_right.activate()
-				active = 1
+				active = TRUE
 		if(active)
 			icon_state = initial(icon_state) + "_active"
 
@@ -134,22 +134,22 @@
 
 		return
 
-	proc/primed(var/primed = 1)
+	proc/primed(var/primed = TRUE)
 		if(active)
 			icon_state = initial(icon_state) + (primed?"_primed":"_active")
 
 	prime()
 		if(!stage || stage<2) return
 
-		var/has_reagents = 0
+		var/has_reagents = FALSE
 		for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
-			if(G.reagents.total_volume) has_reagents = 1
+			if(G.reagents.total_volume) has_reagents = TRUE
 
-		active = 0
+		active = FALSE
 		if(!has_reagents)
 			icon_state = initial(icon_state) +"_locked"
-			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 50, 1)
-			spawn(0) //Otherwise det_time is erroneously set to 0 after this
+			playsound(loc, 'sound/items/Screwdriver2.ogg', 50, TRUE)
+			spawn(0) //Otherwise det_time is erroneously set to FALSE after this
 				if(istimer(detonator.a_left)) //Make sure description reflects that the timer has been reset
 					var/obj/item/device/assembly/timer/T = detonator.a_left
 					det_time = 10*T.time
@@ -158,20 +158,20 @@
 					det_time = 10*T.time
 			return
 
-		playsound(src.loc, 'sound/effects/bamf.ogg', 50, 1)
+		playsound(loc, 'sound/effects/bamf.ogg', 50, TRUE)
 
 		for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
 			G.reagents.trans_to_obj(src, G.reagents.total_volume)
 
-		if(src.reagents.total_volume) //The possible reactions didnt use up all reagents.
+		if(reagents.total_volume) //The possible reactions didnt use up all reagents.
 			var/datum/effect/effect/system/steam_spread/steam = new /datum/effect/effect/system/steam_spread()
-			steam.set_up(10, 0, get_turf(src))
+			steam.set_up(10, FALSE, get_turf(src))
 			steam.attach(src)
 			steam.start()
 
-			for(var/atom/A in view(affected_area, src.loc))
+			for(var/atom/A in view(affected_area, loc))
 				if( A == src ) continue
-				src.reagents.touch(A)
+				reagents.touch(A)
 
 		if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
 			var/mob/living/carbon/C = loc
@@ -194,7 +194,7 @@
 /obj/item/weapon/grenade/chem_grenade/metalfoam
 	name = "metal-foam grenade"
 	desc = "Used for emergency sealing of air breaches."
-	path = 1
+	path = TRUE
 	stage = 2
 
 	New()
@@ -215,7 +215,7 @@
 /obj/item/weapon/grenade/chem_grenade/incendiary
 	name = "incendiary grenade"
 	desc = "Used for clearing rooms of living things."
-	path = 1
+	path = TRUE
 	stage = 2
 
 	New()
@@ -238,7 +238,7 @@
 /obj/item/weapon/grenade/chem_grenade/antiweed
 	name = "weedkiller grenade"
 	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
-	path = 1
+	path = TRUE
 	stage = 2
 
 	New()
@@ -261,7 +261,7 @@
 	name = "cleaner grenade"
 	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
 	stage = 2
-	path = 1
+	path = TRUE
 
 	New()
 		..()
@@ -282,7 +282,7 @@
 	name = "tear gas grenade"
 	desc = "Concentrated Capsaicin. Contents under pressure. Use with caution."
 	stage = 2
-	path = 1
+	path = TRUE
 
 	New()
 		..()

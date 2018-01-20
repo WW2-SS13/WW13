@@ -21,8 +21,8 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a145
 	max_ammo = 20
-	multiple_sprites = 1
-	is_box = 1
+	multiple_sprites = TRUE
+	is_box = TRUE
 
 /obj/item/ammo_casing/c4mm
 	name = "a 4mm bullet casing"
@@ -105,7 +105,6 @@ WW 2 WEAPONS MAGS N AMMO
 	icon_state = "smoke_grenade"
 	projectile_type = /obj/item/projectile/grenade/smoke
 	caliber = "grenade"
-
 
 /obj/item/ammo_casing/a9x39
 	desc = "a 9x39 bullet casing"

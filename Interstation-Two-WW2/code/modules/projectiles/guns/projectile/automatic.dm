@@ -9,7 +9,7 @@
 //	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	ammo_type = /obj/item/ammo_casing/c9mm
-	multi_aim = 1
+	multi_aim = TRUE
 	burst_delay = 2
 	fire_sound = 'sound/weapons/guns/fire/smg_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/smg_magout.ogg'
@@ -21,6 +21,8 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
 		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1,-2,-2), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		)
+
+	gun_type = GUN_TYPE_MG
 
 /obj/item/weapon/gun/projectile/automatic/mini_uzi
 	name = "\improper Uzi"
@@ -45,7 +47,7 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a10mm
-	auto_eject = 1
+	auto_eject = TRUE
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/sfrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/sfrifle_magin.ogg'
@@ -67,7 +69,7 @@
 	w_class = 4
 	force = 10
 	caliber = "a762"
-//	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
+//	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = TRUE, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c762
@@ -75,7 +77,7 @@
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	requires_two_hands = 1
+	requires_two_hands = TRUE
 	wielded_icon = "assault-wielded"
 
 
@@ -125,12 +127,12 @@
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a556
-	auto_eject = 1
+	auto_eject = TRUE
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/batrifle_cock.ogg'
-	requires_two_hands = 1
+	requires_two_hands = TRUE
 	wielded_icon = "z8carbine-wielded"
 
 	burst_delay = 4
@@ -140,7 +142,7 @@
 		list(mode_name="fire grenades",  burst=null, fire_delay=null, move_delay=null, use_launcher=1,    burst_accuracy=null, dispersion=null)
 		)
 
-	var/use_launcher = 0
+	var/use_launcher = FALSE
 	var/obj/item/weapon/gun/launcher/grenade/underslung/launcher
 
 /obj/item/weapon/gun/projectile/automatic/z8/New()
@@ -149,7 +151,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/z8/attackby(obj/item/I, mob/user)
 	if (..()) // handle attachments
-		return 1
+		return TRUE
 
 	if((istype(I, /obj/item/weapon/grenade)))
 		launcher.load(I, user)
@@ -192,10 +194,10 @@
 	item_state = "l6closedmag"
 	w_class = 4
 	force = 10
-	slot_flags = 0
+	slot_flags = FALSE
 	max_shells = 50
 	caliber = "a792x57"
-//	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 2)
+//	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = TRUE, TECH_ILLEGAL = 2)
 	slot_flags = SLOT_BACK
 	ammo_type = "/obj/item/ammo_casing/a792x57"
 	load_method = MAGAZINE
@@ -204,7 +206,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	requires_two_hands = 1
+	requires_two_hands = TRUE
 	wielded_icon = "assault-wielded"
 	accuracy = -8
 
@@ -213,12 +215,12 @@
 		list(name="long bursts",	burst=8, move_delay=8, burst_accuracy = list(0,-1,-1,-2,-2,-2,-3,-3), dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
 		)
 
-	var/cover_open = 0
+	var/cover_open = FALSE
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/special_check(mob/user)
 	if(cover_open)
 		user << "<span class='warning'>[src]'s cover is open! Close it before firing!</span>"
-		return 0
+		return FALSE
 	return ..()
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/proc/toggle_cover(mob/user)
@@ -229,14 +231,14 @@
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_self(mob/user as mob)
 	if(cover_open)
 		toggle_cover(user) //close the cover
-		playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)
+		playsound(loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, TRUE)
 	else
 		return ..() //once closed, behave like normal
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_hand(mob/user as mob)
 	if(!cover_open && user.get_inactive_hand() == src)
 		toggle_cover(user) //open the cover
-		playsound(src.loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, 1)
+		playsound(loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, TRUE)
 	else
 		return ..() //once open, behave like normal
 
@@ -270,9 +272,9 @@
 	caliber = "9mm"
 //	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	multi_aim = 1
+	multi_aim = TRUE
 	burst_delay = 2
-	requires_two_hands = 1
+	requires_two_hands = TRUE
 	wielded_icon = "assault-wielded"
 
 	firemodes = list(
@@ -284,7 +286,7 @@
 	if(!ammo_magazine)
 		return
 	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
-	if(ratio < 0.25 && ratio != 0)
+	if(ratio < 0.25 && ratio != FALSE)
 		ratio = 0.25
 	ratio = round(ratio, 0.25) * 100
 	overlays += "smg_[ratio]"

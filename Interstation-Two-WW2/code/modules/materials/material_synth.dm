@@ -1,7 +1,7 @@
 // These objects are used by cyborgs to get around a lot of the limitations on stacks
 // and the weird bugs that crop up when expecting borg module code to behave sanely.
 /obj/item/stack/material/cyborg
-	uses_charge = 1
+	uses_charge = TRUE
 	charge_costs = list(1000)
 	gender = NEUTER
 	matter = null // Don't shove it in the autholathe.

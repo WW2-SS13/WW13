@@ -40,7 +40,7 @@
 #define MOLES_N2STANDARD     (MOLES_CELLSTANDARD * N2STANDARD) // N2 standard value (79%)
 
 // These are for when a mob breathes poisonous air.
-#define MIN_TOXIN_DAMAGE 1
+#define MIN_TOXIN_DAMAGE TRUE
 #define MAX_TOXIN_DAMAGE 10
 
 #define BREATH_VOLUME       0.5 // Liters in a normal breath.
@@ -59,11 +59,11 @@
 
 #define TEMPERATURE_DAMAGE_COEFFICIENT  1.5 // This is used in handle_temperature_damage() for humans, and in reagents that affect body temperature. Temperature damage is multiplied by this amount.
 #define BODYTEMP_AUTORECOVERY_DIVISOR   12  // This is the divisor which handles how much of the temperature difference between the current body temperature and 310.15K (optimal temperature) humans auto-regenerate each tick. The higher the number, the slower the recovery. This is applied each tick, so long as the mob is alive.
-#define BODYTEMP_AUTORECOVERY_MINIMUM   1   // Minimum amount of kelvin moved toward 310.15K per tick. So long as abs(310.15 - bodytemp) is more than 50.
+#define BODYTEMP_AUTORECOVERY_MINIMUM   TRUE   // Minimum amount of kelvin moved toward 310.15K per tick. So long as abs(310.15 - bodytemp) is more than 50.
 #define BODYTEMP_COLD_DIVISOR           6   // Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is lower than their body temperature. Make it lower to lose bodytemp faster.
 #define BODYTEMP_HEAT_DIVISOR           6   // Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is higher than their body temperature. Make it lower to gain bodytemp faster.
-#define BODYTEMP_COOLING_MAX           -30  // The maximum number of degrees that your body can cool down in 1 tick, when in a cold area.
-#define BODYTEMP_HEATING_MAX            30  // The maximum number of degrees that your body can heat up in 1 tick,   when in a hot  area.
+#define BODYTEMP_COOLING_MAX           -30  // The maximum number of degrees that your body can cool down in TRUE tick, when in a cold area.
+#define BODYTEMP_HEATING_MAX            30  // The maximum number of degrees that your body can heat up in TRUE tick,   when in a hot  area.
 
 #define BODYTEMP_HEAT_DAMAGE_LIMIT 360.15 // The limit the human body can take before it starts taking damage from heat.
 #define BODYTEMP_COLD_DAMAGE_LIMIT 260.15 // The limit the human body can take before it starts taking damage from coldness.
@@ -101,11 +101,11 @@
 
 #define HUNGER_FACTOR              0.05 // Factor of how fast mob nutrition decreases
 #define REM 0.2 // Means 'Reagent Effect Multiplier'. This is how many units of reagent are consumed per tick
-#define CHEM_TOUCH 1
+#define CHEM_TOUCH TRUE
 #define CHEM_INGEST 2
 #define CHEM_BLOOD 3
 #define MINIMUM_CHEMICAL_VOLUME 0.01
-#define SOLID 1
+#define SOLID TRUE
 #define LIQUID 2
 #define GAS 3
 #define REAGENTS_OVERDOSE 30
@@ -121,7 +121,7 @@
 #define MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION   (T20C + 10)
 #define MINIMUM_TEMPERATURE_START_SUPERCONDUCTION (T20C + 200)
 
-// Must be between 0 and 1. Values closer to 1 equalize temperature faster. Should not exceed 0.4, else strange heat flow occurs.
+// Must be between FALSE and 1. Values closer to TRUE equalize temperature faster. Should not exceed 0.4, else strange heat flow occurs.
 #define  FLOOR_HEAT_TRANSFER_COEFFICIENT 0.4
 #define   WALL_HEAT_TRANSFER_COEFFICIENT 0.0
 #define   DOOR_HEAT_TRANSFER_COEFFICIENT 0.0
@@ -158,7 +158,7 @@
 #define TCMB 2.7    // -270.3 degrees celcius
 
 // XGM gas flags.
-#define XGM_GAS_FUEL        1
+#define XGM_GAS_FUEL        TRUE
 #define XGM_GAS_OXIDIZER    2
 #define XGM_GAS_CONTAMINANT 4
 
@@ -168,14 +168,14 @@
 #define TANK_FRAGMENT_SCALE    (10.*ONE_ATMOSPHERE) // +1 for each SCALE kPa above threshold. Was 2 atm.
 
 #define HUMAN_STRIP_DELAY        40   // Takes 40ds = 4s to strip someone.
-#define ALIEN_SELECT_AFK_BUFFER  1    // How many minutes that a person can be AFK before not being allowed to be an alien.
+#define ALIEN_SELECT_AFK_BUFFER  TRUE    // How many minutes that a person can be AFK before not being allowed to be an alien.
 #define NORMPIPERATE             30   // Pipe-insulation rate divisor.
 #define HEATPIPERATE             8    // Heat-exchange pipe insulation.
 #define FLOWFRAC                 0.99 // Fraction of gas transfered per process.
 #define SHOES_SLOWDOWN          -1.0  // How much shoes slow you down by default. Negative values speed you up.
 
 // Item inventory slot bitmasks.
-#define SLOT_OCLOTHING  1
+#define SLOT_OCLOTHING  TRUE
 #define SLOT_ICLOTHING  2
 #define SLOT_GLOVES     4
 #define SLOT_EYES       8
@@ -187,22 +187,22 @@
 #define SLOT_BELT       512
 #define SLOT_BACK       1024
 #define SLOT_POCKET     2048  // This is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define SLOT_DENYPOCKET 4096  // This is to  deny items with a w_class of 2 or 1 from fitting in pockets.
+#define SLOT_DENYPOCKET 4096  // This is to  deny items with a w_class of 2 or TRUE from fitting in pockets.
 #define SLOT_TWOEARS    8192
 #define SLOT_TIE        16384
 #define SLOT_HOLSTER	32768 //16th bit
 
 // Flags bitmasks.
-#define STOPPRESSUREDAMAGE 1 // This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere
+#define STOPPRESSUREDAMAGE TRUE // This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag TRUE was previous used as ONBACK, so it is possible for some code to use (flags & TRUE) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere
                              // To successfully stop you taking all pressure damage you must have both a suit and head item with this flag.
 #define NOBLUDGEON         2    // When an item has this it produces no "X has been hit by Y with Z" message with the default handler.
 #define AIRTIGHT           4    // Functions with internals.
-#define USEDELAY           8    // 1 second extra delay on use. (Can be used once every 2s)
+#define USEDELAY           8    // TRUE second extra delay on use. (Can be used once every 2s)
 #define NOSHIELD           16   // Weapon not affected by shield.
 #define CONDUCT            32   // Conducts electricity. (metal etc.)
 #define ON_BORDER          64   // Item has priority to check when entering or leaving.
 #define NOBLOODY           512  // Used for items if they don't want to get a blood overlay.
-#define NODELAY            8192 // 1 second attack-by delay skipped (Can be used once every 0.2s). Most objects have a 1s attack-by delay, which doesn't require a flag.
+#define NODELAY            8192 // TRUE second attack-by delay skipped (Can be used once every 0.2s). Most objects have a TRUEs attack-by delay, which doesn't require a flag.
 
 //Use these flags to indicate if an item obscures the specified slots from view, whereas body_parts_covered seems to be used to indicate what body parts the item protects.
 #define GLASSESCOVERSEYES 256
@@ -222,30 +222,30 @@
 #define BLOCKHAIR              8192 // Temporarily removes the user's hair, facial and otherwise.
 
 // Flags for pass_flags.
-#define PASSTABLE  1
+#define PASSTABLE  TRUE
 #define PASSGLASS  2
 #define PASSGRILLE 4
 #define PASSBLOB   8
 
 // Turf-only flags.
-#define NOJAUNT 1 // This is used in literally one place, turf.dm, to block ethereal jaunt.
+#define NOJAUNT TRUE // This is used in literally one place, turf.dm, to block ethereal jaunt.
 
 // Bitmasks for the flags_inv variable. These determine when a piece of clothing hides another, i.e. a helmet hiding glasses.
 // WARNING: The following flags apply only to the external suit!
-#define HIDEGLOVES      1
+#define HIDEGLOVES      TRUE
 #define HIDESUITSTORAGE 2
 #define HIDEJUMPSUIT    4
 #define HIDESHOES       8
 #define HIDETAIL        16
 
 // WARNING: The following flags apply only to the helmets and masks!
-#define HIDEMASK 1
+#define HIDEMASK TRUE
 #define HIDEEARS 2 // Headsets and such.
 #define HIDEEYES 4 // Glasses.
 #define HIDEFACE 8 // Dictates whether we appear as "Unknown".
 
 // Slots.
-#define slot_back        1
+#define slot_back        TRUE
 #define slot_wear_mask   2
 #define slot_handcuffed  3
 #define slot_l_hand      4
@@ -284,7 +284,7 @@
 #define icon_head		"slot_head"
 
 // Bitflags for clothing parts.
-#define HEAD        1
+#define HEAD        TRUE
 #define FACE        2
 #define EYES        4
 #define UPPER_TORSO 8
@@ -305,7 +305,7 @@
 
 // Bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
 // Used with human/proc/get_heat_protection() and human/proc/get_cold_protection().
-// The values here should add up to 1, e.g., the head has 30% protection.
+// The values here should add up to TRUE, e.g., the head has 30% protection.
 #define THERMAL_PROTECTION_HEAD        0.3
 #define THERMAL_PROTECTION_UPPER_TORSO 0.15
 #define THERMAL_PROTECTION_LOWER_TORSO 0.15
@@ -323,7 +323,7 @@
 #define   UNIDNASIZE 13
 
 // Generic mutations:
-#define TK              1
+#define TK              TRUE
 #define COLD_RESISTANCE 2
 #define XRAY            3
 #define HULK            4
@@ -351,37 +351,37 @@
 #define mSmallsize     110 // Table climbing.
 
 // disabilities
-#define NEARSIGHTED 1
+#define NEARSIGHTED TRUE
 #define EPILEPSY    2
 #define COUGHING    4
 #define TOURETTES   8
 #define NERVOUS     16
 
 // sdisabilities
-#define BLIND 1
+#define BLIND TRUE
 #define MUTE  2
 #define DEAF  4
 
 // /mob/var/stat things.
-#define CONSCIOUS   0
-#define UNCONSCIOUS 1
+#define CONSCIOUS   FALSE
+#define UNCONSCIOUS TRUE
 #define DEAD        2
 
 // Channel numbers for power.
-#define EQUIP   1
+#define EQUIP   TRUE
 #define LIGHT   2
 #define ENVIRON 3
 #define TOTAL   4 // For total power used only.
 
 // Bitflags for machine stat variable.
-#define BROKEN   1
+#define BROKEN   TRUE
 #define NOPOWER  2
 #define POWEROFF 4  // TBD.
 #define MAINT    8  // Under maintenance.
 #define EMPED    16 // Temporary broken by EMP pulse.
 
 // Bitmasks for door switches.
-#define OPEN   1
+#define OPEN   TRUE
 #define IDSCAN 2
 #define BOLTS  4
 #define SHOCK  8
@@ -392,8 +392,8 @@
 #define MAX_STACK_AMOUNT_GLASS 50
 #define MAX_STACK_AMOUNT_RODS  60
 
-#define GAS_O2  (1 << 0)
-#define GAS_N2  (1 << 1)
+#define GAS_O2  (1 << FALSE)
+#define GAS_N2  (1 << TRUE)
 #define GAS_PL  (1 << 2)
 #define GAS_CO2 (1 << 3)
 #define GAS_N2O (1 << 4)
@@ -423,13 +423,13 @@
 #define DROWSY    "drowsy"
 
 // I hate adding defines like this but I'd much rather deal with bitflags than lists and string searches.
-#define BRUTELOSS 1
+#define BRUTELOSS TRUE
 #define FIRELOSS  2
 #define TOXLOSS   4
 #define OXYLOSS   8
 
 // Bitflags defining which status effects could be or are inflicted on a mob.
-#define CANSTUN     1
+#define CANSTUN     TRUE
 #define CANWEAKEN   2
 #define CANPARALYSE 4
 #define CANPUSH     8
@@ -441,24 +441,24 @@
 #define XENO_HOST   32768 // Tracks whether we're gonna be a baby alien's mummy.
 
 // Grab levels.
-#define GRAB_PASSIVE    1
+#define GRAB_PASSIVE    TRUE
 #define GRAB_AGGRESSIVE 2
 #define GRAB_NECK       3
 #define GRAB_UPGRADING  4
 #define GRAB_KILL       5
 
 // Security levels.
-#define SEC_LEVEL_GREEN 0
-#define SEC_LEVEL_BLUE  1
+#define SEC_LEVEL_GREEN FALSE
+#define SEC_LEVEL_BLUE  TRUE
 #define SEC_LEVEL_RED   2
 #define SEC_LEVEL_DELTA 3
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 
 // A set of constants used to determine which type of mute an admin wishes to apply.
-// Please read and understand the muting/automuting stuff before changing these. MUTE_IC_AUTO, etc. = (MUTE_IC << 1)
+// Please read and understand the muting/automuting stuff before changing these. MUTE_IC_AUTO, etc. = (MUTE_IC << TRUE)
 // Therefore there needs to be a gap between the flags for the automute flags.
-#define MUTE_IC        1
+#define MUTE_IC        TRUE
 #define MUTE_OOC       2
 #define MUTE_PRAY      4
 #define MUTE_ADMINHELP 8
@@ -471,7 +471,7 @@
 #define SPAM_TRIGGER_AUTOMUTE 10
 
 // Some constants for DB_Ban
-#define BANTYPE_PERMA       1
+#define BANTYPE_PERMA       TRUE
 #define BANTYPE_TEMP        2
 #define BANTYPE_JOB_PERMA   3
 #define BANTYPE_JOB_TEMP    4
@@ -500,14 +500,14 @@
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
 
-#define BORGMESON 1
+#define BORGMESON TRUE
 #define BORGTHERM 2
 #define BORGXRAY  4
 
 // Some arbitrary defines to be used by self-pruning global lists. (see master_controller)
 #define PROCESS_KILL 26 // Used to trigger removal from a processing list.
 
-#define HOSTILE_STANCE_IDLE      1
+#define HOSTILE_STANCE_IDLE      TRUE
 #define HOSTILE_STANCE_ALERT     2
 #define HOSTILE_STANCE_ATTACK    3
 #define HOSTILE_STANCE_ATTACKING 4
@@ -516,7 +516,7 @@
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 // Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 // Organ defines.
-#define ORGAN_CUT_AWAY   1
+#define ORGAN_CUT_AWAY   TRUE
 #define ORGAN_GAUZED     2
 #define ORGAN_ATTACHABLE 4
 #define ORGAN_BLEEDING   8
@@ -530,7 +530,7 @@
 #define ORGAN_ASSISTED   4096
 
 // Admin permissions. Please don't edit these values without speaking to Errorage first. ~Carn
-#define R_BUILDMODE     1
+#define R_BUILDMODE     TRUE
 #define R_ADMIN         2
 #define R_BAN           4
 #define R_FUN           8
@@ -550,7 +550,7 @@
 #define R_MAXPERMISSION 32768 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.
 
 // Preference toggles: these are no longer bitflags, but list items
-#define SOUND_ADMINHELP 1
+#define SOUND_ADMINHELP TRUE
 #define SOUND_MIDI      2
 #define SOUND_AMBIENCE  4
 #define SOUND_LOBBY     8
@@ -569,7 +569,7 @@
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_LOOC)
 
-#define BE_TRAITOR    1
+#define BE_TRAITOR    TRUE
 #define BE_OPERATIVE  2
 #define BE_CHANGELING 4
 #define BE_WIZARD     8
@@ -609,7 +609,7 @@ var/list/be_special_flags = list(
 #define AGE_MAX 75
 
 // Languages.
-#define LANGUAGE_HUMAN  1
+#define LANGUAGE_HUMAN  TRUE
 #define LANGUAGE_ALIEN  2
 #define LANGUAGE_DOG    4
 #define LANGUAGE_CAT    8
@@ -618,21 +618,21 @@ var/list/be_special_flags = list(
 
 #define LANGUAGE_UNIVERSAL 65535
 
-#define LEFT  1
+#define LEFT  TRUE
 #define RIGHT 2
 
 // Pulse levels, very simplified.
-#define PULSE_NONE    0 // So !M.pulse checks would be possible.
-#define PULSE_SLOW    1 // <60     bpm
+#define PULSE_NONE    FALSE // So !M.pulse checks would be possible.
+#define PULSE_SLOW    TRUE // <60     bpm
 #define PULSE_NORM    2 //  60-90  bpm
 #define PULSE_FAST    3 //  90-120 bpm
 #define PULSE_2FAST   4 // >120    bpm
 #define PULSE_THREADY 5 // Occurs during hypovolemic shock
-#define GETPULSE_HAND 0 // Less accurate. (hand)
-#define GETPULSE_TOOL 1 // More accurate. (med scanner, sleeper, etc.)
+#define GETPULSE_HAND FALSE // Less accurate. (hand)
+#define GETPULSE_TOOL TRUE // More accurate. (med scanner, sleeper, etc.)
 
 // Species flags.
-#define NO_BLOOD          1     // Vessel var is not filled with blood, cannot bleed out.
+#define NO_BLOOD          TRUE     // Vessel var is not filled with blood, cannot bleed out.
 #define NO_BREATHE        2     // Cannot suffocate or take oxygen loss.
 #define NO_SCAN           4     // Cannot be scanned in a DNA machine/genome-stolen.
 #define NO_PAIN           8     // Cannot suffer halloss/recieves deceptive health indicator.
@@ -651,7 +651,7 @@ var/list/be_special_flags = list(
 #define REGENERATES_LIMBS 65536 // Attempts to regenerate unamputated limbs.
 
 // Language flags.
-#define WHITELISTED 1   // Language is available if the speaker is whitelisted.
+#define WHITELISTED TRUE   // Language is available if the speaker is whitelisted.
 #define RESTRICTED  2   // Language can only be accquired by spawning or an admin.
 #define NONVERBAL   4   // Language has a significant non-verbal component. Speech is garbled without line-of-sight.
 #define SIGNLANG    8   // Language is completely non-verbal. Speech is displayed through emotes for those who can understand.
@@ -662,8 +662,8 @@ var/list/be_special_flags = list(
 #define NO_STUTTER  256 // No stuttering, slurring, or other speech problems
 #define COMMON_VERBS 512 // Robots will apply regular verbs to this.
 //Flags for zone sleeping
-#define ZONE_ACTIVE   1
-#define ZONE_SLEEPING 0
+#define ZONE_ACTIVE   TRUE
+#define ZONE_SLEEPING FALSE
 
 //some colors
 #define COLOR_RED    "#FF0000"
@@ -699,19 +699,19 @@ var/list/be_special_flags = list(
 #define SHUTTLE_TRANSIT_DURATION_RETURN 120 // 2 minutes = 120 seconds - for some reason it takes less time to come back, go figure.
 
 // Shuttle moving status.
-#define SHUTTLE_IDLE      0
-#define SHUTTLE_WARMUP    1
+#define SHUTTLE_IDLE      FALSE
+#define SHUTTLE_WARMUP    TRUE
 #define SHUTTLE_INTRANSIT 2
 
 // Ferry shuttle processing status.
-#define IDLE_STATE   0
-#define WAIT_LAUNCH  1
+#define IDLE_STATE   FALSE
+#define WAIT_LAUNCH  TRUE
 #define FORCE_LAUNCH 2
 #define WAIT_ARRIVE  3
 #define WAIT_FINISH  4
 
 // computer3 error codes, move lower in the file when it passes dev -Sayu
-#define PROG_CRASH          1  // Generic crash.
+#define PROG_CRASH          TRUE  // Generic crash.
 #define MISSING_PERIPHERAL  2  // Missing hardware.
 #define BUSTED_ASS_COMPUTER 4  // Self-perpetuating error.  BAC will continue to crash forever.
 #define MISSING_PROGRAM     8  // Some files try to automatically launch a program. This is that failing.
@@ -723,7 +723,7 @@ var/list/be_special_flags = list(
 #define PROJECTILE_FORCE_MISS -2 //if the projectile should treat the attack as a miss (suppresses attack and admin logs) - only applies to mobs.
 
 // Some on_mob_life() procs check for alien races.
-#define IS_DIONA  1
+#define IS_DIONA  TRUE
 #define IS_VOX    2
 #define IS_SKRELL 3
 #define IS_UNATHI 4
@@ -755,16 +755,16 @@ var/list/be_special_flags = list(
 #define ATMOS_DEFAULT_VOLUME_PIPE   70  // L.
 
 // Chemistry.
-#define CHEM_SYNTH_ENERGY 500 // How much energy does it take to synthesize 1 unit of chemical, in Joules.
+#define CHEM_SYNTH_ENERGY 500 // How much energy does it take to synthesize TRUE unit of chemical, in Joules.
 
 #define SPEED_OF_LIGHT       3e8    // Approximate.
 #define SPEED_OF_LIGHT_SQ    9e16
 #define FIRE_DAMAGE_MODIFIER 0.0215 // Higher values result in more external fire damage to the skin. (default 0.0215)
 #define  AIR_DAMAGE_MODIFIER 2.025  // More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
 #define INFINITY             1.#INF
-#define BACKGROUND_ENABLED   0      // The default value for all uses of set background. Set background can
+#define BACKGROUND_ENABLED   FALSE      // The default value for all uses of set background. Set background can
                                     // cause gradual lag and is recommended you only turn this on if necessary.
-                                    // 1 will enable set background. 0 will disable set background.
+                                    // TRUE will enable set background. FALSE will disable set background.
 
 // Setting this much higher than 1024 could allow spammers to DOS the server easily.
 #define MAX_MESSAGE_LEN       1024
@@ -774,27 +774,27 @@ var/list/be_special_flags = list(
 #define MAX_NAME_LEN          45 // long german names and stuff
 
 // Event defines.
-#define EVENT_LEVEL_MUNDANE  1
+#define EVENT_LEVEL_MUNDANE  TRUE
 #define EVENT_LEVEL_MODERATE 2
 #define EVENT_LEVEL_MAJOR    3
 /*
 // Suit sensor levels
-#define SUIT_SENSOR_OFF      0
-#define SUIT_SENSOR_BINARY   1
+#define SUIT_SENSOR_OFF      FALSE
+#define SUIT_SENSOR_BINARY   TRUE
 #define SUIT_SENSOR_VITAL    2
 #define SUIT_SENSOR_TRACKING 3
 */
 // NanoUI flags
 #define STATUS_INTERACTIVE 2 // GREEN Visability
-#define STATUS_UPDATE 1 // ORANGE Visability
-#define STATUS_DISABLED 0 // RED Visability
+#define STATUS_UPDATE TRUE // ORANGE Visability
+#define STATUS_DISABLED FALSE // RED Visability
 #define STATUS_CLOSE -1 // Close the interface
 
 //General-purpose life speed define for plants.
-#define HYDRO_SPEED_MULTIPLIER 1
+#define HYDRO_SPEED_MULTIPLIER TRUE
 /*
 // Robot AI notifications
-#define ROBOT_NOTIFICATION_NEW_UNIT 1
+#define ROBOT_NOTIFICATION_NEW_UNIT TRUE
 #define ROBOT_NOTIFICATION_NEW_NAME 2
 #define ROBOT_NOTIFICATION_NEW_MODULE 3
 #define ROBOT_NOTIFICATION_MODULE_RESET 4
@@ -807,7 +807,7 @@ var/list/be_special_flags = list(
 #define DEFAULT_JOB_TYPE /datum/job/civilian
 
 // Appearance change flags
-#define APPEARANCE_UPDATE_DNA 1
+#define APPEARANCE_UPDATE_DNA TRUE
 #define APPEARANCE_RACE	(2|APPEARANCE_UPDATE_DNA)
 #define APPEARANCE_GENDER (4|APPEARANCE_UPDATE_DNA)
 #define APPEARANCE_SKIN 8
@@ -844,7 +844,7 @@ var/list/be_special_flags = list(
 #define MAX_SUPPLIED_LAW_NUMBER 50
 
 //Area flags, possibly more to come
-#define RAD_SHIELDED 1 //shielded from radiation, clearly
+#define RAD_SHIELDED TRUE //shielded from radiation, clearly
 
 //intent flags, why wasn't this done the first time?
 #define I_HELP		"help"
@@ -856,7 +856,7 @@ var/list/be_special_flags = list(
 	These are used Bump() code for living mobs, in the mob_bump_flag, mob_swap_flags, and mob_push_flags vars to determine whom can bump/swap with whom.
 */
 
-#define HUMAN 1
+#define HUMAN TRUE
 #define MONKEY 2
 #define ALIEN 4
 #define ROBOT 8
@@ -868,8 +868,8 @@ var/list/be_special_flags = list(
 
 #define NEXT_MOVE_DELAY 8
 
-#define DROPLIMB_EDGE 0
-#define DROPLIMB_BLUNT 1
+#define DROPLIMB_EDGE FALSE
+#define DROPLIMB_BLUNT TRUE
 #define DROPLIMB_BURN 2
 
 /*
@@ -963,12 +963,12 @@ var/list/be_special_flags = list(
 #define LANGUAGE_TRADEBAND "Tradeband"
 #define LANGUAGE_GUTTER "Gutter"*/
 
-#define WALL_CAN_OPEN 1
+#define WALL_CAN_OPEN TRUE
 #define WALL_OPENING 2
 
 #define Clamp(x, y, z) 	(x <= y ? y : (x >= z ? z : x))
 
-#define CLAMP01(x) 		(Clamp(x, 0, 1))
+#define CLAMP01(x) 		(Clamp(x, FALSE, TRUE))
 
 #define DEFAULT_WALL_MATERIAL "steel"
 #define DEFAULT_TABLE_MATERIAL "plastic"
@@ -1000,7 +1000,7 @@ var/list/be_special_flags = list(
 #define SHARD_SPLINTER "splinters"
 #define SHARD_NONE ""
 
-#define MATERIAL_UNMELTABLE 1
+#define MATERIAL_UNMELTABLE TRUE
 #define MATERIAL_BRITTLE 2
 #define MATERIAL_PADDING 4
 

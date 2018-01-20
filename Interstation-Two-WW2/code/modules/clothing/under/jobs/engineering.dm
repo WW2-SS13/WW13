@@ -5,7 +5,7 @@
 	icon_state = "chiefengineer"
 	item_state = "g_suit"
 
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = FALSE, rad = 10)
 
 /obj/item/clothing/under/rank/atmospheric_technician
 	desc = "It's a jumpsuit worn by atmospheric technicians."
@@ -20,7 +20,7 @@
 	icon_state = "engine"
 	item_state = "engi_suit"
 
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = FALSE, rad = 10)
 
 /obj/item/clothing/under/rank/roboticist
 	desc = "It's a orange jumpsuit that great for industrial work."

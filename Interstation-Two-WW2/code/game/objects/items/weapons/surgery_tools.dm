@@ -19,7 +19,6 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	flags = CONDUCT
 	w_class = 2.0
-//	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 /*
  * Hemostat
  */
@@ -31,7 +30,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
 	flags = CONDUCT
 	w_class = 2.0
-//	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
+//	origin_tech = list(TECH_MATERIAL = TRUE, TECH_BIO = TRUE)
 	attack_verb = list("attacked", "pinched")
 /*
  * Cautery
@@ -44,7 +43,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
 	flags = CONDUCT
 	w_class = 2.0
-//	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
+//	origin_tech = list(TECH_MATERIAL = TRUE, TECH_BIO = TRUE)
 	attack_verb = list("burnt")
 /*
  * Surgical Drill
@@ -59,7 +58,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_DANGEROUS
 	w_class = 3
-//	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
+//	origin_tech = list(TECH_MATERIAL = TRUE, TECH_BIO = TRUE)
 	attack_verb = list("drilled")
 /*
  * Scalpel
@@ -71,14 +70,14 @@
 	icon_state = "scalpel"
 	flags = CONDUCT
 	force = WEAPON_FORCE_DANGEROUS
-	sharp = 1
-	edge = 1
-	w_class = 1
+	sharp = TRUE
+	edge = TRUE
+	w_class = TRUE
 	slot_flags = SLOT_EARS
 	throwforce = 5.0
 	throw_speed = WEAPON_FORCE_WEAK
 	throw_range = 5
-//	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
+//	origin_tech = list(TECH_MATERIAL = TRUE, TECH_BIO = TRUE)
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
@@ -126,18 +125,18 @@
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 5
-//	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
+//	origin_tech = list(TECH_MATERIAL = TRUE, TECH_BIO = TRUE)
 	matter = list(DEFAULT_WALL_MATERIAL = 20000,"glass" = 10000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 
 //misc, formerly from code/defines/weapons.dm
 /obj/item/weapon/bonegel
 	name = "bone gel"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "bone-gel"
-	force = 0
+	force = FALSE
 	w_class = 2.0
 	throwforce = 1.0
 
@@ -145,9 +144,9 @@
 	name = "FixOVein"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "fixovein"
-	force = 0
+	force = FALSE
 	throwforce = 1.0
-//	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 3)
+//	origin_tech = list(TECH_MATERIAL = TRUE, TECH_BIO = 3)
 	w_class = 2.0
 	var/usage_amount = 10
 

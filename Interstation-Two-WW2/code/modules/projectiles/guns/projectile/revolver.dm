@@ -12,8 +12,8 @@
 	reload_sound 	= 'sound/weapons/guns/interact/rev_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/rev_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/revolver_fire.ogg'
-	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
-	magazine_based = 0
+	var/chamber_offset = FALSE //how many empty chambers in the cylinder until you hit a round
+	magazine_based = FALSE
 
 
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()
@@ -21,10 +21,10 @@
 	set desc = "Fun when you're bored out of your skull."
 	set category = "Object"
 
-	chamber_offset = 0
+	chamber_offset = FALSE
 	visible_message("<span class='warning'>\The [usr] spins the cylinder of \the [src]!</span>", \
 	"<span class='notice'>You hear something metallic spin and click.</span>")
-	playsound(src.loc, 'sound/weapons/revolver_spin.ogg', 100, 1)
+	playsound(loc, 'sound/weapons/revolver_spin.ogg', 100, TRUE)
 	loaded = shuffle(loaded)
 	if(rand(1,max_shells) > loaded.len)
 		chamber_offset = rand(0,max_shells - loaded.len)
@@ -36,7 +36,7 @@
 	return ..()
 
 /obj/item/weapon/gun/projectile/revolver/load_ammo(var/obj/item/A, mob/user)
-	chamber_offset = 0
+	chamber_offset = FALSE
 	return ..()
 
 /obj/item/weapon/gun/projectile/revolver/mateba
@@ -60,17 +60,17 @@
 	set desc = "Click to rename your gun. If you're the detective."
 
 	var/mob/M = usr
-	if(!M.mind)	return 0
+	if(!M.mind)	return FALSE
 	if(!M.mind.assigned_role == "Inspector")
 		M << "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>"
-		return 0
+		return FALSE
 
 	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
 		M << "You name the gun [input]. Say hello to your new friend."
-		return 1
+		return TRUE
 
 // Blade Runner pistol.
 /obj/item/weapon/gun/projectile/revolver/deckard
@@ -97,7 +97,7 @@
 	icon_state = "revolver"
 	item_state = "revolver"
 	caliber = "caps"
-//	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
+//	origin_tech = list(TECH_COMBAT = TRUE, TECH_MATERIAL = TRUE)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/cap

@@ -29,11 +29,11 @@
 
 						var maintable_data = document.getElementById('maintable_data');
 						var ltr = maintable_data.getElementsByTagName("tr");
-						for ( var i = 0; i < ltr.length; ++i )
+						for ( var i = FALSE; i < ltr.length; ++i )
 						{
 							try{
 								var tr = ltr\[i\];
-								if(tr.getAttribute("id").indexOf("data") != 0){
+								if(tr.getAttribute("id").indexOf("data") != FALSE){
 									continue;
 								}
 								var ltd = tr.getElementsByTagName("td");
@@ -53,7 +53,7 @@
 						}
 					}
 
-					var count = 0;
+					var count = FALSE;
 					var index = -1;
 					var debug = document.getElementById("debug");
 
@@ -82,7 +82,7 @@
 					body += "<a href='?src=\ref[usr];priv_msg=\ref"+ref+"'>PM</a> - "
 					body += "<a href='?src=\ref[src];subtlemessage="+ref+"'>SM</a> - "
 					body += "<a href='?src=\ref[src];adminplayerobservejump="+ref+"'>JMP</a><br>"
-					if(antagonist > 0)
+					if(antagonist > FALSE)
 						body += "<font size='2'><a href='?src=\ref[src];check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
 
 					body += "</td></tr></table>";
@@ -93,7 +93,7 @@
 
 				function clearAll(){
 					var spans = document.getElementsByTagName('span');
-					for(var i = 0; i < spans.length; i++){
+					for(var i = FALSE; i < spans.length; i++){
 						var span = spans\[i\];
 
 						var id = span.getAttribute("id");
@@ -101,16 +101,16 @@
 						if(!(id.indexOf("item")==0))
 							continue;
 
-						var pass = 1;
+						var pass = TRUE;
 
-						for(var j = 0; j < locked_tabs.length; j++){
+						for(var j = FALSE; j < locked_tabs.length; j++){
 							if(locked_tabs\[j\]==id){
-								pass = 0;
+								pass = FALSE;
 								break;
 							}
 						}
 
-						if(pass != 1)
+						if(pass != TRUE)
 							continue;
 
 
@@ -131,10 +131,10 @@
 						return;
 					}
 
-					var pass = 1;
-					for(var j = 0; j < locked_tabs.length; j++){
+					var pass = TRUE;
+					for(var j = FALSE; j < locked_tabs.length; j++){
 						if(locked_tabs\[j\]==id){
-							pass = 0;
+							pass = FALSE;
 							break;
 						}
 					}
@@ -154,11 +154,11 @@
 
 				function removeFromLocked(id,link_id,notice_span_id){
 					//document.write("a");
-					var index = 0;
-					var pass = 0;
-					for(var j = 0; j < locked_tabs.length; j++){
+					var index = FALSE;
+					var pass = FALSE;
+					for(var j = FALSE; j < locked_tabs.length; j++){
 						if(locked_tabs\[j\]==id){
-							pass = 1;
+							pass = TRUE;
 							index = j;
 							break;
 						}
@@ -213,12 +213,12 @@
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
 
 	var/list/mobs = sortmobs()
-	var/i = 1
+	var/i = TRUE
 	for(var/mob/M in mobs)
 		if(M.ckey)
 
 			var/color = "#e6e6e6"
-			if(i%2 == 0)
+			if(i%2 == FALSE)
 				color = "#f2f2f2"
 			var/is_antagonist = is_special_character(M)
 

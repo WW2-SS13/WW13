@@ -59,7 +59,7 @@
 
 // Kill ourselves.
 /datum/light_source/proc/destroy()
-	destroyed = 1
+	destroyed = TRUE
 	force_update()
 	if(source_atom && source_atom.light_sources)
 		source_atom.light_sources -= src
@@ -115,13 +115,13 @@
 
 // Will force an update without checking if it's actually needed.
 /datum/light_source/proc/force_update()
-	force_update = 1
+	force_update = TRUE
 
 	effect_update(null)
 
 // Will cause the light source to recalculate turfs that were removed or added to visibility only.
 /datum/light_source/proc/vis_update()
-	vis_update = 1
+	vis_update = TRUE
 
 	effect_update(null)
 
@@ -129,35 +129,35 @@
 /datum/light_source/proc/check()
 	if(!source_atom || !light_range || !light_power)
 		destroy()
-		return 1
+		return TRUE
 
 	if(!top_atom)
 		top_atom = source_atom
-		. = 1
+		. = TRUE
 
 	if(istype(top_atom, /turf))
 		if(source_turf != top_atom)
 			source_turf = top_atom
-			. = 1
+			. = TRUE
 	else if(top_atom.loc != source_turf)
 		source_turf = top_atom.loc
-		. = 1
+		. = TRUE
 
 	if(source_atom.light_power != light_power)
 		light_power = source_atom.light_power
-		. = 1
+		. = TRUE
 
 	if(source_atom.light_range != light_range)
 		light_range = source_atom.light_range
-		. = 1
+		. = TRUE
 
 	if(light_range && light_power && !applied)
-		. = 1
+		. = TRUE
 
 	if(source_atom.light_color != light_color)
 		light_color = source_atom.light_color
 		parse_light_color()
-		. = 1
+		. = TRUE
 
 // Decompile the hexadecimal colour into lumcounts of each perspective.
 /datum/light_source/proc/parse_light_color()
@@ -166,9 +166,9 @@
 		lum_g = GetGreenPart (light_color) / 255
 		lum_b = GetBluePart  (light_color) / 255
 	else
-		lum_r = 1
-		lum_g = 1
-		lum_b = 1
+		lum_r = TRUE
+		lum_g = TRUE
+		lum_b = TRUE
 
 // Macro that applies light to a new corner.
 // It is a macro in the interest of speed, yet not having to copy paste it.
@@ -204,7 +204,7 @@
 #define LUM_FALLOFF(C, T) (1 - CLAMP01(sqrt((C.x - T.x) ** 2 + (C.y - T.y) ** 2 + LIGHTING_HEIGHT) / max(1, light_range)))
 
 /datum/light_source/proc/apply_lum()
-	applied = 1
+	applied = TRUE
 
 	// Keep track of the last applied lum values so that the lighting can be reversed
 	applied_lum_r = lum_r
@@ -272,7 +272,7 @@
 
 /datum/light_source/proc/smart_vis_update()
 	var/list/datum/lighting_corner/corners = list()
-	FOR_DVIEW(var/turf/T, light_range, source_turf, 0)
+	FOR_DVIEW(var/turf/T, light_range, source_turf, FALSE)
 		corners |= T.get_corners(get_dir(source_turf, T))
 	END_FOR_DVIEW
 

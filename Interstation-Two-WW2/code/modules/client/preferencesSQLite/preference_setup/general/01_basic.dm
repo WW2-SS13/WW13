@@ -3,7 +3,7 @@ datum/preferences
 
 /datum/category_item/player_setup_item/general/basic
 	name = "Basic"
-	sort_order = 1
+	sort_order = TRUE
 	var/list/valid_player_genders = list(MALE, FEMALE)
 
 datum/preferences/proc/set_biological_gender(var/set_gender)
@@ -118,10 +118,10 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	/*										*/
 
 //	pref.spawnpoint		= sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
-	pref.be_random_name	= sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
-	pref.be_random_name_german	= sanitize_integer(pref.be_random_name_german, 0, 1, initial(pref.be_random_name_german))
-	pref.be_random_name_russian	= sanitize_integer(pref.be_random_name_russian, 0, 1, initial(pref.be_random_name_russian))
-	pref.be_random_name_ukrainian	= sanitize_integer(pref.be_random_name_ukrainian, 0, 1, initial(pref.be_random_name_ukrainian))
+	pref.be_random_name	= sanitize_integer(pref.be_random_name, FALSE, TRUE, initial(pref.be_random_name))
+	pref.be_random_name_german	= sanitize_integer(pref.be_random_name_german, FALSE, TRUE, initial(pref.be_random_name_german))
+	pref.be_random_name_russian	= sanitize_integer(pref.be_random_name_russian, FALSE, TRUE, initial(pref.be_random_name_russian))
+	pref.be_random_name_ukrainian	= sanitize_integer(pref.be_random_name_ukrainian, FALSE, TRUE, initial(pref.be_random_name_ukrainian))
 
 /datum/category_item/player_setup_item/general/basic/content()
 	//name
@@ -292,57 +292,57 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 		var/_role_preference_ger = input("Set your German role preference to what?") in null|roles
 		var/datum/job/chosen = linked_jobs[_role_preference_ger]
-		if (chosen.total_positions == 1)
+		if (chosen.total_positions == TRUE)
 			user << "<span class = 'danger'>You can't set preference to this job, because there is only one of them.</span>"
-			return 0
-		else if (chosen.total_positions > 1) // now we're talking
+			return FALSE
+		else if (chosen.total_positions > TRUE) // now we're talking
 			var/hypothetical_remaining_postions = chosen.total_positions-1
 			// above: if we set preference to this job, how many remain?
-			// must be at least 1
+			// must be at least TRUE
 			for (var/client/_client in clients)
 				if (_client.role_preference_ger)
 					if (linked_jobs[_client.role_preference_ger] == chosen)
 						--hypothetical_remaining_postions
 
-			if (hypothetical_remaining_postions < 1)
+			if (hypothetical_remaining_postions < TRUE)
 				user << "<span class = 'danger'>Unfortunately, setting preference to this job would leave no positions for anyone else, so you can't do it. Try another job or wait for someone else with preference to log out.</span>"
-				return 0
+				return FALSE
 			else
 				user << "<span class = 'danger'>Successfully changed preference to [chosen.title].</span>"
 				pref.client.role_preference_ger = _role_preference_ger
-				return 1
+				return TRUE
 
 
 	else if (href_list["role_preference_sov"])
 
 		var/list/linked_jobs = list()
 		var/list/roles = list()
-		for (var/datum/job/russian/j in job_master.occupations)
+		for (var/datum/job/soviet/j in job_master.occupations)
 			if (istype(j))
 				roles += j.title
 				linked_jobs[j.title] = j
 
 		var/_role_preference_sov = input("Set your SOVIET role preference to what?") in null|roles
 		var/datum/job/chosen = linked_jobs[_role_preference_sov]
-		if (chosen.total_positions == 1)
+		if (chosen.total_positions == TRUE)
 			user << "<span class = 'danger'>You can't set preference to this job, because there is only one of them.</span>"
-			return 0
-		else if (chosen.total_positions > 1) // now we're talking
+			return FALSE
+		else if (chosen.total_positions > TRUE) // now we're talking
 			var/hypothetical_remaining_postions = chosen.total_positions-1
 			// above: if we set preference to this job, how many remain?
-			// must be at least 1
+			// must be at least TRUE
 			for (var/client/_client in clients)
 				if (_client.role_preference_sov)
 					if (linked_jobs[_client.role_preference_sov] == chosen)
 						--hypothetical_remaining_postions
 
-			if (hypothetical_remaining_postions < 1)
+			if (hypothetical_remaining_postions < TRUE)
 				user << "<span class = 'danger'>Unfortunately, setting preference to this job would leave no positions for anyone else, so you can't do it. Try another job or wait for someone else with preference to log out.</span>"
-				return 0
+				return FALSE
 			else
 				user << "<span class = 'danger'>Successfully changed preference to [chosen.title].</span>"
 				pref.client.role_preference_sov = _role_preference_sov
-				return 1
+				return TRUE
 
 	else if(href_list["body_build"])
 		pref.body_build = input("Body Shape", "Body") in list("Default", "Slim", "Fat")

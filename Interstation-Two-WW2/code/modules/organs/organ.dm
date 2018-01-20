@@ -5,9 +5,9 @@ var/list/organ_cache = list()
 	icon = 'icons/obj/surgery.dmi'
 	var/dead_icon
 	var/mob/living/carbon/human/owner = null
-	var/status = 0
+	var/status = FALSE
 	var/vital //Lose a vital limb, die immediately.
-	var/damage = 0 // amount of damage to the organ
+	var/damage = FALSE // amount of damage to the organ
 
 	var/min_bruised_damage = 10
 	var/min_broken_damage = 30
@@ -15,14 +15,14 @@ var/list/organ_cache = list()
 	var/organ_tag = "organ"
 
 	var/parent_organ = "chest"
-	var/robotic = 0 //For being a robot
+	var/robotic = FALSE //For being a robot
 	var/rejecting   // Is this organ already being rejected?
 
 	var/list/transplant_data
 	var/list/datum/autopsy_data/autopsy_data = list()
 	var/list/trace_chemicals = list() // traces of chemicals in the organ,
 									  // links chemical IDs to number of ticks for which they'll stay in the blood
-	germ_level = 0
+	germ_level = FALSE
 	var/datum/dna/dna
 	var/datum/species/species
 
@@ -54,7 +54,7 @@ var/list/organ_cache = list()
 	if(!max_damage)
 		max_damage = min_broken_damage * 2
 	if(istype(holder))
-		src.owner = holder
+		owner = holder
 		species = all_species["Human"]
 		if(holder.dna)
 			dna = holder.dna.Clone()
@@ -112,7 +112,7 @@ var/list/organ_cache = list()
 		return
 	//Process infections
 	if ((status & ORGAN_ROBOT) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
-		germ_level = 0
+		germ_level = FALSE
 		return
 
 	if(!owner)
@@ -148,7 +148,7 @@ var/list/organ_cache = list()
 	//** Handle the effects of infections
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
+	if (germ_level > FALSE && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--
 
 	if (germ_level >= INFECTION_LEVEL_ONE/2)
@@ -157,8 +157,8 @@ var/list/organ_cache = list()
 			germ_level++
 
 	if(germ_level >= INFECTION_LEVEL_ONE)
-		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
-		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
+		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, TRUE) + owner.species.body_temperature
+		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + TRUE, fever_temperature - owner.bodytemperature)
 
 	if (germ_level >= INFECTION_LEVEL_TWO)
 		var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
@@ -175,10 +175,10 @@ var/list/organ_cache = list()
 	if(dna)
 		if(!rejecting)
 			if(blood_incompatible(dna.b_type, owner.dna.b_type, species, owner.species))
-				rejecting = 1
+				rejecting = TRUE
 		else
 			rejecting++ //Rejection severity increases over time.
-			if(rejecting % 10 == 0) //Only fire every ten rejection ticks.
+			if(rejecting % 10 == FALSE) //Only fire every ten rejection ticks.
 				switch(rejecting)
 					if(1 to 50)
 						germ_level++
@@ -191,13 +191,13 @@ var/list/organ_cache = list()
 						owner.reagents.add_reagent("toxin", rand(1,2))
 
 /obj/item/organ/proc/receive_chem(chemical as obj)
-	return 0
+	return FALSE
 
 /obj/item/organ/proc/rejuvenate()
-	damage = 0
+	damage = FALSE
 
 /obj/item/organ/proc/is_damaged()
-	return damage > 0
+	return damage > FALSE
 
 /obj/item/organ/proc/is_bruised()
 	return damage >= min_bruised_damage
@@ -207,7 +207,7 @@ var/list/organ_cache = list()
 
 //Germs
 /obj/item/organ/proc/handle_antibiotics()
-	var/antibiotics = 0
+	var/antibiotics = FALSE
 	if(owner)
 		antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
@@ -215,7 +215,7 @@ var/list/organ_cache = list()
 		return
 
 	if (germ_level < INFECTION_LEVEL_ONE)
-		germ_level = 0	//cure instantly
+		germ_level = FALSE	//cure instantly
 	else if (germ_level < INFECTION_LEVEL_TWO)
 		germ_level -= 6	//at germ_level == 500, this should cure the infection in a minute
 	else
@@ -229,40 +229,40 @@ var/list/organ_cache = list()
 		W.weapon = used_weapon
 		autopsy_data[used_weapon] = W
 
-	W.hits += 1
+	W.hits += TRUE
 	W.damage += damage
 	W.time_inflicted = world.time
 
 //Note: external organs have their own version of this proc
 /obj/item/organ/proc/take_damage(amount, var/silent=0)
 
-	if(src.status & ORGAN_ROBOT)
-		src.damage = between(0, src.damage + (amount * 0.8), max_damage)
+	if(status & ORGAN_ROBOT)
+		damage = between(0, damage + (amount * 0.8), max_damage)
 	else
-		src.damage = between(0, src.damage + amount, max_damage)
+		damage = between(0, damage + amount, max_damage)
 
 		//only show this if the organ is not robotic
-		if(owner && parent_organ && amount > 0)
+		if(owner && parent_organ && amount > FALSE)
 			var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
 			if(parent && !silent)
-				owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
+				owner.custom_pain("Something inside your [parent.name] hurts a lot.", TRUE)
 
 /obj/item/organ/proc/bruise()
 	damage = max(damage, min_bruised_damage)
 
 /obj/item/organ/proc/robotize() //Being used to make robutt hearts, etc
 	robotic = 2
-	src.status &= ~ORGAN_BROKEN
-	src.status &= ~ORGAN_BLEEDING
-	src.status &= ~ORGAN_SPLINTED
-	src.status &= ~ORGAN_CUT_AWAY
-	src.status |= ORGAN_ROBOT
-	src.status |= ORGAN_ASSISTED
+	status &= ~ORGAN_BROKEN
+	status &= ~ORGAN_BLEEDING
+	status &= ~ORGAN_SPLINTED
+	status &= ~ORGAN_CUT_AWAY
+	status |= ORGAN_ROBOT
+	status |= ORGAN_ASSISTED
 
 /obj/item/organ/proc/mechassist() //Used to add things like pacemakers, etc
 	robotize()
-	src.status &= ~ORGAN_ROBOT
-	robotic = 1
+	status &= ~ORGAN_ROBOT
+	robotic = TRUE
 	min_bruised_damage = 15
 	min_broken_damage = 35
 
@@ -295,7 +295,7 @@ var/list/organ_cache = list()
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
-		owner.vessel.trans_to(src, 5, 1, 1)
+		owner.vessel.trans_to(src, 5, TRUE, TRUE)
 
 	if(owner && vital)
 		if(user)
@@ -379,7 +379,7 @@ var/list/organ_cache = list()
 			user.visible_message("<span class = 'notice'>[user] starts to carve [src] into a few meat slabs.</span>")
 			if (do_after(user, 30, src))
 				user.visible_message("<span class = 'notice'>[user] carves [src] into a few meat slabs.</span>")
-				for (var/v in 1 to rand(2,4))
+				for (var/v in TRUE to rand(2,4))
 					var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
 					meat.name = "[name] meatsteak"
 				qdel(src)

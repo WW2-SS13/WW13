@@ -7,16 +7,16 @@
 
 var/list/global_whitelists[50]
 
-/client/proc/validate_whitelist(name, return_real_val_even_if_whitelist_disabled = 0)
+/client/proc/validate_whitelist(name, return_real_val_even_if_whitelist_disabled = FALSE)
 	for (var/_name in global_whitelists)
 		if (_name == name)
 			var/datum/whitelist/W = global_whitelists[_name]
 			if (W.validate(src, return_real_val_even_if_whitelist_disabled))
-				return 1
+				return TRUE
 			else
-				return 0
+				return FALSE
 
-	return 1 // didn't find the whitelist? validate them anyway
+	return TRUE // didn't find the whitelist? validate them anyway
 
 /proc/save_all_whitelists()
 	for (var/key in global_whitelists)
@@ -35,7 +35,7 @@ var/list/global_whitelists[50]
 /datum/whitelist
 	var/name = "generic whitelist"
 	var/data = ""
-	var/enabled = 0
+	var/enabled = FALSE
 	var/file = ""
 
 // when we're created
@@ -57,8 +57,9 @@ var/list/global_whitelists[50]
 	establish_db_connection()
 	if (!database)
 		return
-	database.execute("DELETE FROM whitelists WHERE key = '[name]';")
-	database.execute("INSERT INTO whitelists (key, val) VALUES ('[name]', '[data]');")
+	database.execute("DELETE FROM whitelists WHERE key = '[name]';", FALSE)
+	spawn (10)
+		database.execute("INSERT INTO whitelists (key, val) VALUES ('[name]', '[data]');", FALSE)
 
 // add a client or ckey to the whitelist
 /datum/whitelist/proc/add(_arg, var/list/extras = list())
@@ -101,21 +102,21 @@ var/list/global_whitelists[50]
 	cleanup()
 
 // check if a client or ckey is in the whitelist
-/datum/whitelist/proc/validate(_arg, return_real_val_even_if_whitelist_disabled = 0)
+/datum/whitelist/proc/validate(_arg, return_real_val_even_if_whitelist_disabled = FALSE)
 	if (!enabled && !return_real_val_even_if_whitelist_disabled)
-		return 1
+		return TRUE
 	var/list/datalist = splittext(data, "&")
 	if (isclient(_arg))
 		var/client/C = _arg
 		for (var/ckey in datalist)
 			if (ckey == C.ckey)
-				return 1
+				return TRUE
 	else if (istext(_arg))
 		_arg = ckey(_arg)
 		for (var/ckey in datalist)
 			if (ckey == _arg)
-				return 1
-	return 0
+				return TRUE
+	return FALSE
 
 /datum/whitelist/proc/cleanup()
 	// clean up our data. Sometimes we get stuff like multiple '&&'
@@ -131,11 +132,11 @@ var/list/global_whitelists[50]
 /datum/whitelist/server/New()
 	..()
 	if (config.usewhitelist)
-		enabled = 1
+		enabled = TRUE
 
 /datum/whitelist/teststaff
 	name = "teststaff"
 /datum/whitelist/teststaff/New()
 	..()
 	if (config.allow_testing_staff)
-		enabled = 1
+		enabled = TRUE

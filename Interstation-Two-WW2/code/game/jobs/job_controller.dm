@@ -1,44 +1,56 @@
 var/global/datum/controller/occupations/job_master
 
-#define GET_RANDOM_JOB 0
-#define BE_ASSISTANT 1
+#define GET_RANDOM_JOB FALSE
+#define BE_ASSISTANT TRUE
 #define RETURN_TO_LOBBY 2
 
 #define MEMBERS_PER_SQUAD 6
-#define LEADERS_PER_SQUAD 1
+#define LEADERS_PER_SQUAD TRUE
 
 #define SL_LIMIT 4
 
-var/global/list/fallschirm_landmarks = list()
-
-/proc/setup_autobalance(var/announce = 1)
+/proc/setup_autobalance(var/announce = TRUE)
 	spawn (0)
 		if (job_master)
 			job_master.toggle_roundstart_autobalance(0, announce)
+	var/list/faction_organized_occupations_separate_lists = list()
+	for (var/datum/job/J in job_master.occupations)
+		var/Jflag = J.base_type_flag()
+		if (!faction_organized_occupations_separate_lists.Find(Jflag))
+			faction_organized_occupations_separate_lists[Jflag] = list()
+		faction_organized_occupations_separate_lists[Jflag] += J
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[GERMAN]
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[SOVIET]
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[ITALIAN]
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[UKRAINIAN]
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[CIVILIAN]
+	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[PARTISAN]
 
 /datum/controller/occupations
 		//List of all jobs
 	var/list/occupations = list()
+		//List of all jobs ordered by faction: German, Soviet, Italian, Ukrainian, Civilian, Partisan
+	var/list/faction_organized_occupations = list()
 		//Players who need jobs
 	var/list/unassigned = list()
 		//Debug info
 	var/list/job_debug = list()
 
-	var/ruforce_count = 0
-	var/geforce_count = 0
-	var/civilian_count = 0
-	var/partisan_count = 0
+	var/ruforce_count = FALSE
+	var/geforce_count = FALSE
+	var/civilian_count = FALSE
+	var/partisan_count = FALSE
 
-//	var/allow_jews = 0
-//	var/allow_spies = 0
-	var/allow_civilians = 1
-	var/allow_partisans = 1
+//	var/allow_jews = FALSE
+//	var/allow_spies = FALSE
+	var/allow_civilians = TRUE
+	var/allow_partisans = TRUE
 
-	var/allow_ukrainians = 0
-	var/allow_italians = 0
+	var/allow_ukrainians = FALSE
+	var/allow_italians = FALSE
 
 	var/german_job_slots = 40
-	var/russian_job_slots = 40
+	var/soviet_job_slots = 40
 	var/civilian_job_slots = 10
 	var/partisan_job_slots = 10
 
@@ -52,65 +64,67 @@ var/global/list/fallschirm_landmarks = list()
 	 // Soldats:
 	   // self explanatory
 	 // Commander:
-	   // always 1 slot no matter what (for now)
+	   // always TRUE slot no matter what (for now)
 
-	var/german_primary_job_slots = 0
-	var/german_secondary_job_slots = 0
-	var/german_soldat_slots = 0
-	var/german_commander_slots = 0
-	var/german_ss_slots = 0
-	var/german_paratrooper_slots = 0
-	var/german_ss_commander_slots = 0
+	var/german_primary_job_slots = FALSE
+	var/german_secondary_job_slots = FALSE
+	var/german_soldat_slots = FALSE
+	var/german_commander_slots = FALSE
+	var/german_ss_slots = FALSE
+	var/german_paratrooper_slots = FALSE
+	var/german_ss_commander_slots = FALSE
 
-	var/russian_primary_job_slots = 0
-	var/russian_secondary_job_slots = 0
-	var/russian_soldat_slots = 0
-	var/russian_commander_slots = 0
-	var/russian_sturmovik_slots = 0
+	var/soviet_primary_job_slots = FALSE
+	var/soviet_secondary_job_slots = FALSE
+	var/soviet_soldat_slots = FALSE
+	var/soviet_commander_slots = FALSE
+	var/soviet_sturmovik_slots = FALSE
 
-	var/italy_soldier_slots = 0
-	var/italy_medic_slots = 0
-	var/italy_SL_slots = 0
+	var/italy_soldier_slots = FALSE
+	var/italy_medic_slots = FALSE
+	var/italy_SL_slots = FALSE
 
-	var/ukraine_soldier_slots = 0
-	var/ukraine_medic_slots = 0
-	var/ukraine_SL_slots = 0
+	var/ukraine_soldier_slots = FALSE
+	var/ukraine_medic_slots = FALSE
+	var/ukraine_SL_slots = FALSE
 
 	// which squad are we trying to fill right now?
 		// doesn't apply to partisans
 
-	var/current_german_squad = 1
-	var/current_russian_squad = 1
+	var/current_german_squad = TRUE
+	var/current_soviet_squad = TRUE
 
-	var/german_squad_members = 0
-	var/german_squad_leaders = 0
+	var/german_squad_members = FALSE
+	var/german_squad_leaders = FALSE
 
-	var/russian_squad_members = 0
-	var/russian_squad_leaders = 0
+	var/soviet_squad_members = FALSE
+	var/soviet_squad_leaders = FALSE
 
 	var/german_squad_info[4]
-	var/russian_squad_info[4]
+	var/soviet_squad_info[4]
 
 	var/german_officer_squad_info[4]
-	var/russian_officer_squad_info[4]
+	var/soviet_officer_squad_info[4]
+
+	var/expected_clients = 0
 
 	proc/total_german_slots()
-		. = 0
-		. += german_primary_job_slots = 0
-		. += german_secondary_job_slots = 0
-		. += german_soldat_slots = 0
-		. += german_commander_slots = 0
-		. += german_ss_slots = 0
-		. += german_paratrooper_slots = 0
-		. += german_ss_commander_slots = 0
+		. = FALSE
+		. += german_primary_job_slots = FALSE
+		. += german_secondary_job_slots = FALSE
+		. += german_soldat_slots = FALSE
+		. += german_commander_slots = FALSE
+		. += german_ss_slots = FALSE
+		. += german_paratrooper_slots = FALSE
+		. += german_ss_commander_slots = FALSE
 
-	proc/total_russian_slots()
-		. = 0
-		. += russian_primary_job_slots = 0
-		. += russian_secondary_job_slots = 0
-		. += russian_soldat_slots = 0
-		. += russian_commander_slots = 0
-		. += russian_sturmovik_slots = 0
+	proc/total_soviet_slots()
+		. = FALSE
+		. += soviet_primary_job_slots = FALSE
+		. += soviet_secondary_job_slots = FALSE
+		. += soviet_soldat_slots = FALSE
+		. += soviet_commander_slots = FALSE
+		. += soviet_sturmovik_slots = FALSE
 
 	proc/remaining_german_slots()
 		. = german_job_slots
@@ -122,20 +136,20 @@ var/global/list/fallschirm_landmarks = list()
 		. -= german_ss_slots
 		. -= german_paratrooper_slots
 
-	proc/remaining_russian_slots()
-		. = russian_job_slots
-		. -= russian_primary_job_slots
-		. -= russian_secondary_job_slots
-		. -= russian_soldat_slots
-		. -= russian_commander_slots
-		. -= russian_sturmovik_slots
+	proc/remaining_soviet_slots()
+		. = soviet_job_slots
+		. -= soviet_primary_job_slots
+		. -= soviet_secondary_job_slots
+		. -= soviet_soldat_slots
+		. -= soviet_commander_slots
+		. -= soviet_sturmovik_slots
 
 	proc/n_percent_of_job_slots(n, team)
 		switch (team)
 			if (GERMAN)
 				return max(1, round((german_job_slots * n)/100))
-			if (RUSSIAN)
-				return max(1, round((russian_job_slots * n)/100))
+			if (SOVIET)
+				return max(1, round((soviet_job_slots * n)/100))
 			if (CIVILIAN)
 				return max(1, round((civilian_job_slots * n)/100))
 			if (PARTISAN)
@@ -145,23 +159,20 @@ var/global/list/fallschirm_landmarks = list()
 	// ~90% of clients in the lobby will join as a role prior to the train
 	// being sent
 
-	proc/toggle_roundstart_autobalance(var/_clients = 0, var/announce = 1)
+	proc/toggle_roundstart_autobalance(var/_clients = 0, var/announce = TRUE)
 
-		// how many unique clients we expect to play
-		var/expected_players = 0
+		if (_clients != 0)
+			expected_clients = _clients
 
-		#ifdef DEBUG_AUTOBALANCE
-		if (!_clients)
-			_clients = 100
-		#else
-		if (!_clients)
+		if (expected_clients)
+			_clients = expected_clients
+		else
 			_clients = clients.len
-		#endif
 
 		if (announce)
 			world << "<span class = 'warning'>Setting up roundstart autobalance for [_clients] players.</span>"
 
-		expected_players = _clients * 0.9
+		var/expected_players = _clients * 0.9
 
 		// number of roles, between both sides, that will be open.
 		// greater than the number of expected players to account for
@@ -176,9 +187,9 @@ var/global/list/fallschirm_landmarks = list()
 
 		german_job_slots = round(total_job_slots * 0.4)
 
-		russian_job_slots = german_job_slots + 5
+		soviet_job_slots = german_job_slots + 5
 
-		civilian_job_slots = round(russian_job_slots/4)
+		civilian_job_slots = round(soviet_job_slots/4)
 
 		partisan_job_slots = civilian_job_slots
 
@@ -189,23 +200,23 @@ var/global/list/fallschirm_landmarks = list()
 		allow_partisans = initial(allow_partisans)
 
 		// WIP
-		allow_ukrainians = 0
-		allow_italians = 0
+		allow_ukrainians = FALSE
+		allow_italians = FALSE
 		// what else do we want to do based on how many players we expect
 
 		switch (expected_players)
 			if (-INFINITY to 24)
-			//	allow_jews = 0
-			//	allow_spies = 0
-				allow_civilians = 0
-				allow_partisans = 0
+			//	allow_jews = FALSE
+			//	allow_spies = FALSE
+				allow_civilians = FALSE
+				allow_partisans = FALSE
 			if (25 to 29)
-		//		allow_spies = 0
-				allow_civilians = 0
-				allow_partisans = 0
+		//		allow_spies = FALSE
+				allow_civilians = FALSE
+				allow_partisans = FALSE
 			if (30 to 34)
-				allow_civilians = 0
-				allow_partisans = 0
+				allow_civilians = FALSE
+				allow_partisans = FALSE
 
 		if (allow_civilians)
 			for (var/datum/job/partisan/civilian/j in occupations)
@@ -214,7 +225,7 @@ var/global/list/fallschirm_landmarks = list()
 		else
 			for (var/datum/job/partisan/civilian/j in occupations)
 				if (istype(j))
-					j.total_positions = 0
+					j.total_positions = FALSE
 
 		if (allow_partisans)
 			for (var/datum/job/partisan/soldier/j in occupations)
@@ -223,30 +234,30 @@ var/global/list/fallschirm_landmarks = list()
 
 			for (var/datum/job/partisan/commander/j in occupations)
 				if (istype(j))
-					j.total_positions = 1
+					j.total_positions = TRUE
 		else
 			for (var/datum/job/partisan/soldier/j in occupations)
 				if (istype(j))
-					j.total_positions = 0
+					j.total_positions = FALSE
 
 			for (var/datum/job/partisan/commander/j in occupations)
 				if (istype(j))
-					j.total_positions = 0
+					j.total_positions = FALSE
 
 		// disable base job types like '/datum/job/german'
 
 		for (var/datum/job/j in occupations)
 			switch (j.type)
 				if (/datum/job/german)
-					j.total_positions = 0
-				if (/datum/job/russian)
-					j.total_positions = 0
+					j.total_positions = FALSE
+				if (/datum/job/soviet)
+					j.total_positions = FALSE
 				if (/datum/job/italian)
-					j.total_positions = 0
+					j.total_positions = FALSE
 				if (/datum/job/ukrainian)
-					j.total_positions = 0
+					j.total_positions = FALSE
 				if (/datum/job/partisan)
-					j.total_positions = 0
+					j.total_positions = FALSE
 				// but NOT /datum/job/partisan/civilian as its a 'singleton'
 
 		// GERMAN jobs
@@ -256,67 +267,67 @@ var/global/list/fallschirm_landmarks = list()
 
 		switch (german_job_slots)
 			if (-INFINITY to 7) // this is so few slots, don't bother with special jobs
-				german_primary_job_slots = 0
-				german_secondary_job_slots = 0
-				german_commander_slots = 1
-				german_ss_slots = 0
-				german_paratrooper_slots = 0
+				german_primary_job_slots = FALSE
+				german_secondary_job_slots = FALSE
+				german_commander_slots = TRUE
+				german_ss_slots = FALSE
+				german_paratrooper_slots = FALSE
 				german_soldat_slots = remaining_german_slots() + 2
-				german_ss_commander_slots = 0
+				german_ss_commander_slots = FALSE
 			if (8 to 14) // small but not tiny. Deserves a few primary roles, and no secondary/tertiary
 				german_primary_job_slots = n_percent_of_job_slots(50, GERMAN)
-				german_secondary_job_slots = 0
-				german_commander_slots = 1
-				german_ss_slots = 0
-				german_paratrooper_slots = 0
+				german_secondary_job_slots = FALSE
+				german_commander_slots = TRUE
+				german_ss_slots = FALSE
+				german_paratrooper_slots = FALSE
 				german_soldat_slots = remaining_german_slots() + 2
-				german_ss_commander_slots = 0
+				german_ss_commander_slots = FALSE
 			if (15 to 19) // decent sized team. Some primary and secondary roles.
 				german_primary_job_slots = n_percent_of_job_slots(30, GERMAN)
 				german_secondary_job_slots = n_percent_of_job_slots(20, GERMAN)
-				german_commander_slots = 1
-				german_ss_slots = 0
-				german_paratrooper_slots = 0
+				german_commander_slots = TRUE
+				german_ss_slots = FALSE
+				german_paratrooper_slots = FALSE
 				german_soldat_slots = remaining_german_slots() + 2
-				german_ss_commander_slots = 0
+				german_ss_commander_slots = FALSE
 			if (20 to 24) // good sized team, some of every role but no SS/para
 				german_primary_job_slots = n_percent_of_job_slots(30, GERMAN)
 				german_secondary_job_slots = n_percent_of_job_slots(20, GERMAN)
-				german_commander_slots = 1
-				german_ss_slots = 0
-				german_paratrooper_slots = 0
+				german_commander_slots = TRUE
+				german_ss_slots = FALSE
+				german_paratrooper_slots = FALSE
 				german_soldat_slots = remaining_german_slots() + 2
-				german_ss_commander_slots = 0
+				german_ss_commander_slots = FALSE
 			if (25 to 29) // good sized team. Let's give them SS or paratroopers, but not both. And more officers.
 				german_primary_job_slots = n_percent_of_job_slots(30, GERMAN)
 				german_secondary_job_slots = n_percent_of_job_slots(20, GERMAN)
-				german_commander_slots = 1
-				german_ss_slots = 0
+				german_commander_slots = TRUE
+				german_ss_slots = FALSE
 				german_paratrooper_slots = n_percent_of_job_slots(25, GERMAN)
-				german_ss_commander_slots = 0
+				german_ss_commander_slots = FALSE
 				german_soldat_slots = remaining_german_slots() + 2
 			if (30 to 34) // large team. They get SS and paratroopers.
 				german_primary_job_slots = n_percent_of_job_slots(25, GERMAN)
 				german_secondary_job_slots = n_percent_of_job_slots(25, GERMAN)
-				german_commander_slots = 1
+				german_commander_slots = TRUE
 				german_ss_slots = n_percent_of_job_slots(25, GERMAN)
 				german_paratrooper_slots = n_percent_of_job_slots(25, GERMAN)
 				german_soldat_slots = remaining_german_slots() + 2
-				german_ss_commander_slots = 1
+				german_ss_commander_slots = TRUE
 			if (35 to INFINITY) // largest team
 				german_primary_job_slots = n_percent_of_job_slots(25, GERMAN)
 				german_secondary_job_slots = n_percent_of_job_slots(25, GERMAN)
-				german_commander_slots = 1
+				german_commander_slots = TRUE
 				german_ss_slots = n_percent_of_job_slots(20, GERMAN)
 				german_paratrooper_slots = n_percent_of_job_slots(20, GERMAN)
 				german_soldat_slots = remaining_german_slots() + 2
-				german_ss_commander_slots = 1
+				german_ss_commander_slots = TRUE
 
 
 		// useful information
 
-		var/primary_german_jobs = 0
-		var/secondary_german_jobs = 0
+		var/primary_german_jobs = FALSE
+		var/secondary_german_jobs = FALSE
 
 		for (var/datum/job/german/j in occupations)
 			if (istype(j))
@@ -326,20 +337,15 @@ var/global/list/fallschirm_landmarks = list()
 					++secondary_german_jobs
 
 
-		#ifdef OCCDEBUG
-		world << "german primary slots/jobs = [round(german_primary_job_slots/primary_german_jobs)]"
-		world << "german secondary slots/jobs = [round(german_secondary_job_slots/secondary_german_jobs)]"
-		#endif
-
 		for (var/datum/job/german/j in occupations)
 
 			if (istype(j))
 				if (istype(j, /datum/job/german/soldier))
 					j.total_positions = german_soldat_slots
 				else if (j.is_primary && !j.is_secondary && !j.is_commander && !j.is_paratrooper && !j.is_SS && !j.is_officer)
-					j.total_positions = max(round(german_primary_job_slots/primary_german_jobs), 1)
+					j.total_positions = max(round(german_primary_job_slots/primary_german_jobs), TRUE)
 				else if (j.is_secondary && !j.is_commander && !j.is_officer && !j.is_paratrooper && !j.is_SS)
-					j.total_positions = max(round(german_secondary_job_slots/secondary_german_jobs), 1)
+					j.total_positions = max(round(german_secondary_job_slots/secondary_german_jobs), TRUE)
 				else if (j.is_commander)
 					if (j.is_SS)
 						j.total_positions = german_ss_commander_slots
@@ -347,7 +353,7 @@ var/global/list/fallschirm_landmarks = list()
 						j.total_positions = german_commander_slots
 				else if (j.is_officer)
 					if (!j.is_squad_leader)
-						j.total_positions = max(round(german_secondary_job_slots/secondary_german_jobs), 1)
+						j.total_positions = max(round(german_secondary_job_slots/secondary_german_jobs), TRUE)
 					else
 						j.total_positions = SL_LIMIT
 				else if (j.is_SS)
@@ -357,119 +363,119 @@ var/global/list/fallschirm_landmarks = list()
 
 			// SPECIAL
 			if (istype(j, /datum/job/german/flamethrower_man))
-				if (clients.len <= 15 || !WW2_train_check())
-					j.total_positions = 0
+				if (clients.len <= 15)
+					j.total_positions = FALSE
 					for (var/obj/item/weapon/storage/backpack/flammenwerfer/F in world)
 						qdel(F)
 
 			else if (istype(j, /datum/job/german/artyman))
 				if (!locate(/obj/machinery/artillery) in world)
-					j.total_positions = 0
+					j.total_positions = FALSE
 				else if (clients.len <= 15)
-					j.total_positions = 0
+					j.total_positions = FALSE
 
 			else if (istype(j, /datum/job/german/anti_tank_crew) || istype(j, /datum/job/german/tankcrew))
 				spawn (5)
 					if (!locate(/obj/tank) in world)
-						j.total_positions = 0
+						j.total_positions = FALSE
 
 			else if (istype(j, /datum/job/german/paratrooper) && (!fallschirm_landmarks.len || clients.len <= 20))
 				german_soldat_slots += german_paratrooper_slots
-				german_paratrooper_slots = 0
-				j.total_positions = 0
+				german_paratrooper_slots = FALSE
+				j.total_positions = FALSE
 
-		for (var/datum/job/russian/j in occupations)
-			if (istype(j, /datum/job/russian/anti_tank_crew) || istype(j, /datum/job/russian/tankcrew))
+		for (var/datum/job/soviet/j in occupations)
+			if (istype(j, /datum/job/soviet/anti_tank_crew) || istype(j, /datum/job/soviet/tankcrew))
 				spawn (5)
 					if (!locate(/obj/tank) in world)
-						j.total_positions = 0
+						j.total_positions = FALSE
 
 		for (var/datum/job/j in occupations)
 			if (j.title == "generic job")
-				j.total_positions = 0
+				j.total_positions = FALSE
 
-		// RUSSIAN jobs
+		// SOVIET jobs
 
 		// decide how many positions of each job type we have based on
 		// number of open slots
 
-		switch (russian_job_slots)
+		switch (soviet_job_slots)
 			if (-INFINITY to 7) // this is so few slots, don't bother with special jobs
-				russian_primary_job_slots = 0
-				russian_secondary_job_slots = 0
-				russian_sturmovik_slots = 0
-				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots() + 2
+				soviet_primary_job_slots = FALSE
+				soviet_secondary_job_slots = FALSE
+				soviet_sturmovik_slots = FALSE
+				soviet_commander_slots = TRUE
+				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (8 to 14) // small but not tiny. Deserves a few primary roles, and no secondary/tertiary
-				russian_primary_job_slots = n_percent_of_job_slots(60, RUSSIAN)
-				russian_secondary_job_slots = 0
-				russian_sturmovik_slots = 0
-				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots() + 2
+				soviet_primary_job_slots = n_percent_of_job_slots(60, SOVIET)
+				soviet_secondary_job_slots = FALSE
+				soviet_sturmovik_slots = FALSE
+				soviet_commander_slots = TRUE
+				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (15 to 19) // decent sized team. Some primary and secondary roles.
-				russian_primary_job_slots = n_percent_of_job_slots(35, RUSSIAN)
-				russian_secondary_job_slots = n_percent_of_job_slots(25, RUSSIAN)
-				russian_sturmovik_slots = 0
-				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots() + 2
+				soviet_primary_job_slots = n_percent_of_job_slots(35, SOVIET)
+				soviet_secondary_job_slots = n_percent_of_job_slots(25, SOVIET)
+				soviet_sturmovik_slots = FALSE
+				soviet_commander_slots = TRUE
+				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (20 to 24) // good sized team, some of every role but no sturms
-				russian_primary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
-				russian_secondary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
-				russian_sturmovik_slots = 0
-				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots() + 2
+				soviet_primary_job_slots = n_percent_of_job_slots(30, SOVIET)
+				soviet_secondary_job_slots = n_percent_of_job_slots(30, SOVIET)
+				soviet_sturmovik_slots = FALSE
+				soviet_commander_slots = TRUE
+				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (25 to 29) // good sized team, they get sturms
-				russian_primary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
-				russian_secondary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
-				russian_commander_slots = 1
-				russian_sturmovik_slots = n_percent_of_job_slots(15, RUSSIAN)
-				russian_soldat_slots = remaining_russian_slots() + 2
+				soviet_primary_job_slots = n_percent_of_job_slots(30, SOVIET)
+				soviet_secondary_job_slots = n_percent_of_job_slots(30, SOVIET)
+				soviet_commander_slots = TRUE
+				soviet_sturmovik_slots = n_percent_of_job_slots(15, SOVIET)
+				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (30 to 34) // large team, they get sturms
-				russian_primary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
-				russian_secondary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
-				russian_sturmovik_slots = n_percent_of_job_slots(15, RUSSIAN)
-				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots() + 2
+				soviet_primary_job_slots = n_percent_of_job_slots(30, SOVIET)
+				soviet_secondary_job_slots = n_percent_of_job_slots(30, SOVIET)
+				soviet_sturmovik_slots = n_percent_of_job_slots(15, SOVIET)
+				soviet_commander_slots = TRUE
+				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (35 to INFINITY) // largest team
-				russian_primary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
-				russian_secondary_job_slots = n_percent_of_job_slots(30, RUSSIAN)
-				russian_sturmovik_slots = n_percent_of_job_slots(15, RUSSIAN)
-				russian_commander_slots = 1
-				russian_soldat_slots = remaining_russian_slots() + 2
+				soviet_primary_job_slots = n_percent_of_job_slots(30, SOVIET)
+				soviet_secondary_job_slots = n_percent_of_job_slots(30, SOVIET)
+				soviet_sturmovik_slots = n_percent_of_job_slots(15, SOVIET)
+				soviet_commander_slots = TRUE
+				soviet_soldat_slots = remaining_soviet_slots() + 2
 
 		// useful information
 
-		var/primary_russian_jobs = 0
-		var/secondary_russian_jobs = 0
+		var/primary_soviet_jobs = FALSE
+		var/secondary_soviet_jobs = FALSE
 
-		for (var/datum/job/russian/j in occupations)
+		for (var/datum/job/soviet/j in occupations)
 			if (istype(j))
-				if (j.is_primary && !j.is_secondary && !j.is_commander && !j.is_officer && !istype(j, /datum/job/russian/soldier) && !j.is_squad_leader)
-					j.is_primary = 1
-					j.is_secondary = 0
-					++primary_russian_jobs
+				if (j.is_primary && !j.is_secondary && !j.is_commander && !j.is_officer && !istype(j, /datum/job/soviet/soldier) && !j.is_squad_leader)
+					j.is_primary = TRUE
+					j.is_secondary = FALSE
+					++primary_soviet_jobs
 				else if (j.is_secondary)
-					j.is_primary = 0
-					j.is_secondary = 1
-					++secondary_russian_jobs
+					j.is_primary = FALSE
+					j.is_secondary = TRUE
+					++secondary_soviet_jobs
 				else
-					j.is_primary = 0
-					j.is_secondary = 0
+					j.is_primary = FALSE
+					j.is_secondary = FALSE
 
-		for (var/datum/job/russian/j in occupations)
+		for (var/datum/job/soviet/j in occupations)
 
 			if (istype(j))
-				if (istype(j, /datum/job/russian/soldier))
-					j.total_positions = russian_soldat_slots
+				if (istype(j, /datum/job/soviet/soldier))
+					j.total_positions = soviet_soldat_slots
 				else if (j.is_primary)
-					j.total_positions = max(round(russian_primary_job_slots/primary_russian_jobs), 1)
+					j.total_positions = max(round(soviet_primary_job_slots/primary_soviet_jobs), TRUE)
 				else if (j.is_secondary)
-					j.total_positions = max(round(russian_secondary_job_slots/secondary_russian_jobs), 1)
+					j.total_positions = max(round(soviet_secondary_job_slots/secondary_soviet_jobs), TRUE)
 				else if (j.is_commander)
-					j.total_positions = russian_commander_slots
+					j.total_positions = soviet_commander_slots
 				else if (j.is_officer)
 					if (!j.is_squad_leader)
-						j.total_positions = max(round(russian_secondary_job_slots/secondary_russian_jobs), 1)
+						j.total_positions = max(round(soviet_secondary_job_slots/secondary_soviet_jobs), TRUE)
 					else
 						j.total_positions = SL_LIMIT
 
@@ -478,13 +484,13 @@ var/global/list/fallschirm_landmarks = list()
 
 		// equalize amount of jobs
 
-		while (total_german_slots() > total_russian_slots())
-			++russian_soldat_slots
-			for (var/datum/job/russian/soldier/j in occupations)
+		while (total_german_slots() > total_soviet_slots())
+			++soviet_soldat_slots
+			for (var/datum/job/soviet/soldier/j in occupations)
 				if (istype(j))
-					j.total_positions = russian_soldat_slots
+					j.total_positions = soviet_soldat_slots
 
-		while (total_russian_slots() > total_german_slots())
+		while (total_soviet_slots() > total_german_slots())
 			++german_soldat_slots
 			for (var/datum/job/german/soldier/j in occupations)
 				if (istype(j))
@@ -494,22 +500,22 @@ var/global/list/fallschirm_landmarks = list()
 		for (var/datum/job/J in occupations)
 			if (allow_italians)
 				if (istype(J, /datum/job/italian))
-					J.total_positions = 1
+					J.total_positions = TRUE
 			else // not sure why I have to do this
 				if (istype(J, /datum/job/italian))
-					J.total_positions = 0
+					J.total_positions = FALSE
 
 			if (allow_ukrainians)
 				if (istype(J, /datum/job/ukrainian))
-					J.total_positions = 1
+					J.total_positions = TRUE
 			else
 				if (istype(J, /datum/job/ukrainian))
-					J.total_positions = 0
+					J.total_positions = FALSE
 
 		// fixes the weirdest bug where total_positions == -1
 		for (var/datum/job/j in occupations)
 			if (j.total_positions == -1)
-				j.total_positions = 0
+				j.total_positions = FALSE
 
 
 	proc/spawn_with_delay(var/mob/new_player/np, var/datum/job/j)
@@ -525,7 +531,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		// occupy a position slot
 
-		j.total_positions -= 1
+		j.total_positions -= TRUE
 
 		spawn (j.spawn_delay)
 			if (np && np.delayed_spawning_as_job == j) // if np hasn't already spawned
@@ -538,9 +544,9 @@ var/global/list/fallschirm_landmarks = list()
 		switch (team)
 			if (GERMAN)
 				return round(german_squad_members/MEMBERS_PER_SQUAD)
-			if (RUSSIAN)
-				return round(russian_squad_members/MEMBERS_PER_SQUAD)
-		return 0
+			if (SOVIET)
+				return round(soviet_squad_members/MEMBERS_PER_SQUAD)
+		return FALSE
 /*
 	proc/can_have_squad_leader(var/team)
 		switch (team)
@@ -548,95 +554,95 @@ var/global/list/fallschirm_landmarks = list()
 				switch (german_squad_members)
 					if (1 to 6)
 						if (!german_squad_leaders)
-							return 1
+							return TRUE
 					if (7 to 12)
-						if (german_squad_leaders <= 1)
-							return 1
+						if (german_squad_leaders <= TRUE)
+							return TRUE
 					if (13 to 18)
 						if (german_squad_leaders <= 2)
-							return 1
+							return TRUE
 					if (19 to INFINITY)
 						if (german_squad_leaders <= 3)
-							return 1
-				return 0
-			if (RUSSIAN)
-				switch (russian_squad_members)
+							return TRUE
+				return FALSE
+			if (SOVIET)
+				switch (soviet_squad_members)
 					if (1 to 6)
-						if (!russian_squad_leaders)
-							return 1
+						if (!soviet_squad_leaders)
+							return TRUE
 					if (7 to 12)
-						if (russian_squad_leaders <= 1)
-							return 1
+						if (soviet_squad_leaders <= TRUE)
+							return TRUE
 					if (13 to 18)
-						if (russian_squad_leaders <= 2)
-							return 1
+						if (soviet_squad_leaders <= 2)
+							return TRUE
 					if (19 to INFINITY)
-						if (russian_squad_leaders <= 3)
-							return 1
-				return 0
-		return 0 // if we aren't german or russian this is irrelevant
+						if (soviet_squad_leaders <= 3)
+							return TRUE
+				return FALSE
+		return FALSE // if we aren't german or soviet this is irrelevant
 			// and will never be called anyway
 			*/
 	proc/must_have_squad_leader(var/team)
 		switch (team)
 			if (GERMAN)
-				if (full_squads(team) > german_squad_leaders)
-					return 1
-			if (RUSSIAN)
-				if (full_squads(team) > russian_squad_leaders)
-					return 1
-		return 0 // not relevant for other teams
+				if (full_squads(team) > german_squad_leaders && !(german_squad_leaders == 4))
+					return TRUE
+			if (SOVIET)
+				if (full_squads(team) > soviet_squad_leaders && !(soviet_squad_leaders == 4))
+					return TRUE
+		return FALSE // not relevant for other teams
 
 	proc/must_not_have_squad_leader(var/team)
 		switch (team)
 			if (GERMAN)
 				if (german_squad_leaders > full_squads(team))
-					return 1
-			if (RUSSIAN)
-				if (russian_squad_leaders > full_squads(team))
-					return 1
-		return 0 // not relevant for other teams
+					return TRUE
+			if (SOVIET)
+				if (soviet_squad_leaders > full_squads(team))
+					return TRUE
+		return FALSE // not relevant for other teams
 
 
 	// too many people joined as a soldier and not enough as SL
-	// return 0 if j is anything but a squad leader
+	// return FALSE if j is anything but a squad leader
 	proc/squad_leader_check(var/mob/new_player/np, var/datum/job/j)
 		if (!j.is_commander && !j.is_nonmilitary && !j.is_SS && !j.is_paratrooper)
 			// we're trying to join as a soldier or officer
 			if (j.is_officer) // handle officer
 				if (must_have_squad_leader(j.base_type_flag())) // only accept SLs
-					if (!istype(j, /datum/job/german/squad_leader) && !istype(j, /datum/job/russian/squad_leader))
+					if (!istype(j, /datum/job/german/squad_leader) && !istype(j, /datum/job/soviet/squad_leader))
 						np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
-						return 0
+						return FALSE
 					else // we're joining as the SL, chill fam
-						return 1
+						return TRUE
 			else
 				if (must_have_squad_leader(j.base_type_flag())) // only accept SLs
 					np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
-					return 0
+					return FALSE
 		else
 			if (must_have_squad_leader(j.base_type_flag()))
 				np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
-				return 0
-		return 1
+				return FALSE
+		return TRUE
 
 	// too many people joined as a SL and not enough as soldier
-	// return 0 if j is a squad leader
+	// return FALSE if j is a squad leader
 	proc/squad_member_check(var/mob/new_player/np, var/datum/job/j)
 		if (!j.is_commander && !j.is_nonmilitary && !j.is_SS && !j.is_paratrooper)
 			// we're trying to join as a soldier or officer
 			if (j.is_officer) // handle officer
 				if (must_not_have_squad_leader(j.base_type_flag())) // don't accept SLs
-					if (istype(j, /datum/job/german/squad_leader) || istype(j, /datum/job/russian/squad_leader))
+					if (istype(j, /datum/job/german/squad_leader) || istype(j, /datum/job/soviet/squad_leader))
 						np << "<span class = 'danger'>Squad #[current_german_squad] already has a Squad Leader! You can't join as one yet.</span>"
-						return 0
+						return FALSE
 					else
-						return 1
+						return TRUE
 		else
 			if (must_have_squad_leader(j.base_type_flag()))
 				np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
-				return 0
-		return 1
+				return FALSE
+		return TRUE
 
 	proc/relocate(var/mob/living/carbon/human/H)
 
@@ -656,11 +662,11 @@ var/global/list/fallschirm_landmarks = list()
 		if(istype(H.original_job, /datum/job/german/paratrooper))
 			return
 
-		if(turfs && turfs.len > 0)
+		if(turfs && turfs.len > FALSE)
 			H.loc = pick(turfs)
 
 			if (!locate(H.loc) in turfs)
-				var/tries = 0
+				var/tries = FALSE
 				while (tries <= 5 && !locate(H.loc) in turfs)
 					++tries
 					H.loc = pick(turfs)
@@ -673,20 +679,20 @@ var/global/list/fallschirm_landmarks = list()
 		var/list/all_jobs = typesof(/datum/job)
 		if(!all_jobs.len)
 			world << "\red \b Error setting up jobs, no job datums found"
-			return 0
+			return FALSE
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
 			if(!job)	continue
 			if(job.faction != faction)	continue
 			occupations += job
 
-		return 1
+		return TRUE
 
 
 	proc/Debug(var/text)
-		if(!Debug2)	return 0
+		if(!Debug2)	return FALSE
 		job_debug.Add(text)
-		return 1
+		return TRUE
 
 
 	proc/GetJob(var/rank)
@@ -700,13 +706,12 @@ var/global/list/fallschirm_landmarks = list()
 		return player.original_job.title
 	//	return player.client.prefs.GetPlayerAltTitle(GetJob(rank))
 
-	proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0, var/reinforcements = 0)
+	proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = FALSE, var/reinforcements = FALSE)
 		Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
 		if(player && rank)
 			var/datum/job/job = GetJob(rank)
-			if(!job)	return 0
-			if (player.client && player.client.quickBan_isbanned(job)) return 0
-			if(!job.player_old_enough(player.client)) return 0
+			if(!job)	return FALSE
+			if(!job.player_old_enough(player.client)) return FALSE
 			var/position_limit = job.total_positions
 			if((job.current_positions < position_limit) || position_limit == -1 || reinforcements)
 				Debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
@@ -719,16 +724,16 @@ var/global/list/fallschirm_landmarks = list()
 					player.mind.role_alt_title = GetPlayerAltTitle(player, rank)
 				unassigned -= player
 				job.current_positions++
-				return 1
+				return TRUE
 		Debug("AR has failed, Player: [player], Rank: [rank]")
-		return 0
+		return FALSE
 
 	proc/FreeRole(var/rank)	//making additional slot on the fly
 		var/datum/job/job = GetJob(rank)
 		if(job && job.current_positions >= job.total_positions && job.total_positions != -1)
 			job.total_positions++
-			return 1
-		return 0
+			return TRUE
+		return FALSE
 
 	proc/FindOccupationCandidates(datum/job/job, level, flag)
 		return
@@ -810,7 +815,7 @@ var/global/list/fallschirm_landmarks = list()
 
 	///This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
 	proc/FillHeadPosition()
-		for(var/level = 1 to 3)
+		for(var/level = TRUE to 3)
 			for(var/command_position in command_positions)
 				var/datum/job/job = GetJob(command_position)
 				if(!job)	continue
@@ -846,13 +851,13 @@ var/global/list/fallschirm_landmarks = list()
 							weightedCandidates[V] = 3 // Geezer.
 						else
 							// If there's ABSOLUTELY NOBODY ELSE
-							if(candidates.len == 1) weightedCandidates[V] = 1
+							if(candidates.len == TRUE) weightedCandidates[V] = TRUE
 
 
 				var/mob/new_player/candidate = pickweight(weightedCandidates)
 				if(AssignRole(candidate, command_position))
-					return 1
-		return 0
+					return TRUE
+		return FALSE
 
 
 	///This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
@@ -895,7 +900,7 @@ var/global/list/fallschirm_landmarks = list()
 				unassigned += player
 
 		Debug("DO, Len: [unassigned.len]")
-		if(unassigned.len == 0)	return 0
+		if(unassigned.len == FALSE)	return FALSE
 
 		//Shuffle players and jobs
 		unassigned = shuffle(unassigned)
@@ -903,7 +908,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		HandleFeedbackGathering()
 
-		for(var/level = 1 to 3) //Spawn civs
+		for(var/level = TRUE to 3) //Spawn civs
 			var/list/candidates = FindSideOccupationCandidates(CIVILIAN, level)
 			for(var/mob/new_player/player in candidates)
 				for(var/datum/job/job in shuffledoccupations)
@@ -932,9 +937,9 @@ var/global/list/fallschirm_landmarks = list()
 							unassigned -= player
 							break
 		/*
-		var/spawnto = RUSSIAN
-		for(var/level = 1 to 3)
-			var/list/rucandidates = FindSideOccupationCandidates(RUSSIAN, level)
+		var/spawnto = SOVIET
+		for(var/level = TRUE to 3)
+			var/list/rucandidates = FindSideOccupationCandidates(SOVIET, level)
 			var/list/encandidates = FindSideOccupationCandidates(GERMAN, level)
 
 
@@ -942,7 +947,7 @@ var/global/list/fallschirm_landmarks = list()
 
 			while(1)
 				if(ticker.ruforce_count < ticker.enforce_count)
-					department = RUSSIAN
+					department = SOVIET
 				else
 					department = GERMAN
 				Debug("DO working, Department: [department]")
@@ -952,7 +957,7 @@ var/global/list/fallschirm_landmarks = list()
 				if(!candidates.len)
 					if(department == CIVILIAN)
 						Debug("DO no civ candidades, Level: [level]")
-						civ_no_candidates = 1
+						civ_no_candidates = TRUE
 						continue
 					else
 						Debug("DO no available players, Level: [level]")
@@ -961,16 +966,16 @@ var/global/list/fallschirm_landmarks = list()
 				var/mob/new_player/player = pick(candidates)
 
 				if(department == CIVILIAN)
-					civ_full = 1
+					civ_full = TRUE
 					for(var/datum/job/job in shuffledoccupations)
 						if(!job)	continue
 						if(job.department_flag != CIVILIAN)	continue
 						if(job.current_positions < job.total_positions || job.total_positions == -1)
-							civ_full = 0
+							civ_full = FALSE
 							break
 					Debug("DO no more civilian slots")
 
-				var/no_job = 1
+				var/no_job = TRUE
 				for(var/datum/job/job in shuffledoccupations)
 					if(!job)
 						Debug("DO no job error, Player: [player]")
@@ -995,7 +1000,7 @@ var/global/list/fallschirm_landmarks = list()
 							Debug("DO pass, Player: [player], Level:[level], Job:[job.title]")
 							AssignRole(player, job.title)
 							unassigned -= player
-							no_job = 0
+							no_job = FALSE
 							break
 
 				if(no_job)
@@ -1013,7 +1018,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		//People who wants to be assistants, sure, go on.
 		/*
-		Debug("DO, Running Assistant Check 1")
+		Debug("DO, Running Assistant Check TRUE")
 		var/datum/job/assist = new DEFAULT_JOB_TYPE ()
 		var/list/assistant_candidates = FindOccupationCandidates(assist, 3)
 		Debug("AC1, Candidates: [assistant_candidates.len]")
@@ -1044,7 +1049,7 @@ var/global/list/fallschirm_landmarks = list()
 
 		// Loop through all levels from high to low
 		var/list/shuffledoccupations = shuffle(occupations)
-		for(var/level = 1 to 3)
+		for(var/level = TRUE to 3)
 			//Check the head jobs first each level
 			CheckHeadPositions(level)
 
@@ -1081,7 +1086,7 @@ var/global/list/fallschirm_landmarks = list()
 				GiveRandomJob(player)
 		/*
 		Old job system
-		for(var/level = 1 to 3)
+		for(var/level = TRUE to 3)
 			for(var/datum/job/job in occupations)
 				Debug("Checking job: [job]")
 				if(!job)
@@ -1110,13 +1115,13 @@ var/global/list/fallschirm_landmarks = list()
 		//For ones returning to lobby
 		for(var/mob/new_player/player in unassigned)
 			if(player.client.prefs.alternate_option == RETURN_TO_LOBBY)
-				player.ready = 0
+				player.ready = FALSE
 				player.new_player_panel_proc()
 				unassigned -= player
-		return 1
+		return TRUE
 		*/ */
 
-	proc/EquipRank(var/mob/living/carbon/human/H, var/rank, var/joined_late = 0)
+	proc/EquipRank(var/mob/living/carbon/human/H, var/rank, var/joined_late = FALSE)
 		if(!H)	return null
 
 		var/datum/job/job = GetJob(rank)
@@ -1136,9 +1141,9 @@ var/global/list/fallschirm_landmarks = list()
 						if(G.allowed_roles)
 							for(var/job_name in G.allowed_roles)
 								if(job.title == job_name)
-									permitted = 1
+									permitted = TRUE
 						else
-							permitted = 1
+							permitted = TRUE
 
 						if(!permitted)
 							H << "\red Your current job or whitelist status does not permit you to spawn with [thing]!"
@@ -1160,10 +1165,33 @@ var/global/list/fallschirm_landmarks = list()
 
 			job.equip(H)
 
+			// civs and partisans
+			if (istype(job, /datum/job/partisan))
+				H.equip_coat(/obj/item/clothing/suit/coat/civilian)
+			else if (istype(job, /datum/job/german))
+				if (job.is_officer)
+					H.equip_coat(/obj/item/clothing/suit/coat/german/officer)
+				else if (job.is_SS)
+					H.equip_coat(/obj/item/clothing/suit/coat/german/SS)
+				else
+					H.equip_coat(/obj/item/clothing/suit/coat/german)
+			else if (istype(job, /datum/job/soviet))
+				if (job.is_officer)
+					H.equip_coat(/obj/item/clothing/suit/coat/soviet/officer)
+				else
+					H.equip_coat(/obj/item/clothing/suit/coat/soviet)
 			// Give the guy some ammo for his gun
 			spawn (0)
 				if (istype(ticker.mode, /datum/game_mode/ww2))
 					for (var/obj/item/weapon/gun/projectile/gun in H)
+						if (!H.r_store)
+							if (gun.magazine_type)
+								H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_r_store)
+						if (!H.l_store)
+							if (gun.magazine_type)
+								H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_l_store)
+						break // but only the first gun we find
+					for (var/obj/item/weapon/gun/projectile/gun in H.belt)
 						if (!H.r_store)
 							if (gun.magazine_type)
 								H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_r_store)
@@ -1178,10 +1206,10 @@ var/global/list/fallschirm_landmarks = list()
 
 			if (names_used[H.real_name])
 				H.original_job.give_random_name(H)
-			names_used[H.real_name] = 1
+			names_used[H.real_name] = TRUE
 
 			switch (job.base_type_flag())
-				if (RUSSIAN)
+				if (SOVIET)
 					++ruforce_count
 				if (CIVILIAN)
 					++civilian_count
@@ -1232,10 +1260,10 @@ var/global/list/fallschirm_landmarks = list()
 				switch (H.original_job.base_type_flag())
 					if (GERMAN)
 						spawn_location = "JoinLateHeer"
-					if (RUSSIAN)
+					if (SOVIET)
 						spawn_location = "JoinLateRA"
 
-			// may fix russians spawning in the german train, unknown - Kach
+			// may fix soviets spawning in the german train, unknown - Kach
 			if (!spawn_location)
 				switch (splittext(H.original_job.spawn_location, "-")[1])
 					if ("JoinLateHeer")
@@ -1251,8 +1279,8 @@ var/global/list/fallschirm_landmarks = list()
 
 			if (H.original_job.base_type_flag() == GERMAN)
 				current_german_squad = max(current_german_squad, H.squad_faction ? H.squad_faction.actual_number : current_german_squad)
-			else if (H.original_job.base_type_flag() == RUSSIAN)
-				current_russian_squad = max(current_russian_squad, H.squad_faction ? H.squad_faction.actual_number : current_russian_squad)
+			else if (H.original_job.base_type_flag() == SOVIET)
+				current_soviet_squad = max(current_soviet_squad, H.squad_faction ? H.squad_faction.actual_number : current_soviet_squad)
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "got past squadsetting code"
@@ -1265,11 +1293,11 @@ var/global/list/fallschirm_landmarks = list()
 						spawn_location = "JoinLateHeer-S[current_german_squad]"
 					if ("JoinLateHeerSL")
 						spawn_location = "JoinLateHeer-S[current_german_squad]-Leader"
-					// Russian
+					// Soviet
 					if ("JoinLateRA")
-						spawn_location = "JoinLateRA-S[current_russian_squad]"
+						spawn_location = "JoinLateRA-S[current_soviet_squad]"
 					if ("JoinLateRASL")
-						spawn_location = "JoinLateRA-S[current_russian_squad]-Leader"
+						spawn_location = "JoinLateRA-S[current_soviet_squad]-Leader"
 
 			H.job_spawn_location = spawn_location
 
@@ -1287,32 +1315,32 @@ var/global/list/fallschirm_landmarks = list()
 								H << german_squad_info[current_german_squad]
 						else
 							spawn (2)
-								H << "<i>Your squad, #[current_german_squad], does not have a Squad Leader yet. Wait for one before deploying.</i>"
+								H << "<i>Your squad, #[current_german_squad], does not have a Squad Leader yet. Consider waiting for one before deploying.</i>"
 
-			else if (isrussiansquadmember_or_leader(H))
-				if (isrussiansquadleader(H))
-					russian_squad_info[current_russian_squad] = "<b>The leader of your squad (#[current_russian_squad]) is [H.real_name]. He has a golden HUD.</b>"
-					world << "<b>The leader of Soviet Squad #[current_russian_squad] is [H.real_name]!</b>"
-					russian_officer_squad_info[current_russian_squad] = "<b><i>The leader of squad #[current_russian_squad] is [H.real_name].</i></b>"
-					++russian_squad_leaders
+			else if (issovietsquadmember_or_leader(H))
+				if (issovietsquadleader(H))
+					soviet_squad_info[current_soviet_squad] = "<b>The leader of your squad (#[current_soviet_squad]) is [H.real_name]. He has a golden HUD.</b>"
+					world << "<b>The leader of Soviet Squad #[current_soviet_squad] is [H.real_name]!</b>"
+					soviet_officer_squad_info[current_soviet_squad] = "<b><i>The leader of squad #[current_soviet_squad] is [H.real_name].</i></b>"
+					++soviet_squad_leaders
 				else
 					if (!job.is_officer)
-						++russian_squad_members
-						if (russian_squad_info[current_russian_squad])
+						++soviet_squad_members
+						if (soviet_squad_info[current_soviet_squad])
 							spawn (0)
-								H << russian_squad_info[current_russian_squad]
+								H << soviet_squad_info[current_soviet_squad]
 						else
 							spawn (2)
-								H << "<i>Your squad, #[current_russian_squad], does not have a Squad Leader yet. Wait for one before deploying.</i>"
+								H << "<i>Your squad, #[current_soviet_squad], does not have a Squad Leader yet. Consider waiting for one before deploying.</i>"
 
-			else if (H.original_job.is_officer && H.original_job.base_type_flag() == RUSSIAN)
+			else if (H.original_job.is_officer && H.original_job.base_type_flag() == SOVIET)
 				spawn (5)
-					for (var/i in 1 to russian_officer_squad_info.len)
-						if (russian_officer_squad_info[i])
-							H << "<br>[russian_officer_squad_info[i]]"
+					for (var/i in TRUE to soviet_officer_squad_info.len)
+						if (soviet_officer_squad_info[i])
+							H << "<br>[soviet_officer_squad_info[i]]"
 			else if (H.original_job.is_officer && H.original_job.base_type_flag() == GERMAN)
 				spawn (5)
-					for (var/i in 1 to german_officer_squad_info.len)
+					for (var/i in TRUE to german_officer_squad_info.len)
 						if (german_officer_squad_info[i])
 							H << "<br>[german_officer_squad_info[i]]"
 
@@ -1363,10 +1391,14 @@ var/global/list/fallschirm_landmarks = list()
 			 * will get lanterns - Kachnov */
 
 			if (isDarkOutside())
-				H.equip_to_slot_or_del(new/obj/item/device/flashlight/lantern(H), slot_belt)
+				H.equip_to_slot_or_del(new/obj/item/device/flashlight(H), slot_belt)
 
-			// this spawns keys now
 			spawnKeys(H, rank, alt_title)
+
+			// free belt slot, give us a flashlight anyway
+			if (!slot_belt)
+				H.equip_to_slot_or_del(new/obj/item/device/flashlight(H), slot_belt)
+
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO after spawnID()"
@@ -1377,9 +1409,9 @@ var/global/list/fallschirm_landmarks = list()
 			//Gives glasses to the vision impaired
 			if(H.disabilities & NEARSIGHTED)
 				var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
-				if(equipped != 1)
+				if(equipped != TRUE)
 					var/obj/item/clothing/glasses/G = H.glasses
-					G.prescription = 1
+					G.prescription = TRUE
 
 			BITSET(H.hud_updateflag, ID_HUD)
 			BITSET(H.hud_updateflag, IMPLOYAL_HUD)
@@ -1394,10 +1426,9 @@ var/global/list/fallschirm_landmarks = list()
 
 			return H
 
-
 	proc/spawnKeys(var/mob/living/carbon/human/H, rank, title)
 
-		if(!H)	return 0
+		if(!H)	return FALSE
 
 		var/datum/job/job = null
 		for(var/datum/job/J in occupations)
@@ -1409,7 +1440,7 @@ var/global/list/fallschirm_landmarks = list()
 			spawn_keys(H, rank, job)
 			H << "<i>Click on a door with your <b>keychain</b> to open it. It will select the right key for you. To put the keychain in your hand, <b>drag</b> it.</i>"
 
-		return 1
+		return TRUE
 
 	proc/spawn_keys(var/mob/living/carbon/human/H, rank, var/datum/job/job)
 
@@ -1422,7 +1453,7 @@ var/global/list/fallschirm_landmarks = list()
 		if (!H.belt) // first, try to equip it as their belt
 			H.equip_to_slot_or_del(keychain, slot_belt)
 		else // DISABLED because bugs
-			if (istype(H.belt, /obj/item/weapon/storage/belt) && 0 == 1) // try to put it in their belt
+			if (istype(H.belt, /obj/item/weapon/storage/belt) && FALSE == TRUE) // try to put it in their belt
 				var/obj/item/weapon/storage/belt/belt = H.belt
 				if (belt.can_be_inserted(keychain))
 					belt.handle_item_insertion(keychain)
@@ -1444,8 +1475,8 @@ var/global/list/fallschirm_landmarks = list()
 
 	proc/is_side_locked(side)
 		if(!ticker)
-			return 1
-		if(side == RUSSIAN)
+			return TRUE
+		if(side == SOVIET)
 			if (side_is_hardlocked(side))
 				return 2
 			return !ticker.can_latejoin_ruforce
@@ -1453,32 +1484,36 @@ var/global/list/fallschirm_landmarks = list()
 			if (side_is_hardlocked(side))
 				return 2
 			return !ticker.can_latejoin_geforce
-		else if (side == PARTISAN) // does this account for civs?
-			return game_started
-		return 0
+		else if (side == CIVILIAN)
+			return map.game_really_started()
+		else if (side == PARTISAN)
+			return map.game_really_started()
+		return FALSE
 
-	// this is a solution to 5 germans and 1 russian, on lowpop.
+	// this is a solution to 5 germans and TRUE soviet, on lowpop.
 	proc/side_is_hardlocked(side)
 		// when it's highpop enough for partisans
 		// there aren't enough partisan roles for hardlocking to matter
-		// for Russians and Germans, it's another matter
+		// for soviets and Germans, it's another matter
 		// the generation of these two lists may take a lot of extra CPU,
 		// but it's important if we want to keep up to date.
 
 		// todo: faction lists structured like player_list (ie german_list)
 		var/germans = n_of_side(GERMAN)
-		var/russians = n_of_side(RUSSIAN)
+		var/soviets = n_of_side(SOVIET)
 
 		switch (side)
 			if (PARTISAN)
-				return 0
+				return FALSE
 			if (CIVILIAN)
-				return 0
+				return FALSE
 			if (GERMAN)
 				if (player_list.len >= 2 && player_list.len <= 20)
 					if (germans >= ceil(player_list.len/2))
-						return 1
-			if (RUSSIAN)
+						return TRUE
+			if (SOVIET)
 				if (player_list.len >= 2 && player_list.len <= 20)
-					if (russians >= ceil(player_list.len/2))
-						return 1
+					if (soviets >= ceil(player_list.len/2))
+						return TRUE
+			if (UKRAINIAN, ITALIAN)
+				return TRUE

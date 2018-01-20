@@ -11,11 +11,15 @@ var/supplytrain_interval = 1200 // todo: config setting
 	spawn while (1)
 		// main train
 		german_train_master.Process()
-		german_train_master.sound_loop()
+
+		if (german_train_master.moving)
+			german_train_master.sound_loop()
 
 		// supply train
 		german_supplytrain_master.Process()
-		german_supplytrain_master.sound_loop()
+
+		if (german_supplytrain_master.moving)
+			german_supplytrain_master.sound_loop()
 
 		train_loop_interval = round(8/german_train_master.velocity)
 
@@ -28,20 +32,21 @@ var/supplytrain_interval = 1200 // todo: config setting
 
 		if (!german_supplytrain_master.moving)
 
-			var/stopthetrain = 0
+			var/stopthetrain = FALSE
 
 			for (var/obj/train_car_center/tcc in german_supplytrain_master.train_car_centers)
 				for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
 					if (locate(/obj/structure/closet/crate) in get_turf(tpt))
 						if (german_supplytrain_master.direction == "FORWARDS")
-							stopthetrain = 1
+							stopthetrain = TRUE
 							break
 
 			for (var/mob/living/m in living_mob_list)
-				if (!istype(m.loc, /obj/structure/largecrate)) // puppers
-					if (istype(get_area(m), /area/prishtina/german/armory/train))
-						stopthetrain = 1
-						break
+				if (m.stat != DEAD)
+					if (!istype(m.loc, /obj/structure/largecrate)) // puppers
+						if (istype(get_area(m), /area/prishtina/german/armory/train))
+							stopthetrain = TRUE
+							break
 
 			if (stopthetrain)
 				if (world.time > next_supplytrain_message)
@@ -55,15 +60,15 @@ var/supplytrain_interval = 1200 // todo: config setting
 					german_supplytrain_master.announce("The Supply Train is now departing from the armory. It will arrive again in [supplytrain_interval/600] minutes.")
 					if (!german_supplytrain_master.invisible)
 						german_supplytrain_master.update_invisibility(1)
-					german_supplytrain_master.here = 0
+					german_supplytrain_master.here = FALSE
 				if ("BACKWARDS")
 					german_supplytrain_master.direction = "FORWARDS"
 					german_supplytrain_master.announce("The Supply Train is now arriving at the armory. It will depart in [supplytrain_interval/600] minutes.")
 					if (german_supplytrain_master.invisible)
 						german_supplytrain_master.update_invisibility(0)
-					german_supplytrain_master.here = 1
+					german_supplytrain_master.here = TRUE
 
-			german_supplytrain_master.moving = 1
+			german_supplytrain_master.moving = TRUE
 
 		skipmovement
 

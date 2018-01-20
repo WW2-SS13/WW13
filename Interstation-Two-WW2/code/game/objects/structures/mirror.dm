@@ -4,9 +4,9 @@
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
-	density = 0
-	anchored = 1
-	var/shattered = 0
+	density = FALSE
+	anchored = TRUE
+	var/shattered = FALSE
 	var/list/ui_users = list()
 
 /obj/structure/mirror/attack_hand(mob/user as mob)
@@ -23,9 +23,9 @@
 
 /obj/structure/mirror/proc/shatter()
 	if(shattered)	return
-	shattered = 1
+	shattered = TRUE
 	icon_state = "mirror_broke"
-	playsound(src, "shatter", 70, 1)
+	playsound(src, "shatter", 70, TRUE)
 	desc = "Oh no, seven years of bad luck!"
 
 
@@ -35,12 +35,12 @@
 		if(!shattered)
 			shatter()
 		else
-			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 	..()
 
 /obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
 	if(shattered)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 		return
 
 	if(prob(I.force * 2))
@@ -48,20 +48,20 @@
 		shatter()
 	else
 		visible_message("<span class='warning'>[user] hits [src] with [I]!</span>")
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 70, 1)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 70, TRUE)
 
 /obj/structure/mirror/attack_generic(var/mob/user, var/damage)
 	attack_animation(user)
 	if(shattered)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
-		return 0
+		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
+		return FALSE
 
 	if(damage)
 		user.visible_message("<span class='danger'>[user] smashes [src]!</span>")
 		shatter()
 	else
 		user.visible_message("<span class='danger'>[user] hits [src] and bounces off!</span>")
-	return 1
+	return TRUE
 
 /obj/structure/mirror/Destroy()
 	for(var/user in ui_users)

@@ -3,7 +3,7 @@
 	desc = "A dice with six sides."
 	icon = 'icons/obj/dice.dmi'
 	icon_state = "d66"
-	w_class = 1
+	w_class = TRUE
 	var/sides = 6
 	attack_verb = list("diced")
 
@@ -63,7 +63,7 @@
 	var/comment = ""
 	if(sides == 20 && result == 20)
 		comment = "Nat 20!"
-	else if(sides == 20 && result == 1)
+	else if(sides == 20 && result == TRUE)
 		comment = "Ouch, bad luck."
 	icon_state = "[name][result]"
 	user.visible_message("<span class='notice'>[user] has thrown [src]. It lands on [result]. [comment]</span>", \

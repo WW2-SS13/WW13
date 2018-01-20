@@ -25,22 +25,22 @@
 	if(istype(H))
 		if(H != src && check_shields(0, null, H, H.targeted_organ, H.name))
 			H.do_attack_animation(src)
-			return 0
+			return FALSE
 
 	/*	if(istype(H.gloves, /obj/item/clothing/gloves/boxing/hologlove))
 			H.do_attack_animation(src)
 			var/damage = rand(0, 9)
 			if(!damage)
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, -1)
 				visible_message("\red <B>[H] has attempted to punch [src]!</B>")
-				return 0
+				return FALSE
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.targeted_organ))
 			var/armor_block = run_armor_check(affecting, "melee")
 
 			if(HULK in H.mutations)
 				damage += 5
 
-			playsound(loc, "punch", 25, 1, -1)
+			playsound(loc, "punch", 25, TRUE, -1)
 
 			visible_message("\red <B>[H] has punched [src]!</B>")
 
@@ -65,17 +65,17 @@
 					return
 				if((H.head && (H.head.body_parts_covered & FACE)) || (H.wear_mask && (H.wear_mask.body_parts_covered & FACE)))
 					H << "<span class='notice'>Remove your mask!</span>"
-					return 0
+					return FALSE
 				if((head && (head.body_parts_covered & FACE)) || (wear_mask && (wear_mask.body_parts_covered & FACE)))
 					H << "<span class='notice'>Remove [src]'s mask!</span>"
-					return 0
+					return FALSE
 
 				if (!cpr_time)
-					return 0
+					return FALSE
 
-				cpr_time = 0
+				cpr_time = FALSE
 				spawn(30)
-					cpr_time = 1
+					cpr_time = TRUE
 
 				H.visible_message("<span class='danger'>\The [H] is trying perform CPR on \the [src]!</span>")
 
@@ -90,12 +90,12 @@
 
 			else
 				help_shake_act(M)
-			return 1
+			return TRUE
 
 		if(I_GRAB)
 			if(M == src || anchored)
-				return 0
-			for(var/obj/item/weapon/grab/G in src.grabbed_by)
+				return FALSE
+			for(var/obj/item/weapon/grab/G in grabbed_by)
 				if(G.assailant == M)
 					M << "<span class='notice'>You already grabbed [src].</span>"
 					return
@@ -112,9 +112,9 @@
 			LAssailant = M
 
 			H.do_attack_animation(src)
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 			visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
-			return 1
+			return TRUE
 
 		if(I_HURT)
 			if(M.targeted_organ == "mouth" && wear_mask && istype(wear_mask, /obj/item/weapon/grenade))
@@ -132,35 +132,35 @@
 				return
 
 			var/rand_damage = rand(1, 5)
-			var/block = 0
-			var/accurate = 0
+			var/block = FALSE
+			var/accurate = FALSE
 			var/hit_zone = H.targeted_organ
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
 
 			if(!affecting || affecting.is_stump())
 				M << "<span class='danger'>They are missing that limb!</span>"
-				return 1
+				return TRUE
 
-			switch(src.a_intent)
+			switch(a_intent)
 				if(I_HELP)
 					// We didn't see this coming, so we get the full blow
 					rand_damage = 5
-					accurate = 1
+					accurate = TRUE
 				if(I_HURT, I_GRAB)
 					// We're in a fighting stance, there's a chance we block
-					if(src.canmove && src!=H && prob(20))
-						block = 1
+					if(canmove && src!=H && prob(20))
+						block = TRUE
 
 			if (M.grabbed_by.len)
 				// Someone got a good grip on them, they won't be able to do much damage
 				rand_damage = max(1, rand_damage - 2)
 
-			if(src.grabbed_by.len || src.buckled || !src.canmove || src==H)
-				accurate = 1 // certain circumstances make it impossible for us to evade punches
+			if(grabbed_by.len || buckled || !canmove || src==H)
+				accurate = TRUE // certain circumstances make it impossible for us to evade punches
 				rand_damage = 5
 
 			// Process evasion and blocking
-			var/miss_type = 0
+			var/miss_type = FALSE
 			var/attack_message
 			if(!accurate)
 				/* ~Hubblenaut
@@ -190,28 +190,28 @@
 				if(prob(80))
 					hit_zone = ran_zone(hit_zone)
 				if(prob(15) && hit_zone != "chest") // Missed!
-					if(!src.lying)
+					if(!lying)
 						attack_message = "[H] attempted to strike [src], but missed!"
 					else
 						attack_message = "[H] attempted to strike [src], but \he rolled out of the way!"
-						src.set_dir(pick(cardinal))
-					miss_type = 1
+						set_dir(pick(cardinal))
+					miss_type = TRUE
 
 			if(!miss_type && block)
 				attack_message = "[H] went for [src]'s [affecting.name] but was blocked!"
 				miss_type = 2
 
 			var/hitcheck = rand(0, 9)
-			if(istype(affecting, /obj/item/organ/external/head) && prob(hitcheck * (hit_zone == "mouth" ? 5 : 1))) //MUCH higher chance to knock out teeth if you aim for mouth
+			if(istype(affecting, /obj/item/organ/external/head) && prob(hitcheck * (hit_zone == "mouth" ? 5 : TRUE))) //MUCH higher chance to knock out teeth if you aim for mouth
 				var/obj/item/organ/external/head/U = affecting
 				if(U.knock_out_teeth(get_dir(H, src), round(rand(28, 38) * ((hitcheck*2)/100))))
-					src.visible_message("<span class='danger'>Some of [src]'s teeth sail off in an arc!</span>", \
+					visible_message("<span class='danger'>Some of [src]'s teeth sail off in an arc!</span>", \
 										"<span class='userdanger'>Some of [src]'s teeth sail off in an arc!</span>")
 
 			// See what attack they use
 			var/datum/unarmed_attack/attack = H.get_unarmed_attack(src, hit_zone)
 			if(!attack)
-				return 0
+				return FALSE
 
 			H.do_attack_animation(src)
 			if(!attack_message)
@@ -219,22 +219,27 @@
 			else
 				H.visible_message("<span class='danger'>[attack_message]</span>")
 
-			playsound(loc, ((miss_type) ? (miss_type == 1 ? attack.miss_sound : 'sound/weapons/thudswoosh.ogg') : attack.attack_sound), 25, 1, -1)
-			H.attack_log += text("\[[time_stamp()]\] <font color='red'>[miss_type ? (miss_type == 1 ? "Missed" : "Blocked") : "[pick(attack.attack_verb)]"] [src.name] ([src.ckey])</font>")
-			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>[miss_type ? (miss_type == 1 ? "Was missed by" : "Has blocked") : "Has Been [pick(attack.attack_verb)]"] by [H.name] ([H.ckey])</font>")
-			msg_admin_attack("[key_name(H)] [miss_type ? (miss_type == 1 ? "has missed" : "was blocked by") : "has [pick(attack.attack_verb)]"] [key_name(src)]")
+			playsound(loc, ((miss_type) ? (miss_type == TRUE ? attack.miss_sound : 'sound/weapons/thudswoosh.ogg') : attack.attack_sound), 25, TRUE, -1)
+			H.attack_log += text("\[[time_stamp()]\] <font color='red'>[miss_type ? (miss_type == TRUE ? "Missed" : "Blocked") : "[pick(attack.attack_verb)]"] [name] ([ckey])</font>")
+			attack_log += text("\[[time_stamp()]\] <font color='orange'>[miss_type ? (miss_type == TRUE ? "Was missed by" : "Has blocked") : "Has Been [pick(attack.attack_verb)]"] by [H.name] ([H.ckey])</font>")
+			msg_admin_attack("[key_name(H)] [miss_type ? (miss_type == TRUE ? "has missed" : "was blocked by") : "has [pick(attack.attack_verb)]"] [key_name(src)]")
 
 			if(miss_type)
-				return 0
+				return FALSE
 
 			var/real_damage = rand_damage
 			real_damage += attack.get_unarmed_damage(H)
 			real_damage *= damage_multiplier
 			rand_damage *= damage_multiplier
+
 			if(HULK in H.mutations)
 				real_damage *= 2 // Hulks do twice the damage
 				rand_damage *= 2
 			real_damage = max(1, real_damage)
+
+			// Apply stat effects
+			real_damage *= H.getStatCoeff("strength")
+			real_damage /= getStatCoeff("strength")
 
 			var/armour = run_armor_check(affecting, "melee")
 			// Apply additional unarmed effects.
@@ -244,10 +249,10 @@
 			apply_damage(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, armour, sharp=attack.sharp, edge=attack.edge)
 
 		if(I_DISARM)
-			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
-			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>")
+			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [name] ([ckey])</font>")
+			attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>")
 
-			msg_admin_attack("[key_name(M)] disarmed [src.name] ([src.ckey])")
+			msg_admin_attack("[key_name(M)] disarmed [name] ([ckey])")
 			M.do_attack_animation(src)
 
 			if(w_uniform)
@@ -271,7 +276,7 @@
 			if(!(species.flags & NO_SLIP) && randn <= 25)
 				var/armor_check = run_armor_check(affecting, "melee")
 				apply_effect(3, WEAKEN, armor_check)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 				if(armor_check < 2)
 					visible_message("<span class='danger'>[M] has pushed [src]!</span>")
 				else
@@ -281,7 +286,7 @@
 			if(randn <= 60)
 				//See about breaking grips or pulls
 				if(break_all_grabs(M))
-					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 					return
 
 				//Actually disarm them
@@ -289,10 +294,10 @@
 					if(I)
 						drop_from_inventory(I)
 						visible_message("<span class='danger'>[M] has disarmed [src]!</span>")
-						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 						return
 
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, -1)
 			visible_message("\red <B>[M] attempted to disarm [src]!</B>")
 	return
 
@@ -304,9 +309,9 @@
 	if(!damage || !istype(user))
 		return
 
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
-	src.visible_message("<span class='danger'>[user] has [attack_message] [src]!</span>")
+	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
+	visible_message("<span class='danger'>[user] has [attack_message] [src]!</span>")
 	user.do_attack_animation(src)
 
 	var/dam_zone = pick(organs_by_name)
@@ -314,54 +319,54 @@
 	var/armor_block = run_armor_check(affecting, "melee")
 	apply_damage(damage, BRUTE, affecting, armor_block)
 	updatehealth()
-	return 1
+	return TRUE
 
 //Used to attack a joint through grabbing
 /mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
-	var/has_grab = 0
+	var/has_grab = FALSE
 	for(var/obj/item/weapon/grab/G in list(user.l_hand, user.r_hand))
 		if(G.affecting == src && G.state == GRAB_NECK)
-			has_grab = 1
+			has_grab = TRUE
 			break
 
 	if(!has_grab)
-		return 0
+		return FALSE
 
 	if(!def_zone) def_zone = user.targeted_organ
 	var/target_zone = check_zone(def_zone)
 	if(!target_zone)
-		return 0
+		return FALSE
 	var/obj/item/organ/external/organ = get_organ(check_zone(target_zone))
 	if(!organ || organ.is_dislocated() || organ.dislocated == -1)
-		return 0
+		return FALSE
 
 	user.visible_message("<span class='warning'>[user] begins to dislocate [src]'s [organ.joint]!</span>")
-	if(do_after(user, 100, progress = 0))
+	if(do_after(user, 100, progress = FALSE))
 		organ.dislocate(1)
-		src.visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
-		return 1
-	return 0
+		visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
+		return TRUE
+	return FALSE
 
 //Breaks all grips and pulls that the mob currently has.
 /mob/living/carbon/human/proc/break_all_grabs(mob/living/carbon/user)
-	var/success = 0
+	var/success = FALSE
 	if(pulling)
 		visible_message("<span class='danger'>[user] has broken [src]'s grip on [pulling]!</span>")
-		success = 1
+		success = TRUE
 		stop_pulling()
 
 	if(istype(l_hand, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/lgrab = l_hand
 		if(lgrab.affecting)
 			visible_message("<span class='danger'>[user] has broken [src]'s grip on [lgrab.affecting]!</span>")
-			success = 1
+			success = TRUE
 		spawn(1)
 			qdel(lgrab)
 	if(istype(r_hand, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/rgrab = r_hand
 		if(rgrab.affecting)
 			visible_message("<span class='danger'>[user] has broken [src]'s grip on [rgrab.affecting]!</span>")
-			success = 1
+			success = TRUE
 		spawn(1)
 			qdel(rgrab)
 	return success

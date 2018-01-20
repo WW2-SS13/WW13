@@ -3,14 +3,14 @@
 	name = "sand"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
-	interior = 0
+	interior = FALSE
 	stepsound = "dirt"
 
 /turf/shuttle/helicopter
 	name = "Helicopter cassis"
 	icon = 'icons/WW2/helicopter.dmi'
-	opacity = 0
-	density = 1
+	opacity = FALSE
+	density = TRUE
 
 	New()
 		..()
@@ -22,15 +22,15 @@
 		for (var/turf/t in range(1, src))
 			if (!istype(t, /turf/shuttle/helicopter))
 				if (!(t.y < y))
-					density = 1
+					density = TRUE
 					return
-		density = 0
+		density = FALSE
 
 /turf/shuttle/helicopter/sdkfz // "trucks"
 	name = "Truck cassis"
 	icon = 'icons/WW2/sdkfz.dmi'
-	opacity = 0
-	density = 1
+	opacity = FALSE
+	density = TRUE
 
 	New(var/state)
 		icon_state = state

@@ -33,18 +33,18 @@
 	return sin(x) / cos(x)
 
 /proc/Csc(x)
-	return 1 / sin(x)
+	return TRUE / sin(x)
 
 /proc/Sec(x)
-	return 1 / cos(x)
+	return TRUE / cos(x)
 
 /proc/Cot(x)
-	return 1 / Tan(x)
+	return TRUE / Tan(x)
 
 /proc/Atan2(x, y)
-	if(!x && !y) return 0
+	if(!x && !y) return FALSE
 	var/a = arccos(x / sqrt(x*x + y*y))
-	return y >= 0 ? a : -a
+	return y >= FALSE ? a : -a
 
 /proc/Floor(x)
 	return round(x)
@@ -69,7 +69,7 @@
 	return x*x
 
 /proc/Inverse(x)
-	return 1 / x
+	return TRUE / x
 
 // Condition checks.
 /proc/IsAboutEqual(a, b, delta = 0.1)
@@ -83,7 +83,7 @@
 	return Floor(x) == x
 
 /proc/IsMultiple(x, y)
-	return x % y == 0
+	return x % y == FALSE
 
 /proc/IsEven(x)
 	return !(x & 0x1)
@@ -97,7 +97,7 @@
 	return a + (b - a) * weight // Equivalent to: a*(1 - weight) + b*weight
 
 /proc/Mean(...)
-	var/sum = 0
+	var/sum = FALSE
 	for(var/val in args)
 		sum += val
 	return sum / args.len
@@ -116,14 +116,14 @@
 	var/bottom       = 2*a
 
 	// Return if the roots are imaginary.
-	if(discriminant < 0)
+	if(discriminant < FALSE)
 		return
 
 	var/root = sqrt(discriminant)
 	. += (-b + root) / bottom
 
-	// If discriminant == 0, there would be two roots at the same position.
-	if(discriminant != 0)
+	// If discriminant == FALSE, there would be two roots at the same position.
+	if(discriminant != FALSE)
 		. += (-b - root) / bottom
 
 /proc/ToDegrees(radians)
@@ -142,7 +142,7 @@
 	return sqrt(squaredNorm(x, y))
 
 /proc/IsPowerOfTwo(var/val)
-    return (val & (val-1)) == 0
+    return (val & (val-1)) == FALSE
 
 /proc/RoundUpToPowerOfTwo(var/val)
     return 2 ** -round(-log(2,val))
@@ -203,9 +203,9 @@
 // Clone of list.Add()
 /proc/n_listadd()
 	var/list/chosenlist
-	var/i = 1
+	var/i = TRUE
 	for(var/e in args)
-		if(i == 1)
+		if(i == TRUE)
 			if(isobject(e))
 				if(istype(e, /list))
 					chosenlist = e
@@ -217,9 +217,9 @@
 // Clone of list.Remove()
 /proc/n_listremove()
 	var/list/chosenlist
-	var/i = 1
+	var/i = TRUE
 	for(var/e in args)
-		if(i == 1)
+		if(i == TRUE)
 			if(isobject(e))
 				if(istype(e, /list))
 					chosenlist = e
@@ -255,23 +255,23 @@
 	return prob(chance)
 
 // Merge of list.Find() and findtext()
-/proc/smartfind(var/haystack, var/needle, var/start = 1, var/end = 0)
+/proc/smartfind(var/haystack, var/needle, var/start = TRUE, var/end = FALSE)
 	if(haystack && needle)
 		if(isobject(haystack))
 			if(istype(haystack, /list))
-				if(length(haystack) >= end && start > 0)
+				if(length(haystack) >= end && start > FALSE)
 					var/list/listhaystack = haystack
 					return listhaystack.Find(needle, start, end)
 
 		else
 			if(istext(haystack))
-				if(length(haystack) >= end && start > 0)
+				if(length(haystack) >= end && start > FALSE)
 					return findtext(haystack, needle, start, end)
 
 // Clone of copytext()
-/proc/docopytext(var/string, var/start = 1, var/end = 0)
+/proc/docopytext(var/string, var/start = TRUE, var/end = FALSE)
 	if(istext(string) && isnum(start) && isnum(end))
-		if(start > 0)
+		if(start > FALSE)
 			return copytext(string, start, end)
 
 // Clone of length()
@@ -307,7 +307,7 @@ proc/string_explode(var/string, var/separator)
 		if(istext(separator) && separator == "")
 			return string_tolist(string)
 		var/i
-		var/lasti = 1
+		var/lasti = TRUE
 		var/list/L = new/list()
 
 		for(i=1, i<=lentext(string)+1, i++)
@@ -395,7 +395,7 @@ proc/n_clamp(var/num, var/min=-1, var/max=1)
 			return max
 		return num
 
-// Returns 1 if N is inbetween Min and Max
+// Returns TRUE if N is inbetween Min and Max
 proc/n_inrange(var/num, var/min=-1, var/max=1)
 	if(isnum(num)&&isnum(min)&&isnum(max))
 		return ((min <= num) && (num <= max))
@@ -405,16 +405,16 @@ proc/n_inrange(var/num, var/min=-1, var/max=1)
 // Imported from Mono string.ReplaceUnchecked
 /proc/string_replacetext(var/haystack,var/a,var/b)
 	if(istext(haystack)&&istext(a)&&istext(b))
-		var/i = 1
+		var/i = TRUE
 		var/lenh=lentext(haystack)
 		var/lena=lentext(a)
 		//var/lenb=lentext(b)
-		var/count = 0
+		var/count = FALSE
 		var/list/dat = list()
 		while (i < lenh)
-			var/found = findtext(haystack, a, i, 0)
-			//log_misc("findtext([haystack], [a], [i], 0)=[found]")
-			if (found == 0) // Not found
+			var/found = findtext(haystack, a, i, FALSE)
+			//log_misc("findtext([haystack], [a], [i], FALSE)=[found]")
+			if (found == FALSE) // Not found
 				break
 			else
 				if (count < SCRIPT_MAX_REPLACEMENTS_ALLOWED)
@@ -425,12 +425,12 @@ proc/n_inrange(var/num, var/min=-1, var/max=1)
 					break
 			//log_misc("Found [a] at [found]! Moving up...")
 			i = found + lena
-		if (count == 0)
+		if (count == FALSE)
 			return haystack
 		//var/nlen = lenh + ((lenb - lena) * count)
 		var/buf = copytext(haystack,1,dat[1]) // Prefill
-		var/lastReadPos = 0
-		for (i = 1, i <= count, i++)
+		var/lastReadPos = FALSE
+		for (i = TRUE, i <= count, i++)
 			var/precopy = dat[i] - lastReadPos-1
 			//internal static unsafe void CharCopy (String target, int targetIndex, String source, int sourceIndex, int count)
 			//fixed (char* dest = target, src = source)
@@ -443,5 +443,5 @@ proc/n_inrange(var/num, var/min=-1, var/max=1)
 			//CharCopy (dest + curPos, replace, newValue.length);
 			buf+=b
 			log_misc("[buf]")
-		buf+=copytext(haystack,lastReadPos, 0)
+		buf+=copytext(haystack,lastReadPos, FALSE)
 		return buf

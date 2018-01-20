@@ -21,7 +21,7 @@
 /********
 * photo *
 ********/
-var/global/photo_count = 0
+var/global/photo_count = FALSE
 
 /obj/item/weapon/photo
 	name = "photo"
@@ -44,7 +44,7 @@ var/global/photo_count = 0
 /obj/item/weapon/photo/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/weapon/pen))
 		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null)  as text, 128)
-		if(loc == user && user.stat == 0)
+		if(loc == user && user.stat == FALSE)
 			scribble = txt
 	..()
 
@@ -72,7 +72,7 @@ var/global/photo_count = 0
 
 	var/n_name = sanitizeSafe(input(usr, "What would you like to label the photo?", "Photo Labelling", null)  as text, MAX_NAME_LEN)
 	//loc.loc check is for making possible renaming photos in clipboards
-	if(( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == 0))
+	if(( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == FALSE))
 		name = "[(n_name ? text("[n_name]") : "photo")]"
 	add_fingerprint(usr)
 	return
@@ -94,7 +94,7 @@ var/global/photo_count = 0
 		var/mob/M = usr
 		if(!( istype(over_object, /obj/screen) ))
 			return ..()
-		playsound(loc, "rustle", 50, 1, -5)
+		playsound(loc, "rustle", 50, TRUE, -5)
 		if((!( M.restrained() ) && !( M.stat ) && M.back == src))
 			switch(over_object.name)
 				if("r_hand")
@@ -127,7 +127,7 @@ var/global/photo_count = 0
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 	var/pictures_max = 10
 	var/pictures_left = 10
-	var/on = 1
+	var/on = TRUE
 	var/icon_on = "camera"
 	var/icon_off = "camera_off"
 	var/size = 3
@@ -146,9 +146,9 @@ var/global/photo_count = 0
 /obj/item/device/camera/attack_self(mob/user as mob)
 	on = !on
 	if(on)
-		src.icon_state = icon_on
+		icon_state = icon_on
 	else
-		src.icon_state = icon_off
+		icon_state = icon_off
 	user << "You switch the camera [on ? "on" : "off"]."
 	return
 
@@ -188,23 +188,23 @@ var/global/photo_count = 0
 	if(!on || !pictures_left || ismob(target.loc)) return
 	captureimage(target, user, flag)
 
-	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, 1, -3)
+	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, TRUE, -3)
 
 	pictures_left--
 	desc = "A polaroid camera. It has [pictures_left] photos left."
 	user << "<span class='notice'>[pictures_left] photos left.</span>"
 	icon_state = icon_off
-	on = 0
+	on = FALSE
 	spawn(64)
 		icon_state = icon_on
-		on = 1
+		on = TRUE
 
 //Proc for capturing check
 /mob/living/proc/can_capture_turf(turf/T)
 	var/mob/dummy = new(T)	//Go go visibility check dummy
 	var/viewer = src
-	if(src.client)		//To make shooting through security cameras possible
-		viewer = src.client.eye
+	if(client)		//To make shooting through security cameras possible
+		viewer = client.eye
 	var/can_see = (dummy in viewers(world.view, viewer))
 
 	qdel(dummy)
@@ -215,8 +215,8 @@ var/global/photo_count = 0
 	var/y_c = target.y + (size-1)/2
 	var/z_c	= target.z
 	var/mobs = ""
-	for(var/i = 1; i <= size; i++)
-		for(var/j = 1; j <= size; j++)
+	for(var/i = TRUE; i <= size; i++)
+		for(var/j = TRUE; j <= size; j++)
 			var/turf/T = locate(x_c, y_c, z_c)
 			if(user.can_capture_turf(T))
 				mobs += get_mobs(T)
@@ -259,7 +259,7 @@ var/global/photo_count = 0
 	if(!user.get_inactive_hand())
 		user.put_in_inactive_hand(p)
 
-/obj/item/weapon/photo/proc/copy(var/copy_id = 0)
+/obj/item/weapon/photo/proc/copy(var/copy_id = FALSE)
 	var/obj/item/weapon/photo/p = new/obj/item/weapon/photo()
 
 	p.name = name

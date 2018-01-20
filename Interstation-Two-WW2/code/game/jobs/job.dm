@@ -6,18 +6,18 @@
 	var/en_meaning = ""
 	var/faction = "None"	              // Players will be allowed to spawn in as jobs that are set to "Station"
 
-	var/total_positions = 0               // How many players can be this job
-	//var/spawn_positions = 0               // How many players can spawn in as this job
-	var/current_positions = 0             // How many players have this job
+	var/total_positions = FALSE               // How many players can be this job
+	//var/spawn_positions = FALSE               // How many players can spawn in as this job
+	var/current_positions = FALSE             // How many players have this job
 	var/selection_color = "#ffffff"       // Selection screen color
 	var/list/alt_titles                   // List of alternate titles, if any
-	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
-	var/minimal_player_age = 0            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
+	var/req_admin_notify                  // If this is set to TRUE, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
+	var/minimal_player_age = FALSE            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/department = null                 // Does this position have a department tag?
-	var/head_position = 0                 // Is this position Command?
-	var/minimum_character_age = 0
+	var/head_position = FALSE                 // Is this position Command?
+	var/minimum_character_age = FALSE
 	var/ideal_character_age = 30
-	var/account_allowed = 1				  // Does this job type come with a station account?
+	var/account_allowed = TRUE				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
 	var/survival_gear = /obj/item/weapon/storage/box/survival// Custom box for spawn in backpack
 
@@ -44,9 +44,9 @@
 	var/list/put_in_backpack = list()
 	var/spawn_location = null
 
-	var/uses_keys = 1
+	var/uses_keys = TRUE
 
-	var/enabled = 1
+	var/enabled = TRUE
 
 	/*For copy-pasting:
 	implanted =
@@ -75,22 +75,22 @@
 	*/
 
 /datum/job/proc/give_random_name(var/mob/living/carbon/human/H)
-	return 0
+	return FALSE
 
 /datum/job/proc/train_check()
-	return 1
+	return TRUE
 
 /datum/job/proc/get_keys()
 	return list()
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+	if(!H)	return FALSE
 
 	//Put items in hands
 	if(hand) H.equip_to_slot_or_del(new hand (H), slot_l_hand)
 
 	//Put items in backpack
-	if( H.backbag != 1 )
+	if( H.backbag != TRUE )
 		var/backpack = backpacks[H.backbag-1]
 		var/obj/item/weapon/storage/backpack/BPK = new backpack(H)
 		if(H.equip_to_slot_or_del(BPK, slot_back,1))
@@ -119,7 +119,7 @@
 			if( !slots.len ) break
 			var/obj/item/I = new path(H)
 			for( var/slot in slots )
-				if( H.equip_to_slot_if_possible(I, slot, 0, 1, 0) )
+				if( H.equip_to_slot_if_possible(I, slot, FALSE, TRUE, FALSE) )
 					slots -= slot
 					break
 			if(istype(H.r_hand,/obj/item/weapon/storage))
@@ -129,29 +129,29 @@
 
 	update_character(H)
 
-	return 1
+	return TRUE
 
 /datum/job/proc/update_character(var/mob/living/carbon/human/H)
-	return 1
+	return TRUE
 
 /datum/job/proc/get_access()
 	return list()
 
-//If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
+//If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns TRUE
 /datum/job/proc/player_old_enough(client/C)
-	return (available_in_days(C) == 0) //Available in 0 days = available right now = player is old enough to play.
+	return (available_in_days(C) == FALSE) //Available in FALSE days = available right now = player is old enough to play.
 
 /datum/job/proc/available_in_days(client/C)
 /*	if(C && config.use_age_restriction_for_jobs && isnum(C.player_age) && isnum(minimal_player_age))
 		return max(0, minimal_player_age - C.player_age)*/
-	return 0
+	return FALSE
 
 /datum/job/proc/apply_fingerprints(var/mob/living/carbon/human/target)
 	if(!istype(target))
-		return 0
+		return FALSE
 	for(var/obj/item/item in target.contents)
 		apply_fingerprints_to_item(target, item)
-	return 1
+	return TRUE
 
 /datum/job/proc/apply_fingerprints_to_item(var/mob/living/carbon/human/holder, var/obj/item/item)
 	item.add_fingerprint(holder,1)
@@ -160,10 +160,10 @@
 			apply_fingerprints_to_item(holder, sub_item)
 
 /datum/job/proc/is_position_available(var/list/restricted_choices, var/list/people_in_join_queue)
-	if ((!restricted_choices || restricted_choices.len == 0) && (!people_in_join_queue || people_in_join_queue.len == 0))
+	if ((!restricted_choices || restricted_choices.len == FALSE) && (!people_in_join_queue || people_in_join_queue.len == FALSE))
 		return (current_positions < total_positions) || (total_positions == -1)
 	else
-		var/subtract_positions = 0
+		var/subtract_positions = FALSE
 		for (var/_title in restricted_choices)
 			if (_title == title)
 				subtract_positions++
@@ -172,6 +172,6 @@
 				subtract_positions++
 
 		if (total_positions == -1)
-			return 1
+			return TRUE
 		else
 			return (current_positions-subtract_positions < total_positions)

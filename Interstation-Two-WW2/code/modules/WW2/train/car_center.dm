@@ -20,7 +20,7 @@
 
 			connector_turfs = list()
 
-			var/middleX = 0
+			var/middleX = FALSE
 			var/minX = 1000000
 			var/minY = 1000000
 
@@ -30,7 +30,7 @@
 
 			middleX = minX + 3 // todo : make this a constant based on train width
 
-			//get pseudoturf 1 - middle x, lowest y - 1
+			//get pseudoturf TRUE - middle x, lowest y - TRUE
 			var/turf/t1 = locate(middleX, minY-1, z)
 
 			connector_turfs["turf"] = t1
@@ -41,8 +41,8 @@
 			connector_turfs = list()
 
 			var/minY = 1000000
-			var/middleY = 0
-			var/maxX = 0
+			var/middleY = FALSE
+			var/maxX = FALSE
 
 			for (var/obj/train_pseudoturf/tpt in forwards_pseudoturfs)
 				maxX = max(maxX, tpt.x)
@@ -50,7 +50,7 @@
 
 			middleY = minY + 2 // todo : make this a constant based on train width
 
-			//get pseudoturf 1 - middle y, highest x + 1
+			//get pseudoturf TRUE - middle y, highest x + TRUE
 			var/turf/t1 = locate(maxX+1, middleY, z)
 
 			connector_turfs["turf"] = t1
@@ -83,7 +83,7 @@
 				railing_one_dir = SOUTH
 				railing_two_dir = NORTH
 
-			for (var/v in 1 to 3)
+			for (var/v in TRUE to 3)
 
 				if (t1)
 					master.add_connector(t1)
@@ -171,10 +171,10 @@
 			for (var/turf/t in a.contents)
 				var/x_offset = t.x - min_x
 				var/y_offset = max_y - t.y
-				var/z = 1
-				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(src.x + x_offset,src.y - y_offset,z), t)
+				var/z = TRUE
+				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), t)
 				tpt.master = src
-				tpt.controller = src.master
+				tpt.controller = master
 				forwards_pseudoturfs += tpt
 	..()
 
@@ -189,10 +189,10 @@
 			for (var/turf/t in a.contents)
 				var/x_offset = t.x - min_x
 				var/y_offset = max_y - t.y
-				var/z = 1
-				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(src.x + x_offset,src.y - y_offset,z), t)
+				var/z = TRUE
+				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), t)
 				tpt.master = src
-				tpt.controller = src.master
+				tpt.controller = master
 				forwards_pseudoturfs += tpt
 		if ("storage")
 			var/area/a = locate(/area/prishtina/train/german/cabin/storage)
@@ -201,10 +201,10 @@
 			for (var/turf/t in a.contents)
 				var/x_offset = t.x - min_x
 				var/y_offset = max_y - t.y
-				var/z = 1
-				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(src.x + x_offset,src.y - y_offset,z), t)
+				var/z = TRUE
+				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), t)
 				tpt.master = src
-				tpt.controller = src.master
+				tpt.controller = master
 				forwards_pseudoturfs += tpt
 		if ("soldier")
 			var/area/a = locate(/area/prishtina/train/german/cabin/soldier)
@@ -213,10 +213,10 @@
 			for (var/turf/t in a.contents)
 				var/x_offset = t.x - min_x
 				var/y_offset = max_y - t.y
-				var/z = 1
-				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(src.x + x_offset,src.y - y_offset,z), t)
+				var/z = TRUE
+				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), t)
 				tpt.master = src
-				tpt.controller = src.master
+				tpt.controller = master
 				forwards_pseudoturfs += tpt
 		if ("conductor")
 			var/area/a = locate(/area/prishtina/train/german/cabin/conductor)
@@ -225,10 +225,10 @@
 			for (var/turf/t in a.contents)
 				var/x_offset = t.x - min_x
 				var/y_offset = max_y - t.y
-				var/z = 1
-				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(src.x + x_offset,src.y - y_offset,z), t)
+				var/z = TRUE
+				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), t)
 				tpt.master = src
-				tpt.controller = src.master
+				tpt.controller = master
 				forwards_pseudoturfs += tpt
 				last_x_offset = x_offset
 				last_y_offset = y_offset

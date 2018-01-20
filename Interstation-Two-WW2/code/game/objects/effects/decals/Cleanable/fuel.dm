@@ -3,22 +3,22 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fuel"
 	layer = TURF_LAYER+0.2
-	anchored = 1
-	var/amount = 1
+	anchored = TRUE
+	var/amount = TRUE
 
 	New(turf/newLoc,amt=1,nologs=0)
 		if(!nologs)
 			message_admins("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[newLoc.x];Y=[newLoc.y];Z=[newLoc.z]'>JMP</a>)")
 			log_game("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z])")
-		src.amount = amt
+		amount = amt
 
-		var/has_spread = 0
+		var/has_spread = FALSE
 		//Be absorbed by any other liquid fuel in the tile.
 		for(var/obj/effect/decal/cleanable/liquid_fuel/other in newLoc)
 			if(other != src)
-				other.amount += src.amount
+				other.amount += amount
 				other.Spread()
-				has_spread = 1
+				has_spread = TRUE
 				break
 
 		. = ..()
@@ -35,7 +35,7 @@
 		for(var/d in cardinal)
 			var/turf/target = get_step(src,d)
 			var/turf/origin = get_turf(src)
-			if(origin.CanPass(null, target, 0, 0) && target.CanPass(null, origin, 0, 0))
+			if(origin.CanPass(null, target, FALSE, FALSE) && target.CanPass(null, origin, FALSE, FALSE))
 				var/obj/effect/decal/cleanable/liquid_fuel/other_fuel = locate() in target
 				if(other_fuel)
 					other_fuel.amount += amount*0.25
@@ -49,11 +49,11 @@
 
 	flamethrower_fuel
 		icon_state = "mustard"
-		anchored = 0
+		anchored = FALSE
 		var/list/others = list()
-		var/nospread = 0
+		var/nospread = FALSE
 
-		New(newLoc, amt = 1, d = 0, _nospread = 0)
+		New(newLoc, amt = TRUE, d = FALSE, _nospread = FALSE)
 			set_dir(d) //Setting this direction means you won't get torched by your own flamethrower.
 			. = ..()
 
@@ -75,7 +75,7 @@
 				var/turf/O = get_step(S,d)
 				if(locate(/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel) in O)
 					continue
-				if(O.CanPass(null, S, 0, 0) && S.CanPass(null, O, 0, 0))
+				if(O.CanPass(null, S, FALSE, FALSE) && S.CanPass(null, O, FALSE, FALSE))
 					if (!nospread)
 						var/o = new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(O,amount*0.25,d)
 						others += o

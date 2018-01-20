@@ -23,6 +23,9 @@
 /proc/game_log(category, text)
 	diary << "\[[time_stamp()]] [game_id] [category]: [text][log_end]"
 
+/proc/attack_log(category, text)
+	attack_log << "\[[time_stamp()]] [game_id] [category]: [text][log_end]"
+
 /proc/log_admin(text)
 	admin_log.Add(text)
 	if (config.log_admin)
@@ -66,7 +69,7 @@
 
 /proc/log_attack(text)
 	if (config.log_attack)
-		game_log("ATTACK", text)
+		attack_log("ATTACK", text)
 
 /proc/log_adminsay(text)
 	if (config.log_adminchat)
@@ -101,7 +104,7 @@
 	return english_list(comps, nothing_text="0", and_text="|", comma_text="|")
 
 //more or less a logging utility
-/proc/key_name(var/whom, var/include_link = null, var/include_name = 1, var/highlight_special_characters = 1)
+/proc/key_name(var/whom, var/include_link = null, var/include_name = TRUE, var/highlight_special_characters = TRUE)
 	var/mob/M
 	var/client/C
 	var/key
@@ -160,5 +163,5 @@
 
 	return .
 
-/proc/key_name_admin(var/whom, var/include_name = 1)
-	return key_name(whom, 1, include_name)
+/proc/key_name_admin(var/whom, var/include_name = TRUE)
+	return key_name(whom, TRUE, include_name)

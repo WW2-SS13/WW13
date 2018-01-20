@@ -10,12 +10,12 @@
 	if (!artillery_master)
 		artillery_master = new/datum/artillery_controller
 
-	var/fake_builder = 0
+	var/fake_builder = FALSE
 
 	if (builder == null && dir != null)
 		builder = new/mob(loc)
 		builder.dir = dir
-		fake_builder = 1
+		fake_builder = TRUE
 
 	var/obj/machinery/artillery/base/base = new/obj/machinery/artillery/base(loc)
 	var/obj/machinery/artillery/tube/tube = new/obj/machinery/artillery/tube(get_step(base, base.dir))
@@ -23,8 +23,8 @@
 	tube.dir = builder.dir
 	base.other = tube
 	tube.other = base
-	base.anchored = 0
-	tube.anchored = 1
+	base.anchored = FALSE
+	tube.anchored = TRUE
 
 	if (fake_builder)
 		qdel(builder)
@@ -39,23 +39,23 @@
 	var/list/ejections = list()
 	var/obj/item/artillery_ammo/loaded = null
 	var/obj/machinery/artillery/tube/other
-	var/offset_x = 0
-	var/offset_y = 0
+	var/offset_x = FALSE
+	var/offset_y = FALSE
 	var/mob/user = null
 	var/state = "CLOSED"
 	var/casing_state = "casing"
 
 	// setting for 'blind firing'
-	var/blind_fire_toggle = 0
+	var/blind_fire_toggle = FALSE
 	var/blind_fire_dir = SOUTH
 	var/blind_fire_dir2 = "NONE"
 	var/blind_fire_range = "SHORT"
 
-	density = 1
+	density = TRUE
 	name = "7,5 cm FK 18"
 	icon = 'icons/WW2/artillery_piece.dmi'
 	icon_state = "base"
-	layer = MOB_LAYER + 1 //just above mobs
+	layer = MOB_LAYER + TRUE //just above mobs
 
 	proc/get_blind_fire_dir()
 		switch (blind_fire_dir)
@@ -85,6 +85,8 @@
 			m << browse({"
 
 			<html>
+
+			<body style='background-color:#1D2951; color:#ffffff'>
 
 			<script language="javascript">
 
@@ -117,6 +119,8 @@
 			<a href='?src=\ref[src];fire=1'><b><big>FIRE!</big></b></a>
 			</center>
 
+			</body>
+
 			</html>
 			"},  "window=artillery_window;border=1;can_close=1;can_resize=1;can_minimize=0;titlebar=1;size=500x500")
 		//		<A href = '?src=\ref[src];topic_type=[topic_custom_input];continue_num=1'>
@@ -135,17 +139,17 @@
 
 
 	Move()
-		global.valid_coordinates["[x],[y]"] = 0
+		global.valid_coordinates["[x],[y]"] = FALSE
 		..()
-		other.loc = (get_step(src, src.dir) || loc)
-		global.valid_coordinates["[x],[y]"] = 1
+		other.loc = (get_step(src, dir) || loc)
+		global.valid_coordinates["[x],[y]"] = TRUE
 
 
 /obj/machinery/artillery/base/New()
 
 	loaded = new/obj/item/artillery_ammo/none(src)
 
-	for (var/v in 1 to 20)
+	for (var/v in TRUE to 20)
 		var/obj/item/weapon/material/shard/shard = new/obj/item/weapon/material/shard/shrapnel(src)
 		ejections.Add(shard)
 
@@ -172,15 +176,15 @@
 
 		if (!locate(src) in get_step(user, user.dir))
 			user << "<span class = 'danger'>Get behind the artillery to use it.</span>"
-			return 0
+			return FALSE
 
 		if (!user.can_use_hands())
 			user << "<span class = 'danger'>You have no hands to use this with.</span>"
-			return 0
+			return FALSE
 
 		if (!anchored)
 			user << "<span class = 'danger'>The artillery piece must be anchored to use.</span>"
-			return 0
+			return FALSE
 
 		var/value = href_list["value"]
 
@@ -220,8 +224,8 @@
 
 				if (blind_fire_toggle)
 
-					offset_x = 0
-					offset_y = 0
+					offset_x = FALSE
+					offset_y = FALSE
 
 					var/number_range = splittext(BLIND_FIRE_DISTANCES[blind_fire_range], ":")
 					var/lowerbound = text2num(number_range[1])
@@ -249,14 +253,14 @@
 				var/target_x = offset_x + x
 				var/target_y = offset_y + y
 
-				target_x = min(max(target_x, 1), world.maxx)
-				target_y = min(max(target_y, 1), world.maxy)
+				target_x = min(max(target_x, TRUE), world.maxx)
+				target_y = min(max(target_y, TRUE), world.maxy)
 
-				var/valid_coords_check = 0
+				var/valid_coords_check = FALSE
 
 				if (!blind_fire_toggle)
 					if (global.valid_coordinates.Find("[target_x],[target_y]"))
-						valid_coords_check = 1
+						valid_coords_check = TRUE
 					else
 						for (var/coords in global.valid_coordinates)
 							var/splitcoords = splittext(coords, ",")
@@ -264,15 +268,15 @@
 							var/coordy = text2num(splitcoords[2])
 							if (abs(coordx - target_x) <= 15)
 								if (abs(coordy - target_y) <= 15)
-									valid_coords_check = 1
+									valid_coords_check = TRUE
 				else
-					valid_coords_check = 1
+					valid_coords_check = TRUE
 
 				if (!valid_coords_check)
 					user << "<span class='danger'>You have no knowledge of this location.</span>"
 					return
 
-				if (abs(offset_x) > 0 || abs(offset_y) > 0)
+				if (abs(offset_x) > FALSE || abs(offset_y) > FALSE)
 					if (abs(offset_x) + abs(offset_y) < 20)
 						user << "<span class='danger'>This location is too close to fire to.</span>"
 						return
@@ -296,11 +300,11 @@
 				state = "OPEN"
 			spawn (6)
 				if (other.drop_casing)
-					var/obj/o = new/obj/item/artillery_ammo/casing(get_step(src, src.dir))
+					var/obj/o = new/obj/item/artillery_ammo/casing(get_step(src, dir))
 					o.icon_state = casing_state
 					user << "<span class='danger'>The casing falls out of the artillery.</span>"
 					other.drop_casing = FALSE
-					playsound(get_turf(src), 'sound/effects/Stamp.wav', 100, 1)
+					playsound(get_turf(src), 'sound/effects/Stamp.wav', 100, TRUE)
 
 		if (href_list["close"])
 			if (state == "CLOSED")
@@ -310,7 +314,7 @@
 				icon_state = ""
 				state = "CLOSED"
 
-		for (var/i in 1 to 10)
+		for (var/i in TRUE to 10)
 			if (href_list["load_slot_[i]"])
 				if (state == "CLOSED")
 					user << "<span class = 'danger'>The shell loading slot must be open to add a shell.</span>"
@@ -395,36 +399,36 @@
 /obj/machinery/artillery/base/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
 		if (anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 			user << "<span class='notice'>Now unsecuring the artillery piece...</span>"
 			if(do_after(user,20))
 				if(!src) return
 				user << "<span class='notice'>You unsecured the artillery piece.</span>"
-				anchored = 0
+				anchored = FALSE
 		else if(!anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 			user << "<span class='notice'>Now securing the artillery piece...</span>"
 			if(do_after(user, 20))
 				if (!src) return
 				user << "<span class='notice'>You secured the artillery piece.</span>"
-				anchored = 1
+				anchored = TRUE
 	//second piece
 /obj/machinery/artillery/tube
 	var/obj/machinery/artillery/base/other = null
 	icon_state = "tube"
 	name = ""
-	layer = 0
+	layer = FALSE
 	var/drop_casing = FALSE
 
 	proc/fire(var/x, var/y, shell)
 
-		var/num_shrapnel = 0
-		var/explosion = 0
+		var/num_shrapnel = FALSE
+		var/explosion = FALSE
 		var/reagent_payload = null
 
 		if (!istype(shell, /obj/item/artillery_ammo/gaseous))
 			num_shrapnel = rand(15,20)
-			explosion = 1
+			explosion = TRUE
 		else
 			var/obj/item/artillery_ammo/gaseous/g = shell
 			reagent_payload = g.reagent_payload
@@ -441,13 +445,13 @@
 
 		var/list/shrapnel = list()
 
-		for (var/v in 1 to num_shrapnel)
+		for (var/v in TRUE to num_shrapnel)
 			var/shrap = pick(other.ejections)
 			if (shrap)
 				shrapnel += shrap
 				other.ejections -= shrap
 
-		for (var/v in 1 to num_shrapnel)
+		for (var/v in TRUE to num_shrapnel)
 			other.ejections += new/obj/item/artillery_ammo()
 
 		other.icon_state = "firing"
@@ -514,8 +518,8 @@
 
 		spawn (rand(1,2))
 			var/turf/t1 = get_turf(src)
-			var/list/heard = playsound(t1, "artillery_out", 100, 1)
-			playsound(t1, "artillery_out_distant", 100, 1, excluded = heard)
+			var/list/heard = playsound(t1, "artillery_out", 100, TRUE)
+			playsound(t1, "artillery_out_distant", 100, TRUE, excluded = heard)
 
 		x = x + rand(1,-1)
 		y = y + rand(1,-1)
@@ -527,25 +531,25 @@
 
 		var/area/t_area = get_area(t)
 
-		var/is_indoors = 0
-		var/artillery_deflection_bonus = 0
+		var/is_indoors = FALSE
+		var/artillery_deflection_bonus = FALSE
 
 		if (istype(t_area, /area/prishtina/void))
-			return 0
+			return FALSE
 
 		if (istype(t_area, /area/prishtina/admin))
-			return 0
+			return FALSE
 
 		if (istype(t_area, /area/prishtina/soviet/bunker))
-			is_indoors = 1
+			is_indoors = TRUE
 			artillery_deflection_bonus = 55 // experimental
 
 		if (istype(t_area, /area/prishtina/soviet/bunker_entrance))
-			is_indoors = 1
+			is_indoors = TRUE
 
-		var/power_mult = 1 //experimental. 2 is a bit high.
+		var/power_mult = TRUE //experimental. 2 is a bit high.
 
-		var/travel_time = 0
+		var/travel_time = FALSE
 
 		var/abs_dist = abs(t.x - other.x) + abs(t.y - other.y)
 
@@ -553,8 +557,8 @@
 		// work right
 
 		spawn (travel_time - 20) // the new artillery sound takes about 2 seconds to reach the explosion point, so start playing it now
-			var/list/heard = playsound(t, "artillery_in", 100, 1)
-			playsound(t, "artillery_in_distant", 100, 1, 100, excluded = heard)
+			var/list/heard = playsound(t, "artillery_in", 100, TRUE)
+			playsound(t, "artillery_in_distant", 100, TRUE, 100, excluded = heard)
 
 		spawn (travel_time)
 
@@ -589,10 +593,10 @@
 				explosion(t, 2*power_mult, 4*power_mult, 6*power_mult, 9*power_mult)
 				// extra effective against tonks
 				for (var/obj/tank/T in range(1, t))
-					T.ex_act(1.0, 1)
+					T.ex_act(1.0, TRUE)
 			else
 				var/how_many = rand(20,30) // was 40, 50
-				for (var/v in 1 to how_many)
+				for (var/v in TRUE to how_many)
 					switch (reagent_payload)
 						if ("chlorine_gas")
 							new/obj/effect/effect/smoke/chem/payload/chlorine_gas(t)
@@ -617,17 +621,17 @@
 				if (!m.lying)
 					mobs_in_range.Add(m)
 
-			if (shrapnel.len > 0)
+			if (shrapnel.len > FALSE)
 				for (var/obj/item/weapon/material/shard/shrapnel/shrap in shrapnel)
 					if (shrap)
 						shrap.loc = t
 						if (prob(33))
-							if (mobs_in_range.len > 0)
+							if (mobs_in_range.len > FALSE)
 								var/mob/m = pick(mobs_in_range)
 								if (m)
 									shrap.throw_at(m, 10)
 						else
-							if (atoms_in_range.len > 0)
+							if (atoms_in_range.len > FALSE)
 								var/atom/a = pick(atoms_in_range)
 								if (a)
 									shrap.throw_at(a, 10)

@@ -9,7 +9,7 @@
 	throw_range = 8
 	flags = CONDUCT
 	slot_flags = SLOT_BELT|SLOT_MASK
-	var/active = 0
+	var/active = FALSE
 	var/det_time = 50
 	var/loadable = TRUE
 
@@ -21,18 +21,18 @@
 		add_fingerprint(user)
 		spawn(5)
 			prime()
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 
 /*/obj/item/weapon/grenade/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 	if (istype(target, /obj/item/weapon/storage)) return ..() // Trying to put it in a full container
 	if (istype(target, /obj/item/weapon/gun/grenadelauncher)) return ..()
-	if((user.get_active_hand() == src) && (!active) && (clown_check(user)) && target.loc != src.loc)
+	if((user.get_active_hand() == src) && (!active) && (clown_check(user)) && target.loc != loc)
 		user << "<span class='warning'>You prime the [name]! [det_time/10] seconds!</span>"
-		active = 1
+		active = TRUE
 		icon_state = initial(icon_state) + "_active"
-		playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
+		playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
 		spawn(det_time)
 			prime()
 			return
@@ -44,8 +44,8 @@
 
 
 /obj/item/weapon/grenade/examine(mob/user)
-	if(..(user, 0))
-		if(det_time > 1)
+	if(..(user, FALSE))
+		if(det_time > TRUE)
 			user << "The timer is set to [det_time/10] seconds."
 			return
 		if(det_time == null)
@@ -74,8 +74,8 @@
 		msg_admin_attack("[user.name] ([user.ckey]) primed \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 	icon_state = initial(icon_state) + "_active"
-	active = 1
-	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
+	active = TRUE
+	playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
 
 	spawn(det_time)
 		prime()
@@ -83,10 +83,11 @@
 
 
 /obj/item/weapon/grenade/proc/prime()
-//	playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-	var/turf/T = get_turf(src)
-	if(T)
-		T.hotspot_expose(700,125)
+	if (active)
+	//	playsound(loc, 'sound/items/Welder2.ogg', 25, TRUE)
+		var/turf/T = get_turf(src)
+		if(T)
+			T.hotspot_expose(700,125)
 
 
 /obj/item/weapon/grenade/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -94,7 +95,7 @@
 		switch(det_time)
 			if (1)
 				det_time = 10
-				user << "<span class='notice'>You set the [name] for 1 second detonation time.</span>"
+				user << "<span class='notice'>You set the [name] for TRUE second detonation time.</span>"
 			if (10)
 				det_time = 30
 				user << "<span class='notice'>You set the [name] for 3 second detonation time.</span>"
@@ -102,7 +103,7 @@
 				det_time = 50
 				user << "<span class='notice'>You set the [name] for 5 second detonation time.</span>"
 			if (50)
-				det_time = 1
+				det_time = TRUE
 				user << "<span class='notice'>You set the [name] for instant detonation.</span>"
 		add_fingerprint(user)
 	..()

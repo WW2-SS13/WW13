@@ -2,7 +2,7 @@
 /obj/structure/closet/crate/proc/resize(decimal)
 	if (decimal > 1.0)
 		var/add_crates = max(1, ceil((decimal - 1.0) * contents.len))
-		for (var/v in 1 to add_crates)
+		for (var/v in TRUE to add_crates)
 			if (!contents.len)
 				break
 			var/atom/object = pick(contents)
@@ -12,7 +12,7 @@
 
 	else if (decimal < 1.0)
 		var/remove_crates = ceil((1.0 - decimal) * contents.len)
-		for (var/v in 1 to remove_crates)
+		for (var/v in TRUE to remove_crates)
 			if (!contents.len)
 				break
 			contents -= pick(contents)
@@ -79,6 +79,12 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/medical
+	name = "Medical crate"
+	icon_state = "freezer"
+	icon_opened = "freezeropen"
+	icon_closed = "freezer"
 
 /obj/structure/closet/crate/mosinammo
 	name = "Mosin ammo crate"
@@ -218,7 +224,7 @@
 /obj/structure/closet/crate/lugers/New()
 	..()
 	update_capacity(20)
-	for (var/v in 1 to 20)
+	for (var/v in TRUE to 20)
 		new/obj/item/weapon/gun/projectile/pistol/luger(src)
 
 /obj/structure/closet/crate/colts
@@ -231,8 +237,8 @@
 /obj/structure/closet/crate/colts/New()
 	..()
 	update_capacity(20)
-	for (var/v in 1 to 20)
-		new/obj/item/weapon/gun/projectile/pistol/luger/colt(src)
+	for (var/v in TRUE to 20)
+		new/obj/item/weapon/gun/projectile/pistol/_45(src)
 
 // rations crates
 
@@ -248,39 +254,39 @@
 	var/textpath = "[type]"
 	if (findtext(textpath, GERMAN))
 		if (findtext(textpath, "solids"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in TRUE to rand(10,15))
 				contents += new_ration(GERMAN, "solid")
 		if (findtext(textpath, "liquids"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in TRUE to rand(10,15))
 				contents += new_ration(GERMAN, "liquid")
 		if (findtext(textpath, "desserts"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in TRUE to rand(10,15))
 				contents += new_ration(GERMAN, "dessert")
 		if (findtext(textpath, "meat"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in TRUE to rand(10,15))
 				contents += new_ration(GERMAN, "meat")
 		if (findtext(textpath, "alcohol"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in TRUE to rand(10,15))
 				contents += beer_ration()
 	else if (findtext(textpath, "soviet"))
 		if (findtext(textpath, "solids"))
-			for (var/v in 1 to rand(10,15))
-				contents += new_ration(RUSSIAN, "solid")
+			for (var/v in TRUE to rand(10,15))
+				contents += new_ration(SOVIET, "solid")
 		if (findtext(textpath, "liquids"))
-			for (var/v in 1 to rand(10,15))
-				contents += new_ration(RUSSIAN, "liquid")
+			for (var/v in TRUE to rand(10,15))
+				contents += new_ration(SOVIET, "liquid")
 	/*	if (findtext(textpath, "desserts"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in TRUE to rand(10,15))
 				contents += new_ration("SOVIET", "dessert")*/
 		if (findtext(textpath, "meat"))
-			for (var/v in 1 to rand(10,15))
-				contents += new_ration(RUSSIAN, "meat")
+			for (var/v in TRUE to rand(10,15))
+				contents += new_ration(SOVIET, "meat")
 		if (findtext(textpath, "alcohol"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in TRUE to rand(10,15))
 				contents += vodka_ration()
 
 	else if (findtext(textpath, "water"))
-		for (var/v in 1 to rand(20,30))
+		for (var/v in TRUE to rand(20,30))
 			contents += water_ration()
 
 	update_capacity(min(30, contents.len+5))
@@ -324,7 +330,7 @@
 /obj/structure/closet/crate/wood/New()
 	..()
 	update_capacity(5)
-	for (var/v in 1 to 5)
+	for (var/v in TRUE to 5)
 		var/obj/item/stack/S = new/obj/item/stack/material/wood(src)
 		S.amount = 25
 
@@ -332,7 +338,7 @@
 /obj/structure/closet/crate/steel/New()
 	..()
 	update_capacity(5)
-	for (var/v in 1 to 5)
+	for (var/v in TRUE to 5)
 		var/obj/item/stack/S = new/obj/item/stack/material/steel(src)
 		S.amount = 25
 
@@ -340,108 +346,120 @@
 /obj/structure/closet/crate/iron/New()
 	..()
 	update_capacity(5)
-	for (var/v in 1 to 5)
+	for (var/v in TRUE to 5)
 		var/obj/item/stack/S = new/obj/item/stack/material/iron(src)
 		S.amount = 25
 
 /obj/structure/closet/crate/flammenwerfer_fueltanks/New()
 	..()
 	update_capacity(20)
-	for (var/v in 1 to 20)
+	for (var/v in TRUE to 20)
 		new/obj/item/weapon/flammenwerfer_fueltank(src)
 
 /obj/structure/closet/crate/vehicle_fueltanks/New()
 	..()
 	update_capacity(20)
-	for (var/v in 1 to 20)
+	for (var/v in TRUE to 20)
 		new/obj/item/weapon/vehicle_fueltank(src)
 
 /obj/structure/closet/crate/maximbelt/New()
 	..()
 	update_capacity(4)
-	for (var/v in 1 to 4)
+	for (var/v in TRUE to 4)
 		new /obj/item/ammo_magazine/maxim(src)
 
 /obj/structure/closet/crate/mosinammo/New()
 	..()
 	update_capacity(24)
-	for (var/v in 1 to 24)
+	for (var/v in TRUE to 24)
 		new /obj/item/ammo_magazine/mosin(src)
 
 /obj/structure/closet/crate/kar98kammo/New()
 	..()
 	update_capacity(27)
-	for (var/v in 1 to 27)
+	for (var/v in TRUE to 27)
 		new /obj/item/ammo_magazine/kar98k(src)
 
 /obj/structure/closet/crate/mp40kammo/New()
 	..()
 	update_capacity(24)
-	for (var/v in 1 to 24)
+	for (var/v in TRUE to 24)
 		new /obj/item/ammo_magazine/mp40(src)
 
 /obj/structure/closet/crate/mp43ammo/New()
 	..()
 	update_capacity(21)
-	for (var/v in 1 to 21)
+	for (var/v in TRUE to 21)
 		new /obj/item/ammo_magazine/a762/akm(src)
 
 /obj/structure/closet/crate/ptrdammo/New()
 	..()
 	update_capacity(12)
-	for (var/v in 1 to 12)
+	for (var/v in TRUE to 12)
 		new /obj/item/ammo_casing/a145(src)
 
 
 /obj/structure/closet/crate/mg34ammo/New()
 	..()
 	update_capacity(13)
-	for (var/v in 1 to 13)
+	for (var/v in TRUE to 13)
 		new /obj/item/ammo_magazine/a762(src)
 
 /obj/structure/closet/crate/ppshammo/New()
 	..()
 	update_capacity(17)
-	for (var/v in 1 to 17)
+	for (var/v in TRUE to 17)
 		new /obj/item/ammo_magazine/a556/m4(src)
 
 
 /obj/structure/closet/crate/lugerammo/New()
 	..()
 	update_capacity(15)
-	for (var/v in 1 to 15)
+	for (var/v in TRUE to 15)
 		new /obj/item/ammo_magazine/luger(src)
 
 /obj/structure/closet/crate/c45ammo/New()
 	..()
 	update_capacity(15)
-	for (var/v in 1 to 15)
+	for (var/v in TRUE to 15)
 		new /obj/item/ammo_magazine/c45m(src)
 
 /obj/structure/closet/crate/bettymines/New()
 	..()
 	update_capacity(20)
-	for (var/v in 1 to 20)
+	for (var/v in TRUE to 20)
 		new /obj/item/device/mine/betty(src)
 
 /obj/structure/closet/crate/dpammo/New()
 	..()
 	update_capacity(15)
-	for (var/v in 1 to 15)
+	for (var/v in TRUE to 15)
 		new /obj/item/ammo_magazine/a762/pkm(src)
 
 /obj/structure/closet/crate/bint/New()
 	..()
 	update_capacity(18)
-	for (var/v in 1 to 18)
+	for (var/v in TRUE to 18)
 		new /obj/item/weapon/gauze_pack/bint(src)
 
 
 /obj/structure/closet/crate/gauze/New()
 	..()
 	update_capacity(17)
-	for (var/v in 1 to 17)
+	for (var/v in TRUE to 17)
 		new /obj/item/weapon/gauze_pack/gauze(src)
+
+/obj/structure/closet/crate/medical/New()
+	..()
+	update_capacity(10)
+	for (var/v in TRUE to TRUE)
+		new /obj/item/weapon/storage/firstaid/toxin(src)
+		new /obj/item/weapon/storage/firstaid/fire(src)
+		new /obj/item/weapon/storage/firstaid/o2(src)
+		new /obj/item/weapon/storage/firstaid/regular(src)
+		new /obj/item/weapon/storage/firstaid/injectorpack(src)
+		new /obj/item/weapon/storage/firstaid/combat(src)
+
 
 /obj/structure/closet/crate/soviet_grenade/New()
 	..()
@@ -452,26 +470,26 @@
 /obj/structure/closet/crate/german_grenade/New()
 	..()
 	update_capacity(24)
-	for (var/v in 1 to 24)
+	for (var/v in TRUE to 24)
 		new /obj/item/weapon/grenade/explosive/stgnade(src)
 
 /obj/structure/closet/crate/panzerfaust/New()
 	..()
-	update_capacity(10)
-	for (var/v in 1 to 10)
+	update_capacity(5)
+	for (var/v in 1 to 5)
 		new /obj/item/weapon/gun/launcher/rocket/panzerfaust(src)
 
 /obj/structure/closet/crate/german_smoke_grenade/New()
 	..()
 	update_capacity(10)
-	for (var/v in 1 to 10)
+	for (var/v in TRUE to 10)
 		new /obj/item/weapon/grenade/smokebomb/german(src)
 
 
 /obj/structure/closet/crate/soviet_smoke_grenade/New()
 	..()
 	update_capacity(10)
-	for (var/v in 1 to 10)
+	for (var/v in TRUE to 10)
 		new /obj/item/weapon/grenade/smokebomb/soviet(src)
 
 
@@ -480,14 +498,14 @@
 	update_capacity(66)
 	// more than tripled this to 100 bags, experimental. Didn't seem like Germans had enough to make a decent FOB
 	// now this is 66 because 100 seemed like way too many
-	for (var/v in 1 to 66) // this was 24, I made it 30, meaning you can make 5 sandbag walls per crate, as each takes 6 right now
+	for (var/v in TRUE to 66) // this was 24, I made it 30, meaning you can make 5 sandbag walls per crate, as each takes 6 right now
 		new /obj/item/weapon/sandbag(src)
 
 /obj/structure/closet/crate/flares_ammo/New()
 	..()
 
 	update_capacity(10)
-	for (var/v in 1 to 10)
+	for (var/v in TRUE to 10)
 		new /obj/item/ammo_magazine/flare/red(src)
 		new /obj/item/ammo_magazine/flare/green(src)
 		new /obj/item/ammo_magazine/flare/yellow(src)
@@ -496,21 +514,21 @@
 	..()
 
 	update_capacity(50)
-	for (var/v in 1 to 50)
+	for (var/v in TRUE to 50)
 		new /obj/item/device/flashlight/flare(src)
 
 /obj/structure/closet/crate/bayonets/New()
 	..()
 
 	update_capacity(20)
-	for (var/v in 1 to 20)
-		new /obj/item/attachment/bayonet(src)
+	for (var/v in TRUE to 20)
+		new /obj/item/weapon/attachment/bayonet(src)
 
 /obj/structure/closet/crate/supply_req_sheets/New()
 	..()
 
 	update_capacity(50)
-	for (var/v in 1 to 50)
+	for (var/v in TRUE to 50)
 		new /obj/item/weapon/paper/supply_train_requisitions_sheet(src)
 
 //arty
@@ -524,7 +542,7 @@
 
 	New()
 		..()
-		for (var/v in 1 to 25)
+		for (var/v in TRUE to 25)
 			new/obj/item/artillery_ammo(src)
 
 /obj/structure/closet/crate/artillery_gas
@@ -536,7 +554,7 @@
 
 	New()
 		..()
-		for (var/v in 1 to 4) // 16 total
+		for (var/v in TRUE to 4) // TRUE6 total
 			new/obj/item/artillery_ammo/gaseous/green_cross/chlorine(src)
 			new/obj/item/artillery_ammo/gaseous/yellow_cross/mustard(src)
 			new/obj/item/artillery_ammo/gaseous/yellow_cross/white_phosphorus(src)
@@ -551,7 +569,7 @@
 
 	New()
 		..()
-		for (var/v in 1 to 10)
+		for (var/v in TRUE to 10)
 			new/obj/item/clothing/mask/gas/german(src)
 
 /obj/structure/closet/crate/artillery/russian
@@ -559,13 +577,13 @@
 
 	New()
 		..()
-		for (var/v in 1 to 20)
+		for (var/v in TRUE to 20)
 			new/obj/item/artillery_ammo(src)
 
-		for (var/v in 1 to 2)
+		for (var/v in TRUE to 2)
 			new/obj/item/artillery_ammo/gaseous/green_cross/chlorine(src)
 
-		for (var/v in 1 to 6)
+		for (var/v in TRUE to 6)
 			new/obj/item/artillery_ammo/gaseous/blue_cross/xylyl_bromide(src)
 
 		new/obj/item/artillery_ammo/gaseous/yellow_cross/mustard(src)

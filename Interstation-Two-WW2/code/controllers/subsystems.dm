@@ -7,7 +7,7 @@
 	var/wait = 20		//time to wait (in deciseconds) between each call to fire(). Must be a positive integer.
 
 	//things you will probably want to leave alone
-	var/can_fire = 0	//prevent fire() calls
+	var/can_fire = FALSE	//prevent fire() calls
 	var/last_fire = 0	//last world.time we called fire()
 	var/next_fire = 0	//scheduled world.time for next fire()
 	var/cpu = 0			//cpu-usage stats (somewhat vague)
@@ -22,7 +22,7 @@
 //fire(), and the procs it calls, SHOULD NOT HAVE ANY SLEEP OPERATIONS in them!
 //YE BE WARNED!
 /datum/subsystem/proc/fire()
-	can_fire = 0
+	can_fire = FALSE
 
 //used to initialize the subsystem AFTER the map has loaded
 /datum/subsystem/proc/Initialize(start_timeofday)

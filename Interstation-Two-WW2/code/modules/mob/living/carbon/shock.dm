@@ -1,20 +1,20 @@
-/mob/living/var/traumatic_shock = 0
-/mob/living/carbon/var/shock_stage = 0
+/mob/living/var/traumatic_shock = FALSE
+/mob/living/carbon/var/shock_stage = FALSE
 
 // proc to find out in how much pain the mob is at the moment
 /mob/living/carbon/proc/updateshock()
 	if (species && (species.flags & NO_PAIN))
-		traumatic_shock = 0
-		return 0
+		traumatic_shock = FALSE
+		return FALSE
 
-	src.traumatic_shock = 			\
-	1	* src.getOxyLoss() + 		\
-	0.7	* src.getToxLoss() + 		\
-	1.5	* src.getFireLoss() + 		\
-	1.2	* src.getBruteLoss() + 		\
-	1.7	* src.getCloneLoss() + 		\
-	2	* src.halloss + 			\
-	-1	* src.analgesic
+	traumatic_shock = 			\
+	1	* getOxyLoss() + 		\
+	0.7	* getToxLoss() + 		\
+	1.5	* getFireLoss() + 		\
+	1.2	* getBruteLoss() + 		\
+	1.7	* getCloneLoss() + 		\
+	2	* halloss + 			\
+	-1	* analgesic
 
 	if(slurring)
 		traumatic_shock -= 20
@@ -27,11 +27,11 @@
 				traumatic_shock += 30
 
 	if (bloodstr)
-		for (var/datum/reagent/ethanol/E in bloodstr.reagent_list)
+		for (var/datum/reagent/ethanol/E in ingested.reagent_list)
 			traumatic_shock -= E.volume
 
-	if(traumatic_shock < 0)
-		traumatic_shock = 0
+	if(traumatic_shock < FALSE)
+		traumatic_shock = FALSE
 
 	return traumatic_shock
 

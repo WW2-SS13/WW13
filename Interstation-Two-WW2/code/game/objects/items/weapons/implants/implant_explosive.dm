@@ -40,13 +40,13 @@
 		var/mob/T = imp_in
 		message_admins("Explosive implant triggered in [T] ([T.key]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>) ")
 		log_game("Explosive implant triggered in [T] ([T.key]).")
-		need_gib = 1
+		need_gib = TRUE
 
 		if(ishuman(imp_in))
 			if (elevel == "Localized Limb")
 				if(part) //For some reason, small_boom() didn't work. So have this bit of working copypaste.
 					imp_in.visible_message("<span class='warning'>Something beeps inside [imp_in][part ? "'s [part.name]" : ""]!</span>")
-					playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
+					playsound(loc, 'sound/items/countdown.ogg', 75, TRUE, -3)
 					sleep(25)
 					if (istype(part,/obj/item/organ/external/chest) ||	\
 						istype(part,/obj/item/organ/external/groin) ||	\
@@ -59,14 +59,14 @@
 						part.droplimb(0,DROPLIMB_BLUNT)
 						qdel(src)
 			if (elevel == "Destroy Body")
-				explosion(get_turf(T), -1, 0, 1, 6)
+				explosion(get_turf(T), -1, FALSE, TRUE, 6)
 				T.gib()
 			if (elevel == "Full Explosion")
-				explosion(get_turf(T), 0, 1, 3, 6)
+				explosion(get_turf(T), FALSE, TRUE, 3, 6)
 				T.gib()
 
 		else
-			explosion(get_turf(imp_in), 0, 1, 3, 6)
+			explosion(get_turf(imp_in), FALSE, TRUE, 3, 6)
 
 	if(need_gib)
 		imp_in.gib()
@@ -82,13 +82,13 @@
 	phrase = input("Choose activation phrase:") as text
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
 	phrase = replace_characters(phrase, replacechars)
-	usr.mind.store_memory("Explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.", 0, 0)
-	usr << "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate."
+	usr.mind.store_memory("Explosive implant in [source] can be activated by saying something containing the phrase ''[phrase]'', <B>say [phrase]</B> to attempt to activate.", FALSE, FALSE)
+	usr << "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[phrase]'', <B>say [phrase]</B> to attempt to activate."
 
 /obj/item/weapon/implant/explosive/proc/small_boom()
 	if (ishuman(imp_in) && part)
 		imp_in.visible_message("<span class='warning'>Something beeps inside [imp_in][part ? "'s [part.name]" : ""]!</span>")
-		playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
+		playsound(loc, 'sound/items/countdown.ogg', 75, TRUE, -3)
 		spawn(25)
 			if (ishuman(imp_in) && part)
 				//No tearing off these parts since it's pretty much killing

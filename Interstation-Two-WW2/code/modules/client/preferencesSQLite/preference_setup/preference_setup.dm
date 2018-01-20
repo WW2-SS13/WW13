@@ -1,6 +1,6 @@
 // These are not flags, binary operations not intended
-#define TOPIC_NOACTION 0
-#define TOPIC_HANDLED 1
+#define TOPIC_NOACTION FALSE
+#define TOPIC_HANDLED TRUE
 #define TOPIC_REFRESH 2
 
 
@@ -39,8 +39,8 @@
 	var/datum/preferences/preferences
 	var/datum/category_group/player_setup_category/selected_category = null
 
-/datum/category_collection/player_setup_collection/New(var/datum/preferences/preferences)
-	src.preferences = preferences
+/datum/category_collection/player_setup_collection/New(var/datum/preferences/_preferences)
+	preferences = _preferences
 	..()
 	selected_category = categories[1]
 
@@ -88,16 +88,16 @@
 
 /datum/category_collection/player_setup_collection/Topic(var/href,var/list/href_list)
 	if(..())
-		return 1
+		return TRUE
 	var/mob/user = usr
 	if(!user.client)
-		return 1
+		return TRUE
 
 	if(href_list["category"])
 		var/category = locate(href_list["category"])
 		if(category && category in categories)
 			selected_category = category
-		. = 1
+		. = TRUE
 
 	if(.)
 		user.client.prefs.ShowChoices(user)
@@ -106,7 +106,7 @@
 * Category Category Setup *
 **************************/
 /datum/category_group/player_setup_category
-	var/sort_order = 0
+	var/sort_order = FALSE
 
 /datum/category_group/player_setup_category/dd_SortValue()
 	return sort_order
@@ -119,7 +119,7 @@
 
 /datum/category_group/player_setup_category/proc/load_character()
 	// Load all data, then sanitize it.
-	// Need due to, for example, the 01_basic module relying on species having been loaded to sanitize correctly but that isn't loaded until module 03_body.
+	// Need due to, for example, the 11_basic module relying on species having been loaded to sanitize correctly but that isn't loaded until module FALSE3_body.
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.load_character()
 	for(var/datum/category_item/player_setup_item/PI in items)
@@ -150,11 +150,11 @@
 
 /datum/category_group/player_setup_category/proc/content(var/mob/user)
 	. = "<table style='width:100%'><tr style='vertical-align:top'><td style='width:50%'>"
-	var/current = 0
+	var/current = FALSE
 	var/halfway = items.len / 2
 	for(var/datum/category_item/player_setup_item/PI in items)
 		if(halfway && current++ >= halfway)
-			halfway = 0
+			halfway = FALSE
 			. += "</td><td></td><td style='width:50%'>"
 		. += "[PI.content(user)]<br>"
 	. += "</td></tr></table>"
@@ -162,7 +162,7 @@
 	if (istype(src, /datum/category_group/player_setup_category/general_preferences_german))
 		user.client.prefs.current_character_type = GERMAN
 	else if (istype(src, /datum/category_group/player_setup_category/general_preferences_russian))
-		user.client.prefs.current_character_type = RUSSIAN
+		user.client.prefs.current_character_type = SOVIET
 */
 /datum/category_group/player_setup_category/occupation_preferences/content(var/mob/user)
 	for(var/datum/category_item/player_setup_item/PI in items)
@@ -172,7 +172,7 @@
 * Category Item Setup *
 **********************/
 /datum/category_item/player_setup_item
-	var/sort_order = 0
+	var/sort_order = FALSE
 	var/datum/preferences/pref
 
 /datum/category_item/player_setup_item/New()
@@ -215,7 +215,7 @@
 * Called when the item is asked to update user/global settings
 */
 /datum/category_item/player_setup_item/proc/update_setup()
-	return 0
+	return FALSE
 
 /datum/category_item/player_setup_item/proc/content()
 	return
@@ -228,7 +228,7 @@
 
 /datum/category_item/player_setup_item/Topic(var/href,var/list/href_list)
 	if(..())
-		return 1
+		return TRUE
 
 	var/mob/pref_mob = preference_mob()
 
@@ -236,11 +236,15 @@
 		return
 
 	if(!pref_mob || !pref_mob.client)
-		return 1
+		return TRUE
 
 	var/list/pref_initial_vars = list()
 	for (var/varname in pref.vars)
-		pref_initial_vars[varname] = pref.vars[varname]
+		pref_initial_vars[varname] = initial(pref.vars[varname])
+
+
+//	for (var/x in pref_initial_vars)
+//		world << "1. [x] = [pref_initial_vars[x]]"
 
 	. = OnTopic(href, href_list, usr)
 	if(. == TOPIC_REFRESH)
@@ -257,10 +261,12 @@
 			continue
 		if (pref_initial_vars[varname] != variable) // variable changed!
 			pref.remember_preference(varname, variable)
+		else if (pref_initial_vars[varname] == variable) // variable set back to default!
+			pref.unremember_preference(varname)
 		//	world << "test #2: [varname] = [pref.vars[varname]]"
 
 /datum/category_item/player_setup_item/CanUseTopic(var/mob/user)
-	return 1
+	return TRUE
 
 /datum/category_item/player_setup_item/proc/OnTopic(var/href,var/list/href_list, var/mob/user)
 	return TOPIC_NOACTION

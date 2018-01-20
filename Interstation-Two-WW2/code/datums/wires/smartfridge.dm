@@ -3,10 +3,10 @@
 	wire_count = 3
 
 /datum/wires/smartfridge/secure
-	random = 1
+	random = TRUE
 	wire_count = 4
 
-var/const/SMARTFRIDGE_WIRE_ELECTRIFY	= 1
+var/const/SMARTFRIDGE_WIRE_ELECTRIFY	= TRUE
 var/const/SMARTFRIDGE_WIRE_THROW		= 2
 var/const/SMARTFRIDGE_WIRE_IDSCAN		= 4
 
@@ -15,10 +15,10 @@ var/const/SMARTFRIDGE_WIRE_IDSCAN		= 4
 	if(!istype(L, /mob/living/silicon))
 		if(S.seconds_electrified)
 			if(S.shock(L, 100))
-				return 0
+				return FALSE
 	if(S.panel_open)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/wires/smartfridge/GetInteractWindow()
 	var/obj/machinery/smartfridge/S = holder
@@ -44,8 +44,8 @@ var/const/SMARTFRIDGE_WIRE_IDSCAN		= 4
 			S.shoot_inventory = !mended
 		if(SMARTFRIDGE_WIRE_ELECTRIFY)
 			if(mended)
-				S.seconds_electrified = 0
+				S.seconds_electrified = FALSE
 			else
 				S.seconds_electrified = -1
 		if(SMARTFRIDGE_WIRE_IDSCAN)
-			S.scan_id = 1
+			S.scan_id = TRUE

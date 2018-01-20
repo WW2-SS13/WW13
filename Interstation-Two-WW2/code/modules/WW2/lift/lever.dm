@@ -1,6 +1,6 @@
 /obj/lift_lever // same icon as the train lever for now
 	anchored = 1.0
-	density = 1
+	density = TRUE
 	icon = 'icons/WW2/train_lever.dmi'
 	icon_state = "lever_none"
 	var/none_state = "lever_none"

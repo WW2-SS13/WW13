@@ -3,8 +3,8 @@
 	desc = "It's a net made of green energy."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
-	throwforce = 0
-	force = 0
+	throwforce = FALSE
+	force = FALSE
 	var/net_type = /obj/effect/energy_net
 
 /obj/item/weapon/energy_net/dropped()
@@ -18,13 +18,13 @@
 
 	if(!istype(M) || locate(/obj/effect/energy_net) in M.loc)
 		qdel(src)
-		return 0
+		return FALSE
 
 	var/turf/T = get_turf(M)
 	if(T)
 		var/obj/effect/energy_net/net = new net_type(T)
 		net.layer = M.layer+1
-		M.captured = 1
+		M.captured = TRUE
 		net.affecting = M
 		T.visible_message("[M] was caught in an energy net!")
 		qdel(src)
@@ -39,10 +39,10 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
 
-	density = 1
-	opacity = 0
-	mouse_opacity = 1
-	anchored = 1
+	density = TRUE
+	opacity = FALSE
+	mouse_opacity = TRUE
+	anchored = TRUE
 
 	var/health = 25
 	var/mob/living/affecting = null //Who it is currently affecting, if anyone.
@@ -61,7 +61,7 @@
 	if(affecting)
 		var/mob/living/carbon/M = affecting
 		M.anchored = initial(affecting.anchored)
-		M.captured = 0
+		M.captured = FALSE
 		M << "You are free of the net!"
 
 	processing_objects -= src
@@ -70,8 +70,8 @@
 /obj/effect/energy_net/proc/healthcheck()
 
 	if(health <=0)
-		density = 0
-		src.visible_message("The energy net is torn apart!")
+		density = FALSE
+		visible_message("The energy net is torn apart!")
 		qdel(src)
 	return
 
@@ -87,17 +87,17 @@
 	if(countdown == -1 || (istype(M) && !M.client))
 		return
 
-	if(countdown > 0)
+	if(countdown > FALSE)
 		countdown--
 		return
 
 	// TODO: consider removing or altering this; energy nets are useful on their own
 	// merits and the teleportation was never properly implemented; it's halfassed.
-	density = 0
+	density = FALSE
 	invisibility = 101 //Make the net invisible so all the animations can play out.
 	health = INFINITY  //Make the net invincible so that an explosion/something else won't kill it during anims.
 
-	playsound(affecting.loc, 'sound/effects/sparks4.ogg', 50, 1)
+	playsound(affecting.loc, 'sound/effects/sparks4.ogg', 50, TRUE)
 	anim(affecting.loc,affecting,'icons/mob/mob.dmi',,"phaseout",,affecting.dir)
 
 	affecting.visible_message("[affecting] vanishes in a flare of light!")
@@ -107,8 +107,8 @@
 
 	affecting << "You appear in a strange place!"
 
-	playsound(affecting.loc, 'sound/effects/phasein.ogg', 25, 1)
-	playsound(affecting.loc, 'sound/effects/sparks2.ogg', 50, 1)
+	playsound(affecting.loc, 'sound/effects/phasein.ogg', 25, TRUE)
+	playsound(affecting.loc, 'sound/effects/sparks2.ogg', 50, TRUE)
 	anim(affecting.loc,affecting,'icons/mob/mob.dmi',,"phasein",,affecting.dir)
 
 	qdel(src)
@@ -116,10 +116,10 @@
 /obj/effect/energy_net/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	healthcheck()
-	return 0
+	return FALSE
 
 /obj/effect/energy_net/ex_act()
-	health = 0
+	health = FALSE
 	healthcheck()
 
 /obj/effect/energy_net/attack_hand(var/mob/user)
@@ -127,13 +127,13 @@
 	var/mob/living/carbon/human/H = user
 	if(istype(H))
 		if(H.species.can_shred(H))
-			playsound(src.loc, 'sound/weapons/slash.ogg', 80, 1)
+			playsound(loc, 'sound/weapons/slash.ogg', 80, TRUE)
 			health -= rand(10, 20)
 		else
 			health -= rand(1,3)
 
 	else if (HULK in user.mutations)
-		health = 0
+		health = FALSE
 	else
 		health -= rand(5,8)
 

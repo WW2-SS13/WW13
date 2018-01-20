@@ -9,19 +9,20 @@ Add attached bayonet sprite
 
 Current Defines (_defines/attachment.dm)
 
-#define ATTACH_IRONSIGHTS 1
+#define ATTACH_IRONSIGHTS TRUE
 #define ATTACH_SCOPE 2
 #define ATTACH_STOCK 4
 #define ATTACH_BARREL 8
-#define ATTACH_UNDER 16
+#define ATTACH_UNDER TRUE6
 */
 
-/obj/item/attachment
+/obj/item/weapon/attachment
   var/attachable = TRUE
   var/attachment_type //Use the 'ATTACH_' defines above (should only use one for this)
   var/A_attached = FALSE //Is attached
+  w_class = 2
 
-/obj/item/attachment/proc/attached(mob/user, obj/item/weapon/gun/G)
+/obj/item/weapon/attachment/proc/attached(mob/user, obj/item/weapon/gun/G)
   user << "<span class = 'notice'>You start to attach [src] to the [G].</span>"
   if(do_after(user, 15, user))
     user.unEquip(src)
@@ -36,7 +37,7 @@ Current Defines (_defines/attachment.dm)
   else
     return
 
-/obj/item/attachment/proc/removed(mob/user, obj/item/weapon/gun/G)
+/obj/item/weapon/attachment/proc/removed(mob/user, obj/item/weapon/gun/G)
   if(do_after(user, 15, user))
     G.attachments -= src
     G.actions -= actions
@@ -56,17 +57,17 @@ Current Defines (_defines/attachment.dm)
 /obj/item/weapon/gun/examine(mob/user)
   ..()
   if(attachments.len)
-    for(var/obj/item/attachment/A in attachments)
+    for(var/obj/item/weapon/attachment/A in attachments)
       user << "<span class='notice'>It has [A] attached.</span>"
 
 /obj/item/weapon/gun/dropped(mob/user)
   if(attachments.len)
-    for(var/obj/item/attachment/A in attachments)
+    for(var/obj/item/weapon/attachment/A in attachments)
       A.dropped(user)
 
 /obj/item/weapon/gun/pickup(mob/user)
   if(attachments.len)
-    for(var/obj/item/attachment/A in attachments)
+    for(var/obj/item/weapon/attachment/A in attachments)
       A.pickup(user)
 
 /obj/item/weapon/gun/verb/field_strip()
@@ -75,11 +76,11 @@ Current Defines (_defines/attachment.dm)
   set category = "Weapons"
   var/mob/living/carbon/human/user = usr
 
-  for(var/obj/item/attachment/A in attachments)
+  for(var/obj/item/weapon/attachment/A in attachments)
     A.removed(user, src)
 
 //Use this under /New() of weapons if they spawn with attachments
-/obj/item/weapon/gun/proc/spawn_add_attachment(obj/item/attachment/A)
+/obj/item/weapon/gun/proc/spawn_add_attachment(obj/item/weapon/attachment/A)
   A.A_attached = TRUE
   attachment_slots -= A.attachment_type
   attachments += A
@@ -89,7 +90,7 @@ Current Defines (_defines/attachment.dm)
   for(var/datum/action/action in actions)
     action.Grant(user)
 
-/obj/item/weapon/gun/proc/try_attach(obj/item/attachment/A, mob/user)
+/obj/item/weapon/gun/proc/try_attach(obj/item/weapon/attachment/A, mob/user)
   if(!A || !user)
     return
   if(user.get_inactive_hand() != src)
@@ -98,7 +99,7 @@ Current Defines (_defines/attachment.dm)
   attach_A(A, user)
 
 //Do not use this; use try_attach instead
-/obj/item/weapon/gun/proc/attach_A(obj/item/attachment/A, mob/user)
+/obj/item/weapon/gun/proc/attach_A(obj/item/weapon/attachment/A, mob/user)
   switch(A.attachment_type)
     if(ATTACH_IRONSIGHTS)
       if(attachment_slots & ATTACH_IRONSIGHTS)
@@ -138,9 +139,9 @@ Current Defines (_defines/attachment.dm)
 	name = "Bayonet Charge"
 	check_flags = AB_CHECK_ALIVE|AB_CHECK_RESTRAINED|AB_CHECK_STUNNED|AB_CHECK_LYING
 	button_icon_state = ""
-	var/obj/item/attachment/bayonet = null
+	var/obj/item/weapon/attachment/bayonet = null
 
-/obj/item/attachment/bayonet/proc/build_bayonet()
+/obj/item/weapon/attachment/bayonet/proc/build_bayonet()
 	amelee = new()
 	amelee.bayonet = src
 	actions += amelee
@@ -154,54 +155,54 @@ Current Defines (_defines/attachment.dm)
 /datum/action/bayonet/Remove(mob/living/L)
 	..()
 
-/obj/item/attachment/bayonet/New()
+/obj/item/weapon/attachment/bayonet/New()
 	..()
 	build_bayonet()
 
-/obj/item/attachment/bayonet/pickup(mob/user)
+/obj/item/weapon/attachment/bayonet/pickup(mob/user)
 	..()
 	if(amelee)
 		amelee.Grant(user)
 
-/obj/item/attachment/bayonet/dropped(mob/user)
+/obj/item/weapon/attachment/bayonet/dropped(mob/user)
 	..()
 	if(amelee)
 		amelee.Remove(user)
 */
-/obj/item/attachment/bayonet
+/obj/item/weapon/attachment/bayonet
 	name = "bayonet"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "bayonet"
 	item_state = "knife"
 	flags = CONDUCT
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	force = WEAPON_FORCE_DANGEROUS/1.5
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	attachment_type = ATTACH_BARREL
 	var/attack_sound = 'sound/weapons/slice.ogg'
 	//var/datum/action/bayonet/amelee
 
-/obj/item/attachment/bayonet/attached(mob/user, obj/item/weapon/gun/G)
+/obj/item/weapon/attachment/bayonet/attached(mob/user, obj/item/weapon/gun/G)
   ..()
   G.bayonet = src
 
-/obj/item/attachment/bayonet/removed(mob/user, obj/item/weapon/gun/G)
+/obj/item/weapon/attachment/bayonet/removed(mob/user, obj/item/weapon/gun/G)
   ..()
   G.bayonet = null
 
-/obj/item/attachment/scope/iron_sights
+/obj/item/weapon/attachment/scope/iron_sights
 	name = "iron sights"
 	attachment_type = ATTACH_IRONSIGHTS
 	zoom_amt = 10
 
-/obj/item/attachment/scope/adjustable/sniper_scope
+/obj/item/weapon/attachment/scope/adjustable/sniper_scope
 	name = "sniper scope"
 	icon_state = "kar_scope"
 	desc = "You can attach this to rifles... or use them as binoculars."
 	max_zoom = 20
 
-/obj/item/attachment/scope/adjustable/sniper_scope/removed(mob/user, obj/item/weapon/gun/G)
+/obj/item/weapon/attachment/scope/adjustable/sniper_scope/removed(mob/user, obj/item/weapon/gun/G)
   ..()
   //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
   G.icon_state = initial(G.icon_state)
@@ -211,16 +212,16 @@ Current Defines (_defines/attachment.dm)
     if(W.bolt_open)
       W.icon_state = addtext(W.icon_state, "_open")
 
-/obj/item/attachment/scope/adjustable/sniper_scope/attached(mob/user, obj/item/weapon/gun/G)
+/obj/item/weapon/attachment/scope/adjustable/sniper_scope/attached(mob/user, obj/item/weapon/gun/G)
   ..()
   if(istype(G, /obj/item/weapon/gun/projectile/boltaction))
     var/obj/item/weapon/gun/projectile/boltaction/W = G
     W.update_icon(1)
 
-/obj/item/attachment/scope/removed(mob/user, obj/item/weapon/gun/G)
+/obj/item/weapon/attachment/scope/removed(mob/user, obj/item/weapon/gun/G)
   ..()
   G.accuracy = initial(G.accuracy)
   G.recoil = initial(G.recoil)
 
-/obj/item/attachment/scope/iron_sights/removed(mob/user, obj/item/weapon/gun/G)
+/obj/item/weapon/attachment/scope/iron_sights/removed(mob/user, obj/item/weapon/gun/G)
   return

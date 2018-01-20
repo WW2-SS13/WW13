@@ -32,7 +32,7 @@
 	var/list/species_allowed = list("Human")
 
 	// Whether or not the accessory can be affected by colouration
-	var/do_colouration = 1
+	var/do_colouration = TRUE
 
 
 /*
@@ -105,7 +105,7 @@
 		icon_state = "hair_halfbang_alt"
 
 	ponytail1
-		name = "Ponytail 1"
+		name = "Ponytail TRUE"
 		icon_state = "hair_ponytail"
 
 	ponytail2

@@ -9,10 +9,12 @@
 	icon_state = "fw_off"
 	item_state = "fw_off"
 	var/pressure_1 = 100
-	status = 1
-	nothrow = 1
-	var/fueltank = 1
+	status = TRUE
+	nothrow = TRUE
+	var/fueltank = TRUE
 	var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = null
+	var/rwidth = 7
+	var/rheight = 3
 
 /obj/item/weapon/flamethrower/flammenwerfer/nothrow_special_check()
 	return nodrop_special_check()
@@ -70,24 +72,37 @@
 		my_mob << "<span class = 'danger'>Put the backpack on first.</span>"
 		return
 
-	operating = 1
-	playsound(my_turf, 'sound/weapons/flamethrower.ogg', 100, 1)
+	operating = TRUE
+	playsound(my_turf, 'sound/weapons/flamethrower.ogg', 100, TRUE)
 
-	var/blocking_turfs = list()
+	var/list/blocking_turfs = list()
 
 	for(var/turf/T in turflist)
 
 		if (T == my_turf)
 			continue
 
-		if (abs(my_turf.x - T.x) > 3 || abs(my_turf.y - T.y) > 5)
-			continue
+		switch (my_mob.dir)
+			if (EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+				if (abs(my_turf.x - T.x) > rwidth || abs(my_turf.y - T.y) > rheight)
+					continue
+			if (NORTH, SOUTH)
+				if (abs(my_turf.x - T.x) > rheight || abs(my_turf.y - T.y) > rwidth)
+					continue
 
-		if (T != get_step(my_turf, my_mob.dir) && prob(get_dist(my_turf, T)*2))
+		// higher temperature = less missed turfs
+		if (T != get_step(my_turf, my_mob.dir) && prob((get_dist(my_turf, T)+10)/get_temperature_coeff()))
 			continue
 
 		if(T.density)
 			blocking_turfs += T
+		else
+			for (var/obj/structure/S in T)
+				if (S.density)
+					blocking_turfs += T
+					break
+
+		if (blocking_turfs.Find(T))
 			continue
 
 		for (var/turf/TT in blocking_turfs)
@@ -114,11 +129,11 @@
 		spawn (get_dist(my_turf, T))
 			ignite_turf(T, flamedir)
 		// we run out of fuel after flamming 4000 turfs (on min fuel)
-		fueltank -= (1/4000) * get_throw_coeff()
+		fueltank -= (1/4000) * get_temperature_coeff()
 		fueltank = max(fueltank, 0.00)
 
 	previousturf = null
-	operating = 0
+	operating = FALSE
 	for(var/mob/M in viewers(1, loc))
 		if((M.client && M.machine == src))
 			attack_self(M)
@@ -130,7 +145,13 @@
 	if(!ptank)
 		user << "<span class='notice'>Attach a plasma tank first!</span>"
 		return
-	var/dat = text("<TT><B>Das Flammenwerfer (<a href='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</B><BR>\n Fullness: [fullness_percentage()]%<BR>\nAmount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n - <A HREF='?src=\ref[src];close=1'>Close</A></TT>")
+	var/dat = text({"<TT><B>Das Flammenwerfer (<a href='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</B><BR>\n
+	Fullness: [fullness_percentage()]%<BR>\n
+	Amount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n
+	Fire Width ([rwidth]): <A HREF='?src=\ref[src];rwidth=-1'>-</A> <A HREF='?src=\ref[src];rwidth=+1'>+</A>
+	Fire Height ([rheight]): <A HREF='?src=\ref[src];rheight=-1'>-</A> <A HREF='?src=\ref[src];rheight=+1'>+</A>
+	<br>
+	<A HREF='?src=\ref[src];close=1'>Close</A></TT>"})
 	user << browse(dat, "window=flamethrower;size=600x300")
 	onclose(user, "flamethrower")
 	return
@@ -146,7 +167,7 @@
 	if(usr.stat || usr.restrained() || usr.lying)	return
 	usr.set_machine(src)
 	if(href_list["light"])
-		if(fueltank <= 0) return
+		if(fueltank <= FALSE) return
 		if(!status)	return
 		lit = !lit
 		if(lit)
@@ -154,6 +175,12 @@
 	if(href_list["amount"])
 		throw_amount = throw_amount + text2num(href_list["amount"])
 		throw_amount = max(50, min(5000, throw_amount))
+	if(href_list["rwidth"])
+		rwidth = rwidth + text2num(href_list["rwidth"])
+		rwidth = Clamp(rwidth, 1, 7)
+	if(href_list["rheight"])
+		rheight = rheight + text2num(href_list["rheight"])
+		rheight = Clamp(rheight, 1, 3)
 
 	// refresh
 	for(var/mob/M in viewers(1, loc))
@@ -163,14 +190,25 @@
 	update_icon()
 	return
 
-/obj/item/weapon/flamethrower/flammenwerfer/proc/get_throw_coeff()
+// how much fuel do we use based on throw_amount
+/obj/item/weapon/flamethrower/flammenwerfer/proc/get_temperature_coeff()
+	return 1.0 + (throw_amount-100)/100
+
+// what is the multiplier put on our fire's heat based on throw_amount
+// you will notice that the most efficient throw_amount is the default one,
+// and at throw amounts > 700 its downright inefficient as the fire barely gets hotter
+/obj/item/weapon/flamethrower/flammenwerfer/proc/get_heat_coeff()
 	. = 1.0
 	. += ((throw_amount-100)/100)/3
 	. = max(., 3.0) // don't get too hot
-	. += ((throw_amount-100)/100)/50 // give us a bit of extra heat if we're super high
+	. += ((throw_amount-100)/100)/20 // give us a bit of extra heat if we're super high
+	// for example, 200 throw amount = 1.38x
+	// 500 = 2.53x
+	// 700 = 3.3x
+	// 1500 = 3.7x
 
 /obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target, flamedir)
-	var/throw_coeff = get_throw_coeff()
+	var/throw_coeff = get_heat_coeff()
 	var/dist_coeff = 1.0
 	switch (get_dist(get_turf(src), target))
 		if (0 to 5)
@@ -180,7 +218,16 @@
 		if (10 to INFINITY)
 			dist_coeff = 1.00
 
-	target.create_fire(5, rand(250,300) * throw_coeff * dist_coeff, 0)
+	var/time_limit = pick(2,3)
+	var/extra_temp = FALSE
+	for (var/obj/fire/F in get_turf(src))
+		extra_temp += ((F.temperature / 100) * rand(15,25))
+		time_limit += 2
+		qdel(F)
+
+	var/obj/fire/F = target.create_fire(5, (rand(250,300) * throw_coeff * dist_coeff) + extra_temp, FALSE)
+	F.time_limit = time_limit
+
 	spawn (rand(120*throw_coeff, 150*throw_coeff))
 		for (var/obj/fire/fire in target)
 			qdel(fire) // shitty workaround #2

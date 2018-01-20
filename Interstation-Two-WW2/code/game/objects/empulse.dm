@@ -14,12 +14,12 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
 		message_admins("EMP with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ")
 		log_game("EMP with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ")
 
-	if(heavy_range > 1)
+	if(heavy_range > TRUE)
 		var/obj/effect/overlay/pulse = PoolOrNew(/obj/effect/overlay, epicenter)
 		pulse.icon = 'icons/effects/effects.dmi'
 		pulse.icon_state = "emppulse"
 		pulse.name = "emp pulse"
-		pulse.anchored = 1
+		pulse.anchored = TRUE
 		spawn(20)
 			qdel(pulse)
 
@@ -34,8 +34,8 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
 		var/time = world.timeofday
 		#endif
 		var/distance = get_dist(epicenter, T)
-		if(distance < 0)
-			distance = 0
+		if(distance < FALSE)
+			distance = FALSE
 		if(distance < heavy_range)
 			T.emp_act(1)
 		else if(distance == heavy_range)
@@ -49,4 +49,4 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
 		if((world.timeofday - time) >= EMPDEBUG)
 			log_and_message_admins("EMPDEBUG: [T.name] - [T.type] - took [world.timeofday - time]ds to process emp_act()!")
 		#endif
-	return 1
+	return TRUE

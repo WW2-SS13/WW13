@@ -20,14 +20,14 @@
 	input = remove_characters(input, list("~", "|", "@", ":", "#", "$", "%", "&",  "'",  "*", "+", "\"", ",", "-", "<", ">", "(", ")", "=", "/", "\\", "!", "^"))
 
 	if(length(input) > max_length)
-		input = copytext(input, 1, max_length+1)
+		input = copytext(input, TRUE, max_length+1)
 	return input
 /*
  * Text sanitization
  */
 
 //Used for preprocessing entered text
-/proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
+/proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = TRUE, var/trim = TRUE, var/extra = TRUE)
 	if(!input)
 		return
 
@@ -58,16 +58,16 @@
 //Best used for sanitize object names, window titles.
 //If you have a problem with sanitize() in chat, when quotes and >, < are displayed as html entites -
 //this is a problem of double-encode(when & becomes &amp;), use sanitize() with encode=0, but not the sanitizeSafe()!
-/proc/sanitizeSafe(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
+/proc/sanitizeSafe(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = TRUE, var/trim = TRUE, var/extra = TRUE)
 	return sanitize(replace_characters(input, list(">"=" ","<"=" ", "\""="'")), max_length, encode, trim, extra)
 
 //Filters out undesirable characters from names
-/proc/sanitizeName(var/input, var/max_length = MAX_NAME_LEN, var/allow_numbers = 0)
+/proc/sanitizeName(var/input, var/max_length = MAX_NAME_LEN, var/allow_numbers = FALSE)
 	if(!input || length(input) > max_length)
 		return //Rejects the input if it is null or if it is longer then the max length allowed
 
-	var/number_of_alphanumeric	= 0
-	var/last_char_group			= 0
+	var/number_of_alphanumeric	= FALSE
+	var/last_char_group			= FALSE
 	var/output = ""
 
 	for(var/i=1, i<=length(input), i++)
@@ -86,7 +86,7 @@
 				number_of_alphanumeric++
 				last_char_group = 4
 
-			// 0  .. 9
+			// FALSE  .. 9
 			if(48 to 57)			//Numbers
 				if(!last_char_group)		continue	//suppress at start of string
 				if(!allow_numbers)			continue
@@ -109,15 +109,15 @@
 
 			//Space
 			if(32)
-				if(last_char_group <= 1)	continue	//suppress double-spaces and spaces at start of string
+				if(last_char_group <= TRUE)	continue	//suppress double-spaces and spaces at start of string
 				output += ascii2text(ascii_char)
-				last_char_group = 1
+				last_char_group = TRUE
 			else
 				return
 
 	if(number_of_alphanumeric < 2)	return		//protects against tiny names like "A" and also names like "' ' ' ' ' ' ' '"
 
-	if(last_char_group == 1)
+	if(last_char_group == TRUE)
 		output = copytext(output,1,length(output))	//removes the last character (in this case a space)
 
 	for(var/bad_name in list("space","floor","wall","r-wall","monkey","unknown","inactive ai","plating"))	//prevents these common metagamey names
@@ -128,14 +128,14 @@
 //Returns null if there is any bad text in the string
 /proc/reject_bad_text(var/text, var/max_length=512)
 	if(length(text) > max_length)	return			//message too long
-	var/non_whitespace = 0
+	var/non_whitespace = FALSE
 	for(var/i=1, i<=length(text), i++)
 		switch(text2ascii(text,i))
 			if(62,60,92,47)	return			//rejects the text if it contains these bad characters: <, >, \ or /
 			if(127 to 255)	return			//rejects weird letters like �
 			if(0 to 31)		return			//more weird stuff
 			if(32)			continue		//whitespace
-			else			non_whitespace = 1
+			else			non_whitespace = TRUE
 	if(non_whitespace)		return text		//only accepts the text if it has some non-spaces
 
 
@@ -148,21 +148,21 @@
  */
 
 //Checks the beginning of a string for a specified sub-string
-//Returns the position of the substring or 0 if it was not found
+//Returns the position of the substring or FALSE if it was not found
 /proc/dd_hasprefix(text, prefix)
-	var/start = 1
-	var/end = length(prefix) + 1
+	var/start = TRUE
+	var/end = length(prefix) + TRUE
 	return findtext(text, prefix, start, end)
 
 //Checks the beginning of a string for a specified sub-string. This proc is case sensitive
-//Returns the position of the substring or 0 if it was not found
+//Returns the position of the substring or FALSE if it was not found
 /proc/dd_hasprefix_case(text, prefix)
-	var/start = 1
-	var/end = length(prefix) + 1
+	var/start = TRUE
+	var/end = length(prefix) + TRUE
 	return findtextEx(text, prefix, start, end)
 
 //Checks the end of a string for a specified substring.
-//Returns the position of the substring or 0 if it was not found
+//Returns the position of the substring or FALSE if it was not found
 /proc/dd_hassuffix(text, suffix)
 	var/start = length(text) - length(suffix)
 	if(start)
@@ -170,7 +170,7 @@
 	return
 
 //Checks the end of a string for a specified substring. This proc is case sensitive
-//Returns the position of the substring or 0 if it was not found
+//Returns the position of the substring or FALSE if it was not found
 /proc/dd_hassuffix_case(text, suffix)
 	var/start = length(text) - length(suffix)
 	if(start)
@@ -212,16 +212,16 @@
 
 //Returns a string with reserved characters and spaces before the first letter removed
 /proc/trim_left(text)
-	for (var/i = 1 to length(text))
+	for (var/i = TRUE to length(text))
 		if (text2ascii(text, i) > 32)
 			return copytext(text, i)
 	return ""
 
 //Returns a string with reserved characters and spaces after the last letter removed
 /proc/trim_right(text)
-	for (var/i = length(text), i > 0, i--)
+	for (var/i = length(text), i > FALSE, i--)
 		if (text2ascii(text, i) > 32)
-			return copytext(text, 1, i + 1)
+			return copytext(text, TRUE, i + TRUE)
 	return ""
 
 //Returns a string with reserved characters and spaces before the first word and after the last word removed.
@@ -230,28 +230,28 @@
 
 //Returns a string with the first element of the string capitalized.
 /proc/capitalize(var/t as text)
-	return uppertext(copytext(t, 1, 2)) + copytext(t, 2)
+	return uppertext(copytext(t, TRUE, 2)) + copytext(t, 2)
 
 //This proc strips html properly, remove < > and all text between
 //for complete text sanitizing should be used sanitize()
 /proc/strip_html_properly(var/input)
 	if(!input)
 		return
-	var/opentag = 1 //These store the position of < and > respectively.
-	var/closetag = 1
+	var/opentag = TRUE //These store the position of < and > respectively.
+	var/closetag = TRUE
 	while(1)
 		opentag = findtext(input, "<")
 		closetag = findtext(input, ">")
 		if(closetag && opentag)
 			if(closetag < opentag)
-				input = copytext(input, (closetag + 1))
+				input = copytext(input, (closetag + TRUE))
 			else
-				input = copytext(input, 1, opentag) + copytext(input, (closetag + 1))
+				input = copytext(input, TRUE, opentag) + copytext(input, (closetag + TRUE))
 		else if(closetag || opentag)
 			if(opentag)
-				input = copytext(input, 1, opentag)
+				input = copytext(input, TRUE, opentag)
 			else
-				input = copytext(input, (closetag + 1))
+				input = copytext(input, (closetag + TRUE))
 		else
 			break
 
@@ -263,8 +263,8 @@
 /proc/stringmerge(var/text,var/compare,replace = "*")
 	var/newtext = text
 	if(lentext(text) != lentext(compare))
-		return 0
-	for(var/i = 1, i < lentext(text), i++)
+		return FALSE
+	for(var/i = TRUE, i < lentext(text), i++)
 		var/a = copytext(text,i,i+1)
 		var/b = copytext(compare,i,i+1)
 		//if it isn't both the same letter, or if they are both the replacement character
@@ -275,16 +275,16 @@
 			else if(b == replace) //if B is the replacement char
 				newtext = copytext(newtext,1,i) + a + copytext(newtext, i+1)
 			else //The lists disagree, Uh-oh!
-				return 0
+				return FALSE
 	return newtext
 
 //This proc returns the number of chars of the string that is the character
 //This is used for detective work to determine fingerprint completion.
 /proc/stringpercent(var/text,character = "*")
 	if(!text || !character)
-		return 0
-	var/count = 0
-	for(var/i = 1, i <= lentext(text), i++)
+		return FALSE
+	var/count = FALSE
+	for(var/i = TRUE, i <= lentext(text), i++)
 		var/a = copytext(text,i,i+1)
 		if(a == character)
 			count++
@@ -292,7 +292,7 @@
 
 /proc/reverse_text(var/text = "")
 	var/new_text = ""
-	for(var/i = length(text); i > 0; i--)
+	for(var/i = length(text); i > FALSE; i--)
 		new_text += copytext(text, i, i+1)
 	return new_text
 
@@ -305,7 +305,7 @@ proc/TextPreview(var/string,var/len=40)
 		else
 			return string
 	else
-		return "[copytext_preserve_html(string, 1, 37)]..."
+		return "[copytext_preserve_html(string, TRUE, 37)]..."
 
 //alternative copytext() for encoded text, doesn't break html entities (&#34; and other)
 /proc/copytext_preserve_html(var/text, var/first, var/last)
@@ -326,15 +326,15 @@ proc/TextPreview(var/string,var/len=40)
 		switch(ascii_char)
 			// A  .. Z
 			if(65 to 90)			//Uppercase Letters
-				return 1
+				return TRUE
 			// a  .. z
 			if(97 to 122)			//Lowercase Letters
-				return 1
+				return TRUE
 
-			// 0  .. 9
+			// FALSE  .. 9
 			if(48 to 57)			//Numbers
-				return 1
-	return 0
+				return TRUE
+	return FALSE
 
 /**
  * Strip out the special beyond characters for \proper and \improper

@@ -12,17 +12,17 @@
 	var/list/plane_fuelslots = list()
 	var/list/plane_controls = list()
 	var/name = "A freakin' plane"
-	var/named = 0
-	var/damage = 0
+	var/named = FALSE
+	var/damage = FALSE
 	var/max_damage = 500
-	var/took_critical_damage = 0
+	var/took_critical_damage = FALSE
 
 /datum/plane/proc/visible_message(x)
 	var/obj/plane_part/plane_node/middle_node = get_middle_node()
 	return middle_node.visible_message(x)
 
 /datum/plane/proc/get_middle_node()
-	return plane_nodes[min(max(round(plane_nodes.len/2), 1), plane_nodes.len)]
+	return plane_nodes[min(max(round(plane_nodes.len/2), TRUE), plane_nodes.len)]
 
 /* subtypes */
 
@@ -42,7 +42,7 @@
 
 /datum/plane/proc/node(i)
 	if (!i)
-		i = 1
+		i = TRUE
 	if (i > plane_nodes.len)
 		if (plane_nodes.len)
 			return plane_nodes[plane_nodes.len]
@@ -52,7 +52,7 @@
 
 /datum/plane/proc/fuelslot(i)
 	if (!i)
-		i = 1
+		i = TRUE
 	if (i > plane_fuelslots.len)
 		if (plane_fuelslots.len)
 			return plane_fuelslots[plane_fuelslots.len]
@@ -62,7 +62,7 @@
 
 /datum/plane/proc/controls(i)
 	if (!i)
-		i = 1
+		i = TRUE
 	if (i > plane_controls.len)
 		if (plane_controls.len)
 			return plane_controls[plane_controls.len]
@@ -77,7 +77,7 @@
 
 /datum/plane/proc/set_name(x)
 	name = x
-	named = 1
+	named = TRUE
 
 /datum/plane/var/displayed_damage_message[10]
 
@@ -89,38 +89,38 @@
 	switch (damage_percentage)
 		if (0 to 5) // who cares
 			if (!displayed_damage_message["0-5"])
-				displayed_damage_message["6-15"] = 0
+				displayed_damage_message["6-15"] = FALSE
 		//		plane_message("<span class = 'danger'>[src] looks a bit damaged.</span>")
-				displayed_damage_message["0-5"] = 1
+				displayed_damage_message["0-5"] = TRUE
 		if (6 to 15)
 			if (!displayed_damage_message["6-15"])
-				displayed_damage_message["16-25"] = 0
+				displayed_damage_message["16-25"] = FALSE
 				plane_message("<span class = 'danger'>[src] looks a bit damaged.</span>")
-				displayed_damage_message["6-15"] = 1
+				displayed_damage_message["6-15"] = TRUE
 		if (16 to 25)
 			if (!displayed_damage_message["16-25"])
-				displayed_damage_message["25-49"] = 0
+				displayed_damage_message["25-49"] = FALSE
 				plane_message("<span class = 'danger'>[src] looks damaged.</span>")
-				displayed_damage_message["16-25"] = 1
+				displayed_damage_message["16-25"] = TRUE
 		if (25 to 49)
 			if (!displayed_damage_message["25-49"])
-				displayed_damage_message["50-79"] = 0
+				displayed_damage_message["50-79"] = FALSE
 				plane_message("<span class = 'danger'>[src] looks quite damaged.</span>")
-				displayed_damage_message["25-49"] = 1
+				displayed_damage_message["25-49"] = TRUE
 		if (50 to 79)
 			if (!displayed_damage_message["50-79"])
-				displayed_damage_message["80-97"] = 0
+				displayed_damage_message["80-97"] = FALSE
 				plane_message("<span class = 'danger'>[src] looks really damaged!</span>")
-				displayed_damage_message["50-79"] = 1
+				displayed_damage_message["50-79"] = TRUE
 		if (80 to 97)
 			if (!displayed_damage_message["80-97"])
-				displayed_damage_message["97-INFINITY"] = 0
+				displayed_damage_message["97-INFINITY"] = FALSE
 				plane_message("<span class = 'danger'>[src] looks extremely damaged!</span>")
-				displayed_damage_message["80-97"] = 1
+				displayed_damage_message["80-97"] = TRUE
 		if (97 to INFINITY)
 			if (!displayed_damage_message["97-INFINITY"])
 				plane_message("<span class = 'danger'><big>[src] looks like its going to explode!!</big></span>")
-				displayed_damage_message["97-INFINITY"] = 1
+				displayed_damage_message["97-INFINITY"] = TRUE
 
 /datum/plane/proc/plane_message(x)
 	x = replacetext(x, "The plane", istype(src, /datum/plane/german) ? "German Panzer" : "Soviet plane")
@@ -137,7 +137,7 @@
 
 /* plane damage helpers */
 /*
-/datum/plane/var/did_critical_damage = 0
+/datum/plane/var/did_critical_damage = FALSE
 /datum/plane/var/next_ex_act = -1
 
 /datum/plane/bullet_act(var/obj/item/projectile/P, var/def_zone)
@@ -156,7 +156,7 @@
 	if (P.armor_penetration < 50)
 		dam /= 8
 
-	dam += 1 // minimum damage
+	dam += TRUE // minimum damage
 
 	damage += dam
 
@@ -165,7 +165,7 @@
 		critical_damage()
 	plane_message("<span class = 'danger'>The plane is hit by [P]!</span>")*/
 /*
-/datum/plane/ex_act(severity, var/forced = 0)
+/datum/plane/ex_act(severity, var/forced = FALSE)
 
 	if (world.time < next_ex_act && !forced)
 		return
@@ -190,7 +190,7 @@
 	if (prob(critical_damage_chance()))
 		critical_damage()
 
-	return 1
+	return TRUE
 */
 
 /datum/plane/proc/health_percentage() // text!
@@ -205,7 +205,7 @@
 /datum/plane/proc/critical_damage_chance()
 	var/damage_coeff = damage/max_damage
 	if (damage_coeff < 0.7)
-		return 0
+		return FALSE
 	else
 		if (damage_coeff >= 0.7 && damage_coeff <= 0.9)
 			return 5
@@ -217,12 +217,12 @@
 	if (took_critical_damage)
 		return
 
-	took_critical_damage = 1
+	took_critical_damage = TRUE
 	plane_message("<span class = 'danger'><big>[src] starts to shake and fall apart!</big></span>")
 	spawn (rand(100,200))
 		plane_message("<span class = 'danger'>You can smell burning from inside [src].</danger>")
 		for (var/mob/living/m in src)
-			m.on_fire = 1
+			m.on_fire = TRUE
 			m.fire_stacks += rand(5,15)
 			m << "<span class = 'danger'><big>You're on fire.</big></danger>"
 			if (prob(30))
@@ -231,7 +231,7 @@
 
 	spawn (rand(250, 350))
 		plane_message("<span class = 'danger'>[src] is falling apart[pick("!", "!!")]</span>")
-		for (var/v in 1 to 10)
+		for (var/v in TRUE to 10)
 			spawn (v * 5)
 				for (var/mob/living/m in src)
 					m.apply_damage(rand(1,2), BRUTE)
@@ -239,6 +239,6 @@
 		plane_message("<span class = 'danger'><big>[src] explodes.</big></span>")
 		for (var/mob/m in src)
 			m.gib()
-		explosion(get_turf(src), 1, 3, 5, 6)
+		explosion(get_turf(src), TRUE, 3, 5, 6)
 		spawn (20)
 			qdel(src)

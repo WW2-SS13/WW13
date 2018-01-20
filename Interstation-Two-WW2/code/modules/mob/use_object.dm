@@ -8,7 +8,7 @@
 			mg.usedby(src, mg)
 			mg.started_using(src)
 
-/mob/proc/handle_object_operation(var/stop_using = 0)
+/mob/proc/handle_object_operation(var/stop_using = FALSE)
 	if (using_object)
 		if (istype(using_object, /obj/item/weapon/gun/projectile/minigun))
 			var/obj/item/weapon/gun/projectile/minigun/mg = using_object
@@ -25,4 +25,4 @@
 /mob/update_canmove()
 	. = ..()
 	if (lying || stat)
-		handle_object_operation(stop_using = 1)
+		handle_object_operation(stop_using = TRUE)

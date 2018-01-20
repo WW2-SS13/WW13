@@ -11,9 +11,9 @@
 		src << "<font color='red'>Error: Mentor-PM: You cannot send mentorhelps (Muted).</font>"
 		return
 
-	mentorhelped = 1 //Determines if they get the message to reply by clicking the name.
+	mentorhelped = TRUE //Determines if they get the message to reply by clicking the name.
 
-	if(src.handle_spam_prevention(msg,MUTE_MENTORHELP))
+	if(handle_spam_prevention(msg,MUTE_MENTORHELP))
 		return
 
 	//clean the input msg
@@ -28,7 +28,7 @@
 
 	src << "<font color=green>PM to-<b>Mentors </b>: [msg]</font>"
 
-	var/mentormsg = "<b><font color=green>Request for Help:</font>[get_options_bar(mob, 4, 0, 1, 0)]:</b> [msg]</font>"
+	var/mentormsg = "<b><font color=green>Request for Help:</font>[get_options_bar(mob, 4, FALSE, TRUE, FALSE)]:</b> [msg]</font>"
 	var/adminmsg = "(MENTORHELP) [mentormsg]"
 
 	for(var/client/X in admins)

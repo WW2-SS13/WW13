@@ -20,8 +20,8 @@
 		slot_r_hand_str = "welding",
 		)
 	matter = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 1000)
-	var/up = 0
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/up = FALSE
+	armor = list(melee = 10, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = FALSE, rad = FALSE)
 	flags_inv = (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 	body_parts_covered = HEAD|FACE|EYES
 	action_button_name = "Flip Welding Mask"
@@ -43,8 +43,8 @@
 	set src in usr
 
 	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(src.up)
-			src.up = !src.up
+		if(up)
+			up = !up
 			body_parts_covered |= (EYES|FACE)
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			flash_protection = initial(flash_protection)
@@ -52,7 +52,7 @@
 			icon_state = base_state
 			usr << "You flip the [src] down to protect your eyes."
 		else
-			src.up = !src.up
+			up = !up
 			body_parts_covered &= ~(EYES|FACE)
 			flash_protection = FLASH_PROTECTION_NONE
 			tint = TINT_NONE
@@ -71,7 +71,7 @@
 	desc = "It's tasty looking!"
 	icon_state = "cake0"
 	item_state = "cake0"
-	var/onfire = 0
+	var/onfire = FALSE
 	body_parts_covered = HEAD
 
 /obj/item/clothing/head/cakehat/process()
@@ -79,28 +79,28 @@
 		processing_objects.Remove(src)
 		return
 
-	var/turf/location = src.loc
+	var/turf/location = loc
 	if(istype(location, /mob/))
 		var/mob/living/carbon/human/M = location
 		if(M.l_hand == src || M.r_hand == src || M.head == src)
 			location = M.loc
 
 	if (istype(location, /turf))
-		location.hotspot_expose(700, 1)
+		location.hotspot_expose(700, TRUE)
 
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
-	src.onfire = !( src.onfire )
-	if (src.onfire)
-		src.force = 3
-		src.damtype = "fire"
-		src.icon_state = "cake1"
-		src.item_state = "cake1"
+	onfire = !( onfire )
+	if (onfire)
+		force = 3
+		damtype = "fire"
+		icon_state = "cake1"
+		item_state = "cake1"
 		processing_objects.Add(src)
 	else
-		src.force = null
-		src.damtype = "brute"
-		src.icon_state = "cake0"
-		src.item_state = "cake0"
+		force = null
+		damtype = "brute"
+		icon_state = "cake0"
+		item_state = "cake0"
 	return
 
 
@@ -114,11 +114,11 @@
 	flags_inv = HIDEEARS
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
-	if(src.icon_state == "ushankadown")
-		src.icon_state = "ushankaup"
+	if(icon_state == "ushankadown")
+		icon_state = "ushankaup"
 		user << "You raise the ear flaps on the ushanka."
 	else
-		src.icon_state = "ushankadown"
+		icon_state = "ushankadown"
 		user << "You lower the ear flaps on the ushanka."
 
 /*

@@ -3,7 +3,7 @@
 	desc = "A simple yet bulky storage device for gas tanks. Has room for up to ten oxygen tanks, and ten plasma tanks."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "dispenser"
-	density = 1
+	density = TRUE
 	anchored = 1.0
 	w_class = 5
 	var/oxygentanks = 10
@@ -13,10 +13,10 @@
 
 
 /obj/structure/dispenser/oxygen
-	plasmatanks = 0
+	plasmatanks = FALSE
 
 /obj/structure/dispenser/plasma
-	oxygentanks = 0
+	oxygentanks = FALSE
 
 
 /obj/structure/dispenser/New()
@@ -72,10 +72,10 @@
 	if(istype(I, /obj/item/weapon/wrench))
 		if(anchored)
 			user << "<span class='notice'>You lean down and unwrench [src].</span>"
-			anchored = 0
+			anchored = FALSE
 		else
 			user << "<span class='notice'>You wrench [src] into place.</span>"
-			anchored = 1
+			anchored = TRUE
 		return
 
 /obj/structure/dispenser/Topic(href, href_list)
@@ -84,7 +84,7 @@
 	if(Adjacent(usr))
 		usr.set_machine(src)
 		if(href_list["oxygen"])
-			if(oxygentanks > 0)
+			if(oxygentanks > FALSE)
 				var/obj/item/weapon/tank/oxygen/O
 				if(oxytanks.len == oxygentanks)
 					O = oxytanks[1]
@@ -96,7 +96,7 @@
 				oxygentanks--
 				update_icon()
 		if(href_list["plasma"])
-			if(plasmatanks > 0)
+			if(plasmatanks > FALSE)
 				var/obj/item/weapon/tank/plasma/P
 				if(platanks.len == plasmatanks)
 					P = platanks[1]
@@ -107,7 +107,7 @@
 				usr << "<span class='notice'>You take [P] out of [src].</span>"
 				plasmatanks--
 				update_icon()
-		playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
+		playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, TRUE)
 		add_fingerprint(usr)
 		updateUsrDialog()
 	else

@@ -1,6 +1,6 @@
 //Sound environment defines. Reverb preset for sounds played in an area, see sound datum reference for more.
-#define GENERIC 0
-#define PADDED_CELL 1
+#define GENERIC FALSE
+#define PADDED_CELL TRUE
 #define ROOM 2
 #define BATHROOM 3
 #define LIVINGROOM 4
@@ -106,12 +106,12 @@ var/list/train_halting_sounds = list( 'sound/effects/train/halting.ogg' )
 var/const/FALLOFF_SOUNDS = 0.5
 
 /mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global)
-	if(!client || ear_deaf > 0)	return
+	if(!client || ear_deaf > FALSE)	return
 	soundin = get_sfx(soundin)
 
 	var/sound/S = sound(soundin)
-	S.wait = 0 //No queue
-	S.channel = 0 //Any channel
+	S.wait = FALSE //No queue
+	S.channel = FALSE //Any channel
 	S.volume = vol
 	S.environment = -1
 	if (vary)
@@ -127,10 +127,10 @@ var/const/FALLOFF_SOUNDS = 0.5
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
 
-		S.volume -= (max(distance - world.view, 0) * 2)//multiplicative falloff to add on top of natural audio falloff.
+		S.volume -= (max(distance - world.view, FALSE) * 2)//multiplicative falloff to add on top of natural audio falloff.
 		S.volume = max(S.volume, rand(5,9))
 
-		if (S.volume <= 0)
+		if (S.volume <= FALSE)
 			return	//no volume means no sound
 
 		var/dx = turf_source.x - T.x // Hearing from the right/left
@@ -138,7 +138,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 		var/dz = turf_source.y - T.y // Hearing from infront/behind
 		S.z = dz
 		// The y value is for above your head, but there is no ceiling in 2d spessmens.
-		S.y = 1
+		S.y = TRUE
 		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
 
 	if(!is_global)
@@ -167,13 +167,13 @@ var/const/FALLOFF_SOUNDS = 0.5
 /client/proc/playsound_personal(var/soundin, var/_volume = 50)
 	soundin = get_sfx(soundin)
 	var/sound/S = sound(soundin)
-	src << sound(S, repeat = 0, wait = 0, volume = _volume, channel = 1)
+	src << sound(S, repeat = FALSE, wait = FALSE, volume = _volume, channel = TRUE)
 
 /client/proc/playtitlemusic()
 	if(!ticker || !ticker.login_music)	return
 	if(!istype(mob, /mob/new_player)) return
 	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
-		src << sound(ticker.login_music, repeat = 1, wait = 0, volume = 85, channel = 1) // MAD JAMS
+		src << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS
 		lobby_music_player.announce(src)
 
 /proc/get_rand_frequency()

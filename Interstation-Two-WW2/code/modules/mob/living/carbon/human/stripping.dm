@@ -4,7 +4,7 @@
 		return
 
 	if(user.incapacitated()  || !user.Adjacent(src))
-		user << browse(null, text("window=mob[src.name]"))
+		user << browse(null, text("window=mob[name]"))
 		return
 
 	var/obj/item/target_slot = get_equipped_item(text2num(slot_to_strip))
@@ -13,22 +13,22 @@
 		// Handle things that are part of this interface but not removing/replacing a given item.
 		if("pockets")
 			visible_message("<span class='danger'>\The [user] is trying to empty \the [src]'s pockets!</span>")
-			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
+			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = FALSE))
 				empty_pockets(user)
 			return
 		if("splints")
 			visible_message("<span class='danger'>\The [user] is trying to remove \the [src]'s splints!</span>")
-			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
+			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = FALSE))
 				remove_splints(user)
 			return
 		if("sensors")
 			visible_message("<span class='danger'>\The [user] is trying to set \the [src]'s sensors!</span>")
-			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
+			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = FALSE))
 				toggle_sensors(user)
 			return
 		if("internals")
 			visible_message("<span class='danger'>\The [usr] is trying to set \the [src]'s internals!</span>")
-			if(do_mob(user,src,HUMAN_STRIP_DELAY, progress = 0))
+			if(do_mob(user,src,HUMAN_STRIP_DELAY, progress = FALSE))
 				toggle_internals(user)
 			return
 		if("tie")
@@ -64,14 +64,14 @@
 		if(!target_slot.canremove)
 			user << "<span class='warning'>You cannot remove \the [src]'s [target_slot.name].</span>"
 			return
-		stripping = 1
+		stripping = TRUE
 
 	if(stripping)
 		visible_message("<span class='danger'>\The [user] is trying to remove \the [src]'s [target_slot.name]!</span>")
 	else
 		visible_message("<span class='danger'>\The [user] is trying to put \a [held] on \the [src]!</span>")
 
-	if(!do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
+	if(!do_mob(user,src,HUMAN_STRIP_DELAY,progress = FALSE))
 		return
 
 	if(!stripping && user.get_active_hand() != held)
@@ -81,7 +81,7 @@
 		admin_attack_log(user, src, "Attempted to remove \a [target_slot]", "Target of an attempt to remove \a [target_slot].", "attempted to remove \a [target_slot] from")
 		unEquip(target_slot)
 	else if(user.unEquip(held))
-		equip_to_slot_if_possible(held, text2num(slot_to_strip), 0, 1, 1)
+		equip_to_slot_if_possible(held, text2num(slot_to_strip), FALSE, TRUE, TRUE)
 		if(held.loc != src)
 			user.put_in_hands(held)
 
@@ -112,17 +112,17 @@
 // Remove all splints.
 /mob/living/carbon/human/proc/remove_splints(var/mob/living/user)
 
-	var/can_reach_splints = 1
+	var/can_reach_splints = TRUE
 
 	if(can_reach_splints)
 		var/removed_splint
 		for(var/organ in list("l_leg","r_leg","l_arm","r_arm"))
 			var/obj/item/organ/external/o = get_organ(organ)
 			if (o && o.status & ORGAN_SPLINTED)
-				var/obj/item/W = new /obj/item/stack/medical/splint(get_turf(src), 1)
+				var/obj/item/W = new /obj/item/stack/medical/splint(get_turf(src), TRUE)
 				o.status &= ~ORGAN_SPLINTED
 				W.add_fingerprint(user)
-				removed_splint = 1
+				removed_splint = TRUE
 		if(removed_splint)
 			visible_message("<span class='danger'>\The [user] removes \the [src]'s splints!</span>")
 		else

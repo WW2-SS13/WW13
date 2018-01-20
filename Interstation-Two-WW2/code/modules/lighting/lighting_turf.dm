@@ -1,6 +1,6 @@
 /turf
-	var/dynamic_lighting = 1
-	luminosity           = 1
+	var/dynamic_lighting = TRUE
+	luminosity           = TRUE
 
 	var/list/affecting_lights       // List of light sources affecting this turf.
 	var/tmp/atom/movable/lighting_overlay/lighting_overlay // Our lighting overlay.
@@ -59,13 +59,13 @@
 
 	fix_corners_and_lighting_overlay()
 
-	var/changed = 0
+	var/changed = FALSE
 
 	for (var/datum/lighting_corner/corner in corners)
 		corner.TOD_lum_r = time_of_day2luminosity[time_of_day]
 		corner.TOD_lum_g = time_of_day2luminosity[time_of_day]
 		corner.TOD_lum_b = time_of_day2luminosity[time_of_day]
-		changed = 1
+		changed = TRUE
 
 	if (changed)
 		if (lighting_overlay)
@@ -85,7 +85,7 @@
 
 /turf/proc/fix_corners_and_lighting_overlay() // workaround for broken ice corners
 	if (istype(src, /turf/floor/plating/beach/water/ice))
-		for(var/i = 1 to 4)
+		for(var/i = TRUE to 4)
 			if(corners[i]) // Already have a corner on this direction.
 				continue
 
@@ -97,7 +97,7 @@
 // make this turf have NO darkness. Used exclusively for trains (for now)
 /turf/proc/adjust_lighting_overlay_to_train_light()
 
-	var/changed = 0
+	var/changed = FALSE
 	for (var/datum/lighting_corner/corner in corners)
 		if (corner.TOD_lum_r)
 			corner.lum_r = 1.0
@@ -106,17 +106,17 @@
 			corner.TOD_lum_r = 1.0
 			corner.TOD_lum_g = 1.0
 			corner.TOD_lum_b = 1.0
-			changed = 1
+			changed = TRUE
 
 	if (changed)
 		lighting_overlay.update_overlay()*/
 
 // Used to get a scaled lumcount.
-/turf/proc/get_lumcount(var/minlum = 0, var/maxlum = 1)
+/turf/proc/get_lumcount(var/minlum = FALSE, var/maxlum = TRUE)
 	if(!lighting_overlay)
 		return 0.5
 
-	var/totallums = 0
+	var/totallums = FALSE
 	for(var/LL in corners)
 		var/datum/lighting_corner/L = LL
 		totallums += L.getLumR() + L.getLumB() + L.getLumG()
@@ -130,7 +130,7 @@
 // Can't think of a good name, this proc will recalculate the has_opaque_atom variable.
 /turf/proc/recalc_atom_opacity()
 	has_opaque_atom = FALSE
-	for(var/atom/A in src.contents + src) // Loop through every movable atom on our tile PLUS ourselves (we matter too...)
+	for(var/atom/A in contents + src) // Loop through every movable atom on our tile PLUS ourselves (we matter too...)
 		if(A.opacity)
 			has_opaque_atom = TRUE
 

@@ -10,8 +10,8 @@
 
 /obj/item/weapon/grenade/smokebomb/New()
 	..()
-	src.smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/bad)
-	src.smoke.attach(src)
+	smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread/bad)
+	smoke.attach(src)
 
 /obj/item/weapon/grenade/smokebomb/Destroy()
 	qdel(smoke)
@@ -19,17 +19,18 @@
 	return ..()
 
 /obj/item/weapon/grenade/smokebomb/prime()
-	playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
-	src.smoke.set_up(10, 0, usr.loc)
-	spawn(0)
-		src.smoke.start()
-		sleep(10)
-		src.smoke.start()
-		sleep(10)
-		src.smoke.start()
-		sleep(10)
-		src.smoke.start()
+	if (active)
+		playsound(loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
+		smoke.set_up(10, FALSE, usr.loc)
+		spawn(0)
+			smoke.start()
+			sleep(10)
+			smoke.start()
+			sleep(10)
+			smoke.start()
+			sleep(10)
+			smoke.start()
 
-	sleep(80)
-	qdel(src)
-	return
+		sleep(80)
+		qdel(src)
+		return

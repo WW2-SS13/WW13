@@ -2,7 +2,7 @@
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
 	thermal_conductivity = 0.05
-	heat_capacity = 0
+	heat_capacity = FALSE
 	layer = 2
 
 /turf/shuttle/floor
@@ -17,10 +17,10 @@
 	name = "plating"
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
-	level = 1
+	level = TRUE
 
 /turf/shuttle/plating/is_plating()
-	return 1
+	return TRUE
 
 /turf/floor/plating/under
 	name = "underplating"
@@ -44,7 +44,7 @@
 			flooring_override = icon_state
 	// Apply edges, corners, and inner corners.
 	overlays.Cut()
-	var/has_border = 0
+	var/has_border = FALSE
 	if(isnull(set_update_icon) && (flags & TURF_HAS_EDGES))
 		for(var/step_dir in cardinal)
 			var/turf/floor/T = get_step(src, step_dir)
@@ -97,12 +97,12 @@
 		if(!isnull(burnt) && (flags & TURF_CAN_BURN))
 			overlays |= get_flooring_overlayu("[icon_base]-burned-[burnt]", "burned[burnt]")
 	if(update_neighbors)
-		for(var/turf/floor/F in range(src, 1))
+		for(var/turf/floor/F in range(src, TRUE))
 			if(F == src)
 				continue
 			F.update_icon()
 
-/turf/floor/plating/under/proc/get_flooring_overlayu(var/cache_key, var/icon_base, var/icon_dir = 0)
+/turf/floor/plating/under/proc/get_flooring_overlayu(var/cache_key, var/icon_base, var/icon_dir = FALSE)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
@@ -125,7 +125,7 @@
 		if(prob(75))
 			M.adjustBruteLoss(5)
 			M.weakened += 3
-			playsound(src, 'sound/effects/bang.ogg', 50, 1)
+			playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 			M << "<span class='warning'>You tripped over!</span>"
 			return
 
@@ -136,16 +136,16 @@
 			return
 		else
 			R.use(2)
-			user << "<span class='notice'>You start connecting [R.name]s to [src.name], creating catwalk ...</span>"
+			user << "<span class='notice'>You start connecting [R.name]s to [name], creating catwalk ...</span>"
 			if(do_after(user,50))
-				src.alpha = 0
-				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(src.loc)
-				src.contents += CT
+				alpha = FALSE
+				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(loc)
+				contents += CT
 			return
 	return
 
 /turf/shuttle/plating/vox //Skipjack plating
-//	oxygen = 0
+//	oxygen = FALSE
 //	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
 
 /turf/shuttle/floor4 // Added this floor tile so that I have a seperate turf to check in the shuttle -- Polymorph
@@ -154,14 +154,14 @@
 
 /turf/shuttle/floor4/vox //skipjack floors
 	name = "skipjack floor"
-//	oxygen = 0
+//	oxygen = FALSE
 //	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
 
 /turf/floor/airless
 	icon_state = "floor"
 	name = "airless floor"
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 	temperature = TCMB
 
 	New()
@@ -224,10 +224,10 @@
 	icon_state = "engine"
 	thermal_conductivity = 0.025
 	heat_capacity = 325000
-	intact = 0
+	intact = FALSE
 
 /turf/floor/engine/nitrogen
-//	oxygen = 0
+//	oxygen = FALSE
 
 /turf/floor/engine/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	if(!C)
@@ -236,7 +236,7 @@
 		return
 	if(istype(C, /obj/item/weapon/wrench))
 		user << "\blue Removing rods..."
-		playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
+		playsound(src, 'sound/items/Ratchet.ogg', 80, TRUE)
 		if(do_after(user, 30))
 			PoolOrNew(/obj/item/stack/rods, list(loc, 2))
 			ChangeTurf(/turf/floor)
@@ -256,15 +256,15 @@
 /turf/floor/engine/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 	temperature = TCMB
 
 /turf/floor/plating
 	name = "plating"
 	icon_state = "plating"
 	floor_type = null
-	intact = 0
+	intact = FALSE
 
 /turf/floor/plating/ex_act(severity)
 		//set src in oview(1)
@@ -279,8 +279,8 @@
 /turf/floor/plating/airless
 	icon_state = "plating"
 	name = "airless plating"
-//	oxygen = 0
-//	nitrogen = 0
+//	oxygen = FALSE
+//	nitrogen = FALSE
 	temperature = TCMB
 
 	New()
@@ -300,15 +300,15 @@
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
 	thermal_conductivity = 0.05
-	heat_capacity = 0
+	heat_capacity = FALSE
 	layer = TURF_LAYER
 
 /turf/shuttle/wall
 	name = "wall"
 	icon_state = "wall1"
-	opacity = 1
-	density = 1
-//	blocks_air = 1
+	opacity = TRUE
+	density = TRUE
+//	blocks_air = TRUE
 
 /turf/shuttle/floor
 	name = "floor"
@@ -320,7 +320,7 @@
 	icon_state = "plating"
 
 /turf/shuttle/plating/vox	//Skipjack plating
-//	oxygen = 0
+//	oxygen = FALSE
 //	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
 
 /turf/shuttle/floor4 // Added this floor tile so that I have a seperate turf to check in the shuttle -- Polymorph
@@ -329,7 +329,7 @@
 
 /turf/shuttle/floor4/vox	//skipjack floors
 	name = "skipjack floor"
-//	oxygen = 0
+//	oxygen = FALSE
 //	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
 
 
@@ -386,9 +386,9 @@
 	name = "grass"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "grass_dark"
-	interior = 0
+	interior = FALSE
 	stepsound = "dirt"
-	uses_winter_overlay = 1
+	uses_winter_overlay = TRUE
 	var/obj/structure/wild/wild = null
 
 /turf/floor/plating/grass/New()
@@ -414,7 +414,7 @@
 		if(prob(0.1)) // default is 0.1
 			wild = new/obj/structure/wild/bush(src)
 		else
-			var/chance = 0
+			var/chance = FALSE
 			for(var/turf/floor/plating/grass/T in range(1,src))
 				if(T.wild)
 					chance += 40 // default is 40
@@ -445,11 +445,12 @@
 /turf/floor/plating/beach/water
 	name = "Water"
 	icon_state = "seashallow"
+	move_delay = 3
 
 /turf/floor/plating/beach/water/proc/Extinguish(var/mob/living/L)
 	if (istype(L))
 		L.ExtinguishMob()
-		L.fire_stacks = 0
+		L.fire_stacks = FALSE
 
 /turf/floor/plating/beach/water/ex_act(severity)
 	return
@@ -462,20 +463,21 @@
 /turf/floor/plating/beach/water/ice
 	name = "Ice"
 	icon_state = "seashallow_frozen"
+	move_delay = 0
 
 /turf/floor/plating/dirt
 	name = "dirt"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "dirt"
-	interior = 0
+	interior = FALSE
 	stepsound = "dirt"
-	uses_winter_overlay = 1
+	uses_winter_overlay = TRUE
 
 /turf/floor/plating/sand
 	name = "sand"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "sand1"
-	interior = 0
+	interior = FALSE
 	stepsound = "dirt"
 
 /turf/floor/plating/sand/New()
@@ -486,7 +488,7 @@
 	name = "concrete"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "concrete6"
-	interior = 0
+	interior = FALSE
 
 /turf/floor/plating/concrete/New()
 	..()
@@ -504,7 +506,7 @@
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "road_1"
-	interior = 0
+	interior = FALSE
 	var/icon_mode = ""
 
 /turf/floor/plating/road/New()
@@ -515,25 +517,25 @@
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cobble_horizontal"
-	interior = 0
+	interior = FALSE
 
 /turf/floor/plating/cobblestone/dark
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cobble_horizontal_dark"
-	interior = 0
+	interior = FALSE
 
 /turf/floor/plating/cobblestone/vertical
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cobble_vertical"
-	interior = 0
+	interior = FALSE
 
 /turf/floor/plating/cobblestone/vertical/dark
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cobble_vertical_dark"
-	interior = 0
+	interior = FALSE
 
 turf/air
 	icon_state = "air"

@@ -40,7 +40,7 @@
 	hold.hide_from(usr)
 	for(var/obj/item/I in hold.contents)
 		hold.remove_from_storage(I, T)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 /obj/item/clothing/accessory/storage/black_vest
 	name = "black webbing vest"

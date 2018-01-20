@@ -28,7 +28,7 @@
 	afterattack(var/obj/target, var/mob/user, var/proximity)
 		if(!proximity)
 			return
-	
+
 		if(standard_dispenser_refill(user, target))
 			return
 		if(standard_pour_into(user, target))
@@ -49,7 +49,7 @@
 			..()
 
 	feed_sound(var/mob/user)
-		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
+		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)
 
 	self_feed_message(var/mob/user)
 		user << "<span class='notice'>You swallow some of contents of \the [src].</span>"
@@ -57,7 +57,7 @@
 	on_reagent_change()
 		if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall" || icon_state == "flour")
 			return
-		if(reagents.reagent_list.len > 0)
+		if(reagents.reagent_list.len > FALSE)
 			switch(reagents.get_master_reagent_id())
 				if("ketchup")
 					name = "Ketchup"
@@ -136,7 +136,7 @@
 	desc = "Salt. From space oceans, presumably."
 	icon_state = "saltshakersmall"
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
-	amount_per_transfer_from_this = 1
+	amount_per_transfer_from_this = TRUE
 	volume = 20
 	New()
 		..()
@@ -147,7 +147,7 @@
 	desc = "Often used to flavor food or make people sneeze."
 	icon_state = "peppermillsmall"
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
-	amount_per_transfer_from_this = 1
+	amount_per_transfer_from_this = TRUE
 	volume = 20
 	New()
 		..()
@@ -162,5 +162,5 @@
 	New()
 		..()
 		reagents.add_reagent("flour", 30)
-		src.pixel_x = rand(-10.0, 10)
-		src.pixel_y = rand(-10.0, 10)
+		pixel_x = rand(-10.0, 10)
+		pixel_y = rand(-10.0, 10)

@@ -70,7 +70,7 @@ var/const/tk_maxrange = 15
 	w_class = 10.0
 	layer = 20
 
-	var/last_throw = 0
+	var/last_throw = FALSE
 	var/atom/movable/focus = null
 	var/mob/living/host = null
 
@@ -138,7 +138,7 @@ var/const/tk_maxrange = 15
 			I.afterattack(target,user,1) // for splashing with beakers
 	else
 		apply_focus_overlay()
-		focus.throw_at(target, 10, 1, user)
+		focus.throw_at(target, 10, TRUE, user)
 		last_throw = world.time
 	return
 
@@ -160,8 +160,8 @@ var/const/tk_maxrange = 15
 	if(!focus)	return
 	var/obj/effect/overlay/O = PoolOrNew(/obj/effect/overlay, locate(focus.x,focus.y,focus.z))
 	O.name = "sparkles"
-	O.anchored = 1
-	O.density = 0
+	O.anchored = TRUE
+	O.density = FALSE
 	O.layer = FLY_LAYER
 	O.set_dir(pick(cardinal))
 	O.icon = 'icons/effects/effects.dmi'

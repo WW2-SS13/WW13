@@ -12,10 +12,10 @@
 // Takes care of organ related updates, such as broken and missing limbs
 /mob/living/carbon/human/proc/handle_organs()
 
-	var/force_process = 0
+	var/force_process = FALSE
 	var/damage_this_tick = getBruteLoss() + getFireLoss() + getToxLoss()
 	if(damage_this_tick > last_dam)
-		force_process = 1
+		force_process = TRUE
 	last_dam = damage_this_tick
 	if(force_process)
 		bad_external_organs.Cut()
@@ -45,14 +45,14 @@
 			//Moving around with fractured ribs won't do you any good
 				if (E.is_broken() && E.internal_organs && E.internal_organs.len && prob(15))
 					var/obj/item/organ/I = pick(E.internal_organs)
-					custom_pain("You feel broken bones moving in your [E.name]!", 1)
+					custom_pain("You feel broken bones moving in your [E.name]!", TRUE)
 					I.take_damage(rand(3,5))
 
 				//Moving makes open wounds get infected much faster
 				if (E.wounds.len)
 					for(var/datum/wound/W in E.wounds)
 						if (W.infection_check())
-							W.germ_level += 1
+							W.germ_level += TRUE
 
 	var/limbs_count = 4
 	var/obj/item/organ/external/E = organs_by_name["l_foot"]
@@ -71,18 +71,18 @@
 	if(E.status & ORGAN_DESTROYED)
 		limbs_count--
 
-	if(limbs_count == 0)
-		has_limbs = 0
+	if(limbs_count == FALSE)
+		has_limbs = FALSE
 
 /mob/living/carbon/human/proc/handle_stance()
 	// Don't need to process any of this if they aren't standing anyways
 	// unless their stance is damaged, and we want to check if they should stay down
-	if (!stance_damage && (lying || resting) && (life_tick % 4) == 0)
+	if (!stance_damage && (lying || resting) && (life_tick % 4) == FALSE)
 		return
 
-	stance_damage = 0
+	stance_damage = FALSE
 
-	// Buckled to a bed/chair. Stance damage is forced to 0 since they're sitting on something solid
+	// Buckled to a bed/chair. Stance damage is forced to FALSE since they're sitting on something solid
 	if (istype(buckled, /obj/structure/bed))
 		return
 
@@ -96,13 +96,13 @@
 			if(prob(10))
 				visible_message("\The [src]'s [E.name] [pick("twitches", "shudders")] and sparks!")
 				var/datum/effect/effect/system/spark_spread/spark_system = new ()
-				spark_system.set_up(5, 0, src)
+				spark_system.set_up(5, FALSE, src)
 				spark_system.attach(src)
 				spark_system.start()
 				spawn(10)
 					qdel(spark_system)
 		else if (E.is_broken() || !E.is_usable())
-			stance_damage += 1
+			stance_damage += TRUE
 		else if (E.is_dislocated())
 			stance_damage += 0.5
 
@@ -162,7 +162,7 @@
 					drop_from_inventory(r_hand)
 
 			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-			emote("me", 1, "[(species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
+			emote("me", TRUE, "[(species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
 
 		else if(E.is_malfunctioning())
 			switch(E.body_part)
@@ -175,10 +175,10 @@
 						continue
 					drop_from_inventory(r_hand)
 
-			emote("me", 1, "drops what they were holding, their [E.name] malfunctioning!")
+			emote("me", TRUE, "drops what they were holding, their [E.name] malfunctioning!")
 
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
-			spark_system.set_up(5, 0, src)
+			spark_system.set_up(5, FALSE, src)
 			spark_system.attach(src)
 			spark_system.start()
 			spawn(10)

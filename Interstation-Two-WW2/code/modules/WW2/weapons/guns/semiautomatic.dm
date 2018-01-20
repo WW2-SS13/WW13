@@ -5,7 +5,7 @@
 	item_state = "svt"
 	w_class = 4
 	load_method = SPEEDLOADER | MAGAZINE
-	max_shells = 0
+	max_shells = FALSE
 	caliber = "a762x54"
 //	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK
@@ -16,6 +16,8 @@
 	firemodes = list(
 		list(name="single shot",burst=1, move_delay=4, fire_delay=10)
 		)
+
+	gun_type = GUN_TYPE_RIFLE
 
 /obj/item/weapon/gun/projectile/svt/update_icon()
 	..()
@@ -34,7 +36,7 @@
 	item_state = "" //to-do
 	w_class = 4
 	load_method = SPEEDLOADER | MAGAZINE
-	max_shells = 0
+	max_shells = FALSE
 	caliber = "a792x57"
 //	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK

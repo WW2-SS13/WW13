@@ -1,6 +1,6 @@
 /*
 	Global associative list for caching humanoid icons.
-	Index format m or f, followed by a string of 0 and 1 to represent bodyparts followed by husk fat hulk skeleton 1 or 0.
+	Index format m or f, followed by a string of FALSE and TRUE to represent bodyparts followed by husk fat hulk skeleton TRUE or 0.
 	TODO: Proper documentation
 	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][s_tone]
 */
@@ -76,7 +76,7 @@ There are several things that need to be remembered:
 		update_targeted() // Updates the target overlay when someone points a gun at you
 
 >	All of these procs update our overlays_lying and overlays_standing, and then call update_icons() by default.
-	If you wish to update several overlays at once, you can set the argument to 0 to disable the update and call
+	If you wish to update several overlays at once, you can set the argument to FALSE to disable the update and call
 	it manually:
 		e.g.
 		update_inv_head(0)
@@ -158,12 +158,12 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Turn(90)
 		M.Scale(size_multiplier)
 		M.Translate(1,-6)
-		src.transform = M
+		transform = M
 	else
 		var/matrix/M = matrix()
 		M.Scale(size_multiplier)
 		M.Translate(0, 16*(size_multiplier-1))
-		src.transform = M
+		transform = M
 	..()
 
 var/global/list/damage_icon_parts = list()
@@ -216,13 +216,13 @@ var/global/list/damage_icon_parts = list()
 	var/husk_color_mod = rgb(96,88,80)
 	var/hulk_color_mod = rgb(48,224,40)
 
-	var/husk = (HUSK in src.mutations)
+	var/husk = (HUSK in mutations)
 	var/fat = body_build ? body_build.index : ""
-	var/hulk = (HULK in src.mutations)
-	var/skeleton = (SKELETON in src.mutations)
+	var/hulk = (HULK in mutations)
+	var/skeleton = (SKELETON in mutations)
 
 	//CACHING: Generate an index key from visible bodyparts.
-	//0 = destroyed, 1 = normal, 2 = robotic, 3 = necrotic.
+	//0 = destroyed, TRUE = normal, 2 = robotic, 3 = necrotic.
 
 	//Create a new, blank icon for our mob to use.
 	if(stand_icon)
@@ -263,7 +263,7 @@ var/global/list/damage_icon_parts = list()
 			else
 				icon_key += "#000000"
 
-	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
+	icon_key = "[icon_key][husk ? TRUE : FALSE][fat ? TRUE : FALSE][hulk ? TRUE : FALSE][skeleton ? TRUE : FALSE]"
 
 	var/icon/base_icon
 	if(human_icon_cache[icon_key])
@@ -275,7 +275,7 @@ var/global/list/damage_icon_parts = list()
 		for(var/obj/item/organ/external/part in organs)
 			var/icon/temp = part.get_icon(skeleton)
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
-			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
+			//And no change in rendering for other parts (they icon_position is FALSE, so goes to 'else' part)
 			if(part.icon_position&(LEFT|RIGHT))
 				var/icon/temp2 = new('icons/mob/human.dmi',"blank")
 				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
@@ -304,7 +304,7 @@ var/global/list/damage_icon_parts = list()
 		if(husk && ("overlay_husk" in icon_states(species.icobase)))
 			var/icon/mask = new(base_icon)
 			var/icon/husk_over = new(species.icobase,"overlay_husk")
-			mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
+			mask.MapColors(0,0,0,1, FALSE,0,0,1, FALSE,0,0,1, FALSE,0,0,1, FALSE,0,0,0)
 			husk_over.Blend(mask, ICON_ADD)
 			base_icon.Blend(husk_over, ICON_OVERLAY)
 
@@ -347,7 +347,7 @@ var/global/list/damage_icon_parts = list()
 
 	if(f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
-		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype() in facial_hair_style.species_allowed))
+		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
@@ -356,7 +356,7 @@ var/global/list/damage_icon_parts = list()
 
 	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
 		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
-		if(hair_style && (src.species.get_bodytype() in hair_style.species_allowed))
+		if(hair_style && (species.get_bodytype() in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
@@ -373,7 +373,7 @@ var/global/list/damage_icon_parts = list()
 	var/fat = body_build ? body_build.index : ""
 
 	var/image/standing	= image("icon" = 'icons/effects/genetics.dmi')
-	var/add_image = 0
+	var/add_image = FALSE
 	var/g = "m"
 	if(gender == FEMALE)	g = "f"
 	// DNA2 - Drawing underlays.
@@ -384,7 +384,7 @@ var/global/list/damage_icon_parts = list()
 			var/underlay=gene.OnDrawUnderlays(src,g,fat)
 			if(underlay)
 				standing.underlays += underlay
-				add_image = 1
+				add_image = TRUE
 	for(var/mut in mutations)
 		switch(mut)
 			/*
@@ -393,17 +393,17 @@ var/global/list/damage_icon_parts = list()
 					standing.underlays	+= "hulk_[fat]_s"
 				else
 					standing.underlays	+= "hulk_[g]_s"
-				add_image = 1
+				add_image = TRUE
 			if(COLD_RESISTANCE)
 				standing.underlays	+= "fire[fat]_s"
-				add_image = 1
+				add_image = TRUE
 			if(TK)
 				standing.underlays	+= "telekinesishead[fat]_s"
-				add_image = 1
+				add_image = TRUE
 			*/
 			if(LASER)
 				standing.overlays	+= "lasereyes_s"
-				add_image = 1
+				add_image = TRUE
 	if(add_image)
 		overlays_standing[MUTATIONS_LAYER]	= standing
 	else
@@ -905,10 +905,10 @@ var/global/list/damage_icon_parts = list()
 			standing = image(icon = body_build.misk_icon, icon_state = "legcuff1")
 		overlays_standing[LEGCUFF_LAYER] = standing
 
-		if(src.m_intent != "walk")
-			src.m_intent = "walk"
-			//if(src.hud_used && src.hud_used.move_intent)
-			//	src.hud_used.move_intent.icon_state = "walking"
+		if(m_intent != "walk")
+			m_intent = "walk"
+			//if(hud_used && hud_used.move_intent)
+			//	hud_used.move_intent.icon_state = "walking"
 
 	else
 		overlays_standing[LEGCUFF_LAYER]	= null

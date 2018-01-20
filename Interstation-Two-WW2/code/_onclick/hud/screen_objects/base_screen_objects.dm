@@ -16,29 +16,29 @@
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
 	layer = 20.0
-//	unacidable = 1
+//	unacidable = TRUE
 	var/obj/master = null //A reference to the object in the slot. Grabs or items, generally.
 	var/mob/living/parentmob
-	var/process_flag = 0
-	var/hideflag = 0
+	var/process_flag = FALSE
+	var/hideflag = FALSE
 
 /obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
-	src.parentmob = _parentmob
-	src.name = _name
-	src.screen_loc = _screen_loc
+	parentmob = _parentmob
+	name = _name
+	screen_loc = _screen_loc
 	if (_icon)
-		src.icon = _icon
+		icon = _icon
 	if (_icon_state)
-		src.icon_state = _icon_state
+		icon_state = _icon_state
 ///obj/screen/New()
 //	set in usr.client.screen
 //screen_loc = "[x_pos],[y_pos]"
 //	world << "usr:[usr] src:[src]"
 //	if(usr)
 //		parentmob = usr
-//		return 1
+//		return TRUE
 //	else
-//		return 0
+//		return FALSE
 
 //	usr << hud_state
 	//world << "src: [src], parent [parentmob]"
@@ -51,14 +51,14 @@
 	return ..()
 
 /obj/screen/Click(location, control, params)
-	if(!usr)	return 1
+	if(!usr)	return TRUE
 	switch(name)
 /*		if("toggle")
 			//if(usr.hud_used.inventory_shown)
-			//	usr.hud_used.inventory_shown = 0
+			//	usr.hud_used.inventory_shown = FALSE
 			//	usr.client.screen -= usr.hud_used.other
 			//else
-			//	usr.hud_used.inventory_shown = 1
+			//	usr.hud_used.inventory_shown = TRUE
 			//	usr.client.screen += usr.hud_used.other
 
 			//usr.hud_used.hidden_inventory_update()
@@ -91,7 +91,7 @@
 				var/mob/living/silicon/robot/R = usr
 //				if(R.module)
 //					R.hud_used.toggle_show_robot_modules()
-//					return 1
+//					return TRUE
 				R.pick_module()
 
 		if("inventory")
@@ -99,7 +99,7 @@
 				var/mob/living/silicon/robot/R = usr
 				if(R.module)
 //					R.hud_used.toggle_show_robot_modules()
-					return 1
+					return TRUE
 				else
 					R << "You haven't selected a module yet."*/
 
@@ -131,12 +131,12 @@
 			if(istype(usr, /mob/living/silicon/robot))
 				usr:toggle_module(3)*/
 		else
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /*/obj/screen/resist
 	name = "resist"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "act_resist"
 	screen_loc = "1,10"
 
@@ -149,9 +149,9 @@
 
 /*/obj/screen/TEST
 	name = "TESTICON!"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "block"
-	var/clicks = 0
+	var/clicks = FALSE
 	appearance_flags=RESET_COLOR
 	var/image/A
 	var/image/B
@@ -159,11 +159,11 @@
 /obj/screen/TEST/Click(location, control, params)
 	A=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="harm")
 	B=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="grab")
-	A.override = 1
+	A.override = TRUE
 	B.appearance_flags=RESET_COLOR
 	overlays.Cut()
 	clicks = !clicks
-//	overlays += clicks ? image(icon = 'icons/mob/screen/ErisStyle.dmi', icon_state ="harm",override  = 1) : image(icon ='icons/mob/screen/ErisStyle.dmi', icon_state ="grab",override  = 1)
+//	overlays += clicks ? image(icon = 'icons/mob/screen/WW13Style.dmi', icon_state ="harm",override  = TRUE) : image(icon ='icons/mob/screen/WW13Style.dmi', icon_state ="grab",override  = TRUE)
 	overlays += clicks ? A : B*/
 
 
@@ -181,7 +181,7 @@
 		if(istype(master, /obj/item/weapon/storage))
 			var/obj/item/weapon/storage/S = master
 			S.close(usr)
-	return 1
+	return TRUE
 //--------------------------------------------------close end---------------------------------------------------------
 
 
@@ -192,7 +192,7 @@
 /obj/screen/grab/Click()
 	var/obj/item/weapon/grab/G = master
 	G.s_click(src)
-	return 1
+	return TRUE
 
 /obj/screen/grab/attack_hand()
 	return
@@ -215,18 +215,18 @@
 
 /obj/screen/item_action/Click()
 	if(!usr || !owner)
-		return 1
+		return TRUE
 	if(!usr.canClick())
 		return
 
 	if(usr.stat || usr.restrained() || usr.stunned || usr.lying)
-		return 1
+		return TRUE
 
 	if(!(owner in usr))
-		return 1
+		return TRUE
 
 	owner.ui_action_click()
-	return 1
+	return TRUE
 //-----------------------------------------------ITEM ACTION END---------------------------------------------------------
 
 
@@ -256,7 +256,7 @@
 				if(17 to 22)
 					parentmob.targeted_organ = "l_foot"
 				else
-					return 1
+					return TRUE
 		if(4 to 9) //Legs
 			switch(icon_x)
 				if(10 to 15)
@@ -264,7 +264,7 @@
 				if(17 to 22)
 					parentmob.targeted_organ = "l_leg"
 				else
-					return 1
+					return TRUE
 		if(10 to 13) //Hands and groin
 			switch(icon_x)
 				if(8 to 11)
@@ -274,7 +274,7 @@
 				if(21 to 24)
 					parentmob.targeted_organ = "l_hand"
 				else
-					return 1
+					return TRUE
 		if(14 to 22) //Chest and arms to shoulders
 			switch(icon_x)
 				if(8 to 11)
@@ -284,7 +284,7 @@
 				if(21 to 24)
 					parentmob.targeted_organ = "l_arm"
 				else
-					return 1
+					return TRUE
 		if(23 to 30) //Head, but we need to check for eye or mouth
 			if(icon_x in 12 to 20)
 				parentmob.targeted_organ = "head"
@@ -307,7 +307,7 @@
 
 	selecting = parentmob.targeted_organ
 
-	return 1
+	return TRUE
 
 /obj/screen/zone_sel/New()
 	..()
@@ -321,7 +321,7 @@
 /obj/screen/text
 	icon = null
 	icon_state = null
-	mouse_opacity = 0
+	mouse_opacity = FALSE
 	screen_loc = "CENTER-7,CENTER-7"
 	maptext_height = 480
 	maptext_width = 480
@@ -332,36 +332,36 @@
 
 /obj/screen/storage/Click()
 	if(!usr.canClick())
-		return 1
+		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
-		return 1
+		return TRUE
 	if(master)
 		var/obj/item/I = usr.get_active_hand()
 		if(I)
 			usr.ClickOn(master)
-	return 1
+	return TRUE
 
 //--------------------------------------------------inventory---------------------------------------------------------
 /obj/screen/inventory
 	var/slot_id //The indentifier for the slot. It has nothing to do with ID cards.
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	layer = 19
 
 /obj/screen/inventory/New(_name = "unnamed", _screen_loc = "7,7", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)
-	src.name = _name
-	src.screen_loc = _screen_loc
-	src.icon = _icon
-	src.slot_id = _slot_id
-	src.icon_state = _icon_state
-	src.parentmob = _parentmob
+	name = _name
+	screen_loc = _screen_loc
+	icon = _icon
+	slot_id = _slot_id
+	icon_state = _icon_state
+	parentmob = _parentmob
 
 /obj/screen/inventory/Click()
-	// At this point in client Click() code we have passed the 1/10 sec check and little else
+	// At this point in client Click() code we have passed the TRUE/10 sec check and little else
 	// We don't even know if it's a middle click
 	if(!usr.canClick())
-		return 1
+		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
-		return 1
+		return TRUE
 	switch(name)
 		if("hand")
 			usr:swap_hand()
@@ -369,7 +369,7 @@
 			if(usr.attack_ui(slot_id))
 				usr.update_inv_l_hand(0)
 				usr.update_inv_r_hand(0)
-	return 1
+	return TRUE
 
 /obj/screen/inventory/hand
 	name = "nonamehand"
@@ -380,35 +380,33 @@
 
 /obj/screen/inventory/hand/Click()
 	var/mob/living/carbon/C = parentmob
-	if (src.slot_id == slot_l_hand)
+	if (slot_id == slot_l_hand)
 		C.activate_hand("l")
 	else
 		C.activate_hand("r")
 
 /obj/screen/inventory/hand/update_icon()
-	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
-		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
+	if (slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
+		icon_state = "act_hand[slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
-		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
+		icon_state = "hand[slot_id==slot_l_hand ? "-l" : "-r"]"
 //--------------------------------------------------inventory end---------------------------------------------------------
 
 //--------------------------------------------------health---------------------------------------------------------
 /obj/screen/health
 	name = "health"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "health0"
 	screen_loc = "15,7"
-	process_flag = 1
+	process_flag = TRUE
 
 /obj/screen/health/process()
-	//var/mob/living/carbon/human/H = parentmob
-	if(parentmob:stat != DEAD) // They are dead, let death() handle their hud update on this.
-		if (parentmob:analgesic > 100)
-			icon_state = "health_numb"
+	if(parentmob.stat != DEAD)
+		var/mob/living/carbon/human/H = parentmob
+		if (istype(H) && H.analgesic > 100)
+			icon_state = "health0"
 		else
-		//switch(health - halloss)
-			switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
-			//switch(100 - parentmob.traumatic_shock)
+			switch(100 - ((parentmob:species.flags & NO_PAIN) ? FALSE : parentmob:traumatic_shock))
 				if(100 to INFINITY)		icon_state = "health0"
 				if(80 to 100)			icon_state = "health1"
 				if(60 to 80)			icon_state = "health2"
@@ -416,6 +414,8 @@
 				if(20 to 40)			icon_state = "health4"
 				if(0 to 20)				icon_state = "health5"
 				else					icon_state = "health6"
+	else
+		icon_state = "health7"
 
 /obj/screen/health/Click()
 	if(ishuman(parentmob))
@@ -432,10 +432,10 @@
 //--------------------------------------------------nutrition---------------------------------------------------------
 /obj/screen/nutrition
 	name = "nutrition"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "nutrition1"
 	screen_loc = "15,6"
-	process_flag = 1
+	process_flag = TRUE
 
 /obj/screen/nutrition/process()
 	//var/mob/living/carbon/human/H = parentmob
@@ -447,22 +447,22 @@
 
 	// show our worst status, hunger or thirst
 
-	var/status = 0
-	var/nstatus = 0
-	var/wstatus = 0
+	var/status = FALSE
+	var/nstatus = FALSE
+	var/wstatus = FALSE
 
 	// todo: correct these numbers, and those below in Click()
 
 	switch(H.nutrition)
-		if(450 to INFINITY)				nstatus = 0
-		if(350 to 450)					nstatus = 1
+		if(450 to INFINITY)				nstatus = FALSE
+		if(350 to 450)					nstatus = TRUE
 		if(250 to 350)					nstatus = 2
 		if(150 to 250)					nstatus = 3
 		else							nstatus = 4
 
 	switch(H.water)
-		if(350 to INFINITY)				wstatus = 0
-		if(250 to 350)					wstatus = 1
+		if(350 to INFINITY)				wstatus = FALSE
+		if(250 to 350)					wstatus = TRUE
 		if(150 to 250)					wstatus = 2
 		if(50 to 150)					wstatus = 3
 		else							wstatus = 4
@@ -482,12 +482,12 @@
 	var/thirsty_coeff = min(H.water/H.max_water, 1.0)
 	var/thirsty_percentage = "[round(thirsty_coeff*100)]%"
 
-	if (thirsty_coeff <= 0)
+	if (thirsty_coeff <= FALSE)
 		H << "<span class = 'danger'>You're dehydrating.</span>"
 	else
 		H << "<span class = 'warning'>You're about [thirsty_percentage] hydrated.</span>"
 
-	if (hungry_coeff <= 0)
+	if (hungry_coeff <= FALSE)
 		H << "<span class = 'danger'>You're starving.</span>"
 	else
 		H << "<span class = 'warning'>You're about [hungry_percentage] full.</span>"
@@ -497,10 +497,10 @@
 //--------------------------------------------------bodytemp---------------------------------------------------------
 /obj/screen/bodytemp
 	name = "bodytemp"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "temp0"
 	screen_loc = "15,8"
-	process_flag = 1
+	process_flag = TRUE
 
 /obj/screen/bodytemp/process()
 	update_icon()
@@ -559,10 +559,10 @@
 //--------------------------------------------------pressure---------------------------------------------------------
 /obj/screen/pressure
 	name = "pressure"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "pressure0"
 	screen_loc = "15,13"
-	process_flag = 1
+	process_flag = TRUE
 
 /obj/screen/pressure/process()
 	update_icon()
@@ -575,10 +575,10 @@
 //--------------------------------------------------toxin---------------------------------------------------------
 /obj/screen/toxin
 	name = "toxin"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "tox0"
 	screen_loc = "15,10"
-	process_flag = 1
+	process_flag = TRUE
 
 /obj/screen/toxin/process()
 	update_icon()
@@ -591,10 +591,10 @@
 
 /obj/screen/oxygen
 	name = "oxygen"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "oxy0"
 	screen_loc = "15,12"
-	process_flag = 1
+	process_flag = TRUE
 
 /obj/screen/oxygen/process()
 	update_icon()
@@ -606,15 +606,15 @@
 //--------------------------------------------------fire---------------------------------------------------------
 /obj/screen/fire
 	name = "fire"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "fire0"
 	screen_loc = "15,9"
-	process_flag = 1
+	process_flag = TRUE
 	var/image/ovrl
 
 /obj/screen/fire/New()
 	..()
-	ovrl = new /image/no_recolor(icon = src.icon, icon_state ="fire1")
+	ovrl = new /image/no_recolor(icon = icon, icon_state ="fire1")
 //	ovrl.appearance_flags = RESET_COLOR
 
 /obj/screen/fire/process()
@@ -622,23 +622,23 @@
 
 /obj/screen/fire/update_icon()
 	var/mob/living/carbon/human/H = parentmob
-	src.overlays.Cut()
+	overlays.Cut()
 	if (H.fire_alert)
 		overlays += ovrl
 //	icon_state = "fire[H.fire_alert]"
-	/*if(H.fire_alert)							icon_state = "fire[H.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
+	/*if(H.fire_alert)							icon_state = "fire[H.fire_alert]" //fire_alert is either FALSE if no alert, TRUE for cold and 2 for heat.
 	else										icon_state = "fire0"*/
 //--------------------------------------------------fire end---------------------------------------------------------
 /*/obj/screen/slot_object
 	name = "slot"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "block"
 	screen_loc = ""*/
 //-----------------------internal------------------------------
 /*
 /obj/screen/internal
 	name = "internal"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "internal0"
 	screen_loc = "15,14"
 
@@ -657,11 +657,11 @@
 				if(!(C.wear_mask && C.wear_mask.item_flags & AIRTIGHT))
 					var/mob/living/carbon/human/H = C
 					if(!(H.head && H.head.item_flags & AIRTIGHT))
-						no_mask = 1
+						no_mask = TRUE
 
 				if(no_mask)
 					C << "<span class='notice'>You are not wearing a suitable mask or helmet.</span>"
-					return 1
+					return TRUE
 				else
 					var/list/nicename = null
 					var/list/tankcheck = null
@@ -708,14 +708,14 @@
 
 
 						else
-							//no tank so we set contents to 0
+							//no tank so we set contents to FALSE
 							contents.Add(0)
 
 					//Alright now we know the contents of the tanks so we have to pick the best one.
 
-					var/best = 0
-					var/bestcontents = 0
-					for(var/i=1, i <  contents.len + 1 , ++i)
+					var/best = FALSE
+					var/bestcontents = FALSE
+					for(var/i=1, i <  contents.len + TRUE , ++i)
 						if(!contents[i])
 							continue
 						if(contents[i] > bestcontents)
@@ -739,7 +739,7 @@
 */
 /obj/screen/pull
 	name = "pull"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "pull0"
 	screen_loc = "14,2"
 
@@ -760,7 +760,7 @@
 //-----------------------throw------------------------------
 /obj/screen/HUDthrow
 	name = "throw"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "act_throw_off"
 	screen_loc = "15,2"
 
@@ -786,7 +786,7 @@
 //-----------------------drop------------------------------
 /obj/screen/drop
 	name = "drop"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "act_drop"
 	screen_loc = "15:-16,2"
 
@@ -798,7 +798,7 @@
 //-----------------------resist------------------------------
 /obj/screen/resist
 	name = "resist"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "act_resist"
 	screen_loc = "14:16,2"
 
@@ -811,7 +811,7 @@
 //-----------------------mov_intent------------------------------
 /obj/screen/mov_intent
 	name = "mov_intent"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "running"
 	screen_loc = "14,1"
 
@@ -823,7 +823,7 @@
 		C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
 		C.m_intent = "walk"	//Just incase
 		update_icon()
-		return 1
+		return TRUE
 	switch(C.m_intent)
 		if("run")
 			C.m_intent = "walk"
@@ -846,7 +846,7 @@
 //-----------------------mov_intent END------------------------------
 /obj/screen/equip
 	name = "equip"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "act_equip"
 	screen_loc = "8,2"
 
@@ -857,12 +857,12 @@
 //-----------------------swap------------------------------
 /obj/screen/swap
 	name = "swap hand"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "swap-l"
 
 /obj/screen/swap/New()
 	..()
-	overlays += image(icon = src.icon, icon_state =  "swap-r", pixel_x = 32)
+	overlays += image(icon = icon, icon_state =  "swap-r", pixel_x = 32)
 
 /obj/screen/swap/Click()
 	parentmob.swap_hand()
@@ -870,7 +870,7 @@
 //-----------------------intent------------------------------
 /obj/screen/intent
 	name = "intent"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "help"
 	screen_loc = "8,2"
 
@@ -895,7 +895,7 @@
 //-----------------------intent END------------------------------
 /obj/screen/fastintent
 	name = "fastintent"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 //update in a_intent_change, because macro
 /*/obj/screen/fastintent/Click()
 	if (parentmob.HUDneed.Find("intent"))
@@ -936,8 +936,8 @@
 	icon_state = "blank"
 	name = "drugs"
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
-	mouse_opacity = 0
-	process_flag = 1
+	mouse_opacity = FALSE
+	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 //	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
@@ -964,15 +964,15 @@
 	name = "full_1_tile_overlay"
 	icon_state = "blank"
 	layer = 21
-	mouse_opacity = 1
+	mouse_opacity = TRUE
 
 /obj/screen/damageoverlay
 	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "oxydamageoverlay0"
 	name = "dmg"
 	screen_loc = "1,1"
-	mouse_opacity = 0
-	process_flag = 1
+	mouse_opacity = FALSE
+	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
@@ -994,7 +994,7 @@
 
 	if(H.stat == UNCONSCIOUS)
 		//Critical damage passage overlay
-		if(H.health <= 0)
+		if(H.health <= FALSE)
 			var/image/I
 			switch(H.health)
 				if(-20 to -10)
@@ -1041,7 +1041,7 @@
 
 		//Fire and Brute damage overlay (BSSR)
 		var/hurtdamage = H.getBruteLoss() + H.getFireLoss() + H.damageoverlaytemp
-		H.damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
+		H.damageoverlaytemp = FALSE // We do this so we can detect if someone hits us or not.
 		if(hurtdamage)
 			var/image/I
 			switch(hurtdamage)
@@ -1070,17 +1070,17 @@
 	name = ""
 
 /obj/screen/frippery/New(_icon_state,_screen_loc = "7,7",_dir, mob/living/_parentmob)
-	src.parentmob = _parentmob
-	src.screen_loc = _screen_loc
-	src.icon_state = _icon_state
-	src.dir = _dir
+	parentmob = _parentmob
+	screen_loc = _screen_loc
+	icon_state = _icon_state
+	dir = _dir
 
 /obj/screen/glasses_overlay
 	icon = null
 	name = "glasses"
 	screen_loc = "1,1"
-	mouse_opacity = 0
-	process_flag = 1
+	mouse_opacity = FALSE
+	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 
 
@@ -1123,14 +1123,14 @@
 //-----------------------Gun Mod------------------------------
 /obj/screen/gun
 	name = "gun"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	master = null
 	dir = 2
 
 /obj/screen/gun/Click(location, control, params)
 	if(!usr)
 		return
-	return 1
+	return TRUE
 
 /obj/screen/gun/New()
 	..()
@@ -1151,8 +1151,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_active()
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/mode/update_icon()
 	icon_state = "gun[parentmob.aiming.active]"
@@ -1169,8 +1169,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_permission(TARGET_CAN_MOVE)
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/move/update_icon()
 	if(!(parentmob.aiming.target_permissions & TARGET_CAN_MOVE))
@@ -1192,8 +1192,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_permission(TARGET_CAN_CLICK)
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/item/update_icon()
 	if(!(parentmob.aiming.target_permissions & TARGET_CAN_CLICK))
@@ -1215,8 +1215,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_permission(TARGET_CAN_RADIO)
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/radio/update_icon()
 	if(!(parentmob.aiming.target_permissions & TARGET_CAN_RADIO))
@@ -1229,7 +1229,7 @@
 
 //-----------------------toggle_invetory------------------------------
 /obj/screen/toggle_invetory
-	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon = 'icons/mob/screen/WW13Style.dmi'
 	icon_state = "b-open"
 	name = "toggle invetory"
 	screen_loc = "1,0"
@@ -1245,18 +1245,18 @@
 
 /obj/screen/toggle_invetory/proc/showobjects()
 	for (var/obj/screen/HUDelement in parentmob.HUDinventory)
-		HUDelement.invisibility = 0
+		HUDelement.invisibility = FALSE
 		hidden_inventory_update(HUDelement)
 	for (var/obj/screen/HUDelement in parentmob.HUDfrippery)
-		HUDelement.invisibility = 0
+		HUDelement.invisibility = FALSE
 
 /obj/screen/toggle_invetory/Click()
 
 	if(parentmob.inventory_shown)
-		parentmob.inventory_shown = 0
+		parentmob.inventory_shown = FALSE
 		hideobjects()
 	else
-		parentmob.inventory_shown = 1
+		parentmob.inventory_shown = TRUE
 		showobjects()
 
 	//parentmob.hud_used.hidden_inventory_update()
@@ -1268,7 +1268,7 @@
 	icon_state = "combat"
 	name = " "
 	screen_loc = "1,1"
-	mouse_opacity = 0
+	mouse_opacity = FALSE
 	layer = 18
 
 /obj/screen/toggle_invetory/proc/hidden_inventory_update(obj/screen/inventory/inv_elem)

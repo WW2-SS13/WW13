@@ -1,9 +1,25 @@
 /obj/tank/var/last_movement = -1
-/obj/tank/var/movement_delay = 4.8 // about 1.4 - 1.5x slower than walking humans
+/obj/tank/var/movement_delay = 6.0 // nerfed even more, somehow tanks were outrunning people - Kachnov
 /obj/tank/var/last_movement_sound = -1
 /obj/tank/var/movement_sound_delay = 30
 /obj/tank/var/last_gibbed = -1
 /obj/tank/var/lastdir = -1
+
+/obj/tank/proc/set_eye_location(var/mob/m)
+	if (m.client)
+		m.client.perspective = EYE_PERSPECTIVE
+		/* fucking BYOND ree
+		switch (dir)
+			if (EAST, NORTHEAST, SOUTHEAST)
+				m.client.eye = locate(x, y-2, z)
+			if (WEST, NORTHWEST, SOUTHWEST)
+				m.client.eye = locate(x+2, y-2, z)
+			if (SOUTH)
+				m.client.eye = locate(x+2, y-2, z)
+			if (NORTH)
+				m.client.eye = locate(x+2, y-2, z)
+		*/
+		m.client.eye = src
 
 /obj/tank/Move()
 	switch (dir)
@@ -13,12 +29,19 @@
 			icon = vertical_icon
 
 	update_bounding_rectangle()
+
 	..()
+
+	if (drive_front_seat && drive_front_seat.client)
+		set_eye_location(drive_front_seat)
+
+	if (fire_back_seat && fire_back_seat.client)
+		set_eye_location(fire_back_seat)
 
 /obj/tank/proc/_Move(direct)
 	if (world.time - last_movement > movement_delay || last_movement == -1)
 
-		if (fuel <= 0)
+		if (fuel <= FALSE)
 			internal_tank_message("<span class = 'danger'><big>Out of fuel!</big></danger>")
 			return
 
@@ -62,40 +85,51 @@
 				icon = vertical_icon
 
 		if (!handle_passing_target_turf(target))
-			return 0
+			return FALSE
 
 		play_movement_sound()
 
 		for (var/obj/o in get_step(src, direct))
 			if (!handle_passing_obj(o))
-				return 0
+				return FALSE
 
 		for (var/mob/m in get_step(src, direct))
 			if (!handle_passing_mob(m))
-				return 0
+				return FALSE
 
 		loc = target
-		fuel -= pick(0.33,0.5,0.75)
+		fuel -= pick(0.33,0.66,0.99)
 
 /obj/tank/proc/play_movement_sound()
 	if (world.time - last_movement_sound > movement_sound_delay || last_movement_sound == -1)
 		playsound(get_turf(src), 'sound/weapons/WW2/tank_move.ogg', 100)
 		last_movement_sound = world.time
 
+// bound_x, bound_width, bound_height need this or movement speed gets fucked
+/proc/round_to_multiple_of_32(n, upper = FALSE)
+	. = n - n%32
+	if (upper)
+		. += 32
+
 /obj/tank/proc/update_bounding_rectangle()
 	switch (dir)
 		if (EAST)
-			bound_width = 160
-			bound_height = 96
+		//	bound_x = round_to_multiple_of_32(32)
+			bound_width = round_to_multiple_of_32(142)
+			bound_height = round_to_multiple_of_32(75)
 		if (WEST)
-			bound_width = 160
-			bound_height = 96
+		//	bound_x = round_to_multiple_of_32(96)
+			bound_width = round_to_multiple_of_32(142)
+			bound_height = round_to_multiple_of_32(75)
 		if (NORTH)
-			bound_width = 96
-			bound_height = 160
+		//	bound_y = -round_to_multiple_of_32(64)
+		//	bound_x = round_to_multiple_of_32(64)
+			bound_width = round_to_multiple_of_32(113, TRUE)
+			bound_height = round_to_multiple_of_32(89)
 		if (SOUTH)
-			bound_width = 96
-			bound_height = 160
+		//	bound_x = round_to_multiple_of_32(64)
+			bound_width = round_to_multiple_of_32(113, TRUE)
+			bound_height = round_to_multiple_of_32(89)
 
 /obj/tank/proc/handle_passing_target_turf(var/turf/t)
 
@@ -116,9 +150,9 @@
 			turfs_in_the_way += locate(t.x, t.y+1, t.z)
 		//	turfs_in_the_way += locate(t.x-1, t.y+2, t.z) // doesn't work with the current sprite
 		if (NORTH)
-			turfs_in_the_way += locate(t.x, t.y+4, t.z)
-			turfs_in_the_way += locate(t.x+1, t.y+4, t.z)
-			turfs_in_the_way += locate(t.x+2, t.y+4, t.z)
+			turfs_in_the_way += locate(t.x, t.y+1, t.z)
+			turfs_in_the_way += locate(t.x+1, t.y+1, t.z)
+			turfs_in_the_way += locate(t.x+2, t.y+1, t.z)
 		if (SOUTH)
 			turfs_in_the_way += locate(t.x, t.y, t.z)
 			turfs_in_the_way += locate(t.x+1, t.y, t.z)
@@ -126,42 +160,42 @@
 
 	for (var/turf/tt in turfs_in_the_way)
 		if (!handle_passing_turf(tt))
-			return 0
+			return FALSE
 		for (var/atom/movable/am in tt)
 			if (isobj(am))
 				if (!handle_passing_obj(am))
-					return 0
+					return FALSE
 			else if (ismob(am))
-				if (!handle_passing_mob(am))
-					return 0
-	return 1
+				if (!handle_passing_mob(am, TRUE))
+					return FALSE
+	return TRUE
 
 /obj/tank/proc/handle_passing_turf(var/turf/t)
 	if (!t.density)
-		return 1
+		return TRUE
 	if (!istype(t, /turf/wall))
-		return 1
+		return TRUE
 	if (istype(t,  /turf/wall/rockwall))
-		return 0
+		return FALSE
 	if (istype(t, /turf/wall))
 		var/turf/wall/wall = t
 		if (!wall.tank_destroyable)
-			return 0
+			return FALSE
 		var/wall_integrity = wall.material ? wall.material.integrity : 150
 		if (prob(min(95, (wall_integrity/5) + 40)))
 			tank_message("<span class = 'danger'>The tank smashes against [wall]!</span>")
 			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-			return 0
+			return FALSE
 		else // defenses [b]roke
 			tank_message("<span class = 'danger'>The tank smashes its way through [wall]!</span>")
 			qdel(wall)
-			return 1
-	return 1
+			return TRUE
+	return TRUE
 
 /obj/tank/proc/handle_passing_obj(var/obj/o)
 
 	if (o == src)
-		return 1
+		return TRUE
 
 	if (istype(o))
 
@@ -170,44 +204,55 @@
 			mine.trigger(src)
 			damage += x_percent_of_max_damage(rand(5,7))
 			update_damage_status()
-			return 0 // halt us too
+			return FALSE // halt us too
 
 		if (istype(o, /obj/item/weapon/grenade))
-			return 1 // pass over it
+			return TRUE // pass over it
 
 		if (istype(o, /obj/train_lever))
-			return 1 // pass over it
+			return TRUE // pass over it
 
 		if (istype(o, /obj/structure/window/sandbag))
-			if (prob(20))
+			if (prob(15))
 				tank_message("<span class = 'danger'>The tank plows through the sandbag wall!</span>")
 				qdel(o)
-				return 1
+				return TRUE
 			else
 				tank_message("<span class = 'danger'>The tank smashes against the sandbag wall!</span>")
 				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
-				return 0
+				return FALSE
 
 		if (istype(o, /obj/structure/girder))
-			if (prob(10))
+			if (prob(7))
 				tank_message("<span class = 'danger'>The tank plows through the wall girder!</span>")
 				qdel(o)
-				return 1
+				return TRUE
 			else
 				tank_message("<span class = 'danger'>The tank smashes against the wall girder!</span>")
-				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
-				return 0
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				return FALSE
+
+		if (istype(o, /obj/structure/barricade))
+			var/obj/structure/barricade/B = o
+			if ((B.material && prob(max(3, 100 - (B.material.integrity/4) - 10))) || (!B.material && prob(80)))
+				tank_message("<span class = 'danger'>The tank plows through \the [B]!</span>")
+				qdel(o)
+				return TRUE
+			else
+				tank_message("<span class = 'danger'>The tank smashes against \the [B]!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				return FALSE
 
 		if (istype(o, /obj/structure/simple_door))
 			var/obj/structure/simple_door/S = o
 			if ((S.material && prob(max(5, 100 - (S.material.integrity/5) - 10))) || (!S.material && prob(80)))
 				tank_message("<span class = 'danger'>The tank plows through \the [S]!</span>")
 				qdel(o)
-				return 1
+				return TRUE
 			else
 				tank_message("<span class = 'danger'>The tank smashes against \the [S]!</span>")
-				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
-				return 0
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				return FALSE
 
 		if (istype(o, /obj/train_pseudoturf))
 			if (o.density)
@@ -215,19 +260,22 @@
 				if (prob(min(wall_integrity/2, 98)))
 					tank_message("<span class = 'danger'>The tank smashes against [o]!</span>")
 					playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
-					return 0
+					return FALSE
 				else
 					tank_message("<span class = 'danger'>The tank smashes its way through [o]!</span>")
 					qdel(o)
-					return 1
+					return TRUE
 			else // you can no longer drive tanks in to or on to trains.
-				return 0
+				return FALSE
 
 		else if (istype(o, /obj/tank))
 			tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
 			var/obj/tank/other = o
 			if (prob(50))
-				other.damage += other.x_percent_of_max_damage(2)
+				if (!did_critical_damage)
+					other.damage += other.x_percent_of_max_damage(2)
+				else
+					other.damage += other.x_percent_of_max_damage(0.5)
 			else
 				visible_message("<span class = 'danger'>The hit bounces off [other]!</span>")
 
@@ -248,38 +296,54 @@
 			if (prob(other.critical_damage_chance()))
 				other.critical_damage()
 
-			return 0
+			return FALSE
 		else
 			if (!o.density && !istype(o, /obj/item))
-				return 1
-			if ((istype(o, /obj/item) && o.w_class == 1) || (istype(o, /obj/item) && o.anchored) || istype(o, /obj/item/ammo_casing) || istype(o, /obj/item/ammo_magazine) || istype(o, /obj/item/organ))
-				return 1
+				return TRUE
+			if ((istype(o, /obj/item) && o.w_class == TRUE) || (istype(o, /obj/item) && o.anchored) || istype(o, /obj/item/ammo_casing) || istype(o, /obj/item/ammo_magazine) || istype(o, /obj/item/organ))
+				return TRUE
 			else
 				tank_message("<span class = 'warning'>The tank crushes [o].</span>")
 				qdel(o)
-				return 1
+				return TRUE
 			if (istype(o, /obj/structure))
 				if (prob(40) || !o.density)
 					tank_message("<span class = 'danger'>The tank crushes [o]!</span>")
 					qdel(o)
-					return 1
+					return TRUE
 				else
 					tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
 					playsound(get_turf(src), 'sound/effects/clang.ogg', rand(60,70))
-					return 0
+					return FALSE
 
-	return 1
+	return TRUE
 
 /obj/tank/proc/handle_passing_mob(var/mob/living/m)
 
 	if (istype(m) && (world.time - last_gibbed > 5 || last_gibbed == -1))
+
+		// crushing allies is no longer possible
+		if (ishuman(m) && m.stat != DEAD)
+			var/mob/living/carbon/human/H = m
+			if (H.original_job && drive_front_seat.original_job)
+				if (H.original_job.base_type_flag() == drive_front_seat.original_job.base_type_flag())
+					return FALSE
+
+		// crushing allied dogs is no longer possible
+		else if (istype(m, /mob/living/simple_animal/complex_animal/canine/dog) && m.stat != DEAD)
+			var/mob/living/simple_animal/complex_animal/canine/dog/D = m
+			if (drive_front_seat.original_job && D.faction)
+				if (drive_front_seat.original_job.base_type_flag() == D.faction)
+					return FALSE
+
 		last_gibbed = world.time
 		tank_message("<span class = 'danger'>The tank crushes [m]!</span>")
 		m.crush()
 		last_movement = world.time + 25
+
 	else if (istype(m))
 		spawn (5)
 			m.crush()
 			last_movement = world.time + 25
 
-	return 1
+	return TRUE

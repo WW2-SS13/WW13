@@ -1,8 +1,8 @@
 /obj/structure/sign
 	icon = 'icons/obj/decals.dmi'
-	anchored = 1
-	opacity = 0
-	density = 0
+	anchored = TRUE
+	opacity = FALSE
+	density = FALSE
 	layer = 3.5
 	w_class = 3
 
@@ -23,7 +23,7 @@
 /obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
 	if(istype(tool, /obj/item/weapon/screwdriver) && !istype(src, /obj/structure/sign/double))
 		user << "You unfasten the sign with your [tool]."
-		var/obj/item/sign/S = new(src.loc)
+		var/obj/item/sign/S = new(loc)
 		S.name = name
 		S.desc = desc
 		S.icon_state = icon_state

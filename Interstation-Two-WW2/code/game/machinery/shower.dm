@@ -6,11 +6,11 @@
 	desc = "Pacification And INdignity dispenser."
 	icon = 'icons/obj/machines/shower.dmi'
 	icon_state = "sprayer"
-	density = 0
-	anchored = 1
-	use_power = 0
+	density = FALSE
+	anchored = TRUE
+	use_power = FALSE
 	var/id
-	var/on = 0
+	var/on = FALSE
 	var/watertemp = "normal"
 	var/last_spray
 	var/list/effect = list()
@@ -40,7 +40,7 @@
 	on = !on
 	if(on)
 		visible_message("<span class='warning'>[src] clicks and distributes some pain.")
-		for(var/turf/T in range(1, locate(x, y, z - 1)))
+		for(var/turf/T in range(1, locate(x, y, z - TRUE)))
 			if(T.density)
 				continue
 			var/obj/effect/shower/S = new(T)
@@ -50,31 +50,31 @@
 
 /obj/machinery/cellshower/proc/spray()
 	visible_message("<span class='warning'>[src] clicks and distributes some pain.")
-	playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1)
-	for(var/turf/T in range(1, locate(x, y, z - 1)))
+	playsound(loc, 'sound/effects/spray2.ogg', 50, TRUE)
+	for(var/turf/T in range(1, locate(x, y, z - TRUE)))
 		if(T.density)
 			continue
 		spawn(0)
-			var/obj/effect/effect/water/chempuff/D = new(locate(x, y, z - 1))
+			var/obj/effect/effect/water/chempuff/D = new(locate(x, y, z - TRUE))
 			D.create_reagents(5)
 			D.reagents.add_reagent("condensedcapsaicin", 5)
 			D.set_color()
-			D.set_up(T, 1, 10)
+			D.set_up(T, TRUE, 10)
 	last_spray = world.time
 
 /obj/effect/shower
-	anchored = 1
-	var/ismist = 0
-	var/mobpresent = 0
+	anchored = TRUE
+	var/ismist = FALSE
+	var/mobpresent = FALSE
 	var/obj/effect/mist/mymist
 	var/obj/machinery/cellshower/master
 
 /obj/effect/shower/New()
 	..()
-	for(var/mob/living/carbon/C in src.loc)
+	for(var/mob/living/carbon/C in loc)
 		wash(C)
 		check_heat(C)
-	for (var/atom/movable/G in src.loc)
+	for (var/atom/movable/G in loc)
 		G.clean_blood()
 
 /obj/effect/shower/update_icon()
@@ -83,23 +83,23 @@
 		del(mymist)
 
 	if(master.on)
-		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
+		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + TRUE, dir)
 		if(master.watertemp == "freezing")
 			return
 		if(!ismist)
 			spawn(50)
 				if(src && master.on)
-					ismist = 1
+					ismist = TRUE
 					mymist = new /obj/effect/mist(loc)
 		else
-			ismist = 1
+			ismist = TRUE
 			mymist = new /obj/effect/mist(loc)
 	else if(ismist)
-		ismist = 1
+		ismist = TRUE
 		mymist = new /obj/effect/mist(loc)
 		spawn(150)
 			if(src && !master.on)
-				ismist = 0
+				ismist = FALSE
 				del(mymist)
 				qdel(src)
 
@@ -123,11 +123,11 @@
 					M.update_inv_back(0)
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				var/washgloves = 1
-				var/washshoes = 1
-				var/washmask = 1
-				var/washears = 1
-				var/washglasses = 1
+				var/washgloves = TRUE
+				var/washshoes = TRUE
+				var/washmask = TRUE
+				var/washears = TRUE
+				var/washglasses = TRUE
 
 				if(H.wear_suit)
 					washgloves = !(H.wear_suit.flags_inv & HIDEGLOVES)

@@ -9,10 +9,10 @@
 	health = 5
 	maxHealth = 5
 	attacktext = "bitten"
-	melee_damage_lower = 1
+	melee_damage_lower = TRUE
 	melee_damage_upper = 2
 	response_help  = "pets"
 	response_disarm = "shoos"
 	response_harm   = "stomps on"
 	mob_size = MOB_MINISCULE
-	possession_candidate = 1
+	possession_candidate = TRUE

@@ -5,16 +5,16 @@
 	icon = 'icons/obj/shards.dmi'
 	desc = "Made of nothing. How does this even exist?" // set based on material, if this desc is visible it's a bug (shards default to being made of glass)
 	icon_state = "large"
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	w_class = 2
 	force_divisor = 0.2 // 6 with hardness 30 (glass)
 	thrown_force_divisor = 0.4 // 4 with weight 15 (glass)
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
 	default_material = "glass"
-	unbreakable = 1 //It's already broken.
-	drops_debris = 0
+	unbreakable = TRUE //It's already broken.
+	drops_debris = FALSE
 
 /obj/item/weapon/material/shard/set_material(var/new_material)
 	..(new_material)
@@ -40,7 +40,7 @@
 /obj/item/weapon/material/shard/update_icon()
 	if(material)
 		color = material.icon_colour
-		// 1-(1-x)^2, so that glass shards with 0.3 opacity end up somewhat visible at 0.51 opacity
+		// TRUE-(1-x)^2, so that glass shards with 0.3 opacity end up somewhat visible at 0.51 opacity
 		alpha = 255 * (1 - (1 - material.opacity)*(1 - material.opacity))
 	else
 		color = "#ffffff"
@@ -63,7 +63,7 @@
 		if(M.buckled) //wheelchairs, office chairs, rollerbeds
 			return
 
-		playsound(src.loc, 'sound/effects/glass_step.ogg', 50, 1) // not sure how to handle metal shards with sounds
+		playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE) // not sure how to handle metal shards with sounds
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
@@ -82,7 +82,7 @@
 				if(affecting)
 					if(affecting.status & ORGAN_ROBOT)
 						return
-					if(affecting.take_damage(5, 0))
+					if(affecting.take_damage(5, FALSE))
 						H.UpdateDamageIcon()
 					H.updatehealth()
 					if(!(H.species.flags & NO_PAIN))

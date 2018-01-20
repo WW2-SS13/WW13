@@ -10,10 +10,10 @@
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 5
-//	origin_tech = list(TECH_MATERIAL = 1)
+//	origin_tech = list(TECH_MATERIAL = TRUE)
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
 	var/elastic
-	var/dispenser = 0
+	var/dispenser = FALSE
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
@@ -37,15 +37,15 @@
 		var/can_place
 
 		if(istype(user, /mob/living/silicon/robot))
-			can_place = 1
+			can_place = TRUE
 		else
 			for (var/obj/item/weapon/grab/G in C.grabbed_by)
 				if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
-					can_place = 1
+					can_place = TRUE
 					break
 
 		if (C.lying)
-			can_place = 1
+			can_place = TRUE
 
 		if(can_place)
 			place_handcuffs(C, user)
@@ -53,20 +53,20 @@
 			user << "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>"
 
 /obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
+	playsound(loc, cuff_sound, 30, TRUE, -2)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
-		return 0
+		return FALSE
 
 	if (!H.has_organ_for_slot(slot_handcuffed))
 		user << "<span class='danger'>\The [H] needs at least two wrists before you can cuff them together!</span>"
-		return 0
+		return FALSE
 
 	//user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
 
 	if(!do_after(user,0, target))
-		return 0
+		return FALSE
 
 	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Handcuff [H.name] ([H.ckey])</font>")
@@ -87,9 +87,9 @@
 	cuffs.loc = target
 	target.handcuffed = cuffs
 	target.update_inv_handcuffed()
-	return 1
+	return TRUE
 
-var/last_chew = 0
+var/last_chew = FALSE
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)
 	if (A != src) return ..()
 	if (last_chew + 26 > world.time) return
@@ -120,7 +120,7 @@ var/last_chew = 0
 	breakouttime = 300 //Deciseconds = 30s
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
 	cuff_type = "cable restraints"
-	elastic = 1
+	elastic = TRUE
 
 /obj/item/weapon/handcuffs/cable/red
 	color = "#DD0000"

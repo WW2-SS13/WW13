@@ -3,10 +3,10 @@
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	density = 1
+	density = TRUE
 	anchored = 1.0
-	use_power = 1
-	idle_power_usage = 1
+	use_power = TRUE
+	idle_power_usage = TRUE
 	active_power_usage = 5
 	var/mob/living/carbon/human/victim = null
 	var/strapped = 0.0
@@ -33,24 +33,24 @@
 				return
 		if(3.0)
 			if (prob(25))
-				src.density = 0
+				density = FALSE
 		else
 	return
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
 	if (HULK in usr.mutations)
 		visible_message("<span class='danger'>\The [usr] destroys \the [src]!</span>")
-		src.density = 0
+		density = FALSE
 		qdel(src)
 	return
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+	if(air_group || (height==0)) return TRUE
 
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 
 /obj/machinery/optable/MouseDrop_T(obj/O as obj, mob/user as mob)
@@ -58,20 +58,20 @@
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
 		return
 	user.drop_item()
-	if (O.loc != src.loc)
+	if (O.loc != loc)
 		step(O, get_dir(O, src))
 	return
 
 /obj/machinery/optable/proc/check_victim()
-	if(locate(/mob/living/carbon/human, src.loc))
-		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, src.loc)
+	if(locate(/mob/living/carbon/human, loc))
+		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, loc)
 		if(M.lying)
-			src.victim = M
+			victim = M
 			icon_state = M.pulse() ? "table2-active" : "table2-idle"
-			return 1
-	src.victim = null
+			return TRUE
+	victim = null
 	icon_state = "table2-idle"
-	return 0
+	return FALSE
 
 /obj/machinery/optable/process()
 	check_victim()
@@ -84,14 +84,14 @@
 	if (C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
-	C.resting = 1
-	C.loc = src.loc
+	C.resting = TRUE
+	C.loc = loc
 	for(var/obj/O in src)
-		O.loc = src.loc
-	src.add_fingerprint(user)
+		O.loc = loc
+	add_fingerprint(user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		src.victim = H
+		victim = H
 		icon_state = H.pulse() ? "table2-active" : "table2-idle"
 	else
 		icon_state = "table2-idle"
@@ -126,10 +126,10 @@
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	check_victim()
-	if(src.victim && get_turf(victim) == get_turf(src) && victim.lying)
+	if(victim && get_turf(victim) == get_turf(src) && victim.lying)
 		usr << "<span class='warning'>\The [src] is already occupied!</span>"
-		return 0
+		return FALSE
 	if(patient.buckled)
 		usr << "<span class='notice'>Unbuckle \the [patient] first!</span>"
-		return 0
-	return 1
+		return FALSE
+	return TRUE

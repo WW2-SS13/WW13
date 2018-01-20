@@ -1,7 +1,7 @@
-var/partisans_toggled = 1
-var/civilians_toggled = 1
-var/SS_toggled = 1
-var/paratroopers_toggled = 1
+var/partisans_toggled = TRUE
+var/civilians_toggled = TRUE
+var/SS_toggled = TRUE
+var/paratroopers_toggled = TRUE
 
 /client/proc/toggle_subfactions()
 	set name = "Toggle Subfactions"

@@ -4,19 +4,19 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
 	layer = 2.9
-	density = 1
-	anchored = 1
-	use_power = 1
+	density = TRUE
+	anchored = TRUE
+	use_power = TRUE
 	idle_power_usage = 5
 	active_power_usage = 100
 	flags = OPENCONTAINER | NOREACT
-	var/operating = 0 // Is it on?
-	var/dirty = 0 // = {0..100} Does it need cleaning?
-	var/broken = 0 // ={0,1,2} How broken is it???
+	var/operating = FALSE // Is it on?
+	var/dirty = FALSE // = {0..100} Does it need cleaning?
+	var/broken = FALSE // ={0,1,2} How broken is it???
 	var/global/list/datum/recipe/available_recipes // List of the recipes you can use
 	var/global/list/acceptable_items // List of the items you can put in
 	var/global/list/acceptable_reagents // List of the reagents you can put in
-	var/global/max_n_of_items = 0
+	var/global/max_n_of_items = FALSE
 
 	var/base_state = "mw"
 	var/on_state = "mw1"
@@ -62,8 +62,8 @@
 ********************/
 
 /obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(src.broken > 0)
-		if(src.broken == 2 && istype(O, /obj/item/weapon/screwdriver)) // If it's broken and they're using a screwdriver
+	if(broken > FALSE)
+		if(broken == 2 && istype(O, /obj/item/weapon/screwdriver)) // If it's broken and they're using a screwdriver
 			user.visible_message( \
 				"<span class='notice'>\The [user] starts to fix part of the [lowertext(name)].</span>", \
 				"<span class='notice'>You start to fix part of the [lowertext(name)].</span>" \
@@ -73,8 +73,8 @@
 					"<span class='notice'>\The [user] fixes part of the [lowertext(name)].</span>", \
 					"<span class='notice'>You have fixed part of the [lowertext(name)].</span>" \
 				)
-				src.broken = 1 // Fix it a bit
-		else if(src.broken == 1 && istype(O, /obj/item/weapon/wrench)) // If it's broken and they're doing the wrench
+				broken = TRUE // Fix it a bit
+		else if(broken == TRUE && istype(O, /obj/item/weapon/wrench)) // If it's broken and they're doing the wrench
 			user.visible_message( \
 				"<span class='notice'>\The [user] starts to fix part of the [lowertext(name)].</span>", \
 				"<span class='notice'>You start to fix part of the [lowertext(name)].</span>" \
@@ -84,14 +84,14 @@
 					"<span class='notice'>\The [user] fixes the [lowertext(name)].</span>", \
 					"<span class='notice'>You have fixed the [lowertext(name)].</span>" \
 				)
-				src.icon_state = base_state
-				src.broken = 0 // Fix it!
-				src.dirty = 0 // just to be sure
-				src.flags = OPENCONTAINER
+				icon_state = base_state
+				broken = FALSE // Fix it!
+				dirty = FALSE // just to be sure
+				flags = OPENCONTAINER
 		else
 			user << "<span class='warning'>It's broken!</span>"
-			return 1
-	else if(src.dirty==100) // The microwave is all dirty so can't be used!
+			return TRUE
+	else if(dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/weapon/reagent_containers/spray/cleaner)) // If they're trying to clean it then let them
 			user.visible_message( \
 				"<span class='notice'>\The [user] starts to clean the [lowertext(name)].</span>", \
@@ -102,18 +102,18 @@
 					"<span class='notice'>\The [user] has cleaned the [lowertext(name)].</span>", \
 					"<span class='notice'>You have cleaned the [lowertext(name)].</span>" \
 				)
-				src.dirty = 0 // It's clean!
-				src.broken = 0 // just to be sure
-				src.icon_state = base_state
-				src.flags = OPENCONTAINER
+				dirty = FALSE // It's clean!
+				broken = FALSE // just to be sure
+				icon_state = base_state
+				flags = OPENCONTAINER
 		else //Otherwise bad luck!!
 			user << "<span class='warning'>It's dirty!</span>"
-			return 1
+			return TRUE
 	else if(is_type_in_list(O,acceptable_items))
 		if (contents.len>=max_n_of_items)
 			user << "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>"
-			return 1
-		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
+			return TRUE
+		if(istype(O, /obj/item/stack) && O:get_amount() > TRUE) // This is bad, but I can't think of how to change it
 			var/obj/item/stack/S = O
 			new O.type (src)
 			S.use(1)
@@ -134,34 +134,34 @@
 	        istype(O,/obj/item/weapon/reagent_containers/food/condiment) \
 		)
 		if (!O.reagents)
-			return 1
+			return TRUE
 		for (var/datum/reagent/R in O.reagents.reagent_list)
 			if (!(R.id in acceptable_reagents))
 				user << "<span class='warning'>Your [O] contains components unsuitable for cookery.</span>"
-				return 1
+				return TRUE
 		return
 	else if(istype(O,/obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = O
 		user << "<span class='warning'>This is ridiculous. You can not fit \the [G.affecting] in this [src].</span>"
-		return 1
+		return TRUE
 	else if(istype(O,/obj/item/weapon/crowbar))
 		user.visible_message( \
-			"<span class='notice'>\The [user] begins [src.anchored ? "securing" : "unsecuring"] the [lowertext(name)].</span>", \
-			"<span class='notice'>You attempt to [src.anchored ? "secure" : "unsecure"] the [lowertext(name)].</span>"
+			"<span class='notice'>\The [user] begins [anchored ? "securing" : "unsecuring"] the [lowertext(name)].</span>", \
+			"<span class='notice'>You attempt to [anchored ? "secure" : "unsecure"] the [lowertext(name)].</span>"
 			)
 		if (do_after(user,20, src))
 			user.visible_message( \
-			"<span class='notice'>\The [user] [src.anchored ? "secures" : "unsecures"] the [lowertext(name)].</span>", \
-			"<span class='notice'>You [src.anchored ? "secure" : "unsecure"] the [lowertext(name)].</span>"
+			"<span class='notice'>\The [user] [anchored ? "secures" : "unsecures"] the [lowertext(name)].</span>", \
+			"<span class='notice'>You [anchored ? "secure" : "unsecure"] the [lowertext(name)].</span>"
 			)
-			src.anchored = !src.anchored
+			anchored = !anchored
 		else
 			user << "<span class='notice'>You decide not to do that.</span>"
 	else
 
 		user << "<span class='warning'>You have no idea what you can cook with this [O].</span>"
 	..()
-	src.updateUsrDialog()
+	updateUsrDialog()
 
 /obj/machinery/microwave/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -173,14 +173,14 @@
 
 /obj/machinery/microwave/interact(mob/user as mob) // The microwave Menu
 	var/dat = ""
-	if(src.broken > 0)
+	if(broken > FALSE)
 		dat = {"<TT>Bzzzzttttt</TT>"}
-	else if(src.operating)
+	else if(operating)
 		if (!istype(src, /obj/machinery/microwave/oven))
 			dat = {"<TT>Microwaving in progress!<BR>Please wait...!</TT>"}
 		else
 			dat = {"<TT>Cooking in progress!<BR>Please wait...!</TT>"}
-	else if(src.dirty==100)
+	else if(dirty==100)
 		dat = {"<TT>This [lowertext(name)] is dirty!<BR>Please clean it before use!</TT>"}
 	else
 		var/list/items_counts = new
@@ -260,7 +260,7 @@
 
 	var/obj/cooked
 	if (!recipe)
-		dirty += 1
+		dirty += TRUE
 		if (prob(max(10,dirty*5)))
 			if (!wzhzhzh(4))
 				abort()
@@ -269,7 +269,7 @@
 			wzhzhzh(4)
 			muck_finish()
 			cooked = fail()
-			cooked.loc = src.loc
+			cooked.loc = loc
 			return
 		else if (has_extra_item())
 			if (!wzhzhzh(4))
@@ -277,7 +277,7 @@
 				return
 			broke()
 			cooked = fail()
-			cooked.loc = src.loc
+			cooked.loc = loc
 			return
 		else
 			if (!wzhzhzh(10))
@@ -285,7 +285,7 @@
 				return
 			stop()
 			cooked = fail()
-			cooked.loc = src.loc
+			cooked.loc = loc
 			return
 	else
 		var/halftime = round(recipe.calculate_cooking_time()/10/2)
@@ -295,21 +295,21 @@
 		if (!wzhzhzh(halftime))
 			abort()
 			cooked = fail()
-			cooked.loc = src.loc
+			cooked.loc = loc
 			return
 		cooked = recipe.make_food(src)
 		stop()
 		if(cooked)
-			cooked.loc = src.loc
+			cooked.loc = loc
 		return
 
 /obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
 	for (var/i=1 to seconds)
 		if (stat & (NOPOWER|BROKEN))
-			return 0
+			return FALSE
 		use_power(500)
 		sleep(10)
-	return 1
+	return TRUE
 
 /obj/machinery/microwave/proc/has_extra_item()
 //	for (var/obj/O in contents)
@@ -317,62 +317,62 @@
 				!istype(O,/obj/item/weapon/reagent_containers/food) && \
 				!istype(O, /obj/item/weapon/grown) \
 			)
-		//	return 1
-	return 0
+		//	return TRUE
+	return FALSE
 
 /obj/machinery/microwave/proc/start()
-	src.visible_message("<span class='notice'>The [lowertext(name)] turns on.</span>", "<span class='notice'>You hear a [lowertext(name)].</span>")
-	src.operating = 1
-	src.icon_state = on_state
-	src.updateUsrDialog()
+	visible_message("<span class='notice'>The [lowertext(name)] turns on.</span>", "<span class='notice'>You hear a [lowertext(name)].</span>")
+	operating = TRUE
+	icon_state = on_state
+	updateUsrDialog()
 
 /obj/machinery/microwave/proc/abort()
-	src.operating = 0 // Turn it off again aferwards
-	src.icon_state = base_state
-	src.updateUsrDialog()
+	operating = FALSE // Turn it off again aferwards
+	icon_state = base_state
+	updateUsrDialog()
 
 /obj/machinery/microwave/proc/stop()
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
-	src.operating = 0 // Turn it off again aferwards
-	src.icon_state = base_state
-	src.updateUsrDialog()
+	playsound(loc, 'sound/machines/ding.ogg', 50, TRUE)
+	operating = FALSE // Turn it off again aferwards
+	icon_state = base_state
+	updateUsrDialog()
 
 /obj/machinery/microwave/proc/dispose()
 	for (var/obj/O in contents)
-		O.loc = src.loc
-	if (src.reagents.total_volume)
-		src.dirty++
-	src.reagents.clear_reagents()
+		O.loc = loc
+	if (reagents.total_volume)
+		dirty++
+	reagents.clear_reagents()
 	usr << "<span class='notice'>You dispose of the [lowertext(name)] contents.</span>"
-	src.updateUsrDialog()
+	updateUsrDialog()
 
 /obj/machinery/microwave/proc/muck_start()
-	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) // Play a splat sound
-	src.icon_state = "mwbloody1" // Make it look dirty!!
+	playsound(loc, 'sound/effects/splat.ogg', 50, TRUE) // Play a splat sound
+	icon_state = "mwbloody1" // Make it look dirty!!
 
 /obj/machinery/microwave/proc/muck_finish()
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
-	src.visible_message("<span class='warning'>The [lowertext(name)] gets covered in muck!</span>")
-	src.dirty = 100 // Make it dirty so it can't be used util cleaned
-	src.flags = null //So you can't add condiments
-	src.icon_state = bloody_state // Make it look dirty too
-	src.operating = 0 // Turn it off again aferwards
-	src.updateUsrDialog()
+	playsound(loc, 'sound/machines/ding.ogg', 50, TRUE)
+	visible_message("<span class='warning'>The [lowertext(name)] gets covered in muck!</span>")
+	dirty = 100 // Make it dirty so it can't be used util cleaned
+	flags = null //So you can't add condiments
+	icon_state = bloody_state // Make it look dirty too
+	operating = FALSE // Turn it off again aferwards
+	updateUsrDialog()
 
 /obj/machinery/microwave/proc/broke()
 	var/datum/effect/effect/system/spark_spread/s = new
-	s.set_up(2, 1, src)
+	s.set_up(2, TRUE, src)
 	s.start()
-	src.icon_state = broken_state // Make it look all busted up and shit
-	src.visible_message("<span class='warning'>The [lowertext(name)] breaks!</span>") //Let them know they're stupid
-	src.broken = 2 // Make it broken so it can't be used util fixed
-	src.flags = null //So you can't add condiments
-	src.operating = 0 // Turn it off again aferwards
-	src.updateUsrDialog()
+	icon_state = broken_state // Make it look all busted up and shit
+	visible_message("<span class='warning'>The [lowertext(name)] breaks!</span>") //Let them know they're stupid
+	broken = 2 // Make it broken so it can't be used util fixed
+	flags = null //So you can't add condiments
+	operating = FALSE // Turn it off again aferwards
+	updateUsrDialog()
 
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
-	var/amount = 0
+	var/amount = FALSE
 	for (var/obj/O in contents-ffuu)
 		amount++
 		if (O.reagents)
@@ -380,7 +380,7 @@
 			if (id)
 				amount+=O.reagents.get_reagent_amount(id)
 		qdel(O)
-	src.reagents.clear_reagents()
+	reagents.clear_reagents()
 	ffuu.reagents.add_reagent("carbon", amount)
 	ffuu.reagents.add_reagent("toxin", amount/10)
 	return ffuu
@@ -390,8 +390,8 @@
 		return
 
 	usr.set_machine(src)
-	if(src.operating)
-		src.updateUsrDialog()
+	if(operating)
+		updateUsrDialog()
 		return
 
 	switch(href_list["action"])

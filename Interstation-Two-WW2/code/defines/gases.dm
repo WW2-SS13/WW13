@@ -42,4 +42,4 @@
 	molar_mass = 0.044	// kg/mol. N2O
 
 	tile_overlay = "sleeping_agent"
-	overlay_limit = 1
+	overlay_limit = TRUE

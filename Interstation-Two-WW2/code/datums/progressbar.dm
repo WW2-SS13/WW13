@@ -1,11 +1,11 @@
 /datum/progressbar
-	var/goal = 1
+	var/goal = TRUE
 	var/image/bar
-	var/shown = 0
+	var/shown = FALSE
 	var/mob/user
 	var/client/client
 
-/datum/progressbar/New(mob/user, goal_number, atom/target)
+/datum/progressbar/New(mob/_user, goal_number, atom/target)
 	. = ..()
 	if(!target) target = user
 	if (!istype(target))
@@ -15,7 +15,7 @@
 	bar = image('icons/effects/progessbar.dmi', target, "prog_bar_0")
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	bar.pixel_y = 32
-	src.user = user
+	user = _user
 	if(user)
 		client = user.client
 
@@ -28,16 +28,16 @@
 /datum/progressbar/proc/update(progress)
 	//world << "Update [progress] - [goal] - [(progress / goal)] - [((progress / goal) * 100)] - [round(((progress / goal) * 100), 5)]"
 	if (!user || !user.client)
-		shown = 0
+		shown = FALSE
 		return
 	if (user.client != client)
 		if (client)
 			client.images -= bar
-			shown = 0
+			shown = FALSE
 		client = user.client
 
-	progress = Clamp(progress, 0, goal)
+	progress = Clamp(progress, FALSE, goal)
 	bar.icon_state = "prog_bar_[round(((progress / goal) * 100), 5)]"
 	if (!shown && user.is_preference_enabled(/datum/client_preference/show_progress_bar))
 		user.client.images += bar
-		shown = 1
+		shown = TRUE

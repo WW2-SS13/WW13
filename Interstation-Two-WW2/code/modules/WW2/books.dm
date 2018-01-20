@@ -5,25 +5,25 @@
 	author = "United Nations Universal International Agreements"
 	title = "The Geneva Convention"
 	w_class = 2
-	unique = 1
+	unique = TRUE
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
 				<body>
 				<h1>Содержание:</h1>
-				<a href="#1">Общие положения</a> 1-11 статьи<br>
+				<a href="#1">Общие положения</a> TRUE-11 статьи<br>
 				<a href="#2">Постановления общего характера о защите военноленных</a> 12-16 статьи<br>
 
 				<h1><a name="1">Общие положения</a></h1>
-				<h2>Статья 1</h2>
+				<h2>Статья TRUE</h2>
 				Высокие Договаривающиеся Стороны обязуются при любых обстоятельствах соблюдать и заставлять соблюдать настоящую Конвенцию.
 
 				<h2>Статья 2</h2>
@@ -112,7 +112,7 @@
 				<h2>Статья 15</h2>
 				Держащая в плену держава обязана бесплатно обеспечить содержание военнопленных и также врачебную помощь, которую потребует состояние их здоровья.
 
-				<h2>Статья 16</h2>
+				<h2>Статья TRUE6</h2>
 				С учетом положений настоящей Конвенции, касающихся звания и пола, держащая в плену держава должна со всеми военнопленными обращаться одинаково, без какой-либо дискриминации по причинам расы, национальности, вероисповедания, политических убеждений и всем другим причинам, основанным на аналогичных критериях, за исключением случаев привилегированного режима, который она могла бы установить для военнопленных по состоянию их здоровья, по их возрасту или квалификации.
 
 				Additional chapters are available in pre-ordered version of book.
@@ -124,8 +124,8 @@
 
 /obj/item/weapon/book/manual
 	icon = 'icons/obj/library.dmi'
-	due_date = 0 // Game time in 1/10th seconds
-	unique = 1   // 0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
+	due_date = FALSE // Game time in TRUE/10th seconds
+	unique = TRUE   // FALSE - Normal book, TRUE - Should not be treated as normal book, unable to be copied, unable to be modified
 
 
 /obj/item/weapon/book/manual/engineering_construction
@@ -160,12 +160,12 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				h3 {font-size: 13px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				h3 {font-size: 13px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -187,7 +187,7 @@
 					<li>Open the control panel</li>
 					<li>Set the speed to 2</li>
 					<li>Start firing at the singularity generator</li>
-					<li><font color='red'><b>When the singularity reaches a large enough size so it starts moving on it's own set the speed down to 0, but don't shut it off</b></font></li>
+					<li><font color='red'><b>When the singularity reaches a large enough size so it starts moving on it's own set the speed down to FALSE, but don't shut it off</b></font></li>
 					<li>Remember to wear a radiation suit when working with this machine... we did tell you that at the start, right?</li>
 				</ol>
 
@@ -207,16 +207,16 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
 				<body>
-				<h1>OPERATING MANUAL FOR MK 1 PROTOTYPE THERMOELECTRIC SUPERMATTER ENGINE 'TOMBOLA'</h1>
+				<h1>OPERATING MANUAL FOR MK TRUE PROTOTYPE THERMOELECTRIC SUPERMATTER ENGINE 'TOMBOLA'</h1>
 				<br>
 				<h2>OPERATING PRINCIPLES</h2>
 				<br>
@@ -226,7 +226,7 @@
 				<br>
 				<li>Air in the radiator loop is circulated through the radiator bank, located in space. This rapidly cools the air, preserving the temperature differential needed for power generation.</li>
 				<br>
-				<li>The MK 1 Prototype Thermoelectric Supermatter Engine is designed to operate at reactor temperatures of 3000K to 4000K and generate up to 1MW of power. Beyond 1MW, the thermoelectric generators will begin to lose power through electrical discharge, reducing efficiency, but additional power generation remains feasible.</li>
+				<li>The MK TRUE Prototype Thermoelectric Supermatter Engine is designed to operate at reactor temperatures of 3000K to 4000K and generate up to TRUEMW of power. Beyond TRUEMW, the thermoelectric generators will begin to lose power through electrical discharge, reducing efficiency, but additional power generation remains feasible.</li>
 				<br>
 				<li>The crystal structure of the supermatter will begin to liquefy if its temperature exceeds 5000K. This eventually results in a massive release of light, heat and radiation, disintegration of both the supermatter crystal and most of the surrounding area, and as as-of-yet poorly documented psychological effects on all animals within a 2km radius. Appropriate action should be taken to stabilize or eject the supermatter before such occurs.</li>
 				<br>
@@ -255,8 +255,8 @@
 				<br>
 				<h2>EMERGENCY COOLING PROCEDURE</h2>
 				<ol>
-				<li>Open Emergency Cooling Valve 1 and Emergency Cooling Valve 2.</li>
-				<li>When reactor temperature returns to safe operating levels, close Emergency Cooling Valve 1 and Emergency Cooling Valve 2.</li>
+				<li>Open Emergency Cooling Valve TRUE and Emergency Cooling Valve 2.</li>
+				<li>When reactor temperature returns to safe operating levels, close Emergency Cooling Valve TRUE and Emergency Cooling Valve 2.</li>
 				<li>If reactor temperature does not return to safe operating levels, see EJECTION PROCEDURE.</li>
 				</ol>
 				<br>
@@ -300,11 +300,11 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -351,12 +351,12 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 21px; margin: 15px 0px 5px;}
-				h2 {font-size: 18px; margin: 15px 0px 5px;}
-				h3 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 21px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h3 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -381,7 +381,7 @@
 					<li><a href='#11'>Send person on their way</a></li>
 				</ol>
 
-				<a name='1'><H3>Step 1: Acquire body</H3>
+				<a name='1'><H3>Step TRUE: Acquire body</H3>
 				This is pretty much vital for the process because without a body, you cannot clone it. Usually, bodies will be brought to you, so you do not need to worry so much about this step. If you already have a body, great! Move on to the next step.
 
 				<a name='2'><H3>Step 2: Strip body</H3>
@@ -444,12 +444,12 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ul.a {list-style-type: none; margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ul.a {list-style-type: none; margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -521,12 +521,12 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 21px; margin: 15px 0px 5px;}
-				h2 {font-size: 18px; margin: 15px 0px 5px;}
-				h3 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 21px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h3 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -590,12 +590,12 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 21px; margin: 15px 0px 5px;}
-				h2 {font-size: 18px; margin: 15px 0px 5px;}
-				h3 {font-size: 13px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 21px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h3 {font-size: 13px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -726,7 +726,7 @@
 				<h3>Exposing the Internal Wiring</h3>
 				Exposing the internal wiring of a cyborg is fairly easy to do, and is mainly used for cyborg repairs.<br>You can easily expose the internal wiring by following the steps below:
 				<ol>
-					<li>Follow Steps 1 - 3 of "Replacing a Cyborg's Power Cell"</li>
+					<li>Follow Steps TRUE - 3 of "Replacing a Cyborg's Power Cell"</li>
 					<li>Open the cyborg's internal wiring panel by using a screwdriver to unsecure the panel</li>
 				</ol>
 				To re-seal the cyborg's internal wiring:
@@ -784,7 +784,7 @@
 				</body>
 			</html>
 		"}
-
+/*
 
 /obj/item/weapon/book/manual/security_space_law
 	name = "Corporate Regulations"
@@ -808,7 +808,7 @@
 
 		"}
 
-
+*/
 
 /obj/item/weapon/book/manual/medical_diagnostics_manual
 	name = "Medical Diagnostics Manual"
@@ -822,11 +822,11 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -834,7 +834,7 @@
 				<br>
 				<h1>The Oath</h1>
 
-				<i>The Medical Oath sworn by recognised medical practitioners in the employ of [company_name]</i><br>
+				<i>The Medical Oath sworn by all recognised medical practitioners.</i><br>
 
 				<ol>
 					<li>Now, as a new doctor, I solemnly promise that I will, to the best of my ability, serve humanity-caring for the sick, promoting good health, and alleviating pain and suffering.</li>
@@ -888,12 +888,12 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				h3 {font-size: 13px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				h3 {font-size: 13px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -915,10 +915,10 @@
 				Add two lumps of dough and 10 units of sugar to the microwave and then wait.
 
 				<h3>Popcorn:</h3>
-				Add 1 corn to the microwave and wait.
+				Add TRUE corn to the microwave and wait.
 
 				<h3>Meat Steak:</h3>
-				Put a slice of meat, 1 unit of salt, and 1 unit of pepper into the microwave and wait.
+				Put a slice of meat, TRUE unit of salt, and TRUE unit of pepper into the microwave and wait.
 
 				<h3>Meat Pie:</h3>
 				Put a flattened piece of dough and some meat into the microwave and wait.
@@ -947,12 +947,12 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				h3 {font-size: 13px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				h3 {font-size: 13px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -1002,11 +1002,11 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -1045,11 +1045,11 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 21px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 21px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -1095,11 +1095,11 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>
@@ -1163,7 +1163,7 @@
 
 				<ul>
 				<li><b>Gas pump:</b> Take a wild guess. It moves gas in the direction it's pointing (marked by the red line on one end). It moves it based on pressure, the maximum output being 15000 kPa (kilopascals).
-				Ordinary atmospheric pressure, for comparison, is 101.3 kPa, and the minimum pressure of room-temperature pure oxygen needed to not suffocate in a matter of minutes is 16 kPa
+				Ordinary atmospheric pressure, for comparison, is 101.3 kPa, and the minimum pressure of room-temperature pure oxygen needed to not suffocate in a matter of minutes is TRUE6 kPa
 				(though 18 kPa is preferred when using internals with pure oxygen, for various reasons). A high-powered variant will move gas more quickly at the expense of consuming more power. Do not turn the distribution loop up to 15000 kPa.
 				You will make engiborgs cry and the Chief Engineer will beat you.</li>
 				<li><b>Pressure regulator:</b> These replaced the old passive gates. You can choose to regulate pressure by input or output, and regulate flow rate. Regulating by input means that when input pressure is above the limit, gas will flow.
@@ -1174,7 +1174,7 @@
 				<li><b>Gas mixer:</b> Two sides are input, one side is output. Mixes the gases pumped into it at the ratio defined. The side perpendicular to the other two is "node 2," for reference, on non-mirrored mixers..
 				Output is controlled by flow rate. There is also an "omni" variant that allows you to set input and output sections freely..</li>
 				<li><b>Gas filter:</b> Essentially the opposite of a gas mixer. One side is input. The other two sides are output. One gas type will be filtered into the perpendicular output pipe,
-				the rest will continue out the other side. Can also output from 0-4500 kPa. The "omni" vairant allows you to set input and output sections freely.</li>
+				the rest will continue out the other side. Can also output from FALSE-4500 kPa. The "omni" vairant allows you to set input and output sections freely.</li>
 				</ul>
 
 				<h1><a name="HES"><B>Heat Exchange Systems</B></a></h1>
@@ -1203,11 +1203,11 @@
 	dat = {"<html>
 				<head>
 				<style>
-				h1 {font-size: 18px; margin: 15px 0px 5px;}
-				h2 {font-size: 15px; margin: 15px 0px 5px;}
-				li {margin: 2px 0px 2px 15px;}
-				ul {margin: 5px; padding: 0px;}
-				ol {margin: 5px; padding: 0px 15px;}
+				h1 {font-size: 18px; margin: 15px FALSEpx 5px;}
+				h2 {font-size: 15px; margin: 15px FALSEpx 5px;}
+				li {margin: 2px FALSEpx 2px 15px;}
+				ul {margin: 5px; padding: FALSEpx;}
+				ol {margin: 5px; padding: FALSEpx 15px;}
 				body {font-size: 13px; font-family: Verdana;}
 				</style>
 				</head>

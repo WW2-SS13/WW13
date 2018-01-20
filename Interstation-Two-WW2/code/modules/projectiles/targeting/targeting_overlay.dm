@@ -3,20 +3,20 @@
 	desc = "Stick 'em up!"
 	icon = 'icons/effects/Targeted.dmi'
 	icon_state = "locking"
-	anchored = 1
-	density = 0
-	opacity = 0
+	anchored = TRUE
+	density = FALSE
+	opacity = FALSE
 	layer = FLY_LAYER
-	simulated = 0
-	mouse_opacity = 0
+	simulated = FALSE
+	mouse_opacity = FALSE
 
 	var/mob/living/aiming_at   // Who are we currently targeting, if anyone?
 	var/obj/item/aiming_with   // What are we targeting with?
 	var/mob/living/owner       // Who do we belong to?
-	var/locked =    0          // Have we locked on?
-	var/lock_time = 0          // When -will- we lock on?
-	var/active =    0          // Is our owner intending to take hostages?
-	var/target_permissions = 0 // Permission bitflags.
+	var/locked =    FALSE          // Have we locked on?
+	var/lock_time = FALSE          // When -will- we lock on?
+	var/active =    FALSE          // Is our owner intending to take hostages?
+	var/target_permissions = FALSE // Permission bitflags.
 
 /obj/aiming_overlay/New(var/newowner)
 	..()
@@ -89,7 +89,7 @@
 	return ..()
 
 obj/aiming_overlay/proc/update_aiming_deferred()
-	set waitfor = 0
+	set waitfor = FALSE
 	sleep(0)
 	update_aiming()
 
@@ -104,10 +104,10 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 		return
 
 	if(!locked && lock_time >= world.time)
-		locked = 1
+		locked = TRUE
 		update_icon()
 
-	var/cancel_aim = 1
+	var/cancel_aim = TRUE
 
 	if(!(aiming_with in owner) || (istype(owner, /mob/living/carbon/human) && (owner.l_hand != aiming_with && owner.r_hand != aiming_with)))
 		owner << "<span class='warning'>You must keep hold of your weapon!</span>"
@@ -117,12 +117,12 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 		owner << "<span class='warning'>You have lost sight of your target!</span>"
 	else if(owner.incapacitated() || owner.lying || owner.restrained())
 		owner << "<span class='warning'>You must be conscious and standing to keep track of your target!</span>"
-	else if(aiming_at.alpha == 0 || (aiming_at.invisibility > owner.see_invisible))
+	else if(aiming_at.alpha == FALSE || (aiming_at.invisibility > owner.see_invisible))
 		owner << "<span class='warning'>Your target has become invisible!</span>"
 	else if(!(aiming_at in view(owner)))
 		owner << "<span class='warning'>Your target is too far away to track!</span>"
 	else
-		cancel_aim = 0
+		cancel_aim = FALSE
 
 	forceMove(get_turf(aiming_at))
 
@@ -170,7 +170,7 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 
 	aiming_at.aimed |= src
 	toggle_active(1)
-	locked = 0
+	locked = FALSE
 	update_icon()
 	lock_time = world.time + 35
 	moved_event.register(owner, src, /obj/aiming_overlay/proc/update_aiming)
@@ -202,7 +202,7 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 			owner << "<span class='notice'>You will no longer aim rather than fire.</span>"
 			owner.client.remove_gun_icons()
 
-/obj/aiming_overlay/proc/cancel_aiming(var/no_message = 0)
+/obj/aiming_overlay/proc/cancel_aiming(var/no_message = FALSE)
 	if(!aiming_with || !aiming_at)
 		return
 	if(istype(aiming_with, /obj/item/weapon/gun))

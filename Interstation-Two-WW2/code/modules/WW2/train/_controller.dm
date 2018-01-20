@@ -6,13 +6,13 @@
 	var/list/train_railings = list()
 	var/list/reverse_train_connectors = list()
 	var/list/reverse_train_railings = list()
-	var/officer_cars = 1
-	var/storage_cars = 1
-	var/soldier_cars = 1
-	var/conductor_cars = 1
-	var/total_cars = 0
-	var/total_height = 0
-	var/total_width = 0
+	var/officer_cars = TRUE
+	var/storage_cars = TRUE
+	var/soldier_cars = TRUE
+	var/conductor_cars = TRUE
+	var/total_cars = FALSE
+	var/total_height = FALSE
+	var/total_width = FALSE
 
 	var/obj/effect/landmark/train/starting_point = null
 	var/obj/effect/landmark/train/limit_point = null
@@ -20,11 +20,11 @@
 	var/orientation = VERTICAL
 	var/direction = "FORWARDS" // right now, trains only move north to south (forwards) and south to north (backwards)
 	// They don't reverse yet, because that's fucking annoying to do.
-	var/moving = 0 // are we moving?
-	var/halting = 0 // did the conductor stop us?
-//	var/finishing_halting = 0 // did we halt recently? don't play movement sounds
+	var/moving = FALSE // are we moving?
+	var/halting = FALSE // did the conductor stop us?
+//	var/finishing_halting = FALSE // did we halt recently? don't play movement sounds
 	var/velocity = 2.50 // previously 3.0
-	var/started_moving = 0  // calls train_start hook when set to 1 for the first time
+	var/started_moving = FALSE  // calls train_start hook when set to TRUE for the first time
 	var/list/last_played[2] // movement, halting sounds
 	var/playing = "" // ditto
 	var/obj/train_car_center/last_car = null // the car closest to the front of the train
@@ -35,11 +35,11 @@
 	var/halting_sound_delay = 100
 	var/movement_sound_delay = 50
 
-	var/invisible = 0 // disappear into the void
+	var/invisible = FALSE // disappear into the void
 
 /datum/train_controller/proc/get_lever()
 	for (var/obj/train_lever/lever in world)
-		if (lever.loc && lever.faction == src.faction && lever.real)
+		if (lever.loc && lever.faction == faction && lever.real)
 			return lever
 	return null
 
@@ -62,27 +62,27 @@
 
 	switch (dir)
 		if (NORTH)
-			return list("x" = 0, "y" = 1)
+			return list("x" = FALSE, "y" = TRUE)
 		if (SOUTH)
-			return list("x" = 0, "y" = -1)
+			return list("x" = FALSE, "y" = -1)
 		if (EAST)
-			return list("x" = 1, "y" = 0)
+			return list("x" = TRUE, "y" = FALSE)
 		if (WEST)
-			return list("x" = -1, "y" = 0)*/
+			return list("x" = -1, "y" = FALSE)*/
 /*
 	var/dir2x[0]
 	var/dir2y[0]
 
 	// use dir2text because maps don't support numerical keys
 
-	dir2x[dir2text(EAST)] = 1
+	dir2x[dir2text(EAST)] = TRUE
 	dir2x[dir2text(WEST)] = -1
-	dir2x[dir2text(NORTH)] = 0
-	dir2x[dir2text(SOUTH)] = 0
+	dir2x[dir2text(NORTH)] = FALSE
+	dir2x[dir2text(SOUTH)] = FALSE
 
-	dir2y[dir2text(EAST)] = 0
-	dir2y[dir2text(WEST)] = 0
-	dir2y[dir2text(NORTH)] = 1
+	dir2y[dir2text(EAST)] = FALSE
+	dir2y[dir2text(WEST)] = FALSE
+	dir2y[dir2text(NORTH)] = TRUE
 	dir2y[dir2text(SOUTH)] = -1
 
 	if (moving)
@@ -99,7 +99,7 @@
 	faction = _faction
 
 	inc["FORWARDS"] = -1
-	inc["BACKWARDS"] = 1
+	inc["BACKWARDS"] = TRUE
 
 	last_played["movement"] = -1
 	last_played["halting"] = -1
@@ -131,12 +131,12 @@
 		//	var/cars_width = (off_di["width"] + st_di["width"] + so_di["width"] + con_di["width"])
 			var/cars_height = (off_di["height"] + st_di["height"] + so_di["height"] + con_di["height"])
 
-			var/num_spaces = total_cars - 1 // 2 cars = 1 space, etc
+			var/num_spaces = total_cars - TRUE // 2 cars = TRUE space, etc
 			var/extra_height = SPACES_BETWEEN_CARS * num_spaces
 
 			total_height = cars_height + extra_height
 
-			var/max_dist = abs(starting_point.y - limit_point.y) + 1
+			var/max_dist = abs(starting_point.y - limit_point.y) + TRUE
 
 			if (total_height > max_dist)
 				return // we fucked up. This is a huge train, or there isn't much space between the starting and limit
@@ -144,10 +144,10 @@
 
 			//	otherwise, continue
 
-			var/y_inc = 0
-			var/found_first_car = 0
+			var/y_inc = FALSE
+			var/found_first_car = FALSE
 
-			for (var/v in 1 to officer_cars)
+			for (var/v in TRUE to officer_cars)
 				var/obj/train_car_center/tcc = new/obj/train_car_center/german/officer(locate(starting_x, starting_y + y_inc, starting_z), src)
 				y_inc -= off_di["height"]
 				y_inc -= SPACES_BETWEEN_CARS
@@ -156,9 +156,9 @@
 
 				if (!found_first_car)
 					first_car = tcc
-					found_first_car = 1
+					found_first_car = TRUE
 
-			for (var/v in 1 to soldier_cars)
+			for (var/v in TRUE to soldier_cars)
 				var/obj/train_car_center/tcc = new/obj/train_car_center/german/soldier(locate(starting_x, starting_y + y_inc, starting_z), src)
 				y_inc -= so_di["height"]
 				y_inc -= SPACES_BETWEEN_CARS
@@ -167,9 +167,9 @@
 
 				if (!found_first_car)
 					first_car = tcc
-					found_first_car = 1
+					found_first_car = TRUE
 
-			for (var/v in 1 to storage_cars) // this makes unboarding way easier
+			for (var/v in TRUE to storage_cars) // this makes unboarding way easier
 				var/obj/train_car_center/tcc = new/obj/train_car_center/german/storage(locate(starting_x, starting_y + y_inc, starting_z), src)
 				y_inc -= st_di["height"]
 				y_inc -= SPACES_BETWEEN_CARS
@@ -178,9 +178,9 @@
 
 				if (!found_first_car)
 					first_car = tcc
-					found_first_car = 1
+					found_first_car = TRUE
 
-			for (var/v in 1 to conductor_cars)
+			for (var/v in TRUE to conductor_cars)
 				var/obj/train_car_center/tcc = new/obj/train_car_center/german/conductor(locate(starting_x, starting_y + y_inc, starting_z), src)
 				y_inc -= con_di["height"]
 				y_inc -= SPACES_BETWEEN_CARS
@@ -189,20 +189,20 @@
 
 				if (!found_first_car)
 					first_car = tcc
-					found_first_car = 1
+					found_first_car = TRUE
 
 			generate_connectors()
 			reverse_train_car_centers = reverselist(train_car_centers)
 
 			// and we're done
 
-		if (RUSSIAN)
+		if (SOVIET)
 			return // not implemented lmao
 
 		if ("GERMAN-SUPPLY")
 
 			// reverse our movement because BYOND uses a meme y axis
-			inc["FORWARDS"] = 1
+			inc["FORWARDS"] = TRUE
 			inc["BACKWARDS"] = -1
 
 			orientation = HORIZONTAL
@@ -225,12 +225,12 @@
 
 			var/cars_width = st_di["width"]
 
-			var/num_spaces = total_cars - 1 // 2 cars = 1 space, etc
+			var/num_spaces = total_cars - TRUE // 2 cars = TRUE space, etc
 			var/extra_width = SPACES_BETWEEN_CARS * num_spaces
 
 			total_width = cars_width + extra_width
 
-			var/max_dist = abs(limit_point.x - starting_point.x) + 1
+			var/max_dist = abs(limit_point.x - starting_point.x) + TRUE
 
 			if (total_width > max_dist)
 				return // we fucked up. This is a huge train, or there isn't much space between the starting and limit
@@ -238,10 +238,10 @@
 
 			//	otherwise, continue
 
-			var/x_inc = 0
-			var/found_first_car = 0
+			var/x_inc = FALSE
+			var/found_first_car = FALSE
 
-			for (var/v in 1 to storage_cars) // this makes unboarding way easier
+			for (var/v in TRUE to storage_cars) // this makes unboarding way easier
 				var/obj/train_car_center/tcc = new/obj/train_car_center/germansupply(locate(starting_x+x_inc, starting_y, starting_z), src)
 				x_inc += st_di["width"]
 				x_inc += SPACES_BETWEEN_CARS
@@ -250,7 +250,7 @@
 
 				if (!found_first_car)
 					first_car = tcc
-					found_first_car = 1
+					found_first_car = TRUE
 
 			generate_connectors()
 			reverse_train_car_centers = reverselist(train_car_centers)
@@ -265,7 +265,7 @@
 /datum/train_controller/proc/start_moving(var/_direction) // when the conductor decides to move
 
 	direction = _direction
-	moving = 1
+	moving = TRUE
 
 	var/obj/train_lever/lever = get_lever()
 
@@ -281,15 +281,15 @@
 
 /datum/train_controller/proc/stop_moving()
 
-	moving = 0
-	halting = 0
+	moving = FALSE
+	halting = FALSE
 
 	var/obj/train_lever/lever = get_lever()
 	if (lever)
 		lever.icon_state = lever.none_state
 		lever.direction = "NONE"
 
-/datum/train_controller/proc/update_invisibility(var/on = 0)
+/datum/train_controller/proc/update_invisibility(var/on = FALSE)
 	if (faction != "GERMAN-SUPPLY")
 		return
 	invisible = on
@@ -299,64 +299,64 @@
 			for (var/obj/train_car_center/tcc in train_car_centers)
 				for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
 					tpt.invisibility = 100
-					tpt.density = 0
-					tpt.opacity = 0
+					tpt.density = FALSE
+					tpt.opacity = FALSE
 					for (var/atom/movable/a in get_turf(tpt))
 						if (!istype(a, /obj/effect) && !istype(a, /obj/train_track) && !istype(a, /obj/structure/closet))
 							a.invisibility = 100
-							a.density = 0
-							a.opacity = 0
+							a.density = FALSE
+							a.opacity = FALSE
 						if (istype(a, /obj/machinery/light))
 							var/obj/machinery/light/L = a
-							L.on = 0
-							L.update(0, 1, 1)
+							L.on = FALSE
+							L.update(0, TRUE, TRUE)
 
 			for (var/atom/a in train_connectors)
 				a.invisibility = 100
-				a.density = 0
-				a.opacity = 0
+				a.density = FALSE
+				a.opacity = FALSE
 			for (var/atom/a in train_railings)
 				a.invisibility = 100
-				a.density = 0
-				a.opacity = 0
+				a.density = FALSE
+				a.opacity = FALSE
 	else
 		for (var/obj/train_car_center/tcc in train_car_centers)
 			for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
-				tpt.invisibility = 0
+				tpt.invisibility = FALSE
 				tpt.density = tpt.initial_density
 				tpt.opacity = tpt.initial_opacity
 				for (var/atom/movable/a in get_turf(tpt))
 					if (!istype(a, /obj/effect) && !istype(a, /obj/train_track) && !istype(a, /obj/structure/closet))
-						a.invisibility = 0
+						a.invisibility = FALSE
 						a.density = a.initial_density
 						a.opacity = a.initial_opacity
 					if (istype(a, /obj/machinery/light))
 						var/obj/machinery/light/L = a
-						L.on = 1
-						L.update(0, 1, 1)
+						L.on = TRUE
+						L.update(0, TRUE, TRUE)
 					if (istype(a, /obj/structure/simple_door/key_door/anyone/train))
 						var/obj/structure/simple_door/key_door/anyone/train/door = a
-						door.density = 1
-						door.opacity = 1
-						door.state = 0
+						door.density = TRUE
+						door.opacity = TRUE
+						door.state = FALSE
 						door.icon_state = door.material.name
 
 		for (var/atom/a in train_connectors)
-			a.invisibility = 0
+			a.invisibility = FALSE
 			a.density = a.initial_density
 			a.opacity = a.initial_opacity
 		for (var/atom/a in train_railings)
-			a.invisibility = 0
+			a.invisibility = FALSE
 			a.density = a.initial_density
 			a.opacity = a.initial_opacity
 
 /datum/train_controller/proc/stop_moving_slow() // when the conductor decides to stop
 	velocity = 1.0
-	halting = 1
+	halting = TRUE
 
 	spawn (50)
-		moving = 0
-		halting = 0
+		moving = FALSE
+		halting = FALSE
 		velocity = initial(velocity)
 		var/obj/train_lever/lever = get_lever()
 		lever.icon_state = lever.none_state
@@ -364,12 +364,15 @@
 
 /datum/train_controller/proc/started_moving()
 	if (!started_moving)
-		started_moving = 1
+		started_moving = TRUE
 		if (faction != "GERMAN-SUPPLY")
 			callHook("train_move")
+			spawn (1200)
+				if (istype(src, /datum/train_controller/german_train_controller))
+					train_arrived = TRUE
 
 /datum/train_controller/proc/getMoveInc()
-	return inc[direction] * 1
+	return inc[direction] * TRUE
 
 /datum/train_controller/german_supplytrain_controller/Process()
 	..()
@@ -399,13 +402,13 @@
 				for (var/obj/train_car_center/tcc in reverse_train_car_centers)
 					tcc._Move(direction)
 		else
-			moving = 0
+			moving = FALSE
 			var/obj/train_lever/lever = get_lever()
 			if (lever)
 				lever.icon_state = lever.none_state
 				lever.direction = "NONE"
 
-/datum/train_controller/proc/move_connectors(var/reverse = 0)
+/datum/train_controller/proc/move_connectors(var/reverse = FALSE)
 
 	if (!moving)
 		return
@@ -448,7 +451,7 @@
 	unoccupy_connectors()
 	unoccupy_railings()
 
-	for (var/v in 1 to train_car_centers.len-1)
+	for (var/v in TRUE to train_car_centers.len-1)
 		var/obj/train_car_center/current = train_car_centers[v]
 		var/obj/train_car_center/next = train_car_centers[v+1]
 		current.connect_to(next)
@@ -458,12 +461,12 @@
 
 /datum/train_controller/proc/unoccupy_connectors()
 	for (var/obj/train_connector/tc in train_connectors)
-		tc.occupied = 0
+		tc.occupied = FALSE
 		tc.loc = null
 
 /datum/train_controller/proc/unoccupy_railings()
 	for (var/obj/structure/railing/train_railing/tr in train_railings)
-		tr.occupied = 0
+		tr.occupied = FALSE
 		tr.loc = null
 
 /datum/train_controller/proc/add_connector(var/turf/t)
@@ -481,7 +484,7 @@
 		train_connectors += newc
 
 	using.master = src
-	using.occupied = 1
+	using.occupied = TRUE
 	using.loc = t
 
 /datum/train_controller/proc/add_railing(var/turf/t, var/_dir)
@@ -499,7 +502,7 @@
 		train_railings += tr
 
 	using.master = src
-	using.occupied = 1
+	using.occupied = TRUE
 	using.loc = t
 	using.dir = _dir
 
@@ -514,10 +517,12 @@
 						switch (orientation)
 							if (VERTICAL)
 								if (tpt.y + getMoveInc() < limit_point.y) // since y decreases as we go down
-									return 0 // + getMoveInc() because getMoveInc() handles signs
+									if (istype(src, /datum/train_controller/german_train_controller))
+										train_arrived = TRUE
+									return FALSE // + getMoveInc() because getMoveInc() handles signs
 							if (HORIZONTAL)
-								if (tpt.x + getMoveInc() > limit_point.x) // since y decreases as we go down
-									return 0 // + getMoveInc() because getMoveInc() handles signs
+								if (tpt.x + getMoveInc() > limit_point.x)
+									return FALSE // + getMoveInc() because getMoveInc() handles signs
 
 		if ("BACKWARDS")
 			for (var/obj/train_car_center/tcc in reverse_train_car_centers)
@@ -526,17 +531,17 @@
 						switch (orientation)
 							if (VERTICAL)
 								if (tpt.y + getMoveInc() > starting_point.y)
-									return 0
+									return FALSE
 							if (HORIZONTAL)
 								if (tpt.x + getMoveInc() < starting_point.x)
-									return 0
-	return 1
+									return FALSE
+	return TRUE
 
 /datum/train_controller/proc/coming_to_halt()
 	if (moving && can_move_check())
 
 		if (halting)
-			return 1
+			return TRUE
 
 		switch (direction)
 
@@ -546,21 +551,21 @@
 						switch (orientation)
 							if (VERTICAL)
 								if (abs(tpt.y - limit_point.y) < 20) // since y decreases as we go down
-									return 1
+									return TRUE
 							if (HORIZONTAL)
 								if (abs(tpt.x - limit_point.x) < 20) // since y decreases as we go down
-									return 1
+									return TRUE
 			if ("BACKWARDS")
 				for (var/obj/train_car_center/tcc in train_car_centers)
 					for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs)
 						switch (orientation)
 							if (VERTICAL)
 								if (abs(tpt.y - starting_point.y) < 20) // since y decreases as we go down
-									return 1
+									return TRUE
 							if (HORIZONTAL)
 								if (abs(tpt.x - starting_point.x) < 20) // since y decreases as we go down
-									return 1
-	return 0
+									return TRUE
+	return FALSE
 
 
 /datum/train_controller/proc/sound_loop()
@@ -603,12 +608,12 @@
 					m.client.playsound_personal(sound, volume)
 
 /datum/train_controller/proc/check_can_move_mob(var/mob/m)
-	return 1
+	return TRUE
 
 /datum/train_controller/proc/opposing_directions_check(var/mob/m)
 	if (direction == "FORWARDS" && m.dir == NORTH)
-		return 1
+		return TRUE
 	else if (direction == "BACKWARDS" && m.dir == SOUTH)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "stamp-qm"
 	item_state = "stamp"
-	throwforce = 0
+	throwforce = FALSE
 	w_class = 1.0
 	throw_speed = 7
 	throw_range = 15
@@ -58,7 +58,7 @@
 // Syndicate stamp to forge documents.
 /obj/item/weapon/stamp/chameleon/attack_self(mob/user as mob)
 
-	var/list/stamp_types = typesof(/obj/item/weapon/stamp) - src.type // Get all stamp types except our own
+	var/list/stamp_types = typesof(/obj/item/weapon/stamp) - type // Get all stamp types except our own
 	var/list/stamps = list()
 
 	// Generate them into a list

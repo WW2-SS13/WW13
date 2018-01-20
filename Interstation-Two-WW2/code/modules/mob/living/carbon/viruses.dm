@@ -2,7 +2,7 @@
 
 	return
 	/*
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)	return FALSE	//godmode
 
 	if(bodytemperature > 406)
 		for (var/ID in virus2)
@@ -36,9 +36,9 @@
 			if(!V) continue
 
 			// check if we're immune
-			var/list/common_antibodies = V.antigen & src.antibodies
+			var/list/common_antibodies = V.antigen & antibodies
 			if(common_antibodies.len)
-				V.dead = 1
+				V.dead = TRUE
 
 	return
 */

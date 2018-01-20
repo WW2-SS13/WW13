@@ -9,8 +9,8 @@
 	throw_range = 10
 	w_class = 3.0
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
-	var/mopping = 0
-	var/mopcount = 0
+	var/mopping = FALSE
+	var/mopcount = FALSE
 
 
 /obj/item/weapon/mop/New()
@@ -19,7 +19,7 @@
 /obj/item/weapon/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
 	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
-		if(reagents.total_volume < 1)
+		if(reagents.total_volume < TRUE)
 			user << "<span class='notice'>Your mop is dry!</span>"
 			return
 		var/turf/T = get_turf(A)

@@ -26,7 +26,7 @@
 	var/base_color                                       // Used by changelings. Should also be used for icon previes..
 	var/tail                                             // Name of tail state in species effects icon file.
 	var/tail_animation                                   // If set, the icon to obtain tail animation states from.
-	var/race_key = 0       	                             // Used for mob icon cache string.
+	var/race_key = FALSE       	                             // Used for mob icon cache string.
 	var/icon/icon_template                               // Used for mob icon generation for non-32x32 species.
 	var/mob_size	= MOB_MEDIUM
 	var/show_ssd = "fast asleep"
@@ -46,7 +46,7 @@
 	var/list/secondary_langs = list()        // The names of secondary languages that are available to this species.
 	var/list/speech_sounds                   // A list of sounds to potentially play when speaking.
 	var/list/speech_chance                   // The likelihood of a speech sound playing.
-	var/num_alternate_languages = 0          // How many secondary languages are available to select at character creation
+	var/num_alternate_languages = FALSE          // How many secondary languages are available to select at character creation
 	var/name_language = "Galactic Common"    // The language to use when determining names for this species, or null to use the first name/last name generator
 
 	// Combat vars.
@@ -56,12 +56,12 @@
 		/datum/unarmed_attack/bite
 		)
 	var/list/unarmed_attacks = null          // For empty hand harm-intent attack
-	var/brute_mod =     1                    // Physical damage multiplier.
-	var/burn_mod =      1                    // Burn damage multiplier.
-	var/oxy_mod =       1                    // Oxyloss modifier
-	var/toxins_mod =    1                    // Toxloss modifier
-	var/radiation_mod = 1                    // Radiation modifier
-	var/flash_mod =     1                    // Stun from blindness modifier.
+	var/brute_mod =     TRUE                    // Physical damage multiplier.
+	var/burn_mod =      TRUE                    // Burn damage multiplier.
+	var/oxy_mod =       TRUE                    // Oxyloss modifier
+	var/toxins_mod =    TRUE                    // Toxloss modifier
+	var/radiation_mod = TRUE                    // Radiation modifier
+	var/flash_mod =     TRUE                    // Stun from blindness modifier.
 	var/vision_flags = SEE_SELF              // Same flags as glasses.
 
 	// Death vars.
@@ -83,14 +83,14 @@
 //	var/breath_type = "oxygen"                        // Non-oxygen gas breathed, if any.
 //	var/poison_type = "plasma"                        // Poisonous air.
 //	var/exhale_type = "carbon_dioxide"                // Exhaled gas type.
-	//var/cold_level_1 = 260                            // Cold damage level 1 below this point.
+	//var/cold_level_1 = 260                            // Cold damage level TRUE below this point.
 	var/cold_level_1 = 273
 	var/cold_level_2 = 265                            // Cold damage level 2 below this point.
 	var/cold_level_3 = 255                            // Cold damage level 3 below this point.
-	var/heat_level_1 = 315                            // Heat damage level 1 above this point.
+	var/heat_level_1 = 315                            // Heat damage level TRUE above this point.
 	var/heat_level_2 = 323                            // Heat damage level 2 above this point.
 	var/heat_level_3 = 333                           // Heat damage level 3 above this point.
-	var/passive_temp_gain = 0		                  // Species will gain this much temperature every second
+	var/passive_temp_gain = FALSE		                  // Species will gain this much temperature every second
 //	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE   // Dangerously high pressure.
 //	var/warning_high_pressure = WARNING_HIGH_PRESSURE // High pressure warning.
 //	var/warning_low_pressure = WARNING_LOW_PRESSURE   // Low pressure warning.
@@ -104,6 +104,7 @@
 		"You feel uncomfortably warm.",
 		"Your skin prickles in the heat."
 		)
+
 	var/list/cold_discomfort_strings = list(
 		"You feel chilly.",
 		"You shiver suddenly.",
@@ -116,18 +117,18 @@
 
 	// Body/form vars.
 	var/list/inherent_verbs 	  // Species-specific verbs.
-	var/has_fine_manipulation = 1 // Can use small items.
-	var/siemens_coefficient = 1   // The lower, the thicker the skin and better the insulation.
+	var/has_fine_manipulation = TRUE // Can use small items.
+	var/siemens_coefficient = TRUE   // The lower, the thicker the skin and better the insulation.
 	var/darksight = 2             // Native darksight distance.
-	var/flags = 0                 // Various specific features.
-	var/appearance_flags = 0      // Appearance/display related features.
-	var/spawn_flags = 0           // Flags that specify who can spawn as this species
-	var/slowdown = 0              // Passive movement speed malus (or boost, if negative)
+	var/flags = FALSE                 // Various specific features.
+	var/appearance_flags = FALSE      // Appearance/display related features.
+	var/spawn_flags = FALSE           // Flags that specify who can spawn as this species
+	var/slowdown = FALSE              // Passive movement speed malus (or boost, if negative)
 	var/primitive_form            // Lesser form, if any (ie. monkey for humans)
 	var/greater_form              // Greater form, if any, ie. human for monkeys.
 	var/holder_type
 	var/gluttonous                // Can eat some mobs. Values can be GLUT_TINY, GLUT_SMALLER, GLUT_ANYTHING.
-	var/rarity_value = 1          // Relative rarity/collector value for this species.
+	var/rarity_value = TRUE          // Relative rarity/collector value for this species.
 	                              // Determines the organs that the species spawns with and
 	var/list/has_organ = list(    // which required-organ checks are conducted.
 		"heart" =    /obj/item/organ/heart,
@@ -162,7 +163,7 @@
 	var/push_flags = ~HEAVY	// What can we push?
 	var/swap_flags = ~HEAVY	// What can we swap place with?
 
-	var/pass_flags = 0
+	var/pass_flags = FALSE
 
 /datum/species/proc/get_eyes(var/mob/living/carbon/human/H)
 	return
@@ -190,38 +191,81 @@
 /datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
 
 	if ((H.bodytemperature < cold_level_1 && msg_type == "cold") || (H.bodytemperature > heat_level_1 && msg_type == "heat"))
-		if(!prob(5))
-			return
 
-		var/covered = 0 // Basic coverage can help.
+		var/showmsg = FALSE
+		if(prob(12))
+			showmsg = TRUE
+
+		var/covered = FALSE // Basic coverage can help.
 		for(var/obj/item/clothing/clothes in H)
 			if(H.l_hand == clothes|| H.r_hand == clothes)
 				continue
 			if((clothes.body_parts_covered & UPPER_TORSO) && (clothes.body_parts_covered & LOWER_TORSO))
-				covered = 1
+				covered = TRUE
 				break
+
+		var/properly_clothed = FALSE // Are we wearing a coat or equivalent?
+
+		if (H.wear_suit)
+			if (istype(H.wear_suit, /obj/item/clothing/suit/armor))
+				properly_clothed = TRUE
+			else if (istype(H.wear_suit, /obj/item/clothing/suit/coat))
+				properly_clothed = TRUE
+			else if (istype(H.wear_suit, /obj/item/clothing/suit/storage/toggle/labcoat))
+				properly_clothed = TRUE
+			else if (istype(H.wear_suit, /obj/item/clothing/suit/fallsparka))
+				properly_clothed = TRUE
+			else if (istype(H.wear_suit, /obj/item/clothing/suit/sssmock))
+				properly_clothed = TRUE
+
+		if (properly_clothed)
+			return
+
+		if (istype(H.loc, /obj/tank))
+			return
 
 		var/turf/H_turf = get_turf(H)
 		if (istype(H_turf) && msg_type == "cold" && (locate(/obj/snow) in H_turf || !H.shoes))
-			if (prob(25))
+			if (prob(25 - (H.shoes ? 15 : 0)))
 				H << "<span class='danger'>Your feet are freezing!</span>"
-				var/base_damage = 1
+				var/base_damage = 3
 				for (var/obj/snow/S in H_turf)
 					base_damage += S.amount * 5
 				H.adjustFireLossByPart(base_damage, pick("l_foot", "r_foot"))
 
+		// if we aren't covered, take more damage + weather damage
 		if (!covered)
 			switch(msg_type)
 				if("cold")
-					H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
+					H.adjustFireLoss(3)
+					if (showmsg)
+						H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
 				if("heat")
-					H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
+					H.adjustFireLoss(3)
+					if (showmsg)
+						H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
+
 		else
 			switch(msg_type)
 				if("cold")
-					H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
+					H.adjustFireLoss(2)
+					if (showmsg)
+						H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
 				if("heat")
-					H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
+					H.adjustFireLoss(2)
+					if (showmsg)
+						H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
+
+		if (msg_type == "cold")
+			var/area/A = get_area(H)
+			if (A.weather == WEATHER_RAIN)
+				if (prob(15))
+					H << "<span class='danger'>The cold rain chills you to the bone.</span>"
+				H.adjustFireLoss(3) // wet is bad
+			else if (A.weather == WEATHER_SNOW)
+				if (prob(15))
+					H << "<span class='danger'>The freezing snowfall chills you to the bone.</span>"
+				H.adjustFireLoss(2)
 
 /datum/species/proc/sanitize_name(var/name)
 	return sanitizeName(name)
@@ -375,15 +419,15 @@
 /datum/species/proc/can_shred(var/mob/living/carbon/human/H, var/ignore_intent)
 
 	if(!ignore_intent && H.a_intent != I_HURT)
-		return 0
+		return FALSE
 
 	for(var/datum/unarmed_attack/attack in unarmed_attacks)
 		if(!attack.is_usable(H))
 			continue
 		if(attack.shredding)
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 // Called in life() when the mob has no client.
 /datum/species/proc/handle_npc(var/mob/living/carbon/human/H)
@@ -398,7 +442,7 @@
 	H.sight |= H.equipment_vision_flags
 
 	if(H.stat == DEAD)
-		return 1
+		return TRUE
 
 	if(!H.druggy)
 		H.see_in_dark = (H.sight == SEE_TURFS|SEE_MOBS|SEE_OBJS) ? 8 : min(darksight + H.equipment_darkness_modifier, 8)
@@ -407,13 +451,13 @@
 			H.see_invisible = min(H.see_invisible, H.equipment_see_invis)
 
 	if(H.equipment_tint_total >= TINT_BLIND)
-		H.eye_blind = max(H.eye_blind, 1)
+		H.eye_blind = max(H.eye_blind, TRUE)
 
 /*	if(H.blind)
-		H.blind.alpha = (H.eye_blind ? 255 : 0)*/
+		H.blind.alpha = (H.eye_blind ? 255 : FALSE)*/
 
 	if(!H.client)//no client, no screen to update
-		return 1
+		return TRUE
 /*
 	if(config.welder_vision)
 		if((!H.equipment_prescription && (H.disabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
@@ -424,4 +468,4 @@
 	for(var/overlay in H.equipment_overlays)
 		H.client.screen |= overlay
 
-	return 1
+	return TRUE

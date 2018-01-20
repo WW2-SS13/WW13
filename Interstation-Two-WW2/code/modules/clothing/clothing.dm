@@ -31,7 +31,7 @@
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
 
-	if (src.loc != user || !istype(user,/mob/living/carbon/human))
+	if (loc != user || !istype(user,/mob/living/carbon/human))
 		..()
 		return
 
@@ -63,8 +63,8 @@
 		qdel(src)
 
 /obj/item/clothing/ears/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.update_inv_ears()
 
 /obj/item/clothing/ears/offear
@@ -105,13 +105,13 @@ BLIND     // can't see anything
 	w_class = 2.0
 	body_parts_covered = EYES
 	slot_flags = SLOT_EYES
-	var/vision_flags = 0
-	var/darkness_view = 0//Base human is 2
+	var/vision_flags = FALSE
+	var/darkness_view = FALSE//Base human is 2
 	var/see_invisible = -1
 
 /obj/item/clothing/glasses/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.update_inv_glasses()
 
 ///////////////////////////////////////////////////////////////////////
@@ -122,29 +122,29 @@ BLIND     // can't see anything
 	w_class = 2.0
 	icon = 'icons/obj/clothing/gloves.dmi'
 	siemens_coefficient = 0.75
-	var/wired = 0
-	var/obj/item/weapon/cell/cell = 0
-	var/clipped = 0
+	var/wired = FALSE
+	var/obj/item/weapon/cell/cell = FALSE
+	var/clipped = FALSE
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
 
 /obj/item/clothing/gloves/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.update_inv_gloves()
 
 /obj/item/clothing/gloves/emp_act(severity)
 	if(cell)
 		//why is this not part of the powercell code?
 		cell.charge -= 1000 / severity
-		if (cell.charge < 0)
-			cell.charge = 0
+		if (cell.charge < FALSE)
+			cell.charge = FALSE
 	..()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
-	return 0 // return 1 to cancel attack_hand()
+	return FALSE // return TRUE to cancel attack_hand()
 
 /obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
@@ -153,10 +153,10 @@ BLIND     // can't see anything
 			update_icon()
 			return
 
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(loc, 'sound/items/Wirecutter.ogg', 100, TRUE)
 		user.visible_message("\red [user] cuts the fingertips off of the [src].","\red You cut the fingertips off of the [src].")
 
-		clipped = 1
+		clipped = TRUE
 		name = "modified [name]"
 		desc = "[desc]<br>They have had the fingertips cut off of them."
 		return
@@ -177,7 +177,7 @@ BLIND     // can't see anything
 	var/light_overlay = "helmet_light"
 	var/light_applied
 	var/brightness_on
-	var/on = 0
+	var/on = FALSE
 
 /obj/item/clothing/head/attack_self(mob/user)
 	if(brightness_on)
@@ -193,10 +193,10 @@ BLIND     // can't see anything
 /obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
 	if(on && !light_applied)
 		set_light(brightness_on)
-		light_applied = 1
+		light_applied = TRUE
 	else if(!on && light_applied)
 		set_light(0)
-		light_applied = 0
+		light_applied = FALSE
 	update_icon(user)
 	user.update_action_buttons()
 
@@ -205,7 +205,7 @@ BLIND     // can't see anything
 		return ..()
 
 /obj/item/clothing/head/proc/mob_wear_hat(var/mob/user)
-	return 0
+	return FALSE
 
 /obj/item/clothing/head/update_icon(var/mob/user)
 
@@ -230,8 +230,8 @@ BLIND     // can't see anything
 		H.update_inv_head()
 
 /obj/item/clothing/head/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.update_inv_head()
 
 ///////////////////////////////////////////////////////////////////////
@@ -243,13 +243,13 @@ BLIND     // can't see anything
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
 
-	var/voicechange = 0
+	var/voicechange = FALSE
 	var/list/say_messages
 	var/list/say_verbs
 
 /obj/item/clothing/mask/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.update_inv_wear_mask()
 
 /obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
@@ -266,13 +266,13 @@ BLIND     // can't see anything
 	body_parts_covered = FEET
 	slot_flags = SLOT_FEET
 
-	var/can_hold_knife
+	var/can_hold_knife = TRUE
 	var/obj/item/holding
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	force = 2
-	var/overshoes = 0
+	var/overshoes = FALSE
 
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
@@ -303,7 +303,9 @@ BLIND     // can't see anything
 	if(can_hold_knife && istype(I, /obj/item/weapon/material/shard) || \
 	 istype(I, /obj/item/weapon/material/butterfly) || \
 	 istype(I, /obj/item/weapon/material/kitchen/utensil) || \
-	 istype(I, /obj/item/weapon/material/hatchet/tacknife))
+	 istype(I, /obj/item/weapon/material/hatchet/tacknife) || \
+	 istype(I, /obj/item/weapon/material/knife) || \
+	 istype(I, /obj/item/weapon/attachment/bayonet))
 		if(holding)
 			user << "<span class='warning'>\The [src] is already holding \a [holding].</span>"
 			return
@@ -326,8 +328,8 @@ BLIND     // can't see anything
 	return
 
 /obj/item/clothing/shoes/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.update_inv_shoes()
 
 ///////////////////////////////////////////////////////////////////////
@@ -338,15 +340,15 @@ BLIND     // can't see anything
 	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen)
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = FALSE, rad = FALSE)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = 3
 
 /obj/item/clothing/suit/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.update_inv_wear_suit()
 
 ///////////////////////////////////////////////////////////////////////
@@ -361,16 +363,16 @@ BLIND     // can't see anything
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = FALSE, rad = FALSE)
 	w_class = 3
-	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
-	var/sensor_mode = 0
+	var/has_sensor = TRUE //For the crew computer 2 = unable to change mode
+	var/sensor_mode = FALSE
 		/*
 		1 = Report living/dead
 		2 = Report detailed damages
 		3 = Report location
 		*/
-	var/displays_id = 1
+	var/displays_id = TRUE
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 
@@ -386,7 +388,7 @@ BLIND     // can't see anything
 			if (do_after(user, 50, get_turf(user)))
 				user << "<span class = 'warning'>You finish removing the webbing from [src].</span>"
 				accessories -= webbing
-				if (overlays.len == 1) // hack
+				if (overlays.len == TRUE) // hack
 					overlays.Cut()
 				else
 					overlays -= webbing
@@ -395,7 +397,7 @@ BLIND     // can't see anything
 	else
 		..()
 
-	if ((ishuman(usr) || issmall(usr)) && src.loc == user)
+	if ((ishuman(usr) || issmall(usr)) && loc == user)
 		return
 	..()
 
@@ -404,14 +406,14 @@ BLIND     // can't see anything
 	item_state_slots[slot_w_uniform_str] = icon_state //TODO: drop or gonna use it?
 
 /obj/item/clothing/under/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.update_inv_w_uniform()
 
 
 /obj/item/clothing/under/examine(mob/user)
 	..(user)
-	switch(src.sensor_mode)
+	switch(sensor_mode)
 		if(0)
 			user << "Its sensors appear to be disabled."
 		if(1)
@@ -424,17 +426,17 @@ BLIND     // can't see anything
 /obj/item/clothing/under/proc/set_sensors(var/mob/M)
 	if(has_sensor >= 2)
 		usr << "The controls are locked."
-		return 0
-	if(has_sensor <= 0)
+		return FALSE
+	if(has_sensor <= FALSE)
 		usr << "This suit does not have any sensors."
-		return 0
+		return FALSE
 
 	if(sensor_mode == 3)
-		sensor_mode = 0
+		sensor_mode = FALSE
 	else
 		sensor_mode++
 
-	if (src.loc == usr)
+	if (loc == usr)
 		switch(sensor_mode)
 			if(0)
 				usr << "You disable your suit's remote sensing equipment."
@@ -444,20 +446,20 @@ BLIND     // can't see anything
 				usr << "Your suit will now report your vital lifesigns."
 			if(3)
 				usr << "Your suit will now report your vital lifesigns as well as your coordinate position."
-	else if (istype(src.loc, /mob))
+	else if (istype(loc, /mob))
 		switch(sensor_mode)
 			if(0)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("\red [usr] disables [src.loc]'s remote sensing equipment.", 1)
+				for(var/mob/V in viewers(usr, TRUE))
+					V.show_message("\red [usr] disables [loc]'s remote sensing equipment.", TRUE)
 			if(1)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[usr] turns [src.loc]'s remote sensors to binary.", 1)
+				for(var/mob/V in viewers(usr, TRUE))
+					V.show_message("[usr] turns [loc]'s remote sensors to binary.", TRUE)
 			if(2)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[usr] sets [src.loc]'s sensors to track vitals.", 1)
+				for(var/mob/V in viewers(usr, TRUE))
+					V.show_message("[usr] sets [loc]'s sensors to track vitals.", TRUE)
 			if(3)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[usr] sets [src.loc]'s sensors to maximum.", 1)
+				for(var/mob/V in viewers(usr, TRUE))
+					V.show_message("[usr] sets [loc]'s sensors to maximum.", TRUE)
 
 
 /obj/item/clothing/under/rank/New()

@@ -8,7 +8,7 @@
 	var/area_id = "defaultareaid"
 	var/area/corresponding_area = null
 	var/obj/lift_controller/target = null
-	var/istop = 1
+	var/istop = TRUE
 	var/status = STATUS_LIFT_DOCKED
 	var/next_activation = -1
 	icon = 'icons/mob/screen1.dmi'
@@ -26,12 +26,12 @@
 // subtypes: to avoid confusion, never use the base /obj/lift_controller
 
 /obj/lift_controller/up
-	istop = 0
+	istop = FALSE
 	status = STATUS_LIFT_AWAY
 
 // this one starts docked and is the one connected to the lever
 /obj/lift_controller/down
-	istop = 1
+	istop = TRUE
 	status = STATUS_LIFT_DOCKED
 
 /obj/lift_controller/down/proc/activate()

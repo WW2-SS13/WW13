@@ -3,10 +3,10 @@
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "extinguisher_closed"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	var/obj/item/weapon/extinguisher/has_extinguisher
-	var/opened = 0
+	var/opened = FALSE
 
 /obj/structure/extinguisher_cabinet/New()
 	..()
@@ -21,7 +21,7 @@
 			contents += O
 			has_extinguisher = O
 			user << "<span class='notice'>You place [O] in [src].</span>"
-			playsound(src.loc, 'sound/machines/Custom_extin.ogg', 50, 0)
+			playsound(loc, 'sound/machines/Custom_extin.ogg', 50, FALSE)
 		else
 			opened = !opened
 	else
@@ -43,9 +43,9 @@
 	if(has_extinguisher)
 		user.put_in_hands(has_extinguisher)
 		user << "<span class='notice'>You take [has_extinguisher] from [src].</span>"
-		playsound(src.loc, 'sound/machines/Custom_extout.ogg', 50, 0)
+		playsound(loc, 'sound/machines/Custom_extout.ogg', 50, FALSE)
 		has_extinguisher = null
-		opened = 1
+		opened = TRUE
 	else
 		opened = !opened
 	update_icon()
@@ -55,7 +55,7 @@
 		has_extinguisher.loc = loc
 		user << "<span class='notice'>You telekinetically remove [has_extinguisher] from [src].</span>"
 		has_extinguisher = null
-		opened = 1
+		opened = TRUE
 	else
 		opened = !opened
 	update_icon()

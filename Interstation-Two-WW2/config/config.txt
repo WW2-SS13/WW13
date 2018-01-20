@@ -1,9 +1,12 @@
+## The path to our global configuration file, if any
+GLOBAL_CONFIG_PATH nil
+
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Remove the # infront of SERVERNAME and replace 'tgstation' with the name of your choice.
 ## IMPORTANT: Don't include special characters such as ' in here
 SERVER_NAME Lebensraum
 
 ## What features do you want to advertise on your hub message?
-HUB_FEATURES A new light-medium RP WW2 Server
+HUB_FEATURES A new light-medium roleplay WW2 Server
 
 ## The main content of your hub message
 HUB_BODY <i>1942, SEASON, TIME_OF_DAY, Ukraine</i><br>
@@ -181,7 +184,7 @@ DISCORDURL https://discord.gg/PVqjqCv
 WIKIURL http://noml.wikia.com/wiki/No_Man%27s_Land_Wiki
 
 ## Website address
-WEBSITEURL http://noml.wikia.com/wiki/No_Man%27s_Land_Wiki
+WEBSITEURL http://mechahitler.co.nf/
 
 ##Rules address
 # RULESURL http://www.tgstation13.org/wiki/Rules
@@ -322,12 +325,8 @@ ANIMAL_DELAY 0
 
 ##WW2 stuff
 
-MACHINERY_DOES_NOT_USE_POWER 1
 LIGHTING_IS_RUSTIC 0
-MAX_GERMAN_REINFORCEMENTS 45
-MAX_RUSSIAN_REINFORCEMENTS 60
-GERMAN_REINFORCEMENTS_AT_ONCE 10
-RUSSIAN_REINFORCEMENTS_AT_ONCE 10
+MACHINERY_DOES_NOT_USE_POWER 1
 
 ##Train stuff
 

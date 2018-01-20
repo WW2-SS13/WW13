@@ -15,7 +15,7 @@
 		slot_l_hand_str = "caphat",
 		slot_r_hand_str = "caphat",
 		)
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 /obj/item/clothing/head/caphat/cap
 	name = "captain's cap"
@@ -54,7 +54,7 @@
 	name = "beret"
 	desc = "A beret, an artists favorite headwear."
 	icon_state = "beret"
-	body_parts_covered = 0
+	body_parts_covered = FALSE
 
 //Security
 /obj/item/clothing/head/beret/sec/navy/officer

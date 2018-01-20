@@ -5,10 +5,10 @@
 	icon_state = "s-casing"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
-	throwforce = 1
-	w_class = 1
+	throwforce = TRUE
+	w_class = TRUE
 
-	var/leaves_residue = 1
+	var/leaves_residue = TRUE
 	var/caliber = ""					//Which kind of guns it can be loaded into
 	var/projectile_type					//The bullet type to create when New() is called
 	var/obj/item/projectile/BB = null	//The loaded bullet - make it so that the projectiles are created only when needed?
@@ -88,13 +88,13 @@
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded
 	var/initial_ammo = null
 
-	var/multiple_sprites = 0
+	var/multiple_sprites = FALSE
 	//because BYOND doesn't support numbers as keys in associative lists
 	var/list/icon_keys = list()		//keys
 	var/list/ammo_states = list()	//values
 
 	// are we an ammo box
-	var/is_box = 0
+	var/is_box = FALSE
 
 /obj/item/ammo_magazine/New()
 	..()
@@ -105,7 +105,7 @@
 		initial_ammo = max_ammo
 
 	if(initial_ammo)
-		for(var/i in 1 to initial_ammo)
+		for(var/i in TRUE to initial_ammo)
 			stored_ammo += new ammo_type(src)
 	update_icon()
 
@@ -132,18 +132,18 @@
 		if(stored_ammo.len >= max_ammo)
 			user << "<span class='warning'>[src] is full!</span>"
 			return
-		if (M.stored_ammo.len == 0)
+		if (M.stored_ammo.len == FALSE)
 			user << "<span class='warning'>[M] is empty!</span>"
 			return
 
-		var/filled = 0
+		var/filled = FALSE
 		for (var/obj/item/ammo_casing/C in M.stored_ammo)
 			if (stored_ammo.len >= max_ammo)
 				break
 			C.loc = src
 			stored_ammo.Insert(1, C)
 			M.stored_ammo -= C
-			filled = 1
+			filled = TRUE
 
 		if (filled)
 			user << "<span class = 'notice'>You fill [src] with [M]'s ammo.</span>"
@@ -157,12 +157,12 @@
 		user << "<span class='notice'>[src] is already empty!</span>"
 		return
 
-	var/cont = 0
+	var/cont = FALSE
 	if (stored_ammo.len < 10)
-		cont = 1
+		cont = TRUE
 	else
 		if ((input(user, "Are you sure you want to empty the [src]?", "[src]") in list ("Yes", "No")) == "Yes")
-			cont = 1
+			cont = TRUE
 
 	if (cont)
 		var/turf/T = get_turf(src)
@@ -179,7 +179,7 @@
 	if(multiple_sprites && icon_keys.len)
 		//find the lowest key greater than or equal to stored_ammo.len
 		var/new_state = null
-		for(var/idx in 1 to icon_keys.len)
+		for(var/idx in TRUE to icon_keys.len)
 			var/ammo_count = icon_keys[idx]
 			if (ammo_count >= stored_ammo.len)
 				new_state = ammo_states[idx]
@@ -188,7 +188,7 @@
 
 /obj/item/ammo_magazine/examine(mob/user)
 	..()
-	user << "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!"
+	user << "There [(stored_ammo.len == TRUE)? "is" : "are"] [stored_ammo.len] round\s left!"
 
 //magazine icon state caching
 /var/global/list/magazine_icondata_keys = list()
@@ -208,7 +208,7 @@
 	var/list/icon_keys = list()
 	var/list/ammo_states = list()
 	var/list/states = icon_states(M.icon)
-	for(var/i = 0, i <= M.max_ammo, i++)
+	for(var/i = FALSE, i <= M.max_ammo, i++)
 		var/ammo_state = "[M.icon_state]-[i]"
 		if(ammo_state in states)
 			icon_keys += i

@@ -12,19 +12,19 @@ And for the distance one i wrote:
 /turf/proc/Distance
 So an example use might be:
 
-src.path_list = AStar(src.loc, target.loc, /turf/proc/AdjacentTurfs, /turf/proc/Distance)
+path_list = AStar(loc, target.loc, /turf/proc/AdjacentTurfs, /turf/proc/Distance)
 
 Note: The path is returned starting at the END node, so i wrote reverselist to reverse it for ease of use.
 
-src.path_list = reverselist(src.pathlist)
+path_list = reverselist(pathlist)
 
 Then to start on the path, all you need to do it:
-Step_to(src, src.path_list[1])
-src.path_list -= src.path_list[1] or equivilent to remove that node from the list.
+Step_to(src, path_list[1])
+path_list -= path_list[1] or equivilent to remove that node from the list.
 
 Optional extras to add on (in order):
 MaxNodes: The maximum number of nodes the returned path can be (0 = infinite)
-Maxnodedepth: The maximum number of nodes to search (default: 30, 0 = infinite)
+Maxnodedepth: The maximum number of nodes to search (default: 30, FALSE = infinite)
 Mintargetdist: Minimum distance to the target before path returns, could be used to get
 near a target, but not right to it - for an AI mob with a gun, for example.
 Minnodedist: Minimum number of nodes to return in the path, could be used to give a path a minimum
@@ -53,18 +53,18 @@ PriorityQueue
 		var/index = queue.len
 
 		//From what I can tell, this automagically sorts the added data into the correct location.
-		while(index > 2 && call(comparison_function)(queue[index / 2], queue[index]) > 0)
+		while(index > 2 && call(comparison_function)(queue[index / 2], queue[index]) > FALSE)
 			queue.Swap(index, index / 2)
 			index /= 2
 
 	proc/Dequeue()
 		if(!queue.len)
-			return 0
+			return FALSE
 		return Remove(1)
 
 	proc/Remove(var/index)
 		if(index > queue.len)
-			return 0
+			return FALSE
 
 		var/thing = queue[index]
 		queue.Swap(index, queue.len)
@@ -78,9 +78,9 @@ PriorityQueue
 		var/item = queue[index]
 
 		while(child <= queue.len)
-			if(child < queue.len && call(comparison_function)(queue[child], queue[child + 1]) > 0)
+			if(child < queue.len && call(comparison_function)(queue[child], queue[child + TRUE]) > FALSE)
 				child++
-			if(call(comparison_function)(item, queue[child]) > 0)
+			if(call(comparison_function)(item, queue[child]) > FALSE)
 				queue[index] = queue[child]
 				index = child
 			else
@@ -123,25 +123,25 @@ PathNode
 proc/PathWeightCompare(PathNode/a, PathNode/b)
 	return a.estimated_cost - b.estimated_cost
 
-proc/AStar(var/start, var/end, var/proc/adjacent, var/proc/dist, var/max_nodes, var/max_node_depth = 30, var/min_target_dist = 0, var/min_node_dist, var/id, var/datum/exclude)
+proc/AStar(var/start, var/end, var/proc/adjacent, var/proc/dist, var/max_nodes, var/max_node_depth = 30, var/min_target_dist = FALSE, var/min_node_dist, var/id, var/datum/exclude)
 	var/PriorityQueue/open = new /PriorityQueue(/proc/PathWeightCompare)
 	var/list/closed = list()
 	var/list/path
 	var/list/path_node_by_position = list()
 	start = get_turf(start)
 	if(!start)
-		return 0
+		return FALSE
 
-	open.Enqueue(new /PathNode(start, null, 0, call(start, dist)(end), 0))
+	open.Enqueue(new /PathNode(start, null, FALSE, call(start, dist)(end), FALSE))
 
 	while(!open.IsEmpty() && !path)
 		var/PathNode/current = open.Dequeue()
 		closed.Add(current.position)
 
 		if(current.position == end || call(current.position, dist)(end) <= min_target_dist)
-			path = new /list(current.nodes_traversed + 1)
+			path = new /list(current.nodes_traversed + TRUE)
 			path[path.len] = current.position
-			var/index = path.len - 1
+			var/index = path.len - TRUE
 
 			while(current.previous_node)
 				current = current.previous_node
@@ -171,7 +171,7 @@ proc/AStar(var/start, var/end, var/proc/adjacent, var/proc/dist, var/max_nodes, 
 					else
 						continue
 
-			var/PathNode/next_node = new (datum, current, best_estimated_cost, call(datum, dist)(end), current.nodes_traversed + 1)
+			var/PathNode/next_node = new (datum, current, best_estimated_cost, call(datum, dist)(end), current.nodes_traversed + TRUE)
 			path_node_by_position[datum] = next_node
 			open.Enqueue(next_node)
 

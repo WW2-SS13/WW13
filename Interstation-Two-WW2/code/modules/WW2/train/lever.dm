@@ -1,7 +1,7 @@
 /obj/train_lever // I would make this machinery, but right now trains don't need power subsystems etc
 	var/faction = GERMAN
 	anchored = 1.0
-	density = 1
+	density = TRUE
 	icon = 'icons/WW2/train_lever.dmi'
 	icon_state = "lever_none"
 	var/none_state = "lever_none"
@@ -9,12 +9,12 @@
 	var/pulled_state = "lever_pulled"
 	var/direction = "NONE"
 	name = "train lever"
-	var/real = 0
+	var/real = FALSE
 
 /obj/train_lever/attack_hand(var/mob/user as mob)
 	if (user && istype(user, /mob/living/carbon/human))
-		if (world.time - roundstart_time < 6000)
-			user << "<span class = 'danger'>10 minutes or more must elapse before you can leave!</span>"
+		if (world.realtime - roundstart_time < 9000)
+			user << "<span class = 'danger'>15 or more minutes must elapse before you can leave!</span>"
 			return
 		function(user)
 
@@ -25,7 +25,7 @@
 		if (GERMAN)
 			if (german_train_master)
 				train_controller = german_train_master
-		if (RUSSIAN)
+		if (SOVIET)
 			return
 
 	if (!train_controller)
@@ -50,7 +50,7 @@
 		if (GERMAN)
 			if (german_train_master)
 				train_controller = german_train_master
-		if (RUSSIAN)
+		if (SOVIET)
 			return
 
 	if (!train_controller)

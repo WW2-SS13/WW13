@@ -10,7 +10,7 @@ var/const/BLOOD_VOLUME_BAD =     60
 var/const/BLOOD_VOLUME_SURVIVE = 40
 
 /mob/living/carbon/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
-/mob/living/carbon/human/var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.
+/mob/living/carbon/human/var/var/pale = FALSE          // Should affect how mob sprite is drawn, but currently doesn't.
 
 //Initializes blood vessels
 /mob/living/carbon/human/proc/make_blood()
@@ -54,7 +54,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		adjustOxyLoss(10)
 
 	//Bleeding out
-	var/blood_max = 0
+	var/blood_max = FALSE
 	for(var/obj/item/organ/external/temp in organs)
 		if(!(temp.status & ORGAN_BLEEDING))
 			continue
@@ -71,7 +71,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 			if (istype(r, /datum/reagent/blood))
 				if (r.volume >= species.blood_volume)
 					return // we're full on blood.
-		vessel.add_reagent("blood", 1/(rand(1,3)))
+		vessel.add_reagent("blood", TRUE/(rand(1,3)))
 
 
 //Makes a blood drop, leaking amt units of blood from the mob
@@ -103,11 +103,11 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	/*
 	if (!B.data["virus2"])
 		B.data["virus2"] = list()
-	B.data["virus2"] |= virus_copylist(src.virus2)
+	B.data["virus2"] |= virus_copylist(virus2)
 	*/
-	B.data["antibodies"] = src.antibodies
-	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
-	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
+	B.data["antibodies"] = antibodies
+	B.data["blood_DNA"] = copytext(dna.unique_enzymes,1,0)
+	B.data["blood_type"] = copytext(dna.b_type,1,0)
 
 	// Putting this here due to return shenanigans.
 	if(istype(src,/mob/living/carbon/human))
@@ -116,7 +116,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		B.color = B.data["blood_colour"]
 
 	var/list/temp_chem = list()
-	for(var/datum/reagent/R in src.reagents.reagent_list)
+	for(var/datum/reagent/R in reagents.reagent_list)
 		temp_chem += R.id
 		temp_chem[R.id] = R.volume
 	B.data["trace_chem"] = list2params(temp_chem)
@@ -148,7 +148,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	var/list/chems = list()
 	chems = params2list(injected.data["trace_chem"])
 	for(var/C in chems)
-		src.reagents.add_reagent(C, (text2num(chems[C]) / species.blood_volume) * amount)//adds trace chemicals to owner's blood
+		reagents.add_reagent(C, (text2num(chems[C]) / species.blood_volume) * amount)//adds trace chemicals to owner's blood
 	reagents.update_total()
 
 //Transfers blood from reagents to vessel, respecting blood types compatability.
@@ -182,27 +182,27 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	return res
 
 proc/blood_incompatible(donor,receiver,donor_species,receiver_species)
-	if(!donor || !receiver) return 0
+	if(!donor || !receiver) return FALSE
 
 	if(donor_species && receiver_species)
 		if(donor_species != receiver_species)
-			return 1
+			return TRUE
 
 	var/donor_antigen = copytext(donor,1,lentext(donor))
 	var/receiver_antigen = copytext(receiver,1,lentext(receiver))
 	var/donor_rh = (findtext(donor,"+")>0)
 	var/receiver_rh = (findtext(receiver,"+")>0)
 
-	if(donor_rh && !receiver_rh) return 1
+	if(donor_rh && !receiver_rh) return TRUE
 	switch(receiver_antigen)
 		if("A")
-			if(donor_antigen != "A" && donor_antigen != "O") return 1
+			if(donor_antigen != "A" && donor_antigen != "O") return TRUE
 		if("B")
-			if(donor_antigen != "B" && donor_antigen != "O") return 1
+			if(donor_antigen != "B" && donor_antigen != "O") return TRUE
 		if("O")
-			if(donor_antigen != "O") return 1
+			if(donor_antigen != "O") return TRUE
 		//AB is a universal receiver.
-	return 0
+	return FALSE
 
 proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 
@@ -254,6 +254,6 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 	if(source.data["virus2"])
 		B.virus2 = virus_copylist(source.data["virus2"])*/
 
-//	B.fluorescent  = 0
-	B.invisibility = 0
+//	B.fluorescent  = FALSE
+	B.invisibility = FALSE
 	return B

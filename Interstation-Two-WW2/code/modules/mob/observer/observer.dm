@@ -1,10 +1,10 @@
-var/const/GHOST_IMAGE_NONE = 0
-var/const/GHOST_IMAGE_DARKNESS = 1
+var/const/GHOST_IMAGE_NONE = FALSE
+var/const/GHOST_IMAGE_DARKNESS = TRUE
 var/const/GHOST_IMAGE_SIGHTLESS = 2
 var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 
 /mob/observer
-	density = 0
+	density = FALSE
 	invisibility = INVISIBILITY_OBSERVER
 	layer = 11 // above areas now
 	see_invisible = SEE_INVISIBLE_OBSERVER
@@ -17,7 +17,7 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 
 /mob/observer/New()
 	..()
-	ghost_image = image(src.icon,src)
+	ghost_image = image(icon,src)
 	ghost_image.appearance = src
 	ghost_image.appearance_flags = RESET_ALPHA
 	if(ghost_image_flag & GHOST_IMAGE_DARKNESS)
@@ -30,7 +30,10 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 		if (client)
 			client.add_ghost_only_admin_verbs()
 
+	observer_mob_list |= src
+
 /mob/observer/Destroy()
+	observer_mob_list -= src
 	if (ghost_image)
 		ghost_darkness_images -= ghost_image
 		ghost_sightless_images -= ghost_image

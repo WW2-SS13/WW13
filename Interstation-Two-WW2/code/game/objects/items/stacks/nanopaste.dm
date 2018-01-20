@@ -10,7 +10,7 @@
 
 /obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
 	if (!istype(M) || !istype(user))
-		return 0
+		return FALSE
 	if (istype(M,/mob/living/silicon/robot))	//Repairing cyborgs
 		var/mob/living/silicon/robot/R = M
 		if (R.getBruteLoss() || R.getFireLoss() )
@@ -28,11 +28,11 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.get_organ(user.targeted_organ)
 
-		if(S.open == 1)
+		if(S.open == TRUE)
 			if (S && (S.status & ORGAN_ROBOT))
 				if(S.get_damage())
 					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-					S.heal_damage(15, 15, robo_repair = 1)
+					S.heal_damage(15, 15, robo_repair = TRUE)
 					H.updatehealth()
 					use(1)
 					user.visible_message("<span class='notice'>\The [user] applies some nanite paste at[user != M ? " \the [M]'s" : " \the"][S.name] with \the [src].</span>",\

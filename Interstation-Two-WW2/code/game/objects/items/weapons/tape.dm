@@ -3,7 +3,7 @@
 	desc = "A roll of sticky tape. Possibly for taping ducks... or was that ducts?"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "taperoll"
-	w_class = 1
+	w_class = TRUE
 
 /obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
@@ -65,7 +65,7 @@
 				qdel(T)
 		else
 			return ..()
-		return 1
+		return TRUE
 
 /obj/item/weapon/tape_roll/proc/stick(var/obj/item/weapon/W, mob/user)
 	if(!istype(W, /obj/item/weapon/paper))
@@ -80,9 +80,9 @@
 	desc = "A piece of sticky tape."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape"
-	w_class = 1
+	w_class = TRUE
 	layer = 4
-	anchored = 1 //it's sticky, no you cant move it
+	anchored = TRUE //it's sticky, no you cant move it
 
 	var/obj/item/weapon/stuck = null
 
@@ -121,7 +121,7 @@
 	var/turf/target_turf = get_turf(A)
 	var/turf/source_turf = get_turf(user)
 
-	var/dir_offset = 0
+	var/dir_offset = FALSE
 	if(target_turf != source_turf)
 		dir_offset = get_dir(source_turf, target_turf)
 		if(!(dir_offset in cardinal))

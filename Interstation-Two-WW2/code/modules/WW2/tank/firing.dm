@@ -6,11 +6,11 @@
 
 /obj/tank/proc/density_check(var/turf/_loc)
 	if (_loc.density)
-		return 1
+		return TRUE
 	for (var/atom/movable/am in _loc)
 		if (am.density && am != src && am != front_seat() && am != back_seat())
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /obj/tank/proc/get_x_steps_in_dir(steps)
 
@@ -39,22 +39,22 @@
 	if (_loc)
 		return _loc
 
-	return get_step(src, src.dir)
+	return get_step(src, dir)
 
 /mob/verb/use_tank_guns()
 
 	set category = null
 
 	if (!ishuman(src))
-		return 0
+		return FALSE
 
 	if (!istype(loc, /obj/tank))
-		return 0
+		return FALSE
 
 	var/obj/tank/tank = loc
 	tank.receive_command_from(src, "FIRE")
 
-/obj/tank/proc/tank_explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, is_rec = config.use_recursive_explosions)
+/obj/tank/proc/tank_explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, z_transfer = UP|DOWN, is_rec = config.use_recursive_explosions)
 	var/datum/explosiondata/data = explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, z_transfer, is_rec)
 	data.objects_with_immunity += src
 

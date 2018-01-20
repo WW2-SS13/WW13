@@ -13,7 +13,7 @@
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
-	var/empty = 0
+	var/empty = FALSE
 
 
 /obj/item/weapon/storage/firstaid/fire
@@ -155,9 +155,10 @@
 	item_state = "contsolid"
 	w_class = 2.0
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/dice,/obj/item/weapon/paper)
-	allow_quick_gather = 1
-	use_to_pickup = 1
+	allow_quick_gather = TRUE
+	use_to_pickup = TRUE
 	use_sound = null
+	max_storage_space = 20
 
 /obj/item/weapon/storage/pill_bottle/antitox
 	name = "bottle of Dylovene pills"

@@ -4,8 +4,8 @@
 	icon_state = "magboots0"
 	species_restricted = null
 	force = 3
-	overshoes = 1
-	var/magpulse = 0
+	overshoes = TRUE
+	var/magpulse = FALSE
 	var/icon_base = "magboots"
 	action_button_name = "Toggle Magboots"
 	var/obj/item/clothing/shoes/shoes = null	//Undershoes
@@ -19,14 +19,14 @@
 /obj/item/clothing/shoes/magboots/attack_self(mob/user)
 	if(magpulse)
 		item_flags &= ~NOSLIP
-		magpulse = 0
+		magpulse = FALSE
 		set_slowdown()
 		force = WEAPON_FORCE_WEAK
 		if(icon_base) icon_state = "[icon_base]0"
 		user << "You disable the mag-pulse traction system."
 	else
 		item_flags |= NOSLIP
-		magpulse = 1
+		magpulse = TRUE
 		set_slowdown()
 		force = WEAPON_FORCE_PAINFUL
 		if(icon_base) icon_state = "[icon_base]1"
@@ -42,21 +42,21 @@
 		if(shoes.overshoes)
 			user << "You are unable to wear \the [src] as \the [H.shoes] are in the way."
 			shoes = null
-			return 0
+			return FALSE
 		H.drop_from_inventory(shoes)	//Remove the old shoes so you can put on the magboots.
 		shoes.forceMove(src)
 
 	if(!..())
 		if(shoes) 	//Put the old shoes back on if the check fails.
 			if(H.equip_to_slot_if_possible(shoes, slot_shoes))
-				src.shoes = null
-		return 0
+				shoes = null
+		return FALSE
 
 	if (shoes)
 		user << "You slip \the [src] on over \the [shoes]."
 	set_slowdown()
 	wearer = H
-	return 1
+	return TRUE
 
 /obj/item/clothing/shoes/magboots/dropped()
 	..()
@@ -64,7 +64,7 @@
 	if(shoes)
 		if(!H.equip_to_slot_if_possible(shoes, slot_shoes))
 			shoes.forceMove(get_turf(src))
-		src.shoes = null
+		shoes = null
 	wearer = null
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)

@@ -6,27 +6,27 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
-	canmove = 0
-	blinded = 0
-	anchored = 1	//  don't get pushed around
+	canmove = FALSE
+	blinded = FALSE
+	anchored = TRUE	//  don't get pushed around
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud
-	var/bootime = 0
-	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
+	var/bootime = FALSE
+	var/started_as_observer //This variable is set to TRUE when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
-	var/has_enabled_antagHUD = 0
-	var/medHUD = 0
-	var/antagHUD = 0
-	universal_speak = 1
+	var/has_enabled_antagHUD = FALSE
+	var/medHUD = FALSE
+	var/antagHUD = FALSE
+	universal_speak = TRUE
 	var/atom/movable/following = null
-	var/admin_ghosted = 0
-	var/anonsay = 0
-	var/ghostvision = 1 //is the ghost able to see things humans can't?
-	var/seedarkness = 1
+	var/admin_ghosted = FALSE
+	var/anonsay = FALSE
+	var/ghostvision = TRUE //is the ghost able to see things humans can't?
+	var/seedarkness = TRUE
 
 	var/obj/item/device/multitool/ghost_multitool
-	incorporeal_move = 1
+	incorporeal_move = TRUE
 
 /mob/observer/ghost/New(mob/body)
 	see_in_dark = 100
@@ -102,7 +102,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 				ManualFollow(target)
 
 /mob/observer/ghost/attackby(obj/item/W, mob/user)
-	return 0
+	return FALSE
 /*
 Transfer_mind is there to check if mob is being deleted/not going to have a body.
 Works together with spawning an observer, noted above.
@@ -111,7 +111,7 @@ Works together with spawning an observer, noted above.
 /mob/observer/ghost/Life()
 	..()
 	if(!loc) return
-	if(!client) return 0
+	if(!client) return FALSE
 
 	if(client.images.len)
 		for(var/image/hud in client.images)
@@ -139,13 +139,15 @@ Works together with spawning an observer, noted above.
 	var/client/C = U.client
 	for(var/mob/living/carbon/human/target in target_list)
 		C.images += target.hud_list[SPECIALROLE_HUD]
-	return 1
+	return TRUE
 
-/mob/proc/ghostize(var/can_reenter_corpse = 1)
+/mob/proc/ghostize(var/can_reenter_corpse = TRUE)
+	// remove weather sounds
+	src << sound(null, channel = 777)
 	if(key)
 		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
-		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
+		ghost.timeofdeath = stat == DEAD ? timeofdeath : world.time
 		ghost.key = key
 		return ghost
 
@@ -163,24 +165,24 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/mob/living/carbon/human/H = src
 			H.handle_zoom_stuff(TRUE)
 		if (client)
-			client.next_normal_respawn = world.time + 1800
+			client.next_normal_respawn = world.realtime + 3000
 			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
 	else
 		var/response
-		if(src.client && src.client.holder)
+		if(client && client.holder)
 			response = alert(src, "You have the ability to Admin-Ghost. The regular Ghost verb will announce your presence to dead chat. Both variants will allow you to return to your body using 'aghost'.\n\nWhat do you wish to do?", "Are you sure you want to ghost?", "Ghost", "Admin Ghost", "Stay in body")
 			if(response == "Admin Ghost")
-				if(!src.client)
+				if(!client)
 					return
 				if (ishuman(src))
 					var/mob/living/carbon/human/H = src
 					H.handle_zoom_stuff(TRUE)
-				src.client.admin_ghost()
+				client.admin_ghost()
 		else
 			response = alert(src, "Are you sure you want to ghost?\n(You may respawn with the 'Respawn' verb in the IC tab)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
 		if(response != "Ghost")
 			return
-		resting = 1
+		resting = TRUE
 		var/turf/location = get_turf(src)
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
@@ -194,8 +196,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		ghost.timeofdeath = world.time // Because the living mob won't have a time of death and we want the respawn timer to work properly.
 		announce_ghost_joinleave(ghost)
 
-/mob/observer/ghost/can_use_hands()	return 0
-/mob/observer/ghost/is_active()		return 0
+/mob/observer/ghost/can_use_hands()	return FALSE
+/mob/observer/ghost/is_active()		return FALSE
 
 /mob/observer/ghost/verb/reenter_corpse()
 	set category = "Ghost"
@@ -216,9 +218,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	mind.current.teleop = null
 
 	if(!admin_ghosted)
-		announce_ghost_joinleave(mind, 0, "They now occupy their body again.")
+		announce_ghost_joinleave(mind, FALSE, "They now occupy their body again.")
 
-	return 1
+	mind.current.regenerate_icons()
+
+	// workaround for language bug that happens when you're spawned in
+	var/mob/living/carbon/human/H = mind.current
+	if (istype(H))
+		if (!H.languages.Find(H.default_language))
+			H.languages.Insert(1, H.default_language)
+
+	return TRUE
 
 /mob/observer/ghost/verb/toggle_medHUD()
 	set category = "Ghost"
@@ -227,10 +237,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 	if(medHUD)
-		medHUD = 0
+		medHUD = FALSE
 		src << "\blue <B>Medical HUD Disabled</B>"
 	else
-		medHUD = 1
+		medHUD = TRUE
 		src << "\blue <B>Medical HUD Enabled</B>"
 /*
 /mob/observer/ghost/verb/toggle_antagHUD()
@@ -251,14 +261,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(config.antag_hud_restricted && !M.has_enabled_antagHUD && (!client.holder || mentor))
 		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
 		if(response == "No") return
-		M.can_reenter_corpse = 0
+		M.can_reenter_corpse = FALSE
 	if(!M.has_enabled_antagHUD && (!client.holder || mentor))
-		M.has_enabled_antagHUD = 1
+		M.has_enabled_antagHUD = TRUE
 	if(M.antagHUD)
-		M.antagHUD = 0
+		M.antagHUD = FALSE
 		src << "\blue <B>AntagHUD Disabled</B>"
 	else
-		M.antagHUD = 1
+		M.antagHUD = TRUE
 		src << "\blue <B>AntagHUD Enabled</B>"
 */
 /mob/observer/ghost/proc/dead_tele(A in ghostteleportlocs)
@@ -298,13 +308,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (input != "Cancel")
 		ManualFollow(getfitmobs()[input])
 
-/mob/observer/ghost/verb/follow_russian(input in getfitmobs(RUSSIAN)+"Cancel")
+/mob/observer/ghost/verb/follow_soviet(input in getfitmobs(SOVIET)+"Cancel")
 	set category = "Ghost"
-	set name = "Follow a Russian"
-	set desc = "Follow and haunt a living Russian."
+	set name = "Follow a Soviet"
+	set desc = "Follow and haunt a living Soviet."
 
 	if (input != "Cancel")
-		ManualFollow(getfitmobs(RUSSIAN)[input])
+		ManualFollow(getfitmobs(SOVIET)[input])
 
 /mob/observer/ghost/verb/follow_german(input in getfitmobs(GERMAN)+"Cancel")
 	set category = "Ghost"
@@ -350,7 +360,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/list/dogs = list()
 	for (var/mob/living/simple_animal/complex_animal/canine/dog/D in living_mob_list)
 		var/name = D.name
-		var/nameinc = 1
+		var/nameinc = TRUE
 		var/oname = name
 		while (dogs.Find(name))
 			name = "[oname] ([++nameinc])"
@@ -377,14 +387,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
 			for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
 				ManualFollow(tpt)
-				goto endloop // 1 break statement is not enough
+				goto endloop // TRUE break statement is not enough
 
 	endloop
 
 	var/newloc = get_turf(src)
 
 	if (oldloc == newloc) // we didn't move: train isn't here
-		loc = locate(127, 454, 1) // take us to the train station
+		loc = locate(127, 454, TRUE) // take us to the train station
 
 /mob/observer/ghost/verb/follow_supplytrain()
 	set category = "Ghost"
@@ -401,14 +411,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
 			for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
 				ManualFollow(tpt)
-				goto endloop // 1 break statement is not enough
+				goto endloop // TRUE break statement is not enough
 
 	endloop
 
 	var/newloc = get_turf(src)
 
 	if (oldloc == newloc) // we didn't move: train isn't here
-		loc = locate(15, 526, 1) // take us to the train station
+		loc = locate(15, 526, TRUE) // take us to the train station
 
 /mob/observer/ghost/verb/follow_supply_lift()
 	set category = "Ghost"
@@ -432,7 +442,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /proc/gettanks()
 	var/list/tanks = list()
 	for (var/obj/tank/tank in world)
-		var/count = 0
+		var/count = FALSE
 		for (var/tank2 in tanks)
 			var/obj/tank/other = tanks[tank2]
 			if (other.name == tank.name)
@@ -483,12 +493,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	..()
 
 /mob/proc/check_holy(var/turf/T)
-	return 0
+	return FALSE
 
 /mob/observer/ghost/check_holy(var/turf/T)
-	if(check_rights(R_ADMIN|R_FUN, 0, src))
-		return 0
-	return 0
+	if(check_rights(R_ADMIN|R_FUN, FALSE, src))
+		return FALSE
+	return FALSE
 
 /mob/observer/ghost/verb/jumptomob(target in getmobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
@@ -525,11 +535,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 */
 
 /mob/observer/ghost/memory()
-	set hidden = 1
+	set hidden = TRUE
 	src << "\red You are dead! You have no mind to store memory!"
 
 /mob/observer/ghost/add_memory()
-	set hidden = 1
+	set hidden = TRUE
 	src << "\red You are dead! You have no mind to store memory!"
 
 /mob/observer/ghost/Post_Incorpmove()
@@ -565,7 +575,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/verb/become_mouse()
 	set name = "Become mouse"
 	set category = "Ghost"
-	return 0
+	return FALSE
 
 	if(config.disable_player_mice)
 		src << "<span class='warning'>Spawning as a mouse is currently disabled.</span>"
@@ -598,9 +608,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(host)
 		if(config.uneducated_mice)
-			host.universal_understand = 0
-		announce_ghost_joinleave(src, 0, "They are now a mouse.")
-		host.ckey = src.ckey
+			host.universal_understand = FALSE
+		announce_ghost_joinleave(src, FALSE, "They are now a mouse.")
+		host.ckey = ckey
 		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
 */
 /*
@@ -631,9 +641,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/proc/try_possession(var/mob/living/M)
 	if(!config.ghosts_can_possess_animals)
 		usr << "<span class='warning'>Ghosts are not permitted to possess animals.</span>"
-		return 0
+		return FALSE
 	if(!M.can_be_possessed_by(src))
-		return 0
+		return FALSE
 	return M.do_possession(src)
 /*
 //Used for drawing on walls with blood puddles as a spooky ghost.
@@ -647,11 +657,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "\red That verb is not currently permitted."
 		return
 
-	if (!src.stat)
+	if (!stat)
 		return
 
 	if (usr != src)
-		return 0 //something is terribly wrong
+		return FALSE //something is terribly wrong
 
 	if(!round_is_spooky())
 		src << "\red The veil is not thin enough for you to do that."
@@ -659,7 +669,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/choices = list()
 	for(var/obj/effect/decal/cleanable/blood/B in view(1,src))
-		if(B.amount > 0)
+		if(B.amount > FALSE)
 			choices += B
 
 	if(!choices.len)
@@ -669,7 +679,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/effect/decal/cleanable/blood/choice = input(src,"What blood would you like to use?") in null|choices
 
 	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if (direction != "Here")
 		T = get_step(T,text2dir(direction))
 
@@ -677,12 +687,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "<span class='warning'>You cannot doodle there.</span>"
 		return
 
-	if(!choice || choice.amount == 0 || !(src.Adjacent(choice)))
+	if(!choice || choice.amount == FALSE || !(Adjacent(choice)))
 		return
 
 	var/doodle_color = (choice.basecolor) ? choice.basecolor : "#A10808"
 
-	var/num_doodles = 0
+	var/num_doodles = FALSE
 	for (var/obj/effect/decal/cleanable/blood/writing/W in T)
 		num_doodles++
 	if (num_doodles > 4)
@@ -711,15 +721,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Point To"
 	usr.visible_message("<span class='deadsay'><b>[src]</b> points to [A]</span>")
-	return 1
+	return TRUE
 
 /mob/observer/ghost/proc/manifest(mob/user)
-	var/is_manifest = 0
+	var/is_manifest = FALSE
 	if(!is_manifest)
-		is_manifest = 1
+		is_manifest = TRUE
 		verbs += /mob/observer/ghost/proc/toggle_visibility
 
-	if(src.invisibility != 0)
+	if(invisibility != FALSE)
 		user.visible_message( \
 			"<span class='warning'>\The [user] drags ghost, [src], to our plane of reality!</span>", \
 			"<span class='warning'>You drag [src] to our plane of reality!</span>" \
@@ -735,17 +745,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 
-	var/iconRemoved = 0
+	var/iconRemoved = FALSE
 	for(var/image/I in client.images)
 		if(I.icon_state == icon)
-			iconRemoved = 1
+			iconRemoved = TRUE
 			qdel(I)
 
 	if(!iconRemoved)
 		var/image/J = image('icons/mob/mob.dmi', loc = src, icon_state = icon)
 		client.images += J
 
-/mob/observer/ghost/proc/toggle_visibility(var/forced = 0)
+/mob/observer/ghost/proc/toggle_visibility(var/forced = FALSE)
 	set category = "Ghost"
 	set name = "Toggle Visibility"
 	set desc = "Allows you to turn (in)visible (almost) at will."
@@ -755,13 +765,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "You must gather strength before you can turn visible again..."
 		return
 
-	if(invisibility == 0)
+	if(invisibility == FALSE)
 		toggled_invisible = world.time
 		visible_message("<span class='emote'>It fades from sight...</span>", "<span class='info'>You are now invisible.</span>")
 	else
 		src << "<span class='info'>You are now visible!</span>"
 
-	invisibility = invisibility == INVISIBILITY_OBSERVER ? 0 : INVISIBILITY_OBSERVER
+	invisibility = invisibility == INVISIBILITY_OBSERVER ? FALSE : INVISIBILITY_OBSERVER
 	// Give the ghost a cult icon which should be visible only to itself
 	toggle_icon("cult")
 
@@ -770,20 +780,20 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Toggle Anonymous Chat"
 	set desc = "Toggles showing your key in dead chat."
 
-	src.anonsay = !src.anonsay
+	anonsay = !anonsay
 	if(anonsay)
 		src << "<span class='info'>Your key won't be shown when you speak in dead chat.</span>"
 	else
 		src << "<span class='info'>Your key will be publicly visible again.</span>"
 
 /mob/observer/ghost/canface()
-	return 1
+	return TRUE
 
 /mob/proc/can_admin_interact()
-    return 0
+    return FALSE
 
 /mob/observer/ghost/can_admin_interact()
-	return check_rights(R_ADMIN, 0, src)
+	return check_rights(R_ADMIN, FALSE, src)
 
 /mob/observer/ghost/verb/toggle_ghostsee()
 	set name = "Toggle Ghost Vision"
@@ -820,33 +830,34 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		client.images |= ghost_sightless_images
 	client.images -= ghost_image //remove ourself
 
-/mob/observer/ghost/MayRespawn(var/feedback = 0, var/respawn_time = 0)
+/mob/observer/ghost/MayRespawn(var/feedback = FALSE, var/respawn_time = FALSE)
 	if(!client)
-		return 0
+		return FALSE
 	if(mind && mind.current && mind.current.stat != DEAD && can_reenter_corpse)
 		if(feedback)
 			src << "<span class='warning'>Your non-dead body prevent you from respawning.</span>"
-		return 0
-	if(config.antag_hud_restricted && has_enabled_antagHUD == 1)
+		return FALSE
+	if(config.antag_hud_restricted && has_enabled_antagHUD == TRUE)
 		if(feedback)
 			src << "<span class='warning'>antagHUD restrictions prevent you from respawning.</span>"
-		return 0
+		return FALSE
 
 	var/timedifference = world.time - timeofdeath
 	if(respawn_time && timeofdeath && timedifference < respawn_time MINUTES)
 		var/timedifference_text = time2text(respawn_time MINUTES - timedifference,"mm:ss")
 		src << "<span class='warning'>You must have been dead for [respawn_time] minute\s to respawn. You have [timedifference_text] left.</span>"
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 /atom/proc/extra_ghost_link()
 	return
 
 /mob/extra_ghost_link(var/atom/ghost)
-	if(client && eyeobj)
+/*	if(client && eyeobj)
 		return "|<a href='byond://?src=\ref[ghost];track=\ref[eyeobj]'>eye</a>"
-
+*/
+	return null
 /mob/observer/ghost/extra_ghost_link(var/atom/ghost)
 	if(mind && mind.current)
 		return "|<a href='byond://?src=\ref[ghost];track=\ref[mind.current]'>body</a>"

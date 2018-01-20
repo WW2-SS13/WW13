@@ -5,7 +5,7 @@
 		if(istype(loc,/turf))
 			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
-	for(var/obj/item/organ/external/E in src.organs)
+	for(var/obj/item/organ/external/E in organs)
 		E.droplimb(0,DROPLIMB_EDGE,1)
 
 	sleep(1)
@@ -50,14 +50,14 @@
 		ticker.mode.check_win()
 
 	if (client)
-		client.next_normal_respawn = world.time + 1800
+		client.next_normal_respawn = world.realtime + 3000
 		client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
 
 	. = ..(gibbed)//,species.death_message)
 	if(!gibbed)
 		handle_organs()
 		if(species.death_sound)
-			playsound(loc, species.death_sound, 80, 1, 1)
+			playsound(loc, species.death_sound, 80, TRUE, TRUE)
 	handle_hud_list()
 
 /mob/living/carbon/human/proc/ChangeToHusk()
@@ -80,7 +80,7 @@
 	return
 
 /mob/living/carbon/human/proc/ChangeToSkeleton()
-	if(SKELETON in src.mutations)	return
+	if(SKELETON in mutations)	return
 
 	if(f_style)
 		f_style = "Shaved"

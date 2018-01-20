@@ -2,7 +2,7 @@
 /client/verb/website()
 	set name = "website"
 	set desc = "Visit the website"
-	set hidden = 1
+	set hidden = TRUE
 	if( config.websiteurl )
 		if(alert("This will open the website in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -14,7 +14,7 @@
 /client/verb/wiki()
 	set name = "wiki"
 	set desc = "Visit the wiki"
-	set hidden = 1
+	set hidden = TRUE
 	if( config.wikiurl )
 		if(alert("This will open the wiki in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -26,7 +26,7 @@
 /client/verb/forum()
 	set name = "forum"
 	set desc = "Visit the forum"
-	set hidden = 1
+	set hidden = TRUE
 	if( config.forumurl )
 		if(alert("This will open the forum in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -38,7 +38,7 @@
 /client/verb/donate()
 	set name = "donate"
 	set desc = "Support the server via paypal."
-	set hidden = 1
+	set hidden = TRUE
 	if( config.donationurl )
 		if(alert("This will open Paypal in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -50,7 +50,7 @@
 /client/verb/github()
 	set name = "Github"
 	set desc = "Visit the Github"
-	set hidden = 1
+	set hidden = TRUE
 	if( config.githuburl )
 		if(alert("This will open the Github in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -62,7 +62,7 @@
 /client/verb/discord()
 	set name = "discord"
 	set desc = "Visit the discord"
-	set hidden = 1
+	set hidden = TRUE
 	if( config.discordurl )
 		if(alert("This will open the Discord in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -75,7 +75,7 @@
 /client/verb/rules()
 	set name = "Rules"
 	set desc = "Show Server Rules"
-	set hidden = 1
+	set hidden = TRUE
 	if( config.rulesurl )
 		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -171,7 +171,7 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tz = activate held object (or y)
 \tf = cycle-intents-left
 \tg = cycle-intents-right
-\t1 = activate module 1
+\t1 = activate module TRUE
 \t2 = activate module 2
 \t3 = activate module 3
 \t4 = toggle intents
@@ -191,7 +191,7 @@ Any-Mode: (hotkey doesn't need to be on)
 \tCtrl+z = activate held object (or Ctrl+y)
 \tCtrl+f = cycle-intents-left
 \tCtrl+g = cycle-intents-right
-\tCtrl+1 = activate module 1
+\tCtrl+1 = activate module TRUE
 \tCtrl+2 = activate module 2
 \tCtrl+3 = activate module 3
 \tCtrl+4 = toggle intents
@@ -205,7 +205,7 @@ Any-Mode: (hotkey doesn't need to be on)
 \tPGDN = activate held object
 </font>"}
 
-	if(isrobot(src.mob))
+	if(isrobot(mob))
 		src << robot_hotkey_mode
 		src << robot_other
 	else

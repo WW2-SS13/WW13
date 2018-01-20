@@ -5,21 +5,21 @@
  * Utensils
  */
 /obj/item/weapon/material/kitchen/utensil
-	w_class = 1
-	thrown_force_divisor = 1
+	w_class = TRUE
+	thrown_force_divisor = TRUE
 //	origin_tech = "materials=1"
 	attack_verb = list("attacked", "stabbed", "poked")
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
 	var/loaded      //Descriptive string for currently loaded food object.
-	var/scoop_food = 1
+	var/scoop_food = TRUE
 
 /obj/item/weapon/material/kitchen/utensil/New()
 	..()
 	if (prob(60))
-		src.pixel_y = rand(0, 4)
+		pixel_y = rand(0, 4)
 	create_reagents(5)
 	return
 
@@ -35,7 +35,7 @@
 		else
 			return ..()
 
-	if (reagents.total_volume > 0)
+	if (reagents.total_volume > FALSE)
 		reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		if(M == user)
 			if(!M.can_eat(loaded))
@@ -46,7 +46,7 @@
 			if(!(M.can_force_feed(user, loaded) && do_mob(user, M, 5 SECONDS)))
 				return
 			M.visible_message("<span class='notice'>\The [user] feeds some [loaded] to \the [M] with \the [src].</span>")
-		playsound(M.loc,'sound/items/eatfood.ogg', rand(10,40), 1)
+		playsound(M.loc,'sound/items/eatfood.ogg', rand(10,40), TRUE)
 		overlays.Cut()
 		return
 	else
@@ -66,8 +66,8 @@
 	desc = "It's a spoon. You can see your own upside-down face in it."
 	icon_state = "spoon"
 	attack_verb = list("attacked", "poked")
-	edge = 0
-	sharp = 0
+	edge = FALSE
+	sharp = FALSE
 	force_divisor = 0.1 //2 when wielded with weight 20 (steel)
 
 /obj/item/weapon/material/kitchen/utensil/spoon/plastic
@@ -81,7 +81,7 @@
 	desc = "A knife for eating with. Can cut through any food."
 	icon_state = "knife"
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
-	scoop_food = 0
+	scoop_food = FALSE
 
 // Identical to the tactical knife but nowhere near as stabby.
 // Kind of like the toy esword compared to the real thing.
@@ -91,8 +91,8 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "tacknife"
 	item_state = "knife"
-	applies_material_colour = 0
-	unbreakable = 1
+	applies_material_colour = FALSE
+	unbreakable = TRUE
 	drawsound = 'sound/items/unholster_knife.ogg'
 
 /obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
@@ -116,7 +116,7 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked")
 	default_material = "wood"
 	force_divisor = 0.7 // 10 when wielded with weight 15 (wood)
-	thrown_force_divisor = 1 // as above
+	thrown_force_divisor = TRUE // as above
 
 /obj/item/weapon/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))

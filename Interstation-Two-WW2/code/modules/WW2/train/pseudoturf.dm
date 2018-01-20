@@ -1,17 +1,17 @@
 
 
 /obj/train_pseudoturf
-	anchored = 1
+	anchored = TRUE
 	name = "train"
 	layer = TURF_LAYER + 0.01
 	var/obj/train_car_center/master = null
 	var/datum/train_controller/controller = null
-	var/deadly = 0
+	var/deadly = FALSE
 	var/list/saved_contents = list()
 	var/based_on_type = null // debug variable
 	var/copy_of_instance = null // debug variable
 
-/obj/train_pseudoturf/New(_loc, var/turf/t, var/ignorecontents = 0)
+/obj/train_pseudoturf/New(_loc, var/turf/t, var/ignorecontents = FALSE)
 	..()
 
 	loc = _loc
@@ -25,7 +25,7 @@
 		icon = w.icon
 		icon_state = w.ref_state
 		overlays = w.overlays
-		deadly = 1
+		deadly = TRUE
 	else
 		icon = t.icon
 		icon_state = t.icon_state
@@ -36,12 +36,12 @@
 	pixel_x = t.pixel_x
 	pixel_y = t.pixel_y
 	dir = t.dir
-	anchored = 1
+	anchored = TRUE
 
-	uses_initial_density = 1
+	uses_initial_density = TRUE
 	initial_density = density
 
-	uses_initial_opacity = 1
+	uses_initial_opacity = TRUE
 	initial_opacity = opacity
 
 	for (var/atom/movable/a in loc)
@@ -51,7 +51,7 @@
 	if (!ignorecontents)
 		for (var/atom/movable/a in t)
 
-			if (check_object_invalid_for_moving(src, a, 1))
+			if (check_object_invalid_for_moving(src, a, TRUE))
 				continue
 
 			var/atom/movable/aa = new a.type(loc)
@@ -68,14 +68,14 @@
 
 			if (istype(aa, /obj/train_lever))
 				var/obj/train_lever/lever = aa
-				lever.real = 1 // distinguish us from the example lever
+				lever.real = TRUE // distinguish us from the example lever
 
 			if (istype(aa, /obj/structure/bed))
 				var/obj/structure/bed/bed = aa
-				bed.can_buckle = 0 // fixes the train buckling meme
+				bed.can_buckle = FALSE // fixes the train buckling meme
 
 			if (istype(aa, /obj/machinery))
-				aa.anchored = 1
+				aa.anchored = TRUE
 
 
 			aa.icon = a.icon
@@ -85,10 +85,10 @@
 			aa.pixel_y = a.pixel_y
 			aa.dir = a.dir
 
-			aa.uses_initial_density = 1
+			aa.uses_initial_density = TRUE
 			aa.initial_density = aa.density
 
-			aa.uses_initial_opacity = 1
+			aa.uses_initial_opacity = TRUE
 			aa.initial_opacity = aa.opacity
 
 
@@ -96,7 +96,7 @@
 		if (istype(a, /obj/structure))
 			if (a.density && !istype(a, /obj/structure/railing/train_railing))
 				if (!istype(a, /obj/structure/simple_door))
-					deadly = 1
+					deadly = TRUE
 
 /obj/train_pseudoturf/proc/save_contents_as_refs()
 	for (var/atom/movable/a in get_turf(src))
@@ -112,7 +112,7 @@
 
 /obj/train_pseudoturf/proc/unset_track_lights() // post movement
 	for (var/obj/train_track/tt in get_turf(src))
-		tt.set_light(0, 0) // unset the lights of tracks we're now on
+		tt.set_light(0, FALSE) // unset the lights of tracks we're now on
 
 /obj/train_pseudoturf/proc/_Move(var/_direction)
 
@@ -182,11 +182,11 @@
 						var/moved = m.train_move(locate(m.x-1, m.y, m.z))
 						if (p && moved) p.train_move(m.behind())
 
-				if (p && get_dist(m, p) <= 1)
+				if (p && get_dist(m, p) <= TRUE)
 					m.start_pulling(p) // start_pulling checks for p on its own
 
 				m.next_train_movement = null
-				m.train_gib_immunity = 0
+				m.train_gib_immunity = FALSE
 				m.last_moved_on_train = world.time
 
 /obj/train_pseudoturf/proc/src_dir()

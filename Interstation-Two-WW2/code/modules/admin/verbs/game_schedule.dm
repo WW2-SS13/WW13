@@ -10,7 +10,7 @@
 	if (!global_game_schedule)
 		return
 
-	var/i = input("Forcibly off the game schedule? Current forceClosed setting is [global_game_schedule.forceClosed]. (If 1, selecting 'No' will disable it.)") in list("Yes", "No", "Cancel")
+	var/i = input("Forcibly off the game schedule? Current forceClosed setting is [global_game_schedule.forceClosed]. (If TRUE, selecting 'No' will disable it.)") in list("Yes", "No", "Cancel")
 	if (i == "Yes")
 		global_game_schedule.forceClose()
 		src << "<span class = 'notice'>The world has been forcibly closed.</notice>"
@@ -36,7 +36,7 @@
 	if (!global_game_schedule)
 		return
 
-	var/i = input("Forcibly open the game schedule? Current forceOpened setting is [global_game_schedule.forceOpened]. (If 1, selecting 'No' will disable it.)") in list("Yes", "No", "Cancel")
+	var/i = input("Forcibly open the game schedule? Current forceOpened setting is [global_game_schedule.forceOpened]. (If TRUE, selecting 'No' will disable it.)") in list("Yes", "No", "Cancel")
 	if (i == "Yes")
 		global_game_schedule.forceOpen()
 		src << "<span class = 'notice'>The world has been forcibly opened.</notice>"
@@ -60,12 +60,12 @@
 	if (!check_rights(R_ADMIN))
 		return
 
-	var/ejected = 0
+	var/ejected = FALSE
 
 	if ((input(src, "Are you sure you want to kick ALL unwhitelisted players?") in list("Yes", "No")) == "Yes")
 		if ((input(src, "Seriously?") in list("Yes", "No")) == "Yes")
 			for (var/client/C in clients)
-				if (!C.holder && !C.validate_whitelist("Server", 1) && !C.isPatron("$10+"))
+				if (!C.holder && !C.validate_whitelist("Server", TRUE) && !C.isPatron("$10+"))
 					++ejected
 					C << "<span class = 'userdanger'>The server has been closed to those who aren't whitelisted for private testing. Get whitelisted on the Discord.</span>"
 					del C

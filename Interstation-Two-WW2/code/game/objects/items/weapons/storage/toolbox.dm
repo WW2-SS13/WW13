@@ -7,12 +7,12 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_NORMAL
-	throw_speed = 1
+	throw_speed = TRUE
 	throw_range = 7
 	w_class = 4
 	max_w_class = 3
 	max_storage_space = 14 //enough to hold all starting contents
-//	origin_tech = list(TECH_COMBAT = 1)
+//	origin_tech = list(TECH_COMBAT = TRUE)
 	attack_verb = list("robusted")
 
 /obj/item/weapon/storage/toolbox/emergency
@@ -66,7 +66,7 @@
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
-//	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
+//	origin_tech = list(TECH_COMBAT = TRUE, TECH_ILLEGAL = TRUE)
 	force = WEAPON_FORCE_DANGEROUS
 
 	New()

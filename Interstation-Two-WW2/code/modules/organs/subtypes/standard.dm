@@ -10,12 +10,12 @@
 	min_broken_damage = 35
 	w_class = 5
 	body_part = UPPER_TORSO
-	vital = 1
+	vital = TRUE
 	amputation_point = "spine"
 	joint = "neck"
 	dislocated = -1
-//	gendered_icon = 1
-	cannot_amputate = 1
+//	gendered_icon = TRUE
+	cannot_amputate = TRUE
 	parent_organ = null
 	encased = "ribcage"
 
@@ -27,12 +27,12 @@
 	min_broken_damage = 35
 	w_class = 4
 	body_part = LOWER_TORSO
-	vital = 1
+	vital = TRUE
 	parent_organ = "chest"
 	amputation_point = "lumbar"
 	joint = "hip"
 	dislocated = -1
-//	gendered_icon = 1
+//	gendered_icon = TRUE
 
 /obj/item/organ/external/arm
 	limb_name = "l_arm"
@@ -45,7 +45,7 @@
 	parent_organ = "chest"
 	joint = "left elbow"
 	amputation_point = "left shoulder"
-	can_grasp = 1
+	can_grasp = TRUE
 
 /obj/item/organ/external/arm/right
 	limb_name = "r_arm"
@@ -67,7 +67,7 @@
 	parent_organ = "groin"
 	joint = "left knee"
 	amputation_point = "left hip"
-	can_stand = 1
+	can_stand = TRUE
 
 /obj/item/organ/external/leg/right
 	limb_name = "r_leg"
@@ -90,7 +90,7 @@
 	parent_organ = "l_leg"
 	joint = "left ankle"
 	amputation_point = "left ankle"
-	can_stand = 1
+	can_stand = TRUE
 
 /obj/item/organ/external/foot/removed()
 	if(owner) owner.u_equip(owner.shoes)
@@ -117,7 +117,7 @@
 	parent_organ = "l_arm"
 	joint = "left wrist"
 	amputation_point = "left wrist"
-	can_grasp = 1
+	can_grasp = TRUE
 
 /obj/item/organ/external/hand/removed()
 	owner.u_equip(owner.gloves)
@@ -140,13 +140,13 @@
 	min_broken_damage = 35
 	w_class = 3
 	body_part = HEAD
-	vital = 1
+	vital = TRUE
 	parent_organ = "chest"
 	joint = "jaw"
 	amputation_point = "neck"
-//	gendered_icon = 1
+//	gendered_icon = TRUE
 	encased = "skull"
-	var/can_intake_reagents = 1
+	var/can_intake_reagents = TRUE
 
 /obj/item/organ/external/head/removed()
 	if(owner)

@@ -9,7 +9,7 @@
 	throw_speed = 3
 	throw_range = 10
 
-	var/secured = 0
+	var/secured = FALSE
 	var/obj/item/device/assembly/a_left = null
 	var/obj/item/device/assembly/a_right = null
 	var/obj/special_assembly = null
@@ -28,13 +28,13 @@
 
 
 	IsAssemblyHolder()
-		return 1
+		return TRUE
 
 
 	attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
-		if((!D)||(!D2))	return 0
-		if((!isassembly(D))||(!isassembly(D2)))	return 0
-		if((D:secured)||(D2:secured))	return 0
+		if((!D)||(!D2))	return FALSE
+		if((!isassembly(D))||(!isassembly(D2)))	return FALSE
+		if((D:secured)||(D2:secured))	return FALSE
 		if(user)
 			user.remove_from_mob(D)
 			user.remove_from_mob(D2)
@@ -48,17 +48,17 @@
 		update_icon()
 		usr.put_in_hands(src)
 
-		return 1
+		return TRUE
 
 
 	attach_special(var/obj/O, var/mob/user)
 		if(!O)	return
-		if(!O.IsSpecialAssembly())	return 0
+		if(!O.IsSpecialAssembly())	return FALSE
 
 /*		if(O:Attach_Holder())
 			special_assembly = O
 			update_icon()
-			src.name = "[a_left.name] [a_right.name] [special_assembly.name] assembly"
+			name = "[a_left.name] [a_right.name] [special_assembly.name] assembly"
 */
 		return
 
@@ -70,7 +70,7 @@
 			for(var/O in a_left.attached_overlays)
 				overlays += "[O]_l"
 		if(a_right)
-			src.overlays += "[a_right.icon_state]_right"
+			overlays += "[a_right.icon_state]_right"
 			for(var/O in a_right.attached_overlays)
 				overlays += "[O]_r"
 		if(master)
@@ -79,15 +79,15 @@
 /*		if(special_assembly)
 			special_assembly.update_icon()
 			if(special_assembly:small_icon_state)
-				src.overlays += special_assembly:small_icon_state
+				overlays += special_assembly:small_icon_state
 				for(var/O in special_assembly:small_icon_state_overlays)
-					src.overlays += O
+					overlays += O
 */
 
 	examine(mob/user)
 		..(user)
-		if ((in_range(src, user) || src.loc == user))
-			if (src.secured)
+		if ((in_range(src, user) || loc == user))
+			if (secured)
 				user << "\The [src] is ready!"
 			else
 				user << "\The [src] can be attached!"
@@ -165,8 +165,8 @@
 
 
 	attack_self(mob/user as mob)
-		src.add_fingerprint(user)
-		if(src.secured)
+		add_fingerprint(user)
+		if(secured)
 			if(!a_left || !a_right)
 				user << "\red Assembly part missing!"
 				return
@@ -182,7 +182,7 @@
 					a_right.attack_self(user)
 		else
 			var/turf/T = get_turf(src)
-			if(!T)	return 0
+			if(!T)	return FALSE
 			if(a_left)
 				a_left:holder = null
 				a_left.loc = T
@@ -194,8 +194,8 @@
 		return
 
 
-	process_activation(var/obj/D, var/normal = 1, var/special = 1)
-		if(!D)	return 0
+	process_activation(var/obj/D, var/normal = TRUE, var/special = TRUE)
+		if(!D)	return FALSE
 		if(!secured)
 			visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
 		if((normal) && (a_right) && (a_left))
@@ -208,7 +208,7 @@
 //		if(special && special_assembly)
 //			if(!special_assembly == D)
 //				special_assembly.dothings()
-		return 1
+		return TRUE
 
 
 /obj/item/device/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking)
@@ -227,16 +227,16 @@
 		..()
 
 		var/obj/item/device/assembly/igniter/ign = new(src)
-		ign.secured = 1
+		ign.secured = TRUE
 		ign.holder = src
 		var/obj/item/device/assembly/timer/tmr = new(src)
 		tmr.time=5
-		tmr.secured = 1
+		tmr.secured = TRUE
 		tmr.holder = src
 		processing_objects.Add(tmr)
 		a_left = tmr
 		a_right = ign
-		secured = 1
+		secured = TRUE
 		update_icon()
 		name = initial(name) + " ([tmr.time] secs)"
 

@@ -2,31 +2,31 @@
 	name = "book"
 	icon = 'icons/obj/library.dmi'
 	icon_state ="book"
-	throw_speed = 1
+	throw_speed = TRUE
 	throw_range = 5
 	w_class = 3		 //upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
 	attack_verb = list("bashed", "whacked")
 	var/dat			 // Actual page content
-	var/due_date = 0 // Game time in 1/10th seconds
+	var/due_date = FALSE // Game time in TRUE/10th seconds
 	var/author		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	var/unique = 0   // 0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
+	var/unique = FALSE   // FALSE - Normal book, TRUE - Should not be treated as normal book, unable to be copied, unable to be modified
 	var/title		 // The real name of the book.
-	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
+	var/carved = FALSE	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
 
 /obj/item/weapon/book/attack_self(var/mob/user as mob)
 	if(carved)
 		if(store)
 			user << "<span class='notice'>[store] falls out of [title]!</span>"
-			store.loc = get_turf(src.loc)
+			store.loc = get_turf(loc)
 			store = null
 			return
 		else
 			user << "<span class='notice'>The pages of [title] have been cut out!</span>"
 			return
-	if(src.dat)
+	if(dat)
 		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
-		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
+		user.visible_message("[user] opens a book titled \"[title]\" and begins reading intently.")
 		onclose(user, "book")
 	else
 		user << "This book is completely blank!"
@@ -58,22 +58,22 @@
 					usr << "The title is invalid."
 					return
 				else
-					src.name = newtitle
-					src.title = newtitle
+					name = newtitle
+					title = newtitle
 			if("Contents")
 				var/content = sanitize(input("Write your book's contents (HTML NOT allowed):") as message|null, MAX_BOOK_MESSAGE_LEN)
 				if(!content)
 					usr << "The content is invalid."
 					return
 				else
-					src.dat += content
+					dat += content
 			if("Author")
 				var/newauthor = sanitize(input(usr, "Write the author's name:"))
 				if(!newauthor)
 					usr << "The name is invalid."
 					return
 				else
-					src.author = newauthor
+					author = newauthor
 			else
 				return
 	else if(istype(W, /obj/item/weapon/material/knife) || istype(W, /obj/item/weapon/wirecutters))
@@ -81,7 +81,7 @@
 		user << "<span class='notice'>You begin to carve out [title].</span>"
 		if(do_after(user, 30, src))
 			user << "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>"
-			carved = 1
+			carved = TRUE
 			return
 	else
 		..()

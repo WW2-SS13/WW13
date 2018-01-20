@@ -8,7 +8,7 @@
 	reagent_state = SOLID
 	metabolism = REM * 4
 	var/nutriment_factor = 30 // Per unit
-	var/injectable = 0
+	var/injectable = FALSE
 	color = "#664330"
 
 /datum/reagent/nutriment/New()
@@ -19,16 +19,16 @@
 /datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
 	if(!islist(newdata) || !newdata.len)
 		return
-	for(var/i in 1 to newdata.len)
+	for(var/i in TRUE to newdata.len)
 		if(!(newdata[i] in data))
 			data.Add(newdata[i])
-			data[newdata[i]] = 0
+			data[newdata[i]] = FALSE
 		data[newdata[i]] += newdata[newdata[i]]
-	var/totalFlavor = 0
-	for(var/i in 1 to data.len)
+	var/totalFlavor = FALSE
+	for(var/i in TRUE to data.len)
 		if (data[i])
 			totalFlavor += data[data[i]]
-	for(var/i in 1 to data.len) //cull the tasteless
+	for(var/i in TRUE to data.len) //cull the tasteless
 		if (data[i])
 			if(data[data[i]]/totalFlavor * 100 < 10)
 				data[data[i]] = null
@@ -43,7 +43,7 @@
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
-	M.heal_organ_damage(0.5 * removed, 0)
+	M.heal_organ_damage(0.5 * removed, FALSE)
 	M.nutrition += nutriment_factor * removed // For hunger and fatness
 //	M.bowels += nutriment_factor * removed	//For pooping
 	M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
@@ -53,7 +53,7 @@
 	id = "glucose"
 	color = "#FFFFFF"
 
-	injectable = 1
+	injectable = TRUE
 
 /datum/reagent/nutriment/protein
 	name = "animal protein"
@@ -82,7 +82,7 @@
 	description = "This is what you rub all over yourself to pretend to be a ghost."
 	taste_description = "chalky wheat"
 	reagent_state = SOLID
-	nutriment_factor = 1
+	nutriment_factor = TRUE
 	color = "#FFFFFF"
 
 /datum/reagent/nutriment/flour/touch_turf(var/turf/T)
@@ -125,7 +125,7 @@
 	taste_description = "rice"
 	taste_mult = 0.4
 	reagent_state = SOLID
-	nutriment_factor = 1
+	nutriment_factor = TRUE
 	color = "#FFFFFF"
 
 /datum/reagent/nutriment/cherryjelly
@@ -135,7 +135,7 @@
 	taste_description = "cherry"
 	taste_mult = 1.3
 	reagent_state = LIQUID
-	nutriment_factor = 1
+	nutriment_factor = TRUE
 	color = "#801E28"
 
 /datum/reagent/nutriment/cornoil
@@ -155,7 +155,7 @@
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
 	//	var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-	//	lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
+	//	lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), FALSE)
 	//	lowertemp.react()
 	//	T.assume_air(lowertemp)
 		qdel(hotspot)
@@ -178,7 +178,7 @@
 	id = "sprinkles"
 	description = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
 	taste_description = "childhood whimsy"
-	nutriment_factor = 1
+	nutriment_factor = TRUE
 	color = "#FF00FF"
 
 /datum/reagent/nutriment/mint
@@ -199,7 +199,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.nutrition = max(M.nutrition - 10 * removed, 0)
+	M.nutrition = max(M.nutrition - 10 * removed, FALSE)
 
 /* Non-food stuff like condiments */
 
@@ -240,11 +240,11 @@
 	color = "#B31008"
 
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
+	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, FALSE)
 	if(prob(1))
 		M.emote("shiver")
 	if(istype(M, /mob/living/carbon/slime))
-		M.bodytemperature = max(M.bodytemperature - rand(10,20), 0)
+		M.bodytemperature = max(M.bodytemperature - rand(10,20), FALSE)
 	holder.remove_reagent("capsaicin", 5)
 
 /datum/reagent/capsaicin
@@ -272,7 +272,7 @@
 		if(prob(5) || dose == metabolism) //dose == metabolism is a very hacky way of forcing the message the first time this procs
 			M << discomfort_message
 	else
-		M.apply_effect(agony_amount, AGONY, 0)
+		M.apply_effect(agony_amount, AGONY, FALSE)
 		if(prob(5))
 			M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
 			M << "<span class='danger'>You feel like your insides are burning!</span>"
@@ -295,9 +295,9 @@
 	slime_temp_adj = 15
 
 /datum/reagent/capsaicin/condensed/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	var/eyes_covered = 0
-	var/mouth_covered = 0
-	var/no_pain = 0
+	var/eyes_covered = FALSE
+	var/mouth_covered = FALSE
+	var/no_pain = FALSE
 	var/obj/item/eye_protection = null
 	var/obj/item/face_protection = null
 
@@ -306,17 +306,17 @@
 		var/mob/living/carbon/human/H = M
 		protection = list(H.head, H.glasses, H.wear_mask)
 		if(H.species && (H.species.flags & NO_PAIN))
-			no_pain = 1 //TODO: living-level can_feel_pain() proc
+			no_pain = TRUE //TODO: living-level can_feel_pain() proc
 	else
 		protection = list(M.wear_mask)
 
 	for(var/obj/item/I in protection)
 		if(I)
 			if(I.body_parts_covered & EYES)
-				eyes_covered = 1
+				eyes_covered = TRUE
 				eye_protection = I.name
 			if((I.body_parts_covered & FACE) && !(I.item_flags & FLEXIBLEMATERIAL))
-				mouth_covered = 1
+				mouth_covered = TRUE
 				face_protection = I.name
 
 	var/message = null
@@ -350,7 +350,7 @@
 	if(dose == metabolism)
 		M << "<span class='danger'>You feel like your insides are burning!</span>"
 	else
-		M.apply_effect(4, AGONY, 0)
+		M.apply_effect(4, AGONY, FALSE)
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
 	if(istype(M, /mob/living/carbon/slime))
@@ -365,15 +365,15 @@
 	description = "Uh, some kind of drink."
 	reagent_state = LIQUID
 	color = "#E78108"
-	var/nutrition = 0 // Per unit
-	var/adj_dizzy = 0 // Per tick
-	var/adj_drowsy = 0
-	var/adj_sleepy = 0
-	var/adj_temp = 0
+	var/nutrition = FALSE // Per unit
+	var/adj_dizzy = FALSE // Per tick
+	var/adj_drowsy = FALSE
+	var/adj_sleepy = FALSE
+	var/adj_temp = FALSE
 
 /datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustToxLoss(removed) // Probably not a good idea; not very deadly though
-	if (M.water < 0)
+	if (M.water < FALSE)
 		M.water += 50
 	M.water += removed * 5
 	return
@@ -384,9 +384,9 @@
 	M.dizziness = max(0, M.dizziness + adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
 	M.sleeping = max(0, M.sleeping + adj_sleepy)
-	if(adj_temp > 0 && M.bodytemperature < 310) // 310 is the normal bodytemp. 310.055
+	if(adj_temp > FALSE && M.bodytemperature < 310) // 310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(310, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(adj_temp < 0 && M.bodytemperature > 310)
+	if(adj_temp < FALSE && M.bodytemperature > 310)
 		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
 // Juices
@@ -410,7 +410,7 @@
 	id = "carrotjuice"
 	description = "It is just like a carrot but without crunching."
 	taste_description = "carrots"
-	color = "#FF8C00" // rgb: 255, 140, 0
+	color = "#FF8C00" // rgb: 255, 140, FALSE
 
 /datum/reagent/drink/carrotjuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -499,10 +499,10 @@
 
 /datum/reagent/drink/milk/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.heal_organ_damage(0.5 * removed, 0)
+	M.heal_organ_damage(0.5 * removed, FALSE)
 	holder.remove_reagent("capsaicin", 10 * removed)
 
-	if (M.water < 0)
+	if (M.water < FALSE)
 		M.water += rand(20,30)
 	M.water += removed * 10
 
@@ -540,7 +540,7 @@
 	id = "icetea"
 	description = "No relation to a certain rap artist/ actor."
 	taste_description = "sweet tea"
-	color = "#104038" // rgb: 16, 64, 56
+	color = "#104038" // rgb: TRUE6, 64, 56
 	adj_temp = -5
 
 /datum/reagent/drink/coffee
@@ -558,9 +558,9 @@
 
 /datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(adj_temp > 0)
+	if(adj_temp > FALSE)
 		holder.remove_reagent("frostoil", 10 * removed)
-	M.add_chemical_effect(CE_PULSE, 1)
+	M.add_chemical_effect(CE_PULSE, TRUE)
 
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	M.make_jittery(5)
@@ -584,19 +584,19 @@
 
 /datum/reagent/drink/coffee/soy_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.heal_organ_damage(0.5 * removed, 0)
+	M.heal_organ_damage(0.5 * removed, FALSE)
 
 /datum/reagent/drink/coffee/cafe_latte
 	name = "Cafe Latte"
 	id = "cafe_latte"
 	description = "A nice, strong and tasty beverage while you are reading."
 	taste_description = "bitter cream"
-	color = "#664300" // rgb: 102, 67, 0
+	color = "#664300" // rgb: 102, 67, FALSE
 	adj_temp = 5
 
 /datum/reagent/drink/coffee/cafe_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.heal_organ_damage(0.5 * removed, 0)
+	M.heal_organ_damage(0.5 * removed, FALSE)
 
 /datum/reagent/drink/hot_coco
 	name = "Hot Chocolate"
@@ -692,11 +692,11 @@
 
 /datum/reagent/drink/nuka_cola/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	M.add_chemical_effect(CE_SPEEDBOOST, TRUE)
 	M.make_jittery(20)
 	M.druggy = max(M.druggy, 30)
 	M.dizziness += 5
-	M.drowsyness = 0
+	M.drowsyness = FALSE
 
 /datum/reagent/drink/grenadine
 	name = "Grenadine Syrup"
@@ -757,7 +757,7 @@
 	taste_description = "homely fruit"
 	reagent_state = LIQUID
 	color = "#FF8CFF"
-	nutrition = 1
+	nutrition = TRUE
 
 /datum/reagent/drink/doctor_delight/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -775,7 +775,7 @@
 	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
 	taste_description = "dry and cheap noodles"
 	reagent_state = SOLID
-	nutrition = 1
+	nutrition = TRUE
 	color = "#302000"
 
 /datum/reagent/drink/hot_ramen
@@ -821,6 +821,9 @@
 
 // Basic
 
+/datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.add_chemical_effect(CE_PAINKILLER, 5 * removed)
+
 /datum/reagent/ethanol/absinthe
 	name = "Absinthe"
 	id = "absinthe"
@@ -849,7 +852,7 @@
 
 /datum/reagent/ethanol/beer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.jitteriness = max(M.jitteriness - 3, 0)
+	M.jitteriness = max(M.jitteriness - 3, FALSE)
 
 /datum/reagent/ethanol/bluecuracao
 	name = "Blue Curacao"
@@ -953,7 +956,7 @@
 	taste_description = "jitters and death"
 	color = "#102000"
 	strength = 25
-	nutriment_factor = 1
+	nutriment_factor = TRUE
 
 /datum/reagent/ethanol/thirteenloko/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -977,12 +980,12 @@
 	id = "vodka"
 	description = "Number one drink AND fueling choice for Russians worldwide."
 	taste_description = "grain alcohol"
-	color = "#0064C8" // rgb: 0, 100, 200
+	color = "#0064C8" // rgb: FALSE, 100, 200
 	strength = 25
 
 /datum/reagent/ethanol/vodka/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.apply_effect(max(M.radiation - 1 * removed, 0), IRRADIATE, check_protection = 0)
+	M.apply_effect(max(M.radiation - TRUE * removed, FALSE), IRRADIATE, check_protection = FALSE)
 
 /datum/reagent/ethanol/whiskey
 	name = "Whiskey"
@@ -999,6 +1002,7 @@
 	taste_description = "bitter sweetness"
 	color = "#7E4043" // rgb: 126, 64, 67
 	strength = 15
+	nutriment_factor = 1
 
 // Cocktails
 
@@ -1086,7 +1090,7 @@
 	id = "bananahonk"
 	description = "A drink from Clown Heaven."
 	taste_description = "a bad joke"
-	nutriment_factor = 1
+	nutriment_factor = TRUE
 	color = "#FFFF91"
 	strength = 12
 
@@ -1165,7 +1169,7 @@
 /datum/reagent/ethanol/martini
 	name = "Classic Martini"
 	id = "martini"
-	description = "Vermouth with Gin. Not quite how 007 enjoyed it, but still delicious."
+	description = "Vermouth with Gin. Not quite how FALSE07 enjoyed it, but still delicious."
 	taste_description = "dry class"
 	color = "#664300"
 	strength = 25
@@ -1200,7 +1204,7 @@
 	id = "driestmartini"
 	description = "Only for the experienced. You think you see sand floating in the glass."
 	taste_description = "a beach"
-	nutriment_factor = 1
+	nutriment_factor = TRUE
 	color = "#2E6671"
 	strength = 12
 
@@ -1358,7 +1362,7 @@
 	reagent_state = LIQUID
 	color = "#664300"
 	strength = 30
-	nutriment_factor = 1
+	nutriment_factor = TRUE
 
 /datum/reagent/ethanol/moonshine
 	name = "Moonshine"
@@ -1410,9 +1414,9 @@
 		var/obj/item/organ/heart/L = H.internal_organs_by_name["heart"]
 		if (L && istype(L))
 			if(dose < 120)
-				L.take_damage(10 * removed, 0)
+				L.take_damage(10 * removed, FALSE)
 			else
-				L.take_damage(100, 0)
+				L.take_damage(100, FALSE)
 
 /datum/reagent/ethanol/red_mead
 	name = "Red Mead"
@@ -1446,7 +1450,7 @@
 	description = "A drink from Mime Heaven."
 	taste_description = "a pencil eraser"
 	taste_mult = 1.2
-	nutriment_factor = 1
+	nutriment_factor = TRUE
 	color = "#664300"
 	strength = 12
 
@@ -1513,7 +1517,7 @@
 /datum/reagent/ethanol/vodkamartini
 	name = "Vodka Martini"
 	id = "vodkamartini"
-	description = "Vodka with Gin. Not quite how 007 enjoyed it, but still delicious."
+	description = "Vodka with Gin. Not quite how FALSE07 enjoyed it, but still delicious."
 	taste_description = "shaken, not stirred"
 	color = "#664300"
 	strength = 12
@@ -1523,7 +1527,7 @@
 	id = "vodkatonic"
 	description = "For when a gin and tonic isn't russian enough."
 	taste_description = "tart bitterness"
-	color = "#0064C8" // rgb: 0, 100, 200
+	color = "#0064C8" // rgb: FALSE, 100, 200
 	strength = 15
 
 /datum/reagent/ethanol/white_russian

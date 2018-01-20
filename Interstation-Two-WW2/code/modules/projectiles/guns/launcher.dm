@@ -7,12 +7,12 @@
 
 	var/release_force = 0
 	var/throw_distance = 10
-	muzzle_flash = 0
+	muzzle_flash = FALSE
 	fire_sound_text = "a launcher firing"
 
 //This normally uses a proc on projectiles and our ammo is not strictly speaking a projectile.
 /obj/item/weapon/gun/launcher/can_hit(var/mob/living/target as mob, var/mob/living/user as mob)
-	return 1
+	return TRUE
 
 //Override this to avoid a runtime with suicide handling.
 /obj/item/weapon/gun/launcher/handle_suicide(mob/living/user)
@@ -26,4 +26,4 @@
 	update_release_force(projectile)
 	projectile.loc = get_turf(user)
 	projectile.throw_at(target, throw_distance, release_force, user)
-	return 1
+	return TRUE

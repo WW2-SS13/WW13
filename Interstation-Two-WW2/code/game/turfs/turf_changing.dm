@@ -1,8 +1,8 @@
 
 /turf/proc/ReplaceWithLattice()
-	src.ChangeTurf(get_base_turf_by_area(src))
+	ChangeTurf(get_base_turf_by_area(src))
 	spawn()
-		new /obj/structure/lattice( locate(src.x, src.y, src.z) )
+		new /obj/structure/lattice( locate(x, y, z) )
 
 // Removes all signs of lattice on the pos of the turf -Donkieyo
 /turf/proc/RemoveLattice()
@@ -11,7 +11,7 @@
 		qdel(L)
 
 //Creates a new turf
-/turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
+/turf/proc/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = FALSE)
 	if (!N)
 		return
 
@@ -28,7 +28,7 @@
 	var/old_lighting_overlay = lighting_overlay
 	var/list/old_lighting_corners = corners
 
-	//world << "Replacing [src.type] with [N]"
+	//world << "Replacing [type] with [N]"
 
 	//if(connections) connections.erase_all()
 /*
@@ -40,7 +40,7 @@
 		if(S.zone) S.zone.rebuild()*/
 
 	if(ispath(N, /turf/floor))
-		var/turf/W = new N( locate(src.x, src.y, src.z) )
+		var/turf/W = new N( locate(x, y, z) )
 		if (istype(W, /turf/floor/plating/grass))
 			if (ticker.mode.vars.Find("season"))
 				switch (ticker.mode:season)
@@ -69,7 +69,7 @@
 
 	else
 
-		var/turf/W = new N( locate(src.x, src.y, src.z) )
+		var/turf/W = new N( locate(x, y, z) )
 
 		if(old_fire)
 			old_fire.RemoveFire()
@@ -89,9 +89,9 @@
 
 	for(var/atom/A in contents)
 		if(A.light)
-			A.light.force_update = 1
+			A.light.force_update = TRUE
 
-	for(var/i = 1 to 4)//Generate more light corners when needed. If removed - pitch black shuttles will come for your soul!
+	for(var/i = TRUE to 4)//Generate more light corners when needed. If removed - pitch black shuttles will come for your soul!
 		if(corners[i]) // Already have a corner on this direction.
 			continue
 		corners[i] = new/datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL[i])

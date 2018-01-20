@@ -2,14 +2,14 @@
 	name = "timer"
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
-//	origin_tech = list(TECH_MAGNET = 1)
+//	origin_tech = list(TECH_MAGNET = TRUE)
 	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 50, "waste" = 10)
 
 	wires = WIRE_PULSE
 
-	secured = 0
+	secured = FALSE
 
-	var/timing = 0
+	var/timing = FALSE
 	var/time = 10
 
 	proc
@@ -17,12 +17,12 @@
 
 
 	activate()
-		if(!..())	return 0//Cooldown check
+		if(!..())	return FALSE//Cooldown check
 
 		timing = !timing
 
 		update_icon()
-		return 0
+		return FALSE
 
 
 	toggle_secure()
@@ -30,14 +30,14 @@
 		if(secured)
 			processing_objects.Add(src)
 		else
-			timing = 0
+			timing = FALSE
 			processing_objects.Remove(src)
 		update_icon()
 		return secured
 
 
 	timer_end()
-		if(!secured)	return 0
+		if(!secured)	return FALSE
 		pulse(0)
 		if(!holder)
 			visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
@@ -48,10 +48,10 @@
 
 
 	process()
-		if(timing && (time > 0))
+		if(timing && (time > FALSE))
 			time--
-		if(timing && time <= 0)
-			timing = 0
+		if(timing && time <= FALSE)
+			timing = FALSE
 			timer_end()
 			time = 10
 		return
@@ -71,7 +71,7 @@
 	interact(mob/user as mob)//TODO: Have this use the wires
 		if(!secured)
 			user.show_message("\red The [name] is unsecured!")
-			return 0
+			return FALSE
 		var/second = time % 60
 		var/minute = (time - second) / 60
 		var/dat = text("<TT><B>Timing Unit</B>\n[] []:[]\n<A href='?src=\ref[];tp=-30'>-</A> <A href='?src=\ref[];tp=-1'>-</A> <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=30'>+</A>\n</TT>", (timing ? text("<A href='?src=\ref[];time=0'>Timing</A>", src) : text("<A href='?src=\ref[];time=1'>Not Timing</A>", src)), minute, second, src, src, src, src)
@@ -83,7 +83,7 @@
 
 
 	Topic(href, href_list)
-		if(..()) return 1
+		if(..()) return TRUE
 		if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 			usr << browse(null, "window=timer")
 			onclose(usr, "timer")
@@ -96,7 +96,7 @@
 		if(href_list["tp"])
 			var/tp = text2num(href_list["tp"])
 			time += tp
-			time = min(max(round(time), 0), 600)
+			time = min(max(round(time), FALSE), 600)
 
 		if(href_list["close"])
 			usr << browse(null, "window=timer")

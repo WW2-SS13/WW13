@@ -1,12 +1,12 @@
 /obj/machinery/space_heater
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
 	var/obj/item/weapon/cell/cell
-	var/on = 0
+	var/on = FALSE
 	var/set_temperature = T0C + 50	//K
 	var/heating_power = 40000
 
@@ -29,13 +29,13 @@
 	if(panel_open)
 		user << "The power cell is [cell ? "installed" : "missing"]."
 	else
-		user << "The charge meter reads [cell ? round(cell.percent(),1) : 0]%"
+		user << "The charge meter reads [cell ? round(cell.percent(),1) : FALSE]%"
 	return
 
 /obj/machinery/space_heater/powered()
 	if(cell && cell.charge)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/space_heater/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -77,7 +77,7 @@
 	return
 
 /obj/machinery/space_heater/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	interact(user)
 
 /obj/machinery/space_heater/interact(mob/user as mob)
@@ -91,7 +91,7 @@
 		else
 			dat += "<A href='byond://?src=\ref[src];op=cellinstall'>Removed</A><BR>"
 
-		dat += "Power Level: [cell ? round(cell.percent(),1) : 0]%<BR><BR>"
+		dat += "Power Level: [cell ? round(cell.percent(),1) : FALSE]%<BR><BR>"
 
 		dat += "Set Temperature: "
 
@@ -113,7 +113,7 @@
 /obj/machinery/space_heater/Topic(href, href_list)
 	if (usr.stat)
 		return
-	if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+	if ((in_range(src, usr) && istype(loc, /turf)) || (istype(usr, /mob/living/silicon)))
 		usr.set_machine(src)
 
 		switch(href_list["op"])
@@ -121,7 +121,7 @@
 			if("temp")
 				var/value = text2num(href_list["val"])
 
-				// limit to 0-90 degC
+				// limit to FALSE-90 degC
 				set_temperature = dd_range(T0C, T0C + 90, set_temperature + value)
 
 			if("cellremove")
@@ -163,7 +163,7 @@
 
 				if(removed)
 					var/heat_transfer = removed.get_thermal_energy_change(set_temperature)
-					if(heat_transfer > 0)	//heating air
+					if(heat_transfer > FALSE)	//heating air
 						heat_transfer = min( heat_transfer , heating_power ) //limit by the power rating of the heater
 
 						removed.add_thermal_energy(heat_transfer)
@@ -182,6 +182,6 @@
 
 				env.merge(removed)
 		else
-			on = 0
+			on = FALSE
 			power_change()
 			update_icon()

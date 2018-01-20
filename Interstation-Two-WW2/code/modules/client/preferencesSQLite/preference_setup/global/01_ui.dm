@@ -1,6 +1,6 @@
 /datum/category_item/player_setup_item/player_global/ui
 	name = "UI"
-	sort_order = 1
+	sort_order = TRUE
 /*
 /datum/category_item/player_setup_item/player_global/ui/load_preferences()
 	S["UI_style"]		>> pref.UI_style
@@ -17,7 +17,7 @@
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
 	pref.UI_style		= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
 	pref.UI_style_color	= sanitize_hexcolor(pref.UI_style_color, initial(pref.UI_style_color))
-	pref.UI_style_alpha	= sanitize_integer(pref.UI_style_alpha, 0, 255, initial(pref.UI_style_alpha))
+	pref.UI_style_alpha	= sanitize_integer(pref.UI_style_alpha, FALSE, 255, initial(pref.UI_style_alpha))
 	pref.ooccolor		= sanitize_hexcolor(pref.ooccolor, initial(pref.ooccolor))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
@@ -71,4 +71,4 @@
 	return ..()
 
 /datum/category_item/player_setup_item/player_global/ui/proc/can_select_ooc_color(var/mob/user)
-	return ((config.allow_admin_ooccolor && check_rights(R_ADMIN, 0, user)) || (user.client && user.client.isPatron("$3+")))
+	return ((config.allow_admin_ooccolor && check_rights(R_ADMIN, FALSE, user)) || (user.client && user.client.isPatron("$3+")))

@@ -1,15 +1,15 @@
 /datum/antagonist/proc/print_player_summary()
 
 	if(!current_antagonists.len)
-		return 0
+		return FALSE
 
-	var/text = "<br><br><font size = 2><b>The [current_antagonists.len == 1 ? "[role_text] was" : "[role_text_plural] were"]:</b></font>"
+	var/text = "<br><br><font size = 2><b>The [current_antagonists.len == TRUE ? "[role_text] was" : "[role_text_plural] were"]:</b></font>"
 	for(var/datum/mind/P in current_antagonists)
 		text += print_player_full(P)
 		text += get_special_objective_text(P)
 		if(!global_objectives.len && P.objectives && P.objectives.len)
 			var/failed
-			var/num = 1
+			var/num = TRUE
 			for(var/datum/objective/O in P.objectives)
 				text += print_objective(O, num)
 				if(O.check_completion())
@@ -18,7 +18,7 @@
 				else
 					text += "<font color='red'>Fail.</font>"
 
-					failed = 1
+					failed = TRUE
 				num++
 				if(failed)
 					text += "<br><font color='red'><B>The [role_text] has failed.</B></font>"
@@ -27,9 +27,9 @@
 
 	if(global_objectives && global_objectives.len)
 		text += "<BR><FONT size = 2>Their objectives were:</FONT>"
-		var/num = 1
+		var/num = TRUE
 		for(var/datum/objective/O in global_objectives)
-			text += print_objective(O, num, 1)
+			text += print_objective(O, num, TRUE)
 			num++
 
 	// Display the results.
@@ -65,8 +65,8 @@
 /datum/antagonist/proc/print_player_full(var/datum/mind/ply)
 	var/text = print_player_lite(ply)
 
-	var/TC_uses = 0
-	var/uplink_true = 0
+	var/TC_uses = FALSE
+	var/uplink_true = FALSE
 	var/purchases = ""
 	if(uplink_true)
 		text += " (used [TC_uses] TC)"
@@ -76,7 +76,7 @@
 	return text
 
 /proc/print_ownerless_uplinks()
-	return 0
+	return FALSE
 
 /proc/get_uplink_purchases(var/obj/item/device/uplink/H)
 	return list()

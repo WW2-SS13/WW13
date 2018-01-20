@@ -25,9 +25,9 @@
 
 
 	examine(mob/user)
-		if(..(user, 0) && air_contents.gas["oxygen"] < 10)
+		if(..(user, FALSE) && air_contents.gas["oxygen"] < 10)
 			user << text("<span class='warning'>The meter on \the [src] indicates you are almost out of oxygen!</span>")
-			//playsound(usr, 'sound/effects/alert.ogg', 50, 1)
+			//playsound(usr, 'sound/effects/alert.ogg', 50, TRUE)
 
 
 /obj/item/weapon/tank/oxygen/yellow
@@ -68,14 +68,14 @@
 
 
 	examine(mob/user)
-		if(..(user, 0) && air_contents.gas["oxygen"] < 1 && loc==user)
-			user << "<span class='danger'>The meter on the [src.name] indicates you are almost out of air!</span>"
+		if(..(user, FALSE) && air_contents.gas["oxygen"] < TRUE && loc==user)
+			user << "<span class='danger'>The meter on the [name] indicates you are almost out of air!</span>"
 			user << sound('sound/effects/alert.ogg')
 
 /obj/item/weapon/tank/air/New()
 	..()
 
-	src.air_contents.adjust_multi("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD, "nitrogen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
+	air_contents.adjust_multi("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD, "nitrogen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
 
 	return
 
@@ -96,7 +96,7 @@
 /obj/item/weapon/tank/plasma/New()
 	..()
 
-	src.air_contents.adjust_gas("plasma", (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
+	air_contents.adjust_gas("plasma", (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
 /obj/item/weapon/tank/plasma/super
@@ -105,8 +105,8 @@
 /obj/item/weapon/tank/plasma/super/New() // 30x regular volume
 	..()
 
-	src.my_tank_fragment_pressure*=25 //otherwise, we explode.
-	src.air_contents.adjust_gas("plasma", ((3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))*250)
+	my_tank_fragment_pressure*=25 //otherwise, we explode.
+	air_contents.adjust_gas("plasma", ((3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))*250)
 	return
 
 
@@ -116,10 +116,10 @@
 	if (istype(W, /obj/item/weapon/flamethrower))
 		var/obj/item/weapon/flamethrower/F = W
 		if ((!F.status)||(F.ptank))	return
-		src.master = F
+		master = F
 		F.ptank = src
 		user.remove_from_mob(src)
-		src.loc = F
+		loc = F
 	return
 
 /*
@@ -141,14 +141,14 @@
 
 	New()
 		..()
-		src.air_contents.adjust_gas("oxygen", (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+		air_contents.adjust_gas("oxygen", (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 		return
 
 
 	examine(mob/user)
-		if(..(user, 0) && air_contents.gas["oxygen"] < 0.2 && loc==user)
-			user << text("<span class='danger'>The meter on the [src.name] indicates you are almost out of air!</span>")
+		if(..(user, FALSE) && air_contents.gas["oxygen"] < 0.2 && loc==user)
+			user << text("<span class='danger'>The meter on the [name] indicates you are almost out of air!</span>")
 			user << sound('sound/effects/alert.ogg')
 
 /obj/item/weapon/tank/emergency_oxygen/engi
@@ -176,10 +176,10 @@
 /obj/item/weapon/tank/nitrogen/New()
 	..()
 
-	src.air_contents.adjust_gas("nitrogen", (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
+	air_contents.adjust_gas("nitrogen", (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
 	return
 
 /obj/item/weapon/tank/nitrogen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["nitrogen"] < 10)
+	if(..(user, FALSE) && air_contents.gas["nitrogen"] < 10)
 		user << text("<span class='danger'>The meter on \the [src] indicates you are almost out of nitrogen!</span>")
-		//playsound(user, 'sound/effects/alert.ogg', 50, 1)
+		//playsound(user, 'sound/effects/alert.ogg', 50, TRUE)

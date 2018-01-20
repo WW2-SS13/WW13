@@ -8,11 +8,11 @@
 //	origin_tech = list(TECH_MATERIAL=2, TECH_MAGNET=4, TECH_BLUESPACE=5, TECH_ILLEGAL=4)
 
 /obj/item/weapon/implant/compressed/trigger(emote, mob/source as mob)
-	if (src.scanned == null)
-		return 0
+	if (scanned == null)
+		return FALSE
 
-	if (emote == src.activation_emote)
-		source << "The air glows as \the [src.scanned.name] uncompresses."
+	if (emote == activation_emote)
+		source << "The air glows as \the [scanned.name] uncompresses."
 		activate()
 
 /obj/item/weapon/implant/compressed/activate()
@@ -25,10 +25,10 @@
 
 /obj/item/weapon/implant/compressed/install(mob/source as mob)
 	..()
-	src.activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	if (source.mind)
-		source.mind.store_memory("Compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
-	source << "The implanted compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
+		source.mind.store_memory("Compressed matter implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate.", FALSE, FALSE)
+	source << "The implanted compressed matter implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate."
 
 
 /obj/item/weapon/implanter/compressed

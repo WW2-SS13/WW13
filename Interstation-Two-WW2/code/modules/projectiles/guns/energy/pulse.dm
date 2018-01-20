@@ -17,8 +17,8 @@
 		)
 
 /obj/item/weapon/gun/energy/pulse_rifle/mounted
-	self_recharge = 1
-	use_external_power = 1
+	self_recharge = TRUE
+	use_external_power = TRUE
 
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer
 	name = "pulse destroyer"
@@ -30,7 +30,7 @@
 	charge_cost=400
 
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user as mob)
-	user << "<span class='warning'>[src.name] has three settings, and they are all DESTROY.</span>"
+	user << "<span class='warning'>[name] has three settings, and they are all DESTROY.</span>"
 
 //WHY?
 /obj/item/weapon/gun/energy/pulse_rifle/M1911

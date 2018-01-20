@@ -7,7 +7,7 @@
 	matter = list("glass" = 200)
 	flags = NOBLUDGEON
 	var/list/accept_mobs = list(/mob/living/simple_animal/lizard, /mob/living/simple_animal/mouse)
-	var/contains = 0 // 0 = nothing, 1 = money, 2 = animal, 3 = spiderling
+	var/contains = FALSE // FALSE = nothing, TRUE = money, 2 = animal, 3 = spiderling
 
 /obj/item/glass_jar/New()
 	..()
@@ -17,10 +17,10 @@
 	if(!proximity || contains)
 		return
 	if(istype(A, /mob))
-		var/accept = 0
+		var/accept = FALSE
 		for(var/D in accept_mobs)
 			if(istype(A, D))
-				accept = 1
+				accept = TRUE
 		if(!accept)
 			user << "[A] doesn't fit into \the [src]."
 			return
@@ -37,26 +37,26 @@
 			for(var/obj/O in src)
 				O.loc = user.loc
 			user << "<span class='notice'>You take money out of \the [src].</span>"
-			contains = 0
+			contains = FALSE
 			update_icon()
 			return
 		if(2)
 			for(var/mob/M in src)
 				M.loc = user.loc
 				user.visible_message("<span class='notice'>[user] releases [M] from \the [src].</span>", "<span class='notice'>You release [M] from \the [src].</span>")
-			contains = 0
+			contains = FALSE
 			update_icon()
 			return
 
 /obj/item/glass_jar/attackby(var/obj/item/W, var/mob/user)
 	/*
 	if(istype(W, /obj/item/weapon/spacecash))
-		if(contains == 0)
-			contains = 1
-		if(contains != 1)
+		if(contains == FALSE)
+			contains = TRUE
+		if(contains != TRUE)
 			return
 		var/obj/item/weapon/spacecash/S = W
-		user.visible_message("<span class='notice'>[user] puts [S.worth] [S.worth > 1 ? "thalers" : "thaler"] into \the [src].</span>")
+		user.visible_message("<span class='notice'>[user] puts [S.worth] [S.worth > TRUE ? "thalers" : "thaler"] into \the [src].</span>")
 		user.drop_from_inventory(S)
 		S.forceMove(src)
 		update_icon()*/

@@ -2,8 +2,8 @@
 	name = "dart"
 	icon_state = "dart"
 	damage = 5
-	sharp = 1
-	embed = 1 //the dart is shot fast enough to pierce space suits, so I guess splintering inside the target can be a thing. Should be rare due to low damage.
+	sharp = TRUE
+	embed = TRUE //the dart is shot fast enough to pierce space suits, so I guess splintering inside the target can be a thing. Should be rare due to low damage.
 	var/reagent_amount = 15
 	kill_count = 15 //shorter range
 
@@ -13,7 +13,7 @@
 	reagents = new/datum/reagents(reagent_amount)
 	reagents.my_atom = src
 
-/obj/item/projectile/bullet/chemdart/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
+/obj/item/projectile/bullet/chemdart/on_hit(var/atom/target, var/blocked = FALSE, var/def_zone = null)
 	if(blocked < 2 && isliving(target))
 		var/mob/living/L = target
 		if(L.can_inject(target_zone=def_zone))
@@ -39,7 +39,7 @@
 	caliber = "dart"
 	ammo_type = /obj/item/ammo_casing/chemdart
 	max_ammo = 5
-	multiple_sprites = 1
+	multiple_sprites = TRUE
 
 /obj/item/weapon/gun/projectile/dartgun
 	name = "dart gun"
@@ -50,11 +50,11 @@
 	caliber = "dart"
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic click"
-	recoil = 0
-	silenced = 1
+	recoil = FALSE
+	silenced = TRUE
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/chemdart
-	auto_eject = 0
+	auto_eject = FALSE
 
 	var/list/beakers = list() //All containers inside the gun.
 	var/list/mixing = list() //Containers being used for mixing.
@@ -75,7 +75,7 @@
 /obj/item/weapon/gun/projectile/dartgun/update_icon()
 	if(!ammo_magazine)
 		icon_state = "dartgun-empty"
-		return 1
+		return TRUE
 
 	if(!ammo_magazine.stored_ammo || ammo_magazine.stored_ammo.len)
 		icon_state = "dartgun-0"
@@ -83,7 +83,7 @@
 		icon_state = "dartgun-5"
 	else
 		icon_state = "dartgun-[ammo_magazine.stored_ammo.len]"
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/projectile/dartgun/consume_next_projectile()
 	. = ..()
@@ -105,7 +105,7 @@
 
 /obj/item/weapon/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if (..()) // handle attachments
-		return 1
+		return TRUE
 
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(!istype(I, container_type))
@@ -119,8 +119,8 @@
 		B.loc = src
 		beakers += B
 		user << "\blue You slot [B] into [src]."
-		src.updateUsrDialog()
-		return 1
+		updateUsrDialog()
+		return TRUE
 	..()
 
 //fills the given dart with reagents
@@ -135,7 +135,7 @@
 	var/dat = "<b>[src] mixing control:</b><br><br>"
 
 	if (beakers.len)
-		var/i = 1
+		var/i = TRUE
 		for(var/obj/item/weapon/reagent_containers/glass/beaker/B in beakers)
 			dat += "Beaker [i] contains: "
 			if(B.reagents && B.reagents.reagent_list.len)
@@ -164,15 +164,15 @@
 
 /obj/item/weapon/gun/projectile/dartgun/proc/check_beaker_mixing(var/obj/item/B)
 	if(!mixing || !beakers)
-		return 0
+		return FALSE
 	for(var/obj/item/M in mixing)
 		if(M == B)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /obj/item/weapon/gun/projectile/dartgun/Topic(href, href_list)
-	if(..()) return 1
-	src.add_fingerprint(usr)
+	if(..()) return TRUE
+	add_fingerprint(usr)
 	if(href_list["stop_mix"])
 		var/index = text2num(href_list["stop_mix"])
 		if(index <= beakers.len)
@@ -195,7 +195,7 @@
 				B.loc = get_turf(src)
 	else if (href_list["eject_cart"])
 		unload_ammo(usr)
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return
 
 /obj/item/weapon/gun/projectile/dartgun/vox

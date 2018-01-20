@@ -9,7 +9,7 @@
 
 	// Plating data.
 	var/base_name = "plating"
-	var/base_desc = "The naked hull."
+	var/base_desc = "A destroyed floor."
 	var/base_icon = 'icons/turf/flooring/plating.dmi'
 	var/base_icon_state = "plating"
 
@@ -21,17 +21,20 @@
 	var/set_update_icon
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
-//	var/lava = 0
+//	var/lava = FALSE
 	var/overrided_icon_state
 
 	var/season = "SPRING"
-	var/uses_winter_overlay = 0
+	var/uses_winter_overlay = FALSE
 
-	var/muddy = 0
+	var/muddy = FALSE
+
+	var/move_delay = 0
 
 /turf/floor/proc/has_snow()
 	for (var/obj/snow/S in contents)
 		return S
+	return FALSE
 
 /turf/floor/is_plating()
 	return !flooring
@@ -44,7 +47,7 @@
 		set_flooring(get_flooring_data(floortype))
 
 /turf/floor/proc/set_flooring(var/decl/flooring/newflooring)
-	make_plating(defer_icon_update = 1)
+	make_plating(defer_icon_update = TRUE)
 	flooring = newflooring
 	update_icon(1)
 	levelupdate()
@@ -79,4 +82,4 @@
 
 /turf/floor/levelupdate()
 	for(var/obj/O in src)
-		O.hide(O.hides_under_flooring() && src.flooring)
+		O.hide(O.hides_under_flooring() && flooring)

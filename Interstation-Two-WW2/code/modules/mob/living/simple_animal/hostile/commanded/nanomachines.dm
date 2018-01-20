@@ -8,10 +8,10 @@
 	icon_state = "blobsquiggle_grey"
 	health = 10
 	maxHealth = 10
-	var/regen_time = 0
-	melee_damage_lower = 1
+	var/regen_time = FALSE
+	melee_damage_lower = TRUE
 	melee_damage_upper = 2
-	var/emergency_protocols = 0
+	var/emergency_protocols = FALSE
 	known_commands = list("stay", "stop", "attack", "follow", "heal", "emergency protocol")
 
 	response_help = "waves their hands through"
@@ -21,7 +21,7 @@
 /mob/living/simple_animal/hostile/commanded/nanomachine/Life()
 	regen_time++
 	if(regen_time == 2 && health < maxHealth) //slow regen
-		regen_time = 0
+		regen_time = FALSE
 		health++
 	. = ..()
 	if(.)
@@ -39,25 +39,25 @@
 
 /mob/living/simple_animal/hostile/commanded/nanomachine/proc/move_to_heal()
 	if(!target_mob)
-		return 0
+		return FALSE
 	walk_to(src,target_mob,1,move_to_delay)
 	if(Adjacent(target_mob))
 		stance = COMMANDED_HEALING
 
 /mob/living/simple_animal/hostile/commanded/nanomachine/proc/heal()
 	if(health <= 3 && !emergency_protocols) //dont die doing this.
-		return 0
+		return FALSE
 	if(!target_mob)
-		return 0
+		return FALSE
 	if(!Adjacent(target_mob) || SA_attackable(target_mob))
 		stance = COMMANDED_HEAL
-		return 0
+		return FALSE
 	if(target_mob.stat || target_mob.health >= target_mob.maxHealth) //he's either dead or healthy, move along.
 		allowed_targets -= target_mob
 		target_mob = null
 		stance = COMMANDED_HEAL
-		return 0
-	src.visible_message("\The [src] glows green for a moment, healing \the [target_mob]'s wounds.")
+		return FALSE
+	visible_message("\The [src] glows green for a moment, healing \the [target_mob]'s wounds.")
 	health -= 3
 	target_mob.adjustBruteLoss(-5)
 	target_mob.adjustFireLoss(-5)
@@ -70,26 +70,26 @@
 		if(findtext(text,"me")) //assumed want heals on master.
 			target_mob = speaker
 			stance = COMMANDED_HEAL
-			return 1
+			return TRUE
 		var/list/targets = get_targets_by_name(text)
-		if(targets.len > 1 || !targets.len)
-			src.say("ERROR. TARGET COULD NOT BE PARSED.")
-			return 0
+		if(targets.len > TRUE || !targets.len)
+			say("ERROR. TARGET COULD NOT BE PARSED.")
+			return FALSE
 		target_mob = targets[1]
 		stance = COMMANDED_HEAL
-		return 1
+		return TRUE
 	if(findtext(text,"emergency protocol"))
 		if(findtext(text,"deactivate"))
 			if(emergency_protocols)
-				src.say("EMERGENCY PROTOCOLS DEACTIVATED.")
-			emergency_protocols = 0
-			return 1
+				say("EMERGENCY PROTOCOLS DEACTIVATED.")
+			emergency_protocols = FALSE
+			return TRUE
 		if(findtext(text,"activate"))
 			if(!emergency_protocols)
-				src.say("EMERGENCY PROTOCOLS ACTIVATED.")
-			emergency_protocols = 1
-			return 1
+				say("EMERGENCY PROTOCOLS ACTIVATED.")
+			emergency_protocols = TRUE
+			return TRUE
 		if(findtext(text,"check"))
-			src.say("EMERGENCY PROTOCOLS [emergency_protocols ? "ACTIVATED" : "DEACTIVATED"].")
-			return 1
-	return 0
+			say("EMERGENCY PROTOCOLS [emergency_protocols ? "ACTIVATED" : "DEACTIVATED"].")
+			return TRUE
+	return FALSE

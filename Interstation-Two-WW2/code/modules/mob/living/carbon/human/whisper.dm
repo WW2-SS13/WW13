@@ -7,20 +7,20 @@
 		return
 
 	message = sanitize(message)
-	log_whisper("[src.name]/[src.key] : [message]")
+	log_whisper("[name]/[key] : [message]")
 
-	if (src.client)
-		if (src.client.prefs.muted & MUTE_IC)
+	if (client)
+		if (client.prefs.muted & MUTE_IC)
 			src << "\red You cannot whisper (muted)."
 			return
 
-		if (src.client.handle_spam_prevention(message,MUTE_IC))
+		if (client.handle_spam_prevention(message,MUTE_IC))
 			return
 
-	if (src.stat == 2)
-		return src.say_dead(message)
+	if (stat == 2)
+		return say_dead(message)
 
-	if (src.stat)
+	if (stat)
 		return
 
 	if(name != GetVoice())
@@ -37,14 +37,14 @@
 //This is used by both the whisper verb and human/say() to handle whispering
 /mob/living/carbon/human/proc/whisper_say(var/message, var/datum/language/speaking = null, var/alt_name="", var/verb="whispers")
 
-	if (istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade))
+	if (istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(wear_mask, /obj/item/weapon/grenade))
 		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
 		return
 
-	var/message_range = 1
+	var/message_range = TRUE
 	var/eavesdropping_range = 2
 	var/watching_range = 5
-	var/italics = 1
+	var/italics = TRUE
 
 	var/not_heard //the message displayed to people who could not hear the whispering
 	if (speaking)
@@ -86,10 +86,10 @@
 			voice_sub = changer.voice
 
 	if(voice_sub == "Unknown")
-		if(copytext(message, 1, 2) != "*")
+		if(copytext(message, TRUE, 2) != "*")
 			var/list/temp_message = splittext(message, " ")
 			var/list/pick_list = list()
-			for(var/i = 1, i <= temp_message.len, i++)
+			for(var/i = TRUE, i <= temp_message.len, i++)
 				pick_list += i
 			for(var/i=1, i <= abs(temp_message.len/3), i++)
 				var/H = pick(pick_list)
@@ -151,6 +151,6 @@
 			M.hear_say(new_message, verb, speaking, alt_name, italics, src)
 
 	if (watching.len)
-		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> [not_heard].</span>"
+		var/rendered = "<span class='game say'><span class='name'>[name]</span> [not_heard].</span>"
 		for (var/mob/M in watching)
 			M.show_message(rendered, 2)

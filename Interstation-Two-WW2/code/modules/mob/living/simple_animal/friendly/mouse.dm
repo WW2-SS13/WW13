@@ -14,7 +14,7 @@
 	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
 	pass_flags = PASSTABLE
-	speak_chance = 1
+	speak_chance = TRUE
 	turns_per_move = 5
 	see_in_dark = 6
 	maxHealth = 5
@@ -23,19 +23,19 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "stamps on"
-	density = 0
+	density = FALSE
 	var/body_color //brown, gray and white, leave blank for random
 	layer = MOB_LAYER
 	min_oxy = 16 //Require atleast 16kPA oxygen
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323	//Above 50 Degrees Celcius
-	universal_speak = 0
-	universal_understand = 1
-	holder_type = /obj/item/weapon/holder/mouse
+	universal_speak = FALSE
+	universal_understand = TRUE
+//	holder_type = /obj/item/weapon/holder/mouse
 	mob_size = MOB_MINISCULE
-	possession_candidate = 1
+	possession_candidate = TRUE
 
-	can_pull_size = 1
+	can_pull_size = TRUE
 	can_pull_mobs = MOB_PULL_NONE
 
 /mob/living/simple_animal/mouse/Life()
@@ -48,14 +48,14 @@
 	if(!ckey && stat == CONSCIOUS && prob(1))
 		stat = UNCONSCIOUS
 		icon_state = "mouse_[body_color]_sleep"
-		wander = 0
-		speak_chance = 0
+		wander = FALSE
+		speak_chance = FALSE
 		//snuffles
 	else if(stat == UNCONSCIOUS)
 		if(ckey || prob(5))
 			stat = CONSCIOUS
 			icon_state = "mouse_[body_color]"
-			wander = 1
+			wander = TRUE
 		else if(prob(5))
 			audible_emote("snuffles.")
 
@@ -83,11 +83,11 @@
 	desc = "It's a small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 
 /mob/living/simple_animal/mouse/proc/splat()
-	src.health = 0
-	src.death()
-	src.icon_dead = "mouse_[body_color]_splat"
-	src.icon_state = "mouse_[body_color]_splat"
-
+	health = FALSE
+	death()
+	icon_dead = "mouse_[body_color]_splat"
+	icon_state = "mouse_[body_color]_splat"
+/*
 /mob/living/simple_animal/mouse/MouseDrop(atom/over_object)
 
 	var/mob/living/carbon/H = over_object
@@ -98,7 +98,7 @@
 		return
 	else
 		return ..()
-
+*/
 /mob/living/simple_animal/mouse/Crossed(AM as mob|obj)
 	if( ishuman(AM) )
 		if(!stat)

@@ -4,7 +4,7 @@
 	icon_state = "tomato"
 	icon_living = "tomato"
 	icon_dead = "tomato_dead"
-	speak_chance = 0
+	speak_chance = FALSE
 	turns_per_move = 5
 	maxHealth = 15
 	health = 15

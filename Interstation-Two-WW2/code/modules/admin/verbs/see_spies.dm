@@ -9,9 +9,9 @@
 		src << "<span class = 'danger'>What spies?</span>"
 		return
 
-	print_spies(src, 1)
+	print_spies(src, TRUE)
 
-/proc/print_spies(whomst, var/notroundend = 0)
+/proc/print_spies(whomst, var/notroundend = FALSE)
 
 	var/list/spies = list()
 	for (var/mob/living/carbon/human/H in mob_list)
@@ -35,8 +35,8 @@
 			var/is_ghosted = (H.client ? "IN BODY" : "GHOSTED OR LOGGED OUT")
 			var/spanstyle = H.stat == DEAD ? "warning" : "notice"
 			if (istype(H.original_job, /datum/job/german))
-				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - German soldier spying for the Russians. ([H_stat]) ([is_ghosted])</span><br>"
-			else if (istype(H.original_job, /datum/job/russian))
+				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - German soldier spying for the Soviets. ([H_stat]) ([is_ghosted])</span><br>"
+			else if (istype(H.original_job, /datum/job/soviet))
 				whomst << "<span class = '[spanstyle]'>[H.real_name][notroundend ? "/" : ""][notroundend ? H.ckey : ""] - Russian soldier spying for the Germans. ([H_stat]) ([is_ghosted])</span><br>"
 			if (!notroundend && H.stat != DEAD && !H.restrained())
 				whomst << "<span class = 'notice'>The Spy survived!</span><br>"

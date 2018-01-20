@@ -1,1 +1,1 @@
-/mob/var/repairing_plane = 0
+/mob/var/repairing_plane = FALSE

@@ -14,22 +14,22 @@
 	var/id = "reagent"
 	var/description = "A non-descript chemical."
 	var/taste_description = "old rotten bandaids"
-	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
+	var/taste_mult = TRUE //how this taste compares to others. Higher values means it is more noticable
 	var/datum/reagents/holder = null
 	var/reagent_state = SOLID
 	var/list/data = null
-	var/volume = 0
+	var/volume = FALSE
 	var/metabolism = REM // This would be 0.2 normally
-	var/ingest_met = 0
-	var/touch_met = 0
-	var/dose = 0
-	var/max_dose = 0
-	var/overdose = 0
-	var/scannable = 0 // Shows up on health analyzers.
-	var/affects_dead = 0
+	var/ingest_met = FALSE
+	var/touch_met = FALSE
+	var/dose = FALSE
+	var/max_dose = FALSE
+	var/overdose = FALSE
+	var/scannable = FALSE // Shows up on health analyzers.
+	var/affects_dead = FALSE
 	var/glass_center_of_mass = null
 	var/color = "#000000"
-	var/color_weight = 1
+	var/color_weight = TRUE
 	var/alpha = 255
 
 /datum/reagent/proc/remove_self(var/amount) // Shortcut

@@ -1,13 +1,13 @@
 /mob/living/simple_animal/complex_animal/proc/assess_hostility(var/mob/M)
 	return (enemies.Find(M) || !assess_friendlyness(M))
 
-// return values: 1 = M is a neutral mob, 0 = M is a hostile mob
+// return values: TRUE = M is a neutral mob, FALSE = M is a hostile mob
 /mob/living/simple_animal/complex_animal/proc/assess_neutrality(var/mob/M)
 	if (friendly_to_base_type && M.vars.Find("base_type") && M:base_type == base_type)
 		if (!enemies.Find(M))
-			return 1
+			return TRUE
 		else
-			return 0
+			return FALSE
 	else
 		var/M_faction = null
 		if (ishuman(M))
@@ -19,18 +19,18 @@
 			if (istype(M, _type))
 				if (friendly_factions.Find(M_faction))
 					if (enemies.Find(M))
-						return 0
-					return 1
+						return FALSE
+					return TRUE
 				else if (friends.Find(M))
-					return 1
+					return TRUE
 		// we aren't an unfriendly type, so ignore them
-		return 1
-	return 1
+		return TRUE
+	return TRUE
 
-// return values: 1 = M is a friendly mob, 0 = M is a hostile mob
+// return values: TRUE = M is a friendly mob, FALSE = M is a hostile mob
 /mob/living/simple_animal/complex_animal/proc/assess_friendlyness(var/mob/M)
 	. = assess_neutrality(M)
-	if (. == 0)
+	if (. == FALSE)
 		return .
 	else
 
@@ -42,9 +42,9 @@
 
 		if (friendly_factions.Find(M_faction))
 			if (!enemies.Find(M))
-				return 1
+				return TRUE
 		else if (friends.Find(M))
-			return 1
+			return TRUE
 /*
 /mob/living/simple_animal/complex_animal/proc/wander()
 	for (var/turf/T in view(1, src))
@@ -59,17 +59,17 @@
 /mob/living/simple_animal/complex_animal/proc/nap()
 	for (var/mob/M in knows_about_mobs)
 		if (!assess_friendlyness(M)) // bad time to nap
-			return 0
+			return FALSE
 		else // we're going to nap so stop knowing about them
 			knows_about_mobs -= M
-	resting = 1
-	wander = 0
+	resting = TRUE
+	wander = FALSE
 	update_icon()
 
 /mob/living/simple_animal/complex_animal/proc/stop_napping()
 	if (!resting)
-		return 0
-	resting = 0
+		return FALSE
+	resting = FALSE
 	wander = initial(wander)
 	update_icon()
 

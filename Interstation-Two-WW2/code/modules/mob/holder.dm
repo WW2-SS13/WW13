@@ -91,7 +91,7 @@ var/list/holder_mob_icon_cache = list()
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
 */
 /obj/item/weapon/holder/mouse
-	w_class = 1
+	w_class = TRUE
 
 /obj/item/weapon/holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	for(var/mob/M in src.contents)
@@ -112,7 +112,7 @@ var/list/holder_mob_icon_cache = list()
 	if(self_grab)
 		grabber << "<span class='notice'>\The [src] clambers onto you!</span>"
 		src << "<span class='notice'>You climb up onto \the [grabber]!</span>"
-		grabber.equip_to_slot_if_possible(H, slot_back, 0, 1)
+		grabber.equip_to_slot_if_possible(H, slot_back, FALSE, TRUE)
 	else
 		grabber << "<span class='notice'>You scoop up \the [src]!</span>"
 		src << "<span class='notice'>\The [grabber] scoops you up!</span>"

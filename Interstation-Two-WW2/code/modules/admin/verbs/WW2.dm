@@ -56,8 +56,8 @@
 	set name = "Toggle reinforcements (Russian)"
 
 	if (reinforcements_master)
-		reinforcements_master.locked[RUSSIAN] = !reinforcements_master.locked[RUSSIAN]
-		world << "<font color=red>Reinforcements [(!reinforcements_master.locked[RUSSIAN]) ? "can" : "can't"] join the Russians [(!reinforcements_master.locked[RUSSIAN]) ? "now" : "anymore"].</font>"
+		reinforcements_master.locked[SOVIET] = !reinforcements_master.locked[SOVIET]
+		world << "<font color=red>Reinforcements [(!reinforcements_master.locked[SOVIET]) ? "can" : "can't"] join the Russians [(!reinforcements_master.locked[SOVIET]) ? "now" : "anymore"].</font>"
 		message_admins("[key_name(src)] changed the ruforce reinforcements setting.")
 	else
 		src << "<span class = danger>WARNING: No reinforcements master found.</span>"
@@ -71,7 +71,7 @@
 
 	if (reinforcements_master)
 		if (l.len)
-			reinforcements_master.allow_quickspawn[GERMAN] = 1
+			reinforcements_master.allow_quickspawn[GERMAN] = TRUE
 			reinforcements_master.german_countdown = 0
 		else
 			src << "<span class = danger>Nobody is in the German reinforcement pool.</span>"
@@ -86,12 +86,12 @@
 	set category = "WW2 (Admin)"
 	set name = "Quickspawn reinforcements (Russian)"
 
-	var/list/l = reinforcements_master.reinforcement_pool[RUSSIAN]
+	var/list/l = reinforcements_master.reinforcement_pool[SOVIET]
 
 	if (reinforcements_master)
 		if (l.len)
-			reinforcements_master.allow_quickspawn[RUSSIAN] = 1
-			reinforcements_master.russian_countdown = 0
+			reinforcements_master.allow_quickspawn[SOVIET] = TRUE
+			reinforcements_master.soviet_countdown = 0
 		else
 			src << "<span class = danger>Nobody is in the Russian reinforcement pool.</span>"
 	else
@@ -120,7 +120,7 @@
 	set name = "End All Grace Periods"
 	var/conf = input(src, "Are you sure you want to end all grace periods?") in list("Yes", "No")
 	if (conf == "Yes")
-		map.admin_ended_all_grace_periods = 1
+		map.admin_ended_all_grace_periods = TRUE
 		message_admins("[key_name(src)] ended all grace periods!")
 		log_admin("[key_name(src)] ended all grace periods.")
 
@@ -189,7 +189,7 @@
 /client/proc/generate_hit_table()
 	set category = "WW2 (Admin)"
 	set name = "Hit tables"
-	set background = 1
+	set background = TRUE
 
 	var/list/types = typesof(/obj/item/weapon/gun/projectile)
 
@@ -214,14 +214,14 @@
 			dat += "<tr><td>[fm.name]</td>"
 			for(var/dist in distances)
 				var/text = ""
-				for(var/i = 1 to min(fm.burst, 5))
+				for(var/i = TRUE to min(fm.burst, 5))
 					var/acc = fm.accuracy[min(i, fm.accuracy.len)] + gun.accuracy
-					var/miss_mod = min(max(15 * (dist - 2) - round( 15 * acc), 0), 100)
-					var/hits = 0
-					for(var/shot = 1 to 1000)
-						if(get_zone_with_miss_chance("chest", dummy, miss_mod, 1) != null)
+					var/miss_mod = min(max(15 * (dist - 2) - round( 15 * acc), FALSE), 100)
+					var/hits = FALSE
+					for(var/shot = TRUE to 1000)
+						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
 							hits++
-					if(hits <= 0)
+					if(hits <= FALSE)
 						text += "0"
 					else
 						text += "[round(hits / 10)]"
@@ -243,14 +243,14 @@
 			dat += "<tr><td>[fm.name]</td>"
 			for(var/dist in distances)
 				var/text = ""
-				for(var/i = 1 to min(fm.burst, 5))
+				for(var/i = TRUE to min(fm.burst, 5))
 					var/acc = fm.accuracy[min(i, fm.accuracy.len)] + gun.accuracy - 2
-					var/miss_mod = min(max(15 * (dist - 2) - round( 15 * acc), 0), 100)
-					var/hits = 0
-					for(var/shot = 1 to 1000)
-						if(get_zone_with_miss_chance("chest", dummy, miss_mod, 1) != null)
+					var/miss_mod = min(max(15 * (dist - 2) - round( 15 * acc), FALSE), 100)
+					var/hits = FALSE
+					for(var/shot = TRUE to 1000)
+						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
 							hits++
-					if(hits <= 0)
+					if(hits <= FALSE)
 						text += "0"
 					else
 						text += "[round(hits / 10)]"
@@ -271,14 +271,14 @@
 			dat += "<tr><td>[fm.name]</td>"
 			for(var/dist in distances)
 				var/text = ""
-				for(var/i = 1 to min(fm.burst, 5))
+				for(var/i = TRUE to min(fm.burst, 5))
 					var/acc = fm.accuracy[min(i, fm.accuracy.len)] + gun.scoped_accuracy
-					var/miss_mod = min(max(15 * (dist - 2) - round( 15 * acc), 0), 100)
-					var/hits = 0
-					for(var/shot = 1 to 1000)
-						if(get_zone_with_miss_chance("chest", dummy, miss_mod, 1) != null)
+					var/miss_mod = min(max(15 * (dist - 2) - round( 15 * acc), FALSE), 100)
+					var/hits = FALSE
+					for(var/shot = TRUE to 1000)
+						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
 							hits++
-					if(hits <= 0)
+					if(hits <= FALSE)
 						text += "0"
 					else
 						text += "[round(hits / 10)]"
@@ -313,7 +313,7 @@
 			if (istype(a_p, /area/prishtina))
 				a_p.changeDayTime(dayime)*/
 	/*	for(var/turf/T)
-			if(T.z == 1)
+			if(T.z == TRUE)
 				T.update_starlight()*/
 
 /client/proc/message_russians()
@@ -324,19 +324,20 @@
 
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Russians") in list("Yes", "No")
 	if (ick_ock == "Yes")
-		ick_ock = 1
+		ick_ock = TRUE
 	else
-		ick_ock = 0
+		ick_ock = FALSE
 
 	if (msg)
-		for (var/mob/living/carbon/human/H in player_list)
-			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.base_type_flag() == RUSSIAN)
-					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE SOVIET HIGH COMMAND:</b>" : "<b>MESSAGE TO THE RUSSIAN TEAM FROM ADMINS:</b>"
-					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+		if (!ick_ock || !radio2soviets(msg))
+			for (var/mob/living/carbon/human/H in player_list)
+				if (istype(H) && H.client)
+					if (H.original_job && H.original_job.base_type_flag() == SOVIET)
+						var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE SOVIET HIGH COMMAND:</b>" : "<b>MESSAGE TO THE SOVIET TEAM FROM ADMINS:</b>"
+						H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
 		src << "You sent '[msg]' to the Russian team."
-		message_admins("[key_name(src)] sent '[msg]' to the Russian team.")
+		message_admins("[key_name(src)] sent '[msg]' to the Russian team. (IC = [ick_ock ? "yes" : "no"])")
 
 /client/proc/message_germans()
 	set category = "WW2 (Admin)"
@@ -347,19 +348,20 @@
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Germans") in list("Yes", "No")
 
 	if (ick_ock == "Yes")
-		ick_ock = 1
+		ick_ock = TRUE
 	else
-		ick_ock = 0
+		ick_ock = FALSE
 
 	if (msg)
-		for (var/mob/living/carbon/human/H in player_list)
-			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.base_type_flag() == GERMAN)
-					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND:</b>" : "<b>MESSAGE TO THE GERMAN TEAM FROM ADMINS:</b>"
-					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+		if (!ick_ock || !radio2germans(msg))
+			for (var/mob/living/carbon/human/H in player_list)
+				if (istype(H) && H.client)
+					if (H.original_job && H.original_job.base_type_flag() == GERMAN)
+						var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND:</b>" : "<b>MESSAGE TO THE GERMAN TEAM FROM ADMINS:</b>"
+						H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
 		src << "You sent '[msg]' to the German team."
-		message_admins("[key_name(src)] sent '[msg]' to the German team.")
+		message_admins("[key_name(src)] sent '[msg]' to the German team. (IC = [ick_ock ? "yes" : "no"])")
 
 /client/proc/message_SS()
 	set category = "WW2 (Admin)"
@@ -370,9 +372,9 @@
 	var/ick_ock = input(usr, "Make this an IC message?", "Message the SS") in list("Yes", "No")
 
 	if (ick_ock == "Yes")
-		ick_ock = 1
+		ick_ock = TRUE
 	else
-		ick_ock = 0
+		ick_ock = FALSE
 
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
@@ -394,9 +396,9 @@
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Paratroopers") in list("Yes", "No")
 
 	if (ick_ock == "Yes")
-		ick_ock = 1
+		ick_ock = TRUE
 	else
-		ick_ock = 0
+		ick_ock = FALSE
 
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
@@ -417,9 +419,9 @@
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Civilians") in list("Yes", "No")
 
 	if (ick_ock == "Yes")
-		ick_ock = 1
+		ick_ock = TRUE
 	else
-		ick_ock = 0
+		ick_ock = FALSE
 
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
@@ -440,9 +442,9 @@
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Partisans") in list("Yes", "No")
 
 	if (ick_ock == "Yes")
-		ick_ock = 1
+		ick_ock = TRUE
 	else
-		ick_ock = 0
+		ick_ock = FALSE
 
 	if (msg)
 		for (var/mob/living/carbon/human/H in player_list)
@@ -453,3 +455,32 @@
 
 		src << "You sent '[msg]' to all Partisans."
 		message_admins("[key_name(src)] sent '[msg]' to all Partisans")
+
+var/german_civilian_mode = FALSE
+var/soviet_civilian_mode = FALSE
+
+/client/proc/toggle_german_civilian_mode()
+	set category = "WW2 (Admin)"
+	set name = "Toggle German Civilian Mode"
+	german_civilian_mode = !german_civilian_mode
+	var/M = "[key_name(src)] [german_civilian_mode ? "enabled" : "disabled"] German Civilian Mode - Civilians will [german_civilian_mode ? "now" : "no longer"] count towards the amount of Germans."
+	message_admins(M)
+	log_admin(M)
+
+/client/proc/toggle_soviet_civilian_mode()
+	set category = "WW2 (Admin)"
+	set name = "Toggle Soviet Civilian Mode"
+	soviet_civilian_mode = !soviet_civilian_mode
+	var/M = "[key_name(src)] [soviet_civilian_mode ? "enabled" : "disabled"] Soviet Civilian Mode - Civilians will [soviet_civilian_mode ? "now" : "no longer"] count towards the amount of Soviets."
+	message_admins(M)
+	log_admin(M)
+
+var/respawn_delays = TRUE
+/client/proc/toggle_respawn_delays()
+	set category = "WW2 (Admin)"
+	set name = "Toggle Respawn Delays"
+	respawn_delays = !respawn_delays
+	var/M = "[key_name(src)] [respawn_delays ? "enabled" : "disabled"] respawn delays."
+	message_admins(M)
+	log_admin(M)
+	world << "<font size = 3><span class = 'notice'>Respawn delays are now <b>[respawn_delays ? "enabled" : "disabled"]</b>.</span></font>"

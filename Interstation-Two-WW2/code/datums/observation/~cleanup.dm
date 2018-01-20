@@ -19,24 +19,24 @@ var/list/event_listen_count = list()
 /decl/observ/register(var/datum/event_source, var/datum/listener, var/proc_call)
 	. = ..()
 	if(.)
-		event_sources_count[event_source] += 1
-		event_listen_count[listener] += 1
+		event_sources_count[event_source] += TRUE
+		event_listen_count[listener] += TRUE
 
 /decl/observ/unregister(var/datum/event_source, var/datum/listener, var/proc_call)
 	. = ..()
 	if(.)
-		event_sources_count[event_source] -= 1
-		event_listen_count[listener] -= 1
+		event_sources_count[event_source] -= TRUE
+		event_listen_count[listener] -= TRUE
 
 /decl/observ/register_global(var/datum/listener, var/proc_call)
 	. = ..()
 	if(.)
-		global_listen_count[listener] += 1
+		global_listen_count[listener] += TRUE
 
 /decl/observ/unregister_global(var/datum/listener, var/proc_call)
 	. = ..()
 	if(.)
-		global_listen_count[listener] -= 1
+		global_listen_count[listener] -= TRUE
 
 /decl/observ/destroyed/proc/cleanup_global_listener(listener, listen_count)
 	global_listen_count -= listener

@@ -34,20 +34,20 @@
 	if ( contents.len )
 		return
 
-	if ( !ispath(src.foldable) )
+	if ( !ispath(foldable) )
 		return
-	var/found = 0
+	var/found = FALSE
 	// Close any open UI windows first
 	for(var/mob/M in range(1))
 		if (M.s_active == src)
-			src.close(M)
+			close(M)
 		if ( M == user )
-			found = 1
+			found = TRUE
 	if ( !found )	// User is too far away
 		return
 	// Now make the cardboard
 	user << "<span class='notice'>You fold [src] flat.</span>"
-	new src.foldable(get_turf(src))
+	new foldable(get_turf(src))
 	qdel(src)
 
 /obj/item/weapon/storage/box/survival/
@@ -442,8 +442,8 @@
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube)
 	New()
 		..()
-		if(src.type == /obj/item/weapon/storage/box/monkeycubes)
-			for(var/i = 1; i <= 5; i++)
+		if(type == /obj/item/weapon/storage/box/monkeycubes)
+			for(var/i = TRUE; i <= 5; i++)
 				new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
 
 
@@ -509,7 +509,7 @@
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "matchbox"
 	item_state = "zippo"
-	w_class = 1
+	w_class = TRUE
 	slot_flags = SLOT_BELT
 	can_hold = list(/obj/item/weapon/flame/match)
 
@@ -521,13 +521,13 @@
 	attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
 		if(istype(W) && !W.lit && !W.burnt)
 			if(prob(50))
-				playsound(src.loc, 'sound/items/matchstick_lit.ogg', 25, 0, -1)
-				W.lit = 1
+				playsound(loc, 'sound/items/matchstick_lit.ogg', 25, FALSE, -1)
+				W.lit = TRUE
 				W.damtype = "burn"
 				W.icon_state = "match_lit"
 				processing_objects.Add(W)
 			else
-				playsound(src.loc, 'sound/items/matchstick_hit.ogg', 25, 0, -1)
+				playsound(loc, 'sound/items/matchstick_hit.ogg', 25, FALSE, -1)
 		W.update_icon()
 		return
 
@@ -546,14 +546,14 @@
 	icon_state = "light"
 	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
 	item_state = "syringe_kit"
-	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
 
 /obj/item/weapon/storage/box/lights/New()
 	..()
 	make_exact_fit()
 
 /obj/item/weapon/storage/box/lights/bulbs/New()
-	for(var/i = 0; i < 21; i++)
+	for(var/i = FALSE; i < 21; i++)
 		new /obj/item/weapon/light/bulb(src)
 	..()
 
@@ -562,7 +562,7 @@
 	icon_state = "lighttube"
 
 /obj/item/weapon/storage/box/lights/tubes/New()
-	for(var/i = 0; i < 21; i++)
+	for(var/i = FALSE; i < 21; i++)
 		new /obj/item/weapon/light/tube(src)
 	..()
 
@@ -571,9 +571,9 @@
 	icon_state = "lightmixed"
 
 /obj/item/weapon/storage/box/lights/mixed/New()
-	for(var/i = 0; i < 14; i++)
+	for(var/i = FALSE; i < 14; i++)
 		new /obj/item/weapon/light/tube(src)
-	for(var/i = 0; i < 7; i++)
+	for(var/i = FALSE; i < 7; i++)
 		new /obj/item/weapon/light/bulb(src)
 	..()
 
@@ -587,4 +587,4 @@
 	max_w_class = 3
 	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
 	max_storage_space = 21
-	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
