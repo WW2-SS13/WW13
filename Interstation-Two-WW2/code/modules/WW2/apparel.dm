@@ -297,7 +297,8 @@
 		/obj/item/weapon/attachment,
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/weapon/melee/classic_baton,
-		/obj/item/device/flashlight
+		/obj/item/device/flashlight,
+		/obj/item/weapon/handcuffs
 		)
 
 /obj/item/weapon/storage/belt/soviet/anti_tank_crew
@@ -332,7 +333,8 @@
 		/obj/item/weapon/attachment,
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/weapon/melee/classic_baton,
-		/obj/item/device/flashlight
+		/obj/item/device/flashlight,
+		/obj/item/weapon/handcuffs
 		)
 
 /obj/item/weapon/storage/belt/german/anti_tank_crew
@@ -475,6 +477,13 @@
 	icon_state = "nazi_coat"
 	item_state = "nazi_coat"
 	worn_state = "nazi_coat"
+
+/obj/item/clothing/suit/coat/german/SS
+	name = "SS Soldier's Coat"
+	desc = "An ordinary winter coat for an SS soldier."
+	icon_state = "ss_coat"
+	item_state = "ss_coat"
+	worn_state = "ss_coat"
 
 /obj/item/clothing/suit/coat/german/officer
 	name = "German Officer's Coat"
