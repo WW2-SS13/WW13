@@ -24,6 +24,14 @@
 
 	message_admins("[key_name(src)] tried to send the german train [direction].")
 
+/client/proc/toggle_playing()
+	set category = "WW2 (Admin)"
+	set name = "Toggle Playing"
+
+	ticker.players_can_join = !ticker.players_can_join
+	world << "<big><b>You [(ticker.players_can_join) ? "can" : "can't"] join the game [(ticker.players_can_join) ? "now" : "anymore"].</b></big>"
+	message_admins("[key_name(src)] changed the playing setting.")
+
 /client/proc/allow_join_geforce()
 	set category = "WW2 (Admin)"
 	set name = "Toggle joining (German)"

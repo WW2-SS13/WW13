@@ -33,6 +33,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	var/can_latejoin_ruforce = TRUE
 	var/can_latejoin_geforce = TRUE
 
+	var/players_can_join = TRUE
+
 /datum/controller/gameticker/proc/pregame()
 
 	spawn (0)

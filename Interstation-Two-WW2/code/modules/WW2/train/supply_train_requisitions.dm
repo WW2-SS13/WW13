@@ -21,7 +21,7 @@
 		"Mg34 Ammo" = /obj/structure/closet/crate/mg34ammo,
 		"Mp43 Ammo" = /obj/structure/closet/crate/mp43ammo,
 		"PTRD Ammo" = /obj/structure/closet/crate/ptrdammo,
-		"Mines Ammo" = /obj/structure/closet/crate/bettymines,
+		"Mines" = /obj/structure/closet/crate/bettymines,
 		"Grenades" = /obj/structure/closet/crate/german_grenade,
 		"Panzerfausts" = /obj/structure/closet/crate/panzerfaust,
 		"Smoke Grenades" = /obj/structure/closet/crate/german_grenade, // too lazy to fix this typo rn
@@ -79,7 +79,7 @@
 		"Mg34 Ammo" = 40,
 		"Mp43 Ammo" = 40,
 		"PTRD Ammo" = 100,
-		"Mines Ammo" = 50,
+		"Mines" = 50,
 		"Grenades" = 65,
 		"Panzerfausts" = 120,
 		"Smoke Grenades" = 55, // too lazy to fix this typo rn

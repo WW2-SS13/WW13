@@ -36,6 +36,7 @@
 
 /obj/machinery/chemical_dispenser/proc/recharge()
 	if(stat & BROKEN) return
+	if(!obj_process) return
 	var/addenergy = 1 * (obj_process.schedule_interval/20)
 	var/oldenergy = energy
 	energy = min(energy + addenergy, max_energy)
@@ -243,7 +244,7 @@
 	accept_glass = FALSE //At FALSE ONLY accepts glass containers. Kinda misleading varname.
 	beaker = null
 	hackedcheck = FALSE
-	dispensable_reagents = list("inaprovaline","ryetalyn","paracetamol","tramadol","oxycodone","sterilizine","leporazine","kelotane","dermaline","dexalin","dexalinp","tricordrazine","anti_toxin","synaptizine","hyronalin","arithrazine","alkysine","imidazoline","peridaxon","bicaridine","hyperzine","rezadone","spaceacillin","ethylredoxrazine","stoxin","chloralhydrate","cryoxadone","clonexadone")
+	dispensable_reagents = list("inaprovaline","ryetalyn","paracetamol","tramadol","oxycodone","sterilizine","leporazine","kelotane","dermaline","dexalin","dexalinp","tricordrazine","anti_toxin","synaptizine","hyronalin","arithrazine","alkysine","imidazoline","peridaxon","bicaridine","hyperzine","rezadone","penicillin","ethylredoxrazine","stoxin","chloralhydrate","cryoxadone","clonexadone")
 
 /obj/machinery/chem_master
 	name = "ChemMaster 3000"

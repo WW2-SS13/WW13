@@ -146,7 +146,7 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/handle_germ_effects()
 	//** Handle the effects of infections
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.reagents.get_reagent_amount("penicillin")
 
 	if (germ_level > FALSE && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--
@@ -209,7 +209,7 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/handle_antibiotics()
 	var/antibiotics = FALSE
 	if(owner)
-		antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+		antibiotics = owner.reagents.get_reagent_amount("penicillin")
 
 	if (!germ_level || antibiotics < 5)
 		return

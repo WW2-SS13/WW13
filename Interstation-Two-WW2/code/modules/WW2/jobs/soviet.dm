@@ -133,6 +133,7 @@
 	additional_languages = list( "German" = 33 )
 	is_officer = TRUE
 	is_squad_leader = TRUE
+	SL_check_independent = TRUE
 
 /datum/job/soviet/squad_leader/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -202,6 +203,7 @@
 	spawn_location = "JoinLateRADr"
 	is_nonmilitary = TRUE
 	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
+	SL_check_independent = TRUE
 
 /datum/job/soviet/doctor/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -571,6 +573,7 @@ var/first_guard = FALSE
 	additional_languages = list( "German" = 100 )
 	is_officer = TRUE
 	absolute_limit = TRUE
+	SL_check_independent = TRUE
 
 /datum/job/soviet/QM/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE

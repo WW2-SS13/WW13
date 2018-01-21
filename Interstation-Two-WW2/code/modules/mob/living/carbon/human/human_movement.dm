@@ -54,6 +54,10 @@
 			else if(E.status & ORGAN_BROKEN)
 				tally += 1.5
 
+	var/obj/item/organ/external/E = get_organ("chest")
+	if(!E || ((E.status & ORGAN_BROKEN) && E.brute_dam > E.min_broken_damage) || (E.status & ORGAN_MUTATED))
+		tally += 5
+
 	if(shock_stage >= 10) tally += 3
 
 	if(aiming && aiming.aiming_at) tally += 5 // Iron sights make you slower, it's a well-known fact.

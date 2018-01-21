@@ -120,7 +120,7 @@
 	new /obj/item/weapon/storage/pill_bottle/dexalin_plus(src)
 	new /obj/item/weapon/storage/pill_bottle/dylovene(src)
 	new /obj/item/weapon/storage/pill_bottle/tramadol(src)
-	new /obj/item/weapon/storage/pill_bottle/spaceacillin(src)
+	new /obj/item/weapon/storage/pill_bottle/penicillin(src)
 	new /obj/item/stack/medical/splint(src)
 	return
 
@@ -258,19 +258,19 @@
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
 
-/obj/item/weapon/storage/pill_bottle/spaceacillin
-	name = "bottle of Spaceacillin pills"
+/obj/item/weapon/storage/pill_bottle/penicillin
+	name = "bottle of penicillin pills"
 	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
 
-/obj/item/weapon/storage/pill_bottle/spaceacillin/New()
+/obj/item/weapon/storage/pill_bottle/penicillin/New()
     ..()
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
+    new /obj/item/weapon/reagent_containers/pill/penicillin(src)
+    new /obj/item/weapon/reagent_containers/pill/penicillin(src)
+    new /obj/item/weapon/reagent_containers/pill/penicillin(src)
+    new /obj/item/weapon/reagent_containers/pill/penicillin(src)
+    new /obj/item/weapon/reagent_containers/pill/penicillin(src)
+    new /obj/item/weapon/reagent_containers/pill/penicillin(src)
+    new /obj/item/weapon/reagent_containers/pill/penicillin(src)
 
 /obj/item/weapon/storage/pill_bottle/tramadol
 	name = "bottle of Tramadol pills"

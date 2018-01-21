@@ -2,7 +2,6 @@
 	//SECURITY//
 	////////////
 #define UPLOAD_LIMIT		10485760	//Restricts client uploads to the server to 10MB //Boosted this thing. What's the worst that can happen?
-#define MIN_CLIENT_VERSION	509		//Just an ambiguously low version for now, I don't want to suddenly stop people playing.
 									//I would just like the code ready should it ever need to be used.
 	/*
 	When somebody clicks a link in game, this Topic is called first.
@@ -105,6 +104,9 @@
 	//CONNECT//
 	///////////
 /client/New(TopicData)
+
+	if (config.resource_website)
+		preload_rsc = config.resource_website
 
 	dir = NORTH
 	TopicData = null							//Prevent calls to client.Topic from connect

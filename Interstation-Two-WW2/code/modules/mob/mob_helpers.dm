@@ -75,7 +75,7 @@ proc/getsensorlevel(A)
 
 var/list/global/hit_chances = list(
 
-	// FALSE to TRUE tile away
+	// 0 to 1 tiles away
 	"pointblankrange" = list(
 		"head" = 95,
 		"chest" = 99,

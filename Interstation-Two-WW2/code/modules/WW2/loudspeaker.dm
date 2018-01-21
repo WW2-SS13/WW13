@@ -12,7 +12,7 @@
 	frequency = DE_BASE_FREQ
 
 /obj/item/device/radio/intercom/loudspeaker/russian
-	frequency = RU_BASE_FREQ
+	frequency = SO_BASE_FREQ
 
 /obj/item/device/radio/intercom/loudspeaker/interact(mob/user)
 	return //It's just a loudspeaker

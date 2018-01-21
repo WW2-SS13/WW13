@@ -46,7 +46,7 @@
 	var/related_accounts_cid = "Requires database"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this computer id
 
 	//preload_rsc = TRUE // This was FALSE, so Bay12 can set it to an URL once the player logs in and have them download the resources from a different server. But we change it.
-	preload_rsc = "http://mechahitler.co.nf/Interstation-Two-WW2.zip"
+	preload_rsc = TRUE
 
 	// WW2 donor benefits
 	// todo: remove

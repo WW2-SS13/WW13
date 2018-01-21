@@ -55,6 +55,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 	//Bleeding out
 	var/blood_max = FALSE
+	var/bleeding_at_all = FALSE
 	for(var/obj/item/organ/external/temp in organs)
 		if(!(temp.status & ORGAN_BLEEDING))
 			continue
@@ -63,6 +64,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 				blood_max += (W.damage / 40 / BLEEDING_NERF)
 		if (temp.open)
 			blood_max += 2/SEVERE_BLEEDING_NERF  //Yer stomach is cut open
+		bleeding_at_all = TRUE
+
+	if (bleeding_at_all)
+		blood_max += 0.25
 
 	if (blood_max) // we're bleeding
 		drip(blood_max)

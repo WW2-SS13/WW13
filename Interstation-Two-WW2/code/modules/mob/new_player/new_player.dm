@@ -175,23 +175,31 @@
 			src << "<span class = 'danger'>You're banned from playing.</span>"
 			return TRUE
 
+		if (!ticker.players_can_join)
+			src << "<span class = 'danger'>You can't join the game yet.</span>"
+			return TRUE
+
 		if (!reinforcements_master.is_permalocked(GERMAN))
 			if (client.prefs.s_tone < -30 && !client.untermensch)
 				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
 				return
 			reinforcements_master.add(src, GERMAN)
 		else
-			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements!</span>"
+			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements deployed!</span>"
 	if(href_list["re_russian"])
 
 		if (client && client.quickBan_isbanned("Playing"))
 			src << "<span class = 'danger'>You're banned from playing.</span>"
 			return TRUE
 
+		if (!ticker.players_can_join)
+			src << "<span class = 'danger'>You can't join the game yet.</span>"
+			return TRUE
+
 		if (!reinforcements_master.is_permalocked(SOVIET))
 			reinforcements_master.add(src, SOVIET)
 		else
-			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements!</span>"
+			src << "<span class = 'danger'>Sorry, this side already has too many reinforcements deployed!</span>"
 	if(href_list["unre_german"])
 		reinforcements_master.remove(src, GERMAN)
 	if(href_list["unre_russian"])
@@ -201,6 +209,10 @@
 
 		if (client && client.quickBan_isbanned("Playing"))
 			src << "<span class = 'danger'>You're banned from playing.</span>"
+			return TRUE
+
+		if (!ticker.players_can_join)
+			src << "<span class = 'danger'>You can't join the game yet.</span>"
 			return TRUE
 
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)

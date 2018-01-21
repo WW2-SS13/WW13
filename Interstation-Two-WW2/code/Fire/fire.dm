@@ -140,6 +140,10 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = FALSE)
 			if (prob(35))
 				W.visible_message("<span class = 'warning'>[W] is burned away.</span>")
 				qdel(W)
+
+	for (var/obj/tank/T in my_tile)
+		T.damage += T.x_percent_of_max_damage(0.5 * (temperature/default_temperature))
+		T.update_damage_status()
 	//loc.fire_act(air_contents, air_contents.temperature, air_contents.volume)
 
 //	for(var/atom/A in loc)

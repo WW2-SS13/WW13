@@ -1,16 +1,19 @@
-// ww2 specific channels
-
+// DEFAULT frequency: unused
 var/const/DEFAULT_FREQ = 1000
 
-var/const/RU_BASE_FREQ = 1001
-var/const/RU_COMM_FREQ = 1002
-var/const/RU_SUPPLY_FREQ = 1003
+// SOVIET
+var/const/SO_BASE_FREQ = 1001
+var/const/SO_COMM_FREQ = 1002
+var/const/SO_SUPPLY_FREQ = 1003
 
+// GERMAN
 var/const/DE_BASE_FREQ = 1004
 var/const/DE_COMM_FREQ = 1005
 var/const/DE_SUPPLY_FREQ = 1006
+var/const/SS_FREQ = 1007 // SS
 
-var/const/UK_FREQ = 1007
+// UKRAINIAN
+var/const/UK_FREQ = 1008
 
 /proc/radio_sanitize_frequency(freq)
 	return text2num("[freq].0")
@@ -21,18 +24,20 @@ var/const/UK_FREQ = 1007
 	switch (constant)
 		if (DEFAULT_FREQ)
 			return "DEFAULT"
-		if (RU_BASE_FREQ)
-			return "Russian Base"
-		if (RU_COMM_FREQ)
-			return "Russian Command"
-		if (RU_SUPPLY_FREQ)
-			return "Russian Supply"
+		if (SO_BASE_FREQ)
+			return "Soviet Base"
+		if (SO_COMM_FREQ)
+			return "Soviet Command"
+		if (SO_SUPPLY_FREQ)
+			return "Soviet Supply"
 		if (DE_BASE_FREQ)
 			return "German Base"
 		if (DE_COMM_FREQ)
 			return "German Command"
 		if (DE_SUPPLY_FREQ)
 			return "German Supply"
+		if (SS_FREQ)
+			return "SS"
 		if (UK_FREQ)
 			return "Partisans"
 
@@ -42,11 +47,11 @@ var/const/UK_FREQ = 1007
 	switch (constant)
 		if (DEFAULT_FREQ)
 			return "secradio"
-		if (RU_BASE_FREQ)
+		if (SO_BASE_FREQ)
 			return "secradio"
-		if (RU_COMM_FREQ)
+		if (SO_COMM_FREQ)
 			return "comradio"
-		if (RU_SUPPLY_FREQ)
+		if (SO_SUPPLY_FREQ)
 			return "supradio"
 		if (DE_BASE_FREQ)
 			return "secradio"
@@ -54,20 +59,45 @@ var/const/UK_FREQ = 1007
 			return "comradio"
 		if (DE_SUPPLY_FREQ)
 			return "supradio"
+		if (SS_FREQ)
+			return "comradio"
 		if (UK_FREQ)
 			return "secradio"
 
 // channel = access
 var/global/list/default_german_channels = list(
-	num2text(DE_COMM_FREQ),
 	num2text(DE_BASE_FREQ),
 	num2text(DE_SUPPLY_FREQ)
 )
 
-var/global/list/default_russian_channels = list(
-	num2text(RU_COMM_FREQ),
-	num2text(RU_BASE_FREQ),
-	num2text(RU_SUPPLY_FREQ)
+var/global/list/command_german_channels = list(
+	num2text(DE_BASE_FREQ),
+	num2text(DE_SUPPLY_FREQ),
+	num2text(DE_COMM_FREQ)
+)
+
+var/global/list/SS_german_channels = list(
+	num2text(DE_BASE_FREQ),
+	num2text(DE_SUPPLY_FREQ),
+	num2text(SS_FREQ)
+)
+
+var/global/list/SS_command_german_channels = list(
+	num2text(DE_BASE_FREQ),
+	num2text(DE_SUPPLY_FREQ),
+	num2text(DE_COMM_FREQ),
+	num2text(SS_FREQ)
+)
+
+var/global/list/default_soviet_channels = list(
+	num2text(SO_BASE_FREQ),
+	num2text(SO_SUPPLY_FREQ)
+)
+
+var/global/list/command_soviet_channels = list(
+	num2text(SO_BASE_FREQ),
+	num2text(SO_SUPPLY_FREQ),
+	num2text(SO_COMM_FREQ)
 )
 
 var/global/list/default_ukrainian_channels = list(
@@ -87,7 +117,7 @@ var/global/list/default_ukrainian_channels = list(
 	var/frequency = DEFAULT_FREQ
 	var/canhear_range = 3 // the range which mobs can hear this radio from
 	var/datum/wires/radio/wires = null
-	var/broadcasting = FALSE
+	var/broadcasting = TRUE
 	var/listening = TRUE
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/list/listening_on_channel = list()
@@ -119,7 +149,7 @@ var/global/list/default_ukrainian_channels = list(
 		"Mg34 Ammo" = /obj/structure/closet/crate/mg34ammo,
 		"Mp43 Ammo" = /obj/structure/closet/crate/mp43ammo,
 		"PTRD Ammo" = /obj/structure/closet/crate/ptrdammo,
-		"Mines Ammo" = /obj/structure/closet/crate/bettymines,
+		"Mines" = /obj/structure/closet/crate/bettymines,
 		"Grenades" = /obj/structure/closet/crate/german_grenade,
 		"Panzerfausts" = /obj/structure/closet/crate/panzerfaust,
 		"Smoke Grenades" = /obj/structure/closet/crate/german_smoke_grenade, // too lazy to fix this typo rn
@@ -173,7 +203,7 @@ var/global/list/default_ukrainian_channels = list(
 		"PPSH Ammo" = /obj/structure/closet/crate/ppshammo,
 		"DP Ammo" = /obj/structure/closet/crate/dpammo,
 		"PTRD Ammo" = /obj/structure/closet/crate/ptrdammo,
-		"Mines Ammo" = /obj/structure/closet/crate/bettymines,
+		"Mines" = /obj/structure/closet/crate/bettymines,
 		"Grenades" = /obj/structure/closet/crate/soviet_grenade,
 		"Smoke Grenades" = /obj/structure/closet/crate/soviet_smoke_grenade, // too lazy to fix this typo rn
 		"Sandbags" = /obj/structure/closet/crate/sandbags,
@@ -229,7 +259,7 @@ var/global/list/default_ukrainian_channels = list(
 		"PPSH Ammo" = 50,
 		"DP Ammo" = 50,
 
-		"Mines Ammo" = 50,
+		"Mines" = 50,
 		"Grenades" = 65,
 		"Panzerfausts" = 120,
 		"Smoke Grenades" = 55, // too lazy to fix this typo rn
@@ -287,10 +317,10 @@ var/global/list/default_ukrainian_channels = list(
 	if (istype(src, /obj/item/device/radio/intercom) && !istype(src, /obj/item/device/radio/intercom/loudspeaker))
 		notyetmoved = FALSE
 		if (loc)
-			setup_announcement_system("Supplydrop Announcement System", (faction == GERMAN ? DE_SUPPLY_FREQ : RU_SUPPLY_FREQ))
-			setup_announcement_system("Reinforcements Announcement System", (faction == GERMAN ? DE_BASE_FREQ : RU_BASE_FREQ))
-			setup_announcement_system("High Command Announcement System", (faction == GERMAN ? DE_BASE_FREQ : RU_BASE_FREQ))
-			setup_announcement_system("Arrivals Announcement System", (faction == GERMAN ? DE_BASE_FREQ : RU_BASE_FREQ))
+			setup_announcement_system("Supplydrop Announcement System", (faction == GERMAN ? DE_SUPPLY_FREQ : SO_SUPPLY_FREQ))
+			setup_announcement_system("Reinforcements Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
+			setup_announcement_system("High Command Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
+			setup_announcement_system("Arrivals Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
 			switch (faction)
 				if (GERMAN)
 					main_radios[GERMAN] = src
@@ -518,7 +548,7 @@ var/global/list/default_ukrainian_channels = list(
 	name = "A-7-B"
 	icon_state = "a7b"
 	item_state = "a7b"
-	frequency = RU_BASE_FREQ
+	frequency = SO_BASE_FREQ
 	anchored = TRUE
 	canhear_range = 1
 	speech_sound = 'sound/effects/roger_beep.ogg'
@@ -527,8 +557,8 @@ var/global/list/default_ukrainian_channels = list(
 	supply_points = 500 // soviets get more supplies
 
 /obj/item/device/radio/intercom/a7b/New()
-	internal_channels = default_russian_channels.Copy()
 	..()
+	internal_channels = command_soviet_channels.Copy()
 
 /obj/item/device/radio/intercom/a7b/process()
 	if(world.time - last_tick > 30 || last_tick == -1)
@@ -552,15 +582,21 @@ var/global/list/default_ukrainian_channels = list(
 	name = "RBS1"
 	icon_state = "rbs1"
 	item_state = "rbs1"
-	frequency = RU_COMM_FREQ
+	frequency = SO_BASE_FREQ
 	canhear_range = 1
 	w_class = 5
 	speech_sound = 'sound/effects/roger_beep.ogg'
 	faction = SOVIET
 
+/obj/item/device/radio/rbs/command
+
 /obj/item/device/radio/rbs/New()
-	internal_channels = default_russian_channels.Copy()
 	..()
+	internal_channels = default_soviet_channels.Copy()
+
+/obj/item/device/radio/rbs/command/New()
+	..()
+	internal_channels = command_soviet_channels.Copy()
 
 /obj/item/device/radio/intercom/fu2
 	name = "Torn.Fu.d2"
@@ -575,8 +611,8 @@ var/global/list/default_ukrainian_channels = list(
 	supply_points = 400
 
 /obj/item/device/radio/intercom/fu2/New()
-	internal_channels = default_german_channels.Copy()
 	..()
+	internal_channels = command_german_channels.Copy()
 
 /obj/item/device/radio/intercom/fu2/process()
 	if(world.time - last_tick > 30 || last_tick == -1)
@@ -602,15 +638,33 @@ var/global/list/default_ukrainian_channels = list(
 	name = "Feldfu.f"
 	icon_state = "feldfu"
 	item_state = "feldfu"
-	frequency = DE_COMM_FREQ
+	frequency = DE_BASE_FREQ
 	canhear_range = 1
 	w_class = 4
 	speech_sound = 'sound/effects/roger_beep2.ogg'
 	faction = GERMAN
 
+/obj/item/device/radio/feldfu/command
+
+/obj/item/device/radio/feldfu/SS
+
+/obj/item/device/radio/feldfu/SS/command
+
 /obj/item/device/radio/feldfu/New()
-	internal_channels = default_german_channels.Copy()
 	..()
+	internal_channels = default_german_channels.Copy()
+
+/obj/item/device/radio/feldfu/command/New()
+	..()
+	internal_channels = command_german_channels.Copy()
+
+/obj/item/device/radio/feldfu/SS/New()
+	..()
+	internal_channels = SS_german_channels.Copy()
+
+/obj/item/device/radio/feldfu/SS/command/New()
+	..()
+	internal_channels = SS_command_german_channels.Copy()
 
 // partisan clone of german radios. Doesn't inherit from the feldfu for
 // callback meme reasons
@@ -626,8 +680,8 @@ var/global/list/default_ukrainian_channels = list(
 	faction = PARTISAN
 
 /obj/item/device/radio/partisan/New()
-	internal_channels = default_ukrainian_channels.Copy()
 	..()
+	internal_channels = default_ukrainian_channels.Copy()
 
 // radio topic stuff
 

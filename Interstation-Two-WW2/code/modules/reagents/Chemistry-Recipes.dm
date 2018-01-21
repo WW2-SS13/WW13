@@ -371,10 +371,10 @@
 	catalysts = list("plasma" = 5)
 	result_amount = 2
 
-/datum/chemical_reaction/spaceacillin
-	name = "Spaceacillin"
-	id = "spaceacillin"
-	result = "spaceacillin"
+/datum/chemical_reaction/penicillin
+	name = "penicillin"
+	id = "penicillin"
+	result = "penicillin"
 	required_reagents = list("cryptobiolin" = TRUE, "inaprovaline" = TRUE)
 	result_amount = 2
 

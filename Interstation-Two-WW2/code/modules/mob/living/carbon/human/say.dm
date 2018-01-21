@@ -23,10 +23,11 @@
 
 	..(message, alt_name = alt_name, alt_message = message_without_html)
 
-	post_say(message_without_html)
-
 	for (var/mob/living/simple_animal/complex_animal/canine/dog/D in view(world.view, src))
 		D.hear_command(message_without_html, src)
+
+	message_without_html = handle_speech_problems(message_without_html)[1]
+	post_say(message_without_html)
 
 /mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)

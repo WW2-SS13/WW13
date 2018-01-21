@@ -4,34 +4,34 @@
 	speed = 2.5
 
 /obj/item/projectile/bullet/rifle/a792x33
-	damage = 30
+	damage = 50
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/rifle/a762x54
-	damage = 33
+	damage = 55
 	penetrating = 2
 
 /obj/item/projectile/bullet/rifle/a792x57
-	damage = 35
+	damage = 58
 	penetrating = 2
 
 /obj/item/projectile/bullet/rifle/a762x25
-	damage = 25
+	damage = 42
 	penetrating = FALSE
 
 /obj/item/projectile/bullet/rifle/a9_parabellum
-	damage = 23
+	damage = 38
 	penetrating = FALSE
 
 
 /* "Rifle" rounds */
 
 /obj/item/projectile/bullet/rifle/a762
-	damage = 30
+	damage = 50
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/rifle/a145
-	damage = 80
+	damage = 100
 	stun = 3
 	weaken = 3
 	penetrating = 5
@@ -39,32 +39,32 @@
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
 
 /obj/item/projectile/bullet/rifle/a556
-	damage = 30
+	damage = 50
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/rifle/a9x39
-	damage = 45
+	damage = 75
 	penetrating = 3
 	step_delay = 2
 
 /obj/item/projectile/bullet/rifle/a762x39
-	damage = 20
+	damage = 33
 	penetrating = 2
 
 /obj/item/projectile/bullet/rifle/a762x51
-	damage = 15
-	penetrating = 3
-
-/obj/item/projectile/bullet/rifle/c4mm
-	damage = 5
-	penetrating = FALSE
-
-/obj/item/projectile/bullet/rifle/a127x108
 	damage = 25
 	penetrating = 3
 
+/obj/item/projectile/bullet/rifle/c4mm
+	damage = 8
+	penetrating = FALSE
+
+/obj/item/projectile/bullet/rifle/a127x108
+	damage = 42
+	penetrating = 3
+
 /obj/item/projectile/bullet/rifle/a556x45
-	damage = 30
+	damage = 50
 	penetrating = 3
 	hitscan = TRUE
 

@@ -605,25 +605,28 @@ var/global/datum/controller/occupations/job_master
 
 
 	// too many people joined as a soldier and not enough as SL
-	// return FALSE if j is anything but a squad leader
+	// return FALSE if j is anything but a squad leader or special roles
 	proc/squad_leader_check(var/mob/new_player/np, var/datum/job/j)
+		var/current_squad = istype(j, /datum/job/german) ? current_german_squad : current_soviet_squad
 		if (!j.is_commander && !j.is_nonmilitary && !j.is_SS && !j.is_paratrooper)
 			// we're trying to join as a soldier or officer
 			if (j.is_officer) // handle officer
 				if (must_have_squad_leader(j.base_type_flag())) // only accept SLs
-					if (!istype(j, /datum/job/german/squad_leader) && !istype(j, /datum/job/soviet/squad_leader))
-						np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
+					if (!j.SL_check_independent)
+						np << "<span class = 'danger'>Squad #[current_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
 						return FALSE
-					else // we're joining as the SL, chill fam
+					else // we're joining as the SL or another allowed role
 						return TRUE
 			else
 				if (must_have_squad_leader(j.base_type_flag())) // only accept SLs
-					np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
-					return FALSE
+					if (!j.SL_check_independent)
+						np << "<span class = 'danger'>Squad #[current_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
+						return FALSE
 		else
 			if (must_have_squad_leader(j.base_type_flag()))
-				np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
-				return FALSE
+				if (!j.SL_check_independent)
+					np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one. You can still spawn in through reinforcements, though.</span>"
+					return FALSE
 		return TRUE
 
 	// too many people joined as a SL and not enough as soldier
@@ -640,8 +643,9 @@ var/global/datum/controller/occupations/job_master
 						return TRUE
 		else
 			if (must_have_squad_leader(j.base_type_flag()))
-				np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
-				return FALSE
+				if (!j.SL_check_independent)
+					np << "<span class = 'danger'>Squad #[current_german_squad] needs a Squad Leader! You can't join as anything else until it has one.</span>"
+					return FALSE
 		return TRUE
 
 	proc/relocate(var/mob/living/carbon/human/H)

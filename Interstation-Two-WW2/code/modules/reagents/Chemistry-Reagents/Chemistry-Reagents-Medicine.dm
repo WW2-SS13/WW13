@@ -366,9 +366,9 @@
 	if(prob(60))
 		M.take_organ_damage(4 * removed, FALSE)
 
-/datum/reagent/spaceacillin
-	name = "Spaceacillin"
-	id = "spaceacillin"
+/datum/reagent/penicillin
+	name = "penicillin"
+	id = "penicillin"
 	description = "An all-purpose antiviral agent."
 	taste_description = "bitterness"
 	reagent_state = LIQUID

@@ -1,6 +1,7 @@
 /datum/job
 	var/default_language = "Common"
 	var/list/additional_languages = list() // "Name" = probability between TRUE-100
+	var/SL_check_independent = FALSE // we're important, so we can spawn even if SLs are needed
 
 /datum/job/german
 	default_language = "German"
@@ -12,7 +13,11 @@
 
 /datum/job/partisan
 	default_language = "Ukrainian"
-	additional_languages = list("German" = 50, "Russian" = 50)
+	additional_languages = list("German" = 50, "Russian" = 75)
+
+/datum/job/partisan/civilian
+	default_language = "Ukrainian"
+	additional_languages = list("German" = 50, "Russian" = 75)
 
 /datum/job/update_character(var/mob/living/carbon/human/H)
 	. = ..()

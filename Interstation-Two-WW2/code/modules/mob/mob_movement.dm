@@ -435,8 +435,9 @@
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
 			move_delay = world.time + tickcomp
 			//drunk driving
-			if(mob.confused)
+			if(mob.confused && prob(40))
 				direct = pick(cardinal)
+
 			return mob.buckled.relaymove(mob,direct)
 
 		if(mob.machine && istype(mob.machine, /obj/machinery))
@@ -454,7 +455,7 @@
 					if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
 						return // No hands to drive your chair? Tough luck!
 				//drunk wheelchair driving
-				if(mob.confused)
+				if(mob.confused && prob(40))
 					direct = pick(cardinal)
 				move_delay += 2
 				return mob.buckled.relaymove(mob,direct)
@@ -494,7 +495,7 @@
 							M.animate_movement = 2
 							return
 
-		else if(mob.confused)
+		else if(mob.confused && prob(40))
 			step(mob, pick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
