@@ -308,6 +308,8 @@ var/global/list/default_ukrainian_channels = list(
 
 /obj/item/device/radio/New()
 	..()
+
+	// channels added before this is called
 	for (var/channel in internal_channels)
 		listening_on_channel[radio_freq2name(channel)] = TRUE
 
@@ -335,6 +337,8 @@ var/global/list/default_ukrainian_channels = list(
 	if (locate(/obj/effect/landmark/train/german_supplytrain_start) in world)
 		is_supply_radio = FALSE
 
+	// channels added after this is called
+	// necessary for subtypes that want to override channels of their supertypes
 	spawn (20)
 		for (var/channel in internal_channels)
 			listening_on_channel[radio_freq2name(channel)] = TRUE
