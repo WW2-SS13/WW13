@@ -156,6 +156,7 @@
 
 	if(byond_version < REAL_MIN_CLIENT_VERSION)		//Out of date client.
 		src << "<span class = 'danger'><font size = 3>Please upgrade to BYOND [REAL_MIN_CLIENT_VERSION] to play.</font></span>"
+		del(src)
 		return FALSE
 
 	if (config.resource_website)
