@@ -311,7 +311,7 @@ var/global/list/default_ukrainian_channels = list(
 	for (var/channel in internal_channels)
 		listening_on_channel[radio_freq2name(channel)] = TRUE
 
-	if (!isturf(loc))
+	if (!isturf(loc) || !istype(src, /obj/item/device/radio/intercom))
 		notyetmoved = FALSE
 
 	if (istype(src, /obj/item/device/radio/intercom) && !istype(src, /obj/item/device/radio/intercom/loudspeaker))
@@ -334,6 +334,10 @@ var/global/list/default_ukrainian_channels = list(
 
 	if (locate(/obj/effect/landmark/train/german_supplytrain_start) in world)
 		is_supply_radio = FALSE
+
+	spawn (20)
+		for (var/channel in internal_channels)
+			listening_on_channel[radio_freq2name(channel)] = TRUE
 
 /obj/item/device/radio/Move()
 	..()
