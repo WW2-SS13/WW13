@@ -106,9 +106,6 @@
 	///////////
 /client/New(TopicData)
 
-	if (config.resource_website)
-		preload_rsc = config.resource_website
-
 	dir = NORTH
 	TopicData = null							//Prevent calls to client.Topic from connect
 
@@ -143,6 +140,7 @@
 
 	. = ..()	//calls mob.Login()
 
+
 	if(!serverswap_open_status)
 		if (serverswap.Find("snext"))
 			var/linked = "byond://[world.internet_address]:[serverswap[serverswap["snext"]]]"
@@ -154,6 +152,9 @@
 	if (quickBan_rejected("Server"))
 		del(src)
 		return FALSE
+
+	if (config.resource_website)
+		preload_rsc = config.resource_website
 
 	src << "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears."
 
