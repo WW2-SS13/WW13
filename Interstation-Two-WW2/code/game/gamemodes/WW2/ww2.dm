@@ -236,7 +236,7 @@
 		else if (WW2_soldiers_en_ru_coeff <= soviet_win_coeff)
 			winners = "Soviet Army"
 
-	var/text = "<big><span class = 'notice'>The War has ended.</span></big><br><br>"
+	var/text = "<big><span class = 'danger'>The battle has ended.</span></big><br><br>"
 
 	text += "[soldiers["de"]] Wehrmacht and SS soldiers survived.<br>"
 	text += "[soldiers["ru"]] Soviet soldiers survived.<br><br>"

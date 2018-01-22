@@ -108,7 +108,7 @@ var/global/list/default_ukrainian_channels = list(
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
-	desc = "A communication device. You can speak through it with ';' or ':b' when it's in your suit storage slot, and ':l' or ':r' when its in your hand."
+	desc = "A communication device. You can speak through it with ':b' when it's in your suit storage slot, and ':l' or ':r' when its in your hand. ';' speaks with the first radio available on your person."
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
@@ -418,7 +418,7 @@ var/global/list/default_ukrainian_channels = list(
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
+		ui = new(user, src, ui_key, "radio.tmpl", "[name]", 400, 430)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -449,24 +449,24 @@ var/global/list/default_ukrainian_channels = list(
 		if (radio == s_store)
 			if (dd_hasprefix(message, ":b"))
 				message = copytext(message, 3)
-			//	log_debug("0 = [radio.name]")
 			else if (dd_hasprefix(message, ";"))
 				message = copytext(message, 2)
-			//	log_debug("1 = [radio.name]")
 			else
 				continue
 		else if (radio == l_hand)
-			if (!dd_hasprefix(message, ":l"))
-				continue
-			else
-			//	log_debug("2 = [radio.name]")
+			if (dd_hasprefix(message, ":l"))
 				message = copytext(message, 3)
+			else if (dd_hasprefix(message, ";"))
+				message = copytext(message, 2)
+			else
+				continue
 		else if (radio == r_hand)
-			if (!dd_hasprefix(message, ":r"))
-				continue
-			else
-			//	log_debug("3 = [radio.name]")
+			if (dd_hasprefix(message, ":r"))
 				message = copytext(message, 3)
+			else if (dd_hasprefix(message, ";"))
+				message = copytext(message, 2)
+			else
+				continue
 		else if (istype(radio.loc, /turf) && !radio.broadcasting)
 			continue
 

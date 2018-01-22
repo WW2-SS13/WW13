@@ -64,7 +64,7 @@ nanoui is used to open and update nano browser uis
   * @param nuser /mob The mob who has opened/owns this ui
   * @param nsrc_object /obj|/mob The obj or mob which this ui belongs to
   * @param nui_key string A string key to use for this ui. Allows for multiple unique uis on one src_oject
-  * @param ntemplate string The filename of the template file from /nano/templates (e.g. "my_template.tmpl")
+  * @param ntemplate string The filename of the template file from /UI/templates (e.g. "my_template.tmpl")
   * @param ntitle string The title of this ui
   * @param nwidth int the width of the ui window
   * @param nheight int the height of the ui window
@@ -226,7 +226,7 @@ nanoui is used to open and update nano browser uis
   * Add a CSS stylesheet to this UI
   * These must be added before the UI has been opened, adding after that will have no effect
   *
-  * @param file string The name of the CSS file from /nano/css (e.g. "my_style.css")
+  * @param file string The name of the CSS file from /UI/css (e.g. "my_style.css")
   *
   * @return nothing
   */
@@ -237,7 +237,7 @@ nanoui is used to open and update nano browser uis
   * Add a JavsScript script to this UI
   * These must be added before the UI has been opened, adding after that will have no effect
   *
-  * @param file string The name of the JavaScript file from /nano/js (e.g. "my_script.js")
+  * @param file string The name of the JavaScript file from /UI/js (e.g. "my_script.js")
   *
   * @return nothing
   */
@@ -250,7 +250,7 @@ nanoui is used to open and update nano browser uis
   * These must be added before the UI has been opened, adding after that will have no effect
   *
   * @param key string The key which is used to reference this template in the frontend
-  * @param filename string The name of the template file from /nano/templates (e.g. "my_template.tmpl")
+  * @param filename string The name of the template file from /UI/templates (e.g. "my_template.tmpl")
   *
   * @return nothing
   */
@@ -261,8 +261,8 @@ nanoui is used to open and update nano browser uis
   * Set the layout key for use in the frontend Javascript
   * The layout key is the basic layout key for the page
   * Two files are loaded on the client based on the layout key varable:
-  *     -> a template in /nano/templates with the filename "layout_<layout_key>.tmpl
-  *     -> a CSS stylesheet in /nano/css with the filename "layout_<layout_key>.css
+  *     -> a template in /UI/templates with the filename "layout_<layout_key>.tmpl
+  *     -> a CSS stylesheet in /UI/css with the filename "layout_<layout_key>.css
   *
   * @param nlayout string The layout key to use
   *

@@ -381,7 +381,16 @@
 		'html/images/loading.gif',
 		'html/images/ntlogo.png',
 		'html/images/talisman.png',
-		'nano/templates/chem_disp.tmpl'
+		'UI/templates/appearance_changer.tmpl'
+		'UI/templates/chem_disp.tmpl'
+		'UI/templates/freezer.tmpl'
+		'UI/templates/layout_basic.tmpl'
+		'UI/templates/layout_default.tmpl'
+		'UI/templates/nav.tmpl'
+		'UI/templates/news_browser.tmpl'
+		'UI/templates/radio.tmpl'
+		'UI/templates/smartfridge.tmpl'
+		'UI/templates/vending_machine.tmpl'
 		)
 
 	spawn (10) //removing this spawn causes all clients to not get verbs.
