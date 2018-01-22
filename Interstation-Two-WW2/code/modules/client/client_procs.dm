@@ -155,7 +155,7 @@
 		return FALSE
 
 	if(byond_version < REAL_MIN_CLIENT_VERSION)		//Out of date client.
-		src << "<span class = 'danger'><font size = 3>Please upgrade to BYOND [REAL_MIN_CLIENT_VERSION] to play.</font></span>"
+		src << "<span class = 'danger'><font size = 4>Please upgrade to BYOND [REAL_MIN_CLIENT_VERSION] to play.</font></span>"
 		del(src)
 		return FALSE
 
@@ -381,15 +381,15 @@
 		'html/images/loading.gif',
 		'html/images/ntlogo.png',
 		'html/images/talisman.png',
-		'UI/templates/appearance_changer.tmpl'
-		'UI/templates/chem_disp.tmpl'
-		'UI/templates/freezer.tmpl'
-		'UI/templates/layout_basic.tmpl'
-		'UI/templates/layout_default.tmpl'
-		'UI/templates/nav.tmpl'
-		'UI/templates/news_browser.tmpl'
-		'UI/templates/radio.tmpl'
-		'UI/templates/smartfridge.tmpl'
+		'UI/templates/appearance_changer.tmpl',
+		'UI/templates/chem_disp.tmpl',
+		'UI/templates/freezer.tmpl',
+		'UI/templates/layout_basic.tmpl',
+		'UI/templates/layout_default.tmpl',
+		'UI/templates/nav.tmpl',
+		'UI/templates/news_browser.tmpl',
+		'UI/templates/radio.tmpl',
+		'UI/templates/smartfridge.tmpl',
 		'UI/templates/vending_machine.tmpl'
 		)
 

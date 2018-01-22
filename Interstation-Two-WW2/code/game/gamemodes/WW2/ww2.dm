@@ -83,7 +83,7 @@
 /datum/game_mode/ww2/proc/trying_to_win()
 	return (cond_2_1_check1 || cond_2_2_check1 || cond_2_3_check1 || cond_2_4_check1)
 
-/datum/game_mode/ww2/check_finished()
+/datum/game_mode/ww2/check_finished(var/round_ending = FALSE)
 	if (admins_triggered_noroundend)
 		return FALSE // no matter what, don't end
 	else if (..() == TRUE || admins_triggered_roundend)
@@ -199,22 +199,22 @@
 
 			cond_2_4_check1 = FALSE
 
-		if (cond_2_1_check1 && world.timeofday >= cond_2_1_nextcheck && cond_2_1_nextcheck != -1) // condition 2.1 completed
+		if (cond_2_1_check1 && (world.timeofday >= cond_2_1_nextcheck || round_ending) && cond_2_1_nextcheck != -1) // condition 2.1 completed
 			if (!win_condition) win_condition = "The Soviet Army won by outnumbering the Germans and occupying most of their territory, cutting them off from supplies!"
 			winning_side = "Soviet Army"
 			return TRUE
 
-		if (cond_2_2_check1 && world.timeofday >= cond_2_2_nextcheck && cond_2_2_nextcheck != -1) // condition 2.2 completed
+		if (cond_2_2_check1 && (world.timeofday >= cond_2_2_nextcheck || round_ending) && cond_2_2_nextcheck != -1) // condition 2.2 completed
 			if (!win_condition) win_condition = "The German Army won by outnumbering the Soviets and occupying most of their territory. The bunker was surrounded and cut off from reinforcements!"
 			winning_side = "German Army"
 			return TRUE
 
-		if (cond_2_3_check1 && world.timeofday >= cond_2_3_nextcheck && cond_2_3_nextcheck != -1) // condition 2.3 completed
+		if (cond_2_3_check1 && (world.timeofday >= cond_2_3_nextcheck || round_ending) && cond_2_3_nextcheck != -1) // condition 2.3 completed
 			if (!win_condition) win_condition = "The German Army won by occupying and holding Soviet territory, while heavily outnumber the Soviets there."
 			winning_side = "German Army"
 			return TRUE
 
-		if (cond_2_4_check1 && world.timeofday >= cond_2_4_nextcheck && cond_2_4_nextcheck != -1) // condition 2.4 completed
+		if (cond_2_4_check1 && (world.timeofday >= cond_2_4_nextcheck || round_ending) && cond_2_4_nextcheck != -1) // condition 2.4 completed
 			if (!win_condition) win_condition = "The Soviet Army won by occupying and holding German territory, while heavily outnumber the Germans there."
 			winning_side = "Soviet Army"
 			return TRUE
@@ -223,18 +223,11 @@
 
 /datum/game_mode/ww2/declare_completion()
 
+	check_finished(TRUE)
+
 	name = "World War 2"
 
 	var/list/soldiers = WW2_soldiers_alive()
-	var/WW2_soldiers_en_ru_coeff = WW2_soldiers_en_ru_ratio()
-
-	var/winners = winning_side
-
-	if (!winners)
-		if (WW2_soldiers_en_ru_coeff >= german_win_coeff)
-			winners = "German Army"
-		else if (WW2_soldiers_en_ru_coeff <= soviet_win_coeff)
-			winners = "Soviet Army"
 
 	var/text = "<big><span class = 'danger'>The battle has ended.</span></big><br><br>"
 

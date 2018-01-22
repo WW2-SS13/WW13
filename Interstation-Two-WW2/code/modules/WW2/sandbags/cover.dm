@@ -1,5 +1,4 @@
-// how much do we cover mobs behind incomplete sandbags?
-#define SANDBAG_BLOCK_ITEMS_CHANCE 70
+#define SANDBAG_BLOCK_ITEMS_CHANCE 80
 
 /obj/structure/window/sandbag/incomplete/check_cover(obj/item/projectile/P, turf/from)
 
@@ -23,6 +22,8 @@
 				extra_chance += 20
 
 	var/chance = base_chance + extra_chance
+
+	chance = min(chance, 98)
 
 	if(prob(chance * effectiveness_coeff))
 		return TRUE
@@ -51,6 +52,8 @@
 				extra_chance += 20
 
 	var/chance = base_chance + extra_chance
+
+	chance = min(chance, 98)
 
 	if(prob(chance))
 		return TRUE

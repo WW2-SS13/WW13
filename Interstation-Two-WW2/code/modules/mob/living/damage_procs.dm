@@ -10,8 +10,6 @@
 */
 /mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = FALSE, var/used_weapon = null, var/sharp = FALSE, var/edge = FALSE)
 	if(!damage || (blocked >= 2))	return FALSE
-	if (def_zone == "head")
-		damage *= pick(1.5, 1.75, 2.00)
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage/(blocked+1))
