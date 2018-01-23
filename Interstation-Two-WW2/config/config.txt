@@ -12,7 +12,7 @@ SERVER_NAME Lebensraum
 HUB_FEATURES A new light-medium roleplay WW2 Server
 
 ## The main content of your hub message
-HUB_BODY <i>1942, SEASON, TIME_OF_DAY, Ukraine</i><br>
+HUB_BODY <i>1941, SEASON, TIME_OF_DAY, Ukraine</i><br>
 
 ## Use a link to a banner on your hub message? Comment out if not
 HUB_BANNER_URL <img src='http://tny.im/btn'>

@@ -25,7 +25,8 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	world << "<b><big>[H.client.prefs.german_name] is the [title] of the German forces!</big></b>"
+	spawn (5) // after we have our name
+		world << "<b><big>[H.real_name] is the [title] of the German forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the German forces and lead them to victory, while working alongside the <b>SS-Untersharffuhrer</b>. You take orders from the <b>German High Command</b>.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)

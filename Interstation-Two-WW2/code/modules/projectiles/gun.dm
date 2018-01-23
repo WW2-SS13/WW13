@@ -169,19 +169,21 @@
 		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
 		return
 
-
-	var/obj/item/weapon/gun/off_hand   //DUAL WIELDING
+	//DUAL WIELDING: only works with pistols edition
+	var/obj/item/weapon/gun/off_hand = null
 	if(ishuman(user) && user.a_intent == "harm")
 		var/mob/living/carbon/human/H = user
-		if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
-			off_hand = H.l_hand
+		if (istype(H.l_hand, /obj/item/weapon/gun/projectile/pistol))
+			if (istype(H.r_hand, /obj/item/weapon/gun/projectile/pistol))
+				if(H.r_hand == src)
+					off_hand = H.l_hand
 
-		else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
-			off_hand = H.r_hand
+				else if(H.l_hand == src)
+					off_hand = H.r_hand
 
-		if(off_hand && off_hand.can_hit(user))
-			spawn(1)
-			off_hand.Fire(A,user,params)
+				if(off_hand && off_hand.can_hit(user))
+					spawn(1)
+					off_hand.Fire(A,user,params)
 
 	Fire(A,user,params) //Otherwise, fire normally.
 
@@ -288,6 +290,14 @@
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 
 	if(!user || !target) return
+
+	// stops admemes from sending immortal dummies into combat
+	if (user)
+		if (istype(user, /mob/living/carbon/human/dummy))
+			if (user.client)
+				if (clients.len > 1)
+					user << "<span class = 'danger'>Hey you fucking meme, don't send immortal dummies into combat.</span>"
+					return
 
 	add_fingerprint(user)
 

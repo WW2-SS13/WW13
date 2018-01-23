@@ -155,20 +155,24 @@
 	if (recipe.result_type == /obj/structure/barbwire)
 		if (H)
 			if (H.original_job)
-				if (H.original_job.base_type_flag() == GERMAN)
-					if (istype(get_area(src), /area/prishtina/german))
-						user << "<span class = 'warning'>This isn't a great place for barbwire.</span>"
-						return
-				else if (H.original_job.base_type_flag() == SOVIET)
-					if (istype(get_area(src), /area/prishtina/soviet))
-						user << "<span class = 'warning'>This isn't a great place for barbwire.</span>"
-						return
+				var/area/H_area = get_area(H)
+				if (H_area.location == AREA_INSIDE)
+					if (H.original_job.base_type_flag() == GERMAN)
+						if (istype(H_area, /area/prishtina/german))
+							user << "<span class = 'warning'>This isn't a great place for barbwire.</span>"
+							return
+					else if (H.original_job.base_type_flag() == SOVIET)
+						if (istype(H_area, /area/prishtina/soviet))
+							user << "<span class = 'warning'>This isn't a great place for barbwire.</span>"
+							return
 
 	if (recipe.time)
 		var/buildtime = recipe.time
 		if (H)
 			buildtime /= H.getStatCoeff("strength")
 			buildtime /= (H.getStatCoeff("engineering") * H.getStatCoeff("engineering"))
+
+		buildtime = round(buildtime)
 
 		user << "<span class='notice'>Building [recipe.title] ...</span>"
 		if (!do_after(user, buildtime))

@@ -13,8 +13,8 @@
 		usr << "Target coordinates specify bottom left corner of the capture, range defines render distance to opposite corner."
 		return
 
-	if(range > 32 || range <= FALSE)
-		usr << "Capturing range is incorrect, it must be within TRUE-32."
+	if(range > 500 || range <= FALSE)
+		usr << "Capturing range is incorrect, it must be within 1-500."
 		return
 
 	if(locate(tx,ty,tz))

@@ -9,13 +9,10 @@ var/list/admin_verbs_default = list(
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify,
 	/client/proc/cmd_mentor_check_new_players,
-//	/client/proc/see_spies,
-//	/client/proc/see_jews,
 	/client/proc/see_soldiers,
 	/client/proc/see_bug_reports,
 	/client/proc/see_suggestions,
 	/client/proc/see_world_realtime
-//	/client/proc/deadchat				//toggles deadchat on/off,
 	)
 var/list/admin_verbs_admin = list(
 	/client/proc/add_to_server_whitelist,
