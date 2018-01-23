@@ -78,7 +78,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = FALSE)
 	layer = MOB_LAYER + 0.01 // above train pseudoturfs, stairs, and now MOBs
 
 	var/firelevel = TRUE
-	var/default_damage = 2
+	var/default_damage = 4
 	var/spread_range = TRUE
 	var/spread_prob = 10
 	var/spread_fuel_prob = 80

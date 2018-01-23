@@ -2,6 +2,7 @@
 /mob/living/carbon/human/vampire
 	takes_less_bullet_damage = TRUE
 	movement_speed_multiplier = 1.25
+	use_initial_stats = TRUE
 	stats = list(
 		"strength" = list(300,300),
 		"engineering" = list(100,100),

@@ -139,3 +139,5 @@
 		"heavyweapon" = list(100,100),
 		"medical" = list(100,100),
 		"survival" = list(100,100))
+
+	var/use_initial_stats = FALSE

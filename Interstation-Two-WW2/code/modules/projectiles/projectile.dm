@@ -34,7 +34,7 @@
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
 
-	var/accuracy = FALSE
+	var/accuracy = 0
 	var/dispersion = 0.0
 
 	var/damage = 10
@@ -43,7 +43,7 @@
 	var/taser_effect = FALSE //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
 	var/check_armour = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb	//Cael - bio and rad are also valid
 	var/projectile_type = /obj/item/projectile
-	var/penetrating = FALSE //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
+	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 	var/kill_count = 30 //This will de-increment every process(). When == 0, it will delete the projectile.
 		//Effects
 	var/stun = FALSE
@@ -314,7 +314,7 @@
 				attack_mob(M, distance)
 
 	//penetrating projectiles can pass through things that otherwise would not let them
-	if(!passthrough && penetrating > FALSE)
+	if(!passthrough && penetrating > 0)
 		if(check_penetrate(A))
 			passthrough = TRUE
 		penetrating--
@@ -345,7 +345,6 @@
 
 /obj/item/projectile/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return TRUE
-
 
 /obj/item/projectile/process()
 	var/first_step = 1

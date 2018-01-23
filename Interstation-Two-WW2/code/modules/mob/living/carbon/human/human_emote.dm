@@ -544,9 +544,9 @@
 			if ("dab")
 				m_type = TRUE
 				if (!restrained())
-					var/mob/M = locate() in get_step(src, dir)
-					if (M)
-						message = "dabs on [M]."
+					var/atom/movable/AM = locate() in get_step(src, dir)
+					if (AM)
+						message = "dabs on [AM]."
 					else
 						message = "dabs."
 

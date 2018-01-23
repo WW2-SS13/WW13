@@ -9,7 +9,7 @@
 	var/horizontal_icon = 'icons/WW2/tank_large_horizontal.dmi'
 	var/vertical_icon = 'icons/WW2/tank_large_vertical.dmi'
 	icon_state = "ger"
-	layer = MOB_LAYER + 0.01
+	layer = MOB_LAYER + 0.20 // above water
 	var/fuel_slot_screwed = TRUE
 	var/fuel_slot_open = FALSE
 	var/fuel = 750

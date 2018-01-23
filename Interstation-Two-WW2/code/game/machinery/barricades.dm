@@ -59,10 +59,11 @@ for reference:
 	desc = "This space is blocked off by a barricade."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "barricade"
-	anchored = 1.0
-	density = 1.0
-	var/health = 100
-	var/maxhealth = 100
+	anchored = TRUE
+
+	density = TRUE
+	var/health = 200
+	var/maxhealth = 200
 	var/material/material
 
 /obj/structure/barricade/New(var/newloc, var/material_name)

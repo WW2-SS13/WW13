@@ -25,7 +25,7 @@
 		shake_camera(L, 3, 2)
 
 /obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
-	if(penetrating > FALSE && damage > 20 && prob(damage))
+	if(penetrating > 1 && damage > 20 && prob(damage))
 		mob_passthrough_check = TRUE
 	else
 		mob_passthrough_check = FALSE
@@ -40,7 +40,7 @@
 /obj/item/projectile/bullet/check_penetrate(var/atom/A)
 	if(!A || !A.density) return TRUE //if whatever it was got destroyed when we hit it, then I guess we can just keep going
 
-	if(ismob(A))
+	else if(ismob(A))
 		if(!mob_passthrough_check)
 			return FALSE
 		if(iscarbon(A))
@@ -176,7 +176,7 @@
 
 /obj/item/projectile/bullet/rifle
 	armor_penetration = 20
-	penetrating = TRUE
+	penetrating = 1
 
 /obj/item/projectile/bullet/rifle/a762
 	damage = 25

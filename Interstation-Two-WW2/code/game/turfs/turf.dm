@@ -410,7 +410,8 @@ var/const/enterloopsanity = 100
 			//else 	if(istype(src, /turf/stalker/floor/tropa))//Not needed for now.
 			//	footstepsound = "sandfootsteps"
 			else 	if(istype(src, /turf/floor/plating/beach/water))
-				footstepsound = "waterfootsteps"
+				if (!istype(src, /turf/floor/plating/beach/water/ice))
+					footstepsound = "waterfootsteps"
 			else 	if(istype(src, /turf/floor/wood))
 				footstepsound = "woodfootsteps"
 			else 	if(istype(src, /turf/floor/carpet))

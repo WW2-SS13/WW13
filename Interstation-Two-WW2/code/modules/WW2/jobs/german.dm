@@ -205,7 +205,7 @@
 /datum/job/german/doctor
 	title = "Medizinier"
 	en_meaning = "Doctor"
-	total_positions = 3
+	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerDr"
 	is_nonmilitary = TRUE
@@ -282,7 +282,7 @@
 /datum/job/german/sniper
 	title = "Sharfshutze"
 	en_meaning = "Sniper"
-	total_positions = 3
+	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	is_primary = FALSE

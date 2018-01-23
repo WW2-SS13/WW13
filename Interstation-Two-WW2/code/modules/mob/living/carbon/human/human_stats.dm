@@ -17,9 +17,14 @@
 		. += stats[lowertext(statname)][1]/1000
 
 /mob/living/carbon/human/proc/setStat(statname, statval)
+
 	statname = lowertext(statname)
 	if (!stats.Find(statname))
 		return
+
+	if (use_initial_stats)
+		if (stats[statname] > statval)
+			return
 
 	statval += rand(-5,5)
 	// realism + balancing

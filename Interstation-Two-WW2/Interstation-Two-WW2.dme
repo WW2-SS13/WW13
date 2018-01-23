@@ -186,7 +186,7 @@
 #include "code\game\gamemodes\objective.dm"
 #include "code\game\gamemodes\setupgame.dm"
 #include "code\game\gamemodes\WW2\helpers.dm"
-#include "code\game\gamemodes\WW2\WW2.dm"
+#include "code\game\gamemodes\WW2\ww2.dm"
 #include "code\game\jobs\job.dm"
 #include "code\game\jobs\job_controller.dm"
 #include "code\game\jobs\jobs.dm"

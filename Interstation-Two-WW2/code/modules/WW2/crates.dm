@@ -452,7 +452,7 @@
 /obj/structure/closet/crate/medical/New()
 	..()
 	update_capacity(10)
-	for (var/v in TRUE to TRUE)
+	for (var/v in 1 to 1)
 		new /obj/item/weapon/storage/firstaid/toxin(src)
 		new /obj/item/weapon/storage/firstaid/fire(src)
 		new /obj/item/weapon/storage/firstaid/o2(src)
@@ -460,8 +460,8 @@
 		new /obj/item/weapon/storage/firstaid/injectorpack(src)
 		new /obj/item/weapon/storage/firstaid/combat(src)
 		new /obj/item/weapon/gauze_pack/gauze(src)
-
 		new /obj/item/weapon/doctor_handbook(src)
+
 /obj/structure/closet/crate/soviet_grenade/New()
 	..()
 	update_capacity(24)

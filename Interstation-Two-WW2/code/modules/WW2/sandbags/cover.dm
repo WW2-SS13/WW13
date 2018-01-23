@@ -1,4 +1,4 @@
-#define SANDBAG_BLOCK_ITEMS_CHANCE 80
+#define SANDBAG_BLOCK_ITEMS_CHANCE 75
 
 /obj/structure/window/sandbag/incomplete/check_cover(obj/item/projectile/P, turf/from)
 
@@ -6,11 +6,11 @@
 	var/turf/cover = get_turf(src)
 	if(!cover)
 		return TRUE
-	if (get_dist(P.starting, loc) <= TRUE) //Tables won't help you if people are THIS close
+	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return TRUE
 
-	var/base_chance = SANDBAG_BLOCK_ITEMS_CHANCE - (P.penetrating * 3)
-	var/extra_chance = FALSE
+	var/base_chance = SANDBAG_BLOCK_ITEMS_CHANCE
+	var/extra_chance = 0
 
 	if (ismob(P.original)) // what the firer clicked
 		var/mob/m = P.original
@@ -39,8 +39,8 @@
 	if (get_dist(P.starting, loc) <= TRUE) //Tables won't help you if people are THIS close
 		return TRUE
 
-	var/base_chance = SANDBAG_BLOCK_ITEMS_CHANCE - (P.penetrating * 3)
-	var/extra_chance = FALSE
+	var/base_chance = SANDBAG_BLOCK_ITEMS_CHANCE
+	var/extra_chance = 0
 
 	if (ismob(P.original)) // what the firer clicked
 		var/mob/m = P.original
@@ -60,14 +60,12 @@
 	else
 		return FALSE
 
-// what is our chance of deflecting bullets regardless?
+// what is our chance of deflecting bullets regardless (compounded by check_cover)
 /proc/bullet_deflection_chance(obj/item/projectile/proj)
-	var/base = 95
+	var/base = 100
 	if (!istype(proj))
 		return base
-	else
-		var/subtract = max(max(proj.accuracy, 0.5) * 7, 5)
-		return (base - subtract)
+	return base - min(30, proj.accuracy) // > scoped kars have 143 accuracy
 
 // procedure for both incomplete and complete sandbags
 /obj/structure/window/sandbag/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
@@ -112,7 +110,7 @@
 				return FALSE
 			else
 				return TRUE
-
+/*
 /obj/structure/window/sandbag/CheckExit(atom/movable/O as mob|obj, target as turf)
 
 	if(get_dir(O.loc, target) == dir)
@@ -130,3 +128,4 @@
 			if (!O.throw_source)
 				return FALSE
 	return TRUE
+	*/

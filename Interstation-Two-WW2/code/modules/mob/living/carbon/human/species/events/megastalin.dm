@@ -2,6 +2,7 @@
 	takes_less_bullet_damage = TRUE
 	movement_speed_multiplier = 1.50
 	size_multiplier = 3.00
+	use_initial_stats = TRUE
 	stats = list(
 		"strength" = list(500,500),
 		"engineering" = list(350,350),

@@ -199,7 +199,7 @@
 /datum/job/soviet/doctor
 	title = "Doktor"
 	en_meaning = "Doctor"
-	total_positions = 3
+	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRADr"
 	is_nonmilitary = TRUE
@@ -240,7 +240,7 @@
 /datum/job/soviet/sniper
 	title = "Snaiper"
 	en_meaning = "Sniper"
-	total_positions = 2
+	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	is_primary = FALSE
