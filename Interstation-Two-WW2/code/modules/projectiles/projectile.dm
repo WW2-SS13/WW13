@@ -44,6 +44,7 @@
 	var/check_armour = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb	//Cael - bio and rad are also valid
 	var/projectile_type = /obj/item/projectile
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
+	var/gibs = FALSE
 	var/kill_count = 30 //This will de-increment every process(). When == 0, it will delete the projectile.
 		//Effects
 	var/stun = FALSE
@@ -385,7 +386,7 @@
 				return
 
 		before_move()
-		Move(location.return_turf())
+		forceMove_nondenseturf(location.return_turf())
 
 		if(!bumped && !isturf(original))
 			if(loc == get_turf(original))

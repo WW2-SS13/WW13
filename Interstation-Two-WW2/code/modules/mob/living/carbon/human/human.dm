@@ -267,10 +267,10 @@ var/list/rank_prefix = list(\
 	)
 
 /mob/living/carbon/human/proc/rank_prefix_name(name)
-	if(get_id_rank())
+	if(get_natural_rank())
 		if(findtext(name, " "))
 			name = copytext(name, findtext(name, " "))
-		name = get_id_rank() + name
+		name = get_natural_rank() + " " + name
 	return name
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
@@ -301,6 +301,10 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/proc/get_id_rank()
 	return ""
+
+/mob/living/carbon/human/proc/get_natural_rank()
+	return ""
+
 /*
 //gets ID card object from special clothes slot or null.
 /mob/living/carbon/human/proc/get_idcard()

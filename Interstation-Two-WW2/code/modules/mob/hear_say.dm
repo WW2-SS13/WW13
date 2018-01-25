@@ -116,11 +116,7 @@
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
 		if(H.voice)
-			speaker_name = H.voice
-	/*	for(var/datum/data/record/G in data_core.general)
-			if(G.fields["name"] == speaker_name)
-				speaker_name = H.rank_prefix_name(speaker_name)
-				break*/
+			speaker_name = H.rank_prefix_name(H.GetVoice()) // H.voice
 
 		if(H.age && H.gender)//If they have an age and gender
 			var/ageAndGender

@@ -255,6 +255,9 @@
 					if (J != "Cancel")
 						job_master.EquipRank(H, J)
 						H.original_job = job_master_occupation_names[J]
+						var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
+						message_admins(msg)
+						log_admin(msg)
 						spawn (1)
 							H.loc = oloc_H
 

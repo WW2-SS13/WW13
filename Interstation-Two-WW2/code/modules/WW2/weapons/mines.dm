@@ -118,7 +118,6 @@
 	if(triggered) return
 	trigger(AM)
 
-
 /obj/item/device/mine/proc/trigger(atom/movable/AM)
 	if (world.time < nextCanExplode)
 		return
@@ -134,7 +133,7 @@
 //TYPES//
 //Explosive
 /obj/item/device/mine/proc/explosive(obj)
-	explosion(loc,-1,-1,3)
+	explosion(loc,-1,1,3)
 	spawn(0)
 		del(src)
 

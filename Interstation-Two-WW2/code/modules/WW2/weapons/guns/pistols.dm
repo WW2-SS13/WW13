@@ -11,12 +11,15 @@
 	icon_state = "luger"
 	item_state = "gun"
 	w_class = 2
-	caliber = "a9mm_para"
+	caliber = "a9mm_para_luger"
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/luger
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+
+/obj/item/weapon/gun/projectile/pistol/luger/gibber
+	gibs = TRUE
 
 // new soviet officer gun
 /obj/item/weapon/gun/projectile/pistol/_45
@@ -31,6 +34,9 @@
 	magazine_type = /obj/item/ammo_magazine/c45m
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+
+/obj/item/weapon/gun/projectile/pistol/_45/gibber
+	gibs = TRUE
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

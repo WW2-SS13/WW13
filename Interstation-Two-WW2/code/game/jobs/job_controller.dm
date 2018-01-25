@@ -1209,8 +1209,12 @@ var/global/datum/controller/occupations/job_master
 			job.apply_fingerprints(H)
 
 			if (names_used[H.real_name])
-				H.original_job.give_random_name(H)
+				job.give_random_name(H)
 			names_used[H.real_name] = TRUE
+
+			if (job.rank_abbreviation)
+				H.real_name = "[job.rank_abbreviation]. [H.real_name]"
+				H.name = H.real_name
 
 			switch (job.base_type_flag())
 				if (SOVIET)
@@ -1389,20 +1393,7 @@ var/global/datum/controller/occupations/job_master
 			world << "[H] ([rank]) GOT TO before spawnID()"
 			#endif
 
-			/* if its night give H a lantern
-			 * use our belt slot since keys can go in the ID slot
-			 * some roles have stuff in their belt slot but most people
-			 * will get lanterns - Kachnov */
-
-			if (isDarkOutside())
-				H.equip_to_slot_or_del(new/obj/item/device/flashlight(H), slot_belt)
-
 			spawnKeys(H, rank, alt_title)
-
-			// free belt slot, give us a flashlight anyway
-			if (!slot_belt)
-				H.equip_to_slot_or_del(new/obj/item/device/flashlight(H), slot_belt)
-
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO after spawnID()"
@@ -1454,20 +1445,10 @@ var/global/datum/controller/occupations/job_master
 
 		var/obj/item/weapon/storage/belt/keychain/keychain = new/obj/item/weapon/storage/belt/keychain()
 
+		if (!H.wear_id) // first, try to equip it to their ID slot
+			H.equip_to_slot_or_del(keychain, slot_wear_id)
 		if (!H.belt) // first, try to equip it as their belt
 			H.equip_to_slot_or_del(keychain, slot_belt)
-		else // DISABLED because bugs
-			if (istype(H.belt, /obj/item/weapon/storage/belt) && FALSE == TRUE) // try to put it in their belt
-				var/obj/item/weapon/storage/belt/belt = H.belt
-				if (belt.can_be_inserted(keychain))
-					belt.handle_item_insertion(keychain)
-			else // then try to put it in their ID slot
-				H.equip_to_slot_if_possible(keychain, slot_wear_id)
-				if (H.wear_id != keychain) // wow
-					H.equip_to_slot_if_possible(keychain, slot_l_store)
-					if (H.l_store != keychain)
-						H.equip_to_slot_if_possible(keychain, slot_r_store)
-
 
 		var/list/keys = job.get_keys()
 
@@ -1481,16 +1462,24 @@ var/global/datum/controller/occupations/job_master
 		if(!ticker)
 			return TRUE
 		if(side == SOVIET)
+			if (soviets_forceEnabled)
+				return FALSE
 			if (side_is_hardlocked(side))
 				return 2
 			return !ticker.can_latejoin_ruforce
 		else if(side == GERMAN)
+			if (germans_forceEnabled)
+				return FALSE
 			if (side_is_hardlocked(side))
 				return 2
 			return !ticker.can_latejoin_geforce
 		else if (side == CIVILIAN)
+			if (civilians_forceEnabled)
+				return FALSE
 			return map.game_really_started()
 		else if (side == PARTISAN)
+			if (partisans_forceEnabled)
+				return FALSE
 			return map.game_really_started()
 		return FALSE
 
@@ -1508,14 +1497,22 @@ var/global/datum/controller/occupations/job_master
 
 		switch (side)
 			if (PARTISAN)
+				if (partisans_forceEnabled)
+					return FALSE
 				return FALSE
 			if (CIVILIAN)
+				if (civilians_forceEnabled)
+					return FALSE
 				return FALSE
 			if (GERMAN)
+				if (germans_forceEnabled)
+					return FALSE
 				if (player_list.len >= 2 && player_list.len <= 20)
 					if (germans >= ceil(player_list.len/2))
 						return TRUE
 			if (SOVIET)
+				if (soviets_forceEnabled)
+					return FALSE
 				if (player_list.len >= 2 && player_list.len <= 20)
 					if (soviets >= ceil(player_list.len/2))
 						return TRUE

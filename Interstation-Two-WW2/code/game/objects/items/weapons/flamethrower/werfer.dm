@@ -179,12 +179,14 @@
 	if(href_list["rwidth"])
 		var/mod = text2num(href_list["rwidth"])
 		if (rwidth + mod + rheight > max_total_range)
+			usr << "<span class = 'danger'>To increase the width of the fire any more, you have to decrease the height of the fire.</span>"
 			return
 		rwidth = rwidth + mod
 		rwidth = Clamp(rwidth, 1, 7)
 	if(href_list["rheight"])
 		var/mod = text2num(href_list["rheight"])
 		if (rheight + mod + rwidth > max_total_range)
+			usr << "<span class = 'danger'>To increase the height of the fire any more, you have to decrease the width of the fire.</span>"
 			return
 		rheight = rheight + mod
 		rheight = Clamp(rheight, 1, 3)

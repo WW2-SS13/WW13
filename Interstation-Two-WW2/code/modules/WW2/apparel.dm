@@ -517,3 +517,15 @@
 	New()
 		..()
 		hold.cant_hold = list(/obj/item/clothing)
+
+// CUSTOMIZED GAS MASKS
+
+/obj/item/clothing/mask/gas/german
+	icon_state = "m38_mask"
+	item_state = "m38_mask"
+	filtered_gases = list("xylyl_bromide", "mustard_gas", "white_phosphorus_gas", "chlorine_gas", "zyklon_b")
+
+/obj/item/clothing/mask/gas/soviet
+	icon_state = "gp5_mask"
+	item_state = "gp5_mask"
+	filtered_gases = list("xylyl_bromide", "mustard_gas", "white_phosphorus_gas", "chlorine_gas", "zyklon_b")

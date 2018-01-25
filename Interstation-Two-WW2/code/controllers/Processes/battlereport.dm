@@ -1,3 +1,4 @@
+
 var/datum/controller/process/battlereport/battlereport
 
 /datum/controller/process/battlereport
@@ -11,10 +12,10 @@ var/datum/controller/process/battlereport/battlereport
 /datum/controller/process/battlereport/statProcess()
 	..()
 	if (nextreport == -1)
-		nextreport = world.realtime + 6000
-	stat(null, "Next battle report: ~[round((nextreport - world.realtime)/600)] minutes")
+		nextreport = world.timeofday + 6000
+	stat(null, "Next battle report: ~[round((nextreport - world.timeofday)/600)] minutes")
 
 /datum/controller/process/battlereport/doWork()
 	show_global_battle_report(null)
-	nextreport = world.realtime + 6000
-	SCHECK
+	nextreport = world.timeofday + 6000
+	// SCHECK // disabled because I think it breaks the process

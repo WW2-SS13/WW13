@@ -212,6 +212,9 @@ var/list/gamemode_cache = list()
 	// misc
 	var/resource_website = null
 
+	// dumb memes
+	var/allow_dabbing = FALSE
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -620,6 +623,9 @@ var/list/gamemode_cache = list()
 
 				if ("round_end_countdown")
 					config.round_end_countdown = text2num(value)
+
+				if ("allow_dabbing")
+					config.allow_dabbing = TRUE
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

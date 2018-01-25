@@ -4,10 +4,9 @@
 
 //These control the damage thresholds for the various ways of removing limbs
 
-// buffing these to see if it makes limbs explode less from bullets - Kachnov
-#define DROPLIMB_THRESHOLD_EDGE 5
-#define DROPLIMB_THRESHOLD_TEAROFF 4
-#define DROPLIMB_THRESHOLD_DESTROY 2
+#define DROPLIMB_THRESHOLD_EDGE 2.0
+#define DROPLIMB_THRESHOLD_TEAROFF 1.5
+#define DROPLIMB_THRESHOLD_DESTROY 0.5
 
 /obj/item/organ/external
 	name = "external"
@@ -1243,7 +1242,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	limb_name = "head"
 	icon_name = "head"
 	name = "head"
-	max_damage = 75
+	max_damage = 40
 	min_broken_damage = 35
 	w_class = 3
 	body_part = HEAD

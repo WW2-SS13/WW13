@@ -78,6 +78,10 @@
 
 	var/gun_type = GUN_TYPE_GENERIC
 
+	var/autofiring = FALSE
+
+	var/gibs = FALSE
+
 /obj/item/weapon/gun/New()
 	..()
 	if(!firemodes.len)
@@ -531,7 +535,7 @@
 	mouthshoot = TRUE
 	M.visible_message("\red [user] sticks their gun in their mouth, ready to pull the trigger...")
 	if(!do_after(user, 15))
-		M.visible_message("\blue [user] decided life was worth living")
+		M.visible_message("\blue [user] failed to commit suicide.")
 		mouthshoot = FALSE
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()

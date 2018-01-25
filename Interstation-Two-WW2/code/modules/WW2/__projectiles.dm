@@ -1,72 +1,89 @@
 /* WW2 */
 
+/* supposedly it takes 40 brute to break bones. So, damage values are being
+ * standardized/adjusted to make it relatively difficult to instant break
+ * chests with a luger. Could use some help on these values because
+ * I don't know much about the guns in question - Kachnov */
+
+#define DAMAGE_LOW 19
+#define DAMAGE_MEDIUM 38
+#define DAMAGE_HIGH 57
+#define DAMAGE_VERY_HIGH 76
+
 /obj/item/projectile/bullet/rifle
 	speed = 2.5
+	armor_penetration = 50
 
 /obj/item/projectile/bullet/rifle/a792x33
-	damage = 50
+	damage = DAMAGE_MEDIUM
 	penetrating = TRUE
 
+// MOSIN
 /obj/item/projectile/bullet/rifle/a762x54
-	damage = 55
+	damage = DAMAGE_MEDIUM
 	penetrating = 2
+	armor_penetration = 100
 
+// KARS
 /obj/item/projectile/bullet/rifle/a792x57
-	damage = 58
+	damage = DAMAGE_MEDIUM
 	penetrating = 2
+	armor_penetration = 100
 
 /obj/item/projectile/bullet/rifle/a762x25
-	damage = 42
+	damage = DAMAGE_MEDIUM
 	penetrating = FALSE
 
 /obj/item/projectile/bullet/rifle/a9_parabellum
-	damage = 38
+	damage = DAMAGE_MEDIUM
 	penetrating = FALSE
 
-
-/* "Rifle" rounds */
-
 /obj/item/projectile/bullet/rifle/a762
-	damage = 50
+	damage = DAMAGE_MEDIUM
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/rifle/a145
-	damage = 100
+	damage = DAMAGE_VERY_HIGH
 	stun = 3
 	weaken = 3
 	penetrating = 5
-	armor_penetration = 80
-	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
+	armor_penetration = 150
+	hitscan = TRUE //so the PTRD isn't useless as a sniper weapon
 
 /obj/item/projectile/bullet/rifle/a556
-	damage = 50
+	damage = DAMAGE_MEDIUM
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/rifle/a9x39
-	damage = 75
+	damage = DAMAGE_HIGH
 	penetrating = 3
 	step_delay = 2
 
 /obj/item/projectile/bullet/rifle/a762x39
-	damage = 33
+	damage = DAMAGE_MEDIUM
 	penetrating = 2
 
 /obj/item/projectile/bullet/rifle/a762x51
-	damage = 25
+	damage = DAMAGE_LOW
 	penetrating = 3
 
 /obj/item/projectile/bullet/rifle/c4mm
-	damage = 8
+	damage = DAMAGE_LOW
 	penetrating = FALSE
 
 /obj/item/projectile/bullet/rifle/a127x108
-	damage = 42
+	damage = DAMAGE_MEDIUM
 	penetrating = 3
 
 /obj/item/projectile/bullet/rifle/a556x45
-	damage = 50
+	damage = DAMAGE_MEDIUM
 	penetrating = 3
 	hitscan = TRUE
+
+#undef DAMAGE_LOW
+#undef DAMAGE_MEDIUM
+#undef DAMAGE_HIGH
+#undef DAMAGE_VERY_HIGH
 
 /obj/item/projectile/bullet/chameleon
 	damage = TRUE // stop trying to murderbone with a fake gun dumbass!!!

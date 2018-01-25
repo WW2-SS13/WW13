@@ -24,6 +24,8 @@
 	// hackish code because radios need a mob, with a language, to announce
 	mob = new
 	mob.default_language = new/datum/language/german
+	mob.languages.Cut()
+	mob.languages[1] = mob.default_language
 	mob.real_name = "Supply Announcement System"
 	mob.name = mob.real_name
 	mob.original_job = new/datum/job/german/trainsystem

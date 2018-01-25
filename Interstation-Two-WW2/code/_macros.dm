@@ -70,6 +70,7 @@
 
 #define islist(A) istype(A, /list)
 
+#define isatom(A) istype(A, /atom)
 #define ismovable(A) istype(A, /atom/movable)
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)

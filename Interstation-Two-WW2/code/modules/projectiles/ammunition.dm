@@ -149,6 +149,7 @@
 			user << "<span class = 'notice'>You fill [src] with [M]'s ammo.</span>"
 
 		update_icon()
+		W.update_icon()
 
 // empty the mag
 /obj/item/ammo_magazine/attack_self(mob/user)

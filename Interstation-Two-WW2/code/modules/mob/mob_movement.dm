@@ -340,6 +340,13 @@
 		var/standing_on_snow = FALSE
 
 		if (F && F_is_valid_floor)
+
+			var/area/F_area = get_area(F)
+			if (F_area.weather == WEATHER_RAIN)
+				F.muddy = TRUE
+			else
+				F.muddy = FALSE
+
 			var/obj/snow/S = F.has_snow()
 			var/snow_message = ""
 			var/snow_span = "notice"

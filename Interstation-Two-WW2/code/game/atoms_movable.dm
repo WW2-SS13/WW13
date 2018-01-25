@@ -10,6 +10,7 @@
 	var/thrower
 	var/turf/throw_source = null
 	var/turf/last_throw_source = null // when we need a longterm reference
+	var/atom/original_target = null
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/moved_recently = FALSE
@@ -18,6 +19,7 @@
 
 	var/auto_init = TRUE
 	var/nothrow = FALSE
+
 
 /atom/movable/New()
 	..()
@@ -107,6 +109,13 @@
 				destination.loc.Entered(src, origin)
 	return TRUE
 
+/atom/movable/proc/forceMove_nondenseturf(atom/destination, var/special_event)
+	if (isturf(destination))
+		var/turf/T = destination
+		if (T.density)
+			return FALSE
+	return forceMove(destination, special_event)
+/*
 /atom/movable/proc/forceMoveOld(atom/destination)
 	if(destination)
 		if(loc)
@@ -114,7 +123,7 @@
 		loc = destination
 		loc.Entered(src)
 		return TRUE
-	return FALSE
+	return FALSE*/
 
 //called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
@@ -141,18 +150,26 @@
 //decided whether a movable atom being thrown can pass through the turf it is in.
 /atom/movable/proc/hit_check(var/speed)
 	if(throwing)
-		for(var/atom/A in get_turf(src))
+		for(var/atom/movable/A in get_turf(src))
 			if(A == src) continue
 			if(istype(A,/mob/living))
 				if(A:lying) continue
+				if(A == thrower)
+					if (locate(/obj/structure/window/sandbag) in get_turf(src))
+						continue
 				throw_impact(A,speed)
-			if(isobj(A))
-				if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
+			else if(isobj(A))
+				var/obj/structure/window/sandbag/S = A
+				if (istype(S) && S.CanPass(src, get_turf(src)))
+					continue
+				else if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
 					throw_impact(A,speed)
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
 	. = TRUE
 	if(!target || !src)	return FALSE
+
+	original_target = target
 
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 
@@ -189,7 +206,7 @@
 
 		while(src && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == FALSE)  || istype(loc, /turf/space)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
-			if(error < FALSE)
+			if(error < 0)
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
@@ -198,7 +215,15 @@
 						var/obj/item/weapon/grenade/G = src
 						G.active = FALSE
 					break
-				Move(step)
+
+				var/canMove = TRUE
+				for (var/obj/structure/S in step)
+					if (istype(S, /obj/structure/window/sandbag))
+						continue
+					canMove = FALSE
+				if (canMove)
+					forceMove_nondenseturf(step)
+
 				hit_check(speed)
 				error += dist_x
 				dist_travelled++
@@ -215,7 +240,13 @@
 						var/obj/item/weapon/grenade/G = src
 						G.active = FALSE
 					break
-				Move(step)
+				var/canMove = TRUE
+				for (var/obj/structure/S in step)
+					if (istype(S, /obj/structure/window/sandbag))
+						continue
+					canMove = FALSE
+				if (canMove)
+					forceMove_nondenseturf(step)
 				hit_check(speed)
 				error -= dist_y
 				dist_travelled++
@@ -237,7 +268,13 @@
 						var/obj/item/weapon/grenade/G = src
 						G.active = FALSE
 					break
-				Move(step)
+				var/canMove = TRUE
+				for (var/obj/structure/S in step)
+					if (istype(S, /obj/structure/window/sandbag))
+						continue
+					canMove = FALSE
+				if (canMove)
+					forceMove_nondenseturf(step)
 				hit_check(speed)
 				error += dist_y
 				dist_travelled++
@@ -254,7 +291,13 @@
 						var/obj/item/weapon/grenade/G = src
 						G.active = FALSE
 					break
-				Move(step)
+				var/canMove = TRUE
+				for (var/obj/structure/S in step)
+					if (istype(S, /obj/structure/window/sandbag))
+						continue
+					canMove = FALSE
+				if (canMove)
+					forceMove_nondenseturf(step)
 				hit_check(speed)
 				error -= dist_x
 				dist_travelled++

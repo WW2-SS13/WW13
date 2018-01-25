@@ -32,6 +32,7 @@
 /datum/job/var/is_guard = FALSE
 /datum/job/var/is_tankuser = FALSE
 /datum/job/var/absolute_limit = FALSE // if this is FALSE it's ignored
+/datum/job/var/rank_abbreviation = null
 
 /* type_flag() replaces flag, and base_type_flag() replaces department_flag
  * this is a better solution than bit constants, in my opinion */

@@ -132,8 +132,8 @@ WW 2 WEAPONS MAGS N AMMO
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
 	matter = list(DEFAULT_WALL_MATERIAL = 600)
-	caliber = "a9mm_para"
-	ammo_type = /obj/item/ammo_casing/a9_parabellum
+	caliber = "a9mm_para_luger"
+	ammo_type = /obj/item/ammo_casing/a9_parabellum_luger
 	max_ammo = 8
 	multiple_sprites = TRUE
 

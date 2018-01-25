@@ -74,6 +74,8 @@
 			ammo_magazine.stored_ammo -= chambered
 
 	if (chambered)
+		if (gibs)
+			chambered.BB.gibs = TRUE
 		return chambered.BB
 	return null
 
