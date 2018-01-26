@@ -29,7 +29,8 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/_45(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	spawn (5) // after we have our name
-		world << "<b><big>[H.real_name] is the [title] of the Soviet forces!</big></b>"
+		if (!istype(H, /mob/living/carbon/human/megastalin))
+			world << "<b><big>[H.real_name] is the [title] of the Soviet forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the Russian forces and lead them to victory. You take orders from the <b>Soviet High Command</b>.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)

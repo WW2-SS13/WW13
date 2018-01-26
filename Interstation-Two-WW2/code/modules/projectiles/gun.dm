@@ -372,10 +372,10 @@
 
 		process_accuracy(projectile, user, target, acc, disp)
 
-		if(pointblank) // oh so this is how pointblank works. Todo: delet this
+		if(pointblank)
 			if (istype(projectile, /obj/item/projectile))
 				var/obj/item/projectile/P = projectile
-				P.KD_chance *= 10
+				P.KD_chance = 100
 			process_point_blank(projectile, user, target)
 
 		if(process_projectile(projectile, user, target, user.targeted_organ, clickparams))
@@ -464,7 +464,7 @@
 		return //default behaviour only applies to true projectiles
 
 	//default point blank multiplier
-	var/damage_mult = 2
+	var/damage_mult = 1.33
 
 	//determine multiplier due to the target being grabbed
 	if(ismob(target))

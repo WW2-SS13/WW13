@@ -72,12 +72,17 @@ bullet_act
 			P.on_hit(src, 2, def_zone)
 			return 2
 	else
-		if (list("head", "mouth", "eyes").Find(def_zone) && prob(40))
-			visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-			return
-		else if (prob(20))
-			visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-			return
+		if ((abs(P.original.x - x) + abs(P.original.y - y)) > 2) // not PB range
+			if (list("head", "mouth", "eyes").Find(def_zone) && prob(40))
+				visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
+				qdel(P)
+				adjustBruteLoss(rand(2,3))
+				return
+			else if (prob(20))
+				visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
+				qdel(P)
+				adjustBruteLoss(rand(2,3))
+				return
 		// get knocked back once in a while
 		// unless we're on a train because bugs
 		if (prob(P.KD_chance/2) && !is_on_train())
@@ -381,6 +386,9 @@ bullet_act
 				zone = null
 			else if(shield_check)
 				return
+
+		if (!zone && lying)
+			zone = "chest"
 
 		if(!zone)
 			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")

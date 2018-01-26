@@ -3,10 +3,10 @@
 ****************************************************/
 
 //These control the damage thresholds for the various ways of removing limbs
-
-#define DROPLIMB_THRESHOLD_EDGE 2.0
-#define DROPLIMB_THRESHOLD_TEAROFF 1.5
-#define DROPLIMB_THRESHOLD_DESTROY 0.5
+//Numbers below 1.0 = more damage required
+#define DROPLIMB_THRESHOLD_EDGE 0.8
+#define DROPLIMB_THRESHOLD_TEAROFF 0.7
+#define DROPLIMB_THRESHOLD_DESTROY 0.6
 
 /obj/item/organ/external
 	name = "external"

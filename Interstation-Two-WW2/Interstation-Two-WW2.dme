@@ -966,4 +966,5 @@
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
 #include "maps\city\city.dmm"
+#include "maps\city\smallcity_sewers.dmm"
 // END_INCLUDE

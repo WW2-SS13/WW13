@@ -545,7 +545,7 @@
 				if (config.allow_dabbing)
 					m_type = TRUE
 					if (!restrained())
-						message = "dabs"
+						message = "dabs."
 						for (var/atom/movable/AM in get_step(src, dir))
 							if (!ismob(AM))
 								if (!istype(AM, /atom/movable/lighting_overlay))
