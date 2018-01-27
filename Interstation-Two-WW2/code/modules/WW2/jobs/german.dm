@@ -146,7 +146,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/MP
 	title = "Militärpolizei"
-	en_meaning = "Military Police Officer"
+	en_meaning = "MPO"
+	rank_abbreviation = "sgt"
 	total_positions = 2
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeer"
@@ -484,6 +485,7 @@
 /datum/job/german/dogmaster
 	title = "Hunden Trainer"
 	en_meaning = "Dog Trainer"
+	rank_abbreviation = "lcpl"
 	total_positions = 50
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -536,6 +538,7 @@
 /datum/job/german/tankcrew
 	title = "Panzerbesatzung"
 	en_meaning = "Tank Crewman"
+	rank_abbreviation = "cpl"
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -573,6 +576,7 @@
 /datum/job/german/anti_tank_crew
 	title = "Panzer-Soldat"
 	en_meaning = "Anti Tank Soldier"
+	rank_abbreviation = "pfc"
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"

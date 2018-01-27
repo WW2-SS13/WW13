@@ -256,7 +256,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		serverswap_close_server()
 
 	// wait for serverswap to do its magic - kachnov
-	spawn (90)
+	spawn (50)
 
 		if (serverswap.Find("snext"))
 			if (serverswap.Find(serverswap["snext"]))
@@ -273,7 +273,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			if (config.jojoreference)
 				roundabout()
 
-		spawn (10)
+		spawn (50)
 
 			processScheduler.stop()
 

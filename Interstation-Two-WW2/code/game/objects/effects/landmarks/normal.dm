@@ -483,15 +483,18 @@ var/area/partisan_stockpile = null
 			for (var/v in 1 to rand(10,20))
 				new /obj/item/ammo_casing/a145 (turf)
 
-			// medical supplies
+			// advanced medical supplies
 			new /obj/item/weapon/storage/firstaid/toxin(turf)
 			new /obj/item/weapon/storage/firstaid/fire(turf)
 			new /obj/item/weapon/storage/firstaid/o2(turf)
 			new /obj/item/weapon/storage/firstaid/regular(turf)
 			new /obj/item/weapon/storage/firstaid/injectorpack(turf)
 			new /obj/item/weapon/storage/firstaid/combat(turf)
-			new /obj/item/weapon/gauze_pack/gauze(turf)
 			new /obj/item/weapon/doctor_handbook(turf)
+
+			// gauze
+			for (var/v in 1 to 10)
+				new /obj/item/weapon/gauze_pack/gauze(turf)
 
 			partisan_stockpile = get_area(turf)
 

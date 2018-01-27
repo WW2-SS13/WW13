@@ -6,8 +6,9 @@
 	H.real_name = H.name
 
 /datum/job/soviet/commander
-	title = "Comandir Batalyona"
-	en_meaning = "Commander"
+	title = "Kapitan"
+	en_meaning = "Company Commander"
+	rank_abbreviation = "cpt"
 	total_positions = TRUE
 	head_position = TRUE
 	selection_color = "#530909"
@@ -45,7 +46,46 @@
 /datum/job/soviet/commander/get_keys()
 	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
 		new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/command_high, new/obj/item/weapon/key/soviet/bunker_doors)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/soviet/XO
+	title = "Starshiy Leytenant"
+	en_meaning = "Company Executive Officer"
+	rank_abbreviation = "1lt"
+	total_positions = 2
+	head_position = FALSE
+	selection_color = "#530909"
+	spawn_location = "JoinLateRASO"
+	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
+	is_officer = TRUE
+	absolute_limit = 3
 
+/datum/job/soviet/XO/equip(var/mob/living/carbon/human/H)
+	if(!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovofficercap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/_45(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
+	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the Russian forces. Your job is to take orders from the <b>Commandir</b> and coordinate with squad leaders.</span>"
+	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_VERY_LOW)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_VERY_LOW)
+	return TRUE
+
+/datum/job/soviet/XO/get_keys()
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
+		new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/command_high, new/obj/item/weapon/key/soviet/bunker_doors)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,8 +93,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/soviet/staff_officer
-	title = "Ofitser"
-	en_meaning = "Staff Officer"
+	title = "Leytenant"
+	en_meaning = "Platoon Officer"
+	rank_abbreviation = "2lt"
 	total_positions = 2
 	head_position = FALSE
 	selection_color = "#530909"
@@ -93,7 +134,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/soviet/MP
 	title = "Voyennaya Politsiya"
-	en_meaning = "Military Police Officer"
+	en_meaning = "MPO"
+	rank_abbreviation = "sgt"
 	total_positions = 2
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateRA"
@@ -129,8 +171,9 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/job/soviet/squad_leader
-	title = "Sergant"
-	en_meaning = "Squad Leader"
+	title = "Starshiy Serzhant"
+	en_meaning = "Platoon 2IC"
+	rank_abbreviation = "ssgt"
 	total_positions = 4
 	head_position = FALSE
 	selection_color = "#770e0e"
@@ -172,6 +215,7 @@
 /datum/job/soviet/medic
 	title = "Sanitar"
 	en_meaning = "Medic"
+	rank_abbreviation = "cpl"
 	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -203,6 +247,7 @@
 /datum/job/soviet/doctor
 	title = "Doktor"
 	en_meaning = "Doctor"
+	rank_abbreviation = "2lt"
 	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRADr"
@@ -244,6 +289,7 @@
 /datum/job/soviet/sniper
 	title = "Snaiper"
 	en_meaning = "Sniper"
+	rank_abbreviation = "pfc"
 	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -279,8 +325,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/soviet/engineer
-	title = "Boyevoy saper"
+	title = "Boyevoy Saper"
 	en_meaning = "Engineer"
+	rank_abbreviation = "cpl"
 	total_positions = 3
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -316,7 +363,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/soviet/heavy_weapon
 	title = "Pulemetchik"
-	en_meaning = "Heavy Weapons Soldier"
+	en_meaning = "Heavy Weapons Operator"
+	rank_abbreviation = "cpl"
 	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -354,6 +402,7 @@
 /datum/job/soviet/soldier
 	title = "Sovietsky Soldat"
 	en_meaning = "Infantry Soldier"
+	rank_abbreviation = "pvt"
 	total_positions = 200
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -389,6 +438,7 @@
 /datum/job/soviet/dogmaster
 	title = "Dressirovshchik"
 	en_meaning = "Dog Trainer"
+	rank_abbreviation = "lcpl"
 	total_positions = 50
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -441,6 +491,7 @@
 /datum/job/soviet/tankcrew
 	title = "Tank-ekipazh"
 	en_meaning = "Tank Crewman"
+	rank_abbreviation = "cpl"
 	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -478,7 +529,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/soviet/anti_tank_crew
 	title = "Protivotankovyy Soldat"
-	en_meaning = "Anti-Tank Soldier"
+	en_meaning = "Anti-Tank Trooper"
+	rank_abbreviation = "pfc"
 	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -516,6 +568,7 @@
 /datum/job/soviet/guard
 	title = "Gvardeyec"
 	en_meaning = "Guard"
+	rank_abbreviation = "pfc"
 	total_positions = 3
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRA"
@@ -572,7 +625,8 @@ var/first_guard = FALSE
 /datum/job/soviet/QM
 	title = "Zavhoz"
 	en_meaning = "Quartermaster"
-	total_positions = TRUE
+	rank_abbreviation = "sgt"
+	total_positions = 1
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRAQM"
 	additional_languages = list( "German" = 100 )
@@ -609,8 +663,9 @@ var/first_guard = FALSE
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/soviet/sturmovik
 	title = "Sturmovik"
-	en_meaning = "Elite Infantry Soldier"
-	total_positions = 3
+	en_meaning = "Shock Trooper"
+	rank_abbreviation = "pfc"
+	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	is_sturmovik = TRUE
@@ -646,6 +701,7 @@ var/first_guard = FALSE
 /datum/job/soviet/chef
 	title = "Povar"
 	en_meaning = "Chef"
+	rank_abbreviation = "pvt"
 	total_positions = TRUE
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRAChef"

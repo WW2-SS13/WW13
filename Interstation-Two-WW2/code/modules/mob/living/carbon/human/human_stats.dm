@@ -45,9 +45,11 @@
 	if (statname == "mg")
 		stats[statname][1] *= (1 + (multiplier/400))
 		stats[statname][2] *= (1 + (multiplier/400))
+
 	else if (statname == "rifle" || statname == "pistol" || statname == "heavy")
-		stats[statname][1] *= (1 + (multiplier/200))
-		stats[statname][2] *= (1 + (multiplier/200))
+		stats[statname][1] *= (1 + (multiplier/150))
+		stats[statname][2] *= (1 + (multiplier/150))
+
 	else
 		stats[statname][1] *= (1 + (multiplier/100))
 		stats[statname][2] *= (1 + (multiplier/100))

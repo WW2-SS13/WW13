@@ -548,8 +548,9 @@
 						message = "dabs."
 						for (var/atom/movable/AM in get_step(src, dir))
 							if (!ismob(AM))
-								if (!istype(AM, /atom/movable/lighting_overlay) && !isitem(AM))
-									message = "dabs on [AM]."
+								if (!istype(AM, /atom/movable/lighting_overlay) && !isitem(AM) && !istype(AM, /obj/effect))
+									if (AM.name)
+										message = "dabs on [AM]."
 						for (var/atom/movable/AM in get_step(src, dir))
 							if (ismob(AM))
 								message = "dabs on [AM]."

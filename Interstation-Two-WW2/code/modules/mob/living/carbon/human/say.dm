@@ -31,6 +31,7 @@
 	// radio talk
 	if (!dd_hasprefix(message_without_html, ":t") || !istype(loc, /obj/tank))
 		post_say(message_without_html)
+
 	// tank talk
 	else if (dd_hasprefix(message_without_html, ":t") && istype(loc, /obj/tank))
 		var/obj/tank/my_tank = loc

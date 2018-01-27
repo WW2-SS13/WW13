@@ -175,7 +175,7 @@ var/GRACE_PERIOD_LENGTH = 7
 /hook/roundstart/proc/show_battle_report()
 	if (istype(map, /obj/map_metadata/forest))
 		spawn (600)
-			world << "<font size=3>Balance report: [n_of_side(GERMAN)] German, [n_of_side(SOVIET)] Soviet and [n_of_side(CIVILIAN)+n_of_side(PARTISAN)] Civilians/Partisans.</font>"
+			world << "<font size=3>Balance report: [n_of_side(GERMAN)] Germans, [n_of_side(SOVIET)] Soviets and [n_of_side(CIVILIAN)] Civilians, [n_of_side(PARTISAN)] Partisans.</font>"
 
 var/mission_announced = FALSE
 var/train_arrived = FALSE
@@ -205,4 +205,4 @@ var/allow_paratroopers = TRUE
 	if (istype(map, /obj/map_metadata/minicity))
 		show_report_after = 600
 	spawn (show_report_after)
-		world << "<font size=3>Balance report: [n_of_side(GERMAN)] German, [n_of_side(SOVIET)] Soviet and [n_of_side(CIVILIAN)+n_of_side(PARTISAN)] Civilians/Partisans.</font>"
+		show_global_battle_report(null)

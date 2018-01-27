@@ -26,7 +26,7 @@ a, a:link, a:visited, :active, a:hover
 .ooc img.text_tag		{width: 32px; height: 10px;}
 
 .ooc .everyone			{color: #1E8CBE;}
-.ooc .looc				{color: #3A9696;}
+.ooc .looc				{color: #75B5B5;}
 .ooc .elevated			{color: #2e78d9;}
 .ooc .moderator			{color: #184880;}
 .ooc .developer			{color: #1b521f;}
@@ -45,23 +45,23 @@ a, a:link, a:visited, :active, a:hover
 
 /* Radio: Misc */
 .deadsay				{color: #8657C5;}
-.radio					{color: #008000;}
+.radio					{color: #4CA64C;}
 .deptradio				{color: #ff00ff;}	/* when all other department colors fail */
-.newscaster				{color: #750000;}
+.newscaster				{color: #9E4C4C;}
 
 /* Radio Channels */
-.comradio				{color: #193A7A;}
-.syndradio				{color: #6D3F40;}
-.centradio				{color: #5C5C8A;}
+.comradio				{color: #466194;}
+.syndradio				{color: #8A6566;}
+.centradio				{color: #7C7CA1;}
 .airadio				{color: #FF00FF;}
-.entradio				{color: #339966;}
+.entradio				{color: #5BAD84;}
 
-.secradio				{color: #A30000;}
-.engradio				{color: #A66300;}
-.medradio				{color: #008160;}
-.sciradio				{color: #993399;}
-.supradio				{color: #5F4519;}
-.srvradio				{color: #6eaa2c;}
+.secradio				{color: #B53232;}
+.engradio				{color: #B78232;}
+.medradio				{color: #329A7F;}
+.sciradio				{color: #AD5BAD;}
+.supradio				{color: #7E6A46;}
+.srvradio				{color: #8BBB56;}
 
 /* Miscellaneous */
 .name					{font-weight: bold;}

@@ -51,7 +51,6 @@
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
-
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, P.agony, def_zone, P)
@@ -73,6 +72,9 @@
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_damage)
 			damage /= H.getStatCoeff("strength")
+
+	if (check_zone(def_zone) == "head")
+		damage *= 2.0
 
 	if(!P.nodamage)
 		apply_damage(damage, P.damage_type, def_zone, absorb, FALSE, P, sharp=proj_sharp, edge=proj_edge)
