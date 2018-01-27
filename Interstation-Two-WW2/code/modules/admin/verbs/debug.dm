@@ -27,11 +27,11 @@
 
 	var/datum/gas_mixture/env = T.return_air()
 
-	var/t = "\blue Coordinates: [T.x],[T.y],[T.z]\n"
+	var/t = "<span class = 'notice'>Coordinates: [T.x],[T.y],[T.z]\n</span>"
 	t += "\red Temperature: [env.temperature]\n"
 	t += "\red Pressure: [env.return_pressure()]kPa\n"
 	for(var/g in env.gas)
-		t += "\blue [g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa\n"
+		t += "<span class = 'notice'>[g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa</span>\n"
 
 	usr.show_message(t, TRUE)
 
@@ -212,7 +212,7 @@
 		else
 			var/mob/observer/ghost/ghost = new/mob/observer/ghost(M,1)
 			ghost.ckey = M.ckey
-	message_admins("\blue [key_name_admin(usr)] assumed direct control of [M].", TRUE)
+	message_admins("<span class = 'notice'>[key_name_admin(usr)] assumed direct control of [M].</span>", TRUE)
 	log_admin("[key_name(usr)] assumed direct control of [M].")
 	var/mob/adminmob = mob
 	M.ckey = ckey
@@ -463,7 +463,7 @@
 	M.regenerate_icons()
 
 	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
-	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode]..", TRUE)
+	message_admins("<span class = 'notice'>[key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode]..</span>", TRUE)
 	return
 
 /client/proc/check_positions()

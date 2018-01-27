@@ -1,26 +1,19 @@
-/* WW2 */
-
-/* supposedly it takes 40 brute to break bones. So, damage values are being
- * standardized/adjusted to make it relatively difficult to instant break
- * chests with a luger. Could use some help on these values because
- * I don't know much about the guns in question - Kachnov */
-
-#define DAMAGE_LOW 19
-#define DAMAGE_MEDIUM 38
-#define DAMAGE_HIGH 57
-#define DAMAGE_VERY_HIGH 76
+#define DAMAGE_LOW 33
+#define DAMAGE_MEDIUM 46
+#define DAMAGE_HIGH 69
+#define DAMAGE_VERY_HIGH 92
 
 /obj/item/projectile/bullet/rifle
 	speed = 2.5
 	armor_penetration = 50
 
 /obj/item/projectile/bullet/rifle/a792x33
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_LOW
 	penetrating = TRUE
 
 // MOSIN
 /obj/item/projectile/bullet/rifle/a762x54
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_HIGH
 	penetrating = 2
 	armor_penetration = 100
 
@@ -31,10 +24,14 @@
 	armor_penetration = 100
 
 /obj/item/projectile/bullet/rifle/a762x25
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_LOW
 	penetrating = FALSE
 
 /obj/item/projectile/bullet/rifle/a9_parabellum
+	damage = DAMAGE_LOW
+	penetrating = FALSE
+
+/obj/item/projectile/bullet/rifle/a9_parabellum_luger
 	damage = DAMAGE_MEDIUM
 	penetrating = FALSE
 
@@ -55,12 +52,12 @@
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/rifle/a9x39
-	damage = DAMAGE_HIGH
+	damage = DAMAGE_LOW
 	penetrating = 3
 	step_delay = 2
 
 /obj/item/projectile/bullet/rifle/a762x39
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_LOW
 	penetrating = 2
 
 /obj/item/projectile/bullet/rifle/a762x51
@@ -69,14 +66,14 @@
 
 /obj/item/projectile/bullet/rifle/c4mm
 	damage = DAMAGE_LOW
-	penetrating = FALSE
+	penetrating = 0
 
 /obj/item/projectile/bullet/rifle/a127x108
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_LOW
 	penetrating = 3
 
 /obj/item/projectile/bullet/rifle/a556x45
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_VERY_HIGH
 	penetrating = 3
 	hitscan = TRUE
 

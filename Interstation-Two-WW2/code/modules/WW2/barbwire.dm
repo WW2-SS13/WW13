@@ -76,23 +76,23 @@
 /obj/structure/barbwire/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wirecutters))
 		if(anchored)
-			user.visible_message("\blue \The [user] starts to cut through \the [src] with [W].")
+			user.visible_message("<span class = 'notice'>\The [user] starts to cut through \the [src] with [W].</span>")
 			if(!do_after(user,60))
-				user.visible_message("\blue \The [user] decides not to cut through the \the [src].")
+				user.visible_message("<span class = 'notice'>\The [user] decides not to cut through the \the [src].</span>")
 				return
-			user.visible_message("\blue \The [user] finishes cutting through \the [src]!")
+			user.visible_message("<span class = 'notice'>\The [user] finishes cutting through \the [src]!</span>")
 			playsound(loc, 'sound/items/Wirecutter.ogg', 50, TRUE)
 			qdel(src)
 			return
 
 	else if(istype(W, /obj/item/weapon/material/knife))
 		if(anchored)
-			user.visible_message("\blue \The [user] starts to cut through \the [src] with [W].")
+			user.visible_message("<span class = 'notice'>\The [user] starts to cut through \the [src] with [W].</span>")
 			if(!do_after(user,80))
-				user.visible_message("\blue \The [user] decides not to cut through \the [src].")
+				user.visible_message("<span class = 'notice'>\The [user] decides not to cut through \the [src].</span>")
 				return
 			if(prob(40))
-				user.visible_message("\blue \The [user] finishes cutting through \the [src]!")
+				user.visible_message("<span class = 'notice'>\The [user] finishes cutting through \the [src]!</span>")
 				playsound(loc, 'sound/items/Wirecutter.ogg', 50, TRUE)
 				qdel(src)
 				return

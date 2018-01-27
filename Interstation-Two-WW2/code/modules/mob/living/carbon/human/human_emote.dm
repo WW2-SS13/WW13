@@ -548,7 +548,7 @@
 						message = "dabs."
 						for (var/atom/movable/AM in get_step(src, dir))
 							if (!ismob(AM))
-								if (!istype(AM, /atom/movable/lighting_overlay))
+								if (!istype(AM, /atom/movable/lighting_overlay) && !isitem(AM))
 									message = "dabs on [AM]."
 						for (var/atom/movable/AM in get_step(src, dir))
 							if (ismob(AM))
@@ -561,7 +561,7 @@
 	wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag, dab"}
 
 			else
-				src << "\blue Unusable emote '[act]'. Say *help for a list."
+				src << "<span class = 'notice'>Unusable emote '[act]'. Say *help for a list.</span>"
 
 
 

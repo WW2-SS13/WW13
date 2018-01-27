@@ -62,8 +62,8 @@ for reference:
 	anchored = TRUE
 
 	density = TRUE
-	var/health = 200
-	var/maxhealth = 200
+	var/health = 100
+	var/maxhealth = 100
 	var/material/material
 
 /obj/structure/barricade/New(var/newloc, var/material_name)
@@ -77,7 +77,7 @@ for reference:
 	name = "[material.display_name] barricade"
 	desc = "This space is blocked off by a barricade made of [material.display_name]."
 	color = material.icon_colour
-	maxhealth = material.integrity
+	maxhealth = (material.integrity*2.5) + 100
 	health = maxhealth
 
 /obj/structure/barricade/get_material()

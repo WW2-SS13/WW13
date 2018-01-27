@@ -76,6 +76,8 @@
 	if (chambered)
 		if (gibs)
 			chambered.BB.gibs = TRUE
+		if (crushes)
+			chambered.BB.crushes = TRUE
 		return chambered.BB
 	return null
 
@@ -133,6 +135,13 @@
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
 			return //incompatible
 
+		if (istype(src, /obj/item/weapon/gun/projectile/boltaction))
+			var/obj/item/weapon/gun/projectile/boltaction/B = src
+			if (world.timeofday <= B.next_reload)
+				user << "<span class='danger'>[src] is jammed.</span>"
+				return
+			B.next_reload = world.timeofday + rand(22,33)
+
 		switch(AM.mag_type)
 			if(MAGAZINE)
 				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")
@@ -173,6 +182,13 @@
 		if(loaded.len >= max_shells)
 			user << "<span class='warning'>[src] is full.</span>"
 			return
+
+		if (istype(src, /obj/item/weapon/gun/projectile/boltaction))
+			var/obj/item/weapon/gun/projectile/boltaction/B = src
+			if (world.timeofday <= B.next_reload)
+				user << "<span class='danger'>[src] is jammed.</span>"
+				return
+			B.next_reload = world.timeofday + rand(22,33)
 
 		user.remove_from_mob(C)
 		C.loc = src

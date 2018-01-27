@@ -75,7 +75,7 @@
 		return
 	if(loaded.len > FALSE)
 		var/obj/item/ammo_casing/rocket_he/rocket = loaded[1]
-		user << "\blue Rocket fuse is set to [rocket.BB.kill_count]."
+		user << "<span class = 'notice'>Rocket fuse is set to [rocket.BB.kill_count].</span>"
 	else
 		user << "\red It's empty."
 

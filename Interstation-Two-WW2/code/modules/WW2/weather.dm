@@ -9,6 +9,17 @@
 	if (weather == _weather && !bypass_same_weather_check)
 		return
 
+	if (config)
+		if (config.allowed_weather && config.allowed_weather.len)
+			switch (config.allowed_weather[1])
+				if (0)
+					return
+				if (1)
+					// pass
+				else
+					if (!config.allowed_weather.Find(weather_const2text(_weather)))
+						return
+
 	var/old_weather = weather
 
 	weather = _weather

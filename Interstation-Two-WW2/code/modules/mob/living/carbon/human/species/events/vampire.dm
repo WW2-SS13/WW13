@@ -1,6 +1,6 @@
 // normal stats with the exception of strength & survival
 /mob/living/carbon/human/vampire
-	takes_less_bullet_damage = TRUE
+	takes_less_damage = TRUE
 	movement_speed_multiplier = 1.25
 	use_initial_stats = TRUE
 	stats = list(

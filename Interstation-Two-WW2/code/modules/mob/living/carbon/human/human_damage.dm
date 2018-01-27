@@ -90,6 +90,10 @@
 
 /mob/living/carbon/human/adjustBruteLoss(var/amount)
 	amount = amount*species.brute_mod
+	if (ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if (H.takes_less_damage)
+			amount /= H.getStatCoeff("strength")
 	if(amount > FALSE)
 		take_overall_damage(amount, FALSE)
 	else
@@ -98,6 +102,10 @@
 
 /mob/living/carbon/human/adjustFireLoss(var/amount)
 	amount = amount*species.burn_mod
+	if (ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if (H.takes_less_damage)
+			amount /= H.getStatCoeff("strength")
 	if(amount > FALSE)
 		take_overall_damage(0, amount)
 	else

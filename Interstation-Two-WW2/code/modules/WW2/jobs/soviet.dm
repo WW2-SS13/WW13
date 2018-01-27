@@ -317,7 +317,7 @@
 /datum/job/soviet/heavy_weapon
 	title = "Pulemetchik"
 	en_meaning = "Heavy Weapons Soldier"
-	total_positions = 3
+	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	is_primary = FALSE

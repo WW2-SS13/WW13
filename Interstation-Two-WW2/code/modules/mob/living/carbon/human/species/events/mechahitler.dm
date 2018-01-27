@@ -1,5 +1,5 @@
 /mob/living/carbon/human/mechahitler
-	takes_less_bullet_damage = TRUE
+	takes_less_damage = TRUE
 	movement_speed_multiplier = 1.50
 	size_multiplier = 2.50
 	use_initial_stats = TRUE
@@ -18,7 +18,7 @@
 /mob/living/carbon/human/mechahitler/New()
 	..()
 	var/oloc = loc
-	job_master.EquipRank(src, "Oberleutnant")
+	job_master.EquipRank(src, "Hauptmann")
 	spawn (1)
 		loc = oloc
 		name = "MECHA HITLER"

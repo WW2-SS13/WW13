@@ -22,17 +22,7 @@
 /obj/item/ammo_magazine/c38/rubber
 	name = "speed loader (.38 rubber)"
 	ammo_type = /obj/item/ammo_casing/c38r
-
-/obj/item/ammo_magazine/c45m
-	name = "magazine (.45)"
-	icon_state = "45"
-	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/c45
-	matter = list(DEFAULT_WALL_MATERIAL = 525) //metal costs are very roughly based around TRUE .45 casing = 75 metal
-	caliber = ".45"
-	max_ammo = 7
-	multiple_sprites = TRUE
-
+/*
 /obj/item/ammo_magazine/c45m/empty
 	initial_ammo = FALSE
 
@@ -47,7 +37,7 @@
 /obj/item/ammo_magazine/c45m/flash
 	name = "magazine (.45 flash)"
 	ammo_type = "/obj/item/ammo_casing/c45f"
-
+*/
 /obj/item/ammo_magazine/mc9mm
 	name = "magazine (9mm)"
 	icon_state = "9x19p"

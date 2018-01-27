@@ -46,12 +46,12 @@
 
 
 	if(!anchored)
-		user.visible_message("\blue \The [user] starts to deploy the \the [src]")
+		user.visible_message("<span class = 'notice'>\The [user] starts to deploy the \the [src].</span>")
 		if(!do_after(user,rand(30,40)))
-			user.visible_message("\blue \The [user] decides not to deploy the \the [src].")
+			user.visible_message("<span class = 'notice'>\The [user] decides not to deploy the \the [src].</span>")
 			return
 		nextCanExplode = world.time + 5
-		user.visible_message("\blue \The [user] finishes deploying the \the [src].")
+		user.visible_message("<span class = 'notice'>\The [user] finishes deploying the \the [src].</span>")
 		anchored = TRUE
 		layer = TURF_LAYER + 0.01
 		icon_state = "mine_armed"
@@ -62,12 +62,12 @@
 /obj/item/device/mine/attackby(obj/item/W as obj, mob/user as mob)
 	if(anchored)
 		if(istype(W, /obj/item/weapon/wirecutters))
-			user.visible_message("\blue \The [user] starts to disarm the \the [src] with the [W]")
+			user.visible_message("<span class = 'notice'>\The [user] starts to disarm the \the [src] with the [W].</span>")
 			if(!do_after(user,60))
-				user.visible_message("\blue \The [user] decides not to disarm the \the [src].")
+				user.visible_message("<span class = 'notice'>\The [user] decides not to disarm the \the [src].</span>")
 				return
 			if(prob(95))
-				user.visible_message("\blue \The [user] finishes disarming the \the [src]!")
+				user.visible_message("<span class = 'notice'>\The [user] finishes disarming the \the [src]!</span>")
 				anchored = FALSE
 				icon_state = "betty"
 				layer = initial(layer)
@@ -75,12 +75,12 @@
 			else
 				Bumped(user)
 		else if(istype(W, /obj/item/weapon/material/knife))
-			user.visible_message("\blue \The [user] starts to disarm the \the [src] with the [W].")
+			user.visible_message("<span class = 'notice'>\The [user] starts to disarm the \the [src] with the [W].</span>")
 			if(!do_after(user,80))
-				user.visible_message("\blue \The [user] decides not to disarm the \the [src].")
+				user.visible_message("<span class = 'notice'>\The [user] decides not to disarm the \the [src].</span>")
 				return
 			if(prob(50))
-				user.visible_message("\blue \The [user] finishes disarming the \the [src]!")
+				user.visible_message("<span class = 'notice'>\The [user] finishes disarming the \the [src]!</span>")
 				anchored = FALSE
 				icon_state = "betty"
 				layer = initial(layer)
@@ -92,12 +92,12 @@
 
 /obj/item/device/mine/attack_hand(mob/user as mob)
 	if(anchored)
-		user.visible_message("\blue \The [user] starts to dig around the \the [src] with their bare hands!")
+		user.visible_message("<span class = 'notice'>\The [user] starts to dig around the \the [src] with their bare hands!</span>")
 		if(!do_after(user,100))
-			user.visible_message("\blue \The [user] decides not to dig up the \the [src].")
+			user.visible_message("<span class = 'notice'>\The [user] decides not to dig up the \the [src].</span>")
 			return
 		if(prob(15))
-			user.visible_message("\blue \The [user] finishes digging up the \the [src], disarming it!")
+			user.visible_message("<span class = 'notice'>\The [user] finishes digging up the \the [src], disarming it!</span>")
 			anchored = FALSE
 			icon_state = "betty"
 			layer = initial(layer)

@@ -45,6 +45,7 @@
 	var/projectile_type = /obj/item/projectile
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 	var/gibs = FALSE
+	var/crushes = FALSE
 	var/kill_count = 30 //This will de-increment every process(). When == 0, it will delete the projectile.
 		//Effects
 	var/stun = FALSE
@@ -156,7 +157,7 @@
 	original = target
 	loc = curloc
 	starting = curloc
-	current = curloc
+
 	yo = targloc.y - curloc.y + y_offset
 	xo = targloc.x - curloc.x + x_offset
 
@@ -168,16 +169,20 @@
 
 	return FALSE
 
-// fixes grenades?
 /obj/item/projectile/proc/launch_fragment(atom/target)
 
+	var/turf/curloc = loc
 	var/turf/targloc = get_turf(target)
 
-	if (!istype(targloc))
+	if (!istype(targloc) || !istype(curloc))
 		qdel(src)
 		return TRUE
 
-	if(targloc == get_turf(src)) //Shooting something in the same turf
+	firer = null
+	firedfrom = null
+	def_zone = "chest"
+
+	if(targloc == curloc) //Shooting something in the same turf
 		target.pre_bullet_act(src)
 		target.bullet_act(src, "chest")
 		on_impact(target)
@@ -185,12 +190,13 @@
 		return FALSE
 
 	original = target
-	loc = get_turf(src)
-	starting = get_turf(src)
-	current = get_turf(src)
-	yo = targloc.y - y
-	xo = targloc.x - x
+	loc = curloc
+	starting = curloc
+	current = curloc
+	yo = targloc.y - curloc.y
+	xo = targloc.x - curloc.x
 
+	shot_from = null
 	silenced = FALSE
 
 	spawn()
@@ -283,6 +289,9 @@
 		loc = A.loc
 		return FALSE //cannot shoot yourself
 
+	if (istype(A, /obj/structure/window/sandbag))
+		return FALSE
+
 	if((bumped && !forced) || (A in permutated))
 		return FALSE
 
@@ -366,7 +375,7 @@
 			return
 		if((!( current ) || loc == current))
 			current = locate(min(max(x + xo, TRUE), world.maxx), min(max(y + yo, TRUE), world.maxy), z)
-		if((x == 1 || x == world.maxx || y == TRUE || y == world.maxy))
+		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
 			loc.pre_bullet_act(src)
 			on_impact(loc)
 			spawn (1)
@@ -386,7 +395,7 @@
 				return
 
 		before_move()
-		forceMove_nondenseturf(location.return_turf())
+		Move(location.return_turf())
 
 		if(!bumped && !isturf(original))
 			if(loc == get_turf(original))

@@ -238,10 +238,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	if(medHUD)
 		medHUD = FALSE
-		src << "\blue <B>Medical HUD Disabled</B>"
+		src << "<span class = 'notice'><B>Medical HUD Disabled</B></span>"
 	else
 		medHUD = TRUE
-		src << "\blue <B>Medical HUD Enabled</B>"
+		src << "<span class = 'notice'><B>Medical HUD Enabled</B></span>"
 /*
 /mob/observer/ghost/verb/toggle_antagHUD()
 	set category = "Ghost"

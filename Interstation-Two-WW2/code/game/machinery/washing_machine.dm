@@ -177,7 +177,7 @@
 				gibs_ready = FALSE
 				if(locate(/mob,contents))
 					var/mob/M = locate(/mob,contents)
-					M.gib()
+					M.crush()
 			for(var/atom/movable/O in contents)
 				O.loc = loc
 			crayon = null

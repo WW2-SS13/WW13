@@ -81,6 +81,7 @@
 	var/autofiring = FALSE
 
 	var/gibs = FALSE
+	var/crushes = FALSE
 
 /obj/item/weapon/gun/New()
 	..()
@@ -192,8 +193,12 @@
 	Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
-	if (A == user && user.targeted_organ == "mouth" && !mouthshoot)
-		handle_suicide(user)
+	if (A == user)
+		if (user.targeted_organ == "mouth" && !mouthshoot)
+			handle_suicide(user)
+		else
+			handle_shoot_self(user)
+		return
 
 	if(user.a_intent == I_HURT && !bayonet) //point blank shooting
 		Fire(A, user, pointblank=1)
@@ -202,22 +207,16 @@
 			var/mob/living/L = A
 			var/mob/living/carbon/C = A
 			if (!istype(C) || !C.check_attack_throat(src, user))
-				if (prob(40) && L != user && !L.lying)
+				if (prob(50) && L != user && !L.lying)
 					visible_message("<span class = 'danger'>[user] tries to bayonet [L], but they miss!</span>")
 				else
 					var/obj/item/weapon/attachment/bayonet/a = bayonet
 					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
 					visible_message("<span class = 'danger'>[user] impales [L] with their gun's bayonet!</span>")
-					if (ishuman(L))
-						var/mob/living/carbon/human/H = L
-						if (H.takes_less_bullet_damage) // mechahitler/megastalin
-							H.apply_damage(a.force, BRUTE, def_zone)
-							goto __playsound__
 					L.apply_damage(a.force * 2, BRUTE, def_zone)
 					L.Weaken(rand(1,2))
 					if (L.stat == CONSCIOUS && prob(50))
 						L.emote("scream")
-					__playsound__
 					playsound(get_turf(src), a.attack_sound, rand(90,100))
 			else
 				var/obj/item/weapon/attachment/bayonet/a = bayonet
@@ -425,9 +424,9 @@
 //called after successfully firing
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(silenced)
-		playsound(get_turf(user), fire_sound, 10, TRUE, 50)
+		playsound(get_turf(user), fire_sound, 10, TRUE, 100)
 	else
-		playsound(get_turf(user), fire_sound, 100, TRUE, 50)
+		playsound(get_turf(user), fire_sound, 100, TRUE, 100)
 
 		/*
 		if(reflex)
@@ -535,7 +534,7 @@
 	mouthshoot = TRUE
 	M.visible_message("\red [user] sticks their gun in their mouth, ready to pull the trigger...")
 	if(!do_after(user, 15))
-		M.visible_message("\blue [user] failed to commit suicide.")
+		M.visible_message("<span class = 'notice'>[user] failed to commit suicide.</span>")
 		mouthshoot = FALSE
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
@@ -559,6 +558,40 @@
 	else
 		handle_click_empty(user)
 		mouthshoot = FALSE
+		return
+
+// fixes shooting yourself bug - Kachnov
+/obj/item/weapon/gun/proc/handle_shoot_self(mob/living/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/M = user
+
+	var/obj/item/projectile/in_chamber = consume_next_projectile()
+	if (istype(in_chamber))
+		var/damage_multiplier = 2.0
+		var/organ_name = replacetext(replacetext(user.targeted_organ, "l_", "left "), "r_", "right ")
+		switch (user.targeted_organ)
+			if ("l_hand", "r_hand", "l_foot", "r_foot")
+				damage_multiplier = 1.0
+			if ("chest")
+				damage_multiplier = 3.0
+
+		M.visible_message("\red [user] shoots themselves in \the [organ_name]!")
+		if(silenced)
+			playsound(user, fire_sound, 20, TRUE)
+		else
+			playsound(user, fire_sound, 100, TRUE)
+
+		in_chamber.on_hit(M)
+		if (in_chamber.damage_type != HALLOSS)
+			user.apply_damage(in_chamber.damage*damage_multiplier, in_chamber.damage_type, user.targeted_organ, used_weapon = "Point blank shot in the [user.targeted_organ] with \a [in_chamber]", sharp=1)
+		else
+			user << "<span class = 'notice'>Ow...</span>"
+			user.apply_effect(110,AGONY,0)
+		qdel(in_chamber)
+		return
+	else
+		handle_click_empty(user)
 		return
 
 /obj/item/weapon/gun/examine(mob/user)

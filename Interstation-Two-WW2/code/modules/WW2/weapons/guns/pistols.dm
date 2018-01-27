@@ -19,7 +19,7 @@
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 
 /obj/item/weapon/gun/projectile/pistol/luger/gibber
-	gibs = TRUE
+	crushes = TRUE
 
 // new soviet officer gun
 /obj/item/weapon/gun/projectile/pistol/_45
@@ -36,7 +36,7 @@
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 
 /obj/item/weapon/gun/projectile/pistol/_45/gibber
-	gibs = TRUE
+	crushes = TRUE
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

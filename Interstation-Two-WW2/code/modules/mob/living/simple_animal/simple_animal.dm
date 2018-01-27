@@ -233,10 +233,10 @@
 
 		if(I_HELP)
 			if (health > FALSE)
-				M.visible_message("\blue [M] [response_help] \the [src].")
+				M.visible_message("<span class = 'notice'>[M] [response_help] \the [src].</span>")
 
 		if(I_DISARM)
-			M.visible_message("\blue [M] [response_disarm] \the [src].")
+			M.visible_message("<span class = 'notice'>[M] [response_disarm] \the [src].</span>")
 			M.do_attack_animation(src)
 			playsound(get_turf(M), 'sound/weapons/punchmiss.ogg', 50, TRUE, -1)
 			//TODO: Push the mob away or something
@@ -288,15 +288,18 @@
 			visible_message("<span class='notice'>[user] gently taps [src] with \the [O].</span>")
 		else
 			O.attack(src, user, user.targeted_organ)
-	else if (!istype(O, /obj/item/weapon/reagent_containers) && user.a_intent == I_HURT)
-		user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
-		if (do_after(user, 30, src))
-			user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
-			for (var/v in TRUE to rand(5,7))
-				var/obj/item/weapon/reagent_containers/food/snacks/meat/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat(get_turf(src))
-				meat.name = "[name] meatsteak"
-			crush()
-			qdel(src)
+	else if (O.sharp)
+		if (!istype(O, /obj/item/weapon/reagent_containers) && user.a_intent == I_HURT && stat == DEAD)
+			user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
+			if (do_after(user, 30, src))
+				user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
+				for (var/v in TRUE to rand(5,7))
+					var/obj/item/weapon/reagent_containers/food/snacks/meat/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat(get_turf(src))
+					meat.name = "[name] meatsteak"
+				crush()
+				qdel(src)
+		else
+			O.attack(src, user, user.targeted_organ)
 
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 

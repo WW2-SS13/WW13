@@ -115,7 +115,7 @@
 		if (1.0)
 			b_loss += 500
 			if (!prob(getarmor(null, "bomb")))
-				gib()
+				crush()
 				return
 			else
 				var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
@@ -413,7 +413,7 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/proc/play_xylophone()
 	if(!xylophone)
-		visible_message("\red \The [src] begins playing \his ribcage like a xylophone. It's quite spooky.","\blue You begin to play a spooky refrain on your ribcage.","\red You hear a spooky xylophone melody.")
+		visible_message("\red \The [src] begins playing \his ribcage like a xylophone. It's quite spooky.","<span class = 'notice'>You begin to play a spooky refrain on your ribcage.</span>","\red You hear a spooky xylophone melody.")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(loc, song, 50, TRUE, -1)
 		xylophone = TRUE
@@ -532,7 +532,7 @@ var/list/rank_prefix = list(\
 	regenerate_icons()
 	check_dna()
 
-	visible_message("\blue \The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!", "\blue You change your appearance!", "\red Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")
+	visible_message("<span class = 'notice'>\The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!</span>", "<span class = 'notice'>You change your appearance!</span>", "\red Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")
 
 /mob/living/carbon/human/proc/remotesay()
 	set name = "Project mind"
@@ -555,10 +555,10 @@ var/list/rank_prefix = list(\
 
 	var/say = sanitize(input("What do you wish to say"))
 	if(mRemotetalk in target.mutations)
-		target.show_message("\blue You hear [real_name]'s voice: [say]")
+		target.show_message("<span class = 'notice'>You hear [real_name]'s voice: [say]</span>")
 	else
-		target.show_message("\blue You hear a voice that seems to echo around the room: [say]")
-	usr.show_message("\blue You project your mind into [target.real_name]: [say]")
+		target.show_message("<span class = 'notice'>You hear a voice that seems to echo around the room: [say]</span>")
+	usr.show_message("<span class = 'notice'>You project your mind into [target.real_name]: [say]</span>")
 	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
 	for(var/mob/observer/ghost/G in world)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
@@ -906,7 +906,7 @@ var/list/rank_prefix = list(\
 	if(istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = usr
 		if(!stat)
-			visible_message("\blue [src] examines [gender==MALE?"himself":"herself"].")
+			visible_message("<span class = 'notice'>[src] examines [gender==MALE?"himself":"herself"].</span>")
 
 		for(var/obj/item/organ/external/org in H.organs)
 			var/status = ""
@@ -959,7 +959,8 @@ var/list/rank_prefix = list(\
 
 			if(status == "")
 				status = " OK"
-			src << output(text("\t [] []:[]",status==" OK"?"\blue ":"\red ", capitalize(org.name), status), TRUE)
+
+			src << output(text("\t [] []:[][]",status==" OK"?"<span class = 'notice'>":"<span class = 'warning'> ", capitalize(org.name), status, "</span>"), TRUE)
 
 
 
@@ -978,9 +979,9 @@ var/list/rank_prefix = list(\
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(lentext(msg) <= 40)
-			return "\blue [msg]"
+			return "<span class = 'notice'>[msg]</span>"
 		else
-			return "\blue [copytext_preserve_html(msg, TRUE, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+			return "<span class = 'notice'>[copytext_preserve_html(msg, TRUE, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></span>"
 	return ..()
 
 /mob/living/carbon/human/getDNA()

@@ -109,6 +109,8 @@ var/const/FALLOFF_SOUNDS = 0.5
 	if(!client || ear_deaf > FALSE)	return
 	soundin = get_sfx(soundin)
 
+	var/distance = -1
+
 	var/sound/S = sound(soundin)
 	S.wait = FALSE //No queue
 	S.channel = FALSE //Any channel
@@ -125,9 +127,9 @@ var/const/FALLOFF_SOUNDS = 0.5
 		var/turf/T = get_turf(src)
 
 		//sound volume falloff with distance
-		var/distance = get_dist(T, turf_source)
+		distance = get_dist(T, turf_source)
 
-		S.volume -= (max(distance - world.view, FALSE) * 2)//multiplicative falloff to add on top of natural audio falloff.
+		S.volume -= (max(distance - world.view, 0) * 2)//multiplicative falloff to add on top of natural audio falloff.
 		S.volume = max(S.volume, rand(5,9))
 
 		if (S.volume <= FALSE)
@@ -161,6 +163,9 @@ var/const/FALLOFF_SOUNDS = 0.5
 		else
 			var/area/A = get_area(src)
 			S.environment = A.sound_env
+
+	if (distance > 30)
+		S.environment = UNDERWATER
 
 	src << S
 

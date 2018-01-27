@@ -99,6 +99,7 @@ var/list/admin_verbs_fun = list(
 	/client/proc/object_talk,
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_gib_self,
+	/client/proc/cmd_admin_crush_self,
 	/client/proc/drop_bomb,
 	/client/proc/everyone_random,
 	/client/proc/cinematic,
@@ -217,6 +218,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/object_talk,
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_gib_self,
+	/client/proc/cmd_admin_crush_self,
 	/client/proc/drop_bomb,
 	/client/proc/cinematic,
 //	/datum/admins/proc/toggle_aliens,
@@ -470,9 +472,9 @@ var/list/admin_verbs_host = list(
 	if(holder && mob)
 		visible_in_who = !visible_in_who
 		if (visible_in_who)
-			mob << "\blue You are now <b>visible</b> in Staffwho."
+			mob << "<span class = 'notice'>You are now <b>visible</b> in Staffwho.</span>"
 		else
-			mob << "\blue You are <b>no longer visible</b> in Staffwho."
+			mob << "<span class = 'notice'>You are <b>no longer visible</b> in Staffwho.</span>"
 
 /client/proc/player_panel()
 	set name = "Player Panel"
@@ -587,7 +589,7 @@ var/list/admin_verbs_host = list(
 			var/light_impact_range = input("Light impact range (in tiles):") as num
 			var/flash_range = input("Flash range (in tiles):") as num
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
-	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
+	message_admins("<span class = 'notice'>[ckey] creating an admin explosion at [epicenter.loc].</span>")
 /*
 
 /client/proc/give_disease2(mob/T as mob in mob_list) // -- Giacom
@@ -633,7 +635,7 @@ var/list/admin_verbs_host = list(
 		for (var/mob/V in hearers(O))
 			V.show_message(message, 2)
 		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
-		message_admins("\blue [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound", TRUE)
+		message_admins("<span class = 'notice'>[key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound.</span>", TRUE)
 
 
 /*
@@ -875,7 +877,7 @@ var/list/admin_verbs_host = list(
 	T << "<span class='notice'>Move on.</span>"
 
 	log_admin("[key_name(usr)] told [key_name(T)] to man up and deal with it.")
-	message_admins("\blue [key_name_admin(usr)] told [key_name(T)] to man up and deal with it.", TRUE)
+	message_admins("<span class = 'notice'>[key_name_admin(usr)] told [key_name(T)] to man up and deal with it.</span>", TRUE)
 
 /client/proc/global_man_up()
 	set category = "Fun"
@@ -887,4 +889,4 @@ var/list/admin_verbs_host = list(
 		T << 'sound/voice/ManUp1.ogg'
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
-	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", TRUE)
+	message_admins("<span class = 'notice'>[key_name_admin(usr)] told everyone to man up and deal with it.</span>", TRUE)

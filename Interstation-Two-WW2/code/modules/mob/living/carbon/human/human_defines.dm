@@ -128,7 +128,7 @@
 
 	/* All stat names MUST be lowercase. */
 
-	var/takes_less_bullet_damage = FALSE
+	var/takes_less_damage = FALSE
 
 	var/list/stats = list(
 		"strength" = list(100,100),

@@ -153,6 +153,8 @@
 		H = user
 
 	if (recipe.result_type == /obj/structure/barbwire)
+		if (locate(/obj/structure/barbwire) in get_turf(H))
+			return
 		if (H)
 			if (H.original_job)
 				var/area/H_area = get_area(H)

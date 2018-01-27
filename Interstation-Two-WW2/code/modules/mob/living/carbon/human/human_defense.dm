@@ -17,14 +17,15 @@ bullet_act
 			grabbed_by_user = TRUE
 
 	if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers) && user.a_intent == I_HURT && !grabbed_by_user)
-		user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
-		if (do_after(user, 30, src))
-			user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
-			for (var/v in TRUE to rand(5,7))
-				var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
-				meat.name = "[name] meatsteak"
-			crush()
-			qdel(src)
+		if (stat == DEAD)
+			user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
+			if (do_after(user, 30, src))
+				user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
+				for (var/v in TRUE to rand(5,7))
+					var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
+					meat.name = "[name] meatsteak"
+				crush()
+				qdel(src)
 	else
 		return ..(W, user)
 
@@ -72,7 +73,7 @@ bullet_act
 			P.on_hit(src, 2, def_zone)
 			return 2
 	else
-		if ((abs(P.original.x - x) + abs(P.original.y - y)) > 2) // not PB range
+		if ((abs(P.starting.x - x) + abs(P.starting.y - y)) > 2) // not PB range
 			if (list("head", "mouth", "eyes").Find(def_zone) && prob(40))
 				visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 				qdel(P)
@@ -86,6 +87,7 @@ bullet_act
 		// get knocked back once in a while
 		// unless we're on a train because bugs
 		if (prob(P.KD_chance/2) && !is_on_train())
+			SpinAnimation(5,1)
 			var/turf/behind = get_step(src, P.dir)
 			if (behind)
 				if (behind.density || locate(/obj/structure) in behind)
@@ -98,6 +100,8 @@ bullet_act
 					visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
 					Weaken(rand(5,7))
 					adjustBruteLoss(rand(20,30))
+					if (client)
+						shake_camera(src, rand(2,3), rand(2,3))
 					playsound(get_turf(src), 'sound/effects/gore/fallsmash.ogg', 100)
 					for (var/obj/structure/window/W in get_turf(slammed_into))
 						W.shatter()
@@ -109,6 +113,8 @@ bullet_act
 		if (prob(P.KD_chance))
 			Weaken(rand(3,4))
 			stamina = max(stamina - 50, 0)
+			if (client)
+				shake_camera(src, rand(2,3), rand(2,3))
 
 	//Shrapnel
 	if(P.can_embed())
@@ -122,6 +128,8 @@ bullet_act
 
 	if (P.gibs)
 		gib()
+	else if (P.crushes)
+		crush()
 
 	return (..(P , def_zone))
 

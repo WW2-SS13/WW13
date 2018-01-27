@@ -60,16 +60,16 @@
 						qdel(src)
 			if (elevel == "Destroy Body")
 				explosion(get_turf(T), -1, FALSE, TRUE, 6)
-				T.gib()
+				T.crush()
 			if (elevel == "Full Explosion")
 				explosion(get_turf(T), FALSE, TRUE, 3, 6)
-				T.gib()
+				T.crush()
 
 		else
 			explosion(get_turf(imp_in), FALSE, TRUE, 3, 6)
 
 	if(need_gib)
-		imp_in.gib()
+		imp_in.crush()
 
 	var/turf/t = get_turf(imp_in)
 

@@ -529,7 +529,7 @@ its easier to just keep the beam vertical.
 			M.show_message( message, 2, deaf_message, TRUE)
 
 /atom/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
-	if(loc && MOVED_DROP == special_event)
+	if(loc && special_event == MOVED_DROP)
 		AM.forceMove(loc, MOVED_DROP)
 		return CANCEL_MOVE_EVENT
 	return ..()

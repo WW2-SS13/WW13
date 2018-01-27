@@ -1213,6 +1213,7 @@ var/global/datum/controller/occupations/job_master
 			names_used[H.real_name] = TRUE
 
 			if (job.rank_abbreviation)
+				job.rank_abbreviation = capitalize(lowertext(job.rank_abbreviation))
 				H.real_name = "[job.rank_abbreviation]. [H.real_name]"
 				H.name = H.real_name
 
@@ -1447,7 +1448,7 @@ var/global/datum/controller/occupations/job_master
 
 		if (!H.wear_id) // first, try to equip it to their ID slot
 			H.equip_to_slot_or_del(keychain, slot_wear_id)
-		if (!H.belt) // first, try to equip it as their belt
+		else if (!H.belt) // first, try to equip it as their belt
 			H.equip_to_slot_or_del(keychain, slot_belt)
 
 		var/list/keys = job.get_keys()
@@ -1455,8 +1456,8 @@ var/global/datum/controller/occupations/job_master
 		for (var/obj/item/weapon/key in keys)
 			if (keychain.can_be_inserted(key))
 				keychain.handle_item_insertion(key)
-				keychain.update_icon_state()
 				keychain.keys += key
+				keychain.update_icon_state()
 
 	proc/is_side_locked(side)
 		if(!ticker)

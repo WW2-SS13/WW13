@@ -47,7 +47,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		do
 			pregame_timeleft = 180
 			if (serverswap_open_status)
-				world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
+				world << "<b><span style = 'notice'>Welcome to the pre-game lobby!</span></b>"
 				world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
 			while(current_state == GAME_STATE_PREGAME)
 				for(var/i=0, i<10, i++)
@@ -152,7 +152,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			if (S.name != "AI")
 				qdel(S)
 
-	//	world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
+	//	world << "<span class = 'notice'><B>Enjoy the game!</B></FONT>"
 		//Holiday Round-start stuff	~Carn
 
 		// todo: make these hooks. Apparently they all fail on /hook/roundstart
@@ -380,7 +380,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 					if(isAdminLevel(playerTurf.z))
 						Player << "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>"
 					else
-						Player << "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>"
+						Player << "<span class = 'notice'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></span>"
 				else
 					if(isghost(Player))
 						var/mob/observer/ghost/O = Player

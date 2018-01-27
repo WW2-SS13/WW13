@@ -88,7 +88,7 @@
 		database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES ('[database.newUID()]', '[adm_ckey]', '[new_rank]', '[num2text(admin_ranks[ckeyEx(new_rank)])]');")
 		message_admins("[key_name_admin(usr)] made '[adm_ckey]' an admin with the rank [new_rank].")
 		log_admin("[key_name(usr)] made '[adm_ckey]' an admin with the rank [new_rank].")
-		usr << "\blue New admin added."
+		usr << "<span class = 'notice'>New admin added.</span>"
 	else
 		if(isnull(admin_id) || !isnum(admin_id))
 			admin_id = database.newUID()
@@ -98,7 +98,7 @@
 			database.execute("UPDATE admin SET rank = '[new_rank]', flags = '[num2text(admin_ranks[ckeyEx(new_rank)])]' WHERE id = '[num2text(admin_id)]'")
 			message_admins("[key_name_admin(usr)] changed '[adm_ckey]''s admin rank to [new_rank]")
 			log_admin("[key_name(usr)] changed '[adm_ckey]''s  admin rank to [new_rank]")
-			usr << "\blue Admin rank changed."
+			usr << "<span class = 'notice'>Admin rank changed.</span>"
 
 // see admin/topic.dm
 /datum/admins/proc/log_admin_permission_modification(var/adm_ckey, var/new_permission, var/nominal)
@@ -146,9 +146,9 @@
 		database.execute("UPDATE admin SET flags = '[admin_rights & ~new_permission]' WHERE id = '[admin_id]'")
 		message_admins("[key_name_admin(usr)] removed the [nominal] permission of [key_name_admin(adm_ckey)]")
 		log_admin("[key_name(usr)] removed the [nominal] permission of [key_name(adm_ckey)]")
-		usr << "\blue Permission removed."
+		usr << "<span class = 'notice'>Permission removed.</span>"
 	else //This admin doesn't have this permission, so we are adding it.
 		database.execute("UPDATE admin SET flags = '[admin_rights | new_permission]' WHERE id = '[admin_id]'")
 		message_admins("[key_name_admin(usr)] added the [nominal] permission of [key_name_admin(adm_ckey)]")
 		log_admin("[key_name(usr)] added the [nominal] permission of [key_name(adm_ckey)]")
-		usr << "\blue Permission added."
+		usr << "<span class = 'notice'>Permission added.</span>"

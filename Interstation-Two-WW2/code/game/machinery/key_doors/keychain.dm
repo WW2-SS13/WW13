@@ -1,12 +1,12 @@
 /obj/item/weapon/storage/belt/keychain
 	var/list/keys = list()
-	slot_flags = SLOT_ID|SLOT_BELT
+	slot_flags = SLOT_ID|SLOT_BELT|SLOT_POCKET
 	icon = 'icons/obj/key.dmi'
 	icon_state = "keychain_0"
 	name = "keychain"
 	desc = "This holds your keys"
-	w_class = 2
-	max_w_class = 2
+	w_class = 1
+	max_w_class = 1
 	storage_slots = 20 // up to 20 keys can spawn
 	max_storage_space = 1000 // more or less infinite space for stolen keys
 

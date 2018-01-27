@@ -42,7 +42,16 @@
 	#ifdef WINTER_TESTING
 	season = "WINTER"
 	#else
-	season = pick("SPRING", "SUMMER", "FALL", "WINTER")
+	if (config && config.allowed_seasons && config.allowed_seasons.len)
+		switch (config.allowed_seasons[1])
+			if (1) // all seasons
+				season = pick("SPRING", "SUMMER", "FALL", "WINTER")
+			if (0) // no seasons = spring
+				season = "SPRING"
+			else
+				season = pick(config.allowed_seasons)
+	else
+		season = pick("SPRING", "SUMMER", "FALL", "WINTER")
 	#endif
 
 // because we don't use readying up, we override can_start()

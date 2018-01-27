@@ -92,7 +92,7 @@
 	set hidden = TRUE
 
 	if(!usr.pulling)
-		usr << "\blue You are not pulling anything."
+		usr << "<span class = 'notice'>You are not pulling anything.</span>"
 		return
 	usr.stop_pulling()
 
@@ -319,13 +319,13 @@
 			for(var/mob/M in range(mob, 1))
 				if(M.pulling == mob)
 					if(!M.restrained() && M.stat == FALSE && M.canmove && mob.Adjacent(M))
-						src << "\blue You're restrained! You can't move!"
+						src << "<span class = 'notice'>You're restrained! You can't move!</span>"
 						return FALSE
 					else
 						M.stop_pulling()
 
 		if(mob.pinned.len)
-			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
+			src << "<span class = 'notice'>You're pinned to a wall by [mob.pinned[1]]!</span>"
 			return FALSE
 
 		move_delay = world.time + mob.movement_delay()//set move delay
@@ -342,7 +342,7 @@
 		if (F && F_is_valid_floor)
 
 			var/area/F_area = get_area(F)
-			if (F_area.weather == WEATHER_RAIN)
+			if (F_area.weather == WEATHER_RAIN && !istype(F, /turf/floor/plating/cobblestone) && !istype(F, /turf/floor/plating/road))
 				F.muddy = TRUE
 			else
 				F.muddy = FALSE
@@ -381,7 +381,7 @@
 					mob << "<span class = '[snow_span]'>[snow_message]</span>"
 					mob.next_snow_message = world.time+100
 			else if (F.muddy)
-				standing_on_snow = rand(2,4)
+				standing_on_snow = rand(2,3)
 				mob << "<span class = 'warning'>The mud slows you down.</span>"
 
 		if (mob.velocity_lastdir != -1)

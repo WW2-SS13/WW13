@@ -465,14 +465,20 @@
 /obj/structure/closet/crate/soviet_grenade/New()
 	..()
 	update_capacity(24)
-	for (var/v in 10 to 24)
-		new /obj/item/weapon/grenade/explosive/rgd(src)
+	for (var/v in 1 to 24)
+		if (prob(50))
+			new /obj/item/weapon/grenade/explosive/rgd(src)
+		else
+			new /obj/item/weapon/grenade/explosive/f1(src)
 
 /obj/structure/closet/crate/german_grenade/New()
 	..()
 	update_capacity(24)
-	for (var/v in TRUE to 24)
-		new /obj/item/weapon/grenade/explosive/stgnade(src)
+	for (var/v in 1 to 24)
+		if (prob(50))
+			new /obj/item/weapon/grenade/explosive/stgnade(src)
+		else
+			new /obj/item/weapon/grenade/explosive/l2a2(src)
 
 /obj/structure/closet/crate/panzerfaust/New()
 	..()

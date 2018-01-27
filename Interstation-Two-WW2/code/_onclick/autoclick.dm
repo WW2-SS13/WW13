@@ -1,11 +1,13 @@
 /client/var/selected_target[2]
 
 /client/MouseDown(object, location, control, params)
+	if (object == mob)
+		return ..(object, location, control, params)
 	var/delay = mob.CanMobAutoclick(object, location, params)
 	if(delay)
 		selected_target[1] = object
 		selected_target[2] = params
-		while(selected_target[1])
+		while(selected_target[1] && mob && !mob.lying && mob.stat == CONSCIOUS)
 			var/foundMG = FALSE
 			for (var/obj/item/weapon/gun/projectile/minigun/MG in get_turf(src))
 				var/can_fire = TRUE
@@ -45,8 +47,13 @@
 								MG.force_fire(A, src)
 				foundMG = TRUE
 			if (!foundMG)
-				Click(selected_target[1], location, control, selected_target[2])
-			sleep(delay+1)
+				var/obj/item/weapon/gun/G = mob.get_active_hand()
+				if (G && istype(G))
+					G.next_fire_time = 0 // no 'you can't fire' spam
+					Click(selected_target[1], location, control, selected_target[2])
+			sleep(delay)
+	else
+		return ..(object, location, control, params)
 
 /client/MouseUp(object, location, control, params)
 	selected_target[1] = null

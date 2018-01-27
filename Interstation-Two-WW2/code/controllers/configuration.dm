@@ -215,6 +215,10 @@ var/list/gamemode_cache = list()
 	// dumb memes
 	var/allow_dabbing = FALSE
 
+	// seasons and weather
+	var/list/allowed_seasons = list(1)
+	var/list/allowed_weather = list(1)
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -626,6 +630,30 @@ var/list/gamemode_cache = list()
 
 				if ("allow_dabbing")
 					config.allow_dabbing = TRUE
+
+				if ("enabled_seasons")
+					if (value)
+						var/list/seasons = splittext(value, ",")
+						for (var/v in 1 to seasons.len)
+							seasons[v] = capitalize(ckey(seasons[v]))
+						if (seasons.Find("ALL"))
+							allowed_seasons = list(1)
+						else if (seasons.Find("NONE"))
+							allowed_seasons = list(0)
+						else
+							allowed_seasons = seasons.Copy()
+
+				if ("enabled_weather")
+					if (value)
+						var/list/weathers = splittext(value, ",")
+						for (var/v in 1 to weathers.len)
+							weathers[v] = capitalize(ckey(weathers[v]))
+						if (weathers.Find("ALL"))
+							allowed_weather = list(1)
+						else if (weathers.Find("NONE"))
+							allowed_weather = list(0)
+						else
+							allowed_weather = weathers.Copy()
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
