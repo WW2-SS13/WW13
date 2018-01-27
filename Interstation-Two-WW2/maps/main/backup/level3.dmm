@@ -6,6 +6,7 @@
 "af" = (/obj/structure/window/reinforced{dir = 1},/obj/machinery/light{dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "ag" = (/obj/structure/window/reinforced{dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "ah" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/admin)
+"ai" = (/obj/machinery/vending/wallmed1,/obj/structure/table/glass,/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "aj" = (/obj/structure/table/rack,/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "ak" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/key/german/soldat,/obj/item/weapon/key/german/soldat,/obj/item/weapon/key/german/soldat,/obj/item/weapon/key/soviet/soldat,/obj/item/weapon/key/soviet/soldat,/obj/item/clothing/gloves/thick/combat,/obj/item/clothing/gloves/thick/combat,/obj/item/clothing/gloves/thick/combat,/obj/item/device/radio,/obj/item/device/radio,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/storage/belt/keychain,/obj/item/clothing/gloves/thick/combat,/obj/item/weapon/key/soviet/soldat,/obj/item/weapon/key/soviet/soldat,/obj/item/weapon/key/german/soldat,/obj/machinery/light{dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "al" = (/obj/structure/table/rack,/obj/machinery/light{dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/admin)
@@ -264,7 +265,7 @@ aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeafagahaxajakajaxajalaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeafagahaiajakajaiajalaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeamamamamamamamamamajaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeagagahamajajanaoamapaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeaqamamamamamamamamaraeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

@@ -145,7 +145,7 @@
 
 	if(sdisabilities & DEAF || ear_deaf)
 		if(prob(20))
-			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
+			src << "<span class='warning'>You feel your radio vibrate but can hear nothing from it!</span>"
 	else
 		var/fontsize = 2
 

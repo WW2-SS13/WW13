@@ -219,6 +219,9 @@ var/list/gamemode_cache = list()
 	var/list/allowed_seasons = list(1)
 	var/list/allowed_weather = list(1)
 
+	var/list/slog = list()
+	var/list/wlog = list()
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -634,26 +637,33 @@ var/list/gamemode_cache = list()
 				if ("enabled_seasons")
 					if (value)
 						var/list/seasons = splittext(value, ",")
+						slog = seasons.Copy()
 						for (var/v in 1 to seasons.len)
-							seasons[v] = capitalize(ckey(seasons[v]))
-						if (seasons.Find("ALL"))
+							seasons[v] = uppertext(ckey(seasons[v]))
+						if (seasons[1] == "ALL")
 							allowed_seasons = list(1)
-						else if (seasons.Find("NONE"))
+						else if (seasons[1] == "NONE")
 							allowed_seasons = list(0)
 						else
-							allowed_seasons = seasons.Copy()
+							allowed_seasons.Cut()
+							for (var/season in seasons)
+								allowed_seasons += season
+
 
 				if ("enabled_weather")
 					if (value)
 						var/list/weathers = splittext(value, ",")
+						wlog = weathers.Copy()
 						for (var/v in 1 to weathers.len)
-							weathers[v] = capitalize(ckey(weathers[v]))
-						if (weathers.Find("ALL"))
+							weathers[v] = uppertext(ckey(weathers[v]))
+						if (weathers[1] == "ALL")
 							allowed_weather = list(1)
-						else if (weathers.Find("NONE"))
+						else if (weathers[1] == "NONE")
 							allowed_weather = list(0)
 						else
-							allowed_weather = weathers.Copy()
+							allowed_weather.Cut()
+							for (var/weather in weathers)
+								allowed_weather += weather
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
