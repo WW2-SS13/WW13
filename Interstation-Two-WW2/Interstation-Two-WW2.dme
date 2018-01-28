@@ -969,6 +969,6 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\pillarmap\city.dmm"
-#include "maps\pillarmap\sewers.dmm"
+#include "maps\city\city.dmm"
+#include "maps\city\sewers.dmm"
 // END_INCLUDE

@@ -38,7 +38,7 @@
 		if (my_tank.radio)
 			for (var/mob/living/carbon/human/H in world)
 				if (H.loc == loc)
-					H.on_hear_radio(my_tank.radio, "<span class = 'srvradio'><big><b>TANKCHAT</b>: [real_name] says, '<span class = 'notice'>[capitalize(trim_left(copytext(message_without_html, 3, length(message_without_html)+1)))]</span>'</big></span>")
+					H.on_hear_radio(my_tank.radio, "<span class = 'srvradio'><big><b>TANKCHAT</b>: [real_name] says, \"<span class = 'notice'>[capitalize(trim_left(copytext(message_without_html, 3, length(message_without_html)+1)))]</span>\"</big></span>")
 
 /mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)

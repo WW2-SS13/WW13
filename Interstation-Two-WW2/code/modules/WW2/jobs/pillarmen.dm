@@ -23,7 +23,7 @@
 /datum/job/pillarman/vampire
 	title = "Vampire"
 	en_meaning = ""
-	total_positions = 9
+	total_positions = 15
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateVampire"
 
