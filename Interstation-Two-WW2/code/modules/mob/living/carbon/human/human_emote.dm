@@ -561,6 +561,7 @@
 			if ("pose")
 				if (istype(src, /mob/living/carbon/human/pillarman))
 					var/mob/living/carbon/human/pillarman/P = src
+					if (P.next_pose > world.time)
 						P << "<span class = 'danger'>You can't pose again yet.</span>"
 						return
 					message = "poses [pick("fabulously", "spectacularly")]!"
@@ -571,6 +572,7 @@
 						if (!H.takes_less_damage)
 							H.SpinAnimation(7,1)
 							H.Weaken(rand(4,5))
+					P.next_pose = world.time + 300
 
 			if ("help")
 				src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
