@@ -5,7 +5,7 @@
 	desc = "Basic wear for soviet soldiers."
 	icon_state = "apparel_soviet"
 	products = list(
-		/obj/item/clothing/suit/coat/soviet = 20,
+		/obj/item/clothing/suit/storage/coat/soviet = 20,
 		/obj/item/clothing/accessory/storage/webbing = 20,
 		/obj/item/clothing/under/sovuni = 20,
 		/obj/item/clothing/head/helmet/tactical/sovhelm = 20,
@@ -19,7 +19,7 @@
 	desc = "Basic wear for German soldiers."
 	icon_state = "apparel_german"
 	products = list(
-		/obj/item/clothing/suit/coat/german = 20,
+		/obj/item/clothing/suit/storage/coat/german = 20,
 		/obj/item/clothing/accessory/storage/webbing = 20,
 		/obj/item/clothing/under/geruni = 20,
 		/obj/item/clothing/head/helmet/tactical/gerhelm = 20,

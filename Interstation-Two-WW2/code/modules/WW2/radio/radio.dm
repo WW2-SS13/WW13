@@ -757,6 +757,8 @@ var/global/list/default_ukrainian_channels = list(
 	announcer.faction = faction
 	announcer.frequency = channel
 	announcer.speech_sound = speech_sound
+	announcer.icon = icon
+	announcer.icon_state = icon_state
 
 	// hackish code because radios need a mob, with a language, to announce
 	mobs[aname] = new/mob/living/carbon/human

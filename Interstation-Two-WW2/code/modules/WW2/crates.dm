@@ -224,7 +224,7 @@
 /obj/structure/closet/crate/lugers/New()
 	..()
 	update_capacity(20)
-	for (var/v in TRUE to 20)
+	for (var/v in 1 to 20)
 		new/obj/item/weapon/gun/projectile/pistol/luger(src)
 
 /obj/structure/closet/crate/colts
@@ -237,8 +237,16 @@
 /obj/structure/closet/crate/colts/New()
 	..()
 	update_capacity(20)
-	for (var/v in TRUE to 20)
+	for (var/v in 1 to 20)
 		new/obj/item/weapon/gun/projectile/pistol/_45(src)
+
+// webbing
+/obj/structure/closet/crate/webbing
+/obj/structure/closet/crate/webbing/New()
+	..()
+	update_capacity(25)
+	for (var/v in 1 to 25)
+		new/obj/item/clothing/accessory/storage/webbing(src)
 
 // rations crates
 

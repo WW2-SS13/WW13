@@ -149,7 +149,7 @@
 	else
 		var/fontsize = 2
 
-		if (speaker.original_job.is_officer)
+		if (speaker.original_job.is_officer || istype(speaker.original_job, /datum/job/german/trainsystem))
 			fontsize = 3
 
 		var/full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] [message]</span></font>"

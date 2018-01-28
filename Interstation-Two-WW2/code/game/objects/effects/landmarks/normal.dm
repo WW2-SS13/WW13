@@ -472,6 +472,11 @@ var/area/partisan_stockpile = null
 				if (prob(40)) // spawn approx. 7 svt mags
 					for (var/vv in 1 to rand(1,7))
 						new /obj/item/ammo_magazine/svt(turf)
+				if (prob(40)) // spawn approx. 2 mosins
+					new /obj/item/weapon/gun/projectile/boltaction/mosin(turf)
+				if (prob(40)) // spawn approx. 7 mosin mags
+					for (var/vv in 1 to rand(1,7))
+						new /obj/item/ammo_magazine/mosin(turf)
 				if (prob(60))
 					new /obj/item/clothing/accessory/storage/webbing(turf)
 				if (prob(60))
@@ -495,6 +500,10 @@ var/area/partisan_stockpile = null
 			// gauze
 			for (var/v in 1 to 10)
 				new /obj/item/weapon/gauze_pack/gauze(turf)
+
+			// maxim belts
+			for (var/v in 1 to 2)
+				new /obj/item/ammo_magazine/maxim(turf)
 
 			partisan_stockpile = get_area(turf)
 

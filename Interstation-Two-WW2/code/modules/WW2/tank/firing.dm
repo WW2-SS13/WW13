@@ -12,7 +12,7 @@
 			return TRUE
 	return FALSE
 
-#define MAX_DIST 3
+#define MAX_DIST 4
 
 /obj/tank/proc/get_x_steps_in_dir(steps)
 

@@ -72,9 +72,9 @@
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_damage)
 			damage /= H.getStatCoeff("strength")
-
+/* // too meme so removed
 	if (check_zone(def_zone) == "head")
-		damage *= 2.0
+		damage *= 2.0*/
 
 	if(!P.nodamage)
 		apply_damage(damage, P.damage_type, def_zone, absorb, FALSE, P, sharp=proj_sharp, edge=proj_edge)

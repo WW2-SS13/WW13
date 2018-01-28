@@ -189,9 +189,9 @@ var/global/datum/controller/occupations/job_master
 
 		soviet_job_slots = german_job_slots + 5
 
-		civilian_job_slots = round(soviet_job_slots/4)
+		civilian_job_slots = round(soviet_job_slots/5)
 
-		partisan_job_slots = civilian_job_slots
+		partisan_job_slots = round(soviet_job_slots/4)
 
 
 //		allow_jews = initial(allow_jews)
@@ -1171,19 +1171,19 @@ var/global/datum/controller/occupations/job_master
 
 			// civs and partisans
 			if (istype(job, /datum/job/partisan))
-				H.equip_coat(/obj/item/clothing/suit/coat/civilian)
+				H.equip_coat(/obj/item/clothing/suit/storage/coat/civilian)
 			else if (istype(job, /datum/job/german))
 				if (job.is_officer)
-					H.equip_coat(/obj/item/clothing/suit/coat/german/officer)
+					H.equip_coat(/obj/item/clothing/suit/storage/coat/german/officer)
 				else if (job.is_SS)
-					H.equip_coat(/obj/item/clothing/suit/coat/german/SS)
+					H.equip_coat(/obj/item/clothing/suit/storage/coat/german/SS)
 				else
-					H.equip_coat(/obj/item/clothing/suit/coat/german)
+					H.equip_coat(/obj/item/clothing/suit/storage/coat/german)
 			else if (istype(job, /datum/job/soviet))
 				if (job.is_officer)
-					H.equip_coat(/obj/item/clothing/suit/coat/soviet/officer)
+					H.equip_coat(/obj/item/clothing/suit/storage/coat/soviet/officer)
 				else
-					H.equip_coat(/obj/item/clothing/suit/coat/soviet)
+					H.equip_coat(/obj/item/clothing/suit/storage/coat/soviet)
 			// Give the guy some ammo for his gun
 			spawn (0)
 				if (istype(ticker.mode, /datum/game_mode/ww2))

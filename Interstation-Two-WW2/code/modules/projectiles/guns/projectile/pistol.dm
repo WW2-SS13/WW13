@@ -59,7 +59,7 @@
 /*
 /obj/item/weapon/gun/projectile/colt
 	name = "vintage .45 pistol"
-	desc = "A cheap Martian knock-off of a Colt M1911. Uses .45 rounds."
+	desc = "A cheap knock-off of a Colt M1911. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/c45m
 	icon_state = "colt"
 	caliber = ".45"

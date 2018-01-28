@@ -554,6 +554,11 @@
 						for (var/atom/movable/AM in get_step(src, dir))
 							if (ismob(AM))
 								message = "dabs on [AM]."
+
+			if ("pose")
+				if (istype(src, /mob/living/carbon/human/pillarman))
+					message = "poses [pick("fabulously", "spectacularly")]!"
+
 			if ("help")
 				src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
 	cry, custom, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,
