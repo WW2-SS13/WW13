@@ -19,12 +19,16 @@ var/global/datum/controller/occupations/job_master
 		if (!faction_organized_occupations_separate_lists.Find(Jflag))
 			faction_organized_occupations_separate_lists[Jflag] = list()
 		faction_organized_occupations_separate_lists[Jflag] += J
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[GERMAN]
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[SOVIET]
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[ITALIAN]
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[UKRAINIAN]
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[CIVILIAN]
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[PARTISAN]
+	if (!map)
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[GERMAN]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[SOVIET]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[ITALIAN]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[UKRAINIAN]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[CIVILIAN]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[PARTISAN]
+	else
+		for (var/faction in map.faction_organization)
+			job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[faction]
 
 /datum/controller/occupations
 		//List of all jobs
@@ -160,6 +164,8 @@ var/global/datum/controller/occupations/job_master
 	// being sent
 
 	proc/toggle_roundstart_autobalance(var/_clients = 0, var/announce = TRUE)
+
+		_clients = max(_clients, map ? map.min_autobalance_players : 0)
 
 		if (_clients != 0)
 			expected_clients = _clients

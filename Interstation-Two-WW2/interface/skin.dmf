@@ -213,7 +213,7 @@ macro "macro"
 		command = ".center"
 	elem 
 		name = "Space"
-		command = "use-tank-guns"
+		command = "on-press-spacebar"
 	elem 
 		name = "Northeast"
 		command = ".northeast"
@@ -365,7 +365,7 @@ macro "hotkeymode"
 		command = ".center"
 	elem 
 		name = "Space"
-		command = "use-tank-guns"
+		command = "on-press-spacebar"
 	elem 
 		name = "Northeast"
 		command = "Move-Upwards"
@@ -1102,7 +1102,6 @@ window "rpane"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false

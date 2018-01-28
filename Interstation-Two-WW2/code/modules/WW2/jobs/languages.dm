@@ -3,6 +3,10 @@
 	var/list/additional_languages = list() // "Name" = probability between TRUE-100
 	var/SL_check_independent = FALSE // we're important, so we can spawn even if SLs are needed
 
+/datum/job/pillarman
+	default_language = "German"
+	additional_languages = list("Russian" = 100, "Ukrainian" = 100)
+
 /datum/job/german
 	default_language = "German"
 	additional_languages = list("Russian" = 5)

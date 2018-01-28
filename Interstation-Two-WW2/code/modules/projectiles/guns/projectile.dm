@@ -137,10 +137,10 @@
 
 		if (istype(src, /obj/item/weapon/gun/projectile/boltaction))
 			var/obj/item/weapon/gun/projectile/boltaction/B = src
-			if (world.timeofday <= B.next_reload)
+			if (world.time <= B.next_reload)
 				user << "<span class='danger'>[src] is jammed.</span>"
 				return
-			B.next_reload = world.timeofday + rand(22,33)
+			B.next_reload = world.time + rand(22,33)
 
 		switch(AM.mag_type)
 			if(MAGAZINE)
@@ -185,10 +185,10 @@
 
 		if (istype(src, /obj/item/weapon/gun/projectile/boltaction))
 			var/obj/item/weapon/gun/projectile/boltaction/B = src
-			if (world.timeofday <= B.next_reload)
+			if (world.time <= B.next_reload)
 				user << "<span class='danger'>[src] is jammed.</span>"
 				return
-			B.next_reload = world.timeofday + rand(22,33)
+			B.next_reload = world.time + rand(22,33)
 
 		user.remove_from_mob(C)
 		C.loc = src

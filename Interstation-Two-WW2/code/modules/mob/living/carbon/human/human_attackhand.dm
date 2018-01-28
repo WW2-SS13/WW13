@@ -19,6 +19,25 @@
 			H << "\red You can't use your hand."
 			return
 
+	if (!istype(src, /mob/living/carbon/human/pillarman))
+		if (lying || stat == UNCONSCIOUS || stat == DEAD)
+			if (istype(H, /mob/living/carbon/human/pillarman))
+				var/mob/living/carbon/human/pillarman/P = H
+				if (P.a_intent == I_HURT)
+					return P.absorb(src)
+
+	if (!istype(src, /mob/living/carbon/human/vampire) && !istype(src, /mob/living/carbon/human/pillarman))
+		if (lying || stat == UNCONSCIOUS || stat == DEAD)
+			if (istype(H, /mob/living/carbon/human/vampire))
+				var/mob/living/carbon/human/vampire/V = H
+				if (V.a_intent == I_HURT)
+					return V.drink(src)
+
+	if (istype(src, /mob/living/carbon/human/pillarman) && istype(H, /mob/living/carbon/human/vampire))
+		if (H.a_intent == I_HURT)
+			H << "<span class = 'danger'>You may not harm your master.</span>"
+			return
+
 	..()
 
 	// Should this all be in Touch()?

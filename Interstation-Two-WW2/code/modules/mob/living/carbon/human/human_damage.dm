@@ -1,7 +1,7 @@
 //Updates the mob's health from organs and mob damage variables
 /mob/living/carbon/human/updatehealth()
 
-	next_calculate_tally = world.timeofday - 1
+	next_calculate_tally = world.time - 1
 
 	if(status_flags & GODMODE)
 		health = maxHealth

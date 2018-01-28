@@ -67,6 +67,8 @@
 		. = UKRAINIAN
 	else if (istype(src, /datum/job/italian))
 		. = ITALIAN
+	else if (istype(src, /datum/job/pillarman))
+		. = PILLARMEN
 
 	_base_type_flag = .
 	return _base_type_flag
@@ -261,6 +263,8 @@
 		return "Red Army"
 	if(side == GERMAN)
 		return "German Wehrmacht"
+	if (side == PILLARMEN)
+		return "PILLARMEN"
 	return null
 
 // here's a story

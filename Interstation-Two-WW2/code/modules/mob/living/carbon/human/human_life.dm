@@ -42,16 +42,29 @@
 	set background = BACKGROUND_ENABLED
 
 	if (client)
-		if (world.timeofday >= next_weather_sound)
+		if (world.time >= next_weather_sound)
 			var/area/A = get_area(src)
 			if (A.weather == WEATHER_RAIN)
 				src << sound('sound/ambience/rain.ogg', channel = 777)
-				next_weather_sound = world.timeofday + 1500
+				next_weather_sound = world.time + 1500
 		else
 			var/area/A = get_area(src)
 			if (A.weather == WEATHER_NONE)
 				src << sound(null, channel = 777)
-				next_weather_sound = world.timeofday
+				next_weather_sound = world.time
+
+	if (istype(wear_mask, /obj/item/clothing/mask/stone))
+		if (prob(20) && mind && type == /mob/living/carbon/human)
+			var/datum/mind/M = mind
+			var/mob/living/carbon/human/vampire/V = new(get_turf(src), FALSE)
+			V.name = name
+			V.real_name = real_name
+			M.transfer_to(V)
+			for (var/obj/item/I in contents)
+				drop_from_inventory(I)
+			visible_message("<span class = 'danger'>[src] becomes a Vampire!</span>")
+			crush()
+			return
 
 	handle_zoom_stuff()
 

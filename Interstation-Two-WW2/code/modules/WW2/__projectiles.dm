@@ -153,3 +153,30 @@
 	damage = FALSE
 	penetrating = FALSE
 	density = FALSE
+
+// Pillar men
+
+/obj/burning_blood
+	name = "burning giblets"
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "gibshot"
+	layer = MOB_LAYER + 0.1
+	density = 1
+
+/obj/burning_blood/New()
+	..()
+	playsound(get_turf(src), 'sound/effects/gore/severed.ogg', 100)
+
+/obj/burning_blood/throw_impact(var/atom/movable/obstacle)
+	if (isliving(obstacle))
+		var/mob/living/L = obstacle
+		L.adjustFireLoss(rand(30,40))
+		L.Weaken(rand(2,3))
+		visible_message("<span class = 'warning'>[L] is scalded by burning blood!</span>")
+		if (ishuman(L))
+			L.emote("scream")
+		playsound(get_turf(L), 'sound/effects/gore/fallsmash.ogg', 100)
+		. = TRUE
+	. = FALSE
+	qdel(src)
+	return .

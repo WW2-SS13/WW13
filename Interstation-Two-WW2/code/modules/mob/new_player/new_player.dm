@@ -1,5 +1,15 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
+/proc/job2mobtype(rank)
+	for (var/datum/job/J in job_master.occupations)
+		if (J.title == rank)
+			if (istype(J, /datum/job/pillarman/pillarman))
+				return /mob/living/carbon/human/pillarman
+			else if (istype(J, /datum/job/pillarman/vampire))
+				return /mob/living/carbon/human/vampire
+			else
+				return /mob/living/carbon/human
+
 /mob/new_player
 	var/ready = FALSE
 	var/spawning = FALSE//Referenced when you want to delete the new_player later on in the code.
@@ -384,7 +394,7 @@
 	close_spawn_windows()
 
 	job_master.AssignRole(src, rank, TRUE, reinforcements)
-	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
+	var/mob/living/character = create_character(job2mobtype(rank))	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, TRUE)					//equips the human
 
 	job_master.relocate(character)
@@ -444,7 +454,7 @@
 	spawning = TRUE
 	close_spawn_windows()
 	job_master.AssignRole(src, rank, TRUE)
-	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
+	var/mob/living/character = create_character(job2mobtype(rank))	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, TRUE)					//equips the human
 	job_master.relocate(character)
 
@@ -534,6 +544,10 @@
 			//	unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM OFFICER POSITIONS}</span> "
 
 			// check if the faction is admin-locked
+
+
+			if (map && !map.job_enabled_specialcheck(job))
+				job_is_available = FALSE
 
 			if (istype(job, /datum/job/german/paratrooper) && !paratroopers_toggled)
 				job_is_available = FALSE
@@ -642,7 +656,7 @@
 	spawn (1)
 		src << browse(data, "window=latechoices;size=600x640;can_close=1")
 
-/mob/new_player/proc/create_character()
+/mob/new_player/proc/create_character(mobtype)
 
 	if (delayed_spawning_as_job)
 		delayed_spawning_as_job.total_positions += TRUE
@@ -662,10 +676,10 @@
 	if(chosen_species && use_species_name)
 		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 		if(is_species_whitelisted(chosen_species) || has_admin_rights())
-			new_character = new(loc, use_species_name)
+			new_character = new mobtype(loc, use_species_name)
 
 	if(!new_character)
-		new_character = new(loc)
+		new_character = new mobtype(loc)
 
 	new_character.lastarea = get_area(loc)
 

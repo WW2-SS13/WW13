@@ -152,17 +152,17 @@ var/world_topic_spam_protect_time = world.timeofday
 	T = replacetextEx(T, "{TIMEOFDAY}", uppertext(time_of_day))
 	T = replacetextEx(T, "{WEATHER}", uppertext(ticker.mode.weather()))
 	T = replacetextEx(T, "{SEASON}", uppertext(ticker.mode.season()))
-	T = replacetextEx(T, "{MAP}", uppertext(map.ID)) // name of the map
+	T = replacetextEx(T, "{MAP}", uppertext(map.title)) // name of the map
 	// Capitalized constants - no change
 	T = replacetextEx(T, "{Timeofday}", time_of_day)
 	T = replacetextEx(T, "{Weather}", ticker.mode.weather())
 	T = replacetextEx(T, "{Season}", ticker.mode.season())
-	T = replacetextEx(T, "{Map}", map.ID) // name of the map
+	T = replacetextEx(T, "{Map}", map.title) // name of the map
 	// lowercase constants
 	T = replacetextEx(T, "{timeofday}", lowertext(time_of_day))
 	T = replacetextEx(T, "{weather}", lowertext(ticker.mode.weather()))
 	T = replacetextEx(T, "{season}", lowertext(ticker.mode.season()))
-	T = replacetextEx(T, "{map}", lowertext(map.ID)) // name of the map
+	T = replacetextEx(T, "{map}", lowertext(map.title)) // name of the map
 
 	return T
 
@@ -354,7 +354,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		s += "<b>[config.hub_features]</b><br>"
 
 	if (map)
-		s += "<b>Map: [map.ID]</b><br>"
+		s += "<b>Map: [map.title]</b><br>"
 
 	if (config.hub_banner_url)
 		s += config.hub_banner_url
@@ -494,7 +494,7 @@ var/setting_up_db_connection = FALSE
 	. += ";"
 	. += "<b>Address</b>: byond://[world.internet_address]:[world.port]"
 	. += ";"
-	. += "<b>Map</b>: [map.ID]"
+	. += "<b>Map</b>: [map.title]"
 	. += ";"
 	. += "<b>Players</b>: [clients.len]"
 	if (config.usewhitelist)

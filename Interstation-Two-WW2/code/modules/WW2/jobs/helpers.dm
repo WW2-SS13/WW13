@@ -34,3 +34,11 @@
 				equip_to_slot_or_del(new ctype(src), slot_wear_suit)
 				if (radio && istype(radio))
 					equip_to_slot_or_del(radio, slot_s_store)
+
+/datum/job/proc/equip_random_civilian_clothing(var/mob/living/carbon/human/H)
+	if (prob(33))
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ1(H), slot_w_uniform)
+	else if (prob(50))
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ2(H), slot_w_uniform)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ3(H), slot_w_uniform)

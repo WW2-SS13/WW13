@@ -523,6 +523,21 @@ var/area/partisan_stockpile = null
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
+
+		if ("JoinLatePillarMan")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLateVampire")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
 		if("Fallschirm")
 			fallschirm_landmarks += loc
 			qdel(src)

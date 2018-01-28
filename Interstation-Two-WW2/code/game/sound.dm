@@ -72,6 +72,10 @@ var/list/artillery_in_distance = list( 'sound/weapons/WW2/explo_distant01.ogg', 
 var/list/train_movement_sounds = list( 'sound/effects/train/moving.ogg' )
 var/list/train_halting_sounds = list( 'sound/effects/train/halting.ogg' )
 
+var/list/wryyys = list('sound/voice/wryyy_1.ogg', 'sound/voice/wryyy_2.ogg',
+	'sound/voice/wryyy_3.ogg', 'sound/voice/wryyy_4.ogg',
+	'sound/voice/wryyy_5.ogg', 'sound/voice/wryyy_6.ogg')
+
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/list/excluded = list())
 
 	soundin = get_sfx(soundin) // same sound for everyone
@@ -217,5 +221,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("artillery_in_distance") soundin = pick(artillery_in_distance)
 			if ("train_movement") soundin = pick(train_movement_sounds)
 			if ("train_halting") soundin = pick(train_halting_sounds)
+			if ("wryyy") soundin = pick(wryyys)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin

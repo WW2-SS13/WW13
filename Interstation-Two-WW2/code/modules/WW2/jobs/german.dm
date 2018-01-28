@@ -9,7 +9,7 @@
 	title = "Hauptmann"
 	en_meaning = "Company Commander"
 	rank_abbreviation = "Cpt"
-	total_positions = TRUE
+	total_positions = 1
 	head_position = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerCO"
