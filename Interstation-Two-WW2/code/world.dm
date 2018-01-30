@@ -340,7 +340,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	// for the custom WW13 hub only!
 
 	// we can't execute code in config settings, so this is a workaround.
-	config.hub_body = replacetext(config.hub_body, "TIME_OF_DAY", lowertext(time_of_day))
+	config.hub_body = replacetext(config.hub_body, "TIME_OF_DAY", capitalize(lowertext(time_of_day)))
 
 	if (ticker && ticker.mode && istype(ticker.mode, /datum/game_mode/ww2))
 		config.hub_body = replacetext(config.hub_body, "SEASON", lowertext(ticker.mode:season))

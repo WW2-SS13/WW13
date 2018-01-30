@@ -11,3 +11,5 @@
 		"heavyweapon" = list(150,150),
 		"medical" = list(500,500), // SEKAI ICHI
 		"survival" = list(200,200))
+
+	has_hunger_and_thirst = FALSE

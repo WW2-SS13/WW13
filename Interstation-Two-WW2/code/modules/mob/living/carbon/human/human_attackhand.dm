@@ -16,7 +16,7 @@
 		if(H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(!temp || !temp.is_usable())
-			H << "\red You can't use your hand."
+			H << "<span class = 'red'>You can't use your hand.</span>"
 			return
 
 	if (!istype(src, /mob/living/carbon/human/pillarman))
@@ -24,14 +24,16 @@
 			if (istype(H, /mob/living/carbon/human/pillarman))
 				var/mob/living/carbon/human/pillarman/P = H
 				if (P.a_intent == I_HURT)
-					return P.absorb(src)
+					if (P.may_absorb())
+						return P.absorb(src)
 
 	if (!istype(src, /mob/living/carbon/human/vampire) && !istype(src, /mob/living/carbon/human/pillarman))
 		if (lying || stat == UNCONSCIOUS || stat == DEAD)
 			if (istype(H, /mob/living/carbon/human/vampire))
 				var/mob/living/carbon/human/vampire/V = H
 				if (V.a_intent == I_HURT)
-					return V.drink(src)
+					if (V.may_drink())
+						return V.drink(src)
 
 	if (istype(src, /mob/living/carbon/human/pillarman) && istype(H, /mob/living/carbon/human/vampire))
 		if (H.a_intent == I_HURT)
@@ -46,33 +48,6 @@
 			H.do_attack_animation(src)
 			return FALSE
 
-	/*	if(istype(H.gloves, /obj/item/clothing/gloves/boxing/hologlove))
-			H.do_attack_animation(src)
-			var/damage = rand(0, 9)
-			if(!damage)
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, -1)
-				visible_message("\red <B>[H] has attempted to punch [src]!</B>")
-				return FALSE
-			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.targeted_organ))
-			var/armor_block = run_armor_check(affecting, "melee")
-
-			if(HULK in H.mutations)
-				damage += 5
-
-			playsound(loc, "punch", 25, TRUE, -1)
-
-			visible_message("\red <B>[H] has punched [src]!</B>")
-
-			apply_damage(damage, HALLOSS, affecting, armor_block)
-			if(damage >= 9)
-				visible_message("\red <B>[H] has weakened [src]!</B>")
-				apply_effect(4, WEAKEN, armor_block)
-
-			return*/
-/*
-	if(istype(M,/mob/living/carbon))
-		M.spread_disease_to(src, "Contact")
-*/
 	switch(M.a_intent)
 		if(I_HELP)
 			if(istype(H) && health < config.health_threshold_crit && health > config.health_threshold_dead)
@@ -317,7 +292,7 @@
 						return
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, -1)
-			visible_message("\red <B>[M] attempted to disarm [src]!</B>")
+			visible_message("<span class = 'red'><b>[M] attempted to disarm [src]!</b></span>")
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)

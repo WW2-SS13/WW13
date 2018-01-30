@@ -95,4 +95,7 @@ var/created_lighting_corners_and_overlays = FALSE
 
 	if (announce)
 		spawn (130)
-			world << "<font size=3><span class = 'notice'>It's <b>[lowertext(capitalize(time_of_day))]</b>.</span></font>"
+			for (var/mob/M in world)
+				var/area/M_area = get_area(M)
+				if (M_area.location == AREA_OUTSIDE || M_area.z == 1)
+					M << "<font size=3><span class = 'notice'>It's <b>[lowertext(capitalize(time_of_day))]</b>.</span></font>"

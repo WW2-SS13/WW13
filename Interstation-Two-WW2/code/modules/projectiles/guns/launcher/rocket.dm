@@ -34,7 +34,7 @@
 			user << "<span class = 'notice'>You put the rocket in [src].</span>"
 			user << "<span class = 'notice'>[rockets.len] / [max_rockets] rockets.</span>"
 		else
-			usr << "\red [src] cannot hold more rockets."
+			usr << "<span class = 'red'>[src] cannot hold more rockets.</span>"
 
 /obj/item/weapon/gun/launcher/rocket/consume_next_projectile()
 	if(rockets.len)

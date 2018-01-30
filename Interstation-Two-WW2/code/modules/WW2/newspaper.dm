@@ -21,11 +21,11 @@
 		pages = FALSE
 		switch(screen)
 			if(0) //Cover
-				dat+="<DIV ALIGN='center'><B><FONT SIZE=6>The Griffon</FONT></B></div>"
+				dat+="<DIV ALIGN='center'><b><FONT SIZE=6>The Griffon</FONT></b></div>"
 				dat+="<DIV ALIGN='center'><FONT SIZE=2>[company_name]-standard newspaper, for use on [company_name]© Space Facilities</FONT></div><HR>"
 				if(isemptylist(news_content))
 					if(important_message)
-						dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR></ul>"
+						dat+="Contents:<BR><ul><b><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></b> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR></ul>"
 					else
 						dat+="<I>Other than the title, the rest of the newspaper is unprinted...</I>"
 				else
@@ -33,11 +33,11 @@
 					for(var/datum/feed_channel/NP in news_content)
 						pages++
 					if(important_message)
-						dat+="<B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR>"
+						dat+="<b><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></b> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR>"
 					var/temp_page=0
 					for(var/datum/feed_channel/NP in news_content)
 						temp_page++
-						dat+="<B>[NP.channel_name]</B> <FONT SIZE=2>\[page [temp_page+1]\]</FONT><BR>"
+						dat+="<b>[NP.channel_name]</b> <FONT SIZE=2>\[page [temp_page+1]\]</FONT><BR>"
 					dat+="</ul>"
 				if(scribble_page==curr_page)
 					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
@@ -46,9 +46,9 @@
 				for(var/datum/feed_channel/NP in news_content)
 					pages++ //Let's get it right again.
 				var/datum/feed_channel/C = news_content[curr_page]
-				dat+="<FONT SIZE=4><B>[C.channel_name]</B></FONT><FONT SIZE=1> \[created by: <FONT COLOR='maroon'>[C.author]</FONT>\]</FONT><BR><BR>"
+				dat+="<FONT SIZE=4><b>[C.channel_name]</b></FONT><FONT SIZE=1> \[created by: <FONT COLOR='maroon'>[C.author]</FONT>\]</FONT><BR><BR>"
 				if(C.censored)
-					dat+="This channel was deemed dangerous to the general welfare of the station and therefore marked with a <B><FONT COLOR='red'>D-Notice</B></FONT>. Its contents were not transferred to the newspaper at the time of printing."
+					dat+="This channel was deemed dangerous to the general welfare of the station and therefore marked with a <b><FONT COLOR='red'>D-Notice</b></FONT>. Its contents were not transferred to the newspaper at the time of printing."
 				else
 					if(isemptylist(C.messages))
 						dat+="No Feed stories stem from this channel..."
@@ -71,10 +71,10 @@
 				for(var/datum/feed_channel/NP in news_content)
 					pages++
 				if(important_message!=null)
-					dat+="<DIV STYLE='float:center;'><FONT SIZE=4><B>Wanted Issue:</B></FONT SIZE></DIV><BR><BR>"
-					dat+="<B>Criminal name</B>: <FONT COLOR='maroon'>[important_message.author]</FONT><BR>"
-					dat+="<B>Description</B>: [important_message.body]<BR>"
-					dat+="<B>Photo:</B>: "
+					dat+="<DIV STYLE='float:center;'><FONT SIZE=4><b>Wanted Issue:</b></FONT SIZE></DIV><BR><BR>"
+					dat+="<b>Criminal name</b>: <FONT COLOR='maroon'>[important_message.author]</FONT><BR>"
+					dat+="<b>Description</b>: [important_message.body]<BR>"
+					dat+="<b>Photo:</b>: "
 					if(important_message.img)
 						user << browse_rsc(important_message.img, "tmp_photow.png")
 						dat+="<BR><img src='tmp_photow.png' width = '180'>"

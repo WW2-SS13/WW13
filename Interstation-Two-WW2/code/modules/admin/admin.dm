@@ -48,7 +48,7 @@ proc/admin_notice(var/message, var/rights)
 		body += "\[<A href='?src=\ref[src];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]"
 
 	if(istype(M, /mob/new_player))
-		body += " <B>Hasn't Entered Game</B> "
+		body += " <b>Hasn't Entered Game</b> "
 	else
 		body += " \[<A href='?src=\ref[src];revive=\ref[M]'>Heal</A>\] "
 
@@ -97,19 +97,19 @@ proc/admin_notice(var/message, var/rights)
 
 			//Monkey
 			if(issmall(M))
-				body += "<B>Monkeyized</B> | "
+				body += "<b>Monkeyized</b> | "
 			else
 				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A> | "
 
 			//Corgi
 			if(iscorgi(M))
-				body += "<B>Corgized</B> | "
+				body += "<b>Corgized</b> | "
 			else
 				body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A> | "
 
 			//AI / Cyborg
 			if(isAI(M))
-				body += "<B>Is an AI</B> "
+				body += "<b>Is an AI</b> "
 			else if(ishuman(M))
 				body += {"<A href='?src=\ref[src];makeai=\ref[M]'>Make AI</A> |
 					<A href='?src=\ref[src];makerobot=\ref[M]'>Make Robot</A> |
@@ -225,7 +225,7 @@ proc/admin_notice(var/message, var/rights)
 	PlayerNotesPage(1)
 
 /datum/admins/proc/PlayerNotesPage(page)
-	var/dat = "<B>Player notes</B><HR>"
+	var/dat = "<b>Player notes</b><HR>"
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
@@ -320,7 +320,7 @@ proc/admin_notice(var/message, var/rights)
 /datum/admins/proc/Jobbans()
 	if(!check_rights(R_BAN))	return
 
-	var/dat = "<B>Job Bans!</B><HR><table>"
+	var/dat = "<b>Job Bans!</b><HR><table>"
 	for(var/t in jobban_keylist)
 		var/r = t
 		if( findtext(r,"##") )
@@ -333,7 +333,7 @@ proc/admin_notice(var/message, var/rights)
 	if(!check_rights(R_ADMIN))	return
 
 	var/dat = {"
-		<center><B>Game Panel</B></center><hr>\n
+		<center><b>Game Panel</b></center><hr>\n
 		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
 		"}
 	if(master_mode == "secret")
@@ -349,6 +349,9 @@ proc/admin_notice(var/message, var/rights)
 		<A href='?src=\ref[src];debug_global=1'>View/Debug a Global Variable, List, or Object</A><br>
 		<br>
 		<A href='?src=\ref[src];modify_global=1'>Modify a Global Variable (may not be an object or list)</A><br>
+		<br>
+		<A href='?src=\ref[src];modify_world_var=1'>Modify a World Variable (may not be an object or list)</A><br>
+
 		"}
 
 	usr << browse(dat, "window=admin2;size=210x280")
@@ -357,11 +360,11 @@ proc/admin_notice(var/message, var/rights)
 /datum/admins/proc/Secrets()
 	if(!check_rights(0))	return
 
-	var/dat = "<B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>"
+	var/dat = "<b>The first rule of adminbuse is: you don't talk about the adminbuse.</b><HR>"
 	for(var/datum/admin_secret_category/category in admin_secrets.categories)
 		if(!category.can_view(usr))
 			continue
-		dat += "<B>[category.name]</B><br>"
+		dat += "<b>[category.name]</b><br>"
 		if(category.desc)
 			dat += "<I>[category.desc]</I><BR>"
 		for(var/datum/admin_secret_item/item in category.items)
@@ -419,9 +422,9 @@ proc/admin_notice(var/message, var/rights)
 
 	config.ooc_allowed = !(config.ooc_allowed)
 	if (config.ooc_allowed)
-		world << "<B>The OOC channel has been globally enabled!</B>"
+		world << "<b>The OOC channel has been globally enabled!</b>"
 	else
-		world << "<B>The OOC channel has been globally disabled!</B>"
+		world << "<b>The OOC channel has been globally disabled!</b>"
 	log_and_message_admins("toggled OOC.")
 
 
@@ -435,9 +438,9 @@ proc/admin_notice(var/message, var/rights)
 
 	config.looc_allowed = !(config.looc_allowed)
 	if (config.looc_allowed)
-		world << "<B>The LOOC channel has been globally enabled!</B>"
+		world << "<b>The LOOC channel has been globally enabled!</b>"
 	else
-		world << "<B>The LOOC channel has been globally disabled!</B>"
+		world << "<b>The LOOC channel has been globally disabled!</b>"
 	log_and_message_admins("toggled LOOC.")
 
 
@@ -452,9 +455,9 @@ proc/admin_notice(var/message, var/rights)
 
 	config.dsay_allowed = !(config.dsay_allowed)
 	if (config.dsay_allowed)
-		world << "<B>Deadchat has been globally enabled!</B>"
+		world << "<b>Deadchat has been globally enabled!</b>"
 	else
-		world << "<B>Deadchat has been globally disabled!</B>"
+		world << "<b>Deadchat has been globally disabled!</b>"
 	log_admin("[key_name(usr)] toggled deadchat.")
 	message_admins("[key_name_admin(usr)] toggled deadchat.", TRUE)
 
@@ -505,9 +508,9 @@ proc/admin_notice(var/message, var/rights)
 	set name="Toggle Entering"
 	config.enter_allowed = !(config.enter_allowed)
 	if (!(config.enter_allowed))
-		world << "<B>New players may no longer enter the game.</B>"
+		world << "<b>New players may no longer enter the game.</b>"
 	else
-		world << "<B>New players may now enter the game.</B>"
+		world << "<b>New players may now enter the game.</b>"
 	log_admin("[key_name(usr)] toggled new player game entering.")
 	message_admins("<span class = 'notice'>[key_name_admin(usr)] toggled new player game entering.</span>", TRUE)
 	world.update_status()
@@ -519,9 +522,9 @@ proc/admin_notice(var/message, var/rights)
 	set name="Toggle AI"
 	config.allow_ai = !( config.allow_ai )
 	if (!( config.allow_ai ))
-		world << "<B>The AI job is no longer chooseable.</B>"
+		world << "<b>The AI job is no longer chooseable.</b>"
 	else
-		world << "<B>The AI job is chooseable now.</B>"
+		world << "<b>The AI job is chooseable now.</b>"
 	log_admin("[key_name(usr)] toggled AI allowed.")
 	world.update_status()
 
@@ -532,9 +535,9 @@ proc/admin_notice(var/message, var/rights)
 	set name="Toggle Respawn"
 	config.abandon_allowed = !(config.abandon_allowed)
 	if(config.abandon_allowed)
-		world << "<B>You may now respawn.</B>"
+		world << "<b>You may now respawn.</b>"
 	else
-		world << "<B>You may no longer respawn :(</B>"
+		world << "<b>You may no longer respawn :(</b>"
 	message_admins("<span class = 'notice'>[key_name_admin(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].</span>", TRUE)
 	log_admin("[key_name(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].")
 	world.update_status()
@@ -599,7 +602,7 @@ proc/admin_notice(var/message, var/rights)
 	if(!usr.client.holder)	return
 	if( alert("Reboot server?",,"Yes","No") == "No")
 		return
-	world << "\red <b>Rebooting world!</b> <span class = 'notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>"
+	world << "<span class = 'red'><b>Rebooting world!</b> <span class = 'notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span></span>"
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
 
 
@@ -807,9 +810,9 @@ proc/admin_notice(var/message, var/rights)
 	set name="Toggle tinted welding helmets."
 	config.welder_vision = !( config.welder_vision )
 	if (config.welder_vision)
-		world << "<B>Reduced welder vision has been enabled!</B>"
+		world << "<b>Reduced welder vision has been enabled!</b>"
 	else
-		world << "<B>Reduced welder vision has been disabled!</B>"
+		world << "<b>Reduced welder vision has been disabled!</b>"
 	log_admin("[key_name(usr)] toggled welder vision.")
 	message_admins("[key_name_admin(usr)] toggled welder vision.", TRUE)
 
@@ -820,9 +823,9 @@ proc/admin_notice(var/message, var/rights)
 	set name="Toggle guests"
 	config.guests_allowed = !(config.guests_allowed)
 	if (!(config.guests_allowed))
-		world << "<B>Guests may no longer enter the game.</B>"
+		world << "<b>Guests may no longer enter the game.</b>"
 	else
-		world << "<B>Guests may now enter the game.</B>"
+		world << "<b>Guests may now enter the game.</b>"
 	log_admin("[key_name(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.")
 	message_admins("<span class = 'notice'>[key_name_admin(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.</span>", TRUE)
 

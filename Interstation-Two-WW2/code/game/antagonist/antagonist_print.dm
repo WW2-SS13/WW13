@@ -13,7 +13,7 @@
 			for(var/datum/objective/O in P.objectives)
 				text += print_objective(O, num)
 				if(O.check_completion())
-					text += "<font color='green'><B>Success!</B></font>"
+					text += "<font color='green'><b>Success!</b></font>"
 
 				else
 					text += "<font color='red'>Fail.</font>"
@@ -21,9 +21,9 @@
 					failed = TRUE
 				num++
 				if(failed)
-					text += "<br><font color='red'><B>The [role_text] has failed.</B></font>"
+					text += "<br><font color='red'><b>The [role_text] has failed.</b></font>"
 				else
-					text += "<br><font color='green'><B>The [role_text] was successful!</B></font>"
+					text += "<br><font color='green'><b>The [role_text] was successful!</b></font>"
 
 	if(global_objectives && global_objectives.len)
 		text += "<BR><FONT size = 2>Their objectives were:</FONT>"
@@ -39,7 +39,7 @@
 	var/text = "<br><b>Objective [num]:</b> [O.explanation_text] "
 	if(append_success)
 		if(O.check_completion())
-			text += "<font color='green'><B>Success!</B></font>"
+			text += "<font color='green'><b>Success!</b></font>"
 		else
 			text += "<font color='red'>Fail.</font>"
 	return text

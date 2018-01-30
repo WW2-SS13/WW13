@@ -47,7 +47,7 @@
 "aU" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/decal/cleanable/dirt,/obj/structure/barbwire,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_eight)
 "aV" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/decal/cleanable/dirt,/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_eight)
 "aW" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_eight)
-"aX" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/decal/cleanable/generic,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_eleven)
+"aX" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/decal/cleanable/generic,/mob/living/carbon/human/corpse/SS,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_eleven)
 "aY" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/generic,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_eight)
 "aZ" = (/obj/structure/lattice,/turf/floor/plating/beach/water/sewage,/area/prishtina/houses/nml_eight)
 "ba" = (/obj/structure/lattice,/obj/structure/simple_door/key_door/anyone,/turf/floor/plating/beach/water/sewage,/area/prishtina/houses/nml_eight)
@@ -254,14 +254,22 @@
 "eT" = (/obj/structure/lattice,/obj/effect/decal/cleanable/cobweb,/turf/floor/plating/beach/water/sewage,/area/prishtina/houses/nml_nine)
 "eU" = (/turf/floor/dirt,/area/prishtina/german/lift/up)
 "eV" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_fourteen)
-"eW" = (/turf/wall/brick,/area/prishtina/no_mans_land/invisible_wall)
+"eW" = (/turf/wall/brick,/area/prishtina/no_mans_land/invisible_wall/inside)
 "eX" = (/obj/lift_controller/up/soviet,/turf/floor/dirt,/area/prishtina/german/lift/up)
 "eY" = (/obj/lift_lever/linked/soviet,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_fourteen)
 "eZ" = (/obj/effect/landmark{name = "JoinLatePillarMan"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_four)
 "fa" = (/obj/effect/landmark{name = "JoinLateVampire"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_four)
-"fb" = (/obj/effect/decal/cleanable/dirt,/turf/wall/brick,/area/prishtina/no_mans_land/invisible_wall)
-"fc" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/no_mans_land/invisible_wall)
-"fd" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/no_mans_land/invisible_wall)
+"fb" = (/obj/effect/decal/cleanable/dirt,/turf/wall/brick,/area/prishtina/no_mans_land/invisible_wall/inside)
+"fc" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/no_mans_land/invisible_wall/inside)
+"fd" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/no_mans_land/invisible_wall/inside)
+"fe" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/mob/living/carbon/human/corpse/SS,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_eleven)
+"ff" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/mob/living/carbon/human/corpse/SS,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_eight)
+"fg" = (/obj/effect/floor_decal/industrial/warning/dust,/mob/living/carbon/human/corpse/SS,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_five)
+"fh" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/decal/cleanable/dirt,/mob/living/carbon/human/corpse/SS,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_five)
+"fi" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/mob/living/carbon/human/corpse/SS,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_nine)
+"fj" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/effect/decal/cleanable/dirt,/mob/living/carbon/human/corpse/SS,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_nine)
+"fk" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/mob/living/carbon/human/corpse/SS,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_eleven)
+"fl" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/mob/living/carbon/human/corpse/SS,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/houses/nml_eleven)
 
 (1,1,1) = {"
 aaabababababababababababababababababababababababababababababababababacadaeafagahahahahahahahahahahahahahahahahahahahahahahahahahahahahahahah
@@ -280,16 +288,16 @@ abababababababababababababacbgaEacabababaaaZaaabababababababababababacadaeakaJah
 ababaaaaaaacaaacaaaaaaaaaaaaaiaEaaabababacaZacabababababababababababacadaeajaJahagaeaAaeaeaBaeaeaeaBaeaeaeaCaDaeaeaeaeaCaDaeaeaeaeaBaeagahah
 ababaabhaZbiaZaZaZaZaZaZbabbbcaEaaabababaaaZaaabababababababababababaaadaeajagahagalbjapapbkapapapbkapapapblblananananbkbkapapapapbmalagahah
 ababaaaaacaaacaaaaacaaaaaaaaaiaEaaabaaaaaaaZaaaaaaaaaaaaaaaaaaaaaaabaaadaebnagahagaeaeaealaeaeaeaeaeaealaeaCaDaealaeaeaeaeaeaealaeaeaeagahah
-abababababababababababababaaboaEacabacbpbqaZbrbrbrbrbrbrbrbrbrbraaabaaadaeajaJahagbsaeaebtbububububububububububububububububububvaeaeajagahah
+abababababababababababababaaboaEacabacbpbqaZbrbrbrbrbrbrbrbrbrbraaabaaadaeajaJahagbsaeaebtbubububububububububufkbubububububububvaeaeajagahah
 abaaaaacaaaaacaaaaaaacaaaaacaiaEaaabacbqbqaZaZaZaZaZaZaZaZaZbqbraaabaaadaeajaJahagbwaeaeajbxbybzbAbxbybBbxbxbAbxbAbAbAbzbAbAbAbwaeaeajagahah
-abaaaZaZaZaZaZaZaZbiaZaZbabbbcaEacabaabqbraZaZaZaZaZaZaZaZaZbrbraaabacaiaeajaJahaJbwaeaeajbAbAbAbxbAbxbxbxbAbAbAbAbAbAbAbAbAbAbwaeaeajagahah
+abaaaZaZaZaZaZaZaZbiaZaZbabbbcaEacabaabqbraZaZaZaZaZaZaZaZaZbrbraaabacaiaeajaJahaJflaeaeajbAbAbAbxbAbxbxbxbAbAbAbAbAbAbAbAbAbAflaeaeajagahah
 abaaaaacaaaaaaaaaaacaaaaaaaaaiaEaaabaabrbrbrbqbrbrbrbrbrbrbrbqbracabaaadaeajagahaJaJaeaeagagagagagagagagagbCbDagagagagagagagagagaeaeaJaJahah
 abababababababababababababaaadaEacabaaaaacacacacacaaaaaaaaaaaaaaaaabaaadaeajagahahaJaeaeagahahahahahahahagbAbAagahahahahahahahagaeaeaJahahah
 abababababababababababababaabEaEaaabababababababababababababababababacadaeajagahahaJaeaeagahbFbFbFahahahagbGbGagahahahahahahahagaeaeagahahah
 aaacaaaaaaacaaaaaaaaacaaaaaaadaEaaaaaaaaacaaaaaaaaacaaaaaaaaaaaaacaaaaadaeajagaJaJagaeaeagagaJaJaJagagagagbAbAagagagagagagagagagaeaeaJagaJag
-arasarbHarbIasasasasbJasasbKazaEbLararbMbNayayarasasbOarararasasasararbPanbQbRbSbTbUaeaebVbTbTbWbxbTbSbTbTbWbTbTbTbTbTbTbWbAbTbUaeaebVbTbWbT
+arasarbHarbIasasasasbJasasbKazaEbLararbMbNayayarasasbOarararasasasararbPanbQbRbSbTbUaeaebVbTbTbWbxbTbSbTbTbWbTbTbTbTbTbTbWbAbTfeaeaebVbTbWbT
 aEaEaEaFaEaEaEaEaEaEaEaEaEaEaEaEaEaEaEaGaHaHaHaEaEaEaFaEaEaEaEaEaEaEaEaEaeaeaeaeaeaeaeaeaeaebXbXaAaeaeaeaeaeaeaeaeaeaeaeaeaAaeaeaeaeaeaeaeae
-aMaMaMbOaPaSaKaWaEbYaKaKaRaMaMaMaPaOaMbZcacacaaKaKaKawaMaMaMaMaKaKaKaKcbanbtbubububuccbububucdcebAbubububsanbtbububububububxbubububububububu
+aMaMaMbOaPaSaKaWaEbYaKaKaRaMaMaMaPaOaMbZcacacaaKaKaKawaMaMaMaMaKaKffaKcbanbtbubububuccbububucdcebAbubububsanbtbububububububxbubububububububu
 cfcfcfcfcgcgcgchcicjcgcgcgcgckcgcgcgcgcgcgcgcgcgcgcgclcgcgcgcgcgcgcgcgcmcicncocpcocpcpcpcpcocococpcpcpcpcqcrcscpcocpcpcpcpcococpcpcocpcpcpcp
 ctcgcucucucucfchcicvcgcxcgcwcwcxcfcucucucucucucucucgclcfcucucucucucucgcycicncpcpczczczczczczczczczczcAcBcCcDcncpcEcEcEcEcEcEcEcEcEcEcEcEcEcp
 cFcfcucucucucGchcicHcgcxcgcwctcIcgcgcgcfcgcgcfcgcgcgctcgcucucucucucucgcycicncpcpczcpcpcpcocpcpcocpcpcpcpcqcrcscocEcEcEcEcEcpcpcpcEcEcEcEcEcp
@@ -306,7 +314,7 @@ ctcfcgcgcgcgcgcycicvcfcgctcgcfcgcgcgcgcgcgcucucucucucucucucucucucucucgchcicScocp
 ctctctctctcLcMdgcicjcfcgctctctctctctctctcfcucucucucucucucucucucucucucgdhdicscpcpczcpcpcpcococpcpczddddcocRcDcncocEcEcEcEcEcpcococEcEcEcEcEcp
 cfcgcfcgcgcfcgchcicjcfcgcgcgcfcgcgcgcgcLcgcucucucucucucucucucucucucucgdjdicscpcpczczczczczczczczczddddcpcRcDcncpcEcEcEcEcEcEcEcEcEcEcEcEcEcp
 cgcgcfcgcfcgcgdkcicJcgcgcfcgcfcgcgcfcgdlcfcgcfcgcfcgcgcgcgcgcgcgcgcgcgdjdicscpcpcpcpcocpcpcococpcpcpcococRcDcncococococococpcpcocococpcpcpcp
-dmdndndodndndodpcidqcxdndndrdndsdodtdndudndndndndvdndndocwdodndndrdndndwdxdydzdAdAdBdBdAdBdCdBdDdDdBdBdBdEcDdFdBdBdBdBdBdGdddBdAdHdAdBdBdBdB
+dmdndndodndndodpcidqcxdndndrdndsdodtdndudndndndndvdndndocwdodndndrdndndwdxdydzdAdAdBdBdAdBdCdBdDdDdBfgdBdEcDdFdBdBdBdBdBdGdddBdAdHfhdBdBdBdB
 cicicicicicicicicicidIcicicicicicicicicicicicicicicicicidIcicicicicicicicicDcrcDcDcDcDcDcDdJcDcrcrcDcDcDcDcDcDcDcDcDcDcDcDdJcDcDcDcDcDcDcDcD
 dKdKdKdKdLdKdMdLdLdLcxdKdKdKdLdNdLdLdKdMdKdOdKdPdLdLdLdLcwdQdLdOdKdLdKdRdSdTdUdVdWdWdWdWdXdcdVdYdVdVdVdZeacDebdVdVdVdVdVdVdddVdVdVecdVdVdVdV
 edeeeeeeeeeeedeeedeeeeededeeeeeeeeeeeeedeeedeeefeeeeedeeeeeeeeedeeeeeWegeheiejejekejejejejejekejejejekejelehemejejejekejejejejekekejejekejej
@@ -322,11 +330,11 @@ enenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenfbegehewekey
 eneneneneneneneneneneneneneneneneneneneeeeeeeeeeeeeeeeeeeeeeeeeeenenfbegehewekeyeyeyeyeyeyeyeyeyeyeyeyejezeheiejeyeyeyeyeyeyeyeyeyeyeyeyeyey
 eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeUeUeUeUeUeUeeeneneWegeheiejeyeyeyeyeyeyeyeyeyeyeyeyejelehexejeyeyeyeyeyeyeyeyeyeyeyeyeyey
 eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeUeUeUeUeUeUeeeneneWegeheiejeyeyeyeyeyeyeyeyeyeyeyeyekeAehewejeyeyeyeyeyeyeyeyeyeyeyeyeyey
-eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeUeUeUeUeUeUeeeneneWeoeheiejeyeyeyeyeyeyeyeyeyeyeyeyejelehewejeyeyeyeyeyeyeyeyeyeyeyeyeyey
+eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeUeUeUeUeUeUeeeneneWeoehfiejeyeyeyeyeyeyeyeyeyeyeyeyejelehewejeyeyeyeyeyeyeyeyeyeyeyeyeyey
 eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeUeUeUeUeUeUeWeWeWfbeoeheiejejekejejekekekejejekekejejeleheiejejejejejejejejejejejejejejej
 eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeUeUeUeUeUeUfceYeVfdeoeheBeCeDeDeEeFeEeEeEeDeEeEeDeGeDeHeIeBeDeEeEeEeDeCeEeEeEeDeJeEeDeDeD
 eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeXeUeUeUeUeUfceVeVfdeoeheheheheheheheheheheheheheheheheheheheheheheheheheheheheheKeheheheh
-eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeUeUeUeUeUeUfceVeVfceveheLeMeNeOeOeOePeNeNeOeOeNeQeOeOeOeOeOeOeOeOeOeReNeNeNeOeOeJeOeOeOeO
+eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeUeUeUeUeUeUfceVeVfceveheLeMeNeOeOeOePeNeNeOeOeNeQeOeOeOeOeOeOeOeOeOeReNeNfjeOeOeJeOeOeOeO
 eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeUeUeUeUeUeUeWeWeWeWegeheiekejejejejeSejejejejejekejejejejejekekekekejejejejejekekejekejej
 eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeUeUeUeUeUeUeeenenfbegeheiekeyeyeyejeqekeyeyeyeyeyeyejeTekeyeyeyeyeyeyeyeyeyejepejeyeyeyey
 eneneneneneneneneneneneneneneneneneneneeeUeUeUeUeUeUeUeUeUeUeUeeenenfbegeIeiejeyeyeyejepekeyeyeyeyeyeyejepejeyeyeyeyeyeyeyeyeyekepejeyeyeyey

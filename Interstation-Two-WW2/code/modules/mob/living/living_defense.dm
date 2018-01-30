@@ -54,7 +54,7 @@
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, P.agony, def_zone, P)
-		src <<"\red You have been hit by [P]!"
+		src <<"<span class = 'red'>You have been hit by [P]!</span>"
 		qdel(P)
 		return
 
@@ -160,7 +160,7 @@
 			playsound(src, "miss_sound", 50, TRUE, -6)
 			return
 
-		visible_message("\red [src] has been hit by [O].")
+		visible_message("<span class = 'red'>[src] has been hit by [O].</span>")
 		var/armor = run_armor_check(null, "melee")
 
 		if(armor < 2)
@@ -187,7 +187,7 @@
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!")
+			visible_message("<span class = 'red'>[src] staggers under the impact!</span>","<span class = 'red'>You stagger under the impact!</span>")
 			throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return

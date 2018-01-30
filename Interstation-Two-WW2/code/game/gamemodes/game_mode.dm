@@ -98,7 +98,7 @@ var/global/list/additional_antag_types = list()
 				return
 
 /datum/game_mode/proc/announce() //to be called when round starts
-	world << "<B>The current game mode is [capitalize(name)]!</B>"
+	world << "<b>The current game mode is [capitalize(name)]!</b>"
 	if(round_description) world << "[round_description]"
 	if(round_autoantag) world << "Antagonists will be added to the round automagically as needed."
 	if(antag_templates && antag_templates.len)
@@ -250,8 +250,8 @@ var/global/list/additional_antag_types = list()
 
 /datum/game_mode/proc/send_intercept()
 
-	var/intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested status information:</FONT><HR>"
-	intercepttext += "<B> In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with subversive elements:</B><br>"
+	var/intercepttext = "<FONT size = 3><b>Cent. Com. Update</b> Requested status information:</FONT><HR>"
+	intercepttext += "<b> In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with subversive elements:</b><br>"
 
 	var/list/disregard_roles = list()
 	for(var/antag_type in all_antag_types)
@@ -449,7 +449,7 @@ proc/display_roundstart_logout_report()
 	var/obj_count = TRUE
 	player.current << "<span class='notice'>Your current objectives:</span>"
 	for(var/datum/objective/objective in player.objectives)
-		player.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+		player.current << "<b>Objective #[obj_count]</b>: [objective.explanation_text]"
 		obj_count++
 /*
 /mob/verb/check_round_info()

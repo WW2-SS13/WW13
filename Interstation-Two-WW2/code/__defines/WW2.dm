@@ -12,3 +12,8 @@
 
 // used for languages only
 #define RUSSIAN "RUSSIAN"
+
+/proc/faction_const2name(constant)
+	if (constant == PILLARMEN)
+		return "Pillar Men and Vampires"
+	return capitalize(lowertext(constant)) + "s"

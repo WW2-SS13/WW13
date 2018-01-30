@@ -226,7 +226,7 @@
 			return TRUE
 
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-			src << "\red The round is either not ready, or has already finished."
+			src << "<span class = 'red'>The round is either not ready, or has already finished.</span>"
 			return
 /*
 		if(!check_rights(R_ADMIN, FALSE))
@@ -419,7 +419,7 @@
 		return FALSE
 	if (!ticker || ticker.current_state != GAME_STATE_PLAYING)
 		if (!nomsg)
-			usr << "\red The round is either not ready, or has already finished..."
+			usr << "<span class = 'red'>The round is either not ready, or has already finished.</span>"
 		return FALSE
 	if (!config.enter_allowed)
 		if (!nomsg)
@@ -448,7 +448,7 @@
 
 	if(job_master.is_side_locked(job.base_type_flag()))
 		if (!nomsg)
-			src << "\red Currently this side is locked for joining."
+			src << "<span class = 'red'>Currently this side is locked for joining.</span>"
 		return
 
 	spawning = TRUE
@@ -501,7 +501,8 @@
 		PARTISAN = FALSE,
 		CIVILIAN = FALSE,
 		ITALIAN = FALSE,
-		UKRAINIAN = FALSE)
+		UKRAINIAN = FALSE,
+		PILLARMEN = FALSE)
 
 	var/prev_side = FALSE
 
@@ -627,7 +628,7 @@
 		var/val = available_jobs_per_side[key]
 		if (val == 0)
 			var/replaced_faction_title = FALSE
-			for (var/v in TRUE to dat.len)
+			for (var/v in 1 to dat.len)
 				if (findtext(dat[v], "&[key]&") && !findtext(dat[v], "&&[key]&&"))
 					dat[v] = null
 				else if (!replaced_faction_title && findtext(dat[v], "&&[key]&&"))

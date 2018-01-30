@@ -59,7 +59,9 @@ var/datum/reinforcements/reinforcements_master
 
 
 /datum/reinforcements/proc/is_ready()
-	return game_started // no reinforcements until the train is sent
+	. = game_started // no reinforcements until the train is sent
+	if (map && !map.reinforcements)
+		. = FALSE
 
 /datum/reinforcements/proc/tick()
 

@@ -31,6 +31,9 @@
 
 	var/move_delay = 0
 
+/turf/floor/proc/get_move_delay()
+	return move_delay
+
 /turf/floor/proc/has_snow()
 	for (var/obj/snow/S in contents)
 		return S

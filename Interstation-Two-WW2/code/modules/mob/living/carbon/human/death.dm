@@ -30,7 +30,7 @@
 	else
 		..()
 
-/mob/living/carbon/human/death(gibbed)
+/mob/living/carbon/human/death(gibbed = FALSE)
 
 	if(stat == DEAD) return
 
@@ -50,7 +50,7 @@
 		ticker.mode.check_win()
 
 	if (client)
-		client.next_normal_respawn = world.realtime + 3000
+		client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
 		client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
 
 	. = ..(gibbed)//,species.death_message)

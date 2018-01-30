@@ -43,20 +43,21 @@ var/list/recently_died = list()
 
 /mob/living/carbon/human/death()
 
-	var/list/lists = get_battle_report_lists()
-	var/list/alive = lists[1]
-	var/list/dead = lists[2]
-	var/list/injured = lists[3]
+	if (!istype(src, /mob/living/carbon/human/corpse))
+		var/list/lists = get_battle_report_lists()
+		var/list/alive = lists[1]
+		var/list/dead = lists[2]
+		var/list/injured = lists[3]
 
-	alive -= getRoundUID()
-	injured -= getRoundUID()
-	dead |= getRoundUID()
+		alive -= getRoundUID()
+		injured -= getRoundUID()
+		dead |= getRoundUID()
 
-	// prevent one last Life() from potentially undoing this
-	var/storedRoundUID = getRoundUID() // in case we're getting gibbed
-	recently_died += storedRoundUID
-	spawn (200)
-		recently_died -= storedRoundUID
+		// prevent one last Life() from potentially undoing this
+		var/storedRoundUID = getRoundUID() // in case we're getting gibbed
+		recently_died += storedRoundUID
+		spawn (200)
+			recently_died -= storedRoundUID
 
 	..()
 
@@ -69,6 +70,9 @@ var/list/recently_died = list()
 	var/list/injured = lists[3]
 
 	..()
+
+	if (istype(src, /mob/living/carbon/human/corpse))
+		return
 
 	if (istype(original_job, /datum/job/german/trainsystem))
 		return

@@ -31,8 +31,8 @@
 
 /obj/item/weapon/implant/adrenalin/install(mob/living/carbon/human/H)
 	..()
-	H.mind.store_memory("A implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.", FALSE, FALSE)
-	H << "The implanted freedom implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate."
+	H.mind.store_memory("A implant can be activated by using the pale emote, <b>say *pale</b> to attempt to activate.", FALSE, FALSE)
+	H << "The implanted freedom implant can be activated by using the pale emote, <b>say *pale</b> to attempt to activate."
 
 
 /obj/item/weapon/implantcase/adrenalin

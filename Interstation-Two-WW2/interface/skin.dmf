@@ -1075,9 +1075,9 @@ window "infowindow"
 		is-pane = true
 	elem "info"
 		type = INFO
-		pos = 0,25
-		size = 640x455
-		anchor1 = 0,13
+		pos = 0,16
+		size = 640x464
+		anchor1 = 0,3
 		anchor2 = 100,100
 		font-family = "Book Antiqua"
 		font-size = 8
@@ -1099,9 +1099,10 @@ window "rpane"
 	elem "rpane"
 		type = MAIN
 		pos = 464,0
-		size = 640x480
+		size = 947x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1112,7 +1113,7 @@ window "rpane"
 	elem "rpanewindow"
 		type = CHILD
 		pos = 0,0
-		size = 640x505
+		size = 947x505
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = #1e1e28
@@ -1122,9 +1123,9 @@ window "rpane"
 		is-vert = false
 	elem "button7"
 		type = BUTTON
-		pos = 490,0
-		size = 150x25
-		anchor1 = 77,0
+		pos = 789,0
+		size = 158x22
+		anchor1 = 83,0
 		anchor2 = 100,5
 		font-family = "Book Antiqua"
 		font-size = 7
@@ -1133,15 +1134,15 @@ window "rpane"
 		background-color = #40628a
 		border = line
 		saved-params = "is-checked"
-		text = "Make A Suggestion"
+		text = "Suggestion"
 		command = "makeasugg"
 		group = "rpanemode"
 	elem "button6"
 		type = BUTTON
-		pos = 341,0
-		size = 150x25
-		anchor1 = 53,0
-		anchor2 = 77,5
+		pos = 631,0
+		size = 158x22
+		anchor1 = 67,0
+		anchor2 = 83,5
 		font-family = "Book Antiqua"
 		font-size = 7
 		font-style = "bold"
@@ -1149,15 +1150,15 @@ window "rpane"
 		background-color = #40628a
 		border = line
 		saved-params = "is-checked"
-		text = "Report A Bug"
+		text = "Report Bug"
 		command = "reportabug"
 		group = "rpanemode"
 	elem "rulesb"
 		type = BUTTON
-		pos = 172,0
-		size = 85x25
-		anchor1 = 27,0
-		anchor2 = 40,5
+		pos = 315,0
+		size = 158x22
+		anchor1 = 33,0
+		anchor2 = 50,5
 		font-family = "Book Antiqua"
 		font-size = 7
 		font-style = "bold"
@@ -1170,10 +1171,10 @@ window "rpane"
 		group = "rpanemode"
 	elem "discord"
 		type = BUTTON
-		pos = 257,0
-		size = 87x25
-		anchor1 = 40,0
-		anchor2 = 54,5
+		pos = 473,0
+		size = 158x22
+		anchor1 = 50,0
+		anchor2 = 67,5
 		font-family = "Book Antiqua"
 		font-size = 7
 		font-style = "bold"
@@ -1186,10 +1187,10 @@ window "rpane"
 		group = "rpanemode"
 	elem "forumb"
 		type = BUTTON
-		pos = 88,0
-		size = 85x25
-		anchor1 = 14,0
-		anchor2 = 27,5
+		pos = 157,0
+		size = 158x22
+		anchor1 = 17,0
+		anchor2 = 33,5
 		font-family = "Book Antiqua"
 		font-size = 7
 		font-style = "bold"
@@ -1203,9 +1204,9 @@ window "rpane"
 	elem "wikib"
 		type = BUTTON
 		pos = 0,0
-		size = 89x25
+		size = 157x22
 		anchor1 = 0,0
-		anchor2 = 14,5
+		anchor2 = 17,5
 		font-family = "Book Antiqua"
 		font-size = 7
 		font-style = "bold"

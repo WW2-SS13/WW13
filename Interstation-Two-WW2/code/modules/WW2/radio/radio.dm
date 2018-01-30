@@ -153,7 +153,7 @@ var/global/list/default_ukrainian_channels = list(
 		"Grenades" = /obj/structure/closet/crate/german_grenade,
 		"Panzerfausts" = /obj/structure/closet/crate/panzerfaust,
 		"Smoke Grenades" = /obj/structure/closet/crate/german_smoke_grenade, // too lazy to fix this typo rn
-		"Sandbags" = /obj/structure/closet/crate/sandbags,
+		"Sandbags Crate" = /obj/structure/closet/crate/sandbags,
 		"Flaregun Ammo" = /obj/structure/closet/crate/flares_ammo,
 		"Flares" = /obj/structure/closet/crate/flares,
 		"Bayonet" = /obj/structure/closet/crate/bayonets,
@@ -206,7 +206,7 @@ var/global/list/default_ukrainian_channels = list(
 		"Mines" = /obj/structure/closet/crate/bettymines,
 		"Grenades" = /obj/structure/closet/crate/soviet_grenade,
 		"Smoke Grenades" = /obj/structure/closet/crate/soviet_smoke_grenade, // too lazy to fix this typo rn
-		"Sandbags" = /obj/structure/closet/crate/sandbags,
+		"Sandbags Crate" = /obj/structure/closet/crate/sandbags,
 		"Flaregun Ammo" = /obj/structure/closet/crate/flares_ammo,
 		"Flares" = /obj/structure/closet/crate/flares,
 		"Bayonet" = /obj/structure/closet/crate/bayonets,
@@ -434,8 +434,11 @@ var/global/list/default_ukrainian_channels = list(
 
 	var/list/used_radio_turfs = list()
 	var/list/used_radios = list()
+	var/list/possible_radio_locations = range(1, src)
+	if (istype(loc, /obj/tank))
+		possible_radio_locations += contents
 
-	for (var/obj/item/device/radio/radio in range(1, src))
+	for (var/obj/item/device/radio/radio in possible_radio_locations)
 		if (!used_radio_turfs.Find(radio.faction))
 			used_radio_turfs[radio.faction] = list()
 		if (used_radio_turfs[radio.faction].Find(get_turf(radio)))

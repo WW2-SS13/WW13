@@ -134,7 +134,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 		distance = get_dist(T, turf_source)
 
 		S.volume -= (max(distance - world.view, 0) * 2)//multiplicative falloff to add on top of natural audio falloff.
-		S.volume = max(S.volume, rand(5,9))
+		S.volume = max(S.volume, rand(8,12))
 
 		if (S.volume <= FALSE)
 			return	//no volume means no sound

@@ -9,6 +9,9 @@
 	if (weather == _weather && !bypass_same_weather_check)
 		return
 
+	if (map && !map.valid_weather_types.Find(_weather) && _weather != WEATHER_NONE)
+		return
+
 	if (config)
 		if (config.allowed_weather && config.allowed_weather.len)
 			switch (config.allowed_weather[1])

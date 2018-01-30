@@ -165,7 +165,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/mob/living/carbon/human/H = src
 			H.handle_zoom_stuff(TRUE)
 		if (client)
-			client.next_normal_respawn = world.realtime + 3000
+			client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
 			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
 	else
 		var/response
@@ -188,7 +188,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/mob/living/carbon/human/H = src
 			H.handle_zoom_stuff(TRUE)
 		if (client && (stat == UNCONSCIOUS || getTotalLoss() >= 50))
-			client.next_normal_respawn = world.time + 1800
+			client.next_normal_respawn = world.time + (map ? map.respawn_delay : 1800)
 			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
 		message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		log_game("[key_name_admin(usr)] has ghosted.")
@@ -238,10 +238,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	if(medHUD)
 		medHUD = FALSE
-		src << "<span class = 'notice'><B>Medical HUD Disabled</B></span>"
+		src << "<span class = 'notice'><b>Medical HUD Disabled</b></span>"
 	else
 		medHUD = TRUE
-		src << "<span class = 'notice'><B>Medical HUD Enabled</B></span>"
+		src << "<span class = 'notice'><b>Medical HUD Enabled</b></span>"
 /*
 /mob/observer/ghost/verb/toggle_antagHUD()
 	set category = "Ghost"
@@ -256,7 +256,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	var/mob/observer/ghost/M = src
 	if(jobban_isbanned(M, "AntagHUD"))
-		src << "\red <B>You have been banned from using this feature</B>"
+		src << "\red <b>You have been banned from using this feature</b>"
 		return
 	if(config.antag_hud_restricted && !M.has_enabled_antagHUD && (!client.holder || mentor))
 		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
@@ -266,10 +266,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M.has_enabled_antagHUD = TRUE
 	if(M.antagHUD)
 		M.antagHUD = FALSE
-		src << "\blue <B>AntagHUD Disabled</B>"
+		src << "\blue <b>AntagHUD Disabled</b>"
 	else
 		M.antagHUD = TRUE
-		src << "\blue <B>AntagHUD Enabled</B>"
+		src << "\blue <b>AntagHUD Enabled</b>"
 */
 /mob/observer/ghost/proc/dead_tele(A in ghostteleportlocs)
 	set category = "Ghost"
@@ -536,11 +536,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/memory()
 	set hidden = TRUE
-	src << "\red You are dead! You have no mind to store memory!"
+	src << "<span class = 'red'>You are dead! You have no mind to store memory!</span>"
 
 /mob/observer/ghost/add_memory()
 	set hidden = TRUE
-	src << "\red You are dead! You have no mind to store memory!"
+	src << "<span class = 'red'>You are dead! You have no mind to store memory!</span>"
 
 /mob/observer/ghost/Post_Incorpmove()
 	stop_following()
@@ -560,7 +560,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/pressure = environment.return_pressure()
 	var/total_moles = environment.total_moles
 
-	src << "\blue <B>Results:</B>"
+	src << "\blue <b>Results:</b>"
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
 		src << "\blue Pressure: [round(pressure,0.1)] kPa"
 	else

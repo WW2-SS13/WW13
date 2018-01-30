@@ -141,3 +141,7 @@
 		"survival" = list(100,100))
 
 	var/use_initial_stats = FALSE
+
+	var/has_hunger_and_thirst = TRUE
+
+	var/has_pain = TRUE

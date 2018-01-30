@@ -25,7 +25,7 @@
 		"Grenades" = /obj/structure/closet/crate/german_grenade,
 		"Panzerfausts" = /obj/structure/closet/crate/panzerfaust,
 		"Smoke Grenades" = /obj/structure/closet/crate/german_grenade, // too lazy to fix this typo rn
-		"Sandbags" = /obj/structure/closet/crate/sandbags,
+		"Sandbags Crate" = /obj/structure/closet/crate/sandbags,
 		"Flaregun Ammo" = /obj/structure/closet/crate/flares_ammo,
 		"Flares" = /obj/structure/closet/crate/flares,
 		"Bayonet" = /obj/structure/closet/crate/bayonets,
@@ -83,7 +83,7 @@
 		"Grenades" = 65,
 		"Panzerfausts" = 120,
 		"Smoke Grenades" = 55, // too lazy to fix this typo rn
-		"Sandbags" = 20,
+		"Sandbags Crate" = 20,
 		"Flaregun Ammo" = 15,
 		"Flares" = 10,
 		"Bayonet" = 10,
@@ -236,16 +236,20 @@
 	var/CO_sig = FALSE
 
 	for (var/signature in signatures)
-		if (findtext(signature, "Stabsgefreiter"))
+		if (findtext(signature, GERMAN_QM_TITLE))
 			QM_sig = TRUE
-		if (findtext(signature, "Stabsoffizier"))
+			log_debug("1")
+		if (findtext(signature, GERMAN_SO_TITLE))
 			SO_sig = TRUE
-		if (findtext(signature, "Oberleutnant"))
+			log_debug("2")
+		if (findtext(signature, GERMAN_CO_TITLE) || findtext(signature, GERMAN_XO_TITLE))
 			CO_sig = TRUE
+			log_debug("3")
 
 	if (!QM_sig && !SO_sig && !CO_sig)
 		memo = "<i>We didn't find any valid signatures, so your requisition has been rejected.</span><br>"
 		goto end
+	else log_debug(":ok_hand:")
 
 	for (var/purchase in purchases)
 		var/cost = costs[purchase]

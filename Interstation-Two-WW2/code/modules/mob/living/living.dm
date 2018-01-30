@@ -52,6 +52,10 @@ default behaviour is:
 			if (map.check_prishtina_block(H, get_step(get_turf(AM), dir)))
 				return
 
+	else if (ishuman(AM))
+		if (map.check_prishtina_block(AM, get_step(get_turf(AM), dir)))
+			return
+
 	spawn(0)
 		if ((!( yes ) || now_pushing) || !loc)
 			return
@@ -517,7 +521,7 @@ default behaviour is:
 							var/obj/item/weapon/grab/G = pick(M.grabbed_by)
 							if (istype(G, /obj/item/weapon/grab))
 								for(var/mob/O in viewers(M, null))
-									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), TRUE)
+									O.show_message(text("<span class = 'red'>[] has been pulled from []'s grip by [].</span>", G.affecting, G.assailant, src), TRUE)
 								//G = null
 								qdel(G)
 						else
@@ -836,12 +840,12 @@ default behaviour is:
 	if (HUDneed.Find("pull"))
 		var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
 		HUD.update_icon()
-
+/*
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.pull_damage())
-			src << "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"
-
+			src << "\red <b>Pulling \the [H] in their current condition would probably be a bad idea.</b>"
+*/
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
 		var/mob/pulled = AM

@@ -574,7 +574,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
 		if(!istype(usr.loc,/turf)) return
 		if(amount <= 14)
-			usr << "\red You need at least 15 lengths to make restraints!"
+			usr << "<span class = 'red'>You need at least 15 lengths to make restraints!</span>"
 			return
 		var/obj/item/weapon/handcuffs/cable/B = new /obj/item/weapon/handcuffs/cable(usr.loc)
 		B.color = color

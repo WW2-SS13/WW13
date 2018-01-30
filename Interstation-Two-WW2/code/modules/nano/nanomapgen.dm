@@ -32,30 +32,30 @@
 		endY = world.maxy
 
 	if (currentZ < FALSE || currentZ > world.maxz)
-		usr << "NanoMapGen: <B>ERROR: currentZ ([currentZ]) must be between TRUE and [world.maxz]</B>"
+		usr << "NanoMapGen: <b>ERROR: currentZ ([currentZ]) must be between TRUE and [world.maxz]</b>"
 
 		sleep(3)
 		return NANOMAP_TERMINALERR
 
 	if (startX > endX)
-		usr << "NanoMapGen: <B>ERROR: startX ([startX]) cannot be greater than endX ([endX])</B>"
+		usr << "NanoMapGen: <b>ERROR: startX ([startX]) cannot be greater than endX ([endX])</b>"
 
 		sleep(3)
 		return NANOMAP_TERMINALERR
 
 	if (startY > endX)
-		usr << "NanoMapGen: <B>ERROR: startY ([startY]) cannot be greater than endY ([endY])</B>"
+		usr << "NanoMapGen: <b>ERROR: startY ([startY]) cannot be greater than endY ([endY])</b>"
 		sleep(3)
 		return NANOMAP_TERMINALERR
 
 	var/icon/Tile = icon(file("UI/mapbase1024.png"))
 	if (Tile.Width() != NANOMAP_MAX_ICON_DIMENSION || Tile.Height() != NANOMAP_MAX_ICON_DIMENSION)
-		world.log << "NanoMapGen: <B>ERROR: BASE IMAGE DIMENSIONS ARE NOT [NANOMAP_MAX_ICON_DIMENSION]x[NANOMAP_MAX_ICON_DIMENSION]</B>"
+		world.log << "NanoMapGen: <b>ERROR: BASE IMAGE DIMENSIONS ARE NOT [NANOMAP_MAX_ICON_DIMENSION]x[NANOMAP_MAX_ICON_DIMENSION]</b>"
 		sleep(3)
 		return NANOMAP_TERMINALERR
 
-	world.log << "NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>"
-	usr << "NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>"
+	world.log << "NanoMapGen: <b>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</b>"
+	usr << "NanoMapGen: <b>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</b>"
 
 	var/count = FALSE;
 	for(var/WorldX = startX, WorldX <= endX, WorldX++)
@@ -71,18 +71,18 @@
 			count++
 
 			if (count % 8000 == FALSE)
-				world.log << "NanoMapGen: <B>[count] tiles done</B>"
+				world.log << "NanoMapGen: <b>[count] tiles done</b>"
 				sleep(1)
 
 	var/mapFilename = "nanomap_z[currentZ]-new.png"
 
-	world.log << "NanoMapGen: <B>sending [mapFilename] to client</B>"
+	world.log << "NanoMapGen: <b>sending [mapFilename] to client</b>"
 
 	usr << browse(Tile, "window=picture;file=[mapFilename];display=0")
 
-	world.log << "NanoMapGen: <B>Done.</B>"
+	world.log << "NanoMapGen: <b>Done.</b>"
 
-	usr << "NanoMapGen: <B>Done. File [mapFilename] uploaded to your cache.</B>"
+	usr << "NanoMapGen: <b>Done. File [mapFilename] uploaded to your cache.</b>"
 
 	if (Tile.Width() != NANOMAP_MAX_ICON_DIMENSION || Tile.Height() != NANOMAP_MAX_ICON_DIMENSION)
 		return NANOMAP_BADOUTPUT

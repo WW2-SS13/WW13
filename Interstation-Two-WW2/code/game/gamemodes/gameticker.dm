@@ -88,7 +88,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		if(!runnable_modes.len)
 			current_state = GAME_STATE_PREGAME
 			if (serverswap_open_status)
-				world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
+				world << "<b>Unable to choose playable game mode.</b> Reverting to pre-game lobby."
 			return FALSE
 		if(secret_force_mode != "secret")
 			mode = config.pick_mode(secret_force_mode)
@@ -113,7 +113,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	if(!mode.can_start())
 		if (serverswap_open_status)
-			world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
+			world << "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
 		mode.fail_setup()
 		mode = null
@@ -121,14 +121,14 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		return FALSE
 
 	if(hide_mode)
-		world << "<B>The current game mode is - Secret!</B>"
+		world << "<b>The current game mode is - Secret!</b>"
 		if(runnable_modes.len)
 			var/list/tmpmodes = new
 			for (var/datum/game_mode/M in runnable_modes)
 				tmpmodes+=M.name
 			tmpmodes = sortList(tmpmodes)
 			if(tmpmodes.len)
-				world << "<B>Possibilities:</B> [english_list(tmpmodes)]"
+				world << "<b>Possibilities:</b> [english_list(tmpmodes)]"
 	else
 		mode.announce()
 
@@ -152,7 +152,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			if (S.name != "AI")
 				qdel(S)
 
-	//	world << "<span class = 'notice'><B>Enjoy the game!</B></FONT>"
+	//	world << "<span class = 'notice'><b>Enjoy the game!</b></FONT>"
 		//Holiday Round-start stuff	~Carn
 
 		// todo: make these hooks. Apparently they all fail on /hook/roundstart

@@ -18,8 +18,8 @@
 	dir = SOUTH
 	organ_tag = "limb"
 
-	var/brute_mod = TRUE
-	var/burn_mod = TRUE
+	var/brute_mod = 1.0
+	var/burn_mod = 1.0
 
 	var/icon_name = null
 	var/body_part = null
@@ -46,7 +46,7 @@
 	var/obj/item/organ/external/parent
 	var/list/obj/item/organ/external/children
 	var/list/internal_organs = list() 	// Internal organs of this body part
-	var/damage_msg = "\red You feel an intense pain"
+	var/damage_msg = "<span class = 'red'>You feel an intense pain</span>"
 	var/broken_description
 	var/open = FALSE
 	var/stage = FALSE

@@ -682,13 +682,13 @@ var/global/datum/controller/occupations/job_master
 					H.loc = pick(turfs)
 		// custom spawning
 		else if (!istype(H.original_job, /datum/job/german/paratrooper))
-			H << "\red Something went wrong while spawning you. Please contact an admin."
+			H << "<span class = 'red'>Something went wrong while spawning you. Please contact an admin.</span>"
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
 		var/list/all_jobs = typesof(/datum/job)
 		if(!all_jobs.len)
-			world << "\red \b Error setting up jobs, no job datums found"
+			world << "<span class = 'red'>\b Error setting up jobs, no job datums found</span>"
 			return FALSE
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
@@ -1023,7 +1023,7 @@ var/global/datum/controller/occupations/job_master
 		Debug("DO finished.")
 		*/
 		for(var/mob/new_player/player in unassigned)
-			player << "\red You wasn't spawned due to auto-balance."
+			player << "<span class = 'red'>You wasn't spawned due to auto-balance.</span>"
 
 
 		//People who wants to be assistants, sure, go on.
@@ -1156,7 +1156,7 @@ var/global/datum/controller/occupations/job_master
 							permitted = TRUE
 
 						if(!permitted)
-							H << "\red Your current job or whitelist status does not permit you to spawn with [thing]!"
+							H << "<span class = 'red'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>"
 							continue
 
 						if(G.slot && !(G.slot in custom_equip_slots))
@@ -1328,6 +1328,7 @@ var/global/datum/controller/occupations/job_master
 						if (german_squad_info[current_german_squad])
 							spawn (0)
 								H << german_squad_info[current_german_squad]
+								H.add_memory(german_squad_info[current_german_squad])
 						else
 							spawn (2)
 								H << "<i>Your squad, #[current_german_squad], does not have a Squad Leader yet. Consider waiting for one before deploying.</i>"
@@ -1344,20 +1345,24 @@ var/global/datum/controller/occupations/job_master
 						if (soviet_squad_info[current_soviet_squad])
 							spawn (0)
 								H << soviet_squad_info[current_soviet_squad]
+								H.add_memory(soviet_squad_info[current_soviet_squad])
 						else
 							spawn (2)
 								H << "<i>Your squad, #[current_soviet_squad], does not have a Squad Leader yet. Consider waiting for one before deploying.</i>"
 
 			else if (H.original_job.is_officer && H.original_job.base_type_flag() == SOVIET)
 				spawn (5)
-					for (var/i in TRUE to soviet_officer_squad_info.len)
+					for (var/i in 1 to soviet_officer_squad_info.len)
 						if (soviet_officer_squad_info[i])
 							H << "<br>[soviet_officer_squad_info[i]]"
+							H.add_memory(soviet_officer_squad_info[i])
+
 			else if (H.original_job.is_officer && H.original_job.base_type_flag() == GERMAN)
 				spawn (5)
-					for (var/i in TRUE to german_officer_squad_info.len)
+					for (var/i in 1 to german_officer_squad_info.len)
 						if (german_officer_squad_info[i])
 							H << "<br>[german_officer_squad_info[i]]"
+							H.add_memory(german_officer_squad_info[i])
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO job spawn location = [H.job_spawn_location]"
@@ -1382,7 +1387,7 @@ var/global/datum/controller/occupations/job_master
 							var/datum/gear/G = gear_datums[thing]
 							new G.path(B)
 					else
-						H << "\red Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug."
+						H << "<span class = 'red'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>"
 */
 			if(istype(H)) //give humans wheelchairs, if they need them.
 				var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
@@ -1424,7 +1429,8 @@ var/global/datum/controller/occupations/job_master
 			BITSET(H.hud_updateflag, BASE_FACTION)
 			BITSET(H.hud_updateflag, SQUAD_FACTION)
 
-			relocate(H)
+			if (!istype(H, /mob/living/carbon/human/corpse))
+				relocate(H)
 
 			return H
 

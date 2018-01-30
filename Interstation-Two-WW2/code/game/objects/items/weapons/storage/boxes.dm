@@ -408,7 +408,7 @@
 
 /obj/item/weapon/storage/box/donkpockets
 	name = "box of donk-pockets"
-	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
+	desc = "<b>Instructions:</b> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
 	icon_state = "donk_kit"
 
 	New()
@@ -422,7 +422,7 @@
 
 /obj/item/weapon/storage/box/sinpockets
 	name = "box of sin-pockets"
-	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
+	desc = "<b>Instructions:</b> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
 	icon_state = "donk_kit"
 
 	New()
@@ -465,7 +465,7 @@
 
 /obj/item/weapon/storage/box/mousetraps
 	name = "box of Pest-B-Gon mousetraps"
-	desc = "<B><FONT color='red'>WARNING:</FONT></B> <I>Keep out of reach of children</I>."
+	desc = "<b><FONT color='red'>WARNING:</FONT></b> <I>Keep out of reach of children</I>."
 	icon_state = "mousetraps"
 
 	New()

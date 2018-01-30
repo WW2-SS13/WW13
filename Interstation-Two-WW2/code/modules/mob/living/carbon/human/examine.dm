@@ -178,7 +178,7 @@
 	//Jitters
 	if(is_jittery)
 		if(jitteriness >= 300)
-			msg += "<span class='warning'><B>[T.He] [T.is] convulsing violently!</B></span>\n"
+			msg += "<span class='warning'><b>[T.He] [T.is] convulsing violently!</b></span>\n"
 		else if(jitteriness >= 200)
 			msg += "<span class='warning'>[T.He] [T.is] extremely jittery.</span>\n"
 		else if(jitteriness >= 100)

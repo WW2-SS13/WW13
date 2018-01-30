@@ -136,7 +136,7 @@ proc/get_radio_key_from_channel(var/channel)
 /mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/alt_message=null)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			src << "\red You cannot speak in IC (Muted)."
+			src << "<span class = 'red'>You cannot speak in IC (Muted).</span>"
 			return
 
 	if(stat)

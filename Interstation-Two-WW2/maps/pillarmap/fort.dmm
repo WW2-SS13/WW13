@@ -1,0 +1,97 @@
+"a" = (/turf/wall/rockwall,/area/prishtina/german/bunker)
+"b" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/german/bunker)
+"c" = (/obj/structure/bed/roller,/turf/floor/wood,/area/prishtina/german/bunker)
+"d" = (/turf/floor/wood,/area/prishtina/german/bunker)
+"e" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/wood,/area/prishtina/german/bunker)
+"f" = (/obj/item/weapon/gun/projectile/automatic/mg34,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/structure/closet,/turf/floor/wood,/area/prishtina/german/bunker)
+"g" = (/obj/structure/table/rack,/obj/item/ammo_magazine/a792x33/stgmag,/obj/item/ammo_magazine/a792x33/stgmag,/obj/item/ammo_magazine/a792x33/stgmag,/obj/item/ammo_magazine/a792x33/stgmag,/obj/item/ammo_magazine/a792x33/stgmag,/obj/item/ammo_magazine/a792x33/stgmag,/obj/item/ammo_magazine/a792x33/stgmag,/obj/item/ammo_magazine/a792x33/stgmag,/obj/item/ammo_magazine/a792x33/stgmag,/obj/item/ammo_magazine/a792x33/stgmag,/obj/item/weapon/gun/projectile/automatic/stg,/turf/floor/wood,/area/prishtina/german/bunker)
+"h" = (/obj/machinery/vending/SSequipment,/turf/floor/wood,/area/prishtina/german/bunker)
+"i" = (/obj/structure/table/rack,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/device/mine/betty,/obj/item/device/mine/betty,/obj/item/device/mine/betty,/obj/item/weapon/grenade/smokebomb/german,/obj/item/weapon/grenade/smokebomb/german,/obj/item/weapon/grenade/smokebomb/german,/turf/floor/wood,/area/prishtina/german/bunker)
+"j" = (/obj/item/weapon/gun/projectile/pistol/luger,/obj/item/ammo_magazine/luger,/obj/structure/closet,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/obj/item/ammo_magazine/luger,/turf/floor/wood,/area/prishtina/german/bunker)
+"k" = (/obj/item/weapon/storage/backpack/flammenwerfer,/obj/structure/table/rack,/obj/item/weapon/flammenwerfer_fueltank,/obj/item/weapon/flammenwerfer_fueltank,/obj/item/weapon/flammenwerfer_fueltank,/turf/floor/wood,/area/prishtina/german/bunker)
+"l" = (/obj/structure/closet/crate/medical,/turf/floor/wood,/area/prishtina/german/bunker)
+"m" = (/obj/machinery/vending/germanapparel,/turf/floor/wood,/area/prishtina/german/bunker)
+"n" = (/obj/structure/closet/crate/rations/german_liquids,/turf/floor/wood,/area/prishtina/german/bunker)
+"o" = (/obj/item/weapon/gun/projectile/boltaction/kar98k,/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/clothing/accessory/storage/webbing,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/structure/closet,/turf/floor/wood,/area/prishtina/german/bunker)
+"p" = (/obj/effect/landmark{name = "JoinLateSS-Officer"},/turf/floor/wood,/area/prishtina/german/bunker)
+"q" = (/obj/item/clothing/accessory/storage/webbing,/obj/item/weapon/gun/projectile/automatic/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/structure/closet,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/weapon/gun/projectile/automatic/mp40,/turf/floor/wood,/area/prishtina/german/bunker)
+"r" = (/obj/structure/closet/crate/rations/german_alcohol,/turf/floor/wood,/area/prishtina/german/bunker)
+"s" = (/obj/structure/closet/crate/rations/water,/turf/floor/wood,/area/prishtina/german/bunker)
+"t" = (/obj/lift_lever/soviet,/turf/floor/wood,/area/prishtina/german/bunker)
+"u" = (/obj/item,/turf/floor/wood,/area/prishtina/no_mans_land/invisible_wall/inside)
+"v" = (/turf/open,/area/prishtina/german/lift/down)
+"x" = (/obj/lift_controller/down/soviet,/turf/open,/area/prishtina/german/lift/down)
+"C" = (/obj/map_metadata/pillarmap,/turf/wall/rockwall,/area/prishtina/german/bunker)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaahdddjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaahdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaahdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaahdddfffffffffffffffffffffffffffffdddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaahdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaahdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaahdddjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaddddkkkdddddggggggggggggggddddkkkdddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaamdddqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaamdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaamdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaamdddooooooooooooooooooooooooooooodddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaamdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaamddddddddddddddddddddddddpddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaamdddqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaeeeaaaaaaaaaaaeeeaaaaaaaaaaaeeeaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaapdddddddddadddddddddddddddddadddddddddlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadbdbdbdbdnaddddddduuudddddddadcdcdcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadddddddddnadduuuuuutuuuuuuddadddddddddlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadbdbdbdbdnadduvvvvvvvvvvvuddadcdcdcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadddddddddnadduvvvvvvvvvvvuddadddddddddlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadbdbdbdbdnadduvvvvvvvvvvvuddadcdcdcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaddddddddddadduvvvvvvvvvvvuddadddddddddlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadbdbdbdbdradduvvvvvvvvvvvuddadcdcdcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadddddddddradduvvvvvxvvvvvuddadddddddddlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadbdbdbdbdradduvvvvvvvvvvvuddadcdcdcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadddddddddradduvvvvvvvvvvvuddadddddddddlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadbdbdbdbdradduvvvvvvvvvvvuddadcdcdcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaddddddddddadduvvvvvvvvvvvuddadddddddddlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadbdbdbdbdsadduvvvvvvvvvvvuddadcdcdcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadddddddddsadduuuuuuuuuuuuuddadddddddddlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadbdbdbdbdsadddddddddddddddddadcdcdcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadddddddddsadddddddddddddddddadddddddddlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaadbdbdbdbdsadddddddddddddddddadcdcdcdcdlaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

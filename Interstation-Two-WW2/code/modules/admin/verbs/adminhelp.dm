@@ -3,12 +3,12 @@
 	set name = "Adminhelp"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		usr << "<span class = 'red'>Speech is currently admin-disabled.</span>"
 		return
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
-		src << "<font color='red'>Error: Admin-PM: You cannot send adminhelps (Muted).</font>"
+		src << "<span class = 'red'>Error: Admin-PM: You cannot send adminhelps (Muted).</span>"
 		return
 
 	adminhelped = TRUE //Determines if they get the message to reply by clicking the name.

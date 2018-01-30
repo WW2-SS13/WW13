@@ -23,6 +23,9 @@ var/global/obj/map_metadata/map = null
 		UKRAINIAN)
 	var/event_faction = null
 	var/min_autobalance_players = 0
+	var/respawn_delay = 3000
+	var/list/valid_weather_types = list(WEATHER_RAIN, WEATHER_SNOW)
+	var/reinforcements = TRUE
 
 /obj/map_metadata/New()
 	..()
@@ -34,13 +37,13 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/proc/tick()
 	if (last_crossing_block_status[GERMAN] == FALSE)
 		if (germans_can_cross_blocks())
-			world << "<font size = 4>The Germans may now cross the invisible wall!</font>"
+			world << cross_message(GERMAN)
 	if (last_crossing_block_status[SOVIET] == FALSE)
 		if (soviets_can_cross_blocks())
-			world << "<font size = 4>The Soviets may now cross the invisible wall!</font>"
+			world << cross_message(SOVIET)
 	if (last_crossing_block_status[event_faction] == FALSE)
 		if (specialfaction_can_cross_blocks())
-			world << "<font size = 4>The Event Faction may now cross the invisible wall!</font>"
+			world << cross_message(event_faction)
 
 	last_crossing_block_status[GERMAN] = germans_can_cross_blocks()
 	last_crossing_block_status[SOVIET] = soviets_can_cross_blocks()
@@ -82,6 +85,9 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/proc/job_enabled_specialcheck(var/datum/job/J)
 	return TRUE
 
+/obj/map_metadata/proc/cross_message(faction)
+	return "<font size = 4>The [faction_const2name(faction)] may now cross the invisible wall!</font>"
+
 // FOREST MAP
 /obj/map_metadata/forest
 	ID = "FOREST"
@@ -120,6 +126,7 @@ var/global/obj/map_metadata/map = null
 		CIVILIAN,
 		ITALIAN,
 		UKRAINIAN)
+	respawn_delay = 1200
 
 /obj/map_metadata/minicity/germans_can_cross_blocks()
 	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
@@ -134,25 +141,28 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/pillarmap
 	ID = "PILLARMAP"
 	title = "Pillar Map (70x70x2)"
-	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
+	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/inside)
 	faction_organization = list(
 		PILLARMEN,
 		GERMAN)
 	event_faction = PILLARMEN
 	min_autobalance_players = 100
+	respawn_delay = 0
+	valid_weather_types = list()
+	reinforcements = FALSE
 	var/modded_num_of_SS = FALSE
 
 /obj/map_metadata/pillarmap/germans_can_cross_blocks()
-	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
+	return (tickerProcess.time_elapsed >= 6000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/pillarmap/soviets_can_cross_blocks()
 	return FALSE
 
 /obj/map_metadata/pillarmap/specialfaction_can_cross_blocks()
-	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
+	return (tickerProcess.time_elapsed >= 9000)
 
 /obj/map_metadata/pillarmap/announce_mission_start(var/preparation_time)
-	world << "<font size=4>Both sides have <b>12 minutes</b> to prepare before combat will begin!</font>"
+	world << "<font size=4>The <b>Waffen SS</b> may attack after 10 minutes. The <b>Pillar Men</b> and <b>Vampires</b> may not attack until after 15 minutes.</font>"
 
 /obj/map_metadata/pillarmap/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
@@ -164,3 +174,8 @@ var/global/obj/map_metadata/map = null
 				J.total_positions *= 16
 				modded_num_of_SS = TRUE
 	return .
+
+/obj/map_metadata/pillarmap/cross_message(faction)
+	if (faction == GERMAN)
+		return "<font size = 4>The Waffen-SS may now attack! Get on the elevator and invade the sewers!</font>"
+	return "<font size = 4>The [faction_const2name(faction)] may now cross the invisible wall!</font>"

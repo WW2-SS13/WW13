@@ -56,7 +56,7 @@
 	title = "Starshiy Leytenant"
 	en_meaning = "Company Executive Officer"
 	rank_abbreviation = "1lt"
-	total_positions = 2
+	total_positions = 1
 	head_position = FALSE
 	selection_color = "#530909"
 	spawn_location = "JoinLateRASO"

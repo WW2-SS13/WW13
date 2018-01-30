@@ -670,7 +670,7 @@
 "mT" = (/obj/structure/table/wood,/obj/item/device/flashlight,/turf/floor/wood,/area/prishtina/soviet/small_map/inside)
 "mU" = (/obj/structure/barricade,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/gearing)
 "mV" = (/obj/machinery/vending/sovietapparel,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/gearing)
-"mW" = (/obj/structure/closet/crate/gasmasks,/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/gearing)
+"mW" = (/obj/structure/closet/crate/gasmasks/soviet,/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/gearing)
 "mX" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/boltaction/mosin,/obj/item/weapon/gun/projectile/boltaction/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosinbox,/obj/item/ammo_magazine/mosin,/obj/item/ammo_magazine/mosin,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/gearing)
 "mY" = (/obj/structure/barricade,/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/gearing)
 "mZ" = (/obj/structure/table/wood,/obj/item/ammo_magazine/maxim,/obj/item/ammo_magazine/maxim,/obj/item/device/radio/intercom/loudspeaker/russian,/turf/floor/wood,/area/prishtina/soviet/small_map/inside)

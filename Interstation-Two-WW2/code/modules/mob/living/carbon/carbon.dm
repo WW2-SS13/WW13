@@ -80,7 +80,7 @@
 		M.loc = loc
 		for(var/mob/N in viewers(src, null))
 			if(N.client)
-				N.show_message(text("\red <B>[M] bursts out of [src]!</B>"), 2)
+				N.show_message(text("<span class = 'red'><b>[M] bursts out of [src]!</b></span>"), 2)
 	..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
@@ -91,7 +91,7 @@
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			H << "\red You can't use your [temp.name]"
+			H << "<span class = 'red'>You can't use your [temp.name].</span>"
 			return
 
 	return
@@ -106,17 +106,17 @@
 	playsound(loc, "sparks", 50, TRUE, -1)
 	if (shock_damage > 15)
 		visible_message(
-			"\red [src] was shocked by the [source]!", \
-			"\red <B>You feel a powerful shock course through your body!</B>", \
-			"\red You hear a heavy electrical crack." \
+			"<span class = 'red'>[src] was shocked by the [source]!</span>", \
+			"<span class = 'red'><b>You feel a powerful shock course through your body!</b></span>", \
+			"<span class = 'red'>You hear a heavy electrical crack.</span>" \
 		)
 		Stun(10)//This should work for now, more is really silly and makes you lay there forever
 		Weaken(10)
 	else
 		visible_message(
-			"\red [src] was mildly shocked by the [source].", \
-			"\red You feel a mild shock course through your body.", \
-			"\red You hear a light zapping." \
+			"<span class = 'red'>[src] was mildly shocked by the [source].</span>", \
+			"<span class = 'red'>You feel a mild shock course through your body.</span>", \
+			"<span class = 'red'>You hear a light zapping.</span>" \
 		)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -328,7 +328,7 @@
 
 	//actually throw it!
 	if (item)
-		visible_message("\red [src] has thrown [item].")
+		visible_message("<span class = 'red'>[src] has thrown [item].</span>")
 
 		if(!lastarea)
 			lastarea = get_area(loc)
@@ -385,7 +385,7 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		usr << "\red You are already sleeping"
+		usr << "<span class = 'red'>You are already sleeping.</span>"
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap
@@ -425,12 +425,12 @@
 /mob/living/carbon/show_inv(mob/user as mob)
 	user.set_machine(src)
 	var/dat = {"
-	<B><HR><FONT size=3>[name]</FONT></B>
+	<b><HR><FONT size=3>[name]</FONT></b>
 	<BR><HR>
-	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/weapon/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR><b>Head(Mask):</b> <A href='?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
+	<BR><b>Left Hand:</b> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
+	<BR><b>Right Hand:</b> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
+	<BR><b>Back:</b> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/weapon/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
 	<BR>[(internal ? text("<A href='?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
 	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>

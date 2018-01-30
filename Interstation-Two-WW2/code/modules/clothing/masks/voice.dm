@@ -24,7 +24,7 @@
 	var/voice = sanitize(name, MAX_NAME_LEN)
 	if(!voice || !length(voice)) return
 	changer.voice = voice
-	usr << "<span class='notice'>You are now mimicking <B>[changer.voice]</B>.</span>"
+	usr << "<span class='notice'>You are now mimicking <b>[changer.voice]</b>.</span>"
 
 /obj/item/clothing/mask/gas/voice/New()
 	..()

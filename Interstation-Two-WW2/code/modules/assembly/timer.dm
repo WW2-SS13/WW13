@@ -70,11 +70,11 @@
 
 	interact(mob/user as mob)//TODO: Have this use the wires
 		if(!secured)
-			user.show_message("\red The [name] is unsecured!")
+			user.show_message("<span class = 'red'>The [name] is unsecured!</span>")
 			return FALSE
 		var/second = time % 60
 		var/minute = (time - second) / 60
-		var/dat = text("<TT><B>Timing Unit</B>\n[] []:[]\n<A href='?src=\ref[];tp=-30'>-</A> <A href='?src=\ref[];tp=-1'>-</A> <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=30'>+</A>\n</TT>", (timing ? text("<A href='?src=\ref[];time=0'>Timing</A>", src) : text("<A href='?src=\ref[];time=1'>Not Timing</A>", src)), minute, second, src, src, src, src)
+		var/dat = text("<TT><b>Timing Unit</b>\n[] []:[]\n<A href='?src=\ref[];tp=-30'>-</A> <A href='?src=\ref[];tp=-1'>-</A> <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=30'>+</A>\n</TT>", (timing ? text("<A href='?src=\ref[];time=0'>Timing</A>", src) : text("<A href='?src=\ref[];time=1'>Not Timing</A>", src)), minute, second, src, src, src, src)
 		dat += "<BR><BR><A href='?src=\ref[src];refresh=1'>Refresh</A>"
 		dat += "<BR><BR><A href='?src=\ref[src];close=1'>Close</A>"
 		user << browse(dat, "window=timer")

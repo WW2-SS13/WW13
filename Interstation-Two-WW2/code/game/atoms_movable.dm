@@ -218,7 +218,7 @@
 
 				var/canMove = TRUE
 				for (var/obj/structure/S in step)
-					if (istype(S, /obj/structure/window/sandbag))
+					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
 					canMove = FALSE
 				if (canMove)
@@ -242,7 +242,7 @@
 					break
 				var/canMove = TRUE
 				for (var/obj/structure/S in step)
-					if (istype(S, /obj/structure/window/sandbag))
+					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
 					canMove = FALSE
 				if (canMove)
@@ -270,7 +270,7 @@
 					break
 				var/canMove = TRUE
 				for (var/obj/structure/S in step)
-					if (istype(S, /obj/structure/window/sandbag))
+					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
 					canMove = FALSE
 				if (canMove)
@@ -293,7 +293,7 @@
 					break
 				var/canMove = TRUE
 				for (var/obj/structure/S in step)
-					if (istype(S, /obj/structure/window/sandbag))
+					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
 					canMove = FALSE
 				if (canMove)

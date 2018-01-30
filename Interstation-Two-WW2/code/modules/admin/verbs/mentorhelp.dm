@@ -3,7 +3,7 @@
 	set name = "Mentorhelp"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		usr << "<span class = 'red'>Speech is currently admin-disabled.</span>"
 		return
 
 	//handle muting and automuting

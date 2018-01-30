@@ -78,9 +78,11 @@ h1.alert, h2.alert		{color: #ff0000;}
 .disarm					{color: #990000;}
 .passive				{color: #660000;}
 
-.danger					{color: #ff0000; font-weight: bold;}
-.userdanger				{color: #ff0000; font-weight: bold; font-size: 2.0em;}
-.warning				{color: #ff0000; font-style: italic;}
+.red					{color: #ff3737}
+.danger					{color: #ff3737; font-weight: bold;}
+.userdanger				{color: #ff3737; font-weight: bold; font-size: 2.0em;}
+.hugedanger				{color: #ff3737; font-weight: bold; font-size: 3.0em;}
+.warning				{color: #ff3737; font-style: italic;}
 .rose					{color: #ff5050;}
 .info					{color: #E1E1FF;}
 .notice					{color: #E1E1FF;}
@@ -95,7 +97,7 @@ h1.alert, h2.alert		{color: #ff0000;}
 .interface				{color: #704C70;}
 
 .good                   {color: #839E69; font-weight: bold;}
-.bad                    {color: #ee0000; font-weight: bold;}
+.bad                    {color: #ff3737; font-weight: bold;}
 
 BIG IMG.icon 			{width: 32px; height: 32px;}
 

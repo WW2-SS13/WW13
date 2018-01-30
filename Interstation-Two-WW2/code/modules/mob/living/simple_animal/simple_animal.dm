@@ -255,12 +255,12 @@
 			G.affecting = src
 			LAssailant = M
 
-			M.visible_message("\red [M] has grabbed [src] passively!")
+			M.visible_message("<span class = 'red'>[M] has grabbed [src] passively!</span>")
 			M.do_attack_animation(src)
 
 		if(I_HURT)
 			adjustBruteLoss(harm_intent_damage*M.getStatCoeff("strength"))
-			M.visible_message("\red [M] [response_harm] \the [src].")
+			M.visible_message("<span class = 'red'>[M] [response_harm] \the [src].</span>")
 			M.do_attack_animation(src)
 			playsound(get_turf(M), "punch", 50, TRUE, -1)
 

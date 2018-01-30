@@ -616,10 +616,10 @@
 			is_chamber_empty = TRUE
 			processing_chamber = "Nothing."
 		if (!beaker)
-			beaker_contents = "<B>No beaker attached.</B><br>"
+			beaker_contents = "<b>No beaker attached.</b><br>"
 		else
 			is_beaker_ready = TRUE
-			beaker_contents = "<B>The beaker contains:</B><br>"
+			beaker_contents = "<b>The beaker contains:</b><br>"
 			var/anything = FALSE
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				anything = TRUE

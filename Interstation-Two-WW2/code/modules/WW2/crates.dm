@@ -42,12 +42,6 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
-/obj/structure/closet/crate/metal
-	name = "Metal sheet crate"
-	icon_state = "mil_crate_closed"
-	icon_opened = "mil_crate_opened"
-	icon_closed = "mil_crate_closed"
-
 /obj/structure/closet/crate/flammenwerfer_fueltanks
 	name = "Flammenwerfer fueltanks crate"
 	icon = 'icons/WW2/artillery_crate.dmi'
@@ -586,6 +580,13 @@
 		..()
 		for (var/v in TRUE to 10)
 			new/obj/item/clothing/mask/gas/german(src)
+
+/obj/structure/closet/crate/gasmasks/soviet
+
+	New()
+		..()
+		for (var/v in TRUE to 10)
+			new/obj/item/clothing/mask/gas/soviet(src)
 
 /obj/structure/closet/crate/artillery/russian
 	name = "Russian artillery shell crate"

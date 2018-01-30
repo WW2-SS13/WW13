@@ -5,7 +5,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/dat = "<B>Admin Log<HR></B>"
+	var/dat = "<b>Admin Log<HR></b>"
 	for(var/l in admin_log)
 		dat += "<li>[l]</li>"
 	if(!admin_log.len)

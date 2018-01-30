@@ -64,9 +64,9 @@ var/list/admin_verbs_admin = list(
 	/client/proc/allow_character_respawn,    // Allows a ghost to respawn ,
 //	/client/proc/aooc,
 
-// these break the game, they'll be added back when they don't
-//	/client/proc/change_human_appearance_admin,	// Allows an admin to change the basic appearance of human-based mobs ,
-//	/client/proc/change_human_appearance_self,	// Allows the human-based mob itself change its basic appearance ,
+// these break the game, they'll be added back when they don't - WIP
+	/client/proc/change_human_appearance_admin,	// Allows an admin to change the basic appearance of human-based mobs ,
+	/client/proc/change_human_appearance_self,	// Allows the human-based mob itself change its basic appearance ,
 	/client/proc/change_security_level,
 	/client/proc/view_chemical_reaction_logs,
 	/client/proc/allow_join_ruforce,
@@ -457,7 +457,7 @@ var/list/admin_verbs_host = list(
 			return
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
-			mob << "\red <b>Invisimin off. Invisibility reset.</b>"
+			mob << "<span class = 'red'><b>Invisimin off. Invisibility reset.</b></span>"
 			mob.alpha = max(mob.alpha + 100, 255)
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
@@ -794,7 +794,7 @@ var/list/admin_verbs_host = list(
 	var/mob/living/carbon/human/M = input("Select mob.", "Edit Appearance") as null|anything in human_mob_list
 
 	if(!istype(M, /mob/living/carbon/human))
-		usr << "\red You can only do this to humans!"
+		usr << "<span class = 'red'>You can only do this to humans!</span>"
 		return
 	switch(alert("Are you sure you wish to edit this mob's appearance?",,"Yes","No"))
 		if("No")

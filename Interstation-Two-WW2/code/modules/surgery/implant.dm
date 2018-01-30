@@ -34,8 +34,8 @@
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!", \
-		"\red Your hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!")
+		user.visible_message("<span class = 'red'>[user]'s hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!</span>", \
+		"<span class = 'red'>Your hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!</span>")
 		affected.createwound(CUT, 20)
 
 /datum/surgery_step/cavity/make_space
@@ -130,7 +130,7 @@
 		user.visible_message("<span class = 'notice'>[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>", \
 		"<span class = 'notice'>You put \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>" )
 		if (tool.w_class > get_max_wclass(affected)/2 && prob(50) && !(affected.status & ORGAN_ROBOT))
-			user << "\red You tear some blood vessels trying to fit such a big object in this cavity."
+			user << "<span class = 'red'>You tear some blood vessels trying to fit such a big object in this cavity.</span>"
 			var/datum/wound/internal_bleeding/I = new (10)
 			affected.wounds += I
 			affected.owner.custom_pain("You feel something rip in your [affected.name]!", TRUE)
@@ -212,7 +212,7 @@
 			fail_prob += 100 - tool_quality(tool)
 			if (prob(fail_prob))
 				var/obj/item/weapon/implant/imp = affected.implants[1]
-				user.visible_message("\red Something beeps inside [target]'s [affected.name]!")
+				user.visible_message("<span class = 'red'>Something beeps inside [target]'s [affected.name]!</span>")
 				playsound(imp.loc, 'sound/items/countdown.ogg', 75, TRUE, -3)
 				spawn(25)
 					imp.activate()

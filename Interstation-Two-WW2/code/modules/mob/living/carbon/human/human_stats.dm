@@ -42,19 +42,25 @@
 	if (!stats.Find(statname))
 		return
 
+	var/increase_multiple = 0.001 // 1 / 1000, to prevent crazy ugly decimals
+
 	if (statname == "mg")
-		stats[statname][1] *= (1 + (multiplier/400))
-		stats[statname][2] *= (1 + (multiplier/400))
+		stats[statname][1] *= (1 + round(multiplier/400, increase_multiple))
+		stats[statname][2] *= (1 + round(multiplier/400, increase_multiple))
 
 	else if (statname == "rifle" || statname == "pistol" || statname == "heavy")
-		stats[statname][1] *= (1 + (multiplier/150))
-		stats[statname][2] *= (1 + (multiplier/150))
+		stats[statname][1] *= (1 + round(multiplier/150, increase_multiple))
+		stats[statname][2] *= (1 + round(multiplier/150, increase_multiple))
+
+	else if (statname == "medical")
+		stats[statname][1] *= (1 + round(multiplier/300, increase_multiple))
+		stats[statname][2] *= (1 + round(multiplier/300, increase_multiple))
 
 	else
-		stats[statname][1] *= (1 + (multiplier/100))
-		stats[statname][2] *= (1 + (multiplier/100))
+		stats[statname][1] *= (1 + round(multiplier/100, increase_multiple))
+		stats[statname][2] *= (1 + round(multiplier/100, increase_multiple))
 
-	// stats may not go over 500
+	// stats may not go over 1000
 	for (var/sname in stats)
-		stats[sname][1] = min(stats[sname][1], 500.00)
-		stats[sname][2] = min(stats[sname][1], 500.00)
+		stats[sname][1] = min(stats[sname][1], 1000.00)
+		stats[sname][2] = min(stats[sname][1], 1000.00)

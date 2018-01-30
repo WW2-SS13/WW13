@@ -17,7 +17,7 @@
 	else
 		input = message
 	if(input)
-		message = "<B>[src]</B> [input]"
+		message = "<b>[src]</b> [input]"
 	else
 		return
 

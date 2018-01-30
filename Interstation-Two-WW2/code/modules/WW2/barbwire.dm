@@ -45,7 +45,7 @@
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
 					H.Weaken(2)
-				M << "\red <B>Your [affecting.name] gets slightly cut by \the [src]!</B>"
+				M << "<span class = 'red'><b>Your [affecting.name] gets slightly cut by \the [src]!</b></span>"
 				return ..()
 			if (prob (33))
 				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
@@ -57,7 +57,7 @@
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
 					H.Weaken(4)
-				M << "\red <B>Your [affecting.name] gets cut by \the [src]!</B>"
+				M << "<span class = 'red'><b>Your [affecting.name] gets cut by \the [src]!</b></span>"
 				return ..()
 			if (prob (33))
 				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
@@ -69,7 +69,7 @@
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
 					H.Weaken(5)
-				M << "\red <B>Your [affecting.name] gets deeply cut by \the [src]!</B>"
+				M << "<span class = 'red'><b>Your [affecting.name] gets deeply cut by \the [src]!</b></span>"
 				return ..()
 	..()
 
@@ -105,7 +105,7 @@
 					else
 						affecting = H.get_organ("r_hand")
 
-					user << "\red <B>Your hand slips, causing \the [src] to cut your [affecting.name] open!</B>"
+					user << "<span class = 'red'><b>Your hand slips, causing \the [src] to cut your [affecting.name] open!</b></span>"
 					playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
 					if(affecting.status & ORGAN_ROBOT)
 						return

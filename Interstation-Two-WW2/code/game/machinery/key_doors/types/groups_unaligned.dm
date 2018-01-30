@@ -12,5 +12,9 @@
 /obj/structure/simple_door/key_door/anyone/train
 	material = "morgue"
 
+/obj/structure/simple_door/key_door/anyone/train/New()
+	..()
+	name = "Train Door"
+
 #undef ANYONE_CODE
 

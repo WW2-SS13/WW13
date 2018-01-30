@@ -171,9 +171,9 @@
 		return
 
 	if(say_understands(speaker, language))
-		message = "<B>[src]</B> [verb], \"[message]\""
+		message = "<b>[src]</b> [verb], \"[message]\""
 	else
-		message = "<B>[src]</B> [verb]."
+		message = "<b>[src]</b> [verb]."
 
 	if(status_flags & PASSEMOTES)
 		for(var/obj/item/weapon/holder/H in contents)

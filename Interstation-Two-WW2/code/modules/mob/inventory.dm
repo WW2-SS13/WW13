@@ -29,7 +29,7 @@
 			qdel(W)
 		else
 			if(!disable_warning)
-				src << "\red You are unable to equip that." //Only print if del_on_fail is false
+				src << "<span class = 'red'>You are unable to equip that.</span>" //Only print if del_on_fail is false
 		return FALSE
 
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.

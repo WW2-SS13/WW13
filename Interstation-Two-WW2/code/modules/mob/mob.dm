@@ -348,7 +348,7 @@
 		usr << "<span class='notice'>Respawn is disabled.</span>"
 		return
 	if ((stat != DEAD || !( ticker )))
-		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
+		usr << "<span class='notice'><b>You must be dead to use this!</b></span>"
 		return
 	if (ticker.mode && ticker.mode.deny_respawn)
 		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
@@ -363,7 +363,7 @@
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
-	usr << "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
+	usr << "<span class='notice'><b>Make sure to play a different character, and please roleplay correctly!</b></span>"
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
@@ -598,7 +598,7 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.pull_damage())
-			src << "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"
+			src << "\red <b>Pulling \the [H] in their current condition would probably be a bad idea.</b>"
 */
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -645,6 +645,16 @@
 			stat("Time of Day", time_of_day)
 			stat("Season", ticker.mode.season())
 			stat("Weather", ticker.mode.weather())
+			if (map)
+				var/grace_period_string = ""
+				for (var/faction in map.faction_organization)
+					if (grace_period_string)
+						grace_period_string += ", "
+					if (map.last_crossing_block_status[faction] == 1)
+						grace_period_string += "[faction_const2name(faction)] can cross"
+					else
+						grace_period_string += "[faction_const2name(faction)] may not cross"
+				stat("Grace Period Info:", grace_period_string)
 
 		if(client.holder)
 			if(statpanel("Status"))

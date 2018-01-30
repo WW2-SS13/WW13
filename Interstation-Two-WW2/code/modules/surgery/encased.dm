@@ -57,8 +57,8 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		user.visible_message("\red [user]'s hand slips, cracking [target]'s [affected.encased] with \the [tool]!" , \
-		"\red Your hand slips, cracking [target]'s [affected.encased] with \the [tool]!" )
+		user.visible_message("<span class = 'red'>[user]'s hand slips, cracking [target]'s [affected.encased] with \the [tool]!</span>" , \
+		"<span class = 'red'>Your hand slips, cracking [target]'s [affected.encased] with \the [tool]!</span>" )
 
 		affected.createwound(CUT, 20)
 		affected.fracture()
@@ -113,8 +113,8 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		var/msg = "\red [user]'s hand slips, cracking [target]'s [affected.encased]!"
-		var/self_msg = "\red Your hand slips, cracking [target]'s  [affected.encased]!"
+		var/msg = "<span class = 'red'>[user]'s hand slips, cracking [target]'s [affected.encased]!</span>"
+		var/self_msg = "<span class = 'red'>Your hand slips, cracking [target]'s  [affected.encased]!</span>"
 		user.visible_message(msg, self_msg)
 
 		affected.createwound(BRUISE, 20)
@@ -166,8 +166,8 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		var/msg = "\red [user]'s hand slips, bending [target]'s [affected.encased] the wrong way!"
-		var/self_msg = "\red Your hand slips, bending [target]'s [affected.encased] the wrong way!"
+		var/msg = "<span class = 'red'>[user]'s hand slips, bending [target]'s [affected.encased] the wrong way!</span>"
+		var/self_msg = "<span class = 'red'>Your hand slips, bending [target]'s [affected.encased] the wrong way!</span>"
 		user.visible_message(msg, self_msg)
 
 		affected.createwound(BRUISE, 20)

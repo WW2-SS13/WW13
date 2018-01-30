@@ -74,17 +74,17 @@
 				var/mob/living/carbon/C = usr
 				C.toggle_throw_mode()
 			else
-				usr << "\red This mob type cannot throw items."
+				usr << "<span class = 'red'>This mob type cannot throw items.</span>"
 			return
 		if(NORTHWEST)
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				if(!C.get_active_hand())
-					usr << "\red You have nothing to drop in your hand."
+					usr << "<span class = 'red'>You have nothing to drop in your hand.</span>"
 					return
 				drop_item()
 			else
-				usr << "\red This mob type cannot drop items."
+				usr << "<span class = 'red'>This mob type cannot drop items.</span>"
 			return
 
 //This gets called when you press the delete button.
@@ -429,7 +429,7 @@
 					H.m_intent = "walk" // in case we don't have a m_intent HUD, somehow
 
 		if (!mob_is_observer && F_is_valid_floor)
-			move_delay += F.move_delay
+			move_delay += F.get_move_delay()
 
 		var/tickcomp = FALSE //moved this out here so we can use it for vehicles
 		if(config.Tickcomp)

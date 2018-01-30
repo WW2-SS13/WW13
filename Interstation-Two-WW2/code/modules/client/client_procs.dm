@@ -77,11 +77,11 @@
 	if(config.automute_on && !holder && last_message == message)
 		last_message_count++
 		if(last_message_count >= SPAM_TRIGGER_AUTOMUTE)
-			src << "\red You have exceeded the spam filter limit for identical messages. An auto-mute was applied."
+			src << "<span class = 'red'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>"
 			cmd_admin_mute(mob, mute_type, TRUE)
 			return TRUE
 		if(last_message_count >= SPAM_TRIGGER_WARNING)
-			src << "\red You are nearing the spam filter limit for identical messages."
+			src << "<span class = 'red'>You are nearing the spam filter limit for identical messages.</span>"
 			return FALSE
 	else
 		last_message = message
@@ -162,7 +162,7 @@
 	if (config.resource_website)
 		preload_rsc = config.resource_website
 
-	src << "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears."
+	src << "<span class = 'red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</span>"
 
 	/*Admin Authorisation: */
 

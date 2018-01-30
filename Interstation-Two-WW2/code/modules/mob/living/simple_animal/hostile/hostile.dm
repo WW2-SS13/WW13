@@ -132,7 +132,7 @@
 
 /mob/living/simple_animal/hostile/proc/OpenFire(target_mob)
 	var/target = target_mob
-	visible_message("\red <b>[src]</b> fires at [target]!", TRUE)
+	visible_message("<span class = 'red'><b>[src]</b> fires at [target]!</span>", TRUE)
 
 	if(rapid)
 		spawn(1)

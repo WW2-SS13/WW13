@@ -85,7 +85,7 @@
 
 				if (client)
 					if (client.prefs.muted & MUTE_IC)
-						src << "\red You cannot send IC messages (muted)."
+						src << "<span class = 'red'>You cannot send IC messages (muted).</span>"
 						return
 					if (client.handle_spam_prevention(message,MUTE_IC))
 						return
@@ -571,8 +571,8 @@
 					for (var/mob/living/carbon/human/H in range(5, P))
 						if (!H.takes_less_damage)
 							H.SpinAnimation(7,1)
-							H.Weaken(rand(4,5))
-					P.next_pose = world.time + 300
+							H.Weaken(rand(2,3))
+					P.next_pose = world.time + 600
 
 			if ("help")
 				src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,

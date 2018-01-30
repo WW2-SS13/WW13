@@ -38,7 +38,7 @@
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), slot_w_uniform)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/orange(prisoner), slot_shoes)
 		spawn(50)
-			M << "\red You have been sent to the prison station!"
+			M << "<span class = 'red'>You have been sent to the prison station!</span>"
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
 		message_admins("<span class = 'notice'>[key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.</span>", TRUE)
 
@@ -257,7 +257,7 @@ Ccomp's first proc.
 	G.has_enabled_antagHUD = 2
 	G.can_reenter_corpse = TRUE
 
-	G:show_message(text("<span class = 'notice'><B>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</B></span>"), TRUE)
+	G:show_message(text("<span class = 'notice'><b>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</b></span>"), TRUE)
 	log_admin("[key_name(usr)] allowed [key_name(G)] to bypass the 30 minute respawn limit")
 	message_admins("Admin [key_name_admin(usr)] allowed [key_name_admin(G)] to bypass the 30 minute respawn limit", TRUE)
 
@@ -277,18 +277,18 @@ Ccomp's first proc.
 			if(g.antagHUD)
 				g.antagHUD = FALSE						// Disable it on those that have it enabled
 				g.has_enabled_antagHUD = 2				// We'll allow them to respawn
-				g << "\red <B>The Administrator has disabled AntagHUD </B>"
+				g << "<span class = 'red'><b>An administrator has disabled AntagHUD.</b></span>"
 		config.antag_hud_allowed = FALSE
-		src << "\red <B>AntagHUD usage has been disabled</B>"
+		src << "<span class = 'red'><b>AntagHUD usage has been disabled.</b></span>"
 		action = "disabled"
 	else
 		for(var/mob/observer/ghost/g in get_ghosts())
 		//	if(!g.client.holder)						// Add the verb back for all non-admin ghosts
 			//	g.verbs += /mob/observer/ghost/verb/toggle_antagHUD
-			g << "<span class = 'notice'><B>The Administrator has enabled AntagHUD </B></span>"	// Notify all observers they can now use AntagHUD
+			g << "<span class = 'notice'><b>The Administrator has enabled AntagHUD </b></span>"	// Notify all observers they can now use AntagHUD
 		config.antag_hud_allowed = TRUE
 		action = "enabled"
-		src << "<span class = 'notice'><B>AntagHUD usage has been enabled</B></span>"
+		src << "<span class = 'notice'><b>AntagHUD usage has been enabled</b></span>"
 
 
 	log_admin("[key_name(usr)] has [action] antagHUD usage for observers")
@@ -305,19 +305,19 @@ Ccomp's first proc.
 	var/action=""
 	if(config.antag_hud_restricted)
 		for(var/mob/observer/ghost/g in get_ghosts())
-			g << "<span class = 'notice'><B>The administrator has lifted restrictions on joining the round if you use AntagHUD</B></span>"
+			g << "<span class = 'notice'><b>The administrator has lifted restrictions on joining the round if you use AntagHUD</b></span>"
 		action = "lifted restrictions"
 		config.antag_hud_restricted = FALSE
-		src << "<span class = 'notice'><B>AntagHUD restrictions have been lifted</B></span>"
+		src << "<span class = 'notice'><b>AntagHUD restrictions have been lifted</b></span>"
 	else
 		for(var/mob/observer/ghost/g in get_ghosts())
-			g << "\red <B>The administrator has placed restrictions on joining the round if you use AntagHUD</B>"
-			g << "\red <B>Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions </B>"
+			g << "<span class = 'red'><b>The administrator has placed restrictions on joining the round if you use AntagHUD</b></span>"
+			g << "<span class = 'red'><b>Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions</b></span>"
 			g.antagHUD = FALSE
 			g.has_enabled_antagHUD = FALSE
 		action = "placed restrictions"
 		config.antag_hud_restricted = TRUE
-		src << "\red <B>AntagHUD restrictions have been enabled</B>"
+		src << "<span class = 'red'><b>AntagHUD restrictions have been enabled</b></span>"
 
 	log_admin("[key_name(usr)] has [action] on joining the round if they use AntagHUD")
 	message_admins("Admin [key_name_admin(usr)] has [action] on joining the round if they use AntagHUD", TRUE)
@@ -455,7 +455,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		M.revive()
 
 		log_admin("[key_name(usr)] healed / revived [key_name(M)]")
-		message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(M)]!", TRUE)
+		message_admins("<span class = 'red'>Admin [key_name_admin(usr)] healed / revived [key_name_admin(M)]!</span>", TRUE)
 	else
 		alert("Admin revive disabled")
 
@@ -609,62 +609,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		log_admin("[key_name(usr)] used crushself.")
 		message_admins("<span class = 'notice'>[key_name_admin(usr)] used crushself.</span>", TRUE)
 
-/*
-/client/proc/cmd_manual_ban()
-	set name = "Manual Ban"
-	set category = "Special Verbs"
-	if(!authenticated || !holder)
-		src << "Only administrators may use this command."
-		return
-	var/mob/M = null
-	switch(alert("How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
-		if("Key List")
-			var/list/keys = list()
-			for(var/mob/M in world)
-				keys += M.client
-			var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in keys
-			if(!selection)
-				return
-			M = selection:mob
-			if ((M.client && M.client.holder && (M.client.holder.level >= holder.level)))
-				alert("You cannot perform this action. You must be of a higher administrative rank!")
-				return
-
-	switch(alert("Temporary Ban?",,"Yes","No"))
-	if("Yes")
-		var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num
-		if(!mins)
-			return
-		if(mins >= 525600) mins = 525599
-		var/reason = input(usr,"Reason?","reason","Griefer") as text
-		if(!reason)
-			return
-		if(M)
-			AddBan(M.ckey, M.computer_id, reason, usr.ckey, TRUE, mins)
-			M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
-			M << "\red This is a temporary ban, it will be removed in [mins] minutes."
-			M << "\red To try to resolve this matter head to http://ss13.donglabs.com/forum/"
-			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[replacetext(config.server_name, "#", "")]")
-			del(M.client)
-			qdel(M)
-		else
-
-	if("No")
-		var/reason = input(usr,"Reason?","reason","Griefer") as text
-		if(!reason)
-			return
-		AddBan(M.ckey, M.computer_id, reason, usr.ckey, FALSE, FALSE)
-		M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
-		M << "\red This is a permanent ban."
-		M << "\red To try to resolve this matter head to http://ss13.donglabs.com/forum/"
-		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-		message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[replacetext(config.server_name, "#", "")]")
-		del(M.client)
-		qdel(M)
-*/
 
 /client/proc/update_world()
 	// If I see anyone granting powers to specific keys like the code that was here,
@@ -749,7 +693,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Attack Log"
 
-	usr << text("\red <b>Attack Log for []</b>", mob)
+	usr << text("<span class = 'red'><b>Attack Log for []</b></span>", mob)
 	for(var/t in M.attack_log)
 		usr << t
 

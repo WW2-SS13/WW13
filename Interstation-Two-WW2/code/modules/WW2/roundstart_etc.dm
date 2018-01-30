@@ -175,7 +175,7 @@ var/GRACE_PERIOD_LENGTH = 7
 /hook/roundstart/proc/show_battle_report()
 	if (istype(map, /obj/map_metadata/forest))
 		spawn (600)
-			world << "<font size=3>Balance report: [n_of_side(GERMAN)] Germans, [n_of_side(SOVIET)] Soviets and [n_of_side(CIVILIAN)] Civilians, [n_of_side(PARTISAN)] Partisans.</font>"
+			show_global_battle_report(null)
 
 var/mission_announced = FALSE
 var/train_arrived = FALSE

@@ -22,7 +22,7 @@
 	if(!current_antagonists || !current_antagonists.len)
 		return ""
 
-	var/dat = "<br><table cellspacing=5><tr><td><B>[role_text_plural]</B></td><td></td></tr>"
+	var/dat = "<br><table cellspacing=5><tr><td><b>[role_text_plural]</b></td><td></td></tr>"
 	for(var/datum/mind/player in current_antagonists)
 		var/mob/M = player.current
 		dat += "<tr>"
@@ -38,7 +38,7 @@
 	dat += "</table>"
 /*
 	if(flags & ANTAG_HAS_NUKE)
-		dat += "<br><table><tr><td><B>Nuclear disk(s)</B></td></tr>"
+		dat += "<br><table><tr><td><b>Nuclear disk(s)</b></td></tr>"
 		for(var/obj/item/weapon/disk/nuclear/N in world)
 			dat += "<tr><td>[N.name], "
 			var/atom/disk_loc = N.loc

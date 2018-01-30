@@ -513,7 +513,7 @@
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			for(var/mob/M in viewers(src))
-				M.show_message("\red [user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
+				M.show_message("<span class = 'red'>[user.name] smashed the light!</span>", 3, "You hear a tinkle of breaking glass", 2)
 			broken()
 			return
 
@@ -784,7 +784,7 @@
 
 /obj/item/weapon/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
+		visible_message("<span class = 'red'>[name] shatters.</span>","<span class = 'red'>You hear a small glass object shatter.</span>")
 		status = LIGHT_BROKEN
 		force = WEAPON_FORCE_WEAK
 		sharp = TRUE

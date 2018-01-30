@@ -82,8 +82,8 @@
 	phrase = input("Choose activation phrase:") as text
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
 	phrase = replace_characters(phrase, replacechars)
-	usr.mind.store_memory("Explosive implant in [source] can be activated by saying something containing the phrase ''[phrase]'', <B>say [phrase]</B> to attempt to activate.", FALSE, FALSE)
-	usr << "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[phrase]'', <B>say [phrase]</B> to attempt to activate."
+	usr.mind.store_memory("Explosive implant in [source] can be activated by saying something containing the phrase ''[phrase]'', <b>say [phrase]</b> to attempt to activate.", FALSE, FALSE)
+	usr << "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[phrase]'', <b>say [phrase]</b> to attempt to activate."
 
 /obj/item/weapon/implant/explosive/proc/small_boom()
 	if (ishuman(imp_in) && part)

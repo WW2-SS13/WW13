@@ -1115,7 +1115,7 @@
 					<li><a href="#Final">Final Checks</a></li>
 				</ol><br>
 
-				<h1><a name="Foreword"><U><B>HOW TO NOT SUCK QUITE SO HARD AT ATMOSPHERICS</B></U></a></h1><BR>
+				<h1><a name="Foreword"><U><b>HOW TO NOT SUCK QUITE SO HARD AT ATMOSPHERICS</b></U></a></h1><BR>
 				<I>Or: What the fuck does a "pressure regulator" do?</I><BR><BR>
 
 				Alright. It has come to my attention that a variety of people are unsure of what a "pipe" is and what it does.
@@ -1125,7 +1125,7 @@
 				or something like that. Just what stuff does.<BR><BR>
 
 
-				<h1><a name="Basic"><B>Basic Pipes</B></a></h1>
+				<h1><a name="Basic"><b>Basic Pipes</b></a></h1>
 				<I>The boring ones.</I><BR>
 				Most ordinary pipes are pretty straightforward. They hold gas. If gas is moving in a direction for some reason, gas will flow in that direction.
 				That's about it. Even so, here's all of your wonderful pipe options.<BR>
@@ -1144,7 +1144,7 @@
 				An important note here is that pipes are now done in three distinct lines - general, supply, and scrubber. You can move gases between these with a universal adapter. Use the correct position for the correct location.
 				Connecting scrubbers to a supply position pipe makes you an idiot who gives everyone a difficult job. Insulated and HE pipes don't go through these positions.
 
-				<h1><a name="Insulated"><B>Insulated Pipes</B></a></h1>
+				<h1><a name="Insulated"><b>Insulated Pipes</b></a></h1>
 				<li><I>Bent pipes:</I> Pipes with a 90 degree bend at the half-meter mark. My goodness.</li>
 				<li><I>Pipe manifolds:</I> Pipes that are essentially a "T" shape, allowing you to connect three things at one point.</li>
 				<li><I>4-way manifold:</I> A four-way junction.</li>
@@ -1152,11 +1152,11 @@
 				<li><I>Manual Valve:</I> A valve that will block off airflow when turned. Can't be used by the AI or cyborgs, because they don't have hands.</li>
 				<li><I>Manual T-Valve:</I> Like a manual valve, but at the center of a manifold instead of a straight pipe.</li><BR><BR>
 
-				<h1><a name="Insulated"><B>Insulated Pipes</B></a></h1><BR>
+				<h1><a name="Insulated"><b>Insulated Pipes</b></a></h1><BR>
 				<I>Special Public Service Announcement.</I><BR>
 				Our regular pipes are already insulated. These are completely worthless. Punch anyone who uses them.<BR><BR>
 
-				<h1><a name="Devices"><B>Devices: </B></a></h1>
+				<h1><a name="Devices"><b>Devices: </b></a></h1>
 				<I>They actually do something.</I><BR>
 				This is usually where people get frightened, afraid, and start calling on their gods and/or cowering in fear. Yes, I can see you doing that right now.
 				Stop it. It's unbecoming. Most of these are fairly straightforward.<BR>
@@ -1177,7 +1177,7 @@
 				the rest will continue out the other side. Can also output from FALSE-4500 kPa. The "omni" vairant allows you to set input and output sections freely.</li>
 				</ul>
 
-				<h1><a name="HES"><B>Heat Exchange Systems</B></a></h1>
+				<h1><a name="HES"><b>Heat Exchange Systems</b></a></h1>
 				<I>Will not set you on fire.</I><BR>
 				These systems are used to only transfer heat between two pipes. They will not move gases or any other element, but will equalize the temperature (eventually). Note that because of how gases work (remember: pv=nRt),
 				a higher temperature will raise pressure, and a lower one will lower temperature.<BR>

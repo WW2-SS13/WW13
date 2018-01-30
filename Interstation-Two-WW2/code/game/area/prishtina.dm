@@ -37,6 +37,9 @@
 
 /area/prishtina/no_mans_land/invisible_wall
 
+/area/prishtina/no_mans_land/invisible_wall/inside
+	location = AREA_INSIDE
+
 /area/prishtina/forest
 	dynamic_lighting = FALSE
 	name = "The Forest"
@@ -471,9 +474,11 @@
 /area/prishtina/german/bunker
 	name = "German Bunker"
 	location = AREA_INSIDE
+	dynamic_lighting = FALSE
 
 /area/prishtina/german/lift
 	name = "German Lift"
+	location = AREA_INSIDE
 
 /area/prishtina/german/lift/up
 	name = "Upper German Lift"

@@ -107,7 +107,7 @@
 	if(!..(user, 2))
 		return
 	if (modded)
-		user << "\red Fuel faucet is wrenched open, leaking the fuel!"
+		user << "<span class = 'red'>The fuel faucet is wrenched open, leaking the fuel!</span>"
 	if(rig)
 		user << "<span class='notice'>There is some kind of device rigged to the tank.</span>"
 

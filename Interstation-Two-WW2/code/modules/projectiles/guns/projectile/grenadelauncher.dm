@@ -77,7 +77,7 @@
 		var/obj/item/ammo_casing/rocket_he/rocket = loaded[1]
 		user << "<span class = 'notice'>Rocket fuse is set to [rocket.BB.kill_count].</span>"
 	else
-		user << "\red It's empty."
+		user << "<span class = 'red'>It's empty.</span>"
 
 
 /obj/item/weapon/gun/projectile/rocket/one_use/rpg26
@@ -167,7 +167,7 @@
 */
 /obj/item/weapon/gun/projectile/grenade/attack_self(mob/user)
 	if(opened)
-		user << "\red You closed the [name]'s loading chamber."
+		user << "<span class = 'red'>You closed the [name]'s loading chamber.</span>"
 		opened = FALSE
 		update_icon()
 		return
@@ -185,7 +185,7 @@
 		if(opened)
 			load_ammo(I, user)
 		else
-			user << "\red Open the chamber first."
+			user << "<span class = 'red'>Open the chamber first.</span>"
 	else
 		..()
 
@@ -194,7 +194,7 @@
 		if(opened)
 			unload_ammo(user)
 		else
-			user << "\red You opened the [name]'s loading chamber."
+			user << "<span class = 'red'>You opened the [name]'s loading chamber.</span>"
 			opened = TRUE
 			update_icon()
 	else

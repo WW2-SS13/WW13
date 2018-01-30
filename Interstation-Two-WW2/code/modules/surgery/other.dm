@@ -48,8 +48,8 @@
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!" , \
-		"\red Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!")
+		user.visible_message("<span class = 'red'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</span>" , \
+		"<span class = 'red'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</span>")
 		affected.take_damage(5, FALSE)
 
 /datum/surgery_step/fix_dead_tissue		//Debridement
@@ -93,8 +93,8 @@
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!", \
-		"\red Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!")
+		user.visible_message("<span class = 'red'>[user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</span>", \
+		"<span class = 'red'>Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</span>")
 		affected.createwound(CUT, 20, TRUE)
 
 /datum/surgery_step/treat_necrosis
@@ -164,7 +164,7 @@
 
 		var/trans = container.reagents.trans_to_mob(target, container.amount_per_transfer_from_this, CHEM_BLOOD)
 
-		user.visible_message("\red [user]'s hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!" , \
-		"\red Your hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!")
+		user.visible_message("<span class = 'red'>[user]'s hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!</span>" , \
+		"<span class = 'red'>Your hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!</span>")
 
 		//no damage or anything, just wastes medicine

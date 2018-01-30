@@ -27,8 +27,8 @@
 	..()
 	activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	if (source.mind)
-		source.mind.store_memory("Compressed matter implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate.", FALSE, FALSE)
-	source << "The implanted compressed matter implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate."
+		source.mind.store_memory("Compressed matter implant can be activated by using the [activation_emote] emote, <b>say *[activation_emote]</b> to attempt to activate.", FALSE, FALSE)
+	source << "The implanted compressed matter implant can be activated by using the [activation_emote] emote, <b>say *[activation_emote]</b> to attempt to activate."
 
 
 /obj/item/weapon/implanter/compressed

@@ -23,8 +23,8 @@
 			else
 				inactive_on_main_station++
 
-	var/output = {"<B>AIR SYSTEMS REPORT</B><HR>
-<B>General Processing Data</B><BR>
+	var/output = {"<b>AIR SYSTEMS REPORT</b><HR>
+<b>General Processing Data</b><BR>
 	Cycle: [air_master.current_cycle]<br>
 	Groups: [air_master.zones.len]<BR>
 ---- <I>Active:</I> [active_groups]<BR>
@@ -32,10 +32,10 @@
 ---- <I>Active on station:</i> [active_on_main_station]<br>
 ---- <i>Inactive on station:</i> [inactive_on_main_station]<br>
 <BR>
-<B>Special Processing Data</B><BR>
+<b>Special Processing Data</b><BR>
 	Hotspot Processing: [hotspots]<BR>
 <br>
-<B>Geometry Processing Data</B><BR>
+<b>Geometry Processing Data</b><BR>
 	Tile Update: [air_master.tiles_to_update.len]<BR>
 "}
 

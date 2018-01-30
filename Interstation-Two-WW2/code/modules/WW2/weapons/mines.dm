@@ -124,7 +124,7 @@
 	for(var/mob/O in viewers(world.view, loc))
 		O << "<font color='red'>[AM] triggered the [src]!</font>"
 	triggered = TRUE
-	visible_message("\red <b>Click!</b>")
+	visible_message("<span class = 'red'><b>Click!</b></span>")
 	explosion(get_turf(src),-1,1,3)
 	spawn(0)
 		if(src)

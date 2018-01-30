@@ -60,8 +60,8 @@
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips as the blade sputters, searing a long gash in [target]'s [affected.name] with \the [tool]!", \
-		"\red Your hand slips as the blade sputters, searing a long gash in [target]'s [affected.name] with \the [tool]!")
+		user.visible_message("<span class = 'red'>[user]'s hand slips as the blade sputters, searing a long gash in [target]'s [affected.name] with \the [tool]!</span>", \
+		"<span class = 'red'>Your hand slips as the blade sputters, searing a long gash in [target]'s [affected.name] with \the [tool]!</span>")
 		affected.createwound(CUT, 7.5)
 		affected.createwound(BURN, 12.5)
 
@@ -100,8 +100,8 @@
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.name] with \the [tool]!", \
-		"\red Your hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.name] with \the [tool]!")
+		user.visible_message("<span class = 'red'>[user]'s hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.name] with \the [tool]!</span>", \
+		"<span class = 'red'>Your hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.name] with \the [tool]!</span>")
 		affected.createwound(CUT, 20)
 		affected.createwound(BURN, 15)
 
@@ -141,8 +141,8 @@
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, slicing open [target]'s [affected.name] in the wrong place with \the [tool]!", \
-		"\red Your hand slips, slicing open [target]'s [affected.name] in the wrong place with \the [tool]!")
+		user.visible_message("<span class = 'red'>[user]'s hand slips, slicing open [target]'s [affected.name] in the wrong place with \the [tool]!</span>", \
+		"<span class = 'red'>Your hand slips, slicing open [target]'s [affected.name] in the wrong place with \the [tool]!</span>")
 		affected.createwound(CUT, 10)
 
 /datum/surgery_step/generic/clamp_bleeders
@@ -177,8 +177,8 @@
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, tearing blood vessals and causing massive bleeding in [target]'s [affected.name] with \the [tool]!",	\
-		"\red Your hand slips, tearing blood vessels and causing massive bleeding in [target]'s [affected.name] with \the [tool]!",)
+		user.visible_message("<span class = 'red'>[user]'s hand slips, tearing blood vessals and causing massive bleeding in [target]'s [affected.name] with \the [tool]!</span>",	\
+		"<span class = 'red'>Your hand slips, tearing blood vessels and causing massive bleeding in [target]'s [affected.name] with \the [tool]!</span>",)
 		affected.createwound(CUT, 10)
 
 /datum/surgery_step/generic/retract_skin
@@ -225,14 +225,14 @@
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		var/msg = "\red [user]'s hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!"
-		var/self_msg = "\red Your hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!"
+		var/msg = "<span class = 'red'>[user]'s hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!</span>"
+		var/self_msg = "<span class = 'red'>Your hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!</span>"
 		if (target_zone == "chest")
-			msg = "\red [user]'s hand slips, damaging several organs in [target]'s torso with \the [tool]!"
-			self_msg = "\red Your hand slips, damaging several organs in [target]'s torso with \the [tool]!"
+			msg = "<span class = 'red'>[user]'s hand slips, damaging several organs in [target]'s torso with \the [tool]!</span>"
+			self_msg = "<span class = 'red'>Your hand slips, damaging several organs in [target]'s torso with \the [tool]!</span>"
 		if (target_zone == "groin")
-			msg = "\red [user]'s hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]"
-			self_msg = "\red Your hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!"
+			msg = "<span class = 'red'>[user]'s hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!</span>"
+			self_msg = "<span class = 'red'>Your hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!</span>"
 		user.visible_message(msg, self_msg)
 		target.apply_damage(12, BRUTE, affected, sharp=1)
 
@@ -269,8 +269,8 @@
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, leaving a small burn on [target]'s [affected.name] with \the [tool]!", \
-		"\red Your hand slips, leaving a small burn on [target]'s [affected.name] with \the [tool]!")
+		user.visible_message("<span class = 'red'>[user]'s hand slips, leaving a small burn on [target]'s [affected.name] with \the [tool]!</span>", \
+		"<span class = 'red'>Your hand slips, leaving a small burn on [target]'s [affected.name] with \the [tool]!</span>")
 		target.apply_damage(3, BURN, affected)
 
 /datum/surgery_step/generic/amputate
@@ -307,7 +307,7 @@
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, sawing through the bone in [target]'s [affected.name] with \the [tool]!", \
-		"\red Your hand slips, sawwing through the bone in [target]'s [affected.name] with \the [tool]!")
+		user.visible_message("<span class = 'red'>[user]'s hand slips, sawing through the bone in [target]'s [affected.name] with \the [tool]!</span>", \
+		"<span class = 'red'>Your hand slips, sawwing through the bone in [target]'s [affected.name] with \the [tool]!</span>")
 		affected.createwound(CUT, 30)
 		affected.fracture()

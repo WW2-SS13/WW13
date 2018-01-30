@@ -4,7 +4,7 @@
 	movement_speed_multiplier = 1.50
 	use_initial_stats = TRUE
 	stats = list(
-		"strength" = list(300,300),
+		"strength" = list(500,500),
 		"engineering" = list(100,100),
 		"rifle" = list(100,100),
 		"mg" = list(100,100),
@@ -12,6 +12,9 @@
 		"heavyweapon" = list(100,100),
 		"medical" = list(100,100),
 		"survival" = list(125,125))
+
+	has_hunger_and_thirst = FALSE
+	has_pain = FALSE
 
 	var/blood = 0.50
 
@@ -31,6 +34,9 @@
 					qdel(I)
 			loc = oloc
 
+/mob/living/carbon/human/vampire/proc/may_drink()
+	return blood <= 1.40
+
 /mob/living/carbon/human/vampire/proc/drink(var/mob/living/carbon/human/H)
 	if (!istype(H))
 		return FALSE
@@ -48,8 +54,8 @@
 		spawn ((v-1) * 10)
 			if (do_after(src, 10, H))
 				visible_message("<span class = 'danger'>[src] absorbs [H]'s blood through his fingers!</span>")
-				blood = min(1.50, blood+pick(0.03,0.04,0.05))
-				var/H_bloodloss = min(50, H.vessel.total_volume)
+				blood = min(1.50, blood+0.10)
+				var/H_bloodloss = min(112, H.vessel.total_volume)
 				H.drip(H_bloodloss)
 				drip(-H_bloodloss)
 				for (var/datum/reagent/blood/B in vessel.reagent_list)
@@ -63,8 +69,42 @@
 
 /mob/living/carbon/human/vampire/Life()
 	..()
-	var/heal_damage = 7 * (blood * blood)
-	heal_overall_damage(heal_damage)
+
+	nutrition = max_nutrition
+	water = max_water
+
+	// takes 625 ticks (21 minutes) for us to start starving, if we don't consume any blood
+	// while blood == 0, we don't heal either
+
+	// update: now it takes twice as many ticks because we use blood when healing
+	// too
+	blood = max(0, blood - (0.0008/2))
+	if (blood <= 0)
+		if (prob(10))
+			adjustBruteLoss(40)
+			src << "<span class = 'danger'>You're starving from a lack of blood!</span>"
+		return
+
+	var/loss = getTotalLoss()
+
+	var/heal_damage = (7 * (blood * blood)) + 2
+	adjustBruteLoss(-heal_damage*getStatCoeff("strength"))
+	adjustFireLoss(-heal_damage*getStatCoeff("strength"))
+	adjustToxLoss(-heal_damage*getStatCoeff("strength"))
+	adjustOxyLoss((-heal_damage*getStatCoeff("strength"))/10)
+
+	var/healedLoss = loss - getTotalLoss()
+	if (healedLoss > 0)
+		if (blood >= 0.25)
+			blood -= healedLoss/2000 // lose 5% blood for every 100 brute taken
+
+	var/area/A = get_area(src)
+	if (A.location == AREA_OUTSIDE)
+		if (list("Early Morning", "Morning", "Afternoon", "Midday").Find(time_of_day))
+			emote("scream")
+			visible_message("<span class = 'danger'>[src] turns into dust!</span>")
+			dust()
+
 
 /mob/living/carbon/human/vampire/Stat()
 	. = ..()

@@ -14,6 +14,7 @@
 		"survival" = list(400,400))
 
 	f_style = "Square Mustache"
+	has_hunger_and_thirst = FALSE
 
 /mob/living/carbon/human/mechahitler/New()
 	..()

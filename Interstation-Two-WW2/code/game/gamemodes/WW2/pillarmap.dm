@@ -1,6 +1,6 @@
-/datum/game_mode/ww2
-	name = "World War 2"
-	config_tag = "WW2"
+/datum/game_mode/pillarmap
+	name = "SS vs Pillar Men"
+	config_tag = "pillarmap"
 	#ifdef DEBUG
 	required_players = 1
 	#else
@@ -9,7 +9,8 @@
 	round_description = ""
 	extended_round_description = ""
 
-	var/time_both_sides_locked = -1
+	var/german_win_coeff = 1.1 // germans gets S.S.
+	var/soviet_win_coeff = 1.0 // and soviets don't
 
 	var/cond_2_1_check1 = FALSE
 	var/cond_2_1_nextcheck = -1
@@ -301,4 +302,3 @@
 					for (var/obj/tank/T in world)
 						qdel(T)
 					world << "<i>Due to lowpop, there are no tanks.</i>"
-

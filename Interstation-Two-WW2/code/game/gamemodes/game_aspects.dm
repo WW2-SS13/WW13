@@ -64,8 +64,6 @@
 		/datum/game_aspect/ww2/russian_sadvantage,
 		/datum/game_aspect/ww2/russian_sdisadvantage,
 
-		/datum/game_aspect/ww2/german_logistical_disadvantage,
-
 		/datum/game_aspect/ww2/no_tanks,
 		/datum/game_aspect/ww2/no_artillery),
 
@@ -78,8 +76,6 @@
 				/datum/game_aspect/ww2/german_sdisadvantage,
 				/datum/game_aspect/ww2/russian_sadvantage,
 				/datum/game_aspect/ww2/russian_sdisadvantage,
-
-				/datum/game_aspect/ww2/german_logistical_disadvantage,
 
 				/datum/game_aspect/ww2/no_tanks,
 				/datum/game_aspect/ww2/no_artillery),
@@ -219,20 +215,6 @@
 	world << "<br><i>[desc]</i>"
 	var/datum/game_mode/ww2/mymode = mode
 	mymode.supplies[SOVIET] = random_decimal(0.8, 0.9)
-
-/datum/game_aspect/ww2/german_logistical_disadvantage
-	desc = "The German High Command has disallowed sending the train until after 15 minutes for this round."
-
-/datum/game_aspect/ww2/german_logistical_disadvantage/specialcheck()
-	return locate(/obj/effect/landmark/train/german_train_start) in world
-
-/datum/game_aspect/ww2/german_logistical_disadvantage/activate()
-	. = ..()
-	if (. == FALSE)
-		return .
-	world << "[WW2_ASPECT_SPAN][.]German Logistical Disadvantage!</span>"
-	world << "<br><i>[desc]</i>"
-	GRACE_PERIOD_LENGTH = 15
 
 /datum/game_aspect/ww2/no_tanks
 	desc = "There are no tanks this battle."

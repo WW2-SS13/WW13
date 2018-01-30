@@ -55,7 +55,7 @@ var/global/say_disabled = FALSE
 	set category = "Mapping"
 	set name = "Disable all communication verbs"
 
-	usr << "\red Proc disabled."
+	usr << "<span class = 'red'>This proc is code-disabled.</span>"
 
 	/*say_disabled = !say_disabled
 	if(say_disabled)
@@ -70,7 +70,7 @@ var/global/movement_disabled_exception //This is the client that calls the proc,
 	set category = "Mapping"
 	set name = "Disable all movement"
 
-	usr << "\red Proc disabled."
+	usr << "<span class = 'red'>This proc is code-disabled.</span>"
 
 	/*movement_disabled = !movement_disabled
 	if(movement_disabled)

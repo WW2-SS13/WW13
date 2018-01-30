@@ -36,7 +36,7 @@
 	dna.SetSEState(MONKEYBLOCK,1)
 	dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
 
-	src << "<B>You are now [species.name]. </B>"
+	src << "<b>You are now [species.name]. </b>"
 	qdel(animation)
 
 	return src
@@ -71,7 +71,7 @@
 		else
 	new_slime.key = key
 
-	new_slime << "<B>You are now a slime. Skreee!</B>"
+	new_slime << "<b>You are now a slime. Skreee!</b>"
 	qdel(src)
 	return
 */
@@ -92,7 +92,7 @@
 	new_corgi.a_intent = I_HURT
 	new_corgi.key = key
 
-	new_corgi << "<B>You are now a Corgi. Yap Yap!</B>"
+	new_corgi << "<b>You are now a Corgi. Yap Yap!</b>"
 	qdel(src)
 	return
 
@@ -102,7 +102,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		usr << "\red Sorry but this mob type is currently unavailable."
+		usr << "<span class = 'red'>Sorry, but this mob type is currently unavailable.</span>"
 		return
 
 	if(transforming)
@@ -136,7 +136,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		usr << "\red Sorry but this mob type is currently unavailable."
+		usr << "<span class = 'red'>Sorry, but this mob type is currently unavailable.</span>"
 		return
 
 	var/mob/new_mob = new mobpath(loc)

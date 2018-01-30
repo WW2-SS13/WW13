@@ -531,9 +531,10 @@
 		return
 	var/mob/living/carbon/human/M = user
 
+	// realistic WW2 suicide, no hesitation - Kachnov
 	mouthshoot = TRUE
-	M.visible_message("\red [user] sticks their gun in their mouth, ready to pull the trigger...")
-	if(!do_after(user, 15))
+	M.visible_message("<span class = 'red'>[user] sticks their gun in their mouth.</span>")
+	if(!do_after(user, 3))
 		M.visible_message("<span class = 'notice'>[user] failed to commit suicide.</span>")
 		mouthshoot = FALSE
 		return
@@ -576,7 +577,7 @@
 			if ("chest")
 				damage_multiplier = 3.0
 
-		M.visible_message("\red [user] shoots themselves in \the [organ_name]!")
+		M.visible_message("<span class = 'red'>[user] shoots themselves in \the [organ_name]!</span>")
 		if(silenced)
 			playsound(user, fire_sound, 20, TRUE)
 		else
@@ -674,7 +675,7 @@
 				G.unwield()
 			qdel(src)
 		else
-			user << "\red Something is WRONG!!"
+			user << "<span class = 'red'>Something is WRONG!!</span>"
 */
 
 /obj/item/weapon/offhand/update_icon()
@@ -696,20 +697,20 @@
 	if(!G || !istype(G))
 		G = get_inactive_hand()
 		if(!G || !istype(G))
-			src << "\red You can't wield anything in your hands."
+			src << "<span class = 'red'>You can't wield anything in your hands.</span>"
 			return
 
 	if(G.wielded)
-		src << "\red The [G.name] is already wielded."
+		src << "<span class = 'red'>The [G.name] is already wielded.</span>"
 		return
 
 	if(!G.can_wield)
-		usr << "\red You can't wield the [G.name]."
+		usr << "<span class = 'red'>You can't wield the [G.name].</span>"
 		return
 
 	G.wield(src)
 
-	usr << "\red You wielded the [G.name]."
+	usr << "<span class = 'red'>You wielded the [G.name].</span>"
 
 /mob/living/carbon/human/verb/unwield_weapon()
 	set name = "Unwield"
@@ -719,18 +720,18 @@
 	if(!G || !istype(G))
 		G = get_inactive_hand()
 		if(!G || !istype(G))
-			src << "\red You can't unwield anything in your hands."
+			src << "<span class = 'red'>You can't unwield anything in your hands.</span>"
 			return
 
 	if(!G.wielded)
-		src << "\red The [G.name] is not wielded."
+		src << "<span class = 'red'>The [G.name] is not wielded.</span>"
 		return
 
 	G.unwield(src)
 	//if(G != get_active_hand())
 	//	H:swap_hand()
 
-	usr << "\red You unwielded the [name]."
+	usr << "<span class = 'red'>You unwielded the [name].</span>"
 */
 /mob/living/carbon/human/verb/eject_magazine()
 	set name = "Eject magazine"
@@ -740,11 +741,11 @@
 	if(!G || !istype(G))
 		G = get_inactive_hand()
 		if(!G || !istype(G))
-			src << "\red You can't unload magazine from anything in your hands."
+			src << "<span class = 'red'>You can't unload magazine from anything in your hands.</span>"
 			return
 
 	if(G.load_method == MAGAZINE && G.ammo_magazine == null)
-		src << "\red The [G.name] is already unloaded."
+		src << "<span class = 'red'>The [G.name] is already unloaded.</span>"
 		return
 
 	//if(G.wielded)
@@ -767,7 +768,7 @@
 	if(!G || !istype(G))
 		G = get_inactive_hand()
 		if(!G || !istype(G))
-			src << "\red You have no weapon in hands."
+			src << "<span class = 'red'>You have no weapon in hands.</span>"
 			return
 
 	if(G.firemodes.len > TRUE)

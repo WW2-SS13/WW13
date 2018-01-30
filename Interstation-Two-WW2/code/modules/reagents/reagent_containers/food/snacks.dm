@@ -715,7 +715,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket
 	name = "\improper Sin-pocket"
-	desc = "The food of choice for the veteran. Do <B>NOT</B> overconsume."
+	desc = "The food of choice for the veteran. Do <b>NOT</b> overconsume."
 	filling_color = "#6D6D00"
 	heated_reagents = list("doctorsdelight" = 5, "hyperzine" = 0.75, "synaptizine" = 0.25)
 	var/has_been_heated = FALSE
