@@ -238,7 +238,7 @@
 	spawn (rand(420, 600))
 		plane_message("<span class = 'danger'><big>[src] explodes.</big></span>")
 		for (var/mob/m in src)
-			m.gib()
+			m.crush()
 		explosion(get_turf(src), TRUE, 3, 5, 6)
 		spawn (20)
 			qdel(src)

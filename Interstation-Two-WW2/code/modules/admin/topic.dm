@@ -191,7 +191,7 @@
 
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", TRUE)
+		message_admins("<span class = 'notice'>[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].</span>", TRUE)
 		href_list["secretsadmin"] = "check_antagonist"
 
 	else if(href_list["simplemake"])
@@ -209,7 +209,7 @@
 			if("Yes")		delmob = TRUE
 
 		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]]; deletemob=[delmob]")
-		message_admins("\blue [key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]]; deletemob=[delmob]", TRUE)
+		message_admins("<span class = 'notice'>[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]]; deletemob=[delmob]</span>", TRUE)
 
 		// only way we can transform ourselves
 		var/usr_client = usr.client
@@ -255,6 +255,9 @@
 					if (J != "Cancel")
 						job_master.EquipRank(H, J)
 						H.original_job = job_master_occupation_names[J]
+						var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
+						message_admins(msg)
+						log_admin(msg)
 						spawn (1)
 							H.loc = oloc_H
 
@@ -737,7 +740,7 @@
 			else
 				M << "\red You have been kicked from the server: [reason]"
 			log_admin("[key_name(usr)] booted [key_name(M)].")
-			message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", TRUE)
+			message_admins("<span class = 'notice'>[key_name_admin(usr)] booted [key_name_admin(M)].</span>", TRUE)
 			//M.client = null
 			qdel(M.client)
 /*
@@ -875,8 +878,8 @@
 			return alert(usr, "The game has already started.", null, null, null, null)
 		master_mode = href_list["c_mode2"]
 		log_admin("[key_name(usr)] set the mode as [master_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the mode as [master_mode].", TRUE)
-		world << "\blue <b>The mode is now: [master_mode]</b>"
+		message_admins("<span class = 'notice'>[key_name_admin(usr)] set the mode as [master_mode].</span>", TRUE)
+		world << "<span class = 'notice'><b>The mode is now: [master_mode]</b></span>"
 		game_panel() // updates the main game menu
 		world.save_mode(master_mode)
 		.(href, list("c_mode"=1))
@@ -890,7 +893,7 @@
 			return alert(usr, "The game mode has to be secret!", null, null, null, null)
 		secret_force_mode = href_list["f_secret2"]
 		log_admin("[key_name(usr)] set the forced secret mode as [secret_force_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [secret_force_mode].", TRUE)
+		message_admins("<span class = 'notice'>[key_name_admin(usr)] set the forced secret mode as [secret_force_mode].</span>", TRUE)
 		game_panel() // updates the main game menu
 		.(href, list("f_secret"=1))
 /*
@@ -915,7 +918,7 @@
 			return
 
 		log_admin("[key_name(usr)] attempting to corgize [key_name(H)]")
-		message_admins("\blue [key_name_admin(usr)] attempting to corgize [key_name_admin(H)]", TRUE)
+		message_admins("<span class = 'notice'>[key_name_admin(usr)] attempting to corgize [key_name_admin(H)]</span>", TRUE)
 		H.corgize()
 
 	else if(href_list["forcespeech"])
@@ -930,7 +933,7 @@
 		M.say(speech)
 		speech = sanitize(speech) // Nah, we don't trust them
 		log_admin("[key_name(usr)] forced [key_name(M)] to say: [speech]")
-		message_admins("\blue [key_name_admin(usr)] forced [key_name_admin(M)] to say: [speech]")
+		message_admins("<span class = 'notice'>[key_name_admin(usr)] forced [key_name_admin(M)] to say: [speech]</span>")
 
 	else if(href_list["revive"])
 		if(!check_rights(R_REJUVINATE))	return
@@ -1098,7 +1101,7 @@
 		log_admin("[key_name(H)] got their cookie, spawned by [key_name(owner)]")
 		message_admins("[key_name(H)] got their cookie, spawned by [key_name(owner)]")
 
-		H << "\blue Your prayers have been answered!! You received the <b>best cookie</b>!"
+		H << "<span class = 'notice'>Your prayers have been answered!! You received the <b>best cookie</b>!</span>"
 /*
 	else if(href_list["BlueSpaceArtillery"])
 		if(!check_rights(R_ADMIN|R_FUN))	return
@@ -1136,7 +1139,7 @@
 			else			T.break_tile()
 
 		if(M.health == TRUE)
-			M.gib()
+			M.crush()
 		else
 			M.adjustBruteLoss( min( 99 , (M.health - TRUE) )    )
 			M.Stun(20)

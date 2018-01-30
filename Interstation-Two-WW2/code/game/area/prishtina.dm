@@ -466,6 +466,21 @@
 	icon_state = "blue3"
 	location = AREA_INSIDE
 
+// special german areas
+
+/area/prishtina/german/bunker
+	name = "German Bunker"
+	location = AREA_INSIDE
+
+/area/prishtina/german/lift
+	name = "German Lift"
+
+/area/prishtina/german/lift/up
+	name = "Upper German Lift"
+
+/area/prishtina/german/lift/down
+	name = "Lower German Lift"
+
 // soviet areas
 
 /area/prishtina/soviet

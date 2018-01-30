@@ -457,24 +457,63 @@ var/area/partisan_stockpile = null
 			return
 
 		if ("PartisanStockpile")
+
+			// partisans get 6 guns, a maxim, and some mags
+			// they have to loot the rest from soviets or germans
 			var/turf/turf = get_turf(loc)
 			for (var/v in 1 to 5)
-				if (prob(50))
+				if (prob(80)) // spawn approx. 4 lugers
 					new /obj/item/weapon/gun/projectile/pistol/luger(turf)
-				if (prob(40))
-					new /obj/item/clothing/accessory/storage/webbing(turf)
-				if (prob(75))
-					for (var/vv in 1 to rand(1,3))
+				if (prob(80)) // spawn approx. 14 luger mags
+					for (var/vv in 1 to rand(1,7))
 						new /obj/item/ammo_magazine/luger(turf)
+				if (prob(40)) // spawn approx. 2 svts
+					new /obj/item/weapon/gun/projectile/svt(turf)
+				if (prob(40)) // spawn approx. 7 svt mags
+					for (var/vv in 1 to rand(1,7))
+						new /obj/item/ammo_magazine/svt(turf)
+				if (prob(40)) // spawn approx. 2 mosins
+					new /obj/item/weapon/gun/projectile/boltaction/mosin(turf)
+				if (prob(40)) // spawn approx. 7 mosin mags
+					for (var/vv in 1 to rand(1,7))
+						new /obj/item/ammo_magazine/mosin(turf)
+				if (prob(60))
+					new /obj/item/clothing/accessory/storage/webbing(turf)
 				if (prob(60))
 					new /obj/item/weapon/attachment/bayonet(turf)
 				if (prob(50))
 					new /obj/item/weapon/melee/classic_baton/MP/soviet/old(turf)
+
 			// ptrd ammo
 			for (var/v in 1 to rand(10,20))
 				new /obj/item/ammo_casing/a145 (turf)
 
+			// advanced medical supplies
+			new /obj/item/weapon/storage/firstaid/toxin(turf)
+			new /obj/item/weapon/storage/firstaid/fire(turf)
+			new /obj/item/weapon/storage/firstaid/o2(turf)
+			new /obj/item/weapon/storage/firstaid/regular(turf)
+			new /obj/item/weapon/storage/firstaid/injectorpack(turf)
+			new /obj/item/weapon/storage/firstaid/combat(turf)
+			new /obj/item/weapon/doctor_handbook(turf)
+
+			// gauze
+			for (var/v in 1 to 10)
+				new /obj/item/weapon/gauze_pack/gauze(turf)
+
+			// maxim belts
+			for (var/v in 1 to 2)
+				new /obj/item/ammo_magazine/maxim(turf)
+
 			partisan_stockpile = get_area(turf)
+
+			// spawn exactly 1 maxim
+			for (var/_dir in list(NORTH, EAST, SOUTH, WEST))
+				var/turf/turf2 = get_step(turf, _dir)
+				if (!turf2.density && !locate(/obj/structure) in turf2)
+					new /obj/item/weapon/gun/projectile/minigun/kord/maxim(turf2)
+					break
+
 			qdel(src)
 			return
 
@@ -484,6 +523,21 @@ var/area/partisan_stockpile = null
 			latejoin_turfs[name] += loc
 			qdel(src)
 			return
+
+		if ("JoinLatePillarMan")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if ("JoinLateVampire")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
 		if("Fallschirm")
 			fallschirm_landmarks += loc
 			qdel(src)

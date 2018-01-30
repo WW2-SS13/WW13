@@ -2,8 +2,6 @@
 Contains most of the procs that are called when a mob is attacked by something
 
 bullet_act
-ex_act
-meteor_act
 
 */
 
@@ -12,15 +10,22 @@ meteor_act
 		return ..(W, user)
 	if (!istype(W) || !W.sharp)
 		return ..(W, user)
-	else if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers) && user.a_intent == I_HURT)
-		user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
-		if (do_after(user, 30, src))
-			user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
-			for (var/v in TRUE to rand(5,7))
-				var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
-				meat.name = "[name] meatsteak"
-			crush()
-			qdel(src)
+
+	var/grabbed_by_user = FALSE
+	for(var/obj/item/weapon/grab/G in grabbed_by)
+		if(G.assailant == user && G.state >= GRAB_NECK)
+			grabbed_by_user = TRUE
+
+	if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers) && user.a_intent == I_HURT && !grabbed_by_user)
+		if (stat == DEAD)
+			user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
+			if (do_after(user, 30, src))
+				user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
+				for (var/v in TRUE to rand(5,7))
+					var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
+					meat.name = "[name] meatsteak"
+				crush()
+				qdel(src)
 	else
 		return ..(W, user)
 
@@ -68,9 +73,21 @@ meteor_act
 			P.on_hit(src, 2, def_zone)
 			return 2
 	else
+		if ((abs(P.starting.x - x) + abs(P.starting.y - y)) > 2) // not PB range
+			if (list("head", "mouth", "eyes").Find(def_zone) && prob(40))
+				visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
+				qdel(P)
+				adjustBruteLoss(rand(2,3))
+				return
+			else if (prob(20))
+				visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
+				qdel(P)
+				adjustBruteLoss(rand(2,3))
+				return
 		// get knocked back once in a while
 		// unless we're on a train because bugs
 		if (prob(P.KD_chance/2) && !is_on_train())
+			SpinAnimation(5,1)
 			var/turf/behind = get_step(src, P.dir)
 			if (behind)
 				if (behind.density || locate(/obj/structure) in behind)
@@ -83,6 +100,8 @@ meteor_act
 					visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
 					Weaken(rand(5,7))
 					adjustBruteLoss(rand(20,30))
+					if (client)
+						shake_camera(src, rand(2,3), rand(2,3))
 					playsound(get_turf(src), 'sound/effects/gore/fallsmash.ogg', 100)
 					for (var/obj/structure/window/W in get_turf(slammed_into))
 						W.shatter()
@@ -94,6 +113,8 @@ meteor_act
 		if (prob(P.KD_chance))
 			Weaken(rand(3,4))
 			stamina = max(stamina - 50, 0)
+			if (client)
+				shake_camera(src, rand(2,3), rand(2,3))
 
 	//Shrapnel
 	if(P.can_embed())
@@ -104,6 +125,11 @@ meteor_act
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
 			SP.loc = organ
 			organ.embed(SP)
+
+	if (P.gibs)
+		gib()
+	else if (P.crushes)
+		crush()
 
 	return (..(P , def_zone))
 
@@ -359,7 +385,7 @@ meteor_act
 		var/miss_chance = 15
 		if (O.throw_source)
 			var/distance = get_dist(O.throw_source, loc)
-			miss_chance = max(15*(distance-2), FALSE)
+			miss_chance = max(15*(distance-2), 0)
 		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1)
 
 		if(zone && O.thrower != src)
@@ -368,6 +394,9 @@ meteor_act
 				zone = null
 			else if(shield_check)
 				return
+
+		if (!zone && lying)
+			zone = "chest"
 
 		if(!zone)
 			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")

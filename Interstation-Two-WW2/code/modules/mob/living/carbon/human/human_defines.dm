@@ -128,7 +128,7 @@
 
 	/* All stat names MUST be lowercase. */
 
-	var/takes_less_bullet_damage = FALSE
+	var/takes_less_damage = FALSE
 
 	var/list/stats = list(
 		"strength" = list(100,100),
@@ -139,3 +139,5 @@
 		"heavyweapon" = list(100,100),
 		"medical" = list(100,100),
 		"survival" = list(100,100))
+
+	var/use_initial_stats = FALSE

@@ -12,7 +12,7 @@ SERVER_NAME Lebensraum
 HUB_FEATURES A new light-medium roleplay WW2 Server
 
 ## The main content of your hub message
-HUB_BODY <i>1942, SEASON, TIME_OF_DAY, Ukraine</i><br>
+HUB_BODY <i>1941, SEASON, TIME_OF_DAY, Ukraine</i><br>
 
 ## Use a link to a banner on your hub message? Comment out if not
 HUB_BANNER_URL <img src='http://tny.im/btn'>
@@ -178,13 +178,13 @@ FORUMURL http://ww13.boards.net/
 DONATIONURL https://www.paypal.me/WW13Server
 
 ## rules address
-RULESURL https://discord.gg/3zjPhfb
+RULESURL http://mechahitler.co.nf/lebensraum/rules.html
 
 ## discord address
 DISCORDURL https://discord.gg/PVqjqCv
 
 ## Wiki address
-WIKIURL http://noml.wikia.com/wiki/No_Man%27s_Land_Wiki
+WIKIURL http://lebensraum.wikia.com
 
 ## Website address
 WEBSITEURL http://mechahitler.co.nf/
@@ -331,6 +331,14 @@ ANIMAL_DELAY 0
 LIGHTING_IS_RUSTIC 0
 MACHINERY_DOES_NOT_USE_POWER 1
 
+## Use one of three formats here: 'VALUE1, VALUE2, VALUE3', 'ALL', or 'NONE'
+## Valid seasons are 'SUMMER', 'SPRING', 'FALL', 'WINTER'
+## Valid weathers are 'RAIN', 'SNOW'
+## Having a value of 'NONE' for seasons means the only available season is Spring
+
+ENABLED_SEASONS ALL 
+ENABLED_WEATHER ALL
+
 ##Train stuff
 
 GERMAN_TRAIN_CARS_OFFICER 1
@@ -342,3 +350,7 @@ GERMAN_SUPPLYTRAIN_CARS 4
 ##WW2 job stuff
 
 PARATROOPER_DROP_TIME 3000
+
+## Dumb memes
+
+ALLOW_DABBING 

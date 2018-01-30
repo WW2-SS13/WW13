@@ -213,7 +213,7 @@ macro "macro"
 		command = ".center"
 	elem 
 		name = "Space"
-		command = "use-tank-guns"
+		command = "on-press-spacebar"
 	elem 
 		name = "Northeast"
 		command = ".northeast"
@@ -365,7 +365,7 @@ macro "hotkeymode"
 		command = ".center"
 	elem 
 		name = "Space"
-		command = "use-tank-guns"
+		command = "on-press-spacebar"
 	elem 
 		name = "Northeast"
 		command = "Move-Upwards"
@@ -805,90 +805,10 @@ menu "menu"
 		saved-params = "is-checked"
 
 
-window "Telecomms IDE"
-	elem "Telecomms IDE"
-		type = MAIN
-		pos = 281,0
-		size = 569x582
-		anchor1 = none
-		anchor2 = none
-		background-color = #ffffff
-		is-visible = false
-		saved-params = "pos;size;is-minimized;is-maximized"
-		title = "TCS IDE"
-		statusbar = false
-		on-close = "exittcs"
-	elem "button5"
-		type = BUTTON
-		pos = 209,464
-		size = 70x20
-		anchor1 = 37,80
-		anchor2 = 49,83
-		saved-params = "is-checked"
-		text = "Clear Memory"
-		command = "tcsclearmem"
-	elem "button4"
-		type = BUTTON
-		pos = 157,464
-		size = 52x20
-		anchor1 = 28,80
-		anchor2 = 37,83
-		saved-params = "is-checked"
-		text = "Revert"
-		command = "tcsrevert"
-	elem "button3"
-		type = BUTTON
-		pos = 105,464
-		size = 52x20
-		anchor1 = 18,80
-		anchor2 = 28,83
-		saved-params = "is-checked"
-		text = "Execute"
-		command = "tcsrun"
-	elem "tcserror"
-		type = OUTPUT
-		pos = 0,488
-		size = 566x94
-		anchor1 = 0,84
-		anchor2 = 99,100
-		font-family = "sans-serif"
-		font-size = 9
-		saved-params = "max-lines"
-	elem "button2"
-		type = BUTTON
-		pos = 53,464
-		size = 52x20
-		anchor1 = 9,80
-		anchor2 = 18,83
-		saved-params = "is-checked"
-		text = "Compile"
-		command = "tcscompile"
-	elem "button1"
-		type = BUTTON
-		pos = 0,464
-		size = 53x20
-		anchor1 = 0,80
-		anchor2 = 9,83
-		saved-params = "is-checked"
-		text = "Apply"
-		command = "tcssave"
-	elem "tcscode"
-		type = INPUT
-		pos = 0,0
-		size = 569x464
-		anchor1 = 0,0
-		anchor2 = 100,80
-		font-family = "Courier"
-		font-size = 10
-		saved-params = ""
-		command = "cancel"
-		multi-line = true
-		no-command = true
-
 window "chemdispenser"
 	elem "chemdispenser"
 		type = MAIN
-		pos = 281,0
+		pos = 464,0
 		size = 340x480
 		anchor1 = none
 		anchor2 = none
@@ -975,7 +895,6 @@ window "chemdispenser_reagents"
 		size = 340x448
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -990,7 +909,6 @@ window "chemdispenser_reagents"
 		size = 64x32
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Dispense"
@@ -1004,7 +922,6 @@ window "chemdispenser_reagents"
 		anchor1 = none
 		anchor2 = none
 		font-size = 15
-		background-color = none
 		is-visible = false
 		saved-params = ""
 		text = "Chloral Hydrate"
@@ -1018,7 +935,6 @@ window "mainwindow"
 		size = 640x440
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Space Station 13"
@@ -1031,7 +947,6 @@ window "mainwindow"
 		size = 80x20
 		anchor1 = 100,100
 		anchor2 = none
-		background-color = none
 		saved-params = ""
 		text = "Hotkey Toggle"
 		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true : mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
@@ -1042,7 +957,7 @@ window "mainwindow"
 		size = 634x416
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = none
+		background-color = #000000
 		saved-params = "splitter"
 		right = "rpane"
 		is-vert = true
@@ -1062,7 +977,6 @@ window "mainwindow"
 		size = 40x20
 		anchor1 = 100,100
 		anchor2 = none
-		background-color = none
 		saved-params = "is-checked"
 		text = "Chat"
 		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
@@ -1075,7 +989,6 @@ window "mapwindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1103,7 +1016,6 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1123,125 +1035,6 @@ window "outputwindow"
 		style = ".system {color:#ff0000;}"
 		max-lines = 0
 
-window "rpane"
-	elem "rpane"
-		type = MAIN
-		pos = 464,0
-		size = 640x480
-		anchor1 = none
-		anchor2 = none
-		background-color = none
-		saved-params = "pos;size;is-minimized;is-maximized"
-		titlebar = false
-		statusbar = false
-		can-close = false
-		can-minimize = false
-		can-resize = false
-		is-pane = true
-	elem "rpanewindow"
-		type = CHILD
-		pos = 0,0
-		size = 654x904
-		anchor1 = 0,0
-		anchor2 = 100,100
-		background-color = none
-		saved-params = "splitter"
-		right = "outputwindow"
-		is-vert = false
-	elem "button7"
-		type = BUTTON
-		pos = 528,0
-		size = 109x16
-		anchor1 = 83,0
-		anchor2 = 100,3
-		text-color = #ff0000
-		background-color = none
-		saved-params = "is-checked"
-		text = "Make A Suggestion"
-		command = "makeasugg"
-		group = "rpanemode"
-	elem "button6"
-		type = BUTTON
-		pos = 414,0
-		size = 109x16
-		anchor1 = 65,0
-		anchor2 = 82,3
-		text-color = #ff0000
-		background-color = none
-		saved-params = "is-checked"
-		text = "Report A Bug"
-		command = "reportabug"
-		group = "rpanemode"
-	elem "rulesb"
-		type = BUTTON
-		pos = 278,0
-		size = 60x16
-		anchor1 = 43,0
-		anchor2 = 53,3
-		background-color = none
-		saved-params = "is-checked"
-		text = "Rules"
-		command = "rules"
-		group = "rpanemode"
-	elem "discord"
-		type = BUTTON
-		pos = 341,0
-		size = 67x16
-		anchor1 = 53,0
-		anchor2 = 64,3
-		background-color = none
-		saved-params = "is-checked"
-		text = "Discord"
-		command = "discord"
-		group = "rpanemode"
-	elem "forumb"
-		type = BUTTON
-		pos = 215,0
-		size = 60x16
-		anchor1 = 34,0
-		anchor2 = 43,3
-		background-color = none
-		saved-params = "is-checked"
-		text = "Github"
-		command = "github"
-		group = "rpanemode"
-	elem "wikib"
-		type = BUTTON
-		pos = 152,0
-		size = 60x16
-		anchor1 = 24,0
-		anchor2 = 33,3
-		background-color = none
-		saved-params = "is-checked"
-		text = "Website"
-		command = "website"
-		group = "rpanemode"
-	elem "textb"
-		type = BUTTON
-		pos = 5,0
-		size = 60x16
-		anchor1 = 1,0
-		anchor2 = 10,3
-		background-color = none
-		saved-params = "is-checked"
-		text = "Text"
-		command = ".winset \"rpanewindow.left=;\""
-		is-checked = true
-		group = "rpanemode"
-		button-type = pushbox
-	elem "infob"
-		type = BUTTON
-		pos = 78,0
-		size = 60x16
-		anchor1 = 12,0
-		anchor2 = 22,3
-		background-color = none
-		saved-params = "is-checked"
-		text = "Info"
-		command = ".winset \"rpanewindow.left=infowindow\""
-		group = "rpanemode"
-		button-type = pushbox
-
 window "browserwindow"
 	elem "browserwindow"
 		type = MAIN
@@ -1249,7 +1042,6 @@ window "browserwindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Browser"
 		is-pane = true
@@ -1272,22 +1064,158 @@ window "infowindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
-		background-color = none
+		background-color = #000000
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Info"
+		titlebar = false
+		statusbar = false
+		can-close = false
+		can-minimize = false
+		can-resize = false
 		is-pane = true
 	elem "info"
 		type = INFO
-		pos = 0,0
-		size = 638x477
-		anchor1 = 0,0
+		pos = 0,25
+		size = 640x455
+		anchor1 = 0,13
 		anchor2 = 100,100
+		font-family = "Book Antiqua"
+		font-size = 8
+		text-color = #e1e1d7
+		background-color = #1e1e28
 		is-default = true
+		border = line
+		drop-zone = false
 		saved-params = ""
 		highlight-color = #00aa00
-		tab-background-color = none
+		tab-text-color = #e1e1d7
+		tab-background-color = #282832
+		tab-font-family = "Book Antiqua"
+		tab-font-size = 9
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
+
+window "rpane"
+	elem "rpane"
+		type = MAIN
+		pos = 464,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+		titlebar = false
+		statusbar = false
+		can-close = false
+		can-minimize = false
+		can-resize = false
+		is-pane = true
+	elem "rpanewindow"
+		type = CHILD
+		pos = 0,0
+		size = 640x505
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #1e1e28
+		saved-params = "splitter"
+		left = "buttons"
+		right = "outputwindow"
+		is-vert = false
+	elem "button7"
+		type = BUTTON
+		pos = 490,0
+		size = 150x25
+		anchor1 = 77,0
+		anchor2 = 100,5
+		font-family = "Book Antiqua"
+		font-size = 7
+		font-style = "bold"
+		text-color = #ffffff
+		background-color = #40628a
+		border = line
+		saved-params = "is-checked"
+		text = "Make A Suggestion"
+		command = "makeasugg"
+		group = "rpanemode"
+	elem "button6"
+		type = BUTTON
+		pos = 341,0
+		size = 150x25
+		anchor1 = 53,0
+		anchor2 = 77,5
+		font-family = "Book Antiqua"
+		font-size = 7
+		font-style = "bold"
+		text-color = #ffffff
+		background-color = #40628a
+		border = line
+		saved-params = "is-checked"
+		text = "Report A Bug"
+		command = "reportabug"
+		group = "rpanemode"
+	elem "rulesb"
+		type = BUTTON
+		pos = 172,0
+		size = 85x25
+		anchor1 = 27,0
+		anchor2 = 40,5
+		font-family = "Book Antiqua"
+		font-size = 7
+		font-style = "bold"
+		text-color = #ffffff
+		background-color = #40628a
+		border = line
+		saved-params = "is-checked"
+		text = "Rules"
+		command = "rules"
+		group = "rpanemode"
+	elem "discord"
+		type = BUTTON
+		pos = 257,0
+		size = 87x25
+		anchor1 = 40,0
+		anchor2 = 54,5
+		font-family = "Book Antiqua"
+		font-size = 7
+		font-style = "bold"
+		text-color = #ffffff
+		background-color = #40628a
+		border = line
+		saved-params = "is-checked"
+		text = "Discord"
+		command = "discord"
+		group = "rpanemode"
+	elem "forumb"
+		type = BUTTON
+		pos = 88,0
+		size = 85x25
+		anchor1 = 14,0
+		anchor2 = 27,5
+		font-family = "Book Antiqua"
+		font-size = 7
+		font-style = "bold"
+		text-color = #ffffff
+		background-color = #40628a
+		border = line
+		saved-params = "is-checked"
+		text = "Github"
+		command = "github"
+		group = "rpanemode"
+	elem "wikib"
+		type = BUTTON
+		pos = 0,0
+		size = 89x25
+		anchor1 = 0,0
+		anchor2 = 14,5
+		font-family = "Book Antiqua"
+		font-size = 7
+		font-style = "bold"
+		text-color = #ffffff
+		background-color = #40628a
+		border = line
+		saved-params = "is-checked"
+		text = "Wiki"
+		command = "wiki"
+		group = "rpanemode"
 
 window "text_editor"
 	elem "text_editor"
@@ -1296,7 +1224,6 @@ window "text_editor"
 		size = 360x488
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		is-visible = false
 		border = sunken
 		saved-params = "pos;size;is-minimized;is-maximized"
@@ -1309,7 +1236,6 @@ window "text_editor"
 		size = 104x24
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "is-checked"
 		text = "Exit without saving"
 		command = ""
@@ -1319,7 +1245,6 @@ window "text_editor"
 		size = 104x24
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "is-checked"
 		text = "Save"
 		command = ""
@@ -1329,7 +1254,6 @@ window "text_editor"
 		size = 104x24
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "is-checked"
 		text = "Save + Exit"
 		command = ""

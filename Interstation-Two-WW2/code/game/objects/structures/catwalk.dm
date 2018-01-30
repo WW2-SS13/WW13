@@ -76,7 +76,7 @@
 		var/obj/item/weapon/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder.ogg', 100, TRUE)
-			user << "\blue Slicing lattice joints ..."
+			user << "<span class = 'notice'>Slicing lattice joints ...</span>"
 			new /obj/item/stack/rods(loc)
 			new /obj/item/stack/rods(loc)
 			new /obj/structure/lattice/(loc)

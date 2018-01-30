@@ -9,7 +9,7 @@
 	var/horizontal_icon = 'icons/WW2/tank_large_horizontal.dmi'
 	var/vertical_icon = 'icons/WW2/tank_large_vertical.dmi'
 	icon_state = "ger"
-	layer = MOB_LAYER + 0.01
+	layer = MOB_LAYER + 0.20 // above water
 	var/fuel_slot_screwed = TRUE
 	var/fuel_slot_open = FALSE
 	var/fuel = 750
@@ -18,6 +18,7 @@
 	var/locked = TRUE //tanks need to be unlocked
 	var/heal_damage[2]
 	var/named = FALSE
+	var/obj/item/device/radio/radio = null
 
 	pixel_x = -32
 
@@ -37,6 +38,12 @@
 		fuel_slot_open = FALSE
 		return TRUE
 	if (!named)
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if (!H.original_job)
+				return
+			if (!H.original_job.is_tankuser && !H.original_job.is_officer)
+				return
 		var/str = sanitizeSafe(input(user,"Name tank?","Set Tank Name",""), MAX_NAME_LEN)
 		if (str)
 			set_name(str)
@@ -167,6 +174,7 @@
 				assign_seat(user)
 				accepting_occupant = FALSE
 				user << "<span class = 'notice'><big>To fire, use SPACE and be in the back seat.</big></span>"
+				user << "<span class = 'notice'><big>To speak to others in this tank, use the prefix ':t'.</big></span>"
 				return TRUE
 			else
 				tank_message("<span class = 'warning'>[user] stops going in [my_name()].</span>")

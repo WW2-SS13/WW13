@@ -37,32 +37,36 @@
 		if(!T) return
 
 		if(explosion_size)
-			on_explosion(T)
+			spawn (2)
+				on_explosion(T)
 
 		var/list/target_turfs = getcircle(T, spread_range)
 		var/fragments_per_projectile = round(num_fragments/target_turfs.len)
 
-		for(var/turf/TT in target_turfs)
-			sleep(0)
-			var/obj/item/projectile/bullet/pellet/fragment/P = new fragment_type(TT)
+	//	log_debug("c0: [target_turfs.len]/[fragments_per_projectile]")
 
+		for(var/turf/TT in target_turfs)
+			var/obj/item/projectile/bullet/pellet/fragment/P = new fragment_type(TT)
 			P.damage = fragment_damage
 			P.pellets = fragments_per_projectile
 			P.range_step = damage_step
 			P.shot_from = name
+			P.launch(TT, thrower, null)
+			//P.launch_fragment(TT)
 
-			P.launch_fragment(TT)
+		//	log_debug("c1: [target_turfs.len]")
 
 			//Make sure to hit any mobs in the source turf
-			for(var/mob/living/M in TT)
+			for(var/mob/living/L in TT)
 				//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
 				//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
-				if(M.lying && isturf(loc))
-					P.attack_mob(M, FALSE, FALSE)
+				if(L.lying)
+					P.attack_mob(L, FALSE, FALSE)
 				else
-					P.attack_mob(M, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
+					P.attack_mob(L, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
 
-		qdel(src)
+		spawn (5)
+			qdel(src)
 
 /obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/T)
 	if(explosion_size)

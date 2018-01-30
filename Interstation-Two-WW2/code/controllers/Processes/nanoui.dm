@@ -14,6 +14,7 @@
 				NUI.process()
 			catch(var/exception/e)
 				catchException(e, NUI)
+			SCHECK
 		else
 			catchBadType(NUI)
 			nanomanager.processing_uis -= NUI

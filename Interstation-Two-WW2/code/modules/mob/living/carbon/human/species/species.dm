@@ -209,7 +209,7 @@
 		if (H.wear_suit)
 			if (istype(H.wear_suit, /obj/item/clothing/suit/armor))
 				properly_clothed = TRUE
-			else if (istype(H.wear_suit, /obj/item/clothing/suit/coat))
+			else if (istype(H.wear_suit, /obj/item/clothing/suit/storage/coat))
 				properly_clothed = TRUE
 			else if (istype(H.wear_suit, /obj/item/clothing/suit/storage/toggle/labcoat))
 				properly_clothed = TRUE

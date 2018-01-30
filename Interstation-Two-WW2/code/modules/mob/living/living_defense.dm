@@ -51,7 +51,6 @@
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
-
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, P.agony, def_zone, P)
@@ -71,8 +70,11 @@
 
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if (H.takes_less_bullet_damage)
+		if (H.takes_less_damage)
 			damage /= H.getStatCoeff("strength")
+/* // too meme so removed
+	if (check_zone(def_zone) == "head")
+		damage *= 2.0*/
 
 	if(!P.nodamage)
 		apply_damage(damage, P.damage_type, def_zone, absorb, FALSE, P, sharp=proj_sharp, edge=proj_edge)
@@ -154,7 +156,7 @@
 			miss_chance = max(15*(distance-2), FALSE)
 
 		if (prob(miss_chance))
-			visible_message("\blue \The [O] misses [src] narrowly!")
+			visible_message("<span class = 'notice'>\The [O] misses [src] narrowly!</span>")
 			playsound(src, "miss_sound", 50, TRUE, -6)
 			return
 
@@ -269,7 +271,7 @@ var/obj/human_fire_overlay_lying = null
 		overlays -= generic_living_fire_overlay
 		overlays -= human_fire_overlay
 
-	if(fire_stacks < FALSE)
+	if(fire_stacks < 0)
 		fire_stacks = min(0, ++fire_stacks) //If we've doused ourselves in water to avoid fire, dry off slowly
 
 	if(!on_fire)
@@ -303,7 +305,7 @@ var/obj/human_fire_overlay_lying = null
 		generic_living_fire_overlay.icon_state = "Generic_mob_burning"
 		generic_living_fire_overlay.layer = 5
 
-	apply_damage(ceil(fire_stacks/3), BURN, "chest", FALSE) // because fire does 0.2 damage per tick
+	apply_damage(ceil(fire_stacks/3)+1, BURN, "chest", FALSE) // because fire does 0.2 damage per tick
 
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src

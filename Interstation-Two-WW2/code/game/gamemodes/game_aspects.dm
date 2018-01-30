@@ -17,11 +17,12 @@
 /datum/game_aspect/New(var/datum/game_mode/M)
 	..()
 	if (M) // if we don't pass an arg, this code is ommitted. Intentional.
-		if (!game_mode_type || !default_aspect_type || !possible_subtypes.len)
+		if (!map || !game_mode_type || !default_aspect_type || !possible_subtypes[map.ID].len)
 			qdel(src)
 			return
 
-		for (var/aspecttype in possible_subtypes)
+
+		for (var/aspecttype in possible_subtypes[map.ID])
 			var/datum/game_aspect/A = new aspecttype
 			if (A && clients.len >= A.required_clients && A.specialcheck())
 				real_aspects += A
@@ -53,7 +54,7 @@
 /datum/game_aspect/ww2
 	game_mode_type = /datum/game_mode/ww2
 	default_aspect_type = /datum/game_aspect/ww2/default
-	possible_subtypes = list(/datum/game_aspect/ww2/german_padvantage,
+	possible_subtypes = list("FOREST" = list(/datum/game_aspect/ww2/german_padvantage,
 		/datum/game_aspect/ww2/german_pdisadvantage,
 		/datum/game_aspect/ww2/russian_padvantage,
 		/datum/game_aspect/ww2/russian_pdisadvantage,
@@ -66,7 +67,24 @@
 		/datum/game_aspect/ww2/german_logistical_disadvantage,
 
 		/datum/game_aspect/ww2/no_tanks,
-		/datum/game_aspect/ww2/no_artillery
+		/datum/game_aspect/ww2/no_artillery),
+
+		"SMALLCITY" = list(/datum/game_aspect/ww2/german_padvantage,
+				/datum/game_aspect/ww2/german_pdisadvantage,
+				/datum/game_aspect/ww2/russian_padvantage,
+				/datum/game_aspect/ww2/russian_pdisadvantage,
+
+				/datum/game_aspect/ww2/german_sadvantage,
+				/datum/game_aspect/ww2/german_sdisadvantage,
+				/datum/game_aspect/ww2/russian_sadvantage,
+				/datum/game_aspect/ww2/russian_sdisadvantage,
+
+				/datum/game_aspect/ww2/german_logistical_disadvantage,
+
+				/datum/game_aspect/ww2/no_tanks,
+				/datum/game_aspect/ww2/no_artillery),
+
+		"PILLARMAP" = list()
 
 		)
 

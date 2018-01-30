@@ -31,8 +31,12 @@ var/list/nonbreaking_types = list(
 	else
 		keyslot = new()
 
-	health = rand(200,300)
+	health = 300
 	initial_health = health
+
+	if (istype(keyslot, /datum/keyslot/german/command_high) || istype(keyslot, /datum/keyslot/soviet/command_high))
+		health *= 3
+		initial_health = health
 
 	spawn (2)
 		if (unique_door_name && map_door_name == "door")

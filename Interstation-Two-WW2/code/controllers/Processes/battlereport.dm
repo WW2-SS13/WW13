@@ -1,20 +1,20 @@
 var/datum/controller/process/battlereport/battlereport
 
 /datum/controller/process/battlereport
-	var/nextreport = -1
+	var/BR_ticks = 0
+	var/max_BR_ticks = 600 // 10 minutes
 
 /datum/controller/process/battlereport/setup()
 	name = "Battle Report"
-	schedule_interval = 6000 // every 10 minutes
+	schedule_interval = 10 // every second
 	battlereport = src
 
 /datum/controller/process/battlereport/statProcess()
 	..()
-	if (nextreport == -1)
-		nextreport = world.realtime + 6000
-	stat(null, "Next battle report: ~[round((nextreport - world.realtime)/600)] minutes")
+	stat(null, "Next battle report: [max_BR_ticks - BR_ticks] seconds")
 
 /datum/controller/process/battlereport/doWork()
-	show_global_battle_report(null)
-	nextreport = world.realtime + 6000
-	SCHECK
+	++BR_ticks
+	if (BR_ticks >= max_BR_ticks)
+		show_global_battle_report(null)
+		BR_ticks = 0

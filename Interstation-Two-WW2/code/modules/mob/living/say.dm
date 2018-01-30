@@ -79,6 +79,15 @@ proc/get_radio_key_from_channel(var/channel)
 	return FALSE
 
 /mob/living/proc/handle_speech_problems(var/message, var/verb)
+
+	// don't effect radio prefixes: ";", ":b", ":l", ":r", ":t"
+	var/list/radio_prefixes = list(";", ":b", ":l", ":r", ":t")
+	var/prefix = ""
+	for (var/rp in radio_prefixes)
+		if (dd_hasprefix(message, rp))
+			prefix = copytext(message, 1, lentext(rp)+1)
+			message = copytext(message, lentext(rp)+1, lentext(message)+1)
+
 	var/list/returns[3]
 	var/speech_problem_flag = FALSE
 
@@ -99,7 +108,7 @@ proc/get_radio_key_from_channel(var/channel)
 		message = lisp(message, lisp)
 		speech_problem_flag = TRUE
 
-	returns[1] = message
+	returns[1] = prefix + message
 	returns[2] = verb
 	returns[3] = speech_problem_flag
 	return returns

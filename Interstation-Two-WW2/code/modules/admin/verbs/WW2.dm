@@ -483,6 +483,112 @@ var/soviet_civilian_mode = FALSE
 	message_admins(M)
 	log_admin(M)
 
+var/partisans_toggled = TRUE
+var/civilians_toggled = TRUE
+var/SS_toggled = TRUE
+var/paratroopers_toggled = TRUE
+var/germans_toggled = TRUE
+var/soviets_toggled = TRUE
+
+/client/proc/toggle_factions()
+	set name = "Toggle Factions"
+	set category = "WW2 (Admin)"
+
+	if(!check_rights(R_ADMIN))
+		src << "<span class = 'danger'>You don't have the permissions.</span>"
+		return
+
+	if (!istype(ticker.mode, /datum/game_mode/ww2))
+		src << "<span class = 'danger'>You can't do this on this game mode.</span>"
+		return
+
+	var/list/choices = list()
+
+	choices += "PARTISANS ([partisans_toggled ? "ENABLED" : "DISABLED"])"
+	choices += "CIVILIANS ([civilians_toggled ? "ENABLED" : "DISABLED"])"
+	choices += "WAFFEN-SS ([SS_toggled ? "ENABLED" : "DISABLED"])"
+	choices += "PARATROOPERS ([paratroopers_toggled ? "ENABLED" : "DISABLED"])"
+	choices += "GERMANS ([germans_toggled ? "ENABLED" : "DISABLED"])"
+	choices += "SOVIET ([soviets_toggled ? "ENABLED" : "DISABLED"])"
+	choices += "CANCEL"
+
+	var/choice = input("Enable/Disable what faction?") in choices
+
+	if (choice == "CANCEL")
+		return
+
+	if (findtext(choice, "PARTISANS"))
+		partisans_toggled = !partisans_toggled
+		world << "<span class = 'warning'>The Partisan faction has been [partisans_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] changed the Partisan faction 'enabled' setting to [partisans_toggled].")
+	else if (findtext(choice, "CIVILIANS"))
+		civilians_toggled = !civilians_toggled
+		world << "<span class = 'warning'>The Civilian faction has been [civilians_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] changed the Civilian faction 'enabled' setting to [civilians_toggled].")
+	else if (findtext(choice, "WAFFEN-SS"))
+		SS_toggled = !SS_toggled
+		world << "<span class = 'warning'>The SS faction has been [SS_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] changed the SS faction 'enabled' setting to [SS_toggled].")
+	else if (findtext(choice, "PARATROOPERS"))
+		paratroopers_toggled = !paratroopers_toggled
+		world << "<span class = 'warning'>The Paratrooper faction has been [paratroopers_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] changed the Paratrooper faction 'enabled' setting to [paratroopers_toggled].")
+	else if (findtext(choice, "GERMAN"))
+		germans_toggled = !germans_toggled
+		world << "<span class = 'warning'>The German faction (not SS) has been [germans_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] changed the German faction 'enabled' setting to [germans_toggled].")
+	else if (findtext(choice, "SOVIET"))
+		soviets_toggled = !soviets_toggled
+		world << "<span class = 'warning'>The Soviet faction has been [soviets_toggled ? "<b><i>ENABLED</i></b>" : "<b><i>DISABLED</i></b>"].</span>"
+		message_admins("[key_name(src)] changed the Soviet faction 'enabled' setting to [soviets_toggled].")
+
+var/partisans_forceEnabled = FALSE
+var/civilians_forceEnabled = FALSE
+var/germans_forceEnabled = FALSE
+var/soviets_forceEnabled = FALSE
+
+/client/proc/forcibly_enable_faction()
+	set name = "Forcibly Enable Faction"
+	set category = "WW2 (Admin)"
+
+	if(!check_rights(R_ADMIN))
+		src << "<span class = 'danger'>You don't have the permissions.</span>"
+		return
+
+	if (!istype(ticker.mode, /datum/game_mode/ww2))
+		src << "<span class = 'danger'>You can't do this on this game mode.</span>"
+		return
+
+	var/list/choices = list()
+
+	choices += "PARTISANS ([partisans_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
+	choices += "CIVILIANS ([civilians_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
+	choices += "GERMANS ([germans_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
+	choices += "SOVIET ([soviets_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
+	choices += "CANCEL"
+
+	var/choice = input("Enable/Disable what faction?") in choices
+
+	if (choice == "CANCEL")
+		return
+
+	if (findtext(choice, "PARTISANS"))
+		partisans_forceEnabled = !partisans_forceEnabled
+		world << "<span class = 'warning'>The Partisan faction [partisans_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		message_admins("[key_name(src)] changed the Partisan faction 'forceEnabled' setting to [partisans_forceEnabled].")
+	else if (findtext(choice, "CIVILIANS"))
+		civilians_forceEnabled = !civilians_forceEnabled
+		world << "<span class = 'warning'>The Civilian faction [civilians_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		message_admins("[key_name(src)] changed the Civilian faction 'forceEnabled' setting to [civilians_forceEnabled].")
+	else if (findtext(choice, "GERMAN"))
+		germans_forceEnabled = !germans_forceEnabled
+		world << "<span class = 'warning'>The German faction [germans_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		message_admins("[key_name(src)] changed the German faction 'forceEnabled' setting to [germans_forceEnabled].")
+	else if (findtext(choice, "SOVIET"))
+		soviets_forceEnabled = !soviets_forceEnabled
+		world << "<span class = 'warning'>The Soviet faction [soviets_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		message_admins("[key_name(src)] changed the Soviet faction 'forceEnabled' setting to [soviets_forceEnabled].")
+
 var/respawn_delays = TRUE
 /client/proc/toggle_respawn_delays()
 	set category = "WW2 (Admin)"

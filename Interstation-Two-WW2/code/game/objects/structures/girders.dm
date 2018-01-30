@@ -2,7 +2,7 @@
 	icon_state = "girder"
 	anchored = TRUE
 	density = TRUE
-	layer = 2
+	layer = 2.04 // above snow
 	w_class = 5
 	var/state = FALSE
 	var/health = 200

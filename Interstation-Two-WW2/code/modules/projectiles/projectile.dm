@@ -34,7 +34,7 @@
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
 
-	var/accuracy = FALSE
+	var/accuracy = 0
 	var/dispersion = 0.0
 
 	var/damage = 10
@@ -43,7 +43,9 @@
 	var/taser_effect = FALSE //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
 	var/check_armour = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb	//Cael - bio and rad are also valid
 	var/projectile_type = /obj/item/projectile
-	var/penetrating = FALSE //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
+	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
+	var/gibs = FALSE
+	var/crushes = FALSE
 	var/kill_count = 30 //This will de-increment every process(). When == 0, it will delete the projectile.
 		//Effects
 	var/stun = FALSE
@@ -155,7 +157,7 @@
 	original = target
 	loc = curloc
 	starting = curloc
-	current = curloc
+
 	yo = targloc.y - curloc.y + y_offset
 	xo = targloc.x - curloc.x + x_offset
 
@@ -167,16 +169,20 @@
 
 	return FALSE
 
-// fixes grenades?
 /obj/item/projectile/proc/launch_fragment(atom/target)
 
+	var/turf/curloc = loc
 	var/turf/targloc = get_turf(target)
 
-	if (!istype(targloc))
+	if (!istype(targloc) || !istype(curloc))
 		qdel(src)
 		return TRUE
 
-	if(targloc == get_turf(src)) //Shooting something in the same turf
+	firer = null
+	firedfrom = null
+	def_zone = "chest"
+
+	if(targloc == curloc) //Shooting something in the same turf
 		target.pre_bullet_act(src)
 		target.bullet_act(src, "chest")
 		on_impact(target)
@@ -184,12 +190,13 @@
 		return FALSE
 
 	original = target
-	loc = get_turf(src)
-	starting = get_turf(src)
-	current = get_turf(src)
-	yo = targloc.y - y
-	xo = targloc.x - x
+	loc = curloc
+	starting = curloc
+	current = curloc
+	yo = targloc.y - curloc.y
+	xo = targloc.x - curloc.x
 
+	shot_from = null
 	silenced = FALSE
 
 	spawn()
@@ -282,6 +289,9 @@
 		loc = A.loc
 		return FALSE //cannot shoot yourself
 
+	if (istype(A, /obj/structure/window/sandbag))
+		return FALSE
+
 	if((bumped && !forced) || (A in permutated))
 		return FALSE
 
@@ -314,7 +324,7 @@
 				attack_mob(M, distance)
 
 	//penetrating projectiles can pass through things that otherwise would not let them
-	if(!passthrough && penetrating > FALSE)
+	if(!passthrough && penetrating > 0)
 		if(check_penetrate(A))
 			passthrough = TRUE
 		penetrating--
@@ -346,7 +356,6 @@
 /obj/item/projectile/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return TRUE
 
-
 /obj/item/projectile/process()
 	var/first_step = 1
 
@@ -366,7 +375,7 @@
 			return
 		if((!( current ) || loc == current))
 			current = locate(min(max(x + xo, TRUE), world.maxx), min(max(y + yo, TRUE), world.maxy), z)
-		if((x == 1 || x == world.maxx || y == TRUE || y == world.maxy))
+		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
 			loc.pre_bullet_act(src)
 			on_impact(loc)
 			spawn (1)

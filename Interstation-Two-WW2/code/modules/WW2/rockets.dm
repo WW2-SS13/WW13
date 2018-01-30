@@ -4,6 +4,15 @@
 	item_state = "panzerfaust"
 	recoil = TRUE
 
+// panzerfaust takes 1.5 seconds to fire now
+/obj/item/weapon/gun/launcher/rocket/panzerfaust/special_check(var/mob/user)
+	. = ..()
+	if (!.)
+		return .
+	if (!do_after(user, 15, get_turf(user)))
+		return FALSE
+	return TRUE
+
 /obj/item/weapon/gun/launcher/rocket/panzerfaust/New()
 	..()
 	rockets += new/obj/item/ammo_casing/rocket/yuge()

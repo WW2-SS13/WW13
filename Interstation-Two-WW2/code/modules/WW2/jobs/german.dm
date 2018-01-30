@@ -6,9 +6,10 @@
 	H.real_name = H.name
 
 /datum/job/german/commander
-	title = "Oberleutnant"
-	en_meaning = "Commander"
-	total_positions = TRUE
+	title = "Hauptmann"
+	en_meaning = "Company Commander"
+	rank_abbreviation = "Cpt"
+	total_positions = 1
 	head_position = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerCO"
@@ -23,9 +24,14 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
+	if (istype(H, /mob/living/carbon/human/mechahitler))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger/gibber(H), slot_belt)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	world << "<b><big>[H.client.prefs.german_name] is the [title] of the German forces!</big></b>"
+	spawn (5) // after we have our name
+		if (!istype(H, /mob/living/carbon/human/mechahitler))
+			world << "<b><big>[H.real_name] is the [title] of the German forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the German forces and lead them to victory, while working alongside the <b>SS-Untersharffuhrer</b>. You take orders from the <b>German High Command</b>.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
@@ -44,6 +50,51 @@
 /datum/job/german/commander/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
 		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/command_high, new/obj/item/weapon/key/german/train, new/obj/item/weapon/key/german/SS)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/german/XO
+	title = "Oberleutnant"
+	en_meaning = "Company XO"
+	rank_abbreviation = "1lt"
+	total_positions = 1
+	head_position = FALSE
+	selection_color = "#2d2d63"
+	spawn_location = "JoinLateHeerSO"
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
+	is_officer = TRUE
+	absolute_limit = 1
+
+/datum/job/german/XO/equip(var/mob/living/carbon/human/H)
+	if(!H)	return FALSE
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
+	H << "<span class = 'notice'>You are the <b>[title]</b>, the XO of the German forces. Your job is to take orders from the <b>Hauptmann</b> and coordinate with squad leaders.</span>"
+	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_VERY_LOW)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_VERY_LOW)
+	return TRUE
+
+/datum/job/german/XO/update_character(var/mob/living/carbon/human/H)
+	..()
+	H.make_artillery_officer()
+
+/datum/job/german/XO/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
+		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/command_high, new/obj/item/weapon/key/german/train, new/obj/item/weapon/key/german/SS)
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,8 +102,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/staff_officer
-	title = "Stabsoffizier"
-	en_meaning = "Staff Officer"
+	title = "Leutnant"
+	en_meaning = "Platoon Officer"
+	rank_abbreviation = "2lt"
 	total_positions = 2
 	head_position = FALSE
 	selection_color = "#2d2d63"
@@ -68,7 +120,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the German forces. Your job is to take orders from the <b>Feldwebel</b> and coordinate with squad leaders.</span>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the German forces. Your job is to take orders from the <b>Hauptmann</b> and coordinate with squad leaders.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_VERY_LOW)
@@ -94,7 +146,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/MP
 	title = "Militärpolizei"
-	en_meaning = "Military Police Officer"
+	en_meaning = "MPO"
+	rank_abbreviation = "sgt"
 	total_positions = 2
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeer"
@@ -129,8 +182,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/squad_leader
-	title = "Gruppenfuhrer"
-	en_meaning = "Squad Leader"
+	title = "Feldwebel"
+	en_meaning = "Platoon 2IC"
+	rank_abbreviation = "ssg"
 	total_positions = 4
 	head_position = FALSE
 	selection_color = "#4c4ca5"
@@ -148,7 +202,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H << "<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the German force according to the <b>Feldwebel</b>'s and <b>Stabsoffizier</b>en's orders.</span>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the German force according to the <b>Hauptmann</b>'s and <b>Stabsoffizier</b>en's orders.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_LOW)
@@ -172,8 +226,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/medic
-	title = "Feldarzt"
-	en_meaning = "Medic"
+	title = "Sanitäter"
+	en_meaning = "Field Medic"
+	rank_abbreviation = "cpl"
 	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -204,7 +259,8 @@
 /datum/job/german/doctor
 	title = "Medizinier"
 	en_meaning = "Doctor"
-	total_positions = 3
+	rank_abbreviation = "sgt"
+	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerDr"
 	is_nonmilitary = TRUE
@@ -245,6 +301,7 @@
 /datum/job/german/flamethrower_man
 	title = "Flammenwerfersoldat"
 	en_meaning = "Flamethrower Soldier"
+	rank_abbreviation = "lcpl"
 	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -279,9 +336,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/sniper
-	title = "Sharfshutze"
+	title = "Scharfschütze"
 	en_meaning = "Sniper"
-	total_positions = 3
+	rank_abbreviation = "lcpl"
+	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	is_primary = FALSE
@@ -317,6 +375,7 @@
 /datum/job/german/engineer
 	title = "Pionier"
 	en_meaning = "Engineer"
+	rank_abbreviation = "cpl"
 	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -351,9 +410,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/heavy_weapon
-	title = "Machinegewehrschutze"
+	title = "Maschinengewehrschütze"
 	en_meaning = "Heavy Weapons Soldier"
-	total_positions = 2
+	rank_abbreviation = "lcpl"
+	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	is_primary = FALSE
@@ -365,7 +425,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/l6_saw(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mg34(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_l_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a heavy weapons unit. Your job is to assist normal <b>Soldat</b>en in front line combat.</span>"
 	H.give_radio()
@@ -389,6 +449,7 @@
 /datum/job/german/soldier
 	title = "Soldat"
 	en_meaning = "Infantry Soldier"
+	rank_abbreviation = "pvt"
 	total_positions = 200 // this was causing an error with latejoin spawning
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -424,6 +485,7 @@
 /datum/job/german/dogmaster
 	title = "Hunden Trainer"
 	en_meaning = "Dog Trainer"
+	rank_abbreviation = "lcpl"
 	total_positions = 50
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -476,6 +538,7 @@
 /datum/job/german/tankcrew
 	title = "Panzerbesatzung"
 	en_meaning = "Tank Crewman"
+	rank_abbreviation = "cpl"
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -513,6 +576,7 @@
 /datum/job/german/anti_tank_crew
 	title = "Panzer-Soldat"
 	en_meaning = "Anti Tank Soldier"
+	rank_abbreviation = "pfc"
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -545,8 +609,9 @@
 var/first_fallschirm = TRUE
 
 /datum/job/german/paratrooper
-	title = "Fallschirmjager"
+	title = "Fallschirmjäger"
 	en_meaning = "Paratrooper"
+	rank_abbreviation = "pfc"
 	total_positions = 7
 	selection_color = "#4c4ca5"
 	spawn_location = "Fallschirm"
@@ -616,8 +681,9 @@ var/first_fallschirm = TRUE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/QM
-	title = "Stabsgefreiter"
+	title = "Frachtoffizier"
 	en_meaning = "Quartermaster"
+	rank_abbreviation = "sgt"
 	total_positions = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerQM"
@@ -656,6 +722,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/artyman
 	title = "Kanonier"
 	en_meaning = "Artillery Officer"
+	rank_abbreviation = "sgt"
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSO"
@@ -700,8 +767,9 @@ var/first_fallschirm = TRUE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/scout
-	title = "Aufklartrupp"
+	title = "Aufklärtrupp"
 	en_meaning = "Scout"
+	rank_abbreviation = "pfc"
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -744,6 +812,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/conductor
 	title = "Dirigent"
 	en_meaning = "Train Conductor"
+	rank_abbreviation = "sgt"
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSO"
@@ -780,6 +849,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/squad_leader_ss
 	title = "SS-Untersharffuhrer"
 	en_meaning = "SS Squad Leader"
+	rank_abbreviation = "sgt"
 	total_positions = TRUE
 	head_position = TRUE
 	selection_color = "#4c4ca5"
@@ -799,7 +869,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/akm(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite SS unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Feldwebel</b>, while setting your own goals. Also, kill any jews you find on sight. They usually have long hair and beards.</span>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite SS unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Hauptmann</b>, while setting your own goals. Also, kill any jews you find on sight. They usually have long hair and beards.</span>"
 	H.give_radio()
 	if (secret_ladder_message)
 		H << "<br>[secret_ladder_message]"
@@ -836,6 +906,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/soldier_ss
 	title = "SS-Schutze"
 	en_meaning = "SS Infantry Soldier"
+	rank_abbreviation = "pvt"
 	total_positions = 5 // this was causing an error with latejoin spawning
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS"

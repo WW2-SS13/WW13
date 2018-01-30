@@ -319,10 +319,10 @@ var/global/list/default_ukrainian_channels = list(
 	if (istype(src, /obj/item/device/radio/intercom) && !istype(src, /obj/item/device/radio/intercom/loudspeaker))
 		notyetmoved = FALSE
 		if (loc)
+			setup_announcement_system("Arrivals Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
 			setup_announcement_system("Supplydrop Announcement System", (faction == GERMAN ? DE_SUPPLY_FREQ : SO_SUPPLY_FREQ))
 			setup_announcement_system("Reinforcements Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
 			setup_announcement_system("High Command Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
-			setup_announcement_system("Arrivals Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
 			switch (faction)
 				if (GERMAN)
 					main_radios[GERMAN] = src
@@ -486,6 +486,8 @@ var/global/list/default_ukrainian_channels = list(
 				radio.broadcast(rhtml_encode(message), src, TRUE)
 
 /obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = FALSE)
+
+	hardtohear = FALSE // wip
 
 	// ignore emotes.
 	if (dd_hasprefix(msg, "*"))
@@ -755,6 +757,8 @@ var/global/list/default_ukrainian_channels = list(
 	announcer.faction = faction
 	announcer.frequency = channel
 	announcer.speech_sound = speech_sound
+	announcer.icon = icon
+	announcer.icon_state = icon_state
 
 	// hackish code because radios need a mob, with a language, to announce
 	mobs[aname] = new/mob/living/carbon/human

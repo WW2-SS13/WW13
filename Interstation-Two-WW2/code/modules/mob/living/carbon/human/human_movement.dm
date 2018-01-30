@@ -3,7 +3,7 @@
 
 /mob/living/carbon/human/movement_delay()
 
-	if (world.timeofday <= next_calculate_tally)
+	if (world.time <= next_calculate_tally)
 		return stored_tally
 
 	var/tally = 0
@@ -17,7 +17,7 @@
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
 	if (chem_effects.Find(CE_SPEEDBOOST))
-		return -1
+		tally -= 0.33
 
 	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
@@ -76,7 +76,7 @@
 	. = max(0, (tally+config.human_delay))
 	stored_tally = .
 
-	next_calculate_tally = world.timeofday + 50
+	next_calculate_tally = world.time + 50
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = FALSE)
 	return FALSE

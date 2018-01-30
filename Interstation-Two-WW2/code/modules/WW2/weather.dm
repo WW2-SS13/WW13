@@ -9,6 +9,17 @@
 	if (weather == _weather && !bypass_same_weather_check)
 		return
 
+	if (config)
+		if (config.allowed_weather && config.allowed_weather.len)
+			switch (config.allowed_weather[1])
+				if (0)
+					return
+				if (1)
+					// pass
+				else
+					if (!config.allowed_weather.Find(weather_const2text(_weather)))
+						return
+
 	var/old_weather = weather
 
 	weather = _weather
@@ -99,7 +110,7 @@
 				++deleted
 				if (deleted >= 100)
 					break
-
+/* // for performance reasons, mudiness is no longer handled here - Kachnov
 		// randomize the areas we make muddy
 		var/list_of_areas = shuffle(all_areas)
 		for (var/area/A in list_of_areas)
@@ -121,7 +132,7 @@
 							F.muddy = TRUE
 							spawn (rand(15000,25000))
 								if (weather != WEATHER_RAIN)
-									F.muddy = FALSE
+									F.muddy = FALSE*/
 
 /proc/modify_weather_somehow()
 	if (weather == WEATHER_NONE)
@@ -147,7 +158,7 @@
 		switch (ticker.mode:season)
 			if ("WINTER")
 				possibilities += WEATHER_SNOW
-			if ("SPRING", "SUMMER")
+			if ("SPRING")
 				possibilities += WEATHER_RAIN
 
 	possibilities -= non_possibilities

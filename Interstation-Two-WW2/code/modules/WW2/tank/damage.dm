@@ -13,12 +13,18 @@
 
 	def_zone = check_zone(def_zone)
 
-	var/dam = (P.damage/3 + (P.armor_penetration*20))/25
+	// MGs will no longer destroy tanks in a few shots - Kachnov
+
+	var/dam = 0
+	if (P.firedfrom && istype(P.firedfrom, /obj/item/weapon/gun/projectile/heavysniper))
+		dam = (P.damage/3 + (P.armor_penetration*20))/25
+	else
+		dam = (P.damage/3)/25
+
 	if (P.armor_penetration < 50)
 		dam /= 8
 
-	dam += TRUE // minimum damage
-
+	dam += 0.50 // minimum damage
 	damage += dam
 
 	update_damage_status()
@@ -99,7 +105,7 @@
 	spawn (rand(420, 600))
 		tank_message("<span class = 'danger'><big>[src] explodes.</big></span>")
 		for (var/mob/m in src)
-			m.gib()
+			m.crush()
 		explosion(get_turf(src), TRUE, 3, 5, 6)
 		spawn (20)
 			qdel(src)

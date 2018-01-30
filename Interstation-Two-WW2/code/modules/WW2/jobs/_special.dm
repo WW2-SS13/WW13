@@ -32,6 +32,7 @@
 /datum/job/var/is_guard = FALSE
 /datum/job/var/is_tankuser = FALSE
 /datum/job/var/absolute_limit = FALSE // if this is FALSE it's ignored
+/datum/job/var/rank_abbreviation = null
 
 /* type_flag() replaces flag, and base_type_flag() replaces department_flag
  * this is a better solution than bit constants, in my opinion */
@@ -66,6 +67,8 @@
 		. = UKRAINIAN
 	else if (istype(src, /datum/job/italian))
 		. = ITALIAN
+	else if (istype(src, /datum/job/pillarman))
+		. = PILLARMEN
 
 	_base_type_flag = .
 	return _base_type_flag
@@ -260,6 +263,8 @@
 		return "Red Army"
 	if(side == GERMAN)
 		return "German Wehrmacht"
+	if (side == PILLARMEN)
+		return "PILLARMEN"
 	return null
 
 // here's a story

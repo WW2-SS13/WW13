@@ -101,7 +101,7 @@
 	caliber = "9mm"
 //	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	ammo_type = "/obj/item/ammo_casing/c9mmr"
+	ammo_type = /obj/item/ammo_casing/c9mmr
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/mc9mmt/rubber
 
@@ -122,7 +122,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	caliber = "a556"
 //	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
-	ammo_type = "/obj/item/ammo_casing/a556"
+	ammo_type = /obj/item/ammo_casing/a556
 	fire_sound = 'sound/weapons/guns/fire/batrifle_fire.ogg'
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
@@ -186,7 +186,7 @@
 		user << "\The [launcher] has \a [launcher.chambered] loaded."
 	else
 		user << "\The [launcher] is empty."
-
+/*
 /obj/item/weapon/gun/projectile/automatic/l6_saw
 	name = "MG-34"
 	desc = "German light machinegun chambered in 7.92x57mm Mauser. An utterly devastating support weapon."
@@ -199,7 +199,7 @@
 	caliber = "a792x57"
 //	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = TRUE, TECH_ILLEGAL = 2)
 	slot_flags = SLOT_BACK
-	ammo_type = "/obj/item/ammo_casing/a792x57"
+	ammo_type = /obj/item/ammo_casing/a792x57
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a762
 	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.ogg'
@@ -257,7 +257,7 @@
 		return
 	..()
 
-
+*/
 /* Ironhammer stuff */
 
 /obj/item/weapon/gun/projectile/automatic/SMG_sol

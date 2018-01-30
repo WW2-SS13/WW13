@@ -48,6 +48,10 @@ var/list/_client_preferences_by_type
 	description ="Play admin midis"
 	key = "SOUND_MIDI"
 
+/datum/client_preference/play_admin_midis/toggled(var/mob/new_player/preference_mob, var/enabled)
+	if (!enabled)
+		preference_mob << sound(null, channel = 777)
+
 /datum/client_preference/play_lobby_music
 	description ="Play lobby music"
 	key = "SOUND_LOBBY"

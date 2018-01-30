@@ -585,7 +585,7 @@
 		var/mob/living/L = holder.my_atom
 		if(L.stat != DEAD)
 			if(e.amount >= 6)
-				L.gib()
+				L.crush()
 			e.amount *= 1.5
 	e.start()
 	holder.clear_reagents()

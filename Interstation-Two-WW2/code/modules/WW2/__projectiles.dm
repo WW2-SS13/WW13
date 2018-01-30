@@ -1,72 +1,86 @@
-/* WW2 */
+#define DAMAGE_LOW 33
+#define DAMAGE_MEDIUM 46
+#define DAMAGE_HIGH 69
+#define DAMAGE_VERY_HIGH 92
 
 /obj/item/projectile/bullet/rifle
 	speed = 2.5
+	armor_penetration = 50
 
 /obj/item/projectile/bullet/rifle/a792x33
-	damage = 50
+	damage = DAMAGE_LOW
 	penetrating = TRUE
 
+// MOSIN
 /obj/item/projectile/bullet/rifle/a762x54
-	damage = 55
+	damage = DAMAGE_HIGH
 	penetrating = 2
+	armor_penetration = 100
 
+// KARS
 /obj/item/projectile/bullet/rifle/a792x57
-	damage = 58
+	damage = DAMAGE_MEDIUM
 	penetrating = 2
+	armor_penetration = 100
 
 /obj/item/projectile/bullet/rifle/a762x25
-	damage = 42
+	damage = DAMAGE_LOW
 	penetrating = FALSE
 
 /obj/item/projectile/bullet/rifle/a9_parabellum
-	damage = 38
+	damage = DAMAGE_LOW
 	penetrating = FALSE
 
-
-/* "Rifle" rounds */
+/obj/item/projectile/bullet/rifle/a9_parabellum_luger
+	damage = DAMAGE_MEDIUM
+	penetrating = FALSE
 
 /obj/item/projectile/bullet/rifle/a762
-	damage = 50
+	damage = DAMAGE_MEDIUM
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/rifle/a145
-	damage = 100
+	damage = DAMAGE_VERY_HIGH
 	stun = 3
 	weaken = 3
 	penetrating = 5
-	armor_penetration = 80
-	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
+	armor_penetration = 150
+	hitscan = TRUE //so the PTRD isn't useless as a sniper weapon
 
 /obj/item/projectile/bullet/rifle/a556
-	damage = 50
+	damage = DAMAGE_MEDIUM
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/rifle/a9x39
-	damage = 75
+	damage = DAMAGE_LOW
 	penetrating = 3
 	step_delay = 2
 
 /obj/item/projectile/bullet/rifle/a762x39
-	damage = 33
+	damage = DAMAGE_LOW
 	penetrating = 2
 
 /obj/item/projectile/bullet/rifle/a762x51
-	damage = 25
+	damage = DAMAGE_LOW
 	penetrating = 3
 
 /obj/item/projectile/bullet/rifle/c4mm
-	damage = 8
-	penetrating = FALSE
+	damage = DAMAGE_LOW
+	penetrating = 0
 
 /obj/item/projectile/bullet/rifle/a127x108
-	damage = 42
+	damage = DAMAGE_LOW
 	penetrating = 3
 
 /obj/item/projectile/bullet/rifle/a556x45
-	damage = 50
+	damage = DAMAGE_VERY_HIGH
 	penetrating = 3
 	hitscan = TRUE
+
+#undef DAMAGE_LOW
+#undef DAMAGE_MEDIUM
+#undef DAMAGE_HIGH
+#undef DAMAGE_VERY_HIGH
 
 /obj/item/projectile/bullet/chameleon
 	damage = TRUE // stop trying to murderbone with a fake gun dumbass!!!
@@ -139,3 +153,30 @@
 	damage = FALSE
 	penetrating = FALSE
 	density = FALSE
+
+// Pillar men
+
+/obj/burning_blood
+	name = "burning giblets"
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "gibshot"
+	layer = MOB_LAYER + 0.1
+	density = 1
+
+/obj/burning_blood/New()
+	..()
+	playsound(get_turf(src), 'sound/effects/gore/severed.ogg', 100)
+
+/obj/burning_blood/throw_impact(var/atom/movable/obstacle)
+	if (isliving(obstacle))
+		var/mob/living/L = obstacle
+		L.adjustFireLoss(rand(30,40))
+		L.Weaken(rand(2,3))
+		visible_message("<span class = 'warning'>[L] is scalded by burning blood!</span>")
+		if (ishuman(L))
+			L.emote("scream")
+		playsound(get_turf(L), 'sound/effects/gore/fallsmash.ogg', 100)
+		. = TRUE
+	. = FALSE
+	qdel(src)
+	return .

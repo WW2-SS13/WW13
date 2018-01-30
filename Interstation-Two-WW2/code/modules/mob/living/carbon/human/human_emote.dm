@@ -534,7 +534,10 @@
 					m_type = TRUE
 				else
 					if (!muzzled)
-						message = "screams!"
+						if (istype(src, /mob/living/carbon/human/vampire))
+							message = "wryyys."
+						else
+							message = "screams!"
 						m_type = 2
 						scream_sound(src, FALSE)
 					else
@@ -542,13 +545,34 @@
 						m_type = 2
 
 			if ("dab")
-				m_type = TRUE
-				if (!restrained())
-					var/mob/M = locate() in get_step(src, dir)
-					if (M)
-						message = "dabs on [M]."
-					else
+				if (config.allow_dabbing)
+					m_type = TRUE
+					if (!restrained())
 						message = "dabs."
+						for (var/atom/movable/AM in get_step(src, dir))
+							if (!ismob(AM))
+								if (!istype(AM, /atom/movable/lighting_overlay) && !isitem(AM) && !istype(AM, /obj/effect))
+									if (AM.name)
+										message = "dabs on [AM]."
+						for (var/atom/movable/AM in get_step(src, dir))
+							if (ismob(AM))
+								message = "dabs on [AM]."
+
+			if ("pose")
+				if (istype(src, /mob/living/carbon/human/pillarman))
+					var/mob/living/carbon/human/pillarman/P = src
+					if (P.next_pose > world.time)
+						P << "<span class = 'danger'>You can't pose again yet.</span>"
+						return
+					message = "poses [pick("fabulously", "spectacularly")]!"
+					playsound(get_turf(P), 'sound/effects/awaken.ogg', 100)
+					for (var/turf/T in getcircle(get_turf(P), 2))
+						new/obj/effect/kana(T, P)
+					for (var/mob/living/carbon/human/H in range(5, P))
+						if (!H.takes_less_damage)
+							H.SpinAnimation(7,1)
+							H.Weaken(rand(4,5))
+					P.next_pose = world.time + 300
 
 			if ("help")
 				src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
@@ -558,7 +582,7 @@
 	wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag, dab"}
 
 			else
-				src << "\blue Unusable emote '[act]'. Say *help for a list."
+				src << "<span class = 'notice'>Unusable emote '[act]'. Say *help for a list.</span>"
 
 
 

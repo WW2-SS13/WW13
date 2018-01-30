@@ -6,7 +6,7 @@
 "af" = (/obj/structure/window/reinforced{dir = 1},/obj/machinery/light{dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "ag" = (/obj/structure/window/reinforced{dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "ah" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/admin)
-"ai" = (/obj/machinery/vending/wallmed1,/obj/structure/table/glass,/turf/floor/plating/grass/wild,/area/prishtina/admin)
+"ai" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/table/rack,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/weapon/gun/projectile/automatic/mg34,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
 "aj" = (/obj/structure/table/rack,/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "ak" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/key/german/soldat,/obj/item/weapon/key/german/soldat,/obj/item/weapon/key/german/soldat,/obj/item/weapon/key/soviet/soldat,/obj/item/weapon/key/soviet/soldat,/obj/item/clothing/gloves/thick/combat,/obj/item/clothing/gloves/thick/combat,/obj/item/clothing/gloves/thick/combat,/obj/item/device/radio,/obj/item/device/radio,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/storage/belt/keychain,/obj/item/clothing/gloves/thick/combat,/obj/item/weapon/key/soviet/soldat,/obj/item/weapon/key/soviet/soldat,/obj/item/weapon/key/german/soldat,/obj/machinery/light{dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "al" = (/obj/structure/table/rack,/obj/machinery/light{dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/admin)
@@ -80,7 +80,6 @@
 "bB" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/table/rack,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/device/mine/betty,/obj/item/device/mine/betty,/obj/item/device/mine/betty,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
 "bC" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/table/rack,/obj/machinery/light{dir = 8},/obj/structure/closet/crate/german_smoke_grenade,/obj/structure/closet/crate/german_smoke_grenade,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
 "bD" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/machinery/light/small,/obj/item/weapon/storage/backpack/flammenwerfer,/obj/item/weapon/gun/projectile/pistol/luger,/obj/structure/table/rack,/obj/item/ammo_magazine/luger,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
-"bE" = (/obj/effect/floor_decal/corner_oldtile/red/full,/obj/effect/floor_decal/corner_oldtile/red{dir = 4},/obj/structure/table/rack,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/ammo_magazine/a762,/obj/item/weapon/gun/projectile/automatic/l6_saw,/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
 "bF" = (/obj/machinery/light/small{dir = 8},/obj/item/device/radio/intercom/loudspeaker/german{dir = 1},/turf/floor/wood,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
 "bG" = (/obj/structure/railing{dir = 4},/turf/wall/r_wall,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
 "bH" = (/obj/train_connector,/turf/floor/plating,/area/prishtina/void/german/ss_train{name = "S.S Armory"})
@@ -265,7 +264,7 @@ aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeaeaeaeaeaeaeaeaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeafagahaiajakajaiajalaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeafagahaxajakajaxajalaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeamamamamamamamamamajaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeagagahamajajanaoamapaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabacacacacacacacacacacacacacacacabadadadadadadadadadadadadadadadabaaaeaqamamamamamamamamaraeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -309,7 +308,7 @@ aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbubv
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbxbwbwbybpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbzbwbAbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbBbwbkbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbCbDbEbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbCbDaibpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbsbpbpbpbpbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbFbsbsbsbsbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaabbtbtbtbtbtbtbtbtbtbtbtbtbtbtbtabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabpbpbpbqbpbpbpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

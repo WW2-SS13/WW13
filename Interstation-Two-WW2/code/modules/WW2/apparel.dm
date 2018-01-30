@@ -459,49 +459,73 @@
 
 // coats
 
-/obj/item/clothing/suit/coat
+/obj/item/clothing/suit/storage/coat
 	name = "generic coat"
 	desc = "generic desc"
 	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
 
-/obj/item/clothing/suit/coat/civilian
+/obj/item/clothing/suit/storage/coat/civilian
 	name = "Civilian's Coat"
 	desc = "An ordinary winter coat."
 	icon_state = "winter_coat"
 	item_state = "winter_coat"
 	worn_state = "winter_coat"
 
-/obj/item/clothing/suit/coat/german
+/obj/item/clothing/suit/storage/coat/german
 	name = "German Soldier's Coat"
 	desc = "An ordinary winter coat for a Wehrmacht soldier."
 	icon_state = "nazi_coat"
 	item_state = "nazi_coat"
 	worn_state = "nazi_coat"
 
-/obj/item/clothing/suit/coat/german/SS
+/obj/item/clothing/suit/storage/coat/german/SS
 	name = "SS Soldier's Coat"
 	desc = "An ordinary winter coat for an SS soldier."
 	icon_state = "ss_coat"
 	item_state = "ss_coat"
 	worn_state = "ss_coat"
 
-/obj/item/clothing/suit/coat/german/officer
+/obj/item/clothing/suit/storage/coat/german/officer
 	name = "German Officer's Coat"
 	desc = "An ordinary winter coat for a Wehrmacht officer."
 	icon_state = "nazimp_coat"
 	item_state = "nazimp_coat"
 	worn_state = "nazimp_coat"
 
-/obj/item/clothing/suit/coat/soviet
+/obj/item/clothing/suit/storage/coat/soviet
 	name = "Soviet Soldier's Coat"
 	desc = "An ordinary winter coat for a Soviet soldier."
 	icon_state = "soviet_coat"
 	item_state = "soviet_coat"
 	worn_state = "soviet_coat"
 
-/obj/item/clothing/suit/coat/soviet/officer
+/obj/item/clothing/suit/storage/coat/soviet/officer
 	name = "Soviet Officer's Coat"
 	desc = "An ordinary winter coat for a Soviet officer."
 	icon_state = "sovofficer_coat"
 	item_state = "sovofficer_coat"
 	worn_state = "sovofficer_coat"
+
+// WEBBING - can hold everything but clothing
+
+/obj/item/clothing/accessory/storage/webbing
+	name = "webbing"
+	desc = "A sturdy mess of cotton belts and buckles, ready to share your burden."
+	icon_state = "webbing"
+	slots = 8
+
+	New()
+		..()
+		hold.cant_hold = list(/obj/item/clothing)
+
+// CUSTOMIZED GAS MASKS
+
+/obj/item/clothing/mask/gas/german
+	icon_state = "m38_mask"
+	item_state = "m38_mask"
+	filtered_gases = list("xylyl_bromide", "mustard_gas", "white_phosphorus_gas", "chlorine_gas", "zyklon_b")
+
+/obj/item/clothing/mask/gas/soviet
+	icon_state = "gp5_mask"
+	item_state = "gp5_mask"
+	filtered_gases = list("xylyl_bromide", "mustard_gas", "white_phosphorus_gas", "chlorine_gas", "zyklon_b")

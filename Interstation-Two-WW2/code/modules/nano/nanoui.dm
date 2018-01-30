@@ -73,6 +73,10 @@ nanoui is used to open and update nano browser uis
   * @return /nanoui new nanoui object
   */
 /datum/nanoui/New(nuser, nsrc_object, nui_key, ntemplate_filename, ntitle = FALSE, nwidth = FALSE, nheight = FALSE, var/atom/nref = null, var/datum/nanoui/_master_ui = null, var/datum/topic_state/_state = default_state)
+
+	// unique file names that don't get overwritten by other servers' tmpls
+	ntemplate_filename = "[replacetext(ntemplate_filename, ".tmpl", "")]_WW13.tmpl"
+
 	user = nuser
 	src_object = nsrc_object
 	ui_key = nui_key
@@ -340,7 +344,7 @@ nanoui is used to open and update nano browser uis
 
 	// before the UI opens, add the layout files based on the layout key
 	add_stylesheet("layout_[layout_key].css")
-	add_template("layout", "layout_[layout_key].tmpl")
+	add_template("layout", "layout_[layout_key]_WW13.tmpl")
 
 	var/head_content = ""
 

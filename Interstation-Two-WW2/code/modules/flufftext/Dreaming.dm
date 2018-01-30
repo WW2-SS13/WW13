@@ -8,7 +8,7 @@ mob/living/carbon/proc/dream()
 
 	spawn(0)
 		for(var/i = rand(1,4),i > FALSE, i--)
-			src << "\blue <i>... [pick(dreams)] ...</i>"
+			src << "<span class = 'notice'><i>... [pick(dreams)] ...</i></span>"
 			sleep(rand(40,70))
 			if(paralysis <= FALSE)
 				dreaming = FALSE

@@ -19,12 +19,16 @@ var/global/datum/controller/occupations/job_master
 		if (!faction_organized_occupations_separate_lists.Find(Jflag))
 			faction_organized_occupations_separate_lists[Jflag] = list()
 		faction_organized_occupations_separate_lists[Jflag] += J
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[GERMAN]
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[SOVIET]
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[ITALIAN]
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[UKRAINIAN]
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[CIVILIAN]
-	job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[PARTISAN]
+	if (!map)
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[GERMAN]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[SOVIET]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[ITALIAN]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[UKRAINIAN]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[CIVILIAN]
+		job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[PARTISAN]
+	else
+		for (var/faction in map.faction_organization)
+			job_master.faction_organized_occupations |= faction_organized_occupations_separate_lists[faction]
 
 /datum/controller/occupations
 		//List of all jobs
@@ -161,6 +165,8 @@ var/global/datum/controller/occupations/job_master
 
 	proc/toggle_roundstart_autobalance(var/_clients = 0, var/announce = TRUE)
 
+		_clients = max(_clients, map ? map.min_autobalance_players : 0)
+
 		if (_clients != 0)
 			expected_clients = _clients
 
@@ -189,9 +195,9 @@ var/global/datum/controller/occupations/job_master
 
 		soviet_job_slots = german_job_slots + 5
 
-		civilian_job_slots = round(soviet_job_slots/4)
+		civilian_job_slots = round(soviet_job_slots/5)
 
-		partisan_job_slots = civilian_job_slots
+		partisan_job_slots = round(soviet_job_slots/4)
 
 
 //		allow_jews = initial(allow_jews)
@@ -1171,19 +1177,19 @@ var/global/datum/controller/occupations/job_master
 
 			// civs and partisans
 			if (istype(job, /datum/job/partisan))
-				H.equip_coat(/obj/item/clothing/suit/coat/civilian)
+				H.equip_coat(/obj/item/clothing/suit/storage/coat/civilian)
 			else if (istype(job, /datum/job/german))
 				if (job.is_officer)
-					H.equip_coat(/obj/item/clothing/suit/coat/german/officer)
+					H.equip_coat(/obj/item/clothing/suit/storage/coat/german/officer)
 				else if (job.is_SS)
-					H.equip_coat(/obj/item/clothing/suit/coat/german/SS)
+					H.equip_coat(/obj/item/clothing/suit/storage/coat/german/SS)
 				else
-					H.equip_coat(/obj/item/clothing/suit/coat/german)
+					H.equip_coat(/obj/item/clothing/suit/storage/coat/german)
 			else if (istype(job, /datum/job/soviet))
 				if (job.is_officer)
-					H.equip_coat(/obj/item/clothing/suit/coat/soviet/officer)
+					H.equip_coat(/obj/item/clothing/suit/storage/coat/soviet/officer)
 				else
-					H.equip_coat(/obj/item/clothing/suit/coat/soviet)
+					H.equip_coat(/obj/item/clothing/suit/storage/coat/soviet)
 			// Give the guy some ammo for his gun
 			spawn (0)
 				if (istype(ticker.mode, /datum/game_mode/ww2))
@@ -1209,8 +1215,13 @@ var/global/datum/controller/occupations/job_master
 			job.apply_fingerprints(H)
 
 			if (names_used[H.real_name])
-				H.original_job.give_random_name(H)
+				job.give_random_name(H)
 			names_used[H.real_name] = TRUE
+
+			if (job.rank_abbreviation)
+				job.rank_abbreviation = capitalize(lowertext(job.rank_abbreviation))
+				H.real_name = "[job.rank_abbreviation]. [H.real_name]"
+				H.name = H.real_name
 
 			switch (job.base_type_flag())
 				if (SOVIET)
@@ -1389,20 +1400,7 @@ var/global/datum/controller/occupations/job_master
 			world << "[H] ([rank]) GOT TO before spawnID()"
 			#endif
 
-			/* if its night give H a lantern
-			 * use our belt slot since keys can go in the ID slot
-			 * some roles have stuff in their belt slot but most people
-			 * will get lanterns - Kachnov */
-
-			if (isDarkOutside())
-				H.equip_to_slot_or_del(new/obj/item/device/flashlight(H), slot_belt)
-
 			spawnKeys(H, rank, alt_title)
-
-			// free belt slot, give us a flashlight anyway
-			if (!slot_belt)
-				H.equip_to_slot_or_del(new/obj/item/device/flashlight(H), slot_belt)
-
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO after spawnID()"
@@ -1454,43 +1452,41 @@ var/global/datum/controller/occupations/job_master
 
 		var/obj/item/weapon/storage/belt/keychain/keychain = new/obj/item/weapon/storage/belt/keychain()
 
-		if (!H.belt) // first, try to equip it as their belt
+		if (!H.wear_id) // first, try to equip it to their ID slot
+			H.equip_to_slot_or_del(keychain, slot_wear_id)
+		else if (!H.belt) // first, try to equip it as their belt
 			H.equip_to_slot_or_del(keychain, slot_belt)
-		else // DISABLED because bugs
-			if (istype(H.belt, /obj/item/weapon/storage/belt) && FALSE == TRUE) // try to put it in their belt
-				var/obj/item/weapon/storage/belt/belt = H.belt
-				if (belt.can_be_inserted(keychain))
-					belt.handle_item_insertion(keychain)
-			else // then try to put it in their ID slot
-				H.equip_to_slot_if_possible(keychain, slot_wear_id)
-				if (H.wear_id != keychain) // wow
-					H.equip_to_slot_if_possible(keychain, slot_l_store)
-					if (H.l_store != keychain)
-						H.equip_to_slot_if_possible(keychain, slot_r_store)
-
 
 		var/list/keys = job.get_keys()
 
 		for (var/obj/item/weapon/key in keys)
 			if (keychain.can_be_inserted(key))
 				keychain.handle_item_insertion(key)
-				keychain.update_icon_state()
 				keychain.keys += key
+				keychain.update_icon_state()
 
 	proc/is_side_locked(side)
 		if(!ticker)
 			return TRUE
 		if(side == SOVIET)
+			if (soviets_forceEnabled)
+				return FALSE
 			if (side_is_hardlocked(side))
 				return 2
 			return !ticker.can_latejoin_ruforce
 		else if(side == GERMAN)
+			if (germans_forceEnabled)
+				return FALSE
 			if (side_is_hardlocked(side))
 				return 2
 			return !ticker.can_latejoin_geforce
 		else if (side == CIVILIAN)
+			if (civilians_forceEnabled)
+				return FALSE
 			return map.game_really_started()
 		else if (side == PARTISAN)
+			if (partisans_forceEnabled)
+				return FALSE
 			return map.game_really_started()
 		return FALSE
 
@@ -1508,14 +1504,22 @@ var/global/datum/controller/occupations/job_master
 
 		switch (side)
 			if (PARTISAN)
+				if (partisans_forceEnabled)
+					return FALSE
 				return FALSE
 			if (CIVILIAN)
+				if (civilians_forceEnabled)
+					return FALSE
 				return FALSE
 			if (GERMAN)
+				if (germans_forceEnabled)
+					return FALSE
 				if (player_list.len >= 2 && player_list.len <= 20)
 					if (germans >= ceil(player_list.len/2))
 						return TRUE
 			if (SOVIET)
+				if (soviets_forceEnabled)
+					return FALSE
 				if (player_list.len >= 2 && player_list.len <= 20)
 					if (soviets >= ceil(player_list.len/2))
 						return TRUE
