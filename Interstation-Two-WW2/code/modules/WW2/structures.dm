@@ -1,6 +1,12 @@
 /obj/structure/grille/fence
 	icon_state = "fence4-8"
 
+/obj/structure/anti_tank
+	icon_state = "anti-tank"
+	bound_width = 32
+	bound_height = 32
+	density = TRUE
+
 /obj/structure/flag
 	icon = 'icons/obj/flags.dmi'
 	layer = MOB_LAYER + 0.01

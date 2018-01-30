@@ -224,6 +224,18 @@
 				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
 				return FALSE
 
+		if (istype(o, /obj/structure/anti_tank))
+			if (prob(2))
+				tank_message("<span class = 'danger'>The tank manages to plow through the anti-tank barrier!</span>")
+				qdel(o)
+				return TRUE
+			else
+				tank_message("<span class = 'danger'>The tank tries to push past the barrier!</span>")
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
+				playsound(get_turf(src), 'sound/effects/bamf.ogg', 100)
+				return FALSE
+
 		if (istype(o, /obj/structure/girder))
 			if (prob(7))
 				tank_message("<span class = 'danger'>The tank plows through the wall girder!</span>")
