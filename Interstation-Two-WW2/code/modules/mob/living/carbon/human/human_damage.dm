@@ -117,11 +117,11 @@
 	if (organ_name in organs_by_name)
 		var/obj/item/organ/external/O = get_organ(organ_name)
 
-		if(amount > FALSE)
-			O.take_damage(amount, FALSE, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
+		if(amount > 0)
+			O.take_damage(amount, 0, sharp=is_sharp(damage_source), edge=damage_source ? damage_source.edge : 0, used_weapon=damage_source)
 		else
 			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
-			O.heal_damage(-amount, FALSE, internal=0, robo_repair=(O.status & ORGAN_ROBOT))
+			O.heal_damage(-amount, 0, internal=0, robo_repair=(O.status & ORGAN_ROBOT))
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 
@@ -131,10 +131,10 @@
 		var/obj/item/organ/external/O = get_organ(organ_name)
 
 		if(amount > FALSE)
-			O.take_damage(0, amount, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
+			O.take_damage(amount, amount, sharp=is_sharp(damage_source), edge=damage_source ? damage_source.edge : 0, used_weapon=damage_source)
 		else
 			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
-			O.heal_damage(0, -amount, internal=0, robo_repair=(O.status & ORGAN_ROBOT))
+			O.heal_damage(-amount, -amount, internal=0, robo_repair=(O.status & ORGAN_ROBOT))
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 
@@ -144,6 +144,8 @@
 
 /mob/living/carbon/human/Weaken(amount)
 	if(HULK in mutations)	return
+	if(takes_less_damage && prob(ceil(getStatCoeff("strength") * 7)))
+		return
 	..()
 
 /mob/living/carbon/human/Paralyse(amount)

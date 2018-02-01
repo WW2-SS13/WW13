@@ -46,22 +46,11 @@ a, a:link, a:visited, :active, a:hover
 /* Radio: Misc */
 .deadsay				{color: #8657C5;}
 .radio					{color: #4CA64C;}
-.deptradio				{color: #ff00ff;}	/* when all other department colors fail */
-.newscaster				{color: #9E4C4C;}
 
 /* Radio Channels */
-.comradio				{color: #466194;}
-.syndradio				{color: #8A6566;}
-.centradio				{color: #7C7CA1;}
-.airadio				{color: #FF00FF;}
-.entradio				{color: #5BAD84;}
-
-.secradio				{color: #B53232;}
-.engradio				{color: #B78232;}
-.medradio				{color: #329A7F;}
-.sciradio				{color: #AD5BAD;}
-.supradio				{color: #7E6A46;}
-.srvradio				{color: #8BBB56;}
+.blueradio				{color: #466194;}
+.redradio				{color: #B53232;}
+.brownradio				{color: #7E6A46;}
 
 /* Miscellaneous */
 .name					{font-weight: bold;}

@@ -522,7 +522,7 @@
 			var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
 
 			if (job.is_paratrooper)
-				job_is_available = (allow_paratroopers && fallschirm_landmarks.len && clients.len >= 20)
+				job_is_available = (allow_paratroopers && fallschirm_landmarks.len)
 
 			if (!job.validate(src))
 				job_is_available = FALSE

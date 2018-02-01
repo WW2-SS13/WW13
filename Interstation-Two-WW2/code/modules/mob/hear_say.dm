@@ -76,7 +76,7 @@
 		return
 
 	if (speaker && language && speaker.languages.len && language != speaker.languages[1])
-		verb = "[verb] in [language.name]"
+		verb = "[verb] in <span class = 'info'>[language.name]</span>"
 
 	message = capitalize(message)
 

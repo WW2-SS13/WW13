@@ -2,10 +2,18 @@
 #define DAMAGE_MEDIUM 46
 #define DAMAGE_HIGH 69
 #define DAMAGE_VERY_HIGH 92
+#define DAMAGE_OH_GOD 200
 
 /obj/item/projectile/bullet/rifle
 	speed = 2.5
 	armor_penetration = 50
+
+/obj/item/projectile/bullet/rifle/murder
+	speed = 10.0
+	armor_penetration = 500
+	damage = DAMAGE_OH_GOD
+	accuracy = 5000
+
 
 /obj/item/projectile/bullet/rifle/a792x33
 	damage = DAMAGE_LOW
@@ -81,6 +89,7 @@
 #undef DAMAGE_MEDIUM
 #undef DAMAGE_HIGH
 #undef DAMAGE_VERY_HIGH
+#undef DAMAGE_OH_GOD
 
 /obj/item/projectile/bullet/chameleon
 	damage = TRUE // stop trying to murderbone with a fake gun dumbass!!!
@@ -180,3 +189,4 @@
 	. = FALSE
 	qdel(src)
 	return .
+

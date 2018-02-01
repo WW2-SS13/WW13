@@ -70,7 +70,7 @@
 			if (fullness > 150 && fullness <= 350)
 				C << "<span class='notice'>You take a bite of [src].</span>"
 			if (fullness > 350 && fullness <= 550)
-				C << "<span class='notice'>You unwillingly chew a bit of [src].</span>"
+				C << "<span class='notice'>You take a bite of [src].</span>"
 			if (fullness > 580)
 				C << "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>"
 				return FALSE
@@ -152,13 +152,21 @@
 				qdel(src)
 			return
 
-	if (is_sliceable())
+	else if (is_sliceable())
 		//these are used to allow hiding edge items in food that is not on a table/tray
-		var/can_slice_here = isturf(loc) && ((locate(/obj/structure/table) in loc) || (locate(/obj/machinery/optable) in loc) || (locate(/obj/item/weapon/tray) in loc))
-		var/hide_item = !has_edge(W) || !can_slice_here
+
+		var/can_slice_here = FALSE
+		if (isturf(loc))
+			if (locate(/obj/structure/table) in loc)
+				can_slice_here = TRUE
+			else if (locate(/obj/structure/optable) in loc)
+				can_slice_here = TRUE
+
+		var/hide_item = (!W.edge || !can_slice_here)
 
 		if (hide_item)
 			if (W.w_class >= w_class || is_robot_module(W))
+				user << "<span class='warning'>\the [W] is to big to hide inside \the [src].</span>"
 				return
 
 			user << "<span class='warning'>You slip \the [W] inside \the [src].</span>"
@@ -168,12 +176,12 @@
 			contents += W
 			return
 
-		if (has_edge(W))
+		else if (W.edge)
 			if (!can_slice_here)
 				user << "<span class='warning'>You cannot slice \the [src] here! You need a table or at least a tray to do it.</span>"
 				return
 
-			var/slices_lost = FALSE
+			var/slices_lost = 0
 			if (W.w_class > 3)
 				user.visible_message("<span class='notice'>\The [user] crudely slices \the [src] with [W]!</span>", "<span class='notice'>You crudely slice \the [src] with your [W]!</span>")
 				slices_lost = rand(1,min(1,round(slices_num/2)))
@@ -482,7 +490,7 @@
 	reagents.add_reagent("egg", 3)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/afterattack(obj/O as obj, mob/user as mob, proximity)
-	if(istype(O,/obj/machinery/microwave))
+	if(istype(O,/obj/structure/microwave))
 		return ..()
 	if(!(proximity && O.is_open_container()))
 		return

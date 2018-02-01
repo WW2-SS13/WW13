@@ -553,8 +553,14 @@
 
 		var/abs_dist = abs(t.x - other.x) + abs(t.y - other.y)
 
-		travel_time = abs((round(abs_dist/50) * 10)) + 20 // must be at least 2 seconds for the incoming sound to
+		travel_time = abs((round(abs_dist/50) * 10)) + 50 // must be at least 2 seconds for the incoming sound to
 		// work right
+
+		spawn (travel_time - 50)
+			if (prob(75))
+				for (var/mob/living/carbon/human/H in range(15, t))
+					if (!H.disabilities & DEAF)
+						H << "<span class = 'userdanger'>You think you can hear the sound of artillery flying in! Take cover!</span>"
 
 		spawn (travel_time - 20) // the new artillery sound takes about 2 seconds to reach the explosion point, so start playing it now
 			var/list/heard = playsound(t, "artillery_in", 100, TRUE)

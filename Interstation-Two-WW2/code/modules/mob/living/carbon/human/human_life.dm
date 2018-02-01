@@ -54,7 +54,8 @@
 				next_weather_sound = world.time
 
 	if (istype(wear_mask, /obj/item/clothing/mask/stone))
-		if (prob(20) && mind && type == /mob/living/carbon/human)
+		if (mind && type == /mob/living/carbon/human)
+			invisibility = 101
 			var/datum/mind/M = mind
 			var/mob/living/carbon/human/vampire/V = new(get_turf(src), FALSE)
 			var/oldname = name
@@ -62,14 +63,33 @@
 			spawn (12)
 				V.name = oldname
 				V.real_name = oldreal_name
+				crush(do_gibs = FALSE)
 			M.transfer_to(V)
-			for (var/obj/item/I in contents)
+			canmove = FALSE
+			var/old_items = list()
+			old_items["[slot_s_store]"] = s_store
+			old_items["[slot_wear_id]"] = wear_id
+			old_items["[slot_belt]"] = belt
+			old_items["[slot_back]"] = back
+		// hand slots don't work, unsure why - Kachnov
+		//	old_items["[slot_l_hand]"] = l_hand
+		//	old_items["[slot_r_hand]"] = r_hand
+			old_items["[slot_l_store]"] = l_store
+			old_items["[slot_r_store]"] = r_store
+			for (var/obj/item/clothing/I in contents)
 				var/I_was_equipped = isEquipped(I)
 				drop_from_inventory(I)
-				if (I_was_equipped)
-					equip_to_appropriate_slot(I)
-			visible_message("<span class = 'danger'>[src] becomes a Vampire!</span>")
-			crush(do_gibs = FALSE)
+				spawn (15)
+					if (I_was_equipped)
+						V.equip_to_appropriate_slot(I)
+			spawn (20)
+				for (var/slotname in old_items)
+					if (old_items[slotname] != null)
+						V.equip_to_slot_if_possible(old_items[slotname], text2num(slotname))
+			spawn (30)
+				canmove = TRUE
+			spawn (10)
+				visible_message("<span class = 'danger'>[V] becomes a Vampire!</span>")
 			return
 
 	handle_zoom_stuff()
@@ -135,7 +155,7 @@
 
 		handle_blood()
 
-		adjust_body_temperature()
+//		adjust_body_temperature()
 		stabilize_body_temperature()
 
 		handle_shock()
@@ -308,9 +328,9 @@
 	var/loc_temp = 293
 	var/area/mob_area = get_area(src)
 
+	var/game_season = "SPRING"
 	if (mob_area.location == AREA_OUTSIDE)
 
-		var/game_season = "SPRING"
 		if (ticker.mode.vars.Find("season"))
 			game_season = ticker.mode:season
 
@@ -367,19 +387,19 @@
 
 	// todo: wind adjusting effective loc_temp
 
-	if(abs(loc_temp - bodytemperature) < 0.5 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
+	if(abs(loc_temperature - bodytemperature) < 0.5 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 	//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
-	var/temp_adj = FALSE
-	if(loc_temp < bodytemperature)			//Place is colder than we are
-		var/thermal_protection = get_cold_protection(loc_temp) //This returns a FALSE - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+	var/temp_adj = 0
+	if(loc_temperature < bodytemperature)			//Place is colder than we are
+		var/thermal_protection = get_cold_protection(loc_temperature) //This returns a FALSE - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		if(thermal_protection < 0 || game_season == "WINTER")
+			temp_adj = (1-thermal_protection) * ((loc_temperature - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
+	else if (loc_temperature > bodytemperature)			//Place is hotter than we are
+		var/thermal_protection = get_heat_protection(loc_temperature) //This returns a FALSE - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 		if(thermal_protection < 0)
-			temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
-	else if (loc_temp > bodytemperature)			//Place is hotter than we are
-		var/thermal_protection = get_heat_protection(loc_temp) //This returns a FALSE - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-		if(thermal_protection < 0)
-			temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
+			temp_adj = (1-thermal_protection) * ((loc_temperature - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 
 	//Use heat transfer as proportional to the gas density. However, we only care about the relative density vs standard 101 kPa/20 C air. Therefore we can use mole ratios
 //	var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
@@ -426,8 +446,8 @@
 	if(status_flags & GODMODE)	return TRUE	//godmode
 
 	return
-
-/mob/living/carbon/human/proc/adjust_body_temperature(current, loc_temp, boost)
+/*
+/mob/living/carbon/human/proc/adjust_body_temperature(current, loc_temp, boost = 0)
 	var/temperature = current
 	var/difference = abs(current-loc_temp)	//get difference
 	var/increments// = difference/10			//find how many increments apart they are
@@ -443,8 +463,7 @@
 		temperature = max(loc_temp, temperature-change)
 	temp_change = (temperature - current)
 	return temp_change
-
-
+*/
 /mob/living/carbon/human/proc/stabilize_body_temperature()
 	if (species.passive_temp_gain) // We produce heat naturally.
 		bodytemperature += species.passive_temp_gain

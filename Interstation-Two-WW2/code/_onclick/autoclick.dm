@@ -51,7 +51,7 @@
 				if (G && istype(G))
 					G.next_fire_time = 0 // no 'you can't fire' spam
 					Click(selected_target[1], location, control, selected_target[2])
-			sleep(0.2)
+			sleep(0.05)
 	else
 		return ..(object, location, control, params)
 

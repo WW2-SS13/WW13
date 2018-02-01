@@ -5,6 +5,9 @@ var/datum/reinforcements/reinforcements_master
 	return l.len
 
 /datum/reinforcements
+
+	var/started = FALSE
+
 	var/soviet_countdown = 50
 	var/german_countdown = 50
 
@@ -55,15 +58,20 @@ var/datum/reinforcements/reinforcements_master
 	showed_permalock_message[GERMAN] = FALSE
 	showed_permalock_message[SOVIET] = FALSE
 
-	tick()
-
-
 /datum/reinforcements/proc/is_ready()
 	. = game_started // no reinforcements until the train is sent
 	if (map && !map.reinforcements)
 		. = FALSE
 
-/datum/reinforcements/proc/tick()
+/datum/reinforcements/proc/trytostartup()
+
+	if (!is_ready())
+		return FALSE
+
+	if (started)
+		return TRUE
+
+	started = TRUE
 
 	/* new formulas for determining how reinforcements work, directly determined
 	 * by the number of clients when we start up. */
@@ -77,33 +85,43 @@ var/datum/reinforcements/reinforcements_master
 
 	world << "<span class = 'danger'>Reinforcements require <b>[reinforcement_spawn_req]</b> people to fill a queue.</span>"
 
-	spawn while (1)
+	return TRUE
 
-		if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
-			for (var/mob/new_player/np in reinforcement_pool[SOVIET])
-				if (!np || !np.client)
-					reinforcement_pool[SOVIET] -= np
-			for (var/mob/new_player/np in reinforcement_pool[GERMAN])
-				if (!np || !np.client)
-					reinforcement_pool[GERMAN] -= np
+/datum/reinforcements/proc/tick()
 
-		soviet_countdown = soviet_countdown - tick_len
-		if (soviet_countdown < TRUE)
-			if (!reset_soviet_timer())
-				soviet_countdown = soviet_countdown_failure_reset
-			else
-				soviet_countdown = soviet_countdown_success_reset
-				allow_quickspawn[SOVIET] = FALSE
+	if (prob(1) && prob(2) && prob(75)) // events
+		if (prob(50))
+			if (!locked[SOVIET])
+				soviet_countdown = soviet_countdown_success_reset*2
+				world << "<font size = 3>Due to harsh combat in other areas on the Eastern Front, Soviet reinforcements will not be available for a while."
+		else
+			if (!locked[GERMAN])
+				german_countdown = german_countdown_success_reset*2
+				world << "<font size = 3>Due to harsh combat in other areas on the Eastern Front, Wehrmacht reinforcements will not be available for a while."
 
-		german_countdown = german_countdown - tick_len
-		if (german_countdown < TRUE)
-			if (!reset_german_timer())
-				german_countdown = german_countdown_failure_reset
-			else
-				german_countdown = german_countdown_success_reset
-				allow_quickspawn[GERMAN] = FALSE
+	if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
+		for (var/mob/new_player/np in reinforcement_pool[SOVIET])
+			if (!np || !np.client)
+				reinforcement_pool[SOVIET] -= np
+		for (var/mob/new_player/np in reinforcement_pool[GERMAN])
+			if (!np || !np.client)
+				reinforcement_pool[GERMAN] -= np
 
-		sleep(10)
+	soviet_countdown = soviet_countdown - tick_len
+	if (soviet_countdown < TRUE)
+		if (!reset_soviet_timer())
+			soviet_countdown = soviet_countdown_failure_reset
+		else
+			soviet_countdown = soviet_countdown_success_reset
+			allow_quickspawn[SOVIET] = FALSE
+
+	german_countdown = german_countdown - tick_len
+	if (german_countdown < TRUE)
+		if (!reset_german_timer())
+			german_countdown = german_countdown_failure_reset
+		else
+			german_countdown = german_countdown_success_reset
+			allow_quickspawn[GERMAN] = FALSE
 
 /datum/reinforcements/proc/add(var/mob/new_player/np, side)
 

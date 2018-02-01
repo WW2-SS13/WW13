@@ -74,7 +74,7 @@ var/global/obj/map_metadata/map = null
 	return TRUE
 
 /obj/map_metadata/proc/specialfaction_can_cross_blocks()
-	return FALSE
+	return TRUE
 
 /obj/map_metadata/proc/announce_mission_start(var/preparation_time = FALSE)
 	return TRUE

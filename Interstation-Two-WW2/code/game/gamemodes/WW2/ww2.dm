@@ -34,7 +34,7 @@
 
 	var/season = "SPRING"
 
-//#define WINTER_TESTING
+#define WINTER_TESTING
 
 /datum/game_mode/ww2/pre_setup()
 	#ifdef WINTER_TESTING
@@ -93,7 +93,7 @@
 /datum/game_mode/ww2/check_finished(var/round_ending = FALSE)
 	if (admins_triggered_noroundend)
 		return FALSE // no matter what, don't end
-	else if (..() == TRUE || admins_triggered_roundend)
+	else if (..() == TRUE)
 		return TRUE
 	else if (WW2_soldiers_en_ru_ratio() == 1000 && game_started)
 		winning_side = "German Army"
@@ -226,6 +226,9 @@
 			winning_side = "Soviet Army"
 			return TRUE
 
+	if (admins_triggered_roundend)
+		return TRUE
+
 	return FALSE
 
 /datum/game_mode/ww2/declare_completion()
@@ -275,8 +278,8 @@
 				job_master.soviet_job_slots *= personnel[SOVIET]
 
 				// nerf or buff german supplies by editing the supply train controller
-				german_supplytrain_master.supply_points_per_second_min *= supplies[GERMAN]
-				german_supplytrain_master.supply_points_per_second_max *= supplies[GERMAN]
+		//		german_supplytrain_master.supply_points_per_second_min *= supplies[GERMAN]
+		//		german_supplytrain_master.supply_points_per_second_max *= supplies[GERMAN]
 
 			// nerf or buff soviet supplies by editing crates in Soviet territory.
 			spawn (10) // make sure rations are set up?

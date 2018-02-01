@@ -274,6 +274,13 @@
 /area/prishtina/void/sky
 	icon_state = "purple1"
 	name = "The Sky"
+	var/corresponding_area_type = null
+	var/corresponding_area_allow_subtypes = FALSE
+
+/area/prishtina/void/sky/paratrooper_drop_zone
+	corresponding_area_type = /area/prishtina/forest
+	corresponding_area_allow_subtypes = TRUE
+
 // end of wormhole areas
 
 // german areas

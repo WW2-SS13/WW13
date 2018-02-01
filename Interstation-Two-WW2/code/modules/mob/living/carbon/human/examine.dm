@@ -392,11 +392,9 @@
 
 					// make partisans show up as civs
 					var/team = original_job.base_type_flag()
-					if (team == PARTISAN)
-						team = CIVILIAN
 
-					msg += "<br><i>[T.he] [T.is] a <b>[capitalize(lowertext(original_job.base_type_flag()))]</b>.</i>"
-
+					if (team != PILLARMEN)
+						msg += "<br><i>[T.He] [T.is] a <b>[capitalize(lowertext(team))]</b>.</i>"
 
 				if (original_job.base_type_flag() == H.original_job.base_type_flag() && (original_job.base_type_flag() == SOVIET || original_job.base_type_flag() == GERMAN))
 					if (isleader(src, H))

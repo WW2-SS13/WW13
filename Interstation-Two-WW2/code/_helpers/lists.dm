@@ -9,6 +9,16 @@
  * Misc
  */
 
+// I guess you can't use locate() in or find() for types, so this exists
+/proc/locate_type(var/list/L, var/type)
+	if (isatom(L))
+		var/atom/A = L
+		L = A.contents
+	for (var/datum/D in L)
+		if (istype(D, type))
+			return D
+	return FALSE
+
 /proc/copylist(var/list/L)
 	if (!L || !islist(L))
 		return list()

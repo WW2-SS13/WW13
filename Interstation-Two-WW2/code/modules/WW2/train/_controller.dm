@@ -147,7 +147,7 @@
 			var/y_inc = FALSE
 			var/found_first_car = FALSE
 
-			for (var/v in TRUE to officer_cars)
+			for (var/v in 1 to officer_cars)
 				var/obj/train_car_center/tcc = new/obj/train_car_center/german/officer(locate(starting_x, starting_y + y_inc, starting_z), src)
 				y_inc -= off_di["height"]
 				y_inc -= SPACES_BETWEEN_CARS
@@ -158,7 +158,7 @@
 					first_car = tcc
 					found_first_car = TRUE
 
-			for (var/v in TRUE to soldier_cars)
+			for (var/v in 1 to soldier_cars)
 				var/obj/train_car_center/tcc = new/obj/train_car_center/german/soldier(locate(starting_x, starting_y + y_inc, starting_z), src)
 				y_inc -= so_di["height"]
 				y_inc -= SPACES_BETWEEN_CARS
@@ -169,7 +169,7 @@
 					first_car = tcc
 					found_first_car = TRUE
 
-			for (var/v in TRUE to storage_cars) // this makes unboarding way easier
+			for (var/v in 1 to storage_cars) // this makes unboarding way easier
 				var/obj/train_car_center/tcc = new/obj/train_car_center/german/storage(locate(starting_x, starting_y + y_inc, starting_z), src)
 				y_inc -= st_di["height"]
 				y_inc -= SPACES_BETWEEN_CARS
@@ -180,7 +180,7 @@
 					first_car = tcc
 					found_first_car = TRUE
 
-			for (var/v in TRUE to conductor_cars)
+			for (var/v in 1 to conductor_cars)
 				var/obj/train_car_center/tcc = new/obj/train_car_center/german/conductor(locate(starting_x, starting_y + y_inc, starting_z), src)
 				y_inc -= con_di["height"]
 				y_inc -= SPACES_BETWEEN_CARS
@@ -376,9 +376,6 @@
 
 /datum/train_controller/german_supplytrain_controller/Process()
 	..()
-
-	if (prob((train_loop_interval/10)*100))
-		supply_points += (rand(supply_points_per_second_min*100, supply_points_per_second_max*100))/100
 
 	if (direction == "BACKWARDS" && !moving)
 		for (var/obj/train_car_center/tcc in train_car_centers)
@@ -595,17 +592,18 @@
 	play_train_sound("train_halting")
 
 /datum/train_controller/proc/play_train_sound(var/sound)
-	for (var/mob/m in player_list)
-		if (istype(m) && m.client)
-			var/obj/train_car_center/german/tcc = locate(my_tcc_type) in range(20, m)
-			if (tcc && istype(tcc))
-				var/volume = 100
-				if (!locate(/obj/train_connector) in get_turf(m))
-					var/abs_dist_from_tcc = abs(m.x - tcc.x) + abs(m.y - tcc.y)
-					volume = rand(80,90) - abs_dist_from_tcc
-					m.client.playsound_personal(sound, volume)
-				else
-					m.client.playsound_personal(sound, volume)
+	for (var/mob/M in player_list)
+		if (M.client)
+			for (var/obj/train_car_center/german/tcc in world)
+				if (tcc.type == my_tcc_type)
+					var/dist = abs_dist(M, tcc)
+					if (dist <= 20)
+						var/volume = 100
+						if (!locate(/obj/train_connector) in get_turf(M))
+							volume = 100 - (dist*2)
+							M.client.playsound_personal(sound, volume)
+						else
+							M.client.playsound_personal(sound, volume)
 
 /datum/train_controller/proc/check_can_move_mob(var/mob/m)
 	return TRUE

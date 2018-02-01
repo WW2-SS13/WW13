@@ -43,18 +43,13 @@
 		var/list/target_turfs = getcircle(T, spread_range)
 		var/fragments_per_projectile = round(num_fragments/target_turfs.len)
 
-	//	log_debug("c0: [target_turfs.len]/[fragments_per_projectile]")
-
 		for(var/turf/TT in target_turfs)
-			var/obj/item/projectile/bullet/pellet/fragment/P = new fragment_type(TT)
+			var/obj/item/projectile/bullet/pellet/fragment/P = new fragment_type(T)
 			P.damage = fragment_damage
 			P.pellets = fragments_per_projectile
 			P.range_step = damage_step
 			P.shot_from = name
-			P.launch(TT, thrower, null)
-			//P.launch_fragment(TT)
-
-		//	log_debug("c1: [target_turfs.len]")
+			P.launch_fragment(TT)
 
 			//Make sure to hit any mobs in the source turf
 			for(var/mob/living/L in TT)

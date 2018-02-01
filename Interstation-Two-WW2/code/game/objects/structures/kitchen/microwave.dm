@@ -1,14 +1,11 @@
 
-/obj/machinery/microwave
+/obj/structure/microwave
 	name = "Microwave"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
 	layer = 2.9
 	density = TRUE
 	anchored = TRUE
-	use_power = TRUE
-	idle_power_usage = 5
-	active_power_usage = 100
 	flags = OPENCONTAINER | NOREACT
 	var/operating = FALSE // Is it on?
 	var/dirty = FALSE // = {0..100} Does it need cleaning?
@@ -28,13 +25,15 @@
 	var/bloody_open_state = "mwbloodyo"
 	var/bloody_on_state = "mwbloody1"
 
+	var/stat = 0
+
 // see code/modules/food/recipes_microwave.dm for recipes
 
 /*******************
 *   Initialising
 ********************/
 
-/obj/machinery/microwave/New()
+/obj/structure/microwave/New()
 	..()
 	reagents = new/datum/reagents(100)
 	reagents.my_atom = src
@@ -61,7 +60,7 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/structure/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(broken > FALSE)
 		if(broken == 2 && istype(O, /obj/item/weapon/screwdriver)) // If it's broken and they're using a screwdriver
 			user.visible_message( \
@@ -163,7 +162,7 @@
 	..()
 	updateUsrDialog()
 
-/obj/machinery/microwave/attack_hand(mob/user as mob)
+/obj/structure/microwave/attack_hand(mob/user as mob)
 	user.set_machine(src)
 	interact(user)
 
@@ -171,12 +170,12 @@
 *   Microwave Menu
 ********************/
 
-/obj/machinery/microwave/interact(mob/user as mob) // The microwave Menu
+/obj/structure/microwave/interact(mob/user as mob) // The microwave Menu
 	var/dat = ""
 	if(broken > FALSE)
 		dat = {"<TT>Bzzzzttttt</TT>"}
 	else if(operating)
-		if (!istype(src, /obj/machinery/microwave/oven))
+		if (!istype(src, /obj/structure/microwave/oven))
 			dat = {"<TT>Microwaving in progress!<BR>Please wait...!</TT>"}
 		else
 			dat = {"<TT>Cooking in progress!<BR>Please wait...!</TT>"}
@@ -242,7 +241,7 @@
 *   Microwave Menu Handling/Cooking
 ************************************/
 
-/obj/machinery/microwave/proc/cook()
+/obj/structure/microwave/proc/cook()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	start()
@@ -303,15 +302,15 @@
 			cooked.loc = loc
 		return
 
-/obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
+/obj/structure/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
 	for (var/i=1 to seconds)
 		if (stat & (NOPOWER|BROKEN))
 			return FALSE
-		use_power(500)
+		//use_power(500)
 		sleep(10)
 	return TRUE
 
-/obj/machinery/microwave/proc/has_extra_item()
+/obj/structure/microwave/proc/has_extra_item()
 //	for (var/obj/O in contents)
 	//	if ( \
 				!istype(O,/obj/item/weapon/reagent_containers/food) && \
@@ -320,24 +319,24 @@
 		//	return TRUE
 	return FALSE
 
-/obj/machinery/microwave/proc/start()
+/obj/structure/microwave/proc/start()
 	visible_message("<span class='notice'>The [lowertext(name)] turns on.</span>", "<span class='notice'>You hear a [lowertext(name)].</span>")
 	operating = TRUE
 	icon_state = on_state
 	updateUsrDialog()
 
-/obj/machinery/microwave/proc/abort()
+/obj/structure/microwave/proc/abort()
 	operating = FALSE // Turn it off again aferwards
 	icon_state = base_state
 	updateUsrDialog()
 
-/obj/machinery/microwave/proc/stop()
+/obj/structure/microwave/proc/stop()
 	playsound(loc, 'sound/machines/ding.ogg', 50, TRUE)
 	operating = FALSE // Turn it off again aferwards
 	icon_state = base_state
 	updateUsrDialog()
 
-/obj/machinery/microwave/proc/dispose()
+/obj/structure/microwave/proc/dispose()
 	for (var/obj/O in contents)
 		O.loc = loc
 	if (reagents.total_volume)
@@ -346,11 +345,11 @@
 	usr << "<span class='notice'>You dispose of the [lowertext(name)] contents.</span>"
 	updateUsrDialog()
 
-/obj/machinery/microwave/proc/muck_start()
+/obj/structure/microwave/proc/muck_start()
 	playsound(loc, 'sound/effects/splat.ogg', 50, TRUE) // Play a splat sound
 	icon_state = "mwbloody1" // Make it look dirty!!
 
-/obj/machinery/microwave/proc/muck_finish()
+/obj/structure/microwave/proc/muck_finish()
 	playsound(loc, 'sound/machines/ding.ogg', 50, TRUE)
 	visible_message("<span class='warning'>The [lowertext(name)] gets covered in muck!</span>")
 	dirty = 100 // Make it dirty so it can't be used util cleaned
@@ -359,7 +358,7 @@
 	operating = FALSE // Turn it off again aferwards
 	updateUsrDialog()
 
-/obj/machinery/microwave/proc/broke()
+/obj/structure/microwave/proc/broke()
 	var/datum/effect/effect/system/spark_spread/s = new
 	s.set_up(2, TRUE, src)
 	s.start()
@@ -370,7 +369,7 @@
 	operating = FALSE // Turn it off again aferwards
 	updateUsrDialog()
 
-/obj/machinery/microwave/proc/fail()
+/obj/structure/microwave/proc/fail()
 	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
 	var/amount = FALSE
 	for (var/obj/O in contents-ffuu)
@@ -385,7 +384,7 @@
 	ffuu.reagents.add_reagent("toxin", amount/10)
 	return ffuu
 
-/obj/machinery/microwave/Topic(href, href_list)
+/obj/structure/microwave/Topic(href, href_list)
 	if(..())
 		return
 

@@ -13,4 +13,3 @@
 /datum/controller/process/game_schedule/doWork()
 	if (global_game_schedule)
 		global_game_schedule.update()
-	SCHECK

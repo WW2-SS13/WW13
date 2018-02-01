@@ -46,6 +46,10 @@
 /datum/job/soviet/commander/get_keys()
 	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
 		new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/command_high, new/obj/item/weapon/key/soviet/bunker_doors)
+
+/datum/job/soviet/commander/update_character(var/mob/living/carbon/human/H)
+	..()
+	H.verbs += /mob/living/carbon/human/proc/Execute
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,7 +76,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/_45(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, one of the vice-commanders of the Russian forces. Your job is to take orders from the <b>Commandir</b> and coordinate with squad leaders.</span>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>, the second-in-command of the Russian forces. Your job is to take orders from the <b>Commandir</b> and coordinate with squad leaders.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_VERY_LOW)
@@ -86,6 +90,10 @@
 /datum/job/soviet/XO/get_keys()
 	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
 		new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/command_high, new/obj/item/weapon/key/soviet/bunker_doors)
+
+/datum/job/soviet/XO/update_character(var/mob/living/carbon/human/H)
+	..()
+	H.verbs += /mob/living/carbon/human/proc/Execute
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -73,6 +73,8 @@
 	. = ..()
 	if (.)
 		if(statpanel("Status"))
+			if (z == 2 && map && istype(map, /obj/map_metadata/forest))
+				stat("Altitude:", paratrooper_plane_master.altitude)
 			stat("Intent:", "[a_intent]")
 			stat("Move Mode:", "[m_intent]")
 			if (internal)

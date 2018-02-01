@@ -1,3 +1,8 @@
+/proc/getHumanBreakoutTime(var/mob/living/carbon/human/H, var/time = 100)
+	if (!istype(H))
+		return time
+	return time /= (H.getStatCoeff("strength")*H.getStatCoeff("strength"))
+
 /mob/living/carbon/process_resist()
 
 	//drop && roll
@@ -40,7 +45,7 @@
 	var/obj/item/weapon/handcuffs/HC = handcuffed
 
 	//A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
-	var/breakouttime = 1200
+	var/breakouttime = getHumanBreakoutTime(src, 1200)
 	var/displaytime = 2 //Minutes to display in the "this will take X minutes."
 	//If you are handcuffed with actual handcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
 	if(istype(HC))
@@ -76,7 +81,7 @@
 	var/obj/item/weapon/legcuffs/HC = legcuffed
 
 	//A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/legcuffs type
-	var/breakouttime = 1200
+	var/breakouttime = getHumanBreakoutTime(src, 1200)
 	var/displaytime = 2 //Minutes to display in the "this will take X minutes."
 	//If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to legcuff you with toilet paper in the future...
 	if(istype(HC))
@@ -103,6 +108,9 @@
 /mob/living/carbon/proc/can_break_cuffs()
 	if(HULK in mutations)
 		return TRUE
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		return H.getStatCoeff("strength") >= 3.0
 
 /mob/living/carbon/proc/break_handcuffs()
 	visible_message(
@@ -164,7 +172,7 @@
 			)
 
 
-		if(do_after(usr, 2 MINUTES, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
+		if(do_after(usr, getHumanBreakoutTime(src, 2 MINUTES), incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
 			if(!buckled)
 				return
 			visible_message("<span class='danger'>\The [usr] manages to unbuckle themself!</span>",

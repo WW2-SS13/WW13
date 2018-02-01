@@ -59,10 +59,10 @@
 		/datum/game_aspect/ww2/russian_padvantage,
 		/datum/game_aspect/ww2/russian_pdisadvantage,
 
-		/datum/game_aspect/ww2/german_sadvantage,
-		/datum/game_aspect/ww2/german_sdisadvantage,
-		/datum/game_aspect/ww2/russian_sadvantage,
-		/datum/game_aspect/ww2/russian_sdisadvantage,
+	//	/datum/game_aspect/ww2/german_sadvantage,
+	//	/datum/game_aspect/ww2/german_sdisadvantage,
+	//	/datum/game_aspect/ww2/russian_sadvantage,
+	//	/datum/game_aspect/ww2/russian_sdisadvantage,
 
 		/datum/game_aspect/ww2/no_tanks,
 		/datum/game_aspect/ww2/no_artillery),
@@ -72,10 +72,10 @@
 				/datum/game_aspect/ww2/russian_padvantage,
 				/datum/game_aspect/ww2/russian_pdisadvantage,
 
-				/datum/game_aspect/ww2/german_sadvantage,
-				/datum/game_aspect/ww2/german_sdisadvantage,
-				/datum/game_aspect/ww2/russian_sadvantage,
-				/datum/game_aspect/ww2/russian_sdisadvantage,
+			//	/datum/game_aspect/ww2/german_sadvantage,
+			//	/datum/game_aspect/ww2/german_sdisadvantage,
+			//	/datum/game_aspect/ww2/russian_sadvantage,
+			//	/datum/game_aspect/ww2/russian_sdisadvantage,
 
 				/datum/game_aspect/ww2/no_tanks,
 				/datum/game_aspect/ww2/no_artillery),
@@ -167,7 +167,7 @@
 	world << "<br><i>[desc]</i>"
 	var/datum/game_mode/ww2/mymode = mode
 	mymode.personnel[SOVIET] = random_decimal(0.8,0.9)
-
+/*
 /datum/game_aspect/ww2/german_sadvantage
 	desc = "The German Wehrmacht has extra supply points this round."
 
@@ -215,7 +215,7 @@
 	world << "<br><i>[desc]</i>"
 	var/datum/game_mode/ww2/mymode = mode
 	mymode.supplies[SOVIET] = random_decimal(0.8, 0.9)
-
+*/
 /datum/game_aspect/ww2/no_tanks
 	desc = "There are no tanks this battle."
 

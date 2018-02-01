@@ -66,7 +66,6 @@ var/datum/controller/process/obj/obj_process = null
 					catchBadType(O)
 					nonvital_list -= O
 
-
 /datum/controller/process/obj/proc/add_nonvital_object(var/obj/o)
 	var/list/nonvital_list = null
 

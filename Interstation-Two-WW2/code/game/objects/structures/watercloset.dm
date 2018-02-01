@@ -380,15 +380,15 @@
 	if(!Adjacent(user))
 		return
 
-	if(busy)
+	if(busy && busy != user)
 		user << "<span class='warning'>Someone's already washing here.</span>"
 		return
 
-	usr << "<span class='notice'>You start washing your hands.</span>"
+	user << "<span class='notice'>You start washing your hands.</span>"
 
 	playsound(loc, 'sound/effects/watersplash.ogg', 100, TRUE)
 
-	busy = TRUE
+	busy = user
 	sleep(40)
 	busy = FALSE
 
@@ -401,7 +401,7 @@
 		V.show_message("<span class='notice'>[user] washes their hands using \the [src].</span>")
 
 /obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)
-	if(busy)
+	if(busy && busy != user)
 		user << "<span class='warning'>Someone's already washing here.</span>"
 		return
 

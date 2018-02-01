@@ -1,4 +1,5 @@
-/obj/machinery/space_heater
+
+/obj/structure/heater
 	anchored = FALSE
 	density = TRUE
 	icon = 'icons/obj/atmos.dmi'
@@ -11,18 +12,23 @@
 	var/heating_power = 40000
 
 
-/obj/machinery/space_heater/New()
+/obj/structure/heater/New()
 	..()
 	cell = new(src)
 	update_icon()
+	processing_objs += src
 
-/obj/machinery/space_heater/update_icon()
+/obj/structure/heater/Del()
+	processing_objs -= src
+	..()
+
+/obj/structure/heater/update_icon()
 	overlays.Cut()
 	icon_state = "sheater[on]"
 	if(panel_open)
 		overlays  += "sheater-open"
 
-/obj/machinery/space_heater/examine(mob/user)
+/obj/structure/heater/examine(mob/user)
 	..(user)
 
 	user << "The heater is [on ? "on" : "off"] and the hatch is [panel_open ? "open" : "closed"]."
@@ -32,12 +38,12 @@
 		user << "The charge meter reads [cell ? round(cell.percent(),1) : FALSE]%"
 	return
 
-/obj/machinery/space_heater/powered()
+/obj/structure/heater/powered()
 	if(cell && cell.charge)
 		return TRUE
 	return FALSE
 
-/obj/machinery/space_heater/emp_act(severity)
+/obj/structure/heater/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
@@ -45,7 +51,7 @@
 		cell.emp_act(severity)
 	..(severity)
 
-/obj/machinery/space_heater/attackby(obj/item/I, mob/user)
+/obj/structure/heater/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/cell))
 		if(panel_open)
 			if(cell)
@@ -76,11 +82,11 @@
 		..()
 	return
 
-/obj/machinery/space_heater/attack_hand(mob/user as mob)
+/obj/structure/heater/attack_hand(mob/user as mob)
 	add_fingerprint(user)
 	interact(user)
 
-/obj/machinery/space_heater/interact(mob/user as mob)
+/obj/structure/heater/interact(mob/user as mob)
 
 	if(panel_open)
 
@@ -110,7 +116,7 @@
 	return
 
 
-/obj/machinery/space_heater/Topic(href, href_list)
+/obj/structure/heater/Topic(href, href_list)
 	if (usr.stat)
 		return
 	if ((in_range(src, usr) && istype(loc, /turf)) || (istype(usr, /mob/living/silicon)))
@@ -153,7 +159,7 @@
 
 
 
-/obj/machinery/space_heater/process()
+/obj/structure/heater/process()
 	if(on)
 		if(cell && cell.charge)
 			var/datum/gas_mixture/env = loc.return_air()

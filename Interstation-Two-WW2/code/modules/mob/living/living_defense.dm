@@ -61,7 +61,7 @@
 	//Armor
 	var/absorb = run_armor_check(def_zone, P.check_armour, P.armor_penetration)
 	var/proj_sharp = is_sharp(P)
-	var/proj_edge = has_edge(P)
+	var/proj_edge = P.edge
 	if ((proj_sharp || proj_edge) && prob(getarmor(def_zone, P.check_armour)))
 		proj_sharp = FALSE
 		proj_edge = FALSE
@@ -134,7 +134,7 @@
 
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)
-	var/weapon_edge = has_edge(I)
+	var/weapon_edge = I.edge
 	if(prob(max(getarmor(hit_zone, "melee") - I.armor_penetration, FALSE))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
 		weapon_sharp = FALSE
 		weapon_edge = FALSE
@@ -164,7 +164,7 @@
 		var/armor = run_armor_check(null, "melee")
 
 		if(armor < 2)
-			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
+			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), O.edge, O)
 
 		O.throwing = FALSE		//it hit, so stop moving
 

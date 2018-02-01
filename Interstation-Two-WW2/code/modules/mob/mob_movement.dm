@@ -397,15 +397,17 @@
 				move_delay += mob.get_run_delay()/mob.movement_speed_multiplier + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
-					H.nutrition -= 0.03
-					H.water -= 0.03
+					H.nutrition -= 0.02
+					H.water -= 0.02
 					--H.stamina
+					if (H.bodytemperature < H.species.body_temperature)
+						H.bodytemperature += 0.66
 			if("walk")
 				move_delay += mob.walk_delay/mob.movement_speed_multiplier + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
-					H.nutrition -= 0.003
-					H.water -= 0.003
+					H.nutrition -= 0.002
+					H.water -= 0.002
 
 		if (mob.pulling)
 			if (istype(mob.pulling, /mob))

@@ -1,13 +1,10 @@
-/obj/machinery/microwave/oven
+/obj/structure/microwave/oven
 	name = "Oven"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "oven"
 	layer = 2.9
 	density = TRUE
 	anchored = TRUE
-	use_power = TRUE
-	idle_power_usage = 5
-	active_power_usage = 100
 	flags = OPENCONTAINER | NOREACT
 
 	base_state = "oven"

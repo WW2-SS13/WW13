@@ -411,7 +411,7 @@ bullet_act
 		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 
 		if(armor < 2)
-			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O), O)
+			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), O.edge, O)
 
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower

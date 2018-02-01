@@ -10,19 +10,19 @@
 			if (H.client)
 				H << msg
 
-/proc/radio2germans(msg)
+/proc/radio2germans(msg, var/channel = "High Command Announcement System")
 	var/obj/item/device/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
 		spawn (3)
-			R.announce(msg, "High Command Announcement System")
+			R.announce(msg, channel)
 		return TRUE
 	return FALSE
 
-/proc/radio2soviets(msg)
+/proc/radio2soviets(msg, var/channel = "High Command Announcement System")
 	var/obj/item/device/radio/R = main_radios[SOVIET]
 	if (R && R.loc)
 		spawn (3)
-			R.announce(msg, "High Command Announcement System")
+			R.announce(msg, channel)
 		return TRUE
 	return FALSE
 

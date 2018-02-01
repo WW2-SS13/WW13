@@ -54,6 +54,10 @@ var/list/nonbreaking_types = list(
 		if (starts_open)
 			Open()
 
+/obj/structure/simple_door/key_door/Open()
+	..()
+	keyslot.locked = FALSE
+
 /obj/structure/simple_door/key_door/attackby(obj/item/W as obj, mob/user as mob)
 
 	var/keyslot_original_locked = keyslot.locked

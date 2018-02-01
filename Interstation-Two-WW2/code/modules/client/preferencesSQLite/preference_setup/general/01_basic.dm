@@ -1,4 +1,4 @@
-datum/preferences
+/datum/preferences
 	var/identifying_gender = MALE
 
 /datum/category_item/player_setup_item/general/basic

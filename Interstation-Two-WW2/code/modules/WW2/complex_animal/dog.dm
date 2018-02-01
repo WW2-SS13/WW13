@@ -292,12 +292,16 @@ s
 /mob/living/simple_animal/complex_animal/canine/dog/onEveryLifeTick()
 	. = ..()
 	if (. == TRUE && faction)
-		for (var/mob/living/carbon/human/H in human_mob_list)
-			if (H.client && H.original_job && H.stat == CONSCIOUS && H.original_job.base_type_flag() != faction)
+		for (var/mob/living/carbon/human/H in player_list)
+			var/area/H_area_check = get_area(H)
+			if (H_area_check)
+				H_area_check = istype(H_area_check, /area/prishtina)
+			if (H.loc && H_area_check && H.client && H.stat == CONSCIOUS && H.original_job && H.original_job.base_type_flag() != faction)
 
 				// makes dogs stop trying to detect people extremely far away. Hack.
 				if (istype(get_area(H), /area/prishtina/soviet) && !istype(get_area(src), /area/prishtina/soviet))
 					continue
+
 				else if (istype(get_area(H), /area/prishtina/german) && !istype(get_area(src), /area/prishtina/german))
 					continue
 

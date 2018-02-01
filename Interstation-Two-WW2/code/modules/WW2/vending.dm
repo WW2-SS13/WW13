@@ -8,6 +8,7 @@
 		/obj/item/clothing/suit/storage/coat/soviet = 20,
 		/obj/item/clothing/accessory/storage/webbing = 20,
 		/obj/item/clothing/under/sovuni = 20,
+		/obj/item/clothing/mask/gas/soviet = 10,
 		/obj/item/clothing/head/helmet/tactical/sovhelm = 20,
 		/obj/item/clothing/shoes/swat/wrappedboots = 20,
 		/obj/item/clothing/head/ushanka = 10
@@ -22,6 +23,7 @@
 		/obj/item/clothing/suit/storage/coat/german = 20,
 		/obj/item/clothing/accessory/storage/webbing = 20,
 		/obj/item/clothing/under/geruni = 20,
+		/obj/item/clothing/mask/gas/german = 10,
 		/obj/item/clothing/head/helmet/tactical/gerhelm = 20,
 		/obj/item/clothing/shoes/swat = 20
 	)
@@ -38,10 +40,9 @@
 		/obj/item/weapon/attachment/bayonet = 10,
 		/obj/item/weapon/gauze_pack/gauze = 10,
 		/obj/item/device/flashlight = 10,
-		/obj/item/clothing/mask/gas/german = 10,
 		/obj/item/weapon/shovel/spade/russia = 10,
 		/obj/item/weapon/gun/projectile/boltaction/kar98k = 10,
-		/obj/item/ammo_magazine/kar98k = 20,
+		/obj/item/ammo_magazine/kar98k = 20
 	)
 	idle_power_usage = 0
 
@@ -54,11 +55,10 @@
 		/obj/item/weapon/attachment/bayonet = 10,
 		/obj/item/weapon/gauze_pack/gauze = 10,
 		/obj/item/device/flashlight = 10,
-		/obj/item/clothing/mask/gas/german = 10,
 		/obj/item/weapon/shovel/spade/russia = 10,
 		/obj/item/weapon/gun/projectile/boltaction/kar98k = 10,
 		/obj/item/ammo_magazine/kar98k = 20,
-		/obj/item/ammo_magazine/a762/akm = 20,
+		/obj/item/ammo_magazine/a762/akm = 20
 	)
 	idle_power_usage = 0
 
@@ -71,9 +71,8 @@
 		/obj/item/weapon/attachment/bayonet = 10,
 		/obj/item/weapon/gauze_pack/bint = 10,
 		/obj/item/device/flashlight = 10,
-		/obj/item/clothing/mask/gas/soviet = 10,
 		/obj/item/weapon/shovel/spade/russia = 10,
 		/obj/item/weapon/gun/projectile/boltaction/mosin = 10,
-		/obj/item/ammo_magazine/mosin = 20,
+		/obj/item/ammo_magazine/mosin = 20
 	)
 	idle_power_usage = 0

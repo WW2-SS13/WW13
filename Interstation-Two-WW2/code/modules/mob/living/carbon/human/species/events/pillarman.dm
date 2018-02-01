@@ -18,7 +18,7 @@
 	has_pain = FALSE
 
 	var/next_pose = -1
-	var/energy = 0.50
+	var/energy = 0.75
 
 	var/absorbing = FALSE
 
@@ -108,7 +108,7 @@
 	var/healedLoss = loss - getTotalLoss()
 	if (healedLoss > 0)
 		if (energy >= 0.25)
-			energy -= healedLoss/4000 // lose 2.5% blood for every 100 brute taken
+			energy -= ((healedLoss/4500) * getStatCoeff("strength"))
 
 	var/area/A = get_area(src)
 	if (A.location == AREA_OUTSIDE)

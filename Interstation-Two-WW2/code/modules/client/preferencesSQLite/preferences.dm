@@ -94,7 +94,7 @@ var/list/preferences_datums = list()
 
 	var/current_character_type = "N/A"
 
-	var/current_slot = TRUE
+	var/current_slot = 1
 
 	var/list/preferences_enabled = list("SOUND_MIDI", "SOUND_LOBBY", "SOUND_AMBIENCE",
 		"CHAT_GHOSTEARS", "CHAT_GHOSTSIGHT", "CHAT_GHOSTRADIO", "CHAT_SHOWICONS",
@@ -145,11 +145,13 @@ var/list/preferences_datums = list()
 			remember_preference("russian_name", russian_name)
 			remember_preference("ukrainian_name", ukrainian_name)
 			save_preferences(1)
+		load_preferences("global")
 
 		// otherwise, keep using our default values
 
 /datum/preferences/Del()
 	save_preferences(current_slot)
+	save_preferences("global")
 	..()
 
 /datum/preferences/proc/update_setup()
@@ -225,11 +227,12 @@ var/list/preferences_datums = list()
 			return TRUE
 
 	else if(href_list["loadfromslot"])
-		current_slot = text2num(href_list["loadfromslot"])
-		if (current_slot == FALSE)
-			current_slot = TRUE
-		if (current_slot != FALSE)
-			if (load_preferences(current_slot))
+		var/slot = text2num(href_list["loadfromslot"])
+		if (slot == 0)
+			slot = 1
+		if (slot != 0)
+			if (load_preferences(slot))
+				current_slot = slot
 				usr << "<span class = 'good'>Successfully loaded preferences (slot #[current_slot]).</span>"
 			else
 				usr << "<span class = 'bad'>FAILED to load preferences (slot #[current_slot]).</span>"
@@ -418,7 +421,7 @@ var/list/preferences_datums = list()
 	dat += "<tt><center>"
 
 	dat += "<b>Select a character slot to load from</b><hr>"
-	for (var/i in TRUE to config.character_slots)
+	for (var/i in 1 to config.character_slots)
 		if (preferences_exist(i))
 			dat += "<a href='?src=\ref[src];loadfromslot=[i]'>[i]. [get_DB_preference_value("real_name", i)]</a><br>"
 		else
@@ -504,6 +507,7 @@ var/list/preferences_datums = list()
 		cp.toggled(mob, enabled)
 
 	prefs.save_preferences(prefs.current_slot)
+	prefs.save_preferences("global")
 
 /mob/proc/is_preference_enabled(var/preference)
 	if(!client)

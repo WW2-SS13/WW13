@@ -87,8 +87,29 @@ var/datum/quickBan_handler/quickBan_handler = null
 		fields["ckey"] = input(src, "What is the person's ckey? (optional)") as null|text
 		fields["cID"] = input(src, "What is the person's cID? (optional)") as null|text
 		fields["ip"] = input(src, "What is the person's IP? (optional)") as null|text
+		fields["ckey"] = ckey(fields["ckey"])
 		if (!fields["ckey"] && !fields["cID"] && !fields["ip"])
 			return
+		else // we have one or more field, use connection logs to find the others
+			var/ckey = fields["ckey"]
+			var/cID = fields["cID"]
+			var/ip = fields["ip"]
+			if (fields["ckey"])
+				if (!fields["cID"])
+					fields["cID"] = database.execute("SELECT computerid FROM connection_log WHERE ckey = '[ckey]';")["computerid"]
+				if (!fields["ip"])
+					fields["ip"] = database.execute("SELECT ip FROM connection_log WHERE ckey = '[ckey]';")["ip"]
+			else if (fields["cID"])
+				if (!fields["ckey"])
+					fields["ckey"] = database.execute("SELECT ckey FROM connection_log WHERE computerid = '[cID]';")["ckey"]
+				if (!fields["ip"])
+					fields["ip"] = database.execute("SELECT ip FROM connection_log WHERE computerid = '[cID]';")["ip"]
+			else if (fields["ip"])
+				if (!fields["ckey"])
+					fields["ckey"] = database.execute("SELECT ckey FROM connection_log WHERE ip = '[ip]';")["ckey"]
+				if (!fields["cID"])
+					fields["cID"] = database.execute("SELECT computerid FROM connection_log WHERE ip = '[ip]';")["computerid"]
+
 	else if (option == "Client")
 		var/client/C = input(src, "Which client?") in clients + "Cancel"
 		if (C == "Cancel")
@@ -96,8 +117,7 @@ var/datum/quickBan_handler/quickBan_handler = null
 		fields["ckey"] = C.ckey
 		fields["cID"] = C.computer_id
 		fields["ip"] = C.address
-
-	fields["ckey"] = ckey(fields["ckey"])
+		fields["ckey"] = ckey(fields["ckey"])
 
 	if (trying_to_quickBan_admin(fields["ckey"], fields["cID"], fields["ip"]))
 		return

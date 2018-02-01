@@ -44,6 +44,8 @@
 	var/load_shell_sound = 'sound/weapons/empty.ogg'
 	var/load_magazine_sound = 'sound/weapons/flipblade.ogg'
 
+	var/executing = FALSE
+
 /obj/item/weapon/gun/projectile/New()
 	..()
 	if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
@@ -63,6 +65,8 @@
 		if(user && loc) playsound(loc, cocked_sound, 75, TRUE)
 
 /obj/item/weapon/gun/projectile/consume_next_projectile()
+	if (executing)
+		return new/obj/item/projectile/bullet/rifle/murder
 	//get the next casing
 	if(loaded.len)
 		chambered = loaded[1] //load next casing.
@@ -81,7 +85,7 @@
 		return chambered.BB
 	return null
 
-/obj/item/weapon/gun/projectile/handle_post_fire()
+/obj/item/weapon/gun/projectile/handle_post_fire(mob/user)
 	..()
 	if(chambered)
 		chambered.expend()
@@ -273,9 +277,9 @@
 /obj/item/weapon/gun/projectile/examine(mob/user)
 	..(user)
 	if(ammo_magazine)
-		user << "It has \a [ammo_magazine] loaded."
+		user << "<span class='notice'>It has \a [ammo_magazine] loaded.</span>"
 	if(!magazine_based)
-		user << "[inexactAmmo()]"
+		user << "<span class='notice'>[inexactAmmo()]</span>"
 	return
 
 /obj/item/weapon/gun/projectile/proc/getAmmo()

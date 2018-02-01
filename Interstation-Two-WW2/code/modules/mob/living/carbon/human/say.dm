@@ -147,7 +147,7 @@
 			verb="asks"
 
 	if (speaking != languages[1])
-		verb = "[verb] in [speaking.name]"
+		verb = "[verb] in <span class = 'info'>[speaking.name]</span>"
 
 	return verb
 

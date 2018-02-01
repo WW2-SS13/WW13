@@ -51,6 +51,7 @@
 /datum/job/german/commander/update_character(var/mob/living/carbon/human/H)
 	..()
 	H.make_artillery_officer()
+	H.verbs += /mob/living/carbon/human/proc/Execute
 
 /datum/job/german/commander/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
@@ -95,6 +96,7 @@
 /datum/job/german/XO/update_character(var/mob/living/carbon/human/H)
 	..()
 	H.make_artillery_officer()
+	H.verbs += /mob/living/carbon/human/proc/Execute
 
 /datum/job/german/XO/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
@@ -621,14 +623,14 @@ var/first_fallschirm = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "Fallschirm"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 100 )
-	spawn_delay = 3000
+//	spawn_delay = 3000
 	delayed_spawn_message = "<span class = 'danger'><big>You are parachuting behind Russian lines. You won't spawn for 5 minutes.</big></span>"
 	is_paratrooper = TRUE
 	var/fallschirm_spawnzone = null
 	var/list/fallschirm_spawnpoints = list()
 
 /datum/job/german/paratrooper/equip(var/mob/living/carbon/human/H)
-	spawn_delay = config.paratrooper_drop_time
+//	spawn_delay = config.paratrooper_drop_time
 
 	if(!H)	return FALSE
 
@@ -666,6 +668,7 @@ var/first_fallschirm = TRUE
 		H.loc = pick(fallschirm_spawnpoints)
 
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a paratrooper. Your job is to help any other units that need assistance.</span>"
+	H << "<big><span class = 'red'>The Plane's current altitude is [paratrooper_plane_master.altitude]m. It is lethal to jump until it has descended to [paratrooper_plane_master.first_nonlethal_altitude]m."
 	H.give_radio()
 	// Paratroopers are elite so they have very nicu stats - Kachnov
 	H.setStat("strength", STAT_MEDIUM_HIGH)

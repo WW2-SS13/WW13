@@ -648,6 +648,8 @@
 			if (map)
 				var/grace_period_string = ""
 				for (var/faction in map.faction_organization)
+					if (faction == PARTISAN || faction == CIVILIAN || faction == UKRAINIAN || faction == ITALIAN)
+						continue
 					if (grace_period_string)
 						grace_period_string += ", "
 					if (map.last_crossing_block_status[faction] == 1)

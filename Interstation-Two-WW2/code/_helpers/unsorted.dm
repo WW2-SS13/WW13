@@ -1059,12 +1059,6 @@ proc/is_hot(obj/item/W as obj)
 	if (O.edge) return TRUE
 	return FALSE
 
-//Whether or not the given item counts as cutting with an edge in terms of removing limbs
-/proc/has_edge(obj/O as obj)
-	if (!O) return FALSE
-	if (O.edge) return TRUE
-	return FALSE
-
 //Returns TRUE if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
 /proc/can_puncture(obj/item/W as obj)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
 	if(!W) return FALSE

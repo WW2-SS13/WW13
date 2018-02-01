@@ -16,7 +16,7 @@
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
-	var/blood = 0.50
+	var/blood = 0.75
 
 	color = "#FFB2B2"
 
@@ -96,13 +96,15 @@
 	var/healedLoss = loss - getTotalLoss()
 	if (healedLoss > 0)
 		if (blood >= 0.25)
-			blood -= healedLoss/2000 // lose 5% blood for every 100 brute taken
+			blood -= ((healedLoss/3000) * getStatCoeff("strength"))
 
 	var/area/A = get_area(src)
 	if (A.location == AREA_OUTSIDE)
 		if (list("Early Morning", "Morning", "Afternoon", "Midday").Find(time_of_day))
 			emote("scream")
 			visible_message("<span class = 'danger'>[src] turns into dust!</span>")
+			for (var/obj/item/I in contents)
+				drop_from_inventory(I)
 			dust()
 
 

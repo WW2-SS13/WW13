@@ -41,6 +41,11 @@
 		set_eye_location(fire_back_seat)
 
 /obj/tank/proc/_Move(direct)
+	var/turf/my_turf = get_turf(src)
+	if (istype(my_turf, /turf/floor/plating/grass) || istype(my_turf, /turf/floor/dirt))
+		movement_delay = 4.0
+	else
+		movement_delay = 6.0
 	if (world.time - last_movement > movement_delay || last_movement == -1)
 
 		if (fuel <= FALSE)

@@ -155,10 +155,10 @@
 		if(!(A.type in areas_with_light))
 			areas_with_light.Add(A.type)
 
-	for(var/obj/machinery/light_switch/LS in world)
+/*	for(var/obj/structure/light_switch/LS in world)
 		var/area/A = get_area(LS)
 		if(!(A.type in areas_with_LS))
-			areas_with_LS.Add(A.type)
+			areas_with_LS.Add(A.type)*/
 
 	for(var/obj/item/device/radio/intercom/I in world)
 		var/area/A = get_area(I)

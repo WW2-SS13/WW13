@@ -43,6 +43,15 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = FALSE)
 		if (fire)
 			fire.Burn(L, 0.33) // sucks to die by trying to walk out of fire
 
+var/list/fire_pool = list()
+/proc/unpool_new_fire(location)
+	if (fire_pool.len)
+		var/obj/fire/F = pick(fire_pool)
+		fire_pool -= F
+		F.loc = location
+		return .
+	return new /obj/fire (location)
+
 /turf/create_fire(fl, temp, spread = TRUE)
 
 	if(fire)
@@ -50,18 +59,30 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = FALSE)
 		fire.temperature = max(temp, fire.temperature)
 		return TRUE
 
-	fire = new(src, fl)
+//	if (temp > 500)
+//		log_debug(temp)
+
+	fire = unpool_new_fire(src)
 
 	if (!spread)
 		fire.nospread = TRUE
 
 	fire.temperature = temp
 
+	//if (fire.temperature > 500)
+	//	log_debug(fire.temperature)
+
+	fire.setup(src, fl)
+
 	var/obj/effect/decal/cleanable/liquid_fuel/fuel = locate() in src
 
 	if (fuel)
-
 		fire.time_limit += rand(10,20)
+
+	spawn (1)
+		spawn (fire.time_limit)
+			if (fire) // somehow
+				qdel(fire)
 
 	return fire
 
@@ -189,11 +210,9 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = FALSE)
 	++ticks
 
 	if (ticks > time_limit)
+		qdeleted()
 
-		qdel (src)
-
-/obj/fire/New(newLoc,fl)
-	..()
+/obj/fire/proc/setup(newLoc,fl)
 
 	if(!istype(loc, /turf))
 		qdel(src)
@@ -208,13 +227,16 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = FALSE)
 
 	processing_objects += src
 
-	spawn (200)
-		if (src)
-			qdel(src) // crappy workaround because fire won't process aaa
-
-	for (var/obj/fire/F in get_turf(src))
-		if (F != src)
-			qdel(F)
+/obj/fire/qdeleted()
+	if (fire_pool.Find(src))
+		loc = null
+		return
+	color = initial(color)
+	set_light(0)
+	processing_objects -= src
+	RemoveFire()
+	loc = null
+	fire_pool |= src
 
 /obj/fire/proc/fire_color(var/env_temperature)
 	//var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)

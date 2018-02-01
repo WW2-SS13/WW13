@@ -209,7 +209,7 @@
 /obj/item/weapon/flamethrower/flammenwerfer/proc/get_heat_coeff()
 	. = 1.0
 	. += ((throw_amount-100)/100)/3
-	. = max(., 3.0) // don't get too hot
+	. = min(., 3.0) // don't get too hot
 	. += ((throw_amount-100)/100)/20 // give us a bit of extra heat if we're super high
 	// for example, 200 throw amount = 1.38x
 	// 500 = 2.53x
@@ -227,16 +227,16 @@
 		if (10 to INFINITY)
 			dist_coeff = 1.00
 
-	var/time_limit = pick(2,3,4)
-	var/extra_temp = FALSE
+	var/time_limit = pick(20,30,40)
+
+	var/extra_temp = 0
+
 	for (var/obj/fire/F in get_turf(src))
 		extra_temp += ((F.temperature / 100) * rand(15,25))
-		time_limit += 2
+		time_limit += 20
 		qdel(F)
 
-	var/obj/fire/F = target.create_fire(5, (rand(250,300) * throw_coeff * dist_coeff) + extra_temp, FALSE)
+	var/temperature = (rand(250,300) * throw_coeff * dist_coeff) + extra_temp
+//	log_debug("1: [temperature];[throw_coeff];[dist_coeff];[extra_temp]")
+	var/obj/fire/F = target.create_fire(5, temperature, FALSE)
 	F.time_limit = time_limit
-
-	spawn (rand(120*throw_coeff, 150*throw_coeff))
-		for (var/obj/fire/fire in target)
-			qdel(fire) // shitty workaround #2

@@ -24,6 +24,15 @@
 /obj/structure/closet/crate
 	icon = 'icons/obj/crate.dmi'*/
 
+
+// used for custom crates
+/obj/structure/closet/crate/empty
+	name = "Crate"
+	icon = 'icons/WW2/artillery_crate.dmi'
+	icon_state = "closed"
+	icon_opened = "opened"
+	icon_closed = "closed"
+
 /obj/structure/closet/crate/wood
 	name = "Wood planks crate"
 	icon_state = "mil_crate_closed"

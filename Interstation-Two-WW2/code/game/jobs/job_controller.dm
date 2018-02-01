@@ -669,9 +669,6 @@ var/global/datum/controller/occupations/job_master
 
 		var/list/turfs = latejoin_turfs[spawn_location]
 
-		if(istype(H.original_job, /datum/job/german/paratrooper))
-			return
-
 		if(turfs && turfs.len > FALSE)
 			H.loc = pick(turfs)
 
@@ -680,9 +677,6 @@ var/global/datum/controller/occupations/job_master
 				while (tries <= 5 && !locate(H.loc) in turfs)
 					++tries
 					H.loc = pick(turfs)
-		// custom spawning
-		else if (!istype(H.original_job, /datum/job/german/paratrooper))
-			H << "<span class = 'red'>Something went wrong while spawning you. Please contact an admin.</span>"
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
@@ -1431,6 +1425,8 @@ var/global/datum/controller/occupations/job_master
 
 			if (!istype(H, /mob/living/carbon/human/corpse))
 				relocate(H)
+				if (H.client)
+					H.client.remove_gun_icons()
 
 			return H
 

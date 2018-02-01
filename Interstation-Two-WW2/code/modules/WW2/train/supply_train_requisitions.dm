@@ -238,18 +238,18 @@
 	for (var/signature in signatures)
 		if (findtext(signature, GERMAN_QM_TITLE))
 			QM_sig = TRUE
-			log_debug("1")
+	//		log_debug("1")
 		if (findtext(signature, GERMAN_SO_TITLE))
 			SO_sig = TRUE
-			log_debug("2")
+	//		log_debug("2")
 		if (findtext(signature, GERMAN_CO_TITLE) || findtext(signature, GERMAN_XO_TITLE))
 			CO_sig = TRUE
-			log_debug("3")
+	//		log_debug("3")
 
 	if (!QM_sig && !SO_sig && !CO_sig)
 		memo = "<i>We didn't find any valid signatures, so your requisition has been rejected.</span><br>"
 		goto end
-	else log_debug(":ok_hand:")
+	//else log_debug(":ok_hand:")
 
 	for (var/purchase in purchases)
 		var/cost = costs[purchase]
@@ -260,8 +260,8 @@
 		create_crates += cratetype
 		train.supply_points -= cost
 
-	for (var/obj/train_car_center/tcc in train.train_car_centers)
-		for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
+	for (var/obj/train_car_center/tcc in train.reverse_train_car_centers)
+		for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs)
 			if (locate(/obj/train_decal/cargo/outline) in get_turf(tpt))
 				if (!locate(/obj/structure/closet/crate) in get_turf(tpt))
 					if (create_crates.len)

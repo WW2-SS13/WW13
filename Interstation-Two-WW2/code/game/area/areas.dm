@@ -14,8 +14,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 */
 
-#define AREA_INSIDE FALSE
-#define AREA_OUTSIDE TRUE
+#define AREA_INSIDE 0
+#define AREA_OUTSIDE 1
 
 /area
 	var/fire = null

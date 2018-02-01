@@ -16,6 +16,59 @@ var/global/list/valid_coordinates = list()
 	verbs += /mob/living/carbon/human/proc/Reset_Coordinates_Chump
 	can_check_distant_coordinates = TRUE
 
+/mob/living/carbon/human/var/next_execute = -1
+/mob/living/carbon/human/proc/Execute()
+	set category = "Officer"
+
+	if (next_execute > world.realtime)
+		src << "<span class = 'warning'>You can't execute anybody for a while.</span>"
+		return
+
+	var/obj/item/weapon/gun/projectile/G = null
+
+	if (istype(l_hand, /obj/item/weapon/gun/projectile))
+		G = l_hand
+	else if (istype(r_hand, /obj/item/weapon/gun/projectile))
+		G = r_hand
+
+	if (!G)
+		return
+
+	var/turf/T = get_turf(src)
+	var/steps = 0
+
+	while (TRUE)
+		T = get_step(T, dir)
+	//	log_debug(T.x)
+	//	log_debug(T.y)
+		++steps
+		if (steps >= 7 || T.density || locate_type(T, /obj/structure) || locate_type(T, /mob/living/carbon/human))
+		//	log_debug(0)
+			break
+
+//	log_debug(1)
+
+	for (var/mob/living/carbon/human/H in T)
+	//	log_debug("1.01 [H.name]")
+		if (H != src && original_job && H.original_job && original_job.base_type_flag() == H.original_job.base_type_flag())
+		//	log_debug(1.1)
+			if (H.stat != DEAD && !H.original_job.is_officer && !H.original_job.is_SS)
+				var/obj/item/projectile/in_chamber = G.consume_next_projectile()
+				if (!in_chamber || !istype(in_chamber))
+			//		log_debug(2)
+					return
+			//	log_debug(3)
+				var/datum/gender/GD = gender_datums[gender]
+				var/old_targeted_organ = targeted_organ
+				targeted_organ = "head"
+				visible_message("<span class = 'userdanger'>[src] lifts [GD.his] [G] and executes [H].</span>")
+				G.executing = TRUE
+				G.Fire(H, src)
+				G.executing = FALSE
+				targeted_organ = old_targeted_organ
+				next_execute = world.realtime + 1800
+				break
+
 /mob/living/carbon/human/proc/Check_Coordinates()
 	set category = "Officer"
 	if (checking_coords[1] && checking_coords[2])

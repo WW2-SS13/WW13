@@ -293,7 +293,10 @@ var/list/admin_verbs_mod = list(
 	/client/proc/send_german_train,
 	/client/proc/toggle_german_civilian_mode,
 	/client/proc/toggle_soviet_civilian_mode,
-	/client/proc/toggle_respawn_delays
+	/client/proc/toggle_respawn_delays,
+	/client/proc/open_armory_doors,
+	/client/proc/close_armory_doors,
+	/client/proc/create_crate
 )
 
 var/list/admin_verbs_mentor = list(

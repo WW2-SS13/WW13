@@ -1,21 +1,27 @@
 //#define ALWAYS_DAY
-
-
-
 var/time_of_day = "Morning"
 var/list/times_of_day = list("Early Morning", "Morning", "Afternoon", "Midday", "Evening", "Night", "Midnight")
 // from lightest to darkest: midday, afternoon, morning, early morning, evening, night, midnight
 var/list/time_of_day2luminosity = list(
-	"Early Morning" = 0.3,
-	"Morning" = 0.5,
-	"Afternoon" = 0.6,
+	"Early Morning" = 0.4,
+	"Morning" = 0.6,
+	"Afternoon" = 0.7,
 	"Midday" = 1.0,
-	"Evening" = 0.4,
-	"Night" = 0.2,
-	"Midnight" = 0.1)
+	"Evening" = 0.5,
+	"Night" = 0.3,
+	"Midnight" = 0.2)
+
+var/list/time_of_day2ticks = list(
+	"Early Morning" = 20*60,
+	"Morning" = 20*60,
+	"Afternoon" = 20*60,
+	"Midday" = 20*60,
+	"Evening" = 20*60,
+	"Night" = 25*60,
+	"Midnight" = 15*60)
 
 /proc/isDarkOutside()
-	if (time_of_day in list("Early Morning", "Evening", "Night", "Midnight"))
+	if (list("Early Morning", "Evening", "Night", "Midnight").Find(time_of_day))
 		return 1
 	return 0
 
@@ -51,3 +57,10 @@ var/list/time_of_day2luminosity = list(
 	for (var/v in 1 to times_of_day.len)
 		if (v == TOD_position_in_list)
 			update_lighting(times_of_day[v], admincaller = caller)
+
+/proc/TOD_loop()
+	spawn while (1)
+		if (TOD_may_automatically_change)
+			TOD_may_automatically_change = FALSE
+			progress_time_of_day()
+		sleep (50)

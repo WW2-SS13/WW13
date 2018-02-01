@@ -140,7 +140,10 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	// trains setup before roundstart hooks called because SS train ladders rely on it
 	if (map.uses_main_train)
-		start_train_loop()
+		setup_trains()
+		train_loop()
+
+	TOD_loop()
 
 	callHook("roundstart")
 

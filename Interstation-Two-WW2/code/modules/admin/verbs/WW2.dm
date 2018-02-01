@@ -598,3 +598,27 @@ var/respawn_delays = TRUE
 	message_admins(M)
 	log_admin(M)
 	world << "<font size = 3><span class = 'notice'>Respawn delays are now <b>[respawn_delays ? "enabled" : "disabled"]</b>.</span></font>"
+
+/client/proc/open_armory_doors()
+	set name = "Open Armory Doors"
+	set category = "WW2 (Admin)"
+	var/side = input("Which side?") in list("Soviet", "German", "Cancel")
+	if (side == "Soviet")
+		for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
+			D.Open()
+	else if (side == "German")
+		for (var/obj/structure/simple_door/key_door/german/QM/D in world)
+			D.Open()
+
+/client/proc/close_armory_doors()
+	set name = "Close Armory Doors"
+	set category = "WW2 (Admin)"
+	var/side = input("Which side?") in list("Soviet", "German", "Cancel")
+	if (side == "Soviet")
+		for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
+			D.Close()
+			D.keyslot.locked = TRUE
+	else if (side == "German")
+		for (var/obj/structure/simple_door/key_door/german/QM/D in world)
+			D.Close()
+			D.keyslot.locked = TRUE

@@ -136,7 +136,7 @@
 
 /obj/machinery/vending/New()
 	..()
-	wires = new(src)
+//	wires = new(src)
 	spawn(4)
 		if(product_slogans)
 			slogan_list += splittext(product_slogans, ";")
@@ -182,8 +182,8 @@
 			product_records.Add(product)
 
 /obj/machinery/vending/Destroy()
-	qdel(wires)
-	wires = null
+//	qdel(wires)
+//	wires = null
 //	qdel(coin)
 //	coin = null
 	for(var/datum/data/vending_product/R in product_records)
@@ -427,7 +427,7 @@
 		if(shock(user, 100))
 			return
 
-	wires.Interact(user)
+//	wires.Interact(user)
 	ui_interact(user)
 
 /**

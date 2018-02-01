@@ -46,23 +46,23 @@ var/const/UK_FREQ = 1008
 		constant = text2num(constant)
 	switch (constant)
 		if (DEFAULT_FREQ)
-			return "secradio"
+			return "redradio"
 		if (SO_BASE_FREQ)
-			return "secradio"
+			return "redradio"
 		if (SO_COMM_FREQ)
-			return "comradio"
+			return "blueradio"
 		if (SO_SUPPLY_FREQ)
-			return "supradio"
+			return "brownradio"
 		if (DE_BASE_FREQ)
-			return "secradio"
+			return "redradio"
 		if (DE_COMM_FREQ)
-			return "comradio"
+			return "blueradio"
 		if (DE_SUPPLY_FREQ)
-			return "supradio"
+			return "brownradio"
 		if (SS_FREQ)
-			return "comradio"
+			return "blueradio"
 		if (UK_FREQ)
-			return "secradio"
+			return "redradio"
 
 // channel = access
 var/global/list/default_german_channels = list(
@@ -134,7 +134,6 @@ var/global/list/default_ukrainian_channels = list(
 	var/last_broadcast = -1
 	var/notyetmoved = TRUE // shitty hack to prevent radio piles from broadcasting
 	var/is_supply_radio = FALSE
-	var/supply_points = 350
 
 	var/static/list/german_supply_crate_types = list(
 
@@ -321,6 +320,7 @@ var/global/list/default_ukrainian_channels = list(
 		if (loc)
 			setup_announcement_system("Arrivals Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
 			setup_announcement_system("Supplydrop Announcement System", (faction == GERMAN ? DE_SUPPLY_FREQ : SO_SUPPLY_FREQ))
+			setup_announcement_system("Supply Train Announcement System", (faction == GERMAN ? DE_SUPPLY_FREQ : SO_SUPPLY_FREQ))
 			setup_announcement_system("Reinforcements Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
 			setup_announcement_system("High Command Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
 			switch (faction)
@@ -339,7 +339,7 @@ var/global/list/default_ukrainian_channels = list(
 
 	// channels added after this is called
 	// necessary for subtypes that want to override channels of their supertypes
-	spawn (20)
+	spawn (5)
 		for (var/channel in internal_channels)
 			listening_on_channel[radio_freq2name(channel)] = TRUE
 
@@ -395,7 +395,7 @@ var/global/list/default_ukrainian_channels = list(
 
 	// supply stuff - Kachnov
 	data["is_supply_radio"] = is_supply_radio
-	data["supply_points"] = supply_points
+	data["supply_points"] = supply_points[faction]
 
 	var/list/supply_crate_objects = list()
 	switch (faction)
@@ -420,6 +420,7 @@ var/global/list/default_ukrainian_channels = list(
 	if(!ui)
 		ui = new(user, src, ui_key, "radio.tmpl", "[name]", 400, 430)
 		ui.set_initial_data(data)
+		ui.auto_update_content = TRUE
 		ui.open()
 
 /* Hearing radios, less stupid and telecomms free edition - Kachnov */
@@ -567,7 +568,6 @@ var/global/list/default_ukrainian_channels = list(
 	speech_sound = 'sound/effects/roger_beep.ogg'
 	is_supply_radio = TRUE
 	faction = SOVIET
-	supply_points = 500 // soviets get more supplies
 
 /obj/item/device/radio/intercom/a7b/New()
 	..()
@@ -621,7 +621,6 @@ var/global/list/default_ukrainian_channels = list(
 	speech_sound = 'sound/effects/roger_beep2.ogg'
 	is_supply_radio = TRUE
 	faction = GERMAN
-	supply_points = 400
 
 /obj/item/device/radio/intercom/fu2/New()
 	..()
@@ -740,10 +739,10 @@ var/global/list/default_ukrainian_channels = list(
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, TRUE)
 
 /obj/item/device/radio/proc/purchase(var/itemname, var/path, var/pointcost = FALSE)
-	if (supply_points <= pointcost)
+	if (supply_points[faction] <= pointcost)
 		return
 	announce("[itemname] has been purchased and will arrive soon.", "Supplydrop Announcement System")
-	supply_points -= pointcost
+	supply_points[faction] -= pointcost
 	supplydrop_process.add(path, faction)
 
 // shitcode copied from the german supplytrain system - Kachnov
