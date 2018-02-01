@@ -77,7 +77,10 @@ var/list/nonbreaking_types = list(
 			if (!user.hitting_key_door)
 				user.hitting_key_door = TRUE
 				visible_message("<span class = 'danger'>[user] hits the door with [W]!</span>")
-				playsound(get_turf(src), 'sound/effects/grillehit.ogg', 100)
+				if (istype(material, /material/wood))
+					playsound(get_turf(src), 'sound/effects/wooddoorhit.ogg', 100)
+				else
+					playsound(get_turf(src), 'sound/effects/grillehit.ogg', 100)
 				health -= W.force
 				damage_display()
 				if (health <= FALSE)
@@ -94,6 +97,7 @@ var/list/nonbreaking_types = list(
 			visible_message("<span class = 'warning'>[user] locks the door.</span>")
 		else
 			visible_message("<span class = 'notice'>[user] unlocks the door.</span>")
+		playsound(get_turf(user), 'sound/effects/door_lock_unlock.ogg', 100)
 
 /obj/structure/simple_door/key_door/attack_hand(mob/user as mob)
 
@@ -101,6 +105,7 @@ var/list/nonbreaking_types = list(
 		return ..(user)
 	else
 		user.visible_message("<span class = 'danger'>[user] knocks at the door.</span>")
+		playsound(get_turf(src), "doorknock", 100)
 
 /obj/structure/simple_door/key_door/Bumped(atom/user)
 

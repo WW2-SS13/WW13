@@ -548,7 +548,7 @@ var/setting_up_db_connection = FALSE
 					serverswap_open_status = TRUE
 					serverswap_closed = FALSE
 					if (ticker)
-						ticker.pregame_timeleft = initial(ticker.pregame_timeleft)
+						ticker.pregame_timeleft = 185
 					DEBUG_SERVERSWAP("13.1")
 
 					// make sure we aren't marked as closed anymore

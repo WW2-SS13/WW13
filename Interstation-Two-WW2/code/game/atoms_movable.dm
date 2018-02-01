@@ -147,6 +147,11 @@
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
 
+	spawn (1)
+		if (istype(src, /obj/item))
+			var/obj/item/I = src
+			playsound(get_turf(src), I.dropsound, 100, TRUE)
+
 //decided whether a movable atom being thrown can pass through the turf it is in.
 /atom/movable/proc/hit_check(var/speed)
 	if(throwing)

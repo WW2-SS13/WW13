@@ -19,6 +19,8 @@
 	var/material/material
 	var/drops_debris = TRUE
 
+	dropsound = 'sound/effects/drop_knife.ogg'
+
 /obj/item/weapon/material/New(var/newloc, var/material_key)
 	..(newloc)
 	if(!material_key)

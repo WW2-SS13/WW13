@@ -1,4 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
+#define GLOBAL_SLOT 99
 
 var/list/preferences_datums = list()
 
@@ -145,13 +146,11 @@ var/list/preferences_datums = list()
 			remember_preference("russian_name", russian_name)
 			remember_preference("ukrainian_name", ukrainian_name)
 			save_preferences(1)
-		load_preferences("global")
 
 		// otherwise, keep using our default values
 
 /datum/preferences/Del()
 	save_preferences(current_slot)
-	save_preferences("global")
 	..()
 
 /datum/preferences/proc/update_setup()
@@ -274,15 +273,8 @@ var/list/preferences_datums = list()
 	if(character.dna)
 		character.dna.real_name = character.real_name
 
-//	character.flavor_text = flavor_text
-
 	character.body_build = get_body_build(gender, body_build)
-/*
-	character.med_record = med_record
-	character.sec_record = sec_record
-	character.gen_record = gen_record
-	character.exploit_record = exploit_record
-*/
+
 	character.gender = gender
 	character.age = age
 	character.b_type = b_type
@@ -307,66 +299,6 @@ var/list/preferences_datums = list()
 
 	character.h_style = h_style
 	character.f_style = f_style
-
-//	character.religion = religion
-
-/*
-	// german
-	character.gender_german = gender_german
-	character.age_german = age_german
-	character.b_type_german = b_type_german
-
-	character.r_eyes_german = r_eyes_german
-	character.g_eyes_german = g_eyes_german
-	character.b_eyes_german = b_eyes_german
-
-	character.r_hair_german = r_hair_german
-	character.g_hair_german = g_hair_german
-	character.b_hair_german = b_hair_german
-
-	character.r_facial_german = r_facial_german
-	character.g_facial_german = g_facial_german
-	character.b_facial_german = b_facial_german
-
-	character.r_skin_german = r_skin_german
-	character.g_skin_german = g_skin_german
-	character.b_skin_german = b_skin_german
-
-	character.s_tone_german = s_tone_german
-
-	character.h_style_german = h_style_german
-	character.f_style_german = f_style_german
-
-	character.religion_german = religion_german
-
-	// russian
-	character.gender_russian = gender_russian
-	character.age_russian = age_russian
-	character.b_type_russian = b_type_russian
-
-	character.r_eyes_russian = r_eyes_russian
-	character.g_eyes_russian = g_eyes_russian
-	character.b_eyes_russian = b_eyes_russian
-
-	character.r_hair_russian = r_hair_russian
-	character.g_hair_russian = g_hair_russian
-	character.b_hair_russian = b_hair_russian
-
-	character.r_facial_russian = r_facial_russian
-	character.g_facial_russian = g_facial_russian
-	character.b_facial_russian = b_facial_russian
-
-	character.r_skin_russian = r_skin_russian
-	character.g_skin_russian = g_skin_russian
-	character.b_skin_russian = b_skin_russian
-
-	character.s_tone_russian = s_tone_russian
-
-	character.h_style_russian = h_style_russian
-	character.f_style_russian = f_style_russian
-
-	character.religion_russian = religion_russian
-*/
 	// Destroy/cyborgize organs
 
 	for(var/name in organ_data)
@@ -397,14 +329,6 @@ var/list/preferences_datums = list()
 					I.robotize()
 
 	character.all_underwear.Cut()
-/*
-	for(var/underwear_category_name in all_underwear)
-		var/datum/category_group/underwear/underwear_category = global_underwear.categories_by_name[underwear_category_name]
-		if(underwear_category)
-			var/underwear_item_name = all_underwear[underwear_category_name]
-			character.all_underwear[underwear_category_name] = underwear_category.items_by_name[underwear_item_name]
-		else
-			all_underwear -= underwear_category_name*/
 
 	if(backbag > 4 || backbag < TRUE)
 		backbag = TRUE //Same as above
@@ -441,7 +365,7 @@ var/list/preferences_datums = list()
 	dat += "<tt><center>"
 
 	dat += "<b>Select a character slot to save to</b><hr>"
-	for (var/i in TRUE to config.character_slots)
+	for (var/i in 1 to config.character_slots)
 		if (preferences_exist(i))
 			dat += "<a href='?src=\ref[src];savetoslot=[i]'>[i]. [get_DB_preference_value("real_name", i)]</a><br>"
 		else
@@ -461,7 +385,7 @@ var/list/preferences_datums = list()
 	dat += "<tt><center>"
 
 	dat += "<b>Select a character save to delete</b><hr>"
-	for (var/i in TRUE to config.character_slots)
+	for (var/i in 1 to config.character_slots)
 		if (preferences_exist(i))
 			dat += "<a href='?src=\ref[src];delslot=[i]'>[i]. [get_DB_preference_value("real_name", i)]</a><br>"
 		else
@@ -507,7 +431,6 @@ var/list/preferences_datums = list()
 		cp.toggled(mob, enabled)
 
 	prefs.save_preferences(prefs.current_slot)
-	prefs.save_preferences("global")
 
 /mob/proc/is_preference_enabled(var/preference)
 	if(!client)

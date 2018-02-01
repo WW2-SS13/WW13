@@ -61,8 +61,6 @@ var/list/waterfootsteps = list('sound/effects/footsteps/water/slosh1.wav','sound
 var/list/sandfootsteps = list('sound/effects/footsteps/sand/sand_step1.ogg','sound/effects/footsteps/sand/sand_step2.ogg','sound/effects/footsteps/sand/sand_step3.ogg','sound/effects/footsteps/sand/sand_step4.ogg','sound/effects/footsteps/sand/sand_step5.ogg','sound/effects/footsteps/sand/sand_step6.ogg','sound/effects/footsteps/sand/sand_step7.ogg','sound/effects/footsteps/sand/sand_step8.ogg')
 var/list/woodfootsteps = list ('sound/effects/footsteps/wood/wood_step1.ogg','sound/effects/footsteps/wood/wood_step2.ogg','sound/effects/footsteps/wood/wood_step3.ogg','sound/effects/footsteps/wood/wood_step4.ogg','sound/effects/footsteps/wood/wood_step5.ogg','sound/effects/footsteps/wood/wood_step6.ogg','sound/effects/footsteps/wood/wood_step7.ogg','sound/effects/footsteps/wood/wood_step8.ogg')
 var/list/carpetfootsteps = list ('sound/effects/footsteps/carpet/carpet_step1.ogg','sound/effects/footsteps/carpet/carpet_step2.ogg','sound/effects/footsteps/carpet/carpet_step3.ogg','sound/effects/footsteps/carpet/carpet_step4.ogg','sound/effects/footsteps/carpet/carpet_step5.ogg','sound/effects/footsteps/carpet/carpet_step6.ogg','sound/effects/footsteps/carpet/carpet_step7.ogg','sound/effects/footsteps/carpet/carpet_step8.ogg')
-//var/list/gun_sound = list('sound/weapons/Gunshot.ogg', 'sound/weapons/Gunshot2.ogg','sound/weapons/Gunshot3.ogg','sound/weapons/Gunshot4.ogg')
-
 
 var/list/artillery_out = list( 'sound/weapons/WW2/new_exp_1.ogg', 'sound/weapons/WW2/new_exp_2.ogg', 'sound/weapons/WW2/new_exp_high_1.ogg', 'sound/weapons/WW2/new_exp_high_2.ogg', 'sound/weapons/WW2/new_exp_high_3.ogg')
 var/list/artillery_in = list( 'sound/weapons/WW2/new_artillery_incoming01.ogg', 'sound/weapons/WW2/new_artillery_incoming02.ogg', 'sound/weapons/WW2/new_artillery_incoming03.ogg', 'sound/weapons/WW2/new_artillery_incoming04.ogg', 'sound/weapons/WW2/new_artillery_incoming05.ogg', 'sound/weapons/WW2/new_artillery_incoming06.ogg')
@@ -75,6 +73,22 @@ var/list/train_halting_sounds = list( 'sound/effects/train/halting.ogg' )
 var/list/wryyys = list('sound/voice/wryyy_1.ogg', 'sound/voice/wryyy_2.ogg',
 	'sound/voice/wryyy_3.ogg', 'sound/voice/wryyy_4.ogg',
 	'sound/voice/wryyy_5.ogg', 'sound/voice/wryyy_6.ogg')
+
+var/list/doorknock_sounds = list(
+	'sound/effects/doorknock1.ogg',
+	'sound/effects/doorknock2.ogg',
+	'sound/effects/doorknock3.ogg',
+	'sound/effects/doorknock4.ogg',
+	'sound/effects/doorknock5.ogg',
+	'sound/effects/doorknock6.ogg')
+
+// emote sounds from InterBay
+var/list/cough_sounds_male = list()
+var/list/cry_sounds_male = list()
+var/list/laugh_sounds_male = list()
+
+// pain, etc sounds from Interbay
+
 
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/list/excluded = list())
 
@@ -222,5 +236,5 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("train_movement") soundin = pick(train_movement_sounds)
 			if ("train_halting") soundin = pick(train_halting_sounds)
 			if ("wryyy") soundin = pick(wryyys)
-			//if ("gunshot") soundin = pick(gun_sound)
+			if ("doorknock") soundin = pick(doorknock_sounds)
 	return soundin

@@ -3,6 +3,7 @@
 #define WW2_ASPECT_SPAN "<span class = 'notice' style = 'font-size: 2.0em;'>"
 #define WW2_ASPECTDESC_SPAN "<span class = 'notice' style = 'font-size: 1.33em;'>"
 #define TANK_LOWPOP_THRESHOLD 12
+#define ARTILLERY_LOWPOP_THRESHOLD 15
 
 /datum/game_aspect
 	var/game_mode_type = null
@@ -235,7 +236,7 @@
 	desc = "The Germans have no artillery for this battle."
 
 /datum/game_aspect/ww2/no_artillery/specialcheck()
-	return locate(/obj/machinery/artillery) in world
+	return (locate(/obj/machinery/artillery) in world && clients.len > ARTILLERY_LOWPOP_THRESHOLD)
 
 /datum/game_aspect/ww2/no_artillery/activate()
 	. = ..()

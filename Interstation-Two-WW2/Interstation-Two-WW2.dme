@@ -570,7 +570,6 @@
 #include "code\modules\lighting\~lighting_undefs.dm"
 #include "code\modules\materials\material_recipes.dm"
 #include "code\modules\materials\material_sheets.dm"
-#include "code\modules\materials\material_synth.dm"
 #include "code\modules\materials\materials.dm"
 #include "code\modules\mob\animations.dm"
 #include "code\modules\mob\bloody_hands.dm"
@@ -962,6 +961,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\pillarmap\fort.dmm"
-#include "maps\pillarmap\sewers.dmm"
+#include "maps\test\city.dmm"
 // END_INCLUDE

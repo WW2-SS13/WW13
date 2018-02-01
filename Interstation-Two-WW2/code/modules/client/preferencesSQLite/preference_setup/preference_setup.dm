@@ -260,9 +260,9 @@
 		if (islist(variable)) // todo
 			continue
 		if (pref_initial_vars[varname] != variable) // variable changed!
-			pref.remember_preference(varname, variable)
+			pref.remember_preference(varname, variable, glob = istype(src, /datum/category_item/player_setup_item/player_global))
 		else if (pref_initial_vars[varname] == variable) // variable set back to default!
-			pref.unremember_preference(varname)
+			pref.unremember_preference(varname, glob = istype(src, /datum/category_item/player_setup_item/player_global))
 		//	world << "test #2: [varname] = [pref.vars[varname]]"
 
 /datum/category_item/player_setup_item/CanUseTopic(var/mob/user)

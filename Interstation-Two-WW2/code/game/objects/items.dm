@@ -64,6 +64,8 @@
 	var/wielded_icon = null
 	var/worn_state = null
 
+	var/dropsound = 'sound/effects/drop_default.ogg'
+
 /obj/item/equipped()
 	..()
 	var/mob/M = loc
@@ -226,6 +228,9 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user as mob)
 	..()
+	spawn (1)
+		if (istype(loc, /turf))
+			playsound(loc, dropsound, 100, TRUE)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)

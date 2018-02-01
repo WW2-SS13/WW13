@@ -40,6 +40,8 @@
 	//	/obj/machinery/constructable_frame
 		)
 
+	dropsound = 'sound/effects/drop_glass.ogg'
+
 	New()
 		..()
 		base_name = name

@@ -4,6 +4,7 @@
 	icon_state = "key"
 	name = "random fucking key that should NOT exist"
 	w_class = 1
+	dropsound = 'sound/effects/drop_knife.ogg'
 
 /obj/item/weapon/key/New()
 	if (istype(src, /obj/item/weapon/key/german))

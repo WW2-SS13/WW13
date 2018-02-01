@@ -144,7 +144,8 @@
 
 /mob/living/carbon/human/Weaken(amount)
 	if(HULK in mutations)	return
-	if(takes_less_damage && prob(ceil(getStatCoeff("strength") * 7)))
+	// 60% chance Vampires won't be affected; 96% Pillar Men won't be
+	if(takes_less_damage && prob(15 + ceil(getStatCoeff("strength") * 9)))
 		return
 	..()
 

@@ -1,3 +1,5 @@
+#define GLOBAL_SLOT 99
+
 var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 
 /datum/preferences/proc/preferences_exist(var/slot = TRUE)
@@ -19,7 +21,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 		if (key == name)
 			return val
 
-/datum/preferences/proc/load_preferences(var/slot = 1)
+/datum/preferences/proc/load_preferences(var/slot = 1, var/bypass_application = FALSE)
 
 	if (text2num(slot) == 0)
 		return FALSE
@@ -50,7 +52,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 		if (key != "clientprefs_enabled" && key != "clientprefs_disabled")
 			key_val_pairs -= key_val_pair
 			key_val_pairs[key] = val
-		else if (slot == "global")
+		else
 			switch (key)
 				if ("clientprefs_enabled")
 					var/list/clientprefs_enabled = splittext(val, ";")
@@ -85,7 +87,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 
 	return TRUE
 
-/datum/preferences/proc/del_preferences(var/slot = TRUE)
+/datum/preferences/proc/del_preferences(var/slot = TRUE, var/bypass_application = FALSE)
 	if (text2num(slot) == FALSE)
 		return FALSE
 	if (database.execute("DELETE FROM preferences WHERE ckey = '[client_ckey]' AND slot = '[slot]';"))
@@ -96,9 +98,9 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 		return TRUE
 	return FALSE
 
-/datum/preferences/proc/save_preferences(var/slot = 1, var/prevslot = -1)
+/datum/preferences/proc/save_preferences(var/slot = 1, var/prevslot = -1, var/bypass_application = FALSE)
 
-	if (text2num(slot) == FALSE)
+	if (text2num(slot) == 0)
 		return FALSE
 
 	if (!client_ckey)
@@ -136,7 +138,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 		params += "[key]=[internal_table[slot][key]]"
 
 	// client_preferences have to be saved separately
-	if (preferences_enabled.len && slot == "global")
+	if (preferences_enabled.len)
 		if (params)
 			params += "&"
 		params += "clientprefs_enabled="
@@ -148,7 +150,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 	if (dd_hassuffix(params, ";"))
 		params = copytext(params, 1, lentext(params))
 
-	if (preferences_disabled.len && slot == "global")
+	if (preferences_disabled.len)
 		if (params)
 			params += "&"
 		params += "clientprefs_disabled="
@@ -167,6 +169,8 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 		database.execute("INSERT INTO preferences (ckey, slot, prefs) VALUES ('[client_ckey]', '[slot]', '[params]');")
 	return TRUE
 
+// slot preferences
+
 /datum/preferences/proc/knows_preference(pref)
 	var/slot = num2text(current_slot)
 	if (!internal_table.Find(slot))
@@ -174,7 +178,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 	var/list/L = internal_table[slot]
 	return L.Find(pref)
 
-/datum/preferences/proc/remember_preference(pref, value, var/save = TRUE)
+/datum/preferences/proc/remember_preference(pref, value, var/save = TRUE, var/glob = FALSE)
 	if (!vars.Find(pref))
 		return FALSE
 	if (value == initial(vars[pref]))
@@ -182,26 +186,54 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 	if (forbidden_pref_save_varnames.Find(pref))
 		return FALSE
 
-	var/slot = num2text(current_slot)
-	if (!internal_table.Find(slot))
-		internal_table[slot] = list()
-	internal_table[slot][pref] = value
+	if (!glob)
+		var/slot = num2text(current_slot)
+		if (!internal_table.Find(slot))
+			internal_table[slot] = list()
+		internal_table[slot][pref] = value
 
-	if (save)
-		save_preferences(current_slot)
+		if (save)
+			save_preferences(current_slot)
+	else
+		for (var/S in 1 to 10)
+			var/slot = num2text(S)
+			if (!internal_table.Find(slot))
+				load_preferences(slot)
+			if (!internal_table.Find(slot))
+				internal_table[slot] = list()
+			internal_table[slot][pref] = value
+
+			if (save)
+				save_preferences(slot)
+
 	return TRUE
 
-/datum/preferences/proc/unremember_preference(pref, var/save = TRUE)
+/datum/preferences/proc/unremember_preference(pref, var/save = TRUE, var/glob = FALSE)
 	if (!vars.Find(pref))
 		return FALSE
 	if (forbidden_pref_save_varnames.Find(pref))
 		return FALSE
 
-	var/slot = num2text(current_slot)
-	if (!internal_table.Find(slot))
-		internal_table[slot] = list()
-	internal_table[slot] -= pref
+	if (!glob)
+		var/slot = num2text(current_slot)
+		if (!internal_table.Find(slot))
+			internal_table[slot] = list()
+		internal_table[slot] -= pref
 
-	if (save)
-		save_preferences(current_slot)
+		if (save)
+			save_preferences(current_slot)
+	else
+		for (var/S in 1 to 10)
+			var/slot = num2text(S)
+			if (!internal_table.Find(slot))
+				load_preferences(slot)
+			if (!internal_table.Find(slot))
+				internal_table[slot] = list()
+			internal_table[slot] -= pref
+
+			if (save)
+				save_preferences(slot)
+
 	return TRUE
+
+#undef GLOBAL_SLOT

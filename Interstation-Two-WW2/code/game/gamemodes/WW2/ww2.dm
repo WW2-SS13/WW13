@@ -34,7 +34,7 @@
 
 	var/season = "SPRING"
 
-#define WINTER_TESTING
+//#define WINTER_TESTING
 
 /datum/game_mode/ww2/pre_setup()
 	#ifdef WINTER_TESTING
@@ -305,3 +305,9 @@
 						qdel(T)
 					world << "<i>Due to lowpop, there are no tanks.</i>"
 
+		if (!istype(aspect, /datum/game_aspect/ww2/no_artillery))
+			if (clients.len <= ARTILLERY_LOWPOP_THRESHOLD)
+				if (locate(/obj/machinery/artillery) in world)
+					for (var/obj/machinery/artillery/A in world)
+						qdel(A)
+					world << "<i>Due to lowpop, there is no artillery.</i>"

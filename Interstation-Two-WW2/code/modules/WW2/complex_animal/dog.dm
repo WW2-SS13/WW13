@@ -296,8 +296,8 @@ s
 			var/area/H_area_check = get_area(H)
 			if (H_area_check)
 				H_area_check = istype(H_area_check, /area/prishtina)
-			if (H.loc && H_area_check && H.client && H.stat == CONSCIOUS && H.original_job && H.original_job.base_type_flag() != faction)
-
+			if (H.loc && H.z == z && H_area_check && H.client && H.stat == CONSCIOUS && H.original_job && H.original_job.base_type_flag() != faction)
+				log_debug(H.real_name)
 				// makes dogs stop trying to detect people extremely far away. Hack.
 				if (istype(get_area(H), /area/prishtina/soviet) && !istype(get_area(src), /area/prishtina/soviet))
 					continue
@@ -305,7 +305,7 @@ s
 				else if (istype(get_area(H), /area/prishtina/german) && !istype(get_area(src), /area/prishtina/german))
 					continue
 
-				var/dist = max(abs(x - H.x), abs(y - H.y))
+				var/dist = abs_dist(H, src)
 				// 112 range on big map, 13 range on small map - kachnov
 				var/maxdist = ((world.maxx + world.maxy) / 6) - 5
 				if (!locate(H) in view(world.view, src) && dist <= maxdist)

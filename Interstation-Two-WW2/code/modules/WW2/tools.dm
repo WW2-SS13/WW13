@@ -45,9 +45,9 @@
 	icon_state = "ww2_welder_off"
 	on_state = "ww2_welder_on"
 	off_state = "ww2_welder_off"
-
+/*
 /obj/item/device/flashlight/ww2
 	name = "flashlight"
 	icon_state = "ww2_welder_off"
 	on_state = "ww2_welder_on"
-	off_state = "ww2_welder_off"
+	off_state = "ww2_welder_off"*/

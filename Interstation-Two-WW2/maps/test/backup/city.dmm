@@ -776,7 +776,7 @@
 "oX" = (/turf/wall/wood,/area/prishtina/houses/nml_nine)
 "oY" = (/obj/structure/barricade,/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/houses/nml_nine)
 "oZ" = (/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina/houses/nml_nine)
-"pa" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/ash,/obj/item/stack/material/wood,/turf/floor/wood,/area/prishtina/soviet/small_map/inside)
+"pa" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/ash,/obj/item/stack/material/cyborg/wood,/turf/floor/wood,/area/prishtina/soviet/small_map/inside)
 "pb" = (/obj/structure/multiz/stairs{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/inside)
 "pc" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen)
 "pd" = (/obj/effect/landmark{name = "JoinLateRAChef"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen)

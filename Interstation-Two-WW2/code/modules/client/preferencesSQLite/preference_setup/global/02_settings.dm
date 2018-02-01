@@ -1,19 +1,7 @@
 /datum/category_item/player_setup_item/player_global/settings
 	name = "Settings"
 	sort_order = 2
-/*
-/datum/category_item/player_setup_item/player_global/settings/load_preferences()
-	S["lastchangelog"]        >> pref.lastchangelog
-	S["default_slot"]	      >> pref.default_slot
-	S["preferences"]          >> pref.preferences_enabled
-	S["preferences_disabled"] >> pref.preferences_disabled
 
-/datum/category_item/player_setup_item/player_global/settings/save_preferences()
-	S["lastchangelog"]        << pref.lastchangelog
-	S["default_slot"]         << pref.default_slot
-	S["preferences"]          << pref.preferences_enabled
-	S["preferences_disabled"] << pref.preferences_disabled
-*/
 /datum/category_item/player_setup_item/player_global/settings/sanitize_preferences()
 	// Ensure our preferences are lists.
 	if(!istype(pref.preferences_enabled, /list))

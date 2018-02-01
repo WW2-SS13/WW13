@@ -377,8 +377,6 @@ var/global/datum/controller/occupations/job_master
 			else if (istype(j, /datum/job/german/artyman))
 				if (!locate(/obj/machinery/artillery) in world)
 					j.total_positions = FALSE
-				else if (clients.len <= 15)
-					j.total_positions = FALSE
 
 			else if (istype(j, /datum/job/german/anti_tank_crew) || istype(j, /datum/job/german/tankcrew))
 				spawn (5)

@@ -110,6 +110,7 @@
 //Triggering
 /obj/item/device/mine/Crossed(AM as mob|obj)
 	if(isobserver(AM)) return
+	if(istype(AM, /obj/item/projectile)) return
 	Bumped(AM)
 
 /obj/item/device/mine/Bumped(AM as mob|obj)

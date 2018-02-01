@@ -320,7 +320,7 @@
 		return TRUE
 	qdel(I)
 
-/obj/structure/table/attackby(obj/item/I, mob/user, params)
+/obj/structure/table/attackby(var/obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/weapon/grab))
 		tablepush(I, user)
 		return
@@ -346,6 +346,7 @@
 			return
 
 	user.drop_item(loc)
+	playsound(loc, I.dropsound, 100, TRUE)
 
 	//Center the icon where the user clicked if we can.
 	var/list/click_params = params2list(params)

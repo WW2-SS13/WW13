@@ -11,6 +11,8 @@
 	var/list/valid_accessory_slots
 	var/list/restricted_accessory_slots
 
+	dropsound = 'sound/effects/drop_clothing.ogg'
+
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return

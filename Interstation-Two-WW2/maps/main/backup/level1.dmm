@@ -1973,7 +1973,7 @@
 "Nf" = (/obj/item/weapon/circular_saw,/obj/item/weapon/hemostat,/obj/item/weapon/reagent_containers/glass/rag,/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
 "Ng" = (/obj/item/weapon/FixOVein,/obj/item/weapon/bonesetter,/obj/item/weapon/retractor,/obj/structure/table/wood,/obj/machinery/light/small{dir = 1},/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
 "Nh" = (/obj/structure/filingcabinet,/obj/item/device/radio/intercom/loudspeaker/german,/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
-"Nj" = (/obj/item/stack/material/wood{amount = 50},/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
+"Nj" = (/obj/item/stack/material/cyborg/wood{amount = 50},/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
 "Nk" = (/obj/machinery/light/small{dir = 4},/obj/effect/decal/cleanable/cobweb2,/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
 "Nl" = (/obj/effect/decal/cleanable/dirt,/obj/item/device/radio/intercom/loudspeaker/russian{dir = 1},/obj/structure/closet/crate/flares,/turf/floor/dirt,/area/prishtina/soviet/bunker/main_hallway)
 "Nm" = (/obj/structure/closet/crate/bettymines,/turf/floor/wood,/area/prishtina/soviet/bunker/engineering)

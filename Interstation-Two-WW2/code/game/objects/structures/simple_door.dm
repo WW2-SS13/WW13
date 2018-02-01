@@ -98,7 +98,6 @@
 	return TRUE
 
 
-
 /obj/structure/simple_door/proc/SwitchState()
 	if(state)
 		Close()

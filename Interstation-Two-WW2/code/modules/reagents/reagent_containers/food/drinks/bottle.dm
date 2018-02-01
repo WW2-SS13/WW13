@@ -15,6 +15,8 @@
 	var/icon_state_full
 	var/icon_state_empty
 
+	dropsound = 'sound/effects/drop_glass.ogg'
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/on_reagent_change()
 	update_icon()
 

@@ -173,6 +173,7 @@
 	name = "wooden plank"
 	icon_state = "sheet-wood"
 	default_type = "wood"
+	dropsound = 'sound/effects/drop_wood.ogg'
 
 /obj/item/stack/material/cloth
 	name = "cloth"
@@ -194,6 +195,7 @@
 	name = "glass"
 	icon_state = "sheet-glass"
 	default_type = "glass"
+	dropsound = 'sound/effects/drop_glass.ogg'
 
 /obj/item/stack/material/glass/reinforced
 	name = "reinforced glass"
