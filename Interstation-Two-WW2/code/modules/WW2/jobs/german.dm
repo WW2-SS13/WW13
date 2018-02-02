@@ -1,7 +1,9 @@
+
 #define GERMAN_CO_TITLE "Hauptmann"
 #define GERMAN_XO_TITLE "Oberleutnant"
 #define GERMAN_SO_TITLE "Leutnant"
 #define GERMAN_QM_TITLE "Frachtoffizier"
+
 
 /datum/job/german
 	faction = "Station"
@@ -13,7 +15,7 @@
 /datum/job/german/commander
 	title = GERMAN_CO_TITLE
 	en_meaning = "Company Commander"
-	rank_abbreviation = "Cpt"
+	rank_abbreviation = "hptm"
 	total_positions = 1
 	head_position = TRUE
 	selection_color = "#2d2d63"
@@ -66,7 +68,7 @@
 /datum/job/german/XO
 	title = GERMAN_XO_TITLE
 	en_meaning = "Company XO"
-	rank_abbreviation = "1lt"
+	rank_abbreviation = "olt"
 	total_positions = 1
 	head_position = FALSE
 	selection_color = "#2d2d63"
@@ -111,7 +113,7 @@
 /datum/job/german/staff_officer
 	title = GERMAN_SO_TITLE
 	en_meaning = "Platoon Officer"
-	rank_abbreviation = "2lt"
+	rank_abbreviation = "lt"
 	total_positions = 2
 	head_position = FALSE
 	selection_color = "#2d2d63"
@@ -154,7 +156,7 @@
 /datum/job/german/MP
 	title = "Militärpolizei"
 	en_meaning = "MPO"
-	rank_abbreviation = "sgt"
+	rank_abbreviation = "uffz"
 	total_positions = 2
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeer"
@@ -189,9 +191,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/squad_leader
-	title = "Feldwebel"
+	title = "Gruppenfuhrer"
 	en_meaning = "Platoon 2IC"
-	rank_abbreviation = "ssg"
+	rank_abbreviation = "uffz"
 	total_positions = 4
 	head_position = FALSE
 	selection_color = "#4c4ca5"
@@ -235,7 +237,7 @@
 /datum/job/german/medic
 	title = "Sanitäter"
 	en_meaning = "Field Medic"
-	rank_abbreviation = "cpl"
+	rank_abbreviation = "oGftr"
 	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -266,7 +268,7 @@
 /datum/job/german/doctor
 	title = "Medizinier"
 	en_meaning = "Doctor"
-	rank_abbreviation = "sgt"
+	rank_abbreviation = "uffz"
 	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerDr"
@@ -308,7 +310,7 @@
 /datum/job/german/flamethrower_man
 	title = "Flammenwerfersoldat"
 	en_meaning = "Flamethrower Soldier"
-	rank_abbreviation = "lcpl"
+	rank_abbreviation = "gftr"
 	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -345,7 +347,7 @@
 /datum/job/german/sniper
 	title = "Scharfschütze"
 	en_meaning = "Sniper"
-	rank_abbreviation = "lcpl"
+	rank_abbreviation = "gftr"
 	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -382,7 +384,7 @@
 /datum/job/german/engineer
 	title = "Pionier"
 	en_meaning = "Engineer"
-	rank_abbreviation = "cpl"
+	rank_abbreviation = "gftr"
 	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -419,7 +421,7 @@
 /datum/job/german/heavy_weapon
 	title = "Maschinengewehrschütze"
 	en_meaning = "Heavy Weapons Soldier"
-	rank_abbreviation = "lcpl"
+	rank_abbreviation = "oGftr"
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -456,7 +458,7 @@
 /datum/job/german/soldier
 	title = "Soldat"
 	en_meaning = "Infantry Soldier"
-	rank_abbreviation = "pvt"
+	rank_abbreviation = "schtz"
 	total_positions = 200 // this was causing an error with latejoin spawning
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -492,7 +494,7 @@
 /datum/job/german/dogmaster
 	title = "Hunden Trainer"
 	en_meaning = "Dog Trainer"
-	rank_abbreviation = "lcpl"
+	rank_abbreviation = "gftr"
 	total_positions = 50
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -545,7 +547,7 @@
 /datum/job/german/tankcrew
 	title = "Panzerbesatzung"
 	en_meaning = "Tank Crewman"
-	rank_abbreviation = "cpl"
+	rank_abbreviation = "gftr"
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -583,7 +585,7 @@
 /datum/job/german/anti_tank_crew
 	title = "Panzer-Soldat"
 	en_meaning = "Anti Tank Soldier"
-	rank_abbreviation = "pfc"
+	rank_abbreviation = "schtz"
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -618,7 +620,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/paratrooper
 	title = "Fallschirmjäger"
 	en_meaning = "Paratrooper"
-	rank_abbreviation = "pfc"
+	rank_abbreviation = "schtz"
 	total_positions = 7
 	selection_color = "#4c4ca5"
 	spawn_location = "Fallschirm"
@@ -691,7 +693,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/QM
 	title = GERMAN_QM_TITLE
 	en_meaning = "Quartermaster"
-	rank_abbreviation = "sgt"
+	rank_abbreviation = "uffz"
 	total_positions = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerQM"
@@ -730,7 +732,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/artyman
 	title = "Kanonier"
 	en_meaning = "Artillery Officer"
-	rank_abbreviation = "sgt"
+	rank_abbreviation = "uffz"
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSO"
@@ -777,7 +779,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/scout
 	title = "Aufklärtrupp"
 	en_meaning = "Scout"
-	rank_abbreviation = "pfc"
+	rank_abbreviation = "schtz"
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
@@ -820,7 +822,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/conductor
 	title = "Dirigent"
 	en_meaning = "Train Conductor"
-	rank_abbreviation = "sgt"
+	rank_abbreviation = "uffz"
 	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSO"
@@ -857,7 +859,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/squad_leader_ss
 	title = "SS-Untersharffuhrer"
 	en_meaning = "SS Squad Leader"
-	rank_abbreviation = "sgt"
+	rank_abbreviation = "uscha"
 	total_positions = TRUE
 	head_position = TRUE
 	selection_color = "#4c4ca5"
@@ -914,7 +916,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/soldier_ss
 	title = "SS-Schutze"
 	en_meaning = "SS Infantry Soldier"
-	rank_abbreviation = "pvt"
+	rank_abbreviation = "schtz"
 	total_positions = 5 // this was causing an error with latejoin spawning
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS"
