@@ -83,9 +83,60 @@ var/list/doorknock_sounds = list(
 	'sound/effects/doorknock6.ogg')
 
 // emote sounds from InterBay
-var/list/cough_sounds_male = list()
-var/list/cry_sounds_male = list()
-var/list/laugh_sounds_male = list()
+var/list/cough_sounds_male = list(
+	'sound/effects/emotes/male_cough1.ogg',
+	'sound/effects/emotes/male_cough2.ogg',
+	'sound/effects/emotes/male_cough3.ogg',
+	'sound/effects/emotes/male_cough4.ogg')
+
+var/list/cry_sounds_male = list(
+	'sound/effects/emotes/male_cry1.ogg',
+	'sound/effects/emotes/male_cry2.ogg')
+
+var/list/laugh_sounds_male = list(
+	'sound/effects/emotes/male_laugh1.ogg',
+	'sound/effects/emotes/male_laugh2.ogg',
+	'sound/effects/emotes/male_laugh3.ogg')
+
+var/list/yawn_sounds_male = list(
+	'sound/effects/emotes/male_yawn1.ogg',
+	'sound/effects/emotes/male_yawn2.ogg')
+
+var/list/sigh_sounds_male = list(
+	'sound/effects/emotes/male_sigh.ogg')
+
+var/list/sneeze_sounds_male = list(
+	'sound/effects/emotes/male_sneeze1.ogg',
+	'sound/effects/emotes/male_sneeze2.ogg')
+
+var/list/cough_sounds_female = list(
+	'sound/effects/emotes/female_cough1.ogg',
+	'sound/effects/emotes/female_cough2.ogg',
+	'sound/effects/emotes/female_cough3.ogg',
+	'sound/effects/emotes/female_cough4.ogg',
+	'sound/effects/emotes/female_cough5.ogg',
+	'sound/effects/emotes/female_cough6.ogg')
+
+var/list/cry_sounds_female = list(
+	'sound/effects/emotes/female_cry1.ogg',
+	'sound/effects/emotes/female_cry2.ogg')
+
+var/list/laugh_sounds_female = list(
+	'sound/effects/emotes/female_laugh1.ogg',
+	'sound/effects/emotes/female_laugh2.ogg',
+	'sound/effects/emotes/female_laugh3.ogg')
+
+var/list/yawn_sounds_female = list(
+	'sound/effects/emotes/female_yawn1.ogg',
+	'sound/effects/emotes/female_yawn2.ogg',
+	'sound/effects/emotes/female_yawn3.ogg')
+
+var/list/sigh_sounds_female = list(
+	'sound/effects/emotes/female_sigh.ogg')
+
+var/list/sneeze_sounds_female = list(
+	'sound/effects/emotes/female_sneeze1.ogg',
+	'sound/effects/emotes/female_sneeze2.ogg')
 
 // pain, etc sounds from Interbay
 
@@ -237,4 +288,32 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("train_halting") soundin = pick(train_halting_sounds)
 			if ("wryyy") soundin = pick(wryyys)
 			if ("doorknock") soundin = pick(doorknock_sounds)
+
+			// emote sounds from InterBay
+			if ("cough_male")
+				soundin = pick(cough_sounds_male)
+			if ("cry_male")
+				soundin = pick(cry_sounds_male)
+			if ("laugh_male")
+				soundin = pick(laugh_sounds_male)
+			if ("yawn_male")
+				soundin = pick(yawn_sounds_male)
+			if ("sigh_male")
+				soundin = pick(sigh_sounds_male)
+			if ("sneeze_male")
+				soundin = pick(sneeze_sounds_male)
+
+			if ("cough_female")
+				soundin = pick(cough_sounds_female)
+			if ("cry_female")
+				soundin = pick(cry_sounds_female)
+			if ("laugh_female")
+				soundin = pick(laugh_sounds_female)
+			if ("yawn_female")
+				soundin = pick(yawn_sounds_female)
+			if ("sigh_female")
+				soundin = pick(sigh_sounds_female)
+			if ("sneeze_female")
+				soundin = pick(sneeze_sounds_female)
+
 	return soundin
