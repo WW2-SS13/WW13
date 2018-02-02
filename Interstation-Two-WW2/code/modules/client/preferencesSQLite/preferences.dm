@@ -146,6 +146,9 @@ var/list/preferences_datums = list()
 			remember_preference("russian_name", russian_name)
 			remember_preference("ukrainian_name", ukrainian_name)
 			save_preferences(1)
+		spawn (1)
+			loadGlobalPreferences()
+			loadGlobalSettings()
 
 		// otherwise, keep using our default values
 
@@ -233,6 +236,9 @@ var/list/preferences_datums = list()
 			if (load_preferences(slot))
 				current_slot = slot
 				usr << "<span class = 'good'>Successfully loaded preferences (slot #[current_slot]).</span>"
+				spawn (1)
+					loadGlobalPreferences()
+					loadGlobalSettings()
 			else
 				usr << "<span class = 'bad'>FAILED to load preferences (slot #[current_slot]).</span>"
 		close_load_dialog(usr)
@@ -398,6 +404,111 @@ var/list/preferences_datums = list()
 /datum/preferences/proc/close_del_dialog(mob/user)
 	user << browse(null, "window=del_dialog")
 
+
+/proc/globalprefsanitize(str)
+	if (islist(str))
+		return ""
+	return str
+
+// global preferences handling
+/datum/preferences/proc/loadGlobalPreferences()
+	var/list/tables = database.execute("SELECT prefs FROM preferences WHERE ckey = '[client_ckey]' AND slot = 'glob1';")
+	if (!islist(tables) || isemptylist(tables))
+		return
+	var/prefstring = tables["prefs"]
+//	log_debug(prefstring)
+	if (length(prefstring))
+		var/list/keyvals_list = splittext(prefstring, "&")
+		for (var/keyval in keyvals_list)
+			var/keyval_pair = splittext(keyval, "=")
+			var/key = keyval_pair[1]
+			var/val = keyval_pair[2]
+			if (isnum(text2num(val)))
+				val = text2num(val)
+			if (val != vars[key])
+				if (vars[key])
+					vars[key] = val
+
+	for (var/mob/M in player_list)
+		if (M.client && M.client.ckey == client_ckey)
+			ShowChoices(M)
+
+/datum/preferences/proc/saveGlobalPreferences()
+	var/prefstring = ""
+
+	prefstring += "ooccolor=[globalprefsanitize(ooccolor)]&"
+	prefstring += "be_special_role=[globalprefsanitize(be_special_role)]&"
+	prefstring += "UI_style=[globalprefsanitize(UI_style)]&"
+	prefstring += "UI_useborder=[globalprefsanitize(UI_useborder)]&"
+	prefstring += "UI_style_color=[globalprefsanitize(UI_style_color)]&"
+	prefstring += "UI_style_alpha=[globalprefsanitize(UI_style_alpha)]"
+
+	var/list/prefs_exist_check = database.execute("SELECT * FROM preferences WHERE ckey = '[client_ckey]' AND slot = 'glob1';")
+	if (islist(prefs_exist_check) && !isemptylist(prefs_exist_check))
+		database.execute("UPDATE preferences SET prefs = '[prefstring]' WHERE ckey = '[client_ckey]' AND slot = 'glob1';")
+	else
+		database.execute("INSERT INTO preferences (ckey, slot, prefs) VALUES ('[client_ckey]', 'glob1', '[prefstring]');")
+
+// global settings handling
+#define ONLY_LOAD_DISABLED_SETTINGS
+/datum/preferences/proc/loadGlobalSettings()
+	// enabled
+	var/list/tables = database.execute("SELECT prefs FROM preferences WHERE ckey = '[client_ckey]' AND slot = 'glob2_enabled';")
+
+	#ifndef ONLY_LOAD_DISABLED_SETTINGS
+	if (islist(tables) && !isemptylist(tables))
+		var/prefstring = tables["prefs"]
+		if (length(prefstring))
+			var/list/vals_list = splittext(prefstring, "&")
+			for (var/val in vals_list)
+				if (isnum(text2num(val)))
+					val = text2num(val)
+				client.set_preference(val, TRUE)
+	#else
+	for (var/pref in preferences_enabled)
+		client.set_preference(pref, TRUE)
+	#endif
+	// disabled
+	tables = database.execute("SELECT prefs FROM preferences WHERE ckey = '[client_ckey]' AND slot = 'glob2_disabled';")
+	if (islist(tables) && !isemptylist(tables))
+		var/prefstring = tables["prefs"]
+		if (length(prefstring))
+			var/list/vals_list = splittext(prefstring, "&")
+			for (var/val in vals_list)
+				if (isnum(text2num(val)))
+					val = text2num(val)
+				client.set_preference(val, FALSE)
+
+	for (var/mob/M in player_list)
+		if (M.client && M.client.ckey == client_ckey)
+			ShowChoices(M)
+
+/datum/preferences/proc/saveGlobalSettings()
+	var/prefstring = ""
+	for (var/v in 1 to preferences_enabled.len)
+		prefstring += preferences_enabled[v]
+		if (v != preferences_enabled.len)
+			prefstring += "&"
+	if (prefstring)
+		var/list/prefs_exist_check = database.execute("SELECT * FROM preferences WHERE ckey = '[client_ckey]' AND slot = 'glob2_enabled';")
+		if (islist(prefs_exist_check) && !isemptylist(prefs_exist_check))
+			database.execute("UPDATE preferences SET prefs = '[prefstring]' WHERE ckey = '[client_ckey]' AND slot = 'glob2_enabled';")
+		else
+			database.execute("INSERT INTO preferences (ckey, slot, prefs) VALUES ('[client_ckey]', 'glob2_enabled', '[prefstring]');")
+
+	prefstring = ""
+	for (var/v in 1 to preferences_disabled.len)
+		prefstring += preferences_disabled[v]
+		if (v != preferences_disabled.len)
+			prefstring += "&"
+	if (prefstring)
+		var/list/prefs_exist_check = database.execute("SELECT * FROM preferences WHERE ckey = '[client_ckey]' AND slot = 'glob2_disabled';")
+		if (islist(prefs_exist_check) && !isemptylist(prefs_exist_check))
+			database.execute("UPDATE preferences SET prefs = '[prefstring]' WHERE ckey = '[client_ckey]' AND slot = 'glob2_disabled';")
+		else
+			database.execute("INSERT INTO preferences (ckey, slot, prefs) VALUES ('[client_ckey]', 'glob2_disabled', '[prefstring]');")
+#undef ONLY_LOAD_DISABLED_SETTINGS
+
 /client/proc/is_preference_enabled(var/preference)
 
 	if(ispath(preference))
@@ -430,7 +541,11 @@ var/list/preferences_datums = list()
 	if(.)
 		cp.toggled(mob, enabled)
 
-	prefs.save_preferences(prefs.current_slot)
+	for (var/client/C in clients)
+		if (C.ckey == prefs.client_ckey)
+			C.onload_preferences(preference)
+
+	prefs.saveGlobalSettings()
 
 /mob/proc/is_preference_enabled(var/preference)
 	if(!client)
@@ -446,10 +561,11 @@ var/list/preferences_datums = list()
 
 	return client.set_preference(preference, set_preference)
 
-/client/proc/onload_preferences()
-	var/datum/client_preference/cp = get_client_preference_by_type(/datum/client_preference/play_lobby_music)
-	if (isnewplayer(mob))
-		if (is_preference_enabled(cp.key))
-			mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE)
-		else
-			mob << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE)
+/client/proc/onload_preferences(var/preference)
+	if (preference == "SOUND_LOBBY")
+		var/datum/client_preference/cp = get_client_preference_by_type(/datum/client_preference/play_lobby_music)
+		if (isnewplayer(mob))
+			if (is_preference_enabled(cp.key))
+				mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE)
+			else
+				mob << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE)

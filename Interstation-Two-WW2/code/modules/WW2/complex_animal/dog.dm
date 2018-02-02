@@ -297,7 +297,7 @@ s
 			if (H_area_check)
 				H_area_check = istype(H_area_check, /area/prishtina)
 			if (H.loc && H.z == z && H_area_check && H.client && H.stat == CONSCIOUS && H.original_job && H.original_job.base_type_flag() != faction)
-				log_debug(H.real_name)
+			//	log_debug(H.real_name)
 				// makes dogs stop trying to detect people extremely far away. Hack.
 				if (istype(get_area(H), /area/prishtina/soviet) && !istype(get_area(src), /area/prishtina/soviet))
 					continue
