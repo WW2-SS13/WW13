@@ -14,7 +14,7 @@ var/datum/controller/process/paratrooper_plane_controller/paratrooper_plane_mast
 
 /datum/controller/process/paratrooper_plane_controller/doWork()
 	try
-		var/shift = pick(-5, 0, 5)
+		var/shift = pick(-4, 0, 4)
 		for (var/atom/movable/AM in range(10, latejoin_turfs["Fallschirm"][1]))
 			if (!ismob(AM))
 				AM.pixel_x = shift

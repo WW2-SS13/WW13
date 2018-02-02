@@ -595,7 +595,7 @@
 	for (var/mob/M in player_list)
 		if (M.client)
 			for (var/obj/train_car_center/german/tcc in world)
-				if (tcc.type == my_tcc_type)
+				if (istype(tcc, my_tcc_type))
 					var/dist = abs_dist(M, tcc)
 					if (dist <= 20)
 						var/volume = 100

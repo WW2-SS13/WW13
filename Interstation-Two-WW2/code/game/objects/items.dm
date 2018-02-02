@@ -229,8 +229,9 @@
 /obj/item/proc/dropped(mob/user as mob)
 	..()
 	spawn (1)
-		if (istype(loc, /turf))
-			playsound(loc, dropsound, 100, TRUE)
+		if (!istype(src, /obj/item/clothing/mask/smokable))
+			if (istype(loc, /turf) && (w_class > 1 || dropsound != 'sound/effects/drop_default.ogg'))
+				playsound(loc, dropsound, 100, TRUE)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)

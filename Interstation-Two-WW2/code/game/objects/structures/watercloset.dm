@@ -386,7 +386,8 @@
 
 	user << "<span class='notice'>You start washing your hands.</span>"
 
-	playsound(loc, 'sound/effects/watersplash.ogg', 100, TRUE)
+//	playsound(loc, 'sound/effects/watersplash.ogg', 100, TRUE)
+	playsound(loc, 'sound/effects/sink.ogg', 100, TRUE)
 
 	busy = user
 	sleep(40)

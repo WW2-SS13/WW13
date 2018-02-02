@@ -186,6 +186,7 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
 	anchored = FALSE
+	var/next_sound = -1
 
 /obj/structure/bed/roller/update_icon()
 	return // Doesn't care about material or anything else.
@@ -203,6 +204,56 @@
 				qdel(src)
 		return
 	..()
+
+/obj/structure/bed/roller/Move(var/turf/newloc)
+
+	if (buckled_mob && map.check_prishtina_block(buckled_mob, newloc))
+		return FALSE
+
+	var/oloc = loc
+
+	..(newloc)
+
+	if (oloc != loc)
+		if (world.time > next_sound)
+			playsound(get_turf(src), 'sound/effects/rollermove.ogg', 75, TRUE)
+			next_sound = world.time + 10
+
+	if(buckled_mob)
+		if(buckled_mob.buckled == src)
+			buckled_mob.loc = loc
+		else
+			buckled_mob = null
+
+		if (buckled_mob && buckled_mob.is_on_train())
+			buckled_mob.last_moved_on_train = world.time
+
+	return TRUE
+
+/obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
+	if(M == buckled_mob)
+		M.pixel_y = 6
+		M.old_y = 6
+		density = TRUE
+		icon_state = "up"
+	else
+		M.pixel_y = FALSE
+		M.old_y = FALSE
+		density = FALSE
+		icon_state = "down"
+
+	return ..()
+
+/obj/structure/bed/roller/MouseDrop(over_object, src_location, over_location)
+	..()
+	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
+		if(!ishuman(usr))	return
+		if(buckled_mob)	return FALSE
+		visible_message("[usr] collapses \the [name].")
+		new/obj/item/roller(get_turf(src))
+		spawn(0)
+			qdel(src)
+		return
 
 /obj/item/roller
 	name = "roller bed"
@@ -250,47 +301,3 @@
 	R.add_fingerprint(user)
 	qdel(held)
 	held = null
-
-
-/obj/structure/bed/roller/Move(var/turf/newloc)
-
-	if (buckled_mob && map.check_prishtina_block(buckled_mob, newloc))
-		return FALSE
-
-	..(newloc)
-
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			buckled_mob.loc = loc
-		else
-			buckled_mob = null
-
-		if (buckled_mob && buckled_mob.is_on_train())
-			buckled_mob.last_moved_on_train = world.time
-
-	return TRUE
-
-/obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
-	if(M == buckled_mob)
-		M.pixel_y = 6
-		M.old_y = 6
-		density = TRUE
-		icon_state = "up"
-	else
-		M.pixel_y = FALSE
-		M.old_y = FALSE
-		density = FALSE
-		icon_state = "down"
-
-	return ..()
-
-/obj/structure/bed/roller/MouseDrop(over_object, src_location, over_location)
-	..()
-	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
-		if(!ishuman(usr))	return
-		if(buckled_mob)	return FALSE
-		visible_message("[usr] collapses \the [name].")
-		new/obj/item/roller(get_turf(src))
-		spawn(0)
-			qdel(src)
-		return

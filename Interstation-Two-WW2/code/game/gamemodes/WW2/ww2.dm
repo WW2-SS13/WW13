@@ -290,7 +290,7 @@
 			// this may have already happened, do it again w/o announce
 			setup_autobalance(0)
 
-		world << "<b>The current game mode is World War II!</b>"
+		world << "<b><big>The current game mode is World War II!</big></b>"
 
 		// let new players see the join link
 		for (var/mob/new_player/np in world)

@@ -42,6 +42,7 @@
 	desc = "A low quality carpet dangling on the wall."
 	icon = 'icons/obj/decals_wide.dmi'
 	icon_state = "carpet"
+	layer = OBJ_LAYER - 0.1
 
 /obj/structure/sign/wide/loc_name_sign
 	name = "Slatino sign"

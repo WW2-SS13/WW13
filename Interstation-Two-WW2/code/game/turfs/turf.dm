@@ -405,7 +405,9 @@ var/const/enterloopsanity = 100
 				bloodDNA = null
 
 			//Shoe sounds
-			if 		(istype(src, /turf/floor/grass))
+			if (type == /turf/floor/plating)
+				footstepsound = "platingfootsteps"
+			else if 		(istype(src, /turf/floor/grass))
 				footstepsound = "grassfootsteps"
 			//else 	if(istype(src, /turf/stalker/floor/tropa))//Not needed for now.
 			//	footstepsound = "sandfootsteps"

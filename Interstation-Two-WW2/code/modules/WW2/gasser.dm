@@ -56,3 +56,4 @@
 			icon_state = none_state
 			orientation = "NONE"
 			visible_message("<span class = 'danger'>[user] pulls the lever back.</span>", "<span class = 'notice'>You pull the lever back.</span>")
+	playsound(get_turf(src), 'sound/effects/lever.ogg', 100, TRUE)

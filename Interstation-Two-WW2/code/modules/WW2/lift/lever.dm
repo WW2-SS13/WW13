@@ -26,6 +26,8 @@
 		icon_state = none_state
 		orientation = "NONE"
 
+	playsound(get_turf(src), 'sound/effects/lever.ogg', 100, TRUE)
+
 /obj/lift_lever/linked
 	var/obj/lift_lever/counterpart = null
 
@@ -45,6 +47,7 @@
 	spawn (3)
 		icon_state = none_state
 		orientation = "NONE"
+
 
 // subtypes
 

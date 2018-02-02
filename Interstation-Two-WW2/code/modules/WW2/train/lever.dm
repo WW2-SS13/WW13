@@ -91,6 +91,7 @@
 				if ("Push Forwards")
 					train_controller.stop_moving_slow()
 					visible_message("<span class = 'danger'>[user] pushes the train lever forward, stopping the train.</span>")
+		playsound(get_turf(src), 'sound/effects/lever.ogg', 100, TRUE)
 
 /obj/train_lever/german
 	faction = GERMAN
