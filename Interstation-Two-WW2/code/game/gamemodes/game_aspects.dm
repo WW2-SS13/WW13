@@ -12,18 +12,20 @@
 	var/list/possible_subtypes = list()
 	var/datum/game_mode/mode = null
 	var/desc = ""
-	var/required_clients = FALSE
+	var/required_clients = 0
 	var/list/real_aspects = list()
 
 /datum/game_aspect/New(var/datum/game_mode/M)
 	..()
 	if (M) // if we don't pass an arg, this code is ommitted. Intentional.
-		if (!map || !game_mode_type || !default_aspect_type || !possible_subtypes[map.ID].len)
+	//	if (map) log_debug(map.ID)
+	//	else log_debug("test")
+		var/list/subtypes = possible_subtypes[map.ID]
+		if (!game_mode_type || !default_aspect_type || !subtypes.len)
 			qdel(src)
 			return
 
-
-		for (var/aspecttype in possible_subtypes[map.ID])
+		for (var/aspecttype in subtypes)
 			var/datum/game_aspect/A = new aspecttype
 			if (A && clients.len >= A.required_clients && A.specialcheck())
 				real_aspects += A
@@ -55,29 +57,19 @@
 /datum/game_aspect/ww2
 	game_mode_type = /datum/game_mode/ww2
 	default_aspect_type = /datum/game_aspect/ww2/default
-	possible_subtypes = list("FOREST" = list(/datum/game_aspect/ww2/german_padvantage,
-		/datum/game_aspect/ww2/german_pdisadvantage,
-		/datum/game_aspect/ww2/russian_padvantage,
-		/datum/game_aspect/ww2/russian_pdisadvantage,
+	possible_subtypes = list(
 
-	//	/datum/game_aspect/ww2/german_sadvantage,
-	//	/datum/game_aspect/ww2/german_sdisadvantage,
-	//	/datum/game_aspect/ww2/russian_sadvantage,
-	//	/datum/game_aspect/ww2/russian_sdisadvantage,
-
-		/datum/game_aspect/ww2/no_tanks,
-		/datum/game_aspect/ww2/no_artillery),
+		"FOREST" = list(/datum/game_aspect/ww2/german_padvantage,
+				/datum/game_aspect/ww2/german_pdisadvantage,
+				/datum/game_aspect/ww2/russian_padvantage,
+				/datum/game_aspect/ww2/russian_pdisadvantage,
+				/datum/game_aspect/ww2/no_tanks,
+				/datum/game_aspect/ww2/no_artillery),
 
 		"SMALLCITY" = list(/datum/game_aspect/ww2/german_padvantage,
 				/datum/game_aspect/ww2/german_pdisadvantage,
 				/datum/game_aspect/ww2/russian_padvantage,
 				/datum/game_aspect/ww2/russian_pdisadvantage,
-
-			//	/datum/game_aspect/ww2/german_sadvantage,
-			//	/datum/game_aspect/ww2/german_sdisadvantage,
-			//	/datum/game_aspect/ww2/russian_sadvantage,
-			//	/datum/game_aspect/ww2/russian_sdisadvantage,
-
 				/datum/game_aspect/ww2/no_tanks,
 				/datum/game_aspect/ww2/no_artillery),
 
