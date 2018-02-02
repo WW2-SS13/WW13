@@ -8,7 +8,7 @@
 /datum/job/soviet/commander
 	title = "Kapitan"
 	en_meaning = "Company Commander"
-	rank_abbreviation = "cpt"
+	rank_abbreviation = "Kpt"
 	total_positions = TRUE
 	head_position = TRUE
 	selection_color = "#530909"
@@ -59,7 +59,7 @@
 /datum/job/soviet/XO
 	title = "Starshiy Leytenant"
 	en_meaning = "Company Executive Officer"
-	rank_abbreviation = "1lt"
+	rank_abbreviation = "STLy"
 	total_positions = 1
 	head_position = FALSE
 	selection_color = "#530909"
@@ -103,7 +103,7 @@
 /datum/job/soviet/staff_officer
 	title = "Leytenant"
 	en_meaning = "Platoon Officer"
-	rank_abbreviation = "2lt"
+	rank_abbreviation = "Lyt"
 	total_positions = 2
 	head_position = FALSE
 	selection_color = "#530909"
@@ -143,7 +143,7 @@
 /datum/job/soviet/MP
 	title = "Voyennaya Politsiya"
 	en_meaning = "MPO"
-	rank_abbreviation = "sgt"
+	rank_abbreviation = "Srg"
 	total_positions = 2
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateRA"
@@ -181,7 +181,7 @@
 /datum/job/soviet/squad_leader
 	title = "Starshiy Serzhant"
 	en_meaning = "Platoon 2IC"
-	rank_abbreviation = "ssgt"
+	rank_abbreviation = "StSr"
 	total_positions = 4
 	head_position = FALSE
 	selection_color = "#770e0e"
@@ -223,7 +223,7 @@
 /datum/job/soviet/medic
 	title = "Sanitar"
 	en_meaning = "Medic"
-	rank_abbreviation = "cpl"
+	rank_abbreviation = "Efr"
 	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -254,7 +254,7 @@
 
 /datum/job/soviet/doctor
 	title = "Doktor"
-	en_meaning = "Doctor"
+	en_meaning = "Dr"
 	rank_abbreviation = "2lt"
 	total_positions = 5
 	selection_color = "#770e0e"
@@ -297,7 +297,7 @@
 /datum/job/soviet/sniper
 	title = "Snaiper"
 	en_meaning = "Sniper"
-	rank_abbreviation = "pfc"
+	rank_abbreviation = "Kras"
 	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -335,7 +335,7 @@
 /datum/job/soviet/engineer
 	title = "Boyevoy Saper"
 	en_meaning = "Engineer"
-	rank_abbreviation = "cpl"
+	rank_abbreviation = "Efr"
 	total_positions = 3
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -372,7 +372,7 @@
 /datum/job/soviet/heavy_weapon
 	title = "Pulemetchik"
 	en_meaning = "Heavy Weapons Operator"
-	rank_abbreviation = "cpl"
+	rank_abbreviation = "Efr"
 	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -410,7 +410,7 @@
 /datum/job/soviet/soldier
 	title = "Sovietsky Soldat"
 	en_meaning = "Infantry Soldier"
-	rank_abbreviation = "pvt"
+	rank_abbreviation = "Kras"
 	total_positions = 200
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -446,7 +446,7 @@
 /datum/job/soviet/dogmaster
 	title = "Dressirovshchik"
 	en_meaning = "Dog Trainer"
-	rank_abbreviation = "lcpl"
+	rank_abbreviation = "MlSr"
 	total_positions = 50
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -499,7 +499,7 @@
 /datum/job/soviet/tankcrew
 	title = "Tank-ekipazh"
 	en_meaning = "Tank Crewman"
-	rank_abbreviation = "cpl"
+	rank_abbreviation = "Efr"
 	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -538,7 +538,7 @@
 /datum/job/soviet/anti_tank_crew
 	title = "Protivotankovyy Soldat"
 	en_meaning = "Anti-Tank Trooper"
-	rank_abbreviation = "pfc"
+	rank_abbreviation = "Kras"
 	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -576,7 +576,7 @@
 /datum/job/soviet/guard
 	title = "Gvardeyec"
 	en_meaning = "Guard"
-	rank_abbreviation = "pfc"
+	rank_abbreviation = "Kras"
 	total_positions = 3
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRA"
@@ -633,7 +633,7 @@ var/first_guard = FALSE
 /datum/job/soviet/QM
 	title = "Zavhoz"
 	en_meaning = "Quartermaster"
-	rank_abbreviation = "sgt"
+	rank_abbreviation = "Srg"
 	total_positions = 1
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRAQM"
@@ -672,7 +672,7 @@ var/first_guard = FALSE
 /datum/job/soviet/sturmovik
 	title = "Sturmovik"
 	en_meaning = "Shock Trooper"
-	rank_abbreviation = "pfc"
+	rank_abbreviation = "Kras"
 	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
@@ -709,7 +709,7 @@ var/first_guard = FALSE
 /datum/job/soviet/chef
 	title = "Povar"
 	en_meaning = "Chef"
-	rank_abbreviation = "pvt"
+	rank_abbreviation = "Kras"
 	total_positions = TRUE
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRAChef"
