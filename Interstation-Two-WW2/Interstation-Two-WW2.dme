@@ -337,6 +337,7 @@
 #include "code\game\objects\structures\musician.dm"
 #include "code\game\objects\structures\noticeboard.dm"
 #include "code\game\objects\structures\OpTable.dm"
+#include "code\game\objects\structures\plating.dm"
 #include "code\game\objects\structures\railing.dm"
 #include "code\game\objects\structures\safe.dm"
 #include "code\game\objects\structures\sign_flags.dm"
@@ -961,5 +962,7 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\test\city.dmm"
+#include "maps\main\level1.dmm"
+#include "maps\main\level2.dmm"
+#include "maps\main\level3.dmm"
 // END_INCLUDE

@@ -8,6 +8,7 @@ var/area/partisan_stockpile = null
 //	unacidable = TRUE
 	simulated = FALSE
 	invisibility = 101
+	layer = 100
 	var/delete_me = FALSE
 
 /obj/effect/landmark/New()
@@ -540,6 +541,9 @@ var/area/partisan_stockpile = null
 
 		if("Fallschirm")
 			fallschirm_landmarks += loc
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
 			qdel(src)
 			return
 		if("prisonwarp")
