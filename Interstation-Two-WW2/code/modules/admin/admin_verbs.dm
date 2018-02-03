@@ -682,7 +682,6 @@ var/list/admin_verbs_host = list(
 		deadmin_holder.reassociate()
 		log_admin("[src] re-admined themself.")
 		message_admins("[src] re-admined themself.", TRUE)
-		src << "<span class='interface'>You now have the keys to control the planet, or atleast a small space station</span>"
 		verbs -= /client/proc/readmin_self
 
 /client/proc/deadmin_self()
@@ -694,9 +693,7 @@ var/list/admin_verbs_host = list(
 			log_admin("[src] deadmined themself.")
 			message_admins("[src] deadmined themself.", TRUE)
 			deadmin()
-			src << "<span class='interface'>You are now a normal player.</span>"
 			verbs |= /client/proc/readmin_self
-
 
 /client/proc/toggle_log_hrefs()
 	set name = "Toggle href logging"

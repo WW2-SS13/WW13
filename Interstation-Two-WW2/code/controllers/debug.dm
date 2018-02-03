@@ -8,7 +8,7 @@
 		usr.client.debug_variables(antag)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 
-/client/proc/debug_controller(controller in list("processScheduler", "World", "Master","Ticker","Ticker Process", "Garbage", "Jobs","Mob","Obj","Zoom", "Configuration","Nano","Chemistry","Observation","Primary German Train", "German Supply Train", "Russian Supply Lift", "Whitelists", "Game Schedule", "Reinforcements Controller", "Battle Report"))
+/client/proc/debug_controller(controller in list("processScheduler", "Master","Ticker", "Configuration", "Observation","Primary German Train", "German Supply Train", "Russian Supply Lift", "Whitelists", "Reinforcements Controller") + processScheduler.nameToProcessMap)
 	set category = "Debug"
 	set name = "Debug Controller/GlobalObjects"
 	set desc = "Debug various objects and loops for the game (be careful!)"
@@ -19,44 +19,14 @@
 			if (processScheduler)
 				debug_variables(processScheduler)
 
-		if("World")
-			debug_variables(world)
-
 		if("Master")
 			debug_variables(master_controller)
 
 		if("Ticker")
 			debug_variables(ticker)
 
-		if("Ticker Process")
-			debug_variables(tickerProcess)
-
-		if ("Garbage")
-			debug_variables(garbage_collector)
-
-		if("Jobs")
-			debug_variables(job_master)
-
-		if ("Mob")
-			debug_variables(mob_process)
-
-		if ("Obj")
-			debug_variables(obj_process)
-
-	//	if ("Zoom")
-	//		debug_variables(zoom_process)
-
 		if("Configuration")
 			debug_variables(config)
-
-		if("Gas Data")
-			debug_variables(gas_data)
-
-		if("Nano")
-			debug_variables(nanomanager)
-
-		if("Chemistry")
-			debug_variables(chemistryProcess)
 
 		if("Observation")
 			debug_variables(all_observable_events)
@@ -90,18 +60,14 @@
 			if (W && istype(W))
 				debug_variables(W)
 
-		if ("Game Schedule")
-			if (global_game_schedule)
-				global_game_schedule.update()
-				debug_variables(global_game_schedule)
-
 		if ("Reinforcements Controller")
 			if (reinforcements_master)
 				debug_variables(reinforcements_master)
 
-		if ("Battle Report")
-			if (battlereport)
-				debug_variables(battlereport)
+		else if (processScheduler.nameToProcessMap.Find(controller))
+			if (processScheduler.nameToProcessMap[controller])
+				debug_variables(processScheduler.nameToProcessMap[controller])
+
 
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return

@@ -648,12 +648,12 @@
 			if (map)
 				var/grace_period_string = ""
 				for (var/faction in map.faction_organization)
-					if (faction == PARTISAN || faction == CIVILIAN || faction == UKRAINIAN || faction == ITALIAN)
+					if (!list(GERMAN, SOVIET).Find(faction))
 						continue
 					if (grace_period_string)
 						grace_period_string += ", "
-					if (map.last_crossing_block_status[faction] == 1)
-						grace_period_string += "[faction_const2name(faction)] can cross"
+					if (map.last_crossing_block_status[faction])
+						grace_period_string += "[faction_const2name(faction)] may cross"
 					else
 						grace_period_string += "[faction_const2name(faction)] may not cross"
 				stat("Grace Period Info:", grace_period_string)

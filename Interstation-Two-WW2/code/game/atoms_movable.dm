@@ -225,6 +225,8 @@
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
+					if (!S.density)
+						continue
 					canMove = FALSE
 				if (canMove)
 					forceMove_nondenseturf(step)
@@ -248,6 +250,8 @@
 				var/canMove = TRUE
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
+						continue
+					if (!S.density)
 						continue
 					canMove = FALSE
 				if (canMove)
@@ -277,6 +281,8 @@
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
+					if (!S.density)
+						continue
 					canMove = FALSE
 				if (canMove)
 					forceMove_nondenseturf(step)
@@ -299,6 +305,8 @@
 				var/canMove = TRUE
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
+						continue
+					if (!S.density)
 						continue
 					canMove = FALSE
 				if (canMove)

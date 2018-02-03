@@ -96,10 +96,10 @@
 	else if (..() == TRUE)
 		return TRUE
 	else if (WW2_soldiers_en_ru_ratio() == 1000 && game_started)
-		winning_side = "German Army"
+		winning_side = "Wehrmacht"
 		return TRUE
 	else if (WW2_soldiers_en_ru_ratio() == TRUE/1000 && game_started)
-		winning_side = "Soviet Army"
+		winning_side = "Red Army"
 		return TRUE
 	else
 
@@ -139,7 +139,7 @@
 			if (soviets_in_germany > germans_in_germany && !cond_2_1_check1 && !trying_to_win())
 				cond_2_1_check1 = TRUE
 				cond_2_1_nextcheck = world.time + 3000
-				world << "<font size = 3>The Soviets have occupied most German territory! The German Army has 5 minutes to reclaim their land!</font>"
+				world << "<font size = 3>The Soviets have occupied most German territory! The Wehrmacht has 5 minutes to reclaim their land!</font>"
 				return FALSE
 		else
 			if (cond_2_1_check1 == TRUE) // soviets lost control!
@@ -157,7 +157,7 @@
 			if (germans_in_russia > soviets_in_russia && !cond_2_2_check1 && !trying_to_win())
 				cond_2_2_check1 = TRUE
 				cond_2_2_nextcheck = world.time + 3000
-				world << "<font size = 3>The Germans have occupied most Soviet territory! The Soviet Army has 5 minutes to reclaim their land!</font>"
+				world << "<font size = 3>The Germans have occupied most Soviet territory! The Red Army has 5 minutes to reclaim their land!</font>"
 				return FALSE
 		else
 			if (cond_2_2_check1 == TRUE) // germans lost control!
@@ -176,7 +176,7 @@
 			if(!cond_2_3_check1)
 				cond_2_3_check1 = TRUE
 				cond_2_3_nextcheck = world.time + 6000
-				world << "<font size = 3>The Germans have occupied most Soviet territory! The Soviet Army has 10 minutes to reclaim their land!</font>"
+				world << "<font size = 3>The Germans have occupied most Soviet territory! The Red Army has 10 minutes to reclaim their land!</font>"
 				return FALSE
 		else
 			if (cond_2_3_check1 == TRUE) // soviets lost control!
@@ -195,7 +195,7 @@
 			if(!cond_2_4_check1)
 				cond_2_4_check1 = TRUE
 				cond_2_4_nextcheck = world.time + 6000
-				world << "<font size = 3>The Soviets have occupied most German territory! The German Army has 10 minutes to reclaim their land!</font>"
+				world << "<font size = 3>The Soviets have occupied most German territory! The Wehrmacht has 10 minutes to reclaim their land!</font>"
 				return FALSE
 		else
 			if (cond_2_4_check1 == TRUE) // soviets lost control!
@@ -207,23 +207,23 @@
 			cond_2_4_check1 = FALSE
 
 		if (cond_2_1_check1 && (world.time >= cond_2_1_nextcheck || round_ending || admins_triggered_roundend) && cond_2_1_nextcheck != -1) // condition 2.1 completed
-			if (!win_condition) win_condition = "The Soviet Army won by outnumbering the Germans and occupying most of their territory, cutting them off from supplies!"
-			winning_side = "Soviet Army"
+			if (!win_condition) win_condition = "The Red Army won by outnumbering the Germans and occupying most of their territory, cutting them off from supplies!"
+			winning_side = "Red Army"
 			return TRUE
 
 		if (cond_2_2_check1 && (world.time >= cond_2_2_nextcheck || round_ending || admins_triggered_roundend) && cond_2_2_nextcheck != -1) // condition 2.2 completed
-			if (!win_condition) win_condition = "The German Army won by outnumbering the Soviets and occupying most of their territory. The bunker was surrounded and cut off from reinforcements!"
-			winning_side = "German Army"
+			if (!win_condition) win_condition = "The Wehrmacht won by outnumbering the Soviets and occupying most of their territory. The bunker was surrounded and cut off from reinforcements!"
+			winning_side = "Wehrmacht"
 			return TRUE
 
 		if (cond_2_3_check1 && (world.time >= cond_2_3_nextcheck || round_ending || admins_triggered_roundend) && cond_2_3_nextcheck != -1) // condition 2.3 completed
-			if (!win_condition) win_condition = "The German Army won by occupying and holding Soviet territory, while heavily outnumber the Soviets there."
-			winning_side = "German Army"
+			if (!win_condition) win_condition = "The Wehrmacht won by occupying and holding Soviet territory, while heavily outnumber the Soviets there."
+			winning_side = "Wehrmacht"
 			return TRUE
 
 		if (cond_2_4_check1 && (world.time >= cond_2_4_nextcheck || round_ending || admins_triggered_roundend) && cond_2_4_nextcheck != -1) // condition 2.4 completed
-			if (!win_condition) win_condition = "The Soviet Army won by occupying and holding German territory, while heavily outnumber the Germans there."
-			winning_side = "Soviet Army"
+			if (!win_condition) win_condition = "The Red Army won by occupying and holding German territory, while heavily outnumber the Germans there."
+			winning_side = "Red Army"
 			return TRUE
 
 	if (admins_triggered_roundend)
@@ -265,9 +265,9 @@
 	// announce after some other stuff, like system setups, are announced
 	spawn (3)
 
-		new/datum/game_aspect/ww2(src)
+	//	new/datum/game_aspect/ww2(src)
 
-		spawn (0)
+		spawn (1)
 			if (aspect)
 				aspect.activate()
 				aspect.post_activation()
@@ -282,10 +282,10 @@
 		//		german_supplytrain_master.supply_points_per_second_max *= supplies[GERMAN]
 
 			// nerf or buff soviet supplies by editing crates in Soviet territory.
-			spawn (10) // make sure rations are set up?
+		/*	spawn (10) // make sure rations are set up?
 				for (var/obj/structure/closet/crate/soviet in world)
 					if (istype(get_area(soviet), /area/prishtina/soviet))
-						soviet.resize(supplies[SOVIET])
+						soviet.resize(supplies[SOVIET])*/
 
 			// this may have already happened, do it again w/o announce
 			setup_autobalance(0)

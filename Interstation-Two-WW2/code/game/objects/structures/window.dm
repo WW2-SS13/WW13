@@ -43,7 +43,7 @@
 		else
 			user << "<span class='notice'>There is a thick layer of silicate covering it.</span>"
 
-/obj/structure/window/proc/take_damage(var/damage = FALSE,  var/sound_effect = TRUE)
+/obj/structure/window/proc/take_damage(var/damage = 0,  var/sound_effect = TRUE)
 	var/initialhealth = health
 
 	if(silicate)
@@ -438,9 +438,15 @@
 	damage_per_fire_tick = 5.0
 	maxhealth = 20.0
 	layer = MOB_LAYER + 0.02
+	density = FALSE // so we can touch curtains from any direction
 
 /obj/structure/window/classic/is_full_window()
 	return TRUE
+
+/obj/structure/window/classic/take_damage(damage)
+	if (damage > 12 || (damage > 5 && prob(damage * 5)))
+		shatter()
+	else return ..()
 
 /obj/structure/window/classic/bullet_act(var/obj/item/projectile/P)
 	if (!P.nodamage)

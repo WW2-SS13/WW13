@@ -17,6 +17,7 @@ var/list/nonbreaking_types = list(
 	var/showed_damage_messages[4]
 	var/unique_door_name = null
 	var/starts_open = FALSE
+	var/next_knock = -1
 	material = "iron"
 	icon = 'icons/obj/doors/material_doors_leonister.dmi'
 
@@ -104,8 +105,17 @@ var/list/nonbreaking_types = list(
 	if (!keyslot.locked || istype(src, /obj/structure/simple_door/key_door/anyone))
 		return ..(user)
 	else
+		if (world.time < next_knock)
+			return
+
 		user.visible_message("<span class = 'danger'>[user] knocks at the door.</span>")
+		for (var/mob/living/L in view(world.view, src))
+			if (!viewers(world.view, L).Find(user))
+				L << "<span class = 'notice'>You hear a knock at the door.</span>"
+
 		playsound(get_turf(src), "doorknock", 100)
+
+		next_knock = world.time + 10
 
 /obj/structure/simple_door/key_door/Bumped(atom/user)
 

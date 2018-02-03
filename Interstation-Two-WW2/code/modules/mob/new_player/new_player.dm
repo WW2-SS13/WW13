@@ -409,8 +409,6 @@
 
 	character.lastarea = get_area(loc)
 
-
-
 	qdel(src)
 
 /mob/new_player/proc/AttemptLateSpawn(rank, var/nomsg = FALSE)

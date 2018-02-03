@@ -33,7 +33,7 @@ proc/iscuffed(A)
 		if(C.handcuffed)
 			return TRUE
 	return FALSE
-
+/*
 proc/hassensorlevel(A, var/level)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
@@ -47,7 +47,7 @@ proc/getsensorlevel(A)
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode
 	return SUIT_SENSOR_OFF
-
+*/
 
 /proc/is_admin(var/mob/user)
 	return check_rights(R_ADMIN, FALSE, user) != FALSE

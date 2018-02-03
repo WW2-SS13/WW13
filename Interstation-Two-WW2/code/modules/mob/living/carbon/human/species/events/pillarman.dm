@@ -112,9 +112,11 @@
 
 	var/area/A = get_area(src)
 	if (A.location == AREA_OUTSIDE)
-		if (list("Early Morning", "Morning", "Afternoon", "Midday").Find(time_of_day))
-			frozen = TRUE
-			return
+		for (var/atom/movable/lighting_overlay/LO in get_turf(src))
+			if (list("Early Morning", "Morning", "Afternoon", "Midday").Find(LO.TOD))
+				frozen = TRUE
+				return
+
 
 	frozen = FALSE
 

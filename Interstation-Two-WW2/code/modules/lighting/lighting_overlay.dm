@@ -18,6 +18,8 @@
 
 	var/needs_update = FALSE
 
+	var/TOD = "Midday"
+
 /atom/movable/lighting_overlay/pre_bullet_act(var/obj/item/projectile/P)
 	return FALSE
 

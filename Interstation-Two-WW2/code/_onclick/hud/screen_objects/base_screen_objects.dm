@@ -749,8 +749,7 @@
 
 /obj/screen/pull/Click()
 	usr.stop_pulling()
-	//update_icon()
-	//icon_state = "pull0"
+	update_icon()
 
 /obj/screen/pull/update_icon()
 	if (parentmob.pulling)

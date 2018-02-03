@@ -3,6 +3,7 @@
 	icon_state = ""
 	name = "the sky"
 
+var/list/sky_drop_map = list()
 // this is probably laggy as hell but oh well - Kachnov
 /turf/sky/Entered(var/atom/movable/mover)
 	..(mover)
@@ -12,16 +13,23 @@
 	if (!A.corresponding_area_type)
 		return
 	if (!istype(mover, /mob/observer))
-		if (A.corresponding_area_allow_subtypes )
-			for (var/area/AA in world)
-				if (istype(AA, A.corresponding_area_type))
-					mover.forceMove(pick(AA.contents))
-					mover.loc = get_turf(mover.loc)
-					break
+		if (sky_drop_map.len)
+			for (var/locstr in sky_drop_map)
+				for (var/turf/T in range(5, sky_drop_map[locstr]))
+					mover.forceMove(T)
 		else
-			var/area/AA = locate(A.corresponding_area_type)
-			mover.forceMove(pick(AA.contents))
-			mover.loc = get_turf(mover.loc)
+			if (A.corresponding_area_allow_subtypes )
+				for (var/area/AA in world)
+					if (istype(AA, A.corresponding_area_type))
+						mover.forceMove(pick(AA.contents))
+						mover.loc = get_turf(mover.loc)
+						sky_drop_map["[mover.x],[mover.y],[mover.z]"] = mover.loc
+						break
+			else
+				var/area/AA = locate(A.corresponding_area_type)
+				mover.forceMove(pick(AA.contents))
+				mover.loc = get_turf(mover.loc)
+				sky_drop_map["[mover.x],[mover.y],[mover.z]"] = mover.loc
 
 	if (paratrooper_plane_master.isLethalToJump())
 		if (ishuman(mover))

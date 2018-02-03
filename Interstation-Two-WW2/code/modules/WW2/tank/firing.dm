@@ -67,7 +67,7 @@
 
 	var/abs_dist = abs_dist(src, target)
 
-	spawn (2 * abs_dist)
+	spawn (round((1 * abs_dist)/2))
 		if (target)
 			tank_explosion(target, 1, 2, 3, 4)
 

@@ -100,13 +100,13 @@
 
 	var/area/A = get_area(src)
 	if (A.location == AREA_OUTSIDE)
-		if (list("Early Morning", "Morning", "Afternoon", "Midday").Find(time_of_day))
-			emote("scream")
-			visible_message("<span class = 'danger'>[src] turns into dust!</span>")
-			for (var/obj/item/I in contents)
-				drop_from_inventory(I)
-			dust()
-
+		for (var/atom/movable/lighting_overlay/LO in get_turf(src))
+			if (list("Early Morning", "Morning", "Afternoon", "Midday").Find(LO.TOD))
+				emote("scream")
+				visible_message("<span class = 'danger'>[src] turns into dust!</span>")
+				for (var/obj/item/I in contents)
+					drop_from_inventory(I)
+				dust()
 
 /mob/living/carbon/human/vampire/Stat()
 	. = ..()

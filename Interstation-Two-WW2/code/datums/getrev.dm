@@ -28,7 +28,7 @@ var/global/datum/getrev/revdata = new()
 	world.log << branch
 	world.log << date
 	world.log << revision
-
+/*
 /client/verb/showrevinfo()
 	set category = "OOC"
 	set name = "Show Server Revision"
@@ -42,3 +42,4 @@ var/global/datum/getrev/revdata = new()
 			src << revdata.revision
 	else
 		src << "Revision unknown"
+*/

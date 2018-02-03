@@ -367,8 +367,8 @@ BLIND     // can't see anything
 	slot_flags = SLOT_ICLOTHING
 	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = FALSE, rad = FALSE)
 	w_class = 3
-	var/has_sensor = TRUE //For the crew computer 2 = unable to change mode
-	var/sensor_mode = FALSE
+	//var/has_sensor = TRUE //For the crew computer 2 = unable to change mode
+//	var/sensor_mode = FALSE
 		/*
 		1 = Report living/dead
 		2 = Report detailed damages
@@ -415,7 +415,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/under/examine(mob/user)
 	..(user)
-	switch(sensor_mode)
+/*	switch(sensor_mode)
 		if(0)
 			user << "Its sensors appear to be disabled."
 		if(1)
@@ -424,7 +424,8 @@ BLIND     // can't see anything
 			user << "Its vital tracker appears to be enabled."
 		if(3)
 			user << "Its vital tracker and tracking beacon appear to be enabled."
-
+*/
+/*
 /obj/item/clothing/under/proc/set_sensors(var/mob/M)
 	if(has_sensor >= 2)
 		usr << "The controls are locked."
@@ -462,14 +463,14 @@ BLIND     // can't see anything
 			if(3)
 				for(var/mob/V in viewers(usr, TRUE))
 					V.show_message("[usr] sets [loc]'s sensors to maximum.", TRUE)
-
+*/
 
 /obj/item/clothing/under/rank/New()
-	sensor_mode = 3
+//	sensor_mode = 3
 	..()
-
+/*
 /obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
 	if(istype(I, /obj/item/weapon/screwdriver) && istype(U, /mob/living/carbon/human))
 		set_sensors(U)
 	else
-		return ..()
+		return ..()*/

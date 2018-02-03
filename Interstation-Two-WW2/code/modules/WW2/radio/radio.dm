@@ -262,7 +262,7 @@ var/global/list/default_ukrainian_channels = list(
 		"Grenades" = 65,
 		"Panzerfausts" = 120,
 		"Smoke Grenades" = 55, // too lazy to fix this typo rn
-		"Sandbags" = 20,
+		"Sandbags Crate" = 20,
 		"Flaregun Ammo" = 15,
 		"Flares" = 10,
 		"Bayonet" = 10,
@@ -312,7 +312,7 @@ var/global/list/default_ukrainian_channels = list(
 	for (var/channel in internal_channels)
 		listening_on_channel[radio_freq2name(channel)] = TRUE
 
-	if (!isturf(loc) || !istype(src, /obj/item/device/radio/intercom))
+	if (!isturf(loc))
 		notyetmoved = FALSE
 
 	if (istype(src, /obj/item/device/radio/intercom) && !istype(src, /obj/item/device/radio/intercom/loudspeaker))
@@ -518,6 +518,8 @@ var/global/list/default_ukrainian_channels = list(
 			for (var/obj/item/device/radio/radio in hearer.contents)
 				radios |= radio
 			for (var/obj/item/device/radio/radio in radios)
+				if (!loc && radio == src)
+					continue
 				if (!used_radio_turfs.Find(radio.faction))
 					used_radio_turfs[radio.faction] = list()
 				if (used_radio_turfs[radio.faction].Find(get_turf(radio)))

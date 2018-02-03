@@ -248,7 +248,8 @@ var/const/FALLOFF_SOUNDS = 0.5
 	if(!ticker || !ticker.login_music)	return
 	if(!istype(mob, /mob/new_player)) return
 	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
-		src << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS
+	//	src << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS
+	// ^ it will play automatically, see preferences.dm
 		lobby_music_player.announce(src)
 
 /proc/get_rand_frequency()

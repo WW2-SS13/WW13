@@ -47,6 +47,7 @@ var/global/obj/map_metadata/map = null
 
 	last_crossing_block_status[GERMAN] = germans_can_cross_blocks()
 	last_crossing_block_status[SOVIET] = soviets_can_cross_blocks()
+
 	if (event_faction)
 		last_crossing_block_status[event_faction] = specialfaction_can_cross_blocks()
 

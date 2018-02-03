@@ -41,8 +41,8 @@
 	icon_state = "orange"
 	item_state = "o_suit"
 
-	has_sensor = 2
-	sensor_mode = 3
+//	has_sensor = 2
+//	sensor_mode = 3
 
 /obj/item/clothing/under/color/pink
 	name = "pink jumpsuit"

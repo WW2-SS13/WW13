@@ -1,6 +1,10 @@
 /mob/living/carbon/human/var/last_scream = -1
+/mob/living/carbon/human/var/next_vocal_emote = -1
 
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
+
+	if (world.time < next_vocal_emote)
+		return
 
 	// no more screaming when you shoot yourself
 	var/do_after = 0
@@ -605,10 +609,5 @@
 			log_emote("[name]/[key] : [message]")
 			custom_emote(m_type,message)
 
-/*/mob/living/carbon/human/verb/pose()
-	set name = "Set Pose"
-	set desc = "Sets a description which will be shown when someone examines you."
-	set category = "IC"
-
-	pose =  sanitize(input(usr, "This is [src]. [get_visible_gender() == MALE ? "He" : get_visible_gender() == FEMALE ? "She" : "They"] [get_visible_gender() == NEUTER ? "are" : "is"]...", "Pose", null)  as text)
-*/
+		if (m_type == 2 && act != "scream")
+			next_vocal_emote = world.time + 50

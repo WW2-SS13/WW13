@@ -27,7 +27,7 @@ var/max_lighting_z = TRUE // no lighting in the sky anymore
 		if (locate(/obj/train_track) in T)
 			continue
 
-		for(var/i = TRUE to 4)
+		for(var/i = 1 to 4)
 			if(T.corners[i]) // Already have a corner on this direction.
 				continue
 
@@ -63,7 +63,7 @@ var/created_lighting_corners_and_overlays = FALSE
 
 	spawn (1)
 		var/max_v = 120
-		for (var/v in TRUE to max_v)
+		for (var/v in 1 to max_v)
 			var/iterations_per_loop = ceil(turfs.len/max_v)
 			for (var/vv in TRUE+(iterations_per_loop*(v-1)) to iterations_per_loop*v)
 				if (turfs.len >= vv && turfs[vv])
