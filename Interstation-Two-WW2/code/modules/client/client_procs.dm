@@ -5,6 +5,7 @@
 #define ABSOLUTE_MIN_CLIENT_VERSION 400		//Just an ambiguously low version for now, I don't want to suddenly stop people playing.
 #define REAL_MIN_CLIENT_VERSION 512 // I DO - kachnov
 									//I would just like the code ready should it ever need to be used.
+#define PLAYERCAP 50
 	/*
 	When somebody clicks a link in game, this Topic is called first.
 	It does the stuff in this proc and  then is redirected to the Topic() proc for the src=[0xWhatever]
@@ -188,6 +189,12 @@
 	 * if there are no admins, and we aren't admin, give us admin
 	 * then delete host.txt?
 	 */
+
+	if (clients.len >= PLAYERCAP)
+		if (!holder && !isPatron("$3+") && !validate_whitelist("server"))
+			src << "<span class = 'danger'><font size = 4>The server is full right now, sorry.</font></span>"
+			del(src)
+			return
 
 	var/host_file_text = file2text("config/host.txt")
 	if (ckey(host_file_text) == ckey && !holder)
