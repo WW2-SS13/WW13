@@ -17,6 +17,11 @@ var/global/list/human_clients_mob_list = list()     //List of all human mobs wit
 
 var/global/list/fallschirm_landmarks = list()
 
+var/global/list/train_car_centers = list()
+// to prevent typechecking and speed up train soundcode
+var/global/list/german_main_train_car_centers = list()
+var/global/list/german_supply_train_car_centers = list()
+
 var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
 var/global/list/chemical_reactions_list				//list of all /datum/chemical_reaction datums. Used during chemical reactions
 var/global/list/chemical_reagents_list				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff

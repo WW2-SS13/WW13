@@ -592,18 +592,26 @@
 	play_train_sound("train_halting")
 
 /datum/train_controller/proc/play_train_sound(var/sound)
-	for (var/mob/M in player_list)
-		if (M.client)
-			for (var/obj/train_car_center/german/tcc in world)
-				if (istype(tcc, my_tcc_type))
-					var/dist = abs_dist(M, tcc)
-					if (dist <= 20)
-						var/volume = 100
-						if (!locate(/obj/train_connector) in get_turf(M))
-							volume = 100 - (dist*2)
-							M.client.playsound_personal(sound, volume)
-						else
-							M.client.playsound_personal(sound, volume)
+
+	var/soundin = get_sfx(sound)
+	var/sound/S = sound(soundin)
+	S.repeat = FALSE
+	S.wait = FALSE
+	S.volume = 50
+	S.channel = 1
+
+	for (var/tcc in german_main_train_car_centers)
+		// range(20, tcc) = checks ~500 objects (400 turfs)
+		// player_list will rarely be above 100 objects
+		// so this should be more efficient - Kachnov
+		for (var/M in player_list)
+			var/dist = abs_dist(M, tcc)
+			if (dist <= 20)
+				var/volume = 100
+				if (!locate(/obj/train_connector) in get_turf(M))
+					volume -= (dist*2)
+				S.volume = volume
+				M << S
 
 /datum/train_controller/proc/check_can_move_mob(var/mob/m)
 	return TRUE
