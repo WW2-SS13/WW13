@@ -249,12 +249,18 @@
 	loc = _loc
 	master = _master
 
+	train_car_centers += src
+
 /obj/train_car_center/german/New(_loc, _master)
 	..(_loc, _master)
+
+	german_main_train_car_centers += src
 
 /obj/train_car_center/germansupply/New(_loc, _master)
 	..(_loc, _master)
 	Graft("horizontal-storage")
+
+	german_supply_train_car_centers += src
 
 /obj/train_car_center/german/officer/New(_loc, _master)
 	..(_loc, _master)
