@@ -65,13 +65,13 @@ var/next_german_supplytrain_master_process = -1
 		switch (german_supplytrain_master.direction)
 			if ("FORWARDS")
 				german_supplytrain_master.direction = "BACKWARDS"
-				radio2germans("The Supply Train is now departing from the armory. It will arrive again in 2 minutes.", "Supply Train Announcement System")
+				radio2germans("The Supply Train is departing from the armory. It will arrive again in 2 minutes.", "Supply Train Announcement System")
 				if (!german_supplytrain_master.invisible)
 					german_supplytrain_master.update_invisibility(1)
 				german_supplytrain_master.here = FALSE
 			if ("BACKWARDS")
 				german_supplytrain_master.direction = "FORWARDS"
-				radio2germans("The Supply Train is now arriving at the armory. It will depart in 2 minutes.", "Supply Train Announcement System")
+				radio2germans("The Supply Train is arriving at the armory. It will depart in 2 minutes.", "Supply Train Announcement System")
 				if (german_supplytrain_master.invisible)
 					german_supplytrain_master.update_invisibility(0)
 				german_supplytrain_master.here = TRUE

@@ -199,6 +199,8 @@
 
 /mob/living/carbon/human/var/next_stamina_message = -1
 /mob/var/next_snow_message = -1
+/mob/var/next_mud_message = -1
+
 /client/Move(n, direct)
 	if(!canmove)
 		return
@@ -380,9 +382,12 @@
 				if (snow_message && world.time >= mob.next_snow_message)
 					mob << "<span class = '[snow_span]'>[snow_message]</span>"
 					mob.next_snow_message = world.time+100
+
 			else if (F.muddy)
 				standing_on_snow = rand(2,3)
-				mob << "<span class = 'warning'>The mud slows you down.</span>"
+				if (world.time >= mob.next_mud_message)
+					mob << "<span class = 'warning'>The mud slows you down.</span>"
+					mob.next_mud_message = world.time+100
 
 		if (mob.velocity_lastdir != -1)
 			if (direct != mob.velocity_lastdir)

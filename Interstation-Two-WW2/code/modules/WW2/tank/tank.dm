@@ -28,6 +28,12 @@
 	heal_damage["weldingtool"] = max_damage/10
 	heal_damage["wrench"] = max_damage/20
 
+/obj/tank/examine(mob/user)
+	user << "<span class = 'info'>That's a tank.</span>"
+	if (examine_desc)
+		user << "<span class = 'red'>[examine_desc]</span>"
+	return TRUE
+
 /obj/tank/attack_hand(var/mob/user as mob)
 
 	if (!ishuman(user))
