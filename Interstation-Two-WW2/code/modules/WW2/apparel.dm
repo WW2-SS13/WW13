@@ -216,6 +216,7 @@
 
 /obj/item/clothing/head/helmet/tactical
 	force = 7
+	throwforce = 15
 
 /obj/item/clothing/head/helmet/tactical/gerhelm
 	name = GERMAN_HELMET_NAME
