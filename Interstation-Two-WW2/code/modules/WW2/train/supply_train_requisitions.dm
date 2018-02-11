@@ -40,6 +40,7 @@
 		"Wood Planks" = /obj/structure/closet/crate/wood,
 		"Steel Sheets" = /obj/structure/closet/crate/steel,
 		"Iron Ingots" = /obj/structure/closet/crate/iron,
+		"Glass Sheets" = /obj/structure/closet/crate/glass,
 
 		// GUNS & ARTILLERY
 		"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
@@ -98,6 +99,7 @@
 		"Wood Planks" = 75,
 		"Steel Sheets" = 100,
 		"Iron Ingots" = 125,
+		"Glass Sheets" = 150,
 
 		// GUNS & ARTILLERY
 		"PTRD" = 200,

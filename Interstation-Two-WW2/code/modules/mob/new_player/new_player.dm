@@ -190,8 +190,11 @@
 			return TRUE
 
 		if (!reinforcements_master.is_permalocked(GERMAN))
-			if (client.prefs.s_tone < -30 && !client.untermensch)
+			if (client.prefs.s_tone < -30)
 				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
+				return
+			if (client.prefs.german_gender == FEMALE)
+				usr << "<span class='danger'>German soldiers must be male.</span>"
 				return
 			reinforcements_master.add(src, GERMAN)
 		else
@@ -271,10 +274,12 @@
 				return
 
 		if (job_flag == GERMAN)
-			if (client.prefs.s_tone < -30 && !client.untermensch)
+			if (client.prefs.s_tone < -30)
 				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
 				return
-
+			if (client.prefs.german_gender == FEMALE && !actual_job.is_nonmilitary)
+				usr << "<span class='danger'>German soldiers must be male.</span>"
+				return
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
@@ -694,7 +699,21 @@
 		client.prefs.real_name = random_name(new_character.gender)
 		client.prefs.randomize_appearance_for(new_character)
 	else
+		// no more traps - Kachnov
+		var/datum/job/J = original_job
+		var/J_flag = J.base_type_flag()
+		var/client_prefs_original_gender = client.prefs.gender
+
+		if (list(PARTISAN, CIVILIAN).Find(J_flag))
+			client.prefs.gender = client.prefs.ukrainian_gender
+		else if (J_flag == GERMAN)
+			client.prefs.gender = client.prefs.german_gender
+		else if (J_flag == SOVIET)
+			client.prefs.gender = client.prefs.russian_gender
+
 		client.prefs.copy_to(new_character)
+
+		client.prefs.gender = client_prefs_original_gender
 
 	src << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS cant last forever yo
 

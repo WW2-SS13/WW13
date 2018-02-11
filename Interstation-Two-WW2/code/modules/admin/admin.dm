@@ -35,6 +35,7 @@ proc/admin_notice(var/message, var/rights)
 	if(!M)
 		usr << "You seem to be selecting a mob that doesn't exist anymore."
 		return
+
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
 	if (!istype(src,/datum/admins))
@@ -154,8 +155,13 @@ proc/admin_notice(var/message, var/rights)
 
 				\[ Admin Memery: <A href='?src=\ref[src];simplemake=mechahitler;mob=\ref[M]'>Mecha Hitler</A>,
 				<A href='?src=\ref[src];simplemake=megastalin;mob=\ref[M]'>Mega Stalin</A>
-				<A href='?src=\ref[src];simplemake=nazicyborg;mob=\ref[M]'>Nazi Cyborg</A>
-				<A href='?src=\ref[src];simplemake=pillarman;mob=\ref[M]'>Pillar Man</A>
+				<A href='?src=\ref[src];simplemake=nazicyborg;mob=\ref[M]'>Nazi Cyborg</A>"}
+
+			if (check_rights(R_PERMISSIONS,FALSE))
+				body += {"
+				<A href='?src=\ref[src];simplemake=pillarman;mob=\ref[M]'>Pillar Man</A>"}
+
+			body += {"
 				<A href='?src=\ref[src];simplemake=vampire;mob=\ref[M]'>Vampire</A> \]
 
 				<A href='?src=\ref[src];simplemake=nymph;mob=\ref[M]'>Nymph</A>
@@ -173,8 +179,8 @@ proc/admin_notice(var/message, var/rights)
 				<A href='?src=\ref[src];simplemake=constructbuilder;mob=\ref[M]'>Builder</A> ,
 				<A href='?src=\ref[src];simplemake=constructwraith;mob=\ref[M]'>Wraith</A> \]
 				<A href='?src=\ref[src];simplemake=shade;mob=\ref[M]'>Shade</A>
-				<br>
-			"}
+				<br>"}
+
 	body += {"<br><br>
 			<b>Other actions:</b>
 			<br>

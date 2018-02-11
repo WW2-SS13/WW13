@@ -26,6 +26,19 @@
 		name = "piano"
 		desc = "This is a piano!"
 		icon_state = "piano"
+	processing_objects += src
+
+/obj/structure/device/piano/Del()
+	processing_objects -= src
+	..()
+
+/obj/structure/device/piano/process()
+	for (var/mob/living/carbon/human/H in range(1, src))
+		var/turf/T = get_step(H, H.dir)
+		if (T.contents.Find(src))
+			return TRUE
+	playing = FALSE
+	return FALSE
 
 /obj/structure/device/piano/proc/playnote(var/note as text)
 	//world << "Note: [note]"

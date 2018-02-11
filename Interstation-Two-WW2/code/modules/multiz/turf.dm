@@ -25,6 +25,10 @@
 		return
 	if (locate(/obj/lift_pseudoturf) in contents)
 		return
+	if (istype(mover, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = mover
+		if (H.stopDumbDamage)
+			return
 #ifdef USE_OPENSPACE
 	if(istype(mover, /mob/shadow))
 		return

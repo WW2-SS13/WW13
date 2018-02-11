@@ -102,7 +102,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					S.end_step(user, M, zone, tool)		//finish successfully
 					if (ishuman(user))
 						var/mob/living/carbon/human/H = user
-						H.adaptStat("medical", rand(5,7))
+						H.adaptStat("medical", 1)
 				else if ((tool in user.contents) && user.Adjacent(M))			//or
 					S.fail_step(user, M, zone, tool)		//malpractice~
 				else // This failing silently was a pain.

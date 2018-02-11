@@ -145,3 +145,7 @@
 	var/has_hunger_and_thirst = TRUE
 
 	var/has_pain = TRUE
+
+	var/stopDumbDamage = FALSE
+
+	var/partial_languages[10]

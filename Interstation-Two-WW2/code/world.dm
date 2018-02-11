@@ -500,6 +500,8 @@ var/setting_up_db_connection = FALSE
 	if (config.usewhitelist)
 		. += ";"
 		. += "<b>Whitelist</b>: Enabled"
+	. += ";"
+	. += "realtime=[world.realtime]"
 
 /proc/start_serverdata_loop()
 	spawn while (1)

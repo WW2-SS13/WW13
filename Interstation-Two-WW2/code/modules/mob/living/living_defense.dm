@@ -293,17 +293,17 @@ var/obj/human_fire_overlay_lying = null
 		human_fire_overlay = new
 		human_fire_overlay.icon = 'icons/mob/OnFire.dmi'
 		human_fire_overlay.icon_state = "Standing"
-		human_fire_overlay.layer = 5
+		human_fire_overlay.layer = MOB_LAYER + 1
 
 		human_fire_overlay_lying = new
 		human_fire_overlay_lying.icon = 'icons/mob/OnFire.dmi'
 		human_fire_overlay_lying.icon_state = "Lying"
-		human_fire_overlay_lying.layer = 5
+		human_fire_overlay_lying.layer = MOB_LAYER + 1
 
 		generic_living_fire_overlay = new
 		generic_living_fire_overlay.icon = 'icons/mob/OnFire.dmi'
 		generic_living_fire_overlay.icon_state = "Generic_mob_burning"
-		generic_living_fire_overlay.layer = 5
+		generic_living_fire_overlay.layer = MOB_LAYER + 1
 
 	apply_damage(ceil(fire_stacks/3)+1, BURN, "chest", FALSE) // because fire does 0.2 damage per tick
 

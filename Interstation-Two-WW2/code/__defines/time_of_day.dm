@@ -63,4 +63,4 @@ var/list/time_of_day2ticks = list(
 		if (TOD_may_automatically_change)
 			TOD_may_automatically_change = FALSE
 			progress_time_of_day()
-		sleep (50)
+		sleep (100)

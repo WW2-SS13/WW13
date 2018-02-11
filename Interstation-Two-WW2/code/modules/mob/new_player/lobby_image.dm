@@ -1,7 +1,7 @@
 /var/obj/effect/lobby_image = new/obj/effect/lobby_image()
 
 /obj/effect/lobby_image
-	name = "Baystation12"
+	name = "Lobby"
 	desc = ""
 	icon = 'icons/_LOBBY.dmi'
 	icon_state = "1"

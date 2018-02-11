@@ -302,7 +302,6 @@
 
 /obj/structure/multiz/stairs
 	name = "Stairs"
-	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
 	icon_state = "rampup"
 	layer = 2.4
 

@@ -252,6 +252,9 @@
 	spawn (1)
 		log_to_db()
 
+	spawn (2)
+		if (!istype(mob, /mob/new_player))
+			src << browse(null, "window=playersetup;")
 
 	//////////////
 	//DISCONNECT//

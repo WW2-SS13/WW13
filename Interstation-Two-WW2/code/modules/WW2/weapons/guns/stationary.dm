@@ -140,8 +140,9 @@
 			S.scope.zoom(user, TRUE, TRUE)
 			last_user = user
 
-	user.forceMove(loc)
-	user.dir = dir
+	if (!map || !map.check_prishtina_block(user, loc))
+		user.forceMove(loc)
+		user.dir = dir
 
 /obj/item/weapon/gun/projectile/minigun/proc/stopped_using(mob/user as mob)
 	..()

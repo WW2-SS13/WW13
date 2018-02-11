@@ -262,7 +262,7 @@ s
 		stop_following(H, FALSE)
 	else
 		walk_to(src, FALSE)
-	walk_to(src, H, TRUE, H.run_delay_maximum*1.33)
+	walk_to(src, H, 2, H.run_delay_maximum*1.40)
 	following = H
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/stop_following(var/mob/living/carbon/human/H, var/message = TRUE)
@@ -293,16 +293,24 @@ s
 	. = ..()
 	if (. == TRUE && faction)
 		for (var/mob/living/carbon/human/H in player_list)
-			var/area/H_area_check = get_area(H)
+
+			var/area/H_area = get_area(H)
+			var/area/src_area = get_area(src)
+
+			var/H_area_check = H_area
 			if (H_area_check)
 				H_area_check = istype(H_area_check, /area/prishtina)
+
 			if (H.loc && H.z == z && H_area_check && H.client && H.stat == CONSCIOUS && H.original_job && H.original_job.base_type_flag() != faction)
-			//	log_debug(H.real_name)
+
 				// makes dogs stop trying to detect people extremely far away. Hack.
-				if (istype(get_area(H), /area/prishtina/soviet) && !istype(get_area(src), /area/prishtina/soviet))
+				if (istype(H_area, /area/prishtina/soviet) && !istype(src_area, /area/prishtina/soviet))
 					continue
 
-				else if (istype(get_area(H), /area/prishtina/german) && !istype(get_area(src), /area/prishtina/german))
+				else if (istype(H_area, /area/prishtina/german) && !istype(src_area, /area/prishtina/german))
+					continue
+
+				else if (istype(H_area, /area/prishtina/void) && H_area != src_area)
 					continue
 
 				var/dist = abs_dist(H, src)
@@ -410,11 +418,11 @@ s
 				if (get_dist(src, H) > TRUE && H.stat != DEAD)
 					if (prioritizes == "attacking" && following)
 						stop_following()
-					walk_to(src, H, TRUE, H.run_delay_maximum*1.33)
+					walk_to(src, H, 1, H.run_delay_maximum*1.40)
 				else
 					shred(H)
 	else if (following)
-		walk_to(src, following, TRUE, H.run_delay_maximum*1.33)
+		walk_to(src, following, 1, H.run_delay_maximum*1.40)
 	else if (stat != CONSCIOUS || resting)
 		walk_to(src, FALSE)
 

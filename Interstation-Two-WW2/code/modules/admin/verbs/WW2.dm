@@ -119,7 +119,7 @@
 		return
 
 	var/_clients = input("How many clients?") as num
-	job_master.toggle_roundstart_autobalance(_clients)
+	job_master.toggle_roundstart_autobalance(_clients, announce = 2)
 
 	message_admins("[key_name(src)] reset the roundstart autobalance for [_clients] players.")
 
@@ -330,6 +330,9 @@
 
 	var/msg = input(usr, "Send what?", "Message Russians") as text
 
+	if (!msg)
+		return
+
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Russians") in list("Yes", "No")
 	if (ick_ock == "Yes")
 		ick_ock = TRUE
@@ -352,6 +355,9 @@
 	set name = "Message Germans"
 
 	var/msg = input(usr, "Send what?", "Message Germans") as text
+
+	if (!msg)
+		return
 
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Germans") in list("Yes", "No")
 
@@ -377,6 +383,9 @@
 
 	var/msg = input(usr, "Send what?", "Message the SS") as text
 
+	if (!msg)
+		return
+
 	var/ick_ock = input(usr, "Make this an IC message?", "Message the SS") in list("Yes", "No")
 
 	if (ick_ock == "Yes")
@@ -401,6 +410,9 @@
 
 	var/msg = input(usr, "Send what?", "Message Paratroopers") as text
 
+	if (!msg)
+		return
+
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Paratroopers") in list("Yes", "No")
 
 	if (ick_ock == "Yes")
@@ -424,6 +436,9 @@
 
 	var/msg = input(usr, "Send what? Note that this messages Partisans too!", "Message Civilians") as text
 
+	if (!msg)
+		return
+
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Civilians") in list("Yes", "No")
 
 	if (ick_ock == "Yes")
@@ -446,6 +461,9 @@
 	set name = "Message Partisans"
 
 	var/msg = input(usr, "Send what?", "Message Partisans") as text
+
+	if (!msg)
+		return
 
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Partisans") in list("Yes", "No")
 

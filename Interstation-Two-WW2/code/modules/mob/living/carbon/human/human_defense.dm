@@ -96,8 +96,9 @@ bullet_act
 					var/turf/slammed_into = behind
 					if (!slammed_into.density)
 						for (var/obj/structure/S in slammed_into)
-							slammed_into = S
-							break
+							if (S.density)
+								slammed_into = S
+								break
 
 					visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
 					Weaken(rand(5,7))

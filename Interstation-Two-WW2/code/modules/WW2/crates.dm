@@ -51,6 +51,13 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/glass
+	name = "Glass sheets crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+
 /obj/structure/closet/crate/flammenwerfer_fueltanks
 	name = "Flammenwerfer fueltanks crate"
 	icon = 'icons/WW2/artillery_crate.dmi'
@@ -361,6 +368,14 @@
 		var/obj/item/stack/S = new/obj/item/stack/material/iron(src)
 		S.amount = 25
 
+// 5 glass with 10 each = 50 glass sheets
+/obj/structure/closet/crate/glass/New()
+	..()
+	update_capacity(5)
+	for (var/v in 1 to 5)
+		var/obj/item/stack/S = new/obj/item/stack/material/glass(src)
+		S.amount = 10
+
 /obj/structure/closet/crate/flammenwerfer_fueltanks/New()
 	..()
 	update_capacity(20)
@@ -476,20 +491,18 @@
 /obj/structure/closet/crate/soviet_grenade/New()
 	..()
 	update_capacity(24)
-	for (var/v in 1 to 24)
-		if (prob(50))
-			new /obj/item/weapon/grenade/explosive/rgd(src)
-		else
-			new /obj/item/weapon/grenade/explosive/f1(src)
+	for (var/v in 1 to 12)
+		new /obj/item/weapon/grenade/explosive/rgd(src)
+	for (var/v in 1 to 12)
+		new /obj/item/weapon/grenade/explosive/f1(src)
 
 /obj/structure/closet/crate/german_grenade/New()
 	..()
 	update_capacity(24)
-	for (var/v in 1 to 24)
-		if (prob(50))
-			new /obj/item/weapon/grenade/explosive/stgnade(src)
-		else
-			new /obj/item/weapon/grenade/explosive/l2a2(src)
+	for (var/v in 1 to 12)
+		new /obj/item/weapon/grenade/explosive/stgnade(src)
+	for (var/v in 1 to 12)
+		new /obj/item/weapon/grenade/explosive/l2a2(src)
 
 /obj/structure/closet/crate/panzerfaust/New()
 	..()

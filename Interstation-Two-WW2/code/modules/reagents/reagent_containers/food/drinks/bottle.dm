@@ -112,10 +112,26 @@
 
 		if (explosion_power > 0)
 			var/devrange = max(1, round(explosion_power/1000))
-			var/heavyrange = max(1, devrange*2)
-			var/lightrange = max(1, devrange*3)
-			var/flashrange = max(1, devrange*4)
-			explosion(get_turf(src), devrange, heavyrange, lightrange, flashrange)
+			var/heavyrange = max(1, devrange*1)
+			var/lightrange = max(1, devrange*1)
+			var/flashrange = max(1, devrange*2)
+			var/firerange = max(1, devrange*3)
+
+			var/src_turf = get_turf(src)
+
+			for (var/turf/T in range(src_turf, firerange))
+				if (prob(80) && !T.density)
+					var/obj/fire/F = T.create_fire(temp = ceil(explosion_power/8))
+					F.time_limit = pick(5,6,7)*10
+					for (var/mob/living/L in T)
+						L.IgniteMob()
+						L.adjustFireLoss(rand(15,20))
+						if (ishuman(L))
+							L.emote("scream")
+
+			spawn (1)
+				explosion(src_turf, devrange, heavyrange, lightrange, flashrange)
+
 
 	if (src)
 		if(ismob(loc))
@@ -238,6 +254,7 @@
 	attack_verb = list("stabbed", "slashed", "attacked")
 	sharp = TRUE
 	edge = FALSE
+	dropsound = 'sound/effects/drop_glass.ogg'
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
 /obj/item/weapon/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)

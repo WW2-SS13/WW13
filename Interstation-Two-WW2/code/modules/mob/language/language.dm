@@ -189,7 +189,11 @@
 // Language handling.
 /mob/proc/add_language(var/language, var/allow_name_changing = FALSE)
 
-	var/datum/language/new_language = all_languages[language]
+	var/datum/language/new_language = null
+	if (isdatum(language))
+		new_language = language
+	else
+		new_language = all_languages[language]
 
 	var/cname_check = TRUE
 
@@ -211,8 +215,6 @@
 					else
 						H.real_name = H.client.prefs.german_name
 					H.name = H.client.prefs.real_name
-					if (!H.client.untermensch)
-						H.gender = MALE
 
 		else if (istype(new_language, /datum/language/russian))
 			if (ishuman(src))

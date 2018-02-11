@@ -7,6 +7,7 @@
 	item_state = "mosin" //placeholder
 	w_class = 4
 	force = 10
+	throwforce = 20
 	max_shells = 5
 	slot_flags = SLOT_BACK
 //	origin_tech = "combat=4;materials=2;syndicate=8"

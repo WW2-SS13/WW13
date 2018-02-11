@@ -4,7 +4,7 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 
 /datum/controller/process/supplydrop/setup()
 	name = "supplydrop"
-	schedule_interval = 200
+	schedule_interval = 300
 	start_delay = 8
 	supplydrop_process = src
 

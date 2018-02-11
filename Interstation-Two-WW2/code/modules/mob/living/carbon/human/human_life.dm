@@ -58,6 +58,7 @@
 			invisibility = 101
 			var/datum/mind/M = mind
 			var/mob/living/carbon/human/vampire/V = new(get_turf(src), FALSE)
+			V.canmove = FALSE
 			var/oldname = name
 			var/oldreal_name = real_name
 			spawn (12)
@@ -87,7 +88,12 @@
 					if (old_items[slotname] != null)
 						V.equip_to_slot_if_possible(old_items[slotname], text2num(slotname))
 			spawn (30)
-				canmove = TRUE
+				V.canmove = TRUE
+				if (istype(V.wear_mask, /obj/item/clothing/mask/stone/oneuse))
+					var/obj/item/mask = V.wear_mask
+					V.drop_from_inventory(mask)
+					qdel(mask)
+
 			spawn (10)
 				visible_message("<span class = 'danger'>[V] becomes a Vampire!</span>")
 			return
@@ -474,6 +480,7 @@
 
 	if (abs(body_temperature_difference) < 0.5)
 		return //fuck this precision
+
 	if (on_fire)
 		return //too busy for pesky metabolic regulation
 

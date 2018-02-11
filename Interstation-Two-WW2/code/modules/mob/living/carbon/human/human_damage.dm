@@ -147,6 +147,10 @@
 	// 60% chance Vampires won't be affected; 96% Pillar Men won't be
 	if(takes_less_damage && prob(15 + ceil(getStatCoeff("strength") * 9)))
 		return
+	// failing that, addition 50%/77% chance to get less weakened
+	else if (prob(5 + ceil(getStatCoeff("strength") * 9)))
+		amount /= pick(2,3)
+
 	..()
 
 /mob/living/carbon/human/Paralyse(amount)

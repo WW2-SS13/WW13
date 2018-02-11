@@ -1086,10 +1086,14 @@ proc/is_hot(obj/item/W as obj)
 
 //check if mob is lying down on something we can operate him on.
 /proc/can_operate(mob/living/carbon/M)
-	return (M.lying && \
-	locate(/obj/machinery/optable, M.loc) || \
-	(locate(/obj/structure/bed/roller, M.loc) && prob(75)) || \
-	(locate(/obj/structure/table/, M.loc) && prob(66)))
+	var/M_turf = get_turf(M)
+	for (var/obj/structure/optable/O in M_turf)
+		return TRUE
+	for (var/obj/structure/bed/B in M_turf)
+		return prob(95)
+	for (var/obj/structure/table/T in M_turf)
+		return prob(90)
+	return prob(85)
 
 /proc/reverse_direction(var/dir)
 	switch(dir)

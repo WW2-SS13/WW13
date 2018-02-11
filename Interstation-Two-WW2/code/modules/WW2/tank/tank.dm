@@ -118,6 +118,7 @@
 			if (do_after(user, 50, src))
 				tank_message("<span class = 'notice'>[user] wrenches in some loose parts on [my_name()]. It looks about [health_percentage()] healthy.</span>")
 				damage = max(damage - heal_damage["wrench"], FALSE)
+				update_damage_status()
 				user.repairing_tank = FALSE
 			else
 				user.repairing_tank = FALSE
@@ -135,6 +136,7 @@
 				tank_message("<span class = 'notice'>[user] repairs some of the damage on [my_name()]. It looks about [health_percentage()] healthy.</span>")
 				playsound(get_turf(src), 'sound/items/Welder2.ogg', rand(75,100))
 				damage = max(damage - heal_damage["weldingtool"], FALSE)
+				update_damage_status()
 				user.repairing_tank = FALSE
 			else
 				user.repairing_tank = FALSE

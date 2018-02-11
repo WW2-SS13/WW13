@@ -9,7 +9,7 @@
 /obj/item/weapon/reagent_containers/glass/rag
 	name = "rag"
 	desc = "For cleaning up messes, you suppose."
-	w_class = TRUE
+	w_class = 1
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "rag"
 	amount_per_transfer_from_this = 5
@@ -17,6 +17,7 @@
 	volume = 10
 	can_be_placed_into = null
 	flags = OPENCONTAINER | NOBLUDGEON
+	dropsound = null
 
 	var/on_fire = FALSE
 	var/burn_time = 20 //if the rag burns for too long it turns to ashes

@@ -166,6 +166,7 @@ var/global/list/default_ukrainian_channels = list(
 		"Wood Planks" = /obj/structure/closet/crate/wood,
 		"Steel Sheets" = /obj/structure/closet/crate/steel,
 		"Iron Ingots" = /obj/structure/closet/crate/iron,
+		"Glass Sheets" = /obj/structure/closet/crate/glass,
 
 		// GUNS & ARTILLERY
 		"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
@@ -219,6 +220,7 @@ var/global/list/default_ukrainian_channels = list(
 		"Wood Planks" = /obj/structure/closet/crate/wood,
 		"Steel Sheets" = /obj/structure/closet/crate/steel,
 		"Iron Ingots" = /obj/structure/closet/crate/iron,
+		"Glass Sheets" = /obj/structure/closet/crate/glass,
 
 		// GUNS & ARTILLERY
 		"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
@@ -277,6 +279,7 @@ var/global/list/default_ukrainian_channels = list(
 		"Wood Planks" = 75,
 		"Steel Sheets" = 100,
 		"Iron Ingots" = 125,
+		"Glass Sheets" = 150,
 
 		// GUNS & ARTILLERY
 		"PTRD" = 200,
@@ -450,6 +453,9 @@ var/global/list/default_ukrainian_channels = list(
 			continue
 		if (radio.notyetmoved)
 			continue
+		if (!istype(radio, /obj/item/device/radio/intercom))
+			if (!istype(radio.loc, /mob))
+				continue
 		if (!radio.on)
 			continue
 		if (radio == s_store)
@@ -478,7 +484,7 @@ var/global/list/default_ukrainian_channels = list(
 
 		message = capitalize(trim_left(message))
 
-		if (!istype(loc, /obj/tank))
+		if (!loc || !loc.loc || !istype(loc.loc, /obj/tank))
 			used_radio_turfs[radio.faction] += get_turf(radio)
 
 		used_radios += radio
@@ -533,11 +539,15 @@ var/global/list/default_ukrainian_channels = list(
 					continue
 				if (radio.notyetmoved)
 					continue
+				if (!istype(radio, /obj/item/device/radio/intercom))
+					if (!istype(radio.loc, /mob))
+						continue
 				if (!radio.on)
 					continue
 				if (!radio.listening)
 					continue
-				used_radio_turfs[radio.faction] += get_turf(radio)
+				if (!radio.loc || !radio.loc.loc || !istype(radio.loc.loc, /obj/tank))
+					used_radio_turfs[radio.faction] += get_turf(radio)
 				used_radios += radio
 				if (radio.listening_on_channel[radio_freq2name(frequency)])
 					hearer.hear_radio(msg, speaker.sayverb, speaker.default_language, speaker, src, hardtohear)
@@ -666,6 +676,7 @@ var/global/list/default_ukrainian_channels = list(
 /obj/item/device/radio/feldfu/command
 
 /obj/item/device/radio/feldfu/SS
+	frequency = SS_FREQ
 
 /obj/item/device/radio/feldfu/SS/command
 

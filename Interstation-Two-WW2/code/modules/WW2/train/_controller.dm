@@ -600,7 +600,11 @@
 	S.volume = 50
 	S.channel = 1
 
-	for (var/tcc in german_main_train_car_centers)
+	var/list_type = german_main_train_car_centers
+	if (istype(src, /datum/train_controller/german_supplytrain_controller))
+		list_type = german_supply_train_car_centers
+
+	for (var/tcc in list_type)
 		// range(20, tcc) = checks ~500 objects (400 turfs)
 		// player_list will rarely be above 100 objects
 		// so this should be more efficient - Kachnov

@@ -44,7 +44,7 @@
 
 		T.luminosity = TRUE
 
-	lighting_update_overlays -= src;
+	lighting_update_overlays -= src
 
 	..()
 

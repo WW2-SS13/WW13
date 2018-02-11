@@ -152,6 +152,9 @@ var/list/preferences_datums = list()
 
 		// otherwise, keep using our default values
 
+	for (var/i in 1 to 8)
+		internal_table[num2text(i)] = list()
+
 /datum/preferences/Del()
 	save_preferences(current_slot)
 	..()
@@ -211,11 +214,11 @@ var/list/preferences_datums = list()
 		var/previous_slot = text2num(current_slot)
 		current_slot = text2num(href_list["savetoslot"])
 
-		if (current_slot == FALSE)
-			current_slot = TRUE // if we delete all our slots, still let us save
+		if (current_slot == 0)
+			current_slot = 1 // if we delete all our slots, still let us save
 
-		if (current_slot != FALSE && save_preferences(current_slot, previous_slot))
-			if (internal_table.len > TRUE && current_slot != previous_slot)
+		if (current_slot != 0 && save_preferences(current_slot, previous_slot))
+			if (internal_table.len > 1 && current_slot != previous_slot)
 				usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot] (With a new name).</span>"
 			else
 				usr << "<span class = 'good'>Successfully saved current preferences to slot #[current_slot].</span>"
@@ -566,6 +569,7 @@ var/list/preferences_datums = list()
 		var/datum/client_preference/cp = get_client_preference_by_type(/datum/client_preference/play_lobby_music)
 		if (isnewplayer(mob))
 			if (is_preference_enabled(cp.key))
-				mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE)
+				if (!just_played_title_music)
+					mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE)
 			else
 				mob << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE)

@@ -54,6 +54,8 @@ var/list/department_radio_keys = list(
 	  ":z" = "Entertainment",".z" = "Entertainment",
 )
 
+var/list/radio_prefixes = list(";", ":b", ":l", ":r", ":t",
+	":B", ":L", ":R", ":T")
 
 var/list/channel_to_radio_key = new
 proc/get_radio_key_from_channel(var/channel)
@@ -80,8 +82,6 @@ proc/get_radio_key_from_channel(var/channel)
 
 /mob/living/proc/handle_speech_problems(var/message, var/verb)
 
-	// don't effect radio prefixes: ";", ":b", ":l", ":r", ":t"
-	var/list/radio_prefixes = list(";", ":b", ":l", ":r", ":t")
 	var/prefix = ""
 	for (var/rp in radio_prefixes)
 		if (dd_hasprefix(message, rp))

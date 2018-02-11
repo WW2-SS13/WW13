@@ -98,7 +98,7 @@
 	else if (WW2_soldiers_en_ru_ratio() == 1000 && game_started)
 		winning_side = "Wehrmacht"
 		return TRUE
-	else if (WW2_soldiers_en_ru_ratio() == TRUE/1000 && game_started)
+	else if (WW2_soldiers_en_ru_ratio() == 1/1000 && game_started)
 		winning_side = "Red Army"
 		return TRUE
 	else
@@ -207,12 +207,12 @@
 			cond_2_4_check1 = FALSE
 
 		if (cond_2_1_check1 && (world.time >= cond_2_1_nextcheck || round_ending || admins_triggered_roundend) && cond_2_1_nextcheck != -1) // condition 2.1 completed
-			if (!win_condition) win_condition = "The Red Army won by outnumbering the Germans and occupying most of their territory, cutting them off from supplies!"
+			if (!win_condition) win_condition = "The Red Army won by outnumbering the Germans and occupying most of their territory, cutting them off from supplies and reinforcements!"
 			winning_side = "Red Army"
 			return TRUE
 
 		if (cond_2_2_check1 && (world.time >= cond_2_2_nextcheck || round_ending || admins_triggered_roundend) && cond_2_2_nextcheck != -1) // condition 2.2 completed
-			if (!win_condition) win_condition = "The Wehrmacht won by outnumbering the Soviets and occupying most of their territory. The bunker was surrounded and cut off from reinforcements!"
+			if (!win_condition) win_condition = "The Wehrmacht won by outnumbering the Soviets and occupying most of their territory. The bunker was surrounded and cut off from supplies and reinforcements!"
 			winning_side = "Wehrmacht"
 			return TRUE
 

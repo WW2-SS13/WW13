@@ -130,6 +130,10 @@
 	if(istype(hit_atom,/mob/living))
 		var/mob/living/M = hit_atom
 		M.hitby(src,speed)
+		if (istype(src, /obj/item))
+			var/obj/item/I = src
+			if (prob(I.throwforce * 4))
+				M.Weaken(I.throwforce/5)
 
 	else if(isobj(hit_atom))
 		var/obj/O = hit_atom
@@ -225,7 +229,7 @@
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
-					if (!S.density)
+					if (!S.density && !istype(S, /obj/structure/window/classic))
 						continue
 					canMove = FALSE
 				if (canMove)
@@ -251,7 +255,7 @@
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
-					if (!S.density)
+					if (!S.density && !istype(S, /obj/structure/window/classic))
 						continue
 					canMove = FALSE
 				if (canMove)
@@ -281,7 +285,7 @@
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
-					if (!S.density)
+					if (!S.density && !istype(S, /obj/structure/window/classic))
 						continue
 					canMove = FALSE
 				if (canMove)
@@ -306,7 +310,7 @@
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
-					if (!S.density)
+					if (!S.density && !istype(S, /obj/structure/window/classic))
 						continue
 					canMove = FALSE
 				if (canMove)

@@ -214,6 +214,9 @@
 	item_state = "sovtankeruni"
 	worn_state = "sovtankeruni"
 
+/obj/item/clothing/head/helmet/tactical
+	force = 7
+
 /obj/item/clothing/head/helmet/tactical/gerhelm
 	name = GERMAN_HELMET_NAME
 	desc = GERMAN_HELMET_DESC

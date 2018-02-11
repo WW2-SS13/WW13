@@ -175,8 +175,10 @@ var/global/datum/controller/occupations/job_master
 		else
 			_clients = clients.len
 
-		if (announce)
+		if (announce == TRUE)
 			world << "<span class = 'warning'>Setting up roundstart autobalance for [_clients] players.</span>"
+		else if (announce == 2)
+			world << "<span class = 'warning'>An admin has changed autobalance to be set up for [_clients] players.</span>"
 
 		var/expected_players = _clients * 0.9
 
@@ -1126,6 +1128,8 @@ var/global/datum/controller/occupations/job_master
 	proc/EquipRank(var/mob/living/carbon/human/H, var/rank, var/joined_late = FALSE)
 		if(!H)	return null
 
+		H.stopDumbDamage = TRUE
+
 		var/datum/job/job = GetJob(rank)
 	//	var/list/spawn_in_storage = list()
 
@@ -1425,6 +1429,8 @@ var/global/datum/controller/occupations/job_master
 				relocate(H)
 				if (H.client)
 					H.client.remove_gun_icons()
+
+			H.stopDumbDamage = FALSE
 
 			return H
 
