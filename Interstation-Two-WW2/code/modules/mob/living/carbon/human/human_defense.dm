@@ -76,15 +76,15 @@ bullet_act
 			return 2
 	else
 		if ((abs(P.starting.x - x) + abs(P.starting.y - y)) > 2) // not PB range
-			if (list("head", "mouth", "eyes").Find(def_zone) && prob(40))
+			if (list("head", "mouth", "eyes").Find(def_zone) && prob(40 * getStatCoeff("survival")))
 				visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 				qdel(P)
-				adjustBruteLoss(rand(2,3))
+				adjustBruteLoss(pick(2,3))
 				return
-			else if (prob(20))
+			else if (prob(20 * getStatCoeff("survival")))
 				visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 				qdel(P)
-				adjustBruteLoss(rand(2,3))
+				adjustBruteLoss(pick(2,3))
 				return
 		// get knocked back once in a while
 		// unless we're on a train because bugs

@@ -1,13 +1,13 @@
 ///////////////////////////////////////////////Alchohol bottles! -Agouri //////////////////////////
 //Functionally identical to regular drinks. The only difference is that the default bottle size is 100. - Darem
-//Bottles now weaken and break when smashed on people's heads. - Giacom
+//Bottles now weaken and break when shattered on people's heads. - Giacom
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle
 	amount_per_transfer_from_this = 10
 	volume = 100
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	force = 5
-	var/smash_duration = 5 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
+	var/shatter_duration = 5 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
 	var/isGlass = TRUE //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 
 	var/obj/item/weapon/reagent_containers/glass/rag/rag = null
@@ -34,20 +34,20 @@
 	rag = null
 	return ..()
 
-//when thrown on impact, bottles smash and spill their contents
+//when thrown on impact, bottles shatter and spill their contents
 /obj/item/weapon/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, var/speed)
 	var/alcohol_power = calculate_alcohol_power()
 
 	..()
 
 	var/mob/M = thrower
-	if(isGlass && istype(M)/* && M.a_intent == I_HURT*/)
+	if(isGlass && istype(M))
 		var/throw_dist = get_dist(throw_source, loc)
-		if(speed >= throw_speed && smash_check(throw_dist)) //not as reliable as smashing directly
+		if(speed >= throw_speed && shatter_check(throw_dist)) //not as reliable as shattering directly
 			if(reagents)
 				hit_atom.visible_message("<span class='notice'>The contents of \the [src] splash all over [hit_atom]!</span>")
 				reagents.splash(hit_atom, reagents.total_volume)
-			smash(loc, hit_atom, alcohol_power)
+			shatter(loc, hit_atom, alcohol_power)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/calculate_alcohol_power()
 	. = 0
@@ -62,8 +62,8 @@
 				var/datum/reagent/ethanol/E = R
 				. += (min(max(E.strength, 25), 50) * E.volume)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash_check(var/distance)
-	if(!isGlass || !smash_duration)
+/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/shatter_check(var/distance)
+	if(!isGlass || !shatter_duration)
 		return FALSE
 
 	var/list/chance_table = list(50, 75, 90, 95, 100, 100, 100) //starting from distance 0
@@ -83,10 +83,10 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Bump(atom/A, yes)
 	if (src)
 		if (isliving(A) || isturf(A))
-			smash(get_turf(A), A, calculate_alcohol_power())
+			shatter(get_turf(A), A, calculate_alcohol_power())
 	..(A, yes)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null, var/alcohol_power = FALSE)
+/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/shatter(var/newloc, atom/against = null, var/alcohol_power = FALSE)
 
 
 	if (!newloc)
@@ -142,6 +142,7 @@
 		var/obj/item/weapon/broken_bottle/B = new /obj/item/weapon/broken_bottle(newloc)
 		if(prob(33))
 			new/obj/item/weapon/material/shard(newloc) // Create a glass shard at the target's location!
+
 		B.icon_state = icon_state
 
 		var/icon/I = new('icons/obj/drinks.dmi', icon_state)
@@ -209,22 +210,22 @@
 
 	if(user.a_intent != I_HURT)
 		return
-	if(!smash_check(1))
+	if(!shatter_check(1))
 		return //won't always break on the first hit
 
 	// You are going to knock someone out for longer if they are not wearing a helmet.
 	var/weaken_duration = FALSE
 	if(blocked < 2)
-		weaken_duration = smash_duration + min(0, force - target.getarmor(hit_zone, "melee") + 10)
+		weaken_duration = shatter_duration + min(0, force - target.getarmor(hit_zone, "melee") + 10)
 
 	var/mob/living/carbon/human/H = target
 	if(istype(H) && H.headcheck(hit_zone))
 		var/obj/item/organ/affecting = H.get_organ(hit_zone) //headcheck should ensure that affecting is not null
-		user.visible_message("<span class='danger'>[user] smashes [src] into [H]'s [affecting.name]!</span>")
+		user.visible_message("<span class='danger'>[user] shatteres [src] into [H]'s [affecting.name]!</span>")
 		if(weaken_duration)
 			target.apply_effect(min(weaken_duration, 5), WEAKEN, blocked) // Never weaken more than a flash!
 	else
-		user.visible_message("<span class='danger'>\The [user] smashes [src] into [target]!</span>")
+		user.visible_message("<span class='danger'>\The [user] shatteres [src] into [target]!</span>")
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	var/alcohol_power = calculate_alcohol_power()
@@ -234,9 +235,9 @@
 			user.visible_message("<span class='notice'>The contents of \the [src] splash all over [target]!</span>")
 			if (reagents) reagents.splash(target, reagents.total_volume)
 
-	//Finally, smash the bottle. This kills (qdel) the bottle.
+	//Finally, shatter the bottle. This kills (qdel) the bottle.
 
-	var/obj/item/weapon/broken_bottle/B = smash(target.loc, target, alcohol_power)
+	var/obj/item/weapon/broken_bottle/B = shatter(target.loc, target, alcohol_power)
 	user.put_in_active_hand(B)
 
 //Keeping this here for now, I'll ask if I should keep it here.
@@ -521,7 +522,7 @@
 //Small bottles
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small
 	volume = 50
-	smash_duration = TRUE
+	shatter_duration = TRUE
 	flags = FALSE //starts closed
 	rag_underlay = "rag_small"
 

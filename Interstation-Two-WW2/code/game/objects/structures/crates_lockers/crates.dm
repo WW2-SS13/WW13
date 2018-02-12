@@ -53,14 +53,12 @@
 	playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
 	var/itemcount = FALSE
 	for(var/obj/O in get_turf(src))
-		if(itemcount >= storage_capacity)
+		if (itemcount >= storage_capacity)
 			break
-		if(O.density || O.anchored || istype(O,/obj/structure/closet))
+		if (O.density || O.anchored)
 			continue
-		if(istype(O, /obj/structure/bed)) //This is only necessary because of rollerbeds and swivel chairs.
-			var/obj/structure/bed/B = O
-			if(B.buckled_mob)
-				continue
+		if (istype(O, /obj/structure))
+			continue
 		O.forceMove(src)
 		itemcount++
 

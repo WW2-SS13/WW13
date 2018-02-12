@@ -483,8 +483,13 @@
 /obj/machinery/vending/Topic(href, href_list)
 	if(stat & BROKEN)
 		return
-	if(usr.stat || usr.restrained())
-		return
+
+	if (isliving(usr))
+		if (usr.stat || usr.restrained())
+			return
+	else if (isobserver(usr))
+		if (!check_rights(usr, R_MOD))
+			return
 /*
 	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
 		if(!coin)
@@ -514,6 +519,7 @@
 
 			if(R.price <= FALSE)
 				vend(R, usr)
+
 			else if(istype(usr,/mob/living/silicon)) //If the item is not free, provide feedback if a synth is trying to buy something.
 				usr << "<span class='danger'>Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled.</span>"
 				return

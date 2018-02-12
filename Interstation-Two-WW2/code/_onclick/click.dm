@@ -424,7 +424,7 @@
 
 /mob/proc/scramble(var/atom/A)
 	var/direction
-	if(stat || buckled || paralysis || stunned || sleeping || (status_flags & FAKEDEATH) || restrained() || (weakened > 5))
+	if(stat || buckled || paralysis || stunned || sleeping || (status_flags & FAKEDEATH) || restrained() || (weakened > 10))
 		return
 	if(!istype(loc, /turf/))
 		return

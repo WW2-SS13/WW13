@@ -262,7 +262,15 @@ s
 		stop_following(H, FALSE)
 	else
 		walk_to(src, FALSE)
-	walk_to(src, H, 2, H.run_delay_maximum*1.40)
+	var/H_loc = H.loc
+	walk_to(src, H, 3, H.run_delay_maximum*1.40)
+/*	// automatically stop following if H stays still for 10 seconds
+	for (var/v in 1 to 20)
+		spawn (v*5)
+			if (H.loc != H_loc)
+				break
+			else if (v == 20)
+				stop_following(H)*/
 	following = H
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/stop_following(var/mob/living/carbon/human/H, var/message = TRUE)

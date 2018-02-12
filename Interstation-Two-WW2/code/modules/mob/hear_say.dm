@@ -69,11 +69,12 @@
 
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
-		var/lname = capitalize(language.name)
-		H.partial_languages[lname] += 1
-		if (H.partial_languages[lname] > rand(100,150))
-			add_language(language)
-			src << "<span class = 'info'>You've learned how to speak [language.name] from hearing it so much.</span>"
+		if (!H.languages.Find(language))
+			var/lname = capitalize(language.name)
+			H.partial_languages[lname] += 1
+			if (H.partial_languages[lname] > rand(100,150))
+				H.add_language(language)
+				H << "<span class = 'info'>You've learned how to speak [language.name] from hearing it so much.</span>"
 
 /mob/proc/on_hear_say(var/message)
 	src << message

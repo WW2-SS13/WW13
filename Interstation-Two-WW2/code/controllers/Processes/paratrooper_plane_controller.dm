@@ -1,7 +1,7 @@
 var/datum/controller/process/paratrooper_plane_controller/paratrooper_plane_master = null
 
 /datum/controller/process/paratrooper_plane_controller
-	var/altitude = 5000
+	var/altitude = 7000
 	var/first_nonlethal_altitude = 500
 	var/tmpTime = 0
 	var/list/my_turfs = list()
@@ -21,14 +21,20 @@ var/datum/controller/process/paratrooper_plane_controller/paratrooper_plane_mast
 					my_turfs += T
 
 		var/shift = pick(-4, 0, 4)
+		var/mobs = 0
+
 		for (var/turf/T in my_turfs)
 			for (var/atom/movable/AM in T.contents)
 				if (!ismob(AM))
 					AM.pixel_x = shift
+				else
+					++mobs
 
 		tmpTime += schedule_interval
 		if (tmpTime >= 300)
 			tmpTime = 0
+			if (altitude == 1500 && mobs)
+				radio2soviets("We've received reports of Paratroopers. It is recommended that at least [mobs+1] people stay behind to guard the base.")
 			if (altitude == 500)
 				return // we're done
 			altitude -= 500 // takes ~4.5 minutes to get to nonlethal altitude

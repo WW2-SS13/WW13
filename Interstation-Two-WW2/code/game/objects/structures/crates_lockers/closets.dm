@@ -100,6 +100,7 @@
 /obj/structure/closet/proc/close()
 	if(!opened)
 		return FALSE
+
 	if(!can_close())
 		return FALSE
 
@@ -121,7 +122,7 @@
 
 //Cham Projector Exception
 /obj/structure/closet/proc/store_misc(var/stored_units)
-	var/added_units = FALSE
+	var/added_units = 0
 	return added_units
 
 /obj/structure/closet/proc/store_items(var/stored_units)

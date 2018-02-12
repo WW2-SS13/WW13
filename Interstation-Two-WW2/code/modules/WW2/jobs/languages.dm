@@ -37,7 +37,7 @@
 			if (prob(probability))
 				H.add_language(language_name, FALSE)
 				H.show_message("<b>You know the [language_name] language!</b>")
-
+/*
 	for (var/datum/language/L in H.languages)
 		if (istype(L, /datum/language/common))
-			H.languages -= L
+			H.languages -= L*/

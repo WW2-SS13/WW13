@@ -9,14 +9,14 @@
 	title = "Kapitan"
 	en_meaning = "Company Commander"
 	rank_abbreviation = "Kpt"
-	total_positions = TRUE
+	total_positions = 1
 	head_position = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateRACO"
 	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
 	is_commander = TRUE
-	absolute_limit = TRUE
+	absolute_limit = 1
 
 /datum/job/soviet/commander/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -66,7 +66,7 @@
 	spawn_location = "JoinLateRASO"
 	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
-	absolute_limit = 3
+	absolute_limit = 1
 
 /datum/job/soviet/XO/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE

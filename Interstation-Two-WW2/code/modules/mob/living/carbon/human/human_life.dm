@@ -104,10 +104,13 @@
 		return
 
 	if (stat == UNCONSCIOUS || stat == DEAD || lying)
+		layer = MOB_LAYER - 0.01
 		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower_backpack = back
 			if (flamethrower_backpack.flamethrower && flamethrower_backpack.flamethrower.loc != flamethrower_backpack)
 				flamethrower_backpack.reclaim_flamethrower()
+	else
+		layer = MOB_LAYER
 
 	fire_alert = FALSE //Reset this here, because both breathe() and handle_environment() have a chance to set it.
 

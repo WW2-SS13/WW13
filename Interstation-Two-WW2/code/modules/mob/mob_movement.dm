@@ -525,6 +525,7 @@
 						L.adjustBruteLoss(rand(8,12))
 						if (ishuman(L))
 							L.emote("scream")
+						sleep(5)
 			else
 				for (var/mob/living/L in t1)
 					if (L.lying)

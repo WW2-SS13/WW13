@@ -102,6 +102,7 @@
 	onclose(user, "stack")
 	return
 
+/mob/var/can_build_recipe = TRUE
 /obj/item/stack/proc/produce_recipe(datum/stack_recipe/recipe, var/quantity, mob/user)
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
@@ -218,7 +219,10 @@
 		list_recipes(usr, text2num(href_list["sublist"]))
 
 	if (href_list["make"])
-		if (get_amount() < TRUE) qdel(src) //Never should happen
+
+		if (get_amount() < 1)
+			qdel(src)
+			return
 
 		var/list/recipes_list = recipes
 		if (href_list["sublist"])
@@ -227,10 +231,15 @@
 
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		if (!multiplier || (multiplier <= FALSE)) //href exploit protection
+		if (!multiplier || (multiplier <= 0)) //href exploit protection
 			return
 
-		produce_recipe(R, multiplier, usr)
+		if (ishuman(usr))
+			var/mob/living/carbon/human/H = usr
+			if (H.can_build_recipe)
+				H.can_build_recipe = FALSE
+				produce_recipe(R, multiplier, usr)
+				H.can_build_recipe = TRUE
 
 	if (src && usr.machine==src) //do not reopen closed window
 		spawn( FALSE )

@@ -311,8 +311,8 @@
 #include "code\game\objects\items\weapons\storage\boxes.dm"
 #include "code\game\objects\items\weapons\storage\briefcase.dm"
 #include "code\game\objects\items\weapons\storage\fancy.dm"
-#include "code\game\objects\items\weapons\storage\firstaid.dm"
 #include "code\game\objects\items\weapons\storage\internal.dm"
+#include "code\game\objects\items\weapons\storage\medkit.dm"
 #include "code\game\objects\items\weapons\storage\misc.dm"
 #include "code\game\objects\items\weapons\storage\secure.dm"
 #include "code\game\objects\items\weapons\storage\storage.dm"
@@ -961,7 +961,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\main\level1.dmm"
-#include "maps\main\level2.dmm"
-#include "maps\main\level3.dmm"
+#include "maps\test\city.dmm"
 // END_INCLUDE
