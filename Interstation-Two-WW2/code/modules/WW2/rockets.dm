@@ -15,7 +15,7 @@
 
 /obj/item/weapon/gun/launcher/rocket/panzerfaust/New()
 	..()
-	rockets += new/obj/item/ammo_casing/rocket/yuge()
+	rockets += new/obj/item/ammo_casing/rocket/yuge/lessyuge()
 
 /obj/item/weapon/gun/launcher/rocket/handle_post_fire()
 	..()

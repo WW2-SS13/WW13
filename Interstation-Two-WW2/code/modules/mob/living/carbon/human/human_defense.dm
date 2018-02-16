@@ -405,6 +405,11 @@ bullet_act
 			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
 			return
 
+		if (istype(AM, /obj/item))
+			var/obj/item/I = AM
+			if (prob(I.throwforce * 4))
+				Weaken(I.throwforce/5)
+
 		O.throwing = FALSE		//it hit, so stop moving
 
 		var/obj/item/organ/external/affecting = get_organ(zone)

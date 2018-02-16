@@ -144,5 +144,8 @@
 /material/barbedwire/generate_recipes()
 	recipes = list(new/datum/stack_recipe("barbwire", /obj/structure/barbwire, _time = 30))
 
+/material/rope/generate_recipes()
+	recipes = list(new/datum/stack_recipe("noose", /obj/structure/noose, _time = 30))
+
 /material/glass/generate_recipes()
 	recipes = list(new/datum/stack_recipe("window", /obj/structure/window/classic, _time = 50, _one_per_turf = TRUE, _on_floor = TRUE))

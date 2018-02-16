@@ -6,6 +6,7 @@
 	var/breakable = FALSE
 	var/parts
 	var/list/climbers = list()
+	var/low = FALSE
 
 /obj/structure/Destroy()
 	if(parts)

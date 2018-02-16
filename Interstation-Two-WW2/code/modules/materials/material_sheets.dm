@@ -108,6 +108,11 @@
 	icon_state = "barbwire_stack"
 	default_type = "barbedwire"
 
+/obj/item/stack/material/rope
+	name = "Rope"
+	icon_state = "rope"
+	default_type = "rope"
+
 /obj/item/stack/material/uranium
 	name = "uranium"
 	icon_state = "sheet-uranium"

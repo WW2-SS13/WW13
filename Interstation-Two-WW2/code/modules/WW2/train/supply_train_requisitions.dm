@@ -43,6 +43,7 @@
 		"Glass Sheets" = /obj/structure/closet/crate/glass,
 
 		// GUNS & ARTILLERY
+		"MP40" = /obj/item/weapon/gun/projectile/automatic/mp40,
 		"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
 		"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 		"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
@@ -102,6 +103,7 @@
 		"Glass Sheets" = 150,
 
 		// GUNS & ARTILLERY
+		"MP40" = 125,
 		"PTRD" = 200,
 		"Flammenwerfer" = 250,
 		"7,5 cm FK 18 Artillery Piece" = 300,

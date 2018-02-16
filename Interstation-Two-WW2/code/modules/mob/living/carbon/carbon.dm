@@ -236,7 +236,7 @@
 			if(istype(H)) show_ssd = H.species.show_ssd
 			if(show_ssd && !client && !teleop)
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!</span>", \
-				"<span class='notice'>You shake [src], but they do not respond... Maybe they have S.S.D?</span>")
+				"<span class='notice'>You shake [src], but they do not respond... Maybe they have shell shock?</span>")
 			else if(lying || sleeping)
 				sleeping = max(0,sleeping-5)
 				if(sleeping == FALSE)

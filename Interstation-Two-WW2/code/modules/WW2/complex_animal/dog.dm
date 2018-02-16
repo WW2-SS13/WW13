@@ -262,7 +262,7 @@ s
 		stop_following(H, FALSE)
 	else
 		walk_to(src, FALSE)
-	var/H_loc = H.loc
+//	var/H_loc = H.loc
 	walk_to(src, H, 3, H.run_delay_maximum*1.40)
 /*	// automatically stop following if H stays still for 10 seconds
 	for (var/v in 1 to 20)

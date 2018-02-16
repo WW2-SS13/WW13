@@ -488,7 +488,7 @@
 		if (usr.stat || usr.restrained())
 			return
 	else if (isobserver(usr))
-		if (!check_rights(usr, R_MOD))
+		if (!check_rights(R_MOD))
 			return
 /*
 	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))

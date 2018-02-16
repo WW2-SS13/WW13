@@ -144,7 +144,7 @@
 			src << "<span class = 'danger'>You're banned from observing.</span>"
 			return TRUE
 
-		if(alert(src,"Are you sure you wish to observe?[config.respawn_delay ? " You will have to wait [config.respawn_delay] minutes before being able to respawn!" : ""]","Player Setup","Yes","No") == "Yes")
+		if(alert(src,"Are you sure you wish to observe?","Player Setup","Yes","No") == "Yes")
 			if(!client)	return TRUE
 			var/mob/observer/ghost/observer = new(150, 317, TRUE)
 
@@ -239,7 +239,7 @@
 				alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
 				return FALSE
 */
-		if (client.next_normal_respawn > world.realtime && respawn_delays)
+		if (client.next_normal_respawn > world.realtime && !config.no_respawn_delays)
 			var/wait = ceil((client.next_normal_respawn-world.realtime)/600)
 			if (check_rights(R_ADMIN, FALSE, src))
 				if ((input(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
@@ -525,7 +525,7 @@
 			var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
 
 			if (job.is_paratrooper)
-				job_is_available = (allow_paratroopers && fallschirm_landmarks.len)
+				job_is_available = fallschirm_landmarks.len
 
 			if (!job.validate(src))
 				job_is_available = FALSE

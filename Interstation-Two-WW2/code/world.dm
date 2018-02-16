@@ -496,12 +496,12 @@ var/setting_up_db_connection = FALSE
 	. += ";"
 	. += "<b>Map</b>: [map.title]"
 	. += ";"
-	. += "<b>Players</b>: [clients.len]"
+	. += "<b>Players</b>: [max(clients.len-1,0)]" // the bot considers itself a player so this is necessary
 	if (config.usewhitelist)
 		. += ";"
 		. += "<b>Whitelist</b>: Enabled"
 	. += ";"
-	. += "realtime=[world.realtime]"
+	. += "realtime=[num2text(world.realtime, 20)]"
 
 /proc/start_serverdata_loop()
 	spawn while (1)

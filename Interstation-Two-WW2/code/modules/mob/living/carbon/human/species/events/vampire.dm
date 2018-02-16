@@ -16,6 +16,9 @@
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
+	stamina = 500
+	max_stamina = 500
+
 	var/blood = 0.75
 
 	color = "#FFB2B2"

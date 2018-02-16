@@ -147,6 +147,8 @@
 /obj/item/clothing/under/geruni/verb/roll_sleeves()
 	set category = null
 	set src in usr
+	if (type != /obj/item/clothing/under/geruni)
+		return // no sprites - Kachnov
 	if (rolled)
 		item_state = "geruni"
 		worn_state = "geruni"
@@ -290,7 +292,7 @@
 	desc = "Can hold gear like pistol, ammo and other thingies."
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
-	storage_slots = 6
+	storage_slots = 12
 	max_w_class = 3
 	max_storage_space = 28
 	can_hold = list(
@@ -302,14 +304,15 @@
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/weapon/melee/classic_baton,
 		/obj/item/device/flashlight,
-		/obj/item/weapon/handcuffs
+		/obj/item/weapon/handcuffs,
+		/obj/item/ammo_casing/a145
 		)
 
 /obj/item/weapon/storage/belt/soviet/anti_tank_crew
 /obj/item/weapon/storage/belt/soviet/anti_tank_crew/New()
 	..()
 
-	for (var/v in TRUE to 10)
+	for (var/v in 1 to 12)
 		new /obj/item/ammo_casing/a145(src)
 
 /obj/item/weapon/storage/belt/soviet/MP/New()
@@ -326,7 +329,7 @@
 	desc = "Can hold gear like pistol, ammo and other thingies."
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
-	storage_slots = 6
+	storage_slots = 12
 	max_w_class = 3
 	max_storage_space = 28
 	can_hold = list(
@@ -338,14 +341,15 @@
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/weapon/melee/classic_baton,
 		/obj/item/device/flashlight,
-		/obj/item/weapon/handcuffs
+		/obj/item/weapon/handcuffs,
+		/obj/item/ammo_casing/a145
 		)
 
 /obj/item/weapon/storage/belt/german/anti_tank_crew
 /obj/item/weapon/storage/belt/german/anti_tank_crew/New()
 	..()
 
-	for (var/v in TRUE to 10)
+	for (var/v in 1 to 12)
 		new /obj/item/ammo_casing/a145(src)
 
 /obj/item/weapon/storage/belt/german/fallofficer
@@ -428,7 +432,6 @@
 	icon_state = "civuni3"
 	item_state = "civuni3"
 	worn_state = "civuni3"
-
 
 /obj/item/weapon/storage/backpack/german
 	name = "german backpack"

@@ -130,10 +130,6 @@
 	if(istype(hit_atom,/mob/living))
 		var/mob/living/M = hit_atom
 		M.hitby(src,speed)
-		if (istype(src, /obj/item))
-			var/obj/item/I = src
-			if (prob(I.throwforce * 4))
-				M.Weaken(I.throwforce/5)
 
 	else if(isobj(hit_atom))
 		var/obj/O = hit_atom
@@ -333,6 +329,11 @@
 		throwing = FALSE
 		thrower = null
 		throw_source = null
+
+		// if we're a bottle we shatter even if we didn't hit anything
+		var/obj/item/weapon/reagent_containers/food/drinks/bottle/B = src
+		if (istype(B))
+			B.throw_impact(new_loc, speed)
 
 
 //Overlays

@@ -16,6 +16,7 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 			if(ispath(last_path))
 				try
 					turf_loop:
+						var/spawned = FALSE
 						for (var/turf/T in german_supplydrop_spots)
 							if (T.density)
 								continue turf_loop
@@ -28,9 +29,12 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 							var/atom/A = new last_path (T)
 							A.visible_message("<span class = 'notice'>[A] falls from the sky!</span>")
 							playsound(T, 'sound/effects/bamf.ogg', rand(70,80))
+							spawned = TRUE
 							break
 
-					supplydrop_processing_objects_german -= last_path
+						if (spawned)
+							supplydrop_processing_objects_german -= last_path
+
 				catch(var/exception/e)
 					catchException(e, last_path)
 				SCHECK
@@ -43,6 +47,7 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 			if(ispath(last_path))
 				try
 					turf_loop:
+						var/spawned = FALSE
 						for (var/turf/T in soviet_supplydrop_spots)
 							if (T.density)
 								continue turf_loop
@@ -55,9 +60,12 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 							var/atom/A = new last_path (T)
 							A.visible_message("<span class = 'notice'>[A] falls from the sky!</span>")
 							playsound(T, 'sound/effects/bamf.ogg', 90)
+							spawned = TRUE
 							break
 
-					supplydrop_processing_objects_soviet -= last_path
+						if (spawned)
+							supplydrop_processing_objects_soviet -= last_path
+
 				catch(var/exception/e)
 					catchException(e, last_path)
 				SCHECK

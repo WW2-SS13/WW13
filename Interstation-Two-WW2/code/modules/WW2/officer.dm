@@ -1,6 +1,6 @@
 //ARTILLERY
 
-#define kanonier_msg " A Kanonier can now fire within <b>15 square tiles</b> of this position."
+#define kanonier_msg " A Kanonier can now fire within <b>15 square meters</b> of this position."
 
 var/global/list/valid_coordinates = list()
 /mob/living/carbon/human/var/checking_coords[4]

@@ -18,6 +18,14 @@
 		return TRUE
 	return FALSE
 
+/proc/radio2SS(msg)
+	var/obj/item/device/radio/R = main_radios[GERMAN]
+	if (R && R.loc)
+		spawn (3)
+			R.announce(msg, "SS Announcement System")
+		return TRUE
+	return FALSE
+
 /proc/radio2soviets(msg, var/channel = "High Command Announcement System")
 	var/obj/item/device/radio/R = main_radios[SOVIET]
 	if (R && R.loc)

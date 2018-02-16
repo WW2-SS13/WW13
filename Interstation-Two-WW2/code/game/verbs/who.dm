@@ -66,13 +66,13 @@
 	var/adminmsg = ""
 	var/modmsg = ""
 	var/mentmsg = ""
-	var/devmsg = ""
+//	var/devmsg = ""
 
-	var/num_highstaff_online = FALSE
-	var/num_mods_online = FALSE
-	var/num_admins_online = FALSE
-	var/num_mentors_online = FALSE
-	var/num_devs_online = FALSE
+	var/num_highstaff_online = 0
+	var/num_mods_online = 0
+	var/num_admins_online = 0
+	var/num_mentors_online = 0
+//	var/num_devs_online = FALSE
 
 	if(holder)
 		for(var/client/C in admins)
@@ -117,7 +117,7 @@
 
 				num_admins_online++
 
-			else if((R_MOD & C.holder.rights) && C.holder.rank != "Developer")				//Who shows up in mod/mentor rows.
+			else if((R_MOD & C.holder.rights)/* && C.holder.rank != "Developer"*/)				//Who shows up in mod/mentor rows.
 				modmsg += "\t[C] is a [C.holder.rank]"
 
 				if(isobserver(C.mob))
@@ -133,7 +133,7 @@
 				num_mods_online++
 
 
-			else if((R_MOD & C.holder.rights) && C.holder.rank == "Developer")				//Who shows up in mod/mentor rows.
+	/*		else if((R_MOD & C.holder.rights) && C.holder.rank == "Developer")				//Who shows up in mod/mentor rows.
 				devmsg += "\t[C] is a [C.holder.rank]"
 
 				if(isobserver(C.mob))
@@ -146,7 +146,7 @@
 				if(C.is_afk())
 					devmsg += " (AFK - [C.inactivity2text()])"
 				devmsg += "\n"
-				num_devs_online++
+				num_devs_online++*/
 
 			else if(R_MENTOR & C.holder.rights)
 				mentmsg += "\t[C] is a [C.holder.rank]"
@@ -188,7 +188,7 @@
 	if(config.show_mentors)
 		msg += "\n<b> Current Mentors ([num_mentors_online]):</b>\n" + mentmsg
 
-	msg += "\n<b> Current Developers ([num_devs_online]):</b>\n" + devmsg
+//	msg += "\n<b> Current Developers ([num_devs_online]):</b>\n" + devmsg
 
 
 	src << msg

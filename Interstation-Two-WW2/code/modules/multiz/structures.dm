@@ -178,11 +178,16 @@
 		return "up"
 	return "down"
 
-/* TRUE Z LEVEL LADDERS - Kachnov */
+/* 1 Z LEVEL LADDERS - Kachnov */
 
 /obj/structure/multiz/ladder/ww2
 	var/ladder_id = null
 	var/area_id = "defaultareaid"
+
+/obj/structure/multiz/ladder/ww2/Crossed(var/atom/movable/AM)
+	if (find_target())
+		if (isitem(AM))
+			AM.forceMove(get_turf(find_target()))
 
 /obj/structure/multiz/ladder/ww2/find_target()
 	for (var/obj/structure/multiz/ladder/ww2/ladder in world) // todo: get rid of

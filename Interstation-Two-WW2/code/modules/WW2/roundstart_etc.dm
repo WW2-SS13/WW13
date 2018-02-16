@@ -179,7 +179,6 @@ var/GRACE_PERIOD_LENGTH = 7
 
 var/mission_announced = FALSE
 var/train_arrived = FALSE
-var/allow_paratroopers = TRUE
 
 /hook/train_move/proc/announce_mission_start()
 

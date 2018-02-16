@@ -208,6 +208,10 @@
 	if(!mob)
 		return // Moved here to avoid nullrefs below
 
+	for (var/obj/structure/noose/N in get_turf(mob))
+		if (N.hanging == mob)
+			return
+
 	if(mob.lying && istype(n, /turf))
 		var/turf/T = n
 		if(T.Adjacent(mob))
@@ -311,16 +315,16 @@
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob_loc)
 
-	if(isobj(mob_loc) || ismob(mob_loc))//Inside an object, tell it we moved
+	if(isobj(mob_loc) || ismob(mob_loc)) //Inside an object, tell it we moved
 		var/atom/O = mob_loc
 		if (!istype(O, /obj/tank))
 			return O.relaymove(mob, direct)
 
-	if(isturf(mob_loc))
-		if(mob.restrained())//Why being pulled while cuffed prevents you from moving
+	else if(isturf(mob_loc))
+		if(mob.restrained()) //Why being pulled while cuffed prevents you from moving
 			for(var/mob/M in range(mob, 1))
 				if(M.pulling == mob)
-					if(!M.restrained() && M.stat == FALSE && M.canmove && mob.Adjacent(M))
+					if(!M.restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
 						src << "<span class = 'notice'>You're restrained! You can't move!</span>"
 						return FALSE
 					else
@@ -417,6 +421,12 @@
 		if (mob.pulling)
 			if (istype(mob.pulling, /mob))
 				move_delay += 1.0
+				if (istype(mob.pulling, /mob/living/carbon/human))
+					var/mob/living/carbon/human/H = mob.pulling
+					for (var/obj/structure/noose/N in get_turf(H))
+						if (N.hanging == H)
+							mob.stop_pulling()
+
 			else if (istype(mob.pulling, /obj/structure))
 				move_delay += 0.75
 
@@ -477,7 +487,7 @@
 		//We are now going to move
 		moving = TRUE
 
-		//Something with pulling things
+		//Something with grabbing things
 		if(locate(/obj/item/weapon/grab, mob))
 			move_delay = max(move_delay, world.time + 7)
 			var/list/L = mob.ret_grab()
@@ -486,7 +496,11 @@
 					L -= mob
 					var/mob/M = L[1]
 					if(M)
-						if ((get_dist(mob, M) <= TRUE || M.loc == mob.loc))
+						for (var/obj/structure/noose/N in get_turf(M))
+							if (N.hanging == M)
+								goto skipgrab
+
+						if ((get_dist(mob, M) <= 1 || M.loc == mob.loc))
 							var/turf/T = mob.loc
 							. = ..()
 							if (isturf(M.loc))
@@ -514,6 +528,8 @@
 			step(mob, pick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
+
+		skipgrab
 
 		//Step on nerds in our way
 		if (mob_is_human)

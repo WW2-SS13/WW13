@@ -297,7 +297,7 @@ MINUTE_TOPIC_LIMIT 100
 ##How long to wait between messaging admins about occurences of an unique error
 #ERROR_MSG_DELAY 50
 
-RESPAWN_DELAY 0
+NO_RESPAWN_DELAYS 0
 
 #show mods in staff who
 SHOW_MODS 1

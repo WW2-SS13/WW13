@@ -17,6 +17,9 @@
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
+	stamina = 700
+	max_stamina = 700
+
 	var/next_pose = -1
 	var/energy = 0.75
 

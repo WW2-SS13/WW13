@@ -51,7 +51,7 @@
 	return .
 
 /datum/recipe/proc/check_fruit(var/obj/container)
-	. = TRUE
+	. = FALSE
 
 /datum/recipe/proc/check_items(var/obj/container as obj)
 	. = TRUE

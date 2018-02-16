@@ -153,7 +153,16 @@
 	if (ishuman(user))
 		H = user
 
-	if (recipe.result_type == /obj/structure/barbwire)
+	if (recipe.result_type == /obj/structure/noose)
+		if (!locate(/obj/structure) in get_turf(H))
+			H << "<span class = 'warning'>You need to be on a structure to make a noose.</span>"
+			return
+		var/area/H_area = get_area(H)
+		if (H_area.location == OUTSIDE)
+			H << "<span class = 'warning'>You need a ceiling to make a noose.</span>"
+			return
+
+	else if (recipe.result_type == /obj/structure/barbwire)
 		if (locate(/obj/structure/barbwire) in get_turf(H))
 			return
 		if (H)
@@ -168,6 +177,10 @@
 						if (istype(H_area, /area/prishtina/soviet))
 							user << "<span class = 'warning'>This isn't a great place for barbwire.</span>"
 							return
+
+		if (H)
+			if (H.getStat("engineering") < STAT_HIGH)
+				return
 
 	if (recipe.time)
 		var/buildtime = recipe.time

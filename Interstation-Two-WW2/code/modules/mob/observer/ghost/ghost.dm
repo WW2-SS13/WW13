@@ -28,6 +28,9 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	var/obj/item/device/multitool/ghost_multitool
 	incorporeal_move = TRUE
 
+	var/list/original_overlays = list()
+	var/original_icon_state = null
+
 /mob/observer/ghost/New(mob/body)
 	see_in_dark = 100
 	verbs += /mob/observer/ghost/proc/dead_tele

@@ -101,6 +101,9 @@
 	name = "huge HE missle"
 	explosion_ranges = list(1,2,3,4)
 
+/obj/item/projectile/bullet/rifle/missile/yuge/lessyuge
+	explosion_ranges = list(1,1,3,4)
+
 /obj/item/projectile/bullet/rifle/missile/tank
 	name = "tank missle"
 	explosion_ranges = list(1,3,4,5)

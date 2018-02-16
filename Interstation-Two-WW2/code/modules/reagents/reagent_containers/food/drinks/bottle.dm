@@ -43,7 +43,7 @@
 	var/mob/M = thrower
 	if(isGlass && istype(M))
 		var/throw_dist = get_dist(throw_source, loc)
-		if(speed >= throw_speed && shatter_check(throw_dist)) //not as reliable as shattering directly
+		if(shatter_check(throw_dist)) //not as reliable as shattering directly
 			if(reagents)
 				hit_atom.visible_message("<span class='notice'>The contents of \the [src] splash all over [hit_atom]!</span>")
 				reagents.splash(hit_atom, reagents.total_volume)
@@ -82,12 +82,11 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Bump(atom/A, yes)
 	if (src)
-		if (isliving(A) || isturf(A))
+		if (isliving(A) || isturf(A) || (isobj(A) && A.density))
 			shatter(get_turf(A), A, calculate_alcohol_power())
 	..(A, yes)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/shatter(var/newloc, atom/against = null, var/alcohol_power = FALSE)
-
 
 	if (!newloc)
 		newloc = get_turf(src)
@@ -119,15 +118,20 @@
 
 			var/src_turf = get_turf(src)
 
-			for (var/turf/T in range(src_turf, firerange))
-				if (prob(80) && !T.density)
-					var/obj/fire/F = T.create_fire(temp = ceil(explosion_power/8))
-					F.time_limit = pick(5,6,7)*10
-					for (var/mob/living/L in T)
-						L.IgniteMob()
-						L.adjustFireLoss(rand(15,20))
-						if (ishuman(L))
-							L.emote("scream")
+			mainloop:
+				for (var/turf/T in range(src_turf, firerange))
+					if (prob(80) && !T.density)
+						for (var/obj/structure/S in T)
+							if (S.density && !S.low)
+								break mainloop
+						var/obj/fire/F = T.create_fire(temp = ceil(explosion_power/8))
+						F.time_limit = pick(5,6,7)*10
+						for (var/mob/living/L in T)
+							L.fire_stacks += 5
+							L.IgniteMob()
+							L.adjustFireLoss(rand(15,20))
+							if (ishuman(L))
+								L.emote("scream")
 
 			spawn (1)
 				explosion(src_turf, devrange, heavyrange, lightrange, flashrange)
@@ -221,11 +225,11 @@
 	var/mob/living/carbon/human/H = target
 	if(istype(H) && H.headcheck(hit_zone))
 		var/obj/item/organ/affecting = H.get_organ(hit_zone) //headcheck should ensure that affecting is not null
-		user.visible_message("<span class='danger'>[user] shatteres [src] into [H]'s [affecting.name]!</span>")
+		user.visible_message("<span class='danger'>[user] shatters [src] into [H]'s [affecting.name]!</span>")
 		if(weaken_duration)
 			target.apply_effect(min(weaken_duration, 5), WEAKEN, blocked) // Never weaken more than a flash!
 	else
-		user.visible_message("<span class='danger'>\The [user] shatteres [src] into [target]!</span>")
+		user.visible_message("<span class='danger'>\The [user] shatters [src] into [target]!</span>")
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	var/alcohol_power = calculate_alcohol_power()
@@ -259,7 +263,8 @@
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
 /obj/item/weapon/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
+	if (M != user || M.a_intent != I_HELP)
+		playsound(loc, 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
 	return ..()
 
 

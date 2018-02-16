@@ -113,8 +113,9 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					H.update_surgery()
 				return	1	  												//don't want to do weapony things after surgery
 
-	if (user.a_intent == I_HELP)
-		user << "<span class='warning'>You can't see any useful way to use [tool] on [M].</span>"
+// this gets called for every item attack now
+//	if (user.a_intent == I_HELP)
+//		user << "<span class='warning'>You can't see any useful way to use [tool] on [M].</span>"
 	return FALSE
 
 proc/sort_surgeries()

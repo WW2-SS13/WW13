@@ -15,11 +15,10 @@
 	var/fuel = 750
 	var/max_fuel = 750
 	var/next_spam_allowed = -1
-	var/locked = TRUE //tanks need to be unlocked
+	var/locked = TRUE
 	var/heal_damage[2]
 	var/named = FALSE
 	var/obj/item/device/radio/radio = null
-
 	pixel_x = -32
 
 /obj/tank/New()
@@ -194,7 +193,7 @@
 /obj/tank/proc/receive_command_from(var/mob/user, x)
 	if (!isliving(user) || user.stat == UNCONSCIOUS || user.stat == DEAD)
 		return
-	if (user == front_seat())
+	if (user == front_seat() && x != "FIRE")
 		return receive_frontseat_command(x)
 	else if (user == back_seat())
 		return receive_backseat_command(x)

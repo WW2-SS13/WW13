@@ -11,7 +11,8 @@
 		"Fallschirmjager Lied:1" = 'sound/music/Fallschirmjager_lied_German_paratrooper_song.ogg',
 		"Farewell of Slavianka:1" = 'sound/music/FarewellofSlavianka.ogg',
 		"Katyusha:1" = 'sound/music/katyusha.ogg',
-		"Katyusha (Girls und Panzer):1" = 'sound/music/Girls_und_Panzer_Katyusha_full_version_-.ogg')
+		"Smuglianka:1" = 'sound/music/smuglianka.ogg')
+
 
 /datum/lobby_music_player/New()
 	..()

@@ -255,6 +255,17 @@ var/list/name_to_material
 	hardness = 30
 	stack_origin_tech = list(TECH_MATERIAL = 6)
 
+/material/rope
+	name = "rope"
+	stack_type = /obj/item/stack/material/rope
+	flags = MATERIAL_UNMELTABLE
+	cut_delay = 5
+	icon_colour = "#FFFFFF"
+	shard_type = null
+	tableslam_noise = null
+	hardness = 10
+	stack_origin_tech = list(TECH_MATERIAL = 6)
+
 /material/gold
 	name = "gold"
 	stack_type = /obj/item/stack/material/gold

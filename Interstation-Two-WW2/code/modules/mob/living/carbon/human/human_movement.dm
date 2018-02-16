@@ -17,7 +17,7 @@
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
 	if (chem_effects.Find(CE_SPEEDBOOST))
-		tally -= 0.33
+		tally -= 0.66
 
 	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
@@ -76,7 +76,7 @@
 	. = max(0, (tally+config.human_delay))
 	stored_tally = .
 
-	next_calculate_tally = world.time + 50
+	next_calculate_tally = world.time + 10
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = FALSE)
 	return FALSE

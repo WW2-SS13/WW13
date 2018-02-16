@@ -1,4 +1,5 @@
 /mob/living/carbon/human/var/last_scream = -1
+/mob/living/carbon/human/var/last_surrender = -1
 /mob/living/carbon/human/var/next_vocal_emote = -1
 
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
@@ -537,7 +538,7 @@
 							message = "holds out [g.his] hand to [M]."
 
 			if ("scream")
-				if (last_scream != -1 && world.time - last_scream < 30)
+				if (last_scream != -1 && world.time - last_scream < 50)
 					return
 				last_scream = world.time
 				if (miming)
@@ -555,6 +556,14 @@
 						message = "makes a very loud noise."
 						m_type = 2
 
+			if ("surrender")
+				if (last_surrender != -1 && world.time - last_surrender < 1200)
+					return
+				last_surrender = world.time
+				message = "<span class = 'userdanger'>surrenders!</span>"
+				Weaken(30)
+				if(l_hand) unEquip(l_hand)
+				if(r_hand) unEquip(r_hand)
 			if ("dab")
 				if (config.allow_dabbing)
 					m_type = 1

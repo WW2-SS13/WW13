@@ -64,7 +64,6 @@ var/list/gamemode_cache = list()
 	var/allow_random_events = FALSE			// enables random events mid-round when set to TRUE
 	var/allow_ai = TRUE					// allow ai job
 	var/hostedby = null
-	var/respawn_delay = 30
 	var/guest_jobban = TRUE
 	var/usewhitelist = FALSE
 	var/allow_testing_staff = FALSE
@@ -167,6 +166,8 @@ var/list/gamemode_cache = list()
 
 	var/ghosts_can_possess_animals = FALSE
 
+	var/no_respawn_delays = FALSE
+
 	// hub stuff
 
 	var/hub = FALSE
@@ -267,6 +268,9 @@ var/list/gamemode_cache = list()
 
 		if(type == "config")
 			switch (name)
+
+				if ("no_respawn_delays")
+					no_respawn_delays = text2num(value)
 
 				if ("global_config_path")
 					if (list("null", "Null", "NULL", "nil", "Nil", "NILL").Find(value))
@@ -431,9 +435,6 @@ var/list/gamemode_cache = list()
 
 				if ("allow_ai")
 					config.allow_ai = TRUE
-
-				if ("respawn_delay")
-					config.respawn_delay = text2num(value)
 
 				if ("server_name")
 					config.server_name = value
