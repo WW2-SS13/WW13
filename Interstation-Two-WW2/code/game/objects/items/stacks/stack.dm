@@ -178,8 +178,10 @@
 							user << "<span class = 'warning'>This isn't a great place for barbwire.</span>"
 							return
 
+	else if (recipe.result_type == /obj/structure/girder)
 		if (H)
 			if (H.getStat("engineering") < STAT_HIGH)
+				H << "<span class = 'info'>You have no idea of how to build a girder.</span>"
 				return
 
 	if (recipe.time)
