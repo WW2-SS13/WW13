@@ -640,6 +640,8 @@
 			stat = UNCONSCIOUS
 			animate_tail_reset()
 			adjustHalLoss(-3)
+			if(l_hand) unEquip(l_hand)
+			if(r_hand) unEquip(r_hand)
 
 		if(paralysis)
 			AdjustParalysis(-1)

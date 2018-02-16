@@ -210,6 +210,7 @@ Parts of code courtesy of Super3222
 	check_flags = AB_CHECK_ALIVE|AB_CHECK_RESTRAINED|AB_CHECK_STUNNED|AB_CHECK_LYING
 	button_icon_state = "sniper_zoom"
 	var/obj/item/weapon/attachment/scope/scope = null
+	var/boundto = null
 
 /datum/action/toggle_scope/IsAvailable()
 	. = ..()

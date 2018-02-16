@@ -1,7 +1,7 @@
 // All mobs should have custom emote, really..
 //m_type == TRUE --> visual.
 //m_type == 2 --> audible
-/mob/proc/custom_emote(var/m_type=1,var/message = null)
+/mob/proc/custom_emote(var/m_type=1,var/message = null,var/span_class = null)
 
 	if(usr && stat || !use_me && usr == src)
 		if (usr.stat != DEAD && usr.stat != UNCONSCIOUS) // fixes spam when you die? - Kachnov
@@ -21,6 +21,8 @@
 	else
 		return
 
+	if (span_class)
+		message = "<span class = '[span_class]'>[message]</span>"
 
 	if (message)
 		log_emote("[name]/[key] : [message]")

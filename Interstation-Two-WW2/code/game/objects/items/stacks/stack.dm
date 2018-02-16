@@ -154,9 +154,21 @@
 		H = user
 
 	if (recipe.result_type == /obj/structure/noose)
-		if (!locate(/obj/structure) in get_turf(H))
+		var/structurecheck = 0
+
+		for (var/obj/structure/structure in get_turf(H))
+			if ((structure.density && !structure.low) || istype(structure, /obj/structure/bed))
+				structurecheck = 2
+			else if (structurecheck == 0)
+				structurecheck = 1
+
+		if (structurecheck == 0)
 			H << "<span class = 'warning'>You need to be on a structure to make a noose.</span>"
 			return
+		else if (structurecheck == 1)
+			H << "<span class = 'warning'>This structure is not suitable for standing on.</span>"
+			return
+
 		var/area/H_area = get_area(H)
 		if (H_area.location == OUTSIDE)
 			H << "<span class = 'warning'>You need a ceiling to make a noose.</span>"

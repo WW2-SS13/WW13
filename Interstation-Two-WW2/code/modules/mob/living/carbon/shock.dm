@@ -16,9 +16,6 @@
 	2	* halloss + 			\
 	-1	* analgesic
 
-	if(slurring)
-		traumatic_shock -= 20
-
 	// broken or ripped off organs will add quite a bit of pain
 	if(istype(src,/mob/living/carbon/human))
 		var/mob/living/carbon/human/M = src

@@ -45,6 +45,9 @@
 
 	callHook("death", list(src, gibbed))
 
+	if(l_hand) unEquip(l_hand)
+	if(r_hand) unEquip(r_hand)
+
 	if(ticker && ticker.mode)
 
 		ticker.mode.check_win()

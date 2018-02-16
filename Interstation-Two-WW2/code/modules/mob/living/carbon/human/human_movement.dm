@@ -11,13 +11,8 @@
 	if(species.slowdown)
 		tally = species.slowdown
 
-	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
-
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
-
-	if (chem_effects.Find(CE_SPEEDBOOST))
-		tally -= 0.66
 
 	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
@@ -70,11 +65,12 @@
 	tally += max(2 * stance_damage, FALSE) //damaged/missing feet or legs is slow
 
 	if(mRun in mutations)
-		tally = 0
+		tally -= 0.30
 
-	// no more huge speedups from wearing shoes
-	. = max(0, (tally+config.human_delay))
-	stored_tally = .
+	if (chem_effects.Find(CE_SPEEDBOOST))
+		tally -= 0.30
+
+	stored_tally = tally
 
 	next_calculate_tally = world.time + 10
 

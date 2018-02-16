@@ -560,8 +560,8 @@
 				if (last_surrender != -1 && world.time - last_surrender < 1200)
 					return
 				last_surrender = world.time
-				message = "<span class = 'userdanger'>surrenders!</span>"
-				Weaken(30)
+				message = "surrenders!"
+				Weaken(50)
 				if(l_hand) unEquip(l_hand)
 				if(r_hand) unEquip(r_hand)
 			if ("dab")
@@ -616,7 +616,10 @@
 
 		if (message)
 			log_emote("[name]/[key] : [message]")
-			custom_emote(m_type,message)
+			if (act == "surrender")
+				custom_emote(m_type,message,"userdanger")
+			else
+				custom_emote(m_type,message)
 
 		if (m_type == 2 && act != "scream")
 			next_vocal_emote = world.time + 50
