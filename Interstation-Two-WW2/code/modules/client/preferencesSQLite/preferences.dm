@@ -169,9 +169,9 @@ var/list/preferences_datums = list()
 		user << "<span class='danger'>No mob exists for the given client!</span>"
 		close_load_dialog(user)
 		return
-	<br>
-	var/dat = {"
 
+	var/dat = {"
+	<br>
 	<html>
 	<head>
 	<style>
@@ -196,6 +196,7 @@ var/list/preferences_datums = list()
 	dat += player_setup.content(user)
 
 	dat += "</html></body>"
+	user << browse(dat, "window=preferences;size=600x800")
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return
