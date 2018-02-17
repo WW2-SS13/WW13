@@ -184,7 +184,7 @@ RULESURL http://mechahitler.co.nf/lebensraum/rules.html
 DISCORDURL https://discord.gg/PVqjqCv
 
 ## Wiki address
-WIKIURL http://lebensraum.wikia.com
+WIKIURL http://mechahitler.co.nf/wiki/media/index.php?title=Main_Page
 
 ## Website address
 WEBSITEURL http://mechahitler.co.nf/

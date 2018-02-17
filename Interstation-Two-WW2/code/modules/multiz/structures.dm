@@ -186,7 +186,7 @@
 
 /obj/structure/multiz/ladder/ww2/Crossed(var/atom/movable/AM)
 	if (find_target())
-		if (isitem(AM))
+		if (isitem(AM) && !istype(AM, /obj/item/projectile))
 			AM.forceMove(get_turf(find_target()))
 
 /obj/structure/multiz/ladder/ww2/find_target()

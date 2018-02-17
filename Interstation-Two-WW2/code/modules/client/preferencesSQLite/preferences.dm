@@ -170,7 +170,16 @@ var/list/preferences_datums = list()
 		close_load_dialog(user)
 		return
 
-	var/dat = "<html><body><center>"
+	var/dat = {"
+
+	<html>
+	<head>
+	<style>
+	[common_browser_style]
+	</style>
+	</head>
+	<body><center>
+	"}
 
 	if(!IsGuestKey(user.key))
 		dat += "<big><b>"
@@ -187,7 +196,7 @@ var/list/preferences_datums = list()
 	dat += player_setup.content(user)
 
 	dat += "</html></body>"
-	user << browse(dat, "window=preferences;size=635x736")
+	user << browse(dat, "window=preferences;size=700x800")
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return

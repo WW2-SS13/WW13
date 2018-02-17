@@ -492,7 +492,8 @@
 
 	src << browse(null, "window=latechoices")
 
-	var/list/dat = list("<html><body style='background-color:#1D2951; color:#ffffff'><center>")
+	//<body style='background-color:#1D2951; color:#ffffff'>
+	var/list/dat = list("<center>")
 	dat += "<b>Welcome, [key].<br></b>"
 	dat += "Round Duration: [roundduration2text()]<br>"
 	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans and [alive_russians.len] Russians.<br>"
@@ -593,7 +594,7 @@
 					active++
 				if(job.base_type_flag() != prev_side)
 					prev_side = job.base_type_flag()
-					var/side_name = "<b><span style = 'font-size: 3.0em;'>[job.get_side_name()]</span></b>&&[job.base_type_flag()]&&"
+					var/side_name = "<b><h1>[job.get_side_name()]</h1></b>&&[job.base_type_flag()]&&"
 					if(side_name)
 						dat += "[side_name]<br>"
 
@@ -601,22 +602,22 @@
 				var/end_extra_span = ""
 
 				if (job.is_officer && !job.is_commander)
-					extra_span = "<span style = 'font-size: 1.5em;'>"
-					end_extra_span = "</span>"
+					extra_span = "<h3>"
+					end_extra_span = "</h3>"
 				else if (job.is_commander)
-					extra_span = "<span style = 'font-size: 2.0em;'>"
-					end_extra_span = "</span>"
+					extra_span = "<h2>"
+					end_extra_span = "</h2>"
 
 				if (!job.en_meaning)
 					if (job_is_available)
-						dat += "&[job.base_type_flag()]&[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
+						dat += "&[job.base_type_flag()]&[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]"
 						++available_jobs_per_side[job.base_type_flag()]
 				/*	else
 						dat += "&[job.base_type_flag()]&[unavailable_message]<span style = 'color:red'><strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 					*/
 				else
 					if (job_is_available)
-						dat += "&[job.base_type_flag()]&[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
+						dat += "&[job.base_type_flag()]&[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]"
 						++available_jobs_per_side[job.base_type_flag()]
 			/*		else
 						dat += "&[job.base_type_flag()]&[unavailable_message]<span style = 'color:red'><strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
@@ -655,7 +656,20 @@
 	for (var/line in dat)
 		if (line != null)
 			data += line
-			data += "<br>"
+		//	data += "<br>"
+	//<link rel='stylesheet' type='text/css' href='html/browser/common.css'>
+	data = {"
+		<html>
+		<head>
+		<style>
+		[common_browser_style]
+		</style>
+		</head>
+		<body>
+		[data]
+		</body>
+		</html>
+	"}
 
 	spawn (1)
 		src << browse(data, "window=latechoices;size=600x640;can_close=1")

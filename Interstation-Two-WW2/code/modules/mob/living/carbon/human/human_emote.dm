@@ -602,9 +602,9 @@
 
 			if ("help")
 				src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
-	cry, custom, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,
+	cry, custom, dab, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,
 	grin, laugh, look-(none)/mob, moan, mumble, nod, pale, point-atom, raise, salute, shake, shiver, shrug,
-	sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, tremble, twitch, twitch_s, whimper,
+	sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, scream, surrender, tremble, twitch, twitch_s, whimper,
 	wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag, dab"}
 
 			else

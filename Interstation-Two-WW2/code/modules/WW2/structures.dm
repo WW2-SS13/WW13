@@ -57,8 +57,9 @@
 		else if (pixel_x == 0)
 			pixel_x = -1
 
+		hanging.pixel_x = pixel_x
+
 		if (hanging.stat != DEAD)
-			hanging.pixel_x = pixel_x
 			hanging.adjustOxyLoss(5)
 			density = TRUE
 			if (prob(5))

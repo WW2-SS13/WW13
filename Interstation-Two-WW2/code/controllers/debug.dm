@@ -36,7 +36,6 @@ var/list/special_globalobjects = list("processScheduler", "Master", "Ticker", "C
 			debug_variables(ticker)
 
 		if ("Configuration")
-			log_debug("test1: [config]")
 			debug_variables(config)
 
 		if("Observation")

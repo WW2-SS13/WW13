@@ -49,6 +49,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			if (serverswap_open_status)
 				world << "<b><span style = 'notice'>Welcome to the pre-game lobby!</span></b>"
 				world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+
 			while(current_state == GAME_STATE_PREGAME)
 				for(var/i=0, i<10, i++)
 					sleep(1)

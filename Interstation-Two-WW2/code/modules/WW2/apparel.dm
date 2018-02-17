@@ -294,7 +294,7 @@
 	item_state = "gerbelt"
 	storage_slots = 12
 	max_w_class = 3
-	max_storage_space = 28
+	max_storage_space = 24
 	can_hold = list(
 		/obj/item/ammo_magazine,
 		/obj/item/weapon/material,
@@ -331,7 +331,7 @@
 	item_state = "gerbelt"
 	storage_slots = 12
 	max_w_class = 3
-	max_storage_space = 28
+	max_storage_space = 24
 	can_hold = list(
 		/obj/item/ammo_magazine,
 		/obj/item/weapon/material,

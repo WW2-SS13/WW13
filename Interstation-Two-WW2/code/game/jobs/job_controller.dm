@@ -178,7 +178,10 @@ var/global/datum/controller/occupations/job_master
 		if (announce == TRUE)
 			world << "<span class = 'warning'>Setting up roundstart autobalance for [_clients] players.</span>"
 		else if (announce == 2)
-			world << "<span class = 'warning'>An admin has changed autobalance to be set up for [_clients] players.</span>"
+			if (!roundstart_time)
+				world << "<span class = 'warning'>An admin has changed autobalance to be set up for [_clients] players.</span>"
+			else
+				world << "<span class = 'warning'>An admin has reset autobalance for [_clients] players.</span>"
 
 		var/expected_players = _clients * 0.9
 

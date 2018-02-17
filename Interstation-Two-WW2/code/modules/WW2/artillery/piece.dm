@@ -86,7 +86,13 @@
 
 			<html>
 
-			<body style='background-color:#1D2951; color:#ffffff'>
+			<head>
+			<style>
+			[common_browser_style]
+			</style>
+			</head>
+
+			<body>
 
 			<script language="javascript">
 
