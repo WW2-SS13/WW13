@@ -84,6 +84,7 @@
 
 			m << browse({"
 
+			<br>
 			<html>
 
 			<head>
@@ -128,6 +129,7 @@
 			</body>
 
 			</html>
+			<br>
 			"},  "window=artillery_window;border=1;can_close=1;can_resize=1;can_minimize=0;titlebar=1;size=500x500")
 		//		<A href = '?src=\ref[src];topic_type=[topic_custom_input];continue_num=1'>
 

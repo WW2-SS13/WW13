@@ -91,6 +91,7 @@
 			hanging = target
 			target.loc = get_turf(src)
 			target.dir = SOUTH
+			process()
 
 /obj/structure/noose/attack_hand(var/mob/living/carbon/human/H)
 	if (!istype(H))

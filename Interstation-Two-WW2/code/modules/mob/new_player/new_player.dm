@@ -494,9 +494,12 @@
 
 	//<body style='background-color:#1D2951; color:#ffffff'>
 	var/list/dat = list("<center>")
-	dat += "<b>Welcome, [key].<br></b>"
-	dat += "Round Duration: [roundduration2text()]<br>"
-	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans and [alive_russians.len] Russians.<br>"
+	dat += "<b><big>Welcome, [key].</big></b>"
+	dat += "<br>"
+	dat += "Round Duration: [roundduration2text()]"
+	dat += "<br>"
+	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans and [alive_russians.len] Russians."
+	dat += "<br>"
 
 	var/list/restricted_choices = list()
 	var/list/available_jobs_per_side = list(
@@ -510,7 +513,8 @@
 
 	var/prev_side = FALSE
 
-	dat += "<b>Choose from the following open positions:</b><br>"
+	dat += "<b>Choose from the following open positions:</b>"
+	dat += "<br>"
 
 	for(var/datum/job/job in job_master.faction_organized_occupations)
 
@@ -594,9 +598,9 @@
 					active++
 				if(job.base_type_flag() != prev_side)
 					prev_side = job.base_type_flag()
-					var/side_name = "<b><h1>[job.get_side_name()]</h1></b>&&[job.base_type_flag()]&&"
+					var/side_name = "<b><h1><big>[job.get_side_name()]</big></h1></b>&&[job.base_type_flag()]&&"
 					if(side_name)
-						dat += "[side_name]<br>"
+						dat += "<br><br>[side_name]<br>"
 
 				var/extra_span = ""
 				var/end_extra_span = ""
@@ -656,9 +660,10 @@
 	for (var/line in dat)
 		if (line != null)
 			data += line
-		//	data += "<br>"
+			data += "<br>"
 	//<link rel='stylesheet' type='text/css' href='html/browser/common.css'>
 	data = {"
+		<br>
 		<html>
 		<head>
 		<style>
@@ -669,6 +674,7 @@
 		[data]
 		</body>
 		</html>
+		<br>
 	"}
 
 	spawn (1)

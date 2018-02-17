@@ -40,6 +40,12 @@
 
 /mob/proc/ClickOn(var/atom/A, var/params)
 
+	if (ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if (H.lying)
+			if (ismob(A) || (A.loc && istype(A.loc, /turf)))
+				return
+
 	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
 		return
 
