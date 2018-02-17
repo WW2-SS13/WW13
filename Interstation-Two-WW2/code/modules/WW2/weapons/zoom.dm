@@ -45,7 +45,7 @@ Parts of code courtesy of Super3222
 /obj/item/weapon/attachment/scope/adjustable/binoculars
 	name = "binoculars"
 	desc = "A pair of binoculars."
-	max_zoom = 25
+	max_zoom = 21
 	attachable = FALSE
 
 /obj/item/weapon/attachment/scope/adjustable/verb/adjust_scope_verb()
@@ -62,34 +62,37 @@ Parts of code courtesy of Super3222
 
 	if(!Adjacent(user))
 		return
+
 	if(zoomed)
-		zoom(user, FALSE)
+		zoom(user, 0)
 
-	var/input = input(user, "Set the zoom amount.", "Zoom" , "") as num
-	if(input == zoom_amt)
-		return
+	if (do_after(user, 7, src))
 
-	var/dial_check = FALSE
-
-	if(input > max_zoom)
-		if(zoom_amt == max_zoom)
-			user << "<span class='warning'>You can't adjust it any further.</span>"
+		var/input = input(user, "Set the zoom amount.", "Zoom" , "") as num
+		if(input == zoom_amt)
 			return
-		else
-			zoom_amt = max_zoom
-			dial_check = TRUE
-	else if(input < min_zoom)
-		if(zoom_amt == min_zoom)
-			user << "<span class='warning'>You can't adjust it any further.</span>"
-			return
-		else
-			zoom_amt = min_zoom
-	else
-		if(input > zoom_amt)
-			dial_check = TRUE
-		zoom_amt = input
 
-	user << "<span class='notice'>You twist the dial on [src] [dial_check ? "clockwise, increasing" : "counterclockwise, decreasing"] the zoom range to [zoom_amt].</span>"
+		var/dial_check = FALSE
+
+		if(input > max_zoom)
+			if(zoom_amt == max_zoom)
+				user << "<span class='warning'>You can't adjust it any further.</span>"
+				return
+			else
+				zoom_amt = max_zoom
+				dial_check = TRUE
+		else if(input < min_zoom)
+			if(zoom_amt == min_zoom)
+				user << "<span class='warning'>You can't adjust it any further.</span>"
+				return
+			else
+				zoom_amt = min_zoom
+		else
+			if(input > zoom_amt)
+				dial_check = TRUE
+			zoom_amt = input
+
+		user << "<span class='notice'>You twist the dial on [src] [dial_check ? "clockwise, increasing" : "counterclockwise, decreasing"] the zoom range to [zoom_amt].</span>"
 
 // An ugly hack called a boolean proc, made it like this to allow special
 // behaviour without big overrides. So special snowflake weapons like the minigun
@@ -119,10 +122,17 @@ Parts of code courtesy of Super3222
 		return FALSE
 	return TRUE
 
+/mob/living/var/next_zoom = -1
+
 /obj/item/weapon/attachment/scope/proc/zoom(mob/living/user, forced_zoom, var/bypass_can_zoom = FALSE)
 
 	if(!user || !user.client)
 		return
+
+	if (user.next_zoom > world.time)
+		return
+
+	user.next_zoom = world.time + 10
 
 	switch(forced_zoom)
 		if(FALSE)

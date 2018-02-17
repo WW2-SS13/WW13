@@ -6,6 +6,7 @@
 	named = TRUE
 
 /obj/tank/var/displayed_damage_message[10]
+/obj/tank/var/examine_desc = ""
 
 /obj/tank/proc/x_percent_of_max_damage(x)
 	return (max_damage/100) * x
@@ -18,35 +19,42 @@
 				displayed_damage_message["6-15"] = FALSE
 		//		tank_message("<span class = 'danger'>[src] looks a bit damaged.</span>")
 				displayed_damage_message["0-5"] = TRUE
+				examine_desc = ""
 		if (6 to 15)
 			if (!displayed_damage_message["6-15"])
 				displayed_damage_message["16-25"] = FALSE
 				tank_message("<span class = 'danger'>[src] looks a bit damaged.</span>")
 				displayed_damage_message["6-15"] = TRUE
+				examine_desc = "It looks a bit damaged."
 		if (16 to 25)
 			if (!displayed_damage_message["16-25"])
 				displayed_damage_message["25-49"] = FALSE
 				tank_message("<span class = 'danger'>[src] looks damaged.</span>")
 				displayed_damage_message["16-25"] = TRUE
+				examine_desc = "It looks damaged."
 		if (25 to 49)
 			if (!displayed_damage_message["25-49"])
 				displayed_damage_message["50-79"] = FALSE
 				tank_message("<span class = 'danger'>[src] looks quite damaged.</span>")
 				displayed_damage_message["25-49"] = TRUE
+				examine_desc = "It looks quite damaged."
 		if (50 to 79)
 			if (!displayed_damage_message["50-79"])
 				displayed_damage_message["80-97"] = FALSE
 				tank_message("<span class = 'danger'>[src] looks really damaged!</span>")
 				displayed_damage_message["50-79"] = TRUE
+				examine_desc = "It looks really damaged."
 		if (80 to 97)
 			if (!displayed_damage_message["80-97"])
 				displayed_damage_message["97-INFINITY"] = FALSE
 				tank_message("<span class = 'danger'>[src] looks extremely damaged!</span>")
 				displayed_damage_message["80-97"] = TRUE
+				examine_desc = "It looks extremely damaged."
 		if (97 to INFINITY)
 			if (!displayed_damage_message["97-INFINITY"])
 				tank_message("<span class = 'danger'><big>[src] looks like its going to explode!!</big></span>")
 				displayed_damage_message["97-INFINITY"] = TRUE
+				examine_desc = "It looks like its going to explode!"
 
 	// ramming a dying tank can now make it die faster
 	if (did_critical_damage && prob(5))

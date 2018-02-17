@@ -349,6 +349,7 @@
 	desc = "A sink used for washing one's hands and face."
 	anchored = TRUE
 	var/busy = FALSE 	//Something's being washed at the moment
+	var/sound = 'sound/effects/sink.ogg'
 
 /obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
 	..()
@@ -386,8 +387,8 @@
 
 	user << "<span class='notice'>You start washing your hands.</span>"
 
-//	playsound(loc, 'sound/effects/watersplash.ogg', 100, TRUE)
-	playsound(loc, 'sound/effects/sink.ogg', 100, TRUE)
+	if (sound)
+		playsound(loc, sound, 100, TRUE)
 
 	busy = user
 	sleep(40)
@@ -469,6 +470,7 @@
 /obj/structure/sink/puddle	//splishy splashy ^_^
 	name = "puddle"
 	icon_state = "puddle"
+	sound = 'sound/effects/watersplash.ogg'
 
 /obj/structure/sink/puddle/attack_hand(mob/M as mob)
 	icon_state = "puddle-splash"

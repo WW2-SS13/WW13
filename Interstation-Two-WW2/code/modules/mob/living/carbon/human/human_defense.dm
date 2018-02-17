@@ -24,6 +24,8 @@ bullet_act
 				for (var/v in TRUE to rand(5,7))
 					var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
 					meat.name = "[name] meatsteak"
+				for (var/obj/item/clothing/I in contents)
+					drop_from_inventory(I)
 				crush()
 				qdel(src)
 	else

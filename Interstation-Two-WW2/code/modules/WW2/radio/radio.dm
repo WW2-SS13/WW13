@@ -223,6 +223,7 @@ var/global/list/default_ukrainian_channels = list(
 		// GUNS & ARTILLERY
 		"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
 		"Maxim" = /obj/item/weapon/gun/projectile/minigun/kord/maxim,
+		"Colt Crate" = /obj/structure/closet/crate/colts,
 
 		// CLOSETS
 		"Tool Closet" = /obj/structure/closet/toolcloset,
@@ -282,6 +283,7 @@ var/global/list/default_ukrainian_channels = list(
 		"Flammenwerfer" = 250,
 		"7,5 cm FK 18 Artillery Piece" = 300,
 		"Luger Crate" = 400,
+		"Colt Crate" = 400,
 		"Maxim" = 225,
 
 		// ARTILLERY AMMO
@@ -489,7 +491,10 @@ var/global/list/default_ukrainian_channels = list(
 			//	log_debug("5")
 				radio.broadcast(rhtml_encode(message), src, TRUE)
 
-/obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = FALSE)
+/obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = FALSE, var/needs_loc = TRUE)
+
+	if (!loc && needs_loc)
+		return
 
 	hardtohear = FALSE // wip
 
@@ -792,6 +797,6 @@ var/global/list/default_ukrainian_channels = list(
 	announcer = announcers[_announcer]
 	mob = mobs[_announcer]
 
-	announcer.broadcast(msg, mob)
+	announcer.broadcast(msg, mob, needs_loc = FALSE)
 
 	return TRUE
