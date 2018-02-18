@@ -16,6 +16,47 @@ var/global/list/valid_coordinates = list()
 	verbs += /mob/living/carbon/human/proc/Reset_Coordinates_Chump
 	can_check_distant_coordinates = TRUE
 
+// all officer jobs not listed in one of these lists are considered tier 3 officers
+// ie kanoniers, squad leaders, quartermasters, MPs
+
+var/list/tier_1_officer_jobtypes = list(
+	/datum/job/german/commander,
+	/datum/job/soviet/commander,
+	/datum/job/german/XO,
+	/datum/job/soviet/XO)
+
+var/list/tier_2_officer_jobtypes = list(
+	/datum/job/german/staff_officer,
+	/datum/job/soviet/staff_officer)
+
+// if this returns 1, j1's rank > j2's rank
+// if this returns 0, its not. Its not necessary less important either.
+/proc/rankcmp(var/datum/job/j1, var/datum/job/j2)
+
+	// non-SS may not execute SS and vice versa. Different chain of command.
+	if (j1.is_SS != j2.is_SS)
+		return 0
+
+	// different factions
+	if (j1.base_type_flag() != j2.base_type_flag())
+		return 0
+
+	if (j1.is_commander && !j2.is_commander)
+		return 1
+
+	if (j1.is_officer && !j2.is_officer)
+		return 1
+
+	if (j1.is_officer && j2.is_officer)
+		if (tier_1_officer_jobtypes.Find(j1.type))
+			if (!tier_1_officer_jobtypes.Find(j2.type))
+				return 1
+		else if (tier_2_officer_jobtypes.Find(j1.type))
+			if (!tier_1_officer_jobtypes.Find(j2.type) && !tier_2_officer_jobtypes.Find(j2.type))
+				return 1
+
+	return 0
+
 /mob/living/carbon/human/var/next_execute = -1
 /mob/living/carbon/human/proc/Execute()
 	set category = "Officer"
@@ -39,25 +80,16 @@ var/global/list/valid_coordinates = list()
 
 	while (TRUE)
 		T = get_step(T, dir)
-	//	log_debug(T.x)
-	//	log_debug(T.y)
 		++steps
 		if (steps >= 7 || T.density || locate_type(T, /obj/structure) || locate_type(T, /mob/living/carbon/human))
-		//	log_debug(0)
 			break
 
-//	log_debug(1)
-
 	for (var/mob/living/carbon/human/H in T)
-	//	log_debug("1.01 [H.name]")
-		if (H != src && original_job && H.original_job && original_job.base_type_flag() == H.original_job.base_type_flag())
-		//	log_debug(1.1)
-			if (H.stat != DEAD && !H.original_job.is_officer && !H.original_job.is_SS)
+		if (H != src && H.stat != DEAD && original_job && H.original_job)
+			if (rankcmp(original_job, H.original_job))
 				var/obj/item/projectile/in_chamber = G.consume_next_projectile()
 				if (!in_chamber || !istype(in_chamber))
-			//		log_debug(2)
 					return
-			//	log_debug(3)
 				var/datum/gender/GD = gender_datums[gender]
 				var/old_targeted_organ = targeted_organ
 				targeted_organ = "head"
@@ -66,7 +98,7 @@ var/global/list/valid_coordinates = list()
 				G.Fire(H, src)
 				G.executing = FALSE
 				targeted_organ = old_targeted_organ
-				next_execute = world.realtime + 1800
+				next_execute = world.realtime + 600
 				break
 
 /mob/living/carbon/human/proc/Check_Coordinates()

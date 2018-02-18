@@ -249,7 +249,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 	if(!ticker || !ticker.login_music)	return
 	if(!istype(mob, /mob/new_player)) return
 	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
-		src << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE)
+		src << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 70, channel = TRUE)
 		lobby_music_player.announce(src)
 		just_played_title_music = TRUE
 		spawn (20)

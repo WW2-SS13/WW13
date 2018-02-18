@@ -337,7 +337,6 @@
 		var/acc = firemode.accuracy[min(i, firemode.accuracy.len)]
 		var/disp = firemode.dispersion[min(i, firemode.dispersion.len)]
 
-
 		if (istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
 
@@ -368,6 +367,11 @@
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("pistol")
 					acc += max(H.getStatCoeff("pistol")-1, FALSE)
+
+			if (ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if (H.lying)
+					acc -= 2
 
 		process_accuracy(projectile, user, target, acc, disp)
 

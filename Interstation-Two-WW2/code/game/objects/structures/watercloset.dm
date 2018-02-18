@@ -131,7 +131,7 @@
 	icon_state = "shower"
 	density = FALSE
 	anchored = TRUE
-	use_power = FALSE
+//	use_power = FALSE
 	var/on = FALSE
 	var/obj/effect/mist/mymist = null
 	var/ismist = FALSE				//needs a var so we can make it linger~

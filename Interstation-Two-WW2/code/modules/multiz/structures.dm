@@ -187,7 +187,9 @@
 /obj/structure/multiz/ladder/ww2/Crossed(var/atom/movable/AM)
 	if (find_target())
 		if (isitem(AM) && !istype(AM, /obj/item/projectile))
-			AM.forceMove(get_turf(find_target()))
+			var/obj/item/I = AM
+			if (I.w_class <= 2.0) // fixes maxim bug and probably some others - Kachnov
+				I.forceMove(get_turf(find_target()))
 
 /obj/structure/multiz/ladder/ww2/find_target()
 	for (var/obj/structure/multiz/ladder/ww2/ladder in world) // todo: get rid of

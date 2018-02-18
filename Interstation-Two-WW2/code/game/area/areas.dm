@@ -120,7 +120,7 @@ var/list/ghostteleportlocs = list()
 		power_light = FALSE
 		power_equip = FALSE
 		power_environ = FALSE
-	power_change()		// all machines set to current power level, also updates lighting icon
+//	power_change()		// all machines set to current power level, also updates lighting icon
 
 /area/proc/get_contents()
 	return contents
@@ -236,11 +236,12 @@ var/list/ghostteleportlocs = list()
 	return FALSE
 
 // called when power status changes
+/*
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()			// reverify power status (to update icons etc.)
 	if (fire || eject)
-		updateicon()
+		updateicon()*/
 
 /area/proc/usage(var/chan)
 	var/used = FALSE

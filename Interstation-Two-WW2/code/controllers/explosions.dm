@@ -19,9 +19,9 @@ var/datum/controller/process/explosives/bomb_processor
 
 	if (!(work_queue.len))
 		ticks_without_work++
-		if (powernet_update_pending && ticks_without_work > 5)
+/*		if (powernet_update_pending && ticks_without_work > 5)
 			makepowernets()
-			powernet_update_pending = FALSE
+			powernet_update_pending = FALSE*/
 		return
 
 	ticks_without_work = 0

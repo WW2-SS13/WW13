@@ -1,7 +1,7 @@
 #define COMMAND_LEVEL_1 4
 #define COMMAND_LEVEL_2 3
 #define COMMAND_LEVEL_3 2
-#define COMMAND_LEVEL_4 TRUE
+#define COMMAND_LEVEL_4 1
 
 /mob/living/simple_animal/complex_animal/canine/dog
 	icon_state = null
@@ -46,8 +46,11 @@
 
 	var/next_bork = -1
 
+	var/walk_status = ""
+
 	maxHealth = 50
 	health = 50
+
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/check_can_command(var/list/ranks, var/mob/living/carbon/human/H)
 	if (!islist(ranks))

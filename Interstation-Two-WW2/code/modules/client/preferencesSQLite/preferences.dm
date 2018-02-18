@@ -146,6 +146,7 @@ var/list/preferences_datums = list()
 			remember_preference("russian_name", russian_name)
 			remember_preference("ukrainian_name", ukrainian_name)
 			save_preferences(1)
+
 		spawn (1)
 			loadGlobalPreferences()
 			loadGlobalSettings()
@@ -196,7 +197,7 @@ var/list/preferences_datums = list()
 	dat += player_setup.content(user)
 
 	dat += "</html></body>"
-	user << browse(dat, "window=preferences;size=600x800")
+	user << browse(dat, "window=preferences;size=980x800")
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return
@@ -209,6 +210,7 @@ var/list/preferences_datums = list()
 		else
 			user << "<span class='danger'>The forum URL is not set in the server configuration.</span>"
 			return
+
 	ShowChoices(usr)
 	return TRUE
 
@@ -440,10 +442,10 @@ var/list/preferences_datums = list()
 			if (val != vars[key])
 				if (vars[key])
 					vars[key] = val
-
+/*
 	for (var/mob/M in player_list)
 		if (M.client && M.client.ckey == client_ckey)
-			ShowChoices(M)
+			ShowChoices(M)*/
 
 /datum/preferences/proc/saveGlobalPreferences()
 	var/prefstring = ""
@@ -490,10 +492,10 @@ var/list/preferences_datums = list()
 				if (isnum(text2num(val)))
 					val = text2num(val)
 				client.set_preference(val, FALSE)
-
+/*
 	for (var/mob/M in player_list)
 		if (M.client && M.client.ckey == client_ckey)
-			ShowChoices(M)
+			ShowChoices(M)*/
 
 /datum/preferences/proc/saveGlobalSettings()
 	var/prefstring = ""
@@ -579,6 +581,6 @@ var/list/preferences_datums = list()
 		if (isnewplayer(mob))
 			if (is_preference_enabled(cp.key))
 				if (!just_played_title_music)
-					mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE)
+					mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 70, channel = TRUE)
 			else
-				mob << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE)
+				mob << sound(null, repeat = FALSE, wait = FALSE, volume = 70, channel = TRUE)

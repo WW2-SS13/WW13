@@ -211,8 +211,8 @@ hr
 }
 
 a, a:link, a:visited, a:active, .linkOn, .linkOff
-{ 
-	color: #ffffff; 
+{
+	color: #ffffff;
 	text-decoration: none;
 	background: #40628a;
 	border: 1px solid #161616;
@@ -221,15 +221,15 @@ a, a:link, a:visited, a:active, .linkOn, .linkOff
 	cursor:default;
 }
 
-a:hover 
-{ 
+a:hover
+{
 	color: #40628a;
 	background: #ffffff;
 }
 
 a.white, a.white:link, a.white:visited, a.white:active
-{ 
-	color: #40628a; 
+{
+	color: #40628a;
 	text-decoration: none;
 	background: #ffffff;
 	border: 1px solid #161616;
@@ -238,22 +238,22 @@ a.white, a.white:link, a.white:visited, a.white:active
 	cursor:default;
 }
 
-a.white:hover 
-{ 
+a.white:hover
+{
 	color: #ffffff;
 	background: #40628a;
 }
 
 .linkOn, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover
-{ 
-	color: #ffffff; 
+{
+	color: #ffffff;
 	background: #2f943c;
 	border-color: #24722e;
 }
 
 .linkOff, a.linkOff:link, a.linkOff:visited, a.linkOff:active, a.linkOff:hover
-{ 
-	color: #ffffff; 
+{
+	color: #ffffff;
 	background: #999999;
 	border-color: #666666;
 }
@@ -285,15 +285,15 @@ li
 	padding: 0 0 2px 0;
 }
 
-img, a img 
-{ 
-	border-style:none; 
+img, a img
+{
+	border-style:none;
 }
 
 h1, h2, h3, h4, h5, h6
 {
 	margin: 0;
-	padding: 16px 0 8px 0; 
+	padding: 16px 0 8px 0;
 	color: #517087;
 }
 
@@ -361,7 +361,7 @@ h4
 }
 
 .uiContent
-{	
+{
 	clear: both;
 	padding: 8px;
 	font-family: Verdana, Geneva, sans-serif;
@@ -404,7 +404,7 @@ h4
 }
 
 .notice.icon
-{	
+{
 	padding: 2px 4px 0 20px;
 }
 
@@ -505,6 +505,24 @@ div.notice
 {
 	width: 100%;
 	clear: both;
+}
+
+"}
+
+var/common_browser_style_no_buttons_override = {"
+
+a, a:link, a:visited, a:active, .linkOn, .linkOff
+{
+	color: #ffffff;
+	text-decoration: none;
+	padding: 1px 4px 1px 4px;
+	margin: 0 2px 0 0;
+	cursor:default;
+}
+
+a:hover
+{
+	color: #40628a;
 }
 
 "}
