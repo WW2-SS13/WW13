@@ -12,6 +12,7 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 
 	try
 		for(var/v in 1 to supplydrop_processing_objects_german.len)
+			spawn (v * 2)
 				if (supplydrop_processing_objects_german.len < v)
 					continue
 				var/last_path = supplydrop_processing_objects_german[v]
@@ -44,6 +45,7 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 					supplydrop_processing_objects_german -= last_path
 
 		for(var/v in 1 to supplydrop_processing_objects_soviet.len)
+			spawn (v * 2)
 				if (supplydrop_processing_objects_soviet.len < v)
 					continue
 				var/last_path = supplydrop_processing_objects_soviet[v]
