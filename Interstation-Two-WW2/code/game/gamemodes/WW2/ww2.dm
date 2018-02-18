@@ -103,24 +103,22 @@
 		// condition 2.1: soviets outnumber germans and the amount of
 		// soviets in the german base is > than the amount of germans there
 
-		if (alive_soviets > alive_germans)
-			if (soviets_in_germany > germans_in_germany)
-				if (currently_winning != "Soviets" || win_sort != 2)
-					currently_winning = "Soviets"
-					currently_winning_message = "<font size = 3>The Soviets have occupied most German territory! The Wehrmacht has 5 minutes to reclaim their land!</font>"
-					next_win_time = world.realtime + 3000
-					win_sort = 2
+		if (alive_soviets > alive_germans && soviets_in_germany > germans_in_germany)
+			if (currently_winning != "Soviets" || win_sort != 2)
+				currently_winning = "Soviets"
+				currently_winning_message = "<font size = 3>The Soviets have occupied most German territory! The Wehrmacht has 5 minutes to reclaim their land!</font>"
+				next_win_time = world.realtime + 3000
+				win_sort = 2
 
 		// condition 2.2: Germans outnumber soviets and the amount of germans
 		// in the soviet base is > than the amount of soviets there
 
-		else if (alive_germans > alive_soviets)
-			if (germans_in_russia > soviets_in_russia)
-				if (currently_winning != "Germans" || win_sort != 2)
-					currently_winning = "Germans"
-					currently_winning_message = "<font size = 3>The Germans have occupied most Soviet territory! The Red Army has 5 minutes to reclaim their land!</font>"
-					next_win_time = world.realtime + 3000
-					win_sort = 2
+		else if (alive_germans > alive_soviets && germans_in_russia > soviets_in_russia)
+			if (currently_winning != "Germans" || win_sort != 2)
+				currently_winning = "Germans"
+				currently_winning_message = "<font size = 3>The Germans have occupied most Soviet territory! The Red Army has 5 minutes to reclaim their land!</font>"
+				next_win_time = world.realtime + 3000
+				win_sort = 2
 
 		// condition 2.3: Germans heavily outnumber soviets in the soviet
 		// base, regardless of overall numerical superiority/inferiority.
