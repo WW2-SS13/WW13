@@ -659,7 +659,7 @@
 	for (var/line in dat)
 		if (line != null)
 			if (line != "<br>")
-				data += "<span style = 'font-size:1.5rem;'>[line]</span>"
+				data += "<span style = 'font-size:2.0rem;'>[line]</span>"
 			data += "<br>"
 
 	//<link rel='stylesheet' type='text/css' href='html/browser/common.css'>

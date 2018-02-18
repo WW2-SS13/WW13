@@ -171,6 +171,22 @@
 
 		var/area/H_area = get_area(H)
 		if (H_area.location == OUTSIDE)
+
+
+			var/turf/north = get_step(H, NORTH)
+			var/turf/south = get_step(H, SOUTH)
+			var/turf/east = get_step(H, EAST)
+			var/turf/west = get_step(H, WEST)
+
+			if (north.density || locate(/obj/structure) in north)
+				goto skipnoosecheck1
+			else if (south.density || locate(/obj/structure) in south)
+				goto skipnoosecheck1
+			else if (east.density || locate(/obj/structure) in east)
+				goto skipnoosecheck1
+			else if (west.density || locate(/obj/structure) in west)
+				goto skipnoosecheck1
+
 			H << "<span class = 'warning'>You need a ceiling to make a noose.</span>"
 			return
 
@@ -195,6 +211,8 @@
 			if (H.getStat("engineering") < STAT_HIGH)
 				H << "<span class = 'info'>You have no idea of how to build a girder.</span>"
 				return
+
+	skipnoosecheck1
 
 	if (recipe.time)
 		var/buildtime = recipe.time

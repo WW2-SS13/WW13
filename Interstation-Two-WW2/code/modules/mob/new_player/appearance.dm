@@ -104,7 +104,7 @@
 		icon_state = "hair_halfbang_alt"
 
 	ponytail1
-		name = "Ponytail TRUE"
+		name = "Ponytail 1"
 		icon_state = "hair_ponytail"
 
 	ponytail2

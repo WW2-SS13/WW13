@@ -6,6 +6,7 @@
 	bound_width = 32
 	bound_height = 32
 	density = TRUE
+	anchored = TRUE
 
 /obj/structure/flag
 	icon = 'icons/obj/flags.dmi'
@@ -48,6 +49,7 @@
 
 /obj/structure/noose/process()
 	if (hanging)
+		density = TRUE
 		hanging.dir = SOUTH
 		icon_state = "noose-hanging"
 		if (pixel_x == 0)
@@ -61,7 +63,6 @@
 
 		if (hanging.stat != DEAD)
 			hanging.adjustOxyLoss(5)
-			density = TRUE
 			if (prob(5))
 				visible_message("<span class = 'danger'>[hanging]'s neck snaps.</span>")
 				playsound(get_turf(src), 'sound/effects/gore/bullethit3.ogg')
