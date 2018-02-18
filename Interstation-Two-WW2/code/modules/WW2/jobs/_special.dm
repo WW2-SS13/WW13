@@ -310,3 +310,10 @@
 				equip_to_slot_or_del(new /obj/item/device/radio/partisan(src), slot_s_store)
 
 	src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while its on your back, prefix your message with ':b'.</b></span>"
+
+/datum/job/update_character(var/mob/living/carbon/human/H)
+	..()
+	if (is_officer)
+		H.make_artillery_officer()
+		H.verbs += /mob/living/carbon/human/proc/Execute
+		H << "<span class = 'info'>As an officer, you can check coordinates and execute your subordinates.</span>"

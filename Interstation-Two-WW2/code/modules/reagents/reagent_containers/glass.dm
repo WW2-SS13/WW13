@@ -18,9 +18,9 @@
 	var/label_text = ""
 
 	var/list/can_be_placed_into = list(
-		/obj/machinery/chem_master/,
-		/obj/machinery/chemical_dispenser,
-		/obj/machinery/reagentgrinder,
+		/obj/structure/chem_master/,
+		/obj/structure/chemical_dispenser,
+		/obj/structure/reagentgrinder,
 		/obj/structure/table,
 		/obj/structure/closet,
 		/obj/structure/sink,

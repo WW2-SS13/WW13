@@ -60,9 +60,9 @@ var/list/_client_preferences_by_type
 	if(enabled)
 		if (istype(preference_mob))
 			if (!preference_mob.client.just_played_title_music)
-				preference_mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE)
+				preference_mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 70, channel = TRUE)
 	else
-		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE)
+		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = 70, channel = TRUE)
 
 /datum/client_preference/play_ambiance
 	description ="Play ambience"

@@ -17,3 +17,5 @@ Flammenwerfers can melt snow and burn down trees and plants.
 Use a rifle's 'Field Strip' verb to remove its attachments.
 Use a lighter on a wet rag and put it in a bottle of vodka. You now have a Molotov.
 Panzerfausts, Molotovs, mines, and PTRDs are great weapons against tanks, with PTRDs being the best, but you can take down a tank with normal bullets. Just keep your distance and don't stop firing.
+Use the *surrender emote to surrender.
+You can use rope to build nooses.

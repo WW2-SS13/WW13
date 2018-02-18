@@ -152,10 +152,10 @@
 	desc = "A lighting fixture."
 	anchored = TRUE
 	layer = 5  					// They were appearing under mobs which is a little weird - Ostaf
-	use_power = 2
-	idle_power_usage = 2
-	active_power_usage = 20
-	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+//	use_power = 2
+//	idle_power_usage = 2
+//	active_power_usage = 20
+//	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = FALSE					// TRUE if on, FALSE if off
 	var/on_gs = FALSE
 	var/brightness_range = 7	// luminosity when on, also used in power calculation
@@ -325,7 +325,7 @@
 	if(on)
 
 		if (fastupdate)
-			use_power = 2
+//			use_power = 2
 			set_light(brightness_range, brightness_power, brightness_color)
 			return
 
@@ -345,13 +345,13 @@
 					on = FALSE
 					set_light(0)
 			else
-				use_power = 2
+//				use_power = 2
 				set_light(brightness_range, brightness_power, brightness_color)
 	else
-		use_power = TRUE
+//		use_power = TRUE
 		set_light(0)
 
-	active_power_usage = ((light_range + light_power) * 10)
+//	active_power_usage = ((light_range + light_power) * 10)
 	if(on != on_gs)
 		on_gs = on
 
@@ -437,10 +437,10 @@
 				if(M == user)
 					continue
 				M.show_message("[user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
-			if(on && (W.flags & CONDUCT))
+		//	if(on && (W.flags & CONDUCT))
 				//if(!user.mutations & COLD_RESISTANCE)
-				if (prob(12))
-					electrocute_mob(user, get_area(src), src, 0.3)
+		//		if (prob(12))
+		//			electrocute_mob(user, get_area(src), src, 0.3)
 			broken()
 
 		else
@@ -475,8 +475,8 @@
 			s.set_up(3, TRUE, src)
 			s.start()
 			//if(!user.mutations & COLD_RESISTANCE)
-			if (prob(75))
-				electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
+		//	if (prob(75))
+			//	electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
 
 
 // returns whether this light has power
@@ -636,17 +636,18 @@
 
 #define LIGHTING_POWER_FACTOR 20		//20W per unit luminosity
 
-
+/*
 /obj/machinery/light/process()
 	if(on)
 		use_power(light_range * LIGHTING_POWER_FACTOR, LIGHT)
 
-
+*/
 // called when area power state changes
+/*
 /obj/machinery/light/power_change()
 	spawn(10)
 		seton(has_power())
-
+*/
 // called when on fire
 
 /obj/machinery/light/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)

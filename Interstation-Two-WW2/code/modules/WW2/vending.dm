@@ -1,6 +1,6 @@
 // APPAREL RACKS
 
-/obj/machinery/vending/sovietapparel
+/obj/structure/vending/sovietapparel
 	name = "Soviet apparel rack"
 	desc = "Basic wear for soviet soldiers."
 	icon_state = "apparel_soviet"
@@ -13,9 +13,9 @@
 		/obj/item/clothing/shoes/swat/wrappedboots = 20,
 		/obj/item/clothing/head/ushanka = 10
 	)
-	idle_power_usage = 0
+//	idle_power_usage = 0
 
-/obj/machinery/vending/germanapparel
+/obj/structure/vending/germanapparel
 	name = "German apparel rack"
 	desc = "Basic wear for German soldiers."
 	icon_state = "apparel_german"
@@ -27,11 +27,11 @@
 		/obj/item/clothing/head/helmet/tactical/gerhelm = 20,
 		/obj/item/clothing/shoes/swat = 20
 	)
-	idle_power_usage = 0
+//	idle_power_usage = 0
 
 // EQUIPMENT RACKS
 
-/obj/machinery/vending/germanequipment
+/obj/structure/vending/germanequipment
 	name = "German equipment rack"
 	desc = "Basic equip for German soldiers."
 	icon_state = "equipment_german"
@@ -44,9 +44,9 @@
 		/obj/item/weapon/gun/projectile/boltaction/kar98k = 10,
 		/obj/item/ammo_magazine/kar98k = 20
 	)
-	idle_power_usage = 0
+//	idle_power_usage = 0
 
-/obj/machinery/vending/SSequipment
+/obj/structure/vending/SSequipment
 	name = "SS equipment rack"
 	desc = "Basic equip for SS soldiers."
 	icon_state = "equipment_german"
@@ -60,9 +60,9 @@
 		/obj/item/ammo_magazine/kar98k = 20,
 		/obj/item/ammo_magazine/a762/akm = 20
 	)
-	idle_power_usage = 0
+//	idle_power_usage = 0
 
-/obj/machinery/vending/sovietequipment
+/obj/structure/vending/sovietequipment
 	name = "Soviet equipment rack"
 	desc = "Basic equip for Soviet soldiers."
 	icon_state = "equipment_soviet"
@@ -75,4 +75,4 @@
 		/obj/item/weapon/gun/projectile/boltaction/mosin = 10,
 		/obj/item/ammo_magazine/mosin = 20
 	)
-	idle_power_usage = 0
+//	idle_power_usage = 0

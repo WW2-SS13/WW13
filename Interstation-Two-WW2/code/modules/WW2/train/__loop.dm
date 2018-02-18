@@ -27,7 +27,7 @@ var/next_german_supplytrain_master_process = -1
 	if (world.realtime > next_german_supplytrain_master_process)
 		german_supplytrain_master.Process()
 		if (prob(1) && prob(2) && !german_supplytrain_master.here)
-			radio2germans("The Supply Train has broken down. It will not be functional again until ten minutes.", "Supply Train Announcement System")
+			radio2germans("The Supply Train has broken down. It will not be functional for ten minutes.", "Supply Train Announcement System")
 			next_german_supplytrain_master_process = world.realtime + 5400
 
 	if (german_supplytrain_master.moving)

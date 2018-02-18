@@ -11,14 +11,14 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-/obj/machinery/chemical_dispenser
+/obj/structure/chemical_dispenser
 	name = "chem dispenser"
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
-	use_power = FALSE
-	idle_power_usage = 40
+//	use_power = FALSE
+//	idle_power_usage = 40
 	var/ui_title = "Chem Dispenser 5000"
 	var/energy = 100
 	var/max_energy = 100
@@ -29,26 +29,29 @@
 	var/list/dispensable_reagents = list("hydrazine","lithium","carbon","ammonia","acetone",
 	"sodium","aluminum","silicon","phosphorus","sulfur","hclacid","potassium","iron",
 	"copper","mercury","radium","water","ethanol","sugar","sacid","tungsten")
+	var/stat = 0
 
-/obj/machinery/chemical_dispenser/New()
+/obj/structure/chemical_dispenser/New()
 	..()
 	processing_objects += src
 
-/obj/machinery/chemical_dispenser/proc/recharge()
+/obj/structure/chemical_dispenser/proc/recharge()
 	if(stat & BROKEN) return
 	if(!obj_process) return
 	var/addenergy = 1 * (obj_process.schedule_interval/20)
 	var/oldenergy = energy
 	energy = min(energy + addenergy, max_energy)
 	if(energy != oldenergy)
-		use_power(CHEM_SYNTH_ENERGY / chemical_dispenser_ENERGY_COST) // This thing uses up "alot" of power (this is still low as shit for creating reagents from thin air)
+//		use_power(CHEM_SYNTH_ENERGY / chemical_dispenser_ENERGY_COST) // This thing uses up "alot" of power (this is still low as shit for creating reagents from thin air)
 		nanomanager.update_uis(src) // update all UIs attached to src
 
-/obj/machinery/chemical_dispenser/power_change()
+/*
+/obj/structure/chemical_dispenser/power_change()
 	..()
 	nanomanager.update_uis(src) // update all UIs attached to src
+*/
 
-/obj/machinery/chemical_dispenser/process()
+/obj/structure/chemical_dispenser/process()
 	recharge()
 
 	if (stat & BROKEN)
@@ -56,12 +59,12 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/chemical_dispenser/New()
+/obj/structure/chemical_dispenser/New()
 	..()
 	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
 
-/obj/machinery/chemical_dispenser/ex_act(severity)
+/obj/structure/chemical_dispenser/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			del(src)
@@ -82,7 +85,7 @@
   *
   * @return nothing
   */
-/obj/machinery/chemical_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = TRUE)
+/obj/structure/chemical_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = TRUE)
 	if(stat & (BROKEN|NOPOWER)) return
 	if(user.stat || user.restrained()) return
 
@@ -126,7 +129,7 @@
 		// open the new ui window
 		ui.open()
 
-/obj/machinery/chemical_dispenser/Topic(href, href_list)
+/obj/structure/chemical_dispenser/Topic(href, href_list)
 	if(stat & (NOPOWER|BROKEN))
 		return FALSE // don't update UIs attached to this object
 
@@ -157,7 +160,7 @@
 	add_fingerprint(usr)
 	return TRUE // update UIs attached to this object
 
-/obj/machinery/chemical_dispenser/attackby(var/obj/item/weapon/reagent_containers/B as obj, var/mob/user as mob)
+/obj/structure/chemical_dispenser/attackby(var/obj/item/weapon/reagent_containers/B as obj, var/mob/user as mob)
 	if(isrobot(user))
 		return
 	if(beaker)
@@ -173,12 +176,12 @@
 		nanomanager.update_uis(src) // update all UIs attached to src
 		return
 
-/obj/machinery/chemical_dispenser/attack_hand(mob/user as mob)
+/obj/structure/chemical_dispenser/attack_hand(mob/user as mob)
 	if(stat & BROKEN)
 		return
 	ui_interact(user)
 /*
-/obj/machinery/chemical_dispenser/soda
+/obj/structure/chemical_dispenser/soda
 	icon_state = "soda_dispenser"
 	name = "soda fountain"
 	desc = "A drink fabricating machine, capable of producing many sugary drinks with just one touch."
@@ -188,7 +191,7 @@
 	max_energy = 100
 	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
 
-/obj/machinery/chemical_dispenser/soda/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
+/obj/structure/chemical_dispenser/soda/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
 	if(istype(B, /obj/item/device/multitool))
 		if(hackedcheck == FALSE)
@@ -203,7 +206,7 @@
 			hackedcheck = FALSE
 			return
 */
-/obj/machinery/chemical_dispenser/beer
+/obj/structure/chemical_dispenser/beer
 	icon_state = "booze_dispenser"
 	name = "booze dispenser"
 	ui_title = "Booze Portal 9001"
@@ -213,7 +216,7 @@
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua","whiskey","wine","vodka","gin","rum","tequilla","vermouth","cognac","ale","mead")
 
-/obj/machinery/chemical_dispenser/beer/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
+/obj/structure/chemical_dispenser/beer/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
 /*
 	if(istype(B, /obj/item/device/multitool))
@@ -229,14 +232,14 @@
 			hackedcheck = FALSE
 			return*/
 
-/obj/machinery/chemical_dispenser/meds
+/obj/structure/chemical_dispenser/meds
 	name = "chem dispenser magic"
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
-	use_power = FALSE
-	idle_power_usage = 40
+//	use_power = FALSE
+//	idle_power_usage = 40
 	ui_title = "Chem Dispenser 9000"
 	energy = 100
 	max_energy = 100
@@ -246,14 +249,14 @@
 	hackedcheck = FALSE
 	dispensable_reagents = list("inaprovaline","ryetalyn","paracetamol","tramadol","oxycodone","sterilizine","leporazine","kelotane","dermaline","dexalin","dexalinp","tricordrazine","anti_toxin","synaptizine","hyronalin","arithrazine","alkysine","imidazoline","peridaxon","bicaridine","hyperzine","rezadone","penicillin","ethylredoxrazine","stoxin","chloralhydrate","cryoxadone","clonexadone")
 
-/obj/machinery/chem_master
+/obj/structure/chem_master
 	name = "ChemMaster 3000"
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
-	use_power = TRUE
-	idle_power_usage = 20
+//	use_power = TRUE
+//	idle_power_usage = 20
 	var/beaker = null
 	var/obj/item/weapon/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = FALSE
@@ -266,13 +269,13 @@
 	var/max_pill_count = 20
 	flags = OPENCONTAINER
 
-/obj/machinery/chem_master/New()
+/obj/structure/chem_master/New()
 	..()
 	var/datum/reagents/R = new/datum/reagents(120)
 	reagents = R
 	R.my_atom = src
 
-/obj/machinery/chem_master/ex_act(severity)
+/obj/structure/chem_master/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -282,7 +285,7 @@
 				qdel(src)
 				return
 
-/obj/machinery/chem_master/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
+/obj/structure/chem_master/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 
 	if(istype(B, /obj/item/weapon/reagent_containers/glass))
 
@@ -309,7 +312,7 @@
 		updateUsrDialog()
 	return
 
-/obj/machinery/chem_master/Topic(href, href_list)
+/obj/structure/chem_master/Topic(href, href_list)
 	if(..())
 		return TRUE
 
@@ -459,9 +462,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/chem_master/attack_hand(mob/user as mob)
-	if(inoperable())
-		return
+/obj/structure/chem_master/attack_hand(mob/user as mob)
 	user.set_machine(src)
 	if(!(user.client in has_sprites))
 		spawn()
@@ -523,13 +524,13 @@
 	onclose(user, "chem_master")
 	return
 
-/obj/machinery/chem_master/condimaster
+/obj/structure/chem_master/condimaster
 	name = "CondiMaster 3000"
 	condi = TRUE
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-/obj/machinery/reagentgrinder
+/obj/structure/reagentgrinder
 
 	name = "All-In-One Grinder"
 	icon = 'icons/obj/kitchen.dmi'
@@ -537,9 +538,9 @@
 	layer = 2.9
 	density = FALSE
 	anchored = FALSE
-	use_power = TRUE
-	idle_power_usage = 5
-	active_power_usage = 100
+//	use_power = TRUE
+//	idle_power_usage = 5
+//	active_power_usage = 100
 	var/inuse = FALSE
 	var/obj/item/weapon/reagent_containers/beaker = null
 	var/limit = 10
@@ -552,17 +553,18 @@
 		/obj/item/stack/material/silver = "silver",
 		/obj/item/stack/material/mhydrogen = "hydrogen"
 		)
+	var/stat = 0
 
-/obj/machinery/reagentgrinder/New()
+/obj/structure/reagentgrinder/New()
 	..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	return
 
-/obj/machinery/reagentgrinder/update_icon()
+/obj/structure/reagentgrinder/update_icon()
 	icon_state = "juicer"+num2text(!isnull(beaker))
 	return
 
-/obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/structure/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	if (istype(O,/obj/item/weapon/reagent_containers/glass) || \
 		istype(O,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass) || \
@@ -595,12 +597,10 @@
 	updateUsrDialog()
 	return FALSE
 
-/obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
+/obj/structure/reagentgrinder/attack_hand(mob/user as mob)
 	interact(user)
 
-/obj/machinery/reagentgrinder/interact(mob/user as mob) // The microwave Menu
-	if(inoperable())
-		return
+/obj/structure/reagentgrinder/interact(mob/user as mob) // The microwave Menu
 	user.set_machine(src)
 	var/is_chamber_empty = FALSE
 	var/is_beaker_ready = FALSE
@@ -646,7 +646,7 @@
 	return
 
 
-/obj/machinery/reagentgrinder/Topic(href, href_list)
+/obj/structure/reagentgrinder/Topic(href, href_list)
 	if(..())
 		return TRUE
 
@@ -661,7 +661,7 @@
 	updateUsrDialog()
 	return TRUE
 
-/obj/machinery/reagentgrinder/proc/detach()
+/obj/structure/reagentgrinder/proc/detach()
 
 	if (usr.stat != FALSE)
 		return
@@ -671,7 +671,7 @@
 	beaker = null
 	update_icon()
 
-/obj/machinery/reagentgrinder/proc/eject()
+/obj/structure/reagentgrinder/proc/eject()
 
 	if (usr.stat != FALSE)
 		return
@@ -683,9 +683,9 @@
 		holdingitems -= O
 	holdingitems.Cut()
 
-/obj/machinery/reagentgrinder/proc/grind()
+/obj/structure/reagentgrinder/proc/grind()
 
-	power_change()
+//	power_change()
 	if(stat & (NOPOWER|BROKEN))
 		return
 

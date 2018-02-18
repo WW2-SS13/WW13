@@ -514,7 +514,6 @@
 	var/prev_side = FALSE
 
 	dat += "<b>Choose from the following open positions:</b>"
-	dat += "<br>"
 
 	for(var/datum/job/job in job_master.faction_organized_occupations)
 
@@ -660,14 +659,16 @@
 	for (var/line in dat)
 		if (line != null)
 			data += line
-			data += "<br>"
+			if (data != "<br>")
+				data += "<br>"
+
 	//<link rel='stylesheet' type='text/css' href='html/browser/common.css'>
 	data = {"
 		<br>
 		<html>
 		<head>
 		<style>
-		[common_browser_style]
+		[common_browser_style_no_buttons_override+common_browser_style]
 		</style>
 		</head>
 		<body>

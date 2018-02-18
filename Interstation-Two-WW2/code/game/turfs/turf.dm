@@ -507,10 +507,11 @@ var/const/enterloopsanity = 100
 
 /turf/proc/can_build_cable(var/mob/user)
 	return FALSE
-
+/*
 /turf/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/stack/cable_coil) && can_build_cable(user))
 		var/obj/item/stack/cable_coil/coil = thing
 		coil.turf_place(src, user)
 		return
 	return ..()
+*/

@@ -50,11 +50,6 @@
 	H.setStat("medical", STAT_VERY_LOW)
 	return TRUE
 
-/datum/job/german/commander/update_character(var/mob/living/carbon/human/H)
-	..()
-	H.make_artillery_officer()
-	H.verbs += /mob/living/carbon/human/proc/Execute
-
 /datum/job/german/commander/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
 		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/command_high, new/obj/item/weapon/key/german/train, new/obj/item/weapon/key/german/SS)
@@ -94,11 +89,6 @@
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
 	return TRUE
-
-/datum/job/german/XO/update_character(var/mob/living/carbon/human/H)
-	..()
-	H.make_artillery_officer()
-	H.verbs += /mob/living/carbon/human/proc/Execute
 
 /datum/job/german/XO/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,

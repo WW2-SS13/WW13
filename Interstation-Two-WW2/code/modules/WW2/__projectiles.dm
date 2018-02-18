@@ -14,7 +14,6 @@
 	damage = DAMAGE_OH_GOD
 	accuracy = 5000
 
-
 /obj/item/projectile/bullet/rifle/a792x33
 	damage = DAMAGE_LOW
 	penetrating = TRUE

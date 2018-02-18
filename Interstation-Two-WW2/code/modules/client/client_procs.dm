@@ -417,7 +417,7 @@ client/proc/MayRespawn()
 	// Something went wrong, client is usually kicked or transfered to a new mob at this point
 	return FALSE
 
-client/verb/character_setup()
+/client/verb/character_setup()
 	set name = "Character & Preferences Setup"
 	set category = "OOC"
 	if(prefs)
