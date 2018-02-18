@@ -161,7 +161,12 @@
 		var/obj/item/weapon/material/shard/shard = new/obj/item/weapon/material/shard/shrapnel(src)
 		ejections.Add(shard)
 
-	artillery_master.artillery_bases += src
+	var/spawntime = 0
+	if (!artillery_master)
+		spawntime = 50
+	spawn (spawntime)
+		if (artillery_master)
+			artillery_master.artillery_bases += src
 
 /obj/machinery/artillery/base/proc/getNextOpeningClosingState()
 
