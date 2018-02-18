@@ -13,9 +13,6 @@
 		if (12 to INFINITY)
 			return run_delay_maximum/1.24
 
-// walking
-/mob/var/walk_delay = 3.3 / 1.25
-
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
 	if(air_group || (height==0)) return TRUE
@@ -412,7 +409,7 @@
 					if (H.bodytemperature < H.species.body_temperature)
 						H.bodytemperature += 0.66
 			if("walk")
-				move_delay += mob.walk_delay/mob.movement_speed_multiplier + standing_on_snow
+				move_delay += (mob.get_run_delay() * 1.33) /mob.movement_speed_multiplier + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.002

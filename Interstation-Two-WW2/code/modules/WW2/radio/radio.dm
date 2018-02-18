@@ -306,8 +306,8 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		"Betty Mines Crate" = 200,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = 50,
-		"Samoyed Crate" = 50,
+		"German Shepherd Crate" = 100,
+		"Samoyed Crate" = 100,
 
 		// MEDICAL STUFF
 		"Medical Crate" = 75

@@ -46,11 +46,19 @@
 
 	var/next_bork = -1
 
-	var/walk_status = ""
+	var/atom/walking_to = null
 
-	maxHealth = 50
-	health = 50
+	maxHealth = 70
+	health = 70
 
+/mob/living/simple_animal/complex_animal/canine/dog/New()
+	..()
+	dog_mob_list += src
+
+
+/mob/living/simple_animal/complex_animal/canine/dog/Del()
+	dog_mob_list -= src
+	..()
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/check_can_command(var/list/ranks, var/mob/living/carbon/human/H)
 	if (!islist(ranks))
@@ -264,23 +272,15 @@ s
 	if (following)
 		stop_following(H, FALSE)
 	else
-		walk_to(src, FALSE)
-//	var/H_loc = H.loc
-	walk_to(src, H, 3, H.run_delay_maximum*1.40)
-/*	// automatically stop following if H stays still for 10 seconds
-	for (var/v in 1 to 20)
-		spawn (v*5)
-			if (H.loc != H_loc)
-				break
-			else if (v == 20)
-				stop_following(H)*/
+		walking_to = null
+	walking_to = H
 	following = H
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/stop_following(var/mob/living/carbon/human/H, var/message = TRUE)
 	if (following)
 		if (message)
 			visible_message("<span class = 'notice'>The [src] stops following [following].</span>")
-		walk_to(src, FALSE)
+		walking_to = null
 		following = null
 
 /mob/living/simple_animal/complex_animal/canine/dog/proc/prioritize_following(var/mob/living/carbon/human/H)
@@ -429,13 +429,13 @@ s
 				if (get_dist(src, H) > TRUE && H.stat != DEAD)
 					if (prioritizes == "attacking" && following)
 						stop_following()
-					walk_to(src, H, 1, H.run_delay_maximum*1.40)
+					walking_to = H
 				else
 					shred(H)
 	else if (following)
-		walk_to(src, following, 1, H.run_delay_maximum*1.40)
+		walking_to = following
 	else if (stat != CONSCIOUS || resting)
-		walk_to(src, FALSE)
+		walking_to = null
 
 /mob/living/simple_animal/complex_animal/canine/dog/Move()
 	. = ..()
@@ -444,7 +444,7 @@ s
 			if (assess_hostility(H) && shouldGoAfter(H) && !client)
 				shred(H)
 			else if (client)
-				walk_to(src, FALSE)
+				walking_to = null
 
 /mob/living/simple_animal/complex_animal/canine/dog/onEveryBaseTypeMovement(var/mob/living/simple_animal/complex_animal/C)
 	return

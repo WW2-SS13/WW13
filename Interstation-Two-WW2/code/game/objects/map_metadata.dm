@@ -118,7 +118,7 @@ var/global/obj/map_metadata/map = null
 // SMALL CITY MAP
 /obj/map_metadata/minicity
 	ID = "SMALLCITY"
-	title = "City Map (70x70x2)"
+	title = "City Map (150x150x1)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 	faction_organization = list(
 		GERMAN,

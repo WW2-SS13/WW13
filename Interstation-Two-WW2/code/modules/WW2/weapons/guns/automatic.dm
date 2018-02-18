@@ -13,7 +13,7 @@
 	icon_state = "mp40"
 	item_state = "mp40"
 	load_method = MAGAZINE
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 4
 	caliber = "a9mm_para"
 	magazine_type = /obj/item/ammo_magazine/mp40

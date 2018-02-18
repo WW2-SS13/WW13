@@ -658,9 +658,9 @@
 	var/data = ""
 	for (var/line in dat)
 		if (line != null)
-			data += line
-			if (data != "<br>")
-				data += "<br>"
+			if (line != "<br>")
+				data += "<span style = 'font-size:1.5rem;'>[line]</span>"
+			data += "<br>"
 
 	//<link rel='stylesheet' type='text/css' href='html/browser/common.css'>
 	data = {"
@@ -668,7 +668,7 @@
 		<html>
 		<head>
 		<style>
-		[common_browser_style_no_buttons_override+common_browser_style]
+		[common_browser_style]
 		</style>
 		</head>
 		<body>

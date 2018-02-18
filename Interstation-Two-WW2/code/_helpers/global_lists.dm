@@ -11,6 +11,7 @@ var/global/list/mob_list = list()					//List of all mobs, including clientless
 var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
 var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
+var/global/list/dog_mob_list = list()				//List of all dogs
 var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
 var/global/list/observer_mob_list = list()			//List of all observers, excluding clientless
 var/global/list/human_clients_mob_list = list()     //List of all human mobs with clients

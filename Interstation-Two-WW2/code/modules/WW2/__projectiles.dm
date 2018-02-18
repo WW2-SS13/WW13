@@ -26,7 +26,7 @@
 
 // KARS
 /obj/item/projectile/bullet/rifle/a792x57
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_HIGH
 	penetrating = 2
 	armor_penetration = 100
 

@@ -93,7 +93,7 @@ var/database/database = null
 
 	// clean up extra spaces in querytext
 	var/empty_space = " " // don't replace single spaces
-	for (var/v in TRUE to 10)
+	for (var/v in 1 to 10)
 		empty_space += " " // replaces up to 11 spaces at once
 		querytext = replacetext(querytext, empty_space, v)
 
@@ -107,7 +107,7 @@ var/database/database = null
 
 	// try to execute 10 times over 5 seconds
 	var/Q_executed = FALSE
-	for (var/v in TRUE to 10)
+	for (var/v in 1 to 10)
 		if (Q.Execute(src))
 			Q_executed = TRUE
 			goto finishloop

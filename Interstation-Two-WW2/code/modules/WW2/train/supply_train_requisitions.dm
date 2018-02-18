@@ -121,7 +121,7 @@
 		"Betty Mines Crate" = 200,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = 50,
+		"German Shepherd Crate" = 100,
 
 		// MEDICAL STUFF
 		"Medical Crate" = 75
