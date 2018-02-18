@@ -520,6 +520,18 @@
 	taste_description = "soy milk"
 	color = "#DFDFC7"
 
+/datum/reagent/drink/milk/soymilk/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	// soyboys btfo - Kachnov
+	if (ishuman(M) && M.gender == MALE)
+		var/mob/living/carbon/human/H = M
+		H.adaptStat("strength", -ceil(removed/5))
+		if (prob(20))
+			H << "<span class = 'warning'>You feel weak.</span>"
+		if (prob(ceil(removed/100)))
+			H.change_gender(FEMALE)
+			H << "<span class = 'danger'>You turn into a woman!</span>"
+
 /datum/reagent/drink/tea
 	name = "Tea"
 	id = "tea"

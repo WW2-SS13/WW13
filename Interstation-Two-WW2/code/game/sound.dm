@@ -244,13 +244,16 @@ var/const/FALLOFF_SOUNDS = 0.5
 	var/sound/S = sound(soundin)
 	src << sound(S, repeat = FALSE, wait = FALSE, volume = _volume, channel = 1)
 
+/client/var/just_played_title_music = FALSE
 /client/proc/playtitlemusic()
 	if(!ticker || !ticker.login_music)	return
 	if(!istype(mob, /mob/new_player)) return
 	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
-	//	src << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS
-	// ^ it will play automatically, see preferences.dm
+		src << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 85, channel = TRUE)
 		lobby_music_player.announce(src)
+		just_played_title_music = TRUE
+		spawn (20)
+			just_played_title_music = FALSE
 
 /proc/get_rand_frequency()
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.

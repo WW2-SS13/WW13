@@ -40,6 +40,12 @@
 
 /mob/proc/ClickOn(var/atom/A, var/params)
 
+	if (ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if (H.lying)
+			if (ismob(A) || (A.loc && istype(A.loc, /turf)))
+				return
+
 	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
 		return
 
@@ -424,7 +430,7 @@
 
 /mob/proc/scramble(var/atom/A)
 	var/direction
-	if(stat || buckled || paralysis || stunned || sleeping || (status_flags & FAKEDEATH) || restrained() || (weakened > 5))
+	if(stat || buckled || paralysis || stunned || sleeping || (status_flags & FAKEDEATH) || restrained() || (weakened > 10))
 		return
 	if(!istype(loc, /turf/))
 		return
@@ -433,8 +439,6 @@
 		return
 	if(!has_limbs)
 		src << "<span class = 'red'>You can't even move yourself - you have no limbs!</span>"
-	if(weakened)
-		return
 	var/dx = A.x - x
 	var/dy = A.y - y
 	if(!dx && !dy) return
@@ -451,10 +455,12 @@
 		if (map.check_prishtina_block(src, target))
 			return FALSE
 
+		var/slowness = weakened ? 1.50 : 1.00
+
 		scrambling = TRUE
-		sleep(2)
+		sleep(2*slowness)
 		visible_message("<span class = 'red'><b>[src]</b> crawls!</span>")
-		sleep(7)
+		sleep(7*slowness)
 		Move(target)
 		scrambling = FALSE
 		dir = 2

@@ -119,7 +119,7 @@
 		return
 
 	var/_clients = input("How many clients?") as num
-	job_master.toggle_roundstart_autobalance(_clients)
+	job_master.toggle_roundstart_autobalance(_clients, announce = 2)
 
 	message_admins("[key_name(src)] reset the roundstart autobalance for [_clients] players.")
 
@@ -330,6 +330,9 @@
 
 	var/msg = input(usr, "Send what?", "Message Russians") as text
 
+	if (!msg)
+		return
+
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Russians") in list("Yes", "No")
 	if (ick_ock == "Yes")
 		ick_ock = TRUE
@@ -352,6 +355,9 @@
 	set name = "Message Germans"
 
 	var/msg = input(usr, "Send what?", "Message Germans") as text
+
+	if (!msg)
+		return
 
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Germans") in list("Yes", "No")
 
@@ -377,6 +383,9 @@
 
 	var/msg = input(usr, "Send what?", "Message the SS") as text
 
+	if (!msg)
+		return
+
 	var/ick_ock = input(usr, "Make this an IC message?", "Message the SS") in list("Yes", "No")
 
 	if (ick_ock == "Yes")
@@ -385,11 +394,12 @@
 		ick_ock = FALSE
 
 	if (msg)
-		for (var/mob/living/carbon/human/H in player_list)
-			if (istype(H) && H.client)
-				if (H.original_job && H.original_job.base_type_flag() == GERMAN && H.original_job.is_SS)
-					var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE SS:</b>" : "<b>MESSAGE TO THE SS FROM ADMINS:</b>"
-					H << "[msg_start] <span class = 'notice'>[msg]</span>"
+		if (!ick_ock || !radio2SS(msg))
+			for (var/mob/living/carbon/human/H in player_list)
+				if (istype(H) && H.client)
+					if (H.original_job && H.original_job.base_type_flag() == GERMAN && H.original_job.is_SS)
+						var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND TO THE SS:</b>" : "<b>MESSAGE TO THE SS FROM ADMINS:</b>"
+						H << "[msg_start] <span class = 'notice'>[msg]</span>"
 
 		src << "You sent '[msg]' to the SS."
 		message_admins("[key_name(src)] sent '[msg]' to the SS")
@@ -400,6 +410,9 @@
 	set name = "Messages Paratroopers"
 
 	var/msg = input(usr, "Send what?", "Message Paratroopers") as text
+
+	if (!msg)
+		return
 
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Paratroopers") in list("Yes", "No")
 
@@ -424,6 +437,9 @@
 
 	var/msg = input(usr, "Send what? Note that this messages Partisans too!", "Message Civilians") as text
 
+	if (!msg)
+		return
+
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Civilians") in list("Yes", "No")
 
 	if (ick_ock == "Yes")
@@ -446,6 +462,9 @@
 	set name = "Message Partisans"
 
 	var/msg = input(usr, "Send what?", "Message Partisans") as text
+
+	if (!msg)
+		return
 
 	var/ick_ock = input(usr, "Make this an IC message?", "Message Partisans") in list("Yes", "No")
 

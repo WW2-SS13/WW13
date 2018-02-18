@@ -28,6 +28,9 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	var/obj/item/device/multitool/ghost_multitool
 	incorporeal_move = TRUE
 
+	var/list/original_overlays = list()
+	var/original_icon_state = null
+
 /mob/observer/ghost/New(mob/body)
 	see_in_dark = 100
 	verbs += /mob/observer/ghost/proc/dead_tele
@@ -160,13 +163,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Relinquish your life and enter the land of the dead."
 
 	if(stat == DEAD)
-		announce_ghost_joinleave(ghostize(1))
-		if (ishuman(src))
-			var/mob/living/carbon/human/H = src
-			H.handle_zoom_stuff(TRUE)
 		if (client)
 			client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
 			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
+		if (ishuman(src))
+			var/mob/living/carbon/human/H = src
+			H.handle_zoom_stuff(TRUE)
+		announce_ghost_joinleave(ghostize(1))
 	else
 		var/response
 		if(client && client.holder)
@@ -187,8 +190,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.handle_zoom_stuff(TRUE)
-		if (client && (stat == UNCONSCIOUS || getTotalLoss() >= 50))
-			client.next_normal_respawn = world.time + (map ? map.respawn_delay : 1800)
+		if (client && (stat == UNCONSCIOUS || getTotalLoss() >= 30))
+			client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
 			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
 		message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		log_game("[key_name_admin(usr)] has ghosted.")
@@ -271,16 +274,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M.antagHUD = TRUE
 		src << "\blue <b>AntagHUD Enabled</b>"
 */
-/mob/observer/ghost/proc/dead_tele(A in ghostteleportlocs)
+/mob/observer/ghost/proc/dead_tele(A in ghostteleportlocs - /area/prishtina/void/sky)
 	set category = "Ghost"
 	set name = "Teleport"
 	set desc= "Teleport to a location"
 	if(!isghost(usr))
 		usr << "Not when you're not dead!"
 		return
+
+	/*	this is dumb - Kachnov
 	usr.verbs -= /mob/observer/ghost/proc/dead_tele
-	spawn(15) // a 3 second delay was a bit long, in my opinion - Kachnov
-		usr.verbs += /mob/observer/ghost/proc/dead_tele
+	spawn(5)
+		usr.verbs += /mob/observer/ghost/proc/dead_tele*/
 
 	var/area/thearea = ghostteleportlocs[A]
 	if(!thearea)	return
@@ -355,6 +360,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if (input != "Cancel")
 		ManualFollow(getfitmobs(CIVILIAN)[input])
+
+/mob/observer/ghost/verb/follow_undead(input in getfitmobs(PILLARMEN)+"Cancel")
+	set category = "Ghost"
+	set name = "Follow an Undead"
+	set desc = "Follow and haunt an Undead."
+
+	if (input != "Cancel")
+		ManualFollow(getfitmobs(PILLARMEN)[input])
+
 
 /proc/getdogs()
 	var/list/dogs = list()

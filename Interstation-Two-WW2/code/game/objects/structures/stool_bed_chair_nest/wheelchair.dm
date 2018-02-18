@@ -8,6 +8,7 @@
 	var/driving = FALSE
 	var/mob/living/pulling = null
 	var/bloodiness
+	var/next_sound = -1
 
 /obj/structure/bed/chair/wheelchair/update_icon()
 	return
@@ -15,7 +16,7 @@
 /obj/structure/bed/chair/wheelchair/set_dir()
 	..()
 	overlays = null
-	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", layer = FLY_LAYER, dir = dir)
+	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", layer = MOB_LAYER + 1.0, dir = dir)
 	overlays += O
 	if(buckled_mob)
 		buckled_mob.set_dir(dir)
@@ -87,7 +88,13 @@
 	driving = FALSE
 
 /obj/structure/bed/chair/wheelchair/Move()
+	var/oloc = loc
 	..()
+	if (oloc != loc)
+		if (world.time > next_sound)
+			playsound(get_turf(src), 'sound/effects/rollermove.ogg', 75, TRUE)
+			next_sound = world.time + 10
+
 	if(buckled_mob)
 		var/mob/living/occupant = buckled_mob
 		if(!driving)

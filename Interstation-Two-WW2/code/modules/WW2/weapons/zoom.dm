@@ -22,6 +22,7 @@ Parts of code courtesy of Super3222
 	name = "generic adjustable scope"
 	var/min_zoom = 3
 	var/max_zoom = 3
+	var/zooming = FALSE
 
 /obj/item/weapon/attachment/scope/adjustable/New()
 	..()
@@ -63,10 +64,17 @@ Parts of code courtesy of Super3222
 	if(!Adjacent(user))
 		return
 
+	if (zooming)
+		return
+
 	if(zoomed)
 		zoom(user, 0)
 
+	zooming = TRUE
+
 	if (do_after(user, 7, src))
+
+		zooming = FALSE
 
 		var/input = input(user, "Set the zoom amount.", "Zoom" , "") as num
 		if(input == zoom_amt)
@@ -202,6 +210,7 @@ Parts of code courtesy of Super3222
 	check_flags = AB_CHECK_ALIVE|AB_CHECK_RESTRAINED|AB_CHECK_STUNNED|AB_CHECK_LYING
 	button_icon_state = "sniper_zoom"
 	var/obj/item/weapon/attachment/scope/scope = null
+	var/boundto = null
 
 /datum/action/toggle_scope/IsAvailable()
 	. = ..()

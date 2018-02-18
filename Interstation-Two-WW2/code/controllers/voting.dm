@@ -185,7 +185,7 @@ datum/controller/vote
 			switch(vote_type)
 				if("restart")
 					choices.Add("Restart Round","Continue Playing")
-				if("gamemode")
+		/*		if("gamemode")
 					if(ticker.current_state >= 2)
 						return FALSE
 					choices.Add(config.votable_modes)
@@ -203,9 +203,9 @@ datum/controller/vote
 						var/datum/antagonist/antag = all_antag_types[antag_type]
 						if(!(antag.id in additional_antag_types) && antag.is_votable())
 							choices.Add(antag.role_text)
-					choices.Add("None")
+					choices.Add("None")*/
 				if("custom")
-					cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
+					question = cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
 					if(!question)	return FALSE
 					for(var/i=1,i<=10,i++)
 						var/option = cp1251_to_utf8(capitalize(rhtml_encode(input(usr,"Please enter an option or hit cancel to finish") as text|null)))
@@ -226,6 +226,8 @@ datum/controller/vote
 				if("gamemode")
 					world << sound('sound/ambience/alarm4.ogg', repeat = FALSE, wait = FALSE, volume = 50, channel = 3)
 				if("custom")
+					world << sound('sound/ambience/alarm4.ogg', repeat = FALSE, wait = FALSE, volume = 50, channel = 3)
+				if("restart")
 					world << sound('sound/ambience/alarm4.ogg', repeat = FALSE, wait = FALSE, volume = 50, channel = 3)
 			if(mode == "gamemode" && round_progressing)
 				round_progressing = FALSE
@@ -284,8 +286,9 @@ datum/controller/vote
 			. += "</li><li>"
 			if(trialmin)
 				. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[config.allow_vote_restart?"Allowed":"Disallowed"]</a>)"
-			. += "</li><li>"
+		//	. += "</li><li>"
 			//gamemode
+			/*
 			if(trialmin || config.allow_vote_mode)
 				. += "<a href='?src=\ref[src];vote=gamemode'>GameMode</a>"
 			else
@@ -298,7 +301,7 @@ datum/controller/vote
 				. += "<a href='?src=\ref[src];vote=add_antagonist'>Add Antagonist Type</a>"
 			else
 				. += "<font color='grey'>Add Antagonist Type (Disallowed)</font>"
-			. += "</li>"
+			. += "</li>"*/
 			//custom
 			if(trialmin)
 				. += "<li><a href='?src=\ref[src];vote=custom'>Custom</a></li>"
@@ -326,12 +329,12 @@ datum/controller/vote
 			if("restart")
 				if(config.allow_vote_restart || usr.client.holder)
 					initiate_vote("restart",usr.key)
-			if("gamemode")
+		/*	if("gamemode")
 				if(config.allow_vote_mode || usr.client.holder)
 					initiate_vote("gamemode",usr.key)
 			if("add_antagonist")
 				if(config.allow_extra_antags)
-					initiate_vote("add_antagonist",usr.key)
+					initiate_vote("add_antagonist",usr.key)*/
 			if("custom")
 				if(usr.client.holder)
 					initiate_vote("custom",usr.key)

@@ -159,7 +159,7 @@ CHECK_RANDOMIZER
 ## TODO: whitelists
 
 ## Set to prevent anyone but those ckeys listed in config/whitelist.txt and config/admins.txt from joining your server
-USEWHITELIST
+#USEWHITELIST
 
 ## Set this to give people in the 'teststaff' whitelist admin permissions
 ALLOW_TESTING_STAFF
@@ -184,7 +184,7 @@ RULESURL http://mechahitler.co.nf/lebensraum/rules.html
 DISCORDURL https://discord.gg/PVqjqCv
 
 ## Wiki address
-WIKIURL http://lebensraum.wikia.com
+WIKIURL http://mechahitler.co.nf/wiki/media/index.php?title=Main_Page
 
 ## Website address
 WEBSITEURL http://mechahitler.co.nf/
@@ -215,7 +215,7 @@ GITHUBURL https://github.com/WW2-SS13/WW13/issues
 TICK_LIMIT_MC_INIT 500
 
 ##Defines the ticklag for the world.  0.9 is the normal one, 0.5 is smoother.
-TICKLAG 0.5
+TICKLAG 0.33
 
 ## Comment this out to disable automuting
 #AUTOMUTE_ON
@@ -297,7 +297,7 @@ MINUTE_TOPIC_LIMIT 100
 ##How long to wait between messaging admins about occurences of an unique error
 #ERROR_MSG_DELAY 50
 
-RESPAWN_DELAY 0
+NO_RESPAWN_DELAYS 0
 
 #show mods in staff who
 SHOW_MODS 1

@@ -2,6 +2,10 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "corpse_map_state"
 
+/mob/living/carbon/human/corpse/New()
+	..()
+	death()
+
 /mob/living/carbon/human/corpse/SS
 	gender = MALE
 

@@ -40,10 +40,10 @@ var/global/datum/controller/occupations/job_master
 		//Debug info
 	var/list/job_debug = list()
 
-	var/ruforce_count = FALSE
-	var/geforce_count = FALSE
-	var/civilian_count = FALSE
-	var/partisan_count = FALSE
+	var/ruforce_count = 0
+	var/geforce_count = 0
+	var/civilian_count = 0
+	var/partisan_count = 0
 
 //	var/allow_jews = FALSE
 //	var/allow_spies = FALSE
@@ -70,39 +70,39 @@ var/global/datum/controller/occupations/job_master
 	 // Commander:
 	   // always TRUE slot no matter what (for now)
 
-	var/german_primary_job_slots = FALSE
-	var/german_secondary_job_slots = FALSE
-	var/german_soldat_slots = FALSE
-	var/german_commander_slots = FALSE
-	var/german_ss_slots = FALSE
-	var/german_paratrooper_slots = FALSE
-	var/german_ss_commander_slots = FALSE
+	var/german_primary_job_slots = 0
+	var/german_secondary_job_slots = 0
+	var/german_soldat_slots = 0
+	var/german_commander_slots = 0
+	var/german_ss_slots = 0
+	var/german_paratrooper_slots = 0
+	var/german_ss_commander_slots = 0
 
-	var/soviet_primary_job_slots = FALSE
-	var/soviet_secondary_job_slots = FALSE
-	var/soviet_soldat_slots = FALSE
-	var/soviet_commander_slots = FALSE
-	var/soviet_sturmovik_slots = FALSE
+	var/soviet_primary_job_slots = 0
+	var/soviet_secondary_job_slots = 0
+	var/soviet_soldat_slots = 0
+	var/soviet_commander_slots = 0
+	var/soviet_sturmovik_slots = 0
 
-	var/italy_soldier_slots = FALSE
-	var/italy_medic_slots = FALSE
-	var/italy_SL_slots = FALSE
+	var/italy_soldier_slots = 0
+	var/italy_medic_slots = 0
+	var/italy_SL_slots = 0
 
-	var/ukraine_soldier_slots = FALSE
-	var/ukraine_medic_slots = FALSE
-	var/ukraine_SL_slots = FALSE
+	var/ukraine_soldier_slots = 0
+	var/ukraine_medic_slots = 0
+	var/ukraine_SL_slots = 0
 
 	// which squad are we trying to fill right now?
 		// doesn't apply to partisans
 
-	var/current_german_squad = TRUE
-	var/current_soviet_squad = TRUE
+	var/current_german_squad = 1
+	var/current_soviet_squad = 1
 
-	var/german_squad_members = FALSE
-	var/german_squad_leaders = FALSE
+	var/german_squad_members = 0
+	var/german_squad_leaders = 0
 
-	var/soviet_squad_members = FALSE
-	var/soviet_squad_leaders = FALSE
+	var/soviet_squad_members = 0
+	var/soviet_squad_leaders = 0
 
 	var/german_squad_info[4]
 	var/soviet_squad_info[4]
@@ -114,21 +114,21 @@ var/global/datum/controller/occupations/job_master
 
 	proc/total_german_slots()
 		. = FALSE
-		. += german_primary_job_slots = FALSE
-		. += german_secondary_job_slots = FALSE
-		. += german_soldat_slots = FALSE
-		. += german_commander_slots = FALSE
-		. += german_ss_slots = FALSE
-		. += german_paratrooper_slots = FALSE
-		. += german_ss_commander_slots = FALSE
+		. += german_primary_job_slots
+		. += german_secondary_job_slots
+		. += german_soldat_slots
+		. += german_commander_slots
+		. += german_ss_slots
+		. += german_paratrooper_slots
+		. += german_ss_commander_slots
 
 	proc/total_soviet_slots()
-		. = FALSE
-		. += soviet_primary_job_slots = FALSE
-		. += soviet_secondary_job_slots = FALSE
-		. += soviet_soldat_slots = FALSE
-		. += soviet_commander_slots = FALSE
-		. += soviet_sturmovik_slots = FALSE
+		. = 0
+		. += soviet_primary_job_slots
+		. += soviet_secondary_job_slots
+		. += soviet_soldat_slots
+		. += soviet_commander_slots
+		. += soviet_sturmovik_slots
 
 	proc/remaining_german_slots()
 		. = german_job_slots
@@ -175,8 +175,13 @@ var/global/datum/controller/occupations/job_master
 		else
 			_clients = clients.len
 
-		if (announce)
+		if (announce == TRUE)
 			world << "<span class = 'warning'>Setting up roundstart autobalance for [_clients] players.</span>"
+		else if (announce == 2)
+			if (!roundstart_time)
+				world << "<span class = 'warning'>An admin has changed autobalance to be set up for [_clients] players.</span>"
+			else
+				world << "<span class = 'warning'>An admin has reset autobalance for [_clients] players.</span>"
 
 		var/expected_players = _clients * 0.9
 
@@ -369,8 +374,8 @@ var/global/datum/controller/occupations/job_master
 
 			// SPECIAL
 			if (istype(j, /datum/job/german/flamethrower_man))
-				if (clients.len <= 15)
-					j.total_positions = FALSE
+				if (expected_players <= 13)
+					j.total_positions = 0
 					for (var/obj/item/weapon/storage/backpack/flammenwerfer/F in world)
 						qdel(F)
 
@@ -383,7 +388,7 @@ var/global/datum/controller/occupations/job_master
 					if (!locate(/obj/tank) in world)
 						j.total_positions = FALSE
 
-			else if (istype(j, /datum/job/german/paratrooper) && (!fallschirm_landmarks.len || clients.len <= 20))
+			else if (istype(j, /datum/job/german/paratrooper) && (!fallschirm_landmarks.len || expected_players <= 18))
 				german_soldat_slots += german_paratrooper_slots
 				german_paratrooper_slots = FALSE
 				j.total_positions = FALSE
@@ -1126,6 +1131,8 @@ var/global/datum/controller/occupations/job_master
 	proc/EquipRank(var/mob/living/carbon/human/H, var/rank, var/joined_late = FALSE)
 		if(!H)	return null
 
+		H.stopDumbDamage = TRUE
+
 		var/datum/job/job = GetJob(rank)
 	//	var/list/spawn_in_storage = list()
 
@@ -1425,6 +1432,8 @@ var/global/datum/controller/occupations/job_master
 				relocate(H)
 				if (H.client)
 					H.client.remove_gun_icons()
+
+			H.stopDumbDamage = FALSE
 
 			return H
 

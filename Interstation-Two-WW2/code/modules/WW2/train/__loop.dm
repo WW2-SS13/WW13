@@ -35,6 +35,9 @@ var/next_german_supplytrain_master_process = -1
 
 /proc/supplytrain_processes()
 
+	if (next_german_supplytrain_master_process > world.realtime)
+		return
+
 	// make us visible if we're docking at the armory
 	// make us invisible if we're leaving
 

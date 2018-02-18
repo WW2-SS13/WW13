@@ -765,10 +765,6 @@ var/first_fallschirm = TRUE
 
 	H.make_artillery_officer()
 
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
-
 /datum/job/german/artyman/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/command_intermediate)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -808,9 +804,6 @@ var/first_fallschirm = TRUE
 	..()
 
 	H.make_artillery_scout()
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
 
 /datum/job/german/scout/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
@@ -894,16 +887,13 @@ var/first_fallschirm = TRUE
 	H.setStat("mg", STAT_VERY_HIGH)
 	H.setStat("pistol", STAT_VERY_HIGH)
 	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
-	H.setStat("medical", STAT_LOW)
+	H.setStat("medical", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/squad_leader_ss/update_character(var/mob/living/carbon/human/H)
 	..()
 
 	H.make_artillery_officer()
-
-	if (istype(H.languages[1], /datum/language/common))
-		H.languages[1] = null
 
 /datum/job/german/squad_leader_ss/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat,
@@ -944,7 +934,8 @@ var/first_fallschirm = TRUE
 	H.setStat("mg", STAT_MEDIUM_HIGH)
 	H.setStat("pistol", STAT_VERY_HIGH)
 	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
-	H.setStat("medical", STAT_LOW)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("survival", STAT_VERY_HIGH)
 	return TRUE
 
 /datum/job/german/soldier_ss/get_keys()
@@ -985,6 +976,7 @@ var/first_fallschirm = TRUE
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_MEDIUM_LOW)
+	H.setStat("survival", STAT_VERY_HIGH)
 	return TRUE
 
 /datum/job/german/chef/get_keys()

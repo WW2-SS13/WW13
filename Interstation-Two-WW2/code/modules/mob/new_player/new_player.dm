@@ -144,7 +144,7 @@
 			src << "<span class = 'danger'>You're banned from observing.</span>"
 			return TRUE
 
-		if(alert(src,"Are you sure you wish to observe?[config.respawn_delay ? " You will have to wait [config.respawn_delay] minutes before being able to respawn!" : ""]","Player Setup","Yes","No") == "Yes")
+		if(alert(src,"Are you sure you wish to observe?","Player Setup","Yes","No") == "Yes")
 			if(!client)	return TRUE
 			var/mob/observer/ghost/observer = new(150, 317, TRUE)
 
@@ -190,8 +190,11 @@
 			return TRUE
 
 		if (!reinforcements_master.is_permalocked(GERMAN))
-			if (client.prefs.s_tone < -30 && !client.untermensch)
+			if (client.prefs.s_tone < -30)
 				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
+				return
+			if (client.prefs.german_gender == FEMALE)
+				usr << "<span class='danger'>German soldiers must be male.</span>"
 				return
 			reinforcements_master.add(src, GERMAN)
 		else
@@ -236,7 +239,7 @@
 				alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
 				return FALSE
 */
-		if (client.next_normal_respawn > world.realtime && respawn_delays)
+		if (client.next_normal_respawn > world.realtime && !config.no_respawn_delays)
 			var/wait = ceil((client.next_normal_respawn-world.realtime)/600)
 			if (check_rights(R_ADMIN, FALSE, src))
 				if ((input(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
@@ -271,10 +274,12 @@
 				return
 
 		if (job_flag == GERMAN)
-			if (client.prefs.s_tone < -30 && !client.untermensch)
+			if (client.prefs.s_tone < -30)
 				usr << "<span class='danger'>You are too dark to be a German soldier.</span>"
 				return
-
+			if (client.prefs.german_gender == FEMALE && !actual_job.is_nonmilitary)
+				usr << "<span class='danger'>German soldiers must be male.</span>"
+				return
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
@@ -487,10 +492,14 @@
 
 	src << browse(null, "window=latechoices")
 
-	var/list/dat = list("<html><body style='background-color:#1D2951; color:#ffffff'><center>")
-	dat += "<b>Welcome, [key].<br></b>"
-	dat += "Round Duration: [roundduration2text()]<br>"
-	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans and [alive_russians.len] Russians.<br>"
+	//<body style='background-color:#1D2951; color:#ffffff'>
+	var/list/dat = list("<center>")
+	dat += "<b><big>Welcome, [key].</big></b>"
+	dat += "<br>"
+	dat += "Round Duration: [roundduration2text()]"
+	dat += "<br>"
+	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans and [alive_russians.len] Russians."
+	dat += "<br>"
 
 	var/list/restricted_choices = list()
 	var/list/available_jobs_per_side = list(
@@ -504,7 +513,8 @@
 
 	var/prev_side = FALSE
 
-	dat += "<b>Choose from the following open positions:</b><br>"
+	dat += "<b>Choose from the following open positions:</b>"
+	dat += "<br>"
 
 	for(var/datum/job/job in job_master.faction_organized_occupations)
 
@@ -520,7 +530,7 @@
 			var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
 
 			if (job.is_paratrooper)
-				job_is_available = (allow_paratroopers && fallschirm_landmarks.len)
+				job_is_available = fallschirm_landmarks.len
 
 			if (!job.validate(src))
 				job_is_available = FALSE
@@ -588,30 +598,30 @@
 					active++
 				if(job.base_type_flag() != prev_side)
 					prev_side = job.base_type_flag()
-					var/side_name = "<b><span style = 'font-size: 3.0em;'>[job.get_side_name()]</span></b>&&[job.base_type_flag()]&&"
+					var/side_name = "<b><h1><big>[job.get_side_name()]</big></h1></b>&&[job.base_type_flag()]&&"
 					if(side_name)
-						dat += "[side_name]<br>"
+						dat += "<br><br>[side_name]<br>"
 
 				var/extra_span = ""
 				var/end_extra_span = ""
 
 				if (job.is_officer && !job.is_commander)
-					extra_span = "<span style = 'font-size: 1.5em;'>"
-					end_extra_span = "</span>"
+					extra_span = "<h3>"
+					end_extra_span = "</h3>"
 				else if (job.is_commander)
-					extra_span = "<span style = 'font-size: 2.0em;'>"
-					end_extra_span = "</span>"
+					extra_span = "<h2>"
+					end_extra_span = "</h2>"
 
 				if (!job.en_meaning)
 					if (job_is_available)
-						dat += "&[job.base_type_flag()]&[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
+						dat += "&[job.base_type_flag()]&[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]"
 						++available_jobs_per_side[job.base_type_flag()]
 				/*	else
 						dat += "&[job.base_type_flag()]&[unavailable_message]<span style = 'color:red'><strike>[job.title] ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
 					*/
 				else
 					if (job_is_available)
-						dat += "&[job.base_type_flag()]&[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]<br>"
+						dat += "&[job.base_type_flag()]&[extra_span]<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</a>[end_extra_span]"
 						++available_jobs_per_side[job.base_type_flag()]
 			/*		else
 						dat += "&[job.base_type_flag()]&[unavailable_message]<span style = 'color:red'><strike>[job.title] ([job.en_meaning]) ([job.current_positions]/[job.total_positions]) (Active: [active])</strike></span><br>"
@@ -651,6 +661,21 @@
 		if (line != null)
 			data += line
 			data += "<br>"
+	//<link rel='stylesheet' type='text/css' href='html/browser/common.css'>
+	data = {"
+		<br>
+		<html>
+		<head>
+		<style>
+		[common_browser_style]
+		</style>
+		</head>
+		<body>
+		[data]
+		</body>
+		</html>
+		<br>
+	"}
 
 	spawn (1)
 		src << browse(data, "window=latechoices;size=600x640;can_close=1")
@@ -694,7 +719,21 @@
 		client.prefs.real_name = random_name(new_character.gender)
 		client.prefs.randomize_appearance_for(new_character)
 	else
+		// no more traps - Kachnov
+		var/datum/job/J = original_job
+		var/J_flag = J.base_type_flag()
+		var/client_prefs_original_gender = client.prefs.gender
+
+		if (list(PARTISAN, CIVILIAN).Find(J_flag))
+			client.prefs.gender = client.prefs.ukrainian_gender
+		else if (J_flag == GERMAN)
+			client.prefs.gender = client.prefs.german_gender
+		else if (J_flag == SOVIET)
+			client.prefs.gender = client.prefs.russian_gender
+
 		client.prefs.copy_to(new_character)
+
+		client.prefs.gender = client_prefs_original_gender
 
 	src << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS cant last forever yo
 

@@ -6,6 +6,10 @@
 	return drive_front_seat
 
 /obj/tank/proc/back_seat()
+	if (admin)
+		var/front_seat = front_seat()
+		if (front_seat)
+			return front_seat
 	return fire_back_seat
 
 /obj/tank/proc/next_seat()

@@ -70,7 +70,6 @@
 	if (changed)
 		if (lighting_overlay)
 			lighting_overlay.update_overlay()
-			lighting_overlay.TOD = time_of_day
 /*
 		spawn (1)
 			for (var/obj/machinery/light/L in src)

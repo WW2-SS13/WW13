@@ -178,11 +178,16 @@
 		return "up"
 	return "down"
 
-/* TRUE Z LEVEL LADDERS - Kachnov */
+/* 1 Z LEVEL LADDERS - Kachnov */
 
 /obj/structure/multiz/ladder/ww2
 	var/ladder_id = null
 	var/area_id = "defaultareaid"
+
+/obj/structure/multiz/ladder/ww2/Crossed(var/atom/movable/AM)
+	if (find_target())
+		if (isitem(AM) && !istype(AM, /obj/item/projectile))
+			AM.forceMove(get_turf(find_target()))
 
 /obj/structure/multiz/ladder/ww2/find_target()
 	for (var/obj/structure/multiz/ladder/ww2/ladder in world) // todo: get rid of
@@ -302,7 +307,6 @@
 
 /obj/structure/multiz/stairs
 	name = "Stairs"
-	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
 	icon_state = "rampup"
 	layer = 2.4
 

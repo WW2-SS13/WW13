@@ -496,10 +496,12 @@ var/setting_up_db_connection = FALSE
 	. += ";"
 	. += "<b>Map</b>: [map.title]"
 	. += ";"
-	. += "<b>Players</b>: [clients.len]"
+	. += "<b>Players</b>: [clients.len]" // turns out the bot only considers itself a player sometimes? its weird. Maybe it was fixed, not sure - Kachnov
 	if (config.usewhitelist)
 		. += ";"
 		. += "<b>Whitelist</b>: Enabled"
+	. += ";"
+	. += "realtime=[num2text(world.realtime, 20)]"
 
 /proc/start_serverdata_loop()
 	spawn while (1)
@@ -548,7 +550,11 @@ var/setting_up_db_connection = FALSE
 					serverswap_open_status = TRUE
 					serverswap_closed = FALSE
 					if (ticker)
+						// reset the pregame timer
 						ticker.pregame_timeleft = 185
+						// recreate the database, may or may not fix a DB bug
+						database = new("[serverswap["masterdir"]]/SQL/database.db")
+
 					DEBUG_SERVERSWAP("13.1")
 
 					// make sure we aren't marked as closed anymore

@@ -19,6 +19,8 @@
 
 	gun_type = GUN_TYPE_RIFLE
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+	force = 10
+	throwforce = 20
 
 /obj/item/weapon/gun/projectile/svt/update_icon()
 	..()
@@ -48,6 +50,8 @@
 	firemodes = list(
 		list(name="single shot",burst=1, move_delay=4, fire_delay=10, dispersion = list(1))
 		)
+	force = 10
+	throwforce = 20
 
 /obj/item/weapon/gun/projectile/g41/update_icon()
 	..()

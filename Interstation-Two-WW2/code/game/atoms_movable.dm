@@ -225,7 +225,7 @@
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
-					if (!S.density)
+					if (!S.density && !istype(S, /obj/structure/window/classic))
 						continue
 					canMove = FALSE
 				if (canMove)
@@ -251,7 +251,7 @@
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
-					if (!S.density)
+					if (!S.density && !istype(S, /obj/structure/window/classic))
 						continue
 					canMove = FALSE
 				if (canMove)
@@ -281,7 +281,7 @@
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
-					if (!S.density)
+					if (!S.density && !istype(S, /obj/structure/window/classic))
 						continue
 					canMove = FALSE
 				if (canMove)
@@ -306,7 +306,7 @@
 				for (var/obj/structure/S in step)
 					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
 						continue
-					if (!S.density)
+					if (!S.density && !istype(S, /obj/structure/window/classic))
 						continue
 					canMove = FALSE
 				if (canMove)
@@ -329,6 +329,11 @@
 		throwing = FALSE
 		thrower = null
 		throw_source = null
+
+		// if we're a bottle we shatter even if we didn't hit anything
+		var/obj/item/weapon/reagent_containers/food/drinks/bottle/B = src
+		if (istype(B))
+			B.throw_impact(new_loc, speed)
 
 
 //Overlays

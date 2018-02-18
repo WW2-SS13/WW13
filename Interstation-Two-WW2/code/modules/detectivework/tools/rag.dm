@@ -9,7 +9,7 @@
 /obj/item/weapon/reagent_containers/glass/rag
 	name = "rag"
 	desc = "For cleaning up messes, you suppose."
-	w_class = TRUE
+	w_class = 1
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "rag"
 	amount_per_transfer_from_this = 5
@@ -17,6 +17,7 @@
 	volume = 10
 	can_be_placed_into = null
 	flags = OPENCONTAINER | NOBLUDGEON
+	dropsound = null
 
 	var/on_fire = FALSE
 	var/burn_time = 20 //if the rag burns for too long it turns to ashes
@@ -127,26 +128,27 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user as mob , flag)
 	if(isliving(target))
-		var/mob/living/M = target
-		if(on_fire)
-			user.visible_message("<span class='danger'>\The [user] hits [target] with [src]!</span>",)
-			user.do_attack_animation(src)
-			M.IgniteMob()
-		else if(reagents.total_volume)
-			if(user.targeted_organ == "mouth")
+		if (do_after(user, 20, get_turf(user)))
+			var/mob/living/M = target
+			if(on_fire)
+				user.visible_message("<span class='danger'>\The [user] hits [target] with [src]!</span>",)
 				user.do_attack_animation(src)
-				user.visible_message(
-					"<span class='danger'>\The [user] smothers [target] with [src]!</span>",
-					"<span class='warning'>You smother [target] with [src]!</span>",
-					"You hear some struggling and muffled cries of surprise"
-					)
+				M.IgniteMob()
+			else if(reagents.total_volume)
+				if(user.targeted_organ == "mouth")
+					user.do_attack_animation(src)
+					user.visible_message(
+						"<span class='danger'>\The [user] smothers [target] with [src]!</span>",
+						"<span class='warning'>You smother [target] with [src]!</span>",
+						"You hear some struggling and muffled cries of surprise"
+						)
 
-				//it's inhaled, so... maybe CHEM_BLOOD doesn't make a whole lot of sense but it's the best we can do for now
-				reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
-				update_name()
-			else
-				wipe_down(target, user)
-		return
+					//it's inhaled, so... maybe CHEM_BLOOD doesn't make a whole lot of sense but it's the best we can do for now
+					reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
+					update_name()
+				else
+					wipe_down(target, user)
+			return
 
 	return ..()
 

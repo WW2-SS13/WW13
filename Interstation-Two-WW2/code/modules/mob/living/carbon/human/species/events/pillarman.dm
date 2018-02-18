@@ -17,6 +17,9 @@
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
+	stamina = 700
+	max_stamina = 700
+
 	var/next_pose = -1
 	var/energy = 0.75
 
@@ -110,12 +113,13 @@
 		if (energy >= 0.25)
 			energy -= ((healedLoss/4500) * getStatCoeff("strength"))
 
-	var/area/A = get_area(src)
-	if (A.location == AREA_OUTSIDE)
-		for (var/atom/movable/lighting_overlay/LO in get_turf(src))
-			if (list("Early Morning", "Morning", "Afternoon", "Midday").Find(LO.TOD))
-				frozen = TRUE
-				return
+	if (istype(loc, /turf))
+		var/area/A = get_area(src)
+		if (A.location == AREA_OUTSIDE && A.weather != WEATHER_RAIN)
+			for (var/atom/movable/lighting_overlay/LO in loc)
+				if (list("Early Morning", "Morning", "Afternoon", "Midday").Find(LO.TOD))
+					frozen = TRUE
+					return
 
 
 	frozen = FALSE

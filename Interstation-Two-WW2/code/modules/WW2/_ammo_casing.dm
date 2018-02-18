@@ -134,6 +134,9 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/rocket/yuge
 	projectile_type = /obj/item/projectile/bullet/rifle/missile/yuge
 
+/obj/item/ammo_casing/rocket/yuge/lessyuge
+	projectile_type = /obj/item/projectile/bullet/rifle/missile/yuge/lessyuge
+
 /obj/item/ammo_casing/rocket/tank
 	projectile_type = /obj/item/projectile/bullet/rifle/missile/tank
 

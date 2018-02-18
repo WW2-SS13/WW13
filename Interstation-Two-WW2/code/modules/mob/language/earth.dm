@@ -43,7 +43,7 @@
 		if("?")
 			return ask_verb
 	return speech_verb
-
+/*
 // 'basic' language; spoken by default.
 /datum/language/common
 	name = "Galactic Common"
@@ -61,4 +61,4 @@
 			return pick("exclaims","shouts","yells") //TODO: make the basic proc handle lists of verbs.
 		if("?")
 			return ask_verb
-	return speech_verb
+	return speech_verb*/

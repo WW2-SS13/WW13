@@ -75,6 +75,7 @@ var/created_lighting_corners_and_overlays = FALSE
 								if (!a.dynamic_lighting)
 									if (!istype(a, /area/prishtina/soviet/bunker) && !istype(a, /area/prishtina/soviet/bunker_entrance) && !istype(a, /area/prishtina/void))
 										t.adjust_lighting_overlay_to_daylight()
+
 						else
 							// You have to do this instead of deleting t.lighting_overlay.
 							for (var/atom/movable/lighting_overlay/LO in t.contents)
@@ -83,6 +84,11 @@ var/created_lighting_corners_and_overlays = FALSE
 							t.color = rgb(TOD_2_rgb, TOD_2_rgb, TOD_2_rgb)
 							for (var/obj/train_track/TT in t.contents)
 								TT.color = t.color
+
+					// regardless of whether or not we use dynamic lighting here
+					// we still need to change the TOD to prevent Vampire dusting
+					for (var/atom/movable/lighting_overlay/LO in t.contents)
+						LO.TOD = time_of_day
 
 			sleep(1)
 

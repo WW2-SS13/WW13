@@ -99,7 +99,7 @@
 			blocking_turfs += T
 		else
 			for (var/obj/structure/S in T)
-				if (S.density)
+				if (S.density && !S.low)
 					blocking_turfs += T
 					break
 
@@ -219,6 +219,7 @@
 /obj/item/weapon/flamethrower/flammenwerfer/ignite_turf(turf/target, flamedir)
 	var/throw_coeff = get_heat_coeff()
 	var/dist_coeff = 1.0
+
 	switch (get_dist(get_turf(src), target))
 		if (0 to 5)
 			dist_coeff = 1.00

@@ -723,7 +723,7 @@ default behaviour is:
 		possessor << "<span class='warning'>You are banned from animal roles.</span>"
 		return FALSE
 	*/
-	if(!possessor.MayRespawn(1,ANIMAL_SPAWN_DELAY))
+	if(!possessor.MayRespawn(1,0))
 		return FALSE
 	return TRUE
 

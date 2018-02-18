@@ -11,7 +11,6 @@
 	var/set_temperature = T0C + 50	//K
 	var/heating_power = 40000
 
-
 /obj/structure/heater/New()
 	..()
 	cell = new(src)

@@ -11,6 +11,9 @@
 	var/datum/mind/mind
 
 	var/lastKnownIP = null
+	var/lastKnownCID = null
+	var/lastKnownCkey = null
+
 	var/computer_id = null
 
 	var/stat = FALSE //Whether a mob is alive or dead. TODO: Move this to living - Nodrak

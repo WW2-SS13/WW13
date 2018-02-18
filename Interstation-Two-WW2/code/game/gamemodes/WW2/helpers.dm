@@ -29,12 +29,12 @@
 
 	var/list/soldiers = WW2_soldiers_alive()
 	// prevents dividing by FALSE - Kachnov
-	if (soldiers["en"] > FALSE && soldiers["ru"] == FALSE)
+	if (soldiers["en"] > 0 && soldiers["ru"] == 0)
 		return 1000
-	else if (soldiers["ru"] > FALSE && soldiers["en"] == FALSE)
-		return TRUE/1000
+	else if (soldiers["ru"] > 0 && soldiers["en"] == 0)
+		return 1/1000
 	else if (soldiers["ru"] == soldiers["en"])
-		return TRUE
+		return 1
 
 	return max(soldiers["en"], TRUE)/max(soldiers["ru"], TRUE) // we need decimals here so no rounding
 

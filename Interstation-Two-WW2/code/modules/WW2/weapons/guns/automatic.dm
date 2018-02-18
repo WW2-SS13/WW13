@@ -2,6 +2,11 @@
 //*********************
 //PPS
 //*********************
+
+/obj/item/weapon/gun/projectile/automatic
+	force = 10
+	throwforce = 20
+
 /obj/item/weapon/gun/projectile/automatic/mp40
 	name = "MP-40"
 	desc = "German submachinegun chambered in 9x19 Parabellum, with a 32 magazine magazine layout. Standard issue amongst most troops."
@@ -15,7 +20,7 @@
 	can_wield = TRUE
 	//must_wield = TRUE
 
-	accuracy = DEFAULT_MG_ACCURACY+1
+	accuracy = DEFAULT_MG_ACCURACY+2
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY+1
 
 	firemodes = list(

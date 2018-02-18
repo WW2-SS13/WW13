@@ -58,6 +58,7 @@
 			invisibility = 101
 			var/datum/mind/M = mind
 			var/mob/living/carbon/human/vampire/V = new(get_turf(src), FALSE)
+			V.canmove = FALSE
 			var/oldname = name
 			var/oldreal_name = real_name
 			spawn (12)
@@ -87,7 +88,12 @@
 					if (old_items[slotname] != null)
 						V.equip_to_slot_if_possible(old_items[slotname], text2num(slotname))
 			spawn (30)
-				canmove = TRUE
+				V.canmove = TRUE
+				if (istype(V.wear_mask, /obj/item/clothing/mask/stone/oneuse))
+					var/obj/item/mask = V.wear_mask
+					V.drop_from_inventory(mask)
+					qdel(mask)
+
 			spawn (10)
 				visible_message("<span class = 'danger'>[V] becomes a Vampire!</span>")
 			return
@@ -98,10 +104,13 @@
 		return
 
 	if (stat == UNCONSCIOUS || stat == DEAD || lying)
+		layer = MOB_LAYER - 0.01
 		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower_backpack = back
 			if (flamethrower_backpack.flamethrower && flamethrower_backpack.flamethrower.loc != flamethrower_backpack)
 				flamethrower_backpack.reclaim_flamethrower()
+	else
+		layer = MOB_LAYER
 
 	fire_alert = FALSE //Reset this here, because both breathe() and handle_environment() have a chance to set it.
 
@@ -474,6 +483,7 @@
 
 	if (abs(body_temperature_difference) < 0.5)
 		return //fuck this precision
+
 	if (on_fire)
 		return //too busy for pesky metabolic regulation
 
@@ -630,6 +640,8 @@
 			stat = UNCONSCIOUS
 			animate_tail_reset()
 			adjustHalLoss(-3)
+			if(l_hand) unEquip(l_hand)
+			if(r_hand) unEquip(r_hand)
 
 		if(paralysis)
 			AdjustParalysis(-1)

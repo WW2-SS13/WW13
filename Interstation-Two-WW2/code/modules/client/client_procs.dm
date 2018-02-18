@@ -174,7 +174,7 @@
 	// this is here because mob/Login() is called whenever a mob spawns in
 	if(holder)
 		if (ticker && ticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
-			message_admins("Admin login: [key_name(src)]")
+			message_admins("Staff login: [key_name(src)]")
 
 	establish_db_connection()
 
@@ -252,6 +252,9 @@
 	spawn (1)
 		log_to_db()
 
+	spawn (2)
+		if (!istype(mob, /mob/new_player))
+			src << browse(null, "window=playersetup;")
 
 	//////////////
 	//DISCONNECT//

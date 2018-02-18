@@ -28,7 +28,7 @@
 		if (HORIZONTAL)
 			x+=master.getMoveInc()
 
-/obj/train_connector/ex_act(severity)
+/obj/structure/railing/train_railing/ex_act(severity)
 	if (prob(round(60 * (1/severity))))
 		qdel(src)
 	else

@@ -102,6 +102,7 @@
 	onclose(user, "stack")
 	return
 
+/mob/var/can_build_recipe = TRUE
 /obj/item/stack/proc/produce_recipe(datum/stack_recipe/recipe, var/quantity, mob/user)
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
@@ -152,7 +153,28 @@
 	if (ishuman(user))
 		H = user
 
-	if (recipe.result_type == /obj/structure/barbwire)
+	if (recipe.result_type == /obj/structure/noose)
+		var/structurecheck = 0
+
+		for (var/obj/structure/structure in get_turf(H))
+			if ((structure.density && !structure.low) || istype(structure, /obj/structure/bed))
+				structurecheck = 2
+			else if (structurecheck == 0)
+				structurecheck = 1
+
+		if (structurecheck == 0)
+			H << "<span class = 'warning'>You need to be on a structure to make a noose.</span>"
+			return
+		else if (structurecheck == 1)
+			H << "<span class = 'warning'>This structure is not suitable for standing on.</span>"
+			return
+
+		var/area/H_area = get_area(H)
+		if (H_area.location == OUTSIDE)
+			H << "<span class = 'warning'>You need a ceiling to make a noose.</span>"
+			return
+
+	else if (recipe.result_type == /obj/structure/barbwire)
 		if (locate(/obj/structure/barbwire) in get_turf(H))
 			return
 		if (H)
@@ -167,6 +189,12 @@
 						if (istype(H_area, /area/prishtina/soviet))
 							user << "<span class = 'warning'>This isn't a great place for barbwire.</span>"
 							return
+
+	else if (recipe.result_type == /obj/structure/girder)
+		if (H)
+			if (H.getStat("engineering") < STAT_HIGH)
+				H << "<span class = 'info'>You have no idea of how to build a girder.</span>"
+				return
 
 	if (recipe.time)
 		var/buildtime = recipe.time
@@ -218,7 +246,10 @@
 		list_recipes(usr, text2num(href_list["sublist"]))
 
 	if (href_list["make"])
-		if (get_amount() < TRUE) qdel(src) //Never should happen
+
+		if (get_amount() < 1)
+			qdel(src)
+			return
 
 		var/list/recipes_list = recipes
 		if (href_list["sublist"])
@@ -227,10 +258,15 @@
 
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		if (!multiplier || (multiplier <= FALSE)) //href exploit protection
+		if (!multiplier || (multiplier <= 0)) //href exploit protection
 			return
 
-		produce_recipe(R, multiplier, usr)
+		if (ishuman(usr))
+			var/mob/living/carbon/human/H = usr
+			if (H.can_build_recipe)
+				H.can_build_recipe = FALSE
+				produce_recipe(R, multiplier, usr)
+				H.can_build_recipe = TRUE
 
 	if (src && usr.machine==src) //do not reopen closed window
 		spawn( FALSE )

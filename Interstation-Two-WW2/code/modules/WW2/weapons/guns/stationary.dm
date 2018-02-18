@@ -130,26 +130,33 @@
 /obj/item/weapon/gun/projectile/minigun/proc/started_using(mob/living/carbon/human/user)
 	..()
 
-	for(var/datum/action/A in actions)
-		if(istype(A, /datum/action/toggle_scope))
-			if(user.client.pixel_x | user.client.pixel_y)
-				for(var/datum/action/toggle_scope/T in user.actions)
-					if(T.scope.zoomed)
-						T.scope.zoom(user, FALSE)
-			var/datum/action/toggle_scope/S = A
-			S.scope.zoom(user, TRUE, TRUE)
-			last_user = user
 
-	user.forceMove(loc)
-	user.dir = dir
+	if (!map || !map.check_prishtina_block(user, loc))
+		user.forceMove(loc)
+		user.dir = dir
+
+		for(var/datum/action/A in actions)
+			if(istype(A, /datum/action/toggle_scope))
+				if(user.client.pixel_x | user.client.pixel_y)
+					for(var/datum/action/toggle_scope/T in user.actions)
+						if(T.scope.zoomed)
+							T.scope.zoom(user, FALSE)
+				var/datum/action/toggle_scope/S = A
+				S.boundto = src
+				S.scope.zoom(user, TRUE, TRUE)
+				last_user = user
+				break
 
 /obj/item/weapon/gun/projectile/minigun/proc/stopped_using(mob/user as mob)
 	..()
 
 	for(var/datum/action/A in actions)
 		if(istype(A, /datum/action/toggle_scope))
-			var/datum/action/toggle_scope/S = A
-			S.scope.zoom(user, FALSE)
+			var/datum/action/toggle_scope/TS = A
+			if (TS.boundto == src)
+				var/datum/action/toggle_scope/S = A
+				S.scope.zoom(user, FALSE)
+				break
 
 /obj/item/weapon/gun/projectile/minigun/proc/is_used_by(mob/user)
 	return user.using_object == src && user.loc == loc

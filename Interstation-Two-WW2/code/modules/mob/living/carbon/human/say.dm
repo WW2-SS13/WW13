@@ -21,7 +21,18 @@
 		else if (dd_hassuffix(message, "!!"))
 			message = "<span class = 'font-size: 1.2em;'><b>[message]</b></span>"
 
-	..(message, alt_name = alt_name, alt_message = message_without_html)
+	var/normal_message = message
+	for (var/rp in radio_prefixes)
+		if (dd_hasprefix(normal_message, rp))
+			normal_message = copytext(normal_message, lentext(rp)+1, lentext(normal_message)+1)
+
+	var/normal_message_without_html = message_without_html
+	for (var/rp in radio_prefixes)
+		if (dd_hasprefix(normal_message_without_html, rp))
+			normal_message_without_html = copytext(normal_message_without_html, lentext(rp)+1, lentext(normal_message_without_html)+1)
+
+
+	..(normal_message, alt_name = alt_name, alt_message = normal_message_without_html)
 
 	for (var/mob/living/simple_animal/complex_animal/canine/dog/D in view(world.view, src))
 		D.hear_command(message_without_html, src)
@@ -29,11 +40,11 @@
 	message_without_html = handle_speech_problems(message_without_html)[1]
 
 	// radio talk
-	if (!dd_hasprefix(message_without_html, ":t") || !istype(loc, /obj/tank))
+	if ((!dd_hasprefix(message_without_html, ":t") && !dd_hasprefix(message_without_html, ":T")) || !istype(loc, /obj/tank))
 		post_say(message_without_html)
 
 	// tank talk
-	else if (dd_hasprefix(message_without_html, ":t") && istype(loc, /obj/tank))
+	else if ((dd_hasprefix(message_without_html, ":t") || dd_hasprefix(message_without_html, ":T")) && istype(loc, /obj/tank))
 		var/obj/tank/my_tank = loc
 		if (my_tank.radio)
 			for (var/mob/living/carbon/human/H in world)

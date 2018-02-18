@@ -16,6 +16,9 @@
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
+	stamina = 500
+	max_stamina = 500
+
 	var/blood = 0.75
 
 	color = "#FFB2B2"
@@ -98,15 +101,16 @@
 		if (blood >= 0.25)
 			blood -= ((healedLoss/3000) * getStatCoeff("strength"))
 
-	var/area/A = get_area(src)
-	if (A.location == AREA_OUTSIDE)
-		for (var/atom/movable/lighting_overlay/LO in get_turf(src))
-			if (list("Early Morning", "Morning", "Afternoon", "Midday").Find(LO.TOD))
-				emote("scream")
-				visible_message("<span class = 'danger'>[src] turns into dust!</span>")
-				for (var/obj/item/I in contents)
-					drop_from_inventory(I)
-				dust()
+	if (istype(loc, /turf))
+		var/area/A = get_area(src)
+		if (A.location == AREA_OUTSIDE && A.weather != WEATHER_RAIN)
+			for (var/atom/movable/lighting_overlay/LO in loc)
+				if (list("Early Morning", "Morning", "Afternoon", "Midday").Find(LO.TOD))
+					emote("scream")
+					visible_message("<span class = 'danger'>[src] turns into dust!</span>")
+					for (var/obj/item/I in contents)
+						drop_from_inventory(I)
+					dust()
 
 /mob/living/carbon/human/vampire/Stat()
 	. = ..()

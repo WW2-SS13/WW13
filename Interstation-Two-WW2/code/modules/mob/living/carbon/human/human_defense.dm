@@ -76,15 +76,15 @@ bullet_act
 			return 2
 	else
 		if ((abs(P.starting.x - x) + abs(P.starting.y - y)) > 2) // not PB range
-			if (list("head", "mouth", "eyes").Find(def_zone) && prob(40))
+			if (list("head", "mouth", "eyes").Find(def_zone) && prob(40 * getStatCoeff("survival")))
 				visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 				qdel(P)
-				adjustBruteLoss(rand(2,3))
+				adjustBruteLoss(pick(2,3))
 				return
-			else if (prob(20))
+			else if (prob(20 * getStatCoeff("survival")))
 				visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 				qdel(P)
-				adjustBruteLoss(rand(2,3))
+				adjustBruteLoss(pick(2,3))
 				return
 		// get knocked back once in a while
 		// unless we're on a train because bugs
@@ -96,8 +96,9 @@ bullet_act
 					var/turf/slammed_into = behind
 					if (!slammed_into.density)
 						for (var/obj/structure/S in slammed_into)
-							slammed_into = S
-							break
+							if (S.density)
+								slammed_into = S
+								break
 
 					visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
 					Weaken(rand(5,7))
@@ -403,6 +404,11 @@ bullet_act
 		if(!zone)
 			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
 			return
+
+		if (istype(AM, /obj/item))
+			var/obj/item/I = AM
+			if (prob(I.throwforce * 4))
+				Weaken(I.throwforce/5)
 
 		O.throwing = FALSE		//it hit, so stop moving
 

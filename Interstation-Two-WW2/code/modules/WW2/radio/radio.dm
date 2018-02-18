@@ -104,6 +104,8 @@ var/global/list/default_ukrainian_channels = list(
 	num2text(UK_FREQ)
 )
 
+var/global/list/all_channels = default_german_channels | command_german_channels | SS_german_channels | SS_command_german_channels | default_soviet_channels | command_soviet_channels | default_ukrainian_channels
+
 
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
@@ -166,8 +168,10 @@ var/global/list/default_ukrainian_channels = list(
 		"Wood Planks" = /obj/structure/closet/crate/wood,
 		"Steel Sheets" = /obj/structure/closet/crate/steel,
 		"Iron Ingots" = /obj/structure/closet/crate/iron,
+		"Glass Sheets" = /obj/structure/closet/crate/glass,
 
 		// GUNS & ARTILLERY
+		"MP40" = /obj/item/weapon/gun/projectile/automatic/mp40,
 		"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
 		"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 		"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
@@ -219,8 +223,10 @@ var/global/list/default_ukrainian_channels = list(
 		"Wood Planks" = /obj/structure/closet/crate/wood,
 		"Steel Sheets" = /obj/structure/closet/crate/steel,
 		"Iron Ingots" = /obj/structure/closet/crate/iron,
+		"Glass Sheets" = /obj/structure/closet/crate/glass,
 
 		// GUNS & ARTILLERY
+		"PPSH" = /obj/item/weapon/gun/projectile/automatic/m4,
 		"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
 		"Maxim" = /obj/item/weapon/gun/projectile/minigun/kord/maxim,
 		"Colt Crate" = /obj/structure/closet/crate/colts,
@@ -277,8 +283,11 @@ var/global/list/default_ukrainian_channels = list(
 		"Wood Planks" = 75,
 		"Steel Sheets" = 100,
 		"Iron Ingots" = 125,
+		"Glass Sheets" = 150,
 
 		// GUNS & ARTILLERY
+		"MP40" = 125,
+		"PPSH" = 125,
 		"PTRD" = 200,
 		"Flammenwerfer" = 250,
 		"7,5 cm FK 18 Artillery Piece" = 300,
@@ -327,6 +336,7 @@ var/global/list/default_ukrainian_channels = list(
 			setup_announcement_system("High Command Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
 			switch (faction)
 				if (GERMAN)
+					setup_announcement_system("SS Announcement System", SS_FREQ)
 					main_radios[GERMAN] = src
 				if (SOVIET)
 					main_radios[SOVIET] = src
@@ -450,6 +460,9 @@ var/global/list/default_ukrainian_channels = list(
 			continue
 		if (radio.notyetmoved)
 			continue
+		if (!istype(radio, /obj/item/device/radio/intercom))
+			if (!istype(radio.loc, /mob))
+				continue
 		if (!radio.on)
 			continue
 		if (radio == s_store)
@@ -478,7 +491,7 @@ var/global/list/default_ukrainian_channels = list(
 
 		message = capitalize(trim_left(message))
 
-		if (!istype(loc, /obj/tank))
+		if (!loc || !loc.loc || !istype(loc.loc, /obj/tank))
 			used_radio_turfs[radio.faction] += get_turf(radio)
 
 		used_radios += radio
@@ -533,11 +546,15 @@ var/global/list/default_ukrainian_channels = list(
 					continue
 				if (radio.notyetmoved)
 					continue
+				if (!istype(radio, /obj/item/device/radio/intercom))
+					if (!istype(radio.loc, /mob))
+						continue
 				if (!radio.on)
 					continue
 				if (!radio.listening)
 					continue
-				used_radio_turfs[radio.faction] += get_turf(radio)
+				if (!radio.loc || !radio.loc.loc || !istype(radio.loc.loc, /obj/tank))
+					used_radio_turfs[radio.faction] += get_turf(radio)
 				used_radios += radio
 				if (radio.listening_on_channel[radio_freq2name(frequency)])
 					hearer.hear_radio(msg, speaker.sayverb, speaker.default_language, speaker, src, hardtohear)
@@ -666,8 +683,11 @@ var/global/list/default_ukrainian_channels = list(
 /obj/item/device/radio/feldfu/command
 
 /obj/item/device/radio/feldfu/SS
+	frequency = SS_FREQ
 
 /obj/item/device/radio/feldfu/SS/command
+
+/obj/item/device/radio/feldfu/announcer
 
 /obj/item/device/radio/feldfu/New()
 	..()
@@ -684,6 +704,10 @@ var/global/list/default_ukrainian_channels = list(
 /obj/item/device/radio/feldfu/SS/command/New()
 	..()
 	internal_channels = SS_command_german_channels.Copy()
+
+/obj/item/device/radio/feldfu/announcer/New()
+	..()
+	internal_channels = all_channels.Copy()
 
 // partisan clone of german radios. Doesn't inherit from the feldfu for
 // callback meme reasons
@@ -760,7 +784,7 @@ var/global/list/default_ukrainian_channels = list(
 /obj/item/device/radio/proc/setup_announcement_system(aname, channel)
 
 	// our personal radio. Yes, even though we're a radio. Works better this way.
-	announcers[aname] = new /obj/item/device/radio
+	announcers[aname] = new /obj/item/device/radio/feldfu/announcer
 	var/obj/item/device/radio/announcer = announcers[aname]
 	announcer.broadcasting = TRUE
 	announcer.faction = faction
@@ -788,6 +812,7 @@ var/global/list/default_ukrainian_channels = list(
 	H.default_language = H.languages[1]
 
 /obj/item/device/radio/proc/announce(msg, _announcer)
+
 	var/obj/item/device/radio/intercom/fu2/announcer = null
 	var/mob/living/carbon/human/mob = null
 

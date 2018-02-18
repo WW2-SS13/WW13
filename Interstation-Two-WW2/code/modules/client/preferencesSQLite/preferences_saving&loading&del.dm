@@ -21,7 +21,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 		if (key == name)
 			return val
 
-/datum/preferences/proc/load_preferences(var/slot = 1, var/bypass_application = FALSE)
+/datum/preferences/proc/load_preferences(var/slot = 1)
 
 	if (text2num(slot) == 0)
 		return FALSE
@@ -83,7 +83,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 
 	return TRUE
 
-/datum/preferences/proc/del_preferences(var/slot = TRUE, var/bypass_application = FALSE)
+/datum/preferences/proc/del_preferences(var/slot = TRUE)
 	if (text2num(slot) == FALSE)
 		return FALSE
 	if (database.execute("DELETE FROM preferences WHERE ckey = '[client_ckey]' AND slot = '[slot]';"))
@@ -94,7 +94,7 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 		return TRUE
 	return FALSE
 
-/datum/preferences/proc/save_preferences(var/slot = 1, var/prevslot = -1, var/bypass_application = FALSE)
+/datum/preferences/proc/save_preferences(var/slot = 1, var/prevslot = -1)
 
 	if (text2num(slot) == 0)
 		return FALSE

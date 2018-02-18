@@ -73,8 +73,6 @@
 	. = ..()
 	if (.)
 		if(statpanel("Status"))
-			if (z == 2 && map && istype(map, /obj/map_metadata/forest))
-				stat("Altitude:", paratrooper_plane_master.altitude)
 			stat("Intent:", "[a_intent]")
 			stat("Move Mode:", "[m_intent]")
 			if (internal)
@@ -1081,6 +1079,9 @@ var/list/rank_prefix = list(\
 
 
 /mob/living/carbon/human/can_stand_overridden()
+	for (var/obj/structure/noose/N in get_turf(src))
+		if (N.hanging == src)
+			return TRUE
 	return FALSE
 /*
 /mob/living/carbon/human/MouseDrop(var/atom/over_object)

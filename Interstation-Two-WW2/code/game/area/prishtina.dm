@@ -19,7 +19,9 @@
 		name = "(Waffen-S.S.) [name]"
 	else if (istype(src, /area/prishtina/german/ss_torture_room))
 		name = "(Waffen-S.S.) [name]"
-	else
+	else if (istype(src, /area/prishtina/void/sky/paratrooper_drop_zone))
+		name = "(Sky) [name]"
+	else if (!istype(src, /area/prishtina/void/sky))
 		name = "(Civilian) [name]"
 
 // Basic Area Definitions
@@ -280,6 +282,12 @@
 /area/prishtina/void/sky/paratrooper_drop_zone
 	corresponding_area_type = /area/prishtina/forest
 	corresponding_area_allow_subtypes = TRUE
+	name = "The Sky"
+
+/area/prishtina/void/sky/paratrooper_drop_zone/plane
+	corresponding_area_type = /area/prishtina/forest
+	corresponding_area_allow_subtypes = TRUE
+	name = "Fallschirmjager Plane"
 
 // end of wormhole areas
 
@@ -482,6 +490,7 @@
 	name = "German Bunker"
 	location = AREA_INSIDE
 	dynamic_lighting = FALSE
+	base_turf = /turf/floor/dirt
 
 /area/prishtina/german/lift
 	name = "German Lift"

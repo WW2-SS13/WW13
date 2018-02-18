@@ -452,6 +452,7 @@ Proc for attack log creation, because really why not
 // is?
 
 /proc/getfitmobs(var/faction)
+
 	var/list/mobs = null
 	var/list/newmobs = list()
 
@@ -470,6 +471,11 @@ Proc for attack log creation, because really why not
 			mobs = getpartisans(1)
 		if (CIVILIAN)
 			mobs = getcivilians(1)
+		if (PILLARMEN, "UNDEAD")
+			mobs = list()
+			for (var/mob/living/carbon/human/H in human_mob_list)
+				if (istype(H, /mob/living/carbon/human/vampire) || istype(H, /mob/living/carbon/human/pillarman))
+					mobs += H
 
 	for (var/mob/m in mobs)
 		if (m.stat == UNCONSCIOUS || m.stat == DEAD)

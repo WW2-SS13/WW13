@@ -90,10 +90,12 @@ var/datum/quickBan_handler/quickBan_handler = null
 		fields["ckey"] = ckey(fields["ckey"])
 		if (!fields["ckey"] && !fields["cID"] && !fields["ip"])
 			return
-		else // we have one or more field, use connection logs to find the others
+		else
+			// we have one or more field, use connection logs to find the others
 			var/ckey = fields["ckey"]
 			var/cID = fields["cID"]
 			var/ip = fields["ip"]
+
 			if (fields["ckey"])
 				if (!fields["cID"])
 					fields["cID"] = database.execute("SELECT computerid FROM connection_log WHERE ckey = '[ckey]';")["computerid"]
@@ -109,6 +111,44 @@ var/datum/quickBan_handler/quickBan_handler = null
 					fields["ckey"] = database.execute("SELECT ckey FROM connection_log WHERE ip = '[ip]';")["ckey"]
 				if (!fields["cID"])
 					fields["cID"] = database.execute("SELECT computerid FROM connection_log WHERE ip = '[ip]';")["computerid"]
+
+			// as a fallback, search for mobs in the world and use their lastKnownX variables instead
+
+			if (fields["ckey"])
+				if (!fields["cID"])
+					for (var/mob/M in mob_list)
+						if (M.lastKnownCkey == fields["ckey"])
+							if (M.lastKnownCID)
+								fields["cID"] = M.lastKnownCID
+				if (!fields["ip"])
+					for (var/mob/M in mob_list)
+						if (M.lastKnownCkey == fields["ckey"])
+							if (M.lastKnownIP)
+								fields["ip"] = M.lastKnownIP
+
+			else if (fields["cID"])
+				if (!fields["ckey"])
+					for (var/mob/M in mob_list)
+						if (M.lastKnownCID == fields["cID"])
+							if (M.lastKnownCkey)
+								fields["ckey"] = M.lastKnownCkey
+				if (!fields["ip"])
+					for (var/mob/M in mob_list)
+						if (M.lastKnownCID == fields["cID"])
+							if (M.lastKnownIP)
+								fields["ip"] = M.lastKnownIP
+
+			else if (fields["ip"])
+				if (!fields["ckey"])
+					for (var/mob/M in mob_list)
+						if (M.lastKnownIP == fields["ip"])
+							if (M.lastKnownCkey)
+								fields["ckey"] = M.lastKnownCkey
+				if (!fields["cID"])
+					for (var/mob/M in mob_list)
+						if (M.lastKnownIP == fields["ip"])
+							if (M.lastKnownIP)
+								fields["cID"] = M.lastKnownCID
 
 	else if (option == "Client")
 		var/client/C = input(src, "Which client?") in clients + "Cancel"
@@ -296,8 +336,8 @@ var/datum/quickBan_handler/quickBan_handler = null
 					database.execute("DELETE FROM quick_bans WHERE UID = '[bans["UID"]]';")
 					continue
 				if (bans.Find("type_specific_info"))
-					log_debug(bans["type_specific_info"])
-					log_debug(type_specific_info)
+				//	log_debug(bans["type_specific_info"])
+				//	log_debug(type_specific_info)
 					if (bans["type_specific_info"] != "nil")
 						if (bans["type_specific_info"] == type_specific_info)
 							return list("reason" = bans["reason"],

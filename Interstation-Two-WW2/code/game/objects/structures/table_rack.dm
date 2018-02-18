@@ -4,6 +4,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "rack"
 	flipped = -1
+	low = TRUE
 
 /obj/structure/table/rack/New()
 	..()

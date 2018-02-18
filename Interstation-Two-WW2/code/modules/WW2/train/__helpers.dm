@@ -76,15 +76,15 @@
 					return a:controller
 	return null
 
-
+// this no longer uses istype(), so it's more efficient - Kachnov
 /proc/is_train_object(var/atom/movable/a)
 	if (!a || !istype(a))
 		return FALSE
-	if (istype(a, /obj/train_connector))
+	if (a.type == /obj/train_connector)
 		return TRUE
-	if (istype(a, /obj/train_pseudoturf))
+	if (a.type == /obj/train_pseudoturf)
 		return TRUE
-	if (istype(a, /obj/structure/railing/train_railing))
+	if (a.type == /obj/structure/railing/train_railing)
 		return TRUE
 	return FALSE
 
@@ -136,31 +136,33 @@
 
 	return l
 
+/* this is now more efficient, because I stopped using istype() for objects
+ * with no subtypes - Kachnov */
 /proc/check_object_invalid_for_moving(var/obj/trainobject, var/atom/movable/a, var/initial = FALSE)
 	if (!istype(a))
-		return TRUE
-	if (a == trainobject)
-		return TRUE
-	if (istype(a, /atom/movable/lighting_overlay))
 		return TRUE
 	if (istype(a, /obj/structure/wild))
 		qdel(a)
 		return TRUE
 	if (istype(a, /obj/effect/landmark)) // stop moving these fucker
 		return TRUE
-	if (istype(a, /obj/snow))
+	if (a == trainobject)
 		return TRUE
-	if (istype(a, /obj/fire))
+	if (a.type == /atom/movable/lighting_overlay)
 		return TRUE
-	if (istype(a, /obj/train_track))
+	if (a.type == /obj/snow)
 		return TRUE
-	if (istype(a, /obj/train_connector)) // these do their own thing
+	if (a.type == /obj/fire)
 		return TRUE
-	if (istype(a, /obj/train_pseudoturf))
+	if (a.type == /obj/train_track)
 		return TRUE
-	if (istype(a, /obj/structure/railing/train_railing))
+	if (a.type == /obj/train_connector) // these do their own thing
 		return TRUE
-	if (istype(a, /obj/structure/railing/train_zone_railing))
+	if (a.type == /obj/train_pseudoturf)
+		return TRUE
+	if (a.type == /obj/structure/railing/train_railing)
+		return TRUE
+	if (a.type == /obj/structure/railing/train_zone_railing)
 		return TRUE
 	if (!initial)
 		for (var/obj/o in get_turf(a))

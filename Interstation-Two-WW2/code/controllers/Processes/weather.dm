@@ -14,7 +14,7 @@ var/datum/controller/process/weather/weather_process = null
 
 /datum/controller/process/weather/setup()
 	name = "weather"
-	schedule_interval = 20
+	schedule_interval = 100
 	start_delay = 20
 	next_can_mod_weather = world.realtime + 100
 	next_can_change_weather = world.realtime + 12000
@@ -26,8 +26,8 @@ var/datum/controller/process/weather/weather_process = null
 
 	process_weather()
 
-	var/prob_of_weather_mod = (((1/mod_weather_interval) * 10) / 2) * 100
-	var/prob_of_weather_change = (((1/change_weather_interval) * 10) / 2) * 100
+	var/prob_of_weather_mod = ((((1/mod_weather_interval) * 10) / 2) * 100) * schedule_interval/20
+	var/prob_of_weather_change = ((((1/change_weather_interval) * 10) / 2) * 100) * schedule_interval/20
 
 	if (prob(prob_of_weather_mod))
 		if (world.realtime >= next_can_mod_weather)

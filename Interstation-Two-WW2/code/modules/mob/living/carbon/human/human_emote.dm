@@ -1,4 +1,5 @@
 /mob/living/carbon/human/var/last_scream = -1
+/mob/living/carbon/human/var/last_surrender = -1
 /mob/living/carbon/human/var/next_vocal_emote = -1
 
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
@@ -537,7 +538,7 @@
 							message = "holds out [g.his] hand to [M]."
 
 			if ("scream")
-				if (last_scream != -1 && world.time - last_scream < 30)
+				if (last_scream != -1 && world.time - last_scream < 50)
 					return
 				last_scream = world.time
 				if (miming)
@@ -555,6 +556,14 @@
 						message = "makes a very loud noise."
 						m_type = 2
 
+			if ("surrender")
+				if (last_surrender != -1 && world.time - last_surrender < 1200)
+					return
+				last_surrender = world.time
+				message = "surrenders!"
+				Weaken(50)
+				if(l_hand) unEquip(l_hand)
+				if(r_hand) unEquip(r_hand)
 			if ("dab")
 				if (config.allow_dabbing)
 					m_type = 1
@@ -593,9 +602,9 @@
 
 			if ("help")
 				src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
-	cry, custom, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,
+	cry, custom, dab, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,
 	grin, laugh, look-(none)/mob, moan, mumble, nod, pale, point-atom, raise, salute, shake, shiver, shrug,
-	sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, tremble, twitch, twitch_s, whimper,
+	sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, scream, surrender, tremble, twitch, twitch_s, whimper,
 	wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag, dab"}
 
 			else
@@ -607,7 +616,10 @@
 
 		if (message)
 			log_emote("[name]/[key] : [message]")
-			custom_emote(m_type,message)
+			if (act == "surrender")
+				custom_emote(m_type,message,"userdanger")
+			else
+				custom_emote(m_type,message)
 
 		if (m_type == 2 && act != "scream")
 			next_vocal_emote = world.time + 50

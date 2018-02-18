@@ -347,17 +347,14 @@
 	if (!( config.abandon_allowed ))
 		usr << "<span class='notice'>Respawn is disabled.</span>"
 		return
+
 	if ((stat != DEAD || !( ticker )))
 		usr << "<span class='notice'><b>You must be dead to use this!</b></span>"
 		return
+
 	if (ticker.mode && ticker.mode.deny_respawn)
 		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
 		return
-
-	else if(!MayRespawn(1, config.respawn_delay))
-		if (config.respawn_delay != FALSE)
-			if(!check_rights(0, FALSE) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
-				return
 
 	usr << "You can respawn now, enjoy your new life!"
 
@@ -645,6 +642,8 @@
 			stat("Time of Day", time_of_day)
 			stat("Season", ticker.mode.season())
 			stat("Weather", ticker.mode.weather())
+			if (z == 2 && map && istype(map, /obj/map_metadata/forest))
+				stat("Altitude:", paratrooper_plane_master.altitude)
 			if (map)
 				var/grace_period_string = ""
 				for (var/faction in map.faction_organization)
@@ -731,8 +730,8 @@
 
 	if(lying)
 		density = FALSE
-		if(l_hand) unEquip(l_hand)
-		if(r_hand) unEquip(r_hand)
+	//	if(l_hand) unEquip(l_hand)
+	//	if(r_hand) unEquip(r_hand)
 	else
 		density = initial(density)
 

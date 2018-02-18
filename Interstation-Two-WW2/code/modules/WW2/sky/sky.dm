@@ -7,6 +7,8 @@ var/list/sky_drop_map = list()
 // this is probably laggy as hell but oh well - Kachnov
 /turf/sky/Entered(var/atom/movable/mover)
 	..(mover)
+	if (locate(/obj/structure/plating) in contents)
+		return
 	var/area/prishtina/void/sky/A = get_area(src)
 	if (!istype(A))
 		return
@@ -16,6 +18,8 @@ var/list/sky_drop_map = list()
 		if (sky_drop_map.len)
 			for (var/locstr in sky_drop_map)
 				for (var/turf/T in range(5, sky_drop_map[locstr]))
+					if (locate(/mob/living) in T)
+						continue
 					mover.forceMove(T)
 		else
 			if (A.corresponding_area_allow_subtypes )

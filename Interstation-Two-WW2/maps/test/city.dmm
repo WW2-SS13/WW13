@@ -452,6 +452,7 @@
 "iJ" = (/obj/snow_maker,/obj/structure/multiz/ladder/ww2/up{area_id = "sewers-1"},/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iK" = (/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iL" = (/obj/structure/closet/chemical,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/small_map/inside/medical)
+"iM" = (/obj/item/stack/material/rope{amount = 50},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "iN" = (/obj/snow_maker,/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iO" = (/obj/structure/barbwire,/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land)
 "iP" = (/obj/structure/barbwire,/obj/snow_maker,/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land)
@@ -729,6 +730,7 @@
 "ob" = (/obj/structure/barricade,/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/commander_bedroom)
 "oc" = (/obj/structure/barricade,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical)
 "od" = (/obj/structure/curtain,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/medical)
+"oe" = (/obj/item/stack/material/rope{amount = 50},/turf/floor/wood,/area/prishtina/soviet/small_map/inside)
 "of" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/beakers,/obj/item/weapon/storage/box/beakers_large,/obj/item/clothing/glasses/monocle,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/small_map/inside/medical)
 "og" = (/obj/structure/table/reinforced,/obj/item/weapon/reagent_containers/dropper,/obj/machinery/light/small{dir = 1},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/small_map/inside/medical)
 "oh" = (/obj/machinery/chemical_dispenser,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/small_map/inside/medical)
@@ -854,7 +856,7 @@ ebdgdDdDdCeddgeddDdDdCdgdgcUdidicXdjdjdHdkdjdjdHdjdjdFdjdjdkdjdHetcBaeiKiKiRaUcB
 ebdgdCeddCdDeTdgdCeUdgdgdgcUdidicXdHdjdjdjeVeVeVeVeVeVeVdjdHdjdjcXcBaeiKiKiKaUcBeWeXeXeYeYeYeYeZeLfaeNdofbfcfcfdfcfdfdfdfefffgfhfifjfjfkflfm
 cUdgdgeddgdgdDdgdCdCdgdgdgcUdidicXdjdkdGdjdjdjdjdjdjdkdjdjdGdjdjcXcBaeiKiKiKaUcBfnfofpfqfrfsftdoeLfaeNdofufvfwfxfyfzfAfBfCfDfgfEfFfjfjfjflfm
 cUdgdgdgdgdgdgdgdgdgdgdgdgcUdidicXdjdjdjdjdjdjdjdjdjdjdjdjdjdjcXcXcBaeiKiRiKaUfGfHfIfsfsfsfJfndoeLfafKdofLfAfAfAfAfAfAfBfCfMfNfkfjfjfjfjflfO
-cUebcUcUcUebebebcUcUebebcUcUaQaQcXcXcXcXcXcXcXcXcXcXcXcXcXfPfPcXcBcBfQiRiKiKfQcBfnfRfsfSfSfSfTdofUfafVdofLfAfAfAfAfAfAfAfCfWfgfXfjfjfjfhflfY
+cUebcUcUcUebebebcUcUebebcUcUaQaQcXcXcXcXcXcXcXcXcXcXcXcXcXfPfPcXcBcBfQiRiKiKfQcBfnfRfsfSfSiMfTdofUfafVdofLfAfAfAfAfAfAfAfCfWfgfXfjfjfjfhflfY
 cBcBcBcCcBcBcBcBcBcBcBcBcBcBcBcBcBcCcCcCcBcBcBcBcBcBcBfZfZcBcBcCcBfQiKiRiKiKiKfQcBfHgagbgcgdfngegegegegefLgfggghgigjgkglfCgmdygngngogngndyfY
 bjbjbjbkbjbkbkbjbjbjbjbkbjbjbjbjbjbjbjbkbkbkbkbjgpbjbjgqgqbjbjbkbliKiRiRiKiKiKiKbmbjgrgsgsgsgrgtgtgtgtgtfbfdfdfdfdfdfdfdgugvgwgwgwgwgwgwgwgw
 iKbyiKiRiKiKiRiKiKiKiKiKiKiKiKiRiKiKiKiKiKiRiRiRiKiKiKgxgxiKiKiKiRiUiRiKiKiKiKiKiKiKiKgziKiKiKiKiKiKiKiKiNiNiNiKiKiKiKiKiKiKiKiKiKgziKiKiKiK
@@ -893,7 +895,7 @@ lJlKlKlKlJlNlNmqlJlJlJlMlJlJlJlJlJlJlQlQlQlJlSlSlSlJlJlMlMlJlJlJlJlJmrmeiNiRaUcB
 jjjjlwjjjjjjjjmujjjjjjmumujjlwjjjjjjjjjjjjjjmumumumumvmwmvjjjjjjmvmvmxlziKiKaUcBkbmymzmAkGkHmBmBkHkbcBaeiKiKiKaUcBkdkwkwkWkWkwkKmCmDmEkdcBcB
 jDjDjDjDjDjDjDjDjDjDjDjFjDjDjDjDjDmFjDjDjDjDjDjDjDjFjDjDjDjDjDjDjDjDjMiZjNiRaUcBkbkbkbkbkbkUkckckbkbcBaeiKiKiRaUcBkdkdkekekekdkdkdkdkdkdcBcB
 mGjFjFjDjFjDjFjDmHmHmImImHmJmKmKmJmJmLmLmMmMmLmLmMmJmKmKmJmNmOmOmJmPmQiZjNiRmRcBcBmScBcBcBcBcBcBcBcBcBaeiKiKiKaUcBcBcBcBcBcBcBcBcBcBcBcBcBcB
-mJmTmUmVmUmVmWmXmYmZnanbncndnenenfngnhnhninjnhnhnkmTnenemTnlmTmTmJmVnmiZjNiKbmbjbjnnbjbjbjbjbjbjbjbkbjbmiKiKiKbmbjbjbjbjbkbkbjbjbjbjbjbjbjbj
+mJoemUmVmUmVmWmXmYmZnanbncndnenenfngnhnhninjnhnhnkmTnenemTnlmTmTmJmVnmiZjNiKbmbjbjnnbjbjbjbjbjbjbjbkbjbmiKiKiKbmbjbjbjbjbkbkbjbjbjbjbjbjbjbj
 mJmTmVnomVmUnomTnpnqnrnrmYmTnsnsmTntnunvnwnxnynznAnBnBmTnBmTnenCmKmVnmiZjNiRiKiKiRiKiKiKiKiKiKiRiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiKiRiKiKiKiK
 nDmTnEnFnGnHmUmTnInrnJnrnKmTmTmTmTnLnznznMnNnznznzmTnBmTmTmTmTnOmKmVnmiZjNiKiKiKiKiKiKiKiKiRiKiKiKiKiKiKiKbLiKiRiKiKiKiUiKiKiKiKiRiKiKiKiViK
 mJmTmTnFnGnHnBmUnInrnPnrnKmTmTnQmTnLnznznRnSnznznkngngnTnTngngngmJnUnViZjNiKiKiKiKiKiKiKiKiRiKiKiKiRiKiKiKiKiKiKiKiKiKiKiKiKiKiKiRiKiKiKiKiK

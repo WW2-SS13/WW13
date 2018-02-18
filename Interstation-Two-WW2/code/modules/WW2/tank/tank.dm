@@ -15,11 +15,10 @@
 	var/fuel = 750
 	var/max_fuel = 750
 	var/next_spam_allowed = -1
-	var/locked = TRUE //tanks need to be unlocked
+	var/locked = TRUE
 	var/heal_damage[2]
 	var/named = FALSE
 	var/obj/item/device/radio/radio = null
-
 	pixel_x = -32
 
 /obj/tank/New()
@@ -118,6 +117,7 @@
 			if (do_after(user, 50, src))
 				tank_message("<span class = 'notice'>[user] wrenches in some loose parts on [my_name()]. It looks about [health_percentage()] healthy.</span>")
 				damage = max(damage - heal_damage["wrench"], FALSE)
+				update_damage_status()
 				user.repairing_tank = FALSE
 			else
 				user.repairing_tank = FALSE
@@ -135,6 +135,7 @@
 				tank_message("<span class = 'notice'>[user] repairs some of the damage on [my_name()]. It looks about [health_percentage()] healthy.</span>")
 				playsound(get_turf(src), 'sound/items/Welder2.ogg', rand(75,100))
 				damage = max(damage - heal_damage["weldingtool"], FALSE)
+				update_damage_status()
 				user.repairing_tank = FALSE
 			else
 				user.repairing_tank = FALSE
@@ -192,7 +193,7 @@
 /obj/tank/proc/receive_command_from(var/mob/user, x)
 	if (!isliving(user) || user.stat == UNCONSCIOUS || user.stat == DEAD)
 		return
-	if (user == front_seat())
+	if (user == front_seat() && x != "FIRE")
 		return receive_frontseat_command(x)
 	else if (user == back_seat())
 		return receive_backseat_command(x)

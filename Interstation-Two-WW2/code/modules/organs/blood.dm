@@ -67,16 +67,17 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		bleeding_at_all = TRUE
 
 	if (bleeding_at_all)
-		blood_max += 0.25
+		blood_max += 0.40
 
 	if (blood_max) // we're bleeding
 		drip(blood_max)
-	else // we're not bleeding, regenerate some blood (experimental) - kachnov
+
+	else // we're not bleeding, regenerate some blood (experimental) - Kachnov
 		for (var/datum/reagent/r in vessel.reagent_list)
 			if (istype(r, /datum/reagent/blood))
 				if (r.volume >= species.blood_volume)
 					return // we're full on blood.
-		vessel.add_reagent("blood", TRUE/(rand(1,3)))
+		vessel.add_reagent("blood", 1/(rand(1,3)))
 
 
 //Makes a blood drop, leaking amt units of blood from the mob

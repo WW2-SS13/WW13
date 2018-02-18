@@ -3,7 +3,7 @@
 	range_step = 2
 
 	base_spread = FALSE //causes it to be treated as a shrapnel explosion instead of cone
-	spread_step = 20
+	spread_step = 12
 
 	silenced = TRUE //embedding messages are still produced so it's kind of weird when enabled.
 	no_attack_log = TRUE
@@ -65,7 +65,7 @@
 
 /obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/T)
 	if(explosion_size)
-		explosion(T, TRUE, -1, 2, round(explosion_size/2), FALSE)
+		explosion(T, 1, -1, 2, round(explosion_size/2), FALSE)
 
 /obj/item/weapon/grenade/explosive/frag
 	name = "fragmentation grenade"
