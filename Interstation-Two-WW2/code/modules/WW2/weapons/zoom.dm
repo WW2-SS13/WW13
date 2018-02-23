@@ -231,11 +231,12 @@ Parts of code courtesy of Super3222
 	azoom = new()
 	azoom.scope = src
 	actions += azoom
-/obj/item/weapon/attachment/scope/New(_loc)
+
+/obj/item/weapon/attachment/scope/Move(_loc)
 	..(_loc)
 
 	spawn (5)
-		if (ismob(loc))
+		if (ismob(azoom.owner))
 			if (azoom)
 				azoom.Grant(loc)
 

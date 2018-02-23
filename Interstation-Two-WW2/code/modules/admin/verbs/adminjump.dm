@@ -137,7 +137,7 @@ var/turf/default_adminzone_turf = null
 		default_adminzone_turf = locate(90, 92, 3)
 
 	if (default_adminzone_turf)
-		if (istype(get_area(default_adminzone_turf), /area/prishtina/admin))
+		if (get_area(default_adminzone_turf).type == /area/prishtina/admin)
 			mob.loc = default_adminzone_turf
 			return TRUE
 

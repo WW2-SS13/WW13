@@ -53,17 +53,19 @@
 	products = list(
 
 		/obj/item/clothing/accessory/storage/webbing = 20,
+		/obj/item/clothing/head/helmet/tactical/gerhelm/sshelm = 10,
 		/obj/item/clothing/mask/gas/german = 10,
-		/obj/item/clothing/shoes/swat = 20,
+		/obj/item/clothing/shoes/swat = 10,
 
 		/obj/item/weapon/material/kitchen/utensil/knife/boot = 10,
 		/obj/item/weapon/attachment/bayonet = 10,
 		/obj/item/weapon/gauze_pack/gauze = 10,
 		/obj/item/device/flashlight = 10,
 		/obj/item/weapon/shovel/spade/russia = 10,
+		/obj/item/ammo_magazine/a762/akm = 10,
 		/obj/item/weapon/gun/projectile/boltaction/kar98k = 10,
-		/obj/item/ammo_magazine/kar98k = 20,
-		/obj/item/ammo_magazine/a762/akm = 20,
+
+		/obj/item/ammo_magazine/kar98k = 30,
 
 		/obj/item/weapon/grenade/explosive/stgnade = 7,
 		/obj/item/weapon/grenade/explosive/l2a2 = 7

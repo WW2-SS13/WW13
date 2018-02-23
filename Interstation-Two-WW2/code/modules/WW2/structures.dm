@@ -60,6 +60,7 @@
 /obj/structure/noose/bullet_act(var/obj/item/projectile/P)
 	if (hanging)
 		hanging.bullet_act(P)
+		visible_message("<span class = 'danger'>[hanging] is hit by the bullet!</span>")
 	else
 		..()
 

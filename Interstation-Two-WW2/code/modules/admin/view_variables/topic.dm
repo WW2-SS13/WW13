@@ -489,6 +489,16 @@
 		if(istype(D) || istype(D, /client)) // can call on clients too, not just datums
 			callproc_targetpicked(1, D)
 
+	else if(href_list["mass_call_proc"])
+		var/datum/D = locate(href_list["mass_call_proc"])
+		var/procname = input(usr, "Which proc? Arguments are not supported here.") as text
+		if ((!istype(D) && !istype(D, /client)) || !hascall(D, procname))
+			usr << "<span class = 'warning'>This isn't a datum/client type, or it has no call '[procname]'.</span>"
+			return
+		for (var/datum/DD in world)
+			if (istype(DD, D.type))
+				call(DD, procname)()
+
 	if(href_list["datumrefresh"])
 		var/datum/DAT = locate(href_list["datumrefresh"])
 		if(istype(DAT, /datum) || istype(DAT, /client))

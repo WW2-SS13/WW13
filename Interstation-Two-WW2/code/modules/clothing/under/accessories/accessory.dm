@@ -71,6 +71,7 @@
 	if(has_suit)
 		return	//we aren't an object on the ground so don't call parent
 	..()
+	/*
 
 /obj/item/clothing/accessory/blue
 	name = "blue tie"
@@ -186,3 +187,53 @@
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by company officials. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+*/
+// WW2
+
+/obj/item/clothing/accessory/medal/WW2
+	icon = 'icons/WW2/medals.dmi'
+	var/visual = "gold"
+
+/obj/item/clothing/accessory/medal/WW2/get_inv_overlay()
+	if (!inv_overlay)
+		inv_overlay = image(icon = 'icons/WW2/medals.dmi', icon_state = "suit_[visual]", dir = SOUTH)
+	return inv_overlay
+
+/obj/item/clothing/accessory/medal/WW2/get_mob_overlay()
+	return get_inv_overlay()
+
+/obj/item/clothing/accessory/medal/WW2/hero_soviet_union
+	name = "Hero of the Soviet Union medal"
+	icon_state = "hero_soviet_union"
+
+	// desc: todo
+
+/obj/item/clothing/accessory/medal/WW2/iron_cross_oak_leaves
+	name = "Iron Cross with Oak Leaves medal"
+	icon_state = "iron_cross_oak_leaves"
+	visual = "bronze"
+	// desc: todo
+
+/obj/item/clothing/accessory/medal/WW2/iron_cross_second_class
+	name = "Iron Cross second class medal"
+	icon_state = "iron_cross_second_class"
+	visual = "bronze"
+	// desc: todo
+
+/obj/item/clothing/accessory/medal/WW2/wehrmacht_long_service_medal
+	name = "Wehrmacht Long Service medal"
+	icon_state = "wehrmacht_long_service_medal"
+	visual = "silver"
+	// desc: todo
+
+/obj/item/clothing/accessory/medal/WW2/eastern_front_medal
+	name = "Eastern Front medal"
+	icon_state = "eastern_front_medal"
+	visual = "silver"
+	// desc: todo
+
+/obj/item/clothing/accessory/medal/WW2/iron_cross_first_class
+	name = "Iron Cross first class medal"
+	icon_state = "iron_cross_first_class"
+	visual = "bronze"
+	// desc: todo

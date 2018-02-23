@@ -168,13 +168,13 @@ world/loop_checks = FALSE
 			garbage_collector.total_dels++
 			garbage_collector.hard_dels++
 	else if(isnull(A.gcDestroyed))
-		if (ismovable(A))
-			var/atom/movable/AM = A
-			AM.loc = null // maybe fixes projectiles, hopefully doesn't break anything - Kachnov
 		// Let our friend know they're about to get collected
 		. = !A.Destroy()
 		if(. && A)
 			A.finalize_qdel()
+		if (ismovable(A))
+			var/atom/movable/AM = A
+			AM.loc = null // maybe fixes projectiles, hopefully doesn't break anything - Kachnov
 
 /proc/qdel_list(var/list/L)
 	if (!L)
