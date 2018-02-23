@@ -1,0 +1,91 @@
+"a" = (/turf/floor/plating/grass/wild,/area/prishtina)
+"b" = (/obj/item/weapon/material/shard,/obj/effect/decal/cleanable/cobweb,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"c" = (/turf/wall/wood,/area/prishtina/houses/sov_one)
+"d" = (/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"f" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"g" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/beetsoup,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"h" = (/obj/structure/microwave/oven,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"i" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHWEST)"; icon_state = "spline_fancy"; dir = 9},/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"j" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTH)"; icon_state = "spline_fancy"; dir = 1},/obj/structure/closet/cabinet,/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"k" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHEAST)"; icon_state = "spline_fancy"; dir = 5},/obj/structure/bookcase,/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"l" = (/turf/floor/wood,/area/prishtina/houses/sov_one)
+"m" = (/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"n" = (/obj/structure/simple_door/key_door/anyone/wood,/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"o" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"p" = (/obj/effect/decal/cleanable/dirt,/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"q" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"r" = (/obj/effect/decal/cleanable/dirt,/turf/wall/wood,/area/prishtina/houses/sov_one)
+"s" = (/obj/structure/bed/chair/wood{dir = 4},/turf/floor/wood,/area/prishtina/houses/sov_one)
+"t" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/glass/rag,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"u" = (/obj/structure/bed/chair/wood{dir = 8},/turf/floor/wood,/area/prishtina/houses/sov_one)
+"v" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/obj/structure/table/wood,/obj/item/device/flashlight/lamp,/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"w" = (/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"x" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/obj/effect/decal/cleanable/dirt,/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"y" = (/obj/structure/table/wood,/obj/effect/decal/cleanable/dirt,/obj/item/device/flashlight,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"z" = (/obj/structure/barricade,/obj/structure/window/classic,/obj/structure/curtain/open/bed,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"A" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/obj/structure/table/wood,/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"B" = (/obj/structure/bed/chair/wood{dir = 8},/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"C" = (/obj/structure/table/wood,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"D" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHWEST)"; icon_state = "spline_fancy"; dir = 10},/obj/effect/decal/cleanable/dirt,/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"E" = (/obj/effect/floor_decal/spline/fancy/wood,/obj/effect/decal/cleanable/dirt,/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"F" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHEAST)"; icon_state = "spline_fancy"; dir = 6},/turf/floor/carpet,/area/prishtina/houses/sov_one)
+"H" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"I" = (/obj/effect/decal/cleanable/dirt,/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"J" = (/obj/structure/sign/wide/carpet,/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"K" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/houses/sov_one)
+"L" = (/obj/structure/toilet{tag = "icon-toilet00 (EAST)"; icon_state = "toilet00"; dir = 4},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/sov_one)
+"M" = (/obj/effect/decal/cleanable/dirt,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/sov_one)
+"N" = (/obj/effect/decal/cleanable/vomit,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/sov_one)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaacbfghcijkcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaclmmlnopqraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaclsturvwxzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaacllylcABqzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaadlsCuzApqcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaclllmzDEFcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaacmHIlzccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaclJmlrcLMcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaclKKlccMNzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaacrzzccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

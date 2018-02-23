@@ -207,6 +207,10 @@
 	name = "Admin Zone"
 	location = AREA_INSIDE
 
+/area/prishtina/admin/tonkland
+	name = "Tonk Zone"
+	location = AREA_INSIDE
+
 // houses in No Man's Land
 
 /area/prishtina/houses
@@ -447,6 +451,20 @@
 	icon_state = "blue2"
 	location = AREA_INSIDE
 
+/area/prishtina/german/armory/supplydrop
+	name = "German Supplydrop Pad"
+	icon_state = "blue3"
+	location = AREA_OUTSIDE
+
+/area/prishtina/german/armory/room1
+	icon_state = "green1"
+
+/area/prishtina/german/armory/room2
+	icon_state = "green2"
+
+/area/prishtina/german/armory/room3
+	icon_state = "green3"
+
 /area/prishtina/german/prison
 	name = "Prison"
 	icon_state = "green1"
@@ -467,6 +485,10 @@
 	name = "Kitchen"
 	icon_state = "blue5"
 	location = AREA_INSIDE
+
+/area/prishtina/german/kitchen/storage
+	name = "Kitchen Storage"
+	icon_state = "blue4"
 
 /area/prishtina/german/shower1
 	name = "Showers #1"
@@ -569,9 +591,29 @@
 	location = AREA_INSIDE
 
 /area/prishtina/german/medical
-	name = "Medical Area"
+	name = "German Medical Main Area"
 	icon_state = "blue3"
 	location = AREA_INSIDE
+
+/area/prishtina/german/medical/storage
+	name = "German Medical Storage"
+	icon_state = "blue4"
+
+/area/prishtina/german/medical/hallway
+	name = "German Medical Hallway"
+	icon_state = "blue5"
+
+/area/prishtina/german/medical/surgery1
+	name = "German Surgery Room #1"
+	icon_state = "blue1"
+
+/area/prishtina/german/medical/surgery2
+	name = "German Surgery Room #2"
+	icon_state = "blue2"
+
+/area/prishtina/german/medical/chemistry
+	name = "German Chemistry Room"
+	icon_state = "blue3"
 
 // special german areas
 
@@ -636,9 +678,35 @@
 	icon_state = "blue1"
 
 /area/prishtina/soviet/small_map/inside/medical
-	name = "Soviet Medical Room"
+	name = "Soviet Medical Main Area"
 	icon_state = "blue2"
 
+/area/prishtina/soviet/small_map/inside/medical/storage
+	name = "Soviet Medical Storage"
+/area/prishtina/soviet/small_map/inside/medical/chemistry
+	name = "Soviet Chemistry Room"
+	icon_state = "blue3"
+/area/prishtina/soviet/small_map/inside/medical/hallway
+	name = "Soviet Medical Hallway"
+	icon_state = "blue4"
+/area/prishtina/soviet/small_map/inside/medical/surgery1
+	name = "Soviet Surgery Room #1"
+	icon_state = "blue5"
+/area/prishtina/soviet/small_map/inside/medical/surgery2
+	name = "Soviet Surgery Room #2"
+	icon_state = "blue4"
+
+/area/prishtina/soviet/small_map/inside/mparea
+	name = "Soviet MP Area"
+	icon_state = "green1"
+
+/area/prishtina/soviet/small_map/inside/prison
+	name = "Soviet Prison"
+	icon_state = "green2"
+
+/area/prishtina/soviet/small_map/main_area/supplypad
+	name = "Soviet Supply Pad"
+	icon_state = "green2"
 // for the large map
 
 /area/prishtina/soviet/bunker_entrance

@@ -114,7 +114,7 @@
 			var/heavyrange = max(1, devrange*1)
 			var/lightrange = max(1, devrange*1)
 			var/flashrange = max(1, devrange*2)
-			var/firerange = max(1, devrange*3)
+			var/firerange = max(1, devrange*4)
 
 			var/src_turf = get_turf(src)
 

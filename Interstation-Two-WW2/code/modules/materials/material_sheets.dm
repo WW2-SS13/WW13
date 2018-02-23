@@ -109,9 +109,19 @@
 	default_type = "barbedwire"
 
 /obj/item/stack/material/rope
-	name = "Rope"
+	name = "Pile of rope"
 	icon_state = "rope"
 	default_type = "rope"
+	anchored = TRUE
+
+/obj/item/stack/material/rope/attack_hand(var/mob/M)
+	if (ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if (H.put_in_any_hand_if_possible(new /obj/item/stack/material/rope, prioritize_active_hand = TRUE))
+			--amount
+			visible_message("<span class = 'warning'>[H] takes a coil of rope from the pile of rope.</span>")
+			if (amount < 1)
+				qdel(src)
 
 /obj/item/stack/material/uranium
 	name = "uranium"

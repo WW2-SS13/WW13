@@ -87,7 +87,7 @@
 		user << "<span class='notice'>You start adding [W] to [src]...</span>"
 		if(do_after(user, 20, target = src))
 			W.use(1)
-			new /obj/structure/table/wood/settler(loc)
+			new /obj/structure/table/wood(loc)
 			qdel(src)
 		return
 	if(istype(I, /obj/item/stack/tile/carpet))

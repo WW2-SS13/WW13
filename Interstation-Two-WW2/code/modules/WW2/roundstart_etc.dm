@@ -201,7 +201,7 @@ var/train_arrived = FALSE
 				np.new_player_panel_proc()
 
 	var/show_report_after = 0
-	if (istype(map, /obj/map_metadata/minicity))
+	if (istype(map, /obj/map_metadata/city))
 		show_report_after = 600
 	spawn (show_report_after)
 		show_global_battle_report(null)

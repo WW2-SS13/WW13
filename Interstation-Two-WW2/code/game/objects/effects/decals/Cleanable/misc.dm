@@ -16,6 +16,10 @@
 	icon_state = "ash"
 	anchored = TRUE
 
+/obj/effect/decal/cleanable/ash/New()
+	..()
+	pixel_x = rand(-8, 8)
+
 /obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
 	user << "<span class='notice'>[src] sifts through your fingers.</span>"
 	var/turf/floor/F = get_turf(src)

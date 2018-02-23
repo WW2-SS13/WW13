@@ -176,7 +176,7 @@
 		explosion(loc,-1,1,2,1)
 	if (src) qdel(src)
 
-/obj/structure/reagent_dispensers/fueltank/fire_act(datum/gas_mixture/air, temperature, volume)
+/obj/structure/reagent_dispensers/fueltank/fire_act(temperature)
 	if (modded)
 		explode()
 	else if (temperature > T0C+500)

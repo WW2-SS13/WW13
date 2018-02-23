@@ -5,7 +5,7 @@
 #define ABSOLUTE_MIN_CLIENT_VERSION 400		//Just an ambiguously low version for now, I don't want to suddenly stop people playing.
 #define REAL_MIN_CLIENT_VERSION 512 // I DO - kachnov
 									//I would just like the code ready should it ever need to be used.
-#define PLAYERCAP 50
+#define PLAYERCAP 200
 	/*
 	When somebody clicks a link in game, this Topic is called first.
 	It does the stuff in this proc and  then is redirected to the Topic() proc for the src=[0xWhatever]

@@ -29,6 +29,9 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 										continue turf_loop
 								for (var/mob/living/L in T)
 									continue turf_loop
+								for (var/obj/item/weapon/gun/G in T)
+									continue turf_loop
+
 								var/atom/A = new last_path (T)
 								A.visible_message("<span class = 'notice'>[A] falls from the sky!</span>")
 								playsound(T, 'sound/effects/bamf.ogg', rand(70,80))
@@ -62,6 +65,9 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 										continue turf_loop
 								for (var/mob/living/L in T)
 									continue turf_loop
+								for (var/obj/item/weapon/gun/G in T)
+									continue turf_loop
+
 								var/atom/A = new last_path (T)
 								A.visible_message("<span class = 'notice'>[A] falls from the sky!</span>")
 								playsound(T, 'sound/effects/bamf.ogg', 90)

@@ -1,3 +1,4 @@
+#define BURNING_RAG_LIFE_TICKS 1000
 
 /obj/item/clothing/gloves
 	var/transfer_blood = FALSE
@@ -20,7 +21,7 @@
 	dropsound = null
 
 	var/on_fire = FALSE
-	var/burn_time = 20 //if the rag burns for too long it turns to ashes
+	var/burn_time = BURNING_RAG_LIFE_TICKS //if the rag burns for too long it turns to ashes
 
 /obj/item/weapon/reagent_containers/glass/rag/New()
 	..()
@@ -172,14 +173,14 @@
 		else if(!ismob(A)) //mobs are handled in attack() - this prevents us from wiping down people while smothering them.
 			wipe_down(A, user)
 		return
-
+/*
 /obj/item/weapon/reagent_containers/glass/rag/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature >= 50 + T0C)
 		ignite()
 	if(exposed_temperature >= 900 + T0C)
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
 		qdel(src)
-
+*/
 //rag must have a minimum of 2 units welder fuel and at least 80% of the reagents must be welder fuel.
 //maybe generalize flammable reagents someday
 /obj/item/weapon/reagent_containers/glass/rag/proc/can_ignite()
@@ -225,8 +226,6 @@
 	update_name()
 	update_icon()
 
-#define BURNING_RAG_LIFE_TICKS 1000
-
 /obj/item/weapon/reagent_containers/glass/rag/process()
 	if(!can_ignite())
 		visible_message("<span class='warning'>\The [src] burns out.</span>")
@@ -236,11 +235,12 @@
 	if(isliving(loc))
 		var/mob/living/M = loc
 		M.IgniteMob()
+
 	var/turf/location = get_turf(src)
 	if(location)
 		location.hotspot_expose(700, 5)
 
-	if(burn_time <= FALSE)
+	if(burn_time <= 0)
 		processing_objects -= src
 		new /obj/effect/decal/cleanable/ash(location)
 		qdel(src)

@@ -1,3 +1,9 @@
+/obj/item/projectile/bullet/shotgun
+	speed = 3.0
+
+/obj/item/weapon/gun/projectile/shotgun/
+	gun_type = GUN_TYPE_HEAVY
+
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"
 	desc = "Useful for sweeping alleys."
@@ -45,7 +51,22 @@
 //	origin_tech = "combat=5;materials=2"
 	max_shells = 7 //match the ammo box capacity, also it can hold a round in the chamber anyways, for a total of 8.
 	ammo_type = /obj/item/ammo_casing/shotgun
+	force = 15
+	throwforce = 30
 
+/obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37
+	icon_state = "ithaca37"
+	name = "Ithaca 37"
+
+/obj/item/weapon/gun/projectile/shotgun/pump/combat/winchester1897
+	icon_state = "winchester1897"
+	name = "Winchester 1897"
+
+/obj/item/weapon/gun/projectile/shotgun/pump/combat/coachgun
+	icon_state = "coachgun"
+	name = "Coachgun"
+
+/*
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel
 	name = "double-barreled shotgun"
 	desc = "A true classic."
@@ -112,6 +133,4 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 	w_class = 3
-	force = 5
-
-// todo: add ithaca37, winchester1897, coachgun
+	force = 5*/

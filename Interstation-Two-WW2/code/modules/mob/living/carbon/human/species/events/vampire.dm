@@ -16,14 +16,17 @@
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
-	stamina = 500
-	max_stamina = 500
+	stamina = 200
+	max_stamina = 200
 
 	var/blood = 0.75
 
 	color = "#FFB2B2"
 
 	var/absorbing = FALSE
+
+/mob/living/carbon/human/vampire/dummy
+	status_flags = GODMODE|CANPUSH
 
 /mob/living/carbon/human/vampire/New(_loc, var/clothes = TRUE)
 	..(_loc)

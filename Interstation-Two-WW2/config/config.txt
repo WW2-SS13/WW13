@@ -299,6 +299,8 @@ MINUTE_TOPIC_LIMIT 100
 
 NO_RESPAWN_DELAYS 0
 
+MAX_EXPECTED_PLAYERS 50
+
 #show mods in staff who
 SHOW_MODS 1
 
@@ -337,7 +339,7 @@ MACHINERY_DOES_NOT_USE_POWER 1
 ## Having a value of 'NONE' for seasons means the only available season is Spring
 
 ENABLED_SEASONS ALL 
-ENABLED_WEATHER ALL
+ENABLED_WEATHER RAIN
 
 ##Train stuff
 

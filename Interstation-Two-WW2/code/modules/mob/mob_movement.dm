@@ -1,17 +1,17 @@
 /mob/var/velocity = FALSE
 /mob/var/velocity_lastdir = -1 // turning makes you lose TRUE or 2 velocity
-/mob/var/run_delay_maximum = 2.2 / 1.25
+/mob/var/run_delay_maximum = 1.75
 
 /mob/proc/get_run_delay()
 	switch (velocity)
 		if (0 to 3)
 			return run_delay_maximum
 		if (4 to 7)
-			return run_delay_maximum/1.08
+			return run_delay_maximum/1.05 // 5% faster
 		if (8 to 11)
-			return run_delay_maximum/1.16
+			return run_delay_maximum/1.10 // 10% faster
 		if (12 to INFINITY)
-			return run_delay_maximum/1.24
+			return run_delay_maximum/1.15 // 15% faster
 
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
@@ -532,9 +532,9 @@
 		if (mob_is_human)
 			if (H.a_intent != I_HELP)
 				for (var/mob/living/L in t1)
-					if (L.lying)
+					if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
 						H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")
-						playsound(t1, 'sound/effects/gore/fallsmash.ogg', 100)
+						playsound(t1, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
 						L.adjustBruteLoss(rand(8,12))
 						if (ishuman(L))
 							L.emote("scream")

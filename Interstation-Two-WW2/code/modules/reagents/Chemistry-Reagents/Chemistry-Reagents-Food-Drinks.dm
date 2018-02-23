@@ -530,7 +530,11 @@
 			H << "<span class = 'warning'>You feel weak.</span>"
 		if (prob(ceil(removed/100)))
 			H.change_gender(FEMALE)
-			H << "<span class = 'danger'>You turn into a woman!</span>"
+			H.visible_message("<span class = 'danger'>[H] turns into a woman!</span>")
+		else if (prob(ceil(removed/100)) && H.size_multiplier >= 0.50)
+			H.size_multiplier = max(H.size_multiplier - 0.05, 0.50)
+			H.regenerate_icons()
+			H.visible_message("<span class = 'danger'>[H] shrinks!</span>")
 
 /datum/reagent/drink/tea
 	name = "Tea"

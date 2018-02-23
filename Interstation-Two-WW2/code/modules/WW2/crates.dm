@@ -346,45 +346,45 @@
 // 5 wood planks with 25 each = 125 wood planks (25 barricades)
 /obj/structure/closet/crate/wood/New()
 	..()
-	update_capacity(5)
-	for (var/v in 1 to 5)
+	update_capacity(3)
+	for (var/v in 1 to 3)
 		var/obj/item/stack/S = new/obj/item/stack/material/wood(src)
-		S.amount = 25
+		S.amount = 20
 
 // 5 steel sheets with 25 each = 125 steel sheets
 /obj/structure/closet/crate/steel/New()
 	..()
-	update_capacity(5)
-	for (var/v in 1 to 5)
+	update_capacity(3)
+	for (var/v in 1 to 3)
 		var/obj/item/stack/S = new/obj/item/stack/material/steel(src)
-		S.amount = 25
+		S.amount = 20
 
 // 5 iron ingots with 25 each = 125 iron ingots
 /obj/structure/closet/crate/iron/New()
 	..()
-	update_capacity(5)
-	for (var/v in 1 to 5)
+	update_capacity(3)
+	for (var/v in 1 to 3)
 		var/obj/item/stack/S = new/obj/item/stack/material/iron(src)
-		S.amount = 25
+		S.amount = 20
 
 // 5 glass with 10 each = 50 glass sheets
 /obj/structure/closet/crate/glass/New()
 	..()
-	update_capacity(5)
-	for (var/v in 1 to 5)
+	update_capacity(3)
+	for (var/v in 1 to 3)
 		var/obj/item/stack/S = new/obj/item/stack/material/glass(src)
-		S.amount = 10
+		S.amount = 20
 
 /obj/structure/closet/crate/flammenwerfer_fueltanks/New()
 	..()
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(3)
+	for (var/v in 1 to 3)
 		new/obj/item/weapon/flammenwerfer_fueltank(src)
 
 /obj/structure/closet/crate/vehicle_fueltanks/New()
 	..()
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(3)
+	for (var/v in 1 to 3)
 		new/obj/item/weapon/vehicle_fueltank(src)
 
 /obj/structure/closet/crate/maximbelt/New()
@@ -423,7 +423,6 @@
 	for (var/v in 1 to 12)
 		new /obj/item/ammo_casing/a145(src)
 
-
 /obj/structure/closet/crate/mg34ammo/New()
 	..()
 	update_capacity(13)
@@ -435,7 +434,6 @@
 	update_capacity(17)
 	for (var/v in 1 to 17)
 		new /obj/item/ammo_magazine/a556/m4(src)
-
 
 /obj/structure/closet/crate/lugerammo/New()
 	..()
@@ -466,7 +464,6 @@
 	update_capacity(18)
 	for (var/v in 1 to 18)
 		new /obj/item/weapon/gauze_pack/bint(src)
-
 
 /obj/structure/closet/crate/gauze/New()
 	..()

@@ -201,7 +201,7 @@
 /obj/structure/window/sandbag/update_icon()
 	return
 
-/obj/structure/window/sandbag/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/structure/window/sandbag/fire_act(temperature)
 	return
 
 /obj/item/weapon/sandbag

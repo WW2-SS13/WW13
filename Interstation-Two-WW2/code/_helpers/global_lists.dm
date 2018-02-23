@@ -23,6 +23,9 @@ var/global/list/train_car_centers = list()
 var/global/list/german_main_train_car_centers = list()
 var/global/list/german_supply_train_car_centers = list()
 
+var/global/list/burning_objs = list()
+var/global/list/burning_turfs = list()
+
 var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
 var/global/list/chemical_reactions_list				//list of all /datum/chemical_reaction datums. Used during chemical reactions
 var/global/list/chemical_reagents_list				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff

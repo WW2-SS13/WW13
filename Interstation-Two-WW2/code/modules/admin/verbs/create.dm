@@ -17,6 +17,7 @@
 		if (!ispath(text2path(_type)))
 			src << "<span class = 'red'>Invalid path.</span>"
 			goto retype
+
 		var/amount = input("How much of this item do you want? (1 - 50, stacks merge") as num
 		amount = Clamp(amount, 1, 50)
 		types[_type] = amount
@@ -42,3 +43,6 @@
 
 	var/obj/structure/closet/crate/empty/C = new/obj/structure/closet/crate/empty(mob.loc)
 	C.contents = objects
+
+	message_admins("[key_name(src)] created a custom crate at [mob.loc] ([mob.loc.x], [mob.loc.y], [mob.loc.z])")
+	log_admin("[key_name(src)] created a custom crate at [mob.loc] ([mob.loc.x], [mob.loc.y], [mob.loc.z])")

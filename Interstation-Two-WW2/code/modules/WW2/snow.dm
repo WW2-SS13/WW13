@@ -67,3 +67,8 @@
 
 /obj/snow/bullet_act(var/obj/item/projectile/P, var/def_zone)
 	return
+
+/obj/snow/fire_act(temperature)
+	if (prob(25 * (temperature/500)))
+		visible_message("<span class = 'warning'>The snow melts.</span>")
+		qdel(src)

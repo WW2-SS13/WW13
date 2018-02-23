@@ -184,12 +184,12 @@
 					if (H.original_job.is_commander)
 						command_level_to_dog = COMMAND_LEVEL_2
 
-					if (istype(H.original_job, /datum/job/german/dogmaster))
+			/*		if (istype(H.original_job, /datum/job/german/dogmaster))
 						command_level_to_dog = COMMAND_LEVEL_1
 
 					if (istype(H.original_job, /datum/job/soviet/dogmaster))
 						command_level_to_dog = COMMAND_LEVEL_1
-
+*			*/
 					// daga kotowaru
 					if (command_level_to_dog == COMMAND_LEVEL_4)
 						visible_message("<span class = 'warning'>The [name] refuses to listen.</span>")

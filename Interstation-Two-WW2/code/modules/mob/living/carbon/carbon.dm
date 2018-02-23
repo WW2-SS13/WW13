@@ -346,9 +346,9 @@
 
 		item.throw_at(target, item.throw_range, item.throw_speed, src)
 
-/mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/mob/living/carbon/fire_act(temperature)
 	..()
-	var/temp_inc = max(min(BODYTEMP_HEATING_MAX*(1-get_heat_protection()), exposed_temperature - bodytemperature), FALSE)
+	var/temp_inc = max(min(BODYTEMP_HEATING_MAX*(1-get_heat_protection()), temperature - bodytemperature), FALSE)
 	bodytemperature += temp_inc
 
 /mob/living/carbon/can_use_hands()

@@ -189,7 +189,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german,
+//		"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german,
 
 		// MEDICAL STUFF
 		"Medical Crate" = /obj/structure/closet/crate/medical
@@ -238,7 +238,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
 
 		// ANIMAL CRATES
-		"Samoyed Crate" = /obj/structure/largecrate/animal/dog/soviet,
+//		"Samoyed Crate" = /obj/structure/largecrate/animal/dog/soviet,
 
 		// MEDICAL STUFF
 		"Medical Crate" = /obj/structure/closet/crate/medical
@@ -306,8 +306,8 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		"Betty Mines Crate" = 200,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = 100,
-		"Samoyed Crate" = 100,
+//		"German Shepherd Crate" = 100,
+//		"Samoyed Crate" = 100,
 
 		// MEDICAL STUFF
 		"Medical Crate" = 75
@@ -774,7 +774,10 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		return
 	announce("[itemname] has been purchased and will arrive soon.", "Supplydrop Announcement System")
 	supply_points[faction] -= pointcost
-	supplydrop_process.add(path, faction)
+
+	// sanity checking due to crashing, not sure it will help - Kachnov
+	if (ispath(path) && list(GERMAN, SOVIET).Find(faction))
+		supplydrop_process.add(path, faction)
 
 // shitcode copied from the german supplytrain system - Kachnov
 /obj/item/device/radio

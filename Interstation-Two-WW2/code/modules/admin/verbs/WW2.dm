@@ -132,13 +132,18 @@
 		message_admins("[key_name(src)] ended all grace periods!")
 		log_admin("[key_name(src)] ended all grace periods.")
 
+
+/client/proc/see_battle_report()
+	set category = "WW2 (Admin)"
+	set name = "See Battle Report"
+	show_global_battle_report(src, TRUE)
+
 /client/proc/show_battle_report()
 	set category = "WW2 (Admin)"
 	set name = "Show Battle Report"
-
 	show_global_battle_report(src)
 
-/proc/show_global_battle_report(var/shower)
+/proc/show_global_battle_report(var/shower, var/private = FALSE)
 
 	var/total_germans = alive_germans.len + dead_germans.len + heavily_injured_germans.len
 	var/total_russians = alive_russians.len + dead_russians.len + heavily_injured_russians.len
@@ -174,8 +179,10 @@
 
 	var/public = "Yes"
 
-	if (shower)
+	if (shower && !private)
 		public = alert(shower, "Show it to the entire server?",,"Yes", "No")
+	else if (private)
+		public = "No"
 
 	if(public == "Yes")
 		if (!shower || (input(shower, "Are you sure you want to show the battle report? Unless the Battle Controller Process died, it will happen automatically!", "Battle Report") in list ("Yes", "No")) == "Yes")
@@ -565,6 +572,8 @@ var/partisans_forceEnabled = FALSE
 var/civilians_forceEnabled = FALSE
 var/germans_forceEnabled = FALSE
 var/soviets_forceEnabled = FALSE
+var/SS_forceEnabled = FALSE
+var/paratroopers_forceEnabled = FALSE
 
 /client/proc/forcibly_enable_faction()
 	set name = "Forcibly Enable Faction"
@@ -584,6 +593,8 @@ var/soviets_forceEnabled = FALSE
 	choices += "CIVILIANS ([civilians_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
 	choices += "GERMANS ([germans_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
 	choices += "SOVIET ([soviets_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
+	choices += "SS ([SS_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
+	choices += "PARATROOPERS ([paratroopers_forceEnabled ? "FORCIBLY ENABLED" : "NOT FORCIBLY ENABLED"])"
 	choices += "CANCEL"
 
 	var/choice = input("Enable/Disable what faction?") in choices
@@ -607,16 +618,23 @@ var/soviets_forceEnabled = FALSE
 		soviets_forceEnabled = !soviets_forceEnabled
 		world << "<span class = 'warning'>The Soviet faction [soviets_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
 		message_admins("[key_name(src)] changed the Soviet faction 'forceEnabled' setting to [soviets_forceEnabled].")
+	else if (findtext(choice, "SS"))
+		SS_forceEnabled = !SS_forceEnabled
+		world << "<span class = 'warning'>The SS subfaction [SS_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		message_admins("[key_name(src)] changed the SS subfaction 'forceEnabled' setting to [SS_forceEnabled].")
+	else if (findtext(choice, "PARATROOPERS"))
+		paratroopers_forceEnabled = !paratroopers_forceEnabled
+		world << "<span class = 'warning'>The Paratrooper subfaction [paratroopers_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		message_admins("[key_name(src)] changed the Paratrooper subfaction 'forceEnabled' setting to [paratroopers_forceEnabled].")
 
-var/respawn_delays = TRUE
 /client/proc/toggle_respawn_delays()
 	set category = "WW2 (Admin)"
 	set name = "Toggle Respawn Delays"
-	respawn_delays = !respawn_delays
-	var/M = "[key_name(src)] [respawn_delays ? "enabled" : "disabled"] respawn delays."
+	config.no_respawn_delays = !config.no_respawn_delays
+	var/M = "[key_name(src)] [config.no_respawn_delays ? "disabled" : "enabled"] respawn delays."
 	message_admins(M)
 	log_admin(M)
-	world << "<font size = 3><span class = 'notice'>Respawn delays are now <b>[respawn_delays ? "enabled" : "disabled"]</b>.</span></font>"
+	world << "<font size = 3><span class = 'notice'>Respawn delays are now <b>[config.no_respawn_delays ? "disabled" : "enabled"]</b>.</span></font>"
 
 /client/proc/open_armory_doors()
 	set name = "Open Armory Doors"

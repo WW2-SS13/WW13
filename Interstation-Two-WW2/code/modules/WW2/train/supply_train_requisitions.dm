@@ -61,7 +61,7 @@
 		"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german,
+//		"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german,
 
 		// MEDICAL STUFF
 		"Medical Crate" = /obj/structure/closet/crate/medical
@@ -121,7 +121,7 @@
 		"Betty Mines Crate" = 200,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = 100,
+//		"German Shepherd Crate" = 100,
 
 		// MEDICAL STUFF
 		"Medical Crate" = 75

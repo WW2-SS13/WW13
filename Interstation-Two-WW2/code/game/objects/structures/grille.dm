@@ -206,12 +206,11 @@
 			return FALSE
 	return FALSE
 */
-/obj/structure/grille/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(!destroyed)
-		if(exposed_temperature > T0C + 1500)
-			health -= TRUE
-			healthcheck()
-	..()
+/obj/structure/grille/fire_act(temperature)
+	if (prob((temperature/500) * 30))
+		visible_message("<span class = 'warning'>[src] melts.</span>")
+		health = 0
+		healthcheck()
 
 /obj/structure/grille/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")

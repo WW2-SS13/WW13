@@ -35,6 +35,9 @@
 		else
 			M.aspect = new default_aspect_type
 
+		if (!M.aspect)
+			M.aspect = new default_aspect_type
+
 		M.aspect.mode = M
 
 		for (var/x in real_aspects)
@@ -66,7 +69,7 @@
 				/datum/game_aspect/ww2/no_tanks,
 				/datum/game_aspect/ww2/no_artillery),
 
-		"SMALLCITY" = list(/datum/game_aspect/ww2/german_padvantage,
+		"CITY" = list(/datum/game_aspect/ww2/german_padvantage,
 				/datum/game_aspect/ww2/german_pdisadvantage,
 				/datum/game_aspect/ww2/russian_padvantage,
 				/datum/game_aspect/ww2/russian_pdisadvantage,
@@ -100,7 +103,7 @@
 
 /datum/game_aspect/ww2/default
 	desc = "Nothing is out of the ordinary this round."
-	required_clients = FALSE
+	required_clients = 0
 
 /datum/game_aspect/ww2/default/activate()
 	. = ..()

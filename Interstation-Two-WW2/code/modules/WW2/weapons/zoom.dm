@@ -12,7 +12,7 @@ Parts of code courtesy of Super3222
 	var/zoomed = FALSE
 	var/datum/action/toggle_scope/azoom
 	attachment_type = ATTACH_SCOPE
-	slot_flags = SLOT_POCKET
+	slot_flags = SLOT_POCKET|SLOT_BELT
 
 /obj/item/weapon/attachment/scope/New()
 	..()
@@ -231,11 +231,41 @@ Parts of code courtesy of Super3222
 	azoom = new()
 	azoom.scope = src
 	actions += azoom
+/obj/item/weapon/attachment/scope/New(_loc)
+	..(_loc)
+
+	spawn (5)
+		if (ismob(loc))
+			if (azoom)
+				azoom.Grant(loc)
 
 /obj/item/weapon/attachment/scope/pickup(mob/user)
 	..()
 	if(azoom)
 		azoom.Grant(user)
+
+/obj/item/weapon/attachment/scope/on_enter_storage(S)
+	..(S)
+	if (azoom)
+		azoom.Remove(azoom.owner)
+
+/obj/item/weapon/attachment/scope/on_changed_slot()
+	..()
+
+	if (istype(loc, /obj/item))
+		var/obj/item/holder = loc
+		var/mob/user = holder.loc
+		if (user && istype(user))
+			if (!(user.r_hand == holder || user.l_hand == holder))
+				if (azoom)
+					azoom.Remove(user)
+
+	else if (istype(loc, /mob))
+		var/mob/user = loc
+		if (user && istype(user))
+			if (!(user.r_hand == src || user.l_hand == src))
+				if (azoom)
+					azoom.Remove(user)
 
 /obj/item/weapon/attachment/scope/dropped(mob/user)
 	..()

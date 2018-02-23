@@ -158,7 +158,8 @@
 
 		for (var/obj/structure/structure in get_turf(H))
 			if ((structure.density && !structure.low) || istype(structure, /obj/structure/bed))
-				structurecheck = 2
+				if (!(structure.flags & ON_BORDER))
+					structurecheck = 2
 			else if (structurecheck == 0)
 				structurecheck = 1
 

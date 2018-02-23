@@ -18,16 +18,20 @@ bullet_act
 
 	if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers) && user.a_intent == I_HURT && !grabbed_by_user)
 		if (stat == DEAD)
-			user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
-			if (do_after(user, 30, src))
-				user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
-				for (var/v in TRUE to rand(5,7))
-					var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
-					meat.name = "[name] meatsteak"
-				for (var/obj/item/clothing/I in contents)
-					drop_from_inventory(I)
-				crush()
-				qdel(src)
+			var/mob/living/carbon/human/H = user
+			if (istype(H) && H.original_job && H.original_job.is_nonmilitary)
+				user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
+				if (do_after(user, 30, src))
+					user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
+					for (var/v in TRUE to rand(5,7))
+						var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
+						meat.name = "[name] meatsteak"
+					for (var/obj/item/clothing/I in contents)
+						drop_from_inventory(I)
+					crush()
+					qdel(src)
+			else
+				user << "<span class = 'info'>You don't know how to butcher people.</span>"
 	else
 		return ..(W, user)
 
@@ -106,7 +110,7 @@ bullet_act
 					adjustBruteLoss(rand(20,30))
 					if (client)
 						shake_camera(src, rand(2,3), rand(2,3))
-					playsound(get_turf(src), 'sound/effects/gore/fallsmash.ogg', 100)
+					playsound(get_turf(src), 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
 					for (var/obj/structure/window/W in get_turf(slammed_into))
 						W.shatter()
 				else
@@ -135,7 +139,9 @@ bullet_act
 	else if (P.crushes)
 		crush()
 
-	return (..(P , def_zone))
+	..(P , def_zone)
+
+	qdel(P)
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))

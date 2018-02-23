@@ -59,8 +59,11 @@
 
 	if(FAT in mutations)
 		tally += 1.5
+
+	/* this is removed until coats protect from the cold, instead of ignoring it.
+	   also, I'm reasonably sure that in real life being cold does not make you vastly slower - Kachnov
 	if (bodytemperature < 283.222)
-		tally += (283.222 - bodytemperature) / 10 * 1.75
+		tally += (283.222 - bodytemperature) / 10 * 1.75*/
 
 	tally += max(2 * stance_damage, FALSE) //damaged/missing feet or legs is slow
 
@@ -68,7 +71,7 @@
 		tally = max(tally, 0)
 
 	if (chem_effects.Find(CE_SPEEDBOOST))
-		tally -= 0.30
+		tally -= 0.10
 
 	stored_tally = tally
 

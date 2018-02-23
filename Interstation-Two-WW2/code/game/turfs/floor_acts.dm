@@ -14,14 +14,14 @@
 				hotspot_expose(1000,CELL_VOLUME)
 	return
 
-/turf/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/turf/floor/fire_act(temperature)
 
 	var/temp_destroy = get_damage_temperature()
 	if(!burnt && prob(5))
-		burn_tile(exposed_temperature)
-	else if(temp_destroy && exposed_temperature >= (temp_destroy + 100) && prob(1) && !is_plating())
+		burn_tile(temperature)
+	else if(temp_destroy && temperature >= (temp_destroy + 100) && prob(1) && !is_plating())
 		make_plating() //destroy the tile, exposing plating
-		burn_tile(exposed_temperature)
+		burn_tile(temperature)
 	return
 
 //should be a little bit lower than the temperature required to destroy the material

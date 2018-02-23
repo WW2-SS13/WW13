@@ -254,7 +254,7 @@
 	max_shells = 50
 	caliber = "a792x57"
 	slot_flags = SLOT_BACK
-	ammo_type = /obj/item/ammo_casing/a792x57
+	ammo_type = /obj/item/ammo_casing/a792x57_weaker
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a762
 	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.ogg'

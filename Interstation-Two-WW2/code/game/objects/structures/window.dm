@@ -51,7 +51,7 @@
 
 	health = max(0, health - damage)
 
-	if(health <= FALSE)
+	if(health <= 0)
 		shatter()
 	else
 		if(sound_effect)
@@ -138,7 +138,6 @@
 		return !density
 	else
 		return TRUE
-
 
 /obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
@@ -408,15 +407,15 @@
 */
 	return
 
-/obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > maximal_heat)
-		hit(damage_per_fire_tick, FALSE)
-	..()
+/obj/structure/window/fire_act(temperature)
+	if (prob((temperature/500) * 70))
+		shatter()
 
 /obj/structure/classic_window_frame
 	desc = "A good old window frame."
 	icon_state = "windownew_frame"
 	layer = MOB_LAYER + 0.01
+	anchored = TRUE
 /*
 /obj/structure/classic_window_frame/Crossed(mover)
 	if (isliving(mover))
@@ -439,6 +438,7 @@
 	maxhealth = 20.0
 	layer = MOB_LAYER + 0.02
 	density = FALSE // so we can touch curtains from any direction
+	reinf = TRUE // stops us from being pushed
 
 /obj/structure/window/classic/is_full_window()
 	return TRUE

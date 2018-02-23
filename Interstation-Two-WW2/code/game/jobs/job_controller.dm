@@ -173,22 +173,28 @@ var/global/datum/controller/occupations/job_master
 		else
 			_clients = clients.len
 
+		var/autobalance_for_players = _clients * 0.9
+
+		/* this lets us set up autobalance to include civs, SS, etc even when we don't have too many players
+		 * EG, if config.max_expected_players is 50, and we have 50 players, the game treats it as 70 players
+		 	- Kachnov */
+
+		autobalance_for_players = round(max(autobalance_for_players, (clients.len/config.max_expected_players) * 70))
+
 		if (announce == TRUE)
-			world << "<span class = 'warning'>Setting up roundstart autobalance for [_clients] players.</span>"
+			world << "<span class = 'warning'>Setting up roundstart autobalance for [max(_clients, autobalance_for_players)] players.</span>"
 		else if (announce == 2)
 			if (!roundstart_time)
-				world << "<span class = 'warning'>An admin has changed autobalance to be set up for [_clients] players.</span>"
+				world << "<span class = 'warning'>An admin has changed autobalance to be set up for [max(_clients, autobalance_for_players)] players.</span>"
 			else
-				world << "<span class = 'warning'>An admin has reset autobalance for [_clients] players.</span>"
-
-		var/expected_players = _clients * 0.9
+				world << "<span class = 'warning'>An admin has reset autobalance for [max(_clients, autobalance_for_players)] players.</span>"
 
 		// number of roles, between both sides, that will be open.
 		// greater than the number of expected players to account for
 		// newcomers, and people who die before the train is sent,
 		// but respawn
 
-		var/total_job_slots = ceil(expected_players * 1.4)
+		var/total_job_slots = ceil(autobalance_for_players * 1.4)
 
 		// unique job slots. These will result in slightly more than
 		// total_job_slots if you add all 3 up, but that isn't important.
@@ -213,7 +219,7 @@ var/global/datum/controller/occupations/job_master
 		allow_italians = FALSE
 		// what else do we want to do based on how many players we expect
 
-		switch (expected_players)
+		switch (autobalance_for_players)
 			if (-INFINITY to 24)
 				allow_civilians = FALSE
 				allow_partisans = FALSE
@@ -369,21 +375,27 @@ var/global/datum/controller/occupations/job_master
 
 			// SPECIAL
 			if (istype(j, /datum/job/german/flamethrower_man))
-				if (expected_players <= 13)
+				if (autobalance_for_players <= 13)
 					j.total_positions = 0
 					for (var/obj/item/weapon/storage/backpack/flammenwerfer/F in world)
 						qdel(F)
 
-			else if (istype(j, /datum/job/german/artyman))
-				if (!locate(/obj/machinery/artillery) in world)
-					j.total_positions = 0
+	// this doesn't work due to the artillery landmark system: see new_player.dm for new system
+	/*		else if (istype(j, /datum/job/german/artyman) || istype(j, /datum/job/german/scout))
+				spawn (5)
+					if (!locate(/obj/machinery/artillery) in world)
+						j.total_positions = 0 */
 
 			else if (istype(j, /datum/job/german/anti_tank_crew) || istype(j, /datum/job/german/tankcrew))
 				spawn (5)
-					if (!locate(/obj/tank) in world)
+					var/found_tank = FALSE
+					for (var/obj/tank/german/T in world)
+						if (!T.admin)
+							found_tank = TRUE
+					if (!found_tank)
 						j.total_positions = 0
 
-			else if (istype(j, /datum/job/german/paratrooper) && (!fallschirm_landmarks.len || expected_players <= 18))
+			else if (istype(j, /datum/job/german/paratrooper) && (!fallschirm_landmarks.len || autobalance_for_players <= 18))
 				german_soldat_slots += german_paratrooper_slots
 				german_paratrooper_slots = 0
 				j.total_positions = 0
@@ -391,7 +403,11 @@ var/global/datum/controller/occupations/job_master
 		for (var/datum/job/soviet/j in occupations)
 			if (istype(j, /datum/job/soviet/anti_tank_crew) || istype(j, /datum/job/soviet/tankcrew))
 				spawn (5)
-					if (!locate(/obj/tank) in world)
+					var/found_tank = FALSE
+					for (var/obj/tank/soviet/T in world)
+						if (!T.admin)
+							found_tank = TRUE
+					if (!found_tank)
 						j.total_positions = 0
 
 		for (var/datum/job/j in occupations)
@@ -1295,7 +1311,7 @@ var/global/datum/controller/occupations/job_master
 			world << "got past squadsetting code"
 			#endif
 
-			if (H.squad_faction)
+			if ((!map || map.squad_spawn_locations) && H.squad_faction)
 				switch (spawn_location)
 					// German
 					if ("JoinLateHeer")

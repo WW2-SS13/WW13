@@ -75,7 +75,7 @@
 		// wait 10 minutes and see who is doing the best
 
 		if (time_both_sides_locked != -1)
-			if (world.realtime - time_both_sides_locked >= 6000)
+			if (world.realtime - time_both_sides_locked >= 6000 && !currently_winning)
 				return TRUE
 		else if (reinforcements_master.is_permalocked(GERMAN))
 			if (reinforcements_master.is_permalocked(SOVIET))
@@ -212,7 +212,7 @@
 	// announce after some other stuff, like system setups, are announced
 	spawn (3)
 
-	//	new/datum/game_aspect/ww2(src)
+		new/datum/game_aspect/ww2(src)
 
 		spawn (1)
 			if (aspect)
@@ -249,7 +249,8 @@
 			if (clients.len <= TANK_LOWPOP_THRESHOLD)
 				if (locate(/obj/tank) in world)
 					for (var/obj/tank/T in world)
-						qdel(T)
+						if (!T.admin)
+							qdel(T)
 					world << "<i>Due to lowpop, there are no tanks.</i>"
 
 		if (!istype(aspect, /datum/game_aspect/ww2/no_artillery))

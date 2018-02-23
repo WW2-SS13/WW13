@@ -7,9 +7,6 @@
 	if (!dir)
 		dir = SOUTH
 
-	if (!artillery_master)
-		artillery_master = new/datum/artillery_controller()
-
 	var/fake_builder = FALSE
 
 	if (builder == null && dir != null)
@@ -50,8 +47,6 @@
 	for (var/v in TRUE to 20)
 		var/obj/item/weapon/material/shard/shard = new/obj/item/weapon/material/shard/shrapnel(src)
 		ejections.Add(shard)
-
-	artillery_master.artillery_bases += src
 
 /obj/machinery/artillery/base/nebel/proc/Name(var/atom/a)
 	if (a && istype(a))

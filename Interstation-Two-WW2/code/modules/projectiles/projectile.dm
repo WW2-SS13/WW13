@@ -108,6 +108,9 @@
 
 //return TRUE if the projectile should be allowed to pass through after all, FALSE if not.
 /obj/item/projectile/proc/check_penetrate(var/atom/A)
+	if (istype(A, /turf/wall))
+		if (prob(50))
+			return FALSE
 	return TRUE
 
 /obj/item/projectile/proc/check_fire(atom/target as mob, var/mob/living/user as mob)  //Checks if you can hit them or not.

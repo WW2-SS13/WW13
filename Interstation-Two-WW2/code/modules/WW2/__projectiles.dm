@@ -5,7 +5,7 @@
 #define DAMAGE_OH_GOD 200
 
 /obj/item/projectile/bullet/rifle
-	speed = 2.5
+	speed = 4.0
 	armor_penetration = 50
 
 /obj/item/projectile/bullet/rifle/murder
@@ -15,8 +15,8 @@
 	accuracy = 5000
 
 /obj/item/projectile/bullet/rifle/a792x33
-	damage = DAMAGE_LOW
-	penetrating = TRUE
+	damage = DAMAGE_MEDIUM
+	penetrating = 1
 
 // MOSIN
 /obj/item/projectile/bullet/rifle/a762x54
@@ -24,11 +24,16 @@
 	penetrating = 2
 	armor_penetration = 100
 
-// KARS
+// KAR
 /obj/item/projectile/bullet/rifle/a792x57
 	damage = DAMAGE_HIGH
 	penetrating = 2
 	armor_penetration = 100
+
+// MG34
+/obj/item/projectile/bullet/rifle/a792x57_weaker
+	damage = DAMAGE_MEDIUM
+	penetrating = 1
 
 /obj/item/projectile/bullet/rifle/a762x25
 	damage = DAMAGE_LOW
