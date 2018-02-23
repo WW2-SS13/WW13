@@ -317,3 +317,14 @@
 		H.make_artillery_officer()
 		H.verbs += /mob/living/carbon/human/proc/Execute
 		H << "<span class = 'info'>As an officer, you can check coordinates and execute your subordinates.</span>"
+
+	// hack to make scope icons immediately appear - Kachnov
+	spawn (20)
+		for (var/obj/item/weapon/gun/G in H.contents)
+			for (var/obj/item/weapon/attachment/scope/S in G.contents)
+				if (S.azoom)
+					S.azoom.Grant(H)
+
+		for (var/obj/item/weapon/attachment/scope/S in H.contents)
+			if (S.azoom)
+				S.azoom.Grant(H)

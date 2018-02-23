@@ -63,10 +63,10 @@
 		return FALSE // no matter what, don't end
 	else if (..() == TRUE)
 		return TRUE
-	else if (WW2_soldiers_en_ru_ratio() == 1000 && game_started)
+	else if (soldiers["de"] > 0 && soldiers["ru"] <= 0 && game_started)
 		winning_side = "Wehrmacht"
 		return TRUE
-	else if (WW2_soldiers_en_ru_ratio() == 1/1000 && game_started)
+	else if (soldiers["ru"] > 0 && soldiers["de"] <= 0 && game_started)
 		winning_side = "Red Army"
 		return TRUE
 	else
@@ -209,6 +209,7 @@
 
 /datum/game_mode/ww2/announce() //to be called when round starts
 
+	world << "<b><big>The round has started!</big></b>"
 	// announce after some other stuff, like system setups, are announced
 	spawn (3)
 
@@ -236,8 +237,6 @@
 
 			// this may have already happened, do it again w/o announce
 			setup_autobalance(0)
-
-		world << "<b><big>The current game mode is World War II!</big></b>"
 
 		// let new players see the join link
 		for (var/mob/new_player/np in world)

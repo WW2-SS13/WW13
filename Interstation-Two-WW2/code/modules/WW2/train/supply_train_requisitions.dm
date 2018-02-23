@@ -85,7 +85,7 @@
 		"Grenades" = 65,
 		"Panzerfausts" = 120,
 		"Smoke Grenades" = 55, // too lazy to fix this typo rn
-		"Sandbags Crate" = 20,
+		"Sandbags Crate" = 45,
 		"Flaregun Ammo" = 15,
 		"Flares" = 10,
 		"Bayonet" = 10,

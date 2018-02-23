@@ -232,14 +232,6 @@ Parts of code courtesy of Super3222
 	azoom.scope = src
 	actions += azoom
 
-/obj/item/weapon/attachment/scope/Move(_loc)
-	..(_loc)
-
-	spawn (5)
-		if (ismob(azoom.owner))
-			if (azoom)
-				azoom.Grant(loc)
-
 /obj/item/weapon/attachment/scope/pickup(mob/user)
 	..()
 	if(azoom)

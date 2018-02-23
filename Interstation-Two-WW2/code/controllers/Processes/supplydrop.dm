@@ -16,7 +16,7 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 				if (supplydrop_processing_objects_german.len < v)
 					continue
 				var/last_path = supplydrop_processing_objects_german[v]
-				if(last_path && ispath(last_path))
+				if(last_path)
 					try
 						turf_loop:
 							var/spawned = FALSE
@@ -32,7 +32,8 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 								for (var/obj/item/weapon/gun/G in T)
 									continue turf_loop
 
-								var/atom/A = new last_path (T)
+								var/real_path = text2path(last_path)
+								var/atom/A = new real_path(T)
 								A.visible_message("<span class = 'notice'>[A] falls from the sky!</span>")
 								playsound(T, 'sound/effects/bamf.ogg', rand(70,80))
 								spawned = TRUE
@@ -52,7 +53,7 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 				if (supplydrop_processing_objects_soviet.len < v)
 					continue
 				var/last_path = supplydrop_processing_objects_soviet[v]
-				if(last_path && ispath(last_path))
+				if(last_path)
 					try
 						turf_loop:
 							var/spawned = FALSE
@@ -68,7 +69,8 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 								for (var/obj/item/weapon/gun/G in T)
 									continue turf_loop
 
-								var/atom/A = new last_path (T)
+								var/real_path = text2path(last_path)
+								var/atom/A = new real_path(T)
 								A.visible_message("<span class = 'notice'>[A] falls from the sky!</span>")
 								playsound(T, 'sound/effects/bamf.ogg', 90)
 								spawned = TRUE

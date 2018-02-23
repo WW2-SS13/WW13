@@ -59,7 +59,8 @@ var/GRACE_PERIOD_LENGTH = 7
 		nature_chance = 70
 
 	// create wild grasses in "clumps"
-	world << "<span class = 'notice'>Setting up wild grasses.</span>"
+	spawn (1)
+		world << "<span class = 'notice'>Setting up wild grasses.</span>"
 
 	for (var/turf/floor/plating/grass/G in grass_turf_list)
 		if (!G || G.z > TRUE)
@@ -75,7 +76,8 @@ var/GRACE_PERIOD_LENGTH = 7
 
 // freaking seasons dude
 /proc/do_seasonal_stuff()
-	world << "<span class = 'notice'>Setting up seasonal stuff.</span>"
+	spawn (1)
+		world << "<span class = 'notice'>Setting up seasonal stuff.</span>"
 	var/datum/game_mode/ww2/mode = ticker.mode
 
 	if (istype(mode))

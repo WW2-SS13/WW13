@@ -1,8 +1,11 @@
 /obj/item/projectile/bullet/shotgun
 	speed = 3.0
 
-/obj/item/weapon/gun/projectile/shotgun/
+/obj/item/weapon/gun/projectile/shotgun
 	gun_type = GUN_TYPE_HEAVY
+	accuracy = DEFAULT_MG_ACCURACY
+	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"

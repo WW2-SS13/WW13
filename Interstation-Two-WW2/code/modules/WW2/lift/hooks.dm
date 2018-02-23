@@ -1,6 +1,7 @@
 /proc/handle_lifts()
 
-	world << "<span class = 'notice'>Setting up the lift system.</span>"
+	spawn (1)
+		world << "<span class = 'notice'>Setting up the lift system.</span>"
 
 	// assign lift IDs
 

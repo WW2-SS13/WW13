@@ -639,6 +639,7 @@
 		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
 			stat("People Online", clients.len)
 			stat("Round Duration", roundduration2text())
+			stat("Map", map.title)
 			stat("Time of Day", time_of_day)
 			stat("Season", ticker.mode.season())
 			stat("Weather", ticker.mode.weather())

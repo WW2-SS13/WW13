@@ -52,7 +52,10 @@
 	icon_state = "equipment_german"
 	products = list(
 
+		/obj/item/clothing/under/geruni/ssuni = 20,
+		/obj/item/clothing/suit/sssmock = 20,
 		/obj/item/clothing/accessory/storage/webbing = 20,
+
 		/obj/item/clothing/head/helmet/tactical/gerhelm/sshelm = 10,
 		/obj/item/clothing/mask/gas/german = 10,
 		/obj/item/clothing/shoes/swat = 10,

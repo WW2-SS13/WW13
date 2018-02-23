@@ -174,7 +174,7 @@ var/obj/burning_overlay_turf = null
 		if (a.density)
 
 			var/a_is_flammable = FALSE
-			if (list(/obj/structure/table/wood, /turf/wall/wood, /obj/structure/closet/cabinet, /obj/structure/barricade, /obj/structure/bed/chair/wood).Find(a.type))
+			if (list(/obj/structure/table/wood, /turf/wall/wood, /obj/structure/closet/cabinet, /obj/structure/barricade, /obj/structure/bed/chair/wood, /obj/structure/bookcase).Find(a.type))
 				a_is_flammable = TRUE
 			if (!a_is_flammable)
 				if (a.vars.Find("material"))

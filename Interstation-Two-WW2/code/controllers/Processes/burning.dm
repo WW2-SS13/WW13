@@ -28,7 +28,7 @@ var/datum/controller/process/burning/burning_process = null
 
 	for(last_object in burning_turfs)
 		var/turf/O = last_object
-		if(isnull(O.gcDestroyed))
+		if(isnull(O.gcDestroyed) && O.density)
 			try
 				if (prob(5))
 					for (var/v in 4 to 5)

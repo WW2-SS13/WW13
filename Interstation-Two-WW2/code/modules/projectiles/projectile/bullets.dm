@@ -47,14 +47,14 @@
 			damage *= 0.7 //squishy mobs absorb KE
 		return TRUE
 
-	var/chance = FALSE
+	var/chance = 0
 	if(istype(A, /turf/wall))
 		var/turf/wall/W = A
-		chance = round(damage/(W.material ? W.material.integrity : 150)*180)
+		chance = round(damage/(W.material ? W.material.integrity : 150)*35)
 	else if(istype(A, /obj/structure/girder))
-		chance = 100
+		chance = 66
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
-		chance = damage
+		chance = round(damage/2) + 10
 
 	if(prob(chance))
 		if(A.opacity)

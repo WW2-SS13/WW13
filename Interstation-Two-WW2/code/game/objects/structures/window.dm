@@ -438,7 +438,6 @@
 	maxhealth = 20.0
 	layer = MOB_LAYER + 0.02
 	density = FALSE // so we can touch curtains from any direction
-	reinf = TRUE // stops us from being pushed
 
 /obj/structure/window/classic/is_full_window()
 	return TRUE
@@ -447,6 +446,18 @@
 	if (damage > 12 || (damage > 5 && prob(damage * 5)))
 		shatter()
 	else return ..()
+
+/obj/structure/window/classic/hitby(AM as mob|obj)
+	..()
+	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
+	var/tforce = FALSE
+	if(ismob(AM))
+		tforce = 40
+	else if(isobj(AM))
+		var/obj/item/I = AM
+		tforce = I.throwforce
+	if(reinf) tforce *= 0.25
+	take_damage(tforce)
 
 /obj/structure/window/classic/bullet_act(var/obj/item/projectile/P)
 	if (!P.nodamage)
