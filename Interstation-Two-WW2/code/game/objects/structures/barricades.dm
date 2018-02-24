@@ -84,7 +84,6 @@
 				dismantle()
 			return
 
-
 /* the only barricades still in the code are wood barricades, which SHOULD
   be hit by bullets, at least sometimes - hence these changes. */
 
@@ -102,3 +101,10 @@
 	health -= proj.damage
 	visible_message("<span class='warning'>\The [src] is hit by the bullet!</span>")
 	try_destroy()
+
+// steel barricades
+
+/obj/structure/barricade/steel
+
+/obj/structure/barricade/steel/New(_loc)
+	..(_loc, DEFAULT_WALL_MATERIAL)

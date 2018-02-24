@@ -354,12 +354,15 @@ var/datum/quickBan_handler/quickBan_handler = null
 					return list("reason" = bans["reason"],
 						"ban_date" = bans["ban_date"],
 						"expire_info" = bans["expire_info"])
-	return list()
+	return FALSE
 
 /* check if we're banned and tell us why we're banned */
 /client/proc/quickBan_rejected(var/bantype = "Server")
 
 	var/list/fields = quickBan_isbanned(bantype)
+
+	if (fields == FALSE)
+		fields = list()
 
 	if (!fields.Find("reason"))
 		return FALSE

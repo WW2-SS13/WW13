@@ -280,6 +280,11 @@
 			if (client.prefs.german_gender == FEMALE && !actual_job.is_nonmilitary)
 				usr << "<span class='danger'>German soldiers must be male.</span>"
 				return
+		else if (job_flag == SOVIET)
+			if (client.prefs.russian_gender == FEMALE && actual_job.is_officer)
+				usr << "<span class='danger'>Soviet officers must be male.</span>"
+				return
+
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
