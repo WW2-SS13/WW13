@@ -86,6 +86,9 @@ var/list/fire_pool = list()
 
 	return fire
 
+var/obj/burning_overlay_obj = null
+var/obj/burning_overlay_turf = null
+
 /obj/fire
 
 	anchored = TRUE
@@ -115,6 +118,24 @@ var/list/fire_pool = list()
 /obj/fire/process()
 	. = TRUE
 
+	if (!burning_overlay_obj)
+		burning_overlay_obj = new
+		var/icon/I = icon(icon, "fire2")
+		I.Scale(48,96)
+		burning_overlay_obj.icon = I
+		burning_overlay_obj.pixel_y = -32
+		burning_overlay_obj.pixel_x = -16
+		burning_overlay_obj.layer = 5 // below smoke
+
+	if (!burning_overlay_turf)
+		burning_overlay_turf = new
+		var/icon/I = icon(icon, "fire2")
+		I.Scale(48,96)
+		burning_overlay_turf.icon = I
+		burning_overlay_turf.pixel_y = -32
+		burning_overlay_turf.pixel_x = -8
+		burning_overlay_turf.layer = 5 // below smoke
+
 	var/turf/my_tile = loc
 
 	if(!istype(my_tile))
@@ -133,42 +154,46 @@ var/list/fire_pool = list()
 		icon_state = "1"
 		set_light(3, TRUE)
 
-	for(var/mob/m in my_tile)
+	for (var/mob/m in my_tile)
 		Burn(m)
 
-	for (var/obj/structure/window/W in my_tile)
-		if (!istype(W, /obj/structure/window/sandbag))
-			if (prob((temperature/default_temperature) * 70))
-				W.shatter()
+	var/list/fire_act_on = list()
+	for (var/turf/T in range(my_tile, 1))
+		fire_act_on += T
+		fire_act_on += T.contents
 
-	for (var/obj/structure/grille/G in my_tile)
-		if (prob((temperature/default_temperature) * 30))
-			G.visible_message("<span class = 'warning'>[G] melts.</span>")
-			G.health = FALSE
-			G.healthcheck()
+	for (var/atom/a in fire_act_on)
 
-	for (var/obj/snow/S in my_tile)
-		if (prob(25))
-			S.visible_message("<span class = 'warning'>The snow melts.</span>")
-			qdel(S)
+		if (ismob(a))
+			continue
 
-	for (var/obj/structure/wild/W in my_tile)
-		if (istype(W, /obj/structure/wild/tree))
-			if (prob(15))
-				W.visible_message("<span class = 'warning'>[W] collapses.</span>")
-				qdel(W)
-		else
-			if (prob(35))
-				W.visible_message("<span class = 'warning'>[W] is burned away.</span>")
-				qdel(W)
+		a.fire_act(temperature)
+
+		// handle flammable objects
+
+		if (a.density)
+
+			var/a_is_flammable = FALSE
+			if (list(/obj/structure/table/wood, /turf/wall/wood, /obj/structure/closet/cabinet, /obj/structure/barricade, /obj/structure/bed/chair/wood, /obj/structure/bookcase).Find(a.type))
+				a_is_flammable = TRUE
+			if (!a_is_flammable)
+				if (a.vars.Find("material"))
+					if (istype(a:material, /material/wood))
+						a_is_flammable = TRUE
+
+			if (a_is_flammable && !a.overlays.Find(burning_overlay_obj) && !a.overlays.Find(burning_overlay_turf))
+
+				if (istype(a, /obj))
+					a.overlays |= burning_overlay_obj
+					burning_objs += a
+
+				else if (istype(a, /turf))
+					a.overlays |= burning_overlay_turf
+					burning_turfs += a
 
 	for (var/obj/tank/T in my_tile)
-		T.damage += T.x_percent_of_max_damage(0.5 * (temperature/default_temperature))
+		T.damage += T.x_percent_of_max_damage(1.0 * (temperature/default_temperature))
 		T.update_damage_status()
-	//loc.fire_act(air_contents, air_contents.temperature, air_contents.volume)
-
-//	for(var/atom/A in loc)
-	//	A.fire_act(air_contents, air_contents.temperature, air_contents.volume)
 
 	//spread
 

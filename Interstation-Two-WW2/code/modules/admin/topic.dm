@@ -412,6 +412,8 @@
 				for (var/obj/item/organ/external/E in H.bad_external_organs)
 					E.wounds.Cut()
 					H.bad_external_organs -= E
+				for (var/obj/item/organ/O in H.contents) // probably fixes slowdown bug - Kachnov
+					O.status = 0
 				var/obj/item/organ/external/head/U = locate() in H.organs
 				if(istype(U))
 					U.teeth_list.Cut() //Clear out their mouth of teeth

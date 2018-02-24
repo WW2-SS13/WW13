@@ -57,8 +57,12 @@ var/list/global_whitelists[50]
 	establish_db_connection()
 	if (!database)
 		return
-	database.execute("DELETE FROM whitelists WHERE key = '[name]';", FALSE)
-	spawn (10)
+
+	var/list/rowdata = database.execute("SELECT * FROM whitelists WHERE key = '[name]';")
+	sleep(10)
+	if (islist(rowdata) && !isemptylist(rowdata))
+		database.execute("UPDATE whitelists SET val = '[data]' WHERE key = '[name]'", FALSE)
+	else
 		database.execute("INSERT INTO whitelists (key, val) VALUES ('[name]', '[data]');", FALSE)
 
 // add a client or ckey to the whitelist
@@ -73,6 +77,7 @@ var/list/global_whitelists[50]
 		data += _arg:ckey
 	else
 		data += ckey(_arg) // todo: probably shouldn't do this for other WLs
+
 	for (var/extrafield in extras)
 		data += "=[extrafield]"
 
@@ -129,6 +134,7 @@ var/list/global_whitelists[50]
 
 /datum/whitelist/server
 	name = "server"
+
 /datum/whitelist/server/New()
 	..()
 	if (config.usewhitelist)
@@ -136,6 +142,7 @@ var/list/global_whitelists[50]
 
 /datum/whitelist/teststaff
 	name = "teststaff"
+
 /datum/whitelist/teststaff/New()
 	..()
 	if (config.allow_testing_staff)

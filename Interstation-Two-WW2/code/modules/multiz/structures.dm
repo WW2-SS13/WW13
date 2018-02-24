@@ -86,6 +86,10 @@
 
 /obj/structure/multiz/ladder/attack_hand(var/mob/M)
 
+	if (M.restrained())
+		M << "<span class='warning'>You can't use the ladder while you're restrained.</span>"
+		return
+
 	if(!target || !istype(target.loc, /turf))
 		M << "<span class='notice'>\The [src] is incomplete and can't be climbed.</span>"
 		return

@@ -454,6 +454,11 @@
 			src << "<span class = 'red'>Currently this side is locked for joining.</span>"
 		return
 
+	if ((job.is_SS && !SS_forceEnabled) || (job.is_paratrooper && !paratroopers_forceEnabled))
+		if (map && map.germans_can_cross_blocks() && map.soviets_can_cross_blocks())
+			src << "<span class = 'red'>This job is not available for joining after the game has started.</span>"
+			return
+
 	spawning = TRUE
 	close_spawn_windows()
 	job_master.AssignRole(src, rank, TRUE)
@@ -490,6 +495,8 @@
 
 /mob/new_player/proc/LateChoices()
 
+	var/arty = locate(/obj/machinery/artillery) in world
+
 	src << browse(null, "window=latechoices")
 
 	//<body style='background-color:#1D2951; color:#ffffff'>
@@ -518,6 +525,9 @@
 	for(var/datum/job/job in job_master.faction_organized_occupations)
 
 		try
+
+			if (!arty && (istype(job, /datum/job/german/artyman) || istype(job, /datum/job/german/scout)))
+				continue
 
 		//	var/unavailable_message = ""
 			if (job.title == "generic job")
@@ -552,7 +562,6 @@
 			//	unavailable_message = " <span class = 'color: rgb(255,0,0);'>{BANNED FROM OFFICER POSITIONS}</span> "
 
 			// check if the faction is admin-locked
-
 
 			if (map && !map.job_enabled_specialcheck(job))
 				job_is_available = FALSE
@@ -658,9 +667,9 @@
 	var/data = ""
 	for (var/line in dat)
 		if (line != null)
-			data += line
-			if (data != "<br>")
-				data += "<br>"
+			if (line != "<br>")
+				data += "<span style = 'font-size:2.0rem;'>[line]</span>"
+			data += "<br>"
 
 	//<link rel='stylesheet' type='text/css' href='html/browser/common.css'>
 	data = {"
@@ -668,7 +677,7 @@
 		<html>
 		<head>
 		<style>
-		[common_browser_style_no_buttons_override+common_browser_style]
+		[common_browser_style]
 		</style>
 		</head>
 		<body>

@@ -354,7 +354,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		s += "<b>[config.hub_features]</b><br>"
 
 	if (map)
-		s += "<b>Map: [map.title]</b><br>"
+		s += "<b>Map:</b> [map.title]<br>"
 
 	if (config.hub_banner_url)
 		s += config.hub_banner_url

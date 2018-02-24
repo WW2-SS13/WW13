@@ -230,6 +230,15 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/bad
 	time_to_live = 200
 
+/obj/effect/effect/smoke/bad/New(_loc, move = FALSE)
+	..(_loc)
+	if (move)
+		for (var/v in 1 to time_to_live/10)
+			spawn (v * 5)
+				step_rand(src)
+	spawn (time_to_live)
+		qdel(src)
+
 /obj/effect/effect/smoke/bad/Move()
 	..()
 	for(var/mob/living/carbon/M in get_turf(src))

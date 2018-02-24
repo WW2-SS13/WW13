@@ -26,6 +26,7 @@ var/global/obj/map_metadata/map = null
 	var/respawn_delay = 3000
 	var/list/valid_weather_types = list(WEATHER_RAIN, WEATHER_SNOW)
 	var/reinforcements = TRUE
+	var/squad_spawn_locations = TRUE
 
 /obj/map_metadata/New()
 	..()
@@ -115,10 +116,10 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/forest/announce_mission_start(var/preparation_time = FALSE)
 	world << "<font size=4>The German assault has started after <b>[preparation_time / 600] minutes</b> of preparation. The Soviet side may not attack until after <b>7 minutes</b>.</font><br>"
 
-// SMALL CITY MAP
-/obj/map_metadata/minicity
-	ID = "SMALLCITY"
-	title = "City Map (70x70x2)"
+// CITY MAP
+/obj/map_metadata/city
+	ID = "CITY"
+	title = "City Map (150x150x1)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 	faction_organization = list(
 		GERMAN,
@@ -127,15 +128,16 @@ var/global/obj/map_metadata/map = null
 		CIVILIAN,
 		ITALIAN,
 		UKRAINIAN)
-	respawn_delay = 1200
+	respawn_delay = 2400
+	squad_spawn_locations = FALSE
 
-/obj/map_metadata/minicity/germans_can_cross_blocks()
+/obj/map_metadata/city/germans_can_cross_blocks()
 	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
 
-/obj/map_metadata/minicity/soviets_can_cross_blocks()
+/obj/map_metadata/city/soviets_can_cross_blocks()
 	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
 
-/obj/map_metadata/minicity/announce_mission_start(var/preparation_time)
+/obj/map_metadata/city/announce_mission_start(var/preparation_time)
 	world << "<font size=4>Both sides have <b>12 minutes</b> to prepare before combat will begin!</font>"
 
 // PILLARMAP

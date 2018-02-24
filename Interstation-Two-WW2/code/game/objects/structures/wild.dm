@@ -18,6 +18,11 @@
 			qdel(o)
 	..()
 
+/obj/structure/wild/fire_act(temperature)
+	if (prob(35 * (temperature/500)))
+		visible_message("<span class = 'warning'>[src] is burned away.</span>")
+		qdel(src)
+
 // it's windy out
 /obj/structure/wild/proc/sway()
 	if (!sways)
@@ -36,9 +41,17 @@
 	density = TRUE
 	sways = TRUE
 
+/obj/structure/wild/tree/fire_act(temperature)
+	if (prob(15 * (temperature/500)))
+		visible_message("<span class = 'warning'>[src] collapses.</span>")
+		qdel(src)
+
+/obj/structure/wild/tree/anchored
+
 /obj/structure/wild/tree/New()
 	..()
-	pixel_x = rand(-8,8)
+	if (!istype(src, /obj/structure/wild/tree/anchored))
+		pixel_x = rand(-8,8)
 
 /obj/structure/wild/bush
 	name = "bush"

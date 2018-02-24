@@ -11,6 +11,7 @@ var/global/list/mob_list = list()					//List of all mobs, including clientless
 var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
 var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
+var/global/list/dog_mob_list = list()				//List of all dogs
 var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
 var/global/list/observer_mob_list = list()			//List of all observers, excluding clientless
 var/global/list/human_clients_mob_list = list()     //List of all human mobs with clients
@@ -21,6 +22,9 @@ var/global/list/train_car_centers = list()
 // to prevent typechecking and speed up train soundcode
 var/global/list/german_main_train_car_centers = list()
 var/global/list/german_supply_train_car_centers = list()
+
+var/global/list/burning_objs = list()
+var/global/list/burning_turfs = list()
 
 var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
 var/global/list/chemical_reactions_list				//list of all /datum/chemical_reaction datums. Used during chemical reactions

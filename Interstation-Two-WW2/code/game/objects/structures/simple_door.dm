@@ -17,8 +17,8 @@
 	var/health = 100
 	var/initial_health = 100
 
-/obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	TemperatureAct(exposed_temperature)
+/obj/structure/simple_door/fire_act(temperature)
+
 
 /obj/structure/simple_door/bullet_act(var/obj/item/projectile/P)
 	var/damage = max(P.damage/2, 2)

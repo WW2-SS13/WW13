@@ -44,6 +44,11 @@ WW 2 WEAPONS MAGS N AMMO
 	caliber = "a792x57"
 	projectile_type = /obj/item/projectile/bullet/rifle/a792x57
 
+/obj/item/ammo_casing/a792x57_weaker
+	desc = "A 7.92x57mm bullet casing."
+	caliber = "a792x57"
+	projectile_type = /obj/item/projectile/bullet/rifle/a792x57_weaker
+
 /obj/item/ammo_casing/a762x25
 	desc = "A 7.62x25mm bullet casing."
 	caliber = "a762x25"

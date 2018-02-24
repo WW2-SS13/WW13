@@ -94,6 +94,11 @@ var/list/tier_2_officer_jobtypes = list(
 				var/old_targeted_organ = targeted_organ
 				targeted_organ = "head"
 				visible_message("<span class = 'userdanger'>[src] lifts [GD.his] [G] and executes [H].</span>")
+
+				attack_log += text("\[[time_stamp()]\] <font color='red'>Officer-executed [H]</font>")
+				H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Was officer-executed by [src]</font>")
+				msg_admin_attack("[name] ([ckey]) has officer executed [H] ([H.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+
 				G.executing = TRUE
 				G.Fire(H, src)
 				G.executing = FALSE

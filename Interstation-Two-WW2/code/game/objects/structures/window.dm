@@ -51,7 +51,7 @@
 
 	health = max(0, health - damage)
 
-	if(health <= FALSE)
+	if(health <= 0)
 		shatter()
 	else
 		if(sound_effect)
@@ -138,7 +138,6 @@
 		return !density
 	else
 		return TRUE
-
 
 /obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
@@ -408,15 +407,15 @@
 */
 	return
 
-/obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > maximal_heat)
-		hit(damage_per_fire_tick, FALSE)
-	..()
+/obj/structure/window/fire_act(temperature)
+	if (prob((temperature/500) * 70))
+		shatter()
 
 /obj/structure/classic_window_frame
 	desc = "A good old window frame."
 	icon_state = "windownew_frame"
 	layer = MOB_LAYER + 0.01
+	anchored = TRUE
 /*
 /obj/structure/classic_window_frame/Crossed(mover)
 	if (isliving(mover))
@@ -447,6 +446,18 @@
 	if (damage > 12 || (damage > 5 && prob(damage * 5)))
 		shatter()
 	else return ..()
+
+/obj/structure/window/classic/hitby(AM as mob|obj)
+	..()
+	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
+	var/tforce = FALSE
+	if(ismob(AM))
+		tforce = 40
+	else if(isobj(AM))
+		var/obj/item/I = AM
+		tforce = I.throwforce
+	if(reinf) tforce *= 0.25
+	take_damage(tforce)
 
 /obj/structure/window/classic/bullet_act(var/obj/item/projectile/P)
 	if (!P.nodamage)

@@ -7,9 +7,6 @@
 	if (!dir)
 		dir = SOUTH
 
-	if (!artillery_master)
-		artillery_master = new/datum/artillery_controller
-
 	var/fake_builder = FALSE
 
 	if (builder == null && dir != null)
@@ -79,7 +76,6 @@
 
 	proc/do_html(var/mob/m)
 
-
 		if (m)
 
 			m << browse({"
@@ -127,13 +123,15 @@
 			</center>
 
 			</body>
-
 			</html>
 			<br>
 			"},  "window=artillery_window;border=1;can_close=1;can_resize=1;can_minimize=0;titlebar=1;size=500x500")
 		//		<A href = '?src=\ref[src];topic_type=[topic_custom_input];continue_num=1'>
 
 	interact(var/mob/m)
+		if (user)
+			if (get_dist(src, user) > 1)
+				user = null
 		restart
 		if (user && user != m)
 			if (user.client)
@@ -161,8 +159,6 @@
 		var/obj/item/weapon/material/shard/shard = new/obj/item/weapon/material/shard/shrapnel(src)
 		ejections.Add(shard)
 
-	artillery_master.artillery_bases += src
-
 /obj/machinery/artillery/base/proc/getNextOpeningClosingState()
 
 	if (state == "CLOSED")
@@ -175,229 +171,220 @@
 
 /obj/machinery/artillery/base/Topic(href, href_list, hsrc)
 
-	if (!user)
+	var/mob/user = usr
+
+	if (!user || user.lying)
 		return
 
-	if (!user.lying)
+	user.face_atom(src)
 
-		user.face_atom(src)
+	if (!locate(src) in get_step(user, user.dir))
+		user << "<span class = 'danger'>Get behind the artillery to use it.</span>"
+		return FALSE
 
-		if (!locate(src) in get_step(user, user.dir))
-			user << "<span class = 'danger'>Get behind the artillery to use it.</span>"
-			return FALSE
+	if (!user.can_use_hands())
+		user << "<span class = 'danger'>You have no hands to use this with.</span>"
+		return FALSE
 
-		if (!user.can_use_hands())
-			user << "<span class = 'danger'>You have no hands to use this with.</span>"
-			return FALSE
+	if (!anchored)
+		user << "<span class = 'danger'>The artillery piece must be anchored to use.</span>"
+		return FALSE
 
-		if (!anchored)
-			user << "<span class = 'danger'>The artillery piece must be anchored to use.</span>"
-			return FALSE
+	var/value = href_list["value"]
 
-		var/value = href_list["value"]
+	switch (href_list["action"])
+		//we can enter offsets directly
+		if ("xocoord")
+			offset_x = text2num(value)
+		if ("yocoord")
+			offset_y = text2num(value)
+		//or enter the firing location directly and have them generated
+		if ("xplusxocoord")
+			var/val = text2num(value)
+			offset_x = val - x
+		if ("yplusyocoord")
+			var/val = text2num(value)
+			offset_y = val - y
 
-		switch (href_list["action"])
-			//we can enter offsets directly
-			if ("xocoord")
-				offset_x = text2num(value)
-			if ("yocoord")
-				offset_y = text2num(value)
-			//or enter the firing location directly and have them generated
-			if ("xplusxocoord")
-				var/val = text2num(value)
-				offset_x = val - x
-			if ("yplusyocoord")
-				var/val = text2num(value)
-				offset_y = val - y
+	if (href_list["fire"])
 
-		if (href_list["fire"])
-			if ("fire")
-				var/user_area = get_area(user)
+		var/area/user_area = get_area(user)
 
-				var/failure_msg = "<span class = 'danger'>You can't fire from here.</span>"
+		if (user_area.location == AREA_INSIDE)
+			user << "<span class = 'danger'>You can't fire from inside.</span>"
+			return
 
-				if (istype(user_area, /area/prishtina/soviet/bunker))
-					user << failure_msg
-					return
-				if (istype(user_area, /area/prishtina/soviet/bunker_entrance))
-					user << failure_msg
-					return
-				if (istype(user_area, /area/prishtina/houses))
-					user << failure_msg
-					return
+		if (state == "OPEN")
+			user << "<span class='danger'>Close the shell loading slot first.</span>"
+			return
 
-				if (state == "OPEN")
-					user << "<span class='danger'>Close the shell loading slot first.</span>"
-					return
+		if (blind_fire_toggle)
 
-				if (blind_fire_toggle)
+			offset_x = FALSE
+			offset_y = FALSE
 
-					offset_x = FALSE
-					offset_y = FALSE
-
-					var/number_range = splittext(BLIND_FIRE_DISTANCES[blind_fire_range], ":")
-					var/lowerbound = text2num(number_range[1])
-					var/upperbound = text2num(number_range[2])
-					var/add = rand(lowerbound, upperbound)
-
-					switch (blind_fire_dir)
-						if (NORTH)
-							offset_y += add
-						if (SOUTH)
-							offset_y -= add
-						if (EAST)
-							offset_x += add
-						if (WEST)
-							offset_x -= add
-
-					if (dir == NORTH || dir == SOUTH)
-						switch (blind_fire_dir2)
-							if (EAST)
-								offset_x += add/2
-							if (WEST)
-								offset_x -= add/2
-
-
-				var/target_x = offset_x + x
-				var/target_y = offset_y + y
-
-				target_x = min(max(target_x, TRUE), world.maxx)
-				target_y = min(max(target_y, TRUE), world.maxy)
-
-				var/valid_coords_check = FALSE
-
-				if (!blind_fire_toggle)
-					if (global.valid_coordinates.Find("[target_x],[target_y]"))
-						valid_coords_check = TRUE
-					else
-						for (var/coords in global.valid_coordinates)
-							var/splitcoords = splittext(coords, ",")
-							var/coordx = text2num(splitcoords[1])
-							var/coordy = text2num(splitcoords[2])
-							if (abs(coordx - target_x) <= 15)
-								if (abs(coordy - target_y) <= 15)
-									valid_coords_check = TRUE
-				else
-					valid_coords_check = TRUE
-
-				if (!valid_coords_check)
-					user << "<span class='danger'>You have no knowledge of this location.</span>"
-					return
-
-				if (abs(offset_x) > FALSE || abs(offset_y) > FALSE)
-					if (abs(offset_x) + abs(offset_y) < 20)
-						user << "<span class='danger'>This location is too close to fire to.</span>"
-						return
-					else
-						var/obj/item/artillery_ammo/shell = other.use_slot()
-						if (shell)
-							other.fire(target_x, target_y, shell)
-						else
-							user << "<span class='danger'>Load a shell in first.</span>"
-							return
-				else
-					user << "<span class='danger>Set an offset x and offset y coordinate.</span>"
-					return
-
-		if (href_list["open"])
-			if (state == "OPEN")
-				return
-			flick("opening", src)
-			spawn (8)
-				icon_state = "open"
-				state = "OPEN"
-			spawn (6)
-				if (other.drop_casing)
-					var/obj/o = new/obj/item/artillery_ammo/casing(get_step(src, dir))
-					o.icon_state = casing_state
-					user << "<span class='danger'>The casing falls out of the artillery.</span>"
-					other.drop_casing = FALSE
-					playsound(get_turf(src), 'sound/effects/Stamp.wav', 100, TRUE)
-
-		if (href_list["close"])
-			if (state == "CLOSED")
-				return
-			flick("closing", src)
-			spawn (12)
-				icon_state = ""
-				state = "CLOSED"
-
-		for (var/i in TRUE to 10)
-			if (href_list["load_slot_[i]"])
-				if (state == "CLOSED")
-					user << "<span class = 'danger'>The shell loading slot must be open to add a shell.</span>"
-					return
-				var/obj/o = user.get_active_hand()
-				var/cond_1 = o && istype(o, /obj/item/artillery_ammo) && !istype(o, /obj/item/artillery_ammo/casing)
-				var/cond_2 = !o
-
-				if (cond_1 || cond_2)
-
-					if (!istype(loaded, /obj/item/artillery_ammo/none))
-						loaded.loc = get_turf(user)
-
-					if (o)
-						user.drop_from_inventory(o)
-						o.loc = src
-						loaded = o
-						icon_state = "open_with_shell"
-						state = "OPEN"
-					else
-						icon_state = "open"
-						state = "OPEN"
-
-
-
-		//	flick("opening", src)
-
-
-		// blind firing
-
-		if (href_list["blind_fire_toggle"])
-			blind_fire_toggle = !blind_fire_toggle
-
-
-		if (href_list["blind_fire_dist"])
-			switch (blind_fire_range)
-				if ("SHORT")
-					blind_fire_range = "MEDIUM"
-				if ("MEDIUM")
-					blind_fire_range = "LONG"
-				if ("LONG")
-					blind_fire_range = "SHORT"
-
-		// no cardinal directions for now
-		if (href_list["blind_fire_dir"])
+			var/number_range = splittext(BLIND_FIRE_DISTANCES[blind_fire_range], ":")
+			var/lowerbound = text2num(number_range[1])
+			var/upperbound = text2num(number_range[2])
+			var/add = rand(lowerbound, upperbound)
 
 			switch (blind_fire_dir)
 				if (NORTH)
-					blind_fire_dir = EAST
-				if (EAST)
-					blind_fire_dir = SOUTH
+					offset_y += add
 				if (SOUTH)
-					blind_fire_dir = WEST
+					offset_y -= add
+				if (EAST)
+					offset_x += add
 				if (WEST)
-					blind_fire_dir = NORTH
+					offset_x -= add
 
-			if (blind_fire_dir != SOUTH && blind_fire_dir != NORTH)
-				blind_fire_dir2 = "NONE"
-
-		if (href_list["blind_fire_dir2"])
-
-			if (blind_fire_dir != SOUTH && blind_fire_dir != NORTH)
-				blind_fire_dir2 = "NONE"
-			else
+			if (dir == NORTH || dir == SOUTH)
 				switch (blind_fire_dir2)
-					if ("NONE")
-						blind_fire_dir2 = EAST
 					if (EAST)
-						blind_fire_dir2 = WEST
+						offset_x += add/2
 					if (WEST)
-						blind_fire_dir2 = "NONE"
+						offset_x -= add/2
+
+		var/target_x = offset_x + x
+		var/target_y = offset_y + y
+
+		target_x = min(max(target_x, 1), world.maxx)
+		target_y = min(max(target_y, 1), world.maxy)
+
+		var/valid_coords_check = FALSE
+
+		if (!blind_fire_toggle)
+			if (global.valid_coordinates.Find("[target_x],[target_y]"))
+				valid_coords_check = TRUE
+			else
+				for (var/coords in global.valid_coordinates)
+					var/splitcoords = splittext(coords, ",")
+					var/coordx = text2num(splitcoords[1])
+					var/coordy = text2num(splitcoords[2])
+					if (abs(coordx - target_x) <= 15)
+						if (abs(coordy - target_y) <= 15)
+							valid_coords_check = TRUE
+		else
+			valid_coords_check = TRUE
+
+		if (!valid_coords_check)
+			user << "<span class='danger'>You have no knowledge of this location.</span>"
+			return
+
+		if (abs(offset_x) > 0 || abs(offset_y) > 0)
+			if (abs(offset_x) + abs(offset_y) < 20)
+				user << "<span class='danger'>This location is too close to fire to.</span>"
+				return
+			else
+				var/obj/item/artillery_ammo/shell = other.use_slot()
+				if (shell)
+					other.fire(target_x, target_y, shell)
+				else
+					user << "<span class='danger'>Load a shell in first.</span>"
+					return
+		else
+			user << "<span class='danger>Set an offset x and offset y coordinate.</span>"
+			return
+
+	if (href_list["open"])
+		if (state == "OPEN")
+			return
+		flick("opening", src)
+		spawn (8)
+			icon_state = "open"
+			state = "OPEN"
+		spawn (6)
+			if (other.drop_casing)
+				var/obj/o = new/obj/item/artillery_ammo/casing(get_step(src, dir))
+				o.icon_state = casing_state
+				user << "<span class='danger'>The casing falls out of the artillery.</span>"
+				other.drop_casing = FALSE
+				playsound(get_turf(src), 'sound/effects/Stamp.wav', 100, TRUE)
+
+	if (href_list["close"])
+		if (state == "CLOSED")
+			return
+		flick("closing", src)
+		spawn (12)
+			icon_state = ""
+			state = "CLOSED"
+
+	for (var/i in 1 to 10)
+		if (href_list["load_slot_[i]"])
+			if (state == "CLOSED")
+				user << "<span class = 'danger'>The shell loading slot must be open to add a shell.</span>"
+				return
+			var/obj/o = user.get_active_hand()
+			var/cond_1 = o && istype(o, /obj/item/artillery_ammo) && !istype(o, /obj/item/artillery_ammo/casing)
+			var/cond_2 = !o
+
+			if (cond_1 || cond_2)
+
+				if (!istype(loaded, /obj/item/artillery_ammo/none))
+					loaded.loc = get_turf(user)
+
+				if (o)
+					user.drop_from_inventory(o)
+					o.loc = src
+					loaded = o
+					icon_state = "open_with_shell"
+					state = "OPEN"
+				else
+					icon_state = "open"
+					state = "OPEN"
 
 
 
-		do_html(user)
+	//	flick("opening", src)
+
+
+	// blind firing
+
+	if (href_list["blind_fire_toggle"])
+		blind_fire_toggle = !blind_fire_toggle
+
+
+	if (href_list["blind_fire_dist"])
+		switch (blind_fire_range)
+			if ("SHORT")
+				blind_fire_range = "MEDIUM"
+			if ("MEDIUM")
+				blind_fire_range = "LONG"
+			if ("LONG")
+				blind_fire_range = "SHORT"
+
+	// no cardinal directions for now
+	if (href_list["blind_fire_dir"])
+
+		switch (blind_fire_dir)
+			if (NORTH)
+				blind_fire_dir = EAST
+			if (EAST)
+				blind_fire_dir = SOUTH
+			if (SOUTH)
+				blind_fire_dir = WEST
+			if (WEST)
+				blind_fire_dir = NORTH
+
+		if (blind_fire_dir != SOUTH && blind_fire_dir != NORTH)
+			blind_fire_dir2 = "NONE"
+
+	if (href_list["blind_fire_dir2"])
+
+		if (blind_fire_dir != SOUTH && blind_fire_dir != NORTH)
+			blind_fire_dir2 = "NONE"
+		else
+			switch (blind_fire_dir2)
+				if ("NONE")
+					blind_fire_dir2 = EAST
+				if (EAST)
+					blind_fire_dir2 = WEST
+				if (WEST)
+					blind_fire_dir2 = "NONE"
+
+
+
+	do_html(user)
 
 
 /obj/machinery/artillery/base/attack_hand(var/mob/attacker)
@@ -564,10 +551,10 @@
 		travel_time = abs((round(abs_dist/50) * 10)) + 50 // must be at least 2 seconds for the incoming sound to
 		// work right
 
-		spawn (travel_time - 50)
+		spawn (max(travel_time - 50,0))
 			if (prob(75))
 				for (var/mob/living/carbon/human/H in range(15, t))
-					if (!H.disabilities & DEAF)
+					if (!(H.disabilities & DEAF))
 						H << "<span class = 'userdanger'>You think you can hear the sound of artillery flying in! Take cover!</span>"
 
 		spawn (travel_time - 20) // the new artillery sound takes about 2 seconds to reach the explosion point, so start playing it now

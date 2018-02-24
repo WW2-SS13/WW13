@@ -514,10 +514,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return FALSE
 	return FALSE
 
-/mob/observer/ghost/verb/jumptomob(target in getmobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
+/mob/observer/ghost/verb/jumptomob(target in getfitmobs() + "Cancel") //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
 	set name = "Jump to Mob"
 	set desc = "Teleport to a mob"
+
+	if (target == "Cancel") // also prevents sending the observer to nullspace when there are no mobs
+		return
 
 	if(isghost(usr)) //Make sure they're an observer!
 
@@ -527,11 +530,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/mob/M = getmobs()[target] //Destination mob
 			var/turf/T = get_turf(M) //Turf of the destination mob
 
-			if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
-				stop_following()
-				forceMove(T)
-			else
-				src << "This mob is not located in the game world."
+		//	if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
+			stop_following()
+			forceMove(T)
+		//	else
+		//		src << "This mob is not located in the game world."
 /*
 /mob/observer/ghost/verb/boo()
 	set category = "Ghost"

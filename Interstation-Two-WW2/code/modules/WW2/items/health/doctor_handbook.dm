@@ -165,6 +165,7 @@
 				string += "[capitalize(inner)] [G.his] [e.name].</span>"
 				user.show_message(string)
 				icount++
+
 		if(!icount)
 			user.show_message("<span class='notice'>* No organ damage.</span>")
 
@@ -179,7 +180,15 @@
 				 	string += "and "
 				Count++
 			string += " need[ecount == TRUE ? "s" : ""] splinting for safe transport."
-		user.show_message("<b>----------</b>")
+
+		if (iscarbon(victim))
+			var/mob/living/carbon/C = victim
+			var/hunger_coeff = C.nutrition/C.max_nutrition
+			var/thirst_coeff = C.water/C.max_water
+
+			user.show_message("<span class='[hunger_coeff > 0.66 ? "good" : hunger_coeff > 0.40 ? "notice" : "danger"]'>[G.He] is [round((1 - hunger_coeff)*100)]% hungry.</span>")
+			user.show_message("<span class='[thirst_coeff > 0.66 ? "good" : thirst_coeff > 0.40 ? "notice" : "danger"]'>[G.He] is [round((1 - thirst_coeff)*100)]% thirsty.</span>")
+			user.show_message("<b>----------</b>")
 
 
 // Internal code for doctor_handbook

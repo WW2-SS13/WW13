@@ -93,6 +93,8 @@
 				else
 					stat("[uppertext(statname)]: ", "[coeff]x average")
 
+			stat("Stamina: ", "[round(stamina/max_stamina) * 100]%")
+
 			if (istype(loc, /obj/tank))
 				var/obj/tank/tank = loc
 				var/fuel_slot_screwed = tank.fuel_slot_screwed ? "Screwed," : "Unscrewed,"

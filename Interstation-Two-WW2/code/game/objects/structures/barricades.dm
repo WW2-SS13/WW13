@@ -53,6 +53,8 @@
 
 		playsound(get_turf(src), 'sound/weapons/smash.ogg', 100)
 
+		user.do_attack_animation(src)
+
 		try_destroy()
 
 		..()

@@ -18,16 +18,20 @@ bullet_act
 
 	if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers) && user.a_intent == I_HURT && !grabbed_by_user)
 		if (stat == DEAD)
-			user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
-			if (do_after(user, 30, src))
-				user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
-				for (var/v in TRUE to rand(5,7))
-					var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
-					meat.name = "[name] meatsteak"
-				for (var/obj/item/clothing/I in contents)
-					drop_from_inventory(I)
-				crush()
-				qdel(src)
+			var/mob/living/carbon/human/H = user
+			if (istype(H) && H.original_job && H.original_job.is_nonmilitary)
+				user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
+				if (do_after(user, 30, src))
+					user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
+					for (var/v in TRUE to rand(5,7))
+						var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
+						meat.name = "[name] meatsteak"
+					for (var/obj/item/clothing/I in contents)
+						drop_from_inventory(I)
+					crush()
+					qdel(src)
+			else
+				user << "<span class = 'info'>You don't know how to butcher people.</span>"
 	else
 		return ..(W, user)
 
@@ -54,10 +58,10 @@ bullet_act
 	if (is_spy && istype(spy_faction, /datum/faction/soviet))
 		say("GOD DAMN IT HURTS", languages.Find(RUSSIAN))
 
-	if (P.firer && (P.firer.dir == dir || lying))
+	if (P.firer && (P.firer_original_dir == dir || lying))
 		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower = back
-			if (prob(20) || (world.time - last_movement >= 50))
+			if (prob(16) || (world.time - last_movement >= 50))
 				flamethrower.explode()
 
 	if(!has_organ(def_zone))
@@ -76,16 +80,17 @@ bullet_act
 			return 2
 	else
 		if ((abs(P.starting.x - x) + abs(P.starting.y - y)) > 2) // not PB range
-			if (list("head", "mouth", "eyes").Find(def_zone) && prob(40 * getStatCoeff("survival")))
-				visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-				qdel(P)
-				adjustBruteLoss(pick(2,3))
-				return
-			else if (prob(20 * getStatCoeff("survival")))
-				visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-				qdel(P)
-				adjustBruteLoss(pick(2,3))
-				return
+			if (!istype(P, /obj/item/projectile/bullet/rifle/murder))
+				if (list("head", "mouth", "eyes").Find(def_zone) && prob(40 * getStatCoeff("survival")))
+					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
+					qdel(P)
+					adjustBruteLoss(pick(2,3))
+					return
+				else if (prob(20 * getStatCoeff("survival")))
+					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
+					qdel(P)
+					adjustBruteLoss(pick(2,3))
+					return
 		// get knocked back once in a while
 		// unless we're on a train because bugs
 		if (prob(P.KD_chance/2) && !is_on_train())
@@ -105,7 +110,7 @@ bullet_act
 					adjustBruteLoss(rand(20,30))
 					if (client)
 						shake_camera(src, rand(2,3), rand(2,3))
-					playsound(get_turf(src), 'sound/effects/gore/fallsmash.ogg', 100)
+					playsound(get_turf(src), 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
 					for (var/obj/structure/window/W in get_turf(slammed_into))
 						W.shatter()
 				else
@@ -134,7 +139,9 @@ bullet_act
 	else if (P.crushes)
 		crush()
 
-	return (..(P , def_zone))
+	..(P , def_zone)
+
+	qdel(P)
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))

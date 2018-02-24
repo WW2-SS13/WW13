@@ -61,7 +61,7 @@
 		"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german,
+//		"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german,
 
 		// MEDICAL STUFF
 		"Medical Crate" = /obj/structure/closet/crate/medical
@@ -85,7 +85,7 @@
 		"Grenades" = 65,
 		"Panzerfausts" = 120,
 		"Smoke Grenades" = 55, // too lazy to fix this typo rn
-		"Sandbags Crate" = 20,
+		"Sandbags Crate" = 45,
 		"Flaregun Ammo" = 15,
 		"Flares" = 10,
 		"Bayonet" = 10,
@@ -121,7 +121,7 @@
 		"Betty Mines Crate" = 200,
 
 		// ANIMAL CRATES
-		"German Shepherd Crate" = 50,
+//		"German Shepherd Crate" = 100,
 
 		// MEDICAL STUFF
 		"Medical Crate" = 75

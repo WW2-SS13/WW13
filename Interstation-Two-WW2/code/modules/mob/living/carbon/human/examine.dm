@@ -1,5 +1,11 @@
-/mob/living/carbon/human/examine(mob/user)
-	user.visible_message("<small>[user] looks at [src].</small>")
+/mob/living/carbon/human/var/list/next_look_at = list()
+/mob/living/carbon/human/examine(var/mob/user)
+
+	if (ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if (!H.next_look_at.Find(getRoundUID(TRUE)) || H.next_look_at[getRoundUID(TRUE)] <= world.time)
+			H.visible_message("<small>[H] looks at [src].</small>")
+			H.next_look_at[getRoundUID(TRUE)] = world.time + 100
 
 	var/skipgloves = FALSE
 	var/skipsuitstorage = FALSE

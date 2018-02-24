@@ -172,6 +172,12 @@ world/loop_checks = FALSE
 		. = !A.Destroy()
 		if(. && A)
 			A.finalize_qdel()
+		if (isatom(A))
+			var/atom/AT = A
+			AT.invisibility = 101
+			if (ismovable(A))
+				var/atom/movable/AM = A
+				AM.loc = null // maybe fixes projectiles, hopefully doesn't break anything - Kachnov
 
 /proc/qdel_list(var/list/L)
 	if (!L)

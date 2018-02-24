@@ -17,10 +17,12 @@
 	anchored = TRUE //There's a reason this is here, Mport. God fucking damn it -Agouri. Find&Fix by Pete. The reason this is here is to stop the curving of emitter shots.
 	pass_flags = PASSTABLE
 	mouse_opacity = FALSE
+
 	var/bumped = FALSE		//Prevents it from hitting more than one guy at once
 	var/hitsound_wall = ""//"ricochet"
 	var/def_zone = ""	//Aiming at
 	var/mob/firer = null//Who shot it
+	var/firer_original_dir = null
 	var/obj/item/weapon/gun/firedfrom = null // gun which shot it
 	var/silenced = FALSE	//Attack message
 	var/yo = null
@@ -108,6 +110,9 @@
 
 //return TRUE if the projectile should be allowed to pass through after all, FALSE if not.
 /obj/item/projectile/proc/check_penetrate(var/atom/A)
+	if (istype(A, /turf/wall))
+		if (prob(50))
+			return FALSE
 	return TRUE
 
 /obj/item/projectile/proc/check_fire(atom/target as mob, var/mob/living/user as mob)  //Checks if you can hit them or not.
@@ -138,6 +143,7 @@
 		return TRUE
 
 	firer = user
+	firer_original_dir = firer.dir
 	firedfrom = launcher
 	def_zone = target_zone
 
@@ -215,6 +221,7 @@
 	loc = get_turf(user) //move the projectile out into the world
 
 	firer = user
+	firer_original_dir = firer.dir
 	firedfrom = launcher
 	shot_from = launcher.name
 	silenced = launcher.silenced
@@ -228,6 +235,7 @@
 	original = new_target
 	if(new_firer)
 		firer = src
+		firer_original_dir = firer.dir
 
 	setup_trajectory(starting_loc, new_target)
 

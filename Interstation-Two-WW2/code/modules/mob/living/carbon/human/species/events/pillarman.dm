@@ -17,8 +17,8 @@
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
-	stamina = 700
-	max_stamina = 700
+	stamina = 200
+	max_stamina = 200
 
 	var/next_pose = -1
 	var/energy = 0.75
@@ -28,6 +28,9 @@
 	var/next_shoot_burning_blood = -1
 
 	var/frozen = FALSE
+
+/mob/living/carbon/human/pillarman/dummy
+	status_flags = GODMODE|CANPUSH
 
 /mob/living/carbon/human/pillarman/New()
 	..()

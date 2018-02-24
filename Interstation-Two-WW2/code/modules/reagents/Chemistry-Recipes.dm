@@ -680,7 +680,7 @@
 		S.start()
 	holder.clear_reagents()
 	return
-
+/*
 /datum/chemical_reaction/foam
 	name = "Foam"
 	id = "foam"
@@ -736,7 +736,7 @@
 	s.set_up(created_volume, location, holder, 2)
 	s.start()
 	return
-
+*/
 /* Paint */
 
 /datum/chemical_reaction/red_paint

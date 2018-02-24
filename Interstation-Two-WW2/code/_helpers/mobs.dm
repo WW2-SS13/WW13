@@ -447,9 +447,6 @@ Proc for attack log creation, because really why not
 			partisans += H
 	return partisans
 
-// doesn't it suck to get a list of alive people you can observe,
-// only to find out that 90% of them are half dead and not where the action
-// is?
 
 /proc/getfitmobs(var/faction)
 
@@ -460,17 +457,17 @@ Proc for attack log creation, because really why not
 		if (null)
 			mobs = mob_list // we want actual mobs, not name = mob
 		if (GERMAN)
-			mobs = getgermanmobs(1)
+			mobs = getgermanmobs(0)
 		if (SOVIET, "SOVIET")
-			mobs = getsovietmobs(1)
+			mobs = getsovietmobs(0)
 		if ("PARATROOPERS")
-			mobs = getgermanparatroopers(1)
+			mobs = getgermanparatroopers(0)
 		if ("SS")
-			mobs = getSS(1)
+			mobs = getSS(0)
 		if (PARTISAN)
-			mobs = getpartisans(1)
+			mobs = getpartisans(0)
 		if (CIVILIAN)
-			mobs = getcivilians(1)
+			mobs = getcivilians(0)
 		if (PILLARMEN, "UNDEAD")
 			mobs = list()
 			for (var/mob/living/carbon/human/H in human_mob_list)
@@ -478,10 +475,18 @@ Proc for attack log creation, because really why not
 					mobs += H
 
 	for (var/mob/m in mobs)
-		if (m.stat == UNCONSCIOUS || m.stat == DEAD)
+		if (!m.loc)
 			continue
-
-		newmobs[m.real_name] = m
+		if (m.stat == UNCONSCIOUS)
+			var/mob/living/L = m
+			if (istype(L) && L.getTotalLoss() > 100)
+				newmobs["[m.real_name] (DYING)"] = m
+			else
+				newmobs["[m.real_name] (UNCONSCIOUS)"] = m
+		else if (m.stat == DEAD)
+			newmobs["[m.real_name] (DEAD)"] = m
+		else
+			newmobs[m.real_name] = m
 
 	return newmobs
 

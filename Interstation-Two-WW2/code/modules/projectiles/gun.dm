@@ -355,14 +355,14 @@
 					acc += max(H.getStatCoeff("heavyweapon")-1, FALSE)
 
 			else if (gun_type == GUN_TYPE_MG)
-				P.KD_chance *= 3
+				P.KD_chance *= 4
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("mg")
 					acc += max(H.getStatCoeff("mg")-1, FALSE)
 
 			else if (gun_type == GUN_TYPE_PISTOL)
-				P.KD_chance *= 2
+				P.KD_chance *= 3
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("pistol")

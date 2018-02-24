@@ -278,8 +278,11 @@
 		if(!(affecting.limb_name in list("chest", "head", "groin", "l_arm","r_arm","l_leg","r_leg", "l_hand", "r_hand", "l_foot", "r_foot")))
 			user << "<span class='danger'>You can't apply a splint there!</span>"
 			return
-		if(affecting.status & ORGAN_SPLINTED)
+		else if(affecting.status & ORGAN_SPLINTED)
 			user << "<span class='danger'>[M]'s [limb] is already splinted!</span>"
+			return
+		else if (affecting.status == 0)
+			user << "<span class='danger'>[M]'s [limb] does not need splinting.</span>"
 			return
 		if (M != user)
 			user.visible_message("<span class='danger'>[user] starts to apply \the [src] to [M]'s [limb].</span>", "<span class='danger'>You start to apply \the [src] to [M]'s [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")

@@ -508,21 +508,3 @@ div.notice
 }
 
 "}
-
-var/common_browser_style_no_buttons_override = {"
-
-a, a:link, a:visited, a:active, .linkOn, .linkOff
-{
-	color: #ffffff;
-	text-decoration: none;
-	padding: 1px 4px 1px 4px;
-	margin: 0 2px 0 0;
-	cursor:default;
-}
-
-a:hover
-{
-	color: #40628a;
-}
-
-"}

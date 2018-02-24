@@ -109,7 +109,9 @@
 				return FALSE
 
 		loc = target
-		fuel -= pick(0.33,0.66,0.99)
+
+		if (!admin)
+			fuel -= pick(0.33,0.66,0.99)
 
 /obj/tank/proc/play_movement_sound()
 	if (world.time > next_movement_sound)
@@ -321,7 +323,7 @@
 
 			return FALSE
 
-		else if (istype(o, /obj/structure))
+		else if (istype(o, /obj/structure) && o.density)
 			tank_message("<span class = 'danger'>The tank smashes through [o]!</span>")
 			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 			qdel(o)

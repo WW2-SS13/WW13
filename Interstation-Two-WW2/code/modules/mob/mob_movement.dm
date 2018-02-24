@@ -1,20 +1,17 @@
 /mob/var/velocity = FALSE
 /mob/var/velocity_lastdir = -1 // turning makes you lose TRUE or 2 velocity
-/mob/var/run_delay_maximum = 2.2 / 1.25
+/mob/var/run_delay_maximum = 1.75
 
 /mob/proc/get_run_delay()
 	switch (velocity)
 		if (0 to 3)
 			return run_delay_maximum
 		if (4 to 7)
-			return run_delay_maximum/1.08
+			return run_delay_maximum/1.05 // 5% faster
 		if (8 to 11)
-			return run_delay_maximum/1.16
+			return run_delay_maximum/1.10 // 10% faster
 		if (12 to INFINITY)
-			return run_delay_maximum/1.24
-
-// walking
-/mob/var/walk_delay = 3.3 / 1.25
+			return run_delay_maximum/1.15 // 15% faster
 
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
@@ -412,7 +409,7 @@
 					if (H.bodytemperature < H.species.body_temperature)
 						H.bodytemperature += 0.66
 			if("walk")
-				move_delay += mob.walk_delay/mob.movement_speed_multiplier + standing_on_snow
+				move_delay += (mob.get_run_delay() * 1.33) /mob.movement_speed_multiplier + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.002
@@ -535,9 +532,9 @@
 		if (mob_is_human)
 			if (H.a_intent != I_HELP)
 				for (var/mob/living/L in t1)
-					if (L.lying)
+					if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
 						H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")
-						playsound(t1, 'sound/effects/gore/fallsmash.ogg', 100)
+						playsound(t1, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
 						L.adjustBruteLoss(rand(8,12))
 						if (ishuman(L))
 							L.emote("scream")

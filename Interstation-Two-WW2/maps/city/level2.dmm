@@ -1,0 +1,28 @@
+"a" = (/obj/structure/barricade,/obj/structure/barbwire,/obj/structure/barbwire{tag = "icon-barbwire (WEST)"; icon_state = "barbwire"; dir = 8},/turf/wall/wood,/area/prishtina/german/ss_armory)
+"b" = (/obj/effect/decal/cleanable/dirt,/obj/structure/barricade,/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/ss_armory)
+"c" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/ss_armory)
+"d" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (WEST)"; icon_state = "barbwire"; dir = 8},/turf/wall/wood,/area/prishtina/german/ss_armory)
+"e" = (/obj/structure/multiz/ladder/ww2{area_id = "SS_ladder"},/turf/floor/wood,/area/prishtina/german/ss_armory)
+"f" = (/obj/item/weapon/handcuffs,/obj/item/weapon/storage/belt/security/tactical,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/key/german/SS,/obj/structure/closet,/obj/item/weapon/storage/box/handcuffs,/obj/item/clothing/accessory/armband,/obj/item/clothing/head/warden,/obj/item/clothing/suit/storage/coat/german/SS,/obj/item/weapon/melee/classic_baton/MP/SS,/turf/floor/wood,/area/prishtina/german/ss_armory)
+"g" = (/obj/item/weapon/handcuffs,/obj/item/weapon/storage/belt/security/tactical,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/key/german/SS,/obj/structure/closet,/obj/item/weapon/storage/box/handcuffs,/obj/item/clothing/accessory/armband,/obj/item/clothing/head/warden,/obj/structure/sign/flag/germany{pixel_y = 30},/obj/item/clothing/suit/storage/coat/german/SS,/obj/item/weapon/melee/classic_baton/MP/SS,/turf/floor/wood,/area/prishtina/german/ss_armory)
+"h" = (/turf/floor/wood,/area/prishtina/german/ss_armory)
+"i" = (/obj/structure/vending/SSequipment,/turf/floor/wood,/area/prishtina/german/ss_armory)
+"j" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/wood,/area/prishtina/german/ss_armory)
+"k" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/german/ss_armory)
+"l" = (/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/german/ss_armory)
+"m" = (/obj/effect/landmark{name = "JoinLateSS-Officer"},/turf/floor/wood,/area/prishtina/german/ss_armory)
+"q" = (/obj/structure/closet/crate/bayonets,/turf/floor/wood,/area/prishtina/german/ss_armory)
+"r" = (/obj/machinery/light/small,/obj/structure/closet,/obj/item/weapon/material/kitchen/utensil/knife/boot,/obj/item/weapon/wirecutters,/turf/floor/wood,/area/prishtina/german/ss_armory)
+"s" = (/obj/item/weapon/storage/backpack/flammenwerfer,/obj/structure/table/rack,/turf/floor/wood,/area/prishtina/german/ss_armory)
+"t" = (/obj/item/weapon/gun/projectile/boltaction/kar98k,/obj/item/weapon/attachment/scope/adjustable/sniper_scope,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/item/ammo_magazine/kar98k,/obj/structure/closet,/turf/floor/wood,/area/prishtina/german/ss_armory)
+"u" = (/obj/structure/table/rack,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/device/mine/betty,/obj/item/device/mine/betty,/obj/item/device/mine/betty,/turf/floor/wood,/area/prishtina/german/ss_armory)
+"v" = (/obj/structure/closet,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/weapon/gun/projectile/automatic/mp40,/turf/floor/wood,/area/prishtina/german/ss_armory)
+
+(1,1,1) = {"
+abbcbccc
+defgfhij
+dhkllmhj
+dhhhhhhj
+dqrstuvj
+accccccc
+"}

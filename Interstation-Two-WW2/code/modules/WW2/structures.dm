@@ -1,4 +1,5 @@
 /obj/structure/grille/fence
+	name = "fence"
 	icon_state = "fence4-8"
 
 /obj/structure/anti_tank
@@ -6,6 +7,16 @@
 	bound_width = 32
 	bound_height = 32
 	density = TRUE
+	anchored = TRUE
+
+/obj/structure/anti_tank/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if (istype(mover, /obj/item/projectile))
+		if (prob(20))
+			return TRUE
+		else
+			visible_message("<span class = 'warning'>The bullet riochetes off of the anti tank structure!</span>")
+			return FALSE
+	return FALSE
 
 /obj/structure/flag
 	icon = 'icons/obj/flags.dmi'
@@ -46,9 +57,18 @@
 	processing_objects -= src
 	..()
 
+/obj/structure/noose/bullet_act(var/obj/item/projectile/P)
+	if (hanging)
+		hanging.bullet_act(P)
+		visible_message("<span class = 'danger'>[hanging] is hit by the bullet!</span>")
+	else
+		..()
+
 /obj/structure/noose/process()
 	if (hanging)
+		density = TRUE
 		hanging.dir = SOUTH
+		hanging.pixel_y = 3 // because getting punched resets it
 		icon_state = "noose-hanging"
 		if (pixel_x == 0)
 			pixel_x = 1
@@ -61,7 +81,6 @@
 
 		if (hanging.stat != DEAD)
 			hanging.adjustOxyLoss(5)
-			density = TRUE
 			if (prob(5))
 				visible_message("<span class = 'danger'>[hanging]'s neck snaps.</span>")
 				playsound(get_turf(src), 'sound/effects/gore/bullethit3.ogg')
@@ -87,7 +106,6 @@
 	if (do_after(hangman, 50, target))
 		if (src)
 			visible_message("<span class = 'danger'>[hangman] hangs [target == hangman ? "themselves" : target]!</span>")
-			animate(target, pixel_y = 3, 0, -1)
 			hanging = target
 			target.loc = get_turf(src)
 			target.dir = SOUTH

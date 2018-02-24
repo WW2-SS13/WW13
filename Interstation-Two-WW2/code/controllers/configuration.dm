@@ -168,6 +168,8 @@ var/list/gamemode_cache = list()
 
 	var/no_respawn_delays = FALSE
 
+	var/max_expected_players = 50 // determines autobalance
+
 	// hub stuff
 
 	var/hub = FALSE
@@ -191,7 +193,6 @@ var/list/gamemode_cache = list()
 
 	var/lighting_is_rustic = FALSE
 	var/machinery_does_not_use_power = FALSE
-
 	var/paratrooper_drop_time = 3000
 
 	//WW2 donor shit
@@ -271,6 +272,9 @@ var/list/gamemode_cache = list()
 
 				if ("no_respawn_delays")
 					no_respawn_delays = text2num(value)
+
+				if ("max_expected_players")
+					max_expected_players = text2num(value)
 
 				if ("global_config_path")
 					if (list("null", "Null", "NULL", "nil", "Nil", "NILL").Find(value))

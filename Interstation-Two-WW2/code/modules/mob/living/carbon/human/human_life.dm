@@ -56,6 +56,7 @@
 	if (istype(wear_mask, /obj/item/clothing/mask/stone))
 		if (mind && type == /mob/living/carbon/human)
 			invisibility = 101
+			loc = null
 			var/datum/mind/M = mind
 			var/mob/living/carbon/human/vampire/V = new(get_turf(src), FALSE)
 			V.canmove = FALSE
@@ -65,6 +66,7 @@
 				V.name = oldname
 				V.real_name = oldreal_name
 				crush(do_gibs = FALSE)
+
 			M.transfer_to(V)
 			canmove = FALSE
 			var/old_items = list()
@@ -77,6 +79,7 @@
 		//	old_items["[slot_r_hand]"] = r_hand
 			old_items["[slot_l_store]"] = l_store
 			old_items["[slot_r_store]"] = r_store
+
 			for (var/obj/item/clothing/I in contents)
 				var/I_was_equipped = isEquipped(I)
 				drop_from_inventory(I)
@@ -96,6 +99,7 @@
 
 			spawn (10)
 				visible_message("<span class = 'danger'>[V] becomes a Vampire!</span>")
+
 			return
 
 	handle_zoom_stuff()
@@ -144,7 +148,7 @@
 
 	..()
 
-	stamina = min(stamina + rand(2,3), max_stamina)
+	stamina = min(stamina + round(max_stamina * 0.02), max_stamina)
 
 	if(life_tick%30==15)
 		hud_updateflag = 1022
