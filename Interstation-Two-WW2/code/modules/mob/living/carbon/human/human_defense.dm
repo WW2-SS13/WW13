@@ -141,7 +141,8 @@ bullet_act
 
 	..(P , def_zone)
 
-	qdel(P)
+	spawn (1)
+		qdel(P)
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
