@@ -1,3 +1,5 @@
+#define MAX_SUPPLYDROP_CRATES 20
+
 // DEFAULT frequency: unused
 var/const/DEFAULT_FREQ = 1000
 
@@ -758,13 +760,13 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 			if (GERMAN)
 				choices = german_supply_crate_types | soviet_supply_crate_types
 				// crash prevention + balance - Kachnov
-				if (supplydrop_processing_objects_german.len >= 5)
+				if (supplydrop_processing_objects_german.len >= MAX_SUPPLYDROP_CRATES)
 					usr << "<span class = 'danger'>There are too many items already arriving! Please wait before ordering more.</span>"
 					return
 			if (SOVIET)
 				// crash prevention + balance - Kachnov
 				choices = soviet_supply_crate_types | soviet_supply_crate_types
-				if (supplydrop_processing_objects_soviet.len >= 5)
+				if (supplydrop_processing_objects_soviet.len >= MAX_SUPPLYDROP_CRATES)
 					usr << "<span class = 'danger'>There are too many items already arriving! Please wait before ordering more.</span>"
 					return
 		purchase(item, choices[item], points)

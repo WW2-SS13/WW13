@@ -335,10 +335,11 @@
 	stat("[name]", "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]")
 
 /datum/controller/process/proc/catchException(var/exception/e, var/thrower)
-	if(ispath(thrower))
-		log_to_dd("[src].catchException() was given a path type, [thrower], which was set to null.")
-		log_debug("[src].catchException() was given a path type, [thrower], which was set to null.")
+	if(ispath(thrower) || istext(thrower))
+		log_to_dd("[src].catchException() was given a path or text type, [thrower], which was set to null.")
+		log_debug("[src].catchException() was given a path or text type, [thrower], which was set to null.")
 		thrower = null // I think this prevents crashes - Kachnov
+		return
 
 	if(istype(e)) // Real runtimes go to the real error handler
 		// There are two newlines here, because handling desc sucks
