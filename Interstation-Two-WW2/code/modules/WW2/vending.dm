@@ -11,7 +11,8 @@
 		/obj/item/clothing/head/helmet/tactical/sovhelm = 50,
 		/obj/item/clothing/shoes/swat/wrappedboots = 50,
 		/obj/item/clothing/head/ushanka = 25,
-		/obj/item/clothing/mask/gas/soviet = 25
+		/obj/item/clothing/mask/gas/soviet = 25,
+		/obj/item/clothing/under/sovuni/camo = 5,
 	)
 //	idle_power_usage = 0
 
@@ -71,7 +72,9 @@
 		/obj/item/ammo_magazine/kar98k = 30,
 
 		/obj/item/weapon/grenade/explosive/stgnade = 7,
-		/obj/item/weapon/grenade/explosive/l2a2 = 7
+		/obj/item/weapon/grenade/explosive/l2a2 = 7,
+
+		/obj/item/clothing/under/geruni/sscamo = 5
 	)
 //	idle_power_usage = 0
 

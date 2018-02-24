@@ -93,7 +93,7 @@ var/global/obj/map_metadata/map = null
 // FOREST MAP
 /obj/map_metadata/forest
 	ID = "FOREST"
-	title = "Forest Map (200x529x1)"
+	title = "Forest (200x529x1)"
 	prishtina_blocking_area_types = list(
 		/area/prishtina/forest/north/invisible_wall,
 		/area/prishtina/forest/south/invisible_wall)
@@ -119,7 +119,7 @@ var/global/obj/map_metadata/map = null
 // CITY MAP
 /obj/map_metadata/city
 	ID = "CITY"
-	title = "City Map (150x150x1)"
+	title = "City (150x150x1)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 	faction_organization = list(
 		GERMAN,
@@ -143,7 +143,7 @@ var/global/obj/map_metadata/map = null
 // PILLARMAP
 /obj/map_metadata/pillarmap
 	ID = "PILLARMAP"
-	title = "Pillar Map (70x70x2)"
+	title = "Pillarmap (70x70x2)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/inside)
 	faction_organization = list(
 		PILLARMEN,

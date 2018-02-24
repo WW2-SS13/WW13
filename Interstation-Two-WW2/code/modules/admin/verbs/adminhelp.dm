@@ -27,7 +27,7 @@
 		return
 
 	//show it to the person adminhelping too
-	src << "<span class = 'notice'>PM to-<b>Staff </b>: [msg]</span>"
+	src << "<span class = 'notice'>PM to-<b>Admins </b>: [msg]</span>"
 	if (config.discordurl)
 		src << "<i>If no admins are online, please ping @Admin Team <a href = '[config.discordurl]'>in the discord</a>.</i>"
 	log_admin("HELP: [key_name(src)]: [msg]")

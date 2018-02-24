@@ -637,7 +637,7 @@
 	. = (is_client_active(10 MINUTES))
 	if(.)
 		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
-			stat("People Online", clients.len)
+			stat("Players Online", clients.len)
 			stat("Round Duration", roundduration2text())
 			stat("Map", map.title)
 			stat("Time of Day", time_of_day)
@@ -656,7 +656,7 @@
 						grace_period_string += "[faction_const2name(faction)] may cross"
 					else
 						grace_period_string += "[faction_const2name(faction)] may not cross"
-				stat("Grace Period Info:", grace_period_string)
+				stat("Grace Period Status:", grace_period_string)
 
 		if(client.holder)
 			if(statpanel("Status"))

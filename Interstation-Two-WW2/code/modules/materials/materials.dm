@@ -578,6 +578,13 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 	hitsound = 'sound/weapons/smash.ogg'
 
+/material/iron/indestructable
+	name = "indestructable"
+	icon_base = "metal"
+	integrity = 1000000
+	hardness = 1000000
+	melting_point = 1000000
+
 /material/morgue
 	name = "morgue"
 	icon_base = "morgue"

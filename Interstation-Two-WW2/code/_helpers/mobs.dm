@@ -474,19 +474,22 @@ Proc for attack log creation, because really why not
 				if (istype(H, /mob/living/carbon/human/vampire) || istype(H, /mob/living/carbon/human/pillarman))
 					mobs += H
 
-	for (var/mob/m in mobs)
-		if (!m.loc)
-			continue
-		if (m.stat == UNCONSCIOUS)
-			var/mob/living/L = m
-			if (istype(L) && L.getTotalLoss() > 100)
-				newmobs["[m.real_name] (DYING)"] = m
-			else
-				newmobs["[m.real_name] (UNCONSCIOUS)"] = m
-		else if (m.stat == DEAD)
-			newmobs["[m.real_name] (DEAD)"] = m
-		else
-			newmobs[m.real_name] = m
+	// sort mobs by stat: alive, unconscious, then dead
+	for (var/v in 0 to 2)
+		for (var/mob/m in mobs)
+			if (m.stat == v)
+				if (!m.loc)
+					continue
+				if (m.stat == UNCONSCIOUS)
+					var/mob/living/L = m
+					if (istype(L) && L.getTotalLoss() > 100)
+						newmobs["[m.real_name] (DYING)"] = m
+					else
+						newmobs["[m.real_name] (UNCONSCIOUS)"] = m
+				else if (m.stat == DEAD)
+					newmobs["[m.real_name] (DEAD)"] = m
+				else
+					newmobs[m.real_name] = m
 
 	return newmobs
 

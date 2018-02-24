@@ -552,7 +552,7 @@
 		// work right
 
 		spawn (max(travel_time - 50,0))
-			if (prob(75))
+			if (prob(66))
 				for (var/mob/living/carbon/human/H in range(15, t))
 					if (!(H.disabilities & DEAF))
 						H << "<span class = 'userdanger'>You think you can hear the sound of artillery flying in! Take cover!</span>"
