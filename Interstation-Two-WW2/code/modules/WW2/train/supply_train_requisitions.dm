@@ -111,8 +111,8 @@
 		"Maxim" = 225,
 
 		// ARTILLERY AMMO
-		"Artillery Ballistic Shells Crate" = 100,
-		"Artillery Gas Shells Crate" = 200,
+		"Artillery Ballistic Shells Crate" = 150,
+		"Artillery Gas Shells Crate" = 250,
 
 		// CLOSETS
 		"Tool Closet" = 50,

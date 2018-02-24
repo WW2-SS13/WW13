@@ -1,9 +1,9 @@
 /proc/WW2_soldiers_alive()
 
-	var/de = FALSE
-	var/ru = FALSE
-	var/partisan = FALSE
-	var/civilian = FALSE
+	var/de = 0
+	var/ru = 0
+	var/partisan = 0
+	var/civilian = 0
 
 	for(var/mob/living/carbon/human/H in human_mob_list)
 

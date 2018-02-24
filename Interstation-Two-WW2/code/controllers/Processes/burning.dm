@@ -34,7 +34,7 @@ var/datum/controller/process/burning/burning_process = null
 					for (var/v in 4 to 5)
 						new/obj/effect/decal/cleanable/ash(O)
 					burning_turfs -= O
-					qdel(O)
+					O.ex_act(1.0)
 				else if (prob(20))
 					new/obj/effect/effect/smoke/bad(O, TRUE)
 			catch(var/exception/e)

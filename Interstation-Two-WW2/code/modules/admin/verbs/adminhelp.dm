@@ -1,6 +1,12 @@
+/client/var/showed_adminhelp_popup = FALSE
+
 /client/verb/adminhelp(msg as text)
 	set category = "Help!"
 	set name = "Adminhelp"
+
+	if (!showed_adminhelp_popup)
+		alert(src, "If you are reporting a bug, please try a) relogging and b) following the instructions in the MOTD, before asking admins. Questions go in mentorhelp, not adminhelp.")
+		showed_adminhelp_popup = TRUE
 
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "<span class = 'red'>Speech is currently admin-disabled.</span>"

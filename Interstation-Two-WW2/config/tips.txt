@@ -6,10 +6,10 @@ Every round has a unique aspect that gives one or both factions an advantage.
 Squad Leaders are allowed to shoot men who disobey their orders, and a Commander can shoot anyone for insubordination.
 Repair tanks with a wrench or welding tool. Wrenches can repair more serious damage, but repair less than welding tools. Welding tools can only repair a tank that's at at least 50% of its maximum health.
 The Zavhoz gets a supply lift that leads to a backup armory.
-Sandbags get exponentially more effective when "stacked". But trying to shoot past multiple sandbags is difficult.
+Sandbags get exponentially more effective when "stacked". But shooting past multiple sandbags is difficult.
 Bayonets are an extremely effective close-range weapon.
 Sometimes it's better to go through barbwire than around it, since they don't do much damage.
-Trees provide overall shitty cover from bullets, but they're usually good for a few shots.
+Trees provide overall poor cover from bullets, but they're usually good for a few shots.
 It's a bad idea to run on train tracks.
 The Quartermaster for either side can shoot anyone who comes in the Armory without permission.
 You can build locked doors in the same way as regular doors. You have to have a key in one hand and metal/wood in the other (active) hand.
@@ -19,3 +19,6 @@ Use a lighter on a wet rag and put it in a bottle of vodka. You now have a Molot
 Panzerfausts, Molotovs, mines, and PTRDs are great weapons against tanks, with PTRDs being the best, but you can take down a tank with normal bullets. Just keep your distance and don't stop firing.
 Use the *surrender emote to surrender.
 You can use rope to build nooses.
+Good artillery can win the round for the Germans.
+Warcrimes are a part of life on the Eastern Front. Deal with it.
+Civilian shotguns are inaccurate compared to military-grade weapons, but they deal out immense damage.

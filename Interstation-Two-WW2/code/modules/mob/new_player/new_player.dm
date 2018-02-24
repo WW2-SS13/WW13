@@ -65,12 +65,12 @@
 		height = 450
 		if (!reinforcements_master.has(src))
 			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a German reinforcement!</A></p>"
-			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Russian reinforcement!</A></p>"
+			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Soviet reinforcement!</A></p>"
 		else
 			if (reinforcements_master.has(src, GERMAN))
 				output += "<p><a href='byond://?src=\ref[src];unre_german=1'>Leave the German reinforcement pool.</A></p>"
 			else if (reinforcements_master.has(src, SOVIET))
-				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Russian reinforcement pool.</A></p>"
+				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Soviet reinforcement pool.</A></p>"
 	else
 		output += "<p><i>Reinforcements won't be available until after the train is sent.</i></p>"
 
@@ -288,7 +288,7 @@
 			return
 
 		if (job_flag == GERMAN && has_occupied_base(GERMAN))
-			usr << "<span class='danger'>The Russians are currently occupying your base! You can't be deployed right now."
+			usr << "<span class='danger'>The Soviets are currently occupying your base! You can't be deployed right now."
 			return
 		else if (job_flag == SOVIET && has_occupied_base(SOVIET))
 			usr << "<span class='danger'>The Germans are currently occupying your base! You can't be deployed right now."
@@ -505,7 +505,7 @@
 	dat += "<br>"
 	dat += "Round Duration: [roundduration2text()]"
 	dat += "<br>"
-	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans and [alive_russians.len] Russians."
+	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans and [alive_russians.len] Soviets."
 	dat += "<br>"
 
 	var/list/restricted_choices = list()

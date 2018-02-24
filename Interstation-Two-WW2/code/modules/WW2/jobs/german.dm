@@ -871,6 +871,7 @@ var/first_fallschirm = TRUE
 
 	H.stamina *= 1.5
 	H.max_stamina *= 1.5
+
 	// glorious SS stats
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
@@ -918,6 +919,7 @@ var/first_fallschirm = TRUE
 
 	H.stamina *= 1.5
 	H.max_stamina *= 1.5
+
 	// glorious SS stats
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
