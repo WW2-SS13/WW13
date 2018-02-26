@@ -279,7 +279,7 @@ OTHER
 
 /obj/item/ammo_magazine/a556/m4
 	icon_state = "ppshmag"
-	max_ammo = 81
+	max_ammo = 71
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a762/akm
@@ -295,7 +295,7 @@ OTHER
 	icon_state = "dpdisk"
 	caliber = "a762x39"
 	ammo_type = /obj/item/ammo_casing/a762x39
-	max_ammo = 41
+	max_ammo = 47
 	multiple_sprites = TRUE
 	w_class = 2
 

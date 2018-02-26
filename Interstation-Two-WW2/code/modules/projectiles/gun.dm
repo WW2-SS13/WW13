@@ -490,7 +490,8 @@
 
 	//Accuracy modifiers
 	P.accuracy = accuracy + acc_mod
-	P.dispersion = dispersion + (can_wield && !wielded) ? 2 : FALSE
+	//P.dispersion = dispersion + (can_wield && !wielded) ? 2 : FALSE
+	P.dispersion = dispersion
 
 	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))
