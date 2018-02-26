@@ -20,13 +20,13 @@
 	can_wield = TRUE
 	//must_wield = TRUE
 
-	accuracy = DEFAULT_MG_ACCURACY+2
-	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY+1
+	accuracy = DEFAULT_MG_ACCURACY-2
+	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=1.5, move_delay=2, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(name="short bursts",	burst=3, burst_delay=1.5, move_delay=4, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(name="long bursts",	burst=5, burst_delay=1.5, move_delay=6, dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
+		list(name="single shot",	burst=1, burst_delay=1.0, move_delay=1, recoil = 0.4, dispersion = list(0.4, 0.6, 0.6, 0.6, 0.8)),
+		list(name="short bursts",	burst=3, burst_delay=1.2, move_delay=2, recoil = 0.7, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
+		list(name="long bursts",	burst=6, burst_delay=1.4, move_delay=3, recoil = 0.9, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
 		)
 
 	sel_mode = 2
@@ -132,14 +132,14 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 4
 	fire_sound = 'sound/weapons/m16.ogg'
-	accuracy = DEFAULT_MG_ACCURACY
-	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
+	accuracy = DEFAULT_MG_ACCURACY-3
+	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY-1
 	caliber = "a762x25"
 	magazine_type = /obj/item/ammo_magazine/a556/m4
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=1.1, move_delay=3, dispersion = list(0.9, 1.0, 1.0, 1.0, 1.1)),
-		list(name="short bursts",	burst=5, burst_delay=1.1, move_delay=5, dispersion = list(0.9, 1.0, 1.0, 1.0, 1.1)),
-		list(name="long bursts",	burst=8, burst_delay=1.1, move_delay=7, dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
+		list(name="single shot",	burst=1, burst_delay=0.8, recoil = 0.4, move_delay=1, dispersion = list(0.5, 0.7, 0.7, 0.7, 0.9)),
+		list(name="short bursts",	burst=4, burst_delay=1.0, recoil = 0.6, move_delay=2, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
+		list(name="long bursts",	burst=8, burst_delay=1.2, recoil = 0.8, move_delay=4, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
 		)
 
 	can_wield = TRUE
