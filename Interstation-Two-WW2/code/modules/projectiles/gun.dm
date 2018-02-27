@@ -502,12 +502,7 @@
 
 	//Accuracy modifiers
 	P.accuracy = accuracy + acc_mod
-//	P.dispersion = dispersion + (can_wield && !wielded) ? 2 : 0
 	P.dispersion = dispersion
-	if (prob(50))
-		++P.dispersion
-		if (prob(50))
-			++P.dispersion
 
 	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))
