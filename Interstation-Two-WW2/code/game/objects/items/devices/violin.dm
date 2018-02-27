@@ -1,5 +1,8 @@
 //copy pasta of the space piano, don't hurt me -Pete
 
+#define MAX_CHARS_PER_LINE 200
+#define MAX_CHARS_TOTAL 20000
+
 /obj/item/device/violin
 	name = "Violin"
 	desc = "Labeled, \"No. 6, Made by Rudolf Olsen, Violin & Bow Maker, 651 Third Avenue, New York City, anno 1918.\" "
@@ -278,8 +281,8 @@
 					defined by tempo / x: <i>C,G/2,E/4</i><br>
 					Combined, an example is: <i>E-E4/4,/2,G#/8,B/8,E3-E4/4</i>
 					<br>
-					Lines may be up to 50 characters.<br>
-					A song may only contain up to 50 lines.<br>
+					Lines may be up to [MAX_CHARS_PER_LINE] characters.<br>
+					A song may only contain up to [MAX_CHARS_PER_LINE] lines.<br>
 					"}
 		else
 			dat += "<A href='?src=\ref[src];help=2'>Show Help</A><BR>"
@@ -320,10 +323,10 @@
 			var/newline = rhtml_encode(input("Enter your line: ", "violin") as text|null)
 			if(!newline)
 				return
-			if(song.lines.len > 50)
+			if(song.lines.len > MAX_CHARS_PER_LINE)
 				return
-			if(lentext(newline) > 50)
-				newline = copytext(newline, TRUE, 50)
+			if(lentext(newline) > MAX_CHARS_PER_LINE)
+				newline = copytext(newline, TRUE, MAX_CHARS_PER_LINE)
 			song.lines.Add(newline)
 
 		else if(href_list["deleteline"])
@@ -337,8 +340,8 @@
 			var/content = rhtml_encode(input("Enter your line: ", "violin", song.lines[num]) as text|null)
 			if(!content)
 				return
-			if(lentext(content) > 50)
-				content = copytext(content, TRUE, 50)
+			if(lentext(content) > MAX_CHARS_PER_LINE)
+				content = copytext(content, TRUE, MAX_CHARS_PER_LINE)
 			if(num > song.lines.len || num < TRUE)
 				return
 			song.lines[num] = content
@@ -359,11 +362,11 @@
 				if(!in_range(src, usr))
 					return
 
-				if(lentext(t) >= 3072)
-					var/cont = input(usr, "Your message is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
+				if(lentext(t) >= MAX_CHARS_TOTAL)
+					var/cont = input(usr, "Your song is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
 					if(cont == "no")
 						break
-			while(lentext(t) > 3072)
+			while(lentext(t) > MAX_CHARS_TOTAL)
 
 			//split into lines
 			spawn()
@@ -372,12 +375,12 @@
 				if(copytext(lines[1],1,6) == "BPM: ")
 					tempo = 600 / text2num(copytext(lines[1],6))
 					lines.Cut(1,2)
-				if(lines.len > 50)
+				if(lines.len > MAX_CHARS_PER_LINE)
 					usr << "Too many lines!"
-					lines.Cut(51)
+					lines.Cut(MAX_CHARS_PER_LINE+1)
 				var/linenum = TRUE
 				for(var/l in lines)
-					if(lentext(l) > 50)
+					if(lentext(l) > MAX_CHARS_PER_LINE)
 						usr << "Line [linenum] too long!"
 						lines.Remove(l)
 					else

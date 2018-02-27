@@ -37,11 +37,27 @@
 			return
 
 		switch(act)
+			if ("dance")
+				if (!restrained())
+					message = "dances."
+					m_type = 1
+
+					var/src_oloc = loc
+					var/turns = 0
+					spawn while (1)
+						if (src_oloc != loc)
+							break
+						dir = pick(NORTH, EAST, SOUTH, WEST)
+						++turns
+						if (turns >= 10)
+							break
+						sleep(5)
+			/*
 			if ("airguitar")
 				if (!restrained())
 					message = "is strumming the air and headbanging like a safari chimp."
 					m_type = 1
-
+*/
 			if ("blink")
 				message = "blinks."
 				m_type = 1

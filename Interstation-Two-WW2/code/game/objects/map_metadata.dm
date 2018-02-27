@@ -140,6 +140,30 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/city/announce_mission_start(var/preparation_time)
 	world << "<font size=4>Both sides have <b>12 minutes</b> to prepare before combat will begin!</font>"
 
+// TEST MAP
+/obj/map_metadata/test
+	ID = "TESTCITY"
+	title = "Test (70x70x1)"
+	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
+	faction_organization = list(
+		GERMAN,
+		SOVIET,
+		PARTISAN,
+		CIVILIAN,
+		ITALIAN,
+		UKRAINIAN)
+	respawn_delay = 0
+
+/obj/map_metadata/test/germans_can_cross_blocks()
+	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
+
+/obj/map_metadata/test/soviets_can_cross_blocks()
+	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
+
+/obj/map_metadata/test/announce_mission_start(var/preparation_time)
+	world << "<font size=4>Both sides have <b>12 minutes</b> to prepare before combat will begin!</font>"
+
+
 // PILLARMAP
 /obj/map_metadata/pillarmap
 	ID = "PILLARMAP"
@@ -176,6 +200,11 @@ var/global/obj/map_metadata/map = null
 			if (istype(J, /datum/job/german/soldier_ss) && !modded_num_of_SS)
 				J.total_positions *= 16
 				modded_num_of_SS = TRUE
+	else if (istype(J, /datum/job/pillarman/pillarman))
+		J.total_positions = max(1, round(clients.len/15))
+	else if (istype(J, /datum/job/pillarman/vampire))
+		J.total_positions = max(4, round(clients.len/7))
+
 	return .
 
 /obj/map_metadata/pillarmap/cross_message(faction)

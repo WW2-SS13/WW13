@@ -1,4 +1,6 @@
-/client/verb/mentorhelp(msg as text)
+/client/var/showed_mentorhelp_popup = FALSE
+
+/client/verb/mentorhelp()
 	set category = "Help!"
 	set name = "Mentorhelp"
 
@@ -11,7 +13,13 @@
 		src << "<font color='red'>Error: Mentor-PM: You cannot send mentorhelps (Muted).</font>"
 		return
 
+	if (!showed_mentorhelp_popup)
+		alert(src, "Before asking for help, please click each of the buttons at the top right of your screen.")
+		showed_mentorhelp_popup = TRUE
+
 	mentorhelped = TRUE //Determines if they get the message to reply by clicking the name.
+
+	var/msg = input(src, "What do you need help with? Type nothing to cancel.") as text
 
 	if(handle_spam_prevention(msg,MUTE_MENTORHELP))
 		return

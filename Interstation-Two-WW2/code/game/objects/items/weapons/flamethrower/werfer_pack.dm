@@ -78,7 +78,7 @@
 /obj/item/weapon/storage/backpack/flammenwerfer/proc/explode()
 	if (istype(loc, /mob))
 		var/mob/m = loc
-		m.visible_message("<span class = 'danger'>[m]'s flammenwerfer explodes!</span>", "<span class = 'danger'><font size = 3>Your flammenwerfer explodes!</font></span>")
+		m.visible_message("<span class = 'userdanger'>[m]'s flammenwerfer explodes!</span>", "<span class = 'danger'><font size = 3>Your flammenwerfer explodes!</font></span>")
 		explosion(get_turf(m), 1, 2, 3, 4)
 
 		for (var/mob/mm in range(1, get_turf(m)))

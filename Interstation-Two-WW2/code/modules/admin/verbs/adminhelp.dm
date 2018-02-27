@@ -1,12 +1,8 @@
 /client/var/showed_adminhelp_popup = FALSE
 
-/client/verb/adminhelp(msg as text)
+/client/verb/adminhelp()
 	set category = "Help!"
 	set name = "Adminhelp"
-
-	if (!showed_adminhelp_popup)
-		alert(src, "If you are reporting a bug, please try a) relogging and b) following the instructions in the MOTD, before asking admins. Questions go in mentorhelp, not adminhelp.")
-		showed_adminhelp_popup = TRUE
 
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "<span class = 'red'>Speech is currently admin-disabled.</span>"
@@ -17,7 +13,13 @@
 		src << "<span class = 'red'>Error: Admin-PM: You cannot send adminhelps (Muted).</span>"
 		return
 
+	if (!showed_adminhelp_popup)
+		alert(src, "If you are experiencing a bug, please try: a) relogging b) following the instructions in the MOTD and c) using the 'Clear Cache' verb in the OOC tab, before asking admins. If you are reporting a bug, please use the 'Report Bug' button at the top right of your screen. Gameplay questions go in mentorhelp, not adminhelp.")
+		showed_adminhelp_popup = TRUE
+
 	adminhelped = TRUE //Determines if they get the message to reply by clicking the name.
+
+	var/msg = input(src, "What do you need help with? Type nothing to cancel.") as text
 
 	if(handle_spam_prevention(msg,MUTE_ADMINHELP))
 		return
@@ -25,6 +27,7 @@
 	//clean the input msg
 	if(!msg)
 		return
+
 	msg = sanitize(msg)
 	if(!msg)
 		return

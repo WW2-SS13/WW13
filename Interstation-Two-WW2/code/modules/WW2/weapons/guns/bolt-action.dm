@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/boltaction
 	recoil = 2
 	gun_type = GUN_TYPE_RIFLE
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 	var/next_reload = -1
 
 /obj/item/weapon/gun/projectile/boltaction/mosin
@@ -13,7 +14,6 @@
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = DEFAULT_BOLTACTION_ACCURACY
 	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
-	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
 /obj/item/weapon/gun/projectile/boltaction/mosin/update_icon(var/add_scope = FALSE)
@@ -49,7 +49,6 @@
 	accuracy = DEFAULT_BOLTACTION_ACCURACY
 	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
 	bolt_safety = TRUE
-	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
 /obj/item/weapon/gun/projectile/boltaction/kar98k/update_icon(var/add_scope = FALSE)

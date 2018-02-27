@@ -575,12 +575,15 @@ var/list/preferences_datums = list()
 
 	return client.set_preference(preference, set_preference)
 
+/client/var/initially_loaded_preferences = FALSE
 /client/proc/onload_preferences(var/preference)
-	if (preference == "SOUND_LOBBY")
-		var/datum/client_preference/cp = get_client_preference_by_type(/datum/client_preference/play_lobby_music)
-		if (isnewplayer(mob))
-			if (is_preference_enabled(cp.key))
-				if (!just_played_title_music)
+	if (initially_loaded_preferences)
+		if (preference == "SOUND_LOBBY")
+			var/datum/client_preference/cp = get_client_preference_by_type(/datum/client_preference/play_lobby_music)
+			if (isnewplayer(mob))
+				if (is_preference_enabled(cp.key))
 					mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 70, channel = TRUE)
-			else
-				mob << sound(null, repeat = FALSE, wait = FALSE, volume = 70, channel = TRUE)
+				else
+					mob << sound(null, repeat = FALSE, wait = FALSE, volume = 70, channel = TRUE)
+	else
+		initially_loaded_preferences = TRUE

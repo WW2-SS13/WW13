@@ -415,6 +415,7 @@
 					H.nutrition -= 0.002
 					H.water -= 0.002
 
+
 		if (mob.pulling)
 			if (istype(mob.pulling, /mob))
 				move_delay += 1.0
@@ -486,7 +487,8 @@
 
 		//Something with grabbing things
 		if(locate(/obj/item/weapon/grab, mob))
-			move_delay = max(move_delay, world.time + 7)
+		//	move_delay = max(move_delay, world.time + 7)
+			move_delay += 1.0
 			var/list/L = mob.ret_grab()
 			if(istype(L, /list))
 				if(L.len == 2)

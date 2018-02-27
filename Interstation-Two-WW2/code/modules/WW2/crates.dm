@@ -215,6 +215,9 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/bayonets/soviet
+/obj/structure/closet/crate/bayonets/german
+
 /obj/structure/closet/crate/supply_req_sheets
 	name = "Supply requisition forms crate"
 	icon_state = "mil_crate_closed"
@@ -433,7 +436,7 @@
 	..()
 	update_capacity(17)
 	for (var/v in 1 to 17)
-		new /obj/item/ammo_magazine/a556/m4(src)
+		new /obj/item/ammo_magazine/a556/ppsh(src)
 
 /obj/structure/closet/crate/lugerammo/New()
 	..()
@@ -457,7 +460,7 @@
 	..()
 	update_capacity(15)
 	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/a762/pkm(src)
+		new /obj/item/ammo_magazine/a762/dp(src)
 
 /obj/structure/closet/crate/bint/New()
 	..()
@@ -544,12 +547,19 @@
 	for (var/v in 1 to 50)
 		new /obj/item/device/flashlight/flare(src)
 
-/obj/structure/closet/crate/bayonets/New()
+/obj/structure/closet/crate/bayonets/soviet/New()
 	..()
 
 	update_capacity(20)
 	for (var/v in 1 to 20)
-		new /obj/item/weapon/attachment/bayonet(src)
+		new /obj/item/weapon/attachment/bayonet/soviet(src)
+
+/obj/structure/closet/crate/bayonets/german/New()
+	..()
+
+	update_capacity(20)
+	for (var/v in 1 to 20)
+		new /obj/item/weapon/attachment/bayonet/german(src)
 
 /obj/structure/closet/crate/supply_req_sheets/New()
 	..()

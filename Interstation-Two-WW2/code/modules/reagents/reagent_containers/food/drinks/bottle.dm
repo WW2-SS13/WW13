@@ -51,6 +51,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/calculate_alcohol_power()
 	. = 0
+
 	for (var/datum/reagent/R in reagents.reagent_list)
 		if (istype(R, /datum/reagent/ethanol))
 			var/datum/reagent/ethanol/E = R
@@ -99,22 +100,18 @@
 			var/mob/living/L = against
 			L.IgniteMob()
 
-//		#define testmolotovs
-
 		var/explosion_power = alcohol_power/2.5
 
 		qdel(rag)
 
-		#ifdef testmolotovs
-		world << "testing molotov with an explosion_power of [explosion_power]."
-		#endif
-
 		if (explosion_power > 0)
-			var/devrange = max(1, round(explosion_power/1000))
-			var/heavyrange = max(1, devrange*1)
-			var/lightrange = max(1, devrange*1)
-			var/flashrange = max(1, devrange*2)
-			var/firerange = max(1, devrange*4)
+			// by using this instead of rounded devrange, not all molotovs will be the same - Kachnov
+			var/raw_devrange = round(explosion_power/1000)
+			var/devrange = max(1, round(raw_devrange))
+			var/heavyrange = max(1, round(raw_devrange*1))
+			var/lightrange = max(1, round(raw_devrange*1))
+			var/flashrange = max(1, round(raw_devrange*2))
+			var/firerange = max(1, round(raw_devrange*4)) + 1
 
 			var/src_turf = get_turf(src)
 
@@ -125,11 +122,11 @@
 							if (S.density && !S.low)
 								break mainloop
 						var/obj/fire/F = T.create_fire(temp = ceil(explosion_power/8))
-						F.time_limit = pick(5,6,7)*10
+						F.time_limit = pick(50, 60, 70)
 						for (var/mob/living/L in T)
 							L.fire_stacks += 5
 							L.IgniteMob()
-							L.adjustFireLoss(rand(15,20))
+							L.adjustFireLoss(rand(30,40))
 							if (ishuman(L))
 								L.emote("scream")
 
@@ -163,11 +160,13 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/attackby(obj/item/W, mob/user)
 	if(!rag && istype(W, /obj/item/weapon/reagent_containers/glass/rag))
 		insert_rag(W, user)
+		update_icon()
 		return
-	if(rag && istype(W, /obj/item/weapon/flame))
+	else if(rag && (istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/device/flashlight/flare) && W:on) || (istype(W, /obj/item/weapon/weldingtool) && W:welding)))
 		rag.attackby(W, user)
+		update_icon()
 		return
-	..()
+	else return ..()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/attack_self(mob/user)
 	if(rag)
@@ -201,7 +200,8 @@
 	if(rag)
 		var/underlay_image = image(icon='icons/obj/drinks.dmi', icon_state=rag.on_fire? "[rag_underlay]_lit" : rag_underlay)
 		underlays += underlay_image
-		set_light(2)
+		if (rag.on_fire)
+			set_light(2)
 	else
 		set_light(0)
 		if(reagents.total_volume)

@@ -189,24 +189,26 @@ var/global/datum/controller/occupations/job_master
 			else
 				world << "<span class = 'warning'>An admin has reset autobalance for [max(_clients, autobalance_for_players)] players.</span>"
 
-		// number of roles, between both sides, that will be open.
-		// greater than the number of expected players to account for
-		// newcomers, and people who die before the train is sent,
-		// but respawn
+		// account for a greater than expected number of players & roles that get disabled because no tanks, no arty, etc
+		// todo: feature that reallots slots for disabled roles
 
-		var/total_job_slots = ceil(autobalance_for_players * 1.4)
+		var/total_job_slots = ceil(autobalance_for_players * 1.50)
 
 		// unique job slots. These will result in slightly more than
 		// total_job_slots if you add all 3 up, but that isn't important.
 		// total_job_slots isn't used after this
 
-		german_job_slots = round(total_job_slots * 0.4)
+		// germans + sovs get 85% of slots
 
-		soviet_job_slots = german_job_slots + 5
+		german_job_slots = round(total_job_slots * 0.41)
 
-		civilian_job_slots = round(soviet_job_slots/5)
+		soviet_job_slots = round(total_job_slots * 0.44)
 
-		partisan_job_slots = round(soviet_job_slots/4)
+		// civilians + partisans get 15%
+
+		civilian_job_slots = round(total_job_slots * 0.07)
+
+		partisan_job_slots = round(total_job_slots * 0.08)
 
 
 //		allow_jews = initial(allow_jews)
@@ -277,6 +279,8 @@ var/global/datum/controller/occupations/job_master
 		// decide how many positions of each job type we have based on
 		// number of open slots
 
+		// this has been refactored. Far too many slots were being allotted to secondary jobs, many of which didn't even exist on smallmap
+
 		switch (german_job_slots)
 			if (-INFINITY to 7) // this is so few slots, don't bother with special jobs
 				german_primary_job_slots = 0
@@ -295,40 +299,40 @@ var/global/datum/controller/occupations/job_master
 				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 0
 			if (15 to 19) // decent sized team. Some primary and secondary roles.
-				german_primary_job_slots = n_percent_of_job_slots(30, GERMAN)
-				german_secondary_job_slots = n_percent_of_job_slots(20, GERMAN)
+				german_primary_job_slots = n_percent_of_job_slots(40, GERMAN)
+				german_secondary_job_slots = n_percent_of_job_slots(10, GERMAN)
 				german_commander_slots = TRUE
 				german_ss_slots = 0
 				german_paratrooper_slots = 0
 				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 0
 			if (20 to 24) // good sized team, some of every role but no SS/para
-				german_primary_job_slots = n_percent_of_job_slots(30, GERMAN)
-				german_secondary_job_slots = n_percent_of_job_slots(20, GERMAN)
+				german_primary_job_slots = n_percent_of_job_slots(40, GERMAN)
+				german_secondary_job_slots = n_percent_of_job_slots(10, GERMAN)
 				german_commander_slots = TRUE
 				german_ss_slots = 0
 				german_paratrooper_slots = 0
 				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = 0
 			if (25 to 29) // good sized team. Let's give them SS or paratroopers, but not both. And more officers.
-				german_primary_job_slots = n_percent_of_job_slots(30, GERMAN)
-				german_secondary_job_slots = n_percent_of_job_slots(20, GERMAN)
+				german_primary_job_slots = n_percent_of_job_slots(40, GERMAN)
+				german_secondary_job_slots = n_percent_of_job_slots(10, GERMAN)
 				german_commander_slots = TRUE
 				german_ss_slots = 0
 				german_paratrooper_slots = n_percent_of_job_slots(25, GERMAN)
 				german_ss_commander_slots = 0
 				german_soldat_slots = remaining_german_slots() + 2
 			if (30 to 34) // large team. They get SS and paratroopers.
-				german_primary_job_slots = n_percent_of_job_slots(25, GERMAN)
-				german_secondary_job_slots = n_percent_of_job_slots(25, GERMAN)
+				german_primary_job_slots = n_percent_of_job_slots(40, GERMAN)
+				german_secondary_job_slots = n_percent_of_job_slots(10, GERMAN)
 				german_commander_slots = TRUE
 				german_ss_slots = n_percent_of_job_slots(25, GERMAN)
 				german_paratrooper_slots = n_percent_of_job_slots(25, GERMAN)
 				german_soldat_slots = remaining_german_slots() + 2
 				german_ss_commander_slots = TRUE
 			if (35 to INFINITY) // largest team
-				german_primary_job_slots = n_percent_of_job_slots(25, GERMAN)
-				german_secondary_job_slots = n_percent_of_job_slots(25, GERMAN)
+				german_primary_job_slots = n_percent_of_job_slots(40, GERMAN)
+				german_secondary_job_slots = n_percent_of_job_slots(10, GERMAN)
 				german_commander_slots = TRUE
 				german_ss_slots = n_percent_of_job_slots(20, GERMAN)
 				german_paratrooper_slots = n_percent_of_job_slots(20, GERMAN)
@@ -339,7 +343,7 @@ var/global/datum/controller/occupations/job_master
 		// useful information
 
 		var/primary_german_jobs = 0
-		var/secondary_german_jobs = 0
+		var/secondary_german_jobs = 3
 
 		for (var/datum/job/german/j in occupations)
 			if (istype(j))
@@ -355,9 +359,9 @@ var/global/datum/controller/occupations/job_master
 				if (istype(j, /datum/job/german/soldier))
 					j.total_positions = german_soldat_slots
 				else if (j.is_primary && !j.is_secondary && !j.is_commander && !j.is_paratrooper && !j.is_SS && !j.is_officer)
-					j.total_positions = max(round(german_primary_job_slots/primary_german_jobs), TRUE)
+					j.total_positions = max(round(german_primary_job_slots/primary_german_jobs), 2)
 				else if (j.is_secondary && !j.is_commander && !j.is_officer && !j.is_paratrooper && !j.is_SS)
-					j.total_positions = max(round(german_secondary_job_slots/secondary_german_jobs), TRUE)
+					j.total_positions = j.total_positions
 				else if (j.is_commander)
 					if (j.is_SS)
 						j.total_positions = german_ss_commander_slots
@@ -365,11 +369,12 @@ var/global/datum/controller/occupations/job_master
 						j.total_positions = german_commander_slots
 				else if (j.is_officer)
 					if (!j.is_squad_leader)
-						j.total_positions = max(round(german_secondary_job_slots/secondary_german_jobs), TRUE)
+						j.total_positions = j.total_positions
 					else
 						j.total_positions = SL_LIMIT
 				else if (j.is_SS)
 					j.total_positions = german_ss_slots
+
 				if (j.absolute_limit)
 					j.total_positions = min(j.total_positions, j.absolute_limit)
 
@@ -427,48 +432,49 @@ var/global/datum/controller/occupations/job_master
 				soviet_commander_slots = TRUE
 				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (8 to 14) // small but not tiny. Deserves a few primary roles, and no secondary/tertiary
-				soviet_primary_job_slots = n_percent_of_job_slots(60, SOVIET)
+				soviet_primary_job_slots = n_percent_of_job_slots(50, SOVIET)
 				soviet_secondary_job_slots = 0
 				soviet_sturmovik_slots = 0
-				soviet_commander_slots = TRUE
+				soviet_commander_slots = 1
 				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (15 to 19) // decent sized team. Some primary and secondary roles.
-				soviet_primary_job_slots = n_percent_of_job_slots(35, SOVIET)
-				soviet_secondary_job_slots = n_percent_of_job_slots(25, SOVIET)
+				soviet_primary_job_slots = n_percent_of_job_slots(40, SOVIET)
+				soviet_secondary_job_slots = n_percent_of_job_slots(10, SOVIET)
 				soviet_sturmovik_slots = 0
-				soviet_commander_slots = TRUE
+				soviet_commander_slots = 1
 				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (20 to 24) // good sized team, some of every role but no sturms
-				soviet_primary_job_slots = n_percent_of_job_slots(30, SOVIET)
-				soviet_secondary_job_slots = n_percent_of_job_slots(30, SOVIET)
+				soviet_primary_job_slots = n_percent_of_job_slots(40, SOVIET)
+				soviet_secondary_job_slots = n_percent_of_job_slots(10, SOVIET)
 				soviet_sturmovik_slots = 0
-				soviet_commander_slots = TRUE
+				soviet_commander_slots = 1
 				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (25 to 29) // good sized team, they get sturms
-				soviet_primary_job_slots = n_percent_of_job_slots(30, SOVIET)
-				soviet_secondary_job_slots = n_percent_of_job_slots(30, SOVIET)
-				soviet_commander_slots = TRUE
+				soviet_primary_job_slots = n_percent_of_job_slots(40, SOVIET)
+				soviet_secondary_job_slots = n_percent_of_job_slots(10, SOVIET)
+				soviet_commander_slots = 1
 				soviet_sturmovik_slots = n_percent_of_job_slots(15, SOVIET)
 				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (30 to 34) // large team, they get sturms
-				soviet_primary_job_slots = n_percent_of_job_slots(30, SOVIET)
-				soviet_secondary_job_slots = n_percent_of_job_slots(30, SOVIET)
+				soviet_primary_job_slots = n_percent_of_job_slots(40, SOVIET)
+				soviet_secondary_job_slots = n_percent_of_job_slots(10, SOVIET)
 				soviet_sturmovik_slots = n_percent_of_job_slots(15, SOVIET)
-				soviet_commander_slots = TRUE
+				soviet_commander_slots = 1
 				soviet_soldat_slots = remaining_soviet_slots() + 2
 			if (35 to INFINITY) // largest team
-				soviet_primary_job_slots = n_percent_of_job_slots(30, SOVIET)
-				soviet_secondary_job_slots = n_percent_of_job_slots(30, SOVIET)
+				soviet_primary_job_slots = n_percent_of_job_slots(40, SOVIET)
+				soviet_secondary_job_slots = n_percent_of_job_slots(10, SOVIET)
 				soviet_sturmovik_slots = n_percent_of_job_slots(15, SOVIET)
-				soviet_commander_slots = TRUE
+				soviet_commander_slots = 1
 				soviet_soldat_slots = remaining_soviet_slots() + 2
 
 		// useful information
 
 		var/primary_soviet_jobs = 0
-		var/secondary_soviet_jobs = 0
+		var/secondary_soviet_jobs = 3
 
 		for (var/datum/job/soviet/j in occupations)
+
 			if (istype(j))
 				if (j.is_primary && !j.is_secondary && !j.is_commander && !j.is_officer && !istype(j, /datum/job/soviet/soldier) && !j.is_squad_leader)
 					j.is_primary = TRUE
@@ -488,14 +494,14 @@ var/global/datum/controller/occupations/job_master
 				if (istype(j, /datum/job/soviet/soldier))
 					j.total_positions = soviet_soldat_slots
 				else if (j.is_primary)
-					j.total_positions = max(round(soviet_primary_job_slots/primary_soviet_jobs), TRUE)
+					j.total_positions = max(round(soviet_primary_job_slots/primary_soviet_jobs), 2)
 				else if (j.is_secondary)
-					j.total_positions = max(round(soviet_secondary_job_slots/secondary_soviet_jobs), TRUE)
+					j.total_positions = j.total_positions
 				else if (j.is_commander)
 					j.total_positions = soviet_commander_slots
 				else if (j.is_officer)
 					if (!j.is_squad_leader)
-						j.total_positions = max(round(soviet_secondary_job_slots/secondary_soviet_jobs), TRUE)
+						j.total_positions = j.total_positions
 					else
 						j.total_positions = SL_LIMIT
 
@@ -537,7 +543,6 @@ var/global/datum/controller/occupations/job_master
 			if (j.total_positions == -1)
 				j.total_positions = 0
 
-
 	proc/spawn_with_delay(var/mob/new_player/np, var/datum/job/j)
 		// for delayed spawning, wait the spawn_delay of the job
 		// and lock up one job position while np is spawning
@@ -551,7 +556,7 @@ var/global/datum/controller/occupations/job_master
 
 		// occupy a position slot
 
-		j.total_positions -= TRUE
+		j.total_positions -= 1
 
 		spawn (j.spawn_delay)
 			if (np && np.delayed_spawning_as_job == j) // if np hasn't already spawned
@@ -1510,8 +1515,9 @@ var/global/datum/controller/occupations/job_master
 			return map.game_really_started()
 		return FALSE
 
-	// this is a solution to 5 germans and TRUE soviet, on lowpop.
+	// this is a solution to 5 germans and 1 soviet, on lowpop.
 	proc/side_is_hardlocked(side)
+
 		// when it's highpop enough for partisans
 		// there aren't enough partisan roles for hardlocking to matter
 		// for soviets and Germans, it's another matter
@@ -1521,6 +1527,9 @@ var/global/datum/controller/occupations/job_master
 		// todo: faction lists structured like player_list (ie german_list)
 		var/germans = n_of_side(GERMAN)
 		var/soviets = n_of_side(SOVIET)
+
+		var/max_germans = ceil((player_list.len/2) * 0.45)
+		var/max_soviets = ceil((player_list.len/2) * 0.55)
 
 		switch (side)
 			if (PARTISAN)
@@ -1534,14 +1543,16 @@ var/global/datum/controller/occupations/job_master
 			if (GERMAN)
 				if (germans_forceEnabled)
 					return FALSE
-				if (player_list.len >= 2 && player_list.len <= 20)
-					if (germans >= ceil(player_list.len/2))
+				if (player_list.len >= 2)
+					if (germans >= max_germans)
 						return TRUE
 			if (SOVIET)
 				if (soviets_forceEnabled)
 					return FALSE
-				if (player_list.len >= 2 && player_list.len <= 20)
-					if (soviets >= ceil(player_list.len/2))
+				if (player_list.len >= 2)
+					if (soviets >= max_soviets)
 						return TRUE
 			if (UKRAINIAN, ITALIAN)
 				return TRUE
+
+		return FALSE

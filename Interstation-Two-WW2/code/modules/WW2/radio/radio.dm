@@ -174,6 +174,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 		// GUNS & ARTILLERY
 		"MP40" = /obj/item/weapon/gun/projectile/automatic/mp40,
+		"MG34" = /obj/item/weapon/gun/projectile/automatic/mg34,
 		"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
 		"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 		"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
@@ -228,7 +229,8 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		"Glass Sheets" = /obj/structure/closet/crate/glass,
 
 		// GUNS & ARTILLERY
-		"PPSH" = /obj/item/weapon/gun/projectile/automatic/m4,
+		"PPSH" = /obj/item/weapon/gun/projectile/automatic/ppsh,
+		"DP-28" = /obj/item/weapon/gun/projectile/automatic/dp,
 		"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
 		"Maxim" = /obj/item/weapon/gun/projectile/minigun/kord/maxim,
 		"Colt Crate" = /obj/structure/closet/crate/colts,
@@ -289,7 +291,9 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 		// GUNS & ARTILLERY
 		"MP40" = 125,
+		"MG34" = 175,
 		"PPSH" = 125,
+		"DP-28" = 175,
 		"PTRD" = 200,
 		"Flammenwerfer" = 250,
 		"7,5 cm FK 18 Artillery Piece" = 300,

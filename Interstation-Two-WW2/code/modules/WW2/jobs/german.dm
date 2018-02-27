@@ -304,8 +304,6 @@
 	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	is_primary = FALSE
-	is_secondary = TRUE
 
 /datum/job/german/flamethrower_man/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -341,8 +339,6 @@
 	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	is_primary = FALSE
-	is_secondary = TRUE
 
 /datum/job/german/sniper/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -415,8 +411,6 @@
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	is_primary = FALSE
-	is_secondary = TRUE
 
 /datum/job/german/heavy_weapon/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -542,8 +536,6 @@
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	is_primary = FALSE
-	is_secondary = TRUE
 	absolute_limit = 4
 	is_tankuser = TRUE
 
@@ -580,8 +572,6 @@
 	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	is_primary = FALSE
-	is_secondary = TRUE
 	absolute_limit = 4
 
 /datum/job/german/anti_tank_crew/equip(var/mob/living/carbon/human/H)
@@ -944,13 +934,11 @@ var/first_fallschirm = TRUE
 /datum/job/german/chef
 	title = "Kuchenchef" // note: SS13 does not like ü in job titles
 	en_meaning = "Chef"
-	total_positions = TRUE
+	total_positions = 1
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerChef"
 	is_nonmilitary = TRUE
-	is_primary = FALSE
-	is_secondary = TRUE
-	absolute_limit = TRUE
+	absolute_limit = 1
 
 /datum/job/german/chef/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE

@@ -207,18 +207,19 @@
 	for (var/client/client in clients)
 		client << "<br>"
 
+// todo: aspect recode
 /datum/game_mode/ww2/announce() //to be called when round starts
 
 	world << "<b><big>The round has started!</big></b>"
 	// announce after some other stuff, like system setups, are announced
 	spawn (3)
 
-		new/datum/game_aspect/ww2(src)
+	//	new/datum/game_aspect/ww2(src)
 
 		spawn (1)
-			if (aspect)
+/*			if (aspect)
 				aspect.activate()
-				aspect.post_activation()
+				aspect.post_activation()*/
 
 			// train might not be set up yet
 			spawn (100)

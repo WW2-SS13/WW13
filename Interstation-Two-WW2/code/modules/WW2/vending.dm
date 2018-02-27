@@ -38,7 +38,7 @@
 	icon_state = "equipment_german"
 	products = list(
 		/obj/item/weapon/material/kitchen/utensil/knife/boot = 25,
-		/obj/item/weapon/attachment/bayonet = 25,
+		/obj/item/weapon/attachment/bayonet/german = 25,
 		/obj/item/weapon/gauze_pack/gauze = 25,
 		/obj/item/device/flashlight = 25,
 		/obj/item/weapon/shovel/spade/russia = 25,
@@ -62,7 +62,7 @@
 		/obj/item/clothing/shoes/swat = 10,
 
 		/obj/item/weapon/material/kitchen/utensil/knife/boot = 10,
-		/obj/item/weapon/attachment/bayonet = 10,
+		/obj/item/weapon/attachment/bayonet/german = 10,
 		/obj/item/weapon/gauze_pack/gauze = 10,
 		/obj/item/device/flashlight = 10,
 		/obj/item/weapon/shovel/spade/russia = 10,
@@ -84,7 +84,7 @@
 	icon_state = "equipment_soviet"
 	products = list(
 		/obj/item/weapon/material/kitchen/utensil/knife/boot = 25,
-		/obj/item/weapon/attachment/bayonet = 25,
+		/obj/item/weapon/attachment/bayonet/soviet = 25,
 		/obj/item/weapon/gauze_pack/bint = 25,
 		/obj/item/device/flashlight = 25,
 		/obj/item/weapon/shovel/spade/russia = 25,

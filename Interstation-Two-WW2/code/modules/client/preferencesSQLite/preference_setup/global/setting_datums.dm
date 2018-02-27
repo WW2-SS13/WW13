@@ -59,8 +59,7 @@ var/list/_client_preferences_by_type
 /datum/client_preference/play_lobby_music/toggled(var/mob/new_player/preference_mob, var/enabled)
 	if(enabled)
 		if (istype(preference_mob))
-			if (!preference_mob.client.just_played_title_music)
-				preference_mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 70, channel = TRUE)
+			preference_mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 70, channel = TRUE)
 	else
 		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = 70, channel = TRUE)
 

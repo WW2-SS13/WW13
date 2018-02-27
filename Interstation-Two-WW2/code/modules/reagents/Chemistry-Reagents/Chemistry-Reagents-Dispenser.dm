@@ -89,7 +89,7 @@
 	color = "#404030"
 	touch_met = 5
 	var/nutriment_factor = FALSE
-	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
+	var/strength = 50 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
 	var/toxicity = TRUE
 
 	var/druggy = FALSE

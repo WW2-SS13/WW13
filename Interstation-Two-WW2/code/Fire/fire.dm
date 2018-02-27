@@ -102,7 +102,7 @@ var/obj/burning_overlay_turf = null
 	layer = MOB_LAYER + 0.01 // above train pseudoturfs, stairs, and now MOBs
 
 	var/firelevel = TRUE
-	var/default_damage = 4
+	var/default_damage = 5
 	var/spread_range = TRUE
 	var/spread_prob = 10
 	var/spread_fuel_prob = 80
@@ -124,17 +124,15 @@ var/obj/burning_overlay_turf = null
 		I.Scale(48,96)
 		burning_overlay_obj.icon = I
 		burning_overlay_obj.pixel_y = -32
-		burning_overlay_obj.pixel_x = -16
+		burning_overlay_obj.pixel_x = -8
 		burning_overlay_obj.layer = 5 // below smoke
 
 	if (!burning_overlay_turf)
 		burning_overlay_turf = new
-		var/icon/I = icon(icon, "fire2")
-		I.Scale(48,96)
+		var/icon/I = icon(icon, "burning")
 		burning_overlay_turf.icon = I
-		burning_overlay_turf.pixel_y = -32
-		burning_overlay_turf.pixel_x = -8
 		burning_overlay_turf.layer = 5 // below smoke
+		burning_overlay_turf.color = fire_color(500)
 
 	var/turf/my_tile = loc
 
@@ -174,7 +172,7 @@ var/obj/burning_overlay_turf = null
 		if (a.density)
 
 			var/a_is_flammable = FALSE
-			if (list(/obj/structure/table/wood, /turf/wall/wood, /obj/structure/closet/cabinet, /obj/structure/barricade, /obj/structure/bed/chair/wood, /obj/structure/bookcase).Find(a.type))
+			if (list(/obj/structure/table/wood, /turf/wall/wood, /obj/structure/closet/cabinet, /obj/structure/barricade, /obj/structure/bed/chair/wood, /obj/structure/bookcase, /obj/structure/curtain, /obj/structure/classic_window_frame).Find(a.type))
 				a_is_flammable = TRUE
 			if (!a_is_flammable)
 				if (a.vars.Find("material"))

@@ -421,6 +421,7 @@
 					U.max_teeth = T.max_amount //Set max teeth for the head based on teeth spawntype
 					T.amount = T.max_amount
 					U.teeth_list += T
+				H.ingested.add_reagent("nutriment",50)
 			message_admins("<span class = 'red'>Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!</span>", TRUE)
 			log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
 		else

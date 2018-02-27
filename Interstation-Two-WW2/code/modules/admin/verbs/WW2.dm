@@ -604,27 +604,27 @@ var/paratroopers_forceEnabled = FALSE
 
 	if (findtext(choice, "PARTISANS"))
 		partisans_forceEnabled = !partisans_forceEnabled
-		world << "<span class = 'warning'>The Partisan faction [partisans_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		world << "<span class = 'info'>The Partisan faction [partisans_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
 		message_admins("[key_name(src)] changed the Partisan faction 'forceEnabled' setting to [partisans_forceEnabled].")
 	else if (findtext(choice, "CIVILIANS"))
 		civilians_forceEnabled = !civilians_forceEnabled
-		world << "<span class = 'warning'>The Civilian faction [civilians_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		world << "<span class = 'info'>The Civilian faction [civilians_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
 		message_admins("[key_name(src)] changed the Civilian faction 'forceEnabled' setting to [civilians_forceEnabled].")
 	else if (findtext(choice, "GERMAN"))
 		germans_forceEnabled = !germans_forceEnabled
-		world << "<span class = 'warning'>The German faction [germans_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		world << "<span class = 'info'>The German faction [germans_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
 		message_admins("[key_name(src)] changed the German faction 'forceEnabled' setting to [germans_forceEnabled].")
 	else if (findtext(choice, "SOVIET"))
 		soviets_forceEnabled = !soviets_forceEnabled
-		world << "<span class = 'warning'>The Soviet faction [soviets_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		world << "<span class = 'info'>The Soviet faction [soviets_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
 		message_admins("[key_name(src)] changed the Soviet faction 'forceEnabled' setting to [soviets_forceEnabled].")
 	else if (findtext(choice, "SS"))
 		SS_forceEnabled = !SS_forceEnabled
-		world << "<span class = 'warning'>The SS subfaction [SS_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		world << "<span class = 'info'>The SS subfaction [SS_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
 		message_admins("[key_name(src)] changed the SS subfaction 'forceEnabled' setting to [SS_forceEnabled].")
 	else if (findtext(choice, "PARATROOPERS"))
 		paratroopers_forceEnabled = !paratroopers_forceEnabled
-		world << "<span class = 'warning'>The Paratrooper subfaction [paratroopers_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
+		world << "<span class = 'info'>The Paratrooper subfaction [paratroopers_forceEnabled ? "has been forcibly <b><i>ENABLED</i></b>" : "<b>is no longer forcibly enabled</b>"].</span>"
 		message_admins("[key_name(src)] changed the Paratrooper subfaction 'forceEnabled' setting to [paratroopers_forceEnabled].")
 
 /client/proc/toggle_respawn_delays()

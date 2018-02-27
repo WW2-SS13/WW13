@@ -191,7 +191,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/officer(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m4(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/ppsh(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	H.visible_message("<span class = 'notice'>You are the <b>[title]</b>. Your job is to lead offensive units of the Russian force according to the <b>Commandir</b>'s and the <b>Ofitser</b>'s orders.</span>")
 	H.give_radio()
@@ -295,8 +295,6 @@
 	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
-	is_primary = FALSE
-	is_secondary = TRUE
 
 /datum/job/soviet/sniper/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -370,8 +368,6 @@
 	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
-	is_primary = FALSE
-	is_secondary = TRUE
 
 /datum/job/soviet/heavy_weapon/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -379,7 +375,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/pkm(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/dp(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/soviet(H), slot_l_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a heavy weapons unit. Your job is to assist normal <b>Soldat</b>i in front line combat.</span>"
 	H.give_radio()
@@ -499,8 +495,6 @@
 	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
-	is_primary = FALSE
-	is_secondary = TRUE
 	absolute_limit = 4
 	is_tankuser = TRUE
 
@@ -510,7 +504,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/sovtankerhat(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/sovtankeruni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m4(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/ppsh(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a tank crewman. Your job is to work with another crewman to operate a tank.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -538,8 +532,6 @@
 	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
-	is_primary = FALSE
-	is_secondary = TRUE
 	absolute_limit = 4
 
 /datum/job/soviet/anti_tank_crew/equip(var/mob/living/carbon/human/H)
@@ -681,7 +673,7 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m4(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/ppsh(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/bulletproof/cn42(H), slot_wear_suit)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an elite infantry soldier. Your job is assist normal <b>Soldat</b>i in front line combat.</span>"
 	H.give_radio()
@@ -711,14 +703,12 @@ var/first_guard = FALSE
 	title = "Povar"
 	en_meaning = "Chef"
 	rank_abbreviation = "Kras"
-	total_positions = TRUE
+	total_positions = 1
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRAChef"
 	allow_spies = TRUE
 	is_nonmilitary = TRUE
-	is_primary = FALSE
-	is_secondary = TRUE
-	absolute_limit = TRUE
+	absolute_limit = 1
 
 /datum/job/soviet/chef/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE

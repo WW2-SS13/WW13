@@ -178,10 +178,11 @@ Current Defines (_defines/attachment.dm)
 	flags = CONDUCT
 	sharp = TRUE
 	edge = TRUE
-	force = WEAPON_FORCE_DANGEROUS/1.5
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	attachment_type = ATTACH_BARREL
+	force = 5
 	var/attack_sound = 'sound/weapons/slice.ogg'
+	var/weakens = 0
 	//var/datum/action/bayonet/amelee
 
 /obj/item/weapon/attachment/bayonet/attached(mob/user, obj/item/weapon/gun/G)
@@ -191,6 +192,14 @@ Current Defines (_defines/attachment.dm)
 /obj/item/weapon/attachment/bayonet/removed(mob/user, obj/item/weapon/gun/G)
   ..()
   G.bayonet = null
+
+/obj/item/weapon/attachment/bayonet/german
+	force = WEAPON_FORCE_DANGEROUS/2
+	weakens = 1
+
+/obj/item/weapon/attachment/bayonet/soviet
+	force = WEAPON_FORCE_DANGEROUS
+	weakens = 2
 
 /obj/item/weapon/attachment/scope/iron_sights
 	name = "iron sights"

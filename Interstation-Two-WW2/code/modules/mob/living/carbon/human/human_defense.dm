@@ -141,7 +141,7 @@ bullet_act
 
 	..(P , def_zone)
 
-	spawn (1)
+	spawn (0.1)
 		qdel(P)
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
