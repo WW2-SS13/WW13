@@ -307,7 +307,8 @@ var/obj/human_fire_overlay_lying = null
 
 	apply_damage(ceil(fire_stacks/3)+1, BURN, "chest", FALSE) // because fire does 0.2 damage per tick
 	if (prob((fire_stacks * 10) + 5))
-		visible_message("<span class = 'danger'>[src] falls over in pain.</span>")
+		if (!lying)
+			visible_message("<span class = 'danger'>[src] falls over in pain.</span>")
 		Weaken(fire_stacks+1)
 
 	if (ishuman(src))

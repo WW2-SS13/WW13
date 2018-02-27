@@ -1528,8 +1528,8 @@ var/global/datum/controller/occupations/job_master
 		var/germans = n_of_side(GERMAN)
 		var/soviets = n_of_side(SOVIET)
 
-		var/max_germans = ceil((player_list.len/2) * 0.45)
-		var/max_soviets = ceil((player_list.len/2) * 0.55)
+		var/max_germans = ceil(player_list.len * 0.45)
+		var/max_soviets = ceil(player_list.len * 0.55)
 
 		switch (side)
 			if (PARTISAN)

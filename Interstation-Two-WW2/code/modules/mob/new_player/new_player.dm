@@ -666,7 +666,7 @@
 					replaced_faction_title = TRUE
 
 	if (!any_available_jobs)
-		src << "<span class = 'danger'><font size = 3>All jobs are disabled by autobalance! Please join a reinforcements queue to play.</font></span>"
+		src << "<span class = 'danger'><font size = 3>All roles are disabled by autobalance! Please join a reinforcements queue to play.</font></span>"
 		return
 
 	var/data = ""

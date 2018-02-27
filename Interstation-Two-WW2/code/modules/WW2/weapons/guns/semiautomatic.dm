@@ -83,7 +83,7 @@
 	can_wield = TRUE
 	//must_wield = TRUE
 
-	accuracy = DEFAULT_SEMIAUTO_ACCURACY+2
+	accuracy = DEFAULT_SEMIAUTO_ACCURACY+1
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY+1
 
 	firemodes = list(
