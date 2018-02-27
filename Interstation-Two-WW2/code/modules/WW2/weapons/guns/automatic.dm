@@ -97,7 +97,7 @@
 	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.ogg'
-	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/mg34_firing.ogg'
 	requires_two_hands = FALSE
 	wielded_icon = "assault-wielded"
 	accuracy = DEFAULT_MG_ACCURACY
