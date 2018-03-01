@@ -591,12 +591,16 @@
 					t.visible_message("<span class = 'danger'>The ceiling collapses!</span>")
 
 			if (explosion)
+				message_admins("HE artillery shell hit at [t.x], [t.y], [t.z].")
+				log_admin("HE artillery shell hit at [t.x], [t.y], [t.z].")
 				explosion(t, 2*power_mult, 4*power_mult, 6*power_mult, 9*power_mult)
 				// extra effective against tonks
 				for (var/obj/tank/T in range(1, t))
 					T.ex_act(1.0, TRUE)
 			else
-				var/how_many = rand(20,30) // was 40, 50
+				message_admins("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
+				log_admin("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
+				var/how_many = rand(20,30)
 				for (var/v in TRUE to how_many)
 					switch (reagent_payload)
 						if ("chlorine_gas")

@@ -576,8 +576,8 @@
 
 	return
 
-/mob/proc/lastMovedRecently()
-	if (abs(last_movement - world.time) < 2)
+/mob/proc/lastMovedRecently(threshold)
+	if (abs(last_movement - world.time) < (threshold ? threshold : 2))
 		return TRUE
 	return FALSE
 
