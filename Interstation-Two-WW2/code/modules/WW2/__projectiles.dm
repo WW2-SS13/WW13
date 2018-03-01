@@ -35,19 +35,21 @@
 
 // MG34
 /obj/item/projectile/bullet/rifle/a792x57_weaker
-	damage = DAMAGE_LOW
+	damage = DAMAGE_MEDIUM - 4
 	penetrating = 1
 
 /obj/item/projectile/bullet/rifle/a762x25
 	damage = DAMAGE_LOW
 	penetrating = FALSE
 
+// MP40 SMG
 /obj/item/projectile/bullet/rifle/a9_parabellum
 	damage = DAMAGE_LOW
 	penetrating = FALSE
-
+	
+// LUGER PISTOL //
 /obj/item/projectile/bullet/rifle/a9_parabellum_luger
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_LOW
 	penetrating = FALSE
 
 /obj/item/projectile/bullet/rifle/a762
@@ -71,8 +73,9 @@
 	penetrating = 3
 	step_delay = 2
 
+// DP MACHINE GUN //
 /obj/item/projectile/bullet/rifle/a762x39
-	damage = DAMAGE_LOW - 5
+	damage = DAMAGE_MEDIUM + 4
 	penetrating = 2
 
 /obj/item/projectile/bullet/rifle/a762x51
@@ -80,7 +83,7 @@
 	penetrating = 3
 
 /obj/item/projectile/bullet/rifle/c4mm
-	damage = DAMAGE_LOW
+	damage = DAMAGE_LOW + 5
 	penetrating = 0
 
 /obj/item/projectile/bullet/rifle/a127x108
