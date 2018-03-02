@@ -7,7 +7,6 @@
 	load_method = SPEEDLOADER | MAGAZINE
 	max_shells = FALSE
 	caliber = "a762x54"
-//	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/a762x54
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY
@@ -37,7 +36,7 @@
 	desc = "German semi-automatic rifle using 7.92x57mm Mauser ammunition in a 10 round magazine. Devastating rifle."
 	icon_state = "" //to-do
 	item_state = "" //to-do
-	w_class = 4
+	w_class = 3
 	load_method = SPEEDLOADER | MAGAZINE
 	max_shells = FALSE
 	caliber = "a792x57"
@@ -77,7 +76,7 @@
 	item_state = "mp40"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
-	w_class = 4
+	w_class = 3
 	caliber = "a9mm_para"
 	magazine_type = /obj/item/ammo_magazine/mp40
 	can_wield = TRUE
@@ -117,7 +116,7 @@
 	item_state = "stg"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
-	w_class = 4
+	w_class = 3
 	caliber = "a792x33"
 	fire_sound = 'sound/weapons/stg.ogg'
 	load_magazine_sound = 'sound/weapons/stg_reload.ogg'
@@ -152,7 +151,7 @@
 	item_state = "stg"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
-	w_class = 4
+	w_class = 3
 	caliber = "a792x33"
 	magazine_type = /obj/item/ammo_magazine/a762/akm
 
@@ -193,7 +192,7 @@
 	item_state = "ppsh"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
-	w_class = 4
+	w_class = 3
 	fire_sound = 'sound/weapons/m16.ogg'
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY

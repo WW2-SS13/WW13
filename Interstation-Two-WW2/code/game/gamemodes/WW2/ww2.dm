@@ -216,15 +216,15 @@
 
 	//	new/datum/game_aspect/ww2(src)
 
-		spawn (1)
+	//	spawn (1)
 /*			if (aspect)
 				aspect.activate()
 				aspect.post_activation()*/
 
 			// train might not be set up yet
-			spawn (100)
-				job_master.german_job_slots *= personnel[GERMAN]
-				job_master.soviet_job_slots *= personnel[SOVIET]
+		//	spawn (100)
+			//	job_master.german_job_slots *= personnel[GERMAN]
+			//	job_master.soviet_job_slots *= personnel[SOVIET]
 
 				// nerf or buff german supplies by editing the supply train controller
 		//		german_supplytrain_master.supply_points_per_second_min *= supplies[GERMAN]
@@ -237,7 +237,7 @@
 						soviet.resize(supplies[SOVIET])*/
 
 			// this may have already happened, do it again w/o announce
-			setup_autobalance(0)
+		setup_autobalance(0)
 
 		// let new players see the join link
 		for (var/mob/new_player/np in world)

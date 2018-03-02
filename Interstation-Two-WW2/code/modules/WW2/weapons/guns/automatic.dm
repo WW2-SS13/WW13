@@ -19,6 +19,8 @@
 		)
 
 	sel_mode = 2
+	force = 20
+	throwforce = 30
 
 /obj/item/weapon/gun/projectile/automatic/dp/update_icon()
 	if(ammo_magazine)
@@ -35,51 +37,6 @@
 			item_state = "dp0"
 	update_held_icon()
 	return
-/*
-
-/obj/item/weapon/gun/projectile/automatic/l6_saw
-	accuracy = DEFAULT_MG_ACCURACY
-	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
-
-/obj/item/weapon/gun/projectile/automatic/l6_saw/m240
-	name = "M240"
-	caliber = "a762x51"
-	max_shells = 100
-	magazine_type = /obj/item/ammo_magazine/a762/m240
-*/
-/*
-/obj/item/weapon/gun/projectile/automatic/val
-	name = "\improper AS Val"
-	desc = "A durable, efficient weapon."
-	icon_state = "val_loaded"
-	item_state = "val_loaded"
-	load_method = MAGAZINE
-	slot_flags = SLOT_BACK
-	w_class = 4
-	caliber = "a9x39"
-	fire_sound = 'sound/weapons/val.ogg'
-	magazine_type = /obj/item/ammo_magazine/a9x39
-	silenced = TRUE
-	can_wield = TRUE
-	accuracy = DEFAULT_MG_ACCURACY
-	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY+1
-	//must_wield = TRUE
-
-/obj/item/weapon/gun/projectile/automatic/val/update_icon()
-	if(ammo_magazine)
-		icon_state = "val_loaded"
-		if(wielded)
-			item_state = "val_loaded_wielded"
-		else
-			item_state = "val_loaded"
-	else
-		icon_state = "val_empty"
-		if(wielded)
-			item_state = "val_empty_wielded"
-		else
-			item_state = "val_empty"
-	update_held_icon()
-	return*/
 
 /obj/item/weapon/gun/projectile/automatic/mg34
 	name = "MG-34"
@@ -87,7 +44,6 @@
 	icon_state = "l6closed100"
 	item_state = "l6closedmag"
 	w_class = 4
-	force = 10
 	max_shells = 50
 	caliber = "a792x57"
 	slot_flags = SLOT_BACK
@@ -109,7 +65,8 @@
 		)
 
 	fire_delay = 3
-
+	force = 20
+	throwforce = 30
 	var/cover_open = FALSE
 
 /obj/item/weapon/gun/projectile/automatic/mg34/special_check(mob/user)

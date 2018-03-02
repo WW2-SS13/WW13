@@ -501,6 +501,19 @@
 /mob/new_player/proc/LateChoices()
 
 	var/arty = locate(/obj/machinery/artillery) in world
+	var/fallschirms = fallschirm_landmarks.len
+	var/german_tank = FALSE
+	var/soviet_tank = FALSE
+
+	for (var/obj/tank/german/T in world)
+		if (!T.admin)
+			german_tank = TRUE
+			break
+
+	for (var/obj/tank/soviet/T in world)
+		if (!T.admin)
+			soviet_tank = TRUE
+			break
 
 	src << browse(null, "window=latechoices")
 
@@ -533,6 +546,21 @@
 
 			if (!arty && (istype(job, /datum/job/german/artyman) || istype(job, /datum/job/german/scout)))
 				continue
+
+			if (!fallschirms && istype(job, /datum/job/german/paratrooper))
+				continue
+
+			if (!german_tank)
+				if (istype(job, /datum/job/german/tankcrew))
+					continue
+				else if (istype(job, /datum/job/german/anti_tank_crew))
+					continue
+
+			if (!soviet_tank)
+				if (istype(job, /datum/job/soviet/tankcrew))
+					continue
+				else if (istype(job, /datum/job/soviet/anti_tank_crew))
+					continue
 
 		//	var/unavailable_message = ""
 			if (job.title == "generic job")
@@ -592,14 +620,6 @@
 			// check if the job is admin-locked or disabled codewise
 
 			if (!job.enabled)
-				job_is_available = FALSE
-
-			// check if the faction is autobalance-locked
-
-			if (istype(job, /datum/job/partisan) && !istype(job, /datum/job/partisan/civilian) && !job_master.allow_partisans)
-				job_is_available = FALSE
-
-			if (istype(job, /datum/job/partisan/civilian) && !job_master.allow_civilians)
 				job_is_available = FALSE
 
 			// check if the job is autobalance-locked

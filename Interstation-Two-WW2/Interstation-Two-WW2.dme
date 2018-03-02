@@ -949,6 +949,7 @@
 #include "code\modules\WW2\weapons\guns\semiautomatic.dm"
 #include "code\modules\WW2\weapons\guns\shotgun.dm"
 #include "code\modules\WW2\weapons\guns\stationary.dm"
+#include "code\modules\WW2\weapons\guns\unused.dm"
 #include "code\modules\xgm\xgm_gas_data.dm"
 #include "code\modules\xgm\xgm_gas_mixture.dm"
 #include "interface\bugs&suggs.dm"
