@@ -8,7 +8,7 @@
 /obj/item/weapon/gun/projectile/pistol/luger
 	name = "Luger P08"
 	desc = "German 9mm pistol, commonly used by officers and special assignment units."
-	icon_state = "luger"
+	icon_state = "p08"
 	item_state = "gun"
 	w_class = 2
 	caliber = "a9mm_para_luger"
