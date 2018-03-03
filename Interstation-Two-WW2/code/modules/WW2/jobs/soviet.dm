@@ -448,7 +448,7 @@
 
 	// AUTOBALANCE
 	min_positions = 5
-	max_positions = 200
+	max_positions = 25
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/soldier/equip(var/mob/living/carbon/human/H)

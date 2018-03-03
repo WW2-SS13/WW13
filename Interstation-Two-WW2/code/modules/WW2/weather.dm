@@ -20,7 +20,7 @@
 				if (1)
 					// pass
 				else
-					if (!config.allowed_weather.Find(weather_const2text(_weather)))
+					if (!config.allowed_weather.Find(weather_const2text(_weather)) && _weather != WEATHER_NONE)
 						return
 
 	var/old_weather = weather

@@ -320,7 +320,7 @@
 	var/_burst = firemode.burst
 	var/_burst_delay = isnull(firemode.burst_delay)? burst_delay : firemode.burst_delay
 	var/_fire_delay = isnull(firemode.fire_delay)? fire_delay : firemode.fire_delay
-	var/_move_delay = firemode.move_delay + (can_wield && !wielded) ? 2 : FALSE
+	var/_move_delay = firemode.move_delay
 
 	var/shoot_time = (_burst - TRUE)*_burst_delay
 	user.next_move = world.time + shoot_time  //no clicking on things while shooting
@@ -408,6 +408,10 @@
 	//update timing
 	user.next_move = world.time + 4
 	if(user.client) user.client.move_delay = world.time + _move_delay
+
+	if(_move_delay)
+		user.setMoveCooldown(_move_delay)
+
 	next_fire_time = world.time + _fire_delay
 
 	if(muzzle_flash)

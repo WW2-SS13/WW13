@@ -403,12 +403,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				ManualFollow(tpt)
 				goto endloop // TRUE break statement is not enough
 
-	endloop
+		endloop
 
-	var/newloc = get_turf(src)
+		var/newloc = get_turf(src)
 
-	if (oldloc == newloc) // we didn't move: train isn't here
-		loc = locate(127, 454, TRUE) // take us to the train station
+		if (oldloc == newloc) // we didn't move: train isn't here
+			loc = locate(127, 454, TRUE) // take us to the train station
 
 /mob/observer/ghost/verb/follow_supplytrain()
 	set category = "Ghost"
@@ -421,18 +421,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/datum/train_controller/german_supplytrain_controller/tc = german_supplytrain_master
 
-	if (tc && tc.here)
-		for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
-			for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
-				ManualFollow(tpt)
-				goto endloop // TRUE break statement is not enough
+	if (tc)
+		if (tc.here)
+			for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
+				for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
+					ManualFollow(tpt)
+					goto endloop // TRUE break statement is not enough
 
-	endloop
+		endloop
 
-	var/newloc = get_turf(src)
+		var/newloc = get_turf(src)
 
-	if (oldloc == newloc) // we didn't move: train isn't here
-		loc = locate(15, 526, TRUE) // take us to the train station
+		if (oldloc == newloc) // we didn't move: train isn't here
+			loc = locate(15, 526, TRUE) // take us to the train station
 
 /mob/observer/ghost/verb/follow_supply_lift()
 	set category = "Ghost"
