@@ -17,8 +17,9 @@
 	accuracy = 5000
 	penetrating = 1
 
+// STG44
 /obj/item/projectile/bullet/rifle/a792x33
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_MEDIUM - 4
 	penetrating = 1
 
 // MOSIN

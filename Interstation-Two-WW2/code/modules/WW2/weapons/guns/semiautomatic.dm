@@ -82,8 +82,8 @@
 	can_wield = TRUE
 	//must_wield = TRUE
 
-	accuracy = DEFAULT_SEMIAUTO_ACCURACY
-	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
+	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY
+	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY
 
 	firemodes = list(
 		list(name="single shot",	burst=1, burst_delay=1.0, recoil=0.4, move_delay=0, dispersion = list(0.4, 0.6, 0.6, 0.6, 0.8)),
@@ -155,16 +155,16 @@
 	caliber = "a792x33"
 	magazine_type = /obj/item/ammo_magazine/a762/akm
 
-	accuracy = DEFAULT_SEMIAUTO_ACCURACY
+	accuracy = DEFAULT_SEMIAUTO_ACCURACY-1
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 
 	can_wield = TRUE
 	//must_wield = TRUE
 
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=1.8, move_delay=4, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(name="short bursts",	burst=3, burst_delay=1.8, move_delay=6, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
-		list(name="long bursts",	burst=5, burst_delay=1.8, move_delay=8, dispersion = list(1.0, 1.0, 1.0, 1.0, 1.2)),
+		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=1, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
+		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(name="long bursts",	burst=5, burst_delay=1.2, move_delay=4, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
 		)
 
 	sel_mode = 2
@@ -194,8 +194,8 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
 	fire_sound = 'sound/weapons/m16.ogg'
-	accuracy = DEFAULT_SEMIAUTO_ACCURACY-1
-	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY-1
+	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-1
+	scoped_accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-1
 	caliber = "a762x25"
 	magazine_type = /obj/item/ammo_magazine/a556/ppsh
 	firemodes = list(
