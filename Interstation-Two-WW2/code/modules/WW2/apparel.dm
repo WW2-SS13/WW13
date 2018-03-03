@@ -100,28 +100,6 @@
 		var/obj/item/clothing/head/helmet/tactical/sovhelm/head = H.head
 		head.transform2german()
 
-/obj/item/clothing/under/sovuni
-	name = SOVIET_UNIFORM_NAME
-	desc = SOVIET_UNIFORM_DESC
-	icon_state = SOVIET_UNIFORM_STATE
-	item_state = SOVIET_UNIFORM_STATE
-	worn_state = SOVIET_UNIFORM_STATE
-
-/obj/item/clothing/under/sovuni/officer
-	name = "soviet officer's uniform"
-	desc = "A fancier, more pressed uniform of the Red Army, given to Soviet officers. It has a feel of pride and authority."
-	icon_state = "sovuniofficer"
-	item_state = "sovuniofficer"
-	worn_state = "sovuniofficer"
-
-/obj/item/clothing/under/sovuni/MP
-	name = "soviet MP's uniform"
-	desc = "A fancier, more pressed uniform of the Red Army, given to Soviet military police."
-	icon_state = "sovuni_MP"
-	item_state = "sovuni_MP"
-	worn_state = "sovuni_MP"
-
-
 /obj/item/clothing/under/geruni
 	name = GERMAN_UNIFORM_NAME
 	desc = GERMAN_UNIFORM_DESC
@@ -163,6 +141,13 @@
 		rolled = TRUE
 	update_clothing_icon()
 
+/obj/item/clothing/under/geruni/general
+	name = "Heer General uniform"
+	desc = "A comfortable and sturdy officer's uniform."
+	icon_state = "gerunigeneral"
+	item_state = "gerunigeneral"
+	worn_state = "gerunigeneral"
+
 /obj/item/clothing/under/geruni/falluni
 	name = "Fallschirmjager uniform"
 	desc = "Standart german uniform for fallschirmjagers. This is quite comfy and sturdy uniform."
@@ -170,30 +155,19 @@
 	item_state = "falluni"
 	worn_state = "falluni"
 
-/obj/item/clothing/suit/fallsparka
-	name = "Fallschirmjager Parka"
-	desc = "A warm and comfy parka for fallschirmjagers."
-	icon_state = "fallsparka"
-	item_state = "fallsparka"
-	worn_state = "fallsparka"
-	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
-
-
-/obj/item/clothing/suit/sssmock
-	name = "S.S. Smock"
-	desc = "A camo S.S. overcoat that blends in well in the fall."
-	icon_state = "sssmock"
-	item_state = "sssmock"
-	worn_state = "sssmock"
-	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
-
-
 /obj/item/clothing/under/geruni/ssuni
 	name = "SS uniform"
-	desc = "Camo uniform for ShutzStaffel soldiers. Sturdy, comfy, and makes you less visible in autumn. They gave you this too early by the way."
+	desc = "A black uniform ShutzStaffel soldiers. Sturdy and comfortable."
 	icon_state = "newssuni"
 	item_state = "newssuni"
 	worn_state = "newssuni"
+
+/obj/item/clothing/under/geruni/sscamo
+	name = "SS camo uniform"
+	desc = "Camo uniform for ShutzStaffel soldiers. Sturdy, comfy, and makes you less visible in autumn. They gave you this too early by the way."
+	icon_state = "ssunicamo"
+	item_state = "ssunicamo"
+	worn_state = "ssunicamo"
 
 /obj/item/clothing/under/geruni/ssformalofc
 	name = "SS Officer's Formal Uniform"
@@ -209,12 +183,56 @@
 	item_state = "gertankeruni"
 	worn_state = "gertankeruni"
 
+/obj/item/clothing/under/sovuni
+	name = SOVIET_UNIFORM_NAME
+	desc = SOVIET_UNIFORM_DESC
+	icon_state = SOVIET_UNIFORM_STATE
+	item_state = SOVIET_UNIFORM_STATE
+	worn_state = SOVIET_UNIFORM_STATE
+
+/obj/item/clothing/under/sovuni/camo
+	name = "Soviet Camo Uniform"
+	desc = "Camo uniform for Soviet soldiers. Sturdy, comfy, and makes you less visible in autumn. They gave you this too early by the way."
+	icon_state = "sovunicamo"
+	item_state = "sovunicamo"
+	worn_state = "sovunicamo"
+
+/obj/item/clothing/under/sovuni/officer
+	name = "Soviet Officer's uniform"
+	desc = "A fancier, more pressed uniform of the Red Army, given to Soviet officers. It has a feel of pride and authority."
+	icon_state = "sovuniofficer"
+	item_state = "sovuniofficer"
+	worn_state = "sovuniofficer"
+
+/obj/item/clothing/under/sovuni/MP
+	name = "Soviet MP's uniform"
+	desc = "A fancier, more pressed uniform of the Red Army, given to Soviet military police."
+	icon_state = "sovuni_MP"
+	item_state = "sovuni_MP"
+	worn_state = "sovuni_MP"
+
 /obj/item/clothing/under/sovuni/sovtankeruni
 	name = "Soviet Crewman Uniform"
 	desc = "Dark blue jumpsuit with a brown belt and bandolier."
 	icon_state = "sovtankeruni"
 	item_state = "sovtankeruni"
 	worn_state = "sovtankeruni"
+
+/obj/item/clothing/suit/fallsparka
+	name = "Fallschirmjager Parka"
+	desc = "A warm and comfy parka for fallschirmjagers."
+	icon_state = "fallsparka"
+	item_state = "fallsparka"
+	worn_state = "fallsparka"
+	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
+
+/obj/item/clothing/suit/sssmock
+	name = "S.S. Smock"
+	desc = "A camo S.S. overcoat that blends in well in the fall."
+	icon_state = "sssmock"
+	item_state = "sssmock"
+	worn_state = "sssmock"
+	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
 
 /obj/item/clothing/head/helmet/tactical
 	force = 7

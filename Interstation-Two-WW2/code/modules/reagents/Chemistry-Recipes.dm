@@ -209,7 +209,7 @@
 	result = "thermite"
 	required_reagents = list("aluminum" = TRUE, "iron" = TRUE, "acetone" = TRUE)
 	result_amount = 3
-
+/*
 /datum/chemical_reaction/space_drugs
 	name = "Space Drugs"
 	id = "space_drugs"
@@ -223,7 +223,7 @@
 	result = "lube"
 	required_reagents = list("water" = TRUE, "silicon" = TRUE, "acetone" = TRUE)
 	result_amount = 4
-
+*/
 /datum/chemical_reaction/pacid
 	name = "Polytrinic acid"
 	id = "pacid"

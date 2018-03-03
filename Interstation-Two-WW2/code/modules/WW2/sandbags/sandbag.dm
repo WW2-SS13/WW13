@@ -8,12 +8,13 @@
 	icon_state = "sandbag"
 	layer = MOB_LAYER + 0.01 //just above mobs
 	anchored = TRUE
+	climbable = TRUE
 
 /obj/structure/window/sandbag/attack_hand(var/mob/user as mob)
 	if (locate(src) in get_step(user, user.dir))
 		if (alert(user, "Dismantle the sandbag?", "", "Continue", "Stop") == "Continue")
 			visible_message("<span class='danger'>[user] starts dismantling the sandbag wall.</span>", "<span class='danger'>You start dismantling the sandbag wall.</span>")
-			if (do_after(user, rand(90,110), src))
+			if (do_after(user, 200, src))
 				visible_message("<span class='danger'>[user] finishes dismantling the sandbag wall.</span>", "<span class='danger'>You finish dismantling the sandbag wall.</span>")
 				var/turf = get_turf(src)
 				/* it takes 6 sandbags to make a full sandbag.

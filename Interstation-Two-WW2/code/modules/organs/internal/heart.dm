@@ -69,18 +69,18 @@
 			if(prob(1))
 				owner << "<span class='warning'>You feel [pick("dizzy","woosey","faint")]</span>"
 			if(owner.getOxyLoss() < 20)
-				owner.adjustOxyLoss(pick(0.25, 0.33, 0.5))
+				owner.adjustOxyLoss(pick(0.25, 0.35, 0.45))
 		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
 			owner.eye_blurry = max(owner.eye_blurry,6)
 			if(owner.getOxyLoss() < 50)
-				owner.adjustOxyLoss(1)
-			owner.adjustOxyLoss(1.5)
+				owner.adjustOxyLoss(0.50)
+			owner.adjustOxyLoss(1.0)
 			if(prob(15))
 				owner.Paralyse(rand(1,3))
 				owner << "<span class='warning'>You feel extremely [pick("dizzy","woosey","faint")]</span>"
 		if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
-			owner.adjustOxyLoss(2)
-			owner.adjustToxLoss(1)
+			owner.adjustOxyLoss(1.50)
+			owner.adjustToxLoss(1.0)
 			if(prob(15))
 				owner << "<span class='warning'>You feel extremely [pick("dizzy","woosey","faint")]</span>"
 		else if(blood_volume < BLOOD_VOLUME_SURVIVE)

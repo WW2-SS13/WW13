@@ -92,6 +92,10 @@ var/GRACE_PERIOD_LENGTH = 7
 			if (prob(50))
 				use_snow = TRUE
 
+		if (!use_snow)
+			for (var/obj/snow_maker/SM in world)
+				qdel(SM)
+
 		for (var/turf/floor/G in turfs)
 
 			if (!G || G.z > TRUE || (!G.uses_winter_overlay && !locate(/obj/snow_maker) in G))

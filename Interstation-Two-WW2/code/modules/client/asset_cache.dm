@@ -78,10 +78,8 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 			var/mob/M = client
 			if(M.client)
 				client = M.client
-
 			else
 				return FALSE
-
 		else
 			return FALSE
 

@@ -273,6 +273,9 @@ var/datum/quickBan_handler/quickBan_handler = null
 /* the actual banning procedure */
 /proc/quickBan_ban(var/list/fields, var/client/banner)
 
+	if (!fields)
+		fields = list()
+
 	quickBan_sanitize_fields(fields)
 
 	var/ckey = fields["ckey"]
@@ -355,7 +358,12 @@ var/datum/quickBan_handler/quickBan_handler = null
 
 /* check if we're banned and tell us why we're banned */
 /client/proc/quickBan_rejected(var/bantype = "Server")
+
 	var/list/fields = quickBan_isbanned(bantype)
+
+	if (fields == FALSE)
+		fields = list()
+
 	if (!fields.Find("reason"))
 		return FALSE
 

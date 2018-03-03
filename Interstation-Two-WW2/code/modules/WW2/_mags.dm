@@ -214,11 +214,11 @@ OTHER
 	icon_state = "mg34_drum"
 ////	origin_tech = "combat=2"
 	mag_type = MAGAZINE
-	w_class = 2
+	w_class = 3
 	caliber = "a792x57"
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a792x57
-	max_ammo = 100
+	max_ammo = 50
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a762x39/empty
@@ -277,9 +277,9 @@ OTHER
 /obj/item/ammo_magazine/chameleon/empty
 	initial_ammo = FALSE
 
-/obj/item/ammo_magazine/a556/m4
+/obj/item/ammo_magazine/a556/ppsh
 	icon_state = "ppshmag"
-	max_ammo = 81
+	max_ammo = 71
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a762/akm
@@ -290,14 +290,14 @@ OTHER
 	max_ammo = 30
 	multiple_sprites = TRUE
 
-/obj/item/ammo_magazine/a762/pkm
+/obj/item/ammo_magazine/a762/dp
 	name = "DP ammo disk"
 	icon_state = "dpdisk"
 	caliber = "a762x39"
 	ammo_type = /obj/item/ammo_casing/a762x39
-	max_ammo = 41
+	max_ammo = 47
 	multiple_sprites = TRUE
-	w_class = 2
+	w_class = 3
 
 /obj/item/ammo_magazine/a762/m240
 	name = "M240 ammo"

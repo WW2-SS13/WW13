@@ -445,7 +445,7 @@
 /obj/structure/window/classic/take_damage(damage)
 	if (damage > 12 || (damage > 5 && prob(damage * 5)))
 		shatter()
-	else return ..()
+	else return
 
 /obj/structure/window/classic/hitby(AM as mob|obj)
 	..()

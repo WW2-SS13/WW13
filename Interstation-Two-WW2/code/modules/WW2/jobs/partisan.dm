@@ -7,9 +7,14 @@
 
 /datum/job/partisan/soldier
 	title = "Partisan Soldier"
-	total_positions = 4
 	selection_color = "#530909"
 	spawn_location = "JoinLatePartisan"
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 10
+	player_threshold = PLAYER_THRESHOLD_HIGHEST
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/partisan/soldier/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -35,11 +40,15 @@
 	title = "Partisan Commander"
 	is_officer = TRUE
 	is_commander = TRUE
-	total_positions = TRUE
 	head_position = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLatePartisanLeader"
 	additional_languages = list( "Russian" = 100, "German" = 100)
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/partisan/commander/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE

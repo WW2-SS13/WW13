@@ -65,14 +65,14 @@
 		height = 450
 		if (!reinforcements_master.has(src))
 			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a German reinforcement!</A></p>"
-			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Russian reinforcement!</A></p>"
+			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Soviet reinforcement!</A></p>"
 		else
 			if (reinforcements_master.has(src, GERMAN))
 				output += "<p><a href='byond://?src=\ref[src];unre_german=1'>Leave the German reinforcement pool.</A></p>"
 			else if (reinforcements_master.has(src, SOVIET))
-				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Russian reinforcement pool.</A></p>"
+				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Soviet reinforcement pool.</A></p>"
 	else
-		output += "<p><i>Reinforcements won't be available until after the train is sent.</i></p>"
+		output += "<p><i>Reinforcements are not available yet.</i></p>"
 
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
@@ -280,6 +280,11 @@
 			if (client.prefs.german_gender == FEMALE && !actual_job.is_nonmilitary)
 				usr << "<span class='danger'>German soldiers must be male.</span>"
 				return
+		else if (job_flag == SOVIET)
+			if (client.prefs.russian_gender == FEMALE && actual_job.is_officer)
+				usr << "<span class='danger'>Soviet officers must be male.</span>"
+				return
+
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
@@ -288,7 +293,7 @@
 			return
 
 		if (job_flag == GERMAN && has_occupied_base(GERMAN))
-			usr << "<span class='danger'>The Russians are currently occupying your base! You can't be deployed right now."
+			usr << "<span class='danger'>The Soviets are currently occupying your base! You can't be deployed right now."
 			return
 		else if (job_flag == SOVIET && has_occupied_base(SOVIET))
 			usr << "<span class='danger'>The Germans are currently occupying your base! You can't be deployed right now."
@@ -496,6 +501,19 @@
 /mob/new_player/proc/LateChoices()
 
 	var/arty = locate(/obj/machinery/artillery) in world
+	var/fallschirms = fallschirm_landmarks.len
+	var/german_tank = FALSE
+	var/soviet_tank = FALSE
+
+	for (var/obj/tank/german/T in world)
+		if (!T.admin)
+			german_tank = TRUE
+			break
+
+	for (var/obj/tank/soviet/T in world)
+		if (!T.admin)
+			soviet_tank = TRUE
+			break
 
 	src << browse(null, "window=latechoices")
 
@@ -505,7 +523,7 @@
 	dat += "<br>"
 	dat += "Round Duration: [roundduration2text()]"
 	dat += "<br>"
-	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans and [alive_russians.len] Russians."
+	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans, [alive_russians.len] Soviets, [alive_partisans.len] Partisans, and [alive_civilians.len] Civilians"
 	dat += "<br>"
 
 	var/list/restricted_choices = list()
@@ -529,6 +547,21 @@
 			if (!arty && (istype(job, /datum/job/german/artyman) || istype(job, /datum/job/german/scout)))
 				continue
 
+			if (!fallschirms && istype(job, /datum/job/german/paratrooper))
+				continue
+
+			if (!german_tank)
+				if (istype(job, /datum/job/german/tankcrew))
+					continue
+				else if (istype(job, /datum/job/german/anti_tank_crew))
+					continue
+
+			if (!soviet_tank)
+				if (istype(job, /datum/job/soviet/tankcrew))
+					continue
+				else if (istype(job, /datum/job/soviet/anti_tank_crew))
+					continue
+
 		//	var/unavailable_message = ""
 			if (job.title == "generic job")
 				continue
@@ -547,6 +580,10 @@
 
 			if (job_master.side_is_hardlocked(job.base_type_flag()))
 				job_is_available = FALSE
+
+			if(job_master.is_side_locked(job.base_type_flag()))
+				job_is_available = FALSE
+
 			//	unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
 
 		//	if (jobBanned(job.title))
@@ -587,14 +624,6 @@
 			// check if the job is admin-locked or disabled codewise
 
 			if (!job.enabled)
-				job_is_available = FALSE
-
-			// check if the faction is autobalance-locked
-
-			if (istype(job, /datum/job/partisan) && !istype(job, /datum/job/partisan/civilian) && !job_master.allow_partisans)
-				job_is_available = FALSE
-
-			if (istype(job, /datum/job/partisan/civilian) && !job_master.allow_civilians)
 				job_is_available = FALSE
 
 			// check if the job is autobalance-locked
@@ -661,7 +690,7 @@
 					replaced_faction_title = TRUE
 
 	if (!any_available_jobs)
-		src << "<span class = 'danger'><font size = 3>All jobs are disabled by autobalance! Please join a reinforcements queue to play.</font></span>"
+		src << "<span class = 'danger'><font size = 3>All roles are disabled by autobalance! Please join a reinforcements queue to play.</font></span>"
 		return
 
 	var/data = ""

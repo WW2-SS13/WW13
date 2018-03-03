@@ -13,6 +13,9 @@
 		if (12 to INFINITY)
 			return run_delay_maximum/1.15 // 15% faster
 
+/mob/proc/get_walk_delay()
+	return get_run_delay() * 1.33
+
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
 	if(air_group || (height==0)) return TRUE
@@ -400,7 +403,7 @@
 				mob.velocity_lastdir = direct
 				if(mob.drowsyness > FALSE)
 					move_delay += 6
-				move_delay += mob.get_run_delay()/mob.movement_speed_multiplier + standing_on_snow
+				move_delay += (mob.get_run_delay()/mob.movement_speed_multiplier) + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.02
@@ -409,11 +412,12 @@
 					if (H.bodytemperature < H.species.body_temperature)
 						H.bodytemperature += 0.66
 			if("walk")
-				move_delay += (mob.get_run_delay() * 1.33) /mob.movement_speed_multiplier + standing_on_snow
+				move_delay += (mob.get_walk_delay()/mob.movement_speed_multiplier) + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.002
 					H.water -= 0.002
+
 
 		if (mob.pulling)
 			if (istype(mob.pulling, /mob))
@@ -486,7 +490,8 @@
 
 		//Something with grabbing things
 		if(locate(/obj/item/weapon/grab, mob))
-			move_delay = max(move_delay, world.time + 7)
+		//	move_delay = max(move_delay, world.time + 7)
+			move_delay += 1.0
 			var/list/L = mob.ret_grab()
 			if(istype(L, /list))
 				if(L.len == 2)
@@ -574,8 +579,8 @@
 
 	return
 
-/mob/proc/lastMovedRecently()
-	if (abs(last_movement - world.time) < 2)
+/mob/proc/lastMovedRecently(threshold)
+	if (abs(last_movement - world.time) <= (threshold ? threshold : get_walk_delay()))
 		return TRUE
 	return FALSE
 

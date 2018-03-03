@@ -63,6 +63,10 @@
 	..(newloc,"sandstone")
 /turf/wall/wood/New(var/newloc)
 	..(newloc,"hardwood")
+/turf/wall/indestructable/New(var/newloc)
+	..(newloc,"indestructable")
+/turf/wall/indestructable/ex_act(severity)
+	return FALSE
 /turf/wall/ironplasma/New(var/newloc)
 	..(newloc,"iron","plasma")
 /turf/wall/golddiamond/New(var/newloc)

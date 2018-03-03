@@ -84,17 +84,18 @@
 				dismantle()
 			return
 
-
 /* the only barricades still in the code are wood barricades, which SHOULD
   be hit by bullets, at least sometimes - hence these changes. */
 
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
-	if(air_group || (height==0))
-		if (prob(30))
-			return TRUE
-	if(istype(mover) && mover.checkpass(PASSTABLE))
-		if (prob(30))
-			return TRUE
+	if (istype(mover, /obj/item/projectile))
+		if(air_group || (height==0))
+			if (prob(30))
+				return TRUE
+		if(mover.checkpass(PASSTABLE))
+			if (prob(30))
+				return TRUE
+		return FALSE
 	else
 		return FALSE
 
@@ -102,3 +103,10 @@
 	health -= proj.damage
 	visible_message("<span class='warning'>\The [src] is hit by the bullet!</span>")
 	try_destroy()
+
+// steel barricades
+
+/obj/structure/barricade/steel
+
+/obj/structure/barricade/steel/New(_loc)
+	..(_loc, DEFAULT_WALL_MATERIAL)

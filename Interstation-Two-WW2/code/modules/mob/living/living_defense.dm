@@ -243,7 +243,7 @@
 	return TRUE
 
 /mob/living/proc/IgniteMob()
-	if(fire_stacks > FALSE && !on_fire)
+	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
 		set_light(light_range + 3)
 		update_fire()
@@ -251,7 +251,7 @@
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)
 		on_fire = FALSE
-		fire_stacks = FALSE
+		fire_stacks = 0
 		set_light(max(0, light_range - 3))
 		update_fire()
 
@@ -277,7 +277,7 @@ var/obj/human_fire_overlay_lying = null
 	if(!on_fire)
 		return TRUE
 
-	else if(fire_stacks <= FALSE)
+	else if(fire_stacks <= 0)
 		ExtinguishMob() //Fire's been put out.
 		return TRUE
 /*
@@ -306,6 +306,10 @@ var/obj/human_fire_overlay_lying = null
 		generic_living_fire_overlay.layer = MOB_LAYER + 1
 
 	apply_damage(ceil(fire_stacks/3)+1, BURN, "chest", FALSE) // because fire does 0.2 damage per tick
+	if (prob((fire_stacks * 10) + 5))
+		if (!lying)
+			visible_message("<span class = 'danger'>[src] falls over in pain.</span>")
+		Weaken(fire_stacks+1)
 
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -315,8 +319,6 @@ var/obj/human_fire_overlay_lying = null
 			overlays += human_fire_overlay
 	else
 		overlays += generic_living_fire_overlay
-
-
 
 /mob/living/fire_act()
 	adjust_fire_stacks(1)

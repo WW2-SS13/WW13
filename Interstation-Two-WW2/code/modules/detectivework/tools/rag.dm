@@ -1,4 +1,4 @@
-#define BURNING_RAG_LIFE_TICKS 1000
+#define BURNING_RAG_LIFE_TICKS 10000 // pretty much forever
 
 /obj/item/clothing/gloves
 	var/transfer_blood = FALSE
@@ -246,6 +246,6 @@
 		qdel(src)
 		return
 
-	reagents.remove_reagent("fuel", reagents.maximum_volume/BURNING_RAG_LIFE_TICKS)
+//	reagents.remove_reagent("fuel", reagents.maximum_volume/BURNING_RAG_LIFE_TICKS)
 	update_name()
 	burn_time--

@@ -3,9 +3,10 @@
 	var/burst = TRUE
 	var/burst_delay = null
 	var/fire_delay = null
-	var/move_delay = TRUE
+	var/move_delay = 0
 	var/list/accuracy = list(0)
 	var/list/dispersion = list(0)
+	var/recoil = -1
 
 //using a list makes defining fire modes for new guns much nicer,
 //however we convert the lists to datums in part so that firemodes can be VVed if necessary.
@@ -43,7 +44,7 @@
 	var/burst_delay = 2	//delay between shots, if firing in bursts
 	var/fire_sound = 'sound/weapons/kar_shot.ogg'
 	var/fire_sound_text = "gunshot"
-	var/recoil = FALSE		//screen shake
+	var/recoil = 0		//screen shake
 	var/silenced = FALSE
 	var/muzzle_flash = 3
 	var/accuracy = 0   //accuracy is measured in tiles. +1 accuracy means that everything is effectively one tile closer for the purpose of miss chance, -1 means the opposite. launchers are not supported, at the moment.
@@ -70,7 +71,7 @@
 	var/can_scope = FALSE
 
 	var/burst = TRUE
-	var/move_delay = TRUE
+	var/move_delay = 0
 	var/list/burst_accuracy = list(0)
 	var/list/dispersion = list(0)
 
@@ -88,7 +89,7 @@
 	if(!firemodes.len)
 		firemodes += new firemode_type
 	else
-		for(var/i in TRUE to firemodes.len)
+		for(var/i in 1 to firemodes.len)
 			firemodes[i] = new firemode_type(firemodes[i])
 
 	if(isnull(scoped_accuracy))
@@ -196,7 +197,7 @@
 	if (A == user)
 		if (user.targeted_organ == "mouth" && !mouthshoot)
 			handle_suicide(user)
-		else
+		else if (user.a_intent == I_HURT)
 			handle_shoot_self(user)
 		return
 
@@ -207,17 +208,19 @@
 			var/mob/living/L = A
 			var/mob/living/carbon/C = A
 			if (!istype(C) || !C.check_attack_throat(src, user))
-				if (prob(50) && L != user && !L.lying)
+		/*		if (prob(50) && L != user && !L.lying)
 					visible_message("<span class = 'danger'>[user] tries to bayonet [L], but they miss!</span>")
-				else
-					var/obj/item/weapon/attachment/bayonet/a = bayonet
-					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
-					visible_message("<span class = 'danger'>[user] impales [L] with their gun's bayonet!</span>")
-					L.apply_damage(a.force * 2, BRUTE, def_zone)
-					L.Weaken(rand(1,2))
-					if (L.stat == CONSCIOUS && prob(50))
-						L.emote("scream")
-					playsound(get_turf(src), a.attack_sound, rand(90,100))
+				else*/
+
+				// bayonets no longer have a miss chance, but have been balanced otherwise - Kachnov
+				var/obj/item/weapon/attachment/bayonet/a = bayonet
+				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
+				visible_message("<span class = 'danger'>[user] impales [L] with their gun's bayonet!</span>")
+				L.apply_damage(a.force, BRUTE, def_zone)
+				L.Weaken(a.weakens)
+				if (L.stat == CONSCIOUS && prob(50))
+					L.emote("scream")
+				playsound(get_turf(src), a.attack_sound, rand(90,100))
 			else
 				var/obj/item/weapon/attachment/bayonet/a = bayonet
 				playsound(get_turf(src), a.attack_sound, rand(90,100))
@@ -275,7 +278,7 @@
 
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-//	user.setMoveCooldown(move_delay)
+	user.setMoveCooldown(move_delay)
 	next_fire_time = world.time + fire_delay
 
 	if(muzzle_flash)
@@ -317,7 +320,7 @@
 	var/_burst = firemode.burst
 	var/_burst_delay = isnull(firemode.burst_delay)? burst_delay : firemode.burst_delay
 	var/_fire_delay = isnull(firemode.fire_delay)? fire_delay : firemode.fire_delay
-	var/_move_delay = firemode.move_delay + (can_wield && !wielded) ? 2 : FALSE
+	var/_move_delay = firemode.move_delay
 
 	var/shoot_time = (_burst - TRUE)*_burst_delay
 	user.next_move = world.time + shoot_time  //no clicking on things while shooting
@@ -327,7 +330,7 @@
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 
-	for(var/i in TRUE to _burst)
+	for(var/i in 1 to _burst)
 		var/obj/projectile = consume_next_projectile(user)
 
 		if(!projectile)
@@ -340,13 +343,11 @@
 		if (istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
 
-			if (gun_type == GUN_TYPE_RIFLE)
-				P.KD_chance *= 12
-				if (ishuman(user))
-					var/mob/living/carbon/human/H = user
-					P.KD_chance *= H.getStatCoeff("rifle")
-					acc += max(H.getStatCoeff("rifle")-1, FALSE)
+			// 100% chance of KD
+			if (gun_type == GUN_TYPE_SHOTGUN)
+				P.KD_chance *= 20
 
+			// 75%
 			else if (gun_type == GUN_TYPE_HEAVY)
 				P.KD_chance *= 15
 				if (ishuman(user))
@@ -354,19 +355,29 @@
 					P.KD_chance *= H.getStatCoeff("heavyweapon")
 					acc += max(H.getStatCoeff("heavyweapon")-1, FALSE)
 
+			// 60% chance of KD
+			else if (gun_type == GUN_TYPE_RIFLE)
+				P.KD_chance *= 12
+				if (ishuman(user))
+					var/mob/living/carbon/human/H = user
+					P.KD_chance *= H.getStatCoeff("rifle")
+					acc += max(H.getStatCoeff("rifle")-1, FALSE)
+
+			// 30% chance of KD
+			else if (gun_type == GUN_TYPE_PISTOL)
+				P.KD_chance *= 6
+				if (ishuman(user))
+					var/mob/living/carbon/human/H = user
+					P.KD_chance *= H.getStatCoeff("pistol")
+					acc += max(H.getStatCoeff("pistol")-1, FALSE)
+
+			// 20% chance of KD
 			else if (gun_type == GUN_TYPE_MG)
 				P.KD_chance *= 4
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("mg")
 					acc += max(H.getStatCoeff("mg")-1, FALSE)
-
-			else if (gun_type == GUN_TYPE_PISTOL)
-				P.KD_chance *= 3
-				if (ishuman(user))
-					var/mob/living/carbon/human/H = user
-					P.KD_chance *= H.getStatCoeff("pistol")
-					acc += max(H.getStatCoeff("pistol")-1, FALSE)
 
 			if (ishuman(user))
 				var/mob/living/carbon/human/H = user
@@ -397,6 +408,10 @@
 	//update timing
 	user.next_move = world.time + 4
 	if(user.client) user.client.move_delay = world.time + _move_delay
+
+	if(_move_delay)
+		user.setMoveCooldown(_move_delay)
+
 	next_fire_time = world.time + _fire_delay
 
 	if(muzzle_flash)
@@ -450,14 +465,23 @@
 		if(muzzle_flash)
 			set_light(muzzle_flash)
 
+	var/datum/firemode/F = firemodes[sel_mode]
+
+	var/i_recoil = recoil
+	if (F.recoil != -1)
+		recoil = F.recoil
+
 	if(recoil)
-		spawn()
-			var/shake_strength = recoil
-			if(can_wield && !wielded)
-				shake_strength += 2
-			shake_strength -= TRUE
-			if (shake_strength > FALSE)
-				shake_camera(user, shake_strength+1, shake_strength)
+		spawn(0)
+			var/shake_strength = recoil+1
+		//	if(can_wield && !wielded)
+			//	shake_strength += 2
+			if (shake_strength > 0)
+				shake_camera(user, max(shake_strength, 0), min(shake_strength, 50))
+			recoil = i_recoil
+	else
+		recoil = i_recoil
+
 	update_icon()
 
 
@@ -490,7 +514,7 @@
 
 	//Accuracy modifiers
 	P.accuracy = accuracy + acc_mod
-	P.dispersion = dispersion + (can_wield && !wielded) ? 2 : FALSE
+	P.dispersion = dispersion
 
 	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))
@@ -499,7 +523,7 @@
 		//As opposed to no-delay pew pew
 		P.accuracy += 2
 
-/* // since weilding was removed
+/* // since wielding was removed
 	if(can_wield && !wielded)
 		P.accuracy -= 2 */
 
@@ -569,6 +593,7 @@
 /obj/item/weapon/gun/proc/handle_shoot_self(mob/living/user)
 	if(!ishuman(user))
 		return
+
 	var/mob/living/carbon/human/M = user
 
 	var/obj/item/projectile/in_chamber = consume_next_projectile()

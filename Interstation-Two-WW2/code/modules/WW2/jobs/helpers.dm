@@ -1,5 +1,5 @@
 /proc/n_of_side(x)
-	. = FALSE
+	. = 0
 	switch (x)
 		if (PARTISAN)
 			for (var/mob/living/carbon/human/H in player_list)

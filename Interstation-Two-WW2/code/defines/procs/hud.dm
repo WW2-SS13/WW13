@@ -72,8 +72,9 @@ proc/process_faction_hud(var/mob/M, var/mob/Alt)
 			continue
 		if (!perp.original_job)
 			continue
+		/*
 		if (perp == viewer)
-			continue
+			continue*/
 
 		if (viewer.original_job.base_type_flag() == perp.original_job.base_type_flag())
 			if (sharesquads(viewer, perp)) // same squad or SL

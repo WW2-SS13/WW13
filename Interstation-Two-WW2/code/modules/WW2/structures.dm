@@ -70,12 +70,15 @@
 		hanging.dir = SOUTH
 		hanging.pixel_y = 3 // because getting punched resets it
 		icon_state = "noose-hanging"
+
 		if (pixel_x == 0)
 			pixel_x = 1
 		else if (pixel_x == 1)
 			pixel_x = 0
 		else if (pixel_x == 0)
 			pixel_x = -1
+		else // somehow
+			pixel_x = 0
 
 		hanging.pixel_x = pixel_x
 

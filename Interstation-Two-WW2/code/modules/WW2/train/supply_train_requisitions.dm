@@ -44,6 +44,7 @@
 
 		// GUNS & ARTILLERY
 		"MP40" = /obj/item/weapon/gun/projectile/automatic/mp40,
+		"MG34" = /obj/item/weapon/gun/projectile/automatic/mg34,
 		"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
 		"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 		"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
@@ -104,6 +105,7 @@
 
 		// GUNS & ARTILLERY
 		"MP40" = 125,
+		"MG34" = 175,
 		"PTRD" = 200,
 		"Flammenwerfer" = 250,
 		"7,5 cm FK 18 Artillery Piece" = 300,
@@ -111,8 +113,8 @@
 		"Maxim" = 225,
 
 		// ARTILLERY AMMO
-		"Artillery Ballistic Shells Crate" = 100,
-		"Artillery Gas Shells Crate" = 200,
+		"Artillery Ballistic Shells Crate" = 150,
+		"Artillery Gas Shells Crate" = 250,
 
 		// CLOSETS
 		"Tool Closet" = 50,

@@ -10,6 +10,7 @@
 	extended_round_description = ""
 
 	var/time_both_sides_locked = -1
+	var/time_to_end_round_after_both_sides_locked = 6000
 
 	// NEW WIN CONDITIONS - Kachnov
 	var/currently_winning = ""
@@ -75,12 +76,20 @@
 		// wait 10 minutes and see who is doing the best
 
 		if (time_both_sides_locked != -1)
-			if (world.realtime - time_both_sides_locked >= 6000 && !currently_winning)
+			if (world.realtime - time_both_sides_locked >= time_to_end_round_after_both_sides_locked && !currently_winning)
 				return TRUE
 		else if (reinforcements_master.is_permalocked(GERMAN))
 			if (reinforcements_master.is_permalocked(SOVIET))
 				time_both_sides_locked = world.realtime
-				world << "<font size = 3>Both sides are locked for reinforcements; the round will end in 10 minutes.</font>"
+
+				if (soldiers["ru"] && soldiers["ru"]/1.33 >= soldiers["de"])
+					time_to_end_round_after_both_sides_locked = 18000
+				else if (soldiers["de"] && soldiers["de"]/1.33 >= soldiers["ru"])
+					time_to_end_round_after_both_sides_locked = 18000
+				else
+					time_to_end_round_after_both_sides_locked = 6000
+
+				world << "<font size = 3>Both sides are locked for reinforcements; the round will end in [time_to_end_round_after_both_sides_locked/600] minutes.</font>"
 				return FALSE
 
 		// conditions 2.1 to 2.5: one side has occupied the enemy base
@@ -207,23 +216,24 @@
 	for (var/client/client in clients)
 		client << "<br>"
 
+// todo: aspect recode
 /datum/game_mode/ww2/announce() //to be called when round starts
 
 	world << "<b><big>The round has started!</big></b>"
 	// announce after some other stuff, like system setups, are announced
 	spawn (3)
 
-		new/datum/game_aspect/ww2(src)
+	//	new/datum/game_aspect/ww2(src)
 
-		spawn (1)
-			if (aspect)
+	//	spawn (1)
+/*			if (aspect)
 				aspect.activate()
-				aspect.post_activation()
+				aspect.post_activation()*/
 
 			// train might not be set up yet
-			spawn (100)
-				job_master.german_job_slots *= personnel[GERMAN]
-				job_master.soviet_job_slots *= personnel[SOVIET]
+		//	spawn (100)
+			//	job_master.german_job_slots *= personnel[GERMAN]
+			//	job_master.soviet_job_slots *= personnel[SOVIET]
 
 				// nerf or buff german supplies by editing the supply train controller
 		//		german_supplytrain_master.supply_points_per_second_min *= supplies[GERMAN]
@@ -236,7 +246,7 @@
 						soviet.resize(supplies[SOVIET])*/
 
 			// this may have already happened, do it again w/o announce
-			setup_autobalance(0)
+		setup_autobalance(0)
 
 		// let new players see the join link
 		for (var/mob/new_player/np in world)

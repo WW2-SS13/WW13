@@ -110,7 +110,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	job_master.ResetOccupations()
 	mode.create_antagonists()
 	mode.pre_setup()
-	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
+//	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!mode.can_start())
 		if (serverswap_open_status)

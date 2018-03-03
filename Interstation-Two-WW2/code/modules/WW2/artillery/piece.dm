@@ -208,6 +208,10 @@
 
 	if (href_list["fire"])
 
+		if (map && !map.germans_can_cross_blocks())
+			user << "<span class = 'danger'>You can't fire yet.</span>"
+			return
+
 		var/area/user_area = get_area(user)
 
 		if (user_area.location == AREA_INSIDE)
@@ -552,7 +556,7 @@
 		// work right
 
 		spawn (max(travel_time - 50,0))
-			if (prob(75))
+			if (prob(66))
 				for (var/mob/living/carbon/human/H in range(15, t))
 					if (!(H.disabilities & DEAF))
 						H << "<span class = 'userdanger'>You think you can hear the sound of artillery flying in! Take cover!</span>"
@@ -591,12 +595,16 @@
 					t.visible_message("<span class = 'danger'>The ceiling collapses!</span>")
 
 			if (explosion)
+				message_admins("HE artillery shell hit at [t.x], [t.y], [t.z].")
+				log_admin("HE artillery shell hit at [t.x], [t.y], [t.z].")
 				explosion(t, 2*power_mult, 4*power_mult, 6*power_mult, 9*power_mult)
 				// extra effective against tonks
 				for (var/obj/tank/T in range(1, t))
 					T.ex_act(1.0, TRUE)
 			else
-				var/how_many = rand(20,30) // was 40, 50
+				message_admins("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
+				log_admin("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
+				var/how_many = rand(20,30)
 				for (var/v in TRUE to how_many)
 					switch (reagent_payload)
 						if ("chlorine_gas")

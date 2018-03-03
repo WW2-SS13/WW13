@@ -847,7 +847,7 @@
 	taste_description = "death and licorice"
 	taste_mult = 1.5
 	color = "#33EE00"
-	strength = 12
+	strength = 40
 
 /datum/reagent/ethanol/ale
 	name = "Ale"
@@ -855,7 +855,7 @@
 	description = "A dark alchoholic beverage made by malted barley and yeast."
 	taste_description = "hearty barley ale"
 	color = "#664300"
-	strength = 50
+	strength = 20
 
 /datum/reagent/ethanol/beer
 	name = "Beer"
@@ -863,7 +863,7 @@
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water."
 	taste_description = "beer"
 	color = "#664300"
-	strength = 50
+	strength = 20
 	nutriment_factor = 1
 
 /datum/reagent/ethanol/beer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -877,7 +877,7 @@
 	taste_description = "oranges"
 	taste_mult = 1.1
 	color = "#0000CD"
-	strength = 15
+	strength = 40
 
 /datum/reagent/ethanol/cognac
 	name = "Cognac"
@@ -886,7 +886,7 @@
 	taste_description = "rich and smooth alcohol"
 	taste_mult = 1.1
 	color = "#AB3C05"
-	strength = 15
+	strength = 30
 
 /datum/reagent/ethanol/deadrum
 	name = "Deadrum"
@@ -894,7 +894,7 @@
 	description = "Popular with the sailors. Not very popular with everyone else."
 	taste_description = "salty sea water"
 	color = "#664300"
-	strength = 50
+	strength = 40
 
 /datum/reagent/ethanol/deadrum/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -906,7 +906,7 @@
 	description = "It's gin. In space. I say, good sir."
 	taste_description = "an alcoholic christmas tree"
 	color = "#664300"
-	strength = 50
+	strength = 40
 
 //Base type for alchoholic drinks containing coffee
 /datum/reagent/ethanol/coffee
@@ -989,7 +989,7 @@
 	taste_description = "dry alcohol"
 	taste_mult = 1.3
 	color = "#91FF91" // rgb: 145, 255, 145
-	strength = 15
+	strength = 40
 
 /datum/reagent/ethanol/vodka
 	name = "Vodka"
@@ -1017,7 +1017,7 @@
 	description = "An premium alchoholic beverage made from distilled grape juice."
 	taste_description = "bitter sweetness"
 	color = "#7E4043" // rgb: 126, 64, 67
-	strength = 15
+	strength = 30
 	nutriment_factor = 1
 
 // Cocktails
@@ -1147,7 +1147,7 @@
 	description = "For the lactose-intolerant. Still as classy as a White Russian."
 	taste_description = "bitterness"
 	color = "#360000"
-	strength = 15
+	strength = 35
 
 /datum/reagent/ethanol/bloody_mary
 	name = "Bloody Mary"
@@ -1155,7 +1155,7 @@
 	description = "A strange yet pleasurable mixture made of vodka, tomato and lime juice. Or at least you THINK the red stuff is tomato juice."
 	taste_description = "tomatoes with a hint of lime"
 	color = "#664300"
-	strength = 15
+	strength = 35
 
 /datum/reagent/ethanol/booger
 	name = "Booger"
@@ -1205,7 +1205,7 @@
 	taste_description = "sweet tasting iron"
 	taste_mult = 1.5
 	color = "#820000"
-	strength = 15
+	strength = 50
 
 /datum/reagent/ethanol/devilskiss
 	name = "Devils Kiss"
@@ -1213,7 +1213,7 @@
 	description = "Creepy time!"
 	taste_description = "bitter iron"
 	color = "#A68310"
-	strength = 15
+	strength = 50
 
 /datum/reagent/ethanol/driestmartini
 	name = "Driest Martini"
@@ -1247,7 +1247,7 @@
 	description = "The surprise is, it's green!"
 	taste_description = "tartness and bananas"
 	color = "#2E6671"
-	strength = 15
+	strength = 50
 
 /datum/reagent/ethanol/gargle_blaster
 	name = "Pan-Galactic Gargle Blaster"
@@ -1274,7 +1274,7 @@
 	taste_description = "burning cinnamon"
 	taste_mult = 1.3
 	color = "#664300"
-	strength = 15
+	strength = 50
 
 /datum/reagent/ethanol/hippies_delight
 	name = "Hippies' Delight"
@@ -1283,7 +1283,7 @@
 	taste_description = "giving peace a chance"
 	reagent_state = LIQUID
 	color = "#664300"
-	strength = 15
+	strength = 50
 	druggy = 50
 
 /datum/reagent/ethanol/hooch
@@ -1311,7 +1311,7 @@
 	description = "Mmm, tastes like chocolate cake..."
 	taste_description = "delicious anger"
 	color = "#2E6671"
-	strength = 15
+	strength = 50
 
 /datum/reagent/ethanol/coffee/irishcoffee
 	name = "Irish Coffee"
@@ -1544,7 +1544,7 @@
 	description = "For when a gin and tonic isn't russian enough."
 	taste_description = "tart bitterness"
 	color = "#0064C8" // rgb: FALSE, 100, 200
-	strength = 15
+	strength = 25
 
 /datum/reagent/ethanol/white_russian
 	name = "White Russian"
@@ -1552,7 +1552,7 @@
 	description = "That's just, like, your opinion, man..."
 	taste_description = "bitter cream"
 	color = "#A68340"
-	strength = 15
+	strength = 40
 
 /datum/reagent/ethanol/whiskey_cola
 	name = "Whiskey Cola"
@@ -1567,7 +1567,7 @@
 	id = "whiskeysoda"
 	description = "For the more refined griffon."
 	color = "#664300"
-	strength = 15
+	strength = 30
 
 /datum/reagent/ethanol/specialwhiskey // I have no idea what this is and where it comes from
 	name = "Special Blend Whiskey"

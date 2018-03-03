@@ -1,5 +1,9 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
+#define MAX_CHARS_PER_LINE 200
+#define MAX_CHARS_TOTAL 20000
+#define MAX_LINES 1000
+
 /datum/song
 	var/name = "Untitled"
 	var/list/lines = new()
@@ -311,8 +315,8 @@
 					defined by tempo / x: <i>C,G/2,E/4</i><br>
 					Combined, an example is: <i>E-E4/4,/2,G#/8,B/8,E3-E4/4</i>
 					<br>
-					Lines may be up to 50 characters.<br>
-					A song may only contain up to 200 lines.<br>
+					Lines may be up to [MAX_CHARS_PER_LINE] characters.<br>
+					A song may only contain up to [MAX_LINES] lines.<br>
 					"}
 		else
 			dat += "<A href='?src=\ref[src];help=2'>Show Help</A><BR>"
@@ -353,10 +357,10 @@
 			var/newline = rhtml_encode(input("Enter your line: ", "Piano") as text|null)
 			if(!newline)
 				return
-			if(song.lines.len > 200)
+			if(song.lines.len > MAX_LINES)
 				return
-			if(lentext(newline) > 50)
-				newline = copytext(newline, TRUE, 50)
+			if(lentext(newline) > MAX_CHARS_PER_LINE)
+				newline = copytext(newline, TRUE, MAX_CHARS_PER_LINE)
 			song.lines.Add(newline)
 
 		else if(href_list["deleteline"])
@@ -370,8 +374,8 @@
 			var/content = rhtml_encode(input("Enter your line: ", "Piano", song.lines[num]) as text|null)
 			if(!content)
 				return
-			if(lentext(content) > 50)
-				content = copytext(content, TRUE, 50)
+			if(lentext(content) > MAX_CHARS_PER_LINE)
+				content = copytext(content, TRUE, MAX_CHARS_PER_LINE)
 			if(num > song.lines.len || num < TRUE)
 				return
 			song.lines[num] = content
@@ -392,11 +396,11 @@
 				if (!in_range(src, usr))
 					return
 
-				if(lentext(t) >= 12000)
+				if(lentext(t) >= MAX_CHARS_TOTAL)
 					var/cont = input(usr, "Your message is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
 					if(cont == "no")
 						break
-			while(lentext(t) > 12000)
+			while(lentext(t) > MAX_CHARS_TOTAL)
 
 			//split into lines
 			spawn()
@@ -405,12 +409,12 @@
 				if(copytext(lines[1],1,6) == "BPM: ")
 					tempo = 600 / text2num(copytext(lines[1],6))
 					lines.Cut(1,2)
-				if(lines.len > 200)
+				if(lines.len > MAX_LINES)
 					usr << "Too many lines!"
 					lines.Cut(201)
 				var/linenum = TRUE
 				for(var/l in lines)
-					if(lentext(l) > 50)
+					if(lentext(l) > MAX_CHARS_PER_LINE)
 						usr << "Line [linenum] too long!"
 						lines.Remove(l)
 					else

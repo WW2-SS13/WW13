@@ -265,6 +265,8 @@ var/list/name_to_material
 	tableslam_noise = null
 	hardness = 10
 	stack_origin_tech = list(TECH_MATERIAL = 6)
+	sheet_singular_name = "coil"
+	sheet_plural_name = "coils"
 
 /material/gold
 	name = "gold"
@@ -577,6 +579,13 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	hitsound = 'sound/weapons/smash.ogg'
+
+/material/iron/indestructable
+	name = "indestructable"
+	icon_base = "metal"
+	integrity = 1000000
+	hardness = 1000000
+	melting_point = 1000000
 
 /material/morgue
 	name = "morgue"

@@ -311,7 +311,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Follow and haunt a mob."
 
 	if (input != "Cancel")
-		ManualFollow(getfitmobs()[input])
+		var/list/mobs = getfitmobs()
+		if (mobs[input])
+			ManualFollow(mobs[input])
 
 /mob/observer/ghost/verb/follow_soviet(input in getfitmobs(SOVIET)+"Cancel")
 	set category = "Ghost"
@@ -319,7 +321,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Follow and haunt a living Soviet."
 
 	if (input != "Cancel")
-		ManualFollow(getfitmobs(SOVIET)[input])
+		var/list/mobs = getfitmobs(SOVIET)
+		if (mobs[input])
+			ManualFollow(mobs[input])
 
 /mob/observer/ghost/verb/follow_german(input in getfitmobs(GERMAN)+"Cancel")
 	set category = "Ghost"
@@ -327,7 +331,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Follow and haunt a living German."
 
 	if (input != "Cancel")
-		ManualFollow(getfitmobs(GERMAN)[input])
+		var/list/mobs = getfitmobs(GERMAN)
+		if (mobs[input])
+			ManualFollow(mobs[input])
 
 /mob/observer/ghost/verb/follow_paratroopers(input in getfitmobs("PARATROOPERS")+"Cancel")
 	set category = "Ghost"
@@ -335,7 +341,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Follow and haunt a living Paratrooper."
 
 	if (input != "Cancel")
-		ManualFollow(getfitmobs("PARATROOPERS")[input])
+		var/list/mobs = getfitmobs("PARATROOPERS")
+		if (mobs[input])
+			ManualFollow(mobs[input])
 
 /mob/observer/ghost/verb/follow_ss(input in getfitmobs("SS")+"Cancel")
 	set category = "Ghost"
@@ -343,7 +351,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Follow and haunt a living SS soldier."
 
 	if (input != "Cancel")
-		ManualFollow(getfitmobs("SS")[input])
+		var/list/mobs = getfitmobs("SS")
+		if (mobs[input])
+			ManualFollow(mobs[input])
 
 /mob/observer/ghost/verb/follow_partisan(input in getfitmobs(PARTISAN)+"Cancel")
 	set category = "Ghost"
@@ -351,7 +361,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Follow and haunt a living Partisan."
 
 	if (input != "Cancel")
-		ManualFollow(getfitmobs(PARTISAN)[input])
+		var/list/mobs = getfitmobs(PARTISAN)
+		if (mobs[input])
+			ManualFollow(mobs[input])
 
 /mob/observer/ghost/verb/follow_civilian(input in getfitmobs(CIVILIAN)+"Cancel")
 	set category = "Ghost"
@@ -359,7 +371,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Follow and haunt a living Civilian."
 
 	if (input != "Cancel")
-		ManualFollow(getfitmobs(CIVILIAN)[input])
+		var/list/mobs = getfitmobs(CIVILIAN)
+		if (mobs[input])
+			ManualFollow(mobs[input])
 
 /mob/observer/ghost/verb/follow_undead(input in getfitmobs(PILLARMEN)+"Cancel")
 	set category = "Ghost"
@@ -367,8 +381,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Follow and haunt an Undead."
 
 	if (input != "Cancel")
-		ManualFollow(getfitmobs(PILLARMEN)[input])
-
+		var/list/mobs = getfitmobs(PILLARMEN)
+		if (mobs[input])
+			ManualFollow(mobs[input])
 
 /proc/getdogs()
 	var/list/dogs = list()
@@ -403,12 +418,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				ManualFollow(tpt)
 				goto endloop // TRUE break statement is not enough
 
-	endloop
+		endloop
 
-	var/newloc = get_turf(src)
+		var/newloc = get_turf(src)
 
-	if (oldloc == newloc) // we didn't move: train isn't here
-		loc = locate(127, 454, TRUE) // take us to the train station
+		if (oldloc == newloc) // we didn't move: train isn't here
+			loc = locate(127, 454, TRUE) // take us to the train station
 
 /mob/observer/ghost/verb/follow_supplytrain()
 	set category = "Ghost"
@@ -421,18 +436,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/datum/train_controller/german_supplytrain_controller/tc = german_supplytrain_master
 
-	if (tc && tc.here)
-		for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
-			for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
-				ManualFollow(tpt)
-				goto endloop // TRUE break statement is not enough
+	if (tc)
+		if (tc.here)
+			for (var/obj/train_car_center/tcc in tc.reverse_train_car_centers)
+				for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs) // start at the front
+					ManualFollow(tpt)
+					goto endloop // TRUE break statement is not enough
 
-	endloop
+		endloop
 
-	var/newloc = get_turf(src)
+		var/newloc = get_turf(src)
 
-	if (oldloc == newloc) // we didn't move: train isn't here
-		loc = locate(15, 526, TRUE) // take us to the train station
+		if (oldloc == newloc) // we didn't move: train isn't here
+			loc = locate(15, 526, TRUE) // take us to the train station
 
 /mob/observer/ghost/verb/follow_supply_lift()
 	set category = "Ghost"
@@ -450,6 +466,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			if (lc.jump_name == option)
 				ManualFollow(lc)
 				break
+
+/mob/observer/ghost/verb/see_battle_report()
+	set category = "Ghost"
+	set name = "See Battle Report"
+	show_global_battle_report(src, TRUE)
+
 
 // FOLLOWING TANKS
 

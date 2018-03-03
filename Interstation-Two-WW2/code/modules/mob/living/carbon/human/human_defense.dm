@@ -79,18 +79,42 @@ bullet_act
 			P.on_hit(src, 2, def_zone)
 			return 2
 	else
-		if ((abs(P.starting.x - x) + abs(P.starting.y - y)) > 2) // not PB range
+		/* bullet grazing is affected by three factors now:
+		 * from most to least important, these are:
+		   * 1. is the target moving while being shot? Modified by distance
+		   * 2. randomness
+		   * 3. survival stat
+		*/
+
+		var/abs_dist = abs(P.starting.x - x) + abs(P.starting.y - y)
+
+		if (abs_dist > 2) // not PB range
 			if (!istype(P, /obj/item/projectile/bullet/rifle/murder))
-				if (list("head", "mouth", "eyes").Find(def_zone) && prob(40 * getStatCoeff("survival")))
+
+				// shooting a moving target from 19 tiles away (new max scope range) has a 72% graze chance
+				// this means if snipers want to hit people they need to shoot at still targets
+				// shooting at someone from <= 7 tiles away has no graze chance - Kachnov
+				if (lastMovedRecently())
+					if (prob(6 * max(abs_dist - 7, 0)))
+						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
+						qdel(P)
+						adjustBruteLoss(pick(4,5))
+						return
+
+				// 30% base chance to miss the head, because headshots are painful - Kachnov
+				if (list("head", "mouth", "eyes").Find(def_zone) && prob(30 * getStatCoeff("survival")))
 					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 					qdel(P)
 					adjustBruteLoss(pick(2,3))
 					return
-				else if (prob(20 * getStatCoeff("survival")))
+
+				// 15% base chance to graze elsewhere
+				else if (prob(15 * getStatCoeff("survival")))
 					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 					qdel(P)
 					adjustBruteLoss(pick(2,3))
 					return
+
 		// get knocked back once in a while
 		// unless we're on a train because bugs
 		if (prob(P.KD_chance/2) && !is_on_train())
@@ -141,7 +165,8 @@ bullet_act
 
 	..(P , def_zone)
 
-	qdel(P)
+	spawn (0.1)
+		qdel(P)
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))

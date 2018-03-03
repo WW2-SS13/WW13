@@ -178,10 +178,11 @@ Current Defines (_defines/attachment.dm)
 	flags = CONDUCT
 	sharp = TRUE
 	edge = TRUE
-	force = WEAPON_FORCE_DANGEROUS/1.5
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	attachment_type = ATTACH_BARREL
+	force = 5
 	var/attack_sound = 'sound/weapons/slice.ogg'
+	var/weakens = 0
 	//var/datum/action/bayonet/amelee
 
 /obj/item/weapon/attachment/bayonet/attached(mob/user, obj/item/weapon/gun/G)
@@ -192,6 +193,14 @@ Current Defines (_defines/attachment.dm)
   ..()
   G.bayonet = null
 
+/obj/item/weapon/attachment/bayonet/german
+	force = WEAPON_FORCE_DANGEROUS/2
+	weakens = 1
+
+/obj/item/weapon/attachment/bayonet/soviet
+	force = WEAPON_FORCE_DANGEROUS
+	weakens = 2
+
 /obj/item/weapon/attachment/scope/iron_sights
 	name = "iron sights"
 	attachment_type = ATTACH_IRONSIGHTS
@@ -201,7 +210,7 @@ Current Defines (_defines/attachment.dm)
 	name = "sniper scope"
 	icon_state = "kar_scope"
 	desc = "You can attach this to rifles... or use them as binoculars."
-	max_zoom = 16
+	max_zoom = 19
 
 /obj/item/weapon/attachment/scope/adjustable/sniper_scope/removed(mob/user, obj/item/weapon/gun/G)
   ..()

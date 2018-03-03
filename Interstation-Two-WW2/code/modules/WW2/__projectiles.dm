@@ -1,7 +1,9 @@
-#define DAMAGE_LOW 33
-#define DAMAGE_MEDIUM 46
-#define DAMAGE_HIGH 69
-#define DAMAGE_VERY_HIGH 92
+#define DAMAGE_VERY_LOW 32
+#define DAMAGE_LOW 40
+#define DAMAGE_MEDIUM 48
+#define DAMAGE_MEDIUM_HIGH 56
+#define DAMAGE_HIGH 72
+#define DAMAGE_VERY_HIGH 96
 #define DAMAGE_OH_GOD 200
 
 /obj/item/projectile/bullet/rifle
@@ -13,14 +15,16 @@
 	armor_penetration = 500
 	damage = DAMAGE_OH_GOD
 	accuracy = 5000
+	penetrating = 1
 
+// STG44
 /obj/item/projectile/bullet/rifle/a792x33
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_MEDIUM - 4
 	penetrating = 1
 
 // MOSIN
 /obj/item/projectile/bullet/rifle/a762x54
-	damage = DAMAGE_HIGH
+	damage = DAMAGE_HIGH - 5
 	penetrating = 2
 	armor_penetration = 100
 
@@ -32,19 +36,21 @@
 
 // MG34
 /obj/item/projectile/bullet/rifle/a792x57_weaker
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_MEDIUM - 4
 	penetrating = 1
 
 /obj/item/projectile/bullet/rifle/a762x25
 	damage = DAMAGE_LOW
 	penetrating = FALSE
 
+// MP40 SMG
 /obj/item/projectile/bullet/rifle/a9_parabellum
 	damage = DAMAGE_LOW
 	penetrating = FALSE
-
+	
+// LUGER PISTOL //
 /obj/item/projectile/bullet/rifle/a9_parabellum_luger
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_LOW
 	penetrating = FALSE
 
 /obj/item/projectile/bullet/rifle/a762
@@ -68,8 +74,9 @@
 	penetrating = 3
 	step_delay = 2
 
+// DP MACHINE GUN //
 /obj/item/projectile/bullet/rifle/a762x39
-	damage = DAMAGE_LOW
+	damage = DAMAGE_MEDIUM + 4
 	penetrating = 2
 
 /obj/item/projectile/bullet/rifle/a762x51
@@ -77,7 +84,7 @@
 	penetrating = 3
 
 /obj/item/projectile/bullet/rifle/c4mm
-	damage = DAMAGE_LOW
+	damage = DAMAGE_LOW + 5
 	penetrating = 0
 
 /obj/item/projectile/bullet/rifle/a127x108

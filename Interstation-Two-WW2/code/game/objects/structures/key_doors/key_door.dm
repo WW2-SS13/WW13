@@ -108,7 +108,11 @@ var/list/nonbreaking_types = list(
 		if (world.time < next_knock)
 			return
 
-		user.visible_message("<span class = 'danger'>[user] knocks at the door.</span>")
+		if (user.a_intent == I_HELP)
+			user.visible_message("<span class = 'notice'>[user] knocks at the door.</span>")
+		else
+			user.visible_message("<span class = 'danger'>[user] bangs on the door.</span>")
+
 		for (var/mob/living/L in view(world.view, src))
 			if (!viewers(world.view, L).Find(user))
 				L << "<span class = 'notice'>You hear a knock at the door.</span>"

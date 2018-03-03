@@ -3,7 +3,8 @@ var/next_supplytrain_message = -1
 var/next_german_supplytrain_master_process = -1
 
 /proc/setup_trains()
-	world << "<span class = 'notice'>Setting up the train system.</span>"
+	spawn (1)
+		world << "<span class = 'notice'>Setting up the train system.</span>"
 	german_train_master = new/datum/train_controller/german_train_controller()
 	german_supplytrain_master = new/datum/train_controller/german_supplytrain_controller()
 	train_process.schedule_interval = round(8/german_train_master.velocity)
