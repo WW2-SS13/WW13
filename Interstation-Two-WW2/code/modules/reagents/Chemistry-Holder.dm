@@ -178,13 +178,16 @@
 
 /datum/reagents/proc/del_reagent(var/id)
 	for(var/datum/reagent/current in reagent_list)
-		if (current.id == id)
+		if (current.id == id || id == TRUE)
 			reagent_list -= current
 			qdel(current)
 			update_total()
 			if(my_atom)
 				my_atom.on_reagent_change()
 			return FALSE
+
+/datum/reagents/proc/del_reagents()
+	return del_reagent(TRUE)
 
 /datum/reagents/proc/has_reagent(var/id, var/amount = FALSE)
 	for(var/datum/reagent/current in reagent_list)

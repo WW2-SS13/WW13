@@ -265,6 +265,8 @@ var/list/name_to_material
 	tableslam_noise = null
 	hardness = 10
 	stack_origin_tech = list(TECH_MATERIAL = 6)
+	sheet_singular_name = "coil"
+	sheet_plural_name = "coils"
 
 /material/gold
 	name = "gold"

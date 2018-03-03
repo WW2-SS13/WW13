@@ -523,7 +523,7 @@
 	dat += "<br>"
 	dat += "Round Duration: [roundduration2text()]"
 	dat += "<br>"
-	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans and [alive_russians.len] Soviets."
+	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans, [alive_russians.len] Soviets, [alive_partisans.len] Partisans, and [alive_civilians.len] Civilians"
 	dat += "<br>"
 
 	var/list/restricted_choices = list()
@@ -580,6 +580,10 @@
 
 			if (job_master.side_is_hardlocked(job.base_type_flag()))
 				job_is_available = FALSE
+
+			if(job_master.is_side_locked(job.base_type_flag()))
+				job_is_available = FALSE
+
 			//	unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
 
 		//	if (jobBanned(job.title))

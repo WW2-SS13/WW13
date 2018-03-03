@@ -11,7 +11,6 @@
 	w_class = 2
 	volume = 5
 
-
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/ww2/update_icon()
 	if(reagents.total_volume >= FALSE)
 		icon_state = "ww2_injector_full"
@@ -24,4 +23,5 @@
 
 	New()
 		..()
+		reagents.del_reagents(TRUE)
 		reagents.add_reagent("morphine", 5)

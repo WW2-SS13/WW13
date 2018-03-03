@@ -479,15 +479,16 @@ var/global/datum/controller/occupations/job_master
 			spawn (0)
 				if (istype(ticker.mode, /datum/game_mode/ww2))
 					for (var/obj/item/weapon/gun/projectile/gun in H)
-						if (gun.w_class == 4) // MG
-							if (H.l_hand)
-								if (istype(H.l_hand, /obj/item/weapon/storage/backpack))
-									for (var/v in 1 to 4)
-										H.l_hand.contents += new gun.magazine_type(H)
-							else if (H.r_hand)
-								if (istype(H.r_hand, /obj/item/weapon/storage/backpack))
-									for (var/v in 1 to 4)
-										H.r_hand.contents += new gun.magazine_type(H)
+						if (gun.w_class == 4 && gun.gun_type == GUN_TYPE_MG) // MG
+							if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
+								for (var/v in 1 to 4)
+									H.back.contents += new gun.magazine_type(H)
+							else if (H.l_hand && istype(H.l_hand, /obj/item/weapon/storage/backpack))
+								for (var/v in 1 to 4)
+									H.l_hand.contents += new gun.magazine_type(H)
+							else if (H.r_hand && istype(H.r_hand, /obj/item/weapon/storage/backpack))
+								for (var/v in 1 to 4)
+									H.r_hand.contents += new gun.magazine_type(H)
 						else
 							if (!H.r_store)
 								if (gun.magazine_type)
@@ -811,15 +812,15 @@ var/global/datum/controller/occupations/job_master
 		var/germans = n_of_side(GERMAN)
 		var/soviets = n_of_side(SOVIET)
 
-		var/list/players_without_partisans = 0
+		var/players_without_partisans = clients.len
 		for (var/mob/living/carbon/human/H in player_list)
 			if (istype(H))
 				if (H.original_job)
-					if (list(GERMAN, SOVIET).Find(H.original_job.base_type_flag()))
-						++players_without_partisans
+					if (list(PARTISAN, CIVILIAN).Find(H.original_job.base_type_flag()))
+						--players_without_partisans
 
 		var/max_germans = ceil(players_without_partisans * 0.42)
-		var/max_soviets = ceil(players_without_partisans* 0.58)
+		var/max_soviets = ceil(players_without_partisans * 0.58)
 
 		switch (side)
 			if (PARTISAN)

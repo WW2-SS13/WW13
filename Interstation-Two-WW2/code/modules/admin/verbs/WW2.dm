@@ -132,16 +132,15 @@
 		message_admins("[key_name(src)] ended all grace periods!")
 		log_admin("[key_name(src)] ended all grace periods.")
 
+/client/proc/show_battle_report()
+	set category = "WW2 (Admin)"
+	set name = "Show Battle Report"
+	show_global_battle_report(src)
 
 /client/proc/see_battle_report()
 	set category = "WW2 (Admin)"
 	set name = "See Battle Report"
 	show_global_battle_report(src, TRUE)
-
-/client/proc/show_battle_report()
-	set category = "WW2 (Admin)"
-	set name = "Show Battle Report"
-	show_global_battle_report(src)
 
 /proc/show_global_battle_report(var/shower, var/private = FALSE)
 
