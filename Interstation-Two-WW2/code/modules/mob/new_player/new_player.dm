@@ -72,7 +72,7 @@
 			else if (reinforcements_master.has(src, SOVIET))
 				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Soviet reinforcement pool.</A></p>"
 	else
-		output += "<p><i>Reinforcements won't be available until after the train is sent.</i></p>"
+		output += "<p><i>Reinforcements are not available yet.</i></p>"
 
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
