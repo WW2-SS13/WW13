@@ -83,8 +83,8 @@
 	can_wield = TRUE
 	//must_wield = TRUE
 
-	accuracy = DEFAULT_SEMIAUTO_ACCURACY
-	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
+	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY
+	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY
 
 	firemodes = list(
 		list(name="single shot",	burst=1, burst_delay=1.0, recoil=0.4, move_delay=0, dispersion = list(0.4, 0.6, 0.6, 0.6, 0.8)),
@@ -195,8 +195,8 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 4
 	fire_sound = 'sound/weapons/m16.ogg'
-	accuracy = DEFAULT_SEMIAUTO_ACCURACY-1
-	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY-1
+	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-1
+	scoped_accuracy = DEFAULT_SEMIAUTO_SUBMACHINEGUN_ACCURACY-1
 	caliber = "a762x25"
 	magazine_type = /obj/item/ammo_magazine/a556/ppsh
 	firemodes = list(
