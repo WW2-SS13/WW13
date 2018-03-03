@@ -219,6 +219,10 @@
 					if (istype(src, /obj/item/weapon/grenade))
 						var/obj/item/weapon/grenade/G = src
 						G.active = FALSE
+					else if (istype(src, /obj/item/weapon/reagent_containers/food/drinks/bottle))
+						var/obj/item/weapon/reagent_containers/food/drinks/bottle/B = src
+						if (B.rag)
+							B.rag.on_fire = FALSE
 					break
 
 				var/canMove = TRUE

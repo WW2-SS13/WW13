@@ -88,12 +88,14 @@
   be hit by bullets, at least sometimes - hence these changes. */
 
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
-	if(air_group || (height==0))
-		if (prob(30))
-			return TRUE
-	if(istype(mover) && mover.checkpass(PASSTABLE))
-		if (prob(30))
-			return TRUE
+	if (istype(mover, /obj/item/projectile))
+		if(air_group || (height==0))
+			if (prob(30))
+				return TRUE
+		if(mover.checkpass(PASSTABLE))
+			if (prob(30))
+				return TRUE
+		return FALSE
 	else
 		return FALSE
 

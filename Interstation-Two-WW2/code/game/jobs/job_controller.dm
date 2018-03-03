@@ -811,8 +811,15 @@ var/global/datum/controller/occupations/job_master
 		var/germans = n_of_side(GERMAN)
 		var/soviets = n_of_side(SOVIET)
 
-		var/max_germans = ceil(player_list.len * 0.45)
-		var/max_soviets = ceil(player_list.len * 0.55)
+		var/list/players_without_partisans = 0
+		for (var/mob/living/carbon/human/H in player_list)
+			if (istype(H))
+				if (H.original_job)
+					if (list(GERMAN, SOVIET).Find(H.original_job.base_type_flag()))
+						++players_without_partisans
+
+		var/max_germans = ceil(players_without_partisans * 0.42)
+		var/max_soviets = ceil(players_without_partisans* 0.58)
 
 		switch (side)
 			if (PARTISAN)

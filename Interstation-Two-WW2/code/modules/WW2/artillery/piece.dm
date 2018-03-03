@@ -208,6 +208,10 @@
 
 	if (href_list["fire"])
 
+		if (map && !map.germans_can_cross_blocks())
+			user << "<span class = 'danger'>You can't fire yet.</span>"
+			return
+
 		var/area/user_area = get_area(user)
 
 		if (user_area.location == AREA_INSIDE)

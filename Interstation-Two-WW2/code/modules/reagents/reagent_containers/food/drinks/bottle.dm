@@ -79,20 +79,27 @@
 		while (src && throwing)
 			sleep(1)
 		if (src && !throwing)
-			Bump(target, TRUE, calculate_alcohol_power())
+			if (loc == get_turf(target))
+				Bump(target, TRUE)
+			else
+				var/area/src_area = get_area(src)
+				if (map && map.prishtina_blocking_area_types.Find(src_area.type))
+					Bump(loc, TRUE, FALSE)
+				else
+					Bump(loc, TRUE)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/Bump(atom/A, yes)
+/obj/item/weapon/reagent_containers/food/drinks/bottle/Bump(atom/A, yes, explode = TRUE)
 	if (src)
 		if (isliving(A) || isturf(A) || (isobj(A) && A.density))
-			shatter(get_turf(A), A, calculate_alcohol_power())
+			shatter(get_turf(A), A, explode ? calculate_alcohol_power() : 0)
 	..(A, yes)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/shatter(var/newloc, atom/against = null, var/alcohol_power = FALSE)
+/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/shatter(var/newloc, atom/against = null, var/alcohol_power = 0)
 
 	if (!newloc)
 		newloc = get_turf(src)
 
-	if(rag && rag.on_fire)
+	if(rag && rag.on_fire && alcohol_power)
 
 		forceMove(newloc)
 
@@ -107,7 +114,7 @@
 		if (explosion_power > 0)
 			// by using this instead of rounded devrange, not all molotovs will be the same - Kachnov
 			var/raw_devrange = round(explosion_power/1000)
-			var/devrange = max(1, round(raw_devrange))
+			var/devrange = min(max(1, round(raw_devrange)), 1)
 			var/heavyrange = max(1, round(raw_devrange*1))
 			var/lightrange = max(1, round(raw_devrange*1))
 			var/flashrange = max(1, round(raw_devrange*2))
