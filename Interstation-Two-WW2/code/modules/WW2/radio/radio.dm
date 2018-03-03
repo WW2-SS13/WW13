@@ -112,7 +112,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
-	desc = "A communication device. You can speak through it with ':b' when it's in your suit storage slot, and ':l' or ':r' when its in your hand. ';' speaks with the first radio available on your person."
+	desc = "A portable communication device. You can speak through it with ':b' when it's in your suit storage slot, and ':l' or ':r' when its in your hand. ';' speaks with the first radio available on your person."
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
@@ -587,6 +587,9 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 /obj/item/device/radio/proc/post_broadcast()
 	last_broadcast = world.time + 5
+
+/obj/item/device/radio/intercom
+	desc = "A stationary radio device, used for long-distance communication and supply requisition."
 
 /obj/item/device/radio/intercom/a7b
 	name = "A-7-B"
