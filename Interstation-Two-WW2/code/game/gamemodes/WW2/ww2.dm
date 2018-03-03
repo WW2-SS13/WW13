@@ -10,6 +10,7 @@
 	extended_round_description = ""
 
 	var/time_both_sides_locked = -1
+	var/time_to_end_round_after_both_sides_locked = 6000
 
 	// NEW WIN CONDITIONS - Kachnov
 	var/currently_winning = ""
@@ -75,12 +76,20 @@
 		// wait 10 minutes and see who is doing the best
 
 		if (time_both_sides_locked != -1)
-			if (world.realtime - time_both_sides_locked >= 6000 && !currently_winning)
+			if (world.realtime - time_both_sides_locked >= time_to_end_round_after_both_sides_locked && !currently_winning)
 				return TRUE
 		else if (reinforcements_master.is_permalocked(GERMAN))
 			if (reinforcements_master.is_permalocked(SOVIET))
 				time_both_sides_locked = world.realtime
-				world << "<font size = 3>Both sides are locked for reinforcements; the round will end in 10 minutes.</font>"
+
+				if (soldiers["ru"] && soldiers["ru"]/1.33 >= soldiers["de"])
+					time_to_end_round_after_both_sides_locked = 18000
+				else if (soldiers["de"] && soldiers["de"]/1.33 >= soldiers["ru"])
+					time_to_end_round_after_both_sides_locked = 18000
+				else
+					time_to_end_round_after_both_sides_locked = 6000
+
+				world << "<font size = 3>Both sides are locked for reinforcements; the round will end in [time_to_end_round_after_both_sides_locked/600] minutes.</font>"
 				return FALSE
 
 		// conditions 2.1 to 2.5: one side has occupied the enemy base
