@@ -289,6 +289,7 @@ OTHER
 	ammo_type = /obj/item/ammo_casing/a792x33
 	max_ammo = 30
 	multiple_sprites = TRUE
+	w_class = 2
 
 /obj/item/ammo_magazine/a762/dp
 	name = "DP ammo disk"

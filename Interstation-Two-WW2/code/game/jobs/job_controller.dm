@@ -577,13 +577,15 @@ var/global/datum/controller/occupations/job_master
 					if (SOVIET)
 						spawn_location = "JoinLateRA"
 
-			// may fix soviets spawning in the german train, unknown - Kach
+			// fixes spawning at 1,1,1
+
 			if (!spawn_location)
-				switch (splittext(H.original_job.spawn_location, "-")[1])
-					if ("JoinLateHeer")
-						spawn_location = "JoinLateHeer"
-					if ("JoinLateRA")
-						spawn_location = "JoinLateRA"
+				if (findtext(H.original_job.spawn_location, "JoinLateHeer"))
+					spawn_location = "JoinLateHeer"
+				else if (findtext(H.original_job.spawn_location, "JoinLateSS"))
+					spawn_location = "JoinLateSS"
+				else if (findtext(H.original_job.spawn_location, "JoinLateRA"))
+					spawn_location = "JoinLateRA"
 
 			H.job_spawn_location = spawn_location
 
