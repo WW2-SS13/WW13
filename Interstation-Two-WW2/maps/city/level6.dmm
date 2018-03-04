@@ -1,0 +1,15 @@
+"a" = (/turf/wall/stone,/area/prishtina/german/kitchen/cellar)
+"b" = (/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/kitchen/cellar)
+"c" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/kitchen/cellar)
+"d" = (/obj/structure/multiz/ladder/ww2/up{area_id = "german_kitchen_cellar"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/kitchen/cellar)
+"e" = (/obj/machinery/light/small{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/kitchen/cellar)
+
+(1,1,1) = {"
+aaaaaaa
+abcecba
+abcccba
+abcdcba
+abcccba
+abcccba
+aaaaaaa
+"}

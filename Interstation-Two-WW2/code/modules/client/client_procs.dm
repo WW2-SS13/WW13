@@ -452,3 +452,7 @@ client/proc/MayRespawn()
 			return "$5+"
 		return "$3+"
 	return null
+
+// testing
+/client/proc/delme()
+	del src

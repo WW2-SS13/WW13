@@ -958,4 +958,9 @@
 #include "interface\skin.dmf"
 #include "maps\city\level1.dmm"
 #include "maps\city\level2.dmm"
+#include "maps\city\level3.dmm"
+#include "maps\city\level4.dmm"
+#include "maps\city\level5.dmm"
+#include "maps\city\level6.dmm"
+#include "maps\city\level7.dmm"
 // END_INCLUDE

@@ -67,7 +67,7 @@
 	rank_abbreviation = "olt"
 	head_position = FALSE
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLateHeerSO"
+	spawn_location = "JoinLateHeerXO"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
 
@@ -156,7 +156,7 @@
 	en_meaning = "MPO"
 	rank_abbreviation = "uffz"
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLateHeer"
+	spawn_location = "JoinLateHeerMP"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 33 )
 	is_officer = TRUE
 
@@ -1015,6 +1015,7 @@ var/first_fallschirm = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerChef"
 	is_nonmilitary = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1

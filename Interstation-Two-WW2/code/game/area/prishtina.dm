@@ -369,7 +369,7 @@
 /area/prishtina/german
 
 /area/prishtina/german/main_area
-	name = "German Base"
+	name = "Base"
 	icon_state = "red1"
 	dynamic_lighting = FALSE
 
@@ -383,7 +383,7 @@
 /area/prishtina/german/main_area/sector3
 
 /area/prishtina/german/main_area/dogshed
-	name = "German Dogshed"
+	name = "Dogshed"
 	icon_state = "red2"
 	dynamic_lighting = FALSE
 	location = AREA_INSIDE
@@ -394,7 +394,7 @@
 	location = AREA_INSIDE
 
 /area/prishtina/german/gas_chamber
-	name = "German Gas Chamber"
+	name = "Gas Chamber"
 	icon_state = "red3"
 	dynamic_lighting = FALSE
 
@@ -452,7 +452,7 @@
 	location = AREA_INSIDE
 
 /area/prishtina/german/armory/supplydrop
-	name = "German Supplydrop Pad"
+	name = "Supplydrop Pad"
 	icon_state = "blue3"
 	location = AREA_OUTSIDE
 
@@ -489,6 +489,11 @@
 /area/prishtina/german/kitchen/storage
 	name = "Kitchen Storage"
 	icon_state = "blue4"
+
+/area/prishtina/german/kitchen/cellar
+	name = "Kitchen Cellar"
+	icon_state = "blue3"
+	location = AREA_INSIDE
 
 /area/prishtina/german/shower1
 	name = "Showers #1"
@@ -591,47 +596,52 @@
 	location = AREA_INSIDE
 
 /area/prishtina/german/medical
-	name = "German Medical Main Area"
+	name = "Medical Area"
 	icon_state = "blue3"
 	location = AREA_INSIDE
+	dynamic_lighting = TRUE
 
 /area/prishtina/german/medical/storage
-	name = "German Medical Storage"
+	name = "Medical Storage"
 	icon_state = "blue4"
 
 /area/prishtina/german/medical/hallway
-	name = "German Medical Hallway"
+	name = "Medical Hallway"
 	icon_state = "blue5"
 
 /area/prishtina/german/medical/surgery1
-	name = "German Surgery Room #1"
+	name = "Surgery Room #1"
 	icon_state = "blue1"
 
 /area/prishtina/german/medical/surgery2
-	name = "German Surgery Room #2"
+	name = "Surgery Room #2"
 	icon_state = "blue2"
 
 /area/prishtina/german/medical/chemistry
-	name = "German Chemistry Room"
+	name = "Chemistry Room"
 	icon_state = "blue3"
+
+/area/prishtina/german/medical/morgue
+	name = "Morgue"
+	icon_state = "blue4"
 
 // special german areas
 
 /area/prishtina/german/bunker
-	name = "German Bunker"
+	name = "Bunker"
 	location = AREA_INSIDE
 	dynamic_lighting = FALSE
 	base_turf = /turf/floor/dirt
 
 /area/prishtina/german/lift
-	name = "German Lift"
+	name = "Lift"
 	location = AREA_INSIDE
 
 /area/prishtina/german/lift/up
-	name = "Upper German Lift"
+	name = "Upper Lift"
 
 /area/prishtina/german/lift/down
-	name = "Lower German Lift"
+	name = "Lower Lift"
 
 // soviet areas
 
@@ -641,71 +651,84 @@
 // for the small map
 
 /area/prishtina/soviet/small_map/main_area
-	name = "Soviet Main Area"
+	name = "Main Area"
 	icon_state = "blue1"
 
 /area/prishtina/soviet/small_map/inside
-	name = "Soviet Inside Area"
+	name = "Inside Area"
 	icon_state = "red2"
 	location = AREA_INSIDE
 
 /area/prishtina/soviet/small_map/inside/armory
-	name = "Soviet Armory"
+	name = "Armory"
 	icon_state = "red3"
 
 /area/prishtina/soviet/small_map/inside/engineering
-	name = "Soviet Engineering Area"
+	name = "Engineering Area"
 	icon_state = "red3"
 
 /area/prishtina/soviet/small_map/inside/resting_area
-	name = "Soviet Resting Area"
+	name = "Resting Area"
 	icon_state = "red4"
 
 /area/prishtina/soviet/small_map/inside/gearing
-	name = "Soviet Gearing Up Area"
+	name = "Gearing Up Area"
 	icon_state = "red5"
 
 /area/prishtina/soviet/small_map/inside/relaxation
-	name = "Soviet Relaxation Area"
+	name = "Relaxation Area"
 	icon_state = "red5"
 
 /area/prishtina/soviet/small_map/inside/kitchen
-	name = "Soviet Kitchen"
+	name = "Kitchen"
 	icon_state = "blue1"
 
+/area/prishtina/soviet/small_map/inside/kitchen/cellar
+	name = "Kitchen Cellar"
+	icon_state = "blue2"
+
+
 /area/prishtina/soviet/small_map/inside/commander_bedroom
-	name = "Soviet Kapitan's Office"
+	name = "Kapitan's Office"
 	icon_state = "blue1"
 
 /area/prishtina/soviet/small_map/inside/medical
-	name = "Soviet Medical Main Area"
+	name = "Medical Main Area"
 	icon_state = "blue2"
 
 /area/prishtina/soviet/small_map/inside/medical/storage
-	name = "Soviet Medical Storage"
+	name = "Medical Storage"
+
 /area/prishtina/soviet/small_map/inside/medical/chemistry
-	name = "Soviet Chemistry Room"
+	name = "Chemistry Room"
 	icon_state = "blue3"
+
 /area/prishtina/soviet/small_map/inside/medical/hallway
-	name = "Soviet Medical Hallway"
-	icon_state = "blue4"
-/area/prishtina/soviet/small_map/inside/medical/surgery1
-	name = "Soviet Surgery Room #1"
-	icon_state = "blue5"
-/area/prishtina/soviet/small_map/inside/medical/surgery2
-	name = "Soviet Surgery Room #2"
+	name = "Medical Hallway"
 	icon_state = "blue4"
 
+/area/prishtina/soviet/small_map/inside/medical/surgery1
+	name = "Surgery Room #1"
+	icon_state = "blue5"
+
+/area/prishtina/soviet/small_map/inside/medical/surgery2
+	name = "Surgery Room #2"
+	icon_state = "blue4"
+
+/area/prishtina/soviet/small_map/inside/medical/morgue
+	name = "Morgue"
+	icon_state = "blue5"
+
 /area/prishtina/soviet/small_map/inside/mparea
-	name = "Soviet MP Area"
+	name = "MP Area"
 	icon_state = "green1"
 
 /area/prishtina/soviet/small_map/inside/prison
-	name = "Soviet Prison"
+	name = "Prison"
 	icon_state = "green2"
 
 /area/prishtina/soviet/small_map/main_area/supplypad
-	name = "Soviet Supply Pad"
+	name = "Supply Pad"
 	icon_state = "green2"
 // for the large map
 
@@ -720,7 +743,7 @@
 	dynamic_lighting = FALSE
 
 /area/prishtina/soviet/dogshed
-	name = "Soviet Dog Shed"
+	name = "Dog Shed"
 	icon_state = "blue1"
 	dynamic_lighting = TRUE
 	location = AREA_INSIDE
@@ -737,12 +760,12 @@
 // bunker areas
 
 /area/prishtina/soviet/bunker
-	name = "Soviet Bunker"
+	name = "Bunker"
 	location = AREA_INSIDE
 
 /area/prishtina/soviet/bunker/tunnel
 	icon_state = "red2"
-	name = "Soviet Bunker Tunnel"
+	name = "Bunker Tunnel"
 
 /area/prishtina/soviet/bunker/entrance
 	icon_state = "green1"
@@ -814,7 +837,7 @@
 
 /area/prishtina/soviet/lift/
 	icon_state = "blue1"
-	name = "Soviet Lift"
+	name = "Lift"
 	location = AREA_INSIDE
 
 /area/prishtina/soviet/lift/upper
@@ -823,7 +846,7 @@
 
 /area/prishtina/soviet/backup_armory
 	icon_state = "blue2"
-	name = "Soviet Backup Armory"
+	name = "Backup Armory"
 	location = AREA_INSIDE
 
 

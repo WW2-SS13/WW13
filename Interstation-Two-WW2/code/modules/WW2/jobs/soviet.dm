@@ -63,7 +63,7 @@
 	rank_abbreviation = "STLy"
 	head_position = FALSE
 	selection_color = "#530909"
-	spawn_location = "JoinLateRASO"
+	spawn_location = "JoinLateRAXO"
 	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
 
@@ -150,7 +150,7 @@
 	en_meaning = "MPO"
 	rank_abbreviation = "Srg"
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLateRA"
+	spawn_location = "JoinLateRAMP"
 	additional_languages = list( "German" = 100, "Ukrainian" = 33 )
 	is_officer = TRUE
 
@@ -771,6 +771,7 @@ var/first_guard = FALSE
 	spawn_location = "JoinLateRAChef"
 	allow_spies = TRUE
 	is_nonmilitary = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1

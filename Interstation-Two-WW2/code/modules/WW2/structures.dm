@@ -65,6 +65,7 @@
 		..()
 
 /obj/structure/noose/process()
+	processing_objects |= src
 	if (hanging)
 		density = TRUE
 		hanging.dir = SOUTH

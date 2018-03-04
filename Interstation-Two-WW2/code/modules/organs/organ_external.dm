@@ -668,7 +668,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		status |= ORGAN_BLEEDING
 
 	//Bone fractures
-	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && !(status & ORGAN_ROBOT))
+	if(config.bones_can_break && brute_dam >= min_broken_damage * config.organ_health_multiplier && !(status & ORGAN_ROBOT))
 		fracture()
 
 //Returns TRUE if damage_state changed
@@ -930,7 +930,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/mend_fracture()
 	if(status & ORGAN_ROBOT)
 		return FALSE	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
-	if(brute_dam > min_broken_damage * config.organ_health_multiplier)
+	if(brute_dam >= min_broken_damage * config.organ_health_multiplier)
 		return FALSE	//will just immediately fracture again
 
 	status &= ~ORGAN_BROKEN

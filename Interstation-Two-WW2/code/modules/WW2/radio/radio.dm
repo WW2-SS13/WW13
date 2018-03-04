@@ -545,7 +545,8 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		if (hearer.stat == CONSCIOUS)
 			var/list/radios = list()
 			for (var/obj/item/device/radio/radio in view(world.view, hearer))
-				radios |= radio
+				if (radio.broadcasting)
+					radios |= radio
 			for (var/obj/item/device/radio/radio in hearer.contents)
 				radios |= radio
 			for (var/obj/item/device/radio/radio in radios)
@@ -596,6 +597,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	last_broadcast = world.time + 5
 
 /obj/item/device/radio/intercom
+	broadcasting = FALSE
 	desc = "A stationary radio device, used for long-distance communication and supply requisition."
 
 /obj/item/device/radio/intercom/a7b

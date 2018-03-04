@@ -317,7 +317,7 @@ var/list/admin_verbs_host = list(
 	/client/proc/remove_patreon_rewards,
 	/client/proc/toggle_BYOND_hub_visibility,
 	/client/proc/eject_unwhitelisted,
-	/client/proc/toggle_hyperefficiency_mode,
+//	/client/proc/toggle_hyperefficiency_mode,
 	/client/proc/toggle_playing
 )
 

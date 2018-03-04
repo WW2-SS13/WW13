@@ -1,4 +1,4 @@
-#define PROCESS_SUPER_SLOWDOWN 4
+/*#define PROCESS_SUPER_SLOWDOWN 4
 #define PROCESS_HIGH_SLOWDOWN 3
 #define PROCESS_MED_SLOWDOWN 2
 
@@ -70,4 +70,4 @@ var/hyperefficiency_mode = FALSE
 
 			// undo slowdown
 			tickerProcess.schedule_interval /= PROCESS_MED_SLOWDOWN
-			supplydrop_process.schedule_interval /= PROCESS_MED_SLOWDOWN
+			supplydrop_process.schedule_interval /= PROCESS_MED_SLOWDOWN*/

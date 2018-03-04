@@ -336,6 +336,10 @@ var/list/name_to_material
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
 
+/material/stone/stone
+	name = "stone"
+	icon_colour = "#808080"
+
 /material/stone/stonebrick
 	name = "brick"
 	icon_base = "newbrick"
