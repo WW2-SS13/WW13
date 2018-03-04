@@ -446,6 +446,7 @@
 #include "code\modules\admin\verbs\debug_verbs.dm"
 #include "code\modules\admin\verbs\diagnostics.dm"
 #include "code\modules\admin\verbs\game_schedule.dm"
+#include "code\modules\admin\verbs\gameticker.dm"
 #include "code\modules\admin\verbs\getlogs.dm"
 #include "code\modules\admin\verbs\lobby.dm"
 #include "code\modules\admin\verbs\massmodvar.dm"

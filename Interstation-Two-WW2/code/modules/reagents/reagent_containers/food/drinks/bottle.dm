@@ -109,15 +109,19 @@
 
 		var/explosion_power = alcohol_power/2.5
 
+		 // plz fuck off rags - Kachnov
+		rag.loc = null
 		qdel(rag)
+		rag = null
 
 		if (explosion_power > 0)
-			// by using this instead of rounded devrange, not all molotovs will be the same - Kachnov
-			var/raw_devrange = round(explosion_power/1000)
-			var/devrange = min(max(1, round(raw_devrange)), 1)
+			// by using this instead of rounded devrange, not all molotovs will be the same
+			// raw_devrange may vary from 0.1 to 2.50 or more - Kachnov
+			var/raw_devrange = explosion_power/1000
+			var/devrange = min(round(raw_devrange), 1)
 			var/heavyrange = max(1, round(raw_devrange*1))
-			var/lightrange = max(1, round(raw_devrange*1))
-			var/flashrange = max(1, round(raw_devrange*2))
+			var/lightrange = max(1, round(raw_devrange*2))
+			var/flashrange = max(1, round(raw_devrange*3))
 			var/firerange = max(1, round(raw_devrange*4)) + 1
 
 			var/src_turf = get_turf(src)

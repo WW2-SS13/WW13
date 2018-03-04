@@ -209,6 +209,12 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/barbwire
+	name = "Barbwire crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
 /obj/structure/closet/crate/bayonets
 	name = "Bayonets crate"
 	icon_state = "mil_crate_closed"
@@ -613,6 +619,7 @@
 
 	New()
 		..()
+		contents.Cut()
 		for (var/v in 1 to 10)
 			new/obj/item/clothing/mask/gas/soviet(src)
 
@@ -632,3 +639,9 @@
 
 		new/obj/item/artillery_ammo/gaseous/yellow_cross/mustard(src)
 		new/obj/item/artillery_ammo/gaseous/yellow_cross/white_phosphorus(src)
+
+/obj/structure/closet/crate/barbwire/New()
+	..()
+	for (var/v in 1 to 3)
+		var/obj/item/stack/material/barbwire/barbwire = new(src)
+		barbwire.amount = 10

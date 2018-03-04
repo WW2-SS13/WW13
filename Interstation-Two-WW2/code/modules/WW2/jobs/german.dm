@@ -38,7 +38,8 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	spawn (5) // after we have our name
 		if (!istype(H, /mob/living/carbon/human/mechahitler))
-			world << "<b><big>[H.real_name] is the [title] of the German forces!</big></b>"
+			if (!istype(get_area(H), /area/prishtina/admin))
+				world << "<b><big>[H.real_name] is the [title] of the German forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the German forces and lead them to victory, while working alongside the <b>SS-Untersharffuhrer</b>. You take orders from the <b>German High Command</b>.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
@@ -115,7 +116,7 @@
 
 	// AUTOBALANCE
 	min_positions = 1
-	max_positions = 3
+	max_positions = 2
 	player_threshold = PLAYER_THRESHOLD_HIGH
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
@@ -161,7 +162,7 @@
 
 	// AUTOBALANCE
 	min_positions = 1
-	max_positions = 4
+	max_positions = 3
 	player_threshold = PLAYER_THRESHOLD_LOW
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 

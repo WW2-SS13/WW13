@@ -8,7 +8,7 @@
 	max_shells = FALSE
 	caliber = "a762x54"
 	slot_flags = SLOT_BACK
-	ammo_type = /obj/item/ammo_casing/a762x54
+	ammo_type = /obj/item/ammo_casing/a792x33
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	magazine_type = /obj/item/ammo_magazine/svt

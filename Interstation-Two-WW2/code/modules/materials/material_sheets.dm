@@ -109,7 +109,7 @@
 	default_type = "barbedwire"
 
 /obj/item/stack/material/rope
-	name = "Pile of rope"
+	name = "Rope"
 	icon_state = "rope"
 	default_type = "rope"
 	anchored = TRUE

@@ -546,7 +546,7 @@
 						sleep(5)
 			else
 				for (var/mob/living/L in t1)
-					if (L.lying)
+					if (L.lying && L != H)
 						H.visible_message("<span class = 'warning'>[H] steps over [L].</span>")
 
 		if (!mob_is_observer)

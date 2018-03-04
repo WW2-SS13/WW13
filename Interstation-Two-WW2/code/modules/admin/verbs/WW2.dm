@@ -642,9 +642,15 @@ var/paratroopers_forceEnabled = FALSE
 	if (side == "Soviet")
 		for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
 			D.Open()
+		var/M = "[key_name(src)] opened Soviet Armory doors."
+		message_admins(M)
+		log_admin(M)
 	else if (side == "German")
 		for (var/obj/structure/simple_door/key_door/german/QM/D in world)
 			D.Open()
+		var/M = "[key_name(src)] opened German Armory doors."
+		message_admins(M)
+		log_admin(M)
 
 /client/proc/close_armory_doors()
 	set name = "Close Armory Doors"

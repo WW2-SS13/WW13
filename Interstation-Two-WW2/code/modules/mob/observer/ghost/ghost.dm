@@ -152,6 +152,9 @@ Works together with spawning an observer, noted above.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = stat == DEAD ? timeofdeath : world.time
 		ghost.key = key
+		if (ishuman(src))
+			if (human_clients_mob_list.Find(src))
+				human_clients_mob_list -= src
 		return ghost
 
 /*
@@ -230,6 +233,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (istype(H))
 		if (!H.languages.Find(H.default_language))
 			H.languages.Insert(1, H.default_language)
+		human_clients_mob_list |= H
 
 	return TRUE
 

@@ -126,7 +126,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/list/listening_on_channel = list()
 	flags = CONDUCT
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BACK
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2
@@ -152,10 +152,12 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		"Mg34 Ammo" = /obj/structure/closet/crate/mg34ammo,
 		"Mp43 Ammo" = /obj/structure/closet/crate/mp43ammo,
 		"PTRD Ammo" = /obj/structure/closet/crate/ptrdammo,
-		"Mines" = /obj/structure/closet/crate/bettymines,
+//		"Mines" = /obj/structure/closet/crate/bettymines,
 		"Grenades" = /obj/structure/closet/crate/german_grenade,
 		"Panzerfausts" = /obj/structure/closet/crate/panzerfaust,
-		"Smoke Grenades" = /obj/structure/closet/crate/german_smoke_grenade, // too lazy to fix this typo rn
+		"Smoke Grenades" = /obj/structure/closet/crate/german_smoke_grenade,
+		"German Gas Mask Crate" = /obj/structure/closet/crate/gasmasks,
+		"Barbwire Crate" = /obj/structure/closet/crate/barbwire,
 		"Sandbags Crate" = /obj/structure/closet/crate/sandbags,
 		"Flaregun Ammo" = /obj/structure/closet/crate/flares_ammo,
 		"Flares" = /obj/structure/closet/crate/flares,
@@ -189,7 +191,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		"Tool Closet" = /obj/structure/closet/toolcloset,
 
 		// MINES
-		"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
+//		"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
 
 		// ANIMAL CRATES
 //		"German Shepherd Crate" = /obj/structure/largecrate/animal/dog/german,
@@ -209,9 +211,11 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		"PPSH Ammo" = /obj/structure/closet/crate/ppshammo,
 		"DP Ammo" = /obj/structure/closet/crate/dpammo,
 		"PTRD Ammo" = /obj/structure/closet/crate/ptrdammo,
-		"Mines" = /obj/structure/closet/crate/bettymines,
+//		"Mines" = /obj/structure/closet/crate/bettymines,
 		"Grenades" = /obj/structure/closet/crate/soviet_grenade,
-		"Smoke Grenades" = /obj/structure/closet/crate/soviet_smoke_grenade, // too lazy to fix this typo rn
+		"Smoke Grenades" = /obj/structure/closet/crate/soviet_smoke_grenade,
+		"Soviet Gas Mask Crate" = /obj/structure/closet/crate/gasmasks/soviet,
+		"Barbwire Crate" = /obj/structure/closet/crate/barbwire,
 		"Sandbags Crate" = /obj/structure/closet/crate/sandbags,
 		"Flaregun Ammo" = /obj/structure/closet/crate/flares_ammo,
 		"Flares" = /obj/structure/closet/crate/flares,
@@ -239,7 +243,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		"Tool Closet" = /obj/structure/closet/toolcloset,
 
 		// MINES
-		"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
+//		"Betty Mines Crate" = /obj/structure/closet/crate/bettymines,
 
 		// ANIMAL CRATES
 //		"Samoyed Crate" = /obj/structure/largecrate/animal/dog/soviet,
@@ -269,10 +273,13 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		"PPSH Ammo" = 50,
 		"DP Ammo" = 50,
 
-		"Mines" = 50,
+//		"Mines" = 50,
 		"Grenades" = 65,
 		"Panzerfausts" = 120,
-		"Smoke Grenades" = 55, // too lazy to fix this typo rn
+		"Smoke Grenades" = 55,
+		"Soviet Gas Mask Crate" = 100,
+		"German Gas Mask Crate" = 100,
+		"Barbwire Crate" = 100,
 		"Sandbags Crate" = 45,
 		"Flaregun Ammo" = 15,
 		"Flares" = 10,
@@ -309,7 +316,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		"Tool Closet" = 50,
 
 		// MINES
-		"Betty Mines Crate" = 200,
+//		"Betty Mines Crate" = 200,
 
 		// ANIMAL CRATES
 //		"German Shepherd Crate" = 100,
