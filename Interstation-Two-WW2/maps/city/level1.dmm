@@ -856,7 +856,6 @@
 "qy" = (/obj/structure/table/wood,/obj/item/device/radio/intercom/a7b,/obj/effect/floor_decal/spline/fancy/wood{dir = 4; icon_state = "spline_fancy"; tag = "icon-spline_fancy (WEST)"},/turf/floor/carpet,/area/prishtina/soviet/small_map/inside/commander_bedroom)
 "qz" = (/obj/effect/floor_decal/industrial/loading{dir = 1},/obj/effect/floor_decal/industrial/danger{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/admin/tonkland)
 "qA" = (/obj/effect/decal/cleanable/dirt,/turf/wall/brick,/area/prishtina/houses/sov_one)
-"qB" = (/obj/structure/barricade,/obj/structure/window/classic,/obj/structure/curtain/open/bed,/turf/floor/wood,/area/prishtina/german/command)
 "qC" = (/obj/structure/toilet{tag = "icon-toilet00 (EAST)"; icon_state = "toilet00"; dir = 4},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/sov_three)
 "qD" = (/obj/effect/decal/cleanable/dirt,/obj/structure/sink{tag = "icon-sink (EAST)"; icon_state = "sink"; dir = 4; step_x = 0; step_y = 0; pixel_x = 14},/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/houses/nml_nine)
 "qE" = (/turf/wall/brick,/area/prishtina/german/command)
@@ -1977,7 +1976,7 @@
 (1,1,1) = {"
 aeaeaeaeaeaeaeaeaeaeaedRiKababacacacacacacacacacacacacacacacacacacadafaiaiaiajadheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheaLbabqbqbqbMbiqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEbNbNbNamamamamamamagagagagagapapapapapapaoaoaoaoaobNbNbNbNbNbNaqaqaqaqaqaqararararasbvbvbvbvbvbv
 aegLhihWmLjkjlkumLkumhdRiKabacddacacacacacacacacacacacacacacacacacadafaiaiaiajadhehjhjhkhlhmhlhkhnhohlhjhlhlhjhjhkhlhmhlhkhnhjhjhkhlhmhlhkhnhohlhjhlhlhlhjhlheaLbabqbqbqbMbiqEElECqEIgIgIgbhIgIgrtIgIgbhIgqEbNbxdudzdAeobsbxamagakaleqanapaCaDaEaFapatauavaPaRbxbsaBaBbsbxaVaWaZbbbdaVbpbrbybzasaGaHaIaJaKbv
-aemzmzmzmzmzmzmzmzmzkudRiKabacacabacddacacacacacacacacacacacacacacadafaiaiaiajadhehlhqhlhkhlhkhlhohlhlhlhkhlhlhqhlhkhlhkhlhohlhqhlhkhlhkhlhohlhlhlhkhlhlhlhlheaLdBbqbqdUdVbiqBbDbDbELQIgLRbmbtbtaUaxbjbjIgqEbNbsdubFdAerbseFxjagakaMaNaOapbAlLbGbGbIbcbebcbcaRbsaybFbFazbsaVbUbVbVbWaVckcncncoasaXaXaYaXaXbv
+aemzmzmzmzmzmzmzmzmzkudRiKabacacabacddacacacacacacacacacacacacacacadafaiaiaiajadhehlhqhlhkhlhkhlhohlhlhlhkhlhlhqhlhkhlhkhlhohlhqhlhkhlhkhlhohlhlhlhkhlhlhlhlheaLdBbqbqdUdVbiqEbDbDbELQIgLRbmbtbtaUaxbjbjIgqEbNbsdubFdAerbseFxjagakaMaNaOapbAlLbGbGbIbcbebcbcaRbsaybFbFazbsaVbUbVbVbWaVckcncncoasaXaXaYaXaXbv
 aemAmBmCmzkukukukumzkudRiKababddacacacacacacacacacacacacacacacacacadafaiaiaiajadhuhlhlhjhlhkhlhjhkhmhkhohkhlhlhlhjhlhkhlhjhkhlhlhjhlhkhlhjhkhmhkhohkhlhlhlhlheaLbabqbqbqdVbiqELNbDqELQLQLQIgIgIgIgIgIgIgIgqEbNqcbsxodAyrbsqcamagakaMeqaOapcwcxcycJapbBbcbcbCaRbsaybFbFazbsaVcKcXbVbVaVcYcYcndcasbnaXaXaXbobv
 aemDmzmzmzmzmzmzmzmzmEdRiKabacacacacacacacacacacacacacacacacacacacadafaiaiaiajadhuhlhlhlhnhlhlhlhkhnhjhlhkhlhlhlhlhnhlhlhlhkhlhlhlhnhlhlhlhkhnhjhlhkhlhlhlhlheaLbabqbqbqbMbiqEahahahahahIgaAaALScaMyaAaAIgcUbNbNzVamamamzVamamageqaNeqagbJbJbObObJbJbPbPbPbcaRbsaybFbFazbsaVaVbwdjdjaVdkdkczasasdibHdidibvbv
 aemAmAmFmzkumGmHmJmzkudRiKabddacacacacacacacacacacacacacacacacacacadafaiaiaiajadhuhlhkhkhlhlhlhlhlhlhlhohkhlhlhkhkhlhlhlhlhlhlhkhkhlhlhlhlhlhlhlhohkhlhlhlhlhlaLbabqbqbqbMbiqEahLVtTawahIgIgIgLScaMyIgIgIgpZIgbsbsbsbsbsbsbsMibsbsbsbsbubJbQcbcccdbJcfctcfcfcubsaybFbFazbsdHinbLbLbLpWbLpTpTpTpVpTpTpTpTpUEM
