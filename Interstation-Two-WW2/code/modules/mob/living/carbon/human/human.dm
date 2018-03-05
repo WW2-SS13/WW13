@@ -43,9 +43,6 @@
 
 	..()
 
-	if (client)
-		human_clients_mob_list |= src
-
 	var/obj/item/organ/external/head/U = locate() in organs
 	if(istype(U))
 		U.teeth_list.Cut() //Clear out their mouth of teeth
@@ -61,6 +58,9 @@
 
 	make_blood()
 
+	spawn (10)
+		if (client)
+			human_clients_mob_list |= src
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src

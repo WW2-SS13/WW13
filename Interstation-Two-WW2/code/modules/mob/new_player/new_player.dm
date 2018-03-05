@@ -72,7 +72,7 @@
 			else if (reinforcements_master.has(src, SOVIET))
 				output += "<p><a href='byond://?src=\ref[src];unre_russian=1'>Leave the Soviet reinforcement pool.</A></p>"
 	else
-		output += "<p><i>Reinforcements won't be available until after the train is sent.</i></p>"
+		output += "<p><i>Reinforcements are not available yet.</i></p>"
 
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 
@@ -501,6 +501,19 @@
 /mob/new_player/proc/LateChoices()
 
 	var/arty = locate(/obj/machinery/artillery) in world
+	var/fallschirms = fallschirm_landmarks.len
+	var/german_tank = FALSE
+	var/soviet_tank = FALSE
+
+	for (var/obj/tank/german/T in world)
+		if (!T.admin)
+			german_tank = TRUE
+			break
+
+	for (var/obj/tank/soviet/T in world)
+		if (!T.admin)
+			soviet_tank = TRUE
+			break
 
 	src << browse(null, "window=latechoices")
 
@@ -510,7 +523,7 @@
 	dat += "<br>"
 	dat += "Round Duration: [roundduration2text()]"
 	dat += "<br>"
-	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans and [alive_russians.len] Soviets."
+	dat += "<b>Current Autobalance Status</b>: [alive_germans.len] Germans, [alive_russians.len] Soviets, [alive_partisans.len] Partisans, and [alive_civilians.len] Civilians"
 	dat += "<br>"
 
 	var/list/restricted_choices = list()
@@ -534,6 +547,21 @@
 			if (!arty && (istype(job, /datum/job/german/artyman) || istype(job, /datum/job/german/scout)))
 				continue
 
+			if (!fallschirms && istype(job, /datum/job/german/paratrooper))
+				continue
+
+			if (!german_tank)
+				if (istype(job, /datum/job/german/tankcrew))
+					continue
+				else if (istype(job, /datum/job/german/anti_tank_crew))
+					continue
+
+			if (!soviet_tank)
+				if (istype(job, /datum/job/soviet/tankcrew))
+					continue
+				else if (istype(job, /datum/job/soviet/anti_tank_crew))
+					continue
+
 		//	var/unavailable_message = ""
 			if (job.title == "generic job")
 				continue
@@ -552,6 +580,10 @@
 
 			if (job_master.side_is_hardlocked(job.base_type_flag()))
 				job_is_available = FALSE
+
+			if(job_master.is_side_locked(job.base_type_flag()))
+				job_is_available = FALSE
+
 			//	unavailable_message = " <span class = 'color: rgb(255,215,0);'>{DISABLED BY AUTOBALANCE}</span> "
 
 		//	if (jobBanned(job.title))
@@ -592,14 +624,6 @@
 			// check if the job is admin-locked or disabled codewise
 
 			if (!job.enabled)
-				job_is_available = FALSE
-
-			// check if the faction is autobalance-locked
-
-			if (istype(job, /datum/job/partisan) && !istype(job, /datum/job/partisan/civilian) && !job_master.allow_partisans)
-				job_is_available = FALSE
-
-			if (istype(job, /datum/job/partisan/civilian) && !job_master.allow_civilians)
 				job_is_available = FALSE
 
 			// check if the job is autobalance-locked

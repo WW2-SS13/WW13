@@ -253,8 +253,8 @@
 	world << "[WW2_ASPECT_SPAN][.]Foreign Armies!</span>"
 	world << "<br><i>[desc]</i>"
 
-	job_master.allow_italians = TRUE
-	job_master.allow_ukrainians = TRUE
+//	job_master.allow_italians = TRUE
+//	job_master.allow_ukrainians = TRUE
 
 
 #undef WW2_ASPECT_SPAN

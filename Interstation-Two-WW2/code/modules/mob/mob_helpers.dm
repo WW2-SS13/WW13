@@ -71,7 +71,7 @@ proc/getsensorlevel(A)
 /* since head shots are usually instant kills, they've been heavily nerfed.
  * Although they're still almost guaranteed at point-blank range. */
 
-/* - kachnov */
+/* - Kachnov */
 
 var/list/global/hit_chances = list(
 

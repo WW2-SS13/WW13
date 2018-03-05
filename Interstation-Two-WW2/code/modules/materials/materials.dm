@@ -265,6 +265,8 @@ var/list/name_to_material
 	tableslam_noise = null
 	hardness = 10
 	stack_origin_tech = list(TECH_MATERIAL = 6)
+	sheet_singular_name = "coil"
+	sheet_plural_name = "coils"
 
 /material/gold
 	name = "gold"
@@ -333,6 +335,10 @@ var/list/name_to_material
 	door_icon_base = "stone"
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
+
+/material/stone/stone
+	name = "stone"
+	icon_colour = "#808080"
 
 /material/stone/stonebrick
 	name = "brick"

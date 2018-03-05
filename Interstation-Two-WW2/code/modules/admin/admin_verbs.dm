@@ -110,6 +110,7 @@ var/list/admin_verbs_fun = list(
 	/client/proc/randomize_lobby_music,
 //	/datum/admins/proc/call_supply_drop,
 //	/datum/admins/proc/call_drop_pod
+	/client/proc/show_custom_roundstart_tip
 	)
 
 var/list/admin_verbs_spawn = list(
@@ -130,8 +131,8 @@ var/list/admin_verbs_server = list(
 	/client/proc/toggle_round_ending,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/immreboot,
-	/client/proc/everyone_random,
-	/datum/admins/proc/toggleAI,
+//	/client/proc/everyone_random,
+//	/datum/admins/proc/toggleAI,
 	/client/proc/cmd_admin_delete,		// delete an instance/object/mob/etc,
 	/client/proc/cmd_debug_del_all,
 	/datum/admins/proc/adrev,
@@ -316,7 +317,7 @@ var/list/admin_verbs_host = list(
 	/client/proc/remove_patreon_rewards,
 	/client/proc/toggle_BYOND_hub_visibility,
 	/client/proc/eject_unwhitelisted,
-	/client/proc/toggle_hyperefficiency_mode,
+//	/client/proc/toggle_hyperefficiency_mode,
 	/client/proc/toggle_playing
 )
 

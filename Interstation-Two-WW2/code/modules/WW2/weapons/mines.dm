@@ -150,3 +150,7 @@
 	throw_speed = 3
 //	unacidable = TRUE
 	anchored = FALSE
+
+/obj/item/device/mine/betty/New()
+	..()
+	qdel(src)

@@ -9,14 +9,17 @@
 	title = "Kapitan"
 	en_meaning = "Company Commander"
 	rank_abbreviation = "Kpt"
-	total_positions = 1
 	head_position = TRUE
 	selection_color = "#530909"
 	spawn_location = "JoinLateRACO"
 	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
 	is_commander = TRUE
-	absolute_limit = 1
+	whitelisted = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
 
 /datum/job/soviet/commander/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -31,7 +34,8 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	spawn (5) // after we have our name
 		if (!istype(H, /mob/living/carbon/human/megastalin))
-			world << "<b><big>[H.real_name] is the [title] of the Soviet forces!</big></b>"
+			if (!istype(get_area(H), /area/prishtina/admin))
+				world << "<b><big>[H.real_name] is the [title] of the Soviet forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the Russian forces and lead them to victory. You take orders from the <b>Soviet High Command</b>.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
@@ -57,13 +61,16 @@
 	title = "Starshiy Leytenant"
 	en_meaning = "Company Executive Officer"
 	rank_abbreviation = "STLy"
-	total_positions = 1
 	head_position = FALSE
 	selection_color = "#530909"
-	spawn_location = "JoinLateRASO"
+	spawn_location = "JoinLateRAXO"
 	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
-	absolute_limit = 1
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/soviet/XO/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -98,13 +105,17 @@
 	title = "Leytenant"
 	en_meaning = "Platoon Officer"
 	rank_abbreviation = "Lyt"
-	total_positions = 2
 	head_position = FALSE
 	selection_color = "#530909"
 	spawn_location = "JoinLateRASO"
 	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
-	absolute_limit = 3
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 2
+	player_threshold = PLAYER_THRESHOLD_HIGH
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/staff_officer/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -138,12 +149,16 @@
 	title = "Voyennaya Politsiya"
 	en_meaning = "MPO"
 	rank_abbreviation = "Srg"
-	total_positions = 2
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLateRA"
+	spawn_location = "JoinLateRAMP"
 	additional_languages = list( "German" = 100, "Ukrainian" = 33 )
-	absolute_limit = 3
 	is_officer = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 3
+	player_threshold = PLAYER_THRESHOLD_LOW
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/MP/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -176,7 +191,6 @@
 	title = "Starshiy Serzhant"
 	en_meaning = "Platoon 2IC"
 	rank_abbreviation = "StSr"
-	total_positions = 4
 	head_position = FALSE
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRASL"
@@ -184,6 +198,10 @@
 	is_officer = TRUE
 	is_squad_leader = TRUE
 	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 4
+	max_positions = 4
 
 /datum/job/soviet/squad_leader/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -218,9 +236,14 @@
 	title = "Sanitar"
 	en_meaning = "Medic"
 	rank_abbreviation = "Efr"
-	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 5
+	player_threshold = PLAYER_THRESHOLD_LOW
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/medic/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -250,12 +273,16 @@
 	title = "Doktor"
 	en_meaning = "Dr"
 	rank_abbreviation = "2lt"
-	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRADr"
 	is_nonmilitary = TRUE
 	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 3
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/doctor/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -292,9 +319,14 @@
 	title = "Snaiper"
 	en_meaning = "Sniper"
 	rank_abbreviation = "Kras"
-	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 4
+	player_threshold = PLAYER_THRESHOLD_MEDIUM
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/sniper/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -328,9 +360,14 @@
 	title = "Boyevoy Saper"
 	en_meaning = "Engineer"
 	rank_abbreviation = "Efr"
-	total_positions = 3
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 4
+	player_threshold = PLAYER_THRESHOLD_LOW
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/engineer/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -365,9 +402,14 @@
 	title = "Pulemetchik"
 	en_meaning = "Heavy Weapons Operator"
 	rank_abbreviation = "Efr"
-	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 3
+	player_threshold = PLAYER_THRESHOLD_LOW
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/heavy_weapon/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -376,7 +418,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/dp(H), slot_r_hand)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/soviet(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/soviet(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a heavy weapons unit. Your job is to assist normal <b>Soldat</b>i in front line combat.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -401,10 +443,14 @@
 	title = "Sovietsky Soldat"
 	en_meaning = "Infantry Soldier"
 	rank_abbreviation = "Kras"
-	total_positions = 200
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	allow_spies = TRUE
+
+	// AUTOBALANCE
+	min_positions = 5
+	max_positions = 12
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/soldier/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -438,7 +484,6 @@
 	title = "Dressirovshchik"
 	en_meaning = "Dog Trainer"
 	rank_abbreviation = "MlSr"
-	total_positions = 50
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	allow_spies = TRUE
@@ -492,11 +537,14 @@
 	title = "Tank-ekipazh"
 	en_meaning = "Tank Crewman"
 	rank_abbreviation = "Efr"
-	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
-	absolute_limit = 4
 	is_tankuser = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 2
+	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/soviet/tankcrew/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -529,10 +577,13 @@
 	title = "Protivotankovyy Soldat"
 	en_meaning = "Anti-Tank Trooper"
 	rank_abbreviation = "Kras"
-	total_positions = 4
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
-	absolute_limit = 4
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 2
+	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/soviet/anti_tank_crew/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -566,11 +617,16 @@
 	title = "Gvardeyec"
 	en_meaning = "Guard"
 	rank_abbreviation = "Kras"
-	total_positions = 3
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRA"
 	additional_languages = list( "German" = 100 )
 	is_guard = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 3
+	player_threshold = PLAYER_THRESHOLD_LOW
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 var/first_guard = FALSE
 /datum/job/soviet/guard/equip(var/mob/living/carbon/human/H)
@@ -623,13 +679,16 @@ var/first_guard = FALSE
 	title = "Zavhoz"
 	en_meaning = "Quartermaster"
 	rank_abbreviation = "Srg"
-	total_positions = 1
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRAQM"
 	additional_languages = list( "German" = 100 )
 	is_officer = TRUE
-	absolute_limit = TRUE
 	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_LOW
 
 /datum/job/soviet/QM/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -662,10 +721,15 @@ var/first_guard = FALSE
 	title = "Sturmovik"
 	en_meaning = "Shock Trooper"
 	rank_abbreviation = "Kras"
-	total_positions = 5
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	is_sturmovik = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 5
+	player_threshold = PLAYER_THRESHOLD_LOW
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/soviet/sturmovik/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -703,12 +767,15 @@ var/first_guard = FALSE
 	title = "Povar"
 	en_meaning = "Chef"
 	rank_abbreviation = "Kras"
-	total_positions = 1
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRAChef"
 	allow_spies = TRUE
 	is_nonmilitary = TRUE
-	absolute_limit = 1
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
 
 /datum/job/soviet/chef/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE

@@ -1,3 +1,8 @@
+#define PLAYER_THRESHOLD_LOW 10
+#define PLAYER_THRESHOLD_MEDIUM 20
+#define PLAYER_THRESHOLD_HIGH 30
+#define PLAYER_THRESHOLD_HIGHEST 50
+
 /proc/check_for_german_train_conductors()
 	if (!game_started)
 		return TRUE // if we haven't started the game yet
@@ -31,14 +36,22 @@
 /datum/job/var/is_sturmovik = FALSE
 /datum/job/var/is_guard = FALSE
 /datum/job/var/is_tankuser = FALSE
-/datum/job/var/absolute_limit = FALSE // if this is FALSE it's ignored
 /datum/job/var/rank_abbreviation = null
+
+// new autobalance stuff - Kachnov
+/datum/job/var/min_positions = 1 // absolute minimum positions if we reach player threshold
+/datum/job/var/max_positions = 1 // absolute maximum positions if we reach player threshold
+/datum/job/var/player_threshold = 0 // number of players who have to be on for this job to be open
+/datum/job/var/scale_to_players = 50 // as we approach this, our open positions approach max_positions. Does nothing if min_positions == max_positions, so just don't touch it
 
 /* type_flag() replaces flag, and base_type_flag() replaces department_flag
  * this is a better solution than bit constants, in my opinion */
 
 /datum/job
 	var/_base_type_flag = -1
+
+/datum/job/proc/specialcheck()
+	return TRUE
 
 /datum/job/proc/type_flag()
 	return "[type]"

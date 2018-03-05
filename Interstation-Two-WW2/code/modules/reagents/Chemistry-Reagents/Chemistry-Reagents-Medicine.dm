@@ -14,7 +14,7 @@
 /datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_STABLE)
 	M.add_chemical_effect(CE_PAINKILLER, 25)
-	M.add_chemical_effect(CE_PULSE, TRUE)
+	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/bicaridine
 	name = "Bicaridine"
@@ -512,7 +512,7 @@
 	reagent_state = LIQUID
 	color = "#000067"
 	metabolism = REM * 0.10
-	overdose = REAGENTS_OVERDOSE * 0.2
+	overdose = 9
 
 /datum/reagent/morphine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)

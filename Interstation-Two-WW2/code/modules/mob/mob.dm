@@ -637,7 +637,7 @@
 	. = (is_client_active(10 MINUTES))
 	if(.)
 		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
-			stat("Players Online", clients.len)
+			stat("Players Online (Playing)", "[clients.len] ([human_clients_mob_list.len])")
 			stat("Round Duration", roundduration2text())
 			stat("Map", map.title)
 			stat("Time of Day", time_of_day)

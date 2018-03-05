@@ -1,0 +1,19 @@
+"a" = (/turf/wall/stone,/area/prishtina/german/medical/morgue)
+"b" = (/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/medical/morgue)
+"c" = (/obj/structure/multiz/ladder/ww2/up{area_id = "german_morgue"},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/medical/morgue)
+"d" = (/obj/structure/closet/coffin/anchored,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/medical/morgue)
+"e" = (/obj/machinery/light/small,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/medical/morgue)
+"f" = (/obj/machinery/light/small{dir = 1},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/medical/morgue)
+
+(1,1,1) = {"
+aaaaaaaaa
+abbbfbbca
+abdbdbdba
+abdbdbdba
+abdbdbdba
+abdbdbdba
+abdbdbdba
+abdbdbdba
+abbbebbba
+aaaaaaaaa
+"}

@@ -79,7 +79,8 @@
 				adjustOxyLoss(-(min(getOxyLoss(), 5)))
 				updatehealth()
 				H.visible_message("<span class='danger'>\The [H] performs CPR on \the [src]!</span>")
-				src << "<span class='notice'>You feel a breath of fresh air enter your lungs. It feels good.</span>"
+				if (stat != DEAD)
+					src << "<span class='notice'>You feel a breath of fresh air enter your lungs. It feels good.</span>"
 				H << "<span class='warning'>Repeat at least every 7 seconds.</span>"
 
 			else

@@ -90,6 +90,9 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/proc/cross_message(faction)
 	return "<font size = 4>The [faction_const2name(faction)] may now cross the invisible wall!</font>"
 
+/obj/map_metadata/proc/reinforcements_ready()
+	return game_started
+
 // FOREST MAP
 /obj/map_metadata/forest
 	ID = "FOREST"
@@ -138,7 +141,10 @@ var/global/obj/map_metadata/map = null
 	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/city/announce_mission_start(var/preparation_time)
-	world << "<font size=4>Both sides have <b>12 minutes</b> to prepare before combat will begin!</font>"
+	world << "<font size=4>All factions have <b>12 minutes</b> to prepare before combat will begin!</font>"
+
+/obj/map_metadata/city/reinforcements_ready()
+	return (germans_can_cross_blocks() && soviets_can_cross_blocks())
 
 // TEST MAP
 /obj/map_metadata/test
@@ -161,7 +167,7 @@ var/global/obj/map_metadata/map = null
 	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/test/announce_mission_start(var/preparation_time)
-	world << "<font size=4>Both sides have <b>12 minutes</b> to prepare before combat will begin!</font>"
+	world << "<font size=4>All factions have <b>12 minutes</b> to prepare before combat will begin!</font>"
 
 
 // PILLARMAP

@@ -59,7 +59,7 @@ var/datum/reinforcements/reinforcements_master
 	showed_permalock_message[SOVIET] = FALSE
 
 /datum/reinforcements/proc/is_ready()
-	. = game_started // no reinforcements until the train is sent
+	. = (map ? map.reinforcements_ready() : game_started)
 	if (map && !map.reinforcements)
 		. = FALSE
 

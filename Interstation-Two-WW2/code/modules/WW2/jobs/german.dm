@@ -1,9 +1,7 @@
-
 #define GERMAN_CO_TITLE "Hauptmann"
 #define GERMAN_XO_TITLE "Oberleutnant"
 #define GERMAN_SO_TITLE "Leutnant"
 #define GERMAN_QM_TITLE "Frachtoffizier"
-
 
 /datum/job/german
 	faction = "Station"
@@ -16,15 +14,17 @@
 	title = GERMAN_CO_TITLE
 	en_meaning = "Company Commander"
 	rank_abbreviation = "hptm"
-	total_positions = 1
 	head_position = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerCO"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
 	is_commander = TRUE
-	absolute_limit = TRUE
 	whitelisted = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
 
 /datum/job/german/commander/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -38,7 +38,8 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
 	spawn (5) // after we have our name
 		if (!istype(H, /mob/living/carbon/human/mechahitler))
-			world << "<b><big>[H.real_name] is the [title] of the German forces!</big></b>"
+			if (!istype(get_area(H), /area/prishtina/admin))
+				world << "<b><big>[H.real_name] is the [title] of the German forces!</big></b>"
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the highest ranking officer present. Your job is the organize the German forces and lead them to victory, while working alongside the <b>SS-Untersharffuhrer</b>. You take orders from the <b>German High Command</b>.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
@@ -64,13 +65,16 @@
 	title = GERMAN_XO_TITLE
 	en_meaning = "Company XO"
 	rank_abbreviation = "olt"
-	total_positions = 1
 	head_position = FALSE
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLateHeerSO"
+	spawn_location = "JoinLateHeerXO"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
-	absolute_limit = 1
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/german/XO/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -104,13 +108,17 @@
 	title = GERMAN_SO_TITLE
 	en_meaning = "Platoon Officer"
 	rank_abbreviation = "lt"
-	total_positions = 2
 	head_position = FALSE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerSO"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
-	absolute_limit = 3
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 2
+	player_threshold = PLAYER_THRESHOLD_HIGH
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/staff_officer/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -147,12 +155,16 @@
 	title = "Militärpolizei"
 	en_meaning = "MPO"
 	rank_abbreviation = "uffz"
-	total_positions = 2
 	selection_color = "#2d2d63"
-	spawn_location = "JoinLateHeer"
+	spawn_location = "JoinLateHeerMP"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 33 )
-	absolute_limit = 3
 	is_officer = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 3
+	player_threshold = PLAYER_THRESHOLD_LOW
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/MP/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -184,7 +196,6 @@
 	title = "Gruppenfuhrer"
 	en_meaning = "Platoon 2IC"
 	rank_abbreviation = "uffz"
-	total_positions = 4
 	head_position = FALSE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSL"
@@ -192,6 +203,10 @@
 	is_officer = TRUE
 	is_squad_leader = TRUE
 	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 4
+	max_positions = 4
 
 /datum/job/german/squad_leader/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -228,9 +243,14 @@
 	title = "Sanitäter"
 	en_meaning = "Field Medic"
 	rank_abbreviation = "oGftr"
-	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 5
+	player_threshold = PLAYER_THRESHOLD_LOW
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/medic/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -259,12 +279,16 @@
 	title = "Medizinier"
 	en_meaning = "Doctor"
 	rank_abbreviation = "uffz"
-	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerDr"
 	is_nonmilitary = TRUE
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
 	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 3
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/doctor/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -301,9 +325,14 @@
 	title = "Flammenwerfersoldat"
 	en_meaning = "Flamethrower Soldier"
 	rank_abbreviation = "gftr"
-	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 2
+	player_threshold = PLAYER_THRESHOLD_MEDIUM
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/flamethrower_man/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -336,9 +365,14 @@
 	title = "Scharfschütze"
 	en_meaning = "Sniper"
 	rank_abbreviation = "gftr"
-	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 4
+	player_threshold = PLAYER_THRESHOLD_MEDIUM
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/sniper/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -371,9 +405,14 @@
 	title = "Pionier"
 	en_meaning = "Engineer"
 	rank_abbreviation = "gftr"
-	total_positions = 3
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 4
+	player_threshold = PLAYER_THRESHOLD_LOW
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/engineer/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -408,9 +447,14 @@
 	title = "Maschinengewehrschütze"
 	en_meaning = "Heavy Weapons Soldier"
 	rank_abbreviation = "oGftr"
-	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 3
+	player_threshold = PLAYER_THRESHOLD_LOW
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/heavy_weapon/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -419,7 +463,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mg34(H), slot_r_hand)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a heavy weapons unit. Your job is to assist normal <b>Soldat</b>en in front line combat.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -443,10 +487,14 @@
 	title = "Soldat"
 	en_meaning = "Infantry Soldier"
 	rank_abbreviation = "schtz"
-	total_positions = 200 // this was causing an error with latejoin spawning
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
+
+	// AUTOBALANCE
+	min_positions = 5
+	max_positions = 12
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
 /datum/job/german/soldier/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -479,7 +527,6 @@
 	title = "Hunden Trainer"
 	en_meaning = "Dog Trainer"
 	rank_abbreviation = "gftr"
-	total_positions = 50
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
 	allow_spies = TRUE
@@ -533,11 +580,14 @@
 	title = "Panzerbesatzung"
 	en_meaning = "Tank Crewman"
 	rank_abbreviation = "gftr"
-	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	absolute_limit = 4
 	is_tankuser = TRUE
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 2
+	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/german/tankcrew/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -569,10 +619,13 @@
 	title = "Panzer-Soldat"
 	en_meaning = "Anti Tank Soldier"
 	rank_abbreviation = "schtz"
-	total_positions = 4
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
-	absolute_limit = 4
+
+	// AUTOBALANCE
+	min_positions = 2
+	max_positions = 2
+	player_threshold = PLAYER_THRESHOLD_MEDIUM
 
 /datum/job/german/anti_tank_crew/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -603,15 +656,20 @@ var/first_fallschirm = TRUE
 	title = "Fallschirmjäger"
 	en_meaning = "Paratrooper"
 	rank_abbreviation = "schtz"
-	total_positions = 7
 	selection_color = "#4c4ca5"
 	spawn_location = "Fallschirm"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 100 )
 //	spawn_delay = 3000
-	delayed_spawn_message = "<span class = 'danger'><big>You are parachuting behind Russian lines. You won't spawn for 5 minutes.</big></span>"
+//	delayed_spawn_message = "<span class = 'danger'><big>You are parachuting behind Russian lines. You won't spawn for 5 minutes.</big></span>"
 	is_paratrooper = TRUE
 	var/fallschirm_spawnzone = null
 	var/list/fallschirm_spawnpoints = list()
+
+	// AUTOBALANCE
+	min_positions = 3
+	max_positions = 8
+	player_threshold = PLAYER_THRESHOLD_HIGH
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
 /datum/job/german/paratrooper/equip(var/mob/living/carbon/human/H)
 //	spawn_delay = config.paratrooper_drop_time
@@ -676,14 +734,16 @@ var/first_fallschirm = TRUE
 	title = GERMAN_QM_TITLE
 	en_meaning = "Quartermaster"
 	rank_abbreviation = "uffz"
-	total_positions = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerQM"
-
 	additional_languages = list( "Russian" = 100 )
 	is_officer = TRUE
-	absolute_limit = TRUE
 	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_LOW
 
 /datum/job/german/QM/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -715,11 +775,14 @@ var/first_fallschirm = TRUE
 	title = "Kanonier"
 	en_meaning = "Artillery Officer"
 	rank_abbreviation = "uffz"
-	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSO"
 	is_officer = TRUE
-	absolute_limit = 2
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_HIGH
 
 /datum/job/german/artyman/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -758,9 +821,13 @@ var/first_fallschirm = TRUE
 	title = "Aufklärtrupp"
 	en_meaning = "Scout"
 	rank_abbreviation = "schtz"
-	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer"
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_HIGH
 
 /datum/job/german/scout/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -798,12 +865,14 @@ var/first_fallschirm = TRUE
 	title = "Dirigent"
 	en_meaning = "Train Conductor"
 	rank_abbreviation = "uffz"
-	total_positions = 2
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSO"
 	is_officer = TRUE
-	absolute_limit = TRUE
 	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
 
 /datum/job/german/conductor/train_check() // if there's no train, don't let people be conductors!
 	return WW2_train_check()
@@ -835,7 +904,6 @@ var/first_fallschirm = TRUE
 	title = "SS-Unterscharfuhrer"
 	en_meaning = "SS Squad Leader"
 	rank_abbreviation = "uscha"
-	total_positions = TRUE
 	head_position = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS-Officer"
@@ -845,6 +913,11 @@ var/first_fallschirm = TRUE
 	is_commander = TRUE // not a squad leader despite the title
 	is_petty_commander = TRUE
 	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
 
 /datum/job/german/squad_leader_ss/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -890,11 +963,16 @@ var/first_fallschirm = TRUE
 	title = "SS-Schutze"
 	en_meaning = "SS Infantry Soldier"
 	rank_abbreviation = "schtz"
-	total_positions = 5 // this was causing an error with latejoin spawning
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS"
 	is_SS = TRUE
 	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 3
+	max_positions = 10
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
 /datum/job/german/soldier_ss/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -934,11 +1012,14 @@ var/first_fallschirm = TRUE
 /datum/job/german/chef
 	title = "Kuchenchef" // note: SS13 does not like ü in job titles
 	en_meaning = "Chef"
-	total_positions = 1
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerChef"
 	is_nonmilitary = TRUE
-	absolute_limit = 1
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
 
 /datum/job/german/chef/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -965,11 +1046,9 @@ var/first_fallschirm = TRUE
 
 // this is a horrible hack.
 /datum/job/german/trainsystem
-	title = "N/A"
+	title = "N/A" // makes us unchooseable
 	en_meaning = "N/A"
-	total_positions = FALSE
 	head_position = FALSE
 	is_officer = FALSE
 	is_commander = FALSE
-	absolute_limit = FALSE
 	faction = "trainsystem"

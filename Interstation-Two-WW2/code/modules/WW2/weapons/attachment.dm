@@ -210,7 +210,7 @@ Current Defines (_defines/attachment.dm)
 	name = "sniper scope"
 	icon_state = "kar_scope"
 	desc = "You can attach this to rifles... or use them as binoculars."
-	max_zoom = 16
+	max_zoom = 19
 
 /obj/item/weapon/attachment/scope/adjustable/sniper_scope/removed(mob/user, obj/item/weapon/gun/G)
   ..()

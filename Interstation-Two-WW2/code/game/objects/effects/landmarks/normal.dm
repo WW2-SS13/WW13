@@ -187,6 +187,13 @@ var/area/partisan_stockpile = null
 			qdel(src)
 			return
 
+		if("JoinLateHeerXO")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
 		if("JoinLateHeerMP")
 			if(!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
@@ -294,6 +301,13 @@ var/area/partisan_stockpile = null
 			return
 
 		if("JoinLateRASO")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateRAXO")
 			if(!latejoin_turfs[name])
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc

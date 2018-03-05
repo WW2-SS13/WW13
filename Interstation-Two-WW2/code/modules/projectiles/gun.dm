@@ -3,7 +3,7 @@
 	var/burst = TRUE
 	var/burst_delay = null
 	var/fire_delay = null
-	var/move_delay = TRUE
+	var/move_delay = 0
 	var/list/accuracy = list(0)
 	var/list/dispersion = list(0)
 	var/recoil = -1
@@ -71,7 +71,7 @@
 	var/can_scope = FALSE
 
 	var/burst = TRUE
-	var/move_delay = TRUE
+	var/move_delay = 0
 	var/list/burst_accuracy = list(0)
 	var/list/dispersion = list(0)
 
@@ -278,7 +278,7 @@
 
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-//	user.setMoveCooldown(move_delay)
+	user.setMoveCooldown(move_delay)
 	next_fire_time = world.time + fire_delay
 
 	if(muzzle_flash)
@@ -320,7 +320,7 @@
 	var/_burst = firemode.burst
 	var/_burst_delay = isnull(firemode.burst_delay)? burst_delay : firemode.burst_delay
 	var/_fire_delay = isnull(firemode.fire_delay)? fire_delay : firemode.fire_delay
-	var/_move_delay = firemode.move_delay + (can_wield && !wielded) ? 2 : FALSE
+	var/_move_delay = firemode.move_delay
 
 	var/shoot_time = (_burst - TRUE)*_burst_delay
 	user.next_move = world.time + shoot_time  //no clicking on things while shooting
@@ -343,13 +343,11 @@
 		if (istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
 
-			if (gun_type == GUN_TYPE_RIFLE)
-				P.KD_chance *= 12
-				if (ishuman(user))
-					var/mob/living/carbon/human/H = user
-					P.KD_chance *= H.getStatCoeff("rifle")
-					acc += max(H.getStatCoeff("rifle")-1, FALSE)
+			// 100% chance of KD
+			if (gun_type == GUN_TYPE_SHOTGUN)
+				P.KD_chance *= 20
 
+			// 75%
 			else if (gun_type == GUN_TYPE_HEAVY)
 				P.KD_chance *= 15
 				if (ishuman(user))
@@ -357,19 +355,29 @@
 					P.KD_chance *= H.getStatCoeff("heavyweapon")
 					acc += max(H.getStatCoeff("heavyweapon")-1, FALSE)
 
+			// 60% chance of KD
+			else if (gun_type == GUN_TYPE_RIFLE)
+				P.KD_chance *= 12
+				if (ishuman(user))
+					var/mob/living/carbon/human/H = user
+					P.KD_chance *= H.getStatCoeff("rifle")
+					acc += max(H.getStatCoeff("rifle")-1, FALSE)
+
+			// 30% chance of KD
+			else if (gun_type == GUN_TYPE_PISTOL)
+				P.KD_chance *= 6
+				if (ishuman(user))
+					var/mob/living/carbon/human/H = user
+					P.KD_chance *= H.getStatCoeff("pistol")
+					acc += max(H.getStatCoeff("pistol")-1, FALSE)
+
+			// 20% chance of KD
 			else if (gun_type == GUN_TYPE_MG)
 				P.KD_chance *= 4
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("mg")
 					acc += max(H.getStatCoeff("mg")-1, FALSE)
-
-			else if (gun_type == GUN_TYPE_PISTOL)
-				P.KD_chance *= 3
-				if (ishuman(user))
-					var/mob/living/carbon/human/H = user
-					P.KD_chance *= H.getStatCoeff("pistol")
-					acc += max(H.getStatCoeff("pistol")-1, FALSE)
 
 			if (ishuman(user))
 				var/mob/living/carbon/human/H = user
@@ -400,6 +408,10 @@
 	//update timing
 	user.next_move = world.time + 4
 	if(user.client) user.client.move_delay = world.time + _move_delay
+
+	if(_move_delay)
+		user.setMoveCooldown(_move_delay)
+
 	next_fire_time = world.time + _fire_delay
 
 	if(muzzle_flash)
