@@ -13,7 +13,7 @@
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	magazine_type = /obj/item/ammo_magazine/svt
 	firemodes = list(
-		list(name="single shot",burst=1, move_delay=4, fire_delay=10)
+		list(name="single shot",burst=1, move_delay=2, fire_delay=7)
 		)
 
 	gun_type = GUN_TYPE_RIFLE
@@ -36,7 +36,7 @@
 	desc = "German semi-automatic rifle using 7.92x57mm Mauser ammunition in a 10 round magazine. Devastating rifle."
 	icon_state = "" //to-do
 	item_state = "" //to-do
-	w_class = 3
+	w_class = 4
 	load_method = SPEEDLOADER | MAGAZINE
 	max_shells = FALSE
 	caliber = "a792x57"
@@ -151,7 +151,7 @@
 	item_state = "stg"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
-	w_class = 3
+	w_class = 4
 	caliber = "a792x33"
 	magazine_type = /obj/item/ammo_magazine/a762/akm
 
@@ -162,7 +162,7 @@
 	//must_wield = TRUE
 
 	firemodes = list(
-		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=1, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
+		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=1, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6), accuracy = list(DEFAULT_SEMIAUTO_ACCURACY)),
 		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		list(name="long bursts",	burst=5, burst_delay=1.2, move_delay=4, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
 		)
