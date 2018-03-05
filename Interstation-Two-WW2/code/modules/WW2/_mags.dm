@@ -147,6 +147,16 @@ WW 2 WEAPONS MAGS N AMMO
 	max_ammo = 7
 	multiple_sprites = TRUE
 
+/obj/item/ammo_magazine/c762mm_tokarev
+	name = "magazine (7.62mm)"
+	icon_state = "tokarevmag"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/c762mm_tokarev
+	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	caliber = "7.62mm"
+	max_ammo = 8
+	multiple_sprites = TRUE
+
 /***********************************
 OTHER
 ***********************************/

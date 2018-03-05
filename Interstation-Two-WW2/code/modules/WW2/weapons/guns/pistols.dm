@@ -23,8 +23,8 @@
 
 // new soviet officer gun
 /obj/item/weapon/gun/projectile/pistol/_45
-	name = "vintage .45 pistol"
-	desc = "a Colt M1911. Uses .45 rounds."
+	name = "Colt M1911"
+	desc = "a Colt M1911A1. Uses .45 rounds."
 	icon_state = "colt"
 	item_state = "gun"
 	w_class = 2
@@ -36,6 +36,23 @@
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 
 /obj/item/weapon/gun/projectile/pistol/_45/gibber
+	crushes = TRUE
+
+
+/obj/item/weapon/gun/projectile/pistol/tokarev
+	name = "TT-30"
+	desc = "Russian pistol chambered in 7.62mm rounds. Official name being Tula-Tokarev 30."
+	icon_state = "tokarev"
+	item_state = "gun"
+	w_class = 2
+	caliber = "7.62mm"
+	fire_sound ='sound/weapons/guns/fire/pistol_fire.ogg'
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/c762mm_tokarev
+	accuracy = DEFAULT_PISTOL_ACCURACY
+	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+
+/obj/item/weapon/gun/projectile/pistol/tokarev/gibber
 	crushes = TRUE
 
 /////////////////////FLAREGUNS//////////////////////////////////////////

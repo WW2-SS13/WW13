@@ -86,7 +86,7 @@
 	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY
 
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=1.0, recoil=0.4, move_delay=0, dispersion = list(0.4, 0.6, 0.6, 0.6, 0.8)),
+		list(name="single shot",	burst=1, burst_delay=1.0, recoil=0.4, move_delay=0, dispersion = list(0.4, 0.6, 0.6, 0.6, 0.8), accuracy = list(DEFAULT_SUBMACHINEGUN_ACCURACY + 1)),
 		list(name="short bursts",	burst=3, burst_delay=1.2, recoil=0.7, move_delay=1, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
 		list(name="long bursts",	burst=6, burst_delay=1.4, recoil=0.9, move_delay=1.5, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
 		)
@@ -192,7 +192,7 @@
 	item_state = "ppsh"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
-	w_class = 3
+	w_class = 4
 	fire_sound = 'sound/weapons/m16.ogg'
 	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-1
 	scoped_accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-1

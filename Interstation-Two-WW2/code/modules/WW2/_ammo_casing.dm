@@ -68,6 +68,12 @@ WW 2 WEAPONS MAGS N AMMO
 	desc = "A .45 bullet casing."
 	caliber = ".45"
 	projectile_type = /obj/item/projectile/bullet/rifle/a9_parabellum_luger
+
+/obj/item/ammo_casing/c762mm_tokarev
+	desc = "A 7.62mm pistol bullet casing."
+	caliber = "7.62mm"
+	projectile_type = /obj/item/projectile/bullet/rifle/c762mm_tokarev
+
 /*
 /obj/item/ammo_casing/svt
 	desc = "A SVT bullet casing."

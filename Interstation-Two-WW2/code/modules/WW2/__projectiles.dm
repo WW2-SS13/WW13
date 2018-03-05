@@ -24,13 +24,13 @@
 
 // MOSIN
 /obj/item/projectile/bullet/rifle/a762x54
-	damage = DAMAGE_HIGH - 5
+	damage = DAMAGE_HIGH - 2
 	penetrating = 2
 	armor_penetration = 100
 
 // KAR
 /obj/item/projectile/bullet/rifle/a792x57
-	damage = DAMAGE_HIGH
+	damage = DAMAGE_HIGH + 4
 	penetrating = 2
 	armor_penetration = 100
 
@@ -43,11 +43,11 @@
 	damage = DAMAGE_LOW
 	penetrating = FALSE
 
-// MP40 SMG
+// MP40 SMG //
 /obj/item/projectile/bullet/rifle/a9_parabellum
-	damage = DAMAGE_LOW
+	damage = DAMAGE_LOW + 2
 	penetrating = FALSE
-	
+
 // LUGER PISTOL //
 /obj/item/projectile/bullet/rifle/a9_parabellum_luger
 	damage = DAMAGE_LOW
@@ -57,6 +57,7 @@
 	damage = DAMAGE_MEDIUM
 	penetrating = TRUE
 
+// PTRD AT GUN //
 /obj/item/projectile/bullet/rifle/a145
 	damage = DAMAGE_VERY_HIGH
 	stun = 3
@@ -65,8 +66,9 @@
 	armor_penetration = 150
 	hitscan = TRUE //so the PTRD isn't useless as a sniper weapon
 
+// PPSH SMG //
 /obj/item/projectile/bullet/rifle/a556
-	damage = DAMAGE_MEDIUM
+	damage = DAMAGE_LOW - 2
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/rifle/a9x39
@@ -83,6 +85,7 @@
 	damage = DAMAGE_LOW
 	penetrating = 3
 
+// M1991 .45 VINTAGE PISTOL //
 /obj/item/projectile/bullet/rifle/c4mm
 	damage = DAMAGE_LOW + 5
 	penetrating = 0
@@ -95,6 +98,10 @@
 	damage = DAMAGE_VERY_HIGH
 	penetrating = 3
 	hitscan = TRUE
+
+/obj/item/projectile/bullet/rifle/c762mm_tokarev
+	damage = DAMAGE_LOW - 2
+	penetrating = FALSE
 
 #undef DAMAGE_LOW
 #undef DAMAGE_MEDIUM
