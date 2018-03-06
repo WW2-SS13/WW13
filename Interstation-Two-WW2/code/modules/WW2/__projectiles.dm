@@ -99,8 +99,18 @@
 	penetrating = 3
 	hitscan = TRUE
 
+// TT-30 TOKAREV PISTOL //
 /obj/item/projectile/bullet/rifle/c762mm_tokarev
 	damage = DAMAGE_LOW - 2
+	penetrating = FALSE
+
+// C96 MAUSER PISTOL //
+/obj/item/projectile/bullet/rifle/c763x25mm_mauser
+	damage = DAMAGE_LOW
+	penetrating = FALSE
+
+/obj/item/projectile/bullet/rifle/c9x19mm_stenmk3
+	damage = DAMAGE_LOW-6
 	penetrating = FALSE
 
 #undef DAMAGE_LOW

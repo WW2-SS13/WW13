@@ -74,6 +74,16 @@ WW 2 WEAPONS MAGS N AMMO
 	caliber = "7.62mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/c762mm_tokarev
 
+/obj/item/ammo_casing/c763x25mm_mauser
+	desc = "A 7.63x25mm pistol bullet casing."
+	caliber = "7.63x25mm"
+	projectile_type = /obj/item/projectile/bullet/rifle/c763x25mm_mauser
+
+/obj/item/ammo_casing/c9x19mm_stenmk3
+	desc = "A 9x19mm bullet casing."
+	caliber = "9x19mm"
+	projectile_type = /obj/item/projectile/bullet/rifle/c9x19mm_stenmk3
+
 /*
 /obj/item/ammo_casing/svt
 	desc = "A SVT bullet casing."

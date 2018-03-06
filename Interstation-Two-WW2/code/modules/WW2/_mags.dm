@@ -157,6 +157,24 @@ WW 2 WEAPONS MAGS N AMMO
 	max_ammo = 8
 	multiple_sprites = TRUE
 
+/obj/item/ammo_magazine/c763x25mm_mauser
+	name = "stripper clip (7.63x25mm)"
+	icon_state = "7.63x25m"
+	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
+	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	caliber = "7.63x25mm"
+	max_ammo = 10
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/c9x19mm_stenmk3
+	name = "magazine (9x19mm)"
+	icon_state = "mp40mag" // GET A STENMK3 AMMO MAG MP40 AMMO MAG IS BEING USED AS PLACEHOLDER
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/c9x19mm_stenmk3
+	caliber = "9x19mm"
+	max_ammo = 32
+	multiple_sprites = TRUE
+
 /***********************************
 OTHER
 ***********************************/

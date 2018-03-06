@@ -52,7 +52,45 @@
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 
+/obj/item/weapon/gun/projectile/pistol/tokarev/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "tokarev"
+		item_state = "gun"
+	else
+		icon_state = "tokarev0"
+		item_state = "gun"
+	return
+
 /obj/item/weapon/gun/projectile/pistol/tokarev/gibber
+	crushes = TRUE
+
+
+/obj/item/weapon/gun/projectile/pistol/mauser
+	name = "C96 Mauser"
+	desc = "German pistol, the C96 Mauser is chambered in 7.63x25mm Mauser."
+	icon_state = "c96"
+	item_state = "gun"
+	w_class = 2
+	caliber = "7.63x25mm"
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	load_method = SINGLE_CASING|SPEEDLOADER
+	max_shells = 10
+	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
+	accuracy = DEFAULT_PISTOL_ACCURACY
+	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+
+/obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
+	..()
+	if(loaded) // MAUSERS UPDATE ICON IS BUGGED IDK HOW TO FIX, PLS HELP KACH - ShinDes
+		icon_state = "c96"
+		item_state = "gun"
+	else
+		icon_state = "c96-0"
+		item_state = "gun"
+	return
+
+/obj/item/weapon/gun/projectile/pistol/mauser/gibber
 	crushes = TRUE
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
