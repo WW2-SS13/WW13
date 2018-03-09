@@ -149,6 +149,36 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/tokarevammo
+	name = "Tokarev TT-30 ammo crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/mauserammo
+	name = "Mauser C96 crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/ppsammo
+	name = "PPS-43 ammo crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/stenammo
+	name = "Sten MKIII ammo crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/nagantrevolverammo
+	name = "Nagant Revolver ammo crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
 /obj/structure/closet/crate/bettymines
 	name = "Betty mines crate"
 	icon_state = "mil_crate_closed"
@@ -645,3 +675,33 @@
 	for (var/v in 1 to 3)
 		var/obj/item/stack/material/barbwire/barbwire = new(src)
 		barbwire.amount = 10
+
+/obj/structure/closet/crate/tokarevammo/New()
+	..()
+	update_capacity(20)
+	for (var/v in 1 to 20)
+		new /obj/item/ammo_magazine/c762mm_tokarev(src)
+
+/obj/structure/closet/crate/mauserammo/New()
+	..()
+	update_capacity(20)
+	for (var/v in 1 to 20)
+		new /obj/item/ammo_magazine/c763x25mm_mauser(src)
+
+/obj/structure/closet/crate/ppsammo/New()
+	..()
+	update_capacity(14)
+	for (var/v in 1 to 14)
+		new /obj/item/ammo_magazine/c762x25mm_pps(src)
+
+/obj/structure/closet/crate/stenammo/New()
+	..()
+	update_capacity(10)
+	for (var/v in 1 to 10)
+		new /obj/item/ammo_magazine/c9x19mm_stenmk3(src)
+
+/obj/structure/closet/crate/nagantrevolverammo/New()
+	..()
+	update_capacity(20)
+	for (var/v in 1 to 20)
+		new /obj/item/ammo_magazine/c762x38mmR(src)

@@ -147,6 +147,52 @@ WW 2 WEAPONS MAGS N AMMO
 	max_ammo = 7
 	multiple_sprites = TRUE
 
+/obj/item/ammo_magazine/c762mm_tokarev
+	name = "magazine (7.62mm)"
+	icon_state = "tokarevmag"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/c762mm_tokarev
+	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	caliber = "7.62mm"
+	max_ammo = 8
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/c763x25mm_mauser
+	name = "stripper clip (7.63x25mm)"
+	icon_state = "7.63x25m"
+	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
+	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	caliber = "7.63x25mm"
+	max_ammo = 10
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/c9x19mm_stenmk3
+	name = "magazine (9x19mm)"
+	icon_state = "mp40mag" // GET A STENMK3 AMMO MAG MP40 AMMO MAG IS BEING USED AS PLACEHOLDER
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/c9x19mm_stenmk3
+	caliber = "9x19mm"
+	max_ammo = 32
+	multiple_sprites = TRUE
+
+////////// NAGANT REVOLVER ///////////////
+/obj/item/ammo_magazine/c762x38mmR
+	name = "handful of bullets (7.62x38mmR)"
+	icon_state = "7.62x38mmRPouch" // TO DO
+	ammo_type = /obj/item/ammo_casing/c762x38mmR
+	caliber = "7.62x38mmR"
+	max_ammo = 14
+	multiple_sprites = FALSE
+
+/obj/item/ammo_magazine/c762x25mm_pps
+	name = "magazine (7.62x25mm)"
+	icon_state = "c762"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/c762x25mm_pps
+	caliber = "7.62x25mm"
+	max_ammo = 35
+	multiple_sprites = TRUE
+
 /***********************************
 OTHER
 ***********************************/
@@ -385,6 +431,7 @@ OTHER
 	ammo_type = /obj/item/ammo_casing/a9x39
 	max_ammo = 20
 	multiple_sprites = TRUE
+
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
