@@ -188,12 +188,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			response = alert(src, "Are you sure you want to ghost?\n(You may respawn with the 'Respawn' verb in the IC tab)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
 		if(response != "Ghost")
 			return
+		if (getTotalLoss() < 100 || restrained())
+			src << "<span class = 'warning'>You can't ghost right now.</span>"
+			return
 		resting = TRUE
 		var/turf/location = get_turf(src)
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.handle_zoom_stuff(TRUE)
-		if (client && (stat == UNCONSCIOUS || getTotalLoss() >= 30))
+		if (client)
 			client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
 			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
 		message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")

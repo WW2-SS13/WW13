@@ -293,7 +293,7 @@
 				return FALSE
 	..()
 
-/obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
+/obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, forceburst = -1)
 
 	if(!user || !target) return
 
@@ -302,7 +302,7 @@
 		if (istype(user, /mob/living/carbon/human/dummy))
 			if (user.client)
 				if (clients.len > 1)
-					user << "<span class = 'danger'>Hey you fucking meme, don't send immortal dummies into combat.</span>"
+					user << "<span class = 'danger'>Hey you fucking dumbass, don't send immortal dummies into combat.</span>"
 					return
 
 	add_fingerprint(user)
@@ -321,6 +321,9 @@
 	var/_burst_delay = isnull(firemode.burst_delay)? burst_delay : firemode.burst_delay
 	var/_fire_delay = isnull(firemode.fire_delay)? fire_delay : firemode.fire_delay
 	var/_move_delay = firemode.move_delay
+
+	if (forceburst != -1)
+		_burst = forceburst
 
 	var/shoot_time = (_burst - TRUE)*_burst_delay
 	user.next_move = world.time + shoot_time  //no clicking on things while shooting
@@ -473,7 +476,7 @@
 
 	if(recoil)
 		spawn(0)
-			var/shake_strength = recoil+1
+			var/shake_strength = recoil+0.5
 		//	if(can_wield && !wielded)
 			//	shake_strength += 2
 			if (shake_strength > 0)

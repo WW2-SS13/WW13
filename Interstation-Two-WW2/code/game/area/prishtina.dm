@@ -38,6 +38,7 @@
 	icon_state = "purple1"
 
 /area/prishtina/no_mans_land/invisible_wall
+	icon_state = "green1"
 
 /area/prishtina/no_mans_land/invisible_wall/inside
 	location = AREA_INSIDE
@@ -361,6 +362,21 @@
 	corresponding_area_type = /area/prishtina/forest
 	corresponding_area_allow_subtypes = TRUE
 	name = "Fallschirmjager Plane"
+
+/area/prishtina/void/soviet_command_center
+
+/area/prishtina/void/civilian_second_floors
+/area/prishtina/void/civilian_second_floors/house1
+/area/prishtina/void/civilian_second_floors/house2
+/area/prishtina/void/civilian_second_floors/house3
+/area/prishtina/void/civilian_second_floors/house4
+/area/prishtina/void/civilian_second_floors/outside
+	dynamic_lighting = FALSE
+
+/area/prishtina/void/civilian_basements
+/area/prishtina/void/civilian_basements/house1
+/area/prishtina/void/civilian_basements/house2
+/area/prishtina/void/civilian_basements/house3
 
 // end of wormhole areas
 

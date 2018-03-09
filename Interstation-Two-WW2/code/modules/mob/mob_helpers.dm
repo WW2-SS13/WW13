@@ -137,6 +137,7 @@ var/list/global/hit_chances = list(
 )
 
 /proc/get_miss_chance(var/zone, var/distance, var/accuracy, var/miss_modifier)
+
 	. = FALSE
 	zone = check_zone(zone)
 	switch (distance)
@@ -151,7 +152,7 @@ var/list/global/hit_chances = list(
 
 	. += miss_modifier
 	. -= (accuracy*6)
-	. = max(., 0)
+	. = max(., 7 + accuracy, 0) // now all guns can hit from any distance, no chances < 1% (except for PTRDs)
 
 //	log_debug("MC: [.]")
 

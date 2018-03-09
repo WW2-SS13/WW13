@@ -546,7 +546,7 @@
 		if (istype(t_area, /area/prishtina/soviet/bunker_entrance))
 			is_indoors = TRUE
 
-		var/power_mult = TRUE //experimental. 2 is a bit high.
+		var/power_mult = 1.0 //experimental. 2 is a bit high.
 
 		var/travel_time = FALSE
 

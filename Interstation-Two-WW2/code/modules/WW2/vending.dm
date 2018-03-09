@@ -73,7 +73,7 @@
 
 		/obj/item/weapon/grenade/explosive/stgnade = 7,
 		/obj/item/weapon/grenade/explosive/l2a2 = 7,
-		/obj/item/weapon/grenade/smokebomb/german = 7,
+		/obj/item/weapon/grenade/smokebomb/german = 21,
 
 		/obj/item/clothing/under/geruni/sscamo = 5
 	)

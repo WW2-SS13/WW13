@@ -47,7 +47,7 @@
 /obj/item/projectile/bullet/rifle/a9_parabellum
 	damage = DAMAGE_LOW
 	penetrating = FALSE
-	
+
 // LUGER PISTOL //
 /obj/item/projectile/bullet/rifle/a9_parabellum_luger
 	damage = DAMAGE_LOW

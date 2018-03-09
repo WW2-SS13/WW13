@@ -264,6 +264,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>If you aren't taken there automatically, click here to join the linked server: <b>[new_address]</b></span>"
 				for (var/client/C in clients)
 					C << link(new_address)
+					winset(C, null, "mainwindow.flash=1")
 			else
 				world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to rejoin (It may take a minute or two): <b>byond://[world.internet_address]:[port]</b></span>"
 		else

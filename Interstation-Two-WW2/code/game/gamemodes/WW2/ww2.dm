@@ -28,6 +28,16 @@
 
 	var/season = "SPRING"
 
+/datum/game_mode/ww2/proc/current_stat_message()
+	if (time_both_sides_locked != -1 && !currently_winning)
+		return "The round will end in [round(((time_both_sides_locked+time_to_end_round_after_both_sides_locked) - world.realtime)/600)]; both sides are out of reinforcements."
+	else if (currently_winning == "Soviets")
+		return "The Soviets will win in [round((next_win_time-world.realtime)/600)] minutes."
+	else if (currently_winning == "Germans")
+		return "The Germans will win in [round((next_win_time-world.realtime)/600)] minutes."
+	else
+		return "Neither side has captured the other's base."
+
 //#define WINTER_TESTING
 
 /datum/game_mode/ww2/pre_setup()
@@ -197,11 +207,14 @@
 
 	var/text = "<big><span class = 'danger'>The battle has ended.</span></big><br><br>"
 
+	for (var/client/C in clients)
+		winset(C, null, "mainwindow.flash=1")
+
 	text += "[soldiers["de"]] Wehrmacht and SS soldiers survived.<br>"
 	text += "[soldiers["ru"]] Soviet soldiers survived.<br><br>"
 
 	if (winning_side)
-		text += "<big><span class = 'danger'>The [winning_side] wins!</span></big><br><br>"
+		text += "<big><span class = 'danger'>The [winning_side] is victorious!</span></big><br><br>"
 	else
 		text += "<big><span class = 'danger'>Neither side wins.</span></big><br><br>"
 
@@ -220,6 +233,8 @@
 /datum/game_mode/ww2/announce() //to be called when round starts
 
 	world << "<b><big>The round has started!</big></b>"
+	for (var/client/C in clients)
+		winset(C, null, "mainwindow.flash=1")
 	// announce after some other stuff, like system setups, are announced
 	spawn (3)
 

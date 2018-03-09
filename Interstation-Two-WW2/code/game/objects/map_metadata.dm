@@ -27,6 +27,9 @@ var/global/obj/map_metadata/map = null
 	var/list/valid_weather_types = list(WEATHER_RAIN, WEATHER_SNOW)
 	var/reinforcements = TRUE
 	var/squad_spawn_locations = TRUE
+	var/list/supply_points_per_tick = list(
+		GERMAN = 1.00,
+		SOVIET = 1.00)
 
 /obj/map_metadata/New()
 	..()
@@ -109,6 +112,9 @@ var/global/obj/map_metadata/map = null
 		CIVILIAN,
 		ITALIAN,
 		UKRAINIAN)
+	supply_points_per_tick = list(
+		SOVIET = 1.00,
+		GERMAN = 1.50)
 
 /obj/map_metadata/forest/germans_can_cross_blocks()
 	return (mission_announced || admin_ended_all_grace_periods)
@@ -133,12 +139,15 @@ var/global/obj/map_metadata/map = null
 		UKRAINIAN)
 	respawn_delay = 2400
 	squad_spawn_locations = FALSE
+	supply_points_per_tick = list(
+		GERMAN = 1.00,
+		SOVIET = 1.50)
 
 /obj/map_metadata/city/germans_can_cross_blocks()
-	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
+	return (tickerProcess.time_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/city/soviets_can_cross_blocks()
-	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
+	return (tickerProcess.time_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/city/announce_mission_start(var/preparation_time)
 	world << "<font size=4>All factions have <b>12 minutes</b> to prepare before combat will begin!</font>"

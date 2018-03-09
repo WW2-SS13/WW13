@@ -19,6 +19,14 @@
 			return D
 	return FALSE
 
+/proc/locate_bullet_blocking_structure(var/list/L)
+	for (var/structure in typesof(/obj/structure))
+		if (ispath(structure, /obj/structure/table))
+			continue
+		if (locate_type(L, structure))
+			return TRUE
+	return FALSE
+
 /proc/copylist(var/list/L)
 	if (!L || !islist(L))
 		return list()

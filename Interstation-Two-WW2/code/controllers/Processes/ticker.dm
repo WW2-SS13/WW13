@@ -1,5 +1,4 @@
 var/global/datum/controller/process/ticker/tickerProcess
-var/list/supply_points = list(GERMAN = 250, SOVIET = 250)
 
 /datum/controller/process/ticker
 	var/lastTickerTimeDuration
@@ -34,20 +33,6 @@ var/list/supply_points = list(GERMAN = 250, SOVIET = 250)
 	lastTickerTime = currentTime
 
 	ticker.process()
-
-	/* todo: make this code into its own process - Kachnov
-	 * all radios at the same type are linked, when one spends points,
-	 * so do the others. This system could use datumization but its fine
-	 * for now. */
-
-	// small map and any other maps - soviet supply advantage
-	if (!istype(map, /obj/map_metadata/forest))
-		supply_points[GERMAN] += 0.50
-		supply_points[SOVIET] += 0.75
-	// forest map - german supply advantage: trains produce more points
-	else if (german_supplytrain_master)
-		supply_points[SOVIET] += 0.75
-		german_supplytrain_master.supply_points += 1.00
 
 	// for keeping track of time - Kachnov
 	time_elapsed += schedule_interval
