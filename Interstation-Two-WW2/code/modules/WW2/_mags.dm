@@ -175,6 +175,24 @@ WW 2 WEAPONS MAGS N AMMO
 	max_ammo = 32
 	multiple_sprites = TRUE
 
+////////// NAGANT REVOLVER ///////////////
+/obj/item/ammo_magazine/c762x38mmR
+	name = "handful of bullets (7.62x38mmR)"
+	icon_state = "7.62x38mmRPouch" // TO DO
+	ammo_type = /obj/item/ammo_casing/c762x38mmR
+	caliber = "7.62x38mmR"
+	max_ammo = 14
+	multiple_sprites = FALSE
+
+/obj/item/ammo_magazine/c762x25mm_pps
+	name = "magazine (7.62x25mm)"
+	icon_state = "c762"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/c762x25mm_pps
+	caliber = "7.62x25mm"
+	max_ammo = 35
+	multiple_sprites = TRUE
+
 /***********************************
 OTHER
 ***********************************/
@@ -413,6 +431,7 @@ OTHER
 	ammo_type = /obj/item/ammo_casing/a9x39
 	max_ammo = 20
 	multiple_sprites = TRUE
+
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

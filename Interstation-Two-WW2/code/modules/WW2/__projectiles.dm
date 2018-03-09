@@ -109,7 +109,18 @@
 	damage = DAMAGE_LOW
 	penetrating = FALSE
 
+// STEN MK3 SMG //
 /obj/item/projectile/bullet/rifle/c9x19mm_stenmk3
+	damage = DAMAGE_LOW-6
+	penetrating = FALSE
+
+// NAGANT REVOLVER //
+/obj/item/projectile/bullet/rifle/c762x38mmR
+	damage = DAMAGE_LOW+4
+	penetrating = FALSE
+
+// PPS SMG //
+/obj/item/projectile/bullet/rifle/c762x25mm_pps
 	damage = DAMAGE_LOW-6
 	penetrating = FALSE
 

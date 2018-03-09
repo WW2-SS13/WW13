@@ -67,7 +67,7 @@
 
 
 /obj/item/weapon/gun/projectile/pistol/mauser
-	name = "C96 Mauser"
+	name = "Mauser C96"
 	desc = "German pistol, the C96 Mauser is chambered in 7.63x25mm Mauser."
 	icon_state = "c96"
 	item_state = "gun"
@@ -82,7 +82,7 @@
 
 /obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
 	..()
-	if(loaded) // MAUSERS UPDATE ICON IS BUGGED IDK HOW TO FIX, PLS HELP KACH - ShinDes
+	if(loaded.len) // MAUSERS UPDATE ICON IS BUGGED IDK HOW TO FIX, PLS HELP KACH - ShinDes
 		icon_state = "c96"
 		item_state = "gun"
 	else
@@ -92,6 +92,25 @@
 
 /obj/item/weapon/gun/projectile/pistol/mauser/gibber
 	crushes = TRUE
+
+/obj/item/weapon/gun/projectile/revolver/nagant_revolver
+	name = "Nagant Revolver"
+	desc = "Russian officer's revolver."
+	icon_state = "nagant"
+	item_state = "revolver"
+	w_class = 2
+	caliber = "7.62x38mmR"
+	handle_casings = CYCLE_CASINGS
+	max_shells = 7
+
+/obj/item/weapon/gun/projectile/revolver/nagant_revolver/update_icon()
+	..()
+	if(loaded.len)
+		icon_state = "nagant"
+	else
+		icon_state = "nagant0"
+	return
+
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
