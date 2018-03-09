@@ -23,8 +23,8 @@
 
 // new soviet officer gun
 /obj/item/weapon/gun/projectile/pistol/_45
-	name = "vintage .45 pistol"
-	desc = "a Colt M1911. Uses .45 rounds."
+	name = "Colt M1911"
+	desc = "a Colt M1911A1. Uses .45 rounds."
 	icon_state = "colt"
 	item_state = "gun"
 	w_class = 2
@@ -37,6 +37,80 @@
 
 /obj/item/weapon/gun/projectile/pistol/_45/gibber
 	crushes = TRUE
+
+
+/obj/item/weapon/gun/projectile/pistol/tokarev
+	name = "TT-30"
+	desc = "Russian pistol chambered in 7.62mm rounds. Official name being Tula-Tokarev 30."
+	icon_state = "tokarev"
+	item_state = "gun"
+	w_class = 2
+	caliber = "7.62mm"
+	fire_sound ='sound/weapons/guns/fire/pistol_fire.ogg'
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/c762mm_tokarev
+	accuracy = DEFAULT_PISTOL_ACCURACY
+	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+
+/obj/item/weapon/gun/projectile/pistol/tokarev/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "tokarev"
+		item_state = "gun"
+	else
+		icon_state = "tokarev0"
+		item_state = "gun"
+	return
+
+/obj/item/weapon/gun/projectile/pistol/tokarev/gibber
+	crushes = TRUE
+
+
+/obj/item/weapon/gun/projectile/pistol/mauser
+	name = "Mauser C96"
+	desc = "German pistol, the C96 Mauser is chambered in 7.63x25mm Mauser."
+	icon_state = "c96"
+	item_state = "gun"
+	w_class = 2
+	caliber = "7.63x25mm"
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	load_method = SINGLE_CASING|SPEEDLOADER
+	max_shells = 10
+	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
+	accuracy = DEFAULT_PISTOL_ACCURACY
+	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+
+/obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
+	..()
+	if(loaded.len) // MAUSERS UPDATE ICON IS BUGGED IDK HOW TO FIX, PLS HELP KACH - ShinDes
+		icon_state = "c96"
+		item_state = "gun"
+	else
+		icon_state = "c96-0"
+		item_state = "gun"
+	return
+
+/obj/item/weapon/gun/projectile/pistol/mauser/gibber
+	crushes = TRUE
+
+/obj/item/weapon/gun/projectile/revolver/nagant_revolver
+	name = "Nagant Revolver"
+	desc = "Russian officer's revolver."
+	icon_state = "nagant"
+	item_state = "revolver"
+	w_class = 2
+	caliber = "7.62x38mmR"
+	handle_casings = CYCLE_CASINGS
+	max_shells = 7
+
+/obj/item/weapon/gun/projectile/revolver/nagant_revolver/update_icon()
+	..()
+	if(loaded.len)
+		icon_state = "nagant"
+	else
+		icon_state = "nagant0"
+	return
+
 
 /////////////////////FLAREGUNS//////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
