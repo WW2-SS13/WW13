@@ -32,7 +32,10 @@ var/datum/subsystem/time_track/time_track = null
 /datum/subsystem/time_track/fire()
 	..()
 
-	var/current_realtime = time_elapsed
+	if (!time_elapsed)
+		time_elapsed = world.time
+
+	var/current_realtime = time_elapsed // real time of day
 	var/current_byondtime = world.time
 	var/current_tickcount = world.time/world.tick_lag
 
