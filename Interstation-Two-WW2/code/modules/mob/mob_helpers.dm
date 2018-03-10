@@ -78,7 +78,6 @@ proc/getsensorlevel(A)
 #define MEDIUM_CHANCE 50
 #define LOWER_CHANCE 33
 #define LOW_CHANCE 20
-#define VERY_LOW_CHANCE 10
 
 var/list/global/hit_chances = list(
 
