@@ -268,7 +268,9 @@
 	clients -= src
 	if (observer_mob_list.Find(mob))
 		observer_mob_list -= mob
-	if (human_clients_mob_list.Find(mob))
+	else if (new_player_mob_list.Find(mob))
+		new_player_mob_list -= mob
+	else if (human_clients_mob_list.Find(mob))
 		human_clients_mob_list -= mob
 	return ..()
 

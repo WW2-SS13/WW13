@@ -22,6 +22,9 @@ var/global/datum/controller/process/ticker/tickerProcess
 		start_serverswap_loop()
 		start_serverdata_loop()
 
+	for (var/subsystem in typesof(/datum/subsystem))
+		new subsystem
+
 /datum/controller/process/ticker/doWork()
 	var/currentTime = world.timeofday
 

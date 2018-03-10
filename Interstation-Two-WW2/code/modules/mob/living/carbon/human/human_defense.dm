@@ -1,4 +1,4 @@
-f/*
+/*
 Contains most of the procs that are called when a mob is attacked by something
 
 bullet_act

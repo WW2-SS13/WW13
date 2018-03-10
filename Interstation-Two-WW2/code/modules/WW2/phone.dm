@@ -1,4 +1,4 @@
-#define RAID "Order bombing raid"
+#define RAID "Order katyusha strike"
 #define DECLARE_TRAITOR "Declare Traitor" // broken
 #define REQUEST_BATTLE_REPORT "Request Battle Status Report"
 
@@ -154,10 +154,12 @@ var/list/soviet_traitors = list()
 
 								target = locate(target_x, target_y, target_z)
 
+								// two strikes to take down a ceiling, faster than artillery
+								// no more partial chances however - Kachnov
 								if (target_area.artillery_integrity)
-									target_area.artillery_integrity -= rand(10,15)
+									target_area.artillery_integrity -= 50
 
-								if (target_area.artillery_integrity <= 0 || (prob(100 - target_area.artillery_integrity) && prob(50)))
+								if (target_area.artillery_integrity <= 0)
 									explosion(target, 1, 3, 5, 6)
 								else
 									target.visible_message("<span class = 'userdanger'>The bomb smashes into the ceiling!</span>")
