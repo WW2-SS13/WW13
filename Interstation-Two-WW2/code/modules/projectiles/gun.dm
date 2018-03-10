@@ -356,7 +356,7 @@
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("heavyweapon")
-					acc += max(H.getStatCoeff("heavyweapon")-1, FALSE)
+					acc += max(H.getStatCoeff("heavyweapon")-1, 0)
 
 			// 60% chance of KD
 			else if (gun_type == GUN_TYPE_RIFLE)
@@ -364,7 +364,7 @@
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("rifle")
-					acc += max(H.getStatCoeff("rifle")-1, FALSE)
+					acc += max(H.getStatCoeff("rifle")-1, 0)
 
 			// 30% chance of KD
 			else if (gun_type == GUN_TYPE_PISTOL)
@@ -372,7 +372,7 @@
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("pistol")
-					acc += max(H.getStatCoeff("pistol")-1, FALSE)
+					acc += max(H.getStatCoeff("pistol")-1, 0)
 
 			// 20% chance of KD
 			else if (gun_type == GUN_TYPE_MG)
@@ -380,7 +380,7 @@
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("mg")
-					acc += max(H.getStatCoeff("mg")-1, FALSE)
+					acc += max(H.getStatCoeff("mg")-1, 0)
 
 			if (ishuman(user))
 				var/mob/living/carbon/human/H = user

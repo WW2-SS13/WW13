@@ -639,7 +639,7 @@
 		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
 			stat("Players Online (Playing):", "[clients.len] ([human_clients_mob_list.len])")
 			stat("Round Duration:", roundduration2text())
-			if (ticker && istype(ticker.mode, /datum/game_mode/ww2))
+			if (ticker && ticker.mode && ticker.mode.config_tag == "WW2")
 				var/datum/game_mode/ww2/mode = ticker.mode
 				stat("Current Round End Condition", mode.current_stat_message())
 			stat("Map:", map.title)

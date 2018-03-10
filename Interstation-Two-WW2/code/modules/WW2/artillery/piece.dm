@@ -531,7 +531,7 @@
 		var/area/t_area = get_area(t)
 
 		var/is_indoors = FALSE
-		var/artillery_deflection_bonus = FALSE
+		var/artillery_deflection_bonus = 0
 
 		if (istype(t_area, /area/prishtina/void))
 			return FALSE
@@ -584,11 +584,11 @@
 						shake_camera(m, 5, 5)
 						m << "<span class = 'danger'>You hear something violently smash into the ceiling!</span>"
 					if (prob(100 - artillery_deflection_bonus))
-						if (explosion) // HE master race
-							a.artillery_integrity -= rand(25,30)
+						if (explosion)
+							a.artillery_integrity -= rand(20,25)
 							a.update_snowfall_valid_turfs()
 						else
-							a.artillery_integrity -= rand(15,20)
+							a.artillery_integrity -= rand(10,12)
 							a.update_snowfall_valid_turfs()
 					return
 				else

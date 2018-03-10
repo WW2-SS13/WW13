@@ -36,4 +36,4 @@ var/datum/controller/process/battlereport/battlereport
 		soviet_deaths_this_cycle = 0
 
 	if (prob(3))
-		current_extra_cost_for_air_raid = rand(-25,25)
+		current_extra_cost_for_air_raid = rand(-20,20)

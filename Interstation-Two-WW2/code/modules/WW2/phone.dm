@@ -38,11 +38,18 @@ var/list/soviet_traitors = list()
 		if (dowhat != "Cancel")
 			switch (dowhat)
 				if (RAID)
+					if (map && !map.soviets_can_cross_blocks() && faction == SOVIET)
+						H << "<span class = 'warning'>You can't use this yet.</span>"
+						return
+					if (map && !map.germans_can_cross_blocks() && faction == GERMAN)
+						H << "<span class = 'warning'>You can't use this yet.</span>"
+						return
 					if (!H.original_job || H.original_job.base_type_flag() != faction || !H.original_job.is_officer)
 						return
 
 					var/list/targets = (faction == SOVIET ? alive_germans : faction == GERMAN ? alive_russians : list())
-					var/cost = (targets.len * 5) + battlereport.current_extra_cost_for_air_raid + 50
+					// it takes 5 minutes for soviets to generate 300 points, not counting rewards
+					var/cost = (targets.len * 5) + battlereport.current_extra_cost_for_air_raid + 300
 					var/yesno = input(H, "An air raid will cost [cost] supply points right now. Would you like to call it in?") in list("Yes", "No")
 					if (yesno == "Yes")
 						if (supply_points[faction] < cost)
@@ -84,52 +91,63 @@ var/list/soviet_traitors = list()
 						radio2faction("[found] has been declared a traitor by [H]. They will be targeted in future air raids. Military Police are hereby instructed to detain or execute [found].", faction)
 
 /proc/air_raid(faction)
-	var/raiding = null
-	if (faction == GERMAN)
-		raiding = SOVIET
-	else if (faction == SOVIET)
-		raiding = GERMAN
-	else
-		raiding = TRUE // somehow we got here, bomb everyone
 
-	var/list/traitors = list()
+	spawn (rand(40,60))
 
-	if (faction == GERMAN)
-		traitors = german_traitors
-	else if (faction == SOVIET)
-		traitors = soviet_traitors
+		var/raiding = null
+		if (faction == GERMAN)
+			raiding = SOVIET
+		else if (faction == SOVIET)
+			raiding = GERMAN
+		else
+			raiding = TRUE // somehow we got here, bomb everyone
 
-	var/maximum_targets = max(1, round(player_list.len/5))
-	var/targeted = 0
+		var/list/traitors = list()
 
-	for (var/mob/living/carbon/human/H in human_mob_list)
-		if (H.loc && H.stat == CONSCIOUS)
-			var/area/H_area = get_area(H)
-			if ((H.original_job && H.original_job.base_type_flag() == raiding) || raiding == TRUE || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
-				if (targeted < maximum_targets)
+		if (faction == GERMAN)
+			traitors = german_traitors
+		else if (faction == SOVIET)
+			traitors = soviet_traitors
 
-					++targeted
+		var/maximum_targets = max(1, round(player_list.len/10))
+		var/targeted = 0
 
-					var/turf/target = locate(H.x, H.y, H.z)
-					var/area/target_area = get_area(target)
+		for (var/mob/living/carbon/human/H in human_mob_list)
+			if (H.loc && H.stat == CONSCIOUS)
+				var/area/H_area = get_area(H)
+				if (istype(H_area, /area/prishtina/german))
+					continue
+				if (istype(H_area, /area/prishtina/soviet))
+					continue
+				if (istype(H_area, /area/prishtina/void))
+					continue
+				if ((H.original_job && H.original_job.base_type_flag() == raiding) || raiding == TRUE || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
+					if (targeted < maximum_targets)
 
-					playsound(target, "artillery_in_distant", 100, TRUE, 100)
-					target.visible_message("<span class = 'userdanger'>You hear a plane coming!</span>")
+						++targeted
 
-					for (var/v in 1 to 3)
-						spawn (rand(7*v,21*v))
+						var/turf/target = locate(H.x, H.y, H.z)
+						var/area/target_area = get_area(target)
 
-							var/target_x = H.x + pick(0,0,-1,1)
-							var/target_y = H.y + pick(0,0,-1,1)
-							var/target_z = H.z
+						playsound(target, "artillery_in_distant", 100, TRUE, 100)
+						target.visible_message("<span class = 'userdanger'>You hear a plane coming!</span>")
 
-							target = locate(target_x, target_y, target_z)
+						for (var/v in 1 to 3)
+							spawn (rand(15*v,20*v))
 
-							if (target_area.artillery_integrity)
-								target_area.artillery_integrity -= rand(15,20)
+								var/target_x = H.x + rand(-3,3)
+								var/target_y = H.y + rand(-3,3)
+								var/target_z = H.z
 
-							if (target_area.artillery_integrity <= 0 || prob(100 - target_area.artillery_integrity))
-								explosion(target, 1, 3, 5, 7)
-							else
-								target.visible_message("<span class = 'userdanger'>The bomb smashes into the ceiling!</span>")
-								playsound(target, "explosion", 100, TRUE, 100)
+								target = locate(target_x, target_y, target_z)
+
+								if (target_area.artillery_integrity)
+									target_area.artillery_integrity -= rand(10,15)
+
+								if (target_area.artillery_integrity <= 0 || (prob(100 - target_area.artillery_integrity) && prob(50)))
+									explosion(target, 1, 3, 5, 6)
+								else
+									target.visible_message("<span class = 'userdanger'>The bomb smashes into the ceiling!</span>")
+									playsound(target, "explosion", 100, TRUE, 100)
+					else
+						break

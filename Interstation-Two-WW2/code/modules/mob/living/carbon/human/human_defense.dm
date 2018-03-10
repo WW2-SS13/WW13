@@ -86,9 +86,9 @@ bullet_act
 		   * 3. survival stat
 		*/
 
-		var/abs_dist = abs(P.starting.x - x) + abs(P.starting.y - y)
+		var/distcheck = max(abs(P.starting.x - x), abs(P.starting.y - y))
 
-		if (abs_dist > 2) // not PB range
+		if (distcheck > 2) // not PB range
 			if (!istype(P, /obj/item/projectile/bullet/rifle/murder) && !istype(P, /obj/item/projectile/bullet/shotgun/murder))
 
 				// shooting a moving target from 19 tiles away (new max scope range) has a 72% graze chance
@@ -96,7 +96,7 @@ bullet_act
 				// shooting at someone from <= 7 tiles away has no graze chance - Kachnov
 
 				if (lastMovedRecently())
-					if (prob(6 * max(abs_dist - 7, 0)))
+					if (prob(6 * max(distcheck - 7, 0)))
 						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 						qdel(P)
 						adjustBruteLoss(pick(4,5))
