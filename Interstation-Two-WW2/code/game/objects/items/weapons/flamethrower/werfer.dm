@@ -98,8 +98,8 @@
 		if(T.density)
 			blocking_turfs += T
 		else
-			for (var/obj/structure/S in T)
-				if (S.density && !S.low)
+			for (var/obj/structure/S in T.contents)
+				if (S.density && !S.low && !S.throwpass)
 					blocking_turfs += T
 					break
 

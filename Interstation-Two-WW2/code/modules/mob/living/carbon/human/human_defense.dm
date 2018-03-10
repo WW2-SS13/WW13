@@ -1,4 +1,4 @@
-/*
+f/*
 Contains most of the procs that are called when a mob is attacked by something
 
 bullet_act
@@ -95,13 +95,24 @@ bullet_act
 				// this means if snipers want to hit people they need to shoot at still targets
 				// shooting at someone from <= 7 tiles away has no graze chance - Kachnov
 
-				if (lastMovedRecently())
-					if (prob(6 * max(distcheck - 7, 0)))
-						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-						qdel(P)
-						adjustBruteLoss(pick(4,5))
-						return
+				var/graze_chance_multiplier = 5
+				if (list("head", "mouth", "eyes").Find(def_zone))
+					++graze_chance_multiplier
+				graze_chance_multiplier += (1 * getStatCoeff("survival"))
 
+				if (lastMovedRecently())
+					if (prob(graze_chance_multiplier * max(distcheck - 7, 0)))
+						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
+						adjustBruteLoss(pick(4,5))
+						qdel(P)
+						return
+				else if (list("head", "mouth", "eyes").Find(def_zone) && prob(20 * getStatCoeff("survival")))
+					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
+					adjustBruteLoss(pick(4,5))
+					qdel(P)
+					return
+
+/*
 				// 30% base chance to miss the head, because headshots are painful - Kachnov
 				else if (list("head", "mouth", "eyes").Find(def_zone) && prob(30 * getStatCoeff("survival")))
 					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
@@ -114,7 +125,7 @@ bullet_act
 					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 					qdel(P)
 					adjustBruteLoss(pick(4,5))
-					return
+					return*/
 
 		// get knocked back once in a while
 		// unless we're on a train because bugs

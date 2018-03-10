@@ -70,6 +70,6 @@
 					C << "<span class = 'userdanger'>The server has been closed to those who aren't whitelisted for private testing. Get whitelisted on the Discord.</span>"
 					del C
 
-	var/M = "[key_name(src)] has ejected all unwhitelisted players ([ejected])!"
-	message_admins(M)
-	log_admin(M)
+			var/M = "[key_name(src)] has ejected all unwhitelisted players ([ejected])!"
+			message_admins(M)
+			log_admin(M)

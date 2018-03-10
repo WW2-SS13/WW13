@@ -108,8 +108,14 @@ var/list/tier_2_officer_jobtypes = list(
 				next_execute = world.realtime + 600
 				break
 
+/proc/check_coords_check()
+	return (!map || (map.germans_can_cross_blocks() && map.soviets_can_cross_blocks()))
+
 /mob/living/carbon/human/proc/Check_Coordinates()
 	set category = "Officer"
+	if (!check_coords_check())
+		usr << "<span class = 'warning'>You can't use this yet.</span>"
+		return
 	if (checking_coords[1] && checking_coords[2])
 		checking_coords[3] = x
 		checking_coords[4] = y
@@ -125,6 +131,9 @@ var/list/tier_2_officer_jobtypes = list(
 
 /mob/living/carbon/human/proc/Reset_Coordinates()
 	set category = "Officer"
+	if (!check_coords_check())
+		usr << "<span class = 'warning'>You can't use this yet.</span>"
+		return
 	if (checking_coords[1] && checking_coords[2])
 		var/x = checking_coords[1]
 		var/y = checking_coords[2]
@@ -139,6 +148,9 @@ var/list/tier_2_officer_jobtypes = list(
 /mob/living/carbon/human/proc/Check_Coordinates_Chump()
 	set category = "Scout"
 	set name = "Check Coordinates"
+	if (!check_coords_check())
+		usr << "<span class = 'warning'>You can't use this yet.</span>"
+		return
 	if (checking_coords[1] && checking_coords[2])
 		checking_coords[3] = x
 		checking_coords[4] = y
@@ -155,6 +167,9 @@ var/list/tier_2_officer_jobtypes = list(
 /mob/living/carbon/human/proc/Reset_Coordinates_Chump()
 	set category = "Scout"
 	set name = "Reset Coordinates"
+	if (!check_coords_check())
+		usr << "<span class = 'warning'>You can't use this yet.</span>"
+		return
 	if (checking_coords[1] && checking_coords[2])
 		var/x = checking_coords[1]
 		var/y = checking_coords[2]

@@ -1,4 +1,4 @@
-#define SANDBAG_BLOCK_ITEMS_CHANCE 75
+#define SANDBAG_BLOCK_ITEMS_CHANCE 80
 
 /obj/structure/window/sandbag/incomplete/check_cover(obj/item/projectile/P, turf/from)
 

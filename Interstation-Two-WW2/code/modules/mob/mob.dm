@@ -646,7 +646,7 @@
 			stat("Time of Day:", time_of_day)
 			stat("Season:", ticker.mode.season())
 			stat("Weather:", ticker.mode.weather())
-			if (z == 2 && map && istype(map, /obj/map_metadata/forest))
+			if (z == 2 && map && map.ID == "FOREST")
 				stat("Altitude:", paratrooper_plane_master.altitude)
 			if (map)
 				var/grace_period_string = ""

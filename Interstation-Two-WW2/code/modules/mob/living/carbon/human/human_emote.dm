@@ -51,7 +51,7 @@
 						++turns
 						if (turns >= 10)
 							break
-						sleep(5)
+						sleep(3)
 			/*
 			if ("airguitar")
 				if (!restrained())

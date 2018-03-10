@@ -140,6 +140,7 @@ var/list/global/hit_chances = list(
 
 /proc/get_miss_chance(var/zone, var/distance, var/accuracy, var/miss_modifier)
 
+
 	. = 0
 	zone = check_zone(zone)
 
@@ -160,7 +161,6 @@ var/list/global/hit_chances = list(
 	. -= (accuracy*7)
 	. = max(., 0)
 
-//	log_debug("MC: [.]")
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.

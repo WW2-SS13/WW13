@@ -20,14 +20,15 @@ var/datum/controller/process/battlereport/battlereport
 	++BR_ticks
 	if (BR_ticks >= max_BR_ticks)
 		show_global_battle_report(null)
+
 		var/german_death_coeff = (german_deaths_this_cycle+1)/(alive_germans.len + 1)
 		var/soviet_death_coeff = (soviet_deaths_this_cycle+1)/(alive_russians.len + 1)
 
-		if (german_death_coeff > soviet_death_coeff)
+		if (german_deaths_this_cycle && german_death_coeff > soviet_death_coeff)
 			radio2soviets("Due to your successful triumphs in the battlefield, we are rewarding you with 200 supply points, comrades.")
 			supply_points[SOVIET] += 200
 
-		else if (soviet_death_coeff > german_death_coeff)
+		else if (soviet_deaths_this_cycle && soviet_death_coeff > german_death_coeff)
 			radio2germans("Due to your successful triumphs in the battlefield, we are rewarding you with 200 supply points.")
 			supply_points[GERMAN] += 200
 

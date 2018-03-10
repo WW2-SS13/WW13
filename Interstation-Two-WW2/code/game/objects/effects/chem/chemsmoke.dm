@@ -17,7 +17,7 @@
 	var/passes_walls = FALSE
 	var/dontmove = FALSE
 
-/obj/effect/effect/smoke/chem/New(var/newloc, smoke_duration, turf/dest_turf = null, icon/cached_icon = null, var/spread = 10)
+/obj/effect/effect/smoke/chem/New(var/newloc, smoke_duration, turf/dest_turf = null, icon/cached_icon = null, var/spread = 7)
 
 	maxspread = spread
 
@@ -55,10 +55,10 @@
 
 	var/possible_tiles = FALSE
 
-	for (var/v in TRUE to maxspread)
+	for (var/v in 1 to maxspread)
 		possible_tiles += (8 * v)
 
-	if (maxspread == TRUE)
+	if (maxspread == 1)
 		possible_tiles = 8
 
 	if (!destination && random_destination)

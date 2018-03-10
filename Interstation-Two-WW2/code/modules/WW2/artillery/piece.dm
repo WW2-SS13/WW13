@@ -604,8 +604,8 @@
 			else
 				message_admins("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
 				log_admin("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
-				var/how_many = rand(20,30)
-				for (var/v in TRUE to how_many)
+				var/how_many = rand(15,20)
+				for (var/v in 1 to how_many)
 					switch (reagent_payload)
 						if ("chlorine_gas")
 							new/obj/effect/effect/smoke/chem/payload/chlorine_gas(t)

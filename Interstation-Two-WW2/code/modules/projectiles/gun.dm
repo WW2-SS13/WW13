@@ -252,7 +252,7 @@
 */
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
-	for(var/i in TRUE to burst)
+	for(var/i in 1 to burst)
 		var/obj/projectile = consume_next_projectile(user)
 		if(!projectile)
 			handle_click_empty(user)
@@ -356,7 +356,7 @@
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("heavyweapon")
-					acc += max(H.getStatCoeff("heavyweapon")-1, 0)
+					acc += max(H.getStatCoeff("heavyweapon")-1, 0) * 2
 
 			// 60% chance of KD
 			else if (gun_type == GUN_TYPE_RIFLE)
@@ -364,7 +364,7 @@
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("rifle")
-					acc += max(H.getStatCoeff("rifle")-1, 0)
+					acc += max(H.getStatCoeff("rifle")-1, 0) * 2
 
 			// 30% chance of KD
 			else if (gun_type == GUN_TYPE_PISTOL)
@@ -372,7 +372,7 @@
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("pistol")
-					acc += max(H.getStatCoeff("pistol")-1, 0)
+					acc += max(H.getStatCoeff("pistol")-1, 0) * 2
 
 			// 20% chance of KD
 			else if (gun_type == GUN_TYPE_MG)
@@ -380,7 +380,7 @@
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					P.KD_chance *= H.getStatCoeff("mg")
-					acc += max(H.getStatCoeff("mg")-1, 0)
+					acc += max(H.getStatCoeff("mg")-1, 0) * 2
 
 			if (ishuman(user))
 				var/mob/living/carbon/human/H = user

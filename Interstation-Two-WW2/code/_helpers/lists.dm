@@ -20,11 +20,13 @@
 	return FALSE
 
 /proc/locate_bullet_blocking_structure(var/list/L)
-	for (var/structure in typesof(/obj/structure))
-		if (ispath(structure, /obj/structure/table))
+	if (isatom(L))
+		var/atom/A = L
+		L = A.contents
+	for (var/obj/structure/structure in L)
+		if (structure.throwpass || !structure.density)
 			continue
-		if (locate_type(L, structure))
-			return TRUE
+		return TRUE
 	return FALSE
 
 /proc/copylist(var/list/L)
