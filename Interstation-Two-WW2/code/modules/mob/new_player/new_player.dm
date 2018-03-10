@@ -38,6 +38,7 @@
 		if (client)
 			client.remove_ghost_only_admin_verbs()
 
+/mob/new_player/Destroy()
 	..()
 	new_player_mob_list -= src
 
