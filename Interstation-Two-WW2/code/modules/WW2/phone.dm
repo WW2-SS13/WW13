@@ -65,7 +65,7 @@ var/list/soviet_traitors = list()
 							H << "<span class = 'warning'>You can't afford this right now.</span>"
 							return
 						supply_points[faction] -= cost
-						radio2faction("[faction == GERMAN ? "A Luftwaffe" : "An air"] raid has been called in by [H]. Stand by.", faction)
+						radio2faction("[faction == GERMAN ? "A Luftwaffe" : "An air"] raid has been called in by [H.real_name]. Stand by.", faction)
 						air_raid(faction, src)
 
 				if (REQUEST_BATTLE_REPORT)
@@ -97,7 +97,7 @@ var/list/soviet_traitors = list()
 							if (SOVIET)
 								traitors = soviet_traitors
 						traitors |= found
-						radio2faction("[found] has been declared a traitor by [H]. They will be targeted in future air raids. Military Police are hereby instructed to detain or execute [found].", faction)
+						radio2faction("[found] has been declared a traitor by [H.real_name]. They will be targeted in future air raids. Military Police are hereby instructed to detain or execute [found].", faction)
 
 /proc/air_raid(faction, var/obj/item/weapon/phone/tohighcommand/caller)
 
@@ -120,10 +120,12 @@ var/list/soviet_traitors = list()
 
 		var/list/targets = (raiding == SOVIET ? alive_russians : raiding == GERMAN ? alive_germans : player_list)
 
-		var/maximum_targets = max(1, round(targets.len/7))
+		var/maximum_targets = max(1, round(targets.len/5))
 		var/targeted = 0
 
-		for (var/mob/living/carbon/human/H in human_mob_list)
+		var/shuffled_human_mobs = shuffle(human_mob_list)
+
+		for (var/mob/living/carbon/human/H in shuffled_human_mobs)
 			if (H.loc && H.stat == CONSCIOUS)
 				var/area/H_area = get_area(H)
 				if (istype(H_area, /area/prishtina/german))
@@ -143,10 +145,10 @@ var/list/soviet_traitors = list()
 						var/area/target_area = get_area(target)
 
 						playsound(target, "artillery_in_distant", 100, TRUE, 100)
-						target.visible_message("<span class = 'userdanger'>You hear a plane coming!</span>")
+						target.visible_message("<span class = 'userdanger'>You see a barrage of rockets in the sky!</span>")
 
 						for (var/v in 1 to 3)
-							spawn (rand(35*v,45*v))
+							spawn (40 * v)
 
 								var/target_x = H.x + rand(-3,3)
 								var/target_y = H.y + rand(-3,3)
@@ -159,8 +161,8 @@ var/list/soviet_traitors = list()
 								if (target_area.artillery_integrity)
 									target_area.artillery_integrity -= 50
 
-								if (target_area.artillery_integrity <= 0)
-									explosion(target, 1, 3, 5, 6)
+								if (target_area.artillery_integrity <= 0 && (!target_area.parent_area || target_area.parent_area.artillery_integrity <= 0))
+									explosion(target, 1, 3, 4, 5)
 								else
 									target.visible_message("<span class = 'userdanger'>The bomb smashes into the ceiling!</span>")
 									playsound(target, "explosion", 100, TRUE, 100)

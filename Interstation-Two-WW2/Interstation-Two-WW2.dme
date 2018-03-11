@@ -455,6 +455,7 @@
 #include "code\modules\admin\verbs\massmodvar.dm"
 #include "code\modules\admin\verbs\mentorhelp.dm"
 #include "code\modules\admin\verbs\modifyvariables.dm"
+#include "code\modules\admin\verbs\OOC.dm"
 #include "code\modules\admin\verbs\patreon.dm"
 #include "code\modules\admin\verbs\performance.dm"
 #include "code\modules\admin\verbs\playsound.dm"

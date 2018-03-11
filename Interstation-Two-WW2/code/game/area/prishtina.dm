@@ -9,6 +9,7 @@
 	icon_state = "purple1"
 	dynamic_lighting = TRUE
 
+
 /area/prishtina/New()
 	..()
 	if (istype(src, /area/prishtina/german) && !istype(src, /area/prishtina/german/ss_torture_room))
@@ -510,6 +511,7 @@
 	name = "Kitchen Cellar"
 	icon_state = "blue3"
 	location = AREA_INSIDE
+	parent_area_type = /area/prishtina/german/kitchen/storage
 
 /area/prishtina/german/shower1
 	name = "Showers #1"
@@ -640,6 +642,7 @@
 /area/prishtina/german/medical/morgue
 	name = "Morgue"
 	icon_state = "blue4"
+	parent_area_type = /area/prishtina/german/medical/hallway
 
 // special german areas
 
@@ -703,7 +706,6 @@
 	name = "Kitchen Cellar"
 	icon_state = "blue2"
 
-
 /area/prishtina/soviet/small_map/inside/commander_bedroom
 	name = "Kapitan's Office"
 	icon_state = "blue1"
@@ -734,6 +736,7 @@
 /area/prishtina/soviet/small_map/inside/medical/morgue
 	name = "Morgue"
 	icon_state = "blue5"
+	parent_area_type = /area/prishtina/soviet/small_map/inside/medical/hallway
 
 /area/prishtina/soviet/small_map/inside/mparea
 	name = "MP Area"
