@@ -1,15 +1,12 @@
-// ported from /tg/station - Kachnov
+// ported from /tg/station. Now a process since apparently we don't have functioning subsystems? - Kachnov
 
 #define MC_AVERAGE_FAST(average, current) (0.7 * (average) + 0.3 * (current))
 #define MC_AVERAGE(average, current) (0.8 * (average) + 0.2 * (current))
 #define MC_AVERAGE_SLOW(average, current) (0.9 * (average) + 0.1 * (current))
 
-var/datum/subsystem/time_track/time_track = null
+var/datum/controller/process/time_track/time_track = null
 
-/datum/subsystem/time_track
-	name = "Time Tracking"
-	wait = 10
-
+/datum/controller/process/time_track
 	var/time_dilation_current = 0
 
 	var/time_dilation_avg_fast = 0
@@ -24,18 +21,20 @@ var/datum/subsystem/time_track/time_track = null
 
 	var/time_elapsed = 0
 
-/datum/subsystem/time_track/New()
-	..()
+/datum/controller/process/time_track/setup()
+	name = "Time Tracking"
+	schedule_interval = 50
+
 	if (!time_track)
 		time_track = src
 
-/datum/subsystem/time_track/fire()
+/datum/controller/process/time_track/doWork()
 	..()
 
 	if (!time_elapsed)
 		time_elapsed = world.time
 
-	var/current_realtime = time_elapsed // real time of day
+	var/current_realtime = time_elapsed // fake real time of day. somewhat flawed because it assumes we doWork() at the right time
 	var/current_byondtime = world.time
 	var/current_tickcount = world.time/world.tick_lag
 
@@ -54,4 +53,4 @@ var/datum/subsystem/time_track/time_track = null
 	last_tick_byond_time = current_byondtime
 	last_tick_tickcount = current_tickcount
 
-	time_elapsed += wait
+	time_elapsed += schedule_interval
