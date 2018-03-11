@@ -30,7 +30,7 @@
 
 /datum/game_mode/ww2/proc/current_stat_message()
 	if (time_both_sides_locked != -1 && !currently_winning)
-		return "The round will end in [round(((time_both_sides_locked+time_to_end_round_after_both_sides_locked) - world.realtime)/600)]; both sides are out of reinforcements."
+		return "The round will end in [round(((time_both_sides_locked+time_to_end_round_after_both_sides_locked) - world.realtime)/600)] minutes; both sides are out of reinforcements."
 	else if (currently_winning == "Soviets")
 		return "The Soviets will win in [round((next_win_time-world.realtime)/600)] minutes."
 	else if (currently_winning == "Germans")
