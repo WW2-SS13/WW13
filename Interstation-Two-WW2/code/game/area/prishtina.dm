@@ -376,8 +376,12 @@
 
 /area/prishtina/void/civilian_basements
 /area/prishtina/void/civilian_basements/house1
+	parent_area_type = /area/prishtina/houses/sov_three
 /area/prishtina/void/civilian_basements/house2
+	parent_area_type = /area/prishtina/houses/sov_thirteen
 /area/prishtina/void/civilian_basements/house3
+	parent_area_type = /area/prishtina/houses/nml_two
+
 
 // end of wormhole areas
 
@@ -745,6 +749,7 @@
 /area/prishtina/soviet/small_map/inside/prison
 	name = "Prison"
 	icon_state = "green2"
+	parent_area_type = /area/prishtina/soviet/small_map/inside/mparea
 
 /area/prishtina/soviet/small_map/main_area/supplypad
 	name = "Supply Pad"

@@ -426,7 +426,7 @@
 		var/reagent_payload = null
 
 		if (!istype(shell, /obj/item/artillery_ammo/gaseous))
-			num_shrapnel = rand(15,20)
+			num_shrapnel = rand(30,40)
 			explosion = TRUE
 		else
 			var/obj/item/artillery_ammo/gaseous/g = shell
@@ -604,7 +604,7 @@
 			else
 				message_admins("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
 				log_admin("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
-				var/how_many = rand(15,20)
+				var/how_many = 24 // half of 49, the radius we spread over (7x7)
 				for (var/v in 1 to how_many)
 					switch (reagent_payload)
 						if ("chlorine_gas")

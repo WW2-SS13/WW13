@@ -15,6 +15,7 @@ datum/controller/vote
 	var/list/current_votes = list()
 	var/list/additional_text = list()
 	var/auto_muted = FALSE
+	var/win_threshold = 0.00
 
 	New()
 		if(vote != src)
@@ -73,6 +74,9 @@ datum/controller/vote
 			total_votes += votes
 			if(votes > greatest_votes)
 				greatest_votes = votes
+
+		var/vote_threshold = total_votes * win_threshold
+
 		/* // no more - kachnov
 		//default-vote for everyone who didn't vote
 		if(!config.vote_no_default && choices.len)
@@ -91,7 +95,7 @@ datum/controller/vote
 
 		//get all options with that many votes and return them in a list
 		. = list()
-		if(greatest_votes)
+		if(greatest_votes && greatest_votes >= vote_threshold)
 			for(var/option in choices)
 				if(choices[option] == greatest_votes)
 					. += utf8_to_cp1251(option)
@@ -120,7 +124,7 @@ datum/controller/vote
 					text += "<b>The vote has ended.</b>" // What will be shown if it is a gamemode vote that isn't extended
 
 		else
-			text += "<b>Vote Result: Inconclusive - No Votes!</b>"
+			text += "<b>Vote Result: Inconclusive - Neither option had enough votes!</b>"
 			if(mode == "add_antagonist")
 				antag_add_failed = TRUE
 		log_vote(text)
@@ -182,9 +186,11 @@ datum/controller/vote
 					return FALSE
 
 			reset()
+			win_threshold = 0.00
 			switch(vote_type)
 				if("restart")
 					choices.Add("Restart Round","Continue Playing")
+					win_threshold = 0.67
 		/*		if("gamemode")
 					if(ticker.current_state >= 2)
 						return FALSE
