@@ -665,7 +665,6 @@
 			if (z == 2 && map && map.ID == "FOREST")
 				stat("Altitude:", paratrooper_plane_master.altitude)
 
-			stat("Time Dilation:", time_track ? "[time_track.time_dilation_current]%" : "???")
 
 		if(client.holder)
 			if(statpanel("Status"))
