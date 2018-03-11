@@ -531,7 +531,7 @@
 		var/area/t_area = get_area(t)
 
 		var/is_indoors = FALSE
-		var/artillery_deflection_bonus = FALSE
+		var/artillery_deflection_bonus = 0
 
 		if (istype(t_area, /area/prishtina/void))
 			return FALSE
@@ -546,7 +546,7 @@
 		if (istype(t_area, /area/prishtina/soviet/bunker_entrance))
 			is_indoors = TRUE
 
-		var/power_mult = TRUE //experimental. 2 is a bit high.
+		var/power_mult = 1.0 //experimental. 2 is a bit high.
 
 		var/travel_time = FALSE
 
@@ -584,11 +584,11 @@
 						shake_camera(m, 5, 5)
 						m << "<span class = 'danger'>You hear something violently smash into the ceiling!</span>"
 					if (prob(100 - artillery_deflection_bonus))
-						if (explosion) // HE master race
-							a.artillery_integrity -= rand(25,30)
+						if (explosion)
+							a.artillery_integrity -= rand(20,25)
 							a.update_snowfall_valid_turfs()
 						else
-							a.artillery_integrity -= rand(15,20)
+							a.artillery_integrity -= rand(10,12)
 							a.update_snowfall_valid_turfs()
 					return
 				else
@@ -604,8 +604,8 @@
 			else
 				message_admins("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
 				log_admin("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
-				var/how_many = rand(20,30)
-				for (var/v in TRUE to how_many)
+				var/how_many = rand(15,20)
+				for (var/v in 1 to how_many)
 					switch (reagent_payload)
 						if ("chlorine_gas")
 							new/obj/effect/effect/smoke/chem/payload/chlorine_gas(t)

@@ -10,6 +10,15 @@
 			if (H.client)
 				H << msg
 
+/proc/radio2faction(msg, faction = GERMAN, var/channel = "High Command Announcement System")
+	switch (faction)
+		if (GERMAN)
+			return radio2germans(msg, channel)
+		if (SOVIET)
+			return radio2soviets(msg, channel)
+		if (SCHUTZSTAFFEL)
+			return radio2SS(msg, channel)
+
 /proc/radio2germans(msg, var/channel = "High Command Announcement System")
 	var/obj/item/device/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
@@ -34,6 +43,14 @@
 		return TRUE
 	return FALSE
 
+/proc/battlereport2faction(faction)
+	switch (faction)
+		if (GERMAN)
+			radio2germans("Battle Status Report: [alive_germans.len] alive, [heavily_injured_germans.len] heavily injured or unconscious, [dead_germans.len] dead.")
+		if (SOVIET)
+			radio2soviets("Battle Status Report: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, [dead_russians.len] dead.")
+		if (SCHUTZSTAFFEL)
+			return battlereport2faction(GERMAN)
 /*
 /turf/proc/check_prishtina_block(var/mob/m, var/actual_movement = FALSE)
 

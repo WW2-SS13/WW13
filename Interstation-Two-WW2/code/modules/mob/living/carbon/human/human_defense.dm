@@ -86,34 +86,46 @@ bullet_act
 		   * 3. survival stat
 		*/
 
-		var/abs_dist = abs(P.starting.x - x) + abs(P.starting.y - y)
+		var/distcheck = max(abs(P.starting.x - x), abs(P.starting.y - y))
 
-		if (abs_dist > 2) // not PB range
-			if (!istype(P, /obj/item/projectile/bullet/rifle/murder))
+		if (distcheck > 2) // not PB range
+			if (!istype(P, /obj/item/projectile/bullet/rifle/murder) && !istype(P, /obj/item/projectile/bullet/shotgun/murder))
 
 				// shooting a moving target from 19 tiles away (new max scope range) has a 72% graze chance
 				// this means if snipers want to hit people they need to shoot at still targets
 				// shooting at someone from <= 7 tiles away has no graze chance - Kachnov
-				if (lastMovedRecently())
-					if (prob(6 * max(abs_dist - 7, 0)))
-						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-						qdel(P)
-						adjustBruteLoss(pick(4,5))
-						return
 
+				var/graze_chance_multiplier = 5
+				if (list("head", "mouth", "eyes").Find(def_zone))
+					++graze_chance_multiplier
+				graze_chance_multiplier += (1 * getStatCoeff("survival"))
+
+				if (lastMovedRecently())
+					if (prob(graze_chance_multiplier * max(distcheck - 7, 0)))
+						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
+						adjustBruteLoss(pick(4,5))
+						qdel(P)
+						return
+				else if (list("head", "mouth", "eyes").Find(def_zone) && prob(20 * getStatCoeff("survival")))
+					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
+					adjustBruteLoss(pick(4,5))
+					qdel(P)
+					return
+
+/*
 				// 30% base chance to miss the head, because headshots are painful - Kachnov
-				if (list("head", "mouth", "eyes").Find(def_zone) && prob(30 * getStatCoeff("survival")))
+				else if (list("head", "mouth", "eyes").Find(def_zone) && prob(30 * getStatCoeff("survival")))
 					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 					qdel(P)
-					adjustBruteLoss(pick(2,3))
+					adjustBruteLoss(pick(6,7))
 					return
 
 				// 15% base chance to graze elsewhere
 				else if (prob(15 * getStatCoeff("survival")))
 					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 					qdel(P)
-					adjustBruteLoss(pick(2,3))
-					return
+					adjustBruteLoss(pick(4,5))
+					return*/
 
 		// get knocked back once in a while
 		// unless we're on a train because bugs
@@ -165,7 +177,7 @@ bullet_act
 
 	..(P , def_zone)
 
-	spawn (0.1)
+	spawn (0.01)
 		qdel(P)
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
@@ -434,7 +446,7 @@ bullet_act
 			zone = "chest"
 
 		if(!zone)
-			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
+	//		visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
 			return
 
 		if (istype(AM, /obj/item))

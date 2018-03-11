@@ -6,6 +6,7 @@
 
 	if (transforming)
 		return
+
 	if(!loc)
 		return
 

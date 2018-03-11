@@ -204,7 +204,7 @@
 			database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
 
 	/* let us profile if we're hosting on our computer OR if we have host perms */
-	if (world.host == key || holder.rights & R_HOST)
+	if (world.host == key || (holder && holder.rights & R_HOST))
 		control_freak = FALSE
 
 	if (!holder && !isPatron("$10+"))
@@ -268,7 +268,9 @@
 	clients -= src
 	if (observer_mob_list.Find(mob))
 		observer_mob_list -= mob
-	if (human_clients_mob_list.Find(mob))
+	else if (new_player_mob_list.Find(mob))
+		new_player_mob_list -= mob
+	else if (human_clients_mob_list.Find(mob))
 		human_clients_mob_list -= mob
 	return ..()
 

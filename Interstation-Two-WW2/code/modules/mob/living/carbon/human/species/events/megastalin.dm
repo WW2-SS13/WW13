@@ -19,7 +19,7 @@
 /mob/living/carbon/human/megastalin/New()
 	..()
 	var/oloc = loc
-	job_master.EquipRank(src, "Comandir Batalyona")
+	job_master.EquipRank(src, "Kapitan")
 	spawn (1)
 		loc = oloc
 		name = "MEGA STALIN"

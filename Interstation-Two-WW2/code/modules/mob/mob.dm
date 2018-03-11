@@ -637,14 +637,13 @@
 	. = (is_client_active(10 MINUTES))
 	if(.)
 		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
-			stat("Players Online (Playing)", "[clients.len] ([human_clients_mob_list.len])")
-			stat("Round Duration", roundduration2text())
-			stat("Map", map.title)
-			stat("Time of Day", time_of_day)
-			stat("Season", ticker.mode.season())
-			stat("Weather", ticker.mode.weather())
-			if (z == 2 && map && istype(map, /obj/map_metadata/forest))
-				stat("Altitude:", paratrooper_plane_master.altitude)
+			stat("Players Online (Playing, Observing, Lobby):", "[clients.len] ([human_clients_mob_list.len], [observer_mob_list.len], [new_player_mob_list.len])")
+			stat("Round Duration:", roundduration2text())
+
+			if (ticker && ticker.mode && ticker.mode.config_tag == "WW2")
+				var/datum/game_mode/ww2/mode = ticker.mode
+				stat("Current Round End Condition", mode.current_stat_message())
+
 			if (map)
 				var/grace_period_string = ""
 				for (var/faction in map.faction_organization)
@@ -657,6 +656,16 @@
 					else
 						grace_period_string += "[faction_const2name(faction)] may not cross"
 				stat("Grace Period Status:", grace_period_string)
+
+			stat("Map:", map.title)
+			stat("Season:", ticker.mode.season())
+			stat("Weather:", ticker.mode.weather())
+			stat("Time of Day:", time_of_day)
+
+			if (z == 2 && map && map.ID == "FOREST")
+				stat("Altitude:", paratrooper_plane_master.altitude)
+
+			stat("Time Dilation:", time_track ? "[ceil(time_track.dilation)]%" : "???")
 
 		if(client.holder)
 			if(statpanel("Status"))

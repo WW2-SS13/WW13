@@ -49,7 +49,7 @@
 	item_state = "ppsh"
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
-	w_class = 4
+	w_class = 3
 	fire_sound = 'sound/weapons/m16.ogg'
 	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-1
 	scoped_accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-1

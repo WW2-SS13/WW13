@@ -48,7 +48,8 @@ a, a:link, a:visited, :active, a:hover
 .radio					{color: #4CA64C;}
 
 /* Radio Channels */
-.blueradio				{color: #466194;}
+.blueradio				{color: #6A80A9;}
+.SSradio				{color: #466194;}
 .redradio				{color: #B53232;}
 .brownradio				{color: #7E6A46;}
 

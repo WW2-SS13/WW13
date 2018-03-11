@@ -16,6 +16,7 @@
 
 //used to initialize the subsystem BEFORE the map has loaded
 /datum/subsystem/New()
+	return
 
 //previously, this would have been named 'process()' but that name is used everywhere for different things!
 //fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.
@@ -44,3 +45,4 @@
 //usually called via datum/subsystem/New() when replacing a subsystem (i.e. due to a recurring crash)
 //should attempt to salvage what it can from the old instance of subsystem
 /datum/subsystem/proc/Recover()
+	return

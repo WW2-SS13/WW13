@@ -81,15 +81,17 @@ var/list/tier_2_officer_jobtypes = list(
 	while (TRUE)
 		T = get_step(T, dir)
 		++steps
-		if (steps >= 7 || T.density || locate_type(T, /obj/structure) || locate_type(T, /mob/living/carbon/human))
+		if (steps >= 7 || T.density || locate_bullet_blocking_structure(T) || locate_type(T, /mob/living/carbon/human))
 			break
 
 	for (var/mob/living/carbon/human/H in T)
 		if (H != src && H.stat != DEAD && original_job && H.original_job)
 			if (rankcmp(original_job, H.original_job))
+
 				var/obj/item/projectile/in_chamber = G.consume_next_projectile()
 				if (!in_chamber || !istype(in_chamber))
 					return
+
 				var/datum/gender/GD = gender_datums[gender]
 				var/old_targeted_organ = targeted_organ
 				targeted_organ = "head"
@@ -100,14 +102,20 @@ var/list/tier_2_officer_jobtypes = list(
 				msg_admin_attack("[name] ([ckey]) has officer executed [H] ([H.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 
 				G.executing = TRUE
-				G.Fire(H, src)
+				G.Fire(H, src, forceburst = 1)
 				G.executing = FALSE
 				targeted_organ = old_targeted_organ
 				next_execute = world.realtime + 600
 				break
 
+/proc/check_coords_check()
+	return (!map || (map.germans_can_cross_blocks() && map.soviets_can_cross_blocks()))
+
 /mob/living/carbon/human/proc/Check_Coordinates()
 	set category = "Officer"
+	if (!check_coords_check())
+		usr << "<span class = 'warning'>You can't use this yet.</span>"
+		return
 	if (checking_coords[1] && checking_coords[2])
 		checking_coords[3] = x
 		checking_coords[4] = y
@@ -123,6 +131,9 @@ var/list/tier_2_officer_jobtypes = list(
 
 /mob/living/carbon/human/proc/Reset_Coordinates()
 	set category = "Officer"
+	if (!check_coords_check())
+		usr << "<span class = 'warning'>You can't use this yet.</span>"
+		return
 	if (checking_coords[1] && checking_coords[2])
 		var/x = checking_coords[1]
 		var/y = checking_coords[2]
@@ -137,6 +148,9 @@ var/list/tier_2_officer_jobtypes = list(
 /mob/living/carbon/human/proc/Check_Coordinates_Chump()
 	set category = "Scout"
 	set name = "Check Coordinates"
+	if (!check_coords_check())
+		usr << "<span class = 'warning'>You can't use this yet.</span>"
+		return
 	if (checking_coords[1] && checking_coords[2])
 		checking_coords[3] = x
 		checking_coords[4] = y
@@ -153,6 +167,9 @@ var/list/tier_2_officer_jobtypes = list(
 /mob/living/carbon/human/proc/Reset_Coordinates_Chump()
 	set category = "Scout"
 	set name = "Reset Coordinates"
+	if (!check_coords_check())
+		usr << "<span class = 'warning'>You can't use this yet.</span>"
+		return
 	if (checking_coords[1] && checking_coords[2])
 		var/x = checking_coords[1]
 		var/y = checking_coords[2]

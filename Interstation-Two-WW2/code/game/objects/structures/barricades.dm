@@ -20,7 +20,10 @@
 		return
 	name = "[material.display_name] barricade"
 	desc = "This space is blocked off by a barricade made of [material.display_name]."
-	color = material.icon_colour
+	if (istype(material, /material/wood))
+		icon_state = "wood_barricade"
+	else
+		color = material.icon_colour
 	maxhealth = (material.integrity*2.5) + 100
 	health = maxhealth
 
@@ -89,12 +92,9 @@
 
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 	if (istype(mover, /obj/item/projectile))
-		if(air_group || (height==0))
-			if (prob(30))
-				return TRUE
-		if(mover.checkpass(PASSTABLE))
-			if (prob(30))
-				return TRUE
+		var/obj/item/projectile/proj = mover
+		if (prob(30) || get_dist(proj.starting, src) == 1)
+			return TRUE
 		return FALSE
 	else
 		return FALSE

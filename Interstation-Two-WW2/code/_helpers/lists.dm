@@ -19,6 +19,16 @@
 			return D
 	return FALSE
 
+/proc/locate_bullet_blocking_structure(var/list/L)
+	if (isatom(L))
+		var/atom/A = L
+		L = A.contents
+	for (var/obj/structure/structure in L)
+		if (structure.throwpass || !structure.density)
+			continue
+		return TRUE
+	return FALSE
+
 /proc/copylist(var/list/L)
 	if (!L || !islist(L))
 		return list()

@@ -73,87 +73,94 @@ proc/getsensorlevel(A)
 
 /* - Kachnov */
 
+#define GUARANTEED_CHANCE 100
+#define HIGH_CHANCE 80
+#define MEDIUM_CHANCE 50
+#define LOWER_CHANCE 33
+#define LOW_CHANCE 20
+
 var/list/global/hit_chances = list(
 
 	// 0 to 1 tiles away
 	"pointblankrange" = list(
-		"head" = 95,
-		"chest" = 99,
-		"groin" = 98,
-		"l_leg" = 98,
-		"r_leg" = 98,
-		"l_arm" = 98,
-		"r_arm" = 98,
-		"l_hand" = 98,
-		"r_hand" = 98,
-		"l_foot" = 98,
-		"r_foot" = 98,
-		"default" = 99),
+		"head" = GUARANTEED_CHANCE,
+		"chest" = GUARANTEED_CHANCE,
+		"groin" = GUARANTEED_CHANCE,
+		"l_leg" = GUARANTEED_CHANCE,
+		"r_leg" = GUARANTEED_CHANCE,
+		"l_arm" = GUARANTEED_CHANCE,
+		"r_arm" = GUARANTEED_CHANCE,
+		"l_hand" = GUARANTEED_CHANCE,
+		"r_hand" = GUARANTEED_CHANCE,
+		"l_foot" = GUARANTEED_CHANCE,
+		"r_foot" = GUARANTEED_CHANCE),
 
 	// 2 to 3 tiles away
 	"shortrange" = list(
-		"head" = 30,
-		"chest" = 66,
-		"groin" = 45,
-		"l_leg" = 55,
-		"r_leg" = 55,
-		"l_arm" = 55,
-		"r_arm" = 55,
-		"l_hand" = 40,
-		"r_hand" = 40,
-		"l_foot" = 40,
-		"r_foot" = 40,
-		"default" = 66),
+		"head" = MEDIUM_CHANCE,
+		"chest" = HIGH_CHANCE,
+		"groin" = MEDIUM_CHANCE,
+		"l_leg" = MEDIUM_CHANCE,
+		"r_leg" = MEDIUM_CHANCE,
+		"l_arm" = MEDIUM_CHANCE,
+		"r_arm" = MEDIUM_CHANCE,
+		"l_hand" = MEDIUM_CHANCE,
+		"r_hand" = MEDIUM_CHANCE,
+		"l_foot" = MEDIUM_CHANCE,
+		"r_foot" = MEDIUM_CHANCE),
 
 	// 4 to 6 tiles away
 	"medrange" = list(
-		"head" = 17,
-		"chest" = 40,
-		"groin" = 32,
-		"l_leg" = 37,
-		"r_leg" = 37,
-		"l_arm" = 37,
-		"r_arm" = 37,
-		"l_hand" = 27,
-		"r_hand" = 27,
-		"l_foot" = 27,
-		"r_foot" = 27,
-		"default" = 40),
+		"head" = LOWER_CHANCE,
+		"chest" = MEDIUM_CHANCE,
+		"groin" = MEDIUM_CHANCE,
+		"l_leg" = MEDIUM_CHANCE,
+		"r_leg" = MEDIUM_CHANCE,
+		"l_arm" = MEDIUM_CHANCE,
+		"r_arm" = MEDIUM_CHANCE,
+		"l_hand" = LOWER_CHANCE,
+		"r_hand" = LOWER_CHANCE,
+		"l_foot" = LOWER_CHANCE,
+		"r_foot" = LOWER_CHANCE),
 
 	// 7 to INFINITY tiles away
 	"longrange" = list(
-		"head" = 10,
-		"chest" = 25,
-		"groin" = 20,
-		"l_leg" = 22,
-		"r_leg" = 22,
-		"l_arm" = 22,
-		"r_arm" = 22,
-		"l_hand" = 18,
-		"r_hand" = 18,
-		"l_foot" = 18,
-		"r_foot" = 18,
-		"default" = 25),
+		"head" = LOW_CHANCE,
+		"chest" = MEDIUM_CHANCE - 10,
+		"groin" = LOWER_CHANCE,
+		"l_leg" = LOWER_CHANCE,
+		"r_leg" = LOWER_CHANCE,
+		"l_arm" = LOWER_CHANCE,
+		"r_arm" = LOWER_CHANCE,
+		"l_hand" = LOW_CHANCE,
+		"r_hand" = LOW_CHANCE,
+		"l_foot" = LOW_CHANCE,
+		"r_foot" = LOW_CHANCE),
 )
 
 /proc/get_miss_chance(var/zone, var/distance, var/accuracy, var/miss_modifier)
-	. = FALSE
+
+
+	. = 0
 	zone = check_zone(zone)
+
+	var/hit_chance = max(hit_chances["pointblankrange"][zone], 7 + accuracy)
+
 	switch (distance)
 		if (0)
-			. = 100 - hit_chances["pointblankrange"][zone]
+			hit_chance = max(hit_chances["pointblankrange"][zone], 7 + accuracy)
 		if (1 to 3)
-			. =  100 - hit_chances["shortrange"][zone]
+			hit_chance = max(hit_chances["shortrange"][zone], 7 + accuracy)
 		if (5 to 6)
-			. =  100 - hit_chances["medrange"][zone]
+			hit_chance = max(hit_chances["medrange"][zone], 7 + accuracy)
 		if (7 to INFINITY)
-			. =  100 - hit_chances["longrange"][zone]
+			hit_chance = max(hit_chances["longrange"][zone], 7 + accuracy)
 
+	. = 100 - hit_chance
 	. += miss_modifier
-	. -= (accuracy*6)
+	. -= (accuracy*7)
 	. = max(., 0)
 
-//	log_debug("MC: [.]")
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.

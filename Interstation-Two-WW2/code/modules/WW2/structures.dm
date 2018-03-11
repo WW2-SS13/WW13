@@ -51,7 +51,7 @@
 
 /obj/structure/noose/New()
 	..()
-	processing_objects += src
+	processing_objects |= src
 
 /obj/structure/noose/Del()
 	processing_objects -= src
@@ -65,7 +65,9 @@
 		..()
 
 /obj/structure/noose/process()
-	processing_objects |= src
+	doWork()
+
+/obj/structure/noose/proc/doWork()
 	if (hanging)
 		density = TRUE
 		hanging.dir = SOUTH
@@ -113,7 +115,7 @@
 			hanging = target
 			target.loc = get_turf(src)
 			target.dir = SOUTH
-			process()
+			doWork()
 
 /obj/structure/noose/attack_hand(var/mob/living/carbon/human/H)
 	if (!istype(H))

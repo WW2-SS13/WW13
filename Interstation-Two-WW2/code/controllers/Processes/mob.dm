@@ -19,6 +19,14 @@ var/datum/controller/process/mob/mob_process = null
 
 		var/mob/M = last_object
 
+		if(isnull(M))
+			continue
+
+		else if (istype(M, /mob/new_player))
+			if (!M.client || M.client.mob != M)
+				qdel(M)
+			continue
+
 		// if we're a spawned in, jobless mob: don't handle processing
 		/* todo: these mobs SHOULD process if they have clients.
 			right now, letting jobless mobs with or w/o clients process
@@ -28,7 +36,7 @@ var/datum/controller/process/mob/mob_process = null
 		/* this will probably be removed soon because the job-vanishing error has gone,
 		 * and soon spawned in mobs will get jobs. */
 
-		if (ishuman(M))
+		else if (ishuman(M))
 			if (!M.original_job)
 				// runtime prevention hackcode
 				if (M.client || M.ckey) // we have, or had, a client
@@ -42,9 +50,6 @@ var/datum/controller/process/mob/mob_process = null
 				continue
 
 		skip1
-
-		if(isnull(M))
-			continue
 
 		if(isnull(M.gcDestroyed))
 			try

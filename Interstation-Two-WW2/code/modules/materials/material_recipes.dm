@@ -25,10 +25,10 @@
 
 /material/steel/generate_recipes()
 	..()
-	recipes += new/datum/stack_recipe_list("office chairs",list( \
+/*	recipes += new/datum/stack_recipe_list("office chairs",list( \
 		new/datum/stack_recipe("dark office chair", /obj/structure/bed/chair/office/dark, 5, _one_per_turf = TRUE, _on_floor = TRUE), \
 		new/datum/stack_recipe("light office chair", /obj/structure/bed/chair/office/light, 5, _one_per_turf = TRUE, _on_floor = TRUE) \
-		))
+		))*/
 
 	recipes += new/datum/stack_recipe_list("comfy chairs", list( \
 		new/datum/stack_recipe("beige comfy chair", /obj/structure/bed/chair/comfy/beige, 2, _one_per_turf = TRUE, _on_floor = TRUE), \

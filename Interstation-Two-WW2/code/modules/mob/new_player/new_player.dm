@@ -32,10 +32,15 @@
 
 /mob/new_player/New()
 	mob_list += src
+	new_player_mob_list += src
 
 	spawn (1)
 		if (client)
 			client.remove_ghost_only_admin_verbs()
+
+/mob/new_player/Destroy()
+	..()
+	new_player_mob_list -= src
 
 /mob/new_player/verb/new_player_panel()
 	set src = usr

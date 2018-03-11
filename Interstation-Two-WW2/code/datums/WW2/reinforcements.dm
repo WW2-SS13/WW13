@@ -76,14 +76,14 @@ var/datum/reinforcements/reinforcements_master
 	/* new formulas for determining how reinforcements work, directly determined
 	 * by the number of clients when we start up. */
 
-	max_german_reinforcements = max(1, round(clients.len * 0.45))
-	max_soviet_reinforcements = max(1, round(clients.len * 0.55))
-	reinforcement_add_limit_german = max(3, round(clients.len * 0.12))
-	reinforcement_add_limit_soviet = max(3, round(clients.len * 0.15))
+	max_german_reinforcements = max(1, round(clients.len * 0.42))
+	max_soviet_reinforcements = max(1, round(clients.len * 0.58))
+	reinforcement_add_limit_german = max(3, round(clients.len * 0.14))
+	reinforcement_add_limit_soviet = max(3, round(clients.len * 0.19))
 	reinforcement_spawn_req = max(1, round(clients.len * 0.06))
-	reinforcement_difference_cutoff = max(3, round(clients.len * 0.12))
+	reinforcement_difference_cutoff = max(3, round(clients.len * 0.19))
 
-	world << "<span class = 'danger'>Reinforcements require <b>[reinforcement_spawn_req]</b> people to fill a queue.</span>"
+	world << "<span class = 'danger'>Reinforcements require <b>[reinforcement_spawn_req]</b> [reinforcement_spawn_req == 1 ? "person" : "people"] to fill a queue.</span>"
 
 	return TRUE
 

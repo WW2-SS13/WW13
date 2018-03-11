@@ -277,7 +277,7 @@ var/obj/human_fire_overlay_lying = null
 	if(!on_fire)
 		return TRUE
 
-	else if(fire_stacks <= 0)
+	else if(fire_stacks <= 0 || (stat == DEAD && prob(1)))
 		ExtinguishMob() //Fire's been put out.
 		return TRUE
 /*

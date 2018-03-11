@@ -615,7 +615,7 @@
 
 	New()
 		..()
-		for (var/v in 1 to 25)
+		for (var/v in 1 to 16)
 			new/obj/item/artillery_ammo(src)
 
 /obj/structure/closet/crate/artillery_gas
@@ -627,7 +627,7 @@
 
 	New()
 		..()
-		for (var/v in 1 to 4) // TRUE6 total
+		for (var/v in 1 to 4) // 16 shells total
 			new/obj/item/artillery_ammo/gaseous/green_cross/chlorine(src)
 			new/obj/item/artillery_ammo/gaseous/yellow_cross/mustard(src)
 			new/obj/item/artillery_ammo/gaseous/yellow_cross/white_phosphorus(src)

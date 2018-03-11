@@ -202,11 +202,17 @@
 /mob/var/next_mud_message = -1
 
 /client/Move(n, direct)
+
 	if(!canmove)
 		return
 
 	if(!mob)
 		return // Moved here to avoid nullrefs below
+
+	// makes chucklefucks who manage to cross the wall gib
+	if (map.check_prishtina_block(mob, mob.loc))
+		mob.gib()
+		return
 
 	for (var/obj/structure/noose/N in get_turf(mob))
 		if (N.hanging == mob)

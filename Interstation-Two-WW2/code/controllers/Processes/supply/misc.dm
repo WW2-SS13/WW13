@@ -1,0 +1,1 @@
+var/list/supply_points = list(GERMAN = 500, SOVIET = 500)

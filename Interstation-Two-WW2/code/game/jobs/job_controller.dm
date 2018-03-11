@@ -478,7 +478,7 @@ var/global/datum/controller/occupations/job_master
 			// Give the guy some ammo for his gun
 			spawn (0)
 				if (istype(ticker.mode, /datum/game_mode/ww2))
-					for (var/obj/item/weapon/gun/projectile/gun in H)
+					for (var/obj/item/weapon/gun/projectile/gun in H.contents)
 						if (gun.w_class == 4 && gun.gun_type == GUN_TYPE_MG) // MG
 							if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
 								for (var/v in 1 to 4)

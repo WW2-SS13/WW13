@@ -466,6 +466,8 @@ var/list/preferences_datums = list()
 // global settings handling
 #define ONLY_LOAD_DISABLED_SETTINGS
 /datum/preferences/proc/loadGlobalSettings()
+	if (!client)
+		return
 	// enabled
 	var/list/tables = database.execute("SELECT prefs FROM preferences WHERE ckey = '[client_ckey]' AND slot = 'glob2_enabled';")
 
