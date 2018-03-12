@@ -2,6 +2,9 @@
 
 /obj/structure/window/sandbag/incomplete/check_cover(obj/item/projectile/P, turf/from)
 
+	if (!istype(P))
+		return FALSE
+
 	var/effectiveness_coeff = (progress + TRUE)/maxProgress
 	var/turf/cover = get_turf(src)
 	if(!cover)

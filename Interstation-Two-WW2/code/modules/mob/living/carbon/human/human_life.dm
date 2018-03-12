@@ -146,6 +146,10 @@
 	water = min(water, max_water)
 	water = max(water, -max_water)
 
+	var/oxyloss = getOxyLoss()
+	if (oxyloss <= 20)
+		adjustOxyLoss(-2)
+
 	..()
 
 	stamina = min(stamina + round(max_stamina * 0.02), max_stamina)
@@ -505,11 +509,11 @@
 		bodytemperature += recovery_amt
 	else if(bodytemperature > species.heat_level_1) //360.15 is 310.15 + 50, the temperature where you start to feel effects.
 		//We totally need a sweat system cause it totally makes sense...~
-		var/recovery_amt = min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)	//We're dealing with negative numbers
+//		var/recovery_amt = min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)	//We're dealing with negative numbers
 		//world << "Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
 //				log_debug("Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
+		var/recovery_amt = min(-5, round(body_temperature_difference/10))
 		bodytemperature += recovery_amt
-
 
 //This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.

@@ -167,7 +167,7 @@ Parts of code courtesy of Super3222
 						_y = -zoom_amt
 					if(WEST)
 						_x = -zoom_amt
-				if(zoom_amt > world.view)//So we can still see the player at the edge of the screen if the zoom amount is greater than the world view
+				if(zoom_amt > world.view && user && user.client)//So we can still see the player at the edge of the screen if the zoom amount is greater than the world view
 					var/view_offset = round((zoom_amt - world.view)/2, TRUE)
 					user.client.view += view_offset
 					switch(user.dir)

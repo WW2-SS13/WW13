@@ -412,6 +412,7 @@
 				user << "<span class='notice'>You secured the artillery piece.</span>"
 				anchored = TRUE
 	//second piece
+
 /obj/machinery/artillery/tube
 	var/obj/machinery/artillery/base/other = null
 	icon_state = "tube"
@@ -674,3 +675,11 @@
 				return
 		if(3.0)
 			return
+
+/obj/machinery/artillery/tube/ex_act(severity)
+	return
+
+/obj/machinery/artillery/base/ex_act(severity)
+	if (other)
+		qdel(other)
+	return ..(severity)
