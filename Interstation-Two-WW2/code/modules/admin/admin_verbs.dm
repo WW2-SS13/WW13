@@ -318,7 +318,8 @@ var/list/admin_verbs_host = list(
 	/client/proc/toggle_BYOND_hub_visibility,
 	/client/proc/eject_unwhitelisted,
 //	/client/proc/toggle_hyperefficiency_mode,
-	/client/proc/toggle_playing
+	/client/proc/toggle_playing,
+	/client/proc/toggle_pingability
 )
 
 /client/proc/add_admin_verbs()

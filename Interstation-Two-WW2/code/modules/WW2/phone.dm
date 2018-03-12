@@ -58,14 +58,14 @@ var/list/soviet_traitors = list()
 
 					var/list/targets = (faction == SOVIET ? alive_germans : faction == GERMAN ? alive_russians : list())
 					// it takes 5 minutes for soviets to generate 300 points, not counting rewards
-					var/cost = (targets.len * 5) + battlereport.current_extra_cost_for_air_raid + 300
-					var/yesno = input(H, "An air raid will cost [cost] supply points right now. You have [supply_points[faction]] supply points. [may_bombard_base_message()]. Would you like to call it in?") in list("Yes", "No")
+					var/cost = (targets.len * 5) + battlereport.current_extra_cost_for_air_raid + 250
+					var/yesno = input(H, "A Katyusha attack will cost [cost] supply points right now. You have [supply_points[faction]] supply points. [may_bombard_base_message()]. Would you like to call it in?") in list("Yes", "No")
 					if (yesno == "Yes")
 						if (supply_points[faction] < cost)
 							H << "<span class = 'warning'>You can't afford this right now.</span>"
 							return
 						supply_points[faction] -= cost
-						radio2faction("[faction == GERMAN ? "A Luftwaffe" : "An air"] raid has been called in by [H]. Stand by.", faction)
+						radio2faction("[faction == GERMAN ? "A Luftwaffe" : "A Katyusha"] attack has been called in by [H.real_name]. Stand by.", faction)
 						air_raid(faction, src)
 
 				if (REQUEST_BATTLE_REPORT)
@@ -97,7 +97,7 @@ var/list/soviet_traitors = list()
 							if (SOVIET)
 								traitors = soviet_traitors
 						traitors |= found
-						radio2faction("[found] has been declared a traitor by [H]. They will be targeted in future air raids. Military Police are hereby instructed to detain or execute [found].", faction)
+						radio2faction("[found] has been declared a traitor by [H.real_name]. They will be targeted in future Katyusha attacks. Military Police are hereby instructed to detain or execute [found].", faction)
 
 /proc/air_raid(faction, var/obj/item/weapon/phone/tohighcommand/caller)
 
@@ -120,12 +120,17 @@ var/list/soviet_traitors = list()
 
 		var/list/targets = (raiding == SOVIET ? alive_russians : raiding == GERMAN ? alive_germans : player_list)
 
-		var/maximum_targets = max(1, round(targets.len/7))
+		var/maximum_targets = max(1, round(targets.len/5))
 		var/targeted = 0
 
-		for (var/mob/living/carbon/human/H in human_mob_list)
-			if (H.loc && H.stat == CONSCIOUS)
+		var/shuffled_human_mobs = shuffle(human_mob_list)
+		var/list/used_areas = list()
+
+		for (var/mob/living/carbon/human/H in shuffled_human_mobs)
+			if (H.loc && (H.stat == CONSCIOUS || H.debugmob))
 				var/area/H_area = get_area(H)
+				if (used_areas.Find(H_area))
+					continue
 				if (istype(H_area, /area/prishtina/german))
 					if (!caller || !caller.may_bombard_base())
 						continue
@@ -142,11 +147,13 @@ var/list/soviet_traitors = list()
 						var/turf/target = locate(H.x, H.y, H.z)
 						var/area/target_area = get_area(target)
 
+						used_areas += target_area
+
 						playsound(target, "artillery_in_distant", 100, TRUE, 100)
-						target.visible_message("<span class = 'userdanger'>You hear a plane coming!</span>")
+						target.visible_message("<span class = 'userdanger'>You see a barrage of rockets in the sky!</span>")
 
 						for (var/v in 1 to 3)
-							spawn (rand(35*v,45*v))
+							spawn (40 * v)
 
 								var/target_x = H.x + rand(-3,3)
 								var/target_y = H.y + rand(-3,3)
@@ -159,8 +166,8 @@ var/list/soviet_traitors = list()
 								if (target_area.artillery_integrity)
 									target_area.artillery_integrity -= 50
 
-								if (target_area.artillery_integrity <= 0)
-									explosion(target, 1, 3, 5, 6)
+								if (target_area.artillery_integrity <= 0 && (!target_area.parent_area || target_area.parent_area.artillery_integrity <= 0))
+									explosion(target, 1, 3, 4, 5)
 								else
 									target.visible_message("<span class = 'userdanger'>The bomb smashes into the ceiling!</span>")
 									playsound(target, "explosion", 100, TRUE, 100)

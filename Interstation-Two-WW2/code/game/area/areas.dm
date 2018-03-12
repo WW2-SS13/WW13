@@ -59,6 +59,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 	var/is_train_area = FALSE
 
+	var/parent_area_type = null
+	var/area/parent_area = null
+
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
 var/list/teleportlocs = list()
@@ -112,6 +115,10 @@ var/list/ghostteleportlocs = list()
 	..()
 
 	update_snowfall_valid_turfs()
+
+	spawn (100)
+		if (parent_area_type)
+			parent_area = locate(parent_area_type)
 
 /area/proc/initialize()
 	if(config.machinery_does_not_use_power)

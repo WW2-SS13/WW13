@@ -7,6 +7,10 @@
 //Checks if all high bits in req_mask are set in bitfield
 #define BIT_TEST_ALL(bitfield, req_mask) ((~(bitfield) & (req_mask)) == FALSE)
 
+// get rid of vars causing warnings
+/proc/pass(arg1, arg2, arg3, arg4, arg5)
+	return TRUE
+
 //Inverts the colour of an HTML string
 /proc/invertHTML(HTMLstring)
 

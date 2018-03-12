@@ -31,16 +31,16 @@ Parts of code courtesy of Super3222
 /obj/item/weapon/attachment/scope/adjustable/sniper_scope/zoom()
 	..()
 	if(A_attached)
-		var/obj/item/weapon/gun/L = loc //loc is the gun this is attached to
+		var/obj/item/weapon/gun/G = loc //loc is the gun this is attached to
 		var/zoom_offset = round(world.view * zoom_amt)
 		if(zoomed)
-			if(L.accuracy)
-				L.accuracy = L.scoped_accuracy + zoom_offset
-			if(L.recoil)
-				L.recoil = round(L.recoil*(zoom_amt/5)+1)//recoil is worse when looking through a scope
+			if(G.accuracy)
+				G.accuracy = G.scoped_accuracy + zoom_offset
+			if(G.recoil)
+				G.recoil = round(G.recoil*(zoom_amt/5)+1) //recoil is worse when looking through a scope
 		else
-			L.accuracy = initial(L.accuracy)
-			L.recoil = initial(L.recoil)
+			G.accuracy = initial(G.accuracy)
+			G.recoil = initial(G.recoil)
 
 //Not actually an attachment
 /obj/item/weapon/attachment/scope/adjustable/binoculars
@@ -167,7 +167,7 @@ Parts of code courtesy of Super3222
 						_y = -zoom_amt
 					if(WEST)
 						_x = -zoom_amt
-				if(zoom_amt > world.view)//So we can still see the player at the edge of the screen if the zoom amount is greater than the world view
+				if(zoom_amt > world.view && user && user.client)//So we can still see the player at the edge of the screen if the zoom amount is greater than the world view
 					var/view_offset = round((zoom_amt - world.view)/2, TRUE)
 					user.client.view += view_offset
 					switch(user.dir)

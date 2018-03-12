@@ -27,12 +27,13 @@
 
 	/* mentioning clients with @key or @ckey */
 	for (var/client/C in clients)
-		var/imsg = msg
-		msg = replacetext(msg, "@[C.key]", "<span class=\"log_message\">@[capitalize(C.key)]</span>")
-		msg = replacetext(msg, "@[C.ckey]", "<span class=\"log_message\">@[capitalize(C.key)]</span>")
-		if (msg != imsg)
-			winset(C, "mainwindow", "flash=2;")
-			C << sound('sound/machines/ping.ogg')
+		if (C.pingability)
+			var/imsg = msg
+			msg = replacetext(msg, "@[C.key]", "<span class=\"log_message\">@[capitalize(C.key)]</span>")
+			msg = replacetext(msg, "@[C.ckey]", "<span class=\"log_message\">@[capitalize(C.key)]</span>")
+			if (msg != imsg)
+				winset(C, "mainwindow", "flash=2;")
+				C << sound('sound/machines/ping.ogg')
 
 	/* mentioning @everyone: staff only */
 	if (holder && holder.rights & R_ADMIN)

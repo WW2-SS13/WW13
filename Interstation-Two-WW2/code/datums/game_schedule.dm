@@ -30,7 +30,6 @@ var/datum/game_schedule/global_game_schedule = null
 	var/forceClosed = FALSE
 	var/forceOpened = FALSE
 
-
 /datum/game_schedule/New()
 	update()
 	loadFromDB()
@@ -58,7 +57,7 @@ var/datum/game_schedule/global_game_schedule = null
 //	var/ref_date = split[2] // currently unused: commented out to avoid errors
 	var/ref_day = split[3]
 	var/days_elapsed = round((world.realtime - ref_realtime)/864000)
-	for (var/v in TRUE to days_elapsed)
+	for (var/v in 1 to days_elapsed)
 		ref_day = nextDay(ref_day)
 
 	day = ref_day

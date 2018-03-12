@@ -515,71 +515,80 @@ var/setting_up_db_connection = FALSE
 
 /proc/start_serverswap_loop()
 	spawn while (1)
-		DEBUG_SERVERSWAP(8)
-		if (!serverswap.len)
-			break
-		DEBUG_SERVERSWAP(9)
-		if (!serverswap.Find("masterdir")) // we can't do anything without this!
-			break
-		DEBUG_SERVERSWAP(10)
-		if (!serverswap.Find("this")) // ditto
-			break
-		DEBUG_SERVERSWAP(11)
-		if (!serverswap.Find("sfinal")) // ditto
-			break
-		DEBUG_SERVERSWAP(12)
-		var/wdir = ""
-		var/F = ""
-		DEBUG_SERVERSWAP("13 = [serverswap_open_status]")
-		switch (serverswap_open_status)
-			if (0) // we're waiting for the server before us or the very last server to tell us its ok to go up
-				var/our_server_id = serverswap["this"] // "s1"
-				var/our_number = text2num(replacetext(our_server_id, "s", "")) // '1'
-				var/waiting_on_id = null
-				if (our_number > TRUE)
-					waiting_on_id = "s[our_number-1]" // "s2" waits on "s1", "s3" waits on "s2"
-				else if (our_number == TRUE)
-					waiting_on_id = serverswap["sfinal"]
 
-				DEBUG_SERVERSWAP("13.01 = [waiting_on_id]")
-				DEBUG_SERVERSWAP("13.02 = [serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_closed.txt")
-				DEBUG_SERVERSWAP("13.03 = [serverswap_open_status]")
-				DEBUG_SERVERSWAP("13.04 = [serverswap_closed]")
+		try
+			if (!global_game_schedule)
+				global_game_schedule = new
 
-				if (fexists("[serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_closed.txt"))
-					// other server is closed, time to open (if we aren't already open)
-					serverswap_open_status = TRUE
-					serverswap_closed = FALSE
-					if (ticker)
-						// reset the pregame timer
-						ticker.pregame_timeleft = 185
-						// recreate the database, may or may not fix a DB bug
-						database = new("[serverswap["masterdir"]]/SQL/database.db")
+			global_game_schedule.update()
 
-					DEBUG_SERVERSWAP("13.1")
+			DEBUG_SERVERSWAP(8)
+			if (!serverswap.len)
+				break
+			DEBUG_SERVERSWAP(9)
+			if (!serverswap.Find("masterdir")) // we can't do anything without this!
+				break
+			DEBUG_SERVERSWAP(10)
+			if (!serverswap.Find("this")) // ditto
+				break
+			DEBUG_SERVERSWAP(11)
+			if (!serverswap.Find("sfinal")) // ditto
+				break
+			DEBUG_SERVERSWAP(12)
+			var/wdir = ""
+			var/F = ""
+			DEBUG_SERVERSWAP("13 = [serverswap_open_status]")
+			switch (serverswap_open_status)
+				if (0) // we're waiting for the server before us or the very last server to tell us its ok to go up
+					var/our_server_id = serverswap["this"] // "s1"
+					var/our_number = text2num(replacetext(our_server_id, "s", "")) // '1'
+					var/waiting_on_id = null
+					if (our_number > TRUE)
+						waiting_on_id = "s[our_number-1]" // "s2" waits on "s1", "s3" waits on "s2"
+					else if (our_number == TRUE)
+						waiting_on_id = serverswap["sfinal"]
 
-					// make sure we aren't marked as closed anymore
-					wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"
-					if (fexists(wdir))
-						fdel(wdir)
-			/*	else
-					F = file("test_[waiting_on_id].txt")
+					DEBUG_SERVERSWAP("13.01 = [waiting_on_id]")
+					DEBUG_SERVERSWAP("13.02 = [serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_closed.txt")
+					DEBUG_SERVERSWAP("13.03 = [serverswap_open_status]")
+					DEBUG_SERVERSWAP("13.04 = [serverswap_closed]")
+
+					if (fexists("[serverswap["masterdir"]]/sharedinfo/[waiting_on_id]_closed.txt"))
+						// other server is closed, time to open (if we aren't already open)
+						serverswap_open_status = TRUE
+						serverswap_closed = FALSE
+						if (ticker)
+							// reset the pregame timer
+							ticker.pregame_timeleft = 185
+							// recreate the database, may or may not fix a DB bug
+							database = new("[serverswap["masterdir"]]/SQL/database.db")
+
+						DEBUG_SERVERSWAP("13.1")
+
+						// make sure we aren't marked as closed anymore
+						wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"
+						if (fexists(wdir))
+							fdel(wdir)
+				/*	else
+						F = file("test_[waiting_on_id].txt")
+						fdel(F)
+						F << "hello world!"*/
+				if (1) // we're going to send updates every second in the form of text files telling the server after us what to do
+
+			/*		if (!serverswap_closed)
+						// delete the other file, if it exists
+						if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"))
+							DEBUG_SERVERSWAP("13.29")
+							fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt")*/
+
+					wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt"
+					F = file(wdir)
 					fdel(F)
-					F << "hello world!"*/
-			if (1) // we're going to send updates every second in the form of text files telling the server after us what to do
-
-		/*		if (!serverswap_closed)
-					// delete the other file, if it exists
-					if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"))
-						DEBUG_SERVERSWAP("13.29")
-						fdel("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt")*/
-
-				wdir = "[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_normal.txt"
-				F = file(wdir)
-				fdel(F)
-				F << "testing"
-				DEBUG_SERVERSWAP("13.3: [wdir]")
-				// otherwise do nothing - code moved to serverswap_close_server()
+					F << "testing"
+					DEBUG_SERVERSWAP("13.3: [wdir]")
+					// otherwise do nothing - code moved to serverswap_close_server()
+		catch(var/exception/e)
+			log_debug("Exception in serverswap loop: [e.name]/[e.desc]")
 
 		sleep(10)
 

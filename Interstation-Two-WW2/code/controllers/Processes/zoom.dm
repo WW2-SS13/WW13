@@ -52,26 +52,27 @@ var/datum/controller/process/zoom/zoom_process = null
 
 		if(isnull(H.gcDestroyed))
 			try
-				if (H.client && H.using_zoom())
-					for (var/obj/O in H.client.screen)
-						if (O.invisibility)
-							continue
-						if (istype(O, /obj/screen/movable/action_button))
-							var/obj/screen/movable/action_button/A = O
-							if (A.name == "Toggle Sights" || (A.owner && istype(A.owner, /datum/action/toggle_scope)))
+				if (H.client)
+					if (H.using_zoom())
+						for (var/obj/O in H.client.screen)
+							if (O.invisibility)
 								continue
-						O.invisibility = 100
-						O.scoped_invisible = TRUE
-						if (istype(O, /obj/item/weapon/attachment/scope))
-							recent_scopes |= O
-						else if (istype(O, /obj/item/weapon/gun))
-							var/obj/item/weapon/gun/G = O
-							for (var/obj/item/weapon/attachment/scope/S in G.attachments)
-								recent_scopes |= S
-				else
-					for (var/obj/O in H.client.screen)
-						if (O.scoped_invisible)
-							O.invisibility = FALSE
+							if (istype(O, /obj/screen/movable/action_button))
+								var/obj/screen/movable/action_button/A = O
+								if (A.name == "Toggle Sights" || (A.owner && istype(A.owner, /datum/action/toggle_scope)))
+									continue
+							O.invisibility = 100
+							O.scoped_invisible = TRUE
+							if (istype(O, /obj/item/weapon/attachment/scope))
+								recent_scopes |= O
+							else if (istype(O, /obj/item/weapon/gun))
+								var/obj/item/weapon/gun/G = O
+								for (var/obj/item/weapon/attachment/scope/S in G.attachments)
+									recent_scopes |= S
+					else
+						for (var/obj/O in H.client.screen)
+							if (O.scoped_invisible)
+								O.invisibility = FALSE
 			catch(var/exception/e)
 				catchException(e, H)
 			SCHECK

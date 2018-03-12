@@ -9,9 +9,10 @@
 			E.attack_hand(src)
 	else
 		equip_to_slot_if_possible(W, slot)
-	W.on_changed_slot()
-	for (var/obj/item/I in W.contents)
-		I.on_changed_slot()
+	if (W)
+		W.on_changed_slot()
+		for (var/obj/item/I in W.contents)
+			I.on_changed_slot()
 
 /mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, disable_warning = TRUE, redraw_mob = TRUE, prioritize_active_hand = FALSE)
 	if (!prioritize_active_hand)

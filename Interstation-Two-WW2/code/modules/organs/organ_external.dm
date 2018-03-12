@@ -731,17 +731,24 @@ Note that amputating the affected organ does in fact remove the infection from t
 				"<span class='moderate'><b>Your [name] flashes away into ashes!</b></span>",\
 				"<span class='danger'>You hear a crackling sound[gore].</span>")
 		if(DROPLIMB_BLUNT)
-			var/gore = "[(status & ORGAN_ROBOT) ? "": " in shower of gore"]"
-			var/gore_sound = "[(status & ORGAN_ROBOT) ? "rending sound of tortured metal" : "sickening splatter of gore"]"
-			owner.visible_message(
-				"<span class='danger'>\The [owner]'s [name] explodes[gore]!</span>",\
-				"<span class='moderate'><b>Your [name] explodes[gore]!</b></span>",\
-				"<span class='danger'>You hear the [gore_sound].</span>")
-			playsound(owner, 'sound/effects/gore/chop6.ogg', 100 , FALSE)//Splat.
+			if (!istype(src, /obj/item/organ/external/head))
+				var/gore = "[(status & ORGAN_ROBOT) ? "": " in shower of gore"]"
+				var/gore_sound = "[(status & ORGAN_ROBOT) ? "rending sound of tortured metal" : "sickening splatter of gore"]"
+				owner.visible_message(
+					"<span class='danger'>\The [owner]'s [name] explodes[gore]!</span>",\
+					"<span class='moderate'><b>Your [name] explodes[gore]!</b></span>",\
+					"<span class='danger'>You hear the [gore_sound].</span>")
+				playsound(owner, 'sound/effects/gore/chop6.ogg', 100 , FALSE)//Splat.
+			else
+				owner.death()
+				playsound(owner, 'sound/effects/gore/chop6.ogg', 100 , FALSE)//Splat.
 
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
-	removed(null, ignore_children)
+
+	if (disintegrate != DROPLIMB_BLUNT || !istype(src, /obj/item/organ/external/head))
+		removed(null, ignore_children)
+
 	victim.traumatic_shock += 60
 
 	if(parent_organ)
@@ -782,27 +789,28 @@ Note that amputating the affected organ does in fact remove the infection from t
 					I.loc = get_turf(src)
 			qdel(src)
 		if(DROPLIMB_BLUNT)
-			var/obj/effect/decal/cleanable/blood/gibs/gore = new victim.species.single_gib_type(get_turf(victim))
-			if(victim.species.flesh_color)
-				gore.fleshcolor = victim.species.flesh_color
-			if(victim.species.blood_color)
-				gore.basecolor = victim.species.blood_color
-			gore.update_icon()
-			gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+			if (!istype(src, /obj/item/organ/external/head))
+				var/obj/effect/decal/cleanable/blood/gibs/gore = new victim.species.single_gib_type(get_turf(victim))
+				if(victim.species.flesh_color)
+					gore.fleshcolor = victim.species.flesh_color
+				if(victim.species.blood_color)
+					gore.basecolor = victim.species.blood_color
+				gore.update_icon()
+				gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
-			for(var/obj/item/organ/I in internal_organs)
-				I.removed()
-				if(istype(loc,/turf))
+				for(var/obj/item/organ/I in internal_organs)
+					I.removed()
+					if(istype(loc,/turf))
+						I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+
+				for(var/obj/item/I in src)
+					if(I.w_class <= 2)
+						qdel(I)
+						continue
+					I.loc = get_turf(src)
 					I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
-			for(var/obj/item/I in src)
-				if(I.w_class <= 2)
-					qdel(I)
-					continue
-				I.loc = get_turf(src)
-				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
-
-			qdel(src)
+				qdel(src)
 
 /****************************************************
 			   HELPERS

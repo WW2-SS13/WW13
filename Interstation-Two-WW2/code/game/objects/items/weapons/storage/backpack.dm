@@ -20,7 +20,7 @@
 	w_class = 4
 	slot_flags = SLOT_BACK
 	max_w_class = 4
-	max_storage_space = 28
+	max_storage_space = 22 // can hold 2 w_class 4 items. 28 let it hold 3
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (use_sound)
