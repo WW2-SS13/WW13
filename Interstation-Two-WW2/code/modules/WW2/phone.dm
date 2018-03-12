@@ -129,6 +129,7 @@ var/list/soviet_traitors = list()
 		for (var/mob/living/carbon/human/H in shuffled_human_mobs)
 			if (H.loc && (H.stat == CONSCIOUS || H.debugmob))
 				var/area/H_area = get_area(H)
+				if (used_areas.Find(H_area))
 					continue
 				if (istype(H_area, /area/prishtina/german))
 					if (!caller || !caller.may_bombard_base())
