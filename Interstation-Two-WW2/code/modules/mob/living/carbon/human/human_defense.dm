@@ -19,7 +19,7 @@ bullet_act
 	if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers) && user.a_intent == I_HURT && !grabbed_by_user)
 		if (stat == DEAD)
 			var/mob/living/carbon/human/H = user
-			if (istype(H) && H.original_job && H.original_job.is_nonmilitary)
+			if ((istype(H) && H.original_job && H.original_job.is_nonmilitary) || istype(W, /obj/item/weapon/material/knife/butch))
 				user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
 				if (do_after(user, 30, src))
 					user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")

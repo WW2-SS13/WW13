@@ -114,10 +114,11 @@
 		T.wet_floor(1)
 
 /datum/reagent/water/touch_obj(var/obj/O)
+/*
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
 		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
 		if(!cube.wrapped)
-			cube.Expand()
+			cube.Expand()*/
 
 /datum/reagent/water/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))

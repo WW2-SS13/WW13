@@ -6,13 +6,4 @@
 	density = TRUE
 	anchored = TRUE
 	flags = OPENCONTAINER | NOREACT
-
-	base_state = "oven"
-	on_state = "oven_on"
-	open_state = "oven"
-	off_state = "oven_off"
-	broken_state = "oven"
-	bloody_state = "oven"
-	bloody_off_state = "oven"
-	bloody_open_state = "oven"
-	bloody_on_state = "oven_on"
+	var/base_state = "oven"

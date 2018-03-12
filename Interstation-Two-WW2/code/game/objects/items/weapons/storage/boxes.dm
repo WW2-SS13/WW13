@@ -404,7 +404,7 @@
 		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
 		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
 		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
-
+/*
 
 /obj/item/weapon/storage/box/donkpockets
 	name = "box of donk-pockets"
@@ -445,7 +445,7 @@
 		if(type == /obj/item/weapon/storage/box/monkeycubes)
 			for(var/i = TRUE; i <= 5; i++)
 				new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
-
+*/
 
 /obj/item/weapon/storage/box/handcuffs
 	name = "box of spare handcuffs"
