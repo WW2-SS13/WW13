@@ -766,7 +766,7 @@ var/first_guard = FALSE
 /datum/job/soviet/chef
 	title = "Povar"
 	en_meaning = "Chef"
-	rank_abbreviation = "Kras"
+	rank_abbreviation = "Pov"
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRAChef"
 	allow_spies = TRUE

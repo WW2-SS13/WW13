@@ -42,10 +42,12 @@
 /obj/item/trash/plate
 	name = "plate"
 	icon_state = "plate"
+	dropsound = 'sound/effects/drop_glass.ogg'
 
 /obj/item/trash/snack_bowl
 	name = "snack bowl"
 	icon_state	= "snack_bowl"
+	dropsound = 'sound/effects/drop_glass.ogg'
 
 /obj/item/trash/pistachios
 	name = "pistachios pack"

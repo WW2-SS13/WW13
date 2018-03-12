@@ -1012,6 +1012,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/chef
 	title = "Kuchenchef" // note: SS13 does not like ü in job titles
 	en_meaning = "Chef"
+	rank_abbreviation = "Kch"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerChef"
 	is_nonmilitary = TRUE
