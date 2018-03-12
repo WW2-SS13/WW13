@@ -648,12 +648,12 @@ var/first_guard = FALSE
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/svt(H), slot_back)
 		var/obj/item/weapon/storage/belt/security/tactical/belt = new(H)
-		new /obj/item/ammo_magazine/svt(belt)
-		new /obj/item/ammo_magazine/svt(belt)
-		new /obj/item/ammo_magazine/svt(belt)
-		new /obj/item/ammo_magazine/svt(belt)
-		new /obj/item/ammo_magazine/svt(belt)
-		new /obj/item/ammo_magazine/svt(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
 		H.equip_to_slot_or_del(belt, slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a guard. Your job is to operate the minigun.</span>"
 	H.give_radio()

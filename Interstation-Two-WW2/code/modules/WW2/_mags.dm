@@ -193,6 +193,15 @@ WW 2 WEAPONS MAGS N AMMO
 	max_ammo = 35
 	multiple_sprites = TRUE
 
+/obj/item/ammo_magazine/c792x57_fg42
+	name = "magazine (7.92x57mm)"
+	icon_state = "fg42"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/c792x57_fg42
+	caliber = "7.92x57mm"
+	max_ammo = 20
+	multiple_sprites = TRUE
+
 /***********************************
 OTHER
 ***********************************/
@@ -391,16 +400,6 @@ OTHER
 	caliber = "a762x54"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	ammo_type = /obj/item/ammo_casing/a762x54
-	max_ammo = 10
-	multiple_sprites = FALSE
-
-/obj/item/ammo_magazine/g41
-	name = "magazine (7.92x57)"
-	icon_state = "127x108"
-	mag_type = MAGAZINE
-	caliber = "a792x57"
-	matter = list(DEFAULT_WALL_MATERIAL = 1800)
-	ammo_type = /obj/item/ammo_casing/a792x57
 	max_ammo = 10
 	multiple_sprites = FALSE
 

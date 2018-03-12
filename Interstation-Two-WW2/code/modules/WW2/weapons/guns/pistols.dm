@@ -82,7 +82,7 @@
 
 /obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
 	..()
-	if(loaded.len) // MAUSERS UPDATE ICON IS BUGGED IDK HOW TO FIX, PLS HELP KACH - ShinDes
+	if(loaded.len)
 		icon_state = "c96"
 		item_state = "gun"
 	else
