@@ -340,10 +340,10 @@
 		/obj/item/ammo_magazine/c45m,
 		/obj/item/ammo_magazine/luger,
 		/obj/item/weapon/gauze_pack,
-		/obj/item/weapon/shovel/spade/russia
+		/obj/item/weapon/shovel/spade/russia,
 		/obj/item/weapon/reagent_containers/food
 		)
-		
+
 /obj/item/weapon/storage/belt/soviet_basic/soldier
 /obj/item/weapon/storage/belt/soviet_basic/soldier/New()
 	..()
@@ -396,7 +396,7 @@
 	item_state = "gerbelt"
 	storage_slots = 6
 	max_w_class = 2
-	max_storage_space = 8
+	max_storage_space = 12
 	can_hold = list(
 		/obj/item/ammo_magazine,
 		/obj/item/weapon/gauze_pack,
