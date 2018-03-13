@@ -363,6 +363,32 @@
 		/obj/item/ammo_casing/a145
 		)
 
+/obj/item/weapon/storage/belt/german_basic
+	name = "German soldier belt"
+	desc = "A basic belt. Only capable of storing a small arms pistol, clips, rations, gauze and a shovel."
+	icon_state = "gerbelt"
+	item_state = "gerbelt"
+	storage_slots = 6
+	max_w_class = 2
+	max_storage_space = 8
+	can_hold = list(
+		/obj/item/ammo_magazine,
+		/obj/item/weapon/gauze_pack,
+		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/shovel/spade/russia,
+		/obj/item/weapon/reagent_containers/food
+		)
+
+/obj/item/weapon/storage/belt/german_basic/soldier
+/obj/item/weapon/storage/belt/german_basic/soldier/New()
+	..()
+	new /obj/item/weapon/gun/projectile/pistol/mauser(src)
+	new /obj/item/ammo_magazine/c763x25mm_mauser(src)
+	new /obj/item/ammo_magazine/c763x25mm_mauser(src)
+	new /obj/item/weapon/shovel/spade/russia(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(src)
+
+
 /obj/item/weapon/storage/belt/german/anti_tank_crew
 /obj/item/weapon/storage/belt/german/anti_tank_crew/New()
 	..()

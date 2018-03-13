@@ -5,7 +5,7 @@
 	item_state = "dp"
 	load_method = MAGAZINE
 	w_class = 4
-	accuracy = DEFAULT_MG_ACCURACY
+	accuracy = DEFAULT_MG_ACCURACY-1
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 	caliber = "a762x39"
 	magazine_type = /obj/item/ammo_magazine/a762/dp
@@ -14,8 +14,8 @@
 	slot_flags = SLOT_BACK
 
 	firemodes = list(
-		list(name="short bursts",	burst=3, burst_delay=0.7, move_delay=7, dispersion = list(0.7, 1.1, 1.1, 1.1, 1.3), recoil = 0.8),
-		list(name="long bursts",	burst=7, burst_delay=1.4, move_delay=10, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5), recoil = 1.4)
+		list(name="short bursts",	burst=4, burst_delay=0.8, move_delay=8, dispersion = list(0.7, 1.1, 1.1, 1.1, 1.3), recoil = 1.0),
+		list(name="long bursts",	burst=8, burst_delay=1.5, move_delay=11, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5), recoil = 1.5)
 		)
 
 	sel_mode = 2
@@ -56,12 +56,12 @@
 	fire_sound = 'sound/weapons/guns/fire/mg34_firing.ogg'
 	requires_two_hands = FALSE
 	wielded_icon = "assault-wielded"
-	accuracy = DEFAULT_MG_ACCURACY-1 //Prevents shitters from going CQC as they will begin to "miss" more unless they go into scope sight. Shindes-
+	accuracy = DEFAULT_MG_ACCURACY-3 //Prevents shitters from going CQC as they will begin to "miss" more unless they go into scope sight. Shindes- FUCK MGS ACCURACY NERF - ShinDes
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 
 	firemodes = list(
-		list(name="short bursts", burst=4, move_delay=7, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4), burst_delay = 0.5, recoil = 1.4),
-		list(name="long bursts", burst=8, move_delay=10, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6), burst_delay = 1.0, recoil = 2.8)
+		list(name="short bursts", burst=8, move_delay=10, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4), burst_delay = 1.0, recoil = 1.4),
+		list(name="long bursts", burst=16, move_delay=12, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6), burst_delay = 1.4, recoil = 2.8)
 		)
 
 	fire_delay = 3
