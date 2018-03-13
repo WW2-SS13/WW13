@@ -4,7 +4,7 @@
 	icon_state = "dp"
 	item_state = "dp"
 	load_method = MAGAZINE
-	w_class = 4
+	w_class = 5
 	accuracy = DEFAULT_MG_ACCURACY
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 	caliber = "a762x39"
@@ -43,7 +43,7 @@
 	desc = "German light machinegun chambered in 7.92x57mm Mauser. An utterly devastating support weapon."
 	icon_state = "l6closed100"
 	item_state = "l6closedmag"
-	w_class = 4
+	w_class = 5
 	max_shells = 50
 	caliber = "a792x57"
 	slot_flags = SLOT_BACK

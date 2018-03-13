@@ -5,13 +5,19 @@
 /mob/proc/get_run_delay()
 	switch (velocity)
 		if (0 to 3)
-			return run_delay_maximum
+			. = run_delay_maximum
 		if (4 to 7)
-			return run_delay_maximum/1.05 // 5% faster
+			. = run_delay_maximum/1.05 // 5% faster
 		if (8 to 11)
-			return run_delay_maximum/1.10 // 10% faster
+			. = run_delay_maximum/1.10 // 10% faster
 		if (12 to INFINITY)
-			return run_delay_maximum/1.15 // 15% faster
+			. = run_delay_maximum/1.15 // 15% faster
+	var/slowdown = 1.0
+	for (var/obj/item/I in contents)
+		if (!istype(I, /obj/item/organ))
+			if (I.w_class == 5)
+				slowdown += 1.33
+	. *= slowdown
 
 /mob/proc/get_walk_delay()
 	return get_run_delay() * 1.33
