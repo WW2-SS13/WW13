@@ -326,6 +326,32 @@
 		/obj/item/ammo_casing/a145
 		)
 
+/obj/item/weapon/storage/belt/soviet_basic
+	name = "Small soviet belt pouch"
+	desc = "A basic soviet belt pouch capable of storing a small arms handgun, handgun magazines, gauze and your trustyworthy shovel. Uraaa!"
+	icon_state = "gerbelt"
+	item_state = "gerbelt"
+	storage_slots = 6
+	max_w_class = 2
+	max_storage_space = 12
+	can_hold = list(
+		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/ammo_magazine/c762mm_tokarev,
+		/obj/item/ammo_magazine/c45m,
+		/obj/item/ammo_magazine/luger,
+		/obj/item/weapon/gauze_pack,
+		/obj/item/weapon/shovel/spade/russia
+		/obj/item/weapon/reagent_containers/food
+		)
+		
+/obj/item/weapon/storage/belt/soviet_basic/soldier
+/obj/item/weapon/storage/belt/soviet_basic/soldier/New()
+	..()
+	new /obj/item/weapon/gun/projectile/pistol/tokarev(src)
+	new /obj/item/ammo_magazine/c762mm_tokarev(src)
+	new /obj/item/ammo_magazine/c762mm_tokarev(src)
+	new /obj/item/weapon/shovel/spade/russia(src)
+
 /obj/item/weapon/storage/belt/soviet/anti_tank_crew
 /obj/item/weapon/storage/belt/soviet/anti_tank_crew/New()
 	..()
