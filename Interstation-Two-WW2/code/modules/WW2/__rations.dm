@@ -32,6 +32,9 @@ var/added_plants_to_rations = FALSE
 			switch (sort)
 				if ("solid")
 					var/solid = pick(german_rations_solids)
+					if (prob(50))
+						while (istype(solid, /obj/item/weapon/reagent_containers/food/snacks/grown))
+							solid = pick(german_rations_solids)
 					var/obj/food = new solid
 					food.pixel_x = FALSE
 					food.pixel_y = FALSE
@@ -58,6 +61,9 @@ var/added_plants_to_rations = FALSE
 			switch (sort)
 				if ("solid")
 					var/solid = pick(soviet_rations_solids)
+					if (prob(50))
+						while (istype(solid, /obj/item/weapon/reagent_containers/food/snacks/grown))
+							solid = pick(soviet_rations_solids)
 					var/obj/food = new solid
 					food.pixel_x = FALSE
 					food.pixel_y = FALSE
