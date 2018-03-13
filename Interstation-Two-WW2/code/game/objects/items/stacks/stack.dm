@@ -162,6 +162,8 @@
 					structurecheck = 2
 			else if (structurecheck == 0)
 				structurecheck = 1
+		for (var/obj/item/weapon/stool/stool in get_turf(H))
+			structurecheck = 2
 
 		if (structurecheck == 0)
 			H << "<span class = 'warning'>You need to be on a structure to make a noose.</span>"

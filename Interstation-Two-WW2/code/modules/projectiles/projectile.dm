@@ -260,7 +260,7 @@
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
-			visible_message("<span class='notice'>\The [src] misses [target_mob] narrowly!</span>")
+		//	visible_message("<span class='notice'>\The [src] misses [target_mob] narrowly!</span>")
 			playsound(target_mob, "miss_sound", 60, TRUE)
 
 		return FALSE

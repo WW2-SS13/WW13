@@ -94,6 +94,7 @@
 			shatter(get_turf(A), A, explode ? calculate_alcohol_power() : 0)
 	..(A, yes)
 
+//#define MOLOTOV_EXPLOSIONS
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/shatter(var/newloc, atom/against = null, var/alcohol_power = 0)
 
 	if (!newloc)
@@ -142,9 +143,12 @@
 							if (ishuman(L))
 								L.emote("scream")
 
+			#ifdef MOLOTOV_EXPLOSIONS
 			spawn (0.1)
 				explosion(src_turf, devrange, heavyrange, lightrange, flashrange)
-
+			#else
+			pass(devrange, heavyrange, lightrange, flashrange)
+			#endif
 
 	if (src)
 		if(ismob(loc))

@@ -16,14 +16,12 @@ var/global/datum/controller/process/ticker/tickerProcess
 
 	tickerProcess = src
 
+	// what happens as soon as the server starts up
 	spawn(0)
 		if(ticker)
 			ticker.pregame()
 		start_serverswap_loop()
 		start_serverdata_loop()
-
-	for (var/subsystem in typesof(/datum/subsystem))
-		new subsystem
 
 /datum/controller/process/ticker/doWork()
 	var/currentTime = world.timeofday

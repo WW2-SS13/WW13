@@ -500,14 +500,14 @@
 
 /obj/structure/closet/crate/bint/New()
 	..()
-	update_capacity(18)
-	for (var/v in 1 to 18)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/weapon/gauze_pack/bint(src)
 
 /obj/structure/closet/crate/gauze/New()
 	..()
-	update_capacity(17)
-	for (var/v in 1 to 17)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/weapon/gauze_pack/gauze(src)
 
 /obj/structure/closet/crate/medical/New()
@@ -525,18 +525,18 @@
 
 /obj/structure/closet/crate/soviet_grenade/New()
 	..()
-	update_capacity(24)
-	for (var/v in 1 to 12)
+	update_capacity(18)
+	for (var/v in 1 to 9)
 		new /obj/item/weapon/grenade/explosive/rgd(src)
-	for (var/v in 1 to 12)
+	for (var/v in 1 to 9)
 		new /obj/item/weapon/grenade/explosive/f1(src)
 
 /obj/structure/closet/crate/german_grenade/New()
 	..()
-	update_capacity(24)
-	for (var/v in 1 to 12)
+	update_capacity(18)
+	for (var/v in 1 to 9)
 		new /obj/item/weapon/grenade/explosive/stgnade(src)
-	for (var/v in 1 to 12)
+	for (var/v in 1 to 9)
 		new /obj/item/weapon/grenade/explosive/l2a2(src)
 
 /obj/structure/closet/crate/panzerfaust/New()
