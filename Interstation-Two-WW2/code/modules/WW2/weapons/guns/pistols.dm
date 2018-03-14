@@ -69,7 +69,7 @@
 /obj/item/weapon/gun/projectile/pistol/mauser
 	name = "Mauser C96"
 	desc = "German pistol, the C96 Mauser is chambered in 7.63x25mm Mauser."
-	icon_state = "c96"
+	icon_state = "mauserc96"
 	item_state = "gun"
 	w_class = 2
 	caliber = "7.63x25mm"
@@ -82,11 +82,11 @@
 
 /obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
 	..()
-	if(loaded.len) // MAUSERS UPDATE ICON IS BUGGED IDK HOW TO FIX, PLS HELP KACH - ShinDes
-		icon_state = "c96"
+	if(loaded.len)
+		icon_state = "mauserc96"
 		item_state = "gun"
 	else
-		icon_state = "c96-0"
+		icon_state = "mauserc960"
 		item_state = "gun"
 	return
 
@@ -108,7 +108,7 @@
 	if(loaded.len)
 		icon_state = "nagant"
 	else
-		icon_state = "nagant0"
+		icon_state = "nagant"
 	return
 
 
