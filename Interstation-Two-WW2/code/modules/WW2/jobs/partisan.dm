@@ -60,10 +60,10 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/heavysniper/ptrd(H), slot_back)
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/ppsh(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/stenmk3(H), slot_back)
 		// equipping the luger second means we get ammo for the PPSH instead
 		// this works because the PPSH is added to our contents list first
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/tokarev(H), slot_belt)
 
 	H.give_radio()
 

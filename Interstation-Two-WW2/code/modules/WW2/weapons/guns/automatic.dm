@@ -56,7 +56,7 @@
 	fire_sound = 'sound/weapons/guns/fire/mg34_firing.ogg'
 	requires_two_hands = FALSE
 	wielded_icon = "assault-wielded"
-	accuracy = DEFAULT_MG_ACCURACY-3 //Prevents shitters from going CQC as they will begin to "miss" more unless they go into scope sight. Shindes- FUCK MGS ACCURACY NERF - ShinDes
+	accuracy = DEFAULT_MG_ACCURACY-2 //Prevents shitters from going CQC as they will begin to "miss" more unless they go into scope sight. Shindes- FUCK MGS ACCURACY NERF - ShinDes
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 
 	firemodes = list(

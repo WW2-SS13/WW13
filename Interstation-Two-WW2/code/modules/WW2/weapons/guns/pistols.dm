@@ -77,6 +77,7 @@
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
 	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
+	magazine_type = /obj/item/ammo_casing/c763x25mm_mauser
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 
@@ -102,6 +103,10 @@
 	caliber = "7.62x38mmR"
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
+	magazine_type = /obj/item/ammo_magazine/c762x38mmR
+
+/obj/item/weapon/gun/projectile/revolver/nagant_revolver/gibber
+	crushes = TRUE
 
 /obj/item/weapon/gun/projectile/revolver/nagant_revolver/update_icon()
 	..()

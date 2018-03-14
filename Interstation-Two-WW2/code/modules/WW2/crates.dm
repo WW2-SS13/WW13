@@ -288,6 +288,19 @@
 	for (var/v in 1 to 20)
 		new/obj/item/weapon/gun/projectile/pistol/_45(src)
 
+/obj/structure/closet/crate/tokarevs
+	name = "Tokarev crate"
+	icon = 'icons/WW2/artillery_crate.dmi'
+	icon_state = "closed"
+	icon_opened = "opened"
+	icon_closed = "closed"
+
+/obj/structure/closet/crate/tokarevs/New()
+	..()
+	update_capacity(20)
+	for (var/v in 1 to 20)
+		new/obj/item/weapon/gun/projectile/pistol/tokarev(src)
+
 // webbing
 /obj/structure/closet/crate/webbing
 /obj/structure/closet/crate/webbing/New()

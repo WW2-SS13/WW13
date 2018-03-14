@@ -119,8 +119,8 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
 	//fire_sound = '' // TO DO
-	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-1
-	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY-2
+	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-2
+	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY-3
 	caliber = "9x19mm"
 	magazine_type = /obj/item/ammo_magazine/c9x19mm_stenmk3
 	firemodes = list(
