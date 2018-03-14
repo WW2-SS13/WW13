@@ -5,7 +5,7 @@
 	item_state = "dp"
 	load_method = MAGAZINE
 	w_class = 5
-	accuracy = DEFAULT_MG_ACCURACY-1
+	accuracy = DEFAULT_MG_ACCURACY
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 	caliber = "a762x39"
 	magazine_type = /obj/item/ammo_magazine/a762/dp
