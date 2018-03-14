@@ -340,6 +340,7 @@
 	max_storage_space = 12
 	can_hold = list(
 		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/ammo_magazine/c763x25mm_mauser,
 		/obj/item/ammo_magazine/c762mm_tokarev,
 		/obj/item/ammo_magazine/c45m,
 		/obj/item/ammo_magazine/luger,
@@ -366,7 +367,7 @@
 /obj/item/weapon/storage/belt/soviet/MP/New()
 	..()
 	new /obj/item/weapon/melee/classic_baton/MP/soviet(src)
-	new /obj/item/weapon/gun/projectile/pistol/_45(src)
+	new /obj/item/weapon/gun/projectile/revolver/nagant_revolver(src)
 	new /obj/item/device/flashlight(src)
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)
@@ -402,9 +403,12 @@
 	max_w_class = 2
 	max_storage_space = 12
 	can_hold = list(
-		/obj/item/ammo_magazine,
-		/obj/item/weapon/gauze_pack,
 		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/ammo_magazine/c763x25mm_mauser,
+		/obj/item/ammo_magazine/c762mm_tokarev,
+		/obj/item/ammo_magazine/c45m,
+		/obj/item/ammo_magazine/luger,
+		/obj/item/weapon/gauze_pack,
 		/obj/item/weapon/shovel/spade/russia,
 		/obj/item/weapon/reagent_containers/food
 		)
@@ -416,8 +420,6 @@
 	new /obj/item/ammo_magazine/c763x25mm_mauser(src)
 	new /obj/item/ammo_magazine/c763x25mm_mauser(src)
 	new /obj/item/weapon/shovel/spade/russia(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(src)
-
 
 /obj/item/weapon/storage/belt/german/anti_tank_crew
 /obj/item/weapon/storage/belt/german/anti_tank_crew/New()
@@ -461,7 +463,7 @@
 /obj/item/weapon/storage/belt/german/MP/New()
 	..()
 	new /obj/item/weapon/melee/classic_baton/MP/german(src)
-	new /obj/item/weapon/gun/projectile/pistol/luger(src)
+	new /obj/item/weapon/gun/projectile/pistol/mauser(src)
 	new /obj/item/device/flashlight(src)
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)

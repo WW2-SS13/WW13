@@ -6,6 +6,7 @@ var/static/list/german_supply_crate_types = list(
 	"Maxim Belts" = /obj/structure/closet/crate/maximbelt,
 	"Guaze" = /obj/structure/closet/crate/gauze,
 	"Luger Ammo" = /obj/structure/closet/crate/lugerammo,
+	"Mauser Ammo" = /obj/structure/closet/crate/mauserammo,
 	"Kar Ammo" = /obj/structure/closet/crate/kar98kammo,
 	"Mp40 Ammo" = /obj/structure/closet/crate/mp40kammo,
 	"Mg34 Ammo" = /obj/structure/closet/crate/mg34ammo,
@@ -36,6 +37,7 @@ var/static/list/german_supply_crate_types = list(
 	// GUNS & ARTILLERY
 	"MP40" = /obj/item/weapon/gun/projectile/automatic/mp40,
 	"MG34" = /obj/item/weapon/gun/projectile/automatic/mg34,
+	"Gewehr 41" = /obj/item/weapon/gun/projectile/g41,
 	"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
 	"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 	"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
@@ -65,10 +67,12 @@ var/static/list/soviet_supply_crate_types = list(
 	"Vehicle Fuel Tanks" = /obj/structure/closet/crate/vehicle_fueltanks,
 	"Maxim Belts" = /obj/structure/closet/crate/maximbelt,
 	"Bint" = /obj/structure/closet/crate/bint,
-	".45 Ammo" = /obj/structure/closet/crate/c45ammo,
+	"Nagant Revolver Ammo" = /obj/structure/closet/crate/nagantrevolverammo,
+	"Tokarev Ammo" = /obj/structure/closet/crate/tokarevammo,
 	"Mosin Ammo" = /obj/structure/closet/crate/mosinammo,
 	"PPSH Ammo" = /obj/structure/closet/crate/ppshammo,
 	"DP Ammo" = /obj/structure/closet/crate/dpammo,
+	"PPS-43 Ammo" = /obj/structure/closet/crate/ppsammo,
 	"PTRD Ammo" = /obj/structure/closet/crate/ptrdammo,
 //		"Mines" = /obj/structure/closet/crate/bettymines,
 	"Grenades" = /obj/structure/closet/crate/soviet_grenade,
@@ -92,11 +96,12 @@ var/static/list/soviet_supply_crate_types = list(
 	"Glass Sheets" = /obj/structure/closet/crate/glass,
 
 	// GUNS & ARTILLERY
-	"PPSH" = /obj/item/weapon/gun/projectile/automatic/ppsh,
+	"PPSH-41" = /obj/item/weapon/gun/projectile/automatic/ppsh,
+	"PPS-43" = /obj/item/weapon/gun/projectile/automatic/pps,
+	"SVT40" = /obj/item/weapon/gun/projectile/svt,
 	"DP-28" = /obj/item/weapon/gun/projectile/automatic/dp,
 	"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
 	"Maxim" = /obj/item/weapon/gun/projectile/minigun/kord/maxim,
-	"Colt Crate" = /obj/structure/closet/crate/colts,
 
 	// CLOSETS
 	"Tool Closet" = /obj/structure/closet/toolcloset,
