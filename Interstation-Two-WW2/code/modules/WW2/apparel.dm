@@ -1,4 +1,4 @@
-/* Uniform Metadata: Soviet, German, Ukrainian, Italian */
+/* Uniform Metadata: Soviet, German, Italian */
 
 #define SOVIET_UNIFORM_NAME "Soviet uniform"
 #define SOVIET_UNIFORM_DESC "Standard issue Soviet uniform issued to soldiers of the Red Army. You can smell Vodka and see faint borsch stains."
@@ -8,15 +8,11 @@
 #define GERMAN_UNIFORM_DESC "Standard issue German uniform issued to soldiers of the Wehrmacht. It looks sturdy and strictly folded."
 #define GERMAN_UNIFORM_STATE "geruni"
 
-#define UKRAINE_UNIFORM_NAME "Ukrainian uniform"
-#define UKRAINE_UNIFORM_DESC "Standard issue Ukrainian uniform issued to foreign soldiers of the Red Army. You can smell Vodka and see faint borsch stains."
-#define UKRAINE_UNIFORM_STATE "ukraineuni"
-
 #define ITALIAN_UNIFORM_NAME "Italian uniform"
-#define ITALIAN_UNIFORM_DESC "Standard issue Italian uniform issued to foreign soldiers of the Wehrmacht."
-#define ITALIAN_UNIFORM_STATE "ukraineuni"
+#define ITALIAN_UNIFORM_DESC "Standard issue Italian uniform issued to Italian soldiers fighting alongside the Wehrmacht."
+#define ITALIAN_UNIFORM_STATE "itauni"
 
-/* Helmet Metadata: Soviet, German, Ukrainian, Italian */
+/* Helmet Metadata: Soviet, German, Italian */
 
 #define SOVIET_HELMET_NAME "Soviet helmet"
 #define SOVIET_HELMET_DESC "Standard issue helmet of the Red Army. Provides some protection against both the elements and flying bullets."
@@ -26,9 +22,9 @@
 #define GERMAN_HELMET_DESC "Standard issue helmet of the Wehrmacht. Provides some protection against both the elements and flying bullets."
 #define GERMAN_HELMET_STATE "gerhelm"
 
-#define UKRAINE_HELMET_NAME "Soviet helmet"
-#define UKRAINE_HELMET_DESC "Standard issue helmet of the Red Army. Provides some protection against both the elements and flying bullets."
-#define UKRAINE_HELMET_STATE "sovhelm"
+#define ITALIAN_HELMET_NAME "Italian helmet"
+#define ITALIAN_HELMET_DESC "Standard issue helmet of the Italian Army. Provides some protection against both the elements and flying bullets."
+#define ITALIAN_HELMET_STATE "itahelm"
 
 /obj/item/clothing/under
 	var/swapped = FALSE
@@ -217,6 +213,14 @@
 	icon_state = "sovtankeruni"
 	item_state = "sovtankeruni"
 	worn_state = "sovtankeruni"
+
+/obj/item/clothing/under/itauni
+	name = ITALIAN_UNIFORM_NAME
+	desc = ITALIAN_UNIFORM_DESC
+	icon_state = ITALIAN_UNIFORM_STATE
+	item_state = ITALIAN_UNIFORM_STATE
+	worn_state = ITALIAN_UNIFORM_STATE
+	var/rolled = FALSE
 
 /obj/item/clothing/suit/fallsparka
 	name = "Fallschirmjager Parka"

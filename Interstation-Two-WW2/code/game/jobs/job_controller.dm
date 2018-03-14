@@ -81,6 +81,9 @@ var/global/datum/controller/occupations/job_master
 			else
 				world << "<span class = 'warning'>An admin has reset autobalance for [max(_clients, autobalance_for_players)] players.</span>"
 
+		var/italiano = FALSE
+		var/warcrimes = FALSE
+
 		for (var/datum/job/J in occupations)
 			if (map)
 				if (J.is_SS)
@@ -97,8 +100,20 @@ var/global/datum/controller/occupations/job_master
 				positions = max(positions, J.min_positions)
 				positions = min(positions, J.max_positions)
 				J.total_positions = positions
+				if (!italiano)
+					if (istype(J, /datum/job/italian/soldier))
+						italiano = TRUE
+				if (!warcrimes)
+					if (istype(J, /datum/job/german/soldier_ss))
+						warcrimes = TRUE
 			else
 				J.total_positions = 0
+
+		if (italiano)
+			world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Italian Army for this battle.</span></font>"
+
+		if (warcrimes)
+			world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
 
 	proc/spawn_with_delay(var/mob/new_player/np, var/datum/job/j)
 		// for delayed spawning, wait the spawn_delay of the job

@@ -26,7 +26,7 @@
 		if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 			return ..()
 
-		if(standard_feed_mob(user, M))
+		if(istype(M) && standard_feed_mob(user, M))
 			return
 
 		return FALSE

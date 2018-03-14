@@ -774,6 +774,8 @@
 			client.prefs.gender = client.prefs.german_gender
 		else if (J_flag == SOVIET)
 			client.prefs.gender = client.prefs.russian_gender
+		else if (J_flag == ITALIAN)
+			client.prefs.gender = client.prefs.italian_gender
 
 		client.prefs.copy_to(new_character)
 

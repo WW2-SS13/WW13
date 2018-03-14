@@ -24,14 +24,17 @@ var/list/preferences_datums = list()
 	var/german_name = "Hans Schneider"
 	var/russian_name = "Boris Borisov"
 	var/ukrainian_name = "Boris Borisov"
+	var/italian_name = "Alessandro Giovanni"
 	var/be_random_name = FALSE				//whether we are a random name every round
 	var/be_random_name_german = FALSE
 	var/be_random_name_russian = FALSE
 	var/be_random_name_ukrainian = FALSE
+	var/be_random_name_italian = FALSE
 	var/gender = MALE					//gender of character (well duh)
 	var/german_gender = MALE
 	var/russian_gender = MALE
 	var/ukrainian_gender = MALE // civs
+	var/italian_gender = MALE
 	var/body_build = "Default"			//character body build name
 	var/age = 30						//age of character
 
@@ -141,10 +144,12 @@ var/list/preferences_datums = list()
 			german_name = random_german_name(gender, species)
 			russian_name = random_russian_name(gender, species)
 			ukrainian_name = random_ukrainian_name(gender, species)
+			italian_name = random_italian_name(gender, species)
 			remember_preference("real_name", real_name)
 			remember_preference("german_name", german_name)
 			remember_preference("russian_name", russian_name)
 			remember_preference("ukrainian_name", ukrainian_name)
+			remember_preference("italian_name", italian_name)
 			save_preferences(1)
 
 		spawn (1)

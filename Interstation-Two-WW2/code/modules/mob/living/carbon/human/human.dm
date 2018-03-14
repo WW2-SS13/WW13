@@ -7,6 +7,8 @@
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
+	spawnedInAtRealTime = world.realtime
+
 	body_build = get_body_build(gender)
 
 	if(!dna)

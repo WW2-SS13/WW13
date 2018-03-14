@@ -30,18 +30,6 @@
 		icon = _icon
 	if (_icon_state)
 		icon_state = _icon_state
-///obj/screen/New()
-//	set in usr.client.screen
-//screen_loc = "[x_pos],[y_pos]"
-//	world << "usr:[usr] src:[src]"
-//	if(usr)
-//		parentmob = usr
-//		return TRUE
-//	else
-//		return FALSE
-
-//	usr << hud_state
-	//world << "src: [src], parent [parentmob]"
 
 /obj/screen/process()
 	return
@@ -442,32 +430,31 @@
 	update_icon()
 
 /obj/screen/nutrition/update_icon()
-	set src in usr.client.screen
 	var/mob/living/carbon/human/H = parentmob
 
 	// show our worst status, hunger or thirst
 
-	var/status = FALSE
-	var/nstatus = FALSE
-	var/wstatus = FALSE
+	var/status = 0
+	var/nstatus = 0
+	var/wstatus = 0
 
 	// todo: correct these numbers, and those below in Click()
 
 	switch(H.nutrition)
-		if(450 to INFINITY)				nstatus = FALSE
-		if(350 to 450)					nstatus = TRUE
+		if(450 to INFINITY)				nstatus = 0
+		if(350 to 450)					nstatus = 1
 		if(250 to 350)					nstatus = 2
 		if(150 to 250)					nstatus = 3
 		else							nstatus = 4
 
 	switch(H.water)
-		if(350 to INFINITY)				wstatus = FALSE
-		if(250 to 350)					wstatus = TRUE
+		if(350 to INFINITY)				wstatus = 0
+		if(250 to 350)					wstatus = 1
 		if(150 to 250)					wstatus = 2
 		if(50 to 150)					wstatus = 3
 		else							wstatus = 4
 
-	status = min(nstatus, wstatus)
+	status = max(nstatus, wstatus)
 	icon_state = "nutrition[status]"
 
 /obj/screen/nutrition/Click()
