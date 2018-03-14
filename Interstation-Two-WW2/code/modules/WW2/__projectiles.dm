@@ -124,6 +124,18 @@
 	damage = DAMAGE_LOW-6
 	penetrating = FALSE
 
+// GEWEHR 41 //
+///obj/item/projectile/bullet/rifle/a792x57_g41
+	//damage = DAMAGE_HIGH - 6
+	//penetrating = 2
+	//armor_penetration = 50
+
+// FG 42 //
+/obj/item/projectile/bullet/rifle/c792x57_fg42
+	damage = DAMAGE_MEDIUM_HIGH + 2
+	penetrating = 2
+	armor_penetration = 60
+
 #undef DAMAGE_LOW
 #undef DAMAGE_MEDIUM
 #undef DAMAGE_HIGH

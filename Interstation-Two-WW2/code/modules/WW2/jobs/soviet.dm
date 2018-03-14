@@ -458,8 +458,13 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet_basic/soldier(H), slot_belt)
+
+	if (prob(7))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/svt(H), slot_back)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
+
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_NORMAL)
@@ -648,12 +653,12 @@ var/first_guard = FALSE
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/svt(H), slot_back)
 		var/obj/item/weapon/storage/belt/security/tactical/belt = new(H)
-		new /obj/item/ammo_magazine/svt(belt)
-		new /obj/item/ammo_magazine/svt(belt)
-		new /obj/item/ammo_magazine/svt(belt)
-		new /obj/item/ammo_magazine/svt(belt)
-		new /obj/item/ammo_magazine/svt(belt)
-		new /obj/item/ammo_magazine/svt(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
+		new /obj/item/ammo_magazine/mosin(belt)
 		H.equip_to_slot_or_del(belt, slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a guard. Your job is to operate the minigun.</span>"
 	H.give_radio()
