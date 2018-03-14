@@ -30,7 +30,7 @@ var/global/obj/map_metadata/map = null
 	var/list/supply_points_per_tick = list(
 		GERMAN = 1.00,
 		SOVIET = 1.00)
-	var/available_subfactions = list(
+	var/list/available_subfactions = list(
 		SCHUTZSTAFFEL,
 		ITALIAN)
 
@@ -39,6 +39,14 @@ var/global/obj/map_metadata/map = null
 	map = src
 	icon = null
 	icon_state = null
+
+	// remove half of all available subfactions
+	available_subfactions = shuffle(available_subfactions)
+	var/i = 0
+	for (var/subfaction in available_subfactions)
+		if (i % 2 == 0)
+			available_subfactions -= subfaction
+		++i
 
 // called from the ticker process
 /obj/map_metadata/proc/tick()

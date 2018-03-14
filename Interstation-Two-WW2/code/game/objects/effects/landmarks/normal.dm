@@ -398,6 +398,27 @@ var/area/partisan_stockpile = null
 			qdel(src)
 			return
 
+		if("JoinLateIT")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateIT-Medic")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
+		if("JoinLateIT-Officer")
+			if(!latejoin_turfs[name])
+				latejoin_turfs[name] = list()
+			latejoin_turfs[name] += loc
+			qdel(src)
+			return
+
 		// PARTISAN LANDMARKS
 
 		if ("JoinLatePartisan")
