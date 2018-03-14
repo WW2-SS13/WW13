@@ -168,7 +168,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/c9x19mm_stenmk3
 	name = "magazine (9x19mm)"
-	icon_state = "mp40mag" // GET A STENMK3 AMMO MAG MP40 AMMO MAG IS BEING USED AS PLACEHOLDER
+	icon_state = "stenmag" // GET A STENMK3 AMMO MAG MP40 AMMO MAG IS BEING USED AS PLACEHOLDER
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c9x19mm_stenmk3
 	caliber = "9x19mm"
@@ -177,12 +177,12 @@ WW 2 WEAPONS MAGS N AMMO
 
 ////////// NAGANT REVOLVER ///////////////
 /obj/item/ammo_magazine/c762x38mmR
-	name = "handful of bullets (7.62x38mmR)"
-	icon_state = "7.62x38mmRPouch" // TO DO
+	name = "pouch of bullets (7.62x38mmR)"
+	icon_state = "7.62x38mmRPouch"
 	ammo_type = /obj/item/ammo_casing/c762x38mmR
 	caliber = "7.62x38mmR"
-	max_ammo = 14
-	multiple_sprites = FALSE
+	max_ammo = 21
+	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/c762x25mm_pps
 	name = "magazine (7.62x25mm)"
