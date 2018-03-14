@@ -451,7 +451,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	item_state = "rbs1"
 	frequency = SO_BASE_FREQ
 	canhear_range = 1
-	w_class = 5
+	w_class = 4
 	speech_sound = 'sound/effects/roger_beep.ogg'
 	faction = SOVIET
 

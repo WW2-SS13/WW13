@@ -4,11 +4,17 @@
 /* Soldier */
 
 /datum/job/italian/soldier
-	title = "Italian Soldier" // WIP
-	en_meaning = "Italian Infantry Soldier"
+	title = "Soldato"
+	en_meaning = "Infantry Soldier"
 	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeer" // WIP
+
+	// AUTOBALANCE
+	min_positions = 3
+	max_positions = 10
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
 /datum/job/italian/soldier/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
@@ -19,6 +25,14 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an Italian infantry unit assisting the Wehrmacht. Your job is to participate in front line combat.</span>"
+	H.give_radio()
+	H.setStat("strength", STAT_NORMAL)
+	H.setStat("engineering", STAT_NORMAL)
+	H.setStat("rifle", STAT_NORMAL)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_NORMAL)
 	return TRUE
 
 /datum/job/italian/soldier/get_keys()

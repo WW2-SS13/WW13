@@ -69,6 +69,9 @@
 
 	afterattack(var/obj/target, var/mob/user, var/flag)
 
+		if (istype(target, /obj/structure/pot))
+			return
+
 		if(!is_open_container() || !flag)
 			return
 

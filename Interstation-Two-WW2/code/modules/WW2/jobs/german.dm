@@ -908,7 +908,7 @@ var/first_fallschirm = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS-Officer"
 	is_SS = TRUE
-	additional_languages = list( "Russian" = 10 )
+	additional_languages = list( "Russian" = 50 )
 	is_officer = TRUE
 	is_commander = TRUE // not a squad leader despite the title
 	is_petty_commander = TRUE

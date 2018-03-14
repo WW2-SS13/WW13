@@ -46,7 +46,7 @@
 				contents -= I
 				qdel(I)
 			else
-				var/obj/organ = new /obj/item/weapon/reagent_containers/food/snacks/organ(src)
+				var/obj/item/weapon/reagent_containers/food/snacks/organ/organ = new /obj/item/weapon/reagent_containers/food/snacks/organ(src)
 				organ.name = "roasted [I.name]"
 				organ.desc = I.desc
 				organ.icon = I.icon
@@ -55,6 +55,7 @@
 				organ.reagents.multiply_reagent("nutriment", 5)
 				organ.reagents.multiply_reagent("protein", 3)
 				organ.reagents.del_reagent("toxin")
+				organ.roasted = TRUE
 				contents -= I
 				qdel(I)
 		else
@@ -63,6 +64,9 @@
 			I.reagents.multiply_reagent("nutriment", 5)
 			I.reagents.multiply_reagent("protein", 3)
 			I.reagents.del_reagent("toxin")
+			if (istype(I, /obj/item/weapon/reagent_containers/food/snacks))
+				var/obj/item/weapon/reagent_containers/food/snacks/F = I
+				F.roasted = TRUE
 
 	for (var/obj/item/I in contents)
 		I.loc = get_turf(src)

@@ -82,6 +82,17 @@ var/global/datum/controller/occupations/job_master
 				world << "<span class = 'warning'>An admin has reset autobalance for [max(_clients, autobalance_for_players)] players.</span>"
 
 		for (var/datum/job/J in occupations)
+			if (map)
+
+				if (J.is_SS)
+					if (!map.available_factions.Find(SCHUTZSTAFFEL))
+						J.total_positions = 0
+						continue
+				else if (J.base_type_flag() == ITALIAN)
+					if (!map.available_factions.Find(ITALIAN))
+						J.total_positions = 0
+						continue
+
 			if (autobalance_for_players >= J.player_threshold && J.title != "N/A" && J.title != "generic job")
 				var/positions = round((autobalance_for_players/J.scale_to_players) * J.max_positions)
 				positions = max(positions, J.min_positions)

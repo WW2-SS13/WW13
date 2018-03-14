@@ -43,6 +43,7 @@
 		/obj/item/device/flashlight = 25,
 		/obj/item/weapon/shovel/spade/russia = 25,
 		/obj/item/weapon/gun/projectile/boltaction/kar98k = 25,
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 25,
 		/obj/item/ammo_magazine/kar98k = 50
 	)
 //	idle_power_usage = 0
@@ -75,7 +76,9 @@
 		/obj/item/weapon/grenade/explosive/l2a2 = 7,
 		/obj/item/weapon/grenade/smokebomb/german = 21,
 
-		/obj/item/clothing/under/geruni/sscamo = 5
+		/obj/item/clothing/under/geruni/sscamo = 5,
+
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 15,
 	)
 //	idle_power_usage = 0
 
@@ -90,6 +93,7 @@
 		/obj/item/device/flashlight = 25,
 		/obj/item/weapon/shovel/spade/russia = 25,
 		/obj/item/weapon/gun/projectile/boltaction/mosin = 25,
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/soviet = 25,
 		/obj/item/ammo_magazine/mosin = 50
 	)
 //	idle_power_usage = 0

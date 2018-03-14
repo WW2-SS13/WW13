@@ -30,6 +30,9 @@ var/global/obj/map_metadata/map = null
 	var/list/supply_points_per_tick = list(
 		GERMAN = 1.00,
 		SOVIET = 1.00)
+	var/available_subfactions = list(
+		SCHUTZSTAFFEL,
+		ITALIAN)
 
 /obj/map_metadata/New()
 	..()
