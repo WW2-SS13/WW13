@@ -83,13 +83,12 @@ var/global/datum/controller/occupations/job_master
 
 		for (var/datum/job/J in occupations)
 			if (map)
-
 				if (J.is_SS)
-					if (!map.available_factions.Find(SCHUTZSTAFFEL))
+					if (!map.available_subfactions.Find(SCHUTZSTAFFEL))
 						J.total_positions = 0
 						continue
 				else if (J.base_type_flag() == ITALIAN)
-					if (!map.available_factions.Find(ITALIAN))
+					if (!map.available_subfactions.Find(ITALIAN))
 						J.total_positions = 0
 						continue
 
@@ -856,7 +855,9 @@ var/global/datum/controller/occupations/job_master
 				if (player_list.len >= 2)
 					if (soviets >= max_soviets)
 						return TRUE
-			if (UKRAINIAN, ITALIAN)
+			if (UKRAINIAN)
 				return TRUE
+			if (ITALIAN)
+				return side_is_hardlocked(GERMAN)
 
 		return FALSE

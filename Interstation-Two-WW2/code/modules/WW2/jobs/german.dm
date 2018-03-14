@@ -17,7 +17,7 @@
 	head_position = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerCO"
-	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 50)
 	is_officer = TRUE
 	is_commander = TRUE
 	whitelisted = TRUE

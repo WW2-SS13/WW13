@@ -43,22 +43,21 @@
 		if("?")
 			return ask_verb
 	return speech_verb
-/*
-// 'basic' language; spoken by default.
-/datum/language/common
-	name = "Galactic Common"
-	desc = "The common galactic tongue."
+
+/datum/language/italian
+	name = "Italian"
+	desc = "Mama mia!"
 	speech_verb = "says"
 	whisper_verb = "whispers"
-	key = "0"
-	flags = RESTRICTED
-	syllables = list("blah","blah","blah","bleh","meh","neh","nah","wah")
+	key = "i"
+	colour = "english"
+	flags = RESTRICTED | COMMON_VERBS
+	syllables = list("pi", "za", "pe", "pp", "er", "on", "i", "ma", "mia", "na", "va", "gi")
 
-//TODO flag certain languages to use the mob-type specific say_quote and then get rid of these.
-/datum/language/common/get_spoken_verb(var/msg_end)
+/datum/language/italian/get_spoken_verb(var/msg_end)
 	switch(msg_end)
 		if("!")
-			return pick("exclaims","shouts","yells") //TODO: make the basic proc handle lists of verbs.
+			return pick("exclaims", "shouts", "yells") //TODO: make the basic proc handle lists of verbs.
 		if("?")
 			return ask_verb
-	return speech_verb*/
+	return speech_verb
