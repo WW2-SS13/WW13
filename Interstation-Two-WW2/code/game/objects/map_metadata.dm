@@ -19,8 +19,7 @@ var/global/obj/map_metadata/map = null
 		SOVIET,
 		PARTISAN,
 		CIVILIAN,
-		ITALIAN,
-		UKRAINIAN)
+		ITALIAN)
 	var/event_faction = null
 	var/min_autobalance_players = 0
 	var/respawn_delay = 3000
@@ -131,8 +130,7 @@ var/global/obj/map_metadata/map = null
 		SOVIET,
 		PARTISAN,
 		CIVILIAN,
-		ITALIAN,
-		UKRAINIAN)
+		ITALIAN)
 	supply_points_per_tick = list(
 		SOVIET = 1.00,
 		GERMAN = 1.50)
@@ -156,8 +154,7 @@ var/global/obj/map_metadata/map = null
 		SOVIET,
 		PARTISAN,
 		CIVILIAN,
-		ITALIAN,
-		UKRAINIAN)
+		ITALIAN)
 	respawn_delay = 2400
 	squad_spawn_locations = FALSE
 	supply_points_per_tick = list(
@@ -186,8 +183,7 @@ var/global/obj/map_metadata/map = null
 		SOVIET,
 		PARTISAN,
 		CIVILIAN,
-		ITALIAN,
-		UKRAINIAN)
+		ITALIAN)
 	respawn_delay = 0
 
 /obj/map_metadata/test/germans_can_cross_blocks()

@@ -499,6 +499,8 @@ var/global/datum/controller/occupations/job_master
 					H.equip_coat(/obj/item/clothing/suit/storage/coat/soviet/officer)
 				else
 					H.equip_coat(/obj/item/clothing/suit/storage/coat/soviet)
+			else if (istype(job, /datum/job/italian))
+				H.equip_coat(/obj/item/clothing/suit/storage/coat/italian)
 
 			// Give the guy some ammo for his gun
 			spawn (0)
