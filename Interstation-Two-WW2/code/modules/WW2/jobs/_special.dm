@@ -308,7 +308,7 @@
 					equip_to_slot_or_del(new /obj/item/device/radio/rbs/command(src), slot_s_store)
 				else
 					equip_to_slot_or_del(new /obj/item/device/radio/rbs(src), slot_s_store)
-			else if (istype(original_job, /datum/job/german))
+			else if (istype(original_job, /datum/job/german) || istype(original_job, /datum/job/italian))
 				if (original_job.is_SS)
 					if (original_job.is_officer)
 						equip_to_slot_or_del(new /obj/item/device/radio/feldfu/SS/command(src), slot_s_store)

@@ -151,3 +151,5 @@
 	var/partial_languages[10]
 
 	var/debugmob = FALSE
+
+	var/spawnedInAtRealTime = -1

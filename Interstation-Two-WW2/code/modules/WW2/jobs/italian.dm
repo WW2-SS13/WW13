@@ -7,6 +7,7 @@
 /datum/job/italian/soldier
 	title = "Soldato"
 	en_meaning = "Infantry Soldier"
+	rank_abbreviation = "sdo"
 	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateIT" // WIP
@@ -21,7 +22,7 @@
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
@@ -44,6 +45,7 @@
 /datum/job/italian/medic
 	title = "Medico"
 	en_meaning = "Medic"
+	rank_abbreviation = "mdo"
 	total_positions = 1
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateIT-Medic" // WIP
@@ -58,7 +60,7 @@
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_l_hand)
@@ -82,6 +84,7 @@
 /datum/job/italian/squad_leader
 	title = "Capo Squadra"
 	en_meaning = "Squad Leader"
+	rank_abbreviation = "cap"
 	head_position = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateIT-Officer"
@@ -100,11 +103,11 @@
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/akm(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite SS unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Hauptmann</b>, while setting your own goals. Also, kill any jews you find on sight. They usually have long hair and beards.</span>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite SS unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Hauptmann</b>, while setting your own goals.</span>"
 	H.give_radio()
 	if (secret_ladder_message)
 		H << "<br>[secret_ladder_message]"
@@ -120,9 +123,8 @@
 
 /datum/job/italian/squad_leader/update_character(var/mob/living/carbon/human/H)
 	..()
-
 	H.make_artillery_officer()
 
 /datum/job/italian/squad_leader/get_keys()
-	return list(new/obj/item/weapon/key/italian, new/obj/item/weapon/key/italian/soldat,
+	return list(new/obj/item/weapon/key/italian, new/obj/item/weapon/key/italian/soldat, new/obj/item/weapon/key/italian/medic,
 		new/obj/item/weapon/key/italian/command_intermediate, new/obj/item/weapon/key/italian/command_high)

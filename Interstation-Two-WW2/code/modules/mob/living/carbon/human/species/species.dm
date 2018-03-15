@@ -330,6 +330,20 @@
 		return "unknown"
 	return species_language.get_random_ukrainian_name(gender)
 
+/datum/species/proc/get_random_italian_name(var/gender, var/jew)
+	if(!name_language)
+		if(gender == FEMALE)
+			return capitalize(pick(first_names_female_italian)) + " " + capitalize(pick(russify(last_names_italian, gender)))
+		else
+			return capitalize(pick(first_names_male_italian)) + " " + capitalize(pick(russify(last_names_italian, gender)))
+
+	var/datum/language/species_language = all_languages[name_language]
+	if(!species_language)
+		species_language = all_languages[default_language]
+	if(!species_language)
+		return "unknown"
+	return species_language.get_random_italian_name(gender)
+
 /datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
 
 	for(var/obj/item/organ/organ in H.contents)

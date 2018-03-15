@@ -113,6 +113,7 @@
 
 	if(!(connection in list("seeker", "web")))					//Invalid connection type.
 		return null
+
 	if(byond_version < ABSOLUTE_MIN_CLIENT_VERSION)		// seriously out of date client.
 		return null
 
@@ -141,7 +142,6 @@
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
 	. = ..()	//calls mob.Login()
-
 
 	if(!serverswap_open_status)
 		if (serverswap.Find("snext"))

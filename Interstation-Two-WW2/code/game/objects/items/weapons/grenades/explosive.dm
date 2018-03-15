@@ -1,5 +1,5 @@
 /obj/item/projectile/bullet/pellet/fragment
-	damage = 10
+	damage = 15
 	range_step = 2
 
 	base_spread = FALSE //causes it to be treated as a shrapnel explosion instead of cone
@@ -9,8 +9,10 @@
 	no_attack_log = TRUE
 	muzzle_type = null
 
+	embed = TRUE
+
 /obj/item/projectile/bullet/pellet/fragment/strong
-	damage = 15
+	damage = 20
 
 /obj/item/weapon/grenade/explosive
 	name = "fragmentation grenade"
@@ -21,7 +23,7 @@
 
 	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment
 	var/num_fragments = 50  //total number of fragments produced by the grenade
-	var/fragment_damage = 10
+	var/fragment_damage = 15
 	var/damage_step = 2      //projectiles lose a fragment each time they travel this distance. Can be a non-integer.
 	var/explosion_size = 2   //size of the center explosion
 

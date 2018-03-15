@@ -31,8 +31,7 @@ var/global/obj/map_metadata/map = null
 		GERMAN = 1.00,
 		SOVIET = 1.00)
 	var/list/available_subfactions = list(
-		SCHUTZSTAFFEL,
-		ITALIAN)
+		list(SCHUTZSTAFFEL, ITALIAN))
 
 /obj/map_metadata/New()
 	..()
@@ -40,25 +39,33 @@ var/global/obj/map_metadata/map = null
 	icon = null
 	icon_state = null
 
-	// remove half of all available subfactions
-	available_subfactions = shuffle(available_subfactions)
-	var/i = 0
-	for (var/subfaction in available_subfactions)
-		if (i % 2 == 0)
-			available_subfactions -= subfaction
-		++i
+	var/list/new_available_subfactions = list()
+	for (var/list/L in available_subfactions)
+		new_available_subfactions += pick(L)
+	available_subfactions = new_available_subfactions
 
 // called from the ticker process
 /obj/map_metadata/proc/tick()
 	if (last_crossing_block_status[GERMAN] == FALSE)
 		if (germans_can_cross_blocks())
 			world << cross_message(GERMAN)
+	else if (last_crossing_block_status[GERMAN] == TRUE)
+		if (!germans_can_cross_blocks())
+			world << reverse_cross_message(GERMAN)
+
 	if (last_crossing_block_status[SOVIET] == FALSE)
 		if (soviets_can_cross_blocks())
 			world << cross_message(SOVIET)
+	else if (last_crossing_block_status[SOVIET] == TRUE)
+		if (!soviets_can_cross_blocks())
+			world << reverse_cross_message(SOVIET)
+
 	if (last_crossing_block_status[event_faction] == FALSE)
 		if (specialfaction_can_cross_blocks())
 			world << cross_message(event_faction)
+	else if (last_crossing_block_status[event_faction] == TRUE)
+		if (!specialfaction_can_cross_blocks())
+			world << reverse_cross_message(event_faction)
 
 	last_crossing_block_status[GERMAN] = germans_can_cross_blocks()
 	last_crossing_block_status[SOVIET] = soviets_can_cross_blocks()
@@ -77,7 +84,7 @@ var/global/obj/map_metadata/map = null
 			switch (H.original_job.base_type_flag())
 				if (PARTISAN, CIVILIAN, SOVIET)
 					return !soviets_can_cross_blocks()
-				if (GERMAN)
+				if (GERMAN, ITALIAN)
 					return !germans_can_cross_blocks()
 				if (PILLARMEN)
 					return !specialfaction_can_cross_blocks()
@@ -103,6 +110,9 @@ var/global/obj/map_metadata/map = null
 
 /obj/map_metadata/proc/cross_message(faction)
 	return "<font size = 4>The [faction_const2name(faction)] may now cross the invisible wall!</font>"
+
+/obj/map_metadata/proc/reverse_cross_message(faction)
+	return "<span class = 'userdanger'>The [faction_const2name(faction)] may no longer cross the invisible wall!</span>"
 
 /obj/map_metadata/proc/reinforcements_ready()
 	return game_started

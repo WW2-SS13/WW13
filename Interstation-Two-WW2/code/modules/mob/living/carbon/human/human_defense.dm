@@ -25,7 +25,7 @@ bullet_act
 					user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
 					for (var/v in 1 to rand(5,7))
 						var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
-						meat.name = "[name] meatsteak"
+						meat.name = "[real_name] meatsteak"
 					for (var/obj/item/clothing/I in contents)
 						drop_from_inventory(I)
 					crush()

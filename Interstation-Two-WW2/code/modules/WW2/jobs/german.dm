@@ -752,7 +752,7 @@ var/first_fallschirm = TRUE
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a Quartermaster. Your job is to keep the army well armed and supplied. Use a pen to sign supply requisition sheets.</span>"
@@ -791,7 +791,7 @@ var/first_fallschirm = TRUE
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mp40(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/wrench(H), slot_l_hand)
@@ -884,7 +884,7 @@ var/first_fallschirm = TRUE
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a train conductor. Your job is take men to and from the front.</span>"
@@ -930,7 +930,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/akm(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite SS unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Hauptmann</b>, while setting your own goals. Also, kill any jews you find on sight. They usually have long hair and beards.</span>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a squad leader for an elite SS unit. Your job is to work alongside normal <b>Gruppenfuhrer</b>s and the <b>Hauptmann</b>, while setting your own goals.</span>"
 	H.give_radio()
 	if (secret_ladder_message)
 		H << "<br>[secret_ladder_message]"

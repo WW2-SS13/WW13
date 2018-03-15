@@ -3,7 +3,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/grown
 	name = "some magical supertype of all grown foods. Why is this even here"
-	nutriment_amt = 3
+	nutriment_amt = 1
 	nutriment_desc = list("fruit" = TRUE)
 
 // fruit

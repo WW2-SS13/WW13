@@ -973,16 +973,20 @@
 
 /mob/living/carbon/human/proc/handle_starvation()//Making this it's own proc for my sanity's sake - Matt
 
+	// don't start starving right away
+	if (spawnedInAtRealTime != -1 && world.realtime - spawnedInAtRealTime <= 300)
+		return
+
 	if(nutrition < 350 && nutrition >= 200)
 		if (prob(3))
 			src << "<span class = 'warning'>You're getting a bit hungry.</span>"
 
 	else if(nutrition < 200 && nutrition >= 100)
-		if (prob(5))
+		if (prob(4))
 			src << "<span class = 'warning'>You're pretty hungry.</span>"
 
 	else if (nutrition < 100 && nutrition >= 20)
-		if (prob(8))
+		if (prob(5))
 			src << "<span class = 'danger'>You're getting really hungry!</span>"
 
 	else if (nutrition < 20) //Nutrition is below 20 = starvation
@@ -1097,17 +1101,21 @@
 
 /mob/living/carbon/human/proc/handle_dehydration()//Making this it's own proc for my sanity's sake - Matt
 
+	// don't start dehydrating right away
+	if (spawnedInAtRealTime != -1 && world.realtime - spawnedInAtRealTime <= 300)
+		return
+
 	if (water < 300 && water >= 200)
 		if (prob(3))
 			src << "<span class = 'warning'>You're getting a bit thirsty.</span>"
 
 	else if (water < 200 && water >= 100)
-		if (prob(5))
+		if (prob(4))
 			src << "<span class = 'warning'>You're pretty thirsty.</span>"
 
 	else if (water < 100 && water >= 20)
-		if (prob(8))
-			src << "<span class = 'danger'>You're really thirsty.</span>"
+		if (prob(5))
+			src << "<span class = 'danger'>You're really thirsty!</span>"
 
 	else if (water < 20) //Nutrition is below 20 = dehydration
 
