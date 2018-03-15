@@ -136,6 +136,12 @@
 	penetrating = 2
 	armor_penetration = 60
 
+// CARCANO M1891 //
+/obj/item/projectile/bullet/rifle/c65x52mm
+	damage = DAMAGE_HIGH
+	penetrating = 2
+	armor_penetration = 100
+
 #undef DAMAGE_LOW
 #undef DAMAGE_MEDIUM
 #undef DAMAGE_HIGH

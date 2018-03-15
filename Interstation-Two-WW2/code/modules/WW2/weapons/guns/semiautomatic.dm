@@ -2,13 +2,13 @@
 	name = "SVT-40"
 	desc = "Soviet semi-automatic rifle chambered in 7.62x54mmR. Used by some guard units and defense units."
 	icon_state = "svt"
-	item_state = "svt"
+	item_state = "svt-mag"
 	w_class = 4
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
 	caliber = "a762x54"
+	ammo_type = /obj/item/ammo_casing/a762x54
 	slot_flags = SLOT_BACK
-	ammo_type = /obj/item/ammo_magazine/mosin
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	magazine_type = /obj/item/ammo_magazine/mosin
@@ -25,10 +25,10 @@
 	..()
 	if(ammo_magazine)
 		icon_state = "svt"
-		item_state = "svt"
+		item_state = "svt-mag"
 	else
 		icon_state = "svt"
-		item_state = "svt"
+		item_state = "svt-mag"
 	return
 
 /obj/item/weapon/gun/projectile/g41

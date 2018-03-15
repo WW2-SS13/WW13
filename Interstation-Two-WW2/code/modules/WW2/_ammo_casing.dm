@@ -100,6 +100,11 @@ WW 2 WEAPONS MAGS N AMMO
 	caliber = "7.92x57mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/c792x57_fg42
 
+/obj/item/ammo_casing/c65x52mm
+	desc = "A 6.5x52mm Carcano bullet casing."
+	caliber = "6.5x52mm"
+	projectile_type = /obj/item/projectile/bullet/rifle/c65x52mm
+
 /*
 /obj/item/ammo_casing/svt
 	desc = "A SVT bullet casing."

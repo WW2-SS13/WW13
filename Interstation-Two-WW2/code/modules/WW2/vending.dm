@@ -34,12 +34,13 @@
 	desc = "Basic wear for Italian soldiers."
 	icon_state = "apparel_german"
 	products = list(
-		/obj/item/clothing/suit/storage/coat/german = 20,
+		/obj/item/clothing/suit/storage/coat/italian = 20,
 		/obj/item/clothing/accessory/storage/webbing = 20,
 		/obj/item/clothing/under/itauni = 20,
 		/obj/item/clothing/head/helmet/tactical/gerhelm = 20,
 		/obj/item/clothing/shoes/swat = 20,
-		/obj/item/clothing/mask/gas/german = 10
+		/obj/item/clothing/mask/gas/german = 10,
+		/obj/item/ammo_magazine/c65x52mm = 25,
 	)
 //	idle_power_usage = 0
 

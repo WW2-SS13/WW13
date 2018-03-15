@@ -589,6 +589,13 @@
 	item_state = "sovofficer_coat"
 	worn_state = "sovofficer_coat"
 
+/obj/item/clothing/suit/storage/coat/italian
+	name = "Italian Coat"
+	desc = "An ordinary winter coat for a Italian soldier. You can almost smell the tomato sauce wafting in it."
+	icon_state = "italy_coat"
+	item_state = "italy_coat"
+	worn_state = "italy_coat"
+
 // WEBBING - can hold everything but clothing
 
 /obj/item/clothing/accessory/storage/webbing
