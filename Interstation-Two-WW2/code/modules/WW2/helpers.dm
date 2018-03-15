@@ -46,9 +46,11 @@
 /proc/battlereport2faction(faction)
 	switch (faction)
 		if (GERMAN)
-			radio2germans("Battle Status Report: [alive_germans.len] alive, [heavily_injured_germans.len] heavily injured or unconscious, [dead_germans.len] dead.")
+			radio2germans("Battle Status Report: [alive_germans.len] alive, [heavily_injured_germans.len] heavily injured or unconscious, [dead_germans.len] dead.<br>[alive_russians.len] enemies alive, [heavily_injured_russians.len] enemies heavily injured or unconscious, [dead_russians.len] enemies dead.")
+
 		if (SOVIET)
-			radio2soviets("Battle Status Report: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, [dead_russians.len] dead.")
+			radio2soviets("Battle Status Report: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, [dead_russians.len] dead.<br>[alive_germans.len] enemies alive, [heavily_injured_germans.len] enemies heavily injured or unconscious, [dead_germans.len] enemies dead.")
+
 		if (SCHUTZSTAFFEL)
 			return battlereport2faction(GERMAN)
 /*

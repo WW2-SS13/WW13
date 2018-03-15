@@ -11,7 +11,9 @@ var/list/admin_verbs_default = list(
 	/client/proc/see_soldiers,
 	/client/proc/see_bug_reports,
 	/client/proc/see_suggestions,
-	/client/proc/see_world_realtime
+	/client/proc/see_world_realtime,
+	/client/proc/giveruntimelog,		//allows us to give access to runtime logs to somebody,
+	/client/proc/getserverlog			//allows us to fetch server logs (diary) for other days,
 	)
 var/list/admin_verbs_admin = list(
 	/client/proc/add_to_server_whitelist,
@@ -36,8 +38,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_subtle_message,	//send an message to somebody as a 'voice in their head',
 	/client/proc/cmd_admin_delete,		//delete an instance/object/mob/etc,
 	/client/proc/cmd_admin_check_contents,	//displays the contents of an instance,
-	/client/proc/giveruntimelog,		//allows us to give access to runtime logs to somebody,
-	/client/proc/getserverlog,			//allows us to fetch server logs (diary) for other days,
 	/client/proc/Getmob,				//teleports a mob to our location,
 	/client/proc/Getkey,				//teleports a mob with a certain ckey to our location,
 //	/client/proc/sendmob,				//sends a mob somewhere, -Removed due to it needing two sorting procs to work, which were executed every time an admin right-clicked. ~Errorage,
@@ -72,6 +72,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/show_battle_report,
 	/client/proc/see_battle_report,
 	/client/proc/end_all_grace_periods,
+	/client/proc/reset_all_grace_periods,
 //	/client/proc/generate_hit_table, // REALLY FUCKING LAGGY WARNING
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/removeEmptyCases,

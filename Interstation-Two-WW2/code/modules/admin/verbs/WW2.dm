@@ -132,6 +132,15 @@
 		message_admins("[key_name(src)] ended all grace periods!")
 		log_admin("[key_name(src)] ended all grace periods.")
 
+/client/proc/reset_all_grace_periods()
+	set category = "WW2 (Admin)"
+	set name = "Reset All Grace Periods"
+	var/conf = input(src, "Are you sure you want to reset all grace periods?") in list("Yes", "No")
+	if (conf == "Yes")
+		map.admin_ended_all_grace_periods = FALSE
+		message_admins("[key_name(src)] reset all grace periods!")
+		log_admin("[key_name(src)] reset all grace periods.")
+
 /client/proc/show_battle_report()
 	set category = "WW2 (Admin)"
 	set name = "Show Battle Report"

@@ -44,6 +44,10 @@
 	set desc = "Retrieve any session logfiles saved by dreamdeamon."
 	set category = null
 
+	if(!holder)
+		src << "<font color='red'>Only Admins may use this command.</font>"
+		return
+
 	var/path = browse_files("data/logs/runtime/")
 	if(!path)
 		return

@@ -33,7 +33,6 @@
 
 //first piece
 /obj/machinery/artillery/base
-	var/list/ejections = list()
 	var/obj/item/artillery_ammo/loaded = null
 	var/obj/machinery/artillery/tube/other
 	var/offset_x = FALSE
@@ -154,10 +153,6 @@
 /obj/machinery/artillery/base/New()
 
 	loaded = new/obj/item/artillery_ammo/none(src)
-
-	for (var/v in TRUE to 20)
-		var/obj/item/weapon/material/shard/shard = new/obj/item/weapon/material/shard/shrapnel(src)
-		ejections.Add(shard)
 
 /obj/machinery/artillery/base/proc/getNextOpeningClosingState()
 
@@ -422,12 +417,10 @@
 
 	proc/fire(var/x, var/y, shell)
 
-		var/num_shrapnel = FALSE
 		var/explosion = FALSE
 		var/reagent_payload = null
 
 		if (!istype(shell, /obj/item/artillery_ammo/gaseous))
-			num_shrapnel = rand(30,40)
 			explosion = TRUE
 		else
 			var/obj/item/artillery_ammo/gaseous/g = shell
@@ -443,17 +436,6 @@
 
 		drop_casing = TRUE
 
-		var/list/shrapnel = list()
-
-		for (var/v in TRUE to num_shrapnel)
-			var/shrap = pick(other.ejections)
-			if (shrap)
-				shrapnel += shrap
-				other.ejections -= shrap
-
-		for (var/v in TRUE to num_shrapnel)
-			other.ejections += new/obj/item/artillery_ammo()
-
 		other.icon_state = "firing"
 
 		for (var/mob/m in player_list)
@@ -461,7 +443,6 @@
 				var/abs_dist = abs(m.x - other.x) + abs(m.y - other.y)
 				if (abs_dist <= 75)
 					shake_camera(m, 5, (5 - (abs_dist/20)))
-
 
 		spawn (10)
 			other.icon_state = initial(other.icon_state)
@@ -525,6 +506,9 @@
 		y = y + rand(1,-1)
 
 		var/turf/t = locate(x, y, z)
+		var/t_x = t.x
+		var/t_y = t.y
+		var/t_z = t.z
 
 		if (!t)
 			return
@@ -602,6 +586,23 @@
 				// extra effective against tonks
 				for (var/obj/tank/T in range(1, t))
 					T.ex_act(1.0, TRUE)
+				spawn (1)
+					for(var/turf/T in getcircle(locate(t_x,t_y,t_z), 12))
+						var/obj/item/projectile/bullet/pellet/fragment/P = new /obj/item/projectile/bullet/pellet/fragment(T)
+						P.damage = 12
+						P.pellets = 1
+						P.range_step = 2
+						P.shot_from = name
+						P.launch_fragment(T)
+
+						//Make sure to hit any mobs in the source turf
+						for(var/mob/living/L in T)
+							//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
+							//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
+							if(L.lying)
+								P.attack_mob(L, FALSE, FALSE)
+							else
+								P.attack_mob(L, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
 			else
 				message_admins("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
 				log_admin("Gas artillery shell ([reagent_payload]) hit at [t.x], [t.y], [t.z].")
@@ -616,35 +617,6 @@
 							new/obj/effect/effect/smoke/chem/payload/white_phosphorus_gas(t)
 						if ("xylyl_bromide")
 							new/obj/effect/effect/smoke/chem/payload/xylyl_bromide(t)
-
-			var/list/atoms_in_range = list()
-
-			for (var/turf/tt in range(12, t))
-				atoms_in_range.Add(tt)
-
-			for (var/obj/o in range(12, t))
-				atoms_in_range.Add(o)
-
-			var/list/mobs_in_range = list()
-
-			for (var/mob/m in range(12, t))
-				if (!m.lying)
-					mobs_in_range.Add(m)
-
-			if (shrapnel.len > FALSE)
-				for (var/obj/item/weapon/material/shard/shrapnel/shrap in shrapnel)
-					if (shrap)
-						shrap.loc = t
-						if (prob(33))
-							if (mobs_in_range.len > FALSE)
-								var/mob/m = pick(mobs_in_range)
-								if (m)
-									shrap.throw_at(m, 10)
-						else
-							if (atoms_in_range.len > FALSE)
-								var/atom/a = pick(atoms_in_range)
-								if (a)
-									shrap.throw_at(a, 10)
 
 /obj/machinery/artillery/tube/proc/use_slot()
 

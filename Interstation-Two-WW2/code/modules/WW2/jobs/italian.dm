@@ -7,6 +7,7 @@
 /datum/job/italian/soldier
 	title = "Soldato"
 	en_meaning = "Infantry Soldier"
+	rank_abbreviation = "sdo"
 	total_positions = 5
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateIT" // WIP
@@ -44,6 +45,7 @@
 /datum/job/italian/medic
 	title = "Medico"
 	en_meaning = "Medic"
+	rank_abbreviation = "mdo"
 	total_positions = 1
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateIT-Medic" // WIP
@@ -82,6 +84,7 @@
 /datum/job/italian/squad_leader
 	title = "Capo Squadra"
 	en_meaning = "Squad Leader"
+	rank_abbreviation = "cap"
 	head_position = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateIT-Officer"

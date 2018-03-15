@@ -49,12 +49,23 @@ var/global/obj/map_metadata/map = null
 	if (last_crossing_block_status[GERMAN] == FALSE)
 		if (germans_can_cross_blocks())
 			world << cross_message(GERMAN)
+	else if (last_crossing_block_status[GERMAN] == TRUE)
+		if (!germans_can_cross_blocks())
+			world << reverse_cross_message(GERMAN)
+
 	if (last_crossing_block_status[SOVIET] == FALSE)
 		if (soviets_can_cross_blocks())
 			world << cross_message(SOVIET)
+	else if (last_crossing_block_status[SOVIET] == TRUE)
+		if (!soviets_can_cross_blocks())
+			world << reverse_cross_message(SOVIET)
+
 	if (last_crossing_block_status[event_faction] == FALSE)
 		if (specialfaction_can_cross_blocks())
 			world << cross_message(event_faction)
+	else if (last_crossing_block_status[event_faction] == TRUE)
+		if (!specialfaction_can_cross_blocks())
+			world << reverse_cross_message(event_faction)
 
 	last_crossing_block_status[GERMAN] = germans_can_cross_blocks()
 	last_crossing_block_status[SOVIET] = soviets_can_cross_blocks()
@@ -73,7 +84,7 @@ var/global/obj/map_metadata/map = null
 			switch (H.original_job.base_type_flag())
 				if (PARTISAN, CIVILIAN, SOVIET)
 					return !soviets_can_cross_blocks()
-				if (GERMAN)
+				if (GERMAN, ITALIAN)
 					return !germans_can_cross_blocks()
 				if (PILLARMEN)
 					return !specialfaction_can_cross_blocks()
@@ -99,6 +110,9 @@ var/global/obj/map_metadata/map = null
 
 /obj/map_metadata/proc/cross_message(faction)
 	return "<font size = 4>The [faction_const2name(faction)] may now cross the invisible wall!</font>"
+
+/obj/map_metadata/proc/reverse_cross_message(faction)
+	return "<span class = 'userdanger'>The [faction_const2name(faction)] may no longer cross the invisible wall!</span>"
 
 /obj/map_metadata/proc/reinforcements_ready()
 	return game_started

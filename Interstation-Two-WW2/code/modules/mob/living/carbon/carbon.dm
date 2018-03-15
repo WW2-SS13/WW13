@@ -299,11 +299,28 @@
 	throw_mode_off()
 	if(usr.stat || !target)
 		return
+
 	if(target.type == /obj/screen) return
 
 	var/atom/movable/item = get_active_hand()
 
 	if(!item) return
+
+	// hack to stop people from throwing molotovs over the grace wall - Kachnov
+	if (ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if (H.original_job)
+			if (istype(item, /obj/item/weapon/reagent_containers/food/drinks/bottle))
+				var/obj/item/weapon/reagent_containers/food/drinks/bottle/B = item
+				if (B.rag && B.rag.on_fire)
+					var/nothrow = FALSE
+					if (map && !map.soviets_can_cross_blocks() && list(PARTISAN, CIVILIAN, SOVIET).Find(H.original_job.base_type_flag()))
+						nothrow = TRUE
+					else if (map && !map.germans_can_cross_blocks() && list(GERMAN, ITALIAN).Find(H.original_job.base_type_flag()))
+						nothrow = TRUE
+					if (nothrow)
+						src << "<span class = 'danger'>You can't throw a molotov yet.</span>"
+						return
 
 	if (istype(item, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = item

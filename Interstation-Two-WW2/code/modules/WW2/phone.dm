@@ -25,6 +25,7 @@ var/list/soviet_traitors = list()
 	attack_verb = list()
 	var/list/options = list(RAID, REQUEST_BATTLE_REPORT)
 	var/faction = null
+	var/next_raid = -1
 
 /obj/item/weapon/phone/tohighcommand/german
 	faction = GERMAN
@@ -47,6 +48,9 @@ var/list/soviet_traitors = list()
 		if (dowhat != "Cancel")
 			switch (dowhat)
 				if (RAID)
+					if (next_raid != -1 && world.time < next_raid)
+						H << "<span class = 'danger'>You can't call in another Katyusha attack yet. You can call in another Katyusha attack in ~[round((next_raid-world.time)/600)+1] minutes.</span>"
+						return
 					if (map && !map.soviets_can_cross_blocks() && faction == SOVIET)
 						H << "<span class = 'warning'>You can't use this yet.</span>"
 						return
@@ -67,6 +71,7 @@ var/list/soviet_traitors = list()
 						supply_points[faction] -= cost
 						radio2faction("[faction == GERMAN ? "A Luftwaffe" : "A Katyusha"] attack has been called in by [H.real_name]. Stand by.", faction)
 						air_raid(faction, src)
+						next_raid = world.time + rand(1500, 2100)
 
 				if (REQUEST_BATTLE_REPORT)
 					if (!H.original_job || H.original_job.base_type_flag() != faction || !H.original_job.is_officer)
@@ -144,7 +149,11 @@ var/list/soviet_traitors = list()
 
 						++targeted
 
-						var/turf/target = locate(H.x, H.y, H.z)
+						var/H_x = H.x
+						var/H_y = H.y
+						var/H_z = H.z
+
+						var/turf/target = locate(H_x, H_y, H_z)
 						var/area/target_area = get_area(target)
 
 						used_areas += target_area
@@ -153,11 +162,19 @@ var/list/soviet_traitors = list()
 						target.visible_message("<span class = 'userdanger'>You see a barrage of rockets in the sky!</span>")
 
 						for (var/v in 1 to 3)
-							spawn (40 * v)
+							var/spawndelay = 40
+							switch (v)
+								if (1)
+									spawndelay = 40
+								if (2)
+									spawndelay = 55
+								if (3)
+									spawndelay = 70
+							spawn (spawndelay)
 
-								var/target_x = H.x + rand(-3,3)
-								var/target_y = H.y + rand(-3,3)
-								var/target_z = H.z
+								var/target_x = H_x + rand(-3,3)
+								var/target_y = H_y + rand(-3,3)
+								var/target_z = H_z
 
 								target = locate(target_x, target_y, target_z)
 
@@ -169,7 +186,7 @@ var/list/soviet_traitors = list()
 								if (target_area.artillery_integrity <= 0 && (!target_area.parent_area || target_area.parent_area.artillery_integrity <= 0))
 									explosion(target, 1, 3, 4, 5)
 								else
-									target.visible_message("<span class = 'userdanger'>The bomb smashes into the ceiling!</span>")
+									target.visible_message("<span class = 'userdanger'>The rocket smashes into the ceiling!</span>")
 									playsound(target, "explosion", 100, TRUE, 100)
 					else
 						break
