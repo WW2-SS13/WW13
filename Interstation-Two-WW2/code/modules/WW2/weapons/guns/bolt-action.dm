@@ -70,3 +70,37 @@
 		return
 	else
 		icon_state = "kar98k"
+
+/obj/item/weapon/gun/projectile/boltaction/carcano
+	name = "Carcano M1891"
+	desc = "Italian made bolt action rifle Carcano Modello 1891. It smells of tomato pasta and gunpowder."
+	icon_state = "carcano"
+	item_state = "carcano"
+	caliber = "6.5x52mm"
+	fire_sound = 'sound/weapons/kar_shot.ogg'
+	ammo_type = /obj/item/ammo_casing/c65x52mm
+	magazine_type = /obj/item/ammo_magazine/c65x52mm
+	accuracy = DEFAULT_BOLTACTION_ACCURACY + 1
+	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
+	bolt_safety = FALSE
+
+/obj/item/weapon/gun/projectile/boltaction/carcano/update_icon(var/add_scope = FALSE)
+	if(add_scope)
+		if(bolt_open)
+			icon_state = "carcano_scope_open"
+			item_state = "carcano"
+			return
+		else
+			icon_state = "carcano_scope"
+			item_state = "carcano"
+			return
+	if(bolt_open)
+		if(!findtext(icon_state, "_open"))
+			icon_state = addtext(icon_state, "_open") //open
+	else if(icon_state == "carcano_scope_open") //closed
+		icon_state = "carcano_scope"
+	else if(icon_state == "carcano_scope")
+		return
+	else
+		icon_state = "carcano"
+

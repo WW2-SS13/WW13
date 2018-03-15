@@ -132,10 +132,13 @@ var/static/list/supply_crate_costs = list(
 	"Mp43 Ammo" = 40,
 	"PTRD Ammo" = 100,
 
-	".45 Ammo" = 30,
+	"Tokarev Ammo" = 30,
+	"Nagant Revolver Ammo" = 25,
 	"Mosin Ammo" = 35,
 	"PPSH Ammo" = 50,
+	"PPS-43 Ammo" = 45,
 	"DP Ammo" = 50,
+	"Mauser Ammo" = 30,
 
 //		"Mines" = 50,
 	"Grenades" = 65,
@@ -166,6 +169,10 @@ var/static/list/supply_crate_costs = list(
 	"PPSH" = 125,
 	"DP-28" = 175,
 	"PTRD" = 200,
+	"SVT40" = 150,
+	"Gewehr 41" = 150,
+
+	"PPS-43" = 100,
 	"Flammenwerfer" = 250,
 	"7,5 cm FK 18 Artillery Piece" = 300,
 	"Luger Crate" = 400,

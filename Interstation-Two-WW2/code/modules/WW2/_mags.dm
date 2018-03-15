@@ -202,6 +202,15 @@ WW 2 WEAPONS MAGS N AMMO
 	max_ammo = 20
 	multiple_sprites = TRUE
 
+/obj/item/ammo_magazine/c65x52mm
+	name = "Clip (6.5x52mm)"
+	icon_state = "kclip"
+	caliber = "6.5x52mm"
+	matter = list(DEFAULT_WALL_MATERIAL = 360)
+	ammo_type = /obj/item/ammo_casing/c65x52mm
+	max_ammo = 5
+	multiple_sprites = TRUE
+
 /***********************************
 OTHER
 ***********************************/
