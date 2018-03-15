@@ -135,6 +135,14 @@ var/list/global_whitelists[50]
 /datum/whitelist/server
 	name = "server"
 
+/datum/whitelist/server/validate(ckey)
+	if (serverswap && serverswap.Find("masterdir"))
+		var/path = "[serverswap["masterdir"]]/whitelist.txt"
+		for (var/_ckey in file2list(path))
+			if (_ckey == ckey)
+				return TRUE
+	return FALSE
+
 /datum/whitelist/server/New()
 	..()
 	if (config.usewhitelist)

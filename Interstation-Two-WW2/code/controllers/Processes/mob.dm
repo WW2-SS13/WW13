@@ -45,6 +45,11 @@ var/datum/controller/process/mob/mob_process = null
 							if (J.title == M.original_job_title)
 								M.original_job = J
 								goto skip1
+					else
+						for (var/datum/job/german/soldier/J in job_master.occupations)
+							M.original_job = J
+							M.original_job_title = J.title
+							break
 				continue
 			else if (istype(M.original_job, /datum/job/german/trainsystem))
 				continue

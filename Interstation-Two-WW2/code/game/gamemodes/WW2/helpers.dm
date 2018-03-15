@@ -55,14 +55,14 @@
 
 
 /proc/get_soviet_german_stats()
-	var/alive_soviets = FALSE
-	var/alive_germans = FALSE
+	var/alive_soviets = 0
+	var/alive_germans = 0
 
-	var/soviets_in_russia = FALSE
-	var/soviets_in_germany = FALSE
+	var/soviets_in_russia = 0
+	var/soviets_in_germany = 0
 
-	var/germans_in_germany = FALSE
-	var/germans_in_russia = FALSE
+	var/germans_in_germany = 0
+	var/germans_in_russia = 0
 
 	for (var/mob/living/carbon/human/H in player_list)
 
