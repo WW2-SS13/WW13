@@ -135,7 +135,9 @@ var/list/global_whitelists[50]
 /datum/whitelist/server
 	name = "server"
 
-/datum/whitelist/server/validate(client_or_ckey)
+/datum/whitelist/server/validate(client_or_ckey, return_real_val_even_if_whitelist_disabled)
+	if (!enabled && !return_real_val_even_if_whitelist_disabled)
+		return TRUE
 	if (isclient(client_or_ckey))
 		client_or_ckey = client_or_ckey:ckey
 	if (serverswap && serverswap.Find("masterdir"))
