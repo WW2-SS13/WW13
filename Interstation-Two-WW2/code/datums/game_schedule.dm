@@ -1,6 +1,7 @@
 var/datum/game_schedule/global_game_schedule = null
 
 /datum/game_schedule
+	var/enabled = FALSE
 	// when the game is open to non-staff, UTC (5 hours ahead of EST)
 	var/starttime = 16 // MUST be an integer
 	// when the game is closed to non-staff, UTC (5 hours ahead of EST)
@@ -36,6 +37,10 @@ var/datum/game_schedule/global_game_schedule = null
 	saveToDB()
 
 /datum/game_schedule/proc/update()
+
+	if (!enabled)
+		world_is_open = TRUE
+		return TRUE
 
 	time = getCurrentTime()
 
@@ -76,6 +81,8 @@ var/datum/game_schedule/global_game_schedule = null
  	// overrides forceOpened
 	if (forceClosed)
 		world_is_open = FALSE
+
+	return TRUE
 
 /datum/game_schedule/proc/forceClose()
 	forceClosed = TRUE
