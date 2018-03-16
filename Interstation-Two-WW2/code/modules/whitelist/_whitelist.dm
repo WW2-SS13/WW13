@@ -135,11 +135,13 @@ var/list/global_whitelists[50]
 /datum/whitelist/server
 	name = "server"
 
-/datum/whitelist/server/validate(ckey)
+/datum/whitelist/server/validate(client_or_ckey)
+	if (isclient(client_or_ckey))
+		client_or_ckey = client_or_ckey:ckey
 	if (serverswap && serverswap.Find("masterdir"))
 		var/path = "[serverswap["masterdir"]]/whitelist.txt"
-		for (var/_ckey in file2list(path))
-			if (_ckey == ckey)
+		for (var/ckey in file2list(path))
+			if (ckey == ckey(client_or_ckey))
 				return TRUE
 	return FALSE
 
