@@ -340,6 +340,7 @@
 	max_storage_space = 12
 	can_hold = list(
 		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/gun/projectile/revolver,
 		/obj/item/ammo_magazine/c763x25mm_mauser,
 		/obj/item/ammo_magazine/c762mm_tokarev,
 		/obj/item/ammo_magazine/c45m,
@@ -404,6 +405,7 @@
 	max_storage_space = 12
 	can_hold = list(
 		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/gun/projectile/revolver,
 		/obj/item/ammo_magazine/c763x25mm_mauser,
 		/obj/item/ammo_magazine/c762mm_tokarev,
 		/obj/item/ammo_magazine/c45m,
@@ -416,9 +418,9 @@
 /obj/item/weapon/storage/belt/german_basic/soldier
 /obj/item/weapon/storage/belt/german_basic/soldier/New()
 	..()
-	new /obj/item/weapon/gun/projectile/pistol/mauser(src)
-	new /obj/item/ammo_magazine/c763x25mm_mauser(src)
-	new /obj/item/ammo_magazine/c763x25mm_mauser(src)
+	new /obj/item/weapon/gun/projectile/pistol/waltherp38(src)
+	new /obj/item/ammo_magazine/p9x19mm(src)
+	new /obj/item/ammo_magazine/p9x19mm(src)
 	new /obj/item/weapon/shovel/spade/russia(src)
 
 /obj/item/weapon/storage/belt/german/anti_tank_crew

@@ -111,6 +111,11 @@ var/global/datum/controller/occupations/job_master
 
 		if (italiano)
 			world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Italian Army for this battle.</span></font>"
+		else
+			for (var/obj/structure/vending/italian/apparel/pizzeria in world)
+				qdel(pizzeria)
+			for (var/obj/structure/vending/italian/equipment/meatballshooter in world)
+				qdel(meatballshooter)
 
 		if (warcrimes)
 			world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"

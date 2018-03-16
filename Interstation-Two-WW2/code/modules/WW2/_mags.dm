@@ -206,9 +206,26 @@ WW 2 WEAPONS MAGS N AMMO
 	name = "Clip (6.5x52mm)"
 	icon_state = "kclip"
 	caliber = "6.5x52mm"
-	matter = list(DEFAULT_WALL_MATERIAL = 360)
 	ammo_type = /obj/item/ammo_casing/c65x52mm
 	max_ammo = 5
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/p9x19mm
+	name = "magazine (9x19mm)"
+	icon_state = "waltherp"
+	caliber = "9x19mm"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/p9x19mm
+	max_ammo = 8
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/s9x19mm
+	name = "magazine (9x19mm)"
+	icon_state = "m38"
+	caliber = "9x19mm"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/s9x19mm
+	max_ammo = 40
 	multiple_sprites = TRUE
 
 /***********************************
