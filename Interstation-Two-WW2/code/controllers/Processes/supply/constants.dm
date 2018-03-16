@@ -38,6 +38,7 @@ var/static/list/german_supply_crate_types = list(
 	// GUNS & ARTILLERY
 	"MP40" = /obj/item/weapon/gun/projectile/submachinegun/mp40,
 	"MG34" = /obj/item/weapon/gun/projectile/automatic/mg34,
+	"Gewehr 41" = /obj/item/weapon/gun/projectile/semiautomatic/g41,
 	"PTRD" = /obj/item/weapon/gun/projectile/heavy/ptrd,
 	"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 	"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
