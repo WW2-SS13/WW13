@@ -451,7 +451,7 @@ bullet_act
 
 		if (istype(AM, /obj/item))
 			var/obj/item/I = AM
-			if (I.throwforce >= 15 && prob(I.throwforce * 4))
+			if (I.throwforce >= 15 && prob(I.throwforce * 5))
 				Weaken(I.throwforce/5)
 
 		O.throwing = FALSE		//it hit, so stop moving

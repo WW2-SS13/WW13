@@ -1,3 +1,56 @@
+/obj/item/weapon/gun/projectile/automatic
+	force = 15
+	throwforce = 30
+	accuracy_list = list(
+
+		// small body parts: head, hand, feet
+		"small" = list(
+			SHORT_RANGE_STILL = 20,
+			SHORT_RANGE_MOVING = 10,
+
+			MEDIUM_RANGE_STILL = 14,
+			MEDIUM_RANGE_MOVING = 7,
+
+			LONG_RANGE_STILL = 7,
+			LONG_RANGE_MOVING = 4,
+
+			VERY_LONG_RANGE_STILL = 5,
+			VERY_LONG_RANGE_MOVING = 3),
+
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 25,
+			SHORT_RANGE_MOVING = 13,
+
+			MEDIUM_RANGE_STILL = 20,
+			MEDIUM_RANGE_MOVING = 10,
+
+			LONG_RANGE_STILL = 15,
+			LONG_RANGE_MOVING = 8,
+
+			VERY_LONG_RANGE_STILL = 7,
+			VERY_LONG_RANGE_MOVING = 4),
+
+		// large body parts: chest, groin
+		"large" = list(
+			SHORT_RANGE_STILL = 30,
+			SHORT_RANGE_MOVING = 15,
+
+			MEDIUM_RANGE_STILL = 25,
+			MEDIUM_RANGE_MOVING = 13,
+
+			LONG_RANGE_STILL = 20,
+			LONG_RANGE_MOVING = 10,
+
+			VERY_LONG_RANGE_STILL = 10,
+			VERY_LONG_RANGE_MOVING = 5),
+	)
+
+	accuracy_increase_per_point = 1.00
+	accuracy_decrease_per_point = 1.00
+	KD_chance = 10
+	stat = "MG"
+
 /obj/item/weapon/gun/projectile/automatic/dp
 	name = "DP-28"
 	desc = "Soviet light machine gun with a odd disk-shaped magazine on top. Chambered in 7.62x54mmR, in 41 round magazines."

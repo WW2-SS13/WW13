@@ -36,10 +36,9 @@ var/static/list/german_supply_crate_types = list(
 	"Glass Sheets" = /obj/structure/closet/crate/glass,
 
 	// GUNS & ARTILLERY
-	"MP40" = /obj/item/weapon/gun/projectile/automatic/mp40,
+	"MP40" = /obj/item/weapon/gun/projectile/submachinegun/mp40,
 	"MG34" = /obj/item/weapon/gun/projectile/automatic/mg34,
-	"Gewehr 41" = /obj/item/weapon/gun/projectile/g41,
-	"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
+	"PTRD" = /obj/item/weapon/gun/projectile/heavy/ptrd,
 	"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 	"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
 	"Luger Crate" = /obj/structure/closet/crate/lugers,
@@ -97,11 +96,11 @@ var/static/list/soviet_supply_crate_types = list(
 	"Glass Sheets" = /obj/structure/closet/crate/glass,
 
 	// GUNS & ARTILLERY
-	"PPSH-41" = /obj/item/weapon/gun/projectile/automatic/ppsh,
-	"PPS-43" = /obj/item/weapon/gun/projectile/automatic/pps,
-	"SVT40" = /obj/item/weapon/gun/projectile/svt,
+	"PPSH-41" = /obj/item/weapon/gun/projectile/submachinegun/ppsh,
+	"PPS-43" = /obj/item/weapon/gun/projectile/submachinegun/pps,
+	"SVT40" = /obj/item/weapon/gun/projectile/semiautomatic/svt,
 	"DP-28" = /obj/item/weapon/gun/projectile/automatic/dp,
-	"PTRD" = /obj/item/weapon/gun/projectile/heavysniper/ptrd,
+	"PTRD" = /obj/item/weapon/gun/projectile/heavy/ptrd,
 	"Maxim" = /obj/item/weapon/gun/projectile/minigun/kord/maxim,
 
 	// CLOSETS

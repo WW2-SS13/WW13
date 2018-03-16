@@ -518,7 +518,7 @@ var/area/partisan_stockpile = null
 					for (var/vv in 1 to rand(1,7))
 						new /obj/item/ammo_magazine/luger(turf)
 				if (prob(40)) // spawn approx. 2 svts
-					new /obj/item/weapon/gun/projectile/svt(turf)
+					new /obj/item/weapon/gun/projectile/semiautomatic/svt(turf)
 				if (prob(40)) // spawn approx. 7 svt mags
 					for (var/vv in 1 to rand(1,7))
 						new /obj/item/ammo_magazine/svt(turf)

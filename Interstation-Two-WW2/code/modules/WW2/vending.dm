@@ -49,7 +49,7 @@
 	products = list(
 		/obj/item/weapon/gun/projectile/boltaction/carcano = 6,
 		/obj/item/ammo_magazine/c65x52mm = 40,
-		/obj/item/weapon/gun/projectile/automatic/modello38 = 3,
+		/obj/item/weapon/gun/projectile/submachinegun/modello38 = 3,
 		/obj/item/ammo_magazine/s9x19mm = 35,
 		)
 

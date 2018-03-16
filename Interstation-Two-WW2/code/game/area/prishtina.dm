@@ -666,6 +666,10 @@
 /area/prishtina/german/lift/down
 	name = "Lower Lift"
 
+// italian areas
+/area/prishtina/italian_base
+	name = "Italian Base"
+
 // soviet areas
 
 /area/prishtina/soviet

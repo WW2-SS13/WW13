@@ -22,7 +22,7 @@ var/list/recently_died = list()
 	var/list/dead = list()
 
 	switch (original_job.base_type_flag())
-		if (GERMAN)
+		if (GERMAN, ITALIAN)
 			dead = dead_germans
 			injured = heavily_injured_germans
 			alive = alive_germans

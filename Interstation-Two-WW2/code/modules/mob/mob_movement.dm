@@ -16,7 +16,7 @@
 	for (var/obj/item/I in contents)
 		if (!istype(I, /obj/item/organ))
 			if (I.w_class == 5)
-				slowdown += 1.33
+				slowdown += 0.33
 	. *= slowdown
 
 /mob/proc/get_walk_delay()

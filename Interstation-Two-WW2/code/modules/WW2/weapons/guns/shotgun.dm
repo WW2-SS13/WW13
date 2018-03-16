@@ -1,19 +1,3 @@
-/obj/item/projectile/bullet/shotgun
-	speed = 3.0
-
-/obj/item/projectile/bullet/shotgun/murder
-	speed = 10.0
-	armor_penetration = 500
-	damage = 300
-	accuracy = 5000
-	penetrating = 1
-
-/obj/item/weapon/gun/projectile/shotgun
-	gun_type = GUN_TYPE_SHOTGUN
-	accuracy = DEFAULT_SHOTGUN_ACCURACY
-	scoped_accuracy = DEFAULT_SHOTGUN_SCOPED_ACCURACY
-	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
-
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"
 	desc = "Useful for sweeping alleys."
@@ -28,7 +12,59 @@
 	load_method = SINGLE_CASING
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	handle_casings = HOLD_CASINGS
+	stat = "heavy"
 	var/recentpump = FALSE // to prevent spammage
+
+	// pistol accuracy for now
+	accuracy_list = list(
+
+		// small body parts: head, hand, feet
+		"small" = list(
+			SHORT_RANGE_STILL = 80,
+			SHORT_RANGE_MOVING = 40,
+
+			MEDIUM_RANGE_STILL = 70,
+			MEDIUM_RANGE_MOVING = 30,
+
+			LONG_RANGE_STILL = 60,
+			LONG_RANGE_MOVING = 40,
+
+			VERY_LONG_RANGE_STILL = 50,
+			VERY_LONG_RANGE_MOVING = 20),
+
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 85,
+			SHORT_RANGE_MOVING = 43,
+
+			MEDIUM_RANGE_STILL = 75,
+			MEDIUM_RANGE_MOVING = 38,
+
+			LONG_RANGE_STILL = 65,
+			LONG_RANGE_MOVING = 33,
+
+			VERY_LONG_RANGE_STILL = 55,
+			VERY_LONG_RANGE_MOVING = 28),
+
+		// large body parts: chest, groin
+		"large" = list(
+			SHORT_RANGE_STILL = 90,
+			SHORT_RANGE_MOVING = 45,
+
+			MEDIUM_RANGE_STILL = 80,
+			MEDIUM_RANGE_MOVING = 40,
+
+			LONG_RANGE_STILL = 70,
+			LONG_RANGE_MOVING = 35,
+
+			VERY_LONG_RANGE_STILL = 60,
+			VERY_LONG_RANGE_MOVING = 30),
+	)
+
+	accuracy_increase_per_point = 1.00
+	accuracy_decrease_per_point = 1.00
+	KD_chance = 20
+	stat = "heavy"
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)

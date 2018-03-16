@@ -346,41 +346,9 @@
 		if (istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
 
-			// 100% chance of KD
-			if (gun_type == GUN_TYPE_SHOTGUN)
-				P.KD_chance *= 20
-
-			// 75%
-			else if (gun_type == GUN_TYPE_HEAVY)
-				P.KD_chance *= 15
-				if (ishuman(user))
-					var/mob/living/carbon/human/H = user
-					P.KD_chance *= H.getStatCoeff("heavyweapon")
-					acc += max(H.getStatCoeff("heavyweapon")-1, 0) * 2
-
-			// 60% chance of KD
-			else if (gun_type == GUN_TYPE_RIFLE)
-				P.KD_chance *= 12
-				if (ishuman(user))
-					var/mob/living/carbon/human/H = user
-					P.KD_chance *= H.getStatCoeff("rifle")
-					acc += max(H.getStatCoeff("rifle")-1, 0) * 2
-
-			// 30% chance of KD
-			else if (gun_type == GUN_TYPE_PISTOL)
-				P.KD_chance *= 6
-				if (ishuman(user))
-					var/mob/living/carbon/human/H = user
-					P.KD_chance *= H.getStatCoeff("pistol")
-					acc += max(H.getStatCoeff("pistol")-1, 0) * 2
-
-			// 20% chance of KD
-			else if (gun_type == GUN_TYPE_MG)
-				P.KD_chance *= 4
-				if (ishuman(user))
-					var/mob/living/carbon/human/H = user
-					P.KD_chance *= H.getStatCoeff("mg")
-					acc += max(H.getStatCoeff("mg")-1, 0) * 2
+			if (istype(P.firedfrom, /obj/item/weapon/gun/projectile))
+				var/obj/item/weapon/gun/projectile/proj = P.firedfrom
+				P.KD_chance = proj.KD_chance
 
 			if (ishuman(user))
 				var/mob/living/carbon/human/H = user

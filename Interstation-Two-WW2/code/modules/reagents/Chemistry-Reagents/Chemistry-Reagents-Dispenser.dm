@@ -112,9 +112,9 @@
 	M.nutrition += nutriment_factor * removed
 	var/strength_mod = 1.0
 
-	if (M.water < FALSE)
-		M.water += rand(20,30)
-	M.water += removed * 10
+	if (M.water < 0)
+		M.water += rand(40,50)
+	M.water += removed * 40
 
 	M.add_chemical_effect(CE_ALCOHOL, TRUE)
 

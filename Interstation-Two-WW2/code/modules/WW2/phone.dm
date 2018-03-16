@@ -35,7 +35,7 @@ var/list/soviet_traitors = list()
 	faction = SOVIET
 
 /obj/item/weapon/phone/tohighcommand/proc/may_bombard_base()
-	return tickerProcess.time_elapsed >= 18000
+	return tickerProcess.time_elapsed >= 27000 // 45 minutes
 
 /obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_message()
 	if (may_bombard_base())
@@ -136,15 +136,18 @@ var/list/soviet_traitors = list()
 				var/area/H_area = get_area(H)
 				if (used_areas.Find(H_area))
 					continue
-				if (istype(H_area, /area/prishtina/german))
+				else if (istype(H_area, /area/prishtina/german))
 					if (!caller || !caller.may_bombard_base())
 						continue
-				if (istype(H_area, /area/prishtina/soviet))
+				else if (istype(H_area, /area/prishtina/soviet))
 					if (!caller || !caller.may_bombard_base())
 						continue
-				if (istype(H_area, /area/prishtina/void))
+				else if (istype(H_area, /area/prishtina/italian_base))
+					if (!caller || !caller.may_bombard_base())
+						continue
+				else if (istype(H_area, /area/prishtina/void))
 					continue
-				if ((H.original_job && H.original_job.base_type_flag() == raiding) || raiding == TRUE || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
+				else if ((H.original_job && H.original_job.base_type_flag() == raiding) || raiding == TRUE || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
 					if (targeted < maximum_targets)
 
 						++targeted

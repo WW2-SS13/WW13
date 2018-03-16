@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/heavysniper
+/obj/item/weapon/gun/projectile/heavy
 	name = "anti-materiel rifle"
 	desc = "A portable anti-armour rifle fitted with a scope, the HI PTR-7 Rifle was originally designed to used against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease. Fires armor piercing 14.5mm shells."
 	icon_state = "heavysniper"
@@ -21,13 +21,13 @@
 	reload_sound 	= 'sound/weapons/guns/interact/rifle_load.ogg'
 	var/bolt_open = FALSE
 
-/obj/item/weapon/gun/projectile/heavysniper/update_icon()
+/obj/item/weapon/gun/projectile/heavy/update_icon()
 	if(bolt_open)
 		icon_state = "heavysniper-open"
 	else
 		icon_state = "heavysniper"
 
-/obj/item/weapon/gun/projectile/heavysniper/attack_self(mob/user as mob)
+/obj/item/weapon/gun/projectile/heavy/attack_self(mob/user as mob)
 	playsound(loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, TRUE)
 	bolt_open = !bolt_open
 	if(bolt_open)
@@ -45,18 +45,18 @@
 	add_fingerprint(user)
 	update_icon()
 
-/obj/item/weapon/gun/projectile/heavysniper/special_check(mob/user)
+/obj/item/weapon/gun/projectile/heavy/special_check(mob/user)
 	if(bolt_open)
 		user << "<span class='warning'>You can't fire [src] while the bolt is open!</span>"
 		return FALSE
 	return ..()
 
-/obj/item/weapon/gun/projectile/heavysniper/load_ammo(var/obj/item/A, mob/user)
+/obj/item/weapon/gun/projectile/heavy/load_ammo(var/obj/item/A, mob/user)
 	if(!bolt_open)
 		return
 	..()
 
-/obj/item/weapon/gun/projectile/heavysniper/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/weapon/gun/projectile/heavy/unload_ammo(mob/user, var/allow_dump=1)
 	if(!bolt_open)
 		return
 	..()
