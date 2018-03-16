@@ -141,7 +141,11 @@ var/list/global_whitelists[50]
 	if (serverswap && serverswap.Find("masterdir"))
 		var/path = "[serverswap["masterdir"]]/whitelist.txt"
 		for (var/_ckey in file2list(path))
+			if (_ckey == client_or_ckey)
+				return TRUE
 			if (ckey(_ckey) == client_or_ckey)
+				return TRUE
+			if (lowertext(_ckey) == client_or_ckey)
 				return TRUE
 	return FALSE
 
