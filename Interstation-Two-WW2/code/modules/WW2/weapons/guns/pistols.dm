@@ -78,6 +78,7 @@
 	max_shells = 10
 	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
 	magazine_type = /obj/item/ammo_casing/c763x25mm_mauser
+	fire_delay = 2
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 
@@ -104,6 +105,8 @@
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	magazine_type = /obj/item/ammo_magazine/c762x38mmR
+	accuracy = DEFAULT_PISTOL_ACCURACY
+	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 
 /obj/item/weapon/gun/projectile/revolver/nagant_revolver/gibber
 	crushes = TRUE
@@ -114,6 +117,26 @@
 		icon_state = "nagant"
 	else
 		icon_state = "nagant"
+	return
+
+/obj/item/weapon/gun/projectile/pistol/waltherp38
+	name = "Walther P38"
+	desc = "Standard issue German pistol. The Walther P38 is chambered in 9x19mm Parabellum rounds with a 8 rounds box detachable magazine."
+	icon_state = "waltherp"
+	item_state = "gun"
+	w_class = 2
+	caliber = "9x19mm"
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	magazine_type = /obj/item/ammo_magazine/p9x19mm
+	accuracy = DEFAULT_PISTOL_ACCURACY
+	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+
+/obj/item/weapon/gun/projectile/pistol/waltherp38/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "waltherp"
+	else
+		icon_state = "waltherp0"
 	return
 
 

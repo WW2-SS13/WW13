@@ -101,7 +101,7 @@
 
 	can_wield = TRUE
 
-	sel_mode = 2
+	sel_mode = 1
 
 /obj/item/weapon/gun/projectile/automatic/pps/update_icon()
 	if(ammo_magazine)
@@ -130,11 +130,38 @@
 
 	can_wield = TRUE
 
-	sel_mode = 2
+	sel_mode = 1
 
 /obj/item/weapon/gun/projectile/automatic/stenmk3/update_icon()
 	if(ammo_magazine)
 		icon_state = "sten"
 	else
 		icon_state = "sten0"
+	return
+
+/obj/item/weapon/gun/projectile/automatic/modello38
+	name = "Modello 38"
+	desc = "Full name MAB 38 'Moschetto Automatico Modello 1938', a standard issue submachine gun used by the Royal Italian Army. You can feel the power of meatballs in your side."
+	icon_state = "model38"
+	item_state = "model38"
+	load_method = MAGAZINE
+	slot_flags = SLOT_BACK|SLOT_BELT
+	w_class = 3
+	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY
+	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY
+	caliber = "9x19mm"
+	magazine_type = /obj/item/ammo_magazine/s9x19mm
+	firemodes = list(
+		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=0.4, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
+		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=0.8, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		)
+	sel_mode = 1
+
+/obj/item/weapon/gun/projectile/automatic/modello38/update_icon()
+	if(ammo_magazine)
+		icon_state = "model38"
+		item_state = "model38-0"
+	else
+		icon_state = "model380"
+		item_state = "model38"
 	return

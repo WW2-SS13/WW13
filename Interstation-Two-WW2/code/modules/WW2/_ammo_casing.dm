@@ -105,6 +105,16 @@ WW 2 WEAPONS MAGS N AMMO
 	caliber = "6.5x52mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/c65x52mm
 
+/obj/item/ammo_casing/p9x19mm
+	desc = "A 9x19mm Parabellum bullet casing."
+	caliber = "9x19mm"
+	projectile_type = /obj/item/projectile/bullet/rifle/p9x19mm
+
+/obj/item/ammo_casing/s9x19mm
+	desc = "A 9x19mm Parabellum bullet casing."
+	caliber = "9x19mm"
+	projectile_type = /obj/item/projectile/bullet/rifle/s9x19mm
+
 /*
 /obj/item/ammo_casing/svt
 	desc = "A SVT bullet casing."

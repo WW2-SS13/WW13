@@ -29,7 +29,7 @@
 		/obj/item/clothing/mask/gas/german = 25
 	)
 
-/obj/structure/vending/italianapparel
+/obj/structure/vending/italian/apparel
 	name = "Italian apparel rack"
 	desc = "Basic wear for Italian soldiers."
 	icon_state = "apparel_german"
@@ -40,8 +40,19 @@
 		/obj/item/clothing/head/helmet/tactical/gerhelm = 20,
 		/obj/item/clothing/shoes/swat = 20,
 		/obj/item/clothing/mask/gas/german = 10,
-		/obj/item/ammo_magazine/c65x52mm = 25,
-	)
+		)
+
+/obj/structure/vending/italian/equipment
+	name = "Italian equipment rack"
+	desc = "Basic equipment for Italian soldiers."
+	icon_state = "equipment_german"
+	products = list(
+		/obj/item/weapon/gun/projectile/boltaction/carcano = 6,
+		/obj/item/ammo_magazine/c65x52mm = 40,
+		/obj/item/weapon/gun/projectile/automatic/modello38 = 3,
+		/obj/item/ammo_magazine/s9x19mm = 35,
+		)
+
 //	idle_power_usage = 0
 
 // EQUIPMENT RACKS

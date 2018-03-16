@@ -142,6 +142,16 @@
 	penetrating = 2
 	armor_penetration = 100
 
+// WALTHER P38 //
+/obj/item/projectile/bullet/rifle/p9x19mm
+	damage = DAMAGE_LOW
+	penetrating = FALSE
+
+// MODELLO 38 //
+/obj/item/projectile/bullet/rifle/s9x19mm
+	damage = DAMAGE_LOW
+	penetrating = FALSE
+
 #undef DAMAGE_LOW
 #undef DAMAGE_MEDIUM
 #undef DAMAGE_HIGH

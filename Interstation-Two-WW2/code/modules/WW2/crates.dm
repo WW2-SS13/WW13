@@ -161,6 +161,12 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/waltherammo
+	name = "Walther P38 ammo crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
 /obj/structure/closet/crate/ppsammo
 	name = "PPS-43 ammo crate"
 	icon_state = "mil_crate_closed"
@@ -300,6 +306,19 @@
 	update_capacity(20)
 	for (var/v in 1 to 20)
 		new/obj/item/weapon/gun/projectile/pistol/tokarev(src)
+
+/obj/structure/closet/crate/waltherp38
+	name = "Walther P38 crate"
+	icon = 'icons/WW2/artillery_crate.dmi'
+	icon_state = "closed"
+	icon_opened = "opened"
+	icon_closed = "closed"
+
+/obj/structure/closet/crate/waltherp38/New()
+	..()
+	update_capacity(20)
+	for (var/v in 1 to 20)
+		new/obj/item/weapon/gun/projectile/pistol/waltherp38(src)
 
 // webbing
 /obj/structure/closet/crate/webbing
@@ -718,3 +737,9 @@
 	update_capacity(20)
 	for (var/v in 1 to 20)
 		new /obj/item/ammo_magazine/c762x38mmR(src)
+
+/obj/structure/closet/crate/waltherammo/New()
+	..()
+	update_capacity(20)
+	for (var/v in 1 to 20)
+		new /obj/item/ammo_magazine/p9x19mm(src)
