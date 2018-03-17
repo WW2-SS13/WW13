@@ -125,7 +125,7 @@ var/list/soviet_traitors = list()
 
 		var/list/targets = (raiding == SOVIET ? alive_russians : raiding == GERMAN ? alive_germans : player_list)
 
-		var/maximum_targets = max(1, round(targets.len/5))
+		var/maximum_targets = max(1, ceil(targets.len/5))
 		var/targeted = 0
 
 		var/shuffled_human_mobs = shuffle(human_mob_list)
