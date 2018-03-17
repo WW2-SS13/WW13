@@ -17,6 +17,10 @@ var/datum/controller/process/ping_track/ping_track = null
 		my_clients = clients.Copy()
 
 	avg = 0
+
+	if (!my_clients.len)
+		return // dividing by 0 is bad
+
 	var/clients_checked = 0
 
 	while (my_clients.len)
