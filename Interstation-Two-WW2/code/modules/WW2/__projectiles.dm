@@ -6,7 +6,8 @@
 #define DAMAGE_VERY_HIGH 96
 #define DAMAGE_OH_GOD 200
 
-/obj/item/projectile/bullet/shotgun
+// all bullets are faster now
+/obj/item/projectile/bullet
 	speed = 5.0
 
 /obj/item/projectile/bullet/shotgun/murder

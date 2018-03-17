@@ -35,7 +35,7 @@
 	return
 
 /obj/item/weapon/gun/projectile/minigun/mg34stat
-	name = "Stationary maxim machinegun"
+	name = "Stationary MG34"
 	desc = "MG34 machinegun established on special wooden pod."
 	icon_state = "mg34stat"
 	item_state = "mg34stat"

@@ -133,7 +133,7 @@
 "cC" = (/obj/structure/curtain/black,/turf/floor/wood,/area/prishtina/german/gearing)
 "cD" = (/turf/floor/wood,/area/prishtina/german/gearing)
 "cE" = (/obj/effect/decal/cleanable/ash,/turf/floor/wood,/area/prishtina/german/main_area/inside)
-"cF" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/item/weapon/gun/projectile/minigun/maximstat{tag = "icon-maximstat (WEST)"; icon_state = "maximstat"; dir = 8},/turf/floor/wood,/area/prishtina/german/main_area/inside)
+"cF" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/item/weapon/gun/projectile/minigun/mg34stat{icon_state = "mg34stat"; dir = 8},/turf/floor/wood,/area/prishtina/german/main_area/inside)
 "cG" = (/obj/effect/decal/cleanable/dirt,/obj/item/device/radio/intercom/loudspeaker/german{dir = 4},/turf/floor/wood,/area/prishtina/german/main_area/inside)
 "cH" = (/obj/structure/bed/chair/wood/red,/turf/floor/wood,/area/prishtina/german/command)
 "cI" = (/obj/structure/table/glass,/obj/machinery/light/small{dir = 4},/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
