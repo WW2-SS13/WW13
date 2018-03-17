@@ -23,11 +23,13 @@ var/static/list/german_supply_crate_types = list(
 	"Flaregun Ammo" = /obj/structure/closet/crate/flares_ammo,
 	"Flares" = /obj/structure/closet/crate/flares,
 	"Bayonet" = /obj/structure/closet/crate/bayonets,
+
 	"Solid Rations" = /obj/structure/closet/crate/rations/german_solids,
 	"Liquid Rations" = /obj/structure/closet/crate/rations/german_liquids,
 	"Dessert Rations" = /obj/structure/closet/crate/rations/german_desserts,
 	"Water Rations" = /obj/structure/closet/crate/rations/water,
 	"Alcohol Rations" = /obj/structure/closet/crate/rations/german_alcohol,
+	"Meat Rations" = /obj/structure/closet/crate/rations/german_meat,
 
 	// MATERIALS
 	"Wood Planks" = /obj/structure/closet/crate/wood,
@@ -84,11 +86,13 @@ var/static/list/soviet_supply_crate_types = list(
 	"Flaregun Ammo" = /obj/structure/closet/crate/flares_ammo,
 	"Flares" = /obj/structure/closet/crate/flares,
 	"Bayonet" = /obj/structure/closet/crate/bayonets,
+
 	"Solid Rations" = /obj/structure/closet/crate/rations/soviet_solids,
 	"Liquid Rations" = /obj/structure/closet/crate/rations/soviet_liquids,
 	"Dessert Rations" = /obj/structure/closet/crate/rations/soviet_desserts,
 	"Water Rations" = /obj/structure/closet/crate/rations/water,
 	"Alcohol Rations" = /obj/structure/closet/crate/rations/soviet_alcohol,
+	"Meat Rations" = /obj/structure/closet/crate/rations/soviet_meat,
 
 	// MATERIALS
 	"Wood Planks" = /obj/structure/closet/crate/wood,
@@ -158,6 +162,7 @@ var/static/list/supply_crate_costs = list(
 	"Dessert Rations" = 160,
 	"Water Rations" = 50,
 	"Alcohol Rations" = 75,
+	"Meat Rations" = 200,
 
 	// MATERIALS
 	"Wood Planks" = 75,
@@ -168,12 +173,11 @@ var/static/list/supply_crate_costs = list(
 	// GUNS & ARTILLERY
 	"MP40" = 125,
 	"MG34" = 175,
-	"PPSH" = 125,
+	"PPSH-41" = 125,
 	"DP-28" = 175,
 	"PTRD" = 200,
 	"SVT40" = 150,
 	"Gewehr 41" = 150,
-
 	"PPS-43" = 100,
 	"Flammenwerfer" = 250,
 	"7,5 cm FK 18 Artillery Piece" = 300,

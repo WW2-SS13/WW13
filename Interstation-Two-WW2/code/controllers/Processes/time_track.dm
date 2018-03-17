@@ -1,5 +1,4 @@
 // ported from /tg/station - Kachnov
-
 var/datum/controller/process/time_track/time_track = null
 
 /datum/controller/process/time_track

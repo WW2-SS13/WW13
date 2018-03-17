@@ -666,6 +666,8 @@
 				stat("Altitude:", paratrooper_plane_master.altitude)
 
 			stat("Time Dilation:", time_track ? "[ceil(time_track.dilation)]%" : "???")
+			if (ping_track && client)
+				stat("Ping (Average):", "[ceil(client.last_ping)] ms ([ceil(ping_track.avg)] ms)")
 
 		if(client.holder)
 			if(statpanel("Status"))

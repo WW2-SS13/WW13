@@ -749,20 +749,20 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (disintegrate != DROPLIMB_BLUNT || !istype(src, /obj/item/organ/external/head))
 		removed(null, ignore_children)
 
-	victim.traumatic_shock += 60
+		victim.traumatic_shock += 60
 
-	if(parent_organ)
-		var/datum/wound/lost_limb/W = new (src, disintegrate, clean)
-		if(clean)
-			parent_organ.wounds |= W
-			parent_organ.update_damages()
-		else
-			var/obj/item/organ/external/stump/stump = new (victim, FALSE, src)
-			if(status & ORGAN_ROBOT)
-				stump.robotize()
-			stump.wounds |= W
-			victim.organs |= stump
-			stump.update_damages()
+		if(parent_organ)
+			var/datum/wound/lost_limb/W = new (src, disintegrate, clean)
+			if(clean)
+				parent_organ.wounds |= W
+				parent_organ.update_damages()
+			else
+				var/obj/item/organ/external/stump/stump = new (victim, FALSE, src)
+				if(status & ORGAN_ROBOT)
+					stump.robotize()
+				stump.wounds |= W
+				victim.organs |= stump
+				stump.update_damages()
 
 	spawn(1)
 		victim.updatehealth()

@@ -49,3 +49,5 @@
 	preload_rsc = TRUE
 
 	var/next_normal_respawn = -1
+
+	var/last_ping = 0
