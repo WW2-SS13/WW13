@@ -60,6 +60,7 @@
 	var/accuracy_decrease_mod = 1.00
 	var/KD_chance = 5
 	var/stat = "rifle"
+	var/effectiveness_mod = 1.00
 
 /obj/item/weapon/gun/projectile/proc/calculate_miss_chance(zone, var/mob/target)
 	var/mob/living/carbon/human/firer = loc
@@ -116,6 +117,8 @@
 		miss_chance_modifier += ((1.00 - firer_stat) * accuracy_decrease_mod)/5
 
 	. *= miss_chance_modifier
+	. /= effectiveness_mod
+
 	. = min(CLAMP0100(.), 98)
 
 //	log_debug("final miss chance: [.]")
