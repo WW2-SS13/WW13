@@ -473,6 +473,28 @@
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)
 
+/obj/item/weapon/storage/belt/italy
+	name = "Italian belt pouch"
+	desc = "Can hold gear like pistol, ammo and other thingies."
+	icon_state = "gerbelt"
+	item_state = "gerbelt"
+	storage_slots = 12
+	max_w_class = 3
+	max_storage_space = 24
+	can_hold = list(
+		/obj/item/ammo_magazine,
+		/obj/item/weapon/material,
+		/obj/item/weapon/gauze_pack,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/attachment,
+		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/gun/projectile/revolver,
+		/obj/item/weapon/melee/classic_baton,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/handcuffs,
+		/obj/item/ammo_casing/a145
+		)
+
 /obj/item/clothing/under/doctor
 	name = "doctor's uniform"
 	desc = "A sterile, nicely pressed suit for doctors."
@@ -515,6 +537,12 @@
 
 /obj/item/weapon/storage/backpack/german
 	name = "german backpack"
+	desc = "You wear this on your back and put items into it."
+	icon_state = "germanpack"
+	item_state_slots = null
+
+/obj/item/weapon/storage/backpack/italy
+	name = "italian backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "germanpack"
 	item_state_slots = null
