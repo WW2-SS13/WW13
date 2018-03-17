@@ -7,45 +7,45 @@
 
 		// small body parts: head, hand, feet
 		"small" = list(
-			SHORT_RANGE_STILL = 20,
-			SHORT_RANGE_MOVING = 10,
-
-			MEDIUM_RANGE_STILL = 14,
-			MEDIUM_RANGE_MOVING = 7,
-
-			LONG_RANGE_STILL = 7,
-			LONG_RANGE_MOVING = 4,
-
-			VERY_LONG_RANGE_STILL = 5,
-			VERY_LONG_RANGE_MOVING = 3),
-
-		// medium body parts: limbs
-		"medium" = list(
-			SHORT_RANGE_STILL = 25,
+			SHORT_RANGE_STILL = 26,
 			SHORT_RANGE_MOVING = 13,
 
-			MEDIUM_RANGE_STILL = 20,
-			MEDIUM_RANGE_MOVING = 10,
+			MEDIUM_RANGE_STILL = 18,
+			MEDIUM_RANGE_MOVING = 9,
 
-			LONG_RANGE_STILL = 15,
-			LONG_RANGE_MOVING = 8,
+			LONG_RANGE_STILL = 9,
+			LONG_RANGE_MOVING = 5,
 
 			VERY_LONG_RANGE_STILL = 7,
 			VERY_LONG_RANGE_MOVING = 4),
 
-		// large body parts: chest, groin
-		"large" = list(
-			SHORT_RANGE_STILL = 30,
-			SHORT_RANGE_MOVING = 15,
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 33,
+			SHORT_RANGE_MOVING = 17,
 
-			MEDIUM_RANGE_STILL = 25,
+			MEDIUM_RANGE_STILL = 26,
 			MEDIUM_RANGE_MOVING = 13,
 
 			LONG_RANGE_STILL = 20,
 			LONG_RANGE_MOVING = 10,
 
-			VERY_LONG_RANGE_STILL = 10,
+			VERY_LONG_RANGE_STILL = 9,
 			VERY_LONG_RANGE_MOVING = 5),
+
+		// large body parts: chest, groin
+		"large" = list(
+			SHORT_RANGE_STILL = 39,
+			SHORT_RANGE_MOVING = 20,
+
+			MEDIUM_RANGE_STILL = 33,
+			MEDIUM_RANGE_MOVING = 17,
+
+			LONG_RANGE_STILL = 26,
+			LONG_RANGE_MOVING = 13,
+
+			VERY_LONG_RANGE_STILL = 13,
+			VERY_LONG_RANGE_MOVING = 7),
 	)
 
 	accuracy_increase_mod = 1.10
