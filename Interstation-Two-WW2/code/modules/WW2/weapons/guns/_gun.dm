@@ -56,8 +56,8 @@
 			VERY_LONG_RANGE_MOVING = 6)
 	)
 
-	var/accuracy_increase_per_point = 1.00
-	var/accuracy_decrease_per_point = 1.00
+	var/accuracy_increase_mod = 1.00
+	var/accuracy_decrease_mod = 1.00
 	var/KD_chance = 5
 	var/stat = "rifle"
 
@@ -111,9 +111,9 @@
 	log_debug("initial miss chance: [.]")
 
 	if (firer_stat > 1.00)
-		miss_chance_modifier -= ((firer_stat - 1.00) * accuracy_increase_per_point)
+		miss_chance_modifier -= ((firer_stat - 1.00) * accuracy_increase_mod)/5
 	else if (firer_stat < 1.00)
-		miss_chance_modifier += ((1.00 - firer_stat) * accuracy_decrease_per_point)
+		miss_chance_modifier += ((1.00 - firer_stat) * accuracy_decrease_mod)/5
 
 	. *= miss_chance_modifier
 	. = min(CLAMP0100(.), 98)

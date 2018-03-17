@@ -45,8 +45,8 @@
 			VERY_LONG_RANGE_MOVING = 30),
 	)
 
-	accuracy_increase_per_point = 1.05
-	accuracy_decrease_per_point = 1.05
+	accuracy_increase_mod = 1.05
+	accuracy_decrease_mod = 1.05
 	KD_chance = 20
 	stat = "pistol"
 
@@ -129,7 +129,7 @@
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
 	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
-	magazine_type = /obj/item/ammo_casing/c763x25mm_mauser
+	magazine_type = /obj/item/ammo_magazine/c763x25mm_mauser
 	fire_delay = 2
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY

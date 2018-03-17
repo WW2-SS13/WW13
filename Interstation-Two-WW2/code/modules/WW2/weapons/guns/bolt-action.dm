@@ -50,8 +50,8 @@
 			VERY_LONG_RANGE_MOVING = 35),
 	)
 
-	accuracy_increase_per_point = 1.10
-	accuracy_decrease_per_point = 1.10
+	accuracy_increase_mod = 1.10
+	accuracy_decrease_mod = 1.10
 	KD_chance = 50
 	stat = "rifle"
 
