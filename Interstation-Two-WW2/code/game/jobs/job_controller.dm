@@ -819,7 +819,7 @@ var/global/datum/controller/occupations/job_master
 			if (side_is_hardlocked(side))
 				return 2
 			return !ticker.can_latejoin_ruforce
-		else if(side == GERMAN)
+		else if(side == GERMAN || side == ITALIAN)
 			if (germans_forceEnabled)
 				return FALSE
 			if (side_is_hardlocked(side))
@@ -847,6 +847,7 @@ var/global/datum/controller/occupations/job_master
 		// todo: faction lists structured like player_list (ie german_list)
 		var/germans = n_of_side(GERMAN)
 		var/soviets = n_of_side(SOVIET)
+		var/italians = n_of_side(ITALIAN)
 
 		var/players_without_partisans = clients.len
 		for (var/mob/living/carbon/human/H in player_list)
@@ -867,11 +868,11 @@ var/global/datum/controller/occupations/job_master
 				if (civilians_forceEnabled)
 					return FALSE
 				return FALSE
-			if (GERMAN)
+			if (GERMAN, ITALIAN)
 				if (germans_forceEnabled)
 					return FALSE
 				if (player_list.len >= 2)
-					if (germans >= max_germans)
+					if ((germans+italians) >= max_germans)
 						return TRUE
 			if (SOVIET)
 				if (soviets_forceEnabled)
@@ -881,7 +882,5 @@ var/global/datum/controller/occupations/job_master
 						return TRUE
 			if (UKRAINIAN)
 				return TRUE
-			if (ITALIAN)
-				return side_is_hardlocked(GERMAN)
 
 		return FALSE
