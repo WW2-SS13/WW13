@@ -108,7 +108,7 @@
 	var/firer_stat = firer.getStatCoeff(stat)
 	var/miss_chance_modifier = 1.00
 
-	log_debug("initial miss chance: [.]")
+//	log_debug("initial miss chance: [.]")
 
 	if (firer_stat > 1.00)
 		miss_chance_modifier -= ((firer_stat - 1.00) * accuracy_increase_mod)/5
@@ -118,6 +118,6 @@
 	. *= miss_chance_modifier
 	. = min(CLAMP0100(.), 98)
 
-	log_debug("final miss chance: [.]")
+//	log_debug("final miss chance: [.]")
 
 	return .
