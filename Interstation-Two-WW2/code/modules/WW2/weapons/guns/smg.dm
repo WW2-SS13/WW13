@@ -49,7 +49,7 @@
 	)
 
 	accuracy_increase_mod = 1.10
-	accuracy_decrease_mod = 1.10
+	accuracy_decrease_mod = 1.20
 	KD_chance = 15
 	stat = "MG"
 

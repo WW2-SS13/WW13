@@ -46,8 +46,8 @@
 			VERY_LONG_RANGE_MOVING = 5),
 	)
 
-	accuracy_increase_mod = 1.00
-	accuracy_decrease_mod = 1.00
+	accuracy_increase_mod = 1.10
+	accuracy_decrease_mod = 1.20
 	KD_chance = 10
 	stat = "MG"
 

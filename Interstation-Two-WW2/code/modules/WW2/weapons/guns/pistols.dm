@@ -46,7 +46,7 @@
 	)
 
 	accuracy_increase_mod = 1.05
-	accuracy_decrease_mod = 1.05
+	accuracy_decrease_mod = 1.10
 	KD_chance = 20
 	stat = "pistol"
 
