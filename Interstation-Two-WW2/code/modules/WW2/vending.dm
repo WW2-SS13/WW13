@@ -34,12 +34,14 @@
 	desc = "Basic wear for Italian soldiers."
 	icon_state = "apparel_german"
 	products = list(
-		/obj/item/clothing/suit/storage/coat/italian = 20,
-		/obj/item/clothing/accessory/storage/webbing = 20,
-		/obj/item/clothing/under/itauni = 20,
-		/obj/item/clothing/head/helmet/tactical/gerhelm = 20,
-		/obj/item/clothing/shoes/swat = 20,
-		/obj/item/clothing/mask/gas/german = 10,
+		/obj/item/clothing/suit/storage/coat/italian = 12,
+		/obj/item/clothing/accessory/storage/webbing = 12,
+		/obj/item/clothing/under/itauni = 12,
+		/obj/item/clothing/head/helmet/tactical/gerhelm = 12,
+		/obj/item/clothing/shoes/swat = 12,
+		/obj/item/clothing/mask/gas/german = 12,
+		/obj/item/weapon/storage/belt/italy = 12,
+		/obj/item/weapon/storage/backpack/italy = 12,
 		)
 
 /obj/structure/vending/italian/equipment
@@ -47,10 +49,19 @@
 	desc = "Basic equipment for Italian soldiers."
 	icon_state = "equipment_german"
 	products = list(
-		/obj/item/weapon/gun/projectile/boltaction/carcano = 6,
+		/obj/item/weapon/gun/projectile/boltaction/carcano = 3,
 		/obj/item/ammo_magazine/c65x52mm = 40,
-		/obj/item/weapon/gun/projectile/submachinegun/modello38 = 3,
-		/obj/item/ammo_magazine/s9x19mm = 35,
+		/obj/item/weapon/gun/projectile/submachinegun/modello38 = 4,
+		/obj/item/ammo_magazine/s9x19mm = 40,
+		/obj/item/weapon/gauze_pack/gauze = 25,
+		/obj/item/weapon/attachment/bayonet/german = 25,
+		/obj/item/weapon/material/kitchen/utensil/knife/boot = 25,
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 25,
+		/obj/item/weapon/grenade/explosive/l2a2 = 10,
+		/obj/item/weapon/grenade/explosive/stgnade = 10,
+		/obj/item/weapon/grenade/smokebomb/german = 20,
+		/obj/item/weapon/attachment/scope/adjustable/sniper_scope = 2,
+
 		)
 
 //	idle_power_usage = 0
