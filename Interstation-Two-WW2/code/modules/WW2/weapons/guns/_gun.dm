@@ -78,7 +78,7 @@
 	switch (zone)
 		if ("l_leg", "r_leg", "l_arm", "r_arm")
 			accuracy_sublist = accuracy_list["medium"]
-		if ("l_hand", "r_hand", "l_foot", "r_foot", "head")
+		if ("l_hand", "r_hand", "l_foot", "r_foot", "head", "mouth", "eyes")
 			accuracy_sublist = accuracy_list["small"]
 
 	// note: the screen is 15 tiles wide by default, so a person more than 7 tiles away from you should not be on-screen
