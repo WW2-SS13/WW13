@@ -1,3 +1,55 @@
+/obj/item/weapon/gun/projectile/pistol
+	// a bit less accurate than rifles, but doesn't have scopes
+	accuracy_list = list(
+
+		// small body parts: head, hand, feet
+		"small" = list(
+			SHORT_RANGE_STILL = 80,
+			SHORT_RANGE_MOVING = 40,
+
+			MEDIUM_RANGE_STILL = 70,
+			MEDIUM_RANGE_MOVING = 30,
+
+			LONG_RANGE_STILL = 60,
+			LONG_RANGE_MOVING = 40,
+
+			VERY_LONG_RANGE_STILL = 50,
+			VERY_LONG_RANGE_MOVING = 20),
+
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 85,
+			SHORT_RANGE_MOVING = 43,
+
+			MEDIUM_RANGE_STILL = 75,
+			MEDIUM_RANGE_MOVING = 38,
+
+			LONG_RANGE_STILL = 65,
+			LONG_RANGE_MOVING = 33,
+
+			VERY_LONG_RANGE_STILL = 55,
+			VERY_LONG_RANGE_MOVING = 28),
+
+		// large body parts: chest, groin
+		"large" = list(
+			SHORT_RANGE_STILL = 90,
+			SHORT_RANGE_MOVING = 45,
+
+			MEDIUM_RANGE_STILL = 80,
+			MEDIUM_RANGE_MOVING = 40,
+
+			LONG_RANGE_STILL = 70,
+			LONG_RANGE_MOVING = 35,
+
+			VERY_LONG_RANGE_STILL = 60,
+			VERY_LONG_RANGE_MOVING = 30),
+	)
+
+	accuracy_increase_mod = 1.05
+	accuracy_decrease_mod = 1.10
+	KD_chance = 20
+	stat = "pistol"
+
 /obj/item/weapon/gun/projectile/pistol/attackby(obj/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/attachment/bayonet))
 		user << "<span class = 'danger'>That won't fit on there.</span>"
@@ -77,7 +129,7 @@
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
 	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
-	magazine_type = /obj/item/ammo_casing/c763x25mm_mauser
+	magazine_type = /obj/item/ammo_magazine/c763x25mm_mauser
 	fire_delay = 2
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY

@@ -28,6 +28,7 @@
 	ammo_type = /obj/item/ammo_casing/c4mm
 	accuracy = DEFAULT_MG_ACCURACY
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
+	stat = "MG"
 
 	firemodes = list(
 		list(name="3000 rpm", burst=10, burst_delay=0.1, fire_delay=0.4, dispersion=list(1.0)),
@@ -42,6 +43,57 @@
 	var/mob/last_user = null
 
 	gun_type = GUN_TYPE_MG
+
+	// mg accuracy of course
+	accuracy_list = list(
+
+		// small body parts: head, hand, feet
+		"small" = list(
+			SHORT_RANGE_STILL = 20,
+			SHORT_RANGE_MOVING = 10,
+
+			MEDIUM_RANGE_STILL = 14,
+			MEDIUM_RANGE_MOVING = 7,
+
+			LONG_RANGE_STILL = 7,
+			LONG_RANGE_MOVING = 4,
+
+			VERY_LONG_RANGE_STILL = 5,
+			VERY_LONG_RANGE_MOVING = 3),
+
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 25,
+			SHORT_RANGE_MOVING = 13,
+
+			MEDIUM_RANGE_STILL = 20,
+			MEDIUM_RANGE_MOVING = 10,
+
+			LONG_RANGE_STILL = 15,
+			LONG_RANGE_MOVING = 8,
+
+			VERY_LONG_RANGE_STILL = 7,
+			VERY_LONG_RANGE_MOVING = 4),
+
+		// large body parts: chest, groin
+		"large" = list(
+			SHORT_RANGE_STILL = 30,
+			SHORT_RANGE_MOVING = 15,
+
+			MEDIUM_RANGE_STILL = 25,
+			MEDIUM_RANGE_MOVING = 13,
+
+			LONG_RANGE_STILL = 20,
+			LONG_RANGE_MOVING = 10,
+
+			VERY_LONG_RANGE_STILL = 10,
+			VERY_LONG_RANGE_MOVING = 5),
+	)
+
+	accuracy_increase_mod = 1.00
+	accuracy_decrease_mod = 1.00
+	KD_chance = 10
+	stat = "MG"
 
 /obj/item/weapon/gun/projectile/minigun/attack_hand(var/mob/user)
 

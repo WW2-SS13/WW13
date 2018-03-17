@@ -120,12 +120,13 @@ var/obj/burning_overlay_turf = null
 
 	if (!burning_overlay_obj)
 		burning_overlay_obj = new
-		var/icon/I = icon(icon, "fire2")
-		I.Scale(48,96)
+		var/icon/I = icon(icon, "burning") // 'fire2' stopped animating
+//		I.Scale(48,96)
 		burning_overlay_obj.icon = I
-		burning_overlay_obj.pixel_y = -32
-		burning_overlay_obj.pixel_x = -8
+//		burning_overlay_obj.pixel_y = -32
+//		burning_overlay_obj.pixel_x = -8
 		burning_overlay_obj.layer = 5 // below smoke
+		burning_overlay_obj.color = fire_color(500)
 
 	if (!burning_overlay_turf)
 		burning_overlay_turf = new

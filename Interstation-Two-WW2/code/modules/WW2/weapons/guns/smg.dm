@@ -1,8 +1,59 @@
-/obj/item/weapon/gun/projectile/automatic
+/obj/item/weapon/gun/projectile/submachinegun
 	force = 10
 	throwforce = 20
 
-/obj/item/weapon/gun/projectile/automatic/mp40
+	// same accuracy as MGs, currently
+	accuracy_list = list(
+
+		// small body parts: head, hand, feet
+		"small" = list(
+			SHORT_RANGE_STILL = 26,
+			SHORT_RANGE_MOVING = 13,
+
+			MEDIUM_RANGE_STILL = 18,
+			MEDIUM_RANGE_MOVING = 9,
+
+			LONG_RANGE_STILL = 9,
+			LONG_RANGE_MOVING = 5,
+
+			VERY_LONG_RANGE_STILL = 7,
+			VERY_LONG_RANGE_MOVING = 4),
+
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 33,
+			SHORT_RANGE_MOVING = 17,
+
+			MEDIUM_RANGE_STILL = 26,
+			MEDIUM_RANGE_MOVING = 13,
+
+			LONG_RANGE_STILL = 20,
+			LONG_RANGE_MOVING = 10,
+
+			VERY_LONG_RANGE_STILL = 9,
+			VERY_LONG_RANGE_MOVING = 5),
+
+		// large body parts: chest, groin
+		"large" = list(
+			SHORT_RANGE_STILL = 39,
+			SHORT_RANGE_MOVING = 20,
+
+			MEDIUM_RANGE_STILL = 33,
+			MEDIUM_RANGE_MOVING = 17,
+
+			LONG_RANGE_STILL = 26,
+			LONG_RANGE_MOVING = 13,
+
+			VERY_LONG_RANGE_STILL = 13,
+			VERY_LONG_RANGE_MOVING = 7),
+	)
+
+	accuracy_increase_mod = 1.10
+	accuracy_decrease_mod = 1.20
+	KD_chance = 15
+	stat = "MG"
+
+/obj/item/weapon/gun/projectile/submachinegun/mp40
 	name = "MP-40"
 	desc = "German submachinegun chambered in 9x19 Parabellum, with a 32 magazine magazine layout. Standard issue amongst most troops."
 	icon_state = "mp40"
@@ -26,7 +77,7 @@
 
 	sel_mode = 2
 
-/obj/item/weapon/gun/projectile/automatic/mp40/update_icon()
+/obj/item/weapon/gun/projectile/submachinegun/mp40/update_icon()
 	if(ammo_magazine)
 		icon_state = "mp40"
 		if(wielded)
@@ -42,7 +93,7 @@
 	update_held_icon()
 	return
 
-/obj/item/weapon/gun/projectile/automatic/ppsh
+/obj/item/weapon/gun/projectile/submachinegun/ppsh
 	name = "PPSh-41"
 	desc = "Soviet submachinegun with a very large drum magazine. Capable of bringing many targets down in Stalin's name."
 	icon_state = "ppsh"
@@ -65,7 +116,7 @@
 
 	sel_mode = 2
 
-/obj/item/weapon/gun/projectile/automatic/ppsh/update_icon()
+/obj/item/weapon/gun/projectile/submachinegun/ppsh/update_icon()
 	if(ammo_magazine)
 		icon_state = "ppsh"
 		if(wielded)
@@ -81,7 +132,7 @@
 	update_held_icon()
 	return
 
-/obj/item/weapon/gun/projectile/automatic/pps
+/obj/item/weapon/gun/projectile/submachinegun/pps
 	name = "PPS-43"
 	desc = "Russian submachine gun chambered in 7.62x25mm Tokarev."
 	icon_state = "pps"
@@ -103,14 +154,14 @@
 
 	sel_mode = 1
 
-/obj/item/weapon/gun/projectile/automatic/pps/update_icon()
+/obj/item/weapon/gun/projectile/submachinegun/pps/update_icon()
 	if(ammo_magazine)
 		icon_state = "pps"
 	else
 		icon_state = "pps0"
 	return
 
-/obj/item/weapon/gun/projectile/automatic/stenmk3
+/obj/item/weapon/gun/projectile/submachinegun/stenmk3
 	name = "Sten MKIII"
 	desc = "British submachine gun chambered in 9x19mm."
 	icon_state = "sten"
@@ -132,14 +183,14 @@
 
 	sel_mode = 1
 
-/obj/item/weapon/gun/projectile/automatic/stenmk3/update_icon()
+/obj/item/weapon/gun/projectile/submachinegun/stenmk3/update_icon()
 	if(ammo_magazine)
 		icon_state = "sten"
 	else
 		icon_state = "sten0"
 	return
 
-/obj/item/weapon/gun/projectile/automatic/modello38
+/obj/item/weapon/gun/projectile/submachinegun/modello38
 	name = "Modello 38"
 	desc = "Full name MAB 38 'Moschetto Automatico Modello 1938', a standard issue submachine gun used by the Royal Italian Army. You can feel the power of meatballs in your side."
 	icon_state = "model38"
@@ -157,7 +208,7 @@
 		)
 	sel_mode = 1
 
-/obj/item/weapon/gun/projectile/automatic/modello38/update_icon()
+/obj/item/weapon/gun/projectile/submachinegun/modello38/update_icon()
 	if(ammo_magazine)
 		icon_state = "model38"
 		item_state = "model38-0"

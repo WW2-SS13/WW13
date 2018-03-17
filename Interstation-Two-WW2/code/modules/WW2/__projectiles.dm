@@ -6,6 +6,22 @@
 #define DAMAGE_VERY_HIGH 96
 #define DAMAGE_OH_GOD 200
 
+/obj/item/projectile/bullet/shotgun
+	speed = 3.0
+
+/obj/item/projectile/bullet/shotgun/murder
+	speed = 10.0
+	armor_penetration = 500
+	damage = 300
+	accuracy = 5000
+	penetrating = 1
+
+/obj/item/weapon/gun/projectile/shotgun
+	gun_type = GUN_TYPE_SHOTGUN
+	accuracy = DEFAULT_SHOTGUN_ACCURACY
+	scoped_accuracy = DEFAULT_SHOTGUN_SCOPED_ACCURACY
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
+
 /obj/item/projectile/bullet/rifle
 	speed = 4.0
 	armor_penetration = 50

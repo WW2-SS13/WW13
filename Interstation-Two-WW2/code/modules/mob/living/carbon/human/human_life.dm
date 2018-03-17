@@ -974,7 +974,7 @@
 /mob/living/carbon/human/proc/handle_starvation()//Making this it's own proc for my sanity's sake - Matt
 
 	// don't start starving right away
-	if (spawnedInAtRealTime != -1 && world.realtime - spawnedInAtRealTime <= 300)
+	if (spawnedInAtRealTime != -1 && world.realtime - spawnedInAtRealTime <= 600)
 		return
 
 	if(nutrition < 350 && nutrition >= 200)

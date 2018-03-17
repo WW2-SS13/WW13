@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/heavysniper/ptrd
+/obj/item/weapon/gun/projectile/heavy/ptrd
 	name = "PTRD anti-tank rifle"
 	desc = "A portable anti-armour rifle. Uses 14.5mm shells."
 	icon_state = "ptrd"
@@ -16,20 +16,70 @@
 	// lower accuracy due to being so powerful; meant to fight tanks now
 	accuracy = DEFAULT_PTRD_ACCURACY
 	scoped_accuracy = DEFAULT_PTRD_SCOPED_ACCURACY
-
 	gun_type = GUN_TYPE_HEAVY
 
-/obj/item/weapon/gun/projectile/heavysniper/ptrd/german
+	// extremely inaccurate at all ranges
+	accuracy_list = list(
+
+		// small body parts: head, hand, feet
+		"small" = list(
+			SHORT_RANGE_STILL = 5,
+			SHORT_RANGE_MOVING = 5,
+
+			MEDIUM_RANGE_STILL = 5,
+			MEDIUM_RANGE_MOVING = 5,
+
+			LONG_RANGE_STILL = 5,
+			LONG_RANGE_MOVING = 5,
+
+			VERY_LONG_RANGE_STILL = 5,
+			VERY_LONG_RANGE_MOVING = 5),
+
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 5,
+			SHORT_RANGE_MOVING = 5,
+
+			MEDIUM_RANGE_STILL = 5,
+			MEDIUM_RANGE_MOVING = 5,
+
+			LONG_RANGE_STILL = 5,
+			LONG_RANGE_MOVING = 5,
+
+			VERY_LONG_RANGE_STILL = 5,
+			VERY_LONG_RANGE_MOVING = 5),
+
+		// large body parts: chest, groin
+		"large" = list(
+			SHORT_RANGE_STILL = 5,
+			SHORT_RANGE_MOVING = 5,
+
+			MEDIUM_RANGE_STILL = 5,
+			MEDIUM_RANGE_MOVING = 5,
+
+			LONG_RANGE_STILL = 5,
+			LONG_RANGE_MOVING = 5,
+
+			VERY_LONG_RANGE_STILL = 5,
+			VERY_LONG_RANGE_MOVING = 5),
+	)
+
+	accuracy_increase_mod = 1.10
+	accuracy_decrease_mod = 1.20
+	KD_chance = 100
+	stat = "heavy"
+
+/obj/item/weapon/gun/projectile/heavy/ptrd/german
 	name = "14.5mm PaB 783"
 
-/obj/item/weapon/gun/projectile/heavysniper/ptrd/update_icon()
+/obj/item/weapon/gun/projectile/heavy/ptrd/update_icon()
 	if(bolt_open)
 		icon_state = "ptrd"
 	else
 		icon_state = "ptrd"
 
 
-/obj/item/weapon/gun/projectile/heavysniper/mk12
+/obj/item/weapon/gun/projectile/heavy/mk12
 	name = "\improper MK12"
 	desc = "Heavy scoped rifle."
 	icon_state = "mk12_loaded"
@@ -51,7 +101,7 @@
 		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, dispersion = list(0))
 		)
 
-/obj/item/weapon/gun/projectile/heavysniper/mk12/update_icon()
+/obj/item/weapon/gun/projectile/heavy/mk12/update_icon()
 	if(ammo_magazine)
 		icon_state = "mk12_loaded"
 		if(wielded)

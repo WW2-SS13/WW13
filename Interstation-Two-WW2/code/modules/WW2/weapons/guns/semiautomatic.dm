@@ -1,4 +1,56 @@
-/obj/item/weapon/gun/projectile/svt
+/obj/item/weapon/gun/projectile/semiautomatic
+	// pistol accuracy, rifle skill & rifle KD chance
+	accuracy_list = list(
+
+		// small body parts: head, hand, feet
+		"small" = list(
+			SHORT_RANGE_STILL = 80,
+			SHORT_RANGE_MOVING = 40,
+
+			MEDIUM_RANGE_STILL = 70,
+			MEDIUM_RANGE_MOVING = 30,
+
+			LONG_RANGE_STILL = 60,
+			LONG_RANGE_MOVING = 40,
+
+			VERY_LONG_RANGE_STILL = 50,
+			VERY_LONG_RANGE_MOVING = 20),
+
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 85,
+			SHORT_RANGE_MOVING = 43,
+
+			MEDIUM_RANGE_STILL = 75,
+			MEDIUM_RANGE_MOVING = 38,
+
+			LONG_RANGE_STILL = 65,
+			LONG_RANGE_MOVING = 33,
+
+			VERY_LONG_RANGE_STILL = 55,
+			VERY_LONG_RANGE_MOVING = 28),
+
+		// large body parts: chest, groin
+		"large" = list(
+			SHORT_RANGE_STILL = 90,
+			SHORT_RANGE_MOVING = 45,
+
+			MEDIUM_RANGE_STILL = 80,
+			MEDIUM_RANGE_MOVING = 40,
+
+			LONG_RANGE_STILL = 70,
+			LONG_RANGE_MOVING = 35,
+
+			VERY_LONG_RANGE_STILL = 60,
+			VERY_LONG_RANGE_MOVING = 30),
+	)
+
+	accuracy_increase_mod = 1.10
+	accuracy_decrease_mod = 1.20
+	KD_chance = 50
+	stat = "rifle"
+
+/obj/item/weapon/gun/projectile/semiautomatic/svt
 	name = "SVT-40"
 	desc = "Soviet semi-automatic rifle chambered in 7.62x54mmR. Used by some guard units and defense units."
 	icon_state = "svt"
@@ -21,7 +73,7 @@
 	force = 10
 	throwforce = 20
 
-/obj/item/weapon/gun/projectile/svt/update_icon()
+/obj/item/weapon/gun/projectile/semiautomatic/svt/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "svt"
@@ -31,7 +83,7 @@
 		item_state = "svt-mag"
 	return
 
-/obj/item/weapon/gun/projectile/g41
+/obj/item/weapon/gun/projectile/semiautomatic/g41
 	name = "Gewehr 41"
 	desc = "German semi-automatic rifle using 7.92x57mm Mauser ammunition in a 10 round magazine. Devastating rifle."
 	icon_state = "g41"
@@ -52,7 +104,7 @@
 	force = 10
 	throwforce = 20
 
-/obj/item/weapon/gun/projectile/g41/update_icon()
+/obj/item/weapon/gun/projectile/semiautomatic/g41/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "g41"
@@ -62,7 +114,7 @@
 		item_state = "g41"
 	return
 
-/obj/item/weapon/gun/projectile/fg42
+/obj/item/weapon/gun/projectile/semiautomatic/fg42
 	name = "FG42"
 	desc = "German assault rifle with a 20 round magazine, it is chambered in 7.92x57mm. Luftwaffe's elite weapon."
 	icon_state = "fg42"
@@ -86,7 +138,7 @@
 		)
 
 
-/obj/item/weapon/gun/projectile/fg42/update_icon()
+/obj/item/weapon/gun/projectile/semiautomatic/fg42/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "fg42"
@@ -97,7 +149,7 @@
 	return
 
 
-/obj/item/weapon/gun/projectile/automatic/stg
+/obj/item/weapon/gun/projectile/semiautomatic/stg
 	name = "STG-44"
 	desc = "German assault rifle with a 30 round magazine, chambered in 7.92x33mm Kurz. It is a devastating weapon."
 	icon_state = "stg"
@@ -115,7 +167,7 @@
 
 	can_wield = TRUE
 
-/obj/item/weapon/gun/projectile/automatic/stg/update_icon()
+/obj/item/weapon/gun/projectile/semiautomatic/stg/update_icon()
 	if(ammo_magazine)
 		icon_state = "stg"
 		if(wielded)
@@ -132,7 +184,7 @@
 	return
 
 
-/obj/item/weapon/gun/projectile/automatic/akm
+/obj/item/weapon/gun/projectile/semiautomatic/akm
 	name = "MP-43/B"
 	desc = "German assault rifle chambered in 7.92x33mm Kurz, 30 round magazine. Variant of the STG-44, issued to SS, usually."
 	icon_state = "stg"
@@ -157,7 +209,7 @@
 
 	sel_mode = 2
 
-/obj/item/weapon/gun/projectile/automatic/akm/update_icon()
+/obj/item/weapon/gun/projectile/semiautomatic/akm/update_icon()
 	if(ammo_magazine)
 		icon_state = "stg"
 		if(wielded)

@@ -181,12 +181,9 @@
 			if (id == "blood")
 				if (my_atom && ishuman(my_atom))
 					var/mob/living/carbon/human/H = my_atom
-					H.nutrition -= amount/2
-					H.water -= amount/2
+					H.nutrition -= amount/4
 					H.nutrition = min(H.nutrition, H.max_nutrition)
 					H.nutrition = max(H.nutrition, -H.max_nutrition)
-					H.water = min(H.water, H.max_water)
-					H.water = max(H.water, -H.max_water)
 			return TRUE
 	return FALSE
 

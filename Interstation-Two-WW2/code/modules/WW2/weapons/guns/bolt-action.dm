@@ -4,6 +4,57 @@
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 	var/next_reload = -1
 
+	// 5x as accurate as MGs for now
+	accuracy_list = list(
+
+		// small body parts: head, hand, feet
+		"small" = list(
+			SHORT_RANGE_STILL = 90,
+			SHORT_RANGE_MOVING = 45,
+
+			MEDIUM_RANGE_STILL = 80,
+			MEDIUM_RANGE_MOVING = 40,
+
+			LONG_RANGE_STILL = 70,
+			LONG_RANGE_MOVING = 35,
+
+			VERY_LONG_RANGE_STILL = 60,
+			VERY_LONG_RANGE_MOVING = 30),
+
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 95,
+			SHORT_RANGE_MOVING = 48,
+
+			MEDIUM_RANGE_STILL = 85,
+			MEDIUM_RANGE_MOVING = 43,
+
+			LONG_RANGE_STILL = 75,
+			LONG_RANGE_MOVING = 38,
+
+			VERY_LONG_RANGE_STILL = 65,
+			VERY_LONG_RANGE_MOVING = 33),
+
+		// large body parts: chest, groin
+		"large" = list(
+			SHORT_RANGE_STILL = 100,
+			SHORT_RANGE_MOVING = 50,
+
+			MEDIUM_RANGE_STILL = 90,
+			MEDIUM_RANGE_MOVING = 45,
+
+			LONG_RANGE_STILL = 80,
+			LONG_RANGE_MOVING = 40,
+
+			VERY_LONG_RANGE_STILL = 70,
+			VERY_LONG_RANGE_MOVING = 35),
+	)
+
+	accuracy_increase_mod = 1.10
+	accuracy_decrease_mod = 1.20
+	KD_chance = 50
+	stat = "rifle"
+
 /obj/item/weapon/gun/projectile/boltaction/mosin
 	name = "Mosin-Nagant"
 	desc = "Soviet bolt-action rifle chambered in 7.62x54mmR cartridges. It looks worn and has Katyusha on the butt."

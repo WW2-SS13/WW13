@@ -132,7 +132,7 @@
 			remove_self(amount)
 
 /datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if (M.water < FALSE)
+	if (M.water < 0)
 		M.water += rand(40,50)
 	M.water += removed * 15
 

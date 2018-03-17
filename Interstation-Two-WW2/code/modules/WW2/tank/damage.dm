@@ -16,7 +16,7 @@
 	// MGs will no longer destroy tanks in a few shots - Kachnov
 
 	var/dam = 0
-	if (P.firedfrom && istype(P.firedfrom, /obj/item/weapon/gun/projectile/heavysniper))
+	if (P.firedfrom && istype(P.firedfrom, /obj/item/weapon/gun/projectile/heavy))
 		dam = (P.damage/3 + (P.armor_penetration*20))/25
 	else
 		dam = (P.damage/3)/25

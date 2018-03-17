@@ -754,6 +754,9 @@ var/list/gamemode_cache = list()
 				global_game_schedule = new
 
 			switch (name)
+				if ("game_schedule_enabled")
+					if (value)
+						global_game_schedule.enabled = text2num(value)
 				if ("game_schedule_starttime")
 					if (value)
 						global_game_schedule.starttime = text2num(value)

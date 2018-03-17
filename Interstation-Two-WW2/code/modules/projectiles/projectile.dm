@@ -79,7 +79,8 @@
 
 	/* since a lot of WW2 guns use similar ammo, this is calculated during runtime
 	 * based on gun type and the distance between the firer and person hit.
-	 * Right now, only boltactions & heavysniper guns get a high KD chance. */
+	 * Right now, only boltactions & heavysniper guns get a high KD chance. */\
+
 	var/KD_chance = 5
 
 //TODO: make it so this is called more reliably, instead of sometimes by bullet_act() and sometimes not
@@ -250,6 +251,12 @@
 	var/miss_chance = get_miss_chance(def_zone, distance, accuracy, miss_modifier)
 	if (istype(src, /obj/item/projectile/bullet/rifle/murder) || istype(src, /obj/item/projectile/bullet/shotgun/murder))
 		miss_chance = 0
+
+	// handles guns that use their own miss chance logic
+	else if (istype(firedfrom, /obj/item/weapon/gun/projectile))
+		var/obj/item/weapon/gun/projectile/proj = firedfrom
+		miss_chance = proj.calculate_miss_chance(def_zone, target_mob)
+
 	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > TRUE || original != target_mob), range = abs_dist(target_mob, firer)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 	var/result = PROJECTILE_FORCE_MISS
 
