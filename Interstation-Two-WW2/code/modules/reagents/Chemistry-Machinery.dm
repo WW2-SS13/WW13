@@ -263,7 +263,7 @@
 	var/condi = FALSE
 	var/useramount = 30 // Last used amount
 	var/pillamount = 10
-	var/bottlesprite = "bottle-1" //yes, strings
+	var/bottlesprite = "bottle" //yes, strings
 	var/pillsprite = "1"
 	var/client/has_sprites = list()
 	var/max_pill_count = 20

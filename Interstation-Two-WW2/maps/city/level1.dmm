@@ -225,7 +225,7 @@
 "eq" = (/obj/structure/barricade/steel,/obj/structure/window/classic,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/wood,/area/prishtina/german/prison)
 "er" = (/obj/structure/table/wood,/obj/item/weapon/crowbar,/obj/item/weapon/screwdriver,/obj/item/weapon/wirecutters,/turf/floor/wood,/area/prishtina/german/main_area/inside)
 "es" = (/obj/machinery/light,/obj/structure/table/glass,/obj/item/weapon/gun/projectile/shotgun/pump/combat/coachgun,/obj/item/weapon/gun/projectile/shotgun/pump/combat/coachgun,/obj/item/weapon/gun/projectile/shotgun/pump/combat/coachgun,/turf/floor/vault,/area/prishtina/admin)
-"et" = (/obj/effect/decal/cleanable/dirt,/obj/snow_maker,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/item/weapon/gun/projectile/minigun/maximstat{tag = "icon-maximstat (WEST)"; icon_state = "maximstat"; dir = 8},/turf/floor/plating/road,/area/prishtina/german/main_area)
+"et" = (/obj/effect/decal/cleanable/dirt,/obj/snow_maker,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/item/weapon/gun/projectile/minigun/mg34stat{icon_state = "mg34stat"; dir = 8},/turf/floor/plating/road,/area/prishtina/german/main_area)
 "eu" = (/obj/structure/plasticflaps,/obj/structure/simple_door/key_door/german/QM{name = "QM"},/turf/floor/plating/road,/area/prishtina/german/armory)
 "ev" = (/turf/floor/plating/road,/area/prishtina/german/armory)
 "ew" = (/obj/effect/floor_decal/borderfloor,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory/room1)

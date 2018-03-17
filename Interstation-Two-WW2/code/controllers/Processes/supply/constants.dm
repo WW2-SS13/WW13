@@ -3,7 +3,7 @@ var/static/list/german_supply_crate_types = list(
 	// AMMO AND MISC.
 	"Flammenwerfer Fuel Tanks" = /obj/structure/closet/crate/flammenwerfer_fueltanks,
 	"Vehicle Fuel Tanks" = /obj/structure/closet/crate/vehicle_fueltanks,
-	"Maxim Belts" = /obj/structure/closet/crate/maximbelt,
+	"MG34 Belts" = /obj/structure/closet/crate/mg34belt,
 	"Guaze" = /obj/structure/closet/crate/gauze,
 	"Luger Ammo" = /obj/structure/closet/crate/lugerammo,
 	"Mauser Ammo" = /obj/structure/closet/crate/mauserammo,
@@ -45,7 +45,7 @@ var/static/list/german_supply_crate_types = list(
 	"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 	"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
 	"Luger Crate" = /obj/structure/closet/crate/lugers,
-	"Maxim" = /obj/item/weapon/gun/projectile/minigun/kord/maxim,
+	"Movable MG34" = /obj/item/weapon/gun/projectile/minigun/kord/mg34,
 
 	// ARTILLERY AMMO
 	"Artillery Ballistic Shells Crate" = /obj/structure/closet/crate/artillery,
@@ -128,6 +128,7 @@ var/static/list/supply_crate_costs = list(
 	"Flammenwerfer Fuel Tanks" = 50,
 	"Vehicle Fuel Tanks" = 75,
 	"Maxim Belts" = 40,
+	"MG34 Belts" = 40,
 	"Guaze" = 35,
 	"Bint" = 30,
 	"Luger Ammo" = 30,
@@ -184,6 +185,7 @@ var/static/list/supply_crate_costs = list(
 	"Luger Crate" = 400,
 	"Colt Crate" = 400,
 	"Maxim" = 225,
+	"Movable MG34" = 225,
 
 	// ARTILLERY AMMO
 	"Artillery Ballistic Shells Crate" = 150,

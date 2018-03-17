@@ -40,7 +40,7 @@ var/global/list/global_corporations = list()
 var/global/list/HUDdatums = list()
 
 // names
-var/global/list/names_used = list() // map
+var/global/list/names_used[1000] // map
 
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER)
 

@@ -222,6 +222,13 @@
 	worn_state = ITALIAN_UNIFORM_STATE
 	var/rolled = FALSE
 
+/obj/item/clothing/under/itauni/officer
+	name = "Italian Officer's Uniform"
+	desc = "An Italian officer's uniform."
+	icon_state = "itauni_officer"
+	item_state = "itauni_officer"
+	worn_state = "itauni_officer"
+
 /obj/item/clothing/suit/fallsparka
 	name = "Fallschirmjager Parka"
 	desc = "A warm and comfy parka for fallschirmjagers."
@@ -270,7 +277,7 @@
 	item_state = "gerhelm_MP"
 
 /obj/item/clothing/head/helmet/tactical/gerhelm/medic
-	name = "German medic helmet"
+	name = "German medic's helmet"
 	desc =  "A metal helmet issued to German combat medics."
 	icon_state = "gerhelm_CM"
 	item_state = "gerhelm_CM"
@@ -297,10 +304,22 @@
 	item_state = "sovhelm_MP"
 
 /obj/item/clothing/head/helmet/tactical/sovhelm/medic
-	name = "Soviet medic helmet"
+	name = "Soviet medic's helmet"
 	desc =  "A metal helmet issued to Soviet combat medics."
 	icon_state = "sovhelm_CM"
 	item_state = "sovhelm_CM"
+
+/obj/item/clothing/head/helmet/tactical/itahelm
+	name = ITALIAN_HELMET_NAME
+	desc = ITALIAN_HELMET_DESC
+	icon_state = ITALIAN_HELMET_STATE
+	item_state = ITALIAN_HELMET_STATE
+
+/obj/item/clothing/head/helmet/tactical/itahelm/medic
+	name = "Italian medic's helmet"
+	desc =  "A metal helmet issued to Italian combat medics."
+	icon_state = "itahelm_CM"
+	item_state = "itahelm_CM"
 
 /obj/item/clothing/suit/armor/bulletproof/cn42
 	name = "CN-42 bulletproof vest"
@@ -511,6 +530,15 @@
 	item_flags = NOSLIP
 	siemens_coefficient = 0.6
 
+// italians
+
+/obj/item/clothing/shoes/swat/italianboots
+	name = "\improper Italian boots"
+	icon_state = "italian_boots"
+	force = WEAPON_FORCE_WEAK
+	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = FALSE)
+	item_flags = NOSLIP
+	siemens_coefficient = 0.6
 
 // partisans / civs
 

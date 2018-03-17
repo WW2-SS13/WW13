@@ -7,7 +7,7 @@
 #define DAMAGE_OH_GOD 200
 
 /obj/item/projectile/bullet/shotgun
-	speed = 6.0
+	speed = 5.0
 
 /obj/item/projectile/bullet/shotgun/murder
 	speed = 10.0
@@ -23,7 +23,7 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 
 /obj/item/projectile/bullet/rifle
-	speed = 7.50
+	speed = 6.00
 	armor_penetration = 50
 
 /obj/item/projectile/bullet/rifle/murder
