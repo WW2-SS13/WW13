@@ -68,7 +68,6 @@
 	var/base = 100
 	if (!istype(proj))
 		return base
-	log_debug(proj.accuracy)
 	return base - min(15, proj.accuracy) // > scoped kars have 143 accuracy
 
 // procedure for both incomplete and complete sandbags
