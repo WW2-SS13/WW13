@@ -36,24 +36,24 @@
 			switch (weather_intensity)
 				if (1.0)
 					area_icon_state = "snow1"
-					area_alpha = 75
+					area_alpha = 255
 				if (2.0)
 					area_icon_state = "snow2"
-					area_alpha = 100
+					area_alpha = 255
 				if (3.0)
 					area_icon_state = "snow3"
-					area_alpha = 125
+					area_alpha = 255
 		if (WEATHER_RAIN)
 			switch (weather_intensity)
 				if (1.0)
 					area_icon_state = "rain1"
-					area_alpha = 75
+					area_alpha = 255
 				if (2.0)
 					area_icon_state = "rain2"
-					area_alpha = 100
+					area_alpha = 255
 				if (3.0)
 					area_icon_state = "rain3"
-					area_alpha = 125
+					area_alpha = 255
 
 	for (var/area/prishtina/A in all_areas)
 		if (istype(A) && A.location == AREA_OUTSIDE && A.z == TRUE)

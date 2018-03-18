@@ -63,22 +63,6 @@ var/world_is_open = TRUE
 #define RECOMMENDED_VERSION 509
 /world/New()
 
-	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
-	log << "STARTED RUNTIME LOGGING"
-
-	attack_log = file("data/logs/attack/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-attack.log")
-	log << "STARTED ATTACK LOGGING"
-
-	//logs
-	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
-	href_logfile = file("data/logs/[date_string] hrefs.htm")
-	diary = file("data/logs/[date_string].log")
-	diary << "[log_end]\n[log_end]\nStarting up. (ID: [game_id]) [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
-	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
-
-	if(byond_version < RECOMMENDED_VERSION)
-		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
-
 	config.post_load()
 
 	if(config && config.server_name != null && config.server_suffix && world.port > FALSE)
@@ -101,12 +85,6 @@ var/world_is_open = TRUE
 
 	..()
 
-// removed the 'sleep_offline' = TRUE here, it interferes with serverswap - kachnov
-#ifdef UNIT_TEST
-	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
-	load_unit_test_changes()
-#endif
-
 	// This is kinda important. Set up details of what the hell things are made of.
 	populate_material_list()
 
@@ -120,6 +98,33 @@ var/world_is_open = TRUE
 #ifdef UNIT_TEST
 		initialize_unit_tests()
 #endif
+
+	spawn (2)
+
+		while (!serverswap || !serverswap["master_log_dir"])
+			sleep(1)
+
+		// removed the 'sleep_offline' = TRUE here, it interferes with serverswap - kachnov
+		#ifdef UNIT_TEST
+			log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
+			load_unit_test_changes()
+		#endif
+
+		world.log = file("[serverswap["runtime_log_dir"]][time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.txt")
+		world.log << "STARTED RUNTIME LOGGING"
+
+		attack_log = file("[serverswap["attack_log_dir"]][time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-attack.log")
+		attack_log << "STARTED ATTACK LOGGING"
+
+		//logs
+		var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
+		href_logfile = file("[serverswap["master_log_dir"]][date_string]-hrefs.htm")
+		diary = file("[serverswap["master_log_dir"]][date_string].log")
+		diary << "[log_end]\n[log_end]\nStarting up. (ID: [game_id]) [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+		changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
+
+		if(byond_version < RECOMMENDED_VERSION)
+			diary << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
 
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
@@ -524,9 +529,15 @@ var/setting_up_db_connection = FALSE
 
 			DEBUG_SERVERSWAP(8)
 			if (!serverswap.len)
+				serverswap["master_log_dir"] = "data/logs/"
+				serverswap["runtime_log_dir"] = "data/logs/runtime/"
+				serverswap["attack_log_dir"] = "data/logs/attack/"
 				break
 			DEBUG_SERVERSWAP(9)
 			if (!serverswap.Find("masterdir")) // we can't do anything without this!
+				serverswap["master_log_dir"] = "data/logs/"
+				serverswap["runtime_log_dir"] = "data/logs/runtime/"
+				serverswap["attack_log_dir"] = "data/logs/attack/"
 				break
 			DEBUG_SERVERSWAP(10)
 			if (!serverswap.Find("this")) // ditto
@@ -534,6 +545,9 @@ var/setting_up_db_connection = FALSE
 			DEBUG_SERVERSWAP(11)
 			if (!serverswap.Find("sfinal")) // ditto
 				break
+			serverswap["master_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/"
+			serverswap["runtime_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/runtime/"
+			serverswap["attack_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/attack/"
 			DEBUG_SERVERSWAP(12)
 			var/wdir = ""
 			var/F = ""

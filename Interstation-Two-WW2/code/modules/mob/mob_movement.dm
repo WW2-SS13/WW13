@@ -430,7 +430,6 @@
 					H.nutrition -= 0.002
 					H.water -= 0.002
 
-
 		if (mob.pulling)
 			if (istype(mob.pulling, /mob))
 				move_delay += 1.0
@@ -592,7 +591,7 @@
 	return
 
 /mob/proc/lastMovedRecently(threshold)
-	if (abs(last_movement - world.time) <= (threshold ? threshold : get_walk_delay()))
+	if (abs(world.time - last_movement) <= (threshold ? threshold : get_walk_delay()))
 		return TRUE
 	return FALSE
 

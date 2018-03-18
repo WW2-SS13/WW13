@@ -2,6 +2,7 @@
 #define DECLARE_TRAITOR "Declare Traitor" // broken
 #define REQUEST_BATTLE_REPORT "Request Battle Status Report"
 
+var/list/next_raid = list(SOVIET = -1, GERMAN = -1)
 var/list/german_traitors = list()
 var/list/soviet_traitors = list()
 
@@ -25,7 +26,6 @@ var/list/soviet_traitors = list()
 	attack_verb = list()
 	var/list/options = list(RAID, REQUEST_BATTLE_REPORT)
 	var/faction = null
-	var/next_raid = -1
 
 /obj/item/weapon/phone/tohighcommand/german
 	faction = GERMAN
@@ -48,8 +48,8 @@ var/list/soviet_traitors = list()
 		if (dowhat != "Cancel")
 			switch (dowhat)
 				if (RAID)
-					if (next_raid != -1 && world.time < next_raid)
-						H << "<span class = 'danger'>You can't call in another Katyusha attack yet. You can call in another Katyusha attack in ~[round((next_raid-world.time)/600)+1] minutes.</span>"
+					if (next_raid[faction] != -1 && world.time < next_raid[faction])
+						H << "<span class = 'danger'>You can't call in another Katyusha attack yet. You can call in another Katyusha attack in ~[round((next_raid[faction]-world.time)/600)+1] minutes.</span>"
 						return
 					if (map && !map.soviets_can_cross_blocks() && faction == SOVIET)
 						H << "<span class = 'warning'>You can't use this yet.</span>"
@@ -71,7 +71,7 @@ var/list/soviet_traitors = list()
 						supply_points[faction] -= cost
 						radio2faction("[faction == GERMAN ? "A Luftwaffe" : "A Katyusha"] attack has been called in by [H.real_name]. Stand by.", faction)
 						air_raid(faction, src)
-						next_raid = world.time + rand(1500, 2100)
+						next_raid[faction] = world.time + rand(1500, 2100)
 
 				if (REQUEST_BATTLE_REPORT)
 					if (!H.original_job || H.original_job.base_type_flag() != faction || !H.original_job.is_officer)

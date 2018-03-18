@@ -36,7 +36,7 @@
 	else if (currently_winning == "Germans")
 		return "The Germans will win in [round((next_win_time-world.realtime)/600)+1] minute(s)."
 	else
-		return "Neither side has captured the other's base."
+		return "Neither side has captured the other side's base."
 
 //#define WINTER_TESTING
 

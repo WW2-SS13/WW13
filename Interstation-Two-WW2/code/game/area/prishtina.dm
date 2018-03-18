@@ -669,6 +669,7 @@
 // italian areas
 /area/prishtina/italian_base
 	name = "Italian Base"
+	location = AREA_INSIDE
 
 // soviet areas
 

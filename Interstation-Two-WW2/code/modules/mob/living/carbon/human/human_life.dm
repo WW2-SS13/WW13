@@ -128,7 +128,7 @@
 
 	// hunger, thirst nerfed by 10% due to popular demand. It's still hardmode - Kachnov
 
-	#define HUNGER_THIRST_MULTIPLIER 1.33
+	#define HUNGER_THIRST_MULTIPLIER 1.25
 
 	if (has_hunger_and_thirst)
 		switch (stat)
@@ -952,7 +952,7 @@
 /*Hardcore mode stuff. This was moved here because constants that are only used
   at one spot in the code shouldn't be in the __defines folder */
 
-#define STARVATION_MIN FALSE //If you have less nutrition than this value, the hunger indicator starts flashing
+#define STARVATION_MIN 0 //If you have less nutrition than this value, the hunger indicator starts flashing
 
 #define STARVATION_NOTICE -15 //If you have more nutrition than this value, you get an occasional message reminding you that you're going to starve soon
 
