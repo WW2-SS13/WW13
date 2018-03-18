@@ -385,7 +385,7 @@
 		if (!ick_ock || !radio2germans(msg))
 			for (var/mob/living/carbon/human/H in player_list)
 				if (istype(H) && H.client)
-					if (H.original_job && H.original_job.base_type_flag() == GERMAN)
+					if (H.original_job && list(GERMAN, ITALIAN).Find(H.original_job.base_type_flag()))
 						var/msg_start = ick_ock ? "<b>IMPORTANT MESSAGE FROM THE GERMAN HIGH COMMAND:</b>" : "<b>MESSAGE TO THE GERMAN TEAM FROM ADMINS:</b>"
 						H << "[msg_start] <span class = 'notice'>[msg]</span>"
 

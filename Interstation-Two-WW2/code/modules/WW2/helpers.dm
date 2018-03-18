@@ -1,4 +1,4 @@
-/proc/message_germans(msg)
+/*/proc/message_germans(msg)
 	for (var/mob/living/carbon/human/H in human_mob_list)
 		if (H.stat == CONSCIOUS && H.original_job && list(GERMAN, ITALIAN).Find(H.original_job.base_type_flag()))
 			if (H.client)
@@ -8,7 +8,7 @@
 	for (var/mob/living/carbon/human/H in human_mob_list)
 		if (H.stat == CONSCIOUS && H.original_job && H.original_job.base_type_flag() == SOVIET)
 			if (H.client)
-				H << msg
+				H << msg*/
 
 /proc/radio2faction(msg, faction = GERMAN, var/channel = "High Command Announcement System")
 	switch (faction)

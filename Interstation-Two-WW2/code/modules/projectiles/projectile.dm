@@ -256,6 +256,7 @@
 	else if (istype(firedfrom, /obj/item/weapon/gun/projectile))
 		var/obj/item/weapon/gun/projectile/proj = firedfrom
 		miss_chance = proj.calculate_miss_chance(def_zone, target_mob)
+		KD_chance = proj.KD_chance
 
 	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > TRUE || original != target_mob), range = abs_dist(target_mob, firer)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 	var/result = PROJECTILE_FORCE_MISS

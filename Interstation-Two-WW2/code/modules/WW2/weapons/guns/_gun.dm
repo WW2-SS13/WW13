@@ -60,6 +60,7 @@
 	var/accuracy_decrease_mod = 1.00
 	var/KD_chance = 5
 	var/stat = "rifle"
+	var/effectiveness_mod = 1.00
 
 /obj/item/weapon/gun/projectile/proc/calculate_miss_chance(zone, var/mob/target)
 	var/mob/living/carbon/human/firer = loc
@@ -81,7 +82,7 @@
 		if ("l_hand", "r_hand", "l_foot", "r_foot", "head", "mouth", "eyes")
 			accuracy_sublist = accuracy_list["small"]
 
-	// note: the screen is 15 tiles wide by default, so a person more than 7 tiles away from you should not be on-screen
+	// note: the screen is 15 tiles wide by default, so a person more than 7 tiles away from you x/y won't be on screen
 	// . = miss chance
 	switch (distance)
 		if (0 to 3)
@@ -116,6 +117,8 @@
 		miss_chance_modifier += ((1.00 - firer_stat) * accuracy_decrease_mod)/5
 
 	. *= miss_chance_modifier
+	. /= effectiveness_mod
+
 	. = min(CLAMP0100(.), 98)
 
 //	log_debug("final miss chance: [.]")

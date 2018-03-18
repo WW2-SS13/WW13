@@ -1,13 +1,14 @@
-#define DAMAGE_VERY_LOW 32
-#define DAMAGE_LOW 40
-#define DAMAGE_MEDIUM 48
-#define DAMAGE_MEDIUM_HIGH 56
+#define DAMAGE_VERY_LOW 40
+#define DAMAGE_LOW 48
+#define DAMAGE_MEDIUM 56
+#define DAMAGE_MEDIUM_HIGH 64
 #define DAMAGE_HIGH 72
 #define DAMAGE_VERY_HIGH 96
 #define DAMAGE_OH_GOD 200
 
-/obj/item/projectile/bullet/shotgun
-	speed = 3.0
+// all bullets are faster now
+/obj/item/projectile/bullet
+	speed = 5.00
 
 /obj/item/projectile/bullet/shotgun/murder
 	speed = 10.0
@@ -23,7 +24,7 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 
 /obj/item/projectile/bullet/rifle
-	speed = 4.0
+	speed = 6.00
 	armor_penetration = 50
 
 /obj/item/projectile/bullet/rifle/murder
@@ -80,7 +81,6 @@
 	weaken = 3
 	penetrating = 5
 	armor_penetration = 150
-	hitscan = TRUE //so the PTRD isn't useless as a sniper weapon
 
 // PPSH SMG //
 /obj/item/projectile/bullet/rifle/a556
@@ -113,7 +113,6 @@
 /obj/item/projectile/bullet/rifle/a556x45
 	damage = DAMAGE_VERY_HIGH
 	penetrating = 3
-	hitscan = TRUE
 
 // TT-30 TOKAREV PISTOL //
 /obj/item/projectile/bullet/rifle/c762mm_tokarev

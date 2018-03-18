@@ -74,7 +74,7 @@
 			else
 				H_side = SOVIET
 
-		if (istype(H.original_job, /datum/job/german) || (istype(H.original_job, /datum/job/partisan) && german_civilian_mode))
+		if (istype(H.original_job, /datum/job/german) || (istype(H.original_job, /datum/job/partisan) && german_civilian_mode) || istype(H.original_job, /datum/job/italian))
 			if (H.is_spy)
 				H_side = SOVIET
 			else

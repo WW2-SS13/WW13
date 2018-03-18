@@ -21,9 +21,9 @@
 /datum/job/italian/soldier/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/italianboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/itahelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/carcano(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an Italian infantry unit assisting the Wehrmacht. Your job is to participate in front line combat.</span>"
@@ -59,9 +59,9 @@
 /datum/job/italian/medic/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/italianboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/itahelm/medic(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/modello38(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
@@ -102,9 +102,9 @@
 /datum/job/italian/squad_leader/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/italianboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/itauni/officer(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/modello38(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an Italian squad leader assisting the Wehrmacht. Your job is to participate in front line combat</span>"

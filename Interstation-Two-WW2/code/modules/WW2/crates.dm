@@ -77,6 +77,12 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/mg34belt
+	name = "MG34 ammo crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
 /obj/structure/closet/crate/bint
 	name = "Bint crate"
 	icon_state = "mil_crate_closed"
@@ -463,6 +469,13 @@
 	update_capacity(4)
 	for (var/v in 1 to 4)
 		new /obj/item/ammo_magazine/maxim(src)
+
+
+/obj/structure/closet/crate/mg34belt/New()
+	..()
+	update_capacity(4)
+	for (var/v in 1 to 4)
+		new /obj/item/ammo_magazine/maxim/mg34_belt(src)
 
 /obj/structure/closet/crate/mosinammo/New()
 	..()

@@ -62,7 +62,7 @@ var/list/soviet_traitors = list()
 
 					var/list/targets = (faction == SOVIET ? alive_germans : faction == GERMAN ? alive_russians : list())
 					// it takes 5 minutes for soviets to generate 300 points, not counting rewards
-					var/cost = (targets.len * 5) + battlereport.current_extra_cost_for_air_raid + 250
+					var/cost = (targets.len * 5) + battlereport.current_extra_cost_for_air_raid + 200
 					var/yesno = input(H, "A Katyusha attack will cost [cost] supply points right now. You have [supply_points[faction]] supply points. [may_bombard_base_message()]. Would you like to call it in?") in list("Yes", "No")
 					if (yesno == "Yes")
 						if (supply_points[faction] < cost)
@@ -125,7 +125,7 @@ var/list/soviet_traitors = list()
 
 		var/list/targets = (raiding == SOVIET ? alive_russians : raiding == GERMAN ? alive_germans : player_list)
 
-		var/maximum_targets = max(1, round(targets.len/5))
+		var/maximum_targets = max(1, ceil(targets.len/5))
 		var/targeted = 0
 
 		var/shuffled_human_mobs = shuffle(human_mob_list)
@@ -136,15 +136,20 @@ var/list/soviet_traitors = list()
 				var/area/H_area = get_area(H)
 				if (used_areas.Find(H_area))
 					continue
+				else if (istype(H_area, /area/prishtina/admin))
+					continue
 				else if (istype(H_area, /area/prishtina/german))
-					if (!caller || !caller.may_bombard_base())
-						continue
+					if (H_area.location == AREA_INSIDE)
+						if (!caller || !caller.may_bombard_base())
+							continue
 				else if (istype(H_area, /area/prishtina/soviet))
-					if (!caller || !caller.may_bombard_base())
-						continue
+					if (H_area.location == AREA_INSIDE)
+						if (!caller || !caller.may_bombard_base())
+							continue
 				else if (istype(H_area, /area/prishtina/italian_base))
-					if (!caller || !caller.may_bombard_base())
-						continue
+					if (H_area.location == AREA_INSIDE)
+						if (!caller || !caller.may_bombard_base())
+							continue
 				else if (istype(H_area, /area/prishtina/void))
 					continue
 				else if ((H.original_job && H.original_job.base_type_flag() == raiding) || raiding == TRUE || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
@@ -165,14 +170,14 @@ var/list/soviet_traitors = list()
 						target.visible_message("<span class = 'userdanger'>You see a barrage of rockets in the sky!</span>")
 
 						for (var/v in 1 to 3)
-							var/spawndelay = 40
+							var/spawndelay = 30
 							switch (v)
 								if (1)
-									spawndelay = 40
+									spawndelay = 30
 								if (2)
-									spawndelay = 55
+									spawndelay = 40
 								if (3)
-									spawndelay = 70
+									spawndelay = 50
 							spawn (spawndelay)
 
 								var/target_x = H_x + rand(-3,3)

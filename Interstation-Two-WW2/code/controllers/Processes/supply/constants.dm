@@ -3,7 +3,7 @@ var/static/list/german_supply_crate_types = list(
 	// AMMO AND MISC.
 	"Flammenwerfer Fuel Tanks" = /obj/structure/closet/crate/flammenwerfer_fueltanks,
 	"Vehicle Fuel Tanks" = /obj/structure/closet/crate/vehicle_fueltanks,
-	"Maxim Belts" = /obj/structure/closet/crate/maximbelt,
+	"MG34 Belts" = /obj/structure/closet/crate/mg34belt,
 	"Guaze" = /obj/structure/closet/crate/gauze,
 	"Luger Ammo" = /obj/structure/closet/crate/lugerammo,
 	"Mauser Ammo" = /obj/structure/closet/crate/mauserammo,
@@ -23,11 +23,13 @@ var/static/list/german_supply_crate_types = list(
 	"Flaregun Ammo" = /obj/structure/closet/crate/flares_ammo,
 	"Flares" = /obj/structure/closet/crate/flares,
 	"Bayonet" = /obj/structure/closet/crate/bayonets,
+
 	"Solid Rations" = /obj/structure/closet/crate/rations/german_solids,
 	"Liquid Rations" = /obj/structure/closet/crate/rations/german_liquids,
 	"Dessert Rations" = /obj/structure/closet/crate/rations/german_desserts,
 	"Water Rations" = /obj/structure/closet/crate/rations/water,
 	"Alcohol Rations" = /obj/structure/closet/crate/rations/german_alcohol,
+	"Meat Rations" = /obj/structure/closet/crate/rations/german_meat,
 
 	// MATERIALS
 	"Wood Planks" = /obj/structure/closet/crate/wood,
@@ -43,7 +45,7 @@ var/static/list/german_supply_crate_types = list(
 	"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 	"7,5 cm FK 18 Artillery Piece" = /obj/machinery/artillery,
 	"Luger Crate" = /obj/structure/closet/crate/lugers,
-	"Maxim" = /obj/item/weapon/gun/projectile/minigun/kord/maxim,
+	"Movable MG34" = /obj/item/weapon/gun/projectile/minigun/kord/mg34,
 
 	// ARTILLERY AMMO
 	"Artillery Ballistic Shells Crate" = /obj/structure/closet/crate/artillery,
@@ -84,11 +86,13 @@ var/static/list/soviet_supply_crate_types = list(
 	"Flaregun Ammo" = /obj/structure/closet/crate/flares_ammo,
 	"Flares" = /obj/structure/closet/crate/flares,
 	"Bayonet" = /obj/structure/closet/crate/bayonets,
+
 	"Solid Rations" = /obj/structure/closet/crate/rations/soviet_solids,
 	"Liquid Rations" = /obj/structure/closet/crate/rations/soviet_liquids,
 	"Dessert Rations" = /obj/structure/closet/crate/rations/soviet_desserts,
 	"Water Rations" = /obj/structure/closet/crate/rations/water,
 	"Alcohol Rations" = /obj/structure/closet/crate/rations/soviet_alcohol,
+	"Meat Rations" = /obj/structure/closet/crate/rations/soviet_meat,
 
 	// MATERIALS
 	"Wood Planks" = /obj/structure/closet/crate/wood,
@@ -124,6 +128,7 @@ var/static/list/supply_crate_costs = list(
 	"Flammenwerfer Fuel Tanks" = 50,
 	"Vehicle Fuel Tanks" = 75,
 	"Maxim Belts" = 40,
+	"MG34 Belts" = 40,
 	"Guaze" = 35,
 	"Bint" = 30,
 	"Luger Ammo" = 30,
@@ -158,6 +163,7 @@ var/static/list/supply_crate_costs = list(
 	"Dessert Rations" = 160,
 	"Water Rations" = 50,
 	"Alcohol Rations" = 75,
+	"Meat Rations" = 200,
 
 	// MATERIALS
 	"Wood Planks" = 75,
@@ -168,18 +174,18 @@ var/static/list/supply_crate_costs = list(
 	// GUNS & ARTILLERY
 	"MP40" = 125,
 	"MG34" = 175,
-	"PPSH" = 125,
+	"PPSH-41" = 125,
 	"DP-28" = 175,
 	"PTRD" = 200,
 	"SVT40" = 150,
 	"Gewehr 41" = 150,
-
 	"PPS-43" = 100,
 	"Flammenwerfer" = 250,
 	"7,5 cm FK 18 Artillery Piece" = 300,
 	"Luger Crate" = 400,
 	"Colt Crate" = 400,
 	"Maxim" = 225,
+	"Movable MG34" = 225,
 
 	// ARTILLERY AMMO
 	"Artillery Ballistic Shells Crate" = 150,
