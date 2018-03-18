@@ -47,6 +47,9 @@
 	var/blind_fire_dir2 = "NONE"
 	var/blind_fire_range = "SHORT"
 
+	// other
+	var/jammed_until = -1
+
 	density = TRUE
 	name = "7,5 cm FK 18"
 	icon = 'icons/WW2/artillery_piece.dmi'
@@ -217,6 +220,10 @@
 			user << "<span class='danger'>Close the shell loading slot first.</span>"
 			return
 
+		if (jammed_until > world.time)
+			user << "<span class='danger'>The artillery piece has jammed! You can't fire it until it has unjammed.</span>"
+			return
+
 		if (blind_fire_toggle)
 
 			offset_x = FALSE
@@ -278,6 +285,8 @@
 				var/obj/item/artillery_ammo/shell = other.use_slot()
 				if (shell)
 					other.fire(target_x, target_y, shell)
+					if (prob(7))
+						jammed_until = world.time + rand(70,200)
 				else
 					user << "<span class='danger'>Load a shell in first.</span>"
 					return
@@ -637,21 +646,18 @@
 	return
 
 /obj/machinery/artillery/ex_act(severity)
+	return
+
+/obj/machinery/artillery/base/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
+			qdel(other)
 			return
 		if(2.0)
 			if(prob(10))
 				qdel(src)
+				qdel(other)
 				return
 		if(3.0)
 			return
-
-/obj/machinery/artillery/tube/ex_act(severity)
-	return
-
-/obj/machinery/artillery/base/ex_act(severity)
-	if (other)
-		qdel(other)
-	return ..(severity)

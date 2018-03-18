@@ -207,6 +207,7 @@
 		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=0.8, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
 		)
 	sel_mode = 1
+	attachment_slots = ATTACH_BARREL
 
 /obj/item/weapon/gun/projectile/submachinegun/modello38/update_icon()
 	if(ammo_magazine)

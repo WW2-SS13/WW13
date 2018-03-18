@@ -20,9 +20,14 @@
 	if (!(species && (species.flags & NO_PAIN)))
 		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
-	if (nutrition <= 0)
-		var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
-		if (hungry >= 100) tally += hungry/70
+	if (nutrition <= 100)
+		if (nutrition >= 50)
+			if (nutrition >= 75)
+				tally += 0.5
+			else
+				tally += 0.75
+		else
+			tally += 1.00
 
 	if(wear_suit)
 		tally += wear_suit.slowdown
@@ -53,7 +58,7 @@
 	if(!E || ((E.status & ORGAN_BROKEN) && E.brute_dam > E.min_broken_damage) || (E.status & ORGAN_MUTATED))
 		tally += 4
 
-	if(shock_stage >= 10) tally += 3
+//	if(shock_stage >= 10) tally += 3 // this is ridiculous, being in shock doesn't make you physically slower
 
 	if(aiming && aiming.aiming_at) tally += 5 // Iron sights make you slower, it's a well-known fact.
 
@@ -65,6 +70,7 @@
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75*/
 
+	handle_stance()
 	tally += max(2 * stance_damage, FALSE) //damaged/missing feet or legs is slow
 
 	if(mRun in mutations)

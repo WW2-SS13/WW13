@@ -19,11 +19,11 @@
 	var/image/cross = image('icons/obj/storage.dmi',"bible")
 	msg = "<span class = 'notice'>\icon[cross] <b><font color=purple>PRAY: </font>[key_name(src, TRUE)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[src]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[src]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[src]'>SM</A>) ([admin_jump_link(src, src)]) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<A HREF='?_src_=holder;adminspawncookie=\ref[src]'>SC</a>):</b> [msg]</span>"
 
-/* prayers are gay, you worship your glorious leader, not god - Kachnov
 	for(var/client/C in admins)
 		if(R_ADMIN & C.holder.rights)
 			if(C.is_preference_enabled(/datum/client_preference/admin/show_chat_prayers))
-				C << msg */
+				C << msg
+				C << "<i>Please do <big>not</big> respond to prayers with revives or anything that might affect the course of the round in favor of one faction.</i>"
 
 	usr << "Your prayers have been received by the gods."
 

@@ -258,7 +258,7 @@
 						var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
 						message_admins(msg)
 						log_admin(msg)
-						spawn (1)
+						spawn (0.1)
 							H.loc = oloc_H
 
 							switch (H.original_job.default_language)
@@ -407,6 +407,7 @@
 			L.revive()
 			if (ishuman(L))
 				var/mob/living/carbon/human/H = L
+				H.shock_stage = 0
 				H.nutrition = H.max_nutrition
 				H.water = H.max_water
 				for (var/obj/item/organ/external/E in H.bad_external_organs)

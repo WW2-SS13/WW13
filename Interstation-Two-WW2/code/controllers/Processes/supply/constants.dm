@@ -77,6 +77,7 @@ var/static/list/soviet_supply_crate_types = list(
 	"DP Ammo" = /obj/structure/closet/crate/dpammo,
 	"PPS-43 Ammo" = /obj/structure/closet/crate/ppsammo,
 	"PTRD Ammo" = /obj/structure/closet/crate/ptrdammo,
+//	"SVT Ammo" = /obj/structure/closet/crate/svtammo,
 //		"Mines" = /obj/structure/closet/crate/bettymines,
 	"Grenades" = /obj/structure/closet/crate/soviet_grenade,
 	"Smoke Grenades" = /obj/structure/closet/crate/soviet_smoke_grenade,
@@ -139,6 +140,7 @@ var/static/list/supply_crate_costs = list(
 	"Mg34 Ammo" = 40,
 	"Mp43 Ammo" = 40,
 	"PTRD Ammo" = 100,
+//	"SVT Ammo" = 100,
 
 	"Tokarev Ammo" = 30,
 	"Nagant Revolver Ammo" = 25,

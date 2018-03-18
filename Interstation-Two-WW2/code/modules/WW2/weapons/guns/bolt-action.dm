@@ -55,6 +55,14 @@
 	KD_chance = 50
 	stat = "rifle"
 
+	var/jammed_until = -1
+
+/obj/item/weapon/gun/projectile/boltaction/handle_post_fire()
+	..()
+	if (prob(7))
+		jammed_until = world.time + rand(50,100)
+
+
 /obj/item/weapon/gun/projectile/boltaction/mosin
 	name = "Mosin-Nagant"
 	desc = "Soviet bolt-action rifle chambered in 7.62x54mmR cartridges. It looks worn and has Katyusha on the butt."

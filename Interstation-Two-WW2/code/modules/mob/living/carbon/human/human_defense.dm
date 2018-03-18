@@ -129,7 +129,15 @@ bullet_act
 
 		// get knocked back once in a while
 		// unless we're on a train because bugs
-		if (prob(P.KD_chance/2) && !is_on_train())
+
+		var/hanged = FALSE
+
+		for (var/obj/structure/noose/N in get_turf(src))
+			if (N.hanging == src)
+				hanged = TRUE
+				break
+
+		if (prob(P.KD_chance/2) && !is_on_train() && !hanged)
 			SpinAnimation(5,1)
 			var/turf/behind = get_step(src, P.dir)
 			if (behind)

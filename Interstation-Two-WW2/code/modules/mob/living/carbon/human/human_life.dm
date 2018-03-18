@@ -62,6 +62,7 @@
 			V.canmove = FALSE
 			var/oldname = name
 			var/oldreal_name = real_name
+
 			spawn (12)
 				V.name = oldname
 				V.real_name = oldreal_name

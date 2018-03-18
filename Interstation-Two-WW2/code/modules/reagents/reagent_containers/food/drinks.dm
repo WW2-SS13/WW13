@@ -38,23 +38,27 @@
 			return
 		if(standard_pour_into(user, target))
 			return
+
 		return ..()
 
 	standard_feed_mob(var/mob/user, var/mob/target)
 		if(!is_open_container())
-			user << "<span class='notice'>You need to open [src]!</span>"
+			if (istype(target))
+				user << "<span class='notice'>You need to open [src]!</span>"
 			return TRUE
 		return ..()
 
 	standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
 		if(!is_open_container())
-			user << "<span class='notice'>You need to open [src]!</span>"
+			if (istype(target))
+				user << "<span class='notice'>You need to open [src]!</span>"
 			return TRUE
 		return ..()
 
 	standard_pour_into(var/mob/user, var/atom/target)
 		if(!is_open_container())
-			user << "<span class='notice'>You need to open [src]!</span>"
+			if (istype(target) && !istype(target, /obj/structure/table)) // setting on a table
+				user << "<span class='notice'>You need to open [src]!</span>"
 			return TRUE
 		return ..()
 

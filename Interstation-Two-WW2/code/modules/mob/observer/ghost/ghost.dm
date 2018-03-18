@@ -342,6 +342,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if (mobs[input])
 			ManualFollow(mobs[input])
 
+/mob/observer/ghost/verb/follow_italian(input in getfitmobs(ITALIAN)+"Cancel")
+	set category = "Ghost"
+	set name = "Follow an Italian"
+	set desc = "Follow and haunt a living Italian."
+
+	if (input != "Cancel")
+		var/list/mobs = getfitmobs(ITALIAN)
+		if (mobs[input])
+			ManualFollow(mobs[input])
+
 /mob/observer/ghost/verb/follow_paratroopers(input in getfitmobs("PARATROOPERS")+"Cancel")
 	set category = "Ghost"
 	set name = "Follow a Paratrooper"

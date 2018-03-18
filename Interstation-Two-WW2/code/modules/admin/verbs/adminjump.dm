@@ -123,12 +123,19 @@
 
 var/turf/default_adminzone_turf = null
 
-/client/proc/Goto_adminzone()
-	set category = "Ghost"
+/client/proc/goto_adminzone()
+	set category = "Admin"
 	set name = "Go To The Admin Zone"
 
 	if(!check_rights(R_MOD))
 		return
+
+	if (!mob)
+		return
+
+	if (!istype(mob, /mob/observer))
+		if ((input(src, "Are you sure?") in list("Yes", "No")) == "No")
+			return
 
 	log_admin("[key_name(usr)] went to the admin zone")
 	message_admins("[key_name_admin(usr)] went to the admin zone", TRUE)

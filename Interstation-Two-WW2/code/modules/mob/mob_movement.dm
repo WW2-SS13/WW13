@@ -591,7 +591,10 @@
 	return
 
 /mob/proc/lastMovedRecently(threshold)
-	if (abs(world.time - last_movement) <= (threshold ? threshold : get_walk_delay()))
+	var/default_threshold = get_walk_delay()
+	if (m_intent == "run")
+		default_threshold = get_run_delay()
+	if (abs(world.time - last_movement) <= (threshold ? threshold : default_threshold))
 		return TRUE
 	return FALSE
 

@@ -414,6 +414,21 @@ Proc for attack log creation, because really why not
 
 	return germans
 
+/proc/getitalianmobs(var/alive = FALSE)
+	var/list/italians = list()
+	for (var/mob/living/carbon/human/H in mob_list)
+		if (!istype(H))
+			continue
+		if (!H.loc) // supply train announcer
+			continue
+		if (alive && H.stat == DEAD)
+			continue
+		if (!istype(H.original_job, /datum/job/italian))
+			continue
+		italians += H
+
+	return italians
+
 /proc/getukrainianmobs(var/alive = FALSE)
 	var/list/ukrainians = list()
 	for (var/mob/living/carbon/human/H in mob_list)
@@ -472,6 +487,8 @@ Proc for attack log creation, because really why not
 			mobs = mob_list // we want actual mobs, not name = mob
 		if (GERMAN)
 			mobs = getgermanmobs(0)
+		if (ITALIAN)
+			mobs = getitalianmobs(0)
 		if (SOVIET, "SOVIET")
 			mobs = getsovietmobs(0)
 		if ("PARATROOPERS")

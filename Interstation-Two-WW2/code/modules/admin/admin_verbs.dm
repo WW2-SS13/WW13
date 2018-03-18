@@ -255,6 +255,7 @@ var/list/admin_verbs_hideable = list(
 	/proc/release
 	)
 var/list/admin_verbs_mod = list(
+	/client/proc/goto_adminzone,
 	/client/proc/who_invisimin,				//allows our mob to go invisible/visible in staffwho
 	/client/proc/cmd_admin_rejuvenate,
 	/client/proc/jumptocoord,			//we ghost and jump to a coordinate,
@@ -438,7 +439,6 @@ var/list/admin_verbs_host = list(
 	if (mob && holder && check_rights(R_MOD, FALSE, user = mob))
 		verbs |= /client/proc/see_who_is_in_tank
 		verbs |= /client/proc/eject_from_tank
-		verbs |= /client/proc/Goto_adminzone
 
 		if (check_rights(R_POSSESS, FALSE, user = mob))
 			verbs |= admin_verbs_possess
@@ -447,7 +447,6 @@ var/list/admin_verbs_host = list(
 	if (mob && holder && check_rights(R_MOD, FALSE, user = mob))
 		verbs -= /client/proc/see_who_is_in_tank
 		verbs -= /client/proc/eject_from_tank
-		verbs -= /client/proc/Goto_adminzone
 
 		if (check_rights(R_POSSESS, FALSE, user = mob))
 			verbs -= admin_verbs_possess

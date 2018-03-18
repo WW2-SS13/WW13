@@ -299,11 +299,12 @@
 	H.give_radio()
 	H.setStat("strength", STAT_LOW)
 	H.setStat("engineering", STAT_VERY_LOW)
-	H.setStat("rifle", STAT_LOW)
-	H.setStat("mg", STAT_VERY_LOW)
-	H.setStat("pistol", STAT_MEDIUM_LOW)
-	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_VERY_HIGH)
+
+	H.setStat("rifle", STAT_VERY_VERY_LOW)
+	H.setStat("mg", STAT_VERY_VERY_LOW)
+	H.setStat("pistol", STAT_VERY_VERY_LOW)
+	H.setStat("heavyweapon", STAT_VERY_VERY_LOW)
 	return TRUE
 
 /datum/job/soviet/doctor/get_keys()

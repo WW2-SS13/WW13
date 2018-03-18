@@ -56,7 +56,6 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
-
 /obj/structure/closet/crate/flammenwerfer_fueltanks
 	name = "Flammenwerfer fueltanks crate"
 	icon = 'icons/WW2/artillery_crate.dmi'
@@ -199,6 +198,12 @@
 
 /obj/structure/closet/crate/dpammo
 	name = "DP disk crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/svtammo
+	name = "SVT ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
@@ -543,6 +548,12 @@
 	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/a762/dp(src)
 
+/obj/structure/closet/crate/svtammo/New()
+	..()
+	update_capacity(10)
+	for (var/v in 1 to 10)
+		new /obj/item/ammo_magazine/svt(src)
+
 /obj/structure/closet/crate/bint/New()
 	..()
 	update_capacity(15)
@@ -565,6 +576,7 @@
 		new /obj/item/weapon/storage/firstaid/regular(src)
 		new /obj/item/weapon/storage/firstaid/injectorpack(src)
 		new /obj/item/weapon/storage/firstaid/combat(src)
+		new /obj/item/weapon/storage/firstaid/adv(src)
 		new /obj/item/weapon/gauze_pack/gauze(src)
 		new /obj/item/weapon/doctor_handbook(src)
 
@@ -672,10 +684,14 @@
 
 	New()
 		..()
-		for (var/v in 1 to 4) // 16 shells total
+		// 16 shells total
+		for (var/v in 1 to 4)
 			new/obj/item/artillery_ammo/gaseous/green_cross/chlorine(src)
+		for (var/v in 1 to 4)
 			new/obj/item/artillery_ammo/gaseous/yellow_cross/mustard(src)
+		for (var/v in 1 to 4)
 			new/obj/item/artillery_ammo/gaseous/yellow_cross/white_phosphorus(src)
+		for (var/v in 1 to 4)
 			new/obj/item/artillery_ammo/gaseous/blue_cross/xylyl_bromide(src)
 
 /obj/structure/closet/crate/gasmasks
