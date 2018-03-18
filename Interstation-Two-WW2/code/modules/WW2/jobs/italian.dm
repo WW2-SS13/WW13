@@ -2,6 +2,10 @@
 	faction = "Station"
 	additional_languages = list( "German" = 100 )
 
+/datum/job/italian/give_random_name(var/mob/living/carbon/human/H)
+	H.name = H.species.get_random_italian_name(H.gender)
+	H.real_name = H.name
+
 /* Soldier */
 
 /datum/job/italian/soldier

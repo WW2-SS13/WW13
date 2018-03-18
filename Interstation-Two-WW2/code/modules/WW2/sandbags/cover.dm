@@ -38,9 +38,9 @@
 /obj/structure/window/sandbag/proc/check_cover(obj/item/projectile/P, turf/from)
 	var/turf/cover = get_turf(src)
 	if(!cover)
-		return TRUE
-	if (get_dist(P.starting, loc) <= TRUE) //Tables won't help you if people are THIS close
-		return TRUE
+		return FALSE
+	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
+		return FALSE
 
 	var/base_chance = SANDBAG_BLOCK_ITEMS_CHANCE
 	var/extra_chance = 0
@@ -68,7 +68,8 @@
 	var/base = 100
 	if (!istype(proj))
 		return base
-	return base - min(30, proj.accuracy) // > scoped kars have 143 accuracy
+	log_debug(proj.accuracy)
+	return base - min(15, proj.accuracy) // > scoped kars have 143 accuracy
 
 // procedure for both incomplete and complete sandbags
 /obj/structure/window/sandbag/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
