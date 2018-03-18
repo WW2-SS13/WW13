@@ -8,7 +8,7 @@
 
 // all bullets are faster now
 /obj/item/projectile/bullet
-	speed = 5.0
+	speed = 5.00
 
 /obj/item/projectile/bullet/shotgun/murder
 	speed = 10.0
@@ -81,7 +81,6 @@
 	weaken = 3
 	penetrating = 5
 	armor_penetration = 150
-	hitscan = TRUE //so the PTRD isn't useless as a sniper weapon
 
 // PPSH SMG //
 /obj/item/projectile/bullet/rifle/a556
@@ -114,7 +113,6 @@
 /obj/item/projectile/bullet/rifle/a556x45
 	damage = DAMAGE_VERY_HIGH
 	penetrating = 3
-	hitscan = TRUE
 
 // TT-30 TOKAREV PISTOL //
 /obj/item/projectile/bullet/rifle/c762mm_tokarev

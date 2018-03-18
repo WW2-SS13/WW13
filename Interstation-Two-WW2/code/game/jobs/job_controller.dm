@@ -513,7 +513,7 @@ var/global/datum/controller/occupations/job_master
 			spawn (0)
 				if (istype(ticker.mode, /datum/game_mode/ww2))
 					for (var/obj/item/weapon/gun/projectile/gun in H.contents)
-						if (gun.w_class == 4 && gun.gun_type == GUN_TYPE_MG) // MG
+						if (gun.w_class == 5 && gun.gun_type == GUN_TYPE_MG) // MG
 							if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
 								for (var/v in 1 to 4)
 									H.back.contents += new gun.magazine_type(H)
@@ -526,21 +526,19 @@ var/global/datum/controller/occupations/job_master
 						else
 							if (!H.r_store)
 								if (gun.magazine_type)
-									H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_r_store)
+									H.equip_to_slot_or_del(new gun.magazine_type(H), slot_r_store)
 							if (!H.l_store)
 								if (gun.magazine_type)
-									H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_l_store)
+									H.equip_to_slot_or_del(new gun.magazine_type(H), slot_l_store)
 						break // but only the first gun we find
 					for (var/obj/item/weapon/gun/projectile/gun in H.belt)
-						if (gun.w_class == 4) // MG
-
-						else
+						if (gun.w_class != 5 || gun.gun_type != GUN_TYPE_MG) // MG
 							if (!H.r_store)
 								if (gun.magazine_type)
-									H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_r_store)
+									H.equip_to_slot_or_del(new gun.magazine_type(H), slot_r_store)
 							if (!H.l_store)
 								if (gun.magazine_type)
-									H.equip_to_slot_or_drop(new gun.magazine_type(H), slot_l_store)
+									H.equip_to_slot_or_del(new gun.magazine_type(H), slot_l_store)
 							break // but only the first gun we find
 
 			// get our new real name based on jobspecific language ( and more

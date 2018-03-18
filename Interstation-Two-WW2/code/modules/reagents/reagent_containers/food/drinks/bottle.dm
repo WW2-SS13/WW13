@@ -139,7 +139,7 @@
 						for (var/mob/living/L in T)
 							L.fire_stacks += 5
 							L.IgniteMob()
-							L.adjustFireLoss(rand(30,40))
+							L.adjustFireLoss(rand(20,30))
 							if (ishuman(L))
 								L.emote("scream")
 
