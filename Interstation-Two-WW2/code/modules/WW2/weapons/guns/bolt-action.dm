@@ -139,6 +139,7 @@
 	fire_sound = 'sound/weapons/kar_shot.ogg'
 	ammo_type = /obj/item/ammo_casing/c65x52mm
 	magazine_type = /obj/item/ammo_magazine/c65x52mm
+	max_shells = 6
 	accuracy = DEFAULT_BOLTACTION_ACCURACY + 1
 	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
 	bolt_safety = FALSE

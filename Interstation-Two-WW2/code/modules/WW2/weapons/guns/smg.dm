@@ -61,7 +61,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	caliber = "a9mm_para"
+	caliber = "9x19mm"
 	magazine_type = /obj/item/ammo_magazine/mp40
 	can_wield = TRUE
 	//must_wield = TRUE
@@ -173,8 +173,9 @@
 	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-2
 	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY-3
 	caliber = "9x19mm"
-	magazine_type = /obj/item/ammo_magazine/c9x19mm_stenmk3
+	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk3
 	firemodes = list(
+		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=0, dispersion = list(0.6, 0.8, 0.8, 0.8, 1.0)),
 		list(name="short burst",	burst=3, burst_delay=1.2, recoil=0.4, move_delay=0.2, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
 		list(name="long burst", 	burst=6, burst_delay=1.6, recoil=0.8, move_delay=0.4, dispersion = list(1.5, 1.7, 1.7, 1.7, 1.9)),
 		)
@@ -212,8 +213,9 @@
 /obj/item/weapon/gun/projectile/submachinegun/modello38/update_icon()
 	if(ammo_magazine)
 		icon_state = "model38"
-		item_state = "model38-0"
+		item_state = "model38"
 	else
 		icon_state = "model380"
-		item_state = "model38"
+		item_state = "model380"
+	update_held_icon()
 	return
