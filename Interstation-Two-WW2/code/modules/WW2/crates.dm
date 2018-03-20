@@ -759,7 +759,7 @@
 	..()
 	update_capacity(10)
 	for (var/v in 1 to 10)
-		new /obj/item/ammo_magazine/c9x19mm_stenmk3(src)
+		new /obj/item/ammo_magazine/mp40/c9x19mm_stenmk3(src)
 
 /obj/structure/closet/crate/nagantrevolverammo/New()
 	..()

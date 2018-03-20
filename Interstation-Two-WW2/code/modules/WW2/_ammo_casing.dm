@@ -56,7 +56,7 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_casing/a9_parabellum
 	desc = "A 9mm parabellum bullet casing."
-	caliber = "a9mm_para"
+	caliber = "9x19mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/a9_parabellum
 
 /obj/item/ammo_casing/a9_parabellum_luger
