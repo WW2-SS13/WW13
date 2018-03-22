@@ -343,7 +343,7 @@
 "gE" = (/obj/machinery/light/small{dir = 1},/obj/gasser,/turf/floor/wood,/area/prishtina/german/ss_prison)
 "gF" = (/obj/effect/floor_decal/techfloor/hole/right,/obj/gasser,/turf/floor/wood,/area/prishtina/german/ss_prison)
 "gG" = (/obj/structure/bed,/obj/gasser,/obj/structure/noose,/turf/floor/wood,/area/prishtina/german/ss_prison)
-"gH" = (/obj/structure/table/wood,/obj/item/ammo_magazine/c9x19mm_stenmk3,/obj/item/ammo_magazine/c9x19mm_stenmk3,/obj/item/ammo_magazine/c9x19mm_stenmk3,/turf/floor/wood,/area/prishtina/houses/sov_thirteen)
+"gH" = (/obj/structure/table/wood,/obj/item/ammo_magazine/mp40/c9x19mm_stenmk3,/obj/item/ammo_magazine/mp40/c9x19mm_stenmk3,/turf/floor/wood,/area/prishtina/houses/sov_thirteen)
 "gI" = (/obj/item/weapon/melee/classic_baton/MP/soviet/old,/obj/item/weapon/melee/classic_baton/MP/soviet/old,/obj/item/weapon/melee/classic_baton/MP/soviet/old,/obj/item/weapon/gauze_pack/bint,/obj/item/weapon/gauze_pack/bint,/obj/item/weapon/gauze_pack/bint,/obj/item/stack/medical/splint,/obj/item/weapon/storage/firstaid/adv,/obj/item/weapon/storage/firstaid/adv,/obj/item/weapon/storage/firstaid/combat,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/o2,/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/injectorpack,/turf/floor/wood,/area/prishtina/houses/sov_thirteen)
 "gJ" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37,/turf/floor/wood,/area/prishtina/houses/sov_thirteen)
 "gK" = (/obj/structure/bed/chair/wood/red{dir = 8},/obj/effect/landmark{name = "JoinLateHeerCO"},/turf/floor/carpet,/area/prishtina/german/command/office)

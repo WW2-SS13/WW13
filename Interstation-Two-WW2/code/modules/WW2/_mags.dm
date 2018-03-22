@@ -60,10 +60,19 @@ WW 2 WEAPONS MAGS N AMMO
 	icon_state = "mp40mag"
 //	origin_tech = "combat=2"
 	mag_type = MAGAZINE
-	caliber = "a9mm_para"
+	caliber = "9x19mm"
 	w_class = 2
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a9_parabellum
+	max_ammo = 32
+	multiple_sprites = TRUE
+
+/obj/item/ammo_magazine/mp40/c9x19mm_stenmk3
+	name = "magazine (9x19mm)"
+	icon_state = "stenmag"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/c9x19mm_stenmk3
+	caliber = "9x19mm"
 	max_ammo = 32
 	multiple_sprites = TRUE
 
@@ -171,14 +180,14 @@ WW 2 WEAPONS MAGS N AMMO
 	max_ammo = 10
 	multiple_sprites = TRUE
 
-/obj/item/ammo_magazine/c9x19mm_stenmk3
-	name = "magazine (9x19mm)"
-	icon_state = "stenmag" // GET A STENMK3 AMMO MAG MP40 AMMO MAG IS BEING USED AS PLACEHOLDER
-	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/c9x19mm_stenmk3
-	caliber = "9x19mm"
-	max_ammo = 32
-	multiple_sprites = TRUE
+//obj/item/ammo_magazine/c9x19mm_stenmk3
+	//name = "magazine (9x19mm)"
+	//icon_state = "stenmag"
+	//mag_type = MAGAZINE
+	//ammo_type = /obj/item/ammo_casing/c9x19mm_stenmk3
+	//caliber = "9x19mm"
+	//max_ammo = 32
+	//multiple_sprites = TRUE
 
 ////////// NAGANT REVOLVER ///////////////
 /obj/item/ammo_magazine/c762x38mmR
@@ -209,10 +218,10 @@ WW 2 WEAPONS MAGS N AMMO
 
 /obj/item/ammo_magazine/c65x52mm
 	name = "Clip (6.5x52mm)"
-	icon_state = "kclip"
+	icon_state = "carclip"
 	caliber = "6.5x52mm"
 	ammo_type = /obj/item/ammo_casing/c65x52mm
-	max_ammo = 5
+	max_ammo = 6
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/p9x19mm
