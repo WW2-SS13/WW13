@@ -1,4 +1,5 @@
 <h2><span style = "font-size: 1.20em;">Welcome to <b><span style = "font-size: 1.20em;">Lebensraum <span style = "color: #CD4C6C">Alpha Edition</span></span></b></span></h2>
 <i>That means there are bugs</i>
+<h2>Rules: http://mechahitler.co.nf/lebensraum/rules.html</h2>
 <h2>Patreon: https://www.patreon.com/worldwar2inspace</h2>
 <h2>Github: https://github.com/WW2-SS13/WW13/issues</h2>

@@ -19,6 +19,30 @@
 				slowdown += 0.33
 	. *= slowdown
 
+/mob/living/carbon/human/get_run_delay()
+	. = ..()
+	var/slowdown = 1.0
+	var/weight = 0
+	var/max_weight = getStatCoeff("strength") * 37
+	for (var/obj/item/I in contents)
+		weight += I.weight
+	switch (weight)
+		if (0 to max_weight * 0.125) //0% - 12.5% of max_weight
+			slowdown = 0
+		if (max_weight * 0.125 to max_weight * 0.25) //12.5% - 25% of max_weight
+			slowdown = 0.125
+		if (max_weight * 0.25 to max_weight * 0.50) //25% - 50% of max_weight
+			slowdown = 0.375
+		if (max_weight * 0.50 to max_weight * 0.75) //50% - 75% of max_weight
+			slowdown = 0.625
+		if (max_weight * 0.75 to max_weight * 0.85) //75% - 85% of max_weight
+			slowdown = 0.8
+		if (max_weight * 0.85 to max_weight * 0.95) //85% - 95% of max_weight
+			slowdown = 0.9
+		if (max_weight * 0.95 to max_weight) //95% - 100% of max_weight
+			slowdown = 0.975
+	. *= slowdown+1
+
 /mob/proc/get_walk_delay()
 	return get_run_delay() * 1.33
 
@@ -430,6 +454,7 @@
 					H.nutrition -= 0.002
 					H.water -= 0.002
 
+
 		if (mob.pulling)
 			if (istype(mob.pulling, /mob))
 				move_delay += 1.0
@@ -591,10 +616,7 @@
 	return
 
 /mob/proc/lastMovedRecently(threshold)
-	var/default_threshold = get_walk_delay()
-	if (m_intent == "run")
-		default_threshold = get_run_delay()
-	if (abs(world.time - last_movement) <= (threshold ? threshold : default_threshold))
+	if (abs(last_movement - world.time) <= (threshold ? threshold : get_walk_delay()))
 		return TRUE
 	return FALSE
 
