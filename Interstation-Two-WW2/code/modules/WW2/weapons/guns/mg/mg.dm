@@ -58,7 +58,6 @@
 	item_state = "dp"
 	load_method = MAGAZINE
 	w_class = 5
-
 	accuracy = DEFAULT_MG_ACCURACY
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 	caliber = "a762x39"
@@ -76,16 +75,6 @@
 	force = 20
 	throwforce = 30
 
-
-
-/obj/item/weapon/gun/projectile/dp/attack_self(mob/user as mob)
-	. = ..(user)
-	//determine weight
-	if (ammo_magazine)
-		weight = 11.5
-	else
-		weight = 9.12
-
 /obj/item/weapon/gun/projectile/automatic/dp/update_icon()
 	if(ammo_magazine)
 		icon_state = "dp"
@@ -101,7 +90,6 @@
 			item_state = "dp0"
 	update_held_icon()
 	return
-
 
 /obj/item/weapon/gun/projectile/automatic/mg34
 	name = "MG-34"
@@ -173,11 +161,3 @@
 		user << "<span class='warning'>You need to open the cover to unload [src].</span>"
 		return
 	..()
-
-/obj/item/weapon/gun/projectile/mg34/attack_self(mob/user as mob)
-	. = ..(user)
-	//determine weight
-	if ((loaded.len) || (ammo_magazine && ammo_magazine.stored_ammo.len))
-		weight = 19.3
-	else
-		weight = 12.2
