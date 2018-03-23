@@ -19,6 +19,7 @@
 			var/splitString = splittext(string, "=")
 			var/patron = ckey(splitString[1])
 			var/pledge2 = text2num(splitString[2])
+			if (patron == ckey && pledge2 >= number)
 				return TRUE
 	return FALSE
 
