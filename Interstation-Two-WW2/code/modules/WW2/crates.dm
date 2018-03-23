@@ -209,7 +209,13 @@
 	icon_closed = "mil_crate_closed"
 
 /obj/structure/closet/crate/german_grenade
-	name = "Stielgranate crate"
+	name = "Stielgranate 41 crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/german_grenade2
+	name = "l2a2 grenade crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
@@ -233,7 +239,13 @@
 	icon_closed = "mil_crate_closed"
 
 /obj/structure/closet/crate/soviet_grenade
-	name = "RGD crate"
+	name = "RGD-33 crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
+/obj/structure/closet/crate/soviet_grenade2
+	name = "RGD-5 crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
@@ -582,18 +594,26 @@
 
 /obj/structure/closet/crate/soviet_grenade/New()
 	..()
-	update_capacity(18)
-	for (var/v in 1 to 9)
+	update_capacity(12)
+	for (var/v in 1 to 12)
 		new /obj/item/weapon/grenade/explosive/rgd(src)
-	for (var/v in 1 to 9)
+
+/obj/structure/closet/crate/soviet_grenade2/New()
+	..()
+	update_capacity(12)
+	for (var/v in 1 to 12)
 		new /obj/item/weapon/grenade/explosive/f1(src)
 
 /obj/structure/closet/crate/german_grenade/New()
 	..()
-	update_capacity(18)
-	for (var/v in 1 to 9)
+	update_capacity(12)
+	for (var/v in 1 to 12)
 		new /obj/item/weapon/grenade/explosive/stgnade(src)
-	for (var/v in 1 to 9)
+
+/obj/structure/closet/crate/german_grenade2/New()
+	..()
+	update_capacity(12)
+	for (var/v in 1 to 12)
 		new /obj/item/weapon/grenade/explosive/l2a2(src)
 
 /obj/structure/closet/crate/panzerfaust/New()

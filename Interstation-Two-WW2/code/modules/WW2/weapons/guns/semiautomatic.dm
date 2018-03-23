@@ -1,53 +1,53 @@
 /obj/item/weapon/gun/projectile/semiautomatic
-	// pistol accuracy, rifle skill & rifle KD chance
+	// pistol accuracy, rifle skill & decent KD chance
 	accuracy_list = list(
 
 		// small body parts: head, hand, feet
 		"small" = list(
 			SHORT_RANGE_STILL = 80,
-			SHORT_RANGE_MOVING = 40,
+			SHORT_RANGE_MOVING = 53,
 
 			MEDIUM_RANGE_STILL = 70,
-			MEDIUM_RANGE_MOVING = 30,
+			MEDIUM_RANGE_MOVING = 46,
 
 			LONG_RANGE_STILL = 60,
 			LONG_RANGE_MOVING = 40,
 
 			VERY_LONG_RANGE_STILL = 50,
-			VERY_LONG_RANGE_MOVING = 20),
+			VERY_LONG_RANGE_MOVING = 33),
 
 		// medium body parts: limbs
 		"medium" = list(
 			SHORT_RANGE_STILL = 85,
-			SHORT_RANGE_MOVING = 43,
+			SHORT_RANGE_MOVING = 56,
 
 			MEDIUM_RANGE_STILL = 75,
-			MEDIUM_RANGE_MOVING = 38,
+			MEDIUM_RANGE_MOVING = 50,
 
 			LONG_RANGE_STILL = 65,
-			LONG_RANGE_MOVING = 33,
+			LONG_RANGE_MOVING = 43,
 
 			VERY_LONG_RANGE_STILL = 55,
-			VERY_LONG_RANGE_MOVING = 28),
+			VERY_LONG_RANGE_MOVING = 36),
 
 		// large body parts: chest, groin
 		"large" = list(
 			SHORT_RANGE_STILL = 90,
-			SHORT_RANGE_MOVING = 45,
+			SHORT_RANGE_MOVING = 59,
 
 			MEDIUM_RANGE_STILL = 80,
-			MEDIUM_RANGE_MOVING = 40,
+			MEDIUM_RANGE_MOVING = 53,
 
 			LONG_RANGE_STILL = 70,
-			LONG_RANGE_MOVING = 35,
+			LONG_RANGE_MOVING = 46,
 
 			VERY_LONG_RANGE_STILL = 60,
-			VERY_LONG_RANGE_MOVING = 30),
+			VERY_LONG_RANGE_MOVING = 40),
 	)
 
 	accuracy_increase_mod = 1.10
 	accuracy_decrease_mod = 1.20
-	KD_chance = 50
+	KD_chance = KD_CHANCE_MEDIUM
 	stat = "rifle"
 
 /obj/item/weapon/gun/projectile/semiautomatic/svt
@@ -165,21 +165,19 @@
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 
-	can_wield = TRUE
-
 /obj/item/weapon/gun/projectile/semiautomatic/stg/update_icon()
 	if(ammo_magazine)
 		icon_state = "stg"
-		if(wielded)
+/*		if(wielded)
 			item_state = "stg-w"
 		else
-			item_state = "stg"
+			item_state = "stg"*/
 	else
 		icon_state = "stg0"
-		if(wielded)
+/*		if(wielded)
 			item_state = "stg-w"
 		else
-			item_state = "stg0"
+			item_state = "stg0"*/
 	update_held_icon()
 	return
 
@@ -198,7 +196,7 @@
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY-1
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 
-	can_wield = TRUE
+	//can_wield = TRUE
 	//must_wield = TRUE
 
 	firemodes = list(
@@ -212,15 +210,15 @@
 /obj/item/weapon/gun/projectile/semiautomatic/akm/update_icon()
 	if(ammo_magazine)
 		icon_state = "stg"
-		if(wielded)
+/*		if(wielded)
 			item_state = "stg-w"
 		else
-			item_state = "stg"
+			item_state = "stg"*/
 	else
 		icon_state = "stg0"
-		if(wielded)
+/*		if(wielded)
 			item_state = "stg-w"
 		else
-			item_state = "stg0"
+			item_state = "stg0"*/
 	update_held_icon()
 	return

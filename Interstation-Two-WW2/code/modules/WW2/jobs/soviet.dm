@@ -190,7 +190,7 @@
 /datum/job/soviet/squad_leader
 	title = "Starshiy Serzhant"
 	en_meaning = "Platoon 2IC"
-	rank_abbreviation = "StSr"
+	rank_abbreviation = "Srg"
 	head_position = FALSE
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRASL"

@@ -37,7 +37,6 @@
 	throw_speed = 4
 	throw_range = 5
 	force = 5
-//	origin_tech = "combat=1"
 	attack_verb = list("struck", "hit", "bashed")
 
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
@@ -65,10 +64,10 @@
 	var/tmp/told_cant_shoot = FALSE //So that it doesn't spam them with the fact they cannot hit them.
 	var/tmp/lock_time = -100
 
-	var/wielded = FALSE
-	var/must_wield = FALSE
-	var/can_wield = FALSE
-	var/can_scope = FALSE
+//	var/wielded = FALSE
+//	var/must_wield = FALSE
+//	var/can_wield = FALSE
+//	var/can_scope = FALSE
 
 	var/burst = TRUE
 	var/move_delay = 0
@@ -98,6 +97,9 @@
 	for (var/datum/firemode/F in firemodes)
 		if (!F.accuracy.len)
 			F.accuracy[1] = accuracy
+
+	if (!aim_targets)
+		aim_targets = list()
 
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
@@ -138,24 +140,6 @@
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
 		O.emp_act(severity)
-/*
-/obj/item/weapon/gun/afterattack(atom/A, mob/living/user, adjacent, params)
-	if(adjacent) return //A is adjacent, is the user, or is on the user's person
-
-	//decide whether to aim or shoot normally
-	var/aiming = FALSE
-	if(user && user.client && !(A in aim_targets))
-		if(user.client.gun_mode)
-			aiming = PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
-
-	if (!aiming)
-		if(must_wield && !wielded)
-			user << "\red You must wield the [name] before shooting."
-		//if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
-		//	user << "\red You refrain from firing your [src] as your intent is set to help."
-		else
-			Fire(A,user,params) //Otherwise, fire normally.
-*/
 
 /obj/item/weapon/gun/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && w_class >= 4) // Only big guns can stop attacks.
@@ -243,18 +227,12 @@
 
 	var/shoot_time = (burst - TRUE)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
-//	user.setMoveCooldown(shoot_time) //no moving while shooting either
 	next_fire_time = world.time + shoot_time
 
 
 	var/held_acc_mod = FALSE
 	var/held_disp_mod = FALSE
-/*
-	if(requires_two_hands)
-		if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
-			held_acc_mod = -3
-			held_disp_mod = 3
-*/
+
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 	for(var/i in 1 to burst)
@@ -423,21 +401,6 @@
 	else
 		playsound(get_turf(user), fire_sound, 100, TRUE, 100)
 
-		/*
-		if(reflex)
-			user.visible_message(
-				"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!<b></span>",
-				"<span class='reflex_shoot'>You fire \the [src] by reflex!</span>",
-				"You hear a [fire_sound_text]!"
-			)
-		else
-			user.visible_message(
-				"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!</span>",
-				"<span class='warning'>You fire \the [src]!</span>",
-				"You hear a [fire_sound_text]!"
-				)
-		*/
-
 		if(muzzle_flash)
 			set_light(muzzle_flash)
 
@@ -450,8 +413,6 @@
 	if(recoil)
 		spawn(0)
 			var/shake_strength = recoil+0.5
-		//	if(can_wield && !wielded)
-			//	shake_strength += 2
 			if (shake_strength > 0)
 				shake_camera(user, max(shake_strength, 0), min(shake_strength, 50))
 			recoil = i_recoil
@@ -491,17 +452,13 @@
 	//Accuracy modifiers
 	P.accuracy = accuracy + acc_mod
 	P.dispersion = dispersion
-
+/*
 	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))
 		//If you aim at someone beforehead, it'll hit more often.
 		//Kinda balanced by fact you need like 2 seconds to aim
 		//As opposed to no-delay pew pew
-		P.accuracy += 2
-
-/* // since wielding was removed
-	if(can_wield && !wielded)
-		P.accuracy -= 2 */
+		P.accuracy += 2*/
 
 //does the actual launching of the projectile
 /obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
@@ -622,7 +579,7 @@
 /obj/item/weapon/gun/attack_self(mob/user)
 	if(firemodes.len > TRUE)
 		switch_firemodes(user)
-
+/*
 /obj/item/weapon/gun/proc/wield(mob/user as mob)
 	if(wielded)
 		return
@@ -657,37 +614,18 @@
 	..()
 	if(wielded)
 		unwield(user)
+*/
 
 /obj/item/weapon/gun/mob_can_equip(M as mob, slot) //Dirty hack
 	. = ..()
-	if(.)
-		unwield(M)
+/*	if(.)
+		unwield(M)*/
 	return
-
+/*
 /obj/item/weapon/offhand
 	w_class = 5
 	icon_state = "offhand"
 	name = "offhand"
-/*
-/obj/item/weapon/offhand/proc/remove()
-	if(!removed)
-		removed = TRUE
-		var/mob/user = usr
-		if(user.get_active_hand() == src)
-			user.drop_active_hand()
-			var/obj/item/weapon/gun/G = user.get_inactive_hand()
-			if(istype(G))
-				G.unwield()
-			qdel(src)
-		else if(user.get_inactive_hand() == src)
-			user.drop_inactive_hand()
-			var/obj/item/weapon/gun/G = user.get_active_hand()
-			if(istype(G))
-				G.unwield()
-			qdel(src)
-		else
-			user << "<span class = 'red'>Something is WRONG!!</span>"
-*/
 
 /obj/item/weapon/offhand/update_icon()
 	return
@@ -697,53 +635,8 @@
 
 /obj/item/weapon/offhand/attackby(obj/I as obj, mob/user as mob)
 	if(user.get_inactive_hand() == src)
-		user:swap_hand()
+		user:swap_hand()*/
 
-/*
-/mob/living/carbon/human/verb/wield_weapon()
-	set name = "Wield"
-	set category = "Weapons"
-
-	var/obj/item/weapon/gun/G = get_active_hand()
-	if(!G || !istype(G))
-		G = get_inactive_hand()
-		if(!G || !istype(G))
-			src << "<span class = 'red'>You can't wield anything in your hands.</span>"
-			return
-
-	if(G.wielded)
-		src << "<span class = 'red'>The [G.name] is already wielded.</span>"
-		return
-
-	if(!G.can_wield)
-		usr << "<span class = 'red'>You can't wield the [G.name].</span>"
-		return
-
-	G.wield(src)
-
-	usr << "<span class = 'red'>You wielded the [G.name].</span>"
-
-/mob/living/carbon/human/verb/unwield_weapon()
-	set name = "Unwield"
-	set category = "Weapons"
-
-	var/obj/item/weapon/gun/G = get_active_hand()
-	if(!G || !istype(G))
-		G = get_inactive_hand()
-		if(!G || !istype(G))
-			src << "<span class = 'red'>You can't unwield anything in your hands.</span>"
-			return
-
-	if(!G.wielded)
-		src << "<span class = 'red'>The [G.name] is not wielded.</span>"
-		return
-
-	G.unwield(src)
-	//if(G != get_active_hand())
-	//	H:swap_hand()
-
-	usr << "<span class = 'red'>You unwielded the [name].</span>"
-*/
 /mob/living/carbon/human/verb/eject_magazine()
 	set name = "Eject magazine"
 	set category = "Weapons"
@@ -759,9 +652,6 @@
 		src << "<span class = 'red'>The [G.name] is already unloaded.</span>"
 		return
 
-	//if(G.wielded)
-	//	G.unwield()
-
 	G.ammo_magazine.loc = get_turf(loc)
 	visible_message(
 		"[G.ammo_magazine] falls out and clatters on the floor!",
@@ -770,18 +660,3 @@
 	G.ammo_magazine.update_icon()
 	G.ammo_magazine = null
 	G.update_icon() //make sure to do this after unsetting ammo_magazine
-/*
-/mob/living/carbon/human/verb/toggle_firerate()
-	set name = "Toggle firerate"
-	set category = "Weapons"
-
-	var/obj/item/weapon/gun/G = get_active_hand()
-	if(!G || !istype(G))
-		G = get_inactive_hand()
-		if(!G || !istype(G))
-			src << "<span class = 'red'>You have no weapon in hands.</span>"
-			return
-
-	if(G.firemodes.len > TRUE)
-		G.switch_firemodes(src)
-*/

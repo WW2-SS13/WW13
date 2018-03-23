@@ -1,5 +1,4 @@
 #define RAID "Order katyusha strike"
-#define DECLARE_TRAITOR "Declare Traitor" // broken
 #define REQUEST_BATTLE_REPORT "Request Battle Status Report"
 
 var/list/next_raid = list(SOVIET = -1, GERMAN = -1)
@@ -49,7 +48,7 @@ var/list/soviet_traitors = list()
 			switch (dowhat)
 				if (RAID)
 					if (next_raid[faction] != -1 && world.time < next_raid[faction])
-						H << "<span class = 'danger'>You can't call in another Katyusha attack yet. You can call in another Katyusha attack in ~[round((next_raid[faction]-world.time)/600)+1] minutes.</span>"
+						H << "<span class = 'danger'>You can't call in another Katyusha attack yet. You can call in another Katyusha attack in ~[round((next_raid[faction]-world.time)/600)] minutes.</span>"
 						return
 					if (map && !map.soviets_can_cross_blocks() && faction == SOVIET)
 						H << "<span class = 'warning'>You can't use this yet.</span>"
@@ -70,7 +69,7 @@ var/list/soviet_traitors = list()
 							return
 						supply_points[faction] -= cost
 						radio2faction("[faction == GERMAN ? "A Luftwaffe" : "A Katyusha"] attack has been called in by [H.real_name]. Stand by.", faction)
-						air_raid(faction, src)
+						air_raid(faction, src, cost)
 						next_raid[faction] = world.time + rand(1500, 2100)
 
 				if (REQUEST_BATTLE_REPORT)
@@ -79,42 +78,18 @@ var/list/soviet_traitors = list()
 
 					battlereport2faction(faction)
 
-				if (DECLARE_TRAITOR)
-					if (!H.original_job || H.original_job.base_type_flag() != faction || !H.original_job.is_officer)
-						return
-
-					var/who = lowertext(input(H, "Declare who as a traitor?") as text)
-					var/found = FALSE
-					for (var/mob/living/carbon/human/HH in human_mob_list)
-						if (HH.loc)
-							var/HH_name = lowertext(HH.real_name)
-							var/HH_name_no_rank = lowertext(splittext(HH.real_name, ". ")[2])
-							if ((HH_name == who || HH_name_no_rank == who) && HH.original_job && HH.original_job.base_type_flag() == faction)
-								if (rankcmp(H.original_job, HH.original_job))
-									found = HH.real_name
-					if (!found)
-						H << "<span class = 'warning'>The person was not found.</span>"
-					else
-						var/list/traitors = list()
-						switch (faction)
-							if (GERMAN)
-								traitors = german_traitors
-							if (SOVIET)
-								traitors = soviet_traitors
-						traitors |= found
-						radio2faction("[found] has been declared a traitor by [H.real_name]. They will be targeted in future Katyusha attacks. Military Police are hereby instructed to detain or execute [found].", faction)
-
-/proc/air_raid(faction, var/obj/item/weapon/phone/tohighcommand/caller)
+/proc/air_raid(faction, var/obj/item/weapon/phone/tohighcommand/caller, var/cost)
 
 	spawn (rand(40,60))
 
-		var/raiding = null
+		var/list/raiding = list()
 		if (faction == GERMAN)
-			raiding = SOVIET
+			raiding += SOVIET
 		else if (faction == SOVIET)
-			raiding = GERMAN
+			raiding += GERMAN
+			raiding += ITALIAN
 		else
-			raiding = TRUE // somehow we got here, bomb everyone ayylmao
+			raiding += TRUE // somehow we got here, bomb everyone ayylmao
 
 		var/list/traitors = list()
 
@@ -123,7 +98,7 @@ var/list/soviet_traitors = list()
 		else if (faction == SOVIET)
 			traitors = soviet_traitors
 
-		var/list/targets = (raiding == SOVIET ? alive_russians : raiding == GERMAN ? alive_germans : player_list)
+		var/list/targets = (raiding.Find(SOVIET) ? alive_russians : raiding.Find(GERMAN) ? alive_germans : player_list)
 
 		var/maximum_targets = max(1, ceil(targets.len/5))
 		var/targeted = 0
@@ -152,7 +127,7 @@ var/list/soviet_traitors = list()
 							continue
 				else if (istype(H_area, /area/prishtina/void))
 					continue
-				else if ((H.original_job && H.original_job.base_type_flag() == raiding) || raiding == TRUE || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
+				else if ((H.original_job && raiding.Find(H.original_job.base_type_flag())) || raiding.Find(TRUE) || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
 					if (targeted < maximum_targets)
 
 						++targeted
@@ -169,15 +144,22 @@ var/list/soviet_traitors = list()
 						playsound(target, "artillery_in_distant", 100, TRUE, 100)
 						target.visible_message("<span class = 'userdanger'>You see a barrage of rockets in the sky!</span>")
 
-						for (var/v in 1 to 3)
-							var/spawndelay = 30
+						// 6 bombs in a 3x3 radius means you will almost always be hit if you don't run
+						for (var/v in 1 to 6)
+							var/spawndelay = 40
 							switch (v)
 								if (1)
-									spawndelay = 30
-								if (2)
 									spawndelay = 40
+								if (2)
+									spawndelay = 45
 								if (3)
 									spawndelay = 50
+								if (4)
+									spawndelay = 55
+								if (5)
+									spawndelay = 60
+								if (6)
+									spawndelay = 65
 							spawn (spawndelay)
 
 								var/target_x = H_x + rand(-3,3)
@@ -198,3 +180,7 @@ var/list/soviet_traitors = list()
 									playsound(target, "explosion", 100, TRUE, 100)
 					else
 						break
+		if (!targeted)
+			supply_points[faction] += cost
+			radio2faction("Due to a lack of targets, the cost for the Katyusha strike was refunded.", faction)
+			next_raid[faction] = -1

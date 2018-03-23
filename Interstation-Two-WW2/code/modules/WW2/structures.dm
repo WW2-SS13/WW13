@@ -18,6 +18,18 @@
 			return FALSE
 	return FALSE
 
+/obj/structure/anti_tank/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			qdel(src)
+			return
+		if(2.0)
+			if(prob(25))
+				qdel(src)
+				return
+		if(3.0)
+			return
+
 /obj/structure/flag
 	icon = 'icons/obj/flags.dmi'
 	layer = MOB_LAYER + 0.01
@@ -25,6 +37,18 @@
 	bound_height = 32
 	density = TRUE
 	anchored = TRUE
+
+/obj/structure/flag/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			qdel(src)
+			return
+		if(2.0)
+			if(prob(66))
+				qdel(src)
+				return
+		if(3.0)
+			return
 
 /obj/structure/flag/soviet
 	icon_state = "soviet"

@@ -19,7 +19,7 @@
 			cpledge = table["pledge"]
 			extra = " They are a [cpledge] patron."
 
-	var/pledge = input(src, "What pledge amount?[extra]") in list("$3+", "$5+", "$10+")
+	var/pledge = input(src, "What pledge amount?[extra]") in list("$3+", "$5+", "$10+", "$15+", "$20+")
 	if (pledge == cpledge)
 		src << "<span class = 'bad'>This is their current patron level.</span>"
 		return

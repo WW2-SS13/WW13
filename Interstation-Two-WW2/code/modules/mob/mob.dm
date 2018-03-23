@@ -658,8 +658,9 @@
 				stat("Grace Period Status:", grace_period_string)
 
 			stat("Map:", map.title)
-			stat("Season:", ticker.mode.season())
-			stat("Weather:", ticker.mode.weather())
+
+			stat("Season:", !ticker.mode ? "Spring" : ticker.mode.season())
+			stat("Weather:", !ticker.mode ? "Clear skies" : ticker.mode.weather())
 			stat("Time of Day:", time_of_day)
 
 			if (z == 2 && map && map.ID == "FOREST")

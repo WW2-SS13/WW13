@@ -17,16 +17,16 @@
 /obj/item/weapon/gun/projectile/minigun/kord/maxim/update_icon()
 	if(ammo_magazine)
 		icon_state = "maxim"
-		if(wielded)
+/*		if(wielded)
 			item_state = "maxim"
 		else
-			item_state = "maxim"
+			item_state = "maxim"*/
 	else
 		icon_state = "maxim0"
-		if(wielded)
+/*		if(wielded)
 			item_state = "maxim0"
 		else
-			item_state = "maxom0"
+			item_state = "maxom0"*/
 	update_held_icon()
 	return
 
@@ -58,15 +58,15 @@
 /obj/item/weapon/gun/projectile/minigun/maximstat/update_icon()
 	if(ammo_magazine)
 		icon_state = "maximstat"
-		if(wielded)
+/*		if(wielded)
 			item_state = "maximstat"
 		else
-			item_state = "maximstat"
+			item_state = "maximstat"*/
 	else
 		icon_state = "maximstat0"
-		if(wielded)
+/*		if(wielded)
 			item_state = "maximstat0"
 		else
-			item_state = "maxomstat0"
+			item_state = "maxomstat0"*/
 	update_held_icon()
 	return

@@ -38,8 +38,6 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 				if (m.stat != DEAD)
 					m.emote("scream")
 			m.adjustFireLoss(base)
-			if (prob(50))
-				m.Weaken(rand(4,5))
 
 /datum/reagent/proc/internal_damage(var/mob/living/carbon/human/m, var/severity = TRUE) // damage things like lungs
 	if (mask_check(m)) return
@@ -68,8 +66,6 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 				if (m.stat != DEAD)
 					m.emote("scream")
 			m.adjustFireLoss(base)
-			if (prob(50))
-				m.Weaken(rand(4,5))
 
 /proc/get_severity(var/amount)
 	switch (amount)

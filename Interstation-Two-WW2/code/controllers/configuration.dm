@@ -216,6 +216,7 @@ var/list/gamemode_cache = list()
 
 	// dumb memes
 	var/allow_dabbing = FALSE
+	var/patrons_can_enable_disable_dabbing = FALSE
 
 	// seasons and weather
 	var/list/allowed_seasons = list(1)
@@ -638,6 +639,7 @@ var/list/gamemode_cache = list()
 
 				if ("allow_dabbing")
 					config.allow_dabbing = TRUE
+					config.patrons_can_enable_disable_dabbing = TRUE
 
 				if ("enabled_seasons")
 					if (value)

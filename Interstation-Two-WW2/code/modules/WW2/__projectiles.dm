@@ -15,7 +15,7 @@
 	armor_penetration = 500
 	damage = 300
 	accuracy = 5000
-	penetrating = 1
+	penetrating = 0
 
 /obj/item/weapon/gun/projectile/shotgun
 	gun_type = GUN_TYPE_SHOTGUN
@@ -32,7 +32,7 @@
 	armor_penetration = 500
 	damage = DAMAGE_OH_GOD
 	accuracy = 5000
-	penetrating = 1
+	penetrating = 0
 
 // STG44
 /obj/item/projectile/bullet/rifle/a792x33

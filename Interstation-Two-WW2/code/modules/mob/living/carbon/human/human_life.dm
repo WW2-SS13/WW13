@@ -1302,6 +1302,8 @@
 					holder.icon_state = spy_faction.icon_state
 				if (GERMAN)
 					holder.icon_state = spy_faction.icon_state
+				if (ITALIAN)
+					holder.icon_state = spy_faction.icon_state
 				if (PARTISAN)
 					holder.icon_state = spy_faction.icon_state
 				if (CIVILIAN)
@@ -1318,6 +1320,8 @@
 				if (SOVIET)
 					holder.icon_state = officer_faction.icon_state
 				if (GERMAN)
+					holder.icon_state = officer_faction.icon_state
+				if (ITALIAN)
 					holder.icon_state = officer_faction.icon_state
 				if (PARTISAN)
 					holder.icon_state = officer_faction.icon_state
@@ -1336,6 +1340,8 @@
 					holder.icon_state = base_faction.icon_state
 				if (GERMAN)
 					holder.icon_state = base_faction.icon_state
+				if (ITALIAN)
+					holder.icon_state = base_faction.icon_state
 				if (PARTISAN)
 					holder.icon_state = base_faction.icon_state
 				if (CIVILIAN)
@@ -1352,6 +1358,8 @@
 				if (SOVIET)
 					holder.icon_state = squad_faction.icon_state
 				if (GERMAN)
+					holder.icon_state = squad_faction.icon_state
+				if (ITALIAN)
 					holder.icon_state = squad_faction.icon_state
 				if (PARTISAN)
 					holder.icon_state = squad_faction.icon_state

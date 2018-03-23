@@ -10,6 +10,10 @@
 #define VERY_LONG_RANGE_STILL "very_long_range_still"
 #define VERY_LONG_RANGE_MOVING "very_long_range_moving"
 
+#define KD_CHANCE_LOW 30
+#define KD_CHANCE_MEDIUM 60
+#define KD_CHANCE_HIGH 90
+
 /obj/item/weapon/gun/projectile
 	var/accuracy_list = list(
 

@@ -222,6 +222,10 @@
 		else if (is_commander)
 			user.officer_faction = new/datum/faction/partisan/commander(user, src)
 
+	else if (istype(src, /datum/job/italian))
+		user.base_faction = new/datum/faction/german/italian(user, src)
+		if (is_commander)
+			user.officer_faction = new/datum/faction/german/commander/italian
 
 /datum/job/proc/try_make_jew(var/mob/living/carbon/human/user)
 	return // disabled
@@ -278,6 +282,8 @@
 		return "German Wehrmacht"
 	if (side == PILLARMEN)
 		return "PILLARMEN"
+	if (side == ITALIAN)
+		return "Italian Army"
 	return null
 
 // here's a story

@@ -26,7 +26,7 @@ var/datum/controller/process/ping_track/ping_track = null
 	while (my_clients.len)
 		var/client/C = my_clients[my_clients.len]
 		--my_clients.len
-		if (!C)
+		if (!C || !C.tracking_ready)
 			continue
 		winset(C, null, "command=.update_ping+[world.time+world.tick_lag*world.tick_usage/100]")
 		avg += C.last_ping

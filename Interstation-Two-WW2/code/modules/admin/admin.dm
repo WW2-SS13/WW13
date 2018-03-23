@@ -8,8 +8,7 @@ var/global/floorIsLava = FALSE
 	msg = "<span class=\"log_message\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_adminwarn(msg)
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights || R_MOD & C.holder.rights)
-			C << msg
+		C << msg
 
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	log_attack(text)

@@ -113,6 +113,7 @@
 				if (istype(mover, /obj/item/projectile))
 					var/obj/item/projectile/B = mover
 					B.damage = 0 // make sure we can't hurt people after hitting a sandbag
+					qdel(B) // because somehow we were still passing the sandbag
 				return FALSE
 			else
 				return TRUE

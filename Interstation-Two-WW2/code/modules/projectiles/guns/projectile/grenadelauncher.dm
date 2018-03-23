@@ -44,8 +44,6 @@
 	handle_casings = REMOVE_CASINGS
 
 	recoil = 4
-	can_wield = TRUE
-	must_wield = TRUE
 
 /obj/item/weapon/gun/projectile/rocket/one_use/attackby(obj/item/I as obj, mob/user as mob)
 	if (..()) // handle attachments
@@ -117,9 +115,6 @@
 	slot_flags = SLOT_BACK
 	var/opened = FALSE
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
-
-	can_wield = TRUE
-	must_wield = TRUE
 
 //revolves the magazine, allowing players to choose between multiple grenade types
 /obj/item/weapon/gun/projectile/grenade/proc/pump(mob/M as mob)
