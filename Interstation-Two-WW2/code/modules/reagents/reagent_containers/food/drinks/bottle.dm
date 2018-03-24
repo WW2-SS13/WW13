@@ -124,7 +124,7 @@
 			var/lightrange = max(1, round(raw_devrange*2))
 			var/flashrange = max(1, round(raw_devrange*3))
 			var/firerange = max(1, round(raw_devrange*4)) + 1
-			firerange = min(firerange, 5) // removes crazy molotovs
+			firerange = min(firerange, 3) // removes crazy molotovs
 
 			var/src_turf = get_turf(src)
 
@@ -133,7 +133,7 @@
 					if (prob(80) && !T.density)
 						for (var/obj/structure/S in T)
 							if (S.density && !S.low)
-								break mainloop
+								continue mainloop
 						var/obj/fire/F = T.create_fire(temp = ceil(explosion_power/8))
 						F.time_limit = pick(50, 60, 70)
 						for (var/mob/living/L in T)

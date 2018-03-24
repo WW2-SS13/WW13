@@ -3,7 +3,7 @@
 //*********************
 
 /obj/item/weapon/gun/projectile/minigun/verb/eject_mag()
-	set category = "Minigun"
+	set category = null // was "Minigun" - removes lag
 	set name = "Eject magazine"
 	set src in range(1, usr)
 	try_remove_mag(usr)
