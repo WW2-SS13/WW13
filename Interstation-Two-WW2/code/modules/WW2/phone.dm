@@ -182,5 +182,5 @@ var/list/soviet_traitors = list()
 						break
 		if (!targeted)
 			supply_points[faction] += cost
-			radio2faction("Due to a lack of targets, the cost for the Katyusha strike was refunded.", faction)
+			radio2faction("Due to a lack of targets, the Katyusha strike was cancelled and refunded.", faction)
 			next_raid[faction] = -1
