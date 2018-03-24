@@ -67,6 +67,9 @@
 					++stew_nutriment
 					++stew_protein
 			else
+				if (contents.len >= 15)
+					H << "<span class = 'warning'>There's too much in the pot already.</span>")
+					return
 				H.remove_from_mob(I)
 				I.loc = src
 				visible_message("<span class = 'info'>[H] puts [I] in the pot.</span>")
