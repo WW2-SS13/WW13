@@ -261,6 +261,12 @@
 		if (!istype(mob, /mob/new_player))
 			src << browse(null, "window=playersetup;")
 
+		if (istype(mob, /mob/living/carbon/human))
+			human_clients_mob_list |= src
+
+		else if (istype(mob, /mob/observer))
+			observer_mob_list |= src
+
 	spawn (10)
 		if (src)
 			tracking_ready = TRUE

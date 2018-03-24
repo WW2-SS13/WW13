@@ -24,6 +24,8 @@
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
 	if(!usr)	return
+	if (raw)
+		M.reagents.add_reagent("food_poisoning", pick(1,3))
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
 		usr.drop_from_inventory(src)	//so icons update :[
@@ -575,11 +577,11 @@
 	icon_state = "appendix"
 	filling_color = "#E00D34"
 	center_of_mass = list("x"=16, "y"=16)
+	raw = TRUE
 
 	New()
 		..()
 		reagents.add_reagent("protein", rand(3,5))
-		reagents.add_reagent("toxin", rand(1,3))
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/tofu
@@ -1805,6 +1807,7 @@
 	center_of_mass = list("x"=16, "y"=5)
 	nutriment_desc = list("tomato" = 2, "potato" = 2, "carrot" = 2, "eggplant" = 2, "mushroom" = 2)
 	nutriment_amt = 6
+	trash = /obj/item/trash/snack_bowl
 	New()
 		..()
 		reagents.add_reagent("protein", 4)
@@ -1895,6 +1898,13 @@
 	New()
 		..()
 		bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/boiledspagetti/attackby(obj/item/I as obj, mob/user as mob)
+	if (istype(I, /obj/item/weapon/reagent_containers/food/snacks/meatball))
+		visible_message("<span class = 'info'>[user] combines the spaghetti with the meatball to make spaghetti and meatballs.</span>")
+		qdel(I)
+		new/obj/item/weapon/reagent_containers/food/snacks/meatballspagetti(get_turf(src))
+		qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/boiledrice
 	name = "Boiled Rice"
@@ -3033,6 +3043,7 @@
 	icon_state = "rawcutlet"
 	bitesize = 1
 	center_of_mass = list("x"=17, "y"=20)
+	raw = TRUE
 
 	New()
 		..()

@@ -13,6 +13,7 @@
 
 /datum/job/italian
 	default_language = "Italian"
+	additional_languages = list( "German" = 100 )
 
 /datum/job/soviet
 	default_language = "Russian"

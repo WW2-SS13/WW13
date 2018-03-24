@@ -1,7 +1,10 @@
 /proc/handle_lifts()
 
+	var/display_message = FALSE
+
 	spawn (1)
-		world << "<span class = 'notice'>Setting up the lift system.</span>"
+		if (display_message)
+			world << "<span class = 'notice'>Setting up the lift system.</span>"
 
 	// assign lift IDs
 
@@ -15,6 +18,7 @@
 		else
 			++bottom_lifts[master.area_id]
 			master.lift_id = "ww2-l-[master.area_id]-[bottom_lifts[master.area_id]]"
+		display_message = TRUE
 
 	// assign lift targets and corresponding areas
 	for (var/obj/lift_controller/master in world)

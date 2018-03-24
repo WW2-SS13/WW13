@@ -49,6 +49,10 @@
 	icon_state	= "snack_bowl"
 	dropsound = 'sound/effects/drop_glass.ogg'
 
+/obj/item/trash/snack_bowl/New()
+	..()
+	pixel_x = rand(-5,5)
+
 /obj/item/trash/pistachios
 	name = "pistachios pack"
 	icon_state = "pistachios_pack"

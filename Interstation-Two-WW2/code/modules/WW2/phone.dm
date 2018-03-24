@@ -48,7 +48,7 @@ var/list/soviet_traitors = list()
 			switch (dowhat)
 				if (RAID)
 					if (next_raid[faction] != -1 && world.time < next_raid[faction])
-						H << "<span class = 'danger'>You can't call in another Katyusha attack yet. You can call in another Katyusha attack in ~[round((next_raid[faction]-world.time)/600)] minutes.</span>"
+						H << "<span class = 'danger'>You can't call in another Katyusha attack yet. You can call in another Katyusha attack in ~[max(round((next_raid[faction]-world.time)/600),0)] minutes.</span>"
 						return
 					if (map && !map.soviets_can_cross_blocks() && faction == SOVIET)
 						H << "<span class = 'warning'>You can't use this yet.</span>"

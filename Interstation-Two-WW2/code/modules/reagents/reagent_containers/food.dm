@@ -12,6 +12,7 @@
 	var/list/center_of_mass = list() // Used for table placement
 	var/roasted = FALSE
 	var/boiled = FALSE
+	var/raw = FALSE
 
 /obj/item/weapon/reagent_containers/food/New()
 	..()

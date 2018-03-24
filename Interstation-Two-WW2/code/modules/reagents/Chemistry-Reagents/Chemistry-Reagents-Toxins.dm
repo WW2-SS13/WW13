@@ -83,6 +83,22 @@
 	M.adjustOxyLoss(20 * removed)
 	M.sleeping += TRUE
 
+/datum/reagent/toxin/food_poisoning
+	name = "Food Poisoning"
+	id = "food_poisoning"
+	description = "A highly toxic chemical."
+	taste_mult = 0.3
+	reagent_state = LIQUID
+	color = "#CF3600"
+	strength = 10
+	metabolism = REM
+
+/datum/reagent/toxin/food_poisoning/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.adjustToxLoss(5 * removed)
+	if (prob(30))
+		M << "<span class = 'warning'>You feel sick...</span>"
+
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
 	id = "potassium_chloride"
