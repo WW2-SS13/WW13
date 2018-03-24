@@ -37,7 +37,7 @@
 	if(moles == FALSE)
 		return
 
-	if(moles > FALSE && abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+	if(moles > 0 && abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		var/self_heat_capacity = heat_capacity()
 		var/giver_heat_capacity = gas_data.specific_heat[gasid] * moles
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
@@ -127,7 +127,7 @@
 		return FALSE
 
 	var/heat_capacity = heat_capacity()
-	if (thermal_energy < FALSE)
+	if (thermal_energy < 0)
 		if (temperature < TCMB)
 			return FALSE
 		var/thermal_energy_limit = -(temperature - TCMB)*heat_capacity	//ensure temperature does not go below TCMB
@@ -441,12 +441,12 @@
 		for(var/g in gasmix.gas)
 			total_gas[g] += gasmix.gas[g]
 
-	if(total_volume > FALSE)
+	if(total_volume > 0)
 		var/datum/gas_mixture/combined = new(total_volume)
 		combined.gas = total_gas
 
 		//Calculate temperature
-		if(total_heat_capacity > FALSE)
+		if(total_heat_capacity > 0)
 			combined.temperature = total_thermal_energy / total_heat_capacity
 		combined.update_values()
 

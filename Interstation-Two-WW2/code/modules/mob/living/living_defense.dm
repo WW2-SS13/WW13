@@ -282,7 +282,7 @@ var/obj/human_fire_overlay_lying = null
 		return TRUE
 /*
 	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment
-	if(G.gas["oxygen"] < TRUE)
+	if(G.gas["oxygen"] < 1)
 		ExtinguishMob() //If there's no oxygen in the tile we're on, put out the fire
 		return TRUE
 
@@ -404,7 +404,7 @@ var/obj/human_fire_overlay_lying = null
 			B.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number)
 			//hud_used.SetButtonCoords(B,button_number)
 
-//	if(button_number > FALSE)
+//	if(button_number > 0)
 		/*if(!hud_used.hide_actions_toggle)
 			hud_used.hide_actions_toggle = new(hud_used)
 			hud_used.hide_actions_toggle.InitialiseIcon(src)

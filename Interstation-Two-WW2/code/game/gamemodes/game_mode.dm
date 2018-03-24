@@ -53,12 +53,12 @@ var/global/list/additional_antag_types = list()
 		switch(href_list["set"])
 			if("shuttle_delay")
 				choice = input("Enter a new shuttle delay multiplier") as num
-				if(!choice || choice < TRUE || choice > 20)
+				if(!choice || choice < 1 || choice > 20)
 					return
 				shuttle_delay = choice
 			if("antag_scaling")
 				choice = input("Enter a new antagonist cap scaling coefficient.") as num
-				if(isnull(choice) || choice < FALSE || choice > 100)
+				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				antag_scaling_coeff = choice
 		message_admins("Admin [key_name_admin(usr)] set game mode option '[href_list["set"]]' to [choice].")
@@ -105,7 +105,7 @@ var/global/list/additional_antag_types = list()
 		var/antag_summary = "<b>Possible antagonist types:</b> "
 		var/i = TRUE
 		for(var/datum/antagonist/antag in antag_templates)
-			if(i > TRUE)
+			if(i > 1)
 				if(i == antag_templates.len)
 					antag_summary += " and "
 				else
@@ -113,7 +113,7 @@ var/global/list/additional_antag_types = list()
 			antag_summary += "[antag.role_text_plural]"
 			i++
 		antag_summary += "."
-		if(antag_templates.len > TRUE && master_mode != "secret")
+		if(antag_templates.len > 1 && master_mode != "secret")
 			world << "[antag_summary]"
 		else
 			message_admins("[antag_summary]")
@@ -235,7 +235,7 @@ var/global/list/additional_antag_types = list()
 				ghosts++
 
 	var/text = ""
-	if(surviving_total > FALSE)
+	if(surviving_total > 0)
 		text += "<br>There [surviving_total>1 ? "were <b>[surviving_total] survivors</b>" : "was <b>one survivor</b>"]"
 	//	text += " (<b>[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]</b>) and <b>[ghosts] ghosts</b>.<br>"
 	else

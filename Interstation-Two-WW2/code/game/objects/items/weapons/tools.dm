@@ -215,7 +215,7 @@
 		if(prob(5))
 			remove_fuel(1)
 
-		if(get_fuel() < TRUE)
+		if(get_fuel() < 1)
 			setWelding(0)
 
 	//I'm not sure what this does. I assume it has to do with starting fires...
@@ -297,7 +297,7 @@
 	var/turf/T = get_turf(src)
 	//If we're turning it on
 	if(set_welding && !welding)
-		if (get_fuel() > FALSE)
+		if (get_fuel() > 0)
 			if(M)
 				M << "<span class='notice'>You switch the [src] on.</span>"
 			else if(T)

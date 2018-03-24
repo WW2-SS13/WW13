@@ -247,7 +247,7 @@ proc/admin_notice(var/message, var/rights)
 		if(number_pages != round(number_pages))
 			number_pages = round(number_pages) + TRUE
 		var/page_index = page - TRUE
-		if(page_index < FALSE || page_index >= number_pages)
+		if(page_index < 0 || page_index >= number_pages)
 			return
 
 		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + TRUE
@@ -787,7 +787,7 @@ proc/admin_notice(var/message, var/rights)
 
 	if(ticker.mode.round_autoantag)
 		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];toggle=autotraitor'>enabled</a></b>."
-		if(ticker.mode.antag_scaling_coeff > FALSE)
+		if(ticker.mode.antag_scaling_coeff > 0)
 			out += " (scaling with <a href='?src=\ref[ticker.mode];set=antag_scaling'>[ticker.mode.antag_scaling_coeff]</a>)"
 		else
 			out += " (not currently scaling, <a href='?src=\ref[ticker.mode];set=antag_scaling'>set a coefficient</a>)"

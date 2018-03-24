@@ -135,7 +135,7 @@
 
 	if(href_list["amount"])
 		amount = round(text2num(href_list["amount"]), 5) // round to nearest 5
-		if (amount < FALSE) // Since the user can actually type the commands himself, some sanity checking
+		if (amount < 0) // Since the user can actually type the commands himself, some sanity checking
 			amount = FALSE
 		if (amount > 120)
 			amount = 120
@@ -394,14 +394,14 @@
 		else if (href_list["createpill"] || href_list["createpill_multiple"])
 			var/count = TRUE
 
-			if(reagents.total_volume/count < TRUE) //Sanity checking.
+			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
 
 			if (href_list["createpill_multiple"])
 				count = input("Select the number of pills to make.", "Max [max_pill_count]", pillamount) as num
 				count = Clamp(count, TRUE, max_pill_count)
 
-			if(reagents.total_volume/count < TRUE) //Sanity checking.
+			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
 
 			var/amount_per_pill = reagents.total_volume/count
@@ -409,7 +409,7 @@
 
 			var/name = sanitizeSafe(input(usr,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)"), MAX_NAME_LEN)
 
-			if(reagents.total_volume/count < TRUE) //Sanity checking.
+			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
 			while (count--)
 				var/obj/item/weapon/reagent_containers/pill/P = new/obj/item/weapon/reagent_containers/pill(loc)
@@ -635,7 +635,7 @@
 	"}
 		if (is_beaker_ready && !is_chamber_empty && !(stat & (NOPOWER|BROKEN)))
 			dat += "<A href='?src=\ref[src];action=grind'>Process the reagents</a><BR>"
-		if(holdingitems && holdingitems.len > FALSE)
+		if(holdingitems && holdingitems.len > 0)
 			dat += "<A href='?src=\ref[src];action=eject'>Eject the reagents</a><BR>"
 		if (beaker)
 			dat += "<A href='?src=\ref[src];action=detach'>Detach the beaker</a><BR>"

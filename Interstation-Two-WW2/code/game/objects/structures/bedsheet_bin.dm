@@ -99,7 +99,7 @@ LINEN BINS
 /obj/structure/bedsheetbin/examine(mob/user)
 	..(user)
 
-	if(amount < TRUE)
+	if(amount < 1)
 		user << "There are no bed sheets in the bin."
 		return
 	if(amount == TRUE)
@@ -133,7 +133,7 @@ LINEN BINS
 		amount--
 
 		var/obj/item/weapon/bedsheet/B
-		if(sheets.len > FALSE)
+		if(sheets.len > 0)
 			B = sheets[sheets.len]
 			sheets.Remove(B)
 
@@ -157,7 +157,7 @@ LINEN BINS
 		amount--
 
 		var/obj/item/weapon/bedsheet/B
-		if(sheets.len > FALSE)
+		if(sheets.len > 0)
 			B = sheets[sheets.len]
 			sheets.Remove(B)
 

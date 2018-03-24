@@ -26,7 +26,7 @@ return_angle()
              90°
               ^
               |
-  (W) 180° <--+--> FALSE° (E)
+  (W) 180° <--+--> 0° (E)
               |
               v
              -90°
@@ -98,7 +98,7 @@ return_location()
 	else
 		offset_x = sign(dx)
 		offset_y = Tan(angle)
-		if(dx < FALSE)
+		if(dx < 0)
 			offset_y = -offset_y
 
 	// multiply the offset by the turf pixel size

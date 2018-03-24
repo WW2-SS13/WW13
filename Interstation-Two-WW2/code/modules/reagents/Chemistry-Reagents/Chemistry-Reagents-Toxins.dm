@@ -249,7 +249,7 @@
 	if(issmall(M))
 		effective_dose *= 2
 
-	if(effective_dose < TRUE)
+	if(effective_dose < 1)
 		if(effective_dose == metabolism * 2 || prob(5))
 			M.emote("yawn")
 	else if(effective_dose < 1.5)
@@ -287,7 +287,7 @@
 	else
 		M.sleeping = max(M.sleeping, 30)
 
-	if(effective_dose > TRUE)
+	if(effective_dose > 1)
 		M.adjustToxLoss(removed)
 
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
@@ -393,7 +393,7 @@
 
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
-	if(effective_dose < TRUE)
+	if(effective_dose < 1)
 		M.apply_effect(3, STUTTER)
 		M.make_dizzy(5)
 		if(prob(5))

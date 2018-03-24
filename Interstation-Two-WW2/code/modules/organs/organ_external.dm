@@ -143,7 +143,7 @@
 	..()
 
 /obj/item/organ/external/proc/is_dislocated()
-	if(dislocated > FALSE)
+	if(dislocated > 0)
 		return TRUE
 	if(parent)
 		return parent.is_dislocated()
@@ -267,7 +267,7 @@
 		var/can_inflict = max_damage * config.organ_health_multiplier - (brute_dam + burn_dam)
 		var/spillover = FALSE
 		if(can_inflict)
-			if (brute > FALSE)
+			if (brute > 0)
 				//Inflict all burte damage we can
 				if(can_cut)
 					if(sharp && !edge)
@@ -282,7 +282,7 @@
 				//How much brute damage is left to inflict
 				spillover += max(0, brute - temp)
 
-			if (burn > FALSE && can_inflict)
+			if (burn > 0 && can_inflict)
 				//Inflict all burn damage we can
 				createwound(BURN, min(burn,can_inflict))
 				//How much burn damage is left to inflict
@@ -397,7 +397,7 @@ This function completely restores a damaged organ to perfect condition.
 		owner.custom_pain("You feel something rip in your [name]!", TRUE)
 
 	// first check whether we can widen an existing wound
-	if(wounds.len > FALSE && prob(max(50+(number_wounds-1)*10,90)))
+	if(wounds.len > 0 && prob(max(50+(number_wounds-1)*10,90)))
 		if((type == CUT || type == BRUISE) && damage >= 5)
 			//we need to make sure that the wound we are going to worsen is compatible with the type of damage...
 			var/list/compatible_wounds = list()
@@ -545,7 +545,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		//spread the infection to internal organs
 		var/obj/item/organ/target_organ = null	//make internal organs become infected one at a time instead of all at once
 		for (var/obj/item/organ/I in internal_organs)
-			if (I.germ_level > FALSE && I.germ_level < min(germ_level, INFECTION_LEVEL_TWO))	//once the organ reaches whatever we can give it, or level two, switch to a different one
+			if (I.germ_level > 0 && I.germ_level < min(germ_level, INFECTION_LEVEL_TWO))	//once the organ reaches whatever we can give it, or level two, switch to a different one
 				if (!target_organ || I.germ_level > target_organ.germ_level)	//choose the organ with the highest germ_level
 					target_organ = I
 
@@ -626,7 +626,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		W.heal_damage(heal_amt)
 
 		// Salving also helps against infection
-		if(W.germ_level > FALSE && W.salved && prob(2))
+		if(W.germ_level > 0 && W.salved && prob(2))
 			W.disinfected = TRUE
 			W.germ_level = FALSE
 
@@ -1084,7 +1084,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	var/list/wound_descriptors = list()
-	if(open > TRUE)
+	if(open > 1)
 		wound_descriptors["an open incision"] = TRUE
 	else if (open)
 		wound_descriptors["an incision"] = TRUE
@@ -1344,7 +1344,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "teeth"
 
 /obj/item/stack/proc/zero_amount()//Teeth shit
-	if(amount < TRUE)
+	if(amount < 1)
 		qdel(src)
 		return TRUE
 	return FALSE

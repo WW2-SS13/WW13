@@ -170,7 +170,7 @@ default behaviour is:
 
 /mob/living/verb/succumb()
 	set hidden = TRUE
-	if ((health < FALSE && health > (5-maxHealth))) // Health below Zero but above 5-away-from-death, as before, but variable
+	if ((health < 0 && health > (5-maxHealth))) // Health below Zero but above 5-away-from-death, as before, but variable
 		adjustOxyLoss(health + maxHealth * 2) // Deal 2x health in OxyLoss damage, as before but variable.
 		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 		src << "<span class = 'notice'>You have given up life and succumbed to death.</span>"
@@ -512,7 +512,7 @@ default behaviour is:
 			if ((diag - TRUE) & diag)
 			else
 				diag = null
-			if ((get_dist(src, pulling) > TRUE || diag))
+			if ((get_dist(src, pulling) > 1 || diag))
 				if (isliving(pulling))
 					var/mob/living/M = pulling
 					var/ok = TRUE
@@ -554,7 +554,7 @@ default behaviour is:
 											if(ishuman(M))
 												var/mob/living/carbon/human/H = M
 												var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
-												if(blood_volume > FALSE)
+												if(blood_volume > 0)
 													H.vessel.remove_reagent("blood", TRUE)
 										*/
 

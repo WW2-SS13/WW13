@@ -56,7 +56,7 @@
 /obj/item/toy/balloon/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/reagent_containers/glass))
 		if(O.reagents)
-			if(O.reagents.total_volume < TRUE)
+			if(O.reagents.total_volume < 1)
 				user << "The [O] is empty."
 			else if(O.reagents.total_volume >= TRUE)
 				if(O.reagents.has_reagent("pacid", TRUE))
@@ -219,7 +219,7 @@
 
 // ******* Check
 
-		if (bullets > FALSE && M.lying)
+		if (bullets > 0 && M.lying)
 
 			for(var/mob/O in viewers(M, null))
 				if(O.client)
@@ -369,7 +369,7 @@
 		user << "<span class='notice'>You refill your flower!</span>"
 		return
 
-	else if (reagents.total_volume < TRUE)
+	else if (reagents.total_volume < 1)
 		empty = TRUE
 		user << "<span class='notice'>Your flower has run dry!</span>"
 		return

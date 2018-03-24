@@ -48,12 +48,12 @@
 // Returns TRUE if all threads have completed
 /datum/spawn_sync/proc/check()
 	safety_check()
-	return count > FALSE ? TRUE : FALSE
+	return count > 0 ? TRUE : FALSE
 
 //Failsafe in case something breaks horribly
 /datum/spawn_sync/proc/safety_check()
 	failsafe--
-	if(failsafe < TRUE)
+	if(failsafe < 1)
 		count = FALSE
 
 //Set failsafe check count in case you need more time for the workers to return
@@ -62,7 +62,7 @@
 
 /datum/spawn_sync/proc/start_worker()
 	//Extract the thread run proc and it's arguments from the variadic args list.
-	ASSERT(args.len > FALSE)
+	ASSERT(args.len > 0)
 	var/obj = args[1]
 	var/thread_proc = args[2]
 

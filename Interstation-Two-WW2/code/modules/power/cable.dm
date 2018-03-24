@@ -171,14 +171,14 @@ var/list/possible_cable_coil_colours = list(
 
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = W
-		if (coil.get_amount() < TRUE)
+		if (coil.get_amount() < 1)
 			user << "Not enough cable"
 			return
 		coil.cable_join(src, user)
 /*
 	else if(istype(W, /obj/item/device/multitool))
 
-		if(powernet && (powernet.avail > FALSE))		// is it powered?
+		if(powernet && (powernet.avail > 0))		// is it powered?
 			user << "<span class='warning'>[powernet.avail]W in power network.</span>"
 
 		else
@@ -551,7 +551,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		w_class = 2.0
 
 /obj/item/stack/cable_coil/examine(mob/user)
-	if(get_dist(src, user) > TRUE)
+	if(get_dist(src, user) > 1)
 		return
 
 	if(get_amount() == TRUE)
@@ -614,11 +614,11 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	if(!isturf(user.loc))
 		return
 
-	if(get_amount() < TRUE) // Out of cable
+	if(get_amount() < 1) // Out of cable
 		user << "There is no cable left."
 		return
 
-	if(get_dist(F,user) > TRUE) // Too far
+	if(get_dist(F,user) > 1) // Too far
 		user << "You can't lay cable at a place that far away."
 		return
 
@@ -721,7 +721,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	if(!isturf(T) || !T.is_plating())		// sanity checks, also stop use interacting with T-scanner revealed cable
 		return
 
-	if(get_dist(C, user) > TRUE)		// make sure it's close enough
+	if(get_dist(C, user) > 1)		// make sure it's close enough
 		user << "You can't lay cable at a place that far away."
 		return
 
