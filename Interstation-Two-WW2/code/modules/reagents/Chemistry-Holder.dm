@@ -252,7 +252,7 @@
 
 /* Holder-to-holder and similar procs */
 
-/datum/reagents/proc/remove_any(var/amount = TRUE) // Removes up to [amount] of reagents from [src]. Returns actual amount removed.
+/datum/reagents/proc/remove_any(var/amount = 1) // Removes up to [amount] of reagents from [src]. Returns actual amount removed.
 	amount = min(amount, total_volume)
 
 	if(!amount)
