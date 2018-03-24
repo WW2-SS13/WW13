@@ -50,7 +50,7 @@
 	process()
 		if(timing && (time > 0))
 			time--
-		if(timing && time <= FALSE)
+		if(timing && time <= 0)
 			timing = FALSE
 			timer_end()
 			time = 10

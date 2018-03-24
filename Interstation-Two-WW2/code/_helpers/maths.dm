@@ -44,7 +44,7 @@
 /proc/Atan2(x, y)
 	if(!x && !y) return FALSE
 	var/a = arccos(x / sqrt(x*x + y*y))
-	return y >= FALSE ? a : -a
+	return y >= 0 ? a : -a
 
 /proc/Floor(x)
 	return round(x)

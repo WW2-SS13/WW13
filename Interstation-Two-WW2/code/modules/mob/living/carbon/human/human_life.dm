@@ -239,14 +239,14 @@
 			Paralyse(10)
 			make_jittery(1000)
 	if (disabilities & COUGHING)
-		if ((prob(5) && paralysis <= TRUE))
+		if ((prob(5) && paralysis <= 1))
 			drop_item()
 			spawn( FALSE )
 				emote("cough")
 				return
 	if (disabilities & TOURETTES)
 		speech_problem_flag = TRUE
-		if ((prob(10) && paralysis <= TRUE))
+		if ((prob(10) && paralysis <= 1))
 			Stun(10)
 			spawn( FALSE )
 				switch(rand(1, 3))
@@ -267,7 +267,7 @@
 			if(0 <= rn && rn <= 3)
 				custom_pain("Your head feels numb and painful.")
 		if(getBrainLoss() >= 15)
-			if(4 <= rn && rn <= 6) if(eye_blurry <= FALSE)
+			if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
 				src << "<span class='warning'>It becomes hard to see for some reason.</span>"
 				eye_blurry = 10
 		if(getBrainLoss() >= 35)
@@ -415,11 +415,11 @@
 	//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
 	var/temp_adj = 0
 	if(loc_temperature < bodytemperature)			//Place is colder than we are
-		var/thermal_protection = get_cold_protection(loc_temperature) //This returns a FALSE - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		var/thermal_protection = get_cold_protection(loc_temperature) //This returns a FALSE - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 		if(thermal_protection < 0 || game_season == "WINTER")
 			temp_adj = (1-thermal_protection) * ((loc_temperature - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
 	else if (loc_temperature > bodytemperature)			//Place is hotter than we are
-		var/thermal_protection = get_heat_protection(loc_temperature) //This returns a FALSE - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		var/thermal_protection = get_heat_protection(loc_temperature) //This returns a FALSE - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 		if(thermal_protection < 0)
 			temp_adj = (1-thermal_protection) * ((loc_temperature - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 
@@ -708,14 +708,14 @@
 			drowsyness--
 			eye_blurry = max(2, eye_blurry)
 			if (prob(5))
-				sleeping += TRUE
+				sleeping += 1
 				Paralyse(5)
 
-		confused = max(0, confused - TRUE)
+		confused = max(0, confused - 1)
 
 		// If you're dirty, your gloves will become dirty, too.
 		if(gloves && germ_level > gloves.germ_level && prob(10))
-			gloves.germ_level += TRUE
+			gloves.germ_level += 1
 
 	return TRUE
 
@@ -763,7 +763,7 @@
 
 /*	if(stat == UNCONSCIOUS)
 		//Critical damage passage overlay
-		if(health <= FALSE)
+		if(health <= 0)
 			var/image/I
 			switch(health)
 				if(-20 to -10)
@@ -1224,7 +1224,7 @@
 		shock_stage = max(shock_stage, 61)
 
 	if(traumatic_shock >= 80)
-		shock_stage += TRUE
+		shock_stage += 1
 
 	else if(health < config.health_threshold_softcrit)
 		shock_stage = max(shock_stage, 61)

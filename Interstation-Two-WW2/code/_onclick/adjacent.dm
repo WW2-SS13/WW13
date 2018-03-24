@@ -123,7 +123,7 @@ Quick adjacency (to turf):
 	if(neighbor == loc) return TRUE
 	if(istype(loc,/obj/item))
 		if(recurse > 0)
-			return loc.Adjacent(neighbor,recurse - TRUE)
+			return loc.Adjacent(neighbor,recurse - 1)
 		return FALSE
 	return ..()
 /*

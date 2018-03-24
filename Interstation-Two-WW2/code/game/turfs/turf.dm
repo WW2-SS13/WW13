@@ -225,7 +225,7 @@ var/const/enterloopsanity = 100
 
 /turf/proc/inertial_drift(atom/movable/A as mob|obj)
 	if(!(A.last_move))	return
-	if((istype(A, /mob/) && x > 2 && x < (world.maxx - TRUE) && y > 2 && y < (world.maxy-1)))
+	if((istype(A, /mob/) && x > 2 && x < (world.maxx - 1) && y > 2 && y < (world.maxy-1)))
 		var/mob/M = A
 		if(M.Process_Spacemove(1))
 			M.inertia_dir  = FALSE
@@ -437,13 +437,13 @@ var/const/enterloopsanity = 100
 
 			if(istype(H.shoes, /obj/item/clothing/shoes))
 				if(M.m_intent == "run")
-					if(M.footstep >= FALSE) // Every step.
+					if(M.footstep >= 0) // Every step.
 						M.footstep = FALSE
 						playsound(src, footstepsound, 100, TRUE)
 					else
 						M.footstep++
 				else
-					if(M.footstep >= TRUE) // Every two steps.
+					if(M.footstep >= 1) // Every two steps.
 						M.footstep = FALSE
 						playsound(src, footstepsound, 100, TRUE)
 					else

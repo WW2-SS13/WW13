@@ -116,7 +116,7 @@ var/global/list/limb_icon_cache = list()
 		mob_icon.SetIntensity(0.7)
 
 	if(s_tone)
-		if(s_tone >= FALSE)
+		if(s_tone >= 0)
 			mob_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 		else
 			mob_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)

@@ -493,7 +493,7 @@ default behaviour is:
 		for(var/mob/living/M in range(src, TRUE))
 			if ((M.pulling == src && M.stat == FALSE && !( M.restrained() )))
 				t7 = null
-	if ((t7 && (pulling && ((get_dist(src, pulling) <= TRUE || pulling.loc == loc) && (client && client.moving)))))
+	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (client && client.moving)))))
 		var/turf/T = loc
 		. = ..()
 
@@ -509,7 +509,7 @@ default behaviour is:
 
 		if (!restrained())
 			var/diag = get_dir(src, pulling)
-			if ((diag - TRUE) & diag)
+			if ((diag - 1) & diag)
 			else
 				diag = null
 			if ((get_dist(src, pulling) > 1 || diag))
@@ -704,9 +704,9 @@ default behaviour is:
 
 //pass a negative argument to skip one of the variable
 /mob/living/setEarDamage(var/damage, var/deaf)
-	if(damage >= FALSE)
+	if(damage >= 0)
 		ear_damage = damage
-	if(deaf >= FALSE)
+	if(deaf >= 0)
 		ear_deaf = deaf
 
 /mob/proc/can_be_possessed_by(var/mob/observer/ghost/possessor)

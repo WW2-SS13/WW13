@@ -267,7 +267,7 @@
 		affecting.set_dir(WEST)
 		if(iscarbon(affecting))
 			var/mob/living/carbon/C = affecting
-			C.losebreath += TRUE
+			C.losebreath += 1
 	adjust_position()
 
 //This is used to make sure the victim hasn't managed to yackety sax away before using the grab.

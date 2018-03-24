@@ -12,7 +12,7 @@
 
 >  9   TRUE   5
 >    \ | /
->  8 - FALSE - 4
+>  8 - 0 - 4
 >    / | \
 >  10  2   6
 
@@ -378,7 +378,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 			for(var/obj/structure/cable/C in T)
 				if((C.d1 && C.d1 == reverse) || (C.d2 && C.d2 == reverse))
 					. += C
-		if(cable_dir & (cable_dir - TRUE)) // Diagonal, check for /\/\/\ style cables along cardinal directions
+		if(cable_dir & (cable_dir - 1)) // Diagonal, check for /\/\/\ style cables along cardinal directions
 			for(var/pair in list(NORTH|SOUTH, EAST|WEST))
 				T = get_step(src, cable_dir & pair)
 				if(T)
@@ -698,7 +698,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 			C.mergeConnectedNetworks(C.d2) //merge the powernet with adjacents powernets
 			C.mergeConnectedNetworksOnTurf() //merge the powernet with on turf powernets
 
-			if(C.d2 & (C.d2 - TRUE))// if the cable is layed diagonally, check the others 2 possible directions
+			if(C.d2 & (C.d2 - 1))// if the cable is layed diagonally, check the others 2 possible directions
 				C.mergeDiagonalsNetworks(C.d2)
 
 
@@ -762,7 +762,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 			NC.mergeConnectedNetworks(NC.d2) //merge the powernet with adjacents powernets
 			NC.mergeConnectedNetworksOnTurf() //merge the powernet with on turf powernets
 
-			if(NC.d2 & (NC.d2 - TRUE))// if the cable is layed diagonally, check the others 2 possible directions
+			if(NC.d2 & (NC.d2 - 1))// if the cable is layed diagonally, check the others 2 possible directions
 				NC.mergeDiagonalsNetworks(NC.d2)
 
 			use(1)
@@ -807,10 +807,10 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		C.mergeConnectedNetworks(C.d2) //...in the two new cable directions
 		C.mergeConnectedNetworksOnTurf()
 
-		if(C.d1 & (C.d1 - TRUE))// if the cable is layed diagonally, check the others 2 possible directions
+		if(C.d1 & (C.d1 - 1))// if the cable is layed diagonally, check the others 2 possible directions
 			C.mergeDiagonalsNetworks(C.d1)
 
-		if(C.d2 & (C.d2 - TRUE))// if the cable is layed diagonally, check the others 2 possible directions
+		if(C.d2 & (C.d2 - 1))// if the cable is layed diagonally, check the others 2 possible directions
 			C.mergeDiagonalsNetworks(C.d2)
 
 		use(1)

@@ -331,7 +331,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	f = max(low, f)
 	f = min(high, f)
 	if ((f % 2) == FALSE) //Ensure the last digit is an odd number
-		f += TRUE
+		f += 1
 	return f
 
 //Turns 1479 into 147.9
@@ -430,7 +430,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Forces a variable to be posative
 /proc/modulus(var/M)
-	if(M >= FALSE)
+	if(M >= 0)
 		return M
 	if(M < 0)
 		return -M
@@ -513,7 +513,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 	for(var/atom/part in contents)
 		toReturn += part
 		if(part.contents.len && searchDepth)
-			toReturn += part.GetAllContents(searchDepth - TRUE)
+			toReturn += part.GetAllContents(searchDepth - 1)
 
 	return toReturn
 

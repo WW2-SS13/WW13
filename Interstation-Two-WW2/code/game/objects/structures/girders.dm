@@ -38,7 +38,7 @@
 
 	health -= damage
 	..()
-	if(health <= FALSE)
+	if(health <= 0)
 		dismantle()
 
 	return

@@ -521,7 +521,7 @@
 /obj/item/projectile/test/process(var/turf/targloc)
 	while(src) //Loop on through!
 		if(result)
-			return (result - TRUE)
+			return (result - 1)
 		if((!( targloc ) || loc == targloc))
 			targloc = locate(min(max(x + xo, TRUE), world.maxx), min(max(y + yo, TRUE), world.maxy), z) //Finding the target turf at map edge
 

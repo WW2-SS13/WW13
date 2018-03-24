@@ -89,7 +89,7 @@ var/list/soviet_traitors = list()
 			raiding += GERMAN
 			raiding += ITALIAN
 		else
-			raiding += TRUE // somehow we got here, bomb everyone ayylmao
+			raiding += 1 // somehow we got here, bomb everyone ayylmao
 
 		var/list/traitors = list()
 

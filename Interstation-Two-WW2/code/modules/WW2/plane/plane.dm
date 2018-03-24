@@ -156,7 +156,7 @@
 	if (P.armor_penetration < 50)
 		dam /= 8
 
-	dam += TRUE // minimum damage
+	dam += 1 // minimum damage
 
 	damage += dam
 

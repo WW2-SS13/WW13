@@ -179,7 +179,7 @@
 	..()
 	if (stat || !friend)
 		return
-	if (get_dist(src, friend) <= TRUE)
+	if (get_dist(src, friend) <= 1)
 		if (friend.stat >= DEAD || friend.health <= config.health_threshold_softcrit)
 			if (prob((friend.stat < DEAD)? 50 : 15))
 				var/verb = pick("meows", "mews", "mrowls")

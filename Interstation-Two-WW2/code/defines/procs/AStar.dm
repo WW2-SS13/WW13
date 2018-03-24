@@ -78,7 +78,7 @@ PriorityQueue
 		var/item = queue[index]
 
 		while(child <= queue.len)
-			if(child < queue.len && call(comparison_function)(queue[child], queue[child + TRUE]) > 0)
+			if(child < queue.len && call(comparison_function)(queue[child], queue[child + 1]) > 0)
 				child++
 			if(call(comparison_function)(item, queue[child]) > 0)
 				queue[index] = queue[child]
@@ -139,9 +139,9 @@ proc/AStar(var/start, var/end, var/proc/adjacent, var/proc/dist, var/max_nodes, 
 		closed.Add(current.position)
 
 		if(current.position == end || call(current.position, dist)(end) <= min_target_dist)
-			path = new /list(current.nodes_traversed + TRUE)
+			path = new /list(current.nodes_traversed + 1)
 			path[path.len] = current.position
-			var/index = path.len - TRUE
+			var/index = path.len - 1
 
 			while(current.previous_node)
 				current = current.previous_node
@@ -171,7 +171,7 @@ proc/AStar(var/start, var/end, var/proc/adjacent, var/proc/dist, var/max_nodes, 
 					else
 						continue
 
-			var/PathNode/next_node = new (datum, current, best_estimated_cost, call(datum, dist)(end), current.nodes_traversed + TRUE)
+			var/PathNode/next_node = new (datum, current, best_estimated_cost, call(datum, dist)(end), current.nodes_traversed + 1)
 			path_node_by_position[datum] = next_node
 			open.Enqueue(next_node)
 

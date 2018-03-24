@@ -45,7 +45,7 @@
 		if (response != "Regular" && response != "Carbon-Copy")
 			add_fingerprint(user)
 			return
-	if(amount >= TRUE)
+	if(amount >= 1)
 		amount--
 		if(amount==0)
 			update_icon()
@@ -83,7 +83,7 @@
 
 
 /obj/item/weapon/paper_bin/examine(mob/user)
-	if(get_dist(src, user) <= TRUE)
+	if(get_dist(src, user) <= 1)
 		if(amount)
 			user << "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
 		else

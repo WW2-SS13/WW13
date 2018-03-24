@@ -43,12 +43,12 @@ var/global/datum/global_init/init = new ()
 
 	var/t = world.timeofday
 	for(var/_ = TRUE to 4)
-		game_id = "[c[(t % l) + TRUE]][game_id]"
+		game_id = "[c[(t % l) + 1]][game_id]"
 		t = round(t / l)
 	game_id = "-[game_id]"
 	t = round(world.realtime / (10 * 60 * 60 * 24))
 	for(var/_ = TRUE to 3)
-		game_id = "[c[(t % l) + TRUE]][game_id]"
+		game_id = "[c[(t % l) + 1]][game_id]"
 		t = round(t / l)
 
 var/world_is_open = TRUE

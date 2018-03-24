@@ -272,7 +272,7 @@ var/const/POWER = 8
 		CutWireIndex(i)
 
 /datum/wires/proc/IsAllCut()
-	if(wires_status == (1 << wire_count) - TRUE)
+	if(wires_status == (1 << wire_count) - 1)
 		return TRUE
 	return FALSE
 

@@ -705,7 +705,7 @@
 	for (var/obj/item/O in holdingitems)
 
 		var/remaining_volume = beaker.reagents.maximum_volume - beaker.reagents.total_volume
-		if(remaining_volume <= FALSE)
+		if(remaining_volume <= 0)
 			break
 
 		if(sheet_reagents[O.type])

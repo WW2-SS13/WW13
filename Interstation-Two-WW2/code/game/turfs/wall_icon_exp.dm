@@ -101,7 +101,7 @@
 		if(reinf_material)
 			integrity += reinf_material.integrity
 
-		var/overlay = round(damage / integrity * damage_overlays.len) + TRUE
+		var/overlay = round(damage / integrity * damage_overlays.len) + 1
 		if(overlay > damage_overlays.len)
 			overlay = damage_overlays.len
 
@@ -121,7 +121,7 @@
 	for(var/i = TRUE; i <= damage_overlays.len; i++)
 		var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
 		img.blend_mode = BLEND_MULTIPLY
-		img.alpha = (i * alpha_inc) - TRUE
+		img.alpha = (i * alpha_inc) - 1
 		damage_overlays[i] = img
 
 //Smoothwall code. update_self for relativewall(), not for relativewall_neighbors()

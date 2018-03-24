@@ -384,8 +384,8 @@ var/list/rank_prefix = list(\
 	if(!parent)
 		return FALSE
 
-	if(parent.w_class > affecting.w_class + TRUE)
-		return prob(100 / 2**(parent.w_class - affecting.w_class - TRUE))
+	if(parent.w_class > affecting.w_class + 1)
+		return prob(100 / 2**(parent.w_class - affecting.w_class - 1))
 
 	return TRUE
 

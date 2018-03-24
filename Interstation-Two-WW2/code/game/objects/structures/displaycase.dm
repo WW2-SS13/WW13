@@ -35,7 +35,7 @@
 	return
 
 /obj/structure/displaycase/proc/healthcheck()
-	if (health <= FALSE)
+	if (health <= 0)
 		if (!( destroyed ))
 			density = FALSE
 			destroyed = TRUE

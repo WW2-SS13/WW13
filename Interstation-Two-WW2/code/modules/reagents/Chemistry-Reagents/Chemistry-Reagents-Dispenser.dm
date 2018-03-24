@@ -58,7 +58,7 @@
 
 /datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
-		var/effect = TRUE / (M.ingested.reagent_list.len - TRUE)
+		var/effect = TRUE / (M.ingested.reagent_list.len - 1)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(R == src)
 				continue
@@ -267,7 +267,7 @@
 				H.update_inv_head(1)
 				H.update_hair(1)
 				removed -= meltdose
-		if(removed <= FALSE)
+		if(removed <= 0)
 			return
 
 		if(H.wear_mask)
@@ -281,7 +281,7 @@
 				H.update_inv_wear_mask(1)
 				H.update_hair(1)
 				removed -= meltdose
-		if(removed <= FALSE)
+		if(removed <= 0)
 			return
 
 		if(H.glasses)
@@ -294,7 +294,7 @@
 				qdel(H.glasses)
 				H.update_inv_glasses(1)
 				removed -= meltdose / 2
-		if(removed <= FALSE)
+		if(removed <= 0)
 			return
 
 	if(volume < meltdose) // Not enough to melt anything

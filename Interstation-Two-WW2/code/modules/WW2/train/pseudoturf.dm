@@ -182,7 +182,7 @@
 						var/moved = m.train_move(locate(m.x-1, m.y, m.z))
 						if (p && moved) p.train_move(m.behind())
 
-				if (p && get_dist(m, p) <= TRUE)
+				if (p && get_dist(m, p) <= 1)
 					m.start_pulling(p) // start_pulling checks for p on its own
 
 				m.next_train_movement = null

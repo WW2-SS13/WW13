@@ -245,13 +245,13 @@ proc/admin_notice(var/message, var/rights)
 		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
 		// Emulate ceil(why does BYOND not have ceil)
 		if(number_pages != round(number_pages))
-			number_pages = round(number_pages) + TRUE
-		var/page_index = page - TRUE
+			number_pages = round(number_pages) + 1
+		var/page_index = page - 1
 		if(page_index < 0 || page_index >= number_pages)
 			return
 
-		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + TRUE
-		var/upper_bound = (page_index + TRUE) * PLAYER_NOTES_ENTRIES_PER_PAGE
+		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
+		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
 		upper_bound = min(upper_bound, note_keys.len)
 		for(var/index = lower_bound, index <= upper_bound, index++)
 			var/t = note_keys[index]
@@ -304,7 +304,7 @@ proc/admin_notice(var/message, var/rights)
 		var/update_file = FALSE
 		var/i = FALSE
 		for(var/datum/player_info/I in infos)
-			i += TRUE
+			i += 1
 			if(!I.timestamp)
 				I.timestamp = "Pre-4/3/2012"
 				update_file = TRUE

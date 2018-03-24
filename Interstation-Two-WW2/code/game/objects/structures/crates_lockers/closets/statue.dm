@@ -50,7 +50,7 @@
 		M.adjustFireLoss(intialFire - M.getFireLoss())
 		M.adjustBruteLoss(intialBrute - M.getBruteLoss())
 		M.setOxyLoss(intialOxy)
-	if (timer <= FALSE)
+	if (timer <= 0)
 		dump_contents()
 		processing_objects.Remove(src)
 		qdel(src)
@@ -78,7 +78,7 @@
 	return
 
 /obj/structure/closet/statue/proc/check_health()
-	if(health <= FALSE)
+	if(health <= 0)
 		for(var/mob/M in src)
 			shatter(M)
 

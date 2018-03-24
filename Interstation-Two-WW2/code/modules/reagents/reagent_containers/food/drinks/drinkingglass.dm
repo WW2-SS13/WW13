@@ -23,10 +23,10 @@
 	overlays = null
 	if(umbrella)
 		var/umbrella_icon = icon('icons/obj/drinks.dmi', "[glass_type]-umbrella[umbrella]")
-		overlays += image("icon" = umbrella_icon, "layer" = FLOAT_LAYER - TRUE)
+		overlays += image("icon" = umbrella_icon, "layer" = FLOAT_LAYER - 1)
 	if(cocktail_food)
 		var/cocktail_food_icon = icon('icons/obj/drinks.dmi', "[glass_type]-[cocktail_food]")
-		overlays += image("icon" = cocktail_food_icon, "layer" = FLOAT_LAYER - TRUE)
+		overlays += image("icon" = cocktail_food_icon, "layer" = FLOAT_LAYER - 1)
 	if(salted)
 		var/salted_icon = icon('icons/obj/drinks.dmi', "[glass_type]-salted")
 		overlays += image("icon" = salted_icon, "layer" = FLOAT_LAYER)

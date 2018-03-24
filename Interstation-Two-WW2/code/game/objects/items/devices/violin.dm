@@ -262,7 +262,7 @@
 			dat += "Tempo : <A href='?src=\ref[src];tempo=10'>-</A><A href='?src=\ref[src];tempo=1'>-</A> [calctempo] BPM <A href='?src=\ref[src];tempo=-1'>+</A><A href='?src=\ref[src];tempo=-10'>+</A><BR><BR>"
 			var/linecount = FALSE
 			for(var/line in song.lines)
-				linecount += TRUE
+				linecount += 1
 				dat += "Line [linecount]: [line] <A href='?src=\ref[src];deleteline=[linecount]'>Delete Line</A> <A href='?src=\ref[src];modifyline=[linecount]'>Modify Line</A><BR>"
 			dat += "<A href='?src=\ref[src];newline=1'>Add Line</A><BR><BR>"
 		if(help)
@@ -350,10 +350,10 @@
 			playing = FALSE
 
 		else if(href_list["help"])
-			help = text2num(href_list["help"]) - TRUE
+			help = text2num(href_list["help"]) - 1
 
 		else if(href_list["edit"])
-			edit = text2num(href_list["edit"]) - TRUE
+			edit = text2num(href_list["edit"]) - 1
 
 		else if(href_list["import"])
 			var/t = ""

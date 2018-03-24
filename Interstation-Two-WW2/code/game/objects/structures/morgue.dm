@@ -312,7 +312,7 @@
 	if(cremating)
 		return //don't let you cremate something twice or w/e
 
-	if(contents.len <= FALSE)
+	if(contents.len <= 0)
 		for (var/mob/M in viewers(src))
 			M.show_message("<span class='warning'>You hear a hollow crackle.</span>", TRUE)
 			return

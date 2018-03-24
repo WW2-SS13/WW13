@@ -63,7 +63,7 @@
 		equipment_vision_flags |= G.vision_flags
 		equipment_prescription = equipment_prescription || G.prescription
 
-		if(G.see_invisible >= FALSE)
+		if(G.see_invisible >= 0)
 			if(equipment_see_invis)
 				equipment_see_invis = min(equipment_see_invis, G.see_invisible)
 			else

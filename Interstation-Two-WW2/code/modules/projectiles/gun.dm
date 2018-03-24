@@ -225,7 +225,7 @@
 	if(!special_check(user))
 		return
 
-	var/shoot_time = (burst - TRUE)* burst_delay
+	var/shoot_time = (burst - 1)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
 	next_fire_time = world.time + shoot_time
 
@@ -308,7 +308,7 @@
 	if (forceburst != -1)
 		_burst = forceburst
 
-	var/shoot_time = (_burst - TRUE)*_burst_delay
+	var/shoot_time = (_burst - 1)*_burst_delay
 	user.next_move = world.time + shoot_time  //no clicking on things while shooting
 	if(user.client) user.client.move_delay = world.time + shoot_time //no moving while shooting either
 	next_fire_time = world.time + shoot_time

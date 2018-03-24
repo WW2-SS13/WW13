@@ -60,7 +60,7 @@
 
 /obj/structure/railing/proc/take_damage(amount)
 	health -= amount
-	if(health <= FALSE)
+	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
 		playsound(loc, 'sound/effects/grillehit.ogg', 50, TRUE)
 		new /obj/item/stack/rods(get_turf(usr))

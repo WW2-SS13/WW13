@@ -127,7 +127,7 @@
 /* Holder-to-chemical */
 
 /datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = FALSE)
-	if(!isnum(amount) || amount <= FALSE)
+	if(!isnum(amount) || amount <= 0)
 		return FALSE
 
 	update_total()

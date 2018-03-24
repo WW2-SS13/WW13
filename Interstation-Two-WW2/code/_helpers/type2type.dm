@@ -41,7 +41,7 @@
 
 	. = ""
 	while(num > 0)
-		var/hexdigit = hexdigits[(num & 0xF) + TRUE]
+		var/hexdigit = hexdigits[(num & 0xF) + 1]
 		. = "[hexdigit][.]"
 		num >>= 4 //go to the next half-byte
 
@@ -186,10 +186,10 @@
 
 	var/const/dayInSeconds = 86400 //60secs*60mins*24hours
 	var/const/daysInYear = 365 //Non Leap Year
-	var/const/daysInLYear = daysInYear + TRUE//Leap year
+	var/const/daysInLYear = daysInYear + 1//Leap year
 	var/days = round(timestamp / dayInSeconds) //Days passed since UNIX Epoc
 	var/year = 1970 //Unix Epoc begins 1970-01-01
-	var/tmpDays = days + TRUE //If passed (timestamp < dayInSeconds), it will return FALSE, so add TRUE
+	var/tmpDays = days + 1 //If passed (timestamp < dayInSeconds), it will return FALSE, so add TRUE
 	var/monthsInDays = list() //Months will be in here ***Taken from the PHP source code***
 	var/month = TRUE //This will be the returned MONTH NUMBER.
 	var/day //This will be the returned day number.

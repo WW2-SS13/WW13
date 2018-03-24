@@ -150,7 +150,7 @@
 
 			reagents.trans_to_obj(U, min(reagents.total_volume,5))
 
-			if (reagents.total_volume <= FALSE)
+			if (reagents.total_volume <= 0)
 				qdel(src)
 			return
 

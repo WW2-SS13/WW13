@@ -224,7 +224,7 @@
 
 			// Skin tone
 			if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
-				if (s_tone >= FALSE)
+				if (s_tone >= 0)
 					I.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 				else
 					I.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)

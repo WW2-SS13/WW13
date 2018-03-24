@@ -953,7 +953,7 @@ mob/proc/yank_out_object()
 		var/mob/living/carbon/human/H = src
 		var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in H.organs
 		if(O)
-			if(!O.teeth_list.len || O.get_teeth() <= FALSE)
+			if(!O.teeth_list.len || O.get_teeth() <= 0)
 				lisp = 100 //No teeth = full lisp power
 			else
 				lisp = (1 - (O.get_teeth()/O.max_teeth)) * 100 //Less teeth = more lisp

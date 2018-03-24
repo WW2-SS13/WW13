@@ -162,13 +162,13 @@
 		if(1)
 			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
 				A.forceMove(loc)
-				A.ex_act(severity + TRUE)
+				A.ex_act(severity + 1)
 			qdel(src)
 		if(2)
 			if(prob(50))
 				for (var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
-					A.ex_act(severity + TRUE)
+					A.ex_act(severity + 1)
 				qdel(src)
 		if(3)
 			if(prob(5))
@@ -178,7 +178,7 @@
 
 /obj/structure/closet/proc/damage(var/damage)
 	health -= damage
-	if(health <= FALSE)
+	if(health <= 0)
 		for(var/atom/movable/A in src)
 			A.forceMove(loc)
 		qdel(src)

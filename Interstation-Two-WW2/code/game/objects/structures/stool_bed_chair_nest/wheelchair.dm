@@ -67,7 +67,7 @@
 	//--2----Move driver----2--//
 	if(pulling)
 		T = pulling.loc
-		if(get_dist(src, pulling) >= TRUE)
+		if(get_dist(src, pulling) >= 1)
 			step(pulling, get_dir(pulling.loc, loc))
 	//--3--Move wheelchair--3--//
 	step(src, direction)

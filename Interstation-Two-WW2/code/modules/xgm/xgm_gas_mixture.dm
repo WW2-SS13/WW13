@@ -68,7 +68,7 @@
 	ASSERT(!(args.len % 3))
 
 	for(var/i = TRUE; i < args.len; i += 3)
-		adjust_gas_temp(args[i], args[i + TRUE], args[i + 2], update = FALSE)
+		adjust_gas_temp(args[i], args[i + 1], args[i + 2], update = FALSE)
 
 	update_values()
 
@@ -173,7 +173,7 @@
 	//group_multiplier gets divided out in volume/gas[gasid] - also, V/(m*T) = R/(partial pressure)
 	var/molar_mass = gas_data.molar_mass[gasid]
 	var/specific_heat = gas_data.specific_heat[gasid]
-	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gas[gasid] * temperature)) * (molar_mass*specific_heat*temperature)**(2/3) + TRUE ) +  15 )
+	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gas[gasid] * temperature)) * (molar_mass*specific_heat*temperature)**(2/3) + 1 ) +  15 )
 
 	//alternative, simpler equation
 	//var/partial_pressure = gas[gasid] * R_IDEAL_GAS_EQUATION * temperature / volume
@@ -184,7 +184,7 @@
 /datum/gas_mixture/proc/update_values()
 	total_moles = FALSE
 	for(var/g in gas)
-		if(gas[g] <= FALSE)
+		if(gas[g] <= 0)
 			gas -= g
 		else
 			total_moles += gas[g]
@@ -200,7 +200,7 @@
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove(amount)
 	amount = min(amount, total_moles * group_multiplier) //Can not take more air than the gas mixture has!
-	if(amount <= FALSE)
+	if(amount <= 0)
 		return null
 
 	var/datum/gas_mixture/removed = new
@@ -218,7 +218,7 @@
 
 //Removes a ratio of gas from the mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove_ratio(ratio, out_group_multiplier = TRUE)
-	if(ratio <= FALSE)
+	if(ratio <= 0)
 		return null
 	out_group_multiplier = between(1, out_group_multiplier, group_multiplier)
 
@@ -246,7 +246,7 @@
 
 //Removes moles from the gas mixture, limited by a given flag.  Returns a gax_mixture containing the removed air.
 /datum/gas_mixture/proc/remove_by_flag(flag, amount)
-	if(!flag || amount <= FALSE)
+	if(!flag || amount <= 0)
 		return
 
 	var/sum = FALSE

@@ -8,7 +8,7 @@ setup()
 	This should be called after creating a new instance of a plot_vector datum.
 	This does the initial setup and calculations. Since we are travelling in a straight line we only need to calculate
 	the	vector and x/y steps once. x/y steps are capped to TRUE full turf, whichever is further. If we are travelling along
-	the y axis each step will be +/- TRUE y, and the x movement reduced based on the angle (tangent calculation). After
+	the y axis each step will be +/- 1 y, and the x movement reduced based on the angle (tangent calculation). After
 	this every subsequent step will be incremented based on these calculations.
 	Inputs:
 		source - the turf the object is starting from

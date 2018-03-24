@@ -35,9 +35,9 @@
 				if(istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
 					ear_safety += 2
 				if(HULK in M.mutations)
-					ear_safety += TRUE
+					ear_safety += 1
 				if(istype(M:head, /obj/item/clothing/head/helmet))
-					ear_safety += TRUE
+					ear_safety += 1
 
 //Flashing everyone
 		if(eye_safety < FLASH_PROTECTION_MODERATE)

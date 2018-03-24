@@ -291,7 +291,7 @@
 	if(ammo_magazine && ammo_magazine.stored_ammo)
 		bullets += ammo_magazine.stored_ammo.len
 	if(chambered)
-		bullets += TRUE
+		bullets += 1
 	return bullets
 
 /obj/item/weapon/gun/projectile/proc/inexactAmmo()

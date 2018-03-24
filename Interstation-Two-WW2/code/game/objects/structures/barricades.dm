@@ -63,7 +63,7 @@
 		..()
 
 /obj/structure/barricade/proc/try_destroy()
-	if (health <= FALSE)
+	if (health <= 0)
 		visible_message("<span class='danger'>The barricade is smashed apart!</span>")
 		dismantle()
 		qdel(src)
@@ -82,7 +82,7 @@
 			return
 		if(2.0)
 			health -= 25
-			if (health <= FALSE)
+			if (health <= 0)
 				visible_message("<span class='danger'>\The [src] is blown apart!</span>")
 				dismantle()
 			return

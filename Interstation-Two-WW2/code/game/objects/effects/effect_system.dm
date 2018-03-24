@@ -277,7 +277,7 @@ steam.start() -- spawns the effect
 		return FALSE
 
 	M.drop_item()
-	M:sleeping += TRUE
+	M:sleeping += 1
 	if (M.coughedtime != TRUE)
 		M.coughedtime = TRUE
 		M.emote("cough")

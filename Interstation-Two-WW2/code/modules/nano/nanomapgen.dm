@@ -66,7 +66,7 @@
 			var/icon/TurfIcon = new(Turf.icon, Turf.icon_state, dir = Turf.dir)
 			TurfIcon.Scale(NANOMAP_ICON_SIZE, NANOMAP_ICON_SIZE)
 
-			Tile.Blend(TurfIcon, ICON_OVERLAY, ((WorldX - TRUE) * NANOMAP_ICON_SIZE), ((WorldY - TRUE) * NANOMAP_ICON_SIZE))
+			Tile.Blend(TurfIcon, ICON_OVERLAY, ((WorldX - 1) * NANOMAP_ICON_SIZE), ((WorldY - 1) * NANOMAP_ICON_SIZE))
 
 			count++
 

@@ -23,7 +23,7 @@ mob/var/next_pain_time = FALSE
 // partname is the name of a body part
 // amount is a num from TRUE to 100
 /mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = FALSE)
-	if(stat >= TRUE)
+	if(stat >= 1)
 		return
 	if(species && (species.flags & NO_PAIN))
 		return
@@ -73,7 +73,7 @@ mob/var/next_pain_time = FALSE
 // message is the custom message to be displayed
 // flash_strength is FALSE for weak pain flash, TRUE for strong pain flash
 mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
-	if(stat >= TRUE)
+	if(stat >= 1)
 		return
 	if(species.flags & NO_PAIN)
 		return
@@ -84,7 +84,7 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 	if(analgesic)
 		return
 	var/msg = "<span class = 'red'><b>[message]</b></span>"
-	if(flash_strength >= TRUE)
+	if(flash_strength >= 1)
 		msg = "<span class = 'red'><font size=3><b>[message]</b></font></span>"
 
 	// Anti message spam checks

@@ -85,8 +85,8 @@
 		if(mx > 1)
 			. = TRUE / mx
 
-		L[i + FALSE]   = C.getLumR() * .
-		L[i + TRUE]   = C.getLumG() * .
+		L[i + 0]   = C.getLumR() * .
+		L[i + 1]   = C.getLumG() * .
 		L[i + 2]   = C.getLumB() * .
 
 	color  = L

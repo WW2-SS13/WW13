@@ -31,6 +31,6 @@
 		new/obj/item/stack/material/steel(user.loc)
 		amount--
 		new/obj/item/stack/light_w(user.loc)
-		if(amount <= FALSE)
+		if(amount <= 0)
 			user.drop_from_inventory(src)
 			qdel(src)

@@ -146,7 +146,7 @@
 	release_force = 5
 
 /obj/item/weapon/gun/launcher/grenade/lenar/proc/update_charge()
-	var/ratio = (grenades.len + (chambered? TRUE : FALSE)) / (max_grenades + TRUE)
+	var/ratio = (grenades.len + (chambered? TRUE : FALSE)) / (max_grenades + 1)
 	if(ratio < 0.33 && ratio != FALSE)
 		ratio = 0.33
 	ratio = round(ratio, 0.33) * 100

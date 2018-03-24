@@ -81,7 +81,7 @@
 /datum/reagent/toxin/cyanide/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.adjustOxyLoss(20 * removed)
-	M.sleeping += TRUE
+	M.sleeping += 1
 
 /datum/reagent/toxin/food_poisoning
 	name = "Food Poisoning"

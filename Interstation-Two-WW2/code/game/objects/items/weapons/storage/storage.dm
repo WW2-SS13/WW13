@@ -238,7 +238,7 @@
 	var/endpoint = TRUE
 
 	for(var/obj/item/O in contents)
-		startpoint = endpoint + TRUE
+		startpoint = endpoint + 1
 		endpoint += storage_width * O.get_storage_cost()/max_storage_space
 
 		var/matrix/M_start = matrix()

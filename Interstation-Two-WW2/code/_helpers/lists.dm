@@ -47,7 +47,7 @@
 		var/output = ""
 		var/index = TRUE
 		while (index < total)
-			if (index == total - TRUE)
+			if (index == total - 1)
 				comma_text = final_comma_text
 
 			output += "[input[index]][comma_text]"
@@ -147,7 +147,7 @@ proc/listclearnulls(list/list)
 	total = rand(1, total)
 	for (item in L)
 		total -=L [item]
-		if (total <= FALSE)
+		if (total <= 0)
 			return item
 
 	return null
@@ -183,7 +183,7 @@ proc/listclearnulls(list/list)
 /proc/reverselist(list/L)
 	var/list/output = list()
 	if(L)
-		for(var/i = L.len; i >= TRUE; i--)
+		for(var/i = L.len; i >= 1; i--)
 			output += L[i]
 	return output
 
@@ -208,7 +208,7 @@ proc/listclearnulls(list/list)
 /proc/sortKey(var/list/client/L, var/order = TRUE)
 	if(isnull(L) || L.len < 2)
 		return L
-	var/middle = L.len / 2 + TRUE
+	var/middle = L.len / 2 + 1
 	return mergeKey(sortKey(L.Copy(0,middle)), sortKey(L.Copy(middle)), order)
 
 //Mergsort: does the actual sorting and returns the results back to sortAtom
@@ -232,7 +232,7 @@ proc/listclearnulls(list/list)
 /proc/sortAtom(var/list/atom/L, var/order = TRUE)
 	if(isnull(L) || L.len < 2)
 		return L
-	var/middle = L.len / 2 + TRUE
+	var/middle = L.len / 2 + 1
 	return mergeAtoms(sortAtom(L.Copy(0,middle)), sortAtom(L.Copy(middle)), order)
 
 //Mergsort: does the actual sorting and returns the results back to sortAtom
@@ -261,7 +261,7 @@ proc/listclearnulls(list/list)
 		return list()
 	if(L.len < 2)
 		return L
-	var/middle = L.len / 2 + TRUE
+	var/middle = L.len / 2 + 1
 	return mergeRecordLists(sortRecord(L.Copy(0, middle), field, order), sortRecord(L.Copy(middle), field, order), field, order)
 
 //Mergsort: does the actual sorting and returns the results back to sortRecord
@@ -295,7 +295,7 @@ proc/listclearnulls(list/list)
 /proc/sortList(var/list/L)
 	if(L.len < 2)
 		return L
-	var/middle = L.len / 2 + TRUE // Copy is first,second-1
+	var/middle = L.len / 2 + 1 // Copy is first,second-1
 	return mergeLists(sortList(L.Copy(0,middle)), sortList(L.Copy(middle))) //second parameter null = to end of list
 
 //Mergsorge: uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
@@ -324,7 +324,7 @@ proc/listclearnulls(list/list)
 /proc/sortByKey(var/list/L, var/key)
 	if(L.len < 2)
 		return L
-	var/middle = L.len / 2 + TRUE
+	var/middle = L.len / 2 + 1
 	return mergeKeyedLists(sortByKey(L.Copy(0, middle), key), sortByKey(L.Copy(middle), key), key)
 
 /proc/mergeKeyedLists(var/list/L, var/list/R, var/key)
@@ -356,7 +356,7 @@ proc/listclearnulls(list/list)
 /proc/sortAssoc(var/list/L)
 	if(L.len < 2)
 		return L
-	var/middle = L.len / 2 + TRUE // Copy is first,second-1
+	var/middle = L.len / 2 + 1 // Copy is first,second-1
 	return mergeAssoc(sortAssoc(L.Copy(0,middle)), sortAssoc(L.Copy(middle))) //second parameter null = to end of list
 
 /proc/mergeAssoc(var/list/L, var/list/R)
@@ -445,7 +445,7 @@ proc/listclearnulls(list/list)
 /proc/dd_sortedObjectList(var/list/L, var/cache=list())
 	if(L.len < 2)
 		return L
-	var/middle = L.len / 2 + TRUE // Copy is first,second-1
+	var/middle = L.len / 2 + 1 // Copy is first,second-1
 	return dd_mergeObjectList(dd_sortedObjectList(L.Copy(0,middle), cache), dd_sortedObjectList(L.Copy(middle), cache), cache) //second parameter null = to end of list
 
 /proc/dd_mergeObjectList(var/list/L, var/list/R, var/list/cache)
@@ -529,9 +529,9 @@ proc/dd_sortedObjectList(list/incoming)
 			current_item_value = current_item:dd_SortValue()
 			current_sort_object_value = current_sort_object:dd_SortValue()
 			if (current_sort_object_value < current_item_value)
-				high_index = current_index - TRUE
+				high_index = current_index - 1
 			else if (current_sort_object_value > current_item_value)
-				low_index = current_index + TRUE
+				low_index = current_index + 1
 			else
 				// current_sort_object == current_item
 				low_index = current_index
@@ -589,9 +589,9 @@ proc/dd_sortedtextlist(list/incoming, case_sensitive = FALSE)
 
 			switch(sort_result)
 				if (1)
-					high_index = current_index - TRUE	// current_sort_text < current_item
+					high_index = current_index - 1	// current_sort_text < current_item
 				if (-1)
-					low_index = current_index + TRUE	// current_sort_text > current_item
+					low_index = current_index + 1	// current_sort_text > current_item
 				if (0)
 					low_index = current_index		// current_sort_text == current_item
 					break

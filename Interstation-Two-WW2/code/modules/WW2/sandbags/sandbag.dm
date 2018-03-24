@@ -45,11 +45,11 @@
 		if (locate(src) in get_step(H, H.dir) || locate(src) in get_step(get_step(H, H.dir), H.dir))
 			// shitcode inbound - Kachnov
 			if (H.crouching)
-				H.pixel_y -= TRUE6
+				H.pixel_y -= 16
 				H.layer = MOB_LAYER - 0.06
 				H << "<span class = 'warning'>You squat behind the sandbag wall.</span>"
 			else
-				H.pixel_y += TRUE6
+				H.pixel_y += 16
 				H.layer = initial(H.layer)
 				H << "<span class = 'warning'>You stop squatting behind the sandbag wall.</span>"
 	else
@@ -109,7 +109,7 @@
 	user.dir = get_dir(user, src)
 	if (istype(O, /obj/item/weapon/sandbag))
 		var/obj/item/weapon/sandbag/sandbag = O
-		progress += (sandbag.sand_amount + TRUE)
+		progress += (sandbag.sand_amount + 1)
 		if (progress >= maxProgress/2)
 			icon_state = "sandbag_66%"
 			if (progress >= maxProgress)

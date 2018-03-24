@@ -146,7 +146,7 @@
 
 //This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
 /atom/movable/Move(newloc, direct)
-	if (direct & (direct - TRUE))
+	if (direct & (direct - 1))
 		if (direct & TRUE)
 			if (direct & 4)
 				if (step(src, NORTH))
@@ -518,7 +518,7 @@
 							. = ..()
 							if (isturf(M.loc))
 								var/diag = get_dir(mob, M)
-								if ((diag - TRUE) & diag)
+								if ((diag - 1) & diag)
 								else
 									diag = null
 								if ((get_dist(mob, M) > 1 || diag))

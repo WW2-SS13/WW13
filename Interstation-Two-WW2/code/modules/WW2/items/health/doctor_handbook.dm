@@ -169,14 +169,14 @@
 		if(!icount)
 			user.show_message("<span class='notice'>* No organ damage.</span>")
 
-		if(unsplinted_limbs.len >= TRUE)
+		if(unsplinted_limbs.len >= 1)
 			var/string = "[G.His] "
 			var/Count = TRUE
 			for (var/limb_name in unsplinted_limbs)
 				string += limb_name
 				if (Count < unsplinted_limbs.len)
 				 string += ", "
-				 if (Count + TRUE == unsplinted_limbs.len)
+				 if (Count + 1 == unsplinted_limbs.len)
 				 	string += "and "
 				Count++
 			string += " need[ecount == TRUE ? "s" : ""] splinting for safe transport."

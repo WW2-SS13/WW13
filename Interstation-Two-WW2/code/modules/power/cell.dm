@@ -15,7 +15,7 @@
 	if(drain_check)
 		return TRUE
 
-	if(charge <= FALSE)
+	if(charge <= 0)
 		return FALSE
 
 	var/cell_amt = power * CELLRATE

@@ -44,7 +44,7 @@ var/global/list/ashtray_cache = list()
 		desc = "An ashtray made of [material.display_name]."
 
 /obj/item/weapon/material/ashtray/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (health <= FALSE)
+	if (health <= 0)
 		return
 	if (istype(W,/obj/item/weapon/cigbutt) || istype(W,/obj/item/clothing/mask/smokable/cigarette) || istype(W, /obj/item/weapon/flame/match))
 		if (contents.len >= max_butts)

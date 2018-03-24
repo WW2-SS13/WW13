@@ -50,7 +50,7 @@
 
 	process_cooldown()
 		cooldown--
-		if(cooldown <= FALSE)	return FALSE
+		if(cooldown <= 0)	return FALSE
 		spawn(10)
 			process_cooldown()
 		return TRUE
@@ -166,7 +166,7 @@
 
 	Process_cooldown()
 		cooldown--
-		if(cooldown <= FALSE)	return FALSE
+		if(cooldown <= 0)	return FALSE
 		spawn(10)
 			Process_cooldown()
 		return TRUE

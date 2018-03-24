@@ -5,7 +5,7 @@
 	if (!istype(P))
 		return FALSE
 
-	var/effectiveness_coeff = (progress + TRUE)/maxProgress
+	var/effectiveness_coeff = (progress + 1)/maxProgress
 	var/turf/cover = get_turf(src)
 	if(!cover)
 		return TRUE

@@ -31,7 +31,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	is_dizzy = TRUE
 	while(dizziness > 100)
 		if(client)
-			var/amplitude = dizziness*(sin(dizziness * 0.044 * world.time) + TRUE) / 70
+			var/amplitude = dizziness*(sin(dizziness * 0.044 * world.time) + 1) / 70
 			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
 			client.pixel_y = amplitude * cos(0.008 * dizziness * world.time)
 
@@ -62,7 +62,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//var/old_y = pixel_y
 	is_jittery = TRUE
 	while(jitteriness > 100)
-//		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + TRUE) / 70
+//		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + 1) / 70
 //		pixel_x = amplitude * sin(0.008 * jitteriness * world.time)
 //		pixel_y = amplitude * cos(0.008 * jitteriness * world.time)
 
@@ -176,9 +176,9 @@ note dizziness decrements automatically in the mob's Life() proc.
 	// What icon do we use for the attack?
 	var/image/I
 	if(hand && l_hand) // Attacked with item in left hand.
-		I = image(l_hand.icon, A, l_hand.icon_state, A.layer + TRUE)
+		I = image(l_hand.icon, A, l_hand.icon_state, A.layer + 1)
 	else if (!hand && r_hand) // Attacked with item in right hand.
-		I = image(r_hand.icon, A, r_hand.icon_state, A.layer + TRUE)
+		I = image(r_hand.icon, A, r_hand.icon_state, A.layer + 1)
 	else // Attacked with a fist?
 		return
 

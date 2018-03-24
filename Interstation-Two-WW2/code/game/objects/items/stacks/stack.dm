@@ -50,7 +50,7 @@
 /obj/item/stack/proc/list_recipes(mob/user as mob, recipes_sublist)
 	if (!recipes)
 		return
-	if (!src || get_amount() <= FALSE)
+	if (!src || get_amount() <= 0)
 		user << browse(null, "window=stack")
 	user.set_machine(src) //for correct work of onclose
 	var/list/recipe_list = recipes
@@ -307,7 +307,7 @@
 		return FALSE
 	if(!uses_charge)
 		amount -= used
-		if (amount <= FALSE)
+		if (amount <= 0)
 			if(usr)
 				usr.remove_from_mob(src)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer

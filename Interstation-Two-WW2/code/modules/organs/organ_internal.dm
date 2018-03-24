@@ -105,7 +105,7 @@
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3
 		if(is_bruised())
-			filter_effect -= TRUE
+			filter_effect -= 1
 		if(is_broken())
 			filter_effect -= 2
 

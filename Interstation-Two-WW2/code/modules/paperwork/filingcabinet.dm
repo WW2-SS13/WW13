@@ -51,7 +51,7 @@
 
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
-	if(contents.len <= FALSE)
+	if(contents.len <= 0)
 		user << "<span class='notice'>\The [src] is empty.</span>"
 		return
 

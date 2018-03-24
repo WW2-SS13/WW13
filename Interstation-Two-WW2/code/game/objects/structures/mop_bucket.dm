@@ -28,5 +28,5 @@
 
 /obj/structure/mopbucket/on_reagent_change()
 	overlays.Cut()
-	if(reagents.total_volume >= TRUE)
+	if(reagents.total_volume >= 1)
 		overlays |= "water_bucket"

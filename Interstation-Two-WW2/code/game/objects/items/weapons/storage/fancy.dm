@@ -28,7 +28,7 @@
 	if(!..(user, TRUE))
 		return
 
-	if(contents.len <= FALSE)
+	if(contents.len <= 0)
 		user << "There are no [icon_type]s left in the box."
 	else if(contents.len == TRUE)
 		user << "There is one [icon_type] left in the box."

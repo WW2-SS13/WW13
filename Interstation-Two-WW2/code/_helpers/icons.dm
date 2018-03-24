@@ -640,7 +640,7 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 		var/icon/flat = icon('icons/effects/effects.dmi', "icon_state"="nothing") // Final flattened icon
 		if(!A)
 			return flat
-		if(A.alpha <= FALSE)
+		if(A.alpha <= 0)
 			return flat
 		var/noIcon = FALSE
 

@@ -158,7 +158,7 @@
 	var/turf/pos = get_turf(src)
 	if(pos)
 		pos.hotspot_expose(produce_heat, 5)
-	fuel = max(fuel - TRUE, FALSE)
+	fuel = max(fuel - 1, FALSE)
 	if(!fuel || !on)
 		turn_off()
 		if(!fuel)
@@ -208,7 +208,7 @@
 	..()
 
 /obj/item/device/flashlight/glowstick/process()
-	fuel = max(fuel - TRUE, FALSE)
+	fuel = max(fuel - 1, FALSE)
 	if(!fuel)
 		turn_off()
 		processing_objects -= src

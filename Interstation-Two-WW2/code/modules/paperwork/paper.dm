@@ -309,7 +309,7 @@
 		var/id = href_list["write"]
 		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message
 
-		if(free_space <= FALSE)
+		if(free_space <= 0)
 			usr << "<span class='info'>There isn't enough space left on \the [src] to write anything.</span>"
 			return
 

@@ -244,7 +244,7 @@
 					for(var/shot = TRUE to 1000)
 						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
 							hits++
-					if(hits <= FALSE)
+					if(hits <= 0)
 						text += "0"
 					else
 						text += "[round(hits / 10)]"
@@ -273,7 +273,7 @@
 					for(var/shot = TRUE to 1000)
 						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
 							hits++
-					if(hits <= FALSE)
+					if(hits <= 0)
 						text += "0"
 					else
 						text += "[round(hits / 10)]"
@@ -301,7 +301,7 @@
 					for(var/shot = TRUE to 1000)
 						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
 							hits++
-					if(hits <= FALSE)
+					if(hits <= 0)
 						text += "0"
 					else
 						text += "[round(hits / 10)]"

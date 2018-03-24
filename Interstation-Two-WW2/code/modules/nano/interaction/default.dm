@@ -25,7 +25,7 @@
 		return STATUS_CLOSE
 
 	var/dist = get_dist(src_object, src)
-	if (dist <= TRUE)
+	if (dist <= 1)
 		return STATUS_INTERACTIVE	// interactive (green visibility)
 	else if (dist <= 2)
 		return STATUS_UPDATE 		// update only (orange visibility)

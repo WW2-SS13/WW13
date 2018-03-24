@@ -12,7 +12,7 @@
 	volume = 5
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/ww2/update_icon()
-	if(reagents.total_volume >= FALSE)
+	if(reagents.total_volume >= 0)
 		icon_state = "ww2_injector_full"
 	else
 		icon_state = "ww2_injector_empty"

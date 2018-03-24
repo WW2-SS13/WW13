@@ -89,7 +89,7 @@
 		return FALSE
 
 
-	if(health <= FALSE)
+	if(health <= 0)
 		death()
 		return
 
@@ -204,7 +204,7 @@
 
 /mob/living/simple_animal/proc/handle_supernatural()
 	if(purge)
-		purge -= TRUE
+		purge -= 1
 
 /mob/living/simple_animal/gib()
 	..(icon_gib,1)
@@ -271,10 +271,10 @@
 		if(stat != DEAD)
 			var/obj/item/stack/medical/MED = O
 			if(health < maxHealth)
-				if(MED.amount >= TRUE)
+				if(MED.amount >= 1)
 					adjustBruteLoss(-MED.heal_brute)
-					MED.amount -= TRUE
-					if(MED.amount <= FALSE)
+					MED.amount -= 1
+					if(MED.amount <= 0)
 						qdel(MED)
 					for(var/mob/M in viewers(src, null))
 						if ((M.client && !( M.blinded )))
@@ -322,7 +322,7 @@
 
 	tally = speed
 	if(purge)//Purged creatures will move more slowly. The more time before their purge stops, the slower they'll move.
-		if(tally <= FALSE)
+		if(tally <= 0)
 			tally = TRUE
 		tally *= purge
 
@@ -359,7 +359,7 @@
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))
 		var/mob/living/L = target_mob
-		if(!L.stat && L.health >= FALSE)
+		if(!L.stat && L.health >= 0)
 			return (0)
 	return TRUE
 

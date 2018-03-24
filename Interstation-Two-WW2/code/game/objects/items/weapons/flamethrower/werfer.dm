@@ -168,7 +168,7 @@
 	if(usr.stat || usr.restrained() || usr.lying)	return
 	usr.set_machine(src)
 	if(href_list["light"])
-		if(fueltank <= FALSE) return
+		if(fueltank <= 0) return
 		if(!status)	return
 		lit = !lit
 		if(lit)

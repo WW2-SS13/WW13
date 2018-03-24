@@ -50,7 +50,7 @@
 		update_icon()
 		return
 
-	if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= TRUE)
+	if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= 1)
 		visible_message("[usr] attaches \the [src] to \the [over_object].")
 		attached = over_object
 		update_icon()
@@ -75,7 +75,7 @@
 
 	if(attached)
 
-		if(!(get_dist(src, attached) <= TRUE && isturf(attached.loc)))
+		if(!(get_dist(src, attached) <= 1 && isturf(attached.loc)))
 			visible_message("The needle is ripped out of [attached], doesn't that hurt?")
 			attached:apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
 			attached = null

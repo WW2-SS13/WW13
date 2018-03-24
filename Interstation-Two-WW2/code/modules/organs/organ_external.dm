@@ -225,7 +225,7 @@
 	return (vital || brute_dam + burn_dam + additional_damage < max_damage)
 
 /obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
-	if((brute <= FALSE) && (burn <= FALSE))
+	if((brute <= 0) && (burn <= 0))
 		return FALSE
 
 	brute *= brute_mod
@@ -473,8 +473,8 @@ This function completely restores a damaged organ to perfect condition.
 		//Chem traces slowly vanish
 		if(owner.life_tick % 10 == FALSE)
 			for(var/chemID in trace_chemicals)
-				trace_chemicals[chemID] = trace_chemicals[chemID] - TRUE
-				if(trace_chemicals[chemID] <= FALSE)
+				trace_chemicals[chemID] = trace_chemicals[chemID] - 1
+				if(trace_chemicals[chemID] <= 0)
 					trace_chemicals.Remove(chemID)
 
 		if(!(status & ORGAN_BROKEN))
@@ -590,7 +590,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	for(var/datum/wound/W in wounds)
 		// wounds can disappear after 10 minutes at the earliest
-		if(W.damage <= FALSE && W.created + 10 * 10 * 60 <= world.time)
+		if(W.damage <= 0 && W.created + 10 * 10 * 60 <= world.time)
 			wounds -= W
 			continue
 			// let the GC handle the deletion of the wound
@@ -620,7 +620,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
 		heal_amt = heal_amt * config.organ_regeneration_multiplier
 		// amount of healing is spread over all the wounds
-		heal_amt = heal_amt / (wounds.len + TRUE)
+		heal_amt = heal_amt / (wounds.len + 1)
 		// making it look prettier on scanners
 		heal_amt = round(heal_amt,0.1)
 		W.heal_damage(heal_amt)

@@ -19,15 +19,15 @@
 
 	//Roll armour
 	if(prob(armor))
-		absorb += TRUE
+		absorb += 1
 	if(prob(armor))
-		absorb += TRUE
+		absorb += 1
 
 	//Roll penetration
 	if(prob(armour_pen))
-		absorb -= TRUE
+		absorb -= 1
 	if(prob(armour_pen))
-		absorb -= TRUE
+		absorb -= 1
 
 	if(absorb >= 2)
 		if(absorb_text)
@@ -332,7 +332,7 @@ var/obj/human_fire_overlay_lying = null
 
 //Finds the effective temperature that the mob is burning at.
 /mob/living/proc/fire_burn_temperature()
-	if (fire_stacks <= FALSE)
+	if (fire_stacks <= 0)
 		return FALSE
 
 	//Scale quadratically so that single digit numbers of fire stacks don't burn ridiculously hot.

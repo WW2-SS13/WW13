@@ -158,7 +158,7 @@ var/list/organ_cache = list()
 
 	if(germ_level >= INFECTION_LEVEL_ONE)
 		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, TRUE) + owner.species.body_temperature
-		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + TRUE, fever_temperature - owner.bodytemperature)
+		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 
 	if (germ_level >= INFECTION_LEVEL_TWO)
 		var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
@@ -229,7 +229,7 @@ var/list/organ_cache = list()
 		W.weapon = used_weapon
 		autopsy_data[used_weapon] = W
 
-	W.hits += TRUE
+	W.hits += 1
 	W.damage += damage
 	W.time_inflicted = world.time
 

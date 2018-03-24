@@ -109,7 +109,7 @@
 
 			//Space
 			if(32)
-				if(last_char_group <= TRUE)	continue	//suppress double-spaces and spaces at start of string
+				if(last_char_group <= 1)	continue	//suppress double-spaces and spaces at start of string
 				output += ascii2text(ascii_char)
 				last_char_group = TRUE
 			else
@@ -151,14 +151,14 @@
 //Returns the position of the substring or FALSE if it was not found
 /proc/dd_hasprefix(text, prefix)
 	var/start = TRUE
-	var/end = length(prefix) + TRUE
+	var/end = length(prefix) + 1
 	return findtext(text, prefix, start, end)
 
 //Checks the beginning of a string for a specified sub-string. This proc is case sensitive
 //Returns the position of the substring or FALSE if it was not found
 /proc/dd_hasprefix_case(text, prefix)
 	var/start = TRUE
-	var/end = length(prefix) + TRUE
+	var/end = length(prefix) + 1
 	return findtextEx(text, prefix, start, end)
 
 //Checks the end of a string for a specified substring.
@@ -221,7 +221,7 @@
 /proc/trim_right(text)
 	for (var/i = length(text), i > 0, i--)
 		if (text2ascii(text, i) > 32)
-			return copytext(text, TRUE, i + TRUE)
+			return copytext(text, TRUE, i + 1)
 	return ""
 
 //Returns a string with reserved characters and spaces before the first word and after the last word removed.
@@ -244,14 +244,14 @@
 		closetag = findtext(input, ">")
 		if(closetag && opentag)
 			if(closetag < opentag)
-				input = copytext(input, (closetag + TRUE))
+				input = copytext(input, (closetag + 1))
 			else
-				input = copytext(input, TRUE, opentag) + copytext(input, (closetag + TRUE))
+				input = copytext(input, TRUE, opentag) + copytext(input, (closetag + 1))
 		else if(closetag || opentag)
 			if(opentag)
 				input = copytext(input, TRUE, opentag)
 			else
-				input = copytext(input, (closetag + TRUE))
+				input = copytext(input, (closetag + 1))
 		else
 			break
 

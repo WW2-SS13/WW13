@@ -239,7 +239,7 @@ var/list/global/organ_rel_size = list(
 /proc/stars(n, pr)
 	if (pr == null)
 		pr = 25
-	if (pr <= FALSE)
+	if (pr <= 0)
 		return null
 	else
 		if (pr >= 100)
@@ -251,7 +251,7 @@ var/list/global/organ_rel_size = list(
 	p = TRUE
 	var/intag = FALSE
 	while(p <= n)
-		var/char = copytext(te, p, p + TRUE)
+		var/char = copytext(te, p, p + 1)
 		if (char == "<") //let's try to not break tags
 			intag = !intag
 		if (intag || char == " " || prob(pr))
@@ -293,7 +293,7 @@ proc/slur(phrase)
 	var/p = null
 	p = TRUE//1 is the start of any word
 	while(p <= n)//while P, which starts at TRUE is less or equal to N which is the length.
-		var/n_letter = copytext(te, p, p + TRUE)//copies text from a certain distance. In this case, only one letter at a time.
+		var/n_letter = copytext(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
 		if (prob(80) && (ckey(n_letter) in list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z")))
 			if (prob(10))
 				n_letter = text("[n_letter]-[n_letter]-[n_letter]-[n_letter]")//replaces the current letter with this instead.

@@ -222,7 +222,7 @@
 			spawn(0)
 				//world << "limit = [limit] "
 				if((I && limit > 0))
-					I.limit = limit - TRUE
+					I.limit = limit - 1
 					//world << "calling next process"
 					I.process()
 				return

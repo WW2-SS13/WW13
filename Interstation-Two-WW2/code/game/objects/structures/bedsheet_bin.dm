@@ -129,7 +129,7 @@ LINEN BINS
 		user << "<span class='notice'>You hide [I] among the sheets.</span>"
 
 /obj/structure/bedsheetbin/attack_hand(mob/user as mob)
-	if(amount >= TRUE)
+	if(amount >= 1)
 		amount--
 
 		var/obj/item/weapon/bedsheet/B
@@ -153,7 +153,7 @@ LINEN BINS
 	add_fingerprint(user)
 
 /obj/structure/bedsheetbin/attack_tk(mob/user as mob)
-	if(amount >= TRUE)
+	if(amount >= 1)
 		amount--
 
 		var/obj/item/weapon/bedsheet/B

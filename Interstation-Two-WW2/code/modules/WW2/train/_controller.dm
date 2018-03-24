@@ -131,12 +131,12 @@
 		//	var/cars_width = (off_di["width"] + st_di["width"] + so_di["width"] + con_di["width"])
 			var/cars_height = (off_di["height"] + st_di["height"] + so_di["height"] + con_di["height"])
 
-			var/num_spaces = total_cars - TRUE // 2 cars = TRUE space, etc
+			var/num_spaces = total_cars - 1 // 2 cars = TRUE space, etc
 			var/extra_height = SPACES_BETWEEN_CARS * num_spaces
 
 			total_height = cars_height + extra_height
 
-			var/max_dist = abs(starting_point.y - limit_point.y) + TRUE
+			var/max_dist = abs(starting_point.y - limit_point.y) + 1
 
 			if (total_height > max_dist)
 				return // we fucked up. This is a huge train, or there isn't much space between the starting and limit
@@ -225,12 +225,12 @@
 
 			var/cars_width = st_di["width"]
 
-			var/num_spaces = total_cars - TRUE // 2 cars = TRUE space, etc
+			var/num_spaces = total_cars - 1 // 2 cars = TRUE space, etc
 			var/extra_width = SPACES_BETWEEN_CARS * num_spaces
 
 			total_width = cars_width + extra_width
 
-			var/max_dist = abs(limit_point.x - starting_point.x) + TRUE
+			var/max_dist = abs(limit_point.x - starting_point.x) + 1
 
 			if (total_width > max_dist)
 				return // we fucked up. This is a huge train, or there isn't much space between the starting and limit

@@ -316,7 +316,7 @@
 		if (actual_job.spawn_delay)
 
 			if (delayed_spawning_as_job)
-				delayed_spawning_as_job.total_positions += TRUE
+				delayed_spawning_as_job.total_positions += 1
 				delayed_spawning_as_job = null
 
 			job_master.spawn_with_delay(src, actual_job)
@@ -730,7 +730,7 @@
 /mob/new_player/proc/create_character(mobtype)
 
 	if (delayed_spawning_as_job)
-		delayed_spawning_as_job.total_positions += TRUE
+		delayed_spawning_as_job.total_positions += 1
 		delayed_spawning_as_job = null
 
 	spawning = TRUE

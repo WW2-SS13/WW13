@@ -430,7 +430,7 @@ BLIND     // can't see anything
 	if(has_sensor >= 2)
 		usr << "The controls are locked."
 		return FALSE
-	if(has_sensor <= FALSE)
+	if(has_sensor <= 0)
 		usr << "This suit does not have any sensors."
 		return FALSE
 

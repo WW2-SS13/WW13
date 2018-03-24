@@ -314,7 +314,7 @@
 	visible_message("<span class='info'>\The [usr] inserts some cash into \the [src].</span>")
 	cashmoney.worth -= currently_vending.price
 
-	if(cashmoney.worth <= FALSE)
+	if(cashmoney.worth <= 0)
 		usr.drop_from_inventory(cashmoney)
 		qdel(cashmoney)
 	else
@@ -521,7 +521,7 @@
 			if(!(R.category & categories))
 				return
 
-			if(R.price <= FALSE)
+			if(R.price <= 0)
 				vend(R, usr)
 
 			else if(istype(usr,/mob/living/silicon)) //If the item is not free, provide feedback if a synth is trying to buy something.

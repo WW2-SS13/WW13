@@ -14,7 +14,7 @@ var/z_levels = FALSE // Each bit represents a connection between adjacent levels
 proc/HasAbove(var/z)
 	if(z >= world.maxz || z > 16 || z < 1)
 		return FALSE
-	return z_levels & (1 << (z - TRUE))
+	return z_levels & (1 << (z - 1))
 
 proc/HasBelow(var/z)
 	if(z > world.maxz || z > 17 || z < 2)
