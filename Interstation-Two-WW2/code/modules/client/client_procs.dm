@@ -262,10 +262,10 @@
 			src << browse(null, "window=playersetup;")
 
 		if (istype(mob, /mob/living/carbon/human))
-			human_clients_mob_list |= src
+			human_clients_mob_list |= mob
 
 		else if (istype(mob, /mob/observer))
-			observer_mob_list |= src
+			observer_mob_list |= mob
 
 	spawn (10)
 		if (src)
@@ -281,12 +281,8 @@
 		admins -= src
 	directory -= ckey
 	clients -= src
-	if (observer_mob_list.Find(mob))
-		observer_mob_list -= mob
-	else if (new_player_mob_list.Find(mob))
-		new_player_mob_list -= mob
-	else if (human_clients_mob_list.Find(mob))
-		human_clients_mob_list -= mob
+	observer_mob_list -= mob
+	human_clients_mob_list -= mob
 	return ..()
 
 
