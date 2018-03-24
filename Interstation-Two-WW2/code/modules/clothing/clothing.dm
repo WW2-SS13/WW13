@@ -140,7 +140,7 @@ BLIND     // can't see anything
 	if(cell)
 		//why is this not part of the powercell code?
 		cell.charge -= 1000 / severity
-		if (cell.charge < FALSE)
+		if (cell.charge < 0)
 			cell.charge = FALSE
 	..()
 

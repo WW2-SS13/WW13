@@ -27,7 +27,7 @@
 		for (var/datum/reagent/ethanol/E in ingested.reagent_list)
 			traumatic_shock -= E.volume
 
-	if(traumatic_shock < FALSE)
+	if(traumatic_shock < 0)
 		traumatic_shock = FALSE
 
 	return traumatic_shock

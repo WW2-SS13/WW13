@@ -240,7 +240,7 @@
 				return TRUE					//But only from one side
 		if(prob(chance))
 			health -= P.damage/2
-			if (health > FALSE)
+			if (health > 0)
 				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
 				return FALSE
 			else

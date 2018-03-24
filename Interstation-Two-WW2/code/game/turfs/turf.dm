@@ -126,7 +126,7 @@ var/list/interior_areas = list(/area/prishtina/houses,
 		return FALSE
 	if(user.pulling.anchored || !isturf(user.pulling.loc))
 		return FALSE
-	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > TRUE)
+	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1)
 		return FALSE
 	if(ismob(user.pulling))
 		var/mob/M = user.pulling

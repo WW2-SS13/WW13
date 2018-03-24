@@ -158,7 +158,7 @@
 				var/list/status = list()
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
-				if(halloss > FALSE)
+				if(halloss > 0)
 					if(prob(30))
 						brutedamage += halloss
 					if(prob(30))

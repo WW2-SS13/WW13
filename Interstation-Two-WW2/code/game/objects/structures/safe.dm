@@ -53,7 +53,7 @@ FLOOR SAFES
 
 /obj/structure/safe/proc/decrement(num)
 	num -= TRUE
-	if(num < FALSE)
+	if(num < 0)
 		num = 71
 	return num
 

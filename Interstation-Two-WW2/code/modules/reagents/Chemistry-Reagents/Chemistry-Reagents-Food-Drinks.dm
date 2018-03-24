@@ -373,7 +373,7 @@
 
 /datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustToxLoss(removed) // Probably not a good idea; not very deadly though
-	if (M.water < FALSE)
+	if (M.water < 0)
 		M.water += 50
 	M.water += removed * 5
 	return
@@ -384,9 +384,9 @@
 	M.dizziness = max(0, M.dizziness + adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
 	M.sleeping = max(0, M.sleeping + adj_sleepy)
-	if(adj_temp > FALSE && M.bodytemperature < 310) // 310 is the normal bodytemp. 310.055
+	if(adj_temp > 0 && M.bodytemperature < 310) // 310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(310, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(adj_temp < FALSE && M.bodytemperature > 310)
+	if(adj_temp < 0 && M.bodytemperature > 310)
 		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
 // Juices
@@ -502,7 +502,7 @@
 	M.heal_organ_damage(0.5 * removed, FALSE)
 	holder.remove_reagent("capsaicin", 10 * removed)
 
-	if (M.water < FALSE)
+	if (M.water < 0)
 		M.water += rand(20,30)
 	M.water += removed * 10
 
@@ -574,7 +574,7 @@
 
 /datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(adj_temp > FALSE)
+	if(adj_temp > 0)
 		holder.remove_reagent("frostoil", 10 * removed)
 	M.add_chemical_effect(CE_PULSE, TRUE)
 

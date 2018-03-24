@@ -45,7 +45,7 @@
 
 /obj/item/weapon/grenade/examine(mob/user)
 	if(..(user, FALSE))
-		if(det_time > TRUE)
+		if(det_time > 1)
 			user << "The timer is set to [det_time/10] seconds."
 			return
 		if(det_time == null)

@@ -32,7 +32,7 @@
 		overlays += image("icon" = salted_icon, "layer" = FLOAT_LAYER)
 	if(reagents.total_volume == FALSE)
 		return
-	if(reagents.total_volume > FALSE)
+	if(reagents.total_volume > 0)
 		if(!fluid_image)
 			fluid_image = image('icons/obj/drinks.dmi', "fluid-[glass_type]")
 		fluid_image.color = reagents.get_color()

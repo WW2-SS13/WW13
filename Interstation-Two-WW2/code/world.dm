@@ -65,7 +65,7 @@ var/world_is_open = TRUE
 
 	config.post_load()
 
-	if(config && config.server_name != null && config.server_suffix && world.port > FALSE)
+	if(config && config.server_name != null && config.server_suffix && world.port > 0)
 		// dumb and hardcoded but I don't care~
 		config.server_name += " #[(world.port % 1000) / 100]"
 
@@ -557,7 +557,7 @@ var/setting_up_db_connection = FALSE
 					var/our_server_id = serverswap["this"] // "s1"
 					var/our_number = text2num(replacetext(our_server_id, "s", "")) // '1'
 					var/waiting_on_id = null
-					if (our_number > TRUE)
+					if (our_number > 1)
 						waiting_on_id = "s[our_number-1]" // "s2" waits on "s1", "s3" waits on "s2"
 					else if (our_number == TRUE)
 						waiting_on_id = serverswap["sfinal"]

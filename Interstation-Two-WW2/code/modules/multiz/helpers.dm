@@ -4,7 +4,7 @@ var/z_levels = FALSE // Each bit represents a connection between adjacent levels
 /*
 // If the height is more than TRUE, we mark all contained levels as connected.
 /obj/effect/landmark/map_data/New()
-	ASSERT(height > TRUE)
+	ASSERT(height > 1)
 	// Due to the offsets of how connections are stored v.s. how z-levels are indexed, some magic number silliness happened.
 
 	for(var/i = (height-1); i--;)
@@ -12,7 +12,7 @@ var/z_levels = FALSE // Each bit represents a connection between adjacent levels
 */
 // The storage of connections between adjacent levels means some bitwise magic is needed.
 proc/HasAbove(var/z)
-	if(z >= world.maxz || z > 16 || z < TRUE)
+	if(z >= world.maxz || z > 16 || z < 1)
 		return FALSE
 	return z_levels & (1 << (z - TRUE))
 

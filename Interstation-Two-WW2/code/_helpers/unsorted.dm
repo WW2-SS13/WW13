@@ -302,7 +302,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		. += LOCATE_COORDS(center.x + y, center.y + x, center.z) //lower lower right
 		. += LOCATE_COORDS(center.x + x, center.y + y, center.z) //lower right right
 
-		if(p < FALSE)
+		if(p < 0)
 			p += 4*x++ + 6;
 		else
 			p += 4*(x++ - y--) + 10;
@@ -432,7 +432,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/modulus(var/M)
 	if(M >= FALSE)
 		return M
-	if(M < FALSE)
+	if(M < 0)
 		return -M
 
 // returns the turf located at the map edge in the specified direction relative to A

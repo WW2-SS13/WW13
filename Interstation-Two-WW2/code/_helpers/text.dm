@@ -219,7 +219,7 @@
 
 //Returns a string with reserved characters and spaces after the last letter removed
 /proc/trim_right(text)
-	for (var/i = length(text), i > FALSE, i--)
+	for (var/i = length(text), i > 0, i--)
 		if (text2ascii(text, i) > 32)
 			return copytext(text, TRUE, i + TRUE)
 	return ""
@@ -292,7 +292,7 @@
 
 /proc/reverse_text(var/text = "")
 	var/new_text = ""
-	for(var/i = length(text); i > FALSE; i--)
+	for(var/i = length(text); i > 0; i--)
 		new_text += copytext(text, i, i+1)
 	return new_text
 

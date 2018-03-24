@@ -26,7 +26,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/commanded/Life()
-	while(command_buffer.len > FALSE)
+	while(command_buffer.len > 0)
 		var/mob/speaker = command_buffer[1]
 		var/text = command_buffer[2]
 		var/filtered_name = lowertext(html_decode(name))
@@ -156,7 +156,7 @@
 		target_mob = speaker //this wont bite me in the ass later.
 		return TRUE
 	var/list/targets = get_targets_by_name(text)
-	if(targets.len > TRUE || !targets.len) //CONFUSED. WHO DO I FOLLOW?
+	if(targets.len > 1 || !targets.len) //CONFUSED. WHO DO I FOLLOW?
 		return FALSE
 
 	stance = COMMANDED_FOLLOW //GOT SOMEBODY. BETTER FOLLOW EM.

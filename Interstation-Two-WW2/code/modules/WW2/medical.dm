@@ -21,7 +21,7 @@
 
 /obj/item/weapon/pill_pack/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
-		if(contents.len > FALSE)
+		if(contents.len > 0)
 			if(pop_sound)
 				playsound(loc, pop_sound, 50, TRUE)
 			var/obj/item/weapon/reagent_containers/pill/pill = contents[1]
@@ -34,7 +34,7 @@
 		..()
 
 /obj/item/weapon/pill_pack/attack_self(mob/user as mob)
-	if(contents.len > FALSE)
+	if(contents.len > 0)
 		var/obj/item/weapon/reagent_containers/pill/pill = contents[1]
 		if(prob(70))
 			if(pop_sound)

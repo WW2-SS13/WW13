@@ -320,7 +320,7 @@ var/list/global/slot_flags_enumeration = list(
 	switch(slot)
 		if(slot_l_ear, slot_r_ear)
 			var/slot_other_ear = (slot == slot_l_ear)? slot_r_ear : slot_l_ear
-			if( (w_class > TRUE) && !(slot_flags & SLOT_EARS) )
+			if( (w_class > 1) && !(slot_flags & SLOT_EARS) )
 				return FALSE
 			if( (slot_flags & SLOT_TWOEARS) && H.get_equipped_item(slot_other_ear) )
 				return FALSE

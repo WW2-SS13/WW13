@@ -12,7 +12,7 @@
 	attack_verb = list("whipped", "lashed", "disciplined", "tickled")
 
 /obj/item/weapon/wire/proc/update()
-	if (amount > TRUE)
+	if (amount > 1)
 		icon_state = "spool_wire"
 		desc = text("This is just spool of regular insulated wire. It consists of about [] unit\s of wire.", amount)
 	else

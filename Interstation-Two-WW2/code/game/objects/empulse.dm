@@ -14,7 +14,7 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
 		message_admins("EMP with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ")
 		log_game("EMP with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ")
 
-	if(heavy_range > TRUE)
+	if(heavy_range > 1)
 		var/obj/effect/overlay/pulse = PoolOrNew(/obj/effect/overlay, epicenter)
 		pulse.icon = 'icons/effects/effects.dmi'
 		pulse.icon_state = "emppulse"
@@ -34,7 +34,7 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
 		var/time = world.timeofday
 		#endif
 		var/distance = get_dist(epicenter, T)
-		if(distance < FALSE)
+		if(distance < 0)
 			distance = FALSE
 		if(distance < heavy_range)
 			T.emp_act(1)

@@ -48,7 +48,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		M.IgniteMob()
 	var/turf/location = get_turf(src)
 	smoketime--
-	if(smoketime < TRUE)
+	if(smoketime < 1)
 		burn_out()
 		return
 	if(location)
@@ -103,7 +103,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/process()
 	var/turf/location = get_turf(src)
 	smoketime--
-	if(smoketime < TRUE)
+	if(smoketime < 1)
 		die()
 		return
 	if(location)

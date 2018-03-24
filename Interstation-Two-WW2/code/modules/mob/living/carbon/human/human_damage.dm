@@ -94,7 +94,7 @@
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_damage)
 			amount /= H.getStatCoeff("strength")
-	if(amount > FALSE)
+	if(amount > 0)
 		take_overall_damage(amount, FALSE)
 	else
 		heal_overall_damage(-amount, FALSE)
@@ -106,7 +106,7 @@
 		var/mob/living/carbon/human/H = src
 		if (H.takes_less_damage)
 			amount /= H.getStatCoeff("strength")
-	if(amount > FALSE)
+	if(amount > 0)
 		take_overall_damage(0, amount)
 	else
 		heal_overall_damage(0, -amount)
@@ -130,7 +130,7 @@
 	if (organ_name in organs_by_name)
 		var/obj/item/organ/external/O = get_organ(organ_name)
 
-		if(amount > FALSE)
+		if(amount > 0)
 			O.take_damage(amount, amount, sharp=is_sharp(damage_source), edge=damage_source ? damage_source.edge : 0, used_weapon=damage_source)
 		else
 			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
@@ -178,7 +178,7 @@
 
 	var/heal_prob = max(0, 80 - getCloneLoss())
 	var/mut_prob = min(80, getCloneLoss()+10)
-	if (amount > FALSE)
+	if (amount > 0)
 		if (prob(mut_prob))
 			var/list/obj/item/organ/external/candidates = list()
 			for (var/obj/item/organ/external/O in organs)
@@ -197,7 +197,7 @@
 					src << "<span class = 'notice'>Your [O.name] is shaped normally again.</span>"
 					return
 
-	if (getCloneLoss() < TRUE)
+	if (getCloneLoss() < 1)
 		for (var/obj/item/organ/external/O in organs)
 			if (O.status & ORGAN_MUTATED)
 				O.unmutate()

@@ -36,7 +36,7 @@
 		if(D.get_material_name() != material.name)
 			return //hitting things with the wrong type of stack usually doesn't produce messages, and probably doesn't need to.
 		if (health < maxhealth)
-			if (D.get_amount() < TRUE)
+			if (D.get_amount() < 1)
 				user << "<span class='warning'>You need one sheet of [material.display_name] to repair \the [src].</span>"
 				return
 			visible_message("<span class='notice'>[user] begins to repair \the [src].</span>")

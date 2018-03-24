@@ -19,7 +19,7 @@
 
 /proc/default_parry_check(mob/user, mob/attacker, atom/damage_source)
 	//parry only melee attacks
-	if(istype(damage_source, /obj/item/projectile) || (attacker && get_dist(user, attacker) > TRUE) || user.incapacitated())
+	if(istype(damage_source, /obj/item/projectile) || (attacker && get_dist(user, attacker) > 1) || user.incapacitated())
 		return FALSE
 
 	//block as long as they are not directly behind us

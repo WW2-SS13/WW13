@@ -141,7 +141,7 @@
 	usr.set_machine(src)
 	if(href_list["light"])
 		if(!ptank)	return
-		if(ptank.air_contents.gas["plasma"] < TRUE)	return
+		if(ptank.air_contents.gas["plasma"] < 1)	return
 		if(!status)	return
 		lit = !lit
 		if(lit)

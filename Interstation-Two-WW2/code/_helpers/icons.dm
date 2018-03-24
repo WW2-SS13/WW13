@@ -466,14 +466,14 @@ proc/RGBtoHSV(rgb)
 	return hsv(hue, sat, val, (RGB.len>3 ? RGB[4] : null))
 
 proc/hsv(hue, sat, val, alpha)
-	if(hue < FALSE || hue >= 1536) hue %= 1536
-	if(hue < FALSE) hue += 1536
+	if(hue < 0 || hue >= 1536) hue %= 1536
+	if(hue < 0) hue += 1536
 	if((hue & 0xFF) == 0xFF)
 		++hue
 		if(hue >= 1536) hue = FALSE
-	if(sat < FALSE) sat = FALSE
+	if(sat < 0) sat = FALSE
 	if(sat > 255) sat = 255
-	if(val < FALSE) val = FALSE
+	if(val < 0) val = FALSE
 	if(val > 255) val = 255
 	. = "#"
 	. += TO_HEX_DIGIT(hue >> 8)
@@ -484,7 +484,7 @@ proc/hsv(hue, sat, val, alpha)
 	. += TO_HEX_DIGIT(val >> 4)
 	. += TO_HEX_DIGIT(val)
 	if(!isnull(alpha))
-		if(alpha < FALSE) alpha = FALSE
+		if(alpha < 0) alpha = FALSE
 		if(alpha > 255) alpha = 255
 		. += TO_HEX_DIGIT(alpha >> 4)
 		. += TO_HEX_DIGIT(alpha)
@@ -510,8 +510,8 @@ proc/BlendHSV(hsv1, hsv2, amount)
 	// normalize hsv values in case anything is screwy
 	if(HSV1[1] > 1536) HSV1[1] %= 1536
 	if(HSV2[1] > 1536) HSV2[1] %= 1536
-	if(HSV1[1] < FALSE) HSV1[1] += 1536
-	if(HSV2[1] < FALSE) HSV2[1] += 1536
+	if(HSV1[1] < 0) HSV1[1] += 1536
+	if(HSV2[1] < 0) HSV2[1] += 1536
 	if(!HSV1[3]) {HSV1[1] = FALSE; HSV1[2] = FALSE}
 	if(!HSV2[3]) {HSV2[1] = FALSE; HSV2[2] = FALSE}
 
@@ -536,8 +536,8 @@ proc/BlendHSV(hsv1, hsv2, amount)
 	var/alpha = usealpha ? round(HSV1[4] + (HSV2[4] - HSV1[4]) * amount, TRUE) : null
 
 	// normalize hue
-	if(hue < FALSE || hue >= 1530) hue %= 1530
-	if(hue < FALSE) hue += 1530
+	if(hue < 0 || hue >= 1530) hue %= 1530
+	if(hue < 0) hue += 1530
 	// decompress hue
 	hue += round(hue / 255)
 
@@ -573,15 +573,15 @@ proc/BlendRGBasHSV(rgb1, rgb2, amount)
 
 proc/HueToAngle(hue)
 	// normalize hsv in case anything is screwy
-	if(hue < FALSE || hue >= 1536) hue %= 1536
-	if(hue < FALSE) hue += 1536
+	if(hue < 0 || hue >= 1536) hue %= 1536
+	if(hue < 0) hue += 1536
 	// Compress hue into easier-to-manage range
 	hue -= hue >> 8
 	return hue / (1530/360)
 
 proc/AngleToHue(angle)
 	// normalize hsv in case anything is screwy
-	if(angle < FALSE || angle >= 360) angle -= 360 * round(angle / 360)
+	if(angle < 0 || angle >= 360) angle -= 360 * round(angle / 360)
 	var/hue = angle * (1530/360)
 	// Decompress hue
 	hue += round(hue / 255)
@@ -594,17 +594,17 @@ proc/RotateHue(hsv, angle)
 
 	// normalize hsv in case anything is screwy
 	if(HSV[1] >= 1536) HSV[1] %= 1536
-	if(HSV[1] < FALSE) HSV[1] += 1536
+	if(HSV[1] < 0) HSV[1] += 1536
 
 	// Compress hue into easier-to-manage range
 	HSV[1] -= HSV[1] >> 8
 
-	if(angle < FALSE || angle >= 360) angle -= 360 * round(angle / 360)
+	if(angle < 0 || angle >= 360) angle -= 360 * round(angle / 360)
 	HSV[1] = round(HSV[1] + angle * (1530/360), TRUE)
 
 	// normalize hue
-	if(HSV[1] < FALSE || HSV[1] >= 1530) HSV[1] %= 1530
-	if(HSV[1] < FALSE) HSV[1] += 1530
+	if(HSV[1] < 0 || HSV[1] >= 1530) HSV[1] %= 1530
+	if(HSV[1] < 0) HSV[1] += 1530
 	// decompress hue
 	HSV[1] += round(HSV[1] / 255)
 
@@ -850,11 +850,11 @@ proc/sort_atoms_by_layer(var/list/atoms)
 	var/list/result = atoms.Copy()
 	var/gap = result.len
 	var/swapped = TRUE
-	while (gap > TRUE || swapped)
+	while (gap > 1 || swapped)
 		swapped = FALSE
-		if(gap > TRUE)
+		if(gap > 1)
 			gap = round(gap / 1.3) // 1.3 is the emperic comb sort coefficient
-		if(gap < TRUE)
+		if(gap < 1)
 			gap = TRUE
 		for(var/i = TRUE; gap + i <= result.len; i++)
 			var/atom/l = result[i]		//Fucking hate

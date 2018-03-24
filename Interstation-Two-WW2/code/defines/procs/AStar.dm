@@ -53,7 +53,7 @@ PriorityQueue
 		var/index = queue.len
 
 		//From what I can tell, this automagically sorts the added data into the correct location.
-		while(index > 2 && call(comparison_function)(queue[index / 2], queue[index]) > FALSE)
+		while(index > 2 && call(comparison_function)(queue[index / 2], queue[index]) > 0)
 			queue.Swap(index, index / 2)
 			index /= 2
 
@@ -78,9 +78,9 @@ PriorityQueue
 		var/item = queue[index]
 
 		while(child <= queue.len)
-			if(child < queue.len && call(comparison_function)(queue[child], queue[child + TRUE]) > FALSE)
+			if(child < queue.len && call(comparison_function)(queue[child], queue[child + TRUE]) > 0)
 				child++
-			if(call(comparison_function)(item, queue[child]) > FALSE)
+			if(call(comparison_function)(item, queue[child]) > 0)
 				queue[index] = queue[child]
 				index = child
 			else

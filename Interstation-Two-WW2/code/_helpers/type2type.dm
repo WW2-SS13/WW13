@@ -40,14 +40,14 @@
 	var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
 
 	. = ""
-	while(num > FALSE)
+	while(num > 0)
 		var/hexdigit = hexdigits[(num & 0xF) + TRUE]
 		. = "[hexdigit][.]"
 		num >>= 4 //go to the next half-byte
 
 	//pad with zeroes
 	var/left = padlength - length(.)
-	while (left-- > FALSE)
+	while (left-- > 0)
 		. = "0[.]"
 
 
@@ -181,7 +181,7 @@
 // Very ugly, BYOND doesn't support unix time and rounding errors make it really hard to convert it to BYOND time.
 // returns "YYYY-MM-DD" by default
 /proc/unix2date(timestamp, seperator = "-")
-	if(timestamp < FALSE)
+	if(timestamp < 0)
 		return FALSE //Do not accept negative values
 
 	var/const/dayInSeconds = 86400 //60secs*60mins*24hours

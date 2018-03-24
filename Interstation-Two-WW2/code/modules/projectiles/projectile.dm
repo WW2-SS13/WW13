@@ -255,7 +255,7 @@
 	if (firer && firer.dir == target_mob.dir)
 		miss_chance = max(round(miss_chance * 0.66), 0)
 
-	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > TRUE || original != target_mob), range = abs_dist(target_mob, firer)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
+	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > 1 || original != target_mob), range = abs_dist(target_mob, firer)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 	var/result = PROJECTILE_FORCE_MISS
 
 	if(hit_zone)

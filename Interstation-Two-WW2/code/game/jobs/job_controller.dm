@@ -267,7 +267,7 @@ var/global/datum/controller/occupations/job_master
 
 		var/list/turfs = latejoin_turfs[spawn_location]
 
-		if(turfs && turfs.len > FALSE)
+		if(turfs && turfs.len > 0)
 			H.loc = pick(turfs)
 
 			if (!locate(H.loc) in turfs)

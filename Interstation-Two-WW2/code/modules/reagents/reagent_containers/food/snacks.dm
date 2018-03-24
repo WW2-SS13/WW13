@@ -130,7 +130,7 @@
 			if(!U.reagents)
 				U.create_reagents(5)
 
-			if (U.reagents.total_volume > FALSE)
+			if (U.reagents.total_volume > 0)
 				user << "<span class='warning'>You already have something on your [U].</span>"
 				return
 
@@ -196,7 +196,7 @@
 			return
 
 /obj/item/weapon/reagent_containers/food/snacks/proc/is_sliceable()
-	return (slices_num && slice_path && slices_num > FALSE)
+	return (slices_num && slice_path && slices_num > 0)
 
 /obj/item/weapon/reagent_containers/food/snacks/Destroy()
 	if(contents)
@@ -2749,7 +2749,7 @@
 	// Set appropriate description
 	if( open && pizza )
 		desc = "A box suited for pizzas. It appears to have a [pizza.name] inside."
-	else if( boxes.len > FALSE )
+	else if( boxes.len > 0 )
 		desc = "A pile of boxes suited for pizzas. There appears to be [boxes.len + 1] boxes in the pile."
 
 		var/obj/item/pizzabox/topbox = boxes[boxes.len]
@@ -2778,7 +2778,7 @@
 	else
 		// Stupid code because byondcode sucks
 		var/doimgtag = FALSE
-		if( boxes.len > FALSE )
+		if( boxes.len > 0 )
 			var/obj/item/pizzabox/topbox = boxes[boxes.len]
 			if( topbox.boxtag != "" )
 				doimgtag = TRUE
@@ -2803,7 +2803,7 @@
 		update_icon()
 		return
 
-	if( boxes.len > FALSE )
+	if( boxes.len > 0 )
 		if( user.get_inactive_hand() != src )
 			..()
 			return
@@ -2820,7 +2820,7 @@
 
 /obj/item/pizzabox/attack_self( mob/user as mob )
 
-	if( boxes.len > FALSE )
+	if( boxes.len > 0 )
 		return
 
 	open = !open
@@ -2881,7 +2881,7 @@
 		var/t = sanitize(input("Enter what you want to add to the tag:", "Write", null, null) as text, 30)
 
 		var/obj/item/pizzabox/boxtotagto = src
-		if( boxes.len > FALSE )
+		if( boxes.len > 0 )
 			boxtotagto = boxes[boxes.len]
 
 		boxtotagto.boxtag = copytext("[boxtotagto.boxtag][t]", TRUE, 30)

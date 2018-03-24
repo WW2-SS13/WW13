@@ -157,7 +157,7 @@
 	return
 
 /obj/structure/m_tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
-	if ((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > TRUE || get_dist(user, O) > TRUE || user.contents.Find(src) || user.contents.Find(O)))
+	if ((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src) || user.contents.Find(O)))
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
 		return
@@ -277,7 +277,7 @@
 		var/t = input(user, "What would you like the label to be?", text("[]", name), null)  as text
 		if (user.get_active_hand() != P)
 			return
-		if ((!in_range(src, usr) > TRUE && loc != user))
+		if ((!in_range(src, usr) > 1 && loc != user))
 			return
 		t = sanitizeSafe(t, MAX_NAME_LEN)
 		if (t)
@@ -391,7 +391,7 @@
 	return
 
 /obj/structure/c_tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
-	if ((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > TRUE || get_dist(user, O) > TRUE || user.contents.Find(src) || user.contents.Find(O)))
+	if ((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src) || user.contents.Find(O)))
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
 		return

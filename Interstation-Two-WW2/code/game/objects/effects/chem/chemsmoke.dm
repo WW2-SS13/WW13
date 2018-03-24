@@ -114,7 +114,7 @@
 
 	frames = max(frames, TRUE) //We will just assume that by FALSE frames, the coder meant "during one frame".
 	var/alpha_step = round(alpha / frames)
-	while(alpha > FALSE)
+	while(alpha > 0)
 		alpha = max(0, alpha - alpha_step)
 		sleep(world.tick_lag)
 

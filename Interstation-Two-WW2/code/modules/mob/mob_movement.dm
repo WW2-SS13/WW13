@@ -413,7 +413,7 @@
 			if("run")
 				mob.velocity = min(mob.velocity+1, 15)
 				mob.velocity_lastdir = direct
-				if(mob.drowsyness > FALSE)
+				if(mob.drowsyness > 0)
 					move_delay += 6
 				move_delay += (mob.get_run_delay()/mob.movement_speed_multiplier) + standing_on_snow
 				if (mob_is_human)
@@ -521,7 +521,7 @@
 								if ((diag - TRUE) & diag)
 								else
 									diag = null
-								if ((get_dist(mob, M) > TRUE || diag))
+								if ((get_dist(mob, M) > 1 || diag))
 									step(M, get_dir(M.loc, T))
 				else
 					for(var/mob/M in L)

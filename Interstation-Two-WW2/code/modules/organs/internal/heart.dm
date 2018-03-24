@@ -60,7 +60,7 @@
 		blood_volume *= 0.3
 	else if(is_bruised())
 		blood_volume *= 0.6
-	else if(damage > TRUE)
+	else if(damage > 1)
 		blood_volume *= 0.8
 
 	//Effects of bloodloss

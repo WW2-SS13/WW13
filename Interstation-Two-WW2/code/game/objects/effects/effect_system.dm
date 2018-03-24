@@ -503,13 +503,13 @@ steam.start() -- spawns the effect
 			var/flash = -1
 
 			// Clamp all values to fractions of max_explosion_range, following the same pattern as for tank transfer bombs
-			if (round(amount/12) > FALSE)
+			if (round(amount/12) > 0)
 				devst = devst + amount/12
 
-			if (round(amount/6) > FALSE)
+			if (round(amount/6) > 0)
 				heavy = heavy + amount/6
 
-			if (round(amount/3) > FALSE)
+			if (round(amount/3) > 0)
 				light = light + amount/3
 
 			if (flashing && flashing_factor)

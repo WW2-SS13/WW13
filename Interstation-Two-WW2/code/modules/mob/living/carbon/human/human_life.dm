@@ -230,7 +230,7 @@
 				eye_blurry = max(eye_blurry-2, FALSE)
 
 	if (disabilities & EPILEPSY)
-		if ((prob(1) && paralysis < TRUE))
+		if ((prob(1) && paralysis < 1))
 			src << "<span class = 'red'>You have a seizure!</span>"
 			for(var/mob/O in viewers(src, null))
 				if(O == src)
@@ -612,7 +612,7 @@
 			heal_overall_damage(1,1)
 /*
 	// nutrition decrease
-	if (nutrition > FALSE && stat != 2)
+	if (nutrition > 0 && stat != 2)
 		nutrition = max (0, nutrition - species.hunger_factor)*/
 
 	// TODO: stomach and bloodstream organ.
@@ -1056,7 +1056,7 @@
 					adjustOxyLoss(rand(1,20))
 					src << "<span class='danger'>You're starving. You feel your life force slowly leaving your body...</span>"
 					eye_blurry += 20
-					if(weakened < TRUE) Weaken(20)
+					if(weakened < 1) Weaken(20)
 
 				else if(paralysis<1 && prob(7)) //Mini seizure (25% duration and strength of a normal seizure)
 
@@ -1184,7 +1184,7 @@
 					adjustOxyLoss(rand(1,20))
 					src << "<span class='danger'>You're dehydrating. You feel your life force slowly leaving your body...</span>"
 					eye_blurry += 20
-					if(weakened < TRUE) Weaken(20)
+					if(weakened < 1) Weaken(20)
 
 				else if(paralysis<1 && prob(7)) //Mini seizure (25% duration and strength of a normal seizure)
 
@@ -1508,7 +1508,7 @@
 	var/burn_temperature = fire_burn_temperature()
 	var/thermal_protection = get_heat_protection(burn_temperature)
 
-	if (thermal_protection < TRUE && bodytemperature < burn_temperature)
+	if (thermal_protection < 1 && bodytemperature < burn_temperature)
 		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), TRUE)
 
 /mob/living/carbon/human/rejuvenate()
@@ -1523,7 +1523,7 @@
 	if (!laddervision)
 		if(machine)
 			var/viewflags = machine.check_eye(src)
-			if(viewflags < FALSE)
+			if(viewflags < 0)
 				reset_view(null, FALSE)
 			else if(viewflags)
 				sight |= viewflags

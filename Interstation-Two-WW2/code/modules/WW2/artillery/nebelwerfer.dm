@@ -130,7 +130,7 @@
 				if (state == "OPEN")
 					user << "<span class='danger'>Close the shell loading slot first.</span>"
 					return
-				if (abs(offset_x) > FALSE || abs(offset_y) > FALSE)
+				if (abs(offset_x) > 0 || abs(offset_y) > 0)
 					if (abs(offset_x) + abs(offset_y) < 20)
 						user << "<span class='danger'>This location is too close to fire to.</span>"
 						return

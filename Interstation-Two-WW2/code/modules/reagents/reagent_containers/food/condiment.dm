@@ -57,7 +57,7 @@
 	on_reagent_change()
 		if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall" || icon_state == "flour")
 			return
-		if(reagents.reagent_list.len > FALSE)
+		if(reagents.reagent_list.len > 0)
 			switch(reagents.get_master_reagent_id())
 				if("ketchup")
 					name = "Ketchup"

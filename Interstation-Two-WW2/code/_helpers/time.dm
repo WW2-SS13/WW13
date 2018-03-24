@@ -21,7 +21,7 @@
 	var/wtime = world.time
 	var/wusage = world.tick_usage * 0.01
 
-	if(last_time < wtime && last_usage > TRUE)
+	if(last_time < wtime && last_usage > 1)
 		time_offset += last_usage - TRUE
 
 	last_time = wtime

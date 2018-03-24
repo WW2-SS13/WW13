@@ -101,7 +101,7 @@
 
 			if ("me")
 
-				//if(silent && silent > FALSE && findtext(message,"\"",1, null) > FALSE)
+				//if(silent && silent > 0 && findtext(message,"\"",1, null) > 0)
 				//	return //This check does not work and I have no idea why, I'm leaving it in for reference.
 
 				if (client)

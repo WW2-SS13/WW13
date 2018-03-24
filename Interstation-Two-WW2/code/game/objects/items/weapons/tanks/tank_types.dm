@@ -68,7 +68,7 @@
 
 
 	examine(mob/user)
-		if(..(user, FALSE) && air_contents.gas["oxygen"] < TRUE && loc==user)
+		if(..(user, FALSE) && air_contents.gas["oxygen"] < 1 && loc==user)
 			user << "<span class='danger'>The meter on the [name] indicates you are almost out of air!</span>"
 			user << sound('sound/effects/alert.ogg')
 

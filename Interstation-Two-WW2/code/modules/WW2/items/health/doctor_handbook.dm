@@ -113,11 +113,11 @@
 				var/string = "<span class='warning'>* "
 				var/inner = ""
 				if (wounds || infected || broken || internal || open || bleeding)
-					inner += "[wounds > TRUE ? "multiple" : (open ? "an" : "a") ]"
+					inner += "[wounds > 1 ? "multiple" : (open ? "an" : "a") ]"
 					inner += "[open ? " open" : ""]"
 					inner += "[bleeding ? " bleeding" : ""]"
 					inner += "[infected && e.germ_level > 175 ? " infected" : ""]"
-					inner += " wound[wounds > TRUE ? "s" : ""]"
+					inner += " wound[wounds > 1 ? "s" : ""]"
 					inner += " [foreign || internal || broken || e.burn_dam > 2 || e.brute_dam > 2 ? "and " : "at"]"
 				if (e.brute_dam > 2)
 					var/sev = pick_severity(e.brute_dam)

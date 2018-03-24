@@ -80,7 +80,7 @@
 		return
 
 	if (!safety)
-		if (reagents.total_volume < TRUE)
+		if (reagents.total_volume < 1)
 			usr << "<span class='notice'>\The [src] is empty.</span>"
 			return
 

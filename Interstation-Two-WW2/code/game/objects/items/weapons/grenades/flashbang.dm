@@ -50,7 +50,7 @@
 
 //Now applying sound
 		if((get_dist(M, T) <= 2 || loc == M.loc || loc == M))
-			if(ear_safety > FALSE)
+			if(ear_safety > 0)
 				M.Stun(2)
 				M.Weaken(1)
 			else
@@ -102,17 +102,17 @@
 /obj/item/weapon/grenade/flashbang/clusterbang/prime()
 	var/numspawned = rand(4,8)
 	var/again = FALSE
-	for(var/more = numspawned,more > FALSE,more--)
+	for(var/more = numspawned,more > 0,more--)
 		if(prob(35))
 			again++
 			numspawned --
 
-	for(,numspawned > FALSE, numspawned--)
+	for(,numspawned > 0, numspawned--)
 		spawn(0)
 			new /obj/item/weapon/grenade/flashbang/cluster(loc)//Launches flashbangs
 			playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
 
-	for(,again > FALSE, again--)
+	for(,again > 0, again--)
 		spawn(0)
 			new /obj/item/weapon/grenade/flashbang/clusterbang/segment(loc)//Creates a 'segment' that launches a few more flashbangs
 			playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
@@ -139,11 +139,11 @@
 
 /obj/item/weapon/grenade/flashbang/clusterbang/segment/prime()
 	var/numspawned = rand(4,8)
-	for(var/more = numspawned,more > FALSE,more--)
+	for(var/more = numspawned,more > 0,more--)
 		if(prob(35))
 			numspawned --
 
-	for(,numspawned > FALSE, numspawned--)
+	for(,numspawned > 0, numspawned--)
 		spawn(0)
 			new /obj/item/weapon/grenade/flashbang/cluster(loc)
 			playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)

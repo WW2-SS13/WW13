@@ -251,7 +251,7 @@
 		load_ammo(A, user)
 
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
-	if(firemodes.len > TRUE)
+	if(firemodes.len > 1)
 		..()
 	else
 		unload_ammo(user)

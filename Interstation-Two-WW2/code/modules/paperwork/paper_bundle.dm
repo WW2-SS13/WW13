@@ -155,7 +155,7 @@
 		if(href_list["prev_page"])
 			if(in_hand && (istype(in_hand, /obj/item/weapon/paper) || istype(in_hand, /obj/item/weapon/photo)))
 				insert_sheet_at(usr, page, in_hand)
-			else if(page > TRUE)
+			else if(page > 1)
 				page--
 				playsound(loc, "pageturn", 50, TRUE)
 		if(href_list["remove"])

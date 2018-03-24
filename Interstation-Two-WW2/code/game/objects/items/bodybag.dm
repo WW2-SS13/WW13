@@ -90,7 +90,7 @@
 	if(opened)
 		icon_state = icon_opened
 	else
-		if(contains_body > FALSE)
+		if(contains_body > 0)
 			icon_state = "bodybag_closed1"
 		else
 			icon_state = icon_closed

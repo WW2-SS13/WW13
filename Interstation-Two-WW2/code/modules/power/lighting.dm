@@ -545,7 +545,7 @@
 		else
 			prot = TRUE
 
-		if(prot > FALSE || (COLD_RESISTANCE in user.mutations))
+		if(prot > 0 || (COLD_RESISTANCE in user.mutations))
 			user << "You remove the light [fitting]"
 		else if(TK in user.mutations)
 			user << "You telekinetically remove the light [fitting]."

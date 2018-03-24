@@ -85,7 +85,7 @@
 	if(attached && beaker)
 		// Give blood
 		if(mode)
-			if(beaker.volume > FALSE)
+			if(beaker.volume > 0)
 				var/transfer_amount = REM
 				if(istype(beaker, /obj/item/weapon/reagent_containers/blood))
 					// speed up transfer on blood packs

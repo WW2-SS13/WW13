@@ -32,7 +32,7 @@
 			return
 	if(istype(I, /obj/item/stack/material/iron))
 		var/obj/item/stack/material/iron/M = I
-		if(M.get_amount() < TRUE)
+		if(M.get_amount() < 1)
 			user << "<span class='warning'>You need one metal sheet to do this!</span>"
 			return
 		user << "<span class='notice'>You start adding [M] to [src]...</span>"
@@ -43,7 +43,7 @@
 		return
 	if(istype(I, /obj/item/stack/material/glass))
 		var/obj/item/stack/material/glass/G = I
-		if(G.get_amount() < TRUE)
+		if(G.get_amount() < 1)
 			user << "<span class='warning'>You need one glass sheet to do this!</span>"
 			return
 		user << "<span class='notice'>You start adding [G] to [src]...</span>"
@@ -55,7 +55,7 @@
 		return
 	if(istype(I, /obj/item/stack/material/silver))
 		var/obj/item/stack/material/silver/S = I
-		if(S.get_amount() < TRUE)
+		if(S.get_amount() < 1)
 			user << "<span class='warning'>You need one silver sheet to do this!</span>"
 			return
 		user << "<span class='notice'>You start adding [S] to [src]...</span>"
@@ -81,7 +81,7 @@
 		..()
 	if(istype(I, /obj/item/stack/material/wood))
 		var/obj/item/stack/material/wood/W = I
-		if(W.get_amount() < TRUE)
+		if(W.get_amount() < 1)
 			user << "<span class='warning'>You need one wood sheet to do this!</span>"
 			return
 		user << "<span class='notice'>You start adding [W] to [src]...</span>"
@@ -92,7 +92,7 @@
 		return
 	if(istype(I, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = I
-		if(C.get_amount() < TRUE)
+		if(C.get_amount() < 1)
 			user << "<span class='warning'>You need one carpet sheet to do this!</span>"
 			return
 		user << "<span class='notice'>You start adding [C] to [src]...</span>"

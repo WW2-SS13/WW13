@@ -228,7 +228,7 @@
 /obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/D, mob/user as mob)
 
 	if(istype(D, /obj/item/weapon/mop))
-		if(reagents.total_volume < TRUE)
+		if(reagents.total_volume < 1)
 			user << "<span class='warning'>\The [src] is empty!</span>"
 		else
 			reagents.trans_to_obj(D, 5)

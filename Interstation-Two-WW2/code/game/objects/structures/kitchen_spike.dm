@@ -53,7 +53,7 @@
 		return
 	meat--
 	new meat_type(get_turf(src))
-	if(meat > TRUE)
+	if(meat > 1)
 		user << "You remove some meat from \the [victim_name]."
 	else if(meat == TRUE)
 		user << "You remove the last piece of meat from \the [victim_name]!"

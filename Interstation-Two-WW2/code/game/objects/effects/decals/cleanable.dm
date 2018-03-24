@@ -8,6 +8,6 @@
 	..()
 
 /obj/effect/decal/cleanable/New()
-	if (random_icon_states && length(random_icon_states) > FALSE)
+	if (random_icon_states && length(random_icon_states) > 0)
 		icon_state = pick(random_icon_states)
 	..()

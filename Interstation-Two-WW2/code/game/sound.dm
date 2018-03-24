@@ -176,7 +176,7 @@ var/list/sneeze_sounds_female = list(
 var/const/FALLOFF_SOUNDS = 0.5
 
 /mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global)
-	if(!client || ear_deaf > FALSE)	return
+	if(!client || ear_deaf > 0)	return
 	soundin = get_sfx(soundin)
 
 	var/distance = -1

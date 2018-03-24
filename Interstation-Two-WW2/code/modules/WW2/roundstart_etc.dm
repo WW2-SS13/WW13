@@ -63,7 +63,7 @@ var/GRACE_PERIOD_LENGTH = 7
 		world << "<span class = 'notice'>Setting up wild grasses.</span>"
 
 	for (var/turf/floor/plating/grass/G in grass_turf_list)
-		if (!G || G.z > TRUE)
+		if (!G || G.z > 1)
 			continue
 
 		if (prob(nature_chance))
@@ -98,7 +98,7 @@ var/GRACE_PERIOD_LENGTH = 7
 
 		for (var/turf/floor/G in turfs)
 
-			if (!G || G.z > TRUE || (!G.uses_winter_overlay && !locate(/obj/snow_maker) in G))
+			if (!G || G.z > 1 || (!G.uses_winter_overlay && !locate(/obj/snow_maker) in G))
 				continue
 
 			G.season = mode.season

@@ -57,7 +57,7 @@
 	ingest_met = REM * 5
 
 /datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.ingested && M.ingested.reagent_list.len > TRUE) // Need to have at least 2 reagents - cabon and something to remove
+	if(M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
 		var/effect = TRUE / (M.ingested.reagent_list.len - TRUE)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(R == src)
@@ -137,9 +137,9 @@
 	if(druggy != FALSE)
 		M.druggy = max(M.druggy, druggy)
 
-	if(adj_temp > FALSE && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
+	if(adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(adj_temp < FALSE && M.bodytemperature > targ_temp)
+	if(adj_temp < 0 && M.bodytemperature > targ_temp)
 		M.bodytemperature = min(targ_temp, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
 	if(halluci)
@@ -300,7 +300,7 @@
 	if(volume < meltdose) // Not enough to melt anything
 		M.take_organ_damage(0, removed * power * 0.2) //burn damage, since it causes chemical burns. Acid doesn't make bones shatter, like brute trauma would.
 		return
-	if(!M.unacidable && removed > FALSE)
+	if(!M.unacidable && removed > 0)
 		if(istype(M, /mob/living/carbon/human) && volume >= meltdose)
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/external/affecting = H.get_organ("head")

@@ -102,7 +102,7 @@
 		return
 
 	if(user.using_object == src)
-		if(firemodes.len > TRUE)
+		if(firemodes.len > 1)
 			switch_firemodes(user)
 	else
 		var/grip_dir = reverse_direction(dir)

@@ -97,7 +97,7 @@
 /*	//Don't need this at the moment. But it's here if it's needed later.
 	//Helps prevent multiple files being uploaded at once. Or right after eachother.
 	var/time_to_wait = fileaccess_timer - world.time
-	if(time_to_wait > FALSE)
+	if(time_to_wait > 0)
 		src << "<font color='red'>Error: AllowUpload(): Spam prevention. Please wait [round(time_to_wait/10)] seconds.</font>"
 		return FALSE
 	fileaccess_timer = world.time + FTPDELAY	*/

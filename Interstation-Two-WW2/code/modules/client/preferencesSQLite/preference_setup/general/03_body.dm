@@ -125,12 +125,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 		if(status == "amputated")
 			++ind
-			if(ind > TRUE)
+			if(ind > 1)
 				. += ", "
 			. += "\tAmputated [organ_name]"
 		else if(status == "assisted")
 			++ind
-			if(ind > TRUE)
+			if(ind > 1)
 				. += ", "
 			switch(organ_name)
 				if("heart")

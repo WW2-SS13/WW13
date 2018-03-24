@@ -84,7 +84,7 @@
 	if(Adjacent(usr))
 		usr.set_machine(src)
 		if(href_list["oxygen"])
-			if(oxygentanks > FALSE)
+			if(oxygentanks > 0)
 				var/obj/item/weapon/tank/oxygen/O
 				if(oxytanks.len == oxygentanks)
 					O = oxytanks[1]
@@ -96,7 +96,7 @@
 				oxygentanks--
 				update_icon()
 		if(href_list["plasma"])
-			if(plasmatanks > FALSE)
+			if(plasmatanks > 0)
 				var/obj/item/weapon/tank/plasma/P
 				if(platanks.len == plasmatanks)
 					P = platanks[1]

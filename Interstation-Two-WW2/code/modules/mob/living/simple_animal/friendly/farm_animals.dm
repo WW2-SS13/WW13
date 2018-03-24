@@ -232,7 +232,7 @@ var/global/chicken_count = FALSE
 	. =..()
 	if(!.)
 		return
-	if(!stat && prob(3) && eggsleft > FALSE)
+	if(!stat && prob(3) && eggsleft > 0)
 		visible_message("[src] [pick("lays an egg.","squats down and croons.","begins making a huge racket.","begins clucking raucously.")]")
 		eggsleft--
 		var/obj/item/weapon/reagent_containers/food/snacks/egg/E = new(get_turf(src))

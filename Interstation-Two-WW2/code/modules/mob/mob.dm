@@ -72,7 +72,7 @@
 				if ((type & TRUE && sdisabilities & BLIND))
 					return
 	// Added voice muffling for Issue 41.
-	if(stat == UNCONSCIOUS || sleeping > FALSE)
+	if(stat == UNCONSCIOUS || sleeping > 0)
 		src << "<I>... You can almost hear someone talking ...</I>"
 	else
 		src << msg
@@ -812,7 +812,7 @@
 	return visible_implants
 
 /mob/proc/embedded_needs_process()
-	return (embedded.len > FALSE)
+	return (embedded.len > 0)
 
 mob/proc/yank_out_object()
 	set category = "Object"

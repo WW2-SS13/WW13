@@ -108,7 +108,7 @@ var/datum/reinforcements/reinforcements_master
 				reinforcement_pool[GERMAN] -= np
 
 	soviet_countdown = soviet_countdown - tick_len
-	if (soviet_countdown < TRUE)
+	if (soviet_countdown < 1)
 		if (!reset_soviet_timer())
 			soviet_countdown = soviet_countdown_failure_reset
 		else
@@ -116,7 +116,7 @@ var/datum/reinforcements/reinforcements_master
 			allow_quickspawn[SOVIET] = FALSE
 
 	german_countdown = german_countdown - tick_len
-	if (german_countdown < TRUE)
+	if (german_countdown < 1)
 		if (!reset_german_timer())
 			german_countdown = german_countdown_failure_reset
 		else

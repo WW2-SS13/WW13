@@ -17,7 +17,7 @@
 		var/direction = pick(directions)
 		for (var/i = FALSE, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
 			sleep(3)
-			if (i > FALSE)
+			if (i > 0)
 				if (prob(40))
 					var/obj/effect/decal/cleanable/blood/oil/streak = new(loc)
 					streak.update_icon()

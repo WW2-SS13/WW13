@@ -48,7 +48,7 @@
 
 
 	process()
-		if(timing && (time > FALSE))
+		if(timing && (time > 0))
 			time--
 		if(timing && time <= FALSE)
 			timing = FALSE

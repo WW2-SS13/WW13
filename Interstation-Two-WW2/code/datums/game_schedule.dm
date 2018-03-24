@@ -160,7 +160,7 @@ var/datum/game_schedule/global_game_schedule = null
 	. = "from [starttime] to [endtime] UTC"
 	if (days_closed.len)
 		. += ", but is closed on "
-		if (days_closed.len > TRUE)
+		if (days_closed.len > 1)
 			for (var/day in days_closed)
 				. += day
 				if (days_closed[days_closed.len] != day)
@@ -172,7 +172,7 @@ var/datum/game_schedule/global_game_schedule = null
 			. += "[days_closed[1]]"
 	if (days_always_open.len)
 		. += ", and is always open on "
-		if (days_always_open.len > TRUE)
+		if (days_always_open.len > 1)
 			for (var/day in days_always_open)
 				. += day
 				if (days_always_open[days_always_open.len] != day)

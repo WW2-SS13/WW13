@@ -80,7 +80,7 @@
 
 	//Health
 	if(stat == DEAD)
-		if(health > FALSE)
+		if(health > 0)
 			icon_state = icon_living
 			dead_mob_list -= src
 			living_mob_list += src
@@ -232,7 +232,7 @@
 	switch(M.a_intent)
 
 		if(I_HELP)
-			if (health > FALSE)
+			if (health > 0)
 				M.visible_message("<span class = 'notice'>[M] [response_help] \the [src].</span>")
 
 		if(I_DISARM)

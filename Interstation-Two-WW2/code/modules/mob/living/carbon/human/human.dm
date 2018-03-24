@@ -917,7 +917,7 @@ var/list/rank_prefix = list(\
 
 			if(H.painchecks())//Can we feel pain? If we can then it tells us how much pain our limbs are in.
 				organpain = org.get_damage()
-				if(organpain > FALSE)
+				if(organpain > 0)
 					status = " <small>pain</small>"
 				if(organpain > 5)
 					status = " pain"
@@ -1028,7 +1028,7 @@ var/list/rank_prefix = list(\
 
 	usr.setClickCooldown(20)
 
-	if(usr.stat > FALSE)
+	if(usr.stat > 0)
 		usr << "You are unconcious and cannot do that!"
 		return
 

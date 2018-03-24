@@ -154,7 +154,7 @@ proc/listclearnulls(list/list)
 
 //Pick a random element from the list and remove it from the list.
 /proc/pick_n_take(list/listfrom)
-	if (listfrom.len > FALSE)
+	if (listfrom.len > 0)
 		var/picked = pick(listfrom)
 		listfrom -= picked
 		return picked
@@ -162,7 +162,7 @@ proc/listclearnulls(list/list)
 
 //Returns the top(last) element from the list and removes it from the list (typical stack function)
 /proc/pop(list/listfrom)
-	if (listfrom.len > FALSE)
+	if (listfrom.len > 0)
 		var/picked = listfrom[listfrom.len]
 		listfrom.len--
 		return picked
@@ -310,7 +310,7 @@ proc/listclearnulls(list/list)
 	var/Ri=1
 	var/list/result = new()
 	while(Li <= L.len && Ri <= R.len)
-		if(sorttext(L[Li], R[Ri]) < TRUE)
+		if(sorttext(L[Li], R[Ri]) < 1)
 			result += R[Ri++]
 		else
 			result += L[Li++]
@@ -332,7 +332,7 @@ proc/listclearnulls(list/list)
 	var/Ri=1
 	var/list/result = new()
 	while(Li <= L.len && Ri <= R.len)
-		if(sorttext(L[Li][key], R[Ri][key]) < TRUE)
+		if(sorttext(L[Li][key], R[Ri][key]) < 1)
 			// Works around list += list2 merging lists; it's not pretty but it works
 			result += "temp item"
 			result[result.len] = R[Ri++]
@@ -347,7 +347,7 @@ proc/listclearnulls(list/list)
 
 /proc/list_is_assoc(var/list/L)
 	. = FALSE
-	if(L.len > FALSE)
+	if(L.len > 0)
 		var/a = L[1]
 		if(istext(a) && L[a] != null)
 			. = TRUE
@@ -364,7 +364,7 @@ proc/listclearnulls(list/list)
 	var/Ri=1
 	var/list/result = new()
 	while(Li <= L.len && Ri <= R.len)
-		if(sorttext(L[Li], R[Ri]) < TRUE)
+		if(sorttext(L[Li], R[Ri]) < 1)
 			result += R&R[Ri++]
 		else
 			result += L&L[Li++]
@@ -388,9 +388,9 @@ proc/listclearnulls(list/list)
 		for(var/i=1, i<=max, i++)
 			if(bitfield & bit)
 				r += wordlist[i]
-			bit = bit << TRUE
+			bit = bit << 1
 	else
-		for(var/bit=1, bit<=65535, bit = bit << TRUE)
+		for(var/bit=1, bit<=65535, bit = bit << 1)
 			if(bitfield & bit)
 				r += bit
 

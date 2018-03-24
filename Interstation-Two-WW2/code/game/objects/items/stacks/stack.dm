@@ -388,7 +388,7 @@
 			return FALSE
 		var/datum/matter_synth/S = synths[1]
 		. = round(S.get_charge() / charge_costs[1])
-		if(charge_costs.len > TRUE)
+		if(charge_costs.len > 1)
 			for(var/i = 2 to charge_costs.len)
 				S = synths[i]
 				. = min(., round(S.get_charge() / charge_costs[i]))
@@ -401,7 +401,7 @@
 			return FALSE
 		var/datum/matter_synth/S = synths[1]
 		. = round(S.max_energy / charge_costs[1])
-		if(uses_charge > TRUE)
+		if(uses_charge > 1)
 			for(var/i = 2 to uses_charge)
 				S = synths[i]
 				. = min(., round(S.max_energy / charge_costs[i]))

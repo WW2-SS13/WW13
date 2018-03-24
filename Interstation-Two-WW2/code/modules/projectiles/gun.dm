@@ -565,7 +565,7 @@
 
 /obj/item/weapon/gun/examine(mob/user)
 	..()
-	if(firemodes.len > TRUE)
+	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		user.visible_message("The fire selector is set to [current_mode.name].")
 
@@ -577,7 +577,7 @@
 	user << "<span class='notice'>\The [src] is now set to [new_mode.name].</span>"
 
 /obj/item/weapon/gun/attack_self(mob/user)
-	if(firemodes.len > TRUE)
+	if(firemodes.len > 1)
 		switch_firemodes(user)
 /*
 /obj/item/weapon/gun/proc/wield(mob/user as mob)
