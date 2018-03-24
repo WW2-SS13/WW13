@@ -119,11 +119,14 @@
 	if (reinforcements_master)
 		var/list/reinforcements_info = reinforcements_master.get_status_addendums()
 		for (var/v in reinforcements_info)
-			var/split = splittext(v, ":")
-			if (split[2])
-				stat(split[1], split[2])
+			if (findtext(v, ":")) // because apparently splittext doesn't work how I thought it did, this failed when we didn't have a ":" anywhere
+				var/split = splittext(v, ":")
+				if (split[2])
+					stat(split[1], split[2])
+				else
+					stat(split[1])
 			else
-				stat(split[1])
+				stat(v)
 
 
 /mob/new_player/Topic(href, href_list[])
