@@ -142,7 +142,8 @@ var/list/global_whitelists[50]
 		client_or_ckey = client_or_ckey:ckey
 	if (serverswap && serverswap.Find("masterdir"))
 		var/path = "[serverswap["masterdir"]]/whitelist.txt"
-		for (var/_ckey in file2list(path))
+		for (var/ckey2discord_id in file2list(path))
+			var/_ckey = splittext(ckey2discord_id, "=")[1]
 			if (_ckey == client_or_ckey)
 				return TRUE
 			if (ckey(_ckey) == client_or_ckey)

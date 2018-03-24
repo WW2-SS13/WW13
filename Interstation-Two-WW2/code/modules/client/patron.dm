@@ -18,7 +18,8 @@
 		for (var/string in patron2pledge)
 			var/splitString = splittext(string, "=")
 			var/patron = ckey(splitString[1])
-			var/pledge2 = text2num(splitString[2])
+			// ignore second field, discord id
+			var/pledge2 = text2num(splitString[3])
 			if (patron == ckey && pledge2 >= number)
 				return TRUE
 	return FALSE
