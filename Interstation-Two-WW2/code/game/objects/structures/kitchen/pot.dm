@@ -149,7 +149,6 @@
 					state = STATE_STEWING
 					bowls = min(round(contents.len/3) + 3,10) // 1 object = 3 bowls. 10 objects = 6 bowls
 					visible_message("<span class = 'info'>The liquid in the pot turns into a stew.</span>")
-					contents.Cut()
 					stew_desc = "Stew with "
 					stew_nutriment_desc.Cut()
 					for (var/obj/item/I in contents)
@@ -169,6 +168,7 @@
 
 					name = "pot of stew"
 					stew_ticks = 0
+					contents.Cut()
 				else
 					++stew_ticks
 		else
