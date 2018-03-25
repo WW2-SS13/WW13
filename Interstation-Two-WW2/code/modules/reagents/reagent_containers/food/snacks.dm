@@ -679,6 +679,7 @@
 	icon_state = "bearmeat"
 	filling_color = "#DB0000"
 	center_of_mass = list("x"=16, "y"=10)
+	raw = TRUE
 
 	New()
 		..()

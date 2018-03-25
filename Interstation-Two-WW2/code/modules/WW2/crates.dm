@@ -300,8 +300,8 @@
 
 /obj/structure/closet/crate/lugers/New()
 	..()
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(7)
+	for (var/v in 1 to 7)
 		new/obj/item/weapon/gun/projectile/pistol/luger(src)
 
 /obj/structure/closet/crate/colts
@@ -313,8 +313,8 @@
 
 /obj/structure/closet/crate/colts/New()
 	..()
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(7)
+	for (var/v in 1 to 7)
 		new/obj/item/weapon/gun/projectile/pistol/_45(src)
 
 /obj/structure/closet/crate/tokarevs
@@ -326,8 +326,8 @@
 
 /obj/structure/closet/crate/tokarevs/New()
 	..()
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(7)
+	for (var/v in 1 to 7)
 		new/obj/item/weapon/gun/projectile/pistol/tokarev(src)
 
 /obj/structure/closet/crate/waltherp38
@@ -339,16 +339,16 @@
 
 /obj/structure/closet/crate/waltherp38/New()
 	..()
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(7)
+	for (var/v in 1 to 7)
 		new/obj/item/weapon/gun/projectile/pistol/waltherp38(src)
 
 // webbing
 /obj/structure/closet/crate/webbing
 /obj/structure/closet/crate/webbing/New()
 	..()
-	update_capacity(25)
-	for (var/v in 1 to 25)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new/obj/item/clothing/accessory/storage/webbing(src)
 
 // rations crates
@@ -440,34 +440,34 @@
 // 5 wood planks with 25 each = 125 wood planks (25 barricades)
 /obj/structure/closet/crate/wood/New()
 	..()
-	update_capacity(3)
-	for (var/v in 1 to 3)
+	update_capacity(4)
+	for (var/v in 1 to 4)
 		var/obj/item/stack/S = new/obj/item/stack/material/wood(src)
-		S.amount = 20
+		S.amount = 25
 
 // 5 steel sheets with 25 each = 125 steel sheets
 /obj/structure/closet/crate/steel/New()
 	..()
-	update_capacity(3)
-	for (var/v in 1 to 3)
+	update_capacity(4)
+	for (var/v in 1 to 4)
 		var/obj/item/stack/S = new/obj/item/stack/material/steel(src)
-		S.amount = 20
+		S.amount = 25
 
 // 5 iron ingots with 25 each = 125 iron ingots
 /obj/structure/closet/crate/iron/New()
 	..()
-	update_capacity(3)
-	for (var/v in 1 to 3)
+	update_capacity(4)
+	for (var/v in 1 to 4)
 		var/obj/item/stack/S = new/obj/item/stack/material/iron(src)
-		S.amount = 20
+		S.amount = 25
 
 // 5 glass with 10 each = 50 glass sheets
 /obj/structure/closet/crate/glass/New()
 	..()
-	update_capacity(3)
-	for (var/v in 1 to 3)
+	update_capacity(4)
+	for (var/v in 1 to 4)
 		var/obj/item/stack/S = new/obj/item/stack/material/glass(src)
-		S.amount = 20
+		S.amount = 25
 
 /obj/structure/closet/crate/flammenwerfer_fueltanks/New()
 	..()
@@ -496,26 +496,26 @@
 
 /obj/structure/closet/crate/mosinammo/New()
 	..()
-	update_capacity(24)
-	for (var/v in 1 to 24)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/mosin(src)
 
 /obj/structure/closet/crate/kar98kammo/New()
 	..()
-	update_capacity(27)
-	for (var/v in 1 to 27)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/kar98k(src)
 
 /obj/structure/closet/crate/mp40kammo/New()
 	..()
-	update_capacity(24)
-	for (var/v in 1 to 24)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/mp40(src)
 
 /obj/structure/closet/crate/mp43ammo/New()
 	..()
-	update_capacity(21)
-	for (var/v in 1 to 21)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/a762/akm(src)
 
 /obj/structure/closet/crate/ptrdammo/New()
@@ -526,14 +526,14 @@
 
 /obj/structure/closet/crate/mg34ammo/New()
 	..()
-	update_capacity(13)
-	for (var/v in 1 to 13)
+	update_capacity(12)
+	for (var/v in 1 to 12)
 		new /obj/item/ammo_magazine/a762(src)
 
 /obj/structure/closet/crate/ppshammo/New()
 	..()
-	update_capacity(17)
-	for (var/v in 1 to 17)
+	update_capacity(12)
+	for (var/v in 1 to 12)
 		new /obj/item/ammo_magazine/a556/ppsh(src)
 
 /obj/structure/closet/crate/lugerammo/New()
@@ -550,8 +550,8 @@
 
 /obj/structure/closet/crate/bettymines/New()
 	..()
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(12)
+	for (var/v in 1 to 12)
 		new /obj/item/device/mine/betty(src)
 
 /obj/structure/closet/crate/dpammo/New()
@@ -568,19 +568,19 @@
 
 /obj/structure/closet/crate/bint/New()
 	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
+	update_capacity(10)
+	for (var/v in 1 to 10)
 		new /obj/item/weapon/gauze_pack/bint(src)
 
 /obj/structure/closet/crate/gauze/New()
 	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
+	update_capacity(10)
+	for (var/v in 1 to 10)
 		new /obj/item/weapon/gauze_pack/gauze(src)
 
 /obj/structure/closet/crate/medical/New()
 	..()
-	update_capacity(10)
+	update_capacity(15)
 	for (var/v in 1 to 1)
 		new /obj/item/weapon/storage/firstaid/toxin(src)
 		new /obj/item/weapon/storage/firstaid/fire(src)
@@ -594,26 +594,26 @@
 
 /obj/structure/closet/crate/soviet_grenade/New()
 	..()
-	update_capacity(12)
-	for (var/v in 1 to 12)
+	update_capacity(10)
+	for (var/v in 1 to 10)
 		new /obj/item/weapon/grenade/explosive/rgd(src)
 
 /obj/structure/closet/crate/soviet_grenade2/New()
 	..()
-	update_capacity(12)
-	for (var/v in 1 to 12)
+	update_capacity(10)
+	for (var/v in 1 to 10)
 		new /obj/item/weapon/grenade/explosive/f1(src)
 
 /obj/structure/closet/crate/german_grenade/New()
 	..()
-	update_capacity(12)
-	for (var/v in 1 to 12)
+	update_capacity(10)
+	for (var/v in 1 to 10)
 		new /obj/item/weapon/grenade/explosive/stgnade(src)
 
 /obj/structure/closet/crate/german_grenade2/New()
 	..()
-	update_capacity(12)
-	for (var/v in 1 to 12)
+	update_capacity(10)
+	for (var/v in 1 to 10)
 		new /obj/item/weapon/grenade/explosive/l2a2(src)
 
 /obj/structure/closet/crate/panzerfaust/New()
@@ -624,15 +624,15 @@
 
 /obj/structure/closet/crate/german_smoke_grenade/New()
 	..()
-	update_capacity(10)
-	for (var/v in 1 to 10)
+	update_capacity(12)
+	for (var/v in 1 to 12)
 		new /obj/item/weapon/grenade/smokebomb/german(src)
 
 
 /obj/structure/closet/crate/soviet_smoke_grenade/New()
 	..()
-	update_capacity(10)
-	for (var/v in 1 to 10)
+	update_capacity(12)
+	for (var/v in 1 to 12)
 		new /obj/item/weapon/grenade/smokebomb/soviet(src)
 
 
@@ -663,15 +663,15 @@
 /obj/structure/closet/crate/bayonets/soviet/New()
 	..()
 
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/weapon/attachment/bayonet/soviet(src)
 
 /obj/structure/closet/crate/bayonets/german/New()
 	..()
 
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/weapon/attachment/bayonet/german(src)
 
 /obj/structure/closet/crate/supply_req_sheets/New()
@@ -759,36 +759,36 @@
 
 /obj/structure/closet/crate/tokarevammo/New()
 	..()
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/c762mm_tokarev(src)
 
 /obj/structure/closet/crate/mauserammo/New()
 	..()
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/c763x25mm_mauser(src)
 
 /obj/structure/closet/crate/ppsammo/New()
 	..()
-	update_capacity(14)
-	for (var/v in 1 to 14)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/c762x25mm_pps(src)
 
 /obj/structure/closet/crate/stenammo/New()
 	..()
-	update_capacity(10)
-	for (var/v in 1 to 10)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/mp40/c9x19mm_stenmk3(src)
 
 /obj/structure/closet/crate/nagantrevolverammo/New()
 	..()
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/c762x38mmR(src)
 
 /obj/structure/closet/crate/waltherammo/New()
 	..()
-	update_capacity(20)
-	for (var/v in 1 to 20)
+	update_capacity(15)
+	for (var/v in 1 to 15)
 		new /obj/item/ammo_magazine/p9x19mm(src)

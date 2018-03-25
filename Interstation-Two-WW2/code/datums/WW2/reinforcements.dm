@@ -93,11 +93,11 @@ var/datum/reinforcements/reinforcements_master
 		if (prob(50))
 			if (!locked[SOVIET])
 				soviet_countdown = soviet_countdown_success_reset*2
-				world << "<font size = 3>Due to harsh combat in other areas on the Eastern Front, Soviet reinforcements will not be available for a while."
+				world << "<font size = 3>Due to harsh combat in other areas on the Eastern Front, Soviet reinforcements will not be available for a while.</font>"
 		else
 			if (!locked[GERMAN])
 				german_countdown = german_countdown_success_reset*2
-				world << "<font size = 3>Due to harsh combat in other areas on the Eastern Front, Wehrmacht reinforcements will not be available for a while."
+				world << "<font size = 3>Due to harsh combat in other areas on the Eastern Front, Wehrmacht reinforcements will not be available for a while.</font>"
 
 	if (reinforcement_pool[SOVIET] && reinforcement_pool[GERMAN])
 		for (var/mob/new_player/np in reinforcement_pool[SOVIET])
