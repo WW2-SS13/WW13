@@ -124,7 +124,7 @@
 			var/lightrange = max(1, round(raw_devrange*2))
 			var/flashrange = max(1, round(raw_devrange*3))
 			var/firerange = max(1, round(raw_devrange*4)) + 1
-			firerange = min(firerange, 3) // removes crazy molotovs
+			firerange = min(firerange, 2) // removes crazy molotovs
 
 			var/src_turf = get_turf(src)
 
