@@ -295,6 +295,10 @@
 	set category = "IC"
 
 	msg = sanitize(msg)
+	msg = replacetext(msg, "<i>", "")
+	msg = replacetext(msg, "</i>", "")
+	msg = replacetext(msg, "<b>", "")
+	msg = replacetext(msg, "</b>", "")
 
 	if(mind)
 		mind.store_memory(msg)

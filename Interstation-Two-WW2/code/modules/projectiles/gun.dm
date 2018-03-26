@@ -1,6 +1,6 @@
 /datum/firemode
 	var/name = "default"
-	var/burst = TRUE
+	var/burst = 1
 	var/burst_delay = null
 	var/fire_delay = null
 	var/move_delay = 0
@@ -69,7 +69,7 @@
 //	var/can_wield = FALSE
 //	var/can_scope = FALSE
 
-	var/burst = TRUE
+	var/burst = 1
 	var/move_delay = 0
 	var/list/burst_accuracy = list(0)
 	var/list/dispersion = list(0)
@@ -525,43 +525,47 @@
 		mouthshoot = FALSE
 		return
 
-// fixes shooting yourself bug - Kachnov
-/obj/item/weapon/gun/proc/handle_shoot_self(mob/living/user)
-	if(!ishuman(user))
+/obj/item/weapon/gun/proc/handle_shoot_self(var/mob/living/carbon/human/user)
+	if(!istype(user))
 		return
 
-	var/mob/living/carbon/human/M = user
+	var/_burst = 1
+	var/datum/firemode/firemode = firemodes[sel_mode]
+	if (firemode)
+		_burst = firemode.burst
 
-	var/obj/item/projectile/in_chamber = consume_next_projectile()
-	if (istype(in_chamber))
-		var/damage_multiplier = 2.0
-		var/organ_name = replacetext(replacetext(user.targeted_organ, "l_", "left "), "r_", "right ")
+	for (var/v in 1 to _burst)
 
-		switch (user.targeted_organ)
-			if ("l_hand", "r_hand", "l_foot", "r_foot")
-				damage_multiplier = 1.0
-			if ("chest")
-				damage_multiplier = 3.0
+		var/obj/item/projectile/in_chamber = consume_next_projectile()
 
-		M.visible_message("<span class = 'red'>[user] shoots themselves in \the [organ_name]!</span>")
-		if(silenced)
-			playsound(user, fire_sound, 20, TRUE)
+		if (istype(in_chamber))
+			var/damage_multiplier = 2.0
+			var/organ_name = replacetext(replacetext(user.targeted_organ, "l_", "left "), "r_", "right ")
+
+			switch (user.targeted_organ)
+				if ("l_hand", "r_hand", "l_foot", "r_foot")
+					damage_multiplier = 1.0
+				if ("chest")
+					damage_multiplier = 3.0
+
+			user.visible_message("<span class = 'red'>[user] shoots \himself in \the [organ_name]!</span>")
+			if(silenced)
+				playsound(user, fire_sound, 20, TRUE)
+			else
+				playsound(user, fire_sound, 100, TRUE)
+
+			user.attack_log += "\[[time_stamp()]\] [user]/[user.ckey]</b> shot themselves in the [organ_name]"
+
+			in_chamber.on_hit(user)
+			if (in_chamber.damage_type != HALLOSS)
+				user.apply_damage(in_chamber.damage*damage_multiplier, in_chamber.damage_type, user.targeted_organ, used_weapon = "Point blank shot in the [user.targeted_organ] with \a [in_chamber]", sharp=1)
+			else
+				user << "<span class = 'notice'>Ow...</span>"
+				user.apply_effect(110,AGONY,0)
+			qdel(in_chamber)
 		else
-			playsound(user, fire_sound, 100, TRUE)
-
-		M.attack_log += "\[[time_stamp()]\] [M]/[M.ckey]</b> shot themselves in the [organ_name]"
-
-		in_chamber.on_hit(M)
-		if (in_chamber.damage_type != HALLOSS)
-			user.apply_damage(in_chamber.damage*damage_multiplier, in_chamber.damage_type, user.targeted_organ, used_weapon = "Point blank shot in the [user.targeted_organ] with \a [in_chamber]", sharp=1)
-		else
-			user << "<span class = 'notice'>Ow...</span>"
-			user.apply_effect(110,AGONY,0)
-		qdel(in_chamber)
-		return
-	else
-		handle_click_empty(user)
-		return
+			handle_click_empty(user)
+			return
 
 /obj/item/weapon/gun/examine(mob/user)
 	..()

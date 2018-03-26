@@ -44,6 +44,24 @@ var/datum/controller/process/burning/burning_process = null
 			catchBadType(O)
 			burning_turfs -= O
 
+	var/sound/S = sound('sound/effects/fire_loop.ogg')
+	S.repeat = FALSE
+	S.wait = FALSE
+	S.volume = 50
+	S.channel = 1
+
+	for (var/burningobject in burning_objs|burning_turfs)
+		// range(20, tcc) = checks ~500 objects (400 turfs)
+		// player_list will rarely be above 100 objects
+		// so this should be more efficient - Kachnov
+		for (var/M in player_list)
+			var/dist = abs_dist(M, burningobject)
+			if (dist <= 20)
+				var/volume = 100
+				volume -= (dist*3)
+				S.volume = volume
+				M << S
+
 /datum/controller/process/burning/statProcess()
 	..()
 	stat(null, "[burning_objs.len] objects")

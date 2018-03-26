@@ -214,6 +214,11 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 /obj/item/device/radio/attack_self(mob/user as mob)
 	user.set_machine(src)
+	if (is_supply_radio && faction)
+		var/passcheck = input(user, "Enter the password.") as num
+		playsound(get_turf(src), "keyboard", 100, 1)
+		if (passcheck != supply_codes[faction])
+			return
 	interact(user)
 
 /obj/item/device/radio/interact(mob/user)

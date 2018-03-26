@@ -42,6 +42,16 @@ var/list/soviet_traitors = list()
 	return "We have not gained air superiority over the enemy, so we cannot attack their base yet. Bombs will only land inside the town, not the enemy base"
 
 /obj/item/weapon/phone/tohighcommand/attack_hand(var/mob/living/carbon/human/H)
+
+	if (faction)
+		var/passcheck = input(H, "Enter the password.") as num
+		playsound(get_turf(src), "keyboard", 100, 1)
+		if (passcheck != supply_codes[faction])
+			return
+
+	if (map && !map.katyushas)
+		options -= RAID
+
 	if (istype(H))
 		var/dowhat = input(H, "What would you like to do?") in options + "Cancel"
 		if (dowhat != "Cancel")
@@ -67,10 +77,11 @@ var/list/soviet_traitors = list()
 						if (supply_points[faction] < cost)
 							H << "<span class = 'warning'>You can't afford this right now.</span>"
 							return
+						// set next_raid[faction] here in case of runtimes that would have stopped it, may fix spam bug - Kachnov
+						next_raid[faction] = world.time + rand(1500, 2100)
 						supply_points[faction] -= cost
 						radio2faction("[faction == GERMAN ? "A Luftwaffe" : "A Katyusha"] attack has been called in by [H.real_name]. Stand by.", faction)
 						air_raid(faction, src, cost)
-						next_raid[faction] = world.time + rand(1500, 2100)
 
 				if (REQUEST_BATTLE_REPORT)
 					if (!H.original_job || H.original_job.base_type_flag() != faction || !H.original_job.is_officer)

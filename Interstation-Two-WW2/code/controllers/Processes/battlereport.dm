@@ -38,3 +38,6 @@ var/datum/controller/process/battlereport/battlereport
 
 	if (prob(3))
 		current_extra_cost_for_air_raid = rand(-20,20)
+
+/datum/controller/process/battlereport/proc/admin_act()
+	BR_ticks = max_BR_ticks

@@ -613,7 +613,7 @@
 			if (dist <= 20)
 				var/volume = 100
 				if (!locate(/obj/train_connector) in get_turf(M))
-					volume -= (dist*2)
+					volume -= (dist*3)
 				S.volume = volume
 				M << S
 

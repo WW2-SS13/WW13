@@ -144,7 +144,12 @@
 /client/proc/show_battle_report()
 	set category = "WW2 (Admin)"
 	set name = "Show Battle Report"
-	show_global_battle_report(src)
+	// to prevent showing multiple battle reports - Kachnov
+	if (battlereport)
+		message_admins("[key_name(src)] showed everyone the battle report.")
+		battlereport.BR_ticks = battlereport.max_BR_ticks
+	else
+		show_global_battle_report(src)
 
 /client/proc/see_battle_report()
 	set category = "WW2 (Admin)"

@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/automatic
 	force = 15
 	throwforce = 30
+	// not accurate at all
 	accuracy_list = list(
 
 		// small body parts: head, hand, feet

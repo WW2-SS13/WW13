@@ -122,7 +122,7 @@
 	if (state != STATE_BOILING)
 		return
 	for (var/obj/item/I in contents)
-		H.put_in_any_hand_if_possible(I)
+		H.put_in_any_hand_if_possible(I, prioritize_active_hand = TRUE)
 		visible_message("<span class = 'info'>[H] takes [I.name] from the pot of boiling water.</span>")
 		break
 
@@ -186,5 +186,22 @@
 	..(user)
 	if (state == STATE_STEWING && stew_desc)
 		user << "<span class = 'info'>You can see a [lowertext(stew_desc)].</span>"
-	else
+	else if (state == STATE_EMPTY)
 		user << "<span class = 'info'>It's an empty pot.</span>"
+	else if (state == STATE_WATER)
+		user << "<span class = 'info'>It's a pot full of water.</span>"
+	else if (state == STATE_BOILING)
+		user << "<span class = 'info'>It's a pot with some things boiling inside.</span>"
+		var/message = "You can see "
+		for (var/obj/item/I in contents)
+			message += I.name
+			if (I != contents[contents.len])
+				if (contents.len > 1 && I == contents[contents.len-1])
+					if (contents.len > 2)
+						message += ", and"
+					else
+						message += " and "
+				else
+					message += ", "
+		message += " in the water."
+		user << "<span class = 'info'>[message]</span>"

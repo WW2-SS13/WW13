@@ -112,21 +112,6 @@ bullet_act
 					qdel(P)
 					return
 
-/*
-				// 30% base chance to miss the head, because headshots are painful - Kachnov
-				else if (list("head", "mouth", "eyes").Find(def_zone) && prob(30 * getStatCoeff("survival")))
-					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-					qdel(P)
-					adjustBruteLoss(pick(6,7))
-					return
-
-				// 15% base chance to graze elsewhere
-				else if (prob(15 * getStatCoeff("survival")))
-					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-					qdel(P)
-					adjustBruteLoss(pick(4,5))
-					return*/
-
 		// get knocked back once in a while
 		// unless we're on a train because bugs
 
@@ -139,7 +124,8 @@ bullet_act
 
 		if (prob(P.KD_chance/2) && !is_on_train() && !hanged)
 			SpinAnimation(5,1)
-			var/turf/behind = get_step(src, P.dir)
+			// P.firer_original_dir is more accurate, since P.dir is never explicitly set? - Kachnov
+			var/turf/behind = get_step(src, P.firer_original_dir ? P.firer_original_dir : P.dir)
 			if (behind)
 				if (behind.density || locate(/obj/structure) in behind)
 					var/turf/slammed_into = behind

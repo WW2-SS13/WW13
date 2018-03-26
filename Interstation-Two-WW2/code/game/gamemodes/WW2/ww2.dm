@@ -32,9 +32,9 @@
 	if (time_both_sides_locked != -1 && !currently_winning)
 		return "The round will end in [max(round(((time_both_sides_locked+time_to_end_round_after_both_sides_locked) - world.realtime)/600),0)] minute(s); both sides are out of reinforcements."
 	else if (currently_winning == "Soviets")
-		return "The Soviets will win in [max(round((next_win_time-world.realtime)/600),0)] minute(s)."
+		return "The Red Army will win in [max(round((next_win_time-world.realtime)/600),0)] minute(s)."
 	else if (currently_winning == "Germans")
-		return "The Germans will win in [max(round((next_win_time-world.realtime)/600),0)] minute(s)."
+		return "The Wehrmacht will win in [max(round((next_win_time-world.realtime)/600),0)] minute(s)."
 	else
 		return "Neither side has captured the other side's base."
 
@@ -125,7 +125,7 @@
 		if (alive_soviets > alive_germans && soviets_in_germany > germans_in_germany)
 			if (currently_winning != "Soviets" || win_sort != 2)
 				currently_winning = "Soviets"
-				currently_winning_message = "<font size = 3>The Soviets have occupied most German territory! The Wehrmacht has 5 minutes to reclaim their land!</font>"
+				currently_winning_message = "<font size = 3>The Red Army has occupied most German territory! The Germans have 5 minutes to reclaim their land!</font>"
 				next_win_time = world.realtime + 3000
 				win_sort = 2
 
@@ -157,7 +157,7 @@
 		else if ((soviets_in_germany/1.33) > germans_in_germany)
 			if (currently_winning != "Soviets" || win_sort != 1)
 				currently_winning = "Soviets"
-				currently_winning_message = "<font size = 3>The Soviets have occupied most German territory! The Wehrmacht has 10 minutes to reclaim their land!</font>"
+				currently_winning_message = "<font size = 3>The Red Army has occupied most German territory! The Wehrmacht has 10 minutes to reclaim their land!</font>"
 				next_win_time = world.realtime + 6000
 				win_sort = 1
 
@@ -177,7 +177,7 @@
 				return TRUE
 
 			if (currently_winning == "Germans" && win_sort == 2)
-				if (!win_condition) win_condition = "The Wehrmacht won by outnumbering the Soviets and occupying most of their territory. The bunker was surrounded and cut off from supplies and reinforcements!"
+				if (!win_condition) win_condition = "The Wehrmacht won by outnumbering the Soviets and occupying most of their territory. The Soviet base was surrounded and cut off from supplies and reinforcements!"
 				winning_side = "Wehrmacht"
 				return TRUE
 
@@ -210,7 +210,16 @@
 	for (var/client/C in clients)
 		winset(C, null, "mainwindow.flash=1")
 
-	text += "[soldiers["de"]] Wehrmacht and SS soldiers survived.<br>"
+	if (map)
+		if (map.available_subfactions.Find(SCHUTZSTAFFEL))
+			text += "[soldiers["de"]] Wehrmacht and SS soldiers survived.<br>"
+		else if (map.available_subfactions.Find(ITALIAN))
+			text += "[soldiers["de"]] Wehrmacht and Italian soldiers survived.<br>"
+		else
+			text += "[soldiers["de"]] Wehrmacht soldiers survived.<br>"
+	else
+		text += "[soldiers["de"]] Wehrmacht soldiers survived.<br>"
+
 	text += "[soldiers["ru"]] Soviet soldiers survived.<br><br>"
 
 	if (winning_side)
@@ -235,8 +244,11 @@
 	world << "<b><big>The round has started!</big></b>"
 	for (var/client/C in clients)
 		winset(C, null, "mainwindow.flash=1")
+	supply_codes[GERMAN] = rand(1000,9999)
+	supply_codes[SOVIET] = rand(1000,9999)
 	// announce after some other stuff, like system setups, are announced
 	spawn (3)
+
 
 	//	new/datum/game_aspect/ww2(src)
 
@@ -260,7 +272,7 @@
 					if (istype(get_area(soviet), /area/prishtina/soviet))
 						soviet.resize(supplies[SOVIET])*/
 
-			// this may have already happened, do it again w/o announce
+		// this may have already happened, do it again w/o announce
 		setup_autobalance(0)
 
 		// let new players see the join link
@@ -282,4 +294,13 @@
 				if (locate(/obj/machinery/artillery) in world)
 					for (var/obj/machinery/artillery/A in world)
 						qdel(A)
-					world << "<i>Due to lowpop, there is no artillery.</i>"
+					for (var/obj/structure/closet/crate/artillery/C in world)
+						qdel(C)
+					for (var/obj/structure/closet/crate/artillery_gas/C in world)
+						qdel(C)
+					world << "<i>Due to lowpop, there is no artillery and Katyusha strikes will not be available.</i>"
+					if (map)
+						german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
+						german_supply_crate_types -= "Artillery Ballistic Shells Crate"
+						german_supply_crate_types -= "Artillery Gas Shells Crate"
+						map.katyushas = FALSE

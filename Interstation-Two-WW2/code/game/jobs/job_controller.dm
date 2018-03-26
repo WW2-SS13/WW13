@@ -122,6 +122,9 @@ var/global/datum/controller/occupations/job_master
 			if (announce)
 				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
 
+		if (italiano || warcrimes)
+			world << "<font size = 3><span class = 'info'>Civilian and Partisan factions are enabled.</span></font>"
+
 	proc/spawn_with_delay(var/mob/new_player/np, var/datum/job/j)
 		// for delayed spawning, wait the spawn_delay of the job
 		// and lock up one job position while np is spawning
@@ -696,6 +699,14 @@ var/global/datum/controller/occupations/job_master
 						if (german_officer_squad_info[i])
 							H << "<br>[german_officer_squad_info[i]]"
 							H.add_memory(german_officer_squad_info[i])
+
+			if (H.original_job.is_officer)
+				if (H.original_job.base_type_flag() == GERMAN)
+					H << "The password for radios and phones is <b>[supply_codes[GERMAN]].</b>"
+					H.add_memory("The password for radios and phones is [supply_codes[GERMAN]]")
+				else if (H.original_job.base_type_flag() == SOVIET)
+					H << "The password for radios and phones is <b>[supply_codes[SOVIET]].</b>"
+					H.add_memory("The password for radios and phones is [supply_codes[SOVIET]]")
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO job spawn location = [H.job_spawn_location]"

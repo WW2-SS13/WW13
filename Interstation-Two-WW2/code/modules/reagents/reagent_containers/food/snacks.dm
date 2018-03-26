@@ -16,10 +16,13 @@
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = 2
 
+// dynamically scaled bitesizes, now people can eat everything faster - Kachnov
 /obj/item/weapon/reagent_containers/food/snacks/New()
 	..()
 	if(nutriment_amt)
 		reagents.add_reagent("nutriment",nutriment_amt,nutriment_desc)
+	spawn (1)
+		bitesize = max(bitesize, ceil(reagents.total_volume/5))
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
@@ -167,6 +170,9 @@
 		var/hide_item = (!W.edge || !can_slice_here)
 
 		if (hide_item)
+			if (contents.len)
+				user << "<span class='danger'>There's already something inside \the [src].</span>"
+				return
 			if (W.w_class >= w_class || is_robot_module(W))
 				user << "<span class='warning'>\the [W] is to big to hide inside \the [src].</span>"
 				return
@@ -248,7 +254,6 @@
 //		reagents.add_reagent("xenomicrobes", 10)						//This is what is in the food item. you may copy/paste
 //		reagents.add_reagent("nutriment", 2)							//	this line of code for all the contents.
 //		bitesize = 3													//This is the amount each bite consumes.
-
 
 
 
@@ -1814,7 +1819,7 @@
 		reagents.add_reagent("protein", 4)
 		reagents.add_reagent("tomatojuice", 5)
 		reagents.add_reagent("imidazoline", 5)
-		reagents.add_reagent("water", 15)
+		reagents.add_reagent("water", 30)
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/jelliedtoast

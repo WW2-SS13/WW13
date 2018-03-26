@@ -153,6 +153,12 @@
 	if (ishuman(user))
 		H = user
 
+	if (ispath(recipe.result_type, /obj/structure))
+		if (!ispath(recipe.result_type, /obj/structure/noose))
+			for (var/obj/structure/multiz/M in get_turf(H))
+				H << "<span class = 'danger'>You can't build a structure here.</span>"
+				return
+
 	if (recipe.result_type == /obj/structure/noose)
 		var/structurecheck = 0
 
@@ -175,20 +181,25 @@
 		var/area/H_area = get_area(H)
 		if (H_area.location == OUTSIDE)
 
-
 			var/turf/north = get_step(H, NORTH)
-			var/turf/south = get_step(H, SOUTH)
-			var/turf/east = get_step(H, EAST)
-			var/turf/west = get_step(H, WEST)
+		//	var/turf/south = get_step(H, SOUTH)
+		//	var/turf/east = get_step(H, EAST)
+		//	var/turf/west = get_step(H, WEST)
 
-			if (north.density || locate(/obj/structure) in north)
+			var/structure_check = FALSE
+			for (var/obj/structure/S in north)
+				if (S.density)
+					structure_check = TRUE
+					break
+
+			if (north.density || structure_check)
 				goto skipnoosecheck1
-			else if (south.density || locate(/obj/structure) in south)
+/*			else if (south.density || locate(/obj/structure) in south)
 				goto skipnoosecheck1
 			else if (east.density || locate(/obj/structure) in east)
 				goto skipnoosecheck1
 			else if (west.density || locate(/obj/structure) in west)
-				goto skipnoosecheck1
+				goto skipnoosecheck1*/
 
 			H << "<span class = 'warning'>You need a ceiling to make a noose.</span>"
 			return

@@ -86,7 +86,10 @@ var/list/tier_2_officer_jobtypes = list(
 
 	for (var/mob/living/carbon/human/H in T)
 		if (H != src && H.stat != DEAD && original_job && H.original_job)
-			if (rankcmp(original_job, H.original_job))
+			var/enemy = (original_job.base_type_flag() != H.original_job.base_type_flag())
+			if (enemy)
+				visible_message("<span class = 'danger'>[src] lifts their gun, preparing to execute [H]...</span>")
+			if (rankcmp(original_job, H.original_job) || (enemy && do_after(src, 50, H)))
 
 				var/obj/item/projectile/in_chamber = G.consume_next_projectile()
 				if (!in_chamber || !istype(in_chamber))
@@ -105,7 +108,8 @@ var/list/tier_2_officer_jobtypes = list(
 				G.Fire(H, src, forceburst = 1)
 				G.executing = FALSE
 				targeted_organ = old_targeted_organ
-				next_execute = world.realtime + 600
+				if (!enemy)
+					next_execute = world.realtime + 600
 				break
 
 /proc/check_coords_check()

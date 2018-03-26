@@ -65,8 +65,8 @@
 			I.color = "#E59400"
 			I.reagents.multiply_reagent("nutriment", 5)
 			I.reagents.multiply_reagent("protein", 3)
-			if (istype(I, /obj/item/weapon/reagent_containers/food/snacks))
-				var/obj/item/weapon/reagent_containers/food/snacks/F = I
+			if (istype(I, /obj/item/weapon/reagent_containers/food))
+				var/obj/item/weapon/reagent_containers/food/F = I
 				F.roasted = TRUE
 				F.raw = FALSE
 
