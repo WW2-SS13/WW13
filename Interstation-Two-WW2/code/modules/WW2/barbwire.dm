@@ -20,7 +20,7 @@
 	var/turf/cover = get_turf(src)
 	if(!cover)
 		return TRUE
-	if (get_dist(P.starting, loc) <= TRUE) //Tables won't help you if people are THIS close
+	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return TRUE
 
 	var/chance = 50 - (P.penetrating * 3)

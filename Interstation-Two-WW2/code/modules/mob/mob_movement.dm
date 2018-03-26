@@ -146,7 +146,7 @@
 
 //This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
 /atom/movable/Move(newloc, direct)
-	if (direct & (direct - TRUE))
+	if (direct & (direct - 1))
 		if (direct & TRUE)
 			if (direct & 4)
 				if (step(src, NORTH))
@@ -413,7 +413,7 @@
 			if("run")
 				mob.velocity = min(mob.velocity+1, 15)
 				mob.velocity_lastdir = direct
-				if(mob.drowsyness > FALSE)
+				if(mob.drowsyness > 0)
 					move_delay += 6
 				move_delay += (mob.get_run_delay()/mob.movement_speed_multiplier) + standing_on_snow
 				if (mob_is_human)
@@ -518,10 +518,10 @@
 							. = ..()
 							if (isturf(M.loc))
 								var/diag = get_dir(mob, M)
-								if ((diag - TRUE) & diag)
+								if ((diag - 1) & diag)
 								else
 									diag = null
-								if ((get_dist(mob, M) > TRUE || diag))
+								if ((get_dist(mob, M) > 1 || diag))
 									step(M, get_dir(M.loc, T))
 				else
 					for(var/mob/M in L)

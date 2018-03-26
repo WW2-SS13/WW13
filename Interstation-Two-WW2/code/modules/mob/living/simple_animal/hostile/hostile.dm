@@ -72,7 +72,7 @@
 	if(!(target_mob in ListTargets(10)))
 		LostTarget()
 		return FALSE
-	if(get_dist(src, target_mob) <= TRUE)	//Attacking
+	if(get_dist(src, target_mob) <= 1)	//Attacking
 		AttackingTarget()
 		return TRUE
 

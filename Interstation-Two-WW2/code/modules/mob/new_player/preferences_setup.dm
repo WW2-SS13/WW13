@@ -224,7 +224,7 @@
 
 			// Skin tone
 			if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
-				if (s_tone >= FALSE)
+				if (s_tone >= 0)
 					I.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 				else
 					I.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
@@ -299,7 +299,7 @@
 				var/obj/item/clothing/head/HT = J.hat
 				if(HT) clothes.Blend(new /icon(body.hat_icon, initial(HT.icon_state)), ICON_OVERLAY)
 
-				if( backbag > TRUE )
+				if( backbag > 1 )
 					var/obj/item/weapon/storage/backpack/BP = J.backpacks[backbag-1]
 					clothes.Blend(new /icon(body.backpack_icon, initial(BP.icon_state)), ICON_OVERLAY)
 

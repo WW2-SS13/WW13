@@ -25,13 +25,13 @@
 
 /client/proc/nanomapgen_DumpTile(var/startX = TRUE, var/startY = TRUE, var/currentZ = TRUE, var/endX = -1, var/endY = -1)
 
-	if (endX < FALSE || endX > world.maxx)
+	if (endX < 0 || endX > world.maxx)
 		endX = world.maxx
 
-	if (endY < FALSE || endY > world.maxy)
+	if (endY < 0 || endY > world.maxy)
 		endY = world.maxy
 
-	if (currentZ < FALSE || currentZ > world.maxz)
+	if (currentZ < 0 || currentZ > world.maxz)
 		usr << "NanoMapGen: <b>ERROR: currentZ ([currentZ]) must be between TRUE and [world.maxz]</b>"
 
 		sleep(3)
@@ -66,7 +66,7 @@
 			var/icon/TurfIcon = new(Turf.icon, Turf.icon_state, dir = Turf.dir)
 			TurfIcon.Scale(NANOMAP_ICON_SIZE, NANOMAP_ICON_SIZE)
 
-			Tile.Blend(TurfIcon, ICON_OVERLAY, ((WorldX - TRUE) * NANOMAP_ICON_SIZE), ((WorldY - TRUE) * NANOMAP_ICON_SIZE))
+			Tile.Blend(TurfIcon, ICON_OVERLAY, ((WorldX - 1) * NANOMAP_ICON_SIZE), ((WorldY - 1) * NANOMAP_ICON_SIZE))
 
 			count++
 

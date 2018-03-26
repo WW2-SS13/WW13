@@ -19,8 +19,6 @@ client/
 	var/list/hidden_atoms = list()
 	var/list/hidden_mobs = list()
 
-
-
 atom/proc/InCone(atom/center = usr, dir = NORTH)
 	if(get_dist(center, src) == FALSE || src == center) return FALSE
 	var/d = get_dir(center, src)
@@ -103,4 +101,4 @@ mob/proc/show_cone()
 
 mob/proc/hide_cone()
 	if(fov)
-		fov.alpha = FALSE
+		fov.alpha = 0

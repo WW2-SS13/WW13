@@ -121,7 +121,7 @@ var/datum/controller/process/explosives/bomb_processor
 						continue
 
 					var/dist = get_dist(M_turf, epicenter)
-					if (reception == 2 && (M.ear_deaf <= FALSE || !M.ear_deaf))//Dont play sounds to deaf people
+					if (reception == 2 && (M.ear_deaf <= 0 || !M.ear_deaf))//Dont play sounds to deaf people
 						// If inside the blast radius + world.view - 2
 						if(dist <= closedist)
 							M.playsound_local(epicenter, get_sfx("explosion"), min(100, volume), TRUE, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound

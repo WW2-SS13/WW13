@@ -54,7 +54,7 @@
 	name = "7,5 cm FK 18"
 	icon = 'icons/WW2/artillery_piece.dmi'
 	icon_state = "base"
-	layer = MOB_LAYER + TRUE //just above mobs
+	layer = MOB_LAYER + 1 //just above mobs
 
 	proc/get_blind_fire_dir()
 		switch (blind_fire_dir)

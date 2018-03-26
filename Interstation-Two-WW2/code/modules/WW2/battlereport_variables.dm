@@ -90,5 +90,5 @@ var/list/recently_died = list()
 	// give these lists starting values to prevent runtimes.
 	if (stat == CONSCIOUS)
 		alive |= getRoundUID()
-	else if (stat == UNCONSCIOUS || (health <= FALSE && stat != DEAD))
+	else if (stat == UNCONSCIOUS || (health <= 0 && stat != DEAD))
 		injured |= getRoundUID()

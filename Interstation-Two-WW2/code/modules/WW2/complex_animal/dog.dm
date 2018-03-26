@@ -426,7 +426,7 @@ s
 		if (shouldGoAfter(H) || enemies.Find(H))
 			if (assess_hostility(H) || ((!H.original_job || H.original_job.base_type_flag() != faction)))
 				enemies |= H
-				if (get_dist(src, H) > TRUE && H.stat != DEAD)
+				if (get_dist(src, H) > 1 && H.stat != DEAD)
 					if (prioritizes == "attacking" && following)
 						stop_following()
 					walking_to = H

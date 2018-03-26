@@ -49,7 +49,7 @@
 	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
 		return
 
-	next_click = world.time + TRUE
+	next_click = world.time + 1
 
 	/*if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
@@ -172,7 +172,7 @@
 	//Atoms on your person
 	// A is your location but is not a turf; or is on you (backpack); or is on something on you (box in backpack); sdepth is needed here because contents depth does not equate inventory storage depth.
 	var/sdepth = A.storage_depth(src)
-	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= TRUE))
+	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1))
 		// faster access to objects already on you
 	//	if(A.loc != src)
 	//		setMoveCooldown(10) //getting something out of a backpack
@@ -193,7 +193,7 @@
 	//Atoms on turfs (not on your person)
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)
 	sdepth = A.storage_depth_turf()
-	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= TRUE))
+	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
 		if(A.Adjacent(src) || (W && W == get_active_hand() && (istype(W, /obj/item/weapon/flamethrower/flammenwerfer) || istype(W, /obj/item/weapon/sandbag))) && A.rangedAdjacent(src)) // see adjacent.dm
 
 			dir = get_dir(src, A)
@@ -420,10 +420,10 @@
 
 	var/direction
 	if(abs(dx) < abs(dy))
-		if(dy > FALSE)	direction = NORTH
+		if(dy > 0)	direction = NORTH
 		else		direction = SOUTH
 	else
-		if(dx > FALSE)	direction = EAST
+		if(dx > 0)	direction = EAST
 		else		direction = WEST
 	if(direction != dir)
 		facedir(direction)
@@ -444,10 +444,10 @@
 	if(!dx && !dy) return
 
 	if(abs(dx) < abs(dy))
-		if(dy > FALSE)	direction = NORTH
+		if(dy > 0)	direction = NORTH
 		else		direction = SOUTH
 	else
-		if(dx > FALSE)	direction = EAST
+		if(dx > 0)	direction = EAST
 		else		direction = WEST
 	if(direction)
 

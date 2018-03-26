@@ -97,7 +97,7 @@
 /*	//Don't need this at the moment. But it's here if it's needed later.
 	//Helps prevent multiple files being uploaded at once. Or right after eachother.
 	var/time_to_wait = fileaccess_timer - world.time
-	if(time_to_wait > FALSE)
+	if(time_to_wait > 0)
 		src << "<font color='red'>Error: AllowUpload(): Spam prevention. Please wait [round(time_to_wait/10)] seconds.</font>"
 		return FALSE
 	fileaccess_timer = world.time + FTPDELAY	*/
@@ -106,6 +106,7 @@
 	///////////
 	//CONNECT//
 	///////////
+/client/var/tracking_ready = FALSE // fixes 'unrecognized or inaccessible verb' issue with pinging
 /client/New(TopicData)
 
 	dir = NORTH
@@ -231,6 +232,10 @@
 		add_admin_verbs()
 		admin_memo_show()
 
+	if (isPatron("$20+"))
+		if (config.patrons_can_enable_disable_dabbing)
+			verbs += /client/proc/enable_disable_dabs
+
 	// Forcibly enable hardware-accelerated graphics, as we need them for the lighting overlays.
 	// (but turn them off first, since sometimes BYOND doesn't turn them on properly otherwise)
 	spawn(5) // And wait a half-second, since it sounds like you can do this too fast.
@@ -256,6 +261,16 @@
 		if (!istype(mob, /mob/new_player))
 			src << browse(null, "window=playersetup;")
 
+		if (istype(mob, /mob/living/carbon/human))
+			human_clients_mob_list |= mob
+
+		else if (istype(mob, /mob/observer))
+			observer_mob_list |= mob
+
+	spawn (10)
+		if (src)
+			tracking_ready = TRUE
+
 	//////////////
 	//DISCONNECT//
 	//////////////
@@ -266,12 +281,8 @@
 		admins -= src
 	directory -= ckey
 	clients -= src
-	if (observer_mob_list.Find(mob))
-		observer_mob_list -= mob
-	else if (new_player_mob_list.Find(mob))
-		new_player_mob_list -= mob
-	else if (human_clients_mob_list.Find(mob))
-		human_clients_mob_list -= mob
+	observer_mob_list -= mob
+	human_clients_mob_list -= mob
 	return ..()
 
 
@@ -409,10 +420,10 @@
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
 		getFilesSlow(src, asset_cache.cache, register_asset = FALSE)
 
-mob/proc/MayRespawn()
+/mob/proc/MayRespawn()
 	return FALSE
 
-client/proc/MayRespawn()
+/client/proc/MayRespawn()
 	if(mob)
 		return mob.MayRespawn()
 
@@ -428,32 +439,6 @@ client/proc/MayRespawn()
 // for testing
 /client/proc/_winset(arg1, arg2)
 	winset(src, arg1, arg2)
-
-// Patreon stuff
-/client/proc/isPatron(pledge = "$3+")
-
-	switch (pledge)
-		if ("$3+")
-			if (isPatron("$5+") || isPatron("$10+"))
-				return TRUE
-		if ("$5+")
-			if (isPatron("$10+"))
-				return TRUE
-
-	var/list/tables = database.execute("SELECT * FROM patreon WHERE (user = '[ckey]' OR user = '[key]') AND pledge = '[pledge]';")
-	if (islist(tables) && !isemptylist(tables))
-		return TRUE
-
-	return FALSE
-
-/client/proc/highest_patreon_level()
-	if (isPatron("$3+"))
-		if (isPatron("$5+"))
-			if (isPatron("$10+"))
-				return "$10+"
-			return "$5+"
-		return "$3+"
-	return null
 
 // testing
 /client/proc/delme()

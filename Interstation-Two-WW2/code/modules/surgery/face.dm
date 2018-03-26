@@ -112,7 +112,7 @@
 	max_duration = 100
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		return ..() && target.op_stage.face > FALSE
+		return ..() && target.op_stage.face > 0
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] is beginning to cauterize the incision on [target]'s face and neck with \the [tool]." , \

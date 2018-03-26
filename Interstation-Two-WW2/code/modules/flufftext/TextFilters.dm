@@ -31,7 +31,7 @@ proc/NewStutter(phrase,stunned)
 	var/list/unstuttered_words = split_phrase.Copy()
 	var/i = rand(1,3)
 	if(stunned) i = split_phrase.len
-	for(,i > FALSE,i--) //Pick a few words to stutter on.
+	for(,i > 0,i--) //Pick a few words to stutter on.
 
 		if (!unstuttered_words.len)
 			break
@@ -63,7 +63,7 @@ proc/Stagger(mob/M,d) //Technically not a filter, but it relates to drunkenness.
 	step(M, pick(d,turn(d,90),turn(d,-90)))
 
 proc/Ellipsis(original_msg, chance = 50)
-	if(chance <= FALSE) return "..."
+	if(chance <= 0) return "..."
 	if(chance >= 100) return original_msg
 
 	var/list

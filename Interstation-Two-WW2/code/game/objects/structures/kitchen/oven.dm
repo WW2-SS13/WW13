@@ -59,14 +59,16 @@
 				contents -= I
 				qdel(I)
 		else
+			I.name = replacetext(I.name, "raw ", "")
+			I.desc = replacetext(I.desc, "raw", "roasted")
 			I.name = "roasted [I.name]"
 			I.color = "#E59400"
 			I.reagents.multiply_reagent("nutriment", 5)
 			I.reagents.multiply_reagent("protein", 3)
-			I.reagents.del_reagent("toxin")
 			if (istype(I, /obj/item/weapon/reagent_containers/food/snacks))
 				var/obj/item/weapon/reagent_containers/food/snacks/F = I
 				F.roasted = TRUE
+				F.raw = FALSE
 
 	for (var/obj/item/I in contents)
 		I.loc = get_turf(src)

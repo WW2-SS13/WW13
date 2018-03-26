@@ -30,7 +30,7 @@
 
 			middleX = minX + 3 // todo : make this a constant based on train width
 
-			//get pseudoturf TRUE - middle x, lowest y - TRUE
+			//get pseudoturf TRUE - middle x, lowest y - 1
 			var/turf/t1 = locate(middleX, minY-1, z)
 
 			connector_turfs["turf"] = t1
@@ -50,7 +50,7 @@
 
 			middleY = minY + 2 // todo : make this a constant based on train width
 
-			//get pseudoturf TRUE - middle y, highest x + TRUE
+			//get pseudoturf TRUE - middle y, highest x + 1
 			var/turf/t1 = locate(maxX+1, middleY, z)
 
 			connector_turfs["turf"] = t1

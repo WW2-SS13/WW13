@@ -26,7 +26,7 @@
 	visible_message("<span class = 'danger'>[src] is hit by the bullet!</span>")
 	if (istype(src, /obj/structure/simple_door/key_door))
 		src:damage_display()
-	if (health <= FALSE)
+	if (health <= 0)
 		qdel(src)
 
 /obj/structure/simple_door/proc/TemperatureAct(temperature)
@@ -156,7 +156,7 @@
 	return TRUE // for key_doors
 
 /obj/structure/simple_door/proc/CheckHardness()
-	if(hardness <= FALSE)
+	if(hardness <= 0)
 		Dismantle(1)
 
 /obj/structure/simple_door/proc/Dismantle(devastated = FALSE)

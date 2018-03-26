@@ -14,7 +14,7 @@ FLOOR SAFES
 	density = TRUE
 	var/open = FALSE		//is the safe open?
 	var/tumbler_1_pos	//the tumbler position- from FALSE to 72
-	var/tumbler_1_open	//the tumbler position to open at- FALSE to 72
+	var/tumbler_1_open	//the tumbler position to open at- 0 to 72
 	var/tumbler_2_pos
 	var/tumbler_2_open
 	var/dial = FALSE		//where is the dial pointing?
@@ -52,14 +52,14 @@ FLOOR SAFES
 
 
 /obj/structure/safe/proc/decrement(num)
-	num -= TRUE
-	if(num < FALSE)
+	num -= 1
+	if(num < 0)
 		num = 71
 	return num
 
 
 /obj/structure/safe/proc/increment(num)
-	num += TRUE
+	num += 1
 	if(num > 71)
 		num = FALSE
 	return num
@@ -107,7 +107,7 @@ FLOOR SAFES
 
 	if(href_list["decrement"])
 		dial = decrement(dial)
-		if(dial == tumbler_1_pos + TRUE || dial == tumbler_1_pos - 71)
+		if(dial == tumbler_1_pos + 1 || dial == tumbler_1_pos - 71)
 			tumbler_1_pos = decrement(tumbler_1_pos)
 			if(canhear)
 				user << "<span class='notice'>You hear a [pick("clack", "scrape", "clank")] from [src].</span>"
@@ -121,7 +121,7 @@ FLOOR SAFES
 
 	if(href_list["increment"])
 		dial = increment(dial)
-		if(dial == tumbler_1_pos - TRUE || dial == tumbler_1_pos + 71)
+		if(dial == tumbler_1_pos - 1 || dial == tumbler_1_pos + 71)
 			tumbler_1_pos = increment(tumbler_1_pos)
 			if(canhear)
 				user << "<span class='notice'>You hear a [pick("clack", "scrape", "clank")] from [src].</span>"

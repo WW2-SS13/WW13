@@ -46,7 +46,7 @@
 
 /obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
 	if(!proximity) return
-	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= TRUE)
+	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to_obj(src, 10)
 		user << "<span class='notice'>You fill the balloon with the contents of [A].</span>"
 		desc = "A translucent balloon with some form of liquid sloshing around in it."
@@ -56,9 +56,9 @@
 /obj/item/toy/balloon/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/reagent_containers/glass))
 		if(O.reagents)
-			if(O.reagents.total_volume < TRUE)
+			if(O.reagents.total_volume < 1)
 				user << "The [O] is empty."
-			else if(O.reagents.total_volume >= TRUE)
+			else if(O.reagents.total_volume >= 1)
 				if(O.reagents.has_reagent("pacid", TRUE))
 					user << "The acid chews through the balloon!"
 					O.reagents.splash(user, reagents.total_volume)
@@ -71,7 +71,7 @@
 	return
 
 /obj/item/toy/balloon/throw_impact(atom/hit_atom)
-	if(reagents.total_volume >= TRUE)
+	if(reagents.total_volume >= 1)
 		visible_message("<span class='warning'>\The [src] bursts!</span>","You hear a pop and a splash.")
 		reagents.touch_turf(get_turf(hit_atom))
 		for(var/atom/A in get_turf(hit_atom))
@@ -83,7 +83,7 @@
 	return
 
 /obj/item/toy/balloon/update_icon()
-	if(reagents.total_volume >= TRUE)
+	if(reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
 	else
@@ -219,7 +219,7 @@
 
 // ******* Check
 
-		if (bullets > FALSE && M.lying)
+		if (bullets > 0 && M.lying)
 
 			for(var/mob/O in viewers(M, null))
 				if(O.client)
@@ -364,12 +364,12 @@
 	else if (locate (/obj/structure/table, loc))
 		return
 
-	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= TRUE)
+	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to(src, 10)
 		user << "<span class='notice'>You refill your flower!</span>"
 		return
 
-	else if (reagents.total_volume < TRUE)
+	else if (reagents.total_volume < 1)
 		empty = TRUE
 		user << "<span class='notice'>Your flower has run dry!</span>"
 		return

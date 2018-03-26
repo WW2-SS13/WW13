@@ -267,7 +267,7 @@
 		affecting.set_dir(WEST)
 		if(iscarbon(affecting))
 			var/mob/living/carbon/C = affecting
-			C.losebreath += TRUE
+			C.losebreath += 1
 	adjust_position()
 
 //This is used to make sure the victim hasn't managed to yackety sax away before using the grab.
@@ -277,7 +277,7 @@
 		return FALSE
 
 	if(affecting)
-		if(!isturf(assailant.loc) || ( !isturf(affecting.loc) || assailant.loc != affecting.loc && get_dist(assailant, affecting) > TRUE) )
+		if(!isturf(assailant.loc) || ( !isturf(affecting.loc) || assailant.loc != affecting.loc && get_dist(assailant, affecting) > 1) )
 			qdel(src)
 			return FALSE
 

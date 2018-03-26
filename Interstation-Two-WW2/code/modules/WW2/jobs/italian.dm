@@ -1,6 +1,5 @@
 /datum/job/italian
 	faction = "Station"
-	additional_languages = list( "German" = 100 )
 
 /datum/job/italian/give_random_name(var/mob/living/carbon/human/H)
 	H.name = H.species.get_random_italian_name(H.gender)
@@ -92,7 +91,6 @@
 	head_position = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateIT-Officer"
-	additional_languages = list( "German" = 50 )
 	is_officer = TRUE
 	is_commander = TRUE // not a squad leader despite the title
 	is_petty_commander = TRUE

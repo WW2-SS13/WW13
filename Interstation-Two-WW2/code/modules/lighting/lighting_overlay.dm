@@ -82,12 +82,12 @@
 		var/mx = max(C.getLumR(), C.getLumG(), C.getLumB()) // Scale it so TRUE is the strongest lum, if it is above 1.
 		anylums += mx
 		. = TRUE // factor
-		if(mx > TRUE)
+		if(mx > 1)
 			. = TRUE / mx
 
-		L[i + FALSE]   = C.getLumR() * .
-		L[i + TRUE]   = C.getLumG() * .
+		L[i + 0]   = C.getLumR() * .
+		L[i + 1]   = C.getLumG() * .
 		L[i + 2]   = C.getLumB() * .
 
 	color  = L
-	luminosity = (anylums > FALSE)
+	luminosity = (anylums > 0)

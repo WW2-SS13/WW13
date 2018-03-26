@@ -17,7 +17,7 @@
 		do
 			char = input("Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining") as null|text
 			if(char)
-				if(length(char) > TRUE)
+				if(length(char) > 1)
 					alert(user, "Only single characters allowed.", "Error", "Ok")
 				else if(char in list(";", ":", "."))
 					alert(user, "Radio character. Rejected.", "Error", "Ok")

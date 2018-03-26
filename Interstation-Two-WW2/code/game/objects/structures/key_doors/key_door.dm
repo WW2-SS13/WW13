@@ -84,7 +84,7 @@ var/list/nonbreaking_types = list(
 					playsound(get_turf(src), 'sound/effects/grillehit.ogg', 100)
 				health -= W.force
 				damage_display()
-				if (health <= FALSE)
+				if (health <= 0)
 					visible_message("<span class = 'danger'>[src] collapses into a pile of scrap metal!</span>")
 					qdel(src)
 				spawn (7)

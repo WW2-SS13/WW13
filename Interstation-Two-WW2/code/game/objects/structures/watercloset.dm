@@ -149,7 +149,7 @@
 	name = "mist"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mist"
-	layer = MOB_LAYER + TRUE
+	layer = MOB_LAYER + 1
 	anchored = TRUE
 	mouse_opacity = FALSE
 
@@ -182,7 +182,7 @@
 		mymist = null
 
 	if(on)
-		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + TRUE, dir)
+		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
 		if(temperature_settings[watertemp] < T20C)
 			return //no mist for cold water
 		if(!ismist)
@@ -417,7 +417,7 @@
 	else if (istype(O, /obj/item/weapon/melee/baton))
 		var/obj/item/weapon/melee/baton/B = O
 		if(B.bcell)
-			if(B.bcell.charge > FALSE && B.status == TRUE)
+			if(B.bcell.charge > 0 && B.status == TRUE)
 				flick("baton_active", src)
 				user.Stun(10)
 				user.stuttering = 10

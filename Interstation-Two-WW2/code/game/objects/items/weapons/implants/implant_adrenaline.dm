@@ -19,7 +19,7 @@
 
 
 /obj/item/weapon/implant/adrenalin/trigger(emote, mob/source as mob)
-	if (uses < TRUE)	return FALSE
+	if (uses < 1)	return FALSE
 	if (emote == "pale")
 		uses--
 		source << "<span class='notice'>You feel a sudden surge of energy!</span>"

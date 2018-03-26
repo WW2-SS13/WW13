@@ -272,7 +272,7 @@
 		var/error = dist_y/2 - dist_x
 		while(src && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || (a && a.has_gravity == FALSE)  || istype(loc, /turf/space)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
-			if(error < FALSE)
+			if(error < 0)
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
@@ -372,16 +372,16 @@
 			x = world.maxx - TRANSITIONEDGE - 2
 			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
-		else if (x >= (world.maxx - TRANSITIONEDGE + TRUE))
-			x = TRANSITIONEDGE + TRUE
+		else if (x >= (world.maxx - TRANSITIONEDGE + 1))
+			x = TRANSITIONEDGE + 1
 			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
 		else if (y <= TRANSITIONEDGE)
 			y = world.maxy - TRANSITIONEDGE -2
 			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
-		else if (y >= (world.maxy - TRANSITIONEDGE + TRUE))
-			y = TRANSITIONEDGE + TRUE
+		else if (y >= (world.maxy - TRANSITIONEDGE + 1))
+			y = TRANSITIONEDGE + 1
 			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
 		spawn(0)

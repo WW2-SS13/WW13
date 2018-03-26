@@ -58,7 +58,7 @@
 			var/mob/living/carbon/human/H = user
 			if (blood_level)
 				H.bloody_hands(target,0)
-			if (blood_level > TRUE)
+			if (blood_level > 1)
 				H.bloody_body(target,0)
 		return
 
@@ -121,11 +121,11 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 proc/sort_surgeries()
 	var/gap = surgery_steps.len
 	var/swapped = TRUE
-	while (gap > TRUE || swapped)
+	while (gap > 1 || swapped)
 		swapped = FALSE
-		if(gap > TRUE)
+		if(gap > 1)
 			gap = round(gap / 1.247330950103979)
-		if(gap < TRUE)
+		if(gap < 1)
 			gap = TRUE
 		for(var/i = TRUE; gap + i <= surgery_steps.len; i++)
 			var/datum/surgery_step/l = surgery_steps[i]		//Fucking hate

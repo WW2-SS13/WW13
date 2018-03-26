@@ -215,7 +215,7 @@
 		if(prob(5))
 			remove_fuel(1)
 
-		if(get_fuel() < TRUE)
+		if(get_fuel() < 1)
 			setWelding(0)
 
 	//I'm not sure what this does. I assume it has to do with starting fires...
@@ -231,12 +231,12 @@
 
 /obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= TRUE && !welding)
+	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !welding)
 		O.reagents.trans_to_obj(src, max_fuel)
 		user << "<span class='notice'>Welder refueled</span>"
 		playsound(loc, 'sound/effects/refill.ogg', 50, TRUE, -6)
 		return
-	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= TRUE && welding)
+	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && welding)
 		message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
 		log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
 		user << "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>"
@@ -297,7 +297,7 @@
 	var/turf/T = get_turf(src)
 	//If we're turning it on
 	if(set_welding && !welding)
-		if (get_fuel() > FALSE)
+		if (get_fuel() > 0)
 			if(M)
 				M << "<span class='notice'>You switch the [src] on.</span>"
 			else if(T)

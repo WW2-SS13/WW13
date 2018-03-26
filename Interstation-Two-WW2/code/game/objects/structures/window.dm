@@ -235,7 +235,7 @@
 	if(W.flags & NOBLUDGEON) return
 
 	if(istype(W, /obj/item/weapon/screwdriver))
-		if(reinf && state >= TRUE)
+		if(reinf && state >= 1)
 			state = 3 - state
 			update_nearby_icons()
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
@@ -248,7 +248,7 @@
 			set_anchored(!anchored)
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
 			user << (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>")
-	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= TRUE)
+	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
 		state = TRUE - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 75, TRUE)
 		user << (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>")
@@ -358,7 +358,7 @@
 
 //checks if this window is a full-tile one
 /obj/structure/window/proc/is_fulltile()
-	if(dir & (dir - TRUE))
+	if(dir & (dir - 1))
 		return TRUE
 	return FALSE
 

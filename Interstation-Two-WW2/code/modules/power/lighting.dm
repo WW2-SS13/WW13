@@ -189,6 +189,18 @@
 	density = TRUE
 	layer = MOB_LAYER + 0.5
 
+/obj/machinery/light/floor/streetlight/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			qdel(src)
+			return
+		if(2.0)
+			if(prob(25))
+				qdel(src)
+				return
+		if(3.0)
+			return
+
 /obj/machinery/light/small
 	icon_state = "bulb1"
 	base_state = "bulb"
@@ -533,7 +545,7 @@
 		else
 			prot = TRUE
 
-		if(prot > FALSE || (COLD_RESISTANCE in user.mutations))
+		if(prot > 0 || (COLD_RESISTANCE in user.mutations))
 			user << "You remove the light [fitting]"
 		else if(TK in user.mutations)
 			user << "You telekinetically remove the light [fitting]."

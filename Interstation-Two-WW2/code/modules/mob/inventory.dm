@@ -184,7 +184,7 @@ var/list/slot_equipment_priority = list( \
 			Target = loc
 
 		if (W.scoped_invisible)
-			if (W.invisibility > FALSE)
+			if (W.invisibility > 0)
 				W.invisibility = FALSE
 
 		remove_from_mob(W)

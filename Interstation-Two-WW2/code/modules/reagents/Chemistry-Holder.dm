@@ -127,7 +127,7 @@
 /* Holder-to-chemical */
 
 /datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = FALSE)
-	if(!isnum(amount) || amount <= FALSE)
+	if(!isnum(amount) || amount <= 0)
 		return FALSE
 
 	update_total()
@@ -181,7 +181,7 @@
 			if (id == "blood")
 				if (my_atom && ishuman(my_atom))
 					var/mob/living/carbon/human/H = my_atom
-					H.nutrition -= amount/4
+					H.nutrition -= amount/8
 					H.nutrition = min(H.nutrition, H.max_nutrition)
 					H.nutrition = max(H.nutrition, -H.max_nutrition)
 			return TRUE
@@ -252,7 +252,7 @@
 
 /* Holder-to-holder and similar procs */
 
-/datum/reagents/proc/remove_any(var/amount = TRUE) // Removes up to [amount] of reagents from [src]. Returns actual amount removed.
+/datum/reagents/proc/remove_any(var/amount = 1) // Removes up to [amount] of reagents from [src]. Returns actual amount removed.
 	amount = min(amount, total_volume)
 
 	if(!amount)

@@ -260,7 +260,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(E && istype(E))
-			if(E.damage > FALSE)
+			if(E.damage > 0)
 				E.damage = max(E.damage - 5 * removed, FALSE)
 
 /datum/reagent/peridaxon
@@ -278,7 +278,7 @@
 		var/mob/living/carbon/human/H = M
 
 		for(var/obj/item/organ/I in H.internal_organs)
-			if((I.damage > FALSE) && (I.robotic != 2)) //Peridaxon heals only non-robotic organs
+			if((I.damage > 0) && (I.robotic != 2)) //Peridaxon heals only non-robotic organs
 				I.damage = max(I.damage - removed, FALSE)
 
 /datum/reagent/ryetalyn
@@ -291,7 +291,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/ryetalyn/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/needs_update = M.mutations.len > FALSE
+	var/needs_update = M.mutations.len > 0
 
 	M.mutations = list()
 	M.disabilities = FALSE

@@ -10,4 +10,4 @@
 	var/ref = copytext(data, TRUE, findtext(data, ";"))
 	if (skincmds[ref] != null)
 		var/obj/a = skincmds[ref]
-		a.SkinCmd(src, copytext(data, findtext(data, ";") + TRUE))
+		a.SkinCmd(src, copytext(data, findtext(data, ";") + 1))

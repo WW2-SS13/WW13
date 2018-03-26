@@ -9,7 +9,7 @@
 
 */
 
-#define TEAM_RU TRUE
+#define TEAM_RU 1
 #define TEAM_GE 2
 #define TEAM_PN 3
 
@@ -60,25 +60,35 @@ var/global/squad_members[3]
 
 /datum/faction/german/base_type()
 	return "/datum/faction/german"
-// you appear to be a SS soldier to all other germans
+// you appear to be a SS soldier to all other germans/italians
 /datum/faction/german/SS
 	icon_state = "ss_soldier"
 	title = "SS Soldier"
 	team = TEAM_GE
-// you appear to be an officer to all other germans
+// you appear to be an officer to all other germans/italians
 /datum/faction/german/officer
 	icon_state = "german_officer"
 	title = "Wehrmacht Officer"
 	team = TEAM_GE
-// you appear to be a german leader to all other germans
+// you appear to be a german leader to all other germans/italians
 /datum/faction/german/commander
 	icon_state = "german_commander"
-	title = "Feldwebel"
+	title = "Hauptmann"
 	team = TEAM_GE
-// you appear to be a SS leader to all other germans
+// you appear to be a SS leader to all other germans/italians
 /datum/faction/german/commander/SS
 	icon_state = "ss_commander"
-	title = "Feldwebel"
+	title = "SS Commander"
+	team = TEAM_GE
+// you appear to be an Italian soldier to all other germans/italians
+/datum/faction/german/italian
+	icon_state = "italian_soldier"
+	title = "Italian Soldier"
+	team = TEAM_GE
+// you appear to be an officer to all other germans/italians
+/datum/faction/german/commander/italian
+	icon_state = "italian_commander"
+	title = "Italian Commander"
 	team = TEAM_GE
 // you appear to be a soviet soldier to all other sovivets
 /datum/faction/soviet
@@ -91,10 +101,12 @@ var/global/squad_members[3]
 // you appear to be an officer to all other soviets
 /datum/faction/soviet/officer
 	icon_state = "soviet_officer"
+	title = "Soviet Officer"
 	team = TEAM_RU
 // you appear to be a soviet leader to all other soviets
 /datum/faction/soviet/commander
 	icon_state = "soviet_commander"
+	title = "Kapitan"
 	team = TEAM_RU
 // squads: both german and soviet use the same types. What squad you appear
 // to be in, and to whom, depends on your true faction. Spies
@@ -236,7 +248,7 @@ var/global/squad_members[3]
 	return (istype(H.original_job, /datum/job/soviet) && issquadleader(H))
 
 /proc/sharesquads(var/mob/living/carbon/human/H, var/mob/living/carbon/human/HH)
-	return (getsquad(H) == getsquad(HH) && getsquad(H))
+	return (getsquad(H) && getsquad(H) == getsquad(HH))
 
 /proc/isleader(var/mob/living/carbon/human/H, var/mob/living/carbon/human/HH)
 	if (issquadleader(H) && issquadmember(HH) && getsquad(H) == getsquad(HH))

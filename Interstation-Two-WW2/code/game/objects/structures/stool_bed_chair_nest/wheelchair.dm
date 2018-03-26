@@ -44,7 +44,7 @@
 		return
 	if(propelled)
 		return
-	if(pulling && (get_dist(src, pulling) > TRUE))
+	if(pulling && (get_dist(src, pulling) > 1))
 		pulling = null
 		user.pulledby = null
 		if(user==pulling)
@@ -67,7 +67,7 @@
 	//--2----Move driver----2--//
 	if(pulling)
 		T = pulling.loc
-		if(get_dist(src, pulling) >= TRUE)
+		if(get_dist(src, pulling) >= 1)
 			step(pulling, get_dir(pulling.loc, loc))
 	//--3--Move wheelchair--3--//
 	step(src, direction)
@@ -79,7 +79,7 @@
 			pulling.forceMove(T)
 		else
 			spawn(0)
-			if(get_dist(src, pulling) > TRUE) // We are too far away? Losing control.
+			if(get_dist(src, pulling) > 1) // We are too far away? Losing control.
 				pulling = null
 				user.pulledby = null
 			pulling.set_dir(get_dir(pulling, src)) // When everything is right, face the wheelchair
@@ -108,7 +108,7 @@
 							Bump(O)
 				else
 					unbuckle_mob()
-			if (pulling && (get_dist(src, pulling) > TRUE))
+			if (pulling && (get_dist(src, pulling) > 1))
 				pulling.pulledby = null
 				pulling << "<span class='warning'>You lost your grip!</span>"
 				pulling = null

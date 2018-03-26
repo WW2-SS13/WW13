@@ -169,7 +169,7 @@ datum/controller/vote
 		if(mode)
 			if(config.vote_no_dead && usr.stat == DEAD && !usr.client.holder)
 				return FALSE
-			if(vote && vote >= TRUE && vote <= choices.len)
+			if(vote && vote >= 1 && vote <= choices.len)
 				if(current_votes[ckey])
 					choices[choices[current_votes[ckey]]]--
 				voted += usr.ckey

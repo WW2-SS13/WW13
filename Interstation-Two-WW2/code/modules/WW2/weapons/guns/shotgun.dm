@@ -63,7 +63,7 @@
 
 	accuracy_increase_mod = 1.00
 	accuracy_decrease_mod = 1.00
-	KD_chance = 20
+	KD_chance = KD_CHANCE_HIGH
 	stat = "heavy"
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()

@@ -68,7 +68,7 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
 	if (!istype(perp))
 		return
-	if(amount < TRUE)
+	if(amount < 1)
 		return
 
 	var/obj/item/organ/external/l_foot = perp.get_organ("l_foot")
@@ -219,7 +219,7 @@ var/global/list/image/splatter_cache=list()
                 var/direction = pick(directions)
                 for (var/i = FALSE, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
                         sleep(3)
-                        if (i > FALSE)
+                        if (i > 0)
                                 var/obj/effect/decal/cleanable/blood/b = PoolOrNew(/obj/effect/decal/cleanable/blood/splatter, loc)
                                 b.basecolor = basecolor
                                 b.update_icon()

@@ -4,6 +4,7 @@
 	icon_state = "coffin"
 	icon_closed = "coffin"
 	icon_opened = "coffin_open"
+	throwpass = TRUE
 
 /obj/structure/closet/coffin/anchored
 	anchored = TRUE

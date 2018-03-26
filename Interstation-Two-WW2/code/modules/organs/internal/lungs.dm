@@ -188,7 +188,7 @@
 
 		//breathing in hot/cold air also heats/cools you a bit
 		var/temp_adj = breath.temperature - owner.bodytemperature
-		if (temp_adj < FALSE)
+		if (temp_adj < 0)
 			temp_adj /= (BODYTEMP_COLD_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
 		else
 			temp_adj /= (BODYTEMP_HEAT_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
@@ -205,3 +205,32 @@
 		species.get_environment_discomfort(owner,"heat")
 	else if(breath.temperature <= species.cold_discomfort_level)
 		species.get_environment_discomfort(owner,"cold")*/
+
+#define NO_INTERNAL_BLEEDING
+
+/obj/item/organ/lungs
+	name = "lungs"
+	icon_state = "lungs"
+	gender = PLURAL
+	organ_tag = "lungs"
+	parent_organ = "chest"
+
+/obj/item/organ/lungs/process()
+	..()
+
+	if(!owner)
+		return
+
+	if (germ_level > INFECTION_LEVEL_ONE)
+		if(prob(5))
+			owner.emote("cough")		//respitory tract infection
+
+	#ifndef NO_INTERNAL_BLEEDING
+	if(is_bruised())
+		if(prob(2))
+			spawn owner.emote("me", TRUE, "coughs up blood!")
+			owner.drip(10)
+		if(prob(4))
+			spawn owner.emote("me", TRUE, "gasps for air!")
+			owner.losebreath += 15
+	#endif

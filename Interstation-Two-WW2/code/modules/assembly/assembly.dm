@@ -50,7 +50,7 @@
 
 	process_cooldown()
 		cooldown--
-		if(cooldown <= FALSE)	return FALSE
+		if(cooldown <= 0)	return FALSE
 		spawn(10)
 			process_cooldown()
 		return TRUE
@@ -75,7 +75,7 @@
 
 
 	activate()
-		if(!secured || (cooldown > FALSE))	return FALSE
+		if(!secured || (cooldown > 0))	return FALSE
 		cooldown = 2
 		spawn(10)
 			process_cooldown()
@@ -155,7 +155,7 @@
 
 
 	Activate()
-		if(cooldown > FALSE)
+		if(cooldown > 0)
 			return FALSE
 		cooldown = 2
 		spawn(10)
@@ -166,7 +166,7 @@
 
 	Process_cooldown()
 		cooldown--
-		if(cooldown <= FALSE)	return FALSE
+		if(cooldown <= 0)	return FALSE
 		spawn(10)
 			Process_cooldown()
 		return TRUE

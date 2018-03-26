@@ -50,7 +50,7 @@
 /obj/item/stack/proc/list_recipes(mob/user as mob, recipes_sublist)
 	if (!recipes)
 		return
-	if (!src || get_amount() <= FALSE)
+	if (!src || get_amount() <= 0)
 		user << browse(null, "window=stack")
 	user.set_machine(src) //for correct work of onclose
 	var/list/recipe_list = recipes
@@ -307,7 +307,7 @@
 		return FALSE
 	if(!uses_charge)
 		amount -= used
-		if (amount <= FALSE)
+		if (amount <= 0)
 			if(usr)
 				usr.remove_from_mob(src)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
@@ -388,7 +388,7 @@
 			return FALSE
 		var/datum/matter_synth/S = synths[1]
 		. = round(S.get_charge() / charge_costs[1])
-		if(charge_costs.len > TRUE)
+		if(charge_costs.len > 1)
 			for(var/i = 2 to charge_costs.len)
 				S = synths[i]
 				. = min(., round(S.get_charge() / charge_costs[i]))
@@ -401,7 +401,7 @@
 			return FALSE
 		var/datum/matter_synth/S = synths[1]
 		. = round(S.max_energy / charge_costs[1])
-		if(uses_charge > TRUE)
+		if(uses_charge > 1)
 			for(var/i = 2 to uses_charge)
 				S = synths[i]
 				. = min(., round(S.max_energy / charge_costs[i]))

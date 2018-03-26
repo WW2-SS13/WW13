@@ -42,20 +42,6 @@ var/database/database = null
 		if (!execute("TABLE whitelists EXISTS;"))
 			execute("CREATE TABLE whitelists (key STRING, val STRING);")
 
-		// TODO: simple patreon table (user, pledge, metadata) to replace
-		// these two patreon tables. Why? Because we probably won't have
-		// specific rewards, we don't need a rewards table. But, the metadata
-		// table will be there in case we do need to store more specific reward
-		// info. Otherwise, for example, for the $3 reward, we simply check
-		// if they're a $3 patron (client.isPatron("$3")), and if they are,
-		// give them the OOC color pref. If they're a $5 patreon, when they
-		// try to submit tips, ditto. $10 patreon, let them bypass whitelist
-		// with the same check - Kachnov
-
-		// where we store raw patreon data
-		if (!execute("TABLE patreon EXISTS;"))
-			execute("CREATE TABLE patreon (user STRING, pledge STRING);")
-
 		// where we store player tip input
 		if (!execute("TABLE player_tips EXISTS;"))
 			execute("CREATE TABLE player_tips (UID STRING, submitter STRING, tip STRING);")

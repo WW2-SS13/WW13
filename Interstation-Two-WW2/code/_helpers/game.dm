@@ -44,7 +44,7 @@
 		return A
 
 /proc/in_range(source, user)
-	if(get_dist(source, user) <= TRUE)
+	if(get_dist(source, user) <= 1)
 		return TRUE
 
 	return FALSE //not in range and not telekinetic
@@ -53,12 +53,12 @@
 	var/dx = finish.x - start.x
 	var/dy = finish.y - start.y
 	if(abs(dy) > abs(dx))
-		if(dy > FALSE)
+		if(dy > 0)
 			return NORTH
 		else
 			return SOUTH
 	else
-		if(dx > FALSE)
+		if(dx > 0)
 			return EAST
 		else
 			return WEST
@@ -278,12 +278,12 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/dx = finish.x - start.x
 	var/dy = finish.y - start.y
 	if(abs(dy) > abs (dx)) //slope is above TRUE:1 (move horizontally in a tie)
-		if(dy > FALSE)
+		if(dy > 0)
 			return get_step(start, SOUTH)
 		else
 			return get_step(start, NORTH)
 	else
-		if(dx > FALSE)
+		if(dx > 0)
 			return get_step(start, WEST)
 		else
 			return get_step(start, EAST)
@@ -300,7 +300,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = FALSE
-	while(candidates.len <= FALSE && i < 5)
+	while(candidates.len <= 0 && i < 5)
 		for(var/mob/observer/ghost/G in player_list)
 			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
@@ -313,7 +313,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 /proc/get_alien_candidates()
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = FALSE
-	while(candidates.len <= FALSE && i < 5)
+	while(candidates.len <= 0 && i < 5)
 		for(var/mob/observer/ghost/G in player_list)
 			if(MODE_XENOMORPH in G.client.prefs.be_special_role)
 				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien

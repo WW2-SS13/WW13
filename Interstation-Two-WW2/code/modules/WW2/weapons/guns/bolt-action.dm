@@ -52,7 +52,7 @@
 
 	accuracy_increase_mod = 1.10
 	accuracy_decrease_mod = 1.20
-	KD_chance = 50
+	KD_chance = KD_CHANCE_HIGH
 	stat = "rifle"
 
 	var/jammed_until = -1

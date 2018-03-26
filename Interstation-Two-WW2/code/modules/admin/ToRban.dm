@@ -34,7 +34,7 @@
 				if( copytext(line,1,12) == "ExitAddress" )
 					var/cleaned = copytext(line,13,length(line)-19)
 					if(!cleaned)	continue
-					F[cleaned] << TRUE
+					F[cleaned] << 1
 			F["last_update"] << world.realtime
 			log_misc("ToR data updated!")
 			if(usr)	usr << "ToRban updated."

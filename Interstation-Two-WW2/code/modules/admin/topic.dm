@@ -720,8 +720,8 @@
 
 		var/list/offset = splittext(href_list["offset"],",")
 		var/number = dd_range(1, 100, text2num(href_list["object_count"]))
-		var/X = offset.len > FALSE ? text2num(offset[1]) : FALSE
-		var/Y = offset.len > TRUE ? text2num(offset[2]) : FALSE
+		var/X = offset.len > 0 ? text2num(offset[1]) : FALSE
+		var/Y = offset.len > 1 ? text2num(offset[2]) : FALSE
 		var/Z = offset.len > 2 ? text2num(offset[3]) : FALSE
 		var/tmp_dir = href_list["object_dir"]
 		var/obj_dir = tmp_dir ? text2num(tmp_dir) : 2

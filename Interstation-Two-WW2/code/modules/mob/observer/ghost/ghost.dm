@@ -725,7 +725,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/choices = list()
 	for(var/obj/effect/decal/cleanable/blood/B in view(1,src))
-		if(B.amount > FALSE)
+		if(B.amount > 0)
 			choices += B
 
 	if(!choices.len)

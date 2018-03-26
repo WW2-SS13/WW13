@@ -93,7 +93,7 @@
 	if( virtualIcon.GetPixel(p_x, p_y) ) // if the located pixel isn't blank (null)
 
 		hp -= Proj.damage
-		if(hp <= FALSE)
+		if(hp <= 0)
 			for(var/mob/O in oviewers())
 				if ((O.client && !( O.blinded )))
 					O << "<span class='warning'>\The [src] breaks into tiny pieces and collapses!</span>"

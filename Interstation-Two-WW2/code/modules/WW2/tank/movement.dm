@@ -52,7 +52,7 @@
 		movement_delay = slow_movement_delay
 	if (world.time >= next_movement)
 
-		if (fuel <= FALSE)
+		if (fuel <= 0)
 			internal_tank_message("<span class = 'danger'><big>Out of fuel!</big></danger>")
 			return
 

@@ -29,8 +29,7 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 	spawn (1)
 		if (client)
 			client.add_ghost_only_admin_verbs()
-
-	observer_mob_list |= src
+			observer_mob_list |= src
 
 /mob/observer/Destroy()
 	observer_mob_list -= src

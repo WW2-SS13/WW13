@@ -8,8 +8,7 @@ var/global/floorIsLava = FALSE
 	msg = "<span class=\"log_message\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_adminwarn(msg)
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights || R_MOD & C.holder.rights)
-			C << msg
+		C << msg
 
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	log_attack(text)
@@ -246,13 +245,13 @@ proc/admin_notice(var/message, var/rights)
 		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
 		// Emulate ceil(why does BYOND not have ceil)
 		if(number_pages != round(number_pages))
-			number_pages = round(number_pages) + TRUE
-		var/page_index = page - TRUE
-		if(page_index < FALSE || page_index >= number_pages)
+			number_pages = round(number_pages) + 1
+		var/page_index = page - 1
+		if(page_index < 0 || page_index >= number_pages)
 			return
 
-		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + TRUE
-		var/upper_bound = (page_index + TRUE) * PLAYER_NOTES_ENTRIES_PER_PAGE
+		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
+		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
 		upper_bound = min(upper_bound, note_keys.len)
 		for(var/index = lower_bound, index <= upper_bound, index++)
 			var/t = note_keys[index]
@@ -305,7 +304,7 @@ proc/admin_notice(var/message, var/rights)
 		var/update_file = FALSE
 		var/i = FALSE
 		for(var/datum/player_info/I in infos)
-			i += TRUE
+			i += 1
 			if(!I.timestamp)
 				I.timestamp = "Pre-4/3/2012"
 				update_file = TRUE
@@ -788,7 +787,7 @@ proc/admin_notice(var/message, var/rights)
 
 	if(ticker.mode.round_autoantag)
 		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];toggle=autotraitor'>enabled</a></b>."
-		if(ticker.mode.antag_scaling_coeff > FALSE)
+		if(ticker.mode.antag_scaling_coeff > 0)
 			out += " (scaling with <a href='?src=\ref[ticker.mode];set=antag_scaling'>[ticker.mode.antag_scaling_coeff]</a>)"
 		else
 			out += " (not currently scaling, <a href='?src=\ref[ticker.mode];set=antag_scaling'>set a coefficient</a>)"

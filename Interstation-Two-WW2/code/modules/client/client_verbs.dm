@@ -9,3 +9,4 @@
 	set category = "OOC"
 	set name = "See MOTD"
 	src << "<div class=\"motd\">[join_motd]</div>"
+

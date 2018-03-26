@@ -155,7 +155,7 @@
 			client.screen += global_hud.druggy*/
 	if(machine)
 		var/viewflags = machine.check_eye(src)
-		if(viewflags < FALSE)
+		if(viewflags < 0)
 			reset_view(null, FALSE)
 		else if(viewflags)
 			sight |= viewflags

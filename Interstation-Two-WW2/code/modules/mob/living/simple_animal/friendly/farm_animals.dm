@@ -221,18 +221,18 @@ var/global/chicken_count = FALSE
 	icon_dead = "chicken_[body_color]_dead"
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
-	chicken_count += TRUE
+	chicken_count += 1
 
 /mob/living/simple_animal/chicken/death()
 	..()
-	chicken_count -= TRUE
+	chicken_count -= 1
 
 
 /mob/living/simple_animal/chicken/Life()
 	. =..()
 	if(!.)
 		return
-	if(!stat && prob(3) && eggsleft > FALSE)
+	if(!stat && prob(3) && eggsleft > 0)
 		visible_message("[src] [pick("lays an egg.","squats down and croons.","begins making a huge racket.","begins clucking raucously.")]")
 		eggsleft--
 		var/obj/item/weapon/reagent_containers/food/snacks/egg/E = new(get_turf(src))

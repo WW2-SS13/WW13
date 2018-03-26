@@ -270,7 +270,7 @@
 		if(panel_open)
 			attack_hand(user)
 		return*/
-/*	else if(istype(W, /obj/item/weapon/coin) && premium.len > FALSE)
+/*	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
 		user.drop_item()
 		W.loc = src
 		coin = W
@@ -314,7 +314,7 @@
 	visible_message("<span class='info'>\The [usr] inserts some cash into \the [src].</span>")
 	cashmoney.worth -= currently_vending.price
 
-	if(cashmoney.worth <= FALSE)
+	if(cashmoney.worth <= 0)
 		usr.drop_from_inventory(cashmoney)
 		qdel(cashmoney)
 	else
@@ -390,7 +390,7 @@
 		var/datum/transaction/T = new()
 		T.target_name = "[vendor_account.owner_name] (via [name])"
 		T.purpose = "Purchase of [currently_vending.product_name]"
-		if(currently_vending.price > FALSE)
+		if(currently_vending.price > 0)
 			T.amount = "([currently_vending.price])"
 		else
 			T.amount = "[currently_vending.price]"
@@ -521,7 +521,7 @@
 			if(!(R.category & categories))
 				return
 
-			if(R.price <= FALSE)
+			if(R.price <= 0)
 				vend(R, usr)
 
 			else if(istype(usr,/mob/living/silicon)) //If the item is not free, provide feedback if a synth is trying to buy something.
@@ -607,11 +607,11 @@
 	if(!active)
 		return
 
-	if(seconds_electrified > FALSE)
+	if(seconds_electrified > 0)
 		seconds_electrified--
 
 	/*//Pitch to the people!  Really sell it!
-	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > FALSE) && (!shut_up) && prob(5))
+	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0) && (!shut_up) && prob(5))
 		var/slogan = pick(slogan_list)
 		speak(slogan)
 		last_slogan = world.time

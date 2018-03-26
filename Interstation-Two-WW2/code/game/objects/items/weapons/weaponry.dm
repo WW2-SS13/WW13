@@ -87,7 +87,7 @@
 	if(countdown == -1 || (istype(M) && !M.client))
 		return
 
-	if(countdown > FALSE)
+	if(countdown > 0)
 		countdown--
 		return
 

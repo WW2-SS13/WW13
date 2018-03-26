@@ -225,7 +225,7 @@
 		cover = get_step(loc, get_dir(from, loc))
 	if(!cover)
 		return TRUE
-	if (get_dist(P.starting, loc) <= TRUE) //Tables won't help you if people are THIS close
+	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return TRUE
 	if (get_turf(P.original) == cover)
 		var/chance = 20
@@ -240,7 +240,7 @@
 				return TRUE					//But only from one side
 		if(prob(chance))
 			health -= P.damage/2
-			if (health > FALSE)
+			if (health > 0)
 				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
 				return FALSE
 			else

@@ -469,12 +469,12 @@
 	var/thirsty_coeff = min(H.water/H.max_water, 1.0)
 	var/thirsty_percentage = "[round(thirsty_coeff*100)]%"
 
-	if (thirsty_coeff <= FALSE)
+	if (thirsty_coeff <= 0)
 		H << "<span class = 'danger'>You're dehydrating.</span>"
 	else
 		H << "<span class = 'warning'>You're about [thirsty_percentage] hydrated.</span>"
 
-	if (hungry_coeff <= FALSE)
+	if (hungry_coeff <= 0)
 		H << "<span class = 'danger'>You're starving.</span>"
 	else
 		H << "<span class = 'warning'>You're about [hungry_percentage] full.</span>"
@@ -702,7 +702,7 @@
 
 					var/best = FALSE
 					var/bestcontents = FALSE
-					for(var/i=1, i <  contents.len + TRUE , ++i)
+					for(var/i=1, i <  contents.len + 1 , ++i)
 						if(!contents[i])
 							continue
 						if(contents[i] > bestcontents)
@@ -980,7 +980,7 @@
 
 	if(H.stat == UNCONSCIOUS)
 		//Critical damage passage overlay
-		if(H.health <= FALSE)
+		if(H.health <= 0)
 			var/image/I
 			switch(H.health)
 				if(-20 to -10)

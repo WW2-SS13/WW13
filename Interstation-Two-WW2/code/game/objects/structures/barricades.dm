@@ -36,7 +36,7 @@
 		if(D.get_material_name() != material.name)
 			return //hitting things with the wrong type of stack usually doesn't produce messages, and probably doesn't need to.
 		if (health < maxhealth)
-			if (D.get_amount() < TRUE)
+			if (D.get_amount() < 1)
 				user << "<span class='warning'>You need one sheet of [material.display_name] to repair \the [src].</span>"
 				return
 			visible_message("<span class='notice'>[user] begins to repair \the [src].</span>")
@@ -63,7 +63,7 @@
 		..()
 
 /obj/structure/barricade/proc/try_destroy()
-	if (health <= FALSE)
+	if (health <= 0)
 		visible_message("<span class='danger'>The barricade is smashed apart!</span>")
 		dismantle()
 		qdel(src)
@@ -82,7 +82,7 @@
 			return
 		if(2.0)
 			health -= 25
-			if (health <= FALSE)
+			if (health <= 0)
 				visible_message("<span class='danger'>\The [src] is blown apart!</span>")
 				dismantle()
 			return

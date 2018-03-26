@@ -6,49 +6,49 @@
 		// small body parts: head, hand, feet
 		"small" = list(
 			SHORT_RANGE_STILL = 30,
-			SHORT_RANGE_MOVING = 15,
+			SHORT_RANGE_MOVING = 27,
 
 			MEDIUM_RANGE_STILL = 21,
-			MEDIUM_RANGE_MOVING = 11,
+			MEDIUM_RANGE_MOVING = 19,
 
 			LONG_RANGE_STILL = 11,
-			LONG_RANGE_MOVING = 6,
+			LONG_RANGE_MOVING = 10,
 
 			VERY_LONG_RANGE_STILL = 8,
-			VERY_LONG_RANGE_MOVING = 4),
+			VERY_LONG_RANGE_MOVING = 7),
 
 		// medium body parts: limbs
 		"medium" = list(
 			SHORT_RANGE_STILL = 38,
-			SHORT_RANGE_MOVING = 19,
+			SHORT_RANGE_MOVING = 34,
 
 			MEDIUM_RANGE_STILL = 30,
-			MEDIUM_RANGE_MOVING = 15,
+			MEDIUM_RANGE_MOVING = 27,
 
 			LONG_RANGE_STILL = 23,
-			LONG_RANGE_MOVING = 12,
+			LONG_RANGE_MOVING = 21,
 
 			VERY_LONG_RANGE_STILL = 11,
-			VERY_LONG_RANGE_MOVING = 6),
+			VERY_LONG_RANGE_MOVING = 10),
 
 		// large body parts: chest, groin
 		"large" = list(
 			SHORT_RANGE_STILL = 45,
-			SHORT_RANGE_MOVING = 23,
+			SHORT_RANGE_MOVING = 41,
 
 			MEDIUM_RANGE_STILL = 38,
-			MEDIUM_RANGE_MOVING = 19,
+			MEDIUM_RANGE_MOVING = 34,
 
 			LONG_RANGE_STILL = 30,
-			LONG_RANGE_MOVING = 15,
+			LONG_RANGE_MOVING = 27,
 
 			VERY_LONG_RANGE_STILL = 15,
-			VERY_LONG_RANGE_MOVING = 8),
+			VERY_LONG_RANGE_MOVING = 14),
 	)
 
 	accuracy_increase_mod = 1.10
 	accuracy_decrease_mod = 1.20
-	KD_chance = 10
+	KD_chance = KD_CHANCE_LOW
 	stat = "MG"
 
 /obj/item/weapon/gun/projectile/automatic/dp
@@ -62,8 +62,6 @@
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 	caliber = "a762x39"
 	magazine_type = /obj/item/ammo_magazine/a762/dp
-	can_wield = FALSE
-	must_wield = FALSE
 	slot_flags = SLOT_BACK
 
 	firemodes = list(
@@ -78,16 +76,16 @@
 /obj/item/weapon/gun/projectile/automatic/dp/update_icon()
 	if(ammo_magazine)
 		icon_state = "dp"
-		if(wielded)
+	/*	if(wielded)
 			item_state = "dp-w"
 		else
-			item_state = "dp"
+			item_state = "dp"*/
 	else
 		icon_state = "dp0"
-		if(wielded)
+	/*	if(wielded)
 			item_state = "dp-w"
 		else
-			item_state = "dp0"
+			item_state = "dp0"*/
 	update_held_icon()
 	return
 

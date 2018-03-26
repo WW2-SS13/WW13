@@ -39,7 +39,7 @@
 	close_sound = 'sound/items/zip.ogg'
 	var/item_path = /obj/item/bodybag
 	density = FALSE
-	storage_capacity = (MOB_MEDIUM * 2) - TRUE
+	storage_capacity = (MOB_MEDIUM * 2) - 1
 	var/contains_body = FALSE
 
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
@@ -90,7 +90,7 @@
 	if(opened)
 		icon_state = icon_opened
 	else
-		if(contains_body > FALSE)
+		if(contains_body > 0)
 			icon_state = "bodybag_closed1"
 		else
 			icon_state = icon_closed

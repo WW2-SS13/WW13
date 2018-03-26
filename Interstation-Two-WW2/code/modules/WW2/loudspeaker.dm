@@ -5,7 +5,7 @@
 	canhear_range = 7
 	listening = TRUE
 	broadcasting = FALSE
-	layer = MOB_LAYER + TRUE
+	layer = MOB_LAYER + 1
 	anchored = TRUE
 
 /obj/item/device/radio/intercom/loudspeaker/german

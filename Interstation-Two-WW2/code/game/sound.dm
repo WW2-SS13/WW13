@@ -176,7 +176,7 @@ var/list/sneeze_sounds_female = list(
 var/const/FALLOFF_SOUNDS = 0.5
 
 /mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global)
-	if(!client || ear_deaf > FALSE)	return
+	if(!client || ear_deaf > 0)	return
 	soundin = get_sfx(soundin)
 
 	var/distance = -1
@@ -202,7 +202,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 		S.volume -= (max(distance - world.view, 0) * 2)//multiplicative falloff to add on top of natural audio falloff.
 		S.volume = max(S.volume, rand(8,12))
 
-		if (S.volume <= FALSE)
+		if (S.volume <= 0)
 			return	//no volume means no sound
 
 		var/dx = turf_source.x - T.x // Hearing from the right/left

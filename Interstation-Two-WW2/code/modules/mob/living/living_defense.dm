@@ -19,15 +19,15 @@
 
 	//Roll armour
 	if(prob(armor))
-		absorb += TRUE
+		absorb += 1
 	if(prob(armor))
-		absorb += TRUE
+		absorb += 1
 
 	//Roll penetration
 	if(prob(armour_pen))
-		absorb -= TRUE
+		absorb -= 1
 	if(prob(armour_pen))
-		absorb -= TRUE
+		absorb -= 1
 
 	if(absorb >= 2)
 		if(absorb_text)
@@ -282,7 +282,7 @@ var/obj/human_fire_overlay_lying = null
 		return TRUE
 /*
 	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment
-	if(G.gas["oxygen"] < TRUE)
+	if(G.gas["oxygen"] < 1)
 		ExtinguishMob() //If there's no oxygen in the tile we're on, put out the fire
 		return TRUE
 
@@ -332,7 +332,7 @@ var/obj/human_fire_overlay_lying = null
 
 //Finds the effective temperature that the mob is burning at.
 /mob/living/proc/fire_burn_temperature()
-	if (fire_stacks <= FALSE)
+	if (fire_stacks <= 0)
 		return FALSE
 
 	//Scale quadratically so that single digit numbers of fire stacks don't burn ridiculously hot.
@@ -404,7 +404,7 @@ var/obj/human_fire_overlay_lying = null
 			B.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number)
 			//hud_used.SetButtonCoords(B,button_number)
 
-//	if(button_number > FALSE)
+//	if(button_number > 0)
 		/*if(!hud_used.hide_actions_toggle)
 			hud_used.hide_actions_toggle = new(hud_used)
 			hud_used.hide_actions_toggle.InitialiseIcon(src)

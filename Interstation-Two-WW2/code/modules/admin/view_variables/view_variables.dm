@@ -140,7 +140,7 @@
 	else if(islist(value))
 		var/list/L = value
 		vtext = "/list ([L.len])"
-		if(!(varname in view_variables_dont_expand) && L.len > FALSE && L.len < 100)
+		if(!(varname in view_variables_dont_expand) && L.len > 0 && L.len < 100)
 			extra += "<ul>"
 			for (var/index = TRUE to L.len)
 				var/entry = L[index]

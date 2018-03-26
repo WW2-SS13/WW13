@@ -208,7 +208,7 @@
 		shower << msg2
 		shower << msg3
 		shower << msg4
-
+/*
 /client/proc/generate_hit_table()
 	set category = "WW2 (Admin)"
 	set name = "Hit tables"
@@ -244,7 +244,7 @@
 					for(var/shot = TRUE to 1000)
 						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
 							hits++
-					if(hits <= FALSE)
+					if(hits <= 0)
 						text += "0"
 					else
 						text += "[round(hits / 10)]"
@@ -273,7 +273,7 @@
 					for(var/shot = TRUE to 1000)
 						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
 							hits++
-					if(hits <= FALSE)
+					if(hits <= 0)
 						text += "0"
 					else
 						text += "[round(hits / 10)]"
@@ -301,7 +301,7 @@
 					for(var/shot = TRUE to 1000)
 						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
 							hits++
-					if(hits <= FALSE)
+					if(hits <= 0)
 						text += "0"
 					else
 						text += "[round(hits / 10)]"
@@ -314,6 +314,7 @@
 		dat += "</table>"
 
 	usr << browse(dat, "window='Hit table';size=800x400;can_close=1;can_resize=1;can_minimize=1;titlebar=1")
+*/
 
 /*
 /client/proc/set_daytime()

@@ -199,7 +199,7 @@
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
-			ND.sample_object.maptext = "<font color='white'>[(ND.number > TRUE)? "[ND.number]" : ""]</font>"
+			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
 			ND.sample_object.layer = 20
 			cx++
 			if (cx > (Xcord+cols))
@@ -238,7 +238,7 @@
 	var/endpoint = TRUE
 
 	for(var/obj/item/O in contents)
-		startpoint = endpoint + TRUE
+		startpoint = endpoint + 1
 		endpoint += storage_width * O.get_storage_cost()/max_storage_space
 
 		var/matrix/M_start = matrix()
@@ -447,7 +447,7 @@
 
 	if(istype(W, /obj/item/weapon/tray))
 		var/obj/item/weapon/tray/T = W
-		if(T.calc_carry() > FALSE)
+		if(T.calc_carry() > 0)
 			if(prob(85))
 				user << "<span class='warning'>The tray won't fit in [src].</span>"
 				return

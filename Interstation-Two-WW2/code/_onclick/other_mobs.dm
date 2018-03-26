@@ -85,7 +85,7 @@
 			if (I_DISARM) // We stun the target, with the intention to feed
 				var/stunprob = TRUE
 				var/power = max(0, min(10, (powerlevel + rand(0, 3))))
-				if (powerlevel > FALSE && !istype(A, /mob/living/carbon/slime))
+				if (powerlevel > 0 && !istype(A, /mob/living/carbon/slime))
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
 						stunprob *= H.species.siemens_coefficient

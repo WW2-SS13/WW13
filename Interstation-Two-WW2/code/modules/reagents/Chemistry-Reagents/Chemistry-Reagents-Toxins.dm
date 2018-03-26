@@ -81,7 +81,23 @@
 /datum/reagent/toxin/cyanide/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.adjustOxyLoss(20 * removed)
-	M.sleeping += TRUE
+	M.sleeping += 1
+
+/datum/reagent/toxin/food_poisoning
+	name = "Food Poisoning"
+	id = "food_poisoning"
+	description = "A highly toxic chemical."
+	taste_mult = 0.3
+	reagent_state = LIQUID
+	color = "#CF3600"
+	strength = 10
+	metabolism = REM
+
+/datum/reagent/toxin/food_poisoning/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.adjustToxLoss(5 * removed)
+	if (prob(30))
+		M << "<span class = 'warning'>You feel sick...</span>"
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
@@ -249,7 +265,7 @@
 	if(issmall(M))
 		effective_dose *= 2
 
-	if(effective_dose < TRUE)
+	if(effective_dose < 1)
 		if(effective_dose == metabolism * 2 || prob(5))
 			M.emote("yawn")
 	else if(effective_dose < 1.5)
@@ -287,7 +303,7 @@
 	else
 		M.sleeping = max(M.sleeping, 30)
 
-	if(effective_dose > TRUE)
+	if(effective_dose > 1)
 		M.adjustToxLoss(removed)
 
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
@@ -393,7 +409,7 @@
 
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
-	if(effective_dose < TRUE)
+	if(effective_dose < 1)
 		M.apply_effect(3, STUTTER)
 		M.make_dizzy(5)
 		if(prob(5))

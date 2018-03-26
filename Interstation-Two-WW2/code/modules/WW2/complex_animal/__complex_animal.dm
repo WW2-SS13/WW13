@@ -95,7 +95,7 @@
 				possible_wander_areas |= get_area(T)
 
 			// patrolling dogs will always try to exit their area.
-			if (possible_wander_areas.len > TRUE)
+			if (possible_wander_areas.len > 1)
 				for (var/area/A in possible_wander_areas)
 					if (istype(src, /mob/living/simple_animal/complex_animal/canine/dog))
 						var/mob/living/simple_animal/complex_animal/canine/dog/D = src

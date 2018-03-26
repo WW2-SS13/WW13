@@ -392,8 +392,8 @@
 #define MAX_STACK_AMOUNT_GLASS 50
 #define MAX_STACK_AMOUNT_RODS  60
 
-#define GAS_O2  (1 << FALSE)
-#define GAS_N2  (1 << TRUE)
+#define GAS_O2  (1 << 0)
+#define GAS_N2  (1 << 1)
 #define GAS_PL  (1 << 2)
 #define GAS_CO2 (1 << 3)
 #define GAS_N2O (1 << 4)
@@ -456,7 +456,7 @@
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 
 // A set of constants used to determine which type of mute an admin wishes to apply.
-// Please read and understand the muting/automuting stuff before changing these. MUTE_IC_AUTO, etc. = (MUTE_IC << TRUE)
+// Please read and understand the muting/automuting stuff before changing these. MUTE_IC_AUTO, etc. = (MUTE_IC << 1)
 // Therefore there needs to be a gap between the flags for the automute flags.
 #define MUTE_IC        TRUE
 #define MUTE_OOC       2

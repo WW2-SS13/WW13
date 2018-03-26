@@ -24,6 +24,8 @@
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
 	if(!usr)	return
+	if (raw)
+		M.reagents.add_reagent("food_poisoning", pick(1,3))
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
 		usr.drop_from_inventory(src)	//so icons update :[
@@ -130,7 +132,7 @@
 			if(!U.reagents)
 				U.create_reagents(5)
 
-			if (U.reagents.total_volume > FALSE)
+			if (U.reagents.total_volume > 0)
 				user << "<span class='warning'>You already have something on your [U].</span>"
 				return
 
@@ -148,7 +150,7 @@
 
 			reagents.trans_to_obj(U, min(reagents.total_volume,5))
 
-			if (reagents.total_volume <= FALSE)
+			if (reagents.total_volume <= 0)
 				qdel(src)
 			return
 
@@ -196,7 +198,7 @@
 			return
 
 /obj/item/weapon/reagent_containers/food/snacks/proc/is_sliceable()
-	return (slices_num && slice_path && slices_num > FALSE)
+	return (slices_num && slice_path && slices_num > 0)
 
 /obj/item/weapon/reagent_containers/food/snacks/Destroy()
 	if(contents)
@@ -575,11 +577,11 @@
 	icon_state = "appendix"
 	filling_color = "#E00D34"
 	center_of_mass = list("x"=16, "y"=16)
+	raw = TRUE
 
 	New()
 		..()
 		reagents.add_reagent("protein", rand(3,5))
-		reagents.add_reagent("toxin", rand(1,3))
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/tofu
@@ -677,6 +679,7 @@
 	icon_state = "bearmeat"
 	filling_color = "#DB0000"
 	center_of_mass = list("x"=16, "y"=10)
+	raw = TRUE
 
 	New()
 		..()
@@ -1805,6 +1808,7 @@
 	center_of_mass = list("x"=16, "y"=5)
 	nutriment_desc = list("tomato" = 2, "potato" = 2, "carrot" = 2, "eggplant" = 2, "mushroom" = 2)
 	nutriment_amt = 6
+	trash = /obj/item/trash/snack_bowl
 	New()
 		..()
 		reagents.add_reagent("protein", 4)
@@ -1895,6 +1899,13 @@
 	New()
 		..()
 		bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/boiledspagetti/attackby(obj/item/I as obj, mob/user as mob)
+	if (istype(I, /obj/item/weapon/reagent_containers/food/snacks/meatball))
+		visible_message("<span class = 'info'>[user] combines the spaghetti with the meatball to make spaghetti and meatballs.</span>")
+		qdel(I)
+		new/obj/item/weapon/reagent_containers/food/snacks/meatballspagetti(get_turf(src))
+		qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/boiledrice
 	name = "Boiled Rice"
@@ -2749,7 +2760,7 @@
 	// Set appropriate description
 	if( open && pizza )
 		desc = "A box suited for pizzas. It appears to have a [pizza.name] inside."
-	else if( boxes.len > FALSE )
+	else if( boxes.len > 0 )
 		desc = "A pile of boxes suited for pizzas. There appears to be [boxes.len + 1] boxes in the pile."
 
 		var/obj/item/pizzabox/topbox = boxes[boxes.len]
@@ -2778,7 +2789,7 @@
 	else
 		// Stupid code because byondcode sucks
 		var/doimgtag = FALSE
-		if( boxes.len > FALSE )
+		if( boxes.len > 0 )
 			var/obj/item/pizzabox/topbox = boxes[boxes.len]
 			if( topbox.boxtag != "" )
 				doimgtag = TRUE
@@ -2803,7 +2814,7 @@
 		update_icon()
 		return
 
-	if( boxes.len > FALSE )
+	if( boxes.len > 0 )
 		if( user.get_inactive_hand() != src )
 			..()
 			return
@@ -2820,7 +2831,7 @@
 
 /obj/item/pizzabox/attack_self( mob/user as mob )
 
-	if( boxes.len > FALSE )
+	if( boxes.len > 0 )
 		return
 
 	open = !open
@@ -2881,7 +2892,7 @@
 		var/t = sanitize(input("Enter what you want to add to the tag:", "Write", null, null) as text, 30)
 
 		var/obj/item/pizzabox/boxtotagto = src
-		if( boxes.len > FALSE )
+		if( boxes.len > 0 )
 			boxtotagto = boxes[boxes.len]
 
 		boxtotagto.boxtag = copytext("[boxtotagto.boxtag][t]", TRUE, 30)
@@ -3033,6 +3044,7 @@
 	icon_state = "rawcutlet"
 	bitesize = 1
 	center_of_mass = list("x"=17, "y"=20)
+	raw = TRUE
 
 	New()
 		..()

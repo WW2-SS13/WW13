@@ -160,7 +160,7 @@ var/global/datum/controller/occupations/job_master
 						if (!german_squad_leaders)
 							return TRUE
 					if (7 to 12)
-						if (german_squad_leaders <= TRUE)
+						if (german_squad_leaders <= 1)
 							return TRUE
 					if (13 to 18)
 						if (german_squad_leaders <= 2)
@@ -175,7 +175,7 @@ var/global/datum/controller/occupations/job_master
 						if (!soviet_squad_leaders)
 							return TRUE
 					if (7 to 12)
-						if (soviet_squad_leaders <= TRUE)
+						if (soviet_squad_leaders <= 1)
 							return TRUE
 					if (13 to 18)
 						if (soviet_squad_leaders <= 2)
@@ -267,7 +267,7 @@ var/global/datum/controller/occupations/job_master
 
 		var/list/turfs = latejoin_turfs[spawn_location]
 
-		if(turfs && turfs.len > FALSE)
+		if(turfs && turfs.len > 0)
 			H.loc = pick(turfs)
 
 			if (!locate(H.loc) in turfs)

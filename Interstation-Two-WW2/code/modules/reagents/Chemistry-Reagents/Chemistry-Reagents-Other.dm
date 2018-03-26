@@ -266,7 +266,7 @@
 	O.clean_blood()
 
 /datum/reagent/space_cleaner/touch_turf(var/turf/T)
-	if(volume >= TRUE)
+	if(volume >= 1)
 		if(istype(T, /turf))
 			var/turf/S = T
 			S.dirt = FALSE
@@ -313,7 +313,7 @@
 /datum/reagent/lube/touch_turf(var/turf/T)
 	if(!istype(T))
 		return
-	if(volume >= TRUE)
+	if(volume >= 1)
 		T.wet_floor(2)
 
 /datum/reagent/silicate

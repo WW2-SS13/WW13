@@ -52,7 +52,7 @@
 	PLEASE USE RESPONSIBLY, Some log files canr each sizes of 4MB!	*/
 /client/proc/file_spam_check()
 	var/time_to_wait = fileaccess_timer - world.time
-	if(time_to_wait > FALSE)
+	if(time_to_wait > 0)
 		src << "<font color='red'>Error: file_spam_check(): Spam. Please wait [round(time_to_wait/10)] seconds.</font>"
 		return TRUE
 	fileaccess_timer = world.time + FTPDELAY

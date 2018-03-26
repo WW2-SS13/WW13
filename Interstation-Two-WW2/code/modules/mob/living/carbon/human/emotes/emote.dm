@@ -20,7 +20,7 @@
 
 		if (findtext(act, "-", TRUE, null))
 			var/t1 = findtext(act, "-", TRUE, null)
-			param = copytext(act, t1 + TRUE, length(act) + TRUE)
+			param = copytext(act, t1 + 1, length(act) + 1)
 			act = copytext(act, TRUE, t1)
 
 		if(findtext(act,"s",-1) && !findtext(act,"_",-2))//Removes ending s's unless they are prefixed with a '_'
@@ -101,7 +101,7 @@
 
 			if ("me")
 
-				//if(silent && silent > FALSE && findtext(message,"\"",1, null) > FALSE)
+				//if(silent && silent > 0 && findtext(message,"\"",1, null) > 0)
 				//	return //This check does not work and I have no idea why, I'm leaving it in for reference.
 
 				if (client)

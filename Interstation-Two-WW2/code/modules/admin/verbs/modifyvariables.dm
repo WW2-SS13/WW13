@@ -147,7 +147,7 @@ var/list/VVckey_edit = list("key", "ckey")
 			return
 
 	var/assoc = FALSE
-	if(L.len > FALSE)
+	if(L.len > 0)
 		var/a = L[1]
 		if(istext(a) && L[a] != null)
 			assoc = TRUE //This is pretty weak test but i can't think of anything else

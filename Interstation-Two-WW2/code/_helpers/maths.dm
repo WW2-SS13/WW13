@@ -44,7 +44,7 @@
 /proc/Atan2(x, y)
 	if(!x && !y) return FALSE
 	var/a = arccos(x / sqrt(x*x + y*y))
-	return y >= FALSE ? a : -a
+	return y >= 0 ? a : -a
 
 /proc/Floor(x)
 	return round(x)
@@ -116,7 +116,7 @@
 	var/bottom       = 2*a
 
 	// Return if the roots are imaginary.
-	if(discriminant < FALSE)
+	if(discriminant < 0)
 		return
 
 	var/root = sqrt(discriminant)
@@ -259,19 +259,19 @@
 	if(haystack && needle)
 		if(isobject(haystack))
 			if(istype(haystack, /list))
-				if(length(haystack) >= end && start > FALSE)
+				if(length(haystack) >= end && start > 0)
 					var/list/listhaystack = haystack
 					return listhaystack.Find(needle, start, end)
 
 		else
 			if(istext(haystack))
-				if(length(haystack) >= end && start > FALSE)
+				if(length(haystack) >= end && start > 0)
 					return findtext(haystack, needle, start, end)
 
 // Clone of copytext()
 /proc/docopytext(var/string, var/start = TRUE, var/end = FALSE)
 	if(istext(string) && isnum(start) && isnum(end))
-		if(start > FALSE)
+		if(start > 0)
 			return copytext(string, start, end)
 
 // Clone of length()

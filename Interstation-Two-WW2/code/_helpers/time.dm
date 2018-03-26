@@ -21,8 +21,8 @@
 	var/wtime = world.time
 	var/wusage = world.tick_usage * 0.01
 
-	if(last_time < wtime && last_usage > TRUE)
-		time_offset += last_usage - TRUE
+	if(last_time < wtime && last_usage > 1)
+		time_offset += last_usage - 1
 
 	last_time = wtime
 	last_usage = wusage
@@ -45,7 +45,7 @@ var/next_station_date_change = TRUE DAY
 /proc/stationdate2text()
 	var/update_time = FALSE
 	if(station_time_in_ticks > next_station_date_change)
-		next_station_date_change += TRUE DAY
+		next_station_date_change += 1 DAY
 		update_time = TRUE
 	if(!station_date || update_time)
 		var/extra_days = round(station_time_in_ticks / (1 DAY)) DAYS
@@ -91,7 +91,7 @@ var/round_start_time = FALSE
 	hours = hours < 10 ? add_zero(hours, TRUE) : hours
 
 	last_roundduration2text = "[hours]:[mins]"
-	next_duration_update = world.time + TRUE MINUTES
+	next_duration_update = world.time + 1 MINUTES
 	return last_roundduration2text
 
 //Can be useful for things dependent on process timing

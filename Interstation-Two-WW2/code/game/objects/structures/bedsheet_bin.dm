@@ -99,7 +99,7 @@ LINEN BINS
 /obj/structure/bedsheetbin/examine(mob/user)
 	..(user)
 
-	if(amount < TRUE)
+	if(amount < 1)
 		user << "There are no bed sheets in the bin."
 		return
 	if(amount == TRUE)
@@ -129,11 +129,11 @@ LINEN BINS
 		user << "<span class='notice'>You hide [I] among the sheets.</span>"
 
 /obj/structure/bedsheetbin/attack_hand(mob/user as mob)
-	if(amount >= TRUE)
+	if(amount >= 1)
 		amount--
 
 		var/obj/item/weapon/bedsheet/B
-		if(sheets.len > FALSE)
+		if(sheets.len > 0)
 			B = sheets[sheets.len]
 			sheets.Remove(B)
 
@@ -153,11 +153,11 @@ LINEN BINS
 	add_fingerprint(user)
 
 /obj/structure/bedsheetbin/attack_tk(mob/user as mob)
-	if(amount >= TRUE)
+	if(amount >= 1)
 		amount--
 
 		var/obj/item/weapon/bedsheet/B
-		if(sheets.len > FALSE)
+		if(sheets.len > 0)
 			B = sheets[sheets.len]
 			sheets.Remove(B)
 

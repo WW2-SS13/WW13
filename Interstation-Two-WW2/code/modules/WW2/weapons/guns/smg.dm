@@ -11,46 +11,46 @@
 			SHORT_RANGE_MOVING = 39,
 
 			MEDIUM_RANGE_STILL = 39,
-			MEDIUM_RANGE_MOVING = 19,
+			MEDIUM_RANGE_MOVING = 31,
 
 			LONG_RANGE_STILL = 14,
-			LONG_RANGE_MOVING = 7,
+			LONG_RANGE_MOVING = 11,
 
 			VERY_LONG_RANGE_STILL = 7,
-			VERY_LONG_RANGE_MOVING = 4),
+			VERY_LONG_RANGE_MOVING = 6),
 
 		// medium body parts: limbs
 		"medium" = list(
 			SHORT_RANGE_STILL = 59,
-			SHORT_RANGE_MOVING = 49,
+			SHORT_RANGE_MOVING = 47,
 
 			MEDIUM_RANGE_STILL = 39,
-			MEDIUM_RANGE_MOVING = 29,
+			MEDIUM_RANGE_MOVING = 31,
 
 			LONG_RANGE_STILL = 16,
-			LONG_RANGE_MOVING = 9,
+			LONG_RANGE_MOVING = 13,
 
 			VERY_LONG_RANGE_STILL = 9,
-			VERY_LONG_RANGE_MOVING = 5),
+			VERY_LONG_RANGE_MOVING = 7),
 
 		// large body parts: chest, groin
 		"large" = list(
 			SHORT_RANGE_STILL = 79,
-			SHORT_RANGE_MOVING = 69,
+			SHORT_RANGE_MOVING = 63,
 
 			MEDIUM_RANGE_STILL = 59,
-			MEDIUM_RANGE_MOVING = 49,
+			MEDIUM_RANGE_MOVING = 47,
 
 			LONG_RANGE_STILL = 39,
-			LONG_RANGE_MOVING = 19,
+			LONG_RANGE_MOVING = 31,
 
 			VERY_LONG_RANGE_STILL = 16,
-			VERY_LONG_RANGE_MOVING = 8),
+			VERY_LONG_RANGE_MOVING = 13),
 	)
 
 	accuracy_increase_mod = 1.10
 	accuracy_decrease_mod = 1.20
-	KD_chance = 15
+	KD_chance = KD_CHANCE_LOW
 	stat = "MG"
 
 /obj/item/weapon/gun/projectile/submachinegun/mp40
@@ -63,7 +63,7 @@
 	w_class = 3
 	caliber = "9x19mm"
 	magazine_type = /obj/item/ammo_magazine/mp40
-	can_wield = TRUE
+//	can_wield = TRUE
 	//must_wield = TRUE
 
 	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY
@@ -80,16 +80,16 @@
 /obj/item/weapon/gun/projectile/submachinegun/mp40/update_icon()
 	if(ammo_magazine)
 		icon_state = "mp40"
-		if(wielded)
+/*		if(wielded)
 			item_state = "mp40-w"
 		else
-			item_state = "mp40"
+			item_state = "mp40"*/
 	else
 		icon_state = "mp400"
-		if(wielded)
+/*		if(wielded)
 			item_state = "mp40-w"
 		else
-			item_state = "mp400"
+			item_state = "mp400"*/
 	update_held_icon()
 	return
 
@@ -112,23 +112,23 @@
 		list(name="long bursts",	burst=8, burst_delay=1.2, recoil=0.8, move_delay=1, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
 		)
 
-	can_wield = TRUE
+//	can_wield = TRUE
 
 	sel_mode = 2
 
 /obj/item/weapon/gun/projectile/submachinegun/ppsh/update_icon()
 	if(ammo_magazine)
 		icon_state = "ppsh"
-		if(wielded)
+/*		if(wielded)
 			item_state = "ppsh"
 		else
-			item_state = "ppsh"
+			item_state = "ppsh"*/
 	else
 		icon_state = "ppsh_empty"
-		if(wielded)
+/*		if(wielded)
 			item_state = "ppsh_empty"
 		else
-			item_state = "ppsh_empty"
+			item_state = "ppsh_empty"*/
 	update_held_icon()
 	return
 
@@ -150,7 +150,7 @@
 		list(name="long bursts",	burst=6, burst_delay=1.2, recoil=0.8, move_delay=1.2, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
 		)
 
-	can_wield = TRUE
+//	can_wield = TRUE
 
 	sel_mode = 1
 
@@ -180,7 +180,7 @@
 		list(name="long burst", 	burst=6, burst_delay=1.6, recoil=0.8, move_delay=0.4, dispersion = list(1.5, 1.7, 1.7, 1.7, 1.9)),
 		)
 
-	can_wield = TRUE
+//	can_wield = TRUE
 
 	sel_mode = 1
 
@@ -208,7 +208,7 @@
 		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=0.8, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
 		)
 	sel_mode = 1
-	attachment_slots = ATTACH_BARREL
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
 
 /obj/item/weapon/gun/projectile/submachinegun/modello38/update_icon()
 	if(ammo_magazine)

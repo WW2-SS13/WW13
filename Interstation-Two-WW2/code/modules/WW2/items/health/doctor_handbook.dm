@@ -113,11 +113,11 @@
 				var/string = "<span class='warning'>* "
 				var/inner = ""
 				if (wounds || infected || broken || internal || open || bleeding)
-					inner += "[wounds > TRUE ? "multiple" : (open ? "an" : "a") ]"
+					inner += "[wounds > 1 ? "multiple" : (open ? "an" : "a") ]"
 					inner += "[open ? " open" : ""]"
 					inner += "[bleeding ? " bleeding" : ""]"
 					inner += "[infected && e.germ_level > 175 ? " infected" : ""]"
-					inner += " wound[wounds > TRUE ? "s" : ""]"
+					inner += " wound[wounds > 1 ? "s" : ""]"
 					inner += " [foreign || internal || broken || e.burn_dam > 2 || e.brute_dam > 2 ? "and " : "at"]"
 				if (e.brute_dam > 2)
 					var/sev = pick_severity(e.brute_dam)
@@ -169,14 +169,14 @@
 		if(!icount)
 			user.show_message("<span class='notice'>* No organ damage.</span>")
 
-		if(unsplinted_limbs.len >= TRUE)
+		if(unsplinted_limbs.len >= 1)
 			var/string = "[G.His] "
 			var/Count = TRUE
 			for (var/limb_name in unsplinted_limbs)
 				string += limb_name
 				if (Count < unsplinted_limbs.len)
 				 string += ", "
-				 if (Count + TRUE == unsplinted_limbs.len)
+				 if (Count + 1 == unsplinted_limbs.len)
 				 	string += "and "
 				Count++
 			string += " need[ecount == TRUE ? "s" : ""] splinting for safe transport."

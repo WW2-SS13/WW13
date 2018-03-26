@@ -1,38 +1,7 @@
 /* Using the HUD procs is simple. Call these procs in the life.dm of the intended mob.
-Use the regular_hud_updates() proc before process_med_hud(mob) or process_sec_hud(mob) so
+Use the regular_hud_updates() proc before process_faction_hud(mob) so
 the HUD updates properly! */
 
-//Medical HUD outputs. Called by the Life() proc of the mob using it, usually.
-/*proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
-	if(!can_process_hud(M))
-		return
-
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, med_hud_users)
-	for(var/mob/living/carbon/human/patient in P.Mob.in_view(P.Turf))
-		if(P.Mob.see_invisible < patient.invisibility)
-			continue
-
-		if(local_scanner)
-			P.Client.images += patient.hud_list[HEALTH_HUD]
-			P.Client.images += patient.hud_list[STATUS_HUD]
-		else
-			var/sensor_level = getsensorlevel(patient)
-			if(sensor_level >= SUIT_SENSOR_VITAL)
-				P.Client.images += patient.hud_list[HEALTH_HUD]
-			if(sensor_level >= SUIT_SENSOR_BINARY)
-				P.Client.images += patient.hud_list[LIFE_HUD]
-
-//Security HUDs. Pass a value for the second argument to enable implant viewing or other special features.
-proc/process_sec_hud(var/mob/M, var/advanced_mode, var/mob/Alt)
-	if(!can_process_hud(M))
-		return
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, sec_hud_users)
-	for(var/mob/living/carbon/human/perp in P.Mob.in_view(P.Turf))
-		if(P.Mob.see_invisible < perp.invisibility)
-			continue
-
-		P.Client.images += perp.hud_list[ID_HUD]
-*/
 //faction HUDs.
 
 /mob/living/carbon/human/proc/most_important_faction_hud_constant()
@@ -57,6 +26,7 @@ proc/process_faction_hud(var/mob/M, var/mob/Alt)
 		return
 	if (!ishuman(M))
 		return
+
 	var/mob/living/carbon/human/viewer = M
 	if (!viewer.original_job)
 		return
@@ -72,11 +42,21 @@ proc/process_faction_hud(var/mob/M, var/mob/Alt)
 			continue
 		if (!perp.original_job)
 			continue
-		/*
-		if (perp == viewer)
-			continue*/
 
-		if (viewer.original_job.base_type_flag() == perp.original_job.base_type_flag())
+		var/shared_job_check = FALSE
+
+		if (viewer == perp)
+			shared_job_check = TRUE
+		else if (viewer.original_job.base_type_flag() == perp.original_job.base_type_flag())
+			shared_job_check = TRUE
+		else if (viewer.original_job.base_type_flag() == ITALIAN)
+			if (perp.original_job.base_type_flag() == GERMAN)
+				shared_job_check = TRUE
+		else if (perp.original_job.base_type_flag() == ITALIAN)
+			if (viewer.original_job.base_type_flag() == GERMAN)
+				shared_job_check = TRUE
+
+		if (shared_job_check)
 			if (sharesquads(viewer, perp)) // same squad or SL
 				P.Client.images += perp.hud_list[perp.squad_faction_hud_constant()]
 			else // unrelated
@@ -84,7 +64,7 @@ proc/process_faction_hud(var/mob/M, var/mob/Alt)
 		else
 			// one of us is a spy, allowing us to recognize true factions
 
-			// condition TRUE: they're the spy
+			// condition 1: they're the spy
 			// condition 2: we're the spy
 			// condition 3: they're just an enemy
 

@@ -58,7 +58,7 @@ bullet_act
 	if (is_spy && istype(spy_faction, /datum/faction/soviet))
 		say("GOD DAMN IT HURTS", languages.Find(RUSSIAN))
 
-	if (P.firer && P.firer_original_dir == dir)
+	if (P.firer && (P.firer_original_dir == dir || lying) && P.firer.targeted_organ == "chest")
 		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower = back
 			if (prob(16) || (world.time - last_movement >= 50) || lying)
@@ -384,7 +384,7 @@ bullet_act
 				location.add_blood(src)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
-				if(get_dist(H, src) <= TRUE) //people with TK won't get smeared with blood
+				if(get_dist(H, src) <= 1) //people with TK won't get smeared with blood
 					H.bloody_body(src)
 					H.bloody_hands(src)
 

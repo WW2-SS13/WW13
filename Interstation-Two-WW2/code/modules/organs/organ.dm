@@ -148,7 +148,7 @@ var/list/organ_cache = list()
 	//** Handle the effects of infections
 	var/antibiotics = owner.reagents.get_reagent_amount("penicillin")
 
-	if (germ_level > FALSE && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
+	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--
 
 	if (germ_level >= INFECTION_LEVEL_ONE/2)
@@ -158,7 +158,7 @@ var/list/organ_cache = list()
 
 	if(germ_level >= INFECTION_LEVEL_ONE)
 		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, TRUE) + owner.species.body_temperature
-		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + TRUE, fever_temperature - owner.bodytemperature)
+		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 
 	if (germ_level >= INFECTION_LEVEL_TWO)
 		var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
@@ -197,7 +197,7 @@ var/list/organ_cache = list()
 	damage = FALSE
 
 /obj/item/organ/proc/is_damaged()
-	return damage > FALSE
+	return damage > 0
 
 /obj/item/organ/proc/is_bruised()
 	return damage >= min_bruised_damage
@@ -229,7 +229,7 @@ var/list/organ_cache = list()
 		W.weapon = used_weapon
 		autopsy_data[used_weapon] = W
 
-	W.hits += TRUE
+	W.hits += 1
 	W.damage += damage
 	W.time_inflicted = world.time
 
@@ -242,7 +242,7 @@ var/list/organ_cache = list()
 		damage = between(0, damage + amount, max_damage)
 
 		//only show this if the organ is not robotic
-		if(owner && parent_organ && amount > FALSE)
+		if(owner && parent_organ && amount > 0)
 			var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
 			if(parent && !silent)
 				owner.custom_pain("Something inside your [parent.name] hurts a lot.", TRUE)

@@ -5,7 +5,7 @@
 	if (!istype(P))
 		return FALSE
 
-	var/effectiveness_coeff = (progress + TRUE)/maxProgress
+	var/effectiveness_coeff = (progress + 1)/maxProgress
 	var/turf/cover = get_turf(src)
 	if(!cover)
 		return TRUE
@@ -113,6 +113,7 @@
 				if (istype(mover, /obj/item/projectile))
 					var/obj/item/projectile/B = mover
 					B.damage = 0 // make sure we can't hurt people after hitting a sandbag
+					qdel(B) // because somehow we were still passing the sandbag
 				return FALSE
 			else
 				return TRUE

@@ -149,33 +149,40 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 		owner << "<span class='warning'>You cannot aim a gun while handcuffed.</span>"
 		return
 
+	var/success = FALSE
+
 	if(aiming_at)
 		if(aiming_at == target)
 			return
 		cancel_aiming(1)
-		owner.visible_message("<span class='danger'>\The [owner] turns \the [thing] on \the [target]!</span>")
+		if (do_after(owner, 3, target))
+			owner.visible_message("<span class='danger'>\The [owner] turns \the [thing] on \the [target]!</span>")
+		success = TRUE
 	else
-		owner.visible_message("<span class='danger'>\The [owner] aims \the [thing] at \the [target]!</span>")
+		if (do_after(owner, 3, target))
+			owner.visible_message("<span class='danger'>\The [owner] aims \the [thing] at \the [target]!</span>")
+		success = TRUE
 
-	if(owner.client)
-		owner.client.add_gun_icons()
-	target << "<span class='danger'>You now have a gun pointed at you. No sudden moves!</span>"
-	aiming_with = thing
-	aiming_at = target
-	if(istype(aiming_with, /obj/item/weapon/gun))
-		playsound(get_turf(owner), 'sound/weapons/TargetOn.ogg', 50,1)
+	if (success)
+		if(owner.client)
+			owner.client.add_gun_icons()
+		target << "<span class='danger'>You now have a gun pointed at you. No sudden moves!</span>"
+		aiming_with = thing
+		aiming_at = target
+		if(istype(aiming_with, /obj/item/weapon/gun))
+			playsound(get_turf(owner), 'sound/weapons/TargetOn.ogg', 50,1)
 
-	forceMove(get_turf(target))
-	processing_objects |= src
+		forceMove(get_turf(target))
+		processing_objects |= src
 
-	aiming_at.aimed |= src
-	toggle_active(1)
-	locked = FALSE
-	update_icon()
-	lock_time = world.time + 35
-	moved_event.register(owner, src, /obj/aiming_overlay/proc/update_aiming)
-	moved_event.register(aiming_at, src, /obj/aiming_overlay/proc/target_moved)
-	destroyed_event.register(aiming_at, src, /obj/aiming_overlay/proc/cancel_aiming)
+		aiming_at.aimed |= src
+		toggle_active(1)
+		locked = FALSE
+		update_icon()
+		lock_time = world.time + 35
+		moved_event.register(owner, src, /obj/aiming_overlay/proc/update_aiming)
+		moved_event.register(aiming_at, src, /obj/aiming_overlay/proc/target_moved)
+		destroyed_event.register(aiming_at, src, /obj/aiming_overlay/proc/cancel_aiming)
 
 /obj/aiming_overlay/update_icon()
 	if(locked)

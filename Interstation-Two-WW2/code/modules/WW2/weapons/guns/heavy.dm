@@ -66,7 +66,7 @@
 
 	accuracy_increase_mod = 1.10
 	accuracy_decrease_mod = 1.20
-	KD_chance = 100
+	KD_chance = KD_CHANCE_HIGH
 	stat = "heavy"
 
 /obj/item/weapon/gun/projectile/heavy/ptrd/german
@@ -90,12 +90,8 @@
 	caliber = "a556x45"
 	magazine_type = /obj/item/ammo_magazine/a556x45
 
-	accuracy = DEFAULT_BOLTACTION_ACCURACY + TRUE
-	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY + TRUE
-
-	can_wield = TRUE
-	must_wield = TRUE
-	can_scope = TRUE
+	accuracy = DEFAULT_BOLTACTION_ACCURACY + 1
+	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY + 1
 
 	firemodes = list(
 		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, dispersion = list(0))
@@ -104,16 +100,16 @@
 /obj/item/weapon/gun/projectile/heavy/mk12/update_icon()
 	if(ammo_magazine)
 		icon_state = "mk12_loaded"
-		if(wielded)
+/*		if(wielded)
 			item_state = "mk12_loaded_wielded"
 		else
-			item_state = "mk12_loaded"
+			item_state = "mk12_loaded"*/
 	else
 		icon_state = "mk12_empty"
-		if(wielded)
+	/*	if(wielded)
 			item_state = "mk12_empty_wielded"
 		else
-			item_state = "mk12_empty"
+			item_state = "mk12_empty"*/
 	update_held_icon()
 	return
 

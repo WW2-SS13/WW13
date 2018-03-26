@@ -77,7 +77,7 @@ var/list/global/tank_gauge_cache = list()
 	if (istype(loc, /obj/item/assembly))
 		icon = loc*/
 
-/*	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= TRUE)
+/*	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
 		var/obj/item/device/analyzer/A = W
 		A.analyze_gases(src, user)*/
 //	if(istype(W, /obj/item/device/assembly_holder))
@@ -277,7 +277,7 @@ var/list/global/tank_gauge_cache = list()
 		log_debug("<span class='warning'>[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]</span>")
 		#endif
 
-		if(integrity <= FALSE)
+		if(integrity <= 0)
 			var/turf/T = get_turf(src)
 			if(!T)
 				return
@@ -292,7 +292,7 @@ var/list/global/tank_gauge_cache = list()
 		log_debug("<span class='warning'>[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]</span>")
 		#endif
 
-		if(integrity <= FALSE)
+		if(integrity <= 0)
 			var/turf/T = get_turf(src)
 			if(!T)
 				return

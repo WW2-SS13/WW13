@@ -15,7 +15,7 @@
 			"<span class='notice'>You stop, drop, and roll!</span>"
 			)
 		sleep(30)
-		if(fire_stacks <= FALSE)
+		if(fire_stacks <= 0)
 			visible_message(
 				"<span class='danger'>[src] has successfully extinguished themselves!</span>",
 				"<span class='notice'>You extinguish yourself.</span>"

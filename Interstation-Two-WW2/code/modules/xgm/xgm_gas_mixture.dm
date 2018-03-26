@@ -37,7 +37,7 @@
 	if(moles == FALSE)
 		return
 
-	if(moles > FALSE && abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+	if(moles > 0 && abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		var/self_heat_capacity = heat_capacity()
 		var/giver_heat_capacity = gas_data.specific_heat[gasid] * moles
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
@@ -68,7 +68,7 @@
 	ASSERT(!(args.len % 3))
 
 	for(var/i = TRUE; i < args.len; i += 3)
-		adjust_gas_temp(args[i], args[i + TRUE], args[i + 2], update = FALSE)
+		adjust_gas_temp(args[i], args[i + 1], args[i + 2], update = FALSE)
 
 	update_values()
 
@@ -127,7 +127,7 @@
 		return FALSE
 
 	var/heat_capacity = heat_capacity()
-	if (thermal_energy < FALSE)
+	if (thermal_energy < 0)
 		if (temperature < TCMB)
 			return FALSE
 		var/thermal_energy_limit = -(temperature - TCMB)*heat_capacity	//ensure temperature does not go below TCMB
@@ -173,7 +173,7 @@
 	//group_multiplier gets divided out in volume/gas[gasid] - also, V/(m*T) = R/(partial pressure)
 	var/molar_mass = gas_data.molar_mass[gasid]
 	var/specific_heat = gas_data.specific_heat[gasid]
-	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gas[gasid] * temperature)) * (molar_mass*specific_heat*temperature)**(2/3) + TRUE ) +  15 )
+	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gas[gasid] * temperature)) * (molar_mass*specific_heat*temperature)**(2/3) + 1 ) +  15 )
 
 	//alternative, simpler equation
 	//var/partial_pressure = gas[gasid] * R_IDEAL_GAS_EQUATION * temperature / volume
@@ -184,7 +184,7 @@
 /datum/gas_mixture/proc/update_values()
 	total_moles = FALSE
 	for(var/g in gas)
-		if(gas[g] <= FALSE)
+		if(gas[g] <= 0)
 			gas -= g
 		else
 			total_moles += gas[g]
@@ -200,7 +200,7 @@
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove(amount)
 	amount = min(amount, total_moles * group_multiplier) //Can not take more air than the gas mixture has!
-	if(amount <= FALSE)
+	if(amount <= 0)
 		return null
 
 	var/datum/gas_mixture/removed = new
@@ -218,7 +218,7 @@
 
 //Removes a ratio of gas from the mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove_ratio(ratio, out_group_multiplier = TRUE)
-	if(ratio <= FALSE)
+	if(ratio <= 0)
 		return null
 	out_group_multiplier = between(1, out_group_multiplier, group_multiplier)
 
@@ -246,7 +246,7 @@
 
 //Removes moles from the gas mixture, limited by a given flag.  Returns a gax_mixture containing the removed air.
 /datum/gas_mixture/proc/remove_by_flag(flag, amount)
-	if(!flag || amount <= FALSE)
+	if(!flag || amount <= 0)
 		return
 
 	var/sum = FALSE
@@ -441,12 +441,12 @@
 		for(var/g in gasmix.gas)
 			total_gas[g] += gasmix.gas[g]
 
-	if(total_volume > FALSE)
+	if(total_volume > 0)
 		var/datum/gas_mixture/combined = new(total_volume)
 		combined.gas = total_gas
 
 		//Calculate temperature
-		if(total_heat_capacity > FALSE)
+		if(total_heat_capacity > 0)
 			combined.temperature = total_thermal_energy / total_heat_capacity
 		combined.update_values()
 

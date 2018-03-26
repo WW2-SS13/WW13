@@ -48,7 +48,7 @@
 	if(HULK in user.mutations)
 		damage_dealt += 5
 	else
-		damage_dealt += TRUE
+		damage_dealt += 1
 
 	attack_generic(user,damage_dealt,attack_message)
 
@@ -166,7 +166,7 @@
 
 
 /obj/structure/grille/proc/healthcheck()
-	if(health <= FALSE)
+	if(health <= 0)
 		if(!destroyed)
 			density = FALSE
 			destroyed = TRUE
@@ -230,7 +230,7 @@
 		var/obj/item/I = AM
 		tforce = I.throwforce
 	health = max(0, health - tforce)
-	if(health <= FALSE)
+	if(health <= 0)
 		destroyed=1
 		PoolOrNew(/obj/item/stack/rods, get_turf(src))
 		density=0

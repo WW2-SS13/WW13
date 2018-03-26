@@ -249,7 +249,7 @@
 						continue
 					//world << "Parse: [copytext(note,1,2)]"
 					var/cur_note = text2ascii(note) - 96
-					if(cur_note < TRUE || cur_note > 7)
+					if(cur_note < 1 || cur_note > 7)
 						continue
 					for(var/i=2 to lentext(note))
 						var/ni = copytext(note,i,i+1)
@@ -265,9 +265,9 @@
 					sleep(song.tempo / text2num(notes[2]))
 				else
 					sleep(song.tempo)
-		if(repeat > FALSE)
+		if(repeat > 0)
 			repeat-- //Infinite loops are baaaad.
-	while(repeat > FALSE)
+	while(repeat > 0)
 	playing = FALSE
 	updateUsrDialog()
 
@@ -279,7 +279,7 @@
 	var/dat = "<HEAD><TITLE>Piano</TITLE></HEAD><BODY>"
 
 	if(song)
-		if(song.lines.len > FALSE && !(playing))
+		if(song.lines.len > 0 && !(playing))
 			dat += "<A href='?src=\ref[src];play=1'>Play Song</A><BR><BR>"
 			dat += "<A href='?src=\ref[src];repeat=1'>Repeat Song: [repeat] times.</A><BR><BR>"
 		if(playing)
@@ -296,7 +296,7 @@
 			dat += "Tempo : <A href='?src=\ref[src];tempo=10'>-</A><A href='?src=\ref[src];tempo=1'>-</A> [calctempo] BPM <A href='?src=\ref[src];tempo=-1'>+</A><A href='?src=\ref[src];tempo=-10'>+</A><BR><BR>"
 			var/linecount = FALSE
 			for(var/line in song.lines)
-				linecount += TRUE
+				linecount += 1
 				dat += "Line [linecount]: [line] <A href='?src=\ref[src];deleteline=[linecount]'>Delete Line</A> <A href='?src=\ref[src];modifyline=[linecount]'>Modify Line</A><BR>"
 			dat += "<A href='?src=\ref[src];newline=1'>Add Line</A><BR><BR>"
 		if(help)
@@ -339,13 +339,13 @@
 			var/tempnum = input("How many times do you want to repeat this piece? (max:10)") as num|null
 			if(tempnum > 10)
 				tempnum = 10
-			if(tempnum < FALSE)
+			if(tempnum < 0)
 				tempnum = FALSE
 			repeat = round(tempnum)
 
 		else if(href_list["tempo"])
 			song.tempo += round(text2num(href_list["tempo"]))
-			if(song.tempo < TRUE)
+			if(song.tempo < 1)
 				song.tempo = TRUE
 
 		else if(href_list["play"])
@@ -365,7 +365,7 @@
 
 		else if(href_list["deleteline"])
 			var/num = round(text2num(href_list["deleteline"]))
-			if(num > song.lines.len || num < TRUE)
+			if(num > song.lines.len || num < 1)
 				return
 			song.lines.Cut(num, num+1)
 
@@ -376,7 +376,7 @@
 				return
 			if(lentext(content) > MAX_CHARS_PER_LINE)
 				content = copytext(content, TRUE, MAX_CHARS_PER_LINE)
-			if(num > song.lines.len || num < TRUE)
+			if(num > song.lines.len || num < 1)
 				return
 			song.lines[num] = content
 
@@ -384,10 +384,10 @@
 			playing = FALSE
 
 		else if(href_list["help"])
-			help = text2num(href_list["help"]) - TRUE
+			help = text2num(href_list["help"]) - 1
 
 		else if(href_list["edit"])
-			edit = text2num(href_list["edit"]) - TRUE
+			edit = text2num(href_list["edit"]) - 1
 
 		else if(href_list["import"])
 			var/t = ""

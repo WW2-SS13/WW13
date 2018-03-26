@@ -26,7 +26,7 @@ datum/objective
 		for(var/datum/mind/possible_target in ticker.minds)
 			if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2))
 				possible_targets += possible_target
-		if(possible_targets.len > FALSE)
+		if(possible_targets.len > 0)
 			target = pick(possible_targets)
 
 
@@ -434,9 +434,9 @@ datum/objective/heist/kidnap
 						priority_targets += possible_target
 						continue
 
-		if(priority_targets.len > FALSE)
+		if(priority_targets.len > 0)
 			target = pick(priority_targets)
-		else if(possible_targets.len > FALSE)
+		else if(possible_targets.len > 0)
 			target = pick(possible_targets)
 
 		if(target && target.current)

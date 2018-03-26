@@ -245,7 +245,7 @@
 	if(!cards.len)
 		qdel(src)
 		return
-	else if(cards.len > TRUE)
+	else if(cards.len > 1)
 		name = "hand of cards"
 		desc = "Some playing cards."
 	else

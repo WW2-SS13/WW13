@@ -355,7 +355,7 @@ var/list/preferences_datums = list()
 
 	character.all_underwear.Cut()
 
-	if(backbag > 4 || backbag < TRUE)
+	if(backbag > 4 || backbag < 1)
 		backbag = TRUE //Same as above
 	character.backbag = backbag
 

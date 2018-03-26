@@ -88,7 +88,7 @@
 
 	Topic(href, href_list)
 		..()
-		if ((usr.stat || usr.restrained()) || (get_dist(src, usr) > TRUE))
+		if ((usr.stat || usr.restrained()) || (get_dist(src, usr) > 1))
 			return
 		if (href_list["type"])
 			if (href_list["type"] == "E")

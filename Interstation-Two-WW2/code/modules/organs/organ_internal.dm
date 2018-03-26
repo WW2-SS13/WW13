@@ -99,13 +99,13 @@
 		if (damage && damage < min_bruised_damage && owner.reagents.has_reagent("anti_toxin"))
 			damage -= 0.2 * PROCESS_ACCURACY
 
-		if(damage < FALSE)
+		if(damage < 0)
 			damage = FALSE
 
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3
 		if(is_bruised())
-			filter_effect -= TRUE
+			filter_effect -= 1
 		if(is_broken())
 			filter_effect -= 2
 

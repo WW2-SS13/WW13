@@ -170,7 +170,7 @@ default behaviour is:
 
 /mob/living/verb/succumb()
 	set hidden = TRUE
-	if ((health < FALSE && health > (5-maxHealth))) // Health below Zero but above 5-away-from-death, as before, but variable
+	if ((health < 0 && health > (5-maxHealth))) // Health below Zero but above 5-away-from-death, as before, but variable
 		adjustOxyLoss(health + maxHealth * 2) // Deal 2x health in OxyLoss damage, as before but variable.
 		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 		src << "<span class = 'notice'>You have given up life and succumbed to death.</span>"
@@ -493,7 +493,7 @@ default behaviour is:
 		for(var/mob/living/M in range(src, TRUE))
 			if ((M.pulling == src && M.stat == FALSE && !( M.restrained() )))
 				t7 = null
-	if ((t7 && (pulling && ((get_dist(src, pulling) <= TRUE || pulling.loc == loc) && (client && client.moving)))))
+	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (client && client.moving)))))
 		var/turf/T = loc
 		. = ..()
 
@@ -509,10 +509,10 @@ default behaviour is:
 
 		if (!restrained())
 			var/diag = get_dir(src, pulling)
-			if ((diag - TRUE) & diag)
+			if ((diag - 1) & diag)
 			else
 				diag = null
-			if ((get_dist(src, pulling) > TRUE || diag))
+			if ((get_dist(src, pulling) > 1 || diag))
 				if (isliving(pulling))
 					var/mob/living/M = pulling
 					var/ok = TRUE
@@ -554,7 +554,7 @@ default behaviour is:
 											if(ishuman(M))
 												var/mob/living/carbon/human/H = M
 												var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
-												if(blood_volume > FALSE)
+												if(blood_volume > 0)
 													H.vessel.remove_reagent("blood", TRUE)
 										*/
 
@@ -704,9 +704,9 @@ default behaviour is:
 
 //pass a negative argument to skip one of the variable
 /mob/living/setEarDamage(var/damage, var/deaf)
-	if(damage >= FALSE)
+	if(damage >= 0)
 		ear_damage = damage
-	if(deaf >= FALSE)
+	if(deaf >= 0)
 		ear_deaf = deaf
 
 /mob/proc/can_be_possessed_by(var/mob/observer/ghost/possessor)

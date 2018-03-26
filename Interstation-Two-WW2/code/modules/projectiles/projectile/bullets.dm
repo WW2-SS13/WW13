@@ -80,7 +80,7 @@
 	bumped = FALSE //can hit all mobs in a tile. pellets is decremented inside attack_mob so this should be fine.
 
 /obj/item/projectile/bullet/pellet/proc/get_pellets(var/distance)
-	var/pellet_loss = round((distance - TRUE)/range_step) //pellets lost due to distance
+	var/pellet_loss = round((distance - 1)/range_step) //pellets lost due to distance
 	return max(pellets - pellet_loss, 1)
 
 /obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
@@ -107,7 +107,7 @@
 		def_zone = old_zone //restore the original zone the projectile was aimed at
 
 	pellets -= hits //each hit reduces the number of pellets left
-	if (hits >= total_pellets || pellets <= FALSE)
+	if (hits >= total_pellets || pellets <= 0)
 		return TRUE
 	return FALSE
 

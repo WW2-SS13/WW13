@@ -31,7 +31,7 @@
 	var/turf/T0 = get_turf(neighbor)
 	if(T0 == src)
 		return TRUE
-	if(get_dist(src,T0) > TRUE || (z!=T0.z))
+	if(get_dist(src,T0) > 1 || (z!=T0.z))
 		return FALSE
 
 	if(T0.x == x || T0.y == y)
@@ -97,7 +97,7 @@ Quick adjacency (to turf):
 	if(T0 == src)
 		return TRUE
 
-	if(get_dist(src,T0) > TRUE || (z!=T0.z))
+	if(get_dist(src,T0) > 1 || (z!=T0.z))
 		return FALSE
 
 	return TRUE
@@ -122,8 +122,8 @@ Quick adjacency (to turf):
 /obj/item/Adjacent(var/atom/neighbor, var/recurse = TRUE)
 	if(neighbor == loc) return TRUE
 	if(istype(loc,/obj/item))
-		if(recurse > FALSE)
-			return loc.Adjacent(neighbor,recurse - TRUE)
+		if(recurse > 0)
+			return loc.Adjacent(neighbor,recurse - 1)
 		return FALSE
 	return ..()
 /*

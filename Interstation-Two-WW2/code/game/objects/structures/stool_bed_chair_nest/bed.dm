@@ -98,7 +98,7 @@
 			user << "\The [src] is already padded."
 			return
 		var/obj/item/stack/C = W
-		if(C.get_amount() < TRUE) // How??
+		if(C.get_amount() < 1) // How??
 			user.drop_from_inventory(C)
 			qdel(C)
 			return

@@ -84,5 +84,5 @@
 		stat = CONSCIOUS
 	else
 		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
-	if (health <= FALSE) // experimental block
+	if (health <= 0) // experimental block
 		death()

@@ -19,7 +19,7 @@
 
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/mop))
-		if(reagents.total_volume < TRUE)
+		if(reagents.total_volume < 1)
 			user << "<span class='warning'>\The [src] is out of water!</span>"
 		else
 			reagents.trans_to_obj(I, 5)
@@ -28,5 +28,5 @@
 
 /obj/structure/mopbucket/on_reagent_change()
 	overlays.Cut()
-	if(reagents.total_volume >= TRUE)
+	if(reagents.total_volume >= 1)
 		overlays |= "water_bucket"

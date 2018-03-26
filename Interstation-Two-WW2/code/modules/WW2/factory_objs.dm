@@ -101,7 +101,7 @@
 		return
 	if (user.pulling.anchored)
 		return
-	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > TRUE))
+	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
 		return
 	if (ismob(user.pulling))
 		var/mob/M = user.pulling
@@ -204,7 +204,7 @@
 
 	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)
 	if(position == FALSE)
-		if(last_pos < FALSE)
+		if(last_pos < 0)
 			position = TRUE
 			last_pos = FALSE
 		else

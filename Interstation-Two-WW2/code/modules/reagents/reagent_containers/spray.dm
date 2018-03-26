@@ -176,7 +176,7 @@
 
 	for(var/a = TRUE to 3)
 		spawn(0)
-			if(reagents.total_volume < TRUE) break
+			if(reagents.total_volume < 1) break
 			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
 			var/turf/my_target = the_targets[a]
 			D.create_reagents(amount_per_transfer_from_this)

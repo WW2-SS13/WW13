@@ -230,7 +230,7 @@
 				eye_blurry = max(eye_blurry-2, FALSE)
 
 	if (disabilities & EPILEPSY)
-		if ((prob(1) && paralysis < TRUE))
+		if ((prob(1) && paralysis < 1))
 			src << "<span class = 'red'>You have a seizure!</span>"
 			for(var/mob/O in viewers(src, null))
 				if(O == src)
@@ -239,14 +239,14 @@
 			Paralyse(10)
 			make_jittery(1000)
 	if (disabilities & COUGHING)
-		if ((prob(5) && paralysis <= TRUE))
+		if ((prob(5) && paralysis <= 1))
 			drop_item()
 			spawn( FALSE )
 				emote("cough")
 				return
 	if (disabilities & TOURETTES)
 		speech_problem_flag = TRUE
-		if ((prob(10) && paralysis <= TRUE))
+		if ((prob(10) && paralysis <= 1))
 			Stun(10)
 			spawn( FALSE )
 				switch(rand(1, 3))
@@ -267,7 +267,7 @@
 			if(0 <= rn && rn <= 3)
 				custom_pain("Your head feels numb and painful.")
 		if(getBrainLoss() >= 15)
-			if(4 <= rn && rn <= 6) if(eye_blurry <= FALSE)
+			if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
 				src << "<span class='warning'>It becomes hard to see for some reason.</span>"
 				eye_blurry = 10
 		if(getBrainLoss() >= 35)
@@ -415,11 +415,11 @@
 	//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
 	var/temp_adj = 0
 	if(loc_temperature < bodytemperature)			//Place is colder than we are
-		var/thermal_protection = get_cold_protection(loc_temperature) //This returns a FALSE - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		var/thermal_protection = get_cold_protection(loc_temperature) //This returns a FALSE - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 		if(thermal_protection < 0 || game_season == "WINTER")
 			temp_adj = (1-thermal_protection) * ((loc_temperature - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
 	else if (loc_temperature > bodytemperature)			//Place is hotter than we are
-		var/thermal_protection = get_heat_protection(loc_temperature) //This returns a FALSE - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		var/thermal_protection = get_heat_protection(loc_temperature) //This returns a FALSE - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 		if(thermal_protection < 0)
 			temp_adj = (1-thermal_protection) * ((loc_temperature - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 
@@ -612,7 +612,7 @@
 			heal_overall_damage(1,1)
 /*
 	// nutrition decrease
-	if (nutrition > FALSE && stat != 2)
+	if (nutrition > 0 && stat != 2)
 		nutrition = max (0, nutrition - species.hunger_factor)*/
 
 	// TODO: stomach and bloodstream organ.
@@ -708,14 +708,14 @@
 			drowsyness--
 			eye_blurry = max(2, eye_blurry)
 			if (prob(5))
-				sleeping += TRUE
+				sleeping += 1
 				Paralyse(5)
 
-		confused = max(0, confused - TRUE)
+		confused = max(0, confused - 1)
 
 		// If you're dirty, your gloves will become dirty, too.
 		if(gloves && germ_level > gloves.germ_level && prob(10))
-			gloves.germ_level += TRUE
+			gloves.germ_level += 1
 
 	return TRUE
 
@@ -763,7 +763,7 @@
 
 /*	if(stat == UNCONSCIOUS)
 		//Critical damage passage overlay
-		if(health <= FALSE)
+		if(health <= 0)
 			var/image/I
 			switch(health)
 				if(-20 to -10)
@@ -1056,7 +1056,7 @@
 					adjustOxyLoss(rand(1,20))
 					src << "<span class='danger'>You're starving. You feel your life force slowly leaving your body...</span>"
 					eye_blurry += 20
-					if(weakened < TRUE) Weaken(20)
+					if(weakened < 1) Weaken(20)
 
 				else if(paralysis<1 && prob(7)) //Mini seizure (25% duration and strength of a normal seizure)
 
@@ -1184,7 +1184,7 @@
 					adjustOxyLoss(rand(1,20))
 					src << "<span class='danger'>You're dehydrating. You feel your life force slowly leaving your body...</span>"
 					eye_blurry += 20
-					if(weakened < TRUE) Weaken(20)
+					if(weakened < 1) Weaken(20)
 
 				else if(paralysis<1 && prob(7)) //Mini seizure (25% duration and strength of a normal seizure)
 
@@ -1224,7 +1224,7 @@
 		shock_stage = max(shock_stage, 61)
 
 	if(traumatic_shock >= 80)
-		shock_stage += TRUE
+		shock_stage += 1
 
 	else if(health < config.health_threshold_softcrit)
 		shock_stage = max(shock_stage, 61)
@@ -1302,6 +1302,8 @@
 					holder.icon_state = spy_faction.icon_state
 				if (GERMAN)
 					holder.icon_state = spy_faction.icon_state
+				if (ITALIAN)
+					holder.icon_state = spy_faction.icon_state
 				if (PARTISAN)
 					holder.icon_state = spy_faction.icon_state
 				if (CIVILIAN)
@@ -1318,6 +1320,8 @@
 				if (SOVIET)
 					holder.icon_state = officer_faction.icon_state
 				if (GERMAN)
+					holder.icon_state = officer_faction.icon_state
+				if (ITALIAN)
 					holder.icon_state = officer_faction.icon_state
 				if (PARTISAN)
 					holder.icon_state = officer_faction.icon_state
@@ -1336,6 +1340,8 @@
 					holder.icon_state = base_faction.icon_state
 				if (GERMAN)
 					holder.icon_state = base_faction.icon_state
+				if (ITALIAN)
+					holder.icon_state = base_faction.icon_state
 				if (PARTISAN)
 					holder.icon_state = base_faction.icon_state
 				if (CIVILIAN)
@@ -1352,6 +1358,8 @@
 				if (SOVIET)
 					holder.icon_state = squad_faction.icon_state
 				if (GERMAN)
+					holder.icon_state = squad_faction.icon_state
+				if (ITALIAN)
 					holder.icon_state = squad_faction.icon_state
 				if (PARTISAN)
 					holder.icon_state = squad_faction.icon_state
@@ -1500,7 +1508,7 @@
 	var/burn_temperature = fire_burn_temperature()
 	var/thermal_protection = get_heat_protection(burn_temperature)
 
-	if (thermal_protection < TRUE && bodytemperature < burn_temperature)
+	if (thermal_protection < 1 && bodytemperature < burn_temperature)
 		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), TRUE)
 
 /mob/living/carbon/human/rejuvenate()
@@ -1515,7 +1523,7 @@
 	if (!laddervision)
 		if(machine)
 			var/viewflags = machine.check_eye(src)
-			if(viewflags < FALSE)
+			if(viewflags < 0)
 				reset_view(null, FALSE)
 			else if(viewflags)
 				sight |= viewflags

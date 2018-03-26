@@ -3,7 +3,7 @@
 //*********************
 
 /obj/item/weapon/gun/projectile/minigun/verb/eject_mag()
-	set category = "Minigun"
+	set category = null // was "Minigun" - removes lag
 	set name = "Eject magazine"
 	set src in range(1, usr)
 	try_remove_mag(usr)
@@ -49,50 +49,50 @@
 
 		// small body parts: head, hand, feet
 		"small" = list(
-			SHORT_RANGE_STILL = 20,
-			SHORT_RANGE_MOVING = 10,
+			SHORT_RANGE_STILL = 30,
+			SHORT_RANGE_MOVING = 27,
 
-			MEDIUM_RANGE_STILL = 14,
-			MEDIUM_RANGE_MOVING = 7,
+			MEDIUM_RANGE_STILL = 21,
+			MEDIUM_RANGE_MOVING = 19,
 
-			LONG_RANGE_STILL = 7,
-			LONG_RANGE_MOVING = 4,
+			LONG_RANGE_STILL = 11,
+			LONG_RANGE_MOVING = 10,
 
-			VERY_LONG_RANGE_STILL = 5,
-			VERY_LONG_RANGE_MOVING = 3),
+			VERY_LONG_RANGE_STILL = 8,
+			VERY_LONG_RANGE_MOVING = 7),
 
 		// medium body parts: limbs
 		"medium" = list(
-			SHORT_RANGE_STILL = 25,
-			SHORT_RANGE_MOVING = 13,
+			SHORT_RANGE_STILL = 38,
+			SHORT_RANGE_MOVING = 34,
 
-			MEDIUM_RANGE_STILL = 20,
-			MEDIUM_RANGE_MOVING = 10,
+			MEDIUM_RANGE_STILL = 30,
+			MEDIUM_RANGE_MOVING = 27,
 
-			LONG_RANGE_STILL = 15,
-			LONG_RANGE_MOVING = 8,
+			LONG_RANGE_STILL = 23,
+			LONG_RANGE_MOVING = 21,
 
-			VERY_LONG_RANGE_STILL = 7,
-			VERY_LONG_RANGE_MOVING = 4),
+			VERY_LONG_RANGE_STILL = 11,
+			VERY_LONG_RANGE_MOVING = 10),
 
 		// large body parts: chest, groin
 		"large" = list(
-			SHORT_RANGE_STILL = 30,
-			SHORT_RANGE_MOVING = 15,
+			SHORT_RANGE_STILL = 45,
+			SHORT_RANGE_MOVING = 41,
 
-			MEDIUM_RANGE_STILL = 25,
-			MEDIUM_RANGE_MOVING = 13,
+			MEDIUM_RANGE_STILL = 38,
+			MEDIUM_RANGE_MOVING = 34,
 
-			LONG_RANGE_STILL = 20,
-			LONG_RANGE_MOVING = 10,
+			LONG_RANGE_STILL = 30,
+			LONG_RANGE_MOVING = 27,
 
-			VERY_LONG_RANGE_STILL = 10,
-			VERY_LONG_RANGE_MOVING = 5),
+			VERY_LONG_RANGE_STILL = 15,
+			VERY_LONG_RANGE_MOVING = 14),
 	)
 
 	accuracy_increase_mod = 1.00
 	accuracy_decrease_mod = 1.00
-	KD_chance = 10
+	KD_chance = KD_CHANCE_LOW
 	stat = "MG"
 
 /obj/item/weapon/gun/projectile/minigun/attack_hand(var/mob/user)
@@ -102,7 +102,7 @@
 		return
 
 	if(user.using_object == src)
-		if(firemodes.len > TRUE)
+		if(firemodes.len > 1)
 			switch_firemodes(user)
 	else
 		var/grip_dir = reverse_direction(dir)

@@ -1,53 +1,53 @@
 /obj/item/weapon/gun/projectile/pistol
-	// a bit less accurate than rifles, but doesn't have scopes
+	// less accurate than rifles against still targets, but better against moving targets
 	accuracy_list = list(
 
 		// small body parts: head, hand, feet
 		"small" = list(
 			SHORT_RANGE_STILL = 80,
-			SHORT_RANGE_MOVING = 40,
+			SHORT_RANGE_MOVING = 53,
 
 			MEDIUM_RANGE_STILL = 70,
-			MEDIUM_RANGE_MOVING = 30,
+			MEDIUM_RANGE_MOVING = 46,
 
 			LONG_RANGE_STILL = 60,
 			LONG_RANGE_MOVING = 40,
 
 			VERY_LONG_RANGE_STILL = 50,
-			VERY_LONG_RANGE_MOVING = 20),
+			VERY_LONG_RANGE_MOVING = 33),
 
 		// medium body parts: limbs
 		"medium" = list(
 			SHORT_RANGE_STILL = 85,
-			SHORT_RANGE_MOVING = 43,
+			SHORT_RANGE_MOVING = 56,
 
 			MEDIUM_RANGE_STILL = 75,
-			MEDIUM_RANGE_MOVING = 38,
+			MEDIUM_RANGE_MOVING = 50,
 
 			LONG_RANGE_STILL = 65,
-			LONG_RANGE_MOVING = 33,
+			LONG_RANGE_MOVING = 43,
 
 			VERY_LONG_RANGE_STILL = 55,
-			VERY_LONG_RANGE_MOVING = 28),
+			VERY_LONG_RANGE_MOVING = 36),
 
 		// large body parts: chest, groin
 		"large" = list(
 			SHORT_RANGE_STILL = 90,
-			SHORT_RANGE_MOVING = 45,
+			SHORT_RANGE_MOVING = 59,
 
 			MEDIUM_RANGE_STILL = 80,
-			MEDIUM_RANGE_MOVING = 40,
+			MEDIUM_RANGE_MOVING = 53,
 
 			LONG_RANGE_STILL = 70,
-			LONG_RANGE_MOVING = 35,
+			LONG_RANGE_MOVING = 46,
 
 			VERY_LONG_RANGE_STILL = 60,
-			VERY_LONG_RANGE_MOVING = 30),
+			VERY_LONG_RANGE_MOVING = 40),
 	)
 
 	accuracy_increase_mod = 1.05
 	accuracy_decrease_mod = 1.10
-	KD_chance = 20
+	KD_chance = KD_CHANCE_LOW
 	stat = "pistol"
 
 /obj/item/weapon/gun/projectile/pistol/attackby(obj/W as obj, mob/user as mob)

@@ -15,7 +15,7 @@
 	if(drain_check)
 		return TRUE
 
-	if(charge <= FALSE)
+	if(charge <= 0)
 		return FALSE
 
 	var/cell_amt = power * CELLRATE
@@ -44,7 +44,7 @@
 
 // use power from a cell, returns the amount actually used
 /obj/item/weapon/cell/proc/use(var/amount)
-	if(rigged && amount > FALSE)
+	if(rigged && amount > 0)
 		explode()
 		return FALSE
 	var/used = min(charge, amount)
@@ -61,7 +61,7 @@
 
 // recharge the cell
 /obj/item/weapon/cell/proc/give(var/amount)
-	if(rigged && amount > FALSE)
+	if(rigged && amount > 0)
 		explode()
 		return FALSE
 
@@ -72,7 +72,7 @@
 
 
 /obj/item/weapon/cell/examine(mob/user)
-	if(get_dist(src, user) > TRUE)
+	if(get_dist(src, user) > 1)
 		return
 
 	if(maxcharge <= 2500)

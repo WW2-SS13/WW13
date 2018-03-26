@@ -13,7 +13,7 @@
 		usr << "Target coordinates specify bottom left corner of the capture, range defines render distance to opposite corner."
 		return
 
-	if(range > 500 || range <= FALSE)
+	if(range > 500 || range <= 0)
 		usr << "Capturing range is incorrect, it must be within 1-500."
 		return
 

@@ -72,7 +72,7 @@
 		D.organs_scanned[O.name] = W.copy()
 
 	for(var/V in O.trace_chemicals)
-		if(O.trace_chemicals[V] > FALSE && !chemtraces.Find(V))
+		if(O.trace_chemicals[V] > 0 && !chemtraces.Find(V))
 			chemtraces += V
 
 /obj/item/weapon/autopsy_scanner/verb/print_data()

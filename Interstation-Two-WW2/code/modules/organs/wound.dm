@@ -217,7 +217,7 @@
 		if (bandaged||clamped)
 			return FALSE
 
-		if (wound_damage() <= 30 && bleed_timer <= FALSE)
+		if (wound_damage() <= 30 && bleed_timer <= 0)
 			return FALSE	//Bleed timer has run out. Wounds with more than 30 damage don't stop bleeding on their own.
 
 		return TRUE

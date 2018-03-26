@@ -44,7 +44,7 @@ var/global/list/ashtray_cache = list()
 		desc = "An ashtray made of [material.display_name]."
 
 /obj/item/weapon/material/ashtray/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (health <= FALSE)
+	if (health <= 0)
 		return
 	if (istype(W,/obj/item/weapon/cigbutt) || istype(W,/obj/item/clothing/mask/smokable/cigarette) || istype(W, /obj/item/weapon/flame/match))
 		if (contents.len >= max_butts)
@@ -75,18 +75,18 @@ var/global/list/ashtray_cache = list()
 	else
 		health = max(0,health - W.force)
 		user << "You hit [src] with [W]."
-		if (health < TRUE)
+		if (health < 1)
 			shatter()
 	return
 
 /obj/item/weapon/material/ashtray/throw_impact(atom/hit_atom)
-	if (health > FALSE)
+	if (health > 0)
 		health = max(0,health - 3)
 		if (contents.len)
 			visible_message("<span class='danger'>\The [src] slams into [hit_atom], spilling its contents!</span>")
 		for (var/obj/item/clothing/mask/smokable/cigarette/O in contents)
 			O.loc = loc
-		if (health < TRUE)
+		if (health < 1)
 			shatter()
 			return
 		update_icon()

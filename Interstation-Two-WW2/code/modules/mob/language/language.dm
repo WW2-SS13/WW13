@@ -227,7 +227,7 @@
 		if (istype(new_language, /datum/language/german))
 			if (ishuman(src))
 				var/mob/living/carbon/human/H = src
-				if (H.species)
+				if (H.species && H.client)
 					if (H.client.prefs.be_random_name_german)
 						H.real_name = H.species.get_random_german_name(H.gender, FALSE)
 					else
@@ -237,7 +237,7 @@
 		else if (istype(new_language, /datum/language/russian))
 			if (ishuman(src))
 				var/mob/living/carbon/human/H = src
-				if (H.species)
+				if (H.species && H.client)
 					if (H.client.prefs.be_random_name_russian)
 						H.real_name = H.species.get_random_russian_name(H.gender, FALSE)
 					else
@@ -248,7 +248,7 @@
 		else if (istype(new_language, /datum/language/ukrainian))
 			if (ishuman(src))
 				var/mob/living/carbon/human/H = src
-				if (H.species)
+				if (H.species && H.client)
 					if (H.client.prefs.be_random_name_ukrainian)
 						H.real_name = H.species.get_random_ukrainian_name(H.gender, FALSE)
 					else
@@ -259,7 +259,7 @@
 		else if (istype(new_language, /datum/language/italian))
 			if (ishuman(src))
 				var/mob/living/carbon/human/H = src
-				if (H.species)
+				if (H.species && H.client)
 					if (H.client.prefs.be_random_name_italian)
 						H.real_name = H.species.get_random_italian_name(H.gender, FALSE)
 					else

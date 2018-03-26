@@ -178,7 +178,7 @@
 
 /datum/hud/proc/ButtonNumberToScreenCoords(var/number) // TODO : Make this zero-indexed for readabilty
 	var/row = round((number-1)/AB_MAX_COLUMNS)
-	var/col = ((number - TRUE)%(AB_MAX_COLUMNS)) + TRUE
+	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
 	var/coord_col = "+[col-1]"
 	var/coord_col_offset = AB_WEST_OFFSET+2*col
 	var/coord_row = "[-1 - row]"
@@ -187,7 +187,7 @@
 
 /datum/hud/proc/SetButtonCoords(var/obj/screen/button,var/number)
 	var/row = round((number-1)/AB_MAX_COLUMNS)
-	var/col = ((number - TRUE)%(AB_MAX_COLUMNS)) + TRUE
+	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
 	var/x_offset = 32*(col-1) + AB_WEST_OFFSET + 2*col
 	var/y_offset = -32*(row+1) + AB_NORTH_OFFSET
 

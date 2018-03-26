@@ -72,7 +72,7 @@
 				if ((type & TRUE && sdisabilities & BLIND))
 					return
 	// Added voice muffling for Issue 41.
-	if(stat == UNCONSCIOUS || sleeping > FALSE)
+	if(stat == UNCONSCIOUS || sleeping > 0)
 		src << "<I>... You can almost hear someone talking ...</I>"
 	else
 		src << msg
@@ -658,8 +658,9 @@
 				stat("Grace Period Status:", grace_period_string)
 
 			stat("Map:", map.title)
-			stat("Season:", ticker.mode.season())
-			stat("Weather:", ticker.mode.weather())
+
+			stat("Season:", !ticker.mode ? "Spring" : ticker.mode.season())
+			stat("Weather:", !ticker.mode ? "Clear skies" : ticker.mode.weather())
 			stat("Time of Day:", time_of_day)
 
 			if (z == 2 && map && map.ID == "FOREST")
@@ -811,7 +812,7 @@
 	return visible_implants
 
 /mob/proc/embedded_needs_process()
-	return (embedded.len > FALSE)
+	return (embedded.len > 0)
 
 mob/proc/yank_out_object()
 	set category = "Object"
@@ -952,7 +953,7 @@ mob/proc/yank_out_object()
 		var/mob/living/carbon/human/H = src
 		var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in H.organs
 		if(O)
-			if(!O.teeth_list.len || O.get_teeth() <= FALSE)
+			if(!O.teeth_list.len || O.get_teeth() <= 0)
 				lisp = 100 //No teeth = full lisp power
 			else
 				lisp = (1 - (O.get_teeth()/O.max_teeth)) * 100 //Less teeth = more lisp

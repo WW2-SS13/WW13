@@ -10,7 +10,7 @@
 	if(!flooring || !(flooring.flags & TURF_CAN_BREAK) || !isnull(broken))
 		return
 	if(rust)
-		broken = flooring.has_damage_range + TRUE
+		broken = flooring.has_damage_range + 1
 	else if(flooring.has_damage_range)
 		broken = rand(0,flooring.has_damage_range)
 	else

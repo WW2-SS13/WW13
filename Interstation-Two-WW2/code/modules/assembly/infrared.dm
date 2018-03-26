@@ -98,7 +98,7 @@
 
 
 	trigger_beam()
-		if((!secured)||(!on)||(cooldown > FALSE))	return FALSE
+		if((!secured)||(!on)||(cooldown > 0))	return FALSE
 		pulse(0)
 		if(!holder)
 			visible_message("\icon[src] *beep* *beep*")
@@ -192,9 +192,9 @@
 		qdel(src)
 		return
 
-	if(left > FALSE)
+	if(left > 0)
 		left--
-	if(left < TRUE)
+	if(left < 1)
 		if(!(visible))
 			invisibility = 101
 		else
@@ -221,8 +221,8 @@
 			next = I
 			spawn(0)
 				//world << "limit = [limit] "
-				if((I && limit > FALSE))
-					I.limit = limit - TRUE
+				if((I && limit > 0))
+					I.limit = limit - 1
 					//world << "calling next process"
 					I.process()
 				return

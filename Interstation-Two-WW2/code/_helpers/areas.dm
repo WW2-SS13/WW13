@@ -29,7 +29,7 @@
 			if (istype(t) && istype(tt))
 				maxDistX = max(maxDistX, abs(t.x - tt.x))
 
-	return maxDistX + TRUE
+	return maxDistX + 1
 
 /proc/get_area_height(var/area/a)
 	var/list/turfs = get_area_turfs(a)
@@ -39,7 +39,7 @@
 			if (istype(t) && istype(tt))
 				maxDistY = max(maxDistY, abs(t.y - tt.y))
 
-	return maxDistY + TRUE
+	return maxDistY + 1
 
 /proc/min_area_x(var/area/a) //takes an actual area or a type
 	var/list/turfs = get_area_turfs(a)

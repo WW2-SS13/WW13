@@ -72,7 +72,7 @@
 			stance = COMMANDED_HEAL
 			return TRUE
 		var/list/targets = get_targets_by_name(text)
-		if(targets.len > TRUE || !targets.len)
+		if(targets.len > 1 || !targets.len)
 			say("ERROR. TARGET COULD NOT BE PARSED.")
 			return FALSE
 		target_mob = targets[1]

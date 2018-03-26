@@ -95,7 +95,7 @@ var/global/list/rkeys = list(
 /proc/capitalize_cp1251(var/t as text)
 	var/s = 2
 	if (copytext(t,1,2) == ";")
-		s += TRUE
+		s += 1
 	else if (copytext(t,1,2) == ":")
 		s += 2
 	return ruppertext(copytext(t, TRUE, s)) + copytext(t, s)
