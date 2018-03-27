@@ -83,8 +83,6 @@
 	var/gibs = FALSE
 	var/crushes = FALSE
 
-	var/weight = 0
-
 /obj/item/weapon/gun/New()
 	..()
 	if(!firemodes.len)

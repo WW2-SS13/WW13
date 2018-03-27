@@ -66,6 +66,9 @@
 
 	var/dropsound = 'sound/effects/drop_default.ogg'
 
+	// Weight variable
+	var/weight = 0
+
 /obj/item/equipped()
 	..()
 	var/mob/M = loc
