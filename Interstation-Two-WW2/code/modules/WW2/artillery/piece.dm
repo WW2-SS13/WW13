@@ -322,25 +322,8 @@
 			if (state == "CLOSED")
 				user << "<span class = 'danger'>The shell loading slot must be open to add a shell.</span>"
 				return
-			var/obj/o = user.get_active_hand()
-			var/cond_1 = o && istype(o, /obj/item/artillery_ammo) && !istype(o, /obj/item/artillery_ammo/casing)
-			var/cond_2 = !o
 
-			if (cond_1 || cond_2)
-
-				if (!istype(loaded, /obj/item/artillery_ammo/none))
-					loaded.loc = get_turf(user)
-
-				if (o)
-					user.drop_from_inventory(o)
-					o.loc = src
-					loaded = o
-					icon_state = "open_with_shell"
-					state = "OPEN"
-				else
-					icon_state = "open"
-					state = "OPEN"
-
+			load_slot(i, user)
 
 
 	//	flick("opening", src)
@@ -394,6 +377,25 @@
 
 	do_html(user)
 
+/obj/machinery/artillery/base/proc/load_slot(var/slot = 1, var/mob/user)
+	var/obj/o = user.get_active_hand()
+	var/cond_1 = o && istype(o, /obj/item/artillery_ammo) && !istype(o, /obj/item/artillery_ammo/casing)
+	var/cond_2 = !o
+
+	if (cond_1 || cond_2)
+
+		if (!istype(loaded, /obj/item/artillery_ammo/none))
+			loaded.loc = get_turf(user)
+
+		if (o)
+			user.drop_from_inventory(o)
+			o.loc = src
+			loaded = o
+			icon_state = "open_with_shell"
+			state = "OPEN"
+		else
+			icon_state = "open"
+			state = "OPEN"
 
 /obj/machinery/artillery/base/attack_hand(var/mob/attacker)
 	interact(attacker)
@@ -415,7 +417,20 @@
 				if (!src) return
 				user << "<span class='notice'>You secured the artillery piece.</span>"
 				anchored = TRUE
-	//second piece
+	else if (istype(W, /obj/item/artillery_ammo) && !istype(W, /obj/item/artillery_ammo/none))
+		if (!istype(src, /obj/machinery/artillery/nebel))
+			if (!anchored)
+				user << "<span class = 'danger'>The artillery piece must be anchored to use.</span>"
+				return
+			if (state == "CLOSED")
+				user << "<span class = 'danger'>The shell loading slot must be open to add a shell.</span>"
+				return
+			// load first and only slot
+			load_slot(1, user)
+
+
+
+//second piece
 
 /obj/machinery/artillery/tube
 	var/obj/machinery/artillery/base/other = null

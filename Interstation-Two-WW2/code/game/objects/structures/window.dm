@@ -439,12 +439,16 @@
 	layer = MOB_LAYER + 0.02
 	density = FALSE // so we can touch curtains from any direction
 
+/obj/structure/window/classic/reinforced
+	reinf = TRUE
+
 /obj/structure/window/classic/is_full_window()
 	return TRUE
 
 /obj/structure/window/classic/take_damage(damage)
 	if (damage > 12 || (damage > 5 && prob(damage * 5)))
-		shatter()
+		if (!reinf || (reinf && prob(20)))
+			shatter()
 	else return
 
 /obj/structure/window/classic/hitby(AM as mob|obj)

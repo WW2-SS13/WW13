@@ -2,7 +2,7 @@
 	force = 10
 	throwforce = 20
 
-	// same accuracy as MGs, currently
+	// more accuracy than MGs, less than everything else
 	accuracy_list = list(
 
 		// small body parts: head, hand, feet

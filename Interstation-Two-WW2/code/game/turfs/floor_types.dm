@@ -391,6 +391,9 @@
 	uses_winter_overlay = TRUE
 	var/obj/structure/wild/wild = null
 
+/turf/floor/plating/grass/ex_act(severity)
+	return
+
 /turf/floor/plating/grass/New()
 	..()
 	grass_turf_list += src

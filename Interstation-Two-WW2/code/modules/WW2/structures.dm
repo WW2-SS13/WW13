@@ -91,6 +91,7 @@
 /obj/structure/noose/process()
 	doWork()
 
+// call this instead of process() if you want to do direct calls, I think its better - Kachnov
 /obj/structure/noose/proc/doWork()
 	if (hanging)
 		density = TRUE

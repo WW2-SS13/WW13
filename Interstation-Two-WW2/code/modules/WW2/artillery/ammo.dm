@@ -37,7 +37,6 @@
 	reagent_payload = "xylyl_bromide"
 	name = "Xylyl Bromide Shell"
 
-
 /obj/item/artillery_ammo/casing
 	icon = 'icons/WW2/artillery_ammo.dmi'
 	icon_state = "casing"

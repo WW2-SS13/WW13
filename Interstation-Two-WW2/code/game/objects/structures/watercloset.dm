@@ -386,6 +386,7 @@
 		return
 
 	user << "<span class='notice'>You start washing your hands.</span>"
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	if (sound)
 		playsound(loc, sound, 100, TRUE)
@@ -412,6 +413,7 @@
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'>[user] fills \the [RG] using \the [src].</span>","<span class='notice'>You fill \the [RG] using \the [src].</span>")
 		playsound(loc, 'sound/effects/watersplash.ogg', 100, TRUE)
+		user.setClickCooldown(5)
 		return TRUE
 /*
 	else if (istype(O, /obj/item/weapon/melee/baton))

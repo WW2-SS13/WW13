@@ -2,7 +2,7 @@
 
 /datum/reagents
 	var/list/datum/reagent/reagent_list = list()
-	var/total_volume = FALSE
+	var/total_volume = 0
 	var/maximum_volume = 100
 	var/atom/my_atom = null
 
@@ -41,7 +41,7 @@
 
 /datum/reagents/proc/get_master_reagent() // Returns reference to the reagent with the biggest volume.
 	var/the_reagent = null
-	var/the_volume = FALSE
+	var/the_volume = 0
 
 	for(var/datum/reagent/A in reagent_list)
 		if(A.volume > the_volume)
@@ -52,7 +52,7 @@
 
 /datum/reagents/proc/get_master_reagent_name() // Returns the name of the reagent with the biggest volume.
 	var/the_name = null
-	var/the_volume = FALSE
+	var/the_volume = 0
 	for(var/datum/reagent/A in reagent_list)
 		if(A.volume > the_volume)
 			the_volume = A.volume
@@ -62,7 +62,7 @@
 
 /datum/reagents/proc/get_master_reagent_id() // Returns the id of the reagent with the biggest volume.
 	var/the_id = null
-	var/the_volume = FALSE
+	var/the_volume = 0
 	for(var/datum/reagent/A in reagent_list)
 		if(A.volume > the_volume)
 			the_volume = A.volume
@@ -71,7 +71,7 @@
 	return the_id
 
 /datum/reagents/proc/update_total() // Updates volume.
-	total_volume = FALSE
+	total_volume = 0
 	for(var/datum/reagent/R in reagent_list)
 		if(R.volume < MINIMUM_CHEMICAL_VOLUME)
 			del_reagent(R.id)
@@ -200,7 +200,7 @@
 /datum/reagents/proc/del_reagents()
 	return del_reagent(TRUE)
 
-/datum/reagents/proc/has_reagent(var/id, var/amount = FALSE)
+/datum/reagents/proc/has_reagent(var/id, var/amount = 0)
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
 			if(current.volume >= amount)

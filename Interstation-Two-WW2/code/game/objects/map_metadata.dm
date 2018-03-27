@@ -31,6 +31,7 @@ var/global/obj/map_metadata/map = null
 		SOVIET = 1.00)
 	var/list/available_subfactions = list(
 		list(SCHUTZSTAFFEL, ITALIAN))
+	var/katyushas = TRUE
 
 /obj/map_metadata/New()
 	..()

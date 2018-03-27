@@ -91,14 +91,16 @@ var/global/list/image/splatter_cache=list()
 				S.blood_overlay.color = basecolor
 				S.overlays.Cut()
 				S.overlays += S.blood_overlay
-			S.blood_DNA |= blood_DNA.Copy()
+			if (blood_DNA)
+				S.blood_DNA |= blood_DNA.Copy()
 
 	else if (hasfeet)//Or feet
 		perp.feet_blood_color = basecolor
 		perp.track_blood = max(amount,perp.track_blood)
 		if(!perp.feet_blood_DNA)
 			perp.feet_blood_DNA = list()
-		perp.feet_blood_DNA |= blood_DNA.Copy()
+		if (blood_DNA)
+			perp.feet_blood_DNA |= blood_DNA.Copy()
 	else if (perp.buckled && istype(perp.buckled, /obj/structure/bed/chair/wheelchair))
 		var/obj/structure/bed/chair/wheelchair/W = perp.buckled
 		W.bloodiness = 4
@@ -124,7 +126,8 @@ var/global/list/image/splatter_cache=list()
 		user << "<span class='notice'>You get some of \the [src] on your hands.</span>"
 		if (!user.blood_DNA)
 			user.blood_DNA = list()
-		user.blood_DNA |= blood_DNA.Copy()
+		if (blood_DNA)
+			user.blood_DNA |= blood_DNA.Copy()
 		user.bloody_hands += taken
 		user.hand_blood_color = basecolor
 		user.update_inv_gloves(1)

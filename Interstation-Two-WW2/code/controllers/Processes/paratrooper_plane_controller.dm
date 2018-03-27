@@ -14,6 +14,8 @@ var/datum/controller/process/paratrooper_plane_controller/paratrooper_plane_mast
 		paratrooper_plane_master = src
 
 /datum/controller/process/paratrooper_plane_controller/doWork()
+	if (altitude == 500)
+		return
 	try
 		if (!my_turfs.len)
 			if (latejoin_turfs["Fallschirm"] && latejoin_turfs["Fallschirm"]:len)

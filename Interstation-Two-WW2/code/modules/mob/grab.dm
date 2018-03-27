@@ -166,7 +166,6 @@
 /obj/item/weapon/grab/attack_self()
 	return s_click(hud)
 
-
 //Updating pixelshift, position and direction
 //Gets called on process, when the grab gets upgraded or the assailant moves
 /obj/item/weapon/grab/proc/adjust_position()

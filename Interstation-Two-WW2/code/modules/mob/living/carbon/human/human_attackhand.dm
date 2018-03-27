@@ -90,6 +90,9 @@
 		if(I_GRAB)
 			if(M == src || anchored)
 				return FALSE
+			for (var/obj/structure/noose/N in get_turf(src))
+				if (N.hanging == src)
+					return
 			for(var/obj/item/weapon/grab/G in grabbed_by)
 				if(G.assailant == M)
 					M << "<span class='notice'>You already grabbed [src].</span>"

@@ -239,7 +239,7 @@
 #define HIDETAIL        16
 
 // WARNING: The following flags apply only to the helmets and masks!
-#define HIDEMASK TRUE
+#define HIDEMASK 1
 #define HIDEEARS 2 // Headsets and such.
 #define HIDEEYES 4 // Glasses.
 #define HIDEFACE 8 // Dictates whether we appear as "Unknown".

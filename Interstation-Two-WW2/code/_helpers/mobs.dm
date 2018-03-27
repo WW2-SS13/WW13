@@ -572,3 +572,19 @@ Proc for attack log creation, because really why not
 
 /mob/proc/behind()
 	return get_turf_behind(src)
+
+/* detects if we should be able to detect someone, ICly, based on direction both mobs are facing
+ * this proc currently exists for projectiles, which are twice as likely to hit people in the blindspot of the firer
+ 	- Kachnov
+*/
+
+/mob/proc/is_in_blindspot(var/mob/other)
+	if (list(NORTH, NORTHEAST, NORTHWEST).Find(dir))
+		if (list(NORTH, NORTHEAST, NORTHWEST).Find(other.dir))
+			return TRUE
+	if (list(SOUTH, SOUTHEAST, SOUTHWEST).Find(dir))
+		if (list(SOUTH, SOUTHEAST, SOUTHWEST).Find(other.dir))
+			return TRUE
+	if (dir == other.dir)
+		return TRUE
+	return FALSE

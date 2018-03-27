@@ -637,9 +637,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 //Updates brute_damn and burn_damn from wound damages. Updates BLEEDING status.
 /obj/item/organ/external/proc/update_damages()
-	number_wounds = FALSE
-	brute_dam = FALSE
-	burn_dam = FALSE
+	number_wounds = 0
+	brute_dam = 0
+	burn_dam = 0
 	status &= ~ORGAN_BLEEDING
 	var/clamped = FALSE
 
@@ -670,6 +670,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	//Bone fractures
 	if(config.bones_can_break && brute_dam >= min_broken_damage * config.organ_health_multiplier && !(status & ORGAN_ROBOT))
 		fracture()
+
+	if (!(brute_dam+burn_dam) || !number_wounds)
+		disfigured = FALSE
 
 //Returns TRUE if damage_state changed
 /obj/item/organ/external/proc/update_damstate()

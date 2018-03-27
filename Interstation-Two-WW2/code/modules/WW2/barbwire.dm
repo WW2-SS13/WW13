@@ -47,7 +47,7 @@
 					H.Weaken(2)
 				M << "<span class = 'red'><b>Your [affecting.name] gets slightly cut by \the [src]!</b></span>"
 				return ..()
-			if (prob (33))
+			else if (prob (33))
 				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
@@ -59,7 +59,7 @@
 					H.Weaken(4)
 				M << "<span class = 'red'><b>Your [affecting.name] gets cut by \the [src]!</b></span>"
 				return ..()
-			if (prob (33))
+			else
 				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)

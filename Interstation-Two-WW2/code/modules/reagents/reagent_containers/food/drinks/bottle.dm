@@ -89,7 +89,7 @@
 					Bump(loc, TRUE)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Bump(atom/A, yes, explode = TRUE)
-	if (src)
+	if (src && isGlass)
 		if (isliving(A) || isturf(A) || (isobj(A) && A.density))
 			shatter(get_turf(A), A, explode ? calculate_alcohol_power() : 0)
 	..(A, yes)
@@ -514,6 +514,7 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = FALSE
+	dropsound = 'sound/effects/drop_default.ogg'
 	New()
 		..()
 		reagents.add_reagent("cream", 100)

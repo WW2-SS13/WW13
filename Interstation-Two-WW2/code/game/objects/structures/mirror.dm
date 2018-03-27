@@ -50,6 +50,8 @@
 		visible_message("<span class='warning'>[user] hits [src] with [I]!</span>")
 		playsound(loc, 'sound/effects/Glasshit.ogg', 70, TRUE)
 
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+
 /obj/structure/mirror/attack_generic(var/mob/user, var/damage)
 	attack_animation(user)
 	if(shattered)
@@ -61,6 +63,8 @@
 		shatter()
 	else
 		user.visible_message("<span class='danger'>[user] hits [src] and bounces off!</span>")
+
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	return TRUE
 
 /obj/structure/mirror/Destroy()

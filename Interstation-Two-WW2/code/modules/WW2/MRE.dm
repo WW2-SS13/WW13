@@ -30,29 +30,36 @@
 /obj/item/weapon/reagent_containers/food/snacks/MRE/generic
 	base_state = "mre_food"
 	icon_state = "mre_food"
+	name = "Generic MRE"
 	opens = FALSE
 	trash = /obj/item/weapon/generic_MRE_trash
-	name = "Generic MRE"
 
 /obj/item/weapon/generic_MRE_trash
 	icon = 'icons/obj/food.dmi'
 	icon_state = "mre_food_trash"
 	name = "MRE trash"
+	desc = "The remains of some MRE."
+	w_class = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german
 	name = "German MRE: Sauerkraut"
+	desc = "A pickled cabbage MRE."
+	nutriment_desc = list("pickled cabbage" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/generic/soviet
 	name = "Soviet MRE: Cabbage"
+	desc = "A cabbage MRE."
+	nutriment_desc = list("overcooked cabbage" = 1)
 
-//
+// scho ka kola
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/schokakola
 	base_state = "schokakola"
 	icon_state = "schokakola"
+	name = "Scho-Ka-Kola"
+	desc = "A delicious chocolate treat with lots of caffeine."
 	trash = /obj/item/weapon/schokakola_trash
 	nutriment_desc = list("chocolate" = 1, "caffeine" = 1)
-	name = "Schokakola"
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/schokakola/New()
 	..()
@@ -66,3 +73,5 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "schokakola_trash"
 	name = "Schokakola trash"
+	desc = "The remains of a delicious Scho-Ka-Kola."
+	w_class = 1
