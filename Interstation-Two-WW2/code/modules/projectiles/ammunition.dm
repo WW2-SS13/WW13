@@ -220,7 +220,7 @@
 
 //weight stuff
 /obj/item/ammo_magazine/get_weight()
-	.=..()
+	. = ..()
 	for (var/obj/item/I in stored_ammo)
 		.+= I.get_weight()
 	return.
