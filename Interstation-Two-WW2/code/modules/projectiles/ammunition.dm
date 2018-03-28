@@ -218,3 +218,9 @@
 	magazine_icondata_keys["[M.type]"] = icon_keys
 	magazine_icondata_states["[M.type]"] = ammo_states
 
+//weight stuff
+/obj/item/ammo_magazine/get_weight()
+	.=..()
+	for (var/obj/item/I in stored_ammo)
+		.+= I.get_weight()
+	return.

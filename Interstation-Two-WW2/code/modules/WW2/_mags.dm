@@ -65,6 +65,7 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a9_parabellum
 	max_ammo = 32
+	weight = 0.72
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/mp40/c9x19mm_stenmk3

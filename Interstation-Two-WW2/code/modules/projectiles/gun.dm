@@ -664,3 +664,12 @@
 	G.ammo_magazine.update_icon()
 	G.ammo_magazine = null
 	G.update_icon() //make sure to do this after unsetting ammo_magazine
+
+
+//weight check stuff
+
+/obj/item/weapon/gun/projectile/get_weight()
+	.=..()
+	if (ammo_magazine)
+		.+= ammo_magazine.get_weight()
+	return .

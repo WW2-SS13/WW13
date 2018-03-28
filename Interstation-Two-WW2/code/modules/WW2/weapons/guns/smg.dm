@@ -62,7 +62,6 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
 	caliber = "9x19mm"
-	weight = 4.7
 	magazine_type = /obj/item/ammo_magazine/mp40
 //	can_wield = TRUE
 	//must_wield = TRUE
@@ -81,20 +80,26 @@
 /obj/item/weapon/gun/projectile/submachinegun/mp40/update_icon()
 	if(ammo_magazine)
 		icon_state = "mp40"
-		weight = 4.7
 /*		if(wielded)
 			item_state = "mp40-w"
 		else
 			item_state = "mp40"*/
 	else
 		icon_state = "mp400"
-		weight = 4
 /*		if(wielded)
 			item_state = "mp40-w"
 		else
 			item_state = "mp400"*/
 	update_held_icon()
 	return
+
+/obj/item/weapon/gun/projectile/submachinegun/mp40/attack_self(mob/user as mob)
+	. = ..(user)
+	//determine weight
+	if ((ammo_magazine) || (ammo_magazine && ammo_magazine.stored_ammo.len))
+		weight = 3.97
+	else
+		weight = 3.97
 
 /obj/item/weapon/gun/projectile/submachinegun/ppsh
 	name = "PPSh-41"

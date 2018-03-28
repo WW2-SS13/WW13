@@ -573,3 +573,8 @@ var/list/global/slot_flags_enumeration = list(
 
 /obj/item/proc/pwr_drain()
 	return FALSE // Process Kill
+
+/obj/item/proc/get_weight()
+	. = 0
+	.+= weight
+	return
