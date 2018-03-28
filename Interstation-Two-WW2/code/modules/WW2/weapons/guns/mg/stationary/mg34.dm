@@ -14,7 +14,7 @@
 	anchored = FALSE
 	auto_eject = TRUE
 	firemodes = list(
-		list(name="default", burst=6, burst_delay=0.6, fire_delay=1.0, dispersion=list(0.9, 1.3, 1.3, 1.3, 1.5), accuracy=list(2))
+		list(name="default", burst=6, burst_delay=0.6, fire_delay=1.0, dispersion=list(0.9, 1.1, 1.1, 1.1, 1.3), accuracy=list(2))
 		)
 	fire_delay = 3
 
@@ -54,7 +54,7 @@
 	ammo_type = /obj/item/ammo_casing/a792x57_weaker
 
 	firemodes = list(	// changed burst from 3 to 6, burst_delay from 2.5 to 0.1 to make this more mg-ish - Kachnov
-		list(name="default", burst=10, burst_delay=0.1, fire_delay=0.75, dispersion=list(0.9, 1.3, 1.3, 1.3, 1.5), accuracy=list(2))
+		list(name="default", burst=10, burst_delay=0.1, fire_delay=0.75, dispersion=list(0.9, 1.1, 1.1, 1.1, 1.3), accuracy=list(2))
 		)
 
 /obj/item/weapon/gun/projectile/minigun/mg34stat/update_icon()

@@ -36,15 +36,8 @@
 				if (!can_fire)
 					continue
 				if (MG.last_user == src)
-					var/neighbors = get_turf(A).neighbors()
-					var/datum/firemode/current_mode = MG.firemodes[MG.sel_mode]
-					var/rate = current_mode.burst
-					for (var/v in 1 to max(ceil(rate/2), 2))
-						spawn (v)
-							if (prob(20))
-								MG.Fire(pick(neighbors), src, force = TRUE)
-							else
-								MG.Fire(A, src, force = TRUE)
+					MG.Fire(A, src, force = TRUE)
+
 				foundMG = TRUE
 			if (!foundMG)
 				var/obj/item/weapon/gun/G = mob.get_active_hand()
