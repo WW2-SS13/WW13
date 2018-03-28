@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/minigun/kord/maxim
-	name = "Maxim M1910"
+	name = "Movable Maxim M1910"
 	desc = "Heavy Maxim machinegun on cart mount. You can see 'Batya Makhno' scribed on it's water cooler."
 	icon_state = "maxim"
 	load_method = MAGAZINE
@@ -32,7 +32,7 @@
 
 
 /obj/item/weapon/gun/projectile/minigun/maximstat
-	name = "Stationary maxim machinegun"
+	name = "Stationary Maxim M1910"
 	desc = "Maxim machinegun established on special wooden pod."
 	icon_state = "maximstat"
 	item_state = "maximstat"

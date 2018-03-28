@@ -147,16 +147,15 @@
 				goto skip
 
 
-
 			var/turf/atom_turf = get_turf(A)
 			var/list/neighbors = atom_turf.neighbors()
 
 			for (var/v in 1 to max(ceil(rate/2), 2))
 				spawn (v)
 					if (prob(20))
-						mg.force_fire(pick(neighbors), src)
+						mg.Fire(pick(neighbors), src, force = TRUE)
 					else
-						mg.force_fire(A, src)
+						mg.Fire(A, src, force = TRUE)
 
 			skip
 

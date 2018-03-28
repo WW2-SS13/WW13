@@ -2,6 +2,7 @@
 	dropsound = 'sound/effects/drop_default.ogg'
 	name = "Canteen"
 	icon_state = "canteen_german"
+	icon_state_empty = "canteen_german"
 	volume = 200
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/New()

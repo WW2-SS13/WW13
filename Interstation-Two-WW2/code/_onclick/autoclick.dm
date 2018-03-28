@@ -42,9 +42,9 @@
 					for (var/v in 1 to max(ceil(rate/2), 2))
 						spawn (v)
 							if (prob(20))
-								MG.force_fire(pick(neighbors), src)
+								MG.Fire(pick(neighbors), src, force = TRUE)
 							else
-								MG.force_fire(A, src)
+								MG.Fire(A, src, force = TRUE)
 				foundMG = TRUE
 			if (!foundMG)
 				var/obj/item/weapon/gun/G = mob.get_active_hand()

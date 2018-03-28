@@ -85,7 +85,7 @@ WW 2 WEAPONS MAGS N AMMO
 	w_class = 4
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a127x108
-	max_ammo = 250
+	max_ammo = 1000
 	multiple_sprites = TRUE
 	var/slot = "decor"
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to

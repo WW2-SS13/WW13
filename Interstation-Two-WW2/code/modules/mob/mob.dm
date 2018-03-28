@@ -678,6 +678,8 @@
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")
 				stat("CPU/Tick Usage:","[world.cpu]/[world.tick_usage]")
+				if (time_track && time_track.dilation != 0)
+					stat("CPU/TD Coeff:",world.cpu/time_track.dilation)
 				stat("Instances:","[world.contents.len]")
 			if(statpanel("Processes"))
 				if(processScheduler)

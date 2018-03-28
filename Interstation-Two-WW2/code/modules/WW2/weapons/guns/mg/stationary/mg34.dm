@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/minigun/kord/mg34
-	name = "Mounted MG34"
+	name = "Movable MG34"
 	desc = "German light machinegun chambered in 7.92x57mm Mauser. An utterly devastating support weapon. This one is movable."
 	icon_state = "mg34movable"
 	load_method = MAGAZINE

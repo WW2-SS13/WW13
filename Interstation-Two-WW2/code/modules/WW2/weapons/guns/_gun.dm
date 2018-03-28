@@ -67,11 +67,12 @@
 	var/effectiveness_mod = 1.00
 
 /obj/item/weapon/gun/projectile/proc/calculate_miss_chance(zone, var/mob/target)
+
 	var/mob/living/carbon/human/firer = loc
 	if (!firer || !target || !istype(target))
-		return 100
+		return 0
 	if (!istype(firer))
-		return 100
+		return 0
 
 	var/moving_target = target.lastMovedRecently()
 	var/abs_x = abs(firer.x - target.x)
