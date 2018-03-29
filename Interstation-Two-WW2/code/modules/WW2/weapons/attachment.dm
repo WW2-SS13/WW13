@@ -196,10 +196,12 @@ Current Defines (_defines/attachment.dm)
 /obj/item/weapon/attachment/bayonet/german
 	force = WEAPON_FORCE_DANGEROUS/2
 	weakens = 1
+	weight = 0.361
 
 /obj/item/weapon/attachment/bayonet/soviet
 	force = WEAPON_FORCE_DANGEROUS
 	weakens = 2
+	weight = 0.419
 
 /obj/item/weapon/attachment/scope/iron_sights
 	name = "iron sights"

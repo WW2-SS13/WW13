@@ -577,4 +577,4 @@ var/list/global/slot_flags_enumeration = list(
 /obj/item/proc/get_weight()
 	. = 0
 	.+= weight
-	return
+	return .

@@ -223,4 +223,4 @@
 	. = ..()
 	for (var/obj/item/I in stored_ammo)
 		.+= I.get_weight()
-	return.
+	return .

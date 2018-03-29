@@ -63,7 +63,7 @@
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 	caliber = "a762x39"
 	magazine_type = /obj/item/ammo_magazine/a762/dp
-	weight = 11.5
+	weight = 9.12
 	slot_flags = SLOT_BACK
 
 	firemodes = list(
@@ -107,7 +107,7 @@
 	w_class = 5
 	max_shells = 50
 	caliber = "a792x57"
-	weight = 19.3
+	weight = 12.1
 	slot_flags = SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/a792x57_weaker
 	load_method = MAGAZINE
@@ -141,14 +141,6 @@
 	cover_open = !cover_open
 	user << "<span class='notice'>You [cover_open ? "open" : "close"] [src]'s cover.</span>"
 	update_icon()
-
-/obj/item/weapon/gun/projectile/automatic/mg34/attack_self(mob/user as mob)
-	. = ..(user)
-	//determine weight
-	if ((ammo_magazine) || (ammo_magazine && ammo_magazine.stored_ammo.len))
-		weight = 19.3
-	else
-		weight = 12.2
 
 /obj/item/weapon/gun/projectile/automatic/mg34/attack_self(mob/user as mob)
 	if(cover_open)

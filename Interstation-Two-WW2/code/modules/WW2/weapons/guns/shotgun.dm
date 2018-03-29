@@ -95,10 +95,11 @@
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
 //	origin_tech = "combat=5;materials=2"
-	max_shells = 7 //match the ammo box capacity, also it can hold a round in the chamber anyways, for a total of 8.
+	max_shells = 6 //match the ammo box capacity, also it can hold a round in the chamber anyways, for a total of 8.
 	ammo_type = /obj/item/ammo_casing/shotgun
 	force = 15
 	throwforce = 30
+	weight = 3.4
 
 /obj/item/weapon/gun/projectile/shotgun/pump/combat/ithaca37
 	icon_state = "ithaca37"

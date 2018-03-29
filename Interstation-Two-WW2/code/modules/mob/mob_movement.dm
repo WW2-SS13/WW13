@@ -13,10 +13,6 @@
 		if (12 to INFINITY)
 			. = run_delay_maximum/1.15 // 15% faster
 	var/slowdown = 1.0
-	//for (var/obj/item/I in contents)
-		//if (!istype(I, /obj/item/organ))
-			//if (I.w_class == 5)
-				//slowdown += 0.33
 	. *= slowdown
 
 /mob/proc/get_walk_delay()
@@ -34,7 +30,6 @@
 		if (istype(I,/obj/item/weapon/storage))
 			for (var/obj/item/II in I.contents)
 				weight += II.get_weight()
-	log_debug("weight is [weight]")
 	if (weight == 0)
 		slowdown = 0
 	//else if (weight > max_weight * 0.125 && weight <= max_weight * 0.25)

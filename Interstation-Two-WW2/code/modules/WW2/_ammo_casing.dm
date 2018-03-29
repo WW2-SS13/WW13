@@ -32,37 +32,43 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/a792x33
 	desc = "A 7.92x33mm bullet casing."
 	caliber = "a792x33"
+	weight = 0.00811
 	projectile_type = /obj/item/projectile/bullet/rifle/a792x33
 
 /obj/item/ammo_casing/a762x54
 	desc = "A 7.62x54mm bullet casing."
 	caliber = "a762x54"
+	weight = 0.012
 	projectile_type = /obj/item/projectile/bullet/rifle/a762x54
 
 /obj/item/ammo_casing/a792x57
 	desc = "A 7.92x57mm bullet casing."
 	caliber = "a792x57"
+	weight = 0.0127
 	projectile_type = /obj/item/projectile/bullet/rifle/a792x57
 
 /obj/item/ammo_casing/a792x57_weaker
 	desc = "A 7.92x57mm bullet casing."
 	caliber = "a792x57"
+	weight = 0.011
 	projectile_type = /obj/item/projectile/bullet/rifle/a792x57_weaker
 
 /obj/item/ammo_casing/a762x25
 	desc = "A 7.62x25mm bullet casing."
 	caliber = "a762x25"
+	weight = 0.0056
 	projectile_type = /obj/item/projectile/bullet/rifle/a762x25
 
 /obj/item/ammo_casing/a9_parabellum
 	desc = "A 9mm parabellum bullet casing."
 	caliber = "9x19mm"
-	weight = 0.009525
+	weight = 0.0095
 	projectile_type = /obj/item/projectile/bullet/rifle/a9_parabellum
 
 /obj/item/ammo_casing/a9_parabellum_luger
 	desc = "A 9mm parabellum bullet casing."
 	caliber = "a9mm_para_luger"
+	weight = 0.0095
 	projectile_type = /obj/item/projectile/bullet/rifle/a9_parabellum_luger
 
 /obj/item/ammo_casing/c45
@@ -73,26 +79,31 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/c762mm_tokarev
 	desc = "A 7.62mm pistol bullet casing."
 	caliber = "7.62mm"
+	weight = 0.00557
 	projectile_type = /obj/item/projectile/bullet/rifle/c762mm_tokarev
 
 /obj/item/ammo_casing/c763x25mm_mauser
 	desc = "A 7.63x25mm pistol bullet casing."
 	caliber = "7.63x25mm"
+	weight = 0.0039
 	projectile_type = /obj/item/projectile/bullet/rifle/c763x25mm_mauser
 
-/obj/item/ammo_casing/c9x19mm_stenmk3
+/obj/item/ammo_casing/c9x19mm_stenmk2
 	desc = "A 9x19mm bullet casing."
 	caliber = "9x19mm"
+	weight = 0.0095
 	projectile_type = /obj/item/projectile/bullet/rifle/c9x19mm_stenmk3
 
 /obj/item/ammo_casing/c762x38mmR
 	desc = "A 7.62x38mmR bullet casing."
 	caliber = "7.62x38mmR"
+	weight = 0.00635
 	projectile_type = /obj/item/projectile/bullet/rifle/c762x38mmR
 
 /obj/item/ammo_casing/c762x25mm_pps
 	desc = "A 7.62x25mm bullet casing."
 	caliber = "7.62x25mm"
+	weight = 0.0056
 	projectile_type = /obj/item/projectile/bullet/rifle/c762x25mm_pps
 
 
@@ -104,16 +115,19 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/c65x52mm
 	desc = "A 6.5x52mm Carcano bullet casing."
 	caliber = "6.5x52mm"
+	weight = 0.008
 	projectile_type = /obj/item/projectile/bullet/rifle/c65x52mm
 
 /obj/item/ammo_casing/p9x19mm
 	desc = "A 9x19mm Parabellum bullet casing."
 	caliber = "9x19mm"
+	weight = 0.00952
 	projectile_type = /obj/item/projectile/bullet/rifle/p9x19mm
 
 /obj/item/ammo_casing/s9x19mm
 	desc = "A 9x19mm Parabellum bullet casing."
 	caliber = "9x19mm"
+	weight = 0.00952
 	projectile_type = /obj/item/projectile/bullet/rifle/s9x19mm
 
 /*
@@ -135,6 +149,7 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_casing/a762x39
 	name = "a 7.62x39 bullet casing"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762x39
+	weight = 0.0136
 	caliber = "a762x39"
 
 /obj/item/ammo_casing/a762x51
