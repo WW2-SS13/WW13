@@ -115,30 +115,28 @@
 
 		if (using_object && istype(using_object, /obj/item/weapon/gun/projectile/minigun))
 
-			var/obj/item/weapon/gun/projectile/minigun/mg = using_object
-			var/datum/firemode/current_mode = mg.firemodes[mg.sel_mode]
-			var/rate = current_mode.burst
+			var/obj/item/weapon/gun/projectile/minigun/MG = using_object
 
 			var/can_fire = FALSE
 
-			switch (mg.dir)
+			switch (MG.dir)
 				if (EAST)
-					if (A.x > mg.x)
+					if (A.x > MG.x)
 						can_fire = TRUE
 					else
 						can_fire = FALSE
 				if (WEST)
-					if (A.x < mg.x)
+					if (A.x < MG.x)
 						can_fire = TRUE
 					else
 						can_fire = FALSE
 				if (NORTH)
-					if (A.y > mg.y)
+					if (A.y > MG.y)
 						can_fire = TRUE
 					else
 						can_fire = FALSE
 				if (SOUTH)
-					if (A.y < mg.y)
+					if (A.y < MG.y)
 						can_fire = TRUE
 					else
 						can_fire = FALSE
@@ -146,17 +144,7 @@
 			if (!can_fire)
 				goto skip
 
-
-
-			var/turf/atom_turf = get_turf(A)
-			var/list/neighbors = atom_turf.neighbors()
-
-			for (var/v in 1 to max(ceil(rate/2), 2))
-				spawn (v)
-					if (prob(20))
-						mg.force_fire(pick(neighbors), src)
-					else
-						mg.force_fire(A, src)
+			MG.Fire(A, src, force = TRUE)
 
 			skip
 

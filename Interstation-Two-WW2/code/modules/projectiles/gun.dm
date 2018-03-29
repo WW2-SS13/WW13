@@ -217,56 +217,6 @@
 		else
 			..() //Pistolwhippin'
 
-/obj/item/weapon/gun/proc/force_fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
-	if(!user || !target) return
-
-	add_fingerprint(user)
-
-	if(!special_check(user))
-		return
-
-	var/shoot_time = (burst - 1)* burst_delay
-	user.setClickCooldown(shoot_time) //no clicking on things while shooting
-	next_fire_time = world.time + shoot_time
-
-
-	var/held_acc_mod = FALSE
-	var/held_disp_mod = FALSE
-
-	//actually attempt to shoot
-	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
-	for(var/i in 1 to burst)
-		var/obj/projectile = consume_next_projectile(user)
-		if(!projectile)
-			handle_click_empty(user)
-			break
-
-		var/acc = burst_accuracy[min(i, burst_accuracy.len)] + held_acc_mod
-		var/disp = dispersion[min(i, dispersion.len)] + held_disp_mod
-		process_accuracy(projectile, user, target, acc, disp)
-
-		if(pointblank)
-			process_point_blank(projectile, user, target)
-
-		if(process_projectile(projectile, user, target, user.targeted_organ, clickparams))
-			handle_post_fire(user, target, pointblank, reflex)
-			update_icon()
-
-		if(i < burst)
-			sleep(burst_delay)
-
-		if(!(target && target.loc))
-			target = targloc
-			pointblank = FALSE
-
-	//update timing
-	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	user.setMoveCooldown(move_delay)
-	next_fire_time = world.time + fire_delay
-
-	if(muzzle_flash)
-		set_light(0)
-
 // only update our in-hands icon if we aren't using a scope (invisible)
 /obj/item/weapon/gun/update_held_icon()
 	if (loc && ismob(loc))
@@ -276,7 +226,7 @@
 				return FALSE
 	..()
 
-/obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, forceburst = -1)
+/obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, forceburst = -1, force = FALSE)
 
 	if(!user || !target) return
 
@@ -290,13 +240,14 @@
 
 	add_fingerprint(user)
 
-	if(!special_check(user))
-		return
+	if (!force)
+		if(!special_check(user))
+			return
 
-	if(world.time < next_fire_time)
-		if (world.time % 3) //to prevent spam
-			user << "<span class='warning'>[src] is not ready to fire again!</span>"
-		return
+		if(world.time < next_fire_time)
+			if (world.time % 3) //to prevent spam
+				user << "<span class='warning'>[src] is not ready to fire again!</span>"
+			return
 
 	//unpack firemode data
 	var/datum/firemode/firemode = firemodes[sel_mode]
@@ -332,11 +283,6 @@
 			if (istype(P.firedfrom, /obj/item/weapon/gun/projectile))
 				var/obj/item/weapon/gun/projectile/proj = P.firedfrom
 				P.KD_chance = proj.KD_chance
-
-			if (ishuman(user))
-				var/mob/living/carbon/human/H = user
-				if (H.lying)
-					acc -= 2
 
 		process_accuracy(projectile, user, target, acc, disp)
 
@@ -421,7 +367,6 @@
 
 	update_icon()
 
-
 /obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
@@ -472,8 +417,8 @@
 		P.set_clickpoint(params)
 
 	//shooting while in shock
-	var/x_offset = FALSE
-	var/y_offset = FALSE
+	var/x_offset = 0
+	var/y_offset = 0
 	if(istype(user, /mob/living/carbon))
 		var/mob/living/carbon/mob = user
 		if(mob.shock_stage > 120)

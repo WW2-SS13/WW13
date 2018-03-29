@@ -23,7 +23,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/New()
 	..()
 	icon_state_full = icon_state
-	if (findtext(icon_state, "bottle"))
+	if (findtext(icon_state, "bottle") || findtext(icon_state, "canteen"))
 		icon_state_empty = icon_state
 	else
 		icon_state_empty = "[icon_state]_empty"

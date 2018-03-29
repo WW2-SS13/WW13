@@ -14,7 +14,7 @@
 	var/signlang_verb = list("signs") // list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
 	var/colour = "body"               // CSS style to use for strings in this language.
 	var/key = "x"                     // Character used to speak in language eg. :o for Unathi.
-	var/flags = FALSE                     // Various language flags.
+	var/flags = 0                     // Various language flags.
 	var/native                        // If set, non-native speakers will have trouble speaking.
 	var/list/syllables                // Used when scrambling text for a non-speaker.
 	var/list/space_chance = 55        // Likelihood of getting a space in the random scramble string
@@ -29,7 +29,7 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = FALSE;i<name_count;i++)
+	for(var/i = 0;i<name_count;i++)
 		new_name = ""
 		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
@@ -47,7 +47,7 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = FALSE;i<name_count;i++)
+	for(var/i = 0;i<name_count;i++)
 		new_name = ""
 		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
@@ -66,7 +66,7 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = FALSE;i<name_count;i++)
+	for(var/i = 0;i<name_count;i++)
 		new_name = ""
 		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
@@ -84,7 +84,7 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = FALSE;i<name_count;i++)
+	for(var/i = 0;i<name_count;i++)
 		new_name = ""
 		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
@@ -102,7 +102,7 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i = FALSE;i<name_count;i++)
+	for(var/i = 0;i<name_count;i++)
 		new_name = ""
 		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
 			new_name += pick(syllables)
