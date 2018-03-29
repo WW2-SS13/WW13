@@ -205,8 +205,8 @@
 			database.execute("INSERT INTO admin (id, ckey, rank, flags) VALUES (null, '[ckey]', '[holder.rank]', '[holder.rights]');")
 
 	/* let us profile if we're hosting on our computer OR if we have host perms */
-	if (world.host == key || (holder && holder.rights & R_HOST))
-		control_freak = FALSE
+	if (world.host == key || (holder && (holder.rights & R_HOST)))
+		control_freak = 0
 
 	if (!holder && !isPatron("$10+"))
 
