@@ -108,6 +108,7 @@ var/global/list/default_ukrainian_channels = list(
 
 var/global/list/all_channels = default_german_channels | command_german_channels | SS_german_channels | SS_command_german_channels | default_soviet_channels | command_soviet_channels | default_ukrainian_channels
 
+
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
@@ -189,7 +190,6 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 /obj/item/device/radio/proc/list_internal_channels(var/mob/user)
 	var/dat[0]
-
 	for(var/internal_chan in internal_channels)
 		dat.Add(list(list("chan" = internal_chan, "display_name" = radio_freq2name(text2num(internal_chan)), "chan_span" = radio_freq2span(text2num(internal_chan)))))
 
@@ -335,7 +335,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 /obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = FALSE, var/needs_loc = TRUE)
 
-	hardtohear = FALSE // working on this - Kachnov
+	hardtohear = FALSE // wip
 
 	if (!loc && needs_loc)
 		return
@@ -353,56 +353,46 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	var/list/used_radio_turfs = list()
 	var/list/used_radios = list()
 	var/list/tried_mobs = list()
-
-	// let humans with clients near radios hear it
+	// let people playing near radios hear it
 	for (var/mob/living/carbon/human/hearer in human_mob_list)
 		if (tried_mobs.Find(hearer))
 			continue
-		if (!hearer.client)
-			continue
-		if (list(UNCONSCIOUS, DEAD).Find(hearer.stat))
-			continue
 		tried_mobs += hearer
-		// use this radio, of course
-		var/list/radios = list(src)
-		// add any radios in view of hearer
-		for (var/obj/item/device/radio/radio in oview(world.view, hearer))
-			if (radio.broadcasting)
+		if (hearer.stat == CONSCIOUS)
+			var/list/radios = list()
+			for (var/obj/item/device/radio/radio in view(world.view, hearer))
+				if (radio.broadcasting)
+					radios |= radio
+			for (var/obj/item/device/radio/radio in hearer.contents)
 				radios |= radio
-		// add any radios in hearer
-		for (var/obj/item/device/radio/radio in hearer.contents)
-			radios |= radio
-		// iterate through radios, broadcast to hearer
-		for (var/obj/item/device/radio/radio in radios)
-			if (!loc && radio == src)
-				continue
-			if (!used_radio_turfs.Find(radio.faction))
-				used_radio_turfs[radio.faction] = list()
-			if (used_radio_turfs[radio.faction].Find(get_turf(radio)))
-				continue
-			if (used_radios.Find(radio))
-				continue
-			if (radio.notyetmoved)
-				continue
-			if (!istype(radio, /obj/item/device/radio/intercom))
-				if (!istype(radio.loc, /mob))
+			for (var/obj/item/device/radio/radio in radios)
+				if (!loc && radio == src)
 					continue
-			if (!radio.on)
-				continue
-			if (!radio.listening)
-				continue
-			if (!radio.loc || !radio.loc.loc || !istype(radio.loc.loc, /obj/tank))
-				used_radio_turfs[radio.faction] += get_turf(radio)
-			used_radios += radio
-			if (radio.listening_on_channel[radio_freq2name(frequency)])
-				hearer.hear_radio(msg, speaker.sayverb, speaker.default_language, speaker, src, hardtohear)
-				break // only let us hear the radio once to prevent spam
-
+				if (!used_radio_turfs.Find(radio.faction))
+					used_radio_turfs[radio.faction] = list()
+				if (used_radio_turfs[radio.faction].Find(get_turf(radio)))
+					continue
+				if (used_radios.Find(radio))
+					continue
+				if (radio.notyetmoved)
+					continue
+				if (!istype(radio, /obj/item/device/radio/intercom))
+					if (!istype(radio.loc, /mob))
+						continue
+				if (!radio.on)
+					continue
+				if (!radio.listening)
+					continue
+				if (!radio.loc || !radio.loc.loc || !istype(radio.loc.loc, /obj/tank))
+					used_radio_turfs[radio.faction] += get_turf(radio)
+				used_radios += radio
+				if (radio.listening_on_channel[radio_freq2name(frequency)])
+					hearer.hear_radio(msg, speaker.sayverb, speaker.default_language, speaker, src, hardtohear)
 	// let observers hear it
 	for (var/mob/observer/O in mob_list)
 		O.hear_radio(msg, speaker.sayverb, speaker.default_language, speaker, src, hardtohear)
 
-	last_broadcast = world.time + 5
+	post_broadcast()
 
 /obj/item/device/radio/proc/bracketed_name()
 	var/lbracket = "\["
@@ -418,6 +408,9 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		if (radio.last_broadcast > world.time)
 			return FALSE
 	return TRUE
+
+/obj/item/device/radio/proc/post_broadcast()
+	last_broadcast = world.time + 5
 
 /obj/item/device/radio/intercom
 	broadcasting = FALSE
@@ -623,9 +616,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	if (supply_points[faction] <= pointcost)
 		return
 
-	spawn (3)
-		announce("[itemname] has been purchased and will arrive soon.", "Supplydrop Announcement System")
-
+	announce("[itemname] has been purchased and will arrive soon.", "Supplydrop Announcement System")
 	supply_points[faction] -= pointcost
 
 	// sanity checking due to crashing, not sure it will help - Kachnov
