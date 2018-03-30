@@ -410,7 +410,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	return TRUE
 
 /obj/item/device/radio/proc/post_broadcast()
-	last_broadcast = world.time + 5
+	last_broadcast = world.time + 3
 
 /obj/item/device/radio/intercom
 	broadcasting = FALSE
