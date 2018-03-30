@@ -132,6 +132,8 @@ Parts of code courtesy of Super3222
 		return FALSE
 	else
 		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
+		if (E.is_bruised() || E.is_broken() || H.eye_blind > 0)
+			if (!silent) user << "<span class = 'danger'>Your eyes are injured! You can't use \the [src].</span>"
 			return FALSE
 	return TRUE
 
