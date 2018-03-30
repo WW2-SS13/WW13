@@ -51,7 +51,7 @@
 	accuracy_increase_mod = 1.10
 	accuracy_decrease_mod = 1.20
 	KD_chance = KD_CHANCE_LOW
-	stat = "MG"
+	stat = "SMG"
 
 /obj/item/weapon/gun/projectile/submachinegun/mp40
 	name = "MP-40"
@@ -64,14 +64,9 @@
 	weight = 3.97
 	caliber = "9x19mm"
 	magazine_type = /obj/item/ammo_magazine/mp40
-//	can_wield = TRUE
-	//must_wield = TRUE
-
-	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY
-	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY
 
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=1.0, recoil=0.4, move_delay=0, dispersion = list(0.4, 0.6, 0.6, 0.6, 0.8), accuracy = list(DEFAULT_SUBMACHINEGUN_ACCURACY + 1)),
+		list(name="single shot",	burst=1, burst_delay=1.0, recoil=0.4, move_delay=0, dispersion = list(0.4, 0.6, 0.6, 0.6, 0.8)),
 		list(name="short bursts",	burst=3, burst_delay=1.2, recoil=0.7, move_delay=1, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
 		list(name="long bursts",	burst=6, burst_delay=1.4, recoil=0.9, move_delay=1.5, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
 		)
@@ -103,8 +98,6 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
 	fire_sound = 'sound/weapons/m16.ogg'
-	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-1
-	scoped_accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-1
 	caliber = "a762x25"
 	magazine_type = /obj/item/ammo_magazine/a556/ppsh
 	weight = 3.63
@@ -143,8 +136,6 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
 	//fire_sound = ''
-	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY
-	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY-1
 	caliber = "7.62x25mm"
 	magazine_type = /obj/item/ammo_magazine/c762x25mm_pps
 	weight = 3.04
@@ -173,8 +164,6 @@
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
 	//fire_sound = '' // TO DO
-	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-2
-	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY-3
 	caliber = "9x19mm"
 	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
 	weight = 3.2
@@ -203,8 +192,6 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
-	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY
-	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY
 	caliber = "9x19mm"
 	magazine_type = /obj/item/ammo_magazine/s9x19mm
 	weight = 4.2

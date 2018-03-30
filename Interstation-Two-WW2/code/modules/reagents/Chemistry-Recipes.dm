@@ -567,18 +567,17 @@
 	mix_message = null
 
 /datum/chemical_reaction/explosion_potassium/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/exloc = get_turf(holder.my_atom)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
-	e.set_up(round (created_volume/10, TRUE), holder.my_atom, FALSE, FALSE)
-	if(isliving(holder.my_atom))
+	e.set_up(round (created_volume/10, TRUE), exloc, FALSE, FALSE)
+	for (var/mob/living/L in exloc)
 		e.amount *= 0.5
-		var/mob/living/L = holder.my_atom
 		if(L.stat != DEAD)
 			if(e.amount >= 6)
 				L.crush()
 			e.amount *= 1.5
 	e.start()
 	holder.clear_reagents()
-	return
 
 /datum/chemical_reaction/flash_powder
 	name = "Flash powder"
@@ -636,17 +635,17 @@
 	log_is_important = TRUE
 
 /datum/chemical_reaction/nitroglycerin/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/exloc = get_turf(holder.my_atom)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
-	e.set_up(round (created_volume/2, TRUE), holder.my_atom, FALSE, FALSE)
-	if(isliving(holder.my_atom))
+	e.set_up(round (created_volume/2, TRUE), exloc, FALSE, FALSE)
+	for (var/mob/living/L in exloc)
 		e.amount *= 0.5
-		var/mob/living/L = holder.my_atom
-		if(L.stat!=DEAD)
-			e.amount *= 0.5
+		if(L.stat != DEAD)
+			if(e.amount >= 6)
+				L.crush()
+			e.amount *= 1.5
 	e.start()
-
 	holder.clear_reagents()
-	return
 
 /datum/chemical_reaction/napalm
 	name = "Napalm"

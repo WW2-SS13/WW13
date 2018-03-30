@@ -294,11 +294,12 @@
 	set name = "Add Note"
 	set category = "IC"
 
-	msg = sanitize(msg)
 	msg = replacetext(msg, "<i>", "")
 	msg = replacetext(msg, "</i>", "")
 	msg = replacetext(msg, "<b>", "")
 	msg = replacetext(msg, "</b>", "")
+
+	msg = sanitize(msg)
 
 	if(mind)
 		mind.store_memory(msg)
@@ -670,17 +671,21 @@
 			if (z == 2 && map && map.ID == "FOREST")
 				stat("Altitude:", paratrooper_plane_master.altitude)
 
+			// give the client some information about how the server is running
 			stat("Time Dilation:", time_track ? "[ceil(time_track.dilation)]%" : "???")
 			if (ping_track && client)
-				stat("Ping (Average):", "[ceil(client.last_ping)] ms ([ceil(ping_track.avg)] ms)")
+				var/our_ping = ceil(client.last_ping)
+				var/avg_ping = ceil(ping_track.avg)
+				if (clients.len == 1)
+					avg_ping = our_ping
+				stat("Ping (Average):", "[our_ping] ms ([avg_ping] ms)")
 
 		if(client.holder)
 			if(statpanel("Status"))
-				stat("Location:", "([x], [y], [z]) [loc]")
-				stat("CPU/Tick Usage:","[world.cpu]/[world.tick_usage]")
-				if (time_track && time_track.dilation != 0)
-					stat("CPU/TD Coeff:",world.cpu/time_track.dilation)
-				stat("Instances:","[world.contents.len]")
+				stat("Location:", "([x], [y], [z]) - [loc]")
+				stat("CPU:","[world.cpu]%")
+				stat("Tick Usage:","[world.tick_usage]%")
+				stat("Object Count:","[world.contents.len] Datums")
 			if(statpanel("Processes"))
 				if(processScheduler)
 					processScheduler.statProcesses()

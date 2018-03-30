@@ -47,6 +47,7 @@ var/list/soviet_traitors = list()
 		var/passcheck = input(H, "Enter the password.") as num
 		playsound(get_turf(src), "keyboard", 100, 1)
 		if (passcheck != supply_codes[faction])
+			H << "<span class = 'warning'>Nothing happens. Perhaps the password was incorrect.</span>"
 			return
 
 	if (map && !map.katyushas)
@@ -120,25 +121,30 @@ var/list/soviet_traitors = list()
 		for (var/mob/living/carbon/human/H in shuffled_human_mobs)
 			if (H.loc && (H.stat == CONSCIOUS || H.debugmob))
 				var/area/H_area = get_area(H)
+
+				// don't use any 'else's here because it breaks multi-level if conditionals
+				// before katyushas couldn't hit inside the german base because else ifs - Kachnov
+
 				if (used_areas.Find(H_area))
 					continue
-				else if (istype(H_area, /area/prishtina/admin))
+				if (istype(H_area, /area/prishtina/admin))
 					continue
-				else if (istype(H_area, /area/prishtina/german))
+				if (istype(H_area, /area/prishtina/german))
 					if (H_area.location == AREA_INSIDE)
 						if (!caller || !caller.may_bombard_base())
 							continue
-				else if (istype(H_area, /area/prishtina/soviet))
+				if (istype(H_area, /area/prishtina/soviet))
 					if (H_area.location == AREA_INSIDE)
 						if (!caller || !caller.may_bombard_base())
 							continue
-				else if (istype(H_area, /area/prishtina/italian_base))
+				if (istype(H_area, /area/prishtina/italian_base))
 					if (H_area.location == AREA_INSIDE)
 						if (!caller || !caller.may_bombard_base())
 							continue
-				else if (istype(H_area, /area/prishtina/void))
+				if (istype(H_area, /area/prishtina/void))
 					continue
-				else if ((H.original_job && raiding.Find(H.original_job.base_type_flag())) || raiding.Find(TRUE) || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
+
+				if ((H.original_job && raiding.Find(H.original_job.base_type_flag())) || raiding.Find(TRUE) || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
 					if (targeted < maximum_targets)
 
 						++targeted
@@ -154,6 +160,7 @@ var/list/soviet_traitors = list()
 
 						playsound(target, "artillery_in_distant", 100, TRUE, 100)
 						target.visible_message("<span class = 'userdanger'>You see a barrage of rockets in the sky!</span>")
+						playsound(target, "artillery_in", 100, TRUE)
 
 						// 6 bombs in a 3x3 radius means you will almost always be hit if you don't run
 						for (var/v in 1 to 6)

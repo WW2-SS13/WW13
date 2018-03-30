@@ -110,10 +110,12 @@ Parts of code courtesy of Super3222
 //	silent: boolean controlling whether it should tell the user why they can't zoom in or not
 // I am sorry for creating this abomination -- Irra
 /obj/item/weapon/attachment/scope/proc/can_zoom(mob/living/user, var/silent = FALSE)
+	var/mob/living/carbon/human/H = user
 	if(user.stat || !ishuman(user))
 		if(!silent) user << "You are unable to focus through \the [src]."
 		return FALSE
-	if (istype(user.loc, /obj/tank))
+	else if (istype(user.loc, /obj/tank))
+		if (!silent) user << "You can't use \the [src] while inside a tank."
 		return FALSE
 	else if(global_hud.darkMask[1] in user.client.screen)
 		if(!silent) user << "Your visor gets in the way of looking through \the [src]."
@@ -128,6 +130,9 @@ Parts of code courtesy of Super3222
 	else if(user.get_active_hand() != loc)
 		if(!silent) user << "You are too distracted to look through \the [src]."
 		return FALSE
+	else
+		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
+			return FALSE
 	return TRUE
 
 /mob/living/var/next_zoom = -1

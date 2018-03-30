@@ -67,12 +67,8 @@
 	name = "Mosin-Nagant"
 	desc = "Soviet bolt-action rifle chambered in 7.62x54mmR cartridges. It looks worn and has Katyusha on the butt."
 	force = 12
-//	origin_tech = "combat=4;materials=2;syndicate=8"
 	fire_sound = 'sound/weapons/mosin_shot.ogg'
 	caliber = "a762x54"
-	//+2 accuracy over the LWAP because only one shot
-	accuracy = DEFAULT_BOLTACTION_ACCURACY
-	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
 	weight = 4.0
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
@@ -105,9 +101,6 @@
 	fire_sound = 'sound/weapons/kar_shot.ogg'
 	ammo_type = /obj/item/ammo_casing/a792x57
 	magazine_type = /obj/item/ammo_magazine/kar98k
-	//+2 accuracy over the LWAP because only one shot
-	accuracy = DEFAULT_BOLTACTION_ACCURACY
-	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
 	bolt_safety = TRUE
 
 /obj/item/weapon/gun/projectile/boltaction/kar98k/New()
@@ -145,8 +138,6 @@
 	ammo_type = /obj/item/ammo_casing/c65x52mm
 	magazine_type = /obj/item/ammo_magazine/c65x52mm
 	max_shells = 6
-	accuracy = DEFAULT_BOLTACTION_ACCURACY + 1
-	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
 	bolt_safety = FALSE
 	weight = 3.9
 

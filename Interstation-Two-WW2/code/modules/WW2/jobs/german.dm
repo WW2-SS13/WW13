@@ -46,9 +46,11 @@
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/commander/get_keys()
@@ -89,9 +91,11 @@
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/XO/get_keys()
@@ -133,9 +137,11 @@
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/staff_officer/update_character(var/mob/living/carbon/human/H)
@@ -178,9 +184,11 @@
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
 	H.setStat("mg", STAT_LOW)
+	H.setStat("smg", STAT_MEDIUM_LOW)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/MP/get_keys()
@@ -221,10 +229,12 @@
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
 	H.setStat("pistol", STAT_MEDIUM_LOW)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/squad_leader/update_character(var/mob/living/carbon/human/H)
@@ -266,10 +276,12 @@
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/medic/get_keys()
@@ -309,8 +321,10 @@
 
 	H.setStat("rifle", STAT_VERY_VERY_LOW)
 	H.setStat("mg", STAT_VERY_VERY_LOW)
+	H.setStat("smg", STAT_VERY_VERY_LOW)
 	H.setStat("pistol", STAT_VERY_VERY_LOW)
 	H.setStat("heavyweapon", STAT_VERY_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/doctor/get_keys()
@@ -348,10 +362,12 @@
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/flamethrower_man/get_keys()
@@ -388,10 +404,12 @@
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_VERY_HIGH)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/sniper/get_keys()
@@ -430,10 +448,12 @@
 	H.setStat("strength", STAT_MEDIUM_HIGH)
 	H.setStat("engineering", STAT_VERY_HIGH)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/engineer/get_keys()
@@ -471,9 +491,11 @@
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("smg", STAT_HIGH)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL) // misleading statname, heavyweapons soldiers are best with MGs
 	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/heavy_weapon/get_keys()
@@ -509,10 +531,12 @@
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
 	if (prob(8))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
 	else
@@ -605,10 +629,12 @@
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_MEDIUM_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/tankcrew/get_keys()
@@ -645,10 +671,12 @@
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_VERY_HIGH)
 	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/anti_tank_crew/get_keys()
@@ -720,10 +748,12 @@ var/first_fallschirm = TRUE
 	H.setStat("strength", STAT_MEDIUM_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_VERY_HIGH)
-	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
 	H.setStat("pistol", STAT_MEDIUM_HIGH)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/paratrooper/get_keys()
@@ -761,10 +791,12 @@ var/first_fallschirm = TRUE
 	H.setStat("strength", STAT_MEDIUM_HIGH)
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/QM/get_keys()
@@ -802,10 +834,12 @@ var/first_fallschirm = TRUE
 	H.setStat("strength", STAT_MEDIUM_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_LOW)
 	H.setStat("rifle", STAT_MEDIUM_HIGH)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/artyman/update_character(var/mob/living/carbon/human/H)
@@ -846,10 +880,12 @@ var/first_fallschirm = TRUE
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_LOW)
+	H.setStat("smg", STAT_MEDIUM_LOW)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/scout/update_character(var/mob/living/carbon/human/H)
@@ -893,10 +929,12 @@ var/first_fallschirm = TRUE
 	H.setStat("strength", STAT_MEDIUM_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_LOW)
+	H.setStat("smg", STAT_MEDIUM_LOW)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/conductor/get_keys()
@@ -943,10 +981,12 @@ var/first_fallschirm = TRUE
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_VERY_HIGH)
-	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_HIGH)
+	H.setStat("smg", STAT_VERY_HIGH)
 	H.setStat("pistol", STAT_VERY_HIGH)
 	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/squad_leader_ss/update_character(var/mob/living/carbon/human/H)
@@ -996,11 +1036,13 @@ var/first_fallschirm = TRUE
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_VERY_HIGH)
-	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
 	H.setStat("pistol", STAT_VERY_HIGH)
 	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_NORMAL)
 	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/soldier_ss/get_keys()
@@ -1040,11 +1082,13 @@ var/first_fallschirm = TRUE
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_MEDIUM_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_LOW)
+	H.setStat("smg", STAT_MEDIUM_LOW)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_MEDIUM_LOW)
 	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/german/chef/get_keys()

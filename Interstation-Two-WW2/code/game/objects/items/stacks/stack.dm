@@ -168,8 +168,11 @@
 					structurecheck = 2
 			else if (structurecheck == 0)
 				structurecheck = 1
-		for (var/obj/item/weapon/stool/stool in get_turf(H))
-			structurecheck = 2
+		if (structurecheck != 2)
+			for (var/obj/item/weapon/stool/stool in get_turf(H))
+				structurecheck = 2
+
+		var/area/H_area = get_area(H)
 
 		if (structurecheck == 0)
 			H << "<span class = 'warning'>You need to be on a structure to make a noose.</span>"
@@ -178,31 +181,20 @@
 			H << "<span class = 'warning'>This structure is not suitable for standing on.</span>"
 			return
 
-		var/area/H_area = get_area(H)
-		if (H_area.location == OUTSIDE)
+		if (H_area.location == AREA_OUTSIDE)
 
 			var/turf/north = get_step(H, NORTH)
-		//	var/turf/south = get_step(H, SOUTH)
-		//	var/turf/east = get_step(H, EAST)
-		//	var/turf/west = get_step(H, WEST)
 
-			var/structure_check = FALSE
-			for (var/obj/structure/S in north)
-				if (S.density)
-					structure_check = TRUE
-					break
+			var/structurecheck2 = FALSE
+			if (north)
+				for (var/obj/structure/S in north)
+					if (S.density)
+						structurecheck2 = TRUE
+						break
 
-			if (north.density || structure_check)
-				goto skipnoosecheck1
-/*			else if (south.density || locate(/obj/structure) in south)
-				goto skipnoosecheck1
-			else if (east.density || locate(/obj/structure) in east)
-				goto skipnoosecheck1
-			else if (west.density || locate(/obj/structure) in west)
-				goto skipnoosecheck1*/
-
-			H << "<span class = 'warning'>You need a ceiling to make a noose.</span>"
-			return
+			if (!structurecheck2 && !north.density)
+				H << "<span class = 'warning'>You need a ceiling to make a noose.</span>"
+				return
 
 	else if (recipe.result_type == /obj/structure/barbwire)
 		if (locate(/obj/structure/barbwire) in get_turf(H))
@@ -225,8 +217,6 @@
 			if (H.getStat("engineering") < STAT_HIGH)
 				H << "<span class = 'info'>You have no idea of how to build a girder.</span>"
 				return
-
-	skipnoosecheck1
 
 	if (recipe.time)
 		var/buildtime = recipe.time

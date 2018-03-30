@@ -13,9 +13,6 @@
 	load_method = SINGLE_CASING | SPEEDLOADER
 	max_shells = TRUE
 	ammo_type = /obj/item/ammo_casing/a145
-	// lower accuracy due to being so powerful; meant to fight tanks now
-	accuracy = DEFAULT_PTRD_ACCURACY
-	scoped_accuracy = DEFAULT_PTRD_SCOPED_ACCURACY
 	gun_type = GUN_TYPE_HEAVY
 
 	// extremely inaccurate at all ranges
@@ -89,9 +86,6 @@
 	w_class = 5
 	caliber = "a556x45"
 	magazine_type = /obj/item/ammo_magazine/a556x45
-
-	accuracy = DEFAULT_BOLTACTION_ACCURACY + 1
-	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY + 1
 
 	firemodes = list(
 		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, dispersion = list(0))

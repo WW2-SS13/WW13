@@ -126,7 +126,7 @@
 	 * but currently no stats 'deteriorate' (in the future strength will),
 	 * so stats will remain the same over the entire round. */
 
-	/* All stat names MUST be lowercase. */
+	/* All stat names (here) MUST be lowercase. */
 
 	var/takes_less_damage = FALSE
 
@@ -134,7 +134,9 @@
 		"strength" = list(100,100),
 		"engineering" = list(100,100),
 		"rifle" = list(100,100),
+		"shotgun" = list(100,100),
 		"mg" = list(100,100),
+		"smg" = list(100,100),
 		"pistol" = list(100,100),
 		"heavyweapon" = list(100,100),
 		"medical" = list(100,100),

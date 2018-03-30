@@ -90,7 +90,7 @@
 				var/coeff = getStatCoeff(statname)
 				if (coeff == TRUE)
 					coeff = "1.00" // OCD
-				if (statname != "mg")
+				if (!list("mg", "smg").Find(statname))
 					stat("[capitalize(statname)]: ", "[coeff]x average")
 				else
 					stat("[uppertext(statname)]: ", "[coeff]x average")

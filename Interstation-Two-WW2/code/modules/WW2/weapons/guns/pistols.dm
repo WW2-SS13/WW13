@@ -67,8 +67,6 @@
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/luger
-	accuracy = DEFAULT_PISTOL_ACCURACY
-	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 	weight = 0.87
 
 /obj/item/weapon/gun/projectile/pistol/luger/gibber
@@ -85,8 +83,6 @@
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c45m
-	accuracy = DEFAULT_PISTOL_ACCURACY
-	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 
 /obj/item/weapon/gun/projectile/pistol/_45/gibber
 	crushes = TRUE
@@ -102,8 +98,6 @@
 	fire_sound ='sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c762mm_tokarev
-	accuracy = DEFAULT_PISTOL_ACCURACY
-	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 	weight = 0.853
 
 /obj/item/weapon/gun/projectile/pistol/tokarev/update_icon()
@@ -133,8 +127,6 @@
 	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
 	magazine_type = /obj/item/ammo_magazine/c763x25mm_mauser
 	fire_delay = 2
-	accuracy = DEFAULT_PISTOL_ACCURACY
-	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 	weight = 1.13
 
 /obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
@@ -160,8 +152,6 @@
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	magazine_type = /obj/item/ammo_magazine/c762x38mmR
-	accuracy = DEFAULT_PISTOL_ACCURACY
-	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 	weight = 0.8
 
 /obj/item/weapon/gun/projectile/revolver/nagant_revolver/gibber
@@ -184,8 +174,6 @@
 	caliber = "9x19mm"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	magazine_type = /obj/item/ammo_magazine/p9x19mm
-	accuracy = DEFAULT_PISTOL_ACCURACY
-	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
 	weight = 0.794
 
 /obj/item/weapon/gun/projectile/pistol/waltherp38/update_icon()

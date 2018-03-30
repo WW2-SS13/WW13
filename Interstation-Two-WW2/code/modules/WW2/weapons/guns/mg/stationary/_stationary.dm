@@ -26,8 +26,6 @@
 	caliber = "4mm"
 	slot_flags = FALSE
 	ammo_type = /obj/item/ammo_casing/c4mm
-	accuracy = DEFAULT_MG_ACCURACY
-	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 	stat = "MG"
 
 	firemodes = list(
@@ -110,6 +108,10 @@
 		if(user.loc == T)
 			if(user.has_empty_hand(both = TRUE) && !is_used_by(user))
 				user.use_object(src)
+				usedby(user, src)
+				started_using(user)
+				if (user.loc != loc)
+					user.use_object(null)
 			else
 				user.show_message("<span class = 'warning'>You need both hands to use a minigun.</span>")
 		else

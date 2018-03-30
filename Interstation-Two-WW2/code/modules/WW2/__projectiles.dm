@@ -19,8 +19,6 @@
 
 /obj/item/weapon/gun/projectile/shotgun
 	gun_type = GUN_TYPE_SHOTGUN
-	accuracy = DEFAULT_SHOTGUN_ACCURACY
-	scoped_accuracy = DEFAULT_SHOTGUN_SCOPED_ACCURACY
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 
 /obj/item/projectile/bullet/rifle

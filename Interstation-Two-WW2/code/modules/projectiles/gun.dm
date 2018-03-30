@@ -4,9 +4,8 @@
 	var/burst_delay = null
 	var/fire_delay = null
 	var/move_delay = 0
-	var/list/accuracy = list(0)
-	var/list/dispersion = list(0)
 	var/recoil = -1
+	var/list/dispersion = list(0)
 
 //using a list makes defining fire modes for new guns much nicer,
 //however we convert the lists to datums in part so that firemodes can be VVed if necessary.
@@ -93,10 +92,6 @@
 
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
-
-	for (var/datum/firemode/F in firemodes)
-		if (!F.accuracy.len)
-			F.accuracy[1] = accuracy
 
 	if (!aim_targets)
 		aim_targets = list()
@@ -274,7 +269,7 @@
 			handle_click_empty(user)
 			break
 
-		var/acc = firemode.accuracy[min(i, firemode.accuracy.len)]
+		var/acc = 0 // calculated in projectile code
 		var/disp = firemode.dispersion[min(i, firemode.dispersion.len)]
 
 		if (istype(projectile, /obj/item/projectile))

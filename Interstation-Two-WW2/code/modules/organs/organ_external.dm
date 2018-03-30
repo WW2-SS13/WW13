@@ -4,9 +4,9 @@
 
 //These control the damage thresholds for the various ways of removing limbs
 //Numbers below 1.0 = more damage required
-#define DROPLIMB_THRESHOLD_EDGE 1.0
-#define DROPLIMB_THRESHOLD_TEAROFF 0.9
 #define DROPLIMB_THRESHOLD_DESTROY 0.8
+#define DROPLIMB_THRESHOLD_EDGE 0.7
+#define DROPLIMB_THRESHOLD_TEAROFF 0.6
 
 // new min_broken_damage, max_damage values based off of damage values defines
 // in __projectiles.dm

@@ -48,7 +48,6 @@
 	else if (weight > max_weight * 0.95 && weight <= INFINITY)
 		slowdown = 0.975
 	. *= slowdown+1
-	log_debug("weight is [weight], slowdown is [slowdown] and max weight is [max_weight]")
 
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
