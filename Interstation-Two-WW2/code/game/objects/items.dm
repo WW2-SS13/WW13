@@ -68,6 +68,7 @@
 
 	// Weight variable
 	var/weight = 0
+	var/heavy = FALSE
 
 /obj/item/equipped()
 	..()

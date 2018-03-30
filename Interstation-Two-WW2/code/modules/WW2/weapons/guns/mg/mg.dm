@@ -59,6 +59,7 @@
 	item_state = "dp"
 	load_method = MAGAZINE
 	w_class = 5
+	heavy = TRUE
 	accuracy = DEFAULT_MG_ACCURACY
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 	caliber = "a762x39"
@@ -91,20 +92,13 @@
 	update_held_icon()
 	return
 
-/obj/item/weapon/gun/projectile/dp/attack_self(mob/user as mob)
-	. = ..(user)
-	//determine weight
-	if (ammo_magazine)
-		weight = 11.5
-	else
-		weight = 9.12
-
 /obj/item/weapon/gun/projectile/automatic/mg34
 	name = "MG-34"
 	desc = "German light machinegun chambered in 7.92x57mm Mauser. An utterly devastating support weapon."
 	icon_state = "l6closed100"
 	item_state = "l6closedmag"
 	w_class = 5
+	heavy = TRUE
 	max_shells = 50
 	caliber = "a792x57"
 	weight = 12.1
