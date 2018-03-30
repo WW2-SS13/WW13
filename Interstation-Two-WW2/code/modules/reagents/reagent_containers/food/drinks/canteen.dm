@@ -3,7 +3,7 @@
 	name = "Canteen"
 	icon_state = "canteen_german"
 	volume = 200
-	w_class = 4
+	w_class = 3 // fits in webbing unlike w_class = 4
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/New()
 	..()

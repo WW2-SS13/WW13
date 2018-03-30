@@ -1,6 +1,6 @@
 /mob/var/velocity = FALSE
 /mob/var/velocity_lastdir = -1 // turning makes you lose TRUE or 2 velocity
-/mob/var/run_delay_maximum = 1.75
+/mob/var/run_delay_maximum = 2.2 // was 1.75
 
 /mob/proc/get_run_delay()
 	switch (velocity)
@@ -12,8 +12,7 @@
 			. = run_delay_maximum/1.10 // 10% faster
 		if (12 to INFINITY)
 			. = run_delay_maximum/1.15 // 15% faster
-	var/slowdown = 1.0
-	. *= slowdown
+	return .
 
 /mob/proc/get_walk_delay()
 	return get_run_delay() * 1.33
@@ -22,6 +21,7 @@
 
 /mob/living/carbon/human/get_run_delay()
 	. = ..()
+
 	var/slowdown = 0
 	var/weight = 0
 	var/max_weight = (((getStatCoeff("strength")-1)/2)+1) * 37
