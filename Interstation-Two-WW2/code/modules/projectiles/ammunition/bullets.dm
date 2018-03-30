@@ -71,6 +71,7 @@
 	caliber = "shotgun"
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
+	weight = 0.227
 
 /obj/item/ammo_casing/shotgun/pellet
 	name = "shotgun shell"

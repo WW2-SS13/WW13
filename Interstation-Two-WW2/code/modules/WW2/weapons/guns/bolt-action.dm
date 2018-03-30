@@ -73,6 +73,7 @@
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = DEFAULT_BOLTACTION_ACCURACY
 	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
+	weight = 4.0
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
 /obj/item/weapon/gun/projectile/boltaction/mosin/update_icon(var/add_scope = FALSE)
@@ -109,6 +110,10 @@
 	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
 	bolt_safety = TRUE
 
+/obj/item/weapon/gun/projectile/boltaction/kar98k/New()
+	..()
+	weight = pick(3.7, 3.8, 3.9, 4.0, 4.1)
+
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
 /obj/item/weapon/gun/projectile/boltaction/kar98k/update_icon(var/add_scope = FALSE)
 	if(add_scope)
@@ -143,6 +148,7 @@
 	accuracy = DEFAULT_BOLTACTION_ACCURACY + 1
 	scoped_accuracy = DEFAULT_BOLTACTION_SCOPED_ACCURACY
 	bolt_safety = FALSE
+	weight = 3.9
 
 /obj/item/weapon/gun/projectile/boltaction/carcano/update_icon(var/add_scope = FALSE)
 	if(add_scope)

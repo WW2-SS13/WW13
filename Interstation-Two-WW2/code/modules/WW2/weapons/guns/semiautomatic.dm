@@ -64,6 +64,7 @@
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	magazine_type = /obj/item/ammo_magazine/mosin
+	weight = 3.85
 	firemodes = list(
 		list(name="single shot",burst=1, move_delay=2, fire_delay=7)
 		)
@@ -98,11 +99,13 @@
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	magazine_type = /obj/item/ammo_magazine/kar98k
+	weight = 4.9
 	firemodes = list(
 		list(name="single shot",burst=1, move_delay=2, fire_delay=7)
 		)
 	force = 10
 	throwforce = 20
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
 
 /obj/item/weapon/gun/projectile/semiautomatic/g41/update_icon()
 	..()
@@ -192,6 +195,7 @@
 	w_class = 4
 	caliber = "a792x33"
 	magazine_type = /obj/item/ammo_magazine/a762/akm
+	weight = 4.6
 
 	accuracy = DEFAULT_SEMIAUTO_ACCURACY-1
 	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY

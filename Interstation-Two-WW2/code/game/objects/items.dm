@@ -66,6 +66,10 @@
 
 	var/dropsound = 'sound/effects/drop_default.ogg'
 
+	// Weight variable
+	var/weight = 0
+	var/heavy = FALSE
+
 /obj/item/equipped()
 	..()
 	var/mob/M = loc
@@ -570,3 +574,8 @@ var/list/global/slot_flags_enumeration = list(
 
 /obj/item/proc/pwr_drain()
 	return FALSE // Process Kill
+
+/obj/item/proc/get_weight()
+	. = 0
+	.+= weight
+	return .

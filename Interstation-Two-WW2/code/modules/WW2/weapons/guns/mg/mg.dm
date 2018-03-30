@@ -59,10 +59,12 @@
 	item_state = "dp"
 	load_method = MAGAZINE
 	w_class = 5
+	heavy = TRUE
 	accuracy = DEFAULT_MG_ACCURACY
 	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 	caliber = "a762x39"
 	magazine_type = /obj/item/ammo_magazine/a762/dp
+	weight = 9.12
 	slot_flags = SLOT_BACK
 
 	firemodes = list(
@@ -96,8 +98,10 @@
 	icon_state = "l6closed100"
 	item_state = "l6closedmag"
 	w_class = 5
+	heavy = TRUE
 	max_shells = 50
 	caliber = "a792x57"
+	weight = 12.1
 	slot_flags = SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/a792x57_weaker
 	load_method = MAGAZINE

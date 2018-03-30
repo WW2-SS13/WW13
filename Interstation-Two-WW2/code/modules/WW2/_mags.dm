@@ -18,6 +18,7 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
 	ammo_type = /obj/item/ammo_casing/a762x54
 	max_ammo = 5
+	weight = 0.04
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/mosinbox
@@ -40,6 +41,7 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
 	ammo_type = /obj/item/ammo_casing/a792x57
 	max_ammo = 5
+	weight = 0.04
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/kar98kbox
@@ -65,15 +67,17 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a9_parabellum
 	max_ammo = 32
+	weight = 0.72
 	multiple_sprites = TRUE
 
-/obj/item/ammo_magazine/mp40/c9x19mm_stenmk3
+/obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
 	name = "magazine (9x19mm)"
 	icon_state = "stenmag"
 	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/c9x19mm_stenmk3
+	ammo_type = /obj/item/ammo_casing/c9x19mm_stenmk2
 	caliber = "9x19mm"
 	max_ammo = 32
+	weight = 0.72
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/maxim
@@ -149,6 +153,7 @@ WW 2 WEAPONS MAGS N AMMO
 	caliber = "a9mm_para_luger"
 	ammo_type = /obj/item/ammo_casing/a9_parabellum_luger
 	max_ammo = 8
+	weight = 0.0143
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/c45m
@@ -169,6 +174,7 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
 	caliber = "7.62mm"
 	max_ammo = 8
+	weight = 0.0143
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/c763x25mm_mauser
@@ -178,6 +184,7 @@ WW 2 WEAPONS MAGS N AMMO
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
 	caliber = "7.63x25mm"
 	max_ammo = 10
+	weight = 0.05
 	multiple_sprites = TRUE
 
 //obj/item/ammo_magazine/c9x19mm_stenmk3
@@ -196,6 +203,7 @@ WW 2 WEAPONS MAGS N AMMO
 	ammo_type = /obj/item/ammo_casing/c762x38mmR
 	caliber = "7.62x38mmR"
 	max_ammo = 21
+	weight = 0.4
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/c762x25mm_pps
@@ -205,6 +213,7 @@ WW 2 WEAPONS MAGS N AMMO
 	ammo_type = /obj/item/ammo_casing/c762x25mm_pps
 	caliber = "7.62x25mm"
 	max_ammo = 35
+	weight = 0.72
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/c792x57_fg42
@@ -222,6 +231,7 @@ WW 2 WEAPONS MAGS N AMMO
 	caliber = "6.5x52mm"
 	ammo_type = /obj/item/ammo_casing/c65x52mm
 	max_ammo = 6
+	weight = 0.04
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/p9x19mm
@@ -231,6 +241,7 @@ WW 2 WEAPONS MAGS N AMMO
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/p9x19mm
 	max_ammo = 8
+	weight = 0.014
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/s9x19mm
@@ -240,6 +251,7 @@ WW 2 WEAPONS MAGS N AMMO
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/s9x19mm
 	max_ammo = 40
+	weight = 0.82
 	multiple_sprites = TRUE
 
 /***********************************
@@ -270,6 +282,7 @@ OTHER
 	ammo_type = /obj/item/ammo_casing/a762x25
 	max_ammo = 71
 	multiple_sprites = TRUE
+	weight = 2.41
 
 /obj/item/ammo_magazine/a556/empty
 	initial_ammo = FALSE
@@ -314,6 +327,7 @@ OTHER
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a792x57
 	max_ammo = 50
+	weight = 2.29
 	multiple_sprites = TRUE
 
 /obj/item/ammo_magazine/a762x39/empty
@@ -385,6 +399,7 @@ OTHER
 	max_ammo = 30
 	multiple_sprites = TRUE
 	w_class = 2
+	weight = 0.0072
 
 /obj/item/ammo_magazine/a762/dp
 	name = "DP ammo disk"
@@ -394,6 +409,7 @@ OTHER
 	max_ammo = 47
 	multiple_sprites = TRUE
 	w_class = 3
+	weight = 1.74
 
 /obj/item/ammo_magazine/a762/m240
 	name = "M240 ammo"

@@ -61,6 +61,7 @@
 	load_method = MAGAZINE
 	slot_flags = SLOT_BACK|SLOT_BELT
 	w_class = 3
+	weight = 3.97
 	caliber = "9x19mm"
 	magazine_type = /obj/item/ammo_magazine/mp40
 //	can_wield = TRUE
@@ -106,6 +107,7 @@
 	scoped_accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-1
 	caliber = "a762x25"
 	magazine_type = /obj/item/ammo_magazine/a556/ppsh
+	weight = 3.63
 	firemodes = list(
 		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=0, dispersion = list(0.5, 0.7, 0.7, 0.7, 0.9)),
 		list(name="short bursts",	burst=4, burst_delay=1.0, recoil=0.6, move_delay=0.5, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
@@ -145,6 +147,7 @@
 	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY-1
 	caliber = "7.62x25mm"
 	magazine_type = /obj/item/ammo_magazine/c762x25mm_pps
+	weight = 3.04
 	firemodes = list(
 		list(name="short bursts",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=0.8, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
 		list(name="long bursts",	burst=6, burst_delay=1.2, recoil=0.8, move_delay=1.2, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
@@ -161,8 +164,8 @@
 		icon_state = "pps0"
 	return
 
-/obj/item/weapon/gun/projectile/submachinegun/stenmk3
-	name = "Sten MKIII"
+/obj/item/weapon/gun/projectile/submachinegun/stenmk2
+	name = "Sten MKII"
 	desc = "British submachine gun chambered in 9x19mm."
 	icon_state = "sten"
 	item_state = "sten"
@@ -173,7 +176,8 @@
 	accuracy = DEFAULT_SUBMACHINEGUN_ACCURACY-2
 	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY-3
 	caliber = "9x19mm"
-	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk3
+	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
+	weight = 3.2
 	firemodes = list(
 		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=0, dispersion = list(0.6, 0.8, 0.8, 0.8, 1.0)),
 		list(name="short burst",	burst=3, burst_delay=1.2, recoil=0.4, move_delay=0.2, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
@@ -184,7 +188,7 @@
 
 	sel_mode = 1
 
-/obj/item/weapon/gun/projectile/submachinegun/stenmk3/update_icon()
+/obj/item/weapon/gun/projectile/submachinegun/stenmk2/update_icon()
 	if(ammo_magazine)
 		icon_state = "sten"
 	else
@@ -203,6 +207,7 @@
 	scoped_accuracy = DEFAULT_SUBMACHINEGUN_SCOPED_ACCURACY
 	caliber = "9x19mm"
 	magazine_type = /obj/item/ammo_magazine/s9x19mm
+	weight = 4.2
 	firemodes = list(
 		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=0.4, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
 		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=0.8, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),

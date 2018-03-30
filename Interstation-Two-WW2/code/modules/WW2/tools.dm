@@ -25,6 +25,7 @@
 	force = 15.0
 	throwforce = 20.0
 	w_class = 2.0
+	weight = 1.18
 
 /obj/item/weapon/shovel/spade/russia
 	name = "lopata"

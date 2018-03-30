@@ -13,14 +13,42 @@
 		if (12 to INFINITY)
 			. = run_delay_maximum/1.15 // 15% faster
 	var/slowdown = 1.0
-	for (var/obj/item/I in contents)
-		if (!istype(I, /obj/item/organ))
-			if (I.w_class == 5)
-				slowdown += 0.33
 	. *= slowdown
 
 /mob/proc/get_walk_delay()
 	return get_run_delay() * 1.33
+
+// weight slowdown
+
+/mob/living/carbon/human/get_run_delay()
+	. = ..()
+	var/slowdown = 0
+	var/weight = 0
+	var/max_weight = (((getStatCoeff("strength")-1)/2)+1) * 37
+	var/heavy = FALSE
+	for (var/obj/item/I in contents)
+		if(I.heavy)
+			heavy = TRUE
+		weight += I.get_weight()
+		if (istype(I,/obj/item/weapon/storage))
+			for (var/obj/item/II in I.contents)
+				weight += II.get_weight()
+	if (weight == 0 && !heavy)
+		slowdown = 0
+	else if ((weight > max_weight * 0.25 || heavy) && weight <= max_weight * 0.65)
+		slowdown = 0.250
+	else if (weight > max_weight * 0.65 && weight <= max_weight * 0.75)
+		slowdown = 0.375
+	else if (weight > max_weight * 0.75 && weight <= max_weight * 0.85)
+		slowdown = 0.625
+	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
+		slowdown = 0.8
+	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
+		slowdown = 0.9
+	else if (weight > max_weight * 0.95 && weight <= INFINITY)
+		slowdown = 0.975
+	. *= slowdown+1
+	log_debug("weight is [weight], slowdown is [slowdown] and max weight is [max_weight]")
 
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 

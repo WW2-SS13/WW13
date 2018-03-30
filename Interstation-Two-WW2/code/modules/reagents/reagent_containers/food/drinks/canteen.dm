@@ -11,10 +11,12 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/german
 	icon_state = "canteen_german"
 	name = "German Soldier's Canteen"
+	isGlass = FALSE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/german/officer
 	icon_state = "canteen_german_officer"
 	name = "German Officer's Canteen"
+	isGlass = FALSE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/soviet
 	icon_state = "canteen_soviet"
@@ -23,3 +25,4 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/soviet/officer
 	icon_state = "canteen_soviet_officer"
 	name = "Soviet Officer's Canteen"
+	isGlass = FALSE

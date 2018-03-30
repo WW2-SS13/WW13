@@ -69,6 +69,7 @@
 	magazine_type = /obj/item/ammo_magazine/luger
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+	weight = 0.87
 
 /obj/item/weapon/gun/projectile/pistol/luger/gibber
 	crushes = TRUE
@@ -103,6 +104,7 @@
 	magazine_type = /obj/item/ammo_magazine/c762mm_tokarev
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+	weight = 0.853
 
 /obj/item/weapon/gun/projectile/pistol/tokarev/update_icon()
 	..()
@@ -133,6 +135,7 @@
 	fire_delay = 2
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+	weight = 1.13
 
 /obj/item/weapon/gun/projectile/pistol/mauser/update_icon()
 	..()
@@ -159,6 +162,7 @@
 	magazine_type = /obj/item/ammo_magazine/c762x38mmR
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+	weight = 0.8
 
 /obj/item/weapon/gun/projectile/revolver/nagant_revolver/gibber
 	crushes = TRUE
@@ -182,6 +186,7 @@
 	magazine_type = /obj/item/ammo_magazine/p9x19mm
 	accuracy = DEFAULT_PISTOL_ACCURACY
 	scoped_accuracy = DEFAULT_PISTOL_SCOPED_ACCURACY
+	weight = 0.794
 
 /obj/item/weapon/gun/projectile/pistol/waltherp38/update_icon()
 	..()
