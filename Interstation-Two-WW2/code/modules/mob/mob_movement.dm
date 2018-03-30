@@ -33,20 +33,21 @@
 		if (istype(I,/obj/item/weapon/storage))
 			for (var/obj/item/II in I.contents)
 				weight += II.get_weight()
+
 	if (weight == 0 && !heavy)
 		slowdown = 0
 	else if ((weight > max_weight * 0.25 || heavy) && weight <= max_weight * 0.65)
-		slowdown = 0.250
+		slowdown = 0.33
 	else if (weight > max_weight * 0.65 && weight <= max_weight * 0.75)
-		slowdown = 0.375
+		slowdown = 0.44
 	else if (weight > max_weight * 0.75 && weight <= max_weight * 0.85)
-		slowdown = 0.625
+		slowdown = 0.55
 	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
-		slowdown = 0.8
+		slowdown = 0.66
 	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
-		slowdown = 0.9
+		slowdown = 0.77
 	else if (weight > max_weight * 0.95 && weight <= INFINITY)
-		slowdown = 0.975
+		slowdown = 0.88
 	. *= slowdown+1
 
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
