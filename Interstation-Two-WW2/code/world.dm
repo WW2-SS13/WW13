@@ -126,6 +126,12 @@ var/world_is_open = TRUE
 		if(byond_version < RECOMMENDED_VERSION)
 			diary << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
 
+	spawn (50)
+		if (!processScheduler.isRunning)
+			processScheduler.start()
+			message_admins("processScheduler.start() was called at world/New().")
+			log_admin("processScheduler.start() was called at world/New().")
+
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
 			ToRban_autoupdate()

@@ -641,7 +641,7 @@
 	..()
 	. = (is_client_active(10 MINUTES))
 	if(.)
-		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
+		if(statpanel("Status") && ticker/* && ticker.current_state != GAME_STATE_PREGAME*/)
 			stat("Players Online (Playing, Observing, Lobby):", "[clients.len] ([human_clients_mob_list.len], [observer_mob_list.len], [new_player_mob_list.len])")
 			stat("Round Duration:", roundduration2text())
 
@@ -682,9 +682,12 @@
 
 		if(client.holder)
 			if(statpanel("Status"))
-				stat("Location:", "([x], [y], [z]) - [loc]")
+				stat("")
+				stat("******* Developer Stuff *******")
+				stat("")
 				stat("CPU:","[world.cpu]%")
 				stat("Tick Usage:","[world.tick_usage]%")
+				stat("Location:", "([x], [y], [z]) - [loc ? loc : "nullspace"]")
 				stat("Object Count:","[world.contents.len] Datums")
 			if(statpanel("Processes"))
 				if(processScheduler)

@@ -1,6 +1,7 @@
 /obj/effect/kana
 	icon = 'icons/effects/kana.dmi'
 	icon_state = "1"
+	layer = MOB_LAYER + 1
 
 /obj/effect/kana/New(_loc, var/mob/master = null)
 	..(_loc)

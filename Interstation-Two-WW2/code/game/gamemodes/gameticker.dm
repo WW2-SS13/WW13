@@ -170,15 +170,18 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	//new random event system is handled from the MC.
 
 	/* TODO: discord bot - Kachnov
-	var/admins_number = FALSE
+	var/admins_number = 0
 	for(var/client/C)
 		if(C.holder)
 			admins_number++
 
-	if(admins_number == FALSE)
+	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")*/
 
-	processScheduler.start()
+	if (!processScheduler.isRunning)
+		processScheduler.start()
+		message_admins("processScheduler.start() was called at roundstart.")
+		log_admin("processScheduler.start() was called at roundstart.")
 
 	return TRUE
 

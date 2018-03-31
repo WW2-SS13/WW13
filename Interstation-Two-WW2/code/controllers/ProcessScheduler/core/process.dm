@@ -133,8 +133,10 @@
 	onFinish()
 
 /datum/controller/process/proc/doWork()
+	return
 
 /datum/controller/process/proc/setup()
+	return
 
 /datum/controller/process/proc/process()
 	started()

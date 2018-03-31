@@ -33,13 +33,20 @@ var/list/soviet_traitors = list()
 /obj/item/weapon/phone/tohighcommand/soviet
 	faction = SOVIET
 
-/obj/item/weapon/phone/tohighcommand/proc/may_bombard_base()
-	return tickerProcess.time_elapsed >= 27000 // 45 minutes
+
+// these new values assume an average round length of 70 minutes - Kachnov
+/obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_outside()
+	return tickerProcess.time_elapsed >= 21000 // 35 minutes: about half an average round's length
+
+/obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_inside()
+	return tickerProcess.time_elapsed >= 31800 // 53 minutes: about 3/4 an average round's length
 
 /obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_message()
-	if (may_bombard_base())
-		return "We have gained air superiority over the enemy and can attack their base directly"
-	return "We have not gained air superiority over the enemy, so we cannot attack their base yet. Bombs will only land inside the town, not the enemy base"
+	if (may_bombard_base_outside())
+		if (may_bombard_base_inside())
+			return "Our Katyushas can now hit all parts of the enemy base."
+		return "Our Katyushas can now reach the enemy base, but not the inside areas."
+	return "Our Katyushas have not reached the front yet. Bombs will only reach inside the town, not the enemy base."
 
 /obj/item/weapon/phone/tohighcommand/attack_hand(var/mob/living/carbon/human/H)
 
@@ -130,16 +137,28 @@ var/list/soviet_traitors = list()
 				if (istype(H_area, /area/prishtina/admin))
 					continue
 				if (istype(H_area, /area/prishtina/german))
+					if (!caller)
+						continue
+					if (!caller.may_bombard_base_outside())
+						continue
 					if (H_area.location == AREA_INSIDE)
-						if (!caller || !caller.may_bombard_base())
+						if (!caller.may_bombard_base_inside())
 							continue
 				if (istype(H_area, /area/prishtina/soviet))
+					if (!caller)
+						continue
+					if (!caller.may_bombard_base_outside())
+						continue
 					if (H_area.location == AREA_INSIDE)
-						if (!caller || !caller.may_bombard_base())
+						if (!caller.may_bombard_base_inside())
 							continue
 				if (istype(H_area, /area/prishtina/italian_base))
+					if (!caller)
+						continue
+					if (!caller.may_bombard_base_outside())
+						continue
 					if (H_area.location == AREA_INSIDE)
-						if (!caller || !caller.may_bombard_base())
+						if (!caller.may_bombard_base_inside())
 							continue
 				if (istype(H_area, /area/prishtina/void))
 					continue

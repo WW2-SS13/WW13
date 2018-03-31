@@ -130,7 +130,7 @@ bullet_act
 				if (behind.density || locate(/obj/structure) in behind)
 					var/turf/slammed_into = behind
 					if (!slammed_into.density)
-						for (var/obj/structure/S in slammed_into)
+						for (var/obj/structure/S in slammed_into.contents)
 							if (S.density)
 								slammed_into = S
 								break
