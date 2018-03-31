@@ -661,8 +661,7 @@
 					else
 						grace_period_string += "[faction_const2name(faction)] may not cross"
 				stat("Grace Period Status:", grace_period_string)
-
-			stat("Map:", map.title)
+				stat("Map:", map.title)
 
 			stat("Season:", !ticker.mode ? "Spring" : ticker.mode.season())
 			stat("Weather:", !ticker.mode ? "Clear skies" : ticker.mode.weather())
