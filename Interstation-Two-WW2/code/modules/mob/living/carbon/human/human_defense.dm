@@ -136,7 +136,7 @@ bullet_act
 								break
 
 					visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
-					Weaken(rand(5,7))
+					Weaken(rand(4,5))
 					adjustBruteLoss(rand(20,30))
 					if (client)
 						shake_camera(src, rand(2,3), rand(2,3))
