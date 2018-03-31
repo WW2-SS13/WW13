@@ -7,11 +7,11 @@
 		if (0 to 3)
 			. = run_delay_maximum
 		if (4 to 7)
-			. = run_delay_maximum/1.05 // 5% faster
+			. = run_delay_maximum/1.03 // 3% faster
 		if (8 to 11)
-			. = run_delay_maximum/1.10 // 10% faster
+			. = run_delay_maximum/1.06 // 6% faster
 		if (12 to INFINITY)
-			. = run_delay_maximum/1.15 // 15% faster
+			. = run_delay_maximum/1.09 // 9% faster
 	return .
 
 /mob/proc/get_walk_delay()
