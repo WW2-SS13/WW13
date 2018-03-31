@@ -85,7 +85,10 @@
 					stat("Tank Pressure", internal.air_contents.return_pressure())
 					stat("Distribution Pressure", internal.distribute_pressure)
 
-			stat("<br>STATS<br>")
+
+			stat("")
+			stat("******* Stats *******")
+			stat("")
 			for (var/statname in stats)
 				var/coeff = getStatCoeff(statname)
 				if (coeff == TRUE)
