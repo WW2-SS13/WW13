@@ -337,6 +337,7 @@
 	name = "Grass patch"
 	icon_state = "grass1"
 	floor_type = /obj/item/stack/tile/grass
+	uses_daylight_dynamic_lighting = TRUE
 
 	New()
 		icon_state = "grass[pick("1","2","3","4")]"
@@ -389,6 +390,7 @@
 	interior = FALSE
 	stepsound = "dirt"
 	uses_winter_overlay = TRUE
+	uses_daylight_dynamic_lighting = TRUE
 	var/obj/structure/wild/wild = null
 
 /turf/floor/plating/grass/ex_act(severity)
@@ -435,6 +437,7 @@
 /turf/floor/plating/beach
 	name = "Beach"
 	icon = 'icons/misc/beach.dmi'
+	uses_daylight_dynamic_lighting = TRUE
 
 /turf/floor/plating/beach/sand
 	name = "Sand"
@@ -494,6 +497,7 @@
 	interior = FALSE
 	stepsound = "dirt"
 	uses_winter_overlay = TRUE
+	uses_daylight_dynamic_lighting = TRUE
 
 /turf/floor/plating/sand
 	name = "sand"
@@ -501,6 +505,7 @@
 	icon_state = "sand1"
 	interior = FALSE
 	stepsound = "dirt"
+	uses_daylight_dynamic_lighting = TRUE
 
 /turf/floor/plating/sand/New()
 	..()
@@ -529,6 +534,7 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "road_1"
 	interior = FALSE
+	uses_daylight_dynamic_lighting = TRUE
 	var/icon_mode = ""
 
 /turf/floor/plating/road/New()
@@ -540,6 +546,7 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cobble_horizontal"
 	interior = FALSE
+	uses_daylight_dynamic_lighting = TRUE
 
 /turf/floor/plating/cobblestone/dark
 	name = "road"

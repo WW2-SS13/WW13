@@ -160,7 +160,7 @@ var/list/soviet_traitors = list()
 					if (H_area.location == AREA_INSIDE)
 						if (!caller.may_bombard_base_inside())
 							continue
-				if (istype(H_area, /area/prishtina/void))
+				if (H_area.is_void_area)
 					continue
 
 				if ((H.original_job && raiding.Find(H.original_job.base_type_flag())) || raiding.Find(TRUE) || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))

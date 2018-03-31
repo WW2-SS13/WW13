@@ -278,6 +278,8 @@
 	clients -= src
 	observer_mob_list -= mob
 	human_clients_mob_list -= mob
+	if (ping_track && ping_track.client_ckey_check[ckey])
+		ping_track.client_ckey_check -= ckey
 	return ..()
 
 

@@ -281,6 +281,7 @@
 	icon_state = "purple1"
 	name = "the void"
 	location = AREA_INSIDE
+	is_void_area = TRUE
 
 /area/prishtina/void/caves
 	icon_state = "blue1"
