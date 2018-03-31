@@ -124,7 +124,7 @@
 
 // STEN MK3 SMG //
 /obj/item/projectile/bullet/rifle/c9x19mm_stenmk3
-	damage = DAMAGE_LOW-6
+	damage = DAMAGE_LOW-5
 	penetrating = FALSE
 
 // NAGANT REVOLVER //
@@ -134,7 +134,7 @@
 
 // PPS SMG //
 /obj/item/projectile/bullet/rifle/c762x25mm_pps
-	damage = DAMAGE_LOW-6
+	damage = DAMAGE_LOW-5
 	penetrating = FALSE
 
 // GEWEHR 41 //

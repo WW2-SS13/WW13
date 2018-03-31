@@ -24,24 +24,6 @@
 	poison_type = species.poison_type ? species.poison_type : "plasma"
 	exhale_type = species.exhale_type ? species.exhale_type : FALSE
 */
-/obj/item/organ/lungs/process()
-	..()
-
-	if(!owner)
-		return
-
-	if (germ_level > INFECTION_LEVEL_ONE)
-		if(prob(5))
-			owner.emote("cough")		//respitory tract infection
-
-	if(is_bruised())
-		if(prob(2))
-			spawn owner.emote("me", TRUE, "coughs up blood!")
-			owner.drip(10)
-		if(prob(4))
-			spawn owner.emote("me", TRUE, "gasps for air!")
-			owner.losebreath += 15
-
 
 /obj/item/organ/lungs/proc/handle_breath(datum/gas_mixture/breath)
 	if(!owner)
@@ -205,15 +187,6 @@
 		species.get_environment_discomfort(owner,"heat")
 	else if(breath.temperature <= species.cold_discomfort_level)
 		species.get_environment_discomfort(owner,"cold")*/
-
-#define NO_INTERNAL_BLEEDING
-
-/obj/item/organ/lungs
-	name = "lungs"
-	icon_state = "lungs"
-	gender = PLURAL
-	organ_tag = "lungs"
-	parent_organ = "chest"
 
 /obj/item/organ/lungs/process()
 	..()

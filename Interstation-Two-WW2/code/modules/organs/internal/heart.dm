@@ -92,10 +92,3 @@
 		B.volume += 0.1 // regenerate blood VERY slowly
 		if(CE_BLOODRESTORE in owner.chem_effects)
 			B.volume += owner.chem_effects[CE_BLOODRESTORE]
-
-	// Blood loss or liver damage make you lose nutriments
-	if(blood_volume < BLOOD_VOLUME_SAFE || is_bruised())
-		if(owner.nutrition >= 300)
-			owner.nutrition -= 10
-		else if(owner.nutrition >= 200)
-			owner.nutrition -= 3
