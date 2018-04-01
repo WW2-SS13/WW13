@@ -45,8 +45,8 @@
 			VERY_LONG_RANGE_MOVING = 40),
 	)
 
-	accuracy_increase_mod = 1.05
-	accuracy_decrease_mod = 1.10
+	accuracy_increase_mod = 2.00
+	accuracy_decrease_mod = 2.00
 	KD_chance = KD_CHANCE_LOW
 	stat = "pistol"
 
