@@ -89,6 +89,7 @@
 	if(stat & (BROKEN|NOPOWER)) return
 	if(user.stat || user.restrained()) return
 	var/mob/living/carbon/human/H = user
+	if (istype(H) && H.getStatCoeff("medical") < GET_MIN_STAT_COEFF(STAT_MEDIUM_HIGH))
 		H << "<span class = 'danger'>This machinery is too complex for you to understand.</span>"
 		return
 	// this is the data which will be sent to the ui

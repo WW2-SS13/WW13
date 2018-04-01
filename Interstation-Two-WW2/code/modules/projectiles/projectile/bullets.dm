@@ -16,6 +16,7 @@
 
 /obj/item/projectile/bullet/get_structure_damage()
 	if(damage_type == BRUTE || damage_type == BURN)
+		return damage/25 // bullets are no longer good at destroying walls, use c4 - Kachnov
 	return FALSE
 
 /obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = FALSE)
