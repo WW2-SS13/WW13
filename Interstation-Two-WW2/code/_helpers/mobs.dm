@@ -263,6 +263,7 @@ Proc for attack log creation, because really why not
 	if(!user || !target || !user.may_do_mob)
 		return FALSE
 
+	user.may_do_mob = FALSE
 
 	var/user_loc = user.loc
 	var/target_loc = target.loc
