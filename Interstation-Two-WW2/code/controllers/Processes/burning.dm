@@ -55,12 +55,13 @@ var/datum/controller/process/burning/burning_process = null
 		// player_list will rarely be above 100 objects
 		// so this should be more efficient - Kachnov
 		for (var/M in player_list)
-			var/dist = abs_dist(M, burningobject)
-			if (dist <= 20)
-				var/volume = 100
-				volume -= (dist*3)
-				S.volume = volume
-				M << S
+			if (M:loc) // make sure we aren't in the lobby
+				var/dist = abs_dist(M, burningobject)
+				if (dist <= 20)
+					var/volume = 100
+					volume -= (dist*3)
+					S.volume = volume
+					M << S
 
 /datum/controller/process/burning/statProcess()
 	..()

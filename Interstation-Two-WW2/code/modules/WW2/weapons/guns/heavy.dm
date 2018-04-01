@@ -61,7 +61,7 @@
 			VERY_LONG_RANGE_MOVING = 5),
 	)
 
-	accuracy_increase_mod = 3.00
+	accuracy_increase_mod = 2.00
 	accuracy_decrease_mod = 6.00
 	KD_chance = KD_CHANCE_HIGH
 	stat = "heavy"

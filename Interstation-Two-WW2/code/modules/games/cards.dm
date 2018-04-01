@@ -64,7 +64,7 @@
 
 /obj/item/weapon/deck/verb/draw_card()
 
-	set category = "Object"
+	set category = null
 	set name = "Draw"
 	set desc = "Draw a card from a deck."
 	set src in view(1)
@@ -100,7 +100,7 @@
 
 /obj/item/weapon/deck/verb/deal_card()
 
-	set category = "Object"
+	set category = null
 	set name = "Deal"
 	set desc = "Deal a card from a deck."
 	set src in view(1)
@@ -203,7 +203,7 @@
 
 /obj/item/weapon/hand/verb/discard()
 
-	set category = "Object"
+	set category = null
 	set name = "Discard"
 	set desc = "Place a card from your hand in front of you."
 

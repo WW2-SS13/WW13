@@ -11,14 +11,14 @@
 //	origin_tech = list(TECH_ILLEGAL = 4)
 
 /obj/item/clothing/mask/gas/voice/verb/Toggle_Voice_Changer()
-	set category = "Object"
+	set category = null
 	set src in usr
 
 	changer.active = !changer.active
 	usr << "<span class='notice'>You [changer.active ? "enable" : "disable"] the voice-changing module in \the [src].</span>"
 
 /obj/item/clothing/mask/gas/voice/verb/Set_Voice(name as text)
-	set category = "Object"
+	set category = null
 	set src in usr
 
 	var/voice = sanitize(name, MAX_NAME_LEN)

@@ -40,8 +40,9 @@ var/global/obj/map_metadata/map = null
 	icon_state = null
 
 	var/list/new_available_subfactions = list()
-	for (var/list/L in available_subfactions)
-		new_available_subfactions += pick(L)
+	if (prob(66))
+		for (var/list/L in available_subfactions)
+			new_available_subfactions += pick(L)
 	available_subfactions = new_available_subfactions
 
 // called from the ticker process

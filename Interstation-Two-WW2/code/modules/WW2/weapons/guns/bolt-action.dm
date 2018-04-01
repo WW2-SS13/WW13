@@ -50,18 +50,41 @@
 			VERY_LONG_RANGE_MOVING = 35),
 	)
 
-	accuracy_increase_mod = 3.00
+	accuracy_increase_mod = 2.00
 	accuracy_decrease_mod = 6.00
 	KD_chance = KD_CHANCE_HIGH
 	stat = "rifle"
 
 	var/jammed_until = -1
+	var/jamcheck = 0
+	var/last_fire = -1
 
 /obj/item/weapon/gun/projectile/boltaction/handle_post_fire()
 	..()
-	if (prob(7))
-		jammed_until = world.time + rand(50,100)
 
+	if (last_fire != -1)
+		if (world.time - last_fire <= 5)
+			jamcheck += 6
+		else if (world.time - last_fire <= 10)
+			jamcheck += 5
+		else if (world.time - last_fire <= 20)
+			jamcheck += 4
+		else if (world.time - last_fire <= 30)
+			jamcheck += 3
+		else if (world.time - last_fire <= 50)
+			jamcheck += 2
+		else if (world.time - last_fire <= 100)
+			++jamcheck
+		else
+			jamcheck = 0
+	else
+		++jamcheck
+
+	if (prob(jamcheck*2))
+		jammed_until = max(world.time + (jamcheck * 5), 50)
+		jamcheck = 0
+
+	last_fire = world.time
 
 /obj/item/weapon/gun/projectile/boltaction/mosin
 	name = "Mosin-Nagant"

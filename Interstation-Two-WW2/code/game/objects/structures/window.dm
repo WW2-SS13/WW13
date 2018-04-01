@@ -285,7 +285,7 @@
 
 /obj/structure/window/proc/rotate()
 	set name = "Rotate Window Counter-Clockwise"
-	set category = "Object"
+	set category = null
 	set src in oview(1)
 
 	if(usr.incapacitated())
@@ -304,7 +304,7 @@
 
 /obj/structure/window/proc/revrotate()
 	set name = "Rotate Window Clockwise"
-	set category = "Object"
+	set category = null
 	set src in oview(1)
 
 	if(usr.incapacitated())

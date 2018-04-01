@@ -391,7 +391,7 @@ var/list/global/slot_flags_enumeration = list(
 
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
-	set category = "Object"
+	set category = null
 	set name = "Pick up"
 
 	if(!(usr)) //BS12 EDIT
@@ -566,7 +566,7 @@ var/list/global/slot_flags_enumeration = list(
 
 /mob/living/carbon/verb/showoff()
 	set name = "Show Held Item"
-	set category = "Object"
+	set category = null
 
 	var/obj/item/I = get_active_hand()
 	if(I && !I.abstract)

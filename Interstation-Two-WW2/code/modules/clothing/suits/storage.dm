@@ -35,7 +35,7 @@
 	var/icon_closed
 	verb/toggle()
 		set name = "Toggle Coat Buttons"
-		set category = "Object"
+		set category = null
 		set src in usr
 		if(!usr.canmove || usr.stat || usr.restrained())
 			return FALSE

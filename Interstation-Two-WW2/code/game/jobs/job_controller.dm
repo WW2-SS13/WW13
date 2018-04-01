@@ -122,8 +122,9 @@ var/global/datum/controller/occupations/job_master
 			if (announce)
 				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
 
-		if (italiano || warcrimes)
-			world << "<font size = 3><span class = 'info'>Civilian and Partisan factions are enabled.</span></font>"
+		if (italiano || warcrimes || autobalance_for_players >= PLAYER_THRESHOLD_HIGHEST-10)
+			if (announce)
+				world << "<font size = 3><span class = 'info'>Civilian and Partisan factions are enabled.</span></font>"
 
 	proc/spawn_with_delay(var/mob/new_player/np, var/datum/job/j)
 		// for delayed spawning, wait the spawn_delay of the job

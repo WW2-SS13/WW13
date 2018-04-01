@@ -16,7 +16,6 @@
 
 /obj/item/projectile/bullet/get_structure_damage()
 	if(damage_type == BRUTE || damage_type == BURN)
-		return damage/5 // bullets should no longer obliterate walls
 	return FALSE
 
 /obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = FALSE)

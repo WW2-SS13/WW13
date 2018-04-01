@@ -148,7 +148,7 @@
 
 	verb/rotate()//This could likely be better
 		set name = "Rotate Infrared Laser"
-		set category = "Object"
+		set category = null
 		set src in usr
 
 		set_dir(turn(dir, 90))

@@ -38,7 +38,7 @@
 
 
 /obj/item/clothing/head/welding/verb/toggle()
-	set category = "Object"
+	set category = null
 	set name = "Adjust welding mask"
 	set src in usr
 

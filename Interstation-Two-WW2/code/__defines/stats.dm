@@ -9,4 +9,5 @@
 // STAT_VERY_VERY_LOW is only used to prevent doctor-soldiers and is not included in this list
 #define ALL_STATS list(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH)
 
-#define GET_STAT_COEFF(constant) return constant/100
+#define GET_STAT_COEFF(constant) constant/100
+#define GET_MIN_STAT_COEFF(constant) (constant-5)/100

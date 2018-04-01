@@ -88,7 +88,9 @@
 /obj/structure/chemical_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = TRUE)
 	if(stat & (BROKEN|NOPOWER)) return
 	if(user.stat || user.restrained()) return
-
+	var/mob/living/carbon/human/H = user
+		H << "<span class = 'danger'>This machinery is too complex for you to understand.</span>"
+		return
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["amount"] = amount

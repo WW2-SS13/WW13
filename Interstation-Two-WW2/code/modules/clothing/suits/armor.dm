@@ -186,7 +186,7 @@
 
 /obj/item/clothing/suit/armor/tactical/verb/holster()
 	set name = "Holster"
-	set category = "Object"
+	set category = null
 	set src in usr
 	if(!istype(usr, /mob/living)) return
 	if(usr.stat) return

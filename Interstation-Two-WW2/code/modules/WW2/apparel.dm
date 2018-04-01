@@ -33,7 +33,7 @@
 	verbs += /obj/item/clothing/under/proc/Swap
 
 /obj/item/clothing/under/proc/Swap()
-	set category = "Object"
+	set category = null
 	var/mob/living/carbon/human/m = loc
 	if (m && istype(m) && m.is_spy)
 

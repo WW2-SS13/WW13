@@ -1,8 +1,3 @@
-#define PLAYER_THRESHOLD_LOW 10
-#define PLAYER_THRESHOLD_MEDIUM 20
-#define PLAYER_THRESHOLD_HIGH 30
-#define PLAYER_THRESHOLD_HIGHEST 50
-
 /proc/check_for_german_train_conductors()
 	if (!game_started)
 		return TRUE // if we haven't started the game yet

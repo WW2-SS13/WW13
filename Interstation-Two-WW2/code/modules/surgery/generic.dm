@@ -6,6 +6,8 @@
 /datum/surgery_step/generic/
 	can_infect = TRUE
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		if (user == target)
+			return FALSE
 		if (isslime(target))
 			return FALSE
 		if (target_zone == "eyes")	//there are specific steps for eye surgery

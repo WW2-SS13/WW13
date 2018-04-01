@@ -89,7 +89,7 @@ WW 2 WEAPONS MAGS N AMMO
 	w_class = 4
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
 	ammo_type = /obj/item/ammo_casing/a127x108
-	max_ammo = 1000
+	max_ammo = 250
 	multiple_sprites = TRUE
 	var/slot = "decor"
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
@@ -325,7 +325,7 @@ OTHER
 	w_class = 3
 	caliber = "a792x57"
 	matter = list(DEFAULT_WALL_MATERIAL = 4500)
-	ammo_type = /obj/item/ammo_casing/a792x57
+	ammo_type = /obj/item/ammo_casing/a792x57_weaker
 	max_ammo = 50
 	weight = 2.29
 	multiple_sprites = TRUE

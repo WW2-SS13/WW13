@@ -691,7 +691,7 @@ var/first_guard = FALSE
 	H.give_radio()
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_NORMAL)
-	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("rifle", STAT_MEDIUM_HIGH) // was STAT_VERY_HIGH
 	H.setStat("mg", STAT_VERY_HIGH)
 	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)

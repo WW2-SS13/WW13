@@ -256,7 +256,7 @@
 
 /mob/verb/mode()
 	set name = "Activate Held Object"
-	set category = "Object"
+	set category = null
 	set src = usr
 
 	if(hand)
@@ -642,7 +642,9 @@
 	. = (is_client_active(10 MINUTES))
 	if(.)
 		if(statpanel("Game") && ticker/* && ticker.current_state != GAME_STATE_PREGAME*/)
+			stat("")
 			stat("******* Misc *******")
+			stat("")
 			stat("Players Online (Playing, Observing, Lobby):", "[clients.len] ([human_clients_mob_list.len], [observer_mob_list.len], [new_player_mob_list.len])")
 			stat("Round Duration:", roundduration2text())
 
@@ -830,7 +832,7 @@
 	return (embedded.len > 0)
 
 mob/proc/yank_out_object()
-	set category = "Object"
+	set category = null
 	set name = "Yank out object"
 	set desc = "Remove an embedded item at the cost of bleeding and pain."
 	set src in view(1)

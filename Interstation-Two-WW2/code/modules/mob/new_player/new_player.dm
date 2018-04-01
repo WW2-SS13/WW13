@@ -88,21 +88,24 @@
 	return
 
 /mob/new_player/Stat()
-	..()
 
-	if(statpanel("Lobby") && ticker)
-		if(ticker.hide_mode)
+	if(statpanel("Game") && ticker)
+		stat("")
+		stat("******* Lobby *******")
+		stat("")
+
+	/*	if(ticker.hide_mode)
 			stat("Game Mode:", "Secret")
 		else
 			if(ticker.hide_mode == FALSE)
 				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
-
+*/
 		// by counting observers, our playercount now looks more impressive - Kachnov
 		if(ticker.current_state == GAME_STATE_PREGAME)
 			stat("Time Until Joining Allowed:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
-			stat("","")
-			stat("Players: [totalPlayers]")
-			stat("","")
+//			stat("","")
+//			stat("Players: [totalPlayers]")
+//			stat("","")
 
 			totalPlayers = FALSE
 
@@ -126,7 +129,10 @@
 				else
 					stat(split[1])
 			else
-				stat(v)
+				stat(v, "")
+
+
+	..()
 
 
 /mob/new_player/Topic(href, href_list[])

@@ -123,7 +123,7 @@
 
 /obj/item/device/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
-	set category = "Object"
+	set category = null
 	set src in oview(1)
 
 	if(!usr.stat)

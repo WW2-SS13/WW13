@@ -19,7 +19,7 @@
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()
 	set name = "Spin cylinder"
 	set desc = "Fun when you're bored out of your skull."
-	set category = "Object"
+	set category = null
 
 	chamber_offset = FALSE
 	visible_message("<span class='warning'>\The [usr] spins the cylinder of \the [src]!</span>", \
@@ -56,7 +56,7 @@
 
 /obj/item/weapon/gun/projectile/revolver/detective/verb/rename_gun()
 	set name = "Name Gun"
-	set category = "Object"
+	set category = null
 	set desc = "Click to rename your gun. If you're the detective."
 
 	var/mob/M = usr

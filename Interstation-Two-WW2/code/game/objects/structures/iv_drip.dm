@@ -136,7 +136,7 @@
 
 
 /obj/structure/iv_drip/verb/toggle_mode()
-	set category = "Object"
+	set category = null
 	set name = "Toggle Mode"
 	set src in view(1)
 

@@ -2,7 +2,7 @@
 
 /* // this has never worked, not sure why, but its disabled now
 /obj/structure/sign/portrait/verb/tear()
-	set category = "Object"
+	set category = null
 	set src in oview(1, usr)
 	if (!locate(src) in get_step(usr, usr.dir))
 		return FALSE

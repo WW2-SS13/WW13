@@ -45,10 +45,28 @@
 			VERY_LONG_RANGE_MOVING = 40),
 	)
 
-	accuracy_increase_mod = 3.00
+	accuracy_increase_mod = 2.00
 	accuracy_decrease_mod = 6.00
 	KD_chance = KD_CHANCE_MEDIUM
 	stat = "rifle"
+
+	var/jammed_until = -1
+	var/jamcheck = 0
+	var/last_fire = -1
+
+/obj/item/weapon/gun/projectile/semiautomatic/handle_post_fire()
+	..()
+
+	if (world.time - last_fire > 100)
+		jamcheck = 0
+	else
+		jamcheck += 2
+
+	if (prob(jamcheck*2))
+		jammed_until = max(world.time + (jamcheck * 5), 50)
+		jamcheck = 0
+
+	last_fire = world.time
 
 /obj/item/weapon/gun/projectile/semiautomatic/svt
 	name = "SVT-40"

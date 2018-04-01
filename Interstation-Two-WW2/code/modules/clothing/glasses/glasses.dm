@@ -160,7 +160,7 @@
 
 
 /obj/item/clothing/glasses/welding/verb/toggle()
-	set category = "Object"
+	set category = null
 	set name = "Adjust welding goggles"
 	set src in usr
 

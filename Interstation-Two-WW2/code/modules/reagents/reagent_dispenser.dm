@@ -34,7 +34,7 @@
 
 	verb/set_APTFT() //set amount_per_transfer_from_this
 		set name = "Set transfer amount"
-		set category = "Object"
+		set category = null
 		set src in view(1)
 		var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
 		if (N)

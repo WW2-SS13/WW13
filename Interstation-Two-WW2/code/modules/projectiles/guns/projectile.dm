@@ -147,13 +147,6 @@
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
 			return //incompatible
 
-		if (istype(src, /obj/item/weapon/gun/projectile/boltaction))
-			var/obj/item/weapon/gun/projectile/boltaction/B = src
-			if (world.time <= B.next_reload)
-				user << "<span class='danger'>[src] is jammed.</span>"
-				return
-			B.next_reload = world.time + rand(22,33)
-
 		switch(AM.mag_type)
 			if(MAGAZINE)
 				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")
@@ -315,7 +308,7 @@
 //in case the weapon has firemodes and can't unload using attack_hand()
 /obj/item/weapon/gun/projectile/verb/unload_gun()
 	set name = "Unload Ammo"
-	set category = "Object"
+	set category = null
 	set src in usr
 
 	if(usr.stat || usr.restrained()) return

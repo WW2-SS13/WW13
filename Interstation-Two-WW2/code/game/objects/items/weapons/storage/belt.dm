@@ -15,7 +15,7 @@
 
 /obj/item/weapon/storage/belt/verb/toggle_layer()
 	set name = "Switch Belt Layer"
-	set category = "Object"
+	set category = null
 
 	if(show_above_suit == -1)
 		usr << "<span class='notice'>\The [src] cannot be worn above your suit!</span>"
