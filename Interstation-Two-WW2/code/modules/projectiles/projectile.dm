@@ -255,8 +255,6 @@
 	if (firer && target_mob.is_in_blindspot(firer))
 		miss_chance = max(round(miss_chance * 0.50), 0)
 
-	log_debug(miss_chance)
-
 	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > 1 || original != target_mob), range = abs_dist(target_mob, firer)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 	var/result = PROJECTILE_FORCE_MISS
 
