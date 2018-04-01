@@ -34,10 +34,12 @@
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/italian/soldier/get_keys()
@@ -73,10 +75,12 @@
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/italian/medic/get_keys()
@@ -117,10 +121,12 @@
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
 	H.setStat("pistol", STAT_MEDIUM_LOW)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/italian/squad_leader/update_character(var/mob/living/carbon/human/H)

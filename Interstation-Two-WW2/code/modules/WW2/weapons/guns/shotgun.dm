@@ -12,7 +12,7 @@
 	load_method = SINGLE_CASING
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	handle_casings = HOLD_CASINGS
-	stat = "heavy"
+	stat = "shotgun"
 	var/recentpump = FALSE // to prevent spammage
 
 	// as accurate as SMGs

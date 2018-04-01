@@ -19,8 +19,12 @@
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a simple civilian trying to live his life in the warzone. Survive.</span>"
 	H.setStat("strength", civ_stat())
 	H.setStat("engineering", civ_stat())
+	H.setStat("shotgun", civ_stat())
+	H.setStat("medical", civ_stat())
+
 	H.setStat("rifle", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 	H.setStat("mg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
-	H.setStat("medical", civ_stat())
+	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+
 	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE

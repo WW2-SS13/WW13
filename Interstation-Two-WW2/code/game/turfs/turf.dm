@@ -65,6 +65,8 @@ var/list/interior_areas = list(/area/prishtina/houses,
 	var/floor_type= null
 	var/intact = TRUE
 
+	var/uses_daylight_dynamic_lighting = FALSE
+
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)

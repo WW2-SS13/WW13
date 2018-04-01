@@ -51,6 +51,11 @@
 	desc = "A cabbage MRE."
 	nutriment_desc = list("overcooked cabbage" = 1)
 
+/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/italian
+	name = "Italian MRE: Spaghetti"
+	desc = "Mama mia!"
+	nutriment_desc = list("spaghett" = 1, "tomat" = 1, "spicia meatball")
+
 // scho ka kola
 
 /obj/item/weapon/reagent_containers/food/snacks/MRE/schokakola

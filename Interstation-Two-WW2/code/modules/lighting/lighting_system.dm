@@ -13,8 +13,23 @@ var/max_lighting_z = TRUE // no lighting in the sky anymore
 	for(var/turf/T in block(locate(1, TRUE, zlevel), locate(world.maxx, world.maxy, zlevel)))
 		if (!locate(/atom/movable/lighting_overlay) in T && !locate(/obj/train_track) in T)
 			var/area/T_area = get_area(T)
-			if (!T_area.is_train_area) // prevent mass deletion of these later
-				PoolOrNew(/atom/movable/lighting_overlay, T, TRUE)
+			// prevent mass deletion of these later
+			if (T_area.is_train_area)
+				continue
+
+			else if (T_area.is_void_area)
+				if (istype(T, /turf/wall/rockwall))
+					T.icon_state = "black"
+					continue
+				else if (istype(T, /turf/wall/indestructable))
+					var/turf/wall/W = T
+					W.icon = 'icons/turf/walls.dmi'
+					W.icon_state = "black"
+					qdel_list(W.overlays)
+					qdel_list(W.damage_overlays)
+					continue
+
+			PoolOrNew(/atom/movable/lighting_overlay, T, TRUE)
 
 /proc/create_all_lighting_corners()
 	for(var/zlevel = TRUE to max_lighting_z)
@@ -25,6 +40,10 @@ var/max_lighting_z = TRUE // no lighting in the sky anymore
 	for(var/turf/T in block(locate(1, TRUE, zlevel), locate(world.maxx, world.maxy, zlevel)))
 
 		if (locate(/obj/train_track) in T)
+			continue
+
+		var/area/T_area = get_area(T)
+		if (T_area.is_void_area && istype(T, /turf/wall/rockwall))
 			continue
 
 		for(var/i = 1 to 4)
@@ -65,15 +84,15 @@ var/created_lighting_corners_and_overlays = FALSE
 		var/max_v = 120
 		for (var/v in 1 to max_v)
 			var/iterations_per_loop = ceil(turfs.len/max_v)
-			for (var/vv in TRUE+(iterations_per_loop*(v-1)) to iterations_per_loop*v)
+			for (var/vv in 1+(iterations_per_loop*(v-1)) to iterations_per_loop*v)
 				if (turfs.len >= vv && turfs[vv])
 					var/turf/t = turfs[vv]
 					if (t.z <= max_lighting_z)
-						if (!locate(/obj/train_track) in t.contents)
-							if (istype(t, /turf/floor/plating/road) || istype(t, /turf/floor/plating/cobblestone) || istype(t, /turf/floor/dirt) || istype(t, /turf/floor/plating/grass) || istype(t, /turf/wall) || istype(t, /turf/floor/plating/beach) || istype(t, /turf/floor/plating/asteroid) || locate(/obj/structure/catwalk) in t.contents)
+						if (!locate(/obj/train_track) in t)
+							if (t.uses_daylight_dynamic_lighting || locate(/obj/structure/catwalk) in t)
 								var/area/a = t.loc
 								if (!a.dynamic_lighting)
-									if (!istype(a, /area/prishtina/soviet/bunker) && !istype(a, /area/prishtina/soviet/bunker_entrance) && !istype(a, /area/prishtina/void))
+									if (!istype(a, /area/prishtina/soviet/bunker) && !istype(a, /area/prishtina/soviet/bunker_entrance) && !a.is_void_area)
 										t.adjust_lighting_overlay_to_daylight()
 
 						else

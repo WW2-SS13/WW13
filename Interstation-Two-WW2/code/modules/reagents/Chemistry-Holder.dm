@@ -178,12 +178,14 @@
 				handle_reactions()
 			if(my_atom)
 				my_atom.on_reagent_change()
-			if (id == "blood")
+			// if we're losing blood (amount > 0), loose some nutrition too
+			if (id == "blood" && amount > 0)
 				if (my_atom && ishuman(my_atom))
 					var/mob/living/carbon/human/H = my_atom
-					H.nutrition -= amount/8
-					H.nutrition = min(H.nutrition, H.max_nutrition)
-					H.nutrition = max(H.nutrition, -H.max_nutrition)
+					if (H.nutrition > (H.max_nutrition * 0.33))
+						H.nutrition -= amount/8
+						H.nutrition = min(H.nutrition, H.max_nutrition)
+						H.nutrition = max(H.nutrition, -H.max_nutrition)
 			return TRUE
 	return FALSE
 

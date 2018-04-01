@@ -1,19 +1,18 @@
 /mob/var/velocity = FALSE
 /mob/var/velocity_lastdir = -1 // turning makes you lose TRUE or 2 velocity
-/mob/var/run_delay_maximum = 1.75
+/mob/var/run_delay_maximum = 2.2 // was 1.75
 
 /mob/proc/get_run_delay()
 	switch (velocity)
 		if (0 to 3)
 			. = run_delay_maximum
 		if (4 to 7)
-			. = run_delay_maximum/1.05 // 5% faster
+			. = run_delay_maximum/1.03 // 3% faster
 		if (8 to 11)
-			. = run_delay_maximum/1.10 // 10% faster
+			. = run_delay_maximum/1.06 // 6% faster
 		if (12 to INFINITY)
-			. = run_delay_maximum/1.15 // 15% faster
-	var/slowdown = 1.0
-	. *= slowdown
+			. = run_delay_maximum/1.09 // 9% faster
+	return .
 
 /mob/proc/get_walk_delay()
 	return get_run_delay() * 1.33
@@ -22,6 +21,7 @@
 
 /mob/living/carbon/human/get_run_delay()
 	. = ..()
+
 	var/slowdown = 0
 	var/weight = 0
 	var/max_weight = (((getStatCoeff("strength")-1)/2)+1) * 37
@@ -33,22 +33,22 @@
 		if (istype(I,/obj/item/weapon/storage))
 			for (var/obj/item/II in I.contents)
 				weight += II.get_weight()
+
 	if (weight == 0 && !heavy)
 		slowdown = 0
 	else if ((weight > max_weight * 0.25 || heavy) && weight <= max_weight * 0.65)
-		slowdown = 0.250
+		slowdown = 0.33
 	else if (weight > max_weight * 0.65 && weight <= max_weight * 0.75)
-		slowdown = 0.375
+		slowdown = 0.44
 	else if (weight > max_weight * 0.75 && weight <= max_weight * 0.85)
-		slowdown = 0.625
+		slowdown = 0.55
 	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
-		slowdown = 0.8
+		slowdown = 0.66
 	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
-		slowdown = 0.9
+		slowdown = 0.77
 	else if (weight > max_weight * 0.95 && weight <= INFINITY)
-		slowdown = 0.975
+		slowdown = 0.88
 	. *= slowdown+1
-	log_debug("weight is [weight], slowdown is [slowdown] and max weight is [max_weight]")
 
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 

@@ -300,9 +300,10 @@
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return
 
-		if (job_flag == GERMAN && has_occupied_base(GERMAN))
+		if (list(GERMAN,ITALIAN).Find(job_flag) && has_occupied_base(GERMAN))
 			usr << "<span class='danger'>The Soviets are currently occupying your base! You can't be deployed right now."
 			return
+
 		else if (job_flag == SOVIET && has_occupied_base(SOVIET))
 			usr << "<span class='danger'>The Germans are currently occupying your base! You can't be deployed right now."
 			return

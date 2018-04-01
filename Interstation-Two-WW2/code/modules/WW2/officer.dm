@@ -61,10 +61,6 @@ var/list/tier_2_officer_jobtypes = list(
 /mob/living/carbon/human/proc/Execute()
 	set category = "Officer"
 
-	if (next_execute > world.realtime)
-		src << "<span class = 'warning'>You can't execute anybody for a while.</span>"
-		return
-
 	var/obj/item/weapon/gun/projectile/G = null
 
 	if (istype(l_hand, /obj/item/weapon/gun/projectile))
@@ -89,6 +85,11 @@ var/list/tier_2_officer_jobtypes = list(
 			var/enemy = (original_job.base_type_flag() != H.original_job.base_type_flag())
 			if (enemy)
 				visible_message("<span class = 'danger'>[src] lifts their gun, preparing to execute [H]...</span>")
+			else
+				if (next_execute > world.realtime)
+					src << "<span class = 'warning'>You can't execute anybody for a while.</span>"
+					return
+
 			if (rankcmp(original_job, H.original_job) || (enemy && do_after(src, 50, H)))
 
 				var/obj/item/projectile/in_chamber = G.consume_next_projectile()

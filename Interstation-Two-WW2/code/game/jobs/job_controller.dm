@@ -656,7 +656,8 @@ var/global/datum/controller/occupations/job_master
 				if (isgermansquadleader(H))
 					++german_squad_leaders
 					german_squad_info[current_german_squad] = "<b>The leader of your squad (#[current_german_squad]) is [H.real_name]. He has a golden HUD.</b>"
-					world << "<b>The leader of Wehrmacht Squad #[current_german_squad] is [H.real_name]!</b>"
+					if (!istype(get_area(H), /area/prishtina/admin))
+						world << "<b>The leader of Wehrmacht Squad #[current_german_squad] is [H.real_name]!</b>"
 					german_officer_squad_info[current_german_squad] = "<b><i>The leader of squad #[current_german_squad] is [H.real_name].</i></b>"
 				else
 					if (!job.is_officer && !job.is_SS && !job.is_paratrooper && !job.is_nonmilitary)
@@ -672,7 +673,8 @@ var/global/datum/controller/occupations/job_master
 			else if (issovietsquadmember_or_leader(H))
 				if (issovietsquadleader(H))
 					soviet_squad_info[current_soviet_squad] = "<b>The leader of your squad (#[current_soviet_squad]) is [H.real_name]. He has a golden HUD.</b>"
-					world << "<b>The leader of Soviet Squad #[current_soviet_squad] is [H.real_name]!</b>"
+					if (!istype(get_area(H), /area/prishtina/admin))
+						world << "<b>The leader of Soviet Squad #[current_soviet_squad] is [H.real_name]!</b>"
 					soviet_officer_squad_info[current_soviet_squad] = "<b><i>The leader of squad #[current_soviet_squad] is [H.real_name].</i></b>"
 					++soviet_squad_leaders
 				else

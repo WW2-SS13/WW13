@@ -33,13 +33,20 @@ var/list/soviet_traitors = list()
 /obj/item/weapon/phone/tohighcommand/soviet
 	faction = SOVIET
 
-/obj/item/weapon/phone/tohighcommand/proc/may_bombard_base()
-	return tickerProcess.time_elapsed >= 27000 // 45 minutes
+
+// these new values assume an average round length of 70 minutes - Kachnov
+/obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_outside()
+	return tickerProcess.time_elapsed >= 21000 // 35 minutes: about half an average round's length
+
+/obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_inside()
+	return tickerProcess.time_elapsed >= 31800 // 53 minutes: about 3/4 an average round's length
 
 /obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_message()
-	if (may_bombard_base())
-		return "We have gained air superiority over the enemy and can attack their base directly"
-	return "We have not gained air superiority over the enemy, so we cannot attack their base yet. Bombs will only land inside the town, not the enemy base"
+	if (may_bombard_base_outside())
+		if (may_bombard_base_inside())
+			return "Our Katyushas can now hit all parts of the enemy base."
+		return "Our Katyushas can now reach the enemy base, but not the inside areas."
+	return "Our Katyushas have not reached the front yet. Bombs will only reach inside the town, not the enemy base."
 
 /obj/item/weapon/phone/tohighcommand/attack_hand(var/mob/living/carbon/human/H)
 
@@ -47,6 +54,7 @@ var/list/soviet_traitors = list()
 		var/passcheck = input(H, "Enter the password.") as num
 		playsound(get_turf(src), "keyboard", 100, 1)
 		if (passcheck != supply_codes[faction])
+			H << "<span class = 'warning'>Nothing happens. Perhaps the password was incorrect.</span>"
 			return
 
 	if (map && !map.katyushas)
@@ -120,25 +128,42 @@ var/list/soviet_traitors = list()
 		for (var/mob/living/carbon/human/H in shuffled_human_mobs)
 			if (H.loc && (H.stat == CONSCIOUS || H.debugmob))
 				var/area/H_area = get_area(H)
+
+				// don't use any 'else's here because it breaks multi-level if conditionals
+				// before katyushas couldn't hit inside the german base because else ifs - Kachnov
+
 				if (used_areas.Find(H_area))
 					continue
-				else if (istype(H_area, /area/prishtina/admin))
+				if (istype(H_area, /area/prishtina/admin))
 					continue
-				else if (istype(H_area, /area/prishtina/german))
+				if (istype(H_area, /area/prishtina/german))
+					if (!caller)
+						continue
+					if (!caller.may_bombard_base_outside())
+						continue
 					if (H_area.location == AREA_INSIDE)
-						if (!caller || !caller.may_bombard_base())
+						if (!caller.may_bombard_base_inside())
 							continue
-				else if (istype(H_area, /area/prishtina/soviet))
+				if (istype(H_area, /area/prishtina/soviet))
+					if (!caller)
+						continue
+					if (!caller.may_bombard_base_outside())
+						continue
 					if (H_area.location == AREA_INSIDE)
-						if (!caller || !caller.may_bombard_base())
+						if (!caller.may_bombard_base_inside())
 							continue
-				else if (istype(H_area, /area/prishtina/italian_base))
+				if (istype(H_area, /area/prishtina/italian_base))
+					if (!caller)
+						continue
+					if (!caller.may_bombard_base_outside())
+						continue
 					if (H_area.location == AREA_INSIDE)
-						if (!caller || !caller.may_bombard_base())
+						if (!caller.may_bombard_base_inside())
 							continue
-				else if (istype(H_area, /area/prishtina/void))
+				if (H_area.is_void_area)
 					continue
-				else if ((H.original_job && raiding.Find(H.original_job.base_type_flag())) || raiding.Find(TRUE) || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
+
+				if ((H.original_job && raiding.Find(H.original_job.base_type_flag())) || raiding.Find(TRUE) || (traitors.Find(H.real_name) && H_area.location == AREA_OUTSIDE))
 					if (targeted < maximum_targets)
 
 						++targeted
@@ -154,6 +179,7 @@ var/list/soviet_traitors = list()
 
 						playsound(target, "artillery_in_distant", 100, TRUE, 100)
 						target.visible_message("<span class = 'userdanger'>You see a barrage of rockets in the sky!</span>")
+						playsound(target, "artillery_in", 100, TRUE)
 
 						// 6 bombs in a 3x3 radius means you will almost always be hit if you don't run
 						for (var/v in 1 to 6)

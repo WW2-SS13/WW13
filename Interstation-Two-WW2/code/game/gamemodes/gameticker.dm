@@ -39,6 +39,12 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	spawn (0)
 
+		if (serverswap_open_status)
+			if (!processScheduler.isRunning)
+				processScheduler.start()
+				message_admins("processScheduler.start() was called at gameticker.pregame().")
+				log_admin("processScheduler.start() was called at gameticker.pregame().")
+
 		if (!lobby_music_player)
 			lobby_music_player = new
 
@@ -170,15 +176,18 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	//new random event system is handled from the MC.
 
 	/* TODO: discord bot - Kachnov
-	var/admins_number = FALSE
+	var/admins_number = 0
 	for(var/client/C)
 		if(C.holder)
 			admins_number++
 
-	if(admins_number == FALSE)
+	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")*/
 
-	processScheduler.start()
+	if (!processScheduler.isRunning)
+		processScheduler.start()
+		message_admins("processScheduler.start() was called at gameticker.setup().")
+		log_admin("processScheduler.start() was called at gameticker.setup().")
 
 	return TRUE
 

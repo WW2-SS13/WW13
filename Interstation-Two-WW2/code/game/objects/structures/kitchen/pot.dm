@@ -43,6 +43,9 @@
 		if (!I.reagents)
 			return
 		var/datum/reagent/R = I.reagents.get_master_reagent()
+		if (!R)
+			H << "<span class = 'warning'>There's nothing in \the [I].</span>"
+			return
 		if (!istype(R, /datum/reagent/water))
 			H << "<span class = 'warning'>You need to fill the pot with water.</span>"
 			return

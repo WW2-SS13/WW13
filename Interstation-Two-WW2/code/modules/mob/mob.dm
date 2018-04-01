@@ -294,11 +294,12 @@
 	set name = "Add Note"
 	set category = "IC"
 
-	msg = sanitize(msg)
 	msg = replacetext(msg, "<i>", "")
 	msg = replacetext(msg, "</i>", "")
 	msg = replacetext(msg, "<b>", "")
 	msg = replacetext(msg, "</b>", "")
+
+	msg = sanitize(msg)
 
 	if(mind)
 		mind.store_memory(msg)
@@ -640,7 +641,7 @@
 	..()
 	. = (is_client_active(10 MINUTES))
 	if(.)
-		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
+		if(statpanel("Status") && ticker/* && ticker.current_state != GAME_STATE_PREGAME*/)
 			stat("Players Online (Playing, Observing, Lobby):", "[clients.len] ([human_clients_mob_list.len], [observer_mob_list.len], [new_player_mob_list.len])")
 			stat("Round Duration:", roundduration2text())
 
@@ -660,8 +661,7 @@
 					else
 						grace_period_string += "[faction_const2name(faction)] may not cross"
 				stat("Grace Period Status:", grace_period_string)
-
-			stat("Map:", map.title)
+				stat("Map:", map.title)
 
 			stat("Season:", !ticker.mode ? "Spring" : ticker.mode.season())
 			stat("Weather:", !ticker.mode ? "Clear skies" : ticker.mode.weather())
@@ -670,17 +670,24 @@
 			if (z == 2 && map && map.ID == "FOREST")
 				stat("Altitude:", paratrooper_plane_master.altitude)
 
+			// give the client some information about how the server is running
 			stat("Time Dilation:", time_track ? "[ceil(time_track.dilation)]%" : "???")
 			if (ping_track && client)
-				stat("Ping (Average):", "[ceil(client.last_ping)] ms ([ceil(ping_track.avg)] ms)")
+				var/our_ping = ceil(client.last_ping)
+				var/avg_ping = ceil(ping_track.avg)
+				if (clients.len == 1)
+					avg_ping = our_ping
+				stat("Ping (Average):", "[our_ping] ms ([avg_ping] ms)")
 
 		if(client.holder)
 			if(statpanel("Status"))
-				stat("Location:", "([x], [y], [z]) [loc]")
-				stat("CPU/Tick Usage:","[world.cpu]/[world.tick_usage]")
-				if (time_track && time_track.dilation != 0)
-					stat("CPU/TD Coeff:",world.cpu/time_track.dilation)
-				stat("Instances:","[world.contents.len]")
+				stat("")
+				stat("******* Developer Stuff *******")
+				stat("")
+				stat("CPU:","[world.cpu]%")
+				stat("Tick Usage:","[world.tick_usage]%")
+				stat("Location:", "([x], [y], [z]) - [loc ? loc : "nullspace"]")
+				stat("Object Count:","[world.contents.len] Datums")
 			if(statpanel("Processes"))
 				if(processScheduler)
 					processScheduler.statProcesses()

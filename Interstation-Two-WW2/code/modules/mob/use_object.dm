@@ -3,10 +3,6 @@
 		using_object = null
 	else
 		using_object = o
-		if (istype(o, /obj/item/weapon/gun/projectile/minigun))
-			var/obj/item/weapon/gun/projectile/minigun/mg = o
-			mg.usedby(src, mg)
-			mg.started_using(src)
 
 /mob/proc/handle_object_operation(var/stop_using = FALSE)
 	if (using_object)

@@ -542,7 +542,7 @@
 		var/is_indoors = FALSE
 		var/artillery_deflection_bonus = 0
 
-		if (istype(t_area, /area/prishtina/void))
+		if (t_area.is_void_area)
 			return FALSE
 
 		if (istype(t_area, /area/prishtina/admin))

@@ -106,7 +106,6 @@
 	///////////
 	//CONNECT//
 	///////////
-/client/var/tracking_ready = FALSE // fixes 'unrecognized or inaccessible verb' issue with pinging
 /client/New(TopicData)
 
 	dir = NORTH
@@ -267,10 +266,6 @@
 		else if (istype(mob, /mob/observer))
 			observer_mob_list |= mob
 
-	spawn (10)
-		if (src)
-			tracking_ready = TRUE
-
 	//////////////
 	//DISCONNECT//
 	//////////////
@@ -283,6 +278,8 @@
 	clients -= src
 	observer_mob_list -= mob
 	human_clients_mob_list -= mob
+	if (ping_track && ping_track.client_ckey_check[ckey])
+		ping_track.client_ckey_check -= ckey
 	return ..()
 
 

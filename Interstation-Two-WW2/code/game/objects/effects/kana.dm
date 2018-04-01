@@ -1,6 +1,7 @@
 /obj/effect/kana
 	icon = 'icons/effects/kana.dmi'
 	icon_state = "1"
+	layer = 10
 
 /obj/effect/kana/New(_loc, var/mob/master = null)
 	..(_loc)
@@ -19,7 +20,7 @@
 		pixel_x = rand(-5,5)
 		pixel_y = rand(-5,5)
 		if (prob(33))
-			color = rgb(rand(55,255), rand(55,255), rand(55,255))
+			color = rgb(rand(127,255), rand(127,255), rand(127,255))
 		if (master)
 			x = ix + (master.x - master_ix)
 			y = iy + (master.y - master_iy)

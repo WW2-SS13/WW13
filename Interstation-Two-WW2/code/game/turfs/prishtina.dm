@@ -5,6 +5,7 @@
 	icon_state = "asteroid"
 	interior = FALSE
 	stepsound = "dirt"
+	uses_daylight_dynamic_lighting = TRUE
 
 /turf/shuttle/helicopter
 	name = "Helicopter cassis"

@@ -62,12 +62,14 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "grass0"
 	initial_flooring = /decl/flooring/grass
+	uses_daylight_dynamic_lighting = TRUE
 
 /turf/floor/dirt
 	name = "dirt"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "dirt"
 	uses_winter_overlay = TRUE
+	uses_daylight_dynamic_lighting = TRUE
 
 /turf/floor/hull
 	name = "hull"

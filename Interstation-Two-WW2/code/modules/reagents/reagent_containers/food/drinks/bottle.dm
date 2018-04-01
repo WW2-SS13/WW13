@@ -128,6 +128,10 @@
 
 			var/src_turf = get_turf(src)
 
+
+// for reference:
+// "apply_damage(ceil(fire_stacks/3)+1, BURN, "chest", FALSE)" is the fire damage formula, found in living_defense.dm
+
 			mainloop:
 				for (var/turf/T in range(src_turf, firerange))
 					if (prob(80) && !T.density)
@@ -137,9 +141,9 @@
 						var/obj/fire/F = T.create_fire(temp = ceil(explosion_power/8))
 						F.time_limit = pick(50, 60, 70)
 						for (var/mob/living/L in T)
-							L.fire_stacks += 5
+							L.fire_stacks += 3
 							L.IgniteMob()
-							L.adjustFireLoss(rand(20,30))
+							L.adjustFireLoss(rand(15,20))
 							if (ishuman(L))
 								L.emote("scream")
 

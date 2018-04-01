@@ -321,7 +321,7 @@ s
 				else if (istype(H_area, /area/prishtina/german) && !istype(src_area, /area/prishtina/german))
 					continue
 
-				else if (istype(H_area, /area/prishtina/void) && H_area != src_area)
+				else if (H_area.is_void_area && H_area != src_area)
 					continue
 
 				var/dist = abs_dist(H, src)

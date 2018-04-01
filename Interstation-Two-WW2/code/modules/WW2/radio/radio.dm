@@ -218,6 +218,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		var/passcheck = input(user, "Enter the password.") as num
 		playsound(get_turf(src), "keyboard", 100, 1)
 		if (passcheck != supply_codes[faction])
+			user << "<span class = 'warning'>Nothing happens. Perhaps the password was incorrect.</span>"
 			return
 	interact(user)
 
@@ -326,20 +327,18 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 		used_radios += radio
 
-		spawn (5)
+		spawn (3)
 			if (!stuttering || stuttering < 4)
-			//	log_debug("4")
 				radio.broadcast(rhtml_encode(message), src, FALSE)
 			else
-			//	log_debug("5")
 				radio.broadcast(rhtml_encode(message), src, TRUE)
 
 /obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = FALSE, var/needs_loc = TRUE)
 
+	hardtohear = FALSE // wip
+
 	if (!loc && needs_loc)
 		return
-
-	hardtohear = FALSE // wip
 
 	// ignore emotes.
 	if (dd_hasprefix(msg, "*"))
@@ -411,7 +410,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	return TRUE
 
 /obj/item/device/radio/proc/post_broadcast()
-	last_broadcast = world.time + 5
+	last_broadcast = world.time + 3
 
 /obj/item/device/radio/intercom
 	broadcasting = FALSE

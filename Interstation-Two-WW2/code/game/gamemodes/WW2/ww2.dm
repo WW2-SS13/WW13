@@ -199,6 +199,10 @@
 
 /datum/game_mode/ww2/declare_completion()
 
+	// automatically show the battle report after 5 seconds
+	if (battlereport)
+		battlereport.BR_ticks = battlereport.max_BR_ticks - 5
+
 	check_finished(TRUE)
 
 	name = "World War 2"

@@ -19,8 +19,6 @@
 
 /obj/item/weapon/gun/projectile/shotgun
 	gun_type = GUN_TYPE_SHOTGUN
-	accuracy = DEFAULT_SHOTGUN_ACCURACY
-	scoped_accuracy = DEFAULT_SHOTGUN_SCOPED_ACCURACY
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 
 /obj/item/projectile/bullet/rifle
@@ -126,7 +124,7 @@
 
 // STEN MK3 SMG //
 /obj/item/projectile/bullet/rifle/c9x19mm_stenmk3
-	damage = DAMAGE_LOW-6
+	damage = DAMAGE_LOW-5
 	penetrating = FALSE
 
 // NAGANT REVOLVER //
@@ -136,7 +134,7 @@
 
 // PPS SMG //
 /obj/item/projectile/bullet/rifle/c762x25mm_pps
-	damage = DAMAGE_LOW-6
+	damage = DAMAGE_LOW-5
 	penetrating = FALSE
 
 // GEWEHR 41 //

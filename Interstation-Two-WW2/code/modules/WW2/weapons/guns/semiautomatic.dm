@@ -61,8 +61,6 @@
 	caliber = "a762x54"
 	ammo_type = /obj/item/ammo_casing/a762x54
 	slot_flags = SLOT_BACK
-	accuracy = DEFAULT_SEMIAUTO_ACCURACY
-	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	magazine_type = /obj/item/ammo_magazine/mosin
 	weight = 3.85
 	firemodes = list(
@@ -96,8 +94,6 @@
 //	origin_tech = "combat=4;materials=2"
 	slot_flags = SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/a792x57
-	accuracy = DEFAULT_SEMIAUTO_ACCURACY
-	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	magazine_type = /obj/item/ammo_magazine/kar98k
 	weight = 4.9
 	firemodes = list(
@@ -130,12 +126,10 @@
 	//load_magazine_sound =
 	magazine_type = /obj/item/ammo_magazine/c792x57_fg42
 	ammo_type = /obj/item/ammo_casing/c792x57_fg42
-	accuracy = DEFAULT_SEMIAUTO_ACCURACY
-	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL|ATTACH_SCOPE
 
 	firemodes = list(
-		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=1, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6), accuracy = list(DEFAULT_SEMIAUTO_ACCURACY)),
+		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=1, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
 		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		list(name="long bursts",	burst=5, burst_delay=1.2, move_delay=4, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
 		)
@@ -164,9 +158,6 @@
 	fire_sound = 'sound/weapons/stg.ogg'
 	load_magazine_sound = 'sound/weapons/stg_reload.ogg'
 	magazine_type = /obj/item/ammo_magazine/a792x33/stgmag
-
-	accuracy = DEFAULT_SEMIAUTO_ACCURACY
-	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
 
 /obj/item/weapon/gun/projectile/semiautomatic/stg/update_icon()
 	if(ammo_magazine)
@@ -197,14 +188,8 @@
 	magazine_type = /obj/item/ammo_magazine/a762/akm
 	weight = 4.6
 
-	accuracy = DEFAULT_SEMIAUTO_ACCURACY-1
-	scoped_accuracy = DEFAULT_SEMIAUTO_SCOPED_ACCURACY
-
-	//can_wield = TRUE
-	//must_wield = TRUE
-
 	firemodes = list(
-		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=1, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6), accuracy = list(DEFAULT_SEMIAUTO_ACCURACY)),
+		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=1, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
 		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		list(name="long bursts",	burst=5, burst_delay=1.2, move_delay=4, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
 		)

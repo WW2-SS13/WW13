@@ -41,10 +41,12 @@
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
-	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_LOW)
+	H.setStat("smg", STAT_MEDIUM_LOW)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/commander/get_keys()
@@ -85,10 +87,12 @@
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
-	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_LOW)
+	H.setStat("smg", STAT_MEDIUM_LOW)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/XO/get_keys()
@@ -130,10 +134,12 @@
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
-	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_LOW)
+	H.setStat("smg", STAT_MEDIUM_LOW)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/staff_officer/get_keys()
@@ -171,10 +177,12 @@
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("rifle", STAT_LOW)
-	H.setStat("mg", STAT_LOW)
+	H.setStat("mg", STAT_VERY_LOW)
+	H.setStat("smg", STAT_LOW)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/MP/get_keys()
@@ -216,10 +224,12 @@
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
 	H.setStat("pistol", STAT_MEDIUM_LOW)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/squad_leader/get_keys()
@@ -259,10 +269,12 @@
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_MEDIUM_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/medic/get_keys()
@@ -303,8 +315,10 @@
 
 	H.setStat("rifle", STAT_VERY_VERY_LOW)
 	H.setStat("mg", STAT_VERY_VERY_LOW)
+	H.setStat("smg", STAT_VERY_VERY_LOW)
 	H.setStat("pistol", STAT_VERY_VERY_LOW)
 	H.setStat("heavyweapon", STAT_VERY_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/doctor/get_keys()
@@ -342,10 +356,12 @@
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_VERY_HIGH)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/sniper/get_keys()
@@ -385,10 +401,12 @@
 	H.setStat("strength", STAT_MEDIUM_HIGH)
 	H.setStat("engineering", STAT_VERY_HIGH)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/engineer/get_keys()
@@ -426,9 +444,11 @@
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
 	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("smg", STAT_HIGH)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL) // misleading statname, heavyweapons soldiers are best with MGs
 	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/heavy_weapon/get_keys()
@@ -465,10 +485,12 @@
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
 
 	if (prob(8))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/svt(H), slot_back)
@@ -564,10 +586,12 @@
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_MEDIUM_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_MEDIUM_LOW)
 	H.setStat("medical", STAT_MEDIUM_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/tankcrew/get_keys()
@@ -605,10 +629,12 @@
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_NORMAL)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_VERY_HIGH)
 	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/anti_tank_crew/get_keys()
@@ -666,10 +692,12 @@ var/first_guard = FALSE
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_NORMAL)
 	H.setStat("rifle", STAT_VERY_HIGH)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_VERY_HIGH)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_NORMAL)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/guard/get_keys()
@@ -708,10 +736,12 @@ var/first_guard = FALSE
 	H.setStat("strength", STAT_MEDIUM_HIGH)
 	H.setStat("engineering", STAT_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_NORMAL)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/QM/get_keys()
@@ -755,10 +785,12 @@ var/first_guard = FALSE
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
 	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("smg", STAT_NORMAL)
 	H.setStat("mg", STAT_MEDIUM_HIGH)
 	H.setStat("pistol", STAT_VERY_HIGH)
 	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/sturmovik/get_keys()
@@ -797,10 +829,12 @@ var/first_guard = FALSE
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_MEDIUM_LOW)
 	H.setStat("rifle", STAT_MEDIUM_LOW)
-	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("mg", STAT_LOW)
+	H.setStat("smg", STAT_MEDIUM_LOW)
 	H.setStat("pistol", STAT_NORMAL)
 	H.setStat("heavyweapon", STAT_VERY_LOW)
 	H.setStat("medical", STAT_MEDIUM_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
 	return TRUE
 
 /datum/job/soviet/chef/get_keys()

@@ -60,8 +60,6 @@
 	load_method = MAGAZINE
 	w_class = 5
 	heavy = TRUE
-	accuracy = DEFAULT_MG_ACCURACY
-	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 	caliber = "a762x39"
 	magazine_type = /obj/item/ammo_magazine/a762/dp
 	weight = 9.12
@@ -112,8 +110,6 @@
 	fire_sound = 'sound/weapons/guns/fire/mg34_firing.ogg'
 	requires_two_hands = FALSE
 	wielded_icon = "assault-wielded"
-	accuracy = DEFAULT_MG_ACCURACY-2 //Prevents shitters from going CQC as they will begin to "miss" more unless they go into scope sight. Shindes- FUCK MGS ACCURACY NERF - ShinDes
-	scoped_accuracy = DEFAULT_MG_SCOPED_ACCURACY
 
 	firemodes = list(
 		list(name="short bursts", burst=8, move_delay=10, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4), burst_delay = 1.0, recoil = 1.4),

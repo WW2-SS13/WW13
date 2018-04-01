@@ -157,7 +157,7 @@
 				qdel(src)
 			return
 
-	else if (is_sliceable())
+	else if (is_sliceable() && !istype(W, /obj/item/weapon/reagent_containers/food/drinks) && !istype(W, /obj/item/weapon/reagent_containers/glass))
 		//these are used to allow hiding edge items in food that is not on a table/tray
 
 		var/can_slice_here = FALSE
@@ -174,7 +174,7 @@
 				user << "<span class='danger'>There's already something inside \the [src].</span>"
 				return
 			if (W.w_class >= w_class || is_robot_module(W))
-				user << "<span class='warning'>\the [W] is to big to hide inside \the [src].</span>"
+				user << "<span class='warning'>\the [W] is too big to hide inside \the [src].</span>"
 				return
 
 			user << "<span class='warning'>You slip \the [W] inside \the [src].</span>"
