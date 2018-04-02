@@ -6,6 +6,7 @@ var/datum/controller/process/dog/dog_process = null
 	name = "dog process"
 	schedule_interval = 2 // a bit slower than humans run (1.42 to 1.76 deciseconds)
 	start_delay = 300
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	dog_process = src
 
 /datum/controller/process/dog/doWork()

@@ -573,6 +573,10 @@ var/list/admin_verbs_host = list(
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
+	if (!bomb_processor || !bomb_processor.fires_at_gamestates.Find(ticker.current_state))
+		src << "<span class = 'warning'>You can't drop a bomb right now.</span>"
+		return
+
 	var/turf/epicenter = mob.loc
 	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
 	var/choice = input("What size explosion would you like to produce?") in choices

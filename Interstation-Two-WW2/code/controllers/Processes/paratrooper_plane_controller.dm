@@ -10,6 +10,7 @@ var/datum/controller/process/paratrooper_plane_controller/paratrooper_plane_mast
 	name = "paratrooper plane controller"
 	schedule_interval = 20
 	start_delay = 50
+	fires_at_gamestates = list(GAME_STATE_PLAYING)
 	if (!paratrooper_plane_master)
 		paratrooper_plane_master = src
 

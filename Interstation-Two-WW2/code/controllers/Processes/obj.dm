@@ -4,6 +4,7 @@ var/datum/controller/process/obj/obj_process = null
 	name = "obj"
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 8
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	obj_process = src
 
 /datum/controller/process/obj/started()

@@ -33,6 +33,8 @@ var/list/delayed_garbage = list()
 	delayed_garbage.Cut()
 	delayed_garbage = null
 
+	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+
 #ifdef GC_FINDREF
 world/loop_checks = FALSE
 #endif

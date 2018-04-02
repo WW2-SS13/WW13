@@ -7,6 +7,7 @@ var/datum/controller/process/mob/mob_process = null
 	name = "mob"
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 16
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	mob_process = src
 
 /datum/controller/process/mob/started()

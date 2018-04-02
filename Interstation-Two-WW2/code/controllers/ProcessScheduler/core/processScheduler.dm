@@ -135,6 +135,9 @@ var/global/datum/controller/processScheduler/processScheduler
 		if (p.disabled || p.running || p.queued || !p.idle)
 			continue
 
+		if (ticker && !p.fires_at_gamestates.Find(ticker.current_state))
+			continue
+
 		// If the process should be running by now, go ahead and queue it
 		if (world.time >= last_queued[p] + p.schedule_interval)
 			setQueuedProcessState(p)

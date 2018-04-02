@@ -8,6 +8,7 @@ var/TOD_may_automatically_change = FALSE
 	name = "time of day cycle"
 	schedule_interval = 100
 	start_delay = 20
+	fires_at_gamestates = list(GAME_STATE_PLAYING)
 	time_of_day_process = src
 
 /datum/controller/process/time_of_day/doWork()

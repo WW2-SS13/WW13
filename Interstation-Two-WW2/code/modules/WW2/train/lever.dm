@@ -12,6 +12,9 @@
 	var/real = FALSE
 
 /obj/train_lever/attack_hand(var/mob/user as mob)
+	if (!train_process || !train_process.fires_at_gamestates.Find(ticker.current_state))
+		user << "<span class = 'warning'>You can't send the train right now.</span>"
+		return
 	if (user && istype(user, /mob/living/carbon/human))
 		if (world.realtime - roundstart_time < 9000)
 			user << "<span class = 'danger'>15 or more minutes must elapse before you can leave!</span>"

@@ -9,6 +9,7 @@ var/supplytrain_may_process = FALSE
 	name = "train process"
 	schedule_interval = 10
 	start_delay = 100
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	train_process = src
 
 /datum/controller/process/train/doWork()

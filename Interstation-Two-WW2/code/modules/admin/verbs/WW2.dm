@@ -2,6 +2,10 @@
 	set category = "WW2 (Admin)"
 	set name = "Send train (German)"
 
+	if (!train_process || !train_process.fires_at_gamestates.Find(ticker.current_state))
+		src << "<span class = 'warning'>You can't send the train right now.</span>"
+		return
+
 	var/direction = input("Make the train go forwards, backwards, or stop?") in list("Forwards", "Backwards", "Stop", "Cancel")
 
 	if (!direction || direction == "Cancel")
@@ -144,6 +148,11 @@
 /client/proc/show_battle_report()
 	set category = "WW2 (Admin)"
 	set name = "Show Battle Report"
+
+	if (!battlereport || !battlereport.fires_at_gamestates.Find(ticker.current_state))
+		src << "<span class = 'warning'>You can't send a battle report right now.</span>"
+		return
+
 	// to prevent showing multiple battle reports - Kachnov
 	if (battlereport)
 		message_admins("[key_name(src)] showed everyone the battle report.")
@@ -154,6 +163,9 @@
 /client/proc/see_battle_report()
 	set category = "WW2 (Admin)"
 	set name = "See Battle Report"
+	if (!battlereport || !battlereport.fires_at_gamestates.Find(ticker.current_state))
+		src << "<span class = 'warning'>You can't see the battle report right now.</span>"
+		return
 	show_global_battle_report(src, TRUE)
 
 /proc/show_global_battle_report(var/shower, var/private = FALSE)

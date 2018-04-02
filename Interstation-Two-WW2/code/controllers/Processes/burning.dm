@@ -4,6 +4,7 @@ var/datum/controller/process/burning/burning_process = null
 	name = "burning"
 	schedule_interval = 50 // every 5 seconds
 	start_delay = 100
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	burning_process = src
 
 /datum/controller/process/burning/doWork()

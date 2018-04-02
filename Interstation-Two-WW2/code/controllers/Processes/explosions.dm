@@ -11,6 +11,7 @@ var/datum/controller/process/explosives/bomb_processor
 	name = "explosives"
 	schedule_interval = 5 // every half-second
 	work_queue = list()
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	bomb_processor = src
 
 /datum/controller/process/explosives/doWork()

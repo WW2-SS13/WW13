@@ -11,6 +11,7 @@ var/datum/controller/process/time_track/time_track = null
 /datum/controller/process/time_track/setup()
 	name = "Time Tracking"
 	schedule_interval = 50
+	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 
 	if (!time_track)
 		time_track = src
