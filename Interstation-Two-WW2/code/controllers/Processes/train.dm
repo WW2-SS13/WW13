@@ -26,4 +26,3 @@ var/supplytrain_may_process = FALSE
 
 		catch(var/exception/e)
 			catchException(e)
-		SCHECK

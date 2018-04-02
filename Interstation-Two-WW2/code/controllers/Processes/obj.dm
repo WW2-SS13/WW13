@@ -36,10 +36,10 @@ var/datum/controller/process/obj/obj_process = null
 				O.process()
 			catch(var/exception/e)
 				catchException(e, O)
-			SCHECK
 		else
 			catchBadType(O)
 			processing_objects -= O
+		SCHECK
 
 	// objects here only process about 1/40 ticks
 	if (prob(10) && !paused_nonvital)
@@ -62,10 +62,10 @@ var/datum/controller/process/obj/obj_process = null
 						O:process()
 					catch(var/exception/e)
 						catchException(e, O)
-					SCHECK
 				else
 					catchBadType(O)
 					nonvital_list -= O
+				SCHECK
 
 /datum/controller/process/obj/proc/add_nonvital_object(var/obj/o)
 	var/list/nonvital_list = null

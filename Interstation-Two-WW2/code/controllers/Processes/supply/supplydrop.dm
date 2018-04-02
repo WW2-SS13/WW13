@@ -70,10 +70,11 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 
 						catch (var/exception/e)
 							catchException(e)
-						SCHECK
 					else
 						if (objects.Find(last_path))
 							objects -= last_path
+			SCHECK
+		SCHECK
 
 /datum/controller/process/supplydrop/statProcess()
 	..()

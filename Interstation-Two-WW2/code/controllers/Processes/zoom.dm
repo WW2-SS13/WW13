@@ -39,10 +39,10 @@ var/datum/controller/process/zoom/zoom_process = null
 				recent_scopes -= S
 			catch(var/exception/e)
 				catchException(e, S)
-			SCHECK
 		else
 			catchBadType(S)
 			recent_scopes -= S
+		SCHECK
 
 	for(last_object in zoom_processing_objects)
 
@@ -76,10 +76,10 @@ var/datum/controller/process/zoom/zoom_process = null
 								O.invisibility = FALSE
 			catch(var/exception/e)
 				catchException(e, H)
-			SCHECK
 		else
 			catchBadType(H)
 			zoom_processing_objects -= H
+		SCHECK
 
 /datum/controller/process/zoom/statProcess()
 	..()

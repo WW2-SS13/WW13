@@ -44,6 +44,8 @@ var/datum/controller/process/ping_track/ping_track = null
 		avg += C.last_ping
 		++clients_checked
 
+		SCHECK
+
 	if (clients_checked)
 		avg /= clients_checked
 

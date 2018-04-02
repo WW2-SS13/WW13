@@ -22,6 +22,7 @@ var/datum/controller/process/paratrooper_plane_controller/paratrooper_plane_mast
 			if (latejoin_turfs["Fallschirm"] && latejoin_turfs["Fallschirm"]:len)
 				for (var/turf/T in range(10, latejoin_turfs["Fallschirm"][1]))
 					my_turfs += T
+					SCHECK
 
 		var/shift = pick(-4, 0, 4)
 		var/mobs = 0
@@ -32,6 +33,8 @@ var/datum/controller/process/paratrooper_plane_controller/paratrooper_plane_mast
 					AM.pixel_x = shift
 				else
 					++mobs
+				SCHECK
+			SCHECK
 
 		tmpTime += schedule_interval
 		if (tmpTime >= 300)
@@ -45,10 +48,10 @@ var/datum/controller/process/paratrooper_plane_controller/paratrooper_plane_mast
 				if (H.original_job && istype(H.original_job, /datum/job/german/paratrooper))
 					if (H.z == 2)
 						H << "<big><span class = 'red'>The Plane's current altitude is [altitude]m. It is lethal to jump until it has descended to [first_nonlethal_altitude]m."
+				SCHECK
 
 	catch(var/exception/e)
 		catchException(e)
-	SCHECK
 
 /datum/controller/process/paratrooper_plane_controller/proc/isLethalToJump()
 	return altitude > first_nonlethal_altitude

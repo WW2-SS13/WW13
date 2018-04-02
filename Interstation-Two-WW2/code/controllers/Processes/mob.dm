@@ -68,10 +68,10 @@ var/datum/controller/process/mob/mob_process = null
 					zoom_processing_objects -= M
 			catch(var/exception/e)
 				catchException(e, M)
-			SCHECK
 		else
 			catchBadType(M)
 			mob_list -= M
+		SCHECK
 
 /datum/controller/process/mob/statProcess()
 	..()

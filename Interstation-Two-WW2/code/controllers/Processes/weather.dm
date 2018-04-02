@@ -39,4 +39,3 @@ var/datum/controller/process/weather/weather_process = null
 			if (ticker.mode.vars.Find("season"))
 				change_weather_somehow()
 				next_can_change_weather = world.realtime + minimum_change_weather_delay
-	SCHECK

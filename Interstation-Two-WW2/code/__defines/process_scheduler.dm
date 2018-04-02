@@ -13,6 +13,6 @@
 #define PROCESS_DEFAULT_SCHEDULE_INTERVAL 	50  // 50 ticks
 #define PROCESS_DEFAULT_SLEEP_INTERVAL		8	// 2 ticks
 
-// SCHECK macros
+// SCHECK macro
 // This references src directly to work around a weird bug with try/catch
 #define SCHECK sleepCheck()

@@ -22,10 +22,10 @@ var/datum/controller/process/burning/burning_process = null
 					new/obj/effect/effect/smoke/bad(get_turf(O), TRUE)
 			catch(var/exception/e)
 				catchException(e, O)
-			SCHECK
 		else
 			catchBadType(O)
 			burning_objs -= O
+		SCHECK
 
 	for(last_object in burning_turfs)
 		var/turf/O = last_object
@@ -40,10 +40,10 @@ var/datum/controller/process/burning/burning_process = null
 					new/obj/effect/effect/smoke/bad(O, TRUE)
 			catch(var/exception/e)
 				catchException(e, O)
-			SCHECK
 		else
 			catchBadType(O)
 			burning_turfs -= O
+		SCHECK
 
 	var/sound/S = sound('sound/effects/fire_loop.ogg')
 	S.repeat = FALSE
@@ -63,6 +63,7 @@ var/datum/controller/process/burning/burning_process = null
 					volume -= (dist*3)
 					S.volume = volume
 					M << S
+		SCHECK
 
 /datum/controller/process/burning/statProcess()
 	..()

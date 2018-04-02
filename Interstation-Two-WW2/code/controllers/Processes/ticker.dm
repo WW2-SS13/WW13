@@ -14,7 +14,6 @@ var/global/datum/controller/process/ticker/tickerProcess
 	if(!ticker)
 		ticker = new
 
-
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 
 	tickerProcess = src

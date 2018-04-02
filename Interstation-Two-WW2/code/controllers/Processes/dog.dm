@@ -28,10 +28,10 @@ var/datum/controller/process/dog/dog_process = null
 					if (locate(/obj/structure) in target)
 						continue
 					step(dog, get_dir(dog, dog.walking_to))
+			SCHECK
 
 	catch(var/exception/e)
 		catchException(e)
-	SCHECK
 
 /datum/controller/process/dog/statProcess()
 	..()

@@ -198,8 +198,8 @@
 		del(src)
 
 // Do not call this directly - use SHECK or SCHECK_EVERY
-/datum/controller/process/proc/sleepCheck(var/tickId = FALSE)
-	calls_since_last_scheck = FALSE
+/datum/controller/process/proc/sleepCheck(var/tickId = 0)
+	calls_since_last_scheck = 0
 	if (killed)
 		// The kill proc is the only place where killed is set.
 		// The kill proc should have deleted this datum, and all sleeping procs that are
@@ -308,6 +308,7 @@
 	copyStateFrom(target)
 
 /datum/controller/process/proc/copyStateFrom(var/datum/controller/process/target)
+	return
 
 /datum/controller/process/proc/onKill()
 	return

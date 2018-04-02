@@ -22,4 +22,3 @@ var/TOD_may_automatically_change = FALSE
 
 	catch(var/exception/e)
 		catchException(e)
-	SCHECK
