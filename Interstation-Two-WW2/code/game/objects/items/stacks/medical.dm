@@ -7,8 +7,8 @@
 	w_class = 2
 	throw_speed = 4
 	throw_range = 20
-	var/heal_brute = FALSE
-	var/heal_burn = FALSE
+	var/heal_brute = 0
+	var/heal_burn = 0
 
 /obj/item/stack/medical/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if (!istype(C) )
@@ -160,7 +160,7 @@
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
-	heal_brute = FALSE
+	heal_brute = 0
 //	origin_tech = list(TECH_BIO = TRUE)
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
@@ -178,7 +178,7 @@
 			else
 				user.visible_message("<span class='notice'>\The [user] starts treating [M]'s [affecting.name].</span>", \
 						             "<span class='notice'>You start treating [M]'s [affecting.name].</span>" )
-				var/used = FALSE
+				var/used = 0
 				for (var/datum/wound/W in affecting.wounds)
 					if (W.internal)
 						continue
@@ -215,11 +215,11 @@
 					return
 			else
 				user << "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>"
-
+/*
 		if (affecting.open == FALSE)
 			if (affecting.is_bandaged() && affecting.is_disinfected())
 				affecting.wounds.Cut()
-				H.bad_external_organs -= affecting
+				H.bad_external_organs -= affecting*/
 
 /obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"
@@ -291,7 +291,7 @@
 				user << "<span class='danger'>You can't apply a splint to the arm you're using!</span>"
 				return
 			user.visible_message("<span class='danger'>[user] starts to apply \the [src] to their [limb].</span>", "<span class='danger'>You start to apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
-		if(do_after(user, 50, M))
+		if(do_mob(user, M, 50))
 			if (M != user)
 				user.visible_message("<span class='danger'>[user] finishes applying \the [src] to [M]'s [limb].</span>", "<span class='danger'>You finish applying \the [src] to [M]'s [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
 			else
