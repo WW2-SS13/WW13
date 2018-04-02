@@ -74,9 +74,9 @@
 /mob/living/carbon/human/Stat()
 	. = ..()
 	if (.)
-		if(statpanel("Me"))
+		if(statpanel("Character"))
 			stat("")
-			stat("******* Misc *******")
+			stat(stat_header("Character"))
 			stat("")
 			stat("Attack Intent:", "[a_intent]")
 			stat("Move Mode:", "[m_intent]")
@@ -102,7 +102,7 @@
 
 
 			stat("")
-			stat("******* Stats *******")
+			stat(stat_header("Stats"))
 			stat("")
 			for (var/statname in stats)
 				var/coeff = getStatCoeff(statname)

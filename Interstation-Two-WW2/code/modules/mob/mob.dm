@@ -637,13 +637,17 @@
 	for(var/mob/M in viewers())
 		M.see(message)
 
+// this CSS is terrible but its the only thing that works - Kachnov
+/mob/proc/stat_header(title)
+	return "<span style = 'font-size: 13px;'><small><b>[title]</b></small></span>"
+
 /mob/Stat()
 	..()
 	. = (is_client_active(10 MINUTES))
 	if(.)
-		if(statpanel("Game") && ticker/* && ticker.current_state != GAME_STATE_PREGAME*/)
+		if(statpanel("Server") && ticker/* && ticker.current_state != GAME_STATE_PREGAME*/)
 			stat("")
-			stat("******* Misc *******")
+			stat(stat_header("Server"))
 			stat("")
 			stat("Players Online (Playing, Observing, Lobby):", "[clients.len] ([human_clients_mob_list.len], [observer_mob_list.len], [new_player_mob_list.len])")
 			stat("Round Duration:", roundduration2text())
@@ -683,9 +687,9 @@
 				stat("Ping (Average):", "[our_ping] ms ([avg_ping] ms)")
 
 		if(client.holder)
-			if(statpanel("Game"))
+			if(statpanel("Server"))
 				stat("")
-				stat("******* Developer Stuff *******")
+				stat(stat_header("Developer"))
 				stat("")
 				stat("CPU:","[world.cpu]%")
 				stat("Tick Usage:","[ceil(world.tick_usage)]%")

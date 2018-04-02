@@ -89,9 +89,9 @@
 
 /mob/new_player/Stat()
 
-	if(statpanel("Game") && ticker)
+	if(statpanel("Server") && ticker)
 		stat("")
-		stat("******* Lobby *******")
+		stat(stat_header("Lobby"))
 		stat("")
 
 	/*	if(ticker.hide_mode)
