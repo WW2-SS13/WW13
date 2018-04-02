@@ -86,7 +86,7 @@
 */
 /*
 /client/proc/cmd_debug_tog_aliens()
-	set category = "Server (Admin)"
+	set category = "Server"
 	set name = "Toggle Aliens"
 
 	config.aliens_allowed = !config.aliens_allowed

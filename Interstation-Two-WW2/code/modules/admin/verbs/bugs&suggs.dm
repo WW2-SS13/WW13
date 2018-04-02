@@ -2,7 +2,7 @@ var/sepstring = ""
 // see bug reports
 /client/proc/see_bug_reports()
 	set name = "See Bug Reports"
-	set category = "Server (Admin)"
+	set category = "Server"
 
 	establish_db_connection()
 
@@ -70,7 +70,7 @@ var/sepstring = ""
 // see suggestions
 /client/proc/see_suggestions()
 	set name = "See Suggestions"
-	set category = "Server (Admin)"
+	set category = "Server"
 
 	establish_db_connection()
 

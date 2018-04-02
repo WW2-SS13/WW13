@@ -18,7 +18,7 @@
 
 /client/proc/nanomapgen_DumpImage()
 	set name = "Generate NanoUI Map"
-	set category = "Server (Admin)"
+	set category = "Server"
 
 	if(holder)
 		nanomapgen_DumpTile(1, TRUE, text2num(input(usr,"Enter the Z level to generate")))

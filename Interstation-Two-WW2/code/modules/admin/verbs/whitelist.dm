@@ -2,7 +2,7 @@
 
 /client/proc/add_to_server_whitelist()
 	set name = "Add To Server Whitelist"
-	set category = "Server (Admin)"
+	set category = "Server"
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
@@ -29,7 +29,7 @@
 
 /client/proc/remove_from_server_whitelist()
 	set name = "Remove From Server Whitelist"
-	set category = "Server (Admin)"
+	set category = "Server"
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
@@ -57,7 +57,7 @@
 
 /client/proc/view_server_whitelist()
 	set name = "See Server Whitelist"
-	set category = "Server (Admin)"
+	set category = "Server"
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
@@ -68,7 +68,7 @@
 
 /client/proc/enable_disable_server_whitelist()
 	set name = "Enable/Disable Server Whitelist"
-	set category = "Server (Admin)"
+	set category = "Server"
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"

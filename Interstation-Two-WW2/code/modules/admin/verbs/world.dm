@@ -2,7 +2,7 @@
 /client/proc/toggle_BYOND_hub_visibility()
 
 	set name = "Toggle BYOND hub visibility"
-	set category = "Server (Admin)"
+	set category = "Server"
 
 	if (!check_rights(R_HOST))
 		return

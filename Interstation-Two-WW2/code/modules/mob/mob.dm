@@ -645,7 +645,7 @@
 	..()
 	. = (is_client_active(10 MINUTES))
 	if(.)
-		if(statpanel("Server") && ticker/* && ticker.current_state != GAME_STATE_PREGAME*/)
+		if(statpanel("Status") && ticker/* && ticker.current_state != GAME_STATE_PREGAME*/)
 			stat("")
 			stat(stat_header("Server"))
 			stat("")
@@ -687,7 +687,7 @@
 			stat("Time Dilation:", time_track ? "[ceil(time_track.dilation)]%" : "???")
 
 		if(client.holder)
-			if(statpanel("Server"))
+			if(statpanel("Status"))
 				stat("")
 				stat(stat_header("Developer"))
 				stat("")
