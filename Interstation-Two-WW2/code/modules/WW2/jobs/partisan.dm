@@ -13,8 +13,8 @@
 	// AUTOBALANCE
 	min_positions = 1
 	max_positions = 10
-	player_threshold = PLAYER_THRESHOLD_HIGHEST
-	scale_to_players = PLAYER_THRESHOLD_HIGHEST
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
 
 /datum/job/partisan/soldier/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
