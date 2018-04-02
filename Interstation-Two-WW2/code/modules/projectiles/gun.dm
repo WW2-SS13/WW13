@@ -583,7 +583,7 @@
 
 /mob/living/carbon/human/verb/eject_magazine()
 	set name = "Eject magazine"
-	set category = "Weapons"
+	set category = null
 
 	var/obj/item/weapon/gun/projectile/G = get_active_hand()
 	if(!G || !istype(G))
