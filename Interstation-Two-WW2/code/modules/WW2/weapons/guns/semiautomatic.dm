@@ -54,13 +54,22 @@
 	var/jamcheck = 0
 	var/last_fire = -1
 
+// rifles take 1.6 - 1.9 seconds to fire now, meaning they're weaker than SMGs at close range
+/obj/item/weapon/gun/projectile/semiautomatic/special_check(var/mob/user)
+	. = ..()
+	if (!.)
+		return .
+	if (!do_after(user, rand(9,12), get_turf(user)))
+		return FALSE
+	return TRUE
+
 /obj/item/weapon/gun/projectile/semiautomatic/handle_post_fire()
 	..()
 
-	if (world.time - last_fire > 100)
+	if (world.time - last_fire > 50)
 		jamcheck = 0
 	else
-		jamcheck += 2
+		++jamcheck
 
 	if (prob(jamcheck*2))
 		jammed_until = max(world.time + (jamcheck * 5), 50)

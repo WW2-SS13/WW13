@@ -59,21 +59,30 @@
 	var/jamcheck = 0
 	var/last_fire = -1
 
+// rifles take 1.6 - 1.9 seconds to fire now, meaning they're weaker than SMGs at close range
+/obj/item/weapon/gun/projectile/boltaction/special_check(var/mob/user)
+	. = ..()
+	if (!.)
+		return .
+	if (!do_after(user, rand(9,12), get_turf(user)))
+		return FALSE
+	return TRUE
+
 /obj/item/weapon/gun/projectile/boltaction/handle_post_fire()
 	..()
 
 	if (last_fire != -1)
 		if (world.time - last_fire <= 5)
-			jamcheck += 6
-		else if (world.time - last_fire <= 10)
-			jamcheck += 5
-		else if (world.time - last_fire <= 20)
 			jamcheck += 4
-		else if (world.time - last_fire <= 30)
+		else if (world.time - last_fire <= 10)
 			jamcheck += 3
-		else if (world.time - last_fire <= 50)
+		else if (world.time - last_fire <= 20)
 			jamcheck += 2
-		else if (world.time - last_fire <= 100)
+		else if (world.time - last_fire <= 30)
+			++jamcheck
+		else if (world.time - last_fire <= 40)
+			++jamcheck
+		else if (world.time - last_fire <= 50)
 			++jamcheck
 		else
 			jamcheck = 0
