@@ -447,17 +447,17 @@
 		fire_alert = max(fire_alert, TRUE)
 		if(status_flags & GODMODE)	return TRUE	//godmode
 
-		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			var/burn_dam = FALSE
-			switch(bodytemperature)
-				if(-INFINITY to species.cold_level_3)
-					burn_dam = COLD_DAMAGE_LEVEL_3
-				if(species.cold_level_3 to species.cold_level_2)
-					burn_dam = COLD_DAMAGE_LEVEL_2
-				if(species.cold_level_2 to species.cold_level_1)
-					burn_dam = COLD_DAMAGE_LEVEL_1
-			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
-			fire_alert = max(fire_alert, TRUE)
+//		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
+		var/burn_dam = FALSE
+		switch(bodytemperature)
+			if(-INFINITY to species.cold_level_3)
+				burn_dam = COLD_DAMAGE_LEVEL_3
+			if(species.cold_level_3 to species.cold_level_2)
+				burn_dam = COLD_DAMAGE_LEVEL_2
+			if(species.cold_level_2 to species.cold_level_1)
+				burn_dam = COLD_DAMAGE_LEVEL_1
+		take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
+		fire_alert = max(fire_alert, TRUE)
 
 	// tell src they're dying
 	species.get_environment_discomfort(src, "cold")

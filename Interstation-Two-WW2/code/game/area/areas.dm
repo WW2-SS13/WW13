@@ -125,7 +125,7 @@ var/list/ghostteleportlocs = list()
 /area/proc/initialize()
 	if(config.machinery_does_not_use_power)
 		requires_power = FALSE
-	if(!requires_power || !apc)
+	if(!requires_power/* || !apc*/)
 		power_light = FALSE
 		power_equip = FALSE
 		power_environ = FALSE

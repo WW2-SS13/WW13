@@ -528,8 +528,8 @@ var/list/global/slot_flags_enumeration = list(
 	if (!..())
 		return FALSE
 
-	if(istype(src, /obj/item/weapon/melee/energy))
-		return
+/*	if(istype(src, /obj/item/weapon/melee/energy))
+		return*/
 
 	//if we haven't made our blood_overlay already
 	if( !blood_overlay )

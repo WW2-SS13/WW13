@@ -440,3 +440,7 @@
 // testing
 /client/proc/delme()
 	del src
+
+/client/Stat()
+	..()
+	sleep(10) // make statpanels update every second - Memeopolis

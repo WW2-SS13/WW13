@@ -56,9 +56,10 @@
 			return "extremely deep snow"
 		if (1.22 to INFINITY) // no way we can go through this easily
 			return "incredibly deep snow"
-
+/*
 /obj/snow/get_description_info()
 	return "It's about [amount] meters deep. That's [descriptor()]."
+*/
 
 /obj/snow/attackby(obj/item/C as obj, mob/user as mob)
 	var/turf/floor/F = get_turf(src)
