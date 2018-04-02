@@ -569,7 +569,7 @@ var/list/admin_verbs_host = list(
 
 
 /client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -631,7 +631,7 @@ var/list/admin_verbs_host = list(
 	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].", TRUE)
 */
 /client/proc/make_sound(var/obj/O in range(world.view)) // -- TLE
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
 	if(O)
@@ -647,13 +647,13 @@ var/list/admin_verbs_host = list(
 /*
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
-	set category = "Special Verbs"
+	set category = "Special"
 	if(mob)
 		togglebuildmode(mob)
 */
 
 /client/proc/object_talk(var/msg as text) // -- TLE
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "oSay"
 	set desc = "Display a message to everyone who can hear the target"
 	if(mob.control_object)

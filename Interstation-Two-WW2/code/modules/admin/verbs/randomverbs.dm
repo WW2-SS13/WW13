@@ -44,7 +44,7 @@
 
 
 /client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Subtle Message"
 
 	if(!ismob(M))	return
@@ -102,7 +102,7 @@
 
 
 /client/proc/cmd_admin_world_narrate() // Allows administrators to fluff events a little easier -- TLE
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Global Narrate"
 
 	if (!holder)
@@ -119,7 +119,7 @@
 
 
 /client/proc/cmd_admin_direct_narrate(var/mob/M)	// Targetted narrate -- TLE
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Direct Narrate"
 
 	if(!holder)
@@ -143,7 +143,7 @@
 
 
 /client/proc/cmd_admin_godmode(mob/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Godmode"
 	if(!holder)
 		src << "Only administrators may use this command."
@@ -234,7 +234,7 @@ Ccomp's first proc.
 
 
 /client/proc/allow_character_respawn()
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Allow player to respawn"
 	set desc = "Let's the player bypass the 30 minute wait to respawn or allow them to re-enter their corpse."
 	if(!holder)
@@ -328,7 +328,7 @@ Works kind of like entering the game with a new character. Character receives a 
 Traitors and the like can also be revived with the previous role mostly intact.
 /N */
 /client/proc/respawn_character()
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Respawn Character"
 	set desc = "Respawn a person that has been gibbed/dusted/killed. They must be a ghost for this to work and preferably should not have a body to go back into."
 	if(!holder)
@@ -441,7 +441,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return new_character
 
 /client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Rejuvenate"
 	if(!holder)
 		src << "Only administrators may use this command."
@@ -461,7 +461,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /client/proc/cmd_admin_create_centcom_report()
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Create Command Report"
 	return FALSE
 
@@ -492,7 +492,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in range(world.view))
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Explosion"
 
 	if(!check_rights(R_DEBUG|R_FUN))	return
@@ -520,7 +520,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 /client/proc/cmd_admin_emp(atom/O as obj|mob|turf in range(world.view))
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "EM Pulse"
 
 	if(!check_rights(R_DEBUG|R_FUN))	return
@@ -542,7 +542,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 /client/proc/cmd_admin_gib(mob/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Gib"
 
 	if(!check_rights(R_ADMIN|R_FUN))	return
@@ -562,7 +562,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	M.gib()
 
 /client/proc/cmd_admin_crush(mob/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Crush"
 
 	if(!check_rights(R_ADMIN|R_FUN))	return
@@ -616,7 +616,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return
 
 /client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Check Contents"
 
 	var/list/L = M.get_contents()
@@ -656,7 +656,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 */
 
 /client/proc/toggle_view_range()
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Change View Range"
 	set desc = "switches between 1x and custom views"
 
@@ -690,7 +690,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return FALSE
 
 /client/proc/cmd_admin_attack_log(mob/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Attack Log"
 
 	usr << text("<span class = 'red'><b>Attack Log for []</b></span>", mob)

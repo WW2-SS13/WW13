@@ -404,7 +404,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/announce()
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Announce"
 	set desc="Announce your desires to the world"
 	if(!check_rights(0))	return

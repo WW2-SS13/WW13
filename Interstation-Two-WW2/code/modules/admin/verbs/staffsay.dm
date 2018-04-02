@@ -1,6 +1,6 @@
 // chat for all staff - Kachnov
 /client/proc/cmd_staff_say(msg as text)
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Asay"
 	set hidden = TRUE
 	if (!check_rights(R_MENTOR|R_MOD))
@@ -19,7 +19,7 @@
 
 /*
 /client/proc/cmd_admin_say(msg as text)
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Asay" //Gave this shit a shorter name so you only have to time out "asay" rather than "admin say" to use it --NeoFite
 	set hidden = TRUE
 	if(!check_rights(R_MOD))	return // this was R_ADMIN, but mods and devs should have ASAY too - Kachnov
@@ -35,7 +35,7 @@
 				C << "<span class='admin_channel'>" + create_text_tag("admin", "ADMIN:", C) + " <span class='name'>[key_name(usr, TRUE)]</span>([admin_jump_link(mob, src)]): <span class='message'>[msg]</span></span>"
 
 /client/proc/cmd_mod_say(msg as text)
-	set category = "Special Verbs"
+	set category = "Special"
 	set name = "Msay"
 	set hidden = TRUE
 

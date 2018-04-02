@@ -1,5 +1,5 @@
 /client/proc/change_time_of_day()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Change Time of Day"
 	if (!time_of_day_process || !time_of_day_process.fires_at_gamestates.Find(ticker.current_state))
 		src << "<span class = 'warning'>You can't change the time of day right now.</span>"

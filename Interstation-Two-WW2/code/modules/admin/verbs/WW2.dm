@@ -1,5 +1,5 @@
 /client/proc/send_german_train()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Send train (German)"
 
 	if (!train_process || !train_process.fires_at_gamestates.Find(ticker.current_state))
@@ -29,7 +29,7 @@
 	message_admins("[key_name(src)] tried to send the german train [direction].")
 
 /client/proc/toggle_playing()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Toggle Playing"
 
 	ticker.players_can_join = !ticker.players_can_join
@@ -37,7 +37,7 @@
 	message_admins("[key_name(src)] changed the playing setting.")
 
 /client/proc/allow_join_geforce()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Toggle joining (German)"
 
 	ticker.can_latejoin_geforce = !ticker.can_latejoin_geforce
@@ -45,7 +45,7 @@
 	message_admins("[key_name(src)] changed the geforce latejoin setting.")
 
 /client/proc/allow_join_ruforce()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Toggle joining (Russian)"
 
 	ticker.can_latejoin_ruforce = !ticker.can_latejoin_ruforce
@@ -53,7 +53,7 @@
 	message_admins("[key_name(src)] changed the ruforce latejoin setting.")
 
 /client/proc/allow_rjoin_geforce()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Toggle reinforcements (German)"
 
 	if (reinforcements_master)
@@ -64,7 +64,7 @@
 		src << "<span class = danger>WARNING: No reinforcements master found.</span>"
 
 /client/proc/allow_rjoin_ruforce()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Toggle reinforcements (Russian)"
 
 	if (reinforcements_master)
@@ -76,7 +76,7 @@
 
 
 /client/proc/force_reinforcements_geforce()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Quickspawn reinforcements (German)"
 
 	var/list/l = reinforcements_master.reinforcement_pool[GERMAN]
@@ -95,7 +95,7 @@
 	reinforcements_master.lock_check()
 
 /client/proc/force_reinforcements_ruforce()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Quickspawn reinforcements (Russian)"
 
 	var/list/l = reinforcements_master.reinforcement_pool[SOVIET]
@@ -115,7 +115,7 @@
 
 // debugging
 /client/proc/reset_roundstart_autobalance()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Reset Roundstart Autobalance"
 
 	if(!check_rights(R_HOST))
@@ -128,7 +128,7 @@
 	message_admins("[key_name(src)] reset the roundstart autobalance for [_clients] players.")
 
 /client/proc/end_all_grace_periods()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "End All Grace Periods"
 	var/conf = input(src, "Are you sure you want to end all grace periods?") in list("Yes", "No")
 	if (conf == "Yes")
@@ -137,7 +137,7 @@
 		log_admin("[key_name(src)] ended all grace periods.")
 
 /client/proc/reset_all_grace_periods()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Reset All Grace Periods"
 	var/conf = input(src, "Are you sure you want to reset all grace periods?") in list("Yes", "No")
 	if (conf == "Yes")
@@ -146,7 +146,7 @@
 		log_admin("[key_name(src)] reset all grace periods.")
 
 /client/proc/show_battle_report()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Show Battle Report"
 
 	if (!battlereport || !battlereport.fires_at_gamestates.Find(ticker.current_state))
@@ -161,7 +161,7 @@
 		show_global_battle_report(src)
 
 /client/proc/see_battle_report()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "See Battle Report"
 	if (!battlereport || !battlereport.fires_at_gamestates.Find(ticker.current_state))
 		src << "<span class = 'warning'>You can't see the battle report right now.</span>"
@@ -227,7 +227,7 @@
 		shower << msg4
 /*
 /client/proc/generate_hit_table()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Hit tables"
 	set background = TRUE
 
@@ -358,7 +358,7 @@
 				T.update_starlight()*/
 
 /client/proc/message_russians()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Message Russians"
 
 	var/msg = input(usr, "Send what?", "Message Russians") as text
@@ -384,7 +384,7 @@
 		message_admins("[key_name(src)] sent '[msg]' to the Russian team. (IC = [ick_ock ? "yes" : "no"])")
 
 /client/proc/message_germans()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Message Germans"
 
 	var/msg = input(usr, "Send what?", "Message Germans") as text
@@ -411,7 +411,7 @@
 		message_admins("[key_name(src)] sent '[msg]' to the German team. (IC = [ick_ock ? "yes" : "no"])")
 
 /client/proc/message_SS()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Message the SS"
 
 	var/msg = input(usr, "Send what?", "Message the SS") as text
@@ -439,7 +439,7 @@
 
 
 /client/proc/message_paratroopers()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Messages Paratroopers"
 
 	var/msg = input(usr, "Send what?", "Message Paratroopers") as text
@@ -465,7 +465,7 @@
 		message_admins("[key_name(src)] sent '[msg]' to the paratroopers")
 
 /client/proc/message_civilians()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Message Civilians"
 
 	var/msg = input(usr, "Send what? Note that this messages Partisans too!", "Message Civilians") as text
@@ -491,7 +491,7 @@
 		message_admins("[key_name(src)] sent '[msg]' to all Civilians")
 
 /client/proc/message_partisans()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Message Partisans"
 
 	var/msg = input(usr, "Send what?", "Message Partisans") as text
@@ -520,7 +520,7 @@ var/german_civilian_mode = FALSE
 var/soviet_civilian_mode = FALSE
 
 /client/proc/toggle_german_civilian_mode()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Toggle German Civilian Mode"
 	german_civilian_mode = !german_civilian_mode
 	var/M = "[key_name(src)] [german_civilian_mode ? "enabled" : "disabled"] German Civilian Mode - Civilians will [german_civilian_mode ? "now" : "no longer"] count towards the amount of Germans."
@@ -528,7 +528,7 @@ var/soviet_civilian_mode = FALSE
 	log_admin(M)
 
 /client/proc/toggle_soviet_civilian_mode()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Toggle Soviet Civilian Mode"
 	soviet_civilian_mode = !soviet_civilian_mode
 	var/M = "[key_name(src)] [soviet_civilian_mode ? "enabled" : "disabled"] Soviet Civilian Mode - Civilians will [soviet_civilian_mode ? "now" : "no longer"] count towards the amount of Soviets."
@@ -544,7 +544,7 @@ var/soviets_toggled = TRUE
 
 /client/proc/toggle_factions()
 	set name = "Toggle Factions"
-	set category = "WW2 (Admin)"
+	set category = "Special"
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
@@ -603,7 +603,7 @@ var/paratroopers_forceEnabled = FALSE
 
 /client/proc/forcibly_enable_faction()
 	set name = "Forcibly Enable Faction"
-	set category = "WW2 (Admin)"
+	set category = "Special"
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
@@ -654,7 +654,7 @@ var/paratroopers_forceEnabled = FALSE
 		message_admins("[key_name(src)] changed the Paratrooper subfaction 'forceEnabled' setting to [paratroopers_forceEnabled].")
 
 /client/proc/toggle_respawn_delays()
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	set name = "Toggle Respawn Delays"
 	config.no_respawn_delays = !config.no_respawn_delays
 	var/M = "[key_name(src)] [config.no_respawn_delays ? "disabled" : "enabled"] respawn delays."
@@ -664,7 +664,7 @@ var/paratroopers_forceEnabled = FALSE
 
 /client/proc/open_armory_doors()
 	set name = "Open Armory Doors"
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	var/side = input("Which side?") in list("Soviet", "German", "Cancel")
 	if (side == "Soviet")
 		for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
@@ -681,7 +681,7 @@ var/paratroopers_forceEnabled = FALSE
 
 /client/proc/close_armory_doors()
 	set name = "Close Armory Doors"
-	set category = "WW2 (Admin)"
+	set category = "Special"
 	var/side = input("Which side?") in list("Soviet", "German", "Cancel")
 	if (side == "Soviet")
 		for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
