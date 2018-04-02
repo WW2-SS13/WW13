@@ -2,7 +2,7 @@
 /client/proc/forceClose_game_schedule()
 
 	set name = "forceClose World"
-	set category = "Server"
+	set category = "Server (Admin)"
 
 	if (!check_rights(R_HOST))
 		return
@@ -28,7 +28,7 @@
 /client/proc/forceOpen_game_schedule()
 
 	set name = "forceOpen World"
-	set category = "Server"
+	set category = "Server (Admin)"
 
 	if (!check_rights(R_HOST))
 		return
@@ -55,7 +55,7 @@
 /client/proc/eject_unwhitelisted()
 
 	set name = "Eject Unwhitelisted Players"
-	set category = "Server"
+	set category = "Server (Admin)"
 
 	if (!check_rights(R_ADMIN))
 		return

@@ -263,7 +263,7 @@ Ccomp's first proc.
 
 
 /client/proc/toggle_antagHUD_use()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set name = "Toggle antagHUD usage"
 	set desc = "Toggles antagHUD usage for observers"
 
@@ -297,7 +297,7 @@ Ccomp's first proc.
 
 
 /client/proc/toggle_antagHUD_restrictions()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set name = "Toggle antagHUD Restrictions"
 	set desc = "Restricts players that have used antagHUD from being able to join this round."
 	if(!holder)
@@ -734,7 +734,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /client/proc/toggle_random_events()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set name = "Toggle random events on/off"
 
 	set desc = "Toggles random events such as meteors, black holes, blob (but not space dust) on/off"

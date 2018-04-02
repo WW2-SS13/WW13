@@ -700,7 +700,7 @@ var/list/admin_verbs_host = list(
 
 /client/proc/toggle_log_hrefs()
 	set name = "Toggle href logging"
-	set category = "Server"
+	set category = "Server (Admin)"
 	if(!holder)	return
 	if(config)
 		if(config.log_hrefs)

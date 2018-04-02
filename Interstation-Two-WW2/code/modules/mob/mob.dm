@@ -678,13 +678,13 @@
 				stat("Altitude:", paratrooper_plane_master.altitude)
 
 			// give the client some information about how the server is running
-			stat("Time Dilation:", time_track ? "[ceil(time_track.dilation)]%" : "???")
 			if (ping_track && client)
 				var/our_ping = ceil(client.last_ping)
 				var/avg_ping = ceil(ping_track.avg)
 				if (clients.len == 1)
 					avg_ping = our_ping
 				stat("Ping (Average):", "[our_ping] ms ([avg_ping] ms)")
+			stat("Time Dilation:", time_track ? "[ceil(time_track.dilation)]%" : "???")
 
 		if(client.holder)
 			if(statpanel("Server"))

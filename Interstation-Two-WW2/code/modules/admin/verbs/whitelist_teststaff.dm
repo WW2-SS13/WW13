@@ -2,7 +2,7 @@
 
 /client/proc/add_to_teststaff_whitelist()
 	set name = "Add To Teststaff Whitelist"
-	set category = "Server"
+	set category = "Server (Admin)"
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
@@ -29,7 +29,7 @@
 
 /client/proc/remove_from_teststaff_whitelist()
 	set name = "Remove From Teststaff Whitelist"
-	set category = "Server"
+	set category = "Server (Admin)"
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
@@ -57,7 +57,7 @@
 
 /client/proc/view_teststaff_whitelist()
 	set name = "See Teststaff Whitelist"
-	set category = "Server"
+	set category = "Server (Admin)"
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"

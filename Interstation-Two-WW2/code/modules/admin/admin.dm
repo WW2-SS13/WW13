@@ -388,7 +388,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/restart()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set name = "Restart"
 	set desc="Restarts the world"
 	if (!usr.client.holder)
@@ -419,7 +419,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/toggleooc()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Globally Toggles OOC"
 	set name="Toggle OOC"
 
@@ -435,7 +435,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/togglelooc()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Globally Toggles LOOC"
 	set name="Toggle LOOC"
 
@@ -452,7 +452,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/toggledsay()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Globally Toggles DSAY"
 	set name="Toggle DSAY"
 
@@ -469,7 +469,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/toggleoocdead()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Toggle Dead OOC."
 	set name="Toggle Dead OOC"
 
@@ -483,7 +483,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/toggletraitorscaling()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Toggle traitor scaling"
 	set name="Toggle Traitor Scaling"
 	config.traitor_scaling = !config.traitor_scaling
@@ -492,7 +492,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/startnow()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
 	if(!ticker)
@@ -509,7 +509,7 @@ proc/admin_notice(var/message, var/rights)
 		return FALSE
 
 /datum/admins/proc/toggleenter()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="People can't enter"
 	set name="Toggle Entering"
 	config.enter_allowed = !(config.enter_allowed)
@@ -523,7 +523,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/toggleAI()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="People can't be AI"
 	set name="Toggle AI"
 	config.allow_ai = !( config.allow_ai )
@@ -536,7 +536,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/toggleaban()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Respawn basically"
 	set name="Toggle Respawn"
 	config.abandon_allowed = !(config.abandon_allowed)
@@ -550,7 +550,7 @@ proc/admin_notice(var/message, var/rights)
 
 /*
 /datum/admins/proc/toggle_aliens()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Toggle alien mobs"
 	set name="Toggle Aliens"
 	config.aliens_allowed = !config.aliens_allowed
@@ -559,7 +559,7 @@ proc/admin_notice(var/message, var/rights)
 
 */
 /datum/admins/proc/delay()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Delay the game start/end"
 	set name="Delay"
 
@@ -578,7 +578,7 @@ proc/admin_notice(var/message, var/rights)
 		log_admin("[key_name(usr)] removed the delay.")
 
 /datum/admins/proc/adjump()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
 	config.allow_admin_jump = !(config.allow_admin_jump)
@@ -586,7 +586,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/adspawn()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
 	config.allow_admin_spawning = !(config.allow_admin_spawning)
@@ -594,7 +594,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/adrev()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Toggle admin revives"
 	set name="Toggle Revive"
 	config.allow_admin_rev = !(config.allow_admin_rev)
@@ -602,7 +602,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/immreboot()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
 	if(!usr.client.holder)	return
@@ -824,7 +824,7 @@ proc/admin_notice(var/message, var/rights)
 
 */
 /datum/admins/proc/toggleguests()
-	set category = "Server"
+	set category = "Server (Admin)"
 	set desc="Guests can't enter"
 	set name="Toggle guests"
 	config.guests_allowed = !(config.guests_allowed)
