@@ -237,7 +237,6 @@
 	else if (elapsedTime > hang_warning_time)
 		setStatus(PROCESS_STATUS_MAYBE_HUNG)
 
-
 /datum/controller/process/proc/getElapsedTime()
 	return TimeOfGame - run_start
 
@@ -311,10 +310,13 @@
 /datum/controller/process/proc/copyStateFrom(var/datum/controller/process/target)
 
 /datum/controller/process/proc/onKill()
+	return
 
 /datum/controller/process/proc/onStart()
+	return
 
 /datum/controller/process/proc/onFinish()
+	return
 
 /datum/controller/process/proc/disable()
 	disabled = TRUE
@@ -324,6 +326,7 @@
 
 /datum/controller/process/proc/getAverageRunTime()
 	return main.averageRunTime(src)
+
 /datum/controller/process/proc/getLastRunTime()
 	return main.getProcessLastRunTime(src)
 
