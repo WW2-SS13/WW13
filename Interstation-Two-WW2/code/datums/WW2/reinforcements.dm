@@ -300,7 +300,7 @@ var/datum/reinforcements/reinforcements_master
 
 	if (is_ready())
 		if (has_occupied_base(GERMAN))
-			l += "The German base is currently occupied;reinforcements cannot be deployed."
+			l += "The German base is currently occupied;Reinforcements cannot be deployed."
 		else
 			l += "GERMAN REINFORCEMENTS:"
 			l += "Deployed: [reinforcements_granted[GERMAN]]/[max_german_reinforcements]"
@@ -308,7 +308,7 @@ var/datum/reinforcements/reinforcements_master
 			l += "Locked: [locked[GERMAN] ? "Yes" : "No"]"
 
 		if (has_occupied_base(SOVIET))
-			l += "The Soviet base is currently occupied;reinforcements cannot be deployed."
+			l += "The Soviet base is currently occupied;Reinforcements cannot be deployed."
 		else
 			l += "SOVIET REINFORCEMENTS:"
 			l += "Deployed: [reinforcements_granted[SOVIET]]/[max_soviet_reinforcements]"

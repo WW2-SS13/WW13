@@ -131,7 +131,7 @@
 			else if (findtext(v, ";"))
 				var/split = splittext(v, ";")
 				if (split[2])
-					stat("[split[1]]; ", split[2])
+					stat("[split[1]];", split[2])
 				else
 					stat(split[1])
 			else

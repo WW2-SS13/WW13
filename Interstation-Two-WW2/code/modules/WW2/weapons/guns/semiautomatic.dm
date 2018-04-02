@@ -59,7 +59,7 @@
 	. = ..()
 	if (!.)
 		return .
-	if (!do_after(user, rand(9,12), get_turf(user)))
+	if (!do_after(user, rand(4,5), get_turf(user)))
 		return FALSE
 	return TRUE
 
