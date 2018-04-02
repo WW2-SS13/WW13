@@ -688,7 +688,7 @@
 				stat("******* Developer Stuff *******")
 				stat("")
 				stat("CPU:","[world.cpu]%")
-				stat("Tick Usage:","[world.tick_usage]%")
+				stat("Tick Usage:","[ceil(world.tick_usage)]%")
 				if (client.holder.rights & R_MOD)
 					stat("Location:", "([x], [y], [z]) - [loc ? loc : "nullspace"]")
 				stat("Object Count:","[world.contents.len] Datums")
