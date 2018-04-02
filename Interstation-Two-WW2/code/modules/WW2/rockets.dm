@@ -4,7 +4,7 @@
 	item_state = "panzerfaust"
 	recoil = TRUE
 
-// panzerfaust takes 1.5 seconds to fire now
+// panzerfaust takes 1.2 seconds to fire now
 /obj/item/weapon/gun/launcher/rocket/panzerfaust/special_check(var/mob/user)
 	. = ..()
 	if (!.)
