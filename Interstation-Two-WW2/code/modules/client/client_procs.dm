@@ -442,11 +442,4 @@
 
 /client/Stat()
 	..()
-	if (list("Status", "Character").Find(statpanel))
-		switch (statpanel)
-			if ("Status")
-				sleep(10)
-			if ("Character")
-				sleep(20)
-	else
-		sleep(30)
+	sleep(10)
