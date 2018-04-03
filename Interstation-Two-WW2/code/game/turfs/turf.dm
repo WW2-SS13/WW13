@@ -123,6 +123,7 @@ var/list/interior_areas = list(/area/prishtina/houses,
 /turf/proc/is_intact()
 	return FALSE
 
+/mob/var/next_push = -1
 /turf/attack_hand(mob/user)
 	if(!(user.canmove) || user.restrained() || !(user.pulling))
 		return FALSE
@@ -130,14 +131,16 @@ var/list/interior_areas = list(/area/prishtina/houses,
 		return FALSE
 	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1)
 		return FALSE
-	if(ismob(user.pulling))
-		var/mob/M = user.pulling
-		var/atom/movable/t = M.pulling
-		M.stop_pulling()
-		step(user.pulling, get_dir(user.pulling.loc, src))
-		M.start_pulling(t)
-	else
-		step(user.pulling, get_dir(user.pulling.loc, src))
+	if (world.time >= user.next_push)
+		if(ismob(user.pulling))
+			var/mob/M = user.pulling
+			var/atom/movable/t = M.pulling
+			M.stop_pulling()
+			step(user.pulling, get_dir(user.pulling.loc, src))
+			M.start_pulling(t)
+		else
+			step(user.pulling, get_dir(user.pulling.loc, src))
+		user.next_push = world.time + 25
 	return TRUE
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)

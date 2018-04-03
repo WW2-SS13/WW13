@@ -344,7 +344,7 @@
 	item.loc = loc
 
 	//actually throw it!
-	if (item)
+	if (item && do_after(src, abs_dist(src, target), get_turf(src)))
 		visible_message("<span class = 'red'>[src] has thrown [item].</span>")
 
 		if(!lastarea)

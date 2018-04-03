@@ -574,7 +574,7 @@ var/list/admin_verbs_host = list(
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
-	if (!loc)
+	if (!mob || !mob.loc)
 		src << "<span class = 'warning'>You can't drop a bomb here.</span>"
 		return
 
