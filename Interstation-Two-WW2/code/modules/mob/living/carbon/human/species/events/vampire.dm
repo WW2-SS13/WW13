@@ -118,4 +118,7 @@
 /mob/living/carbon/human/vampire/Stat()
 	. = ..()
 	if (.)
+		stat("")
+		stat(stat_header("Vampire"))
+		stat("")
 		stat("Blood:", "[round(blood*100)]%")
