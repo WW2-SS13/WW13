@@ -341,18 +341,18 @@
 
 	playsound(src, 'sound/effects/throw.ogg', 50, TRUE)
 
-	var/throwtime_divider = 5
+	var/throwtime_divider = 4
 	if (isitem(item))
 		var/obj/item/I = item
 		switch (I.w_class)
 			if (3)
-				throwtime_divider = 4
-			if (4)
 				throwtime_divider = 3
-			if (5)
+			if (4)
 				throwtime_divider = 2
+			if (5)
+				throwtime_divider = 1
 	else if (ismob(item))
-		throwtime_divider = 2
+		throwtime_divider = 1
 
 	//actually throw it!
 	if (item && do_after(src, max(1, round(abs_dist(src, target)/throwtime_divider)), get_turf(src)))
