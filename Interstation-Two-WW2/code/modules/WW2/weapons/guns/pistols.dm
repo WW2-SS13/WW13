@@ -1,48 +1,49 @@
 /obj/item/weapon/gun/projectile/pistol
 	// less accurate than rifles against still targets, but better against moving targets
+	// less accurate than semiautos but with the same ratios
 	accuracy_list = list(
 
 		// small body parts: head, hand, feet
 		"small" = list(
-			SHORT_RANGE_STILL = 80,
-			SHORT_RANGE_MOVING = 53,
+			SHORT_RANGE_STILL = 60,
+			SHORT_RANGE_MOVING = 40,
 
-			MEDIUM_RANGE_STILL = 70,
-			MEDIUM_RANGE_MOVING = 46,
+			MEDIUM_RANGE_STILL = 53,
+			MEDIUM_RANGE_MOVING = 35,
 
-			LONG_RANGE_STILL = 60,
-			LONG_RANGE_MOVING = 40,
+			LONG_RANGE_STILL = 45,
+			LONG_RANGE_MOVING = 30,
 
-			VERY_LONG_RANGE_STILL = 50,
-			VERY_LONG_RANGE_MOVING = 33),
+			VERY_LONG_RANGE_STILL = 38,
+			VERY_LONG_RANGE_MOVING = 25),
 
 		// medium body parts: limbs
 		"medium" = list(
-			SHORT_RANGE_STILL = 85,
-			SHORT_RANGE_MOVING = 56,
+			SHORT_RANGE_STILL = 64,
+			SHORT_RANGE_MOVING = 42,
 
-			MEDIUM_RANGE_STILL = 75,
-			MEDIUM_RANGE_MOVING = 50,
+			MEDIUM_RANGE_STILL = 56,
+			MEDIUM_RANGE_MOVING = 38,
 
-			LONG_RANGE_STILL = 65,
-			LONG_RANGE_MOVING = 43,
+			LONG_RANGE_STILL = 49,
+			LONG_RANGE_MOVING = 32,
 
-			VERY_LONG_RANGE_STILL = 55,
-			VERY_LONG_RANGE_MOVING = 36),
+			VERY_LONG_RANGE_STILL = 41,
+			VERY_LONG_RANGE_MOVING = 27),
 
 		// large body parts: chest, groin
 		"large" = list(
-			SHORT_RANGE_STILL = 90,
-			SHORT_RANGE_MOVING = 59,
+			SHORT_RANGE_STILL = 68,
+			SHORT_RANGE_MOVING = 44,
 
-			MEDIUM_RANGE_STILL = 80,
-			MEDIUM_RANGE_MOVING = 53,
+			MEDIUM_RANGE_STILL = 60,
+			MEDIUM_RANGE_MOVING = 40,
 
-			LONG_RANGE_STILL = 70,
-			LONG_RANGE_MOVING = 46,
+			LONG_RANGE_STILL = 53,
+			LONG_RANGE_MOVING = 35,
 
-			VERY_LONG_RANGE_STILL = 60,
-			VERY_LONG_RANGE_MOVING = 40),
+			VERY_LONG_RANGE_STILL = 45,
+			VERY_LONG_RANGE_MOVING = 30),
 	)
 
 	accuracy_increase_mod = 1.50
