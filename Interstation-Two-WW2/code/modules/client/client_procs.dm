@@ -445,7 +445,7 @@
 	..()
 	if (list("Status", "Character").Find(statpanel))
 		switch (statpanel)
-			if ("Status", "Processes")
+			if ("Status")
 				sleep(10)
 			if ("Character")
 				sleep(20)
