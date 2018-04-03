@@ -528,6 +528,7 @@
 		//We are now going to move
 		moving = TRUE
 
+		if (mob.lastdir && mob.lastdir != direct)
 			sleep(run_delay_maximum * 1.5)
 
 		//Something with grabbing things
