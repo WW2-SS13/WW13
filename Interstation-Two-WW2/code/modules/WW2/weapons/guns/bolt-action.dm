@@ -27,6 +27,7 @@
 	accuracy_decrease_mod = 6.00
 	KD_chance = KD_CHANCE_HIGH
 	stat = "rifle"
+	move_delay = 2
 
 	// 5x as accurate as MGs for now
 	accuracy_list = list(
@@ -179,6 +180,7 @@
 	fire_sound = 'sound/weapons/mosin_shot.ogg'
 	caliber = "a762x54"
 	weight = 4.0
+	effectiveness_mod = 0.97
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
 /obj/item/weapon/gun/projectile/boltaction/mosin/update_icon(var/add_scope = FALSE)
@@ -211,6 +213,7 @@
 	ammo_type = /obj/item/ammo_casing/a792x57
 	magazine_type = /obj/item/ammo_magazine/kar98k
 	bolt_safety = TRUE
+	effectiveness_mod = 1.03
 
 /obj/item/weapon/gun/projectile/boltaction/kar98k/New()
 	..()

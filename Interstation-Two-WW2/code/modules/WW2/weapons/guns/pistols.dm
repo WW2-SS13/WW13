@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/pistol
 	// less accurate than rifles against still targets, but better against moving targets
 	// less accurate than semiautos but with the same ratios
+	move_delay = 1
 	accuracy_list = list(
 
 		// small body parts: head, hand, feet

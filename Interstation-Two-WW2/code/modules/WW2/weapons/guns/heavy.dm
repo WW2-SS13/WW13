@@ -66,6 +66,11 @@
 	KD_chance = KD_CHANCE_HIGH
 	stat = "heavy"
 
+	firemodes = list(
+		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, dispersion = list(0))
+		)
+
+
 /obj/item/weapon/gun/projectile/heavy/ptrd/german
 	name = "14.5mm PaB 783"
 
