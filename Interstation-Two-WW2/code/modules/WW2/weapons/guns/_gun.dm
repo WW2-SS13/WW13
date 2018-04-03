@@ -14,6 +14,13 @@
 #define KD_CHANCE_MEDIUM 60
 #define KD_CHANCE_HIGH 90
 
+/obj/item/weapon/gun/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/attachment))
+		var/obj/item/weapon/attachment/A = I
+		if(A.attachable)
+			try_attach(A, user)
+	..()
+
 /obj/item/weapon/gun/projectile
 	var/accuracy_list = list(
 
