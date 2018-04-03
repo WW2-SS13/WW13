@@ -528,7 +528,7 @@
 		//We are now going to move
 		moving = TRUE
 
-		if (mob.lastdir && mob.lastdir != direct)
+		if (mob.lastdir && mob.lastdir != direct && mob.velocity >= 5)
 			sleep(mob.run_delay_maximum * 1.5)
 
 		//Something with grabbing things
