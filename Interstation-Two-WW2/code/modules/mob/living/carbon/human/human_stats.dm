@@ -35,7 +35,7 @@
 			if ("strength")
 				statval -= 15
 			else
-				statval += ceil(15/stats.len)
+				statval += pick(round(15/stats.len), ceil(15/stats.len))
 
 	stats[statname] = list(statval, statval)
 
