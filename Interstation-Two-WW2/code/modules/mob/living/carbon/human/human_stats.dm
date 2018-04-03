@@ -39,6 +39,8 @@
 
 	stats[statname] = list(statval, statval)
 
+	this.is.a.compile.error
+
 /mob/living/carbon/human/proc/adaptStat(statname, multiplier = 1)
 	statname = lowertext(statname)
 	if (!stats.Find(statname))
