@@ -59,7 +59,7 @@
 	var/jamcheck = 0
 	var/last_fire = -1
 
-// rifles take 1.6 - 1.9 seconds to fire now, meaning they're weaker than SMGs at close range
+// rifles take 0.3 seconds to fire now, meaning they're weaker than SMGs at close range
 /obj/item/weapon/gun/projectile/boltaction/special_check(var/mob/user)
 	. = ..()
 	if (!.)
