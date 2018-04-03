@@ -586,20 +586,19 @@
 				if(l_hand) unEquip(l_hand)
 				if(r_hand) unEquip(r_hand)
 			if ("dab")
-				if (config.allow_dabbing)
+				if (config.allow_dabbing && !restrained())
 					m_type = 1
-					if (!restrained())
-						message = "dabs."
-						for (var/atom/movable/AM in get_step(src, dir))
-							if (isobj(AM))
-								if (!AM.density)
-									if (!istype(AM, /atom/movable/lighting_overlay) && !isitem(AM) && !istype(AM, /obj/effect))
-										if (AM.name)
-											message = "dabs on \the [AM]."
-											break
-							else if (istype(AM, /mob/living))
-								message = "dabs on \the [AM]."
-								break
+					message = "dabs."
+					for (var/atom/movable/AM in get_step(src, dir))
+						if (isobj(AM))
+							if (!AM.density)
+								if (!istype(AM, /atom/movable/lighting_overlay) && !isitem(AM) && !istype(AM, /obj/effect))
+									if (AM.name)
+										message = "dabs on \the [AM]."
+										break
+						else if (istype(AM, /mob/living))
+							message = "dabs on [AM]."
+							break
 
 			if ("pose")
 				if (istype(src, /mob/living/carbon/human/pillarman))

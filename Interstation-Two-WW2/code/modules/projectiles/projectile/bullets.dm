@@ -53,7 +53,10 @@
 		chance = round(damage/(W.material ? W.material.integrity : 175)*100) + 7
 		// hacky but prevents stationary guns obliterating people behind walls - Kachnov
 		if (istype(firedfrom, /obj/item/weapon/gun/projectile/minigun))
-			chance = 2
+			if (W.material.integrity >= 500)
+				chance = 1
+			else
+				chance = 2
 
 	else if(istype(A, /obj/structure/girder))
 		chance = 66
