@@ -83,3 +83,8 @@ var/global/movement_disabled_exception //This is the client that calls the proc,
 	set category = "Debug"
 	set name = "See World Realtime"
 	usr << num2text(world.realtime, 20)
+
+/client/proc/see_processes()
+	set category = "Debug"
+	set name = "See Processes"
+	src << browse(processScheduler.htmlProcesses(), "window=processes;size=500x500")

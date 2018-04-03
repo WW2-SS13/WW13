@@ -7,6 +7,7 @@ var/datum/controller/process/mob/mob_process = null
 	name = "mob"
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 16
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	mob_process = src
 
 /datum/controller/process/mob/started()
@@ -67,11 +68,14 @@ var/datum/controller/process/mob/mob_process = null
 					zoom_processing_objects -= M
 			catch(var/exception/e)
 				catchException(e, M)
-			SCHECK
 		else
 			catchBadType(M)
 			mob_list -= M
+		SCHECK
 
 /datum/controller/process/mob/statProcess()
 	..()
 	stat(null, "[mob_list.len] mobs")
+
+/datum/controller/process/mob/htmlProcess()
+	return ..() + "[mob_list.len] mobs"

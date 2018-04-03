@@ -169,7 +169,7 @@
 "dm" = (/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/sign/flag/germany{pixel_y = 30},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
 "dn" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/closet/crate/sandbags,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
 "do" = (/obj/structure/closet/crate/sandbags,/obj/effect/floor_decal/industrial/outline/yellow,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
-"dp" = (/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/wood,/area/prishtina/german/armory)
+"dp" = (/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/brick,/area/prishtina/german/armory)
 "dq" = (/obj/effect/floor_decal/industrial/outline/yellow,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
 "dr" = (/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
 "ds" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/machinery/light/small{dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
@@ -268,12 +268,12 @@
 "fh" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/machinery/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
 "fi" = (/obj/structure/barricade/steel,/turf/floor/wood_broken,/area/prishtina/german/medical/storage)
 "fj" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector2)
-"fk" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/wood,/area/prishtina/german/armory/room1)
+"fk" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/brick,/area/prishtina/german/armory/room1)
 "fl" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
 "fm" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
-"fn" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/wood,/area/prishtina/german/armory/room1)
-"fo" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/armory/room2)
-"fp" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/armory/room2)
+"fn" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/brick,/area/prishtina/german/armory/room1)
+"fo" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/structure/barbwire,/turf/wall/brick,/area/prishtina/german/armory/room2)
+"fp" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/brick,/area/prishtina/german/armory/room2)
 "fq" = (/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area/inside)
 "fr" = (/obj/structure/simple_door/key_door/german/SS{name = "S.S Armory"},/turf/floor/wood,/area/prishtina/german/ss_armory)
 "fs" = (/obj/effect/floor_decal/techfloor/hole/right,/obj/machinery/shower{tag = "icon-shower (EAST)"; icon_state = "shower"; dir = 4; step_x = 0; step_y = 0},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/main_area)
@@ -311,17 +311,17 @@
 "fY" = (/obj/effect/decal/cleanable/dirt,/obj/structure/barricade/steel,/obj/structure/barbwire,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "fZ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "ga" = (/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
-"gb" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/obj/structure/barbwire{tag = "icon-barbwire (WEST)"; icon_state = "barbwire"; dir = 8},/turf/wall/wood,/area/prishtina/german/ss_armory)
-"gc" = (/obj/effect/decal/cleanable/dirt,/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/ss_armory)
+"gb" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/obj/structure/barbwire{tag = "icon-barbwire (WEST)"; icon_state = "barbwire"; dir = 8},/turf/wall/brick,/area/prishtina/german/ss_armory)
+"gc" = (/obj/effect/decal/cleanable/dirt,/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/brick,/area/prishtina/german/ss_armory)
 "gd" = (/obj/item/stack/material/steel{amount = 30},/obj/item/stack/material/steel{amount = 30},/turf/floor/wood,/area/prishtina/houses/sov_thirteen)
-"ge" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/ss_armory)
+"ge" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/brick,/area/prishtina/german/ss_armory)
 "gf" = (/turf/wall/indestructable,/area/prishtina/void)
 "gg" = (/turf/floor/wood,/area/prishtina/german/ss_armory)
 "gh" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/german/ss_armory)
 "gi" = (/obj/effect/landmark{name = "JoinLateSS"},/turf/floor/wood,/area/prishtina/german/ss_armory)
 "gj" = (/obj/effect/landmark{name = "JoinLateSS-Officer"},/turf/floor/wood,/area/prishtina/german/ss_armory)
 "gk" = (/obj/gas_lever,/turf/floor/wood,/area/prishtina/german/ss_armory)
-"gl" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/wood,/area/prishtina/german/armory)
+"gl" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/brick,/area/prishtina/german/armory)
 "gm" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
 "gn" = (/obj/effect/decal/cleanable/dirt,/obj/snow_maker,/turf/floor/plating/road,/area/prishtina/no_mans_land/sector1)
 "go" = (/obj/effect/floor_decal/borderfloor/full,/obj/machinery/light/floor/streetlight,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector1)
@@ -335,7 +335,7 @@
 "gw" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector1)
 "gx" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag,/obj/structure/bed,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "gy" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
-"gz" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/wood,/area/prishtina/german/armory/room2)
+"gz" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/brick,/area/prishtina/german/armory/room2)
 "gA" = (/obj/structure/table/reinforced,/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/item/stack/material/barbwire{amount = 10},/obj/item/stack/material/barbwire{amount = 10},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "gB" = (/obj/structure/table/iron,/obj/item/stack/material/glass{amount = 30},/obj/item/stack/material/glass/reinforced{amount = 10},/obj/item/stack/material/steel{amount = 30},/obj/structure/table/reinforced,/obj/structure/window/sandbag,/obj/item/stack/material/steel{amount = 30},/obj/item/stack/material/wood{amount = 30},/obj/item/stack/material/wood{amount = 30},/obj/item/stack/material/glass{amount = 30},/obj/machinery/light/small,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "gC" = (/obj/structure/window/sandbag,/obj/structure/reagent_dispensers/fueltank,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
@@ -350,14 +350,14 @@
 "gL" = (/obj/structure/window/reinforced{dir = 1},/obj/machinery/light{dir = 1},/obj/structure/vending/SSequipment,/turf/floor/vault,/area/prishtina/admin)
 "gM" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
 "gN" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
-"gO" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/wood,/area/prishtina/german/ss_armory)
+"gO" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/brick,/area/prishtina/german/ss_armory)
 "gP" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/closet/crate/german_smoke_grenade,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory/room2)
 "gQ" = (/obj/effect/floor_decal/borderfloor,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector1)
 "gR" = (/obj/effect/floor_decal/borderfloor,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector1)
 "gS" = (/obj/structure/closet,/obj/item/weapon/storage/backpack/german,/obj/item/weapon/shovel/spade/russia,/obj/item/weapon/storage/belt/utility/full,/obj/item/clothing/glasses/welding,/obj/item/weapon/storage/toolbox/electrical,/obj/item/weapon/storage/toolbox/mechanical,/obj/structure/window/sandbag,/obj/item/clothing/shoes/workboots,/obj/item/clothing/head/collectable/flatcap,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
 "gT" = (/obj/structure/table/wood,/obj/item/weapon/gun/projectile/shotgun/pump/combat/winchester1897,/turf/floor/wood,/area/prishtina/houses/sov_thirteen)
 "gU" = (/obj/structure/closet/toolcloset,/obj/structure/window/sandbag,/obj/machinery/light/small,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
-"gV" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/ss_prison)
+"gV" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/brick,/area/prishtina/german/ss_prison)
 "gW" = (/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
 "gX" = (/obj/effect/floor_decal/borderfloor,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector1)
 "gY" = (/obj/effect/floor_decal/borderfloor,/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector1)
@@ -785,9 +785,9 @@
 "pe" = (/obj/structure/barricade,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector2)
 "pf" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector1)
 "pg" = (/obj/structure/closet/welding,/obj/structure/window/sandbag,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
-"ph" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/wood,/area/prishtina/german/armory)
+"ph" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/brick,/area/prishtina/german/armory)
 "pi" = (/obj/structure/barricade/steel,/obj/effect/decal/cleanable/dirt,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
-"pj" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (WEST)"; icon_state = "barbwire"; dir = 8},/turf/wall/wood,/area/prishtina/german/ss_armory)
+"pj" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (WEST)"; icon_state = "barbwire"; dir = 8},/turf/wall/brick,/area/prishtina/german/ss_armory)
 "pk" = (/obj/structure/bed/chair/wood{dir = 8},/turf/floor/wood,/area/prishtina/german/cafeteria)
 "pl" = (/obj/structure/bed/chair/wood{dir = 4},/turf/floor/wood,/area/prishtina/german/cafeteria)
 "pm" = (/obj/structure/table/wood,/obj/item/weapon/flame/candle,/turf/floor/wood,/area/prishtina/german/cafeteria)
@@ -810,9 +810,9 @@
 "pD" = (/obj/structure/closet/crate,/obj/item/weapon/storage/box/matches,/obj/item/weapon/storage/box/matches,/obj/item/weapon/storage/box/matches,/obj/item/weapon/storage/box/matches,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/turf/floor/wood,/area/prishtina/german/cafeteria)
 "pE" = (/obj/structure/window/sandbag,/turf/floor/wood,/area/prishtina/german/cafeteria)
 "pF" = (/obj/structure/closet/crate/rations/water,/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/wood,/area/prishtina/german/cafeteria)
-"pG" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/wood,/area/prishtina/german/armory/room3)
+"pG" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/brick,/area/prishtina/german/armory/room3)
 "pH" = (/turf/wall/brick,/area/prishtina/german/cafeteria)
-"pI" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/armory/room3)
+"pI" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/brick,/area/prishtina/german/armory/room3)
 "pJ" = (/obj/structure/barricade,/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/houses/nml_twentyone)
 "pK" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector2)
 "pL" = (/obj/effect/decal/cleanable/dirt,/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/engineering)
@@ -875,7 +875,7 @@
 "qQ" = (/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector2)
 "qR" = (/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/small_map/inside/medical)
 "qS" = (/obj/structure/bed/chair/wood,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/small_map/inside/medical)
-"qT" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/armory)
+"qT" = (/obj/effect/floor_decal/borderfloor,/obj/structure/barricade/steel,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/obj/structure/barbwire,/turf/wall/brick,/area/prishtina/german/armory)
 "qU" = (/obj/structure/table/wood,/obj/item/weapon/storage/box/cups,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation)
 "qV" = (/obj/structure/bookcase,/turf/floor/carpet,/area/prishtina/german/ss_armory)
 "qW" = (/turf/wall/wood,/area/prishtina/german/ss_armory)
@@ -904,7 +904,7 @@
 "rt" = (/obj/machinery/light/small,/turf/floor/tiled/white,/area/prishtina/german/ss_armory)
 "ru" = (/turf/wall/brick,/area/prishtina/soviet/small_map/inside/resting_area)
 "rv" = (/obj/machinery/light/small{dir = 4},/turf/floor/carpet,/area/prishtina/german/ss_armory)
-"rw" = (/obj/structure/barricade/steel,/obj/effect/decal/cleanable/dirt,/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/armory)
+"rw" = (/obj/structure/barricade/steel,/obj/effect/decal/cleanable/dirt,/obj/structure/barbwire,/turf/wall/brick,/area/prishtina/german/armory)
 "rx" = (/obj/structure/bed,/obj/item/weapon/bedsheet/medical,/turf/floor/tiled/freezer{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/soviet/small_map/inside/medical)
 "ry" = (/obj/structure/simple_door/key_door/soviet,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/kitchen)
 "rz" = (/obj/effect/landmark{name = "JoinLateRAChef"},/obj/effect/decal/cleanable/dirt,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/relaxation)
@@ -1033,7 +1033,7 @@
 "tS" = (/obj/machinery/light/small,/obj/effect/decal/cleanable/dirt,/obj/structure/closet/crate,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/weapon/flame/lighter,/obj/item/weapon/flame/lighter,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/gearing)
 "tT" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTH)"; icon_state = "spline_fancy"; dir = 1},/obj/structure/closet/cabinet,/obj/machinery/light/small{dir = 1},/turf/floor/carpet,/area/prishtina/german/command/office)
 "tU" = (/obj/structure/table/wood,/turf/floor/carpet,/area/prishtina/german/ss_armory)
-"tV" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/wood,/area/prishtina/german/armory)
+"tV" = (/obj/structure/barricade/steel,/obj/structure/barbwire,/turf/wall/brick,/area/prishtina/german/armory)
 "tW" = (/obj/structure/barricade,/obj/structure/window/classic,/obj/structure/curtain/open/bed,/turf/floor/wood,/area/prishtina/houses/sov_one)
 "tX" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,/turf/floor/wood,/area/prishtina/houses/sov_three)
 "tY" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/beetsoup,/turf/floor/wood,/area/prishtina/houses/sov_three)
@@ -2425,18 +2425,18 @@ OgLPhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzNxOjMFMFMFMFMFMFMFMFNzOlMMMMMMMMMMMMMMMM
 gfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgf
 NwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNw
 aeaeaeaeaeaeaeaeaeaeaedRiKababacacacacacacacacacacacacacacacacacacadafaiaiaiajadheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheheaLbabqbqbqbMbiqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEbNbNbNamamamamamamagagagagagapapapapapapaoaoaoaoaobNbNbNbNbNbNaqaqaqaqaqaqararararasbvbvbvbvbvbv
-aegLhihWmMjkjlkumMkumhdRiKabacddacacacacacacacacacacacacacacacacacadafaiaiaiajadhehjhjhkhlhmhlhkhnhohlhjhlhlhjhjhkhlhmhlhkhnhjhjhkhlhmhlhkhnhohlhjhlhlhlhjhlheaLbabqbqbqbMbiqEElECqEIgIgIgbmbtbtaUaxbjbjTiqEbNbxdudzdAeobsbxamagakaleqanapaCaDataEapcJauavaPaRbxbsaBaBbsbxaVaWaZbbbdaVbpbrbybzasaGaHaIaJaKbv
-aemzmzmzmzmzmzmzmzmzkudRiKabacacabacddacacacacacacacacacacacacacacadafaiaiaiajadhehlhqhlhkhlhkhlhohlhlhlhkhlhlhqhlhkhlhkhlhohlhqhlhkhlhkhlhohlhlhlhkhlhlhlhlheaLdBbqbqdUdVbiqEbDbDbELQIgLRIgIgIgIgIgIgIgIgqEbNbsdubFdAerbseFxjagakaMaNaOapcwlLbGbGbIbcbebcbcaRbsaySHTjazbsaVbUbVbVbWaVckcncncoasaXaXaYaXaXbv
-aemAmBmCmzkukukukumzkudRiKababddacacacacacacacacacacacacacacacacacadafaiaiaiajadhuhlhlhjhlhkhlhjhkhmhkhohkhlhlhlhjhlhkhlhjhkhlhlhjhlhkhlhjhkhmhkhohkhlhlhlhlheaLbabqbqbqdVbiqELNbDqELQLQLQIgIgLScaMyIgIgcOqEbNqcbsxodAyrbsqcamagakaMeqaOapbAcycxaFapbBbcBSbCaRbsaySHSHazbsaVcKcXbVbVaVcYcYcndcasbnaXaXaXbobv
+aegLhihWmMjkjlkumMkumhdRiKabacddacacacacacacacacacacacacacacacacacadafaiaiaiajadhehjhjhkhlhmhlhkhnhohlhjhlhlhjhjhkhlhmhlhkhnhjhjhkhlhmhlhkhnhohlhjhlhlhlhjhlheaLbabqbqbqbMbiqEqEqEElECqEIgbmbtbtaUaxbjbjTiqEbNbxdudzdAeobsbxamagakaleqanapaCaDataEapcJauavaPaRbxbsaBaBbsbxaVaWaZbbbdaVbpbrbybzasaGaHaIaJaKbv
+aemzmzmzmzmzmzmzmzmzkudRiKabacacabacddacacacacacacacacacacacacacacadafaiaiaiajadhehlhqhlhkhlhkhlhohlhlhlhkhlhlhqhlhkhlhkhlhohlhqhlhkhlhkhlhohlhlhlhkhlhlhlhlheaLdBbqbqdUdVbiqEqEqEbDbDbELRIgIgIgIgIgIgIgIgqEbNbsdubFdAerbseFxjagakaMaNaOapcwlLbGbGbIbcbebcbcaRbsaySHTjazbsaVbUbVbVbWaVckcncncoasaXaXaYaXaXbv
+aemAmBmCmzkukukukumzkudRiKababddacacacacacacacacacacacacacacacacacadafaiaiaiajadhuhlhlhjhlhkhlhjhkhmhkhohkhlhlhlhjhlhkhlhjhkhlhlhjhlhkhlhjhkhmhkhohkhlhlhlhlheaLbabqbqbqdVbiqEqEqELNbDqELQIgIgLScaMyIgIgcOqEbNqcbsxodAyrbsqcamagakaMeqaOapbAcycxaFapbBbcBSbCaRbsaySHSHazbsaVcKcXbVbVaVcYcYcndcasbnaXaXaXbobv
 aemDmzmzmzmzmzmzmzmzmEdRiKabacacacacacacacacacacacacacacacacacacacadafaiaiaiajadhuhlhlhlhnhlhlhlhkhnhjhlhkhlhlhlhlhnhlhlhlhkhlhlhlhnhlhlhlhkhnhjhlhkhlhlhlhlheaLbabqbqbqbMbiqEahahahahahIgaAaALScaMyaAaAIgcUbNbNzVamamamzVamamageqaNeqagbJbJbObObJbJbPbPbPbcaRbsayTjSHazbsaVaVbwdjdjaVdkdkczasasdibHdidibvbv
 aemAmAmFmzkumGmHmJmzkudRiKabddacacacacacacacacacacacacacacacacacacadafaiaiaiajadhuhlhkhkhlhlhlhlhlhlhlhohkhlhlhkhkhlhlhlhlhlhlhkhkhlhlhlhlhlhlhlhohkhlhlhlhlhlaLbabqbqbqbMbiqEahLVtTawahIgIgIgLScaMyIgIgIgpZIgbsbsbsbsbsbsbsMibsbsbsbsbubJbQcbcccdbJcfctcfcfcubsaySHSHazbsdHinbLbLbLpWbLpTpTpTpVpTpTpTpTpUEM
 aemzmzmzmzmzmzmzmzmzmzdRiKababacacacacacacacacacacacacacacacacacacadafaiaiaiajadhehlhkhlhlhlhlhohohlhkhkhlhjhlhkhlhlhlhlhohohlhkhlhlhlhlhohohlhkhkhlhjhlhlhlhlaLbabqbqbqdVbiqEahaSaTMaMbIgIgIgLScaMyIgIgIgcUqEbNbNbNbNbNbNbNbNlTbubsbubscCcDaQcDcDcCctcfctcfcubsaySHTjazbsdHbLbLbLbLbLbLpTpTpTpTpTpTpTpTpTEM
-aeesfPfQmMmMmNmOmPmQFcdRiKabacacacacacacacacacacacacacacacacacacacadafaiaiaiajadhehlhohlhlhjhlhlhlhkhlhjhlhlhlhohlhlhjhlhlhlhlhohlhlhjhlhlhlhkhlhjhlhlhkhlhlhlaLbabqbqbqdVbiqEahMcaTMabZIgIgIgLScaMyIgIgIgIgIgqEbiFDGbGkGbGmGXbNbRbubSbucCcDcNcDtMcPcQpkplpmpnbsbsbsbsbscgbvbXbLbYcebLcipYIXpYdxpYdxpYdxpYpY
-dRdRdRdRdRdRdRdRdRdRdRxiiKabacacabacacacacacacacacacacacacacacacacadafaiaiaiajadhehlhkhlhjhlhlhohlhlhjhlhkhohlhkhlhjhlhlhohlhlhkhlhjhlhlhohlhlhjhlhkhohkhlhlhlaLbabqbqbqbMbiqEahbKgKMaahIgIgIgIgIgIgIgLQIgIgIgqEbibabqbqHabMeHbNchbsbsbsbJTmpppqpodypmpsplcQpnbscqbsbucrbsbvclbLbYcebLcmIZJaJaJbJcJdJeJfJfpY
-iKiKiKiKiKiKiKiKiKiKiKiKababacacacacacacacacacacacacacacacacacacacadafaiaiaiajadhuhlhlhlhlhlhlhlhlhlhlhlhjhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhjhlhkhlhlheaLbadUbqbqbMbiqEahMkbhMnahIgIgLQIgIgIgIgIgIgIgIgqEbiHFbqbqfWHKeTcscvbubscAdypoptpqpocPpxpkplpmpnbsbsbfcBbsbsdGbXbLbkcebLcIJgJhJaJaJaJaJaJaJipY
-abababababababababababababacacacacddacacacacacacacacacacacacacacacadafaiaiaiajadhuhlhlhlhlhlhlhlhlhlhlhlhlhohlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhohkhlhlheaLdBbqbqbqdVbiqEahahahahahcHIgcHIgcHIgcHIgcHIgcHqEbibabqbqbqbMeGcEcFbubsbsdypopppppodypypsplpzpncGbscLcRbubsdGbXbLbkblbLcWJgJjJaJaJaJaJaJaJkpY
-acabacacacacabababacacacacacacacacacacacacacacacacacacacacacacacacadafaiaiaiajadhehlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlheaLbabqdUdUbMbiqEqEqEqEqEqEOxrAOxrAOxrAcMrAcMrAcMqEbibafWfWbqbMeTcscScrcrbsdypopApBpCbJpDpEpEpFpnbscTqbbsqcbsbvcZdadadadadbJgJjJlJmJnJoJpJpJqpY
-acacacabddacababacacabacacacddacacacacacacacacacacacacacacacacacacadafaiaiaiajeUhehehehehehuhuhuhehehehuhuhuhehehehehehehehehehehehehuhuhuhehehehehuhuhuheheheaLbabqbqbqbMbiqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEbiHFbqbqbqdVcpbNbNlTlTbNbJbJdQdQbJdypHeSeSpHpHbNbNqdqdbNbNdGcjdidididibvpYpYdxdxpYpYdxdxpYfi
+aeesfPfQmMmMmNmOmPmQFcdRiKabacacacacacacacacacacacacacacacacacacacadafaiaiaiajadhehlhohlhlhjhlhlhlhkhlhjhlhlhlhohlhlhjhlhlhlhlhohlhlhjhlhlhlhkhlhjhlhlhkhlhlhlaLbabqbqbqdVbiqEahMcaTMabZIgIgIgLScaMyIgIgIgIgIgqEqEFDGbGkGbGmGXbNbRbubSbucCcDcNcDtMcPcQpkplpmpnbsbsbsbsbscgbvbXbLbYcebLcipYIXpYdxpYdxpYdxpYpY
+dRdRdRdRdRdRdRdRdRdRdRxiiKabacacabacacacacacacacacacacacacacacacacadafaiaiaiajadhehlhkhlhjhlhlhohlhlhjhlhkhohlhkhlhjhlhlhohlhlhkhlhjhlhlhohlhlhjhlhkhohkhlhlhlaLbabqbqbqbMbiqEahbKgKMaahIgIgIgIgIgIgIgLQIgIgIgqEqEbabqbqHabMeHbNchbsbsbsbJTmpppqpodypmpsplcQpnbscqbsbucrbsbvclbLbYcebLcmIZJaJaJbJcJdJeJfJfpY
+iKiKiKiKiKiKiKiKiKiKiKiKababacacacacacacacacacacacacacacacacacacacadafaiaiaiajadhuhlhlhlhlhlhlhlhlhlhlhlhjhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhjhlhkhlhlheaLbadUbqbqbMbiqEahMkbhMnahcHIgcHIgcHIgcHIgcHIgcHqEqEHFbqbqfWHKeTcscvbubscAdypoptpqpocPpxpkplpmpnbsbsbfcBbsbsdGbXbLbkcebLcIJgJhJaJaJaJaJaJaJipY
+abababababababababababababacacacacddacacacacacacacacacacacacacacacadafaiaiaiajadhuhlhlhlhlhlhlhlhlhlhlhlhlhohlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhohkhlhlheaLdBbqbqbqdVbiqEahahahahahOxrAOxrAOxrAcMrAcMrAcMqEqEbabqbqbqbMeGcEcFbubsbsdypopppppodypypsplpzpncGbscLcRbubsdGbXbLbkblbLcWJgJjJaJaJaJaJaJaJkpY
+acabacacacacabababacacacacacacacacacacacacacacacacacacacacacacacacadafaiaiaiajadhehlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlheaLbabqdUdUbMbiqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEbafWfWbqbMeTcscScrcrbsdypopApBpCbJpDpEpEpFpnbscTqbbsqcbsbvcZdadadadadbJgJjJlJmJnJoJpJpJqpY
+acacacabddacababacacabacacacddacacacacacacacacacacacacacacacacacacadafaiaiaiajeUhehehehehehuhuhuhehehehuhuhuhehehehehehehehehehehehehuhuhuhehehehehuhuhuheheheaLbabqbqbqbMbiqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEHFbqbqbqdVcpbNbNlTlTbNbJbJdQdQbJdypHeSeSpHpHbNbNqdqdbNbNdGcjdidididibvpYpYdxdxpYpYdxdxpYfi
 abacacacacacacacacddacacacacacacacacacacacacacacacacacacacacacacacadafaiaiaiajeVeVeVeVadadadadadadeWadadeXeXeXadadadadadadadadeYadadadadadadadadadadadaLfjaLdededBbqbqbqbMbibibibibibibibibibibibibibibibibibibibibabqbqfWdVaLdfdgdhdhIrdhdhdhdhdhdhdhdhdhdhdhdhdldhdhdmdndhdodpdqdrdsdrdtdrdvdrdwfkdNdOdPen
 acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacadafaiaigngogvgwgwgQgQgQgQgQgQgQgRgQgQgQgQgQgQgQgQgQgQgQgQgQgXgQgQgYgQgQgQgQgQgQgQgQgZhahbgZgZhcdUbqhdhxgZgZgZgZgZgZgZgZgZgZhagZgZhbhbgZgZgZgZgZhxfWbqhdhxhCdCdDdEdCdFdCdCdCdCdCdCdCdCdDdCdCdCdCdIdJdCdKdLdMfldSdTdSeidSekeleiemfkewewewex
 adadadadabadadadadadadadadadadadadadadadadadadadadadadadadadadadadadafaiaihDaihNhShSaiaiaiaiaiaihYiaaiaiaiaiaiaiaiaiaiaiaiaiaiibaiaiaiaiaiaiaiaiaiaiibbqbqbqbqbqbqicididbqbqbqbqbqdUbqbqbqbqiebqbqbqbqbqbqbqbqbqbqbqicididbqhddWeAeAeAeAeAeAeAeAeAeAeAeAefegeheheheheheheheheheueveveveveveveveveveBeNeReNfw

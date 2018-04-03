@@ -185,7 +185,7 @@
 
 /obj/item/weapon/paper_bundle/verb/rename()
 	set name = "Rename bundle"
-	set category = "Object"
+	set category = null
 	set src in usr
 
 	var/n_name = sanitizeSafe(input(usr, "What would you like to label the bundle?", "Bundle Labelling", null)  as text, MAX_NAME_LEN)
@@ -197,7 +197,7 @@
 
 /obj/item/weapon/paper_bundle/verb/remove_all()
 	set name = "Loose bundle"
-	set category = "Object"
+	set category = null
 	set src in usr
 
 	usr << "<span class='notice'>You loosen the bundle.</span>"

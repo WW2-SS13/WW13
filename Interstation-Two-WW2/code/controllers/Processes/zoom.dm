@@ -12,6 +12,7 @@ var/datum/controller/process/zoom/zoom_process = null
 	name = "zoom"
 	schedule_interval = 7 // every 0.7 seconds
 	start_delay = 100
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	zoom_process = src
 
 /datum/controller/process/zoom/started()
@@ -29,19 +30,19 @@ var/datum/controller/process/zoom/zoom_process = null
 		if(isnull(S.gcDestroyed))
 			try
 				if (S.scoped_invisible)
-					S.invisibility = FALSE
+					S.invisibility = 0
 					S.scoped_invisible = FALSE
 				else if (istype(S.loc, /obj/item/weapon/gun))
 					var/obj/item/weapon/gun/G = S.loc
-					G.invisibility = FALSE
+					G.invisibility = 0
 					G.scoped_invisible = FALSE
 				recent_scopes -= S
 			catch(var/exception/e)
 				catchException(e, S)
-			SCHECK
 		else
 			catchBadType(S)
 			recent_scopes -= S
+		SCHECK
 
 	for(last_object in zoom_processing_objects)
 
@@ -75,11 +76,14 @@ var/datum/controller/process/zoom/zoom_process = null
 								O.invisibility = FALSE
 			catch(var/exception/e)
 				catchException(e, H)
-			SCHECK
 		else
 			catchBadType(H)
 			zoom_processing_objects -= H
+		SCHECK
 
 /datum/controller/process/zoom/statProcess()
 	..()
 	stat(null, "[zoom_processing_objects.len] mobs")
+
+/datum/controller/process/zoom/htmlProcess()
+	return ..() + "[zoom_processing_objects.len] mobs"

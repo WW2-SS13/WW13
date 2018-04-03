@@ -25,7 +25,7 @@
 		/obj/structure/closet,
 		/obj/structure/sink,
 		/obj/item/weapon/storage,
-		/obj/machinery/atmospherics/unary/cryo_cell,
+//		/obj/machinery/atmospherics/unary/cryo_cell,
 	//	/obj/machinery/dna_scannernew,
 		/obj/item/weapon/grenade/chem_grenade,
 		/obj/item/weapon/storage/secure/safe,
@@ -34,7 +34,7 @@
 	//	/obj/machinery/disposal,
 		/mob/living/simple_animal/cow,
 	//	/obj/machinery/computer/centrifuge,
-		/obj/machinery/sleeper,
+//		/obj/machinery/sleeper,
 	//	/obj/machinery/smartfridge/,
 	//	/obj/machinery/biogenerator,
 	//	/obj/machinery/constructable_frame

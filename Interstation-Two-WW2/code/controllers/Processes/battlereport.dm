@@ -10,11 +10,15 @@ var/datum/controller/process/battlereport/battlereport
 /datum/controller/process/battlereport/setup()
 	name = "Battle Report"
 	schedule_interval = 10 // every second
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	battlereport = src
 
 /datum/controller/process/battlereport/statProcess()
 	..()
 	stat(null, "Next battle report: [max_BR_ticks - BR_ticks] seconds")
+
+/datum/controller/process/battlereport/htmlProcess()
+	return ..() + "Next battle report: [max_BR_ticks - BR_ticks] seconds"
 
 /datum/controller/process/battlereport/doWork()
 	++BR_ticks

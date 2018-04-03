@@ -45,10 +45,37 @@
 			VERY_LONG_RANGE_MOVING = 40),
 	)
 
-	accuracy_increase_mod = 1.10
-	accuracy_decrease_mod = 1.20
+	accuracy_increase_mod = 2.00
+	accuracy_decrease_mod = 6.00
 	KD_chance = KD_CHANCE_MEDIUM
 	stat = "rifle"
+
+	var/jammed_until = -1
+	var/jamcheck = 0
+	var/last_fire = -1
+
+// rifles take 0.3 seconds to fire now, meaning they're weaker than SMGs at close range
+/obj/item/weapon/gun/projectile/semiautomatic/special_check(var/mob/user)
+	. = ..()
+	if (!.)
+		return .
+	if (!do_after(user, 3, get_turf(user)))
+		return FALSE
+	return TRUE
+
+/obj/item/weapon/gun/projectile/semiautomatic/handle_post_fire()
+	..()
+
+	if (world.time - last_fire > 50)
+		jamcheck = 0
+	else
+		++jamcheck
+
+	if (prob(jamcheck*2))
+		jammed_until = max(world.time + (jamcheck * 5), 50)
+		jamcheck = 0
+
+	last_fire = world.time
 
 /obj/item/weapon/gun/projectile/semiautomatic/svt
 	name = "SVT-40"

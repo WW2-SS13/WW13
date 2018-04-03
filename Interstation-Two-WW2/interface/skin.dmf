@@ -279,7 +279,7 @@ macro "macro"
 		command = "a-intent grab"
 	elem 
 		name = "CTRL+4"
-		command = "a-intent harm"
+		command = "a-intent hurt"
 	elem 
 		name = "CTRL+A+REP"
 		command = ".moveleft"
@@ -440,10 +440,10 @@ macro "hotkeymode"
 		command = "a-intent grab"
 	elem 
 		name = "4"
-		command = "a-intent harm"
+		command = "a-intent hurt"
 	elem 
 		name = "CTRL+4"
-		command = "a-intent harm"
+		command = "a-intent hurt"
 	elem 
 		name = "5"
 		command = ".me"

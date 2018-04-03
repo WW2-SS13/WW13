@@ -332,7 +332,7 @@
 
 	//Heal damage on the individual wounds
 	for(var/datum/wound/W in wounds)
-		if(brute == FALSE && burn == FALSE)
+		if(brute == 0 && burn == 0)
 			break
 
 		// heal brute damage
@@ -637,6 +637,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 //Updates brute_damn and burn_damn from wound damages. Updates BLEEDING status.
 /obj/item/organ/external/proc/update_damages()
+
 	number_wounds = 0
 	brute_dam = 0
 	burn_dam = 0

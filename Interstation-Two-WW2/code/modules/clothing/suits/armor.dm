@@ -1,6 +1,6 @@
 
 /obj/item/clothing/suit/armor
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/device/radio,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
+	allowed = list(/obj/item/weapon/gun/energy,/obj/item/device/radio,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/*/obj/item/weapon/melee/baton,*//obj/item/weapon/handcuffs)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	item_flags = THICKMATERIAL
 
@@ -92,7 +92,7 @@
 	permeability_coefficient = 0.01
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
-	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/*/obj/item/weapon/melee/baton,*//obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
 	slowdown = TRUE
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 100)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
@@ -186,7 +186,7 @@
 
 /obj/item/clothing/suit/armor/tactical/verb/holster()
 	set name = "Holster"
-	set category = "Object"
+	set category = null
 	set src in usr
 	if(!istype(usr, /mob/living)) return
 	if(usr.stat) return
@@ -210,7 +210,7 @@
 	desc = "A synthetic armor vest. This one has added webbing and ballistic plates."
 	icon_state = "webvest"
 	armor = list(melee = 50, bullet = 40, laser = 50, energy = 25, bomb = 30, bio = FALSE, rad = FALSE)
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/device/radio,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
+	allowed = list(/obj/item/weapon/gun/energy,/obj/item/device/radio,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/*/obj/item/weapon/melee/baton,*//obj/item/weapon/handcuffs)
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	item_flags = THICKMATERIAL

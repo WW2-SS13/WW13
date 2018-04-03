@@ -51,7 +51,7 @@ Parts of code courtesy of Super3222
 
 /obj/item/weapon/attachment/scope/adjustable/verb/adjust_scope_verb()
 	set name = "Adjust Zoom"
-	set category = "Weapons"
+	set category = null
 	var/mob/living/carbon/human/user = usr
 	if(istype(src, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = src

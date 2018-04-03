@@ -18,6 +18,7 @@ var/datum/controller/process/weather/weather_process = null
 	start_delay = 20
 	next_can_mod_weather = world.realtime + 100
 	next_can_change_weather = world.realtime + 12000
+	fires_at_gamestates = list(GAME_STATE_PLAYING)
 	weather_process = src
 
 /datum/controller/process/weather/doWork()
@@ -38,4 +39,3 @@ var/datum/controller/process/weather/weather_process = null
 			if (ticker.mode.vars.Find("season"))
 				change_weather_somehow()
 				next_can_change_weather = world.realtime + minimum_change_weather_delay
-	SCHECK

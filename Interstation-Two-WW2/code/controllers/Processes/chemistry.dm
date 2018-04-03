@@ -12,10 +12,14 @@ var/datum/controller/process/chemistry/chemistryProcess
 	active_holders = list()
 	chemical_reactions = chemical_reactions_list
 	chemical_reagents = chemical_reagents_list
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 
 /datum/controller/process/chemistry/statProcess()
 	..()
 	stat(null, "[active_holders.len] reagent holder\s")
+
+/datum/controller/process/chemistry/htmlProcess()
+	return ..() + "[active_holders.len] reagent holders"
 
 /datum/controller/process/chemistry/doWork()
 	for(last_object in active_holders)

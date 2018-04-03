@@ -51,7 +51,8 @@
 
 /client/Stat()
 	. = ..()
-	if(usr && statpanel("Examine"))
+	if(usr && description_holders.len)
+		statpanel("Examine")
 		stat(null,"[description_holders["icon"]]    <font size='5'>[description_holders["name"]]</font>") //The name, written in big letters.
 		stat(null,"[description_holders["desc"]]") //the default examine text.
 		if(description_holders["info"])
@@ -63,9 +64,14 @@
 
 //override examinate verb to update description holders when things are examined
 /mob/examinate(atom/A as mob|obj|turf in view())
+	if (A == src)
+		client.description_holders.Cut()
+		return TRUE
 	if(..())
 		return TRUE
 
 	var/is_antag = ((mind && mind.special_role) || isghost(src)) //ghosts don't have minds
 	if(client)
 		client.update_description_holders(A, is_antag)
+
+	src << "<big><span class = 'info'>Click on yourself to close the Examine tab.</span></big>"

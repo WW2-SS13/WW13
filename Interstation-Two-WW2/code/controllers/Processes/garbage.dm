@@ -33,6 +33,8 @@ var/list/delayed_garbage = list()
 	delayed_garbage.Cut()
 	delayed_garbage = null
 
+	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+
 #ifdef GC_FINDREF
 world/loop_checks = FALSE
 #endif
@@ -148,8 +150,10 @@ world/loop_checks = FALSE
 /datum/controller/process/garbage_collector/statProcess()
 	..()
 	stat(null, "[garbage_collect ? "On" : "Off"], [destroyed.len] queued")
-	stat(null, "Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels]  last run")
+	stat(null, "Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run")
 
+/datum/controller/process/garbage_collector/htmlProcess()
+	return ..() + "[garbage_collect ? "On" : "Off"], [destroyed.len] queued<br>Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run"
 
 // Tests if an atom has been deleted.
 /proc/deleted(atom/A)

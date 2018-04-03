@@ -1,10 +1,14 @@
 /mob/living/carbon/human/var/last_scream = -1
 /mob/living/carbon/human/var/last_surrender = -1
 /mob/living/carbon/human/var/next_vocal_emote = -1
+/mob/living/carbon/human/var/next_special_emote = -1
 
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 
 	if (world.time < next_vocal_emote)
+		return
+
+	if (world.time < next_special_emote)
 		return
 
 	// no more screaming when you shoot yourself
@@ -52,6 +56,7 @@
 						if (turns >= 10)
 							break
 						sleep(3)
+					next_special_emote = world.time + 30
 			/*
 			if ("airguitar")
 				if (!restrained())

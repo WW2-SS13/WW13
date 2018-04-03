@@ -10,6 +10,7 @@
 	name = "scheduler"
 	schedule_interval = 3 SECONDS
 	scheduled_tasks = list()
+	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	scheduler = src
 
 /datum/controller/process/scheduler/doWork()
@@ -28,6 +29,9 @@
 /datum/controller/process/scheduler/statProcess()
 	..()
 	stat(null, "[scheduled_tasks.len] task\s")
+
+/datum/controller/process/scheduler/htmlProcess()
+	return ..() + "[scheduled_tasks.len] tasks"
 
 /datum/controller/process/scheduler/proc/schedule(var/datum/scheduled_task/st)
 	scheduled_tasks += st

@@ -172,6 +172,7 @@
 
 		while(wound_damage() < damage_list[current_stage] && current_stage < desc_list.len)
 			current_stage++
+
 		desc = desc_list[current_stage]
 		min_damage = damage_list[current_stage]
 

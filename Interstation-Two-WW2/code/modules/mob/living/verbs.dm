@@ -1,6 +1,6 @@
 /mob/living/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Point To"
-	set category = "Object"
+	set category = null
 
 	if(!src || !isturf(loc) || !(A in view(loc)))
 		return FALSE

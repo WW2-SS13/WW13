@@ -692,7 +692,7 @@
 
 	New()
 		..()
-		for (var/v in 1 to 16)
+		for (var/v in 1 to 12)
 			new/obj/item/artillery_ammo(src)
 
 /obj/structure/closet/crate/artillery_gas
@@ -704,14 +704,14 @@
 
 	New()
 		..()
-		// 16 shells total
-		for (var/v in 1 to 4)
+		// 12 shells total
+		for (var/v in 1 to 3)
 			new/obj/item/artillery_ammo/gaseous/green_cross/chlorine(src)
-		for (var/v in 1 to 4)
+		for (var/v in 1 to 3)
 			new/obj/item/artillery_ammo/gaseous/yellow_cross/mustard(src)
-		for (var/v in 1 to 4)
+		for (var/v in 1 to 3)
 			new/obj/item/artillery_ammo/gaseous/yellow_cross/white_phosphorus(src)
-		for (var/v in 1 to 4)
+		for (var/v in 1 to 3)
 			new/obj/item/artillery_ammo/gaseous/blue_cross/xylyl_bromide(src)
 
 /obj/structure/closet/crate/gasmasks

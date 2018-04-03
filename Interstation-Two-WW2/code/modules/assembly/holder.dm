@@ -248,7 +248,7 @@
 
 	verb/configure()
 		set name = "Set Timer"
-		set category = "Object"
+		set category = null
 		set src in usr
 
 		if ( !(usr.stat || usr.restrained()) )

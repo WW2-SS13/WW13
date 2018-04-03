@@ -258,9 +258,13 @@ Proc for attack log creation, because really why not
 	else
 		return pick("chest", "groin")
 
+/mob/var/may_do_mob = TRUE
 /proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = FALSE, progress = TRUE)
-	if(!user || !target)
+	if(!user || !target || !user.may_do_mob)
 		return FALSE
+
+	user.may_do_mob = FALSE
+
 	var/user_loc = user.loc
 	var/target_loc = target.loc
 
@@ -273,7 +277,7 @@ Proc for attack log creation, because really why not
 	var/starttime = world.time
 	. = TRUE
 	while (world.time < endtime)
-		sleep(1)
+		sleep(0.1)
 		if (progress)
 			progbar.update(world.time - starttime)
 		if(!user || !target)
@@ -293,6 +297,8 @@ Proc for attack log creation, because really why not
 		if(user.get_active_hand() != holding)
 			. = FALSE
 			break
+
+	user.may_do_mob = TRUE
 
 	if (progbar)
 		qdel(progbar)
@@ -324,7 +330,7 @@ Proc for attack log creation, because really why not
 	var/starttime = world.time
 	. = TRUE
 	while (world.time < endtime)
-		sleep(1)
+		sleep(0.1)
 		if (progress)
 			progbar.update(world.time - starttime)
 

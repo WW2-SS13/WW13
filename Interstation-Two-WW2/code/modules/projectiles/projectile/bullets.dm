@@ -16,7 +16,7 @@
 
 /obj/item/projectile/bullet/get_structure_damage()
 	if(damage_type == BRUTE || damage_type == BURN)
-		return damage/5 // bullets should no longer obliterate walls
+		return damage/25 // bullets are no longer good at destroying walls, use c4 - Kachnov
 	return FALSE
 
 /obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = FALSE)
@@ -51,6 +51,10 @@
 	if(istype(A, /turf/wall))
 		var/turf/wall/W = A
 		chance = round(damage/(W.material ? W.material.integrity : 175)*100) + 7
+		// hacky but prevents stationary guns obliterating people behind walls - Kachnov
+		if (istype(firedfrom, /obj/item/weapon/gun/projectile/minigun))
+			chance = 2
+
 	else if(istype(A, /obj/structure/girder))
 		chance = 66
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))

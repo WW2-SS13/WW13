@@ -3,37 +3,37 @@ var/global/datum/controller/processScheduler/processScheduler
 
 /datum/controller/processScheduler
 	// Processes known by the scheduler
-	var/tmp/datum/controller/process/list/processes = new
+	var/tmp/datum/controller/process/list/processes = list()
 
 	// Processes that are currently running
-	var/tmp/datum/controller/process/list/running = new
+	var/tmp/datum/controller/process/list/running = list()
 
 	// Processes that are idle
-	var/tmp/datum/controller/process/list/idle = new
+	var/tmp/datum/controller/process/list/idle = list()
 
 	// Processes that are queued to run
-	var/tmp/datum/controller/process/list/queued = new
+	var/tmp/datum/controller/process/list/queued = list()
 
 	// Process name -> process object map
-	var/tmp/datum/controller/process/list/nameToProcessMap = new
+	var/tmp/datum/controller/process/list/nameToProcessMap = list()
 
 	// Process last queued times (world time)
-	var/tmp/datum/controller/process/list/last_queued = new
+	var/tmp/datum/controller/process/list/last_queued = list()
 
 	// Process last start times (real time)
-	var/tmp/datum/controller/process/list/last_start = new
+	var/tmp/datum/controller/process/list/last_start = list()
 
 	// Process last run durations
-	var/tmp/datum/controller/process/list/last_run_time = new
+	var/tmp/datum/controller/process/list/last_run_time = list()
 
 	// Per process list of the last 20 durations
-	var/tmp/datum/controller/process/list/last_twenty_run_times = new
+	var/tmp/datum/controller/process/list/last_twenty_run_times = list()
 
 	// Process highest run time
-	var/tmp/datum/controller/process/list/highest_run_time = new
+	var/tmp/datum/controller/process/list/highest_run_time = list()
 
 	// How long to sleep between runs (set to tick_lag in New)
-	var/tmp/scheduler_sleep_interval
+	var/tmp/scheduler_sleep_interval = 0
 
 	// Controls whether the scheduler is running or not
 	var/tmp/isRunning = FALSE
@@ -133,6 +133,9 @@ var/global/datum/controller/processScheduler/processScheduler
 	for(var/datum/controller/process/p in processes)
 		// Don't double-queue, don't queue running processes
 		if (p.disabled || p.running || p.queued || !p.idle)
+			continue
+
+		if (ticker && !p.fires_at_gamestates.Find(ticker.current_state))
 			continue
 
 		// If the process should be running by now, go ahead and queue it
@@ -368,6 +371,17 @@ var/global/datum/controller/processScheduler/processScheduler
 	stat(null, "[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1)/10] TA")
 	for(var/datum/controller/process/p in processes)
 		p.statProcess()
+
+/datum/controller/processScheduler/proc/htmlProcesses()
+	. = "<html><body>"
+	if(!isRunning)
+		. += "<p><big>Processes: Scheduler not running</big></p>"
+		return
+	. += "<p><big>Processes: [processes.len] (R [running.len] / Q [queued.len] / I [idle.len])</big></p>"
+	. += "<p>[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1)/10] TA</p>"
+	for(var/datum/controller/process/p in processes)
+		. += "<p><b>[p.name]</b>: [p.htmlProcess()]</p>"
+	. += "</body></html>"
 
 /datum/controller/processScheduler/proc/getProcess(var/process_name)
 	return nameToProcessMap[process_name]

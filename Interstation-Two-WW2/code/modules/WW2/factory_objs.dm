@@ -330,8 +330,8 @@
 	explosion_resistance = 5
 	var/list/mobs_can_pass = list(
 		/mob/living/carbon/slime,
-		/mob/living/simple_animal/mouse,
-		/mob/living/silicon/robot/drone
+		/mob/living/simple_animal/mouse
+//		/mob/living/silicon/robot/drone
 		)
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)

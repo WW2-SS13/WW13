@@ -74,29 +74,19 @@
 /mob/living/carbon/human/Stat()
 	. = ..()
 	if (.)
-		if(statpanel("Status"))
-			stat("Intent:", "[a_intent]")
-			stat("Move Mode:", "[m_intent]")
-			if (internal)
+		if(statpanel("Character"))
+			stat("")
+			stat(stat_header("Character"))
+			stat("")
+			stat("Attack Intent:", a_intent)
+			stat("Move Mode:", m_intent)
+/*			if (internal)
 				if (!internal.air_contents)
 					qdel(internal)
 				else
 					stat("Internal Atmosphere Info", internal.name)
 					stat("Tank Pressure", internal.air_contents.return_pressure())
-					stat("Distribution Pressure", internal.distribute_pressure)
-
-
-			stat("")
-			stat("******* Stats *******")
-			stat("")
-			for (var/statname in stats)
-				var/coeff = getStatCoeff(statname)
-				if (coeff == TRUE)
-					coeff = "1.00" // OCD
-				if (!list("mg", "smg").Find(statname))
-					stat("[capitalize(statname)]: ", "[coeff]x average")
-				else
-					stat("[uppertext(statname)]: ", "[coeff]x average")
+					stat("Distribution Pressure", internal.distribute_pressure)*/
 
 			stat("Stamina: ", "[round(stamina/max_stamina) * 100]%")
 
@@ -109,6 +99,20 @@
 				stat("Ready to fire?:", (world.time - tank.last_fire > tank.fire_delay || tank.last_fire == -1) ? "Yes" : "No")
 				stat("Fuel Slot:", "[fuel_slot_screwed][fuel_slot_open].")
 				stat("Fuel:", "[round((tank.fuel/tank.max_fuel)*100)]%")
+
+
+			stat("")
+			stat(stat_header("Stats"))
+			stat("")
+			for (var/statname in stats)
+				var/coeff = getStatCoeff(statname)
+				if (coeff == TRUE)
+					coeff = "1.00" // OCD
+				if (!list("mg", "smg").Find(statname))
+					stat("[capitalize(statname)]: ", "[coeff]x average")
+				else
+					stat("[uppertext(statname)]: ", "[coeff]x average")
+
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
@@ -716,7 +720,7 @@ var/list/rank_prefix = list(\
 		return TRUE
 
 /mob/living/carbon/human/verb/check_pulse()
-	set category = "Object"
+	set category = null
 	set name = "Check pulse"
 	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
 	set src in view(1)
@@ -1022,7 +1026,7 @@ var/list/rank_prefix = list(\
 	..(slipped_on,stun_duration)
 
 /mob/living/carbon/human/proc/undislocate()
-	set category = "Object"
+	set category = null
 	set name = "Undislocate Joint"
 	set desc = "Pop a joint back into place. Extremely painful."
 	set src in view(1)

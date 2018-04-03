@@ -6,6 +6,7 @@ var/datum/controller/process/dog/dog_process = null
 	name = "dog process"
 	schedule_interval = 2 // a bit slower than humans run (1.42 to 1.76 deciseconds)
 	start_delay = 300
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	dog_process = src
 
 /datum/controller/process/dog/doWork()
@@ -27,11 +28,14 @@ var/datum/controller/process/dog/dog_process = null
 					if (locate(/obj/structure) in target)
 						continue
 					step(dog, get_dir(dog, dog.walking_to))
+			SCHECK
 
 	catch(var/exception/e)
 		catchException(e)
-	SCHECK
 
 /datum/controller/process/dog/statProcess()
 	..()
 	stat(null, "[dog_mob_list.len] mobs")
+
+/datum/controller/process/dog/htmlProcess()
+	return ..() + "[dog_mob_list.len] mobs"

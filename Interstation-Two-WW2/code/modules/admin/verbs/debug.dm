@@ -134,11 +134,11 @@
 	for(var/area/A in world)
 		if(!(A.type in areas_all))
 			areas_all.Add(A.type)
-
+/*
 	for(var/obj/machinery/power/apc/APC in world)
 		var/area/A = get_area(APC)
 		if(!(A.type in areas_with_APC))
-			areas_with_APC.Add(A.type)
+			areas_with_APC.Add(A.type)*/
 /*
 	for(var/obj/machinery/alarm/alarm in world)
 		var/area/A = get_area(alarm)

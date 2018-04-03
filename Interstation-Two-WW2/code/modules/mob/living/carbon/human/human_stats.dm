@@ -26,14 +26,16 @@
 		if (stats[statname] > statval)
 			return
 
+	// randomness
 	statval += rand(-5,5)
+
 	// realism + balancing
 	if (gender == FEMALE)
 		switch (statname)
 			if ("strength")
-				statval -= 4
-			if ("medical")
-				statval += 4
+				statval -= 15
+			else
+				statval += ceil(15/stats.len)
 
 	stats[statname] = list(statval, statval)
 

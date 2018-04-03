@@ -26,7 +26,7 @@
 
 /obj/item/weapon/paper/carbon/verb/removecopy()
 	set name = "Remove carbon-copy"
-	set category = "Object"
+	set category = null
 	set src in usr
 
 	if (copied == FALSE)

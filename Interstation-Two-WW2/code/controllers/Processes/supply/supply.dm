@@ -5,6 +5,7 @@ var/global/datum/controller/process/supply/supplyProcess
 /datum/controller/process/supply/setup()
 	name = "supply points"
 	schedule_interval = 20 // every 2 seconds
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	supplyProcess = src
 
 /datum/controller/process/supply/doWork()

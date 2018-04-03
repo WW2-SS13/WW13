@@ -1,7 +1,6 @@
 var/global/datum/controller/gameticker/ticker
 var/global/datum/lobby_music_player/lobby_music_player = null
 
-
 /datum/controller/gameticker
 	var/const/restart_timeout = 300
 	var/current_state = GAME_STATE_PREGAME

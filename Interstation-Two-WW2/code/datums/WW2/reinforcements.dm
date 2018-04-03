@@ -298,21 +298,24 @@ var/datum/reinforcements/reinforcements_master
 
 	var/list/l = list()
 
-	if (has_occupied_base(GERMAN))
-		l += "The German base is currently occupied; reinforcements cannot be deployed."
-	else
-		l += "GERMAN REINFORCEMENTS:"
-		l += "Deployed: [reinforcements_granted[GERMAN]]/[max_german_reinforcements]"
-		l += "Deploying: [r_german()]/[reinforcement_add_limit_german] ([reinforcement_spawn_req] needed) in [german_countdown] seconds"
-		l += "Locked: [locked[GERMAN] ? "Yes" : "No"]"
+	if (is_ready())
+		if (has_occupied_base(GERMAN))
+			l += "The German base is currently occupied;Reinforcements cannot be deployed."
+		else
+			l += "GERMAN REINFORCEMENTS:"
+			l += "Deployed: [reinforcements_granted[GERMAN]]/[max_german_reinforcements]"
+			l += "Deploying: [r_german()]/[reinforcement_add_limit_german] ([reinforcement_spawn_req] needed) in [german_countdown] seconds"
+			l += "Locked: [locked[GERMAN] ? "Yes" : "No"]"
 
-	if (has_occupied_base(SOVIET))
-		l += "The Soviet base is currently occupied; reinforcements cannot be deployed."
+		if (has_occupied_base(SOVIET))
+			l += "The Soviet base is currently occupied;Reinforcements cannot be deployed."
+		else
+			l += "SOVIET REINFORCEMENTS:"
+			l += "Deployed: [reinforcements_granted[SOVIET]]/[max_soviet_reinforcements]"
+			l += "Deploying: [r_soviet()]/[reinforcement_add_limit_soviet] ([reinforcement_spawn_req] needed) in [soviet_countdown] seconds"
+			l += "Locked: [locked[SOVIET] ? "Yes" : "No"]"
 	else
-		l += "SOVIET REINFORCEMENTS:"
-		l += "Deployed: [reinforcements_granted[SOVIET]]/[max_soviet_reinforcements]"
-		l += "Deploying: [r_soviet()]/[reinforcement_add_limit_soviet] ([reinforcement_spawn_req] needed) in [soviet_countdown] seconds"
-		l += "Locked: [locked[SOVIET] ? "Yes" : "No"]"
+		l += "Reinforcements are not being sent yet."
 
 	return l
 

@@ -1049,8 +1049,8 @@ proc/is_hot(obj/item/W as obj)
 				return 1000
 			else
 				return FALSE
-		if(/obj/item/weapon/melee/energy)
-			return 3500
+/*		if(/obj/item/weapon/melee/energy)
+			return 3500*/
 		else
 			return FALSE
 

@@ -2,9 +2,8 @@
 	//SECURITY//
 	////////////
 #define UPLOAD_LIMIT		10485760	//Restricts client uploads to the server to 10MB //Boosted this thing. What's the worst that can happen?
-#define ABSOLUTE_MIN_CLIENT_VERSION 400		//Just an ambiguously low version for now, I don't want to suddenly stop people playing.
-#define REAL_MIN_CLIENT_VERSION 512 // I DO - kachnov
-									//I would just like the code ready should it ever need to be used.
+#define ABSOLUTE_MIN_CLIENT_VERSION 400
+#define REAL_MIN_CLIENT_VERSION 512
 #define PLAYERCAP 200
 	/*
 	When somebody clicks a link in game, this Topic is called first.
@@ -440,3 +439,14 @@
 // testing
 /client/proc/delme()
 	del src
+
+/client/Stat()
+	..()
+	if (list("Status", "Character").Find(statpanel))
+		switch (statpanel)
+			if ("Status")
+				sleep(10)
+			if ("Character")
+				sleep(20)
+	else
+		sleep(30)

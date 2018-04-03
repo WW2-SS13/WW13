@@ -74,7 +74,7 @@ Current Defines (_defines/attachment.dm)
 /obj/item/weapon/gun/verb/field_strip()
   set name = "Field Strip"
   set desc = "Removes any attachments."
-  set category = "Weapons"
+  set category = null
   var/mob/living/carbon/human/user = usr
 
   for(var/obj/item/weapon/attachment/A in attachments)

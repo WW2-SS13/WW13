@@ -4,6 +4,7 @@ var/datum/controller/process/obj/obj_process = null
 	name = "obj"
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 8
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	obj_process = src
 
 /datum/controller/process/obj/started()
@@ -35,10 +36,10 @@ var/datum/controller/process/obj/obj_process = null
 				O.process()
 			catch(var/exception/e)
 				catchException(e, O)
-			SCHECK
 		else
 			catchBadType(O)
 			processing_objects -= O
+		SCHECK
 
 	// objects here only process about 1/40 ticks
 	if (prob(10) && !paused_nonvital)
@@ -61,10 +62,10 @@ var/datum/controller/process/obj/obj_process = null
 						O:process()
 					catch(var/exception/e)
 						catchException(e, O)
-					SCHECK
 				else
 					catchBadType(O)
 					nonvital_list -= O
+				SCHECK
 
 /datum/controller/process/obj/proc/add_nonvital_object(var/obj/o)
 	var/list/nonvital_list = null
@@ -93,3 +94,6 @@ var/datum/controller/process/obj/obj_process = null
 	..()
 	stat(null, "[processing_objects.len] objects in the vital loop")
 	stat(null, "[nonvital_objects()] objects in the nonvital loop")
+
+/datum/controller/process/obj/htmlProcess()
+	return ..() + "[processing_objects.len] objects in the vital loop<br>[nonvital_objects()] objects in the nonvital loop"

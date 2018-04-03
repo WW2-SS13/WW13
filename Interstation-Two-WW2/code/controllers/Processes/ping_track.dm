@@ -9,6 +9,7 @@ var/datum/controller/process/ping_track/ping_track = null
 /datum/controller/process/ping_track/setup()
 	name = "Ping Tracking"
 	schedule_interval = 5
+	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 
 	if (!ping_track)
 		ping_track = src
@@ -42,6 +43,8 @@ var/datum/controller/process/ping_track/ping_track = null
 		winset(C, null, "command=.update_ping+[world.time+world.tick_lag*world.tick_usage/100]")
 		avg += C.last_ping
 		++clients_checked
+
+		SCHECK
 
 	if (clients_checked)
 		avg /= clients_checked

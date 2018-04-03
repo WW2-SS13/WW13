@@ -98,6 +98,9 @@
 	// currently only implemented for the obj process
 	var/paused_nonvital = 0
 
+	// when can we call process()
+	var/list/fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
+
 
 /datum/controller/process/New(var/datum/controller/processScheduler/scheduler)
 	..()
@@ -175,7 +178,7 @@
 	if(istype(lastObj))
 		lastObjType = lastObj.type
 
-	var/msg = "[name] process hung at tick #[ticks]. Process was unresponsive for [(TimeOfGame - run_start) / 10] seconds and was restarted. Last task: [last_task]. Last Object Type: [lastObjType]"
+	var/msg = "PROCESS SCHEDULER: [name] process hung at tick #[ticks]. Process was unresponsive for [(TimeOfGame - run_start) / 10] seconds and was restarted. Last task: [last_task]. Last Object Type: [lastObjType]"
 	log_debug(msg)
 	message_admins(msg)
 
@@ -183,7 +186,7 @@
 
 /datum/controller/process/proc/kill()
 	if (!killed)
-		var/msg = "[name] process was killed at tick #[ticks]."
+		var/msg = "PROCESS SCHEDULER: [name] process was killed at tick #[ticks]."
 		log_debug(msg)
 		message_admins(msg)
 		//finished()
@@ -195,8 +198,8 @@
 		del(src)
 
 // Do not call this directly - use SHECK or SCHECK_EVERY
-/datum/controller/process/proc/sleepCheck(var/tickId = FALSE)
-	calls_since_last_scheck = FALSE
+/datum/controller/process/proc/sleepCheck(var/tickId = 0)
+	calls_since_last_scheck = 0
 	if (killed)
 		// The kill proc is the only place where killed is set.
 		// The kill proc should have deleted this datum, and all sleeping procs that are
@@ -233,7 +236,6 @@
 		setStatus(PROCESS_STATUS_PROBABLY_HUNG)
 	else if (elapsedTime > hang_warning_time)
 		setStatus(PROCESS_STATUS_MAYBE_HUNG)
-
 
 /datum/controller/process/proc/getElapsedTime()
 	return TimeOfGame - run_start
@@ -306,12 +308,16 @@
 	copyStateFrom(target)
 
 /datum/controller/process/proc/copyStateFrom(var/datum/controller/process/target)
+	return
 
 /datum/controller/process/proc/onKill()
+	return
 
 /datum/controller/process/proc/onStart()
+	return
 
 /datum/controller/process/proc/onFinish()
+	return
 
 /datum/controller/process/proc/disable()
 	disabled = TRUE
@@ -321,6 +327,7 @@
 
 /datum/controller/process/proc/getAverageRunTime()
 	return main.averageRunTime(src)
+
 /datum/controller/process/proc/getLastRunTime()
 	return main.getProcessLastRunTime(src)
 
@@ -336,10 +343,16 @@
 	var/highestRunTime = round(getHighestRunTime(), 0.1)/10
 	stat("[name]", "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]")
 
+/datum/controller/process/proc/htmlProcess()
+	var/averageRunTime = round(getAverageRunTime(), 0.1)/10
+	var/lastRunTime = round(getLastRunTime(), 0.1)/10
+	var/highestRunTime = round(getHighestRunTime(), 0.1)/10
+	return "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]<br>"
+
 /datum/controller/process/proc/catchException(var/exception/e, var/thrower)
 	if(ispath(thrower) || istext(thrower))
-		log_to_dd("[src].catchException() was given a path or text type, [thrower], which was set to null.")
-		log_debug("[src].catchException() was given a path or text type, [thrower], which was set to null.")
+		log_to_dd("PROCESS SCHEDULER: [src].catchException() was given a path or text type, [thrower], which was set to null.")
+		log_debug("PROCESS SCHEDULER: [src].catchException() was given a path or text type, [thrower], which was set to null.")
 		thrower = null // I think this prevents crashes - Kachnov
 		return
 

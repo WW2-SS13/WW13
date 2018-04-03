@@ -6,6 +6,8 @@
 /datum/surgery_step/generic/
 	can_infect = TRUE
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		if (user == target)
+			return FALSE
 		if (isslime(target))
 			return FALSE
 		if (target_zone == "eyes")	//there are specific steps for eye surgery
@@ -25,8 +27,8 @@
 	allowed_tools = list(
 	/obj/item/weapon/scalpel/laser3 = 95, \
 	/obj/item/weapon/scalpel/laser2 = 85, \
-	/obj/item/weapon/scalpel/laser1 = 75, \
-	/obj/item/weapon/melee/energy/sword = 5
+	/obj/item/weapon/scalpel/laser1 = 75
+//	/obj/item/weapon/melee/energy/sword = 5
 	)
 	priority = 2
 	min_duration = 90

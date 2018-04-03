@@ -4,6 +4,7 @@ var/datum/controller/process/burning/burning_process = null
 	name = "burning"
 	schedule_interval = 50 // every 5 seconds
 	start_delay = 100
+	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	burning_process = src
 
 /datum/controller/process/burning/doWork()
@@ -21,10 +22,10 @@ var/datum/controller/process/burning/burning_process = null
 					new/obj/effect/effect/smoke/bad(get_turf(O), TRUE)
 			catch(var/exception/e)
 				catchException(e, O)
-			SCHECK
 		else
 			catchBadType(O)
 			burning_objs -= O
+		SCHECK
 
 	for(last_object in burning_turfs)
 		var/turf/O = last_object
@@ -39,10 +40,10 @@ var/datum/controller/process/burning/burning_process = null
 					new/obj/effect/effect/smoke/bad(O, TRUE)
 			catch(var/exception/e)
 				catchException(e, O)
-			SCHECK
 		else
 			catchBadType(O)
 			burning_turfs -= O
+		SCHECK
 
 	var/sound/S = sound('sound/effects/fire_loop.ogg')
 	S.repeat = FALSE
@@ -55,14 +56,19 @@ var/datum/controller/process/burning/burning_process = null
 		// player_list will rarely be above 100 objects
 		// so this should be more efficient - Kachnov
 		for (var/M in player_list)
-			var/dist = abs_dist(M, burningobject)
-			if (dist <= 20)
-				var/volume = 100
-				volume -= (dist*3)
-				S.volume = volume
-				M << S
+			if (M:loc) // make sure we aren't in the lobby
+				var/dist = abs_dist(M, burningobject)
+				if (dist <= 20)
+					var/volume = 100
+					volume -= (dist*3)
+					S.volume = volume
+					M << S
+		SCHECK
 
 /datum/controller/process/burning/statProcess()
 	..()
 	stat(null, "[burning_objs.len] objects")
-	stat(null, "[burning_turfs.len] objects")
+	stat(null, "[burning_turfs.len] turfs")
+
+/datum/controller/process/burning/htmlProcess()
+	return ..() + "[burning_objs.len] objects<br>[burning_turfs.len] turfs"

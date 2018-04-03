@@ -15,6 +15,7 @@
 	icon_state = "minimoog"
 	anchored = TRUE
 	density = TRUE
+	climbable = TRUE
 	var/datum/song/song
 	var/playing = FALSE
 	var/help = FALSE

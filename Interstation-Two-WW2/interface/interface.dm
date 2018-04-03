@@ -213,3 +213,35 @@ Any-Mode: (hotkey doesn't need to be on)
 		src << other
 	if(holder)
 		src << admin
+
+/mob/verb/a_intent_change(input as text)
+	set name = "a-intent"
+	set hidden = TRUE
+
+	if(ishuman(src) || isbrain(src) || isslime(src))
+		switch(input)
+			if(I_HELP,I_DISARM,I_GRAB,I_HURT)
+				a_intent = input
+			if("right")
+				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
+			if("left")
+				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
+//		if(hud_used && hud_used.action_intent)
+//			hud_used.action_intent.icon_state = "intent_[a_intent]"
+
+	else if(isrobot(src))
+		switch(input)
+			if(I_HELP)
+				a_intent = I_HELP
+			if(I_HURT)
+				a_intent = I_HURT
+			if("right","left")
+				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
+/*		if(hud_used && hud_used.action_intent)
+			if(a_intent == I_HURT)
+				hud_used.action_intent.icon_state = I_HURT
+			else
+				hud_used.action_intent.icon_state = I_HELP*/
+	if (HUDneed.Find("intent"))
+		var/obj/screen/intent/I = HUDneed["intent"]
+		I.update_icon()

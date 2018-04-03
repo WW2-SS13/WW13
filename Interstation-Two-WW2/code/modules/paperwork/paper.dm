@@ -89,7 +89,7 @@
 
 /obj/item/weapon/paper/verb/rename()
 	set name = "Rename paper"
-	set category = "Object"
+	set category = null
 	set src in usr
 	playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav',40,1)
 
