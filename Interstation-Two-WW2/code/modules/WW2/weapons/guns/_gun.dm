@@ -10,9 +10,10 @@
 #define VERY_LONG_RANGE_STILL "very_long_range_still"
 #define VERY_LONG_RANGE_MOVING "very_long_range_moving"
 
-#define KD_CHANCE_LOW 30
+#define KD_CHANCE_VERY_LOW 20
+#define KD_CHANCE_LOW 40
 #define KD_CHANCE_MEDIUM 60
-#define KD_CHANCE_HIGH 90
+#define KD_CHANCE_HIGH 80
 
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/attachment))

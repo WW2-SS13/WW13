@@ -92,7 +92,7 @@
 
 	accuracy_increase_mod = 1.00
 	accuracy_decrease_mod = 1.00
-	KD_chance = KD_CHANCE_LOW
+	KD_chance = KD_CHANCE_VERY_LOW
 	stat = "MG"
 
 /obj/item/weapon/gun/projectile/minigun/attack_hand(var/mob/user)
