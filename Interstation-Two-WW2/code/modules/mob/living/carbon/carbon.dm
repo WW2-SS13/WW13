@@ -340,10 +340,10 @@
 	if(!item || item.nothrow) return //Grab processing has a chance of returning null
 
 	playsound(src, 'sound/effects/throw.ogg', 50, TRUE)
-	remove_from_mob(item)
 
 	//actually throw it!
-	if (item && do_after(src, max(1, abs_dist(src, target)/(item.w_class >= 3 ? 1 : 2)), get_turf(src)))
+	if (item && do_after(src, max(1, abs_dist(src, target)/(item.w_class >= 3 ? 2 : 4)), get_turf(src)))
+		remove_from_mob(item)
 		item.loc = loc
 		visible_message("<span class = 'red'>[src] has thrown [item].</span>")
 
