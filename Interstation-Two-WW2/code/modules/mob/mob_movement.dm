@@ -529,7 +529,7 @@
 		moving = TRUE
 
 		if (mob.lastdir && mob.lastdir != direct)
-			sleep(run_delay_maximum * 1.5)
+			sleep(mob.run_delay_maximum * 1.5)
 
 		//Something with grabbing things
 		if(locate(/obj/item/weapon/grab, mob))
