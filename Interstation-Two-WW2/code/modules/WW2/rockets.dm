@@ -9,7 +9,7 @@
 	. = ..()
 	if (!.)
 		return .
-	if (!do_after(user, 12, get_turf(user)))
+	if (!do_after(user, 9, get_turf(user)))
 		return FALSE
 	return TRUE
 
