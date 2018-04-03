@@ -375,9 +375,12 @@ var/global/datum/controller/processScheduler/processScheduler
 /datum/controller/processScheduler/proc/htmlProcesses()
 	. = "<html><body>"
 	if(!isRunning)
+		. += "<p><big>Processes: Scheduler not running</big></p>"
 		return
+	. += "<p><big>Processes: [processes.len] (R [running.len] / Q [queued.len] / I [idle.len])</big></p>"
 	. += "<p>[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1)/10] TA</p>"
 	for(var/datum/controller/process/p in processes)
+		. += "<p><b>[p.name]</b>: [p.htmlProcess()]</p>"
 	. += "</body></html>"
 
 /datum/controller/processScheduler/proc/getProcess(var/process_name)
