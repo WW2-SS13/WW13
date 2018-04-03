@@ -40,6 +40,8 @@
 
 	var/mob/last_user = null
 
+	var/next_spam = -1
+
 	gun_type = GUN_TYPE_MG
 
 	// mg accuracy of course
@@ -95,9 +97,14 @@
 
 /obj/item/weapon/gun/projectile/minigun/attack_hand(var/mob/user)
 
+	if (world.time < next_spam)
+		return
+
 	if (last_user && last_user != user)
 		user << "<span class = 'warning'>\the [src] is already in use.</span>"
 		return
+
+	next_spam = world.time + 50
 
 	if(user.using_object == src)
 		if(firemodes.len > 1)
