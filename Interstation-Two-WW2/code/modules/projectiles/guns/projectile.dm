@@ -188,13 +188,6 @@
 			user << "<span class='warning'>[src] is full.</span>"
 			return
 
-		if (istype(src, /obj/item/weapon/gun/projectile/boltaction))
-			var/obj/item/weapon/gun/projectile/boltaction/B = src
-			if (world.time <= B.next_reload)
-				user << "<span class='danger'>[src] is jammed.</span>"
-				return
-			B.next_reload = world.time + rand(22,33)
-
 		user.remove_from_mob(C)
 		C.loc = src
 		loaded.Insert(1, C) //add to the head of the list
