@@ -442,8 +442,6 @@
 			if("run")
 				mob.velocity = min(mob.velocity+1, 15)
 				mob.velocity_lastdir = direct
-				if(mob.drowsyness > 0)
-					move_delay += 6
 				move_delay += (mob.get_run_delay()/mob.movement_speed_multiplier) + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
@@ -458,6 +456,9 @@
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.002
 					H.water -= 0.002
+
+		if(mob.drowsyness > 0)
+			move_delay += 3
 
 		if (mob.pulling)
 			if (istype(mob.pulling, /mob))

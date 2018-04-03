@@ -591,19 +591,15 @@
 					if (!restrained())
 						message = "dabs."
 						for (var/atom/movable/AM in get_step(src, dir))
-							if (!AM.density)
-								continue
-							if (!ismob(AM))
-								if (!istype(AM, /atom/movable/lighting_overlay) && !isitem(AM) && !istype(AM, /obj/effect))
-									if (AM.name)
-										message = "dabs on \the [AM]."
-						for (var/atom/movable/AM in get_step(src, dir))
-							if (!AM.density)
-								continue
-							if (istype(AM, /mob/observer))
-								continue
-							if (ismob(AM))
+							if (isobj(AM))
+								if (!AM.density)
+									if (!istype(AM, /atom/movable/lighting_overlay) && !isitem(AM) && !istype(AM, /obj/effect))
+										if (AM.name)
+											message = "dabs on \the [AM]."
+											break
+							else if (istype(AM, /mob/living))
 								message = "dabs on \the [AM]."
+								break
 
 			if ("pose")
 				if (istype(src, /mob/living/carbon/human/pillarman))
