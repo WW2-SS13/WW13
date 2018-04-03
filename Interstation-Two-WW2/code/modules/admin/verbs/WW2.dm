@@ -11,22 +11,30 @@
 	if (!direction || direction == "Cancel")
 		return
 
+	var/found = FALSE
+
 	for (var/obj/train_lever/german/lever in world)
 		if (istype(lever))
 			lever.automatic_function(direction, src)
+			found = TRUE
 			break
 
-	if (direction == "Forwards")
-		direction = "to the FOB"
+	if (found)
 
-	else if (direction == "Backwards")
-		direction = "back to the base"
+		if (direction == "Forwards")
+			direction = "to the FOB"
 
-	else if (direction == "Stop")
-		message_admins("[key_name(src)] tried to stop the german train.")
-		return
+		else if (direction == "Backwards")
+			direction = "back to the base"
 
-	message_admins("[key_name(src)] tried to send the german train [direction].")
+		else if (direction == "Stop")
+			message_admins("[key_name(src)] stopped the German train.")
+			return
+
+		message_admins("[key_name(src)] sent the German train [direction].")
+
+	else
+		src << "<span class = 'warning'>There is no train.</span>"
 
 /client/proc/toggle_playing()
 	set category = "Special"

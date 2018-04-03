@@ -90,7 +90,8 @@
 
 			stat("Stamina: ", "[round(stamina/max_stamina) * 100]%")
 
-			if (istype(loc, /obj/tank))
+			// the loc.density short circuits 95% of the time and bypasses an expensive typecheck - Kachnov
+			if (loc.density && istype(loc, /obj/tank))
 				var/obj/tank/tank = loc
 				var/fuel_slot_screwed = tank.fuel_slot_screwed ? "Screwed," : "Unscrewed,"
 				var/fuel_slot_open = tank.fuel_slot_open ? " open" : " closed"

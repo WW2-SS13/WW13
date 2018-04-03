@@ -66,12 +66,13 @@
 	magazine_type = /obj/item/ammo_magazine/mp40
 
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=1.0, recoil=0.4, move_delay=0, dispersion = list(0.4, 0.6, 0.6, 0.6, 0.8)),
-		list(name="short bursts",	burst=3, burst_delay=1.2, recoil=0.7, move_delay=1, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
-		list(name="long bursts",	burst=6, burst_delay=1.4, recoil=0.9, move_delay=1.5, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		list(name="single shot",	burst=1, burst_delay=1.0, recoil=0.4, move_delay=2, dispersion = list(0.4, 0.6, 0.6, 0.6, 0.8)),
+		list(name="short bursts",	burst=3, burst_delay=1.2, recoil=0.7, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
+		list(name="long bursts",	burst=6, burst_delay=1.4, recoil=0.9, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
 		)
 
 	sel_mode = 2
+	effectiveness_mod = 1.05
 
 /obj/item/weapon/gun/projectile/submachinegun/mp40/update_icon()
 	if(ammo_magazine)
@@ -102,9 +103,9 @@
 	magazine_type = /obj/item/ammo_magazine/a556/ppsh
 	weight = 3.63
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=0, dispersion = list(0.5, 0.7, 0.7, 0.7, 0.9)),
-		list(name="short bursts",	burst=4, burst_delay=1.0, recoil=0.6, move_delay=0.5, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
-		list(name="long bursts",	burst=8, burst_delay=1.2, recoil=0.8, move_delay=1, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
+		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.5, 0.7, 0.7, 0.7, 0.9)),
+		list(name="short bursts",	burst=4, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
+		list(name="long bursts",	burst=8, burst_delay=1.2, recoil=0.8, move_delay=4, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
 		)
 
 //	can_wield = TRUE
@@ -140,8 +141,8 @@
 	magazine_type = /obj/item/ammo_magazine/c762x25mm_pps
 	weight = 3.04
 	firemodes = list(
-		list(name="short bursts",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=0.8, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
-		list(name="long bursts",	burst=6, burst_delay=1.2, recoil=0.8, move_delay=1.2, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
+		list(name="short bursts",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.9, 1.3, 1.3, 1.3, 1.5)),
+		list(name="long bursts",	burst=6, burst_delay=1.2, recoil=0.8, move_delay=4, dispersion = list(1.4, 1.6, 1.6, 1.6, 1.8)),
 		)
 
 //	can_wield = TRUE
@@ -168,9 +169,9 @@
 	magazine_type = /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2
 	weight = 3.2
 	firemodes = list(
-		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=0, dispersion = list(0.6, 0.8, 0.8, 0.8, 1.0)),
-		list(name="short burst",	burst=3, burst_delay=1.2, recoil=0.4, move_delay=0.2, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
-		list(name="long burst", 	burst=6, burst_delay=1.6, recoil=0.8, move_delay=0.4, dispersion = list(1.5, 1.7, 1.7, 1.7, 1.9)),
+		list(name="single shot",	burst=1, burst_delay=0.8, recoil=0.4, move_delay=2, dispersion = list(0.6, 0.8, 0.8, 0.8, 1.0)),
+		list(name="short burst",	burst=3, burst_delay=1.2, recoil=0.4, move_delay=3, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
+		list(name="long burst", 	burst=6, burst_delay=1.6, recoil=0.8, move_delay=4, dispersion = list(1.5, 1.7, 1.7, 1.7, 1.9)),
 		)
 
 //	can_wield = TRUE
@@ -196,8 +197,8 @@
 	magazine_type = /obj/item/ammo_magazine/s9x19mm
 	weight = 4.2
 	firemodes = list(
-		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=0.4, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
-		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=0.8, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
+		list(name="short burst",	burst=3, burst_delay=1.0, recoil=0.6, move_delay=3, dispersion = list(0.8, 1.2, 1.2, 1.2, 1.4)),
+		list(name="long burst", 	burst=6, burst_delay=1.4, recoil=1.2, move_delay=4, dispersion = list(1.2, 1.4, 1.4, 1.4, 1.6)),
 		)
 	sel_mode = 1
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL

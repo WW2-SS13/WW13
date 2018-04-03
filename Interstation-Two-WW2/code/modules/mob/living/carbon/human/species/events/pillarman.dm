@@ -136,4 +136,7 @@
 /mob/living/carbon/human/pillarman/Stat()
 	. = ..()
 	if (.)
+		stat("")
+		stat(stat_header("Pillar Man"))
+		stat("")
 		stat("Energy:", "[round(energy*100)]%")

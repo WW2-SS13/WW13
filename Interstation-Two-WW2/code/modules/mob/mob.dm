@@ -652,10 +652,6 @@
 			stat("Players Online (Playing, Observing, Lobby):", "[clients.len] ([human_clients_mob_list.len], [observer_mob_list.len], [new_player_mob_list.len])")
 			stat("Round Duration:", roundduration2text())
 
-			if (ticker && ticker.mode && ticker.mode.config_tag == "WW2")
-				var/datum/game_mode/ww2/mode = ticker.mode
-				stat("Current Round End Condition:", mode.current_stat_message())
-
 			if (map)
 				var/grace_period_string = ""
 				for (var/faction in map.faction_organization)
@@ -668,6 +664,11 @@
 					else
 						grace_period_string += "[faction_const2name(faction)] may not cross"
 				stat("Grace Period Status:", grace_period_string)
+
+				if (ticker && ticker.mode && ticker.mode.config_tag == "WW2")
+					var/datum/game_mode/ww2/mode = ticker.mode
+					stat("Current Round End Condition:", mode.current_stat_message())
+
 				stat("Map:", map.title)
 
 			stat("Season:", !ticker.mode ? "Spring" : ticker.mode.season())
