@@ -372,5 +372,13 @@ var/global/datum/controller/processScheduler/processScheduler
 	for(var/datum/controller/process/p in processes)
 		p.statProcess()
 
+/datum/controller/processScheduler/proc/htmlProcesses()
+	. = "<html><body>"
+	if(!isRunning)
+		return
+	. += "<p>[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1)/10] TA</p>"
+	for(var/datum/controller/process/p in processes)
+	. += "</body></html>"
+
 /datum/controller/processScheduler/proc/getProcess(var/process_name)
 	return nameToProcessMap[process_name]

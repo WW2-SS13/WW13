@@ -150,8 +150,10 @@ world/loop_checks = FALSE
 /datum/controller/process/garbage_collector/statProcess()
 	..()
 	stat(null, "[garbage_collect ? "On" : "Off"], [destroyed.len] queued")
-	stat(null, "Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels]  last run")
+	stat(null, "Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run")
 
+/datum/controller/process/garbage_collector/htmlProcess()
+	return ..() + "[garbage_collect ? "On" : "Off"], [destroyed.len] queued<br>Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run"
 
 // Tests if an atom has been deleted.
 /proc/deleted(atom/A)

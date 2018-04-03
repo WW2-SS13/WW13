@@ -443,4 +443,11 @@
 
 /client/Stat()
 	..()
-	sleep(10) // make statpanels update every second - Memeopolis
+	if (list("Status", "Character").Find(statpanel))
+		switch (statpanel)
+			if ("Status", "Processes")
+				sleep(10)
+			if ("Character")
+				sleep(20)
+	else
+		sleep(30)

@@ -80,6 +80,9 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 	..()
 	stat(null, "[supplydrop_processing_objects_german.len+supplydrop_processing_objects_soviet.len] objects")
 
+/datum/controller/process/supplydrop/htmlProcess()
+	return ..() + "[supplydrop_processing_objects_german.len+supplydrop_processing_objects_soviet.len] objects"
+
 /datum/controller/process/supplydrop/proc/add(var/object_path, var/faction)
 	if (object_path)
 		switch (faction)

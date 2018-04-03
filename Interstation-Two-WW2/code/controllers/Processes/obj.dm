@@ -94,3 +94,6 @@ var/datum/controller/process/obj/obj_process = null
 	..()
 	stat(null, "[processing_objects.len] objects in the vital loop")
 	stat(null, "[nonvital_objects()] objects in the nonvital loop")
+
+/datum/controller/process/obj/htmlProcess()
+	return ..() + "[processing_objects.len] objects in the vital loop<br>[nonvital_objects()] objects in the nonvital loop"

@@ -18,6 +18,9 @@ var/datum/controller/process/chemistry/chemistryProcess
 	..()
 	stat(null, "[active_holders.len] reagent holder\s")
 
+/datum/controller/process/chemistry/htmlProcess()
+	return ..() + "[active_holders.len] reagent holders"
+
 /datum/controller/process/chemistry/doWork()
 	for(last_object in active_holders)
 		var/datum/reagents/holder = last_object

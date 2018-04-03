@@ -343,6 +343,12 @@
 	var/highestRunTime = round(getHighestRunTime(), 0.1)/10
 	stat("[name]", "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]")
 
+/datum/controller/process/proc/htmlProcess()
+	var/averageRunTime = round(getAverageRunTime(), 0.1)/10
+	var/lastRunTime = round(getLastRunTime(), 0.1)/10
+	var/highestRunTime = round(getHighestRunTime(), 0.1)/10
+	return "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]<br>"
+
 /datum/controller/process/proc/catchException(var/exception/e, var/thrower)
 	if(ispath(thrower) || istext(thrower))
 		log_to_dd("PROCESS SCHEDULER: [src].catchException() was given a path or text type, [thrower], which was set to null.")

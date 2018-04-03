@@ -17,6 +17,9 @@ var/datum/controller/process/battlereport/battlereport
 	..()
 	stat(null, "Next battle report: [max_BR_ticks - BR_ticks] seconds")
 
+/datum/controller/process/battlereport/htmlProcess()
+	return ..() + "Next battle report: [max_BR_ticks - BR_ticks] seconds"
+
 /datum/controller/process/battlereport/doWork()
 	++BR_ticks
 	if (BR_ticks >= max_BR_ticks)

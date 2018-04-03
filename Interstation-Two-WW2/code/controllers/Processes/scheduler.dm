@@ -30,6 +30,9 @@
 	..()
 	stat(null, "[scheduled_tasks.len] task\s")
 
+/datum/controller/process/scheduler/htmlProcess()
+	return ..() + "[scheduled_tasks.len] tasks"
+
 /datum/controller/process/scheduler/proc/schedule(var/datum/scheduled_task/st)
 	scheduled_tasks += st
 	destroyed_event.register(st, src, /datum/controller/process/scheduler/proc/unschedule)

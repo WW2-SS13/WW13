@@ -84,3 +84,6 @@ var/datum/controller/process/zoom/zoom_process = null
 /datum/controller/process/zoom/statProcess()
 	..()
 	stat(null, "[zoom_processing_objects.len] mobs")
+
+/datum/controller/process/zoom/htmlProcess()
+	return ..() + "[zoom_processing_objects.len] mobs"

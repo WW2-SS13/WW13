@@ -68,4 +68,7 @@ var/datum/controller/process/burning/burning_process = null
 /datum/controller/process/burning/statProcess()
 	..()
 	stat(null, "[burning_objs.len] objects")
-	stat(null, "[burning_turfs.len] objects")
+	stat(null, "[burning_turfs.len] turfs")
+
+/datum/controller/process/burning/htmlProcess()
+	return ..() + "[burning_objs.len] objects<br>[burning_turfs.len] turfs"

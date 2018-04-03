@@ -76,3 +76,6 @@ var/datum/controller/process/mob/mob_process = null
 /datum/controller/process/mob/statProcess()
 	..()
 	stat(null, "[mob_list.len] mobs")
+
+/datum/controller/process/mob/htmlProcess()
+	return ..() + "[mob_list.len] mobs"

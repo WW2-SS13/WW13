@@ -696,9 +696,9 @@
 				if (client.holder.rights & R_MOD)
 					stat("Location:", "([x], [y], [z]) - [loc ? loc : "nullspace"]")
 				stat("Object Count:","[world.contents.len] Datums")
-			if(statpanel("Processes"))
+/*			if(statpanel("Processes"))
 				if(processScheduler)
-					processScheduler.statProcesses()
+					processScheduler.statProcesses()*/
 
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))

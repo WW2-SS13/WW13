@@ -36,3 +36,6 @@ var/datum/controller/process/dog/dog_process = null
 /datum/controller/process/dog/statProcess()
 	..()
 	stat(null, "[dog_mob_list.len] mobs")
+
+/datum/controller/process/dog/htmlProcess()
+	return ..() + "[dog_mob_list.len] mobs"

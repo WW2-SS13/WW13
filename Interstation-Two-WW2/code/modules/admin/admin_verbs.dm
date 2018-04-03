@@ -12,6 +12,7 @@ var/list/admin_verbs_default = list(
 	/client/proc/see_bug_reports,
 	/client/proc/see_suggestions,
 	/client/proc/see_world_realtime,
+	/client/proc/see_processes,
 	/client/proc/giveruntimelog,		//allows us to give access to runtime logs to somebody,
 	/client/proc/getserverlog,			//allows us to fetch server logs (diary) for other days,
 	/client/proc/getruntimelog                     // allows us to access runtime logs to somebody,
