@@ -234,6 +234,7 @@
 /mob/living/carbon/human/var/next_stamina_message = -1
 /mob/var/next_snow_message = -1
 /mob/var/next_mud_message = -1
+/mob/var/lastdir = null
 
 /client/Move(n, direct)
 
@@ -527,6 +528,8 @@
 		//We are now going to move
 		moving = TRUE
 
+			sleep(run_delay_maximum * 1.5)
+
 		//Something with grabbing things
 		if(locate(/obj/item/weapon/grab, mob))
 		//	move_delay = max(move_delay, world.time + 7)
@@ -569,6 +572,8 @@
 			step(mob, pick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
+
+		mob.lastdir = direct
 
 		skipgrab
 
