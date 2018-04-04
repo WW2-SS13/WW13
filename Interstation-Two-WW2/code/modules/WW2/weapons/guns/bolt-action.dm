@@ -10,9 +10,8 @@
 	throwforce = 20
 	max_shells = 5
 	slot_flags = SLOT_BACK
-//	origin_tech = "combat=4;materials=2;syndicate=8"
 	caliber = "a792x54"
-	recoil = TRUE //extra kickback
+	recoil = 2 //extra kickback
 	//fire_sound = 'sound/weapons/sniper.ogg'
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING | SPEEDLOADER
@@ -22,17 +21,69 @@
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = TRUE
 	scoped_accuracy = 2
+	gun_type = GUN_TYPE_RIFLE
+	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
+	accuracy_increase_mod = 2.00
+	accuracy_decrease_mod = 6.00
+	KD_chance = KD_CHANCE_HIGH
+	stat = "rifle"
+	move_delay = 2
+
+	// 5x as accurate as MGs for now
+	accuracy_list = list(
+
+		// small body parts: head, hand, feet
+		"small" = list(
+			SHORT_RANGE_STILL = 90,
+			SHORT_RANGE_MOVING = 45,
+
+			MEDIUM_RANGE_STILL = 80,
+			MEDIUM_RANGE_MOVING = 40,
+
+			LONG_RANGE_STILL = 70,
+			LONG_RANGE_MOVING = 35,
+
+			VERY_LONG_RANGE_STILL = 60,
+			VERY_LONG_RANGE_MOVING = 30),
+
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 95,
+			SHORT_RANGE_MOVING = 48,
+
+			MEDIUM_RANGE_STILL = 85,
+			MEDIUM_RANGE_MOVING = 43,
+
+			LONG_RANGE_STILL = 75,
+			LONG_RANGE_MOVING = 38,
+
+			VERY_LONG_RANGE_STILL = 65,
+			VERY_LONG_RANGE_MOVING = 33),
+
+		// large body parts: chest, groin
+		"large" = list(
+			SHORT_RANGE_STILL = 100,
+			SHORT_RANGE_MOVING = 50,
+
+			MEDIUM_RANGE_STILL = 90,
+			MEDIUM_RANGE_MOVING = 45,
+
+			LONG_RANGE_STILL = 80,
+			LONG_RANGE_MOVING = 40,
+
+			VERY_LONG_RANGE_STILL = 70,
+			VERY_LONG_RANGE_MOVING = 35),
+	)
+
 	var/bolt_open = FALSE
 	var/check_bolt = FALSE //Keeps the bolt from being interfered with
 	var/check_bolt_lock = FALSE //For locking the bolt. Didn't put this in with check_bolt to avoid issues
 	var/bolt_safety = FALSE //If true, locks the bolt when gun is empty
+	var/next_reload = -1
+	var/jammed_until = -1
+	var/jamcheck = 0
+	var/last_fire = -1
 
-/obj/item/weapon/gun/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/attachment))
-		var/obj/item/weapon/attachment/A = I
-		if(A.attachable)
-			try_attach(A, user)
-	..()
 
 /obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user)
 	if(!check_bolt)//Keeps people from spamming the bolt
@@ -86,67 +137,6 @@
 		return
 	..()
 
-/obj/item/weapon/gun/projectile/boltaction
-	recoil = 2
-	gun_type = GUN_TYPE_RIFLE
-	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
-	var/next_reload = -1
-
-	// 5x as accurate as MGs for now
-	accuracy_list = list(
-
-		// small body parts: head, hand, feet
-		"small" = list(
-			SHORT_RANGE_STILL = 90,
-			SHORT_RANGE_MOVING = 45,
-
-			MEDIUM_RANGE_STILL = 80,
-			MEDIUM_RANGE_MOVING = 40,
-
-			LONG_RANGE_STILL = 70,
-			LONG_RANGE_MOVING = 35,
-
-			VERY_LONG_RANGE_STILL = 60,
-			VERY_LONG_RANGE_MOVING = 30),
-
-		// medium body parts: limbs
-		"medium" = list(
-			SHORT_RANGE_STILL = 95,
-			SHORT_RANGE_MOVING = 48,
-
-			MEDIUM_RANGE_STILL = 85,
-			MEDIUM_RANGE_MOVING = 43,
-
-			LONG_RANGE_STILL = 75,
-			LONG_RANGE_MOVING = 38,
-
-			VERY_LONG_RANGE_STILL = 65,
-			VERY_LONG_RANGE_MOVING = 33),
-
-		// large body parts: chest, groin
-		"large" = list(
-			SHORT_RANGE_STILL = 100,
-			SHORT_RANGE_MOVING = 50,
-
-			MEDIUM_RANGE_STILL = 90,
-			MEDIUM_RANGE_MOVING = 45,
-
-			LONG_RANGE_STILL = 80,
-			LONG_RANGE_MOVING = 40,
-
-			VERY_LONG_RANGE_STILL = 70,
-			VERY_LONG_RANGE_MOVING = 35),
-	)
-
-	accuracy_increase_mod = 2.00
-	accuracy_decrease_mod = 6.00
-	KD_chance = KD_CHANCE_HIGH
-	stat = "rifle"
-
-	var/jammed_until = -1
-	var/jamcheck = 0
-	var/last_fire = -1
-
 // rifles take 0.3 seconds to fire now, meaning they're weaker than SMGs at close range
 /obj/item/weapon/gun/projectile/boltaction/special_check(var/mob/user)
 	. = ..()
@@ -190,6 +180,7 @@
 	fire_sound = 'sound/weapons/mosin_shot.ogg'
 	caliber = "a762x54"
 	weight = 4.0
+	effectiveness_mod = 0.97
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
 /obj/item/weapon/gun/projectile/boltaction/mosin/update_icon(var/add_scope = FALSE)
@@ -222,6 +213,7 @@
 	ammo_type = /obj/item/ammo_casing/a792x57
 	magazine_type = /obj/item/ammo_magazine/kar98k
 	bolt_safety = TRUE
+	effectiveness_mod = 1.03
 
 /obj/item/weapon/gun/projectile/boltaction/kar98k/New()
 	..()

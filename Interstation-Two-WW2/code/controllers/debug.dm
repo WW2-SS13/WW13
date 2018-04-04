@@ -79,7 +79,6 @@ var/list/special_globalobjects = list("processScheduler", "Master", "Ticker", "C
 				debug_variables(job_master)
 
 		else
-			log_debug(datum)
 			debug_variables(processScheduler.nameToProcessMap[datum])
 
 	message_admins("Admin [key_name_admin(usr)] is debugging the [datum] controller.")

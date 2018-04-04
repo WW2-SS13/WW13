@@ -13,7 +13,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	handle_casings = HOLD_CASINGS
 	stat = "shotgun"
-	var/recentpump = FALSE // to prevent spammage
+	move_delay = 4
 
 	// as accurate as SMGs
 	accuracy_list = list(
@@ -65,6 +65,8 @@
 	accuracy_decrease_mod = 1.00
 	KD_chance = KD_CHANCE_HIGH
 	stat = "heavy"
+
+	var/recentpump = FALSE // to prevent spammage
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)

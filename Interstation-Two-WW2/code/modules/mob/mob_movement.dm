@@ -1,4 +1,4 @@
-/mob/var/velocity = FALSE
+/mob/var/velocity = 0
 /mob/var/velocity_lastdir = -1 // turning makes you lose TRUE or 2 velocity
 /mob/var/run_delay_maximum = 2.2 // was 1.75
 
@@ -233,10 +233,10 @@
 	return
 
 
-/mob/living/carbon/human/var/next_stamina_message = -1
+
 /mob/var/next_snow_message = -1
 /mob/var/next_mud_message = -1
-/mob/var/lastdir = null
+/mob/living/carbon/human/var/next_stamina_message = -1
 
 /client/Move(n, direct)
 
@@ -444,8 +444,6 @@
 			if("run")
 				mob.velocity = min(mob.velocity+1, 15)
 				mob.velocity_lastdir = direct
-				if(mob.drowsyness > 0)
-					move_delay += 6
 				move_delay += (mob.get_run_delay()/mob.movement_speed_multiplier) + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
@@ -460,6 +458,9 @@
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.002
 					H.water -= 0.002
+
+		if(mob.drowsyness > 0)
+			move_delay += 3
 
 		if (mob.pulling)
 			if (istype(mob.pulling, /mob))
@@ -530,9 +531,6 @@
 		//We are now going to move
 		moving = TRUE
 
-		if (mob.lastdir && mob.lastdir != direct && mob.velocity >= 12)
-			sleep(mob.run_delay_maximum * 1.5)
-
 		//Something with grabbing things
 		if(locate(/obj/item/weapon/grab, mob))
 		//	move_delay = max(move_delay, world.time + 7)
@@ -575,8 +573,6 @@
 			step(mob, pick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
-
-		mob.lastdir = direct
 
 		skipgrab
 

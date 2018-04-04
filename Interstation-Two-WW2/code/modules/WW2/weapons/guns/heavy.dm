@@ -1,3 +1,56 @@
+/obj/item/weapon/gun/projectile/heavy
+	gun_type = GUN_TYPE_HEAVY
+	// mg accuracy now - Kachnov
+	accuracy_list = list(
+
+		// small body parts: head, hand, feet
+		"small" = list(
+			SHORT_RANGE_STILL = 30,
+			SHORT_RANGE_MOVING = 27,
+
+			MEDIUM_RANGE_STILL = 21,
+			MEDIUM_RANGE_MOVING = 19,
+
+			LONG_RANGE_STILL = 11,
+			LONG_RANGE_MOVING = 10,
+
+			VERY_LONG_RANGE_STILL = 8,
+			VERY_LONG_RANGE_MOVING = 7),
+
+		// medium body parts: limbs
+		"medium" = list(
+			SHORT_RANGE_STILL = 38,
+			SHORT_RANGE_MOVING = 34,
+
+			MEDIUM_RANGE_STILL = 30,
+			MEDIUM_RANGE_MOVING = 27,
+
+			LONG_RANGE_STILL = 23,
+			LONG_RANGE_MOVING = 21,
+
+			VERY_LONG_RANGE_STILL = 11,
+			VERY_LONG_RANGE_MOVING = 10),
+
+		// large body parts: chest, groin
+		"large" = list(
+			SHORT_RANGE_STILL = 45,
+			SHORT_RANGE_MOVING = 41,
+
+			MEDIUM_RANGE_STILL = 38,
+			MEDIUM_RANGE_MOVING = 34,
+
+			LONG_RANGE_STILL = 30,
+			LONG_RANGE_MOVING = 27,
+
+			VERY_LONG_RANGE_STILL = 15,
+			VERY_LONG_RANGE_MOVING = 14),
+	)
+
+	accuracy_increase_mod = 2.00
+	accuracy_decrease_mod = 6.00
+	KD_chance = KD_CHANCE_HIGH
+	stat = "heavy"
+
 /obj/item/weapon/gun/projectile/heavy/ptrd
 	name = "PTRD anti-tank rifle"
 	desc = "A portable anti-armour rifle. Uses 14.5mm shells."
@@ -13,58 +66,11 @@
 	load_method = SINGLE_CASING | SPEEDLOADER
 	max_shells = TRUE
 	ammo_type = /obj/item/ammo_casing/a145
-	gun_type = GUN_TYPE_HEAVY
 
-	// extremely inaccurate at all ranges
-	accuracy_list = list(
+	firemodes = list(
+		list(name="single shot",	burst=1, move_delay=4, fire_delay=10, dispersion = list(0))
+		)
 
-		// small body parts: head, hand, feet
-		"small" = list(
-			SHORT_RANGE_STILL = 5,
-			SHORT_RANGE_MOVING = 5,
-
-			MEDIUM_RANGE_STILL = 5,
-			MEDIUM_RANGE_MOVING = 5,
-
-			LONG_RANGE_STILL = 5,
-			LONG_RANGE_MOVING = 5,
-
-			VERY_LONG_RANGE_STILL = 5,
-			VERY_LONG_RANGE_MOVING = 5),
-
-		// medium body parts: limbs
-		"medium" = list(
-			SHORT_RANGE_STILL = 5,
-			SHORT_RANGE_MOVING = 5,
-
-			MEDIUM_RANGE_STILL = 5,
-			MEDIUM_RANGE_MOVING = 5,
-
-			LONG_RANGE_STILL = 5,
-			LONG_RANGE_MOVING = 5,
-
-			VERY_LONG_RANGE_STILL = 5,
-			VERY_LONG_RANGE_MOVING = 5),
-
-		// large body parts: chest, groin
-		"large" = list(
-			SHORT_RANGE_STILL = 5,
-			SHORT_RANGE_MOVING = 5,
-
-			MEDIUM_RANGE_STILL = 5,
-			MEDIUM_RANGE_MOVING = 5,
-
-			LONG_RANGE_STILL = 5,
-			LONG_RANGE_MOVING = 5,
-
-			VERY_LONG_RANGE_STILL = 5,
-			VERY_LONG_RANGE_MOVING = 5),
-	)
-
-	accuracy_increase_mod = 2.00
-	accuracy_decrease_mod = 6.00
-	KD_chance = KD_CHANCE_HIGH
-	stat = "heavy"
 
 /obj/item/weapon/gun/projectile/heavy/ptrd/german
 	name = "14.5mm PaB 783"

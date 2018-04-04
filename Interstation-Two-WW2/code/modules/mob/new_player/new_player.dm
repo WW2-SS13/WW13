@@ -13,8 +13,8 @@
 /mob/new_player
 	var/ready = FALSE
 	var/spawning = FALSE//Referenced when you want to delete the new_player later on in the code.
-	var/totalPlayers = FALSE		 //Player counts for the Lobby tab
-	var/totalPlayersReady = FALSE
+	var/totalPlayers = 0		 //Player counts for the Lobby tab
+	var/totalPlayersReady = 0
 	var/desired_job = null // job title. This is for join queues.
 	var/datum/job/delayed_spawning_as_job = null // job title. Self explanatory.
 	universal_speak = TRUE
@@ -94,32 +94,26 @@
 		stat(stat_header("Lobby"))
 		stat("")
 
-	/*	if(ticker.hide_mode)
-			stat("Game Mode:", "Secret")
-		else
-			if(ticker.hide_mode == FALSE)
-				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
-*/
 		// by counting observers, our playercount now looks more impressive - Kachnov
 		if(ticker.current_state == GAME_STATE_PREGAME)
 			stat("Time Until Joining Allowed:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
-//			stat("","")
-//			stat("Players: [totalPlayers]")
-//			stat("","")
 
-			totalPlayers = FALSE
+		stat("Players in lobby:", totalPlayers)
+		stat("")
+		stat("")
 
-			for(var/mob/new_player/player in player_list)
-				stat("[player.key]", " (Playing)")
-				++totalPlayers
+		totalPlayers = 0
 
-			for (var/mob/observer/observer in player_list)
-				stat("[observer.key]", " (Observing)")
-				++totalPlayers
+		for (var/player in new_player_mob_list)
+			stat(player)
+			++totalPlayers
 
-	stat("", "")
+		stat("")
 
-	if (reinforcements_master)
+	if (reinforcements_master && reinforcements_master.is_ready())
+		stat("")
+		stat(stat_header("Reinforcements"))
+		stat("")
 		var/list/reinforcements_info = reinforcements_master.get_status_addendums()
 		for (var/v in reinforcements_info)
 			if (findtext(v, ":")) // because apparently splittext doesn't work how I thought it did, this failed when we didn't have a ":" anywhere
@@ -136,8 +130,6 @@
 					stat(split[1])
 			else
 				stat(v, "")
-
-
 	..()
 
 

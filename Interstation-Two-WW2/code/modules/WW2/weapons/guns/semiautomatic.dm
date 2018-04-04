@@ -132,6 +132,7 @@
 	force = 10
 	throwforce = 20
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL
+	effectiveness_mod = 1.05
 
 /obj/item/weapon/gun/projectile/semiautomatic/g41/update_icon()
 	..()
@@ -152,14 +153,12 @@
 	slot_flags = SLOT_BACK
 	w_class = 4
 	caliber = "7.92x57mm"
-	//fire_sound =
-	//load_magazine_sound =
 	magazine_type = /obj/item/ammo_magazine/c792x57_fg42
 	ammo_type = /obj/item/ammo_casing/c792x57_fg42
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_BARREL|ATTACH_SCOPE
 
 	firemodes = list(
-		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=1, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
+		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
 		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		list(name="long bursts",	burst=5, burst_delay=1.2, move_delay=4, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
 		)
@@ -219,7 +218,7 @@
 	weight = 4.6
 
 	firemodes = list(
-		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=1, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
+		list(name="semi automatic",	burst=1, burst_delay=0.8, move_delay=2, dispersion = list(0.2, 0.4, 0.4, 0.4, 0.6)),
 		list(name="short bursts",	burst=3, burst_delay=1.0, move_delay=3, dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
 		list(name="long bursts",	burst=5, burst_delay=1.2, move_delay=4, dispersion = list(1.0, 1.4, 1.4, 1.4, 1.6)),
 		)
