@@ -37,7 +37,11 @@ var/global/obj/map_metadata/map = null
 	map = src
 	icon = null
 	icon_state = null
-	available_subfactions = list(available_subfactions[rand(1, available_subfactions.len)])
+
+	if (prob(100 - round((100/(available_subfactions.len+1)))))
+		available_subfactions = list(available_subfactions[rand(1, available_subfactions.len)])
+	else
+		available_subfactions = list()
 
 // called from the ticker process
 /obj/map_metadata/proc/tick()
