@@ -185,7 +185,7 @@
 		return FALSE
 
 	if (!anchored)
-		user << "<span class = 'danger'>The artillery piece must be anchored to use.</span>"
+		user << "<span class = 'danger'>The artillery piece must be wrenched to the ground to use.</span>"
 		return FALSE
 
 	var/value = href_list["value"]
@@ -420,7 +420,7 @@
 	else if (istype(W, /obj/item/artillery_ammo) && !istype(W, /obj/item/artillery_ammo/none))
 		if (!istype(src, /obj/machinery/artillery/nebel))
 			if (!anchored)
-				user << "<span class = 'danger'>The artillery piece must be anchored to use.</span>"
+				user << "<span class = 'danger'>The artillery piece must be wrench to the ground to use.</span>"
 				return
 			if (state == "CLOSED")
 				user << "<span class = 'danger'>The shell loading slot must be open to add a shell.</span>"

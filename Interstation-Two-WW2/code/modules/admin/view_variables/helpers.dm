@@ -34,12 +34,14 @@
 // Same for these as for get_view_variables_header() above
 /client/proc/get_view_variables_options()
 	return ""
+
 /datum/proc/get_view_variables_options()
 	return ""
 
 /mob/get_view_variables_options()
 	return ..() + {"
 		<option value='?_src_=vars;mob_player_panel=\ref[src]'>Show player panel</option>
+		<option value='?_src_=vars;delall=\ref[src]'>Delete all of type</option>
 		<option>---</option>
 		<option value='?_src_=vars;give_spell=\ref[src]'>Give Spell</option>
 		<option value='?_src_=vars;give_disease2=\ref[src]'>Give Disease</option>

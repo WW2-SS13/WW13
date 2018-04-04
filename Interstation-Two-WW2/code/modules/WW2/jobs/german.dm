@@ -315,7 +315,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a doctor. Your job is to stay back at base and treat wounded that come in from the front, as well as treat prisoners and base personnel.</span>"
 	H.give_radio()
-	H.setStat("strength", STAT_LOW)
+	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_VERY_LOW)
 	H.setStat("medical", STAT_VERY_HIGH)
 
