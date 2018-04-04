@@ -142,45 +142,49 @@
 	else if(href_list["delall"])
 		if(!check_rights(R_DEBUG|R_SERVER))	return
 
-		var/obj/O = locate(href_list["delall"])
-		if(!isobj(O))
-			usr << "This can only be used on instances of type /obj"
+		var/atom/movable/AM = locate(href_list["delall"])
+		if(!ismovable(AM))
+			usr << "This can only be used on instances of type /atom/movable"
 			return
 
-		var/action_type = alert("Strict type ([O.type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
+		else if (istype(AM, /mob/living/carbon/human))
+			usr << "You can't delete all of this type."
+			return
+
+		var/action_type = alert("Strict type ([AM.type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
 		if(action_type == "Cancel" || !action_type)
 			return
 
-		if(alert("Are you really sure you want to delete all objects of type [O.type]?",,"Yes","No") != "Yes")
+		if(alert("Are you really sure you want to delete all objects of type [AM.type]?",,"Yes","No") != "Yes")
 			return
 
 		if(alert("Second confirmation required. Delete?",,"Yes","No") != "Yes")
 			return
 
-		var/O_type = O.type
+		var/AM_type = AM.type
 		switch(action_type)
 			if("Strict type")
 				var/i = FALSE
-				for(var/obj/Obj in world)
-					if(Obj.type == O_type)
+				for(var/atom/movable/AM2 in world)
+					if(AM2.type == AM_type)
 						i++
-						qdel(Obj)
+						qdel(AM2)
 				if(!i)
 					usr << "No objects of this type exist"
 					return
-				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)")
-				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)</span>")
+				log_admin("[key_name(usr)] deleted all objects of type [AM_type] ([i] objects deleted)")
+				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [AM_type] ([i] objects deleted)</span>")
 			if("Type and subtypes")
 				var/i = FALSE
-				for(var/obj/Obj in world)
-					if(istype(Obj,O_type))
+				for(var/atom/movable/AM2 in world)
+					if(istype(AM2,AM_type))
 						i++
-						qdel(Obj)
+						qdel(AM2)
 				if(!i)
 					usr << "No objects of this type exist"
 					return
-				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted)")
-				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted)</span>")
+				log_admin("[key_name(usr)] deleted all objects of type or subtype of [AM_type] ([i] objects deleted)")
+				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [AM_type] ([i] objects deleted)</span>")
 
 	else if(href_list["explode"])
 		if(!check_rights(R_DEBUG|R_FUN))	return
