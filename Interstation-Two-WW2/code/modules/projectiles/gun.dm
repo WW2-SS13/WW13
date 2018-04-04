@@ -468,6 +468,8 @@
 /obj/item/weapon/gun/proc/handle_shoot_self(var/mob/living/carbon/human/user)
 	if(!istype(user))
 		return
+	if(!special_check(user))
+		return
 
 	var/_burst = 1
 	var/datum/firemode/firemode = firemodes[sel_mode]

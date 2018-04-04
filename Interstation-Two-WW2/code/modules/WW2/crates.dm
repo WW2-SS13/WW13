@@ -437,29 +437,29 @@
 	name = "Rations: H20"
 
 
-// 5 wood planks with 25 each = 125 wood planks (25 barricades)
+// 5 wood planks with 20 each = 100 wood planks (20 barricades)
 /obj/structure/closet/crate/wood/New()
 	..()
-	update_capacity(4)
-	for (var/v in 1 to 4)
+	update_capacity(5)
+	for (var/v in 1 to 5)
 		var/obj/item/stack/S = new/obj/item/stack/material/wood(src)
-		S.amount = 25
+		S.amount = 20
 
-// 5 steel sheets with 25 each = 125 steel sheets
+// 5 steel sheets with 20 each = 100 steel sheets (20 barricades)
 /obj/structure/closet/crate/steel/New()
 	..()
-	update_capacity(4)
-	for (var/v in 1 to 4)
+	update_capacity(5)
+	for (var/v in 1 to 5)
 		var/obj/item/stack/S = new/obj/item/stack/material/steel(src)
-		S.amount = 25
+		S.amount = 20
 
-// 5 iron ingots with 25 each = 125 iron ingots
+// 5 iron ingots with 20 each = 100 iron ingots
 /obj/structure/closet/crate/iron/New()
 	..()
-	update_capacity(4)
-	for (var/v in 1 to 4)
+	update_capacity(5)
+	for (var/v in 1 to 5)
 		var/obj/item/stack/S = new/obj/item/stack/material/iron(src)
-		S.amount = 25
+		S.amount = 20
 
 // 5 glass with 10 each = 50 glass sheets
 /obj/structure/closet/crate/glass/New()

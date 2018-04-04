@@ -550,6 +550,9 @@ var/list/VVckey_edit = list("key", "ckey")
 		if("text")
 			var/var_new = input("Enter new text:","Text",O.vars[variable]) as null|text
 			if(var_new==null) return
+			if(list("ckey", "key").Find(variable) && list(usr.ckey, usr.key).Find(var_new))
+				usr << "<span class = 'danger'>Use the player panel to spawn yourself in as a mob.</span>"
+				return
 			O.vars[variable] = var_new
 
 		if("num")

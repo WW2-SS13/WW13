@@ -8,6 +8,7 @@
 	flags = OPENCONTAINER | NOREACT
 	var/base_state = "oven"
 	var/on = FALSE
+	var/max_space = 7
 
 /obj/structure/oven/update_icon()
 	if (on)
@@ -17,6 +18,12 @@
 
 /obj/structure/oven/attackby(var/obj/item/I, var/mob/living/carbon/human/H)
 	if (!istype(H))
+		return
+	var/space = max_space
+	for (var/obj/item/II in contents)
+		space -= II.w_class
+	if (space <= 0 || space - I.w_class < 0)
+		H << "<span class = 'warning'>The oven is full.</span>"
 		return
 	H.remove_from_mob(I)
 	I.loc = src
