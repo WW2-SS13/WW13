@@ -118,6 +118,48 @@
 	)
 //	idle_power_usage = 0
 
+/obj/structure/vending/SSequipment_train
+	name = "SS equipment rack"
+	desc = "Basic equip for SS soldiers."
+	icon_state = "apparel_german"
+	products = list(
+		/obj/item/clothing/head/helmet/tactical/gerhelm/sshelm = 12,
+		/obj/item/clothing/mask/gas/german = 12,
+		/obj/item/clothing/suit/sssmock = 12,
+		/obj/item/clothing/under/geruni/ssuni = 12,
+		/obj/item/clothing/under/geruni/sscamo = 6,
+		/obj/item/clothing/shoes/swat = 12,
+		/obj/item/clothing/accessory/storage/webbing = 12,
+		/obj/item/weapon/gauze_pack/gauze = 10,
+		/obj/item/device/flashlight = 10,
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 15,
+	)
+
+/obj/structure/vending/SSweaponrack
+	name = "SS weapon rack"
+	desc = "Rack filled with weapons."
+	icon_state = "equipment_german"
+	products = list(
+		/obj/item/weapon/gun/projectile/boltaction/kar98k = 4,
+		/obj/item/weapon/gun/projectile/submachinegun/mp40 = 6,
+		/obj/item/weapon/attachment/bayonet/german = 10,
+
+		/obj/item/weapon/gun/projectile/pistol/mauser = 12,
+
+		/obj/item/ammo_magazine/kar98k = 30,
+		/obj/item/ammo_magazine/mp40 = 24,
+		/obj/item/ammo_magazine/a762/akm = 10,
+		/obj/item/ammo_magazine/c763x25mm_mauser = 24,
+
+		/obj/item/weapon/grenade/explosive/stgnade = 7,
+		/obj/item/weapon/grenade/explosive/l2a2 = 7,
+		/obj/item/weapon/grenade/smokebomb/german = 21,
+
+		/obj/item/weapon/shovel/spade/russia = 10,
+		/obj/item/weapon/material/kitchen/utensil/knife/boot = 10,
+
+	)
+
 /obj/structure/vending/sovietequipment
 	name = "Soviet equipment rack"
 	desc = "Basic equip for Soviet soldiers."

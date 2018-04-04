@@ -670,6 +670,7 @@
 // italian areas
 /area/prishtina/italian_base
 	name = "Italian Base"
+	icon_state = "green3"
 	location = AREA_INSIDE
 
 // soviet areas

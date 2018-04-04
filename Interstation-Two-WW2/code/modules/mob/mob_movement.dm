@@ -24,7 +24,7 @@
 
 	var/slowdown = 0
 	var/weight = 0
-	var/max_weight = (((getStatCoeff("strength")-1)/2)+1) * 37
+	var/max_weight = (((getStatCoeff("strength")-1)/2)+1) * 59
 	var/heavy = FALSE
 	for (var/obj/item/I in contents)
 		if(I.heavy)
@@ -36,7 +36,9 @@
 
 	if (weight == 0 && !heavy)
 		slowdown = 0
-	else if ((weight > max_weight * 0.25 || heavy) && weight <= max_weight * 0.65)
+	else if (weight > max_weight * 0.25 && weight <= max_weight * 0.45)
+		slowdown = 0.22
+	else if ((weight > max_weight * 0.45 || heavy) && weight <= max_weight * 0.65)
 		slowdown = 0.33
 	else if (weight > max_weight * 0.65 && weight <= max_weight * 0.75)
 		slowdown = 0.44
