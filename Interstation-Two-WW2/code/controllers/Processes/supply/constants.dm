@@ -158,6 +158,7 @@ var/static/list/supply_crate_costs = list(
 	"Shrapnel Grenades" = 100,
 	"Panzerfausts" = 200,
 	"Smoke Grenades" = 75,
+	"Mortar Shells" = 125,
 	"Gas Mask Crate" = 100,
 	"Barbwire Crate" = 100,
 	"Sandbags Crate" = 100,
