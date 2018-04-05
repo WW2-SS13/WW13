@@ -622,11 +622,11 @@ var/area/partisan_stockpile = null
 			qdel(src)
 			return
 		if ("artillery_spawn")
-			new/obj/machinery/artillery(loc, null, SOUTH)
+			new/obj/structure/artillery(loc, null, SOUTH)
 			qdel(src)
 			return
 		if ("nebel_artillery_spawn")
-			new/obj/machinery/artillery/nebel(loc, null, SOUTH)
+			new/obj/structure/artillery/nebel(loc, null, SOUTH)
 			qdel(src)
 			return
 		if("bluespacerift")

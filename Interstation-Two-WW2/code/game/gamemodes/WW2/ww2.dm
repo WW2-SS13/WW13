@@ -295,8 +295,8 @@
 
 		if (!istype(aspect, /datum/game_aspect/ww2/no_artillery))
 			if (clients.len <= ARTILLERY_LOWPOP_THRESHOLD)
-				if (locate(/obj/machinery/artillery) in world)
-					for (var/obj/machinery/artillery/A in world)
+				if (locate(/obj/structure/artillery) in world)
+					for (var/obj/structure/artillery/A in world)
 						qdel(A)
 					for (var/obj/structure/closet/crate/artillery/C in world)
 						qdel(C)

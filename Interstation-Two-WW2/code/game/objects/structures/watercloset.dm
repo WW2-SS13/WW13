@@ -12,6 +12,18 @@
 	var/w_items = FALSE			//the combined w_class of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
 
+/obj/structure/toilet/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			qdel(src)
+			return
+		if(2.0)
+			if(prob(10))
+				qdel(src)
+				return
+		if(3.0)
+			return
+
 /obj/structure/toilet/New()
 	open = round(rand(0, TRUE))
 	update_icon()
@@ -108,6 +120,18 @@
 	density = FALSE
 	anchored = TRUE
 
+/obj/structure/urinal/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			qdel(src)
+			return
+		if(2.0)
+			if(prob(10))
+				qdel(src)
+				return
+		if(3.0)
+			return
+
 /obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
@@ -124,7 +148,7 @@
 
 
 
-/obj/machinery/shower
+/obj/structure/shower
 	name = "shower"
 	desc = "The HS-451. Installed in the 2550s by the Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
@@ -139,9 +163,26 @@
 	var/is_washing = FALSE
 	var/list/temperature_settings = list("normal" = 310, "boiling" = T0C+100, "freezing" = T0C)
 
-/obj/machinery/shower/New()
+/obj/structure/shower/New()
 	..()
 	create_reagents(50)
+	processing_objects += src
+
+/obj/structure/shower/Del()
+	processing_objects -= src
+	..()
+
+/obj/structure/shower/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			qdel(src)
+			return
+		if(2.0)
+			if(prob(10))
+				qdel(src)
+				return
+		if(3.0)
+			return
 
 //add heat controls? when emagged, you can freeze to death in it?
 
@@ -153,7 +194,7 @@
 	anchored = TRUE
 	mouse_opacity = FALSE
 
-/obj/machinery/shower/attack_hand(mob/M as mob)
+/obj/structure/shower/attack_hand(mob/M as mob)
 	on = !on
 	update_icon()
 	if(on)
@@ -163,7 +204,7 @@
 		for (var/atom/movable/G in loc)
 			G.clean_blood()
 
-/obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/shower/attackby(obj/item/I as obj, mob/user as mob)
 //	if(I.type == /obj/item/device/analyzer)
 	//	user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
 	if(istype(I, /obj/item/weapon/wrench))
@@ -175,7 +216,7 @@
 			user.visible_message("<span class='notice'>\The [user] adjusts \the [src] with \the [I].</span>", "<span class='notice'>You adjust the shower with \the [I].</span>")
 			add_fingerprint(user)
 
-/obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
+/obj/structure/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
 	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
 	if(mymist)
 		qdel(mymist)
@@ -203,7 +244,7 @@
 				ismist = FALSE
 
 //Yes, showers are super powerful as far as washing goes.
-/obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
+/obj/structure/shower/proc/wash(atom/movable/O as obj|mob)
 	if(!on) return
 
 	if(isliving(O))
@@ -296,7 +337,7 @@
 
 	reagents.splash(O, 10)
 
-/obj/machinery/shower/process()
+/obj/structure/shower/process()
 	if(!on) return
 
 	for(var/thing in loc)
@@ -309,7 +350,7 @@
 	wash_floor()
 	reagents.add_reagent("water", reagents.get_free_space())
 
-/obj/machinery/shower/proc/wash_floor()
+/obj/structure/shower/proc/wash_floor()
 	if(!ismist && is_washing)
 		return
 	is_washing = TRUE
@@ -319,7 +360,7 @@
 	spawn(100)
 		is_washing = FALSE
 
-/obj/machinery/shower/proc/process_heat(mob/living/M)
+/obj/structure/shower/proc/process_heat(mob/living/M)
 	if(!on || !istype(M)) return
 
 	var/temperature = temperature_settings[watertemp]
@@ -350,6 +391,18 @@
 	anchored = TRUE
 	var/busy = FALSE 	//Something's being washed at the moment
 	var/sound = 'sound/effects/sink.ogg'
+
+/obj/structure/sink/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			qdel(src)
+			return
+		if(2.0)
+			if(prob(10))
+				qdel(src)
+				return
+		if(3.0)
+			return
 
 /obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
 	..()

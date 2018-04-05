@@ -513,7 +513,7 @@
 
 /mob/new_player/proc/LateChoices()
 
-	var/arty = locate(/obj/machinery/artillery) in world
+	var/arty = locate(/obj/structure/artillery) in world
 	var/fallschirms = fallschirm_landmarks.len
 	var/german_tank = FALSE
 	var/soviet_tank = FALSE
