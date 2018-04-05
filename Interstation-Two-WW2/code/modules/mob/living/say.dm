@@ -54,8 +54,8 @@ var/list/department_radio_keys = list(
 	  ":z" = "Entertainment",".z" = "Entertainment",
 )
 
-var/list/radio_prefixes = list(";", ":b", ":l", ":r", ":t",
-	":B", ":L", ":R", ":T")
+var/list/radio_prefixes = list(";", ":b", ":l", ":r", ":t", ":f",
+	":B", ":L", ":R", ":T", ":F")
 
 var/list/channel_to_radio_key = new
 proc/get_radio_key_from_channel(var/channel)

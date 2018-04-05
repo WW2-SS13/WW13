@@ -424,8 +424,9 @@
 /obj/structure/closet/crate/rations/soviet_liquids
 	name = "Rations: liquids"
 
+/*
 /obj/structure/closet/crate/rations/soviet_desserts
-	name = "Rations: dessert"
+	name = "Rations: dessert"*/
 
 /obj/structure/closet/crate/rations/soviet_meat
 	name = "Rations: meat"

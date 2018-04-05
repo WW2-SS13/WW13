@@ -308,7 +308,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/water
 	name = "Bottle of Water"
-	desc = "Just a bottle of drinking water."
+	desc = "A standard bottle of drinking water."
 	icon_state = "waterbottle"
 	center_of_mass = list("x"=17, "y"=3)
 	volume = 100 // this is kind of important for filling bottles from sinks

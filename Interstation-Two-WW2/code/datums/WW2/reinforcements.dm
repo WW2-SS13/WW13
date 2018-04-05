@@ -129,12 +129,12 @@ var/datum/reinforcements/reinforcements_master
 
 	switch (side)
 		if (SOVIET)
-			if (len(reinforcement_pool[SOVIET]) >= reinforcement_add_limit_soviet)
+			if (len(reinforcement_pool[SOVIET]) >= reinforcement_add_limit_soviet || (reinforcements_granted[SOVIET] + len(reinforcement_pool[SOVIET])+1) > max_soviet_reinforcements)
 				nope[SOVIET] = TRUE
 			else
 				nope[SOVIET] = FALSE
 		if (GERMAN)
-			if (len(reinforcement_pool[GERMAN]) >= reinforcement_add_limit_german)
+			if (len(reinforcement_pool[GERMAN]) >= reinforcement_add_limit_german || (reinforcements_granted[GERMAN] + len(reinforcement_pool[GERMAN])+1) > max_german_reinforcements)
 				nope[GERMAN] = TRUE
 			else
 				nope[GERMAN] = FALSE
@@ -287,10 +287,10 @@ var/datum/reinforcements/reinforcements_master
 /datum/reinforcements/proc/is_permalocked(side)
 	switch (side)
 		if (GERMAN)
-			if (reinforcements_granted[GERMAN] > max_german_reinforcements)
+			if (reinforcements_granted[GERMAN] >= max_german_reinforcements)
 				return TRUE
 		if (SOVIET)
-			if (reinforcements_granted[SOVIET] > max_soviet_reinforcements)
+			if (reinforcements_granted[SOVIET] >= max_soviet_reinforcements)
 				return TRUE
 	return FALSE
 

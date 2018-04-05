@@ -204,6 +204,9 @@ var/list/global/wall_cache = list()
 	ChangeTurf(/turf/floor/plating)
 
 /turf/wall/ex_act(severity)
+	var/area/src_area = get_area(src)
+	if (src_area && src_area.type == /area/prishtina/void)
+		return
 	switch(severity)
 		if(1.0)
 			ChangeTurf(get_base_turf(z))

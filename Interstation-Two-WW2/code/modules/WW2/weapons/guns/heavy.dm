@@ -49,7 +49,7 @@
 	accuracy_increase_mod = 2.00
 	accuracy_decrease_mod = 6.00
 	KD_chance = KD_CHANCE_HIGH
-	stat = "heavy"
+	stat = "heavyweapon"
 
 /obj/item/weapon/gun/projectile/heavy/ptrd
 	name = "PTRD anti-tank rifle"

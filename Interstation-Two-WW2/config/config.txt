@@ -355,4 +355,6 @@ PARATROOPER_DROP_TIME 3000
 
 ## Dumb memes
 
-ALLOW_DABBING 
+ALLOW_DABBING 1
+
+## Testing stuff 

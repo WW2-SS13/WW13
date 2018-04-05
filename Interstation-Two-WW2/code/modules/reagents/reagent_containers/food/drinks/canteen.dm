@@ -5,6 +5,7 @@
 	volume = 200
 	w_class = 3 // fits in webbing unlike w_class = 4
 	slot_flags = SLOT_BACK|SLOT_BELT
+	desc = "A very large canteen for storing water."
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/New()
 	..()

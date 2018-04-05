@@ -11,7 +11,7 @@
 		spawn (1)
 			if (client)
 				src << "<div class='info'>Game ID: <div class='danger'>[game_id]</div></div>"
-				src << "<div class=\"motd\">[join_motd]</div>"
+				src << "<div class=\"motd\">[replacetext(join_motd, "{version}", "BYOND [world.byond_version].[world.byond_build]")]</div>"
 
 	if(!mind)
 		mind = new /datum/mind(key)

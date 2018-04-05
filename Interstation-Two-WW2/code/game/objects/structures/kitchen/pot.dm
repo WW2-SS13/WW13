@@ -89,8 +89,8 @@
 		var/obj/item/weapon/reagent_containers/food/snacks/stew/stew = new
 		if (stew_desc)
 			stew.name = stew_desc
-
 			stew.nutriment_desc.Cut()
+
 			for (var/desc in stew_nutriment_desc)
 				stew.nutriment_desc[desc] = 1
 
@@ -105,11 +105,14 @@
 		if (H.l_hand == I)
 			H.remove_from_mob(I)
 			H.equip_to_slot(stew, slot_l_hand)
+
 		else if (H.r_hand == I)
 			H.remove_from_mob(I)
 			H.equip_to_slot(stew, slot_r_hand)
+
 		qdel(I)
 		--bowls
+
 		if (bowls <= 0)
 			state = STATE_EMPTY
 			stew_desc = ""

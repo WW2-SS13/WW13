@@ -405,24 +405,6 @@
 
 		if(config.allow_admin_rev)
 			L.revive()
-			if (ishuman(L))
-				var/mob/living/carbon/human/H = L
-				H.shock_stage = 0
-				H.nutrition = H.max_nutrition
-				H.water = H.max_water
-				for (var/obj/item/organ/external/E in H.bad_external_organs)
-					E.wounds.Cut()
-					H.bad_external_organs -= E
-				for (var/obj/item/organ/O in H.contents) // probably fixes slowdown bug - Kachnov
-					O.status = 0
-				var/obj/item/organ/external/head/U = locate() in H.organs
-				if(istype(U))
-					U.teeth_list.Cut() //Clear out their mouth of teeth
-					var/obj/item/stack/teeth/T = new H.species.teeth_type(U)
-					U.max_teeth = T.max_amount //Set max teeth for the head based on teeth spawntype
-					T.amount = T.max_amount
-					U.teeth_list += T
-				H.ingested.add_reagent("nutriment",50)
 			message_admins("<span class = 'red'>Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!</span>", TRUE)
 			log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
 		else

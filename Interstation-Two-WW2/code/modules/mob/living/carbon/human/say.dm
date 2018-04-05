@@ -15,7 +15,7 @@
 	message = capitalize_cp1251(sanitize(message))
 	var/message_without_html = message
 
-	if (!dd_hasprefix(message, ";") && !dd_hasprefix(message, ":b") && !dd_hasprefix(message, ":r") && !dd_hasprefix(message, ":l"))
+	if (!dd_hasprefix(message, ";") && !dd_hasprefix(message, ":b") && !dd_hasprefix(message, ":r") && !dd_hasprefix(message, ":l") && !dd_hasprefix(message, ":f"))
 		if (dd_hassuffix(message, "!") && !dd_hassuffix(message, "!!"))
 			message = "<span class = 'font-size: 1.1em;'>[message]</span>"
 		else if (dd_hassuffix(message, "!!"))

@@ -1,4 +1,7 @@
 /turf/floor/ex_act(severity)
+	var/area/src_area = get_area(src)
+	if (src_area && src_area.type == /area/prishtina/void)
+		return
 	switch(severity)
 		if(1.0)
 			ChangeTurf(get_base_turf_by_area(src))

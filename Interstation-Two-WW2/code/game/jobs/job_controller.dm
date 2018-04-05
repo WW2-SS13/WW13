@@ -520,13 +520,13 @@ var/global/datum/controller/occupations/job_master
 					for (var/obj/item/weapon/gun/projectile/gun in H.contents)
 						if (gun.w_class == 5 && gun.gun_type == GUN_TYPE_MG) // MG
 							if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
-								for (var/v in 1 to 4)
+								for (var/v in 1 to 3)
 									H.back.contents += new gun.magazine_type(H)
 							else if (H.l_hand && istype(H.l_hand, /obj/item/weapon/storage/backpack))
-								for (var/v in 1 to 4)
+								for (var/v in 1 to 3)
 									H.l_hand.contents += new gun.magazine_type(H)
 							else if (H.r_hand && istype(H.r_hand, /obj/item/weapon/storage/backpack))
-								for (var/v in 1 to 4)
+								for (var/v in 1 to 3)
 									H.r_hand.contents += new gun.magazine_type(H)
 						else
 							if (!H.r_store)
@@ -536,15 +536,16 @@ var/global/datum/controller/occupations/job_master
 								if (gun.magazine_type)
 									H.equip_to_slot_or_del(new gun.magazine_type(H), slot_l_store)
 						break // but only the first gun we find
-					for (var/obj/item/weapon/gun/projectile/gun in H.belt)
-						if (gun.w_class != 5 || gun.gun_type != GUN_TYPE_MG) // MG
-							if (!H.r_store)
-								if (gun.magazine_type)
-									H.equip_to_slot_or_del(new gun.magazine_type(H), slot_r_store)
-							if (!H.l_store)
-								if (gun.magazine_type)
-									H.equip_to_slot_or_del(new gun.magazine_type(H), slot_l_store)
-							break // but only the first gun we find
+					for (var/obj/item/weapon/gun/projectile/gun in H.contents)
+						if (gun == H.belt)
+							if (gun.w_class != 5 || gun.gun_type != GUN_TYPE_MG) // MG
+								if (!H.r_store)
+									if (gun.magazine_type)
+										H.equip_to_slot_or_del(new gun.magazine_type(H), slot_r_store)
+								if (!H.l_store)
+									if (gun.magazine_type)
+										H.equip_to_slot_or_del(new gun.magazine_type(H), slot_l_store)
+								break // but only the first gun we find
 
 			// get our new real name based on jobspecific language ( and more
 			job.update_character(H)

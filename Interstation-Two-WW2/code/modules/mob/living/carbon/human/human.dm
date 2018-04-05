@@ -63,6 +63,8 @@
 	spawn (10)
 		if (client)
 			human_clients_mob_list |= src
+			if (config.allow_selfheal)
+				verbs += /mob/living/carbon/human/proc/selfheal
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
@@ -648,6 +650,24 @@ var/list/rank_prefix = list(\
 		V.cure(src)*/
 
 	losebreath = FALSE
+
+	shock_stage = 0
+	nutrition = max_nutrition
+	water = max_water
+	for (var/obj/item/organ/external/E in bad_external_organs)
+		E.wounds.Cut()
+		E.update_health()
+		bad_external_organs -= E
+	for (var/obj/item/organ/O in contents) // probably fixes slowdown bug - Kachnov
+		O.status = 0
+	var/obj/item/organ/external/head/U = locate() in organs
+	if(istype(U))
+		U.teeth_list.Cut() //Clear out their mouth of teeth
+		var/obj/item/stack/teeth/T = new species.teeth_type(U)
+		U.max_teeth = T.max_amount //Set max teeth for the head based on teeth spawntype
+		T.amount = T.max_amount
+		U.teeth_list += T
+	ingested.add_reagent("nutriment",50)
 
 	..()
 

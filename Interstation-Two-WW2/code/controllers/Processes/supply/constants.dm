@@ -4,7 +4,7 @@ var/static/list/german_supply_crate_types = list(
 	"Flammenwerfer Fuel Tanks" = /obj/structure/closet/crate/flammenwerfer_fueltanks,
 	"Vehicle Fuel Tanks" = /obj/structure/closet/crate/vehicle_fueltanks,
 	"MG34 Belts" = /obj/structure/closet/crate/mg34belt,
-	"Guaze" = /obj/structure/closet/crate/gauze,
+	"Gauze" = /obj/structure/closet/crate/gauze,
 	"Luger Ammo" = /obj/structure/closet/crate/lugerammo,
 	"Mauser Ammo" = /obj/structure/closet/crate/mauserammo,
 	"Walther Ammo" = /obj/structure/closet/crate/waltherammo,
@@ -92,7 +92,7 @@ var/static/list/soviet_supply_crate_types = list(
 
 	"Solid Rations" = /obj/structure/closet/crate/rations/soviet_solids,
 	"Liquid Rations" = /obj/structure/closet/crate/rations/soviet_liquids,
-	"Dessert Rations" = /obj/structure/closet/crate/rations/soviet_desserts,
+//	"Dessert Rations" = /obj/structure/closet/crate/rations/soviet_desserts,
 	"Water Rations" = /obj/structure/closet/crate/rations/water,
 	"Alcohol Rations" = /obj/structure/closet/crate/rations/soviet_alcohol,
 	"Meat Rations" = /obj/structure/closet/crate/rations/soviet_meat,

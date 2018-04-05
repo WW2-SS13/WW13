@@ -105,7 +105,7 @@
 		totalPlayers = 0
 
 		for (var/player in new_player_mob_list)
-			stat(player)
+			stat(player:key)
 			++totalPlayers
 
 		stat("")
