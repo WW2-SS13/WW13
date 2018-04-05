@@ -36,7 +36,7 @@
 
 	if (weight == 0 && !heavy)
 		slowdown = 0
-	else if ((weight > max_weight * 0.25 && weight || heavy) <= max_weight * 0.50)
+	else if ((weight > max_weight * 0.25 || heavy) && weight <= max_weight * 0.50)
 		slowdown = 0.33
 	else if (weight > max_weight * 0.50 && weight <= max_weight * 0.65)
 		slowdown = 0.44
