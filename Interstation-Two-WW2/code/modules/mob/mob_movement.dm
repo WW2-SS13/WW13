@@ -24,7 +24,7 @@
 
 	var/slowdown = 0
 	var/weight = 0
-	var/max_weight = (((getStatCoeff("strength")-1)/2)+1) * 37
+	var/max_weight = (((getStatCoeff("strength")-1)/2)+1) * 59
 	var/heavy = FALSE
 	for (var/obj/item/I in contents)
 		if(I.heavy)
@@ -36,18 +36,20 @@
 
 	if (weight == 0 && !heavy)
 		slowdown = 0
-	else if ((weight > max_weight * 0.25 || heavy) && weight <= max_weight * 0.65)
+	else if ((weight > max_weight * 0.25 || heavy) && weight <= max_weight * 0.50)
 		slowdown = 0.33
-	else if (weight > max_weight * 0.65 && weight <= max_weight * 0.75)
+	else if (weight > max_weight * 0.50 && weight <= max_weight * 0.65)
 		slowdown = 0.44
-	else if (weight > max_weight * 0.75 && weight <= max_weight * 0.85)
+	else if (weight > max_weight * 0.65 && weight <= max_weight * 0.75)
 		slowdown = 0.55
-	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
+	else if (weight > max_weight * 0.75 && weight <= max_weight * 0.85)
 		slowdown = 0.66
 	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
 		slowdown = 0.77
-	else if (weight > max_weight * 0.95 && weight <= INFINITY)
+	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
 		slowdown = 0.88
+	else if (weight > max_weight * 0.95 && weight <= INFINITY)
+		slowdown = 0.99
 	. *= slowdown+1
 
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
