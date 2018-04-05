@@ -29,8 +29,7 @@ var/global/obj/map_metadata/map = null
 	var/list/supply_points_per_tick = list(
 		GERMAN = 1.00,
 		SOVIET = 1.00)
-	var/list/available_subfactions = list(
-		list(SCHUTZSTAFFEL, ITALIAN))
+	var/list/available_subfactions = list(SCHUTZSTAFFEL, ITALIAN)
 	var/katyushas = TRUE
 
 /obj/map_metadata/New()
@@ -39,11 +38,10 @@ var/global/obj/map_metadata/map = null
 	icon = null
 	icon_state = null
 
-	var/list/new_available_subfactions = list()
-	if (prob(66))
-		for (var/list/L in available_subfactions)
-			new_available_subfactions += pick(L)
-	available_subfactions = new_available_subfactions
+	if (prob(100 - round((100/(available_subfactions.len+1)))))
+		available_subfactions = list(available_subfactions[rand(1, available_subfactions.len)])
+	else
+		available_subfactions = list()
 
 // called from the ticker process
 /obj/map_metadata/proc/tick()

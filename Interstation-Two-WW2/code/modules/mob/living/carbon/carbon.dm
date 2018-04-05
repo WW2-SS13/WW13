@@ -239,8 +239,8 @@
 				"<span class='notice'>You shake [src], but they do not respond... Maybe they have shell shock?</span>")
 			else if(lying || sleeping)
 				sleeping = max(0,sleeping-5)
-				if(sleeping == FALSE)
-					resting = FALSE
+				if(!sleeping)
+					resting = 0
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!</span>", \
 									"<span class='notice'>You shake [src] trying to wake [t_him] up!</span>")
 			else
