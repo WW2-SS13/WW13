@@ -23,12 +23,11 @@ var/list/soviet_traitors = list()
 	name = "phone"
 	desc = "A private line that goes directly to High Command."
 	attack_verb = list()
-	var/list/options = list(RAID, REQUEST_BATTLE_REPORT)
+	var/list/options = list(REQUEST_BATTLE_REPORT)
 	var/faction = null
 
 /obj/item/weapon/phone/tohighcommand/german
 	faction = GERMAN
-	options = list(REQUEST_BATTLE_REPORT)
 
 /obj/item/weapon/phone/tohighcommand/soviet
 	faction = SOVIET
