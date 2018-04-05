@@ -133,7 +133,7 @@
 		/obj/item/weapon/gauze_pack/gauze = 10,
 		/obj/item/device/flashlight = 10,
 		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 15,
-	)
+		)
 
 /obj/structure/vending/SSweaponrack
 	name = "SS weapon rack"

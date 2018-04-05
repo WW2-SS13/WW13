@@ -36,20 +36,20 @@
 
 	if (weight == 0 && !heavy)
 		slowdown = 0
-	else if (weight > max_weight * 0.25 && weight <= max_weight * 0.45)
-		slowdown = 0.22
-	else if ((weight > max_weight * 0.45 || heavy) && weight <= max_weight * 0.65)
+	else if ((weight > max_weight * 0.25 && weight || heavy) <= max_weight * 0.50)
 		slowdown = 0.33
-	else if (weight > max_weight * 0.65 && weight <= max_weight * 0.75)
+	else if (weight > max_weight * 0.50 && weight <= max_weight * 0.65)
 		slowdown = 0.44
-	else if (weight > max_weight * 0.75 && weight <= max_weight * 0.85)
+	else if (weight > max_weight * 0.65 && weight <= max_weight * 0.75)
 		slowdown = 0.55
-	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
+	else if (weight > max_weight * 0.75 && weight <= max_weight * 0.85)
 		slowdown = 0.66
 	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
 		slowdown = 0.77
-	else if (weight > max_weight * 0.95 && weight <= INFINITY)
+	else if (weight > max_weight * 0.85 && weight <= max_weight * 0.95)
 		slowdown = 0.88
+	else if (weight > max_weight * 0.95 && weight <= INFINITY)
+		slowdown = 0.99
 	. *= slowdown+1
 
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
