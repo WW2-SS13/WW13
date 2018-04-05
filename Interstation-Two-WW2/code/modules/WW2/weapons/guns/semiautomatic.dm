@@ -66,6 +66,9 @@
 /obj/item/weapon/gun/projectile/semiautomatic/handle_post_fire()
 	..()
 
+	if (istype(src, /obj/item/weapon/gun/projectile/semiautomatic/akm) || istype(src, /obj/item/weapon/gun/projectile/semiautomatic/fg42))
+		return
+
 	if (world.time - last_fire > 50)
 		jamcheck = 0
 	else
