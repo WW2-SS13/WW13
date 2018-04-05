@@ -29,7 +29,7 @@
 
 // todo: loading artillery. This will regenerate the shrapnel and affect our explosion
 /obj/structure/mortar/attackby(obj/item/W as obj, mob/M as mob)
-	if (istype(W, /obj/item/mortar_shell) && M == user)
+	if (istype(W, /obj/item/mortar_shell))
 		if (loaded)
 			M << "<span class = 'warning'>There's already a shell loaded.</span>"
 			return
@@ -37,7 +37,8 @@
 		M.remove_from_mob(W)
 		W.loc = src
 		loaded = W
-		do_html(M)
+		if (M == user)
+			do_html(M)
 
 
 /obj/structure/mortar/interact(var/mob/m)
@@ -97,7 +98,7 @@
 
 		if (user_area.location == AREA_INSIDE)
 			user << "<span class = 'danger'>You can't fire from inside.</span>"
-		else if (do_mob(user, user, 25))
+		else if (do_mob(user, user, 20))
 
 			// firing code
 
@@ -106,7 +107,7 @@
 				if (m.client)
 					var/abs_dist = abs(m.x - x) + abs(m.y - y)
 					if (abs_dist <= 37)
-						shake_camera(m, 5, (5 - (abs_dist/10)))
+						shake_camera(m, 3, (5 - (abs_dist/10)))
 
 			// smoke
 			spawn (rand(3,4))
@@ -183,7 +184,7 @@
 						explosion(target, 1, 2, 3, 4)
 						break
 
-					sleep(1)
+					sleep(0.5)
 
 	do_html(user)
 

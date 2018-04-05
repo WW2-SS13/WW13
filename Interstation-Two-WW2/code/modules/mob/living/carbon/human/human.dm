@@ -64,7 +64,7 @@
 		if (client)
 			human_clients_mob_list |= src
 			if (config.allow_selfheal)
-				verbs += /mob/living/carbon/human/proc/selfheal
+				verbs |= /mob/living/carbon/human/proc/selfheal
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src

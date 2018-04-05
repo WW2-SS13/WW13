@@ -48,7 +48,7 @@
 	var/blind_fire_range = "SHORT"
 
 	// other
-	var/jammed_until = -1
+//	var/jammed_until = -1
 
 	density = TRUE
 	name = "7,5 cm FK 18"
@@ -219,9 +219,9 @@
 			user << "<span class='danger'>Close the shell loading slot first.</span>"
 			return
 
-		if (jammed_until > world.time)
+/*		if (jammed_until > world.time)
 			user << "<span class='danger'>The artillery piece has jammed! You can't fire it until it has unjammed.</span>"
-			return
+			return*/
 
 		if (blind_fire_toggle)
 
@@ -282,7 +282,7 @@
 				return
 			else
 				var/obj/item/artillery_shell/shell = other.use_slot()
-				if (shell && do_mob(user, user, 25))
+				if (shell && do_mob(user, user, 30))
 					other.fire(target_x, target_y, shell)
 		/*			if (prob(7))
 						jammed_until = world.time + rand(70,200) */
@@ -417,7 +417,7 @@
 				if (!src) return
 				M << "<span class='notice'>You secured the artillery piece.</span>"
 				anchored = TRUE
-	else if (istype(W, /obj/item/artillery_shell) && !istype(W, /obj/item/artillery_shell/none) && M == user)
+	else if (istype(W, /obj/item/artillery_shell) && !istype(W, /obj/item/artillery_shell/none))
 		if (!istype(src, /obj/structure/artillery/nebel))
 			if (!anchored)
 				M << "<span class = 'danger'>The artillery piece must be wrench to the ground to use.</span>"
