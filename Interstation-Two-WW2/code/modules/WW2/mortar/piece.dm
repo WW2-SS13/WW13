@@ -125,7 +125,9 @@
 			var/turf/target = get_turf(src)
 			var/odir = dir
 
-			do_distance_calcs()
+			max_distance = (80 - angle) + rand(38,42)
+			high_distance = max_distance * 0.80
+
 			travelled = 0
 			high = TRUE
 			qdel(loaded)
@@ -151,7 +153,6 @@
 
 					if (!target) // somehow
 						break
-
 
 					var/highcheck = high
 					var/area/target_area = get_area(target)
@@ -181,7 +182,10 @@
 						hit = TRUE
 
 					if (hit)
-						explosion(target, 1, 2, 3, 4)
+						spawn (7)
+							playsound(target, "artillery_in", 70, TRUE)
+						spawn (10)
+							explosion(target, 1, 2, 3, 4)
 						break
 
 					sleep(0.5)
@@ -192,7 +196,7 @@
 
 	if (m)
 
-		do_distance_calcs()
+		max_distance = (80 - angle) + 40
 
 		m << browse({"
 
@@ -230,22 +234,3 @@
 		<br>
 		"},  "window=artillery_window;border=1;can_close=1;can_resize=1;can_minimize=0;titlebar=1;size=500x500")
 	//		<A href = '?src=\ref[src];topic_type=[topic_custom_input];continue_num=1'>
-
-/obj/structure/mortar/proc/do_distance_calcs()
-	switch (angle)
-		if (45 to 49)
-			var/refangle = (49 - angle) + 45
-			max_distance = round(refangle * 1.54) // 69 to 75
-			high_distance = round(max_distance * 0.80)
-		if (50 to 59)
-			var/refangle = (59 - angle) + 50
-			max_distance = round(refangle * 1.00) // 50 to 59
-			high_distance = round(max_distance * 0.85)
-		if (60 to 69)
-			var/refangle = (69 - angle) + 60
-			max_distance = round(refangle * 0.50) // 30 to 34
-			high_distance = round(max_distance * 0.90)
-		if (70 to 80)
-			var/refangle = (80 - angle) + 70
-			max_distance = round(refangle * 0.33) // 23 to 26
-			high_distance = round(max_distance * 0.95)
