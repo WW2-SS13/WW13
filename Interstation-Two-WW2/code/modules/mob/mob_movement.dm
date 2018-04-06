@@ -626,7 +626,7 @@
 	var/default_threshold = get_walk_delay()
 	if (m_intent == "run")
 		default_threshold = get_run_delay()
-	if (abs(world.time - last_movement) <= (threshold ? threshold : default_threshold))
+	if (abs(world.time - last_movement) <= (threshold ? threshold+0.1 : default_threshold+0.1))
 		return TRUE
 	return FALSE
 
