@@ -9,5 +9,6 @@ var/global/datum/controller/process/ticker/reinforcements_process
 	reinforcements_process = src
 
 /datum/controller/process/reinforcements/doWork()
+	SCHECK
 	if (reinforcements_master && reinforcements_master.trytostartup())
 		reinforcements_master.tick()

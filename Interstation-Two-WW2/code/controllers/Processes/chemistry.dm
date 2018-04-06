@@ -22,6 +22,7 @@ var/datum/controller/process/chemistry/chemistryProcess
 	return ..() + "[active_holders.len] reagent holders"
 
 /datum/controller/process/chemistry/doWork()
+	SCHECK
 	for(last_object in active_holders)
 		var/datum/reagents/holder = last_object
 		if(!holder.process_reactions())

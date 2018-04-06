@@ -21,6 +21,7 @@ var/datum/controller/process/zoom/zoom_process = null
 		zoom_processing_objects = list()
 
 /datum/controller/process/zoom/doWork()
+	SCHECK
 	for(last_object in recent_scopes)
 		var/obj/item/weapon/attachment/scope/S = last_object
 

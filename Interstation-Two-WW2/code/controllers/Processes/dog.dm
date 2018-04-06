@@ -10,7 +10,7 @@ var/datum/controller/process/dog/dog_process = null
 	dog_process = src
 
 /datum/controller/process/dog/doWork()
-	..()
+	SCHECK
 	try
 		for (var/D in dog_mob_list)
 			var/mob/living/simple_animal/complex_animal/canine/dog/dog = D

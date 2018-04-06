@@ -21,6 +21,7 @@ var/datum/controller/process/battlereport/battlereport
 	return ..() + "Next battle report: [max_BR_ticks - BR_ticks] seconds"
 
 /datum/controller/process/battlereport/doWork()
+	SCHECK
 	++BR_ticks
 	if (BR_ticks >= max_BR_ticks)
 		show_global_battle_report(null)

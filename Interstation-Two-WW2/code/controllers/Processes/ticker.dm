@@ -26,6 +26,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 		start_serverdata_loop()
 
 /datum/controller/process/ticker/doWork()
+	SCHECK
 	var/currentTime = world.timeofday
 
 	if(currentTime < lastTickerTime) // check for midnight rollover
