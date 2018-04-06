@@ -182,8 +182,7 @@
 						hit = TRUE
 
 					if (hit)
-						spawn (7)
-							playsound(target, "artillery_in", 70, TRUE)
+						playsound(target, "artillery_in", 70, TRUE)
 						spawn (10)
 							explosion(target, 1, 2, 3, 4)
 						break

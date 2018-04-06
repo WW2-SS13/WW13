@@ -134,15 +134,15 @@ bullet_act
 							if (S.density)
 								slammed_into = S
 								break
-
-					visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
-					Weaken(rand(4,5))
-					adjustBruteLoss(rand(20,30))
-					if (client)
-						shake_camera(src, rand(2,3), rand(2,3))
-					playsound(get_turf(src), 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
-					for (var/obj/structure/window/W in get_turf(slammed_into))
-						W.shatter()
+					if (slammed_into.density)
+						visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
+						Weaken(rand(4,5))
+						adjustBruteLoss(rand(20,30))
+						if (client)
+							shake_camera(src, rand(2,3), rand(2,3))
+						playsound(get_turf(src), 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
+						for (var/obj/structure/window/W in get_turf(slammed_into))
+							W.shatter()
 				else
 					forceMove(behind)
 					visible_message("<span class = 'danger'>[src] flies back from the force of the blast!</span>")

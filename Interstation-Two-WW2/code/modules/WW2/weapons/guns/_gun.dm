@@ -98,7 +98,9 @@
 	// note: the screen is 15 tiles wide by default, so a person more than 7 tiles away from you x/y won't be on screen
 	// . = miss chance
 	switch (distance)
-		if (0 to 3)
+		if (0 to 1)
+			. = 0
+		if (2 to 3)
 			if (!moving_target)
 				. =  (100 - accuracy_sublist[SHORT_RANGE_STILL])
 			else
