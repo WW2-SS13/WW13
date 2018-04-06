@@ -1,5 +1,15 @@
 
 /proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, z_transfer = UP|DOWN, is_rec = config.use_recursive_explosions)
+/*
+	// TODO: splits explosions bigger than 5x5 into sub-explosions
+	var/num_explosions = devastation_range/5
+	var/explosion_epicenters_locations = list()
+
+	for (var/v in 1 to num_explosions)
+		// do data for first explosion
+		// epicenter = locate(epicenter.x+devestation_range)
+
+*/
 	src = null	//so we don't abort once src is deleted
 	var/datum/explosiondata/data = new
 	data.epicenter = epicenter

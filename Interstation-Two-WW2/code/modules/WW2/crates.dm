@@ -631,8 +631,8 @@
 
 /obj/structure/closet/crate/mortar_shells/New()
 	..()
-	update_capacity(25)
-	for (var/v in 1 to 25)
+	update_capacity(12)
+	for (var/v in 1 to 12)
 		new /obj/item/mortar_shell(src)
 
 /obj/structure/closet/crate/german_smoke_grenade/New()

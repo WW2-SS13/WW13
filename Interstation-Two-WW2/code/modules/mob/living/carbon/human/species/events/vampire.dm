@@ -29,7 +29,7 @@
 	status_flags = GODMODE|CANPUSH
 
 /mob/living/carbon/human/vampire/New(_loc, var/clothes = TRUE)
-	..()
+	..(_loc)
 	spawn (10)
 		if (!original_job)
 			var/oloc = get_turf(src)

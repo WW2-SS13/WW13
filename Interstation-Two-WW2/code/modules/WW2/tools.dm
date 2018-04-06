@@ -16,6 +16,7 @@
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	sharp = FALSE
 	edge = TRUE
+	slot_flags = SLOT_BACK
 
 /obj/item/weapon/shovel/spade
 	name = "spade"
@@ -31,6 +32,25 @@
 	name = "lopata"
 	icon_state = "lopata"
 	item_state = "lopata"
+
+/obj/item/weapon/shovel/spade/mortar
+	name = "spade mortar"
+	icon_state = "spade_mortar"
+	item_state = "lopata"
+	desc = "A 37mm mortar that also functions as a shovel. Very heavy."
+	weight = 20
+	heavy = TRUE
+
+/obj/item/weapon/shovel/spade/mortar/attack_self(var/mob/user as mob)
+	var/target = get_step(user, user.dir)
+	if (target)
+		visible_message("<span class = 'warning'>[user] starts to deploy a spade mortar.</span>")
+		if (do_after(user, 50, get_turf(user)))
+			visible_message("<span class = 'warning'>[user] deploys a spade mortar.</span>")
+			user.remove_from_mob(src)
+			qdel(src)
+			var/atom/A = new/obj/structure/mortar/spade(get_turf(user))
+			A.dir = user.dir
 
 /obj/item/weapon/wirecutters/boltcutters
 	name = "boltcutters"

@@ -37,6 +37,26 @@
 			else
 				statval += pick(round(15/stats.len), ceil(15/stats.len))
 
+	switch (age)
+		if (0 to 15) // how did you even get here?
+			statval -= 10
+		if (16 to 19)
+			statval -= 5
+		if (20 to 24)
+			pass()
+		if (25 to 29)
+			statval += 5
+		if (30 to 35)
+			statval -= 3
+		if (36 to 39)
+			statval -= 5
+		if (40 to 45) // dadbod
+			statval -= 7
+		if (46 to 55)
+			statval -= 10
+		if (56 to INFINITY)
+			statval -= 12
+
 	stats[statname] = list(statval, statval)
 
 /mob/living/carbon/human/proc/adaptStat(statname, multiplier = 1)
