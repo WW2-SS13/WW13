@@ -35,10 +35,10 @@ var/list/soviet_traitors = list()
 
 // these new values assume an average round length of 70 minutes - Kachnov
 /obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_outside()
-	return tickerProcess.time_elapsed >= 21000 // 35 minutes: about half an average round's length
+	return tickerProcess.playtime_elapsed >= 21000 // 35 minutes: about half an average round's length
 
 /obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_inside()
-	return tickerProcess.time_elapsed >= 31800 // 53 minutes: about 3/4 an average round's length
+	return tickerProcess.playtime_elapsed >= 31800 // 53 minutes: about 3/4 an average round's length
 
 /obj/item/weapon/phone/tohighcommand/proc/may_bombard_base_message()
 	if (may_bombard_base_outside())

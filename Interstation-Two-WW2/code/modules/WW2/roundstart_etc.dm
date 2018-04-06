@@ -191,7 +191,7 @@ var/train_arrived = FALSE
 	if(mission_announced)
 		return TRUE
 
-	mission_announced = tickerProcess.time_elapsed
+	mission_announced = tickerProcess.playtime_elapsed
 
 	var/preparation_time = world.realtime - roundstart_time
 
