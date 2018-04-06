@@ -1,4 +1,4 @@
-var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder)
+var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder, /obj/structure/anti_tank)
 
 /material/proc/get_recipes()
 	if(!recipes)
@@ -64,6 +64,7 @@ var/list/engineer_exclusive_recipe_types = list(/obj/structure/girder)
 //	recipes += new/datum/stack_recipe("small light fixture frame", /obj/item/frame/light/small, TRUE)
 	recipes += new/datum/stack_recipe("unlocked door", /obj/structure/simple_door/key_door/anyone, 5, _time = 35, _one_per_turf = TRUE, _on_floor = TRUE)
 	recipes += new/datum/stack_recipe("locked door", /obj/structure/simple_door/key_door/anyone, 5, _time = 35, _one_per_turf = TRUE, _on_floor = TRUE)
+	recipes += new/datum/stack_recipe("anti-tank hedgehog", /obj/structure/anti_tank, 15, _time = 60, _one_per_turf = TRUE, _on_floor = TRUE)
 
 /material/plasteel/generate_recipes()
 	..()

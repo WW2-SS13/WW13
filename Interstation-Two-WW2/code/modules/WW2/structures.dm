@@ -1,6 +1,7 @@
 /obj/structure/grille/fence
 	name = "fence"
 	icon_state = "fence4-8"
+	health = 16
 
 /obj/structure/anti_tank
 	icon_state = "anti-tank"
