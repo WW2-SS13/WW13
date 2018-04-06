@@ -37,25 +37,48 @@
 			else
 				statval += pick(round(15/stats.len), ceil(15/stats.len))
 
-	switch (age)
-		if (0 to 15) // how did you even get here?
-			statval -= 10
-		if (16 to 19)
-			statval -= 5
-		if (20 to 24)
-			pass()
-		if (25 to 29)
-			statval += 5
-		if (30 to 35)
-			statval -= 3
-		if (36 to 39)
-			statval -= 5
-		if (40 to 45) // dadbod
-			statval -= 7
-		if (46 to 55)
-			statval -= 10
-		if (56 to INFINITY)
-			statval -= 12
+	// engineering, medical: more age benefits you
+	if (list("engineering", "medical").Find(statname))
+		switch (age)
+			if (0 to 15) // how did you even get here?
+				statval -= 3
+			if (16 to 19)
+				statval -= 2
+			if (20 to 24)
+				PASS
+			if (25 to 29)
+				statval += 2
+			if (30 to 35)
+				statval += 3
+			if (36 to 39)
+				statval += 4
+			if (40 to 45)
+				statval += 5
+			if (46 to 55)
+				statval += 6
+			if (56 to INFINITY)
+				statval += 7
+	// all other stats: more age hurts
+	else
+		switch (age)
+			if (0 to 15) // how did you even get here?
+				statval -= rand(8,10)
+			if (16 to 19)
+				statval -= rand(4,5)
+			if (20 to 24)
+				PASS
+			if (25 to 29)
+				statval += rand(4,5)
+			if (30 to 35)
+				statval -= rand(2,3)
+			if (36 to 39)
+				statval -= rand(4,5)
+			if (40 to 45) // dadbod
+				statval -= rand(6,7)
+			if (46 to 55)
+				statval -= rand(8,10)
+			if (56 to INFINITY)
+				statval -= rand(9,12)
 
 	stats[statname] = list(statval, statval)
 
