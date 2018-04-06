@@ -225,6 +225,11 @@ var/list/gamemode_cache = list()
 	var/list/slog = list()
 	var/list/wlog = list()
 
+	// testing
+	var/use_hunger = TRUE
+	var/use_thirst = TRUE
+	var/allow_selfheal = FALSE
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -638,8 +643,9 @@ var/list/gamemode_cache = list()
 					config.round_end_countdown = text2num(value)
 
 				if ("allow_dabbing")
-					config.allow_dabbing = TRUE
-					config.patrons_can_enable_disable_dabbing = TRUE
+					config.allow_dabbing = text2num(value)
+					if (config.allow_dabbing)
+						config.patrons_can_enable_disable_dabbing = TRUE
 
 				if ("enabled_seasons")
 					if (value)
@@ -671,6 +677,15 @@ var/list/gamemode_cache = list()
 							allowed_weather.Cut()
 							for (var/weather in weathers)
 								allowed_weather += weather
+
+				if ("use_hunger")
+					config.use_hunger = text2num(value)
+
+				if ("use_thirst")
+					config.use_thirst = text2num(value)
+
+				if ("allow_selfheal")
+					config.allow_selfheal = text2num(value)
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

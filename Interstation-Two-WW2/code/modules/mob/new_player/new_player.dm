@@ -42,6 +42,28 @@
 	..()
 	new_player_mob_list -= src
 
+/mob/new_player/say(var/message)
+	message = sanitize(message)
+
+	if (!message)
+		return
+
+	log_say("New Player/[key] : [message]")
+
+	if (client)
+		if(client.prefs.muted & MUTE_DEADCHAT)
+			src << "<span class = 'red'>You cannot talk in lobbychat (muted).</span>"
+			return
+
+		if (client.handle_spam_prevention(message,MUTE_DEADCHAT))
+			return
+
+	for (var/new_player in new_player_mob_list)
+		if (new_player:client) // sanity check
+			new_player << "<span class=\"log_message\">(LOBBY)</span> <span class='deadsay'><b>[capitalize(key)]</b>:</span> [capitalize(message)]"
+
+	return TRUE
+
 /mob/new_player/verb/new_player_panel()
 	set src = usr
 	new_player_panel_proc()
@@ -105,7 +127,7 @@
 		totalPlayers = 0
 
 		for (var/player in new_player_mob_list)
-			stat(player)
+			stat(player:key)
 			++totalPlayers
 
 		stat("")
@@ -513,7 +535,7 @@
 
 /mob/new_player/proc/LateChoices()
 
-	var/arty = locate(/obj/machinery/artillery) in world
+	var/arty = locate(/obj/structure/artillery) in world
 	var/fallschirms = fallschirm_landmarks.len
 	var/german_tank = FALSE
 	var/soviet_tank = FALSE
@@ -864,5 +886,6 @@
 /mob/new_player/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = FALSE)
 	return
 
-mob/new_player/MayRespawn()
+/mob/new_player/MayRespawn()
 	return TRUE
+

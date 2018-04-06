@@ -226,6 +226,12 @@
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
+/obj/structure/closet/crate/mortar_shells
+	name = "Mortar shells crate"
+	icon_state = "mil_crate_closed"
+	icon_opened = "mil_crate_opened"
+	icon_closed = "mil_crate_closed"
+
 /obj/structure/closet/crate/german_smoke_grenade
 	name = "Smoke grenade crate"
 	icon_state = "mil_crate_closed"
@@ -424,8 +430,9 @@
 /obj/structure/closet/crate/rations/soviet_liquids
 	name = "Rations: liquids"
 
+/*
 /obj/structure/closet/crate/rations/soviet_desserts
-	name = "Rations: dessert"
+	name = "Rations: dessert"*/
 
 /obj/structure/closet/crate/rations/soviet_meat
 	name = "Rations: meat"
@@ -437,29 +444,29 @@
 	name = "Rations: H20"
 
 
-// 5 wood planks with 25 each = 125 wood planks (25 barricades)
+// 5 wood planks with 20 each = 100 wood planks (20 barricades)
 /obj/structure/closet/crate/wood/New()
 	..()
-	update_capacity(4)
-	for (var/v in 1 to 4)
+	update_capacity(5)
+	for (var/v in 1 to 5)
 		var/obj/item/stack/S = new/obj/item/stack/material/wood(src)
-		S.amount = 25
+		S.amount = 20
 
-// 5 steel sheets with 25 each = 125 steel sheets
+// 5 steel sheets with 20 each = 100 steel sheets (20 barricades)
 /obj/structure/closet/crate/steel/New()
 	..()
-	update_capacity(4)
-	for (var/v in 1 to 4)
+	update_capacity(5)
+	for (var/v in 1 to 5)
 		var/obj/item/stack/S = new/obj/item/stack/material/steel(src)
-		S.amount = 25
+		S.amount = 20
 
-// 5 iron ingots with 25 each = 125 iron ingots
+// 5 iron ingots with 20 each = 100 iron ingots
 /obj/structure/closet/crate/iron/New()
 	..()
-	update_capacity(4)
-	for (var/v in 1 to 4)
+	update_capacity(5)
+	for (var/v in 1 to 5)
 		var/obj/item/stack/S = new/obj/item/stack/material/iron(src)
-		S.amount = 25
+		S.amount = 20
 
 // 5 glass with 10 each = 50 glass sheets
 /obj/structure/closet/crate/glass/New()
@@ -622,6 +629,12 @@
 	for (var/v in 1 to 5)
 		new /obj/item/weapon/gun/launcher/rocket/panzerfaust(src)
 
+/obj/structure/closet/crate/mortar_shells/New()
+	..()
+	update_capacity(25)
+	for (var/v in 1 to 25)
+		new /obj/item/mortar_shell(src)
+
 /obj/structure/closet/crate/german_smoke_grenade/New()
 	..()
 	update_capacity(12)
@@ -693,7 +706,7 @@
 	New()
 		..()
 		for (var/v in 1 to 12)
-			new/obj/item/artillery_ammo(src)
+			new/obj/item/artillery_shell(src)
 
 /obj/structure/closet/crate/artillery_gas
 	name = "German gas artillery shell crate"
@@ -706,13 +719,13 @@
 		..()
 		// 12 shells total
 		for (var/v in 1 to 3)
-			new/obj/item/artillery_ammo/gaseous/green_cross/chlorine(src)
+			new/obj/item/artillery_shell/gaseous/green_cross/chlorine(src)
 		for (var/v in 1 to 3)
-			new/obj/item/artillery_ammo/gaseous/yellow_cross/mustard(src)
+			new/obj/item/artillery_shell/gaseous/yellow_cross/mustard(src)
 		for (var/v in 1 to 3)
-			new/obj/item/artillery_ammo/gaseous/yellow_cross/white_phosphorus(src)
+			new/obj/item/artillery_shell/gaseous/yellow_cross/white_phosphorus(src)
 		for (var/v in 1 to 3)
-			new/obj/item/artillery_ammo/gaseous/blue_cross/xylyl_bromide(src)
+			new/obj/item/artillery_shell/gaseous/blue_cross/xylyl_bromide(src)
 
 /obj/structure/closet/crate/gasmasks
 	name = "Gasmask crate"
@@ -740,16 +753,16 @@
 	New()
 		..()
 		for (var/v in 1 to 20)
-			new/obj/item/artillery_ammo(src)
+			new/obj/item/artillery_shell(src)
 
 		for (var/v in 1 to 2)
-			new/obj/item/artillery_ammo/gaseous/green_cross/chlorine(src)
+			new/obj/item/artillery_shell/gaseous/green_cross/chlorine(src)
 
 		for (var/v in 1 to 6)
-			new/obj/item/artillery_ammo/gaseous/blue_cross/xylyl_bromide(src)
+			new/obj/item/artillery_shell/gaseous/blue_cross/xylyl_bromide(src)
 
-		new/obj/item/artillery_ammo/gaseous/yellow_cross/mustard(src)
-		new/obj/item/artillery_ammo/gaseous/yellow_cross/white_phosphorus(src)
+		new/obj/item/artillery_shell/gaseous/yellow_cross/mustard(src)
+		new/obj/item/artillery_shell/gaseous/yellow_cross/white_phosphorus(src)
 
 /obj/structure/closet/crate/barbwire/New()
 	..()

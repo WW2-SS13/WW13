@@ -438,6 +438,9 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/dp(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/soviet(H), slot_back)
+	// sidearm
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/tokarev(H), slot_belt)
+
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a heavy weapons unit. Your job is to assist normal <b>Soldat</b>i in front line combat.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_VERY_HIGH)
@@ -670,12 +673,8 @@ var/first_guard = FALSE
 	if(first_guard)
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/heavy/ptrd(H), slot_back)
 		var/obj/item/weapon/storage/belt/security/tactical/belt = new(H)
-		new /obj/item/ammo_casing/a145(belt)
-		new /obj/item/ammo_casing/a145(belt)
-		new /obj/item/ammo_casing/a145(belt)
-		new /obj/item/ammo_casing/a145(belt)
-		new /obj/item/ammo_casing/a145(belt)
-		new /obj/item/ammo_casing/a145(belt)
+		for (var/v in 1 to 8)
+			new /obj/item/ammo_casing/a145(belt)
 		H.equip_to_slot_or_del(belt, slot_belt)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/svt(H), slot_back)

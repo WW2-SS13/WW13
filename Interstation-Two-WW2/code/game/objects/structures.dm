@@ -64,7 +64,7 @@
 	if (!climbable || !can_touch(user) || (!post_climb_check && (user in climbers)))
 		return FALSE
 
-	if (!user.Adjacent(src))
+	if (!user.Adjacent(src) && !istype(src, /obj/structure/window/sandbag))
 		user << "<span class='danger'>You can't climb there, the way is blocked.</span>"
 		return FALSE
 

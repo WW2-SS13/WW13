@@ -585,6 +585,7 @@
 				Weaken(50)
 				if(l_hand) unEquip(l_hand)
 				if(r_hand) unEquip(r_hand)
+
 			if ("dab")
 				if (config.allow_dabbing && !restrained())
 					m_type = 1

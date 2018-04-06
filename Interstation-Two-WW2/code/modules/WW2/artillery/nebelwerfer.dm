@@ -1,8 +1,8 @@
 //parent object
-/obj/machinery/artillery/nebel
+/obj/structure/artillery/nebel
 	name = "Nebelwerfer"
 
-/obj/machinery/artillery/nebel/New(var/loc, var/mob/builder, var/dir)
+/obj/structure/artillery/nebel/New(var/loc, var/mob/builder, var/dir)
 
 	if (!dir)
 		dir = SOUTH
@@ -14,11 +14,11 @@
 		builder.dir = dir
 		fake_builder = TRUE
 
-	var/obj/machinery/artillery/base/nebel/base = new/obj/machinery/artillery/base/nebel(loc)
-	var/obj/machinery/artillery/tube/nebel/tube = new/obj/machinery/artillery/tube/nebel(get_step(base, base.dir))
+	var/obj/structure/artillery/base/nebel/base = new/obj/structure/artillery/base/nebel(loc)
+	var/obj/structure/artillery/tube/nebel/tube = new/obj/structure/artillery/tube/nebel(get_step(base, base.dir))
 
 	for (var/v in TRUE to 6)
-		base.lloaded[v] = new/obj/item/artillery_ammo/none()
+		base.lloaded[v] = new/obj/item/artillery_shell/none()
 
 	base.dir = builder.dir
 	tube.dir = builder.dir
@@ -33,24 +33,24 @@
 	qdel(src)
 
 
-/obj/machinery/artillery/base/nebel
+/obj/structure/artillery/base/nebel
 	name = "Nebelwerfer"
 	var/lloaded[6]
 	icon = 'icons/WW2/nebelwerfer.dmi'
 	icon_state = ""
 
-/obj/machinery/artillery/base/nebel/getNextOpeningClosingState()
+/obj/structure/artillery/base/nebel/getNextOpeningClosingState()
 	return initial(icon_state)
 
-/obj/machinery/artillery/base/nebel/New()
+/obj/structure/artillery/base/nebel/New()
 
-/obj/machinery/artillery/base/nebel/proc/Name(var/atom/a)
+/obj/structure/artillery/base/nebel/proc/Name(var/atom/a)
 	if (a && istype(a))
 		return a.name
 	else //fallback
 		return "Empty Slot"
 
-/obj/machinery/artillery/base/nebel/do_html(var/mob/m)
+/obj/structure/artillery/base/nebel/do_html(var/mob/m)
 
 	if (m)
 
@@ -91,7 +91,7 @@
 		</html>
 		"},  "window=artillery_window;border=1;can_close=1;can_resize=1;can_minimize=0;titlebar=1;size=500x500")
 
-/obj/machinery/artillery/base/nebel/Topic(href, href_list, hsrc)
+/obj/structure/artillery/base/nebel/Topic(href, href_list, hsrc)
 
 	if (!user.lying)
 
@@ -154,7 +154,7 @@
 				state = "OPEN"
 			spawn (6)
 				if (other.drop_casing)
-					new/obj/item/artillery_ammo/casing(get_step(src, dir))
+					new/obj/item/artillery_shell/casing(get_step(src, dir))
 					user << "<span class='danger'>The casing falls out of the artillery.</span>"
 					other.drop_casing = FALSE
 					playsound(get_turf(src), 'sound/effects/Stamp.wav', 100, TRUE)
@@ -173,8 +173,8 @@
 					return
 
 				var/obj/o = user.get_active_hand()
-				if (o && istype(o, /obj/item/artillery_ammo) && !istype(o, /obj/item/artillery_ammo/casing))
-					if (!istype(lloaded[i], /obj/item/artillery_ammo/none))
+				if (o && istype(o, /obj/item/artillery_shell) && !istype(o, /obj/item/artillery_shell/casing))
+					if (!istype(lloaded[i], /obj/item/artillery_shell/none))
 						var/atom/movable/a = lloaded[i]
 						a.loc = get_turf(user)
 
@@ -189,15 +189,15 @@
 
 
 
-/obj/machinery/artillery/tube/nebel/use_slot()
+/obj/structure/artillery/tube/nebel/use_slot()
 
-	var/obj/machinery/artillery/base/nebel/other_arty = other
+	var/obj/structure/artillery/base/nebel/other_arty = other
 
 	for (var/v in TRUE to 6)
-		if (istype(other_arty.lloaded[v], /obj/item/artillery_ammo))
-			if (!istype(other_arty.lloaded[v], /obj/item/artillery_ammo/none))
-				if (!istype(other_arty.lloaded[v], /obj/item/artillery_ammo/casing))
-					other_arty.lloaded[v] = new/obj/item/artillery_ammo/none(src)
+		if (istype(other_arty.lloaded[v], /obj/item/artillery_shell))
+			if (!istype(other_arty.lloaded[v], /obj/item/artillery_shell/none))
+				if (!istype(other_arty.lloaded[v], /obj/item/artillery_shell/casing))
+					other_arty.lloaded[v] = new/obj/item/artillery_shell/none(src)
 				else
 					if (other_arty.user)
 						other_arty.user << "<span class = 'danger'>Every slot must be loaded for the Nebelwerfer to fire.</span>"

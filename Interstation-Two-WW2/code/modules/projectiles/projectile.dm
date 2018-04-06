@@ -96,7 +96,7 @@
 /obj/item/projectile/proc/get_structure_damage()
 	if(damage_type == BRUTE || damage_type == BURN)
 		return damage
-	return FALSE
+	return 0
 
 //return TRUE if the projectile should be allowed to pass through after all, FALSE if not.
 /obj/item/projectile/proc/check_penetrate(var/atom/A)
@@ -409,13 +409,14 @@
 				return
 
 		before_move()
-		Move(location.return_turf())
 
 		if(!bumped && !isturf(original))
 			if(loc == get_turf(original))
 				if(!(original in permutated))
 					if(Bump(original))
 						return
+
+		Move(location.return_turf())
 
 		if(first_step)
 			muzzle_effect(effect_transform)

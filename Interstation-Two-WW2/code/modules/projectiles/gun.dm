@@ -468,6 +468,8 @@
 /obj/item/weapon/gun/proc/handle_shoot_self(var/mob/living/carbon/human/user)
 	if(!istype(user))
 		return
+	if(!special_check(user))
+		return
 
 	var/_burst = 1
 	var/datum/firemode/firemode = firemodes[sel_mode]
@@ -479,7 +481,8 @@
 		var/obj/item/projectile/in_chamber = consume_next_projectile()
 
 		if (istype(in_chamber))
-			var/damage_multiplier = 2.0
+
+			var/damage_multiplier = 1.33 // so legs and arms don't explode - Kachnov
 			var/organ_name = replacetext(replacetext(user.targeted_organ, "l_", "left "), "r_", "right ")
 
 			switch (user.targeted_organ)

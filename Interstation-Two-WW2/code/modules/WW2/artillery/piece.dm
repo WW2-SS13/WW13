@@ -1,8 +1,8 @@
 //parent object
-/obj/machinery/artillery
+/obj/structure/artillery
 	name = "Artillery"
 
-/obj/machinery/artillery/New(var/loc, var/mob/builder, var/dir)
+/obj/structure/artillery/New(var/loc, var/mob/builder, var/dir)
 
 	if (!dir)
 		dir = SOUTH
@@ -14,8 +14,8 @@
 		builder.dir = dir
 		fake_builder = TRUE
 
-	var/obj/machinery/artillery/base/base = new/obj/machinery/artillery/base(loc)
-	var/obj/machinery/artillery/tube/tube = new/obj/machinery/artillery/tube(get_step(base, base.dir))
+	var/obj/structure/artillery/base/base = new/obj/structure/artillery/base(loc)
+	var/obj/structure/artillery/tube/tube = new/obj/structure/artillery/tube(get_step(base, base.dir))
 	base.dir = builder.dir
 	tube.dir = builder.dir
 	base.other = tube
@@ -32,9 +32,9 @@
 #define BLIND_FIRE_DISTANCES list("SHORT" = "25:30", "MEDIUM" = "50:60", "LONG" = "75:90")
 
 //first piece
-/obj/machinery/artillery/base
-	var/obj/item/artillery_ammo/loaded = null
-	var/obj/machinery/artillery/tube/other
+/obj/structure/artillery/base
+	var/obj/item/artillery_shell/loaded = null
+	var/obj/structure/artillery/tube/other
 	var/offset_x = FALSE
 	var/offset_y = FALSE
 	var/mob/user = null
@@ -48,7 +48,7 @@
 	var/blind_fire_range = "SHORT"
 
 	// other
-	var/jammed_until = -1
+//	var/jammed_until = -1
 
 	density = TRUE
 	name = "7,5 cm FK 18"
@@ -56,108 +56,107 @@
 	icon_state = "base"
 	layer = MOB_LAYER + 1 //just above mobs
 
-	proc/get_blind_fire_dir()
-		switch (blind_fire_dir)
-			if (NORTH)
-				return "NORTH"
-			if (EAST)
-				return "EAST"
-			if (SOUTH)
-				return "SOUTH"
-			if (WEST)
-				return "WEST"
+/obj/structure/artillery/base/proc/get_blind_fire_dir()
+	switch (blind_fire_dir)
+		if (NORTH)
+			return "NORTH"
+		if (EAST)
+			return "EAST"
+		if (SOUTH)
+			return "SOUTH"
+		if (WEST)
+			return "WEST"
 
-	proc/get_blind_fire_dir2()
-		switch (blind_fire_dir2)
-			if (EAST)
-				return "EAST"
-			if (WEST)
-				return "WEST"
-			if ("NONE")
-				return "NONE"
+/obj/structure/artillery/base/proc/get_blind_fire_dir2()
+	switch (blind_fire_dir2)
+		if (EAST)
+			return "EAST"
+		if (WEST)
+			return "WEST"
+		if ("NONE")
+			return "NONE"
 
-	proc/do_html(var/mob/m)
+/obj/structure/artillery/base/proc/do_html(var/mob/m)
 
-		if (m)
+	if (m)
 
-			m << browse({"
+		m << browse({"
 
-			<br>
-			<html>
+		<br>
+		<html>
 
-			<head>
-			<style>
-			[common_browser_style]
-			</style>
-			</head>
+		<head>
+		<style>
+		[common_browser_style]
+		</style>
+		</head>
 
-			<body>
+		<body>
 
-			<script language="javascript">
+		<script language="javascript">
 
-			function set(input) {
-			  window.location="byond://?src=\ref[src];action="+input.name+"&value="+input.value;
-			}
+		function set(input) {
+		  window.location="byond://?src=\ref[src];action="+input.name+"&value="+input.value;
+		}
 
-			</script>
+		</script>
 
-			<center>
-			<big><b>[name]</b></big><br><br>
-			<a href='?src=\ref[src];open=1'>Open the shell slot</a><br>
-			<a href='?src=\ref[src];close=1'>Close the shell slot</a><br><br>
-			<b>Loaded Shells</b><br><br>
-			<a href='?src=\ref[src];load_slot_1=1'>[loaded.name]</a><br><br>
-			<b>Firing Options</b><br><br>
-			Artillery Piece X-coordinate:<input type="text" name="xcoord" readonly value="[x]" onchange="set(this);" /><br>
-			Artillery Piece Y-coordinate:<input type="text" name="ycoord" readonly value="[y]" onchange="set(this);" /><br>
-			Offset X-coordinate:<input type="text" name="xocoord" value="[offset_x]" onchange="set(this);" /><br>
-			Offset Y-coordinate:<input type="text" name="yocoord" value="[offset_y]" onchange="set(this);" /><br>
-			Fire At X-coordinate:<input type="text" name="xplusxocoord" value="[offset_x + x]" onchange="set(this);" /><br>
-			Fire At Y-coordinate:<input type="text" name="yplusyocoord" value="[offset_y + y]" onchange="set(this);" /><br>
-			Blind Firing:
-			&nbsp;<a href='?src=\ref[src];blind_fire_toggle=1'>[blind_fire_toggle ? "YES" : "NO"]</a>
-			&nbsp;<a href='?src=\ref[src];blind_fire_dir=1'>[get_blind_fire_dir()]</a>
-			&nbsp;<a href='?src=\ref[src];blind_fire_dir2=1'>[get_blind_fire_dir2()]</a>
-			&nbsp;<a href='?src=\ref[src];blind_fire_dist=1'>[blind_fire_range]</a>
-			<br>
-			<br>
-			<a href='?src=\ref[src];fire=1'><b><big>FIRE!</big></b></a>
-			</center>
+		<center>
+		<big><b>[name]</b></big><br><br>
+		<a href='?src=\ref[src];open=1'>Open the shell slot</a><br>
+		<a href='?src=\ref[src];close=1'>Close the shell slot</a><br><br>
+		<b>Loaded Shells</b><br><br>
+		<a href='?src=\ref[src];load_slot_1=1'>[loaded.name]</a><br><br>
+		<b>Firing Options</b><br><br>
+		Artillery Piece X-coordinate:<input type="text" name="xcoord" readonly value="[x]" onchange="set(this);" /><br>
+		Artillery Piece Y-coordinate:<input type="text" name="ycoord" readonly value="[y]" onchange="set(this);" /><br>
+		Offset X-coordinate:<input type="text" name="xocoord" value="[offset_x]" onchange="set(this);" /><br>
+		Offset Y-coordinate:<input type="text" name="yocoord" value="[offset_y]" onchange="set(this);" /><br>
+		Fire At X-coordinate:<input type="text" name="xplusxocoord" value="[offset_x + x]" onchange="set(this);" /><br>
+		Fire At Y-coordinate:<input type="text" name="yplusyocoord" value="[offset_y + y]" onchange="set(this);" /><br>
+		Blind Firing:
+		&nbsp;<a href='?src=\ref[src];blind_fire_toggle=1'>[blind_fire_toggle ? "YES" : "NO"]</a>
+		&nbsp;<a href='?src=\ref[src];blind_fire_dir=1'>[get_blind_fire_dir()]</a>
+		&nbsp;<a href='?src=\ref[src];blind_fire_dir2=1'>[get_blind_fire_dir2()]</a>
+		&nbsp;<a href='?src=\ref[src];blind_fire_dist=1'>[blind_fire_range]</a>
+		<br>
+		<br>
+		<a href='?src=\ref[src];fire=1'><b><big>FIRE!</big></b></a>
+		</center>
 
-			</body>
-			</html>
-			<br>
-			"},  "window=artillery_window;border=1;can_close=1;can_resize=1;can_minimize=0;titlebar=1;size=500x500")
-		//		<A href = '?src=\ref[src];topic_type=[topic_custom_input];continue_num=1'>
+		</body>
+		</html>
+		<br>
+		"},  "window=artillery_window;border=1;can_close=1;can_resize=1;can_minimize=0;titlebar=1;size=500x500")
+	//		<A href = '?src=\ref[src];topic_type=[topic_custom_input];continue_num=1'>
 
-	interact(var/mob/m)
-		if (user)
-			if (get_dist(src, user) > 1)
-				user = null
-		restart
-		if (user && user != m)
-			if (user.client)
-				return
-			else
-				user = null
-				goto restart
+/obj/structure/artillery/base/interact(var/mob/m)
+	if (user)
+		if (get_dist(src, user) > 1)
+			user = null
+	restart
+	if (user && user != m)
+		if (user.client)
+			return
 		else
-			user = m
-			do_html(user)
+			user = null
+			goto restart
+	else
+		user = m
+		do_html(user)
 
 
-	Move()
-		global.valid_coordinates["[x],[y]"] = FALSE
-		..()
-		other.loc = (get_step(src, dir) || loc)
-		global.valid_coordinates["[x],[y]"] = TRUE
+/obj/structure/artillery/base/Move()
+	global.valid_coordinates["[x],[y]"] = 0
+	..()
+	other.loc = (get_step(src, dir) || loc)
+	global.valid_coordinates["[x],[y]"] = 1
 
+/obj/structure/artillery/base/New()
 
-/obj/machinery/artillery/base/New()
+	loaded = new/obj/item/artillery_shell/none(src)
 
-	loaded = new/obj/item/artillery_ammo/none(src)
-
-/obj/machinery/artillery/base/proc/getNextOpeningClosingState()
+/obj/structure/artillery/base/proc/getNextOpeningClosingState()
 
 	if (state == "CLOSED")
 		return "opening"
@@ -167,7 +166,7 @@
 		else
 			return "closing_without_shell"
 
-/obj/machinery/artillery/base/Topic(href, href_list, hsrc)
+/obj/structure/artillery/base/Topic(href, href_list, hsrc)
 
 	var/mob/user = usr
 
@@ -220,9 +219,9 @@
 			user << "<span class='danger'>Close the shell loading slot first.</span>"
 			return
 
-		if (jammed_until > world.time)
+/*		if (jammed_until > world.time)
 			user << "<span class='danger'>The artillery piece has jammed! You can't fire it until it has unjammed.</span>"
-			return
+			return*/
 
 		if (blind_fire_toggle)
 
@@ -282,11 +281,11 @@
 				user << "<span class='danger'>This location is too close to fire to.</span>"
 				return
 			else
-				var/obj/item/artillery_ammo/shell = other.use_slot()
-				if (shell)
+				var/obj/item/artillery_shell/shell = other.use_slot()
+				if (shell && do_mob(user, user, 30))
 					other.fire(target_x, target_y, shell)
-					if (prob(7))
-						jammed_until = world.time + rand(70,200)
+		/*			if (prob(7))
+						jammed_until = world.time + rand(70,200) */
 				else
 					user << "<span class='danger'>Load a shell in first.</span>"
 					return
@@ -303,7 +302,7 @@
 			state = "OPEN"
 		spawn (6)
 			if (other.drop_casing)
-				var/obj/o = new/obj/item/artillery_ammo/casing(get_step(src, dir))
+				var/obj/o = new/obj/item/artillery_shell/casing(get_step(src, dir))
 				o.icon_state = casing_state
 				user << "<span class='danger'>The casing falls out of the artillery.</span>"
 				other.drop_casing = FALSE
@@ -373,18 +372,16 @@
 				if (WEST)
 					blind_fire_dir2 = "NONE"
 
-
-
 	do_html(user)
 
-/obj/machinery/artillery/base/proc/load_slot(var/slot = 1, var/mob/user)
+/obj/structure/artillery/base/proc/load_slot(var/slot = 1, var/mob/user)
 	var/obj/o = user.get_active_hand()
-	var/cond_1 = o && istype(o, /obj/item/artillery_ammo) && !istype(o, /obj/item/artillery_ammo/casing)
+	var/cond_1 = o && istype(o, /obj/item/artillery_shell) && !istype(o, /obj/item/artillery_shell/casing)
 	var/cond_2 = !o
 
 	if (cond_1 || cond_2)
 
-		if (!istype(loaded, /obj/item/artillery_ammo/none))
+		if (!istype(loaded, /obj/item/artillery_shell/none))
 			loaded.loc = get_turf(user)
 
 		if (o)
@@ -396,44 +393,45 @@
 		else
 			icon_state = "open"
 			state = "OPEN"
+			loaded = new/obj/item/artillery_shell/none(src)
 
-/obj/machinery/artillery/base/attack_hand(var/mob/attacker)
+	do_html(user)
+
+/obj/structure/artillery/base/attack_hand(var/mob/attacker)
 	interact(attacker)
 
 // todo: loading artillery. This will regenerate the shrapnel and affect our explosion
-/obj/machinery/artillery/base/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/artillery/base/attackby(obj/item/W as obj, mob/M as mob)
 	if(istype(W, /obj/item/weapon/wrench))
 		if (anchored)
 			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
-			user << "<span class='notice'>Now unsecuring the artillery piece...</span>"
-			if(do_after(user,20))
+			M << "<span class='notice'>Now unsecuring the artillery piece...</span>"
+			if(do_after(M,20))
 				if(!src) return
-				user << "<span class='notice'>You unsecured the artillery piece.</span>"
+				M << "<span class='notice'>You unsecured the artillery piece.</span>"
 				anchored = FALSE
 		else if(!anchored)
 			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
-			user << "<span class='notice'>Now securing the artillery piece...</span>"
-			if(do_after(user, 20))
+			M << "<span class='notice'>Now securing the artillery piece...</span>"
+			if(do_after(M, 20))
 				if (!src) return
-				user << "<span class='notice'>You secured the artillery piece.</span>"
+				M << "<span class='notice'>You secured the artillery piece.</span>"
 				anchored = TRUE
-	else if (istype(W, /obj/item/artillery_ammo) && !istype(W, /obj/item/artillery_ammo/none))
-		if (!istype(src, /obj/machinery/artillery/nebel))
+	else if (istype(W, /obj/item/artillery_shell) && !istype(W, /obj/item/artillery_shell/none))
+		if (!istype(src, /obj/structure/artillery/nebel))
 			if (!anchored)
-				user << "<span class = 'danger'>The artillery piece must be wrench to the ground to use.</span>"
+				M << "<span class = 'danger'>The artillery piece must be wrench to the ground to use.</span>"
 				return
 			if (state == "CLOSED")
-				user << "<span class = 'danger'>The shell loading slot must be open to add a shell.</span>"
+				M << "<span class = 'danger'>The shell loading slot must be open to add a shell.</span>"
 				return
 			// load first and only slot
-			load_slot(1, user)
-
-
+			load_slot(1, M)
 
 //second piece
 
-/obj/machinery/artillery/tube
-	var/obj/machinery/artillery/base/other = null
+/obj/structure/artillery/tube
+	var/obj/structure/artillery/base/other = null
 	icon_state = "tube"
 	name = ""
 	layer = FALSE
@@ -444,14 +442,14 @@
 		var/explosion = FALSE
 		var/reagent_payload = null
 
-		if (!istype(shell, /obj/item/artillery_ammo/gaseous))
+		if (!istype(shell, /obj/item/artillery_shell/gaseous))
 			explosion = TRUE
 		else
-			var/obj/item/artillery_ammo/gaseous/g = shell
+			var/obj/item/artillery_shell/gaseous/g = shell
 			reagent_payload = g.reagent_payload
 
-		if (istype(shell, /obj/item/artillery_ammo))
-			var/obj/item/artillery_ammo/shell2 = shell
+		if (istype(shell, /obj/item/artillery_shell))
+			var/obj/item/artillery_shell/shell2 = shell
 			other.casing_state = shell2.casing_state
 
 		qdel(shell)
@@ -642,28 +640,28 @@
 						if ("xylyl_bromide")
 							new/obj/effect/effect/smoke/chem/payload/xylyl_bromide(t)
 
-/obj/machinery/artillery/tube/proc/use_slot()
+/obj/structure/artillery/tube/proc/use_slot()
 
 	var/orig = null
-	if (istype(other.loaded, /obj/item/artillery_ammo))
+	if (istype(other.loaded, /obj/item/artillery_shell))
 		orig = other.loaded
-		if (!istype(other.loaded, /obj/item/artillery_ammo/none))
-			if (!istype(other.loaded, /obj/item/artillery_ammo/casing))
-				other.loaded = new/obj/item/artillery_ammo/none(src)
+		if (!istype(other.loaded, /obj/item/artillery_shell/none))
+			if (!istype(other.loaded, /obj/item/artillery_shell/casing))
+				other.loaded = new/obj/item/artillery_shell/none(src)
 				return orig
 	else
 		return orig
 
-/obj/machinery/artillery/tube/interact(var/mob/m)
+/obj/structure/artillery/tube/interact(var/mob/m)
 	return
 
-/obj/machinery/artillery/tube/New()
+/obj/structure/artillery/tube/New()
 	return
 
-/obj/machinery/artillery/ex_act(severity)
+/obj/structure/artillery/ex_act(severity)
 	return
 
-/obj/machinery/artillery/base/ex_act(severity)
+/obj/structure/artillery/base/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)

@@ -237,6 +237,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if (!H.languages.Find(H.default_language))
 			H.languages.Insert(1, H.default_language)
 		human_clients_mob_list |= H
+		if (config.allow_selfheal)
+			H.verbs |= /mob/living/carbon/human/proc/selfheal
 
 	return TRUE
 

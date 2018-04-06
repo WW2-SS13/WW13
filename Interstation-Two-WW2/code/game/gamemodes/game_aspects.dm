@@ -231,7 +231,7 @@
 	desc = "The Germans have no artillery for this battle."
 
 /datum/game_aspect/ww2/no_artillery/specialcheck()
-	return (locate(/obj/machinery/artillery) in world && clients.len > ARTILLERY_LOWPOP_THRESHOLD)
+	return (locate(/obj/structure/artillery) in world && clients.len > ARTILLERY_LOWPOP_THRESHOLD)
 
 /datum/game_aspect/ww2/no_artillery/activate()
 	. = ..()
@@ -239,7 +239,7 @@
 		return .
 	world << "[WW2_ASPECT_SPAN][.]No artillery!</span>"
 	world << "<br><i>[desc]</i>"
-	for (var/obj/machinery/artillery/A in world)
+	for (var/obj/structure/artillery/A in world)
 		qdel(A)
 
 /datum/game_aspect/ww2/foreign_armies

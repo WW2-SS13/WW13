@@ -112,7 +112,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
-	desc = "A portable communication device. You can speak through it with ':b' when it's in your suit storage slot, and ':l' or ':r' when its in your hand. ';' speaks with the first radio available on your person."
+	desc = "A portable communication device. You can speak through it with ':b' when it's in your suit storage slot, and ':l' or ':r' when its in your hand. ';' speaks with the first radio available on your person, and ':f' uses a radio in front of you."
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
@@ -281,6 +281,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	var/list/possible_radio_locations = range(1, src)
 	if (istype(loc, /obj/tank))
 		possible_radio_locations += contents
+	var/turf/getstep = get_step(src, dir)
 
 	for (var/obj/item/device/radio/radio in possible_radio_locations)
 		if (!used_radio_turfs.Find(radio.faction))
@@ -296,7 +297,10 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 				continue
 		if (!radio.on)
 			continue
-		if (radio == s_store)
+
+		if (dd_hasprefix(message, ":f") && getstep && getstep.contents.Find(radio))
+			message = copytext(message, 3)
+		else if (radio == s_store)
 			if (dd_hasprefix(message, ":b"))
 				message = copytext(message, 3)
 			else if (dd_hasprefix(message, ";"))
