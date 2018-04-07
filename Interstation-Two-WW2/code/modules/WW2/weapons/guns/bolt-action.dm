@@ -142,7 +142,7 @@
 	. = ..()
 	if (!.)
 		return .
-	if (!do_after(user, 3, get_turf(user)))
+	if (!do_after(user, 2, get_turf(user)))
 		return FALSE
 	return TRUE
 
