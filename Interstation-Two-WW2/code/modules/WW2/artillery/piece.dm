@@ -29,7 +29,7 @@
 	qdel(src)
 
 #define BLIND_FIRE_RANGES list("SHORT", "MEDIUM", "LONG")
-#define BLIND_FIRE_DISTANCES list("SHORT" = "25:30", "MEDIUM" = "50:60", "LONG" = "75:90")
+#define BLIND_FIRE_DISTANCES list("SHORT" = "35:40", "MEDIUM" = "55:60", "LONG" = "75:80")
 
 //first piece
 /obj/structure/artillery/base

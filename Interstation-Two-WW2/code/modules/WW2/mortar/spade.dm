@@ -2,7 +2,7 @@
 	name = "37mm Spade Mortar"
 	icon_state = "spade"
 
-/obj/structure/mortar/spade/verb/get()
+/obj/structure/mortar/spade/verb/Get()
 	set src in oview(1, usr)
 	set category = null
 	if (usr.l_hand && usr.r_hand)
