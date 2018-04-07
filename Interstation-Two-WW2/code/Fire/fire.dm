@@ -293,7 +293,7 @@ var/obj/burning_overlay_turf = null
 		L.fire_act()
 
 	if (!istype(L, /mob/living/carbon/human))
-		L.apply_damage(damage*5)
+		L.apply_damage(damage*3)
 	else
 		var/mob/living/carbon/human/H = L
 
@@ -321,9 +321,9 @@ var/obj/burning_overlay_turf = null
 				if(C.body_parts_covered & ARMS)
 					arms_exposure = FALSE
 
-		H.apply_damage(damage*1.0*head_exposure, BURN, "head", FALSE, FALSE, "Fire")
-		H.apply_damage(damage*0.8*chest_exposure, BURN, "chest", FALSE, FALSE, "Fire")
-		H.apply_damage(damage*0.8*groin_exposure, BURN, "groin", FALSE, FALSE, "Fire")
+		H.apply_damage(damage*0.5*head_exposure, BURN, "head", FALSE, FALSE, "Fire")
+		H.apply_damage(damage*0.4*chest_exposure, BURN, "chest", FALSE, FALSE, "Fire")
+		H.apply_damage(damage*0.4*groin_exposure, BURN, "groin", FALSE, FALSE, "Fire")
 		H.apply_damage(damage*0.2*legs_exposure, BURN, "l_leg", FALSE, FALSE, "Fire")
 		H.apply_damage(damage*0.2*legs_exposure, BURN, "r_leg", FALSE, FALSE, "Fire")
 		H.apply_damage(damage*0.15*arms_exposure, BURN, "l_arm", FALSE, FALSE, "Fire")
