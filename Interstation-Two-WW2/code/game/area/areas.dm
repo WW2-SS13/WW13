@@ -195,7 +195,7 @@ var/list/ghostteleportlocs = list()
 	return
 */
 /area/proc/updateicon()
-	if ((fire || eject) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
+	if ((fire || eject) && (!requires_power||power_environ))//If it doesn't require power, can still activate this proc.
 		if(fire)
 			//icon_state = "blue"
 			for(var/obj/machinery/light/L in src)
@@ -299,10 +299,13 @@ var/list/mob/living/forced_ambiance_list = new
 
 	var/override_ambience = FALSE
 
-	for (var/typecheck in list(/area/prishtina/german, /area/prishtina/soviet, /area/prishtina/void))
+	for (var/typecheck in list(/area/prishtina/german, /area/prishtina/soviet, /area/prishtina/no_mans_land, /area/prishtina/forest, /area/prishtina/void))
 		if (istype(oldarea, typecheck))
 			if (!istype(newarea, typecheck))
 				override_ambience = TRUE
+
+	if (oldarea.is_void_area != newarea.is_void_area)
+		override_ambience = TRUE
 
 	if (oldarea.location != newarea.location)
 		override_ambience = TRUE
@@ -345,17 +348,17 @@ var/list/mob/living/forced_ambiance_list = new
 		var/ideal_y = round(world.maxy/2)
 		var/area/L_area = get_area(L)
 
-		// war volume will vary from 5% to 50%, depending on where you are (on a 150x150 map)
+		// war volume will vary from 5% to 40%, depending on where you are (on a 150x150 map)
 		// the max() check makes this code forestmap compatible too - Kachnov
-		var/warvolume = 50
+		var/warvolume = 40
 
-		warvolume -= ceil(abs(L.x - ideal_x)/5)
-		warvolume -= ceil(abs(L.y - ideal_y)/5)
+		warvolume -= round(abs(L.x - ideal_x)/7)
+		warvolume -= round(abs(L.y - ideal_y)/7)
 
 		if (L_area)
 			if (L_area.location == AREA_INSIDE)
-				warvolume -= 5
-			if (istype(L_area, /area/prishtina/void))
+				warvolume -= 10
+			if (L_area.is_void_area)
 				warvolume -= 10
 
 		warvolume = max(warvolume, 5)
@@ -397,8 +400,17 @@ var/list/mob/living/forced_ambiance_list = new
 /area/proc/has_gravity()
 	return has_gravity
 
-/area/space/has_gravity()
-	return FALSE
+/area/proc/arty_act(loss)
+	if (prob(25))
+		artillery_integrity -= loss * 1.5
+	else if (prob(50))
+		artillery_integrity -= loss
+	else
+		artillery_integrity -= loss * 0.75
+	update_snowfall_valid_turfs()
+	if (artillery_integrity > 0)
+		return FALSE
+	return TRUE
 
 /proc/has_gravity(atom/AT, turf/T)
 	return TRUE

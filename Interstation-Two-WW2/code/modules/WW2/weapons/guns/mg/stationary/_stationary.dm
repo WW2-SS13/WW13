@@ -104,8 +104,6 @@
 		user << "<span class = 'warning'>\the [src] is already in use.</span>"
 		return
 
-	next_spam = world.time + 50
-
 	if(user.using_object == src)
 		if(firemodes.len > 1)
 			switch_firemodes(user)
@@ -119,6 +117,7 @@
 				started_using(user)
 				if (user.loc != loc)
 					user.use_object(null)
+				next_spam = world.time + 75
 			else
 				user.show_message("<span class = 'warning'>You need both hands to use a minigun.</span>")
 		else

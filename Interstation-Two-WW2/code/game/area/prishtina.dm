@@ -206,6 +206,7 @@
 	icon_state = "purple1"
 	name = "Admin Zone"
 	location = AREA_INSIDE
+	artillery_integrity = 1000000
 
 /area/prishtina/admin/tonkland
 	name = "Tonk Zone"
@@ -515,6 +516,7 @@
 	icon_state = "blue3"
 	location = AREA_INSIDE
 	parent_area_type = /area/prishtina/german/kitchen/storage
+	is_void_area = TRUE
 
 /area/prishtina/german/shower1
 	name = "Showers #1"
@@ -605,6 +607,7 @@
 	name = "SS Armory"
 	icon_state = "green1"
 	location = AREA_INSIDE
+	is_void_area = TRUE
 
 /area/prishtina/german/ss_prison
 	name = "SS Prison"
@@ -646,6 +649,7 @@
 	name = "Morgue"
 	icon_state = "blue4"
 	parent_area_type = /area/prishtina/german/medical/hallway
+	is_void_area = TRUE
 
 // special german areas
 
@@ -654,6 +658,7 @@
 	location = AREA_INSIDE
 	dynamic_lighting = FALSE
 	base_turf = /turf/floor/dirt
+	artillery_integrity = 200
 
 /area/prishtina/german/lift
 	name = "Lift"
@@ -714,6 +719,7 @@
 /area/prishtina/soviet/small_map/inside/kitchen/cellar
 	name = "Kitchen Cellar"
 	icon_state = "blue2"
+	is_void_area = TRUE
 
 /area/prishtina/soviet/small_map/inside/commander_bedroom
 	name = "Kapitan's Office"
@@ -746,6 +752,7 @@
 	name = "Morgue"
 	icon_state = "blue5"
 	parent_area_type = /area/prishtina/soviet/small_map/inside/medical/hallway
+	is_void_area = TRUE
 
 /area/prishtina/soviet/small_map/inside/mparea
 	name = "MP Area"
@@ -755,6 +762,7 @@
 	name = "Prison"
 	icon_state = "green2"
 	parent_area_type = /area/prishtina/soviet/small_map/inside/mparea
+	is_void_area = TRUE
 
 /area/prishtina/soviet/small_map/main_area/supplypad
 	name = "Supply Pad"
@@ -765,6 +773,7 @@
 	name = "Bunker Entrance"
 	icon_state = "red2"
 	location = AREA_INSIDE
+	artillery_integrity = 200
 
 /area/prishtina/soviet/immediate_outside_defenses
 	name = "Bunker Defenses"
@@ -791,6 +800,7 @@
 /area/prishtina/soviet/bunker
 	name = "Bunker"
 	location = AREA_INSIDE
+	artillery_integrity = 200
 
 /area/prishtina/soviet/bunker/tunnel
 	icon_state = "red2"

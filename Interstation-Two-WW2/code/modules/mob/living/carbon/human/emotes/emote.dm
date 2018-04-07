@@ -559,6 +559,7 @@
 							message = "holds out [g.his] hand to [M]."
 
 			if ("scream")
+	//			log_debug(lastMovedRecently())
 				if (last_scream != -1 && world.time - last_scream < 50)
 					return
 				last_scream = world.time

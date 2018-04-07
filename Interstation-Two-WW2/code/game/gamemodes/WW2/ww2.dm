@@ -38,6 +38,18 @@
 	else
 		return "Neither side has captured the other side's base."
 
+/datum/game_mode/ww2/proc/short_win_time()
+	if (clients.len >= 20)
+		return 6000 // ten minutes
+	else
+		return 3000 // five minutes
+
+/datum/game_mode/ww2/proc/long_win_time()
+	if (clients.len >= 20)
+		return 9000 // 15 minutes
+	else
+		return 6000 // ten minutes
+
 //#define WINTER_TESTING
 
 /datum/game_mode/ww2/pre_setup()
@@ -125,8 +137,8 @@
 		if (alive_soviets > alive_germans && soviets_in_germany > germans_in_germany)
 			if (currently_winning != "Soviets" || win_sort != 2)
 				currently_winning = "Soviets"
-				currently_winning_message = "<font size = 3>The Red Army has occupied most German territory! The Germans have 5 minutes to reclaim their land!</font>"
-				next_win_time = world.realtime + 3000
+				currently_winning_message = "<font size = 3>The Red Army has occupied most German territory! The Germans have [short_win_time()/600] minutes to reclaim their land!</font>"
+				next_win_time = world.realtime + short_win_time()
 				win_sort = 2
 
 		// condition 2.2: Germans outnumber soviets and the amount of germans
@@ -135,8 +147,8 @@
 		else if (alive_germans > alive_soviets && germans_in_russia > soviets_in_russia)
 			if (currently_winning != "Germans" || win_sort != 2)
 				currently_winning = "Germans"
-				currently_winning_message = "<font size = 3>The Germans have occupied most Soviet territory! The Red Army has 5 minutes to reclaim their land!</font>"
-				next_win_time = world.realtime + 3000
+				currently_winning_message = "<font size = 3>The Germans have occupied most Soviet territory! The Red Army has [short_win_time()/600] minutes to reclaim their land!</font>"
+				next_win_time = world.realtime + short_win_time()
 				win_sort = 2
 
 		// condition 2.3: Germans heavily outnumber soviets in the soviet
@@ -146,8 +158,8 @@
 		else if ((germans_in_russia/1.33) > soviets_in_russia)
 			if (currently_winning != "Germans" || win_sort != 1)
 				currently_winning = "Germans"
-				currently_winning_message = "<font size = 3>The Germans have occupied most Soviet territory! The Red Army has 10 minutes to reclaim their land!</font>"
-				next_win_time = world.realtime + 6000
+				currently_winning_message = "<font size = 3>The Germans have occupied most Soviet territory! The Red Army has [long_win_time()/600] minutes to reclaim their land!</font>"
+				next_win_time = world.realtime + long_win_time()
 				win_sort = 1
 
 		// condition 2.4: soviets heavily outnumber Germans in the German
@@ -157,8 +169,8 @@
 		else if ((soviets_in_germany/1.33) > germans_in_germany)
 			if (currently_winning != "Soviets" || win_sort != 1)
 				currently_winning = "Soviets"
-				currently_winning_message = "<font size = 3>The Red Army has occupied most German territory! The Wehrmacht has 10 minutes to reclaim their land!</font>"
-				next_win_time = world.realtime + 6000
+				currently_winning_message = "<font size = 3>The Red Army has occupied most German territory! The Wehrmacht has [long_win_time()/600] minutes to reclaim their land!</font>"
+				next_win_time = world.realtime + long_win_time()
 				win_sort = 1
 
 		else if (currently_winning)
@@ -302,9 +314,18 @@
 						qdel(C)
 					for (var/obj/structure/closet/crate/artillery_gas/C in world)
 						qdel(C)
-					world << "<i>Due to lowpop, there is no artillery and Katyusha strikes will not be available.</i>"
+					world << "<i>Due to lowpop, there is no artillery or mortars.</i>"
 					if (map)
 						german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
 						german_supply_crate_types -= "Artillery Ballistic Shells Crate"
 						german_supply_crate_types -= "Artillery Gas Shells Crate"
 						map.katyushas = FALSE
+				if (locate(/obj/structure/mortar) in world)
+					for (var/obj/structure/mortar/M in world)
+						qdel(M)
+					for (var/obj/structure/closet/crate/mortar_shells/C in world)
+						qdel(C)
+					if (map)
+						german_supply_crate_types -= "Mortar Shells"
+						soviet_supply_crate_types -= "Mortar Shells"
+						soviet_supply_crate_types -= "37mm Spade Mortar"

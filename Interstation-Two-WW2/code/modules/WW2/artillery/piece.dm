@@ -282,7 +282,7 @@
 				return
 			else
 				var/obj/item/artillery_shell/shell = other.use_slot()
-				if (shell && do_mob(user, user, 30))
+				if (shell && do_after(user, 30, src))
 					other.fire(target_x, target_y, shell)
 		/*			if (prob(7))
 						jammed_until = world.time + rand(70,200) */
@@ -297,7 +297,7 @@
 		if (state == "OPEN")
 			return
 		flick("opening", src)
-		spawn (8)
+		if (do_after(user, 8, src))
 			icon_state = "open"
 			state = "OPEN"
 		spawn (6)
@@ -312,7 +312,7 @@
 		if (state == "CLOSED")
 			return
 		flick("closing", src)
-		spawn (12)
+		if (do_after(user, 12, src))
 			icon_state = ""
 			state = "CLOSED"
 
@@ -322,7 +322,8 @@
 				user << "<span class = 'danger'>The shell loading slot must be open to add a shell.</span>"
 				return
 
-			load_slot(i, user)
+			if (do_after(user, 10, src))
+				load_slot(i, user)
 
 
 	//	flick("opening", src)
@@ -406,14 +407,14 @@
 		if (anchored)
 			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 			M << "<span class='notice'>Now unsecuring the artillery piece...</span>"
-			if(do_after(M,20))
+			if(do_after(M, 20, src))
 				if(!src) return
 				M << "<span class='notice'>You unsecured the artillery piece.</span>"
 				anchored = FALSE
 		else if(!anchored)
 			playsound(loc, 'sound/items/Ratchet.ogg', 100, TRUE)
 			M << "<span class='notice'>Now securing the artillery piece...</span>"
-			if(do_after(M, 20))
+			if(do_after(M, 20, src))
 				if (!src) return
 				M << "<span class='notice'>You secured the artillery piece.</span>"
 				anchored = TRUE
@@ -537,25 +538,9 @@
 
 		var/area/t_area = get_area(t)
 
-		var/is_indoors = FALSE
-		var/artillery_deflection_bonus = 0
-
-		if (t_area.is_void_area)
-			return FALSE
-
-		if (istype(t_area, /area/prishtina/admin))
-			return FALSE
-
-		if (istype(t_area, /area/prishtina/soviet/bunker))
-			is_indoors = TRUE
-			artillery_deflection_bonus = 55 // experimental
-
-		if (istype(t_area, /area/prishtina/soviet/bunker_entrance))
-			is_indoors = TRUE
-
 		var/power_mult = 1.0 //experimental. 2 is a bit high.
 
-		var/travel_time = FALSE
+		var/travel_time = 0
 
 		var/abs_dist = abs(t.x - other.x) + abs(t.y - other.y)
 
@@ -584,21 +569,17 @@
 							t = get_turf(warp.target)
 							break
 
-			if (istrueflooring(t) || iswall(t) || is_indoors)
+			if (istrueflooring(t) || iswall(t) || t_area.location == AREA_INSIDE)
 				var/area/a = t.loc
-				if (prob(a.artillery_integrity))
-					for (var/mob/m in range(20, t))
-						shake_camera(m, 5, 5)
-						m << "<span class = 'danger'>You hear something violently smash into the ceiling!</span>"
-					if (prob(100 - artillery_deflection_bonus))
-						if (explosion)
-							a.artillery_integrity -= rand(20,25)
-							a.update_snowfall_valid_turfs()
-						else
-							a.artillery_integrity -= rand(10,12)
-							a.update_snowfall_valid_turfs()
+				var/a_original_integrity = a.artillery_integrity
+				if (!a.arty_act(explosion ? 25 : 13))
+					for (var/mob/living/L in view(20, t))
+						shake_camera(L, 5, 5)
+						L << "<span class = 'danger'>You hear something violently smash into the ceiling!</span>"
+					message_admins("Artillery shell hit the ceiling at [t.x], [t.y], [t.z].")
+					log_admin("Artillery shell hit the ceiling at [t.x], [t.y], [t.z].")
 					return
-				else
+				else if (a_original_integrity)
 					t.visible_message("<span class = 'danger'>The ceiling collapses!</span>")
 
 			if (explosion)

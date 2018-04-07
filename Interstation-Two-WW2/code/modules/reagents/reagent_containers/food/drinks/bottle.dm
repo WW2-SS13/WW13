@@ -94,7 +94,7 @@
 			shatter(get_turf(A), A, explode ? calculate_alcohol_power() : 0)
 	..(A, yes)
 
-//#define MOLOTOV_EXPLOSIONS
+// molotov recode, 4/7/18 - Kachnov
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/shatter(var/newloc, atom/against = null, var/alcohol_power = 0)
 
 	if (!newloc)
@@ -108,51 +108,29 @@
 			var/mob/living/L = against
 			L.IgniteMob()
 
-		var/explosion_power = alcohol_power/2.5
-
-		 // plz fuck off rags - Kachnov
 		rag.loc = null
 		qdel(rag)
 		rag = null
 
-		if (explosion_power > 0)
-			// by using this instead of rounded devrange, not all molotovs will be the same
-			// raw_devrange may vary from 0.1 to 2.50 or more - Kachnov
-			var/raw_devrange = explosion_power/1000
-			var/devrange = min(round(raw_devrange), 1)
-			var/heavyrange = max(1, round(raw_devrange*1))
-			var/lightrange = max(1, round(raw_devrange*2))
-			var/flashrange = max(1, round(raw_devrange*3))
-			var/firerange = max(1, round(raw_devrange*4)) + 1
-			firerange = min(firerange, 2) // removes crazy molotovs
-
-			var/src_turf = get_turf(src)
-
-
 // for reference:
 // "apply_damage(ceil(fire_stacks/3)+1, BURN, "chest", FALSE)" is the fire damage formula, found in living_defense.dm
 
-			mainloop:
-				for (var/turf/T in range(src_turf, firerange))
-					if (prob(80) && !T.density)
-						for (var/obj/structure/S in T)
-							if (S.density && !S.low)
-								continue mainloop
-						var/obj/fire/F = T.create_fire(temp = ceil(explosion_power/8))
-						F.time_limit = pick(50, 60, 70)
-						for (var/mob/living/L in T)
-							L.fire_stacks += 3
-							L.IgniteMob()
-							L.adjustFireLoss(rand(15,20))
-							if (ishuman(L))
-								L.emote("scream")
-
-			#ifdef MOLOTOV_EXPLOSIONS
-			spawn (0.1)
-				explosion(src_turf, devrange, heavyrange, lightrange, flashrange)
-			#else
-			pass(devrange, heavyrange, lightrange, flashrange)
-			#endif
+		mainloop:
+			for (var/turf/T in range(get_turf(src), 1))
+				if ((prob(90) || T == get_turf(src)) && !T.density)
+					for (var/obj/structure/S in T)
+						if (S.density && !S.low)
+							continue mainloop
+					var/obj/fire/F = T.create_fire(temp = ceil(alcohol_power/5))
+					F.time_limit = pick(50, 60, 70)
+					for (var/mob/living/L in T)
+						if (L.on_fire)
+							continue
+						L.fire_stacks += ceil(alcohol_power/1000)
+						L.IgniteMob()
+						L.adjustFireLoss(rand(alcohol_power*0.004,alcohol_power*0.008))
+						if (ishuman(L))
+							L.emote("scream")
 
 	if (src)
 		if(ismob(loc))

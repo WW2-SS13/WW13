@@ -127,7 +127,15 @@
 		totalPlayers = 0
 
 		for (var/player in new_player_mob_list)
-			stat(player:key)
+			if (reinforcements_master)
+				if (reinforcements_master.reinforcement_pool[GERMAN]:Find(player))
+					stat("[player:key] - joining as German")
+				else if (reinforcements_master.reinforcement_pool[SOVIET]:Find(player))
+					stat("[player:key] - joining as Soviet")
+				else
+					stat(player:key)
+			else
+				stat(player:key)
 			++totalPlayers
 
 		stat("")
