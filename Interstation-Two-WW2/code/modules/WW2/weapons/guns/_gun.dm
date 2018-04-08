@@ -137,8 +137,8 @@
 
 	. = min(CLAMP0100(.), 98)
 
-	if (prob(50) && list("mouth", "eyes").Find(zone))
-		. = 100
+	if (list("mouth", "eyes").Find(zone))
+		. = min(. * 2, 100)
 
 //	log_debug("final miss chance: [.]")
 
