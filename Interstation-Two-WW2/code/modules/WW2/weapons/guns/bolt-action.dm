@@ -75,6 +75,8 @@
 			VERY_LONG_RANGE_MOVING = 35),
 	)
 
+	load_delay = 5
+
 	var/bolt_open = FALSE
 	var/check_bolt = FALSE //Keeps the bolt from being interfered with
 	var/check_bolt_lock = FALSE //For locking the bolt. Didn't put this in with check_bolt to avoid issues
@@ -84,11 +86,10 @@
 	var/jamcheck = 0
 	var/last_fire = -1
 
-
 /obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user)
 	if(!check_bolt)//Keeps people from spamming the bolt
 		check_bolt++
-		if(!do_after(user, 1, src, FALSE, TRUE,INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
+		if(!do_after(user, 4, src, FALSE, TRUE,INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
 			check_bolt--
 			return
 	else return
@@ -136,15 +137,6 @@
 	if(!bolt_open)
 		return
 	..()
-
-// rifles take 0.3 seconds to fire now, meaning they're weaker than SMGs at close range
-/obj/item/weapon/gun/projectile/boltaction/special_check(var/mob/user)
-	. = ..()
-	if (!.)
-		return .
-	if (!do_after(user, 2, get_turf(user)))
-		return FALSE
-	return TRUE
 
 /obj/item/weapon/gun/projectile/boltaction/handle_post_fire()
 	..()

@@ -73,6 +73,7 @@
 	var/KD_chance = 5
 	var/stat = "rifle"
 	var/effectiveness_mod = 1.00
+	var/load_delay = 0
 
 /obj/item/weapon/gun/projectile/proc/calculate_miss_chance(zone, var/mob/target)
 

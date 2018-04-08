@@ -49,19 +49,11 @@
 	accuracy_decrease_mod = 6.00
 	KD_chance = KD_CHANCE_MEDIUM
 	stat = "rifle"
+	load_delay = 5
 
 	var/jammed_until = -1
 	var/jamcheck = 0
 	var/last_fire = -1
-
-// rifles take 0.3 seconds to fire now, meaning they're weaker than SMGs at close range
-/obj/item/weapon/gun/projectile/semiautomatic/special_check(var/mob/user)
-	. = ..()
-	if (!.)
-		return .
-	if (!do_after(user, 2, get_turf(user)))
-		return FALSE
-	return TRUE
 
 /obj/item/weapon/gun/projectile/semiautomatic/handle_post_fire()
 	..()
