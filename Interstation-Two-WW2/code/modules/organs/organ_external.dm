@@ -1206,7 +1206,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "left foot"
 	icon_name = "l_foot"
 	min_broken_damage = 38
-	max_damage = 57
+	max_damage = 86 // 50% higher than the old 57, stops it from exploding - Kachnov
 	w_class = 2
 	body_part = FOOT_LEFT
 	icon_position = LEFT
@@ -1234,7 +1234,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "left hand"
 	icon_name = "l_hand"
 	min_broken_damage = 38
-	max_damage = 57
+	max_damage = 86 // 50% higher than the old 57, stops it from exploding - Kachnov
 	w_class = 2
 	body_part = HAND_LEFT
 	parent_organ = "l_arm"
