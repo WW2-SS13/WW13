@@ -75,7 +75,7 @@
 			VERY_LONG_RANGE_MOVING = 35),
 	)
 
-	load_delay = 5
+	load_delay = 4
 
 	var/bolt_open = FALSE
 	var/check_bolt = FALSE //Keeps the bolt from being interfered with
@@ -89,7 +89,7 @@
 /obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user)
 	if(!check_bolt)//Keeps people from spamming the bolt
 		check_bolt++
-		if(!do_after(user, 4, src, FALSE, TRUE,INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
+		if(!do_after(user, 3, src, FALSE, TRUE,INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
 			check_bolt--
 			return
 	else return
