@@ -28,6 +28,7 @@
 /obj/structure/pot/New()
 	..()
 	processing_objects += src
+	reagents = new /datum/reagents(100, src)
 
 /obj/structure/pot/Del()
 	processing_objects -= src
@@ -65,10 +66,13 @@
 			// todo: make certain reagents have a more interesting effect
 			if (istype(I, /obj/item/weapon/reagent_containers/food/drinks))
 				if (I.reagents && I.reagents.reagent_list.len)
-					I.reagents.clear_reagents()
-					visible_message("<span class = 'info'>[H] pours the contents of [I] into the pot.</span>")
-					++stew_nutriment
-					++stew_protein
+					if (I.reagents.total_volume >= I.reagents.maximum_volume)
+						H << "<span class = 'info'>The pot can't hold any more reagents.</span>"
+					else
+						for (var/datum/reagent/R in I.reagents.reagent_list)
+							reagents.add_reagent(R.id, R.volume)
+						I.reagents.clear_reagents()
+						visible_message("<span class = 'info'>[H] pours the contents of [I] into the pot.</span>")
 			else
 				if (contents.len >= 15)
 					H << "<span class = 'warning'>There's too much in the pot already.</span>"
@@ -101,6 +105,9 @@
 		if (stew_protein)
 			stew.reagents.remove_reagent("protein", 500)
 			stew.reagents.add_reagent("protein", stew_protein)
+
+		for (var/datum/reagent/R in reagents.reagent_list)
+			stew.reagents.add_reagent(R.id, R.volume)
 
 		if (H.l_hand == I)
 			H.remove_from_mob(I)
@@ -177,6 +184,9 @@
 								stew_nutriment += round(F.reagents.get_reagent_amount("nutriment")/bowls)
 								stew_protein += round(F.reagents.get_reagent_amount("protein")/bowls)
 								stew_nutriment_desc |= F.name
+					for (var/datum/reagent/R in reagents.reagent_list)
+						R.volume /= bowls
+					reagents.update_total()
 
 					name = "pot of stew"
 					stew_ticks = 0

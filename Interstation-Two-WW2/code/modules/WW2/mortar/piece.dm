@@ -75,7 +75,7 @@
 
 	if (href_list["load"])
 		var/obj/item/mortar_shell/M = user.get_active_hand()
-		if (M && istype(M))
+		if (M && istype(M) && do_after(user, 10, src))
 			user.remove_from_mob(M)
 			M.loc = src
 			loaded = M
@@ -98,7 +98,7 @@
 
 		if (user_area.location == AREA_INSIDE)
 			user << "<span class = 'danger'>You can't fire from inside.</span>"
-		else if (do_mob(user, user, 20))
+		else if (do_after(user, 20, src))
 
 			// firing code
 
@@ -126,12 +126,26 @@
 			var/odir = dir
 
 			max_distance = (80 - angle) + rand(38,42)
+
+			switch (dir)
+				if (WEST)
+					max_distance = min(max_distance, x - 5)
+				if (EAST)
+					max_distance = min(max_distance, world.maxx - x - 5)
+				if (NORTH)
+					max_distance = min(max_distance, world.maxy - y - 5)
+				if (SOUTH)
+					max_distance = min(max_distance, y - 5)
+
 			high_distance = max_distance * 0.80
+
 
 			travelled = 0
 			high = TRUE
 			qdel(loaded)
 			loaded = null
+
+			var/list/old_valid_targets = list()
 
 			spawn (0)
 				for (var/v in 1 to max_distance)
@@ -141,18 +155,20 @@
 
 					var/hit = FALSE
 
+					if (target)
+						old_valid_targets.Insert(old_valid_targets.len+1, target)
+
+					var/skew = v >= 10
+
 					switch (odir)
 						if (EAST)
-							target = locate(target.x+1, target.y + (prob(20) ? pick(1,-1) : 0), z)
+							target = locate(target.x+1, target.y + (prob(20) && skew ? pick(1,-1) : 0), z)
 						if (WEST)
-							target = locate(target.x-1, target.y + (prob(20) ? pick(1,-1) : 0), z)
+							target = locate(target.x-1, target.y + (prob(20) && skew ? pick(1,-1) : 0), z)
 						if (NORTH)
-							target = locate(target.x + (prob(20) ? pick(1,-1) : 0), target.y+1, z)
+							target = locate(target.x + (prob(20) && skew ? pick(1,-1) : 0), target.y+1, z)
 						if (SOUTH)
-							target = locate(target.y + (prob(20) ? pick(1,-1) : 0), target.y-1, z)
-
-					if (!target) // somehow
-						break
+							target = locate(target.y + (prob(20) && skew ? pick(1,-1) : 0), target.y-1, z)
 
 					var/highcheck = high
 					var/area/target_area = get_area(target)
@@ -163,7 +179,7 @@
 						hit = TRUE
 					else if (target.density && !highcheck)
 						hit = TRUE
-					else if (!(target in range(1, get_turf(src))))
+					else if (target && !(target in range(1, get_turf(src))))
 						if (!highcheck)
 							for (var/atom/movable/AM in target)
 								// go over sandbags
@@ -174,16 +190,28 @@
 										continue
 									hit = TRUE
 									break
-					else if (target.x == 1 || target.x == world.maxx)
-						hit = TRUE
-					else if (target.y == 1 || target.y == world.maxy)
-						hit = TRUE
-					else if (istype(get_area(get_step(target, odir)), /area/prishtina/void))
-						hit = TRUE
+					else if (!target)
+						if (!old_valid_targets.len)
+							break
+						else
+							target = old_valid_targets[old_valid_targets.len]
+							hit = TRUE
 
 					if (hit)
 						playsound(target, "artillery_in", 70, TRUE)
 						spawn (10)
+							var/target_area_original_integrity = target_area.artillery_integrity
+							if (target_area.location == AREA_INSIDE && !target_area.arty_act(25))
+								for (var/mob/living/L in view(20, target))
+									shake_camera(L, 5, 5)
+									L << "<span class = 'danger'>You hear something violently smash into the ceiling!</span>"
+								message_admins("Mortar hit the ceiling at [target.x], [target.y], [target.z].")
+								log_admin("Mortar hit the ceiling at [target.x], [target.y], [target.z].")
+								return
+							else if (target_area_original_integrity)
+								target.visible_message("<span class = 'danger'>The ceiling collapses!</span>")
+							message_admins("Mortar hit at [target.x], [target.y], [target.z].")
+							log_admin("Mortar hit at [target.x], [target.y], [target.z].")
 							explosion(target, 1, 2, 3, 4)
 						break
 

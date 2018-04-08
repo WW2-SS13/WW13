@@ -15,6 +15,7 @@ var/datum/controller/process/explosives/bomb_processor
 	bomb_processor = src
 
 /datum/controller/process/explosives/doWork()
+	SCHECK
 	if (!work_queue)
 		setup()	// fix for process failing to re-init after termination
 

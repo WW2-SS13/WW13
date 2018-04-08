@@ -4,4 +4,5 @@
 	schedule_interval = 10 // every second
 
 /datum/controller/process/vote/doWork()
+	SCHECK
 	vote.process()

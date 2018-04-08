@@ -40,6 +40,7 @@ world/loop_checks = FALSE
 #endif
 
 /datum/controller/process/garbage_collector/doWork()
+	SCHECK
 	if(!garbage_collect)
 		return
 

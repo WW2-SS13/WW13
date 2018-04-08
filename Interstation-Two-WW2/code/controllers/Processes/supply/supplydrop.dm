@@ -12,6 +12,7 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 	supplydrop_process = src
 
 /datum/controller/process/supplydrop/doWork()
+	SCHECK
 	for (var/l in 1 to 2)
 
 		var/list/objects = null

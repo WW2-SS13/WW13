@@ -199,8 +199,9 @@ var/const/FALLOFF_SOUNDS = 0.5
 		//sound volume falloff with distance
 		distance = get_dist(T, turf_source)
 
-		S.volume -= (max(distance - world.view, 0) * 2)//multiplicative falloff to add on top of natural audio falloff.
-		S.volume = max(S.volume, rand(8,12))
+		// multiplicative falloff to add on top of natural audio falloff
+		// this is louder now, because it should be louder than war ambience - Kachnov
+		S.volume -= min(0, (max(distance - world.view, 0) * 1.5))
 
 		if (S.volume <= 0)
 			return	//no volume means no sound

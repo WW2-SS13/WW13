@@ -36,29 +36,16 @@
 	var/heartbeat = FALSE
 	var/global/list/overlays_cache = null
 
-/mob/living/carbon/human/var/next_weather_sound = -1
 /mob/living/carbon/human/Life()
 	set invisibility = FALSE
 	set background = BACKGROUND_ENABLED
 
-	if (client)
-		if (world.time >= next_weather_sound)
-			var/area/A = get_area(src)
-			if (A.weather == WEATHER_RAIN)
-				src << sound('sound/ambience/rain.ogg', channel = 777)
-				next_weather_sound = world.time + 1500
-		else
-			var/area/A = get_area(src)
-			if (A.weather == WEATHER_NONE)
-				src << sound(null, channel = 777)
-				next_weather_sound = world.time
-
 	if (istype(wear_mask, /obj/item/clothing/mask/stone))
 		if (mind && type == /mob/living/carbon/human)
 			invisibility = 101
-			loc = null
 			var/datum/mind/M = mind
 			var/mob/living/carbon/human/vampire/V = new(get_turf(src), FALSE)
+			loc = null
 			V.canmove = FALSE
 			var/oldname = name
 			var/oldreal_name = real_name

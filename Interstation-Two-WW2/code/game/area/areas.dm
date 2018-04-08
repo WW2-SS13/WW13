@@ -45,8 +45,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/no_air = null
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/air_doors_activated = FALSE
-	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
-	var/list/forced_ambience = null
+	var/list/ambience = list()
+	var/list/forced_ambience = list()
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 	var/sound_env = OUTSIDE
 
@@ -195,7 +195,7 @@ var/list/ghostteleportlocs = list()
 	return
 */
 /area/proc/updateicon()
-	if ((fire || eject) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
+	if ((fire || eject) && (!requires_power||power_environ))//If it doesn't require power, can still activate this proc.
 		if(fire)
 			//icon_state = "blue"
 			for(var/obj/machinery/light/L in src)
@@ -297,16 +297,30 @@ var/list/mob/living/forced_ambiance_list = new
 		thunk(L)
 		L.update_floating( L.Check_Dense_Object() )
 
-	L.lastarea = newarea
-	play_ambience(L)
+	var/override_ambience = FALSE
 
-/area/proc/play_ambience(var/mob/living/L)
+	for (var/typecheck in list(/area/prishtina/german, /area/prishtina/soviet, /area/prishtina/no_mans_land, /area/prishtina/forest, /area/prishtina/void))
+		if (istype(oldarea, typecheck))
+			if (!istype(newarea, typecheck))
+				override_ambience = TRUE
+
+	if (oldarea.is_void_area != newarea.is_void_area)
+		override_ambience = TRUE
+
+	if (oldarea.location != newarea.location)
+		override_ambience = TRUE
+
+	L.lastarea = newarea
+	play_ambience(L, override_ambience)
+
+/area/proc/play_ambience(var/mob/living/L, var/override = FALSE)
     // Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))    return
+	if(!istype(L)) return
 
 	var/client/CL = L.client
-
-	if(CL.ambience_playing) // If any ambience already playing
+/*
+	if(CL.ambience_playing && !override) // If any ambience already playing
 		if(forced_ambience && forced_ambience.len)
 			if(CL.ambience_playing in forced_ambience)
 				return TRUE
@@ -325,11 +339,39 @@ var/list/mob/living/forced_ambiance_list = new
 			L << sound(sound, repeat = FALSE, wait = FALSE, volume = 10, channel = SOUND_CHANNEL_AMBIENCE)
 			L.client.played = world.time
 			return TRUE
-	/*else // disabled ship ambience because this is WORLD WAR II - Kachnov
-		var/sound = 'sound/ambience/shipambience.ogg'
+	else */
+	if (!CL.ambience_playing || override)
+		var/sound = pick('sound/ambience/war1.wav', 'sound/ambience/war2.wav')
 		CL.ambience_playing = sound
-		L << sound(sound, repeat = TRUE, wait = FALSE, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
-*/
+
+		var/ideal_x = round(world.maxx/2)
+		var/ideal_y = round(world.maxy/2)
+		var/area/L_area = get_area(L)
+
+		// war volume will vary from 5% to 40%, depending on where you are (on a 150x150 map)
+		// the max() check makes this code forestmap compatible too - Kachnov
+		var/warvolume = 40
+
+		warvolume -= round(abs(L.x - ideal_x)/7)
+		warvolume -= round(abs(L.y - ideal_y)/7)
+
+		if (L_area)
+			if (L_area.location == AREA_INSIDE)
+				warvolume -= 10
+			if (L_area.is_void_area)
+				warvolume -= 10
+
+		warvolume = max(warvolume, 5)
+
+		L << sound(null, channel = SOUND_CHANNEL_AMBIENCE)
+		L << sound(sound, repeat = TRUE, wait = FALSE, volume = warvolume, channel = SOUND_CHANNEL_AMBIENCE)
+
+/proc/stop_ambience(var/mob_or_client)
+	var/client/C = isclient(mob_or_client) ? mob_or_client : mob_or_client:client
+	if (C)
+		C.ambience_playing = null
+	mob_or_client << sound(null, channel = SOUND_CHANNEL_AMBIENCE)
+
 /area/proc/gravitychange(var/gravitystate = FALSE, var/area/A)
 	A.has_gravity = gravitystate
 
@@ -358,8 +400,17 @@ var/list/mob/living/forced_ambiance_list = new
 /area/proc/has_gravity()
 	return has_gravity
 
-/area/space/has_gravity()
-	return FALSE
+/area/proc/arty_act(loss)
+	if (prob(25))
+		artillery_integrity -= loss * 1.5
+	else if (prob(50))
+		artillery_integrity -= loss
+	else
+		artillery_integrity -= loss * 0.75
+	update_snowfall_valid_turfs()
+	if (artillery_integrity > 0)
+		return FALSE
+	return TRUE
 
 /proc/has_gravity(atom/AT, turf/T)
 	return TRUE

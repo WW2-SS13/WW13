@@ -9,6 +9,7 @@ var/global/datum/controller/process/supply/supplyProcess
 	supplyProcess = src
 
 /datum/controller/process/supply/doWork()
+	SCHECK
 
 	if (!map)
 		return

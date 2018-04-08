@@ -17,7 +17,7 @@ var/datum/controller/process/time_track/time_track = null
 		time_track = src
 
 /datum/controller/process/time_track/doWork()
-	..()
+	SCHECK
 
 	var/current_realtime = world.timeofday
 

@@ -16,6 +16,7 @@ var/datum/controller/process/mob/mob_process = null
 		mob_list = list()
 
 /datum/controller/process/mob/doWork()
+	SCHECK
 	for(last_object in mob_list)
 
 		var/mob/M = last_object

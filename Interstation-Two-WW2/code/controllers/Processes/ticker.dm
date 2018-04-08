@@ -3,7 +3,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 /datum/controller/process/ticker
 	var/lastTickerTimeDuration
 	var/lastTickerTime
-	var/time_elapsed = 0
+	var/playtime_elapsed = 0
 
 /datum/controller/process/ticker/setup()
 	name = "ticker process"
@@ -26,6 +26,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 		start_serverdata_loop()
 
 /datum/controller/process/ticker/doWork()
+	SCHECK
 	var/currentTime = world.timeofday
 
 	if(currentTime < lastTickerTime) // check for midnight rollover
@@ -38,7 +39,8 @@ var/global/datum/controller/process/ticker/tickerProcess
 	ticker.process()
 
 	// for keeping track of time - Kachnov
-	time_elapsed += schedule_interval
+	if (ticker.current_state == GAME_STATE_PLAYING)
+		playtime_elapsed += schedule_interval
 
 	// do map related stuff
 	if (map)

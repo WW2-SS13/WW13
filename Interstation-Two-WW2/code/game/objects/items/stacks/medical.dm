@@ -215,11 +215,13 @@
 					return
 			else
 				user << "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>"
-/*
-		if (affecting.open == FALSE)
-			if (affecting.is_bandaged() && affecting.is_disinfected())
-				affecting.wounds.Cut()
-				H.bad_external_organs -= affecting*/
+
+		var/mob/living/carbon/human/H_user = user
+		if (istype(H_user) && H_user.getStatCoeff("medical") >= GET_MIN_STAT_COEFF(STAT_VERY_HIGH))
+			if (affecting.open == FALSE)
+				if (affecting.is_bandaged() && affecting.is_disinfected())
+					affecting.wounds.Cut()
+					H_user.bad_external_organs -= affecting
 
 /obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"

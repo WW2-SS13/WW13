@@ -12,6 +12,7 @@ var/TOD_may_automatically_change = FALSE
 	time_of_day_process = src
 
 /datum/controller/process/time_of_day/doWork()
+	SCHECK
 	if (!roundstart_time)
 		return
 	try

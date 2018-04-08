@@ -559,6 +559,7 @@
 							message = "holds out [g.his] hand to [M]."
 
 			if ("scream")
+	//			log_debug(lastMovedRecently())
 				if (last_scream != -1 && world.time - last_scream < 50)
 					return
 				last_scream = world.time
@@ -592,6 +593,11 @@
 					message = "dabs."
 					for (var/atom/movable/AM in get_step(src, dir))
 						if (isobj(AM))
+							if (istype(AM, /obj/structure/noose))
+								var/obj/structure/noose/N = AM
+								if (N.hanging)
+									message = "dabs on [N.hanging]."
+									break
 							if (!AM.density)
 								if (!istype(AM, /atom/movable/lighting_overlay) && !isitem(AM) && !istype(AM, /obj/effect))
 									if (AM.name)

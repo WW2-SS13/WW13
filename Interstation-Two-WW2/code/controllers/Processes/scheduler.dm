@@ -14,6 +14,7 @@
 	scheduler = src
 
 /datum/controller/process/scheduler/doWork()
+	SCHECK
 	for(last_object in scheduled_tasks)
 		var/datum/scheduled_task/scheduled_task = last_object
 		try

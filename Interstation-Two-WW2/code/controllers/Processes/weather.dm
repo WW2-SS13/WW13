@@ -22,6 +22,7 @@ var/datum/controller/process/weather/weather_process = null
 	weather_process = src
 
 /datum/controller/process/weather/doWork()
+	SCHECK
 	if (!roundstart_time)
 		return
 

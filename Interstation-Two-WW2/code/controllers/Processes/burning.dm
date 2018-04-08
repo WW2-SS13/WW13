@@ -8,7 +8,7 @@ var/datum/controller/process/burning/burning_process = null
 	burning_process = src
 
 /datum/controller/process/burning/doWork()
-
+	SCHECK
 	for(last_object in burning_objs)
 		var/obj/O = last_object
 		if(isnull(O.gcDestroyed))

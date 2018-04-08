@@ -303,9 +303,13 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, var/incapacitation_flags = INCAPACITATION_DEFAULT, can_move = FALSE)
-	if(!user)
+/mob/var/may_do_after = TRUE
+/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, var/incapacitation_flags = INCAPACITATION_DEFAULT, can_move = FALSE, check_for_repeats = TRUE)
+	if(!user || !user.may_do_after)
 		return FALSE
+
+	if (check_for_repeats)
+		user.may_do_after = FALSE
 
 	var/atom/target_loc = null
 	var/last_train_move_time = null
@@ -360,6 +364,8 @@ Proc for attack log creation, because really why not
 			if(user.get_active_hand() != holding)
 				. = FALSE
 				break
+
+	user.may_do_after = TRUE
 
 	if (progbar)
 		qdel(progbar)

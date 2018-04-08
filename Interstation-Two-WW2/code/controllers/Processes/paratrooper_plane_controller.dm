@@ -15,6 +15,7 @@ var/datum/controller/process/paratrooper_plane_controller/paratrooper_plane_mast
 		paratrooper_plane_master = src
 
 /datum/controller/process/paratrooper_plane_controller/doWork()
+	SCHECK
 	if (altitude == 500)
 		return
 	try

@@ -6,8 +6,9 @@
 
 //Checks if all high bits in req_mask are set in bitfield
 #define BIT_TEST_ALL(bitfield, req_mask) ((~(bitfield) & (req_mask)) == FALSE)
+#define PASS pass()
 
-// get rid of vars causing warnings
+// get rid of vars causing warnings or just do nothing
 /proc/pass(arg1, arg2, arg3, arg4, arg5)
 	return TRUE
 

@@ -11,6 +11,7 @@
 	return ..() + "[nanomanager.processing_uis.len] UIs"
 
 /datum/controller/process/nanoui/doWork()
+	SCHECK
 	for(last_object in nanomanager.processing_uis)
 		var/datum/nanoui/NUI = last_object
 		if(istype(NUI) && isnull(NUI.gcDestroyed))

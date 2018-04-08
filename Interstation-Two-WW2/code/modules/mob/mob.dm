@@ -362,6 +362,7 @@
 		return
 
 	usr << "You can respawn now, enjoy your new life!"
+	stop_ambience(usr)
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 

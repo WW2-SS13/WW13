@@ -48,16 +48,34 @@ var/global/obj/map_metadata/map = null
 	if (last_crossing_block_status[GERMAN] == FALSE)
 		if (germans_can_cross_blocks())
 			world << cross_message(GERMAN)
+			// let new players see the reinforcements links
+			for (var/mob/new_player/np in world)
+				if (np.client)
+					np.new_player_panel_proc()
+
 	else if (last_crossing_block_status[GERMAN] == TRUE)
 		if (!germans_can_cross_blocks())
 			world << reverse_cross_message(GERMAN)
+			// let new players see the reinforcements links
+			for (var/mob/new_player/np in world)
+				if (np.client)
+					np.new_player_panel_proc()
 
 	if (last_crossing_block_status[SOVIET] == FALSE)
 		if (soviets_can_cross_blocks())
 			world << cross_message(SOVIET)
+			// let new players see the reinforcements links
+			for (var/mob/new_player/np in world)
+				if (np.client)
+					np.new_player_panel_proc()
+
 	else if (last_crossing_block_status[SOVIET] == TRUE)
 		if (!soviets_can_cross_blocks())
 			world << reverse_cross_message(SOVIET)
+			// let new players see the reinforcements links
+			for (var/mob/new_player/np in world)
+				if (np.client)
+					np.new_player_panel_proc()
 
 	if (last_crossing_block_status[event_faction] == FALSE)
 		if (specialfaction_can_cross_blocks())
@@ -162,10 +180,10 @@ var/global/obj/map_metadata/map = null
 		SOVIET = 1.50)
 
 /obj/map_metadata/city/germans_can_cross_blocks()
-	return (tickerProcess.time_elapsed >= 9000 || admin_ended_all_grace_periods)
+	return (tickerProcess.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/city/soviets_can_cross_blocks()
-	return (tickerProcess.time_elapsed >= 9000 || admin_ended_all_grace_periods)
+	return (tickerProcess.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/city/announce_mission_start(var/preparation_time)
 	world << "<font size=4>All factions have <b>15 minutes</b> to prepare before combat will begin!</font>"
@@ -187,10 +205,10 @@ var/global/obj/map_metadata/map = null
 	respawn_delay = 0
 
 /obj/map_metadata/test/germans_can_cross_blocks()
-	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
+	return (tickerProcess.playtime_elapsed >= 7200 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/test/soviets_can_cross_blocks()
-	return (tickerProcess.time_elapsed >= 7200 || admin_ended_all_grace_periods)
+	return (tickerProcess.playtime_elapsed >= 7200 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/test/announce_mission_start(var/preparation_time)
 	world << "<font size=4>All factions have <b>12 minutes</b> to prepare before combat will begin!</font>"
@@ -212,13 +230,13 @@ var/global/obj/map_metadata/map = null
 	var/modded_num_of_SS = FALSE
 
 /obj/map_metadata/pillarmap/germans_can_cross_blocks()
-	return (tickerProcess.time_elapsed >= 6000 || admin_ended_all_grace_periods)
+	return (tickerProcess.playtime_elapsed >= 6000 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/pillarmap/soviets_can_cross_blocks()
 	return FALSE
 
 /obj/map_metadata/pillarmap/specialfaction_can_cross_blocks()
-	return (tickerProcess.time_elapsed >= 9000)
+	return (tickerProcess.playtime_elapsed >= 9000)
 
 /obj/map_metadata/pillarmap/announce_mission_start(var/preparation_time)
 	world << "<font size=4>The <b>Waffen SS</b> may attack after 10 minutes. The <b>Pillar Men</b> and <b>Vampires</b> may not attack until after 15 minutes.</font>"

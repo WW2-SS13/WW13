@@ -82,7 +82,7 @@
 	if (!istype(firer))
 		return 0
 
-	var/moving_target = target.lastMovedRecently()
+	var/moving_target = target.lastMovedRecently(target.get_run_delay())
 	var/abs_x = abs(firer.x - target.x)
 	var/abs_y = abs(firer.y - target.y)
 	var/pythag = (abs_x + abs_y)/2

@@ -13,7 +13,7 @@ var/supplytrain_may_process = FALSE
 	train_process = src
 
 /datum/controller/process/train/doWork()
-	..()
+	SCHECK
 
 	if (!map || map.uses_main_train || map.uses_supply_train)
 		try

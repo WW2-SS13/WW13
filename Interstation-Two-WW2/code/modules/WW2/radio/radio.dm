@@ -292,9 +292,10 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 			continue
 		if (radio.notyetmoved)
 			continue
-		if (!istype(radio, /obj/item/device/radio/intercom))
-			if (!istype(radio.loc, /mob))
-				continue
+		if (!dd_hasprefix(message, ":f"))
+			if (!istype(radio, /obj/item/device/radio/intercom))
+				if (!istype(radio.loc, /mob))
+					continue
 		if (!radio.on)
 			continue
 

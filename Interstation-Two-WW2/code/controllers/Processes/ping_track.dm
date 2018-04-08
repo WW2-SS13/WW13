@@ -15,7 +15,7 @@ var/datum/controller/process/ping_track/ping_track = null
 		ping_track = src
 
 /datum/controller/process/ping_track/doWork()
-
+	SCHECK
 	my_clients = clients.Copy()
 	if (!my_clients.len)
 		return // dividing by 0 is bad
