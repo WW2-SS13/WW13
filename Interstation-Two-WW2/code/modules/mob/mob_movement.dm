@@ -578,7 +578,7 @@
 
 		//Step on nerds in our way
 		if (mob_is_human)
-			if (H.a_intent != I_HELP)
+			if (H.a_intent == I_HURT)
 				for (var/mob/living/L in t1)
 					if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
 						H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")
