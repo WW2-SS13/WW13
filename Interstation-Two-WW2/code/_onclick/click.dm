@@ -72,9 +72,10 @@
 		CtrlClickOn(A)
 		return TRUE
 
-	if(lying && istype(A, /turf))
+	if(lying && istype(A, /turf/floor))
 		if(A.Adjacent(src))
 			scramble(A)
+			return
 
 	if(stat || paralysis || stunned || weakened)
 		return
@@ -416,39 +417,23 @@
 	if(direction != dir)
 		facedir(direction)
 
-/mob/proc/scramble(var/atom/A)
-	var/direction
+/mob/proc/scramble(var/turf/floor/F)
+	if (F.density)
+		return FALSE
 	if(stat || buckled || paralysis || stunned || sleeping || (status_flags & FAKEDEATH) || restrained() || (weakened > 10))
-		return
-	if(!istype(loc, /turf/))
-		return
-	if(!A || !x || !y || !A.x || !A.y) return
-	if(scrambling)
-		return
+		return FALSE
 	if(!has_limbs)
 		src << "<span class = 'red'>You can't even move yourself - you have no limbs!</span>"
-	var/dx = A.x - x
-	var/dy = A.y - y
-	if(!dx && !dy) return
+		return FALSE
+	if(scrambling)
+		return FALSE
+	if (map.check_prishtina_block(src, F))
+		return FALSE
 
-	if(abs(dx) < abs(dy))
-		if(dy > 0)	direction = NORTH
-		else		direction = SOUTH
-	else
-		if(dx > 0)	direction = EAST
-		else		direction = WEST
-	if(direction)
-
-		var/turf/target = get_step(src, direction)
-		if (map.check_prishtina_block(src, target))
-			return FALSE
-
-		var/slowness = weakened ? 1.50 : 1.00
-
-		scrambling = TRUE
-		sleep(2*slowness)
-		visible_message("<span class = 'red'><b>[src]</b> crawls!</span>")
-		sleep(7*slowness)
-		Move(target)
-		scrambling = FALSE
-		dir = 2
+	var/slowness = weakened ? 1.50 : 1.00
+	scrambling = TRUE
+	sleep(2*slowness)
+	visible_message("<span class = 'red'><b>[src]</b> crawls!</span>")
+	sleep(7*slowness)
+	Move(F)
+	scrambling = FALSE

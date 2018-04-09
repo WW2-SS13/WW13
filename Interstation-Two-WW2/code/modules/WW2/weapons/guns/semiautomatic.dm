@@ -4,64 +4,56 @@
 
 		// small body parts: head, hand, feet
 		"small" = list(
-			SHORT_RANGE_STILL = 80,
-			SHORT_RANGE_MOVING = 53,
+			SHORT_RANGE_STILL = 73,
+			SHORT_RANGE_MOVING = 48,
 
-			MEDIUM_RANGE_STILL = 70,
-			MEDIUM_RANGE_MOVING = 46,
+			MEDIUM_RANGE_STILL = 63,
+			MEDIUM_RANGE_MOVING = 42,
 
-			LONG_RANGE_STILL = 60,
-			LONG_RANGE_MOVING = 40,
+			LONG_RANGE_STILL = 53,
+			LONG_RANGE_MOVING = 35,
 
-			VERY_LONG_RANGE_STILL = 50,
-			VERY_LONG_RANGE_MOVING = 33),
+			VERY_LONG_RANGE_STILL = 43,
+			VERY_LONG_RANGE_MOVING = 28),
 
 		// medium body parts: limbs
 		"medium" = list(
-			SHORT_RANGE_STILL = 85,
-			SHORT_RANGE_MOVING = 56,
+			SHORT_RANGE_STILL = 78,
+			SHORT_RANGE_MOVING = 51,
 
-			MEDIUM_RANGE_STILL = 75,
-			MEDIUM_RANGE_MOVING = 50,
+			MEDIUM_RANGE_STILL = 68,
+			MEDIUM_RANGE_MOVING = 45,
 
-			LONG_RANGE_STILL = 65,
-			LONG_RANGE_MOVING = 43,
+			LONG_RANGE_STILL = 58,
+			LONG_RANGE_MOVING = 38,
 
-			VERY_LONG_RANGE_STILL = 55,
-			VERY_LONG_RANGE_MOVING = 36),
+			VERY_LONG_RANGE_STILL = 48,
+			VERY_LONG_RANGE_MOVING = 32),
 
 		// large body parts: chest, groin
 		"large" = list(
-			SHORT_RANGE_STILL = 90,
-			SHORT_RANGE_MOVING = 59,
+			SHORT_RANGE_STILL = 83,
+			SHORT_RANGE_MOVING = 55,
 
-			MEDIUM_RANGE_STILL = 80,
-			MEDIUM_RANGE_MOVING = 53,
+			MEDIUM_RANGE_STILL = 73,
+			MEDIUM_RANGE_MOVING = 48,
 
-			LONG_RANGE_STILL = 70,
-			LONG_RANGE_MOVING = 46,
+			LONG_RANGE_STILL = 63,
+			LONG_RANGE_MOVING = 42,
 
-			VERY_LONG_RANGE_STILL = 60,
-			VERY_LONG_RANGE_MOVING = 40),
+			VERY_LONG_RANGE_STILL = 53,
+			VERY_LONG_RANGE_MOVING = 35),
 	)
 
 	accuracy_increase_mod = 2.00
 	accuracy_decrease_mod = 6.00
 	KD_chance = KD_CHANCE_MEDIUM
 	stat = "rifle"
+	load_delay = 5
 
 	var/jammed_until = -1
 	var/jamcheck = 0
 	var/last_fire = -1
-
-// rifles take 0.3 seconds to fire now, meaning they're weaker than SMGs at close range
-/obj/item/weapon/gun/projectile/semiautomatic/special_check(var/mob/user)
-	. = ..()
-	if (!.)
-		return .
-	if (!do_after(user, 2, get_turf(user)))
-		return FALSE
-	return TRUE
 
 /obj/item/weapon/gun/projectile/semiautomatic/handle_post_fire()
 	..()

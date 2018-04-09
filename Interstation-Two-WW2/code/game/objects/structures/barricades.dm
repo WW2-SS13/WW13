@@ -93,7 +93,7 @@
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 	if (istype(mover, /obj/item/projectile))
 		var/obj/item/projectile/proj = mover
-		if (prob(30) || get_dist(proj.starting, src) == 1)
+		if (prob(15) || get_dist(proj.starting, src) == 1)
 			return TRUE
 		return FALSE
 	else

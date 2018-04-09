@@ -34,16 +34,16 @@
 		..()
 
 /obj/item/weapon/plastique/attack_self(mob/user as mob)
-	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
+	var/newtime = input(usr, "Please set the timer.", "Timer", 5) as num
 	if(user.get_active_hand() == src)
-		newtime = Clamp(newtime, 10, 60000)
+		newtime = Clamp(newtime, 3, 60000)
 		timer = newtime
 		user << "Timer set for [timer] seconds."
 
 /obj/item/weapon/plastique/afterattack(atom/movable/target, mob/user, flag)
 	if (!flag)
 		return
-	if (ismob(target) || istype(target, /obj/item/weapon/storage/) || istype(target, /obj/item/clothing/accessory/storage/) || istype(target, /obj/item/clothing/under))
+	if (istype(target, /obj/item/weapon/storage/) || istype(target, /obj/item/clothing/accessory/storage/) || istype(target, /obj/item/clothing/under))
 		return
 	user << "Planting explosives..."
 	user.do_attack_animation(target)
@@ -74,16 +74,11 @@
 	if(!target)
 		target = src
 	if(location)
-		explosion(location, 1, 2, 3, 4)
-
-	if(target)
-		if (istype(target, /turf/wall))
-			var/turf/wall/W = target
-			W.dismantle_wall(1)
-		else if(istype(target, /mob/living))
-			target.ex_act(2) // c4 can't gib mobs anymore.
-		else
-			target.ex_act(1)
+		explosion(location, 0, 1, 2, 3)
+		for (var/mob/living/L in location)
+			L.crush()
+		for (var/obj/O in location)
+			O.ex_act(1.0)
 	if(target)
 		target.overlays -= image_overlay
 	qdel(src)

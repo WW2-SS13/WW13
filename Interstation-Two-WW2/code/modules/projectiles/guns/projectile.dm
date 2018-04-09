@@ -133,6 +133,9 @@
 //Maybe this should be broken up into separate procs for each load method?
 /obj/item/weapon/gun/projectile/proc/load_ammo(var/obj/item/A, mob/user)
 
+	if (load_delay && !do_after(user, load_delay, src))
+		return
+
 	// special scenario: A is an ammo box, src is a PTRD or something
 	// turn A from the ammo magazine to the first bullet in the ammo magazine
 	if (istype(A, /obj/item/ammo_magazine) && A.vars.Find("is_box") && A:is_box && A:ammo_type == ammo_type)

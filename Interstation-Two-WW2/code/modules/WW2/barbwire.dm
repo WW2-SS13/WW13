@@ -46,7 +46,6 @@
 				if(!(H.species && (H.species.flags)))
 					H.Weaken(2)
 				M << "<span class = 'red'><b>Your [affecting.name] gets slightly cut by \the [src]!</b></span>"
-				return ..()
 			else if (prob (33))
 				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
@@ -58,7 +57,6 @@
 				if(!(H.species && (H.species.flags)))
 					H.Weaken(4)
 				M << "<span class = 'red'><b>Your [affecting.name] gets cut by \the [src]!</b></span>"
-				return ..()
 			else
 				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
@@ -70,8 +68,21 @@
 				if(!(H.species && (H.species.flags)))
 					H.Weaken(5)
 				M << "<span class = 'red'><b>Your [affecting.name] gets deeply cut by \the [src]!</b></span>"
-				return ..()
-	..()
+			// stops barbwire from bugging crawling
+			switch (H.dir)
+				if (EAST, NORTHEAST, SOUTHEAST)
+					H.dir = WEST
+				if (WEST, NORTHWEST, SOUTHWEST)
+					H.dir = EAST
+				if (NORTH)
+					H.dir = SOUTH
+				if (SOUTH)
+					H.dir = NORTH
+			if (H.client.canmove)
+				H.client.canmove = FALSE
+				spawn (2)
+					H.client.canmove = TRUE
+	return ..()
 
 /obj/structure/barbwire/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wirecutters))

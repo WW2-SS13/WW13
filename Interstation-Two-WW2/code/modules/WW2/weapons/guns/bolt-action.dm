@@ -34,46 +34,48 @@
 
 		// small body parts: head, hand, feet
 		"small" = list(
-			SHORT_RANGE_STILL = 90,
-			SHORT_RANGE_MOVING = 45,
+			SHORT_RANGE_STILL = 83,
+			SHORT_RANGE_MOVING = 42,
 
-			MEDIUM_RANGE_STILL = 80,
-			MEDIUM_RANGE_MOVING = 40,
+			MEDIUM_RANGE_STILL = 73,
+			MEDIUM_RANGE_MOVING = 37,
 
-			LONG_RANGE_STILL = 70,
-			LONG_RANGE_MOVING = 35,
+			LONG_RANGE_STILL = 63,
+			LONG_RANGE_MOVING = 32,
 
-			VERY_LONG_RANGE_STILL = 60,
-			VERY_LONG_RANGE_MOVING = 30),
+			VERY_LONG_RANGE_STILL = 53,
+			VERY_LONG_RANGE_MOVING = 27),
 
 		// medium body parts: limbs
 		"medium" = list(
-			SHORT_RANGE_STILL = 95,
-			SHORT_RANGE_MOVING = 48,
+			SHORT_RANGE_STILL = 88,
+			SHORT_RANGE_MOVING = 44,
 
-			MEDIUM_RANGE_STILL = 85,
-			MEDIUM_RANGE_MOVING = 43,
+			MEDIUM_RANGE_STILL = 78,
+			MEDIUM_RANGE_MOVING = 39,
 
-			LONG_RANGE_STILL = 75,
-			LONG_RANGE_MOVING = 38,
+			LONG_RANGE_STILL = 68,
+			LONG_RANGE_MOVING = 34,
 
-			VERY_LONG_RANGE_STILL = 65,
-			VERY_LONG_RANGE_MOVING = 33),
+			VERY_LONG_RANGE_STILL = 58,
+			VERY_LONG_RANGE_MOVING = 29),
 
 		// large body parts: chest, groin
 		"large" = list(
-			SHORT_RANGE_STILL = 100,
-			SHORT_RANGE_MOVING = 50,
+			SHORT_RANGE_STILL = 93,
+			SHORT_RANGE_MOVING = 47,
 
-			MEDIUM_RANGE_STILL = 90,
-			MEDIUM_RANGE_MOVING = 45,
+			MEDIUM_RANGE_STILL = 83,
+			MEDIUM_RANGE_MOVING = 42,
 
-			LONG_RANGE_STILL = 80,
-			LONG_RANGE_MOVING = 40,
+			LONG_RANGE_STILL = 73,
+			LONG_RANGE_MOVING = 37,
 
-			VERY_LONG_RANGE_STILL = 70,
-			VERY_LONG_RANGE_MOVING = 35),
+			VERY_LONG_RANGE_STILL = 63,
+			VERY_LONG_RANGE_MOVING = 32),
 	)
+
+	load_delay = 4
 
 	var/bolt_open = FALSE
 	var/check_bolt = FALSE //Keeps the bolt from being interfered with
@@ -84,11 +86,10 @@
 	var/jamcheck = 0
 	var/last_fire = -1
 
-
 /obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user)
 	if(!check_bolt)//Keeps people from spamming the bolt
 		check_bolt++
-		if(!do_after(user, 1, src, FALSE, TRUE,INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
+		if(!do_after(user, 3, src, FALSE, TRUE,INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
 			check_bolt--
 			return
 	else return
@@ -136,15 +137,6 @@
 	if(!bolt_open)
 		return
 	..()
-
-// rifles take 0.3 seconds to fire now, meaning they're weaker than SMGs at close range
-/obj/item/weapon/gun/projectile/boltaction/special_check(var/mob/user)
-	. = ..()
-	if (!.)
-		return .
-	if (!do_after(user, 2, get_turf(user)))
-		return FALSE
-	return TRUE
 
 /obj/item/weapon/gun/projectile/boltaction/handle_post_fire()
 	..()

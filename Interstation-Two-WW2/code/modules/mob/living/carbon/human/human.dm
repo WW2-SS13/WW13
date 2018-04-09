@@ -73,6 +73,7 @@
 		qdel(organ)
 	return ..()
 
+var/list/coefflist = list()
 /mob/living/carbon/human/Stat()
 	. = ..()
 	if (.)
@@ -108,9 +109,37 @@
 			stat(stat_header("Stats"))
 			stat("")
 			for (var/statname in stats)
+
 				var/coeff = getStatCoeff(statname)
-				if (coeff == TRUE)
-					coeff = "1.00" // OCD
+
+		/*		var/coeff_is_bad_decimal = FALSE // 0.7 -> 0.70, 1 -> 1.00
+				var/_coeff = coeff
+				while (_coeff > 0)
+					_coeff -= 0.10
+					if (_coeff == 0 || _coeff == 0.0999999) // apparently 0.2 - 0. 1 = 0.0999999, thanks BYOND
+						coeff_is_bad_decimal = TRUE
+				if (coeff_is_bad_decimal)
+					if (coeff == 1)
+						coeff = "1.00"
+					else
+						coeff = "[coeff]0"*/
+
+
+				/* This horrid shitcode is the only way to make "0.8" appear as "0.80", "0.7" as "0.70", etc
+				 * the reason we do this is because it looks more consistent if all stats have 3 digits
+				 * if you want to see why the more efficient code above doesn't work read the comments
+				 * thanks BYOND - Kachnov */
+
+				if (coeff == 1)
+					coeff = "1.00"
+				else
+					if (!coefflist.len)
+						for (var/v in 10 to 500)
+							if (v % 10 == 0)
+								coefflist += v/100
+					if (coefflist:Find(coeff))
+						coeff = "[coeff]0"
+
 				if (!list("mg", "smg").Find(statname))
 					stat("[capitalize(statname)]: ", "[coeff]x average")
 				else

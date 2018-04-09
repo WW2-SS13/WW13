@@ -73,6 +73,7 @@
 	var/KD_chance = 5
 	var/stat = "rifle"
 	var/effectiveness_mod = 1.00
+	var/load_delay = 0
 
 /obj/item/weapon/gun/projectile/proc/calculate_miss_chance(zone, var/mob/target)
 
@@ -135,6 +136,12 @@
 	. /= effectiveness_mod
 
 	. = min(CLAMP0100(.), 98)
+
+	if (list("mouth", "eyes").Find(zone))
+		. = round(min(. * 2, 100))
+
+	else if (list("head").Find(zone))
+		. = round(min(. * 1.5, 100))
 
 //	log_debug("final miss chance: [.]")
 

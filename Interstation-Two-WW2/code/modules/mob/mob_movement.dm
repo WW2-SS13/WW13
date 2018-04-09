@@ -256,9 +256,9 @@
 			return
 
 	if(mob.lying && istype(n, /turf))
-		var/turf/T = n
-		if(T.Adjacent(mob))
-			mob.scramble(T)
+		var/turf/floor/F = n
+		if(F.Adjacent(mob))
+			mob.scramble(F)
 			return
 
 	var/mob_is_observer = istype(mob, /mob/observer)
@@ -578,7 +578,7 @@
 
 		//Step on nerds in our way
 		if (mob_is_human)
-			if (H.a_intent != I_HELP)
+			if (H.a_intent == I_HURT)
 				for (var/mob/living/L in t1)
 					if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
 						H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")

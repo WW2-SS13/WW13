@@ -208,18 +208,13 @@ var/list/global/wall_cache = list()
 	if (src_area && src_area.type == /area/prishtina/void)
 		return
 	switch(severity)
-		if(1.0)
-			ChangeTurf(get_base_turf(z))
-			return
-		if(2.0)
-			if(prob(75))
-				take_damage(rand(150, 250))
+		if(1.0, 2.0)
+			if (!material || material.integrity < 400)
+				ChangeTurf(get_base_turf(z))
 			else
 				dismantle_wall(1,1)
 		if(3.0)
-			take_damage(rand(0, 250))
-		else
-	return
+			take_damage(rand(50, 100))
 
 // Wall-rot effect, a nasty fungus that destroys walls.
 /turf/wall/proc/rot()

@@ -150,8 +150,9 @@ var/turf/default_adminzone_turf = null
 
 	var/area/prishtina/admin/admin_zone = locate() in world
 	for (var/turf/T in admin_zone.contents)
-		mob.loc = T
-		break
+		if (!T.density && !locate(/obj/structure) in T)
+			mob.loc = T
+			break
 
 	return FALSE
 
