@@ -256,9 +256,9 @@
 			return
 
 	if(mob.lying && istype(n, /turf))
-		var/turf/T = n
-		if(T.Adjacent(mob))
-			mob.scramble(T)
+		var/turf/floor/F = n
+		if(F.Adjacent(mob))
+			mob.scramble(F)
 			return
 
 	var/mob_is_observer = istype(mob, /mob/observer)
