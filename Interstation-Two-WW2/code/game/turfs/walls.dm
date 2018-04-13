@@ -203,7 +203,7 @@ var/list/global/wall_cache = list()
 	//update_connections(1)
 	update_icon()
 
-	ChangeTurf(/turf/floor/plating)
+	ChangeTurf(/turf/floor/plating/grass/wild)
 
 /turf/wall/ex_act(severity)
 	var/area/src_area = get_area(src)

@@ -30,6 +30,9 @@
 
 	return ..()
 
+/obj/structure/CanPass()
+	return prob(66)
+
 /obj/structure/attack_tk()
 	return
 

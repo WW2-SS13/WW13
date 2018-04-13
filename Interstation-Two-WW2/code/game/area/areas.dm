@@ -364,7 +364,9 @@ var/list/mob/living/forced_ambiance_list = new
 		warvolume = max(warvolume, 5)
 
 		L << sound(null, channel = SOUND_CHANNEL_AMBIENCE)
-		L << sound(sound, repeat = TRUE, wait = FALSE, volume = warvolume, channel = SOUND_CHANNEL_AMBIENCE)
+		var/sound/S = sound(sound, repeat = TRUE, wait = FALSE, volume = warvolume, channel = SOUND_CHANNEL_AMBIENCE)
+		S.environment = 22
+		L << sound(S)
 
 /proc/stop_ambience(var/mob_or_client)
 	var/client/C = isclient(mob_or_client) ? mob_or_client : mob_or_client:client

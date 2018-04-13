@@ -1,11 +1,7 @@
 /datum/game_mode/ww2
 	name = "World War 2"
 	config_tag = "WW2"
-	#ifdef DEBUG
-	required_players = 1
-	#else
 	required_players = 2
-	#endif
 	round_description = ""
 	extended_round_description = ""
 
@@ -72,14 +68,17 @@
 /datum/game_mode/ww2/can_start(var/do_not_spawn)
 
 	var/playercount = 0
+	var/only_client_is_host = FALSE
 	for(var/mob/new_player/player in player_list)
 		if(player.client)
 			++playercount
+			if (player.key == world.host)
+				only_client_is_host = TRUE
 
-	if(playercount < required_players)
-		return FALSE
+	if(playercount >= required_players || only_client_is_host)
+		return TRUE
 
-	return TRUE
+	return FALSE
 
 /datum/game_mode/ww2/check_finished(var/round_ending = FALSE)
 	if (admins_triggered_noroundend)

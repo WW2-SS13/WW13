@@ -20,6 +20,12 @@ var/datum/game_schedule/global_game_schedule = null
 	var/time = -1
 	// the day
 	var/day = "Sunday"
+	/* date info (WIP): probably will be retrieved from a text file that the bot writes to
+	 * we only need it to display exact dates such as in bans - Kachnov */
+	var/date = list(
+		"day" = 1,
+		"month" = 1,
+		"year" = 2000)
 	// stored value of world.realtime at the time of creation
 	var/realtime = -1
 	// and so we can read realtime it in standard notation

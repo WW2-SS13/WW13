@@ -173,6 +173,9 @@
 	var/atmosalarmed = FALSE
 // the smaller bulb light fixture
 
+/obj/machinery/light/CanPass()
+	return prob(66)
+
 /obj/machinery/light/floor
 	name = "floorlight fixture"
 	base_state = "floortube"

@@ -40,8 +40,6 @@
 
 	var/mob/last_user = null
 
-	var/next_spam = -1
-
 	gun_type = GUN_TYPE_MG
 
 	// mg accuracy but halfed
@@ -97,9 +95,6 @@
 
 /obj/item/weapon/gun/projectile/minigun/attack_hand(var/mob/user)
 
-	if (world.time < next_spam)
-		return
-
 	if (last_user && last_user != user)
 		user << "<span class = 'warning'>\the [src] is already in use.</span>"
 		return
@@ -112,12 +107,13 @@
 		var/turf/T = get_step(loc, grip_dir)
 		if(user.loc == T)
 			if(user.has_empty_hand(both = TRUE) && !is_used_by(user))
-				user.use_object(src)
-				usedby(user, src)
-				started_using(user)
-				if (user.loc != loc)
-					user.use_object(null)
-				next_spam = world.time + 75
+				if (!map || !map.check_prishtina_block(user, loc))
+					if (do_after(user, 7, src))
+						user.use_object(src)
+						usedby(user, src)
+						started_using(user)
+						if (user.loc != loc)
+							user.use_object(null)
 			else
 				user.show_message("<span class = 'warning'>You need both hands to use a minigun.</span>")
 		else
@@ -190,24 +186,20 @@
 /obj/item/weapon/gun/projectile/minigun/proc/started_using(mob/living/carbon/human/user)
 	..()
 
-	var/user_oloc = get_turf(user)
+	user.forceMove(loc)
+	user.dir = dir
 
-	if (!map || !map.check_prishtina_block(user, loc))
-		user.forceMove(loc)
-		user.dir = dir
-
-		for(var/datum/action/A in actions)
-			if(istype(A, /datum/action/toggle_scope))
-				if(user.client.pixel_x | user.client.pixel_y)
-					for(var/datum/action/toggle_scope/T in user.actions)
-						if(T.scope.zoomed)
-							T.scope.zoom(user, FALSE)
-				var/datum/action/toggle_scope/S = A
-				S.boundto = src
-				if (user_oloc != loc)
-					S.scope.zoom(user, TRUE, TRUE)
-				last_user = user
-				break
+	for(var/datum/action/A in actions)
+		if(istype(A, /datum/action/toggle_scope))
+			if(user.client.pixel_x | user.client.pixel_y)
+				for(var/datum/action/toggle_scope/T in user.actions)
+					if(T.scope.zoomed)
+						T.scope.zoom(user, FALSE)
+			var/datum/action/toggle_scope/S = A
+			S.boundto = src
+			S.scope.zoom(user, TRUE, TRUE)
+			last_user = user
+			break
 
 /obj/item/weapon/gun/projectile/minigun/proc/stopped_using(mob/user as mob)
 	..()

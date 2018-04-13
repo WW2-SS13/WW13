@@ -7,7 +7,6 @@
 	icon_state = "purple1"
 	dynamic_lighting = TRUE
 
-
 /area/prishtina/New()
 	..()
 	if (istype(src, /area/prishtina/german) && !istype(src, /area/prishtina/german/ss_torture_room))
@@ -363,8 +362,6 @@
 	corresponding_area_type = /area/prishtina/forest
 	corresponding_area_allow_subtypes = TRUE
 	name = "Fallschirmjager Plane"
-
-/area/prishtina/void/soviet_command_center
 
 /area/prishtina/void/civilian_second_floors
 /area/prishtina/void/civilian_second_floors/house1
@@ -775,6 +772,10 @@
 /area/prishtina/soviet/small_map/main_area/supplypad
 	name = "Supply Pad"
 	icon_state = "green2"
+
+/area/prishtina/soviet/small_map/soviet_command_center
+	name = "Soviet Command Center"
+	is_void_area = TRUE
 // for the large map
 
 /area/prishtina/soviet/bunker_entrance

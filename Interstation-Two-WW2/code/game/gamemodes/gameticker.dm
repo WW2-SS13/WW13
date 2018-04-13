@@ -119,7 +119,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	if(!mode.can_start())
 		if (serverswap_open_status)
-			world << "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
+			world << "<b>Unable to start the game.</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
 		mode.fail_setup()
 		mode = null
