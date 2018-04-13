@@ -725,6 +725,14 @@
 	name = "Kapitan's Office"
 	icon_state = "blue1"
 
+/area/prishtina/soviet/small_map/inside/command_post
+	name = "Soviet Command Post"
+	icon_state = "blue3"
+
+/area/prishtina/soviet/small_map/inside/command_post/storage
+	name = "Soviet Command Post Storage"
+	icon_state = "blue3"
+
 /area/prishtina/soviet/small_map/inside/medical
 	name = "Medical Main Area"
 	icon_state = "blue2"

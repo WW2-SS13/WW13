@@ -234,7 +234,8 @@
 
 /datum/job/soviet/squad_leader/get_keys()
 	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat,
-		new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/bunker_doors)
+		new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/bunker_doors,
+		new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer, new/obj/item/weapon/key/soviet/QM)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -247,7 +248,7 @@
 	en_meaning = "Medic"
 	rank_abbreviation = "Efr"
 	selection_color = "#770e0e"
-	spawn_location = "JoinLateRA"
+	spawn_location = "JoinLateRAMedic"
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -378,7 +379,7 @@
 	en_meaning = "Engineer"
 	rank_abbreviation = "Efr"
 	selection_color = "#770e0e"
-	spawn_location = "JoinLateRA"
+	spawn_location = "JoinLateRAEng"
 
 	// AUTOBALANCE
 	min_positions = 1

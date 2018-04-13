@@ -65,6 +65,8 @@ var/list/global/wall_cache = list()
 	else
 		icon = 'icons/turf/walls.dmi'
 		icon_state = "rock"
+	if (prob(10))
+		new /obj/effect/decal/cleanable/dirt (src)
 	//	processing_turfs |= src
 
 /turf/wall/Destroy()
