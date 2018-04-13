@@ -190,6 +190,7 @@
 /obj/item/weapon/gun/projectile/minigun/proc/started_using(mob/living/carbon/human/user)
 	..()
 
+	var/user_oloc = get_turf(user)
 
 	if (!map || !map.check_prishtina_block(user, loc))
 		user.forceMove(loc)
@@ -203,7 +204,8 @@
 							T.scope.zoom(user, FALSE)
 				var/datum/action/toggle_scope/S = A
 				S.boundto = src
-				S.scope.zoom(user, TRUE, TRUE)
+				if (user_oloc != loc)
+					S.scope.zoom(user, TRUE, TRUE)
 				last_user = user
 				break
 
