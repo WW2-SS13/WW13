@@ -193,8 +193,8 @@ var/static/list/supply_crate_costs = list(
 	"7,5 cm FK 18 Artillery Piece" = 300,
 	"Luger Crate" = 400,
 	"Colt Crate" = 400,
-	"Maxim" = 225,
-	"Movable MG34" = 225,
+	"Maxim" = 300,
+	"Movable MG34" = 300,
 
 	// ARTILLERY AMMO
 	"Artillery Ballistic Shells Crate" = 150,
