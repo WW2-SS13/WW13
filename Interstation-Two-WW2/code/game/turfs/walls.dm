@@ -66,7 +66,7 @@ var/list/global/wall_cache = list()
 		icon = 'icons/turf/walls.dmi'
 		icon_state = "rock"
 
-	var/my_area = get_area(src)
+	var/area/my_area = get_area(src)
 	if (prob(10) && !istype(src, /turf/wall/indestructable) && my_area.type != /area/prishtina/void)
 		new /obj/effect/decal/cleanable/dirt (src)
 	//	processing_turfs |= src

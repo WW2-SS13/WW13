@@ -30,8 +30,15 @@
 
 	return ..()
 
-/obj/structure/CanPass()
-	return prob(66)
+/obj/structure/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if (!density)
+		return TRUE
+	else if (istype(mover, /obj/effect/effect/smoke))
+		return TRUE
+	else if (istype(mover, /obj/item))
+		return prob(33)
+	else
+		return FALSE
 
 /obj/structure/attack_tk()
 	return
