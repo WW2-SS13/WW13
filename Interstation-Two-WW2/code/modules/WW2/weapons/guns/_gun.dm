@@ -140,13 +140,13 @@
 	. *= miss_chance_modifier
 	. /= effectiveness_mod
 
-	. = min(CLAMP0100(.), 98)
-
 	if (list("mouth", "eyes").Find(zone))
 		. = round(min(. * 3, 100))
 
 	else if (list("head").Find(zone))
 		. = round(min(. * 2, 100))
+
+	. = min(CLAMP0100(.), 97)
 
 //	log_debug("final miss chance: [.]")
 
