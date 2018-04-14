@@ -74,6 +74,11 @@
 	var/KD_chance = 5
 	var/stat = "rifle"
 	var/load_delay = 0
+	var/list/redirection_chances = list(
+		"l_hand" = list("l_arm" = 50),
+		"r_hand" = list("r_arm" = 50),
+		"l_foot" = list("l_leg" = 50),
+		"r_foot" = list("r_leg" = 50))
 
 /obj/item/weapon/gun/projectile/proc/calculate_miss_chance(zone, var/mob/target)
 

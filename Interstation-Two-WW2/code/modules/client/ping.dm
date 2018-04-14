@@ -3,7 +3,7 @@
 	set instant = TRUE
 	set name = ".update_ping"
 	var/ping = pingfromtime(time)
-	last_ping = ping
+	last_ping = max(ping, 0)
 
 /client/proc/pingfromtime(time)
 	return ((world.time+world.tick_lag*world.tick_usage/100)-time)*100

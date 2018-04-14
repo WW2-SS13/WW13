@@ -189,6 +189,11 @@
 	user.forceMove(loc)
 	user.dir = dir
 
+	if (user.client)
+		user.client.canmove = FALSE
+		spawn (20)
+			user.client.canmove = TRUE
+
 	for(var/datum/action/A in actions)
 		if(istype(A, /datum/action/toggle_scope))
 			if(user.client.pixel_x | user.client.pixel_y)

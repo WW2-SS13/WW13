@@ -306,27 +306,25 @@
 
 		if (!istype(aspect, /datum/game_aspect/ww2/no_artillery))
 			if (clients.len <= ARTILLERY_LOWPOP_THRESHOLD)
-				if (locate(/obj/structure/artillery) in world)
-					for (var/obj/structure/artillery/A in world)
-						qdel(A)
-					for (var/obj/structure/closet/crate/artillery/C in world)
-						qdel(C)
-					for (var/obj/structure/closet/crate/artillery_gas/C in world)
-						qdel(C)
-					world << "<i>Due to lowpop, there is no artillery or mortars.</i>"
-					if (map)
-						german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
-						german_supply_crate_types -= "Artillery Ballistic Shells Crate"
-						german_supply_crate_types -= "Artillery Gas Shells Crate"
-						map.katyushas = FALSE
-				if (locate(/obj/structure/mortar) in world || locate(/obj/item/weapon/shovel/spade/mortar) in world)
-					for (var/obj/structure/mortar/M in world)
-						qdel(M)
-					for (var/obj/item/weapon/shovel/spade/mortar/S in world)
-						qdel(S)
-					for (var/obj/structure/closet/crate/mortar_shells/C in world)
-						qdel(C)
-					if (map)
-						german_supply_crate_types -= "Mortar Shells"
-						soviet_supply_crate_types -= "Mortar Shells"
-						soviet_supply_crate_types -= "37mm Spade Mortar"
+				for (var/obj/structure/artillery/A in world)
+					qdel(A)
+				for (var/obj/structure/closet/crate/artillery/C in world)
+					qdel(C)
+				for (var/obj/structure/closet/crate/artillery_gas/C in world)
+					qdel(C)
+				if (map)
+					german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
+					german_supply_crate_types -= "Artillery Ballistic Shells Crate"
+					german_supply_crate_types -= "Artillery Gas Shells Crate"
+					map.katyushas = FALSE
+				for (var/obj/structure/mortar/M in world)
+					qdel(M)
+				for (var/obj/item/weapon/shovel/spade/mortar/S in world)
+					qdel(S)
+				for (var/obj/structure/closet/crate/mortar_shells/C in world)
+					qdel(C)
+				if (map)
+					german_supply_crate_types -= "Mortar Shells"
+					soviet_supply_crate_types -= "Mortar Shells"
+					soviet_supply_crate_types -= "37mm Spade Mortar"
+				world << "<i>Due to lowpop, there is no artillery or mortars.</i>"

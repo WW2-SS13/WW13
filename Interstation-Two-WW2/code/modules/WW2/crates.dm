@@ -71,13 +71,13 @@
 	icon_closed = "closed"
 
 /obj/structure/closet/crate/maximbelt
-	name = "Maxim ammo crate"
+	name = "Maxim belts crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
 
 /obj/structure/closet/crate/mg34belt
-	name = "MG34 ammo crate"
+	name = "MG34 belts crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
