@@ -69,10 +69,8 @@ var/list/global/wall_cache = list()
 	var/area/my_area = get_area(src)
 	if (prob(10) && !istype(src, /turf/wall/indestructable) && my_area.type != /area/prishtina/void)
 		new /obj/effect/decal/cleanable/dirt (src)
-	//	processing_turfs |= src
 
 /turf/wall/Destroy()
-	//processing_turfs -= src
 	dismantle_wall(null,null,1)
 	..()
 

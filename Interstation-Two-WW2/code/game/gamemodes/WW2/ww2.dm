@@ -319,9 +319,11 @@
 						german_supply_crate_types -= "Artillery Ballistic Shells Crate"
 						german_supply_crate_types -= "Artillery Gas Shells Crate"
 						map.katyushas = FALSE
-				if (locate(/obj/structure/mortar) in world)
+				if (locate(/obj/structure/mortar) in world || locate(/obj/item/weapon/shovel/spade/mortar) in world)
 					for (var/obj/structure/mortar/M in world)
 						qdel(M)
+					for (var/obj/item/weapon/shovel/spade/mortar/S in world)
+						qdel(S)
 					for (var/obj/structure/closet/crate/mortar_shells/C in world)
 						qdel(C)
 					if (map)
