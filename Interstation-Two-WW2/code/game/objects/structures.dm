@@ -36,7 +36,7 @@
 	else if (istype(mover, /obj/effect/effect/smoke))
 		return TRUE
 	else if (istype(mover, /obj/item))
-		return prob(33)
+		return prob(66)
 	else
 		return FALSE
 
