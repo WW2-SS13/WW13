@@ -776,6 +776,7 @@
 /area/prishtina/soviet/small_map/soviet_command_center
 	name = "Soviet Command Center"
 	is_void_area = TRUE
+	location = AREA_INSIDE
 // for the large map
 
 /area/prishtina/soviet/bunker_entrance
@@ -804,6 +805,12 @@
 	name = "Bunker Defenses"
 	icon_state = "blue3"
 	dynamic_lighting = FALSE
+
+/area/prishtina/soviet/briefing
+	icon_state = "green3"
+	name = "Briefing"
+	location = AREA_OUTSIDE
+
 // bunker areas
 
 /area/prishtina/soviet/bunker
@@ -826,7 +833,6 @@
 /area/prishtina/soviet/bunker/briefing
 	icon_state = "green3"
 	name = "Briefing"
-	location = AREA_OUTSIDE
 
 /area/prishtina/soviet/bunker/cargo
 	icon_state = "green4"
