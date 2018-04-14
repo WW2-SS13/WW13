@@ -138,10 +138,10 @@
 	. = min(CLAMP0100(.), 98)
 
 	if (list("mouth", "eyes").Find(zone))
-		. = round(min(. * 2, 100))
+		. = round(min(. * 3, 100))
 
 	else if (list("head").Find(zone))
-		. = round(min(. * 1.5, 100))
+		. = round(min(. * 2, 100))
 
 //	log_debug("final miss chance: [.]")
 
