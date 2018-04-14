@@ -826,6 +826,7 @@
 /area/prishtina/soviet/bunker/briefing
 	icon_state = "green3"
 	name = "Briefing"
+	location = AREA_OUTSIDE
 
 /area/prishtina/soviet/bunker/cargo
 	icon_state = "green4"
