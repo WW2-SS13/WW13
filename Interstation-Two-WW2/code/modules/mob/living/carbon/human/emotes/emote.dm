@@ -1,14 +1,20 @@
-/mob/living/carbon/human/var/last_scream = -1
-/mob/living/carbon/human/var/last_surrender = -1
-/mob/living/carbon/human/var/next_vocal_emote = -1
-/mob/living/carbon/human/var/next_special_emote = -1
+/mob/living/carbon/human/var/next_emote = list(
+	"surrender" = -1,
+	"vocal" = -1,
+	"special" = -1)
+
+var/list/vocal_emotes = list(
+	"cry",
+	"giggle",// not actually vocal but it will be
+	"laugh",
+	"scream",
+	"sigh",
+	"sneeze",
+	"yawn")
 
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 
-	if (world.time < next_vocal_emote)
-		return
-
-	if (world.time < next_special_emote)
+	if (vocal_emotes.Find(act) && world.time < next_emote["vocal"])
 		return
 
 	// no more screaming when you shoot yourself
@@ -37,12 +43,12 @@
 			if (I.implanted)
 				I.trigger(act, src)
 
-		if(stat == 2.0 && (act != "deathgasp"))
+		if(stat == 2.0/* && (act != "deathgasp")*/)
 			return
 
 		switch(act)
 			if ("dance")
-				if (!restrained())
+				if (!restrained() && world.time >= next_emote["special"])
 					message = "dances."
 					m_type = 1
 
@@ -56,7 +62,7 @@
 						if (turns >= 10)
 							break
 						sleep(3)
-					next_special_emote = world.time + 30
+					next_emote["special"] = world.time + 30
 			/*
 			if ("airguitar")
 				if (!restrained())
@@ -87,7 +93,7 @@
 					else
 						message = "bows."
 				m_type = 1
-
+/*
 			if ("custom")
 				var/input = sanitize(input("Choose an emote to display.") as text|null)
 				if (!input)
@@ -103,7 +109,7 @@
 					alert("Unable to use this emote, must be either hearable or visible.")
 					return
 				return custom_emote(m_type, message)
-
+*/
 			if ("me")
 
 				//if(silent && silent > 0 && findtext(message,"\"",1, null) > 0)
@@ -191,13 +197,13 @@
 						m_type = 2
 
 			if ("twitch")
-				message = "twitches violently."
+				message = "twitches."
 				m_type = 1
-
+/*
 			if ("twitch_s")
 				message = "twitches."
 				m_type = 1
-
+*/
 			if ("faint")
 				message = "faints."
 				if(sleeping)
@@ -257,7 +263,7 @@
 					else
 						message = "makes a noise."
 						m_type = 2
-
+/*
 			if ("glare")
 				var/M = null
 				if (param)
@@ -271,7 +277,7 @@
 				if (param)
 					message = "glares at [param]."
 				else
-					message = "glares."
+					message = "glares."*/
 
 			if ("stare")
 				var/M = null
@@ -450,11 +456,11 @@
 				m_type = 2
 				if(miming)
 					m_type = 1
-
+/*
 			if ("pale")
 				message = "goes pale for a second."
 				m_type = 1
-
+*/
 			if ("tremble")
 				message = "trembles in fear!"
 				m_type = 1
@@ -489,7 +495,7 @@
 					else
 						message = "makes a noise."
 						m_type = 2
-
+/*
 			if ("whimper")
 				if (miming)
 					message = "appears hurt."
@@ -501,7 +507,7 @@
 					else
 						message = "makes a weak noise."
 						m_type = 2
-
+*/
 			if ("wink")
 				message = "winks."
 				m_type = 1
@@ -560,9 +566,6 @@
 
 			if ("scream")
 	//			log_debug(lastMovedRecently())
-				if (last_scream != -1 && world.time - last_scream < 50)
-					return
-				last_scream = world.time
 				if (miming)
 					message = "acts out a scream!"
 					m_type = 1
@@ -579,13 +582,12 @@
 						m_type = 2
 
 			if ("surrender")
-				if (last_surrender != -1 && world.time - last_surrender < 1200)
-					return
-				last_surrender = world.time
-				message = "surrenders!"
-				Weaken(50)
-				if(l_hand) unEquip(l_hand)
-				if(r_hand) unEquip(r_hand)
+				if (world.time >= next_emote["surrender"])
+					message = "surrenders!"
+					Weaken(50)
+					if(l_hand) unEquip(l_hand)
+					if(r_hand) unEquip(r_hand)
+					next_emote["surrender"] = world.time + 600
 
 			if ("dab")
 				if (config.allow_dabbing && !restrained())
@@ -625,17 +627,13 @@
 
 			if ("help")
 				src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
-	cry, custom, dab, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,
-	grin, laugh, look-(none)/mob, moan, mumble, nod, pale, point-atom, raise, salute, shake, shiver, shrug,
-	sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, scream, surrender, tremble, twitch, twitch_s, whimper,
-	wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag, dab"}
+	cry, dab, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob,
+	grin, laugh, look-(none)/mob, moan, mumble, nod, point-atom, raise, salute, shake, shiver, shrug,
+	sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, scream, surrender, tremble, twitch,
+	wink, yawn, dab"}
 
 			else
 				src << "<span class = 'notice'>Unusable emote '[act]'. Say *help for a list.</span>"
-
-
-
-
 
 		if (message)
 			log_emote("[name]/[key] : [message]")
@@ -644,5 +642,5 @@
 			else
 				custom_emote(m_type,message)
 
-		if (m_type == 2 && act != "scream")
-			next_vocal_emote = world.time + 50
+		if (m_type == 2 || vocal_emotes.Find(act))
+			next_emote["vocal"] = world.time + 50

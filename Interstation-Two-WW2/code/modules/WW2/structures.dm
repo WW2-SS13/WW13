@@ -95,6 +95,7 @@
 // call this instead of process() if you want to do direct calls, I think its better - Kachnov
 /obj/structure/noose/proc/doWork()
 	if (hanging)
+		hanging.forceMove(loc)
 		density = TRUE
 		hanging.dir = SOUTH
 		hanging.pixel_y = 3 // because getting punched resets it
@@ -115,7 +116,7 @@
 			hanging.adjustOxyLoss(5)
 			if (prob(5))
 				visible_message("<span class = 'danger'>[hanging]'s neck snaps.</span>")
-				playsound(get_turf(src), 'sound/effects/gore/bullethit3.ogg')
+				playsound(loc, 'sound/effects/gore/bullethit3.ogg')
 				hanging.death()
 	else
 		icon_state = ""

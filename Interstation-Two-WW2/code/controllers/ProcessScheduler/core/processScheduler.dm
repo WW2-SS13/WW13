@@ -55,7 +55,7 @@ var/global/datum/controller/processScheduler/processScheduler
 	//  get re-initialized when the process scheduler is started.
 	// (These are kept here for any processes that decide to process before round start)
 	scheduler_sleep_interval = world.tick_lag
-	timeAllowance = world.tick_lag * 0.5
+	timeAllowance = world.tick_lag * 0.50
 	timeAllowanceMax = world.tick_lag
 
 /**
@@ -88,7 +88,7 @@ var/global/datum/controller/processScheduler/processScheduler
 	isRunning = TRUE
 	// tick_lag will have been set by now, so re-initialize these
 	scheduler_sleep_interval = world.tick_lag
-	timeAllowance = world.tick_lag * 0.5
+	timeAllowance = world.tick_lag * 0.50
 	timeAllowanceMax = world.tick_lag
 	updateStartDelays()
 	spawn(0)

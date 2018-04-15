@@ -1,10 +1,3 @@
-#define DAMAGE_LOW 40
-#define DAMAGE_MEDIUM 48
-#define DAMAGE_MEDIUM_HIGH 56
-#define DAMAGE_HIGH 72
-#define DAMAGE_VERY_HIGH 96
-#define DAMAGE_OH_GOD 200
-
 // all bullets are faster now
 /obj/item/projectile/bullet
 	speed = 5.00
@@ -138,7 +131,7 @@
 
 // GEWEHR 41 //
 ///obj/item/projectile/bullet/rifle/a792x57_g41
-	//damage = DAMAGE_HIGH - 6
+	//damage = DAMAGE_HIGH - 5
 	//penetrating = 2
 	//armor_penetration = 50
 

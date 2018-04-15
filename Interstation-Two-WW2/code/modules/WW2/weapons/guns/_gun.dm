@@ -70,10 +70,15 @@
 
 	var/accuracy_increase_mod = 1.00
 	var/accuracy_decrease_mod = 1.00
+	var/effectiveness_mod = 1.00
 	var/KD_chance = 5
 	var/stat = "rifle"
-	var/effectiveness_mod = 1.00
 	var/load_delay = 0
+	var/list/redirection_chances = list(
+		"l_hand" = list("l_arm" = 50),
+		"r_hand" = list("r_arm" = 50),
+		"l_foot" = list("l_leg" = 50),
+		"r_foot" = list("r_leg" = 50))
 
 /obj/item/weapon/gun/projectile/proc/calculate_miss_chance(zone, var/mob/target)
 
@@ -135,13 +140,13 @@
 	. *= miss_chance_modifier
 	. /= effectiveness_mod
 
-	. = min(CLAMP0100(.), 98)
-
 	if (list("mouth", "eyes").Find(zone))
-		. = round(min(. * 2, 100))
+		. = round(min(. * 3, 100))
 
 	else if (list("head").Find(zone))
-		. = round(min(. * 1.5, 100))
+		. = round(min(. * 2, 100))
+
+	. = min(CLAMP0100(.), 97)
 
 //	log_debug("final miss chance: [.]")
 

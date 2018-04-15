@@ -667,11 +667,11 @@ default behaviour is:
 		visible_message("<span class='danger'>[src] resists!</span>")
 
 /mob/living/verb/lay_down()
-	set name = "Rest"
+	set name = "Prone"
 	set category = "IC"
 
 	resting = !resting
-	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
+	src << "<span class='notice'>You are [resting ? "now prone" : "no longer prone"].</span>"
 
 
 /mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)

@@ -32,7 +32,7 @@ var/datum/controller/process/battlereport/battlereport
 		var/soviet_death_coeff = (soviet_deaths_this_cycle+1)/(alive_russians.len + 1)
 
 		// because admins can cause this to happen a lot
-		if (world.time >= next_can_grant_points)
+		if (world.time >= next_can_grant_points && map && map.germans_can_cross_blocks())
 
 			if (german_deaths_this_cycle && german_death_coeff > soviet_death_coeff)
 				radio2soviets("Due to your triumphs in the battlefield, we are rewarding you with 200 supply points, comrades.")

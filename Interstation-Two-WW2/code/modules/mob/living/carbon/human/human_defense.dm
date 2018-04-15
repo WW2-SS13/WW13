@@ -103,12 +103,12 @@ bullet_act
 				if (lastMovedRecently())
 					if (prob(graze_chance_multiplier * max(distcheck - 7, 0)))
 						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-						adjustBruteLoss(pick(4,5))
+						adjustBruteLoss(pick(9,10))
 						qdel(P)
 						return
 				else if (list("head", "mouth", "eyes").Find(def_zone) && prob(20 * getStatCoeff("survival")))
 					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-					adjustBruteLoss(pick(4,5))
+					adjustBruteLoss(pick(9,10))
 					qdel(P)
 					return
 
@@ -401,10 +401,10 @@ bullet_act
 
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
-	if(istype(AM,/obj/))
+	if(isobj(AM))
 		var/obj/O = AM
 
-		if(in_throw_mode && !get_active_hand() && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
+		if(in_throw_mode && !get_active_hand() && speed <= THROWFORCE_SPEED_DIVISOR && prob(round(75/O.w_class)))	//empty active hand and we're in throw mode
 			if(canmove && !restrained())
 				if(isturf(O.loc))
 					put_in_active_hand(O)

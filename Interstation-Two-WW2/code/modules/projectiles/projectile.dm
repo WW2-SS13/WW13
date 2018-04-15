@@ -234,6 +234,14 @@
 	if(!istype(target_mob))
 		return
 
+	if (def_zone && firedfrom && istype(firedfrom, /obj/item/weapon/gun/projectile))
+		var/obj/item/weapon/gun/projectile/proj = firedfrom
+		if (proj.redirection_chances.Find(def_zone))
+			for (var/nzone in proj.redirection_chances[def_zone])
+				if (prob(proj.redirection_chances[def_zone][nzone]))
+					def_zone = nzone
+					break
+
 	// default miss chance
 	var/miss_chance = get_miss_chance(def_zone, distance, accuracy, miss_modifier)
 
@@ -254,6 +262,22 @@
 	// makes hitting people in a "blind spot" easier 33% easier
 	if (firer && target_mob.is_in_blindspot(firer))
 		miss_chance = max(round(miss_chance * 0.50), 0)
+
+	// 50% chance of less severe damage
+	if (prob(50))
+		switch (damage)
+			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
+				damage = DAMAGE_LOW - 6
+			if (DAMAGE_MEDIUM-5 to DAMAGE_MEDIUM+5)
+				damage = DAMAGE_MEDIUM - 6
+			if (DAMAGE_MEDIUM_HIGH-5 to DAMAGE_MEDIUM_HIGH+5)
+				damage = DAMAGE_MEDIUM_HIGH - 6
+			if (DAMAGE_HIGH-5 to DAMAGE_HIGH+5)
+				damage = DAMAGE_HIGH - 6
+			if (DAMAGE_VERY_HIGH-5 to DAMAGE_VERY_HIGH+5)
+				damage = DAMAGE_VERY_HIGH - 6
+			if (DAMAGE_OH_GOD-5 to DAMAGE_OH_GOD+5)
+				damage = DAMAGE_OH_GOD - 6
 
 	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > 1 || original != target_mob), range = abs_dist(target_mob, firer)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 	var/result = PROJECTILE_FORCE_MISS

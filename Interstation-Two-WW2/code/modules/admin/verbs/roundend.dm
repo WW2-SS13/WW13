@@ -31,6 +31,7 @@
 	if(!check_rights(R_SERVER))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
+
 	if (!istype(ticker.mode, /datum/game_mode/ww2))
 		src << "<span class = 'danger'>Hey dick, you aren't allowed to prevent roundend this type of gamemode.</span>"
 		return
