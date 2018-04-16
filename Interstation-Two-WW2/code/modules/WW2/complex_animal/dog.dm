@@ -60,6 +60,18 @@
 	dog_mob_list -= src
 	..()
 
+/mob/living/simple_animal/complex_animal/canine/dog/attack_hand(var/mob/living/carbon/human/H as mob)
+	if (H.a_intent == I_HURT)
+		return ..(H)
+	else
+		if (name == initial(name))
+			var/yn = input(H, "Name this dog?") in list("Yes", "No")
+			if (yn == "Yes")
+				var/_name = input(H, "What name?") as text
+				name = sanitize(_name, 50)
+		else
+			return ..(H)
+
 /mob/living/simple_animal/complex_animal/canine/dog/proc/check_can_command(var/list/ranks, var/mob/living/carbon/human/H)
 	if (!islist(ranks))
 		. = list()

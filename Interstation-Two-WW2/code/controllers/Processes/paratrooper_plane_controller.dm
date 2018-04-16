@@ -8,7 +8,7 @@ var/datum/controller/process/paratrooper_plane_controller/paratrooper_plane_mast
 
 /datum/controller/process/paratrooper_plane_controller/setup()
 	name = "paratrooper plane controller"
-	schedule_interval = 20
+	schedule_interval = 50
 	start_delay = 50
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
 	if (!paratrooper_plane_master)

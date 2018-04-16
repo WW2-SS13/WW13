@@ -1,11 +1,7 @@
 /datum/game_mode/ww2
 	name = "World War 2"
 	config_tag = "WW2"
-	#ifdef DEBUG
-	required_players = 1
-	#else
 	required_players = 2
-	#endif
 	round_description = ""
 	extended_round_description = ""
 
@@ -30,7 +26,7 @@
 
 /datum/game_mode/ww2/proc/current_stat_message()
 	if (time_both_sides_locked != -1 && !currently_winning)
-		return "Both sides are out of reinforcements; The round will end in [max(round(((time_both_sides_locked+time_to_end_round_after_both_sides_locked) - world.realtime)/600),0)] minute(s)."
+		return "Both sides are out of reinforcements; The round will automatically end in [max(round(((time_both_sides_locked+time_to_end_round_after_both_sides_locked) - world.realtime)/600),0)] minute(s) if neither side is victorious."
 	else if (currently_winning == "Soviets")
 		return "The Red Army will win in [max(round((next_win_time-world.realtime)/600),0)] minute(s)."
 	else if (currently_winning == "Germans")
@@ -72,14 +68,17 @@
 /datum/game_mode/ww2/can_start(var/do_not_spawn)
 
 	var/playercount = 0
+	var/only_client_is_host = FALSE
 	for(var/mob/new_player/player in player_list)
 		if(player.client)
 			++playercount
+			if (player.key == world.host)
+				only_client_is_host = TRUE
 
-	if(playercount < required_players)
-		return FALSE
+	if(playercount >= required_players || only_client_is_host)
+		return TRUE
 
-	return TRUE
+	return FALSE
 
 /datum/game_mode/ww2/check_finished(var/round_ending = FALSE)
 	if (admins_triggered_noroundend)
@@ -307,25 +306,25 @@
 
 		if (!istype(aspect, /datum/game_aspect/ww2/no_artillery))
 			if (clients.len <= ARTILLERY_LOWPOP_THRESHOLD)
-				if (locate(/obj/structure/artillery) in world)
-					for (var/obj/structure/artillery/A in world)
-						qdel(A)
-					for (var/obj/structure/closet/crate/artillery/C in world)
-						qdel(C)
-					for (var/obj/structure/closet/crate/artillery_gas/C in world)
-						qdel(C)
-					world << "<i>Due to lowpop, there is no artillery or mortars.</i>"
-					if (map)
-						german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
-						german_supply_crate_types -= "Artillery Ballistic Shells Crate"
-						german_supply_crate_types -= "Artillery Gas Shells Crate"
-						map.katyushas = FALSE
-				if (locate(/obj/structure/mortar) in world)
-					for (var/obj/structure/mortar/M in world)
-						qdel(M)
-					for (var/obj/structure/closet/crate/mortar_shells/C in world)
-						qdel(C)
-					if (map)
-						german_supply_crate_types -= "Mortar Shells"
-						soviet_supply_crate_types -= "Mortar Shells"
-						soviet_supply_crate_types -= "37mm Spade Mortar"
+				for (var/obj/structure/artillery/A in world)
+					qdel(A)
+				for (var/obj/structure/closet/crate/artillery/C in world)
+					qdel(C)
+				for (var/obj/structure/closet/crate/artillery_gas/C in world)
+					qdel(C)
+				if (map)
+					german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
+					german_supply_crate_types -= "Artillery Ballistic Shells Crate"
+					german_supply_crate_types -= "Artillery Gas Shells Crate"
+					map.katyushas = FALSE
+				for (var/obj/structure/mortar/M in world)
+					qdel(M)
+				for (var/obj/item/weapon/shovel/spade/mortar/S in world)
+					qdel(S)
+				for (var/obj/structure/closet/crate/mortar_shells/C in world)
+					qdel(C)
+				if (map)
+					german_supply_crate_types -= "Mortar Shells"
+					soviet_supply_crate_types -= "Mortar Shells"
+					soviet_supply_crate_types -= "37mm Spade Mortar"
+				world << "<i>Due to lowpop, there is no artillery or mortars.</i>"

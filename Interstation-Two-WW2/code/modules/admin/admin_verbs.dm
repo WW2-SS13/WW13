@@ -599,6 +599,10 @@ var/list/admin_verbs_host = list(
 			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
 			var/light_impact_range = input("Light impact range (in tiles):") as num
 			var/flash_range = input("Flash range (in tiles):") as num
+			if (max(devastation_range, heavy_impact_range, light_impact_range, flash_range) >= 10)
+				if (!check_rights(R_PERMISSIONS, 0))
+					src << "<span class = 'danger'>You need Manager+ permissions to drop a custom bomb this big.</span>"
+					return
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 	message_admins("<span class = 'notice'>[ckey] creating an admin explosion at [epicenter.loc].</span>")
 /*

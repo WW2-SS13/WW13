@@ -595,7 +595,7 @@
 	if(!user.unEquip(W))
 		return
 
-	user << "<span class='notice'>You insert \the [W] in the product receptor.</span>"
+	user << "<span class='notice'>You insert \the [W] in the rack.</span>"
 	R.add_product(W)
 
 	nanomanager.update_uis(src)

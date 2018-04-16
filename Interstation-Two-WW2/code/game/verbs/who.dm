@@ -24,7 +24,7 @@
 						else
 							entry += " - <font color='red'><b>DEAD</b></font>"
 					else
-						entry += " - <font color='red'><b>DEAD</b></font>"
+						entry += " - <font color='gray'>In Lobby</font>"
 
 			var/age
 			if(isnum(C.player_age))

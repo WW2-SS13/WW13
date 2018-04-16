@@ -69,18 +69,17 @@
 			explode(get_turf(target))
 
 /obj/item/weapon/plastique/proc/explode(var/location)
-	if(!target)
-		target = get_atom_on_turf(src)
-	if(!target)
-		target = src
 	if(location)
-		explosion(location, 0, 1, 2, 3)
-		for (var/mob/living/L in location)
-			L.crush()
-		for (var/obj/O in location)
-			O.ex_act(1.0)
-	if(target)
-		target.overlays -= image_overlay
+		explosion(location, 0, 0, 2, 3)
+		spawn (6)
+			for (var/mob/living/L in location)
+				L.crush()
+				L.overlays -= image_overlay
+			for (var/obj/O in location)
+				O.ex_act(1.0)
+				O.overlays -= image_overlay
+			location:ex_act(1.0)
+			location:overlays -= image_overlay
 	qdel(src)
 
 /obj/item/weapon/plastique/attack(mob/M as mob, mob/user as mob, def_zone)

@@ -371,11 +371,9 @@
 	var/adj_sleepy = FALSE
 	var/adj_temp = FALSE
 
+// apparently this never happens - Kachnov
 /datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustToxLoss(removed) // Probably not a good idea; not very deadly though
-	if (M.water < 0)
-		M.water += 50
-	M.water += removed * 5
 	return
 
 /datum/reagent/drink/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -388,6 +386,10 @@
 		M.bodytemperature = min(310, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 	if(adj_temp < 0 && M.bodytemperature > 310)
 		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+
+	if (M.water < 0)
+		M.water += rand(40,50)
+	M.water += removed * 15
 
 // Juices
 

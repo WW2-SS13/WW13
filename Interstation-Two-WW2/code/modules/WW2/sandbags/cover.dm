@@ -76,7 +76,7 @@
 	if (istype(mover, /obj/effect/effect/smoke))
 		return TRUE
 
-	if (!istype(mover, /obj/item))
+	else if (!istype(mover, /obj/item))
 		if(get_dir(loc, target) & dir)
 			return FALSE
 		else

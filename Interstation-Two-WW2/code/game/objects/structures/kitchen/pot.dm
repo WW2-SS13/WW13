@@ -44,29 +44,35 @@
 		if (!I.reagents)
 			return
 		var/datum/reagent/R = I.reagents.get_master_reagent()
-		if (!R)
+		if (!R || !I.reagents.reagent_list.len)
 			H << "<span class = 'warning'>There's nothing in \the [I].</span>"
 			return
 		if (!istype(R, /datum/reagent/water))
-			H << "<span class = 'warning'>You need to fill the pot with water.</span>"
+			if (I.reagents.total_volume >= reagents.maximum_volume)
+				H << "<span class = 'info'>The pot can't hold any more reagents.</span>"
+			else
+				for (var/datum/reagent/RR in I.reagents.reagent_list)
+					reagents.add_reagent(RR.id, RR.volume)
+				I.reagents.clear_reagents()
+				visible_message("<span class = 'info'>[H] pours the contents of [I] into the pot.</span>")
+		else
+			var/rem = min(R.volume, 100)
+			I.reagents.remove_reagent(R.id, rem)
+			fullness += rem
+			fullness = min(fullness, 100)
+			if (fullness == 100)
+				state = STATE_WATER
+				update_icon()
+			H << "<span class = 'info'>[H] fills the pot with some water. It's about [fullness]% full.</span>"
 			return
-		var/rem = min(R.volume, 100)
-		I.reagents.remove_reagent(R.id, rem)
-		fullness += rem
-		fullness = min(fullness, 100)
-		if (fullness == 100)
-			state = STATE_WATER
-			update_icon()
-		H << "<span class = 'info'>[H] fills the pot with some water. It's about [fullness]% full.</span>"
-		return
 	else if (!istype(I, /obj/item/trash/snack_bowl))
 		if (istype(I, /obj/item/weapon/reagent_containers/food))
 			if (!list(STATE_WATER, STATE_BOILING).Find(state))
 				return
-			// todo: make certain reagents have a more interesting effect
+
 			if (istype(I, /obj/item/weapon/reagent_containers/food/drinks))
 				if (I.reagents && I.reagents.reagent_list.len)
-					if (I.reagents.total_volume >= I.reagents.maximum_volume)
+					if (I.reagents.total_volume >= reagents.maximum_volume)
 						H << "<span class = 'info'>The pot can't hold any more reagents.</span>"
 					else
 						for (var/datum/reagent/R in I.reagents.reagent_list)

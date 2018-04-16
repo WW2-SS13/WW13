@@ -21,11 +21,21 @@ Use the *surrender emote to surrender.
 You can use rope to build nooses.
 Good artillery can win the round for the Germans.
 War crimes are a part of life on the Eastern Front.
-Civilian shotguns are inaccurate compared to military-grade weapons, but they dish out immense damage.
-Katyushas are good for forcing Nazis to retreat inside. Unlike artillery, they can't hit inside the enemy base at the start of the round. Katyushas are also less accurate and more expensive than artillery, and require an officer to phone them in.
+Partisan shotguns are inaccurate compared to military-grade weapons, but they dish out immense damage.
 Read the wiki.
 Read the rules.
 The Italian Squad Leader's SMG, the Modello 38, accepts a bayonet. 
 If you're a doctor, making combat pills is an extremely effective tactic.
 Everyone dies eventually; don't get too salty about it. As they say, war is heck.
 You are twice as likely to hit someone if you shoot them from behind.
+Drag a keychain to your hand and use it on a door, instead of using individual keys.
+Donate at https://www.patreon.com/worldwar2inspace to submit a custom tip.
+Dabbing is bad and makes you valid.
+If you waltz around with a luger as a Doctor, don't complain when you get shot.
+Civilians who carry guns are valid.
+Use the Emote tab to surrender at 2x speed.
+You can ping people using the format "@key". This is case insensitive.
+If you use a rifle, aim for the head. If you use a pistol or SMG, aim for the chest.
+Stew saves lives.
+You will probably die at least once by the end of the round.
+Dogs can be named by clicking on them.

@@ -173,6 +173,16 @@
 	var/atmosalarmed = FALSE
 // the smaller bulb light fixture
 
+/obj/machinery/light/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if (!density)
+		return TRUE
+	else if (istype(mover, /obj/effect/effect/smoke))
+		return TRUE
+	else if (istype(mover, /obj/item))
+		return prob(66)
+	else
+		return FALSE
+
 /obj/machinery/light/floor
 	name = "floorlight fixture"
 	base_state = "floortube"
