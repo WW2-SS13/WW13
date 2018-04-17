@@ -19,9 +19,6 @@ var/datum/controller/process/movement/movement_process = null
 		if(isnull(M))
 			continue
 
-		if(last_move_attempt[M.ckey] && (world.time - last_move_attempt[M.ckey]) == 0)
-			continue
-
 		if (!M.movement_process_dir)
 			continue
 
@@ -30,7 +27,6 @@ var/datum/controller/process/movement/movement_process = null
 
 		if(isnull(M.gcDestroyed))
 			try
-				last_move_attempt[M.ckey] = world.time
 				M.client.Move(get_step(M, M.movement_process_dir), M.movement_process_dir)
 			catch(var/exception/e)
 				catchException(e, M)

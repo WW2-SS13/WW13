@@ -2,6 +2,16 @@
 /mob/var/velocity_lastdir = -1 // turning makes you lose TRUE or 2 velocity
 /mob/var/run_delay_maximum = 1.66 // was 1.75
 
+/mob/var/ghost_velocity = 0
+/mob/proc/movement_delay()
+	switch (ghost_velocity)
+		if (0)
+			return 0.7
+		if (1)
+			return 0.5
+		if (2)
+			return 0.3
+
 /mob/proc/get_run_delay()
 	switch (velocity)
 		if (0 to 3)
@@ -307,6 +317,13 @@
 	if(mob.control_object)	Move_object(direct)
 
 	if(mob.incorporeal_move && mob_is_observer)
+		if (mob.velocity_lastdir == direct && mob.lastMovedRecently(5))
+			++mob.ghost_velocity
+		else
+			mob.ghost_velocity = 0
+		mob.velocity_lastdir = direct
+		mob.last_movement = world.time
+		move_delay = world.time + mob.movement_delay()
 		Process_Incorpmove(direct)
 		return
 
@@ -327,6 +344,12 @@
 	if(mob_is_living)
 		var/mob/living/L = mob
 		if(L.incorporeal_move)//Move though walls
+			if (mob.velocity_lastdir == direct && mob.lastMovedRecently(5))
+				++mob.ghost_velocity
+			else
+				mob.ghost_velocity = 0
+			mob.last_movement = world.time
+			move_delay = world.time + mob.movement_delay()
 			Process_Incorpmove(direct)
 			return
 
@@ -620,7 +643,9 @@
 	return
 
 /mob/proc/lastMovedRecently(threshold)
-	var/default_threshold = get_walk_delay()
+	var/default_threshold = movement_delay()
+	if (ishuman(src))
+		default_threshold = get_walk_delay()
 	if (m_intent == "run")
 		default_threshold = get_run_delay()
 	if (abs(world.time - last_movement) <= (threshold ? threshold+0.1 : default_threshold+0.1))
@@ -766,7 +791,6 @@
 	if (mob)
 		mob.movement_process_dir = NORTH
 		Move(get_step(mob, NORTH), NORTH)
-		movement_process.last_move_attempt[ckey] = world.time
 
 /client/verb/startmovingdown()
 	set name = ".startmovingdown"
@@ -774,7 +798,6 @@
 	if (mob)
 		mob.movement_process_dir = SOUTH
 		Move(get_step(mob, SOUTH), SOUTH)
-		movement_process.last_move_attempt[ckey] = world.time
 
 /client/verb/startmovingright()
 	set name = ".startmovingright"
@@ -782,7 +805,6 @@
 	if (mob)
 		mob.movement_process_dir = EAST
 		Move(get_step(mob, EAST), EAST)
-		movement_process.last_move_attempt[ckey] = world.time
 
 /client/verb/startmovingleft()
 	set name = ".startmovingleft"
@@ -790,7 +812,6 @@
 	if (mob)
 		mob.movement_process_dir = WEST
 		Move(get_step(mob, WEST), WEST)
-		movement_process.last_move_attempt[ckey] = world.time
 
 /client/verb/stopmovingup()
 	set name = ".stopmovingup"
