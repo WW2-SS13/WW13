@@ -106,6 +106,7 @@
 #include "code\controllers\Processes\explosions.dm"
 #include "code\controllers\Processes\garbage.dm"
 #include "code\controllers\Processes\mob.dm"
+#include "code\controllers\Processes\movement.dm"
 #include "code\controllers\Processes\nanoui.dm"
 #include "code\controllers\Processes\obj.dm"
 #include "code\controllers\Processes\paratrooper_plane_controller.dm"

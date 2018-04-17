@@ -1,6 +1,6 @@
 /mob/var/velocity = 0
 /mob/var/velocity_lastdir = -1 // turning makes you lose TRUE or 2 velocity
-/mob/var/run_delay_maximum = 2.2 // was 1.75
+/mob/var/run_delay_maximum = 1.75 // was 1.75
 
 /mob/proc/get_run_delay()
 	switch (velocity)
@@ -72,18 +72,14 @@
 /client/North()
 	..()
 
-
 /client/South()
 	..()
-
 
 /client/West()
 	..()
 
-
 /client/East()
 	..()
-
 
 /client/proc/client_dir(input, direction=-1)
 	return turn(input, direction*dir2angle(dir))
@@ -236,12 +232,17 @@
 
 /mob/var/next_snow_message = -1
 /mob/var/next_mud_message = -1
+/mob/var/movement_process_dir = null
 /mob/living/carbon/human/var/next_stamina_message = -1
 
 /client/Move(n, direct)
 
 	if(!canmove)
 		return
+
+	if(moving)	return
+
+	if(world.time < move_delay)	return
 
 	if(!mob)
 		return // Moved here to avoid nullrefs below
@@ -308,10 +309,6 @@
 	if(mob.incorporeal_move && mob_is_observer)
 		Process_Incorpmove(direct)
 		return
-
-	if(moving)	return FALSE
-
-	if(world.time < move_delay)	return
 
 	for(var/obj/effect/stop/S in mob.loc)
 		if(S.victim == mob)
@@ -763,22 +760,46 @@
 		return FALSE
 	return prob_slip
 
-/client/verb/moveup()
-	set name = ".moveup"
+/client/verb/startmovingup()
+	set name = ".startmovingup"
 	set instant = TRUE
-	Move(get_step(mob, NORTH), NORTH)
+	if (mob)
+		mob.movement_process_dir = NORTH
 
-/client/verb/movedown()
-	set name = ".movedown"
+/client/verb/startmovingdown()
+	set name = ".startmovingdown"
 	set instant = TRUE
-	Move(get_step(mob, SOUTH), SOUTH)
+	if (mob)
+		mob.movement_process_dir = SOUTH
 
-/client/verb/moveright()
-	set name = ".moveright"
+/client/verb/startmovingright()
+	set name = ".startmovingright"
 	set instant = TRUE
-	Move(get_step(mob, EAST), EAST)
+	if (mob)
+		mob.movement_process_dir = EAST
 
-/client/verb/moveleft()
-	set name = ".moveleft"
+/client/verb/startmovingleft()
+	set name = ".startmovingleft"
 	set instant = TRUE
-	Move(get_step(mob, WEST), WEST)
+	if (mob)
+		mob.movement_process_dir = WEST
+
+/client/verb/stopmovingup()
+	set name = ".stopmovingup"
+	if (mob && mob.movement_process_dir == NORTH)
+		mob.movement_process_dir = null
+
+/client/verb/stopmovingdown()
+	set name = ".stopmovingdown"
+	if (mob && mob.movement_process_dir == SOUTH)
+		mob.movement_process_dir = null
+
+/client/verb/stopmovingright()
+	set name = ".stopmovingright"
+	if (mob && mob.movement_process_dir == EAST)
+		mob.movement_process_dir = null
+
+/client/verb/stopmovingleft()
+	set name = ".stopmovingleft"
+	if (mob && mob.movement_process_dir == WEST)
+		mob.movement_process_dir = null
