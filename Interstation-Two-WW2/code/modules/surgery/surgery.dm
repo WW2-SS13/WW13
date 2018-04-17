@@ -91,10 +91,10 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(tool, user))
-			if (!do_after(user, 25, M))
-				return FALSE // removes combat saws - Kachnov
 			var/step_is_valid = S.can_use(user, M, zone, tool)
 			if(step_is_valid && S.is_valid_target(M))
+				if (!do_after(user, 25, M))
+					return FALSE // removes combat saws - Kachnov
 				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
 					return TRUE
 				M.op_stage.in_progress += zone
@@ -113,7 +113,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				if (ishuman(M))
 					var/mob/living/carbon/human/H = M
 					H.update_surgery()
-				return	1	  												//don't want to do weapony things after surgery
+				return	TRUE	  												//don't want to do weapony things after surgery
 
 // this gets called for every item attack now
 //	if (user.a_intent == I_HELP)
