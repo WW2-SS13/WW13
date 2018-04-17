@@ -101,6 +101,8 @@
 	// when can we call process()
 	var/list/fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 
+	// are we a subsystem that processes independently of other processes
+	var/is_subsystem = FALSE
 
 /datum/controller/process/New(var/datum/controller/processScheduler/scheduler)
 	..()
@@ -143,7 +145,7 @@
 
 /datum/controller/process/proc/process()
 	started()
-	if (!paused)
+	if (!paused && !is_subsystem)
 		doWork()
 	finished()
 
