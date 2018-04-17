@@ -20,7 +20,7 @@ var/datum/controller/process/movement/movement_process = null
 		if(isnull(M))
 			continue
 
-		if(last_move_attempt[M.ckey] && world.time - last_move_attempt[M.ckey] == 0)
+		if(last_move_attempt[M.ckey] && (world.time - last_move_attempt[M.ckey]) == 0)
 			continue
 
 		if (!M.movement_process_dir)
