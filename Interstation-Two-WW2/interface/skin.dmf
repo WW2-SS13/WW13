@@ -182,10 +182,6 @@ macro "hotkeymode"
 		name = "Space"
 		command = "on-press-spacebar"
 	elem 
-		name = "Northeast"
-	elem 
-		name = "Southeast"
-	elem 
 		name = "Southwest"
 		command = ".southwest"
 	elem 
@@ -279,11 +275,17 @@ macro "hotkeymode"
 		name = "CTRL+A"
 		command = ".startmovingleft"
 	elem 
+		name = "A+UP"
+		command = ".stopmovingleft"
+	elem 
 		name = "D"
 		command = ".startmovingright"
 	elem 
 		name = "CTRL+D"
 		command = ".startmovingright"
+	elem 
+		name = "D+UP"
+		command = ".stopmovingright"
 	elem 
 		name = "E"
 		command = "quick-equip"
@@ -333,11 +335,17 @@ macro "hotkeymode"
 		name = "CTRL+S"
 		command = "Say \"*scream"
 	elem 
+		name = "S+UP"
+		command = ".stopmovingdown"
+	elem 
 		name = "T"
 		command = ".say"
 	elem 
 		name = "CTRL+W"
 		command = ".startmovingup"
+	elem 
+		name = "W+UP"
+		command = ".stopmovingup"
 	elem "w_key"
 		name = "W+REP"
 		command = ".startmovingup"
