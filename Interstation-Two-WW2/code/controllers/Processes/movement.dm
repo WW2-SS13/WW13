@@ -12,14 +12,14 @@ var/datum/controller/process/movement/movement_process = null
 	DO_INTERNAL_SUBSYSTEM(src)
 
 /datum/controller/process/movement/doWork()
-	for(last_object in mob_list)
+	for(last_object in living_mob_list|dead_mob_list)
 
 		var/mob/M = last_object
 
 		if(isnull(M))
 			continue
 
-		if (!M.movement_process_dir)
+		if (!M.movement_process_dirs.len)
 			continue
 
 		if(!M.client)
@@ -27,7 +27,7 @@ var/datum/controller/process/movement/movement_process = null
 
 		if(isnull(M.gcDestroyed))
 			try
-				M.client.Move(get_step(M, M.movement_process_dir), M.movement_process_dir)
+				M.client.Move(get_step(M, M.movement_process_dirs[M.movement_process_dirs.len]), M.movement_process_dirs[M.movement_process_dirs.len])
 			catch(var/exception/e)
 				catchException(e, M)
 		else

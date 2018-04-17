@@ -242,7 +242,7 @@
 
 /mob/var/next_snow_message = -1
 /mob/var/next_mud_message = -1
-/mob/var/movement_process_dir = null
+/mob/var/list/movement_process_dirs = list()
 /mob/living/carbon/human/var/next_stamina_message = -1
 
 /client/Move(n, direct)
@@ -789,50 +789,46 @@
 	set name = ".startmovingup"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dir = NORTH
+		mob.movement_process_dirs |= NORTH
 		Move(get_step(mob, NORTH), NORTH)
 
 /client/verb/startmovingdown()
 	set name = ".startmovingdown"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dir = SOUTH
+		mob.movement_process_dirs |= SOUTH
 		Move(get_step(mob, SOUTH), SOUTH)
 
 /client/verb/startmovingright()
 	set name = ".startmovingright"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dir = EAST
+		mob.movement_process_dirs |= EAST
 		Move(get_step(mob, EAST), EAST)
 
 /client/verb/startmovingleft()
 	set name = ".startmovingleft"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dir = WEST
+		mob.movement_process_dirs |= WEST
 		Move(get_step(mob, WEST), WEST)
 
 /client/verb/stopmovingup()
 	set name = ".stopmovingup"
 	set instant = TRUE
-	if (mob && mob.movement_process_dir == NORTH)
-		mob.movement_process_dir = null
+	mob.movement_process_dirs -= NORTH
 
 /client/verb/stopmovingdown()
 	set name = ".stopmovingdown"
 	set instant = TRUE
-	if (mob && mob.movement_process_dir == SOUTH)
-		mob.movement_process_dir = null
+	mob.movement_process_dirs -= SOUTH
 
 /client/verb/stopmovingright()
 	set name = ".stopmovingright"
 	set instant = TRUE
-	if (mob && mob.movement_process_dir == EAST)
-		mob.movement_process_dir = null
+	mob.movement_process_dirs -= EAST
 
 /client/verb/stopmovingleft()
 	set name = ".stopmovingleft"
 	set instant = TRUE
-	if (mob && mob.movement_process_dir == WEST)
-		mob.movement_process_dir = null
+	mob.movement_process_dirs -= WEST
