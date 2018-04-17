@@ -765,41 +765,53 @@
 	set instant = TRUE
 	if (mob)
 		mob.movement_process_dir = NORTH
+		Move(get_step(mob, NORTH), NORTH)
+		movement_process.last_move_attempt[ckey] = world.time
 
 /client/verb/startmovingdown()
 	set name = ".startmovingdown"
 	set instant = TRUE
 	if (mob)
 		mob.movement_process_dir = SOUTH
+		Move(get_step(mob, SOUTH), SOUTH)
+		movement_process.last_move_attempt[ckey] = world.time
 
 /client/verb/startmovingright()
 	set name = ".startmovingright"
 	set instant = TRUE
 	if (mob)
 		mob.movement_process_dir = EAST
+		Move(get_step(mob, EAST), EAST)
+		movement_process.last_move_attempt[ckey] = world.time
 
 /client/verb/startmovingleft()
 	set name = ".startmovingleft"
 	set instant = TRUE
 	if (mob)
 		mob.movement_process_dir = WEST
+		Move(get_step(mob, WEST), WEST)
+		movement_process.last_move_attempt[ckey] = world.time
 
 /client/verb/stopmovingup()
 	set name = ".stopmovingup"
+	set instant = TRUE
 	if (mob && mob.movement_process_dir == NORTH)
 		mob.movement_process_dir = null
 
 /client/verb/stopmovingdown()
 	set name = ".stopmovingdown"
+	set instant = TRUE
 	if (mob && mob.movement_process_dir == SOUTH)
 		mob.movement_process_dir = null
 
 /client/verb/stopmovingright()
 	set name = ".stopmovingright"
+	set instant = TRUE
 	if (mob && mob.movement_process_dir == EAST)
 		mob.movement_process_dir = null
 
 /client/verb/stopmovingleft()
 	set name = ".stopmovingleft"
+	set instant = TRUE
 	if (mob && mob.movement_process_dir == WEST)
 		mob.movement_process_dir = null
