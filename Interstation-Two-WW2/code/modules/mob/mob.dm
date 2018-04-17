@@ -143,7 +143,7 @@
 	return FALSE
 
 /mob/proc/movement_delay()
-	return FALSE
+	return 1
 
 /mob/proc/Life()
 //	if(organStructure)
