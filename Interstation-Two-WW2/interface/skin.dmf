@@ -88,16 +88,12 @@ macro "macro"
 		command = "a-intent harm"
 	elem 
 		name = "CTRL+A"
-		command = ".startmovingleft"
 	elem 
 		name = "CTRL+A+UP"
-		command = ".stopmovingleft"
 	elem 
 		name = "CTRL+D"
-		command = ".startmovingright"
 	elem 
 		name = "CTRL+D+UP"
-		command = ".stopmovingright"
 	elem 
 		name = "CTRL+E"
 		command = "quick-equip"
@@ -121,10 +117,8 @@ macro "macro"
 		command = "Say \"*scream"
 	elem 
 		name = "CTRL+W"
-		command = ".startmovingup"
 	elem 
 		name = "CTRL+W+UP"
-		command = ".stopmovingup"
 	elem 
 		name = "CTRL+X"
 		command = ".northeast"
@@ -272,16 +266,10 @@ macro "hotkeymode"
 		name = "A"
 		command = ".startmovingleft"
 	elem 
-		name = "CTRL+A"
-		command = ".startmovingleft"
-	elem 
 		name = "A+UP"
 		command = ".stopmovingleft"
 	elem 
 		name = "D"
-		command = ".startmovingright"
-	elem 
-		name = "CTRL+D"
 		command = ".startmovingright"
 	elem 
 		name = "D+UP"
@@ -340,15 +328,12 @@ macro "hotkeymode"
 	elem 
 		name = "T"
 		command = ".say"
-	elem 
-		name = "CTRL+W"
+	elem "w_key"
+		name = "W"
 		command = ".startmovingup"
 	elem 
 		name = "W+UP"
 		command = ".stopmovingup"
-	elem "w_key"
-		name = "W+REP"
-		command = ".startmovingup"
 	elem 
 		name = "X"
 		command = ".northeast"

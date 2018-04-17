@@ -339,8 +339,6 @@
 
 	if(!item || item.nothrow) return //Grab processing has a chance of returning null
 
-	playsound(src, 'sound/effects/throw.ogg', 50, TRUE)
-
 	var/throwtime_divider = 4
 	if (isitem(item))
 		var/obj/item/I = item
@@ -356,6 +354,7 @@
 
 	//actually throw it!
 	if (item && do_after(src, max(1, round(abs_dist(src, target)/throwtime_divider)), get_turf(src)))
+		playsound(src, 'sound/effects/throw.ogg', 50, TRUE)
 		remove_from_mob(item)
 		item.loc = loc
 		visible_message("<span class = 'red'>[src] has thrown [item].</span>")
