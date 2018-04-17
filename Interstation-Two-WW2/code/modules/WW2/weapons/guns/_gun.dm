@@ -141,10 +141,14 @@
 	. /= effectiveness_mod
 
 	if (list("mouth", "eyes").Find(zone))
-		. = round(min(. * 3, 100))
+		var/hitchance = 100 - .
+		hitchance /= 3
+		. = round(min(., 100 - hitchance))
 
 	else if (list("head").Find(zone))
-		. = round(min(. * 2, 100))
+		var/hitchance = 100 - .
+		hitchance /= 2
+		. = round(min(., 100 - hitchance))
 
 	. = min(CLAMP0100(.), 97)
 
