@@ -84,8 +84,6 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return FALSE
 	if (user.a_intent == I_HURT)	//check for Hippocratic Oath
 		return FALSE
-	if (!do_after(user, 25, M))
-		return FALSE // removes combat saws - Kachnov
 	var/zone = user.targeted_organ
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
 		user << "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>"
@@ -93,6 +91,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(tool, user))
+			if (!do_after(user, 25, M))
+				return FALSE // removes combat saws - Kachnov
 			var/step_is_valid = S.can_use(user, M, zone, tool)
 			if(step_is_valid && S.is_valid_target(M))
 				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
