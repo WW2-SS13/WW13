@@ -801,7 +801,6 @@
 	icon_state = "running"
 	screen_loc = "14,1"
 
-
 /obj/screen/mov_intent/Click()
 //	if(iscarbon(parentmob))
 	var/mob/living/carbon/C = parentmob
@@ -810,11 +809,15 @@
 		C.m_intent = "walk"	//Just incase
 		update_icon()
 		return TRUE
-	switch(C.m_intent)
-		if("run")
-			C.m_intent = "walk"
-		if("walk")
-			C.m_intent = "run"
+
+	if (C.m_intent == "run")
+		C.m_intent = "walk"
+	else if (C.m_intent == "walk" && !C.resting)
+		C.resting = TRUE
+	else if (C.m_intent == "walk" && C.resting)
+		C.resting = FALSE
+		C.m_intent = "run"
+
 	update_icon()
 
 /obj/screen/mov_intent/New()
@@ -827,7 +830,10 @@
 		if("run")
 			icon_state = "running"
 		if("walk")
-			icon_state = "walking"
+			if (C.resting)
+				icon_state = "proning"
+			else
+				icon_state = "walking"
 
 //-----------------------mov_intent END------------------------------
 /obj/screen/equip

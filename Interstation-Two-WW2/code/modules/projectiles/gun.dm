@@ -353,7 +353,7 @@
 
 	if(recoil)
 		spawn(0)
-			var/shake_strength = recoil+0.5
+			var/shake_strength = recoil
 			if (shake_strength > 0)
 				shake_camera(user, max(shake_strength, 0), min(shake_strength, 50))
 			recoil = i_recoil
