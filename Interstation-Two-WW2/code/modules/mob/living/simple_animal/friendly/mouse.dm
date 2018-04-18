@@ -1,6 +1,3 @@
-/hook/
-
-
 /mob/living/simple_animal/mouse
 	name = "mouse"
 	real_name = "mouse"
@@ -59,7 +56,7 @@
 		else if(prob(5))
 			audible_emote("snuffles.")
 
-/mob/living/simple_animal/mouse/lay_down()
+/mob/living/simple_animal/mouse/verb/lay_down()
 	..()
 	icon_state = resting ? "mouse_[body_color]_sleep" : "mouse_[body_color]"
 
