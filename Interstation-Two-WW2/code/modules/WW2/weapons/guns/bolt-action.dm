@@ -28,6 +28,7 @@
 	KD_chance = KD_CHANCE_HIGH
 	stat = "rifle"
 	move_delay = 2
+	fire_delay = 2
 
 	// 5x as accurate as MGs for now
 	accuracy_list = list(

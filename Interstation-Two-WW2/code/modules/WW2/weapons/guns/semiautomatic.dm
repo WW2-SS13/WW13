@@ -86,7 +86,7 @@
 	magazine_type = /obj/item/ammo_magazine/mosin
 	weight = 3.85
 	firemodes = list(
-		list(name="single shot",burst=1, move_delay=2, fire_delay=7)
+		list(name="single shot",burst=1, move_delay=2, fire_delay=6)
 		)
 
 	gun_type = GUN_TYPE_RIFLE
@@ -119,7 +119,7 @@
 	magazine_type = /obj/item/ammo_magazine/kar98k
 	weight = 4.9
 	firemodes = list(
-		list(name="single shot",burst=1, move_delay=2, fire_delay=7)
+		list(name="single shot",burst=1, move_delay=2, fire_delay=6)
 		)
 	force = 10
 	throwforce = 20
