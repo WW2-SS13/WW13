@@ -35,7 +35,7 @@ If you waltz around with a luger as a Doctor, don't complain when you get shot.
 Civilians who carry guns are valid.
 Use the Emote tab to surrender at 2x speed.
 You can ping people using the format "@key". This is case insensitive.
-If you use a rifle, aim for the head. If you use a pistol or SMG, aim for the chest.
+If you use a sniper rifle, aim for the head. Otherwise, aim for the chest to kill and the feet to cripple.
 Stew saves lives.
 You will probably die at least once by the end of the round.
 Dogs can be named by clicking on them.
