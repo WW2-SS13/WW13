@@ -11,6 +11,7 @@ var/datum/controller/process/movement/movement_process = null
 	DO_INTERNAL_SUBSYSTEM(src)
 
 /datum/controller/process/movement/doWork()
+	SCHECK
 	for(last_object in living_mob_list|dead_mob_list)
 
 		var/mob/M = last_object
@@ -32,6 +33,8 @@ var/datum/controller/process/movement/movement_process = null
 		else
 			catchBadType(M)
 			mob_list -= M
+
+		SCHECK
 
 /datum/controller/process/movement/statProcess()
 	..()
