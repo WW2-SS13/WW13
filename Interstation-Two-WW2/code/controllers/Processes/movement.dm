@@ -1,7 +1,6 @@
 var/datum/controller/process/movement/movement_process = null
 
 /datum/controller/process/movement
-	var/last_move_attempt[1000]
 
 /datum/controller/process/movement/setup()
 	name = "mob movement"

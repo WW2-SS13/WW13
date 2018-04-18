@@ -7,6 +7,13 @@
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
+	if (original_job_title && !client)
+		if (job_master)
+			for (var/datum/job/J in job_master.occupations)
+				if (J.title == original_job_title)
+					original_job = J
+					break
+
 	spawnedInAtRealTime = world.realtime
 
 	body_build = get_body_build(gender)
@@ -65,6 +72,7 @@
 			human_clients_mob_list |= src
 			if (config.allow_selfheal)
 				verbs |= /mob/living/carbon/human/proc/selfheal
+				verbs |= /mob/living/carbon/human/proc/selfrevive
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src

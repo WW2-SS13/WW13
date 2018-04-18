@@ -1,8 +1,8 @@
 /datum/firemode
 	var/name = "default"
 	var/burst = 1
-	var/burst_delay = null
-	var/fire_delay = null
+	var/burst_delay = 0
+	var/fire_delay = 0
 	var/move_delay = 0
 	var/recoil = -1
 	var/list/dispersion = list(0)
@@ -38,7 +38,7 @@
 	force = 5
 	attack_verb = list("struck", "hit", "bashed")
 
-	var/fire_delay = 6 	//delay after shooting before the gun can be used again
+	var/fire_delay = 2 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
 	var/fire_sound = 'sound/weapons/kar_shot.ogg'
 	var/fire_sound_text = "gunshot"
@@ -48,7 +48,7 @@
 	var/accuracy = 0   //accuracy is measured in tiles. +1 accuracy means that everything is effectively one tile closer for the purpose of miss chance, -1 means the opposite. launchers are not supported, at the moment.
 	var/scoped_accuracy = null
 
-	var/next_fire_time = FALSE
+	var/next_fire_time = 0
 
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()

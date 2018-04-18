@@ -977,6 +977,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return ((status & ORGAN_ROBOT) && (brute_dam + burn_dam) >= 10 && prob(brute_dam + burn_dam))
 
 /obj/item/organ/external/proc/embed(var/obj/item/weapon/W, var/silent = FALSE, var/supplied_message)
+
+	// w_class 2 tends to not embed, w_class 3+ never embeds - Kachnov
+	if (W.w_class == 2 && prob(60))
+		return
+	else if (W.w_class > 2)
+		return
+
 	if(!owner || loc != owner)
 		return
 	if(!silent)

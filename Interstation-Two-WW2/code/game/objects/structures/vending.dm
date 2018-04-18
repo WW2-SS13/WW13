@@ -92,7 +92,7 @@
 	// Vending-related
 	var/active = TRUE //No sales pitches if off!
 	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
-	var/vend_delay = 10 //How long does it take to vend?
+	var/vend_delay = 5 //How long does it take to vend?
 	var/categories = CAT_NORMAL // Bitmask of cats we're currently showing
 	var/datum/data/vending_product/currently_vending = null // What we're requesting payment for right now
 	var/status_message = "" // Status screen messages like "insufficient funds", displayed in NanoUI

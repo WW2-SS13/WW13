@@ -372,8 +372,15 @@
 			step(src, inertia_dir)
 */
 
+		// 2 throw range for mobs, MGs
+		// 3 throw range for smgs
+		// old max throw range was 7, now its 6 - Kachnov
+		var/throw_range = 2
+		if (isitem(item))
+			var/obj/item/I = item
+			throw_range = 7 - I.w_class
 
-		item.throw_at(target, item.throw_range, item.throw_speed, src)
+		item.throw_at(target, throw_range, item.throw_speed, src)
 
 /mob/living/carbon/fire_act(temperature)
 	..()

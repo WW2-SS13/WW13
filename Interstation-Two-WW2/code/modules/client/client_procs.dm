@@ -145,7 +145,7 @@
 	if(!serverswap_open_status)
 		if (serverswap.Find("snext"))
 			var/linked = "byond://[world.internet_address]:[serverswap[serverswap["snext"]]]"
-			src << "<span class = 'notice'><font size = TRUE>This server is not open, so you will be automatically redirected you to the linked server - if it doesn't automatically take you there, click this: <b>[linked]</b>.</font></span>"
+			src << "<span class = 'notice'><font size = 1>This server is not open, so you will be automatically redirected to the linked server - if it doesn't automatically take you there, click this: <b>[linked]</b>.</font></span>"
 			src << link(linked)
 		del(src)
 		return FALSE

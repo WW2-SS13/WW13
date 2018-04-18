@@ -122,6 +122,8 @@ var/list/ghostteleportlocs = list()
 		if (parent_area_type)
 			parent_area = locate(parent_area_type)
 
+	area_list |= src
+
 /area/proc/initialize()
 	if(config.machinery_does_not_use_power)
 		requires_power = FALSE

@@ -143,14 +143,14 @@
 	if (list("mouth", "eyes").Find(zone))
 		var/hitchance = 100 - .
 		hitchance /= 3
-		. = round(min(., 100 - hitchance))
+		. = round(100 - hitchance)
 
 	else if (list("head").Find(zone))
 		var/hitchance = 100 - .
 		hitchance /= 2
-		. = round(min(., 100 - hitchance))
+		. = round(100 - hitchance)
 
-	. = min(CLAMP0100(.), 97)
+	. = min(CLAMP0100(.), 99) // minimum hit chance is 2% no matter what
 
 //	log_debug("final miss chance: [.]")
 

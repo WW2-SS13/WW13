@@ -110,7 +110,7 @@
 				else
 					time_to_end_round_after_both_sides_locked = 6000
 
-				world << "<font size = 3>Both sides are locked for reinforcements; the round will end in [time_to_end_round_after_both_sides_locked/600] minutes.</font>"
+				world << "<font size = 3>Both sides are locked for reinforcements; the round will end in [time_to_end_round_after_both_sides_locked/600] minutes or less.</font>"
 				return FALSE
 
 		// conditions 2.1 to 2.5: one side has occupied the enemy base

@@ -593,21 +593,21 @@ var/list/vocal_emotes = list(
 				if (config.allow_dabbing && !restrained())
 					m_type = 1
 					message = "dabs."
-					for (var/atom/movable/AM in get_step(src, dir))
-						if (isobj(AM))
-							if (istype(AM, /obj/structure/noose))
-								var/obj/structure/noose/N = AM
-								if (N.hanging)
-									message = "dabs on [N.hanging]."
-									break
-							if (!AM.density)
-								if (!istype(AM, /atom/movable/lighting_overlay) && !isitem(AM) && !istype(AM, /obj/effect))
-									if (AM.name)
-										message = "dabs on \the [AM]."
-										break
-						else if (istype(AM, /mob/living))
-							message = "dabs on [AM]."
-							break
+					for (var/mob/living/L in get_step(src, dir))
+						message = "dabs on [L]."
+						goto enddab
+					for (var/obj/O in get_step(src, dir))
+						if (istype(O, /obj/structure/noose))
+							var/obj/structure/noose/N = O
+							if (N.hanging)
+								message = "dabs on [N.hanging]."
+								goto enddab
+						else if (!O.density)
+							if (!istype(O, /atom/movable/lighting_overlay) && !isitem(O) && !istype(O, /obj/effect))
+								if (O.name)
+									message = "dabs on \the [O]."
+									goto enddab
+					enddab
 
 			if ("pose")
 				if (istype(src, /mob/living/carbon/human/pillarman))

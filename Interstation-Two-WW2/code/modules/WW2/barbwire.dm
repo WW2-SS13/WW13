@@ -44,7 +44,7 @@
 					H.UpdateDamageIcon()
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
-					H.Weaken(2)
+					H.Weaken(1)
 				M << "<span class = 'red'><b>Your [affecting.name] gets slightly cut by \the [src]!</b></span>"
 			else if (prob (33))
 				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
@@ -55,7 +55,7 @@
 					H.UpdateDamageIcon()
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
-					H.Weaken(4)
+					H.Weaken(2)
 				M << "<span class = 'red'><b>Your [affecting.name] gets cut by \the [src]!</b></span>"
 			else
 				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
@@ -66,7 +66,7 @@
 					H.UpdateDamageIcon()
 				H.updatehealth()
 				if(!(H.species && (H.species.flags)))
-					H.Weaken(5)
+					H.Weaken(3)
 				M << "<span class = 'red'><b>Your [affecting.name] gets deeply cut by \the [src]!</b></span>"
 			// stops barbwire from bugging crawling
 			switch (H.dir)
@@ -124,4 +124,4 @@
 						H.UpdateDamageIcon()
 					H.updatehealth()
 					if(!(H.species && (H.species.flags)))
-						H.Weaken(2)
+						H.Weaken(1)

@@ -241,6 +241,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		human_clients_mob_list |= H
 		if (config.allow_selfheal)
 			H.verbs |= /mob/living/carbon/human/proc/selfheal
+			H.verbs |= /mob/living/carbon/human/proc/selfrevive
 
 	return TRUE
 

@@ -35,8 +35,12 @@
 		return TRUE
 	else if (istype(mover, /obj/effect/effect/smoke))
 		return TRUE
-	else if (istype(mover, /obj/item))
-		return prob(66)
+	else if (istype(mover, /obj/item/projectile))
+		if (prob(66))
+			return TRUE
+		else
+			visible_message("<span class = 'warning'>The bullet riochetes off of \the [src]!</span>")
+			return FALSE
 	else
 		return FALSE
 

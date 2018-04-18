@@ -278,6 +278,24 @@
 				damage = DAMAGE_VERY_HIGH - 6
 			if (DAMAGE_OH_GOD-5 to DAMAGE_OH_GOD+5)
 				damage = DAMAGE_OH_GOD - 6
+	// 50% chance of variable damage that stays within the boundaries of the damage tier
+	else
+		var/variation = 0
+		switch (damage)
+			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
+				variation = damage - DAMAGE_LOW
+			if (DAMAGE_MEDIUM-5 to DAMAGE_MEDIUM+5)
+				variation = damage - DAMAGE_MEDIUM
+			if (DAMAGE_MEDIUM_HIGH-5 to DAMAGE_MEDIUM_HIGH+5)
+				variation = damage - DAMAGE_MEDIUM_HIGH
+			if (DAMAGE_HIGH-5 to DAMAGE_HIGH+5)
+				variation = damage - DAMAGE_HIGH
+			if (DAMAGE_VERY_HIGH-5 to DAMAGE_VERY_HIGH+5)
+				variation = damage - DAMAGE_VERY_HIGH
+			if (DAMAGE_OH_GOD-5 to DAMAGE_OH_GOD+5)
+				variation = damage - DAMAGE_OH_GOD
+		if (variation > 0)
+			damage += rand(-variation, variation)
 
 	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > 1 || original != target_mob), range = abs_dist(target_mob, firer)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 	var/result = PROJECTILE_FORCE_MISS

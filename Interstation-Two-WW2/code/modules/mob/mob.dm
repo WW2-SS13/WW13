@@ -4,12 +4,19 @@
 	living_mob_list -= src
 	unset_machine()
 	qdel(hud_used)
-	if(client)
+
+	// don't create bad ghosts - Kachnov
+	if(client || lastKnownCkey)
 		remove_screen_obj_references()
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
-	ghostize()
+		for (var/mob/observer/O in mob_list)
+			if (O.ckey == ckey || O.lastKnownCkey == ckey)
+				goto finish
+		ghostize()
+
+	finish
 	..()
 
 /mob/proc/remove_screen_obj_references()//FIX THIS SHIT

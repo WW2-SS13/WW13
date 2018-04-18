@@ -39,6 +39,8 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 var/global/list/global_corporations = list()
 var/global/list/HUDdatums = list()
 
+var/global/list/area_list = list()
+
 // names
 var/global/list/names_used[1000] // map
 

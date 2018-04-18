@@ -4,7 +4,7 @@
 	anchored = 1.0
 	name = ""
 
-/obj/gasser/proc/function()
+/obj/gasser/proc/function(var/first = TRUE)
 
 	var/list/chemsmokes = list()
 	var/list/target_turfs = list()
@@ -36,11 +36,17 @@
 				if (G.filtered_gases.Find("zyklon_b"))
 					continue
 
-			L << "<span class = 'danger'>You're suffocating!</span>"
+			if (first)
+				L << "<span class = 'danger'>You're suffocating!</span>"
+
 			for (var/v in 1 to 10)
 				spawn ((v-1) * 10)
-					L.adjustOxyLoss(20)
-					L.emote("scream")
+					if (L.stat == CONSCIOUS)
+						L.adjustOxyLoss(rand(5,7))
+						if (ishuman(L))
+							var/mob/living/carbon/human/H = L
+							H.emote("scream")
+							H.next_emote["vocal"] = world.time + 100
 
 /obj/gas_lever // same icon as the train lever for now
 	anchored = 1.0
@@ -64,8 +70,15 @@
 			icon_state = pushed_state
 			orientation = "PUSHED"
 			visible_message("<span class = 'danger'>[user] pushes the lever forwards!</span>", "<span class = 'notice'>You push the lever forwards.</span>")
+
+			var/first = FALSE
+			var/gc = 0
 			for (var/obj/gasser/gasser in range(10, src))
-				gasser.function()
+				++gc
+				spawn ((gc-1))
+					gasser.function(!first ? TRUE : FALSE)
+					first = TRUE
+
 		else if (orientation == "PUSHED")
 			icon_state = none_state
 			orientation = "NONE"

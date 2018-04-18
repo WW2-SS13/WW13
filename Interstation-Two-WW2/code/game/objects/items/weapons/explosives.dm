@@ -71,6 +71,8 @@
 /obj/item/weapon/plastique/proc/explode(var/location)
 	if(location)
 		explosion(location, 0, 0, 2, 3)
+		spawn (4)
+			playsound(location, "explosion", 100, TRUE)
 		spawn (6)
 			for (var/mob/living/L in location)
 				L.crush()
