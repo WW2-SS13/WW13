@@ -50,6 +50,7 @@
 	KD_chance = KD_CHANCE_MEDIUM
 	stat = "rifle"
 	load_delay = 5
+	aim_miss_chance_divider = 2.50
 
 	var/jammed_until = -1
 	var/jamcheck = 0

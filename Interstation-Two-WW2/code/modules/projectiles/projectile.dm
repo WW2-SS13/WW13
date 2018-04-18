@@ -49,28 +49,29 @@
 	var/agony = FALSE
 	var/embed = FALSE // whether or not the projectile can embed itself in the mob
 
-	var/hitscan = FALSE		// whether the projectile should be hitscan
-	var/step_delay = TRUE	// the delay between iterations if not a hitscan projectile
+	var/did_muzzle_effect = FALSE
 
 	// effect types to be used
-	var/muzzle_type
-	var/tracer_type
-	var/impact_type
+	var/muzzle_type = null
+	var/tracer_type = null
+	var/impact_type = null
 
-	var/datum/plot_vector/trajectory	// used to plot the path of the projectile
-	var/datum/vector_loc/location		// current location of the projectile in pixel space
-	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
+	var/datum/plot_vector/trajectory = null	// used to plot the path of the projectile
+	var/datum/vector_loc/location = null		// current location of the projectile in pixel space
+	var/matrix/effect_transform = null			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
 	armor_penetration = 90
-
-	var/speed = 1.5 // was 1.0
 
 	/* since a lot of WW2 guns use similar ammo, this is calculated during runtime
 	 * based on gun type and the distance between the firer and person hit.
 	 * Right now, only boltactions & heavysniper guns get a high KD chance. */\
 
 	var/KD_chance = 5
+
+/obj/item/projectile/Del()
+	projectile_list -= src
+	..()
 
 //TODO: make it so this is called more reliably, instead of sometimes by bullet_act() and sometimes not
 /obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = FALSE, var/def_zone = null)
@@ -160,8 +161,7 @@
 	shot_from = launcher
 	silenced = launcher.silenced
 
-	spawn()
-		process()
+	projectile_list += src
 
 	return FALSE
 
@@ -195,8 +195,7 @@
 	shot_from = null
 	silenced = FALSE
 
-	spawn()
-		process()
+	projectile_list += src
 
 	return FALSE
 
@@ -234,51 +233,70 @@
 	if(!istype(target_mob))
 		return
 
-	if (def_zone && firedfrom && istype(firedfrom, /obj/item/weapon/gun/projectile))
-		var/obj/item/weapon/gun/projectile/proj = firedfrom
-		if (proj.redirection_chances.Find(def_zone))
-			for (var/nzone in proj.redirection_chances[def_zone])
-				if (prob(proj.redirection_chances[def_zone][nzone]))
-					def_zone = nzone
-					break
+	if (!firedfrom)
+		return
 
-	// default miss chance
-	var/miss_chance = get_miss_chance(def_zone, distance, accuracy, miss_modifier)
+	// non-projectile gun types will be removed soon, this code doesn't support them anymore - Kachnov
+	if (!istype(firedfrom, /obj/item/weapon/gun/projectile))
+		return
 
-	// no chance to miss someone you targeted
-	if (firer && ishuman(firer) && firer:aiming && firer:aiming.aiming_at == target_mob)
-		miss_chance = 0
+	if (!def_zone)
+		def_zone = "chest"
+
+	// how many times did we move from our initial def_zone
+	var/redirections = 0
+
+	var/obj/item/weapon/gun/projectile/mygun = firedfrom
+	if (mygun.redirection_chances.Find(def_zone))
+		for (var/nzone in mygun.redirection_chances[def_zone])
+			if (prob(mygun.redirection_chances[def_zone][nzone]))
+				def_zone = nzone
+				++redirections
+				break
+
+	var/miss_chance = mygun.calculate_miss_chance(def_zone, target_mob)
 
 	// execution bullets will never miss
-	else if (istype(src, /obj/item/projectile/bullet/rifle/murder) || istype(src, /obj/item/projectile/bullet/shotgun/murder))
+	if (istype(src, /obj/item/projectile/bullet/rifle/murder) || istype(src, /obj/item/projectile/bullet/shotgun/murder))
 		miss_chance = 0
+	else
+		// much smaller chance to miss someone you targeted
+		if (firer && ishuman(firer) && firer:aiming && firer:aiming.aiming_at == target_mob)
+			miss_chance = max(round(miss_chance/mygun.aim_miss_chance_divider), 0)
 
-	// handles guns that use their own miss chance logic
-	else if (firedfrom && istype(firedfrom, /obj/item/weapon/gun/projectile))
-		var/obj/item/weapon/gun/projectile/proj = firedfrom
-		miss_chance = proj.calculate_miss_chance(def_zone, target_mob)
-		KD_chance = proj.KD_chance
+		// makes hitting people in a "blind spot" easier 50% easier
+		if (firer && target_mob.is_in_blindspot(firer))
+			miss_chance = max(round(miss_chance * 0.50), 0)
 
-	// makes hitting people in a "blind spot" easier 33% easier
-	if (firer && target_mob.is_in_blindspot(firer))
-		miss_chance = max(round(miss_chance * 0.50), 0)
+	// get the new zone
+	var/hit_zone = mygun.get_zone(def_zone, target_mob, miss_chance)
+	if (hit_zone != def_zone)
+		++redirections
 
-	// 50% chance of less severe damage
-	if (prob(50))
+	// handled below
+	var/result = PROJECTILE_FORCE_MISS
+
+	// KD chance handling
+	KD_chance = mygun.KD_chance
+
+	// damage handling
+
+	// 50% chance of less severe damage: either 6, 12, or 18 less damage based on number of redirections
+	if (prob(50) || redirections > 0)
 		switch (damage)
 			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
-				damage = DAMAGE_LOW - 6
+				damage = DAMAGE_LOW - (6 + (redirections*6))
 			if (DAMAGE_MEDIUM-5 to DAMAGE_MEDIUM+5)
-				damage = DAMAGE_MEDIUM - 6
+				damage = DAMAGE_MEDIUM - (6 + (redirections*6))
 			if (DAMAGE_MEDIUM_HIGH-5 to DAMAGE_MEDIUM_HIGH+5)
-				damage = DAMAGE_MEDIUM_HIGH - 6
+				damage = DAMAGE_MEDIUM_HIGH - (6 + (redirections*6))
 			if (DAMAGE_HIGH-5 to DAMAGE_HIGH+5)
-				damage = DAMAGE_HIGH - 6
+				damage = DAMAGE_HIGH - (6 + (redirections*6))
 			if (DAMAGE_VERY_HIGH-5 to DAMAGE_VERY_HIGH+5)
-				damage = DAMAGE_VERY_HIGH - 6
+				damage = DAMAGE_VERY_HIGH - (6 + (redirections*6))
 			if (DAMAGE_OH_GOD-5 to DAMAGE_OH_GOD+5)
-				damage = DAMAGE_OH_GOD - 6
-	// 50% chance of variable damage that stays within the boundaries of the damage tier
+				damage = DAMAGE_OH_GOD - (6 + (redirections*6))
+	// 50% chance of variable damage that stays within the boundaries of the bullet's damage tier
 	else
 		var/variation = 0
 		switch (damage)
@@ -297,13 +315,10 @@
 		if (variation > 0)
 			damage += rand(-variation, variation)
 
-	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_chance, ranged_attack=(distance > 1 || original != target_mob), range = abs_dist(target_mob, firer)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
-	var/result = PROJECTILE_FORCE_MISS
-
 	if(hit_zone)
-		var/def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
+//		var/def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
 		target_mob.pre_bullet_act(src)
-		result = target_mob.bullet_act(src, def_zone)
+		result = target_mob.bullet_act(src, hit_zone)
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
@@ -313,9 +328,9 @@
 
 	//hit messages
 	if(silenced)
-		target_mob << "<span class='danger'>You've been hit in the [parse_zone(def_zone)] by \the [src]!</span>"
+		target_mob << "<span class='danger'>You've been hit in the [parse_zone(hit_zone)] by \the [src]!</span>"
 	else
-		visible_message("<span class='danger'>\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!</span>")//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
+		visible_message("<span class='danger'>\The [target_mob] is hit by \the [src] in the [parse_zone(hit_zone)]!</span>")//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 
 
 	//admin logs
@@ -413,20 +428,20 @@
 	return TRUE
 
 /obj/item/projectile/process()
-	var/first_step = 1
-
 	//plot the initial trajectory
-	setup_trajectory()
 
-	spawn while(src && loc)
+	if (!trajectory)
+		setup_trajectory()
+
+	if (src && loc)
 		if(--kill_count < 1)
 			loc.pre_bullet_act(src)
 			on_impact(loc) //for any final impact behaviours
-			spawn (1)
+			spawn (0.1)
 				qdel(src)
 			return
 		if (firer && map.check_prishtina_block(firer, loc))
-			spawn (1)
+			spawn (0.1)
 				qdel(src)
 			return
 		if((!( current ) || loc == current))
@@ -434,7 +449,7 @@
 		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
 			loc.pre_bullet_act(src)
 			on_impact(loc)
-			spawn (1)
+			spawn (0.1)
 				qdel(src)
 			return
 
@@ -459,22 +474,17 @@
 					if(Bump(original))
 						return
 
-		if(first_step)
+		if(!did_muzzle_effect)
 			muzzle_effect(effect_transform)
-			first_step = FALSE
 		else if(!bumped)
 			tracer_effect(effect_transform)
-
-		if(!hitscan)
-			if (prob(100/speed))
-				sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon
 
 /obj/item/projectile/proc/before_move()
 	return FALSE
 
 /obj/item/projectile/proc/setup_trajectory()
 	// trajectory dispersion
-	var/offset = FALSE
+	var/offset = 0
 	if(dispersion)
 		var/radius = round(dispersion*9, TRUE)
 		offset = rand(-radius, radius)
@@ -491,17 +501,21 @@
 	transform = turn(transform, -(trajectory.return_angle() + 90)) //no idea why 90 needs to be added, but it works
 
 /obj/item/projectile/proc/muzzle_effect(var/matrix/T)
-	if(silenced)
+
+	if (silenced)
+		did_muzzle_effect = TRUE
 		return
 
-	if(ispath(muzzle_type))
+	if (ispath(muzzle_type))
 		var/obj/effect/projectile/M = new muzzle_type(get_turf(src))
 
-		if(istype(M))
+		if (istype(M))
 			M.set_transform(T)
 			M.pixel_x = location.pixel_x
 			M.pixel_y = location.pixel_y
 			M.activate()
+
+	did_muzzle_effect = TRUE
 
 /obj/item/projectile/proc/tracer_effect(var/matrix/M)
 	if(ispath(tracer_type))
@@ -511,10 +525,10 @@
 			P.set_transform(M)
 			P.pixel_x = location.pixel_x
 			P.pixel_y = location.pixel_y
-			if(!hitscan)
+		/*	if(!hitscan)
 				P.activate(step_delay)	//if not a hitscan projectile, remove after a single delay
-			else
-				P.activate()
+			else*/
+			P.activate()
 
 /obj/item/projectile/proc/impact_effect(var/matrix/M)
 	if(ispath(tracer_type))
@@ -561,24 +575,23 @@
 	return process(targloc)
 
 /obj/item/projectile/test/process(var/turf/targloc)
-	while(src) //Loop on through!
-		if(result)
-			return (result - 1)
-		if((!( targloc ) || loc == targloc))
-			targloc = locate(min(max(x + xo, TRUE), world.maxx), min(max(y + yo, TRUE), world.maxy), z) //Finding the target turf at map edge
+	if(result)
+		return (result - 1)
+	if((!( targloc ) || loc == targloc))
+		targloc = locate(min(max(x + xo, TRUE), world.maxx), min(max(y + yo, TRUE), world.maxy), z) //Finding the target turf at map edge
 
-		trajectory.increment()	// increment the current location
-		location = trajectory.return_location(location)		// update the locally stored location data
+	trajectory.increment()	// increment the current location
+	location = trajectory.return_location(location)		// update the locally stored location data
 
-		Move(location.return_turf())
+	Move(location.return_turf())
 
-		var/mob/living/M = locate() in get_turf(src)
-		if(istype(M)) //If there is someting living...
-			return TRUE //Return TRUE
-		else
-			M = locate() in get_step(src,targloc)
-			if(istype(M))
-				return TRUE
+	var/mob/living/M = locate() in get_turf(src)
+	if(istype(M)) //If there is someting living...
+		return TRUE //Return TRUE
+	else
+		M = locate() in get_step(src,targloc)
+		if(istype(M))
+			return TRUE
 
 //Helper proc to check if you can hit them or not.
 /proc/check_trajectory(atom/target as mob|obj, atom/firer as mob|obj, var/pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)

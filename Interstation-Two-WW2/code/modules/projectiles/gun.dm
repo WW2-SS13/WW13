@@ -227,7 +227,7 @@
 
 	// stops admemes from sending immortal dummies into combat
 	if (user)
-		if (istype(user, /mob/living/carbon/human/dummy))
+		if (istype(user, /mob/living/carbon/human/dummy) || (user.vars.Find("original_job") && !user:original_job))
 			if (user.client)
 				if (clients.len > 1)
 					user << "<span class = 'danger'>Hey you fucking dumbass, don't send immortal dummies into combat.</span>"

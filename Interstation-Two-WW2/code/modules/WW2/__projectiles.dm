@@ -1,9 +1,9 @@
 // all bullets are faster now
 /obj/item/projectile/bullet
-	speed = 5.00
+//	speed = 5.00
 
 /obj/item/projectile/bullet/shotgun/murder
-	speed = 10.0
+//	speed = 10.0
 	armor_penetration = 500
 	damage = 300
 	accuracy = 5000
@@ -14,11 +14,11 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 
 /obj/item/projectile/bullet/rifle
-	speed = 6.00
+//	speed = 6.00
 	armor_penetration = 50
 
 /obj/item/projectile/bullet/rifle/murder
-	speed = 10.0
+//	speed = 10.0
 	armor_penetration = 500
 	damage = DAMAGE_OH_GOD
 	accuracy = 5000
@@ -80,7 +80,7 @@
 /obj/item/projectile/bullet/rifle/a9x39
 	damage = DAMAGE_LOW
 	penetrating = 3
-	step_delay = 2
+//	step_delay = 2
 
 // DP MACHINE GUN //
 /obj/item/projectile/bullet/rifle/a762x39

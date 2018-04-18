@@ -7,7 +7,7 @@
 	check_armour = "laser"
 	eyeblur = 4
 	var/frequency = TRUE
-	hitscan = TRUE
+//	hitscan = TRUE
 	invisibility = 101	//beam projectiles are invisible as they are rendered by the effect engine
 
 	muzzle_type = /obj/effect/projectile/laser/muzzle

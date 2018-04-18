@@ -103,14 +103,9 @@ bullet_act
 				if (lastMovedRecently())
 					if (prob(graze_chance_multiplier * max(distcheck - 7, 0)))
 						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-						adjustBruteLoss(pick(9,10))
+						adjustBruteLoss(pick(14,15))
 						qdel(P)
 						return
-				else if (list("head", "mouth", "eyes").Find(def_zone) && prob(20 * getStatCoeff("survival")))
-					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-					adjustBruteLoss(pick(9,10))
-					qdel(P)
-					return
 
 		// get knocked back once in a while
 		// unless we're on a train because bugs

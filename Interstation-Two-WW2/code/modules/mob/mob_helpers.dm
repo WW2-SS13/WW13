@@ -56,112 +56,6 @@ proc/getsensorlevel(A)
 /proc/hsl2rgb(h, s, l)
 	return //TODO: Implement
 
-/*
-	Miss Chance
-*/
-
-//TODO: Integrate defence zones and targeting body parts with the actual organ system, move these into organ definitions.
-
-/* This is the new accuracy system. Guns have different miss chances
- * depending on how far you were from the target when you fired. When a
- * gun is scoped, all the miss chances "move down one", that is, longrange
- * becomes verylongrange. Accuracy/scoped accuracy variables are not meaningless,
- * but they aren't as useful at long ranges anymore */
-
-/* since head shots are usually instant kills, they've been heavily nerfed.
- * Although they're still almost guaranteed at point-blank range. */
-
-/* - Kachnov */
-
-#define GUARANTEED_CHANCE 100
-#define HIGH_CHANCE 80
-#define MEDIUM_CHANCE 50
-#define LOWER_CHANCE 33
-#define LOW_CHANCE 20
-
-var/list/global/hit_chances = list(
-
-	// 0 to 1 tiles away
-	"pointblankrange" = list(
-		"head" = GUARANTEED_CHANCE,
-		"chest" = GUARANTEED_CHANCE,
-		"groin" = GUARANTEED_CHANCE,
-		"l_leg" = GUARANTEED_CHANCE,
-		"r_leg" = GUARANTEED_CHANCE,
-		"l_arm" = GUARANTEED_CHANCE,
-		"r_arm" = GUARANTEED_CHANCE,
-		"l_hand" = GUARANTEED_CHANCE,
-		"r_hand" = GUARANTEED_CHANCE,
-		"l_foot" = GUARANTEED_CHANCE,
-		"r_foot" = GUARANTEED_CHANCE),
-
-	// 2 to 3 tiles away
-	"shortrange" = list(
-		"head" = MEDIUM_CHANCE,
-		"chest" = HIGH_CHANCE,
-		"groin" = MEDIUM_CHANCE,
-		"l_leg" = MEDIUM_CHANCE,
-		"r_leg" = MEDIUM_CHANCE,
-		"l_arm" = MEDIUM_CHANCE,
-		"r_arm" = MEDIUM_CHANCE,
-		"l_hand" = MEDIUM_CHANCE,
-		"r_hand" = MEDIUM_CHANCE,
-		"l_foot" = MEDIUM_CHANCE,
-		"r_foot" = MEDIUM_CHANCE),
-
-	// 4 to 6 tiles away
-	"medrange" = list(
-		"head" = LOWER_CHANCE,
-		"chest" = MEDIUM_CHANCE,
-		"groin" = MEDIUM_CHANCE,
-		"l_leg" = MEDIUM_CHANCE,
-		"r_leg" = MEDIUM_CHANCE,
-		"l_arm" = MEDIUM_CHANCE,
-		"r_arm" = MEDIUM_CHANCE,
-		"l_hand" = LOWER_CHANCE,
-		"r_hand" = LOWER_CHANCE,
-		"l_foot" = LOWER_CHANCE,
-		"r_foot" = LOWER_CHANCE),
-
-	// 7 to INFINITY tiles away
-	"longrange" = list(
-		"head" = LOW_CHANCE,
-		"chest" = MEDIUM_CHANCE - 10,
-		"groin" = LOWER_CHANCE,
-		"l_leg" = LOWER_CHANCE,
-		"r_leg" = LOWER_CHANCE,
-		"l_arm" = LOWER_CHANCE,
-		"r_arm" = LOWER_CHANCE,
-		"l_hand" = LOW_CHANCE,
-		"r_hand" = LOW_CHANCE,
-		"l_foot" = LOW_CHANCE,
-		"r_foot" = LOW_CHANCE),
-)
-
-/proc/get_miss_chance(var/zone, var/distance, var/accuracy, var/miss_modifier)
-
-
-	. = 0
-	zone = check_zone(zone)
-
-	var/hit_chance = max(hit_chances["pointblankrange"][zone], 7 + accuracy)
-
-	switch (distance)
-		if (0)
-			hit_chance = max(hit_chances["pointblankrange"][zone], 7 + accuracy)
-		if (1 to 3)
-			hit_chance = max(hit_chances["shortrange"][zone], 7 + accuracy)
-		if (5 to 6)
-			hit_chance = max(hit_chances["medrange"][zone], 7 + accuracy)
-		if (7 to INFINITY)
-			hit_chance = max(hit_chances["longrange"][zone], 7 + accuracy)
-
-	. = 100 - hit_chance
-	. += miss_modifier
-	. -= (accuracy*7)
-	. = max(., 0)
-
-
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
 var/list/global/organ_rel_size = list(
@@ -217,7 +111,8 @@ var/list/global/organ_rel_size = list(
 // Emulates targetting a specific body part, and miss chances
 // May return null if missed
 // miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance = 0, var/ranged_attack=0, var/range = -1)
+
+/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance = 0, var/ranged_attack=0)
 
 	zone = check_zone(zone)
 
