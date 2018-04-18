@@ -187,6 +187,7 @@
 	// 10% miss chance = 90% hit chance, etc
 	var/hit_chance = 100 - (miss_chance ? miss_chance : calculate_miss_chance(zone, target))
 //	log_debug("MC: [miss_chance]")
+//	log_debug("HC: [hit_chance]")
 	// We hit. Return the zone or a zone in redirection_chances[zone]
 	if (prob(round(hit_chance)))
 		if (redirection_chances.Find(zone))
