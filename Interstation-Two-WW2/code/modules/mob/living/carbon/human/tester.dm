@@ -11,5 +11,6 @@
 	set name = "Revive Self"
 	src << "<span class = 'good'>Please wait <b>30</b> seconds.</span>"
 	spawn (300)
-		src << "<span class = 'good'>You've been fully healed/revived.</span>"
-		revive()
+		if (src)
+			src << "<span class = 'good'>You've been fully healed/revived.</span>"
+			revive()
