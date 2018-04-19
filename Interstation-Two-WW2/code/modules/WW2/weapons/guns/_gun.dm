@@ -134,13 +134,13 @@
 
 	if (list("mouth", "eyes").Find(zone))
 		var/hitchance = 100 - .
-		hitchance /= 3
-		. = round(100 - hitchance)
+		hitchance /= 2.00 // this used to be 3, needs to be 2 to triple miss chance
+		. = ceil(100 - hitchance)
 
 	else if (list("head").Find(zone))
 		var/hitchance = 100 - .
-		hitchance /= 2
-		. = round(100 - hitchance)
+		hitchance /= 1.33 // this used to be 2 and made headshots really inaccurate, needs to be 1.33 to "double" miss chance - Kachnov
+		. = ceil(100 - hitchance)
 
 	. = min(CLAMP0100(.), 99) // minimum hit chance is 2% no matter what
 
