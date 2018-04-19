@@ -134,7 +134,7 @@
 
 	if (list("mouth", "eyes").Find(zone))
 		var/hitchance = 100 - .
-		hitchance /= 2.00 // this used to be 3, needs to be 2 to triple miss chance
+		hitchance /= 2.00 // this used to be 3, needs to be 2 to double to triple miss chance
 		. = ceil(100 - hitchance)
 
 	else if (list("head").Find(zone))
