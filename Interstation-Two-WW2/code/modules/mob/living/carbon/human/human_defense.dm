@@ -130,7 +130,8 @@ bullet_act
 								slammed_into = S
 								break
 					if (slammed_into.density)
-						visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
+						spawn (1)
+							visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
 						Weaken(srand(4,5))
 						adjustBruteLoss(srand(20,30))
 						if (client)
@@ -140,7 +141,8 @@ bullet_act
 							W.shatter()
 				else
 					forceMove(behind)
-					visible_message("<span class = 'danger'>[src] flies back from the force of the blast!</span>")
+					spawn (1)
+						visible_message("<span class = 'danger'>[src] flies back from the force of the blast!</span>")
 
 		// get weakened too
 		if (sprob(P.KD_chance))
