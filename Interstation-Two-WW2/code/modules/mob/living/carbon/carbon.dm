@@ -380,6 +380,7 @@
 		var/throw_range = 2
 		if (isitem(item))
 			var/obj/item/I = item
+			throw_range = 12 - (I.w_class * 2)
 
 		item.throw_at(target, throw_range, item.throw_speed, src)
 
