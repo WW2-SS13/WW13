@@ -6,8 +6,6 @@
 	if(AM.Adjacent(src))
 		start_pulling(AM)
 
-	return
-
 //mob verbs are faster than object verbs. See above.
 /mob/living/pointed(atom/A as mob|obj|turf in view())
 	if(stat || !canmove || restrained())

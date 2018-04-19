@@ -8,9 +8,10 @@
 	// don't create bad ghosts - Kachnov
 	if(client || lastKnownCkey)
 		remove_screen_obj_references()
-		for(var/atom/movable/AM in client.screen)
-			qdel(AM)
-		client.screen = list()
+		if (client)
+			for(var/atom/movable/AM in client.screen)
+				qdel(AM)
+			client.screen = list()
 		for (var/mob/observer/O in mob_list)
 			if (O.ckey == ckey || O.lastKnownCkey == ckey)
 				goto finish
@@ -150,9 +151,6 @@
 		if (M.real_name == text("[]", msg))
 			return M
 	return FALSE
-
-/mob/proc/Life()
-	return
 
 #define UNBUCKLED FALSE
 #define PARTIALLY_BUCKLED TRUE
@@ -740,7 +738,7 @@
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
 
-	if(!resting && cannot_stand() && can_stand_overridden())
+	if(!resting && (!cannot_stand() || can_stand_overridden()))
 		lying = FALSE
 		canmove = TRUE
 	else
@@ -790,6 +788,8 @@
 
 	return canmove
 
+/mob/proc/Life()
+	return
 
 /mob/proc/facedir(var/ndir)
 	if(!canface() || client.moving || world.time < client.move_delay)
@@ -949,27 +949,27 @@ mob/proc/yank_out_object()
 
 /mob/living/proc/handle_weakened()
 	if(weakened)
-		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
+		weakened = max(weakened-1, 0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
 	return weakened
 
 /mob/living/proc/handle_stuttering()
 	if(stuttering)
-		stuttering = max(stuttering-1, FALSE)
+		stuttering = max(stuttering-1, 0)
 	return stuttering
 
 /mob/living/proc/handle_silent()
 	if(silent)
-		silent = max(silent-1, FALSE)
+		silent = max(silent-1, 0)
 	return silent
 
 /mob/living/proc/handle_drugged()
 	if(druggy)
-		druggy = max(druggy-1, FALSE)
+		druggy = max(druggy-1, 0)
 	return druggy
 
 /mob/living/proc/handle_slurring()
 	if(slurring)
-		slurring = max(slurring-1, FALSE)
+		slurring = max(slurring-1, 0)
 	return slurring
 
 /mob/living/proc/handle_lisp()

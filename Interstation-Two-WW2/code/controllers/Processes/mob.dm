@@ -59,14 +59,14 @@ var/datum/controller/process/mob/mob_process = null
 
 		if(isnull(M.gcDestroyed))
 			try
-				M.Life(schedule_interval)
+				M.Life()
 				if (world.time - M.last_movement > 7)
 					M.velocity = 0
 				if (ishuman(M) && M.client)
 					zoom_processing_objects |= M
 				else
 					zoom_processing_objects -= M
-			catch(var/exception/e)
+			catch (var/exception/e)
 				catchException(e, M)
 		else
 			catchBadType(M)

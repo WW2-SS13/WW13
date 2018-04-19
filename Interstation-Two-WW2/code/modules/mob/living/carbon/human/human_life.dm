@@ -37,10 +37,8 @@
 	var/global/list/overlays_cache = null
 
 /mob/living/carbon/human/Life()
-	set invisibility = FALSE
-	set background = BACKGROUND_ENABLED
 
-	if (istype(wear_mask, /obj/item/clothing/mask/stone))
+	if (wear_mask && istype(wear_mask, /obj/item/clothing/mask/stone))
 		if (mind && type == /mob/living/carbon/human)
 			invisibility = 101
 			var/datum/mind/M = mind
@@ -95,9 +93,9 @@
 	if (transforming)
 		return
 
-	if (stat == UNCONSCIOUS || stat == DEAD || lying)
+	if (lying || list(UNCONSCIOUS, DEAD).Find(stat))
 		layer = MOB_LAYER - 0.01
-		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
+		if (back && istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower_backpack = back
 			if (flamethrower_backpack.flamethrower && flamethrower_backpack.flamethrower.loc != flamethrower_backpack)
 				flamethrower_backpack.reclaim_flamethrower()
@@ -338,7 +336,8 @@
 	var/area/mob_area = get_area(src)
 
 	var/game_season = "SPRING"
-	if (mob_area.location == AREA_OUTSIDE)
+	if (mob_area.location == AREA_OUTSIDE && ticker && ticker.mode) // this ticker.mode check is very important
+	// if its not here, the mob_process won't work properly before the round has started
 
 		if (ticker.mode.vars.Find("season"))
 			game_season = ticker.mode:season
