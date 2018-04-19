@@ -343,14 +343,16 @@
 	if (isitem(item))
 		var/obj/item/I = item
 		switch (I.w_class)
+			if (2)
+				throwtime_divider *= 3
 			if (3)
-				throwtime_divider = 3
+				throwtime_divider *= 2
 			if (4)
-				throwtime_divider = 2
+				throwtime_divider *= 1
 			if (5)
-				throwtime_divider = 1
+				throwtime_divider *= 0.5
 	else if (ismob(item))
-		throwtime_divider = 1
+		throwtime_divider *= 0.5
 
 	//actually throw it!
 	if (item && do_after(src, max(1, round(abs_dist(src, target)/throwtime_divider)), get_turf(src)))
@@ -372,13 +374,12 @@
 			step(src, inertia_dir)
 */
 
-		// 2 throw range for mobs, MGs
-		// 3 throw range for smgs
-		// old max throw range was 7, now its 6 - Kachnov
+		/* 2 throw range for mobs, MGs
+		 * 4 throw range for smgs
+		 * old max throw range was 7, now its 11 - Kachnov */
 		var/throw_range = 2
 		if (isitem(item))
 			var/obj/item/I = item
-			throw_range = 7 - I.w_class
 
 		item.throw_at(target, throw_range, item.throw_speed, src)
 
