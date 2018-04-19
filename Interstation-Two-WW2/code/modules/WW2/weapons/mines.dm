@@ -47,7 +47,7 @@
 
 	if(!anchored)
 		user.visible_message("<span class = 'notice'>\The [user] starts to deploy the \the [src].</span>")
-		if(!do_after(user,rand(30,40)))
+		if(!do_after(user,srand(30,40)))
 			user.visible_message("<span class = 'notice'>\The [user] decides not to deploy the \the [src].</span>")
 			return
 		nextCanExplode = world.time + 5
@@ -66,7 +66,7 @@
 			if(!do_after(user,60))
 				user.visible_message("<span class = 'notice'>\The [user] decides not to disarm the \the [src].</span>")
 				return
-			if(prob(95))
+			if(sprob(95))
 				user.visible_message("<span class = 'notice'>\The [user] finishes disarming the \the [src]!</span>")
 				anchored = FALSE
 				icon_state = "betty"
@@ -79,7 +79,7 @@
 			if(!do_after(user,80))
 				user.visible_message("<span class = 'notice'>\The [user] decides not to disarm the \the [src].</span>")
 				return
-			if(prob(50))
+			if(sprob(50))
 				user.visible_message("<span class = 'notice'>\The [user] finishes disarming the \the [src]!</span>")
 				anchored = FALSE
 				icon_state = "betty"
@@ -96,7 +96,7 @@
 		if(!do_after(user,100))
 			user.visible_message("<span class = 'notice'>\The [user] decides not to dig up the \the [src].</span>")
 			return
-		if(prob(15))
+		if(sprob(15))
 			user.visible_message("<span class = 'notice'>\The [user] finishes digging up the \the [src], disarming it!</span>")
 			anchored = FALSE
 			icon_state = "betty"

@@ -179,7 +179,7 @@
 	else if (istype(mover, /obj/effect/effect/smoke))
 		return TRUE
 	else if (istype(mover, /obj/item/projectile))
-		if (prob(66))
+		if (sprob(66))
 			return TRUE
 		else
 			visible_message("<span class = 'warning'>The bullet riochetes off of \the [src]!</span>")
@@ -209,7 +209,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(prob(25))
+			if(sprob(25))
 				qdel(src)
 				return
 		if(3.0)
@@ -273,7 +273,7 @@
 		if(z == TRUE || z == 5)
 			switch(fitting)
 				if("tube","bulb")
-					if(prob(2))
+					if(sprob(2))
 						broken(1)
 
 		spawn(1)
@@ -364,7 +364,7 @@
 					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 
 					explode()
-			else if( prob( min(60, switchcount*switchcount*0.01) ) )
+			else if( sprob( min(60, switchcount*switchcount*0.01) ) )
 				if(status == LIGHT_OK && trigger)
 					status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
@@ -456,7 +456,7 @@
 	else if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
 
 
-		if(prob(1+W.force * 5))
+		if(sprob(1+W.force * 5))
 
 			user << "You hit the light, and it smashes!"
 			for(var/mob/M in viewers(src))
@@ -465,7 +465,7 @@
 				M.show_message("[user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
 		//	if(on && (W.flags & CONDUCT))
 				//if(!user.mutations & COLD_RESISTANCE)
-		//		if (prob(12))
+		//		if (sprob(12))
 		//			electrocute_mob(user, get_area(src), src, 0.3)
 			broken()
 
@@ -501,8 +501,8 @@
 			s.set_up(3, TRUE, src)
 			s.start()
 			//if(!user.mutations & COLD_RESISTANCE)
-		//	if (prob(75))
-			//	electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
+		//	if (sprob(75))
+			//	electrocute_mob(user, get_area(src), src, srand(0.7,1.0))
 
 
 // returns whether this light has power
@@ -511,7 +511,7 @@
 	var/area/A = get_area(src)
 	return A && A.lightswitch && (!A.requires_power || A.power_light)
 
-/obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
+/obj/machinery/light/proc/flicker(var/amount = srand(10, 20))
 	if(flickering) return
 	flickering = TRUE
 	spawn(0)
@@ -520,7 +520,7 @@
 				if(status != LIGHT_OK) break
 				on = !on
 				update(0)
-				sleep(rand(5, 15))
+				sleep(srand(5, 15))
 			on = (status == LIGHT_OK)
 			update(0)
 		flickering = FALSE
@@ -647,10 +647,10 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(75))
+			if (sprob(75))
 				broken()
 		if(3.0)
-			if (prob(50))
+			if (sprob(50))
 				broken()
 	return
 
@@ -677,7 +677,7 @@
 // called when on fire
 
 /obj/machinery/light/fire_act(temperature)
-	if(prob(max(0, temperature - 673)))   //0% at <400C, 100% at >500C
+	if(sprob(max(0, temperature - 673)))   //0% at <400C, 100% at >500C
 		broken()
 
 // explode the light
@@ -769,9 +769,9 @@
 	..()
 	switch(name)
 		if("light tube")
-			brightness_range = rand(6,9)
+			brightness_range = srand(6,9)
 		if("light bulb")
-			brightness_range = rand(4,6)
+			brightness_range = srand(4,6)
 	update()
 
 

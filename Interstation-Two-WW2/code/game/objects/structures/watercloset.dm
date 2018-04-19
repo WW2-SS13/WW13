@@ -18,14 +18,14 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(prob(10))
+			if(sprob(10))
 				qdel(src)
 				return
 		if(3.0)
 			return
 
 /obj/structure/toilet/New()
-	open = round(rand(0, TRUE))
+	open = round(srand(0, TRUE))
 	update_icon()
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
@@ -39,7 +39,7 @@
 			user << "<span class='notice'>The cistern is empty.</span>"
 			return
 		else
-			var/obj/item/I = pick(contents)
+			var/obj/item/I = spick(contents)
 			if(ishuman(user))
 				user.put_in_hands(I)
 			else
@@ -126,7 +126,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(prob(10))
+			if(sprob(10))
 				qdel(src)
 				return
 		if(3.0)
@@ -178,7 +178,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(prob(10))
+			if(sprob(10))
 				qdel(src)
 				return
 		if(3.0)
@@ -398,7 +398,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(prob(10))
+			if(sprob(10))
 				qdel(src)
 				return
 		if(3.0)

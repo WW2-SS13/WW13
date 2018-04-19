@@ -4,7 +4,7 @@
 	..()
 	spawn while (1)
 		sleep(12)
-		step(src, pick(NORTH,EAST,SOUTH,WEST))
+		step(src, spick(NORTH,EAST,SOUTH,WEST))
 
 /mob/living/carbon/human/test/lastMovedRecently()
 	return 1

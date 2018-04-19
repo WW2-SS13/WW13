@@ -301,7 +301,7 @@
 
 /obj/item/conveyor_switch_construct/New()
 	..()
-	id = rand() //this couldn't possibly go wrong
+	id = srand() //this couldn't possibly go wrong
 
 /obj/item/conveyor_switch_construct/afterattack(atom/A, mob/user, proximity)
 	if(!proximity || !istype(A, /turf/floor) || user.incapacitated())
@@ -336,7 +336,7 @@
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
 	if(istype(A) && A.checkpass(PASSGLASS))
-		return prob(60)
+		return sprob(60)
 
 	var/obj/structure/bed/B = A
 	if (istype(A, /obj/structure/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
@@ -361,8 +361,8 @@
 		if (1)
 			qdel(src)
 		if (2)
-			if (prob(50))
+			if (sprob(50))
 				qdel(src)
 		if (3)
-			if (prob(5))
+			if (sprob(5))
 				qdel(src)

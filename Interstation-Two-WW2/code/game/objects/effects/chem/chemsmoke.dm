@@ -37,9 +37,9 @@
 	if(cached_icon)
 		icon = cached_icon
 
-	set_dir(pick(cardinal))
-	pixel_x = -32 + rand(-8, 8)
-	pixel_y = -32 + rand(-8, 8)
+	set_dir(spick(cardinal))
+	pixel_x = -32 + srand(-8, 8)
+	pixel_y = -32 + srand(-8, 8)
 
 	//switching opacity on after the smoke has spawned, and then turning it off before it is deleted results in cleaner
 	//lighting and view range updates (Is this still true with the new lighting system?)
@@ -67,14 +67,14 @@
 			var/_prob = ceil(100/possible_tiles)
 			if (abs_dist > 75)
 				_prob = ceil(100/possible_tiles) * 2
-			if (prob(_prob))
+			if (sprob(_prob))
 				destination = t
 
 	spawn (1)
 
 		if(destination && !dontmove)
 
-			walk_to(src, destination,0,rand(2,3),0)
+			walk_to(src, destination,0,srand(2,3),0)
 
 /obj/effect/effect/smoke/chem/Destroy()
 	opacity = FALSE
@@ -269,7 +269,7 @@
 	if(passed_smoke)
 		smoke = passed_smoke
 	else
-		smoke = PoolOrNew(/obj/effect/effect/smoke/chem, list(location, smoke_duration + rand(0, 20), T, I))
+		smoke = PoolOrNew(/obj/effect/effect/smoke/chem, list(location, smoke_duration + srand(0, 20), T, I))
 
 	if(chemholder.reagents.reagent_list.len)
 		chemholder.reagents.trans_to_obj(smoke, chemholder.reagents.total_volume / dist, copy = TRUE) //copy reagents to the smoke so mob/breathe() can handle inhaling the reagents

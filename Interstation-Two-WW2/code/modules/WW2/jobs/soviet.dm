@@ -496,7 +496,7 @@
 	H.setStat("medical", STAT_NORMAL)
 	H.setStat("shotgun", STAT_NORMAL)
 
-	if (prob(8))
+	if (sprob(8))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/svt(H), slot_back)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)

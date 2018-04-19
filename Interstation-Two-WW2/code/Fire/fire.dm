@@ -46,7 +46,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = FALSE)
 var/list/fire_pool = list()
 /proc/unpool_new_fire(location)
 	if (fire_pool.len)
-		var/obj/fire/F = pick(fire_pool)
+		var/obj/fire/F = spick(fire_pool)
 		fire_pool -= F
 		F.loc = location
 		return .
@@ -77,7 +77,7 @@ var/list/fire_pool = list()
 	var/obj/effect/decal/cleanable/liquid_fuel/fuel = locate() in src
 
 	if (fuel)
-		fire.time_limit += rand(10,20)
+		fire.time_limit += srand(10,20)
 
 	spawn (1)
 		spawn (fire.time_limit)
@@ -220,7 +220,7 @@ var/obj/burning_overlay_turf = null
 
 					//Spread the fire.
 
-				/*	if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile && my_tile.CanPass(null, enemy_tile, FALSE,0) && enemy_tile && enemy_tile.CanPass(null, my_tile, FALSE,0))
+				/*	if(sprob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile && my_tile.CanPass(null, enemy_tile, FALSE,0) && enemy_tile && enemy_tile.CanPass(null, my_tile, FALSE,0))
 						enemy_tile.create_fire(firelevel)*/
 
 		//	else
@@ -242,7 +242,7 @@ var/obj/burning_overlay_turf = null
 		qdel(src)
 		return
 
-	set_dir(pick(cardinal))
+	set_dir(spick(cardinal))
 
 	color = fire_color(temperature)
 	set_light(3, TRUE, color)
@@ -289,7 +289,7 @@ var/obj/burning_overlay_turf = null
 
 	var/damage = get_damage() * power
 
-	if (prob((temperature/default_temperature) * 40))
+	if (sprob((temperature/default_temperature) * 40))
 		L.fire_act()
 
 	if (!istype(L, /mob/living/carbon/human))

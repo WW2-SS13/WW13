@@ -86,7 +86,7 @@
 	// too
 	blood = max(0, blood - (0.0008/2))
 	if (blood <= 0)
-		if (prob(10))
+		if (sprob(10))
 			adjustBruteLoss(40)
 			src << "<span class = 'danger'>You're starving from a lack of blood!</span>"
 		return

@@ -507,8 +507,9 @@ var/const/enterloopsanity = 100
 	if( istype(M, /mob/living/carbon/alien ))
 		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
 		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
+	/*
 	else if( istype(M, /mob/living/silicon/robot ))
-		new /obj/effect/decal/cleanable/blood/oil(src)
+		new /obj/effect/decal/cleanable/blood/oil(src)*/
 
 /turf/proc/can_build_cable(var/mob/user)
 	return FALSE

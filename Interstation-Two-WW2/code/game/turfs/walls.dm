@@ -67,7 +67,7 @@ var/list/global/wall_cache = list()
 		icon_state = "rock"
 
 	var/area/my_area = get_area(src)
-	if (prob(10) && !istype(src, /turf/wall/indestructable) && my_area.type != /area/prishtina/void)
+	if (sprob(10) && !istype(src, /turf/wall/indestructable) && my_area.type != /area/prishtina/void)
 		new /obj/effect/decal/cleanable/dirt (src)
 
 /turf/wall/Destroy()
@@ -216,13 +216,13 @@ var/list/global/wall_cache = list()
 			else
 				dismantle_wall(1,1)
 		if(3.0)
-			take_damage(rand(50, 100))
+			take_damage(srand(50, 100))
 
 // Wall-rot effect, a nasty fungus that destroys walls.
 /turf/wall/proc/rot()
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		return
-	var/number_rots = rand(2,3)
+	var/number_rots = srand(2,3)
 	for(var/i=0, i<number_rots, i++)
 		new/obj/effect/overlay/wallrot(src)
 

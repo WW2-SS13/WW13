@@ -1,4 +1,4 @@
-/* the only reason this exists is because apparently 'new pick(listoftypes)'
+/* the only reason this exists is because apparently 'new spick(listoftypes)'
 	is invalid code - Kachnov */
 
 // GERMAN RATIONS
@@ -80,28 +80,28 @@ var/added_plants_to_rations = FALSE
 		if (GERMAN)
 			switch (sort)
 				if ("solid")
-					var/solid = pick(german_rations_solids)
-					if (prob(50))
+					var/solid = spick(german_rations_solids)
+					if (sprob(50))
 						while (istype(solid, /obj/item/weapon/reagent_containers/food/snacks/grown))
-							solid = pick(german_rations_solids)
+							solid = spick(german_rations_solids)
 					var/obj/food = new solid
 					food.pixel_x = FALSE
 					food.pixel_y = FALSE
 					return food
 				if ("liquid")
-					var/liquid = pick(german_rations_liquids)
+					var/liquid = spick(german_rations_liquids)
 					var/obj/food = new liquid
 					food.pixel_x = FALSE
 					food.pixel_y = FALSE
 					return food
 				if ("dessert")
-					var/dessert = pick(german_rations_desserts)
+					var/dessert = spick(german_rations_desserts)
 					var/obj/food = new dessert
 					food.pixel_x = FALSE
 					food.pixel_y = FALSE
 					return food
 				if ("meat")
-					var/meat = pick(german_rations_meat)
+					var/meat = spick(german_rations_meat)
 					var/obj/food = new meat
 					food.pixel_x = FALSE
 					food.pixel_y = FALSE
@@ -109,28 +109,28 @@ var/added_plants_to_rations = FALSE
 		if (SOVIET)
 			switch (sort)
 				if ("solid")
-					var/solid = pick(soviet_rations_solids)
-					if (prob(50))
+					var/solid = spick(soviet_rations_solids)
+					if (sprob(50))
 						while (istype(solid, /obj/item/weapon/reagent_containers/food/snacks/grown))
-							solid = pick(soviet_rations_solids)
+							solid = spick(soviet_rations_solids)
 					var/obj/food = new solid
 					food.pixel_x = FALSE
 					food.pixel_y = FALSE
 					return food
 				if ("liquid")
-					var/liquid = pick(soviet_rations_liquids)
+					var/liquid = spick(soviet_rations_liquids)
 					var/obj/food = new liquid
 					food.pixel_x = FALSE
 					food.pixel_y = FALSE
 					return food
 				if ("dessert")
-					var/dessert = pick(soviet_rations_desserts)
+					var/dessert = spick(soviet_rations_desserts)
 					var/obj/food = new dessert
 					food.pixel_x = FALSE
 					food.pixel_y = FALSE
 					return food
 				if ("meat")
-					var/meat = pick(soviet_rations_meat)
+					var/meat = spick(soviet_rations_meat)
 					var/obj/food = new meat
 					food.pixel_x = FALSE
 					food.pixel_y = FALSE

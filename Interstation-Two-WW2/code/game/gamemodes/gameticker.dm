@@ -71,14 +71,14 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 				if(pregame_timeleft == 20)
 					if (roundstart_tips.len)
 						if (serverswap_open_status)
-							world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(roundstart_tips)]</span>"
+							world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(roundstart_tips)]</span>"
 							roundstart_tips.Cut() // prevent tip spam if we're paused here
 				if(pregame_timeleft <= 0)
 					current_state = GAME_STATE_SETTING_UP
 					/* if we were force started, still show the tip */
 					if (roundstart_tips.len)
 						if (serverswap_open_status)
-							world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(roundstart_tips)]</span>"
+							world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(roundstart_tips)]</span>"
 							roundstart_tips.Cut() // prevent tip spam if we're paused here
 
 		while (!setup())

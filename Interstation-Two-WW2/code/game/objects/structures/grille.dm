@@ -58,7 +58,7 @@
 		return TRUE
 	else
 		if(istype(mover, /obj/item/projectile))
-			return prob(30)
+			return sprob(30)
 		else
 			return !density
 
@@ -76,16 +76,16 @@
 	switch(Proj.damage_type)
 		if(BRUTE)
 			//bullets
-			if(Proj.original == src || prob(20))
+			if(Proj.original == src || sprob(20))
 				Proj.damage *= between(0, Proj.damage/60, 0.5)
-				if(prob(max((damage-10)/25, FALSE))*100)
+				if(sprob(max((damage-10)/25, FALSE))*100)
 					passthrough = TRUE
 			else
 				Proj.damage *= between(0, Proj.damage/60, TRUE)
 				passthrough = TRUE
 		if(BURN)
 			//beams and other projectiles are either blocked completely by grilles or stop half the damage.
-			if(!(Proj.original == src || prob(20)))
+			if(!(Proj.original == src || sprob(20)))
 				Proj.damage *= 0.5
 				passthrough = TRUE
 
@@ -187,7 +187,7 @@
 
 	if(!anchored || destroyed)		// anchored/destroyed grilles are never connected
 		return FALSE
-	if(!prob(prb))
+	if(!sprob(prb))
 		return FALSE
 	if(!in_range(src, user))//To prevent TK and mech users from getting shocked
 		return FALSE
@@ -207,7 +207,7 @@
 	return FALSE
 */
 /obj/structure/grille/fire_act(temperature)
-	if (prob((temperature/500) * 30))
+	if (sprob((temperature/500) * 30))
 		visible_message("<span class = 'warning'>[src] melts.</span>")
 		health = 0
 		healthcheck()
@@ -243,7 +243,7 @@
 	density = FALSE
 	New()
 		..()
-		health = rand(-5, -1) //In the destroyed but not utterly threshold.
+		health = srand(-5, -1) //In the destroyed but not utterly threshold.
 		healthcheck() //Send this to healthcheck just in case we want to do something else with it.
 /*
 /obj/structure/grille/cult

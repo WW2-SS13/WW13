@@ -520,7 +520,7 @@
 
 	attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
 		if(istype(W) && !W.lit && !W.burnt)
-			if(prob(50))
+			if(sprob(50))
 				playsound(loc, 'sound/items/matchstick_lit.ogg', 25, FALSE, -1)
 				W.lit = TRUE
 				W.damtype = "burn"

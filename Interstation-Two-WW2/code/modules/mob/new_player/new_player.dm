@@ -797,7 +797,7 @@
 				new_character.add_language(lang)
 
 	if(ticker.random_players)
-		new_character.gender = pick(MALE, FEMALE)
+		new_character.gender = spick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
 		client.prefs.randomize_appearance_for(new_character)
 	else

@@ -25,7 +25,7 @@
 		shake_camera(L, 3, 2)
 
 /obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
-	if(penetrating > 1 && damage > 20 && prob(damage))
+	if(penetrating > 1 && damage > 20 && sprob(damage))
 		mob_passthrough_check = TRUE
 	else
 		mob_passthrough_check = FALSE
@@ -63,7 +63,7 @@
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		chance = round(damage/2) + 10
 
-	if(prob(chance))
+	if(sprob(chance))
 		if(A.opacity)
 			//display a message so that people on the other side aren't so confused
 			A.visible_message("<span class='warning'>\The [src] pierces through \the [A]!</span>")
@@ -103,7 +103,7 @@
 
 	var/hits = FALSE
 	for (var/i in 1 to total_pellets)
-		if(target_mob.lying && target_mob != original && prob(prone_chance))
+		if(target_mob.lying && target_mob != original && sprob(prone_chance))
 			continue
 
 		//pellet hits spread out across different zones, but 'aim at' the targeted zone with higher probability

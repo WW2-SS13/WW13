@@ -127,7 +127,7 @@
 /obj/item/weapon/cell/proc/corrupt()
 	charge /= 2
 	maxcharge /= 2
-	if (prob(10))
+	if (sprob(10))
 		rigged = TRUE //broken batterys are dangerous
 
 /obj/item/weapon/cell/ex_act(severity)
@@ -137,44 +137,44 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if (sprob(50))
 				qdel(src)
 				return
-			if (prob(50))
+			if (sprob(50))
 				corrupt()
 		if(3.0)
-			if (prob(25))
+			if (sprob(25))
 				qdel(src)
 				return
-			if (prob(25))
+			if (sprob(25))
 				corrupt()
 	return
 
 /obj/item/weapon/cell/proc/get_electrocute_damage()
 	switch (charge)
 /*		if (9000 to INFINITY)
-			return min(rand(90,150),rand(90,150))
+			return min(srand(90,150),srand(90,150))
 		if (2500 to 9000-1)
-			return min(rand(70,145),rand(70,145))
+			return min(srand(70,145),srand(70,145))
 		if (1750 to 2500-1)
-			return min(rand(35,110),rand(35,110))
+			return min(srand(35,110),srand(35,110))
 		if (1500 to 1750-1)
-			return min(rand(30,100),rand(30,100))
+			return min(srand(30,100),srand(30,100))
 		if (750 to 1500-1)
-			return min(rand(25,90),rand(25,90))
+			return min(srand(25,90),srand(25,90))
 		if (250 to 750-1)
-			return min(rand(20,80),rand(20,80))
+			return min(srand(20,80),srand(20,80))
 		if (100 to 250-1)
-			return min(rand(20,65),rand(20,65))*/
+			return min(srand(20,65),srand(20,65))*/
 		if (1000000 to INFINITY)
-			return min(rand(50,160),rand(50,160))
+			return min(srand(50,160),srand(50,160))
 		if (200000 to 1000000-1)
-			return min(rand(25,80),rand(25,80))
+			return min(srand(25,80),srand(25,80))
 		if (100000 to 200000-1)//Ave powernet
-			return min(rand(20,60),rand(20,60))
+			return min(srand(20,60),srand(20,60))
 		if (50000 to 100000-1)
-			return min(rand(15,40),rand(15,40))
+			return min(srand(15,40),srand(15,40))
 		if (1000 to 50000-1)
-			return min(rand(10,20),rand(10,20))
+			return min(srand(10,20),srand(10,20))
 		else
 			return FALSE

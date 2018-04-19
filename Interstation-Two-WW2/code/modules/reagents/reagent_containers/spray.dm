@@ -184,7 +184,7 @@
 				return
 			reagents.trans_to_obj(D, amount_per_transfer_from_this)
 			D.set_color()
-			D.set_up(my_target, rand(6, 8), 2)
+			D.set_up(my_target, srand(6, 8), 2)
 	return
 
 /obj/item/weapon/reagent_containers/spray/plantbgone

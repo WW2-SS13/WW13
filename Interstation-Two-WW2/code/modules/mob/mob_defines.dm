@@ -203,7 +203,7 @@
 
 /mob/proc/getRoundUID(var/text = FALSE)
 	if (!roundUID)
-		roundUID = rand(1, 10000000)
+		roundUID = srand(1, 10000000)
 	if (text)
 		return num2text(roundUID, 20)
 	else

@@ -74,8 +74,8 @@
 			desc = "A small jar with money inside."
 		/*	for(var/obj/item/weapon/spacecash/S in src)
 				var/image/money = image(S.icon, S.icon_state)
-				money.pixel_x = rand(-2, 3)
-				money.pixel_y = rand(-6, 6)
+				money.pixel_x = srand(-2, 3)
+				money.pixel_y = srand(-6, 6)
 				money.transform *= 0.6
 				underlays += money*/
 		if(2)

@@ -110,7 +110,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 					text = "<b>Vote Tied Between:</b>\n"
 					for(var/option in winners)
 						text += "\t[option]\n"
-			. = pick(winners)
+			. = spick(winners)
 
 			for(var/key in current_votes)
 				if(choices[current_votes[key]] == .)

@@ -18,8 +18,8 @@
 	..()
 	if(ispath(projectile_type))
 		BB = new projectile_type(src)
-	pixel_x = rand(-10, 10)
-	pixel_y = rand(-10, 10)
+	pixel_x = srand(-10, 10)
+	pixel_y = srand(-10, 10)
 	bullet_casings += src
 
 /obj/item/ammo_casing/Destroy()
@@ -30,7 +30,7 @@
 /obj/item/ammo_casing/proc/expend()
 	. = BB
 	BB = null
-	set_dir(pick(cardinal)) //spin spent casings
+	set_dir(spick(cardinal)) //spin spent casings
 	update_icon()
 
 /obj/item/ammo_casing/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -171,7 +171,7 @@
 		T.visible_message("<span class = 'notice'>[user] empties [src].</span>", "<span class='notice'>You empty [src].</span>")
 		for (var/obj/item/ammo_casing/C in stored_ammo)
 			C.loc = user.loc
-			C.set_dir(pick(cardinal))
+			C.set_dir(spick(cardinal))
 		stored_ammo.Cut()
 		update_icon()
 

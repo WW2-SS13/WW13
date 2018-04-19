@@ -48,7 +48,7 @@
 	attack_verb = list("stabbed")
 
 /obj/item/weapon/screwdriver/New()
-	switch(pick("red","blue","purple","brown","green","cyan","yellow"))
+	switch(spick("red","blue","purple","brown","green","cyan","yellow"))
 		if ("red")
 			icon_state = "screwdriver2"
 			item_state = "screwdriver"
@@ -71,8 +71,8 @@
 			icon_state = "screwdriver7"
 			item_state = "screwdriver_yellow"
 
-	if (prob(75))
-		pixel_y = rand(0, 16)
+	if (sprob(75))
+		pixel_y = srand(0, 16)
 	..()
 
 /obj/item/weapon/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -80,7 +80,7 @@
 		return ..()
 	if(user.targeted_organ != "eyes" && user.targeted_organ != "head")
 		return ..()
-	if((CLUMSY in user.mutations) && prob(50))
+	if((CLUMSY in user.mutations) && sprob(50))
 		M = user
 	return eyestab(M,user)
 
@@ -106,7 +106,7 @@
 
 /obj/item/weapon/wirecutters/New()
 	if (!istype(src, /obj/item/weapon/wirecutters/boltcutters))
-		if(prob(50))
+		if(sprob(50))
 			icon_state = "cutters-y"
 			item_state = "cutters_yellow"
 	..()
@@ -155,7 +155,7 @@
 	var/max_fuel = 20 	//The max amount of fuel the welder can hold
 
 /obj/item/weapon/weldingtool/New()
-//	var/random_fuel = min(rand(10,20),max_fuel)
+//	var/random_fuel = min(srand(10,20),max_fuel)
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
 	R.my_atom = src
@@ -212,7 +212,7 @@
 
 /obj/item/weapon/weldingtool/process()
 	if(welding)
-		if(prob(5))
+		if(sprob(5))
 			remove_fuel(1)
 
 		if(get_fuel() < 1)
@@ -340,18 +340,18 @@
 		switch(safety)
 			if(FLASH_PROTECTION_MODERATE)
 				H << "<span class='warning'>Your eyes sting a little.</span>"
-				E.damage += rand(1, 2)/2
+				E.damage += srand(1, 2)/2
 				if(E.damage > 12)
-					H.eye_blurry += rand(3,6)/2
+					H.eye_blurry += srand(3,6)/2
 			if(FLASH_PROTECTION_NONE)
 				H << "<span class='warning'>Your eyes burn.</span>"
-				E.damage += rand(2, 4)/2
+				E.damage += srand(2, 4)/2
 				if(E.damage > 10)
-					E.damage += rand(4,10)/2
+					E.damage += srand(4,10)/2
 			if(FLASH_PROTECTION_REDUCED)
 				H << "<span class='danger'>Your equipment intensify the welder's glow. Your eyes itch and burn severely.</span>"
-				H.eye_blurry += rand(12,20)/2
-				E.damage += rand(12, 16)/2
+				H.eye_blurry += srand(12,20)/2
+				E.damage += srand(12, 16)/2
 		if(safety<FLASH_PROTECTION_MAJOR)
 			if(E.damage > 10)
 				user << "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>"

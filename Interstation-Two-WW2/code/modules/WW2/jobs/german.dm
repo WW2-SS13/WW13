@@ -539,7 +539,7 @@
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_NORMAL)
 	H.setStat("shotgun", STAT_NORMAL)
-	if (prob(8))
+	if (sprob(8))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
@@ -734,14 +734,14 @@ var/first_fallschirm = TRUE
 	first_fallschirm = FALSE
 
 	if(!fallschirm_spawnzone)
-		fallschirm_spawnzone = pick(fallschirm_landmarks)
+		fallschirm_spawnzone = spick(fallschirm_landmarks)
 		fallschirm_landmarks = null
 		for(var/turf/T in range(3, fallschirm_spawnzone))
 			fallschirm_spawnpoints += T
 
 		H.loc = get_turf(fallschirm_spawnzone)
 	else
-		H.loc = pick(fallschirm_spawnpoints)
+		H.loc = spick(fallschirm_spawnpoints)
 
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a paratrooper. Your job is to help any other units that need assistance.</span>"
 	H << "<big><span class = 'red'>The Plane's current altitude is [paratrooper_plane_master.altitude]m. It is lethal to jump until it has descended to [paratrooper_plane_master.first_nonlethal_altitude]m."

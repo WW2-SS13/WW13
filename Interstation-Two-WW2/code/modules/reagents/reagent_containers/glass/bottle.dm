@@ -34,7 +34,7 @@
 			if (base_state)
 				icon_state = base_state
 			else
-				icon_state = "bottle-[rand(1,4)]"
+				icon_state = "bottle-[srand(1,4)]"
 
 	update_icon()
 		overlays.Cut()

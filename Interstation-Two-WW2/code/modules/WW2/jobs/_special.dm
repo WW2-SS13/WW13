@@ -169,13 +169,13 @@
 				if ((MEMBERS_PER_SQUAD*3) to (MEMBERS_PER_SQUAD*4)-1)
 					user.squad_faction = new/datum/faction/squad/four(user, src)
 				if ((MEMBERS_PER_SQUAD*4) to INFINITY) // latejoiners
-					if (prob(50))
-						if (prob(50))
+					if (sprob(50))
+						if (sprob(50))
 							user.squad_faction = new/datum/faction/squad/one(user, src)
 						else
 							user.squad_faction = new/datum/faction/squad/two(user, src)
 					else
-						if (prob(50))
+						if (sprob(50))
 							user.squad_faction = new/datum/faction/squad/three(user, src)
 						else
 							user.squad_faction = new/datum/faction/squad/four(user, src)

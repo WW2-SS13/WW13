@@ -112,7 +112,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 360, "glass" = 720)
 
 /obj/item/ammo_casing/shotgun/stunshell/emp_act(severity)
-	if(prob(100/severity)) BB = null
+	if(sprob(100/severity)) BB = null
 	update_icon()
 
 //Does not stun, only blinds, but has area of effect.

@@ -188,7 +188,7 @@ var/global/photo_count = FALSE
 	if(!on || !pictures_left || ismob(target.loc)) return
 	captureimage(target, user, flag)
 
-	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, TRUE, -3)
+	playsound(loc, spick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, TRUE, -3)
 
 	pictures_left--
 	desc = "A polaroid camera. It has [pictures_left] photos left."
@@ -248,8 +248,8 @@ var/global/photo_count = FALSE
 	p.tiny = pc
 	p.img = photoimage
 	p.desc = mobs
-	p.pixel_x = rand(-10, 10)
-	p.pixel_y = rand(-10, 10)
+	p.pixel_x = srand(-10, 10)
+	p.pixel_y = srand(-10, 10)
 	p.photo_size = size
 
 	return p

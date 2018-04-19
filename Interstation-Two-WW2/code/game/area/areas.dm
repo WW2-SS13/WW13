@@ -327,23 +327,23 @@ var/list/mob/living/forced_ambiance_list = new
 			if(CL.ambience_playing in forced_ambience)
 				return TRUE
 			else
-				var/new_ambience = pick(pick(forced_ambience))
+				var/new_ambience = spick(spick(forced_ambience))
 				CL.ambience_playing = new_ambience
 				L << sound(new_ambience, repeat = TRUE, wait = FALSE, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
 				return TRUE
 		if(CL.ambience_playing in ambience)
 			return TRUE
 
-	if(ambience.len && prob(35))
+	if(ambience.len && sprob(35))
 		if(world.time >= L.client.played + 600)
-			var/sound = pick(ambience)
+			var/sound = spick(ambience)
 			CL.ambience_playing = sound
 			L << sound(sound, repeat = FALSE, wait = FALSE, volume = 10, channel = SOUND_CHANNEL_AMBIENCE)
 			L.client.played = world.time
 			return TRUE
 	else */
 	if (!CL.ambience_playing || override)
-		var/sound = pick('sound/ambience/war1.wav', 'sound/ambience/war2.wav')
+		var/sound = spick('sound/ambience/war1.wav', 'sound/ambience/war2.wav')
 		CL.ambience_playing = sound
 
 		var/ideal_x = round(world.maxx/2)
@@ -405,9 +405,9 @@ var/list/mob/living/forced_ambiance_list = new
 	return has_gravity
 
 /area/proc/arty_act(loss)
-	if (prob(25))
+	if (sprob(25))
 		artillery_integrity -= loss * 1.5
-	else if (prob(50))
+	else if (sprob(50))
 		artillery_integrity -= loss
 	else
 		artillery_integrity -= loss * 0.75

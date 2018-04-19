@@ -1,10 +1,10 @@
 // Macro functions.
-#define RAND_F(LOW, HIGH) (rand()*(HIGH-LOW) + LOW)
+#define RAND_F(LOW, HIGH) (srand()*(HIGH-LOW) + LOW)
 #define ceil(x) (-round(-(x)))
 
 // random decimals
 /proc/random_decimal(var/low, var/high)
-	return (rand(smart_round(low*100), smart_round(high*100)))/100
+	return (srand(smart_round(low*100), smart_round(high*100)))/100
 
 /proc/smart_round(var/num)
 	var/_ceil = ceil(num)
@@ -165,8 +165,8 @@
 		returnlist.Add(e)
 	return returnlist
 
-// Clone of pick()
-/proc/n_pick()
+// Clone of spick()
+/proc/n_spick()
 	var/list/finalpick = list()
 	for(var/e in args)
 		if(isobject(e))
@@ -177,7 +177,7 @@
 				continue
 		finalpick.Add(e)
 
-	return pick(finalpick)
+	return spick(finalpick)
 
 // Clone of list[]
 /proc/n_listpos(var/list/L, var/pos, var/value)
@@ -250,9 +250,9 @@
 /proc/delay(var/time)
 	sleep(time)
 
-// Clone of prob()
+// Clone of sprob()
 /proc/prob_chance(var/chance)
-	return prob(chance)
+	return sprob(chance)
 
 // Merge of list.Find() and findtext()
 /proc/smartfind(var/haystack, var/needle, var/start = TRUE, var/end = FALSE)

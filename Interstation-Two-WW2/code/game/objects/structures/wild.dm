@@ -19,7 +19,7 @@
 	..()
 
 /obj/structure/wild/fire_act(temperature)
-	if (prob(35 * (temperature/500)))
+	if (sprob(35 * (temperature/500)))
 		visible_message("<span class = 'warning'>[src] is burned away.</span>")
 		qdel(src)
 
@@ -27,10 +27,10 @@
 /obj/structure/wild/proc/sway()
 	if (!sways)
 		return
-	icon_state = "[initial(icon_state)]_swaying_[pick("left", "right")]"
+	icon_state = "[initial(icon_state)]_swaying_[spick("left", "right")]"
 
 /obj/structure/wild/bullet_act(var/obj/item/projectile/proj)
-	if (prob(proj.damage))
+	if (sprob(proj.damage))
 		visible_message("<span class = 'danger'>[src] collapses!</span>")
 		qdel(src)
 
@@ -42,7 +42,7 @@
 	sways = TRUE
 
 /obj/structure/wild/tree/fire_act(temperature)
-	if (prob(15 * (temperature/500)))
+	if (sprob(15 * (temperature/500)))
 		visible_message("<span class = 'warning'>[src] collapses.</span>")
 		qdel(src)
 
@@ -51,7 +51,7 @@
 /obj/structure/wild/tree/New()
 	..()
 	if (!istype(src, /obj/structure/wild/tree/anchored))
-		pixel_x = rand(-8,8)
+		pixel_x = srand(-8,8)
 
 /obj/structure/wild/bush
 	name = "bush"
@@ -63,7 +63,7 @@
 /obj/structure/wild/bush/Crossed(var/atom/movable/am)
 	if (!istype(src, /obj/structure/wild/bush/tame))
 		if (istype(am, /mob/living))
-			playsound(get_turf(src), "rustle", rand(50,70))
+			playsound(get_turf(src), "rustle", srand(50,70))
 	..(am)
 */
 
@@ -80,11 +80,11 @@
 	if (istype(src, /obj/structure/wild/bush/tame))
 		return
 
-	if (prob(25))
-		icon_state = "grassybush_[rand(1,4)]"
-	else if (prob(25))
-		icon_state = "leafybush_[rand(1,3)]"
-	else if (prob(25))
-		icon_state = "palebush_[rand(1,4)]"
+	if (sprob(25))
+		icon_state = "grassybush_[srand(1,4)]"
+	else if (sprob(25))
+		icon_state = "leafybush_[srand(1,3)]"
+	else if (sprob(25))
+		icon_state = "palebush_[srand(1,4)]"
 	else
-		icon_state = "stalkybush_[rand(1,3)]"
+		icon_state = "stalkybush_[srand(1,3)]"

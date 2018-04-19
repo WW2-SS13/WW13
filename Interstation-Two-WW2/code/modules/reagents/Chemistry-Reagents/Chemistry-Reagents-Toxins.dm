@@ -59,7 +59,7 @@
 
 /datum/reagent/toxin/plasma/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	M.take_organ_damage(0, removed * 0.1) //being splashed directly with plasma causes minor chemical burns
-/*	if(prob(50))
+/*	if(sprob(50))
 		M.pl_effects()*/
 
 /datum/reagent/toxin/plasma/touch_turf(var/turf/T)
@@ -96,7 +96,7 @@
 /datum/reagent/toxin/food_poisoning/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.adjustToxLoss(5 * removed)
-	if (prob(30))
+	if (sprob(30))
 		M << "<span class = 'warning'>You feel sick...</span>"
 
 /datum/reagent/toxin/potassium_chloride
@@ -244,10 +244,10 @@
 	color = "#801E28"
 
 /datum/reagent/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(prob(10))
+	if(sprob(10))
 		M << "<span class='danger'>Your insides are burning!</span>"
-		M.adjustToxLoss(rand(100, 300) * removed)
-	else if(prob(40))
+		M.adjustToxLoss(srand(100, 300) * removed)
+	else if(sprob(40))
 		M.heal_organ_damage(25 * removed, FALSE)
 
 /datum/reagent/soporific
@@ -266,12 +266,12 @@
 		effective_dose *= 2
 
 	if(effective_dose < 1)
-		if(effective_dose == metabolism * 2 || prob(5))
+		if(effective_dose == metabolism * 2 || sprob(5))
 			M.emote("yawn")
 	else if(effective_dose < 1.5)
 		M.eye_blurry = max(M.eye_blurry, 10)
 	else if(effective_dose < 5)
-		if(prob(50))
+		if(sprob(50))
 			M.Weaken(2)
 		M.drowsyness = max(M.drowsyness, 20)
 	else
@@ -329,10 +329,10 @@
 
 /datum/reagent/space_drugs/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.druggy = max(M.druggy, 15)
-	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
-		step(M, pick(cardinal))
-	if(prob(7))
-		M.emote(pick("twitch", "drool", "moan", "giggle"))
+	if(sprob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+		step(M, spick(cardinal))
+	if(sprob(7))
+		M.emote(spick("twitch", "drool", "moan", "giggle"))
 	M.add_chemical_effect(CE_PULSE, -1)
 
 /datum/reagent/serotrotium
@@ -346,8 +346,8 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/serotrotium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(prob(7))
-		M.emote(pick("twitch", "drool", "moan", "gasp"))
+	if(sprob(7))
+		M.emote(spick("twitch", "drool", "moan", "gasp"))
 	return
 
 /datum/reagent/cryptobiolin
@@ -375,11 +375,11 @@
 
 /datum/reagent/impedrezene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.jitteriness = max(M.jitteriness - 5, FALSE)
-	if(prob(80))
+	if(sprob(80))
 		M.adjustBrainLoss(0.1 * removed)
-	if(prob(50))
+	if(sprob(50))
 		M.drowsyness = max(M.drowsyness, 3)
-	if(prob(10))
+	if(sprob(10))
 		M.emote("drool")
 
 /datum/reagent/mindbreaker
@@ -412,22 +412,22 @@
 	if(effective_dose < 1)
 		M.apply_effect(3, STUTTER)
 		M.make_dizzy(5)
-		if(prob(5))
-			M.emote(pick("twitch", "giggle"))
+		if(sprob(5))
+			M.emote(spick("twitch", "giggle"))
 	else if(effective_dose < 2)
 		M.apply_effect(3, STUTTER)
 		M.make_jittery(5)
 		M.make_dizzy(5)
 		M.druggy = max(M.druggy, 35)
-		if(prob(10))
-			M.emote(pick("twitch", "giggle"))
+		if(sprob(10))
+			M.emote(spick("twitch", "giggle"))
 	else
 		M.apply_effect(3, STUTTER)
 		M.make_jittery(10)
 		M.make_dizzy(10)
 		M.druggy = max(M.druggy, 40)
-		if(prob(15))
-			M.emote(pick("twitch", "giggle"))
+		if(sprob(15))
+			M.emote(spick("twitch", "giggle"))
 
 /datum/reagent/nicotine
 	name = "Nicotine"

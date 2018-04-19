@@ -28,13 +28,13 @@
 		return
 
 	while(usable_templates.len)
-		var/datum/antagonist/spawn_antag = pick(usable_templates)
+		var/datum/antagonist/spawn_antag = spick(usable_templates)
 		usable_templates -= spawn_antag
 
 		if(spawn_antag.attempt_auto_spawn())
 			message_admins("[uppertext(name)]: Auto-added a new [spawn_antag.role_text].")
 			message_admins("There are now [spawn_antag.get_active_antag_count()]/[spawn_antag.cur_max] active [spawn_antag.role_text_plural].")
-			next_spawn = world.time + rand(min_autotraitor_delay, max_autotraitor_delay)
+			next_spawn = world.time + srand(min_autotraitor_delay, max_autotraitor_delay)
 			return
 
 	message_admins("[uppertext(name)]: Failed to proc a viable spawn template.")

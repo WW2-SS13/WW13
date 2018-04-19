@@ -36,7 +36,7 @@
 /obj/item/weapon/pill_pack/attack_self(mob/user as mob)
 	if(contents.len > 0)
 		var/obj/item/weapon/reagent_containers/pill/pill = contents[1]
-		if(prob(70))
+		if(sprob(70))
 			if(pop_sound)
 				playsound(loc, pop_sound, 50, TRUE)
 			user << "<span class='notice'>You take one [pill.name] from [name].</span>"
@@ -127,7 +127,7 @@
 
 /obj/item/weapon/gauze_pack/attack_self(mob/user as mob)
 	if(packed)
-		if(prob(50))
+		if(sprob(50))
 			packed = FALSE
 			if(rip_sound)
 				playsound(loc, rip_sound, 50, TRUE)

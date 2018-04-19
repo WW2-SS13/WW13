@@ -112,10 +112,10 @@
 	if(HULK in M.mutations)
 		M << "<span class='danger'>Your fingers are much too large for the trigger guard!</span>"
 		return FALSE
-	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
+	if((CLUMSY in M.mutations) && sprob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
-			if(process_projectile(P, user, user, pick("l_foot", "r_foot")))
+			if(process_projectile(P, user, user, spick("l_foot", "r_foot")))
 				handle_post_fire(user, user)
 				user.visible_message(
 					"<span class='danger'>[user] shoots \himself in the foot with \the [src]!</span>",
@@ -138,12 +138,12 @@
 
 /obj/item/weapon/gun/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && w_class >= 4) // Only big guns can stop attacks.
-		if(bayonet && prob(40)) // If they have a bayonet they get a higher chance to stop the attack.
+		if(bayonet && sprob(40)) // If they have a bayonet they get a higher chance to stop the attack.
 			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
 			playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, TRUE)
 			return TRUE
 		else
-			if(prob(10))// Much smaller chance to block it due to no bayonet.
+			if(sprob(10))// Much smaller chance to block it due to no bayonet.
 				user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
 				playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, TRUE)
 				return TRUE
@@ -192,7 +192,7 @@
 			var/mob/living/L = A
 			var/mob/living/carbon/C = A
 			if (!istype(C) || !C.check_attack_throat(src, user))
-		/*		if (prob(50) && L != user && !L.lying)
+		/*		if (sprob(50) && L != user && !L.lying)
 					visible_message("<span class = 'danger'>[user] tries to bayonet [L], but they miss!</span>")
 				else*/
 
@@ -202,12 +202,12 @@
 				visible_message("<span class = 'danger'>[user] impales [L] with their gun's bayonet!</span>")
 				L.apply_damage(a.force, BRUTE, def_zone)
 				L.Weaken(a.weakens)
-				if (L.stat == CONSCIOUS && prob(50))
+				if (L.stat == CONSCIOUS && sprob(50))
 					L.emote("scream")
-				playsound(get_turf(src), a.attack_sound, rand(90,100))
+				playsound(get_turf(src), a.attack_sound, srand(90,100))
 			else
 				var/obj/item/weapon/attachment/bayonet/a = bayonet
-				playsound(get_turf(src), a.attack_sound, rand(90,100))
+				playsound(get_turf(src), a.attack_sound, srand(90,100))
 
 		else
 			..() //Pistolwhippin'
@@ -417,11 +417,11 @@
 	if(istype(user, /mob/living/carbon))
 		var/mob/living/carbon/mob = user
 		if(mob.shock_stage > 120)
-			y_offset = rand(-2,2)
-			x_offset = rand(-2,2)
+			y_offset = srand(-2,2)
+			x_offset = srand(-2,2)
 		else if(mob.shock_stage > 70)
-			y_offset = rand(-1,1)
-			x_offset = rand(-1,1)
+			y_offset = srand(-1,1)
+			x_offset = srand(-1,1)
 
 	return !P.launch(target, user, src, target_zone, x_offset, y_offset)
 

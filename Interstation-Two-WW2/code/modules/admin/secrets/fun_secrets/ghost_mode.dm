@@ -15,7 +15,7 @@
 	for(var/mob/M in living_mob_list)
 		if(M.stat == CONSCIOUS && !(M in affected_mobs))
 			affected_mobs |= M
-			switch(rand(1,4))
+			switch(srand(1,4))
 				if(1)
 					M.show_message(text("<span class='notice'>You shudder as if cold...</span>"), TRUE)
 				if(2)
@@ -26,7 +26,7 @@
 					M.show_message(text("<span class='notice'>You notice something moving out of the corner of your eye, but nothing is there...</span>"), TRUE)
 
 			for(var/obj/W in orange(5,M))
-				if(prob(25) && !W.anchored)
+				if(sprob(25) && !W.anchored)
 					step_rand(W)
 
 			var/area/A = get_area(M)
@@ -37,7 +37,7 @@
 	for(var/area/AffectedArea in affected_areas)
 		AffectedArea.power_light = FALSE
 //		AffectedArea.power_change()
-		spawn(rand(25,50))
+		spawn(srand(25,50))
 			AffectedArea.power_light = TRUE
 //			AffectedArea.power_change()
 

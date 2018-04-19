@@ -44,7 +44,7 @@
 	add_fingerprint(user)
 	if(on && user.targeted_organ == "eyes")
 
-		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
+		if((CLUMSY in user.mutations) && sprob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
@@ -151,7 +151,7 @@
 /obj/item/device/flashlight/flare/nighttime
 
 /obj/item/device/flashlight/flare/New()
-	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
+	fuel = srand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	..()
 
 /obj/item/device/flashlight/flare/process()
@@ -201,9 +201,9 @@
 	var/fuel = FALSE
 
 /obj/item/device/flashlight/glowstick/New()
-	pixel_x = rand(-12,12)
-	pixel_y = rand(-12,12)
-	fuel = rand(1600, 2000)
+	pixel_x = srand(-12,12)
+	pixel_y = srand(-12,12)
+	fuel = srand(1600, 2000)
 	light_color = color
 	..()
 
@@ -275,7 +275,7 @@
 	color = "#FF00FF"
 
 /obj/item/device/flashlight/glowstick/random/New()
-	color = rgb(rand(50,255),rand(50,255),rand(50,255))
+	color = rgb(srand(50,255),srand(50,255),srand(50,255))
 	..()
 
 /obj/item/device/flashlight/slime

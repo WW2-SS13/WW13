@@ -11,7 +11,7 @@
 /*	if(blocksLeft.len==0)
 		warning("[name]: No more blocks left to assign!")
 		return FALSE
-	var/assigned = pick(blocksLeft)
+	var/assigned = spick(blocksLeft)
 	blocksLeft.Remove(assigned)
 	assigned_blocks[assigned]=name
 	dna_activity_bounds[assigned]=activity_bounds
@@ -24,11 +24,11 @@
 
 	/*
 
-	if (prob(50))
+	if (sprob(50))
 		// Currently unused.  Will revisit. - N3X
-		BLOCKADD = rand(-300,300)
-	if (prob(75))
-		DIFFMUT = rand(0,20)
+		BLOCKADD = srand(-300,300)
+	if (sprob(75))
+		DIFFMUT = srand(0,20)
 
 	var/list/numsToAssign=new()
 	for(var/i=1;i<DNA_SE_LENGTH;i++)

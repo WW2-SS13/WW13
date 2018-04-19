@@ -42,14 +42,14 @@ var/datum/controller/process/obj/obj_process = null
 		SCHECK
 
 	// objects here only process about 1/40 ticks
-	if (prob(10) && !paused_nonvital)
+	if (sprob(10) && !paused_nonvital)
 		var/list/nonvital_list = null
 
-		if (prob(25))
+		if (sprob(25))
 			nonvital_list = nonvital_processing_objects_1
-		else if (prob(25))
+		else if (sprob(25))
 			nonvital_list = nonvital_processing_objects_2
-		else if (prob(25))
+		else if (sprob(25))
 			nonvital_list = nonvital_processing_objects_3
 		else
 			nonvital_list = nonvital_processing_objects_4
@@ -70,11 +70,11 @@ var/datum/controller/process/obj/obj_process = null
 /datum/controller/process/obj/proc/add_nonvital_object(var/obj/o)
 	var/list/nonvital_list = null
 
-	if (prob(25))
+	if (sprob(25))
 		nonvital_list = nonvital_processing_objects_1
-	else if (prob(25))
+	else if (sprob(25))
 		nonvital_list = nonvital_processing_objects_2
-	else if (prob(25))
+	else if (sprob(25))
 		nonvital_list = nonvital_processing_objects_3
 	else
 		nonvital_list = nonvital_processing_objects_4

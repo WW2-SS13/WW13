@@ -51,7 +51,7 @@
 
 /obj/item/trash/snack_bowl/New()
 	..()
-	pixel_x = rand(-5,5)
+	pixel_x = srand(-5,5)
 
 /obj/item/trash/pistachios
 	name = "pistachios pack"

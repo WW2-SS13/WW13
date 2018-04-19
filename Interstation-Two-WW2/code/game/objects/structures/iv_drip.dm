@@ -77,7 +77,7 @@
 
 		if(!(get_dist(src, attached) <= 1 && isturf(attached.loc)))
 			visible_message("The needle is ripped out of [attached], doesn't that hurt?")
-			attached:apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
+			attached:apply_damage(3, BRUTE, spick("r_arm", "l_arm"))
 			attached = null
 			update_icon()
 			return
@@ -99,7 +99,7 @@
 			amount = min(amount, 4)
 			// If the beaker is full, ping
 			if(amount == FALSE)
-				if(prob(5)) visible_message("\The [src] pings.")
+				if(sprob(5)) visible_message("\The [src] pings.")
 				return
 
 			var/mob/living/carbon/human/T = attached

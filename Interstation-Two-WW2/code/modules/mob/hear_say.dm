@@ -24,7 +24,7 @@
 		if(!say_understands(speaker,language))
 			if(istype(speaker,/mob/living/simple_animal))
 				var/mob/living/simple_animal/S = speaker
-				message = pick(S.speak)
+				message = spick(S.speak)
 			else
 				if(language)
 					message = language.scramble(message)
@@ -72,7 +72,7 @@
 		if (!H.languages.Find(language))
 			var/lname = capitalize(language.name)
 			H.partial_languages[lname] += 1
-			if (H.partial_languages[lname] > rand(100,150))
+			if (H.partial_languages[lname] > srand(100,150))
 				H.add_language(language)
 				H << "<span class = 'info'>You've learned how to speak [language.name] from hearing it so much.</span>"
 
@@ -108,7 +108,7 @@
 			if(istype(speaker,/mob/living/simple_animal))
 				var/mob/living/simple_animal/S = speaker
 				if(S.speak && S.speak.len)
-					message = pick(S.speak)
+					message = spick(S.speak)
 				else
 					return
 			else
@@ -153,7 +153,7 @@
 	message = "<span class = [source.span_class()]>[verb],</b> \"[message]\"</span>"
 
 	if(sdisabilities & DEAF || ear_deaf)
-		if(prob(20))
+		if(sprob(20))
 			src << "<span class='warning'>You feel your radio vibrate but can hear nothing from it!</span>"
 	else
 		var/fontsize = 2
@@ -193,10 +193,10 @@
 
 /mob/proc/hear_sleep(var/message)
 	var/heard = ""
-	if(prob(15))
+	if(sprob(15))
 		var/list/punctuation = list(",", "!", ".", ";", "?")
 		var/list/messages = splittext(message, " ")
-		var/R = rand(1, messages.len)
+		var/R = srand(1, messages.len)
 		var/heardword = messages[R]
 		if(copytext(heardword,1, TRUE) in punctuation)
 			heardword = copytext(heardword,2)

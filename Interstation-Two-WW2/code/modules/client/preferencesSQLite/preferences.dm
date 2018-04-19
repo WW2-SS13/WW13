@@ -117,17 +117,17 @@ var/list/preferences_datums = list()
      * values we will end up loading the default anyway */
 	/*
 
-	gender = pick(MALE, FEMALE)
-	german_gender = pick(MALE, FEMALE)
-	russian_gender = pick(MALE, FEMALE)
-	ukrainian_gender = pick(MALE, FEMALE)
+	gender = spick(MALE, FEMALE)
+	german_gender = spick(MALE, FEMALE)
+	russian_gender = spick(MALE, FEMALE)
+	ukrainian_gender = spick(MALE, FEMALE)
 	real_name = random_name(gender,species)
 
 	/* changing names from the default is neccessary, however, and it occurs
 	 * below. */
 
 
-	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", TRUE;"B-", 20;"B+", TRUE;"AB-", 5;"AB+")
+	b_type = spick(4;"O-", 36;"O+", 3;"A-", 28;"A+", TRUE;"B-", 20;"B+", TRUE;"AB-", 5;"AB+")
    */
 
 	if(istype(C))
@@ -289,9 +289,9 @@ var/list/preferences_datums = list()
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace)	//we need a surname
-			real_name += " [pick(last_names)]"
+			real_name += " [spick(last_names)]"
 		else if(firstspace == name_length)
-			real_name += "[pick(last_names)]"
+			real_name += "[spick(last_names)]"
 
 	character.real_name = real_name
 

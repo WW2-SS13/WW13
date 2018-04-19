@@ -57,7 +57,7 @@ var/list/vocal_emotes = list(
 					spawn while (1)
 						if (src_oloc != loc)
 							break
-						dir = pick(NORTH, EAST, SOUTH, WEST)
+						dir = spick(NORTH, EAST, SOUTH, WEST)
 						++turns
 						if (turns >= 10)
 							break
@@ -615,14 +615,14 @@ var/list/vocal_emotes = list(
 					if (P.next_pose > world.time)
 						P << "<span class = 'danger'>You can't pose again yet.</span>"
 						return
-					message = "poses [pick("fabulously", "spectacularly")]!"
+					message = "poses [spick("fabulously", "spectacularly")]!"
 					playsound(get_turf(P), 'sound/effects/awaken.ogg', 100)
 					for (var/turf/T in getcircle(get_turf(P), 2))
 						new/obj/effect/kana(T, P)
 					for (var/mob/living/carbon/human/H in range(5, P))
 						if (!H.takes_less_damage)
 							H.SpinAnimation(7,1)
-							H.Weaken(rand(2,3))
+							H.Weaken(srand(2,3))
 					P.next_pose = world.time + 600
 
 			if ("help")

@@ -102,7 +102,7 @@
 //return TRUE if the projectile should be allowed to pass through after all, FALSE if not.
 /obj/item/projectile/proc/check_penetrate(var/atom/A)
 	if (istype(A, /turf/wall))
-		if (prob(50))
+		if (sprob(50))
 			return FALSE
 	return TRUE
 
@@ -120,8 +120,8 @@
 	//randomize clickpoint a bit based on dispersion
 	if(dispersion)
 		var/radius = round((dispersion*0.443)*world.icon_size*0.8) //0.443 = sqrt(pi)/4 = 2a, where a is the side length of a square that shares the same area as a circle with diameter = dispersion
-		p_x = between(0, p_x + rand(-radius, radius), world.icon_size)
-		p_y = between(0, p_y + rand(-radius, radius), world.icon_size)
+		p_x = between(0, p_x + srand(-radius, radius), world.icon_size)
+		p_y = between(0, p_y + srand(-radius, radius), world.icon_size)
 
 //called to launch a projectile from a gun
 /obj/item/projectile/proc/launch(atom/target, mob/user, obj/item/weapon/gun/launcher, var/target_zone, var/x_offset=0, var/y_offset=0)
@@ -249,7 +249,7 @@
 	var/obj/item/weapon/gun/projectile/mygun = firedfrom
 	if (mygun.redirection_chances.Find(def_zone))
 		for (var/nzone in mygun.redirection_chances[def_zone])
-			if (prob(mygun.redirection_chances[def_zone][nzone]))
+			if (sprob(mygun.redirection_chances[def_zone][nzone]))
 				def_zone = nzone
 				++redirections
 				break
@@ -282,7 +282,7 @@
 	// damage handling
 
 	// 50% chance of less severe damage: either 6, 12, or 18 less damage based on number of redirections
-	if (prob(50) || redirections > 0)
+	if (sprob(50) || redirections > 0)
 		switch (damage)
 			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
 				damage = DAMAGE_LOW - (6 + (redirections*6))
@@ -313,7 +313,7 @@
 			if (DAMAGE_OH_GOD-5 to DAMAGE_OH_GOD+5)
 				variation = damage - DAMAGE_OH_GOD
 		if (variation > 0)
-			damage += rand(-variation, variation)
+			damage += srand(-variation, variation)
 
 	if(hit_zone)
 //		var/def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
@@ -487,7 +487,7 @@
 	var/offset = 0
 	if(dispersion)
 		var/radius = round(dispersion*9, TRUE)
-		offset = rand(-radius, radius)
+		offset = srand(-radius, radius)
 
 	// plot the initial trajectory
 	trajectory = new()

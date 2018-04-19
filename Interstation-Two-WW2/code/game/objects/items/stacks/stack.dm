@@ -356,7 +356,7 @@
 	var/orig_amount = get_amount()
 	if (transfer && use(transfer))
 		S.add(transfer)
-		if (prob(transfer/orig_amount * 100))
+		if (sprob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
 			if(blood_DNA)
 				S.blood_DNA |= blood_DNA
@@ -376,7 +376,7 @@
 	if (transfer && use(transfer))
 		var/obj/item/stack/newstack = new type(loc, transfer)
 		newstack.color = color
-		if (prob(transfer/orig_amount * 100))
+		if (sprob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(newstack)
 			if(blood_DNA)
 				newstack.blood_DNA |= blood_DNA

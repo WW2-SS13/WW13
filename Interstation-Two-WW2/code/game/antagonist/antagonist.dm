@@ -167,7 +167,7 @@
 
 	//Grab candidates randomly until we have enough.
 	while(candidates.len && pending_antagonists.len < spawn_target)
-		var/datum/mind/player = pick(candidates)
+		var/datum/mind/player = spick(candidates)
 		candidates -= player
 		draft_antagonist(player)
 

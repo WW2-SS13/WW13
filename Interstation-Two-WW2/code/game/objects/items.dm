@@ -117,11 +117,11 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if (sprob(50))
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(5))
+			if (sprob(5))
 				qdel(src)
 				return
 		else
@@ -462,7 +462,7 @@ var/list/global/slot_flags_enumeration = list(
 	user.do_attack_animation(M)
 
 	add_fingerprint(user)
-	//if((CLUMSY in user.mutations) && prob(50))
+	//if((CLUMSY in user.mutations) && sprob(50))
 	//	M = user
 		/*
 		M << "<span class='warning'>You stab yourself in the eye.</span>"
@@ -486,12 +486,12 @@ var/list/global/slot_flags_enumeration = list(
 				"<span class='danger'>You stab yourself in the eyes with [src]!</span>" \
 			)
 
-		eyes.damage += rand(3,4)
+		eyes.damage += srand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != 2)
 				if(eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
 					M << "<span class='danger'>Your eyes start to bleed profusely!</span>"
-			if(prob(50))
+			if(sprob(50))
 				if(M.stat != 2)
 					M << "<span class='warning'>You drop what you're holding and clutch at your eyes!</span>"
 					M.drop_item()
@@ -506,7 +506,7 @@ var/list/global/slot_flags_enumeration = list(
 			M:UpdateDamageIcon()
 	else
 		M.take_organ_damage(7)
-	M.eye_blurry += rand(3,4)
+	M.eye_blurry += srand(3,4)
 	return
 
 /obj/item/clean_blood()

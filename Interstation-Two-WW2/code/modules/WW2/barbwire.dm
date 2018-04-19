@@ -8,7 +8,7 @@
 /obj/structure/barbwire/ex_act(severity)
 	switch (severity)
 		if (3.0)
-			if (prob(50))
+			if (sprob(50))
 				qdel(src)
 		else
 			qdel(src)
@@ -24,7 +24,7 @@
 		return TRUE
 
 	var/chance = 50 - (P.penetrating * 3)
-	if(prob(chance))
+	if(sprob(chance))
 		visible_message("<span class='warning'>[P] hits \the [src]!</span>")
 		return FALSE
 	else
@@ -37,7 +37,7 @@
 			var/mob/living/carbon/human/H = M
 			if (prob (33))
 				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
-				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
+				var/obj/item/organ/external/affecting = H.get_organ(spick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
 					return
 				if(affecting.take_damage(5, FALSE))
@@ -48,7 +48,7 @@
 				M << "<span class = 'red'><b>Your [affecting.name] gets slightly cut by \the [src]!</b></span>"
 			else if (prob (33))
 				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
-				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
+				var/obj/item/organ/external/affecting = H.get_organ(spick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
 					return
 				if(affecting.take_damage(10, FALSE))
@@ -59,7 +59,7 @@
 				M << "<span class = 'red'><b>Your [affecting.name] gets cut by \the [src]!</b></span>"
 			else
 				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
-				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
+				var/obj/item/organ/external/affecting = H.get_organ(spick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if(affecting.status & ORGAN_ROBOT)
 					return
 				if(affecting.take_damage(15, FALSE))
@@ -102,7 +102,7 @@
 			if(!do_after(user,80))
 				user.visible_message("<span class = 'notice'>\The [user] decides not to cut through \the [src].</span>")
 				return
-			if(prob(40))
+			if(sprob(40))
 				user.visible_message("<span class = 'notice'>\The [user] finishes cutting through \the [src]!</span>")
 				playsound(loc, 'sound/items/Wirecutter.ogg', 50, TRUE)
 				qdel(src)

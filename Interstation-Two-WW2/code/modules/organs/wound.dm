@@ -141,11 +141,11 @@
 			var/dam_coef = round(damage/10)
 			switch (damage_type)
 				if (BRUISE)
-					return prob(dam_coef*5)
+					return sprob(dam_coef*5)
 				if (BURN)
-					return prob(dam_coef*10)
+					return sprob(dam_coef*10)
 				if (CUT)
-					return prob(dam_coef*20)
+					return sprob(dam_coef*20)
 
 		return FALSE
 

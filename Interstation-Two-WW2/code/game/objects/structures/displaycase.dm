@@ -19,11 +19,11 @@
 				occupied = FALSE
 			qdel(src)
 		if (2)
-			if (prob(50))
+			if (sprob(50))
 				health -= 15
 				healthcheck()
 		if (3)
-			if (prob(50))
+			if (sprob(50))
 				health -= 5
 				healthcheck()
 

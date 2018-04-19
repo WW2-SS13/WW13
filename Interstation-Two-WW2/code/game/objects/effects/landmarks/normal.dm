@@ -473,43 +473,43 @@ var/area/partisan_stockpile = null
 
 			// runtime prevention + efficiency
 			if (possible_turfs.len)
-				var/i = rand(1,3)
+				var/i = srand(1,3)
 				switch (i)
 					if (1) // meds
-						for (var/v in 1 to rand(2,3))
-							if (prob(33))
-								new/obj/item/weapon/pill_pack/antitox(pick(possible_turfs))
-							if (prob(33))
-								new/obj/item/weapon/pill_pack/tramadol(pick(possible_turfs))
-							if (prob(33))
-								new/obj/item/weapon/pill_pack/dexalin(pick(possible_turfs))
-							if (prob(33))
-								new/obj/item/weapon/pill_pack/bicaridine(pick(possible_turfs))
-							if (prob(33))
-								new/obj/item/weapon/pill_pack/inaprovaline(pick(possible_turfs))
-							if (prob(33))
-								new/obj/item/weapon/pill_pack/pervitin(pick(possible_turfs))
-							if (prob(33))
-								new/obj/item/weapon/gauze_pack/bint(pick(possible_turfs))
+						for (var/v in 1 to srand(2,3))
+							if (sprob(33))
+								new/obj/item/weapon/pill_pack/antitox(spick(possible_turfs))
+							if (sprob(33))
+								new/obj/item/weapon/pill_pack/tramadol(spick(possible_turfs))
+							if (sprob(33))
+								new/obj/item/weapon/pill_pack/dexalin(spick(possible_turfs))
+							if (sprob(33))
+								new/obj/item/weapon/pill_pack/bicaridine(spick(possible_turfs))
+							if (sprob(33))
+								new/obj/item/weapon/pill_pack/inaprovaline(spick(possible_turfs))
+							if (sprob(33))
+								new/obj/item/weapon/pill_pack/pervitin(spick(possible_turfs))
+							if (sprob(33))
+								new/obj/item/weapon/gauze_pack/bint(spick(possible_turfs))
 					if (2) // tools
-						for (var/v in 1 to rand(2,3))
-							if (prob(50))
-								new/obj/item/weapon/wrench(pick(possible_turfs))
-							if (prob(50))
-								new/obj/item/weapon/crowbar(pick(possible_turfs))
-							if (prob(50))
-								new/obj/item/weapon/weldingtool(pick(possible_turfs))
-							if (prob(50))
-								new/obj/item/weapon/screwdriver(pick(possible_turfs))
+						for (var/v in 1 to srand(2,3))
+							if (sprob(50))
+								new/obj/item/weapon/wrench(spick(possible_turfs))
+							if (sprob(50))
+								new/obj/item/weapon/crowbar(spick(possible_turfs))
+							if (sprob(50))
+								new/obj/item/weapon/weldingtool(spick(possible_turfs))
+							if (sprob(50))
+								new/obj/item/weapon/screwdriver(spick(possible_turfs))
 					if (3) // materials
-						for (var/v in 1 to rand(3,5))
-							var/type = pick(/obj/item/stack/material/steel, /obj/item/stack/material/wood)
-							var/obj/item/stack/sheets = new type (pick(possible_turfs))
-							sheets.amount = rand(10,30)
+						for (var/v in 1 to srand(3,5))
+							var/type = spick(/obj/item/stack/material/steel, /obj/item/stack/material/wood)
+							var/obj/item/stack/sheets = new type (spick(possible_turfs))
+							sheets.amount = srand(10,30)
 
-				if (prob(30))
-					for (var/v in 1 to rand(2,3))
-						new/obj/item/weapon/reagent_containers/glass/rag(pick(possible_turfs))
+				if (sprob(30))
+					for (var/v in 1 to srand(2,3))
+						new/obj/item/weapon/reagent_containers/glass/rag(spick(possible_turfs))
 			qdel(src)
 			return
 
@@ -526,30 +526,30 @@ var/area/partisan_stockpile = null
 			// they have to loot the rest from soviets or germans
 			var/turf/turf = get_turf(loc)
 			for (var/v in 1 to 5)
-				if (prob(80)) // spawn approx. 4 lugers
+				if (sprob(80)) // spawn approx. 4 lugers
 					new /obj/item/weapon/gun/projectile/pistol/luger(turf)
-				if (prob(80)) // spawn approx. 14 luger mags
-					for (var/vv in 1 to rand(1,7))
+				if (sprob(80)) // spawn approx. 14 luger mags
+					for (var/vv in 1 to srand(1,7))
 						new /obj/item/ammo_magazine/luger(turf)
-				if (prob(40)) // spawn approx. 2 svts
+				if (sprob(40)) // spawn approx. 2 svts
 					new /obj/item/weapon/gun/projectile/semiautomatic/svt(turf)
-				if (prob(40)) // spawn approx. 7 svt mags
-					for (var/vv in 1 to rand(1,7))
+				if (sprob(40)) // spawn approx. 7 svt mags
+					for (var/vv in 1 to srand(1,7))
 						new /obj/item/ammo_magazine/svt(turf)
-				if (prob(40)) // spawn approx. 2 mosins
+				if (sprob(40)) // spawn approx. 2 mosins
 					new /obj/item/weapon/gun/projectile/boltaction/mosin(turf)
-				if (prob(40)) // spawn approx. 7 mosin mags
-					for (var/vv in 1 to rand(1,7))
+				if (sprob(40)) // spawn approx. 7 mosin mags
+					for (var/vv in 1 to srand(1,7))
 						new /obj/item/ammo_magazine/mosin(turf)
-				if (prob(60))
+				if (sprob(60))
 					new /obj/item/clothing/accessory/storage/webbing(turf)
-				if (prob(60))
+				if (sprob(60))
 					new /obj/item/weapon/attachment/bayonet(turf)
-				if (prob(50))
+				if (sprob(50))
 					new /obj/item/weapon/melee/classic_baton/MP/soviet/old(turf)
 
 			// ptrd ammo
-			for (var/v in 1 to rand(10,20))
+			for (var/v in 1 to srand(10,20))
 				new /obj/item/ammo_casing/a145 (turf)
 
 			// advanced medical supplies
@@ -690,6 +690,6 @@ var/area/partisan_stockpile = null
 /obj/effect/landmark/costume/New() //costume spawner, selects a random subclass and disappears
 
 	var/list/options = typesof(/obj/effect/landmark/costume)
-	var/PICK= options[rand(1,options.len)]
-	new PICK(loc)
+	var/pick = options[srand(1,options.len)]
+	new pick(loc)
 	delete_me = TRUE

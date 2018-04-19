@@ -161,7 +161,7 @@
 	else
 		++jamcheck
 
-	if (prob(jamcheck*2))
+	if (sprob(jamcheck*2))
 		jammed_until = max(world.time + (jamcheck * 5), 50)
 		jamcheck = 0
 
@@ -211,7 +211,7 @@
 
 /obj/item/weapon/gun/projectile/boltaction/kar98k/New()
 	..()
-	weight = pick(3.7, 3.8, 3.9, 4.0, 4.1)
+	weight = spick(3.7, 3.8, 3.9, 4.0, 4.1)
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
 /obj/item/weapon/gun/projectile/boltaction/kar98k/update_icon(var/add_scope = FALSE)

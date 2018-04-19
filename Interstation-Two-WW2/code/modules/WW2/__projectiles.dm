@@ -254,8 +254,8 @@
 /obj/burning_blood/throw_impact(var/atom/movable/obstacle)
 	if (isliving(obstacle))
 		var/mob/living/L = obstacle
-		L.adjustFireLoss(rand(30,40))
-		L.Weaken(rand(2,3))
+		L.adjustFireLoss(srand(30,40))
+		L.Weaken(srand(2,3))
 		visible_message("<span class = 'warning'>[L] is scalded by burning blood!</span>")
 		if (ishuman(L))
 			L.emote("scream")

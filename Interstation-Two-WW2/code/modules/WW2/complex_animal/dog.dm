@@ -340,7 +340,7 @@ s
 				// 112 range on big map, 13 range on small map - kachnov
 				var/maxdist = ((world.maxx + world.maxy) / 6) - 5
 				if (!locate(H) in view(world.view, src) && dist <= maxdist)
-					if (prob(5) && world.time >= next_bork)
+					if (sprob(5) && world.time >= next_bork)
 						visible_message("<span class = 'danger'>The [src] starts barking in fear! It smells an enemy!</span>")
 						next_bork = world.time + 500 // shut the fuck up dogs - kachnov
 						return
@@ -354,10 +354,10 @@ s
 			if (H in range(1, src))
 				dir = get_dir(src, H)
 				visible_message("<span class = 'warning'>The [src] shreds [H] with their teeth!</span>")
-				H.adjustBruteLoss(rand(8,12)/H.getStatCoeff("strength"))
-				playsound(get_turf(src), 'sound/weapons/bite.ogg', rand(70,80))
-			/*	if (prob(20)) // I think this stuns people forever, not sure how
-					H.stun_effect_act(rand(1,2), rand(2,3)) */
+				H.adjustBruteLoss(srand(8,12)/H.getStatCoeff("strength"))
+				playsound(get_turf(src), 'sound/weapons/bite.ogg', srand(70,80))
+			/*	if (sprob(20)) // I think this stuns people forever, not sure how
+					H.stun_effect_act(srand(1,2), srand(2,3)) */
 				next_shred = world.time + 20
 				spawn (20)
 					if (!client)
@@ -377,7 +377,7 @@ s
 
 				enemies |= H
 
-				spawn (rand(2,3))
+				spawn (srand(2,3))
 					shred(H)
 
 				// make other dogs go after them too
@@ -394,7 +394,7 @@ s
 				return
 			enemies |= H
 
-			spawn (rand(2,3))
+			spawn (srand(2,3))
 				shred(H)
 
 			// make other dogs go after them too

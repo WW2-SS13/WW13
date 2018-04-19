@@ -60,7 +60,7 @@ var/datum/controller/process/supplydrop/supplydrop_process = null
 
 									if (A)
 										A.visible_message("<span class = 'notice'>[A] falls from the sky!</span>")
-										playsound(T, 'sound/effects/bamf.ogg', rand(70,80))
+										playsound(T, 'sound/effects/bamf.ogg', srand(70,80))
 										spawned = TRUE
 
 									break

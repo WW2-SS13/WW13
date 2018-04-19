@@ -41,7 +41,7 @@
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("bicaridine"))
-			var/organ_name = pick("chest","l_arm","r_arm","r_leg","l_leg","head","groin")
+			var/organ_name = spick("chest","l_arm","r_arm","r_leg","l_leg","head","groin")
 			var/obj/item/organ/external/E = H.get_organ(organ_name)
 			E.take_damage(20, FALSE, FALSE)
 			E.fracture()
@@ -77,13 +77,13 @@
 proc/trigger_side_effect(mob/living/carbon/human/H)
 	spawn
 		if(!istype(H)) return
-		var/tp = pick(typesof(/datum/genetics/side_effect) - /datum/genetics/side_effect)
+		var/tp = spick(typesof(/datum/genetics/side_effect) - /datum/genetics/side_effect)
 		var/datum/genetics/side_effect/S = new tp
 
 		S.start(H)
 		spawn(20)
 			if(!istype(H)) return
-			H.Weaken(rand(0, S.duration / 50))
+			H.Weaken(srand(0, S.duration / 50))
 		sleep(S.duration)
 
 		if(!istype(H)) return

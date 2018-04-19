@@ -50,7 +50,7 @@
 	if(!organ || organ.dislocated == -1)
 		return
 
-	attacker.visible_message("<span class='danger'>[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!</span>")
+	attacker.visible_message("<span class='danger'>[attacker] [spick("bent", "twisted")] [target]'s [organ.name] into a jointlock!</span>")
 	var/armor = target.run_armor_check(target, "melee")
 	if(armor < 2)
 		target << "<span class='danger'>You feel extreme pain!</span>"
@@ -97,7 +97,7 @@
 	target.apply_damage(damage, BRUTE, "head", armor)
 	attacker.apply_damage(10, BRUTE, "head", attacker.run_armor_check("head", "melee"))
 
-	if(!armor && target.headcheck("head") && prob(damage))
+	if(!armor && target.headcheck("head") && sprob(damage))
 		target.apply_effect(20, PARALYZE)
 		target.visible_message("<span class='danger'>[target] [target.species.knockout_message]</span>")
 

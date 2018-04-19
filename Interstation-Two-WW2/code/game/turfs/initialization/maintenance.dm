@@ -7,23 +7,23 @@
 
 	var/cardinal_turfs = T.CardinalTurfs()
 
-	T.dirt = rand(10, 50) + rand(0, 50)
+	T.dirt = srand(10, 50) + srand(0, 50)
 	// If a neighbor is dirty, then we get dirtier.
 	var/how_dirty = dirty_neighbors(cardinal_turfs)
 	for(var/i = FALSE; i < how_dirty; i++)
-		T.dirt += rand(0,10)
+		T.dirt += srand(0,10)
 	T.update_dirt()
 
-	if(prob(2))
+	if(sprob(2))
 		PoolOrNew(junk(), T)
-	if(prob(2))
+	if(sprob(2))
 		PoolOrNew(/obj/effect/decal/cleanable/blood/oil, T)
-	if(prob(25))	// Keep in mind that only "corners" get any sort of web
+	if(sprob(25))	// Keep in mind that only "corners" get any sort of web
 		attempt_web(T, cardinal_turfs)
 
 var/global/list/random_junk
 /datum/turf_initializer/maintenance/proc/junk()
-	if(prob(25))
+	if(sprob(25))
 		return /obj/effect/decal/cleanable/generic
 	if(!random_junk)
 		random_junk = subtypesof(/obj/item/trash)
@@ -34,7 +34,7 @@ var/global/list/random_junk
 		random_junk -= /obj/item/trash/snack_bowl
 		random_junk -= /obj/item/trash/syndi_cakes
 		random_junk -= /obj/item/trash/tray
-	return pick(random_junk)
+	return spick(random_junk)
 
 /datum/turf_initializer/maintenance/proc/dirty_neighbors(var/list/cardinal_turfs)
 	var/how_dirty = FALSE
@@ -49,7 +49,7 @@ var/global/list/random_junk
 	if(!north_turf || !north_turf.density)
 		return
 
-	for(var/dir in list(WEST, EAST))	// For the sake of efficiency, west wins over east in the case of TRUE-tile valid spots, rather than doing pick()
+	for(var/dir in list(WEST, EAST))	// For the sake of efficiency, west wins over east in the case of TRUE-tile valid spots, rather than doing spick()
 		var/turf/neighbour = get_step(T, dir)
 		if(neighbour && neighbour.density)
 			if(dir == WEST)

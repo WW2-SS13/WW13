@@ -12,7 +12,7 @@
 			if("Yes")
 				if(user.z != z)	return
 				user.loc.loc.Exited(user)
-				user.loc = pick(latejoin)
+				user.loc = spick(latejoin)
 			if("No")
 				return
 

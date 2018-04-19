@@ -98,7 +98,7 @@
 	// too
 	energy = max(0, energy - (0.0008/3))
 	if (energy <= 0)
-		if (prob(10))
+		if (sprob(10))
 			adjustBruteLoss(72)
 			src << "<span class = 'danger'>You're starving from a lack of life energy!</span>"
 		return

@@ -7,9 +7,9 @@ mob/living/carbon/proc/dream()
 	dreaming = TRUE
 
 	spawn(0)
-		for(var/i = rand(1,4),i > 0, i--)
-			src << "<span class = 'notice'><i>... [pick(dreams)] ...</i></span>"
-			sleep(rand(40,70))
+		for(var/i = srand(1,4),i > 0, i--)
+			src << "<span class = 'notice'><i>... [spick(dreams)] ...</i></span>"
+			sleep(srand(40,70))
 			if(paralysis <= 0)
 				dreaming = FALSE
 				return FALSE
@@ -17,7 +17,7 @@ mob/living/carbon/proc/dream()
 		return TRUE
 
 mob/living/carbon/proc/handle_dreams()
-	if(client && !dreaming && prob(5))
+	if(client && !dreaming && sprob(5))
 		dream()
 
 mob/living/carbon/var/dreaming = FALSE

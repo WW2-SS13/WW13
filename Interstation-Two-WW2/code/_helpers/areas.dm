@@ -18,7 +18,7 @@
 /proc/pick_area_turf(var/areatype, var/list/predicates)
 	var/list/turfs = get_area_turfs(areatype, predicates)
 	if(turfs && turfs.len)
-		return pick(turfs)
+		return spick(turfs)
 
 /proc/get_area_width(var/area/a) //takes an actual area or a type
 	var/list/turfs = get_area_turfs(a)

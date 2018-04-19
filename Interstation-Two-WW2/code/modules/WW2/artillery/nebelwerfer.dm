@@ -138,7 +138,7 @@
 						if (other.use_slot())
 							for (var/v in TRUE to 6)
 								spawn (v * 2)
-									other.fire(x + offset_x + rand(3,-3), y + offset_y + rand(3,-3), rand(14,20))
+									other.fire(x + offset_x + srand(3,-3), y + offset_y + srand(3,-3), srand(14,20))
 						else
 							user << "<span class='danger'>Load a shell in first.</span>"
 							return

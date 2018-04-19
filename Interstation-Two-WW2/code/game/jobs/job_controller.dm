@@ -282,13 +282,13 @@ var/global/datum/controller/occupations/job_master
 		var/list/turfs = latejoin_turfs[spawn_location]
 
 		if(turfs && turfs.len > 0)
-			H.loc = pick(turfs)
+			H.loc = spick(turfs)
 
 			if (!locate(H.loc) in turfs)
 				var/tries = 0
 				while (tries <= 5 && !locate(H.loc) in turfs)
 					++tries
-					H.loc = pick(turfs)
+					H.loc = spick(turfs)
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
@@ -483,7 +483,7 @@ var/global/datum/controller/occupations/job_master
 			if(!job)	continue
 			var/list/candidates = FindOccupationCandidates(job, level)
 			if(!candidates.len)	continue
-			var/mob/new_player/candidate = pick(candidates)
+			var/mob/new_player/candidate = spick(candidates)
 			AssignRole(candidate, command_position)
 		return
 

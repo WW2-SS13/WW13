@@ -194,7 +194,7 @@ var/list/possible_cable_coil_colours = list(
 /*
 // shock the user with probability prb
 /obj/structure/cable/proc/shock(mob/user, prb, var/siemens_coeff = 1.0)
-	if(!prob(prb))
+	if(!sprob(prb))
 		return FALSE
 	if (electrocute_mob(user, powernet, src, siemens_coeff))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -211,12 +211,12 @@ var/list/possible_cable_coil_colours = list(
 		if(1.0)
 			qdel(src)
 		if(2.0)
-			if (prob(50))
+			if (sprob(50))
 				new/obj/item/stack/cable_coil(loc, d1 ? 2 : TRUE, color)
 				qdel(src)
 
 		if(3.0)
-			if (prob(25))
+			if (sprob(25))
 				new/obj/item/stack/cable_coil(loc, d1 ? 2 : TRUE, color)
 				qdel(src)
 	return
@@ -486,8 +486,8 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	amount = length
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
 		color = param_color
-	pixel_x = rand(-2,2)
-	pixel_y = rand(-2,2)
+	pixel_x = srand(-2,2)
+	pixel_y = srand(-2,2)
 	update_icon()
 	update_wclass()
 
@@ -522,7 +522,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/update_icon()
 	if (!color)
-		color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
+		color = spick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	if(amount == TRUE)
 		icon_state = "coil1"
 		name = "cable piece"
@@ -704,7 +704,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 			use(1)
 			if (C.shock(user, 50))
-				if (prob(50)) //fail
+				if (sprob(50)) //fail
 					new/obj/item/stack/cable_coil(C.loc, TRUE, C.color)
 					qdel(C)
 					*/
@@ -768,7 +768,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 			use(1)
 
 			if (NC.shock(user, 50))
-				if (prob(50)) //fail
+				if (sprob(50)) //fail
 					new/obj/item/stack/cable_coil(NC.loc, TRUE, NC.color)
 					qdel(NC)
 
@@ -816,7 +816,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		use(1)
 
 		if (C.shock(user, 50))
-			if (prob(50)) //fail
+			if (sprob(50)) //fail
 				new/obj/item/stack/cable_coil(C.loc, 2, C.color)
 				qdel(C)
 				return
@@ -833,9 +833,9 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/cut/New(loc)
 	..()
-	amount = rand(1,2)
-	pixel_x = rand(-2,2)
-	pixel_y = rand(-2,2)
+	amount = srand(1,2)
+	pixel_x = srand(-2,2)
+	pixel_y = srand(-2,2)
 	update_icon()
 	update_wclass()
 
@@ -861,5 +861,5 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	color = COLOR_WHITE
 
 /obj/item/stack/cable_coil/random/New()
-	color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
+	color = spick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	..()

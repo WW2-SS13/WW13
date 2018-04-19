@@ -43,7 +43,7 @@
 				user.show_message("<span class='notice'>Now attempting to reset internal memory, please hold.</span>", TRUE)
 				l_hacking = TRUE
 				if (do_after(usr, 100, src))
-					if (prob(40))
+					if (sprob(40))
 						l_setshort = TRUE
 						l_set = FALSE
 						user.show_message("<span class='notice'>Internal memory reset. Please give it a few seconds to reinitialize.</span>", TRUE)
