@@ -147,7 +147,7 @@
 			// So not all machines speak at the exact same time.
 			// The first time this machine says something will be at slogantime + this random value,
 			// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
-			last_slogan = world.time + rand(0, slogan_delay)
+			last_slogan = world.time + srand(0, slogan_delay)
 
 		if(product_ads)
 			ads_list += splittext(product_ads, ";")
@@ -200,11 +200,11 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if (sprob(50))
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(25))
+			if (sprob(25))
 				spawn(0)
 			//		malfunction()
 					return
@@ -557,7 +557,7 @@
 			user << "<span class='notice'>You need to insert a coin to get this item.</span>"
 			return
 		if(coin.string_attached)
-			if(prob(50))
+			if(sprob(50))
 				user << "<span class='notice'>You successfully pull the coin out before \the [src] could swallow it.</span>"
 			else
 				user << "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>"
@@ -611,13 +611,13 @@
 		seconds_electrified--
 
 	/*//Pitch to the people!  Really sell it!
-	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0) && (!shut_up) && prob(5))
-		var/slogan = pick(slogan_list)
+	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0) && (!shut_up) && sprob(5))
+		var/slogan = spick(slogan_list)
 		speak(slogan)
 		last_slogan = world.time
 */
 /*
-	if(shoot_inventory && prob(2))
+	if(shoot_inventory && sprob(2))
 		throw_item()*/
 
 	return
@@ -642,7 +642,7 @@
 		if( !(stat & NOPOWER) )
 			icon_state = initial(icon_state)
 		else
-			spawn(rand(0, 15))
+			spawn(srand(0, 15))
 				icon_state = "[initial(icon_state)]-off"
 */
 //Oh no we're malfunctioning!  Dump out some product and break.

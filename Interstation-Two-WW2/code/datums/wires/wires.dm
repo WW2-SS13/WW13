@@ -259,12 +259,12 @@ var/const/POWER = 8
 		UpdateCut(index, FALSE)
 
 /datum/wires/proc/RandomCut()
-	var/r = rand(1, wires.len)
+	var/r = srand(1, wires.len)
 	CutWireIndex(r)
 
 /datum/wires/proc/RandomCutAll(var/probability = 10)
 	for(var/i = TRUE; i < MAX_FLAG && i < (1 << wire_count); i += i)
-		if(prob(probability))
+		if(sprob(probability))
 			CutWireIndex(i)
 
 /datum/wires/proc/CutAll()
