@@ -132,15 +132,22 @@
 	. *= miss_chance_modifier
 	. /= effectiveness_mod
 
-	if (list("mouth", "eyes").Find(zone))
-		var/hitchance = 100 - .
-		hitchance /= 2.00 // this used to be 3, needs to be 2 to double to triple miss chance
-		. = ceil(100 - hitchance)
+	var/d1 = abs(firer.x - target.x)
+	var/d2 = abs(firer.y - target.y)
+	var/d3 = round((d1 + d2)/2)
+	var/distance = max(d1, d2, d3)
 
-	else if (list("head").Find(zone))
-		var/hitchance = 100 - .
-		hitchance /= 1.33 // this used to be 2 and made headshots really inaccurate, needs to be 1.33 to "double" miss chance - Kachnov
-		. = ceil(100 - hitchance)
+	// nothing can save you at point blank range - Kachnov
+	if (distance != 1)
+		if (list("mouth", "eyes").Find(zone))
+			var/hitchance = 100 - .
+			hitchance /= 2.00 // this used to be 3, needs to be 2 to double to triple miss chance
+			. = ceil(100 - hitchance)
+
+		else if (list("head").Find(zone))
+			var/hitchance = 100 - .
+			hitchance /= 1.33 // this used to be 2 and made headshots really inaccurate, needs to be 1.33 to "double" miss chance - Kachnov
+			. = ceil(100 - hitchance)
 
 	. = min(CLAMP0100(.), 99) // minimum hit chance is 2% no matter what
 
@@ -152,7 +159,7 @@
 	var/moving_target = target.lastMovedRecently(target.get_run_delay())
 	var/abs_x = abs(firer.x - target.x)
 	var/abs_y = abs(firer.y - target.y)
-	var/pythag = (abs_x + abs_y)/2
+	var/pythag = round((abs_x + abs_y)/2)
 	var/distance = max(abs_x, abs_y, pythag)
 	// note: the screen is 15 tiles wide by default, so a person more than 7 tiles away from you x/y won't be on screen
 	// . = miss chance

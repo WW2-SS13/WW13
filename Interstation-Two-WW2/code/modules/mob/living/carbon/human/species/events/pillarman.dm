@@ -3,17 +3,6 @@
 	takes_less_damage = TRUE
 	movement_speed_multiplier = 1.75
 	size_multiplier = 1.50
-	use_initial_stats = TRUE
-	stats = list(
-		"strength" = list(900,900),
-		"engineering" = list(50,50),
-		"rifle" = list(50,50),
-		"mg" = list(50,50),
-		"pistol" = list(50,50),
-		"heavyweapon" = list(50,50),
-		"medical" = list(50,50),
-		"survival" = list(150,150))
-
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
@@ -39,6 +28,16 @@
 			var/oloc = get_turf(src)
 			job_master.EquipRank(src, "Pillar Man")
 			loc = oloc
+		setStat("strength", 300)
+		setStat("engineering", 250)
+		setStat("rifle", 250)
+		setStat("mg", 250)
+		setStat("smg", 250)
+		setStat("pistol", 250)
+		setStat("heavyweapon", 250)
+		setStat("medical", 250)
+		setStat("shotgun", 250)
+		setStat("survival", 100)
 
 /mob/living/carbon/human/pillarman/proc/may_absorb()
 	return energy <= 1.40
@@ -140,3 +139,7 @@
 		stat(stat_header("Pillar Man"))
 		stat("")
 		stat("Energy:", "[round(energy*100)]%")
+
+/mob/living/carbon/human/pillarman/verb/pose()
+	set category = "Emote"
+	emote("pose")

@@ -812,10 +812,10 @@
 
 	if (C.m_intent == "run")
 		C.m_intent = "walk"
-	else if (C.m_intent == "walk" && !C.resting)
-		C.resting = TRUE
-	else if (C.m_intent == "walk" && C.resting)
-		C.resting = FALSE
+//	else if (C.m_intent == "walk" && !C.resting)
+//		C.resting = TRUE
+	else if (C.m_intent == "walk"/*&& C.resting*/)
+	//	C.resting = FALSE
 		C.m_intent = "run"
 
 	update_icon()
@@ -830,10 +830,10 @@
 		if("run")
 			icon_state = "running"
 		if("walk")
-			if (C.resting)
+		/*	if (C.resting)
 				icon_state = "proning"
-			else
-				icon_state = "walking"
+			else*/
+			icon_state = "walking"
 
 //-----------------------mov_intent END------------------------------
 /obj/screen/equip

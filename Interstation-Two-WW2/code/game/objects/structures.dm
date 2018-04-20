@@ -39,7 +39,7 @@
 		if (sprob(66))
 			return TRUE
 		else
-			visible_message("<span class = 'warning'>The bullet riochetes off of \the [src]!</span>")
+			visible_message("<span class = 'warning'>The bullet riochetes off \the [src]!</span>")
 			return FALSE
 	else
 		return FALSE
@@ -156,6 +156,9 @@
 
 	if (get_turf(user) == get_turf(src))
 		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
+		if (istype(src, /obj/structure/table/glass))
+			var/obj/structure/table/glass/G = src
+			G.shatter()
 	climbers -= user
 
 /obj/structure/proc/structure_shaken()

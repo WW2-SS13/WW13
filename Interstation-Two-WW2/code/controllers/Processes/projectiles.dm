@@ -22,6 +22,9 @@ var/datum/controller/process/projectile/projectile_process = null
 		if (!P)
 			continue
 
+		if (!P.loc)
+			continue
+
 		if (isnull(P.gcDestroyed))
 			try
 				P.process()

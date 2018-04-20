@@ -659,7 +659,6 @@
 #include "code\modules\mob\living\carbon\human\species\species_hud.dm"
 #include "code\modules\mob\living\carbon\human\species\events\mechahitler.dm"
 #include "code\modules\mob\living\carbon\human\species\events\megastalin.dm"
-#include "code\modules\mob\living\carbon\human\species\events\nazicyborg.dm"
 #include "code\modules\mob\living\carbon\human\species\events\pillarman.dm"
 #include "code\modules\mob\living\carbon\human\species\events\vampire.dm"
 #include "code\modules\mob\living\simple_animal\simple_animal.dm"

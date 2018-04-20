@@ -136,7 +136,14 @@
 	firer = user
 	firer_original_dir = firer.dir
 	firedfrom = launcher
-	def_zone = target_zone
+	if (istype(firedfrom, /obj/item/weapon/gun/projectile/minigun))
+		if (prob(80))
+			def_zone = "chest"
+	else
+		def_zone = target_zone
+
+	if (!def_zone)
+		def_zone = "chest"
 
 	if(user == target) //Shooting yourself
 		user.pre_bullet_act(src)
@@ -215,6 +222,8 @@
 	shot_from = launcher.name
 	silenced = launcher.silenced
 
+	projectile_list += src
+
 	return launch(target, target_zone, x_offset, y_offset)
 
 //Used to change the direction of the projectile in flight.
@@ -281,8 +290,14 @@
 
 	// damage handling
 	var/extra_damage_change = -(redirections*6)
-	// 50% chance of less severe damage: either 6, 12, or 18 less damage based on number of redirections
-	if (sprob(50))
+
+	// 50-60% chance of less severe damage: either 6, 12, or 18 less damage based on number of redirections
+	var/helmet_protection = 0
+	var/mob/living/carbon/human/H = target_mob
+	if (istype(H) && H.head && istype(H.head, /obj/item/clothing/head/helmet/tactical))
+		helmet_protection = 10
+
+	if (sprob(50+helmet_protection))
 		switch (damage)
 			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
 				damage = DAMAGE_LOW - 6
@@ -353,7 +368,10 @@
 
 	return TRUE
 
-/obj/item/projectile/proc/handleTurf(var/turf/T, forced=0)
+/obj/item/projectile/proc/handleTurf(var/turf/T, forced=0, var/list/untouchable = list())
+
+	if (!T || !istype(T))
+		return FALSE
 
 	if((bumped && !forced) || (permutated.Find(T)))
 		return FALSE
@@ -361,52 +379,57 @@
 	var/passthrough = TRUE //if the projectile should continue flying
 	var/passthrough_message = null
 
-	for (var/mob/living/L in T.contents)
-		//if they have a neck grab on someone, that person gets hit instead
-		var/obj/item/weapon/grab/G = locate() in L
-		if(G && G.state >= GRAB_NECK)
-			visible_message("<span class='danger'>\The [L] uses [G.affecting] as a shield!</span>")
-			if(Bump(G.affecting, forced=1))
-				bumped = TRUE // for shrapnel
-				return FALSE
-		L.pre_bullet_act(src)
-		attack_mob(L)
-		if (!L.lying)
-			passthrough = FALSE
-	for (var/obj/O in T.contents)
-		O.pre_bullet_act(src)
-		if (O.density && !istype(O, /obj/structure))
-			passthrough = FALSE
-		else if (istype(O, /obj/structure))
-			var/obj/structure/S = O
-			S.bullet_act(src, def_zone)
-			if (!S.CanPass(src, get_step(S.loc, dir)))
-				passthrough = FALSE
-			else if (passthrough && S.density && !S.climbable)
-				passthrough_message = "<span class = 'warning'>The bullet goes through \the [S]!</span>"
-	//	else
-	//		passthrough = (O.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
+	if (T.density)
+		passthrough = FALSE
+	else
+		for (var/atom/movable/AM in T.contents)
+			if (!untouchable.Find(AM))
+				if (isliving(AM) && AM != firer)
+					var/mob/living/L = AM
+					if (!L.lying || T == get_turf(original))
+						// if they have a neck grab on someone, that person gets hit instead
+						var/obj/item/weapon/grab/G = locate() in L
+						if(G && G.state >= GRAB_NECK)
+							visible_message("<span class='danger'>\The [L] uses [G.affecting] as a shield!</span>")
+							if(Bump(G.affecting, forced=1))
+								bumped = TRUE // for shrapnel
+								return FALSE
+						L.pre_bullet_act(src)
+						attack_mob(L)
+						if (!L.lying)
+							passthrough = FALSE
+				else if (isobj(AM) && AM != firedfrom)
+					var/obj/O = AM
+					O.pre_bullet_act(src)
+					if (O.bullet_act(src, def_zone) != PROJECTILE_CONTINUE)
+						if (O.density && !istype(O, /obj/structure))
+							passthrough = FALSE
+						else if (istype(O, /obj/structure))
+							var/obj/structure/S = O
+							if (!S.CanPass(src, original))
+								passthrough = FALSE
+				//				log_debug("ignored [S] (1)")
+							else if (S.density)
+								if (!S.climbable)
+									passthrough_message = "<span class = 'warning'>The bullet penetrates through \the [S]!</span>"
+	//		else
+		//		log_debug("ignored [AM] (2)")
 
 	//penetrating projectiles can pass through things that otherwise would not let them
-	var/passthrough_turf = FALSE
-	if(density && !passthrough && penetrating > 0)
+	if(T.density && penetrating > 0)
 		if(check_penetrate(T))
 			passthrough = TRUE
-			passthrough_turf = TRUE
 			passthrough_message = "<span class = 'warning'>The bullet penetrates \the [T]!</span>"
-		penetrating--
+		--penetrating
 
 	//the bullet passes through the turf
 	if(passthrough)
 		//move ourselves onto T so we can continue on our way.
-		if (passthrough_turf || !T.density)
-			forceMove(T)
-		else
-			qdel(src)
+		forceMove(T)
 		permutated += T
 		if (passthrough_message)
 			T.visible_message(passthrough_message)
-		return FALSE
+		return TRUE
 
 	// for shrapnel
 	bumped = TRUE
@@ -418,7 +441,7 @@
 	on_impact(T)
 	qdel(src)
 
-	return TRUE
+	return FALSE
 
 /obj/item/projectile/ex_act()
 	return //explosions probably shouldn't delete projectiles
@@ -429,8 +452,11 @@
 /obj/item/projectile/process()
 	//plot the initial trajectory
 
+	var/firstmove = FALSE
+
 	if (!trajectory)
 		setup_trajectory()
+		firstmove = TRUE
 
 	if (src && loc)
 		if(--kill_count < 1)
@@ -442,7 +468,7 @@
 			qdel(src)
 			return
 		if((!( current ) || loc == current))
-			current = locate(min(max(x + xo, TRUE), world.maxx), min(max(y + yo, TRUE), world.maxy), z)
+			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
 		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
 			loc.pre_bullet_act(src)
 			on_impact(loc)
@@ -456,10 +482,21 @@
 			qdel(src)	// if it's left the world... kill it
 			return
 
+		var/list/_untouchable = list()
+		var/src_loc = get_turf(src)
+
+		if (firstmove)
+			for (var/obj/structure/window/sandbag/S in src_loc)
+				_untouchable += S
+		else
+			if (firer)
+				for (var/obj/structure/barricade/B in src_loc)
+					if (get_dist(firer, B) == 1)
+						_untouchable += B
+
+		handleTurf(loc, untouchable = _untouchable)
 		before_move()
-		Move(location.return_turf())
-		if (!firer || loc != firer.loc)
-			handleTurf(loc)
+		forceMove(location.return_turf())
 
 		if(!did_muzzle_effect)
 			muzzle_effect(effect_transform)

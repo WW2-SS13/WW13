@@ -32,10 +32,10 @@ Parts of code courtesy of Super3222
 	..()
 	if(A_attached)
 		var/obj/item/weapon/gun/G = loc //loc is the gun this is attached to
-		var/zoom_offset = round(world.view * zoom_amt)
+//		var/zoom_offset = round(world.view * zoom_amt)
 		if(zoomed)
-			if(G.accuracy)
-				G.accuracy = G.scoped_accuracy + zoom_offset
+	/*		if(G.accuracy)
+				G.accuracy = G.scoped_accuracy + zoom_offset*/
 			if(G.recoil)
 				G.recoil = round(G.recoil*(zoom_amt/5)+1) //recoil is worse when looking through a scope
 		else

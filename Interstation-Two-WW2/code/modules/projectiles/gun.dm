@@ -46,7 +46,7 @@
 	var/silenced = FALSE
 	var/muzzle_flash = 3
 	var/accuracy = 0   //accuracy is measured in tiles. +1 accuracy means that everything is effectively one tile closer for the purpose of miss chance, -1 means the opposite. launchers are not supported, at the moment.
-	var/scoped_accuracy = null
+//	var/scoped_accuracy = null
 
 	var/next_fire_time = 0
 
@@ -90,8 +90,8 @@
 		for(var/i in 1 to firemodes.len)
 			firemodes[i] = new firemode_type(firemodes[i])
 
-	if(isnull(scoped_accuracy))
-		scoped_accuracy = accuracy
+//	if(isnull(scoped_accuracy))
+//		scoped_accuracy = accuracy
 
 	if (!aim_targets)
 		aim_targets = list()
@@ -226,12 +226,12 @@
 	if(!user || !target) return
 
 	// stops admemes from sending immortal dummies into combat
-	if (user)
-		if (istype(user, /mob/living/carbon/human/dummy) || (user.vars.Find("original_job") && !user:original_job))
-			if (user.client)
-				if (clients.len > 1)
-					user << "<span class = 'danger'>Hey you fucking dumbass, don't send immortal dummies into combat.</span>"
-					return
+	if (user && istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		if ((H.client && istype(H, /mob/living/carbon/human/dummy)) || !H.original_job || !H.original_job_title)
+			if (clients.len > 1)
+				user << "<span class = 'danger'>Hey you fucking dumbass, don't send immortal dummies into combat.</span>"
+				return
 
 	add_fingerprint(user)
 
@@ -312,7 +312,6 @@
 	if(muzzle_flash)
 		spawn(5)
 			set_light(0)
-
 
 //obtains the next projectile to fire
 /obj/item/weapon/gun/proc/consume_next_projectile()
@@ -434,7 +433,7 @@
 
 	// realistic WW2 suicide, no hesitation - Kachnov
 	mouthshoot = TRUE
-	M.visible_message("<span class = 'red'>[user] sticks their gun in their mouth.</span>")
+	M.visible_message("<span class = 'red'>[user] sticks [M.gender == FEMALE ? "her" : "his"] [src] in [M.gender == FEMALE ? "her" : "his"] mouth.</span>")
 	if(!do_after(user, 3))
 		M.visible_message("<span class = 'notice'>[user] failed to commit suicide.</span>")
 		mouthshoot = FALSE

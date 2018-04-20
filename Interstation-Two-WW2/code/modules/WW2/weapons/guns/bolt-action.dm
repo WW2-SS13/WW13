@@ -20,7 +20,7 @@
 	load_shell_sound = 'sound/weapons/clip_reload.ogg'
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = TRUE
-	scoped_accuracy = 2
+//	scoped_accuracy = 2
 	gun_type = GUN_TYPE_RIFLE
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 	accuracy_increase_mod = 2.00

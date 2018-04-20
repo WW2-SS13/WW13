@@ -36,6 +36,8 @@ bullet_act
 		return ..(W, user)
 
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
+	if (P.damage == 0)
+		return // fix for strange bug
 
 	// if we hit a client who's not on our team, increase our stats
 	if (client && stat == CONSCIOUS && P.firer && ishuman(P.firer) && P.firedfrom)

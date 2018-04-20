@@ -22,10 +22,6 @@
 	if (!stats.Find(statname))
 		return
 
-	if (use_initial_stats)
-		if (stats[statname] > statval)
-			return
-
 	// randomness
 	statval += srand(-5,5)
 

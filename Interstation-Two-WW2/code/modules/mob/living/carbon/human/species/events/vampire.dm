@@ -2,17 +2,6 @@
 /mob/living/carbon/human/vampire
 	takes_less_damage = TRUE
 	movement_speed_multiplier = 1.50
-	use_initial_stats = TRUE
-	stats = list(
-		"strength" = list(500,500),
-		"engineering" = list(100,100),
-		"rifle" = list(100,100),
-		"mg" = list(100,100),
-		"pistol" = list(100,100),
-		"heavyweapon" = list(100,100),
-		"medical" = list(100,100),
-		"survival" = list(125,125))
-
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
@@ -39,6 +28,16 @@
 					drop_from_inventory(I)
 					qdel(I)
 			loc = oloc
+		setStat("strength", 200)
+		setStat("engineering", 150)
+		setStat("rifle", 150)
+		setStat("mg", 150)
+		setStat("smg", 150)
+		setStat("pistol", 150)
+		setStat("heavyweapon", 150)
+		setStat("medical", 150)
+		setStat("shotgun", 150)
+		setStat("survival", 100)
 
 /mob/living/carbon/human/vampire/proc/may_drink()
 	return blood <= 1.40

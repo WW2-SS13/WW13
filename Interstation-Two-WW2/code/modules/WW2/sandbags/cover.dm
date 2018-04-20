@@ -1,38 +1,7 @@
 #define SANDBAG_BLOCK_ITEMS_CHANCE 90
 
 /obj/structure/window/sandbag/incomplete/check_cover(obj/item/projectile/P, turf/from)
-
-	if (!istype(P))
-		return FALSE
-
-	var/effectiveness_coeff = (progress + 1)/maxProgress
-	var/turf/cover = get_turf(src)
-	if(!cover)
-		return TRUE
-	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
-		return TRUE
-
-	var/base_chance = SANDBAG_BLOCK_ITEMS_CHANCE
-	var/extra_chance = 0
-
-	if (ismob(P.original)) // what the firer clicked
-		var/mob/m = P.original
-		if (m.lying)
-			extra_chance += 30
-		if (ishuman(m))
-			var/mob/living/carbon/human/H = m
-			if (H.crouching && !H.lying)
-				extra_chance += 20
-
-	var/chance = base_chance + extra_chance
-
-	chance = min(chance, 98)
-
-	if(sprob(chance * effectiveness_coeff))
-		return TRUE
-	else
-		return FALSE
-
+	return FALSE
 
 // how much do we cover mobs behind full sandbags?
 /obj/structure/window/sandbag/proc/check_cover(obj/item/projectile/P, turf/from)
@@ -41,6 +10,9 @@
 		return FALSE
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return FALSE
+	// can't hit legs or feet when they're behind a sandbag
+	if (list("r_leg", "l_leg", "r_foot", "l_foot").Find(P.def_zone))
+		return TRUE
 
 	var/base_chance = SANDBAG_BLOCK_ITEMS_CHANCE
 	var/extra_chance = 0
@@ -85,8 +57,8 @@
 		if (istype(mover, /obj/item/projectile))
 			var/obj/item/projectile/proj = mover
 			proj.throw_source = proj.starting
-			if (proj.throw_source == get_turf(src) || get_step(proj.throw_source, proj.dir) == get_turf(src) || proj.firer && (get_step(proj.firer, proj.firer.dir) == get_turf(src) || proj.firer.loc == get_turf(src)))
-				return TRUE
+/*			if (proj.throw_source == get_turf(src) || get_step(proj.throw_source, proj.dir) == get_turf(src) || proj.firer && (get_step(proj.firer, proj.firer.dir) == get_turf(src) || proj.firer.loc == get_turf(src)))
+				return TRUE*/
 
 		if (!mover.throw_source)
 			if(get_dir(loc, target) & dir)
@@ -113,6 +85,8 @@
 				if (istype(mover, /obj/item/projectile))
 					var/obj/item/projectile/B = mover
 					B.damage = 0 // make sure we can't hurt people after hitting a sandbag
+					B.invisibility = 101
+					B.loc = null
 					qdel(B) // because somehow we were still passing the sandbag
 				return FALSE
 			else
