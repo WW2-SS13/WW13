@@ -4,6 +4,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 /datum/controller/gameticker
 	var/const/restart_timeout = 300
 	var/current_state = GAME_STATE_PREGAME
+	var/admin_started = FALSE
 
 	var/hide_mode = FALSE
 	var/datum/game_mode/mode = null
@@ -117,7 +118,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	mode.pre_setup()
 //	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!mode.can_start())
+	if(!mode.can_start() && !admin_started)
 		if (serverswap_open_status)
 			world << "<b>Unable to start the game.</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME

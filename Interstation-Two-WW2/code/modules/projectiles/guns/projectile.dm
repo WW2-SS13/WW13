@@ -46,6 +46,8 @@
 
 	var/executing = FALSE
 
+	var/infinite_ammo = FALSE
+
 /obj/item/weapon/gun/projectile/New()
 	..()
 	if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
@@ -74,10 +76,15 @@
 		chambered = loaded[1] //load next casing.
 		if(handle_casings != HOLD_CASINGS)
 			loaded -= chambered
+			if (infinite_ammo)
+				loaded += new chambered.type
+
 	else if(ammo_magazine && ammo_magazine.stored_ammo.len)
 		chambered = ammo_magazine.stored_ammo[1]
 		if(handle_casings != HOLD_CASINGS)
 			ammo_magazine.stored_ammo -= chambered
+			if (infinite_ammo)
+				ammo_magazine.stored_ammo += new chambered.type
 
 	if (chambered)
 		if (gibs)

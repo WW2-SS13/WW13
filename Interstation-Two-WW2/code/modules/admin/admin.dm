@@ -505,6 +505,7 @@ proc/admin_notice(var/message, var/rights)
 		return
 	if(ticker.current_state == GAME_STATE_PREGAME)
 		ticker.current_state = GAME_STATE_SETTING_UP
+		ticker.admin_started = TRUE
 		log_admin("[usr.key] has started the game.")
 		message_admins("[usr.key] has started the game.")
 

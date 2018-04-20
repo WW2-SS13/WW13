@@ -607,6 +607,7 @@
 						if (ishuman(L))
 							L.emote("scream")
 						sleep(5)
+					break
 			else
 				for (var/mob/living/L in t1)
 					if (L.lying && L != H)

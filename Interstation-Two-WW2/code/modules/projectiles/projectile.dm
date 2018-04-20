@@ -2,7 +2,7 @@
 	name = "projectile"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bullet"
-	density = TRUE
+	density = FALSE // we no longer use Bump() to detect collisions - Kachnov
 	anchored = TRUE //There's a reason this is here, Mport. God fucking damn it -Agouri. Find&Fix by Pete. The reason this is here is to stop the curving of emitter shots.
 	pass_flags = PASSTABLE
 	mouse_opacity = FALSE
@@ -280,22 +280,22 @@
 	KD_chance = mygun.KD_chance
 
 	// damage handling
-
+	var/extra_damage_change = -(redirections*6)
 	// 50% chance of less severe damage: either 6, 12, or 18 less damage based on number of redirections
-	if (sprob(50) || redirections > 0)
+	if (sprob(50))
 		switch (damage)
 			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
-				damage = DAMAGE_LOW - (6 + (redirections*6))
+				damage = DAMAGE_LOW - 6
 			if (DAMAGE_MEDIUM-5 to DAMAGE_MEDIUM+5)
-				damage = DAMAGE_MEDIUM - (6 + (redirections*6))
+				damage = DAMAGE_MEDIUM - 6
 			if (DAMAGE_MEDIUM_HIGH-5 to DAMAGE_MEDIUM_HIGH+5)
-				damage = DAMAGE_MEDIUM_HIGH - (6 + (redirections*6))
+				damage = DAMAGE_MEDIUM_HIGH - 6
 			if (DAMAGE_HIGH-5 to DAMAGE_HIGH+5)
-				damage = DAMAGE_HIGH - (6 + (redirections*6))
+				damage = DAMAGE_HIGH - 6
 			if (DAMAGE_VERY_HIGH-5 to DAMAGE_VERY_HIGH+5)
-				damage = DAMAGE_VERY_HIGH - (6 + (redirections*6))
+				damage = DAMAGE_VERY_HIGH - 6
 			if (DAMAGE_OH_GOD-5 to DAMAGE_OH_GOD+5)
-				damage = DAMAGE_OH_GOD - (6 + (redirections*6))
+				damage = DAMAGE_OH_GOD - 6
 	// 50% chance of variable damage that stays within the boundaries of the bullet's damage tier
 	else
 		var/variation = 0
@@ -314,6 +314,7 @@
 				variation = damage - DAMAGE_OH_GOD
 		if (variation > 0)
 			damage += srand(-variation, variation)
+	damage += extra_damage_change
 
 	if(hit_zone)
 //		var/def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
@@ -352,80 +353,77 @@
 
 	return TRUE
 
-/obj/item/projectile/Bump(atom/A as mob|obj|turf|area, forced=0)
-	if(A == src)
-		return FALSE //no
+/obj/item/projectile/proc/handleTurf(var/turf/T, forced=0)
 
-	if(A == firer)
-		loc = A.loc
-		return FALSE //cannot shoot yourself
-
-	if (istype(A, /obj/structure/window/sandbag))
+	if((bumped && !forced) || (permutated.Find(T)))
 		return FALSE
 
-	if((bumped && !forced) || (A in permutated))
-		return FALSE
+	var/passthrough = TRUE //if the projectile should continue flying
+	var/passthrough_message = null
 
-	var/passthrough = FALSE //if the projectile should continue flying
-	var/distance = max(abs(loc.x - starting.x), abs(loc.y - starting.y))
-	//get_dist(starting,loc)
-	bumped = TRUE
-	if(ismob(A))
-		var/mob/M = A
-		if(istype(A, /mob/living))
-			//if they have a neck grab on someone, that person gets hit instead
-			var/obj/item/weapon/grab/G = locate() in M
-			if(G && G.state >= GRAB_NECK)
-				visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
-				if(Bump(G.affecting, forced=1))
-					return //If Bump() returns FALSE (keep going) then we continue on to attack M.
-			M.pre_bullet_act(src)
-			passthrough = !attack_mob(M, distance)
-		else
-			passthrough = TRUE //so ghosts don't stop bullets
-	else
-		A.pre_bullet_act(src)
-		passthrough = (A.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
-		if(isturf(A))
-			for(var/obj/O in A)
-				O.pre_bullet_act(src)
-				O.bullet_act(src, "chest")
-			for(var/mob/living/M in A)
-				M.pre_bullet_act(src)
-				attack_mob(M, distance)
+	for (var/mob/living/L in T.contents)
+		//if they have a neck grab on someone, that person gets hit instead
+		var/obj/item/weapon/grab/G = locate() in L
+		if(G && G.state >= GRAB_NECK)
+			visible_message("<span class='danger'>\The [L] uses [G.affecting] as a shield!</span>")
+			if(Bump(G.affecting, forced=1))
+				bumped = TRUE // for shrapnel
+				return FALSE
+		L.pre_bullet_act(src)
+		attack_mob(L)
+		if (!L.lying)
+			passthrough = FALSE
+	for (var/obj/O in T.contents)
+		O.pre_bullet_act(src)
+		if (O.density && !istype(O, /obj/structure))
+			passthrough = FALSE
+		else if (istype(O, /obj/structure))
+			var/obj/structure/S = O
+			S.bullet_act(src, def_zone)
+			if (!S.CanPass(src, get_step(S.loc, dir)))
+				passthrough = FALSE
+				passthrough_message = "<span class = 'warning'>The bullet goes through \the [S]!</span>"
+	//	else
+	//		passthrough = (O.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
 
 	//penetrating projectiles can pass through things that otherwise would not let them
-	if(!passthrough && penetrating > 0)
-		if(check_penetrate(A))
+	var/passthrough_turf = FALSE
+	if(density && !passthrough && penetrating > 0)
+		if(check_penetrate(T))
 			passthrough = TRUE
+			passthrough_turf = TRUE
+			passthrough_message = "<span class = 'warning'>The bullet penetrates \the [T]!</span>"
 		penetrating--
 
-	//the bullet passes through a dense object!
+	//the bullet passes through the turf
 	if(passthrough)
-		//move ourselves onto A so we can continue on our way.
-		if(A)
-			if(istype(A, /turf))
-				loc = A
-			else
-				loc = A.loc
-			permutated.Add(A)
-		bumped = FALSE //reset bumped variable!
+		//move ourselves onto T so we can continue on our way.
+		if (passthrough_turf || !T.density)
+			forceMove(T)
+		else
+			qdel(src)
+		permutated += T
+		if (passthrough_message)
+			T.visible_message(passthrough_message)
 		return FALSE
 
+	// for shrapnel
+	bumped = TRUE
+
+	// hack to make projectiles disappear immediately, not sure why qdel() doesn't work for this
+	loc = null
+
 	//stop flying
-	on_impact(A)
-
-	density = FALSE
-	invisibility = 101
-
+	on_impact(T)
 	qdel(src)
+
 	return TRUE
 
 /obj/item/projectile/ex_act()
 	return //explosions probably shouldn't delete projectiles
-
+/*
 /obj/item/projectile/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	return TRUE
+	return TRUE*/
 
 /obj/item/projectile/process()
 	//plot the initial trajectory
@@ -437,20 +435,17 @@
 		if(--kill_count < 1)
 			loc.pre_bullet_act(src)
 			on_impact(loc) //for any final impact behaviours
-			spawn (0.1)
-				qdel(src)
+			qdel(src)
 			return
 		if (firer && map.check_prishtina_block(firer, loc))
-			spawn (0.1)
-				qdel(src)
+			qdel(src)
 			return
 		if((!( current ) || loc == current))
 			current = locate(min(max(x + xo, TRUE), world.maxx), min(max(y + yo, TRUE), world.maxy), z)
 		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
 			loc.pre_bullet_act(src)
 			on_impact(loc)
-			spawn (0.1)
-				qdel(src)
+			qdel(src)
 			return
 
 		trajectory.increment()	// increment the current location
@@ -460,19 +455,10 @@
 			qdel(src)	// if it's left the world... kill it
 			return
 
-		for (var/obj/structure/structure in loc)
-			if (!structure.CanPass(src, loc))
-				qdel(src)
-				return
-
 		before_move()
 		Move(location.return_turf())
-
-		if(!bumped && !isturf(original))
-			if(loc == get_turf(original))
-				if(!(original in permutated))
-					if(Bump(original))
-						return
+		if (!firer || loc != firer.loc)
+			handleTurf(loc)
 
 		if(!did_muzzle_effect)
 			muzzle_effect(effect_transform)
@@ -539,7 +525,7 @@
 			P.pixel_x = location.pixel_x
 			P.pixel_y = location.pixel_y
 			P.activate()
-
+/*
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.
 	invisibility = 101 //Nope!  Can't see me!
@@ -547,15 +533,17 @@
 	xo = null
 	var/result = FALSE //To pass the message back to the gun.
 
-/obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area)
-	if(A == firer)
+/obj/item/projectile/test/handleTurf(var/turf/T)
+	if (!T || !T.density)
+		return FALSE
+	if (A == firer)
 		loc = A.loc
-		return //cannot shoot yourself
-	if(istype(A, /obj/item/projectile))
-		return
-	if(istype(A, /mob/living) || istype(A, /obj/vehicle))
+		return FALSE //cannot shoot yourself
+	if (istype(A, /obj/item/projectile))
+		return FALSE
+	if (istype(A, /mob/living) || istype(A, /obj/vehicle))
 		result = 2 //We hit someone, return TRUE!
-		return
+		return FALSE
 	result = TRUE
 	return
 
@@ -584,6 +572,8 @@
 	location = trajectory.return_location(location)		// update the locally stored location data
 
 	Move(location.return_turf())
+	if (!firer || loc != firer.loc)
+		handleTurf(loc)
 
 	var/mob/living/M = locate() in get_turf(src)
 	if(istype(M)) //If there is someting living...
@@ -592,13 +582,16 @@
 		M = locate() in get_step(src,targloc)
 		if(istype(M))
 			return TRUE
-
+*/
 //Helper proc to check if you can hit them or not.
+
 /proc/check_trajectory(atom/target as mob|obj, atom/firer as mob|obj, var/pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
 	if(!istype(target) || !istype(firer))
 		return FALSE
 
-	var/obj/item/projectile/test/trace = new /obj/item/projectile/test(get_turf(firer)) //Making the test....
+//	var/obj/item/projectile/test/trace = new /obj/item/projectile/test(get_turf(firer)) //Making the test....
+	var/obj/item/projectile/bullet/trace = new (get_turf(firer))
+	trace.invisibility = 100
 
 	//Set the flags and pass flags to that of the real projectile...
 	if(!isnull(flags))

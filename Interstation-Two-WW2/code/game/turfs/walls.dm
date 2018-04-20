@@ -80,9 +80,9 @@ var/list/global/wall_cache = list()
 		return PROCESS_KILL
 
 /turf/wall/bullet_act(var/obj/item/projectile/Proj)
-
+/*
 	if(istype(Proj,/obj/item/projectile/beam))
-		burn(2500)
+		burn(2500)*/
 
 	var/proj_damage = Proj.get_structure_damage()
 

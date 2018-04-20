@@ -361,6 +361,12 @@
 		item.loc = loc
 		visible_message("<span class = 'red'>[src] has thrown [item].</span>")
 
+		if (ismob(item))
+			for (var/obj/item/weapon/grab/G in contents)
+				if (G.affecting == item)
+					qdel(G)
+					break
+
 		if(!lastarea)
 			lastarea = get_area(loc)
 		if((istype(loc, /turf/space)) || (lastarea.has_gravity == FALSE))

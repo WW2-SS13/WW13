@@ -43,6 +43,7 @@
 /*
  * Bomb protection
  */
+ /*
 /obj/item/clothing/head/bomb_hood
 	name = "bomb hood"
 	desc = "Use in case of bomb."
@@ -52,7 +53,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	siemens_coefficient = FALSE
 
-
+/
 /obj/item/clothing/suit/bomb_suit
 	name = "bomb suit"
 	desc = "A suit designed for safety when handling explosives."
@@ -77,7 +78,7 @@
 	icon_state = "bombsuitsec"
 	allowed = list(/obj/item/weapon/gun/energy/*,/obj/item/weapon/melee/baton*/,/obj/item/weapon/handcuffs)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-
+*/
 /*
  * Radiation protection
  */

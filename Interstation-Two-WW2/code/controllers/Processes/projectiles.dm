@@ -18,14 +18,14 @@ var/datum/controller/process/projectile/projectile_process = null
 
 		var/obj/item/projectile/P = last_object
 
-		if(isnull(P)) // projectiles delete themselves in their process() proc
-			projectile_list -= P
+		// projectiles will qdel() and remove themselves from projectile_list automatically
+		if (!P)
 			continue
 
-		if(isnull(P.gcDestroyed))
+		if (isnull(P.gcDestroyed))
 			try
 				P.process()
-			catch(var/exception/e)
+			catch (var/exception/e)
 				catchException(e, P)
 		else
 			catchBadType(P)

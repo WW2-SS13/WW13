@@ -24,7 +24,7 @@
 		var/mob/living/L = target
 		shake_camera(L, 3, 2)
 
-/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
+/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob)
 	if(penetrating > 1 && damage > 20 && sprob(damage))
 		mob_passthrough_check = TRUE
 	else
@@ -64,9 +64,6 @@
 		chance = round(damage/2) + 10
 
 	if(sprob(chance))
-		if(A.opacity)
-			//display a message so that people on the other side aren't so confused
-			A.visible_message("<span class='warning'>\The [src] pierces through \the [A]!</span>")
 		return TRUE
 
 	return FALSE

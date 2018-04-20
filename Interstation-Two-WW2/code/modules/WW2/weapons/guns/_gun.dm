@@ -211,10 +211,12 @@
 					return null
 				return spick(adjacent_redirections[zone])
 		else if (!hitchance_delta)
-			log_debug("hitchance_delta in '[src].get_zone()' was a value <= 0! ([hitchance_delta]) (_gun.dm, ~line 200)")
+			if (hitchance_delta < 0)
+				log_debug("hitchance_delta in '[src].get_zone()' was a value < 0! ([hitchance_delta]) (_gun.dm, ~line 200)")
 			return null
 		else if (!hitchance_still)
-			log_debug("hitchance_still in '[src].get_zone()' was a value <= 0! ([hitchance_still]) (_gun.dm, ~line 200)")
+			if (hitchance_still < 0)
+				log_debug("hitchance_still in '[src].get_zone()' was a value < 0! ([hitchance_still]) (_gun.dm, ~line 200)")
 			return null
 
 	// We missed.

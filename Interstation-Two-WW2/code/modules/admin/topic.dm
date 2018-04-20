@@ -199,9 +199,11 @@
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/M = locate(href_list["mob"])
-		if(!ismob(M))
+		if(!istype(M))
 			usr << "This can only be used on instances of type /mob"
 			return
+
+		var/orig_client = M.client
 
 		var/delmob = FALSE
 		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
@@ -261,17 +263,21 @@
 						spawn (0.1)
 							H.loc = oloc_H
 
-							switch (H.original_job.default_language)
-								if ("German")
-									H.name = H.client.prefs.german_name
-									H.real_name = H.client.prefs.german_name
-								if ("Russian")
-									H.name = H.client.prefs.russian_name
-									H.real_name = H.client.prefs.russian_name
-								if ("Ukrainian")
-									H.name = H.client.prefs.ukrainian_name
-									H.real_name = H.client.prefs.ukrainian_name
-
+							var/client/client = (H.client ? H.client : orig_client)
+							if (client)
+								switch (H.original_job.default_language)
+									if ("German")
+										H.name = client.prefs.german_name
+										H.real_name = client.prefs.german_name
+									if ("Russian")
+										H.name = client.prefs.russian_name
+										H.real_name = client.prefs.russian_name
+									if ("Ukrainian")
+										H.name = client.prefs.ukrainian_name
+										H.real_name = client.prefs.ukrainian_name
+									if ("Italian")
+										H.name = client.prefs.italian_name
+										H.real_name = client.prefs.italian_name
 
 	else if(href_list["warn"])
 		usr.client.warn(href_list["warn"])
