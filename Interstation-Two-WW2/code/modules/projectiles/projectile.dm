@@ -382,6 +382,7 @@
 			S.bullet_act(src, def_zone)
 			if (!S.CanPass(src, get_step(S.loc, dir)))
 				passthrough = FALSE
+			else if (passthrough && S.density && !S.climable)
 				passthrough_message = "<span class = 'warning'>The bullet goes through \the [S]!</span>"
 	//	else
 	//		passthrough = (O.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
