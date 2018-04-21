@@ -140,7 +140,7 @@
 //Maybe this should be broken up into separate procs for each load method?
 /obj/item/weapon/gun/projectile/proc/load_ammo(var/obj/item/A, mob/user)
 
-	if (load_delay && !do_after(user, load_delay, src))
+	if (load_delay && !do_after(user, load_delay, src, can_move = TRUE))
 		return
 
 	// special scenario: A is an ammo box, src is a PTRD or something
