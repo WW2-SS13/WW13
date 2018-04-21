@@ -169,7 +169,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
-
+/*
 /datum/asset/simple/pda
 	assets = list(
 		"pda_atmos.png"			= 'icons/pda_icons/pda_atmos.png',
@@ -198,7 +198,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		"pda_signaler.png"		= 'icons/pda_icons/pda_signaler.png',
 		"pda_status.png"		= 'icons/pda_icons/pda_status.png'
 	)
-
+*/
 /datum/asset/nanoui
 	var/list/common = list()
 
