@@ -604,7 +604,7 @@ var/list/admin_verbs_host = list(
 					src << "<span class = 'danger'>You need Manager+ permissions to drop a custom bomb this big.</span>"
 					return
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
-	message_admins("<span class = 'notice'>[ckey] creating an admin explosion at [epicenter.loc].</span>")
+	message_admins("[ckey] creating an admin explosion at [epicenter.loc].")
 /*
 
 /client/proc/give_disease2(mob/T as mob in mob_list) // -- Giacom
