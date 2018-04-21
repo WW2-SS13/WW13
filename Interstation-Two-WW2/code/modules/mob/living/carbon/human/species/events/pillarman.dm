@@ -134,7 +134,7 @@
 
 /mob/living/carbon/human/pillarman/Stat()
 	. = ..()
-	if (.)
+	if (. && client.status_tabs)
 		stat("")
 		stat(stat_header("Pillar Man"))
 		stat("")

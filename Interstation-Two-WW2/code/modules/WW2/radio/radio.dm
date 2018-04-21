@@ -332,7 +332,23 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 		used_radios += radio
 
-		spawn (3)
+		var/radio_delay = 1
+		var/area/area = get_area(src)
+
+		if (area)
+			if (area.location == AREA_INSIDE)
+				++radio_delay
+			if (area.is_void_area)
+				++radio_delay
+			switch (faction)
+				if (GERMAN)
+					if (!istype(area, /area/prishtina/german))
+						++radio_delay
+				if (SOVIET)
+					if (!istype(area, /area/prishtina/soviet))
+						++radio_delay
+
+		spawn (radio_delay)
 			if (!stuttering || stuttering < 4)
 				radio.broadcast(rhtml_encode(message), src, FALSE)
 			else

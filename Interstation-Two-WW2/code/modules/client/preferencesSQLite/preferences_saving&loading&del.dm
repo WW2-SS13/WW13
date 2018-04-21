@@ -102,6 +102,9 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 	if (!client_ckey)
 		return FALSE
 
+	if (real_name == "PLACEHOLDER")
+		real_name = "[capitalize(client.key)] #[slot]"
+
 	var/name_to_remember = real_name
 	for (var/num in 1 to internal_table.len)
 		if (num != text2num(slot))

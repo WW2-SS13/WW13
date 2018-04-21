@@ -140,7 +140,7 @@ var/list/preferences_datums = list()
 		if (preferences_exist(1))
 			load_preferences(1)
 		else
-			real_name = random_name(gender, species)
+//			real_name = random_name(gender, species)
 			german_name = random_german_name(gender, species)
 			russian_name = random_russian_name(gender, species)
 			ukrainian_name = random_ukrainian_name(gender, species)

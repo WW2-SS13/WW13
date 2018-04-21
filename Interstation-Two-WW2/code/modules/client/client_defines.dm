@@ -51,3 +51,5 @@
 	var/next_normal_respawn = -1
 
 	var/last_ping = 0
+
+	var/status_tabs = TRUE

@@ -647,7 +647,7 @@
 	..()
 	. = (is_client_active(10 MINUTES))
 	if(.)
-		if(statpanel("Status") && ticker/* && ticker.current_state != GAME_STATE_PREGAME*/)
+		if(client.status_tabs && statpanel("Status") && ticker)
 			stat("")
 			stat(stat_header("Server"))
 			stat("")
@@ -689,7 +689,7 @@
 				stat("Ping (Average):", "[our_ping] ms ([avg_ping] ms)")
 			stat("Time Dilation:", time_track ? "[ceil(time_track.dilation)]%" : "???")
 
-		if(client.holder)
+		if(client.holder && client.status_tabs)
 			if(statpanel("Status"))
 				stat("")
 				stat(stat_header("Developer"))
@@ -703,7 +703,7 @@
 				if(processScheduler)
 					processScheduler.statProcesses()*/
 
-		if(listed_turf && client)
+		if(listed_turf && client && client.status_tabs)
 			if(!TurfAdjacent(listed_turf))
 				listed_turf = null
 			else

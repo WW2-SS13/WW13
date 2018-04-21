@@ -16,7 +16,7 @@ em						{font-style: normal;font-weight: bold;}
 						{color: #CD4C6C;}
 
 .prefix					{font-weight: bold;}
-.log_message			{color: #E1E1FF;	font-weight: bold;}
+.log_message			{color: #BB85F8;	font-weight: bold;}
 
 a, a:link, a:visited, :active, a:hover
 						{color: #CD4C6C;}
@@ -76,6 +76,7 @@ h1.alert, h2.alert		{color: #ff0000;}
 .rose					{color: #ff5050;}
 .info					{color: #E1E1FF;}
 .notice					{color: #E1E1FF;}
+.ping					{color: #E1E1FF; font-weight: bold;}
 
 .reflex_shoot			{color: #000099; font-style: italic;}
 

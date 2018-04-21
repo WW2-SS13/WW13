@@ -44,6 +44,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 				processScheduler.start()
 				message_admins("processScheduler.start() was called at gameticker.pregame().")
 				log_admin("processScheduler.start() was called at gameticker.pregame().")
+				roundstart_tips = file2list("config/tips.txt")
 
 		if (!lobby_music_player)
 			lobby_music_player = new
@@ -54,7 +55,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			pregame_timeleft = 180
 			if (serverswap_open_status)
 				world << "<b><span style = 'notice'>Welcome to the pre-game lobby!</span></b>"
-				world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+				world << "The game will start in [pregame_timeleft] seconds."
 
 			while(current_state == GAME_STATE_PREGAME)
 				for(var/i=0, i<10, i++)
@@ -96,6 +97,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			current_state = GAME_STATE_PREGAME
 			if (serverswap_open_status)
 				world << "<b>Unable to choose playable game mode.</b> Reverting to pre-game lobby."
+				roundstart_tips = file2list("config/tips.txt")
 			return FALSE
 		if(secret_force_mode != "secret")
 			mode = config.pick_mode(secret_force_mode)
@@ -111,6 +113,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		current_state = GAME_STATE_PREGAME
 		if (serverswap_open_status)
 			world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
+			roundstart_tips = file2list("config/tips.txt")
 		return FALSE
 
 	job_master.ResetOccupations()
@@ -120,7 +123,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	if(!mode.can_start() && !admin_started)
 		if (serverswap_open_status)
-			world << "<b>Unable to start the game.</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
+			world << "<b>Unable to start the game.</b> Not enough players, [mode.required_players] players needed. Reverting to the pre-game lobby."
+			roundstart_tips = file2list("config/tips.txt")
 		current_state = GAME_STATE_PREGAME
 		mode.fail_setup()
 		mode = null

@@ -52,11 +52,12 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		alpha = 127
 
 		gender = body.gender
-		if(body.mind && body.mind.name)
-			name = body.mind.name
+
+		if(body.real_name)
+			name = body.real_name
 		else
-			if(body.real_name)
-				name = body.real_name
+			if (body.mind.name)
+				name = body.mind.name
 			else
 				if(gender == MALE)
 					name = capitalize(spick(first_names_male)) + " " + capitalize(spick(last_names))

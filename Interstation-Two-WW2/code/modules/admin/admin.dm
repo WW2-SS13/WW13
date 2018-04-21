@@ -504,11 +504,10 @@ proc/admin_notice(var/message, var/rights)
 		alert("Unable to start the game as it is not set up.")
 		return
 	if(ticker.current_state == GAME_STATE_PREGAME)
-		ticker.current_state = GAME_STATE_SETTING_UP
+		ticker.pregame_timeleft = 1
 		ticker.admin_started = TRUE
 		log_admin("[usr.key] has started the game.")
 		message_admins("[usr.key] has started the game.")
-
 		return TRUE
 	else
 		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"

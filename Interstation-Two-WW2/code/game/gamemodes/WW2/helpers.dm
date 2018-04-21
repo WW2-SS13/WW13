@@ -12,7 +12,7 @@
 		if(!job)
 			continue
 
-		if(H.stat != DEAD && H.stat != UNCONSCIOUS && !H.restrained() && H.client)
+		if(H.stat != DEAD && H.stat != UNCONSCIOUS && !H.restrained() && ((H.weakened+H.stunned) == 0) && H.client)
 			switch(job.base_type_flag())
 				if(GERMAN)
 					++de

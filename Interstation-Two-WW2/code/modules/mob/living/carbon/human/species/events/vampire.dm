@@ -57,7 +57,7 @@
 	playsound(get_turf(src), 'sound/effects/bloodsuck.ogg', 100)
 	for (var/v in 1 to 5)
 		spawn ((v-1) * 10)
-			if (do_after(src, 10, H))
+			if (do_after(src, 10, H, check_for_repeats = FALSE))
 				visible_message("<span class = 'danger'>[src] absorbs [H]'s blood through his fingers!</span>")
 				blood = min(1.50, blood+0.10)
 				var/H_bloodloss = min(112, H.vessel.total_volume)

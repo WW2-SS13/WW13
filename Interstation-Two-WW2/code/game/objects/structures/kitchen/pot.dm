@@ -89,6 +89,7 @@
 				H.remove_from_mob(I)
 				I.loc = src
 				visible_message("<span class = 'info'>[H] puts [I] in the pot.</span>")
+				stew_ticks = max(stew_ticks - 5, 0)
 				if (state == STATE_WATER)
 					state = STATE_BOILING
 					update_icon()

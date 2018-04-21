@@ -68,6 +68,7 @@
 	 * Right now, only boltactions & heavysniper guns get a high KD chance. */\
 
 	var/KD_chance = 5
+	var/execution = FALSE
 
 /obj/item/projectile/Del()
 	projectile_list -= src
@@ -266,7 +267,7 @@
 	var/miss_chance = mygun.calculate_miss_chance(def_zone, target_mob)
 
 	// execution bullets will never miss
-	if (istype(src, /obj/item/projectile/bullet/rifle/murder) || istype(src, /obj/item/projectile/bullet/shotgun/murder))
+	if (execution)
 		miss_chance = 0
 	else
 		// much smaller chance to miss someone you targeted
@@ -386,7 +387,7 @@
 			if (!untouchable.Find(AM))
 				if (isliving(AM) && AM != firer)
 					var/mob/living/L = AM
-					if (!L.lying || T == get_turf(original))
+					if (!L.lying || T == get_turf(original) || execution)
 						// if they have a neck grab on someone, that person gets hit instead
 						var/obj/item/weapon/grab/G = locate() in L
 						if(G && G.state >= GRAB_NECK)
@@ -400,18 +401,19 @@
 							passthrough = FALSE
 				else if (isobj(AM) && AM != firedfrom)
 					var/obj/O = AM
-					O.pre_bullet_act(src)
-					if (O.bullet_act(src, def_zone) != PROJECTILE_CONTINUE)
-						if (O.density && !istype(O, /obj/structure))
-							passthrough = FALSE
-						else if (istype(O, /obj/structure))
-							var/obj/structure/S = O
-							if (!S.CanPass(src, original))
+					if (O.density)
+						O.pre_bullet_act(src)
+						if (O.bullet_act(src, def_zone) != PROJECTILE_CONTINUE)
+							if (O.density && !istype(O, /obj/structure))
 								passthrough = FALSE
-				//				log_debug("ignored [S] (1)")
-							else if (S.density)
-								if (!S.climbable)
-									passthrough_message = "<span class = 'warning'>The bullet penetrates through \the [S]!</span>"
+							else if (istype(O, /obj/structure))
+								var/obj/structure/S = O
+								if (!S.CanPass(src, original))
+									passthrough = FALSE
+					//				log_debug("ignored [S] (1)")
+								else if (S.density)
+									if (!S.climbable)
+										passthrough_message = "<span class = 'warning'>The bullet penetrates through \the [S]!</span>"
 	//		else
 		//		log_debug("ignored [AM] (2)")
 
