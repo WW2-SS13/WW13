@@ -15,12 +15,6 @@
 	attack_verb = list("attacked", "slapped", "whacked")
 	var/mob/living/carbon/brain/brainmob = null
 
-/obj/item/organ/brain/xeno
-	name = "thinkpan"
-	desc = "It looks kind of like an enormous wad of purple bubblegum."
-	icon = 'icons/mob/alien.dmi'
-	icon_state = "chitin"
-
 /obj/item/organ/brain/New()
 	..()
 	health = config.default_brain_health
@@ -78,17 +72,3 @@
 		else
 			target.key = brainmob.key
 	..()
-
-/obj/item/organ/brain/slime
-	name = "slime core"
-	desc = "A complex, organic knot of jelly and crystalline particles."
-	robotic = 2
-	icon = 'icons/mob/slimes.dmi'
-	icon_state = "green slime extract"
-
-/obj/item/organ/brain/golem
-	name = "chem"
-	desc = "A tightly furled roll of paper, covered with indecipherable runes."
-	robotic = 2
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "scroll"
