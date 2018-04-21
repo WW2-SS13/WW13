@@ -1,4 +1,4 @@
-/turf/shuttle
+/*/turf/shuttle
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
 	thermal_conductivity = 0.05
@@ -20,7 +20,7 @@
 	level = TRUE
 
 /turf/shuttle/plating/is_plating()
-	return TRUE
+	return TRUE*/
 
 /turf/floor/plating/under
 	name = "underplating"
@@ -296,7 +296,7 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gcircuit"
 
-
+/*
 /turf/shuttle
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
@@ -333,7 +333,7 @@
 //	oxygen = FALSE
 //	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
 
-
+*/
 /turf/floor/grass
 	name = "Grass patch"
 	icon_state = "grass1"

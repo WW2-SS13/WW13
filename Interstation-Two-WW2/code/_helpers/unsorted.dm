@@ -727,13 +727,13 @@ proc/GaussRandRound(var/sigma,var/roundto)
 
 					for(var/obj/O in T)
 
-						// Reset the shuttle corners
+				/*		// Reset the shuttle corners
 						if(O.tag == "delete me")
 							X.icon = 'icons/turf/shuttle.dmi'
 							X.icon_state = replacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
 							X.name = "wall"
 							qdel(O) // prevents multiple shuttle corners from stacking
-							continue
+							continue*/
 						if(!istype(O,/obj)) continue
 						O.loc = X
 					for(var/mob/M in T)
