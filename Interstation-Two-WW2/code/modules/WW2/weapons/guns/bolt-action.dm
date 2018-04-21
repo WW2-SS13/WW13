@@ -91,7 +91,7 @@
 /obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user)
 	if(!check_bolt)//Keeps people from spamming the bolt
 		check_bolt++
-		if(!do_after(user, 3, src, FALSE, TRUE,INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
+		if(!do_after(user, 2, src, FALSE, TRUE, INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
 			check_bolt--
 			return
 	else return
