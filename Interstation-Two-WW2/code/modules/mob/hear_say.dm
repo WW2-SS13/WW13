@@ -79,7 +79,7 @@
 /mob/proc/on_hear_say(var/message)
 	src << message
 
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/device/radio/source, var/hard_to_hear = FALSE)
+/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/radio/source, var/hard_to_hear = FALSE)
 
 	if(!client)
 		return
@@ -169,10 +169,10 @@
 /proc/say_timestamp()
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
 
-/mob/proc/on_hear_radio(var/obj/item/device/radio/source, var/fullmessage)
+/mob/proc/on_hear_radio(var/obj/item/radio/source, var/fullmessage)
 	src << "\icon[getFlatIcon(source)] [fullmessage]"
 
-/mob/observer/ghost/on_hear_radio(var/obj/item/device/radio/source, var/fullmessage)
+/mob/observer/ghost/on_hear_radio(var/obj/item/radio/source, var/fullmessage)
 	src << "\icon[getFlatIcon(source)] [fullmessage]"
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)

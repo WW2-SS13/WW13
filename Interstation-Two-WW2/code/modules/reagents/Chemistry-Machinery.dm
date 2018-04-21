@@ -196,7 +196,7 @@
 
 /obj/structure/chemical_dispenser/soda/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
-	if(istype(B, /obj/item/device/multitool))
+	if(istype(B, /obj/item/multitool))
 		if(hackedcheck == FALSE)
 			user << "You change the mode from 'McNano' to 'Pizza King'."
 			dispensable_reagents += list("thirteenloko","grapesoda")
@@ -222,7 +222,7 @@
 /obj/structure/chemical_dispenser/beer/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
 /*
-	if(istype(B, /obj/item/device/multitool))
+	if(istype(B, /obj/item/multitool))
 		if(hackedcheck == FALSE)
 			user << "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes."
 			dispensable_reagents += list("goldschlager","patron","watermelonjuice","berryjuice")

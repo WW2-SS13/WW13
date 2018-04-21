@@ -160,7 +160,7 @@
 		insert_rag(W, user)
 		update_icon()
 		return
-	else if(rag && (istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/device/flashlight/flare) && W:on) || (istype(W, /obj/item/weapon/weldingtool) && W:welding)))
+	else if(rag && (istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/flashlight/flare) && W:on) || (istype(W, /obj/item/weapon/weldingtool) && W:welding)))
 		rag.attackby(W, user)
 		update_icon()
 		return

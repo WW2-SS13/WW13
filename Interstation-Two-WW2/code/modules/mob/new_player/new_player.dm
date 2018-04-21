@@ -526,12 +526,12 @@
 
 	if (character.original_job)
 		if (character.original_job.base_type_flag() == SOVIET)
-			var/obj/item/device/radio/R = main_radios[SOVIET]
+			var/obj/item/radio/R = main_radios[SOVIET]
 			if (R && R.loc)
 				spawn (10)
 					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcement System")
 		else if (character.original_job.base_type_flag() == GERMAN)
-			var/obj/item/device/radio/R = main_radios[GERMAN]
+			var/obj/item/radio/R = main_radios[GERMAN]
 			if (R && R.loc)
 				spawn (10)
 					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcement System")

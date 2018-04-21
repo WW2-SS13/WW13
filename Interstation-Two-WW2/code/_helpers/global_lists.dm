@@ -62,7 +62,7 @@ var/global/list/main_radios = list()
 var/global/list/poster_designs = list()
 
 // Uplinks
-var/list/obj/item/device/uplink/world_uplinks = list()
+var/list/obj/item/uplink/world_uplinks = list()
 
 //Preferences stuff
 	//Bodybuilds

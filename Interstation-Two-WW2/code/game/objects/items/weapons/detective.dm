@@ -41,13 +41,13 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/attackby(obj/item/W, mob/user)
 	if(!on_fire)
-		if(istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/device/flashlight/flare) && W:on) || (istype(W, /obj/item/weapon/weldingtool) && W:welding))
+		if(istype(W, /obj/item/weapon/flame) || istype(W, /obj/item/clothing/mask/smokable/cigarette) || (istype(W, /obj/item/flashlight/flare) && W:on) || (istype(W, /obj/item/weapon/weldingtool) && W:welding))
 			var/cont = FALSE
 			var/obj/item/weapon/flame/F = W
 			if (istype(F) && F.lit)
 				cont = TRUE
-			else if (istype(W, /obj/item/device/flashlight))
-				var/obj/item/device/flashlight/FL = W
+			else if (istype(W, /obj/item/flashlight))
+				var/obj/item/flashlight/FL = W
 				if (FL.on)
 					cont = TRUE
 			else if (istype(W, /obj/item/weapon/weldingtool))

@@ -1,25 +1,25 @@
 /proc/isassembly(O)
-	if(istype(O, /obj/item/device/assembly))
+	if(istype(O, /obj/item/assembly))
 		return TRUE
 	return FALSE
 
 /proc/isigniter(O)
-	if(istype(O, /obj/item/device/assembly/igniter))
+	if(istype(O, /obj/item/assembly/igniter))
 		return TRUE
 	return FALSE
 
 /proc/isinfared(O)
-	if(istype(O, /obj/item/device/assembly/infra))
+	if(istype(O, /obj/item/assembly/infra))
 		return TRUE
 	return FALSE
 /*
 /proc/isprox(O)
-	if(istype(O, /obj/item/device/assembly/prox_sensor))
+	if(istype(O, /obj/item/assembly/prox_sensor))
 		return TRUE
 	return FALSE
 */
 /proc/istimer(O)
-	if(istype(O, /obj/item/device/assembly/timer))
+	if(istype(O, /obj/item/assembly/timer))
 		return TRUE
 	return FALSE
 

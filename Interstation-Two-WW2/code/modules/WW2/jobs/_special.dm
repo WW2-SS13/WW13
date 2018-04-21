@@ -306,22 +306,22 @@
 		spawn (0)
 			if (istype(original_job, /datum/job/soviet))
 				if (original_job.is_officer)
-					equip_to_slot_or_del(new /obj/item/device/radio/rbs/command(src), slot_s_store)
+					equip_to_slot_or_del(new /obj/item/radio/rbs/command(src), slot_s_store)
 				else
-					equip_to_slot_or_del(new /obj/item/device/radio/rbs(src), slot_s_store)
+					equip_to_slot_or_del(new /obj/item/radio/rbs(src), slot_s_store)
 			else if (istype(original_job, /datum/job/german) || istype(original_job, /datum/job/italian))
 				if (original_job.is_SS)
 					if (original_job.is_officer)
-						equip_to_slot_or_del(new /obj/item/device/radio/feldfu/SS/command(src), slot_s_store)
+						equip_to_slot_or_del(new /obj/item/radio/feldfu/SS/command(src), slot_s_store)
 					else
-						equip_to_slot_or_del(new /obj/item/device/radio/feldfu/SS(src), slot_s_store)
+						equip_to_slot_or_del(new /obj/item/radio/feldfu/SS(src), slot_s_store)
 				else
 					if (original_job.is_officer)
-						equip_to_slot_or_del(new /obj/item/device/radio/feldfu/command(src), slot_s_store)
+						equip_to_slot_or_del(new /obj/item/radio/feldfu/command(src), slot_s_store)
 					else
-						equip_to_slot_or_del(new /obj/item/device/radio/feldfu(src), slot_s_store)
+						equip_to_slot_or_del(new /obj/item/radio/feldfu(src), slot_s_store)
 			else if (istype(original_job, /datum/job/partisan))
-				equip_to_slot_or_del(new /obj/item/device/radio/partisan(src), slot_s_store)
+				equip_to_slot_or_del(new /obj/item/radio/partisan(src), slot_s_store)
 
 	src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while its on your back, prefix your message with ':b'.</b></span>"
 

@@ -31,7 +31,7 @@
 	if (ticker && ticker.mode)
 		var/datum/game_mode/ww2/mode = ticker.mode
 		if (istype(mode) && mode.season == "WINTER")
-			var/obj/item/device/radio/radio = null
+			var/obj/item/radio/radio = null
 			if (istype(wear_suit, /obj/item/clothing/suit/radio_harness))
 				radio = s_store
 				remove_from_mob(wear_suit)

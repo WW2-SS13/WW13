@@ -39,7 +39,7 @@
 					open =! open
 					user.show_message(text("<span class='notice'>You [] the service panel.</span>", (open ? "open" : "close")))
 				return
-			if (/*(istype(W, /obj/item/device/multitool)) && */(open == TRUE)&& (!l_hacking))
+			if (/*(istype(W, /obj/item/multitool)) && */(open == TRUE)&& (!l_hacking))
 				user.show_message("<span class='notice'>Now attempting to reset internal memory, please hold.</span>", TRUE)
 				l_hacking = TRUE
 				if (do_after(usr, 100, src))

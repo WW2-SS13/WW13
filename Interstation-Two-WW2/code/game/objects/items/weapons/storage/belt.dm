@@ -41,7 +41,7 @@
 		/obj/item/weapon/weldingtool/ww2,
 		/obj/item/weapon/wirecutters/boltcutters,
 		/obj/item/weapon/wrench,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
@@ -81,13 +81,13 @@
 		/obj/item/weapon/flame/lighter/zippo,
 		/obj/item/weapon/storage/pill_bottle,
 		/obj/item/stack/medical,
-		/obj/item/device/flashlight/pen,
+		/obj/item/flashlight/pen,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/head/surgery,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/weapon/crowbar/prybar,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/weapon/extinguisher/mini
 		)
 

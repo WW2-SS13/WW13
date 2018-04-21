@@ -205,7 +205,7 @@
 			G.clean_blood()
 
 /obj/structure/shower/attackby(obj/item/I as obj, mob/user as mob)
-//	if(I.type == /obj/item/device/analyzer)
+//	if(I.type == /obj/item/analyzer)
 	//	user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
 	if(istype(I, /obj/item/weapon/wrench))
 		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings

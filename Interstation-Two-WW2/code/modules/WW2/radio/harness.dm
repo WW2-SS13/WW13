@@ -3,4 +3,4 @@
 	desc = "Use this to hold your big clunky radios."
 	icon_state = "radio_harness"
 	item_state = "radio_harness"
-	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)

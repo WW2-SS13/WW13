@@ -212,8 +212,8 @@
 
 	if (istype(o))
 
-		if (istype(o, /obj/item/device/mine))
-			var/obj/item/device/mine/mine = o
+		if (istype(o, /obj/item/mine))
+			var/obj/item/mine/mine = o
 			mine.trigger(src)
 			damage += x_percent_of_max_damage(srand(5,7))
 			update_damage_status()

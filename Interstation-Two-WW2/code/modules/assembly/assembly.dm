@@ -1,4 +1,4 @@
-/obj/item/device/assembly
+/obj/item/assembly
 	name = "assembly"
 	desc = "A small electronic device that should never exist."
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
@@ -13,7 +13,7 @@
 
 	var/secured = TRUE
 	var/list/attached_overlays = null
-	var/obj/item/device/assembly_holder/holder = null
+	var/obj/item/assembly_holder/holder = null
 	var/cooldown = FALSE//To prevent spam
 	var/wires = WIRE_RECEIVE | WIRE_PULSE
 
@@ -88,8 +88,8 @@
 		return secured
 
 
-	attach_assembly(var/obj/item/device/assembly/A, var/mob/user)
-		holder = new/obj/item/device/assembly_holder(get_turf(src))
+	attach_assembly(var/obj/item/assembly/A, var/mob/user)
+		holder = new/obj/item/assembly_holder(get_turf(src))
 		if(holder.attach(A,src,user))
 			user << "<span class = 'notice'>You attach \the [A] to \the [src]!</span>"
 			return TRUE
@@ -98,7 +98,7 @@
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(isassembly(W))
-			var/obj/item/device/assembly/A = W
+			var/obj/item/assembly/A = W
 			if((!A.secured) && (!secured))
 				attach_assembly(A,user)
 				return
@@ -137,8 +137,8 @@
 	interact(mob/user as mob)
 		return //HTML MENU FOR WIRES GOES HERE
 
-/obj/item/device/assembly/nano_host()
-    if(istype(loc, /obj/item/device/assembly_holder))
+/obj/item/assembly/nano_host()
+    if(istype(loc, /obj/item/assembly_holder))
         return loc.nano_host()
     return ..()
 

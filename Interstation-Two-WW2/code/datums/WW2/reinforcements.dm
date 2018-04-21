@@ -205,7 +205,7 @@ var/datum/reinforcements/reinforcements_master
 			ret = TRUE
 	reinforcement_pool[SOVIET] = list()
 	lock_check()
-	var/obj/item/device/radio/R = main_radios[SOVIET]
+	var/obj/item/radio/R = main_radios[SOVIET]
 	if (R && R.loc)
 		spawn (10)
 			R.announce("A new squadron has been deployed.", "Reinforcements Announcement System")
@@ -230,7 +230,7 @@ var/datum/reinforcements/reinforcements_master
 			ret = TRUE
 	reinforcement_pool[GERMAN] = list()
 	lock_check()
-	var/obj/item/device/radio/R = main_radios[GERMAN]
+	var/obj/item/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
 		spawn (10)
 			R.announce("A new squadron has been deployed.", "Reinforcements Announcement System")

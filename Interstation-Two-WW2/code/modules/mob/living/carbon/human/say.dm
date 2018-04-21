@@ -190,47 +190,47 @@
 	switch(message_mode)
 		if("intercom")
 			if(!restrained())
-				for(var/obj/item/device/radio/intercom/I in view(1))
+				for(var/obj/item/radio/intercom/I in view(1))
 					I.talk_into(src, message, null, verb, speaking)
 					I.add_fingerprint(src)
 					used_radios += I
 		if("headset")
-			if(l_ear && istype(l_ear,/obj/item/device/radio))
-				var/obj/item/device/radio/R = l_ear
+			if(l_ear && istype(l_ear,/obj/item/radio))
+				var/obj/item/radio/R = l_ear
 				R.talk_into(src,message,null,verb,speaking)
 				used_radios += l_ear
-			else if(r_ear && istype(r_ear,/obj/item/device/radio))
-				var/obj/item/device/radio/R = r_ear
+			else if(r_ear && istype(r_ear,/obj/item/radio))
+				var/obj/item/radio/R = r_ear
 				R.talk_into(src,message,null,verb,speaking)
 				used_radios += r_ear
 		if("right ear")
-			var/obj/item/device/radio/R
+			var/obj/item/radio/R
 			var/has_radio = FALSE
-			if(r_ear && istype(r_ear,/obj/item/device/radio))
+			if(r_ear && istype(r_ear,/obj/item/radio))
 				R = r_ear
 				has_radio = TRUE
-			if(r_hand && istype(r_hand, /obj/item/device/radio))
+			if(r_hand && istype(r_hand, /obj/item/radio))
 				R = r_hand
 				has_radio = TRUE
 			if(has_radio)
 				R.talk_into(src,message,null,verb,speaking)
 				used_radios += R
 		if("left ear")
-			var/obj/item/device/radio/R
+			var/obj/item/radio/R
 			var/has_radio = FALSE
-			if(l_ear && istype(l_ear,/obj/item/device/radio))
+			if(l_ear && istype(l_ear,/obj/item/radio))
 				R = l_ear
 				has_radio = TRUE
-			if(l_hand && istype(l_hand,/obj/item/device/radio))
+			if(l_hand && istype(l_hand,/obj/item/radio))
 				R = l_hand
 				has_radio = TRUE
 			if(has_radio)
 				R.talk_into(src,message,null,verb,speaking)
 				used_radios += R
 		if("harness")
-			var/obj/item/device/radio/R
+			var/obj/item/radio/R
 			var/has_radio = FALSE
-			if(s_store && istype(s_store,/obj/item/device/radio))
+			if(s_store && istype(s_store,/obj/item/radio))
 				R = s_store
 				has_radio = TRUE
 			if(has_radio)
@@ -241,10 +241,10 @@
 			return TRUE
 		else
 			if(message_mode)
-				if(l_ear && istype(l_ear,/obj/item/device/radio))
+				if(l_ear && istype(l_ear,/obj/item/radio))
 					l_ear.talk_into(src,message, message_mode, verb, speaking)
 					used_radios += l_ear
-				else if(r_ear && istype(r_ear,/obj/item/device/radio))
+				else if(r_ear && istype(r_ear,/obj/item/radio))
 					r_ear.talk_into(src,message, message_mode, verb, speaking)
 					used_radios += r_ear
 

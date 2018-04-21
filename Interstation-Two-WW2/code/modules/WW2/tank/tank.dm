@@ -18,7 +18,7 @@
 	var/locked = TRUE
 	var/heal_damage[2]
 	var/named = FALSE
-	var/obj/item/device/radio/radio = null
+	var/obj/item/radio/radio = null
 	pixel_x = -32
 
 /obj/tank/New()

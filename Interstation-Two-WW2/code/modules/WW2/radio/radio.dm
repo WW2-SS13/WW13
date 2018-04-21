@@ -109,7 +109,7 @@ var/global/list/default_ukrainian_channels = list(
 var/global/list/all_channels = default_german_channels | command_german_channels | SS_german_channels | SS_command_german_channels | default_soviet_channels | command_soviet_channels | default_ukrainian_channels
 
 
-/obj/item/device/radio
+/obj/item/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
 	desc = "A portable communication device. You can speak through it with ':b' when it's in your suit storage slot, and ':l' or ':r' when its in your hand. ';' speaks with the first radio available on your person, and ':f' uses a radio in front of you."
@@ -141,7 +141,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 	var/faction = null
 
-/obj/item/device/radio/New()
+/obj/item/radio/New()
 	..()
 
 	// channels added before this is called
@@ -151,7 +151,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	if (!isturf(loc))
 		notyetmoved = FALSE
 
-	if (istype(src, /obj/item/device/radio/intercom) && !istype(src, /obj/item/device/radio/intercom/loudspeaker))
+	if (istype(src, /obj/item/radio/intercom) && !istype(src, /obj/item/radio/intercom/loudspeaker))
 		notyetmoved = FALSE
 		if (loc)
 			setup_announcement_system("Arrivals Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
@@ -180,39 +180,39 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		for (var/channel in internal_channels)
 			listening_on_channel[radio_freq2name(channel)] = TRUE
 
-/obj/item/device/radio/Move()
+/obj/item/radio/Move()
 	..()
 	notyetmoved = FALSE
 
-/obj/item/device/radio/pickup(mob/user)
+/obj/item/radio/pickup(mob/user)
 	..(user)
 	notyetmoved = FALSE
 
-/obj/item/device/radio/proc/list_internal_channels(var/mob/user)
+/obj/item/radio/proc/list_internal_channels(var/mob/user)
 	var/dat[0]
 	for(var/internal_chan in internal_channels)
 		dat.Add(list(list("chan" = internal_chan, "display_name" = radio_freq2name(text2num(internal_chan)), "chan_span" = radio_freq2span(text2num(internal_chan)))))
 
 	return dat
 
-/obj/item/device/radio/proc/list_channels(var/mob/user)
+/obj/item/radio/proc/list_channels(var/mob/user)
 	return list_internal_channels(user)
 
-/obj/item/device/radio/proc/format_frequency(var/f)
+/obj/item/radio/proc/format_frequency(var/f)
 	return "[round(f / 10)].[f % 10]"
 
-/obj/item/device/radio/proc/span_class()
+/obj/item/radio/proc/span_class()
 	return radio_freq2span(frequency)
 
 /* New code for interacting with radios - Kachnov */
 
-/obj/item/device/radio/attack_hand(mob/user as mob)
+/obj/item/radio/attack_hand(mob/user as mob)
 	if (anchored)
 		attack_self(user)
 	else
 		return ..(user)
 
-/obj/item/device/radio/attack_self(mob/user as mob)
+/obj/item/radio/attack_self(mob/user as mob)
 	user.set_machine(src)
 	if (is_supply_radio && faction)
 		var/passcheck = input(user, "Enter the password.") as num
@@ -222,13 +222,13 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 			return
 	interact(user)
 
-/obj/item/device/radio/interact(mob/user)
+/obj/item/radio/interact(mob/user)
 	if(!user)
 		return FALSE
 
 	return ui_interact(user)
 
-/obj/item/device/radio/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
+/obj/item/radio/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
 	var/data[0]
 
 	data["mic_status"] = broadcasting
@@ -270,7 +270,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 /mob/living/carbon/human/proc/post_say(var/message)
 
-	if (!locate(/obj/item/device/radio) in range(1, src))
+	if (!locate(/obj/item/radio) in range(1, src))
 		return
 
 	if (stat != CONSCIOUS)
@@ -283,7 +283,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		possible_radio_locations += contents
 	var/turf/getstep = get_step(src, dir)
 
-	for (var/obj/item/device/radio/radio in possible_radio_locations)
+	for (var/obj/item/radio/radio in possible_radio_locations)
 		if (!used_radio_turfs.Find(radio.faction))
 			used_radio_turfs[radio.faction] = list()
 		if (used_radio_turfs[radio.faction].Find(get_turf(radio)))
@@ -293,7 +293,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		if (radio.notyetmoved)
 			continue
 		if (!dd_hasprefix(message, ":f"))
-			if (!istype(radio, /obj/item/device/radio/intercom))
+			if (!istype(radio, /obj/item/radio/intercom))
 				if (!istype(radio.loc, /mob))
 					continue
 		if (!radio.on)
@@ -338,7 +338,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 			else
 				radio.broadcast(rhtml_encode(message), src, TRUE)
 
-/obj/item/device/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = FALSE, var/needs_loc = TRUE)
+/obj/item/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = FALSE, var/needs_loc = TRUE)
 
 	hardtohear = FALSE // wip
 
@@ -365,12 +365,12 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		tried_mobs += hearer
 		if (hearer.stat == CONSCIOUS)
 			var/list/radios = list()
-			for (var/obj/item/device/radio/radio in view(world.view, hearer))
+			for (var/obj/item/radio/radio in view(world.view, hearer))
 				if (radio.broadcasting)
 					radios |= radio
-			for (var/obj/item/device/radio/radio in hearer.contents)
+			for (var/obj/item/radio/radio in hearer.contents)
 				radios |= radio
-			for (var/obj/item/device/radio/radio in radios)
+			for (var/obj/item/radio/radio in radios)
 				if (!loc && radio == src)
 					continue
 				if (!used_radio_turfs.Find(radio.faction))
@@ -381,7 +381,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 					continue
 				if (radio.notyetmoved)
 					continue
-				if (!istype(radio, /obj/item/device/radio/intercom))
+				if (!istype(radio, /obj/item/radio/intercom))
 					if (!istype(radio.loc, /mob))
 						continue
 				if (!radio.on)
@@ -399,29 +399,29 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 	post_broadcast()
 
-/obj/item/device/radio/proc/bracketed_name()
+/obj/item/radio/proc/bracketed_name()
 	var/lbracket = "\["
 	var/rbracket = "\]"
 	return "[lbracket][radio_freq2name(frequency)][rbracket]"
 
-/obj/item/device/radio/proc/can_broadcast()
+/obj/item/radio/proc/can_broadcast()
 	if (last_broadcast > world.time)
 		return FALSE
-	for (var/obj/item/device/radio/radio in get_turf(src))
+	for (var/obj/item/radio/radio in get_turf(src))
 		// the reason radio.can_broadcast() is not checked is because
 		// it might cause an infinite loop
 		if (radio.last_broadcast > world.time)
 			return FALSE
 	return TRUE
 
-/obj/item/device/radio/proc/post_broadcast()
+/obj/item/radio/proc/post_broadcast()
 	last_broadcast = world.time + 3
 
-/obj/item/device/radio/intercom
+/obj/item/radio/intercom
 	broadcasting = FALSE
 	desc = "A stationary radio device, used for long-distance communication and supply requisition."
 
-/obj/item/device/radio/intercom/a7b
+/obj/item/radio/intercom/a7b
 	name = "A-7-B"
 	icon_state = "a7b"
 	item_state = "a7b"
@@ -432,11 +432,11 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	is_supply_radio = TRUE
 	faction = SOVIET
 
-/obj/item/device/radio/intercom/a7b/New()
+/obj/item/radio/intercom/a7b/New()
 	..()
 	internal_channels = command_soviet_channels.Copy()
 
-/obj/item/device/radio/intercom/a7b/process()
+/obj/item/radio/intercom/a7b/process()
 	if(world.time - last_tick > 30 || last_tick == -1)
 		last_tick = world.time
 
@@ -454,7 +454,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		else
 			icon_state = "a7b"
 
-/obj/item/device/radio/rbs
+/obj/item/radio/rbs
 	name = "RBS1"
 	icon_state = "rbs1"
 	item_state = "rbs1"
@@ -464,17 +464,17 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	speech_sound = 'sound/effects/roger_beep.ogg'
 	faction = SOVIET
 
-/obj/item/device/radio/rbs/command
+/obj/item/radio/rbs/command
 
-/obj/item/device/radio/rbs/New()
+/obj/item/radio/rbs/New()
 	..()
 	internal_channels = default_soviet_channels.Copy()
 
-/obj/item/device/radio/rbs/command/New()
+/obj/item/radio/rbs/command/New()
 	..()
 	internal_channels = command_soviet_channels.Copy()
 
-/obj/item/device/radio/intercom/fu2
+/obj/item/radio/intercom/fu2
 	name = "Torn.Fu.d2"
 	icon_state = "fud2"
 	item_state = "fud2"
@@ -485,11 +485,11 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	is_supply_radio = TRUE
 	faction = GERMAN
 
-/obj/item/device/radio/intercom/fu2/New()
+/obj/item/radio/intercom/fu2/New()
 	..()
 	internal_channels = command_german_channels.Copy()
 
-/obj/item/device/radio/intercom/fu2/process()
+/obj/item/radio/intercom/fu2/process()
 	if(world.time - last_tick > 30 || last_tick == -1)
 		last_tick = world.time
 
@@ -509,7 +509,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 // german
 
-/obj/item/device/radio/feldfu
+/obj/item/radio/feldfu
 	name = "Feldfu.f"
 	icon_state = "feldfu"
 	item_state = "feldfu"
@@ -519,39 +519,39 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	speech_sound = 'sound/effects/roger_beep2.ogg'
 	faction = GERMAN
 
-/obj/item/device/radio/feldfu/command
+/obj/item/radio/feldfu/command
 
-/obj/item/device/radio/feldfu/SS
+/obj/item/radio/feldfu/SS
 	frequency = SS_FREQ
 
-/obj/item/device/radio/feldfu/SS/command
+/obj/item/radio/feldfu/SS/command
 
-/obj/item/device/radio/feldfu/announcer
+/obj/item/radio/feldfu/announcer
 
-/obj/item/device/radio/feldfu/New()
+/obj/item/radio/feldfu/New()
 	..()
 	internal_channels = default_german_channels.Copy()
 
-/obj/item/device/radio/feldfu/command/New()
+/obj/item/radio/feldfu/command/New()
 	..()
 	internal_channels = command_german_channels.Copy()
 
-/obj/item/device/radio/feldfu/SS/New()
+/obj/item/radio/feldfu/SS/New()
 	..()
 	internal_channels = SS_german_channels.Copy()
 
-/obj/item/device/radio/feldfu/SS/command/New()
+/obj/item/radio/feldfu/SS/command/New()
 	..()
 	internal_channels = SS_command_german_channels.Copy()
 
-/obj/item/device/radio/feldfu/announcer/New()
+/obj/item/radio/feldfu/announcer/New()
 	..()
 	internal_channels = all_channels.Copy()
 
 // partisan clone of german radios. Doesn't inherit from the feldfu for
 // callback meme reasons
 
-/obj/item/device/radio/partisan
+/obj/item/radio/partisan
 	name = "Feldfu.f"
 	icon_state = "feldfu"
 	item_state = "feldfu"
@@ -561,13 +561,13 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	speech_sound = 'sound/effects/roger_beep2.ogg'
 	faction = PARTISAN
 
-/obj/item/device/radio/partisan/New()
+/obj/item/radio/partisan/New()
 	..()
 	internal_channels = default_ukrainian_channels.Copy()
 
 // radio topic stuff
 
-/obj/item/device/radio/Topic(href, href_list)
+/obj/item/radio/Topic(href, href_list)
 	if(..())
 		return TRUE
 
@@ -616,7 +616,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, TRUE)
 
-/obj/item/device/radio/proc/purchase(var/itemname, var/path, var/pointcost = FALSE)
+/obj/item/radio/proc/purchase(var/itemname, var/path, var/pointcost = FALSE)
 
 	if (supply_points[faction] <= pointcost)
 		return
@@ -629,15 +629,15 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		supplydrop_process.add("[path]", faction)
 
 // shitcode copied from the german supplytrain system - Kachnov
-/obj/item/device/radio
+/obj/item/radio
 	var/list/announcers = list()
 	var/list/mobs = list()
 
-/obj/item/device/radio/proc/setup_announcement_system(aname, channel)
+/obj/item/radio/proc/setup_announcement_system(aname, channel)
 
 	// our personal radio. Yes, even though we're a radio. Works better this way.
-	announcers[aname] = new /obj/item/device/radio/feldfu/announcer
-	var/obj/item/device/radio/announcer = announcers[aname]
+	announcers[aname] = new /obj/item/radio/feldfu/announcer
+	var/obj/item/radio/announcer = announcers[aname]
 	announcer.broadcasting = TRUE
 	announcer.faction = faction
 	announcer.frequency = channel
@@ -663,9 +663,9 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 
 	H.default_language = H.languages[1]
 
-/obj/item/device/radio/proc/announce(msg, _announcer)
+/obj/item/radio/proc/announce(msg, _announcer)
 
-	var/obj/item/device/radio/intercom/fu2/announcer = null
+	var/obj/item/radio/intercom/fu2/announcer = null
 	var/mob/living/carbon/human/mob = null
 
 	if (!announcers.Find(_announcer))

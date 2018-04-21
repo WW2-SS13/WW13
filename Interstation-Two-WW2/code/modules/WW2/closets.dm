@@ -29,7 +29,7 @@
 	if(sprob(40))
 		new /obj/item/clothing/suit/storage/hazardvest(src)
 	if(sprob(70))
-		new /obj/item/device/flashlight(src)
+		new /obj/item/flashlight(src)
 	if(sprob(70))
 		new /obj/item/weapon/screwdriver(src)
 	if(sprob(70))
@@ -49,7 +49,7 @@
 	if(sprob(30))
 		new /obj/item/stack/cable_coil/random(src)
 /*	if(sprob(20))
-		new /obj/item/device/multitool(src)*/
+		new /obj/item/multitool(src)*/
 	if(sprob(5))
 		new /obj/item/clothing/gloves/insulated(src)
 	if(sprob(40))

@@ -470,12 +470,12 @@
 
 	New()
 		..()
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
 
 /obj/item/weapon/storage/box/pillbottles
 	name = "box of pill bottles"

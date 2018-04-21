@@ -559,7 +559,7 @@
 	..()
 	update_capacity(12)
 	for (var/v in 1 to 12)
-		new /obj/item/device/mine/betty(src)
+		new /obj/item/mine/betty(src)
 
 /obj/structure/closet/crate/dpammo/New()
 	..()
@@ -671,7 +671,7 @@
 
 	update_capacity(50)
 	for (var/v in 1 to 50)
-		new /obj/item/device/flashlight/flare(src)
+		new /obj/item/flashlight/flare(src)
 
 /obj/structure/closet/crate/bayonets/soviet/New()
 	..()

@@ -25,10 +25,10 @@
 		new /obj/item/weapon/crowbar/prybar(src)
 		new /obj/item/weapon/extinguisher/mini(src)
 		if(sprob(50))
-			new /obj/item/device/flashlight(src)
+			new /obj/item/flashlight(src)
 		else
-			new /obj/item/device/flashlight/flare(src)
-		new /obj/item/device/radio(src)
+			new /obj/item/flashlight/flare(src)
+		new /obj/item/radio(src)
 
 /obj/item/weapon/storage/toolbox/mechanical
 	name = "mechanical toolbox"
@@ -41,7 +41,7 @@
 		new /obj/item/weapon/wrench(src)
 		new /obj/item/weapon/weldingtool/ww2(src)
 		new /obj/item/weapon/crowbar/prybar(src)
-	//	new /obj/item/device/analyzer(src)
+	//	new /obj/item/analyzer(src)
 		new /obj/item/weapon/wirecutters/boltcutters(src)
 
 /obj/item/weapon/storage/toolbox/electrical
