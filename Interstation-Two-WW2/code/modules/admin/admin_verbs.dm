@@ -113,7 +113,8 @@ var/list/admin_verbs_fun = list(
 	/client/proc/randomize_lobby_music,
 //	/datum/admins/proc/call_supply_drop,
 //	/datum/admins/proc/call_drop_pod
-	/client/proc/show_custom_roundstart_tip
+	/client/proc/show_custom_roundstart_tip,
+	/client/proc/reset_custom_roundstart_tip
 	)
 
 var/list/admin_verbs_spawn = list(

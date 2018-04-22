@@ -35,6 +35,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	var/players_can_join = TRUE
 
+	var/tip = null
+
 /datum/controller/gameticker/proc/pregame()
 
 	spawn (0)
@@ -70,19 +72,25 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 								sleep(1)
 								vote.process()
 				if(pregame_timeleft == 20)
-					var/list/tips = file2list("config/tips.txt")
-					if (tips.len)
-						if (serverswap_open_status)
-							world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
-							qdel_list(tips)
+					if (tip)
+						world << "<span class = 'notice'><b>Tip of the Round:</b> [tip]</span>"
+					else
+						var/list/tips = file2list("config/tips.txt")
+						if (tips.len)
+							if (serverswap_open_status)
+								world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
+								qdel_list(tips)
 				if(pregame_timeleft <= 0)
 					current_state = GAME_STATE_SETTING_UP
 					/* if we were force started, still show the tip */
-					var/list/tips = file2list("config/tips.txt")
-					if (tips.len)
-						if (serverswap_open_status)
-							world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
-							qdel_list(tips)
+					if (tip)
+						world << "<span class = 'notice'><b>Tip of the Round:</b> [tip]</span>"
+					else
+						var/list/tips = file2list("config/tips.txt")
+						if (tips.len)
+							if (serverswap_open_status)
+								world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
+								qdel_list(tips)
 
 		while (!setup())
 
