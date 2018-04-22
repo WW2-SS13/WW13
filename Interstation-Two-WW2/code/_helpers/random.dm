@@ -1,7 +1,7 @@
 // new randomness proc that generates a new seed every call. sprob() and spick() use this
 var/srand_calls = 0
 /proc/srand(a, b)
-	var/seed = (projectile_process && projectile_process.ticks) ? projectile_process.ticks : (world.realtime+world.time+world.timeofday)
+	var/seed = (projectile_process && projectile_process.ticks) ? projectile_process.ticks : (world.realtime+round(world.time)+world.timeofday)
 	seed += srand_calls
 	++srand_calls
 	rand_seed(seed)
