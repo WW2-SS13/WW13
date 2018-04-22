@@ -404,7 +404,7 @@
 					if (O.density || istype(O, /obj/structure/window/classic)) // hack
 						O.pre_bullet_act(src)
 						if (O.bullet_act(src, def_zone) != PROJECTILE_CONTINUE)
-							if (O)
+							if (O && !O.gcDestroyed)
 								if (O.density && !istype(O, /obj/structure))
 									passthrough = FALSE
 								else if (istype(O, /obj/structure))

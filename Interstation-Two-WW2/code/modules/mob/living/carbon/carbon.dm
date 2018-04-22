@@ -355,11 +355,13 @@
 		throwtime_divider *= 0.5
 
 	//actually throw it!
+
+	visible_message("<span class = 'warning'>[src] prepares to throw \the [item]!</span>")
 	if (item && do_after(src, max(1, round(abs_dist(src, target)/throwtime_divider)), get_turf(src)))
 		playsound(src, 'sound/effects/throw.ogg', 50, TRUE)
 		remove_from_mob(item)
 		item.loc = loc
-		visible_message("<span class = 'red'>[src] has thrown [item].</span>")
+		visible_message("<span class = 'warning'>[src] throws \the [item]!</span>")
 
 		if (ismob(item))
 			for (var/obj/item/weapon/grab/G in contents)

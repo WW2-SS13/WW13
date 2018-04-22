@@ -252,7 +252,8 @@
 
 					var/oloc_H = H.loc
 
-					var/J = input(usr_client, "Which job?") in (list("Cancel") | job_master_occupation_names)
+					var/datum/job/J = input(usr_client, "Which job?") in (list("Cancel") | job_master_occupation_names)
+
 					if (J != "Cancel")
 						job_master.EquipRank(H, J)
 						H.original_job = job_master_occupation_names[J]
@@ -260,9 +261,12 @@
 						message_admins(msg)
 						log_admin(msg)
 						spawn (0.1)
-							H.loc = oloc_H
+
+							if ((input(usr_client, "Send [H] to their spawnpoint?") in list("Yes", "No")) == "No")
+								H.loc = oloc_H
 
 							var/client/client = (H.client ? H.client : orig_client)
+							client << "<span class = 'good'><big>You were respawned as a <i>[J.title]</i>. Re-enter your corpse.</big></good>"
 							if (client)
 								switch (H.original_job.default_language)
 									if ("German")

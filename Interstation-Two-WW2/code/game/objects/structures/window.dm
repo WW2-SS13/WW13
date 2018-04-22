@@ -466,6 +466,7 @@
 /obj/structure/window/classic/bullet_act(var/obj/item/projectile/P)
 	if (!P || !P.nodamage)
 		shatter()
+		return PROJECTILE_CONTINUE
 
 /obj/structure/window/classic/shatter(var/display_message = TRUE)
 	var/myturf = get_turf(src)

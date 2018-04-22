@@ -121,7 +121,8 @@ var/list/admin_verbs_spawn = list(
 //	/datum/admins/proc/spawn_custom_item,
 //	/datum/admins/proc/check_custom_items,
 	/datum/admins/proc/spawn_atom,		// allows us to spawn instances,
-	/client/proc/respawn_character,
+	/datum/admins/proc/spawn_player_as_job,
+	/client/proc/respawn_character
 	)
 
 var/list/admin_verbs_server = list(

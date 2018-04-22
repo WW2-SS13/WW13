@@ -61,19 +61,16 @@ var/global/datum/controller/occupations/job_master
 	var/german_officer_squad_info[4]
 	var/soviet_officer_squad_info[4]
 
-	var/expected_clients = 0
-
 	var/italians_were_enabled = FALSE
 	var/SS_was_enabled = FALSE
 	var/civilians_were_enabled = FALSE
 	var/partisans_were_enabled = FALSE
 
+	var/admin_expected_clients = 0
+
 	proc/toggle_roundstart_autobalance(var/_clients = 0, var/announce = TRUE)
 
-		_clients = max(max(_clients, (map ? map.min_autobalance_players : 0)), clients.len)
-
-		if (expected_clients && expected_clients > _clients)
-			_clients = expected_clients
+		_clients = max(max(_clients, (map ? map.min_autobalance_players : 0)), clients.len, admin_expected_clients)
 
 		var/autobalance_for_players = round(max(_clients, (clients.len/config.max_expected_players) * 50))
 
@@ -82,7 +79,6 @@ var/global/datum/controller/occupations/job_master
 		else if (announce == 2)
 			if (!roundstart_time)
 				world << "<span class = 'warning'>An admin has changed autobalance to be set up for [max(_clients, autobalance_for_players)] players.</span>"
-				expected_clients = _clients
 			else
 				world << "<span class = 'warning'>An admin has reset autobalance for [max(_clients, autobalance_for_players)] players.</span>"
 

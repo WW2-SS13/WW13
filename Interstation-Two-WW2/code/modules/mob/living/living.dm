@@ -664,14 +664,13 @@ default behaviour is:
 	if(resisting)
 		visible_message("<span class='danger'>[src] resists!</span>")
 
-/*
+
 /mob/living/verb/lay_down()
-	set name = "Prone"
+	set name = "Rest"
 	set category = "IC"
 
 	resting = !resting
-	src << "<span class='notice'>You are [resting ? "now prone" : "no longer prone"].</span>"
-*/
+	src << "<span class='notice'>You are [resting ? "now resting" : "no longer resting"].</span>"
 
 /mob/living/proc/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	return isnull(get_inventory_slot(carried_item))

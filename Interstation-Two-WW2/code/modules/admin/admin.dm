@@ -697,6 +697,7 @@ proc/admin_notice(var/message, var/rights)
 			usr << "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]"
 */
 
+var/list/atom_types = null
 /datum/admins/proc/spawn_atom(var/object as text)
 	set category = "Debug"
 	set desc = "(atom path) Spawn an atom"
@@ -704,10 +705,12 @@ proc/admin_notice(var/message, var/rights)
 
 	if(!check_rights(R_SPAWN))	return
 
-	var/list/types = typesof(/atom)
-	var/list/matches = new()
+	if (!atom_types)
+		atom_types = typesof(/atom)
 
-	for(var/path in types)
+	var/list/matches = list()
+
+	for(var/path in atom_types)
 		if(findtext("[path]", object))
 			matches += path
 
@@ -730,6 +733,31 @@ proc/admin_notice(var/message, var/rights)
 
 	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
 
+/datum/admins/proc/spawn_player_as_job()
+	set category = "Admin"
+	set desc = "Spawn a player in as a job"
+	set name = "Spawn Player"
+	if(!check_rights(R_SPAWN))	return
+
+	var/mob/observer/O = input(usr, "Which observer?") in observer_mob_list + "Cancel"
+	if (O == "Cancel")
+		return
+
+	var/list/job_master_occupation_names = list()
+	for (var/datum/job/J in job_master.occupations)
+		if (J.title)
+			job_master_occupation_names[J.title] = J
+
+	var/datum/job/J = input(usr, "Which job?") in (list("Cancel") | job_master_occupation_names)
+	if (J != "Cancel" && O)
+		var/mob/living/carbon/human/H = new(O.loc)
+		O.mind.transfer_to(H)
+		job_master.EquipRank(H, J)
+		H.original_job = job_master_occupation_names[J]
+		O << "<span class = 'good'><big>You were respawned as a <i>[J.title]</i>. Re-enter your corpse.</big></good>"
+		var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
+		message_admins(msg)
+		log_admin(msg)
 
 
 /datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)

@@ -56,11 +56,11 @@
 		/obj/item/weapon/gauze_pack/gauze = 15,
 		/obj/item/weapon/attachment/bayonet/german = 15,
 		/obj/item/weapon/material/kitchen/utensil/knife/boot = 15,
-		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/italian = 15,
 		/obj/item/weapon/grenade/explosive/l2a2 = 10,
 		/obj/item/weapon/grenade/explosive/stgnade = 10,
 		/obj/item/weapon/grenade/smokebomb/german = 20,
 		/obj/item/weapon/attachment/scope/adjustable/sniper_scope = 2,
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/italian = 15
 
 		)
 
@@ -79,8 +79,8 @@
 		/obj/item/flashlight = 25,
 		/obj/item/weapon/shovel/spade/russia = 25,
 		/obj/item/weapon/gun/projectile/boltaction/kar98k = 25,
-		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 25,
-		/obj/item/ammo_magazine/kar98k = 50
+		/obj/item/ammo_magazine/kar98k = 50,
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 25
 	)
 //	idle_power_usage = 0
 
@@ -171,7 +171,7 @@
 		/obj/item/flashlight = 25,
 		/obj/item/weapon/shovel/spade/russia = 25,
 		/obj/item/weapon/gun/projectile/boltaction/mosin = 25,
-		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/soviet = 25,
-		/obj/item/ammo_magazine/mosin = 50
+		/obj/item/ammo_magazine/mosin = 50,
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/soviet = 25
 	)
 //	idle_power_usage = 0

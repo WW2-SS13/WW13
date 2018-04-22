@@ -11,13 +11,13 @@
 			var/area/A = get_area(src)
 			if (A)
 				if (A.weather == WEATHER_RAIN)
-					src << sound('sound/ambience/rain.ogg', channel = 777)
+					src << sound('sound/ambience/rain.ogg', channel = 778)
 					next_weather_sound = world.time + 1500
 		else
 			var/area/A = get_area(src)
 			if (A)
 				if (A.weather == WEATHER_NONE)
-					src << sound(null, channel = 777)
+					src << sound(null, channel = 778)
 					next_weather_sound = world.time
 
 	if (transforming)
