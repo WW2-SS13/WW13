@@ -191,9 +191,15 @@ var/datum/game_schedule/global_game_schedule = null
 
 	scheduleString = .
 
-/datum/game_schedule/proc/getDateInfoAsString()
+/datum/game_schedule/proc/getDayInfoAsString()
 	. = "[day], [getCurrentTime()] UTC"
 	dateInfoString = .
+
+/datum/game_schedule/proc/getDateInfoAsString()
+	var/YY = text2num(time2text(world.timeofday, "YY")) 	// get the current year
+	var/MM = text2num(time2text(world.timeofday, "MM")) 	// get the current month
+	var/DD = text2num(time2text(world.timeofday, "DD")) 	// get the current day
+	return "[DD].[MM].[YY]"
 
 /proc/nextDay(day)
 	switch (day)
