@@ -1,15 +1,15 @@
-var/datum/controller/process/open_space/OS_controller = null
+var/process/open_space/OS_controller = null
 
-/datum/controller/process/open_space
+/process/open_space
 	var/list/open_spaces = list()
 
-/datum/controller/process/open_space/setup()
+/process/open_space/setup()
 	name = "openspace"
 	schedule_interval = TRUE SECONDS // every second
 	start_delay = 12
 	OS_controller = src
 
-/datum/controller/process/open_space/doWork()
+/process/open_space/fire()
 	for (var/turf/open/T in open_spaces)
 		T.update_icon()
 

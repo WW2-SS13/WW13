@@ -90,10 +90,10 @@
 		..()
 
 /obj/structure/noose/process()
-	doWork()
+	fire()
 
 // call this instead of process() if you want to do direct calls, I think its better - Kachnov
-/obj/structure/noose/proc/doWork()
+/obj/structure/noose/proc/fire()
 	if (hanging)
 		hanging.forceMove(loc)
 		density = TRUE
@@ -142,7 +142,7 @@
 			hanging = target
 			target.loc = get_turf(src)
 			target.dir = SOUTH
-			doWork()
+			fire()
 
 /obj/structure/noose/attack_hand(var/mob/living/carbon/human/H)
 	if (!istype(H))

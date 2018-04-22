@@ -89,12 +89,13 @@ var/world_is_open = TRUE
 	populate_material_list()
 
 	processScheduler = new
-	master_controller = new /datum/controller/game_controller()
+//	master_controller = new /datum/controller/game_controller()
 
 	spawn(1)
-		processScheduler.deferSetupFor(/datum/controller/process/ticker)
+		processScheduler.deferSetupFor(/process/ticker)
 		processScheduler.setup()
-		master_controller.setup()
+		setup_everything()
+//		master_controller.setup()
 #ifdef UNIT_TEST
 		initialize_unit_tests()
 #endif
