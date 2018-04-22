@@ -484,12 +484,15 @@
 
 		if (mob.pulling)
 			if (istype(mob.pulling, /mob))
-				move_delay += 1.0
+				move_delay += 1.25
 				if (istype(mob.pulling, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = mob.pulling
 					for (var/obj/structure/noose/N in get_turf(H))
 						if (N.hanging == H)
 							mob.stop_pulling()
+
+			else if (istype(mob.pulling, /obj/item/weapon/gun/projectile/minigun))
+				move_delay += 1.00
 
 			else if (istype(mob.pulling, /obj/structure))
 				move_delay += 0.75

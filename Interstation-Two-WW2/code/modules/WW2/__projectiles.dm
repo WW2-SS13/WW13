@@ -1,10 +1,21 @@
-/obj/item/weapon/gun/projectile/shotgun
-	gun_type = GUN_TYPE_SHOTGUN
-	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
+/* shotgun projectiles */
+
+/obj/item/projectile/bullet/shotgun
+	name = "shotgun slug"
+	damage = DAMAGE_HIGH + 5
+	armor_penetration = 60
+
+/obj/item/projectile/bullet/shotgun/beanbag
+	name = "beanbag"
+	check_armour = "melee"
+	damage = DAMAGE_LOW/2
+	agony = DAMAGE_MEDIUM_HIGH
+	embed = FALSE
+	sharp = FALSE
 
 /obj/item/projectile/bullet/shotgun/murder
 	armor_penetration = 500
-	damage = 300
+	damage = DAMAGE_OH_GOD
 	accuracy = 5000
 	penetrating = 0
 	execution = TRUE

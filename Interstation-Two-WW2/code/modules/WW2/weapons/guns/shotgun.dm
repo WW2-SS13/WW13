@@ -1,3 +1,7 @@
+/obj/item/weapon/gun/projectile/shotgun
+	gun_type = GUN_TYPE_SHOTGUN
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
+
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"
 	desc = "Useful for sweeping alleys."

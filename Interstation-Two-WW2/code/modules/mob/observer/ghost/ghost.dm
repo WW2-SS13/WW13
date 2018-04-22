@@ -28,8 +28,8 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	var/obj/item/multitool/ghost_multitool
 	incorporeal_move = TRUE
 
+	var/original_icon = null
 	var/list/original_overlays = list()
-	var/original_icon_state = null
 
 /mob/observer/ghost/New(mob/body)
 	see_in_dark = 100
@@ -41,13 +41,15 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
 
 		if (ishuman(body))
-			var/mob/living/carbon/human/H = body
-			icon = H.stand_icon
-			overlays = H.overlays_standing
+			icon = body:stand_icon
+			overlays = body:overlays_standing
+			original_icon = icon
+			original_overlays = body:overlays_standing
 		else
 			icon = body.icon
 			icon_state = body.icon_state
-			overlays = body.overlays
+			original_icon = icon(icon, icon_state)
+			original_overlays = overlays
 
 		alpha = 127
 
@@ -517,6 +519,21 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (!tank) return
 	ManualFollow(tank)
 
+/mob/observer/ghost/verb/toggle_visibility()
+	set category = "Ghost"
+	set name = "Toggle Visibility"
+	if (!icon)
+/*		if (!reference_human)
+			src << "<span class = 'danger'>Your mob broke, we can't make your icon visible again. An admin probably did this.</span>"
+			return*/
+		icon = original_icon
+		overlays = original_overlays
+		src << "<span class = 'good'>You are now visible again.</span>"
+	else
+		icon = null
+		overlays.Cut()
+		src << "<span class = 'good'>You are now invisible.</span>"
+
 // This is the ghost's follow verb with an argument
 /mob/observer/ghost/proc/ManualFollow(var/atom/movable/target)
 	if(!target || target == following || target == src)
@@ -784,7 +801,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Point To"
 	usr.visible_message("<span class='deadsay'><b>[src]</b> points to [A]</span>")
 	return TRUE
-
+/*
 /mob/observer/ghost/proc/manifest(mob/user)
 	var/is_manifest = FALSE
 	if(!is_manifest)
@@ -815,8 +832,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(!iconRemoved)
 		var/image/J = image('icons/mob/mob.dmi', loc = src, icon_state = icon)
-		client.images += J
-
+		client.images += J*/
+/*
 /mob/observer/ghost/proc/toggle_visibility(var/forced = FALSE)
 	set category = "Ghost"
 	set name = "Toggle Visibility"
@@ -836,7 +853,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	invisibility = invisibility == INVISIBILITY_OBSERVER ? FALSE : INVISIBILITY_OBSERVER
 	// Give the ghost a cult icon which should be visible only to itself
 	toggle_icon("cult")
-
+*/
 /mob/observer/ghost/verb/toggle_anonsay()
 	set category = "Ghost"
 	set name = "Toggle Anonymous Chat"

@@ -22,6 +22,7 @@
 
 	apply_damage(effective_force, I.damtype, hit_zone, blocked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
 
+/* melee embedding is absolutely retarded, this is gone forever now - Kachnov
 	//Melee weapon embedded object code.
 	if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
 		var/damage = effective_force
@@ -36,7 +37,7 @@
 		if((weapon_sharp && damage > (10*I.w_class)) || (damage > embed_threshold && sprob(embed_chance)))
 			if (I.w_class <= 2.0)
 				embed(I, hit_zone)
-
+*/
 	return TRUE
 
 // Attacking someone with a weapon while they are neck-grabbed = throat slitting

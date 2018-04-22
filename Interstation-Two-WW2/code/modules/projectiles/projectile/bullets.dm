@@ -152,20 +152,6 @@
 	embed = FALSE
 	sharp = FALSE
 
-/* shotgun projectiles */
-
-/obj/item/projectile/bullet/shotgun
-	name = "slug"
-	damage = 80
-	armor_penetration = 80
-
-/obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
-	name = "beanbag"
-	check_armour = "melee"
-	damage = 20
-	agony = 60
-	embed = FALSE
-	sharp = FALSE
 
 //Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding

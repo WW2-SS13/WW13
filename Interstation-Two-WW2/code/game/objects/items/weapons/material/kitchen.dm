@@ -28,10 +28,12 @@
 		return ..()
 
 	if(user.a_intent != I_HELP)
-		if(user.targeted_organ == "head" || user.targeted_organ == "eyes")
+		if(user.targeted_organ == "eyes")
 			if((CLUMSY in user.mutations) && sprob(50))
 				M = user
 			return eyestab(M,user)
+		else if ((sharp || edge) && ishuman(M))
+			M.resolve_item_attack(src, user, user.targeted_organ)
 		else
 			return ..()
 

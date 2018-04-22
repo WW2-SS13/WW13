@@ -8,6 +8,7 @@ bullet_act
 /mob/living/carbon/human/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (stat != DEAD)
 		return ..(W, user)
+
 	if (!istype(W) || !W.sharp)
 		return ..(W, user)
 
@@ -98,7 +99,7 @@ bullet_act
 		var/distcheck = max(abs(P.starting.x - x), abs(P.starting.y - y))
 
 		if (distcheck > 2) // not PB range
-			if (!istype(P, /obj/item/projectile/bullet/rifle/murder) && !istype(P, /obj/item/projectile/bullet/shotgun/murder))
+			if (!P.execution)
 
 				// shooting a moving target from 19 tiles away (new max scope range) has a 72% graze chance
 				// this means if snipers want to hit people they need to shoot at still targets
