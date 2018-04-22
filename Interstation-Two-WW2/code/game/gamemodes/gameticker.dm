@@ -98,7 +98,6 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 			current_state = GAME_STATE_PREGAME
 			if (serverswap_open_status)
 				world << "<b>Unable to choose playable game mode.</b> Reverting to pre-game lobby."
-				roundstart_tips = file2list("config/tips.txt")
 			return FALSE
 		if(secret_force_mode != "secret")
 			mode = config.pick_mode(secret_force_mode)
@@ -114,7 +113,6 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		current_state = GAME_STATE_PREGAME
 		if (serverswap_open_status)
 			world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
-			roundstart_tips = file2list("config/tips.txt")
 		return FALSE
 
 	job_master.ResetOccupations()
@@ -125,7 +123,6 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	if(!mode.can_start() && !admin_started)
 		if (serverswap_open_status)
 			world << "<b>Unable to start the game.</b> Not enough players, [mode.required_players] players needed. Reverting to the pre-game lobby."
-			roundstart_tips = file2list("config/tips.txt")
 		current_state = GAME_STATE_PREGAME
 		mode.fail_setup()
 		mode = null
