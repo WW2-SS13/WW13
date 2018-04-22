@@ -127,7 +127,7 @@
 
 	#undef HUNGER_THIRST_MULTIPLIER
 
-	if (stamina == max_stamina-1 && m_intent == "walk")
+	if (getStat("stamina") == getMaxStat("stamina")-1 && m_intent == "walk")
 		src << "<span class = 'good'>You feel like you can run for a while.</span>"
 
 	nutrition = min(nutrition, max_nutrition)
@@ -142,7 +142,7 @@
 
 	..()
 
-	stamina = min(stamina + round(max_stamina * 0.02), max_stamina)
+	stats["stamina"][1] = min(stats["stamina"][1] + round(stats["stamina"][2] * 0.02), stats["stamina"][2])
 
 	if(life_tick%30==15)
 		hud_updateflag = 1022

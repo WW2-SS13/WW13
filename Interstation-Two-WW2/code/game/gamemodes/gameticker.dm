@@ -39,12 +39,14 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	spawn (0)
 
+
+		roundstart_tips = file2list("config/tips.txt")
+
 		if (serverswap_open_status)
 			if (!processScheduler.isRunning)
 				processScheduler.start()
 				message_admins("processScheduler.start() was called at gameticker.pregame().")
 				log_admin("processScheduler.start() was called at gameticker.pregame().")
-				roundstart_tips = file2list("config/tips.txt")
 
 		if (!lobby_music_player)
 			lobby_music_player = new

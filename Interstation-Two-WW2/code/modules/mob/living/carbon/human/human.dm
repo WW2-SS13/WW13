@@ -99,7 +99,7 @@ var/list/coefflist = list()
 					stat("Tank Pressure", internal.air_contents.return_pressure())
 					stat("Distribution Pressure", internal.distribute_pressure)*/
 
-			stat("Stamina: ", "[round(stamina/max_stamina) * 100]%")
+			stat("Stamina: ", "[round(getStat("stamina")/getMaxStat("stamina")) * 100]%")
 
 			// the loc.density short circuits 95% of the time and bypasses an expensive typecheck - Kachnov
 			if (loc.density && istype(loc, /obj/tank))
@@ -149,7 +149,10 @@ var/list/coefflist = list()
 						coeff = "[coeff]0"
 
 				if (!list("mg", "smg").Find(statname))
-					stat("[capitalize(statname)]: ", "[coeff]x average")
+					if (statname != "stamina")
+						stat("[capitalize(statname)]: ", "[coeff]x average")
+					else
+						stat("[capitalize(statname)]: ", "[round(((coeff*100)/stats["stamina"][2])*100)]%")
 				else
 					stat("[uppertext(statname)]: ", "[coeff]x average")
 
@@ -503,7 +506,7 @@ var/list/rank_prefix = list(\
 
 				nutrition -= 40
 				adjustToxLoss(-3)
-				spawn(350)	//wait 35 seconds before next volley
+				spawn(1200)	//wait 2 minutes before next volley
 					lastpuke = FALSE
 
 /mob/living/carbon/human/proc/morph()

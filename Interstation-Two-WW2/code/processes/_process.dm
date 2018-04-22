@@ -51,13 +51,13 @@
 	// processes to execute concurrently.
 	var/tmp/sleep_interval
 
-	// hang_warning_time - this is the time (in TRUE/10 seconds) after which the server will begin to show "maybe hung" in the context window
+	// hang_warning_time - this is the time (in 1/10 seconds) after which the server will begin to show "maybe hung" in the context window
 	var/tmp/hang_warning_time = PROCESS_DEFAULT_HANG_WARNING_TIME
 
-	// hang_alert_time - After this much time(in TRUE/10 seconds), the server will send an admin debug message saying the process may be hung
+	// hang_alert_time - After this much time(in 1/10 seconds), the server will send an admin debug message saying the process may be hung
 	var/tmp/hang_alert_time = PROCESS_DEFAULT_HANG_ALERT_TIME
 
-	// hang_restart_time - After this much time(in TRUE/10 seconds), the server will automatically kill and restart the process.
+	// hang_restart_time - After this much time(in 1/10 seconds), the server will automatically kill and restart the process.
 	var/tmp/hang_restart_time = PROCESS_DEFAULT_HANG_RESTART_TIME
 
 	// How many times in the current run has the process deferred work till the next tick?
@@ -196,6 +196,9 @@
 
 		// Allow inheritors to clean up if needed
 		onKill()
+
+		// set killed var to TRUE
+		killed = TRUE
 
 		// This should del
 		del(src)

@@ -5,7 +5,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/mob.dmi'
-	icon_state = "ghost"
+	icon_state = "ghost2"
 	canmove = FALSE
 	blinded = FALSE
 	anchored = TRUE	//  don't get pushed around
@@ -76,14 +76,6 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	real_name = name
 
 //	ghost_multitool = new(src)
-
-	// when you gib, you have no icon state.
-	// now you get a default ghost icon
-	// - Kachnov
-
-	if (!icon_state)
-		icon = initial(icon)
-		icon_state = initial(icon_state)
 
 	..()
 

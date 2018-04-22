@@ -401,19 +401,20 @@
 							passthrough = FALSE
 				else if (isobj(AM) && AM != firedfrom)
 					var/obj/O = AM
-					if (O.density)
+					if (O.density || istype(O, /obj/structure/window/classic)) // hack
 						O.pre_bullet_act(src)
 						if (O.bullet_act(src, def_zone) != PROJECTILE_CONTINUE)
-							if (O.density && !istype(O, /obj/structure))
-								passthrough = FALSE
-							else if (istype(O, /obj/structure))
-								var/obj/structure/S = O
-								if (!S.CanPass(src, original))
+							if (O)
+								if (O.density && !istype(O, /obj/structure))
 									passthrough = FALSE
-					//				log_debug("ignored [S] (1)")
-								else if (S.density)
-									if (!S.climbable)
-										passthrough_message = "<span class = 'warning'>The bullet penetrates through \the [S]!</span>"
+								else if (istype(O, /obj/structure))
+									var/obj/structure/S = O
+									if (!S.CanPass(src, original))
+										passthrough = FALSE
+						//				log_debug("ignored [S] (1)")
+									else if (S.density)
+										if (!S.climbable)
+											passthrough_message = "<span class = 'warning'>The bullet penetrates through \the [S]!</span>"
 	//		else
 		//		log_debug("ignored [AM] (2)")
 

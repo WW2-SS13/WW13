@@ -976,9 +976,6 @@ var/first_fallschirm = TRUE
 	if (secret_ladder_message)
 		H << "<br>[secret_ladder_message]"
 
-	H.stamina *= 1.5
-	H.max_stamina *= 1.5
-
 	// glorious SS stats
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
@@ -989,6 +986,7 @@ var/first_fallschirm = TRUE
 	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_NORMAL)
 	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
 	return TRUE
 
 /datum/job/german/squad_leader_ss/update_character(var/mob/living/carbon/human/H)
@@ -1031,9 +1029,6 @@ var/first_fallschirm = TRUE
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>. Also, kill any jews you find on sight. They usually have long hair and beards.</span>"
 	H.give_radio()
 
-	H.stamina *= 1.5
-	H.max_stamina *= 1.5
-
 	// glorious SS stats
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
@@ -1045,6 +1040,7 @@ var/first_fallschirm = TRUE
 	H.setStat("medical", STAT_NORMAL)
 	H.setStat("survival", STAT_VERY_HIGH)
 	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
 	return TRUE
 
 /datum/job/german/soldier_ss/get_keys()

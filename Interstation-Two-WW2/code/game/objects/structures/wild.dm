@@ -29,8 +29,17 @@
 		return
 	icon_state = "[initial(icon_state)]_swaying_[spick("left", "right")]"
 
-/obj/structure/wild/CanPass()
-	return !density // perfect protection from bullets until it dies
+/obj/structure/wild/CanPass(mover)
+	if (istype(mover, /obj/effect/effect/smoke))
+		return TRUE
+	else if (istype(mover, /obj/item/projectile))
+		if (prob(75) && density)
+			visible_message("<span class = 'warning'>The bullet hits \the [src]!</span>")
+			return FALSE
+		else
+			return TRUE
+	else
+		return ..()
 
 /obj/structure/wild/bullet_act(var/obj/item/projectile/proj)
 	if (sprob(proj.damage))

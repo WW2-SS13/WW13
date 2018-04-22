@@ -6,6 +6,9 @@
 #define DO_INTERNAL_SUBSYSTEM(process) \
 	process:subsystem = 1; \
 	spawn while (1) {\
+		if (!process || process:killed) { \
+			break; \
+		} \
 		sleep(process:schedule_interval); \
 		process:fire(); \
 	}

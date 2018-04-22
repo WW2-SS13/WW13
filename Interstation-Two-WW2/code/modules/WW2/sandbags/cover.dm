@@ -1,7 +1,7 @@
 #define SANDBAG_BLOCK_ITEMS_CHANCE 90
 
 /obj/structure/window/sandbag/incomplete/check_cover(obj/item/projectile/P, turf/from)
-	return FALSE
+	return prob(..() * round(progress/maxProgress))
 
 // how much do we cover mobs behind full sandbags?
 /obj/structure/window/sandbag/proc/check_cover(obj/item/projectile/P, turf/from)

@@ -469,7 +469,7 @@
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.02
 					H.water -= 0.02
-					--H.stamina
+					--H.stats["stamina"][1]
 					if (H.bodytemperature < H.species.body_temperature)
 						H.bodytemperature += 0.66
 			if("walk")
@@ -500,11 +500,11 @@
 		var/mob/living/carbon/human/H = mob
 
 		if (mob_is_human)
-			if (H.stamina == (H.max_stamina/2) && H.m_intent == "run" && world.time >= H.next_stamina_message)
+			if (H.getStat("stamina") == (H.getMaxStat("stamina")/2) && H.m_intent == "run" && world.time >= H.next_stamina_message)
 				H << "<span class = 'danger'>You're starting to tire from running so much.</span>"
 				H.next_stamina_message = world.time + 20
 
-			if (H.stamina <= 0 && H.m_intent == "run")
+			if (H.getStat("stamina") <= 0 && H.m_intent == "run")
 				H << "<span class = 'danger'>You're too tired to keep running.</span>"
 				for (var/obj/screen/mov_intent/mov in H.client.screen)
 					H.client.Click(mov)

@@ -157,7 +157,7 @@ bullet_act
 		// get weakened too
 		if (sprob(P.KD_chance))
 			Weaken(srand(3,4))
-			stamina = max(stamina - 50, 0)
+			stats["stamina"][1] = max(stats["stamina"][1] - 50, 0)
 			if (client)
 				shake_camera(src, srand(2,3), srand(2,3))
 

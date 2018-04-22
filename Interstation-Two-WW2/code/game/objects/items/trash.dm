@@ -46,7 +46,7 @@
 
 /obj/item/trash/snack_bowl
 	name = "bowl"
-	icon_state	= "snack_bowl"
+	icon_state = "snack_bowl"
 	dropsound = 'sound/effects/drop_glass.ogg'
 
 /obj/item/trash/snack_bowl/New()

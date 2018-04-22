@@ -31,18 +31,16 @@
 	return ..()
 
 /obj/structure/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (!density)
-		return TRUE
-	else if (istype(mover, /obj/effect/effect/smoke))
+	if (istype(mover, /obj/effect/effect/smoke))
 		return TRUE
 	else if (istype(mover, /obj/item/projectile))
-		if (sprob(66))
+		if (sprob(66) && density)
 			return TRUE
 		else
 			visible_message("<span class = 'warning'>The bullet riochetes off \the [src]!</span>")
 			return FALSE
 	else
-		return FALSE
+		return ..()
 
 /obj/structure/attack_tk()
 	return

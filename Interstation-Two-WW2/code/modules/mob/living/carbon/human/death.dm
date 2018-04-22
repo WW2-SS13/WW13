@@ -1,5 +1,7 @@
 /mob/living/carbon/human/gib()
 
+	ghostize() // preserve our body's icon before it explodes
+
 	for(var/obj/item/organ/I in internal_organs)
 		I.removed()
 		if(istype(loc,/turf))

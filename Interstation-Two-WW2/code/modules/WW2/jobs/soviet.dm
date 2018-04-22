@@ -778,9 +778,6 @@ var/first_guard = FALSE
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an elite infantry soldier. Your job is assist normal <b>Soldat</b>i in front line combat.</span>"
 	H.give_radio()
 
-	H.stamina *= 1.5
-	H.max_stamina *= 1.5
-
 	// glorious sturmovik stats
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
@@ -791,6 +788,7 @@ var/first_guard = FALSE
 	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_LOW)
 	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
 	return TRUE
 
 /datum/job/soviet/sturmovik/get_keys()

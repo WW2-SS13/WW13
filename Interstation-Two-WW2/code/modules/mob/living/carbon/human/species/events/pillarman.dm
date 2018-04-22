@@ -6,9 +6,6 @@
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
-	stamina = 200
-	max_stamina = 200
-
 	var/next_pose = -1
 	var/energy = 0.75
 
@@ -38,6 +35,7 @@
 		setStat("medical", 250)
 		setStat("shotgun", 250)
 		setStat("survival", 100)
+		setStat("stamina", 200)
 
 /mob/living/carbon/human/pillarman/proc/may_absorb()
 	return energy <= 1.40

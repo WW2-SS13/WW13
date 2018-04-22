@@ -3,13 +3,6 @@
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	schedule_interval = 5 // every half second (more responsive) - Kachnov
 
-/process/nanoui/statProcess()
-	..()
-	stat(null, "[nanomanager.processing_uis.len] UIs")
-
-/process/nanoui/htmlProcess()
-	return ..() + "[nanomanager.processing_uis.len] UIs"
-
 /process/nanoui/fire()
 	SCHECK
 	for(last_object in nanomanager.processing_uis)
@@ -23,3 +16,10 @@
 			catchBadType(NUI)
 			nanomanager.processing_uis -= NUI
 		SCHECK
+
+/process/nanoui/statProcess()
+	..()
+	stat(null, "[nanomanager.processing_uis.len] UIs")
+
+/process/nanoui/htmlProcess()
+	return ..() + "[nanomanager.processing_uis.len] UIs"

@@ -893,15 +893,13 @@ var/global/datum/controller/occupations/job_master
 			if (GERMAN, ITALIAN)
 				if (germans_forceEnabled)
 					return FALSE
-				if (player_list.len >= 2)
-					if ((germans+italians) >= max_germans)
-						return TRUE
+				if ((germans+italians) >= max_germans)
+					return TRUE
 			if (SOVIET)
 				if (soviets_forceEnabled)
 					return FALSE
-				if (player_list.len >= 2)
-					if (soviets >= max_soviets)
-						return TRUE
+				if (soviets >= max_soviets)
+					return TRUE
 			if (UKRAINIAN)
 				return TRUE
 

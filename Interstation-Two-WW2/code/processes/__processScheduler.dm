@@ -168,7 +168,12 @@ var/global/processScheduler/processScheduler
 
 	// Set up process
 	process.setup()
+
+	// Subsystem? make the process run independently and recover quickly if it hangs
 	if (process.subsystem)
+		process.hang_warning_time = process.schedule_interval * 3
+		process.hang_alert_time = process.schedule_interval * 6
+		process.hang_restart_time = process.schedule_interval * 9
 		DO_INTERNAL_SUBSYSTEM(process)
 
 	// Save process in the name -> process map

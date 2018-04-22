@@ -5,9 +5,6 @@
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
-	stamina = 200
-	max_stamina = 200
-
 	var/blood = 0.75
 
 	color = "#FFB2B2"
@@ -38,6 +35,7 @@
 		setStat("medical", 150)
 		setStat("shotgun", 150)
 		setStat("survival", 100)
+		setStat("stamina", 200)
 
 /mob/living/carbon/human/vampire/proc/may_drink()
 	return blood <= 1.40

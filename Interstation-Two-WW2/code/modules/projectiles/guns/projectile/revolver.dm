@@ -36,7 +36,7 @@
 	return ..()
 
 /obj/item/weapon/gun/projectile/revolver/load_ammo(var/obj/item/A, mob/user)
-	chamber_offset = FALSE
+	chamber_offset = 0
 	return ..()
 
 /obj/item/weapon/gun/projectile/revolver/mateba

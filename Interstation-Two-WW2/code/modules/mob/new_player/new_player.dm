@@ -188,7 +188,7 @@
 
 		if(alert(src,"Are you sure you wish to observe?","Player Setup","Yes","No") == "Yes")
 			if(!client)	return TRUE
-			var/mob/observer/ghost/observer = new(150, 317, TRUE)
+			var/mob/observer/ghost/observer = new(150, 317, 1)
 
 			spawning = TRUE
 			src << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS cant last forever yo
@@ -208,15 +208,20 @@
 
 			if (client.prefs.preview_icons.len)
 				observer.icon = client.prefs.preview_icons[1]
+
 			observer.alpha = 127
 
 			if(client.prefs.be_random_name)
 				client.prefs.real_name = random_name(client.prefs.gender)
+
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
 		//	if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
 				//observer.verbs -= /mob/observer/ghost/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
 			observer.key = key
+			observer.overlays += icon('icons/mob/uniform.dmi', "civuni[rand(1,3)]")
+			observer.original_icon = observer.icon
+			observer.original_overlays = list(icon('icons/mob/uniform.dmi', "civuni[rand(1,3)]"))
 			qdel(src)
 
 			return TRUE

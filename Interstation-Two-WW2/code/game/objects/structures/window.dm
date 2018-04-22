@@ -464,7 +464,7 @@
 	take_damage(tforce)
 
 /obj/structure/window/classic/bullet_act(var/obj/item/projectile/P)
-	if (!P.nodamage)
+	if (!P || !P.nodamage)
 		shatter()
 
 /obj/structure/window/classic/shatter(var/display_message = TRUE)
