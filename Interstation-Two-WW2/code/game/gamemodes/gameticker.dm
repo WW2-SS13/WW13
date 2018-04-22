@@ -39,9 +39,6 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	spawn (0)
 
-
-		roundstart_tips = file2list("config/tips.txt")
-
 		if (serverswap_open_status)
 			if (!processScheduler.isRunning)
 				processScheduler.start()
@@ -73,17 +70,19 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 								sleep(1)
 								vote.process()
 				if(pregame_timeleft == 20)
-					if (roundstart_tips.len)
+					var/list/tips = file2list("config/tips.txt")
+					if (tips.len)
 						if (serverswap_open_status)
-							world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(roundstart_tips)]</span>"
-							roundstart_tips.Cut() // prevent tip spam if we're paused here
+							world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
+							qdel_list(tips)
 				if(pregame_timeleft <= 0)
 					current_state = GAME_STATE_SETTING_UP
 					/* if we were force started, still show the tip */
-					if (roundstart_tips.len)
+					var/list/tips = file2list("config/tips.txt")
+					if (tips.len)
 						if (serverswap_open_status)
-							world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(roundstart_tips)]</span>"
-							roundstart_tips.Cut() // prevent tip spam if we're paused here
+							world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
+							qdel_list(tips)
 
 		while (!setup())
 
