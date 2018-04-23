@@ -135,7 +135,6 @@
 	ticks++
 	idle()
 	main.processFinished(src)
-
 	onFinish()
 
 /process/proc/fire()
@@ -146,7 +145,7 @@
 
 /process/proc/process()
 	started()
-	if (!paused && !subsystem)
+	if (!paused)
 		fire()
 	finished()
 

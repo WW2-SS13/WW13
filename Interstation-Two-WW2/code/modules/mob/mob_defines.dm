@@ -191,7 +191,6 @@
 	var/list/HUDtech = list()
 	var/defaultHUD = "" //Default mob hud
 
-	var/footstep = FALSE //Probably should go under living.
 	var/scrambling = FALSE //For crawling.
 	var/has_limbs = TRUE //Whether this mob have any limbs he can move with
 	var/bowels = FALSE //For pooping

@@ -81,12 +81,17 @@
 			qdel(src)
 			return
 		if(2.0)
-			health -= 25
+			health -= (200 + round(maxhealth * 0.30))
 			if (health <= 0)
 				visible_message("<span class='danger'>\The [src] is blown apart!</span>")
 				dismantle()
 			return
-
+		if (3.0)
+			health -= (100 + round(maxhealth * 0.10))
+			if (health <= 0)
+				visible_message("<span class='danger'>\The [src] is blown apart!</span>")
+				dismantle()
+			return
 /* the only barricades still in the code are wood barricades, which SHOULD
   be hit by bullets, at least sometimes - hence these changes. */
 

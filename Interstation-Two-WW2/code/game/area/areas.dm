@@ -350,18 +350,18 @@ var/list/mob/living/forced_ambiance_list = new
 		var/ideal_y = round(world.maxy/2)
 		var/area/L_area = get_area(L)
 
-		// war volume will vary from 5% to 40%, depending on where you are (on a 150x150 map)
+		// war volume will vary from 5% to 20%, depending on where you are (on a 150x150 map)
 		// the max() check makes this code forestmap compatible too - Kachnov
-		var/warvolume = 40
+		var/warvolume = 20
 
-		warvolume -= round(abs(L.x - ideal_x)/7)
-		warvolume -= round(abs(L.y - ideal_y)/7)
+		warvolume -= ceil(abs(L.x - ideal_x)/20) // 16%
+		warvolume -= ceil(abs(L.y - ideal_y)/20) // 12%
 
 		if (L_area)
 			if (L_area.location == AREA_INSIDE)
-				warvolume -= 10
+				warvolume -= 3 // 9%
 			if (L_area.is_void_area)
-				warvolume -= 10
+				warvolume -= 4 // 5%
 
 		warvolume = max(warvolume, 5)
 

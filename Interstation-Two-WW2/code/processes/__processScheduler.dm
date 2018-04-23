@@ -145,7 +145,8 @@ var/global/processScheduler/processScheduler
 
 /processScheduler/proc/runQueuedProcesses()
 	for(var/process/p in queued)
-		runProcess(p)
+		if (!p.subsystem)
+			runProcess(p)
 
 /processScheduler/proc/addProcess(var/process/process)
 	processes.Add(process)

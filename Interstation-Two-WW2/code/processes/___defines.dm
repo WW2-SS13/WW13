@@ -10,5 +10,8 @@
 			break; \
 		} \
 		sleep(process:schedule_interval); \
+		process:onStart(); \
 		process:fire(); \
+		process:onFinish(); \
+		++process:ticks; \
 	}

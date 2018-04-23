@@ -739,8 +739,10 @@ var/list/atom_types = null
 	set name = "Spawn Player"
 	if(!check_rights(R_SPAWN))	return
 
-	var/mob/observer/O = input(usr, "Which observer?") in observer_mob_list + "Cancel"
-	if (O == "Cancel")
+	var/mob/observer/ghost/G = input(usr, "Which observer? Please note that unlike the Player Panel spawn, this will always send the observer to their spawnpoint.") in observer_mob_list + "Cancel"
+	if (G == "Cancel")
+		return
+	else if (!istype(G))
 		return
 
 	var/list/job_master_occupation_names = list()
@@ -749,12 +751,12 @@ var/list/atom_types = null
 			job_master_occupation_names[J.title] = J
 
 	var/datum/job/J = input(usr, "Which job?") in (list("Cancel") | job_master_occupation_names)
-	if (J != "Cancel" && O)
-		var/mob/living/carbon/human/H = new(O.loc)
-		O.mind.transfer_to(H)
+	if (J != "Cancel" && G)
+		var/mob/living/carbon/human/H = new(G.loc)
+		G.mind.transfer_to(H)
+		G.reenter_corpse()
 		job_master.EquipRank(H, J)
 		H.original_job = job_master_occupation_names[J]
-		O << "<span class = 'good'><big>You were respawned as a <i>[J.title]</i>. Re-enter your corpse.</big></good>"
 		var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
 		message_admins(msg)
 		log_admin(msg)

@@ -439,23 +439,14 @@ var/const/enterloopsanity = 100
 			else if (locate(/obj/train_connector) in contents)
 				footstepsound = "erikafootsteps"
 
-
 			if(istype(H.shoes, /obj/item/clothing/shoes))
-				if(M.m_intent == "run")
-					if(M.footstep >= 0) // Every step.
-						M.footstep = FALSE
-						playsound(src, footstepsound, 100, TRUE)
-					else
-						M.footstep++
-				else
-					if(M.footstep >= 1) // Every two steps.
-						M.footstep = FALSE
-						playsound(src, footstepsound, 100, TRUE)
-					else
-						M.footstep++
-
-
-
+				if (movement_process.ticks >= H.next_footstep_sound_at_movement_tick)
+					playsound(src, footstepsound, 100, TRUE)
+					switch (H.m_intent)
+						if ("run")
+							H.next_footstep_sound_at_movement_tick = movement_process.ticks + (movement_process.schedule_interval*40)
+						if ("walk")
+							H.next_footstep_sound_at_movement_tick = movement_process.ticks + (movement_process.schedule_interval*53)
 		if(wet)
 
 			if(M.buckled || (wet == TRUE && M.m_intent == "walk"))

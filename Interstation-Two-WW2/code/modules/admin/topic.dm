@@ -257,16 +257,21 @@
 					if (J != "Cancel")
 						job_master.EquipRank(H, J)
 						H.original_job = job_master_occupation_names[J]
+						H.invisibility = 101
 						var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
 						message_admins(msg)
 						log_admin(msg)
 						spawn (0.1)
 
-							if ((input(usr_client, "Send [H] to their spawnpoint?") in list("Yes", "No")) == "No")
+							if ((input(usr_client, "Send [H] to their spawnpoint?") in list("No", "Yes")) == "No")
 								H.loc = oloc_H
+							H.invisibility = 0
 
 							var/client/client = (H.client ? H.client : orig_client)
-							client << "<span class = 'good'><big>You were respawned as a <i>[J.title]</i>. Re-enter your corpse.</big></good>"
+							if (client.mob && istype(client.mob, /mob/observer/ghost))
+								var/mob/observer/ghost/G = client.mob
+								G.reenter_corpse()
+
 							if (client)
 								switch (H.original_job.default_language)
 									if ("German")
