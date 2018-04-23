@@ -555,6 +555,7 @@ var/setting_up_db_connection = FALSE
 			DEBUG_SERVERSWAP("13 = [serverswap_open_status]")
 			switch (serverswap_open_status)
 				if (0) // we're waiting for the server before us or the very last server to tell us its ok to go up
+					world.visibility = FALSE
 					var/our_server_id = serverswap["this"] // "s1"
 					var/our_number = text2num(replacetext(our_server_id, "s", "")) // '1'
 					var/waiting_on_id = null
@@ -589,7 +590,8 @@ var/setting_up_db_connection = FALSE
 						fdel(F)
 						F << "hello world!"*/
 				if (1) // we're going to send updates every second in the form of text files telling the server after us what to do
-
+					if (config.hub)
+						world.visibility = TRUE
 			/*		if (!serverswap_closed)
 						// delete the other file, if it exists
 						if (fexists("[serverswap["masterdir"]]/sharedinfo/[serverswap["this"]]_closed.txt"))
