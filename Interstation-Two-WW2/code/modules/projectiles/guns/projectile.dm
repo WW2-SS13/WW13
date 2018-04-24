@@ -46,6 +46,8 @@
 
 	var/executing = FALSE
 
+	var/infinite_ammo = FALSE
+
 /obj/item/weapon/gun/projectile/New()
 	..()
 	if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
@@ -74,10 +76,15 @@
 		chambered = loaded[1] //load next casing.
 		if(handle_casings != HOLD_CASINGS)
 			loaded -= chambered
+			if (infinite_ammo)
+				loaded += new chambered.type
+
 	else if(ammo_magazine && ammo_magazine.stored_ammo.len)
 		chambered = ammo_magazine.stored_ammo[1]
 		if(handle_casings != HOLD_CASINGS)
 			ammo_magazine.stored_ammo -= chambered
+			if (infinite_ammo)
+				ammo_magazine.stored_ammo += new chambered.type
 
 	if (chambered)
 		if (gibs)
@@ -131,10 +138,16 @@
 
 //Attempts to load A into src, depending on the type of thing being loaded and the load_method
 //Maybe this should be broken up into separate procs for each load method?
+/mob/var/next_load = -1
 /obj/item/weapon/gun/projectile/proc/load_ammo(var/obj/item/A, mob/user)
 
-	if (load_delay && !do_after(user, load_delay, src))
+	if (world.time < user.next_load)
 		return
+
+	if (load_delay && !do_after(user, load_delay, src, can_move = TRUE))
+		return
+
+	user.next_load = world.time + 1
 
 	// special scenario: A is an ammo box, src is a PTRD or something
 	// turn A from the ammo magazine to the first bullet in the ammo magazine

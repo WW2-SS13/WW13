@@ -21,7 +21,7 @@ var/list/flooring_cache = list()
 			else
 				icon_state = flooring.icon_base
 				if(flooring.has_base_range)
-					icon_state = "[icon_state][rand(0,flooring.has_base_range)]"
+					icon_state = "[icon_state][srand(0,flooring.has_base_range)]"
 					flooring_override = icon_state
 
 
@@ -115,7 +115,7 @@ var/list/flooring_cache = list()
 
 	if(is_plating() && !(isnull(broken) && isnull(burnt))) //temp, todo
 		icon = 'icons/turf/flooring/plating.dmi'
-		icon_state = "dmg[rand(1,4)]"
+		icon_state = "dmg[srand(1,4)]"
 	else if(flooring)
 		if(!isnull(broken) && (flooring.flags & TURF_CAN_BREAK))
 			overlays |= get_flooring_overlay("[flooring.icon_base]-broken-[broken]", "broken[broken]")

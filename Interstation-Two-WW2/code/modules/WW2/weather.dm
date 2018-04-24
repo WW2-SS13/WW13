@@ -85,7 +85,7 @@
 				var/random_indices = list()
 
 				for (var/v in TRUE to 15)
-					random_indices |= rand(min_index, max_index)
+					random_indices |= srand(min_index, max_index)
 				for (var/v in random_indices)
 					var/turf/floor/F = A.snowfall_valid_turfs[v]
 					if (!F)
@@ -95,12 +95,12 @@
 						var/snowfall_prob = 20
 						for (var/obj/snow/S in orange(1, F))
 							snowfall_prob += 10
-						if (prob(snowfall_prob))
+						if (sprob(snowfall_prob))
 							var/obj/snow/S = new/obj/snow(F)
 							if (A.location == AREA_INSIDE)
 								S.visible_message("<span class = 'danger'>Snow falls in from the ceiling.</span>")
 							++turfs_made_snowy
-							if (turfs_made_snowy >= rand(20*SNOW_GATHERING_RATE,30*SNOW_GATHERING_RATE))
+							if (turfs_made_snowy >= srand(20*SNOW_GATHERING_RATE,30*SNOW_GATHERING_RATE))
 								break
 	else if (weather == WEATHER_RAIN)
 
@@ -124,16 +124,16 @@
 				var/random_indices = list()
 
 				for (var/v in TRUE to 40) // 2 to 3x more than snow affects
-					random_indices |= rand(min_index, max_index)
+					random_indices |= srand(min_index, max_index)
 				for (var/v in random_indices)
 					var/turf/floor/F = A.snowfall_valid_turfs[v]
 					if (!F)
 						A.snowfall_valid_turfs -= F
 						continue
 					if (istype(F) && F.uses_winter_overlay)
-						if (prob(33))
+						if (sprob(33))
 							F.muddy = TRUE
-							spawn (rand(15000,25000))
+							spawn (srand(15000,25000))
 								if (weather != WEATHER_RAIN)
 									F.muddy = FALSE*/
 
@@ -143,7 +143,7 @@
 
 	var/old_intensity = weather_intensity
 
-	if (prob(66) && weather_intensity < 3.0)
+	if (sprob(66) && weather_intensity < 3.0)
 		++weather_intensity
 	else if (weather_intensity > 1.0)
 		--weather_intensity
@@ -166,7 +166,7 @@
 
 	possibilities -= non_possibilities
 
-	change_weather(pick(possibilities))
+	change_weather(spick(possibilities))
 
 /proc/get_weather(var/_weather)
 	switch (_weather ? _weather : weather)

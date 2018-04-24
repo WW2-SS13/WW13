@@ -5,7 +5,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/mob.dmi'
-	icon_state = "ghost"
+	icon_state = "ghost2"
 	canmove = FALSE
 	blinded = FALSE
 	anchored = TRUE	//  don't get pushed around
@@ -25,11 +25,11 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	var/ghostvision = TRUE //is the ghost able to see things humans can't?
 	var/seedarkness = TRUE
 
-	var/obj/item/device/multitool/ghost_multitool
+	var/obj/item/multitool/ghost_multitool
 	incorporeal_move = TRUE
 
+	var/original_icon = null
 	var/list/original_overlays = list()
-	var/original_icon_state = null
 
 /mob/observer/ghost/New(mob/body)
 	see_in_dark = 100
@@ -41,46 +41,41 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
 
 		if (ishuman(body))
-			var/mob/living/carbon/human/H = body
-			icon = H.stand_icon
-			overlays = H.overlays_standing
+			icon = body:stand_icon
+			overlays = body:overlays_standing
+			original_icon = icon
+			original_overlays = body:overlays_standing
 		else
 			icon = body.icon
 			icon_state = body.icon_state
-			overlays = body.overlays
+			original_icon = icon(icon, icon_state)
+			original_overlays = overlays
 
 		alpha = 127
 
 		gender = body.gender
-		if(body.mind && body.mind.name)
-			name = body.mind.name
+
+		if(body.real_name)
+			name = body.real_name
 		else
-			if(body.real_name)
-				name = body.real_name
+			if (body.mind.name)
+				name = body.mind.name
 			else
 				if(gender == MALE)
-					name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+					name = capitalize(spick(first_names_male)) + " " + capitalize(spick(last_names))
 				else
-					name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+					name = capitalize(spick(first_names_female)) + " " + capitalize(spick(last_names))
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
-	if(!T)	T = pick(latejoin_turfs["Ghost"])			//Safety in case we cannot find the body's position
+	if(!T)	T = spick(latejoin_turfs["Ghost"])			//Safety in case we cannot find the body's position
 	forceMove(T)
 
 	if(!name)							//To prevent nameless ghosts
-		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+		name = capitalize(spick(first_names_male)) + " " + capitalize(spick(last_names))
 	real_name = name
 
 //	ghost_multitool = new(src)
-
-	// when you gib, you have no icon state.
-	// now you get a default ghost icon
-	// - Kachnov
-
-	if (!icon_state)
-		icon = initial(icon)
-		icon_state = initial(icon_state)
 
 	..()
 
@@ -146,7 +141,7 @@ Works together with spawning an observer, noted above.
 
 /mob/proc/ghostize(var/can_reenter_corpse = TRUE)
 	// remove weather sounds
-	src << sound(null, channel = 777)
+	src << sound(null, channel = 778)
 	// remove ambient sounds
 	stop_ambience(src)
 	if(key)
@@ -241,6 +236,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		human_clients_mob_list |= H
 		if (config.allow_selfheal)
 			H.verbs |= /mob/living/carbon/human/proc/selfheal
+			H.verbs |= /mob/living/carbon/human/proc/selfrevive
 
 	return TRUE
 
@@ -314,7 +310,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "No area available."
 
 	stop_following()
-	usr.forceMove(pick(L))
+	usr.forceMove(spick(L))
 
 /mob/observer/ghost/verb/follow(input in getfitmobs()+"Cancel")
 	set category = "Ghost"
@@ -515,6 +511,21 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (!tank) return
 	ManualFollow(tank)
 
+/mob/observer/ghost/verb/toggle_visibility()
+	set category = "Ghost"
+	set name = "Toggle Visibility"
+	if (!icon)
+/*		if (!reference_human)
+			src << "<span class = 'danger'>Your mob broke, we can't make your icon visible again. An admin probably did this.</span>"
+			return*/
+		icon = original_icon
+		overlays = original_overlays
+		src << "<span class = 'good'>You are now visible again.</span>"
+	else
+		icon = null
+		overlays.Cut()
+		src << "<span class = 'good'>You are now invisible.</span>"
+
 // This is the ghost's follow verb with an argument
 /mob/observer/ghost/proc/ManualFollow(var/atom/movable/target)
 	if(!target || target == following || target == src)
@@ -661,7 +672,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!v.welded && v.z == T.z)
 			found_vents.Add(v)
 	if(found_vents.len)
-		vent_found = pick(found_vents)
+		vent_found = spick(found_vents)
 		host = new /mob/living/simple_animal/mouse(vent_found.loc)
 	else
 		src << "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>"
@@ -782,7 +793,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Point To"
 	usr.visible_message("<span class='deadsay'><b>[src]</b> points to [A]</span>")
 	return TRUE
-
+/*
 /mob/observer/ghost/proc/manifest(mob/user)
 	var/is_manifest = FALSE
 	if(!is_manifest)
@@ -813,8 +824,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(!iconRemoved)
 		var/image/J = image('icons/mob/mob.dmi', loc = src, icon_state = icon)
-		client.images += J
-
+		client.images += J*/
+/*
 /mob/observer/ghost/proc/toggle_visibility(var/forced = FALSE)
 	set category = "Ghost"
 	set name = "Toggle Visibility"
@@ -834,7 +845,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	invisibility = invisibility == INVISIBILITY_OBSERVER ? FALSE : INVISIBILITY_OBSERVER
 	// Give the ghost a cult icon which should be visible only to itself
 	toggle_icon("cult")
-
+*/
 /mob/observer/ghost/verb/toggle_anonsay()
 	set category = "Ghost"
 	set name = "Toggle Anonymous Chat"

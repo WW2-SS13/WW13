@@ -80,11 +80,11 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if (sprob(50))
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(5))
+			if (sprob(5))
 				qdel(src)
 				return
 

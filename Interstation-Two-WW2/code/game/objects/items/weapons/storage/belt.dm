@@ -41,7 +41,7 @@
 		/obj/item/weapon/weldingtool/ww2,
 		/obj/item/weapon/wirecutters/boltcutters,
 		/obj/item/weapon/wrench,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
@@ -56,7 +56,7 @@
 	new /obj/item/weapon/weldingtool/ww2(src)
 	new /obj/item/weapon/crowbar/prybar(src)
 	new /obj/item/weapon/wirecutters/boltcutters(src)
-	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
+	new /obj/item/stack/cable_coil(src,30,spick("red","yellow","orange"))
 
 
 /obj/item/weapon/storage/belt/utility/atmostech/New()
@@ -81,13 +81,13 @@
 		/obj/item/weapon/flame/lighter/zippo,
 		/obj/item/weapon/storage/pill_bottle,
 		/obj/item/stack/medical,
-		/obj/item/device/flashlight/pen,
+		/obj/item/flashlight/pen,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/head/surgery,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/weapon/crowbar/prybar,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/weapon/extinguisher/mini
 		)
 

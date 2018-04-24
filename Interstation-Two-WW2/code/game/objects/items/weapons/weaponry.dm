@@ -103,7 +103,7 @@
 	affecting.visible_message("[affecting] vanishes in a flare of light!")
 
 	if(holdingfacility.len)
-		affecting.loc = pick(holdingfacility)
+		affecting.loc = spick(holdingfacility)
 
 	affecting << "You appear in a strange place!"
 
@@ -128,14 +128,14 @@
 	if(istype(H))
 		if(H.species.can_shred(H))
 			playsound(loc, 'sound/weapons/slash.ogg', 80, TRUE)
-			health -= rand(10, 20)
+			health -= srand(10, 20)
 		else
-			health -= rand(1,3)
+			health -= srand(1,3)
 
 	else if (HULK in user.mutations)
 		health = FALSE
 	else
-		health -= rand(5,8)
+		health -= srand(5,8)
 
 	H << "<span class='danger'>You claw at the energy net.</span>"
 

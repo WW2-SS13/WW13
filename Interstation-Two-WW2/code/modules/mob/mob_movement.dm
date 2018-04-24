@@ -1,6 +1,16 @@
 /mob/var/velocity = 0
 /mob/var/velocity_lastdir = -1 // turning makes you lose TRUE or 2 velocity
-/mob/var/run_delay_maximum = 2.2 // was 1.75
+/mob/var/run_delay_maximum = 1.66 // was 1.75
+
+/mob/var/ghost_velocity = 0
+/mob/proc/movement_delay()
+	switch (ghost_velocity)
+		if (0)
+			return 0.7
+		if (1)
+			return 0.5
+		if (2)
+			return 0.3
 
 /mob/proc/get_run_delay()
 	switch (velocity)
@@ -72,18 +82,14 @@
 /client/North()
 	..()
 
-
 /client/South()
 	..()
-
 
 /client/West()
 	..()
 
-
 /client/East()
 	..()
-
 
 /client/proc/client_dir(input, direction=-1)
 	return turn(input, direction*dir2angle(dir))
@@ -236,12 +242,17 @@
 
 /mob/var/next_snow_message = -1
 /mob/var/next_mud_message = -1
+/mob/var/list/movement_process_dirs = list()
 /mob/living/carbon/human/var/next_stamina_message = -1
 
 /client/Move(n, direct)
 
 	if(!canmove)
 		return
+
+	if(moving)	return
+
+	if(world.time < move_delay)	return
 
 	if(!mob)
 		return // Moved here to avoid nullrefs below
@@ -306,12 +317,15 @@
 	if(mob.control_object)	Move_object(direct)
 
 	if(mob.incorporeal_move && mob_is_observer)
+		if (mob.velocity_lastdir == direct && mob.lastMovedRecently(5))
+			++mob.ghost_velocity
+		else
+			mob.ghost_velocity = 0
+		mob.velocity_lastdir = direct
+		mob.last_movement = world.time
+		move_delay = world.time + mob.movement_delay()
 		Process_Incorpmove(direct)
 		return
-
-	if(moving)	return FALSE
-
-	if(world.time < move_delay)	return
 
 	for(var/obj/effect/stop/S in mob.loc)
 		if(S.victim == mob)
@@ -330,6 +344,12 @@
 	if(mob_is_living)
 		var/mob/living/L = mob
 		if(L.incorporeal_move)//Move though walls
+			if (mob.velocity_lastdir == direct && mob.lastMovedRecently(5))
+				++mob.ghost_velocity
+			else
+				mob.ghost_velocity = 0
+			mob.last_movement = world.time
+			move_delay = world.time + mob.movement_delay()
 			Process_Incorpmove(direct)
 			return
 
@@ -343,7 +363,7 @@
 			mob.visible_message("<span class = 'warning'>[mob] starts climbing through the window frame.</span>")
 			mob.canmove = FALSE
 			var/oloc = mob.loc
-			sleep(rand(25,35))
+			sleep(srand(25,35))
 			mob.canmove = TRUE
 			if (mob.lying || mob.stat == DEAD || mob.stat == UNCONSCIOUS || mob.loc != oloc)
 				return
@@ -431,14 +451,14 @@
 					mob.next_snow_message = world.time+100
 
 			else if (F.muddy)
-				standing_on_snow = rand(2,3)
+				standing_on_snow = srand(2,3)
 				if (world.time >= mob.next_mud_message)
 					mob << "<span class = 'warning'>The mud slows you down.</span>"
 					mob.next_mud_message = world.time+100
 
 		if (mob.velocity_lastdir != -1)
 			if (direct != mob.velocity_lastdir)
-				mob.velocity = max(mob.velocity-pick(1,2), FALSE)
+				mob.velocity = max(mob.velocity-spick(1,2), FALSE)
 
 		switch(mob.m_intent)
 			if("run")
@@ -449,7 +469,7 @@
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.02
 					H.water -= 0.02
-					--H.stamina
+					--H.stats["stamina"][1]
 					if (H.bodytemperature < H.species.body_temperature)
 						H.bodytemperature += 0.66
 			if("walk")
@@ -464,12 +484,15 @@
 
 		if (mob.pulling)
 			if (istype(mob.pulling, /mob))
-				move_delay += 1.0
+				move_delay += 1.25
 				if (istype(mob.pulling, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = mob.pulling
 					for (var/obj/structure/noose/N in get_turf(H))
 						if (N.hanging == H)
 							mob.stop_pulling()
+
+			else if (istype(mob.pulling, /obj/item/weapon/gun/projectile/minigun))
+				move_delay += 1.00
 
 			else if (istype(mob.pulling, /obj/structure))
 				move_delay += 0.75
@@ -477,11 +500,11 @@
 		var/mob/living/carbon/human/H = mob
 
 		if (mob_is_human)
-			if (H.stamina == (H.max_stamina/2) && H.m_intent == "run" && world.time >= H.next_stamina_message)
+			if (H.getStat("stamina") == (H.getMaxStat("stamina")/2) && H.m_intent == "run" && world.time >= H.next_stamina_message)
 				H << "<span class = 'danger'>You're starting to tire from running so much.</span>"
 				H.next_stamina_message = world.time + 20
 
-			if (H.stamina <= 0 && H.m_intent == "run")
+			if (H.getStat("stamina") <= 0 && H.m_intent == "run")
 				H << "<span class = 'danger'>You're too tired to keep running.</span>"
 				for (var/obj/screen/mov_intent/mov in H.client.screen)
 					H.client.Click(mov)
@@ -503,8 +526,8 @@
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
 			move_delay = world.time + tickcomp
 			//drunk driving
-			if(mob.confused && prob(40))
-				direct = pick(cardinal)
+			if(mob.confused && sprob(40))
+				direct = spick(cardinal)
 
 			return mob.buckled.relaymove(mob,direct)
 
@@ -523,8 +546,8 @@
 					if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
 						return // No hands to drive your chair? Tough luck!
 				//drunk wheelchair driving
-				if(mob.confused && prob(40))
-					direct = pick(cardinal)
+				if(mob.confused && sprob(40))
+					direct = spick(cardinal)
 				move_delay += 2
 				return mob.buckled.relaymove(mob,direct)
 
@@ -569,8 +592,8 @@
 							M.animate_movement = 2
 							return
 
-		else if(mob.confused && prob(40))
-			step(mob, pick(cardinal))
+		else if(mob.confused && sprob(40))
+			step(mob, spick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
 
@@ -583,10 +606,11 @@
 					if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
 						H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")
 						playsound(t1, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
-						L.adjustBruteLoss(rand(8,12))
+						L.adjustBruteLoss(srand(6,7))
 						if (ishuman(L))
 							L.emote("scream")
 						sleep(5)
+					break
 			else
 				for (var/mob/living/L in t1)
 					if (L.lying && L != H)
@@ -623,7 +647,9 @@
 	return
 
 /mob/proc/lastMovedRecently(threshold)
-	var/default_threshold = get_walk_delay()
+	var/default_threshold = movement_delay()
+	if (ishuman(src))
+		default_threshold = get_walk_delay()
 	if (m_intent == "run")
 		default_threshold = get_run_delay()
 	if (abs(world.time - last_movement) <= (threshold ? threshold+0.1 : default_threshold+0.1))
@@ -649,7 +675,7 @@
 				mob.forceMove(get_step(mob, direct))
 				mob.dir = direct
 		if(2)
-			if(prob(50))
+			if(sprob(50))
 				var/locx
 				var/locy
 				switch(direct)
@@ -724,7 +750,7 @@
 		return FALSE
 
 	//Check to see if we slipped
-	if(prob(slip_chance(5)) && !buckled)
+	if(sprob(slip_chance(5)) && !buckled)
 		src << "<span class='warning'>You slipped!</span>"
 		inertia_dir = last_move
 		step(src, inertia_dir)
@@ -763,22 +789,50 @@
 		return FALSE
 	return prob_slip
 
-/client/verb/moveup()
-	set name = ".moveup"
+/client/verb/startmovingup()
+	set name = ".startmovingup"
 	set instant = TRUE
-	Move(get_step(mob, NORTH), NORTH)
+	if (mob)
+		mob.movement_process_dirs |= NORTH
+		Move(get_step(mob, NORTH), NORTH)
 
-/client/verb/movedown()
-	set name = ".movedown"
+/client/verb/startmovingdown()
+	set name = ".startmovingdown"
 	set instant = TRUE
-	Move(get_step(mob, SOUTH), SOUTH)
+	if (mob)
+		mob.movement_process_dirs |= SOUTH
+		Move(get_step(mob, SOUTH), SOUTH)
 
-/client/verb/moveright()
-	set name = ".moveright"
+/client/verb/startmovingright()
+	set name = ".startmovingright"
 	set instant = TRUE
-	Move(get_step(mob, EAST), EAST)
+	if (mob)
+		mob.movement_process_dirs |= EAST
+		Move(get_step(mob, EAST), EAST)
 
-/client/verb/moveleft()
-	set name = ".moveleft"
+/client/verb/startmovingleft()
+	set name = ".startmovingleft"
 	set instant = TRUE
-	Move(get_step(mob, WEST), WEST)
+	if (mob)
+		mob.movement_process_dirs |= WEST
+		Move(get_step(mob, WEST), WEST)
+
+/client/verb/stopmovingup()
+	set name = ".stopmovingup"
+	set instant = TRUE
+	mob.movement_process_dirs -= NORTH
+
+/client/verb/stopmovingdown()
+	set name = ".stopmovingdown"
+	set instant = TRUE
+	mob.movement_process_dirs -= SOUTH
+
+/client/verb/stopmovingright()
+	set name = ".stopmovingright"
+	set instant = TRUE
+	mob.movement_process_dirs -= EAST
+
+/client/verb/stopmovingleft()
+	set name = ".stopmovingleft"
+	set instant = TRUE
+	mob.movement_process_dirs -= WEST

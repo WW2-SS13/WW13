@@ -15,6 +15,6 @@
 			config.lobby_screens -= lobby_screen
 
 	if(config.lobby_screens.len)
-		icon_state = pick(config.lobby_screens)
+		icon_state = spick(config.lobby_screens)
 	else
 		icon_state = known_icon_states[1]

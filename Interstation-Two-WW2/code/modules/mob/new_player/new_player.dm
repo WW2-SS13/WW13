@@ -60,7 +60,7 @@
 
 	for (var/new_player in new_player_mob_list)
 		if (new_player:client) // sanity check
-			new_player << "<span class=\"log_message\">(LOBBY)</span> <span class='deadsay'><b>[capitalize(key)]</b>:</span> [capitalize(message)]"
+			new_player << "<span class = 'ping'>(LOBBY)</span> <span class='deadsay'><b>[capitalize(key)]</b>:</span> [capitalize(message)]"
 
 	return TRUE
 
@@ -188,7 +188,7 @@
 
 		if(alert(src,"Are you sure you wish to observe?","Player Setup","Yes","No") == "Yes")
 			if(!client)	return TRUE
-			var/mob/observer/ghost/observer = new(150, 317, TRUE)
+			var/mob/observer/ghost/observer = new(150, 317, 1)
 
 			spawning = TRUE
 			src << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS cant last forever yo
@@ -208,15 +208,20 @@
 
 			if (client.prefs.preview_icons.len)
 				observer.icon = client.prefs.preview_icons[1]
+
 			observer.alpha = 127
 
 			if(client.prefs.be_random_name)
 				client.prefs.real_name = random_name(client.prefs.gender)
+
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
 		//	if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
 				//observer.verbs -= /mob/observer/ghost/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
 			observer.key = key
+			observer.overlays += icon('icons/mob/uniform.dmi', "civuni[rand(1,3)]")
+			observer.original_icon = observer.icon
+			observer.original_overlays = list(icon('icons/mob/uniform.dmi', "civuni[rand(1,3)]"))
 			qdel(src)
 
 			return TRUE
@@ -526,12 +531,12 @@
 
 	if (character.original_job)
 		if (character.original_job.base_type_flag() == SOVIET)
-			var/obj/item/device/radio/R = main_radios[SOVIET]
+			var/obj/item/radio/R = main_radios[SOVIET]
 			if (R && R.loc)
 				spawn (10)
 					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcement System")
 		else if (character.original_job.base_type_flag() == GERMAN)
-			var/obj/item/device/radio/R = main_radios[GERMAN]
+			var/obj/item/radio/R = main_radios[GERMAN]
 			if (R && R.loc)
 				spawn (10)
 					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcement System")
@@ -797,7 +802,7 @@
 				new_character.add_language(lang)
 
 	if(ticker.random_players)
-		new_character.gender = pick(MALE, FEMALE)
+		new_character.gender = spick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
 		client.prefs.randomize_appearance_for(new_character)
 	else

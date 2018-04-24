@@ -93,16 +93,16 @@ proc/get_radio_key_from_channel(var/channel)
 
 	if((HULK in mutations) && health >= 25 && length(message))
 		message = "[uppertext(message)]!!!"
-		verb = pick("yells","roars","hollers")
+		verb = spick("yells","roars","hollers")
 		speech_problem_flag = TRUE
 
 	if(slurring)
 		message = slur(message)
-		verb = pick("slobbers","slurs")
+		verb = spick("slobbers","slurs")
 		speech_problem_flag = TRUE
 	if(stuttering)
 		message = stutter(message)
-		verb = pick("stammers","stutters")
+		verb = spick("stammers","stutters")
 		speech_problem_flag = TRUE
 	if(lisp)
 		message = lisp(message, lisp)
@@ -115,7 +115,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 /mob/living/proc/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	if(message_mode == "intercom")
-		for(var/obj/item/device/radio/intercom/I in view(1, null))
+		for(var/obj/item/radio/intercom/I in view(1, null))
 			I.talk_into(src, message, verb, speaking)
 			used_radios += I
 	return FALSE
@@ -128,7 +128,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 /mob/living/proc/get_speech_ending(verb, var/ending)
 	if(ending=="!")
-		return pick("exclaims","shouts","yells")
+		return spick("exclaims","shouts","yells")
 	if(ending=="?")
 		return "asks"
 	return verb
@@ -210,11 +210,11 @@ proc/get_radio_key_from_channel(var/channel)
 	//handle nonverbal and sign languages here
 	if (speaking)
 		if (speaking.flags & NONVERBAL)
-			if (prob(30))
-				custom_emote(1, "[pick(speaking.signlang_verb)].")
+			if (sprob(30))
+				custom_emote(1, "[spick(speaking.signlang_verb)].")
 
 		if (speaking.flags & SIGNLANG)
-			return say_signlang(message, pick(speaking.signlang_verb), speaking)
+			return say_signlang(message, spick(speaking.signlang_verb), speaking)
 
 	var/list/listening = list()
 	var/list/listening_obj = list()

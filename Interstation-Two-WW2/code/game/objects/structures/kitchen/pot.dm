@@ -89,6 +89,7 @@
 				H.remove_from_mob(I)
 				I.loc = src
 				visible_message("<span class = 'info'>[H] puts [I] in the pot.</span>")
+				stew_ticks = max(stew_ticks - 5, 0)
 				if (state == STATE_WATER)
 					state = STATE_BOILING
 					update_icon()
@@ -151,7 +152,7 @@
 		if (contents.len)
 			var/boiling = 0
 			for (var/obj/item/weapon/reagent_containers/food/F in contents)
-				if (!F.boiled && prob(10))
+				if (!F.boiled && sprob(10))
 					visible_message("<span class = 'info'>[F] finishes boiling.</span>")
 					if (BOIL_MAP[F.type])
 						var/newtype = BOIL_MAP[F.type]
@@ -170,7 +171,7 @@
 				else
 					++boiling
 			if (boiling > 0)
-				if (stew_ticks >= rand(20,25))
+				if (stew_ticks >= srand(20,25))
 					state = STATE_STEWING
 					bowls = min(round(contents.len/3) + 3,10) // 1 object = 3 bowls. 10 objects = 6 bowls
 					visible_message("<span class = 'info'>The liquid in the pot turns into a stew.</span>")

@@ -112,7 +112,7 @@
 				if(a <= the_targets.len)
 					my_target = the_targets[a]
 				else
-					my_target = pick(the_targets)
+					my_target = spick(the_targets)
 				W.create_reagents(spray_amount)
 				reagents.trans_to_obj(W, spray_amount)
 				W.set_color()

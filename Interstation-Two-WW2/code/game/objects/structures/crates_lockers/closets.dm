@@ -57,8 +57,13 @@
 			user << "It is full."
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0 || wall_mounted)) return TRUE
-	return (!density)
+	if (!istype(mover, /obj/item/projectile))
+		if(air_group || (height==0 || wall_mounted)) return TRUE
+		return !density
+	if (prob(80))
+		return !density
+	else
+		return TRUE
 
 /obj/structure/closet/proc/can_open()
 	if(welded)
@@ -165,13 +170,13 @@
 				A.ex_act(severity + 1)
 			qdel(src)
 		if(2)
-			if(prob(50))
+			if(sprob(50))
 				for (var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					A.ex_act(severity + 1)
 				qdel(src)
 		if(3)
-			if(prob(5))
+			if(sprob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 				qdel(src)
@@ -360,6 +365,6 @@
 
 /obj/structure/closet/proc/animate_shake()
 	var/init_px = pixel_x
-	var/shake_dir = pick(-1, TRUE)
+	var/shake_dir = spick(-1, TRUE)
 	animate(src, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
 	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)

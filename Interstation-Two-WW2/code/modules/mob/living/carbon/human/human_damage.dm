@@ -118,7 +118,7 @@
 		var/obj/item/organ/external/O = get_organ(organ_name)
 
 		if(amount > 0)
-			O.take_damage(amount, 0, sharp=is_sharp(damage_source), edge=damage_source ? damage_source.edge : 0, used_weapon=damage_source)
+			O.take_damage(amount, 0, sharp=is_sharp(damage_source), edge = damage_source ? damage_source.edge : 0, used_weapon=damage_source)
 		else
 			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
 			O.heal_damage(-amount, 0, internal=0, robo_repair=(O.status & ORGAN_ROBOT))
@@ -145,11 +145,11 @@
 /mob/living/carbon/human/Weaken(amount)
 	if(HULK in mutations)	return
 	// 60% chance Vampires won't be affected; 96% Pillar Men won't be
-	if(takes_less_damage && prob(15 + ceil(getStatCoeff("strength") * 9)))
+	if(takes_less_damage && sprob(15 + ceil(getStatCoeff("strength") * 9)))
 		return
 	// failing that, addition 50%/77% chance to get less weakened
-	else if (prob(5 + ceil(getStatCoeff("strength") * 9)))
-		amount /= pick(2,3)
+	else if (sprob(5 + ceil(getStatCoeff("strength") * 9)))
+		amount /= spick(2,3)
 
 	..()
 
@@ -179,18 +179,18 @@
 	var/heal_prob = max(0, 80 - getCloneLoss())
 	var/mut_prob = min(80, getCloneLoss()+10)
 	if (amount > 0)
-		if (prob(mut_prob))
+		if (sprob(mut_prob))
 			var/list/obj/item/organ/external/candidates = list()
 			for (var/obj/item/organ/external/O in organs)
 				if(!(O.status & ORGAN_MUTATED))
 					candidates |= O
 			if (candidates.len)
-				var/obj/item/organ/external/O = pick(candidates)
+				var/obj/item/organ/external/O = spick(candidates)
 				O.mutate()
 				src << "<span class = 'notice'>Something is not right with your [O.name]...</span>"
 				return
 	else
-		if (prob(heal_prob))
+		if (sprob(heal_prob))
 			for (var/obj/item/organ/external/O in organs)
 				if (O.status & ORGAN_MUTATED)
 					O.unmutate()
@@ -265,7 +265,7 @@
 /mob/living/carbon/human/heal_organ_damage(var/brute, var/burn)
 	var/list/obj/item/organ/external/parts = get_damaged_organs(brute,burn)
 	if(!parts.len)	return
-	var/obj/item/organ/external/picked = pick(parts)
+	var/obj/item/organ/external/picked = spick(parts)
 	if(picked.heal_damage(brute,burn))
 		UpdateDamageIcon()
 		BITSET(hud_updateflag, HEALTH_HUD)
@@ -281,7 +281,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 /mob/living/carbon/human/take_organ_damage(var/brute, var/burn, var/sharp = FALSE, var/edge = FALSE)
 	var/list/obj/item/organ/external/parts = get_damageable_organs()
 	if(!parts.len)	return
-	var/obj/item/organ/external/picked = pick(parts)
+	var/obj/item/organ/external/picked = spick(parts)
 	if(picked.take_damage(brute,burn,sharp,edge))
 		UpdateDamageIcon()
 		BITSET(hud_updateflag, HEALTH_HUD)
@@ -295,7 +295,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 	var/update = FALSE
 	while(parts.len && (brute>0 || burn>0) )
-		var/obj/item/organ/external/picked = pick(parts)
+		var/obj/item/organ/external/picked = spick(parts)
 
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
@@ -317,7 +317,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	var/list/obj/item/organ/external/parts = get_damageable_organs()
 	var/update = FALSE
 	while(parts.len && (brute>0 || burn>0) )
-		var/obj/item/organ/external/picked = pick(parts)
+		var/obj/item/organ/external/picked = spick(parts)
 
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
@@ -374,7 +374,7 @@ This function restores all organs.
 	//Handle other types of damage
 	if(!stat && damagetype != BRUTE && damagetype != BURN)
 		if(damagetype == HALLOSS && !(species && (species.flags & NO_PAIN)))
-			if ((damage > 25 && prob(20)) || (damage > 50 && prob(60)))
+			if ((damage > 25 && sprob(20)) || (damage > 50 && sprob(60)))
 				emote("scream")
 
 		..(damage, damagetype, def_zone, blocked)

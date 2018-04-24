@@ -2,17 +2,6 @@
 	takes_less_damage = TRUE
 	movement_speed_multiplier = 1.50
 	size_multiplier = 2.50
-	use_initial_stats = TRUE
-	stats = list(
-		"strength" = list(400,400),
-		"engineering" = list(400,400),
-		"rifle" = list(400,400),
-		"mg" = list(400,400),
-		"pistol" = list(400,400),
-		"heavyweapon" = list(400,400),
-		"medical" = list(400,400),
-		"survival" = list(400,400))
-
 	f_style = "Square Mustache"
 	has_hunger_and_thirst = FALSE
 
@@ -24,3 +13,13 @@
 		loc = oloc
 		name = "MECHA HITLER"
 		real_name = "MECHA HITLER"
+		setStat("strength", 450)
+		setStat("engineering", 500)
+		setStat("rifle", 500)
+		setStat("mg", 500)
+		setStat("smg", 500)
+		setStat("pistol", 500)
+		setStat("heavyweapon", 500)
+		setStat("medical", 500)
+		setStat("shotgun", 500)
+		setStat("survival", 100)

@@ -29,10 +29,10 @@
 					//don't strip organs
 				H.drop_from_inventory(W)
 			//teleport person to cell
-			H.loc = pick(prisonwarp)
+			H.loc = spick(prisonwarp)
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/orange(H), slot_shoes)
 		else
 			//teleport security person
-			H.loc = pick(prisonsecuritywarp)
+			H.loc = spick(prisonsecuritywarp)
 		prisonwarped += H

@@ -9,7 +9,7 @@
 /*******
 * film *
 *******/
-/obj/item/device/camera_film
+/obj/item/camera_film
 	name = "film cartridge"
 	icon = 'icons/obj/items.dmi'
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
@@ -115,7 +115,7 @@ var/global/photo_count = FALSE
 /*********
 * camera *
 *********/
-/obj/item/device/camera
+/obj/item/camera
 	name = "camera"
 	icon = 'icons/obj/items.dmi'
 	desc = "A polaroid camera. 10 photos left."
@@ -132,7 +132,7 @@ var/global/photo_count = FALSE
 	var/icon_off = "camera_off"
 	var/size = 3
 
-/obj/item/device/camera/verb/change_size()
+/obj/item/camera/verb/change_size()
 	set name = "Set Photo Focus"
 	set category = null
 	var/nsize = input("Photo Size","Pick a size of resulting photo.") as null|anything in list(1,3,5,7)
@@ -140,10 +140,10 @@ var/global/photo_count = FALSE
 		size = nsize
 		usr << "<span class='notice'>Camera will now take [size]x[size] photos.</span>"
 
-/obj/item/device/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
 
-/obj/item/device/camera/attack_self(mob/user as mob)
+/obj/item/camera/attack_self(mob/user as mob)
 	on = !on
 	if(on)
 		icon_state = icon_on
@@ -152,8 +152,8 @@ var/global/photo_count = FALSE
 	user << "You switch the camera [on ? "on" : "off"]."
 	return
 
-/obj/item/device/camera/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/device/camera_film))
+/obj/item/camera/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)
 			user << "<span class='notice'>[src] still has some film in it!</span>"
 			return
@@ -165,7 +165,7 @@ var/global/photo_count = FALSE
 	..()
 
 
-/obj/item/device/camera/proc/get_mobs(turf/the_turf as turf)
+/obj/item/camera/proc/get_mobs(turf/the_turf as turf)
 	var/mob_detail
 	for(var/mob/living/carbon/A in the_turf)
 		if(A.invisibility) continue
@@ -184,11 +184,11 @@ var/global/photo_count = FALSE
 			mob_detail += "You can also see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]."
 	return mob_detail
 
-/obj/item/device/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
+/obj/item/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	if(!on || !pictures_left || ismob(target.loc)) return
 	captureimage(target, user, flag)
 
-	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, TRUE, -3)
+	playsound(loc, spick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, TRUE, -3)
 
 	pictures_left--
 	desc = "A polaroid camera. It has [pictures_left] photos left."
@@ -210,7 +210,7 @@ var/global/photo_count = FALSE
 	qdel(dummy)
 	return can_see
 
-/obj/item/device/camera/proc/captureimage(atom/target, mob/living/user, flag)
+/obj/item/camera/proc/captureimage(atom/target, mob/living/user, flag)
 	var/x_c = target.x - (size-1)/2
 	var/y_c = target.y + (size-1)/2
 	var/z_c	= target.z
@@ -227,7 +227,7 @@ var/global/photo_count = FALSE
 	var/obj/item/weapon/photo/p = createpicture(target, user, mobs, flag)
 	printpicture(user, p)
 
-/obj/item/device/camera/proc/createpicture(atom/target, mob/user, mobs, flag)
+/obj/item/camera/proc/createpicture(atom/target, mob/user, mobs, flag)
 	var/x_c = target.x - (size-1)/2
 	var/y_c = target.y - (size-1)/2
 	var/z_c	= target.z
@@ -248,13 +248,13 @@ var/global/photo_count = FALSE
 	p.tiny = pc
 	p.img = photoimage
 	p.desc = mobs
-	p.pixel_x = rand(-10, 10)
-	p.pixel_y = rand(-10, 10)
+	p.pixel_x = srand(-10, 10)
+	p.pixel_y = srand(-10, 10)
 	p.photo_size = size
 
 	return p
 
-/obj/item/device/camera/proc/printpicture(mob/user, obj/item/weapon/photo/p)
+/obj/item/camera/proc/printpicture(mob/user, obj/item/weapon/photo/p)
 	p.loc = user.loc
 	if(!user.get_inactive_hand())
 		user.put_in_inactive_hand(p)

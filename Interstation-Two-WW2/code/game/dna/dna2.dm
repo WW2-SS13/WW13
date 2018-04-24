@@ -109,9 +109,9 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	for(var/i=1,i<=DNA_UI_LENGTH,i++)
 		switch(i)
 			if(DNA_UI_SKIN_TONE)
-				SetUIValueRange(DNA_UI_SKIN_TONE,rand(1,220),220,1) // Otherwise, it gets fucked
+				SetUIValueRange(DNA_UI_SKIN_TONE,srand(1,220),220,1) // Otherwise, it gets fucked
 			else
-				UI[i]=rand(0,4095)
+				UI[i]=srand(0,4095)
 	if(!defer)
 		UpdateUI()
 
@@ -197,9 +197,9 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	if (block<=0) return
 	var/val
 	if(on)
-		val=rand(2050,4095)
+		val=srand(2050,4095)
 	else
-		val=rand(1,2049)
+		val=srand(1,2049)
 	SetUIValue(block,val,defer)
 
 // Get a hex-encoded UI block.
@@ -238,7 +238,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 // "Zeroes out" all of the blocks.
 /datum/dna/proc/ResetSE()
 	for(var/i = TRUE, i <= DNA_SE_LENGTH, i++)
-		SetSEValue(i,rand(1,1024),1)
+		SetSEValue(i,srand(1,1024),1)
 	UpdateSE()
 
 // Set a DNA SE block's raw value.
@@ -263,7 +263,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	ASSERT(maxvalue<=4095)
 	var/range = round(4095 / maxvalue)
 	if(value)
-		SetSEValue(block, value * range - rand(1,range-1))
+		SetSEValue(block, value * range - srand(1,range-1))
 
 // Getter version of above.
 /datum/dna/proc/GetSEValueRange(var/block,var/maxvalue)
@@ -284,9 +284,9 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	var/list/BOUNDS=GetDNABounds(block)
 	var/val
 	if(on)
-		val=rand(BOUNDS[DNA_ON_LOWERBOUND],BOUNDS[DNA_ON_UPPERBOUND])
+		val=srand(BOUNDS[DNA_ON_LOWERBOUND],BOUNDS[DNA_ON_UPPERBOUND])
 	else
-		val=rand(1,BOUNDS[DNA_OFF_UPPERBOUND])
+		val=srand(1,BOUNDS[DNA_OFF_UPPERBOUND])
 	SetSEValue(block,val,defer)
 
 // Get hex-encoded SE block.

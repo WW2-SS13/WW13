@@ -107,7 +107,7 @@
 				m.last_moved_on_train = world.time
 
 /obj/train_connector/ex_act(severity)
-	if (prob(round(90 * (1/severity))))
+	if (sprob(round(90 * (1/severity))))
 		qdel(src)
 	else
 		return

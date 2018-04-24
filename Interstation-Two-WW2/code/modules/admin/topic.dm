@@ -199,9 +199,11 @@
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/M = locate(href_list["mob"])
-		if(!ismob(M))
+		if(!istype(M))
 			usr << "This can only be used on instances of type /mob"
 			return
+
+		var/orig_client = M.client
 
 		var/delmob = FALSE
 		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
@@ -236,7 +238,6 @@
 			if("shade")				New = M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
 			if("mechahitler")		New = M.change_mob_type( /mob/living/carbon/human/mechahitler , null, null, delmob, href_list["species"])
 			if("megastalin")		New = M.change_mob_type( /mob/living/carbon/human/megastalin , null, null, delmob, href_list["species"])
-			if("nazicyborg")			New = M.change_mob_type( /mob/living/carbon/human/nazicyborg , null, null, delmob, href_list["species"])
 			if("pillarman")		New = M.change_mob_type( /mob/living/carbon/human/pillarman , null, null, delmob, href_list["species"])
 			if("vampire")			New = M.change_mob_type( /mob/living/carbon/human/vampire , null, null, delmob, href_list["species"])
 		if (New)
@@ -251,27 +252,40 @@
 
 					var/oloc_H = H.loc
 
-					var/J = input(usr_client, "Which job?") in (list("Cancel") | job_master_occupation_names)
+					var/datum/job/J = input(usr_client, "Which job?") in (list("Cancel") | job_master_occupation_names)
+
 					if (J != "Cancel")
 						job_master.EquipRank(H, J)
 						H.original_job = job_master_occupation_names[J]
+						H.invisibility = 101
 						var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
 						message_admins(msg)
 						log_admin(msg)
 						spawn (0.1)
-							H.loc = oloc_H
 
-							switch (H.original_job.default_language)
-								if ("German")
-									H.name = H.client.prefs.german_name
-									H.real_name = H.client.prefs.german_name
-								if ("Russian")
-									H.name = H.client.prefs.russian_name
-									H.real_name = H.client.prefs.russian_name
-								if ("Ukrainian")
-									H.name = H.client.prefs.ukrainian_name
-									H.real_name = H.client.prefs.ukrainian_name
+							if ((input(usr_client, "Send [H] to their spawnpoint?") in list("No", "Yes")) == "No")
+								H.loc = oloc_H
+							H.invisibility = 0
 
+							var/client/client = (H.client ? H.client : orig_client)
+							if (client.mob && istype(client.mob, /mob/observer/ghost))
+								var/mob/observer/ghost/G = client.mob
+								G.reenter_corpse()
+
+							if (client)
+								switch (H.original_job.default_language)
+									if ("German")
+										H.name = client.prefs.german_name
+										H.real_name = client.prefs.german_name
+									if ("Russian")
+										H.name = client.prefs.russian_name
+										H.real_name = client.prefs.russian_name
+									if ("Ukrainian")
+										H.name = client.prefs.ukrainian_name
+										H.real_name = client.prefs.ukrainian_name
+									if ("Italian")
+										H.name = client.prefs.italian_name
+										H.real_name = client.prefs.italian_name
 
 	else if(href_list["warn"])
 		usr.client.warn(href_list["warn"])

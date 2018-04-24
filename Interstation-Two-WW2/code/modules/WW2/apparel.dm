@@ -67,11 +67,11 @@
 	update_clothing_icon()
 
 	var/mob/living/carbon/human/H = loc
-	if (istype(H.s_store, /obj/item/device/radio/feldfu))
+	if (istype(H.s_store, /obj/item/radio/feldfu))
 		var/radio = H.s_store
 		H.drop_from_inventory(radio)
 		qdel(radio)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/rbs(H), slot_s_store)
+		H.equip_to_slot_or_del(new /obj/item/radio/rbs(H), slot_s_store)
 	if (istype(H.head, /obj/item/clothing/head/helmet/tactical/gerhelm))
 		var/obj/item/clothing/head/helmet/tactical/gerhelm/head = H.head
 		head.transform2soviet()
@@ -87,11 +87,11 @@
 	update_clothing_icon()
 
 	var/mob/living/carbon/human/H = loc
-	if (istype(H.s_store, /obj/item/device/radio/rbs))
+	if (istype(H.s_store, /obj/item/radio/rbs))
 		var/radio = H.s_store
 		H.drop_from_inventory(radio)
 		qdel(radio)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/feldfu(H), slot_s_store)
+		H.equip_to_slot_or_del(new /obj/item/radio/feldfu(H), slot_s_store)
 	if (istype(H.head, /obj/item/clothing/head/helmet/tactical/sovhelm))
 		var/obj/item/clothing/head/helmet/tactical/sovhelm/head = H.head
 		head.transform2german()
@@ -235,7 +235,7 @@
 	icon_state = "fallsparka"
 	item_state = "fallsparka"
 	worn_state = "fallsparka"
-	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/clothing/suit/sssmock
 	name = "S.S. Smock"
@@ -243,7 +243,7 @@
 	icon_state = "sssmock"
 	item_state = "sssmock"
 	worn_state = "sssmock"
-	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/clothing/head/helmet/tactical
 	force = 7
@@ -326,7 +326,7 @@
 	desc = "A heavy vest used by Soviet shock troops."
 	icon_state = "cn42"
 	armor = list(melee = 30, bullet = 60, laser = 10, energy = 10, bomb = 15, bio = FALSE, rad = FALSE)
-	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/weapon/storage/belt/soviet
 	name = "Soviet belt pouch"
@@ -345,7 +345,7 @@
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/weapon/gun/projectile/revolver,
 		/obj/item/weapon/melee/classic_baton,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/weapon/handcuffs,
 		/obj/item/ammo_casing/a145
 		)
@@ -389,7 +389,7 @@
 	..()
 	new /obj/item/weapon/melee/classic_baton/MP/soviet(src)
 	new /obj/item/weapon/gun/projectile/revolver/nagant_revolver(src)
-	new /obj/item/device/flashlight(src)
+	new /obj/item/flashlight(src)
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)
@@ -411,7 +411,7 @@
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/weapon/gun/projectile/revolver,
 		/obj/item/weapon/melee/classic_baton,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/weapon/handcuffs,
 		/obj/item/ammo_casing/a145
 		)
@@ -487,7 +487,7 @@
 	..()
 	new /obj/item/weapon/melee/classic_baton/MP/german(src)
 	new /obj/item/weapon/gun/projectile/pistol/mauser(src)
-	new /obj/item/device/flashlight(src)
+	new /obj/item/flashlight(src)
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)
@@ -509,7 +509,7 @@
 		/obj/item/weapon/gun/projectile/pistol,
 		/obj/item/weapon/gun/projectile/revolver,
 		/obj/item/weapon/melee/classic_baton,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/weapon/handcuffs,
 		/obj/item/ammo_casing/a145
 		)
@@ -590,7 +590,7 @@
 	..()
 	for (var/v in 1 to 3)
 		contents += new_ration(GERMAN, "solid")
-	contents += new/obj/item/device/flashlight/lantern()
+	contents += new/obj/item/flashlight/lantern()
 
 // todo: needs a new icon
 
@@ -605,7 +605,7 @@
 /obj/item/clothing/suit/storage/coat
 	name = "generic coat"
 	desc = "generic desc"
-	allowed = list(/obj/item/device/radio/rbs,/obj/item/device/radio/feldfu,/obj/item/device/radio/partisan)
+	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/clothing/suit/storage/coat/civilian
 	name = "Civilian's Coat"

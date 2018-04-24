@@ -24,7 +24,7 @@
 		if(!say_understands(speaker,language))
 			if(istype(speaker,/mob/living/simple_animal))
 				var/mob/living/simple_animal/S = speaker
-				message = pick(S.speak)
+				message = spick(S.speak)
 			else
 				if(language)
 					message = language.scramble(message)
@@ -72,14 +72,14 @@
 		if (!H.languages.Find(language))
 			var/lname = capitalize(language.name)
 			H.partial_languages[lname] += 1
-			if (H.partial_languages[lname] > rand(100,150))
+			if (H.partial_languages[lname] > srand(100,150))
 				H.add_language(language)
 				H << "<span class = 'info'>You've learned how to speak [language.name] from hearing it so much.</span>"
 
 /mob/proc/on_hear_say(var/message)
 	src << message
 
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/device/radio/source, var/hard_to_hear = FALSE)
+/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/radio/source, var/hard_to_hear = FALSE)
 
 	if(!client)
 		return
@@ -108,7 +108,7 @@
 			if(istype(speaker,/mob/living/simple_animal))
 				var/mob/living/simple_animal/S = speaker
 				if(S.speak && S.speak.len)
-					message = pick(S.speak)
+					message = spick(S.speak)
 				else
 					return
 			else
@@ -153,7 +153,7 @@
 	message = "<span class = [source.span_class()]>[verb],</b> \"[message]\"</span>"
 
 	if(sdisabilities & DEAF || ear_deaf)
-		if(prob(20))
+		if(sprob(20))
 			src << "<span class='warning'>You feel your radio vibrate but can hear nothing from it!</span>"
 	else
 		var/fontsize = 2
@@ -169,10 +169,10 @@
 /proc/say_timestamp()
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
 
-/mob/proc/on_hear_radio(var/obj/item/device/radio/source, var/fullmessage)
+/mob/proc/on_hear_radio(var/obj/item/radio/source, var/fullmessage)
 	src << "\icon[getFlatIcon(source)] [fullmessage]"
 
-/mob/observer/ghost/on_hear_radio(var/obj/item/device/radio/source, var/fullmessage)
+/mob/observer/ghost/on_hear_radio(var/obj/item/radio/source, var/fullmessage)
 	src << "\icon[getFlatIcon(source)] [fullmessage]"
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
@@ -193,10 +193,10 @@
 
 /mob/proc/hear_sleep(var/message)
 	var/heard = ""
-	if(prob(15))
+	if(sprob(15))
 		var/list/punctuation = list(",", "!", ".", ";", "?")
 		var/list/messages = splittext(message, " ")
-		var/R = rand(1, messages.len)
+		var/R = srand(1, messages.len)
 		var/heardword = messages[R]
 		if(copytext(heardword,1, TRUE) in punctuation)
 			heardword = copytext(heardword,2)

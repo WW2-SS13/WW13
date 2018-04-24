@@ -13,7 +13,7 @@
 
 /obj/snow/New()
 	..()
-	amount = pick(0.04, 0.05, 0.06) // around 2 inchesi
+	amount = spick(0.04, 0.05, 0.06) // around 2 inchesi
 	var/spawntime = FALSE
 	if (!obj_process)
 		spawntime = 300
@@ -34,12 +34,12 @@
 	if (my_area.weather == WEATHER_SNOW)
 		// accumulate about 0.05 meters of snow/40 seconds (+ randomness)
 		amount += 0.05 * my_area.weather_intensity
-		if (prob(25)) // and some more
+		if (sprob(25)) // and some more
 			amount *= 0.05 * my_area.weather_intensity
 	else if (weather == WEATHER_SNOW && my_area.artillery_integrity <= 20)
 		// or, if we're inside, aboout 0.02 meters/40 seconds
 		amount += 0.02 * 1.0
-		if (prob(25)) // and some more
+		if (sprob(25)) // and some more
 			amount += 0.02 * 1.0
 
 /obj/snow/proc/descriptor()
@@ -69,7 +69,18 @@
 /obj/snow/bullet_act(var/obj/item/projectile/P, var/def_zone)
 	return
 
+/obj/snow/ex_act(severity)
+	switch (severity)
+		if (1.0)
+			qdel(src)
+		if (2.0)
+			if (sprob(50))
+				qdel(src)
+		if (3.0)
+			if (sprob(15))
+				qdel(src)
+
 /obj/snow/fire_act(temperature)
-	if (prob(25 * (temperature/500)))
+	if (sprob(25 * (temperature/500)))
 		visible_message("<span class = 'warning'>The snow melts.</span>")
 		qdel(src)

@@ -18,7 +18,7 @@
 	var/locked = TRUE
 	var/heal_damage[2]
 	var/named = FALSE
-	var/obj/item/device/radio/radio = null
+	var/obj/item/radio/radio = null
 	pixel_x = -32
 
 /obj/tank/New()
@@ -112,7 +112,7 @@
 	if (istankvalidtool(W))
 		if (istype(W, /obj/item/weapon/wrench) && !user.repairing_tank)
 			tank_message("<span class = 'notice'>[user] starts to wrench in some loose parts on [my_name()].</span>")
-			playsound(get_turf(src), 'sound/items/Ratchet.ogg', rand(75,100))
+			playsound(get_turf(src), 'sound/items/Ratchet.ogg', srand(75,100))
 			user.repairing_tank = TRUE
 			if (do_after(user, 50, src))
 				tank_message("<span class = 'notice'>[user] wrenches in some loose parts on [my_name()]. It looks about [health_percentage()] healthy.</span>")
@@ -129,21 +129,21 @@
 				user << "<span class = 'warning'>The tank is too damaged to fix up with a welding tool. Use a wrench instead.</span>"
 				return FALSE
 			tank_message("<span class = 'notice'>[user] starts to repair damage on [my_name()] with their welding tool.</span>")
-			playsound(get_turf(src), 'sound/items/Welder.ogg', rand(75,100))
+			playsound(get_turf(src), 'sound/items/Welder.ogg', srand(75,100))
 			user.repairing_tank = TRUE
 			if (do_after(user, 60, src))
 				tank_message("<span class = 'notice'>[user] repairs some of the damage on [my_name()]. It looks about [health_percentage()] healthy.</span>")
-				playsound(get_turf(src), 'sound/items/Welder2.ogg', rand(75,100))
+				playsound(get_turf(src), 'sound/items/Welder2.ogg', srand(75,100))
 				damage = max(damage - heal_damage["weldingtool"], FALSE)
 				update_damage_status()
 				user.repairing_tank = FALSE
 			else
 				user.repairing_tank = FALSE
 		else if (istype(W, /obj/item/weapon/screwdriver))
-			if (prob(50))
-				playsound(get_turf(src), 'sound/items/Screwdriver.ogg', rand(75,100))
+			if (sprob(50))
+				playsound(get_turf(src), 'sound/items/Screwdriver.ogg', srand(75,100))
 			else
-				playsound(get_turf(src), 'sound/items/Screwdriver2.ogg', rand(75,100))
+				playsound(get_turf(src), 'sound/items/Screwdriver2.ogg', srand(75,100))
 			fuel_slot_screwed = !fuel_slot_screwed
 			tank_message("<span class = 'notice'>[user] [fuel_slot_screwed ? "screws in" : "screws out"] the screw on [my_name()] fuel slot.</span>")
 		else if (istype(W, /obj/item/weapon/crowbar))
@@ -159,7 +159,7 @@
 		playsound(get_turf(src), W.hitsound, 100)
 		damage += W.force/20 // huge nerf to melee vs tanks - Kachnov
 		update_damage_status()
-		if (prob(critical_damage_chance()))
+		if (sprob(critical_damage_chance()))
 			critical_damage()
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	return TRUE

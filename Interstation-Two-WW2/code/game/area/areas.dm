@@ -122,6 +122,8 @@ var/list/ghostteleportlocs = list()
 		if (parent_area_type)
 			parent_area = locate(parent_area_type)
 
+	area_list |= src
+
 /area/proc/initialize()
 	if(config.machinery_does_not_use_power)
 		requires_power = FALSE
@@ -325,41 +327,41 @@ var/list/mob/living/forced_ambiance_list = new
 			if(CL.ambience_playing in forced_ambience)
 				return TRUE
 			else
-				var/new_ambience = pick(pick(forced_ambience))
+				var/new_ambience = spick(spick(forced_ambience))
 				CL.ambience_playing = new_ambience
 				L << sound(new_ambience, repeat = TRUE, wait = FALSE, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
 				return TRUE
 		if(CL.ambience_playing in ambience)
 			return TRUE
 
-	if(ambience.len && prob(35))
+	if(ambience.len && sprob(35))
 		if(world.time >= L.client.played + 600)
-			var/sound = pick(ambience)
+			var/sound = spick(ambience)
 			CL.ambience_playing = sound
 			L << sound(sound, repeat = FALSE, wait = FALSE, volume = 10, channel = SOUND_CHANNEL_AMBIENCE)
 			L.client.played = world.time
 			return TRUE
 	else */
 	if (!CL.ambience_playing || override)
-		var/sound = pick('sound/ambience/war1.wav', 'sound/ambience/war2.wav')
+		var/sound = spick('sound/ambience/war1.wav', 'sound/ambience/war2.wav')
 		CL.ambience_playing = sound
 
 		var/ideal_x = round(world.maxx/2)
 		var/ideal_y = round(world.maxy/2)
 		var/area/L_area = get_area(L)
 
-		// war volume will vary from 5% to 40%, depending on where you are (on a 150x150 map)
+		// war volume will vary from 5% to 20%, depending on where you are (on a 150x150 map)
 		// the max() check makes this code forestmap compatible too - Kachnov
-		var/warvolume = 40
+		var/warvolume = 20
 
-		warvolume -= round(abs(L.x - ideal_x)/7)
-		warvolume -= round(abs(L.y - ideal_y)/7)
+		warvolume -= ceil(abs(L.x - ideal_x)/20) // 16%
+		warvolume -= ceil(abs(L.y - ideal_y)/20) // 12%
 
 		if (L_area)
 			if (L_area.location == AREA_INSIDE)
-				warvolume -= 10
+				warvolume -= 3 // 9%
 			if (L_area.is_void_area)
-				warvolume -= 10
+				warvolume -= 4 // 5%
 
 		warvolume = max(warvolume, 5)
 
@@ -403,9 +405,9 @@ var/list/mob/living/forced_ambiance_list = new
 	return has_gravity
 
 /area/proc/arty_act(loss)
-	if (prob(25))
+	if (sprob(25))
 		artillery_integrity -= loss * 1.5
-	else if (prob(50))
+	else if (sprob(50))
 		artillery_integrity -= loss
 	else
 		artillery_integrity -= loss * 0.75

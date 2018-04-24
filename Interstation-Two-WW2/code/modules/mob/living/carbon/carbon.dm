@@ -12,7 +12,7 @@
 	handle_viruses()
 
 	// Increase germ_level regularly
-	if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
+	if(germ_level < GERM_LEVEL_AMBIENT && sprob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 		germ_level++
 
 /mob/living/carbon/Destroy()
@@ -44,7 +44,7 @@
 			bodytemperature += 2*/
 
 		// Moving around increases germ_level faster
-	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
+	if(germ_level < GERM_LEVEL_MOVE_CAP && sprob(8))
 		germ_level++
 
 /mob/living/carbon/relaymove(var/mob/living/user, direction)
@@ -54,7 +54,7 @@
 			visible_message("<span class='danger'>You hear something rumbling inside [src]'s stomach...</span>")
 			var/obj/item/I = user.get_active_hand()
 			if(I && I.force)
-				var/d = rand(round(I.force / 4), I.force)
+				var/d = srand(round(I.force / 4), I.force)
 				if(istype(src, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/organ = H.get_organ("chest")
@@ -67,7 +67,7 @@
 				user.visible_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>")
 				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, TRUE)
 
-				if(prob(getBruteLoss() - 50))
+				if(sprob(getBruteLoss() - 50))
 					for(var/atom/movable/A in stomach_contents)
 						A.loc = loc
 						stomach_contents.Remove(A)
@@ -159,9 +159,9 @@
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
 				if(halloss > 0)
-					if(prob(30))
+					if(sprob(30))
 						brutedamage += halloss
-					if(prob(30))
+					if(sprob(30))
 						burndamage += halloss
 				switch(brutedamage)
 					if(1 to 20)
@@ -208,7 +208,7 @@
 				"<span class='warning'>You try to pat out [src]'s flames! Hot!</span>")
 				if(do_mob(M, src, 15))
 					fire_stacks -= 0.5
-					if (prob(10) && (M.fire_stacks <= 0))
+					if (sprob(10) && (M.fire_stacks <= 0))
 						M.fire_stacks += 1
 					M.IgniteMob()
 					if (M.on_fire)
@@ -339,26 +339,35 @@
 
 	if(!item || item.nothrow) return //Grab processing has a chance of returning null
 
-	playsound(src, 'sound/effects/throw.ogg', 50, TRUE)
-
 	var/throwtime_divider = 4
 	if (isitem(item))
 		var/obj/item/I = item
 		switch (I.w_class)
+			if (2)
+				throwtime_divider *= 3
 			if (3)
-				throwtime_divider = 3
+				throwtime_divider *= 2
 			if (4)
-				throwtime_divider = 2
+				throwtime_divider *= 1
 			if (5)
-				throwtime_divider = 1
+				throwtime_divider *= 0.5
 	else if (ismob(item))
-		throwtime_divider = 1
+		throwtime_divider *= 0.5
 
 	//actually throw it!
+
+	visible_message("<span class = 'warning'>[src] prepares to throw \the [item]!</span>")
 	if (item && do_after(src, max(1, round(abs_dist(src, target)/throwtime_divider)), get_turf(src)))
+		playsound(src, 'sound/effects/throw.ogg', 50, TRUE)
 		remove_from_mob(item)
 		item.loc = loc
-		visible_message("<span class = 'red'>[src] has thrown [item].</span>")
+		visible_message("<span class = 'warning'>[src] throws \the [item]!</span>")
+
+		if (ismob(item))
+			for (var/obj/item/weapon/grab/G in contents)
+				if (G.affecting == item)
+					qdel(G)
+					break
 
 		if(!lastarea)
 			lastarea = get_area(loc)
@@ -373,8 +382,15 @@
 			step(src, inertia_dir)
 */
 
+		/* 2 throw range for mobs, MGs
+		 * 4 throw range for smgs
+		 * old max throw range was 7, now its 11 - Kachnov */
+		var/throw_range = 2
+		if (isitem(item))
+			var/obj/item/I = item
+			throw_range = 12 - (I.w_class * 2)
 
-		item.throw_at(target, item.throw_range, item.throw_speed, src)
+		item.throw_at(target, throw_range, item.throw_speed, src)
 
 /mob/living/carbon/fire_act(temperature)
 	..()

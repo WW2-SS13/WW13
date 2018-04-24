@@ -149,7 +149,7 @@
 			if (locate(/obj/train_decal/cargo/outline) in get_turf(tpt))
 				if (!locate(/obj/structure/closet/crate) in get_turf(tpt))
 					if (create_crates.len)
-						var/cratetype = pick(create_crates)
+						var/cratetype = spick(create_crates)
 						create_crates -= cratetype
 
 						var/tpt_turf = get_turf(tpt)

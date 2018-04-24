@@ -1,5 +1,5 @@
 /proc/civ_stat()
-	return pick(ALL_STATS)
+	return spick(ALL_STATS)
 
 /datum/job/partisan/civilian
 	title = "Civilian"
@@ -22,9 +22,9 @@
 	H.setStat("shotgun", civ_stat())
 	H.setStat("medical", civ_stat())
 
-	H.setStat("rifle", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
-	H.setStat("mg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
-	H.setStat("smg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+	H.setStat("rifle", spick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+	H.setStat("mg", spick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+	H.setStat("smg", spick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
 
-	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH))
+	H.setStat("survival", spick(STAT_MEDIUM_HIGH, STAT_HIGH))
 	return TRUE

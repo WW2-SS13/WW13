@@ -234,7 +234,7 @@ var/list/flooring_types
 /decl/flooring/reinforced/circuit/green
 	name = "processing strata"
 	icon_base = "gcircuit"
-
+/*
 /decl/flooring/reinforced/cult
 	name = "engraved floor"
 	desc = "Unsettling whispers waver from the surface..."
@@ -244,3 +244,4 @@ var/list/flooring_types
 	has_damage_range = 6
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
 	can_paint = null
+*/

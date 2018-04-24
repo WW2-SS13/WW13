@@ -5,7 +5,6 @@ var/list/directory = list()							//list of all ckeys with associated client
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
-var/global/list/roundstart_tips = file2list("config/tips.txt")
 var/global/list/player_list = list()				//List of all mobs **with clients attached**. Excludes /mob/new_player (actually it doesn't?)
 var/global/list/mob_list = list()					//List of all mobs, including clientless
 var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
@@ -39,6 +38,10 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 var/global/list/global_corporations = list()
 var/global/list/HUDdatums = list()
 
+var/global/list/area_list = list()
+
+var/global/list/projectile_list = list()
+
 // names
 var/global/list/names_used[1000] // map
 
@@ -58,7 +61,7 @@ var/global/list/main_radios = list()
 var/global/list/poster_designs = list()
 
 // Uplinks
-var/list/obj/item/device/uplink/world_uplinks = list()
+var/list/obj/item/uplink/world_uplinks = list()
 
 //Preferences stuff
 	//Bodybuilds

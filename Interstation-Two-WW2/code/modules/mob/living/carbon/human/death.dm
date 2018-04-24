@@ -1,9 +1,11 @@
 /mob/living/carbon/human/gib()
 
+	ghostize() // preserve our body's icon before it explodes
+
 	for(var/obj/item/organ/I in internal_organs)
 		I.removed()
 		if(istype(loc,/turf))
-			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+			I.throw_at(get_edge_target_turf(src,spick(alldirs)),srand(1,3),30)
 
 	for(var/obj/item/organ/external/E in organs)
 		E.droplimb(0,DROPLIMB_EDGE,1)
@@ -12,7 +14,7 @@
 
 	for(var/obj/item/I in src)
 		drop_from_inventory(I)
-		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
+		I.throw_at(get_edge_target_turf(src,spick(alldirs)), srand(1,3), round(30/I.w_class))
 
 	..(species.gibbed_anim)
 	gibs(loc, null, species.flesh_color, species.blood_color)

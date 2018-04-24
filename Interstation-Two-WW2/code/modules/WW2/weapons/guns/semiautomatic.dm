@@ -50,6 +50,7 @@
 	KD_chance = KD_CHANCE_MEDIUM
 	stat = "rifle"
 	load_delay = 5
+	aim_miss_chance_divider = 2.50
 
 	var/jammed_until = -1
 	var/jamcheck = 0
@@ -66,7 +67,7 @@
 	else
 		++jamcheck
 
-	if (prob(jamcheck*2))
+	if (sprob(jamcheck))
 		jammed_until = max(world.time + (jamcheck * 5), 50)
 		jamcheck = 0
 
@@ -86,7 +87,7 @@
 	magazine_type = /obj/item/ammo_magazine/mosin
 	weight = 3.85
 	firemodes = list(
-		list(name="single shot",burst=1, move_delay=2, fire_delay=7)
+		list(name="single shot",burst=1, move_delay=2, fire_delay=6)
 		)
 
 	gun_type = GUN_TYPE_RIFLE
@@ -119,7 +120,7 @@
 	magazine_type = /obj/item/ammo_magazine/kar98k
 	weight = 4.9
 	firemodes = list(
-		list(name="single shot",burst=1, move_delay=2, fire_delay=7)
+		list(name="single shot",burst=1, move_delay=2, fire_delay=6)
 		)
 	force = 10
 	throwforce = 20

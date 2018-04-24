@@ -16,7 +16,7 @@
 /obj/structure/attack_hand(mob/user)
 	if(breakable)
 		if(HULK in user.mutations)
-			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+			user.say(spick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 			attack_generic(user,1,"smashes")
 		else if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
@@ -31,14 +31,16 @@
 	return ..()
 
 /obj/structure/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (!density)
+	if (istype(mover, /obj/effect/effect/smoke))
 		return TRUE
-	else if (istype(mover, /obj/effect/effect/smoke))
-		return TRUE
-	else if (istype(mover, /obj/item))
-		return prob(66)
+	else if (istype(mover, /obj/item/projectile))
+		if (sprob(66) && density)
+			return TRUE
+		else
+			visible_message("<span class = 'warning'>The bullet riochetes off \the [src]!</span>")
+			return FALSE
 	else
-		return FALSE
+		return ..()
 
 /obj/structure/attack_tk()
 	return
@@ -49,7 +51,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(prob(50))
+			if(sprob(50))
 				qdel(src)
 				return
 		if(3.0)
@@ -152,6 +154,9 @@
 
 	if (get_turf(user) == get_turf(src))
 		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
+		if (istype(src, /obj/structure/table/glass))
+			var/obj/structure/table/glass/G = src
+			G.shatter()
 	climbers -= user
 
 /obj/structure/proc/structure_shaken()
@@ -166,9 +171,9 @@
 		M.Weaken(3)
 		M << "<span class='danger'>You topple as \the [src] moves under you!</span>"
 
-		if(prob(25))
+		if(sprob(25))
 
-			var/damage = rand(15,30)
+			var/damage = srand(15,30)
 			var/mob/living/carbon/human/H = M
 			if(!istype(H))
 				H << "<span class='danger'>You land heavily!</span>"
@@ -177,15 +182,15 @@
 
 			var/obj/item/organ/external/affecting
 
-			switch(pick(list("ankle","wrist","head","knee","elbow")))
+			switch(spick(list("ankle","wrist","head","knee","elbow")))
 				if("ankle")
-					affecting = H.get_organ(pick("l_foot", "r_foot"))
+					affecting = H.get_organ(spick("l_foot", "r_foot"))
 				if("knee")
-					affecting = H.get_organ(pick("l_leg", "r_leg"))
+					affecting = H.get_organ(spick("l_leg", "r_leg"))
 				if("wrist")
-					affecting = H.get_organ(pick("l_hand", "r_hand"))
+					affecting = H.get_organ(spick("l_hand", "r_hand"))
 				if("elbow")
-					affecting = H.get_organ(pick("l_arm", "r_arm"))
+					affecting = H.get_organ(spick("l_arm", "r_arm"))
 				if("head")
 					affecting = H.get_organ("head")
 

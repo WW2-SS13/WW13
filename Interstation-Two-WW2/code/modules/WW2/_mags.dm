@@ -142,7 +142,7 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_magazine/maxim/mg34_belt
 	name = "MG34 Ammo Belt"
 	caliber = "a792x57"
-	ammo_type = /obj/item/ammo_casing/a792x57
+	ammo_type = /obj/item/ammo_casing/a792x57_weaker
 
 /obj/item/ammo_magazine/luger
 	name = "Luger magazine"

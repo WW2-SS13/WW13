@@ -57,7 +57,7 @@
 				examine_desc = "It looks like its going to explode!"
 
 	// ramming a dying tank can now make it die faster
-	if (did_critical_damage && prob(5))
+	if (did_critical_damage && sprob(5))
 		tank_message("<span class = 'danger'><big>[src] explodes.</big></span>")
 		for (var/mob/m in src)
 			m.crush()

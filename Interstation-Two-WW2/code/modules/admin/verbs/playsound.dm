@@ -18,10 +18,9 @@ var/list/sounds_cache = list()
 	world << "<span class = 'notice'><b>[key]</b> played a global sound.</span>"
 
 	for(var/mob/M in player_list)
-		if(M.is_preference_enabled(/datum/client_preference/play_admin_midis))
-			M << uploaded_sound
-
-
+		if (!new_player_mob_list.Find(M) || !M.is_preference_enabled(/datum/client_preference/play_lobby_music))
+			if(M.is_preference_enabled(/datum/client_preference/play_admin_midis))
+				M.client << uploaded_sound
 
 /client/proc/play_local_sound(S as sound, var/volume = 50)
 	set category = "Fun"

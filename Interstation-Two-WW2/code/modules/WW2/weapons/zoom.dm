@@ -32,10 +32,10 @@ Parts of code courtesy of Super3222
 	..()
 	if(A_attached)
 		var/obj/item/weapon/gun/G = loc //loc is the gun this is attached to
-		var/zoom_offset = round(world.view * zoom_amt)
+//		var/zoom_offset = round(world.view * zoom_amt)
 		if(zoomed)
-			if(G.accuracy)
-				G.accuracy = G.scoped_accuracy + zoom_offset
+	/*		if(G.accuracy)
+				G.accuracy = G.scoped_accuracy + zoom_offset*/
 			if(G.recoil)
 				G.recoil = round(G.recoil*(zoom_amt/5)+1) //recoil is worse when looking through a scope
 		else
@@ -302,7 +302,7 @@ Parts of code courtesy of Super3222
 		if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 			for(var/datum/action/toggle_scope/T in actions)
 				if(T.scope.zoomed && m_intent=="run")
-					shake_camera(src, 2, rand(2,3))
+					shake_camera(src, 2, srand(2,3))
 
 	for (var/obj/item/weapon/gun/projectile/minigun/M in range(2, src))
 		if (M.last_user == src && loc != get_turf(M))

@@ -123,7 +123,7 @@
 	// Job information: this goes here because it copies the mind.assigned_job
 	// from a new_player mob
 	var/datum/job/original_job
-	var/original_job_title = null
+	var/original_job_title = "Soldat"
 	var/special_job_title = -1
 
 	var/can_pull_size = 10              // Maximum w_class the mob can pull.
@@ -191,7 +191,6 @@
 	var/list/HUDtech = list()
 	var/defaultHUD = "" //Default mob hud
 
-	var/footstep = FALSE //Probably should go under living.
 	var/scrambling = FALSE //For crawling.
 	var/has_limbs = TRUE //Whether this mob have any limbs he can move with
 	var/bowels = FALSE //For pooping
@@ -203,7 +202,7 @@
 
 /mob/proc/getRoundUID(var/text = FALSE)
 	if (!roundUID)
-		roundUID = rand(1, 10000000)
+		roundUID = srand(1, 10000000)
 	if (text)
 		return num2text(roundUID, 20)
 	else

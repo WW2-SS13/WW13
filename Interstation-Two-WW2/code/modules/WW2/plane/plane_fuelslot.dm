@@ -81,10 +81,10 @@
 
 	if (isplanevalidtool(W))
 		if (istype(W, /obj/item/weapon/screwdriver))
-			if (prob(50))
-				playsound(get_turf(src), 'sound/items/Screwdriver.ogg', rand(75,100))
+			if (sprob(50))
+				playsound(get_turf(src), 'sound/items/Screwdriver.ogg', srand(75,100))
 			else
-				playsound(get_turf(src), 'sound/items/Screwdriver2.ogg', rand(75,100))
+				playsound(get_turf(src), 'sound/items/Screwdriver2.ogg', srand(75,100))
 			screwed = !screwed
 			plane_message("<span class = 'notice'>[user] [screwed ? "screws in" : "screws out"] the screw on [my_name()] fuel slot.</span>")
 		else if (istype(W, /obj/item/weapon/crowbar))

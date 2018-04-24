@@ -71,7 +71,7 @@
 	if(!unbreakable)
 		if(material.is_brittle())
 			health = FALSE
-		else if(!prob(material.hardness))
+		else if(!sprob(material.hardness))
 			health--
 		check_health()
 

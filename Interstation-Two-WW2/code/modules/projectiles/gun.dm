@@ -1,8 +1,8 @@
 /datum/firemode
 	var/name = "default"
 	var/burst = 1
-	var/burst_delay = null
-	var/fire_delay = null
+	var/burst_delay = 0
+	var/fire_delay = 0
 	var/move_delay = 0
 	var/recoil = -1
 	var/list/dispersion = list(0)
@@ -38,7 +38,7 @@
 	force = 5
 	attack_verb = list("struck", "hit", "bashed")
 
-	var/fire_delay = 6 	//delay after shooting before the gun can be used again
+	var/fire_delay = 5 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
 	var/fire_sound = 'sound/weapons/kar_shot.ogg'
 	var/fire_sound_text = "gunshot"
@@ -46,9 +46,9 @@
 	var/silenced = FALSE
 	var/muzzle_flash = 3
 	var/accuracy = 0   //accuracy is measured in tiles. +1 accuracy means that everything is effectively one tile closer for the purpose of miss chance, -1 means the opposite. launchers are not supported, at the moment.
-	var/scoped_accuracy = null
+//	var/scoped_accuracy = null
 
-	var/next_fire_time = FALSE
+	var/next_fire_time = 0
 
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
@@ -90,8 +90,8 @@
 		for(var/i in 1 to firemodes.len)
 			firemodes[i] = new firemode_type(firemodes[i])
 
-	if(isnull(scoped_accuracy))
-		scoped_accuracy = accuracy
+//	if(isnull(scoped_accuracy))
+//		scoped_accuracy = accuracy
 
 	if (!aim_targets)
 		aim_targets = list()
@@ -112,10 +112,10 @@
 	if(HULK in M.mutations)
 		M << "<span class='danger'>Your fingers are much too large for the trigger guard!</span>"
 		return FALSE
-	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
+	if((CLUMSY in M.mutations) && sprob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
-			if(process_projectile(P, user, user, pick("l_foot", "r_foot")))
+			if(process_projectile(P, user, user, spick("l_foot", "r_foot")))
 				handle_post_fire(user, user)
 				user.visible_message(
 					"<span class='danger'>[user] shoots \himself in the foot with \the [src]!</span>",
@@ -138,12 +138,12 @@
 
 /obj/item/weapon/gun/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && w_class >= 4) // Only big guns can stop attacks.
-		if(bayonet && prob(40)) // If they have a bayonet they get a higher chance to stop the attack.
+		if(bayonet && sprob(40)) // If they have a bayonet they get a higher chance to stop the attack.
 			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
 			playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, TRUE)
 			return TRUE
 		else
-			if(prob(10))// Much smaller chance to block it due to no bayonet.
+			if(sprob(10))// Much smaller chance to block it due to no bayonet.
 				user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
 				playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, TRUE)
 				return TRUE
@@ -192,7 +192,7 @@
 			var/mob/living/L = A
 			var/mob/living/carbon/C = A
 			if (!istype(C) || !C.check_attack_throat(src, user))
-		/*		if (prob(50) && L != user && !L.lying)
+		/*		if (sprob(50) && L != user && !L.lying)
 					visible_message("<span class = 'danger'>[user] tries to bayonet [L], but they miss!</span>")
 				else*/
 
@@ -202,12 +202,12 @@
 				visible_message("<span class = 'danger'>[user] impales [L] with their gun's bayonet!</span>")
 				L.apply_damage(a.force, BRUTE, def_zone)
 				L.Weaken(a.weakens)
-				if (L.stat == CONSCIOUS && prob(50))
+				if (L.stat == CONSCIOUS && sprob(50))
 					L.emote("scream")
-				playsound(get_turf(src), a.attack_sound, rand(90,100))
+				playsound(get_turf(src), a.attack_sound, srand(90,100))
 			else
 				var/obj/item/weapon/attachment/bayonet/a = bayonet
-				playsound(get_turf(src), a.attack_sound, rand(90,100))
+				playsound(get_turf(src), a.attack_sound, srand(90,100))
 
 		else
 			..() //Pistolwhippin'
@@ -226,12 +226,12 @@
 	if(!user || !target) return
 
 	// stops admemes from sending immortal dummies into combat
-	if (user)
-		if (istype(user, /mob/living/carbon/human/dummy))
-			if (user.client)
-				if (clients.len > 1)
-					user << "<span class = 'danger'>Hey you fucking dumbass, don't send immortal dummies into combat.</span>"
-					return
+	if (user && istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		if ((H.client && istype(H, /mob/living/carbon/human/dummy)) || !H.original_job || !H.original_job_title)
+			if (clients.len > 1)
+				user << "<span class = 'danger'>Hey you fucking dumbass, don't send immortal dummies into combat.</span>"
+				return
 
 	add_fingerprint(user)
 
@@ -313,7 +313,6 @@
 		spawn(5)
 			set_light(0)
 
-
 //obtains the next projectile to fire
 /obj/item/weapon/gun/proc/consume_next_projectile()
 	return null
@@ -353,7 +352,7 @@
 
 	if(recoil)
 		spawn(0)
-			var/shake_strength = recoil+0.5
+			var/shake_strength = recoil
 			if (shake_strength > 0)
 				shake_camera(user, max(shake_strength, 0), min(shake_strength, 50))
 			recoil = i_recoil
@@ -417,11 +416,11 @@
 	if(istype(user, /mob/living/carbon))
 		var/mob/living/carbon/mob = user
 		if(mob.shock_stage > 120)
-			y_offset = rand(-2,2)
-			x_offset = rand(-2,2)
+			y_offset = srand(-2,2)
+			x_offset = srand(-2,2)
 		else if(mob.shock_stage > 70)
-			y_offset = rand(-1,1)
-			x_offset = rand(-1,1)
+			y_offset = srand(-1,1)
+			x_offset = srand(-1,1)
 
 	return !P.launch(target, user, src, target_zone, x_offset, y_offset)
 
@@ -434,7 +433,7 @@
 
 	// realistic WW2 suicide, no hesitation - Kachnov
 	mouthshoot = TRUE
-	M.visible_message("<span class = 'red'>[user] sticks their gun in their mouth.</span>")
+	M.visible_message("<span class = 'red'>[user] sticks [M.gender == FEMALE ? "her" : "his"] [src] in [M.gender == FEMALE ? "her" : "his"] mouth.</span>")
 	if(!do_after(user, 3))
 		M.visible_message("<span class = 'notice'>[user] failed to commit suicide.</span>")
 		mouthshoot = FALSE
@@ -451,6 +450,13 @@
 
 		in_chamber.on_hit(M)
 		if (in_chamber.damage_type != HALLOSS)
+
+			if (M.wear_mask && istype(M.wear_mask, /obj/item/weapon/grenade))
+				visible_message("<span class = 'danger'>The grenade in [M]'s mouth goes off!</span>")
+				var/obj/item/weapon/grenade/G = M.wear_mask
+				G.active = TRUE
+				G.prime()
+
 			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp=1)
 			user.death()
 			M.attack_log += "\[[time_stamp()]\] [M]/[M.ckey]</b> shot themselves in the mouth (committed suicide)"

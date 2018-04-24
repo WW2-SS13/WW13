@@ -2,22 +2,8 @@
 /mob/living/carbon/human/vampire
 	takes_less_damage = TRUE
 	movement_speed_multiplier = 1.50
-	use_initial_stats = TRUE
-	stats = list(
-		"strength" = list(500,500),
-		"engineering" = list(100,100),
-		"rifle" = list(100,100),
-		"mg" = list(100,100),
-		"pistol" = list(100,100),
-		"heavyweapon" = list(100,100),
-		"medical" = list(100,100),
-		"survival" = list(125,125))
-
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
-
-	stamina = 200
-	max_stamina = 200
 
 	var/blood = 0.75
 
@@ -39,6 +25,17 @@
 					drop_from_inventory(I)
 					qdel(I)
 			loc = oloc
+		setStat("strength", 200)
+		setStat("engineering", 150)
+		setStat("rifle", 150)
+		setStat("mg", 150)
+		setStat("smg", 150)
+		setStat("pistol", 150)
+		setStat("heavyweapon", 150)
+		setStat("medical", 150)
+		setStat("shotgun", 150)
+		setStat("survival", 100)
+		setStat("stamina", 200)
 
 /mob/living/carbon/human/vampire/proc/may_drink()
 	return blood <= 1.40
@@ -58,7 +55,7 @@
 	playsound(get_turf(src), 'sound/effects/bloodsuck.ogg', 100)
 	for (var/v in 1 to 5)
 		spawn ((v-1) * 10)
-			if (do_after(src, 10, H))
+			if (do_after(src, 10, H, check_for_repeats = FALSE))
 				visible_message("<span class = 'danger'>[src] absorbs [H]'s blood through his fingers!</span>")
 				blood = min(1.50, blood+0.10)
 				var/H_bloodloss = min(112, H.vessel.total_volume)
@@ -86,7 +83,7 @@
 	// too
 	blood = max(0, blood - (0.0008/2))
 	if (blood <= 0)
-		if (prob(10))
+		if (sprob(10))
 			adjustBruteLoss(40)
 			src << "<span class = 'danger'>You're starving from a lack of blood!</span>"
 		return

@@ -108,14 +108,14 @@
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
 					var/moving_to = FALSE // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
-					moving_to = pick(cardinal)
+					moving_to = spick(cardinal)
 					set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
 					Move(get_step(src,moving_to))
 					turns_since_move = FALSE
 
 	//Speaking
 	if(!client && speak_chance)
-		if(rand(0,200) < speak_chance)
+		if(srand(0,200) < speak_chance)
 			if(speak && speak.len)
 				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
 					var/length = speak.len
@@ -123,29 +123,29 @@
 						length += emote_hear.len
 					if(emote_see && emote_see.len)
 						length += emote_see.len
-					var/randomValue = rand(1,length)
+					var/randomValue = srand(1,length)
 					if(randomValue <= speak.len)
-						say(pick(speak))
+						say(spick(speak))
 					else
 						randomValue -= speak.len
 						if(emote_see && randomValue <= emote_see.len)
-							visible_emote("[pick(emote_see)].")
+							visible_emote("[spick(emote_see)].")
 						else
-							audible_emote("[pick(emote_hear)].")
+							audible_emote("[spick(emote_hear)].")
 				else
-					say(pick(speak))
+					say(spick(speak))
 			else
 				if(!(emote_hear && emote_hear.len) && (emote_see && emote_see.len))
-					visible_emote("[pick(emote_see)].")
+					visible_emote("[spick(emote_see)].")
 				if((emote_hear && emote_hear.len) && !(emote_see && emote_see.len))
-					audible_emote("[pick(emote_hear)].")
+					audible_emote("[spick(emote_hear)].")
 				if((emote_hear && emote_hear.len) && (emote_see && emote_see.len))
 					var/length = emote_hear.len + emote_see.len
-					var/pick = rand(1,length)
+					var/pick = srand(1,length)
 					if(pick <= emote_see.len)
-						visible_emote("[pick(emote_see)].")
+						visible_emote("[spick(emote_see)].")
 					else
-						audible_emote("[pick(emote_hear)].")
+						audible_emote("[spick(emote_hear)].")
 
 
 	//Atmos
@@ -293,7 +293,7 @@
 			user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
 			if (do_after(user, 30, src))
 				user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
-				for (var/v in TRUE to rand(5,7))
+				for (var/v in TRUE to srand(5,7))
 					var/obj/item/weapon/reagent_containers/food/snacks/meat/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat(get_turf(src))
 					meat.name = "[name] meatsteak"
 				crush()
@@ -366,7 +366,7 @@
 /mob/living/simple_animal/say(var/message)
 	var/verb = "says"
 	if(speak_emote.len)
-		verb = pick(speak_emote)
+		verb = spick(speak_emote)
 
 	message = sanitize(message)
 

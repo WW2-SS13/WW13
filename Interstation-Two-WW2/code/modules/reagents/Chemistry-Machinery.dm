@@ -70,7 +70,7 @@
 			del(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if (sprob(50))
 				del(src)
 				return
 
@@ -196,7 +196,7 @@
 
 /obj/structure/chemical_dispenser/soda/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
-	if(istype(B, /obj/item/device/multitool))
+	if(istype(B, /obj/item/multitool))
 		if(hackedcheck == FALSE)
 			user << "You change the mode from 'McNano' to 'Pizza King'."
 			dispensable_reagents += list("thirteenloko","grapesoda")
@@ -222,7 +222,7 @@
 /obj/structure/chemical_dispenser/beer/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
 /*
-	if(istype(B, /obj/item/device/multitool))
+	if(istype(B, /obj/item/multitool))
 		if(hackedcheck == FALSE)
 			user << "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes."
 			dispensable_reagents += list("goldschlager","patron","watermelonjuice","berryjuice")
@@ -284,7 +284,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if (sprob(50))
 				qdel(src)
 				return
 
@@ -418,8 +418,8 @@
 				var/obj/item/weapon/reagent_containers/pill/P = new/obj/item/weapon/reagent_containers/pill(loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = "[name] pill"
-				P.pixel_x = rand(-7, 7) //random position
-				P.pixel_y = rand(-7, 7)
+				P.pixel_x = srand(-7, 7) //random position
+				P.pixel_y = srand(-7, 7)
 				P.icon_state = "pill"+pillsprite
 				reagents.trans_to_obj(P,amount_per_pill)
 				if(loaded_pill_bottle)
@@ -433,8 +433,8 @@
 				var/obj/item/weapon/reagent_containers/glass/bottle/P = new/obj/item/weapon/reagent_containers/glass/bottle(loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = "[name] bottle"
-				P.pixel_x = rand(-7, 7) //random position
-				P.pixel_y = rand(-7, 7)
+				P.pixel_x = srand(-7, 7) //random position
+				P.pixel_y = srand(-7, 7)
 				P.icon_state = bottlesprite
 				reagents.trans_to_obj(P,60)
 				P.update_icon()

@@ -1043,20 +1043,20 @@ var/global/list/damage_icon_parts = list()
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_start(var/update_icons=1)
-	set_tail_state("[species.tail]_slow[rand(0,9)]")
+	set_tail_state("[species.tail]_slow[srand(0,9)]")
 
 	if(update_icons)
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_fast(var/update_icons=1)
-	set_tail_state("[species.tail]_loop[rand(0,9)]")
+	set_tail_state("[species.tail]_loop[srand(0,9)]")
 
 	if(update_icons)
 		update_icons()
 
 /mob/living/carbon/human/proc/animate_tail_reset(var/update_icons=1)
 	if(stat != DEAD)
-		set_tail_state("[species.tail]_idle[rand(0,9)]")
+		set_tail_state("[species.tail]_idle[srand(0,9)]")
 	else
 		set_tail_state("[species.tail]_static")
 

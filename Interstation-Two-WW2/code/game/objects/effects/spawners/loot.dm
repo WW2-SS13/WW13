@@ -13,7 +13,7 @@
 			if(!things.len)
 				return
 
-			var/loot_spawn = pick(things)
+			var/loot_spawn = spick(things)
 			var/loot_path = text2path(loot_spawn)
 
 			if(!loot_path || !lootdoubles)

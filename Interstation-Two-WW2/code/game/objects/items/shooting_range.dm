@@ -80,8 +80,8 @@
 		hp = 2350 // alium onest too kinda
 
 /obj/item/target/bullet_act(var/obj/item/projectile/Proj)
-	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
-	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1)
+	var/p_x = Proj.p_x + spick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
+	var/p_y = Proj.p_y + spick(0,0,0,0,0,-1,1)
 	var/decaltype = TRUE // TRUE - scorch, 2 - bullet
 
 	if(istype(/obj/item/projectile/bullet, Proj))
@@ -114,9 +114,9 @@
 			bmark.pixel_x--
 			bmark.pixel_y--
 
-			if(Proj.damage >= 20 || istype(Proj, /obj/item/projectile/beam/practice))
+			if(Proj.damage >= 20/* || istype(Proj, /obj/item/projectile/beam/practice)*/)
 				bmark.icon_state = "scorch"
-				bmark.set_dir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
+				bmark.set_dir(spick(NORTH,SOUTH,EAST,WEST)) // random scorch design
 
 
 			else
@@ -128,10 +128,10 @@
 
 		if(Proj.damage >= 10 && bulletholes.len <= 35) // maximum of 35 bullet holes
 			if(decaltype == 2) // bullet
-				if(prob(Proj.damage+30)) // bullets make holes more commonly!
+				if(sprob(Proj.damage+30)) // bullets make holes more commonly!
 					new/datum/bullethole(src, bmark.pixel_x, bmark.pixel_y) // create new bullet hole
 			else // Lasers!
-				if(prob(Proj.damage-10)) // lasers make holes less commonly
+				if(sprob(Proj.damage-10)) // lasers make holes less commonly
 					new/datum/bullethole(src, bmark.pixel_x, bmark.pixel_y) // create new bullet hole
 
 		// draw bullet holes
@@ -165,17 +165,17 @@
 		if(!Target) return
 
 		// Randomize the first box
-		b1x1 = pixel_x - pick(1,1,1,1,2,2,3,3,4)
-		b1x2 = pixel_x + pick(1,1,1,1,2,2,3,3,4)
+		b1x1 = pixel_x - spick(1,1,1,1,2,2,3,3,4)
+		b1x2 = pixel_x + spick(1,1,1,1,2,2,3,3,4)
 		b1y = pixel_y
-		if(prob(35))
-			b1y += rand(-4,4)
+		if(sprob(35))
+			b1y += srand(-4,4)
 
 		// Randomize the second box
 		b2x = pixel_x
-		if(prob(35))
-			b2x += rand(-4,4)
-		b2y1 = pixel_y + pick(1,1,1,1,2,2,3,3,4)
-		b2y2 = pixel_y - pick(1,1,1,1,2,2,3,3,4)
+		if(sprob(35))
+			b2x += srand(-4,4)
+		b2y1 = pixel_y + spick(1,1,1,1,2,2,3,3,4)
+		b2y2 = pixel_y - spick(1,1,1,1,2,2,3,3,4)
 
 		Target.bulletholes.Add(src)

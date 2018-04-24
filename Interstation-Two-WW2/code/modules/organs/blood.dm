@@ -77,7 +77,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 			if (istype(r, /datum/reagent/blood))
 				if (r.volume >= species.blood_volume)
 					return // we're full on blood.
-		vessel.add_reagent("blood", 1/(rand(1,3)))
+		vessel.add_reagent("blood", 1/(srand(1,3)))
 
 
 //Makes a blood drop, leaking amt units of blood from the mob
@@ -149,7 +149,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	for(var/ID in sniffles)
 		var/datum/disease2/disease/sniffle = sniffles[ID]
 		infect_virus2(src,sniffle,1)
-	if (injected.data["antibodies"] && prob(5))
+	if (injected.data["antibodies"] && sprob(5))
 		antibodies |= injected.data["antibodies"]*/
 	var/list/chems = list()
 	chems = params2list(injected.data["trace_chem"])

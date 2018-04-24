@@ -67,8 +67,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 //		pixel_y = amplitude * cos(0.008 * jitteriness * world.time)
 
 		var/amplitude = min(4, jitteriness / 100)
-		pixel_x = old_x + rand(-amplitude, amplitude)
-		pixel_y = old_y + rand(-amplitude/3, amplitude/3)
+		pixel_x = old_x + srand(-amplitude, amplitude)
+		pixel_y = old_y + srand(-amplitude/3, amplitude/3)
 
 		sleep(1)
 	//endwhile - reset the pixel offsets to zero

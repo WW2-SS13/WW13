@@ -496,7 +496,7 @@
 	H.setStat("medical", STAT_NORMAL)
 	H.setStat("shotgun", STAT_NORMAL)
 
-	if (prob(8))
+	if (sprob(8))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/svt(H), slot_back)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
@@ -778,9 +778,6 @@ var/first_guard = FALSE
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an elite infantry soldier. Your job is assist normal <b>Soldat</b>i in front line combat.</span>"
 	H.give_radio()
 
-	H.stamina *= 1.5
-	H.max_stamina *= 1.5
-
 	// glorious sturmovik stats
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
@@ -791,6 +788,7 @@ var/first_guard = FALSE
 	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_LOW)
 	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
 	return TRUE
 
 /datum/job/soviet/sturmovik/get_keys()
@@ -823,7 +821,7 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef/classic(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/butch(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/butcher(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a front chef. Your job is to keep the Red Army well fed.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)

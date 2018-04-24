@@ -24,11 +24,11 @@
 		..()
 		new /obj/item/weapon/crowbar/prybar(src)
 		new /obj/item/weapon/extinguisher/mini(src)
-		if(prob(50))
-			new /obj/item/device/flashlight(src)
+		if(sprob(50))
+			new /obj/item/flashlight(src)
 		else
-			new /obj/item/device/flashlight/flare(src)
-		new /obj/item/device/radio(src)
+			new /obj/item/flashlight/flare(src)
+		new /obj/item/radio(src)
 
 /obj/item/weapon/storage/toolbox/mechanical
 	name = "mechanical toolbox"
@@ -41,7 +41,7 @@
 		new /obj/item/weapon/wrench(src)
 		new /obj/item/weapon/weldingtool/ww2(src)
 		new /obj/item/weapon/crowbar/prybar(src)
-	//	new /obj/item/device/analyzer(src)
+	//	new /obj/item/analyzer(src)
 		new /obj/item/weapon/wirecutters/boltcutters(src)
 
 /obj/item/weapon/storage/toolbox/electrical
@@ -51,13 +51,13 @@
 
 	New()
 		..()
-		var/color = pick("red","yellow","green","blue","pink","orange","cyan","white")
+		var/color = spick("red","yellow","green","blue","pink","orange","cyan","white")
 		new /obj/item/weapon/screwdriver(src)
 		new /obj/item/weapon/wirecutters/boltcutters(src)
 		new /obj/item/weapon/crowbar/prybar(src)
 		new /obj/item/stack/cable_coil(src,30,color)
 		new /obj/item/stack/cable_coil(src,30,color)
-		if(prob(5))
+		if(sprob(5))
 			new /obj/item/clothing/gloves/insulated(src)
 		else
 			new /obj/item/stack/cable_coil(src,30,color)

@@ -111,9 +111,9 @@
 		if(teleport_x && teleport_y && teleport_z)
 			if(teleport_x_offset && teleport_y_offset && teleport_z_offset)
 
-				A.x = rand(teleport_x, teleport_x_offset)
-				A.y = rand(teleport_y, teleport_y_offset)
-				A.z = rand(teleport_z, teleport_z_offset)
+				A.x = srand(teleport_x, teleport_x_offset)
+				A.y = srand(teleport_y, teleport_y_offset)
+				A.z = srand(teleport_z, teleport_z_offset)
 
 /* Step trigger to display message if *TRIGGERED* */
 /obj/effect/step_trigger/message

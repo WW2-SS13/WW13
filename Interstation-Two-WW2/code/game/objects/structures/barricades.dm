@@ -81,21 +81,23 @@
 			qdel(src)
 			return
 		if(2.0)
-			health -= 25
+			health -= (200 + round(maxhealth * 0.30))
 			if (health <= 0)
 				visible_message("<span class='danger'>\The [src] is blown apart!</span>")
 				dismantle()
 			return
-
+		if (3.0)
+			health -= (100 + round(maxhealth * 0.10))
+			if (health <= 0)
+				visible_message("<span class='danger'>\The [src] is blown apart!</span>")
+				dismantle()
+			return
 /* the only barricades still in the code are wood barricades, which SHOULD
   be hit by bullets, at least sometimes - hence these changes. */
 
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 	if (istype(mover, /obj/item/projectile))
-		var/obj/item/projectile/proj = mover
-		if (prob(15) || get_dist(proj.starting, src) == 1)
-			return TRUE
-		return FALSE
+		return sprob(15)
 	else
 		return FALSE
 

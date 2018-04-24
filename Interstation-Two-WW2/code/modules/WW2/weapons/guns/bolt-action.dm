@@ -20,7 +20,7 @@
 	load_shell_sound = 'sound/weapons/clip_reload.ogg'
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = TRUE
-	scoped_accuracy = 2
+//	scoped_accuracy = 2
 	gun_type = GUN_TYPE_RIFLE
 	attachment_slots = ATTACH_IRONSIGHTS|ATTACH_SCOPE|ATTACH_BARREL
 	accuracy_increase_mod = 2.00
@@ -28,6 +28,7 @@
 	KD_chance = KD_CHANCE_HIGH
 	stat = "rifle"
 	move_delay = 2
+	fire_delay = 2
 
 	// 5x as accurate as MGs for now
 	accuracy_list = list(
@@ -76,6 +77,7 @@
 	)
 
 	load_delay = 4
+	aim_miss_chance_divider = 3.00
 
 	var/bolt_open = FALSE
 	var/check_bolt = FALSE //Keeps the bolt from being interfered with
@@ -89,7 +91,7 @@
 /obj/item/weapon/gun/projectile/boltaction/attack_self(mob/user)
 	if(!check_bolt)//Keeps people from spamming the bolt
 		check_bolt++
-		if(!do_after(user, 3, src, FALSE, TRUE,INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
+		if(!do_after(user, 2, src, FALSE, TRUE, INCAPACITATION_DEFAULT, TRUE))//Delays the bolt
 			check_bolt--
 			return
 	else return
@@ -159,7 +161,7 @@
 	else
 		++jamcheck
 
-	if (prob(jamcheck*2))
+	if (sprob(jamcheck))
 		jammed_until = max(world.time + (jamcheck * 5), 50)
 		jamcheck = 0
 
@@ -209,7 +211,7 @@
 
 /obj/item/weapon/gun/projectile/boltaction/kar98k/New()
 	..()
-	weight = pick(3.7, 3.8, 3.9, 4.0, 4.1)
+	weight = spick(3.7, 3.8, 3.9, 4.0, 4.1)
 
 //This should only be temporary until more attachment icons are made, then we switch to adding/removing icon masks
 /obj/item/weapon/gun/projectile/boltaction/kar98k/update_icon(var/add_scope = FALSE)

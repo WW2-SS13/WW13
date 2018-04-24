@@ -12,7 +12,7 @@
 
 /obj/structure/anti_tank/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (istype(mover, /obj/item/projectile))
-		if (prob(20))
+		if (sprob(20))
 			return TRUE
 		else
 			visible_message("<span class = 'warning'>The bullet riochetes off of the anti tank structure!</span>")
@@ -25,7 +25,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(prob(25))
+			if(sprob(25))
 				qdel(src)
 				return
 		if(3.0)
@@ -45,7 +45,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(prob(66))
+			if(sprob(66))
 				qdel(src)
 				return
 		if(3.0)
@@ -90,10 +90,10 @@
 		..()
 
 /obj/structure/noose/process()
-	doWork()
+	fire()
 
 // call this instead of process() if you want to do direct calls, I think its better - Kachnov
-/obj/structure/noose/proc/doWork()
+/obj/structure/noose/proc/fire()
 	if (hanging)
 		hanging.forceMove(loc)
 		density = TRUE
@@ -114,7 +114,7 @@
 
 		if (hanging.stat != DEAD)
 			hanging.adjustOxyLoss(5)
-			if (prob(5))
+			if (sprob(5))
 				visible_message("<span class = 'danger'>[hanging]'s neck snaps.</span>")
 				playsound(loc, 'sound/effects/gore/bullethit3.ogg')
 				hanging.death()
@@ -142,7 +142,7 @@
 			hanging = target
 			target.loc = get_turf(src)
 			target.dir = SOUTH
-			doWork()
+			fire()
 
 /obj/structure/noose/attack_hand(var/mob/living/carbon/human/H)
 	if (!istype(H))

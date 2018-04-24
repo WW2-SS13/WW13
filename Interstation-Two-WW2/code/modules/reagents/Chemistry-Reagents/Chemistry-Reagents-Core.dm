@@ -107,7 +107,7 @@
 	if (environment && environment.temperature > min_temperature) // Abstracted as steam or something
 		var/removed_heat = between(0, volume * WATER_LATENT_HEAT, -environment.get_thermal_energy_change(min_temperature))
 		environment.add_thermal_energy(-removed_heat)
-		if (prob(5))
+		if (sprob(5))
 			T.visible_message("<span class='warning'>The water sizzles as it lands on \the [T]!</span>")
 
 	else if(volume >= 10)
@@ -133,7 +133,7 @@
 
 /datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if (M.water < 0)
-		M.water += rand(40,50)
+		M.water += srand(40,50)
 	M.water += removed * 15
 
 /datum/reagent/fuel

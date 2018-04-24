@@ -29,8 +29,8 @@
 	for (var/client/C in clients)
 		if (C.pingability)
 			var/imsg = msg
-			msg = replacetext(msg, "@[C.key]", "<span class=\"log_message\">@[capitalize(C.key)]</span>")
-			msg = replacetext(msg, "@[C.ckey]", "<span class=\"log_message\">@[capitalize(C.key)]</span>")
+			msg = replacetext(msg, "@[C.key]", "<span class='ping'>@[capitalize(C.key)]</span>")
+			msg = replacetext(msg, "@[C.ckey]", "<span class='ping'>@[capitalize(C.key)]</span>")
 			if (msg != imsg)
 				winset(C, "mainwindow", "flash=2;")
 				C << sound('sound/machines/ping.ogg')
@@ -38,7 +38,7 @@
 	/* mentioning @everyone: staff only */
 	if (holder && holder.rights & R_ADMIN)
 		var/imsg = msg
-		msg = replacetext(msg, "@everyone", "<span class=\"log_message\">@everyone</span>")
+		msg = replacetext(msg, "@everyone", "<span class='ping'>@everyone</span>")
 		if (msg != imsg)
 			for (var/client/C in clients)
 				winset(C, "mainwindow", "flash=2;")
@@ -48,8 +48,8 @@
 
 	// @admins: ping secondary admins, primary admins, and the head admin.
 	var/imsg = msg
-	msg = replacetext(msg, "@admins", "<span class=\"log_message\">@admins</span>")
-	msg = replacetext(msg, "@Admins", "<span class=\"log_message\">@admins</span>")
+	msg = replacetext(msg, "@admins", "<span class='ping'>@admins</span>")
+	msg = replacetext(msg, "@Admins", "<span class='ping'>@admins</span>")
 	if (msg != imsg)
 		for (var/client/C in clients)
 			if (C.holder && C.holder.rights & R_MOD && !(C.holder.rights & R_PERMISSIONS))
@@ -58,8 +58,8 @@
 
 	// @highstaff: ping managers, hosts, and senators
 	imsg = msg
-	msg = replacetext(msg, "@highstaff", "<span class=\"log_message\">@highstaff</span>")
-	msg = replacetext(msg, "@Highstaff", "<span class=\"log_message\">@highstaff</span>")
+	msg = replacetext(msg, "@highstaff", "<span class='ping'>@highstaff</span>")
+	msg = replacetext(msg, "@Highstaff", "<span class='ping'>@highstaff</span>")
 	if (msg != imsg)
 		for (var/client/C in clients)
 			if (C.holder && C.holder.rights & R_PERMISSIONS)
@@ -106,7 +106,7 @@
 					else
 						display_name = holder.fakekey
 				else
-					display_name = "<span class=\"log_message\">[holder.OOC_rank()]</span> [display_name]"
+					display_name = "<span class = 'ping'>[holder.OOC_rank()]</span> [display_name]"
 
 			// patrons get OOC colors too, now - kachnov
 

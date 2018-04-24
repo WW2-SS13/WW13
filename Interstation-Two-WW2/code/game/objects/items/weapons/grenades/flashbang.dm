@@ -56,21 +56,21 @@
 			else
 				M.Stun(10)
 				M.Weaken(3)
-				if ((prob(14) || (M == loc && prob(70))))
-					M.ear_damage += rand(1, 10)
+				if ((sprob(14) || (M == loc && sprob(70))))
+					M.ear_damage += srand(1, 10)
 				else
-					M.ear_damage += rand(0, 5)
+					M.ear_damage += srand(0, 5)
 					M.ear_deaf = max(M.ear_deaf,15)
 
 		else if(get_dist(M, T) <= 5)
 			if(!ear_safety)
 				M.Stun(8)
-				M.ear_damage += rand(0, 3)
+				M.ear_damage += srand(0, 3)
 				M.ear_deaf = max(M.ear_deaf,10)
 
 		else if(!ear_safety)
 			M.Stun(4)
-			M.ear_damage += rand(0, TRUE)
+			M.ear_damage += srand(0, TRUE)
 			M.ear_deaf = max(M.ear_deaf,5)
 
 //This really should be in mob not every check
@@ -85,7 +85,7 @@
 		if (M.ear_damage >= 15)
 			M << "<span class='danger'>Your ears start to ring badly!</span>"
 			if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
-				if (prob(M.ear_damage - 10 + 5))
+				if (sprob(M.ear_damage - 10 + 5))
 					M << "<span class='danger'>You can't hear anything!</span>"
 					M.sdisabilities |= DEAF
 		else
@@ -100,10 +100,10 @@
 	icon_state = "clusterbang"
 
 /obj/item/weapon/grenade/flashbang/clusterbang/prime()
-	var/numspawned = rand(4,8)
+	var/numspawned = srand(4,8)
 	var/again = FALSE
 	for(var/more = numspawned,more > 0,more--)
-		if(prob(35))
+		if(sprob(35))
 			again++
 			numspawned --
 
@@ -129,18 +129,18 @@
 	icon_state = "clusterbang_segment_active"
 	active = TRUE
 	banglet = TRUE
-	var/stepdist = rand(1,4)//How far to step
+	var/stepdist = srand(1,4)//How far to step
 	var/temploc = loc//Saves the current location to know where to step away from
 	walk_away(src,temploc,stepdist)//I must go, my people need me
-	var/dettime = rand(15,60)
+	var/dettime = srand(15,60)
 	spawn(dettime)
 		prime()
 	..()
 
 /obj/item/weapon/grenade/flashbang/clusterbang/segment/prime()
-	var/numspawned = rand(4,8)
+	var/numspawned = srand(4,8)
 	for(var/more = numspawned,more > 0,more--)
-		if(prob(35))
+		if(sprob(35))
 			numspawned --
 
 	for(,numspawned > 0, numspawned--)
@@ -155,10 +155,10 @@
 		icon_state = "flashbang_active"
 		active = TRUE
 		banglet = TRUE
-		var/stepdist = rand(1,3)
+		var/stepdist = srand(1,3)
 		var/temploc = loc
 		walk_away(src,temploc,stepdist)
-		var/dettime = rand(15,60)
+		var/dettime = srand(15,60)
 		spawn(dettime)
 		prime()
 	..()

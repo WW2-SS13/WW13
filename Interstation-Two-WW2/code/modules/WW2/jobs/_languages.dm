@@ -13,7 +13,7 @@
 
 /datum/job/italian
 	default_language = "Italian"
-	additional_languages = list( "German" = 100 )
+	additional_languages = list("German" = 100 )
 
 /datum/job/soviet
 	default_language = "Russian"
@@ -38,7 +38,7 @@
 		for(var/language_name in additional_languages)
 			var/probability = additional_languages[language_name]
 
-			if (prob(probability))
+			if (sprob(probability))
 				H.add_language(language_name, FALSE)
 				H.show_message("<b>You know the [language_name] language!</b>")
 /*

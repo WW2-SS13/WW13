@@ -8,12 +8,12 @@ proc/Intoxicated(phrase)
 	var/newletter=""
 	while(counter>=1)
 		newletter=copytext(phrase,(leng-counter)+1,(leng-counter)+2)
-		if(rand(1,3)==3)
+		if(srand(1,3)==3)
 			if(lowertext(newletter)=="o")	newletter="u"
 			if(lowertext(newletter)=="s")	newletter="ch"
 			if(lowertext(newletter)=="a")	newletter="ah"
 			if(lowertext(newletter)=="c")	newletter="k"
-		switch(rand(1,7))
+		switch(srand(1,7))
 			if(1,3,5,8)	newletter="[lowertext(newletter)]"
 			if(2,4,6,15)	newletter="[uppertext(newletter)]"
 			if(7)	newletter+="'"
@@ -29,13 +29,13 @@ proc/NewStutter(phrase,stunned)
 	var/list/split_phrase = splittext(phrase," ") //Split it up into words.
 
 	var/list/unstuttered_words = split_phrase.Copy()
-	var/i = rand(1,3)
+	var/i = srand(1,3)
 	if(stunned) i = split_phrase.len
 	for(,i > 0,i--) //Pick a few words to stutter on.
 
 		if (!unstuttered_words.len)
 			break
-		var/word = pick(unstuttered_words)
+		var/word = spick(unstuttered_words)
 		unstuttered_words -= word //Remove from unstuttered words so we don't stutter it again.
 		var/index = split_phrase.Find(word) //Find the word in the split phrase so we can replace it.
 
@@ -46,7 +46,7 @@ proc/NewStutter(phrase,stunned)
 			first_letter = first_sound
 
 		//Repeat the first letter to create a stutter.
-		var/rnum = rand(1,3)
+		var/rnum = srand(1,3)
 		switch(rnum)
 			if(1)
 				word = "[first_letter]-[word]"
@@ -60,7 +60,7 @@ proc/NewStutter(phrase,stunned)
 	return sanitize(jointext(split_phrase," "))
 
 proc/Stagger(mob/M,d) //Technically not a filter, but it relates to drunkenness.
-	step(M, pick(d,turn(d,90),turn(d,-90)))
+	step(M, spick(d,turn(d,90),turn(d,-90)))
 
 proc/Ellipsis(original_msg, chance = 50)
 	if(chance <= 0) return "..."
@@ -73,7 +73,7 @@ proc/Ellipsis(original_msg, chance = 50)
 	var/new_msg = ""
 
 	for(var/w in words)
-		if(prob(chance))
+		if(sprob(chance))
 			new_words += "..."
 		else
 			new_words += w

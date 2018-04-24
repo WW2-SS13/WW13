@@ -28,7 +28,7 @@
 	if(istype(I, /obj/item/weapon/screwdriver))
 		open_panel = !open_panel
 		user << "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>"
-	else if(istype(I, /obj/item/weapon/wirecutters) /*|| istype(I, /obj/item/device/multitool)*/)
+	else if(istype(I, /obj/item/weapon/wirecutters) /*|| istype(I, /obj/item/multitool)*/)
 		wires.Interact(user)
 	else
 		..()
@@ -43,8 +43,10 @@
 /obj/item/weapon/plastique/afterattack(atom/movable/target, mob/user, flag)
 	if (!flag)
 		return
-	if (istype(target, /obj/item/weapon/storage/) || istype(target, /obj/item/clothing/accessory/storage/) || istype(target, /obj/item/clothing/under))
+
+	if (istype(target, /obj/item/weapon/storage) || istype(target, /obj/item/clothing/accessory/storage) || istype(target, /obj/item/clothing/under))
 		return
+
 	user << "Planting explosives..."
 	user.do_attack_animation(target)
 
@@ -71,6 +73,8 @@
 /obj/item/weapon/plastique/proc/explode(var/location)
 	if(location)
 		explosion(location, 0, 0, 2, 3)
+		spawn (4)
+			playsound(location, "explosion", 100, TRUE)
 		spawn (6)
 			for (var/mob/living/L in location)
 				L.crush()

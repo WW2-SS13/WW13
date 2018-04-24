@@ -132,6 +132,7 @@
 
 	var/_clients = input("How many clients?") as num
 	job_master.toggle_roundstart_autobalance(_clients, announce = 2)
+	job_master.admin_expected_clients = _clients
 
 	message_admins("[key_name(src)] reset the roundstart autobalance for [_clients] players.")
 

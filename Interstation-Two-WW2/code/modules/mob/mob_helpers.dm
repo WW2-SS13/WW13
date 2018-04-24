@@ -56,112 +56,6 @@ proc/getsensorlevel(A)
 /proc/hsl2rgb(h, s, l)
 	return //TODO: Implement
 
-/*
-	Miss Chance
-*/
-
-//TODO: Integrate defence zones and targeting body parts with the actual organ system, move these into organ definitions.
-
-/* This is the new accuracy system. Guns have different miss chances
- * depending on how far you were from the target when you fired. When a
- * gun is scoped, all the miss chances "move down one", that is, longrange
- * becomes verylongrange. Accuracy/scoped accuracy variables are not meaningless,
- * but they aren't as useful at long ranges anymore */
-
-/* since head shots are usually instant kills, they've been heavily nerfed.
- * Although they're still almost guaranteed at point-blank range. */
-
-/* - Kachnov */
-
-#define GUARANTEED_CHANCE 100
-#define HIGH_CHANCE 80
-#define MEDIUM_CHANCE 50
-#define LOWER_CHANCE 33
-#define LOW_CHANCE 20
-
-var/list/global/hit_chances = list(
-
-	// 0 to 1 tiles away
-	"pointblankrange" = list(
-		"head" = GUARANTEED_CHANCE,
-		"chest" = GUARANTEED_CHANCE,
-		"groin" = GUARANTEED_CHANCE,
-		"l_leg" = GUARANTEED_CHANCE,
-		"r_leg" = GUARANTEED_CHANCE,
-		"l_arm" = GUARANTEED_CHANCE,
-		"r_arm" = GUARANTEED_CHANCE,
-		"l_hand" = GUARANTEED_CHANCE,
-		"r_hand" = GUARANTEED_CHANCE,
-		"l_foot" = GUARANTEED_CHANCE,
-		"r_foot" = GUARANTEED_CHANCE),
-
-	// 2 to 3 tiles away
-	"shortrange" = list(
-		"head" = MEDIUM_CHANCE,
-		"chest" = HIGH_CHANCE,
-		"groin" = MEDIUM_CHANCE,
-		"l_leg" = MEDIUM_CHANCE,
-		"r_leg" = MEDIUM_CHANCE,
-		"l_arm" = MEDIUM_CHANCE,
-		"r_arm" = MEDIUM_CHANCE,
-		"l_hand" = MEDIUM_CHANCE,
-		"r_hand" = MEDIUM_CHANCE,
-		"l_foot" = MEDIUM_CHANCE,
-		"r_foot" = MEDIUM_CHANCE),
-
-	// 4 to 6 tiles away
-	"medrange" = list(
-		"head" = LOWER_CHANCE,
-		"chest" = MEDIUM_CHANCE,
-		"groin" = MEDIUM_CHANCE,
-		"l_leg" = MEDIUM_CHANCE,
-		"r_leg" = MEDIUM_CHANCE,
-		"l_arm" = MEDIUM_CHANCE,
-		"r_arm" = MEDIUM_CHANCE,
-		"l_hand" = LOWER_CHANCE,
-		"r_hand" = LOWER_CHANCE,
-		"l_foot" = LOWER_CHANCE,
-		"r_foot" = LOWER_CHANCE),
-
-	// 7 to INFINITY tiles away
-	"longrange" = list(
-		"head" = LOW_CHANCE,
-		"chest" = MEDIUM_CHANCE - 10,
-		"groin" = LOWER_CHANCE,
-		"l_leg" = LOWER_CHANCE,
-		"r_leg" = LOWER_CHANCE,
-		"l_arm" = LOWER_CHANCE,
-		"r_arm" = LOWER_CHANCE,
-		"l_hand" = LOW_CHANCE,
-		"r_hand" = LOW_CHANCE,
-		"l_foot" = LOW_CHANCE,
-		"r_foot" = LOW_CHANCE),
-)
-
-/proc/get_miss_chance(var/zone, var/distance, var/accuracy, var/miss_modifier)
-
-
-	. = 0
-	zone = check_zone(zone)
-
-	var/hit_chance = max(hit_chances["pointblankrange"][zone], 7 + accuracy)
-
-	switch (distance)
-		if (0)
-			hit_chance = max(hit_chances["pointblankrange"][zone], 7 + accuracy)
-		if (1 to 3)
-			hit_chance = max(hit_chances["shortrange"][zone], 7 + accuracy)
-		if (5 to 6)
-			hit_chance = max(hit_chances["medrange"][zone], 7 + accuracy)
-		if (7 to INFINITY)
-			hit_chance = max(hit_chances["longrange"][zone], 7 + accuracy)
-
-	. = 100 - hit_chance
-	. += miss_modifier
-	. -= (accuracy*7)
-	. = max(., 0)
-
-
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
 var/list/global/organ_rel_size = list(
@@ -193,7 +87,7 @@ var/list/global/organ_rel_size = list(
 /proc/ran_zone(zone, probability)
 	if (zone)
 		zone = check_zone(zone)
-		if (prob(probability))
+		if (sprob(probability))
 			return zone
 
 	var/ran_zone = zone
@@ -217,7 +111,8 @@ var/list/global/organ_rel_size = list(
 // Emulates targetting a specific body part, and miss chances
 // May return null if missed
 // miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance = 0, var/ranged_attack=0, var/range = -1)
+
+/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance = 0, var/ranged_attack=0)
 
 	zone = check_zone(zone)
 
@@ -230,7 +125,7 @@ var/list/global/organ_rel_size = list(
 			if(G.state >= GRAB_AGGRESSIVE)
 				return zone
 
-	if(prob(miss_chance))
+	if(sprob(miss_chance))
 		return null
 
 	return zone
@@ -254,7 +149,7 @@ var/list/global/organ_rel_size = list(
 		var/char = copytext(te, p, p + 1)
 		if (char == "<") //let's try to not break tags
 			intag = !intag
-		if (intag || char == " " || prob(pr))
+		if (intag || char == " " || sprob(pr))
 			t = text("[][]", t, char)
 		else
 			t = text("[]*", t)
@@ -271,12 +166,12 @@ proc/slur(phrase)
 	var/newletter=""
 	while(counter>=1)
 		newletter=copytext(phrase,(leng-counter)+1,(leng-counter)+2)
-		if(rand(1,3)==3)
+		if(srand(1,3)==3)
 			if(lowertext(newletter)=="o")	newletter="u"
 			if(lowertext(newletter)=="s")	newletter="ch"
 			if(lowertext(newletter)=="a")	newletter="ah"
 			if(lowertext(newletter)=="c")	newletter="k"
-		switch(rand(1,15))
+		switch(srand(1,15))
 			if(1,3,5,8)	newletter="[lowertext(newletter)]"
 			if(2,4,6,15)	newletter="[uppertext(newletter)]"
 			if(7)	newletter+="'"
@@ -294,14 +189,14 @@ proc/slur(phrase)
 	p = TRUE//1 is the start of any word
 	while(p <= n)//while P, which starts at TRUE is less or equal to N which is the length.
 		var/n_letter = copytext(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
-		if (prob(80) && (ckey(n_letter) in list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z")))
-			if (prob(10))
+		if (sprob(80) && (ckey(n_letter) in list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z")))
+			if (sprob(10))
 				n_letter = text("[n_letter]-[n_letter]-[n_letter]-[n_letter]")//replaces the current letter with this instead.
 			else
-				if (prob(20))
+				if (sprob(20))
 					n_letter = text("[n_letter]-[n_letter]-[n_letter]")
 				else
-					if (prob(5))
+					if (sprob(5))
 						n_letter = null
 					else
 						n_letter = text("[n_letter]-[n_letter]")
@@ -310,13 +205,13 @@ proc/slur(phrase)
 	return sanitize(t)
 
 /proc/lisp(message, intensity=100) //Intensity = how hard will the dude be lisped
-	message = prob(intensity) ? replacetext(message, "f", "ph") : message
-	message = prob(intensity) ? replacetext(message, "t", "ph") : message
-	message = prob(intensity) ? replacetext(message, "s", "sh") : message
-	message = prob(intensity) ? replacetext(message, "th", "hh") : message
-	message = prob(intensity) ? replacetext(message, "ck", "gh") : message
-	message = prob(intensity) ? replacetext(message, "c", "gh") : message
-	message = prob(intensity) ? replacetext(message, "k", "gh") : message
+	message = sprob(intensity) ? replacetext(message, "f", "ph") : message
+	message = sprob(intensity) ? replacetext(message, "t", "ph") : message
+	message = sprob(intensity) ? replacetext(message, "s", "sh") : message
+	message = sprob(intensity) ? replacetext(message, "th", "hh") : message
+	message = sprob(intensity) ? replacetext(message, "ck", "gh") : message
+	message = sprob(intensity) ? replacetext(message, "c", "gh") : message
+	message = sprob(intensity) ? replacetext(message, "k", "gh") : message
 	return message
 
 proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
@@ -325,12 +220,12 @@ proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 fo
 	for(var/i = TRUE, i <= length(t), i++)
 
 		var/letter = copytext(t, i, i+1)
-		if(prob(50))
+		if(sprob(50))
 			if(p >= 70)
 				letter = ""
 
-			for(var/j = TRUE, j <= rand(0, 2), j++)
-				letter += pick("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
+			for(var/j = TRUE, j <= srand(0, 2), j++)
+				letter += spick("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
 
 		returntext += letter
 
@@ -349,13 +244,13 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	var/p = TRUE
 	while(p <= n)
 		var/n_letter
-		var/n_mod = rand(1,4)
+		var/n_mod = srand(1,4)
 		if(p+n_mod>n+1)
 			n_letter = copytext(te, p, n+1)
 		else
 			n_letter = copytext(te, p, p+n_mod)
-		if (prob(50))
-			if (prob(30))
+		if (sprob(50))
+			if (sprob(30))
 				n_letter = text("[n_letter]-[n_letter]-[n_letter]")
 			else
 				n_letter = text("[n_letter]-[n_letter]")
@@ -381,7 +276,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 		var/x
 		for(x=0; x<duration, x++)
-			M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
+			M.client.eye = locate(dd_range(1,M.loc.x+srand(-strength,strength),world.maxx),dd_range(1,M.loc.y+srand(-strength,strength),world.maxy),M.loc.z)
 			sleep(1)
 		M.client.eye=oldeye
 		M.shakecamera = FALSE
@@ -526,9 +421,9 @@ proc/is_blind(A)
 		if(!name)
 			name = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
 		if(joined_ghosts)
-			say_dead_direct("The ghost of <span class='name'>[name]</span> now [pick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
+			say_dead_direct("The ghost of <span class='name'>[name]</span> now [spick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
 		else
-			say_dead_direct("<span class='name'>[name]</span> no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
+			say_dead_direct("<span class='name'>[name]</span> no longer [spick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
 // Returns true if the mob has a client which has been active in the last given X minutes.
 /mob/proc/is_client_active(var/active = TRUE)
@@ -608,7 +503,7 @@ proc/is_blind(A)
 
 #undef SAFE_PERP
 /*
-/mob/proc/get_multitool(var/obj/item/device/multitool/P)
+/mob/proc/get_multitool(var/obj/item/multitool/P)
 	if(istype(P))
 		return P
 
