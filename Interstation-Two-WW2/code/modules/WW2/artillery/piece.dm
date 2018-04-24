@@ -231,7 +231,7 @@
 			var/number_range = splittext(BLIND_FIRE_DISTANCES[blind_fire_range], ":")
 			var/lowerbound = text2num(number_range[1])
 			var/upperbound = text2num(number_range[2])
-			var/add = rand(lowerbound, upperbound)
+			var/add = srand(lowerbound, upperbound)
 
 			switch (blind_fire_dir)
 				if (NORTH)
@@ -284,8 +284,8 @@
 				var/obj/item/artillery_shell/shell = other.use_slot()
 				if (shell && do_after(user, 30, src))
 					other.fire(target_x, target_y, shell)
-		/*			if (prob(7))
-						jammed_until = world.time + rand(70,200) */
+		/*			if (sprob(7))
+						jammed_until = world.time + srand(70,200) */
 				else
 					user << "<span class='danger'>Load a shell in first.</span>"
 					return
@@ -511,22 +511,22 @@
 						direction = null
 
 		if (direction != null) // how did this even happen
-			spawn (rand(4,6))
+			spawn (srand(4,6))
 				new/obj/effect/effect/smoke/chem(get_step(src, direction))
-			spawn (rand(5,7))
+			spawn (srand(5,7))
 				new/obj/effect/effect/smoke/chem(get_step(src, direction))
-			spawn (rand(6,7))
+			spawn (srand(6,7))
 				new/obj/effect/effect/smoke/chem(get_step(src, direction))
 			spawn (5)
-				new/obj/effect/effect/smoke/chem(get_step(src, pick(NORTH, EAST, SOUTH, WEST)))
+				new/obj/effect/effect/smoke/chem(get_step(src, spick(NORTH, EAST, SOUTH, WEST)))
 
-		spawn (rand(1,2))
+		spawn (srand(1,2))
 			var/turf/t1 = get_turf(src)
 			var/list/heard = playsound(t1, "artillery_out", 100, TRUE)
 			playsound(t1, "artillery_out_distant", 100, TRUE, excluded = heard)
 
-		x = x + rand(1,-1)
-		y = y + rand(1,-1)
+		x = x + srand(1,-1)
+		y = y + srand(1,-1)
 
 		var/turf/t = locate(x, y, z)
 		var/t_x = t.x
@@ -548,7 +548,7 @@
 		// work right
 
 		spawn (max(travel_time - 50,0))
-			if (prob(66))
+			if (sprob(66))
 				for (var/mob/living/carbon/human/H in range(15, t))
 					if (!(H.disabilities & DEAF))
 						H << "<span class = 'userdanger'>You think you can hear the sound of artillery flying in! Take cover!</span>"
@@ -562,7 +562,7 @@
 			// allows shells aimed at ladders to go down ladders - Kachnov
 
 			if (locate(/obj/structure/multiz) in t)
-				if (prob(50))
+				if (sprob(50))
 					visible_message("<span class = 'danger'>An artillery shell goes down the ladders!</span>")
 					for (var/obj/structure/multiz/warp in t)
 						if (warp.target)
@@ -649,7 +649,7 @@
 			qdel(other)
 			return
 		if(2.0)
-			if(prob(10))
+			if(sprob(10))
 				qdel(src)
 				qdel(other)
 				return

@@ -12,7 +12,7 @@
 	if(rust)
 		broken = flooring.has_damage_range + 1
 	else if(flooring.has_damage_range)
-		broken = rand(0,flooring.has_damage_range)
+		broken = srand(0,flooring.has_damage_range)
 	else
 		broken = FALSE
 	update_icon()
@@ -21,7 +21,7 @@
 	if(!flooring || !(flooring.flags & TURF_CAN_BURN) || !isnull(burnt))
 		return
 	if(flooring.has_burn_range)
-		burnt = rand(0,flooring.has_burn_range)
+		burnt = srand(0,flooring.has_burn_range)
 	else
 		burnt = FALSE
 	update_icon()

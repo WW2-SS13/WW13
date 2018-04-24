@@ -1,4 +1,4 @@
-/obj/item/device/flashlight/lantern
+/obj/item/flashlight/lantern
 	name = "lantern"
 	icon_state = "lantern"
 	desc = "A simple lantern."

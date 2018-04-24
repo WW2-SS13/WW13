@@ -7,7 +7,7 @@
 
 /obj/tank/german/New()
 	..()
-	radio = new/obj/item/device/radio/feldfu()
+	radio = new/obj/item/radio/feldfu()
 
 /obj/tank/german/admin
 	movement_delay = 0.1
@@ -31,4 +31,4 @@
 
 /obj/tank/soviet/New()
 	..()
-	radio = new/obj/item/device/radio/rbs()
+	radio = new/obj/item/radio/rbs()

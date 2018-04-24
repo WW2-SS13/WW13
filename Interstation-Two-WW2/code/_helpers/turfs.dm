@@ -34,7 +34,7 @@
 			available_turfs += start_turf
 	if(!available_turfs.len)
 		available_turfs = start_turfs
-	return pick(available_turfs)
+	return spick(available_turfs)
 
 /proc/turf_contains_dense_objects(var/turf/T)
 	return T.contains_dense_objects()

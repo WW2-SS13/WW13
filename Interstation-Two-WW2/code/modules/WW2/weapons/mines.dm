@@ -2,7 +2,7 @@
 //*****************************
 //MINES
 //*****************************
-/obj/item/device/mine
+/obj/item/mine
 	name = "proximity mine"
 	desc = "An anti-personnel mine. Useful for setting traps or for area denial. "
 	icon = 'icons/obj/grenade.dmi'
@@ -27,8 +27,8 @@
 	var/nextCanExplode = -1
 
 //Arming
-/obj/item/device/mine/attack_self(mob/living/user as mob)
-	if(locate(/obj/item/device/mine) in get_turf(src))
+/obj/item/mine/attack_self(mob/living/user as mob)
+	if(locate(/obj/item/mine) in get_turf(src))
 		src << "There's already a mine at this position!"
 		return
 
@@ -47,7 +47,7 @@
 
 	if(!anchored)
 		user.visible_message("<span class = 'notice'>\The [user] starts to deploy the \the [src].</span>")
-		if(!do_after(user,rand(30,40)))
+		if(!do_after(user,srand(30,40)))
 			user.visible_message("<span class = 'notice'>\The [user] decides not to deploy the \the [src].</span>")
 			return
 		nextCanExplode = world.time + 5
@@ -59,14 +59,14 @@
 		return
 
 //Disarming
-/obj/item/device/mine/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/mine/attackby(obj/item/W as obj, mob/user as mob)
 	if(anchored)
 		if(istype(W, /obj/item/weapon/wirecutters))
 			user.visible_message("<span class = 'notice'>\The [user] starts to disarm the \the [src] with the [W].</span>")
 			if(!do_after(user,60))
 				user.visible_message("<span class = 'notice'>\The [user] decides not to disarm the \the [src].</span>")
 				return
-			if(prob(95))
+			if(sprob(95))
 				user.visible_message("<span class = 'notice'>\The [user] finishes disarming the \the [src]!</span>")
 				anchored = FALSE
 				icon_state = "betty"
@@ -79,7 +79,7 @@
 			if(!do_after(user,80))
 				user.visible_message("<span class = 'notice'>\The [user] decides not to disarm the \the [src].</span>")
 				return
-			if(prob(50))
+			if(sprob(50))
 				user.visible_message("<span class = 'notice'>\The [user] finishes disarming the \the [src]!</span>")
 				anchored = FALSE
 				icon_state = "betty"
@@ -90,13 +90,13 @@
 		else
 			Bumped(user)
 
-/obj/item/device/mine/attack_hand(mob/user as mob)
+/obj/item/mine/attack_hand(mob/user as mob)
 	if(anchored)
 		user.visible_message("<span class = 'notice'>\The [user] starts to dig around the \the [src] with their bare hands!</span>")
 		if(!do_after(user,100))
 			user.visible_message("<span class = 'notice'>\The [user] decides not to dig up the \the [src].</span>")
 			return
-		if(prob(15))
+		if(sprob(15))
 			user.visible_message("<span class = 'notice'>\The [user] finishes digging up the \the [src], disarming it!</span>")
 			anchored = FALSE
 			icon_state = "betty"
@@ -108,18 +108,18 @@
 		..()
 
 //Triggering
-/obj/item/device/mine/Crossed(AM as mob|obj)
+/obj/item/mine/Crossed(AM as mob|obj)
 	if(isobserver(AM)) return
 	if(istype(AM, /obj/item/projectile)) return
 	Bumped(AM)
 
-/obj/item/device/mine/Bumped(AM as mob|obj)
+/obj/item/mine/Bumped(AM as mob|obj)
 	if(isobserver(AM)) return
 	if(!anchored) return //If armed
 	if(triggered) return
 	trigger(AM)
 
-/obj/item/device/mine/proc/trigger(atom/movable/AM)
+/obj/item/mine/proc/trigger(atom/movable/AM)
 	if (world.time < nextCanExplode)
 		return
 	for(var/mob/O in viewers(world.view, loc))
@@ -133,12 +133,12 @@
 
 //TYPES//
 //Explosive
-/obj/item/device/mine/proc/explosive(obj)
+/obj/item/mine/proc/explosive(obj)
 	explosion(loc,-1,1,3)
 	spawn(0)
 		del(src)
 
-/obj/item/device/mine/betty
+/obj/item/mine/betty
 	name = "S-mine 'Bouncing Betty'"
 	desc = "German anti-personnel mine. Useful for setting traps or for area denial."
 	icon = 'icons/obj/grenade.dmi'
@@ -151,6 +151,6 @@
 //	unacidable = TRUE
 	anchored = FALSE
 
-/obj/item/device/mine/betty/New()
+/obj/item/mine/betty/New()
 	..()
 	qdel(src)

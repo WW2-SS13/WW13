@@ -18,7 +18,7 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency_oxygen,/obj/item/weapon/extinguisher)
+	allowed = list(/obj/item/flashlight,/obj/item/weapon/tank/emergency_oxygen,/obj/item/weapon/extinguisher)
 	slowdown = 1.0
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	item_flags = STOPPRESSUREDAMAGE
@@ -43,6 +43,7 @@
 /*
  * Bomb protection
  */
+ /*
 /obj/item/clothing/head/bomb_hood
 	name = "bomb hood"
 	desc = "Use in case of bomb."
@@ -52,7 +53,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	siemens_coefficient = FALSE
 
-
+/
 /obj/item/clothing/suit/bomb_suit
 	name = "bomb suit"
 	desc = "A suit designed for safety when handling explosives."
@@ -77,7 +78,7 @@
 	icon_state = "bombsuitsec"
 	allowed = list(/obj/item/weapon/gun/energy/*,/obj/item/weapon/melee/baton*/,/obj/item/weapon/handcuffs)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-
+*/
 /*
  * Radiation protection
  */
@@ -99,7 +100,7 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|HANDS|FEET
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency_oxygen,/obj/item/clothing/head/radiation,/obj/item/clothing/mask/gas)
+	allowed = list(/obj/item/flashlight,/obj/item/weapon/tank/emergency_oxygen,/obj/item/clothing/head/radiation,/obj/item/clothing/mask/gas)
 	slowdown = 1.5
 	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE,energy = FALSE, bomb = FALSE, bio = 60, rad = 100)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL

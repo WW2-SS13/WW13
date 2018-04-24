@@ -18,8 +18,8 @@
 
 /obj/item/weapon/material/kitchen/utensil/New()
 	..()
-	if (prob(60))
-		pixel_y = rand(0, 4)
+	if (sprob(60))
+		pixel_y = srand(0, 4)
 	create_reagents(5)
 	return
 
@@ -27,11 +27,13 @@
 	if(!istype(M))
 		return ..()
 
-	if(user.a_intent != I_HELP)
-		if(user.targeted_organ == "head" || user.targeted_organ == "eyes")
-			if((CLUMSY in user.mutations) && prob(50))
+	if(user.a_intent != I_HELP || !scoop_food)
+		if(user.targeted_organ == "eyes")
+			if((CLUMSY in user.mutations) && sprob(50))
 				M = user
 			return eyestab(M,user)
+		else if (user.targeted_organ == "head" && (sharp || edge) && ishuman(M))
+			M.resolve_item_attack(src, user, user.targeted_organ)
 		else
 			return ..()
 
@@ -46,7 +48,7 @@
 			if(!(M.can_force_feed(user, loaded) && do_mob(user, M, 5 SECONDS)))
 				return
 			M.visible_message("<span class='notice'>\The [user] feeds some [loaded] to \the [M] with \the [src].</span>")
-		playsound(M.loc,'sound/items/eatfood.ogg', rand(10,40), TRUE)
+		playsound(M.loc,'sound/items/eatfood.ogg', srand(10,40), TRUE)
 		overlays.Cut()
 		return
 	else
@@ -97,7 +99,7 @@
 	force_divisor = 0.2
 
 /obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+	if ((CLUMSY in user.mutations) && sprob(50))
 		user << "<span class='warning'>You accidentally cut yourself with \the [src].</span>"
 		user.take_organ_damage(20)
 		return
@@ -120,7 +122,7 @@
 	thrown_force_divisor = TRUE // as above
 
 /obj/item/weapon/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+	if ((CLUMSY in user.mutations) && sprob(50))
 		user << "<span class='warning'>\The [src] slips out of your hand and hits your head.</span>"
 		user.drop_from_inventory(src)
 		user.take_organ_damage(10)

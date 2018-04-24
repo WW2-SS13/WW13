@@ -49,7 +49,7 @@
 			..()
 
 	feed_sound(var/mob/user)
-		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)
+		playsound(user.loc, 'sound/items/drink.ogg', srand(10, 50), TRUE)
 
 	self_feed_message(var/mob/user)
 		user << "<span class='notice'>You swallow some of contents of \the [src].</span>"
@@ -162,5 +162,5 @@
 	New()
 		..()
 		reagents.add_reagent("flour", 30)
-		pixel_x = rand(-10.0, 10)
-		pixel_y = rand(-10.0, 10)
+		pixel_x = srand(-10.0, 10)
+		pixel_y = srand(-10.0, 10)

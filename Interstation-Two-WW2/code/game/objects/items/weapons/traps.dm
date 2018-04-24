@@ -69,7 +69,7 @@
 	if(L.lying)
 		target_zone = ran_zone()
 	else
-		target_zone = pick("l_foot", "r_foot", "l_leg", "r_leg")
+		target_zone = spick("l_foot", "r_foot", "l_leg", "r_leg")
 
 	//armour
 	var/blocked = L.run_armor_check(target_zone, "melee")

@@ -79,8 +79,8 @@
 	icon_state = "slag"
 
 /obj/item/weapon/ore/New()
-	pixel_x = rand(0,16)-8
-	pixel_y = rand(0,8)-8
+	pixel_x = srand(0,16)-8
+	pixel_y = srand(0,8)-8
 
 // from mining/machine_processing.dm
 

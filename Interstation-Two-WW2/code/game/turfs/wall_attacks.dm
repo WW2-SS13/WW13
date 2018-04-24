@@ -26,7 +26,7 @@
 
 /turf/wall/proc/fail_smash(var/mob/user)
 	user << "<span class='danger'>You smash against the wall!</span>"
-	take_damage(rand(25,75))
+	take_damage(srand(25,75))
 
 /turf/wall/proc/success_smash(var/mob/user)
 	user << "<span class='danger'>You smash through the wall!</span>"
@@ -61,7 +61,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
 	if (HULK in user.mutations)
-		if (rotting || !prob(material.hardness))
+		if (rotting || !sprob(material.hardness))
 			success_smash(user)
 		else
 			fail_smash(user)
@@ -307,7 +307,7 @@
 		var/dam_prob = min(100,material.hardness*1.5)
 		if(dam_prob < 100 && W.force > (dam_threshhold/10))
 			playsound(src, hitsound, 80, TRUE)
-			if(!prob(dam_prob))
+			if(!sprob(dam_prob))
 				visible_message("<span class='danger'>\The [user] attacks \the [src] with \the [W] and it [material.destruction_desc]!</span>")
 				dismantle_wall(1)
 			else

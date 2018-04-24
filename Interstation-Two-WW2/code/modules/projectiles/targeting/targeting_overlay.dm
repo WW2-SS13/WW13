@@ -1,6 +1,6 @@
 /obj/aiming_overlay
 	name = ""
-	desc = "Stick 'em up!"
+	desc = ""
 	icon = 'icons/effects/Targeted.dmi'
 	icon_state = "locking"
 	anchored = TRUE
@@ -155,13 +155,15 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 		if(aiming_at == target)
 			return
 		cancel_aiming(1)
-		if (do_after(owner, 6, target))
+		owner.visible_message("<span class='danger'>\The [owner] starts to turn \the [thing] on \the [target]!</span>")
+		if (do_after(owner, 9, target))
 			owner.visible_message("<span class='danger'>\The [owner] turns \the [thing] on \the [target]!</span>")
-		success = TRUE
+			success = TRUE
 	else
-		if (do_after(owner, 6, target))
+		owner.visible_message("<span class='danger'>\The [owner] starts to aim \the [thing] at \the [target]!</span>")
+		if (do_after(owner, 9, target))
 			owner.visible_message("<span class='danger'>\The [owner] aims \the [thing] at \the [target]!</span>")
-		success = TRUE
+			success = TRUE
 
 	if (success)
 		if(owner.client)

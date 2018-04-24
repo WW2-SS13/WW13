@@ -60,17 +60,17 @@
 
 		var/image/I = new(icon, "sandwich_filling")
 		I.color = O.filling_color
-		I.pixel_x = pick(list(-1,0,1))
+		I.pixel_x = spick(list(-1,0,1))
 		I.pixel_y = (i*2)+1
 		overlays += I
 
 	var/image/T = new(icon, "sandwich_top")
-	T.pixel_x = pick(list(-1,0,1))
+	T.pixel_x = spick(list(-1,0,1))
 	T.pixel_y = (ingredients.len * 2)+1
 	overlays += T
 
 	name = lowertext("[fullname] sandwich")
-	if(length(name) > 80) name = "[pick(list("absurd","colossal","enormous","ridiculous"))] sandwich"
+	if(length(name) > 80) name = "[spick(list("absurd","colossal","enormous","ridiculous"))] sandwich"
 	w_class = n_ceil(Clamp((ingredients.len/2),2,4))
 
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/Destroy()
@@ -80,7 +80,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/examine(mob/user)
 	..(user)
-	var/obj/item/O = pick(contents)
+	var/obj/item/O = spick(contents)
 	user << "<span class = 'notice'>You think you can see [O.name] in there.</span>"
 
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob, def_zone)

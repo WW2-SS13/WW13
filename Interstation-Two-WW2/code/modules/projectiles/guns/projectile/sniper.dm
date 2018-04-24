@@ -16,7 +16,7 @@
 	ammo_type = /obj/item/ammo_casing/a145
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = -1
-	scoped_accuracy = 2
+//	scoped_accuracy = 2
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/rifle_load.ogg'
 	var/bolt_open = FALSE

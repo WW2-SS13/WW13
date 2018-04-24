@@ -18,7 +18,7 @@
 			open(user)
 
 	proc/open(mob/user)
-		playsound(loc,'sound/effects/canopen.ogg', rand(10,50), TRUE)
+		playsound(loc,'sound/effects/canopen.ogg', srand(10,50), TRUE)
 		user << "<span class='notice'>You open [src] with an audible pop!</span>"
 		flags |= OPENCONTAINER
 
@@ -66,7 +66,7 @@
 		user << "<span class='notice'>You swallow a gulp from \the [src].</span>"
 
 	feed_sound(var/mob/user)
-		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)
+		playsound(user.loc, 'sound/items/drink.ogg', srand(10, 50), TRUE)
 
 	examine(mob/user)
 		if(!..(user, TRUE))
@@ -278,7 +278,7 @@
 	else
 		M << "<span class='notice'>You eat [src]. Yum!</span>"
 		user.visible_message("<span class='warning'><b>[user]</b> sticks [src] into <b>[M]</b>'s mouth.</span>")
-	playsound(usr.loc,"sound/items/eatfood.ogg", rand(10,50), TRUE)
+	playsound(usr.loc,"sound/items/eatfood.ogg", srand(10,50), TRUE)
 	qdel(src)
 	..()
 
@@ -289,7 +289,7 @@
 
 /obj/item/cocktail_stuff/umbrella/New()
 	..()
-	umbrella_color = rand(1,6)
+	umbrella_color = srand(1,6)
 	icon_state = "highball-umbrella[umbrella_color]"
 	update_icon()
 

@@ -1,20 +1,6 @@
-/obj/item/weapon/gun/projectile/shotgun/pump
-	name = "shotgun"
-	desc = "Useful for sweeping alleys."
-	icon_state = "shotgun"
-	item_state = "shotgun"
-	max_shells = 4
-	w_class = 4.0
-	force = 10
-	flags =  CONDUCT
-	slot_flags = SLOT_BACK
-	caliber = "shotgun"
-	load_method = SINGLE_CASING
-	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
-	handle_casings = HOLD_CASINGS
-	stat = "shotgun"
-	move_delay = 4
-
+/obj/item/weapon/gun/projectile/shotgun
+	gun_type = GUN_TYPE_SHOTGUN
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	// as accurate as SMGs
 	accuracy_list = list(
 
@@ -66,6 +52,22 @@
 	KD_chance = KD_CHANCE_HIGH
 	stat = "heavy"
 
+/obj/item/weapon/gun/projectile/shotgun/pump
+	name = "shotgun"
+	desc = "Useful for sweeping alleys."
+	icon_state = "shotgun"
+	item_state = "shotgun"
+	max_shells = 4
+	w_class = 4.0
+	force = 10
+	flags =  CONDUCT
+	slot_flags = SLOT_BACK
+	caliber = "shotgun"
+	load_method = SINGLE_CASING
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	handle_casings = HOLD_CASINGS
+	stat = "shotgun"
+	move_delay = 4
 	var/recentpump = FALSE // to prevent spammage
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()

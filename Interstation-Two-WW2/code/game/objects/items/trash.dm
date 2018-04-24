@@ -46,12 +46,12 @@
 
 /obj/item/trash/snack_bowl
 	name = "bowl"
-	icon_state	= "snack_bowl"
+	icon_state = "snack_bowl"
 	dropsound = 'sound/effects/drop_glass.ogg'
 
 /obj/item/trash/snack_bowl/New()
 	..()
-	pixel_x = rand(-5,5)
+	pixel_x = srand(-5,5)
 
 /obj/item/trash/pistachios
 	name = "pistachios pack"

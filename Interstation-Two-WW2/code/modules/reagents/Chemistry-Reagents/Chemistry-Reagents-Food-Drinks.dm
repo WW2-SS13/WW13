@@ -241,10 +241,10 @@
 
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, FALSE)
-	if(prob(1))
+	if(sprob(1))
 		M.emote("shiver")
 	if(istype(M, /mob/living/carbon/slime))
-		M.bodytemperature = max(M.bodytemperature - rand(10,20), FALSE)
+		M.bodytemperature = max(M.bodytemperature - srand(10,20), FALSE)
 	holder.remove_reagent("capsaicin", 5)
 
 /datum/reagent/capsaicin
@@ -269,15 +269,15 @@
 		if(H.species && (H.species.flags & (NO_PAIN)))
 			return
 	if(dose < agony_dose)
-		if(prob(5) || dose == metabolism) //dose == metabolism is a very hacky way of forcing the message the first time this procs
+		if(sprob(5) || dose == metabolism) //dose == metabolism is a very hacky way of forcing the message the first time this procs
 			M << discomfort_message
 	else
 		M.apply_effect(agony_amount, AGONY, FALSE)
-		if(prob(5))
-			M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
+		if(sprob(5))
+			M.custom_emote(2, "[spick("dry heaves!","coughs!","splutters!")]")
 			M << "<span class='danger'>You feel like your insides are burning!</span>"
 	if(istype(M, /mob/living/carbon/slime))
-		M.bodytemperature += rand(0, 15) + slime_temp_adj
+		M.bodytemperature += srand(0, 15) + slime_temp_adj
 	holder.remove_reagent("frostoil", 5)
 
 /datum/reagent/capsaicin/condensed
@@ -337,8 +337,8 @@
 			message = "<span class='warning'>Your [face_protection] protects you from the pepperspray!</span>"
 	else if(!no_pain)
 		message = "<span class='danger'>Your face and throat burn!</span>"
-		if(prob(25))
-			M.custom_emote(2, "[pick("coughs!","coughs hysterically!","splutters!")]")
+		if(sprob(25))
+			M.custom_emote(2, "[spick("coughs!","coughs hysterically!","splutters!")]")
 		M.Stun(5)
 		M.Weaken(5)
 
@@ -351,10 +351,10 @@
 		M << "<span class='danger'>You feel like your insides are burning!</span>"
 	else
 		M.apply_effect(4, AGONY, FALSE)
-		if(prob(5))
-			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
+		if(sprob(5))
+			M.visible_message("<span class='warning'>[M] [spick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
 	if(istype(M, /mob/living/carbon/slime))
-		M.bodytemperature += rand(15, 30)
+		M.bodytemperature += srand(15, 30)
 	holder.remove_reagent("frostoil", 5)
 
 /* Drinks */
@@ -388,7 +388,7 @@
 		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
 	if (M.water < 0)
-		M.water += rand(40,50)
+		M.water += srand(40,50)
 	M.water += removed * 15
 
 // Juices
@@ -505,7 +505,7 @@
 	holder.remove_reagent("capsaicin", 10 * removed)
 
 	if (M.water < 0)
-		M.water += rand(20,30)
+		M.water += srand(20,30)
 	M.water += removed * 10
 
 /datum/reagent/drink/milk/cream
@@ -528,12 +528,12 @@
 	if (ishuman(M) && M.gender == MALE)
 		var/mob/living/carbon/human/H = M
 		H.adaptStat("strength", -ceil(removed/5))
-		if (prob(20))
+		if (sprob(20))
 			H << "<span class = 'warning'>You feel weak.</span>"
-		if (prob(ceil(removed/100)))
+		if (sprob(ceil(removed/100)))
 			H.change_gender(FEMALE)
 			H.visible_message("<span class = 'danger'>[H] turns into a woman!</span>")
-		else if (prob(ceil(removed/100)) && H.size_multiplier >= 0.50)
+		else if (sprob(ceil(removed/100)) && H.size_multiplier >= 0.50)
 			H.size_multiplier = max(H.size_multiplier - 0.05, 0.50)
 			H.regenerate_icons()
 			H.visible_message("<span class = 'danger'>[H] shrinks!</span>")
@@ -1427,7 +1427,7 @@
 	..()
 	if(dose > 30)
 		M.adjustToxLoss(2 * removed)
-	if(dose > 60 && ishuman(M) && prob(5))
+	if(dose > 60 && ishuman(M) && sprob(5))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/heart/L = H.internal_organs_by_name["heart"]
 		if (L && istype(L))

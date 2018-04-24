@@ -29,7 +29,7 @@
 			x+=master.getMoveInc()
 
 /obj/structure/railing/train_railing/ex_act(severity)
-	if (prob(round(60 * (1/severity))))
+	if (sprob(round(60 * (1/severity))))
 		qdel(src)
 	else
 		return

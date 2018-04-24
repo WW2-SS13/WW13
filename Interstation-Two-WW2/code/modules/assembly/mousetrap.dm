@@ -1,4 +1,4 @@
-/obj/item/device/assembly/mousetrap
+/obj/item/assembly/mousetrap
 	name = "mousetrap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
@@ -29,7 +29,7 @@
 			switch(type)
 				if("feet")
 					if(!H.shoes)
-						affecting = H.get_organ(pick("l_leg", "r_leg"))
+						affecting = H.get_organ(spick("l_leg", "r_leg"))
 						H.Weaken(3)
 				if("l_hand", "r_hand")
 					if(!H.gloves)
@@ -54,7 +54,7 @@
 		if(!armed)
 			user << "<span class='notice'>You arm [src].</span>"
 		else
-			if((CLUMSY in user.mutations) && prob(50))
+			if((CLUMSY in user.mutations) && sprob(50))
 				var/which_hand = "l_hand"
 				if(!user.hand)
 					which_hand = "r_hand"
@@ -70,7 +70,7 @@
 
 	attack_hand(mob/living/user as mob)
 		if(armed)
-			if((CLUMSY in user.mutations) && prob(50))
+			if((CLUMSY in user.mutations) && sprob(50))
 				var/which_hand = "l_hand"
 				if(!user.hand)
 					which_hand = "r_hand"
@@ -110,12 +110,12 @@
 		triggered(null)
 
 
-/obj/item/device/assembly/mousetrap/armed
+/obj/item/assembly/mousetrap/armed
 	icon_state = "mousetraparmed"
 	armed = TRUE
 
 
-/obj/item/device/assembly/mousetrap/verb/hide_under()
+/obj/item/assembly/mousetrap/verb/hide_under()
 	set src in oview(1)
 	set name = "Hide"
 	set category = null

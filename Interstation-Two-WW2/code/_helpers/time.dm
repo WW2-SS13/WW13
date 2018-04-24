@@ -39,7 +39,7 @@ var/next_station_date_change = TRUE DAY
 #define station_time_in_ticks (roundstart_hour HOURS + roundduration2text_in_ticks)
 
 /proc/stationtime2text()
-	if(!roundstart_hour) roundstart_hour = pick(2,7,12,17)
+	if(!roundstart_hour) roundstart_hour = spick(2,7,12,17)
 	return time2text(station_time_in_ticks, "hh:mm")
 
 /proc/stationdate2text()
@@ -96,5 +96,5 @@ var/round_start_time = FALSE
 
 //Can be useful for things dependent on process timing
 /proc/process_schedule_interval(var/process_name)
-	var/datum/controller/process/process = processScheduler.getProcess(process_name)
+	var/process/process = processScheduler.getProcess(process_name)
 	return process.schedule_interval

@@ -8,6 +8,7 @@ bullet_act
 /mob/living/carbon/human/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (stat != DEAD)
 		return ..(W, user)
+
 	if (!istype(W) || !W.sharp)
 		return ..(W, user)
 
@@ -19,11 +20,11 @@ bullet_act
 	if (W.sharp && !istype(W, /obj/item/weapon/reagent_containers) && user.a_intent == I_HURT && !grabbed_by_user)
 		if (stat == DEAD)
 			var/mob/living/carbon/human/H = user
-			if ((istype(H) && H.original_job && H.original_job.is_nonmilitary) || istype(W, /obj/item/weapon/material/knife/butch))
+			if ((istype(H) && H.original_job && H.original_job.is_nonmilitary) || istype(W, /obj/item/weapon/material/knife/butcher))
 				user.visible_message("<span class = 'notice'>[user] starts to butcher [src].</span>")
 				if (do_after(user, 30, src))
 					user.visible_message("<span class = 'notice'>[user] butchers [src] into a few meat slabs.</span>")
-					for (var/v in 1 to rand(5,7))
+					for (var/v in 1 to srand(5,7))
 						var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
 						meat.name = "[real_name] meatsteak"
 					for (var/obj/item/clothing/I in contents)
@@ -36,6 +37,15 @@ bullet_act
 		return ..(W, user)
 
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
+	if (P.damage == 0)
+		return // fix for strange bug
+
+	if (def_zone == "mouth")
+		if (wear_mask && istype(wear_mask, /obj/item/weapon/grenade))
+			visible_message("<span class = 'danger'>The grenade in [src]'s mouth goes off!</span>")
+			var/obj/item/weapon/grenade/G = wear_mask
+			G.active = TRUE
+			G.prime()
 
 	// if we hit a client who's not on our team, increase our stats
 	if (client && stat == CONSCIOUS && P.firer && ishuman(P.firer) && P.firedfrom)
@@ -61,7 +71,7 @@ bullet_act
 	if (P.firer && (P.firer_original_dir == dir || lying) && P.firer.targeted_organ == "chest")
 		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower = back
-			if (prob(16) || (world.time - last_movement >= 50) || lying)
+			if (sprob(16) || (world.time - last_movement >= 50) || lying)
 				flamethrower.explode()
 
 	if(!has_organ(def_zone))
@@ -89,7 +99,7 @@ bullet_act
 		var/distcheck = max(abs(P.starting.x - x), abs(P.starting.y - y))
 
 		if (distcheck > 2) // not PB range
-			if (!istype(P, /obj/item/projectile/bullet/rifle/murder) && !istype(P, /obj/item/projectile/bullet/shotgun/murder))
+			if (!P.execution)
 
 				// shooting a moving target from 19 tiles away (new max scope range) has a 72% graze chance
 				// this means if snipers want to hit people they need to shoot at still targets
@@ -101,16 +111,11 @@ bullet_act
 				graze_chance_multiplier += (1 * getStatCoeff("survival"))
 
 				if (lastMovedRecently())
-					if (prob(graze_chance_multiplier * max(distcheck - 7, 0)))
+					if (sprob(graze_chance_multiplier * max(distcheck - 7, 0)))
 						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-						adjustBruteLoss(pick(9,10))
+						adjustBruteLoss(spick(14,15))
 						qdel(P)
 						return
-				else if (list("head", "mouth", "eyes").Find(def_zone) && prob(20 * getStatCoeff("survival")))
-					visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
-					adjustBruteLoss(pick(9,10))
-					qdel(P)
-					return
 
 		// get knocked back once in a while
 		// unless we're on a train because bugs
@@ -122,7 +127,7 @@ bullet_act
 				hanged = TRUE
 				break
 
-		if (prob(P.KD_chance/2) && !is_on_train() && !hanged)
+		if (sprob(P.KD_chance/2) && !is_on_train() && !hanged)
 			SpinAnimation(5,1)
 			// P.firer_original_dir is more accurate, since P.dir is never explicitly set? - Kachnov
 			var/turf/behind = get_step(src, P.firer_original_dir ? P.firer_original_dir : P.dir)
@@ -135,29 +140,31 @@ bullet_act
 								slammed_into = S
 								break
 					if (slammed_into.density)
-						visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
-						Weaken(rand(4,5))
-						adjustBruteLoss(rand(20,30))
+						spawn (1)
+							visible_message("<span class = 'danger'>[src] flies back from the force of the blast and slams into \the [slammed_into]!</span>")
+						Weaken(srand(4,5))
+						adjustBruteLoss(srand(20,30))
 						if (client)
-							shake_camera(src, rand(2,3), rand(2,3))
+							shake_camera(src, srand(2,3), srand(2,3))
 						playsound(get_turf(src), 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
 						for (var/obj/structure/window/W in get_turf(slammed_into))
 							W.shatter()
 				else
 					forceMove(behind)
-					visible_message("<span class = 'danger'>[src] flies back from the force of the blast!</span>")
+					spawn (1)
+						visible_message("<span class = 'danger'>[src] flies back from the force of the blast!</span>")
 
 		// get weakened too
-		if (prob(P.KD_chance))
-			Weaken(rand(3,4))
-			stamina = max(stamina - 50, 0)
+		if (sprob(P.KD_chance))
+			Weaken(srand(3,4))
+			stats["stamina"][1] = max(stats["stamina"][1] - 50, 0)
 			if (client)
-				shake_camera(src, rand(2,3), rand(2,3))
+				shake_camera(src, srand(2,3), srand(2,3))
 
 	//Shrapnel
 	if(P.can_embed())
 		var/armor = getarmor_organ(organ, "bullet")
-		if(prob(20 + max(P.damage - armor, -10)))
+		if(sprob(20 + max(P.damage - armor, -10)))
 			var/obj/item/weapon/material/shard/shrapnel/SP = new()
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
@@ -197,7 +204,7 @@ bullet_act
 				if (affected.status & ORGAN_ROBOT)
 					emote("me", TRUE, "drops what they were holding, their [affected.name] malfunctioning!")
 				else
-					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
+					var/emote_scream = spick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 					emote("me", TRUE, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
 
 		else
@@ -318,7 +325,7 @@ bullet_act
 	if(!affecting)
 		return //should be prevented by attacked_with_item() but for sanity.
 
-	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
+	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? spick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
 	receive_damage()
 
 	var/blocked = run_armor_check(hit_zone, "melee", I.armor_penetration, "Your armor has protected your [affecting.name].", "Your armor has softened the blow to your [affecting.name].")
@@ -341,30 +348,30 @@ bullet_act
 	else if(!..())
 		return FALSE
 
-	if(effective_force > 10 || effective_force >= 5 && prob(33))
+	if(effective_force > 10 || effective_force >= 5 && sprob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
-	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(25 + (effective_force * 2)))
+	if((I.damtype == BRUTE || I.damtype == HALLOSS) && sprob(25 + (effective_force * 2)))
 		if(!stat)
 			if(headcheck(hit_zone))
 				//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(effective_force))
+				if(sprob(effective_force))
 					visible_message("<span class='danger'>[src] [species.knockout_message]</span>")
 					apply_effect(20, PARALYZE, blocked)
 			else
 				//Easier to score a stun but lasts less time
-				if(prob(effective_force + 10))
+				if(sprob(effective_force + 10))
 					visible_message("<span class='danger'>[src] has been knocked down!</span>")
 					apply_effect(6, WEAKEN, blocked)
 	var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in organs
-	if(prob(I.force * (hit_zone == "mouth" ? 5 : FALSE)) && O) //Will the teeth fly out?
-		if(O.knock_out_teeth(get_dir(user, src), round(rand(28, 38) * ((I.force*1.5)/100))))
+	if(sprob(I.force * (hit_zone == "mouth" ? 5 : FALSE)) && O) //Will the teeth fly out?
+		if(O.knock_out_teeth(get_dir(user, src), round(srand(28, 38) * ((I.force*1.5)/100))))
 			visible_message("<span class='danger'>Some of [src]'s teeth sail off in an arc!</span>", \
 								"<span class='userdanger'>Some of [src]'s teeth sail off in an arc!</span>")
 		//Apply blood
 		if(!(I.flags & NOBLOODY))
 			I.add_blood(src)
 
-		if(prob(33 + I.sharp*10))
+		if(sprob(33 + I.sharp*10))
 			var/turf/location = loc
 			if(istype(location, /turf))
 				location.add_blood(src)
@@ -382,7 +389,7 @@ bullet_act
 					if(head)
 						head.add_blood(src)
 						update_inv_head(0)
-					if(glasses && prob(33))
+					if(glasses && sprob(33))
 						glasses.add_blood(src)
 						update_inv_glasses(0)
 				if("chest")
@@ -393,8 +400,8 @@ bullet_act
 /mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W, var/blocked)
 	if(!organ || (organ.dislocated == 2) || (organ.dislocated == -1) || blocked >= 2)
 		return FALSE
-	if(prob(W.force / (blocked+1)))
-		visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
+	if(sprob(W.force / (blocked+1)))
+		visible_message("<span class='danger'>[src]'s [organ.joint] [spick("gives way","caves in","crumbles","collapses")]!</span>")
 		organ.dislocate(1)
 		return TRUE
 	return FALSE
@@ -404,7 +411,7 @@ bullet_act
 	if(isobj(AM))
 		var/obj/O = AM
 
-		if(in_throw_mode && !get_active_hand() && speed <= THROWFORCE_SPEED_DIVISOR && prob(round(75/O.w_class)))	//empty active hand and we're in throw mode
+		if(in_throw_mode && !get_active_hand() && speed <= THROWFORCE_SPEED_DIVISOR && sprob(round(75/O.w_class)))	//empty active hand and we're in throw mode
 			if(canmove && !restrained())
 				if(isturf(O.loc))
 					put_in_active_hand(O)
@@ -445,8 +452,8 @@ bullet_act
 
 		if (istype(AM, /obj/item))
 			var/obj/item/I = AM
-			if (I.throwforce >= 15 && prob(I.throwforce * 5))
-				Weaken(I.throwforce/5)
+			if (I.throwforce >= 15 && sprob(I.throwforce * 5))
+				Weaken(ceil(I.throwforce/5))
 
 		O.throwing = FALSE		//it hit, so stop moving
 
@@ -483,7 +490,7 @@ bullet_act
 
 				//Sharp objects will always embed if they do enough damage.
 				//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
-				if((sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
+				if((sharp && sprob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && sprob(embed_chance)))
 					if (I.w_class <= 2.0)
 						affecting.embed(I)
 

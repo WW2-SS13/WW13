@@ -129,7 +129,7 @@
 
 		user.visible_message("<span class = 'notice'>[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>", \
 		"<span class = 'notice'>You put \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>" )
-		if (tool.w_class > get_max_wclass(affected)/2 && prob(50) && !(affected.status & ORGAN_ROBOT))
+		if (tool.w_class > get_max_wclass(affected)/2 && sprob(50) && !(affected.status & ORGAN_ROBOT))
 			user << "<span class = 'red'>You tear some blood vessels trying to fit such a big object in this cavity.</span>"
 			var/datum/wound/internal_bleeding/I = new (10)
 			affected.wounds += I
@@ -171,7 +171,7 @@
 
 		if (affected.implants.len)
 
-			var/obj/item/obj = pick(affected.implants)
+			var/obj/item/obj = spick(affected.implants)
 
 			if(istype(obj,/obj/item/weapon/implant))
 				var/obj/item/weapon/implant/imp = obj
@@ -182,7 +182,7 @@
 			else
 				find_prob +=50
 
-			if (prob(find_prob))
+			if (sprob(find_prob))
 				user.visible_message("<span class = 'notice'>[user] takes something out of incision on [target]'s [affected.name] with \the [tool].</span>", \
 				"<span class = 'notice'>You take [obj] out of incision on [target]'s [affected.name]s with \the [tool].</span>" )
 				affected.implants -= obj
@@ -210,7 +210,7 @@
 		if (affected.implants.len)
 			var/fail_prob = 10
 			fail_prob += 100 - tool_quality(tool)
-			if (prob(fail_prob))
+			if (sprob(fail_prob))
 				var/obj/item/weapon/implant/imp = affected.implants[1]
 				user.visible_message("<span class = 'red'>Something beeps inside [target]'s [affected.name]!</span>")
 				playsound(imp.loc, 'sound/items/countdown.ogg', 75, TRUE, -3)

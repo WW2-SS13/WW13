@@ -37,10 +37,8 @@
 	var/global/list/overlays_cache = null
 
 /mob/living/carbon/human/Life()
-	set invisibility = FALSE
-	set background = BACKGROUND_ENABLED
 
-	if (istype(wear_mask, /obj/item/clothing/mask/stone))
+	if (wear_mask && istype(wear_mask, /obj/item/clothing/mask/stone))
 		if (mind && type == /mob/living/carbon/human)
 			invisibility = 101
 			var/datum/mind/M = mind
@@ -95,9 +93,9 @@
 	if (transforming)
 		return
 
-	if (stat == UNCONSCIOUS || stat == DEAD || lying)
+	if (lying || list(UNCONSCIOUS, DEAD).Find(stat))
 		layer = MOB_LAYER - 0.01
-		if (istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
+		if (back && istype(back, /obj/item/weapon/storage/backpack/flammenwerfer))
 			var/obj/item/weapon/storage/backpack/flammenwerfer/flamethrower_backpack = back
 			if (flamethrower_backpack.flamethrower && flamethrower_backpack.flamethrower.loc != flamethrower_backpack)
 				flamethrower_backpack.reclaim_flamethrower()
@@ -129,7 +127,7 @@
 
 	#undef HUNGER_THIRST_MULTIPLIER
 
-	if (stamina == max_stamina-1 && m_intent == "walk")
+	if (getStat("stamina") == getMaxStat("stamina")-1 && m_intent == "walk")
 		src << "<span class = 'good'>You feel like you can run for a while.</span>"
 
 	nutrition = min(nutrition, max_nutrition)
@@ -144,7 +142,7 @@
 
 	..()
 
-	stamina = min(stamina + round(max_stamina * 0.02), max_stamina)
+	stats["stamina"][1] = min(stats["stamina"][1] + round(stats["stamina"][2] * 0.02), stats["stamina"][2])
 
 	if(life_tick%30==15)
 		hud_updateflag = 1022
@@ -217,7 +215,7 @@
 				eye_blurry = max(eye_blurry-2, FALSE)
 
 	if (disabilities & EPILEPSY)
-		if ((prob(1) && paralysis < 1))
+		if ((sprob(1) && paralysis < 1))
 			src << "<span class = 'red'>You have a seizure!</span>"
 			for(var/mob/O in viewers(src, null))
 				if(O == src)
@@ -226,30 +224,30 @@
 			Paralyse(10)
 			make_jittery(1000)
 	if (disabilities & COUGHING)
-		if ((prob(5) && paralysis <= 1))
+		if ((sprob(5) && paralysis <= 1))
 			drop_item()
 			spawn( FALSE )
 				emote("cough")
 				return
 	if (disabilities & TOURETTES)
 		speech_problem_flag = TRUE
-		if ((prob(10) && paralysis <= 1))
+		if ((sprob(10) && paralysis <= 1))
 			Stun(10)
 			spawn( FALSE )
-				switch(rand(1, 3))
+				switch(srand(1, 3))
 					if(1)
 						emote("twitch")
 					if(2 to 3)
-						say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
+						say("[sprob(50) ? ";" : ""][spick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
 				make_jittery(100)
 				return
 	if (disabilities & NERVOUS)
 		speech_problem_flag = TRUE
-		if (prob(10))
+		if (sprob(10))
 			stuttering = max(10, stuttering)
 
 	if(stat != DEAD)
-		var/rn = rand(0, 200)
+		var/rn = srand(0, 200)
 		if(getBrainLoss() >= 5)
 			if(0 <= rn && rn <= 3)
 				custom_pain("Your head feels numb and painful.")
@@ -263,7 +261,7 @@
 				drop_item()
 		if(getBrainLoss() >= 45)
 			if(10 <= rn && rn <= 12)
-				if(prob(50))
+				if(sprob(50))
 					src << "<span class='danger'>You suddenly black out!</span>"
 					Paralyse(10)
 				else if(!lying)
@@ -310,7 +308,7 @@
 	//check if we actually need to process breath
 	if(!breath)
 		failed_last_breath = TRUE
-		if(prob(20))
+		if(sprob(20))
 			emote("gasp")
 		if(health > config.health_threshold_crit)
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
@@ -338,7 +336,8 @@
 	var/area/mob_area = get_area(src)
 
 	var/game_season = "SPRING"
-	if (mob_area.location == AREA_OUTSIDE)
+	if (mob_area.location == AREA_OUTSIDE && ticker && ticker.mode) // this ticker.mode check is very important
+	// if its not here, the mob_process won't work properly before the round has started
 
 		if (ticker.mode.vars.Find("season"))
 			game_season = ticker.mode:season
@@ -653,7 +652,7 @@
 				//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 				if(client || sleeping > 3)
 					AdjustSleeping(-1)
-			if( prob(2) && health)
+			if( sprob(2) && health)
 				spawn(0)
 					emote("snore")
 		//CONSCIOUS
@@ -694,14 +693,14 @@
 		if (drowsyness)
 			drowsyness--
 			eye_blurry = max(2, eye_blurry)
-			if (prob(5))
+			if (sprob(5))
 				sleeping += 1
 				Paralyse(5)
 
 		confused = max(0, confused - 1)
 
 		// If you're dirty, your gloves will become dirty, too.
-		if(gloves && germ_level > gloves.germ_level && prob(10))
+		if(gloves && germ_level > gloves.germ_level && sprob(10))
 			gloves.germ_level += 1
 
 	return TRUE
@@ -916,10 +915,10 @@
 			vomit()
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
-	if(isturf(loc) && rand(1,1000) == TRUE)
+	if(isturf(loc) && srand(1,1000) == TRUE)
 		var/turf/T = loc
 		if(T.get_lumcount() == FALSE)
-			playsound_local(src,pick(scarySounds),50, TRUE, -1)
+			playsound_local(src,spick(scarySounds),50, TRUE, -1)
 
 /mob/living/carbon/human/handle_stomach()
 	spawn(0)
@@ -973,15 +972,15 @@
 		return
 
 	if(nutrition < 350 && nutrition >= 200)
-		if (prob(3))
+		if (sprob(3))
 			src << "<span class = 'warning'>You're getting a bit hungry.</span>"
 
 	else if(nutrition < 200 && nutrition >= 100)
-		if (prob(4))
+		if (sprob(4))
 			src << "<span class = 'warning'>You're pretty hungry.</span>"
 
 	else if (nutrition < 100 && nutrition >= 20)
-		if (prob(5))
+		if (sprob(5))
 			src << "<span class = 'danger'>You're getting really hungry!</span>"
 
 	else if (nutrition < 20) //Nutrition is below 20 = starvation
@@ -1001,37 +1000,37 @@
 				if(sleeping) return
 
 				if (!informed_starvation[num2text(-STARVATION_NOTICE)])
-					src << "<span class='warning'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
+					src << "<span class='warning'>[spick("You're very hungry.","You really could use a meal right now.")]</span>"
 
 				informed_starvation[num2text(-STARVATION_NOTICE)] = TRUE
 				informed_starvation[num2text(-STARVATION_WEAKNESS)] = FALSE
 				informed_starvation[num2text(-STARVATION_NEARDEATH)] = FALSE
 				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = FALSE
 
-				if(prob(10))
-					src << "<span class='warning'>[pick("You're very hungry.","You really could use a meal right now.")]</span>"
+				if(sprob(10))
+					src << "<span class='warning'>[spick("You're very hungry.","You really could use a meal right now.")]</span>"
 
 			if(STARVATION_WEAKNESS to STARVATION_NOTICE)
 				if(sleeping) return
 
 				if (!informed_starvation[num2text(-STARVATION_WEAKNESS)])
-					src << "<span class='danger'>[pick(hunger_phrases)]</span>"
+					src << "<span class='danger'>[spick(hunger_phrases)]</span>"
 
 				informed_starvation[num2text(-STARVATION_NOTICE)] = TRUE
 				informed_starvation[num2text(-STARVATION_WEAKNESS)] = TRUE
 				informed_starvation[num2text(-STARVATION_NEARDEATH)] = FALSE
 				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = FALSE
 
-				if(prob(6)) //6% chance of a tiny amount of oxygen damage (1-5)
+				if(sprob(6)) //6% chance of a tiny amount of oxygen damage (1-5)
 
-					adjustOxyLoss(rand(1,5))
-					src << "<span class='danger'>[pick(hunger_phrases)]</span>"
+					adjustOxyLoss(srand(1,5))
+					src << "<span class='danger'>[spick(hunger_phrases)]</span>"
 
-				else if(prob(5)) //5% chance of being weakened
+				else if(sprob(5)) //5% chance of being weakened
 
 					eye_blurry += 10
 					Weaken(10)
-					adjustOxyLoss(rand(1,15))
+					adjustOxyLoss(srand(1,15))
 					src << "<span class='danger'>You're starving! The lack of strength makes you black out for a few moments...</span>"
 
 			if(STARVATION_NEARDEATH to STARVATION_WEAKNESS) //5-30, 5% chance of weakening and TRUE-230 oxygen damage. 5% chance of a seizure. 10% chance of dropping item
@@ -1045,20 +1044,20 @@
 				informed_starvation[num2text(-STARVATION_NEARDEATH)] = TRUE
 				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = FALSE
 
-				if(prob(7))
+				if(sprob(7))
 
-					adjustOxyLoss(rand(1,20))
+					adjustOxyLoss(srand(1,20))
 					src << "<span class='danger'>You're starving. You feel your life force slowly leaving your body...</span>"
 					eye_blurry += 20
 					if(weakened < 1) Weaken(20)
 
-				else if(paralysis<1 && prob(7)) //Mini seizure (25% duration and strength of a normal seizure)
+				else if(paralysis<1 && sprob(7)) //Mini seizure (25% duration and strength of a normal seizure)
 
 					visible_message("<span class='danger'>\The [src] starts having a seizure!</span>", \
 							"<span class='warning'>You have a seizure!</span>")
 					Paralyse(5)
 					make_jittery(500)
-					adjustOxyLoss(rand(1,25))
+					adjustOxyLoss(srand(1,25))
 					eye_blurry += 20
 
 			if(-INFINITY to STARVATION_NEARDEATH) //Fuck the whole body up at this point
@@ -1071,14 +1070,14 @@
 				informed_starvation[num2text(-STARVATION_NEARDEATH)] = TRUE
 				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = TRUE
 
-				if (prob(10))
+				if (sprob(10))
 					src << "<span class='danger'>You are dying from starvation!</span>"
 
 				adjustToxLoss(STARVATION_TOX_DAMAGE)
 				adjustOxyLoss(STARVATION_OXY_DAMAGE)
 				adjustBrainLoss(STARVATION_BRAIN_DAMAGE)
 
-				if(prob(10))
+				if(sprob(10))
 					Weaken(15)
 
 #define DEHYDRATION_MIN FALSE
@@ -1101,15 +1100,15 @@
 		return
 
 	if (water < 300 && water >= 200)
-		if (prob(3))
+		if (sprob(3))
 			src << "<span class = 'warning'>You're getting a bit thirsty.</span>"
 
 	else if (water < 200 && water >= 100)
-		if (prob(4))
+		if (sprob(4))
 			src << "<span class = 'warning'>You're pretty thirsty.</span>"
 
 	else if (water < 100 && water >= 20)
-		if (prob(5))
+		if (sprob(5))
 			src << "<span class = 'danger'>You're really thirsty!</span>"
 
 	else if (water < 20) //Nutrition is below 20 = dehydration
@@ -1129,37 +1128,37 @@
 				if(sleeping) return
 
 				if (!informed_dehydration[num2text(-DEHYDRATION_NOTICE)])
-					src << "<span class='warning'>[pick("You're very thirsty.","You really could use some water right now.")]</span>"
+					src << "<span class='warning'>[spick("You're very thirsty.","You really could use some water right now.")]</span>"
 
 				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = TRUE
 				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = FALSE
 				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = FALSE
 				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = FALSE
 
-				if(prob(10))
-					src << "<span class='warning'>[pick("You're very thirsty.","You really could use some water right now.")]</span>"
+				if(sprob(10))
+					src << "<span class='warning'>[spick("You're very thirsty.","You really could use some water right now.")]</span>"
 
 			if(DEHYDRATION_WEAKNESS to DEHYDRATION_NOTICE)
 				if(sleeping) return
 
 				if (!informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)])
-					src << "<span class='danger'>[pick(thirst_phrases)]</span>"
+					src << "<span class='danger'>[spick(thirst_phrases)]</span>"
 
 				informed_dehydration[num2text(-DEHYDRATION_NOTICE)] = TRUE
 				informed_dehydration[num2text(-DEHYDRATION_WEAKNESS)] = TRUE
 				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = FALSE
 				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = FALSE
 
-				if(prob(6)) //6% chance of a tiny amount of oxygen damage (1-5)
+				if(sprob(6)) //6% chance of a tiny amount of oxygen damage (1-5)
 
-					adjustOxyLoss(rand(1,5))
-					src << "<span class='danger'>[pick(thirst_phrases)]</span>"
+					adjustOxyLoss(srand(1,5))
+					src << "<span class='danger'>[spick(thirst_phrases)]</span>"
 
-				else if(prob(5)) //5% chance of being weakened
+				else if(sprob(5)) //5% chance of being weakened
 
 					eye_blurry += 10
 					Weaken(10)
-					adjustOxyLoss(rand(1,15))
+					adjustOxyLoss(srand(1,15))
 					src << "<span class='danger'>You're dehydrating! The lack of strength makes you black out for a few moments...</span>"
 
 			if(DEHYDRATION_NEARDEATH to DEHYDRATION_WEAKNESS) //5-30, 5% chance of weakening and TRUE-230 oxygen damage. 5% chance of a seizure. 10% chance of dropping item
@@ -1173,20 +1172,20 @@
 				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = TRUE
 				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = FALSE
 
-				if(prob(7))
+				if(sprob(7))
 
-					adjustOxyLoss(rand(1,20))
+					adjustOxyLoss(srand(1,20))
 					src << "<span class='danger'>You're dehydrating. You feel your life force slowly leaving your body...</span>"
 					eye_blurry += 20
 					if(weakened < 1) Weaken(20)
 
-				else if(paralysis<1 && prob(7)) //Mini seizure (25% duration and strength of a normal seizure)
+				else if(paralysis<1 && sprob(7)) //Mini seizure (25% duration and strength of a normal seizure)
 
 					visible_message("<span class='danger'>\The [src] starts having a seizure!</span>", \
 							"<span class='warning'>You have a seizure!</span>")
 					Paralyse(5)
 					make_jittery(500)
-					adjustOxyLoss(rand(1,25))
+					adjustOxyLoss(srand(1,25))
 					eye_blurry += 20
 
 			if(-INFINITY to DEHYDRATION_NEARDEATH) //Fuck the whole body up at this point
@@ -1199,14 +1198,14 @@
 				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = TRUE
 				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = TRUE
 
-				if (prob(10))
+				if (sprob(10))
 					src << "<span class='danger'>You are dying from dehydration!</span>"
 
 				adjustToxLoss(DEHYDRATION_TOX_DAMAGE)
 				adjustOxyLoss(DEHYDRATION_OXY_DAMAGE)
 				adjustBrainLoss(DEHYDRATION_BRAIN_DAMAGE)
 
-				if(prob(10))
+				if(sprob(10))
 					Weaken(15)
 
 /mob/living/carbon/human/handle_shock()
@@ -1228,7 +1227,7 @@
 		return
 
 	if(shock_stage == 10)
-		src << "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>"
+		src << "<span class='danger'>[spick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>"
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30) emote("me",1,"is having trouble keeping their eyes open.")
@@ -1236,22 +1235,22 @@
 		stuttering = max(stuttering, 5)
 
 	if(shock_stage == 40)
-		src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+		src << "<span class='danger'>[spick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60) emote("me",1,"'s body becomes limp.")
-		if (prob(2))
-			src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+		if (sprob(2))
+			src << "<span class='danger'>[spick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 			Weaken(20)
 
 	if(shock_stage >= 80)
-		if (prob(5))
-			src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+		if (sprob(5))
+			src << "<span class='danger'>[spick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 			Weaken(20)
 
 	if(shock_stage >= 120)
-		if (prob(2))
-			src << "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>"
+		if (sprob(2))
+			src << "<span class='danger'>[spick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>"
 			Paralyse(5)
 
 	if(shock_stage == 150)

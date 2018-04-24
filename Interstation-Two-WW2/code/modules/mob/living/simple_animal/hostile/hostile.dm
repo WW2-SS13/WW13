@@ -81,11 +81,11 @@
 		return
 	if(isliving(target_mob))
 		var/mob/living/L = target_mob
-		L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+		L.attack_generic(src,srand(melee_damage_lower,melee_damage_upper),attacktext)
 		return L
 /*	if(istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
-		B.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+		B.attack_generic(src,srand(melee_damage_lower,melee_damage_upper),attacktext)
 		return B*/
 
 /mob/living/simple_animal/hostile/proc/LoseTarget()
@@ -168,15 +168,15 @@
 	A.launch(target, def_zone)
 
 /mob/living/simple_animal/hostile/proc/DestroySurroundings()
-	if(prob(break_stuff_probability))
+	if(sprob(break_stuff_probability))
 		for(var/dir in cardinal) // North, South, East, West
 			for(var/obj/structure/window/obstacle in get_step(src, dir))
 				if(obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
-					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+					obstacle.attack_generic(src,srand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
 			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))
 			if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
-				obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+				obstacle.attack_generic(src,srand(melee_damage_lower,melee_damage_upper),attacktext)
 
 
 /mob/living/simple_animal/hostile/proc/check_horde()
@@ -184,7 +184,7 @@
 	/*if(emergency_shuttle.shuttle.location)
 		if(!enroute && !target_mob)	//The shuttle docked, all monsters rush for the escape hallway
 			if(!shuttletarget && escape_list.len) //Make sure we didn't already assign it a target, and that there are targets to pick
-				shuttletarget = pick(escape_list) //Pick a shuttle target
+				shuttletarget = spick(escape_list) //Pick a shuttle target
 			enroute = TRUE
 			stop_automated_movement = TRUE
 			spawn()
@@ -199,7 +199,7 @@
 	var/turf/T = get_step_to(src, shuttletarget)
 	for(var/atom/A in T)
 		if(istype(A, /obj/structure/window) || istype(A, /obj/structure/closet) || istype(A, /obj/structure/table) || istype(A, /obj/structure/grille))
-			A.attack_generic(src, rand(melee_damage_lower, melee_damage_upper))
+			A.attack_generic(src, srand(melee_damage_lower, melee_damage_upper))
 	Move(T)
 	FindTarget()
 	if(!target_mob || enroute)

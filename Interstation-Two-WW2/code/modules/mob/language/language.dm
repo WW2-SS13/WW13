@@ -22,17 +22,17 @@
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+			return capitalize(spick(first_names_female)) + " " + capitalize(spick(last_names))
 		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			return capitalize(spick(first_names_male)) + " " + capitalize(spick(last_names))
 
 	var/full_name = ""
 	var/new_name = ""
 
 	for(var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
-			new_name += pick(syllables)
+		for(var/x = srand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+			new_name += spick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
 	return "[trim(full_name)]"
@@ -40,17 +40,17 @@
 /datum/language/proc/get_random_german_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female_german)) + " " + capitalize(pick(last_names_german))
+			return capitalize(spick(first_names_female_german)) + " " + capitalize(spick(last_names_german))
 		else
-			return capitalize(pick(first_names_male_german)) + " " + capitalize(pick(last_names_german))
+			return capitalize(spick(first_names_male_german)) + " " + capitalize(spick(last_names_german))
 
 	var/full_name = ""
 	var/new_name = ""
 
 	for(var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
-			new_name += pick(syllables)
+		for(var/x = srand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+			new_name += spick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
 	return "[trim(full_name)]"
@@ -59,17 +59,17 @@
 /datum/language/proc/get_random_russian_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))
+			return capitalize(spick(first_names_female_russian)) + " " + capitalize(spick(russify(last_names_russian, gender)))
 		else
-			return capitalize(pick(first_names_male_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))
+			return capitalize(spick(first_names_male_russian)) + " " + capitalize(spick(russify(last_names_russian, gender)))
 
 	var/full_name = ""
 	var/new_name = ""
 
 	for(var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
-			new_name += pick(syllables)
+		for(var/x = srand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+			new_name += spick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
 	return "[trim(full_name)]"
@@ -77,17 +77,17 @@
 /datum/language/proc/get_random_ukrainian_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
+			return capitalize(spick(first_names_female_ukrainian)) + " " + capitalize(spick(russify(last_names_ukrainian, gender)))
 		else
-			return capitalize(pick(first_names_male_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
+			return capitalize(spick(first_names_male_ukrainian)) + " " + capitalize(spick(russify(last_names_ukrainian, gender)))
 
 	var/full_name = ""
 	var/new_name = ""
 
 	for(var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
-			new_name += pick(syllables)
+		for(var/x = srand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+			new_name += spick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
 	return "[trim(full_name)]"
@@ -95,17 +95,17 @@
 /datum/language/proc/get_random_italian_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female_italian)) + " " + capitalize(pick(last_names_italian))
+			return capitalize(spick(first_names_female_italian)) + " " + capitalize(spick(last_names_italian))
 		else
-			return capitalize(pick(first_names_male_italian)) + " " + capitalize(pick(last_names_italian))
+			return capitalize(spick(first_names_male_italian)) + " " + capitalize(spick(last_names_italian))
 
 	var/full_name = ""
 	var/new_name = ""
 
 	for(var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
-			new_name += pick(syllables)
+		for(var/x = srand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+			new_name += spick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
 	return "[trim(full_name)]"
@@ -130,12 +130,12 @@
 	var/capitalize = TRUE
 
 	while(length(scrambled_text) < input_size)
-		var/next = pick(syllables)
+		var/next = spick(syllables)
 		if(capitalize)
 			next = capitalize(next)
 			capitalize = FALSE
 		scrambled_text += next
-		var/chance = rand(100)
+		var/chance = srand(100)
 		if(chance <= 5)
 			scrambled_text += ". "
 			capitalize = TRUE

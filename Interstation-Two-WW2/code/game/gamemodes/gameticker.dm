@@ -4,6 +4,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 /datum/controller/gameticker
 	var/const/restart_timeout = 300
 	var/current_state = GAME_STATE_PREGAME
+	var/admin_started = FALSE
 
 	var/hide_mode = FALSE
 	var/datum/game_mode/mode = null
@@ -34,6 +35,9 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	var/players_can_join = TRUE
 
+	var/tip = null
+	var/maytip = TRUE
+
 /datum/controller/gameticker/proc/pregame()
 
 	spawn (0)
@@ -51,9 +55,10 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 		do
 			pregame_timeleft = 180
+			maytip = TRUE
 			if (serverswap_open_status)
 				world << "<b><span style = 'notice'>Welcome to the pre-game lobby!</span></b>"
-				world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+				world << "The game will start in [pregame_timeleft] seconds."
 
 			while(current_state == GAME_STATE_PREGAME)
 				for(var/i=0, i<10, i++)
@@ -69,17 +74,27 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 								sleep(1)
 								vote.process()
 				if(pregame_timeleft == 20)
-					if (roundstart_tips.len)
-						if (serverswap_open_status)
-							world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(roundstart_tips)]</span>"
-							roundstart_tips.Cut() // prevent tip spam if we're paused here
+					if (tip)
+						world << "<span class = 'notice'><b>Tip of the Round:</b> [tip]</span>"
+					else
+						var/list/tips = file2list("config/tips.txt")
+						if (tips.len)
+							if (serverswap_open_status)
+								world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
+								qdel_list(tips)
+					maytip = FALSE
 				if(pregame_timeleft <= 0)
 					current_state = GAME_STATE_SETTING_UP
 					/* if we were force started, still show the tip */
-					if (roundstart_tips.len)
-						if (serverswap_open_status)
-							world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(roundstart_tips)]</span>"
-							roundstart_tips.Cut() // prevent tip spam if we're paused here
+					if (maytip)
+						if (tip)
+							world << "<span class = 'notice'><b>Tip of the Round:</b> [tip]</span>"
+						else
+							var/list/tips = file2list("config/tips.txt")
+							if (tips.len)
+								if (serverswap_open_status)
+									world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
+									qdel_list(tips)
 
 		while (!setup())
 
@@ -117,9 +132,9 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 	mode.pre_setup()
 //	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!mode.can_start())
+	if(!mode.can_start() && !admin_started)
 		if (serverswap_open_status)
-			world << "<b>Unable to start the game.</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
+			world << "<b>Unable to start the game.</b> Not enough players, [mode.required_players] players needed. Reverting to the pre-game lobby."
 		current_state = GAME_STATE_PREGAME
 		mode.fail_setup()
 		mode = null

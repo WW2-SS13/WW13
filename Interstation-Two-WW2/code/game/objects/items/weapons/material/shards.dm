@@ -21,9 +21,9 @@
 	if(!istype(material))
 		return
 
-	icon_state = "[material.shard_icon][pick("large", "medium", "small")]"
-	pixel_x = rand(-8, 8)
-	pixel_y = rand(-8, 8)
+	icon_state = "[material.shard_icon][spick("large", "medium", "small")]"
+	pixel_x = srand(-8, 8)
+	pixel_y = srand(-8, 8)
 	update_icon()
 
 	if(material.shard_type)
@@ -77,7 +77,7 @@
 
 			var/list/check = list("l_foot", "r_foot")
 			while(check.len)
-				var/picked = pick(check)
+				var/picked = spick(check)
 				var/obj/item/organ/external/affecting = H.get_organ(picked)
 				if(affecting)
 					if(affecting.status & ORGAN_ROBOT)

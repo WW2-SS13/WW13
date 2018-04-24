@@ -113,14 +113,16 @@ var/list/admin_verbs_fun = list(
 	/client/proc/randomize_lobby_music,
 //	/datum/admins/proc/call_supply_drop,
 //	/datum/admins/proc/call_drop_pod
-	/client/proc/show_custom_roundstart_tip
+	/client/proc/show_custom_roundstart_tip,
+	/client/proc/reset_custom_roundstart_tip
 	)
 
 var/list/admin_verbs_spawn = list(
 //	/datum/admins/proc/spawn_custom_item,
 //	/datum/admins/proc/check_custom_items,
 	/datum/admins/proc/spawn_atom,		// allows us to spawn instances,
-	/client/proc/respawn_character,
+	/datum/admins/proc/spawn_player_as_job,
+	/client/proc/respawn_character
 	)
 
 var/list/admin_verbs_server = list(
@@ -604,7 +606,7 @@ var/list/admin_verbs_host = list(
 					src << "<span class = 'danger'>You need Manager+ permissions to drop a custom bomb this big.</span>"
 					return
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
-	message_admins("<span class = 'notice'>[ckey] creating an admin explosion at [epicenter.loc].</span>")
+	message_admins("[key] creating an admin explosion at [epicenter.loc].")
 /*
 
 /client/proc/give_disease2(mob/T as mob in mob_list) // -- Giacom

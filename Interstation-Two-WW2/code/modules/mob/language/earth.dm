@@ -21,7 +21,7 @@
 /datum/language/russian/get_spoken_verb(var/msg_end)
 	switch(msg_end)
 		if("!")
-			return pick("exclaims", "shouts", "yells") //TODO: make the basic proc handle lists of verbs.
+			return spick("exclaims", "shouts", "yells") //TODO: make the basic proc handle lists of verbs.
 		if("?")
 			return ask_verb
 	return speech_verb
@@ -39,7 +39,7 @@
 /datum/language/german/get_spoken_verb(var/msg_end)
 	switch(msg_end)
 		if("!")
-			return pick("exclaims", "shouts", "yells") //TODO: make the basic proc handle lists of verbs.
+			return spick("exclaims", "shouts", "yells") //TODO: make the basic proc handle lists of verbs.
 		if("?")
 			return ask_verb
 	return speech_verb
@@ -57,7 +57,7 @@
 /datum/language/italian/get_spoken_verb(var/msg_end)
 	switch(msg_end)
 		if("!")
-			return pick("exclaims", "shouts", "yells") //TODO: make the basic proc handle lists of verbs.
+			return spick("exclaims", "shouts", "yells") //TODO: make the basic proc handle lists of verbs.
 		if("?")
 			return ask_verb
 	return speech_verb

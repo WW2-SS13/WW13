@@ -116,9 +116,6 @@
 
 	var/job_spawn_location = null // used to override job.spawn_location for a single mob
 
-	var/stamina = 100
-	var/max_stamina = 100
-
 	var/shoveling_snow = FALSE
 
 	/* These are stats. They affect how fast and how well you can do certain
@@ -140,9 +137,8 @@
 		"pistol" = list(100,100),
 		"heavyweapon" = list(100,100),
 		"medical" = list(100,100),
-		"survival" = list(100,100))
-
-	var/use_initial_stats = FALSE
+		"survival" = list(100,100),
+		"stamina" = list(100,100))
 
 	var/has_hunger_and_thirst = TRUE
 
@@ -155,3 +151,5 @@
 	var/debugmob = FALSE
 
 	var/spawnedInAtRealTime = -1
+
+	var/next_footstep_sound_at_movement_tick = -1

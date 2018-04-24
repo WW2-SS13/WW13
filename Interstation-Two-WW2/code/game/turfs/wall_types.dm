@@ -10,7 +10,7 @@
 	opacity = TRUE
 	density = TRUE
 //	blocks_air = TRUE
-
+/*
 /turf/shuttle/wall/cargo
 	name = "Cargo Transport Shuttle (A5)"
 	icon = 'icons/turf/shuttlecargo.dmi'
@@ -43,7 +43,7 @@
 	icon = 'icons/turf/shuttlemining.dmi'
 	icon_state = "11,23"
 /obj/structure/shuttle_part/ex_act(severity) //Making them indestructible, like shuttle walls
-    return FALSE
+    return FALSE*/
 
 /turf/wall/iron/New(var/newloc)
 	..(newloc,"iron")

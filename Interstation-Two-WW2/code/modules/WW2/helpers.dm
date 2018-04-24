@@ -20,7 +20,7 @@
 			return radio2SS(msg, channel)
 
 /proc/radio2germans(msg, var/channel = "High Command Announcement System")
-	var/obj/item/device/radio/R = main_radios[GERMAN]
+	var/obj/item/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
 		spawn (3)
 			R.announce(msg, channel)
@@ -28,7 +28,7 @@
 	return FALSE
 
 /proc/radio2SS(msg)
-	var/obj/item/device/radio/R = main_radios[GERMAN]
+	var/obj/item/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
 		spawn (3)
 			R.announce(msg, "SS Announcement System")
@@ -36,7 +36,7 @@
 	return FALSE
 
 /proc/radio2soviets(msg, var/channel = "High Command Announcement System")
-	var/obj/item/device/radio/R = main_radios[SOVIET]
+	var/obj/item/radio/R = main_radios[SOVIET]
 	if (R && R.loc)
 		spawn (3)
 			R.announce(msg, channel)

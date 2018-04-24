@@ -3,7 +3,7 @@
 #define MAX_CHARS_PER_LINE 200
 #define MAX_CHARS_TOTAL 20000
 
-/obj/item/device/violin
+/obj/item/violin
 	name = "Violin"
 	desc = "Labeled, \"No. 6, Made by Rudolf Olsen, Violin & Bow Maker, 651 Third Avenue, New York City, anno 1918.\" "
 	icon = 'icons/obj/musician.dmi'
@@ -16,7 +16,7 @@
 	var/edit = TRUE
 	var/repeat = FALSE
 
-/obj/item/device/violin/proc/playnote(var/note as text)
+/obj/item/violin/proc/playnote(var/note as text)
 	//world << "Note: [note]"
 	var/soundfile
 	/*BYOND loads resource files at compile time if they are ''. This means you can't really manipulate them dynamically.
@@ -195,7 +195,7 @@
 
 	hearers(15, get_turf(src)) << sound(soundfile)
 
-/obj/item/device/violin/proc/playsong()
+/obj/item/violin/proc/playsong()
 	do
 		var/cur_oct[7]
 		var/cur_acc[7]
@@ -238,7 +238,7 @@
 	while(repeat > 0)
 	playing = FALSE
 
-/obj/item/device/violin/attack_self(mob/user as mob)
+/obj/item/violin/attack_self(mob/user as mob)
 	if(!isliving(user) || user.stat || user.restrained() || user.lying)	return
 	user.set_machine(src)
 
@@ -290,7 +290,7 @@
 	user << browse(dat, "window=violin;size=700x300")
 	onclose(user, "violin")
 
-/obj/item/device/violin/Topic(href, href_list)
+/obj/item/violin/Topic(href, href_list)
 
 	if(!in_range(src, usr) || issilicon(usr) || !isliving(usr) || !usr.canmove || usr.restrained())
 		usr << browse(null, "window=violin;size=700x300")

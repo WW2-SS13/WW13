@@ -147,7 +147,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				if(T.y>world.maxy || T.y<1)	continue
 				destination_list += T
 			if(destination_list.len)
-				destination = pick(destination_list)
+				destination = spick(destination_list)
 			else	return
 
 		else//Same deal here.
@@ -244,7 +244,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	var/active_turf = get_step(M, M.dir)
 
-	for (var/v in TRUE to rand(7,9))
+	for (var/v in TRUE to srand(7,9))
 		if (skip_turfs)
 			--skip_turfs
 			continue
@@ -398,7 +398,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Picks a string of symbols to display as the law number for hacked or ion laws
 /proc/ionnum()
-	return "[pick("1","2","3","4","5","6","7","8","9","0")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")]"
+	return "[spick("1","2","3","4","5","6","7","8","9","0")][spick("!","@","#","$","%","^","&","*")][spick("!","@","#","$","%","^","&","*")][spick("!","@","#","$","%","^","&","*")]"
 
 /proc/get_sorted_mobs()
 	var/list/old_list = getmobs()
@@ -494,18 +494,18 @@ proc/arctan(x)
 	return y
 
 //returns random gauss number
-proc/GaussRand(var/sigma)
+proc/Gausssrand(var/sigma)
   var/x,y,rsq
   do
-    x=2*rand()-1
-    y=2*rand()-1
+    x=2*srand()-1
+    y=2*srand()-1
     rsq=x*x+y*y
   while(rsq>1 || !rsq)
   return sigma*y*sqrt(-2*log(rsq)/rsq)
 
 //returns random gauss number, rounded to 'roundto'
 proc/GaussRandRound(var/sigma,var/roundto)
-	return round(GaussRand(sigma),roundto)
+	return round(Gausssrand(sigma),roundto)
 
 //Will return the contents of an atom recursivly to a depth of 'searchDepth'
 /atom/proc/GetAllContents(searchDepth = 5)
@@ -727,13 +727,13 @@ proc/GaussRandRound(var/sigma,var/roundto)
 
 					for(var/obj/O in T)
 
-						// Reset the shuttle corners
+				/*		// Reset the shuttle corners
 						if(O.tag == "delete me")
 							X.icon = 'icons/turf/shuttle.dmi'
 							X.icon_state = replacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
 							X.name = "wall"
 							qdel(O) // prevents multiple shuttle corners from stacking
-							continue
+							continue*/
 						if(!istype(O,/obj)) continue
 						O.loc = X
 					for(var/mob/M in T)
@@ -909,11 +909,11 @@ proc/DuplicateObject(obj/original, var/perfectcopy = FALSE , var/sameloc = FALSE
 proc/get_cardinal_dir(atom/A, atom/B)
 	var/dx = abs(B.x - A.x)
 	var/dy = abs(B.y - A.y)
-	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
+	return get_dir(A, B) & (srand() * (dx+dy) < dy ? 3 : 12)
 
-//chances are TRUE:value. anyprob(1) will always return true
-proc/anyprob(value)
-	return (rand(1,value)==value)
+//chances are TRUE:value. anysprob(1) will always return true
+proc/anysprob(value)
+	return (srand(1,value)==value)
 
 proc/view_or_range(distance = world.view , center = usr , type)
 	switch(type)
@@ -979,7 +979,7 @@ var/global/list/common_tools = list(
 /obj/item/weapon/weldingtool,
 /obj/item/weapon/screwdriver,
 /obj/item/weapon/wirecutters,
-///obj/item/device/multitool,
+///obj/item/multitool,
 /obj/item/weapon/crowbar)
 
 /proc/istool(O)
@@ -1013,7 +1013,7 @@ var/global/list/common_tools = list(
 	return FALSE
 /*
 /proc/ismultitool(O)
-	if(istype(O, /obj/item/device/multitool))
+	if(istype(O, /obj/item/multitool))
 		return TRUE
 	return FALSE
 */
@@ -1095,10 +1095,10 @@ proc/is_hot(obj/item/W as obj)
 	for (var/obj/structure/optable/O in M_turf)
 		return TRUE
 	for (var/obj/structure/bed/B in M_turf)
-		return prob(95)
+		return sprob(95)
 	for (var/obj/structure/table/T in M_turf)
-		return prob(90)
-	return prob(85)
+		return sprob(90)
+	return sprob(85)
 
 /proc/reverse_direction(var/dir)
 	switch(dir)
@@ -1123,7 +1123,7 @@ proc/is_hot(obj/item/W as obj)
 Checks if that loc and dir has a item on the wall
 */
 var/list/WALLITEMS = list(
-	"/obj/machinery/power/apc", "/obj/machinery/alarm", "/obj/item/device/radio/intercom",
+	"/obj/machinery/power/apc", "/obj/machinery/alarm", "/obj/item/radio/intercom",
 	"/obj/structure/extinguisher_cabinet", "/obj/structure/reagent_dispensers/peppertank",
 	"/obj/machinery/status_display", "/obj/machinery/requests_console", "/obj/machinery/light_switch", "/obj/effect/sign",
 	"/obj/machinery/newscaster", "/obj/machinery/firealarm", "/obj/structure/noticeboard", "/obj/machinery/door_control",
@@ -1214,10 +1214,10 @@ var/list/FLOORITEMS = list(
 /proc/get_random_colour(var/simple, var/lower, var/upper)
 	var/colour
 	if(simple)
-		colour = pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))
+		colour = spick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))
 	else
 		for(var/i=1;i<=3;i++)
-			var/temp_col = "[num2hex(rand(lower,upper))]"
+			var/temp_col = "[num2hex(srand(lower,upper))]"
 			if(length(temp_col )<2)
 				temp_col  = "0[temp_col]"
 			colour += temp_col

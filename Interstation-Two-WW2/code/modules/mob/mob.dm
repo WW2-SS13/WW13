@@ -4,12 +4,20 @@
 	living_mob_list -= src
 	unset_machine()
 	qdel(hud_used)
-	if(client)
+
+	// don't create bad ghosts - Kachnov
+	if(client || lastKnownCkey)
 		remove_screen_obj_references()
-		for(var/atom/movable/AM in client.screen)
-			qdel(AM)
-		client.screen = list()
-	ghostize()
+		if (client)
+			for(var/atom/movable/AM in client.screen)
+				qdel(AM)
+			client.screen = list()
+		for (var/mob/observer/O in mob_list)
+			if (O.ckey == ckey || O.lastKnownCkey == ckey)
+				goto finish
+		ghostize()
+
+	finish
 	..()
 
 /mob/proc/remove_screen_obj_references()//FIX THIS SHIT
@@ -51,6 +59,8 @@
 
 	if (!isnewplayer(src))
 		src << browse(null, "window=playersetup;")
+
+	movement_process_dirs.Cut()
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
@@ -141,15 +151,6 @@
 		if (M.real_name == text("[]", msg))
 			return M
 	return FALSE
-
-/mob/proc/movement_delay()
-	return FALSE
-
-/mob/proc/Life()
-//	if(organStructure)
-//		organStructure.ProcessOrgans()
-	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.
-	return
 
 #define UNBUCKLED FALSE
 #define PARTIALLY_BUCKLED TRUE
@@ -646,7 +647,7 @@
 	..()
 	. = (is_client_active(10 MINUTES))
 	if(.)
-		if(statpanel("Status") && ticker/* && ticker.current_state != GAME_STATE_PREGAME*/)
+		if(client.status_tabs && statpanel("Status") && ticker)
 			stat("")
 			stat(stat_header("Server"))
 			stat("")
@@ -688,7 +689,7 @@
 				stat("Ping (Average):", "[our_ping] ms ([avg_ping] ms)")
 			stat("Time Dilation:", time_track ? "[ceil(time_track.dilation)]%" : "???")
 
-		if(client.holder)
+		if(client.holder && client.status_tabs)
 			if(statpanel("Status"))
 				stat("")
 				stat(stat_header("Developer"))
@@ -702,7 +703,7 @@
 				if(processScheduler)
 					processScheduler.statProcesses()*/
 
-		if(listed_turf && client)
+		if(listed_turf && client && client.status_tabs)
 			if(!TurfAdjacent(listed_turf))
 				listed_turf = null
 			else
@@ -737,7 +738,7 @@
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
 
-	if(!resting && cannot_stand() && can_stand_overridden())
+	if(!resting && (!cannot_stand() || can_stand_overridden()))
 		lying = FALSE
 		canmove = TRUE
 	else
@@ -787,6 +788,8 @@
 
 	return canmove
 
+/mob/proc/Life()
+	return
 
 /mob/proc/facedir(var/ndir)
 	if(!canface() || client.moving || world.time < client.move_delay)
@@ -904,7 +907,7 @@ mob/proc/yank_out_object()
 		H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), FALSE, FALSE, TRUE, "Embedded object extraction")
 
-		if(prob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.
+		if(sprob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.
 			var/datum/wound/internal_bleeding/I = new (min(selection.w_class * 5, 15))
 			affected.wounds += I
 			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", TRUE)
@@ -946,27 +949,27 @@ mob/proc/yank_out_object()
 
 /mob/living/proc/handle_weakened()
 	if(weakened)
-		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
+		weakened = max(weakened-1, 0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
 	return weakened
 
 /mob/living/proc/handle_stuttering()
 	if(stuttering)
-		stuttering = max(stuttering-1, FALSE)
+		stuttering = max(stuttering-1, 0)
 	return stuttering
 
 /mob/living/proc/handle_silent()
 	if(silent)
-		silent = max(silent-1, FALSE)
+		silent = max(silent-1, 0)
 	return silent
 
 /mob/living/proc/handle_drugged()
 	if(druggy)
-		druggy = max(druggy-1, FALSE)
+		druggy = max(druggy-1, 0)
 	return druggy
 
 /mob/living/proc/handle_slurring()
 	if(slurring)
-		slurring = max(slurring-1, FALSE)
+		slurring = max(slurring-1, 0)
 	return slurring
 
 /mob/living/proc/handle_lisp()

@@ -51,10 +51,10 @@
 
 /obj/item/ammo_magazine/mc9mm/empty
 	initial_ammo = FALSE
-
+/*
 /obj/item/ammo_magazine/mc9mm/flash
 	ammo_type = /obj/item/ammo_casing/c9mmf
-
+*/
 /obj/item/ammo_magazine/c9mm
 	name = "ammunition Box (9mm)"
 	icon_state = "9mm"

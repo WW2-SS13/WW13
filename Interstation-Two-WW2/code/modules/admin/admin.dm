@@ -504,10 +504,10 @@ proc/admin_notice(var/message, var/rights)
 		alert("Unable to start the game as it is not set up.")
 		return
 	if(ticker.current_state == GAME_STATE_PREGAME)
-		ticker.current_state = GAME_STATE_SETTING_UP
+		ticker.pregame_timeleft = 1
+		ticker.admin_started = TRUE
 		log_admin("[usr.key] has started the game.")
 		message_admins("[usr.key] has started the game.")
-
 		return TRUE
 	else
 		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"
@@ -628,7 +628,7 @@ proc/admin_notice(var/message, var/rights)
 	set name = "Unprison"
 	if (M.z == 6)
 		if (config.allow_admin_jump)
-			M.loc = pick(latejoin)
+			M.loc = spick(latejoin)
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", TRUE)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 		else
@@ -697,6 +697,7 @@ proc/admin_notice(var/message, var/rights)
 			usr << "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]"
 */
 
+var/list/atom_types = null
 /datum/admins/proc/spawn_atom(var/object as text)
 	set category = "Debug"
 	set desc = "(atom path) Spawn an atom"
@@ -704,10 +705,12 @@ proc/admin_notice(var/message, var/rights)
 
 	if(!check_rights(R_SPAWN))	return
 
-	var/list/types = typesof(/atom)
-	var/list/matches = new()
+	if (!atom_types)
+		atom_types = typesof(/atom)
 
-	for(var/path in types)
+	var/list/matches = list()
+
+	for(var/path in atom_types)
 		if(findtext("[path]", object))
 			matches += path
 
@@ -730,6 +733,33 @@ proc/admin_notice(var/message, var/rights)
 
 	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
 
+/datum/admins/proc/spawn_player_as_job()
+	set category = "Admin"
+	set desc = "Spawn a player in as a job"
+	set name = "Spawn Player"
+	if(!check_rights(R_SPAWN))	return
+
+	var/mob/observer/ghost/G = input(usr, "Which observer? Please note that unlike the Player Panel spawn, this will always send the observer to their spawnpoint.") in observer_mob_list + "Cancel"
+	if (G == "Cancel")
+		return
+	else if (!istype(G))
+		return
+
+	var/list/job_master_occupation_names = list()
+	for (var/datum/job/J in job_master.occupations)
+		if (J.title)
+			job_master_occupation_names[J.title] = J
+
+	var/datum/job/J = input(usr, "Which job?") in (list("Cancel") | job_master_occupation_names)
+	if (J != "Cancel" && G)
+		var/mob/living/carbon/human/H = new(G.loc)
+		G.mind.transfer_to(H)
+		G.reenter_corpse()
+		job_master.EquipRank(H, J)
+		H.original_job = job_master_occupation_names[J]
+		var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
+		message_admins(msg)
+		log_admin(msg)
 
 
 /datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)

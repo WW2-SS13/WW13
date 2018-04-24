@@ -46,12 +46,12 @@
 				qdel(src)
 				return
 			if(2.0)
-				if (prob(50))
+				if (sprob(50))
 					new /obj/effect/effect/water(loc)
 					qdel(src)
 					return
 			if(3.0)
-				if (prob(5))
+				if (sprob(5))
 					new /obj/effect/effect/water(loc)
 					qdel(src)
 					return
@@ -90,7 +90,7 @@
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
 	var/modded = FALSE
-	var/obj/item/device/assembly_holder/rig = null
+	var/obj/item/assembly_holder/rig = null
 	New()
 		..()
 		reagents.add_reagent("fuel",500)
@@ -130,7 +130,7 @@
 			message_admins("[key_name_admin(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
 			log_game("[key_name(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel.")
 			leak_fuel(amount_per_transfer_from_this)
-	if (istype(W,/obj/item/device/assembly_holder))
+	if (istype(W,/obj/item/assembly_holder))
 		if (rig)
 			user << "<span class='warning'>There is another device in the way.</span>"
 			return ..()
@@ -138,8 +138,8 @@
 		if(do_after(user, 20, src))
 			user.visible_message("<span class='notice'>The [user] rigs [W] to \the [src].", "<span class = 'notice'> You rig [W] to \the [src].</span>")
 
-			var/obj/item/device/assembly_holder/H = W
-			if (istype(H.a_left,/obj/item/device/assembly/igniter) || istype(H.a_right,/obj/item/device/assembly/igniter))
+			var/obj/item/assembly_holder/H = W
+			if (istype(H.a_left,/obj/item/assembly/igniter) || istype(H.a_right,/obj/item/assembly/igniter))
 				message_admins("[key_name_admin(user)] rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
 				log_game("[key_name(user)] rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion.")
 
@@ -157,12 +157,12 @@
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
-		if(istype(Proj.firer))
+		if(Proj.firer)
 			message_admins("[key_name_admin(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>).")
 			log_game("[key_name(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]).")
 
-		if(!istype(Proj ,/obj/item/projectile/beam/practice) )
-			explode()
+		//if(!istype(Proj ,/obj/item/projectile/beam/practice) )
+		explode()
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
 	explode()

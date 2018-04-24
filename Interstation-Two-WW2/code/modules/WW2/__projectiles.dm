@@ -1,28 +1,34 @@
-// all bullets are faster now
-/obj/item/projectile/bullet
-	speed = 5.00
+/* shotgun projectiles */
+
+/obj/item/projectile/bullet/shotgun
+	name = "shotgun slug"
+	damage = DAMAGE_HIGH + 5
+	armor_penetration = 60
+
+/obj/item/projectile/bullet/shotgun/beanbag
+	name = "beanbag"
+	check_armour = "melee"
+	damage = DAMAGE_LOW/2
+	agony = DAMAGE_MEDIUM_HIGH
+	embed = FALSE
+	sharp = FALSE
 
 /obj/item/projectile/bullet/shotgun/murder
-	speed = 10.0
-	armor_penetration = 500
-	damage = 300
-	accuracy = 5000
-	penetrating = 0
-
-/obj/item/weapon/gun/projectile/shotgun
-	gun_type = GUN_TYPE_SHOTGUN
-	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
-
-/obj/item/projectile/bullet/rifle
-	speed = 6.00
-	armor_penetration = 50
-
-/obj/item/projectile/bullet/rifle/murder
-	speed = 10.0
 	armor_penetration = 500
 	damage = DAMAGE_OH_GOD
 	accuracy = 5000
 	penetrating = 0
+	execution = TRUE
+
+/obj/item/projectile/bullet/rifle
+	armor_penetration = 50
+
+/obj/item/projectile/bullet/rifle/murder
+	armor_penetration = 500
+	damage = DAMAGE_OH_GOD
+	accuracy = 5000
+	penetrating = 0
+	execution = TRUE
 
 // STG44
 /obj/item/projectile/bullet/rifle/a792x33
@@ -80,7 +86,7 @@
 /obj/item/projectile/bullet/rifle/a9x39
 	damage = DAMAGE_LOW
 	penetrating = 3
-	step_delay = 2
+//	step_delay = 2
 
 // DP MACHINE GUN //
 /obj/item/projectile/bullet/rifle/a762x39
@@ -254,8 +260,8 @@
 /obj/burning_blood/throw_impact(var/atom/movable/obstacle)
 	if (isliving(obstacle))
 		var/mob/living/L = obstacle
-		L.adjustFireLoss(rand(30,40))
-		L.Weaken(rand(2,3))
+		L.adjustFireLoss(srand(30,40))
+		L.Weaken(srand(2,3))
 		visible_message("<span class = 'warning'>[L] is scalded by burning blood!</span>")
 		if (ishuman(L))
 			L.emote("scream")

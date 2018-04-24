@@ -47,7 +47,7 @@ var/database/database = null
 			execute("CREATE TABLE player_tips (UID STRING, submitter STRING, tip STRING);")
 
 /database/proc/newUID()
-	return num2text(rand(1, 1000*1000*1000), 20)
+	return num2text(srand(1, 1000*1000*1000), 20)
 
 /database/proc/Now()
 	if (!global_game_schedule)

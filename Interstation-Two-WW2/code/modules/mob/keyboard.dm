@@ -1,4 +1,3 @@
-
 /mob/verb/on_press_spacebar()
 
 	set category = null

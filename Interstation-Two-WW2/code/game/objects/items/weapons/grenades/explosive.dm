@@ -67,7 +67,7 @@
 
 /obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/T)
 	if(explosion_size)
-		explosion(T, 1, -1, 2, round(explosion_size/2), FALSE)
+		explosion(T, 1, 1, 2, round(explosion_size/2), FALSE)
 
 /obj/item/weapon/grenade/explosive/frag
 	name = "fragmentation grenade"

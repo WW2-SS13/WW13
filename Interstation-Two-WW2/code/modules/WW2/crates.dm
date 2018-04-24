@@ -5,7 +5,7 @@
 		for (var/v in 1 to add_crates)
 			if (!contents.len)
 				break
-			var/atom/object = pick(contents)
+			var/atom/object = spick(contents)
 			if (object)
 				var/object_type = object.type
 				new object_type(src)
@@ -15,7 +15,7 @@
 		for (var/v in 1 to remove_crates)
 			if (!contents.len)
 				break
-			contents -= pick(contents)
+			contents -= spick(contents)
 	update_capacity(contents.len)
 
 // new crate icons from F13 - most are unused
@@ -371,39 +371,39 @@
 	var/textpath = "[type]"
 	if (findtext(textpath, GERMAN))
 		if (findtext(textpath, "solids"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in 1 to srand(10,15))
 				contents += new_ration(GERMAN, "solid")
 		if (findtext(textpath, "liquids"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in 1 to srand(10,15))
 				contents += new_ration(GERMAN, "liquid")
 		if (findtext(textpath, "desserts"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in 1 to srand(10,15))
 				contents += new_ration(GERMAN, "dessert")
 		if (findtext(textpath, "meat"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in 1 to srand(10,15))
 				contents += new_ration(GERMAN, "meat")
 		if (findtext(textpath, "alcohol"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in 1 to srand(10,15))
 				contents += beer_ration()
 	else if (findtext(textpath, "soviet"))
 		if (findtext(textpath, "solids"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in 1 to srand(10,15))
 				contents += new_ration(SOVIET, "solid")
 		if (findtext(textpath, "liquids"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in 1 to srand(10,15))
 				contents += new_ration(SOVIET, "liquid")
 	/*	if (findtext(textpath, "desserts"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in 1 to srand(10,15))
 				contents += new_ration("SOVIET", "dessert")*/
 		if (findtext(textpath, "meat"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in 1 to srand(10,15))
 				contents += new_ration(SOVIET, "meat")
 		if (findtext(textpath, "alcohol"))
-			for (var/v in 1 to rand(10,15))
+			for (var/v in 1 to srand(10,15))
 				contents += vodka_ration()
 
 	else if (findtext(textpath, "water"))
-		for (var/v in 1 to rand(20,30))
+		for (var/v in 1 to srand(20,30))
 			contents += water_ration()
 
 	update_capacity(min(30, contents.len+5))
@@ -559,7 +559,7 @@
 	..()
 	update_capacity(12)
 	for (var/v in 1 to 12)
-		new /obj/item/device/mine/betty(src)
+		new /obj/item/mine/betty(src)
 
 /obj/structure/closet/crate/dpammo/New()
 	..()
@@ -671,7 +671,7 @@
 
 	update_capacity(50)
 	for (var/v in 1 to 50)
-		new /obj/item/device/flashlight/flare(src)
+		new /obj/item/flashlight/flare(src)
 
 /obj/structure/closet/crate/bayonets/soviet/New()
 	..()

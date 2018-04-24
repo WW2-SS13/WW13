@@ -39,8 +39,8 @@
 
 /obj/item/weapon/paper/New()
 	..()
-	pixel_y = rand(-8, 8)
-	pixel_x = rand(-9, 9)
+	pixel_y = srand(-8, 8)
+	pixel_x = srand(-9, 9)
 	stamps = ""
 
 	if(name != "paper")
@@ -93,7 +93,7 @@
 	set src in usr
 	playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav',40,1)
 
-	if((CLUMSY in usr.mutations) && prob(50))
+	if((CLUMSY in usr.mutations) && sprob(50))
 		usr << "<span class='warning'>You cut yourself on the paper.</span>"
 		return
 	var/n_name = sanitizeSafe(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text, MAX_NAME_LEN)
@@ -447,11 +447,11 @@
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
 		var/{x; y;}
 		if(istype(P, /obj/item/weapon/stamp/captain) || istype(P, /obj/item/weapon/stamp/centcomm))
-			x = rand(-2, FALSE)
-			y = rand(-1, 2)
+			x = srand(-2, FALSE)
+			y = srand(-1, 2)
 		else
-			x = rand(-2, 2)
-			y = rand(-3, 2)
+			x = srand(-2, 2)
+			y = srand(-3, 2)
 		offset_x += x
 		offset_y += y
 		stampoverlay.pixel_x = x

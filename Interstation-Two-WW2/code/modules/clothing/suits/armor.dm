@@ -1,6 +1,6 @@
 
 /obj/item/clothing/suit/armor
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/device/radio,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/*/obj/item/weapon/melee/baton,*//obj/item/weapon/handcuffs)
+	allowed = list(/*/obj/item/weapon/gun/energy,*//obj/item/radio,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/*/obj/item/weapon/melee/baton,*//obj/item/weapon/handcuffs)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	item_flags = THICKMATERIAL
 
@@ -53,7 +53,7 @@
 	blood_overlay_type = "armor"
 	armor = list(melee = 10, bullet = 80, laser = 10, energy = 10, bomb = FALSE, bio = FALSE, rad = FALSE)
 	siemens_coefficient = 0.7
-
+/*
 /obj/item/clothing/suit/armor/laserproof
 	name = "Ablative Armor Vest"
 	desc = "A vest that excels in protecting the wearer against energy projectiles."
@@ -70,19 +70,19 @@
 		var/reflectchance = 40 - round(damage/3)
 		if(!(def_zone in list("chest", "groin")))
 			reflectchance /= 2
-		if(P.starting && prob(reflectchance))
+		if(P.starting && sprob(reflectchance))
 			visible_message("<span class='danger'>\The [user]'s [name] reflects [attack_text]!</span>")
 
 			// Find a turf near or on the original location to bounce to
-			var/new_x = P.starting.x + pick(0, FALSE, FALSE, FALSE, FALSE, -1, TRUE, -2, 2)
-			var/new_y = P.starting.y + pick(0, FALSE, FALSE, FALSE, FALSE, -1, TRUE, -2, 2)
+			var/new_x = P.starting.x + spick(0, FALSE, FALSE, FALSE, FALSE, -1, TRUE, -2, 2)
+			var/new_y = P.starting.y + spick(0, FALSE, FALSE, FALSE, FALSE, -1, TRUE, -2, 2)
 			var/turf/curloc = get_turf(user)
 
 			// redirect the projectile
 			P.redirect(new_x, new_y, curloc, user)
 
 			return PROJECTILE_CONTINUE // complete projectile permutation
-
+*/
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"
 	desc = "A heavily armored suit that protects against moderate damage. Used in special operations."
@@ -123,7 +123,7 @@
 	armor = list(melee = FALSE, bullet = FALSE, laser = FALSE, energy = FALSE, bomb = FALSE, bio = FALSE, rad = FALSE)
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	if(prob(50))
+	if(sprob(50))
 		user.visible_message("<span class='danger'>The reactive teleport system flings [user] clear of the attack!</span>")
 		var/list/turfs = new/list()
 		for(var/turf/T in orange(6, user))
@@ -132,8 +132,8 @@
 			if(T.x>world.maxx-6 || T.x<6)	continue
 			if(T.y>world.maxy-6 || T.y<6)	continue
 			turfs += T
-		if(!turfs.len) turfs += pick(/turf in orange(6))
-		var/turf/picked = pick(turfs)
+		if(!turfs.len) turfs += spick(/turf in orange(6))
+		var/turf/picked = spick(turfs)
 		if(!isturf(picked)) return
 
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
@@ -204,13 +204,13 @@
 	name = "inspector armor vest"
 	desc = "An synthetic armor vest colored in a vintage brown."
 	icon_state = "detvest"
-
+/*
 /obj/item/clothing/suit/storage/vest
 	name = "webbed armor vest"
 	desc = "A synthetic armor vest. This one has added webbing and ballistic plates."
 	icon_state = "webvest"
 	armor = list(melee = 50, bullet = 40, laser = 50, energy = 25, bomb = 30, bio = FALSE, rad = FALSE)
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/device/radio,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/*/obj/item/weapon/melee/baton,*//obj/item/weapon/handcuffs)
+	allowed = list(/obj/item/weapon/gun/energy,/obj/item/radio,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/*/obj/item/weapon/melee/baton,*//obj/item/weapon/handcuffs)
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	item_flags = THICKMATERIAL
@@ -229,7 +229,7 @@
 	item_state = "mercwebvest"
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = FALSE, rad = FALSE)
 
-
+*/
 //All of the armor below is mostly unused
 
 /obj/item/clothing/suit/armor/heavy

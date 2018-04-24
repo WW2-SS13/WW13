@@ -78,5 +78,5 @@
 /proc/print_ownerless_uplinks()
 	return FALSE
 
-/proc/get_uplink_purchases(var/obj/item/device/uplink/H)
+/proc/get_uplink_purchases(var/obj/item/uplink/H)
 	return list()

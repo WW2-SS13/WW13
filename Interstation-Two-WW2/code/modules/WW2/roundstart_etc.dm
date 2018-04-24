@@ -28,7 +28,7 @@ var/GRACE_PERIOD_LENGTH = 7
 	// spawn mice so soviets have something to eat after they start starving
 
 	var/mice_spawned = FALSE
-	var/max_mice = rand(40,50)
+	var/max_mice = srand(40,50)
 
 	for (var/area/prishtina/soviet/bunker/area in world)
 		for (var/turf/t in area.contents)
@@ -36,7 +36,7 @@ var/GRACE_PERIOD_LENGTH = 7
 				continue
 			if (istype(t, /turf/open))
 				continue
-			if (prob(1))
+			if (sprob(1))
 				new/mob/living/simple_animal/mouse/gray(t)
 				++mice_spawned
 				if (mice_spawned > max_mice)
@@ -66,7 +66,7 @@ var/GRACE_PERIOD_LENGTH = 7
 		if (!G || G.z > 1)
 			continue
 
-		if (prob(nature_chance))
+		if (sprob(nature_chance))
 			G.plant()
 
 	do_seasonal_stuff()
@@ -89,7 +89,7 @@ var/GRACE_PERIOD_LENGTH = 7
 			for (var/turf/floor/plating/beach/water/W in turfs)
 				if (!istype(W, /turf/floor/plating/beach/water/sewage))
 					new /turf/floor/plating/beach/water/ice (W)
-			if (prob(50))
+			if (sprob(50))
 				use_snow = TRUE
 
 		if (!use_snow)

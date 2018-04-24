@@ -20,13 +20,13 @@
 	density = TRUE
 	anchored = TRUE
 	layer = 2.8
+	climbable = TRUE
 	var/frame = /obj/structure/table_frame
 	var/framestack = /obj/item/stack/rods
 	var/buildstack = /obj/item/stack/material/iron
 	var/busy = FALSE
 	var/buildstackamount = TRUE
 	var/framestackamount = 2
-	var/mob/tableclimber
 	var/deconstructable = TRUE
 	var/flipped = FALSE // WIP?
 	var/health = 100
@@ -189,14 +189,8 @@
 /obj/structure/table/ex_act(severity, target)
 	..()
 	if(severity == 3)
-		if(prob(25))
+		if(sprob(25))
 			table_destroy(1)
-
-/obj/structure/table/attack_hand(mob/living/user)
-	if(tableclimber && tableclimber != user)
-		tableclimber.Weaken(2)
-		tableclimber.visible_message("<span class='warning'>[tableclimber.name] has been knocked off the table", "You're knocked off the table!", "You see [tableclimber.name] get knocked off the table</span>")
-	..()
 
 /obj/structure/table/attack_tk() // no telehulk sorry
 	return
@@ -238,7 +232,7 @@
 				chance += 20
 			else
 				return TRUE					//But only from one side
-		if(prob(chance))
+		if(sprob(chance))
 			health -= P.damage/2
 			if (health > 0)
 				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
@@ -262,10 +256,6 @@
 
 /obj/structure/table/MouseDrop_T(atom/movable/O, mob/user)
 	..()
-	if(ismob(O) && user == O && ishuman(user))
-		if(user.canmove)
-			climb_table(user)
-			return
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
 		return
 	if(isrobot(user))
@@ -281,9 +271,9 @@
 	var/obj/item/weapon/material/shard/S = null
 	if(buildstack)
 		new buildstack (loc)
-/*	if(carpeted && (full_return || prob(50))) // Higher chance to get the carpet back intact, since there's no non-intact option
+/*	if(carpeted && (full_return || sprob(50))) // Higher chance to get the carpet back intact, since there's no non-intact option
 		new /obj/item/stack/tile/carpet(loc)*/
-	else if(full_return || prob(20))
+	else if(full_return || sprob(20))
 		new /obj/item/stack/material/steel(loc)
 	else
 		var/material/M = get_material_by_name(DEFAULT_WALL_MATERIAL)
@@ -399,40 +389,6 @@
 			return
 
 /*
- * TABLE CLIMBING
- */
-
-/obj/structure/table/proc/climb_table(mob/user)
-	for (var/obj/structure/S in get_turf(src))
-		if (S == src)
-			continue
-		else if (S.density)
-			return
-	add_fingerprint(user)
-	user.visible_message("<span class='warning'>[user] starts climbing onto [src].</span>", \
-								"<span class='notice'>You start climbing onto [src]...</span>")
-	var/climb_time = 20
-	if(user.restrained()) //Table climbing takes twice as long when restrained.
-		climb_time *= 2
-	tableclimber = user
-	if(do_mob(user, user, climb_time))
-		if(loc) //Checking if table has been destroyed
-			density = FALSE
-			if(user.forceMove(loc))
-				user.visible_message("<span class='warning'>[user] climbs onto [src].</span>", \
-									"<span class='notice'>You climb onto [src].</span>")
-				add_logs(user, src, "climbed onto")
-				user.Stun(2)
-			else
-				user << "<span class='warning'>You fail to climb onto [src].</span>"
-			density = TRUE
-			tableclimber = null
-			return TRUE
-	tableclimber = null
-	return FALSE
-
-
-/*
  * Glass tables
  */
 /obj/structure/table/glass
@@ -449,14 +405,14 @@
 		new /obj/item/weapon/material/shard(loc)
 		qdel(src)
 
-/obj/structure/table/glass/climb_table(mob/user)
-	if(..())
-		visible_message("<span class='warning'>[src] breaks!</span>")
-		playsound(loc, "shatter", 50, TRUE)
-		new frame(loc)
-		new /obj/item/weapon/material/shard(loc)
-		qdel(src)
-		user.Weaken(5)
+/obj/structure/table/glass/proc/shatter()
+	visible_message("<span class='warning'>[src] shatters!</span>")
+	playsound(loc, "shatter", 50, TRUE)
+	new frame(loc)
+	new /obj/item/weapon/material/shard(loc)
+	for (var/mob/living/L in climbers|(loc.contents))
+		L.Weaken(5)
+	qdel(src)
 
 /*
  * Iron tables

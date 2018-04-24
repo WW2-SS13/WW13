@@ -27,7 +27,7 @@ datum/objective
 			if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2))
 				possible_targets += possible_target
 		if(possible_targets.len > 0)
-			target = pick(possible_targets)
+			target = spick(possible_targets)
 
 
 	proc/find_target_by_role(role, role_type=0)//Option sets either to check assigned role or special role. Default to assigned.
@@ -363,7 +363,7 @@ datum/objective/steal
 
 
 	find_target()
-		return set_target(pick(possible_items))
+		return set_target(spick(possible_items))
 
 
 	proc/select_target()
@@ -399,7 +399,7 @@ datum/objective/download
 
 datum/objective/capture
 	proc/gen_amount_goal()
-		target_amount = rand(5,10)
+		target_amount = srand(5,10)
 		explanation_text = "Accumulate [target_amount] capture points."
 		return target_amount
 
@@ -435,9 +435,9 @@ datum/objective/heist/kidnap
 						continue
 
 		if(priority_targets.len > 0)
-			target = pick(priority_targets)
+			target = spick(priority_targets)
 		else if(possible_targets.len > 0)
-			target = pick(possible_targets)
+			target = spick(possible_targets)
 
 		if(target && target.current)
 			explanation_text = "We can get a good price for [target.current.real_name], the [target.assigned_role]. Take them alive."

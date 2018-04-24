@@ -24,8 +24,8 @@
 		var/mob/living/L = target
 		shake_camera(L, 3, 2)
 
-/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
-	if(penetrating > 1 && damage > 20 && prob(damage))
+/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob)
+	if(penetrating > 1 && damage > 20 && sprob(damage))
 		mob_passthrough_check = TRUE
 	else
 		mob_passthrough_check = FALSE
@@ -63,10 +63,7 @@
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		chance = round(damage/2) + 10
 
-	if(prob(chance))
-		if(A.opacity)
-			//display a message so that people on the other side aren't so confused
-			A.visible_message("<span class='warning'>\The [src] pierces through \the [A]!</span>")
+	if(sprob(chance))
 		return TRUE
 
 	return FALSE
@@ -103,7 +100,7 @@
 
 	var/hits = FALSE
 	for (var/i in 1 to total_pellets)
-		if(target_mob.lying && target_mob != original && prob(prone_chance))
+		if(target_mob.lying && target_mob != original && sprob(prone_chance))
 			continue
 
 		//pellet hits spread out across different zones, but 'aim at' the targeted zone with higher probability
@@ -152,21 +149,6 @@
 	check_armour = "melee"
 	damage = 5
 	agony = 25
-	embed = FALSE
-	sharp = FALSE
-
-/* shotgun projectiles */
-
-/obj/item/projectile/bullet/shotgun
-	name = "slug"
-	damage = 80
-	armor_penetration = 80
-
-/obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
-	name = "beanbag"
-	check_armour = "melee"
-	damage = 20
-	agony = 60
 	embed = FALSE
 	sharp = FALSE
 

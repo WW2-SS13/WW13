@@ -54,7 +54,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if (can_infect && affected)
 			spread_germs_to_organ(affected, user)
-		if (ishuman(user) && prob(60))
+		if (ishuman(user) && sprob(60))
 			var/mob/living/carbon/human/H = user
 			if (blood_level)
 				H.bloody_hands(target,0)
@@ -84,8 +84,6 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return FALSE
 	if (user.a_intent == I_HURT)	//check for Hippocratic Oath
 		return FALSE
-	if (!do_after(user, 25, M))
-		return FALSE // removes combat saws - Kachnov
 	var/zone = user.targeted_organ
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
 		user << "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>"
@@ -95,12 +93,14 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		if(S.tool_quality(tool, user))
 			var/step_is_valid = S.can_use(user, M, zone, tool)
 			if(step_is_valid && S.is_valid_target(M))
+				if (!do_after(user, 25, M))
+					return FALSE // removes combat saws - Kachnov
 				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
 					return TRUE
 				M.op_stage.in_progress += zone
 				S.begin_step(user, M, zone, tool)		//start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
-				if(prob(S.tool_quality(tool, user)) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
+				if(sprob(S.tool_quality(tool, user)) &&  do_mob(user, M, srand(S.min_duration, S.max_duration)))
 					S.end_step(user, M, zone, tool)		//finish successfully
 					if (ishuman(user))
 						var/mob/living/carbon/human/H = user
@@ -113,7 +113,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				if (ishuman(M))
 					var/mob/living/carbon/human/H = M
 					H.update_surgery()
-				return	1	  												//don't want to do weapony things after surgery
+				return	TRUE	  												//don't want to do weapony things after surgery
 
 // this gets called for every item attack now
 //	if (user.a_intent == I_HELP)

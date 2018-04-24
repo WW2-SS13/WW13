@@ -168,7 +168,7 @@ var/global/list/additional_antag_types = list()
 	spawn (ROUNDSTART_LOGOUT_REPORT_TIME)
 		display_roundstart_logout_report()
 
-	spawn (rand(waittime_l, waittime_h))
+	spawn (srand(waittime_l, waittime_h))
 		send_intercept()
 
 	//Assign all antag types for this game mode. Any players spawned as antags earlier should have been removed from the pending list, so no need to worry about those.
@@ -269,17 +269,17 @@ var/global/list/additional_antag_types = list()
 		if (special_role in disregard_roles)
 			continue
 		// Antags
-		else if(special_role_data && prob(special_role_data.suspicion_chance))
+		else if(special_role_data && sprob(special_role_data.suspicion_chance))
 			suspects += man
 
 		// Some poor people who were just in the wrong place at the wrong time..
-		else if(prob(10))
+		else if(sprob(10))
 			suspects += man
 
 	for(var/mob/M in suspects)
 		if(player_is_antag(M.mind, only_offstation_roles = TRUE))
 			continue
-		switch(rand(1, 100))
+		switch(srand(1, 100))
 			if(1 to 50)
 				intercepttext += "Someone with the job of <b>[M.mind.assigned_role]</b> <br>"
 			else

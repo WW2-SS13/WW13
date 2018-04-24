@@ -89,8 +89,8 @@ var/datum/reinforcements/reinforcements_master
 
 /datum/reinforcements/proc/tick()
 
-	if (prob(1) && prob(2) && prob(75)) // events
-		if (prob(50))
+	if (sprob(1) && sprob(2) && sprob(75)) // events
+		if (sprob(50))
 			if (!locked[SOVIET])
 				soviet_countdown = soviet_countdown_success_reset*2
 				world << "<font size = 3>Due to harsh combat in other areas on the Eastern Front, Soviet reinforcements will not be available for a while.</font>"
@@ -205,7 +205,7 @@ var/datum/reinforcements/reinforcements_master
 			ret = TRUE
 	reinforcement_pool[SOVIET] = list()
 	lock_check()
-	var/obj/item/device/radio/R = main_radios[SOVIET]
+	var/obj/item/radio/R = main_radios[SOVIET]
 	if (R && R.loc)
 		spawn (10)
 			R.announce("A new squadron has been deployed.", "Reinforcements Announcement System")
@@ -230,7 +230,7 @@ var/datum/reinforcements/reinforcements_master
 			ret = TRUE
 	reinforcement_pool[GERMAN] = list()
 	lock_check()
-	var/obj/item/device/radio/R = main_radios[GERMAN]
+	var/obj/item/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
 		spawn (10)
 			R.announce("A new squadron has been deployed.", "Reinforcements Announcement System")

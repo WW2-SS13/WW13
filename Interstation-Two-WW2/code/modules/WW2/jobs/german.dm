@@ -242,7 +242,10 @@
 	H.make_artillery_officer()
 
 /datum/job/german/squad_leader/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/command_intermediate)
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat,
+		new/obj/item/weapon/key/german/command_intermediate,
+		new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer, new/obj/item/weapon/key/german/QM)
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -539,7 +542,7 @@
 	H.setStat("heavyweapon", STAT_NORMAL)
 	H.setStat("medical", STAT_NORMAL)
 	H.setStat("shotgun", STAT_NORMAL)
-	if (prob(8))
+	if (sprob(8))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_back)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
@@ -734,14 +737,14 @@ var/first_fallschirm = TRUE
 	first_fallschirm = FALSE
 
 	if(!fallschirm_spawnzone)
-		fallschirm_spawnzone = pick(fallschirm_landmarks)
+		fallschirm_spawnzone = spick(fallschirm_landmarks)
 		fallschirm_landmarks = null
 		for(var/turf/T in range(3, fallschirm_spawnzone))
 			fallschirm_spawnpoints += T
 
 		H.loc = get_turf(fallschirm_spawnzone)
 	else
-		H.loc = pick(fallschirm_spawnpoints)
+		H.loc = spick(fallschirm_spawnpoints)
 
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a paratrooper. Your job is to help any other units that need assistance.</span>"
 	H << "<big><span class = 'red'>The Plane's current altitude is [paratrooper_plane_master.altitude]m. It is lethal to jump until it has descended to [paratrooper_plane_master.first_nonlethal_altitude]m."
@@ -976,9 +979,6 @@ var/first_fallschirm = TRUE
 	if (secret_ladder_message)
 		H << "<br>[secret_ladder_message]"
 
-	H.stamina *= 1.5
-	H.max_stamina *= 1.5
-
 	// glorious SS stats
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
@@ -989,6 +989,7 @@ var/first_fallschirm = TRUE
 	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
 	H.setStat("medical", STAT_NORMAL)
 	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
 	return TRUE
 
 /datum/job/german/squad_leader_ss/update_character(var/mob/living/carbon/human/H)
@@ -1031,9 +1032,6 @@ var/first_fallschirm = TRUE
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>. Also, kill any jews you find on sight. They usually have long hair and beards.</span>"
 	H.give_radio()
 
-	H.stamina *= 1.5
-	H.max_stamina *= 1.5
-
 	// glorious SS stats
 	H.setStat("strength", STAT_VERY_HIGH)
 	H.setStat("engineering", STAT_MEDIUM_HIGH)
@@ -1045,6 +1043,7 @@ var/first_fallschirm = TRUE
 	H.setStat("medical", STAT_NORMAL)
 	H.setStat("survival", STAT_VERY_HIGH)
 	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
 	return TRUE
 
 /datum/job/german/soldier_ss/get_keys()
@@ -1078,7 +1077,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef/classic(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/butch(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/butcher(H), slot_r_hand)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a front chef. Your job is to keep the Wehrmacht well fed.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)

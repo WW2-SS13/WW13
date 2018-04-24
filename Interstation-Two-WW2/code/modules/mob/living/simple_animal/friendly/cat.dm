@@ -34,7 +34,7 @@
 			for(var/mob/living/simple_animal/mouse/M in loc)
 				if(!M.stat)
 					M.splat()
-					visible_emote(pick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
+					visible_emote(spick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
 					movement_target = null
 					stop_automated_movement = FALSE
 					break
@@ -42,8 +42,8 @@
 	..()
 
 	for(var/mob/living/simple_animal/mouse/snack in oview(src,5))
-		if(snack.stat < DEAD && prob(15))
-			audible_emote(pick("hisses and spits!","mrowls fiercely!","eyes [snack] hungrily."))
+		if(snack.stat < DEAD && sprob(15))
+			audible_emote(spick("hisses and spits!","mrowls fiercely!","eyes [snack] hungrily."))
 		break
 
 	if(incapacitated())
@@ -59,7 +59,7 @@
 		else
 			handle_movement_target()
 
-	if(prob(2)) //spooky
+	if(sprob(2)) //spooky
 		var/mob/observer/ghost/spook = locate() in range(src,5)
 		if(spook)
 			var/turf/T = spook.loc
@@ -68,7 +68,7 @@
 				if(!O.invisibility && O.name)
 					visible += O
 			if(visible.len)
-				var/atom/A = pick(visible)
+				var/atom/A = spick(visible)
 				visible_emote("suddenly stops and stares at something unseen[istype(A) ? " near [A]":""].")
 
 /mob/living/simple_animal/cat/proc/handle_movement_target()
@@ -96,7 +96,7 @@
 		stop_automated_movement = FALSE
 
 	if (flee_target)
-		if(prob(25)) say("HSSSSS")
+		if(sprob(25)) say("HSSSSS")
 		stop_automated_movement = TRUE
 		walk_away(src, flee_target, 7, 2)
 
@@ -169,7 +169,7 @@
 			walk_to(src,0)
 			movement_target = null
 			stop_automated_movement = FALSE
-			if (prob(10))
+			if (sprob(10))
 				say("Meow!")
 
 	if (!friend || movement_target != friend)
@@ -181,18 +181,18 @@
 		return
 	if (get_dist(src, friend) <= 1)
 		if (friend.stat >= DEAD || friend.health <= config.health_threshold_softcrit)
-			if (prob((friend.stat < DEAD)? 50 : 15))
-				var/verb = pick("meows", "mews", "mrowls")
-				audible_emote(pick("[verb] in distress.", "[verb] anxiously."))
+			if (sprob((friend.stat < DEAD)? 50 : 15))
+				var/verb = spick("meows", "mews", "mrowls")
+				audible_emote(spick("[verb] in distress.", "[verb] anxiously."))
 		else
-			if (prob(5))
-				visible_emote(pick("nuzzles [friend].",
+			if (sprob(5))
+				visible_emote(spick("nuzzles [friend].",
 								   "brushes against [friend].",
 								   "rubs against [friend].",
 								   "purrs."))
 	else if (friend.health <= 50)
-		if (prob(10))
-			var/verb = pick("meows", "mews", "mrowls")
+		if (sprob(10))
+			var/verb = spick("meows", "mews", "mrowls")
 			audible_emote("[verb] anxiously.")
 
 /mob/living/simple_animal/cat/fluff/verb/friend()
@@ -256,5 +256,5 @@
 	var/friend_name = "Erstatz Vryroxes"
 
 /mob/living/simple_animal/cat/kitten/New()
-	gender = pick(MALE, FEMALE)
+	gender = spick(MALE, FEMALE)
 	..()

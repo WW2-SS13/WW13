@@ -26,7 +26,7 @@
 		..()
 		if (empty) return
 
-		icon_state = pick("ointment","firefirstaid")
+		icon_state = spick("ointment","firefirstaid")
 
 		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
 		new /obj/item/stack/medical/ointment( src )
@@ -61,7 +61,7 @@
 		..()
 		if (empty) return
 
-		icon_state = pick("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
+		icon_state = spick("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
 
 		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
 		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )

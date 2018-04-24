@@ -61,19 +61,16 @@ var/global/datum/controller/occupations/job_master
 	var/german_officer_squad_info[4]
 	var/soviet_officer_squad_info[4]
 
-	var/expected_clients = 0
-
 	var/italians_were_enabled = FALSE
 	var/SS_was_enabled = FALSE
 	var/civilians_were_enabled = FALSE
 	var/partisans_were_enabled = FALSE
 
+	var/admin_expected_clients = 0
+
 	proc/toggle_roundstart_autobalance(var/_clients = 0, var/announce = TRUE)
 
-		_clients = max(max(_clients, (map ? map.min_autobalance_players : 0)), clients.len)
-
-		if (expected_clients && expected_clients > _clients)
-			_clients = expected_clients
+		_clients = max(max(_clients, (map ? map.min_autobalance_players : 0)), clients.len, admin_expected_clients)
 
 		var/autobalance_for_players = round(max(_clients, (clients.len/config.max_expected_players) * 50))
 
@@ -82,7 +79,6 @@ var/global/datum/controller/occupations/job_master
 		else if (announce == 2)
 			if (!roundstart_time)
 				world << "<span class = 'warning'>An admin has changed autobalance to be set up for [max(_clients, autobalance_for_players)] players.</span>"
-				expected_clients = _clients
 			else
 				world << "<span class = 'warning'>An admin has reset autobalance for [max(_clients, autobalance_for_players)] players.</span>"
 
@@ -282,13 +278,13 @@ var/global/datum/controller/occupations/job_master
 		var/list/turfs = latejoin_turfs[spawn_location]
 
 		if(turfs && turfs.len > 0)
-			H.loc = pick(turfs)
+			H.loc = spick(turfs)
 
 			if (!locate(H.loc) in turfs)
 				var/tries = 0
 				while (tries <= 5 && !locate(H.loc) in turfs)
 					++tries
-					H.loc = pick(turfs)
+					H.loc = spick(turfs)
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
@@ -301,7 +297,6 @@ var/global/datum/controller/occupations/job_master
 			if(!job)	continue
 			if(job.faction != faction)	continue
 			occupations += job
-
 		return TRUE
 
 
@@ -483,7 +478,7 @@ var/global/datum/controller/occupations/job_master
 			if(!job)	continue
 			var/list/candidates = FindOccupationCandidates(job, level)
 			if(!candidates.len)	continue
-			var/mob/new_player/candidate = pick(candidates)
+			var/mob/new_player/candidate = spick(candidates)
 			AssignRole(candidate, command_position)
 		return
 
@@ -894,15 +889,13 @@ var/global/datum/controller/occupations/job_master
 			if (GERMAN, ITALIAN)
 				if (germans_forceEnabled)
 					return FALSE
-				if (player_list.len >= 2)
-					if ((germans+italians) >= max_germans)
-						return TRUE
+				if ((germans+italians) >= max_germans)
+					return TRUE
 			if (SOVIET)
 				if (soviets_forceEnabled)
 					return FALSE
-				if (player_list.len >= 2)
-					if (soviets >= max_soviets)
-						return TRUE
+				if (soviets >= max_soviets)
+					return TRUE
 			if (UKRAINIAN)
 				return TRUE
 

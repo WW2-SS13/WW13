@@ -221,7 +221,7 @@
 		new /obj/item/ammo_casing/shotgun/pellet(src)
 		new /obj/item/ammo_casing/shotgun/pellet(src)
 		new /obj/item/ammo_casing/shotgun/pellet(src)
-
+/*
 /obj/item/weapon/storage/box/flashshells
 	name = "box of illumination shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
@@ -235,7 +235,7 @@
 		new /obj/item/ammo_casing/shotgun/flash(src)
 		new /obj/item/ammo_casing/shotgun/flash(src)
 		new /obj/item/ammo_casing/shotgun/flash(src)
-
+*/
 /obj/item/weapon/storage/box/stunshells
 	name = "box of stun shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
@@ -470,12 +470,12 @@
 
 	New()
 		..()
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
+		new /obj/item/assembly/mousetrap( src )
 
 /obj/item/weapon/storage/box/pillbottles
 	name = "box of pill bottles"
@@ -520,7 +520,7 @@
 
 	attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
 		if(istype(W) && !W.lit && !W.burnt)
-			if(prob(50))
+			if(sprob(50))
 				playsound(loc, 'sound/items/matchstick_lit.ogg', 25, FALSE, -1)
 				W.lit = TRUE
 				W.damtype = "burn"

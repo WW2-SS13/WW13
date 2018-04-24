@@ -156,7 +156,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("<span class='warning'>[user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</span>", \
 		"<span class='warning'>Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</span>")
-		affected.createwound(CUT, rand(30,50), TRUE)
+		affected.createwound(CUT, srand(30,50), TRUE)
 
 /datum/surgery_step/internal/remove_organ
 
@@ -291,7 +291,7 @@
 		"<span class='warning'>Your hand slips, damaging \the [tool]!</span>")
 		var/obj/item/organ/I = tool
 		if(istype(I))
-			I.take_damage(rand(3,5),0)
+			I.take_damage(srand(3,5),0)
 
 /datum/surgery_step/internal/attach_organ
 	allowed_tools = list(

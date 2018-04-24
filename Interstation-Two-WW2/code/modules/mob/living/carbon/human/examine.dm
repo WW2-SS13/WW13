@@ -170,13 +170,13 @@
 	//ID
 	if(wear_id)
 		/*var/id
-		if(istype(wear_id, /obj/item/device/pda))
-			var/obj/item/device/pda/pda = wear_id
+		if(istype(wear_id, /obj/item/pda))
+			var/obj/item/pda/pda = wear_id
 			id = pda.owner
 		else if(istype(wear_id, /obj/item/weapon/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
 			var/obj/item/weapon/card/id/idcard = wear_id
 			id = idcard.registered_name
-		if(id && (id != real_name) && (get_dist(src, usr) <= 1) && prob(10))
+		if(id && (id != real_name) && (get_dist(src, usr) <= 1) && sprob(10))
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[wear_id] \a [wear_id] yet something doesn't seem right...</span>\n"
 		else*/
 		msg += "[T.He] [T.is] wearing \icon[wear_id] \a [wear_id].\n"
@@ -436,6 +436,6 @@
 		if (do_after(user, 15 * embedded_obj.w_class, src))
 			visible_message("<span class = 'danger'>[user] pulls [embedded_obj] out of [src]!</span>")
 			emote("scream")
-			adjustBruteLoss(rand(10,15))
+			adjustBruteLoss(srand(10,15))
 		embedded -= embedded_obj
 		embedded_obj.loc = get_turf(src)

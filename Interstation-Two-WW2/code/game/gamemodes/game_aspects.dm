@@ -30,8 +30,8 @@
 			if (A && clients.len >= A.required_clients && A.specialcheck())
 				real_aspects += A
 
-		if (prob(100 - default_aspect_chance))
-			M.aspect = pick(real_aspects)
+		if (sprob(100 - default_aspect_chance))
+			M.aspect = spick(real_aspects)
 		else
 			M.aspect = new default_aspect_type
 

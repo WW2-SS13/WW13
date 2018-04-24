@@ -43,10 +43,10 @@
 
 			if (!lying && !buckled && world.time - l_move_time < 15)
 			//Moving around with fractured ribs won't do you any good
-				if (E.is_broken() && E.internal_organs && E.internal_organs.len && prob(15))
-					var/obj/item/organ/I = pick(E.internal_organs)
+				if (E.is_broken() && E.internal_organs && E.internal_organs.len && sprob(15))
+					var/obj/item/organ/I = spick(E.internal_organs)
 					custom_pain("You feel broken bones moving in your [E.name]!", TRUE)
-					I.take_damage(rand(3,5))
+					I.take_damage(srand(3,5))
 
 				//Moving makes open wounds get infected much faster
 				if (E.wounds.len)
@@ -93,8 +93,8 @@
 		else if (E.is_malfunctioning())
 			//malfunctioning only happens intermittently so treat it as a missing limb when it procs
 			stance_damage += 2
-			if(prob(10))
-				visible_message("\The [src]'s [E.name] [pick("twitches", "shudders")] and sparks!")
+			if(sprob(10))
+				visible_message("\The [src]'s [E.name] [spick("twitches", "shudders")] and sparks!")
 				var/datum/effect/effect/system/spark_spread/spark_system = new ()
 				spark_system.set_up(5, FALSE, src)
 				spark_system.attach(src)
@@ -114,7 +114,7 @@
 	if (r_hand && istype(r_hand, /obj/item/weapon/cane))
 		stance_damage -= 2*/
 	// standing is poor
-	if(stance_damage >= 4 || (stance_damage >= 2 && prob(5)))
+	if(stance_damage >= 4 || (stance_damage >= 2 && sprob(5)))
 		if(!(lying || resting))
 			if(species && !(species.flags & NO_PAIN))
 				emote("scream")
@@ -161,7 +161,7 @@
 						continue
 					drop_from_inventory(r_hand)
 
-			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
+			var/emote_scream = spick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 			emote("me", TRUE, "[(species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
 
 		else if(E.is_malfunctioning())
@@ -188,7 +188,7 @@
 /mob/living/carbon/human/proc/handle_trace_chems()
 	//New are added for reagents to random organs.
 	for(var/datum/reagent/A in reagents.reagent_list)
-		var/obj/item/organ/O = pick(organs)
+		var/obj/item/organ/O = spick(organs)
 		O.trace_chemicals[A.name] = 100
 
 /mob/living/carbon/human/proc/sync_organ_dna()

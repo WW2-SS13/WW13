@@ -31,7 +31,7 @@
 	if (ticker && ticker.mode)
 		var/datum/game_mode/ww2/mode = ticker.mode
 		if (istype(mode) && mode.season == "WINTER")
-			var/obj/item/device/radio/radio = null
+			var/obj/item/radio/radio = null
 			if (istype(wear_suit, /obj/item/clothing/suit/radio_harness))
 				radio = s_store
 				remove_from_mob(wear_suit)
@@ -41,9 +41,9 @@
 					equip_to_slot_or_del(radio, slot_s_store)
 
 /datum/job/proc/equip_random_civilian_clothing(var/mob/living/carbon/human/H)
-	if (prob(33))
+	if (sprob(33))
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ1(H), slot_w_uniform)
-	else if (prob(50))
+	else if (sprob(50))
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ2(H), slot_w_uniform)
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ3(H), slot_w_uniform)

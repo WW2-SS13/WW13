@@ -1,7 +1,12 @@
+/obj/item/weapon/gun/projectile/revolver
+	move_delay = 1
+	fire_delay = 3
+
 /obj/item/weapon/gun/projectile/pistol
 	// less accurate than rifles against still targets, but better against moving targets
 	// less accurate than semiautos but with the same ratios
 	move_delay = 1
+	fire_delay = 3
 	accuracy_list = list(
 
 		// small body parts: head, hand, feet
@@ -51,6 +56,7 @@
 	accuracy_decrease_mod = 2.00
 	KD_chance = KD_CHANCE_LOW
 	stat = "pistol"
+	aim_miss_chance_divider = 2.00
 
 /obj/item/weapon/gun/projectile/pistol/attackby(obj/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/attachment/bayonet))
@@ -128,7 +134,6 @@
 	max_shells = 10
 	ammo_type = /obj/item/ammo_casing/c763x25mm_mauser
 	magazine_type = /obj/item/ammo_magazine/c763x25mm_mauser
-	fire_delay = 2
 	weight = 1.13
 
 /obj/item/weapon/gun/projectile/pistol/mauser/update_icon()

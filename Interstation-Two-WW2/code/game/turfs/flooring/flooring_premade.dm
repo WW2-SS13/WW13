@@ -237,13 +237,13 @@
 	sleep(-1)
 	//if(!air) make_air()
 //	air.adjust_gas("sleeping_agent", ATMOSTANK_NITROUSOXIDE)
-
+/*
 /turf/floor/cult
 	name = "engraved floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cult"
 	initial_flooring = /decl/flooring/reinforced/cult
-
+*/
 /turf/floor/tiled/dark
 	name = "floor"
 	icon_state = "dark"

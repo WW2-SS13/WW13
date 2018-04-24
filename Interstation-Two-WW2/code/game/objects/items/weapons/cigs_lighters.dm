@@ -23,7 +23,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else if(istype(A, /obj/item/weapon/flame))
 		var/obj/item/weapon/flame/F = A
 		return (F.lit)
-	else if(istype(A, /obj/item/device/assembly/igniter))
+	else if(istype(A, /obj/item/assembly/igniter))
 		return TRUE
 	return FALSE
 
@@ -189,7 +189,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			text = lightermes
 		else if(istype(W, /obj/item/weapon/weldingtool))
 			text = weldermes
-		else if(istype(W, /obj/item/device/assembly/igniter))
+		else if(istype(W, /obj/item/assembly/igniter))
 			text = ignitermes
 		text = replacetext(text, "USER", "[user]")
 		text = replacetext(text, "NAME", "[name]")
@@ -292,9 +292,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/weapon/cigbutt/New()
 	..()
-	pixel_x = rand(-10,10)
-	pixel_y = rand(-10,10)
-	transform = turn(transform,rand(0,360))
+	pixel_x = srand(-10,10)
+	pixel_y = srand(-10,10)
+	transform = turn(transform,srand(0,360))
 
 /obj/item/weapon/cigbutt/cigarbutt
 	name = "cigar butt"
@@ -390,7 +390,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(M.lit)
 			light("<span class='notice'>[user] lights their [name] with their [W].</span>")
 
-	else if(istype(W, /obj/item/device/assembly/igniter))
+	else if(istype(W, /obj/item/assembly/igniter))
 		light("<span class='notice'>[user] fiddles with [W], and manages to light their [name] with the power of science.</span>")
 
 	user.update_inv_wear_mask(0)
@@ -435,7 +435,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/weapon/flame/lighter/random
 	New()
-		icon_state = "lighter-[pick("r","c","y","g")]"
+		icon_state = "lighter-[spick("r","c","y","g")]"
 		item_state = icon_state
 		base_state = icon_state
 
@@ -449,7 +449,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			icon_state = "[base_state]on"
 			item_state = "[base_state]on"
 			if(!istype(src, /obj/item/weapon/flame/lighter/zippo) )
-				if(prob(5))
+				if(sprob(5))
 					user << "<span class='warning'>You burn yourself while lighting the lighter.</span>"
 					if (user.l_hand == src)
 						user.apply_damage(2,BURN,"l_hand")

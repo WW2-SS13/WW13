@@ -38,8 +38,8 @@ var/global/obj/map_metadata/map = null
 	icon = null
 	icon_state = null
 
-	if (prob(100 - round((100/(available_subfactions.len+1)))))
-		available_subfactions = list(available_subfactions[rand(1, available_subfactions.len)])
+	if (sprob(100 - round((100/(available_subfactions.len+1)))))
+		available_subfactions = list(available_subfactions[srand(1, available_subfactions.len)])
 	else
 		available_subfactions = list()
 

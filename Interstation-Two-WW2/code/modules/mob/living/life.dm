@@ -1,29 +1,35 @@
 /mob/living/var/next_weather_sound = -1
 /mob/living/Life()
-	set invisibility = FALSE
-	set background = BACKGROUND_ENABLED
 
 	..()
-
-	if (client)
-		if (world.time >= next_weather_sound)
-			var/area/A = get_area(src)
-			if (A.weather == WEATHER_RAIN)
-				src << sound('sound/ambience/rain.ogg', channel = 777)
-				next_weather_sound = world.time + 1500
-		else
-			var/area/A = get_area(src)
-			if (A.weather == WEATHER_NONE)
-				src << sound(null, channel = 777)
-				next_weather_sound = world.time
-
-	if (transforming)
-		return
 
 	if(!loc)
 		return
 
+	if (client)
+
+		var/near_rainy_area = FALSE
+		var/area/A = get_area(src)
+		if (A.weather == WEATHER_RAIN)
+			near_rainy_area = TRUE
+		else
+			for (var/turf/T in view(world.view, src))
+				var/area/T_area = get_area(T)
+				if (T_area.weather == WEATHER_RAIN)
+					near_rainy_area = TRUE
+
+		if (world.time >= next_weather_sound && near_rainy_area)
+			src << sound('sound/ambience/rain.ogg', channel = 778)
+			next_weather_sound = world.time + 1500
+		else if (world.time < next_weather_sound && !near_rainy_area)
+			src << sound(null, channel = 778)
+			next_weather_sound = world.time
+
+	if (transforming)
+		return
+
 	if(stat != DEAD)
+
 		//Breathing, if applicable
 		handle_breathing()
 
