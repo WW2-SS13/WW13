@@ -126,7 +126,7 @@
 ////////////
 /obj/item/weapon/storage/fancy/cigarettes
 	name = "cigarette packet"
-	desc = "The most popular brand of Space Cigarettes, sponsors of the Space Olympics."
+	desc = "The most popular brand of Space Cigarettes, sponsors of the Olympics."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigpacket"
 	item_state = "cigpacket"
@@ -210,7 +210,7 @@
 /obj/item/weapon/storage/fancy/cigar/New()
 	..()
 	flags |= NOREACT
-	for(var/i = TRUE to storage_slots)
+	for(var/i = 1 to storage_slots)
 		new /obj/item/clothing/mask/smokable/cigarette/cigar(src)
 	create_reagents(15 * storage_slots)
 

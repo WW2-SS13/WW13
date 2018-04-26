@@ -199,7 +199,7 @@
 /datum/language/proc/get_spoken_verb(var/msg_end)
 	switch(msg_end)
 		if("!")
-			return exclaim_verb
+			return spick("exclaims", "shouts", "yells")//exclaim_verb
 		if("?")
 			return ask_verb
 	return speech_verb

@@ -86,7 +86,9 @@ var/list/preferences_datums = list()
 	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
 
-	var/disabilities = FALSE
+	var/disabilities = 0
+
+	var/list/pockets = list(null, null)
 
 	var/client/client = null
 	var/client_ckey = null

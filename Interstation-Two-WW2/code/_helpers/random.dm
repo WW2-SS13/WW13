@@ -12,8 +12,7 @@
 
 var/srand_calls = 0
 /proc/srand(a, b)
-	var/seed = (projectile_process && projectile_process.ticks) ? projectile_process.ticks : (round(world.time)+world.timeofday)
-	seed += srand_calls
+	var/seed = (round(world.time)+world.timeofday)+(projectile_process ? projectile_process.ticks : 0)+srand_calls
 	++srand_calls
 	rand_seed(seed)
 	return rand(a, b)

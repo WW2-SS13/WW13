@@ -1,63 +1,47 @@
 /datum/language/russian
 	name = "Russian"
-	desc = "SLAVA SOVETSKOMU SOYUZU!"
-	speech_verb = "says"
-	whisper_verb = "whispers"
+	desc = "slava sovyetskomu soyuzu!"
 	key = "r"
 	colour = "Russian"
 	flags = RESTRICTED | COMMON_VERBS
-	syllables = list("ал", "ан", "бы", "ве", "во", "го", "де", "ел", "ен", "ер", "ет", "ка", "ко", "ла", "ли", "ло", "ль", "на", "не", "ни", "но", "ов", "ол", "он", "ор", "слог", "от", "по", "пр", "ра", "ре", "ро", "ст", "та", "те", "то", "ть", "ать", "был", "вер", "его", "ени", "енн", "ест", "как", "льн", "ова", "ого", "оль", "оро", "ост", "ото", "при", "про", "ста", "ств", "тор", "что", "это")
+	syllables = list("al", "an", "bi", "vye", "vo", "go", "dye", "yel", "?n", "yer", "yet", "ka", "ko", "la", "ly", "lo", "l", "na", "nye", "ny", "no", "ov", "ol", "on", "or", "slog", "ot", "po", "pr", "ra", "rye", "ro", "st", "ta", "tye", "to", "t", "at", "bil", "vyer", "yego", "yeny", "yenn", "yest", "kak", "ln", "ova", "ogo", "?l", "oro", "ost", "oto", "pry", "pro", "sta", "stv", "tor", "chto", "eto")
 
 /datum/language/ukrainian
 	name = "Ukrainian"
-	desc = "SMERT' DO RADYANS'KOHO SOYUZU"
-	speech_verb = "says"
-	whisper_verb = "whispers"
+	desc = "Smert' do radyans'koho soyuzu!"
 	key = "u"
 	colour = "Russian"
 	flags = RESTRICTED | COMMON_VERBS
-	syllables = list("ал", "ан", "бы", "ве", "во", "го", "де", "ел", "ен", "ер", "ет", "ка", "ко", "ла", "ли", "ло", "ль", "на", "не", "ни", "но", "ов", "ол", "он", "ор", "слог", "от", "по", "пр", "ра", "ре", "ро", "ст", "та", "те", "то", "ть", "ать", "был", "вер", "его", "ени", "енн", "ест", "как", "льн", "ова", "ого", "оль", "оро", "ост", "ото", "при", "про", "ста", "ств", "тор", "что", "это")
+	syllables = list("al", "an", "bi", "vye", "vo", "go", "dye", "yel", "?n", "yer", "yet", "ka", "ko", "la", "ly", "lo", "l", "na", "nye", "ny", "no", "ov", "ol", "on", "or", "slog", "ot", "po", "pr", "ra", "rye", "ro", "st", "ta", "tye", "to", "t", "at", "bil", "vyer", "yego", "yeny", "yenn", "yest", "kak", "ln", "ova", "ogo", "?l", "oro", "ost", "oto", "pry", "pro", "sta", "stv", "tor", "chto", "eto")
 
-/datum/language/russian/get_spoken_verb(var/msg_end)
-	switch(msg_end)
-		if("!")
-			return spick("exclaims", "shouts", "yells") //TODO: make the basic proc handle lists of verbs.
-		if("?")
-			return ask_verb
-	return speech_verb
+/datum/language/polish
+	name = "Polish"
+	desc = "Smierc dla ciemiezcуw!"
+	key = "u"
+	colour = "Russian"
+	flags = RESTRICTED | COMMON_VERBS
+	syllables = list("al", "an", "bi", "vye", "vo", "go", "dye", "yel", "?n", "yer", "yet", "ka", "ko", "la", "ly", "lo", "l", "na", "nye", "ny", "no", "ov", "ol", "on", "or", "slog", "ot", "po", "pr", "ra", "rye", "ro", "st", "ta", "tye", "to", "t", "at", "bil", "vyer", "yego", "yeny", "yenn", "yest", "kak", "ln", "ova", "ogo", "?l", "oro", "ost", "oto", "pry", "pro", "sta", "stv", "tor", "chto", "eto")
 
 /datum/language/german
 	name = "German"
-	desc = "ZIEG HEIL!"
-	speech_verb = "says"
-	whisper_verb = "whispers"
+	desc = "Sieg heil!"
 	key = "g"
 	colour = "english"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = list("al", "an", "ar", "as", "at", "ea", "ed", "en", "er", "es", "ha", "he", "hi", "in", "is", "it", "le", "me", "nd", "ne", "ng", "nt", "on", "or", "ou", "re", "se", "st", "te", "th", "ti", "to", "ve", "wa", "all", "and", "are", "but", "ent", "era", "ere", "eve", "for", "had", "hat", "hen", "her", "hin", "his", "ing", "ion", "ith", "not", "ome", "oul", "our", "sho", "ted", "ter", "tha", "the", "thi", "tio", "uld", "ver", "was", "wit", "you")
 
-/datum/language/german/get_spoken_verb(var/msg_end)
-	switch(msg_end)
-		if("!")
-			return spick("exclaims", "shouts", "yells") //TODO: make the basic proc handle lists of verbs.
-		if("?")
-			return ask_verb
-	return speech_verb
-
 /datum/language/italian
 	name = "Italian"
 	desc = "Mama mia!"
-	speech_verb = "says"
-	whisper_verb = "whispers"
 	key = "i"
 	colour = "english"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = list("pi", "za", "pe", "pp", "er", "on", "i", "ma", "mia", "na", "va", "gi")
 
-/datum/language/italian/get_spoken_verb(var/msg_end)
-	switch(msg_end)
-		if("!")
-			return spick("exclaims", "shouts", "yells") //TODO: make the basic proc handle lists of verbs.
-		if("?")
-			return ask_verb
-	return speech_verb
+/datum/language/romanian
+	name = "Romanian"
+	desc = "Mama mea!"
+	key = "r"
+	colour = "english"
+	flags = RESTRICTED | COMMON_VERBS
+	syllables = list("za", "pe", "pp", "er", "on", "i", "ma", "mia", "na", "va", "gi", "vye", "vo", "go", "dye")

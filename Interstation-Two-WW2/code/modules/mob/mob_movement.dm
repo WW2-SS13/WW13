@@ -464,7 +464,7 @@
 			if("run")
 				mob.velocity = min(mob.velocity+1, 15)
 				mob.velocity_lastdir = direct
-				move_delay += (mob.get_run_delay()/mob.movement_speed_multiplier) + standing_on_snow
+				move_delay += mob.get_run_delay() + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.02
@@ -473,7 +473,7 @@
 					if (H.bodytemperature < H.species.body_temperature)
 						H.bodytemperature += 0.66
 			if("walk")
-				move_delay += (mob.get_walk_delay()/mob.movement_speed_multiplier) + standing_on_snow
+				move_delay += mob.get_walk_delay() + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.002
@@ -641,6 +641,8 @@
 		moving = FALSE
 
 		mob.last_movement = world.time
+
+		move_delay /= mob.movement_speed_multiplier
 
 		return .
 
