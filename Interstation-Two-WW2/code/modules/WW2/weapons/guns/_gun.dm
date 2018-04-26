@@ -107,7 +107,6 @@
 		firer = loc
 	else if (isturf(loc))
 		if (istype(src, /obj/item/weapon/gun/projectile/automatic/stationary))
-			var/obj/item/weapon/gun/projectile/automatic/stationary/S = src
 			for (var/mob/living/L in loc)
 				if (L.using_MG == src)
 					firer = L
