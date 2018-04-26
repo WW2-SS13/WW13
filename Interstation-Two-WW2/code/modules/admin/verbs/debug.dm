@@ -151,7 +151,7 @@
 		if(!(A.type in areas_with_RC))
 			areas_with_RC.Add(A.type)
 */
-	for(var/obj/machinery/light/L in world)
+	for(var/obj/structure/light/L in world)
 		var/area/A = get_area(L)
 		if(!(A.type in areas_with_light))
 			areas_with_light.Add(A.type)

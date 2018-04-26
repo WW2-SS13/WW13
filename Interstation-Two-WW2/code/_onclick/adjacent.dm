@@ -134,9 +134,10 @@ Quick adjacency (to turf):
 	This can be safely removed if border firedoors are ever moved to be on top of doors
 	so they can be interacted with without opening the door.
 */
+/*
 /obj/machinery/door/Adjacent(var/atom/neighbor)
 	return ..()
-
+*/
 
 /*
 	This checks if you there is uninterrupted airspace between that turf and this one.

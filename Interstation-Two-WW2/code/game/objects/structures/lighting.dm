@@ -1,6 +1,6 @@
 // The lighting system
 //
-// consists of light fixtures (/obj/machinery/light) and light tube/bulb items (/obj/item/weapon/light)
+// consists of light fixtures (/obj/structure/light) and light tube/bulb items (/obj/item/weapon/light)
 
 
 // status values shared between lighting fixtures and items
@@ -10,7 +10,7 @@
 #define LIGHT_BURNED 3
 #define LIGHT_BULB_TEMPERATURE 400 //K - used value for a 60W bulb
 
-/obj/machinery/light_construct // Добавить понятие "базовая иконка"
+/obj/structure/light_construct // Добавить понятие "базовая иконка"
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
@@ -20,16 +20,16 @@
 	var/stage = TRUE
 	var/fixture_type = "tube"
 	var/sheets_refunded = 2
-	var/obj/machinery/light/newlight = null
+	var/obj/structure/light/newlight = null
 
-/obj/machinery/light_construct/New()
+/obj/structure/light_construct/New()
 	..()
 	if (fixture_type == "bulb")
 		icon_state = "bulb-construct-stage1"
-	else if (istype(src, /obj/machinery/light_construct/floor))
+	else if (istype(src, /obj/structure/light_construct/floor))
 		icon_state = "floortube-construct-stage1"
 
-/obj/machinery/light_construct/examine(mob/user)
+/obj/structure/light_construct/examine(mob/user)
 	if(!..(user, 2))
 		return
 
@@ -44,7 +44,7 @@
 			user << "The casing is closed."
 			return
 
-/obj/machinery/light_construct/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/light_construct/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	add_fingerprint(user)
 	if (istype(W, /obj/item/weapon/wrench))
 		if (stage == TRUE)
@@ -70,7 +70,7 @@
 		stage = TRUE
 		switch(fixture_type)
 			if ("tube")
-				if (!istype(src, /obj/machinery/light_construct/floor)) // TODO Переделать это
+				if (!istype(src, /obj/structure/light_construct/floor)) // TODO Переделать это
 					icon_state = "tube-construct-stage1"
 				else
 					icon_state = "floortube-construct-stage1"
@@ -88,7 +88,7 @@
 		if (coil.use(1))
 			switch(fixture_type)
 				if ("tube")
-					if (!istype(src, /obj/machinery/light_construct/floor)) // TODO Переделать это
+					if (!istype(src, /obj/structure/light_construct/floor)) // TODO Переделать это
 						icon_state = "tube-construct-stage2"
 					else
 						icon_state = "floortube-construct-stage2"
@@ -114,12 +114,12 @@
 			switch(fixture_type)
 
 				if("tube")
-					if (!istype(src, /obj/machinery/light_construct/floor))
-						newlight = new /obj/machinery/light/built(loc)
+					if (!istype(src, /obj/structure/light_construct/floor))
+						newlight = new /obj/structure/light/built(loc)
 					else
-						newlight = new /obj/machinery/light/floor/built(loc)
+						newlight = new /obj/structure/light/floor/built(loc)
 				if ("bulb")
-					newlight = new /obj/machinery/light/small/built(loc)
+					newlight = new /obj/structure/light/small/built(loc)
 
 			newlight.dir = dir
 			transfer_fingerprints_to(newlight)
@@ -127,7 +127,7 @@
 			return
 	..()
 
-/obj/machinery/light_construct/small
+/obj/structure/light_construct/small
 	name = "small light fixture frame"
 	desc = "A small light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
@@ -138,13 +138,13 @@
 	fixture_type = "bulb"
 	sheets_refunded = TRUE
 
-/obj/machinery/light_construct/floor //floorlight
+/obj/structure/light_construct/floor //floorlight
 	name = "floorlight fixture frame"
 	icon_state = "floortube-construct-stage1"
 	layer = 2.5
 
 // the standard tube light fixture
-/obj/machinery/light
+/obj/structure/light
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
 	var/base_state = "tube"		// base description and icon_state
@@ -173,13 +173,13 @@
 	var/atmosalarmed = FALSE
 // the smaller bulb light fixture
 
-/obj/machinery/light/floor
+/obj/structure/light/floor
 	name = "floorlight fixture"
 	base_state = "floortube"
 	icon_state = "floortube1"
 	layer = 2.5
 
-/obj/machinery/light/floor/streetlight
+/obj/structure/light/floor/streetlight
 	icon = 'icons/obj/lighting_32x64.dmi'
 	name = "streetlight"
 	base_state = "streetlight"
@@ -189,7 +189,7 @@
 	density = TRUE
 	layer = MOB_LAYER + 0.5
 
-/obj/machinery/light/floor/streetlight/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/light/floor/streetlight/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (istype(mover, /obj/effect/effect/smoke))
 		return TRUE
 	else if (istype(mover, /obj/item/projectile))
@@ -201,7 +201,7 @@
 	else
 		return ..()
 
-/obj/machinery/light/floor/streetlight/ex_act(severity)
+/obj/structure/light/floor/streetlight/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -213,7 +213,7 @@
 		if(3.0)
 			return
 
-/obj/machinery/light/small
+/obj/structure/light/small
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
@@ -223,40 +223,40 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
 
-/obj/machinery/light/small/emergency
+/obj/structure/light/small/emergency
 	brightness_range = 6
 	brightness_power = 2
 	brightness_color = "#da0205"
 
-/obj/machinery/light/small/red
+/obj/structure/light/small/red
 	brightness_range = 5
 	brightness_power = TRUE
 	brightness_color = "#da0205"
 
-/obj/machinery/light/spot
+/obj/structure/light/spot
 	name = "spotlight"
 	fitting = "large tube"
 	light_type = /obj/item/weapon/light/tube/large
 	brightness_range = 12
 	brightness_power = 4
 
-/obj/machinery/light/built/New()
+/obj/structure/light/built/New()
 	status = LIGHT_EMPTY
 	update(0)
 	..()
 
-/obj/machinery/light/small/built/New()
+/obj/structure/light/small/built/New()
 	status = LIGHT_EMPTY
 	update(0)
 	..()
 
-/obj/machinery/light/floor/built/New() //WHAT IT IS?!?!??!?!?
+/obj/structure/light/floor/built/New() //WHAT IT IS?!?!??!?!?
 	status = LIGHT_EMPTY
 	update(0)
 	..()
 
 // create a new lighting fixture
-/obj/machinery/light/New()
+/obj/structure/light/New()
 	..()
 
 	if (config.lighting_is_rustic)
@@ -277,14 +277,14 @@
 		spawn(1)
 			update(0)
 
-/obj/machinery/light/Destroy()
+/obj/structure/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
 		on = FALSE
 //		A.update_lights()
 	..()
 
-/obj/machinery/light/update_icon()
+/obj/structure/light/update_icon()
 
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
@@ -305,7 +305,7 @@
 			on = FALSE
 	return
 
-/obj/machinery/light/proc/set_blue()
+/obj/structure/light/proc/set_blue()
 	if(on)
 		if(cmptext(base_state,"tube"))
 			atmosalarmed = TRUE
@@ -313,7 +313,7 @@
 			brightness_color = "#6D6DFC"
 		update()
 
-/obj/machinery/light/proc/set_red()
+/obj/structure/light/proc/set_red()
 	if(on)
 		if(cmptext(base_state,"tube"))
 			firealarmed = TRUE
@@ -321,7 +321,7 @@
 			brightness_color = "#FF3030"
 		update()
 
-/obj/machinery/light/proc/reset_color()
+/obj/structure/light/proc/reset_color()
 	if(on)
 		if(cmptext(base_state,"tube"))
 			firealarmed = FALSE
@@ -329,12 +329,12 @@
 			brightness_color = "#FFFFFF"
 		update()
 
-/obj/machinery/light/proc/fix_TOD_lights()
+/obj/structure/light/proc/fix_TOD_lights()
 	if (on)
 		set_light(brightness_range, brightness_power, brightness_color)
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(var/trigger = TRUE, var/fastupdate = FALSE, var/nosound = FALSE)
+/obj/structure/light/proc/update(var/trigger = TRUE, var/fastupdate = FALSE, var/nosound = FALSE)
 
 	update_icon()
 
@@ -379,7 +379,7 @@
 	if(on != on_gs)
 		on_gs = on
 
-/obj/machinery/light/attack_generic(var/mob/user, var/damage)
+/obj/structure/light/attack_generic(var/mob/user, var/damage)
 	if(!damage)
 		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
@@ -394,12 +394,12 @@
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/proc/seton(var/s, var/trigger = TRUE, var/fastupdate = FALSE, var/nosound = FALSE)
+/obj/structure/light/proc/seton(var/s, var/trigger = TRUE, var/fastupdate = FALSE, var/nosound = FALSE)
 	on = (s && status == LIGHT_OK)
 	update(trigger, fastupdate, nosound)
 
 // examine verb
-/obj/machinery/light/examine(mob/user)
+/obj/structure/light/examine(mob/user)
 	switch(status)
 		if(LIGHT_OK)
 			user << "[desc] It is turned [on? "on" : "off"]."
@@ -414,7 +414,7 @@
 
 // attack with item - insert light (if right type), otherwise try to break the light
 
-/obj/machinery/light/attackby(obj/item/W, mob/user)
+/obj/structure/light/attackby(obj/item/W, mob/user)
 
 	// attempt to insert light
 	if(istype(W, /obj/item/weapon/light))
@@ -476,14 +476,14 @@
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, TRUE)
 			user.visible_message("[user.name] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
-			var/obj/machinery/light_construct/newlight = null
+			var/obj/structure/light_construct/newlight = null
 			switch(fitting)
 				if("tube")
-					newlight = new /obj/machinery/light_construct(loc)
+					newlight = new /obj/structure/light_construct(loc)
 					newlight.icon_state = "tube-construct-stage2"
 
 				if("bulb")
-					newlight = new /obj/machinery/light_construct/small(loc)
+					newlight = new /obj/structure/light_construct/small(loc)
 					newlight.icon_state = "bulb-construct-stage2"
 			newlight.dir = dir
 			newlight.stage = 2
@@ -505,11 +505,11 @@
 
 // returns whether this light has power
 // true if area has power and lightswitch is on
-/obj/machinery/light/proc/has_power()
+/obj/structure/light/proc/has_power()
 	var/area/A = get_area(src)
 	return A && A.lightswitch && (!A.requires_power || A.power_light)
 
-/obj/machinery/light/proc/flicker(var/amount = srand(10, 20))
+/obj/structure/light/proc/flicker(var/amount = srand(10, 20))
 	if(flickering) return
 	flickering = TRUE
 	spawn(0)
@@ -525,7 +525,7 @@
 
 // attack with hand - remove tube/bulb
 // if hands aren't protected and the light is on, burn the player
-/obj/machinery/light/attack_hand(mob/user)
+/obj/structure/light/attack_hand(mob/user)
 
 	add_fingerprint(user)
 
@@ -588,7 +588,7 @@
 	update()
 
 
-/obj/machinery/light/attack_tk(mob/user)
+/obj/structure/light/attack_tk(mob/user)
 	if(status == LIGHT_EMPTY)
 		user << "There is no [fitting] in this light."
 		return
@@ -615,7 +615,7 @@
 
 // break the light and make sparks if was on
 
-/obj/machinery/light/proc/broken(var/skip_sound_and_sparks = FALSE)
+/obj/structure/light/proc/broken(var/skip_sound_and_sparks = FALSE)
 	if(status == LIGHT_EMPTY)
 		return
 
@@ -629,7 +629,7 @@
 	status = LIGHT_BROKEN
 	update()
 
-/obj/machinery/light/proc/fix()
+/obj/structure/light/proc/fix()
 	if(status == LIGHT_OK)
 		return
 	status = LIGHT_OK
@@ -639,7 +639,7 @@
 // explosion effect
 // destroy the whole light fixture or just shatter it
 
-/obj/machinery/light/ex_act(severity)
+/obj/structure/light/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -661,26 +661,26 @@
 #define LIGHTING_POWER_FACTOR 20		//20W per unit luminosity
 
 /*
-/obj/machinery/light/process()
+/obj/structure/light/process()
 	if(on)
 		use_power(light_range * LIGHTING_POWER_FACTOR, LIGHT)
 
 */
 // called when area power state changes
 /*
-/obj/machinery/light/power_change()
+/obj/structure/light/power_change()
 	spawn(10)
 		seton(has_power())
 */
 // called when on fire
 
-/obj/machinery/light/fire_act(temperature)
+/obj/structure/light/fire_act(temperature)
 	if(sprob(max(0, temperature - 673)))   //0% at <400C, 100% at >500C
 		broken()
 
 // explode the light
 
-/obj/machinery/light/proc/explode()
+/obj/structure/light/proc/explode()
 	var/turf/T = get_turf(loc)
 	spawn(0)
 		broken()	// break it first to give a warning
@@ -691,7 +691,7 @@
 
 // the light item
 // can be tube or bulb subtypes
-// will fit into empty /obj/machinery/light of the corresponding type
+// will fit into empty /obj/structure/light of the corresponding type
 
 /obj/item/weapon/light
 	icon = 'icons/obj/lighting.dmi'
@@ -800,7 +800,7 @@
 
 /obj/item/weapon/light/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
-	if(istype(target, /obj/machinery/light))
+	if(istype(target, /obj/structure/light))
 		return
 	if(user.a_intent != I_HURT)
 		return

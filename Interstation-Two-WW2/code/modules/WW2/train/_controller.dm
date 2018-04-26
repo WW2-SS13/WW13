@@ -306,8 +306,8 @@
 							a.invisibility = 100
 							a.density = FALSE
 							a.opacity = FALSE
-						if (istype(a, /obj/machinery/light))
-							var/obj/machinery/light/L = a
+						if (istype(a, /obj/structure/light))
+							var/obj/structure/light/L = a
 							L.on = FALSE
 							L.update(0, TRUE, TRUE)
 
@@ -330,8 +330,8 @@
 						a.invisibility = FALSE
 						a.density = a.initial_density
 						a.opacity = a.initial_opacity
-					if (istype(a, /obj/machinery/light))
-						var/obj/machinery/light/L = a
+					if (istype(a, /obj/structure/light))
+						var/obj/structure/light/L = a
 						L.on = TRUE
 						L.update(0, TRUE, TRUE)
 					if (istype(a, /obj/structure/simple_door/key_door/anyone/train))

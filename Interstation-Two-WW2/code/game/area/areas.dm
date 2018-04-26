@@ -41,7 +41,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/used_environ = FALSE
 
 	var/has_gravity = TRUE
-	var/obj/machinery/power/apc/apc = null
+//	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/air_doors_activated = FALSE
@@ -200,8 +200,8 @@ var/list/ghostteleportlocs = list()
 	if ((fire || eject) && (!requires_power||power_environ))//If it doesn't require power, can still activate this proc.
 		if(fire)
 			//icon_state = "blue"
-			for(var/obj/machinery/light/L in src)
-				if(istype(L, /obj/machinery/light/small))
+			for(var/obj/structure/light/L in src)
+				if(istype(L, /obj/structure/light/small))
 					continue
 				L.set_red()
 	/*	else if (atmosalm == 2)
@@ -218,8 +218,8 @@ var/list/ghostteleportlocs = list()
 	else
 	//	new lighting behaviour with obj lights
 		icon_state = null
-		for(var/obj/machinery/light/L in src)
-			if(istype(L, /obj/machinery/light/small))
+		for(var/obj/structure/light/L in src)
+			if(istype(L, /obj/structure/light/small))
 				continue
 			L.reset_color()
 
