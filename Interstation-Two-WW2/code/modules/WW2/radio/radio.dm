@@ -451,7 +451,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 /obj/item/radio/intercom/a7b/New()
 	..()
 	internal_channels = command_soviet_channels.Copy()
-
+/*
 /obj/item/radio/intercom/a7b/process()
 	if(world.time - last_tick > 30 || last_tick == -1)
 		last_tick = world.time
@@ -469,7 +469,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 			icon_state = "a7b"
 		else
 			icon_state = "a7b"
-
+*/
 /obj/item/radio/rbs
 	name = "RBS1"
 	icon_state = "rbs1"
@@ -504,7 +504,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 /obj/item/radio/intercom/fu2/New()
 	..()
 	internal_channels = command_german_channels.Copy()
-
+/*
 /obj/item/radio/intercom/fu2/process()
 	if(world.time - last_tick > 30 || last_tick == -1)
 		last_tick = world.time
@@ -522,7 +522,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 			icon_state = "fud2"
 		else
 			icon_state = "fud2"
-
+*/
 // german
 
 /obj/item/radio/feldfu

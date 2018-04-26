@@ -668,6 +668,7 @@
 "mR" = (/turf/wall/wood,/area/prishtina/houses/ger_six)
 "mS" = (/turf/wall/wood,/area/prishtina/houses/ger_five)
 "mT" = (/turf/wall/wood,/area/prishtina/houses/nml_one)
+"mU" = (/obj/structure/table/wood,/obj/item/radio/intercom/a7b,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
 "mV" = (/turf/wall/wood,/area/prishtina/houses/nml_two)
 "mW" = (/obj/structure/bookcase,/obj/item/weapon/reagent_containers/food/snacks/applepie,/obj/item/weapon/reagent_containers/food/snacks/applepie,/turf/floor/wood,/area/prishtina/houses/nml_two)
 "mX" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice{pixel_w = -7},/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice{pixel_w = 7},/turf/floor/wood,/area/prishtina/houses/nml_three)
@@ -801,6 +802,7 @@
 "pv" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector2)
 "pw" = (/turf/wall/wood,/area/prishtina/houses/nml_twentyone)
 "px" = (/obj/structure/table/wood,/obj/item/weapon/storage/firstaid/regular,/obj/machinery/light/small{dir = 8},/obj/item/weapon/storage/box/cups,/turf/floor/wood,/area/prishtina/german/cafeteria)
+"py" = (/obj/structure/table/wood,/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTH)"; icon_state = "spline_fancy"; dir = 1},/obj/machinery/light/small{dir = 1},/obj/item/radio/intercom/a7b,/turf/floor/carpet,/area/prishtina/soviet/small_map/soviet_command_center)
 "pz" = (/obj/structure/table/wood,/obj/item/weapon/flame/candle,/obj/item/weapon/pen,/turf/floor/wood,/area/prishtina/german/cafeteria)
 "pA" = (/obj/structure/closet/crate/mortar_shells,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/soviet/small_map/main_area)
 "pB" = (/obj/effect/landmark{name = "JoinLateHeer"},/obj/structure/window/sandbag,/turf/floor/wood,/area/prishtina/german/gearing)
@@ -815,6 +817,7 @@
 "pK" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/barbwire{tag = "icon-barbwire (NORTH)"; icon_state = "barbwire"; dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector2)
 "pL" = (/obj/effect/landmark{name = "JoinLateRAMP"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/mparea)
 "pM" = (/obj/effect/floor_decal/industrial/outline/yellow,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory/room3)
+"pN" = (/obj/structure/table/wood,/obj/item/radio/intercom/a7b,/turf/floor/carpet,/area/prishtina/soviet/small_map/soviet_command_center)
 "pO" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
 "pP" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/machinery/light/small,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory)
 "pQ" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/bed/chair/wheelchair,/turf/floor/plating/cobblestone/vertical,/area/prishtina/german/armory/room3)
@@ -1743,7 +1746,6 @@
 "NC" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTH)"; icon_state = "spline_fancy"; dir = 1},/obj/machinery/light/small{dir = 1},/turf/floor/carpet,/area/prishtina/soviet/small_map/soviet_command_center)
 "ND" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTH)"; icon_state = "spline_fancy"; dir = 1},/turf/floor/carpet,/area/prishtina/soviet/small_map/soviet_command_center)
 "NF" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/turf/floor/carpet,/area/prishtina/soviet/small_map/soviet_command_center)
-"NG" = (/obj/structure/table/wood,/turf/floor/carpet,/area/prishtina/soviet/small_map/soviet_command_center)
 "NH" = (/turf/floor/carpet,/area/prishtina/soviet/small_map/soviet_command_center)
 "NJ" = (/obj/effect/floor_decal/spline/fancy/wood{dir = 4; icon_state = "spline_fancy"; tag = "icon-spline_fancy (WEST)"},/turf/floor/carpet,/area/prishtina/soviet/small_map/soviet_command_center)
 "NK" = (/obj/structure/bed/chair/wood/red{icon_state = "wooden_chair_red"; dir = 1},/obj/effect/landmark{name = "JoinLateRASO"},/turf/floor/carpet,/area/prishtina/soviet/small_map/soviet_command_center)
@@ -1769,7 +1771,6 @@
 "Of" = (/obj/skybox{ID = "house-1-z1"},/turf/floor/plating/cobblestone/vertical,/area/prishtina/no_mans_land/sector4)
 "Oh" = (/obj/structure/bed,/obj/item/weapon/bedsheet/hop,/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHWEST)"; icon_state = "spline_fancy"; dir = 9},/turf/floor/carpet,/area/prishtina/soviet/small_map/soviet_command_center)
 "Oi" = (/obj/structure/oven,/turf/floor/wood,/area/prishtina/houses/sov_thirteen)
-"Ok" = (/obj/structure/table/wood,/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTH)"; icon_state = "spline_fancy"; dir = 1},/obj/machinery/light/small{dir = 1},/turf/floor/carpet,/area/prishtina/soviet/small_map/soviet_command_center)
 "Ol" = (/obj/structure/simple_door/key_door/soviet/QM,/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
 "Oo" = (/obj/structure/simple_door/key_door/soviet/QM,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
 "Op" = (/obj/snow_maker,/obj/skybox{ID = "house-1-z1"},/turf/floor/plating/road,/area/prishtina/no_mans_land/sector4)
@@ -1942,7 +1943,6 @@
 "TS" = (/obj/structure/vending/sovietequipment,/obj/machinery/light/small{dir = 8},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/gearing)
 "TU" = (/obj/structure/simple_door/key_door/soviet,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/gearing)
 "TX" = (/obj/structure/closet/crate/flares_ammo,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
-"Ua" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
 "Ub" = (/obj/structure/bed/chair/wood{dir = 1},/obj/effect/landmark{name = "JoinLateRAQM"},/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
 "Uc" = (/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
 "Ud" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/item/weapon/gun/projectile/minigun/kord/maxim,/turf/floor/wood,/area/prishtina/soviet/small_map/inside/armory)
@@ -2028,11 +2028,11 @@ gfhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNw
 gfhAjKkBkGkBkGebninBqzqBqVqWqVrbrbrfrgrihANwMFMFMFMFMFMFMFMFMFNwMMMMMMMMMMMMMMMMMMNwNwNwNwNwNwNwNwNwNwNwNwNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNwNwNwNwNwNwNwNwNwNwNwNwNwNvNvNvNvNvNvNvNvNvNvNwbAbTbTbTbTbTbTbAbAbANwNvNwededOVRYRZRWPkRJRJRJRJONedededededededNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
 gfhAggggggggggggnirbrjrbrbqWqVrbrkqWrtrghANwMFMGMGMGetMGMGMIMFNwMMMOMOMOMPMOMOMQMMNwMUMUMUMUMUMUMUMUMUMUMUNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNwNANANANANANANANANANANANwNvNvNvNvNvNvNvNvNvNvNwbCfzfzbTfzfzbTfzfzbCNwNvNwededONRYRVRWPkRJScScRJONedededededededNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
 gfhAkGkBkGkBkGggnirbrbrbrvqWqVrbtUqWqWqWhANwMFMGMKMGMKMGMKMGMFNwMMMOMRMOMRMOMRMOMMNwMUMVMWMUMWMVMWMUMWMVMUNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNANBNCNDNCSBNCNDNCdZNANwNvNvNvNvNvNvNvNvNvNvNwbCbTbTbTbTbTbTbTbTbCNwNvNwededONSeRVRWONRJeXRJRJONedededededededNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
-gfhAeaggggggggeaniHUJsrbrbqWqVrbrvqWKQLOhANwMFMGMKMGMKMGMKMGMFNwMMMOMRMOMRMOMRMOMMNwMUMYMWMZMWMWMWNaMWMYMUNwNgNgNgNgNgNgNgNwNnNnNnNnNnNnNnNwNANFNGNGNHNxNHNGNGNJNANwNvNvNvNvNvNvNvNvNvNvNwbAfEbTbTbTbTbTbTjTbANwNvNwededONSgfaSiONRJSjSkRJONedededededededNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
+gfhAeaggggggggeaniHUJsrbrbqWqVrbrvqWKQLOhANwMFMGMKMGMKMGMKMGMFNwMMMOMRMOMRMOMRMOMMNwMUMYMWMZMWMWMWNaMWMYMUNwNgNgNgNgNgNgNgNwNnNnNnNnNnNnNnNwNANFpNpNNHNxNHpNpNNJNANwNvNvNvNvNvNvNvNvNvNvNwbAfEbTbTbTbTbTbTjTbANwNvNwededONSgfaSiONRJSjSkRJONedededededededNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
 gfLPhzhzhzhzLUhzhzqWqWqWLWqWqWqWLWqWMErbhANwMFMGMKMGMKMGMKMGMFNwMMMOMRMOMRMOMRMOMMNwMUMWMWMUMWMWMWMUMWMWMUNwNgNhNkNjNkNhNgNwNnNoNpNqNpNoNnNwNANFNKNKNHNHNHNKNKNJNANwNvNvNvNvNvNvNvNvNvNvNwbAkrkrbTkUkUbTkUkUbANwNvNwededONONONONONONONONONONedededededededNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
 gfniLYLZMdLZggMehAMfMgMgrbqWMhMjrbqWqWLWhANwMFMGMKMGMKMGMKMGMFNwMMMOMRMOMRMOMRMOMMNwMUMUMUMUMWNbMWMUMUMUMUNwNgNhNkNkNkNhNgNwNnNoNpNpNpNoNnNwNANFNHNLNLNLNHNLfNfUNANwNvNvNvNvNvNvNvNvNvNvNwbCbTbTbTbTbTbTbTbTbCNwNvNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
 gfniggggggggggggMlrbrbrbrvqWrbrbrbrbqzrbhANwMFMGMKMGMKMGMKMGMFNwMMMOMRMOMRMOMRMOMMNwMUMVMWMUMWMWMWMUMWMVMUNwNgNhNkNlNkNhNgNwNnNoNpNtNpNoNnNwNANNNONANANAOdNANANANANwNvNvNvNvNvNvNvNvNvNvNwbCbTbTbTbTbTbTbTbTbCNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
-gfniggggggggggggMmrbrbrbrbLWrbrbrbrbrbrbhANwMFMGMKMGMKMGMKMGMFNwMMMOMRMOMRMOMRMOMMNwMUMYMWNdMWMWMWNeMWMYMUNwNgNhNkNkNkNhNgNwNnNoNpNpNpNoNnNwNANFNHNAOhNDNHNxOkOwNANwNvNvNvNvNvNvNvNvNvNvNwbAlnlnbTlqlqbTlslsbANwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
+gfniggggggggggggMmrbrbrbrbLWrbrbrbrbrbrbhANwMFMGMKMGMKMGMKMGMFNwMMMOMRMOMRMOMRMOMMNwMUMYMWNdMWMWMWNeMWMYMUNwNgNhNkNkNkNhNgNwNnNoNpNpNpNoNnNwNANFNHNAOhNDNHNxpyOwNANwNvNvNvNvNvNvNvNvNvNvNwbAlnlnbTlqlqbTlslsbANwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
 gfniMoMpMqMsMtMuhAMvMwMxMEqWMzMAMBMCMDMEhANwMFMGMGMGMLMGMGMGMFNwMMMOMOMOMTMOMOMOMMNwMUMWMWMUMWNfMWMUMWMWMUNwNgNhNkNkNkNhNgNwNnNoNpNpNpNoNnNwNAljNLNAOzNLNLNLNLNMNANwNvNvNvNvNvNvNvNvNvNvNwbAbAbCbCbAbAbCbCbAbANwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
 gfLPhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzhzNwMFMFMFMFMFMFMFMFMFNwMMMMMMMMMMMMMMMMMMNwMUMUMUMUMUMUMUMUMUMUMUNwNgNgNgNgNgNgNgNwNnNnNnNnNnNnNnNwNANANANANANANANANANANANwNvNvNvNvNvNvNvNvNvNvNwNwNwNwNwNwNwNwNwNwNwNwNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvNvgf
 gfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgf
@@ -2177,7 +2177,7 @@ lglklklklrlolololololololololololololololololololololololololonjlolotDtDtDtDtGki
 lglklklklrlololololololololololololololoTATAlololololololololonzlolotDtDtDtDtGtItItIketftfqqtftftfkhtftCtDPsPsPtnqhththththththvhvhthtPHPHwfwgwgwgwgODhtqCkIhvOfOeOpOpOpOqOftFxCxCxFxCxCxCxFxCxFxCxCxFxCxCxCxCtFFpFqFrFrFrFsFpejejaaejaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 iHmgmgmgiHiHiHiHiHiHsQiHiHiHsQiHiHiHiHiHiHkCiHiHiHiHiHiHcqiHnFnFiHiHjZtDtDtDtGkiqpqpqpqpqpqpqpqpqpqpIkHOtDPsPsPtPrPrnGPrnGPrnHPrPrnHnGPHPHwfwgwgwgwgODhtkMuihtOfOeOpOpOpOqOfxAxCxCxCxCxCxCxCxCxCxCxCxFxCxCxCxCxBFpFqFrFrFrFsFpcVejaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 iOHPInHPmvmvHPInInHPoMOlOokAoMiOiOiOiOiOiOiOiOiOqhqhqhqhqiqhqhqhqhstjVtDtDtDtGtItEqRqRiSqRqRqRqpiTqpIktCtDPsPsPtPrvpvpvpvpvqvqvpvpvpvpPHPHwfwgwgwhPIhvhtujhthtOfOeOpOpOpOqOftFxCxCxCxCxCxCxCxCxCxCxCxCxCxCxCxCxBFpFqFrFrFrFsImejejejaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-iOHPPAPAPAPAUpTXkHkJUaUbPAPAHPiOtqtqtqtqtqtqiOiOqhqhqhqhqhqhqhqhqhstjRtDtDtDtGtIuvvHqRvLkjqRqRqRvNtEIjtCtDPsPsPtPrvpvrncvpNQvuvvvwvBvpPHPHwfwgwgwhPJtYukukNRhtOfOeOpOpOpOsOfxBxCxCxCxCxCxCxFxFxCxCxCxFxCxCxFxCtFFpFqFrFrFrFsFpejaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+iOHPPAPAPAPAUpTXkHkJmUUbPAPAHPiOtqtqtqtqtqtqiOiOqhqhqhqhqhqhqhqhqhstjRtDtDtDtGtIuvvHqRvLkjqRqRqRvNtEIjtCtDPsPsPtPrvpvrncvpNQvuvvvwvBvpPHPHwfwgwgwhPJtYukukNRhtOfOeOpOpOpOsOfxBxCxCxCxCxCxCxFxFxCxCxCxFxCxCxFxCtFFpFqFrFrFrFsFpejaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 iOHPUkUeUfPAPAPAPAPAPAPAPAPAUhiOkDuauhulumtqspiOqiqhqiqhqhqhqiqhqistjVtDtDtDtGtIvQvSqRiUkjqRqRpfiVqpIktCtDPsPsPznInKndvzvAvBvBvBvBvBvAPHPHwfwgwgwhPKukukukukhtOfOeOpOpOpOqOftFxCxFxCxCxFxCxCxCxCxCxFxCxCxCxFxCxAFpFqFrFrFrFsFpejaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 iOHPPAPAPAPAPAPAPAPAPAPAPAUvHPiOtqtquDulumtqiOiOqhqhqhqhqhqhqhqhqhstjVtDtDtDtGkivVqRqRqpiWqRqRiXiYtEIjtCtDPsPsPtPrvpvpvpvpvpvEvFvGvBvpPHPHwhwhPLwhwhusutuuukhvOfOeOpOpOpOqOfxFxCxCxCxFxCxCxFxCxCxFxCxFxCxCxFxCtFFpFqFrFrFrFsFpejaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 iOHPUxUlUmPAUdPAUcPAUcPAUcPAHPiOtquIuaulumuLuOiOqiqhqiqhqiqhqiqhqistjVtDtDtDtGtIqpqpqpqpqpvZvZqpqpqpIkHOtDPsPsPtPrvpvIvJvKvpvBwevBvBvpPHPHwhPMPNPOwhukkRukukhvOfOeOpOpOpOqOfxGxCxFxFxCxFxCxCxCxCxCxCxCxCxCxCxCxAFpFqFrFrFrFsFpejejejaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
