@@ -1,5 +1,7 @@
+#define DYNAMIC_AMT -1
+
 // increase or decrease the amount of items in a crate
-/obj/structure/closet/crate/proc/resize(decimal)
+/*/obj/structure/closet/crate/proc/resize(decimal)
 	if (decimal > 1.0)
 		var/add_crates = max(1, ceil((decimal - 1.0) * contents.len))
 		for (var/v in 1 to add_crates)
@@ -17,6 +19,20 @@
 				break
 			contents -= spick(contents)
 	update_capacity(contents.len)
+	*/
+/obj/structure/closet/crate/var/list/paths = list() // typepath = amount
+
+/obj/structure/closet/crate/New()
+	..()
+	for (var/typepath in paths)
+		var/limit = paths[typepath]
+		if (limit == DYNAMIC_AMT)
+			var/atom/ref = new typepath (null)
+			limit = max(3, min(ceil(75/round(ref.contents.len/2)), 15))
+			qdel(ref)
+		for (var/v in 1 to limit)
+			new typepath (src)
+	update_capacity(contents.len)
 
 // new crate icons from F13 - most are unused
 
@@ -24,8 +40,6 @@
 /obj/structure/closet/crate
 	icon = 'icons/obj/crate.dmi'*/
 
-
-// used for custom crates
 /obj/structure/closet/crate/empty
 	name = "Crate"
 	icon_state = "mil_crate_closed"
@@ -37,24 +51,52 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/stack/material/wood = 5)
+
+/obj/structure/closet/crate/wood/New()
+	..()
+	for (var/stack in contents)
+		var/obj/item/stack/S = stack
+		S.amount = 20
 
 /obj/structure/closet/crate/steel
 	name = "Steel sheets crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/stack/material/steel = 5)
+
+/obj/structure/closet/crate/steel/New()
+	..()
+	for (var/stack in contents)
+		var/obj/item/stack/S = stack
+		S.amount = 20
 
 /obj/structure/closet/crate/iron
 	name = "Iron ingots crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/stack/material/iron = 5)
+
+/obj/structure/closet/crate/iron/New()
+	..()
+	for (var/stack in contents)
+		var/obj/item/stack/S = stack
+		S.amount = 20
 
 /obj/structure/closet/crate/glass
 	name = "Glass sheets crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/stack/material/glass = 5)
+
+/obj/structure/closet/crate/glass/New()
+	..()
+	for (var/stack in contents)
+		var/obj/item/stack/S = stack
+		S.amount = 20
 
 /obj/structure/closet/crate/flammenwerfer_fueltanks
 	name = "Flammenwerfer fueltanks crate"
@@ -62,6 +104,7 @@
 	icon_state = "closed"
 	icon_opened = "opened"
 	icon_closed = "closed"
+	paths = list(/obj/item/weapon/flammenwerfer_fueltank = 3)
 
 /obj/structure/closet/crate/vehicle_fueltanks
 	name = "Vehicle fueltanks crate"
@@ -69,216 +112,271 @@
 	icon_state = "closed"
 	icon_opened = "opened"
 	icon_closed = "closed"
+	paths = list(/obj/item/weapon/vehicle_fueltank = 3)
 
 /obj/structure/closet/crate/maximbelt
 	name = "Maxim belts crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/maxim = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/mg34belt
 	name = "MG34 belts crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/maxim/mg34_belt = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/bint
 	name = "Bint crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/gauze_pack/bint = 10)
 
 /obj/structure/closet/crate/gauze
 	name = "Gauze crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/gauze_pack/gauze = 10)
 
 /obj/structure/closet/crate/medical
 	name = "Medical crate"
 	icon_state = "freezer"
 	icon_opened = "freezeropen"
 	icon_closed = "freezer"
+	paths = list(
+		/obj/item/weapon/storage/firstaid/toxin = 1,
+		/obj/item/weapon/storage/firstaid/fire = 1,
+		/obj/item/weapon/storage/firstaid/o2 = 1,
+		/obj/item/weapon/storage/firstaid/regular = 1,
+		/obj/item/weapon/storage/firstaid/injectorpack = 1,
+		/obj/item/weapon/storage/firstaid/combat = 1,
+		/obj/item/weapon/storage/firstaid/adv = 1,
+		/obj/item/weapon/gauze_pack/gauze = 1,
+		/obj/item/weapon/doctor_handbook = 1
+	)
 
 /obj/structure/closet/crate/mosinammo
 	name = "Mosin ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/mosin = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/ppshammo
 	name = "PPSh ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/a556/ppsh = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/lugerammo
 	name = "Luger ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/luger = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/c45ammo
 	name = ".45 ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c45m = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/kar98kammo
 	name = "Kar98k ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/kar98k = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/mp40kammo
 	name = "Mp40 ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/mp40 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/mg34ammo
 	name = "Mg34 ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/a762 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/mp43ammo
 	name = "Mp43 ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/a762/akm = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/ptrdammo
 	name = "PTRD ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_casing/a145 = 12)
 
 /obj/structure/closet/crate/tokarevammo
 	name = "Tokarev TT-30 ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c762mm_tokarev = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/mauserammo
 	name = "Mauser C96 crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c763x25mm_mauser = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/waltherammo
 	name = "Walther P38 ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/p9x19mm = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/ppsammo
 	name = "PPS-43 ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c762x25mm_pps = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/stenammo
 	name = "Sten MKIII ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/mp40/c9x19mm_stenmk2 = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/nagantrevolverammo
 	name = "Nagant Revolver ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/c762x38mmR = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/bettymines
 	name = "Betty mines crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/mine/betty = 12)
 
 /obj/structure/closet/crate/dpammo
 	name = "DP disk crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/a762/dp = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/svtammo
 	name = "SVT ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/ammo_magazine/svt = DYNAMIC_AMT)
 
 /obj/structure/closet/crate/german_grenade
 	name = "Stielgranate 41 crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/explosive/stgnade = 10)
 
 /obj/structure/closet/crate/german_grenade2
 	name = "l2a2 grenade crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/explosive/l2a2 = 10)
 
 /obj/structure/closet/crate/panzerfaust
 	name = "Panzerfaust crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/gun/launcher/rocket/panzerfaust = 5)
 
 /obj/structure/closet/crate/mortar_shells
 	name = "Mortar shells crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/mortar_shell = 12)
 
 /obj/structure/closet/crate/german_smoke_grenade
 	name = "Smoke grenade crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/smokebomb/german = 12)
 
 /obj/structure/closet/crate/soviet_smoke_grenade
 	name = "Smoke grenade crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/smokebomb/soviet = 12)
 
 /obj/structure/closet/crate/soviet_grenade
 	name = "RGD-33 crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/explosive/rgd = 10)
 
 /obj/structure/closet/crate/soviet_grenade2
 	name = "RGD-5 crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/grenade/explosive/f1 = 10)
 
 /obj/structure/closet/crate/sandbags
 	name = "Sandbags crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/weapon/sandbag = 66)
 
 /obj/structure/closet/crate/flares_ammo
 	name = "Flaregun Ammo crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(
+		/obj/item/ammo_magazine/flare/red = 10,
+		/obj/item/ammo_magazine/flare/green = 10,
+		/obj/item/ammo_magazine/flare/yellow = 10)
 
 /obj/structure/closet/crate/flares
 	name = "Flares crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/flashlight/flare = 50)
 
 /obj/structure/closet/crate/barbwire
 	name = "Barbwire crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
+	paths = list(/obj/item/stack/material/barbwire = 3)
+
+/obj/structure/closet/crate/barbwire/New()
+	..()
+	for (var/stack in contents)
+		var/obj/item/stack/S = stack
+		S.amount = 15
 
 /obj/structure/closet/crate/bayonets
 	name = "Bayonets crate"
@@ -287,15 +385,17 @@
 	icon_closed = "mil_crate_closed"
 
 /obj/structure/closet/crate/bayonets/soviet
+	paths = list(/obj/item/weapon/attachment/bayonet/soviet = 15)
+
 /obj/structure/closet/crate/bayonets/german
+	paths = list(/obj/item/weapon/attachment/bayonet/german = 15)
 
 /obj/structure/closet/crate/supply_req_sheets
 	name = "Supply requisition forms crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-
-// crates full of actual guns
+	paths = list(/obj/item/weapon/paper/supply_train_requisitions_sheet = 20)
 
 /obj/structure/closet/crate/lugers
 	name = "Luger crate"
@@ -303,12 +403,7 @@
 	icon_state = "closed"
 	icon_opened = "opened"
 	icon_closed = "closed"
-
-/obj/structure/closet/crate/lugers/New()
-	..()
-	update_capacity(7)
-	for (var/v in 1 to 7)
-		new/obj/item/weapon/gun/projectile/pistol/luger(src)
+	paths = list(/obj/item/weapon/gun/projectile/pistol/luger = 5)
 
 /obj/structure/closet/crate/colts
 	name = "Colt crate"
@@ -316,12 +411,7 @@
 	icon_state = "closed"
 	icon_opened = "opened"
 	icon_closed = "closed"
-
-/obj/structure/closet/crate/colts/New()
-	..()
-	update_capacity(7)
-	for (var/v in 1 to 7)
-		new/obj/item/weapon/gun/projectile/pistol/_45(src)
+	paths = list(/obj/item/weapon/gun/projectile/pistol/_45 = 5)
 
 /obj/structure/closet/crate/tokarevs
 	name = "Tokarev crate"
@@ -329,12 +419,7 @@
 	icon_state = "closed"
 	icon_opened = "opened"
 	icon_closed = "closed"
-
-/obj/structure/closet/crate/tokarevs/New()
-	..()
-	update_capacity(7)
-	for (var/v in 1 to 7)
-		new/obj/item/weapon/gun/projectile/pistol/tokarev(src)
+	paths = list(/obj/item/weapon/gun/projectile/pistol/tokarev = 5)
 
 /obj/structure/closet/crate/waltherp38
 	name = "Walther P38 crate"
@@ -342,22 +427,41 @@
 	icon_state = "closed"
 	icon_opened = "opened"
 	icon_closed = "closed"
+	paths = list(/obj/item/weapon/gun/projectile/pistol/waltherp38 = 5)
 
-/obj/structure/closet/crate/waltherp38/New()
-	..()
-	update_capacity(7)
-	for (var/v in 1 to 7)
-		new/obj/item/weapon/gun/projectile/pistol/waltherp38(src)
+/obj/structure/closet/crate/gasmasks
+	name = "Gasmask crate"
+	icon = 'icons/WW2/artillery_crate.dmi'
+	icon_state = "closed"
+	icon_opened = "opened"
+	icon_closed = "closed"
+	paths = list(/obj/item/clothing/mask/gas/german = 10)
 
-// webbing
+/obj/structure/closet/crate/gasmasks/soviet
+	paths = list(/obj/item/clothing/mask/gas/soviet = 10)
+
+/obj/structure/closet/crate/artillery
+	name = "German artillery shell crate"
+	icon = 'icons/WW2/artillery_crate.dmi'
+	icon_state = "closed2"
+	icon_opened = "opened"
+	icon_closed = "closed2"
+	paths = list(/obj/item/artillery_shell = 12)
+
+/obj/structure/closet/crate/artillery_gas
+	name = "German gas artillery shell crate"
+	icon = 'icons/WW2/artillery_crate.dmi'
+	icon_state = "closed2"
+	icon_opened = "opened"
+	icon_closed = "closed2"
+	paths = list(
+		/obj/item/artillery_shell/gaseous/green_cross/chlorine = 3,
+		/obj/item/artillery_shell/gaseous/yellow_cross/mustard = 3,
+		/obj/item/artillery_shell/gaseous/yellow_cross/white_phosphorus = 3,
+		/obj/item/artillery_shell/gaseous/blue_cross/xylyl_bromide = 3)
+
 /obj/structure/closet/crate/webbing
-/obj/structure/closet/crate/webbing/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new/obj/item/clothing/accessory/storage/webbing(src)
-
-// rations crates
+	paths = list(/obj/item/clothing/accessory/storage/webbing = 15)
 
 /obj/structure/closet/crate/rations/
 	name = "Rations"
@@ -443,365 +547,4 @@
 /obj/structure/closet/crate/rations/water
 	name = "Rations: H20"
 
-
-// 5 wood planks with 20 each = 100 wood planks (20 barricades)
-/obj/structure/closet/crate/wood/New()
-	..()
-	update_capacity(5)
-	for (var/v in 1 to 5)
-		var/obj/item/stack/S = new/obj/item/stack/material/wood(src)
-		S.amount = 20
-
-// 5 steel sheets with 20 each = 100 steel sheets (20 barricades)
-/obj/structure/closet/crate/steel/New()
-	..()
-	update_capacity(5)
-	for (var/v in 1 to 5)
-		var/obj/item/stack/S = new/obj/item/stack/material/steel(src)
-		S.amount = 20
-
-// 5 iron ingots with 20 each = 100 iron ingots
-/obj/structure/closet/crate/iron/New()
-	..()
-	update_capacity(5)
-	for (var/v in 1 to 5)
-		var/obj/item/stack/S = new/obj/item/stack/material/iron(src)
-		S.amount = 20
-
-// 5 glass with 10 each = 50 glass sheets
-/obj/structure/closet/crate/glass/New()
-	..()
-	update_capacity(4)
-	for (var/v in 1 to 4)
-		var/obj/item/stack/S = new/obj/item/stack/material/glass(src)
-		S.amount = 25
-
-/obj/structure/closet/crate/flammenwerfer_fueltanks/New()
-	..()
-	update_capacity(3)
-	for (var/v in 1 to 3)
-		new/obj/item/weapon/flammenwerfer_fueltank(src)
-
-/obj/structure/closet/crate/vehicle_fueltanks/New()
-	..()
-	update_capacity(3)
-	for (var/v in 1 to 3)
-		new/obj/item/weapon/vehicle_fueltank(src)
-
-/obj/structure/closet/crate/maximbelt/New()
-	..()
-	update_capacity(4)
-	for (var/v in 1 to 4)
-		new /obj/item/ammo_magazine/maxim(src)
-
-
-/obj/structure/closet/crate/mg34belt/New()
-	..()
-	update_capacity(4)
-	for (var/v in 1 to 4)
-		new /obj/item/ammo_magazine/maxim/mg34_belt(src)
-
-/obj/structure/closet/crate/mosinammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/mosin(src)
-
-/obj/structure/closet/crate/kar98kammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/kar98k(src)
-
-/obj/structure/closet/crate/mp40kammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/mp40(src)
-
-/obj/structure/closet/crate/mp43ammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/a762/akm(src)
-
-/obj/structure/closet/crate/ptrdammo/New()
-	..()
-	update_capacity(12)
-	for (var/v in 1 to 12)
-		new /obj/item/ammo_casing/a145(src)
-
-/obj/structure/closet/crate/mg34ammo/New()
-	..()
-	update_capacity(12)
-	for (var/v in 1 to 12)
-		new /obj/item/ammo_magazine/a762(src)
-
-/obj/structure/closet/crate/ppshammo/New()
-	..()
-	update_capacity(12)
-	for (var/v in 1 to 12)
-		new /obj/item/ammo_magazine/a556/ppsh(src)
-
-/obj/structure/closet/crate/lugerammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/luger(src)
-
-/obj/structure/closet/crate/c45ammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/c45m(src)
-
-/obj/structure/closet/crate/bettymines/New()
-	..()
-	update_capacity(12)
-	for (var/v in 1 to 12)
-		new /obj/item/mine/betty(src)
-
-/obj/structure/closet/crate/dpammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/a762/dp(src)
-
-/obj/structure/closet/crate/svtammo/New()
-	..()
-	update_capacity(10)
-	for (var/v in 1 to 10)
-		new /obj/item/ammo_magazine/svt(src)
-
-/obj/structure/closet/crate/bint/New()
-	..()
-	update_capacity(10)
-	for (var/v in 1 to 10)
-		new /obj/item/weapon/gauze_pack/bint(src)
-
-/obj/structure/closet/crate/gauze/New()
-	..()
-	update_capacity(10)
-	for (var/v in 1 to 10)
-		new /obj/item/weapon/gauze_pack/gauze(src)
-
-/obj/structure/closet/crate/medical/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 1)
-		new /obj/item/weapon/storage/firstaid/toxin(src)
-		new /obj/item/weapon/storage/firstaid/fire(src)
-		new /obj/item/weapon/storage/firstaid/o2(src)
-		new /obj/item/weapon/storage/firstaid/regular(src)
-		new /obj/item/weapon/storage/firstaid/injectorpack(src)
-		new /obj/item/weapon/storage/firstaid/combat(src)
-		new /obj/item/weapon/storage/firstaid/adv(src)
-		new /obj/item/weapon/gauze_pack/gauze(src)
-		new /obj/item/weapon/doctor_handbook(src)
-
-/obj/structure/closet/crate/soviet_grenade/New()
-	..()
-	update_capacity(10)
-	for (var/v in 1 to 10)
-		new /obj/item/weapon/grenade/explosive/rgd(src)
-
-/obj/structure/closet/crate/soviet_grenade2/New()
-	..()
-	update_capacity(10)
-	for (var/v in 1 to 10)
-		new /obj/item/weapon/grenade/explosive/f1(src)
-
-/obj/structure/closet/crate/german_grenade/New()
-	..()
-	update_capacity(10)
-	for (var/v in 1 to 10)
-		new /obj/item/weapon/grenade/explosive/stgnade(src)
-
-/obj/structure/closet/crate/german_grenade2/New()
-	..()
-	update_capacity(10)
-	for (var/v in 1 to 10)
-		new /obj/item/weapon/grenade/explosive/l2a2(src)
-
-/obj/structure/closet/crate/panzerfaust/New()
-	..()
-	update_capacity(5)
-	for (var/v in 1 to 5)
-		new /obj/item/weapon/gun/launcher/rocket/panzerfaust(src)
-
-/obj/structure/closet/crate/mortar_shells/New()
-	..()
-	update_capacity(12)
-	for (var/v in 1 to 12)
-		new /obj/item/mortar_shell(src)
-
-/obj/structure/closet/crate/german_smoke_grenade/New()
-	..()
-	update_capacity(12)
-	for (var/v in 1 to 12)
-		new /obj/item/weapon/grenade/smokebomb/german(src)
-
-
-/obj/structure/closet/crate/soviet_smoke_grenade/New()
-	..()
-	update_capacity(12)
-	for (var/v in 1 to 12)
-		new /obj/item/weapon/grenade/smokebomb/soviet(src)
-
-
-/obj/structure/closet/crate/sandbags/New()
-	..()
-	update_capacity(66)
-	// more than tripled this to 100 bags, experimental. Didn't seem like Germans had enough to make a decent FOB
-	// now this is 66 because 100 seemed like way too many
-	for (var/v in 1 to 66) // this was 24, I made it 30, meaning you can make 5 sandbag walls per crate, as each takes 6 right now
-		new /obj/item/weapon/sandbag(src)
-
-/obj/structure/closet/crate/flares_ammo/New()
-	..()
-
-	update_capacity(10)
-	for (var/v in 1 to 10)
-		new /obj/item/ammo_magazine/flare/red(src)
-		new /obj/item/ammo_magazine/flare/green(src)
-		new /obj/item/ammo_magazine/flare/yellow(src)
-
-/obj/structure/closet/crate/flares/New()
-	..()
-
-	update_capacity(50)
-	for (var/v in 1 to 50)
-		new /obj/item/flashlight/flare(src)
-
-/obj/structure/closet/crate/bayonets/soviet/New()
-	..()
-
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/weapon/attachment/bayonet/soviet(src)
-
-/obj/structure/closet/crate/bayonets/german/New()
-	..()
-
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/weapon/attachment/bayonet/german(src)
-
-/obj/structure/closet/crate/supply_req_sheets/New()
-	..()
-
-	update_capacity(50)
-	for (var/v in 1 to 50)
-		new /obj/item/weapon/paper/supply_train_requisitions_sheet(src)
-
-//arty
-
-/obj/structure/closet/crate/artillery
-	name = "German artillery shell crate"
-	icon = 'icons/WW2/artillery_crate.dmi'
-	icon_state = "closed2"
-	icon_opened = "opened"
-	icon_closed = "closed2"
-
-	New()
-		..()
-		for (var/v in 1 to 12)
-			new/obj/item/artillery_shell(src)
-
-/obj/structure/closet/crate/artillery_gas
-	name = "German gas artillery shell crate"
-	icon = 'icons/WW2/artillery_crate.dmi'
-	icon_state = "closed2"
-	icon_opened = "opened"
-	icon_closed = "closed2"
-
-	New()
-		..()
-		// 12 shells total
-		for (var/v in 1 to 3)
-			new/obj/item/artillery_shell/gaseous/green_cross/chlorine(src)
-		for (var/v in 1 to 3)
-			new/obj/item/artillery_shell/gaseous/yellow_cross/mustard(src)
-		for (var/v in 1 to 3)
-			new/obj/item/artillery_shell/gaseous/yellow_cross/white_phosphorus(src)
-		for (var/v in 1 to 3)
-			new/obj/item/artillery_shell/gaseous/blue_cross/xylyl_bromide(src)
-
-/obj/structure/closet/crate/gasmasks
-	name = "Gasmask crate"
-	icon = 'icons/WW2/artillery_crate.dmi'
-	icon_state = "closed"
-	icon_opened = "opened"
-	icon_closed = "closed"
-
-	New()
-		..()
-		for (var/v in 1 to 10)
-			new/obj/item/clothing/mask/gas/german(src)
-
-/obj/structure/closet/crate/gasmasks/soviet
-
-	New()
-		..()
-		contents.Cut()
-		for (var/v in 1 to 10)
-			new/obj/item/clothing/mask/gas/soviet(src)
-
-/obj/structure/closet/crate/artillery/russian
-	name = "Russian artillery shell crate"
-
-	New()
-		..()
-		for (var/v in 1 to 20)
-			new/obj/item/artillery_shell(src)
-
-		for (var/v in 1 to 2)
-			new/obj/item/artillery_shell/gaseous/green_cross/chlorine(src)
-
-		for (var/v in 1 to 6)
-			new/obj/item/artillery_shell/gaseous/blue_cross/xylyl_bromide(src)
-
-		new/obj/item/artillery_shell/gaseous/yellow_cross/mustard(src)
-		new/obj/item/artillery_shell/gaseous/yellow_cross/white_phosphorus(src)
-
-/obj/structure/closet/crate/barbwire/New()
-	..()
-	for (var/v in 1 to 3)
-		var/obj/item/stack/material/barbwire/barbwire = new(src)
-		barbwire.amount = 10
-
-/obj/structure/closet/crate/tokarevammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/c762mm_tokarev(src)
-
-/obj/structure/closet/crate/mauserammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/c763x25mm_mauser(src)
-
-/obj/structure/closet/crate/ppsammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/c762x25mm_pps(src)
-
-/obj/structure/closet/crate/stenammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/mp40/c9x19mm_stenmk2(src)
-
-/obj/structure/closet/crate/nagantrevolverammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/c762x38mmR(src)
-
-/obj/structure/closet/crate/waltherammo/New()
-	..()
-	update_capacity(15)
-	for (var/v in 1 to 15)
-		new /obj/item/ammo_magazine/p9x19mm(src)
+#undef DYNAMIC_AMT

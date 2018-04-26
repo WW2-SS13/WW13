@@ -30,6 +30,7 @@
 
 	//For MAGAZINE guns
 	var/magazine_type = null	//the type of magazine that the gun comes preloaded with
+	var/list/bad_magazine_types = list() // list of magazine types that we can't use
 	var/obj/item/ammo_magazine/ammo_magazine = null //stored magazine
 	var/auto_eject = FALSE			//if the magazine should automatically eject itself when empty.
 	var/auto_eject_sound = null
@@ -160,8 +161,11 @@
 	else if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
 
-		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
-			return //incompatible
+		if (!(load_method & AM.mag_type) || caliber != AM.caliber)
+			return // incompatible
+
+		if (bad_magazine_types.Find(AM.type))
+			return // incompatible
 
 		switch(AM.mag_type)
 			if(MAGAZINE)
