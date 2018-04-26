@@ -350,20 +350,20 @@ var/list/mob/living/forced_ambiance_list = new
 		var/ideal_y = round(world.maxy/2)
 		var/area/L_area = get_area(L)
 
-		// war volume will vary from 5% to 20%, depending on where you are (on a 150x150 map)
-		// the max() check makes this code forestmap compatible too - Kachnov
-		var/warvolume = 20
+		// war volume will vary from 2% to 22%, depending on where you are (on a 150x150 map)
+		// the max() check makes this code forestmap compatible too
+		var/warvolume = 21
 
-		warvolume -= ceil(abs(L.x - ideal_x)/20) // 16%
-		warvolume -= ceil(abs(L.y - ideal_y)/20) // 12%
+		warvolume -= ceil(abs(L.x - ideal_x)/15)
+		warvolume -= ceil(abs(L.y - ideal_y)/15)
 
 		if (L_area)
 			if (L_area.location == AREA_INSIDE)
-				warvolume -= 3 // 9%
+				warvolume -= 4
 			if (L_area.is_void_area)
-				warvolume -= 4 // 5%
+				warvolume -= 5
 
-		warvolume = max(warvolume, 5)
+		warvolume = max(warvolume, 2)
 
 		L << sound(null, channel = SOUND_CHANNEL_AMBIENCE)
 		var/sound/S = sound(sound, repeat = TRUE, wait = FALSE, volume = warvolume, channel = SOUND_CHANNEL_AMBIENCE)
