@@ -621,9 +621,10 @@ proc/dd_sortedTextList(list/incoming)
 /datum/proc/dd_SortValue()
 	return "[src]"
 
+/*
 /obj/machinery/dd_SortValue()
 	return "[sanitize_old(name)]"
-
+*/
 
 /proc/subtypesof(prototype)
 	return (typesof(prototype) - prototype)

@@ -114,9 +114,9 @@
 
 	if (!W)
 
-		if (using_object && istype(using_object, /obj/item/weapon/gun/projectile/minigun))
+		if (using_MG)
 
-			var/obj/item/weapon/gun/projectile/minigun/MG = using_object
+			var/obj/item/weapon/gun/projectile/automatic/stationary/MG = using_MG
 
 			var/can_fire = FALSE
 

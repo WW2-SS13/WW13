@@ -1514,8 +1514,8 @@
 		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
 
 	if (!laddervision)
-		if(machine)
-			var/viewflags = machine.check_eye(src)
+		if(using_object)
+			var/viewflags = using_object.check_eye(src)
 			if(viewflags < 0)
 				reset_view(null, FALSE)
 			else if(viewflags)

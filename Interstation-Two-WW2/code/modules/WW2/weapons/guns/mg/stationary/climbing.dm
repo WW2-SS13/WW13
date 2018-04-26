@@ -1,7 +1,7 @@
 // snowflake code - Kachnov
-/obj/item/weapon/gun/projectile/minigun/var/climbers = list()
+/obj/item/weapon/gun/projectile/automatic/stationary/var/climbers = list()
 
-/obj/item/weapon/gun/projectile/minigun/MouseDrop_T(mob/target, mob/user)
+/obj/item/weapon/gun/projectile/automatic/stationary/MouseDrop_T(mob/target, mob/user)
 
 	var/mob/living/H = user
 	if(istype(H) && can_climb(H) && target == user)
@@ -9,7 +9,7 @@
 	else
 		return ..()
 
-/obj/item/weapon/gun/projectile/minigun/proc/can_climb(var/mob/living/user, post_climb_check=0)
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/can_climb(var/mob/living/user, post_climb_check=0)
 	if (!can_touch(user) || (!post_climb_check && (user in climbers)))
 		return FALSE
 
@@ -23,7 +23,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/weapon/gun/projectile/minigun/proc/turf_is_crowded()
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/turf_is_crowded()
 	var/turf/T = get_turf(src)
 	if(!T || !istype(T))
 		return FALSE
@@ -37,7 +37,7 @@
 			return O
 	return FALSE
 
-/obj/item/weapon/gun/projectile/minigun/proc/do_climb(var/mob/living/user)
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/do_climb(var/mob/living/user)
 	if (!can_climb(user))
 		return
 
@@ -81,7 +81,7 @@
 		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
 	climbers -= user
 
-/obj/item/weapon/gun/projectile/minigun/proc/can_touch(var/mob/user)
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/can_touch(var/mob/user)
 	if (!user)
 		return FALSE
 	if(!Adjacent(user))

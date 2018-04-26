@@ -58,7 +58,7 @@
 				H.quick_equip()
 
 		if("Reset Machine")
-			usr.unset_machine()
+			usr.unset_using_object()
 //		if("act_intent")
 //			usr.a_intent_change("right")
 		/*if(I_HELP)

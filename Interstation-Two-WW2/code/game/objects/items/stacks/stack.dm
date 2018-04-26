@@ -33,7 +33,7 @@
 /obj/item/stack/Destroy()
 	if(uses_charge)
 		return TRUE
-	if (src && usr && usr.machine == src)
+	if (src && usr && usr.using_object == src)
 		usr << browse(null, "window=stack")
 	return ..()
 
@@ -52,7 +52,7 @@
 		return
 	if (!src || get_amount() <= 0)
 		user << browse(null, "window=stack")
-	user.set_machine(src) //for correct work of onclose
+	user.set_using_object(src) //for correct work of onclose
 	var/list/recipe_list = recipes
 	if (recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
@@ -290,7 +290,7 @@
 				produce_recipe(R, multiplier, usr)
 				H.can_build_recipe = TRUE
 
-	if (src && usr.machine==src) //do not reopen closed window
+	if (src && usr.using_object == src) //do not reopen closed window
 		spawn( FALSE )
 			interact(usr)
 			return
@@ -427,7 +427,7 @@
 			add_fingerprint(user)
 			F.add_fingerprint(user)
 			spawn(0)
-				if (src && usr.machine==src)
+				if (src && usr.using_object == src)
 					interact(usr)
 	else
 		..()
@@ -442,45 +442,9 @@
 			transfer_to(S)
 
 		spawn(0) //give the stacks a chance to delete themselves if necessary
-			if (S && usr.machine==S)
+			if (S && usr.using_object == S)
 				S.interact(usr)
-			if (src && usr.machine==src)
+			if (src && usr.using_object == src)
 				interact(usr)
 	else
 		return ..()
-
-/*
- * Recipe datum
- */
-/datum/stack_recipe
-	var/title = "ERROR"
-	var/result_type
-	var/req_amount = TRUE //amount of material needed for this recipe
-	var/res_amount = TRUE //amount of stuff that is produced in one batch (e.g. 4 for floor tiles)
-	var/max_res_amount = TRUE
-	var/time = FALSE
-	var/one_per_turf = FALSE
-	var/on_floor = FALSE
-	var/use_material
-
-	New(_title, _result_type, _req_amount = TRUE, _res_amount = TRUE, _max_res_amount = TRUE, _time = 0, _one_per_turf = FALSE, _on_floor = FALSE, _supplied_material = null)
-
-		title = _title
-		result_type = _result_type
-		req_amount = _req_amount
-		res_amount = _res_amount
-		max_res_amount = _max_res_amount
-		time = _time
-		one_per_turf = _one_per_turf
-		on_floor = _on_floor
-		use_material = _supplied_material
-
-/*
- * Recipe list datum
- */
-/datum/stack_recipe_list
-	var/title = "ERROR"
-	var/list/recipes = null
-	New(_title, _recipes)
-		title = _title
-		recipes = _recipes

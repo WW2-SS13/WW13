@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/minigun/kord/mg34
+/obj/item/weapon/gun/projectile/automatic/stationary/kord/mg34
 	name = "Movable MG34"
 	desc = "German light machinegun chambered in 7.92x57mm Mauser. An utterly devastating support weapon. This one is movable."
 	icon_state = "mg34movable"
@@ -18,7 +18,7 @@
 		)
 	fire_delay = 3
 
-/obj/item/weapon/gun/projectile/minigun/kord/mg34/update_icon()
+/obj/item/weapon/gun/projectile/automatic/stationary/kord/mg34/update_icon()
 	if(ammo_magazine)
 		icon_state = "mg34movable"
 /*		if(wielded)
@@ -34,7 +34,7 @@
 	update_held_icon()
 	return
 
-/obj/item/weapon/gun/projectile/minigun/mg34stat
+/obj/item/weapon/gun/projectile/automatic/stationary/mg34stat
 	name = "Stationary MG34"
 	desc = "MG34 machinegun established on special wooden pod."
 	icon_state = "mg34stat"
@@ -57,7 +57,7 @@
 		list(name="default", burst=10, burst_delay=0.1, fire_delay=0.75, dispersion=list(0.9, 1.1, 1.1, 1.1, 1.3), accuracy=list(2))
 		)
 
-/obj/item/weapon/gun/projectile/minigun/mg34stat/update_icon()
+/obj/item/weapon/gun/projectile/automatic/stationary/mg34stat/update_icon()
 	if(ammo_magazine)
 		icon_state = "mg34stat"
 /*		if(wielded)

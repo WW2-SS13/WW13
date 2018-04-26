@@ -575,7 +575,7 @@ var/area/partisan_stockpile = null
 			for (var/_dir in list(NORTH, EAST, SOUTH, WEST))
 				var/turf/turf2 = get_step(turf, _dir)
 				if (!turf2.density && !locate(/obj/structure) in turf2)
-					new /obj/item/weapon/gun/projectile/minigun/kord/maxim(turf2)
+					new /obj/item/weapon/gun/projectile/automatic/stationary/kord/maxim(turf2)
 					break
 
 			qdel(src)

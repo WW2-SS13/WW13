@@ -713,6 +713,7 @@ var/global/datum/controller/occupations/job_master
 				if (H.original_job.base_type_flag() == GERMAN)
 					H << "The password for radios and phones is <b>[supply_codes[GERMAN]].</b>"
 					H.add_memory("The password for radios and phones is [supply_codes[GERMAN]]")
+
 				else if (H.original_job.base_type_flag() == SOVIET)
 					H << "The password for radios and phones is <b>[supply_codes[SOVIET]].</b>"
 					H.add_memory("The password for radios and phones is [supply_codes[SOVIET]]")

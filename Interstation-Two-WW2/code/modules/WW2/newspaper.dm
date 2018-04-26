@@ -99,7 +99,7 @@
 	var/mob/living/U = usr
 	..()
 	if ((src in U.contents) || ( istype(loc, /turf) && in_range(src, U) ))
-		U.set_machine(src)
+		U.set_using_object(src)
 		if(href_list["next_page"])
 			if(curr_page==pages+1)
 				return //Don't need that at all, but anyway.

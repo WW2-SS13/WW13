@@ -260,7 +260,7 @@ var/list/coefflist = list()
 	if (istype(w_uniform, /obj/item/clothing/under))
 		suit = w_uniform
 
-	user.set_machine(src)
+	user.set_using_object(src)
 	var/dat = "<B><HR><FONT size=3>[name]</FONT></B><BR><HR>"
 
 	for(var/entry in species.hud.gear)
@@ -383,12 +383,12 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/Topic(href, href_list)
 
 	if (href_list["refresh"])
-		if((machine)&&(in_range(src, usr)))
-			show_inv(machine)
+		if((using_object)&&(in_range(src, usr)))
+			show_inv(using_object)
 
 	if (href_list["mach_close"])
 		var/t1 = text("window=[]", href_list["mach_close"])
-		unset_machine()
+		unset_using_object()
 		src << browse(null, t1)
 
 	if(href_list["item"])

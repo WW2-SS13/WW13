@@ -2,7 +2,7 @@
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
-	unset_machine()
+	unset_using_object()
 	qdel(hud_used)
 
 	// don't create bad ghosts - Kachnov
@@ -304,19 +304,32 @@
 
 	if(mind)
 		mind.store_memory(msg)
-	else
-		src << "The game appears to have misplaced your mind datum, so we can't show you your notes."
+
+/mob/proc/replace_memory(replacing, replacewith)
+	if (isnum(replacing))
+		replacing = num2text(replacing)
+	if (isnum(replacewith))
+		replacewith = num2text(replacewith)
+	if (mind && mind.memory)
+		mind.memory = replacetext(mind.memory, replacing, replacewith)
+		return TRUE
+	return FALSE
 
 /mob/proc/store_memory(msg as message, popup, sane = TRUE)
 	msg = copytext(msg, TRUE, MAX_MESSAGE_LEN)
 
+	msg = replacetext(msg, "<i>", "")
+	msg = replacetext(msg, "</i>", "")
+	msg = replacetext(msg, "<b>", "")
+	msg = replacetext(msg, "</b>", "")
+
 	if (sane)
 		msg = sanitize(msg)
 
-	if (length(memory) == FALSE)
+	if (length(memory) == 0)
 		memory += msg
 	else
-		memory += "<BR>[msg]"
+		memory += "<br>[msg]"
 
 	if (popup)
 		memory()
@@ -496,13 +509,13 @@
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "OOC"
-	unset_machine()
+	unset_using_object()
 	reset_view(null)
 */
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])
 		var/t1 = text("window=[href_list["mach_close"]]")
-		unset_machine()
+		unset_using_object()
 		src << browse(null, t1)
 
 	if(href_list["flavor_more"])

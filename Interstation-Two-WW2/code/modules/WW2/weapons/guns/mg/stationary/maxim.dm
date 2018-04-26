@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/minigun/kord/maxim
+/obj/item/weapon/gun/projectile/automatic/stationary/kord/maxim
 	name = "Movable Maxim M1910"
 	desc = "Heavy Maxim machinegun on cart mount. You can see 'Batya Makhno' scribed on it's water cooler."
 	icon_state = "maxim"
@@ -14,7 +14,7 @@
 		list(name="default", burst=6, burst_delay=0.6, fire_delay=1.0, dispersion=list(0.9, 1.1, 1.1, 1.1, 1.3), accuracy=list(2))
 		)
 
-/obj/item/weapon/gun/projectile/minigun/kord/maxim/update_icon()
+/obj/item/weapon/gun/projectile/automatic/stationary/kord/maxim/update_icon()
 	if(ammo_magazine)
 		icon_state = "maxim"
 /*		if(wielded)
@@ -31,7 +31,7 @@
 	return
 
 
-/obj/item/weapon/gun/projectile/minigun/maximstat
+/obj/item/weapon/gun/projectile/automatic/stationary/maximstat
 	name = "Stationary Maxim M1910"
 	desc = "Maxim machinegun established on special wooden pod."
 	icon_state = "maximstat"
@@ -55,7 +55,7 @@
 		)
 
 
-/obj/item/weapon/gun/projectile/minigun/maximstat/update_icon()
+/obj/item/weapon/gun/projectile/automatic/stationary/maximstat/update_icon()
 	if(ammo_magazine)
 		icon_state = "maximstat"
 /*		if(wielded)

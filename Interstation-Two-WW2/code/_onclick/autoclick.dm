@@ -9,7 +9,7 @@
 		selected_target[2] = params
 		while(selected_target[1] && mob && !mob.lying && mob.stat == CONSCIOUS)
 			var/foundMG = FALSE
-			for (var/obj/item/weapon/gun/projectile/minigun/MG in get_turf(src))
+			for (var/obj/item/weapon/gun/projectile/automatic/stationary/MG in get_turf(src))
 				var/can_fire = TRUE
 				var/atom/A = object
 				switch (MG.dir)
@@ -66,7 +66,7 @@
 	if(H)
 		return H.CanItemAutoclick(object, location, params)
 	else if (!H)
-		for (var/obj/item/weapon/gun/projectile/minigun/MG in get_turf(src))
+		for (var/obj/item/weapon/gun/projectile/automatic/stationary/MG in get_turf(src))
 			if (MG.last_user == src)
 				return TRUE
 

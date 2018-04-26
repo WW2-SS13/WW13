@@ -90,7 +90,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		if(istype(href_list["track"],/mob))
 			var/mob/target = locate(href_list["track"]) in mob_list
 			if (target)
-				if (target.real_name == "Supply Announcement System")
+				if (target.real_name == "Supply Announcements")
 					follow_supplytrain_proc()
 				else
 					ManualFollow(target)
@@ -540,7 +540,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	src << "<span class='notice'>Now following \the [following]</span>"
 
 	var/mob/living/carbon/human/H = target
-	if (istype(H) && H.real_name == "Supply Announcement System")
+	if (istype(H) && H.real_name == "Supply Announcements")
 		follow_supplytrain_proc()
 	else
 		move_to_destination(following, following.loc, following.loc)

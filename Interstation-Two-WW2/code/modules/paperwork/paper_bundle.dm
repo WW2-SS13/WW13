@@ -144,7 +144,7 @@
 /obj/item/weapon/paper_bundle/Topic(href, href_list)
 	..()
 	if((src in usr.contents) || (istype(loc, /obj/item/weapon/folder) && (loc in usr.contents)))
-		usr.set_machine(src)
+		usr.set_using_object(src)
 		var/obj/item/weapon/in_hand = usr.get_active_hand()
 		if(href_list["next_page"])
 			if(in_hand && (istype(in_hand, /obj/item/weapon/paper) || istype(in_hand, /obj/item/weapon/photo)))

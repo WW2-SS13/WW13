@@ -23,7 +23,7 @@
 			// no atomref specified (or not found)
 			// so just reset the user mob's machine var
 			if(src && mob)
-				mob.unset_machine()
+				mob.unset_using_object()
 
  /**
   * The ui_interact proc is used to open and update Nano UIs

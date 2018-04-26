@@ -534,12 +534,12 @@
 			var/obj/item/radio/R = main_radios[SOVIET]
 			if (R && R.loc)
 				spawn (10)
-					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcement System")
+					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcements")
 		else if (character.original_job.base_type_flag() == GERMAN)
 			var/obj/item/radio/R = main_radios[GERMAN]
 			if (R && R.loc)
 				spawn (10)
-					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcement System")
+					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcements")
 
 	spawn (10)
 		qdel(src)

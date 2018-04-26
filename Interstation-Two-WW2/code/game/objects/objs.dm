@@ -90,7 +90,7 @@
 		var/is_in_use = FALSE
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
-			if ((M.client && M.machine == src))
+			if ((M.client && M.using_object == src))
 				is_in_use = TRUE
 				attack_hand(M)
 
@@ -99,7 +99,7 @@
 		if (istype(usr, /mob/living/carbon/human))
 			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
 				if(!(usr in nearby))
-					if(usr.client && usr.machine==src)
+					if(usr.client && usr.using_object==src)
 						is_in_use = TRUE
 						attack_hand(usr)
 		in_use = is_in_use
@@ -110,7 +110,7 @@
 		var/list/nearby = viewers(1, src)
 		var/is_in_use = FALSE
 		for(var/mob/M in nearby)
-			if ((M.client && M.machine == src))
+			if ((M.client && M.using_object == src))
 				is_in_use = TRUE
 				interact(M)
 		if(!is_in_use)
@@ -126,19 +126,20 @@
 /obj/proc/update_icon()
 	return
 
-/mob/proc/unset_machine()
-	machine = null
+/mob/proc/unset_using_object()
+	using_object = null
 
-/mob/proc/set_machine(var/obj/O)
-	if(machine)
-		unset_machine()
-	machine = O
-	if(istype(O))
+/mob/proc/set_using_object(var/atom/movable/AM)
+	if(using_object)
+		unset_using_object()
+	using_object = AM
+	if(isobj(AM))
+		var/obj/O = AM
 		O.in_use = TRUE
 
 /obj/item/proc/updateSelfDialog()
 	var/mob/M = loc
-	if(istype(M) && M.client && M.machine == src)
+	if(istype(M) && M.client && M.using_object == src)
 		attack_self(M)
 
 /obj/proc/hide(var/hide)

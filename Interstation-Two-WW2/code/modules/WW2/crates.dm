@@ -28,7 +28,9 @@
 		var/limit = paths[typepath]
 		if (limit == DYNAMIC_AMT)
 			var/atom/ref = new typepath (null)
-			limit = max(3, min(ceil(75/round(ref.contents.len/2)), 15))
+			limit = max(3, min(ceil(75/round(ref.contents.len/2)), 12))
+			if (ref.contents.len < 100)
+				limit += spick(2,3)
 			qdel(ref)
 		for (var/v in 1 to limit)
 			new typepath (src)
@@ -290,14 +292,14 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/weapon/grenade/explosive/stgnade = 10)
+	paths = list(/obj/item/weapon/grenade/explosive/stgnade = 7)
 
 /obj/structure/closet/crate/german_grenade2
 	name = "l2a2 grenade crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/weapon/grenade/explosive/l2a2 = 10)
+	paths = list(/obj/item/weapon/grenade/explosive/l2a2 = 7)
 
 /obj/structure/closet/crate/panzerfaust
 	name = "Panzerfaust crate"
@@ -318,28 +320,28 @@
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/weapon/grenade/smokebomb/german = 12)
+	paths = list(/obj/item/weapon/grenade/smokebomb/german = 7)
 
 /obj/structure/closet/crate/soviet_smoke_grenade
 	name = "Smoke grenade crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/weapon/grenade/smokebomb/soviet = 12)
+	paths = list(/obj/item/weapon/grenade/smokebomb/soviet = 7)
 
 /obj/structure/closet/crate/soviet_grenade
 	name = "RGD-33 crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/weapon/grenade/explosive/rgd = 10)
+	paths = list(/obj/item/weapon/grenade/explosive/rgd = 7)
 
 /obj/structure/closet/crate/soviet_grenade2
 	name = "RGD-5 crate"
 	icon_state = "mil_crate_closed"
 	icon_opened = "mil_crate_opened"
 	icon_closed = "mil_crate_closed"
-	paths = list(/obj/item/weapon/grenade/explosive/f1 = 10)
+	paths = list(/obj/item/weapon/grenade/explosive/f1 = 7)
 
 /obj/structure/closet/crate/sandbags
 	name = "Sandbags crate"

@@ -16,7 +16,7 @@
 /obj/structure/bed/chair/wheelchair/set_dir()
 	..()
 	overlays = null
-	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", layer = MOB_LAYER + 1.0, dir = dir)
+	var/image/O = image(icon = 'icons/obj/bed_chair.dmi', icon_state = "w_overlay", layer = MOB_LAYER + 1.0, dir = dir)
 	overlays += O
 	if(buckled_mob)
 		buckled_mob.set_dir(dir)
@@ -122,7 +122,7 @@
 	else
 		user_unbuckle_mob(user)
 	return
-
+/* removed this incredibly dumb feature - Kachnov
 /obj/structure/bed/chair/wheelchair/CtrlClick(var/mob/user)
 	if(in_range(src, user))
 		if(!ishuman(user))	return
@@ -141,7 +141,7 @@
 			pulling.pulledby = null
 			pulling = null
 		return
-
+*/
 /obj/structure/bed/chair/wheelchair/Bump(atom/A)
 	..()
 	if(!buckled_mob)	return

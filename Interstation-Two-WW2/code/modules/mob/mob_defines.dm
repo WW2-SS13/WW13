@@ -55,7 +55,8 @@
 
 	var/use_me = TRUE //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = FALSE
-	var/obj/machinery/machine = null
+	var/atom/movable/using_object = null
+//	var/obj/machinery/machine = null
 	var/poll_answer = 0.0
 	var/sdisabilities = FALSE	//Carbon
 	var/disabilities = FALSE	//Carbon
@@ -195,8 +196,6 @@
 	var/has_limbs = TRUE //Whether this mob have any limbs he can move with
 	var/bowels = FALSE //For pooping
 	var/bladder = FALSE //For pissing
-
-	var/using_object = null
 
 	var/roundUID = 0
 

@@ -52,7 +52,7 @@
 		var/turf/wall/W = A
 		chance = round(damage/(W.material ? W.material.integrity : 175)*100) + 7
 		// hacky but prevents stationary guns obliterating people behind walls - Kachnov
-		if (istype(firedfrom, /obj/item/weapon/gun/projectile/minigun))
+		if (istype(firedfrom, /obj/item/weapon/gun/projectile/automatic/stationary))
 			if (W.material.integrity >= 500)
 				chance = 1
 			else
@@ -60,7 +60,7 @@
 
 	else if(istype(A, /obj/structure/girder))
 		chance = 66
-	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
+	else if(istype(A, /obj/structure))
 		chance = round(damage/2) + 10
 
 	if(sprob(chance))

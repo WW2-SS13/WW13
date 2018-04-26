@@ -89,7 +89,7 @@ var/turf/floor/plating/under/ref_under_plating = null
 
 		if (o.density)
 			visible_message("<span class = 'danger'>The lift crushes [o]!</span>")
-			if (istype(o, /obj/machinery))
+			if (istype(o, /obj/structure))
 				gibs(get_turf(o), gibber_type = /obj/effect/gibspawner/robot)
 			qdel(o)
 		else if (!o.density)
