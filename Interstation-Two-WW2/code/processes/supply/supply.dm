@@ -29,7 +29,7 @@ var/global/process/supply/supplyProcess
 			if (H.original_job && H.original_job.is_officer)
 				if (H.original_job.base_type_flag() == GERMAN)
 					H.replace_memory(original_code, supply_codes[GERMAN])
-		radio2germans("The supply code has been changed to [supply_codes[GERMAN]] for security reasons.", "High Command Private Announcements")
+		radio2germans("The supply passcode has been changed to [supply_codes[GERMAN]] for security reasons.", "High Command Private Announcements")
 
 	if (sprob(1) && sprob(33))
 		var/original_code = supply_codes[SOVIET]
@@ -38,4 +38,4 @@ var/global/process/supply/supplyProcess
 			if (H.original_job && H.original_job.is_officer)
 				if (H.original_job.base_type_flag() == SOVIET)
 					H.replace_memory(original_code, supply_codes[SOVIET])
-		radio2soviets("The supply code has been changed to [supply_codes[SOVIET]] for security reasons.", "High Command Private Announcements")
+		radio2soviets("The supply passcode has been changed to [supply_codes[SOVIET]] for security reasons.", "High Command Private Announcements")

@@ -97,7 +97,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 	// we might just die if we have almost no blood
 	var/vessel_coeff = vessel.total_volume/vessel.maximum_volume
-	log_debug(vessel_coeff)
+//	log_debug(vessel_coeff)
 	if (vessel_coeff <= 0.25)
 		var/death_chance = (1 - vessel_coeff) * (1 - vessel_coeff) * 10
 		log_debug(death_chance)

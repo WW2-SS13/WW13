@@ -18,6 +18,7 @@
 	var/native                        // If set, non-native speakers will have trouble speaking.
 	var/list/syllables                // Used when scrambling text for a non-speaker.
 	var/list/space_chance = 55        // Likelihood of getting a space in the random scramble string
+	var/list/mutual_intelligibility = list()
 
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
@@ -113,13 +114,14 @@
 /datum/language
 	var/list/scramble_cache = list()
 
-/datum/language/proc/scramble(var/input)
+// hearer only needs to be specified for mutual intelligibility code to work - Kachnov
+/datum/language/proc/scramble(var/input, var/mob/hearer = null)
 
 	if(!syllables || !syllables.len)
 		return stars(input)
 
 	// If the input is cached already, move it to the end of the cache and return it
-	if(input in scramble_cache)
+	if(input in scramble_cache && !hearer)
 		var/n = scramble_cache[input]
 		scramble_cache -= input
 		scramble_cache[input] = n
@@ -129,8 +131,18 @@
 	var/scrambled_text = ""
 	var/capitalize = TRUE
 
+	var/list/original_words = splittext(input, " ")
+
+	var/mutual_intelligibility = 0
+	if (hearer)
+		mutual_intelligibility = hearer.get_mutual_intelligibility(src)
+
 	while(length(scrambled_text) < input_size)
-		var/next = spick(syllables)
+		var/next = ""
+			next = pick(original_words)
+			original_words -= next
+		else
+			next = spick(syllables)
 		if(capitalize)
 			next = capitalize(next)
 			capitalize = FALSE
@@ -206,6 +218,9 @@
 
 // Language handling.
 /mob/proc/add_language(var/language, var/allow_name_changing = FALSE)
+
+	if (language == uppertext(language))
+		language = capitalize(lowertext(language))
 
 	var/datum/language/new_language = null
 	if (isdatum(language))

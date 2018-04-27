@@ -323,7 +323,7 @@
 			else if (istype(original_job, /datum/job/partisan))
 				equip_to_slot_or_del(new /obj/item/radio/partisan(src), slot_s_store)
 
-	src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while its on your back, prefix your message with ':b'.</b></span>"
+//	src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while its on your back, prefix your message with ':b'.</b></span>"
 
 /datum/job/update_character(var/mob/living/carbon/human/H)
 	..()

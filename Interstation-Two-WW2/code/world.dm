@@ -501,7 +501,7 @@ var/setting_up_db_connection = FALSE
 	. += ";"
 	. += "<b>Address</b>: byond://[world.internet_address]:[world.port]"
 	. += ";"
-	. += "<b>Map</b>: [map.title]"
+	. += "<b>Map</b>: [map ? map.title : "???"]"
 	. += ";"
 	. += "<b>Players</b>: [clients.len]" // turns out the bot only considers itself a player sometimes? its weird. Maybe it was fixed, not sure - Kachnov
 	if (config.usewhitelist)

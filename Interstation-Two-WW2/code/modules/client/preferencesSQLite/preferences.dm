@@ -35,6 +35,7 @@ var/list/preferences_datums = list()
 	var/russian_gender = MALE
 	var/ukrainian_gender = MALE // civs
 	var/italian_gender = MALE
+	var/soviet_ethnicity = RUSSIAN
 	var/body_build = "Default"			//character body build name
 	var/age = 30						//age of character
 
@@ -88,13 +89,15 @@ var/list/preferences_datums = list()
 
 	var/disabilities = 0
 
-	var/list/pockets = list(null, null)
+	var/list/pockets = list("Magazine", "Magazine")
 
 	var/client/client = null
 	var/client_ckey = null
 	var/client_isguest = FALSE
 
 	var/list/internal_table = list()
+
+	var/list/saved_lists = list("pockets")
 
 	var/datum/category_collection/player_setup_collection/player_setup
 
@@ -106,6 +109,7 @@ var/list/preferences_datums = list()
 		"CHAT_GHOSTEARS", "CHAT_GHOSTSIGHT", "CHAT_GHOSTRADIO", "CHAT_SHOWICONS",
 		"SHOW_TYPING", "CHAT_OOC", "CHAT_LOOC", "CHAT_DEAD", "SHOW_PROGRESS",
 		"CHAT_ATTACKLOGS", "CHAT_DEBUGLOGS", "CHAT_PRAYER", "SOUND_ADMINHELP")
+
 	var/list/preferences_disabled = list()
 
 /datum/preferences/New(client/C)
@@ -203,6 +207,14 @@ var/list/preferences_datums = list()
 	dat += player_setup.header()
 	dat += "<br><HR></center>"
 	dat += player_setup.content(user)
+
+	var/datlist = splittext(dat, "<br>")
+	var/datlist2 = list()
+	for (var/line in datlist)
+		datlist2 += "<small>[line]</small><br>"
+	dat = ""
+	for (var/line in datlist2)
+		dat += line
 
 	dat += "</html></body>"
 	user << browse(dat, "window=preferences;size=980x800")

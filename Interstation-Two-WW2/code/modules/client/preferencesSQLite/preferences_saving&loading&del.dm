@@ -51,7 +51,16 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 		var/val = keyval_list[2]
 		if (key != "clientprefs_enabled" && key != "clientprefs_disabled")
 			key_val_pairs -= key_val_pair
-			key_val_pairs[key] = val
+			if (findtext(val, "{"))
+				key_val_pairs[key] = list()
+				log_debug("[key] = [val]")
+				var/list = replacetext(replacetext(val, "{", ""), "}", "")
+				list = splittext(list, "|")
+				for (var/something in list)
+					log_debug("item: [something]")
+					key_val_pairs[key] += something
+			else
+				key_val_pairs[key] = val
 	/*	else
 			switch (key)
 				if ("clientprefs_enabled")
@@ -134,7 +143,16 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 			continue
 		if (params != "")
 			params += "&"
-		params += "[key]=[internal_table[slot][key]]"
+		var/val = internal_table[slot][key]
+		if (islist(val))
+			params += "[key]={"
+			for (var/x in val)
+				params += "[x]"
+				if (x != val[val:len])
+					params += "|"
+			params += "}"
+		else
+			params += "[key]=[val]"
 
 /*	// client_preferences have to be saved separately
 	if (preferences_enabled.len)

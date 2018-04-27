@@ -17,7 +17,7 @@
 	head_position = TRUE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerCO"
-	additional_languages = list( "Russian" = 100, "Ukrainian" = 50)
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 50, "Italian" = 100)
 	is_officer = TRUE
 	is_commander = TRUE
 	whitelisted = TRUE
@@ -70,7 +70,7 @@
 	head_position = FALSE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerXO"
-	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 50, "Italian" = 100)
 	is_officer = TRUE
 
 	// AUTOBALANCE
@@ -115,7 +115,7 @@
 	head_position = FALSE
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerSO"
-	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 50, "Italian" = 100)
 	is_officer = TRUE
 
 	// AUTOBALANCE
@@ -163,7 +163,7 @@
 	rank_abbreviation = "uffz"
 	selection_color = "#2d2d63"
 	spawn_location = "JoinLateHeerMP"
-	additional_languages = list( "Russian" = 100, "Ukrainian" = 33 )
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 33, "Italian" = 100)
 	is_officer = TRUE
 
 	// AUTOBALANCE
@@ -207,7 +207,7 @@
 	head_position = FALSE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerSL"
-	additional_languages = list( "Russian" = 33 )
+	additional_languages = list( "Russian" = 33, "Italian" = 50)
 	is_officer = TRUE
 	is_squad_leader = TRUE
 	SL_check_independent = TRUE
@@ -297,7 +297,7 @@
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerDr"
 	is_nonmilitary = TRUE
-	additional_languages = list( "Russian" = 100, "Ukrainian" = 50 )
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 50, "Italian" = 100)
 	SL_check_independent = TRUE
 
 	// AUTOBALANCE
@@ -695,7 +695,7 @@ var/first_fallschirm = TRUE
 	rank_abbreviation = "schtz"
 	selection_color = "#4c4ca5"
 	spawn_location = "Fallschirm"
-	additional_languages = list( "Russian" = 100, "Ukrainian" = 100 )
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 100)
 //	spawn_delay = 3000
 //	delayed_spawn_message = "<span class = 'danger'><big>You are parachuting behind Russian lines. You won't spawn for 5 minutes.</big></span>"
 	is_paratrooper = TRUE
@@ -775,7 +775,7 @@ var/first_fallschirm = TRUE
 	rank_abbreviation = "uffz"
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateHeerQM"
-	additional_languages = list( "Russian" = 100 )
+	additional_languages = list( "Russian" = 100, "Italian" = 100 )
 	is_officer = TRUE
 	SL_check_independent = TRUE
 
@@ -955,7 +955,7 @@ var/first_fallschirm = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS-Officer"
 	is_SS = TRUE
-	additional_languages = list( "Russian" = 50 )
+	additional_languages = list( "Russian" = 50, "Italian" = 50, "Ukrainian" = 50)
 	is_officer = TRUE
 	is_commander = TRUE // not a squad leader despite the title
 	is_petty_commander = TRUE

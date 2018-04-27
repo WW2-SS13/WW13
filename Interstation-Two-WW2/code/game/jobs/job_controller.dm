@@ -520,79 +520,80 @@ var/global/datum/controller/occupations/job_master
 
 			// Add loadout items
 			spawn (0)
-				if (!list(PARTISAN, CIVILIAN).Find(H.original_job.base_type_flag()))
-					for (var/v in 1 to 2)
-						var/slot = (v == 1 ? slot_l_store : slot_r_store)
-						var/other_slot_num = (v == 1 ? 2 : 1)
-						switch (lowertext(H.client.prefs.pockets[v]))
-							if (null)
-								continue
-							if ("water")
-								H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled(H), slot)
-							if ("booze")
-								var/probs = list()
-								if (H.original_job.base_type_flag())
-									if (GERMAN)
-										probs["beer"] = 75
-										probs["vodka"] = 15
-										probs["wine"] = 10
-									if (ITALIAN)
-										probs["beer"] = 50
-										probs["vodka"] = 10
-										probs["wine"] = 40
-									if (SOVIET)
-										probs["beer"] = 40
-										probs["vodka"] = 60
-										probs["wine"] = 0
+				if (!findtext("[H.original_job.type]", "doctor"))
+					if (!list(CIVILIAN).Find(H.original_job.base_type_flag()))
+						for (var/v in 1 to 2)
+							var/slot = (v == 1 ? slot_l_store : slot_r_store)
+							var/other_slot_num = (v == 1 ? 2 : 1)
+							switch (lowertext(H.client.prefs.pockets[v]))
+								if (null, "Magazine")
+									continue
+								if ("water")
+									H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled(H), slot)
+								if ("booze")
+									var/probs = list()
+									switch (H.original_job.base_type_flag())
+										if (GERMAN)
+											probs["beer"] = 75
+											probs["vodka"] = 15
+											probs["wine"] = 10
+										if (ITALIAN)
+											probs["beer"] = 50
+											probs["vodka"] = 10
+											probs["wine"] = 40
+										if (SOVIET, PARTISAN)
+											probs["beer"] = 40
+											probs["vodka"] = 60
+											probs["wine"] = 0
 
-								tryagain
-								if (sprob(probs["beer"]))
-									H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(H), slot)
-								else if (sprob(probs["vodka"]))
-									H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(H), slot)
-								else if (sprob(probs["wine"]))
-									H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/wine(H), slot)
-								else goto tryagain
+									tryagain
+									if (sprob(probs["beer"]))
+										H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(H), slot)
+									else if (sprob(probs["vodka"]))
+										H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(H), slot)
+									else if (sprob(probs["wine"]))
+										H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/wine(H), slot)
+									else goto tryagain
 
-							if ("grenade")
-								switch (H.original_job.base_type_flag())
-									if (GERMAN, ITALIAN)
-										if (sprob(50))
-											H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stgnade(H), slot)
-										else
-											H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/l2a2(H), slot)
-									if (SOVIET)
-										if (sprob(50))
-											H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/rgd(H), slot)
-										else
-											H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/f1(H), slot)
-							if ("smoke grenade")
-								switch (H.original_job.base_type_flag())
-									if (GERMAN, ITALIAN)
-										H.equip_to_slot_or_del(new /obj/item/weapon/grenade/smokebomb/german(H), slot)
-									if (SOVIET)
-										H.equip_to_slot_or_del(new /obj/item/weapon/grenade/smokebomb/soviet(H), slot)
-							if ("stolen gun") // hackcode to equip ammo after the gun always
-								var/ammo_check = (H.client.prefs.pockets[other_slot_num] == "Stolen gun ammo")
-								H.original_job.equip_random_enemy_gun(H, slot, ammo_check)
-								if (ammo_check)
-									break // if we're slot #1, we know what went in the other slot already
-							if ("stolen gun ammo")
-								continue // see "stolen gun" just above
-							if ("flare")
-								H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H), slot)
-							if ("knife")
-								H.equip_to_slot_or_del(new /obj/item/weapon/material/knife(H), slot)
-							if ("cigarettes")
-								H.equip_to_slot(new /obj/item/weapon/storage/fancy/cigarettes(H), slot)
-							if ("lighter")
-								H.equip_to_slot(new /obj/item/weapon/flame/lighter(H), slot)
-							if ("crowbar")
-								H.equip_to_slot(new /obj/item/weapon/crowbar(H), slot)
-							if ("wrench")
-								H.equip_to_slot(new /obj/item/weapon/wrench(H), slot)
-							if ("screwdriver")
-								H.equip_to_slot(new /obj/item/weapon/screwdriver(H), slot)
+								if ("grenade")
+									switch (H.original_job.base_type_flag())
+										if (GERMAN, ITALIAN)
+											if (sprob(50))
+												H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stgnade(H), slot)
+											else
+												H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/l2a2(H), slot)
+										if (SOVIET, PARTISAN)
+											if (sprob(50))
+												H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/rgd(H), slot)
+											else
+												H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/f1(H), slot)
+								if ("smoke grenade")
+									switch (H.original_job.base_type_flag())
+										if (GERMAN, ITALIAN)
+											H.equip_to_slot_or_del(new /obj/item/weapon/grenade/smokebomb/german(H), slot)
+										if (SOVIET, PARTISAN)
+											H.equip_to_slot_or_del(new /obj/item/weapon/grenade/smokebomb/soviet(H), slot)
+								if ("stolen gun") // hackcode to equip ammo after the gun always
+									var/ammo_check = (H.client.prefs.pockets[other_slot_num] == "Stolen gun ammo")
+									H.original_job.equip_random_enemy_gun(H, slot, ammo_check)
+									if (ammo_check)
+										break // if we're slot #1, we know what went in the other slot already
+								if ("stolen gun ammo")
+									continue // see "stolen gun" just above
+								if ("flare")
+									H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H), slot)
+								if ("knife")
+									H.equip_to_slot_or_del(new /obj/item/weapon/material/knife(H), slot)
+								if ("cigarettes")
+									H.equip_to_slot(new /obj/item/weapon/storage/fancy/cigarettes(H), slot)
+								if ("lighter")
+									H.equip_to_slot(new /obj/item/weapon/flame/lighter(H), slot)
+								if ("crowbar")
+									H.equip_to_slot(new /obj/item/weapon/crowbar(H), slot)
+								if ("wrench")
+									H.equip_to_slot(new /obj/item/weapon/wrench(H), slot)
+								if ("screwdriver")
+									H.equip_to_slot(new /obj/item/weapon/screwdriver(H), slot)
 
 			// Give the guy some ammo for his gun
 			spawn (0.1)
@@ -787,12 +788,12 @@ var/global/datum/controller/occupations/job_master
 
 			if (H.original_job.is_officer)
 				if (H.original_job.base_type_flag() == GERMAN)
-					H << "The password for radios and phones is <b>[supply_codes[GERMAN]].</b>"
-					H.add_memory("The password for radios and phones is [supply_codes[GERMAN]]")
+					H << "The passcode for radios and phones is <b>[supply_codes[GERMAN]].</b>"
+					H.add_memory("The passcode for radios and phones is [supply_codes[GERMAN]]")
 
 				else if (H.original_job.base_type_flag() == SOVIET)
-					H << "The password for radios and phones is <b>[supply_codes[SOVIET]].</b>"
-					H.add_memory("The password for radios and phones is [supply_codes[SOVIET]]")
+					H << "The passcode for radios and phones is <b>[supply_codes[SOVIET]].</b>"
+					H.add_memory("The passcode for radios and phones is [supply_codes[SOVIET]]")
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO job spawn location = [H.job_spawn_location]"

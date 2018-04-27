@@ -27,7 +27,7 @@
 				message = spick(S.speak)
 			else
 				if(language)
-					message = language.scramble(message)
+					message = language.scramble(message, src)
 				else
 					message = stars(message)
 
@@ -208,3 +208,10 @@
 		heard = "<span class = 'game_say'>...<i>You almost hear someone talking</i>...</span>"
 
 	src << heard
+
+/mob/proc/get_mutual_intelligibility(var/datum/language/reference)
+	. = 0
+	for (var/datum/language/L in languages)
+		. += L.mutual_intelligibility[reference.type]
+	. = round(min(., 95))
+	return .

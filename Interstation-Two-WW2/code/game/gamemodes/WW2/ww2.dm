@@ -188,7 +188,7 @@
 				return TRUE
 
 			if (currently_winning == "Germans" && win_sort == 2)
-				if (!win_condition) win_condition = "The Wehrmacht won by outnumbering the Soviets and occupying most of their territory. The Soviet base was surrounded and cut off from supplies and reinforcements!"
+				if (!win_condition) win_condition = "The Wehrmacht won by outnumbering the Red Army and occupying most of their territory. The Soviet base was surrounded and cut off from supplies and reinforcements!"
 				winning_side = "Wehrmacht"
 				return TRUE
 
