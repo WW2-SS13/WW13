@@ -139,6 +139,7 @@
 
 	while(length(scrambled_text) < input_size)
 		var/next = ""
+		if (prob(mutual_intelligibility) && original_words.len)
 			next = pick(original_words)
 			original_words -= next
 		else
