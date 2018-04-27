@@ -14,10 +14,10 @@
 	var/open_panel = FALSE
 	var/image_overlay = null
 
-/obj/item/weapon/plastique/New()
+//obj/item/weapon/plastique/New()
 //	wires = new(src)
-	image_overlay = image('icons/obj/assemblies.dmi', "plastic-explosive2")
-	..()
+	//image_overlay = image('icons/obj/assemblies.dmi', "plastic-explosive2")
+	//..()
 
 /obj/item/weapon/plastique/Destroy()
 //	qdel(wires)
@@ -88,3 +88,21 @@
 
 /obj/item/weapon/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
+
+/obj/item/weapon/plastique/german
+	name = "Satchel Charge"
+	desc = "Placed to bust through walls."
+	icon_state = "german_charge"
+
+/obj/item/weapon/plastique/german/New()
+	image_overlay = image('icons/obj/assemblies.dmi', "german_charge_placed")
+	..()
+
+/obj/item/weapon/plastique/russian
+	name = "Satchel Charge"
+	desc = "Placed to bust through walls."
+	icon_state = "russian_charge"
+
+/obj/item/weapon/plastique/russian/New()
+	image_overlay = image('icons/obj/assemblies.dmi', "russian_charge_placed")
+	..()
