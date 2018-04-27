@@ -33,7 +33,7 @@
 		if(5 to INFINITY) overlays += "plasma-5"
 
 /obj/structure/dispenser/attack_hand(mob/user as mob)
-	user.set_machine(src)
+	user.set_using_object(src)
 	var/dat = "[src]<br><br>"
 	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
 	dat += "Plasma tanks: [plasmatanks] - [plasmatanks ? "<A href='?src=\ref[src];plasma=1'>Dispense</A>" : "empty"]"
@@ -82,7 +82,7 @@
 	if(usr.stat || usr.restrained())
 		return
 	if(Adjacent(usr))
-		usr.set_machine(src)
+		usr.set_using_object(src)
 		if(href_list["oxygen"])
 			if(oxygentanks > 0)
 				var/obj/item/weapon/tank/oxygen/O

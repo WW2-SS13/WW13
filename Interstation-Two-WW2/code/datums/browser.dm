@@ -176,5 +176,5 @@
 	// so just reset the user mob's machine var
 	if(src && mob)
 		//world << "[src] was [mob.machine], setting to null"
-		mob.unset_machine()
+		mob.unset_using_object()
 	return

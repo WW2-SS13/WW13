@@ -2,7 +2,7 @@
 //POD MACHINEGUNS
 //*********************
 
-/obj/item/weapon/gun/projectile/minigun/verb/eject_mag()
+/obj/item/weapon/gun/projectile/automatic/stationary/verb/eject_mag()
 	set category = null // was "Minigun" - removes lag
 	set name = "Eject magazine"
 	set src in range(1, usr)
@@ -11,7 +11,7 @@
 /////////////////////////////
 ////Stationary Machinegun////
 /////////////////////////////
-/obj/item/weapon/gun/projectile/minigun
+/obj/item/weapon/gun/projectile/automatic/stationary
 	name = "minigun"
 	desc = "6-barreled highspeed machinegun."
 	icon_state = "minigun"
@@ -42,64 +42,18 @@
 
 	gun_type = GUN_TYPE_MG
 
-	// mg accuracy but halfed
-	accuracy_list = list(
-
-		// small body parts: head, hand, feet
-		"small" = list(
-			SHORT_RANGE_STILL = 15,
-			SHORT_RANGE_MOVING = 14,
-
-			MEDIUM_RANGE_STILL = 11,
-			MEDIUM_RANGE_MOVING = 10,
-
-			LONG_RANGE_STILL = 6,
-			LONG_RANGE_MOVING = 5,
-
-			VERY_LONG_RANGE_STILL = 4,
-			VERY_LONG_RANGE_MOVING = 4),
-
-		// medium body parts: limbs
-		"medium" = list(
-			SHORT_RANGE_STILL = 19,
-			SHORT_RANGE_MOVING = 17,
-
-			MEDIUM_RANGE_STILL = 15,
-			MEDIUM_RANGE_MOVING = 14,
-
-			LONG_RANGE_STILL = 12,
-			LONG_RANGE_MOVING = 11,
-
-			VERY_LONG_RANGE_STILL = 6,
-			VERY_LONG_RANGE_MOVING = 5),
-
-		// large body parts: chest, groin
-		"large" = list(
-			SHORT_RANGE_STILL = 23,
-			SHORT_RANGE_MOVING = 21,
-
-			MEDIUM_RANGE_STILL = 19,
-			MEDIUM_RANGE_MOVING = 17,
-
-			LONG_RANGE_STILL = 15,
-			LONG_RANGE_MOVING = 14,
-
-			VERY_LONG_RANGE_STILL = 8,
-			VERY_LONG_RANGE_MOVING = 7),
-	)
-
 	accuracy_increase_mod = 1.00
 	accuracy_decrease_mod = 1.00
 	KD_chance = KD_CHANCE_VERY_LOW
 	stat = "MG"
 
-/obj/item/weapon/gun/projectile/minigun/attack_hand(var/mob/user)
+/obj/item/weapon/gun/projectile/automatic/stationary/attack_hand(var/mob/user)
 
 	if (last_user && last_user != user)
 		user << "<span class = 'warning'>\the [src] is already in use.</span>"
 		return
 
-	if(user.using_object == src)
+	if(user.using_MG == src)
 		if(firemodes.len > 1)
 			switch_firemodes(user)
 	else
@@ -108,18 +62,18 @@
 		if(user.loc == T)
 			if(user.has_empty_hand(both = TRUE) && !is_used_by(user))
 				if (!map || !map.check_prishtina_block(user, loc))
-					if (do_after(user, 7, src))
-						user.use_object(src)
+					if (do_after(user, 15, src))
+						user.use_MG(src)
 						usedby(user, src)
 						started_using(user)
 						if (user.loc != loc)
-							user.use_object(null)
+							user.use_MG(null)
 			else
 				user.show_message("<span class = 'warning'>You need both hands to use a minigun.</span>")
 		else
 			user.show_message("<span class='warning'>You're too far from the handles.</span>")
 /*
-/obj/item/weapon/gun/projectile/minigun/proc/try_use_sights(mob/user)
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/try_use_sights(mob/user)
 	if (is_used_by(user))
 		//toggle_scope(2.0)
 	else
@@ -132,7 +86,7 @@
 //	devicename: name of what device you are peering through, set by zoom() in items.dm
 //	silent: boolean controlling whether it should tell the user why they can't zoom in or not
 // I am sorry for creating this abomination -- Irra
-///obj/item/weapon/gun/projectile/minigun/can_zoom(mob/user, var/devicename, var/silent)
+///obj/item/weapon/gun/projectile/automatic/stationary/can_zoom(mob/user, var/devicename, var/silent)
 	//if(user.stat || !ishuman(user))
 		//if (!silent) user.show_message("You are unable to focus through the [devicename]")
 		//return FALSE
@@ -141,7 +95,7 @@
 		//return FALSE
 	return TRUE
 
-/obj/item/weapon/gun/projectile/minigun/proc/try_remove_mag(mob/user)
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/try_remove_mag(mob/user)
 	if(!ishuman(user))
 		return
 	if (!is_used_by(user))
@@ -152,7 +106,7 @@
 	else
 		user.show_message("<span class='warning'>You can't do this while using \the [src].</span>")
 
-/obj/item/weapon/gun/projectile/minigun/proc/usedby(mob/user, atom/A, params)
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/usedby(mob/user, atom/A, params)
 	if(A == src)
 		switch_firemodes(user)
 
@@ -162,7 +116,7 @@
 	//	rotate_to(user, A)
 		update_layer()
 
-/obj/item/weapon/gun/projectile/minigun/proc/check_direction(mob/user, atom/A)
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/check_direction(mob/user, atom/A)
 	if(get_turf(A) == loc)
 		return FALSE
 
@@ -173,17 +127,17 @@
 
 	return TRUE
 
-/obj/item/weapon/gun/projectile/minigun/proc/rotate_to(mob/user, atom/A)
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/rotate_to(mob/user, atom/A)
 	user.show_message("<span class='warning'>You can't turn the [name] there.</span>")
 	return FALSE
 
-/obj/item/weapon/gun/projectile/minigun/proc/update_layer()
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/update_layer()
 	if(dir == NORTH)
 		layer = OBJ_LAYER+0.1 // above any casings we drop but below mobs
 	else
 		layer = FLY_LAYER
 
-/obj/item/weapon/gun/projectile/minigun/proc/started_using(mob/living/carbon/human/user)
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/started_using(mob/living/carbon/human/user)
 	..()
 
 	user.forceMove(loc)
@@ -206,7 +160,7 @@
 			last_user = user
 			break
 
-/obj/item/weapon/gun/projectile/minigun/proc/stopped_using(mob/user as mob)
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/stopped_using(mob/user as mob)
 	..()
 
 	for(var/datum/action/A in actions)
@@ -217,10 +171,10 @@
 				S.scope.zoom(user, FALSE)
 				break
 
-/obj/item/weapon/gun/projectile/minigun/proc/is_used_by(mob/user)
-	return user.using_object == src && user.loc == loc
+/obj/item/weapon/gun/projectile/automatic/stationary/proc/is_used_by(mob/user)
+	return user.using_MG == src && user.loc == loc
 
-/obj/item/weapon/gun/projectile/minigun/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/item/weapon/gun/projectile/automatic/stationary/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return TRUE
 	if(istype(mover, /obj/item/projectile))
 		return TRUE
@@ -229,7 +183,7 @@
 ///////////////////////
 ////Stationary KORD////
 ///////////////////////
-/obj/item/weapon/gun/projectile/minigun/kord
+/obj/item/weapon/gun/projectile/automatic/stationary/kord
 	name = "KORD"
 	desc = "Heavy machinegun"
 	icon_state = "kord"
@@ -245,7 +199,7 @@
 		list(name="default", burst=3, burst_delay=0.5, fire_delay=1.5, dispersion=list(0), accuracy=list(2))
 		)
 
-/obj/item/weapon/gun/projectile/minigun/kord/rotate_to(mob/user, atom/A)
+/obj/item/weapon/gun/projectile/automatic/stationary/kord/rotate_to(mob/user, atom/A)
 	var/shot_dir = get_carginal_dir(src, A)
 	dir = shot_dir
 
@@ -254,3 +208,30 @@
 
 	user.forceMove(loc)
 	user.dir = dir
+
+// helpers
+
+/mob/var/using_MG = null
+/mob/proc/use_MG(o)
+	if (!o || !istype(o, /obj/item/weapon/gun/projectile/automatic/stationary))
+		using_MG = null
+	else
+		using_MG = o
+
+/mob/proc/handle_MG_operation(var/stop_using = FALSE)
+	if (using_MG && istype(using_MG, /obj/item/weapon/gun/projectile/automatic/stationary))
+		var/obj/item/weapon/gun/projectile/automatic/stationary/mg = using_MG
+		if (!(locate(src) in range(mg.maximum_use_range, mg)) || stop_using)
+			use_MG(null)
+			mg.stopped_using(src)
+	else if (!locate(using_MG) in range(1, src) || stop_using)
+		use_MG(null)
+
+/mob/Move()
+	. = ..()
+	handle_MG_operation()
+
+/mob/update_canmove()
+	. = ..()
+	if (lying || stat)
+		handle_MG_operation(stop_using = TRUE)

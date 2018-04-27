@@ -872,8 +872,8 @@ lighting determines lighting capturing (optional), suppress_errors suppreses err
 proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/lighting = TRUE, var/suppress_errors = TRUE)
 	var/list/turfstocapture = list()
 	//Lines below determine what tiles will be rendered
-	for(var/xoff = FALSE to range)
-		for(var/yoff = FALSE to range)
+	for(var/xoff = 0 to range)
+		for(var/yoff = 0 to range)
 			var/turf/T = locate(tx + xoff,ty + yoff,tz)
 			if(T)
 				if(cap_mode == CAPTURE_MODE_REGULAR)

@@ -373,9 +373,9 @@
 /obj/item/weapon/storage/belt/soviet_basic/soldier
 /obj/item/weapon/storage/belt/soviet_basic/soldier/New()
 	..()
-	new /obj/item/weapon/gun/projectile/pistol/tokarev(src)
+/*	new /obj/item/weapon/gun/projectile/pistol/tokarev(src)
 	new /obj/item/ammo_magazine/c762mm_tokarev(src)
-	new /obj/item/ammo_magazine/c762mm_tokarev(src)
+	new /obj/item/ammo_magazine/c762mm_tokarev(src)*/
 	new /obj/item/weapon/shovel/spade/russia(src)
 
 /obj/item/weapon/storage/belt/soviet/anti_tank_crew
@@ -439,9 +439,9 @@
 /obj/item/weapon/storage/belt/german_basic/soldier
 /obj/item/weapon/storage/belt/german_basic/soldier/New()
 	..()
-	new /obj/item/weapon/gun/projectile/pistol/waltherp38(src)
+/*	new /obj/item/weapon/gun/projectile/pistol/waltherp38(src)
 	new /obj/item/ammo_magazine/p9x19mm(src)
-	new /obj/item/ammo_magazine/p9x19mm(src)
+	new /obj/item/ammo_magazine/p9x19mm(src)*/
 	new /obj/item/weapon/shovel/spade/russia(src)
 
 /obj/item/weapon/storage/belt/german/anti_tank_crew

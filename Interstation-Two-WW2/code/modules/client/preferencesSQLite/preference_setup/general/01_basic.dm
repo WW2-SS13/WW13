@@ -3,7 +3,7 @@
 
 /datum/category_item/player_setup_item/general/basic
 	name = "Basic"
-	sort_order = TRUE
+	sort_order = 1
 	var/list/valid_player_genders = list(MALE, FEMALE)
 
 datum/preferences/proc/set_biological_gender(var/set_gender)

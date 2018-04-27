@@ -47,7 +47,7 @@ var/static/list/german_supply_crate_types = list(
 	"Flammenwerfer" = /obj/item/weapon/storage/backpack/flammenwerfer,
 	"7,5 cm FK 18 Artillery Piece" = /obj/structure/artillery,
 	"Luger Crate" = /obj/structure/closet/crate/lugers,
-	"Movable MG34" = /obj/item/weapon/gun/projectile/minigun/kord/mg34,
+	"Movable MG34" = /obj/item/weapon/gun/projectile/automatic/stationary/kord/mg34,
 
 	// ARTILLERY AMMO
 	"Artillery Ballistic Shells Crate" = /obj/structure/closet/crate/artillery,
@@ -112,7 +112,7 @@ var/static/list/soviet_supply_crate_types = list(
 	"DP-28" = /obj/item/weapon/gun/projectile/automatic/dp,
 	"PTRD" = /obj/item/weapon/gun/projectile/heavy/ptrd,
 	"37mm Spade Mortar" = /obj/structure/mortar/spade,
-	"Maxim" = /obj/item/weapon/gun/projectile/minigun/kord/maxim,
+	"Maxim" = /obj/item/weapon/gun/projectile/automatic/stationary/kord/maxim,
 
 	// CLOSETS
 	"Tool Closet" = /obj/structure/closet/toolcloset,

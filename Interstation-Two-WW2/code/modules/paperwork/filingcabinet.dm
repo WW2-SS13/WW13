@@ -55,7 +55,7 @@
 		user << "<span class='notice'>\The [src] is empty.</span>"
 		return
 
-	user.set_machine(src)
+	user.set_using_object(src)
 	var/dat = "<center><table>"
 	for(var/obj/item/P in src)
 		dat += "<tr><td><a href='?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"

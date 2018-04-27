@@ -276,7 +276,7 @@
 	if(!anchored)
 		return
 
-	usr.machine = src
+	usr.using_object = src
 	var/dat = "<HEAD><TITLE>Piano</TITLE></HEAD><BODY>"
 
 	if(song)

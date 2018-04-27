@@ -41,7 +41,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/used_environ = FALSE
 
 	var/has_gravity = TRUE
-	var/obj/machinery/power/apc/apc = null
+//	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/air_doors_activated = FALSE
@@ -200,8 +200,8 @@ var/list/ghostteleportlocs = list()
 	if ((fire || eject) && (!requires_power||power_environ))//If it doesn't require power, can still activate this proc.
 		if(fire)
 			//icon_state = "blue"
-			for(var/obj/machinery/light/L in src)
-				if(istype(L, /obj/machinery/light/small))
+			for(var/obj/structure/light/L in src)
+				if(istype(L, /obj/structure/light/small))
 					continue
 				L.set_red()
 	/*	else if (atmosalm == 2)
@@ -218,8 +218,8 @@ var/list/ghostteleportlocs = list()
 	else
 	//	new lighting behaviour with obj lights
 		icon_state = null
-		for(var/obj/machinery/light/L in src)
-			if(istype(L, /obj/machinery/light/small))
+		for(var/obj/structure/light/L in src)
+			if(istype(L, /obj/structure/light/small))
 				continue
 			L.reset_color()
 
@@ -350,20 +350,20 @@ var/list/mob/living/forced_ambiance_list = new
 		var/ideal_y = round(world.maxy/2)
 		var/area/L_area = get_area(L)
 
-		// war volume will vary from 5% to 20%, depending on where you are (on a 150x150 map)
-		// the max() check makes this code forestmap compatible too - Kachnov
-		var/warvolume = 20
+		// war volume will vary from 2% to 22%, depending on where you are (on a 150x150 map)
+		// the max() check makes this code forestmap compatible too
+		var/warvolume = 21
 
-		warvolume -= ceil(abs(L.x - ideal_x)/20) // 16%
-		warvolume -= ceil(abs(L.y - ideal_y)/20) // 12%
+		warvolume -= ceil(abs(L.x - ideal_x)/15)
+		warvolume -= ceil(abs(L.y - ideal_y)/15)
 
 		if (L_area)
 			if (L_area.location == AREA_INSIDE)
-				warvolume -= 3 // 9%
+				warvolume -= 4
 			if (L_area.is_void_area)
-				warvolume -= 4 // 5%
+				warvolume -= 5
 
-		warvolume = max(warvolume, 5)
+		warvolume = max(warvolume, 2)
 
 		L << sound(null, channel = SOUND_CHANNEL_AMBIENCE)
 		var/sound/S = sound(sound, repeat = TRUE, wait = FALSE, volume = warvolume, channel = SOUND_CHANNEL_AMBIENCE)

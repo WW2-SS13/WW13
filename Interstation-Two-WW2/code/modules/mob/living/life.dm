@@ -172,8 +172,8 @@
 			client.screen += global_hud.blurry
 		if (druggy)
 			client.screen += global_hud.druggy*/
-	if(machine)
-		var/viewflags = machine.check_eye(src)
+	if(using_object)
+		var/viewflags = using_object.check_eye(src)
 		if(viewflags < 0)
 			reset_view(null, FALSE)
 		else if(viewflags)

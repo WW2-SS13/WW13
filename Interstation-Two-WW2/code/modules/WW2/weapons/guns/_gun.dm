@@ -103,11 +103,24 @@
 
 /obj/item/weapon/gun/projectile/proc/calculate_miss_chance(zone, var/mob/target)
 
-	firer = loc
+	if (ismob(loc))
+		firer = loc
+	else if (isturf(loc))
+		if (istype(src, /obj/item/weapon/gun/projectile/automatic/stationary))
+			for (var/mob/living/L in loc)
+				if (L.using_MG == src)
+					firer = L
+					break
+		else
+			for (var/mob/living/L in loc)
+				firer = L
+				break
+
 	if (!firer || !target || !istype(target))
-		return 0
+		return sprob(50)
+
 	if (!istype(firer))
-		return 0
+		return sprob(50)
 
 	var/accuracy_sublist = accuracy_list["large"]
 

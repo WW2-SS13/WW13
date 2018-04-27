@@ -66,7 +66,7 @@ var/turf/floor/plating/under/ref_under_plating = null
 	for (var/atom/movable/am in move)
 		if (istype(am, /obj/lift_controller))
 			continue
-		if (istype(am, /obj/machinery/light))
+		if (istype(am, /obj/structure/light))
 			continue
 		am.loc = loc
 
@@ -80,7 +80,7 @@ var/turf/floor/plating/under/ref_under_plating = null
 			continue
 		if (istype(o, /obj/lift_controller))
 			continue
-		if (istype(o, /obj/machinery/light))
+		if (istype(o, /obj/structure/light))
 			continue
 		if (istype(o, /obj/effect/landmark))
 			continue
@@ -89,7 +89,7 @@ var/turf/floor/plating/under/ref_under_plating = null
 
 		if (o.density)
 			visible_message("<span class = 'danger'>The lift crushes [o]!</span>")
-			if (istype(o, /obj/machinery))
+			if (istype(o, /obj/structure))
 				gibs(get_turf(o), gibber_type = /obj/effect/gibspawner/robot)
 			qdel(o)
 		else if (!o.density)

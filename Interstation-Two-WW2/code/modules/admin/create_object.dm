@@ -1,5 +1,5 @@
 var/create_object_html = null
-var/list/create_object_forms = list(/obj, /obj/structure, /obj/machinery,
+var/list/create_object_forms = list(/obj, /obj/structure,
 								/obj/effect, /obj/item, /obj/item/weapon,
 								/obj/item/clothing, /obj/item/stack, /obj/item,
 								/obj/item/weapon/reagent_containers, /obj/item/weapon/gun)

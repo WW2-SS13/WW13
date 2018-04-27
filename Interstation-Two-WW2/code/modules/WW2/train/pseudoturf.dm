@@ -73,10 +73,9 @@
 			if (istype(aa, /obj/structure/bed))
 				var/obj/structure/bed/bed = aa
 				bed.can_buckle = FALSE // fixes the train buckling meme
-
+/*
 			if (istype(aa, /obj/machinery))
-				aa.anchored = TRUE
-
+				aa.anchored = TRUE*/
 
 			aa.icon = a.icon
 			aa.icon_state = a.icon_state
@@ -212,7 +211,7 @@
 		if (check_object_invalid_for_moving(src, a) && check_object_valid_for_destruction(a))
 			if (a.density)
 				visible_message("<span class = 'danger'>The train crushes [a]!</span>")
-				if (istype(a, /obj/machinery))
+				if (istype(a, /obj/structure))
 					gibs(get_turf(a), gibber_type = /obj/effect/gibspawner/robot)
 				qdel(a)
 			else if (!a.density)

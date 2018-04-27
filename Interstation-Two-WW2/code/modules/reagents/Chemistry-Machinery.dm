@@ -325,7 +325,7 @@
 			loaded_pill_bottle = null
 	else if(href_list["close"])
 		usr << browse(null, "window=chemmaster")
-		usr.unset_machine()
+		usr.unset_using_object()
 		return
 
 	if(beaker)
@@ -466,7 +466,7 @@
 	return
 
 /obj/structure/chem_master/attack_hand(mob/user as mob)
-	user.set_machine(src)
+	user.set_using_object(src)
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
@@ -604,7 +604,7 @@
 	interact(user)
 
 /obj/structure/reagentgrinder/interact(mob/user as mob) // The microwave Menu
-	user.set_machine(src)
+	user.set_using_object(src)
 	var/is_chamber_empty = FALSE
 	var/is_beaker_ready = FALSE
 	var/processing_chamber = ""

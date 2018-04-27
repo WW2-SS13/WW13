@@ -10,7 +10,7 @@
 			if (H.client)
 				H << msg*/
 
-/proc/radio2faction(msg, faction = GERMAN, var/channel = "High Command Announcement System")
+/proc/radio2faction(msg, faction = GERMAN, var/channel = "High Command Announcements")
 	switch (faction)
 		if (GERMAN)
 			return radio2germans(msg, channel)
@@ -19,7 +19,7 @@
 		if (SCHUTZSTAFFEL)
 			return radio2SS(msg, channel)
 
-/proc/radio2germans(msg, var/channel = "High Command Announcement System")
+/proc/radio2germans(msg, var/channel = "High Command Announcements")
 	var/obj/item/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
 		spawn (3)
@@ -31,11 +31,11 @@
 	var/obj/item/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
 		spawn (3)
-			R.announce(msg, "SS Announcement System")
+			R.announce(msg, "SS Announcements")
 		return TRUE
 	return FALSE
 
-/proc/radio2soviets(msg, var/channel = "High Command Announcement System")
+/proc/radio2soviets(msg, var/channel = "High Command Announcements")
 	var/obj/item/radio/R = main_radios[SOVIET]
 	if (R && R.loc)
 		spawn (3)

@@ -464,7 +464,7 @@
 			if("run")
 				mob.velocity = min(mob.velocity+1, 15)
 				mob.velocity_lastdir = direct
-				move_delay += (mob.get_run_delay()/mob.movement_speed_multiplier) + standing_on_snow
+				move_delay += mob.get_run_delay() + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.02
@@ -473,7 +473,7 @@
 					if (H.bodytemperature < H.species.body_temperature)
 						H.bodytemperature += 0.66
 			if("walk")
-				move_delay += (mob.get_walk_delay()/mob.movement_speed_multiplier) + standing_on_snow
+				move_delay += mob.get_walk_delay() + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
 					H.nutrition -= 0.002
@@ -491,7 +491,7 @@
 						if (N.hanging == H)
 							mob.stop_pulling()
 
-			else if (istype(mob.pulling, /obj/item/weapon/gun/projectile/minigun))
+			else if (istype(mob.pulling, /obj/item/weapon/gun/projectile/automatic/stationary))
 				move_delay += 1.00
 
 			else if (istype(mob.pulling, /obj/structure))
@@ -530,15 +530,15 @@
 				direct = spick(cardinal)
 
 			return mob.buckled.relaymove(mob,direct)
-
+/*
 		if(mob.machine && istype(mob.machine, /obj/machinery))
 			if(mob.machine.relaymove(mob,direct))
-				return
+				return*/
 
 		if(mob.pulledby || mob.buckled) // Wheelchair driving!
-			if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
-				return mob.pulledby.relaymove(mob, direct)
-			else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
+/*			if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
+				return mob.pulledby.relaymove(mob, direct)*/
+			if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
 				if(mob_is_human)
 					var/mob/living/carbon/human/driver = mob
 					var/obj/item/organ/external/l_hand = driver.get_organ("l_hand")
@@ -641,6 +641,8 @@
 		moving = FALSE
 
 		mob.last_movement = world.time
+
+		move_delay /= mob.movement_speed_multiplier
 
 		return .
 

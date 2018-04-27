@@ -1,4 +1,4 @@
-#define MAX_SUPPLYDROP_CRATES 20
+#define MAX_SUPPLYDROP_CRATES 7
 
 // DEFAULT frequency: unused
 var/const/DEFAULT_FREQ = 1000
@@ -154,14 +154,15 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	if (istype(src, /obj/item/radio/intercom) && !istype(src, /obj/item/radio/intercom/loudspeaker))
 		notyetmoved = FALSE
 		if (loc)
-			setup_announcement_system("Arrivals Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
-			setup_announcement_system("Supplydrop Announcement System", (faction == GERMAN ? DE_SUPPLY_FREQ : SO_SUPPLY_FREQ))
-			setup_announcement_system("Supply Train Announcement System", (faction == GERMAN ? DE_SUPPLY_FREQ : SO_SUPPLY_FREQ))
-			setup_announcement_system("Reinforcements Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
-			setup_announcement_system("High Command Announcement System", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
+			setup_announcement_system("Arrivals Announcements", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
+			setup_announcement_system("Supplydrop Announcements", (faction == GERMAN ? DE_SUPPLY_FREQ : SO_SUPPLY_FREQ))
+			setup_announcement_system("Supply Train Announcements", (faction == GERMAN ? DE_SUPPLY_FREQ : SO_SUPPLY_FREQ))
+			setup_announcement_system("Reinforcements Announcements", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
+			setup_announcement_system("High Command Announcements", (faction == GERMAN ? DE_BASE_FREQ : SO_BASE_FREQ))
+			setup_announcement_system("High Command Private Announcements", (faction == GERMAN ? DE_COMM_FREQ : SO_COMM_FREQ))
 			switch (faction)
 				if (GERMAN)
-					setup_announcement_system("SS Announcement System", SS_FREQ)
+					setup_announcement_system("SS Announcements", SS_FREQ)
 					main_radios[GERMAN] = src
 				if (SOVIET)
 					main_radios[SOVIET] = src
@@ -213,7 +214,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 		return ..(user)
 
 /obj/item/radio/attack_self(mob/user as mob)
-	user.set_machine(src)
+	user.set_using_object(src)
 	if (is_supply_radio && faction)
 		var/passcheck = input(user, "Enter the password.") as num
 		playsound(get_turf(src), "keyboard", 100, 1)
@@ -451,7 +452,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 /obj/item/radio/intercom/a7b/New()
 	..()
 	internal_channels = command_soviet_channels.Copy()
-
+/*
 /obj/item/radio/intercom/a7b/process()
 	if(world.time - last_tick > 30 || last_tick == -1)
 		last_tick = world.time
@@ -469,7 +470,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 			icon_state = "a7b"
 		else
 			icon_state = "a7b"
-
+*/
 /obj/item/radio/rbs
 	name = "RBS1"
 	icon_state = "rbs1"
@@ -504,7 +505,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 /obj/item/radio/intercom/fu2/New()
 	..()
 	internal_channels = command_german_channels.Copy()
-
+/*
 /obj/item/radio/intercom/fu2/process()
 	if(world.time - last_tick > 30 || last_tick == -1)
 		last_tick = world.time
@@ -522,7 +523,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 			icon_state = "fud2"
 		else
 			icon_state = "fud2"
-
+*/
 // german
 
 /obj/item/radio/feldfu
@@ -587,7 +588,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	if(..())
 		return TRUE
 
-	usr.set_machine(src)
+	usr.set_using_object(src)
 
 	if (href_list["freq"])
 		var/new_frequency = (frequency + text2num(href_list["freq"]))
@@ -637,7 +638,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	if (supply_points[faction] <= pointcost)
 		return
 
-	announce("[itemname] has been purchased and will arrive soon.", "Supplydrop Announcement System")
+	announce("[itemname] has been purchased and will arrive soon.", "Supplydrop Announcements")
 	supply_points[faction] -= pointcost
 
 	// sanity checking due to crashing, not sure it will help - Kachnov

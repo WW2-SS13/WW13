@@ -440,7 +440,7 @@
  *  See NanoUI documentation for details.
  */
 /obj/structure/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
-	user.set_machine(src)
+	user.set_using_object(src)
 
 	var/list/data = list()
 	if(currently_vending)

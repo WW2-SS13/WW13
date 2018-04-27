@@ -115,7 +115,7 @@
 
 /obj/item/weapon/ducttape/afterattack(var/A, mob/user, flag, params)
 
-	if(!in_range(user, A) || istype(A, /obj/machinery/door) || !stuck)
+	if(!in_range(user, A) || istype(A, /obj/structure/simple_door) || !stuck)
 		return
 
 	var/turf/target_turf = get_turf(A)

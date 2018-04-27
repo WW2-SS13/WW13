@@ -372,19 +372,12 @@
 /obj/structure/closet/crate/large/close()
 	. = ..()
 	if (.)//we can hold up to one large item
-		var/found = FALSE
 		for(var/obj/structure/S in loc)
 			if(S == src)
 				continue
 			if(!S.anchored)
-				found = TRUE
 				S.forceMove(src)
 				break
-		if(!found)
-			for(var/obj/machinery/M in loc)
-				if(!M.anchored)
-					M.forceMove(src)
-					break
 	return
 /*
 /obj/structure/closet/crate/secure/large

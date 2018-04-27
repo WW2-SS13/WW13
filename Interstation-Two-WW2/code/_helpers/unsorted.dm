@@ -183,8 +183,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(D.dir == SOUTHWEST)	return TRUE
 		if(D.dir == dir)		return TRUE
 
-	for(var/obj/machinery/door/D in loc)
-		if(!D.density)			continue
+	for(var/obj/structure/simple_door/S in loc)
+		if(!S.density)			continue
 	/*	if(istype(D, /obj/machinery/door/window))
 			if((dir & SOUTH) && (D.dir & (EAST|WEST)))		return TRUE
 			if((dir & EAST ) && (D.dir & (NORTH|SOUTH)))	return TRUE

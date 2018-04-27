@@ -122,7 +122,7 @@
 
 /obj/item/weapon/flamethrower/attack_self(mob/user as mob)
 	if(user.stat || user.restrained() || user.lying)	return
-	user.set_machine(src)
+	user.set_using_object(src)
 	if(!ptank)
 		user << "<span class='notice'>Attach a plasma tank first!</span>"
 		return
@@ -134,11 +134,11 @@
 
 /obj/item/weapon/flamethrower/Topic(href,href_list[])
 	if(href_list["close"])
-		usr.unset_machine()
+		usr.unset_using_object()
 		usr << browse(null, "window=flamethrower")
 		return
 	if(usr.stat || usr.restrained() || usr.lying)	return
-	usr.set_machine(src)
+	usr.set_using_object(src)
 	if(href_list["light"])
 		if(!ptank)	return
 		if(ptank.air_contents.gas["plasma"] < 1)	return
@@ -154,10 +154,10 @@
 		usr.put_in_hands(ptank)
 		ptank = null
 		lit = FALSE
-		usr.unset_machine()
+		usr.unset_using_object()
 		usr << browse(null, "window=flamethrower")
 	for(var/mob/M in viewers(1, loc))
-		if((M.client && M.machine == src))
+		if((M.client && M.using_object == src))
 			attack_self(M)
 	update_icon()
 	return
@@ -183,7 +183,7 @@
 	previousturf = null
 	operating = FALSE
 	for(var/mob/M in viewers(1, loc))
-		if((M.client && M.machine == src))
+		if((M.client && M.using_object == src))
 			attack_self(M)
 	return
 
