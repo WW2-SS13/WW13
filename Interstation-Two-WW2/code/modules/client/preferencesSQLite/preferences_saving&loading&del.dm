@@ -53,11 +53,11 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 			key_val_pairs -= key_val_pair
 			if (findtext(val, "{"))
 				key_val_pairs[key] = list()
-				log_debug("[key] = [val]")
+			//	log_debug("[key] = [val]")
 				var/list = replacetext(replacetext(val, "{", ""), "}", "")
 				list = splittext(list, "|")
 				for (var/something in list)
-					log_debug("item: [something]")
+			//		log_debug("item: [something]")
 					key_val_pairs[key] += something
 			else
 				key_val_pairs[key] = val

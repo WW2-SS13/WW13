@@ -93,6 +93,24 @@
 
 	return "[trim(full_name)]"
 
+/datum/language/proc/get_random_polish_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
+	if(!syllables || !syllables.len)
+		if(gender==FEMALE)
+			return capitalize(spick(first_names_female_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+		else
+			return capitalize(spick(first_names_male_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+
+	var/full_name = ""
+	var/new_name = ""
+
+	for(var/i = 0;i<name_count;i++)
+		new_name = ""
+		for(var/x = srand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+			new_name += spick(syllables)
+		full_name += " [capitalize(lowertext(new_name))]"
+
+	return "[trim(full_name)]"
+
 /datum/language/proc/get_random_italian_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)
@@ -271,6 +289,17 @@
 						H.real_name = H.client.prefs.ukrainian_name
 					H.name = H.real_name
 					H.gender = H.client.prefs.ukrainian_gender
+
+		else if (istype(new_language, /datum/language/polish))
+			if (ishuman(src))
+				var/mob/living/carbon/human/H = src
+				if (H.species && H.client)
+					if (H.client.prefs.be_random_name_polish)
+						H.real_name = H.species.get_random_polish_name(H.gender, FALSE)
+					else
+						H.real_name = H.client.prefs.polish_name
+					H.name = H.real_name
+					H.gender = H.client.prefs.polish_gender
 
 		else if (istype(new_language, /datum/language/italian))
 			if (ishuman(src))

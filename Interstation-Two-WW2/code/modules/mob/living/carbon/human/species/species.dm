@@ -330,6 +330,20 @@
 		return "unknown"
 	return species_language.get_random_ukrainian_name(gender)
 
+/datum/species/proc/get_random_polish_name(var/gender, var/jew)
+	if(!name_language)
+		if(gender == FEMALE)
+			return capitalize(spick(first_names_female_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+		else
+			return capitalize(spick(first_names_male_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+
+	var/datum/language/species_language = all_languages[name_language]
+	if(!species_language)
+		species_language = all_languages[default_language]
+	if(!species_language)
+		return "unknown"
+	return species_language.get_random_polish_name(gender)
+
 /datum/species/proc/get_random_italian_name(var/gender, var/jew)
 	if(!name_language)
 		if(gender == FEMALE)

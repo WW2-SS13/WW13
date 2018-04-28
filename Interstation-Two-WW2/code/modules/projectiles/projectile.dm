@@ -70,6 +70,8 @@
 	var/KD_chance = 5
 	var/execution = FALSE
 
+	var/is_shrapnel = FALSE
+
 /obj/item/projectile/Del()
 	projectile_list -= src
 	..()
@@ -175,6 +177,8 @@
 
 /obj/item/projectile/proc/launch_fragment(atom/target)
 
+	is_shrapnel = TRUE
+
 	var/turf/curloc = loc
 	var/turf/targloc = get_turf(target)
 
@@ -197,6 +201,7 @@
 	loc = curloc
 	starting = curloc
 	current = curloc
+
 	yo = targloc.y - curloc.y
 	xo = targloc.x - curloc.x
 
@@ -240,6 +245,21 @@
 
 //Called when the projectile intercepts a mob. Returns TRUE if the projectile hit the mob, FALSE if it missed and should keep flying.
 /obj/item/projectile/proc/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
+
+
+	if (is_shrapnel)
+		target_mob.pre_bullet_act(src)
+		var/hit_zone = "chest"
+		for (var/zone in organ_rel_size)
+			if (prob(organ_rel_size[zone]))
+				hit_zone = zone
+		target_mob.bullet_act(src, hit_zone)
+		if(silenced)
+			target_mob << "<span class='danger'>You've been hit in the [parse_zone(hit_zone)] by the shrapnel!</span>"
+		else
+			visible_message("<span class='danger'>\The [target_mob] is hit by the shrapnel in the [parse_zone(hit_zone)]!</span>")
+		return
+
 	if(!istype(target_mob))
 		return
 
@@ -419,6 +439,7 @@
 		//		log_debug("ignored [AM] (2)")
 
 	//penetrating projectiles can pass through things that otherwise would not let them
+	++penetrating
 	if(T.density && penetrating > 0)
 		if(check_penetrate(T))
 			passthrough = TRUE
@@ -566,64 +587,7 @@
 			P.pixel_x = location.pixel_x
 			P.pixel_y = location.pixel_y
 			P.activate()
-/*
-//"Tracing" projectile
-/obj/item/projectile/test //Used to see if you can hit them.
-	invisibility = 101 //Nope!  Can't see me!
-	yo = null
-	xo = null
-	var/result = FALSE //To pass the message back to the gun.
 
-/obj/item/projectile/test/handleTurf(var/turf/T)
-	if (!T || !T.density)
-		return FALSE
-	if (A == firer)
-		loc = A.loc
-		return FALSE //cannot shoot yourself
-	if (istype(A, /obj/item/projectile))
-		return FALSE
-	if (istype(A, /mob/living) || istype(A, /obj/vehicle))
-		result = 2 //We hit someone, return TRUE!
-		return FALSE
-	result = TRUE
-	return
-
-/obj/item/projectile/test/launch(atom/target)
-
-	var/turf/curloc = get_turf(src)
-	var/turf/targloc = get_turf(target)
-
-	if(!curloc || !targloc)
-		qdel(src)
-		return FALSE
-
-	original = target
-
-	//plot the initial trajectory
-	setup_trajectory(curloc, targloc)
-	return process(targloc)
-
-/obj/item/projectile/test/process(var/turf/targloc)
-	if(result)
-		return (result - 1)
-	if((!( targloc ) || loc == targloc))
-		targloc = locate(min(max(x + xo, TRUE), world.maxx), min(max(y + yo, TRUE), world.maxy), z) //Finding the target turf at map edge
-
-	trajectory.increment()	// increment the current location
-	location = trajectory.return_location(location)		// update the locally stored location data
-
-	Move(location.return_turf())
-	if (!firer || loc != firer.loc)
-		handleTurf(loc)
-
-	var/mob/living/M = locate() in get_turf(src)
-	if(istype(M)) //If there is someting living...
-		return TRUE //Return TRUE
-	else
-		M = locate() in get_step(src,targloc)
-		if(istype(M))
-			return TRUE
-*/
 //Helper proc to check if you can hit them or not.
 
 /proc/check_trajectory(atom/target as mob|obj, atom/firer as mob|obj, var/pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
@@ -632,7 +596,7 @@
 
 //	var/obj/item/projectile/test/trace = new /obj/item/projectile/test(get_turf(firer)) //Making the test....
 	var/obj/item/projectile/bullet/trace = new (get_turf(firer))
-	trace.invisibility = 100
+	trace.invisibility = 101
 
 	//Set the flags and pass flags to that of the real projectile...
 	if(!isnull(flags))

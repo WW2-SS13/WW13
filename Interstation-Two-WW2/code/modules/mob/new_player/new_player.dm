@@ -1,3 +1,4 @@
+
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
 /proc/job2mobtype(rank)
@@ -111,7 +112,7 @@
 
 /mob/new_player/Stat()
 
-	if(statpanel("Status") && ticker)
+	if(client.status_tabs && statpanel("Status") && ticker)
 		stat("")
 		stat(stat_header("Lobby"))
 		stat("")
@@ -290,6 +291,9 @@
 			var/wait = ceil((client.next_normal_respawn-world.realtime)/600)
 			if (check_rights(R_ADMIN, FALSE, src))
 				if ((input(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
+					var/msg = "[key_name(src)] bypassed a [wait] minute wait to respawn."
+					log_admin(msg)
+					message_admins(msg)
 					LateChoices()
 					return TRUE
 			alert(src, "Because you died in combat, you must wait [wait] more minutes to respawn. You can still join as a reinforcement.")
@@ -533,12 +537,12 @@
 		if (character.original_job.base_type_flag() == SOVIET)
 			var/obj/item/radio/R = main_radios[SOVIET]
 			if (R && R.loc)
-				spawn (10)
+				spawn (9)
 					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcements")
 		else if (character.original_job.base_type_flag() == GERMAN)
 			var/obj/item/radio/R = main_radios[GERMAN]
 			if (R && R.loc)
-				spawn (10)
+				spawn (9)
 					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcements")
 
 	spawn (10)

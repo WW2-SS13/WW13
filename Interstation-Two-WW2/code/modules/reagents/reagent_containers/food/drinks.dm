@@ -34,6 +34,9 @@
 	afterattack(obj/target, mob/user, proximity)
 		if(!proximity) return
 
+		if (istype(target, /obj/structure/pot))
+			return
+
 		if(standard_dispenser_refill(user, target))
 			return
 		if(standard_pour_into(user, target))

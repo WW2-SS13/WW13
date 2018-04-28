@@ -209,9 +209,26 @@
 
 	src << heard
 
+/* How this works:
+ * just like in real life, some languages have mutual intelligibility
+ * for example:
+   * a guy who knows only Polish understands ~75% Ukrainian
+   * a guy who knows Polish + Russian understands ~88% Ukrainian
+   * a guy who knows only Russian understands ~66% Ukrainian
+
+    - Kachnov
+*/
+
 /mob/proc/get_mutual_intelligibility(var/datum/language/reference)
 	. = 0
+	var/best_language = null
 	for (var/datum/language/L in languages)
-		. += L.mutual_intelligibility[reference.type]
-	. = round(min(., 95))
+		var/_new = L.mutual_intelligibility[reference.type]
+		if (_new > .)
+			. = _new
+			best_language = L
+	for (var/datum/language/L in languages)
+		if (L != best_language)
+			. += L.mutual_intelligibility[reference.type]/5
+	. = round(.)
 	return .

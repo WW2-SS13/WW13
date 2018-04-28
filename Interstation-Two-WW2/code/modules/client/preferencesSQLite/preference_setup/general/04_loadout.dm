@@ -7,8 +7,11 @@
 	//name
 	. = "<b>Pockets:</b> "
 	. += "<br><br>"
-	. += "<b>1:</b> <a href='?src=\ref[src];pocket_1=1'>[pref.pockets[1]]</a><br>"
-	. += "<b>2:</b> <a href='?src=\ref[src];pocket_2=2'>[pref.pockets[2]]</a><br>"
+
+	// although very rare, this may return FALSE. This check is needed to prevent runtimes
+	if (pref.pockets.len == 2)
+		. += "<b>1:</b> <a href='?src=\ref[src];pocket_1=1'>[pref.pockets[1]]</a><br>"
+		. += "<b>2:</b> <a href='?src=\ref[src];pocket_2=2'>[pref.pockets[2]]</a><br>"
 
 /datum/category_item/player_setup_item/general/loadout/OnTopic(var/href,var/list/href_list, var/mob/user)
 

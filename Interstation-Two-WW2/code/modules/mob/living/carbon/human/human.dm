@@ -67,6 +67,9 @@
 
 	make_blood()
 
+	nutrition = rand(max_nutrition * 0.45, max_nutrition * 0.55) // 180 to 220
+	water = round(rand(max_water * 0.45, max_water * 0.55)) // 157 to 192
+
 	spawn (10)
 		if (client)
 			human_clients_mob_list |= src

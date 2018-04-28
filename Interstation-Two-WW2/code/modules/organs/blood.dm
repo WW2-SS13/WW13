@@ -71,14 +71,12 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 
 	if (blood_max) // we're bleeding
 		drip(blood_max)
-
 	else // we're not bleeding, regenerate some blood (experimental) - Kachnov
 		for (var/datum/reagent/r in vessel.reagent_list)
 			if (istype(r, /datum/reagent/blood))
 				if (r.volume >= species.blood_volume)
 					return // we're full on blood.
 		vessel.add_reagent("blood", spick(0.33, 0.66, 0.99))
-
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/human/proc/drip(var/amt as num)
@@ -94,15 +92,6 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	// don't splatter blood all the time
 	if (sprob(amt * 100))
 		blood_splatter(src,src)
-
-	// we might just die if we have almost no blood
-	var/vessel_coeff = vessel.total_volume/vessel.maximum_volume
-//	log_debug(vessel_coeff)
-	if (vessel_coeff <= 0.25)
-		var/death_chance = (1 - vessel_coeff) * (1 - vessel_coeff) * 10
-		log_debug(death_chance)
-		if (sprob(death_chance))
-			death()
 
 /****************************************************
 				BLOOD TRANSFERS

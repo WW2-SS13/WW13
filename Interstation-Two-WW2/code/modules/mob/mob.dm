@@ -5,19 +5,14 @@
 	unset_using_object()
 	qdel(hud_used)
 
-	// don't create bad ghosts - Kachnov
-	if(client || lastKnownCkey)
+	if (client)
 		remove_screen_obj_references()
-		if (client)
-			for(var/atom/movable/AM in client.screen)
-				qdel(AM)
-			client.screen = list()
-		for (var/mob/observer/O in mob_list)
-			if (O.ckey == ckey || O.lastKnownCkey == ckey)
-				goto finish
-		ghostize()
+		for(var/atom/movable/AM in client.screen)
+			qdel(AM)
+		client.screen = list()
 
-	finish
+	ghostize()
+
 	..()
 
 /mob/proc/remove_screen_obj_references()//FIX THIS SHIT

@@ -31,8 +31,20 @@
 	. = ..()
 
 	H.languages.Cut()
-	H.add_language(default_language, TRUE)
-	H.default_language = all_languages[default_language]
+	if (istype(src, /datum/job/soviet))
+		if (H.client && H.client.prefs)
+			switch (H.client.prefs.soviet_ethnicity)
+				if (RUSSIAN)
+					H.add_language(RUSSIAN, TRUE)
+				if (UKRAINIAN)
+					H.add_language(UKRAINIAN, TRUE)
+					H.show_message("<b>You know the Ukrainian language!</b>")
+				if (POLISH)
+					H.add_language(POLISH, TRUE)
+					H.show_message("<b>You know the Polish language!</b>")
+	if (!H.languages.len || H.languages[1] != default_language)
+		H.add_language(default_language, TRUE)
+	H.default_language = H.languages[1]
 
 	if (additional_languages && additional_languages.len > 0)
 		for(var/language_name in additional_languages)
@@ -42,12 +54,3 @@
 				H.add_language(language_name, FALSE)
 				H.show_message("<b>You know the [language_name] language!</b>")
 
-	if (istype(src, /datum/job/soviet))
-		if (H.client && H.client.prefs)
-			switch (H.client.prefs.soviet_ethnicity)
-				if (UKRAINIAN)
-					H.add_language(UKRAINIAN, FALSE)
-					H.show_message("<b>You know the Ukrainian language!</b>")
-				if (POLISH)
-					H.add_language(POLISH, FALSE)
-					H.show_message("<b>You know the Polish language!</b>")

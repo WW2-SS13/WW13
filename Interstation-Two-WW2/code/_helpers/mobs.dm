@@ -114,6 +114,15 @@ proc/russify(var/list/name_list, gender)
 		l[v] = name
 	return l
 
+proc/polify(var/list/name_list, gender)
+	var/list/l = name_list.Copy()
+	for (var/v in 1 to l.len)
+		var/name = l[v]
+		if (gender == FEMALE)
+			name = replacetext(name, "ski", "ska")
+		l[v] = name
+	return l
+
 proc/random_russian_name(gender, species = "Human")
 
 	var/datum/species/current_species

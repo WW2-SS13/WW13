@@ -96,7 +96,7 @@
 	applies_material_colour = FALSE
 	unbreakable = TRUE
 	drawsound = 'sound/items/unholster_knife.ogg'
-	force_divisor = 0.2
+	force_divisor = 0.3
 
 /obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && sprob(50))

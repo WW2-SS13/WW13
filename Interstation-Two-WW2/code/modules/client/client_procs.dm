@@ -234,6 +234,8 @@
 		if (config.patrons_can_enable_disable_dabbing)
 			verbs += /client/proc/enable_disable_dabs
 
+	verbs += /client/proc/hide_status_tabs
+
 	// Forcibly enable hardware-accelerated graphics, as we need them for the lighting overlays.
 	// (but turn them off first, since sometimes BYOND doesn't turn them on properly otherwise)
 	spawn(5) // And wait a half-second, since it sounds like you can do this too fast.

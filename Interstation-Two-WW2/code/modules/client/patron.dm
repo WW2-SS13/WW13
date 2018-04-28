@@ -16,12 +16,13 @@
 	if (serverswap && serverswap.Find("masterdir"))
 		var/list/patron2pledge = file2list("[serverswap["masterdir"]]/patrons.txt")
 		for (var/string in patron2pledge)
-			var/splitString = splittext(string, "=")
-			var/patron = ckey(splitString[1])
-			// ignore second field, discord id
-			var/pledge2 = text2num(splitString[3])
-			if (patron == ckey && pledge2 >= number)
-				return TRUE
+			var/list/splitString = splittext(string, "=")
+			if (splitString.len)
+				var/patron = ckey(splitString[1])
+				// ignore second field, discord id
+				var/pledge2 = text2num(splitString[3])
+				if (patron == ckey && pledge2 >= number)
+					return TRUE
 	return FALSE
 
 /client/proc/enable_disable_dabs()

@@ -200,7 +200,7 @@
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
-	w_class = TRUE
+	w_class = 1
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 7

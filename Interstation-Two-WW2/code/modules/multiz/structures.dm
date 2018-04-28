@@ -95,10 +95,11 @@
 		return
 
 	var/turf/T = target.loc
-	for(var/atom/A in T)
-		if(A.density)
-			M << "<span class='notice'>\A [A] is blocking \the [src].</span>"
-			return
+	if (!istop)
+		for(var/atom/movable/AM in T)
+			if(AM.density)
+				M << "<span class='notice'>\A [AM] is blocking \the [src].</span>"
+				return
 
 	M.visible_message(
 		"<span class='notice'>\A [M] starts to climb [istop ? "down" : "up"] \a [src].</span>",
@@ -189,11 +190,15 @@
 	var/area_id = "defaultareaid"
 
 /obj/structure/multiz/ladder/ww2/Crossed(var/atom/movable/AM)
-	if (find_target())
+	if (find_target() && istop)
 		if (isitem(AM) && !istype(AM, /obj/item/projectile))
 			var/obj/item/I = AM
 			if (I.w_class <= 2.0) // fixes maxim bug and probably some others - Kachnov
 				I.forceMove(get_turf(find_target()))
+				visible_message("\The [I] falls down the ladder.")
+		else if (istype(AM, /obj/structure/closet))
+			visible_message("\The [AM] falls down the ladder.")
+			AM.forceMove(get_turf(find_target()))
 
 /obj/structure/multiz/ladder/ww2/find_target()
 	for (var/obj/structure/multiz/ladder/ww2/ladder in world) // todo: get rid of

@@ -140,6 +140,13 @@ Works together with spawning an observer, noted above.
 	return TRUE
 
 /mob/proc/ghostize(var/can_reenter_corpse = TRUE)
+	// don't create bad ghosts - Kachnov
+	if(!client)
+		return
+
+	if (!lastKnownCkey)
+		return
+
 	// remove weather sounds
 	src << sound(null, channel = 778)
 	// remove ambient sounds

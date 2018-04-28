@@ -79,6 +79,12 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "(<a href='?src=\ref[src];random_name_ukrainian=1'>Random Name</A>) "
 	. += "(<a href='?src=\ref[src];always_random_name_ukrainian=1'>Always Random Name: [pref.be_random_name_ukrainian ? "Yes" : "No"]</a>)"
 	. += "<br><br>"
+	// polish name
+	. += "<b>Polish Name:</b> "
+	. += "<a href='?src=\ref[src];rename_polish=1'><b>[pref.polish_name]</b></a><br>"
+	. += "(<a href='?src=\ref[src];random_name_polish=1'>Random Name</A>) "
+	. += "(<a href='?src=\ref[src];always_random_name_polish=1'>Always Random Name: [pref.be_random_name_polish ? "Yes" : "No"]</a>)"
+	. += "<br><br>"
 	// italian name
 	. += "<b>Italian Name:</b> "
 	. += "<a href='?src=\ref[src];rename_italian=1'><b>[pref.italian_name]</b></a><br>"
@@ -86,7 +92,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "(<a href='?src=\ref[src];always_random_name_italian=1'>Always Random Name: [pref.be_random_name_italian ? "Yes" : "No"]</a>)"
 	. += "<br><br>"
 	// gender
-	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
+	. += "<b>Default Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
 	. += "<br>"
 	. += "<b>German Gender:</b> <a href='?src=\ref[src];gender_german=1'><b>[capitalize(lowertext(pref.german_gender))]</b></a><br>"
 	. += "<br>"
@@ -95,7 +101,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "<b>Ukrainian Gender:</b> <a href='?src=\ref[src];gender_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_gender))]</b></a><br>"
 	. += "<br>"
 	. += "<b>Italian Gender:</b> <a href='?src=\ref[src];gender_italian=1'><b>[capitalize(lowertext(pref.italian_gender))]</b></a><br>"
-	. += "<br><br>"
+	. += "<br>"
 	. += "<b>Soviet Ethnicity:</b> <a href='?src=\ref[src];ethnicity_soviet=1'><b>[capitalize(lowertext(pref.soviet_ethnicity))]</b></a><br>"
 	. += "<br><br>"
 	// languages & ethnicity

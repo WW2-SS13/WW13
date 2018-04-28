@@ -343,7 +343,7 @@ var/list/mob/living/forced_ambiance_list = new
 			return TRUE
 	else */
 	if (!CL.ambience_playing || override)
-		var/sound = spick('sound/ambience/war1.wav', 'sound/ambience/war2.wav')
+		var/sound = 'sound/ambience/war.ogg'
 		CL.ambience_playing = sound
 
 		var/ideal_x = round(world.maxx/2)

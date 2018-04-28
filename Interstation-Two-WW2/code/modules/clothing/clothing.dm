@@ -276,14 +276,22 @@ BLIND     // can't see anything
 	force = 2
 	var/overshoes = FALSE
 
+/obj/item/clothing/shoes/attack_hand(var/mob/M)
+	if (holding)
+		draw_knife()
+	else return ..(M)
+
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
 	set desc = "Pull out your boot knife."
 	set category = "IC"
 	set src in usr
 
+	if (!holding)
+		return FALSE
+
 	if(usr.stat || usr.restrained() || usr.incapacitated())
-		return
+		return FALSE
 
 	holding.forceMove(get_turf(usr))
 
@@ -298,7 +306,7 @@ BLIND     // can't see anything
 		verbs -= /obj/item/clothing/shoes/proc/draw_knife
 
 	update_icon()
-	return
+	return TRUE
 
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
