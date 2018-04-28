@@ -406,7 +406,7 @@ var/list/mob/living/forced_ambiance_list = new
 
 /area/proc/arty_act(loss)
 	if (sprob(25))
-		artillery_integrity -= loss * 1.5
+		artillery_integrity -= loss * 1.33
 	else if (sprob(50))
 		artillery_integrity -= loss
 	else

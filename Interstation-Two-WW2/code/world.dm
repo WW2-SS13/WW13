@@ -530,12 +530,14 @@ var/setting_up_db_connection = FALSE
 
 			DEBUG_SERVERSWAP(8)
 			if (!serverswap.len)
+				serverswap["master_data_dir"] = "data/"
 				serverswap["master_log_dir"] = "data/logs/"
 				serverswap["runtime_log_dir"] = "data/logs/runtime/"
 				serverswap["attack_log_dir"] = "data/logs/attack/"
 				break
 			DEBUG_SERVERSWAP(9)
 			if (!serverswap.Find("masterdir")) // we can't do anything without this!
+				serverswap["master_data_dir"] = "data/"
 				serverswap["master_log_dir"] = "data/logs/"
 				serverswap["runtime_log_dir"] = "data/logs/runtime/"
 				serverswap["attack_log_dir"] = "data/logs/attack/"
@@ -546,6 +548,7 @@ var/setting_up_db_connection = FALSE
 			DEBUG_SERVERSWAP(11)
 			if (!serverswap.Find("sfinal")) // ditto
 				break
+			serverswap["master_data_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/"
 			serverswap["master_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/"
 			serverswap["runtime_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/runtime/"
 			serverswap["attack_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/attack/"

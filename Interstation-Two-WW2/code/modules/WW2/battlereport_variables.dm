@@ -1,3 +1,5 @@
+#define AZONE_CHECK(mob) if (!get_area(mob) || !istype(get_area(mob), /area/prishtina/admin))
+
 var/list/alive_germans = list()
 var/list/alive_russians = list()
 var/list/alive_civilians = list()
@@ -43,21 +45,22 @@ var/list/recently_died = list()
 
 /mob/living/carbon/human/death()
 
-	if (!istype(src, /mob/living/carbon/human/corpse))
-		var/list/lists = get_battle_report_lists()
-		var/list/alive = lists[1]
-		var/list/dead = lists[2]
-		var/list/injured = lists[3]
+	AZONE_CHECK(src)
+		if (!istype(src, /mob/living/carbon/human/corpse))
+			var/list/lists = get_battle_report_lists()
+			var/list/alive = lists[1]
+			var/list/dead = lists[2]
+			var/list/injured = lists[3]
 
-		alive -= getRoundUID()
-		injured -= getRoundUID()
-		dead |= getRoundUID()
+			alive -= getRoundUID()
+			injured -= getRoundUID()
+			dead |= getRoundUID()
 
-		// prevent one last Life() from potentially undoing this
-		var/storedRoundUID = getRoundUID() // in case we're getting gibbed
-		recently_died += storedRoundUID
-		spawn (200)
-			recently_died -= storedRoundUID
+			// prevent one last Life() from potentially undoing this
+			var/storedRoundUID = getRoundUID() // in case we're getting gibbed
+			recently_died += storedRoundUID
+			spawn (200)
+				recently_died -= storedRoundUID
 
 	..()
 
@@ -71,24 +74,25 @@ var/list/recently_died = list()
 
 	..()
 
-	if (istype(src, /mob/living/carbon/human/corpse))
-		return
+	AZONE_CHECK(src)
+		if (istype(src, /mob/living/carbon/human/corpse))
+			return
 
-	if (istype(original_job, /datum/job/german/trainsystem))
-		return
+		if (istype(original_job, /datum/job/german/trainsystem))
+			return
 
-	if (recently_died.Find(getRoundUID()))
-		return
+		if (recently_died.Find(getRoundUID()))
+			return
 
-	if (stat == DEAD)
-		return
+		if (stat == DEAD)
+			return
 
-	alive -= getRoundUID()
-	injured -= getRoundUID()
-	dead -= getRoundUID()
+		alive -= getRoundUID()
+		injured -= getRoundUID()
+		dead -= getRoundUID()
 
-	// give these lists starting values to prevent runtimes.
-	if (stat == CONSCIOUS)
-		alive |= getRoundUID()
-	else if (stat == UNCONSCIOUS || (health <= 0 && stat != DEAD))
-		injured |= getRoundUID()
+		// give these lists starting values to prevent runtimes.
+		if (stat == CONSCIOUS)
+			alive |= getRoundUID()
+		else if (stat == UNCONSCIOUS || (health <= 0 && stat != DEAD))
+			injured |= getRoundUID()

@@ -71,8 +71,6 @@
 				. = GERMAN
 			else
 				. = SCHUTZSTAFFEL
-	else if (istype(src, /datum/job/ukrainian))
-		. = UKRAINIAN
 	else if (istype(src, /datum/job/italian))
 		. = ITALIAN
 	else if (istype(src, /datum/job/pillarman))

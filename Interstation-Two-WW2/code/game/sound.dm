@@ -158,6 +158,9 @@ var/list/sneeze_sounds_female = list(
 	for (var/P in player_list)
 		var/mob/M = P
 
+		if (istype(source) && isnewplayer(M))
+			continue
+
 		if(!M || !M.client)
 			continue
 

@@ -263,7 +263,8 @@
 						log_admin(msg)
 						spawn (0.1)
 
-							if ((input(usr_client, "Send [H] to their spawnpoint?") in list("No", "Yes")) == "No")
+							var/send2spawn = input(usr_client, "Send [H] to their spawnpoint?") in list("No", "Yes")
+							if (send2spawn == "No")
 								H.loc = oloc_H
 							H.invisibility = 0
 

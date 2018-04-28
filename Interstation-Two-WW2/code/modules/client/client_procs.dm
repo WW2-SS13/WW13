@@ -438,6 +438,9 @@
 /client/proc/_winset(arg1, arg2)
 	winset(src, arg1, arg2)
 
+/client/proc/_winget(arg1, arg2)
+	return winget(src, arg1, arg2)
+
 // testing
 /client/proc/delme()
 	del src

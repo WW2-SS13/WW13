@@ -328,3 +328,14 @@
 					soviet_supply_crate_types -= "Mortar Shells"
 					soviet_supply_crate_types -= "37mm Spade Mortar"
 				world << "<i>Due to lowpop, there is no artillery or mortars.</i>"
+
+		if (clients.len <= 12)
+			for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
+				D.Open()
+			for (var/obj/structure/simple_door/key_door/soviet/medic/D in world)
+				D.Open()
+			for (var/obj/structure/simple_door/key_door/german/QM/D in world)
+				D.Open()
+			for (var/obj/structure/simple_door/key_door/german/medic/D in world)
+				D.Open()
+			world << "<b>Due to lowpop, armory & medical doors have started open.</b>"

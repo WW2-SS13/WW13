@@ -113,3 +113,15 @@
 	walk(src, null, null)
 	..()
 	return
+
+/obj/item/weapon/grenade/ex_act(severity)
+	switch (severity)
+		if (1.0)
+			det_time = round(det_time/10)
+			activate()
+		if (2.0)
+			if (prob(50))
+				return ex_act(1.0)
+		if (3.0)
+			if (prob(5))
+				return ex_act(1.0)
