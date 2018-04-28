@@ -150,6 +150,4 @@
 
 	var/debugmob = FALSE
 
-	var/spawnedInAtRealTime = -1
-
 	var/next_footstep_sound_at_movement_tick = -1

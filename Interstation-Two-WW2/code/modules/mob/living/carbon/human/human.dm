@@ -14,8 +14,6 @@
 					original_job = J
 					break
 
-	spawnedInAtRealTime = world.realtime
-
 	body_build = get_body_build(gender)
 
 	if(!dna)

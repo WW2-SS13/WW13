@@ -467,8 +467,8 @@
 				move_delay += mob.get_run_delay() + standing_on_snow
 				if (mob_is_human)
 					var/mob/living/carbon/human/H = mob
-					H.nutrition -= 0.02
-					H.water -= 0.02
+					H.nutrition -= 0.005
+					H.water -= 0.005
 					--H.stats["stamina"][1]
 					if (H.bodytemperature < H.species.body_temperature)
 						H.bodytemperature += 0.66
