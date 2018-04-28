@@ -1,13 +1,15 @@
 #define DEBUG
+/*
 // Turf-only flags.
 #define NOJAUNT 1 // This is used in literally one place, turf.dm, to block ethereal jaunt.
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
-
+*/
 // Some arbitrary defines to be used by self-pruning global lists. (see master_controller)
 #define PROCESS_KILL 26 // Used to trigger removal from a processing list.
+/*
 #define MAX_GEAR_COST 5 // Used in chargen for accessory loadout limit.
-
+*/
 // For secHUDs and medHUDs and variants. The number is the location of the image on the list hud_list of humans.
 #define      HEALTH_HUD 1 // A simple line rounding the mob's number health.
 #define      STATUS_HUD 2 // Alive, dead, diseased, etc.
@@ -57,7 +59,7 @@
 #define COLOR_SUN              "#ec8b2f"
 
 //	Shuttles.
-
+/*
 // These define the time taken for the shuttle to get to the space station, and the time before it leaves again.
 #define SHUTTLE_PREPTIME                300 // 5 minutes = 300 seconds - after this time, the shuttle departs centcom and cannot be recalled.
 #define SHUTTLE_LEAVETIME               180 // 3 minutes = 180 seconds - the duration for which the shuttle will wait at the station after arriving.
@@ -75,6 +77,7 @@
 #define FORCE_LAUNCH 2
 #define WAIT_ARRIVE  3
 #define WAIT_FINISH  4
+*/
 /* Already defined in setup.dm
 // Setting this much higher than 1024 could allow spammers to DOS the server easily.
 #define MAX_MESSAGE_LEN       1024
@@ -85,18 +88,20 @@
 */
 
 // Event defines.
+/*
 #define EVENT_LEVEL_MUNDANE  1
 #define EVENT_LEVEL_MODERATE 2
 #define EVENT_LEVEL_MAJOR    3
-
+*/
 //General-purpose life speed define for plants.
+/*
 #define HYDRO_SPEED_MULTIPLIER 1
-
+*/
 #define DEFAULT_JOB_TYPE /datum/job/assistant
-
+/*
 //Area flags, possibly more to come
 #define RAD_SHIELDED 1 //shielded from radiation, clearly
-
+*/
 // Custom layer definitions, supplementing the default TURF_LAYER, MOB_LAYER, etc.
 #define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6
 #define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
@@ -147,7 +152,7 @@
 #define WEAPON_FORCE_DANGEROUS   20
 #define WEAPON_FORCE_ROBUST      26
 #define WEAPON_FORCE_LETHAL      51
-
+/*
 									// NTNet module-configuration values. Do not change these. If you need to add another use larger number (5..6..7 etc)
 #define NTNET_SOFTWAREDOWNLOAD 1 	// Downloads of software from NTNet
 #define NTNET_PEERTOPEER 2			// P2P transfers of files between devices
@@ -173,7 +178,7 @@
 #define MAX_NTNET_LOGS 500
 #define MIN_NTNET_LOGS 10
 
-
+*/
 // Special return values from bullet_act(). Positive return values are already used to indicate the blocked level of the projectile.
 #define PROJECTILE_CONTINUE   -1 //if the projectile should continue flying after calling bullet_act()
 #define PROJECTILE_FORCE_MISS -2 //if the projectile should treat the attack as a miss (suppresses attack and admin logs) - only applies to mobs.
@@ -187,6 +192,6 @@
 //HUD element hidings flags
 #define F12_FLAG 1 // 0001
 #define TOGGLE_INVENTORY_FLAG 2 //0010
-
+/*
 //ANNOUNSER! I THINK YOU MEAN ANNOUNCER!
-#define ANNOUNSER_NAME "CEV Eris System Announcer"
+#define ANNOUNSER_NAME "CEV Eris System Announcer"*/
