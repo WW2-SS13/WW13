@@ -96,12 +96,12 @@
 
 		// check for TK users
 
-		if (istype(usr, /mob/living/carbon/human))
+/*		if (istype(usr, /mob/living/carbon/human))
 			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
 				if(!(usr in nearby))
 					if(usr.client && usr.using_object==src)
 						is_in_use = TRUE
-						attack_hand(usr)
+						attack_hand(usr)*/
 		in_use = is_in_use
 
 /obj/proc/updateDialog()

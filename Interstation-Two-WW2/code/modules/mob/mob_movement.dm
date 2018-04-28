@@ -245,7 +245,7 @@
 /mob/var/list/movement_process_dirs = list()
 /mob/living/carbon/human/var/next_stamina_message = -1
 
-/client/Move(n, direct)
+/client/Move(n, direct, ordinal = FALSE)
 
 	if(!canmove)
 		return
@@ -609,7 +609,7 @@
 						L.adjustBruteLoss(srand(6,7))
 						if (ishuman(L))
 							L.emote("scream")
-						sleep(5)
+						sleep(3)
 					break
 			else
 				for (var/mob/living/L in t1)
@@ -642,7 +642,12 @@
 
 		mob.last_movement = world.time
 
-		move_delay /= mob.movement_speed_multiplier
+		if (move_delay > world.time)
+			move_delay -= world.time
+			move_delay /= mob.movement_speed_multiplier
+			if (ordinal)
+				move_delay *= 1.41
+			move_delay += world.time
 
 		return .
 

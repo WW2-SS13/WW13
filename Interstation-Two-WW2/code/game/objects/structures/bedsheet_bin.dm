@@ -151,7 +151,7 @@ LINEN BINS
 
 
 	add_fingerprint(user)
-
+/*
 /obj/structure/bedsheetbin/attack_tk(mob/user as mob)
 	if(amount >= 1)
 		amount--
@@ -174,3 +174,4 @@ LINEN BINS
 
 
 	add_fingerprint(user)
+*/

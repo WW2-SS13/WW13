@@ -27,19 +27,24 @@ var/process/movement/movement_process = null
 
 		if(isnull(M.gcDestroyed))
 			try
+				var/diag = FALSE
 				var/movedir = M.movement_process_dirs[M.movement_process_dirs.len]
 				if (M.movement_process_dirs.len > 1)
 					var/secdir = M.movement_process_dirs[M.movement_process_dirs.len-1]
 					var/list/dirs = list(movedir, secdir)
 					if (dirs.Find(NORTH) && dirs.Find(WEST))
 						movedir = NORTHWEST
+						diag = TRUE
 					else if (dirs.Find(NORTH) && dirs.Find(EAST))
 						movedir = NORTHEAST
+						diag = TRUE
 					else if (dirs.Find(SOUTH) && dirs.Find(WEST))
 						movedir = SOUTHWEST
+						diag = TRUE
 					else if (dirs.Find(SOUTH) && dirs.Find(EAST))
 						movedir = SOUTHEAST
-				M.client.Move(get_step(M, movedir), movedir)
+						diag = TRUE
+				M.client.Move(get_step(M, movedir), movedir, diag)
 			catch(var/exception/e)
 				catchException(e, M)
 		else

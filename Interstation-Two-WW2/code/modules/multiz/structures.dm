@@ -48,9 +48,9 @@
 
 	initialize()
 		find_target()
-
+/*
 	attack_tk(mob/user)
-		return
+		return*/
 
 	attack_ghost(mob/user)
 		. = ..()

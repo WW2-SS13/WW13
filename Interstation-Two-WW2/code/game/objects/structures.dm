@@ -41,10 +41,10 @@
 			return FALSE
 	else
 		return ..()
-
+/*
 /obj/structure/attack_tk()
 	return
-
+*/
 /obj/structure/ex_act(severity)
 	switch(severity)
 		if(1.0)
