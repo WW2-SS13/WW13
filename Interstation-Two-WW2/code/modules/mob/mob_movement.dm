@@ -646,7 +646,7 @@
 			move_delay -= world.time
 			move_delay /= mob.movement_speed_multiplier
 			if (ordinal)
-				move_delay *= 1.41
+				move_delay *= sqrt(2)
 			move_delay += world.time
 
 		return .
