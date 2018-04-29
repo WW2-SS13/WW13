@@ -20,6 +20,7 @@
 "t" = (/obj/lift_lever/soviet,/turf/floor/wood,/area/prishtina/german/bunker)
 "u" = (/obj/item,/turf/floor/wood,/area/prishtina/no_mans_land/invisible_wall/inside)
 "v" = (/turf/open,/area/prishtina/german/lift/down)
+"w" = (/obj/effect/landmark{name = "Observer-Start"},/turf/floor/wood,/area/prishtina/german/bunker)
 "x" = (/obj/lift_controller/down/soviet,/turf/open,/area/prishtina/german/lift/down)
 "C" = (/obj/map_metadata/pillarmap,/turf/wall/rockwall,/area/prishtina/german/bunker)
 
@@ -45,7 +46,7 @@ aaaaaaaaaaaaaaamdddqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaamdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaamdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaamdddooooooooooooooooooooooooooooodddddiaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaamdddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaamdddddddddddddddddwdddddddddddddddddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaamddddddddddddddddddddddddpddddddddddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaamdddqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddiaaaaaaaaaaaaaaaa
