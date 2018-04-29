@@ -159,7 +159,8 @@
 		var/next = ""
 		if (prob(mutual_intelligibility) && original_words.len)
 			next = original_words[1]
-			original_words -= " [next] "
+			original_words -= next
+			next = " [next] "
 		else
 			next = spick(syllables)
 		if(capitalize)
