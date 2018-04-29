@@ -100,6 +100,7 @@ var/list/coefflist = list()
 					stat("Tank Pressure", internal.air_contents.return_pressure())
 					stat("Distribution Pressure", internal.distribute_pressure)*/
 
+			stat("Stamina: ", "[round((getStat("stamina")/stats["stamina"][2]) * 100)]%")
 
 			// the loc.density short circuits 95% of the time and bypasses an expensive typecheck - Kachnov
 			if (loc.density && istype(loc, /obj/tank))
