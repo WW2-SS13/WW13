@@ -821,7 +821,7 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef/classic(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/butcher(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/butcher(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a front chef. Your job is to keep the Red Army well fed.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)

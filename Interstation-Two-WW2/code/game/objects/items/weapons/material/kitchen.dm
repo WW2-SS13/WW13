@@ -84,6 +84,7 @@
 	icon_state = "knife"
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	scoop_food = FALSE
+	slot_flags = SLOT_BELT|SLOT_POCKET
 
 // Identical to the tactical knife but nowhere near as stabby.
 // Kind of like the toy esword compared to the real thing.
