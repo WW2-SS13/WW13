@@ -391,7 +391,7 @@
 
 //Checks if the client game window is minimized
 /client/proc/is_minimized()
-	return winget(src, "mainwindow", "is-minimized")
+	return (winget(src, "mainwindow", "is-minimized") == "true")
 
 /client/proc/inactivity2text()
 	var/seconds = inactivity/10

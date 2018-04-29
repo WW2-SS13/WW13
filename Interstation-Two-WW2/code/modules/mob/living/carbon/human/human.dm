@@ -100,7 +100,6 @@ var/list/coefflist = list()
 					stat("Tank Pressure", internal.air_contents.return_pressure())
 					stat("Distribution Pressure", internal.distribute_pressure)*/
 
-			stat("Stamina: ", "[round(getStat("stamina")/getMaxStat("stamina")) * 100]%")
 
 			// the loc.density short circuits 95% of the time and bypasses an expensive typecheck - Kachnov
 			if (loc.density && istype(loc, /obj/tank))
@@ -152,8 +151,6 @@ var/list/coefflist = list()
 				if (!list("mg", "smg").Find(statname))
 					if (statname != "stamina")
 						stat("[capitalize(statname)]: ", "[coeff]x average")
-					else
-						stat("[capitalize(statname)]: ", "[round(((coeff*100)/stats["stamina"][2])*100)]%")
 				else
 					stat("[uppertext(statname)]: ", "[coeff]x average")
 

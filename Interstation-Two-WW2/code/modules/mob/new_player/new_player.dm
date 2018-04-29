@@ -103,7 +103,7 @@
 
 	var/height = 300
 	if (reinforcements_master && reinforcements_master.is_ready())
-		height = 400
+		height = 350
 		if (!reinforcements_master.has(src))
 			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a German reinforcement!</A></p>"
 			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Soviet reinforcement!</A></p>"

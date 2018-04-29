@@ -202,6 +202,26 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 		pref.be_random_name_ukrainian = !pref.be_random_name_ukrainian
 		return TOPIC_REFRESH
 
+	//polish names
+	if(href_list["rename_polish"])
+		var/raw_name = input(user, "Choose your character's POLISH name:", "Character Name")  as text|null
+		if (!isnull(raw_name) && CanUseTopic(user))
+			var/new_name = sanitize_name(raw_name, pref.species)
+			if(new_name)
+				pref.polish_name = new_name
+				return TOPIC_REFRESH
+			else
+				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
+				return TOPIC_NOACTION
+
+	else if(href_list["random_name_polish"])
+		pref.polish_name = random_polish_name(pref.polish_gender, pref.species)
+		return TOPIC_REFRESH
+
+	else if(href_list["always_random_name_polish"])
+		pref.be_random_name_polish = !pref.be_random_name_polish
+		return TOPIC_REFRESH
+
 	//italian names
 	if(href_list["rename_italian"])
 		var/raw_name = input(user, "Choose your character's ITALIAN name:", "Character Name")  as text|null

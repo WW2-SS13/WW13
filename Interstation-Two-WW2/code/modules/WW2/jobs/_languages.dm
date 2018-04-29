@@ -38,9 +38,17 @@
 					H.add_language(RUSSIAN, TRUE)
 				if (UKRAINIAN)
 					H.add_language(UKRAINIAN, TRUE)
+					if (H.client)
+						spawn (20)
+							H.real_name = H.client.prefs.ukrainian_name
+					H.name = H.real_name
 					H.show_message("<b>You know the Ukrainian language!</b>")
 				if (POLISH)
 					H.add_language(POLISH, TRUE)
+					if (H.client)
+						spawn (20)
+							H.real_name = H.client.prefs.polish_name
+					H.name = H.real_name
 					H.show_message("<b>You know the Polish language!</b>")
 	if (!H.languages.len || H.languages[1] != default_language)
 		H.add_language(default_language, TRUE)
