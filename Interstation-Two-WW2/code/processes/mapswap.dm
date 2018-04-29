@@ -4,8 +4,8 @@ var/process/mapswap/mapswap_process = null
 	// map = required players
 	var/list/maps = list(
 		MAP_CITY = 0,
-		MAP_FOREST = 15,
-		MAP_PILLAR = 25)
+		MAP_FOREST = 0,
+		MAP_PILLAR = 0)
 	var/ready = TRUE
 
 /process/mapswap/setup()
@@ -19,24 +19,24 @@ var/process/mapswap/mapswap_process = null
 	// no SCHECK here
 	if (is_ready())
 		ready = FALSE
-		vote.initiate_vote("map", "MapSwap Process", TRUE, callback = list(src, "swap"))
+		vote.initiate_vote("map", "MapSwap Process", TRUE, list(src, "swap"))
 
 /process/mapswap/proc/is_ready()
 	. = FALSE
 
 	if (ready)
-		// 10 minutes have passed
-		if (ticks >= 120)
+		// 60 minutes have passed
+		if (ticks >= 720)
 			. = TRUE
 		// round will end in 5 minutes or less
-		else if (ticker && ticker.mode && hascall(ticker.mode, "next_win_time") && ticker.mode:next_win_time() <= 5)
+		else if (ticker && ticker.mode && hascall(ticker.mode, "next_win_time") && ticker.mode:next_win_time() != -1 && ticker.mode:next_win_time() <= 2)
 			. = TRUE
 
 	return .
 
-/process/mapswap/proc/swap(var/winner = "")
+/process/mapswap/proc/swap(var/winner = "CITY")
 	if (shell())
-		shell("python3 mapswap.py [winner]")
+		shell("sudo python3 mapswap.py [winner]")
 		log_debug("Called mapswap.py with arg '[winner]' on the shell.")
 	else
 		log_debug("Failed to execute python shell command in mapswap process!")

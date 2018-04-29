@@ -17,7 +17,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 	var/auto_muted = FALSE
 	var/win_threshold = 0.00
 	var/list/callback = null
-	var/list/disabled_choices = list()
+	var/list/disabled[10]
 
 	New()
 		if(vote != src)
@@ -44,9 +44,6 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 					if(C)
 						C << browse(null,"window=vote")
 				reset()
-				if (callback && callback.len == 2)
-					call(callback[1], callback[2])()
-					callback.Cut()
 			else
 				voting.Cut()
 				for(var/client/C in voting)
@@ -68,7 +65,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 		voting.Cut()
 		current_votes.Cut()
 		additional_text.Cut()
-		disabled_choices.Cut()
+		disabled.Cut()
 
 	proc/get_result()
 		//get the highest number of votes
@@ -127,7 +124,10 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 					text += "<b>Vote Result: [.]</b>"
 				else
 					text += "<b>The vote has ended.</b>" // What will be shown if it is a gamemode vote that isn't extended
-
+			if (callback)
+				if (callback.len == 2)
+					call(callback[1], callback[2])(.)
+				callback = null
 		else
 			text += "<b>Vote Result: Inconclusive - Neither option had enough votes!</b>"
 			if(mode == "add_antagonist")
@@ -197,11 +197,10 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 					choices.Add("Restart Round","Continue Playing")
 					win_threshold = 0.67
 				if ("map")
-					choices = mapswap_process.maps
 					for (var/map in mapswap_process.maps)
+						choices.Add(map)
 						if (clients.len < mapswap_process.maps[map])
-							disabled_choices += map
-
+							disabled[map] = "[mapswap_process.maps[map]] players"
 	//			if ("gamemode")
 	//				choices = mapswap.modes[mapswap.next_map]
 				if("custom")
@@ -260,8 +259,8 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				if(!votes)	votes = 0
 				. += "<tr>"
 
-				if (disabled_choices.Find(choices[i]))
-					. += "DISABLED: <td>[choices[i]]</td><td align = 'center'>[votes]</td>"
+				if (disabled.Find(choices[i]))
+					. += "<td><font color = 'grey'>DISABLED ([disabled[choices[i]]]): [choices[i]]</td><td align = 'center'>[votes]</font></td>"
 				else if(current_votes[C.ckey] == i)
 					. += "<td><b><a href='?src=\ref[src];vote=[i]'>[choices[i]]</a></b></td><td align = 'center'>[votes]</td>"
 				else
