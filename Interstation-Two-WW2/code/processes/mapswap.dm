@@ -4,8 +4,8 @@ var/process/mapswap/mapswap_process = null
 	// map = required players
 	var/list/maps = list(
 		MAP_CITY = 0,
-		MAP_FOREST = 15,
-		MAP_PILLAR = 25)
+		MAP_FOREST = 0,
+		MAP_PILLAR = 0)
 	var/ready = TRUE
 
 /process/mapswap/setup()
