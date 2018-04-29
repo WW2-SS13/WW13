@@ -277,7 +277,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to rejoin (It may take a minute or two): <b>byond://[world.internet_address]:[port]</b></span>"
 
 		spawn(0)
-			if (config.jojoreference)
+			if (config.jojoreference || (map && istype(map, /datum/map/pillar)))
 				roundabout()
 
 		spawn (50)
