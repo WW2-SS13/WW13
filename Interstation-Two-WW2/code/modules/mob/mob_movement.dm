@@ -244,6 +244,7 @@
 /mob/var/next_mud_message = -1
 /mob/var/list/movement_process_dirs = list()
 /mob/living/carbon/human/var/next_stamina_message = -1
+/mob/living/carbon/human/var/next_gracewall_message = -1
 
 /client/Move(n, direct, ordinal = FALSE)
 
@@ -286,7 +287,9 @@
 
 	if (t1 && map.check_prishtina_block(mob, t1))
 		mob.dir = direct
-		mob << "<span class = 'warning'>You cannot pass the invisible wall until the Grace Period has ended.</span>"
+		if (world.time >= mob.next_gracewall_message)
+			mob << "<span class = 'warning'>You cannot pass the invisible wall until the Grace Period has ended.</span>"
+			mob.next_gracewall_message = world.time + 10
 		return FALSE
 
 	if (mob_is_observer && t1 && locate(/obj/noghost) in t1)
