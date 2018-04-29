@@ -198,6 +198,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 					win_threshold = 0.67
 				if ("map")
 					for (var/map in mapswap_process.maps)
+						map = capitalize(lowertext(map))
 						choices.Add(map)
 						if (clients.len < mapswap_process.maps[map])
 							disabled[map] = "[mapswap_process.maps[map]] players"
