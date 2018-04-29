@@ -371,6 +371,8 @@
 	var/ideal_contents_1 = srand(1, max(gun.contents.len, gun.ammo_magazine ? gun.ammo_magazine.contents.len : 0))
 	var/removing_1 = (gun.ammo_magazine ? gun.ammo_magazine.contents.len : gun.contents.len) - ideal_contents_1
 
+	var/removing_2 = 0
+
 	if (AM)
 		var/ideal_contents_2 = srand(1, AM.contents.len)
 		var/removing_2 = AM.contents.len - ideal_contents_2
