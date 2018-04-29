@@ -23,7 +23,7 @@
 
 		if (world.time >= next_weather_sound && near_rainy_area)
 			src << sound('sound/ambience/rain.ogg', channel = 778, volume = (100 - (rdist*2)))
-			next_weather_sound = world.time + 1500
+			next_weather_sound = world.time + 1450 // the rain sound is 1510 deciseconds long, but even when this was set to 1500, there was delay between successive rain sounds - Kachnov
 		else if (world.time < next_weather_sound && !near_rainy_area)
 			src << sound(null, channel = 778)
 			next_weather_sound = world.time

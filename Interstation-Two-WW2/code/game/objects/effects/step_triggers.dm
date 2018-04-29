@@ -25,7 +25,7 @@
 	var/direction = SOUTH // the direction of throw
 	var/tiles = 3	// if FALSE: forever until atom hits a stopper
 	var/immobilize = TRUE // if nonzero: prevents mobs from moving while they're being flung
-	var/speed = TRUE	// delay of movement
+//	var/speed = TRUE	// delay of movement
 	var/facedir = FALSE // if TRUE: atom faces the direction of movement
 	var/nostop = FALSE // if TRUE: will only be stopped by teleporters
 	var/list/affecting = list()

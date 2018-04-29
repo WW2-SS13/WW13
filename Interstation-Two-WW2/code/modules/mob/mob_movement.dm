@@ -245,6 +245,7 @@
 /mob/var/list/movement_process_dirs = list()
 /mob/var/next_stamina_message = -1
 /mob/var/next_gracewall_message = -1
+/mob/var/next_cannotmove_message = -1
 
 /client/Move(n, direct, ordinal = FALSE)
 
@@ -366,7 +367,7 @@
 			mob.visible_message("<span class = 'warning'>[mob] starts climbing through the window frame.</span>")
 			mob.canmove = FALSE
 			var/oloc = mob.loc
-			sleep(srand(25,35))
+			sleep(srand(8,12))
 			mob.canmove = TRUE
 			if (mob.lying || mob.stat == DEAD || mob.stat == UNCONSCIOUS || mob.loc != oloc)
 				return
@@ -391,13 +392,17 @@
 			for(var/mob/M in range(mob, 1))
 				if(M.pulling == mob)
 					if(!M.restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
-						src << "<span class = 'notice'>You're restrained! You can't move!</span>"
+						if (world.time >= mob.next_cannotmove_message)
+							src << "<span class = 'notice'>You're restrained! You can't move!</span>"
+							mob.next_cannotmove_message = world.time + 10
 						return FALSE
 					else
 						M.stop_pulling()
 
 		if(mob.pinned.len)
-			src << "<span class = 'notice'>You're pinned to a wall by [mob.pinned[1]]!</span>"
+			if (world.time >= mob.next_cannotmove_message)
+				src << "<span class = 'notice'>You're pinned to a wall by [mob.pinned[1]]!</span>"
+				mob.next_cannotmove_message = world.time + 10
 			return FALSE
 
 		move_delay = world.time + mob.movement_delay()//set move delay

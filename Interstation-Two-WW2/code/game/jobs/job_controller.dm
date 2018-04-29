@@ -125,7 +125,7 @@ var/global/datum/controller/occupations/job_master
 				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
 				SS_was_enabled = TRUE
 
-		if (!is_side_locked(CIVILIAN))
+		if (!is_side_locked(CIVILIAN) && map && map.faction_organization.Find(CIVILIAN) && map.faction_organization.Find(PARTISAN))
 			if (italiano || warcrimes || autobalance_for_players >= PLAYER_THRESHOLD_HIGHEST-10)
 				if (announce)
 					world << "<font size = 3><span class = 'info'>Civilian and Partisan factions are enabled.</span></font>"
@@ -525,7 +525,7 @@ var/global/datum/controller/occupations/job_master
 						for (var/v in 1 to 2)
 							var/slot = (v == 1 ? slot_l_store : slot_r_store)
 							var/other_slot_num = (v == 1 ? 2 : 1)
-							if (H.client.prefs.pockets.len >= v)
+							if (H.client && H.client.prefs.pockets.len >= v)
 								switch (lowertext(H.client.prefs.pockets[v]))
 									if (null, "Magazine")
 										continue
@@ -967,6 +967,15 @@ var/global/datum/controller/occupations/job_master
 
 			if (map.faction_distribution_coeffs.Find(PARTISAN))
 				max_partisans = ceil(clients.len * map.faction_distribution_coeffs[PARTISAN])
+
+		// fixes strange autobalance on verylow pop - Kachnov
+		if (map && clients.len <= 7)
+			if (map.faction_distribution_coeffs[SOVIET] > map.faction_distribution_coeffs[GERMAN])
+				max_soviets = max_germans
+			else if (map.faction_distribution_coeffs[GERMAN] > map.faction_distribution_coeffs[SOVIET])
+				max_germans = max_soviets
+			while ((max_germans+max_soviets) < clients.len)
+				++max_soviets
 
 		switch (side)
 			if (PARTISAN)

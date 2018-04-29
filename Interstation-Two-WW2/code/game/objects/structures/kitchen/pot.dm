@@ -40,6 +40,8 @@
 /obj/structure/pot/attackby(var/obj/item/I, var/mob/living/carbon/human/H)
 	if (!istype(H))
 		return
+	if (istype(I, /obj/item/weapon/reagent_containers/food/condiment))
+		return ..(I, H)
 	if ((istype(I, /obj/item/weapon/reagent_containers/food/drinks) || istype(I, /obj/item/weapon/reagent_containers/glass)) && state == STATE_EMPTY)
 		if (!I.reagents)
 			return

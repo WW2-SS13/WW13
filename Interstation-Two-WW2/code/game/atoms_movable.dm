@@ -7,7 +7,9 @@
 	var/l_move_time = TRUE
 	var/m_flag = TRUE
 	var/throwing = FALSE
-	var/thrower
+	var/thrower = null
+	var/speed = 0
+	var/range = 0
 	var/turf/throw_source = null
 	var/turf/last_throw_source = null // when we need a longterm reference
 	var/atom/original_target = null
@@ -19,7 +21,16 @@
 
 	var/auto_init = TRUE
 	var/nothrow = FALSE
+	var/throwmode = 0
 
+	// temp vars
+	var/dist_x = 0
+	var/dist_y = 0
+	var/dx = null
+	var/dy = null
+	var/dist_travelled = 0
+	var/error = 0
+	var/area/a = null
 
 /atom/movable/New()
 	..()
@@ -170,7 +181,7 @@
 				else if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
 					throw_impact(A,speed)
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower)
+/atom/movable/proc/throw_at(atom/target, _range, _speed, _thrower)
 	. = TRUE
 	if(!target || !src)	return FALSE
 
@@ -181,7 +192,9 @@
 	throwing = TRUE
 	if(target.allow_spin && allow_spin)
 		SpinAnimation(5,1)
-	thrower = thrower
+	thrower = _thrower
+	speed = _speed
+	range = _range
 	throw_source = get_turf(src)	//store the origin turf
 	last_throw_source = throw_source
 
@@ -189,143 +202,32 @@
 		if(HULK in usr.mutations)
 			throwing = 2 // really strong throw!
 
-	var/dist_x = abs(target.x - x)
-	var/dist_y = abs(target.y - y)
+	dist_x = abs(target.x - x)
+	dist_y = abs(target.y - y)
 
-	var/dx
 	if (target.x > x)
 		dx = EAST
 	else
 		dx = WEST
 
-	var/dy
 	if (target.y > y)
 		dy = NORTH
 	else
 		dy = SOUTH
-	var/dist_travelled = FALSE
-	var/dist_since_sleep = FALSE
-	var/area/a = get_area(loc)
+
+	dist_travelled = 0
+//	var/dist_since_sleep = 0
+	a = get_area(loc)
 	if(dist_x > dist_y)
-		var/error = dist_x/2 - dist_y
-
-		while(src && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == FALSE)  || istype(loc, /turf/space)) && throwing && istype(loc, /turf))
-			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
-			if(error < 0)
-				var/atom/step = get_step(src, dy)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
-					break
-				if (map.check_prishtina_block(thrower, get_turf(step)))
-					if (istype(src, /obj/item/weapon/grenade))
-						var/obj/item/weapon/grenade/G = src
-						G.active = FALSE
-					else if (istype(src, /obj/item/weapon/reagent_containers/food/drinks/bottle))
-						var/obj/item/weapon/reagent_containers/food/drinks/bottle/B = src
-						if (B.rag)
-							B.rag.on_fire = FALSE
-					break
-
-				var/canMove = TRUE
-				for (var/obj/structure/S in step)
-					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
-						continue
-					if (!S.density && !istype(S, /obj/structure/window/classic))
-						continue
-					canMove = FALSE
-				if (canMove)
-					forceMove_nondenseturf(step)
-
-				hit_check(speed)
-				error += dist_x
-				dist_travelled++
-				dist_since_sleep++
-				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
-					sleep(0.3)
-			else
-				var/atom/step = get_step(src, dx)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
-					break
-				if (map.check_prishtina_block(thrower, get_turf(step)))
-					if (istype(src, /obj/item/weapon/grenade))
-						var/obj/item/weapon/grenade/G = src
-						G.active = FALSE
-					break
-				var/canMove = TRUE
-				for (var/obj/structure/S in step)
-					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
-						continue
-					if (!S.density && !istype(S, /obj/structure/window/classic))
-						continue
-					canMove = FALSE
-				if (canMove)
-					forceMove_nondenseturf(step)
-				hit_check(speed)
-				error -= dist_y
-				dist_travelled++
-				dist_since_sleep++
-				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
-					sleep(0.3)
-			a = get_area(loc)
+		error = dist_x/2 - dist_y
+		throwmode = 0
 	else
-		var/error = dist_y/2 - dist_x
-		while(src && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || (a && a.has_gravity == FALSE)  || istype(loc, /turf/space)) && throwing && istype(loc, /turf))
-			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
-			if(error < 0)
-				var/atom/step = get_step(src, dx)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
-					break
-				if (map.check_prishtina_block(thrower, get_turf(step)))
-					if (istype(src, /obj/item/weapon/grenade))
-						var/obj/item/weapon/grenade/G = src
-						G.active = FALSE
-					break
-				var/canMove = TRUE
-				for (var/obj/structure/S in step)
-					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
-						continue
-					if (!S.density && !istype(S, /obj/structure/window/classic))
-						continue
-					canMove = FALSE
-				if (canMove)
-					forceMove_nondenseturf(step)
-				hit_check(speed)
-				error += dist_y
-				dist_travelled++
-				dist_since_sleep++
-				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
-					sleep(0.3)
-			else
-				var/atom/step = get_step(src, dy)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
-					break
-				if (map.check_prishtina_block(thrower, get_turf(step)))
-					if (istype(src, /obj/item/weapon/grenade))
-						var/obj/item/weapon/grenade/G = src
-						G.active = FALSE
-					break
-				var/canMove = TRUE
-				for (var/obj/structure/S in step)
-					if (istype(S, /obj/structure/window/sandbag) || S.throwpass)
-						continue
-					if (!S.density && !istype(S, /obj/structure/window/classic))
-						continue
-					canMove = FALSE
-				if (canMove)
-					forceMove_nondenseturf(step)
-				hit_check(speed)
-				error -= dist_x
-				dist_travelled++
-				dist_since_sleep++
-				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
-					sleep(0.3)
+		error = dist_y/2 - dist_x
+		throwmode = 1
+	thrown_list += src
 
-			a = get_area(loc)
-
-	//done throwing, either because it hit something or it finished moving
+/atom/movable/proc/finished_throwing()
+	thrown_list -= src
 	var/turf/new_loc = get_turf(src)
 	if(isobj(src)) throw_impact(new_loc,speed)
 	if (src && new_loc)

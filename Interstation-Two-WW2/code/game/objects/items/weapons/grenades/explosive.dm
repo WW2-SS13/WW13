@@ -60,7 +60,8 @@
 				if(L.lying)
 					P.attack_mob(L, FALSE, FALSE)
 				else
-					P.attack_mob(L, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
+					if (prob(66))
+						P.attack_mob(L, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
 
 		spawn (5)
 			qdel(src)

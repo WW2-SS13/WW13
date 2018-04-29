@@ -4,6 +4,7 @@
 	var/ru = 0
 	var/partisan = 0
 	var/civilian = 0
+	var/undead = 0
 
 	for(var/mob/living/carbon/human/H in human_mob_list)
 
@@ -22,8 +23,10 @@
 					++partisan
 				if (CIVILIAN)
 					++civilian
+				if (PILLARMEN)
+					++undead
 
-	return list("de" = de, "ru" = ru, PARTISAN = partisan, CIVILIAN = civilian)
+	return list("de" = de, "ru" = ru, PARTISAN = partisan, CIVILIAN = civilian, PILLARMEN = undead)
 
 /proc/WW2_soldiers_en_ru_ratio()
 

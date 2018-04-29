@@ -20,6 +20,9 @@ var/process/mapswap/mapswap_process = null
 	if (is_ready())
 		ready = FALSE
 		vote.initiate_vote("map", "MapSwap Process", TRUE, list(src, "swap"))
+		ticker.delay_end = TRUE
+		spawn (600)
+			ticker.delay_end = FALSE
 
 /process/mapswap/proc/is_ready()
 	. = FALSE
@@ -29,9 +32,12 @@ var/process/mapswap/mapswap_process = null
 		if (ticks >= 720)
 			. = TRUE
 		// round will end in 5 minutes or less
-		else if (ticker && ticker.mode && hascall(ticker.mode, "next_win_time") && ticker.mode:next_win_time() != -1 && ticker.mode:next_win_time() <= 3)
-			. = TRUE
-
+		else if (ticker && ticker.mode && istype(ticker.mode, /datum/game_mode/ww2))
+			var/datum/game_mode/ww2/mode = ticker.mode
+			if (mode.next_win_time() <= 3 && mode.next_win_time() != -1)
+				. = TRUE
+			else if (mode.admins_triggered_roundend)
+				. = TRUE
 	return .
 
 /process/mapswap/proc/swap(var/winner = "CITY")

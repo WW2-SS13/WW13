@@ -5,16 +5,7 @@
 /datum/lobby_music_player
 	var/song_title = null
     // format is 'title:probability_multiplier = ogg'
-	var/list/songs = list(
-		"Bots - Was Wollen Wir Trinken (Harcourt Edit):1" = 'sound/music/BotsWaswollenwirtrinkenWehrmachtHarcourt.ogg',
-		"ERIKA:1" = 'sound/music/ERIKA.ogg',
-		"Fallschirmjager Lied:1" = 'sound/music/Fallschirmjager_lied_German_paratrooper_song.ogg',
-		"Farewell of Slavianka:1" = 'sound/music/FarewellofSlavianka.ogg',
-		"Katyusha:1" = 'sound/music/katyusha.ogg',
-		"Smuglianka:1" = 'sound/music/smuglianka.ogg',
-		"SS Marschiert in Feindesland:1" = 'sound/music/SSmarschiertinFeindesland.ogg',
-		"Latvian SS Anthem:1" = 'sound/music/latvianss.ogg',
-		"r2.ogg:1" = 'sound/music/r2.ogg')
+	var/list/songs = list() // see map_metadata.dm
 
 
 /datum/lobby_music_player/New()
@@ -22,6 +13,9 @@
 	choose_song()
 
 /datum/lobby_music_player/proc/choose_song()
+
+	if (map)
+		songs = map.songs.Copy()
 
 	/* for some reason byond is horrible with randomness and overwhelmingly
 	 * plays the first few songs in the list. The solution is randomizing the list

@@ -41,6 +41,7 @@ var/global/list/HUDdatums = list()
 var/global/list/area_list = list()
 
 var/global/list/projectile_list = list()
+var/global/list/thrown_list = list()
 
 // names
 var/global/list/names_used[1000] // map

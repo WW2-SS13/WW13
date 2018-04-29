@@ -1,12 +1,20 @@
 /obj/map_metadata/pillar
 	ID = MAP_PILLAR
 	title = "Pillarmap (70x70x2)"
+	lobby_icon_state = "stroheim"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/inside)
 	event_faction = PILLARMEN
 	min_autobalance_players = 100
 	respawn_delay = 0
 	valid_weather_types = list()
 	reinforcements = FALSE
+	no_subfaction_chance = FALSE
+	songs = list(
+		"Pa Pa Tu Tu Wa Wa:1" = 'sound/music/papatutu.ogg',
+		"Awaken:1" = 'sound/music/awaken.ogg',
+		"Blackout Crew - Dialled:1" = 'sound/music/dialled.ogg',
+		"Propaganda:1" = 'sound/music/propaganda.ogg',
+		"Cornered:1" = 'sound/music/cornered.ogg')
 	var/modded_num_of_SS = FALSE
 
 /obj/map_metadata/pillar/New()
@@ -14,6 +22,8 @@
 		faction_organization = list(
 			GERMAN,
 			PILLARMEN)
+		available_subfactions = list(
+			SCHUTZSTAFFEL)
 	..()
 
 /obj/map_metadata/pillar/germans_can_cross_blocks()

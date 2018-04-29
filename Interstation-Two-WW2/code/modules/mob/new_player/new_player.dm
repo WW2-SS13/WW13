@@ -73,6 +73,19 @@
 	loc = null // so sometimes when people serverswap (tm) they get this window despite not being on the title screen - Kachnov
 	// don't know if the above actually works
 
+	var/output_stylized = {"
+	<br>
+	<html>
+	<head>
+	<style>
+	[common_browser_style]
+	</style>
+	</head>
+	<body><center>
+	PLACEHOLDER
+	</body></html>
+	"}
+
 	var/output = "<div align='center'><b>Welcome, [key]!</b>"
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character & Preferences</A></p>"
@@ -88,9 +101,9 @@
 	//	output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</a></p>"
 
-	var/height = 350
+	var/height = 300
 	if (reinforcements_master && reinforcements_master.is_ready())
-		height = 450
+		height = 400
 		if (!reinforcements_master.has(src))
 			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a German reinforcement!</A></p>"
 			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Soviet reinforcement!</A></p>"
@@ -107,7 +120,7 @@
 	output += "</div>"
 
 	src << browse(null, "window=playersetup;")
-	src << browse(output, "window=playersetup;size=300x[height];can_close=0")
+	src << browse(replacetext(output_stylized, "PLACEHOLDER", output), "window=playersetup;size=300x[height];can_close=0")
 	return
 
 /mob/new_player/Stat()

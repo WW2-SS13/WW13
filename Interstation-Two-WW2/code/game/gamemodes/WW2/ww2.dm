@@ -104,6 +104,11 @@
 	else if (soldiers["ru"] > 0 && soldiers["de"] <= 0 && game_started)
 		winning_side = "Red Army"
 		return TRUE
+	// todo: proper pillarmap win conditions instead of this crap - Kachnov
+	else if (map && istype(map, /obj/map_metadata/pillar))
+		if (!soldiers[PILLARMEN])
+			win_condition = "The Waffen-SS won by killing every Pillar Man and vampire!"
+			winning_side = "Waffen-SS"
 	else
 
 		// condition one: both sides have reinforcements locked,
@@ -214,7 +219,6 @@
 				if (!win_condition) win_condition = "The Wehrmacht won by occupying and holding Soviet territory, while heavily outnumber the Soviets there."
 				winning_side = "Wehrmacht"
 				return TRUE
-
 
 	if (admins_triggered_roundend)
 		return TRUE

@@ -219,7 +219,7 @@ var/list/preferences_datums = list()
 	for (var/line in datlist2)
 		dat += line
 
-	dat += "</html></body>"
+	dat += "</body></html>"
 	user << browse(dat, "window=preferences;size=980x800")
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
