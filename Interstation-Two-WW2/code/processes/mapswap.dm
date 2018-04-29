@@ -29,7 +29,7 @@ var/process/mapswap/mapswap_process = null
 
 	if (ready)
 		// 60 minutes have passed
-		if (ticks >= 720)
+		if (ticks >= 720 || (map && istype(map, /obj/map_metadata/pillar) && ticks >= 240))
 			. = TRUE
 		// round will end in 5 minutes or less
 		else if (ticker && ticker.mode && istype(ticker.mode, /datum/game_mode/ww2))
