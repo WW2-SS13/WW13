@@ -9,6 +9,7 @@
 	supply_points_per_tick = list(
 		SOVIET = 1.00,
 		GERMAN = 1.50)
+	ambience = list('sound/ambience/war.ogg')
 
 /obj/map_metadata/forest/New()
 	MAP_MODE(MODE_WAR)
