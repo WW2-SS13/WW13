@@ -343,32 +343,33 @@ var/list/mob/living/forced_ambiance_list = new
 			return TRUE
 	else */
 	if (!CL.ambience_playing || override)
-		var/sound = 'sound/ambience/war.ogg'
-		CL.ambience_playing = sound
+		var/sound = map ? spick(map.ambience) : 'sound/ambience/war.ogg'
+		if (sound)
+			CL.ambience_playing = sound
 
-		var/ideal_x = round(world.maxx/2)
-		var/ideal_y = round(world.maxy/2)
-		var/area/L_area = get_area(L)
+			var/ideal_x = round(world.maxx/2)
+			var/ideal_y = round(world.maxy/2)
+			var/area/L_area = get_area(L)
 
-		// war volume will vary from 2% to 22%, depending on where you are (on a 150x150 map)
-		// the max() check makes this code forestmap compatible too
-		var/warvolume = 21
+			// war volume will vary from 2% to 22%, depending on where you are (on a 150x150 map)
+			// the max() check makes this code forestmap compatible too
+			var/warvolume = 21
 
-		warvolume -= ceil(abs(L.x - ideal_x)/15)
-		warvolume -= ceil(abs(L.y - ideal_y)/15)
+			warvolume -= ceil(abs(L.x - ideal_x)/15)
+			warvolume -= ceil(abs(L.y - ideal_y)/15)
 
-		if (L_area)
-			if (L_area.location == AREA_INSIDE)
-				warvolume -= 4
-			if (L_area.is_void_area)
-				warvolume -= 5
+			if (L_area)
+				if (L_area.location == AREA_INSIDE)
+					warvolume -= 4
+				if (L_area.is_void_area)
+					warvolume -= 5
 
-		warvolume = max(warvolume, 2)
+			warvolume = max(warvolume, 2)
 
-		L << sound(null, channel = SOUND_CHANNEL_AMBIENCE)
-		var/sound/S = sound(sound, repeat = TRUE, wait = FALSE, volume = warvolume, channel = SOUND_CHANNEL_AMBIENCE)
-		S.environment = 22
-		L << S
+			L << sound(null, channel = SOUND_CHANNEL_AMBIENCE)
+			var/sound/S = sound(sound, repeat = TRUE, wait = FALSE, volume = warvolume, channel = SOUND_CHANNEL_AMBIENCE)
+			S.environment = 22
+			L << S
 
 /proc/stop_ambience(var/mob_or_client)
 	var/client/C = isclient(mob_or_client) ? mob_or_client : mob_or_client:client

@@ -955,7 +955,7 @@ var/global/datum/controller/occupations/job_master
 		var/max_civilians = INFINITY
 		var/max_partisans = INFINITY
 
-		if (map)
+		if (map && !map.faction_distribution_coeffs.Find(INFINITY))
 			if (map.faction_distribution_coeffs.Find(GERMAN))
 				max_germans = ceil(clients.len * map.faction_distribution_coeffs[GERMAN])
 
