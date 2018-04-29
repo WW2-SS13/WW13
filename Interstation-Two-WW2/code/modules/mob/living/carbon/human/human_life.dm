@@ -933,15 +933,16 @@
 					qdel(M)
 					continue
 
-		if (config.use_hunger)
-			handle_starvation()
-		else
-			nutrition = max_nutrition
+		if (stat != DEAD)
+			if (config.use_hunger)
+				handle_starvation()
+			else
+				nutrition = max_nutrition
 
-		if (config.use_thirst)
-			handle_dehydration()
-		else
-			water = max_water
+			if (config.use_thirst)
+				handle_dehydration()
+			else
+				water = max_water
 
 /*Hardcore mode stuff. This was moved here because constants that are only used
   at one spot in the code shouldn't be in the __defines folder */
