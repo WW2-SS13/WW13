@@ -223,12 +223,14 @@
 	. = 0
 	var/best_language = null
 	for (var/datum/language/L in languages)
-		var/_new = L.mutual_intelligibility[reference.type]
-		if (_new > .)
-			. = _new
-			best_language = L
+		if (L.mutual_intelligibility.Find(reference.type))
+			var/_new = L.mutual_intelligibility[reference.type]
+			if (_new > .)
+				. = _new
+				best_language = L
 	for (var/datum/language/L in languages)
 		if (L != best_language)
-			. += L.mutual_intelligibility[reference.type]/5
+			if (L.mutual_intelligibility.Find(reference.type))
+				. += L.mutual_intelligibility[reference.type]/5
 	. = round(.)
 	return .
