@@ -371,8 +371,9 @@
 	var/ideal_contents_1 = srand(1, max(gun.contents.len, gun.ammo_magazine ? gun.ammo_magazine.contents.len : 0))
 	var/removing_1 = (gun.ammo_magazine ? gun.ammo_magazine.contents.len : gun.contents.len) - ideal_contents_1
 
-	var/ideal_contents_2 = srand(1, AM.contents.len)
-	var/removing_2 = AM.contents.len - ideal_contents_2
+	if (AM)
+		var/ideal_contents_2 = srand(1, AM.contents.len)
+		var/removing_2 = AM.contents.len - ideal_contents_2
 
 	for (var/v in 1 to removing_1)
 
@@ -386,10 +387,11 @@
 			gun.contents -= picked
 			qdel(picked)
 
-	for (var/v in 1 to removing_2)
+	if (AM)
+		for (var/v in 1 to removing_2)
 
-		var/picked = spick(AM.contents)
-		AM.contents -= picked
-		AM.stored_ammo -= picked
-		qdel(picked)
-	AM.update_icon()
+			var/picked = spick(AM.contents)
+			AM.contents -= picked
+			AM.stored_ammo -= picked
+			qdel(picked)
+		AM.update_icon()
