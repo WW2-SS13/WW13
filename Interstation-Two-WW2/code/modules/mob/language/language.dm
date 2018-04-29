@@ -158,10 +158,10 @@
 	while(length(scrambled_text) < input_size)
 		var/next = ""
 		if (prob(mutual_intelligibility) && original_words.len)
-			for (var/word in original_words)
-				if (word != null)
-					next = word
-					original_words -= word
+			for (var/v in 1 to original_words.len)
+				if (original_words[v] != null)
+					next = original_words[v]
+					original_words[v] = null
 					break
 			if (next)
 				next = " [next] "
