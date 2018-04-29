@@ -83,7 +83,8 @@
 	var/only_client_is_host = FALSE
 	for(var/mob/new_player/player in player_list)
 		if(player.client)
-			++playercount
+			if (!player.client.is_minimized())
+				++playercount
 			if (player.key == world.host)
 				only_client_is_host = TRUE
 
