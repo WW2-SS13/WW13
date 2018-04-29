@@ -162,6 +162,7 @@
 				if (word != null)
 					next = word
 					original_words -= word
+					break
 			if (next)
 				next = " [next] "
 			else
