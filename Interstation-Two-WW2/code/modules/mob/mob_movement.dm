@@ -243,8 +243,8 @@
 /mob/var/next_snow_message = -1
 /mob/var/next_mud_message = -1
 /mob/var/list/movement_process_dirs = list()
-/mob/living/carbon/human/var/next_stamina_message = -1
-/mob/living/carbon/human/var/next_gracewall_message = -1
+/mob/var/next_stamina_message = -1
+/mob/var/next_gracewall_message = -1
 
 /client/Move(n, direct, ordinal = FALSE)
 
