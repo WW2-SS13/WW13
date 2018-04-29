@@ -96,10 +96,10 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "<br>"
 	. += "<b>German Gender:</b> <a href='?src=\ref[src];gender_german=1'><b>[capitalize(lowertext(pref.german_gender))]</b></a><br>"
 	. += "<br>"
-	. += "<b>Russian Gender:</b> <a href='?src=\ref[src];gender_russian=1'><b>[capitalize(lowertext(pref.russian_gender))]</b></a><br>"
+	. += "<b>Soviet Gender:</b> <a href='?src=\ref[src];gender_russian=1'><b>[capitalize(lowertext(pref.russian_gender))]</b></a><br>"
 	. += "<br>"
-	. += "<b>Ukrainian Gender:</b> <a href='?src=\ref[src];gender_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_gender))]</b></a><br>"
-	. += "<br>"
+/*	. += "<b>Ukrainian Gender:</b> <a href='?src=\ref[src];gender_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_gender))]</b></a><br>"
+	. += "<br>"*/
 	. += "<b>Italian Gender:</b> <a href='?src=\ref[src];gender_italian=1'><b>[capitalize(lowertext(pref.italian_gender))]</b></a><br>"
 	. += "<br>"
 	. += "<b>Soviet Ethnicity:</b> <a href='?src=\ref[src];ethnicity_soviet=1'><b>[capitalize(lowertext(pref.soviet_ethnicity))]</b></a><br>"
