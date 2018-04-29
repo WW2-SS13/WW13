@@ -1,3 +1,7 @@
+var/map_mode = 0
+#define MAP_MODE(x) if (map_mode == x)
+#define WARFARE 1
+#define OCCUPATION 2
 var/global/obj/map_metadata/map = null
 
 /obj/map_metadata
@@ -20,6 +24,7 @@ var/global/obj/map_metadata/map = null
 		PARTISAN,
 		CIVILIAN,
 		ITALIAN)
+	var/list/faction_distribution_coeffs = list()
 	var/event_faction = null
 	var/min_autobalance_players = 0
 	var/respawn_delay = 3000
@@ -38,7 +43,7 @@ var/global/obj/map_metadata/map = null
 	icon = null
 	icon_state = null
 
-	if (sprob(100 - round((100/(available_subfactions.len+1)))))
+	if (available_subfactions.len && sprob(100 - round((100/(available_subfactions.len+1)))))
 		available_subfactions = list(available_subfactions[srand(1, available_subfactions.len)])
 	else
 		available_subfactions = list()
@@ -136,22 +141,40 @@ var/global/obj/map_metadata/map = null
 
 // FOREST MAP
 /obj/map_metadata/forest
-	ID = "FOREST"
+	ID = MAP_FOREST
 	title = "Forest (200x529x1)"
 	prishtina_blocking_area_types = list(
 		/area/prishtina/forest/north/invisible_wall,
 		/area/prishtina/forest/south/invisible_wall)
 	uses_supply_train = TRUE
 	uses_main_train = TRUE
-	faction_organization = list(
-		GERMAN,
-		SOVIET,
-		PARTISAN,
-		CIVILIAN,
-		ITALIAN)
+	faction_organization = list()
 	supply_points_per_tick = list(
 		SOVIET = 1.00,
 		GERMAN = 1.50)
+
+/obj/map_metadata/forest/New()
+	MAP_MODE(MODE_WAR)
+		faction_organization = list(
+			GERMAN,
+			SOVIET,
+			PARTISAN,
+			CIVILIAN,
+			ITALIAN)
+		faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
+	MAP_MODE(MODE_GERMAN_OCCUPATION)
+		faction_organization = list(
+			PARTISAN,
+			CIVILIAN,
+			GERMAN)
+		faction_distribution_coeffs = list(GERMAN = 0.20, PARTISAN = 0.30, CIVILIAN = 0.50)
+	MAP_MODE(MODE_SOVIET_OCCUPATION)
+		faction_organization = list(
+			PARTISAN,
+			CIVILIAN,
+			SOVIET)
+		faction_distribution_coeffs = list(SOVIET = 0.20, PARTISAN = 0.30, CIVILIAN = 0.50)
+	..()
 
 /obj/map_metadata/forest/germans_can_cross_blocks()
 	return (mission_announced || admin_ended_all_grace_periods)
@@ -164,7 +187,7 @@ var/global/obj/map_metadata/map = null
 
 // CITY MAP
 /obj/map_metadata/city
-	ID = "CITY"
+	ID = MAP_CITY
 	title = "City (150x150x1)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall)
 	faction_organization = list(
@@ -216,7 +239,7 @@ var/global/obj/map_metadata/map = null
 
 // PILLARMAP
 /obj/map_metadata/pillarmap
-	ID = "PILLARMAP"
+	ID = MAP_PILLAR
 	title = "Pillarmap (70x70x2)"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/inside)
 	faction_organization = list(

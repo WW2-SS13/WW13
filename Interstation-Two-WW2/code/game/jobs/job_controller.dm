@@ -935,35 +935,51 @@ var/global/datum/controller/occupations/job_master
 	// this is a solution to 5 germans and 1 soviet, on lowpop.
 	proc/side_is_hardlocked(side)
 
-		// when it's highpop enough for partisans
-		// there aren't enough partisan roles for hardlocking to matter
-		// for soviets and Germans, it's another matter
-		// the generation of these two lists may take a lot of extra CPU,
-		// but it's important if we want to keep up to date.
+		/* when it's highpop enough for partisans
+		 * there aren't enough partisan roles for hardlocking to matter
+		 * for soviets and Germans, it's another matter
+		 * the generation of these two lists may take a lot of extra CPU,
+		 * but it's important if we want to keep up to date.
+		 */
 
 		// todo: faction lists structured like player_list (ie german_list)
 		var/germans = n_of_side(GERMAN)
 		var/soviets = n_of_side(SOVIET)
 		var/italians = n_of_side(ITALIAN)
+		var/civilians = n_of_side(CIVILIAN)
+		var/partisans = n_of_side(PARTISAN)
 
-		var/players_without_partisans = clients.len
-		for (var/mob/living/carbon/human/H in player_list)
-			if (istype(H))
-				if (H.original_job)
-					if (list(PARTISAN, CIVILIAN).Find(H.original_job.base_type_flag()))
-						--players_without_partisans
+		// by default no sides are hardlocked
+		var/max_germans = INFINITY
+		var/max_soviets = INFINITY
+		var/max_civilians = INFINITY
+		var/max_partisans = INFINITY
 
-		var/max_germans = ceil(players_without_partisans * 0.42)
-		var/max_soviets = ceil(players_without_partisans * 0.58)
+		if (map)
+			if (map.faction_distribution_coeffs.Find(GERMAN))
+				max_germans = ceil(clients.len * map.faction_distribution_coeffs[GERMAN])
+
+			if (map.faction_distribution_coeffs.Find(SOVIET))
+				max_soviets = ceil(clients.len * map.faction_distribution_coeffs[SOVIET])
+
+			if (map.faction_distribution_coeffs.Find(CIVILIAN))
+				max_civilians = ceil(clients.len * map.faction_distribution_coeffs[CIVILIAN])
+
+			if (map.faction_distribution_coeffs.Find(PARTISAN))
+				max_partisans = ceil(clients.len * map.faction_distribution_coeffs[PARTISAN])
 
 		switch (side)
 			if (PARTISAN)
 				if (partisans_forceEnabled)
 					return FALSE
+				if (partisans >= max_partisans)
+					return TRUE
 				return FALSE
 			if (CIVILIAN)
 				if (civilians_forceEnabled)
 					return FALSE
+				if (civilians >= max_civilians)
+					return TRUE
 				return FALSE
 			if (GERMAN, ITALIAN)
 				if (germans_forceEnabled)

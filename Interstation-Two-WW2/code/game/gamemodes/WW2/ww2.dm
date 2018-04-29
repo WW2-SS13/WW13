@@ -27,13 +27,22 @@
 
 	var/season = "SPRING"
 
+/datum/game_mode/ww2/proc/next_win_time()
+	if (time_both_sides_locked != -1 && !currently_winning)
+		return max(round(((time_both_sides_locked+time_to_end_round_after_both_sides_locked) - world.realtime)/600),0)
+	else if (currently_winning == "Soviets")
+		return max(round((next_win_time-world.realtime)/600),0)
+	else if (currently_winning == "Germans")
+		return max(round((next_win_time-world.realtime)/600),0)
+	return -1
+
 /datum/game_mode/ww2/proc/current_stat_message()
 	if (time_both_sides_locked != -1 && !currently_winning)
-		return "Both sides are out of reinforcements; The round will automatically end in [max(round(((time_both_sides_locked+time_to_end_round_after_both_sides_locked) - world.realtime)/600),0)] minute(s) if neither side is victorious."
+		return "Both sides are out of reinforcements; The round will automatically end in [next_win_time()] minute(s) if neither side is victorious."
 	else if (currently_winning == "Soviets")
-		return "The Red Army will win in [max(round((next_win_time-world.realtime)/600),0)] minute(s)."
+		return "The Red Army will win in [next_win_time()] minute(s)."
 	else if (currently_winning == "Germans")
-		return "The Wehrmacht will win in [max(round((next_win_time-world.realtime)/600),0)] minute(s)."
+		return "The Wehrmacht will win in [next_win_time()] minute(s)."
 	else
 		return "Neither side has captured the other side's base."
 
