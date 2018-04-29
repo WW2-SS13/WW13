@@ -375,7 +375,7 @@
 
 	if (AM)
 		var/ideal_contents_2 = srand(1, AM.contents.len)
-		var/removing_2 = AM.contents.len - ideal_contents_2
+		removing_2 = AM.contents.len - ideal_contents_2
 
 	for (var/v in 1 to removing_1)
 
