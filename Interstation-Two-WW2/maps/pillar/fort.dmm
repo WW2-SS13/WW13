@@ -22,7 +22,7 @@
 "v" = (/turf/open,/area/prishtina/german/lift/down)
 "w" = (/obj/effect/landmark{name = "Observer-Start"},/turf/floor/wood,/area/prishtina/german/bunker)
 "x" = (/obj/lift_controller/down/soviet,/turf/open,/area/prishtina/german/lift/down)
-"C" = (/obj/map_metadata/pillarmap,/turf/wall/rockwall,/area/prishtina/german/bunker)
+"C" = (/obj/map_metadata/pillar,/turf/wall/rockwall,/area/prishtina/german/bunker)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

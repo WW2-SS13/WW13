@@ -37,6 +37,6 @@ var/process/mapswap/mapswap_process = null
 /process/mapswap/proc/swap(var/winner = "CITY")
 	if (shell())
 		shell("sudo python3 mapswap.py [winner]")
-		log_debug("Called mapswap.py with arg '[winner]' on the shell.")
+		log_debug("Ran mapswap.py with arg '[winner]' on the shell.")
 	else
 		log_debug("Failed to execute python shell command in mapswap process!")
