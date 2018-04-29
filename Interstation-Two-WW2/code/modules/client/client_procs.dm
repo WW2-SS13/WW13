@@ -389,6 +389,10 @@
 	if(inactivity > duration)	return inactivity
 	return FALSE
 
+//Checks if the client game window is minimized
+/client/proc/is_minimized()
+	return winget(src, "mainwindow", "is-minimized")
+
 /client/proc/inactivity2text()
 	var/seconds = inactivity/10
 	return "[round(seconds / 60)] minute\s, [seconds % 60] second\s"
