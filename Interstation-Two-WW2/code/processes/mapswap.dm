@@ -29,7 +29,7 @@ var/process/mapswap/mapswap_process = null
 		if (ticks >= 720)
 			. = TRUE
 		// round will end in 5 minutes or less
-		else if (ticker && ticker.mode && hascall(ticker.mode, "next_win_time") && ticker.mode:next_win_time() != -1 && ticker.mode:next_win_time() <= 2)
+		else if (ticker && ticker.mode && hascall(ticker.mode, "next_win_time") && ticker.mode:next_win_time() != -1 && ticker.mode:next_win_time() <= 3)
 			. = TRUE
 
 	return .
