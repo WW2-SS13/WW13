@@ -264,29 +264,6 @@
 	// announce after some other stuff, like system setups, are announced
 	spawn (3)
 
-
-	//	new/datum/game_aspect/ww2(src)
-
-	//	spawn (1)
-/*			if (aspect)
-				aspect.activate()
-				aspect.post_activation()*/
-
-			// train might not be set up yet
-		//	spawn (100)
-			//	job_master.german_job_slots *= personnel[GERMAN]
-			//	job_master.soviet_job_slots *= personnel[SOVIET]
-
-				// nerf or buff german supplies by editing the supply train controller
-		//		german_supplytrain_master.supply_points_per_second_min *= supplies[GERMAN]
-		//		german_supplytrain_master.supply_points_per_second_max *= supplies[GERMAN]
-
-			// nerf or buff soviet supplies by editing crates in Soviet territory.
-		/*	spawn (10) // make sure rations are set up?
-				for (var/obj/structure/closet/crate/soviet in world)
-					if (istype(get_area(soviet), /area/prishtina/soviet))
-						soviet.resize(supplies[SOVIET])*/
-
 		// this may have already happened, do it again w/o announce
 		setup_autobalance(0)
 
@@ -296,38 +273,36 @@
 				np.new_player_panel_proc()
 
 		// no tanks on lowpop
-		if (!istype(aspect, /datum/game_aspect/ww2/no_tanks))
-			if (clients.len <= TANK_LOWPOP_THRESHOLD)
-				if (locate(/obj/tank) in world)
-					for (var/obj/tank/T in world)
-						if (!T.admin)
-							qdel(T)
-					world << "<i>Due to lowpop, there are no tanks.</i>"
+		if (clients.len <= TANK_LOWPOP_THRESHOLD)
+			if (locate(/obj/tank) in world)
+				for (var/obj/tank/T in world)
+					if (!T.admin)
+						qdel(T)
+				world << "<i>Due to lowpop, there are no tanks.</i>"
 
-		if (!istype(aspect, /datum/game_aspect/ww2/no_artillery))
-			if (clients.len <= ARTILLERY_LOWPOP_THRESHOLD)
-				for (var/obj/structure/artillery/A in world)
-					qdel(A)
-				for (var/obj/structure/closet/crate/artillery/C in world)
-					qdel(C)
-				for (var/obj/structure/closet/crate/artillery_gas/C in world)
-					qdel(C)
-				if (map)
-					german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
-					german_supply_crate_types -= "Artillery Ballistic Shells Crate"
-					german_supply_crate_types -= "Artillery Gas Shells Crate"
-					map.katyushas = FALSE
-				for (var/obj/structure/mortar/M in world)
-					qdel(M)
-				for (var/obj/item/weapon/shovel/spade/mortar/S in world)
-					qdel(S)
-				for (var/obj/structure/closet/crate/mortar_shells/C in world)
-					qdel(C)
-				if (map)
-					german_supply_crate_types -= "Mortar Shells"
-					soviet_supply_crate_types -= "Mortar Shells"
-					soviet_supply_crate_types -= "37mm Spade Mortar"
-				world << "<i>Due to lowpop, there is no artillery or mortars.</i>"
+		if (clients.len <= ARTILLERY_LOWPOP_THRESHOLD)
+			for (var/obj/structure/artillery/A in world)
+				qdel(A)
+			for (var/obj/structure/closet/crate/artillery/C in world)
+				qdel(C)
+			for (var/obj/structure/closet/crate/artillery_gas/C in world)
+				qdel(C)
+			if (map)
+				german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
+				german_supply_crate_types -= "Artillery Ballistic Shells Crate"
+				german_supply_crate_types -= "Artillery Gas Shells Crate"
+				map.katyushas = FALSE
+			for (var/obj/structure/mortar/M in world)
+				qdel(M)
+			for (var/obj/item/weapon/shovel/spade/mortar/S in world)
+				qdel(S)
+			for (var/obj/structure/closet/crate/mortar_shells/C in world)
+				qdel(C)
+			if (map)
+				german_supply_crate_types -= "Mortar Shells"
+				soviet_supply_crate_types -= "Mortar Shells"
+				soviet_supply_crate_types -= "37mm Spade Mortar"
+			world << "<i>Due to lowpop, there is no artillery or mortars.</i>"
 
 		if (clients.len <= 12)
 			for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
