@@ -158,9 +158,14 @@
 	while(length(scrambled_text) < input_size)
 		var/next = ""
 		if (prob(mutual_intelligibility) && original_words.len)
-			next = original_words[1]
-			original_words -= next
-			next = " [next] "
+			for (var/word in original_words)
+				if (word != null)
+					next = word
+					original_words -= word
+			if (next)
+				next = " [next] "
+			else
+				next = spick(syllables)
 		else
 			next = spick(syllables)
 		if(capitalize)
