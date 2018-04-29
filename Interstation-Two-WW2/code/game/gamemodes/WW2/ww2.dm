@@ -1,3 +1,6 @@
+#define TANK_LOWPOP_THRESHOLD 12
+#define ARTILLERY_LOWPOP_THRESHOLD 15
+
 /datum/game_mode/ww2
 	name = "World War 2"
 	config_tag = "WW2"
