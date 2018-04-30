@@ -326,8 +326,12 @@
 				D.Open()
 			for (var/obj/structure/simple_door/key_door/soviet/medic/D in world)
 				D.Open()
+			for (var/obj/structure/simple_door/key_door/soviet/engineer/D in world)
+				D.Open()
 			for (var/obj/structure/simple_door/key_door/german/QM/D in world)
 				D.Open()
 			for (var/obj/structure/simple_door/key_door/german/medic/D in world)
 				D.Open()
-			world << "<b>Due to lowpop, armory & medical doors have started open.</b>"
+			for (var/obj/structure/simple_door/key_door/german/engineer/D in world)
+				D.Open()
+			world << "<b>Due to lowpop, some doors have started open.</b>"
