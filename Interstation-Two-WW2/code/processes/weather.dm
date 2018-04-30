@@ -23,8 +23,6 @@ var/process/weather/weather_process = null
 
 /process/weather/fire()
 	SCHECK
-	if (!roundstart_time)
-		return
 
 	process_weather()
 

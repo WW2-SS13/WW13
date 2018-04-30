@@ -11,3 +11,4 @@
 	if (random_icon_states && length(random_icon_states) > 0)
 		icon_state = spick(random_icon_states)
 	..()
+	cleanables += src

@@ -106,13 +106,14 @@
 
 		// delete cleanable decals that are outside
 		var/deleted = 0
-		for (var/obj/effect/decal/cleanable/C in world)
+		for (var/obj/effect/decal/cleanable/C in cleanables)
 			var/area/A = get_area(C)
 			if (A.weather == WEATHER_RAIN)
 				qdel(C)
 				++deleted
-				if (deleted >= 100)
+				if (deleted >= 20)
 					break
+
 /* // for performance reasons, mudiness is no longer handled here - Kachnov
 		// randomize the areas we make muddy
 		var/list_of_areas = shuffle(all_areas)
