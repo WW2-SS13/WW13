@@ -31,16 +31,22 @@ note dizziness decrements automatically in the mob's Life() proc.
 	is_dizzy = TRUE
 	while(dizziness > 100)
 		if(client)
+			for (var/obj/item/weapon/gun/G in contents)
+				for (var/obj/item/weapon/attachment/scope/S in G.contents)
+					if (S.zoomed)
+						client.pixel_x = 0
+						client.pixel_y = 0
+						goto end
 			var/amplitude = dizziness*(sin(dizziness * 0.044 * world.time) + 1) / 70
 			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
 			client.pixel_y = amplitude * cos(0.008 * dizziness * world.time)
-
+			end
 		sleep(1)
 	//endwhile - reset the pixel offsets to zero
 	is_dizzy = FALSE
 	if(client)
-		client.pixel_x = FALSE
-		client.pixel_y = FALSE
+		client.pixel_x = 0
+		client.pixel_y = 0
 
 // jitteriness - copy+paste of dizziness
 /mob/var/is_jittery = FALSE
