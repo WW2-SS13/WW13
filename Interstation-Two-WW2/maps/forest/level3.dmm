@@ -7,7 +7,7 @@
 "ag" = (/obj/structure/window/reinforced{dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "ah" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "ai" = (/obj/structure/closet,/obj/item/stack/medical/splint,/obj/item/stack/medical/splint,/obj/item/stack/medical/splint,/obj/item/roller,/obj/item/weapon/storage/firstaid/combat,/obj/item/weapon/storage/firstaid/adv,/obj/item/weapon/storage/firstaid/surgery,/obj/item/weapon/storage/firstaid/injectorpack,/turf/floor/carpet,/area/prishtina/void/german/ss_train{name = "S.S Dorms"})
-"ak" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/key/german/soldat,/obj/item/weapon/key/german/soldat,/obj/item/weapon/key/german/soldat,/obj/item/weapon/key/soviet/soldat,/obj/item/weapon/key/soviet/soldat,/obj/item/clothing/gloves/thick/combat,/obj/item/clothing/gloves/thick/combat,/obj/item/clothing/gloves/thick/combat,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/storage/belt/keychain,/obj/item/clothing/gloves/thick/combat,/obj/item/weapon/key/soviet/soldat,/obj/item/weapon/key/soviet/soldat,/obj/item/weapon/key/german/soldat,/turf/floor/plating/grass/wild,/area/prishtina/admin)
+"ak" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/key/german,/obj/item/clothing/gloves/thick/combat,/obj/item/clothing/gloves/thick/combat,/obj/item/clothing/gloves/thick/combat,/obj/item/weapon/storage/belt/keychain,/obj/item/weapon/storage/belt/keychain,/obj/item/clothing/gloves/thick/combat,/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "an" = (/obj/structure/table/rack,/obj/item/clothing/under/darkred,/obj/item/clothing/under/darkred,/obj/item/clothing/shoes/sandal/marisa,/obj/item/clothing/shoes/sandal/marisa,/obj/item/weapon/storage/backpack/holding,/obj/item/weapon/storage/backpack/holding,/obj/item/clothing/shoes/sandal/marisa,/obj/item/clothing/shoes/sandal/marisa,/obj/item/clothing/under/darkred,/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "ap" = (/obj/item/weapon/storage/box/smoke_grenades,/obj/item/weapon/storage/box/smoke_grenades,/obj/item/weapon/storage/box/smoke_grenades,/obj/structure/table/rack,/turf/floor/plating/grass/wild,/area/prishtina/admin)
 "as" = (/obj/structure/table/rack,/turf/floor/plating/grass/wild,/area/prishtina/admin)
@@ -108,13 +108,9 @@
 "cL" = (/obj/structure/multiz/ladder/ww2/up{area_id = "ss"},/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
 "cM" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/structure/simple_door/key_door/anyone/train,/turf/floor/wood,/area/prishtina/train/german/cabin/storage)
 "cN" = (/obj/structure/bed,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"cO" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 2"},/turf/floor/wood,/area/prishtina/void)
-"cP" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 4"},/turf/floor/wood,/area/prishtina/void)
 "cR" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void)
 "cS" = (/turf/floor/carpet,/area/prishtina/void)
-"cT" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell1)
-"cU" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 1"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell1)
-"cW" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 2"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell2)
+"cU" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell1)
 "cX" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell2)
 "cY" = (/obj/structure/bed/chair/wood,/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
 "cZ" = (/obj/structure/simple_door/key_door/german/SS,/turf/floor/carpet,/area/prishtina/void)
@@ -128,11 +124,8 @@
 "di" = (/turf/wall/r_wall,/area/prishtina/void/german/ss_train/prison/cell4)
 "dj" = (/obj/structure/bed,/obj/item/weapon/handcuffs,/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell4)
 "dk" = (/turf/floor/wood,/area/prishtina/train/german/cabin/soldier)
-"dl" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 1"},/turf/floor/plating/road,/area/prishtina/void)
-"dm" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 3"},/turf/floor/wood,/area/prishtina/void)
-"dn" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell3)
-"do" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 3"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell3)
-"dp" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 4"},/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell4)
+"dl" = (/turf/floor/plating/road,/area/prishtina/void)
+"do" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell3)
 "dq" = (/turf/floor/wood,/area/prishtina/void/german/ss_train/prison/cell4)
 "ds" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced,/obj/structure/window/reinforced,/turf/floor/wood,/area/prishtina/void)
 "dt" = (/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 4},/turf/floor/plating,/area/prishtina/void)
@@ -155,7 +148,6 @@
 "dL" = (/obj/structure/table/wood,/obj/item/weapon/storage/briefcase,/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
 "dM" = (/obj/structure/table/wood,/obj/item/glass_jar,/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
 "dQ" = (/obj/train_decal/cargo/outline/grey,/turf/floor/wood,/area/prishtina/void)
-"dR" = (/turf/floor/wood,/area/prishtina/void)
 "dS" = (/obj/structure/closet,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber)
 "dW" = (/obj/structure/window/classic,/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
 "dX" = (/turf/floor/carpet,/area/prishtina/train/german/cabin/officer)
@@ -172,7 +164,7 @@
 "el" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/railing{dir = 8},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
 "em" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/obj/structure/railing{dir = 4},/turf/floor/plating,/area/prishtina/train/german/cabin/conductor)
 "eo" = (/obj/structure/bed/chair{dir = 4},/obj/item/weapon/handcuffs,/turf/floor/plating,/area/prishtina/void)
-"ep" = (/obj/structure/simple_door/key_door/german/soldat{name = "Gas Chamber"},/turf/floor/wood,/area/prishtina/void)
+"ep" = (/turf/floor/wood,/area/prishtina/void)
 "eq" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/up,/turf/floor/wood,/area/prishtina/void)
 "er" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/effect/floor_decal/industrial/warning/dust,/obj/effect/floor_decal/industrial/warning/dust{dir = 8},/obj/effect/floor_decal/industrial/warning/dust{dir = 1},/obj/structure/multiz/ladder/up,/turf/floor/wood,/area/prishtina/void)
 "es" = (/obj/structure/bed/chair{dir = 4},/obj/item/weapon/handcuffs,/obj/gasser,/turf/floor/plating,/area/prishtina/void/german/ss_train/gas_chamber/gas_room)
@@ -277,25 +269,25 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabRbRbRbRbRaaePbJbQbObObO
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePbJbJbJbKbJbJbJePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePePePcacbccePePePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaacdcdcdcecdcdcdaacfcfcfcgcfcfcfaachchchcichchchaachckckcickckchePePePcacbccePePePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacdcmcmcncmcmcdaacfcrcYdkcYcrcfaachcsctdRctcschaachdRchctchcvchePcwcwcwcxcycycyePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacdcBcBcncBcBcdaacfcCcCdkcCcCcfaachdRchdRchdRchaachdRcEcGcGcGchePcwcHcwddcycJcyePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacKcncBcLcBcncMaacfcNdkdkdkcNcfaachdRcOdRcPdRchaachdRcRcScScSchePcwcTcUddcWcXcyePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacKcncBcLcBcncMaacfcYcYdkcYcYcfaachchchdRchchchaachdRcZcScSdachePcwcTcwddcycXcyePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacKcncBcLcBcncMaacfcCcCdkcCcCcfaachcsctdRctcschaachdRctdfcSdcchePcwcwcwddcycycyePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacdcBcBcncBcBcdaacfcfcfdecfcfcfaachdRchdRchdRchaachdRctdfcSdfchePdgdhdgdddidjdiePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacdcmcmcncmcmcdaacgdkdkdkdkdkcgaachdRdldRdmdRchaachdRchctchctchePdgdndodddpdqdiePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacdcdcdcecdcdcdaacfcfcfcgcfcfcfaachchchcichchchaachdsdscidsdschePdgdndgdddidqdiePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacdcmcmcncmcmcdaacfcrcYdkcYcrcfaachcsctepctcschaachepchctchcvchePcwcwcwcxcycycyePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacdcBcBcncBcBcdaacfcCcCdkcCcCcfaachepchepchepchaachepcEcGcGcGchePcwcHcwddcycJcyePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacKcncBcLcBcncMaacfcNdkdkdkcNcfaachepepepepepchaachepcRcScScSchePcwcUcUddcXcXcyePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacKcncBcLcBcncMaacfcYcYdkcYcYcfaachchchepchchchaachepcZcScSdachePcwcUcwddcycXcyePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacKcncBcLcBcncMaacfcCcCdkcCcCcfaachcsctepctcschaachepctdfcSdcchePcwcwcwddcycycyePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacdcBcBcncBcBcdaacfcfcfdecfcfcfaachepchepchepchaachepctdfcSdfchePdgdhdgdddidjdiePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacdcmcmcncmcmcdaacgdkdkdkdkdkcgaachepdlepepepchaachepchctchctchePdgdododddqdqdiePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacdcdcdcecdcdcdaacfcfcfcgcfcfcfaachchchcichchchaachdsdscidsdschePdgdodgdddidqdiePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadtaaaaaaePdgdgdgcxdididiePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadtaaaaaaePePePdudvdwePePePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadtaaaaaaePePePdudvdwePePePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaadxdxdxdydxdxdxaadzdzdzdzdzdzdzaachchchdAchchchaachchchcichchchePdBdBdBdCdBdBdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadxdDdEezdGdHdxaadzdIdJdKdLdMdzaacheLeLeLeLeLchaachdQdRdRdRdQchePdBdSeMeMeMeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadWezezezezezdWaadzdXdXdYdXdXdzaachdZchdZcheLchaachdQdRdRdRdQchePdBeadBeadBeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadxezezezezezdxaadzdXeIeceddXdzaacheLeeeLdZeLchaachdQegdRehdQchePdBeiejeieaeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaelezezezezezemaadzexexexexexdzaacheLeoeLepeLchaachdQeqdRerdQchePdBeieseieteMeuePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadxezezezezezdxaadzexexeyexexdzaacheLeLeLdZeLchaachdQdRdRdRdQchePdBeieieieaeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadxezezeAezezdxaadzeIdXexexeCdzaachdZchdZcheLchaachdQdRdRdRdQchePdBeadBeadBeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaadxeDeEeFeGeHdxaadzeIeJexexeKdzaacheLeLeLeLeLchaachdQdRdRdRdQchePdBbEeMeMeMeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxdDdEezdGdHdxaadzdIdJdKdLdMdzaacheLeLeLeLeLchaachdQepepepdQchePdBdSeMeMeMeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadWezezezezezdWaadzdXdXdYdXdXdzaachdZchdZcheLchaachdQepepepdQchePdBeadBeadBeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxezezezezezdxaadzdXeIeceddXdzaacheLeeeLdZeLchaachdQegepehdQchePdBeiejeieaeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaelezezezezezemaadzexexexexexdzaacheLeoeLepeLchaachdQeqeperdQchePdBeieseieteMeuePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxezezezezezdxaadzexexeyexexdzaacheLeLeLdZeLchaachdQepepepdQchePdBeieieieaeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxezezeAezezdxaadzeIdXexexeCdzaachdZchdZcheLchaachdQepepepdQchePdBeadBeadBeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaadxeDeEeFeGeHdxaadzeIeJexexeKdzaacheLeLeLeLeLchaachdQepepepdQchePdBbEeMeMeMeMdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaadxdxdWdxdWdxdxaadzdzdzeNdzdzdzaachchchdAchchchaachchchcichchchePdBdBdBdBdBdBdBePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaePePePePePePePePePaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

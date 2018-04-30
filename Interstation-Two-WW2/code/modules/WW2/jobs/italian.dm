@@ -43,7 +43,7 @@
 	return TRUE
 
 /datum/job/italian/soldier/get_keys()
-	return list(new/obj/item/weapon/key/italian, new/obj/item/weapon/key/italian/soldat)
+	return list(new/obj/item/weapon/key/italian)
 
 /* Medic */
 
@@ -84,7 +84,7 @@
 	return TRUE
 
 /datum/job/italian/medic/get_keys()
-	return list(new/obj/item/weapon/key/italian, new/obj/item/weapon/key/italian/soldat, new/obj/item/weapon/key/italian/medic)
+	return list(new/obj/item/weapon/key/italian, new/obj/item/weapon/key/italian/medic)
 
 /* Squad Leader/Commander */
 
@@ -134,5 +134,5 @@
 	H.make_artillery_officer()
 
 /datum/job/italian/squad_leader/get_keys()
-	return list(new/obj/item/weapon/key/italian, new/obj/item/weapon/key/italian/soldat, new/obj/item/weapon/key/italian/medic,
+	return list(new/obj/item/weapon/key/italian, new/obj/item/weapon/key/italian/medic,
 		new/obj/item/weapon/key/italian/command_intermediate, new/obj/item/weapon/key/italian/command_high)

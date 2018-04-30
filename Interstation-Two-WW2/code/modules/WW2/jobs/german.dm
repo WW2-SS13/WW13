@@ -54,7 +54,7 @@
 	return TRUE
 
 /datum/job/german/commander/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
 		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/command_high, new/obj/item/weapon/key/german/train, new/obj/item/weapon/key/german/SS)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@
 	return TRUE
 
 /datum/job/german/XO/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
 		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/command_high, new/obj/item/weapon/key/german/train, new/obj/item/weapon/key/german/SS)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,7 +149,7 @@
 	H.make_artillery_officer()
 
 /datum/job/german/staff_officer/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
 		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/command_high, new/obj/item/weapon/key/german/train)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -192,7 +192,7 @@
 	return TRUE
 
 /datum/job/german/MP/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
 		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/train)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -242,7 +242,7 @@
 	H.make_artillery_officer()
 
 /datum/job/german/squad_leader/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat,
+	return list(new/obj/item/weapon/key/german,
 		new/obj/item/weapon/key/german/command_intermediate,
 		new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer, new/obj/item/weapon/key/german/QM)
 
@@ -288,7 +288,7 @@
 	return TRUE
 
 /datum/job/german/medic/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/medic)
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/medic)
 
 /datum/job/german/doctor
 	title = "Medizinier"
@@ -374,7 +374,7 @@
 	return TRUE
 
 /datum/job/german/flamethrower_man/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
+	return list(new/obj/item/weapon/key/german)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -416,7 +416,7 @@
 	return TRUE
 
 /datum/job/german/sniper/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
+	return list(new/obj/item/weapon/key/german)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -460,7 +460,7 @@
 	return TRUE
 
 /datum/job/german/engineer/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/engineer)
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/engineer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -504,7 +504,7 @@
 	return TRUE
 
 /datum/job/german/heavy_weapon/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
+	return list(new/obj/item/weapon/key/german)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -549,7 +549,7 @@
 	return TRUE
 
 /datum/job/german/soldier/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
+	return list(new/obj/item/weapon/key/german)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -643,7 +643,7 @@
 	return TRUE
 
 /datum/job/german/tankcrew/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/command_intermediate)
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -685,7 +685,7 @@
 	return TRUE
 
 /datum/job/german/anti_tank_crew/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
+	return list(new/obj/item/weapon/key/german)
 
 var/first_fallschirm = TRUE
 
@@ -762,7 +762,7 @@ var/first_fallschirm = TRUE
 	return TRUE
 
 /datum/job/german/paratrooper/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
+	return list(new/obj/item/weapon/key/german)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -805,7 +805,7 @@ var/first_fallschirm = TRUE
 	return TRUE
 
 /datum/job/german/QM/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/engineer)
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/engineer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -853,7 +853,7 @@ var/first_fallschirm = TRUE
 	H.make_artillery_officer()
 
 /datum/job/german/artyman/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/command_intermediate)
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -899,7 +899,7 @@ var/first_fallschirm = TRUE
 	H.make_artillery_scout()
 
 /datum/job/german/scout/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
+	return list(new/obj/item/weapon/key/german)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -943,7 +943,7 @@ var/first_fallschirm = TRUE
 	return TRUE
 
 /datum/job/german/conductor/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/train,
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/train,
 		new/obj/item/weapon/key/german/command_intermediate)
 
 ////////////////////////////////
@@ -998,8 +998,8 @@ var/first_fallschirm = TRUE
 	H.make_artillery_officer()
 
 /datum/job/german/squad_leader_ss/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat,
-		new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/SS)
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate,
+		new/obj/item/weapon/key/german/SS)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1047,7 +1047,7 @@ var/first_fallschirm = TRUE
 	return TRUE
 
 /datum/job/german/soldier_ss/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat, new/obj/item/weapon/key/german/SS)
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/SS)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1093,7 +1093,7 @@ var/first_fallschirm = TRUE
 	return TRUE
 
 /datum/job/german/chef/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/soldat)
+	return list(new/obj/item/weapon/key/german)
 
 // this is a horrible hack.
 /datum/job/german/trainsystem

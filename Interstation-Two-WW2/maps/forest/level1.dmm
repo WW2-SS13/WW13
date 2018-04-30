@@ -59,7 +59,7 @@
 "bg" = (/obj/structure/table/iron,/obj/item/weapon/bonesetter,/obj/item/weapon/cautery,/obj/item/weapon/hemostat,/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,/obj/item/weapon/storage/firstaid/toxin,/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/tools)
 "bh" = (/obj/structure/closet,/obj/item/weapon/material/knife/combat,/obj/item/weapon/crowbar/prybar,/obj/item/weapon/melee/classic_baton,/obj/item/weapon/material/hatchet,/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/tools)
 "bi" = (/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/soviet/officer,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/soviet/officer,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/soviet/officer,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/soviet/officer,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/soviet/officer,/turf/floor/wood,/area/prishtina/soviet/bunker/command)
-"bj" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room)
+"bj" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/obj/effect/landmark{name = "JoinLateHeerMP"},/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room)
 "bk" = (/turf/wall/brick,/area/prishtina/german/ss_torture_room/cell1)
 "bl" = (/obj/structure/closet,/obj/item/clothing/under/lightbrown,/obj/item/clothing/shoes/black,/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/cell1)
 "bm" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/german,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/german,/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen/german,/turf/floor/wood,/area/prishtina/german/gearing)
@@ -71,11 +71,11 @@
 "bs" = (/obj/effect/floor_decal/industrial/warning/dust{dir = 4},/obj/structure/simple_door/key_door/german/QM{name = "Armory"},/turf/floor/plating/road,/area/prishtina/german/armory)
 "bt" = (/obj/structure/light/small{dir = 1},/turf/floor/dirt,/area/prishtina/soviet/bunker/main_hallway)
 "bu" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/lugerammo,/turf/floor/wood,/area/prishtina/german/armory)
-"bv" = (/obj/structure/bed/chair/wood/red{tag = "icon-wooden_chair_red (EAST)"; icon_state = "wooden_chair_red"; dir = 4},/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/turf/floor/carpet,/area/prishtina/german/command/office)
+"bv" = (/obj/structure/bed/chair/wood/red{tag = "icon-wooden_chair_red (EAST)"; icon_state = "wooden_chair_red"; dir = 4},/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/obj/effect/landmark{name = "JoinLateHeerCO"},/turf/floor/carpet,/area/prishtina/german/command/office)
 "bw" = (/obj/effect/floor_decal/corner/grey/border{dir = 4},/turf/floor/plating/road,/area/prishtina/forest/sector3/ss2)
 "bx" = (/obj/structure/bed/chair/wood/red{tag = "icon-wooden_chair_red (WEST)"; icon_state = "wooden_chair_red"; dir = 8},/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/turf/floor/carpet,/area/prishtina/german/command/office)
 "by" = (/turf/floor/wood,/area/prishtina/german/command)
-"bz" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/obj/structure/bed/chair/wood/red{tag = "icon-wooden_chair_red (EAST)"; icon_state = "wooden_chair_red"; dir = 4},/obj/effect/landmark{name = "JoinLateHeerCO"},/turf/floor/carpet,/area/prishtina/german/command)
+"bz" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (WEST)"; icon_state = "spline_fancy"; dir = 8},/obj/structure/bed/chair/wood/red{tag = "icon-wooden_chair_red (EAST)"; icon_state = "wooden_chair_red"; dir = 4},/obj/effect/landmark{name = "JoinLateHeerXO"},/turf/floor/carpet,/area/prishtina/german/command)
 "bA" = (/obj/structure/table/wood,/obj/item/weapon/storage/fancy/cigar,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/obj/item/weapon/flame/lighter/zippo,/turf/floor/carpet,/area/prishtina/german/command/office)
 "bB" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,/turf/floor/carpet,/area/prishtina/german/command)
 "bC" = (/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/snacks/appletart,/turf/floor/carpet,/area/prishtina/german/command)
@@ -87,7 +87,7 @@
 "bI" = (/turf/floor/plating,/area/prishtina/german/train_starting_zone)
 "bJ" = (/obj/structure/sign/flag/soviet{pixel_y = 30},/obj/structure/light/small{dir = 1},/turf/floor/dirt,/area/prishtina/soviet/bunker/main_hallway)
 "bK" = (/obj/structure/simple_door/key_door/german/SS{name = "S.S Dorms"},/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room)
-"bL" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 1"},/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/cell1)
+"bL" = (/obj/structure/simple_door/key_door/german{name = "Cell 1"},/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/cell1)
 "bM" = (/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/cell1)
 "bN" = (/obj/structure/bed,/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/cell1)
 "bO" = (/turf/floor/plating/road,/area/prishtina/german/armory)
@@ -119,7 +119,7 @@
 "co" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHWEST)"; icon_state = "spline_fancy"; dir = 10},/turf/floor/carpet,/area/prishtina/german/command/office)
 "cp" = (/obj/effect/floor_decal/spline/fancy/wood,/turf/floor/carpet,/area/prishtina/german/command/office)
 "cq" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHEAST)"; icon_state = "spline_fancy"; dir = 6},/turf/floor/carpet,/area/prishtina/german/command/office)
-"cr" = (/obj/item/weapon/stool,/obj/structure/sign/portrait/hitler{pixel_x = -30; pixel_y = 0},/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room)
+"cr" = (/obj/effect/landmark{name = "JoinLateHeerMP"},/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room)
 "cs" = (/obj/structure/table/iron,/obj/item/weapon/melee/classic_baton,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/obj/item/weapon/storage/box/handcuffs,/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room)
 "ct" = (/obj/effect/floor_decal/corner/grey/border,/turf/floor/plating/road,/area/prishtina/german/base_defenses)
 "cu" = (/obj/structure/grille{icon_state = "fence1-2"; name = "fence"},/obj/effect/floor_decal/corner/grey/border{dir = 8},/turf/floor/plating/grass/wild,/area/prishtina/german/base_defenses)
@@ -156,7 +156,7 @@
 "cZ" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHWEST)"; icon_state = "spline_fancy"; dir = 9},/obj/structure/filingcabinet,/turf/floor/carpet,/area/prishtina/german/command)
 "da" = (/obj/structure/table/wood,/obj/item/weapon/paper_bin,/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (NORTHEAST)"; icon_state = "spline_fancy"; dir = 5},/obj/item/weapon/pen/red,/obj/item/weapon/pen,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/carpet,/area/prishtina/german/command)
 "db" = (/obj/structure/simple_door/key_door/german/SS{name = "S.S Dorms"},/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/tools)
-"dc" = (/obj/structure/simple_door/key_door/german/soldat{name = "Cell 1"},/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/cell2)
+"dc" = (/obj/structure/simple_door/key_door/german{name = "Cell 1"},/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/cell2)
 "dd" = (/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/cell2)
 "de" = (/obj/structure/bed,/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room/cell2)
 "df" = (/obj/effect/decal/cleanable/blood/oil,/turf/floor/plating/road,/area/prishtina/german/train_starting_zone)
@@ -194,7 +194,7 @@
 "dL" = (/obj/effect/floor_decal/corner/grey/border,/obj/effect/floor_decal/corner/grey/border{dir = 8},/obj/structure/wild/bush/tame/big,/turf/floor/dirt,/area/prishtina/german/main_area/sector2)
 "dM" = (/obj/effect/floor_decal/corner/grey/border,/obj/structure/wild/bush/tame/big,/turf/floor/dirt,/area/prishtina/german/main_area/sector2)
 "dN" = (/obj/effect/floor_decal/corner/grey/border,/obj/effect/floor_decal/corner/grey/border{dir = 4},/obj/structure/wild/bush/tame/big,/turf/floor/dirt,/area/prishtina/german/main_area/sector2)
-"dO" = (/obj/structure/simple_door/key_door/german/soldat{name = "Prison"},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (NORTH)"; icon_state = "spline_plain"; dir = 1},/obj/effect/floor_decal/spline/plain,/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room)
+"dO" = (/obj/structure/simple_door/key_door/german{name = "Prison"},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (NORTH)"; icon_state = "spline_plain"; dir = 1},/obj/effect/floor_decal/spline/plain,/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room)
 "dP" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/german/base_defenses)
 "dQ" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/turf/floor/plating/asteroid,/area/prishtina/german/base_defenses)
 "dR" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/asteroid,/area/prishtina/german/base_defenses)
@@ -227,7 +227,7 @@
 "es" = (/obj/structure/railing,/obj/structure/railing{dir = 8},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/main_area/sector1)
 "et" = (/obj/effect/floor_decal/corner/grey/border{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/german/main_area/sector2)
 "eu" = (/obj/structure/multiz/stairs,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/main_area/sector2)
-"ev" = (/obj/structure/light/small{dir = 1},/turf/floor/dirt,/area/prishtina/soviet/bunker/brig)
+"ev" = (/obj/structure/light/small{dir = 1},/obj/effect/landmark{name = "JoinLateRAMP"},/turf/floor/dirt,/area/prishtina/soviet/bunker/brig)
 "ew" = (/obj/effect/floor_decal/corner/grey/border{dir = 4},/turf/floor/plating/grass/wild,/area/prishtina/german/main_area/sector3)
 "ex" = (/obj/structure/flag/german,/turf/floor/plating/grass/wild,/area/prishtina/german/main_area/sector3)
 "ey" = (/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/turf/floor/plating/asteroid,/area/prishtina/german/base_defenses)
@@ -289,15 +289,22 @@
 "fC" = (/obj/structure/vending/germanapparel{scan_id = 0},/turf/floor/wood,/area/prishtina/german/gearing)
 "fD" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/obj/effect/landmark{name = "JoinLateRA"},/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area)
 "fE" = (/turf/wall/brick,/area/prishtina/german/main_area/sector1)
+"fF" = (/obj/effect/landmark{name = "JoinLateRAMP"},/turf/floor/dirt,/area/prishtina/soviet/bunker/brig)
+"fG" = (/obj/item/weapon/stool,/obj/effect/landmark{name = "JoinLateRAMP"},/turf/floor/dirt,/area/prishtina/soviet/bunker/brig)
 "fH" = (/turf/wall/brick,/area/prishtina/german/main_area/sector2)
 "fI" = (/obj/effect/floor_decal/corner/grey/border{dir = 8},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/main_area/sector2)
 "fJ" = (/obj/effect/floor_decal/corner/grey/border{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/main_area/sector2)
+"fK" = (/obj/effect/landmark{name = "JoinLateRAEng"},/turf/floor/wood,/area/prishtina/soviet/bunker/engineering)
+"fL" = (/obj/effect/landmark{name = "JoinLateRAMedic"},/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
+"fM" = (/obj/item/clothing/suit/storage/coat/soviet/officer,/obj/item/clothing/suit/storage/coat/soviet/officer,/obj/item/clothing/suit/storage/coat/soviet/officer,/obj/item/clothing/suit/storage/coat/soviet/officer,/obj/item/clothing/suit/storage/coat/soviet/officer,/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/wood,/area/prishtina/soviet/bunker/command)
 "fN" = (/turf/floor/wood,/area/prishtina/german/medical)
+"fO" = (/obj/structure/bed/chair/wood/red,/obj/effect/landmark{name = "JoinLateRAXO"},/turf/floor/wood,/area/prishtina/soviet/bunker/command)
 "fP" = (/obj/structure/curtain/medical,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "fQ" = (/obj/structure/sink{step_y = 0; pixel_y = 27},/obj/structure/bed/chair/wheelchair,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "fR" = (/obj/structure/table/reinforced,/obj/item/weapon/circular_saw,/obj/item/weapon/hemostat,/obj/item/weapon/reagent_containers/glass/rag,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "fS" = (/obj/structure/table/reinforced,/obj/item/weapon/FixOVein,/obj/item/weapon/bonesetter,/obj/item/weapon/retractor,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "fT" = (/obj/structure/filingcabinet,/turf/floor/tiled/dark,/area/prishtina/german/medical)
+"fU" = (/obj/item/weapon/stool,/obj/structure/sign/portrait/hitler{pixel_x = -30; pixel_y = 0},/turf/floor/tiled/dark,/area/prishtina/german/ss_torture_room)
 "fV" = (/obj/structure/sink{step_y = 0; pixel_y = 27},/turf/floor/tiled/dark,/area/prishtina/german/medical)
 "fX" = (/obj/structure/vending/germanequipment,/turf/floor/wood,/area/prishtina/german/gearing)
 "fZ" = (/obj/structure/railing,/obj/structure/table/wood,/obj/item/flashlight,/turf/floor/wood,/area/prishtina/german/gearing)
@@ -311,7 +318,7 @@
 "gh" = (/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/floor/wood,/area/prishtina/german/medical)
 "gj" = (/obj/structure/table/reinforced,/obj/item/weapon/scalpel,/obj/item/weapon/surgicaldrill,/obj/item/weapon/reagent_containers/spray/sterilizine,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
 "gk" = (/obj/structure/table/wood,/obj/item/weapon/stamp,/obj/item/weapon/paper_bin,/turf/floor/tiled/dark,/area/prishtina/german/medical)
-"gl" = (/obj/structure/simple_door/key_door/german/soldat{name = "Preparation Room"},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/floor/wood,/area/prishtina/german/gearing)
+"gl" = (/obj/structure/simple_door/key_door/german{name = "Preparation Room"},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/floor/wood,/area/prishtina/german/gearing)
 "gm" = (/obj/effect/floor_decal/corner/grey/border{dir = 8},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/briefing)
 "gn" = (/obj/effect/floor_decal/industrial/outline/grey,/obj/structure/closet/crate/waltherammo,/turf/floor/wood,/area/prishtina/german/armory)
 "go" = (/obj/effect/floor_decal/corner/grey/border{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/briefing)
@@ -383,7 +390,7 @@
 "hO" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/toxin,/obj/item/weapon/storage/firstaid/toxin,/turf/floor/wood,/area/prishtina/german/medical)
 "hP" = (/obj/structure/simple_door/key_door/german/medic{name = "Chemistry Room"},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/floor/wood,/area/prishtina/german/medical)
 "hQ" = (/obj/item/weapon/stool,/turf/floor/tiled/steel{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/prishtina/german/medical)
-"hR" = (/obj/structure/simple_door/key_door/german/soldat{name = "Janitor Closet"},/obj/effect/floor_decal/spline/plain,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
+"hR" = (/obj/structure/simple_door/key_door/german{name = "Janitor Closet"},/obj/effect/floor_decal/spline/plain,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/german/janitor)
 "hS" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/lights/mixed,/obj/item/weapon/storage/fancy/crayons,/turf/floor/wood,/area/prishtina/german/engineering)
 "hT" = (/obj/structure/table/reinforced,/obj/item/weapon/plastique,/obj/item/weapon/plastique,/obj/item/weapon/plastique,/obj/item/weapon/plastique,/obj/item/weapon/storage/fancy/crayons,/turf/floor/wood,/area/prishtina/german/engineering)
 "hU" = (/obj/structure/closet/toolcloset,/turf/floor/wood,/area/prishtina/german/engineering)
@@ -451,7 +458,7 @@
 "jh" = (/obj/structure/sink/kitchen{pixel_x = 0; pixel_y = 28},/obj/effect/landmark{name = "JoinLateHeerChef"},/turf/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
 "ji" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
 "jj" = (/turf/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
-"jk" = (/obj/structure/simple_door/key_door/german/soldat{name = "kitchen"},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
+"jk" = (/obj/structure/simple_door/key_door/german{name = "kitchen"},/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/turf/floor/lino{tag = "icon-grimy"; icon_state = "grimy"},/area/prishtina/german/kitchen)
 "jo" = (/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/turf/floor/wood,/area/prishtina/german/cafeteria)
 "jp" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/obj/structure/sign/flag/germany{pixel_x = 0; pixel_y = 30},/obj/effect/landmark{name = "JoinLateHeer-S1"},/turf/floor/wood,/area/prishtina/german/resting_area_1)
 "jr" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/obj/structure/sign/portrait/hitler{step_x = 0; pixel_x = 0; pixel_y = 29},/obj/effect/landmark{name = "JoinLateHeer-S1"},/turf/floor/wood,/area/prishtina/german/resting_area_1)
@@ -1732,7 +1739,6 @@
 "Ke" = (/obj/structure/bed,/obj/item/weapon/bedsheet/hop,/turf/floor/wood,/area/prishtina/soviet/bunker/command/office)
 "Kg" = (/turf/wall/brick,/area/prishtina/italian_base)
 "Kh" = (/obj/effect/landmark{name = "JoinLateRASL"},/turf/floor/wood,/area/prishtina/soviet/bunker/command)
-"Kj" = (/obj/item/clothing/suit/storage/coat/soviet/officer,/obj/item/clothing/suit/storage/coat/soviet/officer,/obj/item/clothing/suit/storage/coat/soviet/officer,/obj/item/clothing/suit/storage/coat/soviet/officer,/obj/item/clothing/suit/storage/coat/soviet/officer,/turf/floor/wood,/area/prishtina/soviet/bunker/command)
 "Ko" = (/turf/floor/wood,/area/prishtina/soviet/bunker/main_hallway)
 "Kq" = (/turf/floor/wood,/area/prishtina/soviet/bunker/command/office)
 "Ks" = (/obj/structure/bed/chair/wood/red,/obj/effect/landmark{name = "JoinLateRASO"},/turf/floor/wood,/area/prishtina/soviet/bunker/command)
@@ -1741,7 +1747,7 @@
 "Kx" = (/obj/structure/simple_door/key_door/soviet/command_high{name = "Commander Bedroom"},/turf/floor/wood,/area/prishtina/soviet/bunker/command)
 "Ky" = (/obj/structure/vending/italian/equipment,/turf/floor/wood,/area/prishtina/italian_base)
 "Kz" = (/obj/structure/vending/italian/apparel,/turf/floor/wood,/area/prishtina/italian_base)
-"KA" = (/obj/structure/simple_door/key_door/italian/soldat,/turf/floor/wood,/area/prishtina/italian_base)
+"KA" = (/obj/structure/simple_door/key_door/italian,/turf/floor/wood,/area/prishtina/italian_base)
 "KC" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/soviet/bunker/command/office)
 "KD" = (/obj/structure/flag/italian,/turf/floor/plating/grass/wild,/area/prishtina/forest/sector3/ss1)
 "KE" = (/obj/structure/window/classic,/obj/structure/curtain/open/bed,/turf/floor/wood,/area/prishtina/italian_base)
@@ -1758,7 +1764,6 @@
 "KV" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/wall/rockwall,/area/prishtina/soviet/bunker/tunnel)
 "KW" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/wood,/area/prishtina/soviet/bunker/command)
 "KX" = (/obj/structure/simple_door/key_door/soviet/command_intermediate{name = "Command Room"},/turf/floor/wood,/area/prishtina/soviet/bunker/command)
-"Le" = (/obj/structure/bed/chair/wood/red,/turf/floor/wood,/area/prishtina/soviet/bunker/command)
 "Lf" = (/turf/floor/wood,/area/prishtina/soviet/bunker/command)
 "Lg" = (/obj/structure/sink/puddle,/obj/effect/decal/cleanable/cobweb,/turf/floor/dirt,/area/prishtina/soviet/bunker/main_hallway)
 "Lh" = (/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (EAST)"; icon_state = "spline_plain"; dir = 4},/obj/structure/curtain/open/bed,/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area)
@@ -1772,8 +1777,8 @@
 "Lv" = (/turf/floor/dirt,/area/prishtina/soviet/bunker/showers)
 "Lx" = (/obj/item/weapon/mop,/turf/floor/wood,/area/prishtina/soviet/bunker/showers)
 "Ly" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/wall/rockwall,/area/prishtina/soviet/bunker/showers)
-"Lz" = (/obj/structure/simple_door/key_door/soviet/soldat{name = "Prison"},/turf/floor/plating/asteroid,/area/prishtina/soviet/bunker/brig)
-"LB" = (/obj/structure/simple_door/key_door/soviet/soldat{name = "Cell 2"},/turf/floor/dirt,/area/prishtina/soviet/bunker/brig/cell1)
+"Lz" = (/obj/structure/simple_door/key_door/soviet{name = "Prison"},/turf/floor/plating/asteroid,/area/prishtina/soviet/bunker/brig)
+"LB" = (/obj/structure/simple_door/key_door/soviet{name = "Cell 2"},/turf/floor/dirt,/area/prishtina/soviet/bunker/brig/cell1)
 "LC" = (/turf/floor/dirt,/area/prishtina/soviet/bunker/brig/cell1)
 "LE" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/wall/rockwall,/area/prishtina/soviet/bunker/tunnel)
 "LH" = (/obj/structure/sink/puddle,/obj/structure/shower{tag = "icon-shower (EAST)"; icon_state = "shower"; dir = 4; step_x = 0; step_y = 0},/turf/floor/dirt,/area/prishtina/soviet/bunker/showers)
@@ -1788,12 +1793,11 @@
 "LT" = (/obj/structure/closet/crate/sandbags,/turf/floor/dirt,/area/prishtina/soviet/bunker/main_hallway)
 "LU" = (/obj/structure/toilet{tag = "icon-toilet00 (EAST)"; icon_state = "toilet00"; dir = 4},/turf/floor/dirt,/area/prishtina/soviet/bunker/showers)
 "LV" = (/turf/floor/wood,/area/prishtina/soviet/bunker/showers)
-"LX" = (/obj/item/weapon/stool,/turf/floor/dirt,/area/prishtina/soviet/bunker/brig)
 "LY" = (/obj/item/weapon/melee/classic_baton,/obj/item/weapon/handcuffs,/obj/structure/table/wood,/turf/floor/dirt,/area/prishtina/soviet/bunker/brig)
 "LZ" = (/obj/structure/barricade,/obj/structure/barbwire{tag = "icon-barbwire (EAST)"; icon_state = "barbwire"; dir = 4},/turf/floor/dirt,/area/prishtina/soviet/bunker/brig/cell2)
 "Mb" = (/obj/structure/bed,/turf/floor/dirt,/area/prishtina/soviet/bunker/brig/cell2)
 "Md" = (/obj/item/weapon/paper_bin,/obj/item/weapon/pen,/obj/structure/table/wood,/turf/floor/dirt,/area/prishtina/soviet/bunker/brig)
-"Me" = (/obj/structure/simple_door/key_door/soviet/soldat{name = "Cell 1"},/turf/floor/dirt,/area/prishtina/soviet/bunker/brig/cell2)
+"Me" = (/obj/structure/simple_door/key_door/soviet{name = "Cell 1"},/turf/floor/dirt,/area/prishtina/soviet/bunker/brig/cell2)
 "Mg" = (/turf/floor/dirt,/area/prishtina/soviet/bunker/brig/cell2)
 "Mh" = (/obj/structure/simple_door/key_door/soviet/bunker_doors{name = "Bunker Ladders"},/turf/floor/dirt,/area/prishtina/soviet/bunker/entrance)
 "Ml" = (/obj/structure/closet/toolcloset,/turf/floor/wood,/area/prishtina/soviet/bunker/engineering)
@@ -1823,7 +1827,7 @@
 "MO" = (/obj/item/weapon/bonegel,/obj/item/weapon/cautery,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/structure/table/wood,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/syringe,/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
 "MP" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
 "MQ" = (/obj/structure/bed/chair/wood/red{tag = "icon-wooden_chair_red (WEST)"; icon_state = "wooden_chair_red"; dir = 8},/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
-"MR" = (/obj/structure/simple_door/key_door/soviet/soldat{name = "Kitchen"},/turf/floor/dirt,/area/prishtina/soviet/bunker/cafeteria)
+"MR" = (/obj/structure/simple_door/key_door/soviet{name = "Kitchen"},/turf/floor/dirt,/area/prishtina/soviet/bunker/cafeteria)
 "MT" = (/obj/structure/railing{dir = 8},/turf/floor/dirt,/area/prishtina/soviet/bunker/main_hallway)
 "MV" = (/obj/structure/window/sandbag,/obj/structure/window/sandbag{tag = "icon-sandbag (WEST)"; icon_state = "sandbag"; dir = 8},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/wall/rockwall,/area/prishtina/soviet/bunker/medical)
 "MX" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
@@ -1843,7 +1847,7 @@
 "Nr" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
 "Ns" = (/obj/structure/sink/puddle,/turf/floor/dirt,/area/prishtina/soviet/bunker/main_hallway)
 "Nt" = (/obj/structure/barricade,/obj/structure/barbwire,/turf/floor/wood,/area/prishtina/soviet/bunker/kitchen)
-"Nu" = (/obj/structure/simple_door/key_door/soviet/soldat{name = "Kitchen"},/turf/floor/wood,/area/prishtina/soviet/bunker/kitchen)
+"Nu" = (/obj/structure/simple_door/key_door/soviet{name = "Kitchen"},/turf/floor/wood,/area/prishtina/soviet/bunker/kitchen)
 "Nv" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/soviet/bunker/kitchen)
 "Nw" = (/obj/structure/closet/crate/flares_ammo,/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/wood,/area/prishtina/soviet/bunker/armory)
 "NA" = (/obj/structure/closet/toolcloset,/turf/floor/wood,/area/prishtina/soviet/bunker/armory)
@@ -1975,10 +1979,10 @@
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatatatatatatatfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmgZhihihihihihihihihihihihiadQNgZhihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihiadhiQjQjQjQjQjQjQjQjQjQjafafafafafafafafafafafafafafafafafafafafafafafafafafafafagafagafafafafagafafafafagagafafafafafafaf
 ahaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiajaiarakalamanbOatfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmgZephihihihihihihihihihihiadQNgZhihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihiadhiQjaqQjaqaqQjQjQjQjQjafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafagagafafagagafafafagagagagafafafafafaf
 aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiarbObObObObOatatatatatatatatatatatatatiTavavavavavawawavavavavavavaxaxaxaxaxaxayayayayazazazazazazazazazazazfmaBhihihihihihihihihihihihiadQNgZcLhihihihihihihihihiaEaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaFaGaGaGaGaGaGaGaGaGaGaHagagafagafafafafafagafafafafafafafafafafafafafafafafafagafafagagagafagagagagafafafagafafafafafaf
-aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiarbObObObObOataIaJaKaLaMaNaNaMaOaPaQatiTaRaSaTaUavaVbyaXaYaZaYaobbaxbcbdbdbeaxaybfbgbhazbZbZbjbZbZbkblbMbMazfmaBephihihihihihihihihihihiadQNgZcLhihihihihihihihihibpapapapapapapapapapapapapapapapapapapapapapapapapbqbqbqbqbqbqbqbqbqbqbwafagafafagafagafafafagafagagafafafafagafafagafafafafafafafafafafafafafafafafagafafagafafafafafaf
+aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiarbObObObObOataIaJaKaLaMaNaNaMaOaPaQatiTaRaSaTaUavaVbyaXaYaZaYaobbaxbcbdbdbeaxaybfbgbhazbZcrbjcrbZbkblbMbMazfmaBephihihihihihihihihihihiadQNgZcLhihihihihihihihihibpapapapapapapapapapapapapapapapapapapapapapapapapbqbqbqbqbqbqbqbqbqbqbwafagafafagafagafafafagafagagafafafafagafafagafafafafafafafafafafafafafafafafagafafagafafafafafaf
 aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiarbObObObObObsdjdjaKaLdjaNaNdjaOaPdjatiTavbvbAbxavbybybzbabBbCbDavaxbEbFbFbGaxaybHdvdvbKbZbZbZbZbZbLbMbMbNazfmaBhihihihihihihihihihihihiadQNgZcLhihihihihihihihihibpapapapapapapapapapapapapapapapapapapapapapapapapbqbqbqbqbqbqbqbqbqbqbwafafbQafafbQafbQbQagafafbQagagafafafafafafafafagafagafafafagafafafafafafafagafagafagafafafafafaf
 aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiarbObObObObObsdjdjaKaLdjaNaNdjaOaPdjatiTaRbPdKbRbSbybybTbUbUbUbVbbaxbEbFbFbGaxaybWbXbYazbZcabZbZbZbkcbcccdazfmaBephihihihihihihihihihihiceQNgZcLhihihihihihihihihibpapapapapapapapapapapapapapapapapcfcgchchchchcgchcicicicicicicicjbqbqbwafbQbQbQafafbQafafafbQafbQagafafafafafafafafafafafafagagagagafafafafafafafafafagafafafafafafafaf
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatatatatatatatdjdjclbudjgngXdjaOcmdjatiTavcocpcqavbybybybybybyboavaxbEbFbFbGaxayayayayazcrcsbZbZbZazazazazazfmaBhihiephihihihihihihihihiadQNgZcLhihihihihihihihihibpapapapapapapapapctctctctctctctctcuadhihihihiadhiQjQjaqaqaqQjQjcjbqbqbrjCKgKgKgKgKgKgKgktKgktKgafafagafafafafafafafafafafafagafagafafafagafafafagafafafagagafafafafafaf
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatatatatatatatdjdjclbudjgngXdjaOcmdjatiTavcocpcqavbybybybybybyboavaxbEbFbFbGaxayayayayazfUcsbZbZbZazazazazazfmaBhihiephihihihihihihihihiadQNgZcLhihihihihihihihihibpapapapapapapapapctctctctctctctctcuadhihihihiadhiQjQjaqaqaqQjQjcjbqbqbrjCKgKgKgKgKgKgKgktKgktKgafafagafafafafafafafafafafafagafagafafafagafafafagafafafagagafafafafafaf
 cvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcwcxiTatcyczcAatdjdjdjdjdjdjdjdjdjdjdjatiTavavavavavavcBavavavavavavaxbEbFbFbGaxaycCcDcEazbZcGbZbZbZcHcIddddazfmaBhihihihihihihihihihihihiadQNgZcLcLdBdBdBdBcLcLdBdBdBdBdBdBdBdBdBdBdBcNcOcPcPcPcPcPcPcxadhihihihiadhiQjQjQjQjaqQjQjcjbqbqbrQjKgKyQaQaQnQnKgFDFEFWKgbQafafafafafafagafafagafafafagafafafafafafafafafafafafafafafafafafafafaf
 cvcvcQcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcvcQcQcvcvcvcwcxiTatcRdjcSatdjdjdjdjdjdjdjdjdjdjdjatiTaRcTcUavcVcWbycXcYavcZdabbaxbEbFbFbGaxaydbayayazbZbZbZbZbZdcdddddeazfmaBhihihiephihihihihihihihiadQNgZcLcLdBdBdBdBdBdBdBdBdBdBdBdBdBdBdfdBdBcNdgdgdgdgdgdgdgcxadhihihihiadhiQjQjQjaqaqQjQjcjbqbqbrjCPJQnQnQnQnQnKEGiOfOYKgbQafagafagagafafafafafafafafafafafafafafafafafagafafafafagafafafafafafaf
 cvcQdhcQcvcvcvcvcvcvcvcQcvcvcQcQcQcQcQcvcvcvcvcvcvcQcQcvcvcQcQcvcvcvcwcxiTatdidjdjdkdjdjdjdldndnPKdodpdqdjatiTavdrdscBbybybybybycBdtduavaxbEbFbFbGaxaydvdvdvdwbZbZbZbZbZcHdxdydzazfmaBhihihihihihihihihihihihiadQNgZcLcLdBdBdBdBdBdBdBdBdBdAdBdBdBdBdBdBdBcNdgdgdgdgdgdgdgcxadhihihihiadhiQjQjQjQjaqQjQjcjbqbqbrjCKgKzQaQaQnQnKgPMPNPOKgbQbQafafafafafafafafafafafafafafafafafafafafafagafafafafagafafafafafafaf
@@ -2457,20 +2461,20 @@ JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJyJGJyJzJOJOJOJCJxJzJOJOJOJCJyJGJyJxJxJzJAJAJPNkJRJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJGJJJLJJJGJSJTJOJGJyJGJOJTJSJGJJJLJJJGJxJzJUJUJDNkJWJCJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJxJxJyJGJyJxJyJyJGJyJyJxJxJxJxJxJxJxJxJxJxJzJOJOJOJCJyJGNkJlauNkNkJGJyJzJOJOJOJCJxJDKbKcKdNkNkJCJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
-JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJxJGKefhiMKdKhKhffKhKjJGJxJxJxJxJxJxJxJxJxJGJSJTJOJGNkbtNkNkNkNkNkbtNkJGJOJTJSJGJxJzKoKoJGNkNkJCJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
+JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJxJGKefhiMKdKhKhffKhfMJGJxJxJxJxJxJxJxJxJxJGJSJTJOJGNkbtNkNkNkNkNkbtNkJGJOJTJSJGJxJzKoKoJGNkNkJCJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJxJzKqKqKqJGLfKsLfKsLfJCJxJxJxJxJyJyJyJyJxJxJxJGNkNkNkNkNkJCJGJzNkNkNkNkNkJGJyJyJyJGNkNkbtNkLTJCJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJxJxJziNKwKqKxLfwNAzABLfJCJxJxJxJzJAJAJAJAJCJxJxJzNkNkJCJyJyJyJxJyJyJyJzNkNkbtNkNkNkbtNkNkNkNkJCJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJxJxJGKCKvACJGLfKGLfKGLfJGJxJxJxJDJAKHKIJAJDJxJxJzNkcnKKLuLuLuJGLuLuKMKKNkNkNkNkNkNkNkNkKNJGJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJxJxJxJxJGJxJzLfLfLfLfbiJCJxJxJxJzJAJAJAJAJCJyKOJzNkNkqfKQKQKSKTKSKQKQqgNkNkJDJxJxJxJxJxJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJyJyJyJyJxJxKVKWKVKVKXKVKVJxJxJyJyJzJAJAJCJzLuLuKKckNkKKLufuLuJGLuLufDKKNkNkJCJyJyJyJxJyJyJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
-JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJzJAJAJAJAJCJxJzLfKXLfLfLeeBJCJGLgNkJDJAJAJDJzKSKQLhNkNkJCJyJGJyJxJyJyJyJzNkNkJDLLevLLLlLmLnJCJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
+JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJzJAJAJAJAJCJxJzLfKXLfLffOeBJCJGLgNkJDJAJAJDJzKSKQLhNkNkJCJyJGJyJxJyJyJyJzNkNkJDfFevfFLlLmLnJCJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJDJAqhqjJAJDJxJzLfKTLfLqLrLqKTLsNkNkJPJAJAJCJzLuLuKKNkNkKKLufvLuJGLvLVLxLyNkNkLzLLLLLLLBLCLCJCJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJzJAJAJAJAJCJxJGqkJGJyJyJyJyJGNkNkJCJDJUJUJCJxJxJxLENkNkqfKQKQKSKTLHLVLJFZNkJCJDLLLMLLLNJyLOJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
-JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJyJyJzJAJAJCJxJzLTNkNkLQcJLRaWNkNkNkLSJDKbKcJDJyJyJGLTNkNkKKLuLuLuJGLUfALVLyJWJCJzLXLYLLLZJdMbJCJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
+JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJyJyJzJAJAJCJxJzLTNkNkLQcJLRaWNkNkNkLSJDKbKcJDJyJyJGLTNkNkKKLuLuLuJGLUfALVLyJWJCJzfGLYLLLZJdMbJCJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJGLgNkJDJAJAJDJxJzNkNkNkNkNkNkNkNkNkNkNkbtKoKobtNkNkbtNkNkNkJCJxJxJxJxJxJxJxJxJxJxJDLLMdLLMeMgMgJCJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzLsNkNkMhJAJAJCJxJzNkNkJGJyJyJGJyJyJGNkNkNkNkNkNkNkNkNkNkNkJGJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJGNkNkJCJDJUJUJCJxJzNkNkJfMrMlMmMnMoKTNkNkJGJxJxJGJxJxJGNkNkJCJxJGJyJGJxJGJyJGJxJGJyJyJGJxJxJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
-JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzNkNkJRJDKbKcJDJyMpNkNkJGMrMrMrMrMsJGNkNkJCJxJxJxJxJxJzNkNkJCJGMtMuMvJGMtMuMvJGMwOrMyMzJGJxJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
+JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzNkNkJRJDKbKcJDJyMpNkNkJGMrMrMrfKMsJGNkNkJCJxJxJxJxJxJzNkNkJCJGMtMuMvJGMtMuMvJGMwOrMyMzJGJxJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzJWNkNkbtKoKobtNkNkNkNkKdMBMCMDMEMFKTNkNkJCJxJxJyJyJyJzNkNkJCJzOrOrMGKdOrOrMGKdMHOrMJOrJCJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJGLTNkNkNkNkNkLSJGNkNkJGJyJyJGJyJyJGMKNkJGJxJzMLOrNrKdNkNkJCJzOrMNMOKdOrMNMOKdMHOrMPMQJCJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJGMRJGJxJzNkNkNkNkNkbtNkNkbJNkMTbtNkMTNkJCJzNrOrNrMVNkNkJCJGMXOrOrJGMXOrOrJGMYOrMZOrJGJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
@@ -2480,7 +2484,7 @@ JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzNtNuNtNvNtJCJxJxJzNwPrdmdUQCPrNANBdmNCNMJCJxJxJxJxJxJyJyJGJQJGJyJyJyJyJGJyJyJGJyJGJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJGNFNGcMNGNIJGJxJxJzNJPrPrPrPrPrPrPrPrPrNMJCJxJxJxJxJzNNNOfpOrfqNRNSNSNSNTOrNUNVNWJCJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzNXNGNYNGNZJCJyJyJyJzPbPrJCJyJyJyJzPrPbJCJyJyJyJxJxJzObOrOrOrOrOrOrOrOrOcOrOrOdOrJCJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
-JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzOeNGNGNGNGKdOgdVOgOhPbPrOhOkebOkOhPrPbOhOKecOKJCJxJzOnOrOrOoOrOrOrOrOrOqOrOoOrOtJCJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
+JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzOeNGNGNGNGKdOgdVOgOhPbPrOhOkebOkOhPrPbOhOKecOKJCJxJzOnOrOrOoOrfLfLfLOrOqOrOoOrOtJCJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJGOuOvOwQsQtJGPrPrPrOyPrPrOyPrPrPrOyPrPrOyPrPrPrJGJxJzOBOCfsOEOGftOrOrOrOHOdOIMXOrJCJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJGJxJGJxJGJzOgOgOgKTPbPrKTOJOJOJKTPrPbKTOKOKOKJCJxJxJxJxJGJxJxOqOLOMNRJGJxJxJGJxJGJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxJxJxJxJxJxJxJyJyJyJzPbPrJCJyJyJyJzPrPbJCJyJyJyJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
