@@ -40,7 +40,8 @@ var/process/mapswap/mapswap_process = null
 				. = TRUE
 	return .
 
-/process/mapswap/proc/swap(var/winner = "CITY")
+/process/mapswap/proc/swap(var/winner = "City")
+	winner = capitalize(winner)
 	if (shell())
 		shell("cd && sudo python3 mapswap.py [winner]")
 		log_debug("Ran mapswap.py with arg '[winner]' on the shell.")

@@ -43,6 +43,7 @@
 	colour = "english"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = list("pi", "za", "pe", "pp", "er", "on", "i", "ma", "mia", "na", "va", "gi")
+	mutual_intelligibility = list(/datum/language/romanian = 50)
 
 /datum/language/romanian
 	name = "Romanian"
@@ -51,3 +52,4 @@
 	colour = "english"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = list("za", "pe", "pp", "er", "on", "i", "ma", "mia", "na", "va", "gi", "vye", "vo", "go", "dye")
+	mutual_intelligibility = list(/datum/language/italian = 50)
