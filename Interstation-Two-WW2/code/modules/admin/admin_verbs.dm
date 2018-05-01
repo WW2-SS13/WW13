@@ -915,8 +915,9 @@ var/list/admin_verbs_host = list(
 	set name = "Start Map Vote"
 	if (!check_rights(R_PERMISSIONS))
 		return
-	if (mapswap_process)
+	if (mapswap_process && mapswap_process.may_fire())
 		mapswap_process.admin_triggered = TRUE
-		log_debug("[key_name(usr)] triggered a map vote.")
+		log_admin("[key_name(usr)] triggered a map vote.")
+		message_admins("[key_name(usr)] triggered a map vote.")
 	else
-		src << "<span class = 'notice'>There is no mapswap_process datum.</span>"
+		src << "<span class = 'notice'>There is no mapswap_process datum, or it is not ready.</span>"

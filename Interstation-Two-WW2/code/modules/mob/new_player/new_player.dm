@@ -113,7 +113,7 @@
 	output += "</div>"
 
 	src << browse(null, "window=playersetup;")
-	src << browse(replacetext(output_stylized, "PLACEHOLDER", output), "window=playersetup;size=275x[height];can_close=0")
+	src << browse(replacetext(output_stylized, "PLACEHOLDER", output), "window=playersetup;size=275x[height];can_close=0;can_resize=0")
 	return
 
 /mob/new_player/Stat()

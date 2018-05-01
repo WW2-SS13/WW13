@@ -633,7 +633,7 @@
 		flicker()
 
 /obj/structure/light/fire_act(temperature)
-	if(sprob(max(0, temperature - 400)))
+	if(sprob(max(0, temperature - 330)))
 		broken()
 
 // explode the light

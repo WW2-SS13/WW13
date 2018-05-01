@@ -7,6 +7,10 @@
 		return ..(C, user)
 
 	else if (istype(C, /obj/item/weapon/reagent_containers/food/drinks))
+		if (istype(C, /obj/item/weapon/reagent_containers/food/drinks/bottle))
+			var/obj/item/weapon/reagent_containers/food/drinks/bottle/B = C
+			if (B.rag)
+				return
 		if (C.reagents.total_volume)
 			visible_message("<span class='notice'>\The [user] tips the contents of \the [C] on \the [src].</span>")
 			C.reagents.clear_reagents()

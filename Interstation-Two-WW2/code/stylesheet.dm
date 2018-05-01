@@ -17,6 +17,7 @@ em						{font-style: normal;font-weight: bold;}
 
 .prefix					{font-weight: bold;}
 .log_message			{color: #A9B6E7;	font-weight: bold;}
+.message				{color: #E1E1FF;	font-weight: bold;}
 
 a, a:link, a:visited, :active, a:hover
 						{color: #CD4C6C;}

@@ -1029,7 +1029,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/gerhelm/sshelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>. Also, kill any jews you find on sight. They usually have long hair and beards.</span>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>.</span>"
 	H.give_radio()
 
 	// glorious SS stats
