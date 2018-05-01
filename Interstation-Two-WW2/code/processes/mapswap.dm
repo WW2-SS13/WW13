@@ -45,6 +45,8 @@ var/process/mapswap/mapswap_process = null
 
 /process/mapswap/proc/swap(var/winner = "City")
 	winner = uppertext(winner)
+	if (!list(MAP_CITY, MAP_FOREST, MAP_PILLAR).Find(winner))
+		winner = maps[1]
 	if (shell())
 		shell("cd && sudo python3 mapswap.py [winner]")
 		log_debug("Ran mapswap.py with arg '[winner]' on the shell.")
