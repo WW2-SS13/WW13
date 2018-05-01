@@ -7,6 +7,7 @@ var/list/vocal_emotes = list(
 	"cry",
 	"giggle",// not actually vocal but it will be
 	"laugh",
+	"chuckle",
 	"scream",
 	"sigh",
 	"sneeze",
@@ -192,6 +193,7 @@ var/list/vocal_emotes = list(
 					if (!muzzled)
 						message = "chuckles."
 						m_type = 2
+						playsound(get_turf(src), "chuckle_[gender]", 100)
 					else
 						message = "makes a noise."
 						m_type = 2

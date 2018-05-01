@@ -13,34 +13,10 @@
 
 /obj/snow/New()
 	..()
-	amount = spick(0.04, 0.05, 0.06) // around 2 inchesi
-	var/spawntime = FALSE
-	if (!obj_process)
-		spawntime = 300
-	spawn (spawntime)
-		obj_process.add_nonvital_object(src)
-
-/obj/snow/Destroy()
-	var/spawntime = FALSE
-	if (!obj_process)
-		spawntime = 300
-	spawn (spawntime)
-		obj_process.remove_nonvital_object(src)
-	..()
-
-/obj/snow/process()
-	if (!my_area)
-		my_area = get_area(src)
-	if (my_area.weather == WEATHER_SNOW)
-		// accumulate about 0.05 meters of snow/40 seconds (+ randomness)
-		amount += 0.05 * my_area.weather_intensity
-		if (sprob(25)) // and some more
-			amount *= 0.05 * my_area.weather_intensity
-	else if (weather == WEATHER_SNOW && my_area.artillery_integrity <= 20)
-		// or, if we're inside, aboout 0.02 meters/40 seconds
-		amount += 0.02 * 1.0
-		if (sprob(25)) // and some more
-			amount += 0.02 * 1.0
+	amount = spick(0.04, 0.05, 0.06) // around 2 inches
+	var/area/A = get_area(src)
+	if (A && istype(A, /area/prishtina/forest))
+		amount *= 2
 
 /obj/snow/proc/descriptor()
 	switch (amount)
@@ -56,10 +32,6 @@
 			return "extremely deep snow"
 		if (1.22 to INFINITY) // no way we can go through this easily
 			return "incredibly deep snow"
-/*
-/obj/snow/get_description_info()
-	return "It's about [amount] meters deep. That's [descriptor()]."
-*/
 
 /obj/snow/attackby(obj/item/C as obj, mob/user as mob)
 	var/turf/floor/F = get_turf(src)

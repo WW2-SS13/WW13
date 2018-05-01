@@ -18,6 +18,7 @@
 	var/state = STATE_EMPTY
 	var/fullness = 0 // 0 to 100
 	var/bowls = 0
+	var/initial_bowls = 0
 	var/stew_desc = ""
 	var/stew_nutriment = 0
 	var/stew_protein = 0
@@ -116,7 +117,9 @@
 			stew.reagents.add_reagent("protein", stew_protein)
 
 		for (var/datum/reagent/R in reagents.reagent_list)
-			stew.reagents.add_reagent(R.id, R.volume)
+			var/amt = ceil(R.volume/initial_bowls)
+			stew.reagents.maximum_volume += amt
+			stew.reagents.add_reagent(R.id, amt)
 
 		if (H.l_hand == I)
 			H.remove_from_mob(I)
@@ -176,6 +179,7 @@
 				if (stew_ticks >= srand(20,25))
 					state = STATE_STEWING
 					bowls = min(round(contents.len/3) + 3,10) // 1 object = 3 bowls. 10 objects = 6 bowls
+					initial_bowls = bowls
 					visible_message("<span class = 'info'>The liquid in the pot turns into a stew.</span>")
 					stew_desc = "Stew with "
 					stew_nutriment_desc.Cut()

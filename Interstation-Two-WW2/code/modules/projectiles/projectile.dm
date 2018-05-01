@@ -249,10 +249,11 @@
 
 	if (is_shrapnel)
 		target_mob.pre_bullet_act(src)
-		var/hit_zone = "chest"
-		for (var/zone in organ_rel_size)
-			if (prob(organ_rel_size[zone]))
-				hit_zone = zone
+		var/hit_zone = "head"
+		if (sprob(25))
+			for (var/zone in organ_rel_size)
+				if (prob(organ_rel_size[zone]))
+					hit_zone = zone
 		target_mob.bullet_act(src, hit_zone)
 		if(silenced)
 			target_mob << "<span class='danger'>You've been hit in the [parse_zone(hit_zone)] by the shrapnel!</span>"
@@ -318,7 +319,7 @@
 	if (istype(H) && H.head && istype(H.head, /obj/item/clothing/head/helmet/tactical))
 		helmet_protection = 10
 
-	if (sprob(50+helmet_protection))
+	if (sprob((100 - mygun.headshot_kill_chance)+helmet_protection))
 		switch (damage)
 			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
 				damage = DAMAGE_LOW - 6
@@ -404,7 +405,13 @@
 		passthrough = FALSE
 	else
 		for (var/atom/movable/AM in T.contents)
-			if (!untouchable.Find(AM))
+			if (istype(AM, /obj/item/weapon/grenade))
+				if (AM == original)
+					var/obj/item/weapon/grenade/G = AM
+					G.fast_activate()
+					bumped = TRUE
+					return FALSE
+			else if (!untouchable.Find(AM))
 				if (isliving(AM) && AM != firer)
 					var/mob/living/L = AM
 					if (!L.lying || T == get_turf(original) || execution)

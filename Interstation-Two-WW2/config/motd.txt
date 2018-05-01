@@ -1,9 +1,9 @@
-<h2><span style = "font-size: 1.20em;">Welcome to <b><span style = "font-size: 1.20em;">Lebensraum <span style = "color: #CD4C6C">Alpha Edition</span></span></b></span></h2>
+<h2><small><span style = "font-size: 1.20em;">Welcome to <b><span style = "font-size: 1.20em;">Lebensraum <span style = "color: #CD4C6C">Alpha Edition</span></span></b></span></small></h2>
 <i>
 The current map is <b>{server_map}</b>.
 <br>
 This server is running {server_version}, and you are running {client_version}. For a less buggy experience, always run the latest version of BYOND, which you can get <a href = "http://www.byond.com/download/">here</a>.
-<h2>Rules: http://mechahitler.co.nf/lebensraum/rules.html</h2>
-<h2>Patreon: https://www.patreon.com/worldwar2inspace</h2>
-<h2>Github: https://github.com/WW2-SS13/WW13/issues</h2>
+<h2><small>Rules: http://mechahitler.co.nf/lebensraum/rules.html</small></h2>
+<h2><small>Patreon: https://www.patreon.com/worldwar2inspace</small></h2>
+<h2><small>Github: https://github.com/WW2-SS13/WW13/issues</small></h2>
 </i>

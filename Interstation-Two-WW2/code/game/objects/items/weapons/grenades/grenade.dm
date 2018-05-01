@@ -78,9 +78,13 @@
 	playsound(loc, 'sound/weapons/armbomb.ogg', 75, TRUE, -3)
 
 	spawn(det_time)
+		visible_message("<span class = 'warning'>\The [src] goes off!</span>")
 		prime()
 		return
 
+/obj/item/weapon/grenade/proc/fast_activate()
+	det_time = round(det_time/10)
+	activate()
 
 /obj/item/weapon/grenade/proc/prime()
 	if (active)
@@ -117,11 +121,15 @@
 /obj/item/weapon/grenade/ex_act(severity)
 	switch (severity)
 		if (1.0)
-			det_time = round(det_time/10)
-			activate()
+			fast_activate()
 		if (2.0)
 			if (prob(50))
 				return ex_act(1.0)
 		if (3.0)
 			if (prob(5))
 				return ex_act(1.0)
+
+/obj/item/weapon/grenade/bullet_act(var/obj/item/projectile/proj)
+	if (proj && !proj.nodamage)
+		return ex_act(1.0)
+	return FALSE

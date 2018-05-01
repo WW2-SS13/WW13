@@ -95,7 +95,9 @@ var/list/cry_sounds_male = list(
 	'sound/effects/emotes/male_cry2.ogg')
 
 var/list/laugh_sounds_male = list(
-	'sound/effects/emotes/male_laugh1.ogg',
+	'sound/effects/emotes/male_laugh1.ogg')
+
+var/list/chuckle_sounds_male = list(
 	'sound/effects/emotes/male_laugh2.ogg',
 	'sound/effects/emotes/male_laugh3.ogg')
 
@@ -124,8 +126,10 @@ var/list/cry_sounds_female = list(
 
 var/list/laugh_sounds_female = list(
 	'sound/effects/emotes/female_laugh1.ogg',
-	'sound/effects/emotes/female_laugh2.ogg',
 	'sound/effects/emotes/female_laugh3.ogg')
+
+var/list/chuckle_sounds_female = list(,
+	'sound/effects/emotes/female_laugh2.ogg')
 
 var/list/yawn_sounds_female = list(
 	'sound/effects/emotes/female_yawn1.ogg',
@@ -290,6 +294,8 @@ var/const/FALLOFF_SOUNDS = 0.5
 				soundin = spick(cry_sounds_male)
 			if ("laugh_male")
 				soundin = spick(laugh_sounds_male)
+			if ("chuckle_male")
+				soundin = spick(chuckle_sounds_male)
 			if ("yawn_male")
 				soundin = spick(yawn_sounds_male)
 			if ("sigh_male")
@@ -303,6 +309,8 @@ var/const/FALLOFF_SOUNDS = 0.5
 				soundin = spick(cry_sounds_female)
 			if ("laugh_female")
 				soundin = spick(laugh_sounds_female)
+			if ("chuckle_female")
+				soundin = spick(chuckle_sounds_female)
 			if ("yawn_female")
 				soundin = spick(yawn_sounds_female)
 			if ("sigh_female")

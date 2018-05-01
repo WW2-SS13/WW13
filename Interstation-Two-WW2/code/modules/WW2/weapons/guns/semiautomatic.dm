@@ -51,6 +51,7 @@
 	stat = "rifle"
 	load_delay = 5
 	aim_miss_chance_divider = 2.50
+	headshot_kill_chance = 40
 
 	var/jammed_until = -1
 	var/jamcheck = 0

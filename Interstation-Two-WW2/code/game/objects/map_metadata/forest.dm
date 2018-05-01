@@ -9,6 +9,7 @@
 	supply_points_per_tick = list(
 		SOVIET = 1.00,
 		GERMAN = 1.50)
+	character_arrival_announcement_time = 20 // necessary for some reason
 	ambience = list('sound/ambience/war.ogg')
 
 /obj/map_metadata/forest/New()
@@ -20,7 +21,8 @@
 			CIVILIAN,
 			ITALIAN)
 		available_subfactions = list(
-			SCHUTZSTAFFEL)
+			SCHUTZSTAFFEL,
+			ITALIAN)
 		faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
 	..()
 
