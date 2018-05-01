@@ -497,6 +497,7 @@
 	icon_state = "blue3"
 	dynamic_lighting = FALSE
 	is_train_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/german/cafeteria
 	name = "Cafeteria"
