@@ -9,6 +9,7 @@
 		if (!process || process:killed) { \
 			break; \
 		} \
+		process:schedule_interval = max(process:schedule_interval, world.tick_lag); \
 		sleep(process:schedule_interval); \
 		process:onStart(); \
 		process:fire(); \

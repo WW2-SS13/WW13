@@ -322,7 +322,8 @@ var/list/admin_verbs_host = list(
 	/client/proc/eject_unwhitelisted,
 //	/client/proc/toggle_hyperefficiency_mode,
 	/client/proc/toggle_playing,
-	/client/proc/toggle_pingability
+	/client/proc/toggle_pingability,
+	/client/proc/start_mapswap_vote
 )
 
 /client/proc/add_admin_verbs()
@@ -904,3 +905,14 @@ var/list/admin_verbs_host = list(
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("<span class = 'notice'>[key_name_admin(usr)] told everyone to man up and deal with it.</span>", TRUE)
+
+/client/proc/start_mapswap_vote()
+	set category = "Server"
+	set name = "Start Map Vote"
+	if (!check_rights(R_PERMISSIONS))
+		return
+	if (mapswap_process)
+		mapswap_process.admin_triggered = TRUE
+		log_debug("[key_name(usr)] triggered a map vote.")
+	else
+		src << "<span class = 'notice'>There is no mapswap_process datum.</span>"

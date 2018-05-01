@@ -160,11 +160,11 @@
 		set_anchored(FALSE)
 		step(src, get_dir(AM, src))
 	take_damage(tforce)
-
+/*
 /obj/structure/window/attack_tk(mob/user as mob)
 	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
 	playsound(loc, 'sound/effects/Glasshit.ogg', 50, TRUE)
-
+*/
 /obj/structure/window/attack_hand(mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(HULK in user.mutations)

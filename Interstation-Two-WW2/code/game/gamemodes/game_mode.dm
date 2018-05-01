@@ -117,8 +117,8 @@ var/global/list/additional_antag_types = list()
 			world << "[antag_summary]"
 		else
 			message_admins("[antag_summary]")
-	if (aspect)
-		aspect.activate()
+/*	if (aspect)
+		aspect.activate()*/
 
 ///can_start()
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.

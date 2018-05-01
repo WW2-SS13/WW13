@@ -4,13 +4,4 @@
 #define WEATHER_NONE 1
 #define WEATHER_RAIN 2
 #define WEATHER_SNOW 3
-
-/proc/weather_const2text(var/constant)
-	switch (constant)
-		if (WEATHER_NONE)
-			return "NONE"
-		if (WEATHER_RAIN)
-			return "RAIN"
-		if (WEATHER_SNOW)
-			return "SNOW"
-	return ""
+#define WEATHER_CONST2TEXT(constant) (constant == WEATHER_NONE ? "NONE" : constant == WEATHER_RAIN ? "RAIN" : constant == WEATHER_SNOW ? "SNOW" : "NONE")

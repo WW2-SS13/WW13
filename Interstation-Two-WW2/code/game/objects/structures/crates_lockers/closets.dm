@@ -204,8 +204,8 @@
 			var/obj/item/weapon/grab/G = W
 			MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
 			return FALSE
-		if(istype(W,/obj/item/tk_grab))
-			return FALSE
+/*		if(istype(W,/obj/item/tk_grab))
+			return FALSE*/
 		if(istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
 			if(!WT.remove_fuel(0,user))
@@ -273,13 +273,13 @@
 /obj/structure/closet/attack_hand(mob/user as mob)
 	add_fingerprint(user)
 	toggle(user)
-
+/*
 // tk grab then use on self
 /obj/structure/closet/attack_self_tk(mob/user as mob)
 	add_fingerprint(user)
 	if(!toggle())
 		usr << "<span class='notice'>It won't budge!</span>"
-
+*/
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
 	set category = null

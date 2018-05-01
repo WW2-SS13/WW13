@@ -14,8 +14,6 @@
 					original_job = J
 					break
 
-	spawnedInAtRealTime = world.realtime
-
 	body_build = get_body_build(gender)
 
 	if(!dna)
@@ -67,6 +65,9 @@
 
 	make_blood()
 
+	nutrition = rand(max_nutrition * 0.45, max_nutrition * 0.55) // 180 to 220
+	water = round(rand(max_water * 0.45, max_water * 0.55)) // 157 to 192
+
 	spawn (10)
 		if (client)
 			human_clients_mob_list |= src
@@ -99,7 +100,7 @@ var/list/coefflist = list()
 					stat("Tank Pressure", internal.air_contents.return_pressure())
 					stat("Distribution Pressure", internal.distribute_pressure)*/
 
-			stat("Stamina: ", "[round(getStat("stamina")/getMaxStat("stamina")) * 100]%")
+			stat("Stamina: ", "[round((getStat("stamina")/stats["stamina"][2]) * 100)]%")
 
 			// the loc.density short circuits 95% of the time and bypasses an expensive typecheck - Kachnov
 			if (loc.density && istype(loc, /obj/tank))
@@ -151,8 +152,6 @@ var/list/coefflist = list()
 				if (!list("mg", "smg").Find(statname))
 					if (statname != "stamina")
 						stat("[capitalize(statname)]: ", "[coeff]x average")
-					else
-						stat("[capitalize(statname)]: ", "[round(((coeff*100)/stats["stamina"][2])*100)]%")
 				else
 					stat("[uppertext(statname)]: ", "[coeff]x average")
 

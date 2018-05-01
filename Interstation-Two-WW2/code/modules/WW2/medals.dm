@@ -110,3 +110,35 @@
 	icon_state = "order_of_great_patriotic_war_gold"
 	visual = "gold"
 	// desc: todo
+
+/obj/item/weapon/storage/fancy/medalcase_german
+	name = "Medal case"
+	desc = "A case full of medals granted to the bravest Wehrmacht soldiers."
+	icon_state = "cigarcase"
+	item_state = "cigarcase"
+	icon = 'icons/obj/cigarettes.dmi'
+	w_class = 2
+	throwforce = WEAPON_FORCE_HARMLESS
+	storage_slots = 50
+	can_hold = list(/obj/item/clothing/accessory/medal/WW2)
+
+/obj/item/weapon/storage/fancy/medalcase_german/New()
+	..()
+	for (var/obj/item/clothing/accessory/medal/WW2/medal in loc)
+		medal.loc = src
+
+/obj/item/weapon/storage/fancy/medalcase_soviet
+	name = "Medal case"
+	desc = "A case full of medals granted to the bravest Red Army soldiers."
+	icon_state = "cigarcase"
+	item_state = "cigarcase"
+	icon = 'icons/obj/cigarettes.dmi'
+	w_class = 2
+	throwforce = WEAPON_FORCE_HARMLESS
+	storage_slots = 50
+	can_hold = list(/obj/item/clothing/accessory/medal/WW2)
+
+/obj/item/weapon/storage/fancy/medalcase_soviet/New()
+	..()
+	for (var/obj/item/clothing/accessory/medal/WW2/medal in loc)
+		medal.loc = src

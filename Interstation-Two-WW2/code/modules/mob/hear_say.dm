@@ -27,7 +27,7 @@
 				message = spick(S.speak)
 			else
 				if(language)
-					message = language.scramble(message)
+					message = language.scramble(message, src)
 				else
 					message = stars(message)
 
@@ -208,3 +208,29 @@
 		heard = "<span class = 'game_say'>...<i>You almost hear someone talking</i>...</span>"
 
 	src << heard
+
+/* How this works:
+ * just like in real life, some languages have mutual intelligibility
+ * for example:
+   * a guy who knows only Polish understands ~75% Ukrainian
+   * a guy who knows Polish + Russian understands ~88% Ukrainian
+   * a guy who knows only Russian understands ~66% Ukrainian
+
+    - Kachnov
+*/
+
+/mob/proc/get_mutual_intelligibility(var/datum/language/reference)
+	. = 0
+	var/best_language = null
+	for (var/datum/language/L in languages)
+		if (L.mutual_intelligibility.Find(reference.type))
+			var/_new = L.mutual_intelligibility[reference.type]
+			if (_new > .)
+				. = _new
+				best_language = L
+	for (var/datum/language/L in languages)
+		if (L != best_language)
+			if (L.mutual_intelligibility.Find(reference.type))
+				. += L.mutual_intelligibility[reference.type]/5
+	. = round(.)
+	return .

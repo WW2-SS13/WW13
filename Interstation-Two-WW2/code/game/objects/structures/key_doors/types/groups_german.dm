@@ -11,6 +11,7 @@
 	keyslot_type = /datum/keyslot/german
 	unique_door_name = "General Access"
 #undef GERMAN_CODE
+/*
 // all german SOLDAT
 #define GERMAN_SOLDAT_CODE 900
 /datum/keyslot/german/soldat
@@ -23,7 +24,7 @@
 /obj/structure/simple_door/key_door/german/soldat
 	keyslot_type = /datum/keyslot/german/soldat
 	unique_door_name = "Soldier Access"
-#undef GERMAN_SOLDAT_CODE
+#undef GERMAN_SOLDAT_CODE*/
 // medics
 #define GERMAN_MEDIC_CODE 901
 /datum/keyslot/german/medic

@@ -367,7 +367,7 @@
 		started_moving = TRUE
 		if (faction != "GERMAN-SUPPLY")
 			callHook("train_move")
-			spawn (1200)
+			spawn (1800) // experimental
 				if (istype(src, /datum/train_controller/german_train_controller))
 					train_arrived = TRUE
 

@@ -23,10 +23,16 @@ var/process/weather/weather_process = null
 
 /process/weather/fire()
 	SCHECK
-	if (!roundstart_time)
-		return
 
-	process_weather()
+	var/deleted = 0
+	for (var/decal in cleanables)
+		if (decal)
+			var/area/A = get_area(decal)
+			if (A && A.weather == WEATHER_RAIN)
+				qdel(decal)
+				++deleted
+				if (deleted >= 100)
+					break
 
 	var/prob_of_weather_mod = ((((1/mod_weather_interval) * 10) / 2) * 100) * schedule_interval/20
 	var/prob_of_weather_change = ((((1/change_weather_interval) * 10) / 2) * 100) * schedule_interval/20

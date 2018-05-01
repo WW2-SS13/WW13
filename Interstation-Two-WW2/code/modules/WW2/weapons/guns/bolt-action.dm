@@ -78,6 +78,7 @@
 
 	load_delay = 4
 	aim_miss_chance_divider = 3.00
+	headshot_kill_chance = 50
 
 	var/bolt_open = FALSE
 	var/check_bolt = FALSE //Keeps the bolt from being interfered with

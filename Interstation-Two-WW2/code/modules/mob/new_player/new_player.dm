@@ -72,24 +72,31 @@
 	loc = null // so sometimes when people serverswap (tm) they get this window despite not being on the title screen - Kachnov
 	// don't know if the above actually works
 
+	var/output_stylized = {"
+	<br>
+	<html>
+	<head>
+	<style>
+	[common_browser_style]
+	</style>
+	</head>
+	<body><center>
+	PLACEHOLDER
+	</body></html>
+	"}
+
 	var/output = "<div align='center'><b>Welcome, [key]!</b>"
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character & Preferences</A></p>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
-		//output += fix_ru("<p>Отключено в целях отладки (<a href='byond://?src=\ref[src];ready=0'>Жми сюда в надежде, что появятся новые кнопки.</a>)</p>")
-		//if(ready)
-		//	output += "<p>\[ <b>Ready</b> | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
-		//else
-		//	output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | <b>Not Ready</b> \]</p>"
-		output += "<p><a href='byond://?src=\ref[src];ready=0'>The game has not started yet. Please wait to join.</a></p>"
+		output += "<p><a href='byond://?src=\ref[src];ready=0'>The game has not started yet.</a></p>"
 	else
-	//	output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</a></p>"
 
-	var/height = 350
+	var/height = 300
 	if (reinforcements_master && reinforcements_master.is_ready())
-		height = 450
+		height = 350
 		if (!reinforcements_master.has(src))
 			output += "<p><a href='byond://?src=\ref[src];re_german=1'>Join as a German reinforcement!</A></p>"
 			output += "<p><a href='byond://?src=\ref[src];re_russian=1'>Join as a Soviet reinforcement!</A></p>"
@@ -106,12 +113,12 @@
 	output += "</div>"
 
 	src << browse(null, "window=playersetup;")
-	src << browse(output, "window=playersetup;size=300x[height];can_close=0")
+	src << browse(replacetext(output_stylized, "PLACEHOLDER", output), "window=playersetup;size=275x[height];can_close=0")
 	return
 
 /mob/new_player/Stat()
 
-	if(statpanel("Status") && ticker)
+	if(client.status_tabs && statpanel("Status") && ticker)
 		stat("")
 		stat(stat_header("Lobby"))
 		stat("")
@@ -290,6 +297,9 @@
 			var/wait = ceil((client.next_normal_respawn-world.realtime)/600)
 			if (check_rights(R_ADMIN, FALSE, src))
 				if ((input(src, "If you were a normal player, you would have to wait [wait] more minutes to respawn. Do you want to bypass this? You can still join as a reinforcement.") in list("Yes", "No")) == "Yes")
+					var/msg = "[key_name(src)] bypassed a [wait] minute wait to respawn."
+					log_admin(msg)
+					message_admins(msg)
 					LateChoices()
 					return TRUE
 			alert(src, "Because you died in combat, you must wait [wait] more minutes to respawn. You can still join as a reinforcement.")
@@ -533,16 +543,11 @@
 		if (character.original_job.base_type_flag() == SOVIET)
 			var/obj/item/radio/R = main_radios[SOVIET]
 			if (R && R.loc)
-				spawn (10)
-					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcements")
+				R.announce_after("[character.real_name], [rank], has arrived.", "Arrivals Announcements", map ? map.character_arrival_announcement_time : 10)
 		else if (character.original_job.base_type_flag() == GERMAN)
 			var/obj/item/radio/R = main_radios[GERMAN]
 			if (R && R.loc)
-				spawn (10)
-					R.announce("[character.real_name], [rank], has arrived.", "Arrivals Announcements")
-
-	spawn (10)
-		qdel(src)
+				R.announce_after("[character.real_name], [rank], has arrived.", "Arrivals Announcements", map ? map.character_arrival_announcement_time : 10)
 
 	return TRUE
 

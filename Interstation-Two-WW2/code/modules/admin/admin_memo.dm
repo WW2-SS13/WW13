@@ -1,6 +1,8 @@
-#define MEMOFILE "data/memo.sav"	//where the memos are saved
 #define ENABLE_MEMOS TRUE				//using a define because screw making a config variable for it. This is more efficient and purty.
-
+/proc/get_memo_file_dir()
+	if (serverswap && serverswap.Find("master_data_dir"))
+		return "[serverswap["master_data_dir"]]memo.sav"
+	return "data/memo.sav"
 //switch verb so we don't spam up the verb lists with like, 3 verbs for this feature.
 /client/proc/admin_memo(task in list("write","show","delete"))
 	set name = "Memo"
@@ -14,7 +16,7 @@
 
 //write a message
 /client/proc/admin_memo_write()
-	var/savefile/F = new(MEMOFILE)
+	var/savefile/F = new(get_memo_file_dir())
 	if(F)
 		var/memo = russian_to_cp1251(input(src,"Type your memo\n(Leaving it blank will delete your current memo):","Write Memo",null) as null|message)
 		switch(memo)
@@ -32,14 +34,14 @@
 //show all memos
 /client/proc/admin_memo_show()
 	if(ENABLE_MEMOS)
-		var/savefile/F = new(MEMOFILE)
+		var/savefile/F = new(get_memo_file_dir())
 		if(F)
 			for(var/ckey in F.dir)
 				src << "<center><span class='motd'><b>Admin Memo</b><i> by [F[ckey]]</i></span></center>"
 
 //delete your own or somebody else's memo
 /client/proc/admin_memo_delete()
-	var/savefile/F = new(MEMOFILE)
+	var/savefile/F = new(get_memo_file_dir())
 	if(F)
 		var/_ckey
 		if(check_rights(R_SERVER,0))	//high ranking admins can delete other admin's memos

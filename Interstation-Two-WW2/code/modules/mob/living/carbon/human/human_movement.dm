@@ -20,14 +20,29 @@
 	if (!(species && (species.flags & NO_PAIN)))
 		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
-	if (nutrition <= 100)
-		if (nutrition >= 50)
-			if (nutrition >= 75)
-				tally += 0.5
-			else
-				tally += 0.75
-		else
+	switch (nutrition)
+		if (-INFINITY to 50)
+			tally += 1.50
+		if (50 to 75)
+			tally += 1.25
+		if (75 to 100)
 			tally += 1.00
+		if (100 to 150)
+			tally += 0.75
+		if (150 to 220)
+			tally += 0.50
+
+	switch (water)
+		if (-INFINITY to 50)
+			tally += 1.50
+		if (50 to 75)
+			tally += 1.25
+		if (75 to 100)
+			tally += 1.00
+		if (100 to 150)
+			tally += 0.75
+		if (150 to 192)
+			tally += 0.50
 
 	if(wear_suit)
 		tally += wear_suit.slowdown
@@ -56,7 +71,7 @@
 
 	var/obj/item/organ/external/E = get_organ("chest")
 	if(!E || ((E.status & ORGAN_BROKEN) && E.brute_dam > E.min_broken_damage) || (E.status & ORGAN_MUTATED))
-		tally += 4
+		tally += 3
 
 //	if(shock_stage >= 10) tally += 3 // this is ridiculous, being in shock doesn't make you physically slower
 

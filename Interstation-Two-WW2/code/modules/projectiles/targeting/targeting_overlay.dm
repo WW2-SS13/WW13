@@ -109,6 +109,12 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 
 	var/cancel_aim = TRUE
 
+	var/gun_view = world.view
+	for (var/obj/item/weapon/gun/G in owner.contents)
+		for (var/obj/item/weapon/attachment/scope/S in G.contents)
+			if (S.zoomed)
+				gun_view += S.zoom_amt
+
 	if(!(aiming_with in owner) || (istype(owner, /mob/living/carbon/human) && (owner.l_hand != aiming_with && owner.r_hand != aiming_with)))
 		owner << "<span class='warning'>You must keep hold of your weapon!</span>"
 	else if(owner.eye_blind)
@@ -119,7 +125,7 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 		owner << "<span class='warning'>You must be conscious and standing to keep track of your target!</span>"
 	else if(aiming_at.alpha == FALSE || (aiming_at.invisibility > owner.see_invisible))
 		owner << "<span class='warning'>Your target has become invisible!</span>"
-	else if(!(aiming_at in view(owner)))
+	else if(!(aiming_at in view(gun_view, owner)))
 		owner << "<span class='warning'>Your target is too far away to track!</span>"
 	else
 		cancel_aim = FALSE

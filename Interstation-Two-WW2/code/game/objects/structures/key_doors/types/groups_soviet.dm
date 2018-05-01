@@ -11,6 +11,7 @@
 	keyslot_type = /datum/keyslot/soviet
 	unique_door_name = "General Access"
 #undef soviet_CODE
+/*
 // all soviet SOLDAT
 #define soviet_SOLDAT_CODE 900 * 2
 /datum/keyslot/soviet/soldat
@@ -23,7 +24,7 @@
 /obj/structure/simple_door/key_door/soviet/soldat
 	keyslot_type = /datum/keyslot/soviet/soldat
 	unique_door_name = "Soldier Access"
-#undef soviet_SOLDAT_CODE
+#undef soviet_SOLDAT_CODE*/
 // medics
 #define soviet_MEDIC_CODE 901 * 2
 /datum/keyslot/soviet/medic

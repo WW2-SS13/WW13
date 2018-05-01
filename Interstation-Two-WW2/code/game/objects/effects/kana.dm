@@ -3,7 +3,7 @@
 	icon_state = "1"
 	layer = 10
 
-/obj/effect/kana/New(_loc, var/mob/master = null)
+/obj/effect/kana/New(_loc, var/atom/movable/master = null)
 	..(_loc)
 
 	var/ix = x

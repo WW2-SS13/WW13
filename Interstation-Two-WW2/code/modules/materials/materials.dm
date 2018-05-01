@@ -291,7 +291,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 3)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
-
+/*
 /material/plasma
 	name = "plasma"
 	stack_type = /obj/item/stack/material/plasma
@@ -304,7 +304,7 @@ var/list/name_to_material
 	door_icon_base = "stone"
 	sheet_singular_name = "crystal"
 	sheet_plural_name = "crystals"
-
+*/
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
 /material/plasma/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)

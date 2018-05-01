@@ -243,6 +243,7 @@
 		if (New)
 			if (New.type == /mob/living/carbon/human)
 				var/mob/living/carbon/human/H = New
+				H.invisibility = 101
 				if ((input(usr_client, "Assign [H] a new job?") in list("Yes", "No")) == "Yes")
 
 					var/list/job_master_occupation_names = list()
@@ -257,13 +258,13 @@
 					if (J != "Cancel")
 						job_master.EquipRank(H, J)
 						H.original_job = job_master_occupation_names[J]
-						H.invisibility = 101
 						var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
 						message_admins(msg)
 						log_admin(msg)
 						spawn (0.1)
 
-							if ((input(usr_client, "Send [H] to their spawnpoint?") in list("No", "Yes")) == "No")
+							var/send2spawn = input(usr_client, "Send [H] to their spawnpoint?") in list("No", "Yes")
+							if (send2spawn == "No")
 								H.loc = oloc_H
 							H.invisibility = 0
 

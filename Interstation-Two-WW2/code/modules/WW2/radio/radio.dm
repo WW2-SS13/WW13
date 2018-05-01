@@ -694,3 +694,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	announcer.broadcast(msg, mob, needs_loc = FALSE)
 
 	return TRUE
+
+/obj/item/radio/proc/announce_after(msg, _announcer, time)
+	spawn (time)
+		announce(msg, _announcer)

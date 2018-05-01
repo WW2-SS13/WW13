@@ -1,5 +1,3 @@
-#define BLEEDING_NERF 7.5
-#define SEVERE_BLEEDING_NERF 7.5
 /****************************************************
 				BLOOD SYSTEM
 ****************************************************/
@@ -36,7 +34,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list())
 			B.color = B.data["blood_colour"]
 
-// Takes care blood loss and regeneration
+/* takes care of blood loss and regeneration
+ * it now takes ~10 minutes to bleed out with 100 brute damage and 10 minutes to recover all blood
+ * bloodloss is capped to 4 per tick (2.5 minutes to bleed out) - Kachnov */
+
 /mob/living/carbon/human/handle_blood()
 
 	make_blood()
@@ -54,31 +55,25 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		adjustOxyLoss(10)
 
 	//Bleeding out
-	var/blood_max = FALSE
-	var/bleeding_at_all = FALSE
+	var/bloodloss = 0
 	for(var/obj/item/organ/external/temp in organs)
 		if(!(temp.status & ORGAN_BLEEDING))
 			continue
 		for(var/datum/wound/W in temp.wounds)
 			if(W.bleeding())
-				blood_max += (W.damage / 40 / BLEEDING_NERF)
+				bloodloss += W.damage / 100
 		if (temp.open)
-			blood_max += 2/SEVERE_BLEEDING_NERF  //Yer stomach is cut open
-		bleeding_at_all = TRUE
+			++bloodloss  //Yer stomach is cut open
+	bloodloss = min(bloodloss, 4)
 
-	if (bleeding_at_all)
-		blood_max += 0.40
-
-	if (blood_max) // we're bleeding
-		drip(blood_max)
-
+	if (bloodloss) // we're bleeding
+		drip(bloodloss)
 	else // we're not bleeding, regenerate some blood (experimental) - Kachnov
 		for (var/datum/reagent/r in vessel.reagent_list)
 			if (istype(r, /datum/reagent/blood))
 				if (r.volume >= species.blood_volume)
 					return // we're full on blood.
-		vessel.add_reagent("blood", spick(0.33, 0.66, 0.99))
-
+		vessel.add_reagent("blood", 1.00)
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/human/proc/drip(var/amt as num)
@@ -94,15 +89,6 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	// don't splatter blood all the time
 	if (sprob(amt * 100))
 		blood_splatter(src,src)
-
-	// we might just die if we have almost no blood
-	var/vessel_coeff = vessel.total_volume/vessel.maximum_volume
-	log_debug(vessel_coeff)
-	if (vessel_coeff <= 0.25)
-		var/death_chance = (1 - vessel_coeff) * (1 - vessel_coeff) * 10
-		log_debug(death_chance)
-		if (sprob(death_chance))
-			death()
 
 /****************************************************
 				BLOOD TRANSFERS

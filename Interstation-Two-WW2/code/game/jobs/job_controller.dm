@@ -125,7 +125,7 @@ var/global/datum/controller/occupations/job_master
 				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
 				SS_was_enabled = TRUE
 
-		if (!is_side_locked(CIVILIAN))
+		if (!is_side_locked(CIVILIAN) && map && map.faction_organization.Find(CIVILIAN) && map.faction_organization.Find(PARTISAN))
 			if (italiano || warcrimes || autobalance_for_players >= PLAYER_THRESHOLD_HIGHEST-10)
 				if (announce)
 					world << "<font size = 3><span class = 'info'>Civilian and Partisan factions are enabled.</span></font>"
@@ -520,79 +520,81 @@ var/global/datum/controller/occupations/job_master
 
 			// Add loadout items
 			spawn (0)
-				if (!list(PARTISAN, CIVILIAN).Find(H.original_job.base_type_flag()))
-					for (var/v in 1 to 2)
-						var/slot = (v == 1 ? slot_l_store : slot_r_store)
-						var/other_slot_num = (v == 1 ? 2 : 1)
-						switch (lowertext(H.client.prefs.pockets[v]))
-							if (null)
-								continue
-							if ("water")
-								H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled(H), slot)
-							if ("booze")
-								var/probs = list()
-								if (H.original_job.base_type_flag())
-									if (GERMAN)
-										probs["beer"] = 75
-										probs["vodka"] = 15
-										probs["wine"] = 10
-									if (ITALIAN)
-										probs["beer"] = 50
-										probs["vodka"] = 10
-										probs["wine"] = 40
-									if (SOVIET)
-										probs["beer"] = 40
-										probs["vodka"] = 60
-										probs["wine"] = 0
+				if (!findtext("[H.original_job.type]", "doctor"))
+					if (!list(CIVILIAN).Find(H.original_job.base_type_flag()))
+						for (var/v in 1 to 2)
+							var/slot = (v == 1 ? slot_l_store : slot_r_store)
+							var/other_slot_num = (v == 1 ? 2 : 1)
+							if (H.client && H.client.prefs.pockets.len >= v)
+								switch (lowertext(H.client.prefs.pockets[v]))
+									if (null, "Magazine")
+										continue
+									if ("water")
+										H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled(H), slot)
+									if ("booze")
+										var/probs = list()
+										switch (H.original_job.base_type_flag())
+											if (GERMAN)
+												probs["beer"] = 75
+												probs["vodka"] = 15
+												probs["wine"] = 10
+											if (ITALIAN)
+												probs["beer"] = 50
+												probs["vodka"] = 10
+												probs["wine"] = 40
+											if (SOVIET, PARTISAN)
+												probs["beer"] = 40
+												probs["vodka"] = 60
+												probs["wine"] = 0
 
-								tryagain
-								if (sprob(probs["beer"]))
-									H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(H), slot)
-								else if (sprob(probs["vodka"]))
-									H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(H), slot)
-								else if (sprob(probs["wine"]))
-									H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/wine(H), slot)
-								else goto tryagain
+										tryagain
+										if (sprob(probs["beer"]))
+											H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(H), slot)
+										else if (sprob(probs["vodka"]))
+											H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(H), slot)
+										else if (sprob(probs["wine"]))
+											H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/wine(H), slot)
+										else goto tryagain
 
-							if ("grenade")
-								switch (H.original_job.base_type_flag())
-									if (GERMAN, ITALIAN)
-										if (sprob(50))
-											H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stgnade(H), slot)
-										else
-											H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/l2a2(H), slot)
-									if (SOVIET)
-										if (sprob(50))
-											H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/rgd(H), slot)
-										else
-											H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/f1(H), slot)
-							if ("smoke grenade")
-								switch (H.original_job.base_type_flag())
-									if (GERMAN, ITALIAN)
-										H.equip_to_slot_or_del(new /obj/item/weapon/grenade/smokebomb/german(H), slot)
-									if (SOVIET)
-										H.equip_to_slot_or_del(new /obj/item/weapon/grenade/smokebomb/soviet(H), slot)
-							if ("stolen gun") // hackcode to equip ammo after the gun always
-								var/ammo_check = (H.client.prefs.pockets[other_slot_num] == "Stolen gun ammo")
-								H.original_job.equip_random_enemy_gun(H, slot, ammo_check)
-								if (ammo_check)
-									break // if we're slot #1, we know what went in the other slot already
-							if ("stolen gun ammo")
-								continue // see "stolen gun" just above
-							if ("flare")
-								H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H), slot)
-							if ("knife")
-								H.equip_to_slot_or_del(new /obj/item/weapon/material/knife(H), slot)
-							if ("cigarettes")
-								H.equip_to_slot(new /obj/item/weapon/storage/fancy/cigarettes(H), slot)
-							if ("lighter")
-								H.equip_to_slot(new /obj/item/weapon/flame/lighter(H), slot)
-							if ("crowbar")
-								H.equip_to_slot(new /obj/item/weapon/crowbar(H), slot)
-							if ("wrench")
-								H.equip_to_slot(new /obj/item/weapon/wrench(H), slot)
-							if ("screwdriver")
-								H.equip_to_slot(new /obj/item/weapon/screwdriver(H), slot)
+									if ("grenade")
+										switch (H.original_job.base_type_flag())
+											if (GERMAN, ITALIAN)
+												if (sprob(50))
+													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stgnade(H), slot)
+												else
+													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/l2a2(H), slot)
+											if (SOVIET, PARTISAN)
+												if (sprob(50))
+													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/rgd(H), slot)
+												else
+													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/f1(H), slot)
+									if ("smoke grenade")
+										switch (H.original_job.base_type_flag())
+											if (GERMAN, ITALIAN)
+												H.equip_to_slot_or_del(new /obj/item/weapon/grenade/smokebomb/german(H), slot)
+											if (SOVIET, PARTISAN)
+												H.equip_to_slot_or_del(new /obj/item/weapon/grenade/smokebomb/soviet(H), slot)
+									if ("stolen gun") // hackcode to equip ammo after the gun always
+										var/ammo_check = (H.client.prefs.pockets[other_slot_num] == "Stolen gun ammo")
+										H.original_job.equip_random_enemy_gun(H, slot, ammo_check)
+										if (ammo_check)
+											break // if we're slot #1, we know what went in the other slot already
+									if ("stolen gun ammo")
+										continue // see "stolen gun" just above
+									if ("flare")
+										H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H), slot)
+									if ("knife")
+										H.equip_to_slot_or_del(new /obj/item/weapon/material/knife(H), slot)
+									if ("cigarettes")
+										H.equip_to_slot(new /obj/item/weapon/storage/fancy/cigarettes(H), slot)
+									if ("lighter")
+										H.equip_to_slot(new /obj/item/weapon/flame/lighter(H), slot)
+									if ("crowbar")
+										H.equip_to_slot(new /obj/item/weapon/crowbar(H), slot)
+									if ("wrench")
+										H.equip_to_slot(new /obj/item/weapon/wrench(H), slot)
+									if ("screwdriver")
+										H.equip_to_slot(new /obj/item/weapon/screwdriver(H), slot)
 
 			// Give the guy some ammo for his gun
 			spawn (0.1)
@@ -787,12 +789,12 @@ var/global/datum/controller/occupations/job_master
 
 			if (H.original_job.is_officer)
 				if (H.original_job.base_type_flag() == GERMAN)
-					H << "The password for radios and phones is <b>[supply_codes[GERMAN]].</b>"
-					H.add_memory("The password for radios and phones is [supply_codes[GERMAN]]")
+					H << "The passcode for radios and phones is <b>[supply_codes[GERMAN]].</b>"
+					H.add_memory("The passcode for radios and phones is [supply_codes[GERMAN]]")
 
 				else if (H.original_job.base_type_flag() == SOVIET)
-					H << "The password for radios and phones is <b>[supply_codes[SOVIET]].</b>"
-					H.add_memory("The password for radios and phones is [supply_codes[SOVIET]]")
+					H << "The passcode for radios and phones is <b>[supply_codes[SOVIET]].</b>"
+					H.add_memory("The passcode for radios and phones is [supply_codes[SOVIET]]")
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO job spawn location = [H.job_spawn_location]"
@@ -933,35 +935,60 @@ var/global/datum/controller/occupations/job_master
 	// this is a solution to 5 germans and 1 soviet, on lowpop.
 	proc/side_is_hardlocked(side)
 
-		// when it's highpop enough for partisans
-		// there aren't enough partisan roles for hardlocking to matter
-		// for soviets and Germans, it's another matter
-		// the generation of these two lists may take a lot of extra CPU,
-		// but it's important if we want to keep up to date.
+		/* when it's highpop enough for partisans
+		 * there aren't enough partisan roles for hardlocking to matter
+		 * for soviets and Germans, it's another matter
+		 * the generation of these two lists may take a lot of extra CPU,
+		 * but it's important if we want to keep up to date.
+		 */
 
 		// todo: faction lists structured like player_list (ie german_list)
 		var/germans = n_of_side(GERMAN)
 		var/soviets = n_of_side(SOVIET)
 		var/italians = n_of_side(ITALIAN)
+		var/civilians = n_of_side(CIVILIAN)
+		var/partisans = n_of_side(PARTISAN)
 
-		var/players_without_partisans = clients.len
-		for (var/mob/living/carbon/human/H in player_list)
-			if (istype(H))
-				if (H.original_job)
-					if (list(PARTISAN, CIVILIAN).Find(H.original_job.base_type_flag()))
-						--players_without_partisans
+		// by default no sides are hardlocked
+		var/max_germans = INFINITY
+		var/max_soviets = INFINITY
+		var/max_civilians = INFINITY
+		var/max_partisans = INFINITY
 
-		var/max_germans = ceil(players_without_partisans * 0.42)
-		var/max_soviets = ceil(players_without_partisans * 0.58)
+		if (map && !map.faction_distribution_coeffs.Find(INFINITY))
+			if (map.faction_distribution_coeffs.Find(GERMAN))
+				max_germans = ceil(clients.len * map.faction_distribution_coeffs[GERMAN])
+
+			if (map.faction_distribution_coeffs.Find(SOVIET))
+				max_soviets = ceil(clients.len * map.faction_distribution_coeffs[SOVIET])
+
+			if (map.faction_distribution_coeffs.Find(CIVILIAN))
+				max_civilians = ceil(clients.len * map.faction_distribution_coeffs[CIVILIAN])
+
+			if (map.faction_distribution_coeffs.Find(PARTISAN))
+				max_partisans = ceil(clients.len * map.faction_distribution_coeffs[PARTISAN])
+
+		// fixes strange autobalance on verylow pop - Kachnov
+		if (map && clients.len <= 7)
+			if (map.faction_distribution_coeffs[SOVIET] > map.faction_distribution_coeffs[GERMAN])
+				max_soviets = max_germans
+			else if (map.faction_distribution_coeffs[GERMAN] > map.faction_distribution_coeffs[SOVIET])
+				max_germans = max_soviets
+			while ((max_germans+max_soviets) < clients.len)
+				++max_soviets
 
 		switch (side)
 			if (PARTISAN)
 				if (partisans_forceEnabled)
 					return FALSE
+				if (partisans >= max_partisans)
+					return TRUE
 				return FALSE
 			if (CIVILIAN)
 				if (civilians_forceEnabled)
 					return FALSE
+				if (civilians >= max_civilians)
+					return TRUE
 				return FALSE
 			if (GERMAN, ITALIAN)
 				if (germans_forceEnabled)

@@ -1,5 +1,5 @@
 /obj/item/projectile/bullet/pellet/fragment
-	damage = 15
+	damage = 18
 	range_step = 2
 
 	base_spread = FALSE //causes it to be treated as a shrapnel explosion instead of cone
@@ -12,7 +12,7 @@
 	embed = TRUE
 
 /obj/item/projectile/bullet/pellet/fragment/strong
-	damage = 20
+	damage = 24
 
 /obj/item/weapon/grenade/explosive
 	name = "fragmentation grenade"
@@ -60,7 +60,8 @@
 				if(L.lying)
 					P.attack_mob(L, FALSE, FALSE)
 				else
-					P.attack_mob(L, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
+					if (prob(66))
+						P.attack_mob(L, FALSE, 100) //otherwise, allow a decent amount of fragments to pass
 
 		spawn (5)
 			qdel(src)

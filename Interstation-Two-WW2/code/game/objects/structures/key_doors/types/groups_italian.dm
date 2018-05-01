@@ -11,6 +11,7 @@
 	keyslot_type = /datum/keyslot/italian
 	unique_door_name = "General Access"
 #undef ITALIAN_CODE
+/*
 // all italian SOLDAT
 #define ITALIAN_SOLDAT_CODE 900
 /datum/keyslot/italian/soldat
@@ -23,7 +24,7 @@
 /obj/structure/simple_door/key_door/italian/soldat
 	keyslot_type = /datum/keyslot/italian/soldat
 	unique_door_name = "Soldier Access"
-#undef ITALIAN_SOLDAT_CODE
+#undef ITALIAN_SOLDAT_CODE*/
 // medics
 #define ITALIAN_MEDIC_CODE 901
 /datum/keyslot/italian/medic

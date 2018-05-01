@@ -90,7 +90,7 @@
 				return FALSE
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			if(!do_mob(user, M)) return
+			if(!do_after(user, 30, M, check_for_repeats = FALSE)) return
 
 			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
@@ -129,7 +129,7 @@
 		return
 
 	// Eating with forks
-	if(istype(W,/obj/item/weapon/material/kitchen/utensil))
+	if(istype(W,/obj/item/weapon/material/kitchen/utensil) && !istype(W, /obj/item/weapon/material/kitchen/utensil/knife))
 		var/obj/item/weapon/material/kitchen/utensil/U = W
 		if(U.scoop_food)
 			if(!U.reagents)
@@ -499,6 +499,9 @@
 /obj/item/weapon/reagent_containers/food/snacks/egg/afterattack(obj/O as obj, mob/user as mob, proximity)
 /*	if(istype(O,/obj/structure/microwave))
 		return ..()*/
+	if (istype(O, /obj/structure/pot))
+		return
+
 	if(!(proximity && O.is_open_container()))
 		return
 	user << "You crack \the [src] into \the [O]."
@@ -1308,7 +1311,7 @@
 		bitesize = 2
 */
 
-/obj/item/weapon/reagent_containers/food/snacks/spagetti
+/obj/item/weapon/reagent_containers/food/snacks/spaghetti
 	name = "Spaghetti"
 	desc = "A bundle of raw spaghetti."
 	icon_state = "spagetti"
@@ -2942,8 +2945,13 @@
 // Dough + rolling pin = flat dough
 /obj/item/weapon/reagent_containers/food/snacks/dough/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/material/kitchen/rollingpin))
-		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough(get_turf(src))
 		user << "You flatten the dough."
+		qdel(src)
+	else if (W.sharp || W.edge)
+		user << "You make some spaghetti from the dough."
+		for (var/v in 1 to pick(2,3))
+			new /obj/item/weapon/reagent_containers/food/snacks/spaghetti(get_turf(src))
 		qdel(src)
 
 // slicable into 3xdoughslices
@@ -2966,7 +2974,7 @@
 	desc = "A building block of an impressive dish."
 	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "doughslice"
-	slice_path = /obj/item/weapon/reagent_containers/food/snacks/spagetti
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/spaghetti
 	slices_num = 1
 	bitesize = 2
 	center_of_mass = list("x"=17, "y"=19)

@@ -20,11 +20,10 @@
 
 /mob/living/carbon/human/pillarman/New()
 	..()
-	spawn (10)
-		if (!original_job)
-			var/oloc = get_turf(src)
-			job_master.EquipRank(src, "Pillar Man")
-			loc = oloc
+	var/oloc = loc
+	job_master.EquipRank(src, "Pillar Man")
+	spawn (1)
+		loc = oloc
 		setStat("strength", 300)
 		setStat("engineering", 250)
 		setStat("rifle", 250)

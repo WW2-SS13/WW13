@@ -234,6 +234,8 @@
 		if (config.patrons_can_enable_disable_dabbing)
 			verbs += /client/proc/enable_disable_dabs
 
+	verbs += /client/proc/hide_status_tabs
+
 	// Forcibly enable hardware-accelerated graphics, as we need them for the lighting overlays.
 	// (but turn them off first, since sometimes BYOND doesn't turn them on properly otherwise)
 	spawn(5) // And wait a half-second, since it sounds like you can do this too fast.
@@ -387,6 +389,10 @@
 	if(inactivity > duration)	return inactivity
 	return FALSE
 
+//Checks if the client game window is minimized
+/client/proc/is_minimized()
+	return (winget(src, "mainwindow", "is-minimized") == "true")
+
 /client/proc/inactivity2text()
 	var/seconds = inactivity/10
 	return "[round(seconds / 60)] minute\s, [seconds % 60] second\s"
@@ -435,6 +441,9 @@
 // for testing
 /client/proc/_winset(arg1, arg2)
 	winset(src, arg1, arg2)
+
+/client/proc/_winget(arg1, arg2)
+	return winget(src, arg1, arg2)
 
 // testing
 /client/proc/delme()

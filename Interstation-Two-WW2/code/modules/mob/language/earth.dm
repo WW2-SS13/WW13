@@ -5,6 +5,8 @@
 	colour = "Russian"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = list("al", "an", "bi", "vye", "vo", "go", "dye", "yel", "?n", "yer", "yet", "ka", "ko", "la", "ly", "lo", "l", "na", "nye", "ny", "no", "ov", "ol", "on", "or", "slog", "ot", "po", "pr", "ra", "rye", "ro", "st", "ta", "tye", "to", "t", "at", "bil", "vyer", "yego", "yeny", "yenn", "yest", "kak", "ln", "ova", "ogo", "?l", "oro", "ost", "oto", "pry", "pro", "sta", "stv", "tor", "chto", "eto")
+	mutual_intelligibility = list(/datum/language/ukrainian = 66,
+		/datum/language/polish = 45)
 
 /datum/language/ukrainian
 	name = "Ukrainian"
@@ -13,6 +15,8 @@
 	colour = "Russian"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = list("al", "an", "bi", "vye", "vo", "go", "dye", "yel", "?n", "yer", "yet", "ka", "ko", "la", "ly", "lo", "l", "na", "nye", "ny", "no", "ov", "ol", "on", "or", "slog", "ot", "po", "pr", "ra", "rye", "ro", "st", "ta", "tye", "to", "t", "at", "bil", "vyer", "yego", "yeny", "yenn", "yest", "kak", "ln", "ova", "ogo", "?l", "oro", "ost", "oto", "pry", "pro", "sta", "stv", "tor", "chto", "eto")
+	mutual_intelligibility = list(/datum/language/polish = 75,
+		/datum/language/russian = 70)
 
 /datum/language/polish
 	name = "Polish"
@@ -21,6 +25,8 @@
 	colour = "Russian"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = list("al", "an", "bi", "vye", "vo", "go", "dye", "yel", "?n", "yer", "yet", "ka", "ko", "la", "ly", "lo", "l", "na", "nye", "ny", "no", "ov", "ol", "on", "or", "slog", "ot", "po", "pr", "ra", "rye", "ro", "st", "ta", "tye", "to", "t", "at", "bil", "vyer", "yego", "yeny", "yenn", "yest", "kak", "ln", "ova", "ogo", "?l", "oro", "ost", "oto", "pry", "pro", "sta", "stv", "tor", "chto", "eto")
+	mutual_intelligibility = list(/datum/language/ukrainian = 75,
+		/datum/language/russian = 45)
 
 /datum/language/german
 	name = "German"
@@ -37,6 +43,7 @@
 	colour = "english"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = list("pi", "za", "pe", "pp", "er", "on", "i", "ma", "mia", "na", "va", "gi")
+	mutual_intelligibility = list(/datum/language/romanian = 50)
 
 /datum/language/romanian
 	name = "Romanian"
@@ -45,3 +52,4 @@
 	colour = "english"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = list("za", "pe", "pp", "er", "on", "i", "ma", "mia", "na", "va", "gi", "vye", "vo", "go", "dye")
+	mutual_intelligibility = list(/datum/language/italian = 50)

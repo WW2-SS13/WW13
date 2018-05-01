@@ -72,6 +72,11 @@
 
 /obj/item/weapon/plastique/proc/explode(var/location)
 	if(location)
+		for (var/mob/living/L in location)
+			if (L.client)
+				L.client.canmove = FALSE
+				spawn (7)
+					L.client.canmove = TRUE
 		explosion(location, 0, 0, 2, 3)
 		spawn (4)
 			playsound(location, "explosion", 100, TRUE)

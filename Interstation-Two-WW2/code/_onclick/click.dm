@@ -282,6 +282,7 @@
 /*	if((LASER in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
 	else */
+	/*
 	if(TK in mutations)
 		switch(get_dist(src,A))
 			if(1 to 5) // not adjacent may mean blocked by window
@@ -292,7 +293,7 @@
 				setMoveCooldown(10)
 			else
 				return
-		A.attack_tk(src)
+		A.attack_tk(src)*/
 /*
 	Restrained ClickOn
 

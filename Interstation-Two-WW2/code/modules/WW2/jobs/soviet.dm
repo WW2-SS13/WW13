@@ -50,7 +50,7 @@
 	return TRUE
 
 /datum/job/soviet/commander/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
 		new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/command_high, new/obj/item/weapon/key/soviet/bunker_doors)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +96,7 @@
 	return TRUE
 
 /datum/job/soviet/XO/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
 		new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/command_high, new/obj/item/weapon/key/soviet/bunker_doors)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -143,7 +143,7 @@
 	return TRUE
 
 /datum/job/soviet/staff_officer/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
 		new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/command_high, new/obj/item/weapon/key/soviet/bunker_doors)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -186,7 +186,7 @@
 	return TRUE
 
 /datum/job/soviet/MP/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer,
 		new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/command_intermediate)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -233,9 +233,9 @@
 	return TRUE
 
 /datum/job/soviet/squad_leader/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat,
-		new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/bunker_doors,
-		new/obj/item/weapon/key/soviet/medic, new/obj/item/weapon/key/soviet/engineer, new/obj/item/weapon/key/soviet/QM)
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/command_intermediate,
+	    new/obj/item/weapon/key/soviet/bunker_doors, new/obj/item/weapon/key/soviet/medic,
+	      new/obj/item/weapon/key/soviet/engineer, new/obj/item/weapon/key/soviet/QM)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -279,8 +279,7 @@
 	return TRUE
 
 /datum/job/soviet/medic/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat,
-		new/obj/item/weapon/key/soviet/medic)
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/medic)
 
 /datum/job/soviet/doctor
 	title = "Doktor"
@@ -366,7 +365,7 @@
 	return TRUE
 
 /datum/job/soviet/sniper/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat)
+	return list(new/obj/item/weapon/key/soviet)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -411,7 +410,7 @@
 	return TRUE
 
 /datum/job/soviet/engineer/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat, new/obj/item/weapon/key/soviet/engineer)
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/engineer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -456,7 +455,7 @@
 	return TRUE
 
 /datum/job/soviet/heavy_weapon/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat)
+	return list(new/obj/item/weapon/key/soviet)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -504,7 +503,7 @@
 	return TRUE
 
 /datum/job/soviet/soldier/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat)
+	return list(new/obj/item/weapon/key/soviet)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -599,7 +598,7 @@
 	return TRUE
 
 /datum/job/soviet/tankcrew/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat, new/obj/item/weapon/key/soviet/command_intermediate)
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/command_intermediate)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -642,7 +641,7 @@
 	return TRUE
 
 /datum/job/soviet/anti_tank_crew/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat)
+	return list(new/obj/item/weapon/key/soviet)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -701,7 +700,7 @@ var/first_guard = FALSE
 	return TRUE
 
 /datum/job/soviet/guard/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat, new/obj/item/weapon/key/soviet/bunker_doors)
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/bunker_doors)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -745,7 +744,7 @@ var/first_guard = FALSE
 	return TRUE
 
 /datum/job/soviet/QM/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat,  new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/bunker_doors, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/engineer)
+	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/QM, new/obj/item/weapon/key/soviet/bunker_doors, new/obj/item/weapon/key/soviet/command_intermediate, new/obj/item/weapon/key/soviet/engineer)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -792,7 +791,7 @@ var/first_guard = FALSE
 	return TRUE
 
 /datum/job/soviet/sturmovik/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat)
+	return list(new/obj/item/weapon/key/soviet)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -821,7 +820,7 @@ var/first_guard = FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef/classic(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/butcher(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/butcher(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a front chef. Your job is to keep the Red Army well fed.</span>"
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
@@ -836,4 +835,4 @@ var/first_guard = FALSE
 	return TRUE
 
 /datum/job/soviet/chef/get_keys()
-	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/soldat)
+	return list(new/obj/item/weapon/key/soviet)

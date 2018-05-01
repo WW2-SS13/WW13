@@ -191,9 +191,9 @@
 	if(severity == 3)
 		if(sprob(25))
 			table_destroy(1)
-
+/*
 /obj/structure/table/attack_tk() // no telehulk sorry
-	return
+	return*/
 
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return TRUE

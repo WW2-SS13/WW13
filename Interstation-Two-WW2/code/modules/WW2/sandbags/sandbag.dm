@@ -177,9 +177,9 @@
 
 /obj/structure/window/hitby(AM as mob|obj)
 	return FALSE // don't move
-
+/*
 /obj/structure/window/sandbag/attack_tk(mob/user as mob)
-	return FALSE
+	return FALSE*/
 
 /obj/structure/window/sandbag/attack_generic(var/mob/user, var/damage)
 	return FALSE

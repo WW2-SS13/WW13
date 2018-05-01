@@ -54,21 +54,21 @@
 
 /obj/item/projectile/bullet/rifle/a762x25
 	damage = DAMAGE_LOW
-	penetrating = FALSE
+	penetrating = 0
 
 // MP40 SMG //
 /obj/item/projectile/bullet/rifle/a9_parabellum
 	damage = DAMAGE_LOW + 2
-	penetrating = FALSE
+	penetrating = 0
 
 // LUGER PISTOL //
 /obj/item/projectile/bullet/rifle/a9_parabellum_luger
 	damage = DAMAGE_LOW
-	penetrating = FALSE
+	penetrating = 0
 
 /obj/item/projectile/bullet/rifle/a762
 	damage = DAMAGE_MEDIUM
-	penetrating = TRUE
+	penetrating = 1
 
 // PTRD AT GUN //
 /obj/item/projectile/bullet/rifle/a145
@@ -81,7 +81,7 @@
 // PPSH SMG //
 /obj/item/projectile/bullet/rifle/a556
 	damage = DAMAGE_LOW - 2
-	penetrating = TRUE
+	penetrating = 1
 
 /obj/item/projectile/bullet/rifle/a9x39
 	damage = DAMAGE_LOW
@@ -113,27 +113,27 @@
 // TT-30 TOKAREV PISTOL //
 /obj/item/projectile/bullet/rifle/c762mm_tokarev
 	damage = DAMAGE_LOW - 2
-	penetrating = FALSE
+	penetrating = 0
 
 // C96 MAUSER PISTOL //
 /obj/item/projectile/bullet/rifle/c763x25mm_mauser
 	damage = DAMAGE_LOW
-	penetrating = FALSE
+	penetrating = 0
 
 // STEN MK3 SMG //
 /obj/item/projectile/bullet/rifle/c9x19mm_stenmk3
 	damage = DAMAGE_LOW-5
-	penetrating = FALSE
+	penetrating = 0
 
 // NAGANT REVOLVER //
 /obj/item/projectile/bullet/rifle/c762x38mmR
 	damage = DAMAGE_LOW+4
-	penetrating = FALSE
+	penetrating = 0
 
 // PPS SMG //
 /obj/item/projectile/bullet/rifle/c762x25mm_pps
 	damage = DAMAGE_LOW-5
-	penetrating = FALSE
+	penetrating = 0
 
 // GEWEHR 41 //
 ///obj/item/projectile/bullet/rifle/a792x57_g41
@@ -156,12 +156,12 @@
 // WALTHER P38 //
 /obj/item/projectile/bullet/rifle/p9x19mm
 	damage = DAMAGE_LOW
-	penetrating = FALSE
+	penetrating = 0
 
 // MODELLO 38 //
 /obj/item/projectile/bullet/rifle/s9x19mm
 	damage = DAMAGE_LOW
-	penetrating = FALSE
+	penetrating = 0
 
 #undef DAMAGE_LOW
 #undef DAMAGE_MEDIUM
@@ -241,7 +241,7 @@
 	name = "flare projectile"
 	icon_state = ""
 	damage = FALSE
-	penetrating = FALSE
+	penetrating = 0
 	density = FALSE
 
 // Pillar men

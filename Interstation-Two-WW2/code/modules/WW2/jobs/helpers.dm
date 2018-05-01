@@ -5,27 +5,32 @@
 			for (var/mob/living/carbon/human/H in player_list)
 				if (H.original_job && H.stat != DEAD)
 					if (H.original_job.base_type_flag() == PARTISAN)
-						++.
+						AZONE_CHECK(H)
+							++.
 		if (CIVILIAN)
 			for (var/mob/living/carbon/human/H in player_list)
 				if (H.original_job && H.stat != DEAD)
 					if (H.original_job.base_type_flag() == CIVILIAN)
-						++.
+						AZONE_CHECK(H)
+							++.
 		if (GERMAN)
 			for (var/mob/living/carbon/human/H in player_list)
 				if (H.original_job && H.stat != DEAD)
 					if (H.original_job.base_type_flag() == GERMAN)
-						++.
+						AZONE_CHECK(H)
+							++.
 		if (SOVIET)
 			for (var/mob/living/carbon/human/H in player_list)
 				if (H.original_job && H.stat != DEAD)
 					if (H.original_job.base_type_flag() == SOVIET)
-						++.
+						AZONE_CHECK(H)
+							++.
 		if (ITALIAN)
 			for (var/mob/living/carbon/human/H in player_list)
 				if (H.original_job && H.stat != DEAD)
 					if (H.original_job.base_type_flag() == ITALIAN)
-						++.
+						AZONE_CHECK(H)
+							++.
 
 /mob/living/carbon/human/proc/equip_coat(ctype)
 	if (ticker && ticker.mode)

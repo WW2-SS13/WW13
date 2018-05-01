@@ -9,18 +9,21 @@
 	if (client)
 
 		var/near_rainy_area = FALSE
+		var/rdist = 100
 		var/area/A = get_area(src)
 		if (A.weather == WEATHER_RAIN)
 			near_rainy_area = TRUE
+			rdist = 0
 		else
 			for (var/turf/T in view(world.view, src))
 				var/area/T_area = get_area(T)
 				if (T_area.weather == WEATHER_RAIN)
 					near_rainy_area = TRUE
+					rdist = min(rdist, get_dist(src, T))
 
 		if (world.time >= next_weather_sound && near_rainy_area)
-			src << sound('sound/ambience/rain.ogg', channel = 778)
-			next_weather_sound = world.time + 1500
+			src << sound('sound/ambience/rain.ogg', channel = 778, volume = (100 - (rdist*2)))
+			next_weather_sound = world.time + 1450 // the rain sound is 1510 deciseconds long, but even when this was set to 1500, there was delay between successive rain sounds - Kachnov
 		else if (world.time < next_weather_sound && !near_rainy_area)
 			src << sound(null, channel = 778)
 			next_weather_sound = world.time

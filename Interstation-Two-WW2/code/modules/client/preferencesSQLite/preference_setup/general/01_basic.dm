@@ -5,6 +5,7 @@
 	name = "Basic"
 	sort_order = 1
 	var/list/valid_player_genders = list(MALE, FEMALE)
+	var/list/valid_second_languages = list(GERMAN, RUSSIAN, ITALIAN, UKRAINIAN)
 
 datum/preferences/proc/set_biological_gender(var/set_gender)
 	gender = set_gender
@@ -54,47 +55,65 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	pref.be_random_name_italian	= sanitize_integer(pref.be_random_name_italian, FALSE, TRUE, initial(pref.be_random_name_italian))
 
 /datum/category_item/player_setup_item/general/basic/content()
-	//name
+	// name
 	. = "<b>Name:</b> "
 	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
 	. += "(<a href='?src=\ref[src];random_name=1'>Random Name</A>) "
 	. += "(<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a>)"
 	. += "<br><br>"
-	//german name
+	// german name
 	. += "<b>German Name:</b> "
 	. += "<a href='?src=\ref[src];rename_german=1'><b>[pref.german_name]</b></a><br>"
 	. += "(<a href='?src=\ref[src];random_name_german=1'>Random Name</A>) "
 	. += "(<a href='?src=\ref[src];always_random_name_german=1'>Always Random Name: [pref.be_random_name_german ? "Yes" : "No"]</a>)"
 	. += "<br><br>"
-	//russian name
+	// russian name
 	. += "<b>Russian Name:</b> "
 	. += "<a href='?src=\ref[src];rename_russian=1'><b>[pref.russian_name]</b></a><br>"
 	. += "(<a href='?src=\ref[src];random_name_russian=1'>Random Name</A>) "
 	. += "(<a href='?src=\ref[src];always_random_name_russian=1'>Always Random Name: [pref.be_random_name_russian ? "Yes" : "No"]</a>)"
 	. += "<br><br>"
-	//ukrainian name
+	// ukrainian name
 	. += "<b>Ukrainian Name:</b> "
 	. += "<a href='?src=\ref[src];rename_ukrainian=1'><b>[pref.ukrainian_name]</b></a><br>"
 	. += "(<a href='?src=\ref[src];random_name_ukrainian=1'>Random Name</A>) "
 	. += "(<a href='?src=\ref[src];always_random_name_ukrainian=1'>Always Random Name: [pref.be_random_name_ukrainian ? "Yes" : "No"]</a>)"
 	. += "<br><br>"
-	//italian name
+	// polish name
+	. += "<b>Polish Name:</b> "
+	. += "<a href='?src=\ref[src];rename_polish=1'><b>[pref.polish_name]</b></a><br>"
+	. += "(<a href='?src=\ref[src];random_name_polish=1'>Random Name</A>) "
+	. += "(<a href='?src=\ref[src];always_random_name_polish=1'>Always Random Name: [pref.be_random_name_polish ? "Yes" : "No"]</a>)"
+	. += "<br><br>"
+	// italian name
 	. += "<b>Italian Name:</b> "
 	. += "<a href='?src=\ref[src];rename_italian=1'><b>[pref.italian_name]</b></a><br>"
 	. += "(<a href='?src=\ref[src];random_name_italian=1'>Random Name</A>) "
 	. += "(<a href='?src=\ref[src];always_random_name_italian=1'>Always Random Name: [pref.be_random_name_italian ? "Yes" : "No"]</a>)"
 	. += "<br><br>"
-	//gender
-	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
-	. += "<br><br>"
+	// gender
+	. += "<b>Default Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
+	. += "<br>"
 	. += "<b>German Gender:</b> <a href='?src=\ref[src];gender_german=1'><b>[capitalize(lowertext(pref.german_gender))]</b></a><br>"
 	. += "<br>"
-	. += "<b>Russian Gender:</b> <a href='?src=\ref[src];gender_russian=1'><b>[capitalize(lowertext(pref.russian_gender))]</b></a><br>"
+	. += "<b>Soviet Gender:</b> <a href='?src=\ref[src];gender_russian=1'><b>[capitalize(lowertext(pref.russian_gender))]</b></a><br>"
 	. += "<br>"
-	. += "<b>Ukrainian Gender:</b> <a href='?src=\ref[src];gender_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_gender))]</b></a><br>"
-	. += "<br>"
+/*	. += "<b>Ukrainian Gender:</b> <a href='?src=\ref[src];gender_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_gender))]</b></a><br>"
+	. += "<br>"*/
 	. += "<b>Italian Gender:</b> <a href='?src=\ref[src];gender_italian=1'><b>[capitalize(lowertext(pref.italian_gender))]</b></a><br>"
+	. += "<br>"
+	. += "<b>Soviet Ethnicity:</b> <a href='?src=\ref[src];ethnicity_soviet=1'><b>[capitalize(lowertext(pref.soviet_ethnicity))]</b></a><br>"
 	. += "<br><br>"
+	// languages & ethnicity
+/*	. += "<b>German Second Language:</b> <a href='?src=\ref[src];second_language_german=1'><b>[capitalize(lowertext(pref.german_second_language))]</b></a><br>"
+	. += "<br>"
+	. += "<b>Russian Second Language:</b> <a href='?src=\ref[src];second_language_russian=1'><b>[capitalize(lowertext(pref.russian_second_language))]</b></a><br>"
+	. += "<br>"
+	. += "<b>Ukrainian Second Language:</b> <a href='?src=\ref[src];second_language_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_second_language))]</b></a><br>"
+	. += "<br>"
+	. += "<b>Italian Second Language:</b> <a href='?src=\ref[src];second_language_italian=1'><b>[capitalize(lowertext(pref.italian_second_language))]</b></a><br>"
+	. += "<br>"*/
+
 
 //	var/client/client = pref.client
 
@@ -183,6 +202,26 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 		pref.be_random_name_ukrainian = !pref.be_random_name_ukrainian
 		return TOPIC_REFRESH
 
+	//polish names
+	if(href_list["rename_polish"])
+		var/raw_name = input(user, "Choose your character's POLISH name:", "Character Name")  as text|null
+		if (!isnull(raw_name) && CanUseTopic(user))
+			var/new_name = sanitize_name(raw_name, pref.species)
+			if(new_name)
+				pref.polish_name = new_name
+				return TOPIC_REFRESH
+			else
+				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
+				return TOPIC_NOACTION
+
+	else if(href_list["random_name_polish"])
+		pref.polish_name = random_polish_name(pref.polish_gender, pref.species)
+		return TOPIC_REFRESH
+
+	else if(href_list["always_random_name_polish"])
+		pref.be_random_name_polish = !pref.be_random_name_polish
+		return TOPIC_REFRESH
+
 	//italian names
 	if(href_list["rename_italian"])
 		var/raw_name = input(user, "Choose your character's ITALIAN name:", "Character Name")  as text|null
@@ -225,6 +264,23 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	else if(href_list["gender_italian"])
 		pref.italian_gender = next_in_list(pref.italian_gender, valid_player_genders)
+		return TOPIC_REFRESH
+		/*
+	else if (href_list["second_language_german")
+		pref.second_language_german = next_in_list(pref.german_second_language, valid_second_languages - GERMAN)
+
+	else if (href_list["second_language_russian")
+		pref.second_language_russian = next_in_list(pref.russian_second_language, valid_second_languages - RUSSIAN)
+
+	else if (href_list["second_language_ukrainian")
+		pref.second_language_german = next_in_list(pref.german_second_language, valid_second_languages - U)
+
+	else if (href_list["second_language_german")
+		pref.second_language_german = next_in_list(pref.german_second_language, valid_second_languages - GERMAN)
+		*/
+
+	else if (href_list["ethnicity_soviet"])
+		pref.soviet_ethnicity = next_in_list(pref.soviet_ethnicity, list(RUSSIAN, UKRAINIAN, POLISH))
 		return TOPIC_REFRESH
 
 	else if(href_list["body_build"])

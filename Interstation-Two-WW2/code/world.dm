@@ -277,7 +277,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to rejoin (It may take a minute or two): <b>byond://[world.internet_address]:[port]</b></span>"
 
 		spawn(0)
-			if (config.jojoreference)
+			if (config.jojoreference || (map && istype(map, /obj/map_metadata/pillar)))
 				roundabout()
 
 		spawn (50)
@@ -501,7 +501,7 @@ var/setting_up_db_connection = FALSE
 	. += ";"
 	. += "<b>Address</b>: byond://[world.internet_address]:[world.port]"
 	. += ";"
-	. += "<b>Map</b>: [map.title]"
+	. += "<b>Map</b>: [map ? map.title : "???"]"
 	. += ";"
 	. += "<b>Players</b>: [clients.len]" // turns out the bot only considers itself a player sometimes? its weird. Maybe it was fixed, not sure - Kachnov
 	if (config.usewhitelist)
@@ -530,12 +530,14 @@ var/setting_up_db_connection = FALSE
 
 			DEBUG_SERVERSWAP(8)
 			if (!serverswap.len)
+				serverswap["master_data_dir"] = "data/"
 				serverswap["master_log_dir"] = "data/logs/"
 				serverswap["runtime_log_dir"] = "data/logs/runtime/"
 				serverswap["attack_log_dir"] = "data/logs/attack/"
 				break
 			DEBUG_SERVERSWAP(9)
 			if (!serverswap.Find("masterdir")) // we can't do anything without this!
+				serverswap["master_data_dir"] = "data/"
 				serverswap["master_log_dir"] = "data/logs/"
 				serverswap["runtime_log_dir"] = "data/logs/runtime/"
 				serverswap["attack_log_dir"] = "data/logs/attack/"
@@ -546,6 +548,7 @@ var/setting_up_db_connection = FALSE
 			DEBUG_SERVERSWAP(11)
 			if (!serverswap.Find("sfinal")) // ditto
 				break
+			serverswap["master_data_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/"
 			serverswap["master_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/"
 			serverswap["runtime_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/runtime/"
 			serverswap["attack_log_dir"] = "[serverswap["masterdir"]]/sharedinfo/data/logs/attack/"

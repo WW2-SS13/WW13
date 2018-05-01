@@ -15,6 +15,7 @@ var/global/list/nonvital_processing_objects_1       = list()
 var/global/list/nonvital_processing_objects_2       = list()
 var/global/list/nonvital_processing_objects_3       = list()
 var/global/list/nonvital_processing_objects_4       = list()
+var/global/list/menacing_atoms       = list()
 //var/global/list/processing_power_items   = list()
 var/global/list/active_diseases          = list()
 //var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.

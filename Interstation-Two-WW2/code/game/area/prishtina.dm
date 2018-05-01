@@ -239,6 +239,8 @@
 /area/prishtina/houses/nml_nineteen
 /area/prishtina/houses/nml_twenty
 /area/prishtina/houses/nml_twentyone
+/area/prishtina/houses/nml_bunker
+	artillery_integrity = 200
 
 /area/prishtina/houses/sov_one
 /area/prishtina/houses/sov_two

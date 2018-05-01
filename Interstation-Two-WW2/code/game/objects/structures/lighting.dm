@@ -587,7 +587,7 @@
 	status = LIGHT_EMPTY
 	update()
 
-
+/*
 /obj/structure/light/attack_tk(mob/user)
 	if(status == LIGHT_EMPTY)
 		user << "There is no [fitting] in this light."
@@ -612,7 +612,7 @@
 
 	status = LIGHT_EMPTY
 	update()
-
+*/
 // break the light and make sparks if was on
 
 /obj/structure/light/proc/broken(var/skip_sound_and_sparks = FALSE)

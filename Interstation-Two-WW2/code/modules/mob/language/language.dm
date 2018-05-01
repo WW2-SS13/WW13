@@ -18,6 +18,7 @@
 	var/native                        // If set, non-native speakers will have trouble speaking.
 	var/list/syllables                // Used when scrambling text for a non-speaker.
 	var/list/space_chance = 55        // Likelihood of getting a space in the random scramble string
+	var/list/mutual_intelligibility = list()
 
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
@@ -92,6 +93,24 @@
 
 	return "[trim(full_name)]"
 
+/datum/language/proc/get_random_polish_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
+	if(!syllables || !syllables.len)
+		if(gender==FEMALE)
+			return capitalize(spick(first_names_female_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+		else
+			return capitalize(spick(first_names_male_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+
+	var/full_name = ""
+	var/new_name = ""
+
+	for(var/i = 0;i<name_count;i++)
+		new_name = ""
+		for(var/x = srand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+			new_name += spick(syllables)
+		full_name += " [capitalize(lowertext(new_name))]"
+
+	return "[trim(full_name)]"
+
 /datum/language/proc/get_random_italian_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)
@@ -113,13 +132,14 @@
 /datum/language
 	var/list/scramble_cache = list()
 
-/datum/language/proc/scramble(var/input)
+// hearer only needs to be specified for mutual intelligibility code to work - Kachnov
+/datum/language/proc/scramble(var/input, var/mob/hearer = null)
 
 	if(!syllables || !syllables.len)
 		return stars(input)
 
 	// If the input is cached already, move it to the end of the cache and return it
-	if(input in scramble_cache)
+	if(input in scramble_cache && !hearer)
 		var/n = scramble_cache[input]
 		scramble_cache -= input
 		scramble_cache[input] = n
@@ -129,8 +149,26 @@
 	var/scrambled_text = ""
 	var/capitalize = TRUE
 
+	var/list/original_words = splittext(input, " ")
+
+	var/mutual_intelligibility = 0
+	if (hearer)
+		mutual_intelligibility = hearer.get_mutual_intelligibility(src)
+
 	while(length(scrambled_text) < input_size)
-		var/next = spick(syllables)
+		var/next = ""
+		if (prob(mutual_intelligibility) && original_words.len)
+			for (var/v in 1 to original_words.len)
+				if (original_words[v] != null)
+					next = original_words[v]
+					original_words[v] = null
+					break
+			if (next)
+				next = " [next] "
+			else
+				next = spick(syllables)
+		else
+			next = spick(syllables)
 		if(capitalize)
 			next = capitalize(next)
 			capitalize = FALSE
@@ -207,6 +245,9 @@
 // Language handling.
 /mob/proc/add_language(var/language, var/allow_name_changing = FALSE)
 
+	if (language == uppertext(language))
+		language = capitalize(lowertext(language))
+
 	var/datum/language/new_language = null
 	if (isdatum(language))
 		new_language = language
@@ -255,6 +296,17 @@
 						H.real_name = H.client.prefs.ukrainian_name
 					H.name = H.real_name
 					H.gender = H.client.prefs.ukrainian_gender
+
+		else if (istype(new_language, /datum/language/polish))
+			if (ishuman(src))
+				var/mob/living/carbon/human/H = src
+				if (H.species && H.client)
+					if (H.client.prefs.be_random_name_polish)
+						H.real_name = H.species.get_random_polish_name(H.gender, FALSE)
+					else
+						H.real_name = H.client.prefs.polish_name
+					H.name = H.real_name
+					H.gender = H.client.prefs.polish_gender
 
 		else if (istype(new_language, /datum/language/italian))
 			if (ishuman(src))

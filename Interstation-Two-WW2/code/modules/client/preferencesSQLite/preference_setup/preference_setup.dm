@@ -6,7 +6,7 @@
 
 /datum/category_group/player_setup_category/general_preferences
 	name = "Character"
-	sort_order = 2
+	sort_order = 1
 	category_item_type = /datum/category_item/player_setup_item/general
 /*
 /datum/category_group/player_setup_category/occupation_preferences
@@ -28,7 +28,7 @@
 */
 /datum/category_group/player_setup_category/global_preferences
 	name = "Global"
-	sort_order = 6
+	sort_order = 2
 	category_item_type = /datum/category_item/player_setup_item/player_global
 
 /****************************
@@ -260,7 +260,7 @@
 			var/variable = pref.vars[varname]
 			if (isdatum(variable) || isclient(variable))
 				continue // prevent infinite loops on VV
-			if (islist(variable)) // todo
+			if (islist(variable) && !pref.saved_lists.Find(varname))
 				continue
 			if (pref_initial_vars[varname] != variable) // variable changed!
 				pref.remember_preference(varname, variable)

@@ -61,6 +61,7 @@
 //	origin_tech = "materials=1"
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	unbreakable = TRUE
+	slot_flags = SLOT_BELT|SLOT_POCKET
 
 /obj/item/weapon/material/knife/hook
 	name = "meat hook"

@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/a357
 	desc = "A .357 bullet casing."
-	caliber = "357"
+	caliber = "7.62x38mmR" // 357
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
 
 /obj/item/ammo_casing/a50

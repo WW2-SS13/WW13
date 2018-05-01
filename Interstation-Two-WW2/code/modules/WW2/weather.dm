@@ -20,7 +20,7 @@
 				if (1)
 					// pass
 				else
-					if (!config.allowed_weather.Find(weather_const2text(_weather)) && _weather != WEATHER_NONE)
+					if (!config.allowed_weather.Find(WEATHER_CONST2TEXT(_weather)) && _weather != WEATHER_NONE)
 						return
 
 	var/old_weather = weather
@@ -65,77 +65,6 @@
 
 	if (old_weather != weather)
 		announce_weather_change(old_weather, weather)
-
-// happens every time the weather process ticks, right now 2 seconds
-#define NO_NEW_SNOWFALL
-#define SNOW_GATHERING_RATE 1.0
-/proc/process_weather()
-	if (weather == WEATHER_SNOW)
-		#ifdef NO_NEW_SNOWFALL
-		return
-		#endif
-		var/turfs_made_snowy = FALSE
-		// randomize the areas we snow in
-		var/list_of_areas = shuffle(all_areas)
-		for (var/area/A in list_of_areas)
-			if (A.snowfall_valid_turfs.len)
-				// randomize the turfs we snow in
-				var/min_index = TRUE
-				var/max_index = A.snowfall_valid_turfs.len
-				var/random_indices = list()
-
-				for (var/v in TRUE to 15)
-					random_indices |= srand(min_index, max_index)
-				for (var/v in random_indices)
-					var/turf/floor/F = A.snowfall_valid_turfs[v]
-					if (!F)
-						A.snowfall_valid_turfs -= F
-						continue
-					if (istype(F) && !F.has_snow())
-						var/snowfall_prob = 20
-						for (var/obj/snow/S in orange(1, F))
-							snowfall_prob += 10
-						if (sprob(snowfall_prob))
-							var/obj/snow/S = new/obj/snow(F)
-							if (A.location == AREA_INSIDE)
-								S.visible_message("<span class = 'danger'>Snow falls in from the ceiling.</span>")
-							++turfs_made_snowy
-							if (turfs_made_snowy >= srand(20*SNOW_GATHERING_RATE,30*SNOW_GATHERING_RATE))
-								break
-	else if (weather == WEATHER_RAIN)
-
-		// delete cleanable decals that are outside
-		var/deleted = 0
-		for (var/obj/effect/decal/cleanable/C in world)
-			var/area/A = get_area(C)
-			if (A.weather == WEATHER_RAIN)
-				qdel(C)
-				++deleted
-				if (deleted >= 100)
-					break
-/* // for performance reasons, mudiness is no longer handled here - Kachnov
-		// randomize the areas we make muddy
-		var/list_of_areas = shuffle(all_areas)
-		for (var/area/A in list_of_areas)
-			if (A.snowfall_valid_turfs.len) // even though this is rain, same reqs
-				// randomize the turfs we make muddy
-				var/min_index = TRUE
-				var/max_index = A.snowfall_valid_turfs.len
-				var/random_indices = list()
-
-				for (var/v in TRUE to 40) // 2 to 3x more than snow affects
-					random_indices |= srand(min_index, max_index)
-				for (var/v in random_indices)
-					var/turf/floor/F = A.snowfall_valid_turfs[v]
-					if (!F)
-						A.snowfall_valid_turfs -= F
-						continue
-					if (istype(F) && F.uses_winter_overlay)
-						if (sprob(33))
-							F.muddy = TRUE
-							spawn (srand(15000,25000))
-								if (weather != WEATHER_RAIN)
-									F.muddy = FALSE*/
 
 /proc/modify_weather_somehow()
 	if (weather == WEATHER_NONE)

@@ -74,6 +74,7 @@
 	var/KD_chance = 5
 	var/stat = "rifle"
 	var/load_delay = 0
+	var/headshot_kill_chance = 0
 
 	// does not need to include all organs
 	var/list/redirection_chances = list(

@@ -114,6 +114,15 @@ proc/russify(var/list/name_list, gender)
 		l[v] = name
 	return l
 
+proc/polify(var/list/name_list, gender)
+	var/list/l = name_list.Copy()
+	for (var/v in 1 to l.len)
+		var/name = l[v]
+		if (gender == FEMALE)
+			name = replacetext(name, "ski", "ska")
+		l[v] = name
+	return l
+
 proc/random_russian_name(gender, species = "Human")
 
 	var/datum/species/current_species
@@ -143,6 +152,21 @@ proc/random_ukrainian_name(gender, species = "Human")
 			return capitalize(spick(first_names_male_ukrainian)) + " " + capitalize(spick(russify(last_names_ukrainian, gender)))
 	else
 		return current_species.get_random_ukrainian_name(gender)
+
+proc/random_polish_name(gender, species = "Human")
+
+	var/datum/species/current_species
+
+	if(species)
+		current_species = all_species[species]
+
+	if(!current_species || current_species.name_language == null)
+		if(gender==FEMALE)
+			return capitalize(spick(first_names_female_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+		else
+			return capitalize(spick(first_names_male_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+	else
+		return current_species.get_random_polish_name(gender)
 
 proc/random_skin_tone()
 

@@ -25,7 +25,6 @@ macro "macro"
 		command = ".startmovingleft"
 	elem 
 		name = "ALT+West"
-		command = "westfaceperm"
 	elem 
 		name = "CTRL+West"
 		command = "westface"
@@ -37,7 +36,6 @@ macro "macro"
 		command = ".startmovingup"
 	elem 
 		name = "ALT+North"
-		command = "northfaceperm"
 	elem 
 		name = "CTRL+North"
 		command = "northface"
@@ -49,7 +47,6 @@ macro "macro"
 		command = ".startmovingright"
 	elem 
 		name = "ALT+East"
-		command = "eastfaceperm"
 	elem 
 		name = "CTRL+East"
 		command = "eastface"
@@ -61,7 +58,6 @@ macro "macro"
 		command = ".startmovingdown"
 	elem 
 		name = "ALT+South"
-		command = "southfaceperm"
 	elem 
 		name = "CTRL+South"
 		command = "southface"
@@ -87,14 +83,6 @@ macro "macro"
 		name = "CTRL+4"
 		command = "a-intent harm"
 	elem 
-		name = "CTRL+A"
-	elem 
-		name = "CTRL+A+UP"
-	elem 
-		name = "CTRL+D"
-	elem 
-		name = "CTRL+D+UP"
-	elem 
 		name = "CTRL+E"
 		command = "quick-equip"
 	elem 
@@ -115,10 +103,6 @@ macro "macro"
 	elem 
 		name = "CTRL+S"
 		command = "Say \"*scream"
-	elem 
-		name = "CTRL+W"
-	elem 
-		name = "CTRL+W+UP"
 	elem 
 		name = "CTRL+X"
 		command = ".northeast"
@@ -186,7 +170,6 @@ macro "hotkeymode"
 		command = ".startmovingleft"
 	elem 
 		name = "ALT+West"
-		command = "westfaceperm"
 	elem 
 		name = "CTRL+West"
 		command = "westface"
@@ -198,7 +181,6 @@ macro "hotkeymode"
 		command = ".startmovingup"
 	elem 
 		name = "ALT+North"
-		command = "northfaceperm"
 	elem 
 		name = "CTRL+North"
 		command = "northface"
@@ -210,7 +192,6 @@ macro "hotkeymode"
 		command = ".startmovingright"
 	elem 
 		name = "ALT+East"
-		command = "eastfaceperm"
 	elem 
 		name = "CTRL+East"
 		command = "eastface"
@@ -222,7 +203,6 @@ macro "hotkeymode"
 		command = ".startmovingdown"
 	elem 
 		name = "ALT+South"
-		command = "southfaceperm"
 	elem 
 		name = "CTRL+South"
 		command = "southface"

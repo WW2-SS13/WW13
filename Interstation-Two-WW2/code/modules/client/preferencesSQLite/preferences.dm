@@ -24,17 +24,21 @@ var/list/preferences_datums = list()
 	var/german_name = "Hans Schneider"
 	var/russian_name = "Boris Borisov"
 	var/ukrainian_name = "Boris Borisov"
+	var/polish_name = "Stanislaw Nowak"
 	var/italian_name = "Alessandro Giovanni"
 	var/be_random_name = FALSE				//whether we are a random name every round
 	var/be_random_name_german = FALSE
 	var/be_random_name_russian = FALSE
 	var/be_random_name_ukrainian = FALSE
+	var/be_random_name_polish = FALSE
 	var/be_random_name_italian = FALSE
 	var/gender = MALE					//gender of character (well duh)
 	var/german_gender = MALE
 	var/russian_gender = MALE
 	var/ukrainian_gender = MALE // civs
+	var/polish_gender = MALE
 	var/italian_gender = MALE
+	var/soviet_ethnicity = RUSSIAN
 	var/body_build = "Default"			//character body build name
 	var/age = 30						//age of character
 
@@ -88,13 +92,15 @@ var/list/preferences_datums = list()
 
 	var/disabilities = 0
 
-	var/list/pockets = list(null, null)
+	var/list/pockets = list("Magazine", "Magazine")
 
 	var/client/client = null
 	var/client_ckey = null
 	var/client_isguest = FALSE
 
 	var/list/internal_table = list()
+
+	var/list/saved_lists = list("pockets")
 
 	var/datum/category_collection/player_setup_collection/player_setup
 
@@ -106,6 +112,7 @@ var/list/preferences_datums = list()
 		"CHAT_GHOSTEARS", "CHAT_GHOSTSIGHT", "CHAT_GHOSTRADIO", "CHAT_SHOWICONS",
 		"SHOW_TYPING", "CHAT_OOC", "CHAT_LOOC", "CHAT_DEAD", "SHOW_PROGRESS",
 		"CHAT_ATTACKLOGS", "CHAT_DEBUGLOGS", "CHAT_PRAYER", "SOUND_ADMINHELP")
+
 	var/list/preferences_disabled = list()
 
 /datum/preferences/New(client/C)
@@ -204,7 +211,15 @@ var/list/preferences_datums = list()
 	dat += "<br><HR></center>"
 	dat += player_setup.content(user)
 
-	dat += "</html></body>"
+	var/datlist = splittext(dat, "<br>")
+	var/datlist2 = list()
+	for (var/line in datlist)
+		datlist2 += "<small>[line]</small><br>"
+	dat = ""
+	for (var/line in datlist2)
+		dat += line
+
+	dat += "</body></html>"
 	user << browse(dat, "window=preferences;size=980x800")
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)

@@ -14,7 +14,7 @@
 	var/burning = null
 	var/hitsound = null
 	var/storage_cost = null
-	var/slot_flags = FALSE		//This is used to determine on which slots an item can fit.
+	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	var/no_attack_log = FALSE			//If it's an item we don't want to log attack_logs with, set this to TRUE
 	pass_flags = PASSTABLE
 //	causeerrorheresoifixthis

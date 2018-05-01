@@ -1,6 +1,6 @@
 /datum/job
 	var/default_language = "Common"
-	var/list/additional_languages = list() // "Name" = probability between TRUE-100
+	var/list/additional_languages = list() // "Name" = probability between 1-100
 	var/SL_check_independent = FALSE // we're important, so we can spawn even if SLs are needed
 
 /datum/job/pillarman
@@ -9,7 +9,7 @@
 
 /datum/job/german
 	default_language = "German"
-	additional_languages = list("Russian" = 5)
+	additional_languages = list("Russian" = 5, "Italian" = 10)
 
 /datum/job/italian
 	default_language = "Italian"
@@ -31,8 +31,23 @@
 	. = ..()
 
 	H.languages.Cut()
-	H.add_language(default_language, TRUE)
-	H.default_language = all_languages[default_language]
+	if (istype(src, /datum/job/soviet))
+		if (H.client && H.client.prefs)
+			switch (H.client.prefs.soviet_ethnicity)
+				if (RUSSIAN)
+					H.add_language(RUSSIAN, TRUE)
+				if (UKRAINIAN)
+					H.add_language(UKRAINIAN, TRUE)
+					H.show_message("<b>You know the Ukrainian language!</b>")
+				if (POLISH)
+					H.add_language(POLISH, TRUE)
+					H.show_message("<b>You know the Polish language!</b>")
+	if (!H.languages.len)
+		H.add_language(default_language, TRUE)
+	else if (H.languages[1] != default_language)
+		H.add_language(default_language, FALSE)
+
+	H.default_language = H.languages[1]
 
 	if (additional_languages && additional_languages.len > 0)
 		for(var/language_name in additional_languages)
@@ -41,7 +56,4 @@
 			if (sprob(probability))
 				H.add_language(language_name, FALSE)
 				H.show_message("<b>You know the [language_name] language!</b>")
-/*
-	for (var/datum/language/L in H.languages)
-		if (istype(L, /datum/language/common))
-			H.languages -= L*/
+

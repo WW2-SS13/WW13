@@ -1,3 +1,4 @@
+#define SHEET_MATERIAL_AMOUNT 2000
 // Stacked resources. They use a material datum for a lot of inherited values.
 /obj/item/stack/material
 	force = WEAPON_FORCE_NORMAL

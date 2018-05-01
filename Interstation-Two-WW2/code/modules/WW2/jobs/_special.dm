@@ -71,8 +71,6 @@
 				. = GERMAN
 			else
 				. = SCHUTZSTAFFEL
-	else if (istype(src, /datum/job/ukrainian))
-		. = UKRAINIAN
 	else if (istype(src, /datum/job/italian))
 		. = ITALIAN
 	else if (istype(src, /datum/job/pillarman))
@@ -323,7 +321,7 @@
 			else if (istype(original_job, /datum/job/partisan))
 				equip_to_slot_or_del(new /obj/item/radio/partisan(src), slot_s_store)
 
-	src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while its on your back, prefix your message with ':b'.</b></span>"
+//	src << "<span class = 'notice'><b>You have a radio in your suit storage. To use it while its on your back, prefix your message with ':b'.</b></span>"
 
 /datum/job/update_character(var/mob/living/carbon/human/H)
 	..()
@@ -373,8 +371,11 @@
 	var/ideal_contents_1 = srand(1, max(gun.contents.len, gun.ammo_magazine ? gun.ammo_magazine.contents.len : 0))
 	var/removing_1 = (gun.ammo_magazine ? gun.ammo_magazine.contents.len : gun.contents.len) - ideal_contents_1
 
-	var/ideal_contents_2 = srand(1, AM.contents.len)
-	var/removing_2 = AM.contents.len - ideal_contents_2
+	var/removing_2 = 0
+
+	if (AM)
+		var/ideal_contents_2 = srand(1, AM.contents.len)
+		removing_2 = AM.contents.len - ideal_contents_2
 
 	for (var/v in 1 to removing_1)
 
@@ -388,10 +389,11 @@
 			gun.contents -= picked
 			qdel(picked)
 
-	for (var/v in 1 to removing_2)
+	if (AM)
+		for (var/v in 1 to removing_2)
 
-		var/picked = spick(AM.contents)
-		AM.contents -= picked
-		AM.stored_ammo -= picked
-		qdel(picked)
-	AM.update_icon()
+			var/picked = spick(AM.contents)
+			AM.contents -= picked
+			AM.stored_ammo -= picked
+			qdel(picked)
+		AM.update_icon()

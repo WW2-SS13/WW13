@@ -16,6 +16,8 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 	var/list/additional_text = list()
 	var/auto_muted = FALSE
 	var/win_threshold = 0.00
+	var/list/callback = null
+	var/list/disabled[10]
 
 	New()
 		if(vote != src)
@@ -43,11 +45,10 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 						C << browse(null,"window=vote")
 				reset()
 			else
+				voting.Cut()
 				for(var/client/C in voting)
 					if(C)
 						C << browse(vote.interface(C),"window=vote")
-
-				voting.Cut()
 
 	proc/autogamemode()
 		return//I hate autogamemode vote.
@@ -64,6 +65,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 		voting.Cut()
 		current_votes.Cut()
 		additional_text.Cut()
+		disabled.Cut()
 
 	proc/get_result()
 		//get the highest number of votes
@@ -122,7 +124,10 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 					text += "<b>Vote Result: [.]</b>"
 				else
 					text += "<b>The vote has ended.</b>" // What will be shown if it is a gamemode vote that isn't extended
-
+			if (callback)
+				if (callback.len == 2)
+					call(callback[1], callback[2])(.)
+				callback = null
 		else
 			text += "<b>Vote Result: Inconclusive - Neither option had enough votes!</b>"
 			if(mode == "add_antagonist")
@@ -178,7 +183,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				return vote
 		return FALSE
 
-	proc/initiate_vote(var/vote_type, var/initiator_key, var/automatic = FALSE)
+	proc/initiate_vote(var/vote_type, var/initiator_key, var/automatic = FALSE, var/list/_callback = list())
 		if(!mode)
 			if(started_time != null && !(check_rights(R_ADMIN) || automatic))
 				var/next_allowed_time = (started_time + config.vote_delay)
@@ -191,25 +196,14 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				if("restart")
 					choices.Add("Restart Round","Continue Playing")
 					win_threshold = 0.67
-		/*		if("gamemode")
-					if(ticker.current_state >= 2)
-						return FALSE
-					choices.Add(config.votable_modes)
-					for (var/F in choices)
-						var/datum/game_mode/M = gamemode_cache[F]
-						if(!M)
-							continue
-						gamemode_names[M.config_tag] = capitalize(M.name) //It's ugly to put this here but it works
-						additional_text.Add("<td align = 'center'>[M.required_players]</td>")
-					gamemode_names["secret"] = "Secret"
-				if("add_antagonist")
-					if(!config.allow_extra_antags || ticker.current_state >= 2)
-						return FALSE
-					for(var/antag_type in all_antag_types)
-						var/datum/antagonist/antag = all_antag_types[antag_type]
-						if(!(antag.id in additional_antag_types) && antag.is_votable())
-							choices.Add(antag.role_text)
-					choices.Add("None")*/
+				if ("map")
+					for (var/map in mapswap_process.maps)
+						map = capitalize(lowertext(map))
+						choices.Add(map)
+						if (clients.len < mapswap_process.maps[map])
+							disabled[map] = "[mapswap_process.maps[map]] players"
+	//			if ("gamemode")
+	//				choices = mapswap.modes[mapswap.next_map]
 				if("custom")
 					question = cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
 					if(!question)	return FALSE
@@ -228,29 +222,29 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 
 			log_vote(text)
 			world << "<span class = 'deadsay'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period/10] seconds to vote.</span>"
-			switch(vote_type)
+		/*	switch(vote_type)
 				if("gamemode")
 					world << sound('sound/ambience/alarm4.ogg', repeat = FALSE, wait = FALSE, volume = 50, channel = 3)
 				if("custom")
 					world << sound('sound/ambience/alarm4.ogg', repeat = FALSE, wait = FALSE, volume = 50, channel = 3)
 				if("restart")
 					world << sound('sound/ambience/alarm4.ogg', repeat = FALSE, wait = FALSE, volume = 50, channel = 3)
+*/
+			world << sound('sound/ambience/alarm4.ogg', repeat = FALSE, wait = FALSE, volume = 50, channel = 3)
 			if(mode == "gamemode" && round_progressing)
 				round_progressing = FALSE
 				world << "<font color='red'><b>Round start has been delayed.</b></font>"
-
 			time_remaining = round(config.vote_period/10)
+			callback = _callback
 			return TRUE
 		return FALSE
 
 	proc/interface(var/client/C)
 		if(!C)	return
 		var/admin = FALSE
-		var/trialmin = FALSE
 		if(C.holder)
 			if(C.holder.rights & R_ADMIN)
 				admin = TRUE
-				trialmin = TRUE // don't know why we use both of these it's really weird, but I'm 2 lasy to refactor this all to use just admin.
 		voting |= C
 
 		. = "<html><head><title>Voting Panel</title></head><body>"
@@ -265,16 +259,13 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				var/votes = choices[choices[i]]
 				if(!votes)	votes = 0
 				. += "<tr>"
-				if(mode == "gamemode")
-					if(current_votes[C.ckey] == i)
-						. += "<td><b><a href='?src=\ref[src];vote=[i]'>[gamemode_names[choices[i]]]</a></b></td><td align = 'center'>[votes]</td>"
-					else
-						. += "<td><a href='?src=\ref[src];vote=[i]'>[gamemode_names[choices[i]]]</a></td><td align = 'center'>[votes]</td>"
+
+				if (disabled.Find(choices[i]))
+					. += "<td><font color = 'grey'>DISABLED ([disabled[choices[i]]]): [choices[i]]</td><td align = 'center'>[votes]</font></td>"
+				else if(current_votes[C.ckey] == i)
+					. += "<td><b><a href='?src=\ref[src];vote=[i]'>[choices[i]]</a></b></td><td align = 'center'>[votes]</td>"
 				else
-					if(current_votes[C.ckey] == i)
-						. += "<td><b><a href='?src=\ref[src];vote=[i]'>[choices[i]]</a></b></td><td align = 'center'>[votes]</td>"
-					else
-						. += "<td><a href='?src=\ref[src];vote=[i]'>[choices[i]]</a></td><td align = 'center'>[votes]</td>"
+					. += "<td><a href='?src=\ref[src];vote=[i]'>[choices[i]]</a></td><td align = 'center'>[votes]</td>"
 				if (additional_text.len >= i)
 					. += additional_text[i]
 				. += "</tr>"
@@ -285,12 +276,12 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 		else
 			. += "<h2>Start a vote:</h2><hr><ul><li>"
 			//restart
-			if(trialmin || config.allow_vote_restart)
+			if(admin || config.allow_vote_restart)
 				. += "<a href='?src=\ref[src];vote=restart'>Restart</a>"
 			else
 				. += "<font color='grey'>Restart (Disallowed)</font>"
 			. += "</li><li>"
-			if(trialmin)
+			if(admin)
 				. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[config.allow_vote_restart?"Allowed":"Disallowed"]</a>)"
 		//	. += "</li><li>"
 			//gamemode
@@ -309,7 +300,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				. += "<font color='grey'>Add Antagonist Type (Disallowed)</font>"
 			. += "</li>"*/
 			//custom
-			if(trialmin)
+			if(admin)
 				. += "<li><a href='?src=\ref[src];vote=custom'>Custom</a></li>"
 			. += "</ul><hr>"
 		. += "<a href='?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"

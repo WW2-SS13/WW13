@@ -110,20 +110,20 @@
 
 	// handle nutrition stuff before we handle stomach stuff in the callback
 
-	var/nutrition_water_loss_multiplier = mob_process.schedule_interval/20
+	var/nutrition_water_loss_base_multiplier = mob_process.schedule_interval/20
 
 	// hunger, thirst nerfed by 10% due to popular demand. It's still hardmode - Kachnov
 
-	#define HUNGER_THIRST_MULTIPLIER 1.25
+	#define HUNGER_THIRST_MULTIPLIER 1.00
 
 	if (has_hunger_and_thirst)
 		switch (stat)
 			if (CONSCIOUS) // takes about 1333 ticks to start starving, or ~44 minutes
-				nutrition -= (0.27/getStatCoeff("survival")) * nutrition_water_loss_multiplier * HUNGER_THIRST_MULTIPLIER
-				water -= (0.27/getStatCoeff("survival")) * nutrition_water_loss_multiplier * HUNGER_THIRST_MULTIPLIER
+				nutrition -= (0.27/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
+				water -= (0.27/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
 			if (UNCONSCIOUS) // takes over an hour to starve
-				nutrition -= (0.18/getStatCoeff("survival")) * nutrition_water_loss_multiplier * HUNGER_THIRST_MULTIPLIER
-				water -= (0.18/getStatCoeff("survival")) * nutrition_water_loss_multiplier * HUNGER_THIRST_MULTIPLIER
+				nutrition -= (0.18/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
+				water -= (0.18/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
 
 	#undef HUNGER_THIRST_MULTIPLIER
 
@@ -933,15 +933,16 @@
 					qdel(M)
 					continue
 
-		if (config.use_hunger)
-			handle_starvation()
-		else
-			nutrition = max_nutrition
+		if (stat != DEAD)
+			if (config.use_hunger)
+				handle_starvation()
+			else
+				nutrition = max_nutrition
 
-		if (config.use_thirst)
-			handle_dehydration()
-		else
-			water = max_water
+			if (config.use_thirst)
+				handle_dehydration()
+			else
+				water = max_water
 
 /*Hardcore mode stuff. This was moved here because constants that are only used
   at one spot in the code shouldn't be in the __defines folder */
@@ -967,15 +968,11 @@
 
 /mob/living/carbon/human/proc/handle_starvation()//Making this it's own proc for my sanity's sake - Matt
 
-	// don't start starving right away
-	if (spawnedInAtRealTime != -1 && world.realtime - spawnedInAtRealTime <= 600)
-		return
-
-	if(nutrition < 350 && nutrition >= 200)
+	if(nutrition < 220 && nutrition >= 150)
 		if (sprob(3))
 			src << "<span class = 'warning'>You're getting a bit hungry.</span>"
 
-	else if(nutrition < 200 && nutrition >= 100)
+	else if(nutrition < 150 && nutrition >= 100)
 		if (sprob(4))
 			src << "<span class = 'warning'>You're pretty hungry.</span>"
 
@@ -1095,15 +1092,11 @@
 
 /mob/living/carbon/human/proc/handle_dehydration()//Making this it's own proc for my sanity's sake - Matt
 
-	// don't start dehydrating right away
-	if (spawnedInAtRealTime != -1 && world.realtime - spawnedInAtRealTime <= 300)
-		return
-
-	if (water < 300 && water >= 200)
+	if (water < 200 && water >= 150)
 		if (sprob(3))
 			src << "<span class = 'warning'>You're getting a bit thirsty.</span>"
 
-	else if (water < 200 && water >= 100)
+	else if (water < 150 && water >= 100)
 		if (sprob(4))
 			src << "<span class = 'warning'>You're pretty thirsty.</span>"
 

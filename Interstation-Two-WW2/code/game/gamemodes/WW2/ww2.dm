@@ -1,3 +1,6 @@
+#define TANK_LOWPOP_THRESHOLD 12
+#define ARTILLERY_LOWPOP_THRESHOLD 15
+
 /datum/game_mode/ww2
 	name = "World War 2"
 	config_tag = "WW2"
@@ -24,13 +27,22 @@
 
 	var/season = "SPRING"
 
+/datum/game_mode/ww2/proc/next_win_time()
+	if (time_both_sides_locked != -1 && !currently_winning)
+		return max(round(((time_both_sides_locked+time_to_end_round_after_both_sides_locked) - world.realtime)/600),0)
+	else if (currently_winning == "Soviets")
+		return max(round((next_win_time-world.realtime)/600),0)
+	else if (currently_winning == "Germans")
+		return max(round((next_win_time-world.realtime)/600),0)
+	return -1
+
 /datum/game_mode/ww2/proc/current_stat_message()
 	if (time_both_sides_locked != -1 && !currently_winning)
-		return "Both sides are out of reinforcements; The round will automatically end in [max(round(((time_both_sides_locked+time_to_end_round_after_both_sides_locked) - world.realtime)/600),0)] minute(s) if neither side is victorious."
+		return "Both sides are out of reinforcements; The round will automatically end in [next_win_time()] minute(s) if neither side is victorious."
 	else if (currently_winning == "Soviets")
-		return "The Red Army will win in [max(round((next_win_time-world.realtime)/600),0)] minute(s)."
+		return "The Red Army will win in [next_win_time()] minute(s)."
 	else if (currently_winning == "Germans")
-		return "The Wehrmacht will win in [max(round((next_win_time-world.realtime)/600),0)] minute(s)."
+		return "The Wehrmacht will win in [next_win_time()] minute(s)."
 	else
 		return "Neither side has captured the other side's base."
 
@@ -71,7 +83,8 @@
 	var/only_client_is_host = FALSE
 	for(var/mob/new_player/player in player_list)
 		if(player.client)
-			++playercount
+			if (!player.client.is_minimized())
+				++playercount
 			if (player.key == world.host)
 				only_client_is_host = TRUE
 
@@ -91,6 +104,11 @@
 	else if (soldiers["ru"] > 0 && soldiers["de"] <= 0 && game_started)
 		winning_side = "Red Army"
 		return TRUE
+	// todo: proper pillarmap win conditions instead of this crap - Kachnov
+	else if (map && istype(map, /obj/map_metadata/pillar))
+		if (!soldiers[PILLARMEN])
+			win_condition = "The Waffen-SS won by killing every Pillar Man and vampire!"
+			winning_side = "Waffen-SS"
 	else
 
 		// condition one: both sides have reinforcements locked,
@@ -188,7 +206,7 @@
 				return TRUE
 
 			if (currently_winning == "Germans" && win_sort == 2)
-				if (!win_condition) win_condition = "The Wehrmacht won by outnumbering the Soviets and occupying most of their territory. The Soviet base was surrounded and cut off from supplies and reinforcements!"
+				if (!win_condition) win_condition = "The Wehrmacht won by outnumbering the Red Army and occupying most of their territory. The Soviet base was surrounded and cut off from supplies and reinforcements!"
 				winning_side = "Wehrmacht"
 				return TRUE
 
@@ -201,7 +219,6 @@
 				if (!win_condition) win_condition = "The Wehrmacht won by occupying and holding Soviet territory, while heavily outnumber the Soviets there."
 				winning_side = "Wehrmacht"
 				return TRUE
-
 
 	if (admins_triggered_roundend)
 		return TRUE
@@ -264,29 +281,6 @@
 	// announce after some other stuff, like system setups, are announced
 	spawn (3)
 
-
-	//	new/datum/game_aspect/ww2(src)
-
-	//	spawn (1)
-/*			if (aspect)
-				aspect.activate()
-				aspect.post_activation()*/
-
-			// train might not be set up yet
-		//	spawn (100)
-			//	job_master.german_job_slots *= personnel[GERMAN]
-			//	job_master.soviet_job_slots *= personnel[SOVIET]
-
-				// nerf or buff german supplies by editing the supply train controller
-		//		german_supplytrain_master.supply_points_per_second_min *= supplies[GERMAN]
-		//		german_supplytrain_master.supply_points_per_second_max *= supplies[GERMAN]
-
-			// nerf or buff soviet supplies by editing crates in Soviet territory.
-		/*	spawn (10) // make sure rations are set up?
-				for (var/obj/structure/closet/crate/soviet in world)
-					if (istype(get_area(soviet), /area/prishtina/soviet))
-						soviet.resize(supplies[SOVIET])*/
-
 		// this may have already happened, do it again w/o announce
 		setup_autobalance(0)
 
@@ -296,35 +290,48 @@
 				np.new_player_panel_proc()
 
 		// no tanks on lowpop
-		if (!istype(aspect, /datum/game_aspect/ww2/no_tanks))
-			if (clients.len <= TANK_LOWPOP_THRESHOLD)
-				if (locate(/obj/tank) in world)
-					for (var/obj/tank/T in world)
-						if (!T.admin)
-							qdel(T)
-					world << "<i>Due to lowpop, there are no tanks.</i>"
+		if (clients.len <= TANK_LOWPOP_THRESHOLD)
+			if (locate(/obj/tank) in world)
+				for (var/obj/tank/T in world)
+					if (!T.admin)
+						qdel(T)
+				world << "<i>Due to lowpop, there are no tanks.</i>"
 
-		if (!istype(aspect, /datum/game_aspect/ww2/no_artillery))
-			if (clients.len <= ARTILLERY_LOWPOP_THRESHOLD)
-				for (var/obj/structure/artillery/A in world)
-					qdel(A)
-				for (var/obj/structure/closet/crate/artillery/C in world)
-					qdel(C)
-				for (var/obj/structure/closet/crate/artillery_gas/C in world)
-					qdel(C)
-				if (map)
-					german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
-					german_supply_crate_types -= "Artillery Ballistic Shells Crate"
-					german_supply_crate_types -= "Artillery Gas Shells Crate"
-					map.katyushas = FALSE
-				for (var/obj/structure/mortar/M in world)
-					qdel(M)
-				for (var/obj/item/weapon/shovel/spade/mortar/S in world)
-					qdel(S)
-				for (var/obj/structure/closet/crate/mortar_shells/C in world)
-					qdel(C)
-				if (map)
-					german_supply_crate_types -= "Mortar Shells"
-					soviet_supply_crate_types -= "Mortar Shells"
-					soviet_supply_crate_types -= "37mm Spade Mortar"
-				world << "<i>Due to lowpop, there is no artillery or mortars.</i>"
+		if (clients.len <= ARTILLERY_LOWPOP_THRESHOLD)
+			for (var/obj/structure/artillery/A in world)
+				qdel(A)
+			for (var/obj/structure/closet/crate/artillery/C in world)
+				qdel(C)
+			for (var/obj/structure/closet/crate/artillery_gas/C in world)
+				qdel(C)
+			if (map)
+				german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
+				german_supply_crate_types -= "Artillery Ballistic Shells Crate"
+				german_supply_crate_types -= "Artillery Gas Shells Crate"
+				map.katyushas = FALSE
+			for (var/obj/structure/mortar/M in world)
+				qdel(M)
+			for (var/obj/item/weapon/shovel/spade/mortar/S in world)
+				qdel(S)
+			for (var/obj/structure/closet/crate/mortar_shells/C in world)
+				qdel(C)
+			if (map)
+				german_supply_crate_types -= "Mortar Shells"
+				soviet_supply_crate_types -= "Mortar Shells"
+				soviet_supply_crate_types -= "37mm Spade Mortar"
+			world << "<i>Due to lowpop, there is no artillery or mortars.</i>"
+
+		if (clients.len <= 12)
+			for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
+				D.Open()
+			for (var/obj/structure/simple_door/key_door/soviet/medic/D in world)
+				D.Open()
+			for (var/obj/structure/simple_door/key_door/soviet/engineer/D in world)
+				D.Open()
+			for (var/obj/structure/simple_door/key_door/german/QM/D in world)
+				D.Open()
+			for (var/obj/structure/simple_door/key_door/german/medic/D in world)
+				D.Open()
+			for (var/obj/structure/simple_door/key_door/german/engineer/D in world)
+				D.Open()
+			world << "<b>Due to lowpop, some doors have started open.</b>"
