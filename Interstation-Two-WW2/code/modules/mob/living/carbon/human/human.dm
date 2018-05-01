@@ -168,7 +168,7 @@ var/list/coefflist = list()
 		if (1.0)
 			b_loss += 500
 			if (!sprob(getarmor(null, "bomb")))
-				crush()
+				death()
 				return
 			else
 				var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))

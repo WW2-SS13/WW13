@@ -59,18 +59,12 @@ var/list/fire_pool = list()
 		fire.temperature = max(temp, fire.temperature)
 		return TRUE
 
-//	if (temp > 500)
-//		log_debug(temp)
-
 	fire = unpool_new_fire(src)
 
 	if (!spread)
 		fire.nospread = TRUE
 
 	fire.temperature = temp
-
-	//if (fire.temperature > 500)
-	//	log_debug(fire.temperature)
 
 	fire.setup(src, fl)
 

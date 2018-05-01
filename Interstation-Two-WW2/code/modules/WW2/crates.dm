@@ -547,6 +547,6 @@
 	name = "Rations: vodka"
 
 /obj/structure/closet/crate/rations/water
-	name = "Rations: H20"
+	name = "Rations: water"
 
 #undef DYNAMIC_AMT

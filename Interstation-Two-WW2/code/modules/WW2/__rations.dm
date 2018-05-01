@@ -31,7 +31,7 @@ var/list/soviet_rations_solids = list(/obj/item/weapon/reagent_containers/food/s
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesewheel,
 /obj/item/weapon/reagent_containers/food/snacks/sandwich,
 /obj/item/weapon/reagent_containers/food/snacks/mint,
-/obj/item/weapon/reagent_containers/food/snacks/cutlet,
+/obj/item/weapon/reagent_containers/food/snacks/sausage,
 /obj/item/weapon/reagent_containers/food/snacks/MRE/generic/soviet
 )
 
@@ -73,8 +73,9 @@ var/added_plants_to_rations = FALSE
 /proc/new_ration(faction, sort)
 
 	if (!added_plants_to_rations)
-		german_rations_solids += typesof(/obj/item/weapon/reagent_containers/food/snacks/grown) - /obj/item/weapon/reagent_containers/food/snacks/grown
-		soviet_rations_solids += typesof(/obj/item/weapon/reagent_containers/food/snacks/grown) - /obj/item/weapon/reagent_containers/food/snacks/grown
+		german_rations_solids += (typesof(/obj/item/weapon/reagent_containers/food/snacks/grown) - /obj/item/weapon/reagent_containers/food/snacks/grown)
+		soviet_rations_solids += (typesof(/obj/item/weapon/reagent_containers/food/snacks/grown) - /obj/item/weapon/reagent_containers/food/snacks/grown)
+		added_plants_to_rations = TRUE
 
 	switch (faction)
 		if (GERMAN)

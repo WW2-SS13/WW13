@@ -314,16 +314,18 @@ var/list/admin_verbs_mentor = list(
 	/client/proc/cmd_admin_subtle_message
 )
 
-var/list/admin_verbs_host = list(
+var/list/admin_verbs_manager = list(
 	/client/proc/reset_roundstart_autobalance,
+	/client/proc/toggle_BYOND_hub_visibility,
+	/client/proc/toggle_playing,
+	/client/proc/start_mapswap_vote
+)
+
+var/list/admin_verbs_host = list(
 	/client/proc/forceClose_game_schedule,
 	/client/proc/forceOpen_game_schedule,
-	/client/proc/toggle_BYOND_hub_visibility,
 	/client/proc/eject_unwhitelisted,
-//	/client/proc/toggle_hyperefficiency_mode,
-	/client/proc/toggle_playing,
-	/client/proc/toggle_pingability,
-	/client/proc/start_mapswap_vote
+	/client/proc/toggle_pingability
 )
 
 /client/proc/add_admin_verbs()
@@ -340,7 +342,9 @@ var/list/admin_verbs_host = list(
 			if(config.debugparanoid && !(holder.rights & R_ADMIN))
 				verbs.Remove(admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
 //		if(holder.rights & R_POSSESS)		verbs += admin_verbs_possess
-		if(holder.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
+		if(holder.rights & R_PERMISSIONS)
+			verbs += admin_verbs_permissions
+			verbs += admin_verbs_manager
 		if(holder.rights & R_STEALTH)		verbs += /client/proc/stealth
 		if(holder.rights & R_REJUVINATE)	verbs += admin_verbs_rejuv
 		if(holder.rights & R_SOUNDS)		verbs += admin_verbs_sounds

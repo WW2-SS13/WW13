@@ -246,20 +246,27 @@
 //Called when the projectile intercepts a mob. Returns TRUE if the projectile hit the mob, FALSE if it missed and should keep flying.
 /obj/item/projectile/proc/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
 
-
 	if (is_shrapnel)
-		target_mob.pre_bullet_act(src)
 		var/hit_zone = "head"
 		if (sprob(25))
 			for (var/zone in organ_rel_size)
 				if (prob(organ_rel_size[zone]))
 					hit_zone = zone
-		target_mob.bullet_act(src, hit_zone)
-		if(silenced)
-			target_mob << "<span class='danger'>You've been hit in the [parse_zone(hit_zone)] by the shrapnel!</span>"
+		if (hit_zone == "head" && ishuman(target_mob))
+			var/mob/living/carbon/human/H = target_mob
+			if (H.head && istype(H.head, /obj/item/clothing/head/helmet))
+				var/obj/item/clothing/head/helmet/helmet = H.head
+				if (helmet.block_check(src))
+					visible_message("<span class='warning'>\The [H]'s helmet deflects the shrapnel!</span>")
+					return
 		else
-			visible_message("<span class='danger'>\The [target_mob] is hit by the shrapnel in the [parse_zone(hit_zone)]!</span>")
-		return
+			target_mob.pre_bullet_act(src)
+			target_mob.bullet_act(src, hit_zone)
+			if(silenced)
+				target_mob << "<span class='danger'>You've been hit in the [parse_zone(hit_zone)] by the shrapnel!</span>"
+			else
+				visible_message("<span class='danger'>\The [target_mob] is hit by the shrapnel in the [parse_zone(hit_zone)]!</span>")
+			return
 
 	if(!istype(target_mob))
 		return
