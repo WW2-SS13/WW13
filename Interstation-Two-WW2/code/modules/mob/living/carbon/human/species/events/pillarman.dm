@@ -59,6 +59,8 @@
 		for (var/datum/reagent/blood/B in vessel.reagent_list)
 			B.volume = min(B.volume, vessel.maximum_volume)
 		H.crush()
+	else
+		H.adjustBruteLoss(srand(20,30))
 	absorbing = FALSE
 
 /mob/living/carbon/human/pillarman/proc/shoot_burning_blood()
