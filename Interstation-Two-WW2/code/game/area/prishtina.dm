@@ -205,7 +205,7 @@
 	icon_state = "purple1"
 	name = "Admin Zone"
 	location = AREA_INSIDE
-	artillery_integrity = 1000000
+	artillery_integrity = INFINITY
 
 /area/prishtina/admin/tonkland
 	name = "Tonk Zone"
@@ -272,6 +272,8 @@
 /area/prishtina/houses/ger_thirteen
 /area/prishtina/houses/ger_fourteen
 
+/area/prishtina/sewers
+	artillery_integrity = INFINITY
 
 // "wormhole" areas: doesn't include trains since they don't get their area copied
 

@@ -5,7 +5,7 @@
 
 /datum/job/pillarman
 	default_language = "German"
-	additional_languages = list("Russian" = 100, "Ukrainian" = 100)
+	additional_languages = list("Russian" = 100, "Ukrainian" = 100, "Polish" = 100, "Italian" = 100)
 
 /datum/job/german
 	default_language = "German"

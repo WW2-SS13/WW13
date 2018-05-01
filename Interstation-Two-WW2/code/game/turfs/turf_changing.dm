@@ -43,7 +43,7 @@
 		var/turf/W = new N( locate(x, y, z) )
 		if (istype(W, /turf/floor/plating/grass))
 			if (ticker.mode.vars.Find("season"))
-				switch (ticker.mode:season)
+				switch (ticker.mode.season)
 					if ("WINTER")
 						W.color = DEAD_COLOR
 					if ("SUMMER")

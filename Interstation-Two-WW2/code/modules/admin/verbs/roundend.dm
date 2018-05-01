@@ -6,7 +6,7 @@
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
-	if (!istype(ticker.mode, /datum/game_mode/ww2))
+	if (!istype(ticker.mode, /datum/game_mode/WW2))
 		src << "<span class = 'danger'>Hey dick, you aren't allowed to end this type of gamemode.</span>"
 		return
 
@@ -18,7 +18,7 @@
 	if (conf_2 == "No")
 		return
 
-	var/datum/game_mode/ww2/WW2 = ticker.mode
+	var/datum/game_mode/WW2/WW2 = ticker.mode
 	WW2.admins_triggered_roundend = TRUE
 
 	message_admins("[key_name(src)] ended the round!")
@@ -32,11 +32,11 @@
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
-	if (!istype(ticker.mode, /datum/game_mode/ww2))
+	if (!istype(ticker.mode, /datum/game_mode/WW2))
 		src << "<span class = 'danger'>Hey dick, you aren't allowed to prevent roundend this type of gamemode.</span>"
 		return
 
-	var/datum/game_mode/ww2/WW2 = ticker.mode
+	var/datum/game_mode/WW2/WW2 = ticker.mode
 	WW2.admins_triggered_noroundend = !WW2.admins_triggered_noroundend
 
 	switch (WW2.admins_triggered_noroundend)

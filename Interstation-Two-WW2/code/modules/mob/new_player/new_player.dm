@@ -597,6 +597,9 @@
 
 		try
 
+			if (job.faction != "Station")
+				continue
+
 			if (!arty && (istype(job, /datum/job/german/artyman) || istype(job, /datum/job/german/scout)))
 				continue
 

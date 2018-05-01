@@ -34,8 +34,7 @@
 
 /mob/living/carbon/human/proc/equip_coat(ctype)
 	if (ticker && ticker.mode)
-		var/datum/game_mode/ww2/mode = ticker.mode
-		if (istype(mode) && mode.season == "WINTER")
+		if (ticker.mode.season == "WINTER")
 			var/obj/item/radio/radio = null
 			if (istype(wear_suit, /obj/item/clothing/suit/radio_harness))
 				radio = s_store

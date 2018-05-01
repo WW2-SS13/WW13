@@ -86,12 +86,11 @@
 	var/list/possibilities = list(WEATHER_NONE)
 	var/list/non_possibilities = list(weather)
 
-	if (ticker.mode.vars.Find("season"))
-		switch (ticker.mode:season)
-			if ("WINTER")
-				possibilities += WEATHER_SNOW
-			if ("SPRING")
-				possibilities += WEATHER_RAIN
+	switch (ticker.mode.season)
+		if ("WINTER")
+			possibilities += WEATHER_SNOW
+		if ("SPRING")
+			possibilities += WEATHER_RAIN
 
 	possibilities -= non_possibilities
 

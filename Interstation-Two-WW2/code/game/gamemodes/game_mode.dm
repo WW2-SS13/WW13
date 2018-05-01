@@ -36,6 +36,8 @@ var/global/list/additional_antag_types = list()
 
 	var/datum/game_aspect/aspect = null
 
+	var/season = "SPRING"
+
 /datum/game_mode/Topic(href, href_list[])
 	if(..())
 		return
@@ -117,8 +119,6 @@ var/global/list/additional_antag_types = list()
 			world << "[antag_summary]"
 		else
 			message_admins("[antag_summary]")
-/*	if (aspect)
-		aspect.activate()*/
 
 ///can_start()
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
@@ -369,9 +369,7 @@ var/global/list/additional_antag_types = list()
 	return
 
 /datum/game_mode/proc/season()
-	if (vars.Find("season"))
-		return capitalize(lowertext(src:season))
-	return "Spring"
+	return capitalize(lowertext(season))
 
 /datum/game_mode/proc/weather()
 	. = capitalize(get_weather())

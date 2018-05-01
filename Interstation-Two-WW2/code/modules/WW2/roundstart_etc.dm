@@ -19,9 +19,7 @@ var/GRACE_PERIOD_LENGTH = 7
 
 	// after the game mode has been announced.
 	spawn (5)
-		var/season = "SPRING"
-		if (ticker.mode.vars.Find("season"))
-			season = ticker.mode:season
+		var/season = ticker.mode.season
 		update_lighting(announce = FALSE)
 		world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(time_of_day)]</b>, and the season is <b>[capitalize(lowertext(season))]</b>.</span></font>"
 
@@ -54,8 +52,7 @@ var/GRACE_PERIOD_LENGTH = 7
 
 	var/nature_chance = 100
 
-	var/datum/game_mode/ww2/mode = ticker.mode
-	if (mode.season == "WINTER")
+	if (ticker.mode.season == "WINTER")
 		nature_chance = 70
 
 	// create wild grasses in "clumps"
@@ -78,14 +75,13 @@ var/GRACE_PERIOD_LENGTH = 7
 /proc/do_seasonal_stuff()
 	spawn (1)
 		world << "<span class = 'notice'>Setting up seasonal stuff.</span>"
-	var/datum/game_mode/ww2/mode = ticker.mode
 
-	if (istype(mode))
+	if (ticker.mode)
 
 		var/use_snow = FALSE
 
 		// first, make all water into ice if it's winter
-		if (mode.season == "WINTER")
+		if (ticker.mode.season == "WINTER")
 			for (var/turf/floor/plating/beach/water/W in turfs)
 				if (!istype(W, /turf/floor/plating/beach/water/sewage))
 					new /turf/floor/plating/beach/water/ice (W)
@@ -101,7 +97,7 @@ var/GRACE_PERIOD_LENGTH = 7
 			if (!G || G.z > 1 || (!G.uses_winter_overlay && !locate(/obj/snow_maker) in G))
 				continue
 
-			G.season = mode.season
+			G.season = ticker.mode.season
 
 			var/area/A = get_area(G)
 

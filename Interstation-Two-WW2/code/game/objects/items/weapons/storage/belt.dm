@@ -85,7 +85,6 @@
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/head/surgery,
 		/obj/item/clothing/gloves/latex,
-		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/weapon/crowbar/prybar,
 		/obj/item/flashlight,
 		/obj/item/weapon/extinguisher/mini

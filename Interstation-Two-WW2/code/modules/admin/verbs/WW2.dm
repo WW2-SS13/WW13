@@ -562,7 +562,7 @@ var/soviets_toggled = TRUE
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
-	if (!istype(ticker.mode, /datum/game_mode/ww2))
+	if (!istype(ticker.mode, /datum/game_mode/WW2))
 		src << "<span class = 'danger'>You can't do this on this game mode.</span>"
 		return
 
@@ -621,7 +621,7 @@ var/paratroopers_forceEnabled = FALSE
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
-	if (!istype(ticker.mode, /datum/game_mode/ww2))
+	if (!istype(ticker.mode, /datum/game_mode/WW2))
 		src << "<span class = 'danger'>You can't do this on this game mode.</span>"
 		return
 

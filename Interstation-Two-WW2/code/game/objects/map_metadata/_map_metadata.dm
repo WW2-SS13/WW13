@@ -35,6 +35,9 @@ var/global/obj/map_metadata/map = null
 	var/list/faction_organization = list()
 	var/list/faction_distribution_coeffs = list(INFINITY) // list(INFINITY) = no hard locks on factions
 	var/list/available_subfactions = list()
+	var/list/roundend_condition_sides = list(
+		list(GERMAN),
+		list(SOVIET))
 	var/list/ambience = list()
 	var/list/songs = list(
 		"Bots - Was Wollen Wir Trinken (Harcourt Edit):1" = 'sound/music/BotsWaswollenwirtrinkenWehrmachtHarcourt.ogg',

@@ -676,7 +676,7 @@
 				stat("Grace Period Status:", grace_period_string)
 
 				if (ticker && ticker.mode && ticker.mode.config_tag == "WW2")
-					var/datum/game_mode/ww2/mode = ticker.mode
+					var/datum/game_mode/WW2/mode = ticker.mode
 					stat("Current Round End Condition:", mode.current_stat_message())
 
 				stat("Map:", map.title)

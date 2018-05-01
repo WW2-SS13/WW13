@@ -164,42 +164,7 @@ var/global/datum/controller/occupations/job_master
 			if (SOVIET)
 				return round(soviet_squad_members/MEMBERS_PER_SQUAD)
 		return FALSE
-/*
-	proc/can_have_squad_leader(var/team)
-		switch (team)
-			if (GERMAN)
-				switch (german_squad_members)
-					if (1 to 6)
-						if (!german_squad_leaders)
-							return TRUE
-					if (7 to 12)
-						if (german_squad_leaders <= 1)
-							return TRUE
-					if (13 to 18)
-						if (german_squad_leaders <= 2)
-							return TRUE
-					if (19 to INFINITY)
-						if (german_squad_leaders <= 3)
-							return TRUE
-				return FALSE
-			if (SOVIET)
-				switch (soviet_squad_members)
-					if (1 to 6)
-						if (!soviet_squad_leaders)
-							return TRUE
-					if (7 to 12)
-						if (soviet_squad_leaders <= 1)
-							return TRUE
-					if (13 to 18)
-						if (soviet_squad_leaders <= 2)
-							return TRUE
-					if (19 to INFINITY)
-						if (soviet_squad_leaders <= 3)
-							return TRUE
-				return FALSE
-		return FALSE // if we aren't german or soviet this is irrelevant
-			// and will never be called anyway
-			*/
+
 	proc/must_have_squad_leader(var/team)
 		switch (team)
 			if (GERMAN)
@@ -300,6 +265,7 @@ var/global/datum/controller/occupations/job_master
 			if(!job)	continue
 			if(job.faction != faction)	continue
 			occupations += job
+		occupations += new/datum/job/german/oberstleutnant
 		return TRUE
 
 
@@ -601,7 +567,7 @@ var/global/datum/controller/occupations/job_master
 
 			// Give the guy some ammo for his gun
 			spawn (0.1)
-				if (istype(ticker.mode, /datum/game_mode/ww2))
+				if (istype(ticker.mode, /datum/game_mode/WW2))
 					for (var/obj/item/weapon/gun/projectile/gun in H.contents)
 						if (gun.w_class == 5 && gun.gun_type == GUN_TYPE_MG) // MG
 							if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
@@ -638,6 +604,7 @@ var/global/datum/controller/occupations/job_master
 
 			if (names_used[H.real_name])
 				job.give_random_name(H)
+
 			names_used[H.real_name] = TRUE
 
 			if (job.rank_abbreviation)

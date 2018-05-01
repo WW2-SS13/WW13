@@ -339,8 +339,7 @@
 	if (mob_area.location == AREA_OUTSIDE && ticker && ticker.mode) // this ticker.mode check is very important
 	// if its not here, the mob_process won't work properly before the round has started
 
-		if (ticker.mode.vars.Find("season"))
-			game_season = ticker.mode:season
+		game_season = ticker.mode.season
 
 		switch (game_season)
 			if ("WINTER")

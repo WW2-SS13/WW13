@@ -10,6 +10,55 @@
 	H.name = H.species.get_random_german_name(H.gender)
 	H.real_name = H.name
 
+// special event role
+/datum/job/german/oberstleutnant
+	title = "Oberstleutnant"
+	en_meaning = "Oberstleutnant"
+	rank_abbreviation = "obst"
+	head_position = TRUE
+	selection_color = "#2d2d63"
+	spawn_location = "JoinLateHeerCO"
+	faction = "Not Station"
+	additional_languages = list( "Russian" = 100, "Ukrainian" = 50, "Italian" = 100)
+	is_officer = TRUE
+	is_commander = TRUE
+	whitelisted = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+
+/datum/job/german/oberstleutnant/equip(var/mob/living/carbon/human/H)
+	if(!H)	return FALSE
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/general(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
+	if (istype(H, /mob/living/carbon/human/mechahitler))
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger/gibber(H), slot_belt)
+	else
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_l_hand)
+	spawn (5) // after we have our name
+		if (!istype(H, /mob/living/carbon/human/mechahitler))
+			if (!istype(get_area(H), /area/prishtina/admin))
+				world << "<b><big>[H.real_name] is the [title] of the German forces!</big></b>"
+	H << "<span class = 'notice'>You are the <b>[title]</b>, a high-ranking officer who has come to inspect the front. You take orders from the <b>German High Command</b>.</span>"
+	H.give_radio()
+	H.setStat("strength", STAT_MEDIUM_LOW)
+	H.setStat("engineering", STAT_VERY_LOW)
+	H.setStat("rifle", STAT_LOW)
+	H.setStat("mg", STAT_MEDIUM_LOW)
+	H.setStat("smg", STAT_NORMAL)
+	H.setStat("pistol", STAT_NORMAL)
+	H.setStat("heavyweapon", STAT_NORMAL)
+	H.setStat("medical", STAT_VERY_LOW)
+	H.setStat("shotgun", STAT_NORMAL)
+	return TRUE
+
+/datum/job/german/oberstleutnant/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/medic, new/obj/item/weapon/key/german/engineer,
+		new/obj/item/weapon/key/german/QM, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/command_high, new/obj/item/weapon/key/german/train, new/obj/item/weapon/key/german/SS)
+
 /datum/job/german/commander
 	title = GERMAN_CO_TITLE
 	en_meaning = "Company Commander"
