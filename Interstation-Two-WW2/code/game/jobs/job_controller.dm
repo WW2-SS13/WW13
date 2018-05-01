@@ -110,10 +110,13 @@ var/global/datum/controller/occupations/job_master
 			else
 				J.total_positions = 0
 
+		if (map && map.subfaction_is_main_faction)
+			announce = FALSE
+
 		if (italiano)
 			if (announce)
 				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Italian Army for this battle.</span></font>"
-				italians_were_enabled = TRUE
+			italians_were_enabled = TRUE
 		else
 			for (var/obj/structure/vending/italian/apparel/pizzeria in world)
 				qdel(pizzeria)
@@ -123,14 +126,14 @@ var/global/datum/controller/occupations/job_master
 		if (warcrimes)
 			if (announce)
 				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
-				SS_was_enabled = TRUE
+			SS_was_enabled = TRUE
 
 		if (!is_side_locked(CIVILIAN) && map && map.faction_organization.Find(CIVILIAN) && map.faction_organization.Find(PARTISAN))
 			if (italiano || warcrimes || autobalance_for_players >= PLAYER_THRESHOLD_HIGHEST-10)
 				if (announce)
 					world << "<font size = 3><span class = 'info'>Civilian and Partisan factions are enabled.</span></font>"
-					civilians_were_enabled = TRUE
-					partisans_were_enabled = TRUE
+				civilians_were_enabled = TRUE
+				partisans_were_enabled = TRUE
 
 	proc/spawn_with_delay(var/mob/new_player/np, var/datum/job/j)
 		// for delayed spawning, wait the spawn_delay of the job
