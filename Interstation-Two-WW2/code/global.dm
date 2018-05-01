@@ -116,8 +116,8 @@ var/list/awaydestinations = list() // Away missions. A list of landmarks that th
 var/season = "SPRING"
 
 /proc/get_weather()
-	. = capitalize(get_weather_default())
-	if (. == "None")
+	. = get_weather_default(weather)
+	if (. == "none")
 		return "Clear skies"
 	return "It's [lowertext(.)]ing"
 

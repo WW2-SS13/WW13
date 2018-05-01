@@ -104,6 +104,7 @@
 			return "snow"
 		if (WEATHER_RAIN)
 			return "rain"
+	return "none"
 
 // global weather variable changed
 /proc/announce_weather_change(var/old, var/_new)

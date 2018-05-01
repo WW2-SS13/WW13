@@ -86,7 +86,7 @@ var/global/obj/map_metadata/map = null
 					else
 						available_subfactions = list()
 
-// called from the ticker process
+// called from the map process
 /obj/map_metadata/proc/tick()
 	if (last_crossing_block_status[GERMAN] == FALSE)
 		if (germans_can_cross_blocks())
@@ -133,6 +133,8 @@ var/global/obj/map_metadata/map = null
 	if (event_faction)
 		last_crossing_block_status[event_faction] = specialfaction_can_cross_blocks()
 
+	check_finished()
+
 /obj/map_metadata/proc/check_prishtina_block(var/mob/living/carbon/human/H, var/turf/T)
 	if (!istype(H) || !istype(T))
 		return FALSE
@@ -177,6 +179,7 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/proc/reinforcements_ready()
 	return game_started
 
+// old game mode stuff
 /obj/map_metadata/proc/can_start()
 
 	var/playercount = 0
@@ -272,7 +275,6 @@ var/global/obj/map_metadata/map = null
 			return "Soviets"
 		if ("Pillar Men & Vampires")
 			return "Pillar Men & Vampires"
-
 
 /obj/map_metadata/proc/check_finished(var/round_ending = FALSE)
 	if (admins_triggered_noroundend)
