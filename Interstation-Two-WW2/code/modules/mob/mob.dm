@@ -680,7 +680,7 @@
 				stat("Map:", map.title)
 
 			stat("Season:", get_season())
-			stat("Weather:", weather)
+			stat("Weather:", get_weather())
 			stat("Time of Day:", time_of_day)
 
 			if (z == 2 && map && map.ID == "FOREST")

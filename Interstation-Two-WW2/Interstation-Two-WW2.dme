@@ -900,6 +900,7 @@
 #include "code\processes\explosions.dm"
 #include "code\processes\garbage.dm"
 #include "code\processes\info.dm"
+#include "code\processes\map.dm"
 #include "code\processes\mapswap.dm"
 #include "code\processes\menacing.dm"
 #include "code\processes\mob.dm"
