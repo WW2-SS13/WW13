@@ -86,7 +86,7 @@
 	var/list/possibilities = list(WEATHER_NONE)
 	var/list/non_possibilities = list(weather)
 
-	switch (ticker.mode.season)
+	switch (season)
 		if ("WINTER")
 			possibilities += WEATHER_SNOW
 		if ("SPRING")
@@ -96,7 +96,7 @@
 
 	change_weather(spick(possibilities))
 
-/proc/get_weather(var/_weather)
+/proc/get_weather_default(var/_weather)
 	switch (_weather ? _weather : weather)
 		if (WEATHER_NONE)
 			return "none"

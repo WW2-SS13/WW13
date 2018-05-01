@@ -345,10 +345,10 @@ proc/admin_notice(var/message, var/rights)
 
 	var/dat = {"
 		<center><b>Game Panel</b></center><hr>\n
-		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
 		"}
-	if(master_mode == "secret")
-		dat += "<A href='?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"
+		//		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
+/*	if(master_mode == "secret")
+		dat += "<A href='?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"*/
 
 	dat += {"
 		<br>
@@ -640,17 +640,18 @@ proc/admin_notice(var/message, var/rights)
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
 /proc/is_special_character(mob/M as mob) // returns TRUE for specail characters and 2 for heroes of gamemode
-	if(!ticker || !ticker.mode)
-		return FALSE
+/*	if(!ticker || !ticker.mode)
+		return FALSE*/
 	if (!istype(M))
 		return FALSE
 
 	if(M.mind)
-		if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
+/*		if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
 			for(var/datum/antagonist/antag in ticker.mode.antag_templates)
 				if(antag.is_antagonist(M.mind))
 					return 2
-		else if(M.mind.special_role)
+		else */
+		if(M.mind.special_role)
 			return TRUE
 
 	return FALSE
@@ -760,7 +761,7 @@ var/list/atom_types = null
 		var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
 		message_admins(msg)
 		log_admin(msg)
-
+/*
 
 /datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
 	set category = "Admin"
@@ -775,8 +776,8 @@ var/list/atom_types = null
 		return
 
 	M.mind.edit_memory()
-
-
+*/
+/*
 /datum/admins/proc/show_game_mode()
 	set category = "Admin"
 	set desc = "Show the current round configuration."
@@ -842,7 +843,7 @@ var/list/atom_types = null
 	out += " <a href='?src=\ref[ticker.mode];add_antag_type=1'>\[+\]</a><br/>"
 
 	usr << browse(out, "window=edit_mode[src]")
-
+*/
 
 /*
 /datum/admins/proc/toggletintedweldhelmets()
@@ -982,7 +983,7 @@ var/list/atom_types = null
 	tomob.ckey = frommob.ckey
 	qdel(frommob)
 	return TRUE
-
+/*
 /datum/admins/proc/force_antag_latespawn()
 	set category = "Admin"
 	set name = "Force Template Spawn"
@@ -1024,7 +1025,7 @@ var/list/atom_types = null
 
 	log_and_message_admins("attempting to force mode autospawn.")
 	ticker.mode.process_autoantag()
-
+*/
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
 	set category = "Admin"
 	set name = "Toggle Paralyze"

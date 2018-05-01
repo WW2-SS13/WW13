@@ -562,10 +562,6 @@ var/soviets_toggled = TRUE
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
-	if (!istype(ticker.mode, /datum/game_mode/WW2))
-		src << "<span class = 'danger'>You can't do this on this game mode.</span>"
-		return
-
 	var/list/choices = list()
 
 	choices += "PARTISANS ([partisans_toggled ? "ENABLED" : "DISABLED"])"
@@ -619,10 +615,6 @@ var/paratroopers_forceEnabled = FALSE
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
-		return
-
-	if (!istype(ticker.mode, /datum/game_mode/WW2))
-		src << "<span class = 'danger'>You can't do this on this game mode.</span>"
 		return
 
 	var/list/choices = list()

@@ -124,9 +124,9 @@
 	dead_mob_list |= src
 
 	updateicon()
-
+/*
 	if(ticker && ticker.mode)
-		ticker.mode.check_win()
+		ticker.mode.check_win()*/
 
 	if (client)
 		ghostize()

@@ -345,9 +345,10 @@
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
-		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
+
+/*		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
-			return
+			return*/
 
 		if (list(GERMAN,ITALIAN).Find(job_flag) && has_occupied_base(GERMAN))
 			usr << "<span class='danger'>The Soviets are currently occupying your base! You can't be deployed right now."

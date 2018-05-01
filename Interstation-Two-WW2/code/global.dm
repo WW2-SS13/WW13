@@ -49,8 +49,8 @@ var/changelog_hash      = ""
 //var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
 var/round_progressing = TRUE
-var/master_mode       = "WW2" // "extended"
-var/secret_force_mode = "WW2"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
+//var/master_mode       = "WW2" // "extended"
+//var/secret_force_mode = "WW2"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
 
 var/host = null //only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
 
@@ -112,6 +112,17 @@ var/join_motd = null
 var/datum/nanomanager/nanomanager		= new() // NanoManager, the manager for Nano UIs.
 
 var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.
+
+var/season = "SPRING"
+
+/proc/get_weather()
+	. = capitalize(get_weather_default())
+	if (. == "None")
+		return "Clear skies"
+	return "It's [lowertext(.)]ing"
+
+/proc/get_season()
+	return capitalize(lowertext(season))
 
 // MySQL configuration
 var/sqladdress = "localhost"

@@ -25,7 +25,7 @@
 		area.initialize()
 
 	// Set up antagonists.
-	populate_antag_type_list()
+//	populate_antag_type_list()
 
 	//Set up spawn points.
 	//populate_spawn_points()

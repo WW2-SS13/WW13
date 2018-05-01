@@ -383,7 +383,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(G_found.mind && !G_found.mind.active)
 		G_found.mind.transfer_to(new_character)	//be careful when doing stuff like this! I've already checked the mind isn't in use
-		new_character.mind.special_verbs = list()
+	//	new_character.mind.special_verbs = list()
 	else
 		new_character.mind_initialize()
 	if(!new_character.mind.assigned_role)	new_character.mind.assigned_role = "Assistant"//If they somehow got a null assigned role.
@@ -415,13 +415,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/admin = key_name_admin(src)
 	var/player_key = G_found.key
 
-	//Now for special roles and equipment.
+/*	//Now for special roles and equipment.
 	var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
 	if(antag_data)
 		antag_data.add_antagonist(new_character.mind)
 		antag_data.place_mob(new_character)
-	else
-		job_master.EquipRank(new_character, new_character.mind.assigned_role, TRUE)
+	else*/
+	job_master.EquipRank(new_character, new_character.mind.assigned_role, TRUE)
 /*
 	//Announces the character on all the systems, based on the record.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.
@@ -695,8 +695,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	usr << text("<span class = 'red'><b>Attack Log for []</b></span>", mob)
 	for(var/t in M.attack_log)
 		usr << t
-
-
+/*
 
 /client/proc/everyone_random()
 	set category = "Fun"
@@ -729,9 +728,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	usr << "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>."
 
 	ticker.random_players = TRUE
+*/
 
-
-
+/*
 /client/proc/toggle_random_events()
 	set category = "Server"
 	set name = "Toggle random events on/off"
@@ -748,3 +747,4 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		usr << "Random events disabled"
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", TRUE)
 
+*/

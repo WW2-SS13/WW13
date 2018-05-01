@@ -46,7 +46,7 @@ var/list/admin_verbs_admin = list(
 	//allows us to cancel the emergency shuttle, sending it back to centcomm,
 	/client/proc/cmd_admin_direct_narrate,	//send text directly to a player with no padding. Useful for narratives and fluff-text,
 	/client/proc/cmd_admin_world_narrate,	//sends text to all players with no padding,
-	/client/proc/check_antagonists,
+//	/client/proc/check_antagonists,
 	/client/proc/admin_memo,			//admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
 	/client/proc/dsay,					//talk in deadchat using our ckey/fakekey,
 //	/client/proc/toggle_hear_deadcast,	//toggles whether we hear deadchat,
@@ -202,7 +202,7 @@ var/list/admin_verbs_rejuv = list(
 var/list/admin_verbs_hideable = list(
 	/client/proc/deadmin_self,
 //	/client/proc/deadchat,
-	/datum/admins/proc/show_traitor_panel,
+//	/datum/admins/proc/show_traitor_panel,
 	/datum/admins/proc/toggleenter,
 	/datum/admins/proc/toggleguests,
 	/datum/admins/proc/announce,
@@ -227,7 +227,7 @@ var/list/admin_verbs_hideable = list(
 //	/client/proc/cinematic,
 //	/datum/admins/proc/toggle_aliens,
 	/client/proc/make_sound,
-	/client/proc/toggle_random_events,
+//	/client/proc/toggle_random_events,
 	/client/proc/ToRban,
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,
@@ -235,7 +235,7 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/toggleaban,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/immreboot,
-	/client/proc/everyone_random,
+//	/client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
@@ -276,7 +276,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/dsay,
 	/datum/admins/proc/announce,		//priority announce something to all clients.,
 	/datum/admins/proc/show_player_panel,
-	/client/proc/check_antagonists,
+//	/client/proc/check_antagonists,
 //	/client/proc/jobbans,
 	/client/proc/cmd_admin_subtle_message, // send an message to somebody as a 'voice in their head',
 	/datum/admins/proc/paralyze_mob,
@@ -501,7 +501,7 @@ var/list/admin_verbs_host = list(
 		holder.player_panel_new()
 
 	return
-
+/*
 /client/proc/check_antagonists()
 	set name = "Check Antagonists"
 	set category = "Admin"
@@ -510,7 +510,7 @@ var/list/admin_verbs_host = list(
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
 
 	return
-/*
+/**/
 /client/proc/jobbans()
 	set name = "Display Job bans"
 	set category = "Admin"

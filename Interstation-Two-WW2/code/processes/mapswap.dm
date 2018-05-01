@@ -35,11 +35,10 @@ var/process/mapswap/mapswap_process = null
 		else if (ticks >= 720 || (map && istype(map, /obj/map_metadata/pillar) && ticks >= 240))
 			. = TRUE
 		// round will end in 5 minutes or less
-		else if (ticker && ticker.mode && istype(ticker.mode, /datum/game_mode/WW2))
-			var/datum/game_mode/WW2/mode = ticker.mode
-			if (mode.next_win_time() <= 3 && mode.next_win_time() != -1)
+		else if (map)
+			if (map.next_win_time() <= 3 && map.next_win_time() != -1)
 				. = TRUE
-			else if (mode.admins_triggered_roundend)
+			else if (map.admins_triggered_roundend)
 				. = TRUE
 	return .
 
