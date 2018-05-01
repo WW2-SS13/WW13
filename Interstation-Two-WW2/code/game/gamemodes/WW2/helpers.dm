@@ -43,19 +43,18 @@
 
 /proc/is_soviet_contested_zone(var/area/a)
 	if (istype(a, /area/prishtina/soviet/bunker))
-		if (!istype(a, /area/prishtina/soviet/bunker/tunnel))
+		if (a.capturable)
 			return TRUE
 	else if (istype(a, /area/prishtina/soviet/small_map))
-		return TRUE
+		if (a.capturable)
+			return TRUE
 	return FALSE
 
 /proc/is_german_contested_zone(var/area/a)
 	if (istype(a, /area/prishtina/german))
-		if (!istype(a, /area/prishtina/german/train_landing_zone))
-			if (!istype(a, /area/prishtina/german/train_zone))
-				return TRUE
+		if (a.capturable)
+			return TRUE
 	return FALSE
-
 
 /proc/get_soviet_german_stats()
 	var/alive_soviets = 0

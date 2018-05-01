@@ -61,6 +61,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 	var/is_void_area = FALSE
 
+	var/capturable = TRUE
+
 	var/parent_area_type = null
 	var/area/parent_area = null
 

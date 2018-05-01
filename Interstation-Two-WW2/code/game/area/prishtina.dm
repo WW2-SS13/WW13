@@ -428,6 +428,7 @@
 	#endif
 	location = AREA_INSIDE
 	is_train_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/german/train_starting_zone
 	icon_state = "blue2"
@@ -438,6 +439,7 @@
 	icon_state = "blue2"
 	name = "Train Unboarding"
 	dynamic_lighting = FALSE
+	capturable = FALSE
 
 /area/prishtina/german/resting_area_1
 	name = "Resting Area #1"
@@ -824,6 +826,7 @@
 /area/prishtina/soviet/bunker/tunnel
 	icon_state = "red2"
 	name = "Bunker Tunnel"
+	capturable = FALSE
 
 /area/prishtina/soviet/bunker/entrance
 	icon_state = "green1"
