@@ -163,7 +163,14 @@
 			hitchance /= 1.33 // this used to be 2 and made headshots really inaccurate, needs to be 1.33 to "double" miss chance - Kachnov
 			. = ceil(100 - hitchance)
 
+		// gas masks make you less accurate now
+		if (firer.wear_mask)
+			var/hitchance = 100 - .
+			hitchance /= 1.10
+			. = ceil(100 - hitchance)
+
 	. = min(CLAMP0100(.), 99) // minimum hit chance is 2% no matter what
+	log_debug(.)
 
 //	log_debug("final miss chance: [.]")
 

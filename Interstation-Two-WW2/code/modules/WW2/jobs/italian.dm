@@ -29,7 +29,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/itahelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/shovel/spade/russia(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/carcano(H), slot_back)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, an Italian infantry unit assisting the Wehrmacht. Your job is to participate in front line combat.</span>"
+	H.add_note("Role", "You are a <b>[title]</b>, an Italian infantry unit assisting the Wehrmacht. Your job is to participate in front line combat.")
 	H.give_radio()
 	H.setStat("strength", STAT_NORMAL)
 	H.setStat("engineering", STAT_NORMAL)
@@ -70,7 +70,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/modello38(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a medic. Your job is to keep your squad healthy and in good condition.</span>"
+	H.add_note("Role", "You are a <b>[title]</b>, a medic. Your job is to keep your squad healthy and in good condition.")
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_LOW)
 	H.setStat("engineering", STAT_LOW)
@@ -113,7 +113,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gerofficercap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/modello38(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/binoculars(H), slot_belt)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, an Italian squad leader assisting the Wehrmacht. Your job is to participate in front line combat</span>"
+	H.add_note("Role", "You are a <b>[title]</b>, an Italian squad leader assisting the Wehrmacht. Your job is to participate in front line combat.")
 	H.give_radio()
 	if (secret_ladder_message)
 		H << "<br>[secret_ladder_message]"

@@ -36,16 +36,20 @@
 			switch (H.client.prefs.soviet_ethnicity)
 				if (RUSSIAN)
 					H.add_language(RUSSIAN, TRUE)
+					H.add_note("Known Languages", "Russian")
 				if (UKRAINIAN)
 					H.add_language(UKRAINIAN, TRUE)
-					H.show_message("<b>You know the Ukrainian language!</b>")
+					H.add_note("Known Languages", "Ukrainian")
 				if (POLISH)
 					H.add_language(POLISH, TRUE)
-					H.show_message("<b>You know the Polish language!</b>")
+					H.add_note("Known Languages", "Polish")
+
 	if (!H.languages.len)
 		H.add_language(default_language, TRUE)
+		H.add_note("Known Languages", default_language)
 	else if (H.languages[1] != default_language)
 		H.add_language(default_language, FALSE)
+		H.add_note("Known Languages", default_language)
 
 	H.default_language = H.languages[1]
 
@@ -55,5 +59,5 @@
 
 			if (sprob(probability))
 				H.add_language(language_name, FALSE)
-				H.show_message("<b>You know the [language_name] language!</b>")
+				H.add_note("Known Languages", language_name)
 

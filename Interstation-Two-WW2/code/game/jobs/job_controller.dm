@@ -467,6 +467,8 @@ var/global/datum/controller/occupations/job_master
 
 			//Equip job items.
 
+			H.wipe_notes()
+
 			job.equip(H)
 
 			// civs and partisans
@@ -746,24 +748,24 @@ var/global/datum/controller/occupations/job_master
 				spawn (5)
 					for (var/i in 1 to soviet_officer_squad_info.len)
 						if (soviet_officer_squad_info[i])
-							H << "<br>[soviet_officer_squad_info[i]]"
+					//		H << "<br>[soviet_officer_squad_info[i]]"
 							H.add_memory(soviet_officer_squad_info[i])
 
 			else if (H.original_job.is_officer && H.original_job.base_type_flag() == GERMAN)
 				spawn (5)
 					for (var/i in 1 to german_officer_squad_info.len)
 						if (german_officer_squad_info[i])
-							H << "<br>[german_officer_squad_info[i]]"
+					//		H << "<br>[german_officer_squad_info[i]]"
 							H.add_memory(german_officer_squad_info[i])
 
 			if (H.original_job.is_officer)
 				if (H.original_job.base_type_flag() == GERMAN)
-					H << "The passcode for radios and phones is <b>[supply_codes[GERMAN]].</b>"
-					H.add_memory("The passcode for radios and phones is [supply_codes[GERMAN]]")
+			//		H << "The passcode for radios and phones is <b>[supply_codes[GERMAN]].</b>"
+					H.add_memory("The passcode for radios and phones is [supply_codes[GERMAN]].")
 
 				else if (H.original_job.base_type_flag() == SOVIET)
-					H << "The passcode for radios and phones is <b>[supply_codes[SOVIET]].</b>"
-					H.add_memory("The passcode for radios and phones is [supply_codes[SOVIET]]")
+			//		H << "The passcode for radios and phones is <b>[supply_codes[SOVIET]].</b>"
+					H.add_memory("The passcode for radios and phones is [supply_codes[SOVIET]].")
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO job spawn location = [H.job_spawn_location]"
@@ -836,6 +838,7 @@ var/global/datum/controller/occupations/job_master
 					H.client.remove_gun_icons()
 
 			H.stopDumbDamage = FALSE
+			H.memory()
 
 			return H
 
@@ -851,7 +854,7 @@ var/global/datum/controller/occupations/job_master
 
 		if (job.uses_keys)
 			spawn_keys(H, rank, job)
-			H << "<i>Click on a door with your <b>keychain</b> to open it. It will select the right key for you. To put the keychain in your hand, <b>drag</b> it.</i>"
+	//		H << "<i>Click on a door with your <b>keychain</b> to open it. It will select the right key for you. To put the keychain in your hand, <b>drag</b> it.</i>"
 
 		return TRUE
 

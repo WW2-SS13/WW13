@@ -234,6 +234,7 @@
 		return "Soviet"
 	else
 		return GERMAN
+		/*
 // make someone a spy regardless, allowing them to swap uniforms
 /datum/job/proc/make_spy(var/mob/living/carbon/human/user)
 
@@ -263,7 +264,7 @@
 			H.add_language(GERMAN, TRUE)
 		H.spy_faction = new/datum/faction/german()
 
-
+*/
 /proc/get_side_name(var/side, var/datum/job/j)
 	if (j && (istype(j, /datum/job/german/squad_leader_ss) || istype(j, /datum/job/german/soldier_ss)))
 		return "Waffen-S.S."
@@ -328,7 +329,7 @@
 	if (is_officer)
 		H.make_artillery_officer()
 		H.verbs += /mob/living/carbon/human/proc/Execute
-		H << "<span class = 'info'>As an officer, you can check coordinates and execute your subordinates.</span>"
+		H.add_note("Officer", "As an officer, you can check coordinates and execute subordinates.</span>")
 
 	// hack to make scope icons immediately appear - Kachnov
 	spawn (20)
