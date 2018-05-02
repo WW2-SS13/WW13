@@ -37,8 +37,8 @@ var/global/obj/map_metadata/map = null
 	var/list/faction_distribution_coeffs = list(INFINITY) // list(INFINITY) = no hard locks on factions
 	var/list/available_subfactions = list()
 	var/list/roundend_condition_sides = list(
-		list(GERMAN),
-		list(SOVIET))
+		list(GERMAN) = /area/prishtina/german,
+		list(SOVIET) = /area/prishtina/soviet)
 	var/list/ambience = list()
 	var/list/songs = list(
 		"Bots - Was Wollen Wir Trinken (Harcourt Edit):1" = 'sound/music/BotsWaswollenwirtrinkenWehrmachtHarcourt.ogg',
@@ -207,8 +207,8 @@ var/global/obj/map_metadata/map = null
 		world << "The round is over! [message]"
 		return FALSE
 	// German major
-	if (win_condition.check(typesof(/area/prishtina/soviet), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))
-		if (!win_condition.check(typesof(/area/prishtina/german), roundend_condition_sides[2], roundend_condition_sides[1], 1.33))
+	if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))
+		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[2][1])] base! They will win in {time} minute{s}."
 				next_win = world.time + short_win_time()
@@ -216,8 +216,8 @@ var/global/obj/map_metadata/map = null
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[2][1])
 	// German minor
-	else if (win_condition.check(typesof(/area/prishtina/soviet), roundend_condition_sides[1], roundend_condition_sides[2], 1.01, TRUE))
-		if (!win_condition.check(typesof(/area/prishtina/german), roundend_condition_sides[2], roundend_condition_sides[1], 1.01))
+	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01, TRUE))
+		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[2][1])] base! They will win in {time} minute{s}."
 				next_win = world.time + long_win_time()
@@ -225,8 +225,8 @@ var/global/obj/map_metadata/map = null
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[2][1])
 	// Soviet major
-	else if (win_condition.check(typesof(/area/prishtina/german), roundend_condition_sides[2], roundend_condition_sides[1], 1.33, TRUE))
-		if (!win_condition.check(typesof(/area/prishtina/soviet), roundend_condition_sides[1], roundend_condition_sides[2], 1.33))
+	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33, TRUE))
+		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[2][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
 				next_win = world.time + short_win_time()
@@ -234,8 +234,8 @@ var/global/obj/map_metadata/map = null
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[1][1])
 	// Soviet minor
-	else if (win_condition.check(typesof(/area/prishtina/german), roundend_condition_sides[2], roundend_condition_sides[1], 1.01, TRUE))
-		if (!win_condition.check(typesof(/area/prishtina/soviet), roundend_condition_sides[1], roundend_condition_sides[2], 1.01))
+	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01, TRUE))
+		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[2][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
 				next_win = world.time + long_win_time()
