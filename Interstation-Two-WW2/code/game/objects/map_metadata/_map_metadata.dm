@@ -305,6 +305,4 @@ var/global/obj/map_metadata/map = null
 		if (PILLARMEN)
 			return "Undead"
 
-#undef MAP_MODE(x)
-#undef WARFARE
 #undef NO_WINNER
