@@ -60,7 +60,7 @@ var/global/obj/map_metadata/map = null
 
 	// win conditions 3.0 - Kachnov
 	var/datum/win_condition/win_condition = null
-	var/current_win_condition = null
+	var/current_win_condition = NO_WINNER
 	var/last_win_condition = null // this is a hash
 	var/current_winner = null
 	var/current_loser = null
@@ -250,8 +250,8 @@ var/global/obj/map_metadata/map = null
 			current_winner = null
 			current_loser = null
 	else
-		if (current_win_condition != NO_WINNER)
-			world << "<font size = 3>[current_winner] has lost control of the [current_loser] base!</font>"
+		if (current_win_condition != NO_WINNER && current_winner && current_loser)
+			world << "<font size = 3>The [current_winner] has lost control of the [army2name(current_loser)] base!</font>"
 			current_winner = null
 			current_loser = null
 		current_win_condition = NO_WINNER
@@ -260,7 +260,7 @@ var/global/obj/map_metadata/map = null
 	return TRUE
 
 /obj/map_metadata/proc/next_win_time()
-	return ceil((next_win - world.time)/600)
+	return round((next_win - world.time)/600)
 
 /obj/map_metadata/proc/current_stat_message()
 	var/next_win_time = max(0, next_win_time())
@@ -303,6 +303,15 @@ var/global/obj/map_metadata/map = null
 		if (SOVIET)
 			return "Red Army"
 		if (PILLARMEN)
+			return "Undead"
+
+/obj/map_metadata/proc/army2name(army)
+	switch (army)
+		if ("Wehrmacht")
+			return "German"
+		if ("Red Army")
+			return "Soviet"
+		if ("Undead")
 			return "Undead"
 
 #undef NO_WINNER
