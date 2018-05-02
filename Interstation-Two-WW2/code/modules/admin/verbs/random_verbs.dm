@@ -478,6 +478,21 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		qdel(O)
 
+/client/proc/cmd_admin_get(atom/movable/O as obj|mob in range(world.view))
+	set category = "Admin"
+	set name = "Get"
+
+	if (!holder)
+		src << "Only administrators may use this command."
+		return
+
+	if (!mob || !mob.loc)
+		src << "You need a mob to get something."
+		return
+
+	if (alert(src, "Are you sure you want to get:\n[O]\nat ([O.x], [O.y], [O.z])?", "Confirmation", "Yes", "No") == "Yes")
+		O.loc = get_turf(mob)
+
 /client/proc/cmd_admin_list_open_jobs()
 	set category = "Admin"
 	set name = "List free slots"

@@ -301,11 +301,9 @@
 	update_held_icon()
 
 	//update timing
-	user.next_move = world.time + 4
-	if(user.client) user.client.move_delay = world.time + _move_delay
 
 	if(_move_delay)
-		user.setMoveCooldown(_move_delay)
+		user.setMoveCooldown(_move_delay + 1.5)
 
 	next_fire_time = world.time + _fire_delay
 

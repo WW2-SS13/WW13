@@ -31,7 +31,7 @@
 		// adjust locker size to hold all items with 5 units of free store room
 		var/content_size = FALSE
 		for(I in contents)
-			content_size += Ceiling(I.w_class/2)
+			content_size += ceil(I.w_class/2)
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 

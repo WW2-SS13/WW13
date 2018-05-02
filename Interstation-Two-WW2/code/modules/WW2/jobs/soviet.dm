@@ -179,7 +179,7 @@
 	if(!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni/MP(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm/MP(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm/MP(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/MP(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a military police officer. Keep the <b>Soldat</b>en in line.</span>"
 	H.give_radio()
@@ -269,7 +269,7 @@
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm/medic(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm/medic(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/soviet(H), slot_l_hand)
@@ -356,7 +356,7 @@
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/attachment/scope/adjustable/sniper_scope(H), slot_r_store)
@@ -399,7 +399,7 @@
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/combat(H), slot_l_hand)
@@ -443,7 +443,7 @@
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/dp(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/soviet(H), slot_back)
@@ -489,7 +489,7 @@
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet_basic/soldier(H), slot_belt)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, a normal infantry unit. Your job is to participate in front line combat.</span>"
@@ -532,7 +532,7 @@
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, the master of the dogs.</span>"
@@ -632,7 +632,7 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/heavy/ptrd(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/soviet/anti_tank_crew(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/tokarev(H), slot_r_store)
@@ -779,10 +779,10 @@ var/first_guard = FALSE
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/ppsh(H), slot_back)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/bulletproof/cn42(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/cn42(H), slot_wear_suit)
 	H << "<span class = 'notice'>You are the <b>[title]</b>, an elite infantry soldier. Your job is assist normal <b>Soldat</b>i in front line combat.</span>"
 	H.give_radio()
 
@@ -825,7 +825,7 @@ var/first_guard = FALSE
 	if(!H)	return FALSE
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/tactical/sovhelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/sovhelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/sovuni(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef/classic(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/mosin(H), slot_back)

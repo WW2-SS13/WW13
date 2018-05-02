@@ -1,3 +1,4 @@
+
 /mob
 	density = TRUE
 	layer = 4.0

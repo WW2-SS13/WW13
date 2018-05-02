@@ -36,5 +36,6 @@
 		return
 
 /obj/item/weapon/grenade/smokebomb/fast_activate()
-	spawn(pick(1,2))
+	spawn(round(det_time/10))
+		active = TRUE
 		prime()

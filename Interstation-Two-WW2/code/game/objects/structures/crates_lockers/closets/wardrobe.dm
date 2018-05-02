@@ -336,7 +336,7 @@
 	new /obj/item/clothing/shoes/color/red(src)
 	new /obj/item/clothing/shoes/leather(src)
 	return
-
+/*
 /obj/structure/closet/wardrobe/tactical
 	name = "tactical equipment"
 	icon_state = "syndicate1"
@@ -347,14 +347,14 @@
 	..()
 	new /obj/item/clothing/under/tactical(src)
 	new /obj/item/clothing/suit/armor/tactical(src)
-	new /obj/item/clothing/head/helmet/tactical(src)
+	new /obj/item/clothing/head/helmet(src)
 	new /obj/item/clothing/mask/balaclava/tactical(src)
 //	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/weapon/storage/belt/security/tactical(src)
 	new /obj/item/clothing/shoes/jackboots(src)
 	new /obj/item/clothing/gloves/thick(src)
 	return
-
+*/
 /obj/structure/closet/wardrobe/suit
 	name = "suit locker"
 	icon_state = "mixed"

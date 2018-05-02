@@ -259,9 +259,12 @@
 	if(!mob)
 		return // Moved here to avoid nullrefs below
 
-	// makes chucklefucks who manage to cross the wall gib
+	// relocate or gib chucklefucks who somehow cross the wall
 	if (map.check_prishtina_block(mob, mob.loc))
-		mob.gib()
+		if (job_master)
+			job_master.relocate(mob)
+		else
+			mob.gib()
 		return
 
 	for (var/obj/structure/noose/N in get_turf(mob))

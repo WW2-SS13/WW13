@@ -72,8 +72,8 @@
 		H.drop_from_inventory(radio)
 		qdel(radio)
 		H.equip_to_slot_or_del(new /obj/item/radio/rbs(H), slot_s_store)
-	if (istype(H.head, /obj/item/clothing/head/helmet/tactical/gerhelm))
-		var/obj/item/clothing/head/helmet/tactical/gerhelm/head = H.head
+	if (istype(H.head, /obj/item/clothing/head/helmet/gerhelm))
+		var/obj/item/clothing/head/helmet/gerhelm/head = H.head
 		head.transform2soviet()
 
 /obj/item/clothing/under/proc/transform2german()
@@ -92,8 +92,8 @@
 		H.drop_from_inventory(radio)
 		qdel(radio)
 		H.equip_to_slot_or_del(new /obj/item/radio/feldfu(H), slot_s_store)
-	if (istype(H.head, /obj/item/clothing/head/helmet/tactical/sovhelm))
-		var/obj/item/clothing/head/helmet/tactical/sovhelm/head = H.head
+	if (istype(H.head, /obj/item/clothing/head/helmet/sovhelm))
+		var/obj/item/clothing/head/helmet/sovhelm/head = H.head
 		head.transform2german()
 
 /obj/item/clothing/under/geruni
@@ -245,17 +245,13 @@
 	worn_state = "sssmock"
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
-/obj/item/clothing/head/helmet/tactical
-	force = 7
-	throwforce = 15
-
-/obj/item/clothing/head/helmet/tactical/gerhelm
+/obj/item/clothing/head/helmet/gerhelm
 	name = GERMAN_HELMET_NAME
 	desc = GERMAN_HELMET_DESC
 	icon_state = GERMAN_HELMET_STATE
 	item_state = GERMAN_HELMET_STATE
 
-/obj/item/clothing/head/helmet/tactical/gerhelm/proc/transform2soviet()
+/obj/item/clothing/head/helmet/gerhelm/proc/transform2soviet()
 	name = SOVIET_HELMET_NAME
 	desc = SOVIET_HELMET_DESC
 	icon_state = SOVIET_HELMET_STATE
@@ -264,31 +260,31 @@
 	item_state_slots["slot_head"] = SOVIET_HELMET_STATE
 	update_clothing_icon()
 
-/obj/item/clothing/head/helmet/tactical/gerhelm/sshelm
+/obj/item/clothing/head/helmet/gerhelm/sshelm
 	name = "SS camo helmet"
 	desc =  "A metal helmet issued to SS soldiers, that is camouflaged for autumn operations. A bit early for it, ja?"
 	icon_state = "sshelm"
 	item_state = "sshelm"
 
-/obj/item/clothing/head/helmet/tactical/gerhelm/MP
+/obj/item/clothing/head/helmet/gerhelm/MP
 	name = "German MP helmet"
 	desc =  "A metal helmet issued to German military police."
 	icon_state = "gerhelm_MP"
 	item_state = "gerhelm_MP"
 
-/obj/item/clothing/head/helmet/tactical/gerhelm/medic
+/obj/item/clothing/head/helmet/gerhelm/medic
 	name = "German medic's helmet"
 	desc =  "A metal helmet issued to German combat medics."
 	icon_state = "gerhelm_CM"
 	item_state = "gerhelm_CM"
 
-/obj/item/clothing/head/helmet/tactical/sovhelm
+/obj/item/clothing/head/helmet/sovhelm
 	name = SOVIET_HELMET_NAME
 	desc = SOVIET_HELMET_DESC
 	icon_state = SOVIET_HELMET_STATE
 	item_state = SOVIET_HELMET_STATE
 
-/obj/item/clothing/head/helmet/tactical/sovhelm/proc/transform2german()
+/obj/item/clothing/head/helmet/sovhelm/proc/transform2german()
 	name = GERMAN_HELMET_NAME
 	desc = GERMAN_HELMET_DESC
 	icon_state = GERMAN_HELMET_STATE
@@ -297,35 +293,35 @@
 	item_state_slots["slot_head"] = GERMAN_HELMET_STATE
 	update_clothing_icon()
 
-/obj/item/clothing/head/helmet/tactical/sovhelm/MP
+/obj/item/clothing/head/helmet/sovhelm/MP
 	name = "Soviet MP helmet"
 	desc =  "A metal helmet issued to Soviet military police."
 	icon_state = "sovhelm_MP"
 	item_state = "sovhelm_MP"
 
-/obj/item/clothing/head/helmet/tactical/sovhelm/medic
+/obj/item/clothing/head/helmet/sovhelm/medic
 	name = "Soviet medic's helmet"
 	desc =  "A metal helmet issued to Soviet combat medics."
 	icon_state = "sovhelm_CM"
 	item_state = "sovhelm_CM"
 
-/obj/item/clothing/head/helmet/tactical/itahelm
+/obj/item/clothing/head/helmet/itahelm
 	name = ITALIAN_HELMET_NAME
 	desc = ITALIAN_HELMET_DESC
 	icon_state = ITALIAN_HELMET_STATE
 	item_state = ITALIAN_HELMET_STATE
 
-/obj/item/clothing/head/helmet/tactical/itahelm/medic
+/obj/item/clothing/head/helmet/itahelm/medic
 	name = "Italian medic's helmet"
 	desc =  "A metal helmet issued to Italian combat medics."
 	icon_state = "itahelm_CM"
 	item_state = "itahelm_CM"
 
-/obj/item/clothing/suit/armor/bulletproof/cn42
+/obj/item/clothing/suit/armor/cn42
 	name = "CN-42 bulletproof vest"
 	desc = "A heavy vest used by Soviet shock troops."
 	icon_state = "cn42"
-	armor = list(melee = 30, bullet = 60, laser = 10, energy = 10, bomb = 15, bio = FALSE, rad = FALSE)
+	armor = list(melee = 50)
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/weapon/storage/belt/soviet

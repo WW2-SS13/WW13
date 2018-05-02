@@ -139,6 +139,7 @@
 	firer = user
 	firer_original_dir = firer.dir
 	firedfrom = launcher
+
 	if (istype(firedfrom, /obj/item/weapon/gun/projectile/automatic/stationary))
 		if (prob(80))
 			def_zone = "chest"
@@ -252,21 +253,30 @@
 			for (var/zone in organ_rel_size)
 				if (prob(organ_rel_size[zone]))
 					hit_zone = zone
-		if (hit_zone == "head" && ishuman(target_mob))
+
+		if (ishuman(target_mob))
+
 			var/mob/living/carbon/human/H = target_mob
-			if (H.head && istype(H.head, /obj/item/clothing/head/helmet))
-				var/obj/item/clothing/head/helmet/helmet = H.head
-				if (helmet.block_check(src))
-					visible_message("<span class='warning'>\The [H]'s helmet deflects the shrapnel!</span>")
-					return
+			if (hit_zone == "head")
+				if (H.head && istype(H.head, /obj/item/clothing/head/helmet))
+					var/obj/item/clothing/head/helmet/helmet = H.head
+					if (helmet.block_check(src))
+						visible_message("<span class='warning'>[H]'s helmet deflects the shrapnel!</span>")
+						return
+			else if (hit_zone == "chest")
+				if (H.wear_suit && istype(H.wear_suit, /obj/item/clothing/suit/armor))
+					var/obj/item/clothing/suit/armor/armor = H.wear_suit
+					if (armor.block_check(src))
+						visible_message("<span class='warning'>[H]'s armor deflects the shrapnel!</span>")
+						return
+
+		target_mob.pre_bullet_act(src)
+		target_mob.bullet_act(src, hit_zone)
+		if(silenced)
+			target_mob << "<span class='danger'>You've been hit in the [parse_zone(hit_zone)] by the shrapnel!</span>"
 		else
-			target_mob.pre_bullet_act(src)
-			target_mob.bullet_act(src, hit_zone)
-			if(silenced)
-				target_mob << "<span class='danger'>You've been hit in the [parse_zone(hit_zone)] by the shrapnel!</span>"
-			else
-				visible_message("<span class='danger'>\The [target_mob] is hit by the shrapnel in the [parse_zone(hit_zone)]!</span>")
-			return
+			visible_message("<span class='danger'>\The [target_mob] is hit by the shrapnel in the [parse_zone(hit_zone)]!</span>")
+		return
 
 	if(!istype(target_mob))
 		return
@@ -323,7 +333,7 @@
 	// 50-60% chance of less severe damage: either 6, 12, or 18 less damage based on number of redirections
 	var/helmet_protection = 0
 	var/mob/living/carbon/human/H = target_mob
-	if (istype(H) && H.head && istype(H.head, /obj/item/clothing/head/helmet/tactical))
+	if (istype(H) && H.head && istype(H.head, /obj/item/clothing/head/helmet))
 		helmet_protection = 10
 
 	if (sprob((100 - mygun.headshot_kill_chance)+helmet_protection))
@@ -417,6 +427,8 @@
 					var/obj/item/weapon/grenade/G = AM
 					G.fast_activate()
 					bumped = TRUE
+					loc = null
+					qdel(src)
 					return FALSE
 			else if (!untouchable.Find(AM))
 				if (isliving(AM) && AM != firer)
