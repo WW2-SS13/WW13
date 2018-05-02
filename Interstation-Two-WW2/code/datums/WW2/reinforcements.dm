@@ -1,4 +1,4 @@
-var/datum/reinforcements/reinforcements_master
+var/datum/reinforcements/reinforcements_master = null
 
 
 /proc/len(var/list/l)
@@ -293,6 +293,9 @@ var/datum/reinforcements/reinforcements_master
 			if (reinforcements_granted[SOVIET] >= max_soviet_reinforcements)
 				return TRUE
 	return FALSE
+
+/datum/reinforcements/proc/finished()
+	return is_permalocked(GERMAN) && is_permalocked(SOVIET)
 
 /datum/reinforcements/proc/get_status_addendums()
 

@@ -675,7 +675,7 @@
 						grace_period_string += "[faction_const2name(faction)] may not cross"
 				stat("Grace Period Status:", grace_period_string)
 
-				stat("Current Round End Condition:", map.current_stat_message())
+				stat("Round End Condition:", map.current_stat_message())
 
 				stat("Map:", map.title)
 

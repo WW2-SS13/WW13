@@ -104,6 +104,7 @@
 #include "code\datums\progressbar.dm"
 #include "code\datums\vote.dm"
 #include "code\datums\weakref.dm"
+#include "code\datums\win_condition.dm"
 #include "code\datums\observation\_debug.dm"
 #include "code\datums\observation\_defines.dm"
 #include "code\datums\observation\destroyed.dm"

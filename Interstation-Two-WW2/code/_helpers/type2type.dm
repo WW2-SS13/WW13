@@ -1,6 +1,7 @@
 /*
  * Holds procs designed to change one type of value, into another.
  * Contains:
+ *			path2text
  *			hex2num & num2hex
  *			text2list & list2text
  *			file2list
@@ -8,6 +9,9 @@
  *			angle2text
  *			worldtime2stationtime
  */
+
+/proc/path2text(var/path)
+	return path
 
 // Returns an integer given a hexadecimal number string as input.
 /proc/hex2num(hex)

@@ -521,6 +521,7 @@
 	location = AREA_INSIDE
 	parent_area_type = /area/prishtina/german/kitchen/storage
 	is_void_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/german/shower1
 	name = "Showers #1"
@@ -612,6 +613,7 @@
 	icon_state = "green1"
 	location = AREA_INSIDE
 	is_void_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/german/ss_prison
 	name = "SS Prison"
@@ -654,6 +656,7 @@
 	icon_state = "blue4"
 	parent_area_type = /area/prishtina/german/medical/hallway
 	is_void_area = TRUE
+	capturable = FALSE
 
 // special german areas
 
@@ -724,6 +727,7 @@
 	name = "Kitchen Cellar"
 	icon_state = "blue2"
 	is_void_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/soviet/small_map/inside/commander_bedroom
 	name = "Kapitan's Office"
@@ -740,6 +744,7 @@
 /area/prishtina/soviet/small_map/inside/medical
 	name = "Medical Main Area"
 	icon_state = "blue2"
+	capturable = FALSE
 
 /area/prishtina/soviet/small_map/inside/medical/storage
 	name = "Medical Storage"
@@ -765,6 +770,7 @@
 	icon_state = "blue5"
 	parent_area_type = /area/prishtina/soviet/small_map/inside/medical/hallway
 	is_void_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/soviet/small_map/inside/mparea
 	name = "MP Area"
@@ -775,6 +781,7 @@
 	icon_state = "green2"
 	is_void_area = TRUE
 	parent_area_type = /area/prishtina/soviet/small_map/inside/mparea
+	capturable = FALSE
 
 /area/prishtina/soviet/small_map/main_area/supplypad
 	name = "Supply Pad"

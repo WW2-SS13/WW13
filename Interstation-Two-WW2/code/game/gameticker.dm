@@ -353,7 +353,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		game_finished = (mode.check_finished())
 		mode_finished = game_finished
 */
-	if(finished)
+	if (finished)
 		current_state = GAME_STATE_FINISHED
 
 /*		spawn

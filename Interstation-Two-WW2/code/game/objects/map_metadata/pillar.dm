@@ -11,8 +11,8 @@
 	no_subfaction_chance = FALSE
 	subfaction_is_main_faction = TRUE
 	roundend_condition_sides = list(
-		list(GERMAN),
-		list(PILLARMEN))
+		GERMAN,
+		PILLARMEN)
 	songs = list(
 		"Pa Pa Tu Tu Wa Wa:1" = 'sound/music/papatutu.ogg',
 		"Awaken:1" = 'sound/music/awaken.ogg',
