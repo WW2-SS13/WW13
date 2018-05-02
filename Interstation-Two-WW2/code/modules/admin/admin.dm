@@ -365,7 +365,7 @@ proc/admin_notice(var/message, var/rights)
 
 		"}
 
-	usr << browse(dat, "window=admin2;size=210x280")
+	usr << browse(dat, "window=admin2;size=400x500")
 	return
 
 /datum/admins/proc/Secrets()
