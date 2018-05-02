@@ -42,7 +42,7 @@
 		if (mind && type == /mob/living/carbon/human)
 			invisibility = 101
 			var/datum/mind/M = mind
-			var/mob/living/carbon/human/vampire/V = new(get_turf(src), FALSE)
+			var/mob/living/carbon/human/vampire/V = new(get_turf(src), FALSE, TRUE)
 			loc = null
 			V.canmove = FALSE
 			var/oldname = name

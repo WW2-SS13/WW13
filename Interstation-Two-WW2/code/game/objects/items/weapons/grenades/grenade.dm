@@ -122,7 +122,7 @@ var/list/tile2grenades = list()
 /obj/item/weapon/grenade/ex_act(severity)
 	switch (severity)
 		if (1.0)
-			if (tile2grenades[loc] >= 10)
+			if (tile2grenades[loc] >= 5)
 				return
 			fast_activate()
 			if (!tile2grenades.Find(loc))

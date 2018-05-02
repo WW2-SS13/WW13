@@ -22,7 +22,10 @@ var/process/mapswap/mapswap_process = null
 		ready = FALSE
 		vote.initiate_vote("map", "MapSwap Process", TRUE, list(src, "swap"))
 		ticker.delay_end = TRUE
+		if (ticker.finished)
+			world << "<font color='purple'><b>The game will automatically restart in a couple of minutes.</b></font>"
 		spawn (1500)
+			// we weren't undelayed by an admin, so end automatically after giving the other server time to update
 			if (ticker.delay_end && ticker.finished)
 				ticker.delay_end = FALSE
 				world.Reboot()

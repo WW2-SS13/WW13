@@ -65,6 +65,7 @@ var/global/obj/map_metadata/map = null
 	var/current_winner = null
 	var/current_loser = null
 	var/next_win = -1
+	var/win_condition_spam_check = FALSE
 
 /obj/map_metadata/New()
 	..()
@@ -200,14 +201,17 @@ var/global/obj/map_metadata/map = null
 
 /obj/map_metadata/proc/update_win_condition()
 	if (world.time >= next_win && next_win != -1)
+		if (win_condition_spam_check)
+			return FALSE
 		ticker.finished = TRUE
 		var/message = "The battle was a stalemate!"
 		if (current_winner && current_loser)
 			message = "The [current_winner] was victorious over the [current_loser]!"
-		world << "The round is over! [message]"
+		world << "<font size = 3>The battle is over! [message]</font>"
+		win_condition_spam_check = TRUE
 		return FALSE
 	// German major
-	if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))
+	else if (win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33, TRUE))
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[2][1])] base! They will win in {time} minute{s}."

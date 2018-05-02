@@ -751,9 +751,10 @@ var/list/atom_types = null
 		if (J.title)
 			job_master_occupation_names[J.title] = J
 
-	var/datum/job/J = input(usr, "Which job?") in (list("Cancel") | job_master_occupation_names)
+	var/J = input(usr, "Which job?") in (list("Cancel") | job_master_occupation_names)
 	if (J != "Cancel" && G)
-		var/mob/living/carbon/human/H = new(G.loc)
+		var/mob_type = job2mobtype(J)
+		var/mob/living/carbon/human/H = new mob_type(G.loc)
 		G.mind.transfer_to(H)
 		G.reenter_corpse()
 		job_master.EquipRank(H, J)

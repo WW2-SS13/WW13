@@ -34,3 +34,7 @@
 		sleep(80)
 		qdel(src)
 		return
+
+/obj/item/weapon/grenade/smokebomb/fast_activate()
+	spawn(pick(1,2))
+		prime()

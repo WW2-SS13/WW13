@@ -4,16 +4,19 @@ var/list/alive_germans = list()
 var/list/alive_russians = list()
 var/list/alive_civilians = list()
 var/list/alive_partisans = list()
+var/list/alive_undead = list()
 
 var/list/heavily_injured_germans = list()
 var/list/heavily_injured_russians = list()
 var/list/heavily_injured_civilians = list()
 var/list/heavily_injured_partisans = list()
+var/list/heavily_injured_undead = list()
 
 var/list/dead_germans = list()
 var/list/dead_russians = list()
 var/list/dead_civilians = list()
 var/list/dead_partisans = list()
+var/list/dead_undead = list()
 
 var/list/recently_died = list()
 
@@ -40,6 +43,10 @@ var/list/recently_died = list()
 			dead = dead_partisans
 			injured = heavily_injured_partisans
 			alive = alive_partisans
+		if (PILLARMEN)
+			dead = dead_undead
+			injured = heavily_injured_undead
+			alive = alive_undead
 
 	return list(alive, dead, injured)
 
