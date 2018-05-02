@@ -249,7 +249,7 @@
 					var/list/job_master_occupation_names = list()
 					for (var/datum/job/J in job_master.occupations)
 						if (J.title)
-							if (job2mobtype(J.title) != /mob/living/carbon/human)
+							if (job2mobtype(J.title) == /mob/living/carbon/human)
 								job_master_occupation_names[J.title] = J
 
 					var/oloc_H = H.loc
