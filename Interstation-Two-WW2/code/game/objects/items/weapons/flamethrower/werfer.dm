@@ -38,7 +38,7 @@
 	if(user && user.get_active_hand() == src)
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
-			var/turflist = getturfsbetween(user, target_turf)
+			var/turflist = getturfsbetween(user, target_turf) | list(target_turf)
 			flame_turfs(turflist, get_dir(get_turf(user), target_turf))
 
 /obj/item/weapon/flamethrower/flammenwerfer/process()
@@ -237,7 +237,7 @@
 		time_limit += 20
 		qdel(F)
 
-	var/temperature = (srand(250,300) * throw_coeff * dist_coeff) + extra_temp
+	var/temperature = (srand(500,600) * throw_coeff * dist_coeff) + extra_temp
 //	log_debug("1: [temperature];[throw_coeff];[dist_coeff];[extra_temp]")
 	var/obj/fire/F = target.create_fire(5, temperature, FALSE)
 	F.time_limit = time_limit

@@ -42,9 +42,5 @@ var/global/process/ticker/tickerProcess
 	if (ticker.current_state == GAME_STATE_PLAYING)
 		playtime_elapsed += schedule_interval
 
-	// do map related stuff
-	if (map)
-		map.tick()
-
 /process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration

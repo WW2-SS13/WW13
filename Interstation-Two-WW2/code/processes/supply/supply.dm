@@ -22,7 +22,7 @@ var/global/process/supply/supplyProcess
 	supply_points[SOVIET] += map.supply_points_per_tick[SOVIET]
 
 	// change supply codes every ~13 minutes on average to stop metagaming
-	if (sprob(1) && sprob(25))
+	if (sprob(1) && sprob(25) && !german_supplytrain_master)
 		var/original_code = supply_codes[GERMAN]
 		supply_codes[GERMAN] = srand(1000,9999)
 		for (var/mob/living/carbon/human/H in human_mob_list)

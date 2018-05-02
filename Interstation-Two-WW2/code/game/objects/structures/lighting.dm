@@ -277,6 +277,8 @@
 		spawn(1)
 			update(0)
 
+	processing_objects += src
+
 /obj/structure/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
@@ -509,18 +511,18 @@
 	var/area/A = get_area(src)
 	return A && A.lightswitch && (!A.requires_power || A.power_light)
 
-/obj/structure/light/proc/flicker(var/amount = srand(10, 20))
+/obj/structure/light/proc/flicker(var/amount = 1)
 	if(flickering) return
 	flickering = TRUE
 	spawn(0)
 		if(on && status == LIGHT_OK)
-			for(var/i = FALSE; i < amount; i++)
+			for(var/i in 1 to amount)
 				if(status != LIGHT_OK) break
 				on = !on
-				update(0)
-				sleep(srand(5, 15))
+				update(0, nosound = TRUE)
+				sleep(srand(2, 3))
 			on = (status == LIGHT_OK)
-			update(0)
+			update(0, nosound = TRUE)
 		flickering = FALSE
 
 // attack with hand - remove tube/bulb
@@ -587,32 +589,6 @@
 	status = LIGHT_EMPTY
 	update()
 
-/*
-/obj/structure/light/attack_tk(mob/user)
-	if(status == LIGHT_EMPTY)
-		user << "There is no [fitting] in this light."
-		return
-
-	user << "You telekinetically remove the light [fitting]."
-	// create a light tube/bulb item and put it in the user's hand
-	var/obj/item/weapon/light/L = new light_type()
-	L.status = status
-	L.rigged = rigged
-	L.brightness_range = brightness_range
-	L.brightness_power = brightness_power
-	L.brightness_color = brightness_color
-
-	// light item inherits the switchcount, then zero it
-	L.switchcount = switchcount
-	switchcount = FALSE
-
-	L.update()
-	L.add_fingerprint(user)
-	L.loc = loc
-
-	status = LIGHT_EMPTY
-	update()
-*/
 // break the light and make sparks if was on
 
 /obj/structure/light/proc/broken(var/skip_sound_and_sparks = FALSE)
@@ -652,30 +628,12 @@
 				broken()
 	return
 
-//blob effect
-
-
-// timed process
-// use power
-
-#define LIGHTING_POWER_FACTOR 20		//20W per unit luminosity
-
-/*
 /obj/structure/light/process()
-	if(on)
-		use_power(light_range * LIGHTING_POWER_FACTOR, LIGHT)
-
-*/
-// called when area power state changes
-/*
-/obj/structure/light/power_change()
-	spawn(10)
-		seton(has_power())
-*/
-// called when on fire
+	if (sprob(1))
+		flicker()
 
 /obj/structure/light/fire_act(temperature)
-	if(sprob(max(0, temperature - 673)))   //0% at <400C, 100% at >500C
+	if(sprob(max(0, temperature - 330)))
 		broken()
 
 // explode the light

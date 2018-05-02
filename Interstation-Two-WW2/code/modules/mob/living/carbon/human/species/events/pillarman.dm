@@ -18,23 +18,25 @@
 /mob/living/carbon/human/pillarman/dummy
 	status_flags = GODMODE|CANPUSH
 
-/mob/living/carbon/human/pillarman/New()
-	..()
+/mob/living/carbon/human/pillarman/New(_loc, new_species, snowflake = FALSE)
+	..(_loc, new_species)
+
 	var/oloc = loc
 	job_master.EquipRank(src, "Pillar Man")
-	spawn (1)
-		loc = oloc
-		setStat("strength", 300)
-		setStat("engineering", 250)
-		setStat("rifle", 250)
-		setStat("mg", 250)
-		setStat("smg", 250)
-		setStat("pistol", 250)
-		setStat("heavyweapon", 250)
-		setStat("medical", 250)
-		setStat("shotgun", 250)
-		setStat("survival", 100)
-		setStat("stamina", 200)
+	if (snowflake)
+		spawn (2)
+			loc = oloc
+			setStat("strength", 300)
+			setStat("engineering", 250)
+			setStat("rifle", 250)
+			setStat("mg", 250)
+			setStat("smg", 250)
+			setStat("pistol", 250)
+			setStat("heavyweapon", 250)
+			setStat("medical", 250)
+			setStat("shotgun", 250)
+			setStat("survival", 100)
+			setStat("stamina", 200)
 
 /mob/living/carbon/human/pillarman/proc/may_absorb()
 	return energy <= 1.40
@@ -59,6 +61,8 @@
 		for (var/datum/reagent/blood/B in vessel.reagent_list)
 			B.volume = min(B.volume, vessel.maximum_volume)
 		H.crush()
+	else
+		H.adjustBruteLoss(srand(20,30))
 	absorbing = FALSE
 
 /mob/living/carbon/human/pillarman/proc/shoot_burning_blood()

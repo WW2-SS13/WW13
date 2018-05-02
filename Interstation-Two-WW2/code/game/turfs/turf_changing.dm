@@ -42,14 +42,13 @@
 	if(ispath(N, /turf/floor))
 		var/turf/W = new N( locate(x, y, z) )
 		if (istype(W, /turf/floor/plating/grass))
-			if (ticker.mode.vars.Find("season"))
-				switch (ticker.mode:season)
-					if ("WINTER")
-						W.color = DEAD_COLOR
-					if ("SUMMER")
-						W.color = SUMMER_COLOR
-					if ("FALL")
-						W.color = FALL_COLOR
+			switch (season)
+				if ("WINTER")
+					W.color = DEAD_COLOR
+				if ("SUMMER")
+					W.color = SUMMER_COLOR
+				if ("FALL")
+					W.color = FALL_COLOR
 
 		if(old_fire)
 			fire = old_fire

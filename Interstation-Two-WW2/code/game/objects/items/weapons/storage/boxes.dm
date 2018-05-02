@@ -530,7 +530,7 @@
 				playsound(loc, 'sound/items/matchstick_hit.ogg', 25, FALSE, -1)
 		W.update_icon()
 		return
-
+/*
 /obj/item/weapon/storage/box/autoinjectors
 	name = "box of injectors"
 	desc = "Contains autoinjectors."
@@ -539,7 +539,7 @@
 		..()
 		for (var/i; i < 7; i++)
 			new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
-
+*/
 /obj/item/weapon/storage/box/lights
 	name = "box of replacement bulbs"
 	icon = 'icons/obj/storage.dmi'

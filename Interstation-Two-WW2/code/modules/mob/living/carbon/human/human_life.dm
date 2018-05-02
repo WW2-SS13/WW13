@@ -42,7 +42,7 @@
 		if (mind && type == /mob/living/carbon/human)
 			invisibility = 101
 			var/datum/mind/M = mind
-			var/mob/living/carbon/human/vampire/V = new(get_turf(src), FALSE)
+			var/mob/living/carbon/human/vampire/V = new(get_turf(src), FALSE, TRUE)
 			loc = null
 			V.canmove = FALSE
 			var/oldname = name
@@ -335,14 +335,9 @@
 	var/loc_temp = 293
 	var/area/mob_area = get_area(src)
 
-	var/game_season = "SPRING"
-	if (mob_area.location == AREA_OUTSIDE && ticker && ticker.mode) // this ticker.mode check is very important
-	// if its not here, the mob_process won't work properly before the round has started
+	if (mob_area.location == AREA_OUTSIDE)
 
-		if (ticker.mode.vars.Find("season"))
-			game_season = ticker.mode:season
-
-		switch (game_season)
+		switch (season)
 			if ("WINTER")
 				loc_temp = 264 - 20
 			if ("FALL")
@@ -402,7 +397,7 @@
 	var/temp_adj = 0
 	if(loc_temperature < bodytemperature)			//Place is colder than we are
 		var/thermal_protection = get_cold_protection(loc_temperature) //This returns a FALSE - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-		if(thermal_protection < 0 || game_season == "WINTER")
+		if(thermal_protection < 0 || season == "WINTER")
 			temp_adj = (1-thermal_protection) * ((loc_temperature - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
 	else if (loc_temperature > bodytemperature)			//Place is hotter than we are
 		var/thermal_protection = get_heat_protection(loc_temperature) //This returns a FALSE - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.

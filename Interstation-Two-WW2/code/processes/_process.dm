@@ -119,6 +119,9 @@
 	last_task = 0
 	last_object = null
 
+/process/proc/may_fire()
+	return fires_at_gamestates.len == 4 || (ticker && fires_at_gamestates.Find(ticker.current_state))
+
 /process/proc/started()
 	// Initialize run_start so we can detect hung processes.
 	run_start = TimeOfGame

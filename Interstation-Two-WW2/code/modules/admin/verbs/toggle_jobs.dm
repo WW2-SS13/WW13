@@ -6,9 +6,6 @@
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
-	if (!istype(ticker.mode, /datum/game_mode/ww2))
-		src << "<span class = 'danger'>You can't do this on this game mode.</span>"
-		return
 
 	var/list/jobs_linked_list = list()
 	for (var/datum/job/j in job_master.occupations)

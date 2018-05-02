@@ -41,8 +41,6 @@
 /obj/structure/pot/attackby(var/obj/item/I, var/mob/living/carbon/human/H)
 	if (!istype(H))
 		return
-	if (istype(I, /obj/item/weapon/reagent_containers/food/condiment))
-		return ..(I, H)
 	if ((istype(I, /obj/item/weapon/reagent_containers/food/drinks) || istype(I, /obj/item/weapon/reagent_containers/glass)) && state == STATE_EMPTY)
 		if (!I.reagents)
 			return
@@ -82,6 +80,9 @@
 							reagents.add_reagent(R.id, R.volume)
 						I.reagents.clear_reagents()
 						visible_message("<span class = 'info'>[H] pours the contents of [I] into the pot.</span>")
+			else if (istype(I, /obj/item/weapon/reagent_containers/food/condiment))
+				var/obj/item/weapon/reagent_containers/food/condiment/C = I
+				C.standard_pour_into(H, src)
 			else
 				if (contents.len >= 15)
 					H << "<span class = 'warning'>There's too much in the pot already.</span>"

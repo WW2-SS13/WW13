@@ -624,7 +624,7 @@ var/list/vocal_emotes = list(
 					for (var/mob/living/carbon/human/H in range(5, P))
 						if (!H.takes_less_damage)
 							H.SpinAnimation(7,1)
-							H.Weaken(srand(2,3))
+							H.Weaken(srand(4,5))
 					P.next_pose = world.time + 600
 
 			if ("help")

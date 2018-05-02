@@ -389,8 +389,7 @@
 
 	usr << browse(dat, "window=players;size=640x480")
 
-
-
+/*
 /datum/admins/proc/check_antagonists()
 	if (ticker && ticker.current_state >= GAME_STATE_PLAYING)
 		var/dat = "<html><head><title>Round Status</title></head><body><h1><b>Round Status</b></h1>"
@@ -407,3 +406,4 @@
 		usr << browse(dat, "window=roundstatus;size=400x500")
 	else
 		alert("The game hasn't started yet!")
+*/

@@ -141,7 +141,7 @@ var/world_topic_spam_protect_time = world.timeofday
 // todo: add aspect to this
 /world/proc/replace_custom_hub_text(T)
 
-	if (!ticker || !ticker.mode)
+	if (!ticker)
 		return ""
 
 	// numerical constants
@@ -156,18 +156,18 @@ var/world_topic_spam_protect_time = world.timeofday
 	T = replacetext(T, "{ROUNDTIME}", roundduration2text())
 	// UPPERCASE constants
 	T = replacetextEx(T, "{TIMEOFDAY}", uppertext(time_of_day))
-	T = replacetextEx(T, "{WEATHER}", uppertext(ticker.mode.weather()))
-	T = replacetextEx(T, "{SEASON}", uppertext(ticker.mode.season()))
+	T = replacetextEx(T, "{WEATHER}", uppertext(get_weather()))
+	T = replacetextEx(T, "{SEASON}", uppertext(season))
 	T = replacetextEx(T, "{MAP}", uppertext(map.title)) // name of the map
 	// Capitalized constants - no change
 	T = replacetextEx(T, "{Timeofday}", time_of_day)
-	T = replacetextEx(T, "{Weather}", ticker.mode.weather())
-	T = replacetextEx(T, "{Season}", ticker.mode.season())
+	T = replacetextEx(T, "{Weather}", get_weather())
+	T = replacetextEx(T, "{Season}", season)
 	T = replacetextEx(T, "{Map}", map.title) // name of the map
 	// lowercase constants
 	T = replacetextEx(T, "{timeofday}", lowertext(time_of_day))
-	T = replacetextEx(T, "{weather}", lowertext(ticker.mode.weather()))
-	T = replacetextEx(T, "{season}", lowertext(ticker.mode.season()))
+	T = replacetextEx(T, "{weather}", lowertext(get_weather()))
+	T = replacetextEx(T, "{season}", lowertext(season))
 	T = replacetextEx(T, "{map}", lowertext(map.title)) // name of the map
 
 	return T
@@ -210,7 +210,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/input[] = params2list(T)
 		var/list/s = list()
 		s["version"] = game_version
-		s["mode"] = master_mode
+//		s["mode"] = master_mode
 		s["respawn"] = config.abandon_allowed
 		s["enter"] = config.enter_allowed
 		s["vote"] = config.allow_vote_mode
@@ -218,7 +218,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["host"] = host ? host : null
 
 		// This is dumb, but spacestation13.com's banners break if player count isn't the 8th field of the reply, so... this has to go here.
-		s["players"] = FALSE
+		s["players"] = 0
 		s["stationtime"] = stationtime2text()
 		s["roundduration"] = roundduration2text()
 
@@ -295,7 +295,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			client.screen += tobecontinued
 			client.canmove = FALSE
 #undef COLOR_SEPIA
-
+/*
 /hook/startup/proc/loadMode()
 	world.load_mode()
 	return TRUE
@@ -311,7 +311,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode
-
+*/
 /hook/startup/proc/loadMOTD()
 	world.load_motd()
 	return TRUE
@@ -348,11 +348,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	// we can't execute code in config settings, so this is a workaround.
 	config.hub_body = replacetext(config.hub_body, "TIME_OF_DAY", capitalize(lowertext(time_of_day)))
-
-	if (ticker && ticker.mode && istype(ticker.mode, /datum/game_mode/ww2))
-		config.hub_body = replacetext(config.hub_body, "SEASON", lowertext(ticker.mode:season))
-	else
-		config.hub_body = replacetext(config.hub_body, "SEASON", "Spring")
+	config.hub_body = replacetext(config.hub_body, "SEASON", get_season())
 
 	if (config.hub_body)
 		s += config.hub_body

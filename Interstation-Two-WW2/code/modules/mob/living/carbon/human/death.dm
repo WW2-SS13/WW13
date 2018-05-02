@@ -56,10 +56,10 @@
 
 	if(l_hand) unEquip(l_hand)
 	if(r_hand) unEquip(r_hand)
-
+/*
 	if(ticker && ticker.mode)
 
-		ticker.mode.check_win()
+		ticker.mode.check_win()*/
 
 	if (client)
 		client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)

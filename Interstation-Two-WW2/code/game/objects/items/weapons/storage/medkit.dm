@@ -28,7 +28,6 @@
 
 		icon_state = spick("ointment","firefirstaid")
 
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
 		new /obj/item/stack/medical/ointment( src )
 		new /obj/item/stack/medical/ointment( src )
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
@@ -48,7 +47,6 @@
 		new /obj/item/stack/medical/bruise_pack(src)
 		new /obj/item/stack/medical/ointment(src)
 		new /obj/item/stack/medical/ointment(src)
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
 		return
 
 /obj/item/weapon/storage/firstaid/toxin
@@ -84,7 +82,6 @@
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
 		new /obj/item/weapon/reagent_containers/syringe/inaprovaline( src )
 		return
 
@@ -97,7 +94,6 @@
 /obj/item/weapon/storage/firstaid/adv/New()
 	..()
 	if (empty) return
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
@@ -151,14 +147,14 @@
 	item_state = "firstaid-advanced"
 	storage_slots = 5
 	max_w_class = 2
-	can_hold = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/ww2/morphine)
+	can_hold = list(/obj/item/weapon/reagent_containers/syringe/morphine)
 
 /obj/item/weapon/storage/firstaid/injectorpack/New()
 	..()
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/ww2/morphine(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/ww2/morphine(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/ww2/morphine(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/ww2/morphine(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/ww2/morphine(src)
+	new /obj/item/weapon/reagent_containers/syringe/morphine(src)
+	new /obj/item/weapon/reagent_containers/syringe/morphine(src)
+	new /obj/item/weapon/reagent_containers/syringe/morphine(src)
+	new /obj/item/weapon/reagent_containers/syringe/morphine(src)
+	new /obj/item/weapon/reagent_containers/syringe/morphine(src)
 
 	return

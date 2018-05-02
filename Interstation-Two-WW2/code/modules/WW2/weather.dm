@@ -86,18 +86,17 @@
 	var/list/possibilities = list(WEATHER_NONE)
 	var/list/non_possibilities = list(weather)
 
-	if (ticker.mode.vars.Find("season"))
-		switch (ticker.mode:season)
-			if ("WINTER")
-				possibilities += WEATHER_SNOW
-			if ("SPRING")
-				possibilities += WEATHER_RAIN
+	switch (season)
+		if ("WINTER")
+			possibilities += WEATHER_SNOW
+		if ("SPRING")
+			possibilities += WEATHER_RAIN
 
 	possibilities -= non_possibilities
 
 	change_weather(spick(possibilities))
 
-/proc/get_weather(var/_weather)
+/proc/get_weather_default(var/_weather)
 	switch (_weather ? _weather : weather)
 		if (WEATHER_NONE)
 			return "none"
@@ -105,6 +104,7 @@
 			return "snow"
 		if (WEATHER_RAIN)
 			return "rain"
+	return "none"
 
 // global weather variable changed
 /proc/announce_weather_change(var/old, var/_new)

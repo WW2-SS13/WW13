@@ -110,10 +110,13 @@ var/global/datum/controller/occupations/job_master
 			else
 				J.total_positions = 0
 
+		if (map && map.subfaction_is_main_faction)
+			announce = FALSE
+
 		if (italiano)
 			if (announce)
 				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Italian Army for this battle.</span></font>"
-				italians_were_enabled = TRUE
+			italians_were_enabled = TRUE
 		else
 			for (var/obj/structure/vending/italian/apparel/pizzeria in world)
 				qdel(pizzeria)
@@ -123,14 +126,14 @@ var/global/datum/controller/occupations/job_master
 		if (warcrimes)
 			if (announce)
 				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
-				SS_was_enabled = TRUE
+			SS_was_enabled = TRUE
 
 		if (!is_side_locked(CIVILIAN) && map && map.faction_organization.Find(CIVILIAN) && map.faction_organization.Find(PARTISAN))
 			if (italiano || warcrimes || autobalance_for_players >= PLAYER_THRESHOLD_HIGHEST-10)
 				if (announce)
 					world << "<font size = 3><span class = 'info'>Civilian and Partisan factions are enabled.</span></font>"
-					civilians_were_enabled = TRUE
-					partisans_were_enabled = TRUE
+				civilians_were_enabled = TRUE
+				partisans_were_enabled = TRUE
 
 	proc/spawn_with_delay(var/mob/new_player/np, var/datum/job/j)
 		// for delayed spawning, wait the spawn_delay of the job
@@ -161,42 +164,7 @@ var/global/datum/controller/occupations/job_master
 			if (SOVIET)
 				return round(soviet_squad_members/MEMBERS_PER_SQUAD)
 		return FALSE
-/*
-	proc/can_have_squad_leader(var/team)
-		switch (team)
-			if (GERMAN)
-				switch (german_squad_members)
-					if (1 to 6)
-						if (!german_squad_leaders)
-							return TRUE
-					if (7 to 12)
-						if (german_squad_leaders <= 1)
-							return TRUE
-					if (13 to 18)
-						if (german_squad_leaders <= 2)
-							return TRUE
-					if (19 to INFINITY)
-						if (german_squad_leaders <= 3)
-							return TRUE
-				return FALSE
-			if (SOVIET)
-				switch (soviet_squad_members)
-					if (1 to 6)
-						if (!soviet_squad_leaders)
-							return TRUE
-					if (7 to 12)
-						if (soviet_squad_leaders <= 1)
-							return TRUE
-					if (13 to 18)
-						if (soviet_squad_leaders <= 2)
-							return TRUE
-					if (19 to INFINITY)
-						if (soviet_squad_leaders <= 3)
-							return TRUE
-				return FALSE
-		return FALSE // if we aren't german or soviet this is irrelevant
-			// and will never be called anyway
-			*/
+
 	proc/must_have_squad_leader(var/team)
 		switch (team)
 			if (GERMAN)
@@ -297,6 +265,7 @@ var/global/datum/controller/occupations/job_master
 			if(!job)	continue
 			if(job.faction != faction)	continue
 			occupations += job
+		occupations += new/datum/job/german/oberstleutnant
 		return TRUE
 
 
@@ -598,36 +567,35 @@ var/global/datum/controller/occupations/job_master
 
 			// Give the guy some ammo for his gun
 			spawn (0.1)
-				if (istype(ticker.mode, /datum/game_mode/ww2))
-					for (var/obj/item/weapon/gun/projectile/gun in H.contents)
-						if (gun.w_class == 5 && gun.gun_type == GUN_TYPE_MG) // MG
-							if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
-								for (var/v in 1 to 3)
-									H.back.contents += new gun.magazine_type(H)
-							else if (H.l_hand && istype(H.l_hand, /obj/item/weapon/storage/backpack))
-								for (var/v in 1 to 3)
-									H.l_hand.contents += new gun.magazine_type(H)
-							else if (H.r_hand && istype(H.r_hand, /obj/item/weapon/storage/backpack))
-								for (var/v in 1 to 3)
-									H.r_hand.contents += new gun.magazine_type(H)
-						else
+				for (var/obj/item/weapon/gun/projectile/gun in H.contents)
+					if (gun.w_class == 5 && gun.gun_type == GUN_TYPE_MG) // MG
+						if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
+							for (var/v in 1 to 3)
+								H.back.contents += new gun.magazine_type(H)
+						else if (H.l_hand && istype(H.l_hand, /obj/item/weapon/storage/backpack))
+							for (var/v in 1 to 3)
+								H.l_hand.contents += new gun.magazine_type(H)
+						else if (H.r_hand && istype(H.r_hand, /obj/item/weapon/storage/backpack))
+							for (var/v in 1 to 3)
+								H.r_hand.contents += new gun.magazine_type(H)
+					else
+						if (!H.r_store)
+							if (gun.magazine_type)
+								H.equip_to_slot_or_del(new gun.magazine_type(H), slot_r_store)
+						if (!H.l_store)
+							if (gun.magazine_type)
+								H.equip_to_slot_or_del(new gun.magazine_type(H), slot_l_store)
+					break // but only the first gun we find
+				for (var/obj/item/weapon/gun/projectile/gun in H.contents)
+					if (gun == H.belt)
+						if (gun.w_class != 5 || gun.gun_type != GUN_TYPE_MG) // MG
 							if (!H.r_store)
 								if (gun.magazine_type)
 									H.equip_to_slot_or_del(new gun.magazine_type(H), slot_r_store)
 							if (!H.l_store)
 								if (gun.magazine_type)
 									H.equip_to_slot_or_del(new gun.magazine_type(H), slot_l_store)
-						break // but only the first gun we find
-					for (var/obj/item/weapon/gun/projectile/gun in H.contents)
-						if (gun == H.belt)
-							if (gun.w_class != 5 || gun.gun_type != GUN_TYPE_MG) // MG
-								if (!H.r_store)
-									if (gun.magazine_type)
-										H.equip_to_slot_or_del(new gun.magazine_type(H), slot_r_store)
-								if (!H.l_store)
-									if (gun.magazine_type)
-										H.equip_to_slot_or_del(new gun.magazine_type(H), slot_l_store)
-								break // but only the first gun we find
+							break // but only the first gun we find
 
 			// get our new real name based on jobspecific language ( and more
 			job.update_character(H)
@@ -635,6 +603,7 @@ var/global/datum/controller/occupations/job_master
 
 			if (names_used[H.real_name])
 				job.give_random_name(H)
+
 			names_used[H.real_name] = TRUE
 
 			if (job.rank_abbreviation)

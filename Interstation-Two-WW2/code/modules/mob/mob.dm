@@ -366,9 +366,9 @@
 		usr << "<span class='notice'><b>You must be dead to use this!</b></span>"
 		return
 
-	if (ticker.mode && ticker.mode.deny_respawn)
+/*	if (ticker.mode && ticker.mode.deny_respawn)
 		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
-		return
+		return*/
 
 	usr << "You can respawn now, enjoy your new life!"
 	stop_ambience(usr)
@@ -675,14 +675,12 @@
 						grace_period_string += "[faction_const2name(faction)] may not cross"
 				stat("Grace Period Status:", grace_period_string)
 
-				if (ticker && ticker.mode && ticker.mode.config_tag == "WW2")
-					var/datum/game_mode/ww2/mode = ticker.mode
-					stat("Current Round End Condition:", mode.current_stat_message())
+				stat("Round End Condition:", map.current_stat_message())
 
 				stat("Map:", map.title)
 
-			stat("Season:", !ticker.mode ? "Spring" : ticker.mode.season())
-			stat("Weather:", !ticker.mode ? "Clear skies" : ticker.mode.weather())
+			stat("Season:", get_season())
+			stat("Weather:", get_weather())
 			stat("Time of Day:", time_of_day)
 
 			if (z == 2 && map && map.ID == "FOREST")

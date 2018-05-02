@@ -5,10 +5,10 @@
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
 		message_admins("[usr.key] has attempted to override the admin panel!")
 		return
-
+/*
 	if(ticker.mode && ticker.mode.check_antagonists_topic(href, href_list))
 		check_antagonists()
-		return
+		return*/
 /*
 	if(href_list["dbsearchckey"] || href_list["dbsearchadmin"])
 
@@ -249,7 +249,8 @@
 					var/list/job_master_occupation_names = list()
 					for (var/datum/job/J in job_master.occupations)
 						if (J.title)
-							job_master_occupation_names[J.title] = J
+							if (job2mobtype(J.title) != /mob/living/carbon/human)
+								job_master_occupation_names[J.title] = J
 
 					var/oloc_H = H.loc
 
@@ -318,7 +319,7 @@
 		if(!isnum(mute_type))	return
 
 		cmd_admin_mute(M, mute_type)
-
+/*
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
 
@@ -371,7 +372,7 @@
 		message_admins("<span class = 'notice'>[key_name_admin(usr)] set the forced secret mode as [secret_force_mode].</span>", TRUE)
 		game_panel() // updates the main game menu
 		.(href, list("f_secret"=1))
-/*
+
 	else if(href_list["monkeyone"])
 		if(!check_rights(R_SPAWN))	return
 
@@ -471,9 +472,9 @@
 		if(!isghost(usr))	C.admin_ghost()
 		sleep(2)
 		C.jumptomob(M)
-
+/*
 	else if(href_list["check_antagonist"])
-		check_antagonists()
+		check_antagonists()*/
 
 	else if(href_list["adminplayerobservecoodjump"])
 		if(!check_rights(R_ADMIN|R_MOD))	return
@@ -594,7 +595,7 @@
 
 		var/mob/M = locate(href_list["subtlemessage"])
 		usr.client.cmd_admin_subtle_message(M)
-
+/*
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD))	return
 
@@ -607,7 +608,7 @@
 			usr << "This can only be used on instances of type /mob."
 			return
 		show_traitor_panel(M)
-
+*/
 	else if(href_list["create_object"])
 		if(!check_rights(R_SPAWN))	return
 		return create_object(usr)

@@ -33,17 +33,15 @@
 							++.
 
 /mob/living/carbon/human/proc/equip_coat(ctype)
-	if (ticker && ticker.mode)
-		var/datum/game_mode/ww2/mode = ticker.mode
-		if (istype(mode) && mode.season == "WINTER")
-			var/obj/item/radio/radio = null
-			if (istype(wear_suit, /obj/item/clothing/suit/radio_harness))
-				radio = s_store
-				remove_from_mob(wear_suit)
-			if (!wear_suit)
-				equip_to_slot_or_del(new ctype(src), slot_wear_suit)
-				if (radio && istype(radio))
-					equip_to_slot_or_del(radio, slot_s_store)
+	if (season == "WINTER")
+		var/obj/item/radio/radio = null
+		if (istype(wear_suit, /obj/item/clothing/suit/radio_harness))
+			radio = s_store
+			remove_from_mob(wear_suit)
+		if (!wear_suit)
+			equip_to_slot_or_del(new ctype(src), slot_wear_suit)
+			if (radio && istype(radio))
+				equip_to_slot_or_del(radio, slot_s_store)
 
 /datum/job/proc/equip_random_civilian_clothing(var/mob/living/carbon/human/H)
 	if (sprob(33))

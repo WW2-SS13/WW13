@@ -205,7 +205,7 @@
 	icon_state = "purple1"
 	name = "Admin Zone"
 	location = AREA_INSIDE
-	artillery_integrity = 1000000
+	artillery_integrity = INFINITY
 
 /area/prishtina/admin/tonkland
 	name = "Tonk Zone"
@@ -272,6 +272,8 @@
 /area/prishtina/houses/ger_thirteen
 /area/prishtina/houses/ger_fourteen
 
+/area/prishtina/sewers
+	artillery_integrity = INFINITY
 
 // "wormhole" areas: doesn't include trains since they don't get their area copied
 
@@ -428,6 +430,7 @@
 	#endif
 	location = AREA_INSIDE
 	is_train_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/german/train_starting_zone
 	icon_state = "blue2"
@@ -438,6 +441,7 @@
 	icon_state = "blue2"
 	name = "Train Unboarding"
 	dynamic_lighting = FALSE
+	capturable = FALSE
 
 /area/prishtina/german/resting_area_1
 	name = "Resting Area #1"
@@ -495,6 +499,7 @@
 	icon_state = "blue3"
 	dynamic_lighting = FALSE
 	is_train_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/german/cafeteria
 	name = "Cafeteria"
@@ -516,6 +521,7 @@
 	location = AREA_INSIDE
 	parent_area_type = /area/prishtina/german/kitchen/storage
 	is_void_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/german/shower1
 	name = "Showers #1"
@@ -607,6 +613,7 @@
 	icon_state = "green1"
 	location = AREA_INSIDE
 	is_void_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/german/ss_prison
 	name = "SS Prison"
@@ -649,6 +656,7 @@
 	icon_state = "blue4"
 	parent_area_type = /area/prishtina/german/medical/hallway
 	is_void_area = TRUE
+	capturable = FALSE
 
 // special german areas
 
@@ -719,6 +727,7 @@
 	name = "Kitchen Cellar"
 	icon_state = "blue2"
 	is_void_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/soviet/small_map/inside/commander_bedroom
 	name = "Kapitan's Office"
@@ -735,6 +744,7 @@
 /area/prishtina/soviet/small_map/inside/medical
 	name = "Medical Main Area"
 	icon_state = "blue2"
+	capturable = FALSE
 
 /area/prishtina/soviet/small_map/inside/medical/storage
 	name = "Medical Storage"
@@ -760,6 +770,7 @@
 	icon_state = "blue5"
 	parent_area_type = /area/prishtina/soviet/small_map/inside/medical/hallway
 	is_void_area = TRUE
+	capturable = FALSE
 
 /area/prishtina/soviet/small_map/inside/mparea
 	name = "MP Area"
@@ -770,6 +781,7 @@
 	icon_state = "green2"
 	is_void_area = TRUE
 	parent_area_type = /area/prishtina/soviet/small_map/inside/mparea
+	capturable = FALSE
 
 /area/prishtina/soviet/small_map/main_area/supplypad
 	name = "Supply Pad"
@@ -824,6 +836,7 @@
 /area/prishtina/soviet/bunker/tunnel
 	icon_state = "red2"
 	name = "Bunker Tunnel"
+	capturable = FALSE
 
 /area/prishtina/soviet/bunker/entrance
 	icon_state = "green1"

@@ -229,7 +229,7 @@ var/list/gamemode_cache = list()
 	var/use_hunger = TRUE
 	var/use_thirst = TRUE
 	var/allow_selfheal = FALSE
-
+/*
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -246,7 +246,7 @@ var/list/gamemode_cache = list()
 				if (M.votable)
 					votable_modes += M.config_tag
 	votable_modes += "secret"
-
+*/
 /datum/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
 
 	var/list/Lines = file2list(filename)
@@ -886,7 +886,7 @@ var/list/gamemode_cache = list()
 				forum_authenticated_group = value
 			else
 				log_misc("Unknown setting in configuration: '[name]'")
-
+/*
 /datum/configuration/proc/pick_mode(mode_name)
 	// I wish I didn't have to instance the game modes in order to look up
 	// their information, but it is the only way (at least that I know of).
@@ -903,6 +903,7 @@ var/list/gamemode_cache = list()
 		if(M && M.can_start() && !isnull(config.probabilities[M.config_tag]) && config.probabilities[M.config_tag] > 0)
 			runnable_modes |= M
 	return runnable_modes
+*/
 
 /datum/configuration/proc/post_load()
 	//apply a default value to config.python_path, if needed

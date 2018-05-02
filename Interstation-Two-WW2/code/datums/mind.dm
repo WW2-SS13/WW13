@@ -87,7 +87,7 @@
 /datum/mind/proc/show_memory(mob/recipient)
 	var/output = "<b>[current.real_name]'s Memory</b><HR>"
 	output += memory
-
+/*
 	if(objectives.len>0)
 		output += "<HR><b>Objectives:</b>"
 
@@ -95,11 +95,11 @@
 		for(var/datum/objective/objective in objectives)
 			output += "<b>Objective #[obj_count]</b>: [objective.explanation_text]"
 			obj_count++
-
+*/
 	recipient << browse(output,"window=memory")
 
 /datum/mind/proc/edit_memory()
-	if(!ticker || !ticker.mode)
+	if(!ticker)
 		alert("Not before round-start!", "Alert")
 		return
 
@@ -107,12 +107,12 @@
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
 	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];role_edit=1'>Edit</a><br>"
 	out += "<hr>"
-	out += "Factions and special roles:<br><table>"
+/*	out += "Factions and special roles:<br><table>"
 	for(var/antag_type in all_antag_types)
 		var/datum/antagonist/antag = all_antag_types[antag_type]
-		out += "[antag.get_panel_entry(src)]"
+		out += "[antag.get_panel_entry(src)]"*/
 	out += "</table><hr>"
-	out += "<b>Objectives</b></br>"
+/*	out += "<b>Objectives</b></br>"
 
 	if(objectives && objectives.len)
 		var/num = TRUE
@@ -129,12 +129,12 @@
 
 	else
 		out += "None."
-	out += "<br><a href='?src=\ref[src];obj_add=1'>\[add\]</a>"
+	out += "<br><a href='?src=\ref[src];obj_add=1'>\[add\]</a>"*/
 	usr << browse(out, "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))	return
-
+/*
 	if(href_list["add_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
 		if(antag)
@@ -158,7 +158,7 @@
 	else if(href_list["move_antag_to_spawn"])
 		var/datum/antagonist/antag = all_antag_types[href_list["move_antag_to_spawn"]]
 		if(antag) antag.place_mob(current)
-
+*/
 	else if (href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
 		if (!new_role) return
@@ -168,7 +168,7 @@
 		var/new_memo = sanitize(input("Write new memory", "Memory", memory) as null|message)
 		if (isnull(new_memo)) return
 		memory = new_memo
-
+/*
 	else if (href_list["obj_edit"] || href_list["obj_add"])
 		var/datum/objective/objective
 		var/objective_pos
@@ -299,7 +299,7 @@
 	else if(href_list["obj_completed"])
 		var/datum/objective/objective = locate(href_list["obj_completed"])
 		if(!istype(objective))	return
-		objective.completed = !objective.completed
+		objective.completed = !objective.completed*/
 
 	else if (href_list["common"])
 		switch(href_list["common"])
@@ -309,13 +309,13 @@
 			if("takeuplink")
 				take_uplink()
 				memory = null//Remove any memory they may have had.
-
+/*
 	else if (href_list["obj_announce"])
 		var/obj_count = TRUE
 		current << "<span class = 'notice'>Your current objectives:</span>"
 		for(var/datum/objective/objective in objectives)
 			current << "<b>Objective #[obj_count]</b>: [objective.explanation_text]"
-			obj_count++
+			obj_count++*/
 	edit_memory()
 
 /datum/mind/proc/find_syndicate_uplink()
@@ -336,8 +336,8 @@
 	role_alt_title =  null
 	assigned_job =    null
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
-	objectives =      list()
-	special_verbs =   list()
+//	objectives =      list()
+//	special_verbs =   list()
 	has_been_rev =    FALSE
 	rev_cooldown =    FALSE
 	brigged_since =   -1

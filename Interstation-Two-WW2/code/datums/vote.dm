@@ -108,30 +108,30 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 		var/text
 		if(winners.len > 0)
 			if(winners.len > 1)
-				if(mode != "gamemode" || ticker.hide_mode == FALSE) // Here we are making sure we don't announce potential game modes
-					text = "<b>Vote Tied Between:</b>\n"
-					for(var/option in winners)
-						text += "\t[option]\n"
+			//	if(mode != "gamemode") // Here we are making sure we don't announce potential game modes
+				text = "<b>Vote Tied Between:</b>\n"
+				for(var/option in winners)
+					text += "\t[option]\n"
 			. = spick(winners)
 
 			for(var/key in current_votes)
 				if(choices[current_votes[key]] == .)
 					round_voters += key // Keep track of who voted for the winning round.
-			if((mode == "gamemode" && . == "Extended") || ticker.hide_mode == FALSE) // Announce Extended gamemode, but not other gamemodes
-				text += "<b>Vote Result: [.]</b>"
-			else
+	/*		if((mode == "gamemode" && . == "Extended") || ticker.hide_mode == FALSE) // Announce Extended gamemode, but not other gamemodes
+				text += "<b>Vote Result: [.]</b>"*/
+		/*	else
 				if(mode != "gamemode")
 					text += "<b>Vote Result: [.]</b>"
-				else
-					text += "<b>The vote has ended.</b>" // What will be shown if it is a gamemode vote that isn't extended
+				else*/
+			text += "<b>The vote has ended.</b>" // What will be shown if it is a gamemode vote that isn't extended
 			if (callback)
 				if (callback.len == 2)
 					call(callback[1], callback[2])(.)
 				callback = null
 		else
 			text += "<b>Vote Result: Inconclusive - Neither option had enough votes!</b>"
-			if(mode == "add_antagonist")
-				antag_add_failed = TRUE
+		/*	if(mode == "add_antagonist")
+				antag_add_failed = TRUE*/
 		log_vote(text)
 		world << "<font color='purple'>[text]</font>"
 		return .
@@ -144,23 +144,23 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				if("restart")
 					if(. == "Restart Round")
 						restart = TRUE
-				if("gamemode")
+/*				if("gamemode")
 					if(master_mode != .)
 						world.save_mode(.)
 						if(ticker && ticker.mode)
 							restart = TRUE
 						else
-							master_mode = .
-				if("add_antagonist")
+							master_mode = .*/
+			/*	if("add_antagonist")
 					if(isnull(.) || . == "None")
 						antag_add_failed = TRUE
 					else
-						additional_antag_types |= antag_names_to_ids[.]
+						additional_antag_types |= antag_names_to_ids[.]*/
 
-		if(mode == "gamemode") //fire this even if the vote fails.
+/*		if(mode == "gamemode") //fire this even if the vote fails.
 			if(!round_progressing)
 				round_progressing = TRUE
-				world << "<font color='red'><b>The round will start soon.</b></font>"
+				world << "<font color='red'><b>The round will start soon.</b></font>"*/
 
 		if(restart)
 			world << "World restarting due to vote..."

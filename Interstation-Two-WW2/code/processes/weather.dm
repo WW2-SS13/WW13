@@ -43,6 +43,5 @@ var/process/weather/weather_process = null
 			next_can_mod_weather = world.realtime + minimum_mod_weather_delay
 	else if (sprob(prob_of_weather_change))
 		if (world.realtime >= next_can_change_weather)
-			if (ticker.mode.vars.Find("season"))
-				change_weather_somehow()
-				next_can_change_weather = world.realtime + minimum_change_weather_delay
+			change_weather_somehow()
+			next_can_change_weather = world.realtime + minimum_change_weather_delay

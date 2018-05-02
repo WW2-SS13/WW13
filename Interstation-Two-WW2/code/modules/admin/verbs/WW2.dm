@@ -183,11 +183,13 @@
 	var/total_russians = alive_russians.len + dead_russians.len + heavily_injured_russians.len
 	var/total_civilians = alive_civilians.len + dead_civilians.len + heavily_injured_civilians.len
 	var/total_partisans = alive_partisans.len + dead_partisans.len + heavily_injured_partisans.len
+	var/total_undead = alive_undead.len + dead_undead.len + heavily_injured_undead.len
 
 	var/mortality_coefficient_german = 0
 	var/mortality_coefficient_russian = 0
 	var/mortality_coefficient_civilian = 0
 	var/mortality_coefficient_partisan = 0
+	var/mortality_coefficient_undead = 0
 
 	if (dead_germans.len > 0)
 		mortality_coefficient_german = dead_germans.len/total_germans
@@ -201,10 +203,14 @@
 	if (dead_partisans.len > 0)
 		mortality_coefficient_partisan = dead_partisans.len/total_partisans
 
+	if (dead_undead.len > 0)
+		mortality_coefficient_undead = dead_undead.len/total_undead
+
 	var/mortality_german = round(mortality_coefficient_german*100)
 	var/mortality_russian = round(mortality_coefficient_russian*100)
 	var/mortality_civilian = round(mortality_coefficient_civilian*100)
 	var/mortality_partisan = round(mortality_coefficient_partisan*100)
+	var/mortality_undead = round(mortality_coefficient_undead*100)
 
 	var/msg1 = "German Side: [alive_germans.len] alive, [heavily_injured_germans.len] heavily injured or unconscious, [dead_germans.len] deceased. Mortality rate: [mortality_german]%"
 	if (job_master.italians_were_enabled)
@@ -213,6 +219,9 @@
 	var/msg2 = "Soviet Side: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, [dead_russians.len] deceased. Mortality rate: [mortality_russian]%"
 	var/msg3 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
 	var/msg4 = "Partisans: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
+	var/msg5 = null
+	if (map && map.faction_organization.Find(PILLARMEN))
+		msg5 = "Undead: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
 
 	var/public = "Yes"
 
@@ -228,6 +237,8 @@
 			world << "<font size=3>[msg2]</font>"
 			world << "<font size=3>[msg3]</font>"
 			world << "<font size=3>[msg4]</font>"
+			if (msg5)
+				world << "<font size=3>[msg5]</font>"
 			if (shower)
 				message_admins("[key_name(shower)] showed everyone the battle report.")
 			else
@@ -237,6 +248,8 @@
 		shower << msg2
 		shower << msg3
 		shower << msg4
+		if (msg5)
+			shower << msg5
 /*
 /client/proc/generate_hit_table()
 	set category = "Special"
@@ -562,10 +575,6 @@ var/soviets_toggled = TRUE
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
 		return
 
-	if (!istype(ticker.mode, /datum/game_mode/ww2))
-		src << "<span class = 'danger'>You can't do this on this game mode.</span>"
-		return
-
 	var/list/choices = list()
 
 	choices += "PARTISANS ([partisans_toggled ? "ENABLED" : "DISABLED"])"
@@ -619,10 +628,6 @@ var/paratroopers_forceEnabled = FALSE
 
 	if(!check_rights(R_ADMIN))
 		src << "<span class = 'danger'>You don't have the permissions.</span>"
-		return
-
-	if (!istype(ticker.mode, /datum/game_mode/ww2))
-		src << "<span class = 'danger'>You can't do this on this game mode.</span>"
 		return
 
 	var/list/choices = list()

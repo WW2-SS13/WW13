@@ -26,38 +26,43 @@
 				if (PILLARMEN)
 					++undead
 
-	return list("de" = de, "ru" = ru, PARTISAN = partisan, CIVILIAN = civilian, PILLARMEN = undead)
+	return list(GERMAN = de, SOVIET = ru, PARTISAN = partisan, CIVILIAN = civilian, PILLARMEN = undead)
 
-/proc/WW2_soldiers_en_ru_ratio()
+/proc/WW2_soldiers_de_ru_ratio()
 
 	var/list/soldiers = WW2_soldiers_alive()
 	// prevents dividing by FALSE - Kachnov
-	if (soldiers["en"] > 0 && soldiers["ru"] == 0)
+	if (soldiers[GERMAN] > 0 && soldiers[SOVIET] == 0)
 		return 1000
-	else if (soldiers["ru"] > 0 && soldiers["en"] == 0)
+	else if (soldiers[SOVIET] > 0 && soldiers[GERMAN] == 0)
 		return 1/1000
-	else if (soldiers["ru"] == soldiers["en"])
+	else if (soldiers[SOVIET] == soldiers[GERMAN])
 		return 1
 
-	return max(soldiers["en"], TRUE)/max(soldiers["ru"], TRUE) // we need decimals here so no rounding
+	return max(soldiers[GERMAN], TRUE)/max(soldiers[SOVIET], TRUE) // we need decimals here so no rounding
 
 /proc/is_soviet_contested_zone(var/area/a)
 	if (istype(a, /area/prishtina/soviet/bunker))
-		if (!istype(a, /area/prishtina/soviet/bunker/tunnel))
+		if (a.capturable)
 			return TRUE
 	else if (istype(a, /area/prishtina/soviet/small_map))
-		return TRUE
+		if (a.capturable)
+			return TRUE
 	return FALSE
 
 /proc/is_german_contested_zone(var/area/a)
 	if (istype(a, /area/prishtina/german))
-		if (!istype(a, /area/prishtina/german/train_landing_zone))
-			if (!istype(a, /area/prishtina/german/train_zone))
-				return TRUE
+		if (a.capturable)
+			return TRUE
 	return FALSE
 
+/proc/is_undead_contested_zone(var/area/a)
+	if (istype(a, /area/prishtina/sewers))
+		if (a.capturable)
+			return TRUE
+	return FALSE
 
-/proc/get_soviet_german_stats()
+/proc/get_stats()
 	var/alive_soviets = 0
 	var/alive_germans = 0
 
@@ -99,12 +104,12 @@
 				else if (is_soviet_contested_zone(get_area(H)))
 					++germans_in_russia
 
-	return list ("alive_soviets" = alive_soviets, "alive_germans" = alive_germans,
-		"soviets_in_russia" = soviets_in_russia, "soviets_in_germany" = soviets_in_germany,
-			"germans_in_germany" = germans_in_germany, "germans_in_russia" = germans_in_russia)
+	return list ("alive_2" = alive_soviets, "alive_1" = alive_germans,
+		"2_in_2" = soviets_in_russia, "2_in_1" = soviets_in_germany,
+			"1_in_1" = germans_in_germany, "1_in_2" = germans_in_russia)
 
 /proc/has_occupied_base(var/side)
-	var/stats = get_soviet_german_stats()
+	var/stats = get_stats()
 	switch (side)
 		if (GERMAN)
 			if (stats["soviets_in_germany"] > stats["germans_in_germany"])

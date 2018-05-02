@@ -695,6 +695,22 @@
 		reagents.add_reagent("hyperzine", 5)
 		bitesize = 3
 
+/obj/item/weapon/reagent_containers/food/snacks/bearmeat/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(!roasted && istype(W,/obj/item/weapon/material/knife))
+		var/atom/A = new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
+		A.name = "bear meat cutlet"
+		A.desc = replacetext(desc, "slab", "cutlet")
+		A = new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
+		A.name = "bear meat cutlet"
+		A.desc = replacetext(desc, "slab", "cutlet")
+		A = new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
+		A.name = "bear meat cutlet"
+		A.desc = replacetext(desc, "slab", "cutlet")
+		user << "You cut the meat into thin strips."
+		qdel(src)
+	else
+		..()
+
 /obj/item/weapon/reagent_containers/food/snacks/xenomeat
 	name = "meat"
 	desc = "A slab of green meat. Smells like acid."

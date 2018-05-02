@@ -10,11 +10,17 @@
   * OS at the time (Ubuntu 16) and BYOND wasn't compatible with calling rand_seed on such a huge number?
   * Who knows. So, basically, don't use world.realtime in the srand() formula if you change it - Kachnov */
 
+// update: rand_seed() is now called no more than once a second, experimental - Kachnov
+
 var/srand_calls = 0
+var/next_rand_seed = -1
+
 /proc/srand(a, b)
-	var/seed = (round(world.time)+world.timeofday)+(projectile_process ? projectile_process.ticks : 0)+srand_calls
-	++srand_calls
-	rand_seed(seed)
+	if (world.time >= next_rand_seed)
+		var/seed = (round(world.time)+world.timeofday)+(projectile_process ? projectile_process.ticks : 0)+srand_calls
+		++srand_calls
+		rand_seed(seed)
+		next_rand_seed = world.time + 10
 	return rand(a, b)
 
 // new probability. Only accurate with whole numbers
