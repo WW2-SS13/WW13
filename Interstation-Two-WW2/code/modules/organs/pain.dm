@@ -1,16 +1,19 @@
 mob/proc/flash_pain()
+	return
 	if(istype(src,/mob/living))
 		var/mob/living/L = src
 		if (L.HUDtech.Find("pain"))
 			flick("pain",L.HUDtech["pain"])
 
 mob/proc/flash_weak_pain()//Why the fuck wasn't that there before?
+	return
 	if(istype(src,/mob/living))
 		var/mob/living/L = src
 		if (L.HUDtech.Find("pain"))
 			flick("weak_pain",L.HUDtech["pain"])
 
 mob/proc/flash_weakest_pain()
+	return
 	if(istype(src,/mob/living))
 		var/mob/living/L = src
 		if (L.HUDtech.Find("pain"))
