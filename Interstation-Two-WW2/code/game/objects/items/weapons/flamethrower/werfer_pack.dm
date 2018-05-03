@@ -38,6 +38,13 @@
 
 	..(user, slot)
 
+/obj/item/weapon/storage/backpack/flammenwerfer/proc/is_empty()
+	if (!flamethrower)
+		return TRUE
+	if (flamethrower.fueltank <= 0)
+		return TRUE
+	return FALSE
+
 /obj/item/weapon/storage/backpack/flammenwerfer/proc/reclaim_flamethrower()
 
 	if (!flamethrower)

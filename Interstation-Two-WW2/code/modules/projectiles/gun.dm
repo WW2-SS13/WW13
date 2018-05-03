@@ -2,7 +2,7 @@
 	var/name = "default"
 	var/burst = 1
 	var/burst_delay = 0
-	var/fire_delay = 0
+	var/fire_delay = -1
 	var/move_delay = 0
 	var/recoil = -1
 	var/list/dispersion = list(0)
@@ -90,8 +90,9 @@
 		for(var/i in 1 to firemodes.len)
 			firemodes[i] = new firemode_type(firemodes[i])
 
-//	if(isnull(scoped_accuracy))
-//		scoped_accuracy = accuracy
+	for (var/datum/firemode/FM in firemodes)
+		if (FM.fire_delay == -1)
+			FM.fire_delay = fire_delay
 
 	if (!aim_targets)
 		aim_targets = list()
@@ -248,7 +249,7 @@
 	var/datum/firemode/firemode = firemodes[sel_mode]
 	var/_burst = firemode.burst
 	var/_burst_delay = isnull(firemode.burst_delay)? burst_delay : firemode.burst_delay
-	var/_fire_delay = isnull(firemode.fire_delay)? fire_delay : firemode.fire_delay
+	var/_fire_delay = isnull(firemode.fire_delay) ? fire_delay : firemode.fire_delay
 	var/_move_delay = firemode.move_delay
 
 	if (forceburst != -1)

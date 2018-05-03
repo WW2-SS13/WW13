@@ -11,7 +11,7 @@
 	var/pressure_1 = 100
 	status = TRUE
 	nothrow = TRUE
-	var/fueltank = TRUE
+	var/fueltank = 1.00
 	var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = null
 	var/rwidth = 7
 	var/rheight = 1

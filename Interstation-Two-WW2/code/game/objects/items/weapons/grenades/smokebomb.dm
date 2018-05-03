@@ -21,7 +21,7 @@
 /obj/item/weapon/grenade/smokebomb/prime()
 	if (active)
 		playsound(loc, 'sound/effects/smoke.ogg', 50, TRUE, -3)
-		smoke.set_up(10, FALSE, usr.loc)
+		smoke.set_up(10, FALSE, usr ? usr.loc : loc)
 		spawn(0)
 			smoke.start()
 			sleep(10)
@@ -37,5 +37,6 @@
 
 /obj/item/weapon/grenade/smokebomb/fast_activate()
 	spawn(round(det_time/10))
+		visible_message("<span class = 'warning'>\The [src] goes off!</span>")
 		active = TRUE
 		prime()

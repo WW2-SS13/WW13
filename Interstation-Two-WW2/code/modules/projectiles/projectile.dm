@@ -430,6 +430,15 @@
 					loc = null
 					qdel(src)
 					return FALSE
+			else if (istype(AM, /obj/item/weapon/storage/backpack/flammenwerfer))
+				if (AM == original)
+					var/obj/item/weapon/storage/backpack/flammenwerfer/F = AM
+					if (!F.is_empty())
+						F.explode()
+						bumped = TRUE
+						loc = null
+						qdel(src)
+						return FALSE
 			else if (!untouchable.Find(AM))
 				if (isliving(AM) && AM != firer)
 					var/mob/living/L = AM

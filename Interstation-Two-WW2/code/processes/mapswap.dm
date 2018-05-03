@@ -8,6 +8,7 @@ var/process/mapswap/mapswap_process = null
 		MAP_PILLAR = 0)
 	var/ready = TRUE
 	var/admin_triggered = FALSE
+	var/finished_at = -1
 
 /process/mapswap/setup()
 	name = "mapswap"
@@ -21,14 +22,8 @@ var/process/mapswap/mapswap_process = null
 	if (is_ready())
 		ready = FALSE
 		vote.initiate_vote("map", "MapSwap Process", TRUE, list(src, "swap"))
-		ticker.delay_end = TRUE
-		if (ticker.finished)
-			world << "<font color='purple'><b>The game will automatically restart in a couple of minutes.</b></font>"
-		spawn (1500)
-			// we weren't undelayed by an admin, so end automatically after giving the other server time to update
-			if (ticker.delay_end && ticker.finished)
-				ticker.delay_end = FALSE
-				world.Reboot()
+		spawn (config.vote_period)
+			finished_at = world.time
 
 /process/mapswap/proc/is_ready()
 	. = FALSE

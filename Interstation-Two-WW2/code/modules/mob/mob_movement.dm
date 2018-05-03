@@ -620,7 +620,7 @@
 						L.adjustBruteLoss(srand(6,7))
 						if (ishuman(L))
 							L.emote("scream")
-						sleep(3)
+						sleep(7)
 					break
 			else
 				for (var/mob/living/L in t1)
@@ -811,6 +811,7 @@
 	set name = ".startmovingup"
 	set instant = TRUE
 	if (mob)
+		mob.movement_process_dirs -= SOUTH
 		mob.movement_process_dirs |= NORTH
 		Move(get_step(mob, NORTH), NORTH)
 
@@ -818,6 +819,7 @@
 	set name = ".startmovingdown"
 	set instant = TRUE
 	if (mob)
+		mob.movement_process_dirs -= NORTH
 		mob.movement_process_dirs |= SOUTH
 		Move(get_step(mob, SOUTH), SOUTH)
 
@@ -825,6 +827,7 @@
 	set name = ".startmovingright"
 	set instant = TRUE
 	if (mob)
+		mob.movement_process_dirs -= WEST
 		mob.movement_process_dirs |= EAST
 		Move(get_step(mob, EAST), EAST)
 
@@ -832,6 +835,7 @@
 	set name = ".startmovingleft"
 	set instant = TRUE
 	if (mob)
+		mob.movement_process_dirs -= EAST
 		mob.movement_process_dirs |= WEST
 		Move(get_step(mob, WEST), WEST)
 

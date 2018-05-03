@@ -363,11 +363,21 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 			callHook("roundend")
 
-			if(!delay_end)
-				world << "<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>"
+			var/restart_after = restart_timeout
+
+			if (mapswap_process)
+				if (mapswap_process.finished_at == -1)
+					restart_after = 1800
+				else
+					var/n = world.time - mapswap_process.finished_at
+					if (n <= 900)
+						restart_after = 1800 - n
 
 			if(!delay_end)
-				sleep(restart_timeout)
+				world << "<span class='notice'><b>Restarting in [round(restart_after/10)] seconds</b></span>"
+
+			if(!delay_end)
+				sleep(restart_after)
 				if(!delay_end)
 					world.Reboot()
 				else

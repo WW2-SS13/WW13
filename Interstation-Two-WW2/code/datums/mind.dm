@@ -104,7 +104,7 @@
 		output += "<br><br>"
 		var/list/notelist = notes[title]
 		for (var/v in 1 to notelist.len)
-			output += notelist[v]
+			output += "<i>[notelist[v]]</i>"
 			if (v != notelist.len)
 				output += "<br>"
 		output += "<br>"
@@ -113,7 +113,7 @@
 	output += "<b><span style = 'font-size: 1.1em; color: #E1E1FF'>Memories</span></b>"
 	output += "<br><br>"
 	if (memory)
-		output += memory
+		output += "<i>[memory]</i>"
 	else
 		output += "<i>No memories stored.</i>"
 /*
@@ -138,7 +138,7 @@
 	</body></html>
 	"}
 
-	recipient << browse(replacetext(memory_stylized, "PLACEHOLDER", output),"window=memory;size=600x500")
+	recipient << browse(replacetext(memory_stylized, "PLACEHOLDER", output),"window=memory;size=600x600")
 
 /datum/mind/proc/edit_memory()
 	if(!ticker)

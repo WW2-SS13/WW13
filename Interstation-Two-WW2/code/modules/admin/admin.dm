@@ -344,7 +344,11 @@ proc/admin_notice(var/message, var/rights)
 	if(!check_rights(R_ADMIN))	return
 
 	var/dat = {"
-		<center><b>Game Panel</b></center><hr>\n
+		<style>
+		[common_browser_style]
+		</style>
+		<br>
+		<center><b><big>Game Panel</big></b></center><hr>\n
 		"}
 		//		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
 /*	if(master_mode == "secret")
@@ -352,18 +356,18 @@ proc/admin_notice(var/message, var/rights)
 
 	dat += {"
 		<br>
-		<A href='?src=\ref[src];create_object=1'>Create Object</A><br>
-		<A href='?src=\ref[src];quick_create_object=1'>Quick Create Object</A><br>
-		<A href='?src=\ref[src];create_turf=1'>Create Turf</A><br>
-		<A href='?src=\ref[src];create_mob=1'>Create Mob</A><br>
-		<br>
-		<A href='?src=\ref[src];debug_global=1'>View/Debug a Global Variable, List, or Object</A><br>
-		<br>
-		<A href='?src=\ref[src];modify_global=1'>Modify a Global Variable (may not be an object or list)</A><br>
-		<br>
-		<A href='?src=\ref[src];modify_world_var=1'>Modify a World Variable (may not be an object or list)</A><br>
-
+		<A href='?src=\ref[src];create_object=1'>Create Object</A> (<A href='?src=\ref[src];quick_create_object=1'>Quick</A>)<br><br>
+		<A href='?src=\ref[src];create_turf=1'>Create Turf</A><br><br>
+		<A href='?src=\ref[src];create_mob=1'>Create Mob</A><br><br>
+		<br><br>
+		<A href='?src=\ref[src];debug_global=1'>View/Debug a Global Variable, List, or Object</A><br><br>
+		<br><br>
+		<A href='?src=\ref[src];modify_global=1'>Modify a Global Variable (may not be an object or list)</A><br><br>
+		<br><br>
+		<A href='?src=\ref[src];modify_world_var=1'>Modify a World Variable (may not be an object or list)</A><br><br>
 		"}
+
+	dat = "<center><big>[dat]</big></center>"
 
 	usr << browse(dat, "window=admin2;size=400x500")
 	return
