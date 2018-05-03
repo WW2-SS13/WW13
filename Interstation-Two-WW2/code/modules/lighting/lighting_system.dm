@@ -1,5 +1,4 @@
-var/max_lighting_z = TRUE // no lighting in the sky anymore
-
+/var/max_lighting_z = 1
 /var/list/all_lighting_overlays   = list()    // Global list of lighting overlays.
 /var/lighting_corners_initialised = FALSE
 
@@ -32,7 +31,7 @@ var/max_lighting_z = TRUE // no lighting in the sky anymore
 			PoolOrNew(/atom/movable/lighting_overlay, T, TRUE)
 
 /proc/create_all_lighting_corners()
-	for(var/zlevel = TRUE to max_lighting_z)
+	for(var/zlevel = 1 to max_lighting_z)
 		create_lighting_corners_zlevel(zlevel)
 	global.lighting_corners_initialised = TRUE
 
@@ -88,21 +87,18 @@ var/created_lighting_corners_and_overlays = FALSE
 				if (turfs.len >= vv && turfs[vv])
 					var/turf/t = turfs[vv]
 					if (t.z <= max_lighting_z)
-						if (!locate(/obj/train_track) in t)
-							if (t.uses_daylight_dynamic_lighting || locate(/obj/structure/catwalk) in t)
-								var/area/a = t.loc
-								if (!a.dynamic_lighting)
-									if (!istype(a, /area/prishtina/soviet/bunker) && !istype(a, /area/prishtina/soviet/bunker_entrance) && !a.is_void_area)
-										t.adjust_lighting_overlay_to_daylight()
-
+						var/area/a = get_area(t)
+						if (a && a.dynamic_lighting)
+							t.adjust_lighting_overlay_to_daylight()
 						else
 							// You have to do this instead of deleting t.lighting_overlay.
 							for (var/atom/movable/lighting_overlay/LO in t.contents)
 								qdel(LO)
-							var/TOD_2_rgb = min(255, round(time_of_day2luminosity[time_of_day] * 255) * 1.25)
-							t.color = rgb(TOD_2_rgb, TOD_2_rgb, TOD_2_rgb)
-							for (var/obj/train_track/TT in t.contents)
-								TT.color = t.color
+							if (locate_type(/obj/train_track, t))
+								var/TOD_2_rgb = min(255, round(time_of_day2luminosity[time_of_day] * 255) * 1.25)
+								t.color = rgb(TOD_2_rgb, TOD_2_rgb, TOD_2_rgb)
+								for (var/obj/train_track/TT in t.contents)
+									TT.color = t.color
 
 					// regardless of whether or not we use dynamic lighting here
 					// we still need to change the TOD to prevent Vampire dusting
