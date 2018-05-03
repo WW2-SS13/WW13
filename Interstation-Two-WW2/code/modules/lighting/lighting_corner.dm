@@ -23,15 +23,45 @@
 	var/TOD_lum_g = 0.0
 	var/TOD_lum_b = 0.0
 
+	// misc
+	var/window_coeff = 0.0
+	var/next_calculate_window_coeff = -1
+
+/datum/lighting_corner/proc/calculate_window_coeff()
+	. = 0
+
+	var/turf/T = masters[1]
+	var/area/T_area = get_area(T)
+
+	if (T_area.location == AREA_OUTSIDE)
+		window_coeff = 1.0
+		return window_coeff
+
+	// objects that let in light
+	for (var/turf/TT in view(10, T))
+		if (!TT.density)
+			var/area/TT_area = get_area(TT)
+			if (TT_area.location == AREA_OUTSIDE)
+				. += (1/abs_dist(T, TT))
+
+	// dividing '.' by 7 returns a more reasonable number - Kachnov
+	window_coeff = min(1.0, (.)/7)
+	return window_coeff
+
 // new system for handling time of day and luminosity
 /datum/lighting_corner/proc/getLumR()
-	return lum_r
+	/* calculate_window_coeff() is very expensive so only do it once in a while
+	 * the reason its done here is because getLumR() is always called first - Kachnov */
+	if (world.time >= next_calculate_window_coeff)
+		calculate_window_coeff()
+		next_calculate_window_coeff = world.time + 300
+	return min(1.0, lum_r + (TOD_lum_r * window_coeff))
 
 /datum/lighting_corner/proc/getLumG()
-	return lum_g
+	return min(1.0, lum_g + (TOD_lum_g * window_coeff))
 
 /datum/lighting_corner/proc/getLumB()
-	return lum_b
+	return min(1.0, lum_b + (TOD_lum_b * window_coeff))
 
 /datum/lighting_corner/New(var/turf/new_turf, var/diagonal)
 	. = ..()

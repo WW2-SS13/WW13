@@ -19,6 +19,24 @@
 			return D
 	return FALSE
 
+/proc/locate_dense_type(var/list/L, var/type)
+	if (isatom(L))
+		var/atom/A = L
+		L = A.contents
+	for (var/atom/A in L)
+		if (istype(A, type) && A.density)
+			return A
+	return FALSE
+
+/proc/locate_opaque_type(var/list/L, var/type)
+	if (isatom(L))
+		var/atom/A = L
+		L = A.contents
+	for (var/atom/A in L)
+		if (istype(A, type) && A.opacity)
+			return A
+	return FALSE
+
 /proc/locate_bullet_blocking_structure(var/list/L)
 	if (isatom(L))
 		var/atom/A = L

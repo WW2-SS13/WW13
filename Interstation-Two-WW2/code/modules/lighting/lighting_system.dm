@@ -3,7 +3,7 @@
 /var/lighting_corners_initialised = FALSE
 
 /proc/create_all_lighting_overlays()
-	for(var/zlevel = TRUE to max_lighting_z)
+	for(var/zlevel = 1 to max_lighting_z)
 		create_lighting_overlays_zlevel(zlevel)
 
 /proc/create_lighting_overlays_zlevel(var/zlevel)
@@ -88,8 +88,17 @@ var/created_lighting_corners_and_overlays = FALSE
 					var/turf/t = turfs[vv]
 					if (t.z <= max_lighting_z)
 						var/area/a = get_area(t)
-						if (a && a.dynamic_lighting)
-							t.adjust_lighting_overlay_to_daylight()
+
+						var/areacheck = TRUE
+						if (map)
+							for (var/area_type in map.areas_without_lighting)
+								if (istype(a, area_type))
+									areacheck = FALSE
+									break
+
+						if (a && a.dynamic_lighting && areacheck)
+							if (!map || !map.zlevels_without_lighting.Find(t.z))
+								t.adjust_lighting_overlay_to_daylight()
 						else
 							// You have to do this instead of deleting t.lighting_overlay.
 							for (var/atom/movable/lighting_overlay/LO in t.contents)

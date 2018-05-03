@@ -15,6 +15,7 @@
 		list(PILLARMEN) = /area/prishtina/sewers)
 	times_of_day = list("Midday")
 	zlevels_without_lighting = list(2)
+	areas_without_lighting = list(/area/prishtina/german/lift/down)
 	songs = list(
 		"Pa Pa Tu Tu Wa Wa:1" = 'sound/music/papatutu.ogg',
 		"Awaken:1" = 'sound/music/awaken.ogg',

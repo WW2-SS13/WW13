@@ -68,6 +68,7 @@ var/global/obj/map_metadata/map = null
 	var/win_condition_spam_check = FALSE
 	var/list/times_of_day = list("Early Morning", "Morning", "Afternoon", "Midday", "Evening", "Night", "Midnight")
 	var/list/zlevels_without_lighting = list()
+	var/list/areas_without_lighting = list()
 
 /obj/map_metadata/New()
 	..()
