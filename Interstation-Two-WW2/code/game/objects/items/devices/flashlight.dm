@@ -143,12 +143,16 @@
 	on_state = "flare-on"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.
-	var/fuel = FALSE
+	var/fuel = 0
 	var/on_damage = 7
 	var/produce_heat = 1500
 	turn_on_sound = 'sound/effects/Custom_flare.ogg'
 
 /obj/item/flashlight/flare/nighttime
+/obj/item/flashlight/flare/nighttime/New()
+	..()
+	fuel = INFINITY
+	turn_on()
 
 /obj/item/flashlight/flare/New()
 	fuel = srand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
