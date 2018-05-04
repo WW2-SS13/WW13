@@ -77,10 +77,9 @@ var/created_lighting_corners_and_overlays = FALSE
 	if (_time_of_day)
 		time_of_day = _time_of_day
 
-	// change lighting over 12 seconds & 120 loops
-
+	// change lighting over 5 seconds & 50 loops
 	spawn (1)
-		var/max_v = 120
+		var/max_v = LIGHTING_CHANGE_TIME
 		for (var/v in 1 to max_v)
 			var/iterations_per_loop = ceil(turfs.len/max_v)
 			for (var/vv in 1+(iterations_per_loop*(v-1)) to iterations_per_loop*v)
@@ -96,15 +95,16 @@ var/created_lighting_corners_and_overlays = FALSE
 									areacheck = FALSE
 									break
 
-						if (a && a.dynamic_lighting && areacheck)
-							if (!map || !map.zlevels_without_lighting.Find(t.z))
-								t.adjust_lighting_overlay_to_daylight()
+						if (a && a.dynamic_lighting && areacheck && !iswall(t) && (!map || !map.zlevels_without_lighting.Find(t.z)))
+							t.adjust_lighting_overlay_to_daylight()
 						else
+
 							// You have to do this instead of deleting t.lighting_overlay.
 							for (var/atom/movable/lighting_overlay/LO in t.contents)
 								qdel(LO)
-							if (locate_type(/obj/train_track, t))
-								var/TOD_2_rgb = min(255, round(time_of_day2luminosity[time_of_day] * 255) * 1.25)
+
+							if ((iswall(t) && a && a.dynamic_lighting && a.location == AREA_OUTSIDE) || locate_type(/obj/train_track, t))
+								var/TOD_2_rgb = min(255, round(time_of_day2luminosity[time_of_day] * 255))
 								t.color = rgb(TOD_2_rgb, TOD_2_rgb, TOD_2_rgb)
 								for (var/obj/train_track/TT in t.contents)
 									TT.color = t.color
@@ -116,15 +116,23 @@ var/created_lighting_corners_and_overlays = FALSE
 
 			sleep(1)
 
+	// turning lights on and off fixes a bug that causes some lighting overlays to be invisible
+	spawn (LIGHTING_CHANGE_TIME * 1.5)
+		for (var/obj/structure/light/L in world)
+			L.on = !L.on
+			L.update(0, nosound = TRUE)
+			L.on = (L.status == LIGHT_OK)
+			L.update(0, nosound = TRUE)
+
 	if (admincaller)
-		spawn (125)
+		spawn (LIGHTING_CHANGE_TIME * 1.1)
 			admincaller << "<span class = 'notice'>Updated lights for [time_of_day].</span>"
 			var/M = "[key_name(admincaller)] changed the time of day from [O_time_of_day] to [time_of_day]."
 			log_admin(M)
 			message_admins(M)
 
 	if (announce)
-		spawn (130)
+		spawn (LIGHTING_CHANGE_TIME * 1.2)
 			for (var/mob/M in player_list)
 				var/area/M_area = get_area(M)
 				if (M_area.location == AREA_OUTSIDE || M_area.z == 1 || istype(M, /mob/observer) || istype(M, /mob/new_player))

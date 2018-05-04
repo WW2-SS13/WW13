@@ -213,6 +213,9 @@
 		if(3.0)
 			return
 
+/obj/structure/light/floor/streetlight/process()
+	return
+
 /obj/structure/light/small
 	icon_state = "bulb1"
 	base_state = "bulb"
@@ -267,12 +270,12 @@
 		var/area/A = get_area(src)
 		if(A && !A.requires_power)
 			on = TRUE
-
-		if(z == TRUE || z == 5)
+/*
+		if(z == 1 || z == 5)
 			switch(fitting)
 				if("tube","bulb")
 					if(sprob(2))
-						broken(1)
+						broken(1)*/
 
 		spawn(1)
 			update(0)
@@ -520,7 +523,7 @@
 				if(status != LIGHT_OK) break
 				on = !on
 				update(0, nosound = TRUE)
-				sleep(srand(2, 3))
+				sleep(2)
 			on = (status == LIGHT_OK)
 			update(0, nosound = TRUE)
 		flickering = FALSE

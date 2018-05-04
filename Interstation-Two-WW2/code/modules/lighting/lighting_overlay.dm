@@ -37,6 +37,10 @@
 
 	update_overlay()
 
+	// so observers can actually see things
+	if (!ticker || ticker.current_state == GAME_STATE_PREGAME)
+		invisibility = 100
+
 /atom/movable/lighting_overlay/Destroy()
 	var/turf/T   = loc
 	if(istype(T))
@@ -50,7 +54,7 @@
 
 /atom/movable/lighting_overlay/proc/update_overlay()
 	var/turf/T = loc
-	if(!istype(T)) // Erm...
+	if(!T || !istype(T)) // Erm...
 		if(loc)
 			warning("A lighting overlay realised its loc was NOT a turf (actual loc: [loc], [loc.type]) in update_overlay() and got pooled!")
 
@@ -58,6 +62,7 @@
 			warning("A lighting overlay realised it was in nullspace in update_overlay() and got pooled!")
 
 		qdel(src)
+		return
 
 	var/list/L = copylist(color)
 	var/anylums = FALSE

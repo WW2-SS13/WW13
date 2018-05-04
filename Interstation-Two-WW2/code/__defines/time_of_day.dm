@@ -21,14 +21,13 @@ var/list/time_of_day2ticks = list(
 	"Midnight" = 15*60)
 
 /proc/isDarkOutside()
-	if (list("Early Morning", "Evening", "Night", "Midnight").Find(time_of_day))
+	if (list("Evening", "Night", "Midnight").Find(time_of_day))
 		return 1
 	return 0
 
 /proc/pick_TOD()
 
-	if (map && times_of_day != map.times_of_day)
-		qdel_list(times_of_day)
+	if (map && times_of_day.len != map.times_of_day.len)
 		times_of_day = map.times_of_day
 	// attempt to fix broken BYOND probability
 

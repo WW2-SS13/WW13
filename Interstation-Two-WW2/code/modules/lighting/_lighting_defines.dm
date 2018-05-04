@@ -6,6 +6,7 @@
 #endif
 */
 
+
 #define LIGHTING_FALLOFF        TRUE    // Type of falloff to use for lighting; TRUE for circular, 2 for square.
 #define LIGHTING_LAMBERTIAN     FALSE    // Use lambertian shading for light sources.
 #define LIGHTING_HEIGHT         TRUE    // Height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone.
@@ -26,6 +27,8 @@
 		0, FALSE, FALSE, FALSE,          \
 		0, FALSE, FALSE, TRUE           \
 	)                        \
+
+#define LIGHTING_CHANGE_TIME 50
 
 // Helpers so we can (more easily) control the colour matrices.
 #define RR TRUE
