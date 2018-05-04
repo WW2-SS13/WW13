@@ -103,7 +103,7 @@ var/created_lighting_corners_and_overlays = FALSE
 									areacheck = FALSE
 									break
 
-						if (a && a.dynamic_lighting && areacheck && !iswall(t) && (!map || !map.zlevels_without_lighting.Find(t.z)))
+						if (a && a.dynamic_lighting && areacheck && (!map || !map.zlevels_without_lighting.Find(t.z)))
 							t.adjust_lighting_overlay_to_daylight()
 						else
 							// You have to do this instead of deleting t.lighting_overlay.
@@ -111,7 +111,8 @@ var/created_lighting_corners_and_overlays = FALSE
 								qdel(LO)
 
 							// todo: way to determine if walls should be dark or not
-							if (/*(iswall(t) && a && a.dynamic_lighting && a.location == AREA_OUTSIDE) || */locate_type(/obj/train_track, t))
+							if (locate_type(/obj/train_track, t))
+								t.color = rgb(255, 255, 255)
 								var/TOD_2_rgb = min(255, round(time_of_day2luminosity[time_of_day] * 255))
 								t.color = rgb(TOD_2_rgb, TOD_2_rgb, TOD_2_rgb)
 								for (var/obj/train_track/TT in t.contents)
@@ -134,9 +135,7 @@ var/created_lighting_corners_and_overlays = FALSE
 	if (announce)
 		spawn (LIGHTING_CHANGE_TIME * 1.2)
 			for (var/mob/M in player_list)
-				var/area/M_area = get_area(M)
-				if (M_area.location == AREA_OUTSIDE || M_area.z == 1 || istype(M, /mob/observer) || istype(M, /mob/new_player))
-					M << "<font size=3><span class = 'notice'>It's <b>[lowertext(capitalize(time_of_day))]</b>.</span></font>"
+				M << "<font size=3><span class = 'notice'>It's <b>[lowertext(capitalize(time_of_day))]</b>.</span></font>"
 
 	spawn (LIGHTING_CHANGE_TIME * 2.0)
 		setup_lighting = TRUE
