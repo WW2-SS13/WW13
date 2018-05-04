@@ -1,6 +1,7 @@
 /var/max_lighting_z = 1
 /var/list/all_lighting_overlays   = list()    // Global list of lighting overlays.
 /var/lighting_corners_initialised = FALSE
+/var/setup_lighting = FALSE
 
 /proc/create_all_lighting_overlays()
 	for(var/zlevel = 1 to max_lighting_z)
@@ -74,9 +75,10 @@ var/created_lighting_corners_and_overlays = FALSE
 		sleep(1)
 
 	// make all lighting overlays visible
-	for (var/atom/movable/lighting_overlay/LO in world)
-		if (LO.invisibility)
-			LO.invisibility = 0
+	spawn (setup_lighting ? 0 : LIGHTING_CHANGE_TIME * 1.2)
+		for (var/atom/movable/lighting_overlay/LO in world)
+			if (LO.invisibility)
+				LO.invisibility = 0
 
 	var/O_time_of_day = time_of_day
 
@@ -135,3 +137,6 @@ var/created_lighting_corners_and_overlays = FALSE
 				var/area/M_area = get_area(M)
 				if (M_area.location == AREA_OUTSIDE || M_area.z == 1 || istype(M, /mob/observer) || istype(M, /mob/new_player))
 					M << "<font size=3><span class = 'notice'>It's <b>[lowertext(capitalize(time_of_day))]</b>.</span></font>"
+
+	spawn (LIGHTING_CHANGE_TIME * 2.0)
+		setup_lighting = TRUE
