@@ -70,6 +70,7 @@
 	is_officer = TRUE
 	is_commander = TRUE
 	whitelisted = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -121,6 +122,7 @@
 	spawn_location = "JoinLateHeerXO"
 	additional_languages = list( "Russian" = 100, "Ukrainian" = 50, "Italian" = 100)
 	is_officer = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1

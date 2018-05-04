@@ -15,6 +15,7 @@
 /datum/job/partisan/civilian/equip(var/mob/living/carbon/human/H)
 	if(!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/flashlight(H), spick(slot_l_hand, slot_r_hand))
 	equip_random_civilian_clothing(H)
 	H.add_note("Role", "You are a <b>[title]</b>, a simple civilian trying to live his life in the warzone. Survive.")
 	H.setStat("strength", civ_stat())

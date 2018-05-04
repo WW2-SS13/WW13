@@ -25,6 +25,7 @@
 	is_officer = TRUE
 	is_commander = TRUE
 	whitelisted = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1
@@ -77,6 +78,7 @@
 	spawn_location = "JoinLateRAXO"
 	additional_languages = list( "German" = 100, "Ukrainian" = 50 )
 	is_officer = TRUE
+	SL_check_independent = TRUE
 
 	// AUTOBALANCE
 	min_positions = 1

@@ -60,7 +60,7 @@
 				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
 	else
 		if(language)
-			on_hear_say("<span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, verb)]")
+			on_hear_say("<span class='name'>[speaker_name] <span class = 'small_message'>([language.name])</span></span>[alt_name] [track][language.format_message(message, verb)]")
 		else
 			on_hear_say("<span class='name'>[speaker_name]</span>[alt_name] [track][verb], \"[message]\"")
 		if (speech_sound && (get_dist(speaker, src) <= world.view && z == speaker.z))
@@ -158,9 +158,9 @@
 		if (speaker.original_job.is_officer || istype(speaker.original_job, /datum/job/german/trainsystem))
 			fontsize = 3
 
-		var/full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] [message]</span></font>"
+		var/full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] <span class = 'small_message'>([language.name])</span> [message]</span></font>"
 		if (track)
-			full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] ([track]) [message]</span></font>"
+			full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] ([track]) <span class = 'small_message'>([language.name])</span> [message]</span></font>"
 		on_hear_radio(source, full_message)
 
 /proc/say_timestamp()

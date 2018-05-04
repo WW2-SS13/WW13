@@ -424,11 +424,25 @@
 		// needs to be its own loop for reasons
 		for (var/atom/movable/AM in T.contents)
 			if (AM == original)
-				AM.bullet_act(src)
-				bumped = TRUE
-				loc = null
-				qdel(src)
-				return FALSE
+				var/hitchance = 66 // a light, for example
+				if (isitem(AM))
+					var/obj/item/I = AM
+					hitchance = 25 * I.w_class // a pistol would be 50%
+				log_debug(hitchance)
+				if (prob(hitchance))
+					AM.bullet_act(src)
+					bumped = TRUE
+					loc = null
+					qdel(src)
+					return FALSE
+				else
+					AM.visible_message("<span class = 'warning'>\The [src] narrowly misses [AM]!</span>")
+					if (isitem(AM) || (AM.density && AM.anchored)) // since it was on the ground
+						bumped = TRUE
+						loc = null
+						qdel(src)
+						return FALSE
+				break
 		for (var/atom/movable/AM in T.contents)
 			if (!untouchable.Find(AM))
 				if (isliving(AM) && AM != firer)

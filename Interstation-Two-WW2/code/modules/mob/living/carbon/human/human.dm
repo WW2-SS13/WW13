@@ -169,10 +169,10 @@ var/list/coefflist = list()
 			b_loss += 750
 			if (!sprob(getarmor(null, "bomb")))
 				for (var/obj/item/organ/external/arm/arm in contents)
-					if (sprob(33))
+					if (sprob(50))
 						arm.droplimb()
 				for (var/obj/item/organ/external/leg/leg in contents)
-					if (sprob(33))
+					if (sprob(50))
 						leg.droplimb()
 				return
 			else
