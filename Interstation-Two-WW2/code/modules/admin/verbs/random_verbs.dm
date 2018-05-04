@@ -32,7 +32,7 @@
 		//teleport person to cell
 		M.Paralyse(5)
 		sleep(5)	//so they black out before warping
-		M.loc = spick(prisonwarp)
+		M.loc = pick(prisonwarp)
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/prisoner = M
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), slot_w_uniform)
@@ -348,7 +348,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		usr << "<font color='red'>There is no active key like that in the game or the person is not currently a ghost.</font>"
 		return
 
-	var/mob/living/carbon/human/new_character = new(spick(latejoin))//The mob being spawned.
+	var/mob/living/carbon/human/new_character = new(pick(latejoin))//The mob being spawned.
 
 //	var/datum/data/record/record_found			//Referenced to later to either randomize or not randomize the character.
 
@@ -369,16 +369,16 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.b_type = record_found.fields["b_type"]
 	else*/
 
-	new_character.gender = spick(MALE,FEMALE)
+	new_character.gender = pick(MALE,FEMALE)
 	var/datum/preferences/A = new()
 	A.randomize_appearance_for(new_character)
 	new_character.real_name = G_found.real_name
 
 	if(!new_character.real_name)
 		if(new_character.gender == MALE)
-			new_character.real_name = capitalize(spick(first_names_male)) + " " + capitalize(spick(last_names))
+			new_character.real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 		else
-			new_character.real_name = capitalize(spick(first_names_female)) + " " + capitalize(spick(last_names))
+			new_character.real_name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 	new_character.name = new_character.real_name
 
 	if(G_found.mind && !G_found.mind.active)

@@ -62,17 +62,17 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 				name = body.mind.name
 			else
 				if(gender == MALE)
-					name = capitalize(spick(first_names_male)) + " " + capitalize(spick(last_names))
+					name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 				else
-					name = capitalize(spick(first_names_female)) + " " + capitalize(spick(last_names))
+					name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
-	if(!T)	T = spick(latejoin_turfs["Ghost"])			//Safety in case we cannot find the body's position
+	if(!T)	T = pick(latejoin_turfs["Ghost"])			//Safety in case we cannot find the body's position
 	forceMove(T)
 
 	if(!name)							//To prevent nameless ghosts
-		name = capitalize(spick(first_names_male)) + " " + capitalize(spick(last_names))
+		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 
 //	ghost_multitool = new(src)
@@ -317,7 +317,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "No area available."
 
 	stop_following()
-	usr.forceMove(spick(L))
+	usr.forceMove(pick(L))
 
 /mob/observer/ghost/verb/follow(input in getfitmobs()+"Cancel")
 	set category = "Ghost"
@@ -679,7 +679,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!v.welded && v.z == T.z)
 			found_vents.Add(v)
 	if(found_vents.len)
-		vent_found = spick(found_vents)
+		vent_found = pick(found_vents)
 		host = new /mob/living/simple_animal/mouse(vent_found.loc)
 	else
 		src << "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>"

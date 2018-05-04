@@ -313,7 +313,7 @@
 /datum/reagents/proc/splash(var/atom/target, var/amount = TRUE, var/multiplier = TRUE, var/copy = FALSE, var/min_spill=0, var/max_spill=60)
 	var/spill = FALSE
 	if(!isturf(target) && target.loc)
-		spill = amount*(srand(min_spill, max_spill)/100)
+		spill = amount*(rand(min_spill, max_spill)/100)
 		amount -= spill
 	if(spill)
 		splash(target.loc, spill, multiplier, copy, min_spill, max_spill)

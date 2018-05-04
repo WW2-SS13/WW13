@@ -151,7 +151,7 @@
 
 	var/list/newcards = list()
 	while(cards.len)
-		var/datum/playingcard/P = spick(cards)
+		var/datum/playingcard/P = pick(cards)
 		newcards += P
 		cards -= P
 	cards = newcards
@@ -259,8 +259,8 @@
 	if(cards.len == TRUE)
 		var/datum/playingcard/P = cards[1]
 		var/image/I = new(icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
-		I.pixel_x += (-5+srand(10))
-		I.pixel_y += (-5+srand(10))
+		I.pixel_x += (-5+rand(10))
+		I.pixel_y += (-5+rand(10))
 		overlays += I
 		return
 

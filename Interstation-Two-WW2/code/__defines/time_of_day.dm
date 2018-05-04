@@ -37,13 +37,13 @@ var/list/time_of_day2ticks = list(
 	return "Midday"
 	#else
 	// chance of midday: ~52%. Chance of afternoon: ~27%. Chance of any other: ~21%
-	if (sprob(50))
-		if (sprob(75))
+	if (prob(50))
+		if (prob(75))
 			return "Midday"
 		else
 			return "Afternoon"
 	else
-		return spick(c_times_of_day)
+		return pick(c_times_of_day)
 	#endif
 
 /proc/progress_time_of_day(var/caller = null)

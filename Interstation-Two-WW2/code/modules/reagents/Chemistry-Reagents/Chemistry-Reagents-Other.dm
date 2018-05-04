@@ -190,7 +190,7 @@
 /datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.SetParalysis(0)
 	M.SetWeakened(0)
-	M.adjustToxLoss(srand(3))
+	M.adjustToxLoss(rand(3))
 
 /datum/reagent/water/holywater
 	name = "Holy Water"
@@ -273,7 +273,7 @@
 		T.clean_blood()
 
 		for(var/mob/living/carbon/slime/M in T)
-			M.adjustToxLoss(srand(5, 10))
+			M.adjustToxLoss(rand(5, 10))
 
 /datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.r_hand)

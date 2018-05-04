@@ -15,11 +15,11 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
 	pref.age			= sanitize_integer(pref.age, S.min_age, S.max_age, initial(pref.age))
-	pref.gender 		= sanitize_inlist(pref.gender, valid_player_genders, spick(valid_player_genders))
-	pref.german_gender 		= sanitize_inlist(pref.german_gender, valid_player_genders, spick(valid_player_genders))
-	pref.russian_gender 		= sanitize_inlist(pref.russian_gender, valid_player_genders, spick(valid_player_genders))
-	pref.ukrainian_gender 		= sanitize_inlist(pref.ukrainian_gender, valid_player_genders, spick(valid_player_genders))
-	pref.italian_gender 		= sanitize_inlist(pref.italian_gender, valid_player_genders, spick(valid_player_genders))
+	pref.gender 		= sanitize_inlist(pref.gender, valid_player_genders, pick(valid_player_genders))
+	pref.german_gender 		= sanitize_inlist(pref.german_gender, valid_player_genders, pick(valid_player_genders))
+	pref.russian_gender 		= sanitize_inlist(pref.russian_gender, valid_player_genders, pick(valid_player_genders))
+	pref.ukrainian_gender 		= sanitize_inlist(pref.ukrainian_gender, valid_player_genders, pick(valid_player_genders))
+	pref.italian_gender 		= sanitize_inlist(pref.italian_gender, valid_player_genders, pick(valid_player_genders))
 	pref.body_build 	= sanitize_inlist(pref.body_build, list("Slim", "Default", "Fat"), "Default")
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.gender
 	pref.real_name		= sanitize_name(pref.real_name, pref.species)

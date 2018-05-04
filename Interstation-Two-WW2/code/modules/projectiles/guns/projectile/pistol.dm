@@ -201,7 +201,7 @@
 		)
 
 /obj/item/weapon/gun/projectile/pirate/New()
-	ammo_type = spick(ammo_types)
+	ammo_type = pick(ammo_types)
 
 	var/obj/item/ammo_casing/ammo = ammo_type
 	caliber = initial(ammo.caliber)

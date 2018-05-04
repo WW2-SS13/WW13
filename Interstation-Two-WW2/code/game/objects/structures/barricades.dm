@@ -97,7 +97,7 @@
 
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 	if (istype(mover, /obj/item/projectile))
-		return sprob(15)
+		return prob(15)
 	else
 		return FALSE
 

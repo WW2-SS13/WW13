@@ -84,7 +84,7 @@
 				icon_state = initial(icon_state) +"_locked"
 				stage = 2
 			else if(stage == 2)
-				if(active && sprob(95))
+				if(active && prob(95))
 					user << "<span class='warning'>You trigger the assembly!</span>"
 					prime()
 					return

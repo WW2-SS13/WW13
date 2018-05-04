@@ -16,8 +16,8 @@
 
 /obj/item/stack/tile/New()
 	..()
-	pixel_x = srand(-7, 7)
-	pixel_y = srand(-7, 7)
+	pixel_x = rand(-7, 7)
+	pixel_y = rand(-7, 7)
 
 /*
  * Grass

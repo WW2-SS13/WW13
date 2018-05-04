@@ -37,7 +37,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 
 	// melee weapons for some Vampires. Pillar Men don't need them since they're so robust already.
-	if (sprob(50))
+	if (prob(50))
 		H.equip_to_slot_or_del(new /obj/item/weapon/material/scythe(H), slot_l_hand)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/ritual(H), slot_l_hand)

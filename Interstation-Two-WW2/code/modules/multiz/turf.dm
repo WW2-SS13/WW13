@@ -91,12 +91,12 @@
 				playsound(mover.loc, 'sound/effects/gore/fallsmash.ogg', 50, TRUE)
 				var/mob/living/carbon/human/H = mover
 				var/damage = 10
-				H.apply_damage(srand(0, damage), BRUTE, "head")
-				H.apply_damage(srand(0, damage), BRUTE, "chest")
-				H.apply_damage(srand(0, damage), BRUTE, "l_leg")
-				H.apply_damage(srand(0, damage), BRUTE, "r_leg")
-				H.apply_damage(srand(0, damage), BRUTE, "l_arm")
-				H.apply_damage(srand(0, damage), BRUTE, "r_arm")
+				H.apply_damage(rand(0, damage), BRUTE, "head")
+				H.apply_damage(rand(0, damage), BRUTE, "chest")
+				H.apply_damage(rand(0, damage), BRUTE, "l_leg")
+				H.apply_damage(rand(0, damage), BRUTE, "r_leg")
+				H.apply_damage(rand(0, damage), BRUTE, "l_arm")
+				H.apply_damage(rand(0, damage), BRUTE, "r_arm")
 				H.Stun(3)//.
 				H.updatehealth()//.
 

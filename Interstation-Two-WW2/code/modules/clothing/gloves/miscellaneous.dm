@@ -27,7 +27,7 @@
 
 	New()
 		//average of 0.5, somewhat better than regular gloves' 0.75
-		siemens_coefficient = spick(0,0.1,0.3,0.5,0.5,0.75,1.35)
+		siemens_coefficient = pick(0,0.1,0.3,0.5,0.5,0.75,1.35)
 
 /obj/item/clothing/gloves/thick
 	desc = "These work gloves are thick and fire-resistant."

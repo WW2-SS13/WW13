@@ -119,7 +119,7 @@
 							if(heartbeat)
 								var/obj/item/organ/heart/heart = M.internal_organs_by_name["heart"]
 								if(heart.is_bruised() || M.getOxyLoss() > 50)
-									sound = "[spick("odd noises in","weak")] heartbeat"
+									sound = "[pick("odd noises in","weak")] heartbeat"
 								else
 									sound = "healthy heartbeat"
 
@@ -127,7 +127,7 @@
 							if(!L || M.losebreath)
 								sound += " and no respiration"
 							else if(M.is_lung_ruptured() || M.getOxyLoss() > 50)
-								sound += " and [spick("wheezing","gurgling")] sounds"
+								sound += " and [pick("wheezing","gurgling")] sounds"
 							else
 								sound += " and healthy respiration"
 						if("eyes","mouth")

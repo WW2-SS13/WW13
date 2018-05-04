@@ -49,7 +49,7 @@
 
 /obj/tank/proc/Fire()
 
-	var/atom/target = get_x_steps_in_dir(srand(MIN_RANGE,MAX_RANGE))
+	var/atom/target = get_x_steps_in_dir(rand(MIN_RANGE,MAX_RANGE))
 
 	if(!target) return
 

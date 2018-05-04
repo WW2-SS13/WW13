@@ -25,7 +25,7 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 					my_turfs += T
 					SCHECK
 
-		var/shift = spick(-4, 0, 4)
+		var/shift = pick(-4, 0, 4)
 		var/mobs = 0
 
 		for (var/turf/T in my_turfs)

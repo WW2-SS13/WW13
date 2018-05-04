@@ -21,7 +21,7 @@
 	attack_damage = Clamp(attack_damage, TRUE, 5)
 
 	if(target == user)
-		user.visible_message("<span class='danger'>[user] [spick(attack_verb)] \himself in the [affecting.name]!</span>")
+		user.visible_message("<span class='danger'>[user] [pick(attack_verb)] \himself in the [affecting.name]!</span>")
 		return FALSE
 
 	switch(zone)
@@ -31,18 +31,18 @@
 				if(1 to 2)
 					user.visible_message("<span class='danger'>[user] scratched [target] across \his cheek!</span>")
 				if(3 to 4)
-					user.visible_message("<span class='danger'>[user] [spick(attack_verb)] [target]'s [spick("head", "neck")]!</span>") //'with spread claws' sounds a little bit odd, just enough that conciseness is better here I think
+					user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [target]'s [pick("head", "neck")]!</span>") //'with spread claws' sounds a little bit odd, just enough that conciseness is better here I think
 				if(5)
-					user.visible_message(spick(
-						"<span class='danger'>[user] rakes \his [spick(attack_noun)] across [target]'s face!</span>",
-						"<span class='danger'>[user] tears \his [spick(attack_noun)] into [target]'s face!</span>",
+					user.visible_message(pick(
+						"<span class='danger'>[user] rakes \his [pick(attack_noun)] across [target]'s face!</span>",
+						"<span class='danger'>[user] tears \his [pick(attack_noun)] into [target]'s face!</span>",
 						))
 		else
 			// ----- BODY ----- //
 			switch(attack_damage)
 				if(1 to 2)	user.visible_message("<span class='danger'>[user] scratched [target]'s [affecting.name]!</span>")
-				if(3 to 4)	user.visible_message("<span class='danger'>[user] [spick(attack_verb)] [spick("", "", "the side of")] [target]'s [affecting.name]!</span>")
-				if(5)		user.visible_message("<span class='danger'>[user] tears \his [spick(attack_noun)] [spick("deep into", "into", "across")] [target]'s [affecting.name]!</span>")
+				if(3 to 4)	user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [pick("", "", "the side of")] [target]'s [affecting.name]!</span>")
+				if(5)		user.visible_message("<span class='danger'>[user] tears \his [pick(attack_noun)] [pick("deep into", "into", "across")] [target]'s [affecting.name]!</span>")
 
 /datum/unarmed_attack/claws/strong
 	attack_verb = list("slashed")

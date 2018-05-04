@@ -98,16 +98,16 @@ default behaviour is:
 				now_pushing = FALSE
 				return
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
-				if(sprob(40) && !(FAT in mutations))
+				if(prob(40) && !(FAT in mutations))
 					src << "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>"
 					now_pushing = FALSE
 					return
 			/*if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
-				if(sprob(99))
+				if(prob(99))
 					now_pushing = FALSE
 					return
 			if(tmob.l_hand && istype(tmob.l_hand, /obj/item/weapon/shield/riot))
-				if(sprob(99))
+				if(prob(99))
 					now_pushing = FALSE
 					return*/
 			if(!(tmob.status_flags & CANPUSH))
@@ -515,8 +515,8 @@ default behaviour is:
 					var/mob/living/M = pulling
 					var/ok = TRUE
 					if (locate(/obj/item/weapon/grab, M.grabbed_by))
-						if (sprob(75))
-							var/obj/item/weapon/grab/G = spick(M.grabbed_by)
+						if (prob(75))
+							var/obj/item/weapon/grab/G = pick(M.grabbed_by)
 							if (istype(G, /obj/item/weapon/grab))
 								for(var/mob/O in viewers(M, null))
 									O.show_message(text("<span class = 'red'>[] has been pulled from []'s grip by [].</span>", G.affecting, G.assailant, src), TRUE)
@@ -534,16 +534,16 @@ default behaviour is:
 							var/area/A = get_area(M)
 							if(A.has_gravity)
 								//this is the gay blood on floor shit -- Added back -- Skie
-								if (M.lying && (sprob(M.getBruteLoss() / 6)))
+								if (M.lying && (prob(M.getBruteLoss() / 6)))
 									var/turf/location = M.loc
 									if (istype(location, /turf))
 										location.add_blood(M)
 								//pull damage with injured people
-								/*	if(sprob(25))
+								/*	if(prob(25))
 										M.adjustBruteLoss(1)
 										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
 								if(M.pull_damage())
-									if(sprob(25))
+									if(prob(25))
 										M.adjustBruteLoss(2)
 										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
 										var/turf/location = M.loc
@@ -653,12 +653,12 @@ default behaviour is:
 			if(GRAB_PASSIVE)
 				qdel(G)
 			if(GRAB_AGGRESSIVE)
-				if(sprob(60)) //same chance of breaking the grab as disarm
+				if(prob(60)) //same chance of breaking the grab as disarm
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
 					qdel(G)
 			if(GRAB_NECK)
 				//If the you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
-				if (((world.time - G.assailant.l_move_time < 30 || !stunned) && sprob(15)) || sprob(3))
+				if (((world.time - G.assailant.l_move_time < 30 || !stunned) && prob(15)) || prob(3))
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
 					qdel(G)
 	if(resisting)
@@ -851,8 +851,8 @@ default behaviour is:
 
 
 /atom/movable/proc/receive_damage(atom/A)
-	var/pixel_x_diff = srand(-3,3)
-	var/pixel_y_diff = srand(-3,3)
+	var/pixel_x_diff = rand(-3,3)
+	var/pixel_y_diff = rand(-3,3)
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
 	animate(pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), time = 2)
 

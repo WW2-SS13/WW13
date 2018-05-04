@@ -200,7 +200,7 @@
 				return
 			if (G.state < 2)
 				if(user.a_intent == I_HURT)
-					if (sprob(15))	M.Weaken(5)
+					if (prob(15))	M.Weaken(5)
 					M.apply_damage(8,def_zone = "head")
 					take_damage(8)
 					visible_message("<span class='danger'>[G.assailant] slams [G.affecting]'s face against \the [src]!</span>")

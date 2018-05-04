@@ -45,14 +45,14 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (sprob(50))
+			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
-			if (sprob(5))
+			if (prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					ex_act(severity)
@@ -222,14 +222,14 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (sprob(50))
+			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
-			if (sprob(5))
+			if (prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					ex_act(severity)

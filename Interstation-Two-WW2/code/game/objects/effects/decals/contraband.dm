@@ -18,7 +18,7 @@
 
 /obj/item/weapon/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
 	if(!new_design)
-		design = spick(poster_designs)
+		design = pick(poster_designs)
 	else
 		design = new_design
 	..(loc)

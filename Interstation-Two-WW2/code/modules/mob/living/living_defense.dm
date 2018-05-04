@@ -18,15 +18,15 @@
 	var/absorb = FALSE
 
 	//Roll armour
-	if(sprob(armor))
+	if(prob(armor))
 		absorb += 1
-	if(sprob(armor))
+	if(prob(armor))
 		absorb += 1
 
 	//Roll penetration
-	if(sprob(armour_pen))
+	if(prob(armour_pen))
 		absorb -= 1
-	if(sprob(armour_pen))
+	if(prob(armour_pen))
 		absorb -= 1
 
 	if(absorb >= 2)
@@ -62,7 +62,7 @@
 	var/absorb = run_armor_check(def_zone, P.check_armour, P.armor_penetration)
 	var/proj_sharp = is_sharp(P)
 	var/proj_edge = P.edge
-	if ((proj_sharp || proj_edge) && sprob(getarmor(def_zone, P.check_armour)))
+	if ((proj_sharp || proj_edge) && prob(getarmor(def_zone, P.check_armour)))
 		proj_sharp = FALSE
 		proj_edge = FALSE
 
@@ -112,12 +112,12 @@
 
 //Called when the mob is hit with an item in combat. Returns the blocked result
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
-	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? spick(I.attack_verb) : "attacked"] with the [I.name] by [user]!</span>")
+	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with the [I.name] by [user]!</span>")
 
 	var/blocked = run_armor_check(hit_zone, "melee")
 	standard_weapon_hit_effects(I, user, effective_force, blocked, hit_zone)
 
-	if(I.damtype == BRUTE && sprob(33)) // Added blood for whacking non-humans too
+	if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
 		var/turf/location = get_turf(src)
 		if(istype(location)) location.add_blood_floor(src)
 
@@ -135,7 +135,7 @@
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = I.edge
-	if(sprob(max(getarmor(hit_zone, "melee") - I.armor_penetration, FALSE))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
+	if(prob(max(getarmor(hit_zone, "melee") - I.armor_penetration, FALSE))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
 		weapon_sharp = FALSE
 		weapon_edge = FALSE
 
@@ -155,7 +155,7 @@
 			var/distance = get_dist(O.throw_source, loc)
 			miss_chance = max(15*(distance-2), FALSE)
 
-		if (sprob(miss_chance))
+		if (prob(miss_chance))
 			visible_message("<span class = 'notice'>\The [O] misses [src] narrowly!</span>")
 			playsound(src, "miss_sound", 50, TRUE, -6)
 			return
@@ -277,7 +277,7 @@ var/obj/human_fire_overlay_lying = null
 	if(!on_fire)
 		return TRUE
 
-	else if(fire_stacks <= 0 || (stat == DEAD && sprob(1)))
+	else if(fire_stacks <= 0 || (stat == DEAD && prob(1)))
 		ExtinguishMob() //Fire's been put out.
 		return TRUE
 /*
@@ -306,7 +306,7 @@ var/obj/human_fire_overlay_lying = null
 		generic_living_fire_overlay.layer = MOB_LAYER + 1
 
 	apply_damage(ceil(fire_stacks/3)+1, BURN, "chest", FALSE) // because fire does 0.2 damage per tick
-	if (sprob((fire_stacks * 10) + 5))
+	if (prob((fire_stacks * 10) + 5))
 		if (!lying)
 			visible_message("<span class = 'danger'>[src] falls over in pain.</span>")
 		Weaken(fire_stacks+1)

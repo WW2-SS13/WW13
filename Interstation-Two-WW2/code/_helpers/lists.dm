@@ -83,11 +83,11 @@ proc/listgetindex(var/list/list,index)
 			return list[index]
 	return
 
-//Return either spick(list) or null if list is not of type /list or is empty
-proc/safespick(list/list)
+//Return either pick(list) or null if list is not of type /list or is empty
+proc/safepick(list/list)
 	if(!islist(list) || !list.len)
 		return
-	return spick(list)
+	return pick(list)
 
 //Checks if the list is empty
 proc/isemptylist(list/list)
@@ -162,7 +162,7 @@ proc/listclearnulls(list/list)
 			L[item] = TRUE
 		total += L[item]
 
-	total = srand(1, total)
+	total = rand(1, total)
 	for (item in L)
 		total -=L [item]
 		if (total <= 0)
@@ -173,7 +173,7 @@ proc/listclearnulls(list/list)
 //Pick a random element from the list and remove it from the list.
 /proc/pick_n_take(list/listfrom)
 	if (listfrom.len > 0)
-		var/picked = spick(listfrom)
+		var/picked = pick(listfrom)
 		listfrom -= picked
 		return picked
 	return null
@@ -213,7 +213,7 @@ proc/listclearnulls(list/list)
 	L = L.Copy()
 
 	for(var/i=1; i<L.len; i++)
-		L.Swap(i, srand(i,L.len))
+		L.Swap(i, rand(i,L.len))
 	return L
 
 //Return a list with no duplicate entries

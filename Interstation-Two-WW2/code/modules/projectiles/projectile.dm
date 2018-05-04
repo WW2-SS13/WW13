@@ -105,7 +105,7 @@
 //return TRUE if the projectile should be allowed to pass through after all, FALSE if not.
 /obj/item/projectile/proc/check_penetrate(var/atom/A)
 	if (istype(A, /turf/wall))
-		if (sprob(50))
+		if (prob(50))
 			return FALSE
 	return TRUE
 
@@ -123,8 +123,8 @@
 	//randomize clickpoint a bit based on dispersion
 	if(dispersion)
 		var/radius = round((dispersion*0.443)*world.icon_size*0.8) //0.443 = sqrt(pi)/4 = 2a, where a is the side length of a square that shares the same area as a circle with diameter = dispersion
-		p_x = between(0, p_x + srand(-radius, radius), world.icon_size)
-		p_y = between(0, p_y + srand(-radius, radius), world.icon_size)
+		p_x = between(0, p_x + rand(-radius, radius), world.icon_size)
+		p_y = between(0, p_y + rand(-radius, radius), world.icon_size)
 
 //called to launch a projectile from a gun
 /obj/item/projectile/proc/launch(atom/target, mob/user, obj/item/weapon/gun/launcher, var/target_zone, var/x_offset=0, var/y_offset=0)
@@ -249,7 +249,7 @@
 
 	if (is_shrapnel)
 		var/hit_zone = "head"
-		if (sprob(25))
+		if (prob(25))
 			for (var/zone in organ_rel_size)
 				if (prob(organ_rel_size[zone]))
 					hit_zone = zone
@@ -297,7 +297,7 @@
 	var/obj/item/weapon/gun/projectile/mygun = firedfrom
 	if (mygun.redirection_chances.Find(def_zone))
 		for (var/nzone in mygun.redirection_chances[def_zone])
-			if (sprob(mygun.redirection_chances[def_zone][nzone]))
+			if (prob(mygun.redirection_chances[def_zone][nzone]))
 				def_zone = nzone
 				++redirections
 				break
@@ -336,7 +336,7 @@
 	if (istype(H) && H.head && istype(H.head, /obj/item/clothing/head/helmet))
 		helmet_protection = 10
 
-	if (sprob((100 - mygun.headshot_kill_chance)+helmet_protection))
+	if (prob((100 - mygun.headshot_kill_chance)+helmet_protection))
 		switch (damage)
 			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
 				damage = DAMAGE_LOW - 6
@@ -367,7 +367,7 @@
 			if (DAMAGE_OH_GOD-5 to DAMAGE_OH_GOD+5)
 				variation = damage - DAMAGE_OH_GOD
 		if (variation > 0)
-			damage += srand(-variation, variation)
+			damage += rand(-variation, variation)
 	damage += extra_damage_change
 
 	if(hit_zone)
@@ -424,11 +424,10 @@
 		// needs to be its own loop for reasons
 		for (var/atom/movable/AM in T.contents)
 			if (AM == original)
-				var/hitchance = 66 // a light, for example
+				var/hitchance = 60 // a light, for example. This was 66%, but that was unusually accurate, thanks BYOND
 				if (isitem(AM))
 					var/obj/item/I = AM
 					hitchance = 25 * I.w_class // a pistol would be 50%
-				log_debug(hitchance)
 				if (prob(hitchance))
 					AM.bullet_act(src)
 					bumped = TRUE
@@ -575,7 +574,7 @@
 	var/offset = 0
 	if(dispersion)
 		var/radius = round(dispersion*9, TRUE)
-		offset = srand(-radius, radius)
+		offset = rand(-radius, radius)
 
 	// plot the initial trajectory
 	trajectory = new()

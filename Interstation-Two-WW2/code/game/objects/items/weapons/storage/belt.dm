@@ -56,7 +56,7 @@
 	new /obj/item/weapon/weldingtool/ww2(src)
 	new /obj/item/weapon/crowbar/prybar(src)
 	new /obj/item/weapon/wirecutters/boltcutters(src)
-	new /obj/item/stack/cable_coil(src,30,spick("red","yellow","orange"))
+	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 
 
 /obj/item/weapon/storage/belt/utility/atmostech/New()

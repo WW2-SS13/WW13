@@ -182,14 +182,14 @@ mob
 
 		Add_Overlay()
 			set name = "4. Add Overlay"
-			overlays += image(icon='old_or_unused.dmi',icon_state="yellow",pixel_x = srand(-64,32), pixel_y = srand(-64,32))
+			overlays += image(icon='old_or_unused.dmi',icon_state="yellow",pixel_x = rand(-64,32), pixel_y = rand(-64,32))
 
 		Stress_Test()
 			set name = "5. Stress Test"
 			for(var/i = FALSE to 1000)
 				// The third parameter forces it to generate a new one, even if it's already cached
 				getFlatIcon(src,0,2)
-				if(sprob(5))
+				if(prob(5))
 					Add_Overlay()
 			Browse_Icon()
 

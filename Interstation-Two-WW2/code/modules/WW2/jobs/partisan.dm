@@ -20,7 +20,7 @@
 	if(!H)	return FALSE
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	equip_random_civilian_clothing(H)
-	if (sprob(40))
+	if (prob(40))
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/luger(H), slot_belt)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/combat(H), slot_r_hand)
@@ -33,12 +33,12 @@
 	H.setStat("engineering", civ_stat())
 	H.setStat("medical", civ_stat())
 
-	H.setStat("rifle", spick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
-	H.setStat("mg", spick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
-	H.setStat("smg", spick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
-	H.setStat("survival", spick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
+	H.setStat("rifle", pick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
+	H.setStat("mg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+	H.setStat("smg", pick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
+	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
 
-	H.setStat("shotgun", spick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
+	H.setStat("shotgun", pick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
 	return TRUE
 
 /datum/job/partisan/commander
@@ -79,10 +79,10 @@
 	H.setStat("engineering", civ_stat())
 	H.setStat("medical", civ_stat())
 
-	H.setStat("rifle", spick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
-	H.setStat("mg", spick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
-	H.setStat("smg", spick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
-	H.setStat("survival", spick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
+	H.setStat("rifle", pick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
+	H.setStat("mg", pick(STAT_VERY_LOW, STAT_LOW, STAT_MEDIUM_LOW))
+	H.setStat("smg", pick(STAT_MEDIUM_LOW, STAT_NORMAL, STAT_MEDIUM_HIGH))
+	H.setStat("survival", pick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
 
-	H.setStat("shotgun", spick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
+	H.setStat("shotgun", pick(STAT_MEDIUM_HIGH, STAT_HIGH, STAT_VERY_HIGH))
 	return TRUE

@@ -38,12 +38,12 @@ mob/var/next_pain_time = FALSE
 		var/no_pain_prob = FALSE
 		for (var/datum/reagent/ethanol/E in ingested.reagent_list)
 			no_pain_prob += E.volume
-		if (sprob(no_pain_prob))
+		if (prob(no_pain_prob))
 			return
 	if(amount > 10 && istype(src,/mob/living/carbon/human))
 		if(src:paralysis)
 			src:paralysis = max(0, src:paralysis-round(amount/10))
-	if(amount > 50 && sprob(amount / 5))
+	if(amount > 50 && prob(amount / 5))
 		src:drop_item()
 	var/msg
 	/*if(burning)
@@ -67,7 +67,7 @@ mob/var/next_pain_time = FALSE
 		if(91 to 10000)
 			flash_pain()
 				//msg = "<b><font size=3>OH GOD! Your [partname] is hurting terribly!</font></b>"
-	if(msg && (msg != last_pain_message || sprob(10)))
+	if(msg && (msg != last_pain_message || prob(10)))
 		last_pain_message = msg
 		src << msg
 	next_pain_time = world.time + (100 - amount)
@@ -113,18 +113,18 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 		var/dam = E.get_damage()
 		// make the choice of the organ depend on damage,
 		// but also sometimes use one of the less damaged ones
-		if(dam > maxdam && (maxdam == FALSE || sprob(70)) )
+		if(dam > maxdam && (maxdam == FALSE || prob(70)) )
 			damaged_organ = E
 			maxdam = dam
 	if(damaged_organ)
-		if (sprob(30))
+		if (prob(30))
 			pain(damaged_organ.name, maxdam, FALSE)
 		damaged_organ.pain = maxdam
 
 	// Damage to internal organs hurts a lot.
 	for(var/obj/item/organ/I in internal_organs)
 		if(I.status & (ORGAN_DEAD|ORGAN_ROBOT)) continue
-		if(I.damage > 2) if(sprob(2))
+		if(I.damage > 2) if(prob(2))
 			var/obj/item/organ/external/parent = get_organ(I.parent_organ)
 			custom_pain("You feel a sharp pain in your [parent.name]", TRUE)
 
@@ -147,7 +147,7 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 			toxMessageProb = 5
 			toxDamageMessage = "Your body aches all over, it's driving you mad."
 
-	if(toxDamageMessage && sprob(toxMessageProb))
+	if(toxDamageMessage && prob(toxMessageProb))
 		custom_pain(toxDamageMessage, getToxLoss() >= 15)
 
 
@@ -170,7 +170,7 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 		return TRUE
 
 /*mob/living/carbon/human/proc/suffer_well(var/prob)//Subber well pupper.
-	if(sprob(prob))
+	if(prob(prob))
 		emote("agony")
 		Weaken(10)
 		shake_camera(src, 20, 3)

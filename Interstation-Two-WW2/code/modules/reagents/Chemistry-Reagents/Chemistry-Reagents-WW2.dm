@@ -16,7 +16,7 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 /datum/reagent/proc/eye_damage(var/mob/living/carbon/human/m, var/severity = TRUE) // damage eyes
 	if (mask_check(m)) return
 	if (m && istype(m) && severity)
-		var/base = ((srand(2,3)) * severity)/CHEMNERF
+		var/base = ((rand(2,3)) * severity)/CHEMNERF
 		if (base >= 2)
 			if (world.time >= next_gas_eye_message)
 				m << "<span class = 'danger'>The gas burns your eyes!</span>"
@@ -24,17 +24,17 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 			if (m.stat != DEAD)
 				m.emote("scream")
 			m.adjustFireLossByPart(base, "eyes")
-			m.Weaken(srand(2,3))
+			m.Weaken(rand(2,3))
 			m.eye_blurry = max(m.eye_blurry+2, FALSE)
 
 /datum/reagent/proc/external_damage(var/mob/living/carbon/human/m, var/severity = TRUE) // damage skin
 	if (m && istype(m) && severity)
-		var/base = ((srand(2,3)) * severity)/CHEMNERF
+		var/base = ((rand(2,3)) * severity)/CHEMNERF
 		if (base >= 2)
 			if (world.time >= next_gas_skin_message)
 				m << "<span class = 'danger'>The gas burns your skin!</span>"
 			next_gas_skin_message = world.time + 10
-			if (sprob(50))
+			if (prob(50))
 				if (m.stat != DEAD)
 					m.emote("scream")
 			m.adjustFireLoss(base)
@@ -42,7 +42,7 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 /datum/reagent/proc/internal_damage(var/mob/living/carbon/human/m, var/severity = TRUE) // damage things like lungs
 	if (mask_check(m)) return
 	if (m && istype(m) && severity)
-		var/base = ((srand(2,3)) * severity)/CHEMNERF
+		var/base = ((rand(2,3)) * severity)/CHEMNERF
 		if (base >= 2)
 			if (world.time >= next_gas_lung_message)
 				m << "<span class = 'danger'>The gas burns your lungs!</span>"
@@ -50,19 +50,19 @@ var/mob/living/carbon/human/next_gas_flesh_message = -1
 			if (m.stat != DEAD)
 				m.emote("scream")
 			m.adjustFireLossByPart(base, "chest")
-			if (sprob(70))
-				m.Weaken(srand(3,4))
+			if (prob(70))
+				m.Weaken(rand(3,4))
 
 /datum/reagent/proc/open_wound_damage(var/mob/living/carbon/human/m, var/severity = TRUE) // damage wounded skin
 	if (m && istype(m) && severity)
 		var/base = ((m.getBruteLoss() + m.getFireLoss())/10) * severity
-		base += srand(1,2)
+		base += rand(1,2)
 		base /= CHEMNERF
 		if (base >= 1)
 			if (world.time >= next_gas_flesh_message)
 				m << "<span class = 'danger'>The gas burns the flesh on your open wounds!</span>"
 			next_gas_flesh_message = world.time + 10
-			if (sprob(50))
+			if (prob(50))
 				if (m.stat != DEAD)
 					m.emote("scream")
 			m.adjustFireLoss(base)

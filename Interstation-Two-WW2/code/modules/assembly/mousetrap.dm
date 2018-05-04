@@ -29,7 +29,7 @@
 			switch(type)
 				if("feet")
 					if(!H.shoes)
-						affecting = H.get_organ(spick("l_leg", "r_leg"))
+						affecting = H.get_organ(pick("l_leg", "r_leg"))
 						H.Weaken(3)
 				if("l_hand", "r_hand")
 					if(!H.gloves)
@@ -54,7 +54,7 @@
 		if(!armed)
 			user << "<span class='notice'>You arm [src].</span>"
 		else
-			if((CLUMSY in user.mutations) && sprob(50))
+			if((CLUMSY in user.mutations) && prob(50))
 				var/which_hand = "l_hand"
 				if(!user.hand)
 					which_hand = "r_hand"
@@ -70,7 +70,7 @@
 
 	attack_hand(mob/living/user as mob)
 		if(armed)
-			if((CLUMSY in user.mutations) && sprob(50))
+			if((CLUMSY in user.mutations) && prob(50))
 				var/which_hand = "l_hand"
 				if(!user.hand)
 					which_hand = "r_hand"

@@ -40,7 +40,7 @@
 	//block as long as they are not directly behind us
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
 	if(check_shield_arc(user, bad_arc, damage_source, attacker))
-		if(sprob(get_block_chance(user, damage, damage_source, attacker)))
+		if(prob(get_block_chance(user, damage, damage_source, attacker)))
 			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
 			return TRUE
 	return FALSE
@@ -124,7 +124,7 @@
 	return base_block_chance
 
 /obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && sprob(50))
+	if ((CLUMSY in user.mutations) && prob(50))
 		user << "<span class='warning'>You beat yourself in the head with [src].</span>"
 		user.take_organ_damage(5)
 	active = !active

@@ -61,7 +61,7 @@
 			return
 
 		if(user.a_intent == I_HURT && ismob(target))
-			if((CLUMSY in user.mutations) && sprob(50))
+			if((CLUMSY in user.mutations) && prob(50))
 				target = user
 			syringestab(target, user)
 			return
@@ -240,7 +240,7 @@
 			if((user != target) && H.check_shields(7, src, user, "\the [src]"))
 				return
 
-			if (target != user && H.getarmor(target_zone, "melee") > 5 && sprob(50))
+			if (target != user && H.getarmor(target_zone, "melee") > 5 && prob(50))
 				for(var/mob/O in viewers(world.view, user))
 					O.show_message(text("<span class = 'red'><b>[user] tries to stab [target] in \the [hit_area] with [name], but the attack is deflected by armor!</b></span>"), TRUE)
 				user.remove_from_mob(src)
@@ -263,7 +263,7 @@
 
 
 
-		var/syringestab_amount_transferred = srand(0, (reagents.total_volume - 5)) //nerfed by popular demand
+		var/syringestab_amount_transferred = rand(0, (reagents.total_volume - 5)) //nerfed by popular demand
 		var/contained_reagents = reagents.get_reagents()
 		var/trans = reagents.trans_to_mob(target, syringestab_amount_transferred, CHEM_BLOOD)
 		if(isnull(trans)) trans = FALSE

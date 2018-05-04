@@ -78,10 +78,10 @@ steam.start() -- spawns the effect
 				var/obj/effect/effect/steam/steam = PoolOrNew(/obj/effect/effect/steam, location)
 				var/direction
 				if(cardinals)
-					direction = spick(cardinal)
+					direction = pick(cardinal)
 				else
-					direction = spick(alldirs)
-				for(i=0, i<spick(1,2,3), i++)
+					direction = pick(alldirs)
+				for(i=0, i<pick(1,2,3), i++)
 					sleep(5)
 					step(steam,direction)
 				spawn(20)
@@ -149,10 +149,10 @@ steam.start() -- spawns the effect
 				total_sparks++
 				var/direction
 				if(cardinals)
-					direction = spick(cardinal)
+					direction = pick(cardinal)
 				else
-					direction = spick(alldirs)
-				for(i=0, i<spick(1,2,3), i++)
+					direction = pick(alldirs)
+				for(i=0, i<pick(1,2,3), i++)
 					sleep(5)
 					step(sparks,direction)
 				spawn(20)
@@ -346,13 +346,13 @@ steam.start() -- spawns the effect
 			var/src_direction = direction
 			if(!src_direction)
 				if(cardinals)
-					src_direction = spick(cardinal)
+					src_direction = pick(cardinal)
 				else
-					src_direction = spick(alldirs)
-			for(i=0, i<spick(0,1,1,1,2,2,2,3), i++)
+					src_direction = pick(alldirs)
+			for(i=0, i<pick(0,1,1,1,2,2,2,3), i++)
 				sleep(10)
 				step(smoke,src_direction)
-			spawn(smoke.time_to_live*0.75+srand(10,30))
+			spawn(smoke.time_to_live*0.75+rand(10,30))
 				if (smoke) qdel(smoke)
 				total_smoke--
 
@@ -494,7 +494,7 @@ steam.start() -- spawns the effect
 			for(var/mob/M in viewers(1, location))
 				if (prob (50 * amount))
 					M << "<span class='warning'>The explosion knocks you down.</span>"
-					M.Weaken(srand(1,5))
+					M.Weaken(rand(1,5))
 			return
 		else
 			var/devst = -1

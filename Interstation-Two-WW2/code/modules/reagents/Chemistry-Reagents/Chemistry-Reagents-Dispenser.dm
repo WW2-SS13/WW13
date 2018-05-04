@@ -113,7 +113,7 @@
 	var/strength_mod = 1.0
 
 	if (M.water < 0)
-		M.water += srand(40,50)
+		M.water += rand(40,50)
 	M.water += removed * 40
 
 	M.add_chemical_effect(CE_ALCOHOL, TRUE)
@@ -202,9 +202,9 @@
 
 /datum/reagent/lithium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
-		step(M, spick(cardinal))
-	if(sprob(5))
-		M.emote(spick("twitch", "drool", "moan"))
+		step(M, pick(cardinal))
+	if(prob(5))
+		M.emote(pick("twitch", "drool", "moan"))
 
 /datum/reagent/mercury
 	name = "Mercury"
@@ -216,9 +216,9 @@
 
 /datum/reagent/mercury/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
-		step(M, spick(cardinal))
-	if(sprob(5))
-		M.emote(spick("twitch", "drool", "moan"))
+		step(M, pick(cardinal))
+	if(prob(5))
+		M.emote(pick("twitch", "drool", "moan"))
 	M.adjustBrainLoss(0.1)
 
 /datum/reagent/phosphorus
@@ -307,7 +307,7 @@
 			if(affecting)
 				if(affecting.take_damage(0, removed * power * 0.1))
 					H.UpdateDamageIcon()
-				if(sprob(100 * removed / meltdose)) // Applies disfigurement
+				if(prob(100 * removed / meltdose)) // Applies disfigurement
 					if (!(H.species && (H.species.flags & NO_PAIN)))
 						H.emote("scream")
 					H.status_flags |= DISFIGURED

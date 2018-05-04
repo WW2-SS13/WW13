@@ -57,7 +57,7 @@
 		for(var/language_name in additional_languages)
 			var/probability = additional_languages[language_name]
 
-			if (sprob(probability))
+			if (prob(probability))
 				H.add_language(language_name, FALSE)
 				H.add_note("Known Languages", language_name)
 

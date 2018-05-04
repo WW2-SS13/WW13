@@ -30,7 +30,7 @@
 
 	chance = min(chance, 98)
 
-	if(sprob(chance))
+	if(prob(chance))
 		return TRUE
 	else
 		return FALSE
@@ -80,7 +80,7 @@
 					if (dir != EAST)
 						return TRUE
 
-			if (check_cover(mover, mover.throw_source) && sprob(bullet_deflection_chance(mover)))
+			if (check_cover(mover, mover.throw_source) && prob(bullet_deflection_chance(mover)))
 				visible_message("<span class = 'warning'>[mover] hits the sandbag!</span>")
 				if (istype(mover, /obj/item/projectile))
 					var/obj/item/projectile/B = mover
@@ -100,7 +100,7 @@
 			if(get_turf(src) == P.starting)
 				return TRUE
 			else
-				if (sprob(bullet_deflection_chance(P)))
+				if (prob(bullet_deflection_chance(P)))
 					visible_message("<span class = 'warning'>[P] hits the sandbag!</span>")
 					return FALSE
 				else

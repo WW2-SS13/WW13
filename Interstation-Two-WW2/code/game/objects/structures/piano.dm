@@ -23,7 +23,7 @@
 	var/repeat = FALSE
 
 /obj/structure/device/piano/New()
-	if(sprob(50))
+	if(prob(50))
 		name = "Pohlmann and Son Upright Piano"
 		desc = "Overstrung piano. Beautiful veneer with marquetry detail. Minor damage to veneer on legs and to edge of lid."
 		icon_state = "minimoog"

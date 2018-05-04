@@ -126,10 +126,10 @@
 				return
 
 			if(!istype(H))
-				attack_generic(H,srand(1,3),"punched")
+				attack_generic(H,rand(1,3),"punched")
 				return
 
-			var/rand_damage = srand(1, 5)
+			var/rand_damage = rand(1, 5)
 			var/block = FALSE
 			var/accurate = FALSE
 			var/hit_zone = H.targeted_organ
@@ -146,7 +146,7 @@
 					accurate = TRUE
 				if(I_HURT, I_GRAB)
 					// We're in a fighting stance, there's a chance we block
-					if(canmove && src!=H && sprob(20))
+					if(canmove && src!=H && prob(20))
 						block = TRUE
 
 			if (M.grabbed_by.len)
@@ -185,24 +185,24 @@
 						  were made for projectiles.
 					TODO: proc for melee combat miss chances depending on organ?
 				*/
-				if(sprob(80))
+				if(prob(80))
 					hit_zone = ran_zone(hit_zone)
-				if(sprob(15) && hit_zone != "chest") // Missed!
+				if(prob(15) && hit_zone != "chest") // Missed!
 					if(!lying)
 						attack_message = "[H] attempted to strike [src], but missed!"
 					else
 						attack_message = "[H] attempted to strike [src], but \he rolled out of the way!"
-						set_dir(spick(cardinal))
+						set_dir(pick(cardinal))
 					miss_type = TRUE
 
 			if(!miss_type && block)
 				attack_message = "[H] went for [src]'s [affecting.name] but was blocked!"
 				miss_type = 2
 
-			var/hitcheck = srand(0, 9)
-			if(istype(affecting, /obj/item/organ/external/head) && sprob(hitcheck * (hit_zone == "mouth" ? 5 : TRUE))) //MUCH higher chance to knock out teeth if you aim for mouth
+			var/hitcheck = rand(0, 9)
+			if(istype(affecting, /obj/item/organ/external/head) && prob(hitcheck * (hit_zone == "mouth" ? 5 : TRUE))) //MUCH higher chance to knock out teeth if you aim for mouth
 				var/obj/item/organ/external/head/U = affecting
-				if(U.knock_out_teeth(get_dir(H, src), round(srand(28, 38) * ((hitcheck*2)/100))))
+				if(U.knock_out_teeth(get_dir(H, src), round(rand(28, 38) * ((hitcheck*2)/100))))
 					visible_message("<span class='danger'>Some of [src]'s teeth sail off in an arc!</span>", \
 										"<span class='userdanger'>Some of [src]'s teeth sail off in an arc!</span>")
 
@@ -218,9 +218,9 @@
 				H.visible_message("<span class='danger'>[attack_message]</span>")
 
 			playsound(loc, ((miss_type) ? (miss_type == TRUE ? attack.miss_sound : 'sound/weapons/thudswoosh.ogg') : attack.attack_sound), 25, TRUE, -1)
-			H.attack_log += text("\[[time_stamp()]\] <font color='red'>[miss_type ? (miss_type == TRUE ? "Missed" : "Blocked") : "[spick(attack.attack_verb)]"] [name] ([ckey])</font>")
-			attack_log += text("\[[time_stamp()]\] <font color='orange'>[miss_type ? (miss_type == TRUE ? "Was missed by" : "Has blocked") : "Has Been [spick(attack.attack_verb)]"] by [H.name] ([H.ckey])</font>")
-			msg_admin_attack("[key_name(H)] [miss_type ? (miss_type == TRUE ? "has missed" : "was blocked by") : "has [spick(attack.attack_verb)]"] [key_name(src)]")
+			H.attack_log += text("\[[time_stamp()]\] <font color='red'>[miss_type ? (miss_type == TRUE ? "Missed" : "Blocked") : "[pick(attack.attack_verb)]"] [name] ([ckey])</font>")
+			attack_log += text("\[[time_stamp()]\] <font color='orange'>[miss_type ? (miss_type == TRUE ? "Was missed by" : "Has blocked") : "Has Been [pick(attack.attack_verb)]"] by [H.name] ([H.ckey])</font>")
+			msg_admin_attack("[key_name(H)] [miss_type ? (miss_type == TRUE ? "has missed" : "was blocked by") : "has [pick(attack.attack_verb)]"] [key_name(src)]")
 
 			if(miss_type)
 				return FALSE
@@ -261,16 +261,16 @@
 
 			//See if they have any guns that might go off
 			for(var/obj/item/weapon/gun/W in holding)
-				if(W && sprob(holding[W]))
+				if(W && prob(holding[W]))
 					var/list/turfs = list()
 					for(var/turf/T in view())
 						turfs += T
 					if(turfs.len)
-						var/turf/target = spick(turfs)
+						var/turf/target = pick(turfs)
 						visible_message("<span class='danger'>[src]'s [W] goes off during the struggle!</span>")
 						return W.afterattack(target,src)
 
-			var/randn = srand(1, 100)
+			var/randn = rand(1, 100)
 			if(!(species.flags & NO_SLIP) && randn <= 25)
 				var/armor_check = run_armor_check(affecting, "melee")
 				apply_effect(3, WEAKEN, armor_check)
@@ -312,7 +312,7 @@
 	visible_message("<span class='danger'>[user] has [attack_message] [src]!</span>")
 	user.do_attack_animation(src)
 
-	var/dam_zone = spick(organs_by_name)
+	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
 	var/armor_block = run_armor_check(affecting, "melee")
 	apply_damage(damage, BRUTE, affecting, armor_block)
@@ -341,7 +341,7 @@
 	user.visible_message("<span class='warning'>[user] begins to dislocate [src]'s [organ.joint]!</span>")
 	if(do_after(user, 100, progress = FALSE))
 		organ.dislocate(1)
-		visible_message("<span class='danger'>[src]'s [organ.joint] [spick("gives way","caves in","crumbles","collapses")]!</span>")
+		visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
 		return TRUE
 	return FALSE
 

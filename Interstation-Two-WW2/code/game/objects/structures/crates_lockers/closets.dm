@@ -170,13 +170,13 @@
 				A.ex_act(severity + 1)
 			qdel(src)
 		if(2)
-			if(sprob(50))
+			if(prob(50))
 				for (var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					A.ex_act(severity + 1)
 				qdel(src)
 		if(3)
-			if(sprob(5))
+			if(prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 				qdel(src)
@@ -365,6 +365,6 @@
 
 /obj/structure/closet/proc/animate_shake()
 	var/init_px = pixel_x
-	var/shake_dir = spick(-1, TRUE)
+	var/shake_dir = pick(-1, TRUE)
 	animate(src, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
 	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)

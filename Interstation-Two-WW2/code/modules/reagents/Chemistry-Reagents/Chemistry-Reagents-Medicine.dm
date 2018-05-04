@@ -313,8 +313,8 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 
 /datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(sprob(5))
-		M.emote(spick("twitch", "blink_r", "shiver"))
+	if(prob(5))
+		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, TRUE)
 	M.add_chemical_effect(CE_PULSE, 2)
 
@@ -363,7 +363,7 @@
 /datum/reagent/arithrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.radiation = max(M.radiation - 70 * removed, FALSE)
 	M.adjustToxLoss(-10 * removed)
-	if(sprob(60))
+	if(prob(60))
 		M.take_organ_damage(4 * removed, FALSE)
 
 /datum/reagent/penicillin
@@ -477,7 +477,7 @@
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			if(sprob(90))
+			if(prob(90))
 				M << "<span class='notice'>Your mind feels much more stable.</span>"
 			else
 				M << "<span class='warning'>Your mind breaks apart...</span>"
@@ -533,7 +533,7 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 
 /datum/reagent/pervitin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(sprob(5))
-		M.emote(spick("twitch", "blink_r", "shiver"))
+	if(prob(5))
+		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, TRUE)
 	M.add_chemical_effect(CE_PULSE, 2)

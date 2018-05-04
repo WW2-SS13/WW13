@@ -72,7 +72,7 @@
 
 	var/old_intensity = weather_intensity
 
-	if (sprob(66) && weather_intensity < 3.0)
+	if (prob(66) && weather_intensity < 3.0)
 		++weather_intensity
 	else if (weather_intensity > 1.0)
 		--weather_intensity
@@ -94,7 +94,7 @@
 
 	possibilities -= non_possibilities
 
-	change_weather(spick(possibilities))
+	change_weather(pick(possibilities))
 
 /proc/get_weather_default(var/_weather)
 	switch (_weather ? _weather : weather)

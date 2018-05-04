@@ -76,10 +76,10 @@
 		return
 
 	if (germ_level > INFECTION_LEVEL_ONE)
-		if(sprob(1))
+		if(prob(1))
 			owner << "<span class = 'red'>Your skin itches.</span>"
 	if (germ_level > INFECTION_LEVEL_TWO)
-		if(sprob(1))
+		if(prob(1))
 			spawn owner.vomit()
 
 	if(owner.life_tick % PROCESS_ACCURACY == FALSE)
@@ -91,7 +91,7 @@
 				damage += 0.2 * PROCESS_ACCURACY
 			//Damaged one shares the fun
 			else
-				var/obj/item/organ/O = spick(owner.internal_organs)
+				var/obj/item/organ/O = pick(owner.internal_organs)
 				if(O)
 					O.damage += 0.2  * PROCESS_ACCURACY
 
@@ -114,7 +114,7 @@
 			if(filter_effect < 3)
 				owner.adjustToxLoss(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY)
 			else
-				take_damage(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY, sprob(1)) // Chance to warn them
+				take_damage(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY, prob(1)) // Chance to warn them
 
 /obj/item/organ/appendix
 	name = "appendix"
@@ -133,24 +133,24 @@
 	..()
 	if(inflamed && owner)
 		inflamed++
-		if(sprob(5))
+		if(prob(5))
 			owner << "<span class='warning'>You feel a stinging pain in your abdomen!</span>"
 			owner.emote("me",1,"winces slightly.")
 		if(inflamed > 200)
-			if(sprob(3))
+			if(prob(3))
 				take_damage(0.1)
 				owner.emote("me",1,"winces painfully.")
 				owner.adjustToxLoss(1)
 		if(inflamed > 400)
-			if(sprob(1))
-				germ_level += srand(2,6)
+			if(prob(1))
+				germ_level += rand(2,6)
 				if (owner.nutrition > 100)
 					owner.vomit()
 				else
 					owner << "<span class='danger'>You gag as you want to throw up, but there's nothing in your stomach!</span>"
 					owner.Weaken(10)
 		if(inflamed > 600)
-			if(sprob(1))
+			if(prob(1))
 				owner << "<span class='danger'>Your abdomen is a world of pain!</span>"
 				owner.Weaken(10)
 

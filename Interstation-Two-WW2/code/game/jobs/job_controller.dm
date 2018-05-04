@@ -246,13 +246,13 @@ var/global/datum/controller/occupations/job_master
 		var/list/turfs = latejoin_turfs[spawn_location]
 
 		if(turfs && turfs.len > 0)
-			H.loc = spick(turfs)
+			H.loc = pick(turfs)
 
 			if (!locate(H.loc) in turfs)
 				var/tries = 0
 				while (tries <= 5 && !locate(H.loc) in turfs)
 					++tries
-					H.loc = spick(turfs)
+					H.loc = pick(turfs)
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
@@ -447,7 +447,7 @@ var/global/datum/controller/occupations/job_master
 			if(!job)	continue
 			var/list/candidates = FindOccupationCandidates(job, level)
 			if(!candidates.len)	continue
-			var/mob/new_player/candidate = spick(candidates)
+			var/mob/new_player/candidate = pick(candidates)
 			AssignRole(candidate, command_position)
 		return
 
@@ -519,23 +519,23 @@ var/global/datum/controller/occupations/job_master
 												probs["wine"] = 0
 
 										tryagain
-										if (sprob(probs["beer"]))
+										if (prob(probs["beer"]))
 											H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(H), slot)
-										else if (sprob(probs["vodka"]))
+										else if (prob(probs["vodka"]))
 											H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(H), slot)
-										else if (sprob(probs["wine"]))
+										else if (prob(probs["wine"]))
 											H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/wine(H), slot)
 										else goto tryagain
 
 									if ("grenade")
 										switch (H.original_job.base_type_flag())
 											if (GERMAN, ITALIAN)
-												if (sprob(50))
+												if (prob(50))
 													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stgnade(H), slot)
 												else
 													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/l2a2(H), slot)
 											if (SOVIET, PARTISAN)
-												if (sprob(50))
+												if (prob(50))
 													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/rgd(H), slot)
 												else
 													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/f1(H), slot)

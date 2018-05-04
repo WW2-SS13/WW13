@@ -333,7 +333,7 @@ its easier to just keep the beam vertical.
 		//Deal with gloves the pass finger/palm prints.
 		if(!ignoregloves)
 			if(H.gloves != src)
-				if(sprob(75) && istype(H.gloves, /obj/item/clothing/gloves/latex))
+				if(prob(75) && istype(H.gloves, /obj/item/clothing/gloves/latex))
 					return FALSE
 				else if(H.gloves && !istype(H.gloves, /obj/item/clothing/gloves/latex))
 					return FALSE
@@ -356,37 +356,37 @@ its easier to just keep the beam vertical.
 			switch(stringpercent(fingerprints[full_print]))		//tells us how many stars are in the current prints.
 
 				if(28 to 32)
-					if(sprob(1))
+					if(prob(1))
 						fingerprints[full_print] = full_print 		// You rolled a one buddy.
 					else
-						fingerprints[full_print] = stars(full_print, srand(0,40)) // 24 to 32
+						fingerprints[full_print] = stars(full_print, rand(0,40)) // 24 to 32
 
 				if(24 to 27)
-					if(sprob(3))
+					if(prob(3))
 						fingerprints[full_print] = full_print     	//Sucks to be you.
 					else
-						fingerprints[full_print] = stars(full_print, srand(15, 55)) // 20 to 29
+						fingerprints[full_print] = stars(full_print, rand(15, 55)) // 20 to 29
 
 				if(20 to 23)
-					if(sprob(5))
+					if(prob(5))
 						fingerprints[full_print] = full_print		//Had a good run didn't ya.
 					else
-						fingerprints[full_print] = stars(full_print, srand(30, 70)) // 15 to 25
+						fingerprints[full_print] = stars(full_print, rand(30, 70)) // 15 to 25
 
 				if(16 to 19)
-					if(sprob(5))
+					if(prob(5))
 						fingerprints[full_print] = full_print		//Welp.
 					else
-						fingerprints[full_print]  = stars(full_print, srand(40, 100))  // FALSE to 21
+						fingerprints[full_print]  = stars(full_print, rand(40, 100))  // FALSE to 21
 
 				if(0 to 15)
-					if(sprob(5))
-						fingerprints[full_print] = stars(full_print, srand(0,50)) 	// small chance you can smudge.
+					if(prob(5))
+						fingerprints[full_print] = stars(full_print, rand(0,50)) 	// small chance you can smudge.
 					else
 						fingerprints[full_print] = full_print
 
 		else
-			fingerprints[full_print] = stars(full_print, srand(0, 20))	//Initial touch, not leaving much evidence the first time.
+			fingerprints[full_print] = stars(full_print, rand(0, 20))	//Initial touch, not leaving much evidence the first time.
 
 
 		return TRUE
@@ -449,7 +449,7 @@ its easier to just keep the beam vertical.
 
 		// Make toxins vomit look different
 		if(toxvomit)
-			this.icon_state = "vomittox_[spick(1,4)]"
+			this.icon_state = "vomittox_[pick(1,4)]"
 
 /atom/proc/clean_blood()
 	if(!simulated)

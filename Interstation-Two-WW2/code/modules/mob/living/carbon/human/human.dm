@@ -167,12 +167,12 @@ var/list/coefflist = list()
 	switch (severity)
 		if (1.0)
 			b_loss += 750
-			if (!sprob(getarmor(null, "bomb")))
+			if (!prob(getarmor(null, "bomb")))
 				for (var/obj/item/organ/external/arm/arm in contents)
-					if (sprob(50))
+					if (prob(50))
 						arm.droplimb()
 				for (var/obj/item/organ/external/leg/leg in contents)
-					if (sprob(50))
+					if (prob(50))
 						leg.droplimb()
 				return
 			else
@@ -188,30 +188,30 @@ var/list/coefflist = list()
 
 			f_loss += 60
 
-			if (sprob(getarmor(null, "bomb")))
+			if (prob(getarmor(null, "bomb")))
 				b_loss = b_loss/1.5
 				f_loss = f_loss/1.5
 
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 30
 				ear_deaf += 120
-			if (sprob(70) && !shielded)
+			if (prob(70) && !shielded)
 				Paralyse(10)
 
 		if(3.0)
 			b_loss += 30
-			if (sprob(getarmor(null, "bomb")))
+			if (prob(getarmor(null, "bomb")))
 				b_loss = b_loss/2
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 15
 				ear_deaf += 60
-			if (sprob(50) && !shielded)
+			if (prob(50) && !shielded)
 				Paralyse(10)
 
 	var/update = FALSE
 
 	// focus most of the blast on one organ
-	var/obj/item/organ/external/take_blast = spick(organs)
+	var/obj/item/organ/external/take_blast = pick(organs)
 	update |= take_blast.take_damage(b_loss * 0.9, f_loss * 0.9, used_weapon = "Explosive blast")
 
 	// distribute the remaining 10% on all limbs equally
@@ -376,7 +376,7 @@ var/list/rank_prefix = list(\
 	if(status_flags & GODMODE)	return FALSE	//godmode
 
 	if (!def_zone)
-		def_zone = spick("l_hand", "r_hand")
+		def_zone = pick("l_hand", "r_hand")
 
 	var/obj/item/organ/external/affected_organ = get_organ(check_zone(def_zone))
 	var/siemens_coeff = base_siemens_coeff * get_siemens_coefficient_organ(affected_organ)
@@ -440,7 +440,7 @@ var/list/rank_prefix = list(\
 		return FALSE
 
 	if(parent.w_class > affecting.w_class + 1)
-		return sprob(100 / 2**(parent.w_class - affecting.w_class - 1))
+		return prob(100 / 2**(parent.w_class - affecting.w_class - 1))
 
 	return TRUE
 
@@ -473,7 +473,7 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/play_xylophone()
 	if(!xylophone)
 		visible_message("<span class = 'red'>\The [src] begins playing \his ribcage like a xylophone. It's quite spooky.</span>","<span class = 'notice'>You begin to play a spooky refrain on your ribcage.</span>","<span class = 'red'>You hear a spooky xylophone melody.</span>")
-		var/song = spick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
+		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(loc, song, 50, TRUE, -1)
 		xylophone = TRUE
 		spawn(1200)
@@ -739,12 +739,12 @@ var/list/rank_prefix = list(\
 	while (germs < 2501 && ticks < 100000 && round(damage/10)*20)
 		log_misc("VIRUS TESTING: [ticks] : germs [germs] tdamage [tdamage] prob [round(damage/10)*20]")
 		ticks++
-		if (sprob(round(damage/10)*20))
+		if (prob(round(damage/10)*20))
 			germs++
 		if (germs == 100)
 			world << "Reached stage TRUE in [ticks] ticks"
 		if (germs > 100)
-			if (sprob(10))
+			if (prob(10))
 				damage++
 				germs++
 		if (germs == 1000)
@@ -953,7 +953,7 @@ var/list/rank_prefix = list(\
 
 	if(!target_zone)
 		if(!user)
-			target_zone = spick("chest","chest","chest","left leg","right leg","left arm", "right arm", "head")
+			target_zone = pick("chest","chest","chest","left leg","right leg","left arm", "right arm", "head")
 		else
 			target_zone = user.targeted_organ
 
@@ -1227,16 +1227,16 @@ var/list/rank_prefix = list(\
 		if(PULSE_NONE)
 			return "0"
 		if(PULSE_SLOW)
-			temp = srand(40, 60)
+			temp = rand(40, 60)
 		if(PULSE_NORM)
-			temp = srand(60, 90)
+			temp = rand(60, 90)
 		if(PULSE_FAST)
-			temp = srand(90, 120)
+			temp = rand(90, 120)
 		if(PULSE_2FAST)
-			temp = srand(120, 160)
+			temp = rand(120, 160)
 		if(PULSE_THREADY)
 			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
-	return "[method ? temp : temp + srand(-10, 10)]"
+	return "[method ? temp : temp + rand(-10, 10)]"
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/human/proc/pulse()

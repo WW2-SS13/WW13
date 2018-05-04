@@ -28,7 +28,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
 	if(!usr)	return
 	if (raw)
-		M.reagents.add_reagent("food_poisoning", spick(1,3))
+		M.reagents.add_reagent("food_poisoning", pick(1,3))
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
 		usr.drop_from_inventory(src)	//so icons update :[
@@ -99,7 +99,7 @@
 			user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
 
 		if(reagents)								//Handle ingestion of the reagent.
-			playsound(M.loc,'sound/items/eatfood.ogg', srand(10,50), TRUE)
+			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), TRUE)
 			if(reagents.total_volume)
 				if(reagents.total_volume > bitesize)
 					reagents.trans_to_mob(M, bitesize, CHEM_INGEST)
@@ -192,7 +192,7 @@
 			var/slices_lost = 0
 			if (W.w_class > 3)
 				user.visible_message("<span class='notice'>\The [user] crudely slices \the [src] with [W]!</span>", "<span class='notice'>You crudely slice \the [src] with your [W]!</span>")
-				slices_lost = srand(1,min(1,round(slices_num/2)))
+				slices_lost = rand(1,min(1,round(slices_num/2)))
 			else
 				user.visible_message("<span class='notice'>\The [user] slices \the [src]!</span>", "<span class='notice'>You slice \the [src]!</span>")
 
@@ -224,7 +224,7 @@
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
 	spawn(5)
 		if(!src && !user.client)
-			user.custom_emote(1,"[spick("burps", "cries for more", "burps twice", "looks at the area where the food was")]")
+			user.custom_emote(1,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]")
 			qdel(src)
 	On_Consume(user)
 
@@ -384,7 +384,7 @@
 		..()
 		reagents.add_reagent("sprinkles", 1)
 		bitesize = 3
-		if(sprob(30))
+		if(prob(30))
 			icon_state = "donut2"
 			overlay_state = "box-donut2"
 			name = "frosted donut"
@@ -401,7 +401,7 @@
 		..()
 		reagents.add_reagent("sprinkles", 1)
 		bitesize = 10
-		var/chaosselect = spick(1,2,3,4,5,6,7,8,9,10)
+		var/chaosselect = pick(1,2,3,4,5,6,7,8,9,10)
 		switch(chaosselect)
 			if(1)
 				reagents.add_reagent("nutriment", 3)
@@ -423,7 +423,7 @@
 				reagents.add_reagent("berryjuice", 3)
 			if(10)
 				reagents.add_reagent("tricordrazine", 3)
-		if(sprob(30))
+		if(prob(30))
 			icon_state = "donut2"
 			overlay_state = "box-donut2"
 			name = "Frosted Chaos Donut"
@@ -442,7 +442,7 @@
 		reagents.add_reagent("sprinkles", 1)
 		reagents.add_reagent("berryjuice", 5)
 		bitesize = 5
-		if(sprob(30))
+		if(prob(30))
 			icon_state = "jdonut2"
 			overlay_state = "box-donut2"
 			name = "Frosted Jelly Donut"
@@ -460,7 +460,7 @@
 		reagents.add_reagent("sprinkles", 1)
 		reagents.add_reagent("slimejelly", 5)
 		bitesize = 5
-		if(sprob(30))
+		if(prob(30))
 			icon_state = "jdonut2"
 			overlay_state = "box-donut2"
 			name = "Frosted Jelly Donut"
@@ -478,7 +478,7 @@
 		reagents.add_reagent("sprinkles", 1)
 		reagents.add_reagent("cherryjelly", 5)
 		bitesize = 5
-		if(sprob(30))
+		if(prob(30))
 			icon_state = "jdonut2"
 			overlay_state = "box-donut2"
 			name = "Frosted Jelly Donut"
@@ -589,7 +589,7 @@
 
 	New()
 		..()
-		reagents.add_reagent("protein", srand(3,5))
+		reagents.add_reagent("protein", rand(3,5))
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/tofu
@@ -897,7 +897,7 @@
 	nutriment_amt = 2
 	New()
 		..()
-		if(sprob(5))
+		if(prob(5))
 			reagents.add_reagent("nanites", 2)
 		bitesize = 2
 
@@ -1115,7 +1115,7 @@
 	nutriment_amt = 8
 	New()
 		..()
-		if(sprob(10))
+		if(prob(10))
 			name = "exceptional plump pie"
 			desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
 			reagents.add_reagent("tricordrazine", 5)
@@ -1215,10 +1215,10 @@
 	nutriment_amt = 2
 	New()
 		..()
-		unpopped = srand(1,10)
+		unpopped = rand(1,10)
 		bitesize = 0.1 //this snack is supposed to be eating during looooong time. And this it not dinner food! --rastaf0
 	On_Consume()
-		if(sprob(unpopped))	//lol ...what's the point?
+		if(prob(unpopped))	//lol ...what's the point?
 			usr << "<span class='warning'>You bite down on an un-popped kernel!</span>"
 			unpopped = max(0, unpopped-1)
 		..()
@@ -1538,7 +1538,7 @@
 	nutriment_amt = 1
 	New()
 		..()
-		var/mysteryselect = spick(1,2,3,4,5,6,7,8,9,10)
+		var/mysteryselect = pick(1,2,3,4,5,6,7,8,9,10)
 		switch(mysteryselect)
 			if(1)
 				reagents.add_reagent("nutriment", 6)
@@ -1587,7 +1587,7 @@
 		..()
 		reagents.add_reagent("water", 10)
 		bitesize = 5
-		if(sprob(25))
+		if(prob(25))
 			desc = "A wish come true!"
 			reagents.add_reagent("nutriment", 8, list("something good" = 8))
 
@@ -2147,7 +2147,7 @@
 	nutriment_amt = 5
 	New()
 		..()
-		if(sprob(10))
+		if(prob(10))
 			name = "exceptional plump helmet biscuit"
 			desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!"
 			reagents.add_reagent("nutriment", 3)

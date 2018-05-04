@@ -37,11 +37,11 @@ var/process/weather/weather_process = null
 	var/prob_of_weather_mod = ((((1/mod_weather_interval) * 10) / 2) * 100) * schedule_interval/20
 	var/prob_of_weather_change = ((((1/change_weather_interval) * 10) / 2) * 100) * schedule_interval/20
 
-	if (sprob(prob_of_weather_mod))
+	if (prob(prob_of_weather_mod))
 		if (world.realtime >= next_can_mod_weather)
 			modify_weather_somehow()
 			next_can_mod_weather = world.realtime + minimum_mod_weather_delay
-	else if (sprob(prob_of_weather_change))
+	else if (prob(prob_of_weather_change))
 		if (world.realtime >= next_can_change_weather)
 			change_weather_somehow()
 			next_can_change_weather = world.realtime + minimum_change_weather_delay

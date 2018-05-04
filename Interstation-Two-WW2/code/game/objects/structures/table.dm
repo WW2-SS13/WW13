@@ -189,7 +189,7 @@
 /obj/structure/table/ex_act(severity, target)
 	..()
 	if(severity == 3)
-		if(sprob(25))
+		if(prob(25))
 			table_destroy(1)
 /*
 /obj/structure/table/attack_tk() // no telehulk sorry
@@ -232,7 +232,7 @@
 				chance += 20
 			else
 				return TRUE					//But only from one side
-		if(sprob(chance))
+		if(prob(chance))
 			health -= P.damage/2
 			if (health > 0)
 				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
@@ -271,9 +271,9 @@
 	var/obj/item/weapon/material/shard/S = null
 	if(buildstack)
 		new buildstack (loc)
-/*	if(carpeted && (full_return || sprob(50))) // Higher chance to get the carpet back intact, since there's no non-intact option
+/*	if(carpeted && (full_return || prob(50))) // Higher chance to get the carpet back intact, since there's no non-intact option
 		new /obj/item/stack/tile/carpet(loc)*/
-	else if(full_return || sprob(20))
+	else if(full_return || prob(20))
 		new /obj/item/stack/material/steel(loc)
 	else
 		var/material/M = get_material_by_name(DEFAULT_WALL_MATERIAL)

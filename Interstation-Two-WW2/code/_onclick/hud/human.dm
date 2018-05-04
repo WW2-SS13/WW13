@@ -16,7 +16,7 @@
 /mob/living/carbon/human/proc/set_cloned_appearance()
 	f_style = "Shaved"
 	if(dna.species == "Human") //no more xenos losing ears/tentacles
-		h_style = spick("Bedhead", "Bedhead 2", "Bedhead 3")
+		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
 	all_underwear.Cut()
 	regenerate_icons()
 

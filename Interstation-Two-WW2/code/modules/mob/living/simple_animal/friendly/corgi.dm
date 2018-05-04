@@ -76,11 +76,11 @@
 
 					if(isturf(movement_target.loc) )
 						UnarmedAttack(movement_target)
-					else if(ishuman(movement_target.loc) && sprob(20))
+					else if(ishuman(movement_target.loc) && prob(20))
 						visible_emote("stares at the [movement_target] that [movement_target.loc] has with sad puppy eyes.")
 
-		if(sprob(1))
-			visible_emote(spick("dances around","chases their tail"))
+		if(prob(1))
+			visible_emote(pick("dances around","chases their tail"))
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)
@@ -174,8 +174,8 @@
 				new /mob/living/simple_animal/corgi/puppy(loc)
 
 
-		if(sprob(1))
-			visible_emote(spick("dances around","chases her tail"))
+		if(prob(1))
+			visible_emote(pick("dances around","chases her tail"))
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)

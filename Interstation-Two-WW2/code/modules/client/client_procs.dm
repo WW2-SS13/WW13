@@ -124,7 +124,7 @@
 
 	// Change the way they should download resources.
 	if(config.resource_urls)
-		preload_rsc = spick(config.resource_urls)
+		preload_rsc = pick(config.resource_urls)
 	else preload_rsc = TRUE // If config.resource_urls is not set, preload like normal.
 
 	clients += src

@@ -82,7 +82,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 						var/list/tips = file2list("config/tips.txt")
 						if (tips.len)
 							if (serverswap_open_status)
-								world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
+								world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(tips)]</span>"
 								qdel_list(tips)
 					maytip = FALSE
 				if(pregame_timeleft <= 0)
@@ -95,7 +95,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 							var/list/tips = file2list("config/tips.txt")
 							if (tips.len)
 								if (serverswap_open_status)
-									world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
+									world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(tips)]</span>"
 									qdel_list(tips)
 
 		while (!setup())

@@ -31,7 +31,7 @@ proc/random_hair_style(gender, species = "Human")
 		valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
 
 	if(valid_hairstyles.len)
-		h_style = spick(valid_hairstyles)
+		h_style = pick(valid_hairstyles)
 
 	return h_style
 
@@ -51,7 +51,7 @@ proc/random_facial_hair_style(gender, species = "Human")
 		valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
 
 	if(valid_facialhairstyles.len)
-		f_style = spick(valid_facialhairstyles)
+		f_style = pick(valid_facialhairstyles)
 
 		return f_style
 
@@ -70,9 +70,9 @@ proc/random_name(gender, species = "Human")
 
 	if(!current_species || current_species.name_language == null)
 		if(gender==FEMALE)
-			return capitalize(spick(first_names_female)) + " " + capitalize(spick(last_names))
+			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 		else
-			return capitalize(spick(first_names_male)) + " " + capitalize(spick(last_names))
+			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	else
 		return current_species.get_random_name(gender)
 
@@ -85,9 +85,9 @@ proc/random_german_name(gender, species = "Human")
 
 	if(!current_species || current_species.name_language == null)
 		if(gender==FEMALE)
-			return capitalize(spick(first_names_female_german)) + " " + capitalize(spick(last_names_german))
+			return capitalize(pick(first_names_female_german)) + " " + capitalize(pick(last_names_german))
 		else
-			return capitalize(spick(first_names_male_german)) + " " + capitalize(spick(last_names_german))
+			return capitalize(pick(first_names_male_german)) + " " + capitalize(pick(last_names_german))
 	else
 		return current_species.get_random_german_name(gender)
 
@@ -99,9 +99,9 @@ proc/random_italian_name(gender, species = "Human")
 
 	if(!current_species || current_species.name_language == null)
 		if(gender==FEMALE)
-			return capitalize(spick(first_names_female_italian)) + " " + capitalize(spick(last_names_italian))
+			return capitalize(pick(first_names_female_italian)) + " " + capitalize(pick(last_names_italian))
 		else
-			return capitalize(spick(first_names_male_italian)) + " " + capitalize(spick(last_names_italian))
+			return capitalize(pick(first_names_male_italian)) + " " + capitalize(pick(last_names_italian))
 	else
 		return current_species.get_random_italian_name(gender)
 
@@ -132,9 +132,9 @@ proc/random_russian_name(gender, species = "Human")
 
 	if(!current_species || current_species.name_language == null)
 		if(gender==FEMALE)
-			return capitalize(spick(first_names_female_russian)) + " " + capitalize(spick(russify(last_names_russian, gender)))
+			return capitalize(pick(first_names_female_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))
 		else
-			return capitalize(spick(first_names_male_russian)) + " " + capitalize(spick(russify(last_names_russian, gender)))
+			return capitalize(pick(first_names_male_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))
 	else
 		return current_species.get_random_russian_name(gender)
 
@@ -147,9 +147,9 @@ proc/random_ukrainian_name(gender, species = "Human")
 
 	if(!current_species || current_species.name_language == null)
 		if(gender==FEMALE)
-			return capitalize(spick(first_names_female_ukrainian)) + " " + capitalize(spick(russify(last_names_ukrainian, gender)))
+			return capitalize(pick(first_names_female_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
 		else
-			return capitalize(spick(first_names_male_ukrainian)) + " " + capitalize(spick(russify(last_names_ukrainian, gender)))
+			return capitalize(pick(first_names_male_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
 	else
 		return current_species.get_random_ukrainian_name(gender)
 
@@ -162,9 +162,9 @@ proc/random_polish_name(gender, species = "Human")
 
 	if(!current_species || current_species.name_language == null)
 		if(gender==FEMALE)
-			return capitalize(spick(first_names_female_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+			return capitalize(pick(first_names_female_polish)) + " " + capitalize(pick(polify(last_names_polish, gender)))
 		else
-			return capitalize(spick(first_names_male_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+			return capitalize(pick(first_names_male_polish)) + " " + capitalize(pick(polify(last_names_polish, gender)))
 	else
 		return current_species.get_random_polish_name(gender)
 
@@ -188,8 +188,8 @@ proc/random_skin_tone()
 		if("african")		. = -165
 		if("latino")		. = -55
 		if("albino")		. = 34
-		else				. = srand(-185,34)
-	return min(max( .+srand(-25, 25), -185),34)
+		else				. = rand(-185,34)
+	return min(max( .+rand(-25, 25), -185),34)
 
 proc/skintone2racedescription(tone)
 	switch (tone)
@@ -291,9 +291,9 @@ Proc for attack log creation, because really why not
 /proc/get_exposed_defense_zone(var/atom/movable/target)
 	var/obj/item/weapon/grab/G = locate() in target
 	if(G && G.state >= GRAB_NECK) //works because mobs are currently not allowed to upgrade to NECK if they are grabbing two people.
-		return spick("head", "l_hand", "r_hand", "l_foot", "r_foot", "l_arm", "r_arm", "l_leg", "r_leg")
+		return pick("head", "l_hand", "r_hand", "l_foot", "r_foot", "l_arm", "r_arm", "l_leg", "r_leg")
 	else
-		return spick("chest", "groin")
+		return pick("chest", "groin")
 
 /mob/var/may_do_mob = TRUE
 /proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = FALSE, progress = TRUE)

@@ -114,8 +114,8 @@
 	for(var/datum/air_group/group in air_master.air_groups)
 		if (!group.group_processing)
 			dead_groups += group
-	var/datum/air_group/dest_group = spick(dead_groups)
-	usr.loc = spick(dest_group.members)
+	var/datum/air_group/dest_group = pick(dead_groups)
+	usr.loc = pick(dest_group.members)
 
 	return
 	*/

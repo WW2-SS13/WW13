@@ -118,10 +118,10 @@
 				break
 
 	if (!firer || !target || !istype(target))
-		return sprob(50)
+		return prob(50)
 
 	if (!istype(firer))
-		return sprob(50)
+		return prob(50)
 
 	var/accuracy_sublist = accuracy_list["large"]
 
@@ -217,10 +217,10 @@
 //	log_debug("MC: [miss_chance]")
 //	log_debug("HC: [hit_chance]")
 	// We hit. Return the zone or a zone in redirection_chances[zone]
-	if (sprob(hit_chance))
+	if (prob(hit_chance))
 		if (redirection_chances.Find(zone))
 			for (var/nzone in redirection_chances[zone])
-				if (sprob(redirection_chances[zone][nzone]))
+				if (prob(redirection_chances[zone][nzone]))
 					zone = nzone
 		return zone
 	// We didn't hit, and the target is running. Give us a chance to hit something in adjacent_redirections[zone]
@@ -233,11 +233,11 @@
 //		log_debug("2: [hitchance_delta]")
 
 		if (hitchance_still && hitchance_delta)
-			if (sprob(ceil(hitchance_delta * 0.75)))
+			if (prob(ceil(hitchance_delta * 0.75)))
 				if (!adjacent_redirections.Find(zone)) // wtf
 					log_debug("No '[zone]' found in '[src].adjacent_redirections'! Returning null (_gun.dm, ~line 200)")
 					return null
-				return spick(adjacent_redirections[zone])
+				return pick(adjacent_redirections[zone])
 		else if (!hitchance_delta)
 			if (hitchance_delta < 0)
 				log_debug("hitchance_delta in '[src].get_zone()' was a value < 0! ([hitchance_delta]) (_gun.dm, ~line 200)")

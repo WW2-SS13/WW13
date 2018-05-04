@@ -25,17 +25,17 @@
 		carrying.Remove(I)
 		if(isturf(I.loc))
 			spawn()
-				for(var/i = TRUE, i <= srand(1,2), i++)
+				for(var/i = TRUE, i <= rand(1,2), i++)
 					if(I)
-						step(I, spick(NORTH,SOUTH,EAST,WEST))
-						sleep(srand(2,4))
+						step(I, pick(NORTH,SOUTH,EAST,WEST))
+						sleep(rand(2,4))
 
 
-	if((CLUMSY in user.mutations) && sprob(50))              //What if he's a clown?
+	if((CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
 		M << "<span class='warning'>You accidentally slam yourself with the [src]!</span>"
 		M.Weaken(1)
 		user.take_organ_damage(2)
-		if(sprob(50))
+		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 50, TRUE)
 			return
 		else
@@ -46,7 +46,7 @@
 
 
 	if(!(user.targeted_organ == ("eyes" || "head"))) //////////////hitting anything else other than the eyes
-		if(sprob(33))
+		if(prob(33))
 			add_blood(H)
 			var/turf/location = H.loc
 			if (istype(location, /turf))
@@ -56,12 +56,12 @@
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to attack [M.name] ([M.ckey])</font>")
 		msg_admin_attack("[user.name] ([user.ckey]) used the [name] to attack [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-		if(sprob(15))
+		if(prob(15))
 			M.Weaken(3)
 			M.take_organ_damage(3)
 		else
 			M.take_organ_damage(5)
-		if(sprob(50))
+		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 50, TRUE)
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), TRUE)
@@ -82,19 +82,19 @@
 
 	if(protected)
 		M << "<span class='warning'>You get slammed in the face with the tray, against your mask!</span>"
-		if(sprob(33))
+		if(prob(33))
 			add_blood(H)
 			if (H.wear_mask)
 				H.wear_mask.add_blood(H)
 			if (H.head)
 				H.head.add_blood(H)
-			if (H.glasses && sprob(33))
+			if (H.glasses && prob(33))
 				H.glasses.add_blood(H)
 			var/turf/location = H.loc
 			if (istype(location, /turf))     //Addin' blood! At least on the floor and item :v
 				location.add_blood(H)
 
-		if(sprob(50))
+		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 50, TRUE)
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), TRUE)
@@ -102,8 +102,8 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 50, TRUE)  //sound playin'
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), TRUE)
-		if(sprob(10))
-			M.Stun(srand(1,3))
+		if(prob(10))
+			M.Stun(rand(1,3))
 			M.take_organ_damage(3)
 			return
 		else
@@ -112,13 +112,13 @@
 
 	else //No eye or head protection, tough luck!
 		M << "<span class='warning'>You get slammed in the face with the tray!</span>"
-		if(sprob(33))
+		if(prob(33))
 			add_blood(M)
 			var/turf/location = H.loc
 			if (istype(location, /turf))
 				location.add_blood(H)
 
-		if(sprob(50))
+		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 50, TRUE)
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] in the face with the tray!</span>", user, M), TRUE)
@@ -126,13 +126,13 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 50, TRUE)  //sound playin' again
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] in the face with the tray!</span>", user, M), TRUE)
-		if(sprob(30))
-			M.Stun(srand(2,4))
+		if(prob(30))
+			M.Stun(rand(2,4))
 			M.take_organ_damage(4)
 			return
 		else
 			M.take_organ_damage(8)
-			if(sprob(30))
+			if(prob(30))
 				M.Weaken(2)
 				return
 			return
@@ -209,7 +209,7 @@
 		if(!foundtable && isturf(loc))
 			// if no table, presume that the person just shittily dropped the tray on the ground and made a mess everywhere!
 			spawn()
-				for(var/i = TRUE, i <= srand(1,2), i++)
+				for(var/i = TRUE, i <= rand(1,2), i++)
 					if(I)
-						step(I, spick(NORTH,SOUTH,EAST,WEST))
-						sleep(srand(2,4))
+						step(I, pick(NORTH,SOUTH,EAST,WEST))
+						sleep(rand(2,4))

@@ -70,7 +70,7 @@
 			return
 
 		if (hascall(target, "has_snow") && target:has_snow())
-			if (sprob(25))
+			if (prob(25))
 				internal_tank_message("<span class = 'notice'><big>Your tank gets stuck in the snow.</big></span>")
 			else
 				next_movement = world.time + (movement_delay*1.5)
@@ -111,7 +111,7 @@
 		loc = target
 
 		if (!admin)
-			fuel -= spick(0.33,0.66,0.99)
+			fuel -= pick(0.33,0.66,0.99)
 
 /obj/tank/proc/play_movement_sound()
 	if (world.time > next_movement_sound)
@@ -195,7 +195,7 @@
 		if (!wall.tank_destroyable)
 			return FALSE
 		var/wall_integrity = wall.material ? wall.material.integrity : 150
-		if (sprob(min(95, (wall_integrity/5) + 40)))
+		if (prob(min(95, (wall_integrity/5) + 40)))
 			tank_message("<span class = 'danger'>The tank smashes against [wall]!</span>")
 			playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 			return FALSE
@@ -215,7 +215,7 @@
 		if (istype(o, /obj/item/mine))
 			var/obj/item/mine/mine = o
 			mine.trigger(src)
-			damage += x_percent_of_max_damage(srand(5,7))
+			damage += x_percent_of_max_damage(rand(5,7))
 			update_damage_status()
 			return FALSE // halt us too
 
@@ -226,7 +226,7 @@
 			return TRUE // pass over it
 
 		else if (istype(o, /obj/structure/window/sandbag))
-			if (sprob(15))
+			if (prob(15))
 				tank_message("<span class = 'danger'>The tank plows through the sandbag wall!</span>")
 				qdel(o)
 				return TRUE
@@ -236,7 +236,7 @@
 				return FALSE
 
 		else if (istype(o, /obj/structure/anti_tank))
-			if (sprob(2))
+			if (prob(2))
 				tank_message("<span class = 'danger'>The tank manages to plow through the anti-tank barrier!</span>")
 				qdel(o)
 				return TRUE
@@ -248,7 +248,7 @@
 				return FALSE
 
 		else if (istype(o, /obj/structure/girder))
-			if (sprob(7))
+			if (prob(7))
 				tank_message("<span class = 'danger'>The tank plows through the wall girder!</span>")
 				qdel(o)
 				return TRUE
@@ -259,7 +259,7 @@
 
 		else if (istype(o, /obj/structure/barricade))
 			var/obj/structure/barricade/B = o
-			if ((B.material && sprob(max(3, 100 - (B.material.integrity/4) - 10))) || (!B.material && sprob(80)))
+			if ((B.material && prob(max(3, 100 - (B.material.integrity/4) - 10))) || (!B.material && prob(80)))
 				tank_message("<span class = 'danger'>The tank plows through \the [B]!</span>")
 				qdel(o)
 				return TRUE
@@ -270,7 +270,7 @@
 
 		else if (istype(o, /obj/structure/simple_door))
 			var/obj/structure/simple_door/S = o
-			if ((S.material && sprob(max(5, 100 - (S.material.integrity/5) - 10))) || (!S.material && sprob(80)))
+			if ((S.material && prob(max(5, 100 - (S.material.integrity/5) - 10))) || (!S.material && prob(80)))
 				tank_message("<span class = 'danger'>The tank plows through \the [S]!</span>")
 				qdel(o)
 				return TRUE
@@ -282,7 +282,7 @@
 		else if (istype(o, /obj/train_pseudoturf))
 			if (o.density)
 				var/wall_integrity = 500 // trains are hard as fuck
-				if (sprob(min(wall_integrity/2, 98)))
+				if (prob(min(wall_integrity/2, 98)))
 					tank_message("<span class = 'danger'>The tank smashes against [o]!</span>")
 					playsound(get_turf(src), 'sound/effects/clang.ogg', 100)
 					return FALSE
@@ -296,7 +296,7 @@
 		else if (istype(o, /obj/tank))
 			tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
 			var/obj/tank/other = o
-			if (sprob(50))
+			if (prob(50))
 				if (!did_critical_damage)
 					other.damage += other.x_percent_of_max_damage(2)
 				else
@@ -304,7 +304,7 @@
 			else
 				visible_message("<span class = 'danger'>The hit bounces off [other]!</span>")
 
-			if (sprob(33))
+			if (prob(33))
 				damage += x_percent_of_max_damage(1) // we take some, but not much damage
 			else
 				visible_message("<span class = 'danger'>The hit bounces off [src]!</span>")
@@ -316,9 +316,9 @@
 			update_damage_status()
 			other.update_damage_status()
 
-			if (sprob(critical_damage_chance()))
+			if (prob(critical_damage_chance()))
 				critical_damage()
-			if (sprob(other.critical_damage_chance()))
+			if (prob(other.critical_damage_chance()))
 				other.critical_damage()
 
 			return FALSE
@@ -338,13 +338,13 @@
 				qdel(o)
 				return TRUE
 			if (istype(o, /obj/structure))
-				if (sprob(40) || !o.density)
+				if (prob(40) || !o.density)
 					tank_message("<span class = 'danger'>The tank crushes [o]!</span>")
 					qdel(o)
 					return TRUE
 				else
 					tank_message("<span class = 'danger'>The tank rams into [o]!</span>")
-					playsound(get_turf(src), 'sound/effects/clang.ogg', srand(60,70))
+					playsound(get_turf(src), 'sound/effects/clang.ogg', rand(60,70))
 					return FALSE
 
 	return TRUE

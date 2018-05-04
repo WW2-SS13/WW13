@@ -57,7 +57,7 @@
 	if(!..())
 		return FALSE
 
-	A.attack_generic(src,srand(5,6),"bitten")
+	A.attack_generic(src,rand(5,6),"bitten")
 
 /*
 	Slimes
@@ -86,7 +86,7 @@
 				M.visible_message("<span class='notice'>[src] gently pokes [M]!</span>", "<span class='notice'>[src] gently pokes you!</span>")
 			if (I_DISARM) // We stun the target, with the intention to feed
 				var/stunprob = TRUE
-				var/power = max(0, min(10, (powerlevel + srand(0, 3))))
+				var/power = max(0, min(10, (powerlevel + rand(0, 3))))
 				if (powerlevel > 0 && !istype(A, /mob/living/carbon/slime))
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
@@ -102,7 +102,7 @@
 						if(9) 	   stunprob *= 70
 						if(10) 	   stunprob *= 95
 
-				if(sprob(stunprob))
+				if(prob(stunprob))
 					powerlevel = max(0, powerlevel-3)
 					M.visible_message("<span class='danger'>[src] has shocked [M]!</span>", "<span class='danger'>[src] has shocked you!</span>")
 					M.Weaken(power)
@@ -113,9 +113,9 @@
 					s.set_up(5, TRUE, M)
 					s.start()
 
-					if(sprob(stunprob) && powerlevel >= 8)
-						M.adjustFireLoss(powerlevel * srand(6,10))
-				else if(sprob(40))
+					if(prob(stunprob) && powerlevel >= 8)
+						M.adjustFireLoss(powerlevel * rand(6,10))
+				else if(prob(40))
 					M.visible_message("<span class='danger'>[src] has pounced at [M]!</span>", "<span class='danger'>[src] has pounced at you!</span>")
 					M.Weaken(power)
 				else
@@ -124,9 +124,9 @@
 			if (I_GRAB) // We feed
 				Wrap(M)
 			if (I_HURT) // Attacking
-				A.attack_generic(src, (is_adult ? srand(20,40) : srand(5,25)), "glomped")
+				A.attack_generic(src, (is_adult ? rand(20,40) : rand(5,25)), "glomped")
 	else
-		A.attack_generic(src, (is_adult ? srand(20,40) : srand(5,25)), "glomped") // Basic attack.
+		A.attack_generic(src, (is_adult ? rand(20,40) : rand(5,25)), "glomped") // Basic attack.
 */
 /*
 	New Players:
@@ -147,6 +147,6 @@
 		custom_emote(1,"[friendly] [A]!")
 		return
 
-	var/damage = srand(melee_damage_lower, melee_damage_upper)
+	var/damage = rand(melee_damage_lower, melee_damage_upper)
 	if(A.attack_generic(src,damage,attacktext,environment_smash) && loc && attack_sound)
 		playsound(loc, attack_sound, 50, TRUE, TRUE)

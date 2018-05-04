@@ -83,14 +83,14 @@ var/global/obj/map_metadata/map = null
 	if (no_subfaction_chance)
 		if (available_subfactions.len)
 			switch (available_subfactions.len)
-				if (1) // this may be necessary due to sprob() memes - Kachnov
+				if (1) // this may be necessary due to prob() memes - Kachnov
 					if (prob(50))
 						available_subfactions = list(available_subfactions[1])
 					else
 						available_subfactions = list()
 				if (2 to INFINITY)
-					if (sprob(100 - round((100/(available_subfactions.len+1)))))
-						available_subfactions = list(available_subfactions[srand(1, available_subfactions.len)])
+					if (prob(100 - round((100/(available_subfactions.len+1)))))
+						available_subfactions = list(available_subfactions[rand(1, available_subfactions.len)])
 					else
 						available_subfactions = list()
 

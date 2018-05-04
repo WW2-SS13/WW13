@@ -25,7 +25,7 @@
 		shake_camera(L, 3, 2)
 
 /obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob)
-	if(penetrating > 1 && damage > 20 && sprob(damage))
+	if(penetrating > 1 && damage > 20 && prob(damage))
 		mob_passthrough_check = TRUE
 	else
 		mob_passthrough_check = FALSE
@@ -62,7 +62,7 @@
 	else if(istype(A, /obj/structure))
 		chance = round(damage/2) + 10
 
-	if(sprob(chance))
+	if(prob(chance))
 		return TRUE
 
 	return FALSE
@@ -99,7 +99,7 @@
 
 	var/hits = FALSE
 	for (var/i in 1 to total_pellets)
-		if(target_mob.lying && target_mob != original && sprob(prone_chance))
+		if(target_mob.lying && target_mob != original && prob(prone_chance))
 			continue
 
 		//pellet hits spread out across different zones, but 'aim at' the targeted zone with higher probability

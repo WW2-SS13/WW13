@@ -374,7 +374,7 @@
 			mob.visible_message("<span class = 'warning'>[mob] starts climbing through the window frame.</span>")
 			mob.canmove = FALSE
 			var/oloc = mob.loc
-			sleep(srand(8,12))
+			sleep(rand(8,12))
 			mob.canmove = TRUE
 			if (mob.lying || mob.stat == DEAD || mob.stat == UNCONSCIOUS || mob.loc != oloc)
 				return
@@ -466,14 +466,14 @@
 					mob.next_snow_message = world.time+100
 
 			else if (F.muddy)
-				standing_on_snow = srand(2,3)
+				standing_on_snow = rand(2,3)
 				if (world.time >= mob.next_mud_message)
 					mob << "<span class = 'warning'>The mud slows you down.</span>"
 					mob.next_mud_message = world.time+100
 
 		if (mob.velocity_lastdir != -1)
 			if (direct != mob.velocity_lastdir)
-				mob.velocity = max(mob.velocity-spick(1,2), FALSE)
+				mob.velocity = max(mob.velocity-pick(1,2), FALSE)
 
 		switch(mob.m_intent)
 			if("run")
@@ -541,8 +541,8 @@
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
 			move_delay = world.time + tickcomp
 			//drunk driving
-			if(mob.confused && sprob(40))
-				direct = spick(cardinal)
+			if(mob.confused && prob(40))
+				direct = pick(cardinal)
 
 			return mob.buckled.relaymove(mob,direct)
 /*
@@ -561,8 +561,8 @@
 					if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
 						return // No hands to drive your chair? Tough luck!
 				//drunk wheelchair driving
-				if(mob.confused && sprob(40))
-					direct = spick(cardinal)
+				if(mob.confused && prob(40))
+					direct = pick(cardinal)
 				move_delay += 2
 				return mob.buckled.relaymove(mob,direct)
 
@@ -607,8 +607,8 @@
 							M.animate_movement = 2
 							return
 
-		else if(mob.confused && sprob(40))
-			step(mob, spick(cardinal))
+		else if(mob.confused && prob(40))
+			step(mob, pick(cardinal))
 		else
 			. = mob.SelfMove(n, direct)
 
@@ -623,7 +623,7 @@
 					if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
 						H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")
 						playsound(t1, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
-						L.adjustBruteLoss(srand(6,7))
+						L.adjustBruteLoss(rand(6,7))
 						if (ishuman(L))
 							L.emote("scream")
 						sleep(STOMP_TIME)
@@ -702,7 +702,7 @@
 				mob.forceMove(get_step(mob, direct))
 				mob.dir = direct
 		if(2)
-			if(sprob(50))
+			if(prob(50))
 				var/locx
 				var/locy
 				switch(direct)
@@ -777,7 +777,7 @@
 		return FALSE
 
 	//Check to see if we slipped
-	if(sprob(slip_chance(5)) && !buckled)
+	if(prob(slip_chance(5)) && !buckled)
 		src << "<span class='warning'>You slipped!</span>"
 		inertia_dir = last_move
 		step(src, inertia_dir)

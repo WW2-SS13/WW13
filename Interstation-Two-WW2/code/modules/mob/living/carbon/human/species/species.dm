@@ -193,7 +193,7 @@
 	if ((H.bodytemperature < cold_level_1 && msg_type == "cold") || (H.bodytemperature > heat_level_1 && msg_type == "heat"))
 
 		var/showmsg = FALSE
-		if(sprob(12))
+		if(prob(12))
 			showmsg = TRUE
 
 		var/covered = FALSE // Basic coverage can help.
@@ -226,12 +226,12 @@
 
 		var/turf/H_turf = get_turf(H)
 		if (istype(H_turf) && msg_type == "cold" && (locate(/obj/snow) in H_turf || !H.shoes))
-			if (sprob(25 - (H.shoes ? 15 : 0)))
+			if (prob(25 - (H.shoes ? 15 : 0)))
 				H << "<span class='danger'>Your feet are freezing!</span>"
 				var/base_damage = 3
 				for (var/obj/snow/S in H_turf)
 					base_damage += S.amount * 5
-				H.adjustFireLossByPart(base_damage, spick("l_foot", "r_foot"))
+				H.adjustFireLossByPart(base_damage, pick("l_foot", "r_foot"))
 
 		// if we aren't covered, take more damage + weather damage
 		if (!covered)
@@ -239,31 +239,31 @@
 				if("cold")
 					H.adjustFireLoss(3)
 					if (showmsg)
-						H << "<span class='danger'>[spick(cold_discomfort_strings)]</span>"
+						H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
 				if("heat")
 					H.adjustFireLoss(3)
 					if (showmsg)
-						H << "<span class='danger'>[spick(heat_discomfort_strings)]</span>"
+						H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
 
 		else
 			switch(msg_type)
 				if("cold")
 					H.adjustFireLoss(2)
 					if (showmsg)
-						H << "<span class='danger'>[spick(cold_discomfort_strings)]</span>"
+						H << "<span class='danger'>[pick(cold_discomfort_strings)]</span>"
 				if("heat")
 					H.adjustFireLoss(2)
 					if (showmsg)
-						H << "<span class='danger'>[spick(heat_discomfort_strings)]</span>"
+						H << "<span class='danger'>[pick(heat_discomfort_strings)]</span>"
 
 		if (msg_type == "cold")
 			var/area/A = get_area(H)
 			if (A.weather == WEATHER_RAIN)
-				if (sprob(15))
+				if (prob(15))
 					H << "<span class='danger'>The cold rain chills you to the bone.</span>"
 				H.adjustFireLoss(3) // wet is bad
 			else if (A.weather == WEATHER_SNOW)
-				if (sprob(15))
+				if (prob(15))
 					H << "<span class='danger'>The freezing snowfall chills you to the bone.</span>"
 				H.adjustFireLoss(2)
 
@@ -273,9 +273,9 @@
 /datum/species/proc/get_random_name(var/gender)
 	if(!name_language)
 		if(gender == FEMALE)
-			return capitalize(spick(first_names_female)) + " " + capitalize(spick(last_names))
+			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 		else
-			return capitalize(spick(first_names_male)) + " " + capitalize(spick(last_names))
+			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
 	var/datum/language/species_language = all_languages[name_language]
 	if(!species_language)
@@ -288,12 +288,12 @@
 	if(!name_language)
 		if(gender == FEMALE)
 			if (jew)
-				return capitalize(spick(first_names_female_german_jew)) + " " + capitalize(spick(last_names_german_jew))
-			return capitalize(spick(first_names_female_german)) + " " + capitalize(spick(last_names_german))
+				return capitalize(pick(first_names_female_german_jew)) + " " + capitalize(pick(last_names_german_jew))
+			return capitalize(pick(first_names_female_german)) + " " + capitalize(pick(last_names_german))
 		else
 			if (jew)
-				return capitalize(spick(first_names_male_german_jew)) + " " + capitalize(spick(last_names_german_jew))
-			return capitalize(spick(first_names_male_german)) + " " + capitalize(spick(last_names_german))
+				return capitalize(pick(first_names_male_german_jew)) + " " + capitalize(pick(last_names_german_jew))
+			return capitalize(pick(first_names_male_german)) + " " + capitalize(pick(last_names_german))
 
 	var/datum/language/species_language = all_languages[name_language]
 	if(!species_language)
@@ -305,9 +305,9 @@
 /datum/species/proc/get_random_russian_name(var/gender, var/jew)
 	if(!name_language)
 		if(gender == FEMALE)
-			return capitalize(spick(first_names_female_russian)) + " " + capitalize(spick(russify(last_names_russian, gender)))
+			return capitalize(pick(first_names_female_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))
 		else
-			return capitalize(spick(first_names_male_russian)) + " " + capitalize(spick(russify(last_names_russian, gender)))
+			return capitalize(pick(first_names_male_russian)) + " " + capitalize(pick(russify(last_names_russian, gender)))
 
 	var/datum/language/species_language = all_languages[name_language]
 	if(!species_language)
@@ -319,9 +319,9 @@
 /datum/species/proc/get_random_ukrainian_name(var/gender, var/jew)
 	if(!name_language)
 		if(gender == FEMALE)
-			return capitalize(spick(first_names_female_ukrainian)) + " " + capitalize(spick(russify(last_names_ukrainian, gender)))
+			return capitalize(pick(first_names_female_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
 		else
-			return capitalize(spick(first_names_male_ukrainian)) + " " + capitalize(spick(russify(last_names_ukrainian, gender)))
+			return capitalize(pick(first_names_male_ukrainian)) + " " + capitalize(pick(russify(last_names_ukrainian, gender)))
 
 	var/datum/language/species_language = all_languages[name_language]
 	if(!species_language)
@@ -333,9 +333,9 @@
 /datum/species/proc/get_random_polish_name(var/gender, var/jew)
 	if(!name_language)
 		if(gender == FEMALE)
-			return capitalize(spick(first_names_female_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+			return capitalize(pick(first_names_female_polish)) + " " + capitalize(pick(polify(last_names_polish, gender)))
 		else
-			return capitalize(spick(first_names_male_polish)) + " " + capitalize(spick(polify(last_names_polish, gender)))
+			return capitalize(pick(first_names_male_polish)) + " " + capitalize(pick(polify(last_names_polish, gender)))
 
 	var/datum/language/species_language = all_languages[name_language]
 	if(!species_language)
@@ -347,9 +347,9 @@
 /datum/species/proc/get_random_italian_name(var/gender, var/jew)
 	if(!name_language)
 		if(gender == FEMALE)
-			return capitalize(spick(first_names_female_italian)) + " " + capitalize(spick(russify(last_names_italian, gender)))
+			return capitalize(pick(first_names_female_italian)) + " " + capitalize(pick(russify(last_names_italian, gender)))
 		else
-			return capitalize(spick(first_names_male_italian)) + " " + capitalize(spick(russify(last_names_italian, gender)))
+			return capitalize(pick(first_names_male_italian)) + " " + capitalize(pick(russify(last_names_italian, gender)))
 
 	var/datum/language/species_language = all_languages[name_language]
 	if(!species_language)

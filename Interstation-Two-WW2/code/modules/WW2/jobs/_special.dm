@@ -167,13 +167,13 @@
 				if ((MEMBERS_PER_SQUAD*3) to (MEMBERS_PER_SQUAD*4)-1)
 					user.squad_faction = new/datum/faction/squad/four(user, src)
 				if ((MEMBERS_PER_SQUAD*4) to INFINITY) // latejoiners
-					if (sprob(50))
-						if (sprob(50))
+					if (prob(50))
+						if (prob(50))
 							user.squad_faction = new/datum/faction/squad/one(user, src)
 						else
 							user.squad_faction = new/datum/faction/squad/two(user, src)
 					else
-						if (sprob(50))
+						if (prob(50))
 							user.squad_faction = new/datum/faction/squad/three(user, src)
 						else
 							user.squad_faction = new/datum/faction/squad/four(user, src)
@@ -348,12 +348,12 @@
 	var/obj/item/ammo_magazine/AM = null
 	switch (base_type_flag())
 		if (GERMAN, ITALIAN)
-			if (sprob(50))
+			if (prob(50))
 				gun = new /obj/item/weapon/gun/projectile/revolver/nagant_revolver(H)
 			else
 				gun = new /obj/item/weapon/gun/projectile/pistol/tokarev(H)
 		if (SOVIET)
-			if (sprob(50))
+			if (prob(50))
 				gun = new /obj/item/weapon/gun/projectile/pistol/luger(H)
 			else
 				gun = new /obj/item/weapon/gun/projectile/pistol/mauser(H)
@@ -369,31 +369,31 @@
 
 	// random amount of ammo for both gun and mag
 
-	var/ideal_contents_1 = srand(1, max(gun.contents.len, gun.ammo_magazine ? gun.ammo_magazine.contents.len : 0))
+	var/ideal_contents_1 = rand(1, max(gun.contents.len, gun.ammo_magazine ? gun.ammo_magazine.contents.len : 0))
 	var/removing_1 = (gun.ammo_magazine ? gun.ammo_magazine.contents.len : gun.contents.len) - ideal_contents_1
 
 	var/removing_2 = 0
 
 	if (AM)
-		var/ideal_contents_2 = srand(1, AM.contents.len)
+		var/ideal_contents_2 = rand(1, AM.contents.len)
 		removing_2 = AM.contents.len - ideal_contents_2
 
 	for (var/v in 1 to removing_1)
 
 		if (gun.ammo_magazine)
-			var/picked = spick(gun.ammo_magazine.contents)
+			var/picked = pick(gun.ammo_magazine.contents)
 			gun.ammo_magazine.contents -= picked
 			gun.ammo_magazine.stored_ammo -= picked
 			qdel(picked)
 		else
-			var/picked = spick(gun.contents)
+			var/picked = pick(gun.contents)
 			gun.contents -= picked
 			qdel(picked)
 
 	if (AM)
 		for (var/v in 1 to removing_2)
 
-			var/picked = spick(AM.contents)
+			var/picked = pick(AM.contents)
 			AM.contents -= picked
 			AM.stored_ammo -= picked
 			qdel(picked)

@@ -72,12 +72,12 @@
 
 				if(findtext(temp, "*", TRUE, 2))	//emotes
 					return
-				temp = copytext(trim_left(temp), TRUE, srand(5,8))
+				temp = copytext(trim_left(temp), TRUE, rand(5,8))
 
 				var/trimmed = trim_left(temp)
 				if(length(trimmed))
 					if(append)
-						temp += spick(append)
+						temp += pick(append)
 
 					say(temp)
 				winset(client, "input", "text=[null]")
@@ -152,7 +152,7 @@
 		verb = speaking.get_spoken_verb(ending)
 	else
 		if(ending == "!")
-			verb=spick("exclaims","shouts","yells")
+			verb=pick("exclaims","shouts","yells")
 		else if(ending == "?")
 			verb="asks"
 
@@ -165,8 +165,8 @@
 	else if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
 		if(M.voicechange)
-			message = spick(M.say_messages)
-			verb = spick(M.say_verbs)
+			message = pick(M.say_messages)
+			verb = pick(M.say_verbs)
 			speech_problem_flag = TRUE
 
 	if(message != "")
@@ -245,8 +245,8 @@
 					used_radios += r_ear
 
 /mob/living/carbon/human/handle_speech_sound()
-	if(species.speech_sounds && sprob(species.speech_chance))
+	if(species.speech_sounds && prob(species.speech_chance))
 		var/list/returns[2]
-		returns[1] = sound(spick(species.speech_sounds))
+		returns[1] = sound(pick(species.speech_sounds))
 		returns[2] = 50
 	return ..()

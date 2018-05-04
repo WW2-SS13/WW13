@@ -18,7 +18,7 @@
 		for (var/turf/t in target_area.contents)
 			target_turfs += t
 
-		for (var/v in 1 to srand(2,3))
+		for (var/v in 1 to rand(2,3))
 			spawn ((v*2) - 2)
 				var/obj/effect/effect/smoke/chem/smoke = new/obj/effect/effect/smoke/chem/payload/zyklon_b(get_turf(src), _spread = TRUE, _destination = get_step(src, EAST))
 				smoke.dontmove = TRUE
@@ -28,7 +28,7 @@
 		for (var/v in 1 to 10)
 			spawn (v * 20)
 				for (var/obj/effect/effect/smoke/chem/smoke in chemsmokes)
-					walk_to(smoke, spick(target_turfs),0,srand(2,3),0)
+					walk_to(smoke, pick(target_turfs),0,rand(2,3),0)
 
 		for (var/mob/living/L in target_area.contents)
 			if (L.wear_mask && istype(L.wear_mask, /obj/item/clothing/mask/gas))
@@ -42,7 +42,7 @@
 			for (var/v in 1 to 10)
 				spawn ((v-1) * 10)
 					if (L.stat == CONSCIOUS)
-						L.adjustOxyLoss(srand(5,7))
+						L.adjustOxyLoss(rand(5,7))
 						if (ishuman(L))
 							var/mob/living/carbon/human/H = L
 							H.emote("scream")

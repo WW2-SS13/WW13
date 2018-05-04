@@ -27,12 +27,12 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (sprob(50))
+			if (prob(50))
 				//SN src = null
 				qdel(src)
 				return
 		if(3.0)
-			if (sprob(25))
+			if (prob(25))
 				density = FALSE
 		else
 	return

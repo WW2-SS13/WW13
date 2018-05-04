@@ -54,7 +54,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if (can_infect && affected)
 			spread_germs_to_organ(affected, user)
-		if (ishuman(user) && sprob(60))
+		if (ishuman(user) && prob(60))
 			var/mob/living/carbon/human/H = user
 			if (blood_level)
 				H.bloody_hands(target,0)
@@ -100,7 +100,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				M.op_stage.in_progress += zone
 				S.begin_step(user, M, zone, tool)		//start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
-				if(sprob(S.tool_quality(tool, user)) &&  do_mob(user, M, srand(S.min_duration, S.max_duration)))
+				if(prob(S.tool_quality(tool, user)) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
 					S.end_step(user, M, zone, tool)		//finish successfully
 					if (ishuman(user))
 						var/mob/living/carbon/human/H = user

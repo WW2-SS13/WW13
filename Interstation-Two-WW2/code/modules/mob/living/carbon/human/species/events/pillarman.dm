@@ -62,7 +62,7 @@
 			B.volume = min(B.volume, vessel.maximum_volume)
 		H.crush()
 	else
-		H.adjustBruteLoss(srand(20,30))
+		H.adjustBruteLoss(rand(20,30))
 	absorbing = FALSE
 
 /mob/living/carbon/human/pillarman/proc/shoot_burning_blood()
@@ -98,7 +98,7 @@
 	// too
 	energy = max(0, energy - (0.0008/3))
 	if (energy <= 0)
-		if (sprob(10))
+		if (prob(10))
 			adjustBruteLoss(72)
 			src << "<span class = 'danger'>You're starving from a lack of life energy!</span>"
 		return

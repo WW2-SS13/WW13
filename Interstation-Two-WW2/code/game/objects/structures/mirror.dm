@@ -31,7 +31,7 @@
 
 /obj/structure/mirror/bullet_act(var/obj/item/projectile/Proj)
 
-	if(sprob(Proj.get_structure_damage() * 2))
+	if(prob(Proj.get_structure_damage() * 2))
 		if(!shattered)
 			shatter()
 		else
@@ -43,7 +43,7 @@
 		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 		return
 
-	if(sprob(I.force * 2))
+	if(prob(I.force * 2))
 		visible_message("<span class='warning'>[user] smashes [src] with [I]!</span>")
 		shatter()
 	else

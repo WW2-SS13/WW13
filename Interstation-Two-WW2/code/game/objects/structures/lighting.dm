@@ -199,7 +199,7 @@
 	if (istype(mover, /obj/effect/effect/smoke))
 		return TRUE
 	else if (istype(mover, /obj/item/projectile))
-		if (sprob(66))
+		if (prob(66))
 			return TRUE
 		else
 			visible_message("<span class = 'warning'>The bullet riochetes off \the [src]!</span>")
@@ -213,7 +213,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(sprob(25))
+			if(prob(25))
 				qdel(src)
 				return
 		if(3.0)
@@ -277,7 +277,7 @@
 		if(z == 1 || z == 5)
 			switch(fitting)
 				if("tube","bulb")
-					if(sprob(2))
+					if(prob(2))
 						broken(1)*/
 
 		spawn(1)
@@ -370,7 +370,7 @@
 					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 
 					explode()
-			else if( sprob( min(60, switchcount*switchcount*0.01) ) )
+			else if( prob( min(60, switchcount*switchcount*0.01) ) )
 				if(status == LIGHT_OK && trigger)
 					status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
@@ -462,7 +462,7 @@
 	else if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
 
 
-		if(sprob(1+W.force * 5))
+		if(prob(1+W.force * 5))
 
 			user << "You hit the light, and it smashes!"
 			for(var/mob/M in viewers(src))
@@ -471,7 +471,7 @@
 				M.show_message("[user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
 		//	if(on && (W.flags & CONDUCT))
 				//if(!user.mutations & COLD_RESISTANCE)
-		//		if (sprob(12))
+		//		if (prob(12))
 		//			electrocute_mob(user, get_area(src), src, 0.3)
 			broken()
 
@@ -507,8 +507,8 @@
 			s.set_up(3, TRUE, src)
 			s.start()
 			//if(!user.mutations & COLD_RESISTANCE)
-		//	if (sprob(75))
-			//	electrocute_mob(user, get_area(src), src, srand(0.7,1.0))
+		//	if (prob(75))
+			//	electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
 
 
 // returns whether this light has power
@@ -630,15 +630,15 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (sprob(75))
+			if (prob(75))
 				broken()
 		if(3.0)
-			if (sprob(50))
+			if (prob(50))
 				broken()
 	return
 
 /obj/structure/light/process()
-	if (sprob(1))
+	if (prob(1))
 		flicker()
 	// fixes lighting bug :agony:
 	else if (on && loc && isturf(loc))
@@ -648,7 +648,7 @@
 				flicker(1,0)
 
 /obj/structure/light/fire_act(temperature)
-	if(sprob(max(0, temperature - 330)))
+	if(prob(max(0, temperature - 330)))
 		broken()
 
 // explode the light
@@ -740,9 +740,9 @@
 	..()
 	switch(name)
 		if("light tube")
-			brightness_range = srand(6,9)
+			brightness_range = rand(6,9)
 		if("light bulb")
-			brightness_range = srand(4,6)
+			brightness_range = rand(4,6)
 	update()
 
 

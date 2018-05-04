@@ -95,12 +95,12 @@
 			return
 		if(2.0)
 			for(var/obj/O in contents)
-				if(sprob(50))
+				if(prob(50))
 					qdel(O)
 			qdel(src)
 			return
 		if(3.0)
-			if (sprob(50))
+			if (prob(50))
 				qdel(src)
 			return
 		else
@@ -185,7 +185,7 @@
 /obj/structure/closet/crate/secure/emp_act(severity)
 	for(var/obj/O in src)
 		O.emp_act(severity)
-	if(!broken && !opened  && sprob(50/severity))
+	if(!broken && !opened  && prob(50/severity))
 		if(!locked)
 			locked = TRUE
 			overlays.Cut()
@@ -197,12 +197,12 @@
 			spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 			playsound(loc, 'sound/effects/sparks4.ogg', 75, TRUE)
 			locked = FALSE
-	if(!opened && sprob(20/severity))
+	if(!opened && prob(20/severity))
 		if(!locked)
 			open()
 		else
 			req_access = list()
-			req_access += spick(get_all_station_access())
+			req_access += pick(get_all_station_access())
 	..()
 */
 /obj/structure/closet/crate/plastic

@@ -85,7 +85,7 @@ var/list/soviet_traitors = list()
 							H << "<span class = 'warning'>You can't afford this right now.</span>"
 							return
 						// set next_raid[faction] here in case of runtimes that would have stopped it, may fix spam bug - Kachnov
-						next_raid[faction] = world.time + srand(1500, 2100)
+						next_raid[faction] = world.time + rand(1500, 2100)
 						supply_points[faction] -= cost
 						radio2faction("[faction == GERMAN ? "A Luftwaffe" : "A Katyusha"] attack has been called in by [H.real_name]. Stand by.", faction)
 						air_raid(faction, src, cost)
@@ -98,7 +98,7 @@ var/list/soviet_traitors = list()
 
 /proc/air_raid(faction, var/obj/item/weapon/phone/tohighcommand/caller, var/cost)
 
-	spawn (srand(40,60))
+	spawn (rand(40,60))
 
 		var/list/raiding = list()
 		if (faction == GERMAN)
@@ -198,8 +198,8 @@ var/list/soviet_traitors = list()
 									spawndelay = 65
 							spawn (spawndelay)
 
-								var/target_x = H_x + srand(-3,3)
-								var/target_y = H_y + srand(-3,3)
+								var/target_x = H_x + rand(-3,3)
+								var/target_y = H_y + rand(-3,3)
 								var/target_z = H_z
 
 								target = locate(target_x, target_y, target_z)

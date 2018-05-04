@@ -563,7 +563,7 @@ var/list/floor_decals = list()
 	icon_state = "asteroid0"
 
 /obj/effect/floor_decal/asteroid/New()
-	icon_state = "asteroid[srand(0,9)]"
+	icon_state = "asteroid[rand(0,9)]"
 	..()
 
 /obj/effect/floor_decal/chapel
