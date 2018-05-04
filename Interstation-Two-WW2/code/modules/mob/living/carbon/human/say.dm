@@ -31,7 +31,6 @@
 		if (dd_hasprefix(normal_message_without_html, rp))
 			normal_message_without_html = copytext(normal_message_without_html, lentext(rp)+1, lentext(normal_message_without_html)+1)
 
-
 	..(normal_message, alt_name = alt_name, alt_message = normal_message_without_html)
 
 	for (var/mob/living/simple_animal/complex_animal/canine/dog/D in view(world.view, src))
@@ -156,9 +155,6 @@
 			verb=spick("exclaims","shouts","yells")
 		else if(ending == "?")
 			verb="asks"
-
-	if (speaking != languages[1])
-		verb = "[verb] in <span class = 'info'>[speaking.name]</span>"
 
 	return verb
 

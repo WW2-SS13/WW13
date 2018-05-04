@@ -60,9 +60,9 @@
 				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
 	else
 		if(language)
-			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, verb)]</span>")
+			on_hear_say("<span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, verb)]")
 		else
-			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
+			on_hear_say("<span class='name'>[speaker_name]</span>[alt_name] [track][verb], \"[message]\"")
 		if (speech_sound && (get_dist(speaker, src) <= world.view && z == speaker.z))
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
 			playsound_local(source, speech_sound, sound_vol, TRUE)
@@ -74,7 +74,7 @@
 			H.partial_languages[lname] += 1
 			if (H.partial_languages[lname] > srand(100,150))
 				H.add_language(language)
-				H << "<span class = 'info'>You've learned how to speak [language.name] from hearing it so much.</span>"
+				H << "<span class = 'info'>You've learned how to speak <b>[language.name]</b> from hearing it so much.</span>"
 
 /mob/proc/on_hear_say(var/message)
 	src << message
@@ -83,9 +83,6 @@
 
 	if(!client)
 		return
-
-	if (speaker && language && speaker.languages.len && language != speaker.languages[1])
-		verb = "[verb] in <span class = 'info'>[language.name]</span>"
 
 	message = capitalize(message)
 
