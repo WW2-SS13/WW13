@@ -117,13 +117,8 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 			for(var/key in current_votes)
 				if(choices[current_votes[key]] == .)
 					round_voters += key // Keep track of who voted for the winning round.
-	/*		if((mode == "gamemode" && . == "Extended") || ticker.hide_mode == FALSE) // Announce Extended gamemode, but not other gamemodes
-				text += "<b>Vote Result: [.]</b>"*/
-		/*	else
-				if(mode != "gamemode")
-					text += "<b>Vote Result: [.]</b>"
-				else*/
-			text += "<b>The vote has ended.</b>" // What will be shown if it is a gamemode vote that isn't extended
+			text += "<b>Vote Result: [.]</b><br>"
+			text += "<b>The vote has ended. </b>" // What will be shown if it is a gamemode vote that isn't extended
 			if (callback)
 				if (callback.len == 2)
 					call(callback[1], callback[2])(.)
