@@ -184,5 +184,5 @@
 				. += (1/abs_dist_no_rounding(src, T))
 
 	// dividing '.' by 7 returns a more reasonable number - Kachnov
-	window_coeff = min(1.0, (.)/7)
+	window_coeff = max(min(1.0, (.)/7), 0.0)
 	return window_coeff
