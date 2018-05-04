@@ -97,9 +97,9 @@
 	memory += "[new_text]<BR>"
 
 /datum/mind/proc/show_memory(mob/recipient)
-	var/output = "<b>You are <span style = 'font-size: 1.2em; color: #E1E1FF'>[current.real_name]</span></b><hr>"
+	var/output = "<b>You are <span style = 'font-size: 1.25em; color: #E1E1FF'>[current.real_name]</span></b><hr>"
 	for (var/title in notes)
-		output += "<br>"
+		output += "<br><br>"
 		output += "<b><span style = 'font-size: 1.1em; color: #E1E1FF'>[title]</span></b>"
 		output += "<br><br>"
 		var/list/notelist = notes[title]
@@ -109,7 +109,7 @@
 				output += "<br>"
 		output += "<br>"
 
-	output += "<br>"
+	output += "<br><br>"
 	output += "<b><span style = 'font-size: 1.1em; color: #E1E1FF'>Memories</span></b>"
 	output += "<br><br>"
 	if (memory)
@@ -135,10 +135,11 @@
 	</head>
 	<body><center>
 	<big>PLACEHOLDER</big>
+	<br><br><br>
+	<i>Use the 'Notes' verb in the 'IC' tab to re-open this window.</i>
 	</body></html>
 	"}
 
-	recipient << browse(replacetext(memory_stylized, "PLACEHOLDER", output),"window=memory;size=600x600")
 
 /datum/mind/proc/edit_memory()
 	if(!ticker)
