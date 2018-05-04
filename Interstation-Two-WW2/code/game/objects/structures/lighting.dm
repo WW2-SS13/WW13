@@ -522,7 +522,7 @@
 	var/area/A = get_area(src)
 	return A && A.lightswitch && (!A.requires_power || A.power_light)
 
-/obj/structure/light/proc/flicker(var/amount = 1)
+/obj/structure/light/proc/flicker(var/amount = 1, var/time = 2)
 	if(flickering) return
 	flickering = TRUE
 	spawn(0)
@@ -531,7 +531,7 @@
 				if(status != LIGHT_OK) break
 				on = !on
 				update(0, nosound = TRUE)
-				sleep(2)
+				sleep(time)
 			on = (status == LIGHT_OK)
 			update(0, nosound = TRUE)
 		flickering = FALSE

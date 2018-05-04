@@ -1,6 +1,6 @@
 // after lights are setup
 /hook/roundstart/proc/make_lights_visible()
-	spawn (LIGHTING_CHANGE_TIME*1.1)
+	spawn (LIGHTING_CHANGE_TIME*)
 		for (var/atom/movable/lighting_overlay/LO in world)
 			LO.invisibility = 0
 	// turning lights on and off fixes a bug that causes some lighting overlays to be invisible

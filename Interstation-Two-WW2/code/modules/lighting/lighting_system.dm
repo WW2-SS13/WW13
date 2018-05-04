@@ -73,6 +73,11 @@ var/created_lighting_corners_and_overlays = FALSE
 	while (!created_lighting_corners_and_overlays)
 		sleep(1)
 
+	// make all lighting overlays visible
+	for (var/atom/movable/lighting_overlay/LO in world)
+		if (LO.invisibility)
+			LO.invisibility = 0
+
 	var/O_time_of_day = time_of_day
 
 	if (_time_of_day)
@@ -117,14 +122,6 @@ var/created_lighting_corners_and_overlays = FALSE
 						LO.TOD = time_of_day
 
 			sleep(1)
-
-	// turning lights on and off fixes a bug that causes some lighting overlays to be invisible
-	spawn (LIGHTING_CHANGE_TIME * 1.5)
-		for (var/obj/structure/light/L in world)
-			L.on = !L.on
-			L.update(0, nosound = TRUE)
-			L.on = (L.status == LIGHT_OK)
-			L.update(0, nosound = TRUE)
 
 	if (admincaller)
 		spawn (LIGHTING_CHANGE_TIME * 1.1)
