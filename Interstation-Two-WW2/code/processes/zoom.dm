@@ -27,7 +27,11 @@ var/process/zoom/zoom_process = null
 	for (var/last_client in clients)
 		var/client/C = last_client
 		var/leftshift = 0
+		var/list/checked_action_buttons = list()
 		for (var/obj/screen/movable/action_button/AB in C.screen)
+			if (checked_action_buttons.Find(AB))
+				continue
+			checked_action_buttons += AB
 			AB.invisibility = 0
 			AB.pixel_x = 0
 			if (AB.name == "Toggle Sights")
