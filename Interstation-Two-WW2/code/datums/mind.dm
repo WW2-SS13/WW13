@@ -140,6 +140,7 @@
 	</body></html>
 	"}
 
+	recipient << browse(replacetext(memory_stylized, "PLACEHOLDER", output),"window=memory;size=625x650")
 
 /datum/mind/proc/edit_memory()
 	if(!ticker)
