@@ -170,7 +170,7 @@
 			. = ceil(100 - hitchance)
 
 	. = min(CLAMP0100(.), 99) // minimum hit chance is 2% no matter what
-	log_debug(.)
+//	log_debug(.)
 
 //	log_debug("final miss chance: [.]")
 
