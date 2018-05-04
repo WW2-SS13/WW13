@@ -2,6 +2,8 @@
 
 //BODY: {font-family: Verdana, sans-serif;}
 
+// todo: remove message span class from the code
+
 client/script = {"<style>
 body					{font-family: "Book Antiqua", Verdana, sans-serif; font-size: 0.75em; background-color: #1E1E28; color: #E1E1D7}
 
@@ -17,7 +19,6 @@ em						{font-style: normal;font-weight: bold;}
 
 .prefix					{font-weight: bold;}
 .log_message			{color: #A9B6E7;	font-weight: bold;}
-.message				{color: #E1E1FF;	font-weight: bold;}
 .small_message			{color: #E1E1FF;	font-weight: bold; font-size: 0.66em;}
 
 a, a:link, a:visited, :active, a:hover
