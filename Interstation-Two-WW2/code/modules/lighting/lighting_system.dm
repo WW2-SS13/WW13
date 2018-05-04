@@ -103,7 +103,8 @@ var/created_lighting_corners_and_overlays = FALSE
 							for (var/atom/movable/lighting_overlay/LO in t.contents)
 								qdel(LO)
 
-							if ((iswall(t) && a && a.dynamic_lighting && a.location == AREA_OUTSIDE) || locate_type(/obj/train_track, t))
+							// todo: way to determine if walls should be dark or not
+							if (/*(iswall(t) && a && a.dynamic_lighting && a.location == AREA_OUTSIDE) || */locate_type(/obj/train_track, t))
 								var/TOD_2_rgb = min(255, round(time_of_day2luminosity[time_of_day] * 255))
 								t.color = rgb(TOD_2_rgb, TOD_2_rgb, TOD_2_rgb)
 								for (var/obj/train_track/TT in t.contents)

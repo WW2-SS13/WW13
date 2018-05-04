@@ -4,7 +4,7 @@
 		for (var/atom/movable/lighting_overlay/LO in world)
 			LO.invisibility = 0
 	// turning lights on and off fixes a bug that causes some lighting overlays to be invisible
-	spawn (LIGHTING_CHANGE_TIME*1.2)
+	spawn (LIGHTING_CHANGE_TIME*1.5)
 		for (var/obj/structure/light/L in world)
 			L.on = !L.on
 			L.update(0, nosound = TRUE)

@@ -28,7 +28,7 @@
 		0, FALSE, FALSE, TRUE           \
 	)                        \
 
-#define LIGHTING_CHANGE_TIME 50
+#define LIGHTING_CHANGE_TIME map ? map.TOD_change_interval : 50
 
 // Helpers so we can (more easily) control the colour matrices.
 #define RR TRUE

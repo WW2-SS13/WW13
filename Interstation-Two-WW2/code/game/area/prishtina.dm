@@ -108,6 +108,7 @@
 	icon_state = "purple1"
 
 /area/prishtina/forest/north/invisible_wall
+	dynamic_lighting = FALSE
 /area/prishtina/forest/south/invisible_wall
 
 /* sector 1 = top left, sector 2 = top center, sector 3 = top right
