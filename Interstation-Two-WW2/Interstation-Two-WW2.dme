@@ -898,6 +898,7 @@
 #include "code\processes\battlereport.dm"
 #include "code\processes\burning.dm"
 #include "code\processes\chemistry.dm"
+#include "code\processes\client.dm"
 #include "code\processes\explosions.dm"
 #include "code\processes\garbage.dm"
 #include "code\processes\info.dm"
@@ -929,7 +930,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\forest\level1.dmm"
-#include "maps\forest\level2.dmm"
-#include "maps\forest\level3.dmm"
+#include "maps\city\level1.dmm"
 // END_INCLUDE

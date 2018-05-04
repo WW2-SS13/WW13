@@ -10,3 +10,4 @@
 			L.update(0, nosound = TRUE)
 			L.on = (L.status == LIGHT_OK)
 			L.update(0, nosound = TRUE)
+	return TRUE

@@ -53,6 +53,7 @@
 
 /hook/startup/proc/setup_lighting()
 	create_lighting()
+	return TRUE
 
 var/created_lighting_corners_and_overlays = FALSE
 /proc/create_lighting(_time_of_day)

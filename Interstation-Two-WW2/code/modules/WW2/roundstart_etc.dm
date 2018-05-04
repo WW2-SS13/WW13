@@ -70,6 +70,8 @@ var/GRACE_PERIOD_LENGTH = 7
 	if (!WW2_train_check())
 		callHook("train_move")
 
+	return TRUE
+
 // freaking seasons dude
 /proc/do_seasonal_stuff()
 	spawn (1)
@@ -175,6 +177,7 @@ var/GRACE_PERIOD_LENGTH = 7
 	if (istype(map, /obj/map_metadata/forest))
 		spawn (600)
 			show_global_battle_report(null)
+	return TRUE
 
 var/mission_announced = FALSE
 var/train_arrived = FALSE
@@ -204,3 +207,5 @@ var/train_arrived = FALSE
 		show_report_after = 600
 	spawn (show_report_after)
 		show_global_battle_report(null)
+
+	return TRUE

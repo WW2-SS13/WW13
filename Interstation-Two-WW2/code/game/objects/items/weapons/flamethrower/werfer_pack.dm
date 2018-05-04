@@ -81,6 +81,11 @@
 	else
 		..(user)
 
+/obj/item/weapon/storage/backpack/flammenwerfer/bullet_act(var/obj/item/projectile/proj)
+	if (proj && !proj.nodamage)
+		visible_message("<span class = 'warning'>\The [src] is hit by \the [proj]!</span>")
+		return explode()
+	return FALSE
 
 /obj/item/weapon/storage/backpack/flammenwerfer/proc/explode()
 	if (istype(loc, /mob))
@@ -100,5 +105,7 @@
 
 		spawn (1)
 			m.regenerate_icons()
-
-
+	else
+		visible_message("<span class = 'userdanger'>The flammenwerfer explodes!</span>")
+		explosion(get_turf(src), 1, 2, 3, 4)
+		qdel(src)

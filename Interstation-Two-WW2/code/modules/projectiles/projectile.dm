@@ -421,25 +421,16 @@
 	if (T.density)
 		passthrough = FALSE
 	else
+		// needs to be its own loop for reasons
 		for (var/atom/movable/AM in T.contents)
-			if (istype(AM, /obj/item/weapon/grenade))
-				if (AM == original)
-					var/obj/item/weapon/grenade/G = AM
-					G.fast_activate()
-					bumped = TRUE
-					loc = null
-					qdel(src)
-					return FALSE
-			else if (istype(AM, /obj/item/weapon/storage/backpack/flammenwerfer))
-				if (AM == original)
-					var/obj/item/weapon/storage/backpack/flammenwerfer/F = AM
-					if (!F.is_empty())
-						F.explode()
-						bumped = TRUE
-						loc = null
-						qdel(src)
-						return FALSE
-			else if (!untouchable.Find(AM))
+			if (AM == original)
+				AM.bullet_act(src)
+				bumped = TRUE
+				loc = null
+				qdel(src)
+				return FALSE
+		for (var/atom/movable/AM in T.contents)
+			if (!untouchable.Find(AM))
 				if (isliving(AM) && AM != firer)
 					var/mob/living/L = AM
 					if (!L.lying || T == get_turf(original) || execution)

@@ -173,6 +173,12 @@
 	var/atmosalarmed = FALSE
 // the smaller bulb light fixture
 
+/obj/structure/light/bullet_act(var/obj/item/projectile/proj)
+	if (proj && !proj.nodamage)
+		visible_message("<span class = 'warning'>\The [src] is hit by \the [proj]!</span>")
+		return broken()
+	return FALSE
+
 /obj/structure/light/floor
 	name = "floorlight fixture"
 	base_state = "floortube"
@@ -212,6 +218,8 @@
 				return
 		if(3.0)
 			return
+
+/
 
 /obj/structure/light/floor/streetlight/process()
 	return
@@ -770,7 +778,7 @@
 
 /obj/item/weapon/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		visible_message("<span class = 'red'>[name] shatters.</span>","<span class = 'red'>You hear a small glass object shatter.</span>")
+		visible_message("<span class = 'red'>[name] shatters!</span>","<span class = 'red'>You hear a small glass object shatter.</span>")
 		status = LIGHT_BROKEN
 		force = WEAPON_FORCE_WEAK
 		sharp = TRUE

@@ -246,6 +246,7 @@
 /mob/var/next_stamina_message = -1
 /mob/var/next_gracewall_message = -1
 /mob/var/next_cannotmove_message = -1
+/mob/var/next_change_dir = -1
 
 /client/Move(n, direct, ordinal = FALSE)
 
@@ -258,6 +259,9 @@
 
 	if(!mob)
 		return // Moved here to avoid nullrefs below
+
+	if (direct != mob.dir && world.time < mob.next_change_dir)
+		return
 
 	// relocate or gib chucklefucks who somehow cross the wall
 	if (map.check_prishtina_block(mob, mob.loc))
@@ -610,6 +614,8 @@
 
 		skipgrab
 
+		#define STOMP_TIME 3
+
 		//Step on nerds in our way
 		if (mob_is_human)
 			if (H.a_intent == I_HURT)
@@ -620,12 +626,15 @@
 						L.adjustBruteLoss(srand(6,7))
 						if (ishuman(L))
 							L.emote("scream")
-						sleep(7)
-					break
+						sleep(STOMP_TIME)
+						H.next_change_dir = world.time + STOMP_TIME*5
+						break
 			else
 				for (var/mob/living/L in t1)
 					if (L.lying && L != H)
 						H.visible_message("<span class = 'warning'>[H] steps over [L].</span>")
+
+		#undef STOMP_TIME
 
 		if (!mob_is_observer)
 			for (var/obj/structure/multiz/ladder/ww2/manhole/M in mob.loc)
