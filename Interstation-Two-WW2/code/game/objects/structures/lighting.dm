@@ -219,11 +219,6 @@
 		if(3.0)
 			return
 
-/
-
-/obj/structure/light/floor/streetlight/process()
-	return
-
 /obj/structure/light/small
 	icon_state = "bulb1"
 	base_state = "bulb"
@@ -536,6 +531,9 @@
 			update(0, nosound = TRUE)
 		flickering = FALSE
 
+/obj/structure/light/floor/streetlight/flicker()
+	return
+
 // attack with hand - remove tube/bulb
 // if hands aren't protected and the light is on, burn the player
 /obj/structure/light/attack_hand(mob/user)
@@ -608,7 +606,7 @@
 
 	if(!skip_sound_and_sparks)
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
-			playsound(loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
+			playsound(loc, "shatter", 100)
 		if(on)
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, TRUE, src)
@@ -642,6 +640,12 @@
 /obj/structure/light/process()
 	if (sprob(1))
 		flicker()
+	// fixes lighting bug :agony:
+	else if (on && loc && isturf(loc))
+		var/turf/T = loc
+		for (var/datum/lighting_corner/corner in T.corners)
+			if (corner.lum_r == 0 || corner.lum_g == 0 || corner.lum_b == 0)
+				flicker(1,0)
 
 /obj/structure/light/fire_act(temperature)
 	if(sprob(max(0, temperature - 330)))

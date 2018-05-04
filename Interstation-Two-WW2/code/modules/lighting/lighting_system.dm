@@ -104,7 +104,6 @@ var/created_lighting_corners_and_overlays = FALSE
 						if (a && a.dynamic_lighting && areacheck && !iswall(t) && (!map || !map.zlevels_without_lighting.Find(t.z)))
 							t.adjust_lighting_overlay_to_daylight()
 						else
-
 							// You have to do this instead of deleting t.lighting_overlay.
 							for (var/atom/movable/lighting_overlay/LO in t.contents)
 								qdel(LO)
