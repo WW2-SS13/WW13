@@ -373,6 +373,7 @@ var/list/admin_verbs_host = list(
 		admin_verbs_sounds,
 		admin_verbs_spawn,
 		debug_verbs,
+		admin_verbs_manager,
 		admin_verbs_host
 		)
 	remove_ghost_only_admin_verbs()
