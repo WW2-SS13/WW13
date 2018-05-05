@@ -829,8 +829,9 @@
 		else if (J_flag == ITALIAN)
 			client.prefs.gender = client.prefs.italian_gender
 
+		// traps came back, this should fix them for good - Kachnov
+		new_character.gender = client.prefs.gender
 		client.prefs.copy_to(new_character)
-
 		client.prefs.gender = client_prefs_original_gender
 
 	src << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS cant last forever yo
