@@ -198,6 +198,7 @@ world/loop_checks = FALSE
 		L -= D
 		if (isdatum(D))
 			qdel(D)
+	del(L)
 
 // helper for testing
 /datum/proc/qdeleted()

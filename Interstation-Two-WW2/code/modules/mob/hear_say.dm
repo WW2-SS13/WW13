@@ -81,7 +81,7 @@
 
 /mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/radio/source, var/hard_to_hear = FALSE)
 
-	if(!client)
+	if(!client || !message)
 		return
 
 	message = capitalize(message)

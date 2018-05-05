@@ -406,7 +406,7 @@ proc/admin_notice(var/message, var/rights)
 	if(confirm == "Cancel")
 		return
 	if(confirm == "Yes")
-		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>"
+		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by <b>[usr.client.holder.fakekey ? "Admin" : usr.key]</b>!</span>"
 		log_admin("[key_name(usr)] initiated a reboot.")
 		sleep(50)
 		world.Reboot()
@@ -580,8 +580,15 @@ proc/admin_notice(var/message, var/rights)
 		return //alert("Round end delayed", null, null, null, null, null)
 	round_progressing = !round_progressing
 	if (!round_progressing)
-		world << "<b>The game start has been delayed.</b>"
-		log_admin("[key_name(usr)] delayed the game.")
+		if ((input(usr, "Delay the round indefinitely or temporarily?") in list("Indefinitely", "Temporarily")) == "Temporarily")
+			ticker.pregame_timeleft += round(GAMETICKER_PREGAME_TIME/2)
+			ticker.pregame_timeleft = min(ticker.pregame_timeleft, GAMETICKER_PREGAME_TIME)
+			round_progressing = TRUE
+			world << "<b>The game start has been delayed by 90 seconds.</b>"
+			log_admin("[key_name(usr)] delayed the game by 90 seconds.")
+		else
+			world << "<b>The game start has been delayed.</b>"
+			log_admin("[key_name(usr)] delayed the game.")
 	else
 		world << "<b>The game will start soon.</b>"
 		log_admin("[key_name(usr)] removed the delay.")

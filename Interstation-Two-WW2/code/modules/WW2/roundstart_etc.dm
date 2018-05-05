@@ -65,7 +65,8 @@ var/GRACE_PERIOD_LENGTH = 7
 		if (prob(nature_chance))
 			G.plant()
 
-	do_seasonal_stuff()
+	spawn (0)
+		do_seasonal_stuff()
 
 	if (!WW2_train_check())
 		callHook("train_move")

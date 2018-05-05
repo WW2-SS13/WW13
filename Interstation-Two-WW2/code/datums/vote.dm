@@ -206,6 +206,9 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 						var/option = cp1251_to_utf8(capitalize(rhtml_encode(input(usr,"Please enter an option or hit cancel to finish") as text|null)))
 						if(!option || mode || !usr.client)	break
 						choices.Add(option)
+					if (!choices.len)
+						choices.Add("Yes")
+						choices.Add("No")
 				else
 					return FALSE
 			mode = vote_type

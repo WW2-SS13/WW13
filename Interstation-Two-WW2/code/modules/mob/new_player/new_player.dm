@@ -556,7 +556,7 @@
 
 	var/arty = locate(/obj/structure/artillery) in world
 	// this was causing a runtime that broke the join button for everyone
-	var/fallschirms = (fallschirm_landmarks && islist(fallschirm_landmarks)) ? fallschirm_landmarks.len : 0
+	var/fallschirms = fallschirm_landmarks.len
 	var/german_tank = FALSE
 	var/soviet_tank = FALSE
 
@@ -630,7 +630,7 @@
 			var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
 
 			if (job.is_paratrooper)
-				job_is_available = fallschirm_landmarks.len
+				job_is_available = fallschirms
 
 			if (!job.validate(src))
 				job_is_available = FALSE

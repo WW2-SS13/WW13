@@ -65,6 +65,7 @@ var/global/obj/map_metadata/map = null
 	var/current_winner = null
 	var/current_loser = null
 	var/next_win = -1
+	var/last_reinforcements_next_win = -1
 	var/win_condition_spam_check = FALSE
 
 	// lighting
@@ -211,10 +212,11 @@ var/global/obj/map_metadata/map = null
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
-		var/message = "The battle was a stalemate!"
+		var/message = "The battle has ended in a stalemate!"
 		if (current_winner && current_loser)
-			message = "The [current_winner] was victorious over the [current_loser]!"
-		world << "<font size = 3>The battle is over! [message]</font>"
+			message = "The battle is over! The [current_winner] was victorious over the [current_loser]!"
+		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
+		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
 		return FALSE
 	// German major
@@ -256,7 +258,10 @@ var/global/obj/map_metadata/map = null
 	else if (win_condition.check(list("REINFORCEMENTS"), list(), list(), 1.0, TRUE))
 		if (last_win_condition != win_condition.hash)
 			current_win_condition = "Both sides are out of reinforcements; the round will end in {time} minutes."
+			if (last_reinforcements_next_win != -1)
+				next_win = last_reinforcements_next_win
 			next_win = world.time + long_win_time()
+			last_reinforcements_next_win = next_win
 			announce_current_win_condition()
 			current_winner = null
 			current_loser = null
