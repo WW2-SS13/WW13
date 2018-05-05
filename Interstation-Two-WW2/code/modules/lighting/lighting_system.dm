@@ -88,10 +88,11 @@ var/created_lighting_corners_and_overlays = FALSE
 	// change lighting over 5 seconds & 50 loops
 	spawn (1)
 		var/max_v = LIGHTING_CHANGE_TIME
+		var/turfs_len = turfs.len // this makes things faster and it works because single-threadedness
 		for (var/v in 1 to max_v)
 			var/iterations_per_loop = ceil(turfs.len/max_v)
 			for (var/vv in 1+(iterations_per_loop*(v-1)) to iterations_per_loop*v)
-				if (turfs.len >= vv && turfs[vv])
+				if (turfs_len >= vv && turfs[vv])
 					var/turf/t = turfs[vv]
 					if (t.z <= max_lighting_z)
 						var/area/a = get_area(t)
