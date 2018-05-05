@@ -161,7 +161,7 @@
 	var/cont = FALSE
 	if (stored_ammo.len < 10)
 		cont = TRUE
-	else
+	else if (!istype(src, /obj/item/ammo_magazine/maxim))
 		if ((input(user, "Are you sure you want to empty the [src]?", "[src]") in list ("Yes", "No")) == "Yes")
 			cont = TRUE
 
