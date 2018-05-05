@@ -265,6 +265,7 @@ var/global/obj/map_metadata/map = null
 			world << "<font size = 3>The [current_winner] has lost control of the [army2name(current_loser)] base!</font>"
 			current_winner = null
 			current_loser = null
+		next_win = -1
 		current_win_condition = NO_WINNER
 		win_condition.hash = 0
 	last_win_condition = win_condition.hash
