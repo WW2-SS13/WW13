@@ -128,8 +128,7 @@ var/list/laugh_sounds_female = list(
 	'sound/effects/emotes/female_laugh1.ogg',
 	'sound/effects/emotes/female_laugh3.ogg')
 
-var/list/chuckle_sounds_female = list(,
-	'sound/effects/emotes/female_laugh2.ogg')
+var/list/chuckle_sounds_female = list('sound/effects/emotes/female_laugh2.ogg')
 
 var/list/yawn_sounds_female = list(
 	'sound/effects/emotes/female_yawn1.ogg',
