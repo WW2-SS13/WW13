@@ -172,7 +172,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(stat == DEAD)
 		if (client)
 			client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
-			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
+			client << RESPAWN_MESSAGE
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.handle_zoom_stuff(TRUE)
@@ -202,7 +202,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			H.handle_zoom_stuff(TRUE)
 		if (client)
 			client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
-			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
+			client << RESPAWN_MESSAGE
 		message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		log_game("[key_name_admin(usr)] has ghosted.")
 		var/mob/observer/ghost/ghost = ghostize(0)	//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
