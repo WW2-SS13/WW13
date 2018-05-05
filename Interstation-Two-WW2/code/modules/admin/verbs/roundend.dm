@@ -14,7 +14,10 @@
 	if (conf_2 == "No")
 		return
 
-	ticker.finished = TRUE
+	if (map)
+		map.next_win = world.time - 100
+	else
+		ticker.finished = TRUE
 
 	message_admins("[key_name(src)] ended the round!")
 	log_admin("[key_name(src)] ended the round!")
