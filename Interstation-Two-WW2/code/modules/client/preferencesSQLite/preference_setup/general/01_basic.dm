@@ -215,7 +215,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 				return TOPIC_NOACTION
 
 	else if(href_list["random_name_polish"])
-		pref.polish_name = random_polish_name(pref.polish_gender, pref.species)
+		pref.polish_name = random_polish_name(pref.russian_gender, pref.species)
 		return TOPIC_REFRESH
 
 	else if(href_list["always_random_name_polish"])
