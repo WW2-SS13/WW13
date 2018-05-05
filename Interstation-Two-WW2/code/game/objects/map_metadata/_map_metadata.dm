@@ -257,12 +257,19 @@ var/global/obj/map_metadata/map = null
 				current_loser = roundend_condition_def2army(roundend_condition_sides[1][1])
 	else if (win_condition.check(list("REINFORCEMENTS"), list(), list(), 1.0, TRUE))
 		if (last_win_condition != win_condition.hash)
+
+			// let us know why we're changing to this win condition
+			if (current_win_condition != NO_WINNER && current_winner && current_loser)
+				world << "<font size = 3>The [current_winner] has lost control of the [army2name(current_loser)] base!</font>"
+
 			current_win_condition = "Both sides are out of reinforcements; the round will end in {time} minutes."
+
 			if (last_reinforcements_next_win != -1)
 				next_win = last_reinforcements_next_win
 			else
 				next_win = world.time + long_win_time()
 				last_reinforcements_next_win = next_win
+
 			announce_current_win_condition()
 			current_winner = null
 			current_loser = null
