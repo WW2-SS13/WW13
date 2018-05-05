@@ -131,6 +131,8 @@
 	if (stats["stamina"][1] < 0)
 		stats["stamina"][1] = 0
 
+	if (stats["stamina"][2] < 80)
+		stats["stamina"][2] = 80
 
 	if (getStat("stamina") == getMaxStat("stamina")-1 && m_intent == "walk")
 		src << "<span class = 'good'>You feel like you can run for a while.</span>"
