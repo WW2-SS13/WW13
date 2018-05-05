@@ -9,6 +9,6 @@
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/suit/armor/block_check(var/obj/item/projectile/proj)
-	if (!proj || !proj.nodamage || !proj.is_shrapnel)
+	if (!proj || proj.nodamage || proj.is_shrapnel)
 		return prob(95)
 	return FALSE

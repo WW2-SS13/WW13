@@ -20,6 +20,6 @@
 	throwforce = 15
 
 /obj/item/clothing/head/helmet/block_check(var/obj/item/projectile/proj)
-	if (!proj || !proj.nodamage || !proj.is_shrapnel)
+	if (!proj || proj.nodamage || proj.is_shrapnel)
 		return prob(90)
 	return FALSE
