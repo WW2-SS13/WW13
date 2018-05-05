@@ -243,7 +243,8 @@
 		if (New)
 			if (New.type == /mob/living/carbon/human)
 				var/mob/living/carbon/human/H = New
-				H.invisibility = 101
+				var/oloc_H = H.loc
+				H.loc = null
 				if ((input(usr_client, "Assign [H] a new job?") in list("Yes", "No")) == "Yes")
 
 					var/list/job_master_occupation_names = list()
@@ -252,7 +253,7 @@
 							if (job2mobtype(J.title) == /mob/living/carbon/human)
 								job_master_occupation_names[J.title] = J
 
-					var/oloc_H = H.loc
+
 
 					var/datum/job/J = input(usr_client, "Which job?") in (list("Cancel") | job_master_occupation_names)
 
@@ -267,7 +268,6 @@
 							var/send2spawn = input(usr_client, "Send [H] to their spawnpoint?") in list("No", "Yes")
 							if (send2spawn == "No")
 								H.loc = oloc_H
-							H.invisibility = 0
 
 							var/client/client = (H.client ? H.client : orig_client)
 							if (client.mob && istype(client.mob, /mob/observer/ghost))
@@ -288,6 +288,7 @@
 									if ("Italian")
 										H.name = client.prefs.italian_name
 										H.real_name = client.prefs.italian_name
+				H.invisibility = 0
 
 	else if(href_list["warn"])
 		usr.client.warn(href_list["warn"])
