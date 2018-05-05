@@ -13,7 +13,7 @@ var/TOD_may_automatically_change = FALSE
 
 /process/time_of_day/fire()
 	SCHECK
-	if (!roundstart_time)
+	if (!roundstart_time || (map && map.times_of_day.len == 1))
 		return
 	try
 		TOD_ticks += schedule_interval/10
