@@ -74,6 +74,8 @@ var/global/obj/map_metadata/map = null
 	var/list/areas_without_lighting = list()
 	var/TOD_change_interval = 200
 
+	// misc
+	var/meme = FALSE
 
 /obj/map_metadata/New()
 	..()

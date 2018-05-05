@@ -1,7 +1,7 @@
 // normal stats with the exception of strength & survival
 /mob/living/carbon/human/vampire
 	takes_less_damage = TRUE
-	movement_speed_multiplier = 1.50
+	movement_speed_multiplier = 1.75
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
 
@@ -26,7 +26,7 @@
 	if (snowflake)
 		spawn (1)
 			loc = oloc
-			setStat("strength", 200)
+			setStat("strength", 300)
 			setStat("engineering", 150)
 			setStat("rifle", 150)
 			setStat("mg", 150)
@@ -92,10 +92,10 @@
 	var/loss = getTotalLoss()
 
 	var/heal_damage = (7 * (blood * blood)) + 2
-	adjustBruteLoss(-heal_damage*getStatCoeff("strength"))
-	adjustFireLoss(-heal_damage*getStatCoeff("strength"))
-	adjustToxLoss(-heal_damage*getStatCoeff("strength"))
-	adjustOxyLoss((-heal_damage*getStatCoeff("strength"))/10)
+	adjustBruteLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
+	adjustFireLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
+	adjustToxLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
+	adjustOxyLoss((-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)/10)
 
 	var/healedLoss = loss - getTotalLoss()
 	if (healedLoss > 0)

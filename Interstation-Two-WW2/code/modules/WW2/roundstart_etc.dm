@@ -20,7 +20,8 @@ var/GRACE_PERIOD_LENGTH = 7
 	// after the game mode has been announced.
 	spawn (5)
 		update_lighting(announce = FALSE)
-		world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(time_of_day)]</b>, and the season is <b>[get_season()]</b>.</span></font>"
+		if (!map || !map.meme)
+			world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(time_of_day)]</b>, and the season is <b>[get_season()]</b>.</span></font>"
 
 	// spawn mice so soviets have something to eat after they start starving
 
@@ -48,6 +49,9 @@ var/GRACE_PERIOD_LENGTH = 7
 
 // this is roundstart because we need to wait for objs to be created
 /hook/roundstart/proc/nature()
+
+	if (map.meme)
+		return TRUE
 
 	var/nature_chance = 100
 

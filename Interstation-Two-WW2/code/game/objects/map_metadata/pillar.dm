@@ -23,6 +23,7 @@
 		"Blackout Crew - Dialled:1" = 'sound/music/dialled.ogg',
 		"Propaganda:1" = 'sound/music/propaganda.ogg',
 		"Cornered:1" = 'sound/music/cornered.ogg')
+	meme = TRUE
 	var/modded_num_of_SS = FALSE
 
 /obj/map_metadata/pillar/New()

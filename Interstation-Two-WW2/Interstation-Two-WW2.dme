@@ -603,6 +603,7 @@
 #include "code\modules\mob\living\carbon\human\species\species.dm"
 #include "code\modules\mob\living\carbon\human\species\species_attack.dm"
 #include "code\modules\mob\living\carbon\human\species\species_hud.dm"
+#include "code\modules\mob\living\carbon\human\species\events\_defines.dm"
 #include "code\modules\mob\living\carbon\human\species\events\mechahitler.dm"
 #include "code\modules\mob\living\carbon\human\species\events\megastalin.dm"
 #include "code\modules\mob\living\carbon\human\species\events\pillarman.dm"
