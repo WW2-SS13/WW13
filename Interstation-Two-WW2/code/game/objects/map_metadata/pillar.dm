@@ -1,6 +1,6 @@
 /obj/map_metadata/pillar
 	ID = MAP_PILLAR
-	title = "Pillarmap (70x70x2)"
+	title = "Pillar (70x70x2)"
 	lobby_icon_state = "stroheim"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/inside)
 	event_faction = PILLARMEN
