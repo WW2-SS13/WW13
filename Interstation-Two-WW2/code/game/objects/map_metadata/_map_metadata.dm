@@ -260,8 +260,9 @@ var/global/obj/map_metadata/map = null
 			current_win_condition = "Both sides are out of reinforcements; the round will end in {time} minutes."
 			if (last_reinforcements_next_win != -1)
 				next_win = last_reinforcements_next_win
-			next_win = world.time + long_win_time()
-			last_reinforcements_next_win = next_win
+			else
+				next_win = world.time + long_win_time()
+				last_reinforcements_next_win = next_win
 			announce_current_win_condition()
 			current_winner = null
 			current_loser = null
