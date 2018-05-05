@@ -82,7 +82,7 @@ var/created_lighting_corners_and_overlays = FALSE
 	if (_time_of_day)
 		time_of_day = _time_of_day
 
-	// change lighting over 5 seconds & 50 loops
+	// change lighting over x seconds & x*10 loops
 	spawn (1)
 		var/max_v = LIGHTING_CHANGE_TIME
 		var/turfs_len = turfs.len // this makes things faster and it works because single-threadedness
@@ -104,9 +104,10 @@ var/created_lighting_corners_and_overlays = FALSE
 						if (a && a.dynamic_lighting && areacheck && (!map || !map.zlevels_without_lighting.Find(t.z)))
 							t.adjust_lighting_overlay_to_daylight()
 						else
+						/*
 							// You have to do this instead of deleting t.lighting_overlay.
 							for (var/atom/movable/lighting_overlay/LO in t.contents)
-								qdel(LO)
+								qdel(LO)*/
 
 							// todo: way to determine if walls should be dark or not
 							if (locate_type(/obj/train_track, t))
