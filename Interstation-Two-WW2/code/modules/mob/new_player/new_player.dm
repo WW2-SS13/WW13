@@ -555,7 +555,8 @@
 /mob/new_player/proc/LateChoices()
 
 	var/arty = locate(/obj/structure/artillery) in world
-	var/fallschirms = fallschirm_landmarks.len
+	// this was causing a runtime that broke the join button for everyone
+	var/fallschirms = (fallschirm_landmarks && islist(fallschirm_landmarks)) ? fallschirm_landmarks.len : 0
 	var/german_tank = FALSE
 	var/soviet_tank = FALSE
 
