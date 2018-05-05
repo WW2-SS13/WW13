@@ -127,6 +127,11 @@
 
 	#undef HUNGER_THIRST_MULTIPLIER
 
+	// hotfixes some stamina bugs
+	if (stats["stamina"][1] < 0)
+		stats["stamina"][1] = 0
+
+
 	if (getStat("stamina") == getMaxStat("stamina")-1 && m_intent == "walk")
 		src << "<span class = 'good'>You feel like you can run for a while.</span>"
 
