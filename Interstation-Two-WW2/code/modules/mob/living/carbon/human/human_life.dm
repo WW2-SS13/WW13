@@ -42,7 +42,7 @@
 		if (mind && type == /mob/living/carbon/human)
 			invisibility = 101
 			var/datum/mind/M = mind
-			var/mob/living/carbon/human/vampire/V = new(get_turf(src), FALSE, TRUE)
+			var/mob/living/carbon/human/vampire/V = new(get_turf(src), null, FALSE, TRUE)
 			loc = null
 			V.canmove = FALSE
 			var/oldname = name
@@ -151,7 +151,7 @@
 
 	stats["stamina"][1] = min(stats["stamina"][1] + round(stats["stamina"][2] * 0.02), stats["stamina"][2])
 
-	if(life_tick%30==15)
+	if(life_tick%30 == 15)
 		hud_updateflag = 1022
 
 	voice = GetVoice()
