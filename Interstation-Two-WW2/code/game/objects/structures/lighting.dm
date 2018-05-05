@@ -646,6 +646,9 @@
 		for (var/datum/lighting_corner/corner in T.corners)
 			if (corner.lum_r == 0 || corner.lum_g == 0 || corner.lum_b == 0)
 				flicker(1,0)
+	else
+		on = FALSE
+		update(0, nosound = TRUE)
 
 /obj/structure/light/fire_act(temperature)
 	if(prob(max(0, temperature - 330)))
