@@ -10,7 +10,6 @@
 		SOVIET = 1.00,
 		GERMAN = 1.50)
 	character_arrival_announcement_time = 20 // necessary for some reason
-	ambience = list('sound/ambience/war.ogg')
 	TOD_change_interval = 200
 
 /obj/map_metadata/forest/New()

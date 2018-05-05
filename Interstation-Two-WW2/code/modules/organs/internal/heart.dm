@@ -7,7 +7,7 @@
 	var/pulse = PULSE_NORM
 	var/heartbeat = FALSE
 	var/beat_sound = 'sound/effects/singlebeat.ogg'
-	var/efficiency = TRUE
+	var/efficiency = 1.0
 
 /obj/item/organ/heart/process()
 	if(owner)
@@ -20,7 +20,7 @@
 	if(owner.stat == DEAD || status & ORGAN_ROBOT)
 		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
 		return
-	if(owner.life_tick % 5 == FALSE)//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
+	if(owner.life_tick % 5 == 0)//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 		pulse = PULSE_NORM
 
 		if(round(owner.vessel.get_reagent_amount("blood")) <= BLOOD_VOLUME_BAD)	//how much blood do we have

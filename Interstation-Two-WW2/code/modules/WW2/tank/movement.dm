@@ -368,13 +368,13 @@
 					return FALSE
 
 		next_gib = world.time + 5
-		tank_message("<span class = 'danger'>The tank crushes [m]!</span>")
-		m.crush()
+		tank_message("<span class = 'danger'>The tank runs over [m]!</span>")
+		m.maim()
 		next_movement = world.time + (movement_delay*4)
 
 	else if (istype(m))
 		spawn (5)
-			m.crush()
+			m.maim()
 			next_movement = world.time + (movement_delay*4)
 
 	return TRUE

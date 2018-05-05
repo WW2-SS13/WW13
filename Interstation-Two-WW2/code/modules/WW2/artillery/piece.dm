@@ -429,6 +429,9 @@
 			// load first and only slot
 			load_slot(1, M)
 
+/obj/structure/artillery/base/Destroy()
+	..()
+	qdel(other)
 //second piece
 
 /obj/structure/artillery/tube

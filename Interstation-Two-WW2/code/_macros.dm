@@ -63,12 +63,15 @@
 
 #define isstructure(A) istype(A, /obj/structure)
 
+#define isnonstructureobj(A) (isobj(A) && !isstructure(A))
+
+#define istank(A) istype(A, /obj/tank)
+
 #define isairlock(A) istype(A, /obj/machinery/door/airlock)
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
 
 #define isitem(A) istype(A, /obj/item)
-
 
 #define islist(A) istype(A, /list)
 

@@ -1,3 +1,5 @@
+#define SMOOTH_MOVEMENT
+
 var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 
 /process/paratrooper_plane_controller
@@ -34,8 +36,12 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 					AM.pixel_x = shift
 				else
 					++mobs
+				#ifndef SMOOTH_MOVEMENT
 				SCHECK
+				#endif
+			#ifndef SMOOTH_MOVEMENT
 			SCHECK
+			#endif
 
 		tmpTime += schedule_interval
 		if (tmpTime >= 300)
@@ -56,3 +62,5 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 
 /process/paratrooper_plane_controller/proc/isLethalToJump()
 	return altitude > first_nonlethal_altitude
+
+#undef SMOOTH_MOVEMENT

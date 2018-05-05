@@ -345,7 +345,7 @@ var/list/mob/living/forced_ambiance_list = new
 			return TRUE
 	else */
 	if (!CL.ambience_playing || override)
-		var/sound = (map && map.ambience.len) ? pick(map.ambience) : 'sound/ambience/war.ogg'
+		var/sound = (map && map.ambience.len) ? pick(map.ambience) : null
 		if (sound)
 			CL.ambience_playing = sound
 

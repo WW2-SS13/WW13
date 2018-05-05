@@ -26,6 +26,10 @@
 	..(species.gibbed_anim)
 	gibs(loc, null, species.flesh_color, species.blood_color)
 
+/mob/living/carbon/human/maim()
+	..()
+	emote("scream")
+
 /mob/living/carbon/human/dust()
 	if(species)
 		..(species.dusted_anim, species.remains_type)

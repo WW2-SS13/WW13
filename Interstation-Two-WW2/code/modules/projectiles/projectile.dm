@@ -428,6 +428,8 @@
 				var/hitchance = 60 // a light, for example. This was 66%, but that was unusually accurate, thanks BYOND
 				if (isstructure(AM) && !istype(AM, /obj/structure/light))
 					hitchance = 100
+				else if (!isitem(AM) && isnonstructureobj(AM)) // a tank, for example.
+					hitchance = 100
 				else if (isitem(AM))
 					var/obj/item/I = AM
 					hitchance = 25 * I.w_class // a pistol would be 50%

@@ -26,6 +26,8 @@
 */
 
 /obj/item/organ/lungs/proc/handle_breath(datum/gas_mixture/breath)
+	return TRUE
+/*
 	if(!owner)
 		return FALSE
 	if(!breath)
@@ -132,7 +134,7 @@
 	handle_temperature_effects(breath)
 
 	breath.update_values()
-	return !failed_breath
+	return !failed_breath*/
 
 /obj/item/organ/lungs/proc/handle_temperature_effects(datum/gas_mixture/breath)
 	return

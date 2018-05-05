@@ -554,20 +554,6 @@
 
 /mob/new_player/proc/LateChoices()
 
-	var/arty = locate(/obj/structure/artillery) in world
-	var/german_tank = FALSE
-	var/soviet_tank = FALSE
-
-	for (var/obj/tank/german/T in world)
-		if (!T.admin)
-			german_tank = TRUE
-			break
-
-	for (var/obj/tank/soviet/T in world)
-		if (!T.admin)
-			soviet_tank = TRUE
-			break
-
 	src << browse(null, "window=latechoices")
 
 	//<body style='background-color:#1D2951; color:#ffffff'>
@@ -603,22 +589,6 @@
 			if (!job.specialcheck())
 				continue
 
-			if (!arty && (istype(job, /datum/job/german/artyman) || istype(job, /datum/job/german/scout)))
-				continue
-
-			if (!german_tank)
-				if (istype(job, /datum/job/german/tankcrew))
-					continue
-				else if (istype(job, /datum/job/german/anti_tank_crew))
-					continue
-
-			if (!soviet_tank)
-				if (istype(job, /datum/job/soviet/tankcrew))
-					continue
-				else if (istype(job, /datum/job/soviet/anti_tank_crew))
-					continue
-
-		//	var/unavailable_message = ""
 			if (job.title == "generic job")
 				continue
 

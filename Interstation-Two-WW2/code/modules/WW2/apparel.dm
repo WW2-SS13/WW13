@@ -462,6 +462,7 @@
 	new /obj/item/weapon/gauze_pack/gauze(src)
 	new /obj/item/weapon/grenade/explosive/stgnade(src)
 	new /obj/item/weapon/grenade/explosive/stgnade(src)
+	new /obj/item/flashlight(src)
 
 /obj/item/weapon/storage/belt/german/fallsoldier
 	name = "German belt"
@@ -478,6 +479,7 @@
 	new /obj/item/weapon/attachment/bayonet(src)
 	new /obj/item/weapon/gauze_pack/gauze(src)
 	new /obj/item/weapon/grenade/explosive/stgnade(src)
+	new /obj/item/flashlight(src)
 
 /obj/item/weapon/storage/belt/german/MP/New()
 	..()
@@ -585,8 +587,11 @@
 /obj/item/weapon/storage/backpack/german/paratrooper/New()
 	..()
 	for (var/v in 1 to 3)
-		contents += new_ration(GERMAN, "solid")
-	contents += new/obj/item/flashlight/lantern()
+		contents += new/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german
+	for (var/v in 1 to 2)
+		contents += new/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled
+	for (var/v in 1 to 2)
+		contents += new/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer
 
 // todo: needs a new icon
 
