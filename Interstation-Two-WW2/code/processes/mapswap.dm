@@ -35,7 +35,7 @@ var/process/mapswap/mapswap_process = null
 		else if (ticks >= 720 || (map && istype(map, /obj/map_metadata/pillar) && ticks >= 240))
 			. = TRUE
 		// round will end in 5 minutes or less
-		else if (map && map.next_win <= 3 && map.next_win != -1)
+		else if (map && map.next_win_time() <= 3 && map.next_win_time() != -1)
 			. = TRUE
 		else if (map && map.admins_triggered_roundend)
 			. = TRUE
