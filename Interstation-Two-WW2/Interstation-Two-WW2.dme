@@ -903,6 +903,7 @@
 #include "code\processes\explosions.dm"
 #include "code\processes\garbage.dm"
 #include "code\processes\info.dm"
+#include "code\processes\lag.dm"
 #include "code\processes\lighting.dm"
 #include "code\processes\map.dm"
 #include "code\processes\mapswap.dm"
