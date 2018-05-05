@@ -792,7 +792,6 @@ var/first_fallschirm = TRUE
 		fallschirm_landmarks = list()
 		for(var/turf/T in range(3, fallschirm_spawnzone))
 			fallschirm_spawnpoints += T
-
 		H.loc = get_turf(fallschirm_spawnzone)
 	else
 		H.loc = pick(fallschirm_spawnpoints)
@@ -814,6 +813,10 @@ var/first_fallschirm = TRUE
 
 /datum/job/german/paratrooper/get_keys()
 	return list(new/obj/item/weapon/key/german)
+
+/datum/job/german/paratrooper/specialcheck()
+	return (fallschirm_landmarks.len + fallschirm_spawnpoints.len)
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

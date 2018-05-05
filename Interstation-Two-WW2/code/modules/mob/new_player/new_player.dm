@@ -555,8 +555,6 @@
 /mob/new_player/proc/LateChoices()
 
 	var/arty = locate(/obj/structure/artillery) in world
-	// this was causing a runtime that broke the join button for everyone
-	var/fallschirms = fallschirm_landmarks.len
 	var/german_tank = FALSE
 	var/soviet_tank = FALSE
 
@@ -602,10 +600,10 @@
 			if (job.faction != "Station")
 				continue
 
-			if (!arty && (istype(job, /datum/job/german/artyman) || istype(job, /datum/job/german/scout)))
+			if (!job.specialcheck())
 				continue
 
-			if (!fallschirms && istype(job, /datum/job/german/paratrooper))
+			if (!arty && (istype(job, /datum/job/german/artyman) || istype(job, /datum/job/german/scout)))
 				continue
 
 			if (!german_tank)
@@ -628,9 +626,6 @@
 				continue
 
 			var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
-
-			if (job.is_paratrooper)
-				job_is_available = fallschirms
 
 			if (!job.validate(src))
 				job_is_available = FALSE

@@ -60,7 +60,7 @@
 				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
 	else
 		if(language)
-			on_hear_say("<span class='name'>[speaker_name] <span class = 'small_message'>([language.name])</span></span>[alt_name] [track][language.format_message(message, verb)]")
+			on_hear_say("<span class='name'>[speaker_name] <span class = 'small_message'>([language.name])</span> </span>[alt_name] [track][language.format_message(message, verb)]")
 		else
 			on_hear_say("<span class='name'>[speaker_name]</span>[alt_name] [track][verb], \"[message]\"")
 		if (speech_sound && (get_dist(speaker, src) <= world.view && z == speaker.z))
