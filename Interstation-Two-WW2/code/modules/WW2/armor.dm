@@ -10,5 +10,5 @@
 
 /obj/item/clothing/suit/armor/block_check(var/obj/item/projectile/proj)
 	if (!proj || !proj.nodamage || !proj.is_shrapnel)
-		return TRUE
+		return prob(95)
 	return FALSE
