@@ -108,35 +108,34 @@ Works together with spawning an observer, noted above.
 
 /mob/observer/ghost/Life()
 	..()
-	if(!loc) return
+
+	if(!loc) return FALSE
 	if(!client) return FALSE
 
 	if(client.images.len)
 		for(var/image/hud in client.images)
 			if(copytext(hud.icon_state,1,4) == "hud")
 				client.images.Remove(hud)
-
+/*
 	if(antagHUD)
 		var/list/target_list = list()
 		for(var/mob/living/target in oview(src, 14))
 			if(target.mind && target.mind.special_role)
 				target_list += target
 		if(target_list.len)
-			assess_targets(target_list, src)
+			assess_targets(target_list)
+			*/
 	if(medHUD)
-		process_medHUD(src)
+		process_medHUD()
 
+/mob/observer/ghost/proc/process_medHUD()
+	for(var/mob/living/carbon/human/patient in oview(src, 14))
+		client.images += patient.hud_list[HEALTH_HUD]
+		client.images += patient.hud_list[STATUS_HUD_OOC]
 
-/mob/observer/ghost/proc/process_medHUD(var/mob/M)
-	var/client/C = M.client
-	for(var/mob/living/carbon/human/patient in oview(M, 14))
-		C.images += patient.hud_list[HEALTH_HUD]
-		C.images += patient.hud_list[STATUS_HUD_OOC]
-
-/mob/observer/ghost/proc/assess_targets(list/target_list, mob/observer/ghost/U)
-	var/client/C = U.client
+/mob/observer/ghost/proc/assess_targets(list/target_list)
 	for(var/mob/living/carbon/human/target in target_list)
-		C.images += target.hud_list[SPECIALROLE_HUD]
+		client.images += target.hud_list[SPECIALROLE_HUD]
 	return TRUE
 
 /mob/proc/ghostize(var/can_reenter_corpse = TRUE)
