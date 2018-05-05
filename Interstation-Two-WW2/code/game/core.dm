@@ -44,7 +44,7 @@
 				world << "<i>Due to lowpop, there are no tanks.</i>"
 
 		if (clients.len <= ARTILLERY_LOWPOP_THRESHOLD)
-			for (var/obj/structure/artillery/A in world)
+			for (var/obj/structure/artillery/base/A in world)
 				qdel(A)
 			for (var/obj/structure/closet/crate/artillery/C in world)
 				qdel(C)
