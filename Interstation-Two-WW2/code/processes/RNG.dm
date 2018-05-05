@@ -17,4 +17,15 @@ var/process/RNG/RNG_process = null
 	if (ticks && ticks % 600 == 0)
 		var/seed = Square(ticks + (ticks/(100*1000)))
 		rand_seed(seed)
+
+		/* test that proves that probability is not "static" with a new rand_seed(), should output around 50 */
+
+		/*
+		var/list/probtest = list()
+		for (var/v in 1 to 100)
+			if (prob(50))
+				probtest += "placeholder"
+		log_debug(probtest.len)*/
+
+		/* outputs the random seed we just set */
 //		log_debug(num2text(seed, 20))
