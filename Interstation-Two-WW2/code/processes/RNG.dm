@@ -12,5 +12,6 @@ var/process/RNG/RNG_process = null
 
 /process/RNG/fire()
 	SCHECK
-	if (ticks % 600 == 0)
-		rand_seed(ticks)
+	if (ticks && ticks % 600 == 0)
+		var/seed = ticks + (ticks/(1000*1000))
+		rand_seed(seed)

@@ -426,7 +426,7 @@
 		for (var/atom/movable/AM in T.contents)
 			if (AM == original)
 				var/hitchance = 60 // a light, for example. This was 66%, but that was unusually accurate, thanks BYOND
-				if (isstructure(AM))
+				if (isstructure(AM) && !istype(AM, /obj/structure/light))
 					hitchance = 100
 				else if (isitem(AM))
 					var/obj/item/I = AM
