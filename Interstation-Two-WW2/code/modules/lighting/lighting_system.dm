@@ -11,13 +11,10 @@
 	ASSERT(zlevel)
 
 	for(var/turf/T in block(locate(1, TRUE, zlevel), locate(world.maxx, world.maxy, zlevel)))
-		if (!locate(/atom/movable/lighting_overlay) in T && !locate(/obj/train_track) in T)
-			var/area/T_area = get_area(T)
-			// prevent mass deletion of these later
-			if (T_area.is_train_area)
-				continue
+		if (T.supports_lighting_overlays())
 
-			else if (T_area.is_void_area)
+			var/area/T_area = get_area(T)
+			if (T_area.is_void_area)
 				if (istype(T, /turf/wall/rockwall))
 					T.icon_state = "black"
 					continue
@@ -39,11 +36,11 @@
 /proc/create_lighting_corners_zlevel(var/zlevel)
 	for(var/turf/T in block(locate(1, TRUE, zlevel), locate(world.maxx, world.maxy, zlevel)))
 
-		if (locate(/obj/train_track) in T)
+		if (!T.supports_lighting_overlays())
 			continue
 
 		var/area/T_area = get_area(T)
-		if (T_area.is_void_area && istype(T, /turf/wall/rockwall))
+		if (T_area.is_void_area && (istype(T, /turf/wall/rockwall) || istype(T, /turf/wall/indestructable)))
 			continue
 
 		for(var/i = 1 to 4)

@@ -186,3 +186,19 @@
 	// dividing '.' by 7 returns a more reasonable number - Kachnov
 	window_coeff = max(min(1.0, (.)/7), 0.0)
 	return window_coeff
+
+// don't put this proc anywhere other than where it already is, because it checks for the lack of lighting overlays - Kachnov
+/turf/proc/supports_lighting_overlays()
+	. = TRUE
+	if (locate(/atom/movable/lighting_overlay) in src)
+		. = FALSE
+	if (locate(/obj/train_track) in src)
+		. = FALSE
+	if (map && map.zlevels_without_lighting.Find(z))
+		. = FALSE
+
+	var/area/src_area = get_area(src)
+	if (!src_area.dynamic_lighting)
+		. = FALSE
+
+	return .
