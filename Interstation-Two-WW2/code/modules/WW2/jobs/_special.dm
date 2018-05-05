@@ -371,7 +371,6 @@
 
 	var/ideal_contents_1 = rand(1, max(gun.contents.len, gun.ammo_magazine ? gun.ammo_magazine.contents.len : 0))
 	var/removing_1 = (gun.ammo_magazine ? gun.ammo_magazine.contents.len : gun.contents.len) - ideal_contents_1
-
 	var/removing_2 = 0
 
 	if (AM)
@@ -381,20 +380,22 @@
 	for (var/v in 1 to removing_1)
 
 		if (gun.ammo_magazine)
-			var/picked = pick(gun.ammo_magazine.contents)
-			gun.ammo_magazine.contents -= picked
-			gun.ammo_magazine.stored_ammo -= picked
-			qdel(picked)
+			var/obj/item/ammo_casing/R = gun.ammo_magazine.contents[gun.ammo_magazine.contents.len]
+			if (istype(R))
+				gun.ammo_magazine.contents.Remove(R)
+				gun.ammo_magazine.stored_ammo.Remove(R)
+				qdel(R)
 		else
-			var/picked = pick(gun.contents)
-			gun.contents -= picked
-			qdel(picked)
+			var/obj/item/ammo_casing/R = gun.contents[gun.contents.len]
+			if (istype(R))
+				gun.contents.Remove(R)
+				qdel(R)
 
 	if (AM)
 		for (var/v in 1 to removing_2)
-
-			var/picked = pick(AM.contents)
-			AM.contents -= picked
-			AM.stored_ammo -= picked
-			qdel(picked)
+			var/obj/item/ammo_casing/R = AM.contents[AM.contents.len]
+			if (istype(R))
+				AM.contents.Remove(R)
+				AM.stored_ammo.Remove(R)
+				qdel(R)
 		AM.update_icon()
