@@ -110,7 +110,7 @@
 					return
 			else
 				if(language)
-					message = language.scramble(message)
+					message = language.scramble(message, src)
 				else
 					message = stars(message)
 
