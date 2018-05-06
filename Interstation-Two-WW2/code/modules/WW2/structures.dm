@@ -15,7 +15,7 @@
 		if (prob(20))
 			return TRUE
 		else
-			visible_message("<span class = 'warning'>The bullet riochetes off of the anti tank structure!</span>")
+			visible_message("<span class = 'warning'>The [mover.name] riochetes off of the anti tank structure!</span>")
 			return FALSE
 	return FALSE
 
@@ -85,7 +85,7 @@
 /obj/structure/noose/bullet_act(var/obj/item/projectile/P)
 	if (hanging)
 		hanging.bullet_act(P)
-		visible_message("<span class = 'danger'>[hanging] is hit by the bullet!</span>")
+		visible_message("<span class = 'danger'>[hanging] is hit by the [P.name]!</span>")
 	else
 		..()
 

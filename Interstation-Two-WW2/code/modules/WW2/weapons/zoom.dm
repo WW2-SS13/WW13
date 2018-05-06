@@ -332,8 +332,8 @@ Parts of code courtesy of Super3222
 			success = TRUE
 
 	if (success && client)
-		client.pixel_x = FALSE
-		client.pixel_y = FALSE
+		client.pixel_x = 0
+		client.pixel_y = 0
 		client.view = world.view
 
 /mob/living/carbon/human/proc/using_zoom()

@@ -27,7 +27,9 @@
 	gibs(loc, null, species.flesh_color, species.blood_color)
 
 /mob/living/carbon/human/maim()
+	next_emote["vocal"] = world.time + 50
 	..()
+	next_emote["vocal"] = world.time - 1
 	emote("scream")
 
 /mob/living/carbon/human/dust()

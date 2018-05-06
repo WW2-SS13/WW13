@@ -231,7 +231,7 @@
 			return
 
 		if (H)
-			H.adaptStat("engineering", 1)
+			H.adaptStat("engineering", 1*recipe.req_amount)
 
 	if (use(required))
 		var/atom/O

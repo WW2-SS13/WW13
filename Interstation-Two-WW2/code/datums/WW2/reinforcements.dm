@@ -140,7 +140,7 @@ var/datum/reinforcements/reinforcements_master = null
 				nope[GERMAN] = FALSE
 
 	if (locked[side])
-		np << "<span class = 'danger'>This side is locked.</span>"
+		np << "<span class = 'danger'>This side is locked for joining.</span>"
 		return
 
 	if (nope[side])

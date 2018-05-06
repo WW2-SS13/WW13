@@ -114,11 +114,11 @@
 				if (WEATHER_NONE)
 					. = ""
 				if (WEATHER_SNOW, WEATHER_RAIN)
-					. = "It's no longer <b>[get_weather(old)]ing</b>."
+					. = "It's no longer <b>[get_weather_default(old)]ing</b>."
 		if (WEATHER_SNOW, WEATHER_RAIN)
 			switch (old)
 				if (WEATHER_NONE)
-					. = "It's now <b>[get_weather(_new)]ing</b>."
+					. = "It's now <b>[get_weather_default(_new)]ing</b>."
 				if (WEATHER_SNOW,  WEATHER_RAIN)
 					. = ""
 	if (.)

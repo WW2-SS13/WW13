@@ -168,12 +168,8 @@ var/list/coefflist = list()
 		if (1.0)
 			b_loss += 750
 			if (!prob(getarmor(null, "bomb")))
-				for (var/obj/item/organ/external/arm/arm in contents)
-					if (prob(50))
-						arm.droplimb()
-				for (var/obj/item/organ/external/leg/leg in contents)
-					if (prob(50))
-						leg.droplimb()
+				maim()
+				maim()
 				return
 			else
 				var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))

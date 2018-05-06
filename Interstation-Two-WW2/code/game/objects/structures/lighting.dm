@@ -202,7 +202,7 @@
 		if (prob(66))
 			return TRUE
 		else
-			visible_message("<span class = 'warning'>The bullet riochetes off \the [src]!</span>")
+			visible_message("<span class = 'warning'>The [mover.name] riochetes off \the [src]!</span>")
 			return FALSE
 	else
 		return ..()

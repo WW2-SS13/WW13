@@ -15,15 +15,15 @@
 /* Helmet Metadata: Soviet, German, Italian */
 
 #define SOVIET_HELMET_NAME "Soviet helmet"
-#define SOVIET_HELMET_DESC "Standard issue helmet of the Red Army. Provides some protection against both the elements and flying bullets."
+#define SOVIET_HELMET_DESC "Standard issue helmet of the Red Army. Provides some protection against both the elements and flying shrapnel."
 #define SOVIET_HELMET_STATE "sovhelm"
 
 #define GERMAN_HELMET_NAME "German helmet"
-#define GERMAN_HELMET_DESC "Standard issue helmet of the Wehrmacht. Provides some protection against both the elements and flying bullets."
+#define GERMAN_HELMET_DESC "Standard issue helmet of the Wehrmacht. Provides some protection against both the elements and flying shrapnel."
 #define GERMAN_HELMET_STATE "gerhelm"
 
 #define ITALIAN_HELMET_NAME "Italian helmet"
-#define ITALIAN_HELMET_DESC "Standard issue helmet of the Italian Army. Provides some protection against both the elements and flying bullets."
+#define ITALIAN_HELMET_DESC "Standard issue helmet of the Italian Army. Provides some protection against both the elements and flying shrapnel."
 #define ITALIAN_HELMET_STATE "itahelm"
 
 /obj/item/clothing/under

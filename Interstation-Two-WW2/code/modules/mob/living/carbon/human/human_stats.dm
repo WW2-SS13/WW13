@@ -94,8 +94,8 @@
 		stats[statname][2] *= (1 + round(multiplier/150, increase_multiple))
 
 	else if (statname == "engineering")
-		stats[statname][1] *= (1 + round(multiplier/150, increase_multiple))
-		stats[statname][2] *= (1 + round(multiplier/150, increase_multiple))
+		stats[statname][1] *= (1 + round(multiplier/500, increase_multiple))
+		stats[statname][2] *= (1 + round(multiplier/500, increase_multiple))
 
 	else if (statname == "medical")
 		stats[statname][1] *= (1 + round(multiplier/100, increase_multiple))

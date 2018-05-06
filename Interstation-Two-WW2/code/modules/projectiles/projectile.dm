@@ -179,6 +179,7 @@
 /obj/item/projectile/proc/launch_fragment(atom/target)
 
 	is_shrapnel = TRUE
+	name = "shrapnel"
 
 	var/turf/curloc = loc
 	var/turf/targloc = get_turf(target)
@@ -430,7 +431,7 @@
 					hitchance = 100
 				else if (!isitem(AM) && isnonstructureobj(AM)) // a tank, for example.
 					hitchance = 100
-				else if (isitem(AM))
+				else if (isitem(AM)) // any item
 					var/obj/item/I = AM
 					hitchance = 25 * I.w_class // a pistol would be 50%
 				if (prob(hitchance))
@@ -478,7 +479,7 @@
 						//				log_debug("ignored [S] (1)")
 									else if (S.density)
 										if (!S.climbable)
-											passthrough_message = "<span class = 'warning'>The bullet penetrates through \the [S]!</span>"
+											passthrough_message = "<span class = 'warning'>The [name] penetrates through \the [S]!</span>"
 	//		else
 		//		log_debug("ignored [AM] (2)")
 

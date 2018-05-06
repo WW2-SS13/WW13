@@ -35,6 +35,11 @@ var/process/zoom/zoom_process = null
 			checked += AB
 			AB.invisibility = 0
 			AB.pixel_x = 0
+			AB.transform = initial(AB.transform)
+			if (C.mob && ishuman(C.mob))
+				var/mob/living/carbon/human/H = C.mob
+				if (H.using_zoom())
+					AB.transform *= (C.view/world.view)
 			if (AB.name == "Toggle Sights")
 				var/datum/action/toggle_scope/TS = AB.owner
 				if (TS && istype(TS))

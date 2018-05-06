@@ -67,7 +67,7 @@
 					visible_message("<span class='danger'>[user] finishes constructing the base of a sandbag wall. Anyone can now add to it.</span>")
 					if (ishuman(user))
 						var/mob/living/carbon/human/H = user
-						H.adaptStat("engineering", 1)
+						H.adaptStat("engineering", 3)
 				return
 
 
