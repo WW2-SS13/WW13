@@ -376,7 +376,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 						restart_after = 1800 - n
 
 			if(!delay_end)
-				world << "<span class='notice'><b>Restarting in [round(restart_after/10)] seconds</b></span>"
+				world << "<span class='notice'><big>Restarting in [round(restart_after/10)] seconds. Next map: <b>[mapswap_process ? mapswap_process.next_map_title : "???"]</b></big></span>"
 
 			if(!delay_end)
 				sleep(restart_after)

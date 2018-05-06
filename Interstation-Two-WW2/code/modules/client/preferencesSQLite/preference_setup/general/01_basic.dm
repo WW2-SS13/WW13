@@ -98,8 +98,8 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "<br>"
 	. += "<b>Soviet Gender:</b> <a href='?src=\ref[src];gender_russian=1'><b>[capitalize(lowertext(pref.russian_gender))]</b></a><br>"
 	. += "<br>"
-/*	. += "<b>Ukrainian Gender:</b> <a href='?src=\ref[src];gender_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_gender))]</b></a><br>"
-	. += "<br>"*/
+	. += "<b>Ukrainian Gender:</b> <a href='?src=\ref[src];gender_ukrainian=1'><b>[capitalize(lowertext(pref.ukrainian_gender))]</b></a><br>"
+	. += "<br>"
 	. += "<b>Italian Gender:</b> <a href='?src=\ref[src];gender_italian=1'><b>[capitalize(lowertext(pref.italian_gender))]</b></a><br>"
 	. += "<br>"
 	. += "<b>Soviet Ethnicity:</b> <a href='?src=\ref[src];ethnicity_soviet=1'><b>[capitalize(lowertext(pref.soviet_ethnicity))]</b></a><br>"
@@ -247,37 +247,30 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 		return TOPIC_REFRESH
 
 	else if(href_list["gender_german"])
-	//	var/next_gender = next_in_list(pref.german_gender, valid_player_genders)
-/*		if (next_gender == FEMALE)
-			user << "<span class = 'danger'>Germans can't be female.</span>"
-			return*/
 		pref.german_gender = next_in_list(pref.german_gender, valid_player_genders)
+		if ((input(user, "Choose a new German name that corresponds with this gender?") in list("Yes", "No")) == "Yes")
+			pref.german_name = random_german_name(pref.german_gender, pref.species)
 		return TOPIC_REFRESH
 
 	else if(href_list["gender_russian"])
 		pref.russian_gender = next_in_list(pref.russian_gender, valid_player_genders)
+		if ((input(user, "Choose new Polish, Ukrainian, and Russian names that correspond with this gender?") in list("Yes", "No")) == "Yes")
+			pref.russian_name = random_russian_name(pref.russian_gender, pref.species)
+			pref.ukrainian_name = random_ukrainian_name(pref.ukrainian_gender, pref.species)
+			pref.polish_name = random_polish_name(pref.russian_gender, pref.species)
 		return TOPIC_REFRESH
 
 	else if(href_list["gender_ukrainian"])
 		pref.ukrainian_gender = next_in_list(pref.ukrainian_gender, valid_player_genders)
+		if ((input(user, "Choose new Ukrainian name that corresponds with this gender?") in list("Yes", "No")) == "Yes")
+			pref.ukrainian_name = random_ukrainian_name(pref.ukrainian_gender, pref.species)
 		return TOPIC_REFRESH
 
 	else if(href_list["gender_italian"])
 		pref.italian_gender = next_in_list(pref.italian_gender, valid_player_genders)
+		if ((input(user, "Choose new Italian name that corresponds with this gender?") in list("Yes", "No")) == "Yes")
+			pref.italian_name = random_italian_name(pref.italian_gender, pref.species)
 		return TOPIC_REFRESH
-		/*
-	else if (href_list["second_language_german")
-		pref.second_language_german = next_in_list(pref.german_second_language, valid_second_languages - GERMAN)
-
-	else if (href_list["second_language_russian")
-		pref.second_language_russian = next_in_list(pref.russian_second_language, valid_second_languages - RUSSIAN)
-
-	else if (href_list["second_language_ukrainian")
-		pref.second_language_german = next_in_list(pref.german_second_language, valid_second_languages - U)
-
-	else if (href_list["second_language_german")
-		pref.second_language_german = next_in_list(pref.german_second_language, valid_second_languages - GERMAN)
-		*/
 
 	else if (href_list["ethnicity_soviet"])
 		pref.soviet_ethnicity = next_in_list(pref.soviet_ethnicity, list(RUSSIAN, UKRAINIAN, POLISH))

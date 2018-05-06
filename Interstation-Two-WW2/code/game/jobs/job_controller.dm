@@ -117,11 +117,15 @@ var/global/datum/controller/occupations/job_master
 			if (announce)
 				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Italian Army for this battle.</span></font>"
 			italians_were_enabled = TRUE
+			if (map)
+				map.faction_organization |= ITALIAN
 		else
 			for (var/obj/structure/vending/italian/apparel/pizzeria in world)
 				qdel(pizzeria)
 			for (var/obj/structure/vending/italian/equipment/meatballshooter in world)
 				qdel(meatballshooter)
+			if (map)
+				map.faction_organization -= ITALIAN
 
 		if (warcrimes)
 			if (announce)
@@ -134,6 +138,11 @@ var/global/datum/controller/occupations/job_master
 					world << "<font size = 3><span class = 'info'>Civilian and Partisan factions are enabled.</span></font>"
 				civilians_were_enabled = TRUE
 				partisans_were_enabled = TRUE
+				if (map)
+					map.faction_organization |= list(CIVILIAN, PARTISAN)
+			else
+				if (map)
+					map.faction_organization -= list(CIVILIAN, PARTISAN)
 
 	proc/spawn_with_delay(var/mob/new_player/np, var/datum/job/j)
 		// for delayed spawning, wait the spawn_delay of the job

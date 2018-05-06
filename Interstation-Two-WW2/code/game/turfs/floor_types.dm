@@ -219,7 +219,7 @@
 	New(location,type)
 		..()
 		icon_state = "[type]vault"
-
+/*
 /turf/floor/engine
 	name = "reinforced floor"
 	icon_state = "engine"
@@ -260,7 +260,7 @@
 //	oxygen = FALSE
 //	nitrogen = FALSE
 	temperature = TCMB
-
+*/
 /turf/floor/plating
 	name = "plating"
 	icon_state = "plating"

@@ -219,9 +219,18 @@
 	var/msg2 = "Soviet Side: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, [dead_russians.len] deceased. Mortality rate: [mortality_russian]%"
 	var/msg3 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
 	var/msg4 = "Partisans: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
-	var/msg5 = null
-	if (map && map.faction_organization.Find(PILLARMEN))
-		msg5 = "Undead: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
+	var/msg5 = "Undead: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
+
+	if (map && !map.faction_organization.Find(GERMAN))
+		msg1 = null
+	if (map && !map.faction_organization.Find(SOVIET))
+		msg2 = null
+	if (map && !map.faction_organization.Find(CIVILIAN))
+		msg3 = null
+	if (map && !map.faction_organization.Find(PARTISAN))
+		msg4 = null
+	if (map && !map.faction_organization.Find(PILLARMEN))
+		msg5 = null
 
 	var/public = "Yes"
 
@@ -233,12 +242,18 @@
 	if(public == "Yes")
 		if (!shower || (input(shower, "Are you sure you want to show the battle report? Unless the Battle Controller Process died, it will happen automatically!", "Battle Report") in list ("Yes", "No")) == "Yes")
 			world << "<font size=4>Battle status report:</font>"
-			world << "<font size=3>[msg1]</font>"
-			world << "<font size=3>[msg2]</font>"
-			world << "<font size=3>[msg3]</font>"
-			world << "<font size=3>[msg4]</font>"
+
+			if (msg1)
+				world << "<font size=3>[msg1]</font>"
+			if (msg2)
+				world << "<font size=3>[msg2]</font>"
+			if (msg3)
+				world << "<font size=3>[msg3]</font>"
+			if (msg4)
+				world << "<font size=3>[msg4]</font>"
 			if (msg5)
 				world << "<font size=3>[msg5]</font>"
+
 			if (shower)
 				message_admins("[key_name(shower)] showed everyone the battle report.")
 			else

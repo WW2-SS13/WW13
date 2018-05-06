@@ -85,6 +85,18 @@
 	if(!defer_icon_update)
 		update_icon(1)
 
+/turf/floor/proc/make_grass()
+
+	overlays.Cut()
+	if(islist(decals))
+		decals.Cut()
+		decals = null
+
+	set_light(0)
+	levelupdate()
+
+	ChangeTurf(get_base_turf_by_area(src))
+
 /turf/floor/levelupdate()
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && flooring)

@@ -33,4 +33,4 @@
 	return ((mission_announced && train_arrived) || admin_ended_all_grace_periods)
 
 /obj/map_metadata/forest/announce_mission_start(var/preparation_time = FALSE)
-	world << "<font size=4>The German assault has started after <b>[preparation_time / 600] minutes</b> of preparation. The Soviet side may not attack until after <b>7 minutes</b>.</font><br>"
+	world << "<font size=4>The German assault has started after <b>[ceil(preparation_time / 600)] minutes</b> of preparation. The Soviet side may not attack until after <b>7 minutes</b>.</font><br>"

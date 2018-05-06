@@ -583,6 +583,9 @@
 
 		try
 
+			if (map && !map.faction_organization.Find(job.base_type_flag()))
+				continue
+
 			if (job.faction != "Station")
 				continue
 

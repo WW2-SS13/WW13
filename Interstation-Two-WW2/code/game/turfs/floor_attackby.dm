@@ -75,13 +75,13 @@
 		if(istype(C, /obj/item/weapon/crowbar))
 			if(broken || burnt)
 				user << "<span class='notice'>You remove the broken [flooring.descriptor].</span>"
-				make_plating()
+				make_grass()
 			else if(flooring.flags & TURF_IS_FRAGILE)
 				user << "<span class='danger'>You forcefully pry off the [flooring.descriptor], destroying them in the process.</span>"
-				make_plating()
+				make_grass()
 			else if(flooring.flags & TURF_REMOVE_CROWBAR)
 				user << "<span class='notice'>You lever off the [flooring.descriptor].</span>"
-				make_plating(1)
+				make_grass()
 			else
 				return
 			playsound(src, 'sound/items/Crowbar.ogg', 80, TRUE)
@@ -90,17 +90,17 @@
 			if(broken || burnt)
 				return
 			user << "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>"
-			make_plating(1)
+			make_grass()
 			playsound(src, 'sound/items/Screwdriver.ogg', 80, TRUE)
 			return
 		else if(istype(C, /obj/item/weapon/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
 			user << "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>"
-			make_plating(1)
+			make_grass()
 			playsound(src, 'sound/items/Ratchet.ogg', 80, TRUE)
 			return
 		else if(istype(C, /obj/item/weapon/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
 			user << "<span class='notice'>You shovel off the [flooring.descriptor].</span>"
-			make_plating(1)
+			make_grass()
 			playsound(src, 'sound/items/Deconstruct.ogg', 80, TRUE)
 			return
 		else if(istype(C, /obj/item/stack/cable_coil))
