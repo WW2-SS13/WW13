@@ -246,7 +246,7 @@
 /mob/var/next_stamina_message = -1
 /mob/var/next_gracewall_message = -1
 /mob/var/next_cannotmove_message = -1
-/mob/var/next_change_dir = -1
+/mob/var/list/next_change_dir = null
 
 /client/Move(n, direct, ordinal = FALSE)
 
@@ -260,7 +260,18 @@
 	if(!mob)
 		return // Moved here to avoid nullrefs below
 
-	if (direct != mob.dir && world.time < mob.next_change_dir)
+	if (!mob.next_change_dir)
+		mob.next_change_dir = list(
+			num2text(NORTH) = -1,
+			num2text(SOUTH) = -1,
+			num2text(EAST) = -1,
+			num2text(WEST) = -1,
+			num2text(NORTHEAST) = -1,
+			num2text(SOUTHEAST) = -1,
+			num2text(NORTHWEST) = -1,
+			num2text(SOUTHWEST) = -1)
+
+	if (direct != mob.dir && world.time < mob.next_change_dir[num2text(direct)])
 		return
 
 	// relocate or gib chucklefucks who somehow cross the wall
@@ -426,7 +437,7 @@
 		if (F && F_is_valid_floor)
 
 			var/area/F_area = get_area(F)
-			if (F_area.weather == WEATHER_RAIN && !istype(F, /turf/floor/plating/cobblestone) && !istype(F, /turf/floor/plating/road))
+			if (F_area.weather == WEATHER_RAIN && F.may_become_muddy)
 				F.muddy = TRUE
 			else
 				F.muddy = FALSE
@@ -627,8 +638,8 @@
 						L.adjustBruteLoss(rand(6,7))
 						if (ishuman(L))
 							L.emote("scream")
+						H.next_change_dir[num2text(opposite_direction(direct))] = world.time + (STOMP_TIME*5)
 						sleep(STOMP_TIME)
-						H.next_change_dir = world.time + STOMP_TIME*5
 						break
 			else
 				for (var/mob/living/L in t1)

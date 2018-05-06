@@ -329,13 +329,14 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 			var/restart_after = restart_timeout
 
+			// give time for the other server to restart
 			if (mapswap_process)
 				if (mapswap_process.finished_at == -1)
-					restart_after = 1800
+					restart_after = 1200 + (vote.time_remaining * 10)
 				else
 					var/n = world.time - mapswap_process.finished_at
 					if (n <= 900)
-						restart_after = 1800 - n
+						restart_after = 1200 - n
 
 			if(!delay_end)
 				world << "<span class='notice'><big>Restarting in [round(restart_after/10)] seconds. Next map: <b>[mapswap_process ? mapswap_process.next_map_title : "???"]</b></big></span>"

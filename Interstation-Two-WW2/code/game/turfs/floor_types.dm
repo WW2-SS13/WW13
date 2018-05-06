@@ -390,6 +390,7 @@
 	interior = FALSE
 	stepsound = "dirt"
 	uses_winter_overlay = TRUE
+	may_become_muddy = TRUE
 	var/obj/structure/wild/wild = null
 
 /turf/floor/plating/grass/ex_act(severity)
@@ -495,6 +496,7 @@
 	interior = FALSE
 	stepsound = "dirt"
 	uses_winter_overlay = TRUE
+	may_become_muddy = TRUE
 
 /turf/floor/plating/sand
 	name = "sand"

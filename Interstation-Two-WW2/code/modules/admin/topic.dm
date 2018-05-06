@@ -220,7 +220,7 @@
 		switch(href_list["simplemake"])
 			if("observer")			New = M.change_mob_type( /mob/observer/ghost , null, null, delmob )
 			if("larva")				New = M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
-			if("human")				New = M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
+			if("human")				New = M.change_mob_type( /mob/living/carbon/human , null, null, FALSE, href_list["species"])
 			if("slime")				New = M.change_mob_type( /mob/living/carbon/slime , null, null, delmob )
 			if("monkey")			New = M.change_mob_type( /mob/living/carbon/human/monkey , null, null, delmob )
 			if("robot")				New = M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )

@@ -28,6 +28,7 @@
 	var/uses_winter_overlay = FALSE
 
 	var/muddy = FALSE
+	var/may_become_muddy = FALSE
 
 	var/move_delay = 0
 

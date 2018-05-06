@@ -109,3 +109,4 @@
 		explosion(get_turf(src), TRUE, 3, 5, 6)
 		spawn (20)
 			qdel(src)
+			loc = null

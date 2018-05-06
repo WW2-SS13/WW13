@@ -8,6 +8,14 @@
 			return WEST
 		if (WEST)
 			return EAST
+		if (NORTHWEST)
+			return SOUTHEAST
+		if (NORTHEAST)
+			return SOUTHWEST
+		if (SOUTHEAST)
+			return NORTHWEST
+		if (SOUTHWEST)
+			return NORTHEAST
 	return NORTH
 
 /atom/proc/dir2_text(var/atom/a)
