@@ -343,7 +343,8 @@
 		/obj/item/weapon/melee/classic_baton,
 		/obj/item/flashlight,
 		/obj/item/weapon/handcuffs,
-		/obj/item/ammo_casing/a145
+		/obj/item/ammo_casing/a145,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen
 		)
 
 /obj/item/weapon/storage/belt/soviet_basic
@@ -352,7 +353,7 @@
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
 	storage_slots = 6
-	max_w_class = 2
+	max_w_class = 3
 	max_storage_space = 12
 	can_hold = list(
 		/obj/item/weapon/gun/projectile/pistol,
@@ -363,7 +364,7 @@
 		/obj/item/ammo_magazine/luger,
 		/obj/item/weapon/gauze_pack,
 		/obj/item/weapon/shovel/spade/russia,
-		/obj/item/weapon/reagent_containers/food
+		/obj/item/weapon/reagent_containers/food,
 		)
 
 /obj/item/weapon/storage/belt/soviet_basic/soldier
@@ -409,7 +410,8 @@
 		/obj/item/weapon/melee/classic_baton,
 		/obj/item/flashlight,
 		/obj/item/weapon/handcuffs,
-		/obj/item/ammo_casing/a145
+		/obj/item/ammo_casing/a145,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen
 		)
 
 /obj/item/weapon/storage/belt/german_basic
@@ -418,7 +420,7 @@
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
 	storage_slots = 6
-	max_w_class = 2
+	max_w_class = 3
 	max_storage_space = 12
 	can_hold = list(
 		/obj/item/weapon/gun/projectile/pistol,
@@ -509,7 +511,8 @@
 		/obj/item/weapon/melee/classic_baton,
 		/obj/item/flashlight,
 		/obj/item/weapon/handcuffs,
-		/obj/item/ammo_casing/a145
+		/obj/item/ammo_casing/a145,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/canteen
 		)
 
 /obj/item/clothing/under/doctor
