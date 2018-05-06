@@ -116,13 +116,11 @@
 // Will force an update without checking if it's actually needed.
 /datum/light_source/proc/force_update()
 	force_update = TRUE
-
 	effect_update(null)
 
 // Will cause the light source to recalculate turfs that were removed or added to visibility only.
 /datum/light_source/proc/vis_update()
 	vis_update = TRUE
-
 	effect_update(null)
 
 // Will check if we actually need to update, and update any variables that may need to be updated.

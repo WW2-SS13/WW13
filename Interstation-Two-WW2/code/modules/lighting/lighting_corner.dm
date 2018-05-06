@@ -10,8 +10,8 @@
 	var/list/datum/light_source/affecting = list() // Light sources affecting us.
 	var/active                            = FALSE  // TRUE if one of our masters has dynamic lighting.
 
-	var/x     = FALSE
-	var/y     = FALSE
+	var/x     = 0
+	var/y     = 0
 
 	// luminosity values based on lights
 	var/lum_r = 0.0
@@ -26,7 +26,7 @@
 // new system for handling time of day and luminosity
 /datum/lighting_corner/proc/getLumR()
 	var/window_coeff = 0.0
-	if (turfs.len)
+	if (masters.len)
 		var/turf/T = masters[1]
 		if (world.time >= T.next_calculate_window_coeff)
 			T.calculate_window_coeff()
@@ -36,7 +36,7 @@
 
 /datum/lighting_corner/proc/getLumG()
 	var/window_coeff = 0.0
-	if (turfs.len)
+	if (masters.len)
 		var/turf/T = masters[1]
 		if (world.time >= T.next_calculate_window_coeff)
 			T.calculate_window_coeff()
@@ -46,7 +46,7 @@
 
 /datum/lighting_corner/proc/getLumB()
 	var/window_coeff = 0.0
-	if (turfs.len)
+	if (masters.len)
 		var/turf/T = masters[1]
 		if (world.time >= T.next_calculate_window_coeff)
 			T.calculate_window_coeff()
