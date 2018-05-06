@@ -53,6 +53,16 @@ var/process/zoom/zoom_process = null
 							if (!list(C.mob.r_hand, C.mob.l_hand).Find(G))
 								AB.invisibility = 100
 								leftshift += 32
+						else
+							AB.invisibility = 100
+							leftshift += 32
+					else
+						AB.invisibility = 100
+						leftshift += 32
+				else
+					AB.invisibility = 100
+					leftshift += 32
+
 				if (!AB.invisibility)
 					AB.pixel_x = -leftshift
 					AB.UpdateIcon()
