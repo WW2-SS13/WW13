@@ -17,9 +17,10 @@ var/process/lag/lag_process = null
 	// get casings
 	for (var/last_object in bullet_casings)
 		var/obj/item/ammo_casing/A = last_object
-		if (!turf2casings[A.loc])
-			turf2casings[A.loc] = 0
-		++turf2casings[A.loc]
+		if (A.loc && isturf(A.loc)) // so we don't delete ammo casings in guns or mags or nullspace
+			if (!turf2casings[A.loc])
+				turf2casings[A.loc] = 0
+			++turf2casings[A.loc]
 
 	// get cleanables
 	for (var/last_object in cleanables)
