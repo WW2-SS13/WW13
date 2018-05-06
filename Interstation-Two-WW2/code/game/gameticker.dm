@@ -46,6 +46,8 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	spawn (0)
 
+		current_state = GAME_STATE_PREGAME // just in case
+
 		if (serverswap_open_status)
 			if (!processScheduler.isRunning)
 				processScheduler.start()
@@ -104,37 +106,10 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 
 /datum/controller/gameticker/proc/setup()
-	//Create and announce mode
-	/*if(master_mode=="secret")
-		hide_mode = TRUE*/
-/*
-	var/list/runnable_modes = config.get_runnable_modes()
-	if((master_mode=="random") || (master_mode=="secret"))
-		if(!runnable_modes.len)
-			current_state = GAME_STATE_PREGAME
-			if (serverswap_open_status)
-				world << "<b>Unable to choose playable game mode.</b> Reverting to pre-game lobby."
-			return FALSE
-		if(secret_force_mode != "secret")
-			mode = config.pick_mode(secret_force_mode)
-		if(!mode)
-			var/list/weighted_modes = list()
-			for(var/datum/game_mode/GM in runnable_modes)
-				weighted_modes[GM.config_tag] = config.probabilities[GM.config_tag]
-			mode = gamemode_cache[pickweight(weighted_modes)]
-	else
-		mode = config.pick_mode(master_mode)
 
-	if(!mode)
-		current_state = GAME_STATE_PREGAME
-		if (serverswap_open_status)
-			world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
-		return FALSE*/
+	current_state = GAME_STATE_PLAYING
 
 	job_master.ResetOccupations()
-//	mode.create_antagonists()
-//	mode.pre_setup()
-//	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!map || !map.can_start() && !admin_started)
 		if (serverswap_open_status)
@@ -142,20 +117,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		current_state = GAME_STATE_PREGAME
 		job_master.ResetOccupations()
 		return FALSE
-/*
-	if(hide_mode)
-		world << "<b>The current game mode is - Secret!</b>"
-		if(runnable_modes.len)
-			var/list/tmpmodes = new
-			for (var/datum/game_mode/M in runnable_modes)
-				tmpmodes+=M.name
-			tmpmodes = sortList(tmpmodes)
-			if(tmpmodes.len)
-				world << "<b>Possibilities:</b> [english_list(tmpmodes)]"
-	else
-		mode.announce()*/
 
-	current_state = GAME_STATE_PLAYING
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
