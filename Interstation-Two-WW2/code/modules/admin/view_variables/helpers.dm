@@ -3,11 +3,8 @@
 // If /client ever becomes /datum/client or similar, they can be merged
 /client/proc/get_view_variables_header()
 	return "<b>[src]</b>"
-
 /datum/proc/get_view_variables_header()
-	return {"
-		<b>[src]</b>
-		<option value='?_src_=vars;delall=\ref[src]'>Delete all of type</option>"}
+	return "<b>[src]</b>"
 
 /atom/get_view_variables_header()
 	return {"
@@ -44,6 +41,7 @@
 /mob/get_view_variables_options()
 	return ..() + {"
 		<option value='?_src_=vars;mob_player_panel=\ref[src]'>Show player panel</option>
+		<option value='?_src_=vars;delall=\ref[src]'>Delete all of type</option>
 		<option>---</option>
 		<option value='?_src_=vars;give_spell=\ref[src]'>Give Spell</option>
 		<option value='?_src_=vars;give_disease2=\ref[src]'>Give Disease</option>
@@ -84,6 +82,7 @@
 
 /obj/get_view_variables_options()
 	return ..() + {"
+		<option value='?_src_=vars;delall=\ref[src]'>Delete all of type</option>
 		<option value='?_src_=vars;explode=\ref[src]'>Trigger explosion</option>
 		<option value='?_src_=vars;emp=\ref[src]'>Trigger EM pulse</option>
 		"}
