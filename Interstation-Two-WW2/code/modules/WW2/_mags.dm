@@ -6,6 +6,7 @@ WW 2 WEAPONS MAGS N AMMO
 /obj/item/ammo_magazine/a792x33/stgmag
 	name = "Stg44 magazine"
 	icon_state = "stg_mag"
+	mag_type = MAGAZINE
 	max_ammo = 30
 	caliber = "a792x33"
 	ammo_type = /obj/item/ammo_casing/a792x33

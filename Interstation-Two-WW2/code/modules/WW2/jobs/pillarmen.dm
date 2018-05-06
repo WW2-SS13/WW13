@@ -17,16 +17,11 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/stone(H), slot_r_hand)
 	equip_random_civilian_clothing(H)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a fucking PILLAR MAN. You have a stone mask. Make humans wear it to turn them into Vampires. <span class = 'danger'>Fear the sun's light.</span></span>"
-	H << "<big>See your notes for a list of powers.</big>"
-
-	H.add_memory("SPACEBAR - shoot boiling blood")
-	H.add_memory("")
-	H.add_memory("Emote *pose - AOE knockdown")
-	H.add_memory("")
-	H.add_memory("Attack (harm intent) - Absorption")
-	H.add_memory("")
-	H.add_memory("Stone Mask - put it on people to make them into Vampires. Has no effect on Pillar Men or Vampires.")
+	H.add_note("Role", "You are a <b>fucking PILLAR MAN</b>. You have a stone mask. Hit humans with it to turn them into vampires. <span class = 'danger'>Fear the sun's light.</span>")
+	H.add_note("Abilities", "SPACEBAR - shoot boiling blood")
+	H.add_note("Abilities", "Emote *pose - AOE knockdown")
+	H.add_note("Abilities", "Attack (harm intent) - Absorption")
+	H.add_note("Abilities", "Stone Mask - put it on people to make them into Vampires. Has no effect on Pillar Men or Vampires.")
 
 	return TRUE
 
@@ -42,15 +37,13 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat/wrappedboots(H), slot_shoes)
 
 	// melee weapons for some Vampires. Pillar Men don't need them since they're so robust already.
-	if (sprob(50))
+	if (prob(50))
 		H.equip_to_slot_or_del(new /obj/item/weapon/material/scythe(H), slot_l_hand)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/material/knife/ritual(H), slot_l_hand)
 
 	equip_random_civilian_clothing(H)
-	H << "<span class = 'notice'>You are the <b>[title]</b>, a fucking VAMPIRE. Listen to the Pillar Men. Wryyy. <span class = 'danger'>Fear the sun's light.</span></span>"
-	H << "<big>See your notes for a list of powers.</big>"
-
-	H.add_memory("Attack (harm intent) - Blood Drain")
+	H.add_note("Role", "You are a <b>[title]</b>, a fucking VAMPIRE. Listen to the Pillar Men. Wryyy. <span class = 'danger'>Fear the sun's light.</span>")
+	H.add_note("Abilities", "Attack (harm intent) - Blood Drain")
 
 	return TRUE

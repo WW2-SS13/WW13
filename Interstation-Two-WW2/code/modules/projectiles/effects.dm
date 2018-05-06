@@ -11,7 +11,7 @@
 	if(istype(M))
 		transform = M
 
-/obj/effect/projectile/proc/activate(var/kill_delay = 3)
+/obj/effect/projectile/proc/activate(var/kill_delay = 1)
 	spawn(kill_delay)
 		qdel(src)	//see effect_system.dm - sets loc to null and lets GC handle removing these effects
 

@@ -158,7 +158,7 @@
 		if (contents.len)
 			var/boiling = 0
 			for (var/obj/item/weapon/reagent_containers/food/F in contents)
-				if (!F.boiled && sprob(10))
+				if (!F.boiled && prob(10))
 					visible_message("<span class = 'info'>[F] finishes boiling.</span>")
 					if (BOIL_MAP[F.type])
 						var/newtype = BOIL_MAP[F.type]
@@ -177,7 +177,7 @@
 				else
 					++boiling
 			if (boiling > 0)
-				if (stew_ticks >= srand(20,25))
+				if (stew_ticks >= rand(20,25))
 					state = STATE_STEWING
 					bowls = min(round(contents.len/3) + 3,10) // 1 object = 3 bowls. 10 objects = 6 bowls
 					initial_bowls = bowls

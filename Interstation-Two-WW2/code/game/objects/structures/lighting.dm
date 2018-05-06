@@ -173,6 +173,12 @@
 	var/atmosalarmed = FALSE
 // the smaller bulb light fixture
 
+/obj/structure/light/bullet_act(var/obj/item/projectile/proj)
+	if (proj && !proj.nodamage)
+		visible_message("<span class = 'warning'>\The [src] is hit by \the [proj]!</span>")
+		return broken()
+	return FALSE
+
 /obj/structure/light/floor
 	name = "floorlight fixture"
 	base_state = "floortube"
@@ -193,10 +199,10 @@
 	if (istype(mover, /obj/effect/effect/smoke))
 		return TRUE
 	else if (istype(mover, /obj/item/projectile))
-		if (sprob(66))
+		if (prob(66))
 			return TRUE
 		else
-			visible_message("<span class = 'warning'>The bullet riochetes off \the [src]!</span>")
+			visible_message("<span class = 'warning'>The [mover.name] riochetes off \the [src]!</span>")
 			return FALSE
 	else
 		return ..()
@@ -207,7 +213,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(sprob(25))
+			if(prob(25))
 				qdel(src)
 				return
 		if(3.0)
@@ -217,7 +223,7 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness_range = 4
+	brightness_range = 7
 	brightness_power = 2
 	brightness_color = "#a0a080"
 	desc = "A small lighting fixture."
@@ -267,12 +273,12 @@
 		var/area/A = get_area(src)
 		if(A && !A.requires_power)
 			on = TRUE
-
-		if(z == TRUE || z == 5)
+/*
+		if(z == 1 || z == 5)
 			switch(fitting)
 				if("tube","bulb")
-					if(sprob(2))
-						broken(1)
+					if(prob(2))
+						broken(1)*/
 
 		spawn(1)
 			update(0)
@@ -364,7 +370,7 @@
 					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 
 					explode()
-			else if( sprob( min(60, switchcount*switchcount*0.01) ) )
+			else if( prob( min(60, switchcount*switchcount*0.01) ) )
 				if(status == LIGHT_OK && trigger)
 					status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
@@ -456,7 +462,7 @@
 	else if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
 
 
-		if(sprob(1+W.force * 5))
+		if(prob(1+W.force * 5))
 
 			user << "You hit the light, and it smashes!"
 			for(var/mob/M in viewers(src))
@@ -465,7 +471,7 @@
 				M.show_message("[user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
 		//	if(on && (W.flags & CONDUCT))
 				//if(!user.mutations & COLD_RESISTANCE)
-		//		if (sprob(12))
+		//		if (prob(12))
 		//			electrocute_mob(user, get_area(src), src, 0.3)
 			broken()
 
@@ -501,8 +507,8 @@
 			s.set_up(3, TRUE, src)
 			s.start()
 			//if(!user.mutations & COLD_RESISTANCE)
-		//	if (sprob(75))
-			//	electrocute_mob(user, get_area(src), src, srand(0.7,1.0))
+		//	if (prob(75))
+			//	electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
 
 
 // returns whether this light has power
@@ -511,7 +517,7 @@
 	var/area/A = get_area(src)
 	return A && A.lightswitch && (!A.requires_power || A.power_light)
 
-/obj/structure/light/proc/flicker(var/amount = 1)
+/obj/structure/light/proc/flicker(var/amount = 1, var/time = 2)
 	if(flickering) return
 	flickering = TRUE
 	spawn(0)
@@ -520,10 +526,13 @@
 				if(status != LIGHT_OK) break
 				on = !on
 				update(0, nosound = TRUE)
-				sleep(srand(2, 3))
+				sleep(time)
 			on = (status == LIGHT_OK)
 			update(0, nosound = TRUE)
 		flickering = FALSE
+
+/obj/structure/light/floor/streetlight/flicker()
+	return
 
 // attack with hand - remove tube/bulb
 // if hands aren't protected and the light is on, burn the player
@@ -597,7 +606,7 @@
 
 	if(!skip_sound_and_sparks)
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
-			playsound(loc, 'sound/effects/Glasshit.ogg', 75, TRUE)
+			playsound(loc, "shatter", 100)
 		if(on)
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, TRUE, src)
@@ -621,19 +630,28 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (sprob(75))
+			if (prob(75))
 				broken()
 		if(3.0)
-			if (sprob(50))
+			if (prob(50))
 				broken()
 	return
 
 /obj/structure/light/process()
-	if (sprob(1))
+	if (prob(1))
 		flicker()
+	// fixes lighting bug :agony:
+	else if (on && loc && isturf(loc))
+		var/turf/T = loc
+		for (var/datum/lighting_corner/corner in T.corners)
+			if (corner.lum_r == 0 || corner.lum_g == 0 || corner.lum_b == 0)
+				flicker(1,0)
+	else
+		on = FALSE
+		update(0, nosound = TRUE)
 
 /obj/structure/light/fire_act(temperature)
-	if(sprob(max(0, temperature - 330)))
+	if(prob(max(0, temperature - 330)))
 		broken()
 
 // explode the light
@@ -655,7 +673,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
-	w_class = TRUE
+	w_class = 1
 	var/status = FALSE		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = FALSE	// number of times switched
@@ -725,9 +743,9 @@
 	..()
 	switch(name)
 		if("light tube")
-			brightness_range = srand(6,9)
+			brightness_range = rand(6,9)
 		if("light bulb")
-			brightness_range = srand(4,6)
+			brightness_range = rand(4,6)
 	update()
 
 
@@ -767,7 +785,7 @@
 
 /obj/item/weapon/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		visible_message("<span class = 'red'>[name] shatters.</span>","<span class = 'red'>You hear a small glass object shatter.</span>")
+		visible_message("<span class = 'red'>[name] shatters!</span>","<span class = 'red'>You hear a small glass object shatter.</span>")
 		status = LIGHT_BROKEN
 		force = WEAPON_FORCE_WEAK
 		sharp = TRUE

@@ -1,6 +1,6 @@
 /obj/map_metadata/pillar
 	ID = MAP_PILLAR
-	title = "Pillarmap (70x70x2)"
+	title = "Pillar (70x70x2)"
 	lobby_icon_state = "stroheim"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/inside)
 	event_faction = PILLARMEN
@@ -13,12 +13,17 @@
 	roundend_condition_sides = list(
 		list(GERMAN) = /area/prishtina/german/bunker, // faster than /area/prishtina/german, less subtypess - Kachnov
 		list(PILLARMEN) = /area/prishtina/sewers)
+	ambience = list()
+	times_of_day = list("Midday")
+	zlevels_without_lighting = list(2)
+	areas_without_lighting = list(/area/prishtina/german/lift/down)
 	songs = list(
 		"Pa Pa Tu Tu Wa Wa:1" = 'sound/music/papatutu.ogg',
 		"Awaken:1" = 'sound/music/awaken.ogg',
 		"Blackout Crew - Dialled:1" = 'sound/music/dialled.ogg',
 		"Propaganda:1" = 'sound/music/propaganda.ogg',
 		"Cornered:1" = 'sound/music/cornered.ogg')
+	meme = TRUE
 	var/modded_num_of_SS = FALSE
 
 /obj/map_metadata/pillar/New()

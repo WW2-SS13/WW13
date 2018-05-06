@@ -31,7 +31,6 @@
 */
 
 /area/prishtina/no_mans_land
-	dynamic_lighting = TRUE
 	name = "No Man's Land"
 	icon_state = "purple1"
 
@@ -105,11 +104,11 @@
 /area/prishtina/no_mans_land/sector9/ss4
 
 /area/prishtina/forest
-	dynamic_lighting = FALSE
 	name = "The Forest"
 	icon_state = "purple1"
 
 /area/prishtina/forest/north/invisible_wall
+	dynamic_lighting = FALSE
 /area/prishtina/forest/south/invisible_wall
 
 /* sector 1 = top left, sector 2 = top center, sector 3 = top right
@@ -180,22 +179,18 @@
 /area/prishtina/forest/sector9/ss4
 
 /area/prishtina/farm1
-	dynamic_lighting = FALSE
 	name = "Farmland"
 	icon_state = "red3"
 
 /area/prishtina/farm2
-	dynamic_lighting = FALSE
 	name = "Farmland"
 	icon_state = "red3"
 
 /area/prishtina/farm3
-	dynamic_lighting = FALSE
 	name = "Farmland"
 	icon_state = "red3"
 
 /area/prishtina/farm4
-	dynamic_lighting = FALSE
 	name = "Farmland"
 	icon_state = "red3"
 
@@ -274,6 +269,7 @@
 
 /area/prishtina/sewers
 	artillery_integrity = INFINITY
+	dynamic_lighting = FALSE
 
 // "wormhole" areas: doesn't include trains since they don't get their area copied
 
@@ -342,6 +338,7 @@
 /area/prishtina/void/skybox
 	icon_state = "purple1"
 	name = "The Sky"
+	dynamic_lighting = FALSE
 
 /area/prishtina/void/skybox/one
 /area/prishtina/void/skybox/two
@@ -354,6 +351,7 @@
 /area/prishtina/void/sky
 	icon_state = "purple1"
 	name = "The Sky"
+	dynamic_lighting = FALSE
 	var/corresponding_area_type = null
 	var/corresponding_area_allow_subtypes = FALSE
 
@@ -393,12 +391,10 @@
 /area/prishtina/german/main_area
 	name = "Base"
 	icon_state = "red1"
-	dynamic_lighting = FALSE
 
 /area/prishtina/german/main_area/inside
 	location = AREA_INSIDE
 	icon_state = "red2"
-	dynamic_lighting = TRUE
 
 /area/prishtina/german/main_area/sector1
 /area/prishtina/german/main_area/sector2
@@ -407,7 +403,6 @@
 /area/prishtina/german/main_area/dogshed
 	name = "Dogshed"
 	icon_state = "red2"
-	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/outside
@@ -418,7 +413,6 @@
 /area/prishtina/german/gas_chamber
 	name = "Gas Chamber"
 	icon_state = "red3"
-	dynamic_lighting = FALSE
 
 /area/prishtina/german/train_zone
 	name = "Train Zone"
@@ -435,12 +429,10 @@
 /area/prishtina/german/train_starting_zone
 	icon_state = "blue2"
 	name = "Train Boarding"
-	dynamic_lighting = FALSE
 
 /area/prishtina/german/train_landing_zone
 	icon_state = "blue2"
 	name = "Train Unboarding"
-	dynamic_lighting = FALSE
 	capturable = FALSE
 
 /area/prishtina/german/resting_area_1
@@ -497,7 +489,6 @@
 /area/prishtina/german/armory/train
 	name = "Armory"
 	icon_state = "blue3"
-	dynamic_lighting = FALSE
 	is_train_area = TRUE
 	capturable = FALSE
 
@@ -526,37 +517,31 @@
 /area/prishtina/german/shower1
 	name = "Showers #1"
 	icon_state = "red2"
-	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/shower2
 	name = "Showers #2"
 	icon_state = "red2"
-	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/shower3
 	name = "Showers #3"
 	icon_state = "red2"
-	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/drying1
 	name = "Drying Room #1"
 	icon_state = "blue2"
-	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/drying2
 	name = "Drying Room #2"
 	icon_state = "blue2"
-	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/drying3
 	name = "Drying Room #3"
 	icon_state = "blue2"
-	dynamic_lighting = FALSE
 	location = AREA_INSIDE
 
 /area/prishtina/german/ss_torture_room
@@ -592,12 +577,10 @@
 /area/prishtina/german/briefing
 	name = "Briefing"
 	icon_state = "green1"
-	dynamic_lighting = FALSE
 
 /area/prishtina/german/base_defenses
 	name = "Base Defenses"
 	icon_state = "green2"
-	dynamic_lighting = FALSE
 
 // prevents snowing on some walls
 /area/prishtina/german/base_defenses/wall
@@ -629,7 +612,6 @@
 	name = "Medical Area"
 	icon_state = "blue3"
 	location = AREA_INSIDE
-	dynamic_lighting = TRUE
 
 /area/prishtina/german/medical/storage
 	name = "Medical Storage"
@@ -663,7 +645,6 @@
 /area/prishtina/german/bunker
 	name = "Bunker"
 	location = AREA_INSIDE
-	dynamic_lighting = FALSE
 	base_turf = /turf/floor/dirt
 	artillery_integrity = 200
 
@@ -808,23 +789,19 @@
 /area/prishtina/soviet/immediate_outside_defenses
 	name = "Bunker Defenses"
 	icon_state = "red3"
-	dynamic_lighting = FALSE
 
 /area/prishtina/soviet/dogshed
 	name = "Dog Shed"
 	icon_state = "blue1"
-	dynamic_lighting = TRUE
 	location = AREA_INSIDE
 
 /area/prishtina/soviet/immediate_outside_defenses/houses
 	icon_state = "blue2"
-	dynamic_lighting = TRUE
 	location = AREA_INSIDE
 
 /area/prishtina/soviet/forward_defenses
 	name = "Bunker Defenses"
 	icon_state = "blue3"
-	dynamic_lighting = FALSE
 
 // bunker areas
 

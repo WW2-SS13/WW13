@@ -26,13 +26,15 @@
 */
 
 /obj/item/organ/lungs/proc/handle_breath(datum/gas_mixture/breath)
+	return TRUE
+/*
 	if(!owner)
 		return FALSE
 	if(!breath)
 		return FALSE
 	//exposure to extreme pressures can rupture lungs
 	if(breath.total_moles < BREATH_MOLES / 5 || breath.total_moles > BREATH_MOLES * 5)
-		if(is_bruised() && sprob(5))
+		if(is_bruised() && prob(5))
 			owner.custom_pain("You feel a stabbing pain in your chest!", TRUE)
 			bruise()
 
@@ -57,7 +59,7 @@
 	var/exhaled_pp = (exhaling/breath.total_moles)*breath_pressure
 	// Not enough to breathe
 	if(inhale_pp < safe_pressure_min)
-		if(sprob(20))
+		if(prob(20))
 			owner.emote("gasp")
 
 		var/ratio = inhale_pp/safe_pressure_min
@@ -78,13 +80,13 @@
 		var/alert
 
 		if(exhaled_pp > safe_exhaled_max)
-			word = spick("extremely dizzy","short of breath","faint","confused")
+			word = pick("extremely dizzy","short of breath","faint","confused")
 			warn_prob = 15
 			oxyloss = HUMAN_MAX_OXYLOSS
 			alert = TRUE
 			failed_exhale = TRUE
 		else if(exhaled_pp > safe_exhaled_max * 0.7)
-			word = spick("dizzy","short of breath","faint","momentarily confused")
+			word = pick("dizzy","short of breath","faint","momentarily confused")
 			warn_prob = TRUE
 			alert = TRUE
 			failed_exhale = TRUE
@@ -92,12 +94,12 @@
 			if (owner.getOxyLoss() < 50*ratio)
 				oxyloss = HUMAN_MAX_OXYLOSS
 		else if(exhaled_pp > safe_exhaled_max * 0.6)
-			word = spick("a little dizzy","short of breath")
+			word = pick("a little dizzy","short of breath")
 			warn_prob = TRUE
 		else
 			owner.co2_alert = FALSE
 
-		if(!owner.co2_alert && word && sprob(warn_prob))
+		if(!owner.co2_alert && word && prob(warn_prob))
 			owner << "<span class='warning'>You feel [word].</span>"
 			owner.adjustOxyLoss(oxyloss)
 			owner.co2_alert = alert
@@ -119,8 +121,8 @@
 			if(SA_pp > SA_sleep_min)	// Enough to make us sleep as well
 				owner.Sleeping(5)
 		else if(SA_pp > 0.15)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
-			if(sprob(20))
-				owner.emote(spick("giggle", "laugh"))
+			if(prob(20))
+				owner.emote(pick("giggle", "laugh"))
 
 		breath.adjust_gas("sleeping_agent", -breath.gas["sleeping_agent"]/6, update = FALSE) //update after
 
@@ -132,7 +134,7 @@
 	handle_temperature_effects(breath)
 
 	breath.update_values()
-	return !failed_breath
+	return !failed_breath*/
 
 /obj/item/organ/lungs/proc/handle_temperature_effects(datum/gas_mixture/breath)
 	return
@@ -140,7 +142,7 @@
 	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in owner.mutations))
 		var/damage = FALSE
 		if(breath.temperature <= species.cold_level_1)
-			if(sprob(20))
+			if(prob(20))
 				owner << "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>"
 
 			switch(breath.temperature)
@@ -154,7 +156,7 @@
 			owner.apply_damage(damage, BURN, "head", used_weapon = "Excessive Cold")
 			owner.fire_alert = TRUE
 		else if(breath.temperature >= species.heat_level_1)
-			if(sprob(20))
+			if(prob(20))
 				owner << "<span class='danger'>You feel your face burning and a searing heat in your lungs!</span>"
 
 			switch(breath.temperature)
@@ -195,15 +197,15 @@
 		return
 
 	if (germ_level > INFECTION_LEVEL_ONE)
-		if(sprob(5))
+		if(prob(5))
 			owner.emote("cough")		//respitory tract infection
 
 	#ifndef NO_INTERNAL_BLEEDING
 	if(is_bruised())
-		if(sprob(2))
+		if(prob(2))
 			spawn owner.emote("me", TRUE, "coughs up blood!")
 			owner.drip(10)
-		if(sprob(4))
+		if(prob(4))
 			spawn owner.emote("me", TRUE, "gasps for air!")
 			owner.losebreath += 15
 	#endif

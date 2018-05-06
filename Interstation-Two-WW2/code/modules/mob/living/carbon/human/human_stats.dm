@@ -23,7 +23,7 @@
 		return
 
 	// randomness
-	statval += srand(-5,5)
+	statval += rand(-5,5)
 
 	// realism + balancing
 	if (gender == FEMALE)
@@ -31,7 +31,7 @@
 			if ("strength")
 				statval -= 15
 			else
-				statval += spick(round(15/stats.len), ceil(15/stats.len))
+				statval += pick(round(15/stats.len), ceil(15/stats.len))
 
 	// engineering, medical: more age benefits you
 	if (list("engineering", "medical").Find(statname))
@@ -58,23 +58,23 @@
 	else
 		switch (age)
 			if (0 to 15) // how did you even get here?
-				statval -= srand(8,10)
+				statval -= rand(8,10)
 			if (16 to 19)
-				statval -= srand(4,5)
+				statval -= rand(4,5)
 			if (20 to 24)
 				PASS
 			if (25 to 29)
-				statval += srand(4,5)
+				statval += rand(4,5)
 			if (30 to 35)
-				statval -= srand(2,3)
+				statval -= rand(2,3)
 			if (36 to 39)
-				statval -= srand(4,5)
+				statval -= rand(4,5)
 			if (40 to 45) // dadbod
-				statval -= srand(6,7)
+				statval -= rand(6,7)
 			if (46 to 55)
-				statval -= srand(8,10)
+				statval -= rand(8,10)
 			if (56 to INFINITY)
-				statval -= srand(9,12)
+				statval -= rand(9,12)
 
 	stats[statname] = list(statval, statval)
 
@@ -94,8 +94,8 @@
 		stats[statname][2] *= (1 + round(multiplier/150, increase_multiple))
 
 	else if (statname == "engineering")
-		stats[statname][1] *= (1 + round(multiplier/150, increase_multiple))
-		stats[statname][2] *= (1 + round(multiplier/150, increase_multiple))
+		stats[statname][1] *= (1 + round(multiplier/500, increase_multiple))
+		stats[statname][2] *= (1 + round(multiplier/500, increase_multiple))
 
 	else if (statname == "medical")
 		stats[statname][1] *= (1 + round(multiplier/100, increase_multiple))

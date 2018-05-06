@@ -286,6 +286,7 @@
 	else
 		src << "The game appears to have misplaced your mind datum, so we can't show you your notes."
 
+
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"
@@ -328,6 +329,16 @@
 
 	if (popup)
 		memory()
+
+/mob/proc/add_note(section, note)
+	if (!mind)
+		return
+	return mind.add_note(section, note)
+
+/mob/proc/wipe_notes()
+	if (!mind)
+		return
+	return mind.wipe_notes()
 
 /mob/proc/update_flavor_text()
 	set src in usr
@@ -913,7 +924,7 @@ mob/proc/yank_out_object()
 		H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), FALSE, FALSE, TRUE, "Embedded object extraction")
 
-		if(sprob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.
+		if(prob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.
 			var/datum/wound/internal_bleeding/I = new (min(selection.w_class * 5, 15))
 			affected.wounds += I
 			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", TRUE)

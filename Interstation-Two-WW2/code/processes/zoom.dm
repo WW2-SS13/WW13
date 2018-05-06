@@ -27,9 +27,19 @@ var/process/zoom/zoom_process = null
 	for (var/last_client in clients)
 		var/client/C = last_client
 		var/leftshift = 0
+		var/list/checked = list()
 		for (var/obj/screen/movable/action_button/AB in C.screen)
+			if (checked.Find(AB))
+				C.screen -= AB
+				continue
+			checked += AB
 			AB.invisibility = 0
 			AB.pixel_x = 0
+			AB.transform = initial(AB.transform)
+			if (C.mob && ishuman(C.mob))
+				var/mob/living/carbon/human/H = C.mob
+				if (H.using_zoom())
+					AB.transform *= (C.view/world.view)
 			if (AB.name == "Toggle Sights")
 				var/datum/action/toggle_scope/TS = AB.owner
 				if (TS && istype(TS))

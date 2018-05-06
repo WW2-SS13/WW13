@@ -117,15 +117,15 @@ var/list/organ_cache = list()
 
 	if(!owner)
 		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
-		if(B && sprob(40))
+		if(B && prob(40))
 			reagents.remove_reagent("blood",0.1)
 			blood_splatter(src,B,1)
-		if(config.organs_decay) damage += srand(1,3)
+		if(config.organs_decay) damage += rand(1,3)
 		if(damage >= max_damage)
 			damage = max_damage
-		germ_level += srand(2,6)
+		germ_level += rand(2,6)
 		if(germ_level >= INFECTION_LEVEL_TWO)
-			germ_level += srand(2,6)
+			germ_level += rand(2,6)
 		if(germ_level >= INFECTION_LEVEL_THREE)
 			die()
 
@@ -148,12 +148,12 @@ var/list/organ_cache = list()
 	//** Handle the effects of infections
 	var/antibiotics = owner.reagents.get_reagent_amount("penicillin")
 
-	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && sprob(30))
+	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--
 
 	if (germ_level >= INFECTION_LEVEL_ONE/2)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
-		if(antibiotics < 5 && sprob(round(germ_level/6)))
+		if(antibiotics < 5 && prob(round(germ_level/6)))
 			germ_level++
 
 	if(germ_level >= INFECTION_LEVEL_ONE)
@@ -163,11 +163,11 @@ var/list/organ_cache = list()
 	if (germ_level >= INFECTION_LEVEL_TWO)
 		var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
 		//spread germs
-		if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || sprob(30) ))
+		if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
 			parent.germ_level++
 
-		if (sprob(3))	//about once every 30 seconds
-			take_damage(1,silent=sprob(30))
+		if (prob(3))	//about once every 30 seconds
+			take_damage(1,silent=prob(30))
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
@@ -183,12 +183,12 @@ var/list/organ_cache = list()
 					if(1 to 50)
 						germ_level++
 					if(51 to 200)
-						germ_level += srand(1,2)
+						germ_level += rand(1,2)
 					if(201 to 500)
-						germ_level += srand(2,3)
+						germ_level += rand(2,3)
 					if(501 to INFINITY)
-						germ_level += srand(3,5)
-						owner.reagents.add_reagent("toxin", srand(1,2))
+						germ_level += rand(3,5)
+						owner.reagents.add_reagent("toxin", rand(1,2))
 
 /obj/item/organ/proc/receive_chem(chemical as obj)
 	return FALSE
@@ -379,7 +379,7 @@ var/list/organ_cache = list()
 			user.visible_message("<span class = 'notice'>[user] starts to carve [src] into a few meat slabs.</span>")
 			if (do_after(user, 30, src))
 				user.visible_message("<span class = 'notice'>[user] carves [src] into a few meat slabs.</span>")
-				for (var/v in TRUE to srand(2,4))
+				for (var/v in TRUE to rand(2,4))
 					var/obj/item/weapon/reagent_containers/food/snacks/meat/human/meat = new/obj/item/weapon/reagent_containers/food/snacks/meat/human(get_turf(src))
 					meat.name = "[name] meatsteak"
 				qdel(src)

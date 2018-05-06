@@ -40,7 +40,7 @@
 	else
 		icon_state = icon_base
 		if(has_base_range)
-			icon_state = "[icon_state][srand(0,has_base_range)]"
+			icon_state = "[icon_state][rand(0,has_base_range)]"
 			flooring_override = icon_state
 	// Apply edges, corners, and inner corners.
 	overlays.Cut()
@@ -90,7 +90,7 @@
 
 	if(is_plating() && !(isnull(broken) && isnull(burnt))) //temp, todo
 		icon = 'icons/turf/floors.dmi'
-		icon_state = "dmg[srand(1,4)]"
+		icon_state = "dmg[rand(1,4)]"
 	else
 		if(!isnull(broken) && (flags & TURF_CAN_BREAK))
 			overlays |= get_flooring_overlayu("[icon_base]-broken-[broken]", "broken[broken]")
@@ -122,7 +122,7 @@
 	if(!ishuman(M) || !has_gravity(src))
 		return
 	if(M.m_intent == "run")
-		if(sprob(75))
+		if(prob(75))
 			M.adjustBruteLoss(5)
 			M.weakened += 3
 			playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
@@ -204,7 +204,7 @@
 
 /turf/floor/wood_broken/New()
 	..()
-	icon_state = "broken[srand(0,6)]"
+	icon_state = "broken[rand(0,6)]"
 
 /turf/floor/vault
 	icon_state = "rockvault"
@@ -273,7 +273,7 @@
 		if(1.0)
 			ChangeTurf(world.turf)
 		if(2.0)
-			if(sprob(40))
+			if(prob(40))
 				ChangeTurf(world.turf)
 	return
 
@@ -338,10 +338,9 @@
 	name = "Grass patch"
 	icon_state = "grass1"
 	floor_type = /obj/item/stack/tile/grass
-	uses_daylight_dynamic_lighting = TRUE
 
 	New()
-		icon_state = "grass[spick("1","2","3","4")]"
+		icon_state = "grass[pick("1","2","3","4")]"
 		..()
 		spawn(4)
 			if(src)
@@ -374,7 +373,7 @@
 	..()
 	icon = 'icons/turf/floors.dmi'
 	name = "Iron Sand"
-	icon_state = "ironsand[srand(1,15)]"
+	icon_state = "ironsand[rand(1,15)]"
 
 /turf/floor/plating/snow
 	name = "snow"
@@ -391,7 +390,6 @@
 	interior = FALSE
 	stepsound = "dirt"
 	uses_winter_overlay = TRUE
-	uses_daylight_dynamic_lighting = TRUE
 	var/obj/structure/wild/wild = null
 
 /turf/floor/plating/grass/ex_act(severity)
@@ -403,13 +401,13 @@
 
 /turf/floor/plating/grass/proc/plant()
 	// 3x3 clumps of grass - original code
-	if (sprob(1))
+	if (prob(1))
 		if (!locate(/obj/structure/wild/bush) in range(3, src))
 			if (!locate(/obj/item) in range(3, src))
 				for (var/turf/floor/plating/grass/G in range(3, src))
 					if (!locate(/obj/structure) in G)
 						var/dist = get_dist(src, G)
-						if (sprob(100-(dist*5)))
+						if (prob(100-(dist*5)))
 							G.wild = new/obj/structure/wild/bush(G)
 	// huge grassy areas - adapted from Drymouth Gulch
 	else
@@ -417,14 +415,14 @@
 			return
 		if (locate(/obj/item) in src)
 			return
-		if(sprob(0.1)) // default is 0.1
+		if(prob(0.1)) // default is 0.1
 			wild = new/obj/structure/wild/bush(src)
 		else
 			var/chance = FALSE
 			for(var/turf/floor/plating/grass/T in range(1,src))
 				if(T.wild)
 					chance += 40 // default is 40
-			if(sprob(chance))
+			if(prob(chance))
 				wild = new/obj/structure/wild/bush(src)
 
 /turf/floor/plating/grass/wild
@@ -433,12 +431,11 @@
 /turf/floor/plating/grass/wild/New()
 	..()
 	icon = 'icons/turf/flooring/grass.dmi'
-	icon_state = "grass[srand(0,3)]"
+	icon_state = "grass[rand(0,3)]"
 
 /turf/floor/plating/beach
 	name = "Beach"
 	icon = 'icons/misc/beach.dmi'
-	uses_daylight_dynamic_lighting = TRUE
 
 /turf/floor/plating/beach/sand
 	name = "Sand"
@@ -498,7 +495,6 @@
 	interior = FALSE
 	stepsound = "dirt"
 	uses_winter_overlay = TRUE
-	uses_daylight_dynamic_lighting = TRUE
 
 /turf/floor/plating/sand
 	name = "sand"
@@ -506,11 +502,10 @@
 	icon_state = "sand1"
 	interior = FALSE
 	stepsound = "dirt"
-	uses_daylight_dynamic_lighting = TRUE
 
 /turf/floor/plating/sand/New()
 	..()
-	icon_state = "sand[srand(1, 3)]"
+	icon_state = "sand[rand(1, 3)]"
 
 /turf/floor/plating/concrete
 	name = "concrete"
@@ -521,13 +516,13 @@
 /turf/floor/plating/concrete/New()
 	..()
 	if(icon_state == "concrete2")
-		icon_state = spick("concrete2", "concrete3")
+		icon_state = pick("concrete2", "concrete3")
 		return
 	if(icon_state == "concrete6")
-		icon_state = spick("concrete6", "concrete7")
+		icon_state = pick("concrete6", "concrete7")
 		return
 	if(icon_state == "concrete10")
-		icon_state = spick("concrete10", "concrete11")
+		icon_state = pick("concrete10", "concrete11")
 		return
 
 /turf/floor/plating/road
@@ -535,19 +530,17 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "road_1"
 	interior = FALSE
-	uses_daylight_dynamic_lighting = TRUE
 	var/icon_mode = ""
 
 /turf/floor/plating/road/New()
 	..()
-	icon_state = "road_[icon_mode][srand(1, 3)]"
+	icon_state = "road_[icon_mode][rand(1, 3)]"
 
 /turf/floor/plating/cobblestone
 	name = "road"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cobble_horizontal"
 	interior = FALSE
-	uses_daylight_dynamic_lighting = TRUE
 
 /turf/floor/plating/cobblestone/dark
 	name = "road"

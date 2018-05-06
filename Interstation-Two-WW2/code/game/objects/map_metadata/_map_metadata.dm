@@ -39,7 +39,7 @@ var/global/obj/map_metadata/map = null
 	var/list/roundend_condition_sides = list(
 		list(GERMAN) = /area/prishtina/german,
 		list(SOVIET) = /area/prishtina/soviet)
-	var/list/ambience = list()
+	var/list/ambience = list('sound/ambience/war.ogg')
 	var/list/songs = list(
 		"Bots - Was Wollen Wir Trinken (Harcourt Edit):1" = 'sound/music/BotsWaswollenwirtrinkenWehrmachtHarcourt.ogg',
 		"ERIKA:1" = 'sound/music/ERIKA.ogg',
@@ -65,7 +65,17 @@ var/global/obj/map_metadata/map = null
 	var/current_winner = null
 	var/current_loser = null
 	var/next_win = -1
+	var/last_reinforcements_next_win = -1
 	var/win_condition_spam_check = FALSE
+
+	// lighting
+	var/list/times_of_day = list("Early Morning", "Morning", "Afternoon", "Midday", "Evening", "Night", "Midnight")
+	var/list/zlevels_without_lighting = list()
+	var/list/areas_without_lighting = list()
+	var/TOD_change_interval = 200
+
+	// misc
+	var/meme = FALSE
 
 /obj/map_metadata/New()
 	..()
@@ -76,14 +86,14 @@ var/global/obj/map_metadata/map = null
 	if (no_subfaction_chance)
 		if (available_subfactions.len)
 			switch (available_subfactions.len)
-				if (1) // this may be necessary due to sprob() memes - Kachnov
+				if (1) // this may be necessary due to prob() memes - Kachnov
 					if (prob(50))
 						available_subfactions = list(available_subfactions[1])
 					else
 						available_subfactions = list()
 				if (2 to INFINITY)
-					if (sprob(100 - round((100/(available_subfactions.len+1)))))
-						available_subfactions = list(available_subfactions[srand(1, available_subfactions.len)])
+					if (prob(100 - round((100/(available_subfactions.len+1)))))
+						available_subfactions = list(available_subfactions[rand(1, available_subfactions.len)])
 					else
 						available_subfactions = list()
 
@@ -204,10 +214,11 @@ var/global/obj/map_metadata/map = null
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
-		var/message = "The battle was a stalemate!"
+		var/message = "The battle has ended in a stalemate!"
 		if (current_winner && current_loser)
-			message = "The [current_winner] was victorious over the [current_loser]!"
-		world << "<font size = 3>The battle is over! [message]</font>"
+			message = "The battle is over! The [current_winner] was victorious over the [current_loser]!"
+		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
+		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
 		return FALSE
 	// German major
@@ -248,8 +259,19 @@ var/global/obj/map_metadata/map = null
 				current_loser = roundend_condition_def2army(roundend_condition_sides[1][1])
 	else if (win_condition.check(list("REINFORCEMENTS"), list(), list(), 1.0, TRUE))
 		if (last_win_condition != win_condition.hash)
+
+			// let us know why we're changing to this win condition
+			if (current_win_condition != NO_WINNER && current_winner && current_loser)
+				world << "<font size = 3>The [current_winner] has lost control of the [army2name(current_loser)] base!</font>"
+
 			current_win_condition = "Both sides are out of reinforcements; the round will end in {time} minutes."
-			next_win = world.time + long_win_time()
+
+			if (last_reinforcements_next_win != -1)
+				next_win = last_reinforcements_next_win
+			else
+				next_win = world.time + long_win_time()
+				last_reinforcements_next_win = next_win
+
 			announce_current_win_condition()
 			current_winner = null
 			current_loser = null
@@ -258,6 +280,7 @@ var/global/obj/map_metadata/map = null
 			world << "<font size = 3>The [current_winner] has lost control of the [army2name(current_loser)] base!</font>"
 			current_winner = null
 			current_loser = null
+		next_win = -1
 		current_win_condition = NO_WINNER
 		win_condition.hash = 0
 	last_win_condition = win_condition.hash

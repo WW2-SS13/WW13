@@ -1,7 +1,7 @@
 /datum/preferences
 	//The mob should have a gender you want before running this proc. Will run fine without H
 	proc/randomize_appearance_for(var/mob/living/carbon/human/H)
-		gender = spick(MALE, FEMALE)
+		gender = pick(MALE, FEMALE)
 		var/datum/species/current_species = all_species[species]
 
 		if(current_species)
@@ -18,7 +18,7 @@
 		randomize_hair_color("facial")
 
 		backbag = 2
-		age = srand(current_species.min_age, current_species.max_age)
+		age = rand(current_species.min_age, current_species.max_age)
 		if(H)
 			copy_to(H,1)
 

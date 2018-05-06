@@ -554,21 +554,6 @@
 
 /mob/new_player/proc/LateChoices()
 
-	var/arty = locate(/obj/structure/artillery) in world
-	var/fallschirms = fallschirm_landmarks.len
-	var/german_tank = FALSE
-	var/soviet_tank = FALSE
-
-	for (var/obj/tank/german/T in world)
-		if (!T.admin)
-			german_tank = TRUE
-			break
-
-	for (var/obj/tank/soviet/T in world)
-		if (!T.admin)
-			soviet_tank = TRUE
-			break
-
 	src << browse(null, "window=latechoices")
 
 	//<body style='background-color:#1D2951; color:#ffffff'>
@@ -601,25 +586,9 @@
 			if (job.faction != "Station")
 				continue
 
-			if (!arty && (istype(job, /datum/job/german/artyman) || istype(job, /datum/job/german/scout)))
+			if (!job.specialcheck())
 				continue
 
-			if (!fallschirms && istype(job, /datum/job/german/paratrooper))
-				continue
-
-			if (!german_tank)
-				if (istype(job, /datum/job/german/tankcrew))
-					continue
-				else if (istype(job, /datum/job/german/anti_tank_crew))
-					continue
-
-			if (!soviet_tank)
-				if (istype(job, /datum/job/soviet/tankcrew))
-					continue
-				else if (istype(job, /datum/job/soviet/anti_tank_crew))
-					continue
-
-		//	var/unavailable_message = ""
 			if (job.title == "generic job")
 				continue
 
@@ -627,9 +596,6 @@
 				continue
 
 			var/job_is_available = (job && IsJobAvailable(job.title, restricted_choices))
-
-			if (job.is_paratrooper)
-				job_is_available = fallschirm_landmarks.len
 
 			if (!job.validate(src))
 				job_is_available = FALSE
@@ -811,7 +777,7 @@
 				new_character.add_language(lang)
 
 	if(ticker.random_players)
-		new_character.gender = spick(MALE, FEMALE)
+		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
 		client.prefs.randomize_appearance_for(new_character)
 	else
@@ -829,8 +795,9 @@
 		else if (J_flag == ITALIAN)
 			client.prefs.gender = client.prefs.italian_gender
 
+		// traps came back, this should fix them for good - Kachnov
+		new_character.gender = client.prefs.gender
 		client.prefs.copy_to(new_character)
-
 		client.prefs.gender = client_prefs_original_gender
 
 	src << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS cant last forever yo

@@ -5,7 +5,7 @@
 	for(var/obj/item/organ/I in internal_organs)
 		I.removed()
 		if(istype(loc,/turf))
-			I.throw_at(get_edge_target_turf(src,spick(alldirs)),srand(1,3),30)
+			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 	for(var/obj/item/organ/external/E in organs)
 		E.droplimb(0,DROPLIMB_EDGE,1)
@@ -14,7 +14,7 @@
 
 	for(var/obj/item/I in src)
 		drop_from_inventory(I)
-		I.throw_at(get_edge_target_turf(src,spick(alldirs)), srand(1,3), round(30/I.w_class))
+		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
 
 	..(species.gibbed_anim)
 	gibs(loc, null, species.flesh_color, species.blood_color)
@@ -25,6 +25,12 @@
 
 	..(species.gibbed_anim)
 	gibs(loc, null, species.flesh_color, species.blood_color)
+
+/mob/living/carbon/human/maim()
+	next_emote["vocal"] = world.time + 50
+	..()
+	next_emote["vocal"] = world.time - 1
+	emote("scream")
 
 /mob/living/carbon/human/dust()
 	if(species)
@@ -63,7 +69,7 @@
 
 	if (client)
 		client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
-		client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
+		client << RESPAWN_MESSAGE
 
 	. = ..(gibbed)//,species.death_message)
 	if(!gibbed)

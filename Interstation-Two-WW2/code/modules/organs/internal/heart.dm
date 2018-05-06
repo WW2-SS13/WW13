@@ -7,7 +7,7 @@
 	var/pulse = PULSE_NORM
 	var/heartbeat = FALSE
 	var/beat_sound = 'sound/effects/singlebeat.ogg'
-	var/efficiency = TRUE
+	var/efficiency = 1.0
 
 /obj/item/organ/heart/process()
 	if(owner)
@@ -20,7 +20,7 @@
 	if(owner.stat == DEAD || status & ORGAN_ROBOT)
 		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
 		return
-	if(owner.life_tick % 5 == FALSE)//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
+	if(owner.life_tick % 5 == 0)//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 		pulse = PULSE_NORM
 
 		if(round(owner.vessel.get_reagent_amount("blood")) <= BLOOD_VOLUME_BAD)	//how much blood do we have
@@ -66,23 +66,23 @@
 	//Effects of bloodloss
 	switch(blood_volume)
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
-			if(sprob(1))
-				owner << "<span class='warning'>You feel [spick("dizzy","woosey","faint")]</span>"
+			if(prob(1))
+				owner << "<span class='warning'>You feel [pick("dizzy","woosey","faint")]</span>"
 			if(owner.getOxyLoss() < 20)
-				owner.adjustOxyLoss(spick(0.25, 0.35, 0.45))
+				owner.adjustOxyLoss(pick(0.25, 0.35, 0.45))
 		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
 			owner.eye_blurry = max(owner.eye_blurry,6)
 			if(owner.getOxyLoss() < 50)
 				owner.adjustOxyLoss(0.50)
 			owner.adjustOxyLoss(1.0)
-			if(sprob(15))
-				owner.Paralyse(srand(1,3))
-				owner << "<span class='warning'>You feel extremely [spick("dizzy","woosey","faint")]</span>"
+			if(prob(15))
+				owner.Paralyse(rand(1,3))
+				owner << "<span class='warning'>You feel extremely [pick("dizzy","woosey","faint")]</span>"
 		if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 			owner.adjustOxyLoss(1.50)
 			owner.adjustToxLoss(1.0)
-			if(sprob(15))
-				owner << "<span class='warning'>You feel extremely [spick("dizzy","woosey","faint")]</span>"
+			if(prob(15))
+				owner << "<span class='warning'>You feel extremely [pick("dizzy","woosey","faint")]</span>"
 		else if(blood_volume < BLOOD_VOLUME_SURVIVE)
 			owner.death()
 

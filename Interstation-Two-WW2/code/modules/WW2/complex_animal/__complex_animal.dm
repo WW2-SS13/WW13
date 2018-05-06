@@ -53,9 +53,9 @@
 		return FALSE
 
 	if (!client)
-		if (sprob(1) && sprob(15) && !resting && can_rest_specialcheck())
+		if (prob(1) && prob(15) && !resting && can_rest_specialcheck())
 			nap()
-		else if (resting && sprob(1))
+		else if (resting && prob(1))
 			stop_napping()
 
 	// todo: dehydration
@@ -70,7 +70,7 @@
 		return -1
 
 	if (!client)
-		if (sprob(wander_probability) && !resting && can_wander_specialcheck())
+		if (prob(wander_probability) && !resting && can_wander_specialcheck())
 			var/list/possible_wander_locations = list()
 			for (var/turf/T in trange(1, src))
 				if (!T.density && !istype(T, /turf/wall))
@@ -162,9 +162,9 @@ called after H added to knows_about_mobs() */
 
 /mob/living/simple_animal/complex_animal/bullet_act(var/obj/item/projectile/P, var/def_zone)
 	var/dmg = P.damage * random_decimal(0.7,1.3)
-	if (sprob(33))
-		dmg /= srand(5,10)
-		visible_message("<span class = 'warning'>The bullet just grazes \the [src].</span>")
+	if (prob(33))
+		dmg /= rand(5,10)
+		visible_message("<span class = 'warning'>The [P.name] just grazes \the [src].</span>")
 	apply_damage(dmg)
 	if (client)
 		if (P.firer && (P.original == src || !P.firer.original_job || P.firer.original_job.base_type_flag() != faction))

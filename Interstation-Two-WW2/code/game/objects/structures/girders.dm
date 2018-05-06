@@ -26,7 +26,7 @@
 
 /obj/structure/girder/bullet_act(var/obj/item/projectile/Proj)
 	//Girders only provide partial cover. There's a chance that the projectiles will just pass through. (unless you are trying to shoot the girder)
-	if(Proj.original != src && !sprob(cover))
+	if(Proj.original != src && !prob(cover))
 		return PROJECTILE_CONTINUE //pass through
 
 	var/damage = Proj.get_structure_damage()
@@ -199,11 +199,11 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (sprob(30))
+			if (prob(30))
 				dismantle()
 			return
 		if(3.0)
-			if (sprob(5))
+			if (prob(5))
 				dismantle()
 			return
 		else

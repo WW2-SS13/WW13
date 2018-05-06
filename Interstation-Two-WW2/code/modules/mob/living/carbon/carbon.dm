@@ -12,7 +12,7 @@
 	handle_viruses()
 
 	// Increase germ_level regularly
-	if(germ_level < GERM_LEVEL_AMBIENT && sprob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
+	if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 		germ_level++
 
 /mob/living/carbon/Destroy()
@@ -44,7 +44,7 @@
 			bodytemperature += 2*/
 
 		// Moving around increases germ_level faster
-	if(germ_level < GERM_LEVEL_MOVE_CAP && sprob(8))
+	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 		germ_level++
 
 /mob/living/carbon/relaymove(var/mob/living/user, direction)
@@ -54,7 +54,7 @@
 			visible_message("<span class='danger'>You hear something rumbling inside [src]'s stomach...</span>")
 			var/obj/item/I = user.get_active_hand()
 			if(I && I.force)
-				var/d = srand(round(I.force / 4), I.force)
+				var/d = rand(round(I.force / 4), I.force)
 				if(istype(src, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/organ = H.get_organ("chest")
@@ -67,7 +67,7 @@
 				user.visible_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>")
 				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, TRUE)
 
-				if(sprob(getBruteLoss() - 50))
+				if(prob(getBruteLoss() - 50))
 					for(var/atom/movable/A in stomach_contents)
 						A.loc = loc
 						stomach_contents.Remove(A)
@@ -159,9 +159,9 @@
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
 				if(halloss > 0)
-					if(sprob(30))
+					if(prob(30))
 						brutedamage += halloss
-					if(sprob(30))
+					if(prob(30))
 						burndamage += halloss
 				switch(brutedamage)
 					if(1 to 20)
@@ -208,7 +208,7 @@
 				"<span class='warning'>You try to pat out [src]'s flames! Hot!</span>")
 				if(do_mob(M, src, 15))
 					fire_stacks -= 0.5
-					if (sprob(10) && (M.fire_stacks <= 0))
+					if (prob(10) && (M.fire_stacks <= 0))
 						M.fire_stacks += 1
 					M.IgniteMob()
 					if (M.on_fire)

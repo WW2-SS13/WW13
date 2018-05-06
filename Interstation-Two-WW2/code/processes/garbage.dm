@@ -198,6 +198,7 @@ world/loop_checks = FALSE
 		L -= D
 		if (isdatum(D))
 			qdel(D)
+	L = null // del(L) breaks observing and probably other stuff I have no idea why - Kachnov
 
 // helper for testing
 /datum/proc/qdeleted()

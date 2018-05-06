@@ -30,18 +30,16 @@ var/process/movement/movement_process = null
 				var/diag = FALSE
 				var/movedir = M.movement_process_dirs[M.movement_process_dirs.len]
 				if (M.movement_process_dirs.len > 1)
-					var/secdir = M.movement_process_dirs[M.movement_process_dirs.len-1]
-					var/list/dirs = list(movedir, secdir)
-					if (dirs.Find(NORTH) && dirs.Find(WEST))
+					if (M.movement_process_dirs.Find(NORTH) && M.movement_process_dirs.Find(WEST))
 						movedir = NORTHWEST
 						diag = TRUE
-					else if (dirs.Find(NORTH) && dirs.Find(EAST))
+					else if (M.movement_process_dirs.Find(NORTH) && M.movement_process_dirs.Find(EAST))
 						movedir = NORTHEAST
 						diag = TRUE
-					else if (dirs.Find(SOUTH) && dirs.Find(WEST))
+					else if (M.movement_process_dirs.Find(SOUTH) && M.movement_process_dirs.Find(WEST))
 						movedir = SOUTHWEST
 						diag = TRUE
-					else if (dirs.Find(SOUTH) && dirs.Find(EAST))
+					else if (M.movement_process_dirs.Find(SOUTH) && M.movement_process_dirs.Find(EAST))
 						movedir = SOUTHEAST
 						diag = TRUE
 				M.client.Move(get_step(M, movedir), movedir, diag)

@@ -24,7 +24,7 @@
 		..()
 		new /obj/item/weapon/crowbar/prybar(src)
 		new /obj/item/weapon/extinguisher/mini(src)
-		if(sprob(50))
+		if(prob(50))
 			new /obj/item/flashlight(src)
 		else
 			new /obj/item/flashlight/flare(src)
@@ -51,13 +51,13 @@
 
 	New()
 		..()
-		var/color = spick("red","yellow","green","blue","pink","orange","cyan","white")
+		var/color = pick("red","yellow","green","blue","pink","orange","cyan","white")
 		new /obj/item/weapon/screwdriver(src)
 		new /obj/item/weapon/wirecutters/boltcutters(src)
 		new /obj/item/weapon/crowbar/prybar(src)
 		new /obj/item/stack/cable_coil(src,30,color)
 		new /obj/item/stack/cable_coil(src,30,color)
-		if(sprob(5))
+		if(prob(5))
 			new /obj/item/clothing/gloves/insulated(src)
 		else
 			new /obj/item/stack/cable_coil(src,30,color)

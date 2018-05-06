@@ -121,7 +121,7 @@ var/global/list/image/splatter_cache=list()
 		add_fingerprint(user)
 		if (user.gloves)
 			return
-		var/taken = srand(1,amount)
+		var/taken = rand(1,amount)
 		amount -= taken
 		user << "<span class='notice'>You get some of \the [src] on your hands.</span>"
 		if (!user.blood_DNA)
@@ -163,7 +163,7 @@ var/global/list/image/splatter_cache=list()
 	if(random_icon_states.len)
 		for(var/obj/effect/decal/cleanable/blood/writing/W in loc)
 			random_icon_states.Remove(W.icon_state)
-		icon_state = spick(random_icon_states)
+		icon_state = pick(random_icon_states)
 	else
 		icon_state = "writing1"
 
@@ -219,7 +219,7 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/gibs/proc/streak(var/list/directions)
         spawn (0)
-                var/direction = spick(directions)
+                var/direction = pick(directions)
                 for (var/i = FALSE, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
                         sleep(3)
                         if (i > 0)

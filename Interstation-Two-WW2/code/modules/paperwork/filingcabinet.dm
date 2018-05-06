@@ -72,10 +72,10 @@
 
 /obj/structure/filingcabinet/attack_self_tk(mob/user)
 	if(contents.len)
-		if(sprob(40 + contents.len * 5))
-			var/obj/item/I = spick(contents)
+		if(prob(40 + contents.len * 5))
+			var/obj/item/I = pick(contents)
 			I.loc = loc
-			if(sprob(25))
+			if(prob(25))
 				step_rand(I)
 			user << "<span class='notice'>You pull \a [I] out of [src] at random.</span>"
 			return

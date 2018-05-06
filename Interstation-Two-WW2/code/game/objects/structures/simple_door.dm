@@ -23,7 +23,7 @@
 /obj/structure/simple_door/bullet_act(var/obj/item/projectile/P)
 	var/damage = max(P.damage/2, 2)
 	health -= damage
-	visible_message("<span class = 'danger'>[src] is hit by the bullet!</span>")
+	visible_message("<span class = 'danger'>[src] is hit by the [P.name]!</span>")
 	if (istype(src, /obj/structure/simple_door/key_door))
 		src:damage_display()
 	if (health <= 0)
@@ -168,7 +168,7 @@
 		if(1)
 			Dismantle(1)
 		if(2)
-			if(sprob(20))
+			if(prob(20))
 				Dismantle(1)
 			else
 				hardness--

@@ -176,7 +176,7 @@
 		else if(istype(wear_id, /obj/item/weapon/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
 			var/obj/item/weapon/card/id/idcard = wear_id
 			id = idcard.registered_name
-		if(id && (id != real_name) && (get_dist(src, usr) <= 1) && sprob(10))
+		if(id && (id != real_name) && (get_dist(src, usr) <= 1) && prob(10))
 			msg += "<span class='warning'>[T.He] [T.is] wearing \icon[wear_id] \a [wear_id] yet something doesn't seem right...</span>\n"
 		else*/
 		msg += "[T.He] [T.is] wearing \icon[wear_id] \a [wear_id].\n"
@@ -398,9 +398,12 @@
 
 					// make partisans show up as civs
 					var/team = original_job.base_type_flag()
+					var/display = capitalize(lowertext(team))
+					if (display == "Partisan")
+						display = "Civilian"
 
 					if (team != PILLARMEN)
-						msg += "<br><i>[T.He] [T.is] a <b>[capitalize(lowertext(team))]</b>.</i>"
+						msg += "<br><i>[T.He] [T.is] a <b>[display]</b>.</i>"
 
 				if (original_job.base_type_flag() == H.original_job.base_type_flag() && (original_job.base_type_flag() == SOVIET || original_job.base_type_flag() == GERMAN))
 					if (isleader(src, H))
@@ -436,6 +439,6 @@
 		if (do_after(user, 15 * embedded_obj.w_class, src))
 			visible_message("<span class = 'danger'>[user] pulls [embedded_obj] out of [src]!</span>")
 			emote("scream")
-			adjustBruteLoss(srand(10,15))
+			adjustBruteLoss(rand(10,15))
 		embedded -= embedded_obj
 		embedded_obj.loc = get_turf(src)

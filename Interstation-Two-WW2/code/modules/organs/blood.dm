@@ -87,7 +87,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	vessel.remove_reagent("blood",amt)
 
 	// don't splatter blood all the time
-	if (sprob(amt * 100))
+	if (prob(amt * 100))
 		blood_splatter(src,src)
 
 /****************************************************
@@ -147,7 +147,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	for(var/ID in sniffles)
 		var/datum/disease2/disease/sniffle = sniffles[ID]
 		infect_virus2(src,sniffle,1)
-	if (injected.data["antibodies"] && sprob(5))
+	if (injected.data["antibodies"] && prob(5))
 		antibodies |= injected.data["antibodies"]*/
 	var/list/chems = list()
 	chems = params2list(injected.data["trace_chem"])

@@ -42,6 +42,8 @@
 					linked_lever.counterpart = counterpart
 					break
 
+	return TRUE
+
 // helpers
 
 /obj/lift_controller/proc/find_target()

@@ -18,7 +18,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(sprob(10))
+			if(prob(10))
 				qdel(src)
 				return
 		if(3.0)
@@ -110,13 +110,13 @@
 						shake_camera(m, 3, (5 - (abs_dist/10)))
 
 			// smoke
-			spawn (srand(3,4))
+			spawn (rand(3,4))
 				new/obj/effect/effect/smoke/chem(get_step(src, dir))
-			spawn (srand(5,6))
+			spawn (rand(5,6))
 				new/obj/effect/effect/smoke/chem(get_step(src, dir))
 
 			// sound
-			spawn (srand(1,2))
+			spawn (rand(1,2))
 				var/turf/t1 = get_turf(src)
 				var/list/heard = playsound(t1, "artillery_out", 50, TRUE)
 				playsound(t1, "artillery_out_distant", 50, TRUE, excluded = heard)
@@ -125,7 +125,7 @@
 			var/turf/target = get_turf(src)
 			var/odir = dir
 
-			max_distance = (80 - angle) + srand(38,42)
+			max_distance = (80 - angle) + rand(38,42)
 
 			switch (dir)
 				if (WEST)
@@ -162,13 +162,13 @@
 
 					switch (odir)
 						if (EAST)
-							target = locate(target.x+1, target.y + (sprob(20) && skew ? spick(1,-1) : 0), z)
+							target = locate(target.x+1, target.y + (prob(20) && skew ? pick(1,-1) : 0), z)
 						if (WEST)
-							target = locate(target.x-1, target.y + (sprob(20) && skew ? spick(1,-1) : 0), z)
+							target = locate(target.x-1, target.y + (prob(20) && skew ? pick(1,-1) : 0), z)
 						if (NORTH)
-							target = locate(target.x + (sprob(20) && skew ? spick(1,-1) : 0), target.y+1, z)
+							target = locate(target.x + (prob(20) && skew ? pick(1,-1) : 0), target.y+1, z)
 						if (SOUTH)
-							target = locate(target.y + (sprob(20) && skew ? spick(1,-1) : 0), target.y-1, z)
+							target = locate(target.y + (prob(20) && skew ? pick(1,-1) : 0), target.y-1, z)
 
 					var/highcheck = high
 					var/area/target_area = get_area(target)

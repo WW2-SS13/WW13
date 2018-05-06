@@ -1,3 +1,5 @@
+#define GAMETICKER_PREGAME_TIME 180
+
 var/global/datum/controller/gameticker/ticker
 var/global/datum/lobby_music_player/lobby_music_player = null
 
@@ -56,7 +58,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 		login_music = lobby_music_player.get_song()
 
 		do
-			pregame_timeleft = 180
+			pregame_timeleft = GAMETICKER_PREGAME_TIME
 			maytip = TRUE
 			if (serverswap_open_status)
 				world << "<b><span style = 'notice'>Welcome to the pre-game lobby!</span></b>"
@@ -82,7 +84,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 						var/list/tips = file2list("config/tips.txt")
 						if (tips.len)
 							if (serverswap_open_status)
-								world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
+								world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(tips)]</span>"
 								qdel_list(tips)
 					maytip = FALSE
 				if(pregame_timeleft <= 0)
@@ -95,7 +97,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 							var/list/tips = file2list("config/tips.txt")
 							if (tips.len)
 								if (serverswap_open_status)
-									world << "<span class = 'notice'><b>Tip of the Round:</b> [spick(tips)]</span>"
+									world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(tips)]</span>"
 									qdel_list(tips)
 
 		while (!setup())
@@ -136,7 +138,7 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 	if(!map || !map.can_start() && !admin_started)
 		if (serverswap_open_status)
-			world << "<b>Unable to start the game.</b> Not enough players, [map.required_players] players needed. Reverting to the pre-game lobby."
+			world << "<b>Unable to start the game.</b> Not enough players, [map.required_players] active players needed. Reverting to the pre-game lobby."
 		current_state = GAME_STATE_PREGAME
 		job_master.ResetOccupations()
 		return FALSE
@@ -363,11 +365,21 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 
 			callHook("roundend")
 
-			if(!delay_end)
-				world << "<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>"
+			var/restart_after = restart_timeout
+
+			if (mapswap_process)
+				if (mapswap_process.finished_at == -1)
+					restart_after = 1800
+				else
+					var/n = world.time - mapswap_process.finished_at
+					if (n <= 900)
+						restart_after = 1800 - n
 
 			if(!delay_end)
-				sleep(restart_timeout)
+				world << "<span class='notice'><b>Restarting in [round(restart_after/10)] seconds</b></span>"
+
+			if(!delay_end)
+				sleep(restart_after)
 				if(!delay_end)
 					world.Reboot()
 				else

@@ -344,7 +344,11 @@ proc/admin_notice(var/message, var/rights)
 	if(!check_rights(R_ADMIN))	return
 
 	var/dat = {"
-		<center><b>Game Panel</b></center><hr>\n
+		<style>
+		[common_browser_style]
+		</style>
+		<br>
+		<center><b><big>Game Panel</big></b></center><hr>\n
 		"}
 		//		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
 /*	if(master_mode == "secret")
@@ -352,18 +356,18 @@ proc/admin_notice(var/message, var/rights)
 
 	dat += {"
 		<br>
-		<A href='?src=\ref[src];create_object=1'>Create Object</A><br>
-		<A href='?src=\ref[src];quick_create_object=1'>Quick Create Object</A><br>
-		<A href='?src=\ref[src];create_turf=1'>Create Turf</A><br>
-		<A href='?src=\ref[src];create_mob=1'>Create Mob</A><br>
-		<br>
-		<A href='?src=\ref[src];debug_global=1'>View/Debug a Global Variable, List, or Object</A><br>
-		<br>
-		<A href='?src=\ref[src];modify_global=1'>Modify a Global Variable (may not be an object or list)</A><br>
-		<br>
-		<A href='?src=\ref[src];modify_world_var=1'>Modify a World Variable (may not be an object or list)</A><br>
-
+		<A href='?src=\ref[src];create_object=1'>Create Object</A> (<A href='?src=\ref[src];quick_create_object=1'>Quick</A>)<br><br>
+		<A href='?src=\ref[src];create_turf=1'>Create Turf</A><br><br>
+		<A href='?src=\ref[src];create_mob=1'>Create Mob</A><br><br>
+		<br><br>
+		<A href='?src=\ref[src];debug_global=1'>View/Debug a Global Variable, List, or Object</A><br><br>
+		<br><br>
+		<A href='?src=\ref[src];modify_global=1'>Modify a Global Variable (may not be an object or list)</A><br><br>
+		<br><br>
+		<A href='?src=\ref[src];modify_world_var=1'>Modify a World Variable (may not be an object or list)</A><br><br>
 		"}
+
+	dat = "<center><big>[dat]</big></center>"
 
 	usr << browse(dat, "window=admin2;size=400x500")
 	return
@@ -402,7 +406,7 @@ proc/admin_notice(var/message, var/rights)
 	if(confirm == "Cancel")
 		return
 	if(confirm == "Yes")
-		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>"
+		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by <b>[usr.client.holder.fakekey ? "Admin" : usr.key]</b>!</span>"
 		log_admin("[key_name(usr)] initiated a reboot.")
 		sleep(50)
 		world.Reboot()
@@ -576,8 +580,15 @@ proc/admin_notice(var/message, var/rights)
 		return //alert("Round end delayed", null, null, null, null, null)
 	round_progressing = !round_progressing
 	if (!round_progressing)
-		world << "<b>The game start has been delayed.</b>"
-		log_admin("[key_name(usr)] delayed the game.")
+		if ((input(usr, "Delay the round indefinitely or temporarily?") in list("Indefinitely", "Temporarily")) == "Temporarily")
+			ticker.pregame_timeleft += round(GAMETICKER_PREGAME_TIME/2)
+			ticker.pregame_timeleft = min(ticker.pregame_timeleft, GAMETICKER_PREGAME_TIME)
+			round_progressing = TRUE
+			world << "<b>The game start has been delayed by 90 seconds.</b>"
+			log_admin("[key_name(usr)] delayed the game by 90 seconds.")
+		else
+			world << "<b>The game start has been delayed.</b>"
+			log_admin("[key_name(usr)] delayed the game.")
 	else
 		world << "<b>The game will start soon.</b>"
 		log_admin("[key_name(usr)] removed the delay.")
@@ -628,7 +639,7 @@ proc/admin_notice(var/message, var/rights)
 	set name = "Unprison"
 	if (M.z == 6)
 		if (config.allow_admin_jump)
-			M.loc = spick(latejoin)
+			M.loc = pick(latejoin)
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", TRUE)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 		else

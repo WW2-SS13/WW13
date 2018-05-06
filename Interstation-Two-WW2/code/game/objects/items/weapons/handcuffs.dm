@@ -23,7 +23,7 @@
 	if(!user.IsAdvancedToolUser())
 		return
 
-	if ((CLUMSY in user.mutations) && sprob(50))
+	if ((CLUMSY in user.mutations) && prob(50))
 		user << "<span class='warning'>Uh ... how do those things work?!</span>"
 		place_handcuffs(user, user)
 		return

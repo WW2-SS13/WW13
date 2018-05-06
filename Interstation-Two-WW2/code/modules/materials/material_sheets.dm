@@ -15,8 +15,8 @@
 
 /obj/item/stack/material/New()
 	..()
-	pixel_x = srand(0,4)-4
-	pixel_y = srand(0,4)-4
+	pixel_x = rand(0,4)-4
+	pixel_y = rand(0,4)-4
 
 	if(!default_type)
 		default_type = DEFAULT_WALL_MATERIAL

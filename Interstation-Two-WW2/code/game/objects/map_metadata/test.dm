@@ -9,7 +9,6 @@
 		CIVILIAN,
 		ITALIAN)
 	respawn_delay = 0
-	ambience = list('sound/ambience/war.ogg')
 
 /obj/map_metadata/test/New()
 	MAP_MODE(MODE_WAR)

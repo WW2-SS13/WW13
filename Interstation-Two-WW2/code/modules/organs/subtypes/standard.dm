@@ -150,7 +150,7 @@
 	..(brute, burn, sharp, edge, used_weapon, forbidden_limbs)
 	if (!disfigured)
 		if (brute_dam > 40)
-			if (sprob(50))
+			if (prob(50))
 				disfigure("brute")
 		if (burn_dam > 40)
 			disfigure("burn")

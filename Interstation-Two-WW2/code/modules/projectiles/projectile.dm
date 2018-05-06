@@ -105,7 +105,7 @@
 //return TRUE if the projectile should be allowed to pass through after all, FALSE if not.
 /obj/item/projectile/proc/check_penetrate(var/atom/A)
 	if (istype(A, /turf/wall))
-		if (sprob(50))
+		if (prob(50))
 			return FALSE
 	return TRUE
 
@@ -123,8 +123,8 @@
 	//randomize clickpoint a bit based on dispersion
 	if(dispersion)
 		var/radius = round((dispersion*0.443)*world.icon_size*0.8) //0.443 = sqrt(pi)/4 = 2a, where a is the side length of a square that shares the same area as a circle with diameter = dispersion
-		p_x = between(0, p_x + srand(-radius, radius), world.icon_size)
-		p_y = between(0, p_y + srand(-radius, radius), world.icon_size)
+		p_x = between(0, p_x + rand(-radius, radius), world.icon_size)
+		p_y = between(0, p_y + rand(-radius, radius), world.icon_size)
 
 //called to launch a projectile from a gun
 /obj/item/projectile/proc/launch(atom/target, mob/user, obj/item/weapon/gun/launcher, var/target_zone, var/x_offset=0, var/y_offset=0)
@@ -139,6 +139,7 @@
 	firer = user
 	firer_original_dir = firer.dir
 	firedfrom = launcher
+
 	if (istype(firedfrom, /obj/item/weapon/gun/projectile/automatic/stationary))
 		if (prob(80))
 			def_zone = "chest"
@@ -178,6 +179,7 @@
 /obj/item/projectile/proc/launch_fragment(atom/target)
 
 	is_shrapnel = TRUE
+	name = "shrapnel"
 
 	var/turf/curloc = loc
 	var/turf/targloc = get_turf(target)
@@ -248,25 +250,35 @@
 
 	if (is_shrapnel)
 		var/hit_zone = "head"
-		if (sprob(25))
-			for (var/zone in organ_rel_size)
+
+		if (prob(30))
+			for (var/zone in shuffle(organ_rel_size))
 				if (prob(organ_rel_size[zone]))
 					hit_zone = zone
-		if (hit_zone == "head" && ishuman(target_mob))
+
+		if (ishuman(target_mob))
+
 			var/mob/living/carbon/human/H = target_mob
-			if (H.head && istype(H.head, /obj/item/clothing/head/helmet))
-				var/obj/item/clothing/head/helmet/helmet = H.head
-				if (helmet.block_check(src))
-					visible_message("<span class='warning'>\The [H]'s helmet deflects the shrapnel!</span>")
-					return
+			if (hit_zone == "head")
+				if (H.head && istype(H.head, /obj/item/clothing/head/helmet))
+					var/obj/item/clothing/head/helmet/helmet = H.head
+					if (helmet.block_check(src))
+						visible_message("<span class='warning'>[H]'s helmet deflects the shrapnel!</span>")
+						return
+			else if (hit_zone == "chest")
+				if (H.wear_suit && istype(H.wear_suit, /obj/item/clothing/suit/armor))
+					var/obj/item/clothing/suit/armor/armor = H.wear_suit
+					if (armor.block_check(src))
+						visible_message("<span class='warning'>[H]'s armor deflects the shrapnel!</span>")
+						return
+
+		target_mob.pre_bullet_act(src)
+		target_mob.bullet_act(src, hit_zone)
+		if(silenced)
+			target_mob << "<span class='danger'>You've been hit in the [parse_zone(hit_zone)] by the shrapnel!</span>"
 		else
-			target_mob.pre_bullet_act(src)
-			target_mob.bullet_act(src, hit_zone)
-			if(silenced)
-				target_mob << "<span class='danger'>You've been hit in the [parse_zone(hit_zone)] by the shrapnel!</span>"
-			else
-				visible_message("<span class='danger'>\The [target_mob] is hit by the shrapnel in the [parse_zone(hit_zone)]!</span>")
-			return
+			visible_message("<span class='danger'>\The [target_mob] is hit by the shrapnel in the [parse_zone(hit_zone)]!</span>")
+		return
 
 	if(!istype(target_mob))
 		return
@@ -287,7 +299,7 @@
 	var/obj/item/weapon/gun/projectile/mygun = firedfrom
 	if (mygun.redirection_chances.Find(def_zone))
 		for (var/nzone in mygun.redirection_chances[def_zone])
-			if (sprob(mygun.redirection_chances[def_zone][nzone]))
+			if (prob(mygun.redirection_chances[def_zone][nzone]))
 				def_zone = nzone
 				++redirections
 				break
@@ -323,10 +335,10 @@
 	// 50-60% chance of less severe damage: either 6, 12, or 18 less damage based on number of redirections
 	var/helmet_protection = 0
 	var/mob/living/carbon/human/H = target_mob
-	if (istype(H) && H.head && istype(H.head, /obj/item/clothing/head/helmet/tactical))
+	if (istype(H) && H.head && istype(H.head, /obj/item/clothing/head/helmet))
 		helmet_protection = 10
 
-	if (sprob((100 - mygun.headshot_kill_chance)+helmet_protection))
+	if (prob((100 - mygun.headshot_kill_chance)+helmet_protection))
 		switch (damage)
 			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
 				damage = DAMAGE_LOW - 6
@@ -357,7 +369,7 @@
 			if (DAMAGE_OH_GOD-5 to DAMAGE_OH_GOD+5)
 				variation = damage - DAMAGE_OH_GOD
 		if (variation > 0)
-			damage += srand(-variation, variation)
+			damage += rand(-variation, variation)
 	damage += extra_damage_change
 
 	if(hit_zone)
@@ -411,14 +423,33 @@
 	if (T.density)
 		passthrough = FALSE
 	else
+		// needs to be its own loop for reasons
 		for (var/atom/movable/AM in T.contents)
-			if (istype(AM, /obj/item/weapon/grenade))
-				if (AM == original)
-					var/obj/item/weapon/grenade/G = AM
-					G.fast_activate()
+			if (AM == original)
+				var/hitchance = 60 // a light, for example. This was 66%, but that was unusually accurate, thanks BYOND
+				if (isstructure(AM) && !istype(AM, /obj/structure/light))
+					hitchance = 100
+				else if (!isitem(AM) && isnonstructureobj(AM)) // a tank, for example.
+					hitchance = 100
+				else if (isitem(AM)) // any item
+					var/obj/item/I = AM
+					hitchance = 25 * I.w_class // a pistol would be 50%
+				if (prob(hitchance))
+					AM.bullet_act(src)
 					bumped = TRUE
+					loc = null
+					qdel(src)
 					return FALSE
-			else if (!untouchable.Find(AM))
+				else
+					AM.visible_message("<span class = 'warning'>\The [src] narrowly misses [AM]!</span>")
+					if (isitem(AM) || (AM.density && AM.anchored)) // since it was on the ground
+						bumped = TRUE
+						loc = null
+						qdel(src)
+						return FALSE
+				break
+		for (var/atom/movable/AM in T.contents)
+			if (!untouchable.Find(AM))
 				if (isliving(AM) && AM != firer)
 					var/mob/living/L = AM
 					if (!L.lying || T == get_turf(original) || execution)
@@ -448,7 +479,7 @@
 						//				log_debug("ignored [S] (1)")
 									else if (S.density)
 										if (!S.climbable)
-											passthrough_message = "<span class = 'warning'>The bullet penetrates through \the [S]!</span>"
+											passthrough_message = "<span class = 'warning'>The [name] penetrates through \the [S]!</span>"
 	//		else
 		//		log_debug("ignored [AM] (2)")
 
@@ -549,7 +580,7 @@
 	var/offset = 0
 	if(dispersion)
 		var/radius = round(dispersion*9, TRUE)
-		offset = srand(-radius, radius)
+		offset = rand(-radius, radius)
 
 	// plot the initial trajectory
 	trajectory = new()

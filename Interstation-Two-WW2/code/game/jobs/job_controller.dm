@@ -246,13 +246,13 @@ var/global/datum/controller/occupations/job_master
 		var/list/turfs = latejoin_turfs[spawn_location]
 
 		if(turfs && turfs.len > 0)
-			H.loc = spick(turfs)
+			H.loc = pick(turfs)
 
 			if (!locate(H.loc) in turfs)
 				var/tries = 0
 				while (tries <= 5 && !locate(H.loc) in turfs)
 					++tries
-					H.loc = spick(turfs)
+					H.loc = pick(turfs)
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
@@ -447,7 +447,7 @@ var/global/datum/controller/occupations/job_master
 			if(!job)	continue
 			var/list/candidates = FindOccupationCandidates(job, level)
 			if(!candidates.len)	continue
-			var/mob/new_player/candidate = spick(candidates)
+			var/mob/new_player/candidate = pick(candidates)
 			AssignRole(candidate, command_position)
 		return
 
@@ -466,6 +466,8 @@ var/global/datum/controller/occupations/job_master
 		if(job)
 
 			//Equip job items.
+
+			H.wipe_notes()
 
 			job.equip(H)
 
@@ -517,23 +519,23 @@ var/global/datum/controller/occupations/job_master
 												probs["wine"] = 0
 
 										tryagain
-										if (sprob(probs["beer"]))
+										if (prob(probs["beer"]))
 											H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(H), slot)
-										else if (sprob(probs["vodka"]))
+										else if (prob(probs["vodka"]))
 											H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(H), slot)
-										else if (sprob(probs["wine"]))
+										else if (prob(probs["wine"]))
 											H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/wine(H), slot)
 										else goto tryagain
 
 									if ("grenade")
 										switch (H.original_job.base_type_flag())
 											if (GERMAN, ITALIAN)
-												if (sprob(50))
+												if (prob(50))
 													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/stgnade(H), slot)
 												else
 													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/l2a2(H), slot)
 											if (SOVIET, PARTISAN)
-												if (sprob(50))
+												if (prob(50))
 													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/rgd(H), slot)
 												else
 													H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/f1(H), slot)
@@ -746,24 +748,24 @@ var/global/datum/controller/occupations/job_master
 				spawn (5)
 					for (var/i in 1 to soviet_officer_squad_info.len)
 						if (soviet_officer_squad_info[i])
-							H << "<br>[soviet_officer_squad_info[i]]"
+					//		H << "<br>[soviet_officer_squad_info[i]]"
 							H.add_memory(soviet_officer_squad_info[i])
 
 			else if (H.original_job.is_officer && H.original_job.base_type_flag() == GERMAN)
 				spawn (5)
 					for (var/i in 1 to german_officer_squad_info.len)
 						if (german_officer_squad_info[i])
-							H << "<br>[german_officer_squad_info[i]]"
+					//		H << "<br>[german_officer_squad_info[i]]"
 							H.add_memory(german_officer_squad_info[i])
 
 			if (H.original_job.is_officer)
 				if (H.original_job.base_type_flag() == GERMAN)
-					H << "The passcode for radios and phones is <b>[supply_codes[GERMAN]].</b>"
-					H.add_memory("The passcode for radios and phones is [supply_codes[GERMAN]]")
+			//		H << "The passcode for radios and phones is <b>[supply_codes[GERMAN]].</b>"
+					H.add_memory("The passcode for radios and phones is [supply_codes[GERMAN]].")
 
 				else if (H.original_job.base_type_flag() == SOVIET)
-					H << "The passcode for radios and phones is <b>[supply_codes[SOVIET]].</b>"
-					H.add_memory("The passcode for radios and phones is [supply_codes[SOVIET]]")
+			//		H << "The passcode for radios and phones is <b>[supply_codes[SOVIET]].</b>"
+					H.add_memory("The passcode for radios and phones is [supply_codes[SOVIET]].")
 
 			#ifdef SPAWNLOC_DEBUG
 			world << "[H] ([rank]) GOT TO job spawn location = [H.job_spawn_location]"
@@ -836,6 +838,7 @@ var/global/datum/controller/occupations/job_master
 					H.client.remove_gun_icons()
 
 			H.stopDumbDamage = FALSE
+			H.memory()
 
 			return H
 
@@ -851,7 +854,7 @@ var/global/datum/controller/occupations/job_master
 
 		if (job.uses_keys)
 			spawn_keys(H, rank, job)
-			H << "<i>Click on a door with your <b>keychain</b> to open it. It will select the right key for you. To put the keychain in your hand, <b>drag</b> it.</i>"
+	//		H << "<i>Click on a door with your <b>keychain</b> to open it. It will select the right key for you. To put the keychain in your hand, <b>drag</b> it.</i>"
 
 		return TRUE
 

@@ -1,0 +1,1 @@
+#define HEAL_DAMAGE_MULTIPLIER 2.0

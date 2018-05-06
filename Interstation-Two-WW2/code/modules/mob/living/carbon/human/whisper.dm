@@ -52,7 +52,7 @@
 			verb = speaking.whisper_verb
 			not_heard = "[verb] something"
 		else
-			var/adverb = spick("quietly", "softly")
+			var/adverb = pick("quietly", "softly")
 			verb = "[speaking.speech_verb] [adverb]"
 			not_heard = "[speaking.speech_verb] something [adverb]"
 	else
@@ -67,7 +67,7 @@
 		if(verb == "yells loudly")
 			verb = "slurs emphatically"
 		else
-			var/adverb = spick("quietly", "softly")
+			var/adverb = pick("quietly", "softly")
 			verb = "[verb] [adverb]"
 
 		speech_problem_flag = handle_r[3]
@@ -92,7 +92,7 @@
 			for(var/i = TRUE, i <= temp_message.len, i++)
 				pick_list += i
 			for(var/i=1, i <= abs(temp_message.len/3), i++)
-				var/H = spick(pick_list)
+				var/H = pick(pick_list)
 				if(findtext(temp_message[H], "*") || findtext(temp_message[H], ";") || findtext(temp_message[H], ":")) continue
 				temp_message[H] = ninjaspeak(temp_message[H])
 				pick_list -= H

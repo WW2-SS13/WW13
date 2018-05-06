@@ -305,7 +305,7 @@ Parts of code courtesy of Super3222
 		if(client.pixel_x || client.pixel_y) //Cancel currently scoped weapons
 			for(var/datum/action/toggle_scope/T in actions)
 				if(T.scope.zoomed && m_intent=="run")
-					shake_camera(src, 2, srand(2,3))
+					shake_camera(src, 2, rand(2,3))
 
 	for (var/obj/item/weapon/gun/projectile/automatic/stationary/M in range(2, src))
 		if (M.last_user == src && loc != get_turf(M))
@@ -332,8 +332,8 @@ Parts of code courtesy of Super3222
 			success = TRUE
 
 	if (success && client)
-		client.pixel_x = FALSE
-		client.pixel_y = FALSE
+		client.pixel_x = 0
+		client.pixel_y = 0
 		client.view = world.view
 
 /mob/living/carbon/human/proc/using_zoom()

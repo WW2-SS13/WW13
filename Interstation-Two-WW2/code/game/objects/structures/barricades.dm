@@ -97,13 +97,13 @@
 
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 	if (istype(mover, /obj/item/projectile))
-		return sprob(15)
+		return prob(15)
 	else
 		return FALSE
 
 /obj/structure/barricade/bullet_act(var/obj/item/projectile/proj)
 	health -= proj.damage
-	visible_message("<span class='warning'>\The [src] is hit by the bullet!</span>")
+	visible_message("<span class='warning'>\The [src] is hit by the [proj.name]!</span>")
 	try_destroy()
 
 // steel barricades

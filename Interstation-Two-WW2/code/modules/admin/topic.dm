@@ -241,9 +241,10 @@
 			if("pillarman")		New = M.change_mob_type( /mob/living/carbon/human/pillarman , null, null, delmob, href_list["species"])
 			if("vampire")			New = M.change_mob_type( /mob/living/carbon/human/vampire , null, null, delmob, href_list["species"])
 		if (New)
+			New.invisibility = 100
 			if (New.type == /mob/living/carbon/human)
 				var/mob/living/carbon/human/H = New
-				H.invisibility = 101
+				var/oloc_H = H.loc
 				if ((input(usr_client, "Assign [H] a new job?") in list("Yes", "No")) == "Yes")
 
 					var/list/job_master_occupation_names = list()
@@ -252,13 +253,12 @@
 							if (job2mobtype(J.title) == /mob/living/carbon/human)
 								job_master_occupation_names[J.title] = J
 
-					var/oloc_H = H.loc
-
 					var/datum/job/J = input(usr_client, "Which job?") in (list("Cancel") | job_master_occupation_names)
 
 					if (J != "Cancel")
 						job_master.EquipRank(H, J)
 						H.original_job = job_master_occupation_names[J]
+						H.invisibility = 100
 						var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
 						message_admins(msg)
 						log_admin(msg)
@@ -267,7 +267,6 @@
 							var/send2spawn = input(usr_client, "Send [H] to their spawnpoint?") in list("No", "Yes")
 							if (send2spawn == "No")
 								H.loc = oloc_H
-							H.invisibility = 0
 
 							var/client/client = (H.client ? H.client : orig_client)
 							if (client.mob && istype(client.mob, /mob/observer/ghost))
@@ -288,6 +287,7 @@
 									if ("Italian")
 										H.name = client.prefs.italian_name
 										H.real_name = client.prefs.italian_name
+			New.invisibility = 0
 
 	else if(href_list["warn"])
 		usr.client.warn(href_list["warn"])

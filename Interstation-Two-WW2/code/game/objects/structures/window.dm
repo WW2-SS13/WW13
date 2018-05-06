@@ -119,7 +119,7 @@
 			shatter(0)
 			return
 		if(3.0)
-			if(sprob(50))
+			if(prob(50))
 				shatter(0)
 				return
 
@@ -168,7 +168,7 @@
 /obj/structure/window/attack_hand(mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(HULK in user.mutations)
-		user.say(spick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
+		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
 		user.do_attack_animation(src)
 		shatter()
@@ -221,7 +221,7 @@
 					hit(10)
 				if(2)
 					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
-					if (sprob(50))
+					if (prob(50))
 						M.Weaken(1)
 					M.apply_damage(10)
 					hit(25)
@@ -408,7 +408,7 @@
 	return
 
 /obj/structure/window/fire_act(temperature)
-	if (sprob((temperature/500) * 70))
+	if (prob((temperature/500) * 70))
 		shatter()
 
 /obj/structure/classic_window_frame
@@ -420,7 +420,7 @@
 /obj/structure/classic_window_frame/Crossed(mover)
 	if (isliving(mover))
 		visible_message("<span class = 'warning'>[mover] starts climbing through the window frame.</span>")
-		if (do_after(mover, srand(25,35), src))
+		if (do_after(mover, rand(25,35), src))
 			visible_message("<span class = 'warning'>[mover] climbs through the window frame.</span>")
 			return ..(mover)
 		return FALSE
@@ -446,8 +446,8 @@
 	return TRUE
 
 /obj/structure/window/classic/take_damage(damage)
-	if (damage > 12 || (damage > 5 && sprob(damage * 5)))
-		if (!reinf || (reinf && sprob(20)))
+	if (damage > 12 || (damage > 5 && prob(damage * 5)))
+		if (!reinf || (reinf && prob(20)))
 			shatter()
 	else return
 

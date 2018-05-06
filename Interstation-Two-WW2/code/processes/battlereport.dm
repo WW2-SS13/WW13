@@ -48,5 +48,5 @@ var/process/battlereport/battlereport
 		german_deaths_this_cycle = 0
 		soviet_deaths_this_cycle = 0
 
-	if (sprob(3))
-		current_extra_cost_for_air_raid = srand(-20,20)
+	if (prob(3))
+		current_extra_cost_for_air_raid = rand(-20,20)

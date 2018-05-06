@@ -20,12 +20,13 @@ var/GRACE_PERIOD_LENGTH = 7
 	// after the game mode has been announced.
 	spawn (5)
 		update_lighting(announce = FALSE)
-		world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(time_of_day)]</b>, and the season is <b>[get_season()]</b>.</span></font>"
+		if (!map || !map.meme)
+			world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(time_of_day)]</b>, and the season is <b>[get_season()]</b>.</span></font>"
 
 	// spawn mice so soviets have something to eat after they start starving
 
 	var/mice_spawned = FALSE
-	var/max_mice = srand(40,50)
+	var/max_mice = rand(40,50)
 
 	for (var/area/prishtina/soviet/bunker/area in world)
 		for (var/turf/t in area.contents)
@@ -33,7 +34,7 @@ var/GRACE_PERIOD_LENGTH = 7
 				continue
 			if (istype(t, /turf/open))
 				continue
-			if (sprob(1))
+			if (prob(1))
 				new/mob/living/simple_animal/mouse/gray(t)
 				++mice_spawned
 				if (mice_spawned > max_mice)
@@ -49,6 +50,9 @@ var/GRACE_PERIOD_LENGTH = 7
 // this is roundstart because we need to wait for objs to be created
 /hook/roundstart/proc/nature()
 
+	if (map.meme)
+		return TRUE
+
 	var/nature_chance = 100
 
 	if (season == "WINTER")
@@ -62,13 +66,16 @@ var/GRACE_PERIOD_LENGTH = 7
 		if (!G || G.z > 1)
 			continue
 
-		if (sprob(nature_chance))
+		if (prob(nature_chance))
 			G.plant()
 
-	do_seasonal_stuff()
+	spawn (0)
+		do_seasonal_stuff()
 
 	if (!WW2_train_check())
 		callHook("train_move")
+
+	return TRUE
 
 // freaking seasons dude
 /proc/do_seasonal_stuff()
@@ -82,7 +89,7 @@ var/GRACE_PERIOD_LENGTH = 7
 		for (var/turf/floor/plating/beach/water/W in turfs)
 			if (!istype(W, /turf/floor/plating/beach/water/sewage))
 				new /turf/floor/plating/beach/water/ice (W)
-		if (sprob(50))
+		if (prob(50))
 			use_snow = TRUE
 
 	if (!use_snow)
@@ -175,6 +182,7 @@ var/GRACE_PERIOD_LENGTH = 7
 	if (istype(map, /obj/map_metadata/forest))
 		spawn (600)
 			show_global_battle_report(null)
+	return TRUE
 
 var/mission_announced = FALSE
 var/train_arrived = FALSE
@@ -204,3 +212,5 @@ var/train_arrived = FALSE
 		show_report_after = 600
 	spawn (show_report_after)
 		show_global_battle_report(null)
+
+	return TRUE

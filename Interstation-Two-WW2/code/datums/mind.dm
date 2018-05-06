@@ -38,6 +38,8 @@
 
 	var/memory
 
+	var/list/notes = list()
+
 	var/assigned_role
 	var/special_role
 
@@ -81,12 +83,39 @@
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
 
+/datum/mind/proc/add_note(section, note)
+	if (!notes.Find(section))
+		notes[section] = list()
+	notes[section] += note
+
+/datum/mind/proc/wipe_notes()
+	for (var/title in notes)
+		qdel_list(notes[title])
+		notes -= title
+
 /datum/mind/proc/store_memory(new_text)
 	memory += "[new_text]<BR>"
 
 /datum/mind/proc/show_memory(mob/recipient)
-	var/output = "<b>[current.real_name]'s Memory</b><HR>"
-	output += memory
+	var/output = "<b>You are <span style = 'font-size: 1.25em; color: #E1E1FF'>[current.real_name]</span></b><hr>"
+	for (var/title in notes)
+		output += "<br><br>"
+		output += "<b><span style = 'font-size: 1.1em; color: #E1E1FF'>[title]</span></b>"
+		output += "<br><br>"
+		var/list/notelist = notes[title]
+		for (var/v in 1 to notelist.len)
+			output += "<i>[notelist[v]]</i>"
+			if (v != notelist.len)
+				output += "<br>"
+		output += "<br>"
+
+	output += "<br><br>"
+	output += "<b><span style = 'font-size: 1.1em; color: #E1E1FF'>Memories</span></b>"
+	output += "<br><br>"
+	if (memory)
+		output += "<i>[memory]</i>"
+	else
+		output += "<i>No memories stored.</i>"
 /*
 	if(objectives.len>0)
 		output += "<HR><b>Objectives:</b>"
@@ -96,7 +125,22 @@
 			output += "<b>Objective #[obj_count]</b>: [objective.explanation_text]"
 			obj_count++
 */
-	recipient << browse(output,"window=memory")
+	var/memory_stylized = {"
+	<br>
+	<html>
+	<head>
+	<style>
+	[common_browser_style]
+	</style>
+	</head>
+	<body><center>
+	<big>PLACEHOLDER</big>
+	<br><br><br>
+	<i>Use the 'Notes' verb in the 'IC' tab to re-open this window.</i>
+	</body></html>
+	"}
+
+	recipient << browse(replacetext(memory_stylized, "PLACEHOLDER", output),"window=memory;size=625x650")
 
 /datum/mind/proc/edit_memory()
 	if(!ticker)

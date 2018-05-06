@@ -44,7 +44,7 @@
 	add_fingerprint(user)
 	if(on && user.targeted_organ == "eyes")
 
-		if((CLUMSY in user.mutations) && sprob(50))	//too dumb to use flashlight properly
+		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
@@ -143,15 +143,19 @@
 	on_state = "flare-on"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.
-	var/fuel = FALSE
+	var/fuel = 0
 	var/on_damage = 7
 	var/produce_heat = 1500
 	turn_on_sound = 'sound/effects/Custom_flare.ogg'
 
 /obj/item/flashlight/flare/nighttime
+/obj/item/flashlight/flare/nighttime/New()
+	..()
+	fuel = INFINITY
+	turn_on()
 
 /obj/item/flashlight/flare/New()
-	fuel = srand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
+	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	..()
 
 /obj/item/flashlight/flare/process()
@@ -201,9 +205,9 @@
 	var/fuel = FALSE
 
 /obj/item/flashlight/glowstick/New()
-	pixel_x = srand(-12,12)
-	pixel_y = srand(-12,12)
-	fuel = srand(1600, 2000)
+	pixel_x = rand(-12,12)
+	pixel_y = rand(-12,12)
+	fuel = rand(1600, 2000)
 	light_color = color
 	..()
 
@@ -275,7 +279,7 @@
 	color = "#FF00FF"
 
 /obj/item/flashlight/glowstick/random/New()
-	color = rgb(srand(50,255),srand(50,255),srand(50,255))
+	color = rgb(rand(50,255),rand(50,255),rand(50,255))
 	..()
 
 /obj/item/flashlight/slime

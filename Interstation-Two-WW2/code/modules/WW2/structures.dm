@@ -12,10 +12,10 @@
 
 /obj/structure/anti_tank/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (istype(mover, /obj/item/projectile))
-		if (sprob(20))
+		if (prob(20))
 			return TRUE
 		else
-			visible_message("<span class = 'warning'>The bullet riochetes off of the anti tank structure!</span>")
+			visible_message("<span class = 'warning'>The [mover.name] riochetes off of the anti tank structure!</span>")
 			return FALSE
 	return FALSE
 
@@ -25,7 +25,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(sprob(25))
+			if(prob(25))
 				qdel(src)
 				return
 		if(3.0)
@@ -45,7 +45,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if(sprob(66))
+			if(prob(66))
 				qdel(src)
 				return
 		if(3.0)
@@ -85,7 +85,7 @@
 /obj/structure/noose/bullet_act(var/obj/item/projectile/P)
 	if (hanging)
 		hanging.bullet_act(P)
-		visible_message("<span class = 'danger'>[hanging] is hit by the bullet!</span>")
+		visible_message("<span class = 'danger'>[hanging] is hit by the [P.name]!</span>")
 	else
 		..()
 
@@ -114,7 +114,7 @@
 
 		if (hanging.stat != DEAD)
 			hanging.adjustOxyLoss(5)
-			if (sprob(5))
+			if (prob(5))
 				visible_message("<span class = 'danger'>[hanging]'s neck snaps.</span>")
 				playsound(loc, 'sound/effects/gore/bullethit3.ogg')
 				hanging.death()

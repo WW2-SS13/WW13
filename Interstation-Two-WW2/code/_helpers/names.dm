@@ -44,24 +44,24 @@ var/syndicate_name = null
 	var/name = ""
 
 	// Prefix
-	name += spick("Clandestine", "Prima", "Blue", "Zero-G", "Max", "Blasto", "Waffle", "North", "Omni", "Newton", "Cyber", "Bonk", "Gene", "Gib")
+	name += pick("Clandestine", "Prima", "Blue", "Zero-G", "Max", "Blasto", "Waffle", "North", "Omni", "Newton", "Cyber", "Bonk", "Gene", "Gib")
 
 	// Suffix
-	if (sprob(80))
+	if (prob(80))
 		name += " "
 
 		// Full
-		if (sprob(60))
-			name += spick("Syndicate", "Consortium", "Collective", "Corporation", "Group", "Holdings", "Biotech", "Industries", "Systems", "Products", "Chemicals", "Enterprises", "Family", "Creations", "International", "Intergalactic", "Interplanetary", "Foundation", "Positronics", "Hive")
+		if (prob(60))
+			name += pick("Syndicate", "Consortium", "Collective", "Corporation", "Group", "Holdings", "Biotech", "Industries", "Systems", "Products", "Chemicals", "Enterprises", "Family", "Creations", "International", "Intergalactic", "Interplanetary", "Foundation", "Positronics", "Hive")
 		// Broken
 		else
-			name += spick("Syndi", "Corp", "Bio", "System", "Prod", "Chem", "Inter", "Hive")
-			name += spick("", "-")
-			name += spick("Tech", "Sun", "Co", "Tek", "X", "Inc", "Code")
+			name += pick("Syndi", "Corp", "Bio", "System", "Prod", "Chem", "Inter", "Hive")
+			name += pick("", "-")
+			name += pick("Tech", "Sun", "Co", "Tek", "X", "Inc", "Code")
 	// Small
 	else
-		name += spick("-", "*", "")
-		name += spick("Tech", "Sun", "Co", "Tek", "X", "Inc", "Gen", "Star", "Dyne", "Code", "Hive")
+		name += pick("-", "*", "")
+		name += pick("Tech", "Sun", "Co", "Tek", "X", "Inc", "Gen", "Star", "Dyne", "Code", "Hive")
 
 	syndicate_name = name
 	return name
@@ -88,7 +88,7 @@ var/syndicate_code_response//Code response for traitors.
 /proc/generate_code_phrase()//Proc is used for phrase and response in master_controller.dm
 
 	var/code_phrase = ""//What is returned when the proc finishes.
-	var/words = spick(//How many words there will be. Minimum of two. 2, 4 and 5 have a lesser chance of being selected. 3 is the most likely.
+	var/words = pick(//How many words there will be. Minimum of two. 2, 4 and 5 have a lesser chance of being selected. 3 is the most likely.
 		50; 2,
 		200; 3,
 		50; 4,
@@ -109,38 +109,38 @@ var/syndicate_code_response//Code response for traitors.
 	for(words,words>0,words--)//Randomly picks from one of the choices below.
 
 		if(words==1&&(1 in safety)&&(2 in safety))//If there is only one word remaining and choice TRUE or 2 have not been selected.
-			safety = list(spick(1,2))//Select choice TRUE or 2.
+			safety = list(pick(1,2))//Select choice TRUE or 2.
 		else if(words==1&&maxwords==2)//Else if there is only one word remaining (and there were two originally), and TRUE or 2 were chosen,
 			safety = list(3)//Default to list 3
 
-		switch(spick(safety))//Chance based on the safety list.
+		switch(pick(safety))//Chance based on the safety list.
 			if(1)//1 and 2 can only be selected once each to prevent more than two specific names/places/etc.
-				switch(srand(1,2))//Mainly to add more options later.
+				switch(rand(1,2))//Mainly to add more options later.
 					if(1)
-						if(names.len&&sprob(70))
-							code_phrase += spick(names)
+						if(names.len&&prob(70))
+							code_phrase += pick(names)
 						else
-							code_phrase += spick(spick(first_names_male,first_names_female))
+							code_phrase += pick(pick(first_names_male,first_names_female))
 							code_phrase += " "
-							code_phrase += spick(last_names)
+							code_phrase += pick(last_names)
 					if(2)
-						code_phrase += spick(joblist)//Returns a job.
+						code_phrase += pick(joblist)//Returns a job.
 				safety -= 1
 			if(2)
-				switch(srand(1,2))//Places or things.
+				switch(rand(1,2))//Places or things.
 					if(1)
-						code_phrase += spick(drinks)
+						code_phrase += pick(drinks)
 					if(2)
-						code_phrase += spick(locations)
+						code_phrase += pick(locations)
 				safety -= 2
 			if(3)
-				switch(srand(1,3))//Nouns, adjectives, verbs. Can be selected more than once.
+				switch(rand(1,3))//Nouns, adjectives, verbs. Can be selected more than once.
 					if(1)
-						code_phrase += spick(nouns)
+						code_phrase += pick(nouns)
 					if(2)
-						code_phrase += spick(adjectives)
+						code_phrase += pick(adjectives)
 					if(3)
-						code_phrase += spick(verbs)
+						code_phrase += pick(verbs)
 		if(words==1)
 			code_phrase += "."
 		else

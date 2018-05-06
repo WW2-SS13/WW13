@@ -104,9 +104,9 @@
 				else if (is_soviet_contested_zone(get_area(H)))
 					++germans_in_russia
 
-	return list ("alive_2" = alive_soviets, "alive_1" = alive_germans,
-		"2_in_2" = soviets_in_russia, "2_in_1" = soviets_in_germany,
-			"1_in_1" = germans_in_germany, "1_in_2" = germans_in_russia)
+	return list ("alive_soviets" = alive_soviets, "alive_germans" = alive_germans,
+		"soviets_in_russia" = soviets_in_russia, "soviets_in_germany" = soviets_in_germany,
+			"germans_in_germany" = germans_in_germany, "germans_in_russia" = germans_in_russia)
 
 /proc/has_occupied_base(var/side)
 	var/stats = get_stats()

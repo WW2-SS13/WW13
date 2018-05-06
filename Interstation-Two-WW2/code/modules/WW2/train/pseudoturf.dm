@@ -232,7 +232,7 @@
 			m.crush()
 
 /obj/train_connector/ex_act(severity)
-	if (sprob(round(70 * (1/severity))))
+	if (prob(round(70 * (1/severity))))
 		qdel(src)
 	else
 		return

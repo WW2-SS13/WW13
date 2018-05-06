@@ -7,6 +7,10 @@
 	var/tmp/list/datum/lighting_corner/corners[4]
 	var/tmp/has_opaque_atom = FALSE // Not to be confused with opacity, this will be TRUE if there's any opaque atom on the tile.
 
+	// misc
+	var/window_coeff = 0.0
+	var/next_calculate_window_coeff = -1
+
 /turf/New()
 	. = ..()
 
@@ -162,3 +166,39 @@
 		return null // Since this proc gets used in a for loop, null won't be looped though.
 
 	return corners
+
+/turf/proc/calculate_window_coeff()
+	. = 0
+
+	var/area/src_area = get_area(src)
+
+	if (src_area.location == AREA_OUTSIDE)
+		window_coeff = 1.0
+		return window_coeff
+
+	// objects that let in light
+	for (var/turf/T in view(world.view*3, src))
+		if (!T.density)
+			var/area/T_area = get_area(T)
+			if (T_area.location == AREA_OUTSIDE)
+				. += (1/abs_dist_no_rounding(src, T))
+
+	// dividing '.' by 7 returns a more reasonable number - Kachnov
+	window_coeff = max(min(1.0, (.)/7), 0.0)
+	return window_coeff
+
+// don't put this proc anywhere other than where it already is, because it checks for the lack of lighting overlays - Kachnov
+/turf/proc/supports_lighting_overlays()
+	. = TRUE
+	if (locate(/atom/movable/lighting_overlay) in src)
+		. = FALSE
+	if (locate(/obj/train_track) in src)
+		. = FALSE
+	if (map && map.zlevels_without_lighting.Find(z))
+		. = FALSE
+
+	var/area/src_area = get_area(src)
+	if (!src_area.dynamic_lighting)
+		. = FALSE
+
+	return .

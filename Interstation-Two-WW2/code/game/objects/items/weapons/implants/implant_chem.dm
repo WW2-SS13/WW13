@@ -54,10 +54,10 @@
 
 	switch(severity)
 		if(1)
-			if(sprob(60))
+			if(prob(60))
 				activate(20)
 		if(2)
-			if(sprob(30))
+			if(prob(30))
 				activate(5)
 
 	spawn(20)

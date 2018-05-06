@@ -11,7 +11,7 @@
 	var/pressure_1 = 100
 	status = TRUE
 	nothrow = TRUE
-	var/fueltank = TRUE
+	var/fueltank = 1.00
 	var/obj/item/weapon/storage/backpack/flammenwerfer/backpack = null
 	var/rwidth = 7
 	var/rheight = 1
@@ -92,7 +92,7 @@
 					continue
 
 		// higher temperature = less missed turfs
-		if (T != get_step(my_turf, my_mob.dir) && sprob((get_dist(my_turf, T)+10)/get_temperature_coeff()))
+		if (T != get_step(my_turf, my_mob.dir) && prob((get_dist(my_turf, T)+10)/get_temperature_coeff()))
 			continue
 
 		if(T.density)
@@ -228,16 +228,16 @@
 		if (10 to INFINITY)
 			dist_coeff = 1.00
 
-	var/time_limit = spick(20,30,40)
+	var/time_limit = pick(20,30,40)
 
 	var/extra_temp = 0
 
 	for (var/obj/fire/F in get_turf(src))
-		extra_temp += ((F.temperature / 100) * srand(15,25))
+		extra_temp += ((F.temperature / 100) * rand(15,25))
 		time_limit += 20
 		qdel(F)
 
-	var/temperature = (srand(500,600) * throw_coeff * dist_coeff) + extra_temp
+	var/temperature = (rand(500,600) * throw_coeff * dist_coeff) + extra_temp
 //	log_debug("1: [temperature];[throw_coeff];[dist_coeff];[extra_temp]")
 	var/obj/fire/F = target.create_fire(5, temperature, FALSE)
 	F.time_limit = time_limit

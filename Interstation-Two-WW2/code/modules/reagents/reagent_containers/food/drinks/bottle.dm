@@ -71,7 +71,7 @@
 	var/idx = max(distance + 1, 1) //since list indices start at 1
 	if(idx > chance_table.len)
 		return 0
-	return sprob(chance_table[idx])
+	return prob(chance_table[idx])
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/throw_at(atom/target, range, speed, thrower)
 	..(target, range, speed, thrower)
@@ -117,18 +117,18 @@
 
 		mainloop:
 			for (var/turf/T in range(get_turf(src), 1))
-				if ((sprob(90) || T == get_turf(src)) && !T.density)
+				if ((prob(90) || T == get_turf(src)) && !T.density)
 					for (var/obj/structure/S in T)
 						if (S.density && !S.low)
 							continue mainloop
 					var/obj/fire/F = T.create_fire(temp = max(375, ceil(alcohol_power/5)))
-					F.time_limit = spick(50, 60, 70)
+					F.time_limit = pick(50, 60, 70)
 					for (var/mob/living/L in T)
 						if (L.on_fire)
 							continue
 						L.fire_stacks += ceil(alcohol_power/1000)
 						L.IgniteMob()
-						L.adjustFireLoss(srand(alcohol_power*0.004,alcohol_power*0.008))
+						L.adjustFireLoss(rand(alcohol_power*0.004,alcohol_power*0.008))
 						if (ishuman(L))
 							L.emote("scream")
 
@@ -139,13 +139,13 @@
 
 		//Creates a shattering noise and replaces the bottle with a broken_bottle
 		var/obj/item/weapon/broken_bottle/B = new /obj/item/weapon/broken_bottle(newloc)
-		if(sprob(33))
+		if(prob(33))
 			new/obj/item/weapon/material/shard(newloc) // Create a glass shard at the target's location!
 
 		B.icon_state = icon_state
 
 		var/icon/I = new('icons/obj/drinks.dmi', icon_state)
-		I.Blend(B.broken_outline, ICON_OVERLAY, srand(5), TRUE)
+		I.Blend(B.broken_outline, ICON_OVERLAY, rand(5), TRUE)
 		I.SwapColor(rgb(255, FALSE, 220, 255), rgb(0, FALSE, FALSE, FALSE))
 		B.icon = I
 

@@ -124,11 +124,14 @@
 
 	// Change the way they should download resources.
 	if(config.resource_urls)
-		preload_rsc = spick(config.resource_urls)
+		preload_rsc = pick(config.resource_urls)
 	else preload_rsc = TRUE // If config.resource_urls is not set, preload like normal.
 
 	clients += src
 	directory[ckey] = src
+
+	if (client_process && client_process.logged_next_normal_respawns[ckey])
+		next_normal_respawn = client_process.logged_next_normal_respawns[ckey]
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
@@ -271,6 +274,9 @@
 	//DISCONNECT//
 	//////////////
 /client/Del()
+
+	if (client_process)
+		client_process.logged_next_normal_respawns[ckey] = next_normal_respawn
 
 	if(holder)
 		holder.owner = null

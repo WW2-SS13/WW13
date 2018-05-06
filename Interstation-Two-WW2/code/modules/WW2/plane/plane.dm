@@ -161,7 +161,7 @@
 	damage += dam
 
 	update_damage_status()
-	if (sprob(critical_damage_chance()))
+	if (prob(critical_damage_chance()))
 		critical_damage()
 	plane_message("<span class = 'danger'>The plane is hit by [P]!</span>")*/
 /*
@@ -182,12 +182,12 @@
 			severity = 3.0
 
 	// very high damage
-	var/addamage = (srand(90,110) * severity)
+	var/addamage = (rand(90,110) * severity)
 	addamage = min(addamage, max_damage/10)
 
 	damage += addamage
 
-	if (sprob(critical_damage_chance()))
+	if (prob(critical_damage_chance()))
 		critical_damage()
 
 	return TRUE
@@ -219,23 +219,23 @@
 
 	took_critical_damage = TRUE
 	plane_message("<span class = 'danger'><big>[src] starts to shake and fall apart!</big></span>")
-	spawn (srand(100,200))
+	spawn (rand(100,200))
 		plane_message("<span class = 'danger'>You can smell burning from inside [src].</danger>")
 		for (var/mob/living/m in src)
 			m.on_fire = TRUE
-			m.fire_stacks += srand(5,15)
+			m.fire_stacks += rand(5,15)
 			m << "<span class = 'danger'><big>You're on fire.</big></danger>"
-			if (sprob(30))
+			if (prob(30))
 				spawn (25) // smell needs to travel or something
 					plane_message("<span class = 'danger'>You can smell burning flesh from inside [src].</danger>")
 
-	spawn (srand(250, 350))
-		plane_message("<span class = 'danger'>[src] is falling apart[spick("!", "!!")]</span>")
+	spawn (rand(250, 350))
+		plane_message("<span class = 'danger'>[src] is falling apart[pick("!", "!!")]</span>")
 		for (var/v in TRUE to 10)
 			spawn (v * 5)
 				for (var/mob/living/m in src)
-					m.apply_damage(srand(1,2), BRUTE)
-	spawn (srand(420, 600))
+					m.apply_damage(rand(1,2), BRUTE)
+	spawn (rand(420, 600))
 		plane_message("<span class = 'danger'><big>[src] explodes.</big></span>")
 		for (var/mob/m in src)
 			m.crush()

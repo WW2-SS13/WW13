@@ -44,22 +44,22 @@
 			if(M.job == "Monochurch Preacher")
 				if (prob (49))
 					M.show_message("<span class='game'><i>You hear muffled speech... but nothing is there...</i></span>", 2)
-					if(sprob(20))
-						playsound(loc, spick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, TRUE)
+					if(prob(20))
+						playsound(loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, TRUE)
 				else
 					M.show_message("<span class='game'><i>You hear muffled speech... you can almost make out some words...</i></span>", 2)
 //				M.show_message("<span class='game'><i>[stutter(message)]</i></span>", 2)
-					if(sprob(30))
-						playsound(loc, spick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, TRUE)
+					if(prob(30))
+						playsound(loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, TRUE)
 			else
-				if (sprob(50))
+				if (prob(50))
 					return
 				else if (prob (95))
 					M.show_message("<span class='game'><i>You hear muffled speech... but nothing is there...</i></span>", 2)
-					if(sprob(20))
-						playsound(loc, spick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, TRUE)
+					if(prob(20))
+						playsound(loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, TRUE)
 				else
 					M.show_message("<span class='game'><i>You hear muffled speech... you can almost make out some words...</i></span>", 2)
 //				M.show_message("<span class='game'><i>[stutter(message)]</i></span>", 2)
-					playsound(loc, spick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, TRUE)
+					playsound(loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, TRUE)
 */

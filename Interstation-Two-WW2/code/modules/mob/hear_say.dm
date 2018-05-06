@@ -24,7 +24,7 @@
 		if(!say_understands(speaker,language))
 			if(istype(speaker,/mob/living/simple_animal))
 				var/mob/living/simple_animal/S = speaker
-				message = spick(S.speak)
+				message = pick(S.speak)
 			else
 				if(language)
 					message = language.scramble(message, src)
@@ -60,9 +60,9 @@
 				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
 	else
 		if(language)
-			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, verb)]</span>")
+			on_hear_say("<span class='name'>[speaker_name] <span class = 'small_message'>([language.name])</span> </span>[alt_name] [track][language.format_message(message, verb)]")
 		else
-			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
+			on_hear_say("<span class='name'>[speaker_name]</span>[alt_name] [track][verb], \"[message]\"")
 		if (speech_sound && (get_dist(speaker, src) <= world.view && z == speaker.z))
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
 			playsound_local(source, speech_sound, sound_vol, TRUE)
@@ -72,20 +72,17 @@
 		if (!H.languages.Find(language))
 			var/lname = capitalize(language.name)
 			H.partial_languages[lname] += 1
-			if (H.partial_languages[lname] > srand(100,150))
+			if (H.partial_languages[lname] > rand(100,150))
 				H.add_language(language)
-				H << "<span class = 'info'>You've learned how to speak [language.name] from hearing it so much.</span>"
+				H << "<span class = 'info'>You've learned how to speak <b>[language.name]</b> from hearing it so much.</span>"
 
 /mob/proc/on_hear_say(var/message)
 	src << message
 
 /mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/mob/speaker = null, var/obj/item/radio/source, var/hard_to_hear = FALSE)
 
-	if(!client)
+	if(!client || !message)
 		return
-
-	if (speaker && language && speaker.languages.len && language != speaker.languages[1])
-		verb = "[verb] in <span class = 'info'>[language.name]</span>"
 
 	message = capitalize(message)
 
@@ -108,7 +105,7 @@
 			if(istype(speaker,/mob/living/simple_animal))
 				var/mob/living/simple_animal/S = speaker
 				if(S.speak && S.speak.len)
-					message = spick(S.speak)
+					message = pick(S.speak)
 				else
 					return
 			else
@@ -153,7 +150,7 @@
 	message = "<span class = [source.span_class()]>[verb],</b> \"[message]\"</span>"
 
 	if(sdisabilities & DEAF || ear_deaf)
-		if(sprob(20))
+		if(prob(20))
 			src << "<span class='warning'>You feel your radio vibrate but can hear nothing from it!</span>"
 	else
 		var/fontsize = 2
@@ -161,9 +158,9 @@
 		if (speaker.original_job.is_officer || istype(speaker.original_job, /datum/job/german/trainsystem))
 			fontsize = 3
 
-		var/full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] [message]</span></font>"
+		var/full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] <span class = 'small_message'>([language.name])</span> [message]</span></font>"
 		if (track)
-			full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] ([track]) [message]</span></font>"
+			full_message = "<font size = [fontsize]><b><span class = [source.span_class()]>[source.bracketed_name()] [speaker_name] ([track]) <span class = 'small_message'>([language.name])</span> [message]</span></font>"
 		on_hear_radio(source, full_message)
 
 /proc/say_timestamp()
@@ -193,10 +190,10 @@
 
 /mob/proc/hear_sleep(var/message)
 	var/heard = ""
-	if(sprob(15))
+	if(prob(15))
 		var/list/punctuation = list(",", "!", ".", ";", "?")
 		var/list/messages = splittext(message, " ")
-		var/R = srand(1, messages.len)
+		var/R = rand(1, messages.len)
 		var/heardword = messages[R]
 		if(copytext(heardword,1, TRUE) in punctuation)
 			heardword = copytext(heardword,2)

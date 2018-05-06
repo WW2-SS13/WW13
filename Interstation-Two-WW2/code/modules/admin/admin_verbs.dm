@@ -39,6 +39,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_pm_panel,	//admin-pm list,
 	/client/proc/cmd_admin_subtle_message,	//send an message to somebody as a 'voice in their head',
 	/client/proc/cmd_admin_delete,		//delete an instance/object/mob/etc,
+	/client/proc/cmd_admin_get,
 	/client/proc/cmd_admin_check_contents,	//displays the contents of an instance,
 	/client/proc/Getmob,				//teleports a mob to our location,
 	/client/proc/Getkey,				//teleports a mob with a certain ckey to our location,
@@ -372,6 +373,7 @@ var/list/admin_verbs_host = list(
 		admin_verbs_sounds,
 		admin_verbs_spawn,
 		debug_verbs,
+		admin_verbs_manager,
 		admin_verbs_host
 		)
 	remove_ghost_only_admin_verbs()

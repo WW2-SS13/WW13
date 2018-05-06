@@ -1,7 +1,7 @@
 // poor stats with the exception of strength & survival
 /mob/living/carbon/human/pillarman
 	takes_less_damage = TRUE
-	movement_speed_multiplier = 1.75
+	movement_speed_multiplier = 2.00
 	size_multiplier = 1.50
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE
@@ -26,7 +26,7 @@
 	if (snowflake)
 		spawn (2)
 			loc = oloc
-			setStat("strength", 300)
+			setStat("strength", 400)
 			setStat("engineering", 250)
 			setStat("rifle", 250)
 			setStat("mg", 250)
@@ -62,7 +62,7 @@
 			B.volume = min(B.volume, vessel.maximum_volume)
 		H.crush()
 	else
-		H.adjustBruteLoss(srand(20,30))
+		H.adjustBruteLoss(rand(20,30))
 	absorbing = FALSE
 
 /mob/living/carbon/human/pillarman/proc/shoot_burning_blood()
@@ -98,7 +98,7 @@
 	// too
 	energy = max(0, energy - (0.0008/3))
 	if (energy <= 0)
-		if (sprob(10))
+		if (prob(10))
 			adjustBruteLoss(72)
 			src << "<span class = 'danger'>You're starving from a lack of life energy!</span>"
 		return
@@ -106,10 +106,10 @@
 	var/loss = getTotalLoss()
 
 	var/heal_damage = (14 * (energy * energy)) + 2
-	adjustBruteLoss(-heal_damage*getStatCoeff("strength"))
-	adjustFireLoss(-heal_damage*getStatCoeff("strength"))
-	adjustToxLoss(-heal_damage*getStatCoeff("strength"))
-	adjustOxyLoss((-heal_damage*getStatCoeff("strength"))/10)
+	adjustBruteLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
+	adjustFireLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
+	adjustToxLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
+	adjustOxyLoss((-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)/10)
 
 	var/healedLoss = loss - getTotalLoss()
 	if (healedLoss > 0)

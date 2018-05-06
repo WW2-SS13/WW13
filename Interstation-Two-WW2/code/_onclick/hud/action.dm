@@ -47,9 +47,9 @@
 		Remove(owner)
 	owner = T
 	button.owner = src
-	T.actions += src
+	T.actions |= src // scope HUDs can somehow be granted twice
 	if(T.client)
-		T.client.screen += button
+		T.client.screen |= button // scope HUDs can somehow be granted twice
 	T.update_action_buttons()
 
 /datum/action/proc/Remove(mob/living/T)

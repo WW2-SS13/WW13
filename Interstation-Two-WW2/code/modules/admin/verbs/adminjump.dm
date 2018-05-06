@@ -14,13 +14,13 @@
 	if(config.allow_admin_jump)
 		usr.on_mob_jump()
 
-		var/turf/new_location = safespick(get_area_turfs(A))
+		var/turf/new_location = safepick(get_area_turfs(A))
 		if (!new_location)
 			alert("Admin jump failed due to missing [A] area turfs.")
 			return
 		var/tries = 0
 		while (new_location.density || locate(/obj/structure) in new_location)
-			new_location = safespick(get_area_turfs(A))
+			new_location = safepick(get_area_turfs(A))
 			++tries
 			if (tries >= 20)
 				break
@@ -204,7 +204,7 @@ var/turf/default_adminzone_turf = null
 	if(A)
 		if(config.allow_admin_jump)
 			M.on_mob_jump()
-			M.loc = spick(get_area_turfs(A))
+			M.loc = pick(get_area_turfs(A))
 
 
 			log_admin("[key_name(usr)] teleported [key_name(M)] to [A]")

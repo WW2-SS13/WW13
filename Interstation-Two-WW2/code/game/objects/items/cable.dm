@@ -25,8 +25,8 @@
 	amount = length
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
 		color = param_color
-	pixel_x = srand(-2,2)
-	pixel_y = srand(-2,2)
+	pixel_x = rand(-2,2)
+	pixel_y = rand(-2,2)
 	update_icon()
 	update_wclass()
 
@@ -61,7 +61,7 @@
 
 /obj/item/stack/cable_coil/update_icon()
 	if (!color)
-		color = spick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
+		color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	if(amount == TRUE)
 		icon_state = "coil1"
 		name = "cable piece"
@@ -243,7 +243,7 @@
 
 			use(1)
 			if (C.shock(user, 50))
-				if (sprob(50)) //fail
+				if (prob(50)) //fail
 					new/obj/item/stack/cable_coil(C.loc, TRUE, C.color)
 					qdel(C)
 					*/
@@ -307,7 +307,7 @@
 			use(1)
 
 			if (NC.shock(user, 50))
-				if (sprob(50)) //fail
+				if (prob(50)) //fail
 					new/obj/item/stack/cable_coil(NC.loc, TRUE, NC.color)
 					qdel(NC)
 
@@ -355,7 +355,7 @@
 		use(1)
 
 		if (C.shock(user, 50))
-			if (sprob(50)) //fail
+			if (prob(50)) //fail
 				new/obj/item/stack/cable_coil(C.loc, 2, C.color)
 				qdel(C)
 				return
@@ -372,9 +372,9 @@
 
 /obj/item/stack/cable_coil/cut/New(loc)
 	..()
-	amount = srand(1,2)
-	pixel_x = srand(-2,2)
-	pixel_y = srand(-2,2)
+	amount = rand(1,2)
+	pixel_x = rand(-2,2)
+	pixel_y = rand(-2,2)
 	update_icon()
 	update_wclass()
 
@@ -400,5 +400,5 @@
 	color = COLOR_WHITE
 
 /obj/item/stack/cable_coil/random/New()
-	color = spick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
+	color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	..()

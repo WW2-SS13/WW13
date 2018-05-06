@@ -25,13 +25,13 @@ var/list/sky_drop_map = list()
 			if (A.corresponding_area_allow_subtypes )
 				for (var/area/AA in world)
 					if (istype(AA, A.corresponding_area_type))
-						mover.forceMove(spick(AA.contents))
+						mover.forceMove(pick(AA.contents))
 						mover.loc = get_turf(mover.loc)
 						sky_drop_map["[mover.x],[mover.y],[mover.z]"] = mover.loc
 						break
 			else
 				var/area/AA = locate(A.corresponding_area_type)
-				mover.forceMove(spick(AA.contents))
+				mover.forceMove(pick(AA.contents))
 				mover.loc = get_turf(mover.loc)
 				sky_drop_map["[mover.x],[mover.y],[mover.z]"] = mover.loc
 

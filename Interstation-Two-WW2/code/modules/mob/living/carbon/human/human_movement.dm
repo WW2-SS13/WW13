@@ -73,7 +73,7 @@
 	if(!E || ((E.status & ORGAN_BROKEN) && E.brute_dam > E.min_broken_damage) || (E.status & ORGAN_MUTATED))
 		tally += 3
 
-//	if(shock_stage >= 10) tally += 3 // this is ridiculous, being in shock doesn't make you physically slower
+	if(shock_stage >= 10) tally += 0.5
 
 	if(aiming && aiming.aiming_at) tally += 5 // Iron sights make you slower, it's a well-known fact.
 

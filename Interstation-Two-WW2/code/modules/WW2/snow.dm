@@ -13,7 +13,7 @@
 
 /obj/snow/New()
 	..()
-	amount = spick(0.04, 0.05, 0.06) // around 2 inches
+	amount = pick(0.04, 0.05, 0.06) // around 2 inches
 	var/area/A = get_area(src)
 	if (A && istype(A, /area/prishtina/forest))
 		amount *= 2
@@ -46,13 +46,13 @@
 		if (1.0)
 			qdel(src)
 		if (2.0)
-			if (sprob(50))
+			if (prob(50))
 				qdel(src)
 		if (3.0)
-			if (sprob(15))
+			if (prob(15))
 				qdel(src)
 
 /obj/snow/fire_act(temperature)
-	if (sprob(25 * (temperature/500)))
+	if (prob(25 * (temperature/500)))
 		visible_message("<span class = 'warning'>The snow melts.</span>")
 		qdel(src)

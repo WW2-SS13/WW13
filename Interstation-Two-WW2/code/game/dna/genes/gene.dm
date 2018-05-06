@@ -112,11 +112,11 @@
 /datum/dna/gene/basic/activate(var/mob/M)
 	M.mutations.Add(mutation)
 	if(activation_messages.len)
-		var/msg = spick(activation_messages)
+		var/msg = pick(activation_messages)
 		M << "<span class='notice'>[msg]</span>"
 
 /datum/dna/gene/basic/deactivate(var/mob/M)
 	M.mutations.Remove(mutation)
 	if(deactivation_messages.len)
-		var/msg = spick(deactivation_messages)
+		var/msg = pick(deactivation_messages)
 		M << "<span class='warning'>[msg]</span>"

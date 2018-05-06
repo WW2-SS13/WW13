@@ -62,13 +62,13 @@
 	var/list/valid_facial_hairstyles = generate_valid_facial_hairstyles()
 
 	if(valid_hairstyles.len)
-		h_style = spick(valid_hairstyles)
+		h_style = pick(valid_hairstyles)
 	else
 		//this shouldn't happen
 		h_style = "Bald"
 
 	if(valid_facial_hairstyles.len)
-		f_style = spick(valid_facial_hairstyles)
+		f_style = pick(valid_facial_hairstyles)
 	else
 		//this shouldn't happen
 		f_style = "Shaved"

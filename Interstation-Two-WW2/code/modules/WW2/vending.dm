@@ -8,7 +8,7 @@
 		/obj/item/clothing/suit/storage/coat/soviet = 50,
 		/obj/item/clothing/accessory/storage/webbing = 50,
 		/obj/item/clothing/under/sovuni = 50,
-		/obj/item/clothing/head/helmet/tactical/sovhelm = 50,
+		/obj/item/clothing/head/helmet/sovhelm = 50,
 		/obj/item/clothing/shoes/swat/wrappedboots = 50,
 		/obj/item/clothing/head/ushanka = 25,
 		/obj/item/clothing/mask/gas/soviet = 25,
@@ -24,7 +24,7 @@
 		/obj/item/clothing/suit/storage/coat/german = 50,
 		/obj/item/clothing/accessory/storage/webbing = 50,
 		/obj/item/clothing/under/geruni = 50,
-		/obj/item/clothing/head/helmet/tactical/gerhelm = 50,
+		/obj/item/clothing/head/helmet/gerhelm = 50,
 		/obj/item/clothing/shoes/swat = 50,
 		/obj/item/clothing/mask/gas/german = 25
 	)
@@ -37,7 +37,7 @@
 		/obj/item/clothing/suit/storage/coat/italian = 12,
 		/obj/item/clothing/accessory/storage/webbing = 12,
 		/obj/item/clothing/under/itauni = 12,
-		/obj/item/clothing/head/helmet/tactical/itahelm = 12,
+		/obj/item/clothing/head/helmet/itahelm = 12,
 		/obj/item/clothing/shoes/swat = 12,
 		/obj/item/clothing/mask/gas/german = 12,
 		/obj/item/weapon/storage/belt/italy = 12,
@@ -94,7 +94,7 @@
 		/obj/item/clothing/suit/sssmock = 20,
 		/obj/item/clothing/accessory/storage/webbing = 20,
 
-		/obj/item/clothing/head/helmet/tactical/gerhelm/sshelm = 10,
+		/obj/item/clothing/head/helmet/gerhelm/sshelm = 10,
 		/obj/item/clothing/mask/gas/german = 10,
 		/obj/item/clothing/shoes/swat = 10,
 
@@ -123,7 +123,7 @@
 	desc = "Basic equip for SS soldiers."
 	icon_state = "apparel_german"
 	products = list(
-		/obj/item/clothing/head/helmet/tactical/gerhelm/sshelm = 12,
+		/obj/item/clothing/head/helmet/gerhelm/sshelm = 12,
 		/obj/item/clothing/mask/gas/german = 12,
 		/obj/item/clothing/suit/sssmock = 12,
 		/obj/item/clothing/under/geruni/ssuni = 12,

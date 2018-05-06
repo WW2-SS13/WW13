@@ -77,7 +77,7 @@
 					set_dir(get_dir(src,target_mob))	//Keep staring at the mob
 
 					if(stance_step in list(1,4,7)) //every 3 ticks
-						var/action = spick( list( "growls at [target_mob]", "stares angrily at [target_mob]", "prepares to attack [target_mob]", "closely watches [target_mob]" ) )
+						var/action = pick( list( "growls at [target_mob]", "stares angrily at [target_mob]", "prepares to attack [target_mob]", "closely watches [target_mob]" ) )
 						if(action)
 							custom_emote(1,action)
 			if(!found_mob)
@@ -127,13 +127,13 @@
 /mob/living/simple_animal/hostile/bear/AttackingTarget()
 	if(!Adjacent(target_mob))
 		return
-	custom_emote(1, spick( list("slashes at [target_mob]", "bites [target_mob]") ) )
+	custom_emote(1, pick( list("slashes at [target_mob]", "bites [target_mob]") ) )
 
-	var/damage = srand(20,30)
+	var/damage = rand(20,30)
 
 	if(ishuman(target_mob))
 		var/mob/living/carbon/human/H = target_mob
-		var/dam_zone = spick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
+		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/obj/item/organ/external/affecting = H.get_organ(ran_zone(dam_zone))
 		H.apply_damage(damage, BRUTE, affecting, H.run_armor_check(affecting, "melee"), sharp=1, edge=1)
 		return H

@@ -279,6 +279,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		spawn(0)
 			if (config.jojoreference || (map && istype(map, /obj/map_metadata/pillar)))
 				roundabout()
+				sleep(50)
 
 		spawn (50)
 

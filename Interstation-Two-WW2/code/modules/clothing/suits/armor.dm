@@ -9,7 +9,7 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
-
+/*
 
 /obj/item/clothing/suit/armor/vest
 	name = "armor"
@@ -43,7 +43,6 @@
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = FALSE, bio = FALSE, rad = FALSE)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
-
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "Bulletproof Vest"
@@ -261,3 +260,4 @@
 	icon_state = "tdgreen"
 	item_state = "tdgreen"
 	siemens_coefficient = TRUE
+*/

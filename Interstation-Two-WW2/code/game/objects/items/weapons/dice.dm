@@ -8,7 +8,7 @@
 	attack_verb = list("diced")
 
 /obj/item/weapon/dice/New()
-	icon_state = "[name][srand(1,sides)]"
+	icon_state = "[name][rand(1,sides)]"
 
 /obj/item/weapon/dice/d2
 	name = "d2"
@@ -59,7 +59,7 @@
 	sides = 100
 
 /obj/item/weapon/dice/attack_self(mob/user as mob)
-	var/result = srand(1, sides)
+	var/result = rand(1, sides)
 	var/comment = ""
 	if(sides == 20 && result == 20)
 		comment = "Nat 20!"

@@ -1,9 +1,11 @@
 //#define LIGHTING_INSTANT_UPDATES   // Uncomment to use instant updates. NOTE: These are WiP and much more laggy than interval-based updating.
-
+/*
 #ifndef LIGHTING_INSTANT_UPDATES
-#define LIGHTING_INTERVAL       TRUE    // Frequency, in TRUE/10ths of a second, of the lighting process.
+#define LIGHTING_INTERVAL       1    // Frequency, in 1/10ths of a second, of the lighting process.
 #include "lighting_process.dm"
 #endif
+*/
+
 
 #define LIGHTING_FALLOFF        TRUE    // Type of falloff to use for lighting; TRUE for circular, 2 for square.
 #define LIGHTING_LAMBERTIAN     FALSE    // Use lambertian shading for light sources.
@@ -25,6 +27,8 @@
 		0, FALSE, FALSE, FALSE,          \
 		0, FALSE, FALSE, TRUE           \
 	)                        \
+
+#define LIGHTING_CHANGE_TIME map ? map.TOD_change_interval : 50
 
 // Helpers so we can (more easily) control the colour matrices.
 #define RR TRUE

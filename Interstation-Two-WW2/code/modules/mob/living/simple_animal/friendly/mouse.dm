@@ -38,22 +38,22 @@
 /mob/living/simple_animal/mouse/Life()
 	..()
 
-	if(!stat && sprob(speak_chance))
+	if(!stat && prob(speak_chance))
 		for(var/mob/M in view())
 			M << 'sound/effects/mousesqueek.ogg'
 
-	if(!ckey && stat == CONSCIOUS && sprob(1))
+	if(!ckey && stat == CONSCIOUS && prob(1))
 		stat = UNCONSCIOUS
 		icon_state = "mouse_[body_color]_sleep"
 		wander = FALSE
 		speak_chance = FALSE
 		//snuffles
 	else if(stat == UNCONSCIOUS)
-		if(ckey || sprob(5))
+		if(ckey || prob(5))
 			stat = CONSCIOUS
 			icon_state = "mouse_[body_color]"
 			wander = TRUE
-		else if(sprob(5))
+		else if(prob(5))
 			audible_emote("snuffles.")
 
 /mob/living/simple_animal/mouse/lay_down()
@@ -67,12 +67,12 @@
 //	verbs += /mob/living/proc/hide
 
 	if(name == initial(name))
-		name = "[name] ([srand(1, 1000)])"
+		name = "[name] ([rand(1, 1000)])"
 
 	real_name = name
 
 	if(!body_color)
-		body_color = spick( list("brown","gray","white") )
+		body_color = pick( list("brown","gray","white") )
 	icon_state = "mouse_[body_color]"
 	item_state = "mouse_[body_color]"
 	icon_living = "mouse_[body_color]"

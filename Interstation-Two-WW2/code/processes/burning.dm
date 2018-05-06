@@ -13,12 +13,12 @@ var/process/burning/burning_process = null
 		var/obj/O = last_object
 		if(isnull(O.gcDestroyed))
 			try
-				if (sprob(5))
+				if (prob(5))
 					for (var/v in 2 to 3)
 						new/obj/effect/decal/cleanable/ash(get_turf(O))
 					burning_objs -= O
 					qdel(O)
-				else if (sprob(10))
+				else if (prob(10))
 					new/obj/effect/effect/smoke/bad(get_turf(O), TRUE)
 			catch(var/exception/e)
 				catchException(e, O)
@@ -31,12 +31,12 @@ var/process/burning/burning_process = null
 		var/turf/O = last_object
 		if(isnull(O.gcDestroyed) && O.density)
 			try
-				if (sprob(3))
+				if (prob(3))
 					for (var/v in 4 to 5)
 						new/obj/effect/decal/cleanable/ash(O)
 					burning_turfs -= O
 					O.ex_act(1.0)
-				else if (sprob(10))
+				else if (prob(10))
 					new/obj/effect/effect/smoke/bad(O, TRUE)
 			catch(var/exception/e)
 				catchException(e, O)

@@ -89,8 +89,8 @@ var/datum/reinforcements/reinforcements_master = null
 
 /datum/reinforcements/proc/tick()
 
-	if (sprob(1) && sprob(2) && sprob(75)) // events
-		if (sprob(50))
+	if (prob(1) && prob(2) && prob(75)) // events
+		if (prob(50))
 			if (!locked[SOVIET])
 				soviet_countdown = soviet_countdown_success_reset*2
 				world << "<font size = 3>Due to harsh combat in other areas on the Eastern Front, Soviet reinforcements will not be available for a while.</font>"
@@ -140,7 +140,7 @@ var/datum/reinforcements/reinforcements_master = null
 				nope[GERMAN] = FALSE
 
 	if (locked[side])
-		np << "<span class = 'danger'>This side is locked.</span>"
+		np << "<span class = 'danger'>This side is locked for joining.</span>"
 		return
 
 	if (nope[side])

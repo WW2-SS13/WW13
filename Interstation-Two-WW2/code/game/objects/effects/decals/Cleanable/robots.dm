@@ -14,14 +14,14 @@
 
 /obj/effect/decal/cleanable/blood/gibs/robot/streak(var/list/directions)
 	spawn (0)
-		var/direction = spick(directions)
+		var/direction = pick(directions)
 		for (var/i = FALSE, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
 			sleep(3)
 			if (i > 0)
-				if (sprob(40))
+				if (prob(40))
 					var/obj/effect/decal/cleanable/blood/oil/streak = new(loc)
 					streak.update_icon()
-				else if (sprob(10))
+				else if (prob(10))
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 					s.set_up(3, TRUE, src)
 					s.start()

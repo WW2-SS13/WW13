@@ -25,11 +25,11 @@
 				     * place
 				*/
 				if (!istype(src, /obj/structure/window/sandbag/incomplete))
-					for (var/v in TRUE to srand(4,6))
+					for (var/v in TRUE to rand(4,6))
 						new /obj/item/weapon/sandbag(turf)
 				else
 					var/obj/structure/window/sandbag/incomplete/I = src
-					for (var/v in TRUE to (1 + spick(I.progress-1, I.progress)))
+					for (var/v in TRUE to (1 + pick(I.progress-1, I.progress)))
 						new /obj/item/weapon/sandbag(turf)
 				qdel(src)
 /*
@@ -64,7 +64,7 @@
 			qdel(src)
 			return
 		else
-			if (sprob(50))
+			if (prob(50))
 				return ex_act(2.0)
 	return
 
@@ -157,7 +157,7 @@
 			qdel(src)
 			return
 		if(3.0)
-			if(sprob(50))
+			if(prob(50))
 				qdel(src)
 
 /obj/structure/window/sandbag/is_full_window()

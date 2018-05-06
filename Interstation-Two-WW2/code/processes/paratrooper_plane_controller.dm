@@ -1,3 +1,5 @@
+#define SMOOTH_MOVEMENT
+
 var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 
 /process/paratrooper_plane_controller
@@ -25,7 +27,7 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 					my_turfs += T
 					SCHECK
 
-		var/shift = spick(-4, 0, 4)
+		var/shift = pick(-4, 0, 4)
 		var/mobs = 0
 
 		for (var/turf/T in my_turfs)
@@ -34,8 +36,12 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 					AM.pixel_x = shift
 				else
 					++mobs
+				#ifndef SMOOTH_MOVEMENT
 				SCHECK
+				#endif
+			#ifndef SMOOTH_MOVEMENT
 			SCHECK
+			#endif
 
 		tmpTime += schedule_interval
 		if (tmpTime >= 300)
@@ -56,3 +62,5 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 
 /process/paratrooper_plane_controller/proc/isLethalToJump()
 	return altitude > first_nonlethal_altitude
+
+#undef SMOOTH_MOVEMENT

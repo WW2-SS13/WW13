@@ -167,13 +167,13 @@
 				if ((MEMBERS_PER_SQUAD*3) to (MEMBERS_PER_SQUAD*4)-1)
 					user.squad_faction = new/datum/faction/squad/four(user, src)
 				if ((MEMBERS_PER_SQUAD*4) to INFINITY) // latejoiners
-					if (sprob(50))
-						if (sprob(50))
+					if (prob(50))
+						if (prob(50))
 							user.squad_faction = new/datum/faction/squad/one(user, src)
 						else
 							user.squad_faction = new/datum/faction/squad/two(user, src)
 					else
-						if (sprob(50))
+						if (prob(50))
 							user.squad_faction = new/datum/faction/squad/three(user, src)
 						else
 							user.squad_faction = new/datum/faction/squad/four(user, src)
@@ -234,6 +234,7 @@
 		return "Soviet"
 	else
 		return GERMAN
+		/*
 // make someone a spy regardless, allowing them to swap uniforms
 /datum/job/proc/make_spy(var/mob/living/carbon/human/user)
 
@@ -263,7 +264,7 @@
 			H.add_language(GERMAN, TRUE)
 		H.spy_faction = new/datum/faction/german()
 
-
+*/
 /proc/get_side_name(var/side, var/datum/job/j)
 	if (j && (istype(j, /datum/job/german/squad_leader_ss) || istype(j, /datum/job/german/soldier_ss)))
 		return "Waffen-S.S."
@@ -328,7 +329,7 @@
 	if (is_officer)
 		H.make_artillery_officer()
 		H.verbs += /mob/living/carbon/human/proc/Execute
-		H << "<span class = 'info'>As an officer, you can check coordinates and execute your subordinates.</span>"
+		H.add_note("Officer", "As an officer, you can check coordinates and execute subordinates.</span>")
 
 	// hack to make scope icons immediately appear - Kachnov
 	spawn (20)
@@ -347,12 +348,12 @@
 	var/obj/item/ammo_magazine/AM = null
 	switch (base_type_flag())
 		if (GERMAN, ITALIAN)
-			if (sprob(50))
+			if (prob(50))
 				gun = new /obj/item/weapon/gun/projectile/revolver/nagant_revolver(H)
 			else
 				gun = new /obj/item/weapon/gun/projectile/pistol/tokarev(H)
 		if (SOVIET)
-			if (sprob(50))
+			if (prob(50))
 				gun = new /obj/item/weapon/gun/projectile/pistol/luger(H)
 			else
 				gun = new /obj/item/weapon/gun/projectile/pistol/mauser(H)
@@ -368,32 +369,33 @@
 
 	// random amount of ammo for both gun and mag
 
-	var/ideal_contents_1 = srand(1, max(gun.contents.len, gun.ammo_magazine ? gun.ammo_magazine.contents.len : 0))
+	var/ideal_contents_1 = rand(1, max(gun.contents.len, gun.ammo_magazine ? gun.ammo_magazine.contents.len : 0))
 	var/removing_1 = (gun.ammo_magazine ? gun.ammo_magazine.contents.len : gun.contents.len) - ideal_contents_1
-
 	var/removing_2 = 0
 
 	if (AM)
-		var/ideal_contents_2 = srand(1, AM.contents.len)
+		var/ideal_contents_2 = rand(1, AM.contents.len)
 		removing_2 = AM.contents.len - ideal_contents_2
 
 	for (var/v in 1 to removing_1)
 
 		if (gun.ammo_magazine)
-			var/picked = spick(gun.ammo_magazine.contents)
-			gun.ammo_magazine.contents -= picked
-			gun.ammo_magazine.stored_ammo -= picked
-			qdel(picked)
+			var/obj/item/ammo_casing/R = gun.ammo_magazine.contents[gun.ammo_magazine.contents.len]
+			if (istype(R))
+				gun.ammo_magazine.contents.Remove(R)
+				gun.ammo_magazine.stored_ammo.Remove(R)
+				qdel(R)
 		else
-			var/picked = spick(gun.contents)
-			gun.contents -= picked
-			qdel(picked)
+			var/obj/item/ammo_casing/R = gun.contents[gun.contents.len]
+			if (istype(R))
+				gun.contents.Remove(R)
+				qdel(R)
 
 	if (AM)
 		for (var/v in 1 to removing_2)
-
-			var/picked = spick(AM.contents)
-			AM.contents -= picked
-			AM.stored_ammo -= picked
-			qdel(picked)
+			var/obj/item/ammo_casing/R = AM.contents[AM.contents.len]
+			if (istype(R))
+				AM.contents.Remove(R)
+				AM.stored_ammo.Remove(R)
+				qdel(R)
 		AM.update_icon()

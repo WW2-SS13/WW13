@@ -14,6 +14,13 @@
 	use_sound = null
 	max_storage_space = 20
 
+/obj/item/weapon/storage/pill_bottle/attackby(var/obj/item/I, var/mob/user)
+	if (istype(I, /obj/item/weapon/pen))
+		var/label = sanitize(input(user, "What do you want to label the pill bottle as?") as text, 50)
+		name = label
+		return TRUE
+	return ..(I, user)
+
 /obj/item/weapon/storage/pill_bottle/antitox
 	name = "bottle of Dylovene pills"
 	desc = "Contains pills used to counter toxins."

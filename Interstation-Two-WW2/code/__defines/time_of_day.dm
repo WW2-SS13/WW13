@@ -3,13 +3,13 @@ var/time_of_day = "Morning"
 var/list/times_of_day = list("Early Morning", "Morning", "Afternoon", "Midday", "Evening", "Night", "Midnight")
 // from lightest to darkest: midday, afternoon, morning, early morning, evening, night, midnight
 var/list/time_of_day2luminosity = list(
-	"Early Morning" = 0.4,
-	"Morning" = 0.6,
-	"Afternoon" = 0.7,
+	"Early Morning" = 0.5,
+	"Morning" = 0.7,
+	"Afternoon" = 0.8,
 	"Midday" = 1.0,
-	"Evening" = 0.5,
-	"Night" = 0.3,
-	"Midnight" = 0.2)
+	"Evening" = 0.4,
+	"Night" = 0.2,
+	"Midnight" = 0.1)
 
 var/list/time_of_day2ticks = list(
 	"Early Morning" = 20*60,
@@ -21,11 +21,14 @@ var/list/time_of_day2ticks = list(
 	"Midnight" = 15*60)
 
 /proc/isDarkOutside()
-	if (list("Early Morning", "Evening", "Night", "Midnight").Find(time_of_day))
+	if (list("Evening", "Night", "Midnight").Find(time_of_day))
 		return 1
 	return 0
 
 /proc/pick_TOD()
+
+	if (map && times_of_day.len != map.times_of_day.len)
+		times_of_day = map.times_of_day
 	// attempt to fix broken BYOND probability
 
 	// do not shuffle the actual list, we need it to stay in order
@@ -34,13 +37,13 @@ var/list/time_of_day2ticks = list(
 	return "Midday"
 	#else
 	// chance of midday: ~52%. Chance of afternoon: ~27%. Chance of any other: ~21%
-	if (sprob(50))
-		if (sprob(75))
+	if (prob(50))
+		if (prob(75))
 			return "Midday"
 		else
 			return "Afternoon"
 	else
-		return spick(c_times_of_day)
+		return pick(c_times_of_day)
 	#endif
 
 /proc/progress_time_of_day(var/caller = null)

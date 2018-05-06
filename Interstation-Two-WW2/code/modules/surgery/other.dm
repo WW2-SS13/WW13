@@ -44,7 +44,7 @@
 		for(var/datum/wound/W in affected.wounds) if(W.internal)
 			affected.wounds -= W
 			affected.update_damages()
-		if (ishuman(user) && sprob(40)) user:bloody_hands(target, FALSE)
+		if (ishuman(user) && prob(40)) user:bloody_hands(target, FALSE)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)

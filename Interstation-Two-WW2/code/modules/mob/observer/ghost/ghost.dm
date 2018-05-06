@@ -62,17 +62,17 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 				name = body.mind.name
 			else
 				if(gender == MALE)
-					name = capitalize(spick(first_names_male)) + " " + capitalize(spick(last_names))
+					name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 				else
-					name = capitalize(spick(first_names_female)) + " " + capitalize(spick(last_names))
+					name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
-	if(!T)	T = spick(latejoin_turfs["Ghost"])			//Safety in case we cannot find the body's position
+	if(!T)	T = pick(latejoin_turfs["Ghost"])			//Safety in case we cannot find the body's position
 	forceMove(T)
 
 	if(!name)							//To prevent nameless ghosts
-		name = capitalize(spick(first_names_male)) + " " + capitalize(spick(last_names))
+		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 
 //	ghost_multitool = new(src)
@@ -108,35 +108,34 @@ Works together with spawning an observer, noted above.
 
 /mob/observer/ghost/Life()
 	..()
-	if(!loc) return
+
+	if(!loc) return FALSE
 	if(!client) return FALSE
 
 	if(client.images.len)
 		for(var/image/hud in client.images)
 			if(copytext(hud.icon_state,1,4) == "hud")
 				client.images.Remove(hud)
-
+/*
 	if(antagHUD)
 		var/list/target_list = list()
 		for(var/mob/living/target in oview(src, 14))
 			if(target.mind && target.mind.special_role)
 				target_list += target
 		if(target_list.len)
-			assess_targets(target_list, src)
+			assess_targets(target_list)
+			*/
 	if(medHUD)
-		process_medHUD(src)
+		process_medHUD()
 
+/mob/observer/ghost/proc/process_medHUD()
+	for(var/mob/living/carbon/human/patient in oview(src, 14))
+		client.images += patient.hud_list[HEALTH_HUD]
+		client.images += patient.hud_list[STATUS_HUD_OOC]
 
-/mob/observer/ghost/proc/process_medHUD(var/mob/M)
-	var/client/C = M.client
-	for(var/mob/living/carbon/human/patient in oview(M, 14))
-		C.images += patient.hud_list[HEALTH_HUD]
-		C.images += patient.hud_list[STATUS_HUD_OOC]
-
-/mob/observer/ghost/proc/assess_targets(list/target_list, mob/observer/ghost/U)
-	var/client/C = U.client
+/mob/observer/ghost/proc/assess_targets(list/target_list)
 	for(var/mob/living/carbon/human/target in target_list)
-		C.images += target.hud_list[SPECIALROLE_HUD]
+		client.images += target.hud_list[SPECIALROLE_HUD]
 	return TRUE
 
 /mob/proc/ghostize(var/can_reenter_corpse = TRUE)
@@ -172,7 +171,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(stat == DEAD)
 		if (client)
 			client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
-			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
+			client << RESPAWN_MESSAGE
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.handle_zoom_stuff(TRUE)
@@ -202,7 +201,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			H.handle_zoom_stuff(TRUE)
 		if (client)
 			client.next_normal_respawn = world.realtime + (map ? map.respawn_delay : 3000)
-			client << "<span class = 'good'>You can respawn with the 'Respawn' verb in the IC tab.</span>"
+			client << RESPAWN_MESSAGE
 		message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		log_game("[key_name_admin(usr)] has ghosted.")
 		var/mob/observer/ghost/ghost = ghostize(0)	//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
@@ -317,7 +316,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "No area available."
 
 	stop_following()
-	usr.forceMove(spick(L))
+	usr.forceMove(pick(L))
 
 /mob/observer/ghost/verb/follow(input in getfitmobs()+"Cancel")
 	set category = "Ghost"
@@ -679,7 +678,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!v.welded && v.z == T.z)
 			found_vents.Add(v)
 	if(found_vents.len)
-		vent_found = spick(found_vents)
+		vent_found = pick(found_vents)
 		host = new /mob/living/simple_animal/mouse(vent_found.loc)
 	else
 		src << "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>"
