@@ -803,6 +803,9 @@
 	name = "Bunker Defenses"
 	icon_state = "blue3"
 
+/area/prishtina/soviet/forward_defenses/inside
+	location = AREA_INSIDE
+	icon_state = "blue4"
 // bunker areas
 
 /area/prishtina/soviet/bunker
