@@ -32,6 +32,7 @@ var/process/lag/lag_process = null
 		if (turf2casings[loc] >= 2 && turf2casings[loc] <= 9)
 			var/deleted = 0
 			for (var/obj/item/ammo_casing/A in loc)
+				bullet_casings -= A
 				qdel(A)
 				++deleted
 				if (deleted >= turf2casings[loc]-1)
@@ -41,6 +42,7 @@ var/process/lag/lag_process = null
 		if (turf2cleanables[loc] >= 2)
 			var/deleted = 0
 			for (var/obj/effect/decal/cleanable/C in loc)
+				cleanables -= C
 				qdel(C)
 				++deleted
 				if (deleted >= turf2cleanables[loc]-1)
