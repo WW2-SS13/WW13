@@ -222,6 +222,7 @@ Parts of code courtesy of Super3222
 	var/obj/item/weapon/attachment/scope/scope = null
 	var/boundto = null
 
+
 /datum/action/toggle_scope/IsAvailable()
 	. = ..()
 	if(scope.zoomed)
@@ -242,11 +243,6 @@ Parts of code courtesy of Super3222
 	azoom.scope = src
 	actions += azoom
 
-/obj/item/weapon/attachment/scope/pickup(mob/user)
-	..()
-	if(azoom)
-		azoom.Grant(user)
-
 /obj/item/weapon/attachment/scope/on_enter_storage(S)
 	..(S)
 	if (azoom)
@@ -255,20 +251,21 @@ Parts of code courtesy of Super3222
 /obj/item/weapon/attachment/scope/on_changed_slot()
 	..()
 
-	if (istype(loc, /obj/item))
-		var/obj/item/holder = loc
-		var/mob/user = holder.loc
-		if (user && istype(user))
-			if (!(user.r_hand == holder || user.l_hand == holder))
-				if (azoom)
-					azoom.Remove(user)
+	if (azoom)
 
-	else if (istype(loc, /mob))
-		var/mob/user = loc
-		if (user && istype(user))
-			if (!(user.r_hand == src || user.l_hand == src))
-				if (azoom)
-					azoom.Remove(user)
+		if (istype(loc, /obj/item))
+			var/mob/user = loc.loc
+			if (user && istype(user))
+				azoom.Remove(user)
+				if (list(user.r_hand, user.l_hand).Find(loc))
+					azoom.Grant(user)
+
+		else if (istype(loc, /mob))
+			var/mob/user = loc
+			if (user && istype(user))
+				azoom.Remove(user)
+				if (list(user.r_hand, user.l_hand).Find(src))
+					azoom.Grant(user)
 
 /obj/item/weapon/attachment/scope/dropped(mob/user)
 	..()
