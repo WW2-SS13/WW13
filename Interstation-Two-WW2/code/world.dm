@@ -278,7 +278,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		else
 			world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to rejoin (It may take a minute or two): <b>byond://[world.internet_address]:[port]</b></span>"
 
-		processScheduler.stop()
+		processScheduler.stop() // will be started again after the serverswap occurs
 		..(reason)
 
 #define COLOR_LIGHT_SEPIA "#D4C6B8"
