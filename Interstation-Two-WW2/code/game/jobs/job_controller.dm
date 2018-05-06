@@ -440,8 +440,7 @@ var/global/datum/controller/occupations/job_master
 							weightedCandidates[V] = 3 // Geezer.
 						else
 							// If there's ABSOLUTELY NOBODY ELSE
-							if(candidates.len == TRUE) weightedCandidates[V] = TRUE
-
+							if(candidates.len == 1) weightedCandidates[V] = TRUE
 
 				var/mob/new_player/candidate = pickweight(weightedCandidates)
 				if(AssignRole(candidate, command_position))
