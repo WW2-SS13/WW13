@@ -294,7 +294,7 @@
 
 /datum/job/soviet/doctor
 	title = "Doktor"
-	en_meaning = "Dr"
+	en_meaning = "Doctor"
 	rank_abbreviation = "2lt"
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRADr"
