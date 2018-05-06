@@ -57,11 +57,11 @@
 	// Damaged heart virtually reduces the blood volume, as the blood isn't
 	// being pumped properly anymore.
 	if(is_broken())
-		blood_volume *= 0.3
+		blood_volume *= 0.7
 	else if(is_bruised())
-		blood_volume *= 0.6
-	else if(damage > 1)
 		blood_volume *= 0.8
+	else if(damage > 1)
+		blood_volume *= 0.9
 
 	//Effects of bloodloss
 	switch(blood_volume)
