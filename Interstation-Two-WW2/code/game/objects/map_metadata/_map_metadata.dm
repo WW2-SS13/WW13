@@ -264,7 +264,7 @@ var/global/obj/map_metadata/map = null
 			if (current_win_condition != NO_WINNER && current_winner && current_loser)
 				world << "<font size = 3>The [current_winner] has lost control of the [army2name(current_loser)] base!</font>"
 
-			current_win_condition = "Both sides are out of reinforcements; the round will end in {time} minutes."
+			current_win_condition = "Both sides are out of reinforcements; the round will end in {time} minute{s}."
 
 			if (last_reinforcements_next_win != -1)
 				next_win = last_reinforcements_next_win
