@@ -39,7 +39,7 @@ var/process/zoom/zoom_process = null
 			if (C.mob && ishuman(C.mob))
 				var/mob/living/carbon/human/H = C.mob
 				if (H.using_zoom())
-					AB.transform *= (C.view/world.view)
+					AB.transform *= sqrt(C.view/world.view)
 			if (AB.name == "Toggle Sights")
 				var/datum/action/toggle_scope/TS = AB.owner
 				if (TS && istype(TS))
