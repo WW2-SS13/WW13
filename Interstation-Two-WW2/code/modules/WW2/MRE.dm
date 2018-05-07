@@ -20,7 +20,7 @@
 		return
 	if (!open && opens)
 		playsound(get_turf(src), 'sound/effects/rip_pack.ogg', 100)
-		visible_message("<span class = 'info'>[H] opens [src].</span>")
+		visible_message("<span class = 'notice'>[H] opens [src].</span>")
 		icon_state = "[base_state]_open"
 		open = TRUE
 	return

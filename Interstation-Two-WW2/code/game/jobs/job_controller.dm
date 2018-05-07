@@ -115,7 +115,7 @@ var/global/datum/controller/occupations/job_master
 
 		if (italiano)
 			if (announce)
-				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Italian Army for this battle.</span></font>"
+				world << "<font size = 3><span class = 'notice'>The Wehrmacht has the assistance of the Italian Army for this battle.</span></font>"
 			italians_were_enabled = TRUE
 			if (map)
 				map.faction_organization |= ITALIAN
@@ -129,13 +129,13 @@ var/global/datum/controller/occupations/job_master
 
 		if (warcrimes)
 			if (announce)
-				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
+				world << "<font size = 3><span class = 'notice'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
 			SS_was_enabled = TRUE
 
 		if (!is_side_locked(CIVILIAN) && map && map.faction_organization.Find(CIVILIAN) && map.faction_organization.Find(PARTISAN))
 			if (italiano || warcrimes || autobalance_for_players >= PLAYER_THRESHOLD_HIGHEST-10)
 				if (announce)
-					world << "<font size = 3><span class = 'info'>Civilian and Partisan factions are enabled.</span></font>"
+					world << "<font size = 3><span class = 'notice'>Civilian and Partisan factions are enabled.</span></font>"
 				civilians_were_enabled = TRUE
 				partisans_were_enabled = TRUE
 				if (map)

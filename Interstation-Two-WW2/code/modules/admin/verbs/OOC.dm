@@ -8,4 +8,4 @@
 	if (pingability)
 		src << "<span class = 'good'>You can now be pinged in OOC.</span>"
 	else
-		src << "<span class = 'info'>You can no longer be pinged in OOC.</span>"
+		src << "<span class = 'notice'>You can no longer be pinged in OOC.</span>"

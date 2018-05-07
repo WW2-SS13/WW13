@@ -50,12 +50,12 @@
 			return
 		if (!istype(R, /datum/reagent/water))
 			if (I.reagents.total_volume >= reagents.maximum_volume)
-				H << "<span class = 'info'>The pot can't hold any more reagents.</span>"
+				H << "<span class = 'notice'>The pot can't hold any more reagents.</span>"
 			else
 				for (var/datum/reagent/RR in I.reagents.reagent_list)
 					reagents.add_reagent(RR.id, RR.volume)
 				I.reagents.clear_reagents()
-				visible_message("<span class = 'info'>[H] pours the contents of [I] into the pot.</span>")
+				visible_message("<span class = 'notice'>[H] pours the contents of [I] into the pot.</span>")
 		else
 			var/rem = min(R.volume, 100)
 			I.reagents.remove_reagent(R.id, rem)
@@ -64,7 +64,7 @@
 			if (fullness == 100)
 				state = STATE_WATER
 				update_icon()
-			H << "<span class = 'info'>[H] fills the pot with some water. It's about [fullness]% full.</span>"
+			H << "<span class = 'notice'>[H] fills the pot with some water. It's about [fullness]% full.</span>"
 			return
 	else if (!istype(I, /obj/item/trash/snack_bowl))
 		if (istype(I, /obj/item/weapon/reagent_containers/food))
@@ -74,12 +74,12 @@
 			if (istype(I, /obj/item/weapon/reagent_containers/food/drinks))
 				if (I.reagents && I.reagents.reagent_list.len)
 					if (I.reagents.total_volume >= reagents.maximum_volume)
-						H << "<span class = 'info'>The pot can't hold any more reagents.</span>"
+						H << "<span class = 'notice'>The pot can't hold any more reagents.</span>"
 					else
 						for (var/datum/reagent/R in I.reagents.reagent_list)
 							reagents.add_reagent(R.id, R.volume)
 						I.reagents.clear_reagents()
-						visible_message("<span class = 'info'>[H] pours the contents of [I] into the pot.</span>")
+						visible_message("<span class = 'notice'>[H] pours the contents of [I] into the pot.</span>")
 			else if (istype(I, /obj/item/weapon/reagent_containers/food/condiment))
 				var/obj/item/weapon/reagent_containers/food/condiment/C = I
 				C.standard_pour_into(H, src)
@@ -92,7 +92,7 @@
 					return
 				H.remove_from_mob(I)
 				I.loc = src
-				visible_message("<span class = 'info'>[H] puts [I] in the pot.</span>")
+				visible_message("<span class = 'notice'>[H] puts [I] in the pot.</span>")
 				stew_ticks = max(stew_ticks - 5, 0)
 				if (state == STATE_WATER)
 					state = STATE_BOILING
@@ -149,7 +149,7 @@
 		return
 	for (var/obj/item/I in contents)
 		H.put_in_any_hand_if_possible(I, prioritize_active_hand = TRUE)
-		visible_message("<span class = 'info'>[H] takes [I.name] from the pot of boiling water.</span>")
+		visible_message("<span class = 'notice'>[H] takes [I.name] from the pot of boiling water.</span>")
 		break
 
 /obj/structure/pot/process()
@@ -159,7 +159,7 @@
 			var/boiling = 0
 			for (var/obj/item/weapon/reagent_containers/food/F in contents)
 				if (!F.boiled && prob(10))
-					visible_message("<span class = 'info'>[F] finishes boiling.</span>")
+					visible_message("<span class = 'notice'>[F] finishes boiling.</span>")
 					if (BOIL_MAP[F.type])
 						var/newtype = BOIL_MAP[F.type]
 						new newtype (src)
@@ -181,7 +181,7 @@
 					state = STATE_STEWING
 					bowls = min(round(contents.len/3) + 3,10) // 1 object = 3 bowls. 10 objects = 6 bowls
 					initial_bowls = bowls
-					visible_message("<span class = 'info'>The liquid in the pot turns into a stew.</span>")
+					visible_message("<span class = 'notice'>The liquid in the pot turns into a stew.</span>")
 					stew_desc = "Stew with "
 					stew_nutriment_desc.Cut()
 					for (var/obj/item/I in contents)
@@ -215,13 +215,13 @@
 /obj/structure/pot/examine(mob/user)
 	..(user)
 	if (state == STATE_STEWING && stew_desc)
-		user << "<span class = 'info'>You can see a [lowertext(stew_desc)].</span>"
+		user << "<span class = 'notice'>You can see a [lowertext(stew_desc)].</span>"
 	else if (state == STATE_EMPTY)
-		user << "<span class = 'info'>It's an empty pot.</span>"
+		user << "<span class = 'notice'>It's an empty pot.</span>"
 	else if (state == STATE_WATER)
-		user << "<span class = 'info'>It's a pot full of water.</span>"
+		user << "<span class = 'notice'>It's a pot full of water.</span>"
 	else if (state == STATE_BOILING)
-		user << "<span class = 'info'>It's a pot with some things boiling inside.</span>"
+		user << "<span class = 'notice'>It's a pot with some things boiling inside.</span>"
 		var/message = "You can see "
 		for (var/obj/item/I in contents)
 			message += I.name
@@ -234,4 +234,4 @@
 				else
 					message += ", "
 		message += " in the water."
-		user << "<span class = 'info'>[message]</span>"
+		user << "<span class = 'notice'>[message]</span>"

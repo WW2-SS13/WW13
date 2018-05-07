@@ -74,7 +74,7 @@
 			H.partial_languages[lname] += 1
 			if (H.partial_languages[lname] > rand(100,150))
 				H.add_language(language)
-				H << "<span class = 'info'>You've learned how to speak <b>[language.name]</b> from hearing it so much.</span>"
+				H << "<span class = 'notice'>You've learned how to speak <b>[language.name]</b> from hearing it so much.</span>"
 
 /mob/proc/on_hear_say(var/message)
 	src << message

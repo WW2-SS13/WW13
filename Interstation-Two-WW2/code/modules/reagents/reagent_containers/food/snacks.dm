@@ -1926,7 +1926,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/boiledspagetti/attackby(obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/weapon/reagent_containers/food/snacks/meatball))
-		visible_message("<span class = 'info'>[user] combines the spaghetti with the meatball to make spaghetti and meatballs.</span>")
+		visible_message("<span class = 'notice'>[user] combines the spaghetti with the meatball to make spaghetti and meatballs.</span>")
 		qdel(I)
 		new/obj/item/weapon/reagent_containers/food/snacks/meatballspagetti(get_turf(src))
 		qdel(src)
