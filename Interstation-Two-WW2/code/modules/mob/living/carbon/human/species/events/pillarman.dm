@@ -1,7 +1,7 @@
 // poor stats with the exception of strength & survival
 /mob/living/carbon/human/pillarman
 	takes_less_damage = TRUE
-	movement_speed_multiplier = 2.00
+	movement_speed_multiplier = 2.40
 	size_multiplier = 1.50
 	has_hunger_and_thirst = FALSE
 	has_pain = FALSE

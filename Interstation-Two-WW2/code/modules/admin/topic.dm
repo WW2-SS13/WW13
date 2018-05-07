@@ -246,6 +246,9 @@
 				var/H_oloc = H.loc
 				var/H_jobloc = null
 				H.loc = null
+				if (H.client)
+					H.client.eye = H_oloc
+					H.client.perspective = EYE_PERSPECTIVE
 				if ((input(usr_client, "Assign [H] a new job?") in list("Yes", "No")) == "Yes")
 
 					var/list/job_master_occupation_names = list()
@@ -265,13 +268,20 @@
 						message_admins(msg)
 						log_admin(msg)
 						spawn (0.1)
-
+							H.loc = null // fixes a bug where H is relocated even after we set H.loc = null
+							if (H.client)
+								H.client.eye = H_oloc
+								H.client.perspective = EYE_PERSPECTIVE
 							var/send2spawn = input(usr_client, "Send [H] to their spawnpoint?") in list("Yes", "No")
 							switch (send2spawn)
 								if ("Yes")
 									H.loc = H_jobloc
 								if ("No")
 									H.loc = H_oloc
+
+							if (H.client)
+								H.client.eye = H
+								H.client.perspective = MOB_PERSPECTIVE
 
 							var/client/client = (H.client ? H.client : orig_client)
 
@@ -291,6 +301,9 @@
 										H.real_name = client.prefs.italian_name
 				else
 					H.loc = H_oloc
+					if (H.client)
+						H.client.eye = H
+						H.client.perspective = MOB_PERSPECTIVE
 
 				var/client/client = (H.client ? H.client : orig_client)
 				if (client.mob && istype(client.mob, /mob/observer/ghost))

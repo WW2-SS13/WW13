@@ -16,6 +16,7 @@ var/global/obj/map_metadata/map = null
 	var/title = null
 	var/lobby_icon_state = "1"
 	var/list/prishtina_blocking_area_types = list()
+	var/list/allow_bullets_through_blocks = list()
 	var/last_crossing_block_status[3]
 	var/admin_ended_all_grace_periods = FALSE
 	var/uses_supply_train = FALSE
@@ -72,7 +73,7 @@ var/global/obj/map_metadata/map = null
 	var/list/times_of_day = list("Early Morning", "Morning", "Afternoon", "Midday", "Evening", "Night", "Midnight")
 	var/list/zlevels_without_lighting = list()
 	var/list/areas_without_lighting = list()
-	var/TOD_change_interval = 200
+	var/TOD_change_interval = 300
 
 	// misc
 	var/meme = FALSE

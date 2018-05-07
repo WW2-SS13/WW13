@@ -533,7 +533,7 @@
 			on_impact(loc) //for any final impact behaviours
 			qdel(src)
 			return
-		if (firer && map.check_prishtina_block(firer, loc))
+		if (firer && map.check_prishtina_block(firer, loc) && !map.allow_bullets_through_blocks.Find(get_area(src):type))
 			qdel(src)
 			return
 		if((!( current ) || loc == current))

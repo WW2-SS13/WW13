@@ -13,7 +13,11 @@
 
 	while (TRUE)
 		retype
-		var/_type = input("What is the first type you want in the crate?") as text
+		var/_type = input("What is the type you want in the crate? Cancel to stop.") as text
+
+		if (lowertext(_type) == "cancel")
+			return
+
 		if (!ispath(text2path(_type)))
 			src << "<span class = 'red'>Invalid path.</span>"
 			goto retype

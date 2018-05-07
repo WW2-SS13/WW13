@@ -4,6 +4,8 @@
 	prishtina_blocking_area_types = list(
 		/area/prishtina/forest/north/invisible_wall,
 		/area/prishtina/forest/south/invisible_wall)
+	allow_bullets_through_blocks = list(
+		/area/prishtina/forest/south/invisible_wall)
 	uses_supply_train = TRUE
 	uses_main_train = TRUE
 	supply_points_per_tick = list(

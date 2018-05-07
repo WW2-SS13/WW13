@@ -31,7 +31,7 @@
 	. = ..()
 
 	H.languages.Cut()
-	if (istype(src, /datum/job/soviet))
+	if (base_type_flag() == SOVIET)
 		if (H.client && H.client.prefs)
 			switch (H.client.prefs.soviet_ethnicity)
 				if (RUSSIAN)
@@ -61,3 +61,12 @@
 				H.add_language(language_name, FALSE)
 				H.add_note("Known Languages", language_name)
 
+	switch (base_type_flag())
+		if (SOVIET)
+			for (var/datum/language/russian/R in H.languages)
+				H.default_language = R
+				break
+		if (GERMAN, ITALIAN)
+			for (var/datum/language/german/G in H.languages)
+				H.default_language = G
+				break
