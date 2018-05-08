@@ -259,10 +259,14 @@
 			else
 				message_admins("the <b>Battle Controller Process</b> showed everyone the battle report.")
 	else
-		shower << msg1
-		shower << msg2
-		shower << msg3
-		shower << msg4
+		if (msg1)
+			shower << msg1
+		if (msg2)
+			shower << msg2
+		if (msg3)
+			shower << msg3
+		if (msg4)
+			shower << msg4
 		if (msg5)
 			shower << msg5
 /*
