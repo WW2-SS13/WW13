@@ -23,10 +23,10 @@ var/process/movement/movement_process = null
 		if(isnull(M))
 			continue
 
-		if (!M.movement_process_dirs.len)
+		if(!M.client)
 			continue
 
-		if(!M.client)
+		if (!M.movement_process_dirs.len)
 			continue
 
 		if(isnull(M.gcDestroyed))
