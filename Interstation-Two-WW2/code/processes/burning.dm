@@ -36,7 +36,7 @@ var/process/burning/burning_process = null
 					for (var/v in 4 to 5)
 						new/obj/effect/decal/cleanable/ash(T)
 					burning_turfs -= T
-					O.ex_act(1.0)
+					T.ex_act(1.0)
 				else if (prob(10))
 					new/obj/effect/effect/smoke/bad(T, TRUE)
 			catch(var/exception/e)

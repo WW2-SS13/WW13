@@ -13,7 +13,7 @@ var/process/movement/movement_process = null
 /process/movement/fire()
 	SCHECK
 
-	FORNEXT(living_mob_list|dead_mob_list)
+	FORNEXT(moving_mobs)
 
 		var/mob/M = current
 

@@ -15,6 +15,7 @@ var/global/list/dead_mob_list = list()				//List of all dead mobs, including cli
 var/global/list/observer_mob_list = list()			//List of all observers, excluding clientless
 var/global/list/human_clients_mob_list = list()     //List of all human mobs with clients
 var/global/list/new_player_mob_list = list()	//List of all new_players, excludes clientless by definition
+var/global/list/moving_mobs = list()
 
 var/global/list/fallschirm_landmarks = list()
 
