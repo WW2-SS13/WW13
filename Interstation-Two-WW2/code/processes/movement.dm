@@ -13,6 +13,9 @@ var/process/movement/movement_process = null
 /process/movement/fire()
 	SCHECK
 
+	if (!moving_mobs.len)
+		return
+
 	FORNEXT(moving_mobs)
 
 		var/mob/M = current
