@@ -109,6 +109,7 @@ var/global/processScheduler/processScheduler
 		sleep(scheduler_sleep_interval)
 
 	// handle hung fake subsystems
+	for (var/name in last_ran_subsystem)
 		var/process/P = subsystems[name]
 		var/time_since_last_run = world.time - last_ran_subsystem[name]
 		if (time_since_last_run/10 >= P.schedule_interval)

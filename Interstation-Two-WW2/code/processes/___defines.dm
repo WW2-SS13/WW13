@@ -17,6 +17,7 @@ var/list/last_ran_subsystem = list()
 		sleep(process:schedule_interval); \
 		process:onStart(); \
 		process:fire(); \
+		last_ran_subsystem[process:name] = world.time; \
 		process:onFinish(); \
 		++process:ticks; \
 	}
