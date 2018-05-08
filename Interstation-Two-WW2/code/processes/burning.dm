@@ -9,8 +9,9 @@ var/process/burning/burning_process = null
 
 /process/burning/fire()
 	SCHECK
-	for(last_object in burning_objs)
-		var/obj/O = last_object
+
+	FORNEXT(burning_objs)
+		var/obj/O = current
 		if(isnull(O.gcDestroyed))
 			try
 				if (prob(5))
@@ -27,22 +28,22 @@ var/process/burning/burning_process = null
 			burning_objs -= O
 		SCHECK
 
-	for(last_object in burning_turfs)
-		var/turf/O = last_object
-		if(isnull(O.gcDestroyed) && O.density)
+	FORNEXT(burning_turfs)
+		var/turf/T = current
+		if(isnull(T.gcDestroyed) && T.density)
 			try
 				if (prob(3))
 					for (var/v in 4 to 5)
-						new/obj/effect/decal/cleanable/ash(O)
-					burning_turfs -= O
+						new/obj/effect/decal/cleanable/ash(T)
+					burning_turfs -= T
 					O.ex_act(1.0)
 				else if (prob(10))
-					new/obj/effect/effect/smoke/bad(O, TRUE)
+					new/obj/effect/effect/smoke/bad(T, TRUE)
 			catch(var/exception/e)
-				catchException(e, O)
+				catchException(e, T)
 		else
-			catchBadType(O)
-			burning_turfs -= O
+			catchBadType(T)
+			burning_turfs -= T
 		SCHECK
 
 	var/sound/S = sound('sound/effects/fire_loop.ogg')
@@ -51,13 +52,13 @@ var/process/burning/burning_process = null
 	S.volume = 50
 	S.channel = 1
 
-	for (var/burningobject in burning_objs|burning_turfs)
+	FORNEXT(burning_objs|burning_turfs)
 		// range(20, tcc) = checks ~500 objects (400 turfs)
 		// player_list will rarely be above 100 objects
 		// so this should be more efficient - Kachnov
 		for (var/M in player_list)
 			if (M:loc) // make sure we aren't in the lobby
-				var/dist = abs_dist(M, burningobject)
+				var/dist = abs_dist(M, current)
 				if (dist <= 20)
 					var/volume = 100
 					volume -= (dist*3)

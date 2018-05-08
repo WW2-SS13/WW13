@@ -15,8 +15,9 @@
 
 /process/scheduler/fire()
 	SCHECK
-	for(last_object in scheduled_tasks)
-		var/datum/scheduled_task/scheduled_task = last_object
+
+	FORNEXT(scheduled_tasks)
+		var/datum/scheduled_task/scheduled_task = current
 		try
 			if(world.time > scheduled_task.trigger_time)
 				unschedule(scheduled_task)
@@ -24,7 +25,7 @@
 				scheduled_task.process()
 				scheduled_task.post_process()
 		catch(var/exception/e)
-			catchException(e, last_object)
+			catchException(e, current)
 		SCHECK
 
 /process/scheduler/statProcess()

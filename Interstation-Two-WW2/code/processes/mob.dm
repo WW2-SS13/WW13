@@ -16,9 +16,10 @@ var/process/mob/mob_process = null
 
 /process/mob/fire()
 	SCHECK
-	for(last_object in mob_list)
 
-		var/mob/M = last_object
+	FORNEXT(mob_list)
+
+		var/mob/M = current
 
 		if(isnull(M))
 			continue

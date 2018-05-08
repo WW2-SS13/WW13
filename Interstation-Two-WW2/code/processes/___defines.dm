@@ -21,3 +21,5 @@ var/list/last_ran_subsystem = list()
 		process:onFinish(); \
 		++process:ticks; \
 	}
+
+#define FORNEXT(list) for (current in list)

@@ -36,9 +36,11 @@ var/process/supplydrop/supplydrop_process = null
 					if(last_path)
 						try
 							var/spawned = FALSE
-							for (var/turf/T in dropspots)
+							FORNEXT(dropspots)
 
-								if (!T || !istype(T))
+								var/turf/T = current
+
+								if (!T)
 									continue
 
 								if (T.density)

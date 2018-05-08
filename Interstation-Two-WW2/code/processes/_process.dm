@@ -84,7 +84,7 @@
 
 	var/tmp/last_task = ""
 
-	var/tmp/last_object
+	var/tmp/current
 
 	// Counts the number of times an exception has occurred; gets reset after 10
 	var/tmp/list/exceptions = list()
@@ -117,7 +117,7 @@
 	run_start = 0
 	ticks = 0
 	last_task = 0
-	last_object = null
+	current = null
 
 /process/proc/may_fire()
 	return fires_at_gamestates.len == 4 || (ticker && fires_at_gamestates.Find(ticker.current_state))
@@ -178,7 +178,7 @@
 	setStatus(PROCESS_STATUS_HUNG)
 
 /process/proc/handleHung()
-	var/datum/lastObj = last_object
+	var/datum/lastObj = current
 	var/lastObjType = "null"
 	if(istype(lastObj))
 		lastObjType = lastObj.type
@@ -300,7 +300,7 @@
 
 /process/proc/setLastTask(var/task, var/object)
 	last_task = task
-	last_object = object
+	current = object
 
 /process/proc/_copyStateFrom(var/process/target)
 	main = target.main
@@ -312,7 +312,7 @@
 	times_killed = target.times_killed
 	ticks = target.ticks
 	last_task = target.last_task
-	last_object = target.last_object
+	current = target.current
 	copyStateFrom(target)
 
 /process/proc/copyStateFrom(var/process/target)

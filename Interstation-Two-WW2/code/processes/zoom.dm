@@ -24,8 +24,8 @@ var/process/zoom/zoom_process = null
 	SCHECK
 
 	// update gun, scope (in)visibility
-	for (last_object in recent_scopes)
-		var/obj/item/weapon/attachment/scope/S = last_object
+	FORNEXT(recent_scopes)
+		var/obj/item/weapon/attachment/scope/S = current
 
 		if(isnull(S))
 			continue
@@ -48,9 +48,9 @@ var/process/zoom/zoom_process = null
 		SCHECK
 
 	// make stuff invisible while we're scoping
-	for(last_object in zoom_processing_objects)
+	FORNEXT(zoom_processing_objects)
 
-		var/mob/living/carbon/human/H = last_object
+		var/mob/living/carbon/human/H = current
 
 		if(isnull(H))
 			continue

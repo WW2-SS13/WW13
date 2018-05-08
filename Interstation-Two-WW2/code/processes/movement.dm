@@ -12,9 +12,10 @@ var/process/movement/movement_process = null
 
 /process/movement/fire()
 	SCHECK
-	for(last_object in living_mob_list|dead_mob_list)
 
-		var/mob/M = last_object
+	FORNEXT(living_mob_list|dead_mob_list)
+
+		var/mob/M = current
 
 		if(isnull(M))
 			continue

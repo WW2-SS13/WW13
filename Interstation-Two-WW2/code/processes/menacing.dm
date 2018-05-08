@@ -9,8 +9,9 @@ var/process/menacing/menacing_process = null
 
 /process/menacing/fire()
 	SCHECK
-	for(var/last_atom in menacing_atoms)
-		var/atom/A = last_atom
+
+	FORNEXT(menacing_atoms)
+		var/atom/A = current
 		if(isnull(A.gcDestroyed))
 			try
 				var/list/turfs = list(get_turf(A))
