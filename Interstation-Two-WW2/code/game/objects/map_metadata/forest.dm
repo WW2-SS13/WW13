@@ -12,7 +12,6 @@
 		SOVIET = 1.00,
 		GERMAN = 1.50)
 	character_arrival_announcement_time = 20 // necessary for some reason
-	TOD_change_interval = 600
 
 /obj/map_metadata/forest/New()
 	MAP_MODE(MODE_WAR)

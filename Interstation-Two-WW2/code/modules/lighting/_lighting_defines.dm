@@ -28,8 +28,6 @@
 		0, 0, 0, 1           \
 	)                        \
 
-#define LIGHTING_CHANGE_TIME map ? map.TOD_change_interval : 50
-
 // Helpers so we can (more easily) control the colour matrices.
 #define RR 1
 #define RG 2
