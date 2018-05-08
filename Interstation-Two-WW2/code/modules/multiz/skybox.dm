@@ -7,7 +7,7 @@ var/list/global_SID_map = list()
   var/turf/below = null
   invisibility = 100
   icon = 'icons/mob/screen1.dmi'
-  icon_state = "x"
+  icon_state = "x1-notastate" // was "x", set to invisible until they're fixed
   name = ""
   anchored = TRUE
 
