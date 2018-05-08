@@ -206,7 +206,7 @@
 		del(src)
 
 // Do not call this directly - use SHECK or SCHECK_EVERY
-/process/proc/sleepCheck(var/tickId = 0)
+/process/proc/sleepCheck(var/tickId = 0, var/time_allowance_multiplier = 1.0)
 	calls_since_last_scheck = 0
 	if (killed)
 		// The kill proc is the only place where killed is set.
@@ -218,7 +218,7 @@
 		handleHung()
 		CRASH("Process [name] hung and was restarted.")
 
-	if (main.getCurrentTickElapsedTime() > main.timeAllowance)
+	if (main.getCurrentTickElapsedTime() > main.timeAllowance*time_allowance_multiplier)
 		sleep(world.tick_lag)
 		cpu_defer_count++
 		last_slept = 0

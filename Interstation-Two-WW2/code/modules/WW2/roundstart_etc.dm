@@ -19,23 +19,28 @@ var/GRACE_PERIOD_LENGTH = 7
 
 	// after the game mode has been announced.
 	spawn (5)
-		update_lighting(announce = FALSE)
-		if (!map || !map.meme)
-			world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(time_of_day)]</b>, and the season is <b>[get_season()]</b>.</span></font>"
+		spawn (0)
+			while (ticker.current_state != GAME_STATE_PLAYING)
+				sleep(1)
+			update_lighting(time_of_day, null, FALSE)
+			if (!map || !map.meme)
+				spawn (0)
+					while (!setup_lighting)
+						sleep(1)
+					world << "<br><font size=3><span class = 'notice'>It's <b>[lowertext(time_of_day_change_process.changeto)]</b>, and the season is <b>[get_season()]</b>.</span></font>"
 
 	// spawn mice so soviets have something to eat after they start starving
-
 	var/mice_spawned = FALSE
 	var/max_mice = rand(40,50)
 
 	for (var/area/prishtina/soviet/bunker/area in world)
-		for (var/turf/t in area.contents)
-			if (t.density)
+		for (var/turf/T in area.contents)
+			if (T.density)
 				continue
-			if (istype(t, /turf/open))
+			if (istype(T, /turf/open))
 				continue
 			if (prob(1))
-				new/mob/living/simple_animal/mouse/gray(t)
+				new/mob/living/simple_animal/mouse/gray(T)
 				++mice_spawned
 				if (mice_spawned > max_mice)
 					return TRUE

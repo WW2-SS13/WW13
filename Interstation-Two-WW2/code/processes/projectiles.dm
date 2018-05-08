@@ -13,6 +13,7 @@ var/process/projectile/projectile_process = null
 /process/projectile/fire()
 	if (!projectile_list.len)
 		return
+
 	SCHECK
 
 	FORNEXT(projectile_list)
