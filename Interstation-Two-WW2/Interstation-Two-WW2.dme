@@ -536,6 +536,7 @@
 #include "code\modules\mob\mob_movement.dm"
 #include "code\modules\mob\mob_transformation_simple.dm"
 #include "code\modules\mob\mob_view.dm"
+#include "code\modules\mob\motd.dm"
 #include "code\modules\mob\pray.dm"
 #include "code\modules\mob\say.dm"
 #include "code\modules\mob\transform_procs.dm"
