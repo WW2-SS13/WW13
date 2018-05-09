@@ -36,7 +36,7 @@ var/process/supplydrop/supplydrop_process = null
 					if(last_path)
 						try
 							var/spawned = FALSE
-							FORNEXT(dropspots)
+							for (current in dropspots) // FORNEXT doesn't work here
 
 								var/turf/T = current
 
