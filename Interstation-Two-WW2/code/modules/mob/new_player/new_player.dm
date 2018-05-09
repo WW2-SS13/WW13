@@ -431,11 +431,11 @@
 					if(!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
 						vote_on_poll(pollid, optionid, TRUE)
 */
-/mob/new_player/proc/IsJobAvailable(rank, var/list/restricted_choices)
+/mob/new_player/proc/IsJobAvailable(rank, var/list/restricted_choices = list())
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job)	return FALSE
 	if(!job.is_position_available(restricted_choices)) return FALSE
-	if(!job.player_old_enough(client))	return FALSE
+//	if(!job.player_old_enough(client))	return FALSE
 	return TRUE
 
 /mob/new_player/proc/jobBanned(title)
@@ -593,7 +593,7 @@
 		if (job && !job.train_check())
 			continue
 
-		var/job_is_available = TRUE // (job && IsJobAvailable(job.title, restricted_choices))
+		var/job_is_available = job && IsJobAvailable(job.title)
 
 		if (!job.validate(src))
 			job_is_available = FALSE

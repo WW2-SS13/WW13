@@ -160,10 +160,10 @@
 			apply_fingerprints_to_item(holder, sub_item)
 
 /datum/job/proc/is_position_available(var/list/restricted_choices, var/list/people_in_join_queue)
-	if ((!restricted_choices || restricted_choices.len == FALSE) && (!people_in_join_queue || people_in_join_queue.len == FALSE))
+	if ((!restricted_choices || restricted_choices.len == 0) && (!people_in_join_queue || people_in_join_queue.len == FALSE))
 		return (current_positions < total_positions) || (total_positions == -1)
 	else
-		var/subtract_positions = FALSE
+		var/subtract_positions = 0
 		for (var/_title in restricted_choices)
 			if (_title == title)
 				subtract_positions++

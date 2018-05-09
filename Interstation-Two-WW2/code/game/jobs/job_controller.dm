@@ -916,11 +916,11 @@ var/global/datum/controller/occupations/job_master
 	proc/side_is_hardlocked(side)
 
 		// count number of each side
-		var/germans = total_n_of_side(GERMAN)
-		var/soviets = total_n_of_side(SOVIET)
-		var/italians = total_n_of_side(ITALIAN)
-		var/civilians = total_n_of_side(CIVILIAN)
-		var/partisans = total_n_of_side(PARTISAN)
+		var/germans = alive_n_of_side(GERMAN)
+		var/soviets = alive_n_of_side(SOVIET)
+		var/italians = alive_n_of_side(ITALIAN)
+		var/civilians = alive_n_of_side(CIVILIAN)
+		var/partisans = alive_n_of_side(PARTISAN)
 
 		// by default no sides are hardlocked
 		var/max_germans = INFINITY
