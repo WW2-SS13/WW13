@@ -145,23 +145,16 @@
 		// check internal organs afterwards
 		for (var/obj/item/organ/e in H.internal_organs)
 
-			var/broken = FALSE
-
 			if (!e)
 				continue
-			if (e.status & ORGAN_DESTROYED)
+			else if (e.status & ORGAN_DESTROYED)
 				user.show_message("<span class='warning'>* [capitalize(e.name)] has been destroyed.</span>")
 				icount++
-				continue
-			if (e.status & ORGAN_BROKEN)
-				broken = TRUE
-			if (broken)
+			else if (e.status & ORGAN_BROKEN || e.damage >= e.min_bruised_damage)
 				var/string = "<span class='warning'>* "
 				var/inner = ""
-				if (broken)
-					inner += " [broken ? "and " : "at"]"
-				if (broken)
-					inner += "injuries at"
+				inner += " and "
+				inner += "injuries on"
 				string += "[capitalize(inner)] [G.his] [e.name].</span>"
 				user.show_message(string)
 				icount++
@@ -186,9 +179,13 @@
 			var/hunger_coeff = C.nutrition/C.max_nutrition
 			var/thirst_coeff = C.water/C.max_water
 			var/oxyloss = victim.getOxyLoss()
+			var/toxloss = victim.getToxLoss()
 
 			if (oxyloss)
-				user.show_message("<span class='[oxyloss <= 20 ? "notice" : "danger"]'>[G.He] has [oxyloss] units of oxygen loss.</span>")
+				user.show_message("<span class='[oxyloss <= 20 ? "warning" : "danger"]'>[G.He] has [oxyloss] units of oxygen loss.</span>")
+
+			if (toxloss)
+				user.show_message("<span class='[toxloss <= 20 ? "warning" : "danger"]'>[G.He] has [toxloss] units of toxin poisoning.</span>")
 
 			user.show_message("<span class='[hunger_coeff > 0.66 ? "good" : hunger_coeff > 0.40 ? "notice" : "danger"]'>[G.He] is [round((1 - hunger_coeff)*100)]% hungry.</span>")
 			user.show_message("<span class='[thirst_coeff > 0.66 ? "good" : thirst_coeff > 0.40 ? "notice" : "danger"]'>[G.He] is [round((1 - thirst_coeff)*100)]% thirsty.</span>")

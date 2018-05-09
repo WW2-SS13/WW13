@@ -354,7 +354,9 @@ Proc for attack log creation, because really why not
 	// made this account for being moved on rollerbeds - Kachnov
 
 	if (user.is_on_train())
-		last_train_move_time = user.last_moved_on_train
+		var/datum/train_controller/tc = user.get_train()
+		if (tc.moving)
+			last_train_move_time = user.last_moved_on_train
 	else
 		if (target)
 			target_loc = target.loc

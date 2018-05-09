@@ -161,6 +161,8 @@
 			for (var/v in 1 to original_words.len)
 				if (original_words[v] != null)
 					next = original_words[v]
+					if (prob(10)) // make the word appear slightly weird: "hello" = "hsllo"
+						next = replacetext(next, pick(alphabet_lowercase), pick(alphabet_lowercase))
 					original_words[v] = null
 					break
 			if (next)

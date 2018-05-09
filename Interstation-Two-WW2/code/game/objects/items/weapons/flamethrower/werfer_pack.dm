@@ -89,22 +89,19 @@
 
 /obj/item/weapon/storage/backpack/flammenwerfer/proc/explode()
 	if (istype(loc, /mob))
-		var/mob/m = loc
-		m.visible_message("<span class = 'userdanger'>[m]'s flammenwerfer explodes!</span>", "<span class = 'danger'><font size = 3>Your flammenwerfer explodes!</font></span>")
-		explosion(get_turf(m), 1, 2, 3, 4)
+		var/mob/M = loc
+		M.visible_message("<span class = 'userdanger'>[M]'s flammenwerfer explodes!</span>", "<span class = 'danger'><font size = 3>Your flammenwerfer explodes!</font></span>")
+		explosion(get_turf(M), 1, 2, 3, 4)
 
-		for (var/mob/mm in range(1, get_turf(m)))
-			var/turf/t = get_turf(mm)
-			t.hotspot_expose((ptank.air_contents.temperature*2) + 380,500)
+		for (var/mob/living/L in range(1, get_turf(M)))
+			L.fire_stacks += 2
+			L.IgniteMob()
+			L.adjustFireLoss(10)
 
 		//if (m.get_active_hand() == flamethrower || m.get_inactive_hand() == flamethrower)
-		m.remove_from_mob(flamethrower)
+		M.drop_from_inventory(flamethrower)
 		flamethrower.loc = null
-
 		qdel(src)
-
-		spawn (1)
-			m.regenerate_icons()
 	else
 		visible_message("<span class = 'userdanger'>The flammenwerfer explodes!</span>")
 		explosion(get_turf(src), 1, 2, 3, 4)

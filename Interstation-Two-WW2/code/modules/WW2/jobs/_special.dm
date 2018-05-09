@@ -347,6 +347,7 @@
 
 	var/obj/item/weapon/gun/projectile/gun = null
 	var/obj/item/ammo_magazine/AM = null
+
 	switch (base_type_flag())
 		if (GERMAN, ITALIAN)
 			if (prob(50))
@@ -387,10 +388,13 @@
 				gun.ammo_magazine.stored_ammo.Remove(R)
 				qdel(R)
 		else
-			var/obj/item/ammo_casing/R = gun.contents[gun.contents.len]
-			if (istype(R))
-				gun.contents.Remove(R)
-				qdel(R)
+			// because iron sights occupy gun.contents[gun.contents.len]
+			if (gun.contents.len > 1)
+				var/obj/item/ammo_casing/R = gun.contents[gun.contents.len-1]
+				if (istype(R))
+					gun.contents.Remove(R)
+					gun.loaded.Remove(R)
+					qdel(R)
 
 	if (AM)
 		for (var/v in 1 to removing_2)

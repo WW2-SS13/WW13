@@ -637,6 +637,10 @@ var/list/vocal_emotes = list(
 			else
 				src << "<span class = 'notice'>Unusable emote '[act]'. Say *help for a list.</span>"
 
+		if (muzzled && m_type == 2)
+			src << "<span class = 'warning'>You are unable to make noises while something is in your mouth.</span>"
+			return
+
 		if (message)
 			log_emote("[name]/[key] : [message]")
 			if (act == "surrender")

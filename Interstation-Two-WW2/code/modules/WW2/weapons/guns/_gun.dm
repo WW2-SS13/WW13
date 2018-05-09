@@ -74,7 +74,7 @@
 	var/KD_chance = 5
 	var/stat = "rifle"
 	var/load_delay = 0
-	var/headshot_kill_chance = 0
+	var/headshot_kill_chance = 50 // if we have enough damage. See projectile.dm if you want to know why this needs to be set to 50 for all guns - Kachnov
 
 	// does not need to include all organs
 	var/list/redirection_chances = list(

@@ -631,10 +631,10 @@
 		//Step on nerds in our way
 		if (mob_is_human)
 			if (H.a_intent == I_HURT)
-				for (var/mob/living/L in t1)
+				for (var/mob/living/L in mob.loc)
 					if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
 						H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")
-						playsound(t1, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
+						playsound(mob.loc, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
 						L.adjustBruteLoss(rand(6,7))
 						if (ishuman(L))
 							L.emote("scream")
@@ -642,7 +642,7 @@
 						sleep(STOMP_TIME)
 						break
 			else
-				for (var/mob/living/L in t1)
+				for (var/mob/living/L in mob.loc)
 					if (L.lying && L != H)
 						H.visible_message("<span class = 'warning'>[H] steps over [L].</span>")
 

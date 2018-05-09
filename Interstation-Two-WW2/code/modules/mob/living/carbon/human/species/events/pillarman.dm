@@ -111,6 +111,10 @@
 	adjustToxLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
 	adjustOxyLoss((-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)/10)
 
+	// removes broken heart meme
+	for (var/obj/item/organ/I in internal_organs)
+		I.damage = 0
+
 	var/healedLoss = loss - getTotalLoss()
 	if (healedLoss > 0)
 		if (energy >= 0.25)

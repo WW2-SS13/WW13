@@ -5,9 +5,9 @@ var/list/organ_cache = list()
 	icon = 'icons/obj/surgery.dmi'
 	var/dead_icon
 	var/mob/living/carbon/human/owner = null
-	var/status = FALSE
+	var/status = 0
 	var/vital //Lose a vital limb, die immediately.
-	var/damage = FALSE // amount of damage to the organ
+	var/damage = 0 // amount of damage to the organ
 
 	var/min_bruised_damage = 10
 	var/min_broken_damage = 30

@@ -338,7 +338,7 @@
 	if (istype(H) && H.head && istype(H.head, /obj/item/clothing/head/helmet))
 		helmet_protection = 10
 
-	if (prob((100 - mygun.headshot_kill_chance)+helmet_protection))
+	if (H.stat == CONSCIOUS && prob((100 - mygun.headshot_kill_chance)+helmet_protection))
 		switch (damage)
 			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
 				damage = DAMAGE_LOW - 6
