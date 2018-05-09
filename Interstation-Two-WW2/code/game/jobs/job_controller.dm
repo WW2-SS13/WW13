@@ -912,22 +912,15 @@ var/global/datum/controller/occupations/job_master
 			return map.game_really_started()
 		return FALSE
 
-	// this is a solution to 5 germans and 1 soviet, on lowpop.
+	// this is a solution to 5 germans and 1 soviet on lowpop.
 	proc/side_is_hardlocked(side)
 
-		/* when it's highpop enough for partisans
-		 * there aren't enough partisan roles for hardlocking to matter
-		 * for soviets and Germans, it's another matter
-		 * the generation of these two lists may take a lot of extra CPU,
-		 * but it's important if we want to keep up to date.
-		 */
-
-		// todo: faction lists structured like player_list (ie german_list)
-		var/germans = n_of_side(GERMAN)
-		var/soviets = n_of_side(SOVIET)
-		var/italians = n_of_side(ITALIAN)
-		var/civilians = n_of_side(CIVILIAN)
-		var/partisans = n_of_side(PARTISAN)
+		// count number of each side
+		var/germans = total_n_of_side(GERMAN)
+		var/soviets = total_n_of_side(SOVIET)
+		var/italians = total_n_of_side(ITALIAN)
+		var/civilians = total_n_of_side(CIVILIAN)
+		var/partisans = total_n_of_side(PARTISAN)
 
 		// by default no sides are hardlocked
 		var/max_germans = INFINITY
@@ -939,6 +932,8 @@ var/global/datum/controller/occupations/job_master
 			if (map.faction_distribution_coeffs.Find(GERMAN))
 				max_germans = ceil(clients.len * map.faction_distribution_coeffs[GERMAN])
 
+			// Italians are disabled/enabled whenever Germans are
+
 			if (map.faction_distribution_coeffs.Find(SOVIET))
 				max_soviets = ceil(clients.len * map.faction_distribution_coeffs[SOVIET])
 
@@ -948,7 +943,7 @@ var/global/datum/controller/occupations/job_master
 			if (map.faction_distribution_coeffs.Find(PARTISAN))
 				max_partisans = ceil(clients.len * map.faction_distribution_coeffs[PARTISAN])
 
-		// fixes strange autobalance on verylow pop - Kachnov
+		// fixes soviet-biased autobalance on verylow pop - Kachnov
 		if (map && clients.len <= 7)
 			if (map.faction_distribution_coeffs[SOVIET] > map.faction_distribution_coeffs[GERMAN])
 				max_soviets = max_germans

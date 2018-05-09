@@ -26,7 +26,6 @@
 */
 
 /obj/item/organ/lungs/proc/handle_breath(datum/gas_mixture/breath)
-	return TRUE
 /*
 	if(!owner)
 		return FALSE

@@ -69,7 +69,7 @@
 
 	visible_message("<span class = 'danger'>[src] ejects burning blood from their veins!</span>")
 
-	next_shoot_burning_blood = world.time + 50
+	next_shoot_burning_blood = world.time + 20
 
 	var/steps = 0
 	var/turf/T = get_step(src, dir)
@@ -106,10 +106,10 @@
 	var/loss = getTotalLoss()
 
 	var/heal_damage = (14 * (energy * energy)) + 2
-	adjustBruteLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
-	adjustFireLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
-	adjustToxLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
-	adjustOxyLoss((-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)/10)
+	adjustBruteLoss(-heal_damage*getStatCoeff("strength")*PILLARMAN_HEAL_DAMAGE_MULTIPLIER)
+	adjustFireLoss(-heal_damage*getStatCoeff("strength")*PILLARMAN_HEAL_DAMAGE_MULTIPLIER)
+	adjustToxLoss(-heal_damage*getStatCoeff("strength")*PILLARMAN_HEAL_DAMAGE_MULTIPLIER)
+	adjustOxyLoss((-heal_damage*getStatCoeff("strength")*PILLARMAN_HEAL_DAMAGE_MULTIPLIER)/10)
 
 	// removes broken heart meme
 	for (var/obj/item/organ/I in internal_organs)

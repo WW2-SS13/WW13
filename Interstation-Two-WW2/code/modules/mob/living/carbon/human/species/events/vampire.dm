@@ -92,10 +92,10 @@
 	var/loss = getTotalLoss()
 
 	var/heal_damage = (7 * (blood * blood)) + 2
-	adjustBruteLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
-	adjustFireLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
-	adjustToxLoss(-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)
-	adjustOxyLoss((-heal_damage*getStatCoeff("strength")*HEAL_DAMAGE_MULTIPLIER)/10)
+	adjustBruteLoss(-heal_damage*getStatCoeff("strength")*VAMPIRE_HEAL_DAMAGE_MULTIPLIER)
+	adjustFireLoss(-heal_damage*getStatCoeff("strength")*VAMPIRE_HEAL_DAMAGE_MULTIPLIER)
+	adjustToxLoss(-heal_damage*getStatCoeff("strength")*VAMPIRE_HEAL_DAMAGE_MULTIPLIER)
+	adjustOxyLoss((-heal_damage*getStatCoeff("strength")*VAMPIRE_HEAL_DAMAGE_MULTIPLIER)/10)
 
 	// removes broken heart meme
 	for (var/obj/item/organ/I in internal_organs)
