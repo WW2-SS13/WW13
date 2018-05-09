@@ -168,34 +168,35 @@
 	for (var/mob in saved_mobs)
 		if (mob)
 			var/mob/M = mob
-			if (!isnull(M.next_train_movement))
+			spawn (0.1)
+				if (!isnull(M.next_train_movement))
 
-				var/atom/movable/p = M.pulling
+					var/atom/movable/p = M.pulling
 
-				if (M.next_train_movement)
-					M.dir = M.next_train_movement
-					if (p) p.dir = M.next_train_movement
+					if (M.next_train_movement)
+						M.dir = M.next_train_movement
+						if (p) p.dir = M.next_train_movement
 
-				switch (M.next_train_movement)
-					if (NORTH)
-						var/moved = M.train_move(locate(M.x, M.y+1, M.z))
-						if (p && moved) p.train_move(M.behind())
-					if (SOUTH)
-						var/moved = M.train_move(locate(M.x, M.y-1, M.z))
-						if (p && moved) p.train_move(M.behind())
-					if (EAST)
-						var/moved = M.train_move(locate(M.x+1, M.y, M.z))
-						if (p && moved) p.train_move(M.behind())
-					if (WEST)
-						var/moved = M.train_move(locate(M.x-1, M.y, M.z))
-						if (p && moved) p.train_move(M.behind())
+					switch (M.next_train_movement)
+						if (NORTH)
+							var/moved = M.train_move(locate(M.x, M.y+1, M.z))
+							if (p && moved) p.train_move(M.behind())
+						if (SOUTH)
+							var/moved = M.train_move(locate(M.x, M.y-1, M.z))
+							if (p && moved) p.train_move(M.behind())
+						if (EAST)
+							var/moved = M.train_move(locate(M.x+1, M.y, M.z))
+							if (p && moved) p.train_move(M.behind())
+						if (WEST)
+							var/moved = M.train_move(locate(M.x-1, M.y, M.z))
+							if (p && moved) p.train_move(M.behind())
 
-				if (p && get_dist(M, p) <= 1)
-					M.start_pulling(p) // start_pulling checks for p on its own
+					if (p && get_dist(M, p) <= 1)
+						M.start_pulling(p) // start_pulling checks for p on its own
 
-				M.next_train_movement = null
-				M.train_gib_immunity = FALSE
-				M.last_moved_on_train = world.time
+					M.next_train_movement = null
+					M.train_gib_immunity = FALSE
+					M.last_moved_on_train = world.time
 
 /obj/train_pseudoturf/proc/src_dir()
 	switch (controller.direction)
