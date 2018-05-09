@@ -13,14 +13,15 @@
 	initial_opacity = FALSE
 
 /obj/structure/railing/train_railing/proc/_Move()
-	for (var/atom/movable/a in get_turf(src))
-		if (check_object_invalid_for_moving(src, a))
+	for (var/atom_movable in get_turf(src))
+		var/atom/movable/AM = atom_movable
+		if (check_object_invalid_for_moving(src, AM))
 			continue
 		switch (master.orientation)
 			if (VERTICAL)
-				a.y+=master.getMoveInc()
+				AM.y+=master.getMoveInc()
 			if (HORIZONTAL)
-				a.x+=master.getMoveInc()
+				AM.x+=master.getMoveInc()
 
 	switch (master.orientation)
 		if (VERTICAL)

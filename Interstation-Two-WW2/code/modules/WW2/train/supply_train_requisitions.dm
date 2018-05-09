@@ -144,8 +144,10 @@
 		create_crates += cratetype
 		train.supply_points -= cost
 
-	for (var/obj/train_car_center/tcc in train.reverse_train_car_centers)
-		for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs)
+	for (var/a in train.reverse_train_car_centers)
+		var/obj/train_car_center/tcc = a
+		for (var/b in tcc.backwards_pseudoturfs)
+			var/obj/train_pseudoturf/tpt = b
 			if (locate(/obj/train_decal/cargo/outline) in get_turf(tpt))
 				if (!locate(/obj/structure/closet/crate) in get_turf(tpt))
 					if (create_crates.len)
@@ -154,13 +156,13 @@
 
 						var/tpt_turf = get_turf(tpt)
 
-						for (var/mob/m in tpt_turf)
-							qdel(m)
-						for (var/obj/item/i in tpt_turf)
-							qdel(i)
-						for (var/obj/o in tpt_turf)
-							if (o.density)
-								qdel(o)
+						for (var/mob/M in tpt_turf)
+							qdel(M)
+						for (var/obj/item/I in tpt_turf)
+							qdel(I)
+						for (var/obj/O in tpt_turf)
+							if (O.density)
+								qdel(O)
 
 						new cratetype(tpt_turf)
 

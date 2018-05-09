@@ -241,7 +241,7 @@
 			var/x_inc = FALSE
 			var/found_first_car = FALSE
 
-			for (var/v in TRUE to storage_cars) // this makes unboarding way easier
+			for (var/v in 1 to storage_cars) // this makes unboarding way easier
 				var/obj/train_car_center/tcc = new/obj/train_car_center/germansupply(locate(starting_x+x_inc, starting_y, starting_z), src)
 				x_inc += st_di["width"]
 				x_inc += SPACES_BETWEEN_CARS
@@ -296,59 +296,71 @@
 
 	if (on) // make us invisible
 		spawn (20)
-			for (var/obj/train_car_center/tcc in train_car_centers)
-				for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
+			for (var/a in train_car_centers)
+				var/obj/train_car_center/tcc = a
+				for (var/b in tcc.forwards_pseudoturfs)
+					var/obj/train_pseudoturf/tpt = b
 					tpt.invisibility = 100
 					tpt.density = FALSE
 					tpt.opacity = FALSE
-					for (var/atom/movable/a in get_turf(tpt))
-						if (!istype(a, /obj/effect) && !istype(a, /obj/train_track) && !istype(a, /obj/structure/closet))
-							a.invisibility = 100
-							a.density = FALSE
-							a.opacity = FALSE
-						if (istype(a, /obj/structure/light))
-							var/obj/structure/light/L = a
+					for (var/atom_movable in tpt.contents)
+						if (!istype(atom_movable, /obj/effect) && !istype(atom_movable, /obj/train_track) && !istype(atom_movable, /obj/structure/closet))
+							var/atom/movable/AM = atom_movable
+							AM.invisibility = 100
+							AM.density = FALSE
+							AM.opacity = FALSE
+						if (istype(atom_movable, /obj/structure/light))
+							var/obj/structure/light/L = atom_movable
 							L.on = FALSE
 							L.update(0, TRUE, TRUE)
 
-			for (var/atom/a in train_connectors)
-				a.invisibility = 100
-				a.density = FALSE
-				a.opacity = FALSE
-			for (var/atom/a in train_railings)
-				a.invisibility = 100
-				a.density = FALSE
-				a.opacity = FALSE
+			for (var/connector in train_connectors)
+				var/atom/A = connector
+				A.invisibility = 100
+				A.density = FALSE
+				A.opacity = FALSE
+
+			for (var/railing in train_railings)
+				var/atom/A = railing
+				A.invisibility = 100
+				A.density = FALSE
+				A.opacity = FALSE
 	else
-		for (var/obj/train_car_center/tcc in train_car_centers)
-			for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
+		for (var/a in train_car_centers)
+			var/obj/train_car_center/tcc = a
+			for (var/b in tcc.forwards_pseudoturfs)
+				var/obj/train_pseudoturf/tpt = b
 				tpt.invisibility = FALSE
 				tpt.density = tpt.initial_density
 				tpt.opacity = tpt.initial_opacity
-				for (var/atom/movable/a in get_turf(tpt))
-					if (!istype(a, /obj/effect) && !istype(a, /obj/train_track) && !istype(a, /obj/structure/closet))
-						a.invisibility = FALSE
-						a.density = a.initial_density
-						a.opacity = a.initial_opacity
-					if (istype(a, /obj/structure/light))
-						var/obj/structure/light/L = a
+				for (var/atom_movable in tpt.contents)
+					if (!istype(atom_movable, /obj/effect) && !istype(atom_movable, /obj/train_track) && !istype(atom_movable, /obj/structure/closet))
+						var/atom/movable/AM = atom_movable
+						AM.invisibility = FALSE
+						AM.density = AM.initial_density
+						AM.opacity = AM.initial_opacity
+					if (istype(atom_movable, /obj/structure/light))
+						var/obj/structure/light/L = atom_movable
 						L.on = TRUE
 						L.update(0, TRUE, TRUE)
-					if (istype(a, /obj/structure/simple_door/key_door/anyone/train))
-						var/obj/structure/simple_door/key_door/anyone/train/door = a
+					else if (istype(atom_movable, /obj/structure/simple_door/key_door/anyone/train))
+						var/obj/structure/simple_door/key_door/anyone/train/door = atom_movable
 						door.density = TRUE
 						door.opacity = TRUE
 						door.state = FALSE
 						door.icon_state = door.material.name
 
-		for (var/atom/a in train_connectors)
-			a.invisibility = FALSE
-			a.density = a.initial_density
-			a.opacity = a.initial_opacity
-		for (var/atom/a in train_railings)
-			a.invisibility = FALSE
-			a.density = a.initial_density
-			a.opacity = a.initial_opacity
+		for (var/connector in train_connectors)
+			var/atom/A = connector
+			A.invisibility = FALSE
+			A.density = A.initial_density
+			A.opacity = A.initial_opacity
+
+		for (var/railing in train_railings)
+			var/atom/A = railing
+			A.invisibility = FALSE
+			A.density = A.initial_density
+			A.opacity = A.initial_opacity
 
 /datum/train_controller/proc/stop_moving_slow() // when the conductor decides to stop
 	velocity = 1.0
@@ -378,11 +390,12 @@
 	..()
 
 	if (direction == "BACKWARDS" && !moving)
-		for (var/obj/train_car_center/tcc in train_car_centers)
-			for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
-				for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in get_turf(tpt))
+		for (var/a in train_car_centers)
+			var/obj/train_car_center/tcc = a
+			for (var/b in tcc.forwards_pseudoturfs)
+				var/obj/train_pseudoturf/tpt = b
+				for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in tpt.contents)
 					paper.supplytrain_process(src)
-
 
 /datum/train_controller/proc/Process()
 	if (moving)
@@ -392,12 +405,18 @@
 
 			if (direction == "FORWARDS")
 				move_connectors(0)
-				for (var/obj/train_car_center/tcc in train_car_centers)
+				for (var/object in train_car_centers)
+					var/obj/train_car_center/tcc = object
 					tcc._Move(direction)
+					if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
+						sleep(world.tick_lag)
 			else if (direction == "BACKWARDS")
 				move_connectors(1)
-				for (var/obj/train_car_center/tcc in reverse_train_car_centers)
+				for (var/object in reverse_train_car_centers)
+					var/obj/train_car_center/tcc = object
 					tcc._Move(direction)
+					if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
+						sleep(world.tick_lag)
 		else
 			moving = FALSE
 			var/obj/train_lever/lever = get_lever()
@@ -419,36 +438,48 @@
 		tcs = reverse_train_connectors
 		trs = reverse_train_railings
 
-	for (var/obj/train_connector/tc in tcs)
-		if (tc.loc)
+	for (var/tc in tcs)
+		if (tc:loc)
 			moving_objs += tc
+		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
+			sleep(world.tick_lag)
 
-	for (var/obj/structure/railing/train_railing/tr in trs)
-		if (tr.loc)
+	for (var/tr in trs)
+		if (tr:loc)
 			moving_objs += tr
+		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
+			sleep(world.tick_lag)
 
-	for (var/obj/o in moving_objs)
-		if (istype(o, /obj/train_connector))
-			var/obj/train_connector/tc = o
+	for (var/O in moving_objs)
+		if (tcs.Find(O))
+			var/obj/train_connector/tc = O
 			tc.save_contents_as_refs()
+		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
+			sleep(world.tick_lag)
 
-	for (var/obj/o in moving_objs)
-		o:_Move()
-		if (istype(o, /obj/train_connector))
-			var/obj/train_connector/tc = o
+	for (var/object in moving_objs)
+		var/obj/O = object
+		O:_Move()
+		if (tcs.Find(O))
+			var/obj/train_connector/tc = O
 			tc.move_mobs()
+		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
+			sleep(world.tick_lag)
 
-	for (var/obj/o in moving_objs)
-		if (istype(o, /obj/train_connector))
-			var/obj/train_connector/tc = o
+	for (var/object in moving_objs)
+		var/obj/O = object
+		if (tcs.Find(O))
+			var/obj/train_connector/tc = O
 			tc.remove_contents_refs()
+		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
+			sleep(world.tick_lag)
 
 /datum/train_controller/proc/generate_connectors()
 
 	unoccupy_connectors()
 	unoccupy_railings()
 
-	for (var/v in TRUE to train_car_centers.len-1)
+	for (var/v in 1 to train_car_centers.len-1)
 		var/obj/train_car_center/current = train_car_centers[v]
 		var/obj/train_car_center/next = train_car_centers[v+1]
 		current.connect_to(next)
@@ -457,12 +488,14 @@
 	reverse_train_railings = reverselist(train_railings)
 
 /datum/train_controller/proc/unoccupy_connectors()
-	for (var/obj/train_connector/tc in train_connectors)
+	for (var/object in train_connectors)
+		var/obj/train_connector/tc = object
 		tc.occupied = FALSE
 		tc.loc = null
 
 /datum/train_controller/proc/unoccupy_railings()
-	for (var/obj/structure/railing/train_railing/tr in train_railings)
+	for (var/object in train_railings)
+		var/obj/structure/railing/train_railing/tr = object
 		tr.occupied = FALSE
 		tr.loc = null
 
@@ -470,7 +503,8 @@
 
 	var/obj/train_connector/using = null
 
-	for (var/obj/train_connector/tc in train_connectors)
+	for (var/object in train_connectors)
+		var/obj/train_connector/tc = object
 		if (!tc.occupied)
 			using = tc
 			break
@@ -488,7 +522,8 @@
 
 	var/obj/train_connector/using = null
 
-	for (var/obj/structure/railing/train_railing/tr in train_railings)
+	for (var/object in train_railings)
+		var/obj/structure/railing/train_railing/tr = object
 		if (!tr.occupied)
 			using = tr
 			break
@@ -508,9 +543,11 @@
 	switch (direction)
 
 		if ("FORWARDS")
-			for (var/obj/train_car_center/tcc in train_car_centers)
+			for (var/a in train_car_centers)
+				var/obj/train_car_center/tcc = a
 				if (!last_car || last_car == tcc)
-					for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
+					for (var/b in tcc.forwards_pseudoturfs)
+						var/obj/train_pseudoturf/tpt = b
 						switch (orientation)
 							if (VERTICAL)
 								if (tpt.y + getMoveInc() < limit_point.y) // since y decreases as we go down
@@ -522,9 +559,11 @@
 									return FALSE // + getMoveInc() because getMoveInc() handles signs
 
 		if ("BACKWARDS")
-			for (var/obj/train_car_center/tcc in reverse_train_car_centers)
+			for (var/a in reverse_train_car_centers)
+				var/obj/train_car_center/tcc = a
 				if (!first_car || first_car == tcc)
-					for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs)
+					for (var/b in tcc.backwards_pseudoturfs)
+						var/obj/train_pseudoturf/tpt = b
 						switch (orientation)
 							if (VERTICAL)
 								if (tpt.y + getMoveInc() > starting_point.y)
@@ -543,8 +582,10 @@
 		switch (direction)
 
 			if ("FORWARDS")
-				for (var/obj/train_car_center/tcc in train_car_centers)
-					for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
+				for (var/a in train_car_centers)
+					var/obj/train_car_center/tcc = a
+					for (var/b in tcc.forwards_pseudoturfs)
+						var/obj/train_pseudoturf/tpt = b
 						switch (orientation)
 							if (VERTICAL)
 								if (abs(tpt.y - limit_point.y) < 20) // since y decreases as we go down
@@ -553,8 +594,10 @@
 								if (abs(tpt.x - limit_point.x) < 20) // since y decreases as we go down
 									return TRUE
 			if ("BACKWARDS")
-				for (var/obj/train_car_center/tcc in train_car_centers)
-					for (var/obj/train_pseudoturf/tpt in tcc.backwards_pseudoturfs)
+				for (var/a in train_car_centers)
+					var/obj/train_car_center/tcc = a
+					for (var/b in tcc.backwards_pseudoturfs)
+						var/obj/train_pseudoturf/tpt = b
 						switch (orientation)
 							if (VERTICAL)
 								if (abs(tpt.y - starting_point.y) < 20) // since y decreases as we go down

@@ -19,20 +19,22 @@ var/next_german_supplytrain_master_process = -1
 /proc/normal_train_processes()
 
 	// main train
-	german_train_master.Process()
+	if (german_train_master)
+		german_train_master.Process()
 
-	if (german_train_master.moving)
-		german_train_master.sound_loop()
+		if (german_train_master.moving)
+			german_train_master.sound_loop()
 
 	// supply train
-	if (world.realtime > next_german_supplytrain_master_process)
-		german_supplytrain_master.Process()
-		if (prob(1) && prob(2) && !german_supplytrain_master.here)
-			radio2germans("The Supply Train has broken down. It will not be functional for ten minutes.", "Supply Train Announcements")
-			next_german_supplytrain_master_process = world.realtime + 5400
+	if (german_supplytrain_master)
+		if (world.realtime > next_german_supplytrain_master_process)
+			german_supplytrain_master.Process()
+			if (prob(1) && prob(2) && !german_supplytrain_master.here)
+				radio2germans("The Supply Train has broken down. It will not be functional for ten minutes.", "Supply Train Announcements")
+				next_german_supplytrain_master_process = world.realtime + 5400
 
-	if (german_supplytrain_master.moving)
-		german_supplytrain_master.sound_loop()
+		if (german_supplytrain_master.moving)
+			german_supplytrain_master.sound_loop()
 
 /proc/supplytrain_processes()
 
@@ -46,17 +48,20 @@ var/next_german_supplytrain_master_process = -1
 
 		var/stopthetrain = FALSE
 
-		for (var/obj/train_car_center/tcc in german_supplytrain_master.train_car_centers)
-			for (var/obj/train_pseudoturf/tpt in tcc.forwards_pseudoturfs)
+		for (var/a in german_supplytrain_master.train_car_centers)
+			var/obj/train_car_center/tcc = a
+			for (var/b in tcc.forwards_pseudoturfs)
+				var/obj/train_pseudoturf/tpt = b
 				if (locate(/obj/structure/closet/crate) in get_turf(tpt))
 					if (german_supplytrain_master.direction == "FORWARDS")
 						stopthetrain = TRUE
 						break
 
-		for (var/mob/living/m in living_mob_list)
-			if (m.stat != DEAD)
-				if (!istype(m.loc, /obj/structure/largecrate)) // puppers
-					if (istype(get_area(m), /area/prishtina/german/armory/train))
+		for (var/next in living_mob_list)
+			var/mob/living/L = next
+			if (L && L.stat != DEAD)
+				if (!istype(L.loc, /obj/structure/largecrate)) // puppers
+					if (istype(get_area(L), /area/prishtina/german/armory/train))
 						stopthetrain = TRUE
 						break
 

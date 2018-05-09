@@ -1,4 +1,3 @@
-
 /mob/var/train_gib_immunity = FALSE // can the train make us splat?
 /mob/var/next_train_movement = -1 // when will we move again?
 /mob/var/last_train_movement_attempt = -1 // when did we last try to move?
@@ -11,8 +10,9 @@
 		return FALSE
 	if (loc.density)
 		return FALSE
-	for (var/obj/o in loc)
-		if (o.density)
+	for (var/atom_movable in loc)
+		var/atom/movable/AM = atom_movable
+		if (AM != src && AM.density)
 			return FALSE
 	return TRUE
 
@@ -27,19 +27,20 @@
 	// don't invoke Move()
 
 	if (ismob(src) || pulledby)
-		for (var/obj/o in _loc)
-			if (o == src)
+		for (var/obj/O in _loc)
+			if (O == src)
 				continue
 			for (var/type in blocking_types)
-				if (istype(o, type))
+				if (istype(O, type))
 					return FAILURE
-			if (o.density)
+			if (O.density)
 				for (var/type in nonblocking_types)
-					if (istype(o, type))
+					if (istype(O, type))
 						train_setloc(_loc)
 						return SUCCESS
-				if (ismob(src) && istype(o, /obj/structure/simple_door/key_door))
-					var/obj/structure/simple_door/key_door/door = o
+				if (ismob(src) && istype(O
+				, /obj/structure/simple_door/key_door))
+					var/obj/structure/simple_door/key_door/door = O
 					if (door.keyslot.check_user(src))
 						door.keyslot.locked = FALSE
 						door.Bumped(src)
@@ -66,14 +67,15 @@
 	return FALSE
 
 /mob/proc/get_train()
-	for (var/atom/movable/a in get_turf(src))
-		if (is_train_object(a))
-			if ("master" in a.vars)
-				if (istype(a:master, /datum/train_controller))
-					return a:master
-			if ("controller" in a.vars)
-				if (istype(a:controller, /datum/train_controller))
-					return a:controller
+	for (var/atom_movable in loc)
+		if (is_train_object(atom_movable))
+			var/atom/movable/AM = atom_movable
+			if ("master" in AM.vars)
+				if (istype(AM:master, /datum/train_controller))
+					return AM:master
+			if ("controller" in AM.vars)
+				if (istype(AM:controller, /datum/train_controller))
+					return AM:controller
 	return null
 
 // this no longer uses istype(), so it's more efficient - Kachnov
