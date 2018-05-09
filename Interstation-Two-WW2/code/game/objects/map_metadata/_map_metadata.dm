@@ -38,7 +38,7 @@ var/global/obj/map_metadata/map = null
 	var/list/faction_distribution_coeffs = list(INFINITY) // list(INFINITY) = no hard locks on factions
 	var/list/available_subfactions = list()
 	var/list/roundend_condition_sides = list(
-		list(GERMAN) = /area/prishtina/german,
+		list(GERMAN, ITALIAN) = /area/prishtina/german,
 		list(SOVIET) = /area/prishtina/soviet)
 	var/list/ambience = list('sound/ambience/war.ogg')
 	var/list/songs = list(
@@ -285,6 +285,58 @@ var/global/obj/map_metadata/map = null
 		win_condition.hash = 0
 	last_win_condition = win_condition.hash
 	return TRUE
+
+/obj/map_metadata/proc/has_occupied_base(side)
+
+	var/list/soldiers = list(
+		GERMAN = 0,
+		SOVIET = 0,
+		ITALIAN = 0,
+		CIVILIAN = 0,
+		PARTISAN = 0,
+		UNDEAD = 0)
+
+	if (!soldiers.Find(side))
+		soldiers[side] = 0
+
+	for(var/mob/living/carbon/human/H in human_mob_list)
+
+		var/datum/job/job = H.original_job
+
+		if(!job)
+			continue
+
+		if(H.stat != DEAD && H.stat != UNCONSCIOUS && !H.restrained() && ((H.weakened+H.stunned) == 0) && H.client)
+			if (soldiers.Find(job.base_type_flag()))
+				++soldiers[job.base_type_flag()]
+			else
+				var/M = "WARNING #1: could not find '[job.base_type_flag()]' in local list soldiers in proc '/obj/map/proc/has_occupied_base()'. Please contact a coder."
+				log_admin(M)
+				message_admins(M)
+				log_debug(M)
+
+	var/attacker_soldiers = 0
+	var/defender_soldiers = 0
+
+	for (var/v in 1 to roundend_condition_sides)
+		for (var/faction in roundend_condition_sides[v])
+			switch (v)
+				if (1)
+					if (soldiers.Find(faction))
+						attacker_soldiers += soldiers[faction]
+					else
+						var/M = "WARNING #2: could not find '[faction]' in local list soldiers in proc '/obj/map/proc/has_occupied_base()'. Please contact a coder."
+						log_admin(M)
+						message_admins(M)
+						log_debug(M)
+				if (2 to INFINITY)
+					if (soldiers.Find(faction))
+						defender_soldiers += soldiers[faction]
+					else
+						var/M = "WARNING #2: could not find '[faction]' in local list soldiers in proc '/obj/map/proc/has_occupied_base()'. Please contact a coder."
+						log_admin(M)
+						message_admins(M)
+						log_debug(M)
 
 /obj/map_metadata/proc/next_win_time()
 	return round((next_win - world.time)/600)

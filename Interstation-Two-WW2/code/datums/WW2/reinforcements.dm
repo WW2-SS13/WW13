@@ -194,7 +194,7 @@ var/datum/reinforcements/reinforcements_master = null
 		for (var/mob/new_player/np in l)
 			np << "<span class='danger'>Failed to spawn a new Soviet squadron. [reinforcement_spawn_req - l.len] more draftees needed."
 		return ret
-	else if (has_occupied_base(SOVIET))
+	else if (map && map.has_occupied_base(SOVIET))
 		for (var/mob/new_player/np in l)
 			np << "<span class='danger'>The Germans are currently occupying the Soviet base! Reinforcements can't be sent."
 		return ret
@@ -219,7 +219,7 @@ var/datum/reinforcements/reinforcements_master = null
 		for (var/mob/new_player/np in l)
 			np << "<span class='danger'>Failed to spawn a new German squadron. [reinforcement_spawn_req - l.len] more draftees needed."
 		return ret
-	else if (has_occupied_base(GERMAN))
+	else if (map && map.has_occupied_base(GERMAN))
 		for (var/mob/new_player/np in l)
 			np << "<span class='danger'>The Soviets are currently occupying the German base! Reinforcements can't be sent."
 		return ret
@@ -302,7 +302,7 @@ var/datum/reinforcements/reinforcements_master = null
 	var/list/l = list()
 
 	if (is_ready())
-		if (has_occupied_base(GERMAN))
+		if (map && map.has_occupied_base(GERMAN))
 			l += "The German base is currently occupied;Reinforcements cannot be deployed."
 		else
 			l += "German:: "
@@ -312,7 +312,7 @@ var/datum/reinforcements/reinforcements_master = null
 
 		l += ""
 
-		if (has_occupied_base(SOVIET))
+		if (map && map.has_occupied_base(SOVIET))
 			l += "The Soviet base is currently occupied;Reinforcements cannot be deployed."
 		else
 			l += "Soviet:: "

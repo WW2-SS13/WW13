@@ -350,12 +350,8 @@
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return*/
 
-		if (list(GERMAN,ITALIAN).Find(job_flag) && has_occupied_base(GERMAN))
-			usr << "<span class='danger'>The Soviets are currently occupying your base! You can't be deployed right now."
-			return
-
-		else if (job_flag == SOVIET && has_occupied_base(SOVIET))
-			usr << "<span class='danger'>The Germans are currently occupying your base! You can't be deployed right now."
+		if (map && map.has_occupied_base(job_flag))
+			usr << "<span class = 'danger'>The enemy is currently occupying your base! You can't be deployed right now."
 			return
 
 		var/datum/species/S = all_species[client.prefs.species]
