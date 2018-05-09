@@ -98,9 +98,10 @@
 			L.IgniteMob()
 			L.adjustFireLoss(10)
 
-		//if (m.get_active_hand() == flamethrower || m.get_inactive_hand() == flamethrower)
-		M.drop_from_inventory(flamethrower)
-		flamethrower.loc = null
+		if (m.get_active_hand() == flamethrower || m.get_inactive_hand() == flamethrower)
+			M.drop_from_inventory(flamethrower)
+			flamethrower.loc = null
+		M.drop_from_inventory(src)
 		qdel(src)
 	else
 		visible_message("<span class = 'userdanger'>The flammenwerfer explodes!</span>")
