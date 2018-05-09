@@ -612,7 +612,7 @@
 	return list(new/obj/item/weapon/key/soviet, new/obj/item/weapon/key/soviet/command_intermediate)
 
 /datum/job/soviet/tankcrew/specialcheck()
-	for (var/obj/tank/soviet/T in world)
+	for (var/obj/tank/soviet/T in tank_list)
 		if (!T.admin)
 			return TRUE
 	return FALSE
@@ -660,7 +660,7 @@
 	return list(new/obj/item/weapon/key/soviet)
 
 /datum/job/soviet/anti_tank_crew/specialcheck()
-	for (var/obj/tank/soviet/T in world)
+	for (var/obj/tank/german/T in tank_list)
 		if (!T.admin)
 			return TRUE
 	return FALSE

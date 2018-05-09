@@ -11,6 +11,14 @@
 	name = "train lever"
 	var/real = FALSE
 
+/obj/train_lever/New()
+	..()
+	lever_list += src
+
+/obj/train_lever/Destroy()
+	lever_list -= src
+	..()
+
 /obj/train_lever/attack_hand(var/mob/user as mob)
 	if (!train_process || !train_process.fires_at_gamestates.Find(ticker.current_state))
 		user << "<span class = 'warning'>You can't send the train right now.</span>"

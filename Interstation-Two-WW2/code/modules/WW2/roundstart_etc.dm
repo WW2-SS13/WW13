@@ -7,7 +7,7 @@ var/list/list_of_germans_who_crossed_the_river = list()
 var/GRACE_PERIOD_LENGTH = 7
 
 /proc/WW2_train_check()
-	if (locate(/obj/effect/landmark/train/german_train_start) in world || train_checked)
+	if (locate_type(landmarks_list, /obj/effect/landmark/train/german_train_start) || train_checked)
 		train_checked = TRUE
 		return TRUE
 	else
@@ -33,7 +33,7 @@ var/GRACE_PERIOD_LENGTH = 7
 	var/mice_spawned = FALSE
 	var/max_mice = rand(40,50)
 
-	for (var/area/prishtina/soviet/bunker/area in world)
+	for (var/area/prishtina/soviet/bunker/area in area_list)
 		for (var/turf/T in area.contents)
 			if (T.density)
 				continue
@@ -46,7 +46,7 @@ var/GRACE_PERIOD_LENGTH = 7
 					return TRUE
 
 	// open squad preparation doors
-	for (var/obj/structure/simple_door/key_door/keydoor in world)
+	for (var/obj/structure/simple_door/key_door/keydoor in door_list)
 		if (findtext(keydoor.name, "Squad"))
 			if (findtext(keydoor.name, "Preparation"))
 				keydoor.Open()
@@ -208,9 +208,9 @@ var/train_arrived = FALSE
 
 	// let the new players see reinforcements now
 	spawn (1)
-		for (var/mob/new_player/np in world)
-			if (np.client)
-				np.new_player_panel_proc()
+		for (var/np in new_player_mob_list)
+			if (np:client)
+				np:new_player_panel_proc()
 
 	var/show_report_after = 0
 	if (istype(map, /obj/map_metadata/city))

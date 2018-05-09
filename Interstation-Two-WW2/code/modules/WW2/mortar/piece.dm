@@ -12,6 +12,14 @@
 	var/mob/user = null
 	var/obj/item/mortar_shell/loaded = null
 
+/obj/structure/mortar/New()
+	..()
+	mortar_piece_list += src
+
+/obj/structure/mortar/Destroy()
+	mortar_piece_list -= src
+	..()
+
 /obj/structure/mortar/ex_act(severity)
 	switch(severity)
 		if(1.0)

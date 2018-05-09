@@ -26,6 +26,11 @@
 	update_bounding_rectangle()
 	heal_damage["weldingtool"] = max_damage/10
 	heal_damage["wrench"] = max_damage/20
+	tank_list += src
+
+/obj/tank/Destroy()
+	tank_list -= src
+	..()
 
 /obj/tank/examine(mob/user)
 	user << "<span class = 'notice'>That's a tank.</span>"

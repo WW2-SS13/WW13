@@ -697,7 +697,7 @@
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate)
 
 /datum/job/german/tankcrew/specialcheck()
-	for (var/obj/tank/german/T in world)
+	for (var/obj/tank/german/T in tank_list)
 		if (!T.admin)
 			return TRUE
 	return FALSE
@@ -745,7 +745,7 @@
 	return list(new/obj/item/weapon/key/german)
 
 /datum/job/german/anti_tank_crew/specialcheck()
-	for (var/obj/tank/german/T in world)
+	for (var/obj/tank/soviet/T in tank_list)
 		if (!T.admin)
 			return TRUE
 	return FALSE
@@ -929,8 +929,8 @@ var/first_fallschirm = TRUE
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate)
 
 /datum/job/german/artyman/specialcheck()
-	for (var/obj/structure/artillery/base/B in world)
-		if (B.loc)
+	for (var/B in artillery_list)
+		if (B:loc)
 			return TRUE
 	return FALSE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -981,8 +981,8 @@ var/first_fallschirm = TRUE
 	return list(new/obj/item/weapon/key/german)
 
 /datum/job/german/scout/specialcheck()
-	for (var/obj/structure/artillery/base/B in world)
-		if (B.loc)
+	for (var/B in artillery_list)
+		if (B:loc)
 			return TRUE
 	return FALSE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

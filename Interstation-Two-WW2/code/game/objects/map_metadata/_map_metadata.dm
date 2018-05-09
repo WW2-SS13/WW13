@@ -105,33 +105,33 @@ var/global/obj/map_metadata/map = null
 		if (germans_can_cross_blocks())
 			world << cross_message(GERMAN)
 			// let new players see the reinforcements links
-			for (var/mob/new_player/np in world)
-				if (np.client)
-					np.new_player_panel_proc()
+			for (var/np in new_player_mob_list)
+				if (np:client)
+					np:new_player_panel_proc()
 
 	else if (last_crossing_block_status[GERMAN] == TRUE)
 		if (!germans_can_cross_blocks())
 			world << reverse_cross_message(GERMAN)
 			// let new players see the reinforcements links
-			for (var/mob/new_player/np in world)
-				if (np.client)
-					np.new_player_panel_proc()
+			for (var/np in new_player_mob_list)
+				if (np:client)
+					np:new_player_panel_proc()
 
 	if (last_crossing_block_status[SOVIET] == FALSE)
 		if (soviets_can_cross_blocks())
 			world << cross_message(SOVIET)
 			// let new players see the reinforcements links
-			for (var/mob/new_player/np in world)
-				if (np.client)
-					np.new_player_panel_proc()
+			for (var/np in new_player_mob_list)
+				if (np:client)
+					np:new_player_panel_proc()
 
 	else if (last_crossing_block_status[SOVIET] == TRUE)
 		if (!soviets_can_cross_blocks())
 			world << reverse_cross_message(SOVIET)
 			// let new players see the reinforcements links
-			for (var/mob/new_player/np in world)
-				if (np.client)
-					np.new_player_panel_proc()
+			for (var/np in new_player_mob_list)
+				if (np:client)
+					np:new_player_panel_proc()
 
 	if (last_crossing_block_status[event_faction] == FALSE)
 		if (specialfaction_can_cross_blocks())

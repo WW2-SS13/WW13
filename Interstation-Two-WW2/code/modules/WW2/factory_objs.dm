@@ -168,12 +168,12 @@
 	if(!id)
 		id = newid
 	update()
-
+/*
 	spawn(5)		// allow map load
 		conveyors = list()
 		for(var/obj/structure/conveyor/C in world)
 			if(C.id == id)
-				conveyors += C
+				conveyors += C*/
 
 // update the icon depending on the position
 
@@ -218,11 +218,12 @@
 	operated = TRUE
 	update()
 
+/*
 	// find any switches with same id as this one, and set their positions to match us
 	for(var/obj/structure/conveyor_switch/S in world)
 		if(S.id == id)
 			S.position = position
-			S.update()
+			S.update()*/
 
 
 /obj/structure/conveyor_switch/attackby(obj/item/I, mob/user, params)

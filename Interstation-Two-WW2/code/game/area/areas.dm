@@ -71,7 +71,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 var/list/teleportlocs = list()
 
 /hook/startup/proc/setupTeleportLocs()
-	for(var/area/AR in world)
+	for(var/area in area_list)
+		var/area/AR = area
 		if(teleportlocs.Find(AR.name)) continue
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
 		if (picked)
@@ -85,7 +86,8 @@ var/list/teleportlocs = list()
 var/list/ghostteleportlocs = list()
 
 /hook/startup/proc/setupGhostTeleportLocs()
-	for(var/area/AR in world)
+	for(var/area in area_list)
+		var/area/AR = area
 		if(ghostteleportlocs.Find(AR.name)) continue
 		if(!istype(AR, /area/prishtina)) continue
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))

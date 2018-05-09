@@ -1,5 +1,4 @@
 /var/max_lighting_z = 1
-/var/list/all_lighting_overlays   = list()    // Global list of lighting overlays.
 /var/lighting_corners_initialised = FALSE
 /var/setup_lighting = FALSE
 

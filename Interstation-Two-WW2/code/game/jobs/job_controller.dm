@@ -120,9 +120,9 @@ var/global/datum/controller/occupations/job_master
 			if (map)
 				map.faction_organization |= ITALIAN
 		else
-			for (var/obj/structure/vending/italian/apparel/pizzeria in world)
+			for (var/obj/structure/vending/italian/apparel/pizzeria in vending_machine_list)
 				qdel(pizzeria)
-			for (var/obj/structure/vending/italian/equipment/meatballshooter in world)
+			for (var/obj/structure/vending/italian/equipment/meatballshooter in vending_machine_list)
 				qdel(meatballshooter)
 			if (map)
 				map.faction_organization -= ITALIAN

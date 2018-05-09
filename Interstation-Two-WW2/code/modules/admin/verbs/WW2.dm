@@ -13,11 +13,10 @@
 
 	var/found = FALSE
 
-	for (var/obj/train_lever/german/lever in world)
-		if (istype(lever))
-			lever.automatic_function(direction, src)
-			found = TRUE
-			break
+	for (var/obj/train_lever/german/lever in lever_list)
+		lever.automatic_function(direction, src)
+		found = TRUE
+		break
 
 	if (found)
 
@@ -582,13 +581,13 @@ var/paratroopers_forceEnabled = FALSE
 	set category = "Special"
 	var/side = input("Which side?") in list("Soviet", "German", "Cancel")
 	if (side == "Soviet")
-		for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
+		for (var/obj/structure/simple_door/key_door/soviet/QM/D in door_list)
 			D.Open()
 		var/M = "[key_name(src)] opened Soviet Armory doors."
 		message_admins(M)
 		log_admin(M)
 	else if (side == "German")
-		for (var/obj/structure/simple_door/key_door/german/QM/D in world)
+		for (var/obj/structure/simple_door/key_door/german/QM/D in door_list)
 			D.Open()
 		var/M = "[key_name(src)] opened German Armory doors."
 		message_admins(M)
@@ -599,10 +598,10 @@ var/paratroopers_forceEnabled = FALSE
 	set category = "Special"
 	var/side = input("Which side?") in list("Soviet", "German", "Cancel")
 	if (side == "Soviet")
-		for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
+		for (var/obj/structure/simple_door/key_door/soviet/QM/D in door_list)
 			D.Close()
 			D.keyslot.locked = TRUE
 	else if (side == "German")
-		for (var/obj/structure/simple_door/key_door/german/QM/D in world)
+		for (var/obj/structure/simple_door/key_door/german/QM/D in door_list)
 			D.Close()
 			D.keyslot.locked = TRUE

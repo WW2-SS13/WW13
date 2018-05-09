@@ -21,6 +21,11 @@
 	#ifndef LIFT_DEBUG
 	name = ""
 	#endif
+	lift_list += src
+
+/obj/lift_controller/Destroy()
+	lift_list -= src
+	..()
 
 
 // subtypes: to avoid confusion, never use the base /obj/lift_controller

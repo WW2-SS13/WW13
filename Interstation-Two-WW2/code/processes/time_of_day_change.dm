@@ -44,7 +44,7 @@ var/process/time_of_day_change/time_of_day_change_process = null
 				T.adjust_lighting_overlay_to_daylight()
 			else
 				// todo: way to determine if walls should be dark or not
-				if (locate_type(/obj/train_track, T))
+				if (locate_type(T.contents, /obj/train_track))
 					T.color = rgb(255, 255, 255)
 					var/TOD_2_rgb = min(255, round(time_of_day2luminosity[time_of_day] * 255))
 					T.color = rgb(TOD_2_rgb, TOD_2_rgb, TOD_2_rgb)
@@ -71,7 +71,7 @@ var/process/time_of_day_change/time_of_day_change_process = null
 			M << "<font size=3><span class = 'notice'>It's <b>[lowertext(capitalize(time_of_day))]</b>.</span></font>"
 
 	if (!setup_lighting)
-		for (var/atom/movable/lighting_overlay/LO in world)
+		for (var/atom/movable/lighting_overlay/LO in lighting_overlay_list)
 			if (LO.invisibility)
 				LO.invisibility = 0
 

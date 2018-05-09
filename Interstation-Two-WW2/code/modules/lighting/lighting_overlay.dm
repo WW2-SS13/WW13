@@ -26,7 +26,6 @@
 /atom/movable/lighting_overlay/New(var/atom/loc, var/no_update = FALSE)
 	. = ..()
 	verbs.Cut()
-	global.all_lighting_overlays += src
 
 	var/turf/T         = loc // If this runtimes atleast we'll know what's creating overlays in things that aren't turfs.
 	T.lighting_overlay = src
@@ -41,6 +40,8 @@
 	if (!ticker || ticker.current_state == GAME_STATE_PREGAME)
 		invisibility = 100
 
+	lighting_overlay_list += src
+
 /atom/movable/lighting_overlay/Destroy()
 	var/turf/T   = loc
 	if(istype(T))
@@ -50,6 +51,10 @@
 
 	lighting_update_overlays -= src
 
+	..()
+
+/atom/movable/lighting_overlay/Destroy()
+	lighting_overlay_list -= src
 	..()
 
 /atom/movable/lighting_overlay/proc/update_overlay()

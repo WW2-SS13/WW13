@@ -31,9 +31,9 @@
 		setup_autobalance(0)
 
 		// let new players see the join link
-		for (var/mob/new_player/np in world)
-			if (np.client)
-				np.new_player_panel_proc()
+		for (var/np in new_player_mob_list)
+			if (np:client)
+				np:new_player_panel_proc()
 
 		if (!map || !map.meme)
 
@@ -46,22 +46,22 @@
 					world << "<i>Due to lowpop, there are no tanks.</i>"
 
 			if (clients.len <= ARTILLERY_LOWPOP_THRESHOLD)
-				for (var/obj/structure/artillery/base/A in world)
+				for (var/A in artillery_list)
 					qdel(A)
-				for (var/obj/structure/closet/crate/artillery/C in world)
+				for (var/obj/structure/closet/crate/artillery/C in crate_list)
 					qdel(C)
-				for (var/obj/structure/closet/crate/artillery_gas/C in world)
+				for (var/obj/structure/closet/crate/artillery_gas/C in crate_list)
 					qdel(C)
 				if (map)
 					german_supply_crate_types -= "7,5 cm FK 18 Artillery Piece"
 					german_supply_crate_types -= "Artillery Ballistic Shells Crate"
 					german_supply_crate_types -= "Artillery Gas Shells Crate"
 					map.katyushas = FALSE
-				for (var/obj/structure/mortar/M in world)
+				for (var/M in mortar_piece_list)
 					qdel(M)
-				for (var/obj/item/weapon/shovel/spade/mortar/S in world)
+				for (var/S in mortar_spade_list)
 					qdel(S)
-				for (var/obj/structure/closet/crate/mortar_shells/C in world)
+				for (var/obj/structure/closet/crate/mortar_shells/C in crate_list)
 					qdel(C)
 				if (map)
 					german_supply_crate_types -= "Mortar Shells"
@@ -70,16 +70,16 @@
 				world << "<i>Due to lowpop, there is no artillery or mortars.</i>"
 
 			if (clients.len <= 12)
-				for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
+				for (var/obj/structure/simple_door/key_door/soviet/QM/D in door_list)
 					D.Open()
-				for (var/obj/structure/simple_door/key_door/soviet/medic/D in world)
+				for (var/obj/structure/simple_door/key_door/soviet/medic/D in door_list)
 					D.Open()
-				for (var/obj/structure/simple_door/key_door/soviet/engineer/D in world)
+				for (var/obj/structure/simple_door/key_door/soviet/engineer/D in door_list)
 					D.Open()
-				for (var/obj/structure/simple_door/key_door/german/QM/D in world)
+				for (var/obj/structure/simple_door/key_door/german/QM/D in door_list)
 					D.Open()
-				for (var/obj/structure/simple_door/key_door/german/medic/D in world)
+				for (var/obj/structure/simple_door/key_door/german/medic/D in door_list)
 					D.Open()
-				for (var/obj/structure/simple_door/key_door/german/engineer/D in world)
+				for (var/obj/structure/simple_door/key_door/german/engineer/D in door_list)
 					D.Open()
 				world << "<i>Due to lowpop, some doors have started open.</i>"

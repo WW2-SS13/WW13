@@ -602,8 +602,8 @@ var/list/rank_prefix = list(\
 		verbs -= /mob/living/carbon/human/proc/remotesay
 		return
 	var/list/creatures = list()
-	for(var/mob/living/carbon/h in world)
-		creatures += h
+	for(var/H in human_mob_list)
+		creatures += H
 	var/mob/target = input("Who do you want to project your mind to ?") as null|anything in creatures
 	if (isnull(target))
 		return
@@ -615,7 +615,7 @@ var/list/rank_prefix = list(\
 		target.show_message("<span class = 'notice'>You hear a voice that seems to echo around the room: [say]</span>")
 	usr.show_message("<span class = 'notice'>You project your mind into [target.real_name]: [say]</span>")
 	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
-	for(var/mob/observer/ghost/G in world)
+	for(var/mob/observer/ghost/G in dead_mob_list)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
 
 /mob/living/carbon/human/proc/remoteobserve()
@@ -640,11 +640,12 @@ var/list/rank_prefix = list(\
 
 	var/list/mob/creatures = list()
 
-	for(var/mob/living/carbon/h in world)
-		var/turf/temp_turf = get_turf(h)
-		if((temp_turf.z != TRUE && temp_turf.z != 5) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
+	for(var/human in human_mob_list)
+		var/mob/living/carbon/human/H = human
+		var/turf/temp_turf = get_turf(H)
+		if((temp_turf.z != TRUE && temp_turf.z != 5) || H.stat != CONSCIOUS) //Not on mining or the station. Or dead
 			continue
-		creatures += h
+		creatures += H
 
 	var/mob/target = input ("Who do you want to project your mind to ?") as mob in creatures
 
@@ -677,7 +678,7 @@ var/list/rank_prefix = list(\
 	species.create_organs(src)
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
-		for (var/obj/item/organ/brain/H in world)
+		for (var/obj/item/organ/brain/H in organ_list)
 			if(H.brainmob)
 				if(H.brainmob.real_name == real_name)
 					if(H.brainmob.mind)

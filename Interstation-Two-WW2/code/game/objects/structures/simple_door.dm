@@ -36,7 +36,11 @@
 /obj/structure/simple_door/New(var/newloc, var/material_name)
 	..()
 	update_material(material_name)
+	door_list += src
 
+/obj/structure/simple_door/Destroy()
+	door_list -= src
+	..()
 
 /obj/structure/simple_door/proc/update_material(var/material_name)
 	if(!material_name)

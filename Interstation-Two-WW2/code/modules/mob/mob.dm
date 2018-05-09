@@ -455,10 +455,10 @@
 	var/list/names = list()
 	var/list/namecounts = list()
 	var/list/creatures = list()
-
+/*
 	for(var/obj/O in world)				//EWWWWWWWWWWWWWWWWWWWWWWWW ~needs to be optimised
 		if(!O.loc)
-			continue
+			continue*/
 
 	/*	if(istype(O, /obj/item/weapon/disk/nuclear))
 			var/name = "Nuclear Disk"
@@ -491,7 +491,6 @@
 			namecounts[name] = TRUE
 
 		creatures[name] = M
-
 
 	client.perspective = EYE_PERSPECTIVE
 

@@ -8,7 +8,7 @@ var/list/directory = list()							//list of all ckeys with associated client
 var/global/list/player_list = list()				//List of all mobs **with clients attached**.
 var/global/list/mob_list = list()					//List of all mobs, including clientless
 var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
-var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
+//var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
 var/global/list/dog_mob_list = list()				//List of all dogs
 var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
@@ -32,7 +32,7 @@ var/global/list/chemical_reactions_list				//list of all /datum/chemical_reactio
 var/global/list/chemical_reagents_list				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
-var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
+var/global/list/side_effects = list()				//list of all medical sideeffects types by their names |BS12
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
@@ -42,10 +42,36 @@ var/global/list/HUDdatums = list()
 var/global/list/area_list = list()
 
 var/global/list/projectile_list = list()
+
 var/global/list/thrown_list = list()
 
 var/global/list/cleanables = list()
 
+var/global/list/crate_list = list()
+
+var/global/list/artillery_list = list()
+
+var/global/list/mortar_piece_list = list()
+
+var/global/list/mortar_spade_list = list()
+
+var/global/list/door_list = list()
+
+var/global/list/vending_machine_list = list()
+
+var/global/list/lift_list = list()
+
+var/global/list/lever_list = list() // because different levers are currently snowflake types that aren't actually related (train levers, lift levers, etc) this list needs typechecking always - Kachnov
+
+var/global/list/organ_list = list()
+
+var/global/list/tank_list = list()
+
+var/global/list/ladder_list = list()
+
+var/global/list/paper_list = list()
+
+var/global/list/lighting_overlay_list = list()
 // names
 var/global/list/names_used[1000] // map
 

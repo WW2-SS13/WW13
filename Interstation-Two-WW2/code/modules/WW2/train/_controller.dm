@@ -38,13 +38,13 @@
 	var/invisible = FALSE // disappear into the void
 
 /datum/train_controller/proc/get_lever()
-	for (var/obj/train_lever/lever in world)
+	for (var/obj/train_lever/lever in lever_list)
 		if (lever.loc && lever.faction == faction && lever.real)
 			return lever
 	return null
 
 /datum/train_controller/german/get_lever()
-	for (var/obj/train_lever/lever in world)
+	for (var/obj/train_lever/lever in lever_list)
 		if (lever.loc && istype(lever, /obj/train_lever/german) && lever.real)
 			return lever
 	return null
@@ -53,7 +53,7 @@
 	return null
 
 /datum/train_controller/russian/get_lever()
-	for (var/obj/train_lever/lever in world)
+	for (var/obj/train_lever/lever in lever_list)
 		if (lever.loc && istype(lever, /obj/train_lever/russian) && lever.real)
 			return lever
 	return null
@@ -113,8 +113,8 @@
 			conductor_cars = config.german_train_cars_conductor
 			total_cars = officer_cars + storage_cars + soldier_cars + conductor_cars
 
-			starting_point = locate(/obj/effect/landmark/train/german_train_start) in world
-			limit_point = locate(/obj/effect/landmark/train/german_train_limit) in world
+			starting_point = locate_type(landmarks_list, /obj/effect/landmark/train/german_train_start)
+			limit_point = locate_type(landmarks_list, /obj/effect/landmark/train/german_train_limit)
 
 			if (!starting_point || !limit_point || !istype(starting_point) || !istype(limit_point))
 				return // nope
@@ -211,8 +211,8 @@
 			storage_cars = config.german_train_cars_supply
 			total_cars = storage_cars
 
-			starting_point = locate(/obj/effect/landmark/train/german_supplytrain_start) in world
-			limit_point = locate(/obj/effect/landmark/train/german_supplytrain_limit) in world
+			starting_point = locate_type(landmarks_list, /obj/effect/landmark/train/german_supplytrain_start)
+			limit_point = locate_type(landmarks_list, /obj/effect/landmark/train/german_supplytrain_limit) in world
 
 			if (!starting_point || !limit_point || !istype(starting_point) || !istype(limit_point))
 				return // nope
@@ -257,7 +257,7 @@
 
 			spawn (0)
 				var/datum/train_controller/german_supplytrain_controller/train = src
-				for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in world)
+				for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in paper_list)
 					paper.memo = "<br><i>As of the time this was printed, you have [train.supply_points] Supply Requisition Points remaining.</i>"
 					paper.regenerate_info()
 

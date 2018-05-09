@@ -3,7 +3,8 @@
 		return TRUE // if we haven't started the game yet
 	if (initial(grace_period) == grace_period)
 		return TRUE // if we started with a grace period and we're still in that
-	for (var/mob/living/carbon/human/H in world)
+	for (var/human in human_mob_list)
+		var/mob/living/carbon/human/H = human
 		var/cont = FALSE
 		if (locate(/obj/item/weapon/key/german/train) in H)
 			cont = TRUE

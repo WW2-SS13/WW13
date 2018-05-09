@@ -41,6 +41,7 @@
 
 	usr << browse(output,"window=airreport")
 */
+/*
 /client/proc/fix_next_move()
 	set category = "Debug"
 	set name = "Unfreeze Everyone"
@@ -70,13 +71,14 @@
 	message_admins("[key_name_admin(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [largest_click_time/10] seconds!", TRUE)
 	message_admins("world.time = [world.time]", TRUE)
 
-	return
+	return*/
 
+/*
 /client/proc/radio_report()
 	set category = "Debug"
 	set name = "Radio report"
 	return FALSE
-
+*/
 
 /client/proc/reload_admins()
 	set name = "Reload Admins"

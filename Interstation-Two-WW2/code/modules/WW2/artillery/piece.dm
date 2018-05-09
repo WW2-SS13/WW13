@@ -153,8 +153,12 @@
 	global.valid_coordinates["[x],[y]"] = 1
 
 /obj/structure/artillery/base/New()
-
 	loaded = new/obj/item/artillery_shell/none(src)
+	artillery_list += src
+
+/obj/structure/artillery/base/Del()
+	artillery_list -= src
+	..()
 
 /obj/structure/artillery/base/proc/getNextOpeningClosingState()
 

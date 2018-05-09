@@ -117,7 +117,7 @@
 
 
 
-
+/*
 /client/proc/cmd_admin_areatest()
 	set category = "Mapping"
 	set name = "Test areas"
@@ -201,7 +201,7 @@
 	world << "<b>AREAS WITHOUT ANY CAMERAS:</b>"
 	for(var/areatype in areas_without_camera)
 		world << "* [areatype]"
-
+*/
 /client/proc/cmd_admin_dress()
 	set category = "Fun"
 	set name = "Select equipment"

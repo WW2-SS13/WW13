@@ -38,15 +38,15 @@
 	. = 0
 	switch (x)
 		if (PARTISAN)
-			return dead_partisans + heavily_injured_partisans + alive_partisans
+			return dead_partisans.len + heavily_injured_partisans.len + alive_partisans.len
 		if (CIVILIAN)
-			return dead_civilians + heavily_injured_civilians + alive_civilians
+			return dead_civilians.len + heavily_injured_civilians.len + alive_civilians.len
 		if (GERMAN)
-			return dead_germans + heavily_injured_germans + alive_germans
+			return dead_germans.len + heavily_injured_germans.len + alive_germans.len
 		if (SOVIET)
-			return dead_russians + heavily_injured_russians + alive_russians
+			return dead_russians.len + heavily_injured_russians.len + alive_russians.len
 		if (ITALIAN)
-			return dead_italians + heavily_injured_italians + alive_italians
+			return dead_italians.len + heavily_injured_italians.len + alive_italians.len
 
 /mob/living/carbon/human/proc/equip_coat(ctype)
 	if (season == "WINTER")

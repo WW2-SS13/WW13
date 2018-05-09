@@ -46,7 +46,8 @@
 	else if ((dd_hasprefix(message_without_html, ":t") || dd_hasprefix(message_without_html, ":T")) && istype(loc, /obj/tank))
 		var/obj/tank/my_tank = loc
 		if (my_tank.radio)
-			for (var/mob/living/carbon/human/H in world)
+			for (var/human in human_mob_list)
+				var/mob/living/carbon/human/H = human
 				if (H.loc == loc)
 					H.on_hear_radio(my_tank.radio, "<span class = 'srvradio'><big><b>TANKCHAT</b>: [real_name] says, \"<span class = 'notice'>[capitalize(trim_left(copytext(message_without_html, 3, length(message_without_html)+1)))]</span>\"</big></span>")
 
