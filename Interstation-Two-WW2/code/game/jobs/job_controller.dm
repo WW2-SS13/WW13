@@ -75,7 +75,7 @@ var/global/datum/controller/occupations/job_master
 		var/autobalance_for_players = round(max(_clients, (clients.len/config.max_expected_players) * 50))
 
 		if (announce == TRUE)
-			world << "<span class = 'warning'>Setting up roundstart autobalance for [max(_clients, autobalance_for_players)] players.</span>"
+			world << "<span class = 'notice'>Setting up roundstart autobalance for [max(_clients, autobalance_for_players)] players.</span>"
 		else if (announce == 2)
 			if (!roundstart_time)
 				world << "<span class = 'warning'>An admin has changed autobalance to be set up for [max(_clients, autobalance_for_players)] players.</span>"
@@ -115,25 +115,34 @@ var/global/datum/controller/occupations/job_master
 
 		if (italiano)
 			if (announce)
-				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Italian Army for this battle.</span></font>"
+				world << "<font size = 3><span class = 'notice'>The Wehrmacht has the assistance of the Italian Army for this battle.</span></font>"
 			italians_were_enabled = TRUE
+			if (map)
+				map.faction_organization |= ITALIAN
 		else
 			for (var/obj/structure/vending/italian/apparel/pizzeria in world)
 				qdel(pizzeria)
 			for (var/obj/structure/vending/italian/equipment/meatballshooter in world)
 				qdel(meatballshooter)
+			if (map)
+				map.faction_organization -= ITALIAN
 
 		if (warcrimes)
 			if (announce)
-				world << "<font size = 3><span class = 'info'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
+				world << "<font size = 3><span class = 'notice'>The Wehrmacht has the assistance of the Waffen-SS for this battle.</span></font>"
 			SS_was_enabled = TRUE
 
 		if (!is_side_locked(CIVILIAN) && map && map.faction_organization.Find(CIVILIAN) && map.faction_organization.Find(PARTISAN))
 			if (italiano || warcrimes || autobalance_for_players >= PLAYER_THRESHOLD_HIGHEST-10)
 				if (announce)
-					world << "<font size = 3><span class = 'info'>Civilian and Partisan factions are enabled.</span></font>"
+					world << "<font size = 3><span class = 'notice'>Civilian and Partisan factions are enabled.</span></font>"
 				civilians_were_enabled = TRUE
 				partisans_were_enabled = TRUE
+				if (map)
+					map.faction_organization |= list(CIVILIAN, PARTISAN)
+			else
+				if (map)
+					map.faction_organization -= list(CIVILIAN, PARTISAN)
 
 	proc/spawn_with_delay(var/mob/new_player/np, var/datum/job/j)
 		// for delayed spawning, wait the spawn_delay of the job
@@ -431,8 +440,7 @@ var/global/datum/controller/occupations/job_master
 							weightedCandidates[V] = 3 // Geezer.
 						else
 							// If there's ABSOLUTELY NOBODY ELSE
-							if(candidates.len == TRUE) weightedCandidates[V] = TRUE
-
+							if(candidates.len == 1) weightedCandidates[V] = TRUE
 
 				var/mob/new_player/candidate = pickweight(weightedCandidates)
 				if(AssignRole(candidate, command_position))

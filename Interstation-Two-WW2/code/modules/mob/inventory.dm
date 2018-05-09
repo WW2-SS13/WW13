@@ -9,10 +9,7 @@
 			E.attack_hand(src)
 	else
 		equip_to_slot_if_possible(W, slot)
-	if (W)
 		W.on_changed_slot()
-		for (var/obj/item/I in W.contents)
-			I.on_changed_slot()
 
 /mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, disable_warning = TRUE, redraw_mob = TRUE, prioritize_active_hand = FALSE)
 	if (!prioritize_active_hand)
@@ -56,7 +53,7 @@
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 //In most cases you will want to use equip_to_slot_if_possible()
 /mob/proc/equip_to_slot(obj/item/W as obj, slot)
-	return
+	return FALSE
 
 //This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot)
@@ -114,6 +111,7 @@ var/list/slot_equipment_priority = list( \
 		if(S.can_be_inserted(newitem, TRUE))
 			newitem.forceMove(S)
 			return TRUE
+
 	return FALSE
 
 //These procs handle putting s tuff in your hand. It's probably best to use these rather than setting l_hand = ...etc
@@ -136,6 +134,7 @@ var/list/slot_equipment_priority = list( \
 	W.pixel_x = initial(W.pixel_x)
 	W.pixel_y = initial(W.pixel_y)
 	W.layer = initial(W.layer)
+	W.on_changed_slot()
 	return TRUE
 
 //Puts the item into your r_hand if possible and calls all necessary triggers/updates. returns TRUE on success.
@@ -145,6 +144,7 @@ var/list/slot_equipment_priority = list( \
 	W.pixel_x = initial(W.pixel_x)
 	W.pixel_y = initial(W.pixel_y)
 	W.layer = initial(W.layer)
+	W.on_changed_slot()
 	return TRUE
 
 //Puts the item into our active hand if possible. returns TRUE on success.

@@ -30,8 +30,10 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 		var/shift = pick(-4, 0, 4)
 		var/mobs = 0
 
-		for (var/turf/T in my_turfs)
-			for (var/atom/movable/AM in T.contents)
+		FORNEXT(my_turfs)
+			var/turf/T = current
+			FORNEXT(T.contents)
+				var/atom/movable/AM = current
 				if (!ismob(AM))
 					AM.pixel_x = shift
 				else

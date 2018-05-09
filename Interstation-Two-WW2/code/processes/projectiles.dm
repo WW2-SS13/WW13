@@ -13,10 +13,12 @@ var/process/projectile/projectile_process = null
 /process/projectile/fire()
 	if (!projectile_list.len)
 		return
-	SCHECK
-	for(last_object in projectile_list)
 
-		var/obj/item/projectile/P = last_object
+	SCHECK
+
+	FORNEXT(projectile_list)
+
+		var/obj/item/projectile/P = current
 
 		// projectiles will qdel() and remove themselves from projectile_list automatically
 		if (!P)

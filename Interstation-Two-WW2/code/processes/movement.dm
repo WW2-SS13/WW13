@@ -12,17 +12,21 @@ var/process/movement/movement_process = null
 
 /process/movement/fire()
 	SCHECK
-	for(last_object in living_mob_list|dead_mob_list)
 
-		var/mob/M = last_object
+	if (!moving_mobs.len)
+		return
+
+	FORNEXT(moving_mobs)
+
+		var/mob/M = current
 
 		if(isnull(M))
 			continue
 
-		if (!M.movement_process_dirs.len)
+		if(!M.client)
 			continue
 
-		if(!M.client)
+		if (!M.movement_process_dirs.len)
 			continue
 
 		if(isnull(M.gcDestroyed))

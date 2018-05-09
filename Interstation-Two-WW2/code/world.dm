@@ -261,6 +261,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	spawn (20)
 		serverswap_close_server()
 
+	roundabout()
+
 	// wait for serverswap to do its magic - kachnov
 	spawn (50)
 
@@ -276,25 +278,18 @@ var/world_topic_spam_protect_time = world.timeofday
 		else
 			world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to rejoin (It may take a minute or two): <b>byond://[world.internet_address]:[port]</b></span>"
 
-		spawn(0)
-			if (config.jojoreference || (map && istype(map, /obj/map_metadata/pillar)))
-				roundabout()
-				sleep(50)
-
-		spawn (50)
-
-			processScheduler.stop()
-
-			..(reason)
+		processScheduler.stop() // will be started again after the serverswap occurs
+		..(reason)
 
 #define COLOR_LIGHT_SEPIA "#D4C6B8"
 /world/proc/roundabout() // yes i know this is dumb - kachnov
-	world << sound('sound/misc/roundabout.ogg')
-	spawn (40)
-		for (var/client/client in clients)
-			client.color = COLOR_LIGHT_SEPIA
-			client.screen += tobecontinued
-			client.canmove = FALSE
+	if (config.jojoreference || (map && istype(map, /obj/map_metadata/pillar)))
+		world << sound('sound/misc/roundabout.ogg')
+		spawn (40)
+			for (var/client/client in clients)
+				client.color = COLOR_LIGHT_SEPIA
+				client.screen += tobecontinued
+				client.canmove = FALSE
 #undef COLOR_SEPIA
 /*
 /hook/startup/proc/loadMode()

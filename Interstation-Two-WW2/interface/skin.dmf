@@ -24,8 +24,6 @@ macro "macro"
 		name = "West"
 		command = ".startmovingleft"
 	elem 
-		name = "ALT+West"
-	elem 
 		name = "CTRL+West"
 		command = "westface"
 	elem 
@@ -34,8 +32,6 @@ macro "macro"
 	elem 
 		name = "North"
 		command = ".startmovingup"
-	elem 
-		name = "ALT+North"
 	elem 
 		name = "CTRL+North"
 		command = "northface"
@@ -46,8 +42,6 @@ macro "macro"
 		name = "East"
 		command = ".startmovingright"
 	elem 
-		name = "ALT+East"
-	elem 
 		name = "CTRL+East"
 		command = "eastface"
 	elem 
@@ -56,8 +50,6 @@ macro "macro"
 	elem 
 		name = "South"
 		command = ".startmovingdown"
-	elem 
-		name = "ALT+South"
 	elem 
 		name = "CTRL+South"
 		command = "southface"
@@ -113,41 +105,8 @@ macro "macro"
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
 	elem 
-		name = "F1"
-		command = "adminhelp"
-	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
-	elem 
-		name = "F2"
-		command = "ooc"
-	elem 
-		name = "F2+REP"
-		command = ".screenshot auto"
-	elem 
-		name = "SHIFT+F2+REP"
-		command = ".screenshot"
-	elem 
-		name = "F3"
-		command = ".say"
-	elem 
-		name = "F4"
-		command = ".me"
-	elem 
-		name = "F5"
-		command = "asay"
-	elem 
-		name = "F6"
-		command = "Player-Panel-New"
-	elem 
-		name = "F7"
-		command = "Admin-PM"
-	elem 
-		name = "F8"
-		command = "Invisimin"
-	elem 
-		name = "F12"
-		command = "F12"
 
 macro "hotkeymode"
 	elem 
@@ -169,8 +128,6 @@ macro "hotkeymode"
 		name = "West"
 		command = ".startmovingleft"
 	elem 
-		name = "ALT+West"
-	elem 
 		name = "CTRL+West"
 		command = "westface"
 	elem 
@@ -179,8 +136,6 @@ macro "hotkeymode"
 	elem 
 		name = "North"
 		command = ".startmovingup"
-	elem 
-		name = "ALT+North"
 	elem 
 		name = "CTRL+North"
 		command = "northface"
@@ -191,8 +146,6 @@ macro "hotkeymode"
 		name = "East"
 		command = ".startmovingright"
 	elem 
-		name = "ALT+East"
-	elem 
 		name = "CTRL+East"
 		command = "eastface"
 	elem 
@@ -201,8 +154,6 @@ macro "hotkeymode"
 	elem 
 		name = "South"
 		command = ".startmovingdown"
-	elem 
-		name = "ALT+South"
 	elem 
 		name = "CTRL+South"
 		command = "southface"
@@ -333,41 +284,8 @@ macro "hotkeymode"
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
 	elem 
-		name = "F1"
-		command = "adminhelp"
-	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
-	elem 
-		name = "F2"
-		command = "ooc"
-	elem 
-		name = "F2+REP"
-		command = ".screenshot auto"
-	elem 
-		name = "SHIFT+F2+REP"
-		command = ".screenshot"
-	elem 
-		name = "F3"
-		command = ".say"
-	elem 
-		name = "F4"
-		command = ".me"
-	elem 
-		name = "F5"
-		command = "asay"
-	elem 
-		name = "F6"
-		command = "Player-Panel-New"
-	elem 
-		name = "F7"
-		command = "Admin-PM"
-	elem 
-		name = "F8"
-		command = "Invisimin"
-	elem 
-		name = "F12"
-		command = "F12"
 
 
 menu "menu"

@@ -82,4 +82,4 @@
 					D.Open()
 				for (var/obj/structure/simple_door/key_door/german/engineer/D in world)
 					D.Open()
-				world << "<b>Due to lowpop, some doors have started open.</b>"
+				world << "<i>Due to lowpop, some doors have started open.</i>"

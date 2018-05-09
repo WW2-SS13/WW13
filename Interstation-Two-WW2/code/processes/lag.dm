@@ -15,15 +15,16 @@ var/process/lag/lag_process = null
 	var/list/turf2cleanables = list()
 
 	// get casings
-	for (var/last_object in bullet_casings)
-		var/obj/item/ammo_casing/A = last_object
-		if (!turf2casings[A.loc])
-			turf2casings[A.loc] = 0
-		++turf2casings[A.loc]
+	FORNEXT(bullet_casings)
+		var/obj/item/ammo_casing/A = current
+		if (A.loc && isturf(A.loc)) // so we don't delete ammo casings in guns or mags or nullspace
+			if (!turf2casings[A.loc])
+				turf2casings[A.loc] = 0
+			++turf2casings[A.loc]
 
 	// get cleanables
-	for (var/last_object in cleanables)
-		var/obj/effect/decal/cleanable/C = last_object
+	FORNEXT(cleanables)
+		var/obj/effect/decal/cleanable/C = current
 		if (!turf2cleanables[C.loc])
 			turf2cleanables[C.loc] = 0
 		++turf2cleanables[C.loc]
@@ -32,6 +33,7 @@ var/process/lag/lag_process = null
 		if (turf2casings[loc] >= 2 && turf2casings[loc] <= 9)
 			var/deleted = 0
 			for (var/obj/item/ammo_casing/A in loc)
+				bullet_casings -= A
 				qdel(A)
 				++deleted
 				if (deleted >= turf2casings[loc]-1)
@@ -41,6 +43,7 @@ var/process/lag/lag_process = null
 		if (turf2cleanables[loc] >= 2)
 			var/deleted = 0
 			for (var/obj/effect/decal/cleanable/C in loc)
+				cleanables -= C
 				qdel(C)
 				++deleted
 				if (deleted >= turf2cleanables[loc]-1)

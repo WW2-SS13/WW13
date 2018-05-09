@@ -21,17 +21,15 @@
 #define LIGHTING_BASE_MATRIX \
 	list                     \
 	(                        \
-		0, FALSE, FALSE, FALSE,          \
-		0, FALSE, FALSE, FALSE,          \
-		0, FALSE, FALSE, FALSE,          \
-		0, FALSE, FALSE, FALSE,          \
-		0, FALSE, FALSE, TRUE           \
+		0, 0, 0, 0,          \
+		0, 0, 0, 0,          \
+		0, 0, 0, 0,          \
+		0, 0, 0, 0,          \
+		0, 0, 0, 1           \
 	)                        \
 
-#define LIGHTING_CHANGE_TIME map ? map.TOD_change_interval : 50
-
 // Helpers so we can (more easily) control the colour matrices.
-#define RR TRUE
+#define RR 1
 #define RG 2
 #define RB 3
 #define RA 4

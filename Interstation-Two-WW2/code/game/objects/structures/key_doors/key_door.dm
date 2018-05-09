@@ -17,7 +17,7 @@ var/list/nonbreaking_types = list(
 	var/showed_damage_messages[4]
 	var/unique_door_name = null
 	var/starts_open = FALSE
-	var/next_knock = -1
+	var/next_attack_hand = -1
 	material = "iron"
 	icon = 'icons/obj/doors/material_doors_leonister.dmi'
 
@@ -82,11 +82,7 @@ var/list/nonbreaking_types = list(
 					playsound(get_turf(src), 'sound/effects/wooddoorhit.ogg', 100)
 				else
 					playsound(get_turf(src), 'sound/effects/grillehit.ogg', 100)
-				health -= W.force
-				damage_display()
-				if (health <= 0)
-					visible_message("<span class = 'danger'>[src] collapses into a pile of scrap metal!</span>")
-					qdel(src)
+				update_damage(-W.force)
 				spawn (7)
 					user.hitting_key_door = FALSE
 				return
@@ -105,21 +101,30 @@ var/list/nonbreaking_types = list(
 	if (!keyslot.locked || istype(src, /obj/structure/simple_door/key_door/anyone))
 		return ..(user)
 	else
-		if (world.time < next_knock)
+		if (world.time < next_attack_hand)
 			return
 
 		if (user.a_intent == I_HELP)
 			user.visible_message("<span class = 'notice'>[user] knocks at the door.</span>")
+			for (var/mob/living/L in view(world.view, src))
+				if (!viewers(world.view, L).Find(user))
+					L << "<span class = 'notice'>You hear a knock at the door.</span>"
+			playsound(get_turf(src), "doorknock", 75, TRUE)
+		else if (list(I_DISARM, I_GRAB).Find(user.a_intent))
+			user.visible_message("<span class = 'warning'>[user] bangs on the door.</span>")
+			for (var/mob/living/L in view(world.view, src))
+				if (!viewers(world.view, L).Find(user))
+					L << "<span class = 'notice'>You hear a knock at the door.</span>"
+			playsound(get_turf(src), "doorknock", 100, TRUE)
 		else
-			user.visible_message("<span class = 'danger'>[user] bangs on the door.</span>")
+			user.visible_message("<span class = 'danger'>[user] kicks the door!</span>")
+			if (istype(material, /material/wood))
+				playsound(get_turf(src), 'sound/effects/wooddoorhit.ogg', 100)
+			else
+				playsound(get_turf(src), 'sound/effects/grillehit.ogg', 100)
+			update_damage(-10)
 
-		for (var/mob/living/L in view(world.view, src))
-			if (!viewers(world.view, L).Find(user))
-				L << "<span class = 'notice'>You hear a knock at the door.</span>"
-
-		playsound(get_turf(src), "doorknock", 100)
-
-		next_knock = world.time + 10
+		next_attack_hand = world.time + 10
 
 /obj/structure/simple_door/key_door/Bumped(atom/user)
 
@@ -128,6 +133,13 @@ var/list/nonbreaking_types = list(
 	else
 		return FALSE
 
+
+/obj/structure/simple_door/key_door/proc/update_damage(amt)
+	health += amt
+	damage_display()
+	if (health <= 0)
+		visible_message("<span class = 'danger'>[src] collapses into a pile of scrap metal!</span>")
+		qdel(src)
 
 /obj/structure/simple_door/key_door/proc/damage_display()
 

@@ -364,7 +364,7 @@
 		/obj/item/ammo_magazine/luger,
 		/obj/item/weapon/gauze_pack,
 		/obj/item/weapon/shovel/spade/russia,
-		/obj/item/weapon/reagent_containers/food,
+		/obj/item/weapon/reagent_containers/food
 		)
 
 /obj/item/weapon/storage/belt/soviet_basic/soldier
@@ -458,9 +458,9 @@
 
 /obj/item/weapon/storage/belt/german/fallofficer/New()
 	..()
-	new /obj/item/ammo_magazine/mp40(src)
-	new /obj/item/ammo_magazine/mp40(src)
-	new /obj/item/ammo_magazine/mp40(src)
+	new /obj/item/weapon/gun/projectile/pistol/mauser(src)
+	new /obj/item/ammo_magazine/c763x25mm_mauser(src)
+	new /obj/item/ammo_magazine/c763x25mm_mauser(src)
 	new /obj/item/weapon/gauze_pack/gauze(src)
 	new /obj/item/weapon/grenade/explosive/stgnade(src)
 	new /obj/item/weapon/grenade/explosive/stgnade(src)
@@ -475,9 +475,9 @@
 
 /obj/item/weapon/storage/belt/german/fallsoldier/New()
 	..()
-	new /obj/item/ammo_magazine/kar98k(src)
-	new /obj/item/ammo_magazine/kar98k(src)
-	new /obj/item/ammo_magazine/kar98k(src)
+	new /obj/item/weapon/gun/projectile/pistol/mauser(src)
+	new /obj/item/ammo_magazine/c763x25mm_mauser(src)
+	new /obj/item/ammo_magazine/c763x25mm_mauser(src)
 	new /obj/item/weapon/attachment/bayonet(src)
 	new /obj/item/weapon/gauze_pack/gauze(src)
 	new /obj/item/weapon/grenade/explosive/stgnade(src)

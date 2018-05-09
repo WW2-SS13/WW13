@@ -4,6 +4,8 @@
 
 // todo: remove message span class from the code
 
+// .info					{color: #E1E1FF;} -> this is removed because it was the same as .notice
+
 client/script = {"<style>
 body					{font-family: "Book Antiqua", Verdana, sans-serif; font-size: 0.75em; background-color: #1E1E28; color: #E1E1D7}
 
@@ -77,7 +79,6 @@ h1.alert, h2.alert		{color: #ff0000;}
 .hugedanger				{color: #ff3737; font-weight: bold; font-size: 3.0em;}
 .warning				{color: #ff3737; font-style: italic;}
 .rose					{color: #ff5050;}
-.info					{color: #E1E1FF;}
 .notice					{color: #E1E1FF;}
 .ping					{color: #E1E1FF; font-weight: bold;}
 

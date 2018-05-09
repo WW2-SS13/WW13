@@ -8,34 +8,35 @@
 	var/datum/train_controller/controller = null
 	var/deadly = FALSE
 	var/list/saved_contents = list()
+	var/list/saved_mobs = list()
 	var/based_on_type = null // debug variable
 	var/copy_of_instance = null // debug variable
 
-/obj/train_pseudoturf/New(_loc, var/turf/t, var/ignorecontents = FALSE)
+/obj/train_pseudoturf/New(_loc, var/turf/T, var/ignorecontents = FALSE)
 	..()
 
 	loc = _loc
-	density = t.density
-	opacity = t.opacity
-	based_on_type = t.type
-	copy_of_instance = t
+	density = T.density
+	opacity = T.opacity
+	based_on_type = T.type
+	copy_of_instance = T
 
-	if (istype(t, /turf/wall))
-		var/turf/wall/w = t
-		icon = w.icon
-		icon_state = w.ref_state
-		overlays = w.overlays
+	if (istype(T, /turf/wall))
+		var/turf/wall/W = T
+		icon = W.icon
+		icon_state = W.ref_state
+		overlays = W.overlays
 		deadly = TRUE
 	else
-		icon = t.icon
-		icon_state = t.icon_state
-		for (var/atom/a in t.overlays)
-			overlays += new a.type
+		icon = T.icon
+		icon_state = T.icon_state
+		for (var/atom/A in T.overlays)
+			overlays += new A.type
 
-	layer = t.layer + 0.05 //otherwise, train tracks go above train pseudoturfs
-	pixel_x = t.pixel_x
-	pixel_y = t.pixel_y
-	dir = t.dir
+	layer = T.layer + 0.05 //otherwise, train tracks go above train pseudoturfs
+	pixel_x = T.pixel_x
+	pixel_y = T.pixel_y
+	dir = T.dir
 	anchored = TRUE
 
 	uses_initial_density = TRUE
@@ -44,21 +45,23 @@
 	uses_initial_opacity = TRUE
 	initial_opacity = opacity
 
-	for (var/atom/movable/a in loc)
-		if (istype(a, /obj/structure/wild))
-			qdel(a)
+	for (var/atom_movable in loc)
+		if (istype(atom_movable, /obj/structure/wild))
+			qdel(atom_movable)
 
 	if (!ignorecontents)
-		for (var/atom/movable/a in t)
+		for (var/atom_movable in T)
 
-			if (check_object_invalid_for_moving(src, a, TRUE))
+			var/atom/movable/AM = atom_movable
+
+			if (check_object_invalid_for_moving(src, AM, TRUE))
 				continue
 
-			var/atom/movable/aa = new a.type(loc)
+			var/atom/movable/AM2 = new AM.type(loc)
 
-			if (istype(a, /obj/structure/multiz/ladder/ww2))
-				var/obj/structure/multiz/ladder/ww2/old_ladder = a
-				var/obj/structure/multiz/ladder/ww2/new_ladder = aa
+			if (istype(AM2, /obj/structure/multiz/ladder/ww2))
+				var/obj/structure/multiz/ladder/ww2/old_ladder = AM
+				var/obj/structure/multiz/ladder/ww2/new_ladder = AM2
 				new_ladder.area_id = old_ladder.area_id
 				new_ladder.ladder_id = old_ladder.ladder_id
 				new_ladder.target = new_ladder.find_target()
@@ -66,44 +69,48 @@
 				qdel (old_ladder) // delete the source so we don't make multiple identical
 					// ladders between different cars!
 
-			if (istype(aa, /obj/train_lever))
-				var/obj/train_lever/lever = aa
+			if (istype(AM2, /obj/train_lever))
+				var/obj/train_lever/lever = AM2
 				lever.real = TRUE // distinguish us from the example lever
 
-			if (istype(aa, /obj/structure/bed))
-				var/obj/structure/bed/bed = aa
+			if (istype(AM2, /obj/structure/bed))
+				var/obj/structure/bed/bed = AM2
 				bed.can_buckle = FALSE // fixes the train buckling meme
 /*
 			if (istype(aa, /obj/machinery))
 				aa.anchored = TRUE*/
 
-			aa.icon = a.icon
-			aa.icon_state = a.icon_state
-			aa.layer = a.layer
-			aa.pixel_x = a.pixel_x
-			aa.pixel_y = a.pixel_y
-			aa.dir = a.dir
+			AM2.icon = AM.icon
+			AM2.icon_state = AM.icon_state
+			AM2.layer = AM.layer
+			AM2.pixel_x = AM.pixel_x
+			AM2.pixel_y = AM.pixel_y
+			AM2.dir = AM.dir
 
-			aa.uses_initial_density = TRUE
-			aa.initial_density = aa.density
+			AM2.uses_initial_density = TRUE
+			AM2.initial_density = AM2.density
 
-			aa.uses_initial_opacity = TRUE
-			aa.initial_opacity = aa.opacity
+			AM2.uses_initial_opacity = TRUE
+			AM2.initial_opacity = AM2.opacity
 
 
-	for (var/atom/movable/a in t)
-		if (istype(a, /obj/structure))
-			if (a.density && !istype(a, /obj/structure/railing/train_railing))
-				if (!istype(a, /obj/structure/simple_door))
+	for (var/atom_movable in T)
+		if (istype(atom_movable, /obj/structure))
+			var/obj/structure/S = atom_movable
+			if (S.density && !istype(S, /obj/structure/railing/train_railing))
+				if (!istype(S, /obj/structure/simple_door))
 					deadly = TRUE
 
 /obj/train_pseudoturf/proc/save_contents_as_refs()
-	for (var/atom/movable/a in get_turf(src))
-		if (!check_object_invalid_for_moving(src, a))
-			saved_contents += a
+	for (var/atom_movable in get_turf(src))
+		if (!check_object_invalid_for_moving(src, atom_movable))
+			saved_contents += atom_movable
+			if (ismob(atom_movable))
+				saved_mobs += atom_movable
 
 /obj/train_pseudoturf/proc/remove_contents_refs()
 	saved_contents.Cut()
+	saved_mobs.Cut()
 
 /obj/train_pseudoturf/proc/reset_track_lights() // pre movement
 	for (var/obj/train_track/tt in get_turf(src))
@@ -115,39 +122,41 @@
 
 /obj/train_pseudoturf/proc/_Move(var/_direction)
 
-	for (var/atom/movable/a in saved_contents)
-		if (ismob(a))
-			var/mob/m = a
-			m.original_pulling = m.pulling
-			if (!m.buckled)
-				switch (controller.orientation)
-					if (VERTICAL)
-						m.train_move(locate(m.x, m.y+controller.getMoveInc(), m.z))
-					if (HORIZONTAL)
-						m.train_move(locate(m.x+controller.getMoveInc(), m.y, m.z))
-		else
-			switch (controller.orientation)
-				if (VERTICAL)
-					a.train_move(locate(a.x, a.y+controller.getMoveInc(), a.z))
-				if (HORIZONTAL)
-					a.train_move(locate(a.x+controller.getMoveInc(), a.y, a.z))
-
-			if (istype(a, /obj/structure/bed))
-				var/obj/structure/bed/bed = a
-				var/mob/m = bed.buckled_mob
-				if (m)
+	for (var/atom_movable in saved_contents)
+		var/atom/movable/AM = atom_movable
+		if (AM)
+			if (saved_mobs.Find(AM))
+				var/mob/M = AM
+				M.original_pulling = M.pulling
+				if (!M.buckled)
 					switch (controller.orientation)
 						if (VERTICAL)
-							m.train_move(locate(m.x, m.y+controller.getMoveInc(), m.z))
+							M.train_move(locate(M.x, M.y+controller.getMoveInc(), M.z))
 						if (HORIZONTAL)
-							m.train_move(locate(m.x+controller.getMoveInc(), m.y, m.z))
+							M.train_move(locate(M.x+controller.getMoveInc(), M.y, M.z))
+			else
+				switch (controller.orientation)
+					if (VERTICAL)
+						AM.train_move(locate(AM.x, AM.y+controller.getMoveInc(), AM.z))
+					if (HORIZONTAL)
+						AM.train_move(locate(AM.x+controller.getMoveInc(), AM.y, AM.z))
 
+				if (istype(AM, /obj/structure/bed))
+					var/obj/structure/bed/bed = AM
+					var/mob/M = bed.buckled_mob
+					if (M)
+						switch (controller.orientation)
+							if (VERTICAL)
+								M.train_move(locate(M.x, M.y+controller.getMoveInc(), M.z))
+							if (HORIZONTAL)
+								M.train_move(locate(M.x+controller.getMoveInc(), M.y, M.z))
 
-	for (var/mob/m in saved_contents)
-		if (istype(m))
-			if (m.original_pulling)
-				m.start_pulling(m.original_pulling)
-				m.original_pulling = null
+	for (var/mob in saved_mobs)
+		var/mob/M = mob
+		if (M)
+			if (M.original_pulling)
+				M.start_pulling(M.original_pulling)
+				M.original_pulling = null
 
 	switch (controller.orientation)
 		if (VERTICAL)
@@ -156,37 +165,38 @@
 			x+=controller.getMoveInc()
 
 /obj/train_pseudoturf/proc/move_mobs(var/_direction)
-	for (var/atom/movable/a in saved_contents)
-		if (ismob(a))
-			var/mob/m = a
-			if (!isnull(m.next_train_movement))
+	for (var/mob in saved_mobs)
+		if (mob)
+			var/mob/M = mob
+			spawn (0.1)
+				if (!isnull(M.next_train_movement))
 
-				var/atom/movable/p = m.pulling
+					var/atom/movable/p = M.pulling
 
-				if (m.next_train_movement)
-					m.dir = m.next_train_movement
-					if (p) p.dir = m.next_train_movement
+					if (M.next_train_movement)
+						M.dir = M.next_train_movement
+						if (p) p.dir = M.next_train_movement
 
-				switch (m.next_train_movement)
-					if (NORTH)
-						var/moved = m.train_move(locate(m.x, m.y+1, m.z))
-						if (p && moved) p.train_move(m.behind())
-					if (SOUTH)
-						var/moved = m.train_move(locate(m.x, m.y-1, m.z))
-						if (p && moved) p.train_move(m.behind())
-					if (EAST)
-						var/moved = m.train_move(locate(m.x+1, m.y, m.z))
-						if (p && moved) p.train_move(m.behind())
-					if (WEST)
-						var/moved = m.train_move(locate(m.x-1, m.y, m.z))
-						if (p && moved) p.train_move(m.behind())
+					switch (M.next_train_movement)
+						if (NORTH)
+							var/moved = M.train_move(locate(M.x, M.y+1, M.z))
+							if (p && moved) p.train_move(M.behind())
+						if (SOUTH)
+							var/moved = M.train_move(locate(M.x, M.y-1, M.z))
+							if (p && moved) p.train_move(M.behind())
+						if (EAST)
+							var/moved = M.train_move(locate(M.x+1, M.y, M.z))
+							if (p && moved) p.train_move(M.behind())
+						if (WEST)
+							var/moved = M.train_move(locate(M.x-1, M.y, M.z))
+							if (p && moved) p.train_move(M.behind())
 
-				if (p && get_dist(m, p) <= 1)
-					m.start_pulling(p) // start_pulling checks for p on its own
+					if (p && get_dist(M, p) <= 1)
+						M.start_pulling(p) // start_pulling checks for p on its own
 
-				m.next_train_movement = null
-				m.train_gib_immunity = FALSE
-				m.last_moved_on_train = world.time
+					M.next_train_movement = null
+					M.train_gib_immunity = FALSE
+					M.last_moved_on_train = world.time
 
 /obj/train_pseudoturf/proc/src_dir()
 	switch (controller.direction)
@@ -196,40 +206,41 @@
 			return NORTH
 
 /obj/train_pseudoturf/proc/destroy_objects()
-	for (var/atom/movable/a in get_step(src, src_dir()))
-		if (a.pulledby && a.pulledby.is_on_train())
+	for (var/atom_movable in get_step(src, src_dir()))
+		var/atom/movable/AM = atom_movable
+		if (AM.pulledby && AM.pulledby.is_on_train())
 			continue
 		// this is now a feature - Kachnov
-		if (istype(a, /obj/tank))
-			var/obj/tank/T = a
-			T.tank_message("<span class = 'danger'><big>[a] explodes.</big></span>")
-			for (var/mob/m in T)
-				m.crush()
-			explosion(get_turf(T), TRUE, 3, 5, 6)
+		if (istype(AM, /obj/tank))
+			var/obj/tank/T = AM
+			T.tank_message("<span class = 'danger'><big>[AM] explodes.</big></span>")
+			for (var/mob/M in T)
+				M.crush()
+			explosion(get_turf(T), 1, 3, 5, 6)
 			spawn (20)
 				qdel(T)
-		if (check_object_invalid_for_moving(src, a) && check_object_valid_for_destruction(a))
-			if (a.density)
-				visible_message("<span class = 'danger'>The train crushes [a]!</span>")
-				if (istype(a, /obj/structure))
-					gibs(get_turf(a), gibber_type = /obj/effect/gibspawner/robot)
-				qdel(a)
-			else if (!a.density)
-				visible_message("<span class = 'warning'>The train crushes [a].</span>")
-				qdel(a)
+		if (check_object_invalid_for_moving(src, AM) && check_object_valid_for_destruction(AM))
+			if (AM.density)
+				visible_message("<span class = 'danger'>The train crushes [AM]!</span>")
+				if (istype(AM, /obj/structure))
+					gibs(get_turf(AM), gibber_type = /obj/effect/gibspawner/robot)
+				qdel(AM)
+			else if (!AM.density)
+				visible_message("<span class = 'warning'>The train crushes [AM].</span>")
+				qdel(AM)
 
 /obj/train_pseudoturf/proc/gib_idiots()
-	for (var/mob/living/m in get_step(src, src_dir()))
+	for (var/mob/living/L in get_step(src, src_dir()))
 
-		if (m.is_on_train() && m.get_train() == controller)
+		if (L.is_on_train() && L.get_train() == controller)
 			continue
 
-		if (m.train_gib_immunity)
+		if (L.train_gib_immunity)
 			continue
 
-		if (deadly && istype(m))
-			visible_message("<span class = 'danger'>The train crushes [m]!</span>")
-			m.crush()
+		if (deadly && istype(L))
+			visible_message("<span class = 'danger'>The train crushes [L]!</span>")
+			L.crush()
 
 /obj/train_connector/ex_act(severity)
 	if (prob(round(70 * (1/severity))))

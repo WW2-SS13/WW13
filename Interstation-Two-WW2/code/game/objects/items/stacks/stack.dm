@@ -215,7 +215,7 @@
 	else if (engineer_exclusive_recipe_types.Find(recipe.result_type))
 		if (H)
 			if (H.getStat("engineering") < STAT_HIGH)
-				H << "<span class = 'info'>You have no idea of how to build this.</span>"
+				H << "<span class = 'notice'>You have no idea of how to build this.</span>"
 				return
 
 	if (recipe.time)

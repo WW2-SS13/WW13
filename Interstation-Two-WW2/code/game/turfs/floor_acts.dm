@@ -4,10 +4,10 @@
 		return
 	switch(severity)
 		if(1.0)
-			ChangeTurf(get_base_turf_by_area(src))
+			make_grass()
 		if(2.0)
 			if (prob(75))
-				ChangeTurf(get_base_turf_by_area(src))
+				make_grass()
 			else
 				break_tile()
 				hotspot_expose(1000,CELL_VOLUME)

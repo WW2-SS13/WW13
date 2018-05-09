@@ -220,7 +220,7 @@
 		switch(href_list["simplemake"])
 			if("observer")			New = M.change_mob_type( /mob/observer/ghost , null, null, delmob )
 			if("larva")				New = M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
-			if("human")				New = M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
+			if("human")				New = M.change_mob_type( /mob/living/carbon/human , null, null, FALSE, href_list["species"])
 			if("slime")				New = M.change_mob_type( /mob/living/carbon/slime , null, null, delmob )
 			if("monkey")			New = M.change_mob_type( /mob/living/carbon/human/monkey , null, null, delmob )
 			if("robot")				New = M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
@@ -241,10 +241,14 @@
 			if("pillarman")		New = M.change_mob_type( /mob/living/carbon/human/pillarman , null, null, delmob, href_list["species"])
 			if("vampire")			New = M.change_mob_type( /mob/living/carbon/human/vampire , null, null, delmob, href_list["species"])
 		if (New)
-			New.invisibility = 100
 			if (New.type == /mob/living/carbon/human)
 				var/mob/living/carbon/human/H = New
-				var/oloc_H = H.loc
+				var/H_oloc = H.loc
+				var/H_jobloc = null
+				H.loc = null
+				if (H.client)
+					H.client.eye = H_oloc
+					H.client.perspective = EYE_PERSPECTIVE
 				if ((input(usr_client, "Assign [H] a new job?") in list("Yes", "No")) == "Yes")
 
 					var/list/job_master_occupation_names = list()
@@ -258,20 +262,28 @@
 					if (J != "Cancel")
 						job_master.EquipRank(H, J)
 						H.original_job = job_master_occupation_names[J]
-						H.invisibility = 100
+						H_jobloc = H.loc
+						H.loc = null
 						var/msg = "[key_name(usr)] assigned the new mob [H] the job '[J]'."
 						message_admins(msg)
 						log_admin(msg)
 						spawn (0.1)
+							H.loc = null // fixes a bug where H is relocated even after we set H.loc = null
+							if (H.client)
+								H.client.eye = H_oloc
+								H.client.perspective = EYE_PERSPECTIVE
+							var/send2spawn = input(usr_client, "Send [H] to their spawnpoint?") in list("Yes", "No")
+							switch (send2spawn)
+								if ("Yes")
+									H.loc = H_jobloc
+								if ("No")
+									H.loc = H_oloc
 
-							var/send2spawn = input(usr_client, "Send [H] to their spawnpoint?") in list("No", "Yes")
-							if (send2spawn == "No")
-								H.loc = oloc_H
+							if (H.client)
+								H.client.eye = H
+								H.client.perspective = MOB_PERSPECTIVE
 
 							var/client/client = (H.client ? H.client : orig_client)
-							if (client.mob && istype(client.mob, /mob/observer/ghost))
-								var/mob/observer/ghost/G = client.mob
-								G.reenter_corpse()
 
 							if (client)
 								switch (H.original_job.default_language)
@@ -287,7 +299,16 @@
 									if ("Italian")
 										H.name = client.prefs.italian_name
 										H.real_name = client.prefs.italian_name
-			New.invisibility = 0
+				else
+					H.loc = H_oloc
+					if (H.client)
+						H.client.eye = H
+						H.client.perspective = MOB_PERSPECTIVE
+
+				var/client/client = (H.client ? H.client : orig_client)
+				if (client.mob && istype(client.mob, /mob/observer/ghost))
+					var/mob/observer/ghost/G = client.mob
+					G.reenter_corpse()
 
 	else if(href_list["warn"])
 		usr.client.warn(href_list["warn"])

@@ -28,7 +28,7 @@
 	heal_damage["wrench"] = max_damage/20
 
 /obj/tank/examine(mob/user)
-	user << "<span class = 'info'>That's a tank.</span>"
+	user << "<span class = 'notice'>That's a tank.</span>"
 	if (examine_desc)
 		user << "<span class = 'red'>[examine_desc]</span>"
 	return TRUE

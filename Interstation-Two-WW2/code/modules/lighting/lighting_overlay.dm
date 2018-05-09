@@ -86,9 +86,9 @@
 
 		var/mx = max(C.getLumR(), C.getLumG(), C.getLumB()) // Scale it so TRUE is the strongest lum, if it is above 1.
 		anylums += mx
-		. = TRUE // factor
+		. = 1.0 // factor
 		if(mx > 1)
-			. = TRUE / mx
+			. = 1.0 / mx
 
 		L[i + 0]   = C.getLumR() * .
 		L[i + 1]   = C.getLumG() * .

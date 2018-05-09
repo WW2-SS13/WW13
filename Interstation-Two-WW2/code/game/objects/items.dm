@@ -249,7 +249,8 @@
 
 // called when we're equipped to a slot
 /obj/item/proc/on_changed_slot()
-	return
+	for (var/obj/item/I in contents)
+		I.on_changed_slot()
 
 // called when "found" in pockets and storage items. Returns TRUE if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)

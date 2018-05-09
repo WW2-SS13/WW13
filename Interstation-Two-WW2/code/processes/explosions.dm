@@ -29,8 +29,8 @@ var/process/explosives/bomb_processor
 	ticks_without_work = 0
 	powernet_update_pending = TRUE
 
-	for (var/A in work_queue)
-		var/datum/explosiondata/data = A
+	FORNEXT(work_queue)
+		var/datum/explosiondata/data = current
 
 		if (data.is_rec)
 			explosion_rec(data.epicenter, data.rec_pow)
@@ -98,7 +98,8 @@ var/process/explosives/bomb_processor
 				vibration = TRUE
 
 	if (vibration)
-		for(var/mob/M in player_list)
+		FORNEXT(player_list)
+			var/mob/M = current
 			SCHECK
 			// Double check for client
 			var/reception = 2//Whether the person can be shaken or hear sound
@@ -165,8 +166,8 @@ var/process/explosives/bomb_processor
 		T.ex_act(dist)
 		SCHECK
 		if(T && !data.objects_with_immunity.Find(T))
-			for(var/atom_movable in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
-				var/atom/movable/AM = atom_movable
+			FORNEXT(T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
+				var/atom/movable/AM = current
 				if (data.objects_with_immunity.Find(AM))
 					continue
 				if(AM && AM.simulated)	AM.ex_act(dist)
@@ -199,7 +200,8 @@ var/process/explosives/bomb_processor
 		SCHECK
 
 	//This step applies the ex_act effects for the explosion, as planned in the previous step.
-	for(var/turf/T in explosion_turfs)
+	FORNEXT(explosion_turfs)
+		var/turf/T = current
 		if(explosion_turfs[T] <= 0) continue
 		if(!T) continue
 
@@ -213,8 +215,9 @@ var/process/explosives/bomb_processor
 		T.ex_act(severity)
 		if(!T)
 			T = locate(x,y,z)
-		for(var/atom/A in T)
-			A.ex_act(severity)
+		FORNEXT(T.contents)
+			var/atom/movable/AM = current
+			AM.ex_act(severity)
 			SCHECK
 
 	explosion_in_progress = FALSE
@@ -229,6 +232,7 @@ var/process/explosives/bomb_processor
 	explosion_turfs[s] = power
 
 	var/spread_power = power - s.explosion_resistance //This is the amount of power that will be spread to the tile in the direction of the blast
+
 	for(var/obj/O in s)
 		if(O.explosion_resistance)
 			spread_power -= O.explosion_resistance

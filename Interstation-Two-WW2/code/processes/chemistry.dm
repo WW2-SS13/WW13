@@ -16,8 +16,9 @@ var/process/chemistry/chemistryProcess
 
 /process/chemistry/fire()
 	SCHECK
-	for(last_object in active_holders)
-		var/datum/reagents/holder = last_object
+
+	FORNEXT(active_holders)
+		var/datum/reagents/holder = current
 		if(!holder.process_reactions())
 			active_holders -= holder
 		SCHECK

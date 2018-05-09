@@ -663,8 +663,8 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	announcer.icon_state = icon_state
 
 	// hackish code because radios need a mob, with a language, to announce
-	mobs[aname] = new/mob/living/carbon/human
-	var/mob/living/carbon/human/H = mobs[aname]
+	mobs[aname] = new/mob/living/carbon/human/announcer
+	var/mob/living/carbon/human/announcer/H = mobs[aname]
 	H.name = aname
 	H.real_name = aname
 	H.original_job = new/datum/job/german/trainsystem

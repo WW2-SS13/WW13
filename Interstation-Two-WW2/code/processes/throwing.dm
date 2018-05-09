@@ -15,9 +15,10 @@ var/process/throwing/throwing_process = null
 	if (!thrown_list.len)
 		return
 	SCHECK
-	for (last_object in thrown_list)
 
-		var/atom/movable/AM = last_object
+	FORNEXT(thrown_list)
+
+		var/atom/movable/AM = current
 
 		if (!AM)
 			thrown_list -= AM

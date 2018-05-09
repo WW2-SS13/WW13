@@ -9,6 +9,7 @@ var/process/mapswap/mapswap_process = null
 	var/ready = TRUE
 	var/admin_triggered = FALSE
 	var/finished_at = -1
+	var/next_map_title = "City"
 
 /process/mapswap/setup()
 	name = "mapswap"
@@ -32,7 +33,7 @@ var/process/mapswap/mapswap_process = null
 		if (admin_triggered)
 			. = TRUE
 		// 60 minutes have passed
-		else if (ticks >= 720 || (map && istype(map, /obj/map_metadata/pillar) && ticks >= 240))
+		else if (ticks >= 720)
 			. = TRUE
 		// round will end in 5 minutes or less
 		else if (map && map.next_win_time() <= 3 && map.next_win != -1)
@@ -44,6 +45,7 @@ var/process/mapswap/mapswap_process = null
 	return .
 
 /process/mapswap/proc/swap(var/winner = "City")
+	next_map_title = winner
 	winner = uppertext(winner)
 	if (!list(MAP_CITY, MAP_FOREST, MAP_PILLAR).Find(winner))
 		winner = maps[1]

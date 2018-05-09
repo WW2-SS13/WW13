@@ -24,7 +24,8 @@
 			var/minX = 1000000
 			var/minY = 1000000
 
-			for (var/obj/train_pseudoturf/tpt in forwards_pseudoturfs)
+			for (var/object in forwards_pseudoturfs)
+				var/obj/train_pseudoturf/tpt = object
 				minX = min(minX, tpt.x)
 				minY = min(minY, tpt.y)
 
@@ -44,7 +45,8 @@
 			var/middleY = FALSE
 			var/maxX = FALSE
 
-			for (var/obj/train_pseudoturf/tpt in forwards_pseudoturfs)
+			for (var/object in forwards_pseudoturfs)
+				var/obj/train_pseudoturf/tpt = object
 				maxX = max(maxX, tpt.x)
 				minY = min(minY, tpt.y)
 
@@ -83,7 +85,7 @@
 				railing_one_dir = SOUTH
 				railing_two_dir = NORTH
 
-			for (var/v in TRUE to 3)
+			for (var/v in 1 to 3)
 
 				if (t1)
 					master.add_connector(t1)
@@ -125,42 +127,50 @@
 	var/list/pseudoturfs = forwards_pseudoturfs
 	if (direction == "BACKWARDS")
 		pseudoturfs = backwards_pseudoturfs //shoddy attempt to fix backwards moving.
-	for (var/obj/train_pseudoturf/tpt in pseudoturfs)
+
+	for (var/object in pseudoturfs)
+		var/obj/train_pseudoturf/tpt = object
 		tpt.save_contents_as_refs()
 
 	// the new behavior for destroying objects requires that we do it
 	// prior to moving. We don't have to do so for gibbing, but I do it anyway
 	// so gibs don't get all over train walls anymore - Kachnov
 
-	for (var/obj/train_pseudoturf/tpt in pseudoturfs) // run people down
+	for (var/object in pseudoturfs) // run people down
+		var/obj/train_pseudoturf/tpt = object
 		tpt.gib_idiots()
 
-	for (var/obj/train_pseudoturf/tpt in pseudoturfs) // crush stuff in our way
+	for (var/object in pseudoturfs) // crush stuff in our way
+		var/obj/train_pseudoturf/tpt = object
 		tpt.destroy_objects()
 
 	#ifdef USE_TRAIN_LIGHTS
-	for (var/obj/train_pseudoturf/tpt in pseudoturfs)
+	for (var/object in pseudoturfs)
+		var/obj/train_pseudoturf/tpt = object
 		tpt.reset_track_lights()
 	#endif
 
-	for (var/obj/train_pseudoturf/tpt in pseudoturfs)
+	for (var/object in pseudoturfs)
+		var/obj/train_pseudoturf/tpt = object
 		tpt._Move(direction)
 
 	#ifdef USE_TRAIN_LIGHTS
-	for (var/obj/train_pseudoturf/tpt in pseudoturfs)
+	for (var/object in pseudoturfs)
+		var/obj/train_pseudoturf/tpt = object
 		tpt.unset_track_lights()
 	#endif
 
-	for (var/obj/train_pseudoturf/tpt in pseudoturfs)
+	for (var/object in pseudoturfs)
+		var/obj/train_pseudoturf/tpt = object
 		tpt.move_mobs(direction)
 
-	for (var/obj/train_pseudoturf/tpt in pseudoturfs)
+	for (var/object in pseudoturfs)
+		var/obj/train_pseudoturf/tpt = object
 		tpt.remove_contents_refs()
 //Graft proc
 
 /obj/train_car_center/proc/Graft(what)
 	backwards_pseudoturfs = forwards_pseudoturfs
-
 
 /obj/train_car_center/germansupply/Graft(what)
 	switch (what)
@@ -168,11 +178,11 @@
 			var/area/a = locate(/area/prishtina/train/german/cabin/storage_horizontal)
 			var/min_x = min_area_x(a)
 			var/max_y = max_area_y(a) // start at the minimum x and maximum y, ie top left corner
-			for (var/turf/t in a.contents)
-				var/x_offset = t.x - min_x
-				var/y_offset = max_y - t.y
-				var/z = TRUE
-				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), t)
+			for (var/turf/T in a.contents)
+				var/x_offset = T.x - min_x
+				var/y_offset = max_y - T.y
+				var/z = 1
+				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), T)
 				tpt.master = src
 				tpt.controller = master
 				forwards_pseudoturfs += tpt
@@ -186,11 +196,11 @@
 			var/area/a = locate(/area/prishtina/train/german/cabin/officer)
 			var/min_x = min_area_x(a)
 			var/max_y = max_area_y(a) // start at the minimum x and maximum y, ie top left corner
-			for (var/turf/t in a.contents)
-				var/x_offset = t.x - min_x
-				var/y_offset = max_y - t.y
-				var/z = TRUE
-				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), t)
+			for (var/turf/T in a.contents)
+				var/x_offset = T.x - min_x
+				var/y_offset = max_y - T.y
+				var/z = 1
+				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), T)
 				tpt.master = src
 				tpt.controller = master
 				forwards_pseudoturfs += tpt
@@ -198,11 +208,11 @@
 			var/area/a = locate(/area/prishtina/train/german/cabin/storage)
 			var/min_x = min_area_x(a)
 			var/max_y = max_area_y(a) // start at the minimum x and maximum y, ie top left corner
-			for (var/turf/t in a.contents)
-				var/x_offset = t.x - min_x
-				var/y_offset = max_y - t.y
-				var/z = TRUE
-				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), t)
+			for (var/turf/T in a.contents)
+				var/x_offset = T.x - min_x
+				var/y_offset = max_y - T.y
+				var/z = 1
+				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), T)
 				tpt.master = src
 				tpt.controller = master
 				forwards_pseudoturfs += tpt
@@ -210,11 +220,11 @@
 			var/area/a = locate(/area/prishtina/train/german/cabin/soldier)
 			var/min_x = min_area_x(a)
 			var/max_y = max_area_y(a) // start at the minimum x and maximum y, ie top left corner
-			for (var/turf/t in a.contents)
-				var/x_offset = t.x - min_x
-				var/y_offset = max_y - t.y
-				var/z = TRUE
-				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), t)
+			for (var/turf/T in a.contents)
+				var/x_offset = T.x - min_x
+				var/y_offset = max_y - T.y
+				var/z = 1
+				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), T)
 				tpt.master = src
 				tpt.controller = master
 				forwards_pseudoturfs += tpt
@@ -222,11 +232,11 @@
 			var/area/a = locate(/area/prishtina/train/german/cabin/conductor)
 			var/min_x = min_area_x(a)
 			var/max_y = max_area_y(a) // start at the minimum x and maximum y, ie bottom left corner
-			for (var/turf/t in a.contents)
-				var/x_offset = t.x - min_x
-				var/y_offset = max_y - t.y
+			for (var/turf/T in a.contents)
+				var/x_offset = T.x - min_x
+				var/y_offset = max_y - T.y
 				var/z = TRUE
-				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), t)
+				var/obj/train_pseudoturf/tpt = new/obj/train_pseudoturf(locate(x + x_offset,y - y_offset,z), T)
 				tpt.master = src
 				tpt.controller = master
 				forwards_pseudoturfs += tpt

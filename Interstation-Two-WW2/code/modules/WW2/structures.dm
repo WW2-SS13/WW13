@@ -1,7 +1,14 @@
 /obj/structure/grille/fence
 	name = "fence"
-	icon_state = "fence4-8"
+	desc = "An old wooden fence."
+	icon = 'icons/obj/fence.dmi'
+	icon_state = "1"
 	health = 16
+
+/obj/structure/grille/fence/New()
+	..()
+	icon_state = "[rand(1,3)]"
+	color = "#c8c8c8"
 
 /obj/structure/anti_tank
 	icon_state = "anti-tank"

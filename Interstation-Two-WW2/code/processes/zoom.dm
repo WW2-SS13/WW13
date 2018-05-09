@@ -23,43 +23,9 @@ var/process/zoom/zoom_process = null
 /process/zoom/fire()
 	SCHECK
 
-	// remove gun action buttons that we can't use
-	for (var/last_client in clients)
-		var/client/C = last_client
-		var/leftshift = 0
-		var/list/checked = list()
-		for (var/obj/screen/movable/action_button/AB in C.screen)
-			if (checked.Find(AB))
-				C.screen -= AB
-				continue
-			checked += AB
-			AB.invisibility = 0
-			AB.pixel_x = 0
-			AB.transform = initial(AB.transform)
-			if (C.mob && ishuman(C.mob))
-				var/mob/living/carbon/human/H = C.mob
-				if (H.using_zoom())
-					AB.transform *= (C.view/world.view)
-			if (AB.name == "Toggle Sights")
-				var/datum/action/toggle_scope/TS = AB.owner
-				if (TS && istype(TS))
-					if (TS.scope)
-						if (C.mob && TS.scope.loc == C.mob)
-							if (!list(C.mob.r_hand, C.mob.l_hand).Find(TS.scope))
-								AB.invisibility = 100
-								leftshift += 32
-						else if (istype(TS.scope.loc, /obj/item/weapon/gun/projectile))
-							var/obj/item/weapon/gun/projectile/G = TS.scope.loc
-							if (!list(C.mob.r_hand, C.mob.l_hand).Find(G))
-								AB.invisibility = 100
-								leftshift += 32
-				if (!AB.invisibility)
-					AB.pixel_x = -leftshift
-					AB.UpdateIcon()
-
-	// fix gun, scope invisibility
-	for (last_object in recent_scopes)
-		var/obj/item/weapon/attachment/scope/S = last_object
+	// update gun, scope (in)visibility
+	FORNEXT(recent_scopes)
+		var/obj/item/weapon/attachment/scope/S = current
 
 		if(isnull(S))
 			continue
@@ -82,9 +48,9 @@ var/process/zoom/zoom_process = null
 		SCHECK
 
 	// make stuff invisible while we're scoping
-	for(last_object in zoom_processing_objects)
+	FORNEXT(zoom_processing_objects)
 
-		var/mob/living/carbon/human/H = last_object
+		var/mob/living/carbon/human/H = current
 
 		if(isnull(H))
 			continue

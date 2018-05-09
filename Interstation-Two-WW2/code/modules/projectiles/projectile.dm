@@ -424,25 +424,25 @@
 		passthrough = FALSE
 	else
 		// needs to be its own loop for reasons
-		for (var/atom/movable/AM in T.contents)
-			if (AM == original)
+		for (var/obj/O in T.contents)
+			if (O == original)
 				var/hitchance = 60 // a light, for example. This was 66%, but that was unusually accurate, thanks BYOND
-				if (isstructure(AM) && !istype(AM, /obj/structure/light))
+				if (isstructure(O) && !istype(O, /obj/structure/light))
 					hitchance = 100
-				else if (!isitem(AM) && isnonstructureobj(AM)) // a tank, for example.
+				else if (!isitem(O) && isnonstructureobj(O)) // a tank, for example.
 					hitchance = 100
-				else if (isitem(AM)) // any item
-					var/obj/item/I = AM
+				else if (isitem(O)) // any item
+					var/obj/item/I = O
 					hitchance = 25 * I.w_class // a pistol would be 50%
 				if (prob(hitchance))
-					AM.bullet_act(src)
+					O.bullet_act(src)
 					bumped = TRUE
 					loc = null
 					qdel(src)
 					return FALSE
 				else
-					AM.visible_message("<span class = 'warning'>\The [src] narrowly misses [AM]!</span>")
-					if (isitem(AM) || (AM.density && AM.anchored)) // since it was on the ground
+					O.visible_message("<span class = 'warning'>\The [src] narrowly misses [O]!</span>")
+					if (isitem(O) || (O.density && O.anchored)) // since it was on the ground
 						bumped = TRUE
 						loc = null
 						qdel(src)
@@ -533,7 +533,7 @@
 			on_impact(loc) //for any final impact behaviours
 			qdel(src)
 			return
-		if (firer && map.check_prishtina_block(firer, loc))
+		if (firer && map.check_prishtina_block(firer, loc) && !map.allow_bullets_through_blocks.Find(get_area(src):type))
 			qdel(src)
 			return
 		if((!( current ) || loc == current))

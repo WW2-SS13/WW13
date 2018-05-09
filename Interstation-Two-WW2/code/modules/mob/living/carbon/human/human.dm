@@ -1193,6 +1193,7 @@ var/list/rank_prefix = list(\
 	l_hand = W
 	W.equipped(src,slot_l_hand)
 	W.add_fingerprint(src)
+	W.on_changed_slot()
 	update_inv_l_hand()
 	return TRUE
 
@@ -1203,6 +1204,7 @@ var/list/rank_prefix = list(\
 	r_hand = W
 	W.equipped(src,slot_r_hand)
 	W.add_fingerprint(src)
+	W.on_changed_slot()
 	update_inv_r_hand()
 	return TRUE
 

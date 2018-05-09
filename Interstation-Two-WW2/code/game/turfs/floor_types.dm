@@ -219,7 +219,7 @@
 	New(location,type)
 		..()
 		icon_state = "[type]vault"
-
+/*
 /turf/floor/engine
 	name = "reinforced floor"
 	icon_state = "engine"
@@ -260,7 +260,7 @@
 //	oxygen = FALSE
 //	nitrogen = FALSE
 	temperature = TCMB
-
+*/
 /turf/floor/plating
 	name = "plating"
 	icon_state = "plating"
@@ -390,6 +390,7 @@
 	interior = FALSE
 	stepsound = "dirt"
 	uses_winter_overlay = TRUE
+	may_become_muddy = TRUE
 	var/obj/structure/wild/wild = null
 
 /turf/floor/plating/grass/ex_act(severity)
@@ -495,6 +496,7 @@
 	interior = FALSE
 	stepsound = "dirt"
 	uses_winter_overlay = TRUE
+	may_become_muddy = TRUE
 
 /turf/floor/plating/sand
 	name = "sand"

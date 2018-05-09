@@ -1,4 +1,4 @@
-//based off of /obj/structure/lattice, but way simpler
+s//based off of /obj/structure/lattice, but way simpler
 
 /obj/train_connector
 	name = "train"
@@ -13,6 +13,7 @@
 	var/last_loc = null
 	var/datum/train_controller/master = null
 	var/list/saved_contents = list()
+	var/list/saved_mobs = list()
 	uses_initial_density = TRUE
 	initial_density = FALSE
 
@@ -22,48 +23,54 @@
 // #define TCDEBUG
 
 /obj/train_connector/proc/save_contents_as_refs()
-	for (var/atom/movable/a in get_turf(src))
-		if (!check_object_invalid_for_moving(src, a))
-			saved_contents += a
+	for (var/atom_movable in get_turf(src))
+		if (!check_object_invalid_for_moving(src, atom_movable))
+			saved_contents += atom_movable
+			if (ismob(atom_movable))
+				saved_mobs += atom_movable
 
 /obj/train_connector/proc/remove_contents_refs()
 	saved_contents.Cut()
+	saved_mobs.Cut()
 
 // copied from /obj/train_pseudoturf/_Move()
 /obj/train_connector/proc/_Move()
 
-	for (var/atom/movable/a in saved_contents)
-		if (ismob(a))
-			var/mob/m = a
-			m.original_pulling = m.pulling
-			if (!m.buckled)
-				switch (master.orientation)
-					if (VERTICAL)
-						m.train_move(locate(m.x, m.y+master.getMoveInc(), m.z))
-					if (HORIZONTAL)
-						m.train_move(locate(m.x+master.getMoveInc(), m.y, m.z))
-		else
-			switch (master.orientation)
-				if (VERTICAL)
-					a.train_move(locate(a.x, a.y+master.getMoveInc(), a.z))
-				if (HORIZONTAL)
-					a.train_move(locate(a.x+master.getMoveInc(), a.y, a.z))
-
-			if (istype(a, /obj/structure/bed))
-				var/obj/structure/bed/bed = a
-				var/mob/m = bed.buckled_mob
-				if (m)
+	for (var/atom_movable in saved_contents)
+		var/atom/movable/AM = atom_movable
+		if (AM)
+			if (saved_mobs.Find(AM))
+				var/mob/M = AM
+				M.original_pulling = M.pulling
+				if (!M.buckled)
 					switch (master.orientation)
 						if (VERTICAL)
-							m.train_move(locate(m.x, m.y+master.getMoveInc(), m.z))
+							M.train_move(locate(M.x, M.y+master.getMoveInc(), M.z))
 						if (HORIZONTAL)
-							m.train_move(locate(m.x+master.getMoveInc(), m.y, m.z))
+							M.train_move(locate(M.x+master.getMoveInc(), M.y, M.z))
+			else
+				switch (master.orientation)
+					if (VERTICAL)
+						AM.train_move(locate(AM.x, AM.y+master.getMoveInc(), AM.z))
+					if (HORIZONTAL)
+						AM.train_move(locate(AM.x+master.getMoveInc(), AM.y, AM.z))
 
-	for (var/mob/m in saved_contents)
-		if (istype(m))
-			if (m.original_pulling)
-				m.start_pulling(m.original_pulling)
-				m.original_pulling = null
+				if (istype(AM, /obj/structure/bed))
+					var/obj/structure/bed/bed = AM
+					var/mob/M = bed.buckled_mob
+					if (M)
+						switch (master.orientation)
+							if (VERTICAL)
+								M.train_move(locate(M.x, M.y+master.getMoveInc(), M.z))
+							if (HORIZONTAL)
+								M.train_move(locate(M.x+master.getMoveInc(), M.y, M.z))
+
+	for (var/mob in saved_mobs)
+		var/mob/M = mob
+		if (M)
+			if (M.original_pulling)
+				M.start_pulling(M.original_pulling)
+				M.original_pulling = null
 
 	switch (master.orientation)
 		if (VERTICAL)
@@ -74,37 +81,38 @@
 // copied from /obj/train_pseudoturf/move_mobs()
 
 /obj/train_connector/proc/move_mobs(var/_direction)
-	for (var/atom/movable/a in saved_contents)
-		if (ismob(a))
-			var/mob/m = a
-			if (!isnull(m.next_train_movement))
+	for (var/mob in saved_mobs)
+		if (mob)
+			var/mob/M = mob
+			spawn (0.1)
+				if (!isnull(M.next_train_movement))
 
-				var/atom/movable/p = m.pulling
+					var/atom/movable/p = M.pulling
 
-				if (m.next_train_movement)
-					m.dir = m.next_train_movement
-					if (p) p.dir = m.next_train_movement
+					if (M.next_train_movement)
+						M.dir = M.next_train_movement
+						if (p) p.dir = M.next_train_movement
 
-				switch (m.next_train_movement)
-					if (NORTH)
-						var/moved = m.train_move(locate(m.x, m.y+1, m.z))
-						if (p && moved) p.train_move(m.behind())
-					if (SOUTH)
-						var/moved = m.train_move(locate(m.x, m.y-1, m.z))
-						if (p && moved) p.train_move(m.behind())
-					if (EAST)
-						var/moved = m.train_move(locate(m.x+1, m.y, m.z))
-						if (p && moved) p.train_move(m.behind())
-					if (WEST)
-						var/moved = m.train_move(locate(m.x-1, m.y, m.z))
-						if (p && moved) p.train_move(m.behind())
+					switch (M.next_train_movement)
+						if (NORTH)
+							var/moved = M.train_move(locate(M.x, M.y+1, M.z))
+							if (p && moved) p.train_move(M.behind())
+						if (SOUTH)
+							var/moved = M.train_move(locate(M.x, M.y-1, M.z))
+							if (p && moved) p.train_move(M.behind())
+						if (EAST)
+							var/moved = M.train_move(locate(M.x+1, M.y, M.z))
+							if (p && moved) p.train_move(M.behind())
+						if (WEST)
+							var/moved = M.train_move(locate(M.x-1, M.y, M.z))
+							if (p && moved) p.train_move(M.behind())
 
-				if (p && get_dist(m, p) <= 1)
-					m.start_pulling(p) // start_pulling checks for p on its own
+					if (p && get_dist(M, p) <= 1)
+						M.start_pulling(p) // start_pulling checks for p on its own
 
-				m.next_train_movement = null
-				m.train_gib_immunity = FALSE
-				m.last_moved_on_train = world.time
+					M.next_train_movement = null
+					M.train_gib_immunity = FALSE
+					M.last_moved_on_train = world.time
 
 /obj/train_connector/ex_act(severity)
 	if (prob(round(90 * (1/severity))))

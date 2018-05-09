@@ -246,7 +246,7 @@
 /mob/var/next_stamina_message = -1
 /mob/var/next_gracewall_message = -1
 /mob/var/next_cannotmove_message = -1
-/mob/var/next_change_dir = -1
+/mob/var/list/next_change_dir = null
 
 /client/Move(n, direct, ordinal = FALSE)
 
@@ -260,7 +260,18 @@
 	if(!mob)
 		return // Moved here to avoid nullrefs below
 
-	if (direct != mob.dir && world.time < mob.next_change_dir)
+	if (!mob.next_change_dir)
+		mob.next_change_dir = list(
+			num2text(NORTH) = -1,
+			num2text(SOUTH) = -1,
+			num2text(EAST) = -1,
+			num2text(WEST) = -1,
+			num2text(NORTHEAST) = -1,
+			num2text(SOUTHEAST) = -1,
+			num2text(NORTHWEST) = -1,
+			num2text(SOUTHWEST) = -1)
+
+	if (direct != mob.dir && world.time < mob.next_change_dir[num2text(direct)])
 		return
 
 	// relocate or gib chucklefucks who somehow cross the wall
@@ -426,7 +437,7 @@
 		if (F && F_is_valid_floor)
 
 			var/area/F_area = get_area(F)
-			if (F_area.weather == WEATHER_RAIN && !istype(F, /turf/floor/plating/cobblestone) && !istype(F, /turf/floor/plating/road))
+			if (F_area.weather == WEATHER_RAIN && F.may_become_muddy && !locate_type(F.contents, /obj/structure/catwalk))
 				F.muddy = TRUE
 			else
 				F.muddy = FALSE
@@ -627,8 +638,8 @@
 						L.adjustBruteLoss(rand(6,7))
 						if (ishuman(L))
 							L.emote("scream")
+						H.next_change_dir[num2text(opposite_direction(direct))] = world.time + (STOMP_TIME*3)
 						sleep(STOMP_TIME)
-						H.next_change_dir = world.time + STOMP_TIME*5
 						break
 			else
 				for (var/mob/living/L in t1)
@@ -824,6 +835,7 @@
 		mob.movement_process_dirs -= SOUTH
 		mob.movement_process_dirs |= NORTH
 		Move(get_step(mob, NORTH), NORTH)
+		moving_mobs_list_check()
 
 /client/verb/startmovingdown()
 	set name = ".startmovingdown"
@@ -832,6 +844,7 @@
 		mob.movement_process_dirs -= NORTH
 		mob.movement_process_dirs |= SOUTH
 		Move(get_step(mob, SOUTH), SOUTH)
+		moving_mobs_list_check()
 
 /client/verb/startmovingright()
 	set name = ".startmovingright"
@@ -840,6 +853,7 @@
 		mob.movement_process_dirs -= WEST
 		mob.movement_process_dirs |= EAST
 		Move(get_step(mob, EAST), EAST)
+		moving_mobs_list_check()
 
 /client/verb/startmovingleft()
 	set name = ".startmovingleft"
@@ -848,23 +862,40 @@
 		mob.movement_process_dirs -= EAST
 		mob.movement_process_dirs |= WEST
 		Move(get_step(mob, WEST), WEST)
+		moving_mobs_list_check()
 
 /client/verb/stopmovingup()
 	set name = ".stopmovingup"
 	set instant = TRUE
-	mob.movement_process_dirs -= NORTH
+	if (mob)
+		mob.movement_process_dirs -= NORTH
+		moving_mobs_list_check()
 
 /client/verb/stopmovingdown()
 	set name = ".stopmovingdown"
 	set instant = TRUE
-	mob.movement_process_dirs -= SOUTH
+	if (mob)
+		mob.movement_process_dirs -= SOUTH
+		moving_mobs_list_check()
 
 /client/verb/stopmovingright()
 	set name = ".stopmovingright"
 	set instant = TRUE
-	mob.movement_process_dirs -= EAST
+	if (mob)
+		mob.movement_process_dirs -= EAST
+		moving_mobs_list_check()
 
 /client/verb/stopmovingleft()
 	set name = ".stopmovingleft"
 	set instant = TRUE
-	mob.movement_process_dirs -= WEST
+	if (mob)
+		mob.movement_process_dirs -= WEST
+		moving_mobs_list_check()
+
+/client/proc/moving_mobs_list_check()
+	if (!mob)
+		return
+	if (mob.movement_process_dirs.len)
+		moving_mobs |= mob
+	else
+		moving_mobs -= mob

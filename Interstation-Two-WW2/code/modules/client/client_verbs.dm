@@ -8,7 +8,8 @@
 /client/verb/MOTD()
 	set category = "OOC"
 	set name = "See MOTD"
-	src << "<div class=\"motd\">[join_motd]</div>"
+	if (mob) // sanity
+		mob.see_personalized_MOTD()
 
 /client/proc/hide_status_tabs()
 	set category = "OOC"

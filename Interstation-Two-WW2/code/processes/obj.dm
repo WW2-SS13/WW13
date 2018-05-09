@@ -9,8 +9,9 @@ var/process/obj/obj_process = null
 
 /process/obj/fire()
 	SCHECK
-	for(last_object in processing_objects)
-		var/obj/O = last_object
+
+	FORNEXT(processing_objects)
+		var/obj/O = current
 		if(isnull(O.gcDestroyed))
 			try
 				O.process()

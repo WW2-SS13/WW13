@@ -5,8 +5,9 @@
 
 /process/nanoui/fire()
 	SCHECK
-	for(last_object in nanomanager.processing_uis)
-		var/datum/nanoui/NUI = last_object
+
+	FORNEXT(nanomanager.processing_uis)
+		var/datum/nanoui/NUI = current
 		if(istype(NUI) && isnull(NUI.gcDestroyed))
 			try
 				NUI.process()

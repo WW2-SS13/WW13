@@ -16,6 +16,7 @@ var/global/obj/map_metadata/map = null
 	var/title = null
 	var/lobby_icon_state = "1"
 	var/list/prishtina_blocking_area_types = list()
+	var/list/allow_bullets_through_blocks = list()
 	var/last_crossing_block_status[3]
 	var/admin_ended_all_grace_periods = FALSE
 	var/uses_supply_train = FALSE
@@ -72,7 +73,6 @@ var/global/obj/map_metadata/map = null
 	var/list/times_of_day = list("Early Morning", "Morning", "Afternoon", "Midday", "Evening", "Night", "Midnight")
 	var/list/zlevels_without_lighting = list()
 	var/list/areas_without_lighting = list()
-	var/TOD_change_interval = 200
 
 	// misc
 	var/meme = FALSE
@@ -264,7 +264,7 @@ var/global/obj/map_metadata/map = null
 			if (current_win_condition != NO_WINNER && current_winner && current_loser)
 				world << "<font size = 3>The [current_winner] has lost control of the [army2name(current_loser)] base!</font>"
 
-			current_win_condition = "Both sides are out of reinforcements; the round will end in {time} minutes."
+			current_win_condition = "Both sides are out of reinforcements; the round will end in {time} minute{s}."
 
 			if (last_reinforcements_next_win != -1)
 				next_win = last_reinforcements_next_win

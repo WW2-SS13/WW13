@@ -269,7 +269,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				. += "</tr>"
 
 			. += "</table><hr>"
-			if(admin)
+			if(admin && mode != "map")
 				. += "(<a href='?src=\ref[src];vote=cancel'>Cancel Vote</a>) "
 		else
 			. += "<h2>Start a vote:</h2><hr><ul><li>"

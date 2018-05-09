@@ -4,13 +4,14 @@
 	prishtina_blocking_area_types = list(
 		/area/prishtina/forest/north/invisible_wall,
 		/area/prishtina/forest/south/invisible_wall)
+	allow_bullets_through_blocks = list(
+		/area/prishtina/forest/south/invisible_wall)
 	uses_supply_train = TRUE
 	uses_main_train = TRUE
 	supply_points_per_tick = list(
 		SOVIET = 1.00,
 		GERMAN = 1.50)
 	character_arrival_announcement_time = 20 // necessary for some reason
-	TOD_change_interval = 600
 
 /obj/map_metadata/forest/New()
 	MAP_MODE(MODE_WAR)
@@ -33,4 +34,4 @@
 	return ((mission_announced && train_arrived) || admin_ended_all_grace_periods)
 
 /obj/map_metadata/forest/announce_mission_start(var/preparation_time = FALSE)
-	world << "<font size=4>The German assault has started after <b>[preparation_time / 600] minutes</b> of preparation. The Soviet side may not attack until after <b>7 minutes</b>.</font><br>"
+	world << "<font size=4>The German assault has started after <b>[ceil(preparation_time / 600)] minutes</b> of preparation. The Soviet side may not attack until after <b>7 minutes</b>.</font><br>"

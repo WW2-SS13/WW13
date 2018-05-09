@@ -12,11 +12,12 @@
 
 /process/lighting/fire()
 	SCHECK
-	for(var/A in lighting_update_lights)
-		if(!A)
+
+	FORNEXT(lighting_update_lights)
+		if(!current)
 			continue
 
-		var/datum/light_source/L = A
+		var/datum/light_source/L = current
 		. = L.check()
 		if(L.destroyed || . || L.force_update)
 			L.remove_lum()
@@ -29,18 +30,17 @@
 		L.vis_update   = FALSE
 		L.force_update = FALSE
 		L.needs_update = FALSE
+		lighting_update_lights -= L
 
 		SCHECK
 
-	for(var/A in lighting_update_overlays)
-		if(!A)
+	FORNEXT(lighting_update_overlays)
+		if(!current)
 			continue
 
-		var/atom/movable/lighting_overlay/L = A // Typecasting this later so BYOND doesn't istype each entry.
+		var/atom/movable/lighting_overlay/L = current // Typecasting this later so BYOND doesn't istype each entry.
 		L.update_overlay()
 		L.needs_update = FALSE
+		lighting_update_overlays -= L
 
 		SCHECK
-
-	lighting_update_overlays.Cut()
-	lighting_update_lights.Cut()

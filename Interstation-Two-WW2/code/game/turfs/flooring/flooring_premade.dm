@@ -68,6 +68,7 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "dirt"
 	uses_winter_overlay = TRUE
+	may_become_muddy = TRUE
 
 /turf/floor/hull
 	name = "hull"

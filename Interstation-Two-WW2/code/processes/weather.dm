@@ -25,11 +25,12 @@ var/process/weather/weather_process = null
 	SCHECK
 
 	var/deleted = 0
-	for (var/decal in cleanables)
-		if (decal)
-			var/area/A = get_area(decal)
+
+	FORNEXT(cleanables)
+		if (current)
+			var/area/A = get_area(current)
 			if (A && A.weather == WEATHER_RAIN)
-				qdel(decal)
+				qdel(current)
 				++deleted
 				if (deleted >= 100)
 					break
