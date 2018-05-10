@@ -153,3 +153,7 @@
 	var/next_footstep_sound_at_movement_tick = -1
 
 	var/never_set_faction_huds = TRUE
+
+	var/life_hud_check = list(
+		"stat" = -1,
+		"health" = -1)

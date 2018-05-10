@@ -1333,34 +1333,38 @@
 					holder.icon_state = ""
 			hud_list[SQUAD_FACTION] = holder
 
-	var/image/holder = hud_list[HEALTH_HUD]
-	if(stat == DEAD)
-		holder.icon_state = "hudhealth-100"
-	else
-		var/percentage_health = RoundHealth((health-config.health_threshold_crit)/(maxHealth-config.health_threshold_crit)*100)
-		holder.icon_state = "hud[percentage_health]"
-	hud_list[HEALTH_HUD] = holder
+	if (stat != life_hud_check["stat"] || health != life_hud_check["health"])
+		var/image/holder = hud_list[HEALTH_HUD]
+		if(stat == DEAD)
+			holder.icon_state = "hudhealth-100"
+		else
+			var/percentage_health = RoundHealth((health-config.health_threshold_crit)/(maxHealth-config.health_threshold_crit)*100)
+			holder.icon_state = "hud[percentage_health]"
+		hud_list[HEALTH_HUD] = holder
 
-	holder = hud_list[LIFE_HUD]
-	if(stat == DEAD)
-		holder.icon_state = "huddead"
-	else
-		holder.icon_state = "hudhealthy"
-	hud_list[LIFE_HUD] = holder
+		holder = hud_list[LIFE_HUD]
+		if(stat == DEAD)
+			holder.icon_state = "huddead"
+		else
+			holder.icon_state = "hudhealthy"
+		hud_list[LIFE_HUD] = holder
 
-	holder = hud_list[STATUS_HUD]
-	if(stat == DEAD)
-		holder.icon_state = "huddead"
-	else
-		holder.icon_state = "hudhealthy"
-	hud_list[STATUS_HUD] = holder
+		holder = hud_list[STATUS_HUD]
+		if(stat == DEAD)
+			holder.icon_state = "huddead"
+		else
+			holder.icon_state = "hudhealthy"
+		hud_list[STATUS_HUD] = holder
 
-	holder = hud_list[STATUS_HUD_OOC]
-	if(stat == DEAD)
-		holder.icon_state = "huddead"
-	else
-		holder.icon_state = "hudhealthy"
-	hud_list[STATUS_HUD_OOC] = holder
+		holder = hud_list[STATUS_HUD_OOC]
+		if(stat == DEAD)
+			holder.icon_state = "huddead"
+		else
+			holder.icon_state = "hudhealthy"
+		hud_list[STATUS_HUD_OOC] = holder
+
+	life_hud_check["stat"] = stat
+	life_hud_check["health"] = health
 
 /mob/living/carbon/human/handle_silent()
 	if(..())
