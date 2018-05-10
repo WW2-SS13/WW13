@@ -178,8 +178,9 @@ var/GRACE_PERIOD_LENGTH = 7
 				o.alpha = decal.alpha
 				o.name = ""
 
-		for (var/obj/snow_maker/SM in G)
-			qdel(SM)
+		spawn (0)
+			for (var/obj/snow_maker/SM in G)
+				qdel(SM)
 
 	return TRUE
 
