@@ -25,9 +25,8 @@
 			continue
 		if (world.time >= C.time)
 			if (hascall(C.object, C.function))
-				var/arg1 = (C.args && C.args.len) ? C.args[1] : null
-				if (arg1)
-					call(C.object, C.function)(arg1) // > can't use arglist() proc here
+				if (C.args && C.args.len)
+					call(C.object, C.function)(arglist(C.args))
 				else
 					call(C.object, C.function)()
 			else
