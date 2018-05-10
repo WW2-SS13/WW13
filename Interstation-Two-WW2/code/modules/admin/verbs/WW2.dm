@@ -21,7 +21,7 @@
 	if (found)
 
 		if (direction == "Forwards")
-			direction = "to the FOB"
+			direction = "to the train station"
 
 		else if (direction == "Backwards")
 			direction = "back to the base"
