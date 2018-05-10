@@ -57,8 +57,11 @@ var/const/BLOOD_VOLUME_SURVIVE = 20
 	var/obj/item/organ/lungs/L = internal_organs_by_name["lungs"]
 
 	if (!L) // ditto for lungs
-		setOxyLoss(max(getOxyLoss(),60))
 		adjustOxyLoss(10)
+		if (prob(20))
+			src << "<span class = 'danger'>You're suffocating!</span>"
+		if (prob(40))
+			emote("gasp")
 
 
 	//Bleeding out
