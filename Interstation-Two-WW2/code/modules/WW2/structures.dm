@@ -4,6 +4,7 @@
 	icon = 'icons/obj/fence.dmi'
 	icon_state = "1"
 	health = 16
+	hitsound = 'sound/effects/wooddoorhit.ogg'
 
 /obj/structure/grille/fence/New()
 	..()
