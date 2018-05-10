@@ -429,8 +429,6 @@
 	if (!moving)
 		return
 
-	var/list/moving_objs = list()
-
 	var/list/tcs = train_connectors
 	var/list/trs = train_railings
 
@@ -438,39 +436,20 @@
 		tcs = reverse_train_connectors
 		trs = reverse_train_railings
 
-	for (var/tc in tcs)
-		if (tc:loc)
-			moving_objs += tc
+	for (var/object in tcs)
+		var/obj/train_connector/tc = object
+		tc.save_contents_as_refs()
+		callproc_process.queue(tc, "_Move", null, 0.3)
+		callproc_process.queue(tc, "move_mobs", null, 0.6)
+		callproc_process.queue(tc, "remove_contents_refs", null, 0.9)
+
 		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
 			sleep(world.tick_lag)
 
-	for (var/tr in trs)
-		if (tr:loc)
-			moving_objs += tr
-		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
-			sleep(world.tick_lag)
+	for (var/object in trs)
+		var/obj/structure/railing/train_railing/tr = object
+		tr._Move()
 
-	for (var/O in moving_objs)
-		if (tcs.Find(O))
-			var/obj/train_connector/tc = O
-			tc.save_contents_as_refs()
-		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
-			sleep(world.tick_lag)
-
-	for (var/object in moving_objs)
-		var/obj/O = object
-		O:_Move()
-		if (tcs.Find(O))
-			var/obj/train_connector/tc = O
-			tc.move_mobs()
-		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
-			sleep(world.tick_lag)
-
-	for (var/object in moving_objs)
-		var/obj/O = object
-		if (tcs.Find(O))
-			var/obj/train_connector/tc = O
-			tc.remove_contents_refs()
 		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
 			sleep(world.tick_lag)
 

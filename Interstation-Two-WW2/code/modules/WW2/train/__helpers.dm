@@ -38,8 +38,7 @@
 					if (istype(O, type))
 						train_setloc(_loc)
 						return SUCCESS
-				if (ismob(src) && istype(O
-				, /obj/structure/simple_door/key_door))
+				if (ismob(src) && istype(O, /obj/structure/simple_door/key_door))
 					var/obj/structure/simple_door/key_door/door = O
 					if (door.keyslot.check_user(src))
 						door.keyslot.locked = FALSE

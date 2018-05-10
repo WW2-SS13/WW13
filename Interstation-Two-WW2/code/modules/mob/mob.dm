@@ -703,7 +703,7 @@
 				if (clients.len == 1)
 					avg_ping = our_ping
 				stat("Ping (Average):", "[our_ping] ms ([avg_ping] ms)")
-			stat("Time Dilation:", time_track ? "[ceil(time_track.dilation)]%" : "???")
+			stat("Time Dilation (Average):", time_track ? "[ceil(time_track.dilation)]% ([ceil(time_track.average_dilation())]%)" : "0% (0%)")
 
 		if(client.holder && client.status_tabs)
 			if(statpanel("Status"))

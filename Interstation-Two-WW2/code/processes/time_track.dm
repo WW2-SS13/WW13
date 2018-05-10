@@ -7,14 +7,17 @@ var/process/time_track/time_track = null
 	var/last_tick_byond_time = 0
 	var/last_tick_tickcount = 0
 	var/first_run = TRUE
+	var/list/averages = list()
 
 /process/time_track/setup()
 	name = "Time Tracking"
-	schedule_interval = 50
+	schedule_interval = 10 // this was 50, but this isn't expensive to track so every second is fine - Kachnov
 	fires_at_gamestates = list(GAME_STATE_PREGAME, GAME_STATE_SETTING_UP, GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 
 	if (!time_track)
 		time_track = src
+
+	averages.len = 10
 
 /process/time_track/fire()
 	SCHECK
@@ -39,3 +42,18 @@ var/process/time_track/time_track = null
 	last_tick_realtime = current_realtime
 	last_tick_byond_time = current_byondtime
 	last_tick_tickcount = current_tickcount
+
+	averages += dilation
+	if (averages.len >= 20)
+		var/list/old = averages.Copy()
+		averages.Cut()
+		for (var/v in 11 to 20)
+			averages[v-10] = old[v]
+
+/process/time_track/proc/average_dilation()
+	if (!averages.len)
+		return 0
+	. = 0
+	for (var/n in averages)
+		. += n
+	. /= averages.len

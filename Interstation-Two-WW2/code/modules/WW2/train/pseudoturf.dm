@@ -120,7 +120,7 @@
 	for (var/obj/train_track/tt in get_turf(src))
 		tt.set_light(0, FALSE) // unset the lights of tracks we're now on
 
-/obj/train_pseudoturf/proc/_Move(var/_direction)
+/obj/train_pseudoturf/proc/_Move()
 
 	for (var/atom_movable in saved_contents)
 		var/atom/movable/AM = atom_movable
@@ -164,7 +164,7 @@
 		if (HORIZONTAL)
 			x+=controller.getMoveInc()
 
-/obj/train_pseudoturf/proc/move_mobs(var/_direction)
+/obj/train_pseudoturf/proc/move_mobs()
 	for (var/mob in saved_mobs)
 		if (mob)
 			var/mob/M = mob

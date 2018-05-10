@@ -79,8 +79,7 @@ s//based off of /obj/structure/lattice, but way simpler
 			x+=master.getMoveInc()
 
 // copied from /obj/train_pseudoturf/move_mobs()
-
-/obj/train_connector/proc/move_mobs(var/_direction)
+/obj/train_connector/proc/move_mobs()
 	for (var/mob in saved_mobs)
 		if (mob)
 			var/mob/M = mob
