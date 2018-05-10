@@ -235,3 +235,14 @@
 					message += ", "
 		message += " in the water."
 		user << "<span class = 'notice'>[message]</span>"
+
+/obj/structure/pot/verb/empty()
+	set src in range(1, usr)
+	set name = "Empty"
+	set category = null
+	if (state == STATE_EMPTY)
+		return
+	visible_message("<span class = 'warning'>[usr] starts to empty the pot...</span>")
+	if (do_after(usr, 100, src))
+		visible_message("<span class = 'warning'>[usr] finishes emptying the pot.</span>")
+		state = STATE_EMPTY

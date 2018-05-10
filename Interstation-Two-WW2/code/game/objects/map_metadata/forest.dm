@@ -6,6 +6,9 @@
 		/area/prishtina/forest/south/invisible_wall)
 	allow_bullets_through_blocks = list(
 		/area/prishtina/forest/south/invisible_wall)
+	roundend_condition_sides = list(
+		list(GERMAN, ITALIAN) = /area/prishtina/german,
+		list(SOVIET) = /area/prishtina/soviet/bunker)
 	uses_supply_train = TRUE
 	uses_main_train = TRUE
 	supply_points_per_tick = list(

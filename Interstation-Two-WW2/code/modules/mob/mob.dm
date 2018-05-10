@@ -744,20 +744,21 @@
 	if(transforming)						return FALSE
 	return TRUE
 
-// Not sure what to call this. Used to check if humans are wearing an AI-controlled exosuit and hence don't need to fall over yet.
-/mob/proc/can_stand_overridden()
-	return FALSE
-
 /mob/proc/cannot_stand()
 	return incapacitated(INCAPACITATION_DEFAULT & (~INCAPACITATION_RESTRAINED))
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
 
-	if(!resting && (!cannot_stand() || can_stand_overridden()))
-		lying = FALSE
-		canmove = TRUE
-	else
+	var/noose = FALSE
+	for (var/obj/structure/noose/N in get_turf(src))
+		if (N.hanging == src)
+			lying = FALSE
+			canmove = FALSE
+			anchored = TRUE
+			noose = TRUE
+
+	if (!noose)
 		if(buckled)
 			anchored = TRUE
 			canmove = FALSE

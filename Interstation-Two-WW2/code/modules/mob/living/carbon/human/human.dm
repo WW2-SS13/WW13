@@ -1150,13 +1150,6 @@ var/list/rank_prefix = list(\
 	..()
 	if(update_hud)
 		handle_regular_hud_updates()
-
-
-/mob/living/carbon/human/can_stand_overridden()
-	for (var/obj/structure/noose/N in get_turf(src))
-		if (N.hanging == src)
-			return TRUE
-	return FALSE
 /*
 /mob/living/carbon/human/MouseDrop(var/atom/over_object)
 	var/mob/living/carbon/human/H = over_object
