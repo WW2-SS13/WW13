@@ -1,4 +1,5 @@
 /mob/living/maim()
+
 	Weaken(5)
 	adjustBruteLoss(50)
 
@@ -6,20 +7,17 @@
 	var/list/arms = list()
 	var/list/legs = list()
 
-	for (var/obj/item/organ/external/arm/arm in contents)
+	for (var/obj/item/organ/external/arm/A in contents)
 		++appendages
-		arms += arm
-	for (var/obj/item/organ/external/leg/leg in contents)
+		arms += A
+
+	for (var/obj/item/organ/external/leg/L in contents)
 		++appendages
-		legs += leg
+		legs += L
 
-	for (var/obj/item/organ/external/E in arms)
-		if (prob(round(50/arms.len)))
-			E.droplimb()
-			--appendages
-
-	for (var/obj/item/organ/external/E in legs)
-		if (prob(round(50/legs.len)))
+	// combine and shuffle arms and legs so we don't bias either
+	for (var/obj/item/organ/external/E in shuffle(arms|legs))
+		if (prob(round(100/(arms.len+legs.len))))
 			E.droplimb()
 			--appendages
 

@@ -240,8 +240,8 @@
 		return
 
 	for (var/obj/item/I in M)
-		if (istype(I, /obj/item/weapon/implant))
-			continue
+/*		if (istype(I, /obj/item/weapon/implant))
+			continue*/
 		M.drop_from_inventory(I)
 		if(I.loc != M)
 			qdel(I)

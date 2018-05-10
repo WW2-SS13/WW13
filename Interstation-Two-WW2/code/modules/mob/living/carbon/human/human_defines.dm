@@ -151,3 +151,5 @@
 	var/debugmob = FALSE
 
 	var/next_footstep_sound_at_movement_tick = -1
+
+	var/never_set_faction_huds = TRUE

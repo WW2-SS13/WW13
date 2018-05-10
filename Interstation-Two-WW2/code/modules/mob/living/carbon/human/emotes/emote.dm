@@ -40,9 +40,9 @@ var/list/vocal_emotes = list(
 		var/muzzled = istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(wear_mask, /obj/item/weapon/grenade)
 		//var/m_type = 1
 
-		for (var/obj/item/weapon/implant/I in src)
+/*		for (var/obj/item/weapon/implant/I in src)
 			if (I.implanted)
-				I.trigger(act, src)
+				I.trigger(act, src)*/
 
 		if(stat == 2.0/* && (act != "deathgasp")*/)
 			return

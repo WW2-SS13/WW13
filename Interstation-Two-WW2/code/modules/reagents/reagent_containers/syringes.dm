@@ -133,8 +133,8 @@
 					user << "<span class='notice'>The syringe is empty.</span>"
 					mode = SYRINGE_DRAW
 					return
-				if(istype(target, /obj/item/weapon/implantcase/chem))
-					return
+/*				if(istype(target, /obj/item/weapon/implantcase/chem))
+					return*/
 
 				if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/weapon/reagent_containers/food) && !istype(target, /obj/item/clothing/mask/smokable/cigarette))
 					user << "<span class='notice'>You cannot directly fill this object.</span>"

@@ -130,6 +130,8 @@
 		return
 
 	var/_clients = input("How many clients?") as num
+
+	job_master.admin_expected_clients = 0
 	job_master.toggle_roundstart_autobalance(_clients, announce = 2)
 	job_master.admin_expected_clients = _clients
 
