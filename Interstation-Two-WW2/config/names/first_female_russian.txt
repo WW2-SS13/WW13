@@ -42,7 +42,6 @@ Siyankovskaya
 Lilya
 Vasilisa
 Tetereva
-Polyakova
 Lavra
 Selinka
 Tanya
@@ -58,3 +57,4 @@ Rudova
 Polyakova
 Ledovskaya
 Kondratyeva
+Natalia
