@@ -921,7 +921,5 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\forest\level1.dmm"
-#include "maps\forest\level2.dmm"
-#include "maps\forest\level3.dmm"
+#include "maps\city\level1.dmm"
 // END_INCLUDE

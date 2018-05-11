@@ -146,6 +146,8 @@ Works together with spawning an observer, noted above.
 	if (!lastKnownCkey)
 		return
 
+	src << browse(null, "window=memory")
+
 	// remove weather sounds
 	src << sound(null, channel = 778)
 	// remove ambient sounds

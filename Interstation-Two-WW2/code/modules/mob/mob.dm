@@ -377,30 +377,32 @@
 		usr << "<span class='notice'><b>You must be dead to use this!</b></span>"
 		return
 
+	src << browse(null, "window=memory")
+
 /*	if (ticker.mode && ticker.mode.deny_respawn)
 		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
 		return*/
 
-	usr << "You can respawn now, enjoy your new life!"
+	src << "You can respawn now, enjoy your new life!"
 	stop_ambience(usr)
 
-	log_game("[usr.name]/[usr.key] used abandon mob.")
+	log_game("[name]/[key] used abandon mob.")
 
 	usr << "<span class='notice'><b>Make sure to play a different character, and please roleplay correctly!</b></span>"
 
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key] AM failed due to disconnect.")
 		return
 	client.screen.Cut()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key] AM failed due to disconnect.")
 		return
 
 	announce_ghost_joinleave(client, FALSE)
 
 	var/mob/new_player/M = new /mob/new_player()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key] AM failed due to disconnect.")
 		qdel(M)
 		return
 

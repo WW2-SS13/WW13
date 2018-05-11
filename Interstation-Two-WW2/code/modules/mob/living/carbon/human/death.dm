@@ -42,6 +42,8 @@
 
 	if(stat == DEAD) return
 
+	src << browse(null, "window=memory")
+
 	if (original_job)
 		switch (original_job.base_type_flag())
 			if (GERMAN)

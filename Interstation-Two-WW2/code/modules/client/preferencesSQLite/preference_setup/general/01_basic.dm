@@ -56,8 +56,6 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 /datum/category_item/player_setup_item/general/basic/content()
 	// name
-	. += "<i>Default Slot #: <a href='?src=\ref[src];change_default_slot=1'>[(pref.saved_slot != -1) ? pref.saved_slot : "1"]</a></i>"
-	. += "<br><br>"
 	. += "<b>Name:</b> "
 	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
 	. += "(<a href='?src=\ref[src];random_name=1'>Random Name</A>) "
@@ -123,13 +121,6 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
-
-
-	if(href_list["change_default_slot"])
-		pref.saved_slot = input(user, "What slot? 1 - 10.") as num
-		pref.saved_slot = Clamp(pref.saved_slot, 1, 10)
-		return TOPIC_REFRESH
-
 	//real names
 	if(href_list["rename"])
 		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null

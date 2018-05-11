@@ -115,7 +115,7 @@ var/list/preferences_datums = list()
 
 	var/list/preferences_disabled = list()
 
-	var/saved_slot = -1
+	var/loaded_global_settings_again = FALSE
 
 /datum/preferences/New(client/C)
 
@@ -150,9 +150,6 @@ var/list/preferences_datums = list()
 		// load our first slot, if we have one
 		if (preferences_exist(1))
 			load_preferences(1)
-			if (saved_slot != -1 && saved_slot != 1)
-				if (preferences_exist(saved_slot))
-					load_preferences(saved_slot)
 		else
 //			real_name = random_name(gender, species)
 			real_name = "PLACEHOLDER"
@@ -169,6 +166,10 @@ var/list/preferences_datums = list()
 
 		loadGlobalPreferences()
 		loadGlobalSettings()
+
+		if (client.saved_slot != -1 && client.saved_slot != 1)
+			if (preferences_exist(client.saved_slot))
+				load_preferences(client.saved_slot)
 
 		// otherwise, keep using our default values
 
@@ -189,6 +190,10 @@ var/list/preferences_datums = list()
 		user << "<span class='danger'>No mob exists for the given client!</span>"
 		close_load_dialog(user)
 		return
+
+	if (!loaded_global_settings_again)
+		loadGlobalSettings()
+		loaded_global_settings_again = TRUE
 
 	var/dat = {"
 	<br>
@@ -445,7 +450,6 @@ var/list/preferences_datums = list()
 /datum/preferences/proc/close_del_dialog(mob/user)
 	user << browse(null, "window=del_dialog")
 
-
 /proc/globalprefsanitize(str)
 	if (islist(str))
 		return ""
@@ -508,10 +512,11 @@ var/list/preferences_datums = list()
 			for (var/keyval in splittext(split[1], "="))
 				var/key = keyval[1]
 				var/val = keyval[2]
-				log_debug(keyval)
+//				log_debug(keyval)
 				if (key == CUSTOM_GLOBAL_SETTING_LOBBY_MUSIC_VOLUME)
 					if (client)
 						client.lobby_music_volume = text2num(val)
+						client.onload_preferences("SOUND_LOBBY")
 		if (length(prefstring))
 			var/list/vals_list = splittext(prefstring, "&")
 			for (var/val in vals_list)
@@ -526,6 +531,20 @@ var/list/preferences_datums = list()
 	tables = database.execute("SELECT prefs FROM preferences WHERE ckey = '[client_ckey]' AND slot = 'glob2_disabled';")
 	if (islist(tables) && !isemptylist(tables))
 		var/prefstring = tables["prefs"]
+//		log_debug("0: [prefstring]")
+		if (findtext(prefstring, "|"))
+//			log_debug("1: [prefstring]")
+			var/split = splittext(prefstring, "|")
+			prefstring = split[2]
+//			log_debug("2: [prefstring]")
+			for (var/keyval in splittext(split[1], "="))
+				var/key = keyval[1]
+				var/val = keyval[2]
+//				log_debug(keyval)
+				if (key == CUSTOM_GLOBAL_SETTING_LOBBY_MUSIC_VOLUME)
+					if (client)
+						client.lobby_music_volume = text2num(val)
+						client.onload_preferences("SOUND_LOBBY")
 		if (length(prefstring))
 			var/list/vals_list = splittext(prefstring, "&")
 			for (var/val in vals_list)
@@ -550,7 +569,7 @@ var/list/preferences_datums = list()
 		else
 			database.execute("INSERT INTO preferences (ckey, slot, prefs) VALUES ('[client_ckey]', 'glob2_enabled', '[prefstring]');")
 
-	prefstring = ""
+	prefstring = client ? "[CUSTOM_GLOBAL_SETTING_LOBBY_MUSIC_VOLUME]=[client.lobby_music_volume]|" : ""
 	for (var/v in 1 to preferences_disabled.len)
 		prefstring += preferences_disabled[v]
 		if (v != preferences_disabled.len)

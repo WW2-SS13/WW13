@@ -217,7 +217,7 @@ var/datum/quickBan_handler/quickBan_handler = null
 		if (364.99 to INFINITY) // count in years
 			fields["expire_info"] = "Expires in [duration_in_days/365] year(s)"
 
-	fields["ban_date"] = replacetext(time2text(world.realtime, "DDD MMM DD hh:mm:ss YYYY"), "/", ".")
+	fields["ban_date"] = replacetext(time2text(world.realtime, "DDD MMM DD hh:mm:ss YYYY"), ":", ".")
 
 	reenter_reason
 	fields["reason"] = input(src, "Provide a reason for the ban.") as text

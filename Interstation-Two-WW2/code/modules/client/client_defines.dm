@@ -55,3 +55,5 @@
 	var/status_tabs = TRUE
 
 	var/lobby_music_volume = 50
+
+	var/saved_slot = 1

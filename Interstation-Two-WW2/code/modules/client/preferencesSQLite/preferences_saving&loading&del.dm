@@ -111,16 +111,6 @@ var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 	if (!client_ckey)
 		return FALSE
 
-	// hackish code: saved_slot variable will be whatever it's set to in the lowest slot
-	for (var/tslot in internal_table)
-		var/list/ref = internal_table[tslot]
-		if (ref && ref.Find("saved_slot") && ref["saved_slot"] != -1)
-			saved_slot = ref["saved_slot"]
-			for (var/tslot2 in internal_table)
-				var/list/ref2 = internal_table[tslot2]
-				ref2["saved_slot"] = saved_slot
-			break
-
 	if (real_name == "PLACEHOLDER")
 		real_name = "[capitalize(client.key)] #[slot]"
 

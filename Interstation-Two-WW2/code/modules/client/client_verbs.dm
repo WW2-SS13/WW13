@@ -12,7 +12,7 @@
 	set name = "See MOTD"
 	if (mob) // sanity
 		mob.see_personalized_MOTD()
-
+/* todo: fix this shit
 /client/verb/change_lobby_music_volume()
 	set category = "OOC"
 	set name = "Change Lobby Music Volume"
@@ -24,7 +24,7 @@
 			prefs.saveGlobalSettings()
 			prefs.loadGlobalSettings()
 			onload_preferences("SOUND_LOBBY")
-
+*/
 /client/proc/hide_status_tabs()
 	set category = "OOC"
 	set name = "Hide Status Tabs"
