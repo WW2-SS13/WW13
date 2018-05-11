@@ -32,6 +32,7 @@ var/global/obj/map_metadata/map = null
 	var/no_subfaction_chance = TRUE
 	var/subfaction_is_main_faction = FALSE
 	var/list/faction_organization = list()
+	var/list/initial_faction_organization = list()
 	var/list/faction_distribution_coeffs = list(INFINITY) // list(INFINITY) = no hard locks on factions
 	var/list/available_subfactions = list()
 	var/list/roundend_condition_sides = list(
@@ -79,6 +80,8 @@ var/global/obj/map_metadata/map = null
 	map = src
 	icon = null
 	icon_state = null
+
+	initial_faction_organization = faction_organization.Copy()
 
 	if (no_subfaction_chance)
 		if (available_subfactions.len)

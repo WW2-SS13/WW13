@@ -59,13 +59,13 @@
 	y = _loc.y
 	z = _loc.z
 
-/mob/proc/is_on_train()
+/atom/movable/proc/is_on_train()
 	for (var/atom/movable/a in get_turf(src))
 		if (is_train_object(a))
 			return TRUE
 	return FALSE
 
-/mob/proc/get_train()
+/atom/movable/proc/get_train()
 	for (var/atom_movable in loc)
 		if (is_train_object(atom_movable))
 			var/atom/movable/AM = atom_movable

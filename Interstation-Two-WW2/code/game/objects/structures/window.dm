@@ -470,7 +470,7 @@
 
 /obj/structure/window/classic/shatter(var/display_message = TRUE)
 	var/myturf = get_turf(src)
-	spawn (1)
+	spawn (is_on_train() ? 0 : 1)
 		new/obj/structure/classic_window_frame(myturf)
 	..(display_message)
 

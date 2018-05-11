@@ -67,7 +67,7 @@ var/global/datum/controller/occupations/job_master
 /datum/controller/occupations/proc/toggle_roundstart_autobalance(var/_clients = 0, var/announce = TRUE)
 
 	if (map)
-		map.faction_organization = initial(map.faction_organization)
+		map.faction_organization = map.initial_faction_organization.Copy()
 
 	_clients = max(max(_clients, (map ? map.min_autobalance_players : 0)), clients.len, admin_expected_clients)
 

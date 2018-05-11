@@ -8,9 +8,9 @@
 	var/datum/train_controller/master = null
 	uses_initial_density = TRUE
 	initial_density = TRUE
-
 	uses_initial_opacity = TRUE
 	initial_opacity = FALSE
+	layer = 2.4 // just above connectors, below TPTs
 
 /obj/structure/railing/train_railing/proc/_Move()
 	for (var/atom_movable in get_turf(src))

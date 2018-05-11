@@ -3,7 +3,7 @@
 /obj/train_pseudoturf
 	anchored = TRUE
 	name = "train"
-	layer = TURF_LAYER + 0.01
+	layer = 2.5
 	var/obj/train_car_center/master = null
 	var/datum/train_controller/controller = null
 	var/deadly = FALSE
@@ -33,7 +33,6 @@
 		for (var/atom/A in T.overlays)
 			overlays += new A.type
 
-	layer = T.layer + 0.05 //otherwise, train tracks go above train pseudoturfs
 	pixel_x = T.pixel_x
 	pixel_y = T.pixel_y
 	dir = T.dir
@@ -53,6 +52,10 @@
 		for (var/atom_movable in T)
 
 			var/atom/movable/AM = atom_movable
+
+			if (istype(AM, /obj/train_decal))
+				vis_contents |= AM
+				continue
 
 			if (check_object_invalid_for_moving(src, AM, TRUE))
 				continue

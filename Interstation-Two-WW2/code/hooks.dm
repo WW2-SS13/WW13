@@ -50,9 +50,6 @@
 /hook/death
 
 /proc/callHook(hook, list/args=null)
-	if (hook == "roundstart")
-		log_debug("test: did [hook]")
-	//	return
 	var/hook_path = text2path("/hook/[hook]")
 	if(!hook_path)
 		error("Invalid hook '/hook/[hook]' called.")

@@ -46,6 +46,6 @@
 	. = ..(H, T)
 	if (!.)
 		if (H.original_job && H.original_job.base_type_flag() == SOVIET)
-			if (H.y >= 420)
+			if (T.y >= 420 && tickerProcess.playtime_elapsed < 18000) // because H.y >= 420 causes magical teleportation
 				return TRUE
 	return .
