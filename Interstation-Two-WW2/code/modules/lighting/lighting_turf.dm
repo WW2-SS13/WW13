@@ -178,7 +178,7 @@
 
 	// objects that let in light
 	for (var/turf/T in view(world.view*3, src))
-		if (!T.density)
+		if (!T.density && !locate_opaque_type(T.contents, /atom))
 			var/area/T_area = get_area(T)
 			if (T_area.location == AREA_OUTSIDE)
 				. += (1/abs_dist_no_rounding(src, T))

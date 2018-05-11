@@ -1,7 +1,4 @@
-#define MAP_MODE(x) if (map_mode == x)
-#define WARFARE 1
 #define NO_WINNER "Neither side has captured the other side's base."
-var/map_mode = WARFARE
 
 var/global/obj/map_metadata/map = null
 
@@ -318,7 +315,7 @@ var/global/obj/map_metadata/map = null
 	var/attacker_soldiers = 0
 	var/defender_soldiers = 0
 
-	for (var/v in 1 to roundend_condition_sides)
+	for (var/v in 1 to roundend_condition_sides.len)
 		for (var/faction in roundend_condition_sides[v])
 			switch (v)
 				if (1)

@@ -28,8 +28,8 @@
 				return
 		if( findtext(memo,"<script",1,0) )
 			return
-		F[ckey] << "[key] on [time2text(world.realtime,"(DDD) DD MMM hh:mm")]<br>[memo]"
-		message_admins("[key] set an admin memo:<br>[memo]")
+		F[ckey] << "Admin Memo from <b>[capitalize(key)]</b> on [time2text(world.realtime,"(DDD) DD MMM hh:mm")]<br><i>[memo]</i>"
+		message_admins("[key] has set an admin memo:<br>[memo]")
 
 //show all memos
 /client/proc/admin_memo_show()
@@ -37,7 +37,7 @@
 		var/savefile/F = new(get_admin_memo_file_dir())
 		if(F)
 			for(var/ckey in F.dir)
-				src << "<center><span class='motd'><b>Admin Memo</b><i> by [F[ckey]]</i></span></center>"
+				src << "<center><span class='motd'>[F[ckey]]</span></center>"
 
 //delete your own or somebody else's memo
 /client/proc/admin_memo_delete()

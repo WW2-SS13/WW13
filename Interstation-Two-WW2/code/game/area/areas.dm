@@ -111,7 +111,6 @@ var/list/ghostteleportlocs = list()
 	icon_state = ""
 	layer = 10
 	uid = ++global_uid
-	all_areas += src
 
 	if(!requires_power || config.machinery_does_not_use_power)
 		power_light = FALSE

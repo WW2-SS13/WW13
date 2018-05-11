@@ -67,25 +67,26 @@ var/GRACE_PERIOD_LENGTH = 7
 	spawn (1)
 		world << "<span class = 'notice'>Setting up wild grasses.</span>"
 
-	for (var/turf/floor/plating/grass/G in grass_turf_list)
+	for (var/grass in grass_turf_list)
+		var/turf/floor/plating/grass/G = grass
 		if (!G || G.z > 1)
 			continue
 
 		if (prob(nature_chance))
 			G.plant()
 
-	spawn (0)
-		do_seasonal_stuff()
-
 	if (!WW2_train_check())
 		callHook("train_move")
 
 	return TRUE
 
-// freaking seasons dude
-/proc/do_seasonal_stuff()
+// ditto
+/hook/roundstart/proc/do_seasonal_stuff()
 	spawn (1)
-		world << "<span class = 'notice'>Setting up seasonal stuff.</span>"
+		world << "<span class = 'notice'>Setting up seasons.</span>"
+
+	if (map && istype(map, /obj/map_metadata/forest))
+		return TRUE // temp fix
 
 	var/use_snow = FALSE
 
@@ -127,7 +128,6 @@ var/GRACE_PERIOD_LENGTH = 7
 
 				for (var/obj/structure/wild/W in G.contents)
 					if (istype(W))
-
 						W.color = DEAD_COLOR
 						var/icon/W_icon = icon(W.icon, W.icon_state)
 						if (use_snow)

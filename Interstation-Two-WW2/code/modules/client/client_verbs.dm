@@ -13,6 +13,18 @@
 	if (mob) // sanity
 		mob.see_personalized_MOTD()
 
+/client/verb/change_lobby_music_volume()
+	set category = "OOC"
+	set name = "Change Lobby Music Volume"
+
+	var/original = lobby_music_volume
+	lobby_music_volume = CLAMP0100(input(src, "Change lobby music volume to what %?", "Lobby Music Volume", lobby_music_volume))
+	if (original != lobby_music_volume)
+		if (prefs)
+			prefs.saveGlobalSettings()
+			prefs.loadGlobalSettings()
+			onload_preferences("SOUND_LOBBY")
+
 /client/proc/hide_status_tabs()
 	set category = "OOC"
 	set name = "Hide Status Tabs"

@@ -70,6 +70,8 @@ var/list/global/wall_cache = list()
 
 /turf/wall/Destroy()
 	dismantle_wall(null,null,1)
+	for (var/atom/movable/lighting_overlay/L in view(world.view, src))
+		L.update_overlay(TRUE)
 	..()
 
 /turf/wall/process()

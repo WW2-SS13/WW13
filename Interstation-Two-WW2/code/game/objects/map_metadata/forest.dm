@@ -15,20 +15,16 @@
 		SOVIET = 1.00,
 		GERMAN = 1.50)
 	character_arrival_announcement_time = 20 // necessary for some reason
-
-/obj/map_metadata/forest/New()
-	MAP_MODE(MODE_WAR)
-		faction_organization = list(
-			GERMAN,
-			SOVIET,
-			PARTISAN,
-			CIVILIAN,
-			ITALIAN)
-		available_subfactions = list(
-			SCHUTZSTAFFEL,
-			ITALIAN)
-		faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
-	..()
+	faction_organization = list(
+		GERMAN,
+		SOVIET,
+		PARTISAN,
+		CIVILIAN,
+		ITALIAN)
+	available_subfactions = list(
+		SCHUTZSTAFFEL,
+		ITALIAN)
+	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
 
 /obj/map_metadata/forest/germans_can_cross_blocks()
 	return (mission_announced || admin_ended_all_grace_periods)
@@ -47,7 +43,7 @@
  	* The second ends at 30 minutes and stops the Soviets from entering the German base and areas very close to it
 */
 /obj/map_metadata/forest/check_prishtina_block(var/mob/living/carbon/human/H, var/turf/T)
-	. = ..()
+	. = ..(H, T)
 	if (!.)
 		if (H.original_job && H.original_job.base_type_flag() == SOVIET)
 			if (H.y >= 420)

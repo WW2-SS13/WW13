@@ -70,7 +70,8 @@ var/process/time_of_day_change/time_of_day_change_process = null
 			M << "<font size=3><span class = 'notice'>It's <b>[lowertext(capitalize(time_of_day))]</b>.</span></font>"
 
 	if (!setup_lighting)
-		for (var/atom/movable/lighting_overlay/LO in lighting_overlay_list)
+		for (var/lighting_overlay in lighting_overlay_list)
+			var/atom/movable/lighting_overlay/LO = lighting_overlay
 			if (LO.invisibility)
 				LO.invisibility = 0
 

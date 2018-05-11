@@ -218,7 +218,7 @@ var/datum/quickBan_handler/quickBan_handler = null
 			fields["expire_info"] = "Expires in [duration_in_days/365] year(s)"
 
 	if (global_game_schedule)
-		fields["ban_date"] = "[global_game_schedule.getDayInfoAsString()] {[global_game_schedule.getDateInfoAsString()]}"
+		fields["ban_date"] = "[global_game_schedule.getDayInfoAsString()] {on [global_game_schedule.getDateInfoAsString()]}"
 
 	reenter_reason
 	fields["reason"] = input(src, "Provide a reason for the ban.") as text

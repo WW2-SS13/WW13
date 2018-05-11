@@ -1,15 +1,17 @@
+#define BASIC_LIGHT_AMOUNT 0.07
+#define MAX_LIGHT_AMOUNT 1.00
 //#define ALWAYS_DAY
 var/time_of_day = "Morning"
 var/list/times_of_day = list("Early Morning", "Morning", "Afternoon", "Midday", "Evening", "Night", "Midnight")
 // from lightest to darkest: midday, afternoon, morning, early morning, evening, night, midnight
 var/list/time_of_day2luminosity = list(
-	"Early Morning" = 0.5,
-	"Morning" = 0.7,
-	"Afternoon" = 0.8,
-	"Midday" = 1.0,
-	"Evening" = 0.4,
-	"Night" = 0.2,
-	"Midnight" = 0.1)
+	"Early Morning" = BASIC_LIGHT_AMOUNT * 7,
+	"Morning" = BASIC_LIGHT_AMOUNT * 10,
+	"Afternoon" = BASIC_LIGHT_AMOUNT * 11,
+	"Midday" = MAX_LIGHT_AMOUNT,
+	"Evening" = BASIC_LIGHT_AMOUNT * 6,
+	"Night" = BASIC_LIGHT_AMOUNT * 2,
+	"Midnight" = BASIC_LIGHT_AMOUNT)
 
 var/list/time_of_day2ticks = list(
 	"Early Morning" = 20*60,
@@ -67,3 +69,6 @@ var/list/time_of_day2ticks = list(
 			TOD_may_automatically_change = FALSE
 			progress_time_of_day()
 		sleep (100)
+
+#undef MAX_LIGHT_AMOUNT
+#undef BASIC_LIGHT_AMOUNT

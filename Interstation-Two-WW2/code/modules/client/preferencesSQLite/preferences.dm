@@ -115,6 +115,8 @@ var/list/preferences_datums = list()
 
 	var/list/preferences_disabled = list()
 
+	var/saved_slot = -1
+
 /datum/preferences/New(client/C)
 
 	player_setup = new(src)
@@ -148,6 +150,9 @@ var/list/preferences_datums = list()
 		// load our first slot, if we have one
 		if (preferences_exist(1))
 			load_preferences(1)
+			if (saved_slot != -1 && saved_slot != 1)
+				if (preferences_exist(saved_slot))
+					load_preferences(saved_slot)
 		else
 //			real_name = random_name(gender, species)
 			real_name = "PLACEHOLDER"
@@ -162,9 +167,8 @@ var/list/preferences_datums = list()
 			remember_preference("italian_name", italian_name)
 			save_preferences(1)
 
-		spawn (1)
-			loadGlobalPreferences()
-			loadGlobalSettings()
+		loadGlobalPreferences()
+		loadGlobalSettings()
 
 		// otherwise, keep using our default values
 
@@ -487,6 +491,7 @@ var/list/preferences_datums = list()
 		database.execute("INSERT INTO preferences (ckey, slot, prefs) VALUES ('[client_ckey]', 'glob1', '[prefstring]');")
 
 // global settings handling
+#define CUSTOM_GLOBAL_SETTING_LOBBY_MUSIC_VOLUME "lobby_music_enabled"
 #define ONLY_LOAD_DISABLED_SETTINGS
 /datum/preferences/proc/loadGlobalSettings()
 	if (!client)
@@ -497,6 +502,16 @@ var/list/preferences_datums = list()
 	#ifndef ONLY_LOAD_DISABLED_SETTINGS
 	if (islist(tables) && !isemptylist(tables))
 		var/prefstring = tables["prefs"]
+		if (findtext(prefstring, "|"))
+			var/split = splittext(prefstring, "|")
+			prefstring = split[2]
+			for (var/keyval in splittext(split[1], "="))
+				var/key = keyval[1]
+				var/val = keyval[2]
+				log_debug(keyval)
+				if (key == CUSTOM_GLOBAL_SETTING_LOBBY_MUSIC_VOLUME)
+					if (client)
+						client.lobby_music_volume = text2num(val)
 		if (length(prefstring))
 			var/list/vals_list = splittext(prefstring, "&")
 			for (var/val in vals_list)
@@ -523,7 +538,7 @@ var/list/preferences_datums = list()
 			ShowChoices(M)*/
 
 /datum/preferences/proc/saveGlobalSettings()
-	var/prefstring = ""
+	var/prefstring = client ? "[CUSTOM_GLOBAL_SETTING_LOBBY_MUSIC_VOLUME]=[client.lobby_music_volume]|" : ""
 	for (var/v in 1 to preferences_enabled.len)
 		prefstring += preferences_enabled[v]
 		if (v != preferences_enabled.len)
@@ -607,8 +622,8 @@ var/list/preferences_datums = list()
 			var/datum/client_preference/cp = get_client_preference_by_type(/datum/client_preference/play_lobby_music)
 			if (isnewplayer(mob))
 				if (is_preference_enabled(cp.key))
-					mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 50, channel = TRUE)
+					mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = lobby_music_volume, channel = TRUE)
 				else
-					mob << sound(null, repeat = FALSE, wait = FALSE, volume = 50, channel = TRUE)
+					mob << sound(null, repeat = FALSE, wait = FALSE, volume = lobby_music_volume, channel = TRUE)
 	else
 		initially_loaded_preferences = TRUE

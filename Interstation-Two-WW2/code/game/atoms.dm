@@ -459,7 +459,7 @@ its easier to just keep the beam vertical.
 	if(istype(blood_DNA, /list))
 		blood_DNA = null
 		return TRUE
-
+/*
 /atom/proc/get_global_map_pos()
 	if(!islist(global_map) || isemptylist(global_map)) return
 	var/cur_x = null
@@ -475,7 +475,7 @@ its easier to just keep the beam vertical.
 		return list("x"=cur_x,"y"=cur_y)
 	else
 		return FALSE
-
+*/
 /atom/proc/checkpass(passflag)
 	return pass_flags&passflag
 

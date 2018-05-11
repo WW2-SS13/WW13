@@ -53,3 +53,5 @@
 	var/last_ping = 0
 
 	var/status_tabs = TRUE
+
+	var/lobby_music_volume = 50

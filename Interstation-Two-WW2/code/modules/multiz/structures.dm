@@ -21,6 +21,7 @@
 
 	for (var/obj/structure/multiz/ladder/ww2/ladder in ladder_list)
 		ladder.target = ladder.find_target()
+	return TRUE
 
 /obj/structure/multiz
 	name = "ladder"
@@ -224,7 +225,7 @@
 
 /obj/structure/multiz/ladder/ww2/Crossed(var/atom/movable/AM)
 	if (find_target() && istop)
-		if (isitem(AM) && !istype(AM, /obj/item/projectile))
+		if (!AM.pulledby && isitem(AM) && !istype(AM, /obj/item/projectile))
 			var/obj/item/I = AM
 			if (I.w_class <= 2.0) // fixes maxim bug and probably some others - Kachnov
 				I.forceMove(get_turf(find_target()))

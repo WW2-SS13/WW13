@@ -47,6 +47,7 @@ var/process/time_track/time_track = null
 	if (averages.len >= 20)
 		var/list/old = averages.Copy()
 		averages.Cut()
+		averages.len = 10
 		for (var/v in 11 to 20)
 			averages[v-10] = old[v]
 

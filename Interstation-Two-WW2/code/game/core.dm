@@ -20,8 +20,10 @@
 
 /hook/roundstart/proc/mainstuff()
 	world << "<b><big>The round has started!</big></b>"
-	for (var/client/C in clients)
+
+	for (var/C in clients)
 		winset(C, null, "mainwindow.flash=1")
+
 	supply_codes[GERMAN] = rand(1000,9999)
 	supply_codes[SOVIET] = rand(1000,9999)
 	// announce after some other stuff, like system setups, are announced
@@ -83,3 +85,4 @@
 				for (var/obj/structure/simple_door/key_door/german/engineer/D in door_list)
 					D.Open()
 				world << "<i>Due to lowpop, some doors have started open.</i>"
+	return TRUE

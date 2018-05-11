@@ -3,36 +3,14 @@
 #warn This compiler is out of date. You may experience issues with projectile animations.
 #endif
 
-// Items that ask to be called every cycle.
-//var/global/datum/datacore/data_core = null
-var/global/list/all_areas                = list()
-var/global/list/machines                 = list()
-var/global/list/processing_objects       = list()
-var/global/list/zoom_processing_objects       = list()
-var/global/list/supplydrop_processing_objects_german = list()
-var/global/list/supplydrop_processing_objects_soviet = list()
-var/global/list/nonvital_processing_objects_1       = list()
-var/global/list/nonvital_processing_objects_2       = list()
-var/global/list/nonvital_processing_objects_3       = list()
-var/global/list/nonvital_processing_objects_4       = list()
-var/global/list/menacing_atoms       = list()
-//var/global/list/processing_power_items   = list()
-var/global/list/active_diseases          = list()
-//var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
-//var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
-var/global/list/faction_hud_users		 = list() // List of all entities using faction huds.
-var/global/list/hud_icon_reference       = list()
-
 var/list/init_lights = list()
-
 
 var/global/list/global_mutations  = list() // List of hidden mutation things.
 
-var/global/list/global_map = null
+//var/global/list/global_map = null
 
 // Noises made when hit while typing.
 var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
-
 
 var/diary               = null
 var/attack_log          = null
@@ -161,11 +139,6 @@ var/DBConnection/dbcon_old = new() // /tg/station database (Old database) -- see
 
 // Reference list for disposal sort junctions. Filled up by sorting junction's New()
 /var/list/tagger_locations = list()
-
-// Added for Xenoarchaeology, might be useful for other stuff.
-var/global/list/alphabet_lowercase = list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
-var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
-
 
 // Used by robots and robot preferences.
 var/list/robot_module_types = list(

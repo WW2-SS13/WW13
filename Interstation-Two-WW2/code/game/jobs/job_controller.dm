@@ -66,6 +66,9 @@ var/global/datum/controller/occupations/job_master
 
 /datum/controller/occupations/proc/toggle_roundstart_autobalance(var/_clients = 0, var/announce = TRUE)
 
+	if (map)
+		map.faction_organization = initial(map.faction_organization)
+
 	_clients = max(max(_clients, (map ? map.min_autobalance_players : 0)), clients.len, admin_expected_clients)
 
 	var/autobalance_for_players = round(max(_clients, (clients.len/config.max_expected_players) * 50))
@@ -113,8 +116,6 @@ var/global/datum/controller/occupations/job_master
 		if (announce)
 			world << "<font size = 3><span class = 'notice'>The Wehrmacht has the assistance of the Italian Army for this battle.</span></font>"
 		italians_were_enabled = TRUE
-		if (map)
-			map.faction_organization |= ITALIAN
 	else
 		for (var/obj/structure/vending/italian/apparel/pizzeria in vending_machine_list)
 			qdel(pizzeria)
@@ -134,8 +135,6 @@ var/global/datum/controller/occupations/job_master
 				world << "<font size = 3><span class = 'notice'>Civilian and Partisan factions are enabled.</span></font>"
 			civilians_were_enabled = TRUE
 			partisans_were_enabled = TRUE
-			if (map)
-				map.faction_organization |= list(CIVILIAN, PARTISAN)
 		else
 			if (map)
 				map.faction_organization -= list(CIVILIAN, PARTISAN)

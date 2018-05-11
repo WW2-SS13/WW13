@@ -46,3 +46,4 @@ var/list/global_SID_map = list()
 /hook/roundstart/proc/activate_skyboxes()
 	for (var/obj/skybox/S in skyboxes)
 		qdel(S)
+	return TRUE

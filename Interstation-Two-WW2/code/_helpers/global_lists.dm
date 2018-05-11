@@ -61,7 +61,9 @@ var/global/list/vending_machine_list = list()
 
 var/global/list/lift_list = list()
 
-var/global/list/lever_list = list() // because different levers are currently snowflake types that aren't actually related (train levers, lift levers, etc) this list needs typechecking always - Kachnov
+/* because different levers are currently snowflake types that aren't actually related (train levers, lift levers, etc)
+ * this list needs typechecking always - Kachnov */
+var/global/list/lever_list = list()
 
 var/global/list/organ_list = list()
 
@@ -72,8 +74,26 @@ var/global/list/ladder_list = list()
 var/global/list/paper_list = list()
 
 var/global/list/lighting_overlay_list = list()
+
+var/global/list/processing_objects = list()
+
+var/global/list/zoom_processing_objects = list()
+
+var/global/list/supplydrop_processing_objects_german = list()
+
+var/global/list/supplydrop_processing_objects_soviet = list()
+
+var/global/list/menacing_atoms = list()
+
+var/global/list/faction_hud_users = list()
+
+var/global/list/hud_icon_reference = list()
+
 // names
 var/global/list/names_used[1000] // map
+
+var/global/list/alphabet_lowercase = list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
+var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
 
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER)
 
