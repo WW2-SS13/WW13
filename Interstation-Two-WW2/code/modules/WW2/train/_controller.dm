@@ -416,6 +416,9 @@
 			if (lever)
 				lever.icon_state = lever.none_state
 				lever.direction = "NONE"
+			for (var/railing in train_railings)
+				var/atom/R = railing
+				R.pixel_y = 0
 
 /datum/train_controller/proc/move_connectors(var/reverse = FALSE)
 
