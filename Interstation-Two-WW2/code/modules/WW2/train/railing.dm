@@ -13,6 +13,16 @@
 	layer = 2.4 // just above connectors, below TPTs
 
 /obj/structure/railing/train_railing/proc/_Move()
+
+	if (master.moving)
+		switch (master.direction)
+			if ("FORWARDS")
+				pixel_y = 9
+			if ("BACKWARDS")
+				pixel_y = -9
+	else
+		pixel_y = 0
+
 	for (var/atom_movable in get_turf(src))
 		var/atom/movable/AM = atom_movable
 		if (check_object_invalid_for_moving(src, AM))
