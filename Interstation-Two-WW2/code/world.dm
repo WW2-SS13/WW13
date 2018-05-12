@@ -263,8 +263,10 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	roundabout()
 
-	// wait for serverswap to do its magic - kachnov
-	spawn (50)
+	/* Wait for serverswap to do its magic
+	 * this was 50 but now it's 70 to let the entire JOJO meme play even when the server restarts quickly
+	 * because sometimes it takes 1 second to restart other times 30 seconds :thinking: - Kachnov */
+	spawn (70)
 
 		var/sleeptime = 0
 
