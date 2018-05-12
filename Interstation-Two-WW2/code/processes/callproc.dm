@@ -15,9 +15,8 @@
 	for (var/v in 1 to 5000)
 		helpers += new /callproc_helper
 
+// there are no SCHECKs here, because that would make this proc too unreliable (trains rely on this)
 /process/callproc/fire()
-	SCHECK
-
 	for (current in queue)
 		var/callproc_helper/C = current
 		if (!C || !C.object || !C.function)
@@ -33,7 +32,6 @@
 				log_debug("Callproc process callproc for a '[C.object]' failed because it didn't have the proc '[C.function]'")
 			queue -= C
 			helpers += C
-		SCHECK
 
 /process/callproc/proc/queue(object, function, args = null, time = 10)
 	var/callproc_helper/C = helpers[1]
