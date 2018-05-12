@@ -411,6 +411,22 @@ proc/admin_notice(var/message, var/rights)
 		sleep(50)
 		world.Reboot()
 
+/datum/admins/proc/jojorestart()
+	set category = "Server"
+	set name = "Jojo Restart"
+	set desc="Restarts the world with to be continued memes"
+	if (!usr.client.holder)
+		return
+	var/confirm = alert("Restart the game world?", "Restart", "Yes", "Cancel")
+	if(confirm == "Cancel")
+		return
+	if(confirm == "Yes")
+		config.jojoreference = TRUE
+		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by <b>[usr.client.holder.fakekey ? "Admin" : usr.key]</b>!</span>"
+		log_admin("[key_name(usr)] initiated a reboot.")
+		sleep(50)
+		world.Reboot()
+
 
 /datum/admins/proc/announce()
 	set category = "Special"

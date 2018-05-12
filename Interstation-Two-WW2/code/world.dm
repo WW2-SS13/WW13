@@ -266,10 +266,13 @@ var/world_topic_spam_protect_time = world.timeofday
 	// wait for serverswap to do its magic - kachnov
 	spawn (50)
 
+		var/sleeptime = 0
+
 		if (serverswap.Find("snext"))
 			if (serverswap.Find(serverswap["snext"]))
 				var/new_address = "byond://[world.internet_address]:[serverswap[serverswap["snext"]]]"
 				world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>If you aren't taken there automatically, click here to join the linked server: <b>[new_address]</b></span>"
+				sleeptime = 100
 				for (var/C in clients)
 					winset(C, null, "mainwindow.flash=1")
 					C << link(new_address)
@@ -278,7 +281,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		else
 			world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to rejoin (It may take a minute or two): <b>byond://[world.internet_address]:[port]</b></span>"
 
-		sleep(100) // I think this is needed so C << link() doesn't fail
+		sleep(sleeptime) // I think this is needed so C << link() doesn't fail
 		processScheduler.stop() // will be started again after the serverswap occurs
 		..(reason)
 
