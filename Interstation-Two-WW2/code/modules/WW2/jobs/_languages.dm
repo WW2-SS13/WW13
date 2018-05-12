@@ -30,7 +30,7 @@
 /datum/job/update_character(var/mob/living/carbon/human/H)
 	. = ..()
 
-	var/notes = list()
+	var/list/notes = list()
 
 	H.languages.Cut()
 	if (base_type_flag() == SOVIET)
