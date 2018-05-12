@@ -30,6 +30,14 @@
 					call(C.object, C.function)()
 			else
 				log_debug("Callproc process callproc for a '[C.object]' failed because it didn't have the proc '[C.function]'")
+
+			// just in case we don't reset all args, somehow
+			C.object = null
+			C.function = ""
+			C.args = null
+			C.time = -1
+
+			// remove it from queue, add to helpers
 			queue -= C
 			helpers += C
 
@@ -41,6 +49,13 @@
 	C.time = world.time + time
 	helpers -= C
 	queue += C
+
+// remove all callproc_helpers for an object to ensure they don't get piled up and called later
+/process/callproc/proc/unqueue(object)
+	for (var/helper in queue)
+		var/callproc_helper/C = helper
+		if (C && C.object == object)
+			queue -= helper
 
 /callproc_helper
 	parent_type = /datum

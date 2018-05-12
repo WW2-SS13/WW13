@@ -435,6 +435,8 @@
 	for (var/object in tcs)
 		var/obj/train_connector/tc = object
 		tc.save_contents_as_refs()
+
+		callproc_process.unqueue(tc)
 		callproc_process.queue(tc, "_Move", null, 0.3)
 		callproc_process.queue(tc, "move_mobs", null, 0.6)
 		callproc_process.queue(tc, "remove_contents_refs", null, 0.9)

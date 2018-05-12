@@ -137,6 +137,7 @@
 		// prior to moving. We don't have to do so for gibbing, but I do it anyway
 		// so gibs don't get all over train walls anymore - Kachnov
 
+		callproc_process.unqueue(tpt)
 		callproc_process.queue(tpt, "gib_idiots", null, 0.3)
 		callproc_process.queue(tpt, "destroy_objects", null, 0.6)
 		#ifdef USE_TRAIN_LIGHTS
