@@ -1,15 +1,15 @@
-var/datum/controller/process/dog/dog_process = null
+var/process/dog/dog_process = null
 
-/datum/controller/process/dog
+/process/dog
 
-/datum/controller/process/dog/setup()
+/process/dog/setup()
 	name = "dog process"
 	schedule_interval = 2 // a bit slower than humans run (1.42 to 1.76 deciseconds)
 	start_delay = 300
 	fires_at_gamestates = list(GAME_STATE_PLAYING, GAME_STATE_FINISHED)
 	dog_process = src
 
-/datum/controller/process/dog/doWork()
+/process/dog/fire()
 	SCHECK
 	try
 		for (var/D in dog_mob_list)
@@ -33,9 +33,9 @@ var/datum/controller/process/dog/dog_process = null
 	catch(var/exception/e)
 		catchException(e)
 
-/datum/controller/process/dog/statProcess()
+/process/dog/statProcess()
 	..()
 	stat(null, "[dog_mob_list.len] mobs")
 
-/datum/controller/process/dog/htmlProcess()
+/process/dog/htmlProcess()
 	return ..() + "[dog_mob_list.len] mobs"
