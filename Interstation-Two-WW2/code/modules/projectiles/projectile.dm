@@ -336,7 +336,7 @@
 	var/helmet_protection = 0
 	var/mob/living/carbon/human/H = target_mob
 	if (istype(H) && H.head && istype(H.head, /obj/item/clothing/head/helmet))
-		helmet_protection = 10
+		helmet_protection = 15
 
 	if (H.stat == CONSCIOUS && prob((100 - mygun.headshot_kill_chance)+helmet_protection))
 		switch (damage)
