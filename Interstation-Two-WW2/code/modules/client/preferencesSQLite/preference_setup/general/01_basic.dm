@@ -56,7 +56,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 /datum/category_item/player_setup_item/general/basic/content()
 	// name
-	. += "<b>Name:</b> "
+	. = "<b>Name:</b> "
 	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
 	. += "(<a href='?src=\ref[src];random_name=1'>Random Name</A>) "
 	. += "(<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a>)"
@@ -121,6 +121,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
+
 	//real names
 	if(href_list["rename"])
 		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null
