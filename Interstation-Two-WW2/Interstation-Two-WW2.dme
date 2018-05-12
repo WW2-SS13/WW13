@@ -905,6 +905,7 @@
 #include "code\processes\reinforcements.dm"
 #include "code\processes\RNG.dm"
 #include "code\processes\scheduler.dm"
+#include "code\processes\SQLite.dm"
 #include "code\processes\throwing.dm"
 #include "code\processes\ticker.dm"
 #include "code\processes\time_of_day.dm"
