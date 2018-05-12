@@ -25,7 +25,8 @@ var/process/SQLite/SQLite_process = null
 /process/SQLite/proc/getWriteDir()
 	if (serverswap && serverswap.Find("master"))
 		. = "[serverswap["masterdir"]]/SQL/"
-	. = "SQL/"
+	else
+		. = "SQL/"
 	return .
 
 /process/SQLite/proc/getFile()
