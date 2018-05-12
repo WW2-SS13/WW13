@@ -3,6 +3,7 @@
 	title = "Pillar (70x70x2)"
 	lobby_icon_state = "stroheim"
 	prishtina_blocking_area_types = list(/area/prishtina/no_mans_land/invisible_wall/inside)
+	allow_bullets_through_blocks = list(/area/prishtina/no_mans_land/invisible_wall/inside)
 	event_faction = PILLARMEN
 	min_autobalance_players = 100
 	respawn_delay = 0
