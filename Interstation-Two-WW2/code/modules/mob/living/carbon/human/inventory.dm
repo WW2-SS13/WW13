@@ -392,5 +392,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 	var/o_lhand = l_hand
 	var/o_rhand = r_hand
 	..(slot)
-	if ((l_hand && l_hand != o_lhand && istype(l_hand, /obj/item/weapon/gun)) || (r_hand && r_hand != o_rhand && istype(r_hand, /obj/item/weapon/gun)))
-		visible_message("<span class = 'danger'>[src] takes out a gun!</span>")
+	spawn (1)
+		if ((l_hand && l_hand != o_lhand && istype(l_hand, /obj/item/weapon/gun)) || (r_hand && r_hand != o_rhand && istype(r_hand, /obj/item/weapon/gun)))
+			visible_message("<span class = 'danger'>[src] takes out a gun!</span>")
