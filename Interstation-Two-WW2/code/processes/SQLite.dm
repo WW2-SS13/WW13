@@ -23,7 +23,7 @@ var/process/SQLite/SQLite_process = null
 		shell("cd && sudo python3 [getWriteDir()]pythonSQL.py")
 
 /process/SQLite/proc/getWriteDir()
-	if (serverswap && serverswap.Find("master"))
+	if (serverswap && serverswap.Find("masterdir"))
 		. = "[serverswap["masterdir"]]/SQL/"
 	else
 		. = "SQL/"
