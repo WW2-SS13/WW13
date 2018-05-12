@@ -27,7 +27,6 @@ var/global/obj/map_metadata/map = null
 	var/list/supply_points_per_tick = list(
 		GERMAN = 1.00,
 		SOVIET = 1.00)
-	var/character_arrival_announcement_time = 10
 	var/katyushas = TRUE
 	var/no_subfaction_chance = TRUE
 	var/subfaction_is_main_faction = FALSE

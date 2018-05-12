@@ -14,7 +14,6 @@
 	supply_points_per_tick = list(
 		SOVIET = 1.00,
 		GERMAN = 1.50)
-	character_arrival_announcement_time = 20 // necessary for some reason
 	faction_organization = list(
 		GERMAN,
 		SOVIET,
