@@ -72,6 +72,8 @@
 
 	var/is_shrapnel = FALSE
 
+	var/useless = FALSE
+
 /obj/item/projectile/Del()
 	projectile_list -= src
 	..()
@@ -381,14 +383,12 @@
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
-			playsound(target_mob, "miss_sound", 60, TRUE)
-
+			playsound(get_turf(target_mob), "miss_sound", 100, TRUE)
 		return FALSE
-
-	else
+	else if (!useless) // if we just grazed, useless is set to TRUE
 		if (target_mob.stat == CONSCIOUS && prob(mygun.KO_chance) && damage >= DAMAGE_HIGH-6)
 			visible_message("<span class = 'danger'>[target_mob] is knocked out!</span>")
-			target_mob.Paralyse(10)
+			target_mob.Paralyse(5)
 
 	//hit messages
 	if(silenced)
