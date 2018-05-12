@@ -338,7 +338,7 @@ var/global/obj/map_metadata/map = null
 						message_admins(M)
 						log_debug(M)
 
-	return attacker_soldiers > defender_soldiers
+//	return attacker_soldiers > defender_soldiers
 
 /obj/map_metadata/proc/next_win_time()
 	return round((next_win - world.time)/600)
