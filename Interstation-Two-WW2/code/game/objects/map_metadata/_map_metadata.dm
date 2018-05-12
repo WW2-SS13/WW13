@@ -308,7 +308,13 @@ var/global/obj/map_metadata/map = null
 
 		if(H.stat != DEAD && H.stat != UNCONSCIOUS && !H.restrained() && ((H.weakened+H.stunned) == 0) && H.client)
 			if (soldiers.Find(job.base_type_flag()))
-				++soldiers[job.base_type_flag()]
+				var/H_area = get_area(H)
+				if (roundend_condition_sides[1].Find(job.base_type_flag()))
+					if (istype(H_area, roundend_condition_sides[roundend_condition_sides[2]]))
+						++soldiers[job.base_type_flag()]
+				else if (roundend_condition_sides[2].Find(job.base_type_flag()))
+					if (istype(H_area, roundend_condition_sides[roundend_condition_sides[1]]))
+						++soldiers[job.base_type_flag()]
 			else
 				var/M = "WARNING #1: could not find '[job.base_type_flag()]' in local list soldiers in proc '/obj/map/proc/has_occupied_base()'. Please contact a coder."
 				log_admin(M)
@@ -338,7 +344,7 @@ var/global/obj/map_metadata/map = null
 						message_admins(M)
 						log_debug(M)
 
-//	return attacker_soldiers > defender_soldiers
+	return attacker_soldiers > defender_soldiers
 
 /obj/map_metadata/proc/next_win_time()
 	return round((next_win - world.time)/600)
