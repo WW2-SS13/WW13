@@ -387,8 +387,8 @@
 
 	else
 		if (target_mob.stat == CONSCIOUS && prob(mygun.KO_chance) && damage >= DAMAGE_HIGH-6)
+			visible_message("<span class = 'danger'>[target_mob] is knocked out!</span>")
 			target_mob.Paralyse(10)
-			target_mob.visible_message("<span class = 'danger'>[target_mob] is knocked out!</span>")
 
 	//hit messages
 	if(silenced)
