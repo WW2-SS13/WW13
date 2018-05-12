@@ -334,11 +334,13 @@
 
 	// 50-60% chance of less severe damage: either 6, 12, or 18 less damage based on number of redirections
 	var/helmet_protection = 0
+
 	var/mob/living/carbon/human/H = target_mob
 	if (istype(H) && H.head && istype(H.head, /obj/item/clothing/head/helmet))
 		helmet_protection = 15
 
-	if (H.stat == CONSCIOUS && !H.lying && prob((100 - mygun.headshot_kill_chance)+helmet_protection))
+	// less damage, no headgibs
+	if (target_mob.takes_less_damage || prob((100 - mygun.headshot_kill_chance)+helmet_protection))
 		switch (damage)
 			if (DAMAGE_LOW-5 to DAMAGE_LOW+5)
 				damage = DAMAGE_LOW - 6
@@ -383,12 +385,16 @@
 
 		return FALSE
 
+	else
+		if (target_mob.stat == CONSCIOUS && prob(mygun.KO_chance) && damage >= DAMAGE_HIGH-6)
+			target_mob.Paralyse(10)
+			target_mob.visible_message("<span class = 'danger'>[target_mob] is knocked out!</span>")
+
 	//hit messages
 	if(silenced)
 		target_mob << "<span class='danger'>You've been hit in the [parse_zone(hit_zone)] by \the [src]!</span>"
 	else
 		visible_message("<span class='danger'>\The [target_mob] is hit by \the [src] in the [parse_zone(hit_zone)]!</span>")//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
-
 
 	//admin logs
 	if(!no_attack_log)

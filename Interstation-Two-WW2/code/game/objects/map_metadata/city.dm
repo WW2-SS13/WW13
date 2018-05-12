@@ -17,6 +17,7 @@
 		SCHUTZSTAFFEL,
 		ITALIAN)
 	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
+	battle_name = "Battle of Kiev"
 
 /obj/map_metadata/city/germans_can_cross_blocks()
 	return (tickerProcess.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)

@@ -1,5 +1,3 @@
-
-
 /obj/train_pseudoturf
 	anchored = TRUE
 	name = "train"

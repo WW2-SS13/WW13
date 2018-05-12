@@ -917,12 +917,12 @@
 	if(!stat)
 		if (getToxLoss() >= 45 && nutrition > 20)
 			vomit()
-
+/*
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
-	if(isturf(loc) && rand(1,1000) == TRUE)
+	if(isturf(loc) && rand(1,1000) == 1)
 		var/turf/T = loc
-		if(T.get_lumcount() == FALSE)
-			playsound_local(src,pick(scarySounds),50, TRUE, -1)
+		if(T.get_lumcount() == 0)
+			playsound_local(src,pick(scarySounds),50, TRUE, -1)*/s
 
 /mob/living/carbon/human/handle_stomach()
 	spawn(0)

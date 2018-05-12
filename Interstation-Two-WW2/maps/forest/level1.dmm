@@ -614,7 +614,7 @@
 "lP" = (/turf/floor/plating/road,/area/prishtina/forest/sector2/ss2)
 "lQ" = (/obj/structure/toilet{step_y = 0},/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/houses/ger_one)
 "lR" = (/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/houses/ger_one)
-"lS" = (/obj/train_track,/turf/floor/plating/road,/area/prishtina/forest/north/invisible_wall)
+"lS" = (/obj/train_track,/turf/floor/plating/road,/area/prishtina/forest/north/invisible_wall/train)
 "lT" = (/obj/item/weapon/gun/projectile/automatic/stationary/mg34stat,/turf/floor/plating/asteroid,/area/prishtina/german/base_defenses)
 "lU" = (/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/houses/ger_one)
 "lV" = (/obj/effect/floor_decal/corner/grey/border{dir = 8},/turf/floor/plating/road,/area/prishtina/forest/sector1/ss1)

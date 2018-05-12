@@ -33,7 +33,7 @@
 	var/modded_num_of_SS = FALSE
 
 /obj/map_metadata/pillar/germans_can_cross_blocks()
-	return (tickerProcess.playtime_elapsed >= 6000 || admin_ended_all_grace_periods)
+	return (tickerProcess.playtime_elapsed >= 4200 || admin_ended_all_grace_periods)
 
 /obj/map_metadata/pillar/soviets_can_cross_blocks()
 	return FALSE
@@ -42,7 +42,7 @@
 	return (tickerProcess.playtime_elapsed >= 9000)
 
 /obj/map_metadata/pillar/announce_mission_start(var/preparation_time)
-	world << "<font size=4>The <b>Waffen SS</b> may attack after 10 minutes. The <b>Pillar Men</b> and <b>Vampires</b> may not attack until after 15 minutes.</font>"
+	world << "<font size=4>The <b>Waffen SS</b> may attack after 7 minutes. The <b>Pillar Men</b> and <b>Vampires</b> may not attack until after 15 minutes.</font>"
 
 /obj/map_metadata/pillar/job_enabled_specialcheck(var/datum/job/J)
 	. = TRUE
@@ -64,3 +64,32 @@
 	if (faction == GERMAN)
 		return "<font size = 4>The Waffen-SS may now attack! Get on the elevator and invade the sewers!</font>"
 	return "<font size = 4>The [faction_const2name(faction)] may now cross the invisible wall!</font>"
+
+// pillarmen have longer to defend their base here
+/obj/map_metadata/pillar/short_win_time(faction)
+	if (clients.len >= 20)
+		switch (faction)
+			if (PILLARMEN)
+				return 12000 // 20 minutes
+			if (GERMAN, null)
+				return 6000 // 10 minutes
+	else
+		switch (faction)
+			if (PILLARMEN)
+				return 6000 // 10 minutes
+			if (GERMAN, null)
+				return 3000 // 5 minutes
+
+/obj/map_metadata/pillar/long_win_time(faction)
+	if (clients.len >= 20)
+		switch (faction)
+			if (PILLARMEN)
+				return 18000 // 30 minutes
+			if (GERMAN)
+				return 9000 // 15 minutes
+	else
+		switch (faction)
+			if (PILLARMEN)
+				return 12000 // 20 minutes
+			if (GERMAN)
+				return 6000 // 10 minutes

@@ -13,7 +13,10 @@ var/process/SQLite/SQLite_process = null
 /process/SQLite/fire()
 	SCHECK
 	for (var/query in queries)
-		getFile() << query
+		var/file = getFile()
+		if (!file)
+			continue
+		file << query
 		queries -= query
 		SCHECK
 	if (shell())

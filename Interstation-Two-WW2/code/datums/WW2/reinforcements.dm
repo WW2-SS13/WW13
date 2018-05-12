@@ -207,8 +207,7 @@ var/datum/reinforcements/reinforcements_master = null
 	lock_check()
 	var/obj/item/radio/R = main_radios[SOVIET]
 	if (R && R.loc)
-		spawn (10)
-			R.announce("A new squadron has been deployed.", "Reinforcements Announcements")
+		callproc_process.queue(R, "announce", list("A new squadron has been deployed.", "Reinforcements Announcements"), 10)
 	world << "<font size=3>A new <b>Soviet</b> squadron has been deployed.</font>"
 	return ret
 
@@ -232,8 +231,7 @@ var/datum/reinforcements/reinforcements_master = null
 	lock_check()
 	var/obj/item/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
-		spawn (10)
-			R.announce("A new squadron has been deployed.", "Reinforcements Announcements")
+		callproc_process.queue(R, "announce", list("A new squadron has been deployed.", "Reinforcements Announcements"), 10)
 	world << "<font size=3>A new <b>German</b> squadron has been deployed.</font>"
 	return ret
 

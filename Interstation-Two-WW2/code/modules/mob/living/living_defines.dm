@@ -52,3 +52,5 @@
 	var/stuttering = null	//Carbon
 	var/slurring = null		//Carbon
 	var/lisp = null		//Carbon
+
+	var/takes_less_damage = FALSE

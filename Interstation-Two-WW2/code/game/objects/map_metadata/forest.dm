@@ -24,6 +24,7 @@
 		SCHUTZSTAFFEL,
 		ITALIAN)
 	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
+	battle_name = "Battle of Brest"
 
 /obj/map_metadata/forest/germans_can_cross_blocks()
 	return (mission_announced || admin_ended_all_grace_periods)
@@ -44,7 +45,7 @@
 /obj/map_metadata/forest/check_prishtina_block(var/mob/living/carbon/human/H, var/turf/T)
 	. = ..(H, T)
 	if (!.)
-		if (H.original_job && H.original_job.base_type_flag() == SOVIET)
+		if (H.original_job && list(SOVIET, PARTISAN, CIVILIAN).Find(H.original_job.base_type_flag()))
 			if (T.y >= 420 && tickerProcess.playtime_elapsed < 18000) // because H.y >= 420 causes magical teleportation
 				return TRUE
 	return .

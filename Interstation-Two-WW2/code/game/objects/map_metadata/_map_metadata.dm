@@ -71,8 +71,9 @@ var/global/obj/map_metadata/map = null
 	var/list/zlevels_without_lighting = list()
 	var/list/areas_without_lighting = list()
 
-	// misc
+	// fluff
 	var/meme = FALSE
+	var/battle_name = null
 
 /obj/map_metadata/New()
 	..()
@@ -213,9 +214,9 @@ var/global/obj/map_metadata/map = null
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
-		var/message = "The battle has ended in a stalemate!"
+		var/message = "The [battle_name ? battle_name : "battle"] has ended in a stalemate!"
 		if (current_winner && current_loser)
-			message = "The battle is over! The [current_winner] was victorious over the [current_loser]!"
+			message = "The battle is over! The [current_winner] was victorious over the [current_loser][battle_name ? " in the [battle_name]" : ""]!"
 		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
@@ -225,7 +226,7 @@ var/global/obj/map_metadata/map = null
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[2][1])] base! They will win in {time} minute{s}."
-				next_win = world.time + short_win_time()
+				next_win = world.time + short_win_time(roundend_condition_sides[2][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[2][1])
@@ -234,7 +235,7 @@ var/global/obj/map_metadata/map = null
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[2][1])] base! They will win in {time} minute{s}."
-				next_win = world.time + long_win_time()
+				next_win = world.time + long_win_time(roundend_condition_sides[2][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[2][1])
@@ -243,7 +244,7 @@ var/global/obj/map_metadata/map = null
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[2][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
-				next_win = world.time + short_win_time()
+				next_win = world.time + short_win_time(roundend_condition_sides[1][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[1][1])
@@ -252,7 +253,7 @@ var/global/obj/map_metadata/map = null
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[2][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
-				next_win = world.time + long_win_time()
+				next_win = world.time + long_win_time(roundend_condition_sides[1][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[1][1])
@@ -268,7 +269,7 @@ var/global/obj/map_metadata/map = null
 			if (last_reinforcements_next_win != -1)
 				next_win = last_reinforcements_next_win
 			else
-				next_win = world.time + long_win_time()
+				next_win = world.time + long_win_time(null)
 				last_reinforcements_next_win = next_win
 
 			announce_current_win_condition()
@@ -293,7 +294,7 @@ var/global/obj/map_metadata/map = null
 		ITALIAN = 0,
 		CIVILIAN = 0,
 		PARTISAN = 0,
-		UNDEAD = 0)
+		PILLARMEN = 0)
 
 	if (!soldiers.Find(side))
 		soldiers[side] = 0
@@ -337,6 +338,8 @@ var/global/obj/map_metadata/map = null
 						message_admins(M)
 						log_debug(M)
 
+	return attacker_soldiers > defender_soldiers
+
 /obj/map_metadata/proc/next_win_time()
 	return round((next_win - world.time)/600)
 
@@ -353,13 +356,13 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/proc/announce_current_win_condition()
 	world << "<font size = 3>[current_stat_message()]</font>"
 
-/obj/map_metadata/proc/short_win_time()
+/obj/map_metadata/proc/short_win_time(faction)
 	if (clients.len >= 20)
 		return 6000 // ten minutes
 	else
 		return 3000 // five minutes
 
-/obj/map_metadata/proc/long_win_time()
+/obj/map_metadata/proc/long_win_time(faction)
 	if (clients.len >= 20)
 		return 9000 // 15 minutes
 	else

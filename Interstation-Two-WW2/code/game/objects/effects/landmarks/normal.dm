@@ -16,10 +16,10 @@ var/area/partisan_stockpile = null
 	tag = text("landmark*[]", name)
 
 	switch(name)			//some of these are probably obsolete
-		if("monkey")
+	/*	if("monkey")
 			monkeystart += loc
 			delete_me = TRUE
-			return
+			return*/
 		if("start")
 			newplayer_start += loc
 			delete_me = TRUE
@@ -34,6 +34,7 @@ var/area/partisan_stockpile = null
 			latejoin_turfs["Ghost"] += loc
 			qdel(src)
 			return
+			/*
 		if("JoinLateGateway")
 			latejoin_gateway += loc
 			delete_me = TRUE
@@ -67,7 +68,7 @@ var/area/partisan_stockpile = null
 		if("xeno_spawn")
 			xeno_spawn += loc
 			delete_me = TRUE
-			return
+			return*/
 		if("endgame_exit")
 			endgame_safespawns += loc
 			delete_me = TRUE
@@ -76,10 +77,10 @@ var/area/partisan_stockpile = null
 			endgame_exits += loc
 			delete_me = TRUE
 			return
-		if("monkey")
+/*		if("monkey")
 			monkeystart += loc
 			qdel(src)
-			return
+			return*/
 		if("start")
 			newplayer_start += loc
 			qdel(src)
@@ -618,7 +619,7 @@ var/area/partisan_stockpile = null
 				latejoin_turfs[name] = list()
 			latejoin_turfs[name] += loc
 			qdel(src)
-			return
+			return/*
 		if("prisonwarp")
 			prisonwarp += loc
 			qdel(src)
@@ -640,7 +641,7 @@ var/area/partisan_stockpile = null
 		if("xeno_spawn")
 			xeno_spawn += loc
 			qdel(src)
-			return
+			return*/
 		if("endgame_exit")
 			endgame_safespawns += loc
 			qdel(src)

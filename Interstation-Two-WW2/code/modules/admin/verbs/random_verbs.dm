@@ -14,8 +14,7 @@
 
 	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
 	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", TRUE)
-
-
+/*
 /client/proc/cmd_admin_prison(mob/M as mob in mob_list)
 	set category = "Admin"
 	set name = "Prison"
@@ -41,7 +40,7 @@
 			M << "<span class = 'red'>You have been sent to the prison station!</span>"
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
 		message_admins("<span class = 'notice'>[key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.</span>", TRUE)
-
+*/
 
 /client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
 	set category = "Special"

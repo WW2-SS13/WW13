@@ -149,9 +149,6 @@
 		callproc_process.queue(tpt, "move_mobs", null, 1.2)
 		callproc_process.queue(tpt, "remove_contents_refs", null, 1.5)
 
-		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
-			sleep(world.tick_lag)
-
 //Graft proc
 /obj/train_car_center/proc/Graft(what)
 	backwards_pseudoturfs = forwards_pseudoturfs

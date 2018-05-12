@@ -913,15 +913,3 @@ var/list/admin_verbs_host = list(
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("<span class = 'notice'>[key_name_admin(usr)] told everyone to man up and deal with it.</span>", TRUE)
-
-/client/proc/start_mapswap_vote()
-	set category = "Server"
-	set name = "Start Map Vote"
-	if (!check_rights(R_PERMISSIONS))
-		return
-	if (mapswap_process && mapswap_process.may_fire())
-		mapswap_process.admin_triggered = TRUE
-		log_admin("[key_name(usr)] triggered a map vote.")
-		message_admins("[key_name(usr)] triggered a map vote.")
-	else
-		src << "<span class = 'notice'>There is no mapswap_process datum, or it is not ready.</span>"

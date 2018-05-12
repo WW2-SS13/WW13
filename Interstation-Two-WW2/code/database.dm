@@ -62,11 +62,9 @@ var/database/database = null
 /database/proc/execute(querytext, var/only_execute_once = TRUE)
 	. = FALSE
 
-	if (world.system_type == UNIX)
+	if (world.system_type == UNIX && SQLite_process)
 		for (var/Q in list("INSERT INTO", "UPDATE", "DELETE", "MERGE", "DROP TABLE"))
 			if (findtext(querytext, Q))
-				while (!SQLite_process)
-					sleep(1)
 				SQLite_process.queries += querytext
 				return TRUE
 

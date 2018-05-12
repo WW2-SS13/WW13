@@ -190,10 +190,10 @@ var/list/preferences_datums = list()
 		user << "<span class='danger'>No mob exists for the given client!</span>"
 		close_load_dialog(user)
 		return
-
+/*
 	if (!loaded_global_settings_again)
 		loadGlobalSettings()
-		loaded_global_settings_again = TRUE
+		loaded_global_settings_again = TRUE*/
 
 	var/dat = {"
 	<br>

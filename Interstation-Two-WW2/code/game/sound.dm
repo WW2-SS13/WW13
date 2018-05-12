@@ -209,6 +209,13 @@ var/const/FALLOFF_SOUNDS = 0.5
 		// this is louder now, because it should be louder than war ambience - Kachnov
 		S.volume -= min(0, (max(distance - world.view, 0) * 1.5))
 
+		// if you're in a different type of area (fake z levels) the sound will only be half as loud - Kachnov
+		if (S.volume > 0)
+			var/area/source_area = get_area(turf_source)
+			var/area/my_area = get_area(T)
+			if (source_area.is_void_area != my_area.is_void_area)
+				S.volume = ceil(S.volume/2)
+
 		if (S.volume <= 0)
 			return	//no volume means no sound
 

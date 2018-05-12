@@ -125,8 +125,6 @@
 
 	/* All stat names (here) MUST be lowercase. */
 
-	var/takes_less_damage = FALSE
-
 	var/list/stats = list(
 		"strength" = list(100,100),
 		"engineering" = list(100,100),

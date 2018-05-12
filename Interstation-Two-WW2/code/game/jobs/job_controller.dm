@@ -6,6 +6,7 @@ var/global/datum/controller/occupations/job_master
 #define SL_LIMIT 4
 
 /proc/setup_autobalance(var/announce = TRUE)
+
 	spawn (0)
 		if (job_master)
 			job_master.toggle_roundstart_autobalance(0, announce)

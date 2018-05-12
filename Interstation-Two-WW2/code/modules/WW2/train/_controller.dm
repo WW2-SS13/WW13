@@ -379,9 +379,6 @@
 		started_moving = TRUE
 		if (faction != "GERMAN-SUPPLY")
 			callHook("train_move")
-			spawn (1800) // experimental
-				if (istype(src, /datum/train_controller/german_train_controller))
-					train_arrived = TRUE
 
 /datum/train_controller/proc/getMoveInc()
 	return inc[direction] * TRUE
@@ -408,15 +405,11 @@
 				for (var/object in train_car_centers)
 					var/obj/train_car_center/tcc = object
 					tcc._Move(direction)
-					if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
-						sleep(world.tick_lag)
 			else if (direction == "BACKWARDS")
 				move_connectors(1)
 				for (var/object in reverse_train_car_centers)
 					var/obj/train_car_center/tcc = object
 					tcc._Move(direction)
-					if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
-						sleep(world.tick_lag)
 		else
 			moving = FALSE
 			var/obj/train_lever/lever = get_lever()
@@ -443,15 +436,9 @@
 		callproc_process.queue(tc, "move_mobs", null, 0.6)
 		callproc_process.queue(tc, "remove_contents_refs", null, 0.9)
 
-		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
-			sleep(world.tick_lag)
-
 	for (var/object in trs)
 		var/obj/structure/railing/train_railing/tr = object
 		tr._Move()
-
-		if (processScheduler.getCurrentTickElapsedTime() > processScheduler.timeAllowance)
-			sleep(world.tick_lag)
 
 /datum/train_controller/proc/generate_connectors()
 
@@ -605,7 +592,6 @@
 			playing = "movement"
 			spawn (movement_sound_delay)
 				playing = ""
-
 
 /datum/train_controller/proc/play_movement_sound()
 	play_train_sound("train_movement")
