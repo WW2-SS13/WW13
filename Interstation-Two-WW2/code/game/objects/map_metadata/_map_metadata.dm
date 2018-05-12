@@ -288,6 +288,10 @@ var/global/obj/map_metadata/map = null
 
 /obj/map_metadata/proc/has_occupied_base(side)
 
+	// hack
+	if (current_win_condition == NO_WINNER)
+		return FALSE
+
 	var/list/soldiers = list(
 		GERMAN = 0,
 		SOVIET = 0,
