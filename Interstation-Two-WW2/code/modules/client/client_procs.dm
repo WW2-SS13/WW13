@@ -165,7 +165,8 @@
 	if (config.resource_website)
 		preload_rsc = config.resource_website
 
-	src << "<span class = 'red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</span>"
+	if (!mob || istype(mob, /mob/new_player))
+		src << "<span class = 'red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</span>"
 
 	/*Admin Authorisation: */
 
