@@ -750,7 +750,7 @@ var/global/datum/controller/occupations/job_master
 	var/relevant_clients = 0
 	for (var/client in clients)
 		var/client/C = client
-		if (!C.is_minimized())
+		if (C && !C.is_minimized())
 			++relevant_clients
 
 	if (map && !map.faction_distribution_coeffs.Find(INFINITY))
