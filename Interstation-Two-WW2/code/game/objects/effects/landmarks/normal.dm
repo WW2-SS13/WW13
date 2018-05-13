@@ -583,12 +583,13 @@ var/area/partisan_stockpile = null
 			return
 
 		if ("RandomGunOrAmmo")
-			var/sort = null
-			if (prob(50))
-				sort = pick(/obj/item/weapon/gun/projectile/pistol/tokarev, /obj/item/weapon/gun/projectile/revolver/nagant_revolver)
-			else
-				sort = pick(/obj/item/ammo_magazine/c762mm_tokarev, /obj/item/ammo_magazine/c762x38mmR)
-			new sort (get_turf(loc))
+			if (prob(66))
+				var/sort = null
+				if (prob(50))
+					sort = pick(/obj/item/weapon/gun/projectile/pistol/tokarev, /obj/item/weapon/gun/projectile/revolver/nagant_revolver)
+				else
+					sort = pick(/obj/item/ammo_magazine/c762mm_tokarev, /obj/item/ammo_magazine/c762x38mmR)
+				new sort (get_turf(loc))
 			qdel(src)
 			return
 
