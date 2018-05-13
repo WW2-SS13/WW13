@@ -353,15 +353,15 @@ var/global/obj/map_metadata/map = null
 
 /obj/map_metadata/proc/short_win_time(faction)
 	if (clients.len >= 20)
-		return 6000 // ten minutes
+		return 6000 // 10 minutes
 	else
-		return 3000 // five minutes
+		return 3000 // 5 minutes
 
 /obj/map_metadata/proc/long_win_time(faction)
 	if (clients.len >= 20)
 		return 9000 // 15 minutes
 	else
-		return 6000 // ten minutes
+		return 6000 // 10 minutes
 
 /obj/map_metadata/proc/roundend_condition_def2name(define)
 	switch (define)
