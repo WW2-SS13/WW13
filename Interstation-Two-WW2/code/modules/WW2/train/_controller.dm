@@ -289,6 +289,10 @@
 		lever.icon_state = lever.none_state
 		lever.direction = "NONE"
 
+	for (var/railing in train_railings)
+		var/atom/R = railing
+		R.pixel_y = 0
+
 /datum/train_controller/proc/update_invisibility(var/on = FALSE)
 	if (faction != "GERMAN-SUPPLY")
 		return
@@ -373,6 +377,10 @@
 		var/obj/train_lever/lever = get_lever()
 		lever.icon_state = lever.none_state
 		lever.direction = "NONE"
+
+		for (var/railing in train_railings)
+			var/atom/R = railing
+			R.pixel_y = 0
 
 /datum/train_controller/proc/started_moving()
 	if (!started_moving)
