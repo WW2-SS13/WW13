@@ -55,6 +55,8 @@
 	return SUCCESS
 
 /atom/movable/proc/train_setloc(var/turf/_loc)
+	if (!_loc) // runtimes
+		return
 	x = _loc.x
 	y = _loc.y
 	z = _loc.z
