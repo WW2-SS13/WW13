@@ -106,7 +106,7 @@
 	for (var/atom_movable in get_turf(src))
 		if (!check_object_invalid_for_moving(src, atom_movable))
 			saved_contents += atom_movable
-			if (ismob(atom_movable))
+			if (isliving(atom_movable))
 				saved_mobs += atom_movable
 
 /obj/train_pseudoturf/proc/remove_contents_refs()

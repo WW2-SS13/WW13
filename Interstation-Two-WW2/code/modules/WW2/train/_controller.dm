@@ -296,9 +296,8 @@
 		var/atom/R = railing
 		R.pixel_y = 0
 
-/datum/train_controller/proc/update_invisibility(var/on = FALSE)
-	if (faction != "GERMAN-SUPPLY")
-		return
+/datum/train_controller/german_supplytrain_controller/proc/update_invisibility(var/on = FALSE)
+
 	invisible = on
 
 	if (on) // make us invisible
@@ -313,10 +312,12 @@
 						tcc.forwards_pseudoturfs -= b
 						continue
 					var/obj/train_pseudoturf/tpt = b
+					if (!tpt.loc)
+						continue
 					tpt.invisibility = 100
 					tpt.density = FALSE
 					tpt.opacity = FALSE
-					for (var/atom_movable in tpt.contents)
+					for (var/atom_movable in tpt.loc.contents|tpt.vis_contents)
 						if (!istype(atom_movable, /obj/effect) && !istype(atom_movable, /obj/train_track) && !istype(atom_movable, /obj/structure/closet))
 							var/atom/movable/AM = atom_movable
 							AM.invisibility = 100
@@ -355,13 +356,15 @@
 					tcc.forwards_pseudoturfs -= b
 					continue
 				var/obj/train_pseudoturf/tpt = b
+				if (!tpt.loc)
+					continue
 				tpt.invisibility = FALSE
 				tpt.density = tpt.initial_density
 				tpt.opacity = tpt.initial_opacity
-				for (var/atom_movable in tpt.contents)
+				for (var/atom_movable in tpt.loc.contents|tpt.vis_contents)
 					if (!istype(atom_movable, /obj/effect) && !istype(atom_movable, /obj/train_track) && !istype(atom_movable, /obj/structure/closet))
 						var/atom/movable/AM = atom_movable
-						AM.invisibility = FALSE
+						AM.invisibility = 0
 						AM.density = AM.initial_density
 						AM.opacity = AM.initial_opacity
 					if (istype(atom_movable, /obj/structure/light))
@@ -380,7 +383,7 @@
 				train_connectors -= connector
 				continue
 			var/atom/A = connector
-			A.invisibility = FALSE
+			A.invisibility = 0
 			A.density = A.initial_density
 			A.opacity = A.initial_opacity
 
@@ -389,7 +392,7 @@
 				train_railings -= railing
 				continue
 			var/atom/A = railing
-			A.invisibility = FALSE
+			A.invisibility = 0
 			A.density = A.initial_density
 			A.opacity = A.initial_opacity
 
@@ -435,8 +438,9 @@
 					tcc.forwards_pseudoturfs -= b
 					continue
 				var/obj/train_pseudoturf/tpt = b
-				for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in tpt.contents)
-					paper.supplytrain_process(src)
+				if (tpt.loc)
+					for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in tpt.loc.contents)
+						paper.supplytrain_process(src)
 
 /datum/train_controller/proc/Process()
 	if (moving)
@@ -491,10 +495,10 @@
 		if (!object)
 			tcs -= object
 			continue
+
 		var/obj/train_connector/tc = object
 		tc.save_contents_as_refs()
 
-		callproc_process.unqueue(tc)
 		callproc_process.queue(tc, "_Move", null, 0.3)
 		callproc_process.queue(tc, "move_mobs", null, 0.6)
 		callproc_process.queue(tc, "remove_contents_refs", null, 0.9)

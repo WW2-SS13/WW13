@@ -150,7 +150,7 @@
 		if (S != src && S.density)
 			return
 
-	usr.forceMove(target)
+	usr.forceMove(get_turf(src)) // because we're moving if we're on a train
 
 	if (get_turf(user) == get_turf(src))
 		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")

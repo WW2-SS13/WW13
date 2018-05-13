@@ -51,6 +51,7 @@
 	queue += C
 
 // remove all callproc_helpers for an object to ensure they don't get piled up and called later
+// can be expensive
 /process/callproc/proc/unqueue(object)
 	for (var/helper in queue)
 		var/callproc_helper/C = helper

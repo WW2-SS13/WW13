@@ -26,7 +26,7 @@ s//based off of /obj/structure/lattice, but way simpler
 	for (var/atom_movable in get_turf(src))
 		if (!check_object_invalid_for_moving(src, atom_movable))
 			saved_contents += atom_movable
-			if (ismob(atom_movable))
+			if (isliving(atom_movable))
 				saved_mobs += atom_movable
 
 /obj/train_connector/proc/remove_contents_refs()

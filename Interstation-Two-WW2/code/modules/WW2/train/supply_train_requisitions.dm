@@ -122,18 +122,14 @@
 	for (var/signature in signatures)
 		if (findtext(signature, GERMAN_QM_TITLE))
 			QM_sig = TRUE
-	//		log_debug("1")
-		if (findtext(signature, GERMAN_SO_TITLE))
+		if (findtext(signature, GERMAN_SO_TITLE) || findtext(signature, GERMAN_TO_TITLE) || findtext(signature, GERMAN_SL_TITLE) || findtext(signature, GERMAN_AO_TITLE))
 			SO_sig = TRUE
-	//		log_debug("2")
 		if (findtext(signature, GERMAN_CO_TITLE) || findtext(signature, GERMAN_XO_TITLE))
 			CO_sig = TRUE
-	//		log_debug("3")
 
 	if (!QM_sig && !SO_sig && !CO_sig)
 		memo = "<i>We didn't find any valid signatures, so your requisition has been rejected.</span><br>"
 		goto end
-	//else log_debug(":ok_hand:")
 
 	for (var/purchase in purchases)
 		var/cost = supply_crate_costs[purchase]
@@ -145,26 +141,32 @@
 		train.supply_points -= cost
 
 	for (var/a in train.reverse_train_car_centers)
+		if (!a)
+			train.reverse_train_car_centers -= a
+			continue
 		var/obj/train_car_center/tcc = a
 		for (var/b in tcc.backwards_pseudoturfs)
+			if (!b)
+				tcc.backwards_pseudoturfs -= b
+				continue
 			var/obj/train_pseudoturf/tpt = b
-			if (locate(/obj/train_decal/cargo/outline) in get_turf(tpt))
-				if (!locate(/obj/structure/closet/crate) in get_turf(tpt))
+			if (!tpt.loc)
+				continue
+			if (locate(/obj/train_decal/cargo/outline) in tpt.vis_contents)
+				if (!locate(/obj/structure/closet/crate) in tpt.loc)
 					if (create_crates.len)
 						var/cratetype = pick(create_crates)
 						create_crates -= cratetype
 
-						var/tpt_turf = get_turf(tpt)
-
-						for (var/mob/M in tpt_turf)
+						for (var/mob/M in tpt.loc.contents)
 							qdel(M)
-						for (var/obj/item/I in tpt_turf)
+						for (var/obj/item/I in tpt.loc.contents)
 							qdel(I)
-						for (var/obj/O in tpt_turf)
+						for (var/obj/O in tpt.loc.contents)
 							if (O.density)
 								qdel(O)
 
-						new cratetype(tpt_turf)
+						new cratetype(tpt.loc)
 
 	if (create_crates.len) // we didn't have enough space to send them all
 		memo = "<i><br>We didn't have enough space for the crates listed below, so you were reimbursed for their cost: </i><br><br>"
@@ -174,7 +176,6 @@
 					var/cost = supply_crate_costs[cratename]
 					train.supply_points += cost
 					memo += "<i>[cratename]</i><br>"
-
 
 	end
 

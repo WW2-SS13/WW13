@@ -746,28 +746,35 @@ var/global/datum/controller/occupations/job_master
 	var/max_civilians = INFINITY
 	var/max_partisans = INFINITY
 
+	// only count clients who are on this window
+	var/relevant_clients = 0
+	for (var/client in clients)
+		var/client/C = client
+		if (!C.is_minimized())
+			++relevant_clients
+
 	if (map && !map.faction_distribution_coeffs.Find(INFINITY))
 		if (map.faction_distribution_coeffs.Find(GERMAN))
-			max_germans = ceil(clients.len * map.faction_distribution_coeffs[GERMAN])
+			max_germans = ceil(relevant_clients * map.faction_distribution_coeffs[GERMAN])
 
 		// Italians are disabled/enabled whenever Germans are
 
 		if (map.faction_distribution_coeffs.Find(SOVIET))
-			max_soviets = ceil(clients.len * map.faction_distribution_coeffs[SOVIET])
+			max_soviets = ceil(relevant_clients * map.faction_distribution_coeffs[SOVIET])
 
 		if (map.faction_distribution_coeffs.Find(CIVILIAN))
-			max_civilians = ceil(clients.len * map.faction_distribution_coeffs[CIVILIAN])
+			max_civilians = ceil(relevant_clients * map.faction_distribution_coeffs[CIVILIAN])
 
 		if (map.faction_distribution_coeffs.Find(PARTISAN))
-			max_partisans = ceil(clients.len * map.faction_distribution_coeffs[PARTISAN])
+			max_partisans = ceil(relevant_clients * map.faction_distribution_coeffs[PARTISAN])
 
 	// fixes soviet-biased autobalance on verylow pop - Kachnov
-	if (map && clients.len <= 7)
+	if (map && relevant_clients <= 7)
 		if (map.faction_distribution_coeffs[SOVIET] > map.faction_distribution_coeffs[GERMAN])
 			max_soviets = max_germans
 		else if (map.faction_distribution_coeffs[GERMAN] > map.faction_distribution_coeffs[SOVIET])
 			max_germans = max_soviets
-		while ((max_germans+max_soviets) < clients.len)
+		while ((max_germans+max_soviets) < relevant_clients)
 			++max_soviets
 
 	switch (side)

@@ -2,6 +2,9 @@
 #define GERMAN_XO_TITLE "Oberleutnant"
 #define GERMAN_SO_TITLE "Leutnant"
 #define GERMAN_QM_TITLE "Frachtoffizier"
+#define GERMAN_TO_TITLE "Dirigent" // train officer
+#define GERMAN_SL_TITLE "Gruppenfuhrer"
+#define GERMAN_AO_TITLE "Kanonier" // arty officer
 
 /datum/job/german
 	faction = "Station"
@@ -252,7 +255,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/squad_leader
-	title = "Gruppenfuhrer"
+	title = GERMAN_SL_TITLE
 	en_meaning = "Platoon 2IC"
 	rank_abbreviation = "uffz"
 	head_position = FALSE
@@ -887,7 +890,7 @@ var/first_fallschirm = TRUE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/artyman
-	title = "Kanonier"
+	title = GERMAN_AO_TITLE
 	en_meaning = "Artillery Officer"
 	rank_abbreviation = "uffz"
 	selection_color = "#4c4ca5"
@@ -927,7 +930,7 @@ var/first_fallschirm = TRUE
 	H.make_artillery_officer()
 
 /datum/job/german/artyman/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate)
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/QM)
 
 /datum/job/german/artyman/specialcheck()
 	for (var/B in artillery_list)
@@ -993,7 +996,7 @@ var/first_fallschirm = TRUE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/conductor
-	title = "Dirigent"
+	title = GERMAN_TO_TITLE
 	en_meaning = "Train Conductor"
 	rank_abbreviation = "uffz"
 	selection_color = "#4c4ca5"
@@ -1015,6 +1018,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_back)
 	H.add_note("Role", "You are a <b>[title]</b>, a train conductor. Your job is take men to and from the front.")
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_HIGH)
@@ -1030,7 +1034,7 @@ var/first_fallschirm = TRUE
 
 /datum/job/german/conductor/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/train,
-		new/obj/item/weapon/key/german/command_intermediate)
+		new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/QM)
 
 ////////////////////////////////
 /datum/job/german/squad_leader_ss

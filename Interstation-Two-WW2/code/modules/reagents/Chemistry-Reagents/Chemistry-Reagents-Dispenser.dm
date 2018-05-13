@@ -133,9 +133,9 @@
 	if(dose * strength_mod >= strength * 7) // Pass out
 		M.paralysis = max(M.paralysis, 20)
 		M.sleeping  = max(M.sleeping, 30)
-
-	if(druggy != FALSE)
-		M.druggy = max(M.druggy, druggy)
+/*
+	if(druggy != 0)
+		M.druggy = max(M.druggy, druggy)*/
 
 	if(adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
