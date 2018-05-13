@@ -696,7 +696,7 @@
 			stat("Time of Day:", time_of_day)
 
 			if (z == 2 && map && map.ID == "FOREST")
-				stat("Altitude:", paratrooper_plane_master.altitude)
+				stat("Altitude:", "[paratrooper_plane_master.altitude] meters")
 
 			// give the client some information about how the server is running
 			if (ping_track && client)
