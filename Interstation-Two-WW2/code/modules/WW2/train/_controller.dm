@@ -409,21 +409,23 @@
 				started_moving() // regardless of what triggers us to move, make it start the round.
 
 			if (direction == "FORWARDS")
-				move_connectors(0)
 				for (var/object in train_car_centers)
 					if (!object)
 						train_car_centers -= object
 						continue
 					var/obj/train_car_center/tcc = object
 					tcc._Move(direction)
+				// this way if connectors runtime, it won't stop the main train from moving
+				move_connectors(0)
 			else if (direction == "BACKWARDS")
-				move_connectors(1)
 				for (var/object in reverse_train_car_centers)
 					if (!object)
 						reverse_train_car_centers -= object
 						continue
 					var/obj/train_car_center/tcc = object
 					tcc._Move(direction)
+				// this way if connectors runtime, it won't stop the main train from moving
+				move_connectors(1)
 		else
 			moving = FALSE
 			var/obj/train_lever/lever = get_lever()
