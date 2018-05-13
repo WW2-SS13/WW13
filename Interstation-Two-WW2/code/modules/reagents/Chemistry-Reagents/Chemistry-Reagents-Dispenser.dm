@@ -110,7 +110,7 @@
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
 	M.nutrition += nutriment_factor * removed
-	var/strength_mod = 1.0
+	var/strength_mod = 0.5
 
 	if (M.water < 0)
 		M.water += rand(40,50)
