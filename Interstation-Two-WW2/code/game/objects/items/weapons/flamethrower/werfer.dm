@@ -240,4 +240,5 @@
 	var/temperature = (rand(500,600) * throw_coeff * dist_coeff) + extra_temp
 //	log_debug("1: [temperature];[throw_coeff];[dist_coeff];[extra_temp]")
 	var/obj/fire/F = target.create_fire(5, temperature, FALSE)
-	F.time_limit = time_limit
+	if (F)
+		F.time_limit = time_limit

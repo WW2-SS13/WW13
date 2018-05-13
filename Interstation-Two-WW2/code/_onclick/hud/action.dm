@@ -53,12 +53,13 @@
 	T.update_action_buttons()
 
 /datum/action/proc/Remove(mob/living/T)
-	if(T.client)
-		T.client.screen -= button
-	button.moved = FALSE //so the button appears in its normal position when given to another owner.
-	T.actions -= src
-	T.update_action_buttons()
-	owner = null
+	if (T)
+		if(T.client)
+			T.client.screen -= button
+		button.moved = FALSE //so the button appears in its normal position when given to another owner.
+		T.actions -= src
+		T.update_action_buttons()
+		owner = null
 
 /datum/action/proc/Trigger()
 	if(!IsAvailable())
