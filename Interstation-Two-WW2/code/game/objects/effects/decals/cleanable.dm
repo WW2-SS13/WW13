@@ -12,3 +12,7 @@
 		icon_state = pick(random_icon_states)
 	..()
 	cleanables += src
+
+/obj/effect/decal/cleanable/Destroy()
+	cleanables -= src
+	..()

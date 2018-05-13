@@ -24,7 +24,7 @@
 
 /obj/item/ammo_casing/Destroy()
 	bullet_casings -= src
-	return ..()
+	..()
 
 //removes the projectile from the ammo casing
 /obj/item/ammo_casing/proc/expend()
