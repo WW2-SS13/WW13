@@ -94,7 +94,8 @@
 
 	possibilities -= non_possibilities
 
-	change_weather(pick(possibilities))
+	if (possibilities.len)
+		change_weather(pick(possibilities))
 
 /proc/get_weather_default(var/_weather)
 	switch (_weather ? _weather : weather)
