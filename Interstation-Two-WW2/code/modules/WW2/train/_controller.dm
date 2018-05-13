@@ -290,6 +290,9 @@
 		lever.direction = "NONE"
 
 	for (var/railing in train_railings)
+		if (!railing)
+			train_railings -= railing
+			continue
 		var/atom/R = railing
 		R.pixel_y = 0
 
@@ -301,8 +304,14 @@
 	if (on) // make us invisible
 		spawn (20)
 			for (var/a in train_car_centers)
+				if (!a)
+					train_car_centers -= a
+					continue
 				var/obj/train_car_center/tcc = a
 				for (var/b in tcc.forwards_pseudoturfs)
+					if (!b)
+						tcc.forwards_pseudoturfs -= b
+						continue
 					var/obj/train_pseudoturf/tpt = b
 					tpt.invisibility = 100
 					tpt.density = FALSE
@@ -319,20 +328,32 @@
 							L.update(0, TRUE, TRUE)
 
 			for (var/connector in train_connectors)
+				if (!connector)
+					train_connectors -= connector
+					continue
 				var/atom/A = connector
 				A.invisibility = 100
 				A.density = FALSE
 				A.opacity = FALSE
 
 			for (var/railing in train_railings)
+				if (!railing)
+					train_railings -= railing
+					continue
 				var/atom/A = railing
 				A.invisibility = 100
 				A.density = FALSE
 				A.opacity = FALSE
 	else
 		for (var/a in train_car_centers)
+			if (!a)
+				train_car_centers -= a
+				continue
 			var/obj/train_car_center/tcc = a
 			for (var/b in tcc.forwards_pseudoturfs)
+				if (!b)
+					tcc.forwards_pseudoturfs -= b
+					continue
 				var/obj/train_pseudoturf/tpt = b
 				tpt.invisibility = FALSE
 				tpt.density = tpt.initial_density
@@ -355,12 +376,18 @@
 						door.icon_state = door.material.name
 
 		for (var/connector in train_connectors)
+			if (!connector)
+				train_connectors -= connector
+				continue
 			var/atom/A = connector
 			A.invisibility = FALSE
 			A.density = A.initial_density
 			A.opacity = A.initial_opacity
 
 		for (var/railing in train_railings)
+			if (!railing)
+				train_railings -= railing
+				continue
 			var/atom/A = railing
 			A.invisibility = FALSE
 			A.density = A.initial_density
@@ -379,6 +406,9 @@
 		lever.direction = "NONE"
 
 		for (var/railing in train_railings)
+			if (!railing)
+				train_railings -= railing
+				continue
 			var/atom/R = railing
 			R.pixel_y = 0
 
@@ -396,8 +426,14 @@
 
 	if (direction == "BACKWARDS" && !moving)
 		for (var/a in train_car_centers)
+			if (!a)
+				train_car_centers -= a
+				continue
 			var/obj/train_car_center/tcc = a
 			for (var/b in tcc.forwards_pseudoturfs)
+				if (!b)
+					tcc.forwards_pseudoturfs -= b
+					continue
 				var/obj/train_pseudoturf/tpt = b
 				for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in tpt.contents)
 					paper.supplytrain_process(src)
@@ -433,6 +469,9 @@
 				lever.icon_state = lever.none_state
 				lever.direction = "NONE"
 			for (var/railing in train_railings)
+				if (!railing)
+					train_railings -= railing
+					continue
 				var/atom/R = railing
 				R.pixel_y = 0
 
@@ -482,12 +521,18 @@
 
 /datum/train_controller/proc/unoccupy_connectors()
 	for (var/object in train_connectors)
+		if (!object)
+			train_connectors -= object
+			continue
 		var/obj/train_connector/tc = object
 		tc.occupied = FALSE
 		tc.loc = null
 
 /datum/train_controller/proc/unoccupy_railings()
 	for (var/object in train_railings)
+		if (!object)
+			train_railings -= object
+			continue
 		var/obj/structure/railing/train_railing/tr = object
 		tr.occupied = FALSE
 		tr.loc = null
@@ -537,9 +582,15 @@
 
 		if ("FORWARDS")
 			for (var/a in train_car_centers)
+				if (!a)
+					train_car_centers -= a
+					continue
 				var/obj/train_car_center/tcc = a
 				if (!last_car || last_car == tcc)
 					for (var/b in tcc.forwards_pseudoturfs)
+						if (!b)
+							tcc.forwards_pseudoturfs -= b
+							continue
 						var/obj/train_pseudoturf/tpt = b
 						switch (orientation)
 							if (VERTICAL)
@@ -554,9 +605,15 @@
 
 		if ("BACKWARDS")
 			for (var/a in reverse_train_car_centers)
+				if (!a)
+					reverse_train_car_centers -= a
+					continue
 				var/obj/train_car_center/tcc = a
 				if (!first_car || first_car == tcc)
 					for (var/b in tcc.backwards_pseudoturfs)
+						if (!b)
+							tcc.backwards_pseudoturfs -= b
+							continue
 						var/obj/train_pseudoturf/tpt = b
 						switch (orientation)
 							if (VERTICAL)
@@ -577,8 +634,14 @@
 
 			if ("FORWARDS")
 				for (var/a in train_car_centers)
+					if (!a)
+						train_car_centers -= a
+						continue
 					var/obj/train_car_center/tcc = a
 					for (var/b in tcc.forwards_pseudoturfs)
+						if (!b)
+							tcc.forwards_pseudoturfs -= b
+							continue
 						var/obj/train_pseudoturf/tpt = b
 						switch (orientation)
 							if (VERTICAL)
@@ -589,8 +652,14 @@
 									return TRUE
 			if ("BACKWARDS")
 				for (var/a in train_car_centers)
+					if (!a)
+						train_car_centers -= a
+						continue
 					var/obj/train_car_center/tcc = a
 					for (var/b in tcc.backwards_pseudoturfs)
+						if (!b)
+							tcc.backwards_pseudoturfs -= b
+							continue
 						var/obj/train_pseudoturf/tpt = b
 						switch (orientation)
 							if (VERTICAL)
@@ -641,11 +710,15 @@
 		list_type = german_supply_train_car_centers
 
 	for (var/tcc in list_type)
+
+		if (!tcc)
+			list_type -= tcc
+			continue
 		// range(20, tcc) = checks ~500 objects (400 turfs)
 		// player_list will rarely be above 100 objects
 		// so this should be more efficient - Kachnov
 		for (var/M in player_list)
-			if (M:loc) // make sure we aren't in the lobby
+			if (M && M:loc) // make sure we aren't in the lobby
 				var/dist = abs_dist(M, tcc)
 				if (dist <= 20)
 					var/volume = 100

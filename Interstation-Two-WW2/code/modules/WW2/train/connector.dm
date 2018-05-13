@@ -118,3 +118,9 @@ s//based off of /obj/structure/lattice, but way simpler
 		qdel(src)
 	else
 		return
+
+/obj/train_connector/Destroy()
+	if (master)
+		master.train_connectors -= src
+		master.reverse_train_connectors -= src
+	..()

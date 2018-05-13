@@ -44,3 +44,9 @@
 		qdel(src)
 	else
 		return
+
+/obj/structure/railing/train_railing/Destroy()
+	if (master)
+		master.train_railings -= src
+		master.reverse_train_railings -= src
+	..()

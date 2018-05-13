@@ -248,3 +248,9 @@
 		qdel(src)
 	else
 		return
+
+/obj/train_pseudoturf/Destroy()
+	if (master)
+		master.forwards_pseudoturfs -= src
+		master.backwards_pseudoturfs -= src
+	..()
