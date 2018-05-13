@@ -340,7 +340,7 @@
 "gB" = (/obj/effect/floor_decal/industrial/outline/grey,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/briefing)
 "gC" = (/obj/effect/floor_decal/spline/fancy/wood{dir = 4; icon_state = "spline_fancy"; tag = "icon-spline_fancy (WEST)"},/obj/structure/light/small{dir = 4},/turf/floor/carpet,/area/prishtina/italian_base)
 "gD" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/german/armory)
-"gE" = (/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/item/weapon/paper/supply_train_requisitions_sheet,/obj/item/weapon/paper/supply_train_requisitions_sheet,/obj/item/weapon/paper/supply_train_requisitions_sheet,/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/german/armory)
+"gE" = (/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/item/weapon/paper/supply_train_requisitions_sheet,/obj/item/weapon/paper/supply_train_requisitions_sheet,/obj/item/weapon/paper/supply_train_requisitions_sheet,/obj/structure/table/wood,/obj/item/radio/feldfu,/obj/item/radio/feldfu,/obj/item/radio/feldfu,/turf/floor/wood,/area/prishtina/german/armory)
 "gF" = (/obj/structure/table/wood,/obj/item/radio/intercom/fu2,/turf/floor/wood,/area/prishtina/german/armory)
 "gG" = (/obj/effect/floor_decal/spline/plain{tag = "icon-spline_plain (WEST)"; icon_state = "spline_plain"; dir = 8},/obj/structure/curtain/black,/obj/structure/simple_door/key_door/german/medic{name = "Graves and Registration"},/turf/floor/tiled/steel{tag = "icon-dark"; icon_state = "dark"},/area/prishtina/german/medical)
 "gH" = (/obj/item/weapon/storage/box/bodybags,/obj/structure/table/wood,/turf/floor/tiled/dark,/area/prishtina/german/medical)
@@ -448,7 +448,7 @@
 "iF" = (/turf/wall/brick,/area/prishtina/german/main_area/dogshed)
 "iG" = (/obj/structure/window/sandbag{tag = "icon-sandbag (NORTH)"; icon_state = "sandbag"; dir = 1},/obj/structure/window/sandbag{tag = "icon-sandbag (EAST)"; icon_state = "sandbag"; dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/forest/sector6/ss1)
 "iH" = (/obj/structure/closet/crate/flares,/obj/structure/light/small,/turf/floor/plating/grass/wild,/area/prishtina/german/main_area/sector3)
-"iI" = (/obj/structure/table/wood,/obj/effect/floor_decal/spline/fancy/wood,/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHEAST)"; icon_state = "spline_fancy"; dir = 6},/obj/item/weapon/phone/tohighcommand/german,/turf/floor/carpet,/area/prishtina/german/command)
+"iI" = (/obj/structure/table/wood,/obj/effect/floor_decal/spline/fancy/wood,/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHEAST)"; icon_state = "spline_fancy"; dir = 6},/obj/item/radio/intercom/fu2,/turf/floor/carpet,/area/prishtina/german/command)
 "iJ" = (/obj/effect/floor_decal/corner/grey/bordercorner{dir = 4},/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/german/main_area/sector2)
 "iK" = (/obj/item/weapon/cigbutt/cigarbutt,/turf/floor/plating/cobblestone/vertical/dark,/area/prishtina/forest/sector6/ss1)
 "iL" = (/obj/effect/floor_decal/industrial/warning/dust,/turf/floor/plating/road,/area/prishtina/german/train_starting_zone)
@@ -1898,7 +1898,7 @@
 "Kz" = (/obj/structure/vending/italian/apparel,/turf/floor/wood,/area/prishtina/italian_base)
 "KA" = (/obj/structure/simple_door/key_door/italian,/turf/floor/wood,/area/prishtina/italian_base)
 "KB" = (/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/houses/sov_nine)
-"KC" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/soviet/bunker/command/office)
+"KC" = (/obj/structure/table/wood,/obj/item/radio/intercom/a7b,/turf/floor/wood,/area/prishtina/soviet/bunker/command/office)
 "KD" = (/obj/structure/flag/italian,/turf/floor/plating/grass/wild,/area/prishtina/forest/sector3/ss1)
 "KE" = (/obj/structure/window/classic,/obj/structure/curtain/open/bed,/turf/floor/wood,/area/prishtina/italian_base)
 "KF" = (/obj/structure/light/small{dir = 8},/turf/floor/plating/cobblestone/vertical{tag = "icon-cobble_vertical"; icon_state = "cobble_vertical"},/area/prishtina/forest/sector8/ss2)
@@ -1939,6 +1939,7 @@
 "Lo" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/sov_four)
 "Lp" = (/obj/structure/light/small,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/sov_nine)
 "Lq" = (/obj/structure/table/wood,/obj/item/ammo_magazine/ptrdbox,/obj/item/weapon/gun/projectile/heavy/ptrd,/turf/floor/wood,/area/prishtina/soviet/bunker/command)
+"Lr" = (/obj/structure/table/wood,/obj/item/radio/intercom/a7b,/turf/floor/wood,/area/prishtina/soviet/bunker/armory)
 "Ls" = (/obj/effect/decal/cleanable/cobweb,/obj/structure/closet/crate/flares,/turf/floor/dirt,/area/prishtina/soviet/bunker/main_hallway)
 "Lt" = (/obj/structure/light/small,/turf/floor/tiled/steel{tag = "icon-floor"; icon_state = "floor"},/area/prishtina/houses/sov_thirteen)
 "Lu" = (/obj/structure/bed,/obj/item/weapon/bedsheet/brown,/obj/effect/landmark{name = "JoinLateRA"},/turf/floor/wood,/area/prishtina/soviet/bunker/resting_area)
@@ -2063,7 +2064,7 @@
 "NJ" = (/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/wood,/area/prishtina/soviet/bunker/armory)
 "NK" = (/obj/structure/light/small{dir = 8},/turf/floor/wood,/area/prishtina/houses/nml_three)
 "NL" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/nml_two)
-"NM" = (/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/soviet/bunker/armory)
+"NM" = (/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/structure/table/wood,/obj/item/radio/rbs,/obj/item/radio/rbs,/obj/item/radio/rbs,/turf/floor/wood,/area/prishtina/soviet/bunker/armory)
 "NN" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/fire,/obj/item/weapon/storage/firstaid/fire,/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
 "NO" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/firstaid/o2,/obj/item/weapon/storage/firstaid/o2,/obj/item/weapon/storage/firstaid/o2,/obj/item/weapon/storage/firstaid/o2,/obj/item/weapon/storage/firstaid/o2,/turf/floor/wood,/area/prishtina/soviet/bunker/medical)
 "NP" = (/obj/structure/light/small{dir = 8},/turf/floor/wood,/area/prishtina/houses/nml_two)
@@ -2719,7 +2720,7 @@ JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJxMpNaNbeAJRJyJxJGNkNkNkJGNkNkNkMTMTJGNkNkNkJGJzOrOrOrJmNkNkNeJyJGJtJGJyJGJtJGJyJGJuJGJxJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJGNhNcNbNcNjNjJGNbNkNkNkNkNkNkNkMTNkMTNkNkNkJCJzNrOrNrKTNkNkNkNkbtNkNkNkbtNkNkNkbtNkJBJCJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzNbNbNbNbNbNbMRNbKTNmJNNmNoNmNpNmNoNmNqNmJCJxJzfiOrNrJCJGNkNkNkNkNkNkNkNkNkNkNkNkNkNsJCJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
-JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzNtNuNtNvNtJCJxJxJzNwPrdmdUQCPrNANBdmNCNMJCJxJxJxJxJxJyJyJGJQJGJyJyJyJyJGJyJyJGJyJGJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
+JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzNtNuNtNvNtJCJxJxJzNwPrdmdUQCPrNANBdmNCLrJCJxJxJxJxJxJyJyJGJQJGJyJyJyJyJGJyJyJGJyJGJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJGNFNGcMNGNIJGJxJxJzNJPrPrPrPrPrPrPrPrPrNMJCJxJxJxJxJzNNNOfpOrfqNRNSNSNSNTOrNUNVNWJCJxJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzNXNGNYNGNZJCJyJyJyJzPbPrJCJyJyJyJzPrPbJCJyJyJyJxJxJzObOrOrOrOrOrOrOrOrOcOrOrOdOrJCJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
 JwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJxJzOeNGNGNGNGKdOgdVOgOhPbPrOhOkebOkOhPrPbOhOKecOKJCJxJzOnOrOrOoOrfLfLfLOrOqOrOoOrOtJCJxJxJxJxJxJxJxJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJwJw
