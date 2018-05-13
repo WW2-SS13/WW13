@@ -191,7 +191,7 @@ var/GRACE_PERIOD_LENGTH = 7
 	return TRUE
 
 var/mission_announced = FALSE
-var/train_arrived = FALSE
+var/mapcheck_train_arrived = FALSE
 
 /hook/train_move/proc/announce_mission_start()
 

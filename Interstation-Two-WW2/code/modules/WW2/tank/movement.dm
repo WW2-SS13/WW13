@@ -5,9 +5,9 @@
 /obj/tank/var/lastdir = -1
 
 // tanks move faster on grass, slower on roads - Kachnov
-/obj/tank/var/movement_delay = 6.0
-/obj/tank/var/slow_movement_delay = 6.0
-/obj/tank/var/fast_movement_delay = 4.0
+/obj/tank/var/movement_delay = 3.0
+/obj/tank/var/slow_movement_delay = 3.0
+/obj/tank/var/fast_movement_delay = 2.5
 
 /obj/tank/proc/set_eye_location(var/mob/m)
 	if (m.client)
@@ -370,11 +370,9 @@
 		next_gib = world.time + 5
 		tank_message("<span class = 'danger'>The tank runs over [m]!</span>")
 		m.maim()
-		next_movement = world.time + (movement_delay*4)
 
 	else if (istype(m))
 		spawn (5)
 			m.maim()
-			next_movement = world.time + (movement_delay*4)
 
 	return TRUE

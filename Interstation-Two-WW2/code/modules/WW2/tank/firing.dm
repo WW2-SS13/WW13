@@ -1,5 +1,5 @@
 /obj/tank/var/last_fire = -1
-/obj/tank/var/fire_delay = 200
+/obj/tank/var/fire_delay = 100
 
 #define MIN_RANGE 5
 #define MAX_RANGE 6

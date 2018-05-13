@@ -442,7 +442,7 @@
 
 	// AUTOBALANCE
 	min_positions = 1
-	max_positions = 4
+	max_positions = 3
 	player_threshold = PLAYER_THRESHOLD_MEDIUM
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
