@@ -411,11 +411,17 @@
 			if (direction == "FORWARDS")
 				move_connectors(0)
 				for (var/object in train_car_centers)
+					if (!object)
+						train_car_centers -= object
+						continue
 					var/obj/train_car_center/tcc = object
 					tcc._Move(direction)
 			else if (direction == "BACKWARDS")
 				move_connectors(1)
 				for (var/object in reverse_train_car_centers)
+					if (!object)
+						reverse_train_car_centers -= object
+						continue
 					var/obj/train_car_center/tcc = object
 					tcc._Move(direction)
 		else
@@ -441,6 +447,9 @@
 		trs = reverse_train_railings
 
 	for (var/object in tcs)
+		if (!object)
+			tcs -= object
+			continue
 		var/obj/train_connector/tc = object
 		tc.save_contents_as_refs()
 
@@ -450,6 +459,9 @@
 		callproc_process.queue(tc, "remove_contents_refs", null, 0.9)
 
 	for (var/object in trs)
+		if (!object)
+			trs -= object
+			continue
 		var/obj/structure/railing/train_railing/tr = object
 		tr._Move()
 

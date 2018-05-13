@@ -130,6 +130,9 @@
 		pseudoturfs = backwards_pseudoturfs //shoddy attempt to fix backwards moving.
 
 	for (var/object in pseudoturfs)
+		if (!object)
+			pseudoturfs -= object
+			continue
 		var/obj/train_pseudoturf/tpt = object
 		tpt.save_contents_as_refs()
 
