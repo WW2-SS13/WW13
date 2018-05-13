@@ -25,5 +25,3 @@ var/process/RNG/RNG_process = null
 		if (prob(50))
 			probtest += "placeholder"
 	log_debug(probtest.len)
-	/* outputs the random seed we just set */
-	log_debug(num2text(seed, 20))
