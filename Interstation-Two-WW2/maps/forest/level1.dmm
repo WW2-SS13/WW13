@@ -1501,7 +1501,7 @@
 "CS" = (/obj/structure/closet/toolcloset,/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/houses/nml_one)
 "CT" = (/obj/effect/floor_decal/corner/grey/border,/turf/floor/plating/asteroid,/area/prishtina/forest/sector8/ss1)
 "CU" = (/obj/structure/closet/toolcloset,/obj/structure/light/small{dir = 8},/turf/floor/wood,/area/prishtina/houses/sov_two)
-"CV" = (/obj/item/weapon/storage/fancy/cigarettes,/turf/floor/wood,/area/prishtina/houses/sov_five)
+"CV" = (/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/houses/sov_five)
 "CW" = (/obj/structure/table/wood,/obj/structure/light/small{dir = 4},/turf/floor/wood,/area/prishtina/houses/sov_ten)
 "CX" = (/obj/structure/light/small{dir = 1},/turf/floor/wood,/area/prishtina/houses/sov_eleven)
 "CY" = (/obj/structure/bed/chair/wood/red,/turf/floor/wood,/area/prishtina/houses/sov_nine)
@@ -1524,7 +1524,7 @@
 "Dp" = (/obj/structure/table/iron,/obj/item/stack/material/wood,/turf/floor/wood,/area/prishtina/houses/sov_five)
 "Dq" = (/obj/structure/table/iron,/turf/floor/wood,/area/prishtina/houses/sov_five)
 "Dr" = (/obj/effect/floor_decal/corner/grey/border{dir = 8},/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina/houses/sov_nine)
-"Ds" = (/obj/structure/table/wood,/obj/item/weapon/storage/fancy/cigarettes,/turf/floor/wood,/area/prishtina/houses/sov_nine)
+"Ds" = (/obj/structure/table/wood,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/houses/sov_nine)
 "Dt" = (/obj/structure/curtain/open/bed,/turf/floor/wood,/area/prishtina/houses/sov_nine)
 "Du" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/houses/sov_nine)
 "Dv" = (/obj/effect/floor_decal/corner/grey/border{dir = 8},/turf/floor/plating/cobblestone/vertical{tag = "icon-cobble_vertical"; icon_state = "cobble_vertical"},/area/prishtina/forest/sector8/ss2)
@@ -2061,7 +2061,7 @@
 "NG" = (/turf/floor/wood,/area/prishtina/soviet/bunker/kitchen)
 "NH" = (/obj/structure/light/small{dir = 1},/turf/floor/plating/grass/wild,/area/prishtina/forest/sector5/ss4)
 "NI" = (/obj/item/weapon/reagent_containers/food/drinks/teapot,/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/soviet/bunker/kitchen)
-"NJ" = (/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/structure/table/wood,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/wood,/area/prishtina/soviet/bunker/armory)
+"NJ" = (/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/gun/projectile/pistol/luger/flaregun,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/storage/fancy/cigarettes,/obj/structure/table/wood,/obj/item/weapon/flame/lighter,/obj/item/weapon/reagent_containers/food/drinks/bottle/water/filled,/turf/floor/wood,/area/prishtina/soviet/bunker/armory)
 "NK" = (/obj/structure/light/small{dir = 8},/turf/floor/wood,/area/prishtina/houses/nml_three)
 "NL" = (/obj/structure/light/small,/turf/floor/wood,/area/prishtina/houses/nml_two)
 "NM" = (/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/item/clothing/suit/radio_harness,/obj/structure/table/wood,/obj/item/radio/rbs,/obj/item/radio/rbs,/obj/item/radio/rbs,/turf/floor/wood,/area/prishtina/soviet/bunker/armory)
@@ -2172,7 +2172,9 @@
 "PN" = (/obj/effect/floor_decal/spline/fancy/wood,/turf/floor/carpet,/area/prishtina/italian_base)
 "PO" = (/obj/structure/bed,/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (SOUTHEAST)"; icon_state = "spline_fancy"; dir = 6},/obj/item/weapon/bedsheet/brown,/turf/floor/carpet,/area/prishtina/italian_base)
 "PP" = (/obj/structure/sink/kitchen,/turf/wall/brick,/area/prishtina/italian_base)
+"PQ" = (/obj/structure/table/wood,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/houses/sov_ten)
 "PR" = (/obj/structure/oven,/turf/floor/wood,/area/prishtina/italian_base)
+"PS" = (/obj/structure/table/wood,/obj/item/weapon/flame/lighter,/turf/floor/wood,/area/prishtina/houses/sov_eleven)
 "PT" = (/obj/structure/bed/chair/wood{dir = 4},/obj/effect/landmark{name = "JoinLateIT"},/turf/floor/wood,/area/prishtina/italian_base)
 "PU" = (/obj/structure/table/wood,/turf/floor/wood,/area/prishtina/italian_base)
 "PV" = (/obj/structure/bed/chair/wood{dir = 8},/obj/effect/landmark{name = "JoinLateIT"},/turf/floor/wood,/area/prishtina/italian_base)
@@ -2590,7 +2592,7 @@ xAxAxAxAxAxAxAxAxAxAxAxAxAxAxAxAxAxAxAxAxAvNuKvMvMvMvMvMvMvMvMvMvMvMwYwYwYwYwYwY
 vMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvNuKvMvMvMvMvMvMvMvMvMvMvMwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYuOvPvqvQtxFmyLwAFCrZzmzkzlrZzmzmzmrZwZwAzbzcwowCxexfznQIznzoznQIznxfFXwCwoFxvRvSvrvrvTvUuGukukuGuGuGuGuGuGuGuGuGuGuGuGuGuGuGuGukukukukukukukukwMGzukukADASASASASzpzpzpASASASzqADwvvvvwvwvxwRwTzEzECXzEzEwTvlzrGAvlvkvkvkvkututGHzsztutwzvYvZutzuzuzuzuzuzuzuzuzuzuzuzuzuzuzuzuzuzuzuzuzuut
 vMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvNuKvMvMvMvMvMvMvMvMvMvMvMwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYuOvPvqvQtxwayLwAwAwBwAwAwAwBwAwAwAwBwAwAzbzcwowCwCwDwCwCwCwDwCwCwCwDwCwCwowdvRvSvrvrvTvUuGuGukukukuGuGuGuGuGuGuGuGuGuGuGuGuGukukukukukukukukukukukukukADASASzvASASASASASASASASxOwvvvvwvwvxwRzwzEzEzEzEzEwTvlzxvlvlvlvlvlvlusususutususwzvYvZutzyzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzAut
 vMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvNuKvMvMvMvMvMvMvMvMvMvMvMwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYuOvPvqvQtxFmyLwnwowowowowowowowoGOwowowozbzcwowowowoGOwowowowowowowowowowoFxvRvSvrvrvTvUuGuGuGuGuGuGuGuGuGuGuGuGukuGuGuGuGuGuGuGzBzBzBzBzBzBzBzBzBukukADASASASASASASzDzDASzDzDADwvvvvwvwvxGUwTzEzFwTyhwTwTvlvlvlvkvkvkvkvkututututzGutwzvYvZutzHzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzJut
-vMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvNuKvMvMvMvMvMvMvMvMvMvMvMwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYuOvPvqvQtxFmyLzKvfvfvfvfvfvfvfvfvfvfvfvfvfzcwowowowowowowowowowowowowowowoFxvRvSvrvrvTvUuGuGuGuGuGukukuGuGuGuGuGukukukuGuGuGuGuGzBzLzMzNzBzOzPzQzBukukADzRzpzpzSASHjASASASASASxOwvvvvwvwvxzUyhzExwwTzEzVwTvlvlvkvkzWzWzXzWzWzWzXzWzWutwzvYvZutzHzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzJut
+vMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvNuKvMvMvMvMvMvMvMvMvMvMvMwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYuOvPvqvQtxFmyLzKvfvfvfvfvfvfvfvfvfvfvfvfvfzcwowowowowowowowowowowowowowowoFxvRvSvrvrvTvUuGuGuGuGuGukukuGuGuGuGuGukukukuGuGuGuGuGzBzLzMzNzBzOzPzQzBukukADzRzpPQzSASHjASASASASASxOwvvvvwvwvxzUyhzEPSwTzEzVwTvlvlvkvkzWzWzXzWzWzWzXzWzWutwzvYvZutzHzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzJut
 vMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvNuKvMvMvMvMvMvMvMvMvMvMvMwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYuOvPvqvQtxFmyLvPzYzYzYzYzYzZzZzZzZzZzZAavrzcwowowowowoAbAbAcAbAbAbAcAbAbwoFxvRvSvrvrvTvUuGuGuGukukuGukukukuGuGuGuGuGuGuGuGuGuGuGzBHkAdAdAeAyAyAgzBukAhAiASASASASASADAjAjzpAkAkADwvvvvwvwvxwRwTzEAlwTHwAmwTAnvHvHAozWATATATATATATAqzWutwzvYvZutzHzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzJut
 vMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvNuKvMvMvMvMvMvMvMvMvMvMvMwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYwYuOvPvqvQtxFmyLArzYzYzYzYzYzZzZzZzZzZzZAavrzcwowowowowoAbAsAtAuAbAsAtAuAbwoFxvRvSvrvrvTvUuGuGuGukuGukuGuGAvukukuGuGuGuGuGuGuGuGuGzBAwAdAxzBAyAyAgzBukukADADAAADADADADADADADADADADwvvvvwvwvxwRwTwTwTwTwTwTwTAnvwvwAozWAEAFAFAGAHATATzXutwzvYvZutzHzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzJut
 vMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvMvNuKuKuKuKuKuKuKuKuKuKuKuKuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOuOvPvqvQtxFmyLvPzYzYzYzYzYzYzZzZzZzZzZAavrzcwowowowowoAbAIAtaCAJAIAtHJAbwoFxvRvSvrvrvTvUuGuGuGuGuGukukuGukuGukukukuGuGuGuGuGuGuGzBAKALzBzBAyAMAgzBukukADANAOADAPAPAQADASARASASADwvvvvwvwvxwRwTzEzECXzEzEwTAnvwvwAozWATATATHKATATATzWutwzvYvZutzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzIzJut
