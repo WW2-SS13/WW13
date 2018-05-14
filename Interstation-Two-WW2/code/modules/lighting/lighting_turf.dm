@@ -89,7 +89,7 @@
 
 /turf/proc/fix_corners_and_lighting_overlay() // workaround for broken ice corners
 	if (istype(src, /turf/floor/plating/beach/water/ice))
-		for(var/i = TRUE to 4)
+		for(var/i = 1 to 4)
 			if(corners[i]) // Already have a corner on this direction.
 				continue
 

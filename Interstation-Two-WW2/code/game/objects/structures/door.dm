@@ -135,7 +135,7 @@
 		update_icon()
 		isSwitchingStates = FALSE
 		update_nearby_tiles()
-		for (var/atom/movable/lighting_overlay/L in view(world.view, src))
+		for (var/atom/movable/lighting_overlay/L in view(world.view*3, src))
 			L.update_overlay(TRUE)
 
 /obj/structure/simple_door/proc/Close()
