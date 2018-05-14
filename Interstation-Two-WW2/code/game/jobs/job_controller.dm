@@ -332,8 +332,6 @@ var/global/datum/controller/occupations/job_master
 /datum/controller/occupations/proc/EquipRank(var/mob/living/carbon/human/H, var/rank, var/joined_late = FALSE)
 	if(!H)	return null
 
-	H.stopDumbDamage = TRUE
-
 	var/datum/job/job = GetJob(rank)
 
 	if(job)
@@ -663,7 +661,9 @@ var/global/datum/controller/occupations/job_master
 			if (H.client)
 				H.client.remove_gun_icons()
 
-		H.stopDumbDamage = FALSE
+		spawn (50)
+			H.stopDumbDamage = FALSE
+
 		H.memory()
 
 		return H

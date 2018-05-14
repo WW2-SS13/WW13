@@ -741,6 +741,7 @@
 
 /mob/new_player/proc/create_character(mobtype)
 
+
 	if (delayed_spawning_as_job)
 		delayed_spawning_as_job.total_positions += 1
 		delayed_spawning_as_job = null
@@ -764,6 +765,7 @@
 	if(!new_character)
 		new_character = new mobtype(loc)
 
+	new_character.stopDumbDamage = TRUE
 	new_character.lastarea = get_area(loc)
 
 	for(var/lang in client.prefs.alternate_languages)
