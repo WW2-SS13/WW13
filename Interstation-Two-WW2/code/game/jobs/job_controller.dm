@@ -747,11 +747,11 @@ var/global/datum/controller/occupations/job_master
 	var/max_partisans = INFINITY
 
 	// only count clients who are on this window
-	var/relevant_clients = 0
-	for (var/client in clients)
+	var/relevant_clients = clients.len
+/*	for (var/client in clients)
 		var/client/C = client
 		if (C && !C.is_minimized())
-			++relevant_clients
+			++relevant_clients*/
 
 	if (map && !map.faction_distribution_coeffs.Find(INFINITY))
 		if (map.faction_distribution_coeffs.Find(GERMAN))
