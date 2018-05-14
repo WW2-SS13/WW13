@@ -721,6 +721,7 @@ var/next_calculate_relevant_clients = -1
 		var/client/C = client
 		if (C && !C.is_minimized())
 			++.
+	last_relevant_clients = .
 	next_calculate_relevant_clients = world.time + 50
 
 /datum/controller/occupations/proc/is_side_locked(side)
