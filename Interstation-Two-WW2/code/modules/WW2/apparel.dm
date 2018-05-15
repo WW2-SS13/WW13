@@ -146,7 +146,7 @@
 
 /obj/item/clothing/under/geruni/falluni
 	name = "Fallschirmjager uniform"
-	desc = "Standart german uniform for fallschirmjagers. This is quite comfy and sturdy uniform."
+	desc = "Standard german uniform for fallschirmjagers. This is quite comfy and sturdy uniform."
 	icon_state = "falluni"
 	item_state = "falluni"
 	worn_state = "falluni"
