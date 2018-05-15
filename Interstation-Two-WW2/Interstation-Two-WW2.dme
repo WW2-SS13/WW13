@@ -120,7 +120,6 @@
 #include "code\datums\WW2\reinforcements.dm"
 #include "code\defines\gases.dm"
 #include "code\defines\obj.dm"
-#include "code\defines\procs\AStar.dm"
 #include "code\defines\procs\hud.dm"
 #include "code\game\atoms.dm"
 #include "code\game\atoms_movable.dm"
@@ -915,5 +914,7 @@
 #include "interface\bugs&suggs.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\city\level1.dmm"
+#include "maps\forest\level1.dmm"
+#include "maps\forest\level2.dmm"
+#include "maps\forest\level3.dmm"
 // END_INCLUDE

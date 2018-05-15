@@ -140,17 +140,17 @@
 		// prior to moving. We don't have to do so for gibbing, but I do it anyway
 		// so gibs don't get all over train walls anymore - Kachnov
 
-		callproc_process.queue(tpt, "gib_idiots", null, 0.3)
-		callproc_process.queue(tpt, "destroy_objects", null, 0.6)
+		callproc_process.queue(tpt, /obj/train_pseudoturf/proc/gib_idiots, null, 0.3)
+		callproc_process.queue(tpt, /obj/train_pseudoturf/proc/destroy_objects, null, 0.6)
 		#ifdef USE_TRAIN_LIGHTS
-		callproc_process.queue(tpt, "reset_track_lights", null, 0.6)
+		callproc_process.queue(tpt, /obj/train_pseudoturf/proc/reset_track_lights, null, 0.6)
 		#endif
-		callproc_process.queue(tpt, "_Move", null, 0.9)
+		callproc_process.queue(tpt, /obj/train_pseudoturf/proc/_Move, null, 0.9)
 		#ifdef USE_TRAIN_LIGHTS
-		callproc_process.queue(tpt, "unset_track_lights", null, 0.9)
+		callproc_process.queue(tpt, /obj/train_pseudoturf/proc/unset_track_lights, null, 0.9)
 		#endif
-		callproc_process.queue(tpt, "move_mobs", null, 1.2)
-		callproc_process.queue(tpt, "remove_contents_refs", null, 1.5)
+		callproc_process.queue(tpt, /obj/train_pseudoturf/proc/move_mobs, null, 1.2)
+		callproc_process.queue(tpt, /obj/train_pseudoturf/proc/remove_contents_refs, null, 1.5)
 
 //Graft proc
 /obj/train_car_center/proc/Graft(what)
