@@ -66,10 +66,13 @@ var/next_german_supplytrain_master_process = -1
 						break
 
 		if (stopthetrain)
-			if (world.time > next_supplytrain_message)
+			if (world.time >= next_supplytrain_message)
 				radio2germans("The Supply Train is either occupied by a person, has a person standing in its way, or has not had its crates unloaded. Its departure has been delayed until this condition is solved.", "Supply Train Announcements")
 				next_supplytrain_message = world.time + 600
+				train_process.supplytrain_special_check = TRUE
 			goto skipmovement
+
+		train_process.supplytrain_special_check = FALSE
 
 		switch (german_supplytrain_master.direction)
 			if ("FORWARDS")
@@ -78,6 +81,16 @@ var/next_german_supplytrain_master_process = -1
 				if (!german_supplytrain_master.invisible)
 					german_supplytrain_master.update_invisibility(1)
 				german_supplytrain_master.here = FALSE
+				for (var/a in german_supplytrain_master.train_car_centers)
+					if (a)
+						var/obj/train_car_center/tcc = a
+						for (var/b in tcc.forwards_pseudoturfs)
+							if (b)
+								var/obj/train_pseudoturf/tpt = b
+								if (tpt.loc)
+									for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in tpt.loc.contents)
+										paper.memo = ""
+										break
 			if ("BACKWARDS")
 				german_supplytrain_master.direction = "FORWARDS"
 				radio2germans("The Supply Train is arriving at the armory. It will depart in 2 minutes.", "Supply Train Announcements")

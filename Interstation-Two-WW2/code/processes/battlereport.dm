@@ -40,7 +40,10 @@ var/process/battlereport/battlereport
 
 			else if (soviet_deaths_this_cycle && soviet_death_coeff > german_death_coeff)
 				radio2germans("Due to your triumphs in the battlefield, we are rewarding you with 200 supply points.")
-				supply_points[GERMAN] += 200
+				if (german_supplytrain_master)
+					german_supplytrain_master.supply_points += 200
+				else
+					supply_points[GERMAN] += 200
 
 			next_can_grant_points = world.time + 5500
 

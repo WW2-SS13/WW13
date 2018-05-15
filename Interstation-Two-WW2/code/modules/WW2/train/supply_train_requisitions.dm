@@ -59,7 +59,7 @@
 		total_cost += supply_crate_costs[purchase]
 
 	if (purchases.len)
-		info_links += "<br><b>Total Cost:<b> [total_cost]<br>"
+		info_links += "<br><b>Total Cost:</b> [total_cost]<br>"
 
 	info_links += "[signatures()]<br><br>"
 
@@ -108,8 +108,7 @@
 /obj/item/weapon/paper/supply_train_requisitions_sheet/proc/supplytrain_process(var/datum/train_controller/german_supplytrain_controller/train)
 
 	if (!purchases.len)
-		memo = ""
-		goto end
+		return
 
 	var/list/create_crates = list()
 
@@ -182,9 +181,9 @@
 	// add our unique memo ending
 	memo += generate_memoend(train)
 
-	signatures = list()
+	signatures.Cut()
 
-	purchases = list()
+	purchases.Cut()
 
 	regenerate_info()
 

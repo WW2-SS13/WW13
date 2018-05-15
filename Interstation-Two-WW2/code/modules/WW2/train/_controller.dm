@@ -260,7 +260,7 @@
 				for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in paper_list)
 					paper.memo = "<br><i>As of the time this was printed, you have [train.supply_points] Supply Requisition Points remaining.</i>"
 					paper.regenerate_info()
-
+					break
 
 /datum/train_controller/proc/start_moving(var/_direction) // when the conductor decides to move
 
