@@ -1277,7 +1277,7 @@
 "yC" = (/obj/effect/floor_decal/spline/fancy/wood,/obj/structure/curtain/open/bed,/obj/structure/window/classic,/turf/floor/wood,/area/prishtina/houses/sov_six)
 "yD" = (/obj/structure/multiz/stairs{dir = 1},/obj/structure/light/small{dir = 4},/turf/floor/plating/road,/area/prishtina/german/train_landing_zone)
 "yE" = (/obj/structure/oven,/turf/floor/wood,/area/prishtina/houses/sov_seven)
-"yF" = (/obj/structure/table/wood,/obj/item/clothing/head/det,/obj/item/clothing/under/suit_jacket/tan,/turf/floor/wood,/area/prishtina/houses/sov_ten)
+"yF" = (/obj/structure/table/wood,/obj/item/clothing/head/det,/obj/item/clothing/under/suit_jacket,/turf/floor/wood,/area/prishtina/houses/sov_ten)
 "yG" = (/obj/effect/floor_decal/spline/fancy/wood{tag = "icon-spline_fancy (EAST)"; icon_state = "spline_fancy"; dir = 4},/obj/structure/simple_door/key_door/anyone/wood,/turf/floor/wood,/area/prishtina/houses/sov_ten)
 "yH" = (/obj/effect/floor_decal/corner/grey/bordercorner{dir = 4},/turf/floor/plating/cobblestone/vertical{tag = "icon-cobble_vertical"; icon_state = "cobble_vertical"},/area/prishtina/forest/sector9/ss1)
 "yI" = (/obj/effect/floor_decal/corner/grey/border{dir = 1},/turf/floor/plating/cobblestone/vertical{tag = "icon-cobble_vertical"; icon_state = "cobble_vertical"},/area/prishtina/forest/sector9/ss1)
