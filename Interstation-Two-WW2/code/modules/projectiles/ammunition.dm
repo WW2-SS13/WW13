@@ -24,7 +24,7 @@
 
 /obj/item/ammo_casing/Destroy()
 	bullet_casings -= src
-	return ..()
+	..()
 
 //removes the projectile from the ammo casing
 /obj/item/ammo_casing/proc/expend()
@@ -154,14 +154,8 @@
 // empty the mag
 /obj/item/ammo_magazine/attack_self(mob/user)
 
-	if(!stored_ammo.len)
-		user << "<span class='notice'>[src] is already empty!</span>"
-		return
-
 	var/cont = FALSE
-	if (stored_ammo.len < 10)
-		cont = TRUE
-	else if (!istype(src, /obj/item/ammo_magazine/maxim))
+	if (stored_ammo.len > 0 && stored_ammo.len < 20)
 		if ((input(user, "Are you sure you want to empty the [src]?", "[src]") in list ("Yes", "No")) == "Yes")
 			cont = TRUE
 

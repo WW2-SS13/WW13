@@ -26,6 +26,9 @@
 				if (P.a_intent == I_HURT)
 					if (P.may_absorb())
 						return P.absorb(src)
+					else
+						P << "<span class = 'warning'>You have enough energy already.</span>"
+						return
 
 	if (!istype(src, /mob/living/carbon/human/vampire) && !istype(src, /mob/living/carbon/human/pillarman))
 		if (lying || stat == UNCONSCIOUS || stat == DEAD)
@@ -34,6 +37,9 @@
 				if (V.a_intent == I_HURT)
 					if (V.may_drink())
 						return V.drink(src)
+					else
+						V << "<span class = 'warning'>You have enough blood already.</span>"
+						return
 
 	if (istype(src, /mob/living/carbon/human/pillarman) && istype(H, /mob/living/carbon/human/vampire))
 		if (H.a_intent == I_HURT)

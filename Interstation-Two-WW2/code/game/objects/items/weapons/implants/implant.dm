@@ -27,7 +27,6 @@
 	var/obj/item/organ/external/affected = H.get_organ(affected_organ)
 	affected.implants += src
 	part = affected
-	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 
 /obj/item/weapon/implant/proc/get_data()
 	return "No information available"

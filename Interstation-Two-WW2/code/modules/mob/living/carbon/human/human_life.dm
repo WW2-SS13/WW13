@@ -143,16 +143,15 @@
 	water = min(water, max_water)
 	water = max(water, -max_water)
 
+	// recover oxyloss
 	var/oxyloss = getOxyLoss()
 	if (oxyloss <= 20)
 		adjustOxyLoss(-4)
 
 	..()
 
+	// recover stamina
 	stats["stamina"][1] = min(stats["stamina"][1] + round(stats["stamina"][2] * 0.02), stats["stamina"][2])
-
-	if(life_tick%30 == 15)
-		hud_updateflag = 1022
 
 	voice = GetVoice()
 
@@ -207,19 +206,22 @@
 	if(species.vision_organ)
 		vision = internal_organs_by_name[species.vision_organ]
 
+	var/obj/item/clothing/glasses/G = glasses
+	var/blinding_glasses = (istype(G) && G.tint == TINT_BLIND)
+
 	if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
-		eye_blind =  FALSE
-		blinded =    FALSE
-		eye_blurry = FALSE
-	else if(!vision || (vision && vision.is_broken()))   // Vision organs cut out or broken? Permablind.
-		eye_blind =  TRUE
-		blinded =    TRUE
-		eye_blurry = TRUE
+		eye_blind =  0
+		blinded =    0
+		eye_blurry = 0
+	else if(blinding_glasses || !vision || (vision && vision.is_broken()))   // Vision organs cut out or broken? Permablind.
+		eye_blind =  1
+		blinded =    1
+		eye_blurry = 1
 	else
 		//blindness
 		if(!(sdisabilities & BLIND))
 			if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
-				eye_blurry = max(eye_blurry-2, FALSE)
+				eye_blurry = max(eye_blurry-2, 0)
 
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
@@ -738,8 +740,8 @@
 		overlays_cache[22] = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay5")
 		overlays_cache[23] = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay6")
 
-	if(hud_updateflag || never_updated_hud_list) // update our mob's hud overlays, AKA what others see flaoting above our head
-		handle_hud_list()
+	// update our mob's hud overlays, AKA what others see floating above our head
+	handle_hud_list()
 
 	// now handle what we see on our screen
 
@@ -915,12 +917,12 @@
 	if(!stat)
 		if (getToxLoss() >= 45 && nutrition > 20)
 			vomit()
-
+/*
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
-	if(isturf(loc) && rand(1,1000) == TRUE)
+	if(isturf(loc) && rand(1,1000) == 1)
 		var/turf/T = loc
-		if(T.get_lumcount() == FALSE)
-			playsound_local(src,pick(scarySounds),50, TRUE, -1)
+		if(T.get_lumcount() == 0)
+			playsound_local(src,pick(scarySounds),50, TRUE, -1)*/s
 
 /mob/living/carbon/human/handle_stomach()
 	spawn(0)
@@ -1254,35 +1256,20 @@
 
 	if(shock_stage >= 150)
 		Weaken(20)
-/*
-	Called by life(), instead of having the individual hud items update icons each tick and check for status changes
-	we only set those statuses and icons upon changes.  Then those HUD items will simply add those pre-made images.
-	This proc below is only called when those HUD elements need to change as determined by the mobs hud_updateflag.
-*/
-
-
-/mob/living/carbon/human/var/never_updated_hud_list = TRUE
 
 /mob/living/carbon/human/proc/handle_hud_list()
 
-	#ifdef HUD_LIST_DEBUG
-	world << "called [src]'s handle_hud_list()"
-	#endif
+	if (original_job && never_set_faction_huds)
 
-	never_updated_hud_list = FALSE
+		never_set_faction_huds = FALSE
 
-	if (original_job && base_faction)
-
-		if (base_faction && BITTEST(hud_updateflag, FACTION_TO_ENEMIES))
+		if (base_faction)
 			var/image/holder = hud_list[FACTION_TO_ENEMIES]
 			holder.icon = null
 			holder.icon_state = null
 			hud_list[FACTION_TO_ENEMIES] = holder
-			#ifdef HUD_LIST_DEBUG
-			world << "updated [src]'s FACTION_TO_ENEMIES hud"
-			#endif
 
-		if (spy_faction && BITTEST(hud_updateflag, SPY_FACTION))
+		if (spy_faction)
 			var/image/holder = hud_list[SPY_FACTION]
 			holder.icon = 'icons/mob/hud_WW2.dmi'
 			switch (original_job.base_type_flag())
@@ -1297,11 +1284,8 @@
 				if (CIVILIAN)
 					holder.icon_state = ""
 			hud_list[SPY_FACTION] = holder
-			#ifdef HUD_LIST_DEBUG
-			world << "updated [src]'s SPY_FACTION hud"
-			#endif
 
-		if (officer_faction && BITTEST(hud_updateflag, OFFICER_FACTION))
+		if (officer_faction)
 			var/image/holder = hud_list[OFFICER_FACTION]
 			holder.icon = 'icons/mob/hud_WW2.dmi'
 			switch (original_job.base_type_flag())
@@ -1316,11 +1300,8 @@
 				if (CIVILIAN)
 					holder.icon_state = ""
 			hud_list[OFFICER_FACTION] = holder
-			#ifdef HUD_LIST_DEBUG
-			world << "updated [src]'s OFFICER_FACTION hud"
-			#endif
 
-		if (base_faction && BITTEST(hud_updateflag, BASE_FACTION))
+		if (base_faction)
 			var/image/holder = hud_list[BASE_FACTION]
 			holder.icon = 'icons/mob/hud_WW2.dmi'
 			switch (original_job.base_type_flag())
@@ -1335,11 +1316,8 @@
 				if (CIVILIAN)
 					holder.icon_state = ""
 			hud_list[BASE_FACTION] = holder
-			#ifdef HUD_LIST_DEBUG
-			world << "updated [src]'s BASE_FACTION hud"
-			#endif
 
-		if (squad_faction && BITTEST(hud_updateflag, SQUAD_FACTION))
+		if (squad_faction)
 			var/image/holder = hud_list[SQUAD_FACTION]
 			holder.icon = 'icons/mob/hud_WW2.dmi'
 			switch (original_job.base_type_flag())
@@ -1354,117 +1332,39 @@
 				if (CIVILIAN)
 					holder.icon_state = ""
 			hud_list[SQUAD_FACTION] = holder
-			#ifdef HUD_LIST_DEBUG
-			world << "updated [src]'s SQUAD_FACTION hud"
-			#endif
 
-	if (BITTEST(hud_updateflag, HEALTH_HUD))
+	if (stat != life_hud_check["stat"] || health != life_hud_check["health"])
 		var/image/holder = hud_list[HEALTH_HUD]
 		if(stat == DEAD)
-			holder.icon_state = "hudhealth-100" 	// X_X
+			holder.icon_state = "hudhealth-100"
 		else
 			var/percentage_health = RoundHealth((health-config.health_threshold_crit)/(maxHealth-config.health_threshold_crit)*100)
 			holder.icon_state = "hud[percentage_health]"
 		hud_list[HEALTH_HUD] = holder
 
-	if (BITTEST(hud_updateflag, LIFE_HUD))
-		var/image/holder = hud_list[LIFE_HUD]
+		holder = hud_list[LIFE_HUD]
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
 		else
 			holder.icon_state = "hudhealthy"
 		hud_list[LIFE_HUD] = holder
 
-	if (BITTEST(hud_updateflag, STATUS_HUD))
-		var/foundVirus = FALSE
-	/*	for (var/ID in virus2)
-			if (ID in virusDB)
-				foundVirus = TRUE
-				break*/
-
-		var/image/holder = hud_list[STATUS_HUD]
+		holder = hud_list[STATUS_HUD]
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
-		else if(status_flags & XENO_HOST)
-			holder.icon_state = "hudxeno"
-		else if(foundVirus)
-			holder.icon_state = "hudill"
-
-		var/image/holder2 = hud_list[STATUS_HUD_OOC]
-		if(stat == DEAD)
-			holder2.icon_state = "huddead"
-		else if(status_flags & XENO_HOST)
-			holder2.icon_state = "hudxeno"
-		else if(has_brain_worms())
-			holder2.icon_state = "hudbrainworm"
 		else
-			holder2.icon_state = "hudhealthy"
-
+			holder.icon_state = "hudhealthy"
 		hud_list[STATUS_HUD] = holder
-		hud_list[STATUS_HUD_OOC] = holder2
 
-	if (BITTEST(hud_updateflag, ID_HUD))
-		var/image/holder = hud_list[ID_HUD]
-		holder.icon_state = "hudunknown"
-		hud_list[ID_HUD] = holder
-/*
-	if (BITTEST(hud_updateflag, WANTED_HUD))
-		var/image/holder = hud_list[WANTED_HUD]
-		holder.icon_state = "hudblank"
-		var/perpname = name
-		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetID()
-			if(I)
-				perpname = I.registered_name
+		holder = hud_list[STATUS_HUD_OOC]
+		if(stat == DEAD)
+			holder.icon_state = "huddead"
+		else
+			holder.icon_state = "hudhealthy"
+		hud_list[STATUS_HUD_OOC] = holder
 
-		for(var/datum/data/record/E in data_core.general)
-			if(E.fields["name"] == perpname)
-				for (var/datum/data/record/R in data_core.security)
-					if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
-						holder.icon_state = "hudwanted"
-						break
-					else if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "Incarcerated"))
-						holder.icon_state = "hudprisoner"
-						break
-					else if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "Parolled"))
-						holder.icon_state = "hudparolled"
-						break
-					else if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "Released"))
-						holder.icon_state = "hudreleased"
-						break
-		hud_list[WANTED_HUD] = holder*/
-
-	if (  BITTEST(hud_updateflag, IMPLOYAL_HUD) \
-	   || BITTEST(hud_updateflag,  IMPCHEM_HUD) \
-	   || BITTEST(hud_updateflag, IMPTRACK_HUD))
-
-		var/image/holder1 = hud_list[IMPTRACK_HUD]
-		var/image/holder2 = hud_list[IMPLOYAL_HUD]
-		var/image/holder3 = hud_list[IMPCHEM_HUD]
-
-		holder1.icon_state = "hudblank"
-		holder2.icon_state = "hudblank"
-		holder3.icon_state = "hudblank"
-
-		for(var/obj/item/weapon/implant/I in src)
-			if(I.implanted)
-				if(istype(I,/obj/item/weapon/implant/chem))
-					holder3.icon_state = "hud_imp_chem"
-
-		hud_list[IMPTRACK_HUD] = holder1
-		hud_list[IMPLOYAL_HUD] = holder2
-		hud_list[IMPCHEM_HUD]  = holder3
-
-	if (BITTEST(hud_updateflag, SPECIALROLE_HUD))
-		var/image/holder = hud_list[SPECIALROLE_HUD]
-		holder.icon_state = "hudblank"
-		if(mind && mind.special_role)
-			if(hud_icon_reference[mind.special_role])
-				holder.icon_state = hud_icon_reference[mind.special_role]
-			else
-				holder.icon_state = "hudsyndicate"
-			hud_list[SPECIALROLE_HUD] = holder
-	hud_updateflag = FALSE
+	life_hud_check["stat"] = stat
+	life_hud_check["health"] = health
 
 /mob/living/carbon/human/handle_silent()
 	if(..())

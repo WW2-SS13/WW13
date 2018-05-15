@@ -7,7 +7,7 @@ var/list/list_of_germans_who_crossed_the_river = list()
 var/GRACE_PERIOD_LENGTH = 7
 
 /proc/WW2_train_check()
-	if (locate(/obj/effect/landmark/train/german_train_start) in world || train_checked)
+	if (locate_type(landmarks_list, /obj/effect/landmark/train/german_train_start) || train_checked)
 		train_checked = TRUE
 		return TRUE
 	else
@@ -33,7 +33,7 @@ var/GRACE_PERIOD_LENGTH = 7
 	var/mice_spawned = FALSE
 	var/max_mice = rand(40,50)
 
-	for (var/area/prishtina/soviet/bunker/area in world)
+	for (var/area/prishtina/soviet/bunker/area in area_list)
 		for (var/turf/T in area.contents)
 			if (T.density)
 				continue
@@ -46,7 +46,7 @@ var/GRACE_PERIOD_LENGTH = 7
 					return TRUE
 
 	// open squad preparation doors
-	for (var/obj/structure/simple_door/key_door/keydoor in world)
+	for (var/obj/structure/simple_door/key_door/keydoor in door_list)
 		if (findtext(keydoor.name, "Squad"))
 			if (findtext(keydoor.name, "Preparation"))
 				keydoor.Open()
@@ -67,25 +67,26 @@ var/GRACE_PERIOD_LENGTH = 7
 	spawn (1)
 		world << "<span class = 'notice'>Setting up wild grasses.</span>"
 
-	for (var/turf/floor/plating/grass/G in grass_turf_list)
+	for (var/grass in grass_turf_list)
+		var/turf/floor/plating/grass/G = grass
 		if (!G || G.z > 1)
 			continue
 
 		if (prob(nature_chance))
 			G.plant()
 
-	spawn (0)
-		do_seasonal_stuff()
-
 	if (!WW2_train_check())
 		callHook("train_move")
 
 	return TRUE
 
-// freaking seasons dude
-/proc/do_seasonal_stuff()
+// ditto
+/hook/roundstart/proc/do_seasonal_stuff()
 	spawn (1)
-		world << "<span class = 'notice'>Setting up seasonal stuff.</span>"
+		world << "<span class = 'notice'>Setting up seasons.</span>"
+
+	if (map && istype(map, /obj/map_metadata/forest))
+		return TRUE // temp fix
 
 	var/use_snow = FALSE
 
@@ -127,7 +128,6 @@ var/GRACE_PERIOD_LENGTH = 7
 
 				for (var/obj/structure/wild/W in G.contents)
 					if (istype(W))
-
 						W.color = DEAD_COLOR
 						var/icon/W_icon = icon(W.icon, W.icon_state)
 						if (use_snow)
@@ -178,8 +178,9 @@ var/GRACE_PERIOD_LENGTH = 7
 				o.alpha = decal.alpha
 				o.name = ""
 
-		for (var/obj/snow_maker/SM in G)
-			qdel(SM)
+		spawn (0)
+			for (var/obj/snow_maker/SM in G)
+				qdel(SM)
 
 	return TRUE
 
@@ -190,7 +191,7 @@ var/GRACE_PERIOD_LENGTH = 7
 	return TRUE
 
 var/mission_announced = FALSE
-var/train_arrived = FALSE
+var/mapcheck_train_arrived = FALSE
 
 /hook/train_move/proc/announce_mission_start()
 
@@ -208,9 +209,9 @@ var/train_arrived = FALSE
 
 	// let the new players see reinforcements now
 	spawn (1)
-		for (var/mob/new_player/np in world)
-			if (np.client)
-				np.new_player_panel_proc()
+		for (var/np in new_player_mob_list)
+			if (np:client)
+				np:new_player_panel_proc()
 
 	var/show_report_after = 0
 	if (istype(map, /obj/map_metadata/city))

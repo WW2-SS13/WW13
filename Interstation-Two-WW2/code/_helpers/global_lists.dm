@@ -8,14 +8,13 @@ var/list/directory = list()							//list of all ckeys with associated client
 var/global/list/player_list = list()				//List of all mobs **with clients attached**.
 var/global/list/mob_list = list()					//List of all mobs, including clientless
 var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
-var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
+//var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
 var/global/list/dog_mob_list = list()				//List of all dogs
 var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
 var/global/list/observer_mob_list = list()			//List of all observers, excluding clientless
 var/global/list/human_clients_mob_list = list()     //List of all human mobs with clients
 var/global/list/new_player_mob_list = list()	//List of all new_players, excludes clientless by definition
-var/global/list/moving_mobs = list()
 
 var/global/list/fallschirm_landmarks = list()
 
@@ -32,7 +31,7 @@ var/global/list/chemical_reactions_list				//list of all /datum/chemical_reactio
 var/global/list/chemical_reagents_list				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
-var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
+var/global/list/side_effects = list()				//list of all medical sideeffects types by their names |BS12
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
@@ -42,12 +41,58 @@ var/global/list/HUDdatums = list()
 var/global/list/area_list = list()
 
 var/global/list/projectile_list = list()
+
 var/global/list/thrown_list = list()
 
 var/global/list/cleanables = list()
 
+var/global/list/crate_list = list()
+
+var/global/list/artillery_list = list()
+
+var/global/list/mortar_piece_list = list()
+
+var/global/list/mortar_spade_list = list()
+
+var/global/list/door_list = list()
+
+var/global/list/vending_machine_list = list()
+
+var/global/list/lift_list = list()
+
+/* because different levers are currently snowflake types that aren't actually related (train levers, lift levers, etc)
+ * this list needs typechecking always - Kachnov */
+var/global/list/lever_list = list()
+
+var/global/list/organ_list = list()
+
+var/global/list/tank_list = list()
+
+var/global/list/ladder_list = list()
+
+var/global/list/paper_list = list()
+
+var/global/list/lighting_overlay_list = list()
+
+var/global/list/processing_objects = list()
+
+var/global/list/zoom_processing_objects = list()
+
+var/global/list/supplydrop_processing_objects_german = list()
+
+var/global/list/supplydrop_processing_objects_soviet = list()
+
+var/global/list/menacing_atoms = list()
+
+var/global/list/faction_hud_users = list()
+
+var/global/list/hud_icon_reference = list()
+
 // names
 var/global/list/names_used[1000] // map
+
+var/global/list/alphabet_lowercase = list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
+var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
 
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER)
 
@@ -149,6 +194,26 @@ var/list/hair_colors = list(
 	"Light Grey" = "#d3d3d3",
 	"Grey" = "#808080"
 )
+
+
+var/global/list/global_mutations  = list() // List of hidden mutation things.
+// Noises made when hit while typing.
+var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
+var/list/jobMax        = list()
+var/list/admin_log     = list()
+var/list/reg_dna       = list()
+var/list/newplayer_start = list()
+//Spawnpoints.
+var/list/latejoin         = list()
+var/list/cardinal    = list(NORTH, SOUTH, EAST, WEST)
+var/list/cornerdirs  = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+var/list/alldirs     = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
+	 2,  1,  3,  8, 10,  9, 11,  4,  6,  5,  7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42,
+	41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21,
+	23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63
+)
+
 //////////////////////////
 /////Initial Building/////
 //////////////////////////

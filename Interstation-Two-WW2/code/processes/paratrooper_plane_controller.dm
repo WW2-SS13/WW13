@@ -56,7 +56,7 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 			for (var/mob/living/carbon/human/H in player_list)
 				if (H.original_job && istype(H.original_job, /datum/job/german/paratrooper))
 					if (H.z == 2)
-						H << "<big><span class = 'red'>The Plane's current altitude is [altitude]m. It is lethal to jump until it has descended to [first_nonlethal_altitude]m."
+						H << "<big><span class = 'red'>The plane's current altitude is [altitude]m. It is lethal to jump until it has descended to [first_nonlethal_altitude]m."
 				SCHECK
 
 	catch(var/exception/e)

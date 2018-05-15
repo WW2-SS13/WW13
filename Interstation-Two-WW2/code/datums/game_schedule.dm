@@ -196,10 +196,7 @@ var/datum/game_schedule/global_game_schedule = null
 	dateInfoString = .
 
 /datum/game_schedule/proc/getDateInfoAsString()
-	var/YY = text2num(time2text(world.timeofday, "YY")) 	// get the current year
-	var/MM = text2num(time2text(world.timeofday, "MM")) 	// get the current month
-	var/DD = text2num(time2text(world.timeofday, "DD")) 	// get the current day
-	return "[DD].[MM].[YY]"
+	return replacetext(time2text(world.realtime, "DDD MMM DD hh:mm:ss YYYY"), "/", ".")
 
 /proc/nextDay(day)
 	switch (day)

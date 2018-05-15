@@ -77,7 +77,7 @@ var/list/tier_2_officer_jobtypes = list(
 	while (TRUE)
 		T = get_step(T, dir)
 		++steps
-		if (steps >= 7 || T.density || locate_bullet_blocking_structure(T) || locate_type(T, /mob/living/carbon/human))
+		if (steps >= 7 || T.density || locate_bullet_blocking_structure(T) || locate_type(T.contents, /mob/living/carbon/human))
 			break
 
 	for (var/mob/living/carbon/human/H in T)

@@ -26,6 +26,11 @@
 	update_bounding_rectangle()
 	heal_damage["weldingtool"] = max_damage/10
 	heal_damage["wrench"] = max_damage/20
+	tank_list += src
+
+/obj/tank/Destroy()
+	tank_list -= src
+	..()
 
 /obj/tank/examine(mob/user)
 	user << "<span class = 'notice'>That's a tank.</span>"
@@ -188,7 +193,7 @@
 				accepting_occupant = FALSE
 				return FALSE
 	else
-		user << "<span class = 'danger'>[capitalize(my_name())] is locked! Use a tank key or keychain with a tank key on it to unlock it.</span>"
+		user << "<span class = 'danger'>[capitalize(my_name())] is locked!</span>"
 
 /obj/tank/proc/receive_command_from(var/mob/user, x)
 	if (!isliving(user) || user.stat == UNCONSCIOUS || user.stat == DEAD)

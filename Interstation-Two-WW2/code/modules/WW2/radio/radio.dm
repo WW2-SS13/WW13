@@ -172,7 +172,7 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 			if (map.uses_supply_train && faction == GERMAN)
 				is_supply_radio = FALSE
 
-	if (locate(/obj/effect/landmark/train/german_supplytrain_start) in world)
+	if (locate_type(landmarks_list, /obj/effect/landmark/train/german_supplytrain_start))
 		is_supply_radio = FALSE
 
 	// channels added after this is called

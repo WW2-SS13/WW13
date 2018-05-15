@@ -91,6 +91,10 @@
 			location:overlays -= image_overlay
 	qdel(src)
 
+/obj/item/weapon/plastique/bullet_act(var/obj/item/projectile/proj)
+	if (proj && !proj.nodamage)
+		return explode(get_turf(src))
+
 /obj/item/weapon/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
 

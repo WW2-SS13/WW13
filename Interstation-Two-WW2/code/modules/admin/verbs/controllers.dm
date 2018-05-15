@@ -60,11 +60,11 @@ var/list/special_globalobjects = list("processScheduler", "Master", "Ticker", "C
 		if ("Russian Supply Lift")
 			var/which = input("Top or bottom?") in list("Top", "Bottom")
 			if (which == "Top")
-				for (var/obj/lift_controller/down/soviet/lift in world)
+				for (var/obj/lift_controller/down/soviet/lift in lift_list)
 					debug_variables(lift)
 					return
 			else
-				for (var/obj/lift_controller/up/soviet/lift in world)
+				for (var/obj/lift_controller/up/soviet/lift in lift_list)
 					debug_variables(lift)
 					return
 

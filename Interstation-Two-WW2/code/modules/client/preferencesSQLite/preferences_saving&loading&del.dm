@@ -2,7 +2,7 @@
 
 var/list/forbidden_pref_save_varnames = list("client_ckey", "last_id")
 
-/datum/preferences/proc/preferences_exist(var/slot = TRUE)
+/datum/preferences/proc/preferences_exist(var/slot = 1)
 	slot = text2num(slot)
 	var/list/table = database.execute("SELECT * FROM preferences WHERE ckey = '[client_ckey]' AND slot = '[slot]';")
 	if (islist(table) && !isemptylist(table))

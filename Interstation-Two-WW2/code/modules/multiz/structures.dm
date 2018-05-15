@@ -7,7 +7,7 @@
 	var/list/top_ladders = list()
 	var/list/bottom_ladders = list()
 
-	for (var/obj/structure/multiz/ladder/ww2/ladder in world) // todo: remove
+	for (var/obj/structure/multiz/ladder/ww2/ladder in ladder_list)
 		if (ladder.istop)
 			if (!top_ladders[ladder.area_id])
 				top_ladders[ladder.area_id] = 0
@@ -19,8 +19,9 @@
 			++bottom_ladders[ladder.area_id]
 			ladder.ladder_id = "ww2-l-[ladder.area_id]-[bottom_ladders[ladder.area_id]]"
 
-	for (var/obj/structure/multiz/ladder/ww2/ladder in world)
+	for (var/obj/structure/multiz/ladder/ww2/ladder in ladder_list)
 		ladder.target = ladder.find_target()
+	return TRUE
 
 /obj/structure/multiz
 	name = "ladder"
@@ -70,6 +71,14 @@
 	desc = "A ladder.  You can climb it up and down."
 	icon_state = "ladderdown"
 	layer = 2.99 // below crates
+
+/obj/structure/multiz/ladder/New()
+	..()
+	ladder_list += src
+
+/obj/structure/multiz/ladder/Destroy()
+	ladder_list -= src
+	..()
 
 /obj/structure/multiz/ladder/find_target()
 	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
@@ -216,7 +225,7 @@
 
 /obj/structure/multiz/ladder/ww2/Crossed(var/atom/movable/AM)
 	if (find_target() && istop)
-		if (isitem(AM) && !istype(AM, /obj/item/projectile))
+		if (!AM.pulledby && isitem(AM) && !istype(AM, /obj/item/projectile))
 			var/obj/item/I = AM
 			if (I.w_class <= 2.0) // fixes maxim bug and probably some others - Kachnov
 				I.forceMove(get_turf(find_target()))
@@ -226,7 +235,7 @@
 			AM.forceMove(get_turf(find_target()))
 
 /obj/structure/multiz/ladder/ww2/find_target()
-	for (var/obj/structure/multiz/ladder/ww2/ladder in world) // todo: get rid of
+	for (var/obj/structure/multiz/ladder/ww2/ladder in ladder_list)
 		if (ladder_id == ladder.ladder_id && ladder != src)
 			return ladder
 

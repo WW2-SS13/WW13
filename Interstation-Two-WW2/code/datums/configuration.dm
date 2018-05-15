@@ -798,7 +798,7 @@ var/list/gamemode_cache = list()
 		world.visibility = TRUE
 	else
 		world.visibility = FALSE
-
+/*
 /datum/configuration/proc/loadsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)
 	for(var/t in Lines)
@@ -843,8 +843,8 @@ var/list/gamemode_cache = list()
 			if ("enable_stat_tracking")
 				sqllogging = TRUE
 			else
-				log_misc("Unknown setting in configuration: '[name]'")
-
+				log_misc("Unknown setting in configuration: '[name]'")*/
+/*
 /datum/configuration/proc/loadforumsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)
 	for(var/t in Lines)
@@ -885,7 +885,7 @@ var/list/gamemode_cache = list()
 			if ("authenticatedgroup")
 				forum_authenticated_group = value
 			else
-				log_misc("Unknown setting in configuration: '[name]'")
+				log_misc("Unknown setting in configuration: '[name]'")*/
 /*
 /datum/configuration/proc/pick_mode(mode_name)
 	// I wish I didn't have to instance the game modes in order to look up

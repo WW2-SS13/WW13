@@ -19,16 +19,16 @@
 /datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
 	if(!islist(newdata) || !newdata.len)
 		return
-	for(var/i in TRUE to newdata.len)
+	for(var/i in 1 to newdata.len)
 		if(!(newdata[i] in data))
 			data.Add(newdata[i])
 			data[newdata[i]] = FALSE
 		data[newdata[i]] += newdata[newdata[i]]
 	var/totalFlavor = FALSE
-	for(var/i in TRUE to data.len)
+	for(var/i in 1 to data.len)
 		if (data[i])
 			totalFlavor += data[data[i]]
-	for(var/i in TRUE to data.len) //cull the tasteless
+	for(var/i in 1 to data.len) //cull the tasteless
 		if (data[i])
 			if(data[data[i]]/totalFlavor * 100 < 10)
 				data[data[i]] = null

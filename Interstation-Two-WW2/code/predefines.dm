@@ -966,9 +966,9 @@ var/list/be_special_flags = list(
 #define WALL_CAN_OPEN TRUE
 #define WALL_OPENING 2
 
-#define Clamp(x, y, z) 	(x <= y ? y : (x >= z ? z : x))
+//#define Clamp(x, y, z) 	(x <= y ? y : (x >= z ? z : x))
 
-#define CLAMP01(x) 		(Clamp(x, FALSE, TRUE))
+//#define CLAMP01(x) 		(Clamp(x, 0, 1))
 
 #define DEFAULT_WALL_MATERIAL "steel"
 #define DEFAULT_TABLE_MATERIAL "plastic"

@@ -9,6 +9,14 @@
 	var/lever_id = "defaultliftleverid"
 	name = "supply lift lever"
 
+/obj/lift_lever/New()
+	..()
+	lever_list += src
+
+/obj/lift_lever/Destroy()
+	lever_list -= src
+	..()
+
 /obj/lift_lever/attack_hand(var/mob/user as mob)
 	if (user && istype(user, /mob/living/carbon/human))
 		function(user)

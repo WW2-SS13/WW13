@@ -45,14 +45,14 @@ return_location()
 /datum/plot_vector
 	var/turf/source
 	var/turf/target
-	var/angle = FALSE	// direction of travel in degrees
-	var/loc_x = FALSE	// in pixels from the left edge of the map
-	var/loc_y = FALSE	// in pixels from the bottom edge of the map
-	var/loc_z = FALSE	// loc z is in world space coordinates (i.e. z level) - we don't care about measuring pixels for this
-	var/offset_x = FALSE	// distance to increment each step
-	var/offset_y = FALSE
+	var/angle = 0	// direction of travel in degrees
+	var/loc_x = 0	// in pixels from the left edge of the map
+	var/loc_y = 0	// in pixels from the bottom edge of the map
+	var/loc_z = 0	// loc z is in world space coordinates (i.e. z level) - we don't care about measuring pixels for this
+	var/offset_x = 0	// distance to increment each step
+	var/offset_y = 0
 
-/datum/plot_vector/proc/setup(var/turf/S, var/turf/T, var/xo = FALSE, var/yo = FALSE, var/angle_offset=0)
+/datum/plot_vector/proc/setup(var/turf/S, var/turf/T, var/xo = 0, var/yo = 0, var/angle_offset=0)
 	source = S
 	target = T
 
@@ -74,7 +74,7 @@ return_location()
 	var/dy = target.y - source.y
 
 	// if we aren't moving anywhere; quit now
-	if(dx == FALSE && dy == FALSE)
+	if(dx == 0 && dy == 0)
 		return
 
 	// calculate the angle

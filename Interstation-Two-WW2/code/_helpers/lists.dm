@@ -9,7 +9,7 @@
  * Misc
  */
 
-// I guess you can't use locate() in or find() for types, so this exists
+// "locate() in list" tends not to work, so here's a version that works for both objects and lists - Kachnov
 /proc/locate_type(var/list/L, var/type)
 	if (isatom(L))
 		var/atom/A = L

@@ -124,51 +124,35 @@
 
 //_Move proc
 /obj/train_car_center/proc/_Move(direction)
+
 	var/list/pseudoturfs = forwards_pseudoturfs
 	if (direction == "BACKWARDS")
 		pseudoturfs = backwards_pseudoturfs //shoddy attempt to fix backwards moving.
 
 	for (var/object in pseudoturfs)
+		if (!object)
+			pseudoturfs -= object
+			continue
 		var/obj/train_pseudoturf/tpt = object
 		tpt.save_contents_as_refs()
 
-	// the new behavior for destroying objects requires that we do it
-	// prior to moving. We don't have to do so for gibbing, but I do it anyway
-	// so gibs don't get all over train walls anymore - Kachnov
+		// the new behavior for destroying objects requires that we do it
+		// prior to moving. We don't have to do so for gibbing, but I do it anyway
+		// so gibs don't get all over train walls anymore - Kachnov
 
-	for (var/object in pseudoturfs) // run people down
-		var/obj/train_pseudoturf/tpt = object
-		tpt.gib_idiots()
+		callproc_process.queue(tpt, "gib_idiots", null, 0.3)
+		callproc_process.queue(tpt, "destroy_objects", null, 0.6)
+		#ifdef USE_TRAIN_LIGHTS
+		callproc_process.queue(tpt, "reset_track_lights", null, 0.6)
+		#endif
+		callproc_process.queue(tpt, "_Move", null, 0.9)
+		#ifdef USE_TRAIN_LIGHTS
+		callproc_process.queue(tpt, "unset_track_lights", null, 0.9)
+		#endif
+		callproc_process.queue(tpt, "move_mobs", null, 1.2)
+		callproc_process.queue(tpt, "remove_contents_refs", null, 1.5)
 
-	for (var/object in pseudoturfs) // crush stuff in our way
-		var/obj/train_pseudoturf/tpt = object
-		tpt.destroy_objects()
-
-	#ifdef USE_TRAIN_LIGHTS
-	for (var/object in pseudoturfs)
-		var/obj/train_pseudoturf/tpt = object
-		tpt.reset_track_lights()
-	#endif
-
-	for (var/object in pseudoturfs)
-		var/obj/train_pseudoturf/tpt = object
-		tpt._Move(direction)
-
-	#ifdef USE_TRAIN_LIGHTS
-	for (var/object in pseudoturfs)
-		var/obj/train_pseudoturf/tpt = object
-		tpt.unset_track_lights()
-	#endif
-
-	for (var/object in pseudoturfs)
-		var/obj/train_pseudoturf/tpt = object
-		tpt.move_mobs(direction)
-
-	for (var/object in pseudoturfs)
-		var/obj/train_pseudoturf/tpt = object
-		tpt.remove_contents_refs()
 //Graft proc
-
 /obj/train_car_center/proc/Graft(what)
 	backwards_pseudoturfs = forwards_pseudoturfs
 

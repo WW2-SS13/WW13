@@ -7,20 +7,17 @@
 	supply_points_per_tick = list(
 		GERMAN = 1.00,
 		SOVIET = 1.50)
-
-/obj/map_metadata/city/New()
-	MAP_MODE(MODE_WAR)
-		faction_organization = list(
-			GERMAN,
-			SOVIET,
-			PARTISAN,
-			CIVILIAN,
-			ITALIAN)
-		available_subfactions = list(
-			SCHUTZSTAFFEL,
-			ITALIAN)
-		faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
-	..()
+	faction_organization = list(
+		GERMAN,
+		SOVIET,
+		PARTISAN,
+		CIVILIAN,
+		ITALIAN)
+	available_subfactions = list(
+		SCHUTZSTAFFEL,
+		ITALIAN)
+	faction_distribution_coeffs = list(GERMAN = 0.42, SOVIET = 0.58)
+	battle_name = "Battle of Kiev"
 
 /obj/map_metadata/city/germans_can_cross_blocks()
 	return (tickerProcess.playtime_elapsed >= 9000 || admin_ended_all_grace_periods)

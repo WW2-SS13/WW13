@@ -13,12 +13,12 @@ var/process/movement/movement_process = null
 /process/movement/fire()
 	SCHECK
 
-	if (!moving_mobs.len)
+	if (!clients.len)
 		return
 
-	FORNEXT(moving_mobs)
+	FORNEXT(clients)
 
-		var/mob/M = current
+		var/mob/M = current:mob
 
 		if(isnull(M))
 			continue

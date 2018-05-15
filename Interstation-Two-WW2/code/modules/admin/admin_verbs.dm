@@ -49,6 +49,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_world_narrate,	//sends text to all players with no padding,
 //	/client/proc/check_antagonists,
 	/client/proc/admin_memo,			//admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
+	/client/proc/player_memo,
 	/client/proc/dsay,					//talk in deadchat using our ckey/fakekey,
 //	/client/proc/toggle_hear_deadcast,	//toggles whether we hear deadchat,
 	/client/proc/investigate_show,		//various admintools for investigation. Such as a singulo grief-log,
@@ -131,6 +132,7 @@ var/list/admin_verbs_server = list(
 	/client/proc/ToRban,
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,
+	/datum/admins/proc/jojorestart,
 	/datum/admins/proc/delay,
 //	/datum/admins/proc/toggleaban,
 	/client/proc/trigger_roundend,
@@ -282,6 +284,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_subtle_message, // send an message to somebody as a 'voice in their head',
 	/datum/admins/proc/paralyze_mob,
 	/client/proc/admin_memo,			//admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
+	/client/proc/player_memo,
 	/client/proc/game_panel,			//game panel, allows to change game-mode etc,
 	/client/proc/allow_join_ruforce,
 	/client/proc/allow_join_geforce,
@@ -911,15 +914,3 @@ var/list/admin_verbs_host = list(
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("<span class = 'notice'>[key_name_admin(usr)] told everyone to man up and deal with it.</span>", TRUE)
-
-/client/proc/start_mapswap_vote()
-	set category = "Server"
-	set name = "Start Map Vote"
-	if (!check_rights(R_PERMISSIONS))
-		return
-	if (mapswap_process && mapswap_process.may_fire())
-		mapswap_process.admin_triggered = TRUE
-		log_admin("[key_name(usr)] triggered a map vote.")
-		message_admins("[key_name(usr)] triggered a map vote.")
-	else
-		src << "<span class = 'notice'>There is no mapswap_process datum, or it is not ready.</span>"

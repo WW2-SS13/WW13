@@ -3,35 +3,11 @@
 #warn This compiler is out of date. You may experience issues with projectile animations.
 #endif
 
-// Items that ask to be called every cycle.
-//var/global/datum/datacore/data_core = null
-var/global/list/all_areas                = list()
-var/global/list/machines                 = list()
-var/global/list/processing_objects       = list()
-var/global/list/zoom_processing_objects       = list()
-var/global/list/supplydrop_processing_objects_german = list()
-var/global/list/supplydrop_processing_objects_soviet = list()
-var/global/list/nonvital_processing_objects_1       = list()
-var/global/list/nonvital_processing_objects_2       = list()
-var/global/list/nonvital_processing_objects_3       = list()
-var/global/list/nonvital_processing_objects_4       = list()
-var/global/list/menacing_atoms       = list()
-//var/global/list/processing_power_items   = list()
-var/global/list/active_diseases          = list()
-//var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
-//var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
-var/global/list/faction_hud_users		 = list() // List of all entities using faction huds.
-var/global/list/hud_icon_reference       = list()
-
-var/list/init_lights = list()
+//var/list/init_lights = list()
 
 
-var/global/list/global_mutations  = list() // List of hidden mutation things.
+//var/global/list/global_map = null
 
-var/global/list/global_map = null
-
-// Noises made when hit while typing.
-var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 
 var/diary               = null
@@ -52,66 +28,54 @@ var/round_progressing = TRUE
 //var/master_mode       = "WW2" // "extended"
 //var/secret_force_mode = "WW2"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
 
-var/host = null //only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
+//var/host = null //only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
 
-var/list/jobMax        = list()
-var/list/bombers       = list()
-var/list/admin_log     = list()
-var/list/lastsignalers = list() // Keeps last 100 signals here in format: "[src] used \ref[src] @ location [loc]: [freq]/[code]"
-var/list/lawchanges    = list() // Stores who uploaded laws to which silicon-based lifeform, and what the law was.
-var/list/reg_dna       = list()
 
-var/list/monkeystart     = list()
-var/list/wizardstart     = list()
-var/list/newplayer_start = list()
+//var/list/bombers       = list()
+//var/list/lastsignalers = list() // Keeps last 100 signals here in format: "[src] used \ref[src] @ location [loc]: [freq]/[code]"
+//var/list/lawchanges    = list() // Stores who uploaded laws to which silicon-based lifeform, and what the law was.
 
-//Spawnpoints.
-var/list/latejoin         = list()
-var/list/latejoin_gateway = list()
-var/list/latejoin_cryo    = list()
-var/list/latejoin_cyborg  = list()
+//var/list/monkeystart     = list()
+//var/list/wizardstart     = list()
 
-var/list/prisonwarp         = list() // Prisoners go to these
-var/list/holdingfacility    = list() // Captured people go here
-var/list/xeno_spawn         = list() // Aliens spawn at at these.
-var/list/tdome1             = list()
-var/list/tdome2             = list()
-var/list/tdomeobserve       = list()
-var/list/tdomeadmin         = list()
-var/list/prisonsecuritywarp = list() // Prison security goes to these.
-var/list/prisonwarped       = list() // List of players already warped.
 
-var/list/cardinal    = list(NORTH, SOUTH, EAST, WEST)
-var/list/cornerdirs  = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-var/list/alldirs     = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
-	 2,  TRUE,  3,  8, 10,  9, 11,  4,  6,  5,  7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42,
-	41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21,
-	23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63
-)
+//var/list/latejoin_gateway = list()
+//var/list/latejoin_cryo    = list()
+//var/list/latejoin_cyborg  = list()
+
+//var/list/prisonwarp         = list() // Prisoners go to these
+//var/list/holdingfacility    = list() // Captured people go here
+//var/list/xeno_spawn         = list() // Aliens spawn at at these.
+//var/list/tdome1             = list()
+//var/list/tdome2             = list()
+//var/list/tdomeobserve       = list()
+//var/list/tdomeadmin         = list()
+//var/list/prisonsecuritywarp = list() // Prison security goes to these.
+//var/list/prisonwarped       = list() // List of players already warped.
+
 
 var/datum/configuration/config      = null
-var/datum/sun/sun                   = null
-
+//var/datum/sun/sun                   = null
+/*
 var/list/combatlog = list()
 var/list/IClog     = list()
 var/list/OOClog    = list()
 var/list/adminlog  = list()
-
-var/list/powernets = list()
+*/
+//var/list/powernets = list()
 
 var/Debug2 = FALSE
 var/datum/debug/debugobj
 
-var/datum/moduletypes/mods = new()
+//var/datum/moduletypes/mods = new()
 
-var/gravity_is_on = TRUE
+//var/gravity_is_on = TRUE
 
 var/join_motd = null
 
 var/datum/nanomanager/nanomanager		= new() // NanoManager, the manager for Nano UIs.
 
-var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.
+//var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.
 
 var/season = "SPRING"
 
@@ -123,7 +87,7 @@ var/season = "SPRING"
 
 /proc/get_season()
 	return capitalize(lowertext(season))
-
+/*
 // MySQL configuration
 var/sqladdress = "localhost"
 var/sqlport    = "3306"
@@ -146,10 +110,10 @@ var/forumsqllogin   = "root"
 var/forumsqlpass    = ""
 var/forum_activated_group     = "2"
 var/forum_authenticated_group = "10"
-
+*/
 // For FTP requests. (i.e. downloading runtime logs.)
 // However it'd be ok to use for accessing attack logs and such too, which are even laggier.
-var/fileaccess_timer = FALSE
+var/fileaccess_timer = 0
 var/custom_event_msg = null
 
 /*
@@ -158,13 +122,10 @@ var/custom_event_msg = null
 var/DBConnection/dbcon     = new() // Feedback    database (New database)
 var/DBConnection/dbcon_old = new() // /tg/station database (Old database) -- see the files in the SQL folder for information on what goes where.
 */
+/*
 
 // Reference list for disposal sort junctions. Filled up by sorting junction's New()
 /var/list/tagger_locations = list()
-
-// Added for Xenoarchaeology, might be useful for other stuff.
-var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
-
 
 // Used by robots and robot preferences.
 var/list/robot_module_types = list(
@@ -193,7 +154,7 @@ var/static/list/scarySounds = list(
 	'sound/effects/clownstep1.ogg',
 	'sound/effects/clownstep2.ogg'
 )
-
+*/
 // Bomb cap!
 var/max_explosion_range = 14
 

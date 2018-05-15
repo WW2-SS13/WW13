@@ -358,7 +358,7 @@ proc/n_str2num(var/string)
 proc/n_num2str(var/num)
 	if(isnum(num))
 		return num2text(num)
-
+/*
 // Squareroot
 proc/n_sqrt(var/num)
 	if(isnum(num))
@@ -394,7 +394,7 @@ proc/n_clamp(var/num, var/min=-1, var/max=1)
 		if(num>=max)
 			return max
 		return num
-
+*/
 // Returns TRUE if N is inbetween Min and Max
 proc/n_inrange(var/num, var/min=-1, var/max=1)
 	if(isnum(num)&&isnum(min)&&isnum(max))

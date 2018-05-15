@@ -5,9 +5,9 @@ var/list/organ_cache = list()
 	icon = 'icons/obj/surgery.dmi'
 	var/dead_icon
 	var/mob/living/carbon/human/owner = null
-	var/status = FALSE
+	var/status = 0
 	var/vital //Lose a vital limb, die immediately.
-	var/damage = FALSE // amount of damage to the organ
+	var/damage = 0 // amount of damage to the organ
 
 	var/min_bruised_damage = 10
 	var/min_broken_damage = 30
@@ -50,6 +50,7 @@ var/list/organ_cache = list()
 
 /obj/item/organ/New(var/mob/living/carbon/holder, var/internal)
 	..(holder)
+	organ_list += src
 	create_reagents(5)
 	if(!max_damage)
 		max_damage = min_broken_damage * 2
@@ -76,6 +77,10 @@ var/list/organ_cache = list()
 		if(internal)
 			holder.internal_organs |= src
 	update_icon()
+
+/obj/item/organ/Destroy()
+	organ_list -= src
+	..()
 
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)

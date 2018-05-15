@@ -263,21 +263,27 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	roundabout()
 
-	// wait for serverswap to do its magic - kachnov
-	spawn (50)
+	/* Wait for serverswap to do its magic
+	 * this was 50 but now it's 70 to let the entire JOJO meme play even when the server restarts quickly
+	 * because sometimes it takes 1 second to restart other times 30 seconds :thinking: - Kachnov */
+	spawn (70)
+
+		var/sleeptime = 0
 
 		if (serverswap.Find("snext"))
 			if (serverswap.Find(serverswap["snext"]))
 				var/new_address = "byond://[world.internet_address]:[serverswap[serverswap["snext"]]]"
 				world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>If you aren't taken there automatically, click here to join the linked server: <b>[new_address]</b></span>"
-				for (var/client/C in clients)
-					C << link(new_address)
+				sleeptime = 100
+				for (var/C in clients)
 					winset(C, null, "mainwindow.flash=1")
+					C << link(new_address)
 			else
 				world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to rejoin (It may take a minute or two): <b>byond://[world.internet_address]:[port]</b></span>"
 		else
 			world << "<span class = 'danger'>Rebooting!</span> <span class='notice'>Click here to rejoin (It may take a minute or two): <b>byond://[world.internet_address]:[port]</b></span>"
 
+		sleep(sleeptime) // I think this is needed so C << link() doesn't fail
 		processScheduler.stop() // will be started again after the serverswap occurs
 		..(reason)
 

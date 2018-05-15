@@ -2,6 +2,9 @@
 #define GERMAN_XO_TITLE "Oberleutnant"
 #define GERMAN_SO_TITLE "Leutnant"
 #define GERMAN_QM_TITLE "Frachtoffizier"
+#define GERMAN_TO_TITLE "Dirigent" // train officer
+#define GERMAN_SL_TITLE "Gruppenfuhrer"
+#define GERMAN_AO_TITLE "Kanonier" // arty officer
 
 /datum/job/german
 	faction = "Station"
@@ -252,7 +255,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/squad_leader
-	title = "Gruppenfuhrer"
+	title = GERMAN_SL_TITLE
 	en_meaning = "Platoon 2IC"
 	rank_abbreviation = "uffz"
 	head_position = FALSE
@@ -324,6 +327,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/medic(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/german(H), slot_back)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H.add_note("Role", "You are a <b>[title]</b>, a medic. Your job is to keep the army healthy and in good condition.")
 	H.give_radio()
@@ -441,7 +445,7 @@
 
 	// AUTOBALANCE
 	min_positions = 1
-	max_positions = 4
+	max_positions = 3
 	player_threshold = PLAYER_THRESHOLD_MEDIUM
 	scale_to_players = PLAYER_THRESHOLD_HIGHEST
 
@@ -697,7 +701,7 @@
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate)
 
 /datum/job/german/tankcrew/specialcheck()
-	for (var/obj/tank/german/T in world)
+	for (var/obj/tank/german/T in tank_list)
 		if (!T.admin)
 			return TRUE
 	return FALSE
@@ -745,7 +749,7 @@
 	return list(new/obj/item/weapon/key/german)
 
 /datum/job/german/anti_tank_crew/specialcheck()
-	for (var/obj/tank/german/T in world)
+	for (var/obj/tank/soviet/T in tank_list)
 		if (!T.admin)
 			return TRUE
 	return FALSE
@@ -797,7 +801,7 @@ var/first_fallschirm = TRUE
 	if(first_fallschirm)
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_r_hand)
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_r_hand)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/semiautomatic/g41(H), slot_r_hand)
 
 	if(first_fallschirm)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/german/fallofficer(H), slot_belt)
@@ -886,7 +890,7 @@ var/first_fallschirm = TRUE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/artyman
-	title = "Kanonier"
+	title = GERMAN_AO_TITLE
 	en_meaning = "Artillery Officer"
 	rank_abbreviation = "uffz"
 	selection_color = "#4c4ca5"
@@ -926,11 +930,11 @@ var/first_fallschirm = TRUE
 	H.make_artillery_officer()
 
 /datum/job/german/artyman/get_keys()
-	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate)
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/QM)
 
 /datum/job/german/artyman/specialcheck()
-	for (var/obj/structure/artillery/base/B in world)
-		if (B.loc)
+	for (var/B in artillery_list)
+		if (B:loc)
 			return TRUE
 	return FALSE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -981,8 +985,8 @@ var/first_fallschirm = TRUE
 	return list(new/obj/item/weapon/key/german)
 
 /datum/job/german/scout/specialcheck()
-	for (var/obj/structure/artillery/base/B in world)
-		if (B.loc)
+	for (var/B in artillery_list)
+		if (B:loc)
 			return TRUE
 	return FALSE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -992,7 +996,7 @@ var/first_fallschirm = TRUE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/job/german/conductor
-	title = "Dirigent"
+	title = GERMAN_TO_TITLE
 	en_meaning = "Train Conductor"
 	rank_abbreviation = "uffz"
 	selection_color = "#4c4ca5"
@@ -1014,6 +1018,7 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/gerofficer(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat/gercap/fieldcap(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol/mauser(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/submachinegun/mp40(H), slot_back)
 	H.add_note("Role", "You are a <b>[title]</b>, a train conductor. Your job is take men to and from the front.")
 	H.give_radio()
 	H.setStat("strength", STAT_MEDIUM_HIGH)
@@ -1029,7 +1034,7 @@ var/first_fallschirm = TRUE
 
 /datum/job/german/conductor/get_keys()
 	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/train,
-		new/obj/item/weapon/key/german/command_intermediate)
+		new/obj/item/weapon/key/german/command_intermediate, new/obj/item/weapon/key/german/QM)
 
 ////////////////////////////////
 /datum/job/german/squad_leader_ss
@@ -1114,6 +1119,57 @@ var/first_fallschirm = TRUE
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/sshelm(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	H.add_note("Role", "You are a <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>.")
+	H.give_radio()
+
+	// glorious SS stats
+	H.setStat("strength", STAT_VERY_HIGH)
+	H.setStat("engineering", STAT_MEDIUM_HIGH)
+	H.setStat("rifle", STAT_VERY_HIGH)
+	H.setStat("mg", STAT_NORMAL)
+	H.setStat("smg", STAT_MEDIUM_HIGH)
+	H.setStat("pistol", STAT_VERY_HIGH)
+	H.setStat("heavyweapon", STAT_MEDIUM_HIGH)
+	H.setStat("medical", STAT_NORMAL)
+	H.setStat("survival", STAT_VERY_HIGH)
+	H.setStat("shotgun", STAT_NORMAL)
+	H.setStat("stamina", STAT_VERY_HIGH)
+	return TRUE
+
+/datum/job/german/soldier_ss/get_keys()
+	return list(new/obj/item/weapon/key/german, new/obj/item/weapon/key/german/SS)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/job/german/medic_ss
+	title = "SS-Sanitäter"
+	en_meaning = "SS Medic"
+	rank_abbreviation = "schtz" // oGftr for normal medics
+	selection_color = "#4c4ca5"
+	spawn_location = "JoinLateSS"
+	is_SS = TRUE
+	SL_check_independent = TRUE
+
+	// AUTOBALANCE
+	min_positions = 1
+	max_positions = 1
+	player_threshold = PLAYER_THRESHOLD_HIGHEST - 10
+	scale_to_players = PLAYER_THRESHOLD_HIGHEST + 10
+
+/datum/job/german/medic_ss/equip(var/mob/living/carbon/human/H)
+	if(!H)	return FALSE
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/geruni/ssuni(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/sssmock(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gerhelm/sshelm(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/boltaction/kar98k(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/doctor_handbook(H), slot_l_store)
 	H.add_note("Role", "You are a <b>[title]</b>, a soldier for an elite SS unit. Your job is to follow the orders of the <b>SS-Untersharffuhrer</b>.")
 	H.give_radio()
 

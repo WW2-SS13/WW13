@@ -41,6 +41,14 @@
 	weight = 20
 	heavy = TRUE
 
+/obj/item/weapon/shovel/spade/mortar/New()
+	..()
+	mortar_spade_list += src
+
+/obj/item/weapon/shovel/spade/mortar/Destroy()
+	mortar_spade_list -= src
+	..()
+
 /obj/item/weapon/shovel/spade/mortar/attack_self(var/mob/user as mob)
 	var/target = get_step(user, user.dir)
 	if (target)

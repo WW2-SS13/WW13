@@ -68,20 +68,10 @@
 				if(!(H.species && (H.species.flags)))
 					H.Weaken(3)
 				M << "<span class = 'red'><b>Your [affecting.name] gets deeply cut by \the [src]!</b></span>"
-			// stops barbwire from bugging crawling
-			switch (H.dir)
-				if (EAST, NORTHEAST, SOUTHEAST)
-					H.dir = WEST
-				if (WEST, NORTHWEST, SOUTHWEST)
-					H.dir = EAST
-				if (NORTH)
-					H.dir = SOUTH
-				if (SOUTH)
-					H.dir = NORTH
-			if (H.client.canmove)
-				H.client.canmove = FALSE
-				spawn (2)
-					H.client.canmove = TRUE
+			// stop crawling until we're up to prevent buggy crawling
+			H.scrambling = TRUE
+			spawn (35)
+				H.scrambling = FALSE
 	return ..()
 
 /obj/structure/barbwire/attackby(obj/item/W as obj, mob/user as mob)

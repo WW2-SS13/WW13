@@ -40,9 +40,9 @@ var/list/vocal_emotes = list(
 		var/muzzled = istype(wear_mask, /obj/item/clothing/mask/muzzle) || istype(wear_mask, /obj/item/weapon/grenade)
 		//var/m_type = 1
 
-		for (var/obj/item/weapon/implant/I in src)
+/*		for (var/obj/item/weapon/implant/I in src)
 			if (I.implanted)
-				I.trigger(act, src)
+				I.trigger(act, src)*/
 
 		if(stat == 2.0/* && (act != "deathgasp")*/)
 			return
@@ -636,6 +636,10 @@ var/list/vocal_emotes = list(
 
 			else
 				src << "<span class = 'notice'>Unusable emote '[act]'. Say *help for a list.</span>"
+
+		if (muzzled && m_type == 2)
+			src << "<span class = 'warning'>You are unable to make noises while something is in your mouth.</span>"
+			return
 
 		if (message)
 			log_emote("[name]/[key] : [message]")

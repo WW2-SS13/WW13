@@ -1,7 +1,4 @@
-#define MAP_MODE(x) if (map_mode == x)
-#define WARFARE 1
 #define NO_WINNER "Neither side has captured the other side's base."
-var/map_mode = WARFARE
 
 var/global/obj/map_metadata/map = null
 
@@ -30,15 +27,15 @@ var/global/obj/map_metadata/map = null
 	var/list/supply_points_per_tick = list(
 		GERMAN = 1.00,
 		SOVIET = 1.00)
-	var/character_arrival_announcement_time = 10
 	var/katyushas = TRUE
 	var/no_subfaction_chance = TRUE
 	var/subfaction_is_main_faction = FALSE
 	var/list/faction_organization = list()
+	var/list/initial_faction_organization = list()
 	var/list/faction_distribution_coeffs = list(INFINITY) // list(INFINITY) = no hard locks on factions
 	var/list/available_subfactions = list()
 	var/list/roundend_condition_sides = list(
-		list(GERMAN) = /area/prishtina/german,
+		list(GERMAN, ITALIAN) = /area/prishtina/german,
 		list(SOVIET) = /area/prishtina/soviet)
 	var/list/ambience = list('sound/ambience/war.ogg')
 	var/list/songs = list(
@@ -74,14 +71,17 @@ var/global/obj/map_metadata/map = null
 	var/list/zlevels_without_lighting = list()
 	var/list/areas_without_lighting = list()
 
-	// misc
+	// fluff
 	var/meme = FALSE
+	var/battle_name = null
 
 /obj/map_metadata/New()
 	..()
 	map = src
 	icon = null
 	icon_state = null
+
+	initial_faction_organization = faction_organization.Copy()
 
 	if (no_subfaction_chance)
 		if (available_subfactions.len)
@@ -105,33 +105,33 @@ var/global/obj/map_metadata/map = null
 		if (germans_can_cross_blocks())
 			world << cross_message(GERMAN)
 			// let new players see the reinforcements links
-			for (var/mob/new_player/np in world)
-				if (np.client)
-					np.new_player_panel_proc()
+			for (var/np in new_player_mob_list)
+				if (np:client)
+					np:new_player_panel_proc()
 
 	else if (last_crossing_block_status[GERMAN] == TRUE)
 		if (!germans_can_cross_blocks())
 			world << reverse_cross_message(GERMAN)
 			// let new players see the reinforcements links
-			for (var/mob/new_player/np in world)
-				if (np.client)
-					np.new_player_panel_proc()
+			for (var/np in new_player_mob_list)
+				if (np:client)
+					np:new_player_panel_proc()
 
 	if (last_crossing_block_status[SOVIET] == FALSE)
 		if (soviets_can_cross_blocks())
 			world << cross_message(SOVIET)
 			// let new players see the reinforcements links
-			for (var/mob/new_player/np in world)
-				if (np.client)
-					np.new_player_panel_proc()
+			for (var/np in new_player_mob_list)
+				if (np:client)
+					np:new_player_panel_proc()
 
 	else if (last_crossing_block_status[SOVIET] == TRUE)
 		if (!soviets_can_cross_blocks())
 			world << reverse_cross_message(SOVIET)
 			// let new players see the reinforcements links
-			for (var/mob/new_player/np in world)
-				if (np.client)
-					np.new_player_panel_proc()
+			for (var/np in new_player_mob_list)
+				if (np:client)
+					np:new_player_panel_proc()
 
 	if (last_crossing_block_status[event_faction] == FALSE)
 		if (specialfaction_can_cross_blocks())
@@ -214,9 +214,9 @@ var/global/obj/map_metadata/map = null
 		if (win_condition_spam_check)
 			return FALSE
 		ticker.finished = TRUE
-		var/message = "The battle has ended in a stalemate!"
+		var/message = "The [battle_name ? battle_name : "battle"] has ended in a stalemate!"
 		if (current_winner && current_loser)
-			message = "The battle is over! The [current_winner] was victorious over the [current_loser]!"
+			message = "The battle is over! The [current_winner] was victorious over the [current_loser][battle_name ? " in the [battle_name]" : ""]!"
 		world << "<font size = 4><span class = 'notice'>[message]</span></font>"
 		show_global_battle_report(null)
 		win_condition_spam_check = TRUE
@@ -226,7 +226,7 @@ var/global/obj/map_metadata/map = null
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.33))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[2][1])] base! They will win in {time} minute{s}."
-				next_win = world.time + short_win_time()
+				next_win = world.time + short_win_time(roundend_condition_sides[2][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[2][1])
@@ -235,7 +235,7 @@ var/global/obj/map_metadata/map = null
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[1]]), roundend_condition_sides[2], roundend_condition_sides[1], 1.01))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[1][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[2][1])] base! They will win in {time} minute{s}."
-				next_win = world.time + long_win_time()
+				next_win = world.time + long_win_time(roundend_condition_sides[2][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[1][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[2][1])
@@ -244,7 +244,7 @@ var/global/obj/map_metadata/map = null
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.33))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[2][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
-				next_win = world.time + short_win_time()
+				next_win = world.time + short_win_time(roundend_condition_sides[1][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[1][1])
@@ -253,7 +253,7 @@ var/global/obj/map_metadata/map = null
 		if (!win_condition.check(typesof(roundend_condition_sides[roundend_condition_sides[2]]), roundend_condition_sides[1], roundend_condition_sides[2], 1.01))
 			if (last_win_condition != win_condition.hash)
 				current_win_condition = "The [roundend_condition_def2army(roundend_condition_sides[2][1])] has captured the [roundend_condition_def2name(roundend_condition_sides[1][1])] base! They will win in {time} minute{s}."
-				next_win = world.time + long_win_time()
+				next_win = world.time + long_win_time(roundend_condition_sides[1][1])
 				announce_current_win_condition()
 				current_winner = roundend_condition_def2army(roundend_condition_sides[2][1])
 				current_loser = roundend_condition_def2army(roundend_condition_sides[1][1])
@@ -269,7 +269,7 @@ var/global/obj/map_metadata/map = null
 			if (last_reinforcements_next_win != -1)
 				next_win = last_reinforcements_next_win
 			else
-				next_win = world.time + long_win_time()
+				next_win = world.time + long_win_time(null)
 				last_reinforcements_next_win = next_win
 
 			announce_current_win_condition()
@@ -285,6 +285,55 @@ var/global/obj/map_metadata/map = null
 		win_condition.hash = 0
 	last_win_condition = win_condition.hash
 	return TRUE
+
+/obj/map_metadata/proc/has_occupied_base(side)
+
+	// hack
+	if (current_win_condition == NO_WINNER)
+		return FALSE
+
+	var/list/soldiers = list(
+		GERMAN = 0,
+		SOVIET = 0,
+		ITALIAN = 0,
+		CIVILIAN = 0,
+		PARTISAN = 0,
+		PILLARMEN = 0)
+
+	if (!soldiers.Find(side))
+		soldiers[side] = 0
+
+	var/s1 = 0
+	var/s2 = 0
+
+	for(var/mob/living/carbon/human/H in human_mob_list)
+
+		var/datum/job/job = H.original_job
+
+		if(!job)
+			continue
+
+		if(H.stat != DEAD && H.stat != UNCONSCIOUS && !H.restrained() && ((H.weakened+H.stunned) == 0) && H.client)
+			if (soldiers.Find(job.base_type_flag()))
+				var/H_area = get_area(H)
+				if (roundend_condition_sides[1].Find(job.base_type_flag()))
+					if (istype(H_area, roundend_condition_sides[roundend_condition_sides[2]]))
+						++s1
+				else if (roundend_condition_sides[2].Find(job.base_type_flag()))
+					if (istype(H_area, roundend_condition_sides[roundend_condition_sides[1]]))
+						++s2
+			else
+				var/M = "WARNING: could not find '[job.base_type_flag()]' in local list soldiers in proc '/obj/map/proc/has_occupied_base()'. Please contact a coder."
+				log_admin(M)
+				message_admins(M)
+				log_debug(M)
+
+	if (roundend_condition_sides[1].Find(side))
+		return s2 > s1
+	else if (roundend_condition_sides[2].Find(side))
+		return s1 > s2
+
+	return FALSE
 
 /obj/map_metadata/proc/next_win_time()
 	return round((next_win - world.time)/600)
@@ -302,17 +351,17 @@ var/global/obj/map_metadata/map = null
 /obj/map_metadata/proc/announce_current_win_condition()
 	world << "<font size = 3>[current_stat_message()]</font>"
 
-/obj/map_metadata/proc/short_win_time()
+/obj/map_metadata/proc/short_win_time(faction)
 	if (clients.len >= 20)
-		return 6000 // ten minutes
+		return 6000 // 10 minutes
 	else
-		return 3000 // five minutes
+		return 3000 // 5 minutes
 
-/obj/map_metadata/proc/long_win_time()
+/obj/map_metadata/proc/long_win_time(faction)
 	if (clients.len >= 20)
 		return 9000 // 15 minutes
 	else
-		return 6000 // ten minutes
+		return 6000 // 10 minutes
 
 /obj/map_metadata/proc/roundend_condition_def2name(define)
 	switch (define)

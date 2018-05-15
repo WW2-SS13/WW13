@@ -158,10 +158,12 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				world << "<font color='red'><b>The round will start soon.</b></font>"*/
 
 		if(restart)
-			world << "World restarting due to vote..."
-			sleep(50)
-			log_game("Rebooting due to restart vote.")
-			world.Reboot()
+			world << "Round ending due to vote."
+			log_game("Ending the round due to restart vote.")
+			if (map)
+				map.next_win = world.time - 100
+			else
+				ticker.finished = TRUE
 
 		return .
 
@@ -197,6 +199,10 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 						choices.Add(map)
 						if (clients.len < mapswap_process.maps[map])
 							disabled[map] = "[mapswap_process.maps[map]] players"
+						if (map == "Pillar")
+							choices[map] = -5
+						else
+							choices[map] = 0
 	//			if ("gamemode")
 	//				choices = mapswap.modes[mapswap.next_map]
 				if("custom")

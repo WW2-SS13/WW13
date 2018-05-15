@@ -1,4 +1,5 @@
-/proc/n_of_side(x)
+// get all alive mobs of x faction
+/proc/alive_n_of_side(x)
 	. = 0
 	switch (x)
 		if (PARTISAN)
@@ -31,6 +32,21 @@
 					if (H.original_job.base_type_flag() == ITALIAN)
 						AZONE_CHECK(H)
 							++.
+
+// get every single mob of x faction: useful for counting deceased & gibbed mobs. More efficient than n_of_side()
+/proc/total_n_of_side(x)
+	. = 0
+	switch (x)
+		if (PARTISAN)
+			return dead_partisans.len + heavily_injured_partisans.len + alive_partisans.len
+		if (CIVILIAN)
+			return dead_civilians.len + heavily_injured_civilians.len + alive_civilians.len
+		if (GERMAN)
+			return dead_germans.len + heavily_injured_germans.len + alive_germans.len
+		if (SOVIET)
+			return dead_russians.len + heavily_injured_russians.len + alive_russians.len
+		if (ITALIAN)
+			return dead_italians.len + heavily_injured_italians.len + alive_italians.len
 
 /mob/living/carbon/human/proc/equip_coat(ctype)
 	if (season == "WINTER")

@@ -110,7 +110,7 @@
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
 	M.nutrition += nutriment_factor * removed
-	var/strength_mod = 1.0
+	var/strength_mod = 0.5
 
 	if (M.water < 0)
 		M.water += rand(40,50)
@@ -133,9 +133,9 @@
 	if(dose * strength_mod >= strength * 7) // Pass out
 		M.paralysis = max(M.paralysis, 20)
 		M.sleeping  = max(M.sleeping, 30)
-
-	if(druggy != FALSE)
-		M.druggy = max(M.druggy, druggy)
+/*
+	if(druggy != 0)
+		M.druggy = max(M.druggy, druggy)*/
 
 	if(adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))

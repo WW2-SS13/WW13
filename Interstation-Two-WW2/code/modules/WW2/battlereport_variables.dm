@@ -1,18 +1,21 @@
 #define AZONE_CHECK(mob) if (!get_area(mob) || !istype(get_area(mob), /area/prishtina/admin))
 
 var/list/alive_germans = list()
+var/list/alive_italians = list()
 var/list/alive_russians = list()
 var/list/alive_civilians = list()
 var/list/alive_partisans = list()
 var/list/alive_undead = list()
 
 var/list/heavily_injured_germans = list()
+var/list/heavily_injured_italians = list()
 var/list/heavily_injured_russians = list()
 var/list/heavily_injured_civilians = list()
 var/list/heavily_injured_partisans = list()
 var/list/heavily_injured_undead = list()
 
 var/list/dead_germans = list()
+var/list/dead_italians = list()
 var/list/dead_russians = list()
 var/list/dead_civilians = list()
 var/list/dead_partisans = list()
@@ -27,10 +30,14 @@ var/list/recently_died = list()
 	var/list/dead = list()
 
 	switch (original_job.base_type_flag())
-		if (GERMAN, ITALIAN)
+		if (GERMAN)
 			dead = dead_germans
 			injured = heavily_injured_germans
 			alive = alive_germans
+		if (ITALIAN)
+			dead = dead_italians
+			injured = heavily_injured_italians
+			alive = alive_italians
 		if (SOVIET)
 			dead = dead_russians
 			injured = heavily_injured_russians

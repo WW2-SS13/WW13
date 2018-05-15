@@ -19,7 +19,9 @@ below 100 is not dizzy
 													// clamped to max 1000
 	if(dizziness > 100 && !is_dizzy)
 		spawn(0)
-			dizzy_process()
+			if (isliving(src))
+				var/mob/living/L = src
+				L.dizzy_process()
 
 
 /*
@@ -27,20 +29,13 @@ dizzy process - wiggles the client's pixel offset over time
 spawned from make_dizzy(), will terminate automatically when dizziness gets <100
 note dizziness decrements automatically in the mob's Life() proc.
 */
-/mob/proc/dizzy_process()
+/mob/living/proc/dizzy_process()
 	is_dizzy = TRUE
 	while(dizziness > 100)
-		if(client)
-			for (var/obj/item/weapon/gun/G in contents)
-				for (var/obj/item/weapon/attachment/scope/S in G.contents)
-					if (S.zoomed)
-						client.pixel_x = 0
-						client.pixel_y = 0
-						goto end
+		if(client && !dizzycheck)
 			var/amplitude = dizziness*(sin(dizziness * 0.044 * world.time) + 1) / 70
 			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
 			client.pixel_y = amplitude * cos(0.008 * dizziness * world.time)
-			end
 		sleep(1)
 	//endwhile - reset the pixel offsets to zero
 	is_dizzy = FALSE

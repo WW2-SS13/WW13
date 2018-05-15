@@ -416,17 +416,19 @@
 	icon_state = "windownew_frame"
 	layer = MOB_LAYER + 0.01
 	anchored = TRUE
-/*
-/obj/structure/classic_window_frame/Crossed(mover)
-	if (isliving(mover))
-		visible_message("<span class = 'warning'>[mover] starts climbing through the window frame.</span>")
-		if (do_after(mover, rand(25,35), src))
-			visible_message("<span class = 'warning'>[mover] climbs through the window frame.</span>")
-			return ..(mover)
-		return FALSE
-	else
-		return ..(mover)
-*/
+
+/obj/structure/classic_window_frame/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/stack/material/glass))
+		var/obj/item/stack/S = W
+		if (S.amount >= 3)
+			visible_message("<span class = 'notice'>[user] starts to add glass to the window frame...</span>")
+			if (do_after(user, 50, src))
+				new/obj/structure/window/classic(get_turf(src))
+				visible_message("<span class = 'notice'>[user] adds glass to the window frame.</span>")
+				S.use(3)
+				qdel(src)
+		else
+			user << "<span class = 'warning'>You need at least 3 sheets of glass.</span>"
 
 /obj/structure/window/classic
 	desc = "A good old window."
@@ -470,7 +472,7 @@
 
 /obj/structure/window/classic/shatter(var/display_message = TRUE)
 	var/myturf = get_turf(src)
-	spawn (1)
+	spawn (is_on_train() ? 0 : 1)
 		new/obj/structure/classic_window_frame(myturf)
 	..(display_message)
 

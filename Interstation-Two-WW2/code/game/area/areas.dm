@@ -71,7 +71,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 var/list/teleportlocs = list()
 
 /hook/startup/proc/setupTeleportLocs()
-	for(var/area/AR in world)
+	for(var/area in area_list)
+		var/area/AR = area
 		if(teleportlocs.Find(AR.name)) continue
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
 		if (picked)
@@ -85,7 +86,8 @@ var/list/teleportlocs = list()
 var/list/ghostteleportlocs = list()
 
 /hook/startup/proc/setupGhostTeleportLocs()
-	for(var/area/AR in world)
+	for(var/area in area_list)
+		var/area/AR = area
 		if(ghostteleportlocs.Find(AR.name)) continue
 		if(!istype(AR, /area/prishtina)) continue
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
@@ -109,7 +111,6 @@ var/list/ghostteleportlocs = list()
 	icon_state = ""
 	layer = 10
 	uid = ++global_uid
-	all_areas += src
 
 	if(!requires_power || config.machinery_does_not_use_power)
 		power_light = FALSE
@@ -318,9 +319,12 @@ var/list/mob/living/forced_ambiance_list = new
 	play_ambience(L, override_ambience)
 
 /area/proc/play_ambience(var/mob/living/L, var/override = FALSE)
+
     // Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))    return
 	if(!istype(L)) return
+	if(!L.loc)
+		return
 
 	var/client/CL = L.client
 /*
@@ -344,34 +348,38 @@ var/list/mob/living/forced_ambiance_list = new
 			L.client.played = world.time
 			return TRUE
 	else */
-	if (!CL.ambience_playing || override)
-		var/sound = (map && map.ambience.len) ? pick(map.ambience) : null
-		if (sound)
-			CL.ambience_playing = sound
 
-			var/ideal_x = round(world.maxx/2)
-			var/ideal_y = round(world.maxy/2)
-			var/area/L_area = get_area(L)
+	var/lastsound = CL.ambience_playing
+	var/sound = (map && map.ambience.len) ? pick(map.ambience) : null
+	if (istype(src, /area/prishtina/void/sky))
+		sound = 'sound/ambience/shipambience.ogg'
 
-			// war volume will vary from 2% to 22%, depending on where you are (on a 150x150 map)
-			// the max() check makes this code forestmap compatible too
-			var/warvolume = 21
+	if (sound && (!CL.ambience_playing || override || sound != lastsound))
+		CL.ambience_playing = sound
 
-			warvolume -= ceil(abs(L.x - ideal_x)/15)
-			warvolume -= ceil(abs(L.y - ideal_y)/15)
+		var/ideal_x = round(world.maxx/2)
+		var/ideal_y = round(world.maxy/2)
+		var/area/L_area = get_area(L)
 
-			if (L_area)
-				if (L_area.location == AREA_INSIDE)
-					warvolume -= 4
-				if (L_area.is_void_area)
-					warvolume -= 5
+		// war volume will vary from 2% to 22%, depending on where you are (on a 150x150 map)
+		// the max() check makes this code forestmap compatible too
+		var/warvolume = 21
 
-			warvolume = max(warvolume, 2)
+		warvolume -= ceil(abs(L.x - ideal_x)/15)
+		warvolume -= ceil(abs(L.y - ideal_y)/15)
 
-			L << sound(null, channel = SOUND_CHANNEL_AMBIENCE)
-			var/sound/S = sound(sound, repeat = TRUE, wait = FALSE, volume = warvolume, channel = SOUND_CHANNEL_AMBIENCE)
-			S.environment = 22
-			L << S
+		if (L_area)
+			if (L_area.location == AREA_INSIDE)
+				warvolume -= 4
+			if (L_area.is_void_area)
+				warvolume -= 5
+
+		warvolume = max(warvolume, 2)
+
+		L << sound(null, channel = SOUND_CHANNEL_AMBIENCE)
+		var/sound/S = sound(sound, repeat = TRUE, wait = FALSE, volume = warvolume, channel = SOUND_CHANNEL_AMBIENCE)
+		S.environment = 22
+		L << S
 
 /proc/stop_ambience(var/mob_or_client)
 	var/client/C = isclient(mob_or_client) ? mob_or_client : mob_or_client:client

@@ -4,10 +4,10 @@ Maryla
 Angela
 Zygfryda
 Eugenia
-Żaklina
+Zhaklina
 Monika
-Grażyna
-Bożena
+Grazhyna
+Bozhena
 Wanda
 Teresa
 Izabela
@@ -16,5 +16,5 @@ Brygida
 Wanessa
 Gabriela
 Lucyna
-Ludmiła
+Ludmila
 Hanna

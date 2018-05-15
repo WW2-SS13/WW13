@@ -1,5 +1,7 @@
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(slot)
+	if (lying && !list(slot_l_hand, slot_r_hand).Find(slot))
+		return
 	var/obj/item/W = get_active_hand()
 	var/obj/item/E = get_equipped_item(slot)
 	if (istype(E))
@@ -9,7 +11,8 @@
 			E.attack_hand(src)
 	else
 		equip_to_slot_if_possible(W, slot)
-		W.on_changed_slot()
+		if (W)
+			W.on_changed_slot()
 
 /mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, disable_warning = TRUE, redraw_mob = TRUE, prioritize_active_hand = FALSE)
 	if (!prioritize_active_hand)

@@ -125,8 +125,6 @@
 
 	/* All stat names (here) MUST be lowercase. */
 
-	var/takes_less_damage = FALSE
-
 	var/list/stats = list(
 		"strength" = list(100,100),
 		"engineering" = list(100,100),
@@ -151,3 +149,9 @@
 	var/debugmob = FALSE
 
 	var/next_footstep_sound_at_movement_tick = -1
+
+	var/never_set_faction_huds = TRUE
+
+	var/life_hud_check = list(
+		"stat" = -1,
+		"health" = -1)

@@ -138,6 +138,7 @@ Parts of code courtesy of Super3222
 	return TRUE
 
 /mob/living/var/next_zoom = -1
+/mob/living/var/dizzycheck = FALSE
 
 /obj/item/weapon/attachment/scope/proc/zoom(mob/living/user, forced_zoom, var/bypass_can_zoom = FALSE)
 
@@ -162,9 +163,10 @@ Parts of code courtesy of Super3222
 			zoomed = FALSE
 			return
 		else
+			user.dizzycheck = TRUE
 			if(do_after(user, 5, user, TRUE))//Scope delay
-				var/_x = FALSE
-				var/_y = FALSE
+				var/_x = 0
+				var/_y = 0
 				switch(user.dir)
 					if(NORTH)
 						_y = zoom_amt
@@ -187,20 +189,20 @@ Parts of code courtesy of Super3222
 						if(WEST)
 							_x += view_offset
 					animate(user.client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, 4, TRUE)
-					animate(user.client, pixel_x = FALSE, pixel_y = FALSE)
+					animate(user.client, pixel_x = 0, pixel_y = 0)
 					user.client.pixel_x = world.icon_size*_x
 					user.client.pixel_y = world.icon_size*_y
 				else // Otherwise just slide the camera
 					animate(user.client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, 4, TRUE)
-					animate(user.client, pixel_x = FALSE, pixel_y = FALSE)
+					animate(user.client, pixel_x = 0, pixel_y = 0)
 					user.client.pixel_x = world.icon_size*_x
 					user.client.pixel_y = world.icon_size*_y
 				user.visible_message("[user] peers through the [zoomdevicename ? "[zoomdevicename] of \the [name]" : "[name]"].")
 			else
 				zoomed = FALSE
 	else //Resets everything
-		user.client.pixel_x = FALSE
-		user.client.pixel_y = FALSE
+		user.client.pixel_x = 0
+		user.client.pixel_y = 0
 		user.client.view = world.view
 		user.visible_message("[zoomdevicename ? "[user] looks up from \the [name]" : "[user] lowers \the [name]"].")
 
@@ -211,6 +213,9 @@ Parts of code courtesy of Super3222
 		for (var/obj/item/clothing/under/U in user.contents)
 			for (var/obj/item/clothing/accessory/storage/S in U.accessories)
 				S.hold.close_all()
+		user.dizzycheck = TRUE
+	else
+		user.dizzycheck = FALSE
 
 	if (user.aiming)
 		user.aiming.update_aiming()

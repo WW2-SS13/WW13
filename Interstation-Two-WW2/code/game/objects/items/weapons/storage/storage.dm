@@ -285,11 +285,12 @@
 
 	if(user)
 		var/datum/hud/HUDdatum = global.HUDdatums[user.defaultHUD]
-		Xcor = HUDdatum.ConteinerData["Xspace"]
-		Ycor = HUDdatum.ConteinerData["Yspace"]
-		ColCountDatum = HUDdatum.ConteinerData["ColCount"]
-		Xslot = HUDdatum.ConteinerData["Xslot"]
-		Yslot = HUDdatum.ConteinerData["Yslot"]
+		if (HUDdatum)
+			Xcor = HUDdatum.ConteinerData["Xspace"]
+			Ycor = HUDdatum.ConteinerData["Yspace"]
+			ColCountDatum = HUDdatum.ConteinerData["ColCount"]
+			Xslot = HUDdatum.ConteinerData["Xslot"]
+			Yslot = HUDdatum.ConteinerData["Yslot"]
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents

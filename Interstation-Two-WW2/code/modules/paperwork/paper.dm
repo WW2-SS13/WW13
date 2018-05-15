@@ -55,7 +55,12 @@
 		update_icon()
 		update_space(info)
 		updateinfolinks()
-		return
+
+	paper_list += src
+
+/obj/item/weapon/paper/Destroy()
+	paper_list -= src
+	..()
 
 /obj/item/weapon/paper/update_icon()
 	if(icon_state == "paper_talisman")

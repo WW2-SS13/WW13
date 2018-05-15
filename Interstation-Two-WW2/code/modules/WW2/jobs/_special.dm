@@ -3,7 +3,8 @@
 		return TRUE // if we haven't started the game yet
 	if (initial(grace_period) == grace_period)
 		return TRUE // if we started with a grace period and we're still in that
-	for (var/mob/living/carbon/human/H in world)
+	for (var/human in human_mob_list)
+		var/mob/living/carbon/human/H = human
 		var/cont = FALSE
 		if (locate(/obj/item/weapon/key/german/train) in H)
 			cont = TRUE
@@ -347,6 +348,7 @@
 
 	var/obj/item/weapon/gun/projectile/gun = null
 	var/obj/item/ammo_magazine/AM = null
+
 	switch (base_type_flag())
 		if (GERMAN, ITALIAN)
 			if (prob(50))
@@ -387,10 +389,13 @@
 				gun.ammo_magazine.stored_ammo.Remove(R)
 				qdel(R)
 		else
-			var/obj/item/ammo_casing/R = gun.contents[gun.contents.len]
-			if (istype(R))
-				gun.contents.Remove(R)
-				qdel(R)
+			// because iron sights occupy gun.contents[gun.contents.len]
+			if (gun.contents.len > 1)
+				var/obj/item/ammo_casing/R = gun.contents[gun.contents.len-1]
+				if (istype(R))
+					gun.contents.Remove(R)
+					gun.loaded.Remove(R)
+					qdel(R)
 
 	if (AM)
 		for (var/v in 1 to removing_2)

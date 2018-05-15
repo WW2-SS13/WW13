@@ -26,7 +26,7 @@ s//based off of /obj/structure/lattice, but way simpler
 	for (var/atom_movable in get_turf(src))
 		if (!check_object_invalid_for_moving(src, atom_movable))
 			saved_contents += atom_movable
-			if (ismob(atom_movable))
+			if (isliving(atom_movable))
 				saved_mobs += atom_movable
 
 /obj/train_connector/proc/remove_contents_refs()
@@ -79,8 +79,7 @@ s//based off of /obj/structure/lattice, but way simpler
 			x+=master.getMoveInc()
 
 // copied from /obj/train_pseudoturf/move_mobs()
-
-/obj/train_connector/proc/move_mobs(var/_direction)
+/obj/train_connector/proc/move_mobs()
 	for (var/mob in saved_mobs)
 		if (mob)
 			var/mob/M = mob
@@ -119,3 +118,9 @@ s//based off of /obj/structure/lattice, but way simpler
 		qdel(src)
 	else
 		return
+
+/obj/train_connector/Destroy()
+	if (master)
+		master.train_connectors -= src
+		master.reverse_train_connectors -= src
+	..()

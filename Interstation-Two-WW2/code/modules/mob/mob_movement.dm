@@ -631,10 +631,10 @@
 		//Step on nerds in our way
 		if (mob_is_human)
 			if (H.a_intent == I_HURT)
-				for (var/mob/living/L in t1)
+				for (var/mob/living/L in mob.loc)
 					if (L.lying && L != H) // you could step on yourself, this fixes it - Kachnov
 						H.visible_message("<span class = 'danger'>[H] steps on [L]!</span>")
-						playsound(t1, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
+						playsound(mob.loc, 'sound/effects/gore/fallsmash.ogg', 100, TRUE)
 						L.adjustBruteLoss(rand(6,7))
 						if (ishuman(L))
 							L.emote("scream")
@@ -642,7 +642,7 @@
 						sleep(STOMP_TIME)
 						break
 			else
-				for (var/mob/living/L in t1)
+				for (var/mob/living/L in mob.loc)
 					if (L.lying && L != H)
 						H.visible_message("<span class = 'warning'>[H] steps over [L].</span>")
 
@@ -835,7 +835,6 @@
 		mob.movement_process_dirs -= SOUTH
 		mob.movement_process_dirs |= NORTH
 		Move(get_step(mob, NORTH), NORTH)
-		moving_mobs_list_check()
 
 /client/verb/startmovingdown()
 	set name = ".startmovingdown"
@@ -844,7 +843,6 @@
 		mob.movement_process_dirs -= NORTH
 		mob.movement_process_dirs |= SOUTH
 		Move(get_step(mob, SOUTH), SOUTH)
-		moving_mobs_list_check()
 
 /client/verb/startmovingright()
 	set name = ".startmovingright"
@@ -853,7 +851,6 @@
 		mob.movement_process_dirs -= WEST
 		mob.movement_process_dirs |= EAST
 		Move(get_step(mob, EAST), EAST)
-		moving_mobs_list_check()
 
 /client/verb/startmovingleft()
 	set name = ".startmovingleft"
@@ -862,40 +859,27 @@
 		mob.movement_process_dirs -= EAST
 		mob.movement_process_dirs |= WEST
 		Move(get_step(mob, WEST), WEST)
-		moving_mobs_list_check()
 
 /client/verb/stopmovingup()
 	set name = ".stopmovingup"
 	set instant = TRUE
 	if (mob)
 		mob.movement_process_dirs -= NORTH
-		moving_mobs_list_check()
 
 /client/verb/stopmovingdown()
 	set name = ".stopmovingdown"
 	set instant = TRUE
 	if (mob)
 		mob.movement_process_dirs -= SOUTH
-		moving_mobs_list_check()
 
 /client/verb/stopmovingright()
 	set name = ".stopmovingright"
 	set instant = TRUE
 	if (mob)
 		mob.movement_process_dirs -= EAST
-		moving_mobs_list_check()
 
 /client/verb/stopmovingleft()
 	set name = ".stopmovingleft"
 	set instant = TRUE
 	if (mob)
 		mob.movement_process_dirs -= WEST
-		moving_mobs_list_check()
-
-/client/proc/moving_mobs_list_check()
-	if (!mob)
-		return
-	if (mob.movement_process_dirs.len)
-		moving_mobs |= mob
-	else
-		moving_mobs -= mob

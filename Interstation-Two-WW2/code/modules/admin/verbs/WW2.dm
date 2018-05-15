@@ -13,16 +13,15 @@
 
 	var/found = FALSE
 
-	for (var/obj/train_lever/german/lever in world)
-		if (istype(lever))
-			lever.automatic_function(direction, src)
-			found = TRUE
-			break
+	for (var/obj/train_lever/german/lever in lever_list)
+		lever.automatic_function(direction, src)
+		found = TRUE
+		break
 
 	if (found)
 
 		if (direction == "Forwards")
-			direction = "to the FOB"
+			direction = "to the train station"
 
 		else if (direction == "Backwards")
 			direction = "back to the base"
@@ -131,6 +130,8 @@
 		return
 
 	var/_clients = input("How many clients?") as num
+
+	job_master.admin_expected_clients = 0
 	job_master.toggle_roundstart_autobalance(_clients, announce = 2)
 	job_master.admin_expected_clients = _clients
 
@@ -180,12 +181,14 @@
 /proc/show_global_battle_report(var/shower, var/private = FALSE)
 
 	var/total_germans = alive_germans.len + dead_germans.len + heavily_injured_germans.len
+	var/total_italians = alive_italians.len + dead_italians.len + heavily_injured_italians.len
 	var/total_russians = alive_russians.len + dead_russians.len + heavily_injured_russians.len
 	var/total_civilians = alive_civilians.len + dead_civilians.len + heavily_injured_civilians.len
 	var/total_partisans = alive_partisans.len + dead_partisans.len + heavily_injured_partisans.len
 	var/total_undead = alive_undead.len + dead_undead.len + heavily_injured_undead.len
 
 	var/mortality_coefficient_german = 0
+	var/mortality_coefficient_italian = 0
 	var/mortality_coefficient_russian = 0
 	var/mortality_coefficient_civilian = 0
 	var/mortality_coefficient_partisan = 0
@@ -193,6 +196,9 @@
 
 	if (dead_germans.len > 0)
 		mortality_coefficient_german = dead_germans.len/total_germans
+
+	if (dead_italians.len > 0)
+		mortality_coefficient_italian = dead_italians.len/total_italians
 
 	if (dead_russians.len > 0)
 		mortality_coefficient_russian = dead_russians.len/total_russians
@@ -207,30 +213,31 @@
 		mortality_coefficient_undead = dead_undead.len/total_undead
 
 	var/mortality_german = round(mortality_coefficient_german*100)
+	var/mortality_italian = round(mortality_coefficient_italian*100)
 	var/mortality_russian = round(mortality_coefficient_russian*100)
 	var/mortality_civilian = round(mortality_coefficient_civilian*100)
 	var/mortality_partisan = round(mortality_coefficient_partisan*100)
 	var/mortality_undead = round(mortality_coefficient_undead*100)
 
 	var/msg1 = "German Side: [alive_germans.len] alive, [heavily_injured_germans.len] heavily injured or unconscious, [dead_germans.len] deceased. Mortality rate: [mortality_german]%"
-	if (job_master.italians_were_enabled)
-		msg1 = replacetext(msg1, "German Side", "German/Italian Side")
-
-	var/msg2 = "Soviet Side: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, [dead_russians.len] deceased. Mortality rate: [mortality_russian]%"
-	var/msg3 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
-	var/msg4 = "Partisans: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
-	var/msg5 = "Undead: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
+	var/msg2 = "Italian Side: [alive_italians.len] alive, [heavily_injured_italians.len] heavily injured or unconscious, [dead_italians.len] deceased. Mortality rate: [mortality_italian]%"
+	var/msg3 = "Soviet Side: [alive_russians.len] alive, [heavily_injured_russians.len] heavily injured or unconscious, [dead_russians.len] deceased. Mortality rate: [mortality_russian]%"
+	var/msg4 = "Civilians: [alive_civilians.len] alive, [heavily_injured_civilians.len] heavily injured or unconscious, [dead_civilians.len] deceased. Mortality rate: [mortality_civilian]%"
+	var/msg5 = "Partisans: [alive_partisans.len] alive, [heavily_injured_partisans.len] heavily injured or unconscious, [dead_partisans.len] deceased. Mortality rate: [mortality_partisan]%"
+	var/msg6 = "Undead: [alive_undead.len] alive, [heavily_injured_undead.len] heaily injured or unconscious, [dead_undead.len] deceased. Mortality rate: [mortality_undead]%"
 
 	if (map && !map.faction_organization.Find(GERMAN))
 		msg1 = null
-	if (map && !map.faction_organization.Find(SOVIET))
+	if (map && !map.faction_organization.Find(ITALIAN))
 		msg2 = null
-	if (map && !map.faction_organization.Find(CIVILIAN))
+	if (map && !map.faction_organization.Find(SOVIET))
 		msg3 = null
-	if (map && !map.faction_organization.Find(PARTISAN))
+	if (map && !map.faction_organization.Find(CIVILIAN))
 		msg4 = null
-	if (map && !map.faction_organization.Find(PILLARMEN))
+	if (map && !map.faction_organization.Find(PARTISAN))
 		msg5 = null
+	if (map && !map.faction_organization.Find(PILLARMEN))
+		msg6 = null
 
 	var/public = "Yes"
 
@@ -253,6 +260,8 @@
 				world << "<font size=3>[msg4]</font>"
 			if (msg5)
 				world << "<font size=3>[msg5]</font>"
+			if (msg6)
+				world << "<font size=3>[msg6]</font>"
 
 			if (shower)
 				message_admins("[key_name(shower)] showed everyone the battle report.")
@@ -269,137 +278,8 @@
 			shower << msg4
 		if (msg5)
 			shower << msg5
-/*
-/client/proc/generate_hit_table()
-	set category = "Special"
-	set name = "Hit tables"
-	set background = TRUE
-
-	var/list/types = typesof(/obj/item/weapon/gun/projectile)
-
-	var/gun_type = input(usr, "Select gun type", "Hit tables") as null|anything in types
-	if(!gun_type)
-		return
-
-	var/obj/item/weapon/gun/projectile/gun = new gun_type()
-	var/mob/living/carbon/human/dummy = new()
-
-	usr << "Generating hit table..."
-	var/list/distances = list(3, 5, 7, 9)
-	var/dat = "<h3>Generated hit table for [gun.name]. Target: chest.</h3><b>Simulated!</b><br>"
-	//Wielded
-	if(gun.can_wield)
-		dat += "<h4>----Wielded----</h4>"
-		dat += "<table><tr><td>Distance</td>"
-		for(var/dist in distances)
-			dat += "<td>[dist] tiles</td>"
-		dat += "</tr>"
-		for(var/datum/firemode/fm in gun.firemodes)
-			dat += "<tr><td>[fm.name]</td>"
-			for(var/dist in distances)
-				var/text = ""
-				for(var/i = TRUE to min(fm.burst, 5))
-					var/acc = fm.accuracy[min(i, fm.accuracy.len)] + gun.accuracy
-					var/miss_mod = min(max(15 * (dist - 2) - round( 15 * acc), FALSE), 100)
-					var/hits = FALSE
-					for(var/shot = TRUE to 1000)
-						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
-							hits++
-					if(hits <= 0)
-						text += "0"
-					else
-						text += "[round(hits / 10)]"
-					if(i != min(fm.burst, 5))
-						text += "/"
-					else
-						text += "%"
-				dat += "<td>[text]</td>"
-			dat += "</tr>"
-		dat += "</table>"
-	//Unwielded
-	if((gun.can_wield && !gun.must_wield) || !gun.can_wield)
-		dat += "<h4>----Unwielded----</h4>"
-		dat += "<table><tr><td>Distance</td>"
-		for(var/dist in distances)
-			dat += "<td>[dist] tiles</td>"
-		dat += "</tr>"
-		for(var/datum/firemode/fm in gun.firemodes)
-			dat += "<tr><td>[fm.name]</td>"
-			for(var/dist in distances)
-				var/text = ""
-				for(var/i = TRUE to min(fm.burst, 5))
-					var/acc = fm.accuracy[min(i, fm.accuracy.len)] + gun.accuracy - 2
-					var/miss_mod = min(max(15 * (dist - 2) - round( 15 * acc), FALSE), 100)
-					var/hits = FALSE
-					for(var/shot = TRUE to 1000)
-						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
-							hits++
-					if(hits <= 0)
-						text += "0"
-					else
-						text += "[round(hits / 10)]"
-					if(i != min(fm.burst, 5))
-						text += "/"
-					else
-						text += "%"
-				dat += "<td>[text]</td>"
-			dat += "</tr>"
-		dat += "</table>"
-	if(gun.can_scope)
-		dat += "<h4>----Scoped----</h4>"
-		dat += "<table><tr><td>Distance</td>"
-		for(var/dist in distances)
-			dat += "<td>[dist] tiles</td>"
-		dat += "</tr>"
-		for(var/datum/firemode/fm in gun.firemodes)
-			dat += "<tr><td>[fm.name]</td>"
-			for(var/dist in distances)
-				var/text = ""
-				for(var/i = TRUE to min(fm.burst, 5))
-					var/acc = fm.accuracy[min(i, fm.accuracy.len)] + gun.scoped_accuracy
-					var/miss_mod = min(max(15 * (dist - 2) - round( 15 * acc), FALSE), 100)
-					var/hits = FALSE
-					for(var/shot = TRUE to 1000)
-						if(get_zone_with_miss_chance("chest", dummy, miss_mod, TRUE) != null)
-							hits++
-					if(hits <= 0)
-						text += "0"
-					else
-						text += "[round(hits / 10)]"
-					if(i != min(fm.burst, 5))
-						text += "/"
-					else
-						text += "%"
-				dat += "<td>[text]</td>"
-			dat += "</tr>"
-		dat += "</table>"
-
-	usr << browse(dat, "window='Hit table';size=800x400;can_close=1;can_resize=1;can_minimize=1;titlebar=1")
-*/
-
-/*
-/client/proc/set_daytime()
-	set category = "Prishtina"
-	set name = "Set daytime"
-
-	var/list/modes = list("Brighty day" = "#FFFFFF", "Cloudy day" = "#999999", "Very cloudy day" = "#777777", "Sunset" = "#FFC966", "Bright night" = "#444444", "Dark night" = "#111111", "Sunrise" = "#DEDF64", "Special" = "#FF77FF")
-
-	var/daytime = input(usr, "Select daytime", "Daytime changing.") as null|anything in modes
-
-	if(!daytime)
-		return
-
-	var/color = modes[daytime]
-	config.starlight_color = color
-
-	world << "Changing daytime and weather to [daytime]. This may take a while. Be patient."
-	spawn(10)
-		for (var/area/prishtina/a_p in world)
-			if (istype(a_p, /area/prishtina))
-				a_p.changeDayTime(dayime)*/
-	/*	for(var/turf/T)
-			if(T.z == TRUE)
-				T.update_starlight()*/
+		if (msg6)
+			shower << msg6
 
 /client/proc/message_russians()
 	set category = "Special"
@@ -703,13 +583,13 @@ var/paratroopers_forceEnabled = FALSE
 	set category = "Special"
 	var/side = input("Which side?") in list("Soviet", "German", "Cancel")
 	if (side == "Soviet")
-		for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
+		for (var/obj/structure/simple_door/key_door/soviet/QM/D in door_list)
 			D.Open()
 		var/M = "[key_name(src)] opened Soviet Armory doors."
 		message_admins(M)
 		log_admin(M)
 	else if (side == "German")
-		for (var/obj/structure/simple_door/key_door/german/QM/D in world)
+		for (var/obj/structure/simple_door/key_door/german/QM/D in door_list)
 			D.Open()
 		var/M = "[key_name(src)] opened German Armory doors."
 		message_admins(M)
@@ -720,10 +600,10 @@ var/paratroopers_forceEnabled = FALSE
 	set category = "Special"
 	var/side = input("Which side?") in list("Soviet", "German", "Cancel")
 	if (side == "Soviet")
-		for (var/obj/structure/simple_door/key_door/soviet/QM/D in world)
+		for (var/obj/structure/simple_door/key_door/soviet/QM/D in door_list)
 			D.Close()
 			D.keyslot.locked = TRUE
 	else if (side == "German")
-		for (var/obj/structure/simple_door/key_door/german/QM/D in world)
+		for (var/obj/structure/simple_door/key_door/german/QM/D in door_list)
 			D.Close()
 			D.keyslot.locked = TRUE

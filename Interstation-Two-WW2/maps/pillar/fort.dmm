@@ -33,6 +33,7 @@
 "G" = (/obj/structure/closet/crate/rations/water,/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/wood,/area/prishtina/german/bunker)
 "H" = (/obj/structure/closet/crate/medical,/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/wood,/area/prishtina/german/bunker)
 "I" = (/obj/structure/table/rack,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/weapon/grenade/explosive/stgnade,/obj/item/mine/betty,/obj/item/weapon/grenade/smokebomb/german,/obj/item/weapon/grenade/smokebomb/german,/obj/item/weapon/grenade/smokebomb/german,/obj/structure/light/small{icon_state = "bulb1"; dir = 4},/turf/floor/wood,/area/prishtina/german/bunker)
+"J" = (/obj/item/clothing/accessory/storage/webbing,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/structure/closet,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/ammo_magazine/mp40,/obj/item/weapon/gun/projectile/submachinegun/mp40,/turf/floor/wood,/area/prishtina/german/bunker)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -58,7 +59,7 @@ aaaaaaaaaaaaaaamdddydydydydydydydydydydydydydydydddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaamdzdooooooooooooooooooooooooooooodzdddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaamdddddddddddddddddwdddddddddddddddddddIaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaamdddydydydydydydydydydydypydydydydddddiaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaamdzdqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdzdddiaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaamdzdJJJJJJJJJJJJJJJJJJJJJJJJJJJJJdzdddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaddddAdAdAdAdAdAdAdAdAdAdAdAdAdAdAdddddiaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaddddddddddddddddddddddddddddddddddddddIaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaeeeaaaaaaaaaaaeeeaaaaaaaaaaaeeeaaaaaaaaaaaaaaaaaaaa

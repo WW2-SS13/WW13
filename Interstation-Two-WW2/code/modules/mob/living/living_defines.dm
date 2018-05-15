@@ -6,8 +6,6 @@
 	var/maxHealth = 100 //Maximum health that should be possible.
 	var/health = 100 	//A mob's health
 
-	var/hud_updateflag = FALSE
-
 	var/inventory_shown = TRUE
 
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
@@ -54,3 +52,5 @@
 	var/stuttering = null	//Carbon
 	var/slurring = null		//Carbon
 	var/lisp = null		//Carbon
+
+	var/takes_less_damage = FALSE

@@ -42,16 +42,14 @@
 
 	if(stat == DEAD) return
 
+	src << browse(null, "window=memory")
+
 	if (original_job)
 		switch (original_job.base_type_flag())
 			if (GERMAN)
 				++battlereport.german_deaths_this_cycle
 			if (SOVIET)
 				++battlereport.soviet_deaths_this_cycle
-
-	BITSET(hud_updateflag, HEALTH_HUD)
-	BITSET(hud_updateflag, STATUS_HUD)
-	BITSET(hud_updateflag, LIFE_HUD)
 
 	//Handle species-specific deaths.
 	species.handle_death(src)

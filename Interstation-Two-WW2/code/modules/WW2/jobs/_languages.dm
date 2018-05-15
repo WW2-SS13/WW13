@@ -30,6 +30,8 @@
 /datum/job/update_character(var/mob/living/carbon/human/H)
 	. = ..()
 
+	var/list/notes = list()
+
 	H.languages.Cut()
 	if (base_type_flag() == SOVIET)
 		if (H.client && H.client.prefs)
@@ -37,19 +39,24 @@
 				if (RUSSIAN)
 					H.add_language(RUSSIAN, TRUE)
 					H.add_note("Known Languages", "Russian")
+					notes += "Russian"
 				if (UKRAINIAN)
 					H.add_language(UKRAINIAN, TRUE)
 					H.add_note("Known Languages", "Ukrainian")
+					notes += "Ukrainian"
 				if (POLISH)
 					H.add_language(POLISH, TRUE)
 					H.add_note("Known Languages", "Polish")
+					notes += "Polish"
 
 	if (!H.languages.len)
 		H.add_language(default_language, TRUE)
-		H.add_note("Known Languages", default_language)
+		if (!notes.Find(default_language))
+			H.add_note("Known Languages", default_language)
 	else if (H.languages[1] != default_language)
 		H.add_language(default_language, FALSE)
-		H.add_note("Known Languages", default_language)
+		if (!notes.Find(default_language))
+			H.add_note("Known Languages", default_language)
 
 	H.default_language = H.languages[1]
 

@@ -50,9 +50,19 @@ var/const/BLOOD_VOLUME_SURVIVE = 20
 
 	var/obj/item/organ/heart/H = internal_organs_by_name["heart"]
 
-	if(!H)	//not having a heart is bad for health
+	if(!H)	// not having a heart is bad for health
 		setOxyLoss(max(getOxyLoss(),60))
 		adjustOxyLoss(10)
+
+	var/obj/item/organ/lungs/L = internal_organs_by_name["lungs"]
+
+	if (!L) // ditto for lungs
+		adjustOxyLoss(10)
+		if (prob(20))
+			src << "<span class = 'danger'>You're suffocating!</span>"
+		if (prob(40))
+			emote("gasp")
+
 
 	//Bleeding out
 	var/bloodloss = 0

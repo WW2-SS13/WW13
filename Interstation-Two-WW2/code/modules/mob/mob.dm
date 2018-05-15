@@ -377,30 +377,32 @@
 		usr << "<span class='notice'><b>You must be dead to use this!</b></span>"
 		return
 
+	src << browse(null, "window=memory")
+
 /*	if (ticker.mode && ticker.mode.deny_respawn)
 		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
 		return*/
 
-	usr << "You can respawn now, enjoy your new life!"
+	src << "You can respawn now, enjoy your new life!"
 	stop_ambience(usr)
 
-	log_game("[usr.name]/[usr.key] used abandon mob.")
+	log_game("[name]/[key] used abandon mob.")
 
 	usr << "<span class='notice'><b>Make sure to play a different character, and please roleplay correctly!</b></span>"
 
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key] AM failed due to disconnect.")
 		return
 	client.screen.Cut()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key] AM failed due to disconnect.")
 		return
 
 	announce_ghost_joinleave(client, FALSE)
 
 	var/mob/new_player/M = new /mob/new_player()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key] AM failed due to disconnect.")
 		qdel(M)
 		return
 
@@ -455,10 +457,10 @@
 	var/list/names = list()
 	var/list/namecounts = list()
 	var/list/creatures = list()
-
+/*
 	for(var/obj/O in world)				//EWWWWWWWWWWWWWWWWWWWWWWWW ~needs to be optimised
 		if(!O.loc)
-			continue
+			continue*/
 
 	/*	if(istype(O, /obj/item/weapon/disk/nuclear))
 			var/name = "Nuclear Disk"
@@ -491,7 +493,6 @@
 			namecounts[name] = TRUE
 
 		creatures[name] = M
-
 
 	client.perspective = EYE_PERSPECTIVE
 
@@ -695,7 +696,7 @@
 			stat("Time of Day:", time_of_day)
 
 			if (z == 2 && map && map.ID == "FOREST")
-				stat("Altitude:", paratrooper_plane_master.altitude)
+				stat("Altitude:", "[paratrooper_plane_master.altitude] meters")
 
 			// give the client some information about how the server is running
 			if (ping_track && client)
@@ -704,7 +705,7 @@
 				if (clients.len == 1)
 					avg_ping = our_ping
 				stat("Ping (Average):", "[our_ping] ms ([avg_ping] ms)")
-			stat("Time Dilation:", time_track ? "[ceil(time_track.dilation)]%" : "???")
+			stat("Time Dilation (Average):", time_track ? "[ceil(time_track.dilation)]% ([ceil(time_track.average_dilation())]%)" : "0% (0%)")
 
 		if(client.holder && client.status_tabs)
 			if(statpanel("Status"))
@@ -745,20 +746,21 @@
 	if(transforming)						return FALSE
 	return TRUE
 
-// Not sure what to call this. Used to check if humans are wearing an AI-controlled exosuit and hence don't need to fall over yet.
-/mob/proc/can_stand_overridden()
-	return FALSE
-
 /mob/proc/cannot_stand()
 	return incapacitated(INCAPACITATION_DEFAULT & (~INCAPACITATION_RESTRAINED))
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
 
-	if(!resting && (!cannot_stand() || can_stand_overridden()))
-		lying = FALSE
-		canmove = TRUE
-	else
+	var/noose = FALSE
+	for (var/obj/structure/noose/N in get_turf(src))
+		if (N.hanging == src)
+			lying = FALSE
+			canmove = FALSE
+			anchored = TRUE
+			noose = TRUE
+
+	if (!noose)
 		if(buckled)
 			anchored = TRUE
 			canmove = FALSE

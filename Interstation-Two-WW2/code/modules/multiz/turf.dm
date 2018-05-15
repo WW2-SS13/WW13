@@ -17,6 +17,8 @@
 
 /turf/open/Entered(var/atom/movable/mover)
 	. = ..()
+	if (!mover || !mover.loc)
+		return
 	if (isobserver(mover))
 		return
 	if (istype(mover, /obj/lift_controller))

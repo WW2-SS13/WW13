@@ -582,7 +582,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 //Returns: all the areas in the world
 /proc/return_areas()
 	var/list/area/areas = list()
-	for(var/area/A in world)
+	for(var/area/A in area_list)
 		areas += A
 	return areas
 
@@ -600,7 +600,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 		areatype = areatemp.type
 
 	var/list/areas = new/list()
-	for(var/area/N in world)
+	for(var/area/N in area_list)
 		if(istype(N, areatype)) areas += N
 	return areas
 
@@ -614,7 +614,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 		areatype = areatemp.type
 
 	var/list/atoms = new/list()
-	for(var/area/N in world)
+	for(var/area/N in area_list)
 		if(istype(N, areatype))
 			for(var/atom/A in N)
 				atoms += A

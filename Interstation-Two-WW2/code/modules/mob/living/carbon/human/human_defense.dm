@@ -125,6 +125,7 @@ bullet_act
 					if (prob(graze_chance_multiplier * max(distcheck - 7, 0)))
 						visible_message("<span class = 'warning'>[src] is just grazed by the bullet!</span>")
 						adjustBruteLoss(pick(14,15))
+						P.useless = TRUE
 						qdel(P)
 						return
 
@@ -187,7 +188,7 @@ bullet_act
 	else if (P.crushes)
 		crush()
 
-	..(P , def_zone)
+	..(P, def_zone)
 
 	spawn (0.01)
 		qdel(P)

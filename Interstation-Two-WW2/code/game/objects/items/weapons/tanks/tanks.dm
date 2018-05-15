@@ -44,10 +44,10 @@ var/list/global/tank_gauge_cache = list()
 		qdel(air_contents)
 
 	processing_objects.Remove(src)
-
+/*
 	if(istype(loc, /obj/item/transfer_valve))
 		var/obj/item/transfer_valve/TTV = loc
-		TTV.remove_tank(src)
+		TTV.remove_tank(src)*/
 
 	..()
 
@@ -251,9 +251,9 @@ var/list/global/tank_gauge_cache = list()
 
 	var/pressure = air_contents.return_pressure()
 	if(pressure > my_tank_fragment_pressure)
-		if(!istype(loc,/obj/item/transfer_valve))
+	/*	if(!istype(loc,/obj/item/transfer_valve))
 			message_admins("Explosive tank rupture! last key to touch the tank was [fingerprintslast].")
-			log_game("Explosive tank rupture! last key to touch the tank was [fingerprintslast].")
+			log_game("Explosive tank rupture! last key to touch the tank was [fingerprintslast].")*/
 
 		//Give the gas a chance to build up more pressure through reacting
 		air_contents.react()

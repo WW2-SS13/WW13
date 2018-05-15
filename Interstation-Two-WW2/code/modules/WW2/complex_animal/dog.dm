@@ -48,8 +48,8 @@
 
 	var/atom/walking_to = null
 
-	maxHealth = 70
-	health = 70
+	maxHealth = 40
+	health = 40
 
 /mob/living/simple_animal/complex_animal/canine/dog/New()
 	..()

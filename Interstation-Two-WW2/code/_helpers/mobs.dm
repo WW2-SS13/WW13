@@ -304,6 +304,12 @@ Proc for attack log creation, because really why not
 
 	var/user_loc = user.loc
 	var/target_loc = target.loc
+	var/last_train_move_time = null
+
+	if (user.is_on_train())
+		var/datum/train_controller/tc = user.get_train()
+		if (tc.moving)
+			last_train_move_time = user.last_moved_on_train
 
 	var/holding = user.get_active_hand()
 	var/datum/progressbar/progbar
@@ -317,19 +323,26 @@ Proc for attack log creation, because really why not
 		sleep(0.1)
 		if (progress)
 			progbar.update(world.time - starttime)
+
 		if(!user || !target)
 			. = FALSE
 			break
+
 		if(uninterruptible)
 			continue
 
-		if(!user || user.incapacitated() || user.loc != user_loc)
+		if(!user || user.incapacitated() || (!last_train_move_time && user.loc != user_loc))
 			. = FALSE
 			break
 
-		if(target.loc != target_loc)
+		if(!last_train_move_time && target.loc != target_loc)
 			. = FALSE
 			break
+
+		if (last_train_move_time)
+			if (user.last_moved_on_train != last_train_move_time || !user.is_on_train())
+				. = FALSE
+				break
 
 		if(user.get_active_hand() != holding)
 			. = FALSE
@@ -348,14 +361,19 @@ Proc for attack log creation, because really why not
 	if (check_for_repeats)
 		user.may_do_after = FALSE
 
-	var/atom/target_loc = null
+	var/target_loc = null
 	var/last_train_move_time = null
 
 	// made this account for being moved on rollerbeds - Kachnov
 
+	var/user_on_train = FALSE
 	if (user.is_on_train())
-		last_train_move_time = user.last_moved_on_train
-	else
+		var/datum/train_controller/tc = user.get_train()
+		if (tc.moving)
+			last_train_move_time = user.last_moved_on_train
+			user_on_train = TRUE
+
+	if (!user_on_train)
 		if (target)
 			target_loc = target.loc
 
@@ -387,7 +405,6 @@ Proc for attack log creation, because really why not
 			if(user.loc != original_loc && !last_train_move_time)
 				. = FALSE
 				break
-
 
 		// this should fix the bug where a guy can start resisting on a train,
 		// get moved off the train, and keep resisting even after being moved
@@ -600,10 +617,6 @@ Proc for attack log creation, because really why not
 		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
-//	for(var/mob/living/silicon/hivebot/M in world)
-//		mob_list.Add(M)
-//	for(var/mob/living/silicon/hive_mainframe/M in world)
-//		mob_list.Add(M)
 	return moblist
 
 // returns the turf behind the mob

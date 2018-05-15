@@ -525,9 +525,6 @@ var/global/list/damage_icon_parts = list()
 	else
 		overlays_standing[ID_LAYER]	= null
 
-	BITSET(hud_updateflag, ID_HUD)
-	BITSET(hud_updateflag, WANTED_HUD)
-
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_inv_gloves(var/update_icons=1)

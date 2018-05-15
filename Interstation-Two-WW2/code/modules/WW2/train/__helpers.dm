@@ -38,8 +38,7 @@
 					if (istype(O, type))
 						train_setloc(_loc)
 						return SUCCESS
-				if (ismob(src) && istype(O
-				, /obj/structure/simple_door/key_door))
+				if (ismob(src) && istype(O, /obj/structure/simple_door/key_door))
 					var/obj/structure/simple_door/key_door/door = O
 					if (door.keyslot.check_user(src))
 						door.keyslot.locked = FALSE
@@ -56,17 +55,19 @@
 	return SUCCESS
 
 /atom/movable/proc/train_setloc(var/turf/_loc)
+	if (!_loc) // runtimes
+		return
 	x = _loc.x
 	y = _loc.y
 	z = _loc.z
 
-/mob/proc/is_on_train()
+/atom/movable/proc/is_on_train()
 	for (var/atom/movable/a in get_turf(src))
 		if (is_train_object(a))
 			return TRUE
 	return FALSE
 
-/mob/proc/get_train()
+/atom/movable/proc/get_train()
 	for (var/atom_movable in loc)
 		if (is_train_object(atom_movable))
 			var/atom/movable/AM = atom_movable

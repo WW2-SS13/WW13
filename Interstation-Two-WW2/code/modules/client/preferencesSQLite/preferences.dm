@@ -607,8 +607,8 @@ var/list/preferences_datums = list()
 			var/datum/client_preference/cp = get_client_preference_by_type(/datum/client_preference/play_lobby_music)
 			if (isnewplayer(mob))
 				if (is_preference_enabled(cp.key))
-					mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 50, channel = TRUE)
+					mob << sound(ticker.login_music, repeat = TRUE, wait = FALSE, volume = 50, channel = 1)
 				else
-					mob << sound(null, repeat = FALSE, wait = FALSE, volume = 50, channel = TRUE)
+					mob << sound(null, repeat = FALSE, wait = FALSE, volume = 50, channel = 1)
 	else
 		initially_loaded_preferences = TRUE

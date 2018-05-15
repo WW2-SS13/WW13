@@ -95,7 +95,6 @@
 /obj/item/weapon/gun/projectile/pistol/_45/gibber
 	crushes = TRUE
 
-
 /obj/item/weapon/gun/projectile/pistol/tokarev
 	name = "TT-30"
 	desc = "Russian pistol chambered in 7.62mm rounds. Official name being Tula-Tokarev 30."

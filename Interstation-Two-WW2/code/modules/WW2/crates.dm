@@ -24,6 +24,7 @@
 
 /obj/structure/closet/crate/New()
 	..()
+	crate_list += src
 	for (var/typepath in paths)
 		var/limit = paths[typepath]
 		if (limit == DYNAMIC_AMT)
@@ -35,6 +36,10 @@
 		for (var/v in 1 to limit)
 			new typepath (src)
 	update_capacity(contents.len)
+
+/obj/structure/closet/crate/Destroy()
+	crate_list -= src
+	..()
 
 // new crate icons from F13 - most are unused
 

@@ -146,6 +146,8 @@ Works together with spawning an observer, noted above.
 	if (!lastKnownCkey)
 		return
 
+	src << browse(null, "window=memory")
+
 	// remove weather sounds
 	src << sound(null, channel = 778)
 	// remove ambient sounds
@@ -479,13 +481,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/options = list()
 
-	for (var/obj/lift_controller/lc in world)
+	for (var/lift in lift_list)
+		var/obj/lift_controller/lc = lift
 		options += lc.jump_name
 
 	options += "CANCEL"
 	var/option = input("Which?") in options
 	if (option != "CANCEL")
-		for (var/obj/lift_controller/lc in world)
+		for (var/lift in lift_list)
+			var/obj/lift_controller/lc = lift
 			if (lc.jump_name == option)
 				ManualFollow(lc)
 				break
@@ -500,10 +504,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /proc/gettanks()
 	var/list/tanks = list()
-	for (var/obj/tank/tank in world)
+	for (var/T in tank_list)
+		var/atom/tank = T
 		var/count = FALSE
 		for (var/tank2 in tanks)
-			var/obj/tank/other = tanks[tank2]
+			var/atom/other = tanks[tank2]
 			if (other.name == tank.name)
 				++count // tank, tank (1), tank (2), etc
 		tanks["[tank.name][count ? "([count])" : ""]"] = tank

@@ -18,7 +18,15 @@
 	var/initial_health = 100
 
 /obj/structure/simple_door/fire_act(temperature)
-
+	var/dmg = round((temperature - 365)/20)
+	if (temperature >= 380)
+		dmg = max(dmg, 5)
+	if (dmg > 0)
+		health -= dmg
+		if (istype(src, /obj/structure/simple_door/key_door))
+			src:damage_display()
+		if (health <= 0)
+			qdel(src)
 
 /obj/structure/simple_door/bullet_act(var/obj/item/projectile/P)
 	var/damage = max(P.damage/2, 2)
@@ -36,7 +44,11 @@
 /obj/structure/simple_door/New(var/newloc, var/material_name)
 	..()
 	update_material(material_name)
+	door_list += src
 
+/obj/structure/simple_door/Destroy()
+	door_list -= src
+	..()
 
 /obj/structure/simple_door/proc/update_material(var/material_name)
 	if(!material_name)
@@ -123,6 +135,8 @@
 		update_icon()
 		isSwitchingStates = FALSE
 		update_nearby_tiles()
+		for (var/atom/movable/lighting_overlay/L in view(world.view*3, src))
+			L.update_overlay(TRUE)
 
 /obj/structure/simple_door/proc/Close()
 	isSwitchingStates = TRUE

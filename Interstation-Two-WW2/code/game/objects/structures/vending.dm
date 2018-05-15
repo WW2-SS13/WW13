@@ -139,6 +139,7 @@
 
 /obj/structure/vending/New()
 	..()
+	vending_machine_list += src
 //	wires = new(src)
 	spawn(4)
 		if(product_slogans)
@@ -158,6 +159,10 @@
 		return
 
 	return
+
+/obj/structure/vending/Destroy()
+	vending_machine_list -= src
+	..()
 
 /**
  *  Build produdct_records from the products lists

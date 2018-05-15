@@ -17,14 +17,14 @@
 
 	var/dam = 0
 	if (P.firedfrom && istype(P.firedfrom, /obj/item/weapon/gun/projectile/heavy))
-		dam = (P.damage/3 + (P.armor_penetration*20))/25
+		dam = (P.damage/3 + (P.armor_penetration*20))/50
 	else
-		dam = (P.damage/3)/25
+		dam = (P.damage/3)/50
 
 	if (P.armor_penetration < 50)
 		dam /= 8
 
-	dam += 0.50 // minimum damage
+	dam += 0.25 // minimum damage
 	damage += dam
 
 	update_damage_status()

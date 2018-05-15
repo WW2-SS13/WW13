@@ -8,11 +8,21 @@
 	var/datum/train_controller/master = null
 	uses_initial_density = TRUE
 	initial_density = TRUE
-
 	uses_initial_opacity = TRUE
 	initial_opacity = FALSE
+	layer = 2.4 // just above connectors, below TPTs
 
 /obj/structure/railing/train_railing/proc/_Move()
+
+	if (master.moving)
+		switch (master.direction)
+			if ("FORWARDS")
+				pixel_y = 9
+			if ("BACKWARDS")
+				pixel_y = -9
+	else
+		pixel_y = 0
+
 	for (var/atom_movable in get_turf(src))
 		var/atom/movable/AM = atom_movable
 		if (check_object_invalid_for_moving(src, AM))
@@ -34,3 +44,9 @@
 		qdel(src)
 	else
 		return
+
+/obj/structure/railing/train_railing/Destroy()
+	if (master)
+		master.train_railings -= src
+		master.reverse_train_railings -= src
+	..()

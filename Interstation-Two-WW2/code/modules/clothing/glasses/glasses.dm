@@ -1,4 +1,3 @@
-
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
@@ -33,53 +32,7 @@
 			tint = initial(tint)
 			usr << "You activate the optical matrix on the [src]."
 		user.update_action_buttons()
-/*
-/obj/item/clothing/glasses/meson
-	name = "Optical Meson Scanner"
-	desc = "Used for seeing walls, floors, and stuff through anything."
-	icon_state = "meson"
-	item_state = "glasses"
-	action_button_name = "Toggle Goggles"
-	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
-	toggleable = TRUE
-	vision_flags = SEE_TURFS
-	see_invisible = SEE_INVISIBLE_NOLIGHTING
 
-/obj/item/clothing/glasses/meson/New()
-	..()
-	overlay = global_hud.meson
-
-/obj/item/clothing/glasses/meson/prescription
-	name = "prescription mesons"
-	desc = "Optical Meson Scanner with prescription lenses."
-	prescription = TRUE
-
-/obj/item/clothing/glasses/science
-	name = "Science Goggles"
-	desc = "The goggles do nothing!"
-	icon_state = "purple"
-	item_state = "glasses"
-	toggleable = TRUE
-
-/obj/item/clothing/glasses/science/New()
-	..()
-	overlay = global_hud.science*/
-/*
-/obj/item/clothing/glasses/night
-	name = "Night Vision Goggles"
-	desc = "You can totally see in the dark now!"
-	icon_state = "night"
-	item_state = "glasses"
-//	origin_tech = list(TECH_MAGNET = 2)
-	darkness_view = 7
-	toggleable = TRUE
-	see_invisible = SEE_INVISIBLE_NOLIGHTING
-	off_state = "denight"
-
-/obj/item/clothing/glasses/night/New()
-	..()
-	overlay = global_hud.nvg
-*/
 /obj/item/clothing/glasses/eyepatch
 	name = "eyepatch"
 	desc = "Yarr."
@@ -158,7 +111,6 @@
 /obj/item/clothing/glasses/welding/attack_self()
 	toggle()
 
-
 /obj/item/clothing/glasses/welding/verb/toggle()
 	set category = null
 	set name = "Adjust welding goggles"
@@ -214,81 +166,3 @@
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
-/*
-/obj/item/clothing/glasses/sunglasses/sechud
-	name = "HUDSunglasses"
-	desc = "Sunglasses with a HUD."
-	icon_state = "sunhud"
-
-	New()
-		..()
-		hud = new/obj/item/clothing/glasses/hud/security(src)
-		return
-
-/obj/item/clothing/glasses/sunglasses/sechud/tactical
-	name = "tactical HUD"
-	desc = "Flash-resistant goggles with inbuilt combat and security information."
-	icon_state = "swatgoggles"
-
-/obj/item/clothing/glasses/thermal
-	name = "Optical Thermal Scanner"
-	desc = "Thermals in the shape of glasses."
-	icon_state = "thermal"
-	item_state = "glasses"
-	action_button_name = "Toggle Goggles"
-	origin_tech = list(TECH_MAGNET = 3)
-	toggleable = TRUE
-	vision_flags = SEE_MOBS
-	see_invisible = SEE_INVISIBLE_NOLIGHTING
-	flash_protection = FLASH_PROTECTION_REDUCED
-
-	emp_act(severity)
-		if(istype(loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/M = loc
-			M << "<span class='danger'>The Optical Thermal Scanner overloads and blinds you!</span>"
-			if(M.glasses == src)
-				M.eye_blind = 3
-				M.eye_blurry = 5
-				// Don't cure being nearsighted
-				if(!(M.disabilities & NEARSIGHTED))
-					M.disabilities |= NEARSIGHTED
-					spawn(100)
-						M.disabilities &= ~NEARSIGHTED
-		..()
-
-/obj/item/clothing/glasses/thermal/New()
-	..()
-	overlay = global_hud.thermal
-
-/obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
-	name = "Optical Meson Scanner"
-	desc = "Used for seeing walls, floors, and stuff through anything."
-	icon_state = "meson"
-	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
-
-/obj/item/clothing/glasses/thermal/plain
-	toggleable = FALSE
-	activation_sound = null
-	action_button_name = null
-
-/obj/item/clothing/glasses/thermal/plain/monocle
-	name = "Thermoncle"
-	desc = "A monocle thermal."
-	icon_state = "thermoncle"
-	flags = null //doesn't protect eyes because it's a monocle, duh
-
-	body_parts_covered = FALSE
-
-/obj/item/clothing/glasses/thermal/plain/eyepatch
-	name = "Optical Thermal Eyepatch"
-	desc = "An eyepatch with built-in thermal optics"
-	icon_state = "eyepatch"
-	item_state = "eyepatch"
-	body_parts_covered = FALSE
-
-/obj/item/clothing/glasses/thermal/plain/jensen
-	name = "Optical Thermal Implants"
-	desc = "A set of implantable lenses designed to augment your vision"
-	icon_state = "thermalimplants"
-	item_state = "syringe_kit"
-*/

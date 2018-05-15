@@ -10,6 +10,7 @@
 	explosion_resistance = TRUE
 	var/health = 10 // 50 is waaaaaay to fucking high.
 	var/destroyed = FALSE
+	var/hitsound = 'sound/effects/grillehit.ogg'
 
 /obj/structure/grille/ex_act(severity)
 	qdel(src)
@@ -31,7 +32,7 @@
 /obj/structure/grille/attack_hand(mob/user as mob)
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	playsound(loc, 'sound/effects/grillehit.ogg', 80, TRUE)
+	playsound(loc, hitsound, 80, TRUE)
 	user.do_attack_animation(src)
 
 	var/damage_dealt = TRUE
@@ -154,7 +155,7 @@
 	else if(!(W.flags & CONDUCT)/* || !shock(user, 70)*/)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
-		playsound(loc, 'sound/effects/grillehit.ogg', 80, TRUE)
+		playsound(loc, hitsound, 80, TRUE)
 		switch(W.damtype)
 			if("fire")
 				health -= W.force
@@ -222,7 +223,7 @@
 /obj/structure/grille/hitby(AM as mob|obj)
 	..()
 	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
-	playsound(loc, 'sound/effects/grillehit.ogg', 80, TRUE)
+	playsound(loc, hitsound, 80, TRUE)
 	var/tforce = FALSE
 	if(ismob(AM))
 		tforce = 10
