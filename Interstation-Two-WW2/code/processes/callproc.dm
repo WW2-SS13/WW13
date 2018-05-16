@@ -68,7 +68,7 @@
 
 /callproc_helper
 	parent_type = /datum
-	var/object = null
+	var/datum/object = null
 	var/function = ""
 	var/list/args = null
 	var/time = -1
