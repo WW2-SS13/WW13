@@ -203,11 +203,11 @@
 		var/msg = "[user] starts to pry open the incision on [target]'s [affected.name] with \the [tool]."
 		var/self_msg = "You start to pry open the incision on [target]'s [affected.name] with \the [tool]."
 		if (target_zone == "chest")
-			msg = "[user] starts to separate the ribcage and rearrange the organs in [target]'s torso with \the [tool]."
-			self_msg = "You start to separate the ribcage and rearrange the organs in [target]'s torso with \the [tool]."
+			msg = "[user] starts to retract the skin on [target]'s torso with \the [tool]."
+			self_msg = "You start to retract the skin on [target]'s torso with \the [tool]."
 		if (target_zone == "groin")
-			msg = "[user] starts to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."
-			self_msg = "You start to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."
+			msg = "[user] starts to pry open the incision and retract the skin on [target]'s lower abdomen with \the [tool]."
+			self_msg = "You start to pry open the incision and retract the skin on [target]'s lower abdomen with \the [tool]."
 		user.visible_message(msg, self_msg)
 		target.custom_pain("It feels like the skin on your [affected.name] is on fire!",1)
 		..()
@@ -217,8 +217,8 @@
 		var/msg = "<span class = 'notice'>[user] keeps the incision open on [target]'s [affected.name] with \the [tool].</span>"
 		var/self_msg = "<span class = 'notice'>You keep the incision open on [target]'s [affected.name] with \the [tool].</span>"
 		if (target_zone == "chest")
-			msg = "<span class = 'notice'>[user] keeps the ribcage open on [target]'s torso with \the [tool].</span>"
-			self_msg = "<span class = 'notice'>You keep the ribcage open on [target]'s torso with \the [tool].</span>"
+			msg = "<span class = 'notice'>[user] keeps the incision open on [target]'s torso with \the [tool].</span>"
+			self_msg = "<span class = 'notice'>You keep the incision open on [target]'s torso with \the [tool].</span>"
 		if (target_zone == "groin")
 			msg = "<span class = 'notice'>[user] keeps the incision open on [target]'s lower abdomen with \the [tool].</span>"
 			self_msg = "<span class = 'notice'>You keep the incision open on [target]'s lower abdomen with \the [tool].</span>"
@@ -230,11 +230,11 @@
 		var/msg = "<span class = 'red'>[user]'s hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!</span>"
 		var/self_msg = "<span class = 'red'>Your hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!</span>"
 		if (target_zone == "chest")
-			msg = "<span class = 'red'>[user]'s hand slips, damaging several organs in [target]'s torso with \the [tool]!</span>"
-			self_msg = "<span class = 'red'>Your hand slips, damaging several organs in [target]'s torso with \the [tool]!</span>"
+			msg = "<span class = 'red'>[user]'s hand slips, damaging [target]'s torso with \the [tool]!</span>"
+			self_msg = "<span class = 'red'>Your hand slips, damaging [target]'s torso with \the [tool]!</span>"
 		if (target_zone == "groin")
-			msg = "<span class = 'red'>[user]'s hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!</span>"
-			self_msg = "<span class = 'red'>Your hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!</span>"
+			msg = "<span class = 'red'>[user]'s hand slips, damaging [target]'s lower abdomen with \the [tool]!</span>"
+			self_msg = "<span class = 'red'>Your hand slips, damaging [target]'s lower abdomen with \the [tool]!</span>"
 		user.visible_message(msg, self_msg)
 		target.apply_damage(12, BRUTE, affected, sharp=1)
 
@@ -277,7 +277,7 @@
 
 /datum/surgery_step/generic/amputate
 	allowed_tools = list(
-	/obj/item/weapon/circular_saw = 100, \
+	/obj/item/weapon/bone_saw = 100, \
 	/obj/item/weapon/material/hatchet = 75
 	)
 

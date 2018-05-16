@@ -17,6 +17,8 @@
 
 	dropsound = 'sound/effects/drop_glass.ogg'
 
+	w_class = 3
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/on_reagent_change()
 	update_icon()
 

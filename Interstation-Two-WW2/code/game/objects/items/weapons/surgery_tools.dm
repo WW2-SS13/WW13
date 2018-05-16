@@ -113,8 +113,8 @@
 /*
  * Circular Saw
  */
-/obj/item/weapon/circular_saw
-	name = "circular saw"
+/obj/item/weapon/bone_saw
+	name = "bone saw"
 	desc = "For heavy duty cutting."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "saw3"
