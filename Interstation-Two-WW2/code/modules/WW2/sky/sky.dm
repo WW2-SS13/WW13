@@ -47,3 +47,9 @@ var/list/sky_drop_map = list()
 	else
 		if (ishuman(mover))
 			mover << "<span class = 'good'>You land softly on the ground.</span>"
+
+	// make sure we have the right ambience for our new location
+	spawn (1)
+		if (ishuman(mover))
+			var/area/H_area = get_area(mover)
+			H_area.play_ambience(mover)

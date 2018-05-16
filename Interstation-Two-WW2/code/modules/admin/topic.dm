@@ -272,7 +272,7 @@
 							if (H.client)
 								H.client.eye = H_oloc
 								H.client.perspective = EYE_PERSPECTIVE
-							var/send2spawn = input(usr_client, "Send [H] to their spawnpoint?") in list("Yes", "No")
+							var/send2spawn = (M && get_area(M) && istype(get_area(M), /area/prishtina/admin)) ? "No" : input(usr_client, "Send [H] to their spawnpoint?") in list("Yes", "No")
 							switch (send2spawn)
 								if ("Yes")
 									H.loc = H_jobloc

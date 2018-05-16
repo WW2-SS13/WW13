@@ -828,6 +828,11 @@
 		return FALSE
 	return prob_slip
 
+// when we change mobs stop moving
+/mob/Logout()
+	movement_process_dirs.Cut()
+	..()
+
 /client/verb/startmovingup()
 	set name = ".startmovingup"
 	set instant = TRUE

@@ -93,7 +93,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		if(S.tool_quality(tool, user))
 			var/step_is_valid = S.can_use(user, M, zone, tool)
 			if(step_is_valid && S.is_valid_target(M))
-				if (!do_after(user, 25, M))
+				if (!M.lying && !do_after(user, 25, M))
 					return FALSE // removes combat saws - Kachnov
 				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
 					return TRUE

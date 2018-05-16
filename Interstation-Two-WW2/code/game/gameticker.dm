@@ -234,8 +234,13 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 					if (n <= 900)
 						restart_after = 1200 - n
 
+			var/next_map = mapswap_process ? mapswap_process.next_map_title : "TBD"
+			if (vote && vote.mode == "map" && vote.time_remaining > 0)
+				next_map = "TBD"
+
+
 			if(!delay_end)
-				world << "<span class='notice'><big>Restarting in [round(restart_after/10)] seconds. Next map: <b>[mapswap_process ? mapswap_process.next_map_title : "???"]</b></big></span>"
+				world << "<span class='notice'><big>Restarting in [round(restart_after/10)] seconds. Next map: <b>[next_map]</b></big></span>"
 
 			if(!delay_end)
 				sleep(restart_after)
