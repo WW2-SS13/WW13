@@ -53,17 +53,6 @@
 			new /obj/structure/table/glass(loc)
 			qdel(src)
 		return
-	if(istype(I, /obj/item/stack/material/silver))
-		var/obj/item/stack/material/silver/S = I
-		if(S.get_amount() < 1)
-			user << "<span class='warning'>You need one silver sheet to do this!</span>"
-			return
-		user << "<span class='notice'>You start adding [S] to [src]...</span>"
-		if(do_after(user, 20, target = src))
-			S.use(1)
-			new /obj/structure/table/optable(loc)
-			qdel(src)
-		return
 
 /*
  * Wooden Frames
