@@ -73,10 +73,7 @@ var/list/fire_pool = list()
 	if (fuel)
 		fire.time_limit += rand(10,20)
 
-	spawn (1)
-		spawn (fire.time_limit)
-			if (fire) // somehow
-				qdel(fire)
+	callproc_process.queue(fire, /datum/proc/qdeleted, null, fire.time_limit)
 
 	return fire
 

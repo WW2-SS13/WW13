@@ -220,6 +220,7 @@
 			explosion(get_turf(T), 1, 3, 5, 6)
 			spawn (20)
 				qdel(T)
+				T.loc = null
 		if (check_object_invalid_for_moving(src, AM) && check_object_valid_for_destruction(AM))
 			if (AM.density)
 				visible_message("<span class = 'danger'>The train crushes [AM]!</span>")
