@@ -18,7 +18,7 @@ var/process/RNG/RNG_process = null
 		var/seed = Square(ticks + (ticks/(100*1000)))
 		rand_seed(seed)
 
-/* test that proves that probability is not "static" with a new rand_seed(), should output around 50 */
+/* tests that proves that probability is not "static" with a new rand_seed(), should output around 50 */
 #define TESTS 100
 /process/RNG/proc/test(var/prob = 50)
 	var/tests = TESTS
@@ -26,5 +26,8 @@ var/process/RNG/RNG_process = null
 	for (var/v in 1 to tests)
 		if (prob(prob))
 			probtest += "placeholder"
-	log_debug("RNG_process.test() returned: [probtest.len]/[(prob/100) * tests]") // constant TESTS can't go here
+	log_debug("RNG_process.test() returned: [probtest.len]/[(prob/100) * tests]") // define TESTS can't go here
+
+/process/RNG/proc/test2()
+	log_debug(pick(list(1,2,3,4,5)))
 #undef TESTS
