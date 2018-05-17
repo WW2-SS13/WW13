@@ -83,7 +83,8 @@
 		"l_hand" = list("l_arm" = 30, "chest" = 10, "groin" = 10),
 		"r_hand" = list("r_arm" = 30, "chest" = 10, "groin" = 10),
 		"l_foot" = list("l_leg" = 50),
-		"r_foot" = list("r_leg" = 50)
+		"r_foot" = list("r_leg" = 50),
+		"chest" = list("l_arm" = 7, "r_arm" = 7, "head" = 7)
 	)
 
 	// must include all organs
