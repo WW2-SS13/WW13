@@ -19,9 +19,12 @@ var/process/RNG/RNG_process = null
 		rand_seed(seed)
 
 /* test that proves that probability is not "static" with a new rand_seed(), should output around 50 */
-/process/RNG/proc/test()
+#define TESTS 100
+/process/RNG/proc/test(var/prob = 50)
+	var/tests = TESTS
 	var/list/probtest = list()
-	for (var/v in 1 to 100)
-		if (prob(50))
+	for (var/v in 1 to tests)
+		if (prob(prob))
 			probtest += "placeholder"
-	log_debug(probtest.len)
+	log_debug("RNG_process.test() returned: [probtest.len]/[(prob/100) * tests]") // constant TESTS can't go here
+#undef TESTS
