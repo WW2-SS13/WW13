@@ -733,7 +733,7 @@ var/next_calculate_relevant_clients = -1
 	. = 0
 	for (var/client in clients)
 		var/client/C = client
-		if (C && !C.is_minimized() && C.mob && istype(C.mob, /mob/new_player))
+		if (C && !C.is_minimized() && C.mob && !istype(C.mob, /mob/observer))
 			++.
 	last_relevant_clients = .
 	next_calculate_relevant_clients = world.time + 50
