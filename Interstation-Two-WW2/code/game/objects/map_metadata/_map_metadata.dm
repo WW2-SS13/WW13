@@ -210,6 +210,8 @@ var/global/obj/map_metadata/map = null
 	return FALSE
 
 /obj/map_metadata/proc/update_win_condition()
+	if (!win_condition_specialcheck())
+		return FALSE
 	if (world.time >= next_win && next_win != -1)
 		if (win_condition_spam_check)
 			return FALSE
@@ -362,6 +364,9 @@ var/global/obj/map_metadata/map = null
 		return 9000 // 15 minutes
 	else
 		return 6000 // 10 minutes
+
+/obj/map_metadata/proc/win_condition_specialcheck()
+	return TRUE
 
 /obj/map_metadata/proc/roundend_condition_def2name(define)
 	switch (define)
