@@ -123,7 +123,7 @@
 	var/totallums = FALSE
 	for(var/LL in corners)
 		var/datum/lighting_corner/L = LL
-		totallums += L.getLumR() + L.getLumB() + L.getLumG()
+		totallums += L.getLumR(src) + L.getLumB(src) + L.getLumG(src)
 
 	totallums /= 12 // 4 corners, each with 3 channels, get the average.
 
