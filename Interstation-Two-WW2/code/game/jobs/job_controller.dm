@@ -270,7 +270,8 @@ var/global/datum/controller/occupations/job_master
 	// make sure we have the right ambience for our new location
 	spawn (1)
 		var/area/H_area = get_area(H)
-		H_area.play_ambience(H)
+		if (H_area)
+			H_area.play_ambience(H)
 
 /datum/controller/occupations/proc/SetupOccupations(var/faction = "Station")
 	occupations = list()

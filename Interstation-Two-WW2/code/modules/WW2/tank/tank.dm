@@ -188,6 +188,7 @@
 				accepting_occupant = FALSE
 				#ifdef MG_TANKS
 				user << "<span class = 'notice'><big>To fire, click your target and be in the back seat.</big></span>"
+				user << "<span class = 'notice'><big>To reload, click the tank with an ammo belt in your active hand.</big></span>"
 				#else
 				user << "<span class = 'notice'><big>To fire, use SPACE and be in the back seat.</big></span>"
 				#endif

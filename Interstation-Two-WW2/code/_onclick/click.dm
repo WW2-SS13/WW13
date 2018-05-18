@@ -89,8 +89,24 @@
 	if (istype(loc, /obj/tank))
 		if (A == loc)
 			var/obj/tank/tank = loc
-			tank.handle_seat_exit(src)
-			return
+			var/obj/item/ammo_magazine/maxim/hand = get_active_hand()
+			// reloading the tank MG
+			if (hand && istype(hand))
+				if (tank.MG && tank.MG.magazine_type == hand.type)
+					tank.tank_message("<span class = 'warning'>[src] starts to replace the MG belt...</span>")
+					if (do_after(src, 50))
+						var/obj/item/ammo_magazine/maxim/oldmag = tank.MG.ammo_magazine
+						tank.MG.ammo_magazine = hand
+						remove_from_mob(hand)
+						if (oldmag)
+							oldmag.update_icon()
+							put_in_any_hand_if_possible(oldmag, prioritize_active_hand = TRUE)
+						tank.tank_message("<span class = 'warning'>[src] finishes replacing the MG belt.</span>")
+				return
+			else
+				// leaving the tank
+				tank.handle_seat_exit(src)
+				return
 
 	// stop looking down a ladder
 	if (istype(A, /obj/structure/multiz/ladder/ww2))
@@ -122,9 +138,9 @@
 			special_MG = using_MG
 		else if (istank(loc))
 			var/obj/tank/T = loc
-			if (T.back_seat() == src && (get_dir(T, A) & T.dir || T.dir & get_dir(T,A)))
+			if (T.back_seat() == src)
 				special_MG = T.MG
-				tankcheck = TRUE
+				special_MG.dir = T.dir // for dir checks below
 				switch (T.dir) // tank sprite memes
 					if (NORTH, NORTHEAST, NORTHWEST)
 						special_MG.loc = locate(T.x+1, T.y+2, T.z)
@@ -134,6 +150,7 @@
 						special_MG.loc = locate(T.x+3, T.y+2, T.z)
 					if (WEST)
 						special_MG.loc = locate(T.x-1, T.y+1, T.z)
+				tankcheck = TRUE
 
 		if (special_MG && special_MG.loc)
 
@@ -152,12 +169,12 @@
 						can_fire = TRUE
 					else
 						can_fire = FALSE
-				if (NORTH)
+				if (NORTH, NORTHEAST, NORTHWEST)
 					if (A.y > MG.y)
 						can_fire = TRUE
 					else
 						can_fire = FALSE
-				if (SOUTH)
+				if (SOUTH, SOUTHEAST, SOUTHWEST)
 					if (A.y < MG.y)
 						can_fire = TRUE
 					else

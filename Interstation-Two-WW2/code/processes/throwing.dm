@@ -14,6 +14,7 @@ var/process/throwing/throwing_process = null
 /process/throwing/fire()
 	if (!thrown_list.len)
 		return
+
 	SCHECK
 
 	FORNEXT(thrown_list)
@@ -28,7 +29,7 @@ var/process/throwing/throwing_process = null
 			thrown_list -= AM
 			continue
 
-		if (isnull(AM.gcDestroyed))
+		if (!isDeleted(AM))
 			try
 				switch (AM.throwmode)
 					if (0)

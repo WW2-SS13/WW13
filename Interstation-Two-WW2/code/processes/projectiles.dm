@@ -27,7 +27,7 @@ var/process/projectile/projectile_process = null
 		if (!P.loc)
 			continue
 
-		if (isnull(P.gcDestroyed))
+		if (!isDeleted(P))
 			try
 				P.process()
 			catch (var/exception/e)

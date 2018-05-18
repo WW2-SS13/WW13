@@ -30,7 +30,7 @@ var/process/zoom/zoom_process = null
 		if(isnull(S))
 			continue
 
-		if(isnull(S.gcDestroyed))
+		if(!isDeleted(S))
 			try
 				if (S.scoped_invisible)
 					S.invisibility = 0

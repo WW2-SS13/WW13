@@ -11,7 +11,6 @@
 	#ifdef MG_TANKS
 	MG = new/obj/item/weapon/gun/projectile/automatic/stationary/kord/mg34(null)
 	MG.invisibility = 101
-	MG.infinite_ammo = TRUE
 	#endif
 
 /obj/tank/german/admin
@@ -32,7 +31,6 @@
 	#ifdef MG_TANKS
 	MG = new/obj/item/weapon/gun/projectile/automatic/stationary/kord/maxim(null)
 	MG.invisibility = 101
-	MG.infinite_ammo = TRUE
 	#endif
 
 /obj/tank/soviet/admin

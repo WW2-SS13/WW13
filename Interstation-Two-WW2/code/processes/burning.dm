@@ -12,7 +12,7 @@ var/process/burning/burning_process = null
 
 	FORNEXT(burning_objs)
 		var/obj/O = current
-		if(isnull(O.gcDestroyed))
+		if(!isDeleted(O))
 			try
 				if (prob(5))
 					for (var/v in 2 to 3)
@@ -30,7 +30,7 @@ var/process/burning/burning_process = null
 
 	FORNEXT(burning_turfs)
 		var/turf/T = current
-		if(isnull(T.gcDestroyed) && T.density)
+		if(!isDeleted(T) && T.density)
 			try
 				if (prob(3))
 					for (var/v in 4 to 5)

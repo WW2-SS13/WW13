@@ -29,7 +29,7 @@ var/process/movement/movement_process = null
 		if (!M.movement_process_dirs.len)
 			continue
 
-		if(isnull(M.gcDestroyed))
+		if(!isDeleted(M))
 			try
 				var/diag = FALSE
 				var/movedir = M.movement_process_dirs[M.movement_process_dirs.len]

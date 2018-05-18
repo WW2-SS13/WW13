@@ -163,30 +163,14 @@
 /obj/structure/window/sandbag/is_full_window()
 	return FALSE
 
-/obj/structure/window/sandbag/proc/is_beyond(var/atom/a)
-	if (dir == EAST && x > a.x)
-		return TRUE
-	if (dir == WEST && x < a.x)
-		return TRUE
-	if (dir == NORTH && y > a.y)
-		return TRUE
-	if (dir == SOUTH && y < a.y)
-		return TRUE
-	return FALSE
-
-
 /obj/structure/window/hitby(AM as mob|obj)
 	return FALSE // don't move
-/*
-/obj/structure/window/sandbag/attack_tk(mob/user as mob)
-	return FALSE*/
 
 /obj/structure/window/sandbag/attack_generic(var/mob/user, var/damage)
 	return FALSE
 
 /obj/structure/window/sandbag/rotate()
 	return
-
 
 /obj/structure/window/sandbag/revrotate()
 	return

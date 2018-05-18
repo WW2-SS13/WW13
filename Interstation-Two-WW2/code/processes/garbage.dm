@@ -1,5 +1,5 @@
 // The time a datum was destroyed by the GC, or null if it hasn't been
-/datum/var/gcDestroyed
+/datum/var/gcDestroyed = null
 #define GC_COLLECTIONS_PER_RUN 300
 #define GC_COLLECTION_TIMEOUT (30 SECONDS)
 #define GC_FORCE_DEL_PER_RUN 30
@@ -156,10 +156,6 @@ world/loop_checks = FALSE
 /process/garbage_collector/htmlProcess()
 	return ..() + "[garbage_collect ? "On" : "Off"], [destroyed.len] queued<br>Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run"
 
-// Tests if an atom has been deleted.
-/proc/deleted(atom/A)
-	return !A || !isnull(A.gcDestroyed)
-
 // Should be treated as a replacement for the 'del' keyword.
 // Datums passed to this will be given a chance to clean up references to allow the GC to collect them.
 /proc/qdel(var/datum/A)
@@ -177,12 +173,12 @@ world/loop_checks = FALSE
 		. = !A.Destroy()
 		if(. && A)
 			A.finalize_qdel()
-		if (isatom(A))
-			var/atom/AT = A
-			AT.invisibility = 101
-			if (ismovable(A))
-				var/atom/movable/AM = A
-				AM.loc = null // maybe fixes projectiles, hopefully doesn't break anything - Kachnov
+	if (A && A.vars.Find("loc"))
+		var/atom/AT = A
+		AT.invisibility = 101
+		if (A.vars.Find("locs"))
+			var/atom/movable/AM = A
+			AM.loc = null // maybe fixes projectiles, hopefully doesn't break anything - Kachnov
 
 /proc/qdel_list(var/list/L)
 	if (!L)

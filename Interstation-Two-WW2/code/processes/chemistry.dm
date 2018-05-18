@@ -19,7 +19,11 @@ var/process/chemistry/chemistryProcess
 
 	FORNEXT(active_holders)
 		var/datum/reagents/holder = current
-		if(!holder.process_reactions())
+		if(!isDeleted(holder))
+			if(!holder.process_reactions())
+				active_holders -= holder
+		else
+			catchBadType(holder)
 			active_holders -= holder
 		SCHECK
 
