@@ -200,7 +200,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 						if (clients.len < mapswap_process.maps[map])
 							disabled[map] = "[mapswap_process.maps[map]] players"
 						if (map == "Pillar")
-							choices[map] = -5
+							choices[map] = -round(clients.len/3)
 						else
 							choices[map] = 0
 	//			if ("gamemode")
