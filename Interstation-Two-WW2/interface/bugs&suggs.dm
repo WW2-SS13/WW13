@@ -65,12 +65,11 @@
 
 	var/anything_else = input("Anything else?") as text
 	if (lentext(anything_else) > 1000)
-		bugdesc = copytext(anything_else, TRUE, 1001)
+		bugdesc = copytext(anything_else, 1, 1001)
 		src << "<span class = 'warning'>Your bug's 'anything else' value was clamped to 1000 characters.</span>"
 
 	if (!anything_else)
-		src << "<span class = 'warning'>Please put something in the anything else field.</span>"
-		goto reelse
+		anything_else = "nil"
 
 	anything_else = sanitizeSQL(anything_else)
 
