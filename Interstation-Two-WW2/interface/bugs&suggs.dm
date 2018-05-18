@@ -61,8 +61,6 @@
 		if (_step != steps[steps.len])
 			steps2string += "&"
 
-	reelse
-
 	var/anything_else = input("Anything else?") as text
 	if (lentext(anything_else) > 1000)
 		bugdesc = copytext(anything_else, 1, 1001)
