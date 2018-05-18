@@ -407,7 +407,7 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/open()
-	if(!user.client)
+	if(!user || !user.client)
 		return
 
 	// An attempted fix to UIs sometimes locking up spamming runtime errors due to src_object being null for whatever reason.

@@ -84,7 +84,7 @@
 	if(!material)
 		return
 
-	if(!damage_overlays[1]) //list hasn't been populated
+	if(!damage_overlays.len || !damage_overlays[1]) //list hasn't been populated
 		generate_overlays()
 
 	if(density)

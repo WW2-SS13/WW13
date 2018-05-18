@@ -54,12 +54,13 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/calculate_alcohol_power()
 	. = 0
 
-	for (var/datum/reagent/R in reagents.reagent_list)
-		if (istype(R, /datum/reagent/ethanol))
-			var/datum/reagent/ethanol/E = R
-			. += (min(max(E.strength, 25), 50) * E.volume)
+	if (reagents)
+		for (var/datum/reagent/R in reagents.reagent_list)
+			if (istype(R, /datum/reagent/ethanol))
+				var/datum/reagent/ethanol/E = R
+				. += (min(max(E.strength, 25), 50) * E.volume)
 
-	if (rag)
+	if (rag && rag.reagents)
 		for (var/datum/reagent/R in rag.reagents.reagent_list)
 			if (istype(R, /datum/reagent/ethanol))
 				var/datum/reagent/ethanol/E = R

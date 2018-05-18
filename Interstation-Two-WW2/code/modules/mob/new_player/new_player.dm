@@ -320,6 +320,9 @@
 				actual_job = j
 				break
 
+		if (!actual_job)
+			return
+
 		var/job_flag = actual_job.base_type_flag()
 
 		if (job_flag == GERMAN || job_flag == SOVIET)

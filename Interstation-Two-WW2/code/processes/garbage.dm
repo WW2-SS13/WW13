@@ -74,7 +74,9 @@ world/loop_checks = FALSE
 
 			// hey stop fucking spamming me when I start up the server - Kachnov
 			if (world.time > 6000)
-				testing("GC: -- \ref[A] | [A.type] was unable to be GC'd and was deleted --")
+				if (A.type != /obj/skybox)
+					testing("GC: -- \ref[A] | [A.type] was unable to be GC'd and was deleted --")
+
 			logging["[A.type]"]++
 			del(A)
 
