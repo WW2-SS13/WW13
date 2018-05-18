@@ -115,9 +115,29 @@
 
 	if (!W)
 
-		if (using_MG)
+		var/atom/movable/special_MG = null
+		var/tankcheck = FALSE
 
-			var/obj/item/weapon/gun/projectile/automatic/stationary/MG = using_MG
+		if (using_MG)
+			special_MG = using_MG
+		else if (istank(loc))
+			var/obj/tank/T = loc
+			if (T.back_seat() == src && (get_dir(T, A) & T.dir || T.dir & get_dir(T,A)))
+				special_MG = T.MG
+				tankcheck = TRUE
+				switch (T.dir) // tank sprite memes
+					if (NORTH, NORTHEAST, NORTHWEST)
+						special_MG.loc = locate(T.x+1, T.y+2, T.z)
+					if (SOUTH, SOUTHEAST, SOUTHWEST)
+						special_MG.loc = locate(T.x+1, T.y-1, T.z)
+					if (EAST)
+						special_MG.loc = locate(T.x+3, T.y+2, T.z)
+					if (WEST)
+						special_MG.loc = locate(T.x-1, T.y+1, T.z)
+
+		if (special_MG && special_MG.loc)
+
+			var/obj/item/weapon/gun/projectile/automatic/stationary/MG = special_MG
 
 			var/can_fire = FALSE
 
@@ -149,6 +169,9 @@
 			MG.Fire(A, src, force = TRUE)
 
 			skip
+
+		if (tankcheck)
+			special_MG.loc = null
 
 
 	if(W == A) // Handle attack_self

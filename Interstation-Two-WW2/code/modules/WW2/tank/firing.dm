@@ -18,12 +18,12 @@
 
 	var/_loc = null
 	switch (dir)
-		if (NORTH)
+		if (NORTH, NORTHEAST, NORTHWEST)
 			for (var/v in 1 to min(MAX_DIST,steps))
 				_loc = locate(x+1, y+v+1, z)
 				if (!_loc || density_check(_loc))
 					return locate(x+1, y+v+1, z)
-		if (SOUTH)
+		if (SOUTH, SOUTHEAST, SOUTHWEST)
 			for (var/v in 1 to min(MAX_DIST,steps))
 				_loc = locate(x+1, y-v, z)
 				if (!_loc || density_check(_loc))

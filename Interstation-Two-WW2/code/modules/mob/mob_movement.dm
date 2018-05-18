@@ -836,7 +836,8 @@
 	set name = ".startmovingup"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= SOUTH
+		while (mob.movement_process_dirs.Find(SOUTH))
+			mob.movement_process_dirs -= SOUTH
 		mob.movement_process_dirs |= NORTH
 		Move(get_step(mob, NORTH), NORTH)
 
@@ -844,7 +845,8 @@
 	set name = ".startmovingdown"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= NORTH
+		while (mob.movement_process_dirs.Find(NORTH))
+			mob.movement_process_dirs -= NORTH
 		mob.movement_process_dirs |= SOUTH
 		Move(get_step(mob, SOUTH), SOUTH)
 
@@ -852,7 +854,8 @@
 	set name = ".startmovingright"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= WEST
+		while (mob.movement_process_dirs.Find(WEST))
+			mob.movement_process_dirs -= WEST
 		mob.movement_process_dirs |= EAST
 		Move(get_step(mob, EAST), EAST)
 
@@ -860,7 +863,8 @@
 	set name = ".startmovingleft"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= EAST
+		while (mob.movement_process_dirs.Find(EAST))
+			mob.movement_process_dirs -= EAST
 		mob.movement_process_dirs |= WEST
 		Move(get_step(mob, WEST), WEST)
 
@@ -868,22 +872,26 @@
 	set name = ".stopmovingup"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= NORTH
+		while (mob.movement_process_dirs.Find(NORTH))
+			mob.movement_process_dirs -= NORTH
 
 /client/verb/stopmovingdown()
 	set name = ".stopmovingdown"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= SOUTH
+		while (mob.movement_process_dirs.Find(SOUTH))
+			mob.movement_process_dirs -= SOUTH
 
 /client/verb/stopmovingright()
 	set name = ".stopmovingright"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= EAST
+		while (mob.movement_process_dirs.Find(EAST))
+			mob.movement_process_dirs -= EAST
 
 /client/verb/stopmovingleft()
 	set name = ".stopmovingleft"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= WEST
+		while (mob.movement_process_dirs.Find(WEST))
+			mob.movement_process_dirs -= WEST

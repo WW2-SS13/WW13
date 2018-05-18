@@ -827,6 +827,7 @@
 #include "code\modules\WW2\sandbags\cover.dm"
 #include "code\modules\WW2\sandbags\sandbag.dm"
 #include "code\modules\WW2\sky\sky.dm"
+#include "code\modules\WW2\tank\_defines.dm"
 #include "code\modules\WW2\tank\_generic_helpers.dm"
 #include "code\modules\WW2\tank\_member_function_helpers.dm"
 #include "code\modules\WW2\tank\damage.dm"

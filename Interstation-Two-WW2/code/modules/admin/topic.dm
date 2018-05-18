@@ -199,6 +199,8 @@
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/M = locate(href_list["mob"])
+		var/M_area = get_area(M)
+
 		if(!istype(M))
 			usr << "This can only be used on instances of type /mob"
 			return
@@ -272,7 +274,7 @@
 							if (H.client)
 								H.client.eye = H_oloc
 								H.client.perspective = EYE_PERSPECTIVE
-							var/send2spawn = (M && get_area(M) && istype(get_area(M), /area/prishtina/admin)) ? "No" : input(usr_client, "Send [H] to their spawnpoint?") in list("Yes", "No")
+							var/send2spawn = (M_area && istype(M_area, /area/prishtina/admin)) ? "No" : input(usr_client, "Send [H] to their spawnpoint?") in list("Yes", "No")
 							switch (send2spawn)
 								if ("Yes")
 									H.loc = H_jobloc

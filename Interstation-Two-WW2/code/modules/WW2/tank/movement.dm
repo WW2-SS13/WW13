@@ -236,7 +236,7 @@
 				return FALSE
 
 		else if (istype(o, /obj/structure/anti_tank))
-			if (prob(2))
+			if (prob(4))
 				tank_message("<span class = 'danger'>The tank manages to plow through the anti-tank barrier!</span>")
 				qdel(o)
 				return TRUE
