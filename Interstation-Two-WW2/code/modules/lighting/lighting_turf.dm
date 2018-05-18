@@ -172,7 +172,24 @@
 
 	var/area/src_area = get_area(src)
 
+	// 100% daylight if we're outside
 	if (src_area.location == AREA_OUTSIDE)
+		window_coeff = 1.0
+		return window_coeff
+
+	// 100% daylight if we border an outside turf
+	var/turfcount = 0
+	for (var/turf/T in orange(1, src))
+		++turfcount
+		var/area/T_area = get_area(T)
+		if (T_area.is_void_area) // counts as nullspace
+			--turfcount
+		if (T_area.location == AREA_OUTSIDE)
+			window_coeff = 1.0
+			return window_coeff
+
+	// 100% daylight if we border nullspace and we're a wall
+	if (iswall(src) && turfcount != 8)
 		window_coeff = 1.0
 		return window_coeff
 
