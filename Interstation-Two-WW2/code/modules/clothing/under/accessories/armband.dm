@@ -34,7 +34,7 @@
 	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white and green."
 	icon_state = "medgreen"
 
-/obj/item/clothing/accessory/armband/nazi
-	name = "nazi armband"
+/obj/item/clothing/accessory/armband/nsdap
+	name = "nsdap armband"
 	desc = "Sieg heil!"
-	icon_state = "naziband"
+	icon_state = "nsdap"

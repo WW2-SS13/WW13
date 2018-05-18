@@ -21,6 +21,12 @@
 	icon_state = "waiter"
 	item_state = "waiter"
 
+/obj/item/clothing/under/civ4
+	name = "two piece suit"
+	desc = "Very elegant suit, it is accompanied by its jacket for extra coolness."
+	icon_state = "civuni4"
+	item_state = "civuni4"
+
 
 /obj/item/clothing/under/sexyclown
 	name = "sexy-clown suit"

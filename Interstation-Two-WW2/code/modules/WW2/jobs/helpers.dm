@@ -62,7 +62,10 @@
 /datum/job/proc/equip_random_civilian_clothing(var/mob/living/carbon/human/H)
 	if (prob(33))
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ1(H), slot_w_uniform)
-	else if (prob(50))
+	else if (prob(33))
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ2(H), slot_w_uniform)
-	else
+	else if (prob(33))
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ3(H), slot_w_uniform)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/civ4(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/civjacket,slot_wear_suit)
