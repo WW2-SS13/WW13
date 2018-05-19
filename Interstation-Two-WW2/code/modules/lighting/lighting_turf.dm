@@ -209,6 +209,7 @@
 			if (T_area.location == AREA_OUTSIDE)
 				. += (1/abs_dist_no_rounding(src, T))
 
+	// so there aren't very dark areas next to very bright areas
 	. = max(., min_coeff)
 
 	// dividing '.' by 7 returns a more reasonable number - Kachnov
