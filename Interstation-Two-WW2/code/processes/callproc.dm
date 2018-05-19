@@ -58,13 +58,19 @@
 	helpers -= C
 	queue += C
 
-// remove all callproc_helpers for an object to ensure they don't get piled up and called later
-// can be expensive
-/process/callproc/proc/unqueue(object)
+/* remove all callproc_helpers for an object to ensure they don't get piled up and called later
+ * can be very expensive - Kachnov */
+/process/callproc/proc/unqueue(object, maxtimes = INFINITY)
+	. = FALSE
 	for (var/helper in queue)
 		var/callproc_helper/C = helper
 		if (C && C.object == object)
+			. = TRUE
 			queue -= helper
+			--maxtimes
+			if (maxtimes <= 0)
+				return .
+	return .
 
 /callproc_helper
 	parent_type = /datum
