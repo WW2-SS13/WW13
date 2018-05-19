@@ -582,7 +582,7 @@
 
 /obj/item/weapon/storage/backpack/german/rations/New()
 	..()
-	for (var/v in 1 to 3)
+	for (var/v in 1 to 7)
 		contents += new_ration(GERMAN, "solid")
 
 /obj/item/weapon/storage/backpack/german/paratrooper

@@ -135,6 +135,24 @@
 		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 15,
 	)
 
+/obj/structure/vending/paratrooper
+	name = "Fallschirmjager equipment rack"
+	desc = "Basic equipment for Fallschirmjagers."
+	icon_state = "equipment_german"
+	products = list(
+		/obj/item/clothing/head/helmet/gerhelm = 10,
+		/obj/item/clothing/under/geruni/falluni = 10,
+		/obj/item/clothing/suit/fallsparka = 10,
+		/obj/item/clothing/shoes/swat = 10,
+		/obj/item/flashlight = 10,
+		/obj/item/ammo_magazine/kar98k = 20,
+		/obj/item/ammo_magazine/mp40 = 10,
+		/obj/item/weapon/reagent_containers/food/snacks/MRE/generic/german = 10,
+		/obj/item/weapon/storage/firstaid/adv = 1,
+		/obj/item/weapon/pill_pack/bicaridine = 5,
+		/obj/item/weapon/pill_pack/tramadol = 5
+	)
+
 /obj/structure/vending/SSweaponrack
 	name = "SS weapon rack"
 	desc = "Rack filled with weapons."
