@@ -60,7 +60,7 @@
 
 	for (var/new_player in new_player_mob_list)
 		if (new_player:client) // sanity check
-			new_player << "<span class = 'ping'>(LOBBY)</span> <span class='deadsay'><b>[capitalize(key)]</b>:</span> [capitalize(message)]"
+			new_player << "<span class = 'ping'>["\["]LOBBY["\]"]</span> <span class='deadsay'><b>[capitalize(key)]</b>:</span> [capitalize(message)]"
 
 	return TRUE
 
