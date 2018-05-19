@@ -73,7 +73,7 @@ var/list/soviet_traitors = list()
 					if (map && !map.germans_can_cross_blocks() && faction == GERMAN)
 						H << "<span class = 'warning'>You can't use this yet.</span>"
 						return
-					if (!H.original_job || H.original_job.base_type_flag() != faction || !H.original_job.is_officer)
+					if (!H.original_job || H.original_job.base_type_flag() != faction)
 						return
 
 					var/list/targets = (faction == SOVIET ? alive_germans : faction == GERMAN ? alive_russians : list())
@@ -91,7 +91,7 @@ var/list/soviet_traitors = list()
 						air_raid(faction, src, cost)
 
 				if (REQUEST_BATTLE_REPORT)
-					if (!H.original_job || H.original_job.base_type_flag() != faction || !H.original_job.is_officer)
+					if (!H.original_job || H.original_job.base_type_flag() != faction)
 						return
 
 					battlereport2faction(faction)
