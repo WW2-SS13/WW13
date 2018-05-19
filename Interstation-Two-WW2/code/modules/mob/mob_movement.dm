@@ -848,8 +848,7 @@
 	if (movement_verb_lockcheck())
 		if (mob)
 			try
-				while (mob.movement_process_dirs.Find(SOUTH))
-					mob.movement_process_dirs -= SOUTH
+				mob.movement_process_dirs -= SOUTH
 				mob.movement_process_dirs |= NORTH
 				Move(get_step(mob, NORTH), NORTH)
 			catch (var/E)
@@ -862,8 +861,7 @@
 	if (movement_verb_lockcheck())
 		if (mob)
 			try
-				while (mob.movement_process_dirs.Find(NORTH))
-					mob.movement_process_dirs -= NORTH
+				mob.movement_process_dirs -= NORTH
 				mob.movement_process_dirs |= SOUTH
 				Move(get_step(mob, SOUTH), SOUTH)
 			catch (var/E)
@@ -876,8 +874,7 @@
 	if (movement_verb_lockcheck())
 		if (mob)
 			try
-				while (mob.movement_process_dirs.Find(WEST))
-					mob.movement_process_dirs -= WEST
+				mob.movement_process_dirs -= WEST
 				mob.movement_process_dirs |= EAST
 				Move(get_step(mob, EAST), EAST)
 			catch (var/E)
@@ -890,8 +887,7 @@
 	if (movement_verb_lockcheck())
 		if (mob)
 			try
-				while (mob.movement_process_dirs.Find(EAST))
-					mob.movement_process_dirs -= EAST
+				mob.movement_process_dirs -= EAST
 				mob.movement_process_dirs |= WEST
 				Move(get_step(mob, WEST), WEST)
 			catch (var/E)
@@ -903,8 +899,7 @@
 	set instant = TRUE
 	if (movement_verb_lockcheck())
 		if (mob)
-			while (mob.movement_process_dirs.Find(NORTH))
-				mob.movement_process_dirs -= NORTH
+			mob.movement_process_dirs -= NORTH
 			mob.movement_verbs_locked = FALSE
 
 /client/verb/stopmovingdown()
@@ -912,8 +907,7 @@
 	set instant = TRUE
 	if (movement_verb_lockcheck())
 		if (mob)
-			while (mob.movement_process_dirs.Find(SOUTH))
-				mob.movement_process_dirs -= SOUTH
+			mob.movement_process_dirs -= SOUTH
 			mob.movement_verbs_locked = FALSE
 
 /client/verb/stopmovingright()
@@ -921,8 +915,7 @@
 	set instant = TRUE
 	if (movement_verb_lockcheck())
 		if (mob)
-			while (mob.movement_process_dirs.Find(EAST))
-				mob.movement_process_dirs -= EAST
+			mob.movement_process_dirs -= EAST
 			mob.movement_verbs_locked = FALSE
 
 /client/verb/stopmovingleft()
@@ -930,6 +923,5 @@
 	set instant = TRUE
 	if (movement_verb_lockcheck())
 		if (mob)
-			while (mob.movement_process_dirs.Find(WEST))
-				mob.movement_process_dirs -= WEST
+			mob.movement_process_dirs -= WEST
 			mob.movement_verbs_locked = FALSE
