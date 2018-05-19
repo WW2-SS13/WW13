@@ -1,5 +1,5 @@
 // The time a datum was destroyed by the GC, or null if it hasn't been
-/datum/var/gcDestroyed = null
+/datum/var/gcDestroyed = 0
 #define GC_COLLECTIONS_PER_RUN 300
 #define GC_COLLECTION_TIMEOUT (30 SECONDS)
 #define GC_FORCE_DEL_PER_RUN 30
@@ -141,14 +141,14 @@ world/loop_checks = FALSE
 #endif
 
 /process/garbage_collector/proc/AddTrash(datum/A)
-	if(!istype(A) || !isnull(A.gcDestroyed))
+	if(!istype(A) || A.gcDestroyed)
 		return
 	#ifdef GC_DEBUG
 	testing("GC: AddTrash(\ref[A] - [A.type])")
 	#endif
-	A.gcDestroyed = world.time
+	A.gcDestroyed = world.time+1
 	destroyed -= "\ref[A]" // Removing any previous references that were GC'd so that the current object will be at the end of the list.
-	destroyed["\ref[A]"] = world.time
+	destroyed["\ref[A]"] = world.time+1
 
 /process/garbage_collector/statProcess()
 	..()
@@ -170,7 +170,7 @@ world/loop_checks = FALSE
 		if(garbage_collector)
 			garbage_collector.total_dels++
 			garbage_collector.hard_dels++
-	else if(isnull(A.gcDestroyed))
+	else if(!A.gcDestroyed)
 		// Let our friend know they're about to get collected
 		. = !A.Destroy()
 		if(. && A)

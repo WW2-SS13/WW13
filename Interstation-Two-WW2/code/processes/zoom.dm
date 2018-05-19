@@ -55,7 +55,7 @@ var/process/zoom/zoom_process = null
 		if(isnull(H))
 			continue
 
-		if(isnull(H.gcDestroyed))
+		if(!H.gcDestroyed)
 			try
 				if (H.client)
 					if (H.using_zoom())
