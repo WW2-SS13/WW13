@@ -166,7 +166,7 @@
 					original_words[v] = null
 					break
 			if (next)
-				next = " [next] "
+				next = "[next] "
 			else
 				next = pick(syllables)
 		else
