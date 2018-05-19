@@ -193,7 +193,7 @@
 		window_coeff = 1.0
 		return window_coeff
 
-	// objects that let in light
+	// objects that let in light: typechecks about 500 objects, need to optimize this
 	for (var/turf/T in view(world.view*3, src))
 		if (!T.density && !locate_opaque_type(T.contents, /atom))
 			var/area/T_area = get_area(T)
