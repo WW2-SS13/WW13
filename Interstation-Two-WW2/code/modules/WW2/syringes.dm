@@ -10,6 +10,7 @@
 /obj/item/weapon/reagent_containers/syringe/morphine/New()
 	..()
 	reagents.add_reagent("morphine", 5)
+	mode = SYRINGE_INJECT
 
 /obj/item/weapon/reagent_containers/syringe/morphine/update_icon()
 	if(reagents.total_volume > 0)

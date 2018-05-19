@@ -43,6 +43,7 @@
 				mode = SYRINGE_DRAW
 			if(SYRINGE_BROKEN)
 				return
+
 		update_icon()
 
 	attack_hand()

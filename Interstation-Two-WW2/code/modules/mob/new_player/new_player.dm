@@ -528,6 +528,7 @@
 	var/mob/living/character = create_character(job2mobtype(rank))	//creates the human and transfers vars and mind
 	if (!character)
 		return FALSE
+
 	character = job_master.EquipRank(character, rank, TRUE)					//equips the human
 	job_master.relocate(character)
 
