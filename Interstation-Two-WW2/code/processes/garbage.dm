@@ -175,10 +175,10 @@ world/loop_checks = FALSE
 		. = !A.Destroy()
 		if(. && A)
 			A.finalize_qdel()
-	if (A && A.vars.Find("loc"))
+	if (A && isatom(A))
 		var/atom/AT = A
 		AT.invisibility = 101
-		if (A.vars.Find("locs"))
+		if (ismovable(A))
 			var/atom/movable/AM = A
 			AM.loc = null // maybe fixes projectiles, hopefully doesn't break anything - Kachnov
 
