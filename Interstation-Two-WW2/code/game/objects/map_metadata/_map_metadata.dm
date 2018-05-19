@@ -157,9 +157,9 @@ var/global/obj/map_metadata/map = null
 			return FALSE
 		else
 			switch (H.original_job.base_type_flag())
-				if (PARTISAN, CIVILIAN, SOVIET)
+				if (SOVIET)
 					return !soviets_can_cross_blocks()
-				if (GERMAN, ITALIAN)
+				if (GERMAN, ITALIAN, PARTISAN, CIVILIAN)
 					return !germans_can_cross_blocks()
 				if (PILLARMEN)
 					return !specialfaction_can_cross_blocks()
