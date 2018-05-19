@@ -24,8 +24,8 @@
 		user << "<span class = 'warning'>You can't send the train right now.</span>"
 		return
 	if (user && istype(user, /mob/living/carbon/human))
-		if (tickerProcess.playtime_elapsed < 9000)
-			user << "<span class = 'danger'>15 or more minutes must elapse before you can leave!</span>"
+		if (tickerProcess.playtime_elapsed < 12000)
+			user << "<span class = 'danger'>20 or more minutes must elapse before you can leave!</span>"
 			return
 		function(user)
 
