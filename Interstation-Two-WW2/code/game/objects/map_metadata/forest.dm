@@ -3,7 +3,8 @@
 	title = "Forest (200x529x1)"
 	prishtina_blocking_area_types = list(
 		/area/prishtina/forest/north/invisible_wall,
-		/area/prishtina/forest/south/invisible_wall)
+		/area/prishtina/forest/south/invisible_wall,
+		/area/prishtina/forest/south/invisible_wall2)
 	allow_bullets_through_blocks = list(
 		/area/prishtina/forest/south/invisible_wall)
 	roundend_condition_sides = list(

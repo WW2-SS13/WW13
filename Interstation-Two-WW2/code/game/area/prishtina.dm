@@ -114,6 +114,7 @@
 	dynamic_lighting = FALSE
 
 /area/prishtina/forest/south/invisible_wall
+/area/prishtina/forest/south/invisible_wall2
 
 /* sector 1 = top left, sector 2 = top center, sector 3 = top right
    sector 4 = middle left, sector 5 = middle center, sector 6 = middle right
