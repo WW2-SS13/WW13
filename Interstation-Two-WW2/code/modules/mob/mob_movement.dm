@@ -242,7 +242,6 @@
 
 /mob/var/next_snow_message = -1
 /mob/var/next_mud_message = -1
-/mob/var/list/movement_process_dirs = list()
 /mob/var/next_stamina_message = -1
 /mob/var/next_gracewall_message = -1
 /mob/var/next_cannotmove_message = -1
@@ -827,71 +826,98 @@
 		return FALSE
 	return prob_slip
 
-// when we change mobs stop moving
+// loop-based movement magic
+/mob/var/list/movement_process_dirs = list()
+/mob/var/movement_verbs_locked = FALSE // ensure we only change movement_process_dirs once at a time
+
+// when a client changes mobs or logs out they stop moving
 /mob/Logout()
 	movement_process_dirs.Cut()
+	movement_verbs_locked = FALSE
 	..()
+
+/client/proc/movement_verb_lockcheck()
+	if (!mob || mob.movement_verbs_locked)
+		return FALSE
+	mob.movement_verbs_locked = TRUE
+	return TRUE
 
 /client/verb/startmovingup()
 	set name = ".startmovingup"
 	set instant = TRUE
-	if (mob)
-		while (mob.movement_process_dirs.Find(SOUTH))
-			mob.movement_process_dirs -= SOUTH
-		mob.movement_process_dirs |= NORTH
-		Move(get_step(mob, NORTH), NORTH)
+	if (movement_verb_lockcheck())
+		if (mob)
+			while (mob.movement_process_dirs.Find(SOUTH))
+				mob.movement_process_dirs -= SOUTH
+			mob.movement_process_dirs |= NORTH
+			Move(get_step(mob, NORTH), NORTH)
+			mob.movement_verbs_locked = FALSE
 
 /client/verb/startmovingdown()
 	set name = ".startmovingdown"
 	set instant = TRUE
-	if (mob)
-		while (mob.movement_process_dirs.Find(NORTH))
-			mob.movement_process_dirs -= NORTH
-		mob.movement_process_dirs |= SOUTH
-		Move(get_step(mob, SOUTH), SOUTH)
+	if (movement_verb_lockcheck())
+		if (mob)
+			while (mob.movement_process_dirs.Find(NORTH))
+				mob.movement_process_dirs -= NORTH
+			mob.movement_process_dirs |= SOUTH
+			Move(get_step(mob, SOUTH), SOUTH)
+			mob.movement_verbs_locked = FALSE
 
 /client/verb/startmovingright()
 	set name = ".startmovingright"
 	set instant = TRUE
-	if (mob)
-		while (mob.movement_process_dirs.Find(WEST))
-			mob.movement_process_dirs -= WEST
-		mob.movement_process_dirs |= EAST
-		Move(get_step(mob, EAST), EAST)
+	if (movement_verb_lockcheck())
+		if (mob)
+			while (mob.movement_process_dirs.Find(WEST))
+				mob.movement_process_dirs -= WEST
+			mob.movement_process_dirs |= EAST
+			Move(get_step(mob, EAST), EAST)
+			mob.movement_verbs_locked = FALSE
 
 /client/verb/startmovingleft()
 	set name = ".startmovingleft"
 	set instant = TRUE
-	if (mob)
-		while (mob.movement_process_dirs.Find(EAST))
-			mob.movement_process_dirs -= EAST
-		mob.movement_process_dirs |= WEST
-		Move(get_step(mob, WEST), WEST)
+	if (movement_verb_lockcheck())
+		if (mob)
+			while (mob.movement_process_dirs.Find(EAST))
+				mob.movement_process_dirs -= EAST
+			mob.movement_process_dirs |= WEST
+			Move(get_step(mob, WEST), WEST)
+			mob.movement_verbs_locked = FALSE
 
 /client/verb/stopmovingup()
 	set name = ".stopmovingup"
 	set instant = TRUE
-	if (mob)
-		while (mob.movement_process_dirs.Find(NORTH))
-			mob.movement_process_dirs -= NORTH
+	if (movement_verb_lockcheck())
+		if (mob)
+			while (mob.movement_process_dirs.Find(NORTH))
+				mob.movement_process_dirs -= NORTH
+			mob.movement_verbs_locked = FALSE
 
 /client/verb/stopmovingdown()
 	set name = ".stopmovingdown"
 	set instant = TRUE
-	if (mob)
-		while (mob.movement_process_dirs.Find(SOUTH))
-			mob.movement_process_dirs -= SOUTH
+	if (movement_verb_lockcheck())
+		if (mob)
+			while (mob.movement_process_dirs.Find(SOUTH))
+				mob.movement_process_dirs -= SOUTH
+			mob.movement_verbs_locked = FALSE
 
 /client/verb/stopmovingright()
 	set name = ".stopmovingright"
 	set instant = TRUE
-	if (mob)
-		while (mob.movement_process_dirs.Find(EAST))
-			mob.movement_process_dirs -= EAST
+	if (movement_verb_lockcheck())
+		if (mob)
+			while (mob.movement_process_dirs.Find(EAST))
+				mob.movement_process_dirs -= EAST
+			mob.movement_verbs_locked = FALSE
 
 /client/verb/stopmovingleft()
 	set name = ".stopmovingleft"
 	set instant = TRUE
-	if (mob)
-		while (mob.movement_process_dirs.Find(WEST))
-			mob.movement_process_dirs -= WEST
+	if (movement_verb_lockcheck())
+		if (mob)
+			while (mob.movement_process_dirs.Find(WEST))
+				mob.movement_process_dirs -= WEST
+			mob.movement_verbs_locked = FALSE
