@@ -275,10 +275,11 @@
 
 	// relocate or gib chucklefucks who somehow cross the wall
 	if (map.check_prishtina_block(mob, mob.loc))
-		if (job_master)
-			job_master.relocate(mob)
-		else
-			mob.gib()
+		if (!map.special_relocate(mob))
+			if (job_master)
+				job_master.relocate(mob)
+			else
+				mob.gib()
 		return
 
 	for (var/obj/structure/noose/N in get_turf(mob))

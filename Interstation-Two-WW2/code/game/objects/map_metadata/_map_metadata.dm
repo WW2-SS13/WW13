@@ -395,4 +395,7 @@ var/global/obj/map_metadata/map = null
 		if ("Undead")
 			return "Undead"
 
+/obj/map_metadata/proc/special_relocate(var/mob/M)
+	return FALSE
+
 #undef NO_WINNER

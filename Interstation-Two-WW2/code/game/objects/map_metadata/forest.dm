@@ -43,10 +43,24 @@
  	* The first ends at 15 minutes and stops the Germans from leaving their base/the Soviets from going North of the town
  	* The second ends at 30 minutes and stops the Soviets from entering the German base and areas very close to it
 */
+
+#define GRACE_WALL_2_MAX_Y 420
 /obj/map_metadata/forest/check_prishtina_block(var/mob/living/carbon/human/H, var/turf/T)
 	. = ..(H, T)
 	if (!.)
 		if (H.original_job && list(SOVIET, PARTISAN, CIVILIAN).Find(H.original_job.base_type_flag()))
-			if ((T.y >= 420 || istype(get_area(T), /area/prishtina/german/train_zone)) && tickerProcess.playtime_elapsed < mission_announced + 9000) // because H.y >= 420 causes magical teleportation
+			if ((T.y >= GRACE_WALL_2_MAX_Y || istype(get_area(T), /area/prishtina/german/train_zone)) && tickerProcess.playtime_elapsed < mission_announced + 9000) // because H.y >= 420 causes magical teleportation
 				return TRUE
 	return .
+
+/obj/map_metadata/forest/special_relocate(var/mob/M)
+	if (ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/check = FALSE
+		while (H.y >= GRACE_WALL_2_MAX_Y)
+			--H.y
+			check = TRUE
+		return check
+	return FALSE
+
+#undef GRACE_WALL_2_MAX_Y
