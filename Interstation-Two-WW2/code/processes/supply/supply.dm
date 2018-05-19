@@ -37,7 +37,7 @@ var/global/process/supply/supplyProcess
 		radio2germans("The supply passcode has been changed to [supply_codes[GERMAN]] for security reasons.", "High Command Private Announcements")
 		tmpTime1 = 0
 
-	if (prob(10) && tmpTime2 >= 6000)
+	else if (prob(10) && tmpTime2 >= 6000)
 		var/original_code = supply_codes[SOVIET]
 		supply_codes[SOVIET] = rand(1000,9999)
 		for (var/mob/living/carbon/human/H in human_mob_list)

@@ -820,7 +820,8 @@ var/first_fallschirm = TRUE
 		H.loc = pick(fallschirm_spawnpoints)
 
 	H.add_note("Role", "You are a <b>[title]</b>, a paratrooper. Your job is to help any other units that need assistance.")
-	H << "<big><span class = 'red'>The Plane's current altitude is [paratrooper_plane_master.altitude]m. It is lethal to jump until it has descended to [paratrooper_plane_master.first_nonlethal_altitude]m."
+	if (paratrooper_plane_master)
+		H << paratrooper_plane_master.getMessage()
 	H.give_radio()
 	// Paratroopers are elite so they have very nicu stats - Kachnov
 	H.setStat("strength", STAT_MEDIUM_HIGH)

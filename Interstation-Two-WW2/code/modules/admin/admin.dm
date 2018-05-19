@@ -518,19 +518,21 @@ proc/admin_notice(var/message, var/rights)
 
 /datum/admins/proc/startnow()
 	set category = "Server"
-	set desc="Start the round RIGHT NOW"
+	set desc="Start the round immediately"
 	set name="Start Now"
 	if(!ticker)
 		alert("Unable to start the game as it is not set up.")
 		return
 	if(ticker.current_state == GAME_STATE_PREGAME)
+		if (!round_progressing)
+			round_progressing = TRUE
 		ticker.pregame_timeleft = 1
 		ticker.admin_started = TRUE
 		log_admin("[usr.key] has started the game.")
 		message_admins("[usr.key] has started the game.")
 		return TRUE
 	else
-		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"
+		usr << "<font color='red'>Error: Start Now: Game has already started</font>"
 		return FALSE
 
 /datum/admins/proc/toggleenter()
@@ -607,7 +609,7 @@ proc/admin_notice(var/message, var/rights)
 			log_admin("[key_name(usr)] delayed the game.")
 	else
 		world << "<b>The game will start soon.</b>"
-		log_admin("[key_name(usr)] removed the delay.")
+		log_admin("[key_name(usr)] removed the roundstart delay.")
 
 /datum/admins/proc/adjump()
 	set category = "Server"

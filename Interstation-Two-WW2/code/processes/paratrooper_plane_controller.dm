@@ -13,8 +13,7 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 	schedule_interval = 50
 	start_delay = 50
 	fires_at_gamestates = list(GAME_STATE_PLAYING)
-	if (!paratrooper_plane_master)
-		paratrooper_plane_master = src
+	paratrooper_plane_master = src
 
 /process/paratrooper_plane_controller/fire()
 	SCHECK
@@ -56,7 +55,7 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 			for (var/mob/living/carbon/human/H in player_list)
 				if (H.original_job && istype(H.original_job, /datum/job/german/paratrooper))
 					if (H.z == 2)
-						H << "<big><span class = 'red'>The plane's current altitude is [altitude]m. It is lethal to jump until it has descended to [first_nonlethal_altitude]m."
+						H << getMessage()
 				SCHECK
 
 	catch(var/exception/e)
@@ -64,5 +63,8 @@ var/process/paratrooper_plane_controller/paratrooper_plane_master = null
 
 /process/paratrooper_plane_controller/proc/isLethalToJump()
 	return altitude > first_nonlethal_altitude
+
+/process/paratrooper_plane_controller/proc/getMessage()
+	return "<big><span class = 'red'>The plane's current altitude is [altitude]m. <b>It is lethal to jump</b> until it has descended to [first_nonlethal_altitude]m."
 
 #undef SMOOTH_MOVEMENT
