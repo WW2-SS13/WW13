@@ -245,6 +245,9 @@ var/global/datum/controller/occupations/job_master
 
 /datum/controller/occupations/proc/relocate(var/mob/living/carbon/human/H)
 
+	if (!H)
+		return
+
 	var/spawn_location = H.job_spawn_location
 
 	if (!spawn_location && H.original_job)

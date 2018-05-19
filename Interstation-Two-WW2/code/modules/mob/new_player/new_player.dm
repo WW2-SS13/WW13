@@ -526,6 +526,8 @@
 	close_spawn_windows()
 	job_master.AssignRole(src, rank, TRUE)
 	var/mob/living/character = create_character(job2mobtype(rank))	//creates the human and transfers vars and mind
+	if (!character)
+		return FALSE
 	character = job_master.EquipRank(character, rank, TRUE)					//equips the human
 	job_master.relocate(character)
 
@@ -756,7 +758,7 @@
 
 	var/use_species_name
 	var/datum/species/chosen_species
-	if(client.prefs.species)
+	if(client && client.prefs.species)
 		chosen_species = all_species[client.prefs.species]
 		use_species_name = chosen_species.get_station_variant() //Only used by pariahs atm.
 
