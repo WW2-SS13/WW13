@@ -157,6 +157,7 @@
 
 	while(length(scrambled_text) < input_size)
 		var/next = ""
+		var/MI = FALSE
 		if (prob(mutual_intelligibility) && original_words.len)
 			for (var/v in 1 to original_words.len)
 				if (original_words[v] != null)
@@ -169,18 +170,20 @@
 				next = "[next] "
 			else
 				next = pick(syllables)
+			MI = TRUE
 		else
 			next = pick(syllables)
 		if(capitalize)
 			next = capitalize(next)
 			capitalize = FALSE
 		scrambled_text += next
-		var/chance = rand(100)
-		if(chance <= 5)
-			scrambled_text += ". "
-			capitalize = TRUE
-		else if(chance > 5 && chance <= space_chance)
-			scrambled_text += " "
+		if (!MI)
+			var/chance = rand(100)
+			if(chance <= 5)
+				scrambled_text += ". "
+				capitalize = TRUE
+			else if(chance > 5 && chance <= space_chance)
+				scrambled_text += " "
 
 	scrambled_text = trim(scrambled_text)
 	var/ending = copytext(scrambled_text, length(scrambled_text))
