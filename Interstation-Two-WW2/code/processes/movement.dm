@@ -29,6 +29,8 @@ var/process/movement/movement_process = null
 		if (!M.movement_process_dirs.len)
 			continue
 
+		M.movement_process_dirs.len = min(M.movement_process_dirs.len, 2)
+
 		if(!isDeleted(M))
 			try
 				var/diag = FALSE
