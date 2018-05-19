@@ -1103,3 +1103,8 @@ mob/proc/yank_out_object()
 
 /mob/proc/swap_hand()
 	return
+
+/mob/verb/see_battle_report()
+	set category = "OOC"
+	set name = "See Battle Report"
+	show_global_battle_report(src, TRUE)

@@ -494,12 +494,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				ManualFollow(lc)
 				break
 
-/mob/observer/ghost/verb/see_battle_report()
-	set category = "Ghost"
-	set name = "See Battle Report"
-	show_global_battle_report(src, TRUE)
-
-
 // FOLLOWING TANKS
 
 /proc/gettanks()
