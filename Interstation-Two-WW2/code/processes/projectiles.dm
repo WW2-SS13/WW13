@@ -11,27 +11,23 @@ var/process/projectile/projectile_process = null
 	subsystem = TRUE
 
 /process/projectile/fire()
-	if (!projectile_list.len)
-		return
 
 	SCHECK
+
+	if (!projectile_list.len)
+		return
 
 	FORNEXT(projectile_list)
 
 		var/obj/item/projectile/P = current
 
 		// projectiles will qdel() and remove themselves from projectile_list automatically
-		if (!P)
-			continue
-
-		if (!P.loc)
-			continue
-
 		if (!isDeleted(P))
-			try
-				P.process()
-			catch (var/exception/e)
-				catchException(e, P)
+			if (P.loc)
+				try
+					P.process()
+				catch (var/exception/e)
+					catchException(e, P)
 		else
 			catchBadType(P)
 			projectile_list -= P

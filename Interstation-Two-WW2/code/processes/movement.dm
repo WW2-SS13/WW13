@@ -20,33 +20,25 @@ var/process/movement/movement_process = null
 
 		var/mob/M = current:mob
 
-		if(isnull(M))
-			continue
-
-		if(!M.client)
-			continue
-
-		if (!M.movement_process_dirs.len)
-			continue
-
 		if(!isDeleted(M))
 			try
-				var/diag = FALSE
-				var/movedir = M.movement_process_dirs[M.movement_process_dirs.len]
-				if (M.movement_process_dirs.len > 1)
-					if (M.movement_process_dirs.Find(NORTH) && M.movement_process_dirs.Find(WEST))
-						movedir = NORTHWEST
-						diag = TRUE
-					else if (M.movement_process_dirs.Find(NORTH) && M.movement_process_dirs.Find(EAST))
-						movedir = NORTHEAST
-						diag = TRUE
-					else if (M.movement_process_dirs.Find(SOUTH) && M.movement_process_dirs.Find(WEST))
-						movedir = SOUTHWEST
-						diag = TRUE
-					else if (M.movement_process_dirs.Find(SOUTH) && M.movement_process_dirs.Find(EAST))
-						movedir = SOUTHEAST
-						diag = TRUE
-				M.client.Move(get_step(M, movedir), movedir, diag)
+				if (M.client && M.movement_process_dirs.len)
+					var/diag = FALSE
+					var/movedir = M.movement_process_dirs[M.movement_process_dirs.len]
+					if (M.movement_process_dirs.len > 1)
+						if (M.movement_process_dirs.Find(NORTH) && M.movement_process_dirs.Find(WEST))
+							movedir = NORTHWEST
+							diag = TRUE
+						else if (M.movement_process_dirs.Find(NORTH) && M.movement_process_dirs.Find(EAST))
+							movedir = NORTHEAST
+							diag = TRUE
+						else if (M.movement_process_dirs.Find(SOUTH) && M.movement_process_dirs.Find(WEST))
+							movedir = SOUTHWEST
+							diag = TRUE
+						else if (M.movement_process_dirs.Find(SOUTH) && M.movement_process_dirs.Find(EAST))
+							movedir = SOUTHEAST
+							diag = TRUE
+					M.client.Move(get_step(M, movedir), movedir, diag)
 			catch(var/exception/e)
 				catchException(e, M)
 		else

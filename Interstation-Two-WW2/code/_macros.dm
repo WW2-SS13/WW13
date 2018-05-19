@@ -83,5 +83,5 @@
 // other
 #define isclient(A) istype(A, /client)
 
-// Tests if an atom has been deleted.
-#define isDeleted(A) (!A || A:gcDestroyed)
+// Tests if an datum has been deleted.
+#define isDeleted(D) (!D || D:gcDestroyed)
