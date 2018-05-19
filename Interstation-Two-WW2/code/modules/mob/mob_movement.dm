@@ -847,10 +847,13 @@
 	set instant = TRUE
 	if (movement_verb_lockcheck())
 		if (mob)
-			while (mob.movement_process_dirs.Find(SOUTH))
-				mob.movement_process_dirs -= SOUTH
-			mob.movement_process_dirs |= NORTH
-			Move(get_step(mob, NORTH), NORTH)
+			try
+				while (mob.movement_process_dirs.Find(SOUTH))
+					mob.movement_process_dirs -= SOUTH
+				mob.movement_process_dirs |= NORTH
+				Move(get_step(mob, NORTH), NORTH)
+			catch (var/E)
+				pass(E)
 			mob.movement_verbs_locked = FALSE
 
 /client/verb/startmovingdown()
@@ -858,10 +861,13 @@
 	set instant = TRUE
 	if (movement_verb_lockcheck())
 		if (mob)
-			while (mob.movement_process_dirs.Find(NORTH))
-				mob.movement_process_dirs -= NORTH
-			mob.movement_process_dirs |= SOUTH
-			Move(get_step(mob, SOUTH), SOUTH)
+			try
+				while (mob.movement_process_dirs.Find(NORTH))
+					mob.movement_process_dirs -= NORTH
+				mob.movement_process_dirs |= SOUTH
+				Move(get_step(mob, SOUTH), SOUTH)
+			catch (var/E)
+				pass(E)
 			mob.movement_verbs_locked = FALSE
 
 /client/verb/startmovingright()
@@ -869,10 +875,13 @@
 	set instant = TRUE
 	if (movement_verb_lockcheck())
 		if (mob)
-			while (mob.movement_process_dirs.Find(WEST))
-				mob.movement_process_dirs -= WEST
-			mob.movement_process_dirs |= EAST
-			Move(get_step(mob, EAST), EAST)
+			try
+				while (mob.movement_process_dirs.Find(WEST))
+					mob.movement_process_dirs -= WEST
+				mob.movement_process_dirs |= EAST
+				Move(get_step(mob, EAST), EAST)
+			catch (var/E)
+				pass(E)
 			mob.movement_verbs_locked = FALSE
 
 /client/verb/startmovingleft()
@@ -880,10 +889,13 @@
 	set instant = TRUE
 	if (movement_verb_lockcheck())
 		if (mob)
-			while (mob.movement_process_dirs.Find(EAST))
-				mob.movement_process_dirs -= EAST
-			mob.movement_process_dirs |= WEST
-			Move(get_step(mob, WEST), WEST)
+			try
+				while (mob.movement_process_dirs.Find(EAST))
+					mob.movement_process_dirs -= EAST
+				mob.movement_process_dirs |= WEST
+				Move(get_step(mob, WEST), WEST)
+			catch (var/E)
+				pass(E)
 			mob.movement_verbs_locked = FALSE
 
 /client/verb/stopmovingup()
