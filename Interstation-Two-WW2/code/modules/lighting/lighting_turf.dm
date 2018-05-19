@@ -168,7 +168,6 @@
 	return corners
 
 /turf/proc/calculate_window_coeff()
-	. = 0
 
 	var/area/src_area = get_area(src)
 
@@ -177,8 +176,11 @@
 		window_coeff = 1.0
 		return window_coeff
 
+	var/min_coeff = 0
+
 	// 100% daylight if we border an outside turf
 	var/turfcount = 0
+	var/turfcount2 = 0
 	for (var/turf/T in orange(1, src))
 		++turfcount
 		var/area/T_area = get_area(T)
@@ -187,11 +189,18 @@
 		if (T_area.location == AREA_OUTSIDE)
 			window_coeff = 1.0
 			return window_coeff
+		if (T.window_coeff)
+			min_coeff += (T.window_coeff * 0.60)
+			++turfcount2
+
+	min_coeff *= 8/turfcount2
 
 	// 100% daylight if we border nullspace and we're a wall
 	if (iswall(src) && turfcount != 8)
 		window_coeff = 1.0
 		return window_coeff
+
+	. = 0
 
 	// objects that let in light: typechecks about 500 objects, need to optimize this
 	for (var/turf/T in view(world.view*3, src))
@@ -199,6 +208,8 @@
 			var/area/T_area = get_area(T)
 			if (T_area.location == AREA_OUTSIDE)
 				. += (1/abs_dist_no_rounding(src, T))
+
+	. = max(., min_coeff)
 
 	// dividing '.' by 7 returns a more reasonable number - Kachnov
 	window_coeff = max(min(1.0, (.)/7), 0.0)
