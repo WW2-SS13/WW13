@@ -85,9 +85,11 @@ var/GRACE_PERIOD_LENGTH = 7
 	spawn (1)
 		world << "<span class = 'notice'>Setting up seasons.</span>"
 
-	if (map && istype(map, /obj/map_metadata/forest) || season == "WINTER")
-		return TRUE // temp fix
+	// fixes a crash
+	if (map && istype(map, /obj/map_metadata/forest))
+		return TRUE
 
+	// snow is disabled because it breaks the game
 	var/use_snow = FALSE
 
 	// first, make all water into ice if it's winter
@@ -95,16 +97,18 @@ var/GRACE_PERIOD_LENGTH = 7
 		for (var/turf/floor/plating/beach/water/W in turfs)
 			if (!istype(W, /turf/floor/plating/beach/water/sewage))
 				new /turf/floor/plating/beach/water/ice (W)
-		if (prob(50))
-			use_snow = TRUE
+	/*	if (prob(50))
+			use_snow = TRUE */
 
 	if (!use_snow)
 		for (var/obj/snow_maker/SM in world)
 			qdel(SM)
 
-	for (var/turf/floor/G in turfs)
+	for (var/grass in grass_turf_list)
 
-		if (!G || G.z > 1 || (!G.uses_winter_overlay && !locate(/obj/snow_maker) in G))
+		var/turf/floor/plating/grass/G = grass
+
+		if (!G || G.z > 1 || (!G.uses_winter_overlay && !locate_type(G.contents, /obj/snow_maker)))
 			continue
 
 		G.season = season

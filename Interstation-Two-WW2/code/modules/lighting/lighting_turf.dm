@@ -17,6 +17,11 @@
 	if(opacity)
 		has_opaque_atom = TRUE
 
+	var/area/A = get_area(src)
+	if (A.is_train_area)
+		var/c = min(255, round(time_of_day2luminosity[time_of_day] * 281))
+		color = rgb(c, c, c)
+
 // Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
 	for(var/A in affecting_lights)
