@@ -85,7 +85,7 @@ var/GRACE_PERIOD_LENGTH = 7
 	spawn (1)
 		world << "<span class = 'notice'>Setting up seasons.</span>"
 
-	if (map && istype(map, /obj/map_metadata/forest))
+	if (map && istype(map, /obj/map_metadata/forest) || season == "WINTER")
 		return TRUE // temp fix
 
 	var/use_snow = FALSE
