@@ -55,8 +55,6 @@
 	if (!isnewplayer(src))
 		src << browse(null, "window=playersetup;")
 
-	movement_process_dirs.Cut()
-
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
 	if(!client)	return

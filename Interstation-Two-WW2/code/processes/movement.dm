@@ -22,20 +22,25 @@ var/process/movement/movement_process = null
 
 		if(!isDeleted(M))
 			try
-				if (M.client && M.movement_process_dirs.len)
+				if (M.client && (M.movement_eastwest || M.movement_northsouth))
 					var/diag = FALSE
-					var/movedir = M.movement_process_dirs[M.movement_process_dirs.len]
-					if (M.movement_process_dirs.len > 1)
-						if (M.movement_process_dirs.Find(NORTH) && M.movement_process_dirs.Find(WEST))
+					var/list/movement_process_dirs = list()
+					if (M.movement_eastwest)
+						movement_process_dirs += M.movement_eastwest
+					if (M.movement_northsouth)
+						movement_process_dirs += M.movement_northsouth
+					var/movedir = movement_process_dirs[movement_process_dirs.len]
+					if (movement_process_dirs.len > 1 && !istank(M.loc))
+						if (movement_process_dirs.Find(NORTH) && movement_process_dirs.Find(WEST))
 							movedir = NORTHWEST
 							diag = TRUE
-						else if (M.movement_process_dirs.Find(NORTH) && M.movement_process_dirs.Find(EAST))
+						else if (movement_process_dirs.Find(NORTH) && movement_process_dirs.Find(EAST))
 							movedir = NORTHEAST
 							diag = TRUE
-						else if (M.movement_process_dirs.Find(SOUTH) && M.movement_process_dirs.Find(WEST))
+						else if (movement_process_dirs.Find(SOUTH) && movement_process_dirs.Find(WEST))
 							movedir = SOUTHWEST
 							diag = TRUE
-						else if (M.movement_process_dirs.Find(SOUTH) && M.movement_process_dirs.Find(EAST))
+						else if (movement_process_dirs.Find(SOUTH) && movement_process_dirs.Find(EAST))
 							movedir = SOUTHEAST
 							diag = TRUE
 					M.client.Move(get_step(M, movedir), movedir, diag)

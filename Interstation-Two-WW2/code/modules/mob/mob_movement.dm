@@ -828,101 +828,75 @@
 	return prob_slip
 
 // loop-based movement magic
-/mob/var/list/movement_process_dirs = list()
-/mob/var/movement_verbs_locked = FALSE // ensure we only change movement_process_dirs once at a time
+/mob/var/movement_eastwest = null
+/mob/var/movement_northsouth = null
 
 // when a client changes mobs or logs out they stop moving
 /mob/Logout()
-	movement_process_dirs.Cut()
-	movement_verbs_locked = FALSE
+	movement_eastwest = null
+	movement_northsouth = null
 	..()
-
-/client/proc/movement_verb_lockcheck()
-	if (!mob || mob.movement_verbs_locked)
-		return FALSE
-	mob.movement_verbs_locked = TRUE
-	return TRUE
 
 /client/verb/startmovingup()
 	set name = ".startmovingup"
 	set instant = TRUE
-	if (movement_verb_lockcheck())
-		if (mob)
-			try
-				mob.movement_process_dirs -= SOUTH
-				mob.movement_process_dirs |= NORTH
-				Move(get_step(mob, NORTH), NORTH)
-			catch (var/E)
-				pass(E)
-			mob.movement_verbs_locked = FALSE
+	if (mob)
+		mob.movement_northsouth = NORTH
+		try
+			Move(get_step(mob, NORTH), NORTH)
+		catch (var/E)
+			pass(E)
 
 /client/verb/startmovingdown()
 	set name = ".startmovingdown"
 	set instant = TRUE
-	if (movement_verb_lockcheck())
-		if (mob)
-			try
-				mob.movement_process_dirs -= NORTH
-				mob.movement_process_dirs |= SOUTH
-				Move(get_step(mob, SOUTH), SOUTH)
-			catch (var/E)
-				pass(E)
-			mob.movement_verbs_locked = FALSE
+	if (mob)
+		mob.movement_northsouth = SOUTH
+		try
+			Move(get_step(mob, SOUTH), SOUTH)
+		catch (var/E)
+			pass(E)
 
 /client/verb/startmovingright()
 	set name = ".startmovingright"
 	set instant = TRUE
-	if (movement_verb_lockcheck())
-		if (mob)
-			try
-				mob.movement_process_dirs -= WEST
-				mob.movement_process_dirs |= EAST
-				Move(get_step(mob, EAST), EAST)
-			catch (var/E)
-				pass(E)
-			mob.movement_verbs_locked = FALSE
+	if (mob)
+		mob.movement_eastwest = EAST
+		try
+			Move(get_step(mob, EAST), EAST)
+		catch (var/E)
+			pass(E)
 
 /client/verb/startmovingleft()
 	set name = ".startmovingleft"
 	set instant = TRUE
-	if (movement_verb_lockcheck())
-		if (mob)
-			try
-				mob.movement_process_dirs -= EAST
-				mob.movement_process_dirs |= WEST
-				Move(get_step(mob, WEST), WEST)
-			catch (var/E)
-				pass(E)
-			mob.movement_verbs_locked = FALSE
+	if (mob)
+		mob.movement_eastwest = WEST
+		try
+			Move(get_step(mob, WEST), WEST)
+		catch (var/E)
+			pass(E)
 
 /client/verb/stopmovingup()
 	set name = ".stopmovingup"
 	set instant = TRUE
-	if (movement_verb_lockcheck())
-		if (mob)
-			mob.movement_process_dirs -= NORTH
-			mob.movement_verbs_locked = FALSE
+	if (mob && mob.movement_northsouth == NORTH)
+		mob.movement_northsouth = null
 
 /client/verb/stopmovingdown()
 	set name = ".stopmovingdown"
 	set instant = TRUE
-	if (movement_verb_lockcheck())
-		if (mob)
-			mob.movement_process_dirs -= SOUTH
-			mob.movement_verbs_locked = FALSE
+	if (mob && mob.movement_northsouth == SOUTH)
+		mob.movement_northsouth = null
 
 /client/verb/stopmovingright()
 	set name = ".stopmovingright"
 	set instant = TRUE
-	if (movement_verb_lockcheck())
-		if (mob)
-			mob.movement_process_dirs -= EAST
-			mob.movement_verbs_locked = FALSE
+	if (mob && mob.movement_eastwest == EAST)
+		mob.movement_eastwest = null
 
 /client/verb/stopmovingleft()
 	set name = ".stopmovingleft"
 	set instant = TRUE
-	if (movement_verb_lockcheck())
-		if (mob)
-			mob.movement_process_dirs -= WEST
-			mob.movement_verbs_locked = FALSE
+	if (mob && mob.movement_eastwest == WEST)
+		mob.movement_eastwest = null
