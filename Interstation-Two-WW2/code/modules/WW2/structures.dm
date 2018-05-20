@@ -126,6 +126,8 @@
 				visible_message("<span class = 'danger'>[hanging]'s neck snaps.</span>")
 				playsound(loc, 'sound/effects/gore/bullethit3.ogg')
 				hanging.death()
+			else if (prob(33))
+				hanging << "<span class = 'danger'>You're suffocating!</span>"
 	else
 		icon_state = ""
 		density = FALSE

@@ -8,6 +8,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 	var/time_remaining = 0
 	var/mode = null
 	var/question = null
+	var/default = null
 	var/list/choices = list()
 	var/list/gamemode_names = list()
 	var/list/voted = list()
@@ -106,7 +107,10 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 	proc/announce_result()
 		var/list/winners = get_result()
 		var/text
-		if(winners.len > 0)
+		if (!winners.len)
+			if (default)
+				winners += default
+		if(winners.len)
 			if(winners.len > 1)
 			//	if(mode != "gamemode") // Here we are making sure we don't announce potential game modes
 				text = "<b>Vote Tied Between:</b>\n"
@@ -189,12 +193,16 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 
 			reset()
 			win_threshold = 0.00
+			default = null
+
 			switch(vote_type)
 				if("restart")
 					choices.Add("Restart Round","Continue Playing")
 					win_threshold = 0.67
 				if ("map")
 					for (var/map in mapswap_process.maps)
+						if (!default)
+							default = map
 						map = capitalize(lowertext(map))
 						choices.Add(map)
 						if (clients.len < mapswap_process.maps[map])

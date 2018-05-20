@@ -60,7 +60,7 @@
 
 	for (var/new_player in new_player_mob_list)
 		if (new_player:client) // sanity check
-			new_player << "<span class = 'ping'>["\["]LOBBY["\]"]</span> <span class='deadsay'><b>[capitalize(key)]</b>:</span> [capitalize(message)]"
+			new_player << "<span class = 'ping'><small>["\["]LOBBY["\]"]</small></span> <span class='deadsay'><b>[capitalize(key)]</b>:</span> [capitalize(message)]"
 
 	return TRUE
 
@@ -362,6 +362,10 @@
 		if(!(S.spawn_flags & CAN_JOIN))
 			alert(src, "Your current species, [client.prefs.species], is not available for play on the station.")
 			return FALSE
+
+		if (actual_job.is_officer)
+			if ((input(src, "This is an officer position. Are you sure you want to join in as a [actual_job.title]?") in list("Yes", "No")) == "No")
+				return
 
 		if (actual_job.spawn_delay)
 

@@ -208,11 +208,11 @@
 		src << "<span class='notice'>Something is there but you can't see it.</span>"
 		return TRUE
 
-	face_atom(A)
+	// changing direction counts as a movement, so don't do it unless we have to - Kachnov
+	if (dir != get_dir(src,A))
+		face_atom(A)
 	//A.visible_message("<small>[A] looks at [src].</small>")//Doesn't work for everything yet.
 	A.examine(src)
-
-
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
 	if ((!( istype(l_hand, /obj/item/weapon/grab) ) && !( istype(r_hand, /obj/item/weapon/grab) )))

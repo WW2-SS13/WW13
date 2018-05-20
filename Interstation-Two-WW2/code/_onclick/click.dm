@@ -40,13 +40,6 @@
 
 /mob/proc/ClickOn(var/atom/A, var/params)
 
-	if (ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if (H.lying)
-			if (ismob(A) || (A.loc && istype(A.loc, /turf)))
-				if (!istype(A, /obj/structure/bed)) // unbuckling yourself from a bed
-					return
-
 	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
 		return
 
@@ -72,6 +65,19 @@
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
 		return TRUE
+
+	// can't click on stuff when we're lying, unless it's a bed
+	if (ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if (H.lying)
+			if (ismob(A) || (A.loc && istype(A.loc, /turf)))
+				if (!istype(A, /obj/structure/bed))
+					return
+
+	// can't click on anything when we're hanged
+	for (var/obj/structure/noose/N in get_turf(src))
+		if (N.hanging == src)
+			return
 
 	if(lying && istype(A, /turf/floor))
 		if(A.Adjacent(src))
@@ -366,6 +372,7 @@
 /mob/proc/ShiftClickOn(var/atom/A)
 	A.ShiftClick(src)
 	return
+
 /atom/proc/ShiftClick(var/mob/user)
 	if(user.client && user.client.eye == user)
 		user.examinate(src)

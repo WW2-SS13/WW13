@@ -284,6 +284,8 @@
 
 	for (var/obj/structure/noose/N in get_turf(mob))
 		if (N.hanging == mob)
+			mob.pixel_x = N.pixel_x
+			mob.pixel_y = N.pixel_y
 			return
 
 	if(mob.lying && istype(n, /turf))
