@@ -965,7 +965,7 @@
 
 #define STARVATION_TOX_DAMAGE 2.5
 #define STARVATION_BRAIN_DAMAGE 2.5
-#define STARVATION_OXY_HEAL_RATE TRUE //While starving, THIS much oxygen damage is restored per life tick (instead of the default 5)
+#define STARVATION_OXY_HEAL_RATE 1 //While starving, THIS much oxygen damage is restored per life tick (instead of the default 5)
 
 /mob/living/carbon/human/var/list/informed_starvation[4]
 
@@ -1085,9 +1085,9 @@
 #define DEHYDRATION_NEARDEATH -55
 #define DEHYDRATION_NEGATIVE_INFINITY -10000
 
-#define DEHYDRATION_OXY_DAMAGE 2.5
+#define DEHYDRATION_TOX_DAMAGE 2.5
 #define DEHYDRATION_BRAIN_DAMAGE 2.5
-#define DEHYDRATION_OXY_HEAL_RATE TRUE
+#define DEHYDRATION_OXY_HEAL_RATE 1
 
 /mob/living/carbon/human/var/list/informed_dehydration[4]
 
