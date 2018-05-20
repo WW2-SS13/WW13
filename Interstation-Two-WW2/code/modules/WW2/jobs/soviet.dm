@@ -72,7 +72,7 @@
 /datum/job/soviet/XO
 	title = "Starshiy Leytenant"
 	en_meaning = "Company Executive Officer"
-	rank_abbreviation = "STLy"
+	rank_abbreviation = "StLy"
 	head_position = FALSE
 	selection_color = "#530909"
 	spawn_location = "JoinLateRAXO"
@@ -345,7 +345,7 @@
 /datum/job/soviet/sniper
 	title = "Snaiper"
 	en_meaning = "Sniper"
-	rank_abbreviation = "Kras"
+	rank_abbreviation = "Efr"
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 
@@ -674,7 +674,7 @@
 /datum/job/soviet/guard
 	title = "Gvardeyec"
 	en_meaning = "Guard"
-	rank_abbreviation = "Kras"
+	rank_abbreviation = "Efr"
 	selection_color = "#a8b800"
 	spawn_location = "JoinLateRA"
 	additional_languages = list( "German" = 100 )
@@ -778,7 +778,7 @@ var/first_guard = FALSE
 /datum/job/soviet/sturmovik
 	title = "Sturmovik"
 	en_meaning = "Shock Trooper"
-	rank_abbreviation = "Kras"
+	rank_abbreviation = "Efr"
 	selection_color = "#770e0e"
 	spawn_location = "JoinLateRA"
 	is_sturmovik = TRUE
