@@ -1041,7 +1041,7 @@ var/first_fallschirm = TRUE
 /datum/job/german/squad_leader_ss
 	title = "SS-Unterscharfuhrer"
 	en_meaning = "SS Squad Leader"
-	rank_abbreviation = "uscha"
+	rank_abbreviation = "uffz"
 	head_position = TRUE
 	selection_color = "#4c4ca5"
 	spawn_location = "JoinLateSS-Officer"
