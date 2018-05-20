@@ -70,7 +70,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 		return
 
 	//Loading list of notes for this key
-	var/savefile/info = new("data/player_saves/[copytext(key, TRUE, 2)]/[key]/info.sav")
+	var/savefile/info = new("[get_player_notes_file_dir()][copytext(key, TRUE, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos) infos = list()
@@ -109,7 +109,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	del(info) // savefile, so NOT qdel
 
 	//Updating list of keys with notes on them
-	var/savefile/note_list = new("data/player_notes.sav")
+	var/savefile/note_list = new("[(serverswap && serverswap.Find("master_data_dir")) ? serverswap["master_data_dir"] : "data/"]/player_notes.sav")
 	var/list/note_keys
 	note_list >> note_keys
 	if(!note_keys) note_keys = list()
@@ -119,7 +119,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 
 
 /proc/notes_del(var/key, var/index)
-	var/savefile/info = new("data/player_saves/[copytext(key, TRUE, 2)]/[key]/info.sav")
+	var/savefile/info = new("[get_player_notes_file_dir()][copytext(key, TRUE, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos || infos.len < index) return
@@ -135,7 +135,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 
 /proc/show_player_info_irc(var/key as text)
 	var/dat = "          Info on [key]\n"
-	var/savefile/info = new("data/player_saves/[copytext(key, TRUE, 2)]/[key]/info.sav")
+	var/savefile/info = new("[get_player_notes_file_dir()][copytext(key, TRUE, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos)

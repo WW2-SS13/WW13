@@ -5,18 +5,22 @@
 //Firstly, they use memory. TGstation has one of the highest memory usage of all the ss13 branches.
 //Secondly, they are usually stored in an object. This means that they aren't centralised. It also means that
 //the data is lost when the object is deleted! This is especially annoying for things like the singulo engine!
-#define INVESTIGATE_DIR "data/investigate/"
+/proc/get_investigate_file_dir()
+	if (serverswap && serverswap.Find("master_data_dir"))
+		return "[serverswap["master_data_dir"]]investigate/"
+	return "data/investigate/"
+
 
 //SYSTEM
 /proc/investigate_subject2file(var/subject)
-	return file("[INVESTIGATE_DIR][subject].html")
+	return file("[get_investigate_file_dir()][subject].html")
 
 /hook/startup/proc/resetInvestigate()
 	investigate_reset()
 	return TRUE
 
 /proc/investigate_reset()
-	if(fdel(INVESTIGATE_DIR))	return TRUE
+	if(fdel(get_investigate_file_dir()))	return TRUE
 	return FALSE
 
 /atom/proc/investigate_log(var/message, var/subject)
@@ -34,7 +38,7 @@
 		if("singulo", "telesci")			//general one-round-only stuff
 			var/F = investigate_subject2file(subject)
 			if(!F)
-				src << "<font color='red'>Error: admin_investigate: [INVESTIGATE_DIR][subject] is an invalid path or cannot be accessed.</font>"
+				src << "<font color='red'>Error: admin_investigate: [get_investigate_file_dir()][subject] is an invalid path or cannot be accessed.</font>"
 				return
 			src << browse(F,"window=investigate[subject];size=800x300")
 
