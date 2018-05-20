@@ -82,7 +82,7 @@
 			playsound(location, "explosion", 100, TRUE)
 		spawn (6)
 			for (var/mob/living/L in location)
-				L.crush()
+				L.maim()
 				L.overlays -= image_overlay
 			for (var/obj/O in location)
 				O.ex_act(1.0)
