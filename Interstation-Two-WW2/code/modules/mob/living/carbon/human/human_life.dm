@@ -145,8 +145,12 @@
 
 	// recover oxyloss
 	var/oxyloss = getOxyLoss()
-	if (oxyloss <= 20 && stat == CONSCIOUS)
-		adjustOxyLoss(-4)
+	if (oxyloss >= 10 && oxyloss <= 20)
+		adjustOxyLoss(-5)
+		// it's been about 15 minutes, you're fucked now
+		if (list(UNCONSCIOUS, DEAD).Find(stat))
+			if (prob(1) && prob(20))
+				adjustOxyLoss(20)
 
 	..()
 
@@ -965,7 +969,6 @@
 
 #define STARVATION_TOX_DAMAGE 2.5
 #define STARVATION_BRAIN_DAMAGE 2.5
-#define STARVATION_OXY_HEAL_RATE 1 //While starving, THIS much oxygen damage is restored per life tick (instead of the default 5)
 
 /mob/living/carbon/human/var/list/informed_starvation[4]
 
@@ -1087,7 +1090,6 @@
 
 #define DEHYDRATION_TOX_DAMAGE 2.5
 #define DEHYDRATION_BRAIN_DAMAGE 2.5
-#define DEHYDRATION_OXY_HEAL_RATE 1
 
 /mob/living/carbon/human/var/list/informed_dehydration[4]
 
