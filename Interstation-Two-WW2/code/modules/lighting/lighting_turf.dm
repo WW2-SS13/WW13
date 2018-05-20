@@ -167,9 +167,16 @@
 
 	return corners
 
+// disables this buggy :mistake: - Kachnov
+#define DAYLIGHT_LIGHTING_DISABLED
 /turf/proc/calculate_window_coeff()
 
 	var/area/src_area = get_area(src)
+
+	#ifdef DAYLIGHT_LIGHTING_DISABLED
+	if (src_area && src_area.location == AREA_INSIDE)
+		return 0.0
+	#endif
 
 	// 100% daylight if we're outside
 	if (src_area.location == AREA_OUTSIDE)
