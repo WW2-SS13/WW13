@@ -736,7 +736,9 @@ var/next_calculate_relevant_clients = -1
 	. = 0
 	for (var/client in clients)
 		var/client/C = client
-		if (C && !C.is_minimized() && C.mob && !istype(C.mob, /mob/observer))
+		/* sometimes C.is_minimized() can take so long that the client no longer exists by the time it's done
+		 * that's why it goes here last - Kachnov */
+		if (C && C.mob && !istype(C.mob, /mob/observer) && !C.is_minimized())
 			++.
 	last_relevant_clients = .
 	next_calculate_relevant_clients = world.time + 50
