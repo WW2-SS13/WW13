@@ -778,36 +778,37 @@
 	new_character.stopDumbDamage = TRUE
 	new_character.lastarea = get_area(loc)
 
-	for(var/lang in client.prefs.alternate_languages)
-		var/datum/language/chosen_language = all_languages[lang]
-		if(chosen_language)
-			if(has_admin_rights() \
-				|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
-				new_character.add_language(lang)
+	if (client)
+		for(var/lang in client.prefs.alternate_languages)
+			var/datum/language/chosen_language = all_languages[lang]
+			if(chosen_language)
+				if(has_admin_rights() \
+					|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+					new_character.add_language(lang)
 
-	if(ticker.random_players)
-		new_character.gender = pick(MALE, FEMALE)
-		client.prefs.real_name = random_name(new_character.gender)
-		client.prefs.randomize_appearance_for(new_character)
-	else
-		// no more traps - Kachnov
-		var/datum/job/J = original_job
-		var/J_flag = J.base_type_flag()
-		var/client_prefs_original_gender = client.prefs.gender
+		if(ticker.random_players)
+			new_character.gender = pick(MALE, FEMALE)
+			client.prefs.real_name = random_name(new_character.gender)
+			client.prefs.randomize_appearance_for(new_character)
+		else
+			// no more traps - Kachnov
+			var/datum/job/J = original_job
+			var/J_flag = J.base_type_flag()
+			var/client_prefs_original_gender = client.prefs.gender
 
-		if (list(PARTISAN, CIVILIAN).Find(J_flag))
-			client.prefs.gender = client.prefs.ukrainian_gender
-		else if (J_flag == GERMAN)
-			client.prefs.gender = client.prefs.german_gender
-		else if (J_flag == SOVIET)
-			client.prefs.gender = client.prefs.russian_gender
-		else if (J_flag == ITALIAN)
-			client.prefs.gender = client.prefs.italian_gender
+			if (list(PARTISAN, CIVILIAN).Find(J_flag))
+				client.prefs.gender = client.prefs.ukrainian_gender
+			else if (J_flag == GERMAN)
+				client.prefs.gender = client.prefs.german_gender
+			else if (J_flag == SOVIET)
+				client.prefs.gender = client.prefs.russian_gender
+			else if (J_flag == ITALIAN)
+				client.prefs.gender = client.prefs.italian_gender
 
-		// traps came back, this should fix them for good - Kachnov
-		new_character.gender = client.prefs.gender
-		client.prefs.copy_to(new_character)
-		client.prefs.gender = client_prefs_original_gender
+			// traps came back, this should fix them for good - Kachnov
+			new_character.gender = client.prefs.gender
+			client.prefs.copy_to(new_character)
+			client.prefs.gender = client_prefs_original_gender
 
 	src << sound(null, repeat = FALSE, wait = FALSE, volume = 85, channel = TRUE) // MAD JAMS cant last forever yo
 
@@ -822,7 +823,7 @@
 	new_character.dna.b_type = client.prefs.b_type
 	new_character.sync_organ_dna()
 
-	if(client.prefs.disabilities)
+	if(client && client.prefs.disabilities)
 		// Set defer to TRUE if you add more crap here so it only recalculates struc_enzymes once. - N3X
 		new_character.dna.SetSEState(GLASSESBLOCK,1,0)
 		new_character.disabilities |= NEARSIGHTED

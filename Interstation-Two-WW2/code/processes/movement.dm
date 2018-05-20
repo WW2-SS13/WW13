@@ -18,6 +18,11 @@ var/process/movement/movement_process = null
 
 	FORNEXT(clients)
 
+		if (!current)
+			catchBadType(current)
+			clients -= current
+			continue
+
 		var/mob/M = current:mob
 
 		if(!isDeleted(M))
