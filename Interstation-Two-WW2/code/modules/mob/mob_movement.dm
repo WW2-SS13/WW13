@@ -242,7 +242,6 @@
 
 /mob/var/next_snow_message = -1
 /mob/var/next_mud_message = -1
-/mob/var/list/movement_process_dirs = list()
 /mob/var/next_stamina_message = -1
 /mob/var/next_gracewall_message = -1
 /mob/var/next_cannotmove_message = -1
@@ -276,14 +275,17 @@
 
 	// relocate or gib chucklefucks who somehow cross the wall
 	if (map.check_prishtina_block(mob, mob.loc))
-		if (job_master)
-			job_master.relocate(mob)
-		else
-			mob.gib()
+		if (!map.special_relocate(mob))
+			if (job_master)
+				job_master.relocate(mob)
+			else
+				mob.gib()
 		return
 
 	for (var/obj/structure/noose/N in get_turf(mob))
 		if (N.hanging == mob)
+			mob.pixel_x = N.pixel_x
+			mob.pixel_y = N.pixel_y
 			return
 
 	if(mob.lying && istype(n, /turf))
@@ -650,8 +652,7 @@
 
 		if (!mob_is_observer)
 			for (var/obj/structure/multiz/ladder/ww2/manhole/M in mob.loc)
-				spawn (1)
-					M.fell(mob)
+				callproc_process.queue(M, /obj/structure/multiz/ladder/ww2/manhole/proc/fell, list(mob), 1)
 				break
 
 		// make animals acknowledge us
@@ -828,58 +829,76 @@
 		return FALSE
 	return prob_slip
 
+// loop-based movement magic
+/mob/var/movement_eastwest = null
+/mob/var/movement_northsouth = null
+
+// when a client changes mobs or logs out they stop moving
+/mob/Logout()
+	movement_eastwest = null
+	movement_northsouth = null
+	..()
+
 /client/verb/startmovingup()
 	set name = ".startmovingup"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= SOUTH
-		mob.movement_process_dirs |= NORTH
-		Move(get_step(mob, NORTH), NORTH)
+		mob.movement_northsouth = NORTH
+		try
+			Move(get_step(mob, NORTH), NORTH)
+		catch (var/E)
+			pass(E)
 
 /client/verb/startmovingdown()
 	set name = ".startmovingdown"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= NORTH
-		mob.movement_process_dirs |= SOUTH
-		Move(get_step(mob, SOUTH), SOUTH)
+		mob.movement_northsouth = SOUTH
+		try
+			Move(get_step(mob, SOUTH), SOUTH)
+		catch (var/E)
+			pass(E)
 
 /client/verb/startmovingright()
 	set name = ".startmovingright"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= WEST
-		mob.movement_process_dirs |= EAST
-		Move(get_step(mob, EAST), EAST)
+		mob.movement_eastwest = EAST
+		try
+			Move(get_step(mob, EAST), EAST)
+		catch (var/E)
+			pass(E)
 
 /client/verb/startmovingleft()
 	set name = ".startmovingleft"
 	set instant = TRUE
 	if (mob)
-		mob.movement_process_dirs -= EAST
-		mob.movement_process_dirs |= WEST
-		Move(get_step(mob, WEST), WEST)
+		mob.movement_eastwest = WEST
+		try
+			Move(get_step(mob, WEST), WEST)
+		catch (var/E)
+			pass(E)
 
 /client/verb/stopmovingup()
 	set name = ".stopmovingup"
 	set instant = TRUE
-	if (mob)
-		mob.movement_process_dirs -= NORTH
+	if (mob && mob.movement_northsouth == NORTH)
+		mob.movement_northsouth = null
 
 /client/verb/stopmovingdown()
 	set name = ".stopmovingdown"
 	set instant = TRUE
-	if (mob)
-		mob.movement_process_dirs -= SOUTH
+	if (mob && mob.movement_northsouth == SOUTH)
+		mob.movement_northsouth = null
 
 /client/verb/stopmovingright()
 	set name = ".stopmovingright"
 	set instant = TRUE
-	if (mob)
-		mob.movement_process_dirs -= EAST
+	if (mob && mob.movement_eastwest == EAST)
+		mob.movement_eastwest = null
 
 /client/verb/stopmovingleft()
 	set name = ".stopmovingleft"
 	set instant = TRUE
-	if (mob)
-		mob.movement_process_dirs -= WEST
+	if (mob && mob.movement_eastwest == WEST)
+		mob.movement_eastwest = null

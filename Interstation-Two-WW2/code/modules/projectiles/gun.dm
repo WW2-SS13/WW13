@@ -186,17 +186,13 @@
 			handle_shoot_self(user)
 		return
 
-	if(user.a_intent == I_HURT && !bayonet) //point blank shooting
+	if(user.a_intent != I_HELP && !bayonet) //point blank shooting
 		Fire(A, user, pointblank=1)
 	else
 		if(bayonet && isliving(A))
 			var/mob/living/L = A
 			var/mob/living/carbon/C = A
 			if (!istype(C) || !C.check_attack_throat(src, user))
-		/*		if (prob(50) && L != user && !L.lying)
-					visible_message("<span class = 'danger'>[user] tries to bayonet [L], but they miss!</span>")
-				else*/
-
 				// bayonets no longer have a miss chance, but have been balanced otherwise - Kachnov
 				var/obj/item/weapon/attachment/bayonet/a = bayonet
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // No more rapid stabbing for you.
@@ -209,9 +205,8 @@
 			else
 				var/obj/item/weapon/attachment/bayonet/a = bayonet
 				playsound(get_turf(src), a.attack_sound, rand(90,100))
-
 		else
-			..() //Pistolwhippin'
+			..() //Pistolwhipping - now help intent only
 
 // only update our in-hands icon if we aren't using a scope (invisible)
 /obj/item/weapon/gun/update_held_icon()

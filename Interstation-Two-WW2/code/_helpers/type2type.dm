@@ -11,7 +11,7 @@
  */
 
 /proc/path2text(var/path)
-	return path
+	return "[path]"
 
 // Returns an integer given a hexadecimal number string as input.
 /proc/hex2num(hex)

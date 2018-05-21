@@ -237,7 +237,7 @@ proc/admin_notice(var/message, var/rights)
 
 /datum/admins/proc/PlayerNotesPage(page)
 	var/dat = "<b>Player notes</b><HR>"
-	var/savefile/S=new("data/player_notes.sav")
+	var/savefile/S=new("[(serverswap && serverswap.Find("master_data_dir")) ? serverswap["master_data_dir"] : "data/"]player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
 	if(!note_keys)
@@ -274,9 +274,13 @@ proc/admin_notice(var/message, var/rights)
 
 	usr << browse(dat, "window=player_notes;size=400x400")
 
+/proc/get_player_notes_file_dir()
+	if (serverswap && serverswap.Find("master_data_dir"))
+		return "[serverswap["master_data_dir"]]player_saves/"
+	return "data/player_saves/"
 
 /datum/admins/proc/player_has_info(var/key as text)
-	var/savefile/info = new("data/player_saves/[copytext(key, TRUE, 2)]/[key]/info.sav")
+	var/savefile/info = new("[get_player_notes_file_dir()][copytext(key, TRUE, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos || !infos.len) return FALSE
@@ -300,7 +304,7 @@ proc/admin_notice(var/message, var/rights)
 			break
 	dat +="<span style='color:#000000; font-weight: bold'>Player age: [p_age]</span><br>"
 
-	var/savefile/info = new("data/player_saves/[copytext(key, TRUE, 2)]/[key]/info.sav")
+	var/savefile/info = new("[get_player_notes_file_dir()][copytext(key, TRUE, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos)
@@ -518,19 +522,21 @@ proc/admin_notice(var/message, var/rights)
 
 /datum/admins/proc/startnow()
 	set category = "Server"
-	set desc="Start the round RIGHT NOW"
+	set desc="Start the round immediately"
 	set name="Start Now"
 	if(!ticker)
 		alert("Unable to start the game as it is not set up.")
 		return
 	if(ticker.current_state == GAME_STATE_PREGAME)
+		if (!round_progressing)
+			round_progressing = TRUE
 		ticker.pregame_timeleft = 1
 		ticker.admin_started = TRUE
 		log_admin("[usr.key] has started the game.")
 		message_admins("[usr.key] has started the game.")
 		return TRUE
 	else
-		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"
+		usr << "<font color='red'>Error: Start Now: Game has already started</font>"
 		return FALSE
 
 /datum/admins/proc/toggleenter()
@@ -607,7 +613,7 @@ proc/admin_notice(var/message, var/rights)
 			log_admin("[key_name(usr)] delayed the game.")
 	else
 		world << "<b>The game will start soon.</b>"
-		log_admin("[key_name(usr)] removed the delay.")
+		log_admin("[key_name(usr)] removed the roundstart delay.")
 
 /datum/admins/proc/adjump()
 	set category = "Server"

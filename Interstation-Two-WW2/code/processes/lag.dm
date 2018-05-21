@@ -17,21 +17,25 @@ var/process/lag/lag_process = null
 	// get casings
 	FORNEXT(bullet_casings)
 		var/obj/item/ammo_casing/A = current
-		if (!A)
-			continue
-		if (A.loc && isturf(A.loc)) // so we don't delete ammo casings in guns or mags or nullspace
-			if (!turf2casings[A.loc])
-				turf2casings[A.loc] = 0
-			++turf2casings[A.loc]
+		if (!isDeleted(A))
+			if (A.loc && isturf(A.loc)) // so we don't delete ammo casings in guns or mags or nullspace
+				if (!turf2casings[A.loc])
+					turf2casings[A.loc] = 0
+				++turf2casings[A.loc]
+		else
+			catchBadType(A)
+			bullet_casings -= A
 
 	// get cleanables
 	FORNEXT(cleanables)
 		var/obj/effect/decal/cleanable/C = current
-		if (!C)
-			continue
-		if (!turf2cleanables[C.loc])
-			turf2cleanables[C.loc] = 0
-		++turf2cleanables[C.loc]
+		if (!isDeleted(C))
+			if (!turf2cleanables[C.loc])
+				turf2cleanables[C.loc] = 0
+			++turf2cleanables[C.loc]
+		else
+			catchBadType(C)
+			cleanables -= C
 
 	for (var/loc in turf2casings)
 		if (turf2casings[loc] >= 2 && turf2casings[loc] <= 9)

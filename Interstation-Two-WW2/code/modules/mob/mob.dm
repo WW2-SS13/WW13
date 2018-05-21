@@ -55,8 +55,6 @@
 	if (!isnewplayer(src))
 		src << browse(null, "window=playersetup;")
 
-	movement_process_dirs.Cut()
-
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
 	if(!client)	return
@@ -210,11 +208,11 @@
 		src << "<span class='notice'>Something is there but you can't see it.</span>"
 		return TRUE
 
-	face_atom(A)
+	// changing direction counts as a movement, so don't do it unless we have to - Kachnov
+	if (dir != get_dir(src,A))
+		face_atom(A)
 	//A.visible_message("<small>[A] looks at [src].</small>")//Doesn't work for everything yet.
 	A.examine(src)
-
-
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
 	if ((!( istype(l_hand, /obj/item/weapon/grab) ) && !( istype(r_hand, /obj/item/weapon/grab) )))
@@ -1103,3 +1101,8 @@ mob/proc/yank_out_object()
 
 /mob/proc/swap_hand()
 	return
+
+/mob/verb/see_battle_report()
+	set category = "OOC"
+	set name = "See Battle Report"
+	show_global_battle_report(src, TRUE)

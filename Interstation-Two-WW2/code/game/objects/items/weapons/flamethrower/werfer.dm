@@ -234,11 +234,9 @@
 
 	for (var/obj/fire/F in get_turf(src))
 		extra_temp += ((F.temperature / 100) * rand(15,25))
-		time_limit += 20
+		time_limit += pick(10,20)
 		qdel(F)
 
 	var/temperature = (rand(500,600) * throw_coeff * dist_coeff) + extra_temp
 //	log_debug("1: [temperature];[throw_coeff];[dist_coeff];[extra_temp]")
-	var/obj/fire/F = target.create_fire(5, temperature, FALSE)
-	if (F)
-		F.time_limit = time_limit
+	target.create_fire(5, temperature, FALSE, time_limit)

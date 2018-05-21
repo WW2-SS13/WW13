@@ -77,6 +77,11 @@
 	nutrition = max_nutrition
 	water = max_water
 
+	// suppress pain and shock
+	traumatic_shock = 0
+	shock_stage = 0
+	analgesic = 100
+
 	// takes 625 ticks (21 minutes) for us to start starving, if we don't consume any blood
 	// while blood == 0, we don't heal either
 

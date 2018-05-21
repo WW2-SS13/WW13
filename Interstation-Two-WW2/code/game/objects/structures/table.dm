@@ -294,14 +294,6 @@
 		if(!G.confirm())
 			return FALSE
 		G.affecting.loc = loc
-		if(istype(src, /obj/structure/table/optable))
-			var/obj/structure/table/optable/OT = src
-			G.affecting.resting = TRUE
-			visible_message("<span class='notice'>[G.assailant] has laid [G.affecting] on [src].</span>")
-			OT.patient = G.affecting
-			OT.check_patient()
-			qdel(I)
-			return TRUE
 		G.affecting.Weaken(2)
 		G.affecting.visible_message("<span class='danger'>[G.assailant] pushes [G.affecting] onto [src].</span>", \
 									"<span class='userdanger'>[G.assailant] pushes [G.affecting] onto [src].</span>")
@@ -485,27 +477,3 @@
 					status = 2
 			return
 	..()
-
-/*
- * Surgery Tables
- */
-
-/obj/structure/table/optable
-	name = "operating table"
-	desc = "Used for advanced medical procedures."
-	icon = 'icons/obj/surgery_FO13.dmi'
-	icon_state = "optable"
-	buildstack = /obj/item/stack/material/silver
-	can_buckle = TRUE
-	buckle_lying = TRUE
-	var/mob/living/carbon/human/patient = null
-
-/obj/structure/table/optable/proc/check_patient()
-	var/mob/M = locate(/mob/living/carbon/human, loc)
-	if(M)
-		if(M.resting)
-			patient = M
-			return TRUE
-	else
-		patient = null
-		return FALSE

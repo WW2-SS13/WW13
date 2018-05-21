@@ -144,7 +144,7 @@
 	..()
 
 	if (last_fire != -1)
-		if (world.time - last_fire <= 5)
+		if (world.time - last_fire <= 7)
 			jamcheck += 4
 		else if (world.time - last_fire <= 10)
 			jamcheck += 3

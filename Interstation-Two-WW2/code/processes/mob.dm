@@ -58,7 +58,7 @@ var/process/mob/mob_process = null
 
 		skip1
 
-		if(isnull(M.gcDestroyed))
+		if(!isDeleted(M))
 			try
 				M.Life()
 				if (world.time - M.last_movement > 7)

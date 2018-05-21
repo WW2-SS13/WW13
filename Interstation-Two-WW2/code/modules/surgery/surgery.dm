@@ -93,20 +93,22 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		if(S.tool_quality(tool, user))
 			var/step_is_valid = S.can_use(user, M, zone, tool)
 			if(step_is_valid && S.is_valid_target(M))
-				if (!do_after(user, 25, M))
-					return FALSE // removes combat saws - Kachnov
+				var/starttime = world.time
 				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
 					return TRUE
 				M.op_stage.in_progress += zone
 				S.begin_step(user, M, zone, tool)		//start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
-				if(prob(S.tool_quality(tool, user)) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
+				if(prob(S.tool_quality(tool, user)) && do_mob(user, M, rand(S.min_duration, S.max_duration)))
 					S.end_step(user, M, zone, tool)		//finish successfully
 					if (ishuman(user))
 						var/mob/living/carbon/human/H = user
 						H.adaptStat("medical", 1)
 				else if ((tool in user.contents) && user.Adjacent(M))			//or
-					S.fail_step(user, M, zone, tool)		//malpractice~
+					// better solution to combat surgery, nothing happens unless you were doing it for a while - Kachnov
+					var/failtime = world.time
+					if (failtime - starttime >= (S.min_duration * 0.5))
+						S.fail_step(user, M, zone, tool)		//malpractice~
 				else // This failing silently was a pain.
 					user << "<span class='warning'>You must remain close to your patient to conduct surgery.</span>"
 				M.op_stage.in_progress -= zone 									// Clear the in-progress flag.

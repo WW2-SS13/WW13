@@ -49,10 +49,10 @@ var/list/fire_pool = list()
 		var/obj/fire/F = pick(fire_pool)
 		fire_pool -= F
 		F.loc = location
-		return .
+		return F
 	return new /obj/fire (location)
 
-/turf/create_fire(fl, temp, spread = TRUE)
+/turf/create_fire(fl, temp, spread = TRUE, _time_limit = 10)
 
 	if(fire)
 		fire.firelevel = max(fl, fire.firelevel)
@@ -61,8 +61,13 @@ var/list/fire_pool = list()
 
 	fire = unpool_new_fire(src)
 
+	if (!fire)
+		return null
+
 	if (!spread)
 		fire.nospread = TRUE
+
+	fire.time_limit = _time_limit
 
 	fire.temperature = temp
 
@@ -73,10 +78,7 @@ var/list/fire_pool = list()
 	if (fuel)
 		fire.time_limit += rand(10,20)
 
-	spawn (1)
-		spawn (fire.time_limit)
-			if (fire) // somehow
-				qdel(fire)
+	callproc_process.queue(fire, /datum/proc/qdeleted, null, fire.time_limit)
 
 	return fire
 

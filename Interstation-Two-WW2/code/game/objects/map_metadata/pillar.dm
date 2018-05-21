@@ -65,31 +65,13 @@
 		return "<font size = 4>The Waffen-SS may now attack! Get on the elevator and invade the sewers!</font>"
 	return "<font size = 4>The [faction_const2name(faction)] may now cross the invisible wall!</font>"
 
-// pillarmen have longer to defend their base here
+
+// pillarmap is special; the round ends immediately when one faction has completely died
 /obj/map_metadata/pillar/short_win_time(faction)
-	if (clients.len >= 20)
-		switch (faction)
-			if (PILLARMEN)
-				return 12000 // 20 minutes
-			if (GERMAN, null)
-				return 6000 // 10 minutes
-	else
-		switch (faction)
-			if (PILLARMEN)
-				return 6000 // 10 minutes
-			if (GERMAN, null)
-				return 3000 // 5 minutes
+	return 0
 
 /obj/map_metadata/pillar/long_win_time(faction)
-	if (clients.len >= 20)
-		switch (faction)
-			if (PILLARMEN)
-				return 18000 // 30 minutes
-			if (GERMAN)
-				return 9000 // 15 minutes
-	else
-		switch (faction)
-			if (PILLARMEN)
-				return 12000 // 20 minutes
-			if (GERMAN)
-				return 6000 // 10 minutes
+	return 0
+
+/obj/map_metadata/pillar/win_condition_specialcheck()
+	return (!alive_n_of_side(PILLARMEN) || !alive_n_of_side(GERMAN))

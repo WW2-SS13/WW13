@@ -12,7 +12,7 @@ var/process/obj/obj_process = null
 
 	FORNEXT(processing_objects)
 		var/obj/O = current
-		if(isnull(O.gcDestroyed))
+		if(!isDeleted(O))
 			try
 				O.process()
 			catch(var/exception/e)

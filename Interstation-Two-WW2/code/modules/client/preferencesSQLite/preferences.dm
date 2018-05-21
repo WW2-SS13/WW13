@@ -186,6 +186,10 @@ var/list/preferences_datums = list()
 		close_load_dialog(user)
 		return
 
+	if (pockets.len != 2)
+		qdel_list(pockets)
+		pockets = list("Magazine", "Magazine")
+
 	var/dat = {"
 	<br>
 	<html>

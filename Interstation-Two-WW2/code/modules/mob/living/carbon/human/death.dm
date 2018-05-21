@@ -23,6 +23,10 @@
 
 	sleep(1)
 
+	for(var/obj/item/I in contents)
+		if (!istype(I, /obj/item/organ))
+			drop_from_inventory(I)
+
 	..(species.gibbed_anim)
 	gibs(loc, null, species.flesh_color, species.blood_color)
 

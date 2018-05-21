@@ -535,7 +535,11 @@
 
 	if (src && loc)
 		if(--kill_count < 1)
+			for (var/atom/movable/AM in loc)
+				AM.pre_bullet_act(src)
+				AM.bullet_act(src)
 			loc.pre_bullet_act(src)
+			loc.bullet_act(src)
 			on_impact(loc) //for any final impact behaviours
 			qdel(src)
 			return
@@ -544,13 +548,20 @@
 			return
 		if((!( current ) || loc == current))
 			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
-		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
+
+		trajectory.increment()	// increment the current location
+
+		// just before we enter nullspace
+		if (!trajectory.return_location(location))
+			for (var/atom/movable/AM in loc)
+				AM.pre_bullet_act(src)
+				AM.bullet_act(src)
 			loc.pre_bullet_act(src)
+			loc.bullet_act(src)
 			on_impact(loc)
 			qdel(src)
 			return
 
-		trajectory.increment()	// increment the current location
 		location = trajectory.return_location(location)		// update the locally stored location data
 
 		if(!location)

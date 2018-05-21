@@ -351,8 +351,10 @@ var/list/mob/living/forced_ambiance_list = new
 
 	var/lastsound = CL.ambience_playing
 	var/sound = (map && map.ambience.len) ? pick(map.ambience) : null
+	var/override_volume = 0
 	if (istype(src, /area/prishtina/void/sky))
 		sound = 'sound/ambience/shipambience.ogg'
+		override_volume = 50
 
 	if (sound && (!CL.ambience_playing || override || sound != lastsound))
 		CL.ambience_playing = sound
@@ -377,7 +379,7 @@ var/list/mob/living/forced_ambiance_list = new
 		warvolume = max(warvolume, 2)
 
 		L << sound(null, channel = SOUND_CHANNEL_AMBIENCE)
-		var/sound/S = sound(sound, repeat = TRUE, wait = FALSE, volume = warvolume, channel = SOUND_CHANNEL_AMBIENCE)
+		var/sound/S = sound(sound, repeat = TRUE, wait = FALSE, volume = override_volume ? override_volume : warvolume, channel = SOUND_CHANNEL_AMBIENCE)
 		S.environment = 22
 		L << S
 

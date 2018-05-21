@@ -45,7 +45,7 @@ var/process/time_of_day_change/time_of_day_change_process = null
 			else
 				// todo: way to determine if walls should be dark or not
 				if (locate_type(T.contents, /obj/train_track))
-					var/TOD_2_rgb = min(255, round(time_of_day2luminosity[time_of_day] * 255))
+					var/TOD_2_rgb = min(255, round(time_of_day2luminosity[time_of_day] * 281))
 					T.color = rgb(TOD_2_rgb, TOD_2_rgb, TOD_2_rgb)
 					for (var/obj/train_track/TT in T.contents)
 						TT.color = T.color

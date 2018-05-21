@@ -40,13 +40,6 @@
 
 /mob/proc/ClickOn(var/atom/A, var/params)
 
-	if (ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if (H.lying)
-			if (ismob(A) || (A.loc && istype(A.loc, /turf)))
-				if (!istype(A, /obj/structure/bed)) // unbuckling yourself from a bed
-					return
-
 	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
 		return
 
@@ -73,6 +66,19 @@
 		CtrlClickOn(A)
 		return TRUE
 
+	// can't click on stuff when we're lying, unless it's a bed
+	if (ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if (H.lying)
+			if (ismob(A) || (A.loc && istype(A.loc, /turf)))
+				if (!istype(A, /obj/structure/bed))
+					return
+
+	// can't click on anything when we're hanged
+	for (var/obj/structure/noose/N in get_turf(src))
+		if (N.hanging == src)
+			return
+
 	if(lying && istype(A, /turf/floor))
 		if(A.Adjacent(src))
 			scramble(A)
@@ -89,8 +95,24 @@
 	if (istype(loc, /obj/tank))
 		if (A == loc)
 			var/obj/tank/tank = loc
-			tank.handle_seat_exit(src)
-			return
+			var/obj/item/ammo_magazine/maxim/hand = get_active_hand()
+			// reloading the tank MG
+			if (hand && istype(hand))
+				if (tank.MG && tank.MG.magazine_type == hand.type)
+					tank.tank_message("<span class = 'warning'>[src] starts to replace the MG belt...</span>")
+					if (do_after(src, 50))
+						var/obj/item/ammo_magazine/maxim/oldmag = tank.MG.ammo_magazine
+						tank.MG.ammo_magazine = hand
+						remove_from_mob(hand)
+						if (oldmag)
+							oldmag.update_icon()
+							put_in_any_hand_if_possible(oldmag, prioritize_active_hand = TRUE)
+						tank.tank_message("<span class = 'warning'>[src] finishes replacing the MG belt.</span>")
+				return
+			else
+				// leaving the tank
+				tank.handle_seat_exit(src)
+				return
 
 	// stop looking down a ladder
 	if (istype(A, /obj/structure/multiz/ladder/ww2))
@@ -115,9 +137,30 @@
 
 	if (!W)
 
-		if (using_MG)
+		var/atom/movable/special_MG = null
+		var/tankcheck = FALSE
 
-			var/obj/item/weapon/gun/projectile/automatic/stationary/MG = using_MG
+		if (using_MG)
+			special_MG = using_MG
+		else if (istank(loc))
+			var/obj/tank/T = loc
+			if (T.back_seat() == src)
+				special_MG = T.MG
+				special_MG.dir = T.dir // for dir checks below
+				switch (T.dir) // tank sprite memes
+					if (NORTH, NORTHEAST, NORTHWEST)
+						special_MG.loc = locate(T.x+1, T.y+2, T.z)
+					if (SOUTH, SOUTHEAST, SOUTHWEST)
+						special_MG.loc = locate(T.x+1, T.y-1, T.z)
+					if (EAST)
+						special_MG.loc = locate(T.x+3, T.y+2, T.z)
+					if (WEST)
+						special_MG.loc = locate(T.x-1, T.y+1, T.z)
+				tankcheck = TRUE
+
+		if (special_MG && special_MG.loc)
+
+			var/obj/item/weapon/gun/projectile/automatic/stationary/MG = special_MG
 
 			var/can_fire = FALSE
 
@@ -132,12 +175,12 @@
 						can_fire = TRUE
 					else
 						can_fire = FALSE
-				if (NORTH)
+				if (NORTH, NORTHEAST, NORTHWEST)
 					if (A.y > MG.y)
 						can_fire = TRUE
 					else
 						can_fire = FALSE
-				if (SOUTH)
+				if (SOUTH, SOUTHEAST, SOUTHWEST)
 					if (A.y < MG.y)
 						can_fire = TRUE
 					else
@@ -149,6 +192,9 @@
 			MG.Fire(A, src, force = TRUE)
 
 			skip
+
+		if (tankcheck)
+			special_MG.loc = null
 
 
 	if(W == A) // Handle attack_self
@@ -326,6 +372,7 @@
 /mob/proc/ShiftClickOn(var/atom/A)
 	A.ShiftClick(src)
 	return
+
 /atom/proc/ShiftClick(var/mob/user)
 	if(user.client && user.client.eye == user)
 		user.examinate(src)

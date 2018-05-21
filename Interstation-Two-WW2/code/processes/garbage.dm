@@ -1,5 +1,5 @@
 // The time a datum was destroyed by the GC, or null if it hasn't been
-/datum/var/gcDestroyed
+/datum/var/gcDestroyed = 0
 #define GC_COLLECTIONS_PER_RUN 300
 #define GC_COLLECTION_TIMEOUT (30 SECONDS)
 #define GC_FORCE_DEL_PER_RUN 30
@@ -74,7 +74,9 @@ world/loop_checks = FALSE
 
 			// hey stop fucking spamming me when I start up the server - Kachnov
 			if (world.time > 6000)
-				testing("GC: -- \ref[A] | [A.type] was unable to be GC'd and was deleted --")
+				if (A.type != /obj/skybox)
+					testing("GC: -- \ref[A] | [A.type] was unable to be GC'd and was deleted --")
+
 			logging["[A.type]"]++
 			del(A)
 
@@ -139,14 +141,14 @@ world/loop_checks = FALSE
 #endif
 
 /process/garbage_collector/proc/AddTrash(datum/A)
-	if(!istype(A) || !isnull(A.gcDestroyed))
+	if(!istype(A) || A.gcDestroyed)
 		return
 	#ifdef GC_DEBUG
 	testing("GC: AddTrash(\ref[A] - [A.type])")
 	#endif
-	A.gcDestroyed = world.time
+	A.gcDestroyed = world.time+1
 	destroyed -= "\ref[A]" // Removing any previous references that were GC'd so that the current object will be at the end of the list.
-	destroyed["\ref[A]"] = world.time
+	destroyed["\ref[A]"] = world.time+1
 
 /process/garbage_collector/statProcess()
 	..()
@@ -155,10 +157,6 @@ world/loop_checks = FALSE
 
 /process/garbage_collector/htmlProcess()
 	return ..() + "[garbage_collect ? "On" : "Off"], [destroyed.len] queued<br>Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run"
-
-// Tests if an atom has been deleted.
-/proc/deleted(atom/A)
-	return !A || !isnull(A.gcDestroyed)
 
 // Should be treated as a replacement for the 'del' keyword.
 // Datums passed to this will be given a chance to clean up references to allow the GC to collect them.
@@ -172,17 +170,17 @@ world/loop_checks = FALSE
 		if(garbage_collector)
 			garbage_collector.total_dels++
 			garbage_collector.hard_dels++
-	else if(isnull(A.gcDestroyed))
+	else if(!A.gcDestroyed)
 		// Let our friend know they're about to get collected
 		. = !A.Destroy()
 		if(. && A)
 			A.finalize_qdel()
-		if (isatom(A))
-			var/atom/AT = A
-			AT.invisibility = 101
-			if (ismovable(A))
-				var/atom/movable/AM = A
-				AM.loc = null // maybe fixes projectiles, hopefully doesn't break anything - Kachnov
+	if (A && isatom(A))
+		var/atom/AT = A
+		AT.invisibility = 101
+		if (ismovable(A))
+			var/atom/movable/AM = A
+			AM.loc = null // maybe fixes projectiles, hopefully doesn't break anything - Kachnov
 
 /proc/qdel_list(var/list/L)
 	if (!L)

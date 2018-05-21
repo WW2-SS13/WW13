@@ -349,11 +349,10 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 					if (!istype(area, /area/prishtina/soviet))
 						++radio_delay
 
-		spawn (radio_delay)
-			if (!stuttering || stuttering < 4)
-				radio.broadcast(rhtml_encode(message), src, FALSE)
-			else
-				radio.broadcast(rhtml_encode(message), src, TRUE)
+		if (!stuttering || stuttering < 4)
+			callproc_process.queue(radio, /obj/item/radio/proc/broadcast, list(rhtml_encode(message), src, FALSE), radio_delay)
+		else
+			callproc_process.queue(radio, /obj/item/radio/proc/broadcast, list(rhtml_encode(message), src, TRUE), radio_delay)
 
 /obj/item/radio/proc/broadcast(var/msg, var/mob/living/carbon/human/speaker, var/hardtohear = FALSE, var/needs_loc = TRUE)
 
@@ -696,5 +695,4 @@ var/global/list/all_channels = default_german_channels | command_german_channels
 	return TRUE
 
 /obj/item/radio/proc/announce_after(msg, _announcer, time)
-	spawn (time)
-		announce(msg, _announcer)
+	callproc_process.queue(src, /obj/item/radio/proc/announce, list(msg, _announcer), time)

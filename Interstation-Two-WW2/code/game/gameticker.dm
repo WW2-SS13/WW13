@@ -81,12 +81,12 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 								vote.process()
 				if(pregame_timeleft == 20)
 					if (tip)
-						world << "<span class = 'notice'><b>Tip of the Round:</b> [tip]</span>"
+						world << "<span class = 'notice'><b>Tip of the round:</b> [tip]</span>"
 					else
 						var/list/tips = file2list("config/tips.txt")
 						if (tips.len)
 							if (serverswap_open_status)
-								world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(tips)]</span>"
+								world << "<span class = 'notice'><b>Tip of the round:</b> [pick(tips)]</span>"
 								qdel_list(tips)
 					maytip = FALSE
 				if(pregame_timeleft <= 0)
@@ -94,12 +94,12 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 					/* if we were force started, still show the tip */
 					if (maytip)
 						if (tip)
-							world << "<span class = 'notice'><b>Tip of the Round:</b> [tip]</span>"
+							world << "<span class = 'notice'><b>Tip of the round:</b> [tip]</span>"
 						else
 							var/list/tips = file2list("config/tips.txt")
 							if (tips.len)
 								if (serverswap_open_status)
-									world << "<span class = 'notice'><b>Tip of the Round:</b> [pick(tips)]</span>"
+									world << "<span class = 'notice'><b>Tip of the round:</b> [pick(tips)]</span>"
 									qdel_list(tips)
 
 		while (!setup())
@@ -234,8 +234,13 @@ var/global/datum/lobby_music_player/lobby_music_player = null
 					if (n <= 900)
 						restart_after = 1200 - n
 
+			var/next_map = mapswap_process ? mapswap_process.next_map_title : "TBD"
+			if (vote && vote.mode == "map" && vote.time_remaining > 0)
+				next_map = "TBD"
+
+
 			if(!delay_end)
-				world << "<span class='notice'><big>Restarting in [round(restart_after/10)] seconds. Next map: <b>[mapswap_process ? mapswap_process.next_map_title : "???"]</b></big></span>"
+				world << "<span class='notice'><big>Restarting in [round(restart_after/10)] seconds. Next map: <b>[next_map]</b></big></span>"
 
 			if(!delay_end)
 				sleep(restart_after)

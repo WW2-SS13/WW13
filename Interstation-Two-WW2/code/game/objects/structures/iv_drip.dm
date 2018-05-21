@@ -76,8 +76,8 @@
 	if(attached)
 
 		if(!(get_dist(src, attached) <= 1 && isturf(attached.loc)))
-			visible_message("The needle is ripped out of [attached], doesn't that hurt?")
-			attached:apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
+		/*	visible_message("The needle is ripped out of [attached], doesn't that hurt?")
+			attached:apply_damage(3, BRUTE, pick("r_arm", "l_arm"))*/ // this is dumb - Kachnov
 			attached = null
 			update_icon()
 			return

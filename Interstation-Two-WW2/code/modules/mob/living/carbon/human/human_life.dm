@@ -145,8 +145,12 @@
 
 	// recover oxyloss
 	var/oxyloss = getOxyLoss()
-	if (oxyloss <= 20)
-		adjustOxyLoss(-4)
+	if (oxyloss >= 10 && oxyloss <= 20)
+		adjustOxyLoss(-5)
+		// it's been about 15 minutes, you're fucked now
+		if (list(UNCONSCIOUS, DEAD).Find(stat))
+			if (prob(1) && prob(20))
+				adjustOxyLoss(20)
 
 	..()
 
@@ -963,10 +967,8 @@
 
 //If you have less nutrition than STARVATION_NEARDEATH, you start getting damage
 
-#define STARVATION_OXY_DAMAGE 2.5
 #define STARVATION_TOX_DAMAGE 2.5
 #define STARVATION_BRAIN_DAMAGE 2.5
-#define STARVATION_OXY_HEAL_RATE TRUE //While starving, THIS much oxygen damage is restored per life tick (instead of the default 5)
 
 /mob/living/carbon/human/var/list/informed_starvation[4]
 
@@ -1022,16 +1024,16 @@
 				informed_starvation[num2text(-STARVATION_NEARDEATH)] = FALSE
 				informed_starvation[num2text(-STARVATION_NEGATIVE_INFINITY)] = FALSE
 
-				if(prob(6)) //6% chance of a tiny amount of oxygen damage (1-5)
+				if(prob(6)) //6% chance of a tiny amount of toxin damage (1-5)
 
-					adjustOxyLoss(rand(1,5))
+					adjustToxLoss(rand(1,5))
 					src << "<span class='danger'>[pick(hunger_phrases)]</span>"
 
 				else if(prob(5)) //5% chance of being weakened
 
 					eye_blurry += 10
 					Weaken(10)
-					adjustOxyLoss(rand(1,15))
+					adjustToxLoss(rand(1,15))
 					src << "<span class='danger'>You're starving! The lack of strength makes you black out for a few moments...</span>"
 
 			if(STARVATION_NEARDEATH to STARVATION_WEAKNESS) //5-30, 5% chance of weakening and TRUE-230 oxygen damage. 5% chance of a seizure. 10% chance of dropping item
@@ -1047,7 +1049,7 @@
 
 				if(prob(7))
 
-					adjustOxyLoss(rand(1,20))
+					adjustToxLoss(rand(1,20))
 					src << "<span class='danger'>You're starving. You feel your life force slowly leaving your body...</span>"
 					eye_blurry += 20
 					if(weakened < 1) Weaken(20)
@@ -1058,7 +1060,7 @@
 							"<span class='warning'>You have a seizure!</span>")
 					Paralyse(5)
 					make_jittery(500)
-					adjustOxyLoss(rand(1,25))
+					adjustToxLoss(rand(1,25))
 					eye_blurry += 20
 
 			if(-INFINITY to STARVATION_NEARDEATH) //Fuck the whole body up at this point
@@ -1075,7 +1077,6 @@
 					src << "<span class='danger'>You are dying from starvation!</span>"
 
 				adjustToxLoss(STARVATION_TOX_DAMAGE)
-				adjustOxyLoss(STARVATION_OXY_DAMAGE)
 				adjustBrainLoss(STARVATION_BRAIN_DAMAGE)
 
 				if(prob(10))
@@ -1087,10 +1088,8 @@
 #define DEHYDRATION_NEARDEATH -55
 #define DEHYDRATION_NEGATIVE_INFINITY -10000
 
-#define DEHYDRATION_OXY_DAMAGE 2.5
 #define DEHYDRATION_TOX_DAMAGE 2.5
 #define DEHYDRATION_BRAIN_DAMAGE 2.5
-#define DEHYDRATION_OXY_HEAL_RATE TRUE
 
 /mob/living/carbon/human/var/list/informed_dehydration[4]
 
@@ -1146,16 +1145,16 @@
 				informed_dehydration[num2text(-DEHYDRATION_NEARDEATH)] = FALSE
 				informed_dehydration[num2text(-DEHYDRATION_NEGATIVE_INFINITY)] = FALSE
 
-				if(prob(6)) //6% chance of a tiny amount of oxygen damage (1-5)
+				if(prob(6)) //6% chance of a tiny amount of toxin damage (1-5)
 
-					adjustOxyLoss(rand(1,5))
+					adjustToxLoss(rand(1,5))
 					src << "<span class='danger'>[pick(thirst_phrases)]</span>"
 
 				else if(prob(5)) //5% chance of being weakened
 
 					eye_blurry += 10
 					Weaken(10)
-					adjustOxyLoss(rand(1,15))
+					adjustToxLoss(rand(1,15))
 					src << "<span class='danger'>You're dehydrating! The lack of strength makes you black out for a few moments...</span>"
 
 			if(DEHYDRATION_NEARDEATH to DEHYDRATION_WEAKNESS) //5-30, 5% chance of weakening and TRUE-230 oxygen damage. 5% chance of a seizure. 10% chance of dropping item
@@ -1171,7 +1170,7 @@
 
 				if(prob(7))
 
-					adjustOxyLoss(rand(1,20))
+					adjustToxLoss(rand(1,20))
 					src << "<span class='danger'>You're dehydrating. You feel your life force slowly leaving your body...</span>"
 					eye_blurry += 20
 					if(weakened < 1) Weaken(20)
@@ -1182,7 +1181,7 @@
 							"<span class='warning'>You have a seizure!</span>")
 					Paralyse(5)
 					make_jittery(500)
-					adjustOxyLoss(rand(1,25))
+					adjustToxLoss(rand(1,25))
 					eye_blurry += 20
 
 			if(-INFINITY to DEHYDRATION_NEARDEATH) //Fuck the whole body up at this point
@@ -1199,7 +1198,6 @@
 					src << "<span class='danger'>You are dying from dehydration!</span>"
 
 				adjustToxLoss(DEHYDRATION_TOX_DAMAGE)
-				adjustOxyLoss(DEHYDRATION_OXY_DAMAGE)
 				adjustBrainLoss(DEHYDRATION_BRAIN_DAMAGE)
 
 				if(prob(10))

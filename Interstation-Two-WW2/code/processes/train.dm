@@ -4,6 +4,7 @@ var/supplytrain_may_process = FALSE
 /process/train
 	var/tmpTime = 0
 	var/firstTmpTime = TRUE
+	var/supplytrain_special_check = FALSE
 
 /process/train/setup()
 	name = "train process"
@@ -19,7 +20,7 @@ var/supplytrain_may_process = FALSE
 		try
 			normal_train_processes()
 			tmpTime += schedule_interval
-			if (tmpTime >= 1200 || firstTmpTime)
+			if (tmpTime >= 1200 || firstTmpTime || supplytrain_special_check)
 				tmpTime = 0
 				supplytrain_may_process = TRUE // not sure how else to do this without breaking the process
 			firstTmpTime = FALSE

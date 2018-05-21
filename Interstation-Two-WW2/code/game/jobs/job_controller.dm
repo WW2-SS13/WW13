@@ -117,11 +117,19 @@ var/global/datum/controller/occupations/job_master
 		if (announce)
 			world << "<font size = 3><span class = 'notice'>The Wehrmacht has the assistance of the Italian Army for this battle.</span></font>"
 		italians_were_enabled = TRUE
+		for (var/obj/structure/vending/italian/apparel/pizzeria in vending_machine_list)
+			pizzeria.invisibility = 0
+			pizzeria.density = TRUE
+		for (var/obj/structure/vending/italian/equipment/meatballshooter in vending_machine_list)
+			meatballshooter.invisibility = 0
+			meatballshooter.density = TRUE
 	else
 		for (var/obj/structure/vending/italian/apparel/pizzeria in vending_machine_list)
-			qdel(pizzeria)
+			pizzeria.invisibility = 101
+			pizzeria.density = FALSE
 		for (var/obj/structure/vending/italian/equipment/meatballshooter in vending_machine_list)
-			qdel(meatballshooter)
+			meatballshooter.invisibility = 101
+			meatballshooter.density = FALSE
 		if (map)
 			map.faction_organization -= ITALIAN
 
@@ -237,6 +245,9 @@ var/global/datum/controller/occupations/job_master
 
 /datum/controller/occupations/proc/relocate(var/mob/living/carbon/human/H)
 
+	if (!H)
+		return
+
 	var/spawn_location = H.job_spawn_location
 
 	if (!spawn_location && H.original_job)
@@ -258,6 +269,12 @@ var/global/datum/controller/occupations/job_master
 			while (tries <= 5 && !locate(H.loc) in turfs)
 				++tries
 				H.loc = pick(turfs)
+
+	// make sure we have the right ambience for our new location
+	spawn (1)
+		var/area/H_area = get_area(H)
+		if (H_area)
+			H_area.play_ambience(H)
 
 /datum/controller/occupations/proc/SetupOccupations(var/faction = "Station")
 	occupations = list()
@@ -315,7 +332,7 @@ var/global/datum/controller/occupations/job_master
 /datum/controller/occupations/proc/FreeRole(var/rank)	//making additional slot on the fly
 	var/datum/job/job = GetJob(rank)
 	if(job && job.current_positions >= job.total_positions && job.total_positions != -1)
-		job.total_positions++
+		--job.current_positions
 		return TRUE
 	return FALSE
 
@@ -719,7 +736,9 @@ var/next_calculate_relevant_clients = -1
 	. = 0
 	for (var/client in clients)
 		var/client/C = client
-		if (C && !C.is_minimized())
+		/* sometimes C.is_minimized() can take so long that the client no longer exists by the time it's done
+		 * that's why it goes here last - Kachnov */
+		if (C && C.mob && !istype(C.mob, /mob/observer) && !C.is_minimized())
 			++.
 	last_relevant_clients = .
 	next_calculate_relevant_clients = world.time + 50

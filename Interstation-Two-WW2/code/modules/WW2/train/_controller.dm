@@ -260,7 +260,7 @@
 				for (var/obj/item/weapon/paper/supply_train_requisitions_sheet/paper in paper_list)
 					paper.memo = "<br><i>As of the time this was printed, you have [train.supply_points] Supply Requisition Points remaining.</i>"
 					paper.regenerate_info()
-
+					break
 
 /datum/train_controller/proc/start_moving(var/_direction) // when the conductor decides to move
 
@@ -499,9 +499,9 @@
 		var/obj/train_connector/tc = object
 		tc.save_contents_as_refs()
 
-		callproc_process.queue(tc, "_Move", null, 0.3)
-		callproc_process.queue(tc, "move_mobs", null, 0.6)
-		callproc_process.queue(tc, "remove_contents_refs", null, 0.9)
+		callproc_process.queue(tc, /obj/train_connector/proc/_Move, null, 0.3)
+		callproc_process.queue(tc, /obj/train_connector/proc/move_mobs, null, 0.6)
+		callproc_process.queue(tc, /obj/train_connector/proc/remove_contents_refs, null, 0.9)
 
 	for (var/object in trs)
 		if (!object)

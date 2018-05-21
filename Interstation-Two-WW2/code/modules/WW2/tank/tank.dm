@@ -19,6 +19,7 @@
 	var/heal_damage[2]
 	var/named = FALSE
 	var/obj/item/radio/radio = null
+	var/obj/item/weapon/gun/projectile/automatic/stationary/kord/MG = null
 	pixel_x = -32
 
 /obj/tank/New()
@@ -185,7 +186,12 @@
 				tank_message("<span class = 'warning'>[user] gets in the [next_seat_name()] of [my_name()].")
 				assign_seat(user)
 				accepting_occupant = FALSE
+				#ifdef MG_TANKS
+				user << "<span class = 'notice'><big>To fire, click your target and be in the back seat.</big></span>"
+				user << "<span class = 'notice'><big>To reload, click the tank with an ammo belt in your active hand.</big></span>"
+				#else
 				user << "<span class = 'notice'><big>To fire, use SPACE and be in the back seat.</big></span>"
+				#endif
 				user << "<span class = 'notice'><big>To speak to others in this tank, use the prefix ':t'.</big></span>"
 				return TRUE
 			else
@@ -229,7 +235,8 @@
 			next_spam_allowed = world.time + 300
 
 /obj/tank/proc/receive_backseat_command(x)
+	#ifndef MG_TANKS
 	if (x == "FIRE")
 		if (!did_critical_damage)
 			Fire()
-
+	#endif

@@ -18,35 +18,37 @@ var/process/movement/movement_process = null
 
 	FORNEXT(clients)
 
+		if (!current)
+			catchBadType(current)
+			clients -= current
+			continue
+
 		var/mob/M = current:mob
 
-		if(isnull(M))
-			continue
-
-		if(!M.client)
-			continue
-
-		if (!M.movement_process_dirs.len)
-			continue
-
-		if(isnull(M.gcDestroyed))
+		if(!isDeleted(M))
 			try
-				var/diag = FALSE
-				var/movedir = M.movement_process_dirs[M.movement_process_dirs.len]
-				if (M.movement_process_dirs.len > 1)
-					if (M.movement_process_dirs.Find(NORTH) && M.movement_process_dirs.Find(WEST))
-						movedir = NORTHWEST
-						diag = TRUE
-					else if (M.movement_process_dirs.Find(NORTH) && M.movement_process_dirs.Find(EAST))
-						movedir = NORTHEAST
-						diag = TRUE
-					else if (M.movement_process_dirs.Find(SOUTH) && M.movement_process_dirs.Find(WEST))
-						movedir = SOUTHWEST
-						diag = TRUE
-					else if (M.movement_process_dirs.Find(SOUTH) && M.movement_process_dirs.Find(EAST))
-						movedir = SOUTHEAST
-						diag = TRUE
-				M.client.Move(get_step(M, movedir), movedir, diag)
+				if (M.client && (M.movement_eastwest || M.movement_northsouth))
+					var/diag = FALSE
+					var/list/movement_process_dirs = list()
+					if (M.movement_eastwest)
+						movement_process_dirs += M.movement_eastwest
+					if (M.movement_northsouth)
+						movement_process_dirs += M.movement_northsouth
+					var/movedir = movement_process_dirs[movement_process_dirs.len]
+					if (movement_process_dirs.len > 1 && !istank(M.loc))
+						if (movement_process_dirs.Find(NORTH) && movement_process_dirs.Find(WEST))
+							movedir = NORTHWEST
+							diag = TRUE
+						else if (movement_process_dirs.Find(NORTH) && movement_process_dirs.Find(EAST))
+							movedir = NORTHEAST
+							diag = TRUE
+						else if (movement_process_dirs.Find(SOUTH) && movement_process_dirs.Find(WEST))
+							movedir = SOUTHWEST
+							diag = TRUE
+						else if (movement_process_dirs.Find(SOUTH) && movement_process_dirs.Find(EAST))
+							movedir = SOUTHEAST
+							diag = TRUE
+					M.client.Move(get_step(M, movedir), movedir, diag)
 			catch(var/exception/e)
 				catchException(e, M)
 		else

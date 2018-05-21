@@ -38,10 +38,10 @@
 		initialize()
 
 /atom/movable/Del()
-	if(isnull(gcDestroyed) && loc)
+	if(!gcDestroyed && loc)
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")
 		crash_with("GC: -- [type] was deleted via del() rather than qdel() --") // stick a stack trace in the runtime logs
-//	else if(isnull(gcDestroyed))
+//	else if(!gcDestroyed))
 //		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
 //	else
 //		testing("GC: [type] was deleted via GC with qdel()")
@@ -70,7 +70,7 @@
 	return TRUE
 
 /atom/movable/proc/initialize()
-	if(!isnull(gcDestroyed))
+	if(gcDestroyed)
 		crash_with("GC: -- [type] had initialize() called after qdel() --")
 
 /atom/movable/Bump(var/atom/A, yes)

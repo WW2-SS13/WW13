@@ -1,18 +1,22 @@
 //By Carnwennan
 //fetches an external list and processes it into a list of ip addresses.
 //It then stores the processed list into a savefile for later use
-#define TORFILE "data/ToR_ban.bdb"
 #define TOR_UPDATE_INTERVAL 216000	//~6 hours
 
+/proc/get_tor_file_dir()
+	if (serverswap && serverswap.Find("master_data_dir"))
+		return "[serverswap["master_data_dir"]]ToR_ban.bdb"
+	return "data/ToR_ban.bdb"
+
 /proc/ToRban_isbanned(var/ip_address)
-	var/savefile/F = new(TORFILE)
+	var/savefile/F = new(get_tor_file_dir())
 	if(F)
 		if( ip_address in F.dir )
 			return TRUE
 	return FALSE
 
 /proc/ToRban_autoupdate()
-	var/savefile/F = new(TORFILE)
+	var/savefile/F = new(get_tor_file_dir())
 	if(F)
 		var/last_update
 		F["last_update"] >> last_update
@@ -27,8 +31,8 @@
 
 		var/list/rawlist = file2list(http["CONTENT"])
 		if(rawlist.len)
-			fdel(TORFILE)
-			var/savefile/F = new(TORFILE)
+			fdel(get_tor_file_dir())
+			var/savefile/F = new(get_tor_file_dir())
 			for( var/line in rawlist )
 				if(!line)	continue
 				if( copytext(line,1,12) == "ExitAddress" )
@@ -58,7 +62,7 @@
 					config.ToRban = TRUE
 					message_admins("<font colot='green'>ToR banning enabled.</font>")
 		if("show")
-			var/savefile/F = new(TORFILE)
+			var/savefile/F = new(get_tor_file_dir())
 			var/dat
 			if( length(F.dir) )
 				for( var/i=1, i<=length(F.dir), i++ )
@@ -68,13 +72,13 @@
 				dat = "No addresses in list."
 			src << browse(dat,"window=ToRban_show")
 		if("remove")
-			var/savefile/F = new(TORFILE)
+			var/savefile/F = new(get_tor_file_dir())
 			var/choice = input(src,"Please select an IP address to remove from the ToR banlist:","Remove ToR ban",null) as null|anything in F.dir
 			if(choice)
 				F.dir.Remove(choice)
 				src << "<b>Address removed</b>"
 		if("remove all")
-			src << "<b>[TORFILE] was [fdel(TORFILE)?"":"not "]removed.</b>"
+			src << "<b>[get_tor_file_dir()] was [fdel(get_tor_file_dir())?"":"not "]removed.</b>"
 		if("find")
 			var/input = input(src,"Please input an IP address to search for:","Find ToR ban",null) as null|text
 			if(input)
@@ -84,5 +88,4 @@
 					src << "<font color='red'><b>Address is not a known ToR address</b></font>"
 	return
 
-#undef TORFILE
 #undef TOR_UPDATE_INTERVAL

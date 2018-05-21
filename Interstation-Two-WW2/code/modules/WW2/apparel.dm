@@ -1,29 +1,29 @@
 /* Uniform Metadata: Soviet, German, Italian */
 
 #define SOVIET_UNIFORM_NAME "Soviet uniform"
-#define SOVIET_UNIFORM_DESC "Standard issue Soviet uniform issued to soldiers of the Red Army. You can smell Vodka and see faint borsch stains."
+#define SOVIET_UNIFORM_DESC "A standard issue Soviet uniform issued to Red Army soldiers."
 #define SOVIET_UNIFORM_STATE "sovuni"
 
 #define GERMAN_UNIFORM_NAME "German uniform"
-#define GERMAN_UNIFORM_DESC "Standard issue German uniform issued to soldiers of the Wehrmacht. It looks sturdy and strictly folded."
+#define GERMAN_UNIFORM_DESC "A standard issue German uniform issued to Wehrmacht soldiers. It looks sturdy and strictly folded."
 #define GERMAN_UNIFORM_STATE "geruni"
 
 #define ITALIAN_UNIFORM_NAME "Italian uniform"
-#define ITALIAN_UNIFORM_DESC "Standard issue Italian uniform issued to Italian soldiers fighting alongside the Wehrmacht."
+#define ITALIAN_UNIFORM_DESC "A standard issue Italian uniform issued to Italian soldiers fighting alongside the Wehrmacht."
 #define ITALIAN_UNIFORM_STATE "itauni"
 
 /* Helmet Metadata: Soviet, German, Italian */
 
 #define SOVIET_HELMET_NAME "Soviet helmet"
-#define SOVIET_HELMET_DESC "Standard issue helmet of the Red Army. Provides some protection against both the elements and flying shrapnel."
+#define SOVIET_HELMET_DESC "A standard issue helmet of the Red Army. Provides some protection against both the elements and flying shrapnel."
 #define SOVIET_HELMET_STATE "sovhelm"
 
 #define GERMAN_HELMET_NAME "German helmet"
-#define GERMAN_HELMET_DESC "Standard issue helmet of the Wehrmacht. Provides some protection against both the elements and flying shrapnel."
+#define GERMAN_HELMET_DESC "A standard issue helmet of the Wehrmacht. Provides some protection against both the elements and flying shrapnel."
 #define GERMAN_HELMET_STATE "gerhelm"
 
 #define ITALIAN_HELMET_NAME "Italian helmet"
-#define ITALIAN_HELMET_DESC "Standard issue helmet of the Italian Army. Provides some protection against both the elements and flying shrapnel."
+#define ITALIAN_HELMET_DESC "A standard issue helmet of the Italian Army. Provides some protection against both the elements and flying shrapnel."
 #define ITALIAN_HELMET_STATE "itahelm"
 
 /obj/item/clothing/under
@@ -139,42 +139,42 @@
 
 /obj/item/clothing/under/geruni/general
 	name = "Heer General uniform"
-	desc = "A comfortable and sturdy officer's uniform."
+	desc = "A comfortable and sturdy high-ranking officer's uniform."
 	icon_state = "gerunigeneral"
 	item_state = "gerunigeneral"
 	worn_state = "gerunigeneral"
 
 /obj/item/clothing/under/geruni/falluni
 	name = "Fallschirmjager uniform"
-	desc = "Standart german uniform for fallschirmjagers. This is quite comfy and sturdy uniform."
+	desc = "A standard issue german uniform for Fallschirmjagers. This one is quite comfy and sturdy."
 	icon_state = "falluni"
 	item_state = "falluni"
 	worn_state = "falluni"
 
 /obj/item/clothing/under/geruni/ssuni
 	name = "SS uniform"
-	desc = "A black uniform ShutzStaffel soldiers. Sturdy and comfortable."
+	desc = "A black uniform issued to SchutzStaffel soldiers. Sturdy and comfortable."
 	icon_state = "newssuni"
 	item_state = "newssuni"
 	worn_state = "newssuni"
 
 /obj/item/clothing/under/geruni/sscamo
 	name = "SS camo uniform"
-	desc = "Camo uniform for ShutzStaffel soldiers. Sturdy, comfy, and makes you less visible in autumn. They gave you this too early by the way."
+	desc = "A camo uniform issued to SchutzStaffel soldiers. Sturdy, comfy, and makes you less visible in autumn."
 	icon_state = "ssunicamo"
 	item_state = "ssunicamo"
 	worn_state = "ssunicamo"
 
 /obj/item/clothing/under/geruni/ssformalofc
 	name = "SS Officer's Formal Uniform"
-	desc = "Jet black formal uniform. Swastika armband included."
+	desc = "A jet black formal uniform issued to SchutzStaffel officers. There's a NSDAP armband attached."
 	icon_state = "ss_formal_ofc"
 	item_state = "ss_formal_ofc"
 	worn_state = "ss_formal_ofc"
 
 /obj/item/clothing/under/geruni/gertankeruni
 	name = "Panzer Crewman Uniform"
-	desc = "Dark gray jumpsuit with a brown belt. It has an insignia declaring the wearer as a tank crewman."
+	desc = "A dark gray jumpsuit with a brown belt. It has an insignia indicating that the wearer is a tank crewman."
 	icon_state = "gertankeruni"
 	item_state = "gertankeruni"
 	worn_state = "gertankeruni"
@@ -188,7 +188,7 @@
 
 /obj/item/clothing/under/sovuni/camo
 	name = "Soviet Camo Uniform"
-	desc = "Camo uniform for Soviet soldiers. Sturdy, comfy, and makes you less visible in autumn. They gave you this too early by the way."
+	desc = "A camo uniform for Soviet soldiers. Sturdy, comfy, and makes you less visible in autumn."
 	icon_state = "sovunicamo"
 	item_state = "sovunicamo"
 	worn_state = "sovunicamo"
@@ -209,7 +209,7 @@
 
 /obj/item/clothing/under/sovuni/sovtankeruni
 	name = "Soviet Crewman Uniform"
-	desc = "Dark blue jumpsuit with a brown belt and bandolier."
+	desc = "A dark blue jumpsuit with a brown belt and bandolier."
 	icon_state = "sovtankeruni"
 	item_state = "sovtankeruni"
 	worn_state = "sovtankeruni"
@@ -224,14 +224,14 @@
 
 /obj/item/clothing/under/itauni/officer
 	name = "Italian Officer's Uniform"
-	desc = "An Italian officer's uniform."
+	desc = "A fancier, more pressed uniform of the Italian Army, given to Soviet military police."
 	icon_state = "itauni_officer"
 	item_state = "itauni_officer"
 	worn_state = "itauni_officer"
 
 /obj/item/clothing/suit/fallsparka
 	name = "Fallschirmjager Parka"
-	desc = "A warm and comfy parka for fallschirmjagers."
+	desc = "A warm and comfy parka for Fallschirmjagers."
 	icon_state = "fallsparka"
 	item_state = "fallsparka"
 	worn_state = "fallsparka"
@@ -239,7 +239,7 @@
 
 /obj/item/clothing/suit/sssmock
 	name = "S.S. Smock"
-	desc = "A camo S.S. overcoat that blends in well in the fall."
+	desc = "A camo SchutzStaffel overcoat that blends in well in the fall."
 	icon_state = "sssmock"
 	item_state = "sssmock"
 	worn_state = "sssmock"
@@ -262,19 +262,19 @@
 
 /obj/item/clothing/head/helmet/gerhelm/sshelm
 	name = "SS camo helmet"
-	desc =  "A metal helmet issued to SS soldiers, that is camouflaged for autumn operations. A bit early for it, ja?"
+	desc =  "A metal helmet issued to SS soldiers, camouflaged for autumn operations."
 	icon_state = "sshelm"
 	item_state = "sshelm"
 
 /obj/item/clothing/head/helmet/gerhelm/MP
 	name = "German MP helmet"
-	desc =  "A metal helmet issued to German military police."
+	desc =  "A fancy metal helmet issued to German military police."
 	icon_state = "gerhelm_MP"
 	item_state = "gerhelm_MP"
 
 /obj/item/clothing/head/helmet/gerhelm/medic
 	name = "German medic's helmet"
-	desc =  "A metal helmet issued to German combat medics."
+	desc =  "A standard metal helmet issued to German combat medics."
 	icon_state = "gerhelm_CM"
 	item_state = "gerhelm_CM"
 
@@ -295,13 +295,13 @@
 
 /obj/item/clothing/head/helmet/sovhelm/MP
 	name = "Soviet MP helmet"
-	desc =  "A metal helmet issued to Soviet military police."
+	desc =  "A fancy metal helmet issued to Soviet military police."
 	icon_state = "sovhelm_MP"
 	item_state = "sovhelm_MP"
 
 /obj/item/clothing/head/helmet/sovhelm/medic
 	name = "Soviet medic's helmet"
-	desc =  "A metal helmet issued to Soviet combat medics."
+	desc =  "A standard metal helmet issued to Soviet combat medics."
 	icon_state = "sovhelm_CM"
 	item_state = "sovhelm_CM"
 
@@ -313,20 +313,20 @@
 
 /obj/item/clothing/head/helmet/itahelm/medic
 	name = "Italian medic's helmet"
-	desc =  "A metal helmet issued to Italian combat medics."
+	desc =  "A standard metal helmet issued to Italian combat medics."
 	icon_state = "itahelm_CM"
 	item_state = "itahelm_CM"
 
 /obj/item/clothing/suit/armor/cn42
 	name = "CN-42 bulletproof vest"
-	desc = "A heavy vest used by Soviet shock troops."
+	desc = "A heavy vest used by Soviet Sturmoviks. Used for deflecting shrapnel and some bullets."
 	icon_state = "cn42"
 	armor = list(melee = 50)
 	allowed = list(/obj/item/radio/rbs,/obj/item/radio/feldfu,/obj/item/radio/partisan)
 
 /obj/item/weapon/storage/belt/soviet
 	name = "Soviet belt pouch"
-	desc = "Can hold gear like pistol, ammo and other thingies."
+	desc = "A belt that can hold gear like pistols, ammo and other things."
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
 	storage_slots = 12
@@ -349,7 +349,7 @@
 
 /obj/item/weapon/storage/belt/soviet_basic
 	name = "Small soviet belt pouch"
-	desc = "A basic soviet belt pouch capable of storing a small arms handgun, handgun magazines, gauze and your trustyworthy shovel. Uraaa!"
+	desc = "A basic soviet belt pouch capable of storing a small arms handgun, handgun magazines, gauze and your trustyworthy shovel."
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
 	storage_slots = 6
@@ -393,7 +393,7 @@
 
 /obj/item/weapon/storage/belt/german
 	name = "German belt pouch"
-	desc = "Can hold gear like pistol, ammo and other thingies."
+	desc = "A belt that can hold gear like pistols, ammo and other things."
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
 	storage_slots = 12
@@ -451,7 +451,7 @@
 
 /obj/item/weapon/storage/belt/german/fallofficer
 	name = "German belt"
-	desc = "Can hold gear like pistol, ammo and other thingies."
+	desc = "A belt that can hold gear like pistols, ammo and other things."
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
 	max_storage_space = 20
@@ -468,7 +468,7 @@
 
 /obj/item/weapon/storage/belt/german/fallsoldier
 	name = "German belt"
-	desc = "Can hold gear like pistol, ammo and other thingies."
+	desc = "A belt that can hold gear like pistols, ammo and other things."
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
 	max_storage_space = 20
@@ -494,7 +494,7 @@
 
 /obj/item/weapon/storage/belt/italy
 	name = "Italian belt pouch"
-	desc = "Can hold gear like pistol, ammo and other thingies."
+	desc = "A belt that can hold gear like pistols, ammo and other things."
 	icon_state = "gerbelt"
 	item_state = "gerbelt"
 	storage_slots = 12
@@ -582,7 +582,7 @@
 
 /obj/item/weapon/storage/backpack/german/rations/New()
 	..()
-	for (var/v in 1 to 3)
+	for (var/v in 1 to 7)
 		contents += new_ration(GERMAN, "solid")
 
 /obj/item/weapon/storage/backpack/german/paratrooper
@@ -620,42 +620,42 @@
 
 /obj/item/clothing/suit/storage/coat/german
 	name = "German Soldier's Coat"
-	desc = "An ordinary winter coat for a Wehrmacht soldier."
+	desc = "An ordinary winter coat issued to Wehrmacht soldiers."
 	icon_state = "nazi_coat"
 	item_state = "nazi_coat"
 	worn_state = "nazi_coat"
 
 /obj/item/clothing/suit/storage/coat/german/SS
 	name = "SS Soldier's Coat"
-	desc = "An ordinary winter coat for an SS soldier."
+	desc = "An ordinary winter coat issued to SS soldiers."
 	icon_state = "ss_coat"
 	item_state = "ss_coat"
 	worn_state = "ss_coat"
 
 /obj/item/clothing/suit/storage/coat/german/officer
 	name = "German Officer's Coat"
-	desc = "An ordinary winter coat for a Wehrmacht officer."
+	desc = "An ordinary winter coat issued to Wehrmacht officers."
 	icon_state = "nazimp_coat"
 	item_state = "nazimp_coat"
 	worn_state = "nazimp_coat"
 
 /obj/item/clothing/suit/storage/coat/soviet
 	name = "Soviet Soldier's Coat"
-	desc = "An ordinary winter coat for a Soviet soldier."
+	desc = "An ordinary winter coat issued to Soviet soldiers."
 	icon_state = "soviet_coat"
 	item_state = "soviet_coat"
 	worn_state = "soviet_coat"
 
 /obj/item/clothing/suit/storage/coat/soviet/officer
 	name = "Soviet Officer's Coat"
-	desc = "An ordinary winter coat for a Soviet officer."
+	desc = "An ordinary winter coat issued to Soviet officers."
 	icon_state = "sovofficer_coat"
 	item_state = "sovofficer_coat"
 	worn_state = "sovofficer_coat"
 
 /obj/item/clothing/suit/storage/coat/italian
 	name = "Italian Coat"
-	desc = "An ordinary winter coat for a Italian soldier. You can almost smell the tomato sauce wafting in it."
+	desc = "An ordinary winter coat issued to Italian soldiers."
 	icon_state = "italy_coat"
 	item_state = "italy_coat"
 	worn_state = "italy_coat"

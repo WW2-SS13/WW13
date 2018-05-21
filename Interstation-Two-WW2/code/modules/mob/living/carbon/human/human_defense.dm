@@ -132,14 +132,19 @@ bullet_act
 		// get knocked back once in a while
 		// unless we're on a train because bugs
 
-		var/hanged = FALSE
+		var/KD_check = FALSE
 
 		for (var/obj/structure/noose/N in get_turf(src))
 			if (N.hanging == src)
-				hanged = TRUE
+				KD_check = TRUE
 				break
 
-		if (prob(P.KD_chance/2) && !is_on_train() && !hanged)
+		for (var/obj/structure/bed/B in get_turf(src))
+			if (B.buckled_mob == src)
+				KD_check = TRUE
+				break
+
+		if (prob(P.KD_chance/2) && !is_on_train() && !KD_check)
 			SpinAnimation(5,1)
 			// P.firer_original_dir is more accurate, since P.dir is never explicitly set? - Kachnov
 			var/turf/behind = get_step(src, P.firer_original_dir ? P.firer_original_dir : P.dir)

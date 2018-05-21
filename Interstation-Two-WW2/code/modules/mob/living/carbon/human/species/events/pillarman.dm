@@ -68,17 +68,14 @@
 /mob/living/carbon/human/pillarman/proc/shoot_burning_blood()
 
 	visible_message("<span class = 'danger'>[src] ejects burning blood from their veins!</span>")
-
-	next_shoot_burning_blood = world.time + 20
+	next_shoot_burning_blood = world.time + 10
 
 	var/steps = 0
 	var/turf/T = get_step(src, dir)
-	while (!T.density && !locate(/obj/structure) in T && steps < 10)
+
+	while (!T.density && !locate_dense_type(T.contents, /obj/structure) && steps < 10)
 		T = get_step(T, dir)
 		++steps
-
-	if (!steps)
-		return FALSE
 
 	var/obj/O = new/obj/burning_blood(get_turf(src))
 	O.throw_at(T, 10, 1, src)
@@ -90,6 +87,11 @@
 
 	nutrition = max_nutrition
 	water = max_water
+
+	// suppress pain and shock
+	traumatic_shock = 0
+	shock_stage = 0
+	analgesic = 100
 
 	// takes 625 ticks (21 minutse) for us to start starving, if we don't consume any blood
 	// while blood == 0, we don't heal either

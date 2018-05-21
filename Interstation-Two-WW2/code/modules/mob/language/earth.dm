@@ -30,7 +30,7 @@
 /datum/language/polish
 	name = "Polish"
 	desc = "Smierc dla ciemiezców!"
-	key = "u"
+	key = "p"
 	colour = "Russian"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = POLISH_SYLLABLES
@@ -57,7 +57,7 @@
 /datum/language/romanian
 	name = "Romanian"
 	desc = "Mama mea!"
-	key = "r"
+	key = "ro"
 	colour = "english"
 	flags = RESTRICTED | COMMON_VERBS
 	syllables = list()

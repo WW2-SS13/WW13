@@ -1,0 +1,1 @@
+#define MG_TANKS

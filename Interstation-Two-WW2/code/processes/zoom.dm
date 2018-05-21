@@ -27,10 +27,7 @@ var/process/zoom/zoom_process = null
 	FORNEXT(recent_scopes)
 		var/obj/item/weapon/attachment/scope/S = current
 
-		if(isnull(S))
-			continue
-
-		if(isnull(S.gcDestroyed))
+		if(!isDeleted(S))
 			try
 				if (S.scoped_invisible)
 					S.invisibility = 0
@@ -52,10 +49,7 @@ var/process/zoom/zoom_process = null
 
 		var/mob/living/carbon/human/H = current
 
-		if(isnull(H))
-			continue
-
-		if(isnull(H.gcDestroyed))
+		if(!isDeleted(H))
 			try
 				if (H.client)
 					if (H.using_zoom())

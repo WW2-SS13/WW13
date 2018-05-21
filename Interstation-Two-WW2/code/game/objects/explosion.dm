@@ -23,8 +23,7 @@
 	data.rec_pow = max(0,devastation_range) * 2 + max(0,heavy_impact_range) + max(0,light_impact_range)
 
 	// queue work
-	spawn (1)
-		bomb_processor.queue(data)
+	callproc_process.queue(bomb_processor, /process/explosives/proc/queue, list(data), 1)
 
 	return data
 

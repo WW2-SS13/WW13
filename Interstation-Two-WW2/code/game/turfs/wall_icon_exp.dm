@@ -84,7 +84,7 @@
 	if(!material)
 		return
 
-	if(!damage_overlays[1]) //list hasn't been populated
+	if(!damage_overlays.len || !damage_overlays[1]) //list hasn't been populated
 		generate_overlays()
 
 	if(density)
@@ -116,9 +116,9 @@
 	return
 
 /turf/wall/proc/generate_overlays()
-	var/alpha_inc = 256 / damage_overlays.len
+	var/alpha_inc = 256 / max(damage_overlays.len, 1)
 
-	for(var/i = TRUE; i <= damage_overlays.len; i++)
+	for(var/i = 1; i <= damage_overlays.len; i++)
 		var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
 		img.blend_mode = BLEND_MULTIPLY
 		img.alpha = (i * alpha_inc) - 1

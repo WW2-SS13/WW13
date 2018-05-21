@@ -17,6 +17,11 @@
 	if(opacity)
 		has_opaque_atom = TRUE
 
+	var/area/A = get_area(src)
+	if (A.is_train_area)
+		var/c = min(255, round(time_of_day2luminosity[time_of_day] * 281))
+		color = rgb(c, c, c)
+
 // Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
 	for(var/A in affecting_lights)
@@ -123,7 +128,7 @@
 	var/totallums = FALSE
 	for(var/LL in corners)
 		var/datum/lighting_corner/L = LL
-		totallums += L.getLumR() + L.getLumB() + L.getLumG()
+		totallums += L.getLumR(src) + L.getLumB(src) + L.getLumG(src)
 
 	totallums /= 12 // 4 corners, each with 3 channels, get the average.
 
@@ -167,21 +172,57 @@
 
 	return corners
 
+// disables this buggy :mistake: - Kachnov
+#define DAYLIGHT_LIGHTING_DISABLED
 /turf/proc/calculate_window_coeff()
-	. = 0
 
 	var/area/src_area = get_area(src)
 
+	#ifdef DAYLIGHT_LIGHTING_DISABLED
+	if (src_area && src_area.location == AREA_INSIDE)
+		return 0.0
+	#endif
+
+	// 100% daylight if we're outside
 	if (src_area.location == AREA_OUTSIDE)
 		window_coeff = 1.0
 		return window_coeff
 
-	// objects that let in light
+	var/min_coeff = 0
+
+	// 100% daylight if we border an outside turf
+	var/turfcount = 0
+	var/turfcount2 = 0
+	for (var/turf/T in orange(1, src))
+		++turfcount
+		var/area/T_area = get_area(T)
+		if (T_area.is_void_area) // counts as nullspace
+			--turfcount
+		if (T_area.location == AREA_OUTSIDE)
+			window_coeff = 1.0
+			return window_coeff
+		if (T.window_coeff)
+			min_coeff += (T.window_coeff * 0.60)
+			++turfcount2
+
+	min_coeff *= 8/turfcount2
+
+	// 100% daylight if we border nullspace and we're a wall
+	if (iswall(src) && turfcount != 8)
+		window_coeff = 1.0
+		return window_coeff
+
+	. = 0
+
+	// objects that let in light: typechecks about 500 objects, need to optimize this
 	for (var/turf/T in view(world.view*3, src))
 		if (!T.density && !locate_opaque_type(T.contents, /atom))
 			var/area/T_area = get_area(T)
 			if (T_area.location == AREA_OUTSIDE)
 				. += (1/abs_dist_no_rounding(src, T))
+
+	// so there aren't very dark areas next to very bright areas
+	. = max(., min_coeff)
 
 	// dividing '.' by 7 returns a more reasonable number - Kachnov
 	window_coeff = max(min(1.0, (.)/7), 0.0)

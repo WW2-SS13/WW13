@@ -157,9 +157,9 @@ var/global/obj/map_metadata/map = null
 			return FALSE
 		else
 			switch (H.original_job.base_type_flag())
-				if (PARTISAN, CIVILIAN, SOVIET)
+				if (SOVIET)
 					return !soviets_can_cross_blocks()
-				if (GERMAN, ITALIAN)
+				if (GERMAN, ITALIAN, PARTISAN, CIVILIAN)
 					return !germans_can_cross_blocks()
 				if (PILLARMEN)
 					return !specialfaction_can_cross_blocks()
@@ -210,6 +210,8 @@ var/global/obj/map_metadata/map = null
 	return FALSE
 
 /obj/map_metadata/proc/update_win_condition()
+	if (!win_condition_specialcheck())
+		return FALSE
 	if (world.time >= next_win && next_win != -1)
 		if (win_condition_spam_check)
 			return FALSE
@@ -363,6 +365,9 @@ var/global/obj/map_metadata/map = null
 	else
 		return 6000 // 10 minutes
 
+/obj/map_metadata/proc/win_condition_specialcheck()
+	return TRUE
+
 /obj/map_metadata/proc/roundend_condition_def2name(define)
 	switch (define)
 		if (GERMAN)
@@ -389,5 +394,8 @@ var/global/obj/map_metadata/map = null
 			return "Soviet"
 		if ("Undead")
 			return "Undead"
+
+/obj/map_metadata/proc/special_relocate(var/mob/M)
+	return FALSE
 
 #undef NO_WINNER

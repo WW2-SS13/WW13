@@ -19,7 +19,7 @@
 /process/callproc/fire()
 	for (current in queue)
 		var/callproc_helper/C = current
-		if (!C || !C.object || !C.function)
+		if (!C || isDeleted(C.object) || !C.function)
 			queue -= C
 			continue
 		if (world.time >= C.time)
@@ -41,7 +41,15 @@
 			queue -= C
 			helpers += C
 
-/process/callproc/proc/queue(object, function, args = null, time = 10)
+/* function_as_path must be an absolute path because compile errors are better than runtime errors
+ * it might work if you supply a relative path due to the way splittext() works, but don't - Kachnov */
+
+/process/callproc/proc/queue(object, function_as_path, args = null, time = 10)
+	// turn "/object/proc/name" into "name"
+	var/list/function_as_list = splittext(path2text(function_as_path), "/")
+	var/function = function_as_list[function_as_list.len]
+
+	// get a callproc_helper and assign it to this function
 	var/callproc_helper/C = helpers[1]
 	C.object = object
 	C.function = function
@@ -50,17 +58,23 @@
 	helpers -= C
 	queue += C
 
-// remove all callproc_helpers for an object to ensure they don't get piled up and called later
-// can be expensive
-/process/callproc/proc/unqueue(object)
+/* remove all callproc_helpers for an object to ensure they don't get piled up and called later
+ * can be very expensive - Kachnov */
+/process/callproc/proc/unqueue(object, maxtimes = INFINITY)
+	. = FALSE
 	for (var/helper in queue)
 		var/callproc_helper/C = helper
 		if (C && C.object == object)
+			. = TRUE
 			queue -= helper
+			--maxtimes
+			if (maxtimes <= 0)
+				return .
+	return .
 
 /callproc_helper
 	parent_type = /datum
-	var/object = null
+	var/datum/object = null
 	var/function = ""
 	var/list/args = null
 	var/time = -1

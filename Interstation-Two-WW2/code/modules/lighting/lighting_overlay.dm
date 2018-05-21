@@ -93,15 +93,15 @@
 			if(NORTHWEST)
 				i = BR
 
-		var/mx = max(C.getLumR(), C.getLumG(), C.getLumB()) // Scale it so 1 is the strongest lum, if it is above 1.
+		var/mx = max(C.getLumR(T), C.getLumG(T), C.getLumB(T)) // Scale it so 1 is the strongest lum, if it is above 1.
 		anylums += mx
 		. = 1.0 // factor
 		if(mx > 1)
 			. = 1.0 / mx
 
-		L[i + 0]   = C.getLumR() * .
-		L[i + 1]   = C.getLumG() * .
-		L[i + 2]   = C.getLumB() * .
+		L[i + 0]   = C.getLumR(T) * .
+		L[i + 1]   = C.getLumG(T) * .
+		L[i + 2]   = C.getLumB(T) * .
 
 	color  = L
 	luminosity = (anylums > 0)

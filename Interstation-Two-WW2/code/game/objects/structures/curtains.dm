@@ -34,6 +34,11 @@
 	for (var/atom/movable/lighting_overlay/L in view(world.view*3, src))
 		L.update_overlay(TRUE)
 
+/obj/structure/curtain/Destroy()
+	for (var/atom/movable/lighting_overlay/L in view(world.view*3, src))
+		L.update_overlay(TRUE)
+	..()
+
 /obj/structure/curtain/black
 	name = "black curtain"
 	color = "#222222"

@@ -10,24 +10,21 @@
 /proc/radio2germans(msg, var/channel = "High Command Announcements")
 	var/obj/item/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
-		spawn (3)
-			R.announce(msg, channel)
+		callproc_process.queue(R, /obj/item/radio/proc/announce, list(msg, channel), 3)
 		return TRUE
 	return FALSE
 
 /proc/radio2SS(msg)
 	var/obj/item/radio/R = main_radios[GERMAN]
 	if (R && R.loc)
-		spawn (3)
-			R.announce(msg, "SS Announcements")
+		callproc_process.queue(R, /obj/item/radio/proc/announce, list(msg, "SS Announcements"), 3)
 		return TRUE
 	return FALSE
 
 /proc/radio2soviets(msg, var/channel = "High Command Announcements")
 	var/obj/item/radio/R = main_radios[SOVIET]
 	if (R && R.loc)
-		spawn (3)
-			R.announce(msg, channel)
+		callproc_process.queue(R, /obj/item/radio/proc/announce, list(msg, channel), 3)
 		return TRUE
 	return FALSE
 
