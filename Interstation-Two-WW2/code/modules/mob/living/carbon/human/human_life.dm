@@ -143,14 +143,12 @@
 	water = min(water, max_water)
 	water = max(water, -max_water)
 
-	// recover oxyloss
-	var/oxyloss = getOxyLoss()
-	if (oxyloss >= 10 && oxyloss <= 20)
-		adjustOxyLoss(-5)
-		// it's been about 15 minutes, you're fucked now
-		if (list(UNCONSCIOUS, DEAD).Find(stat))
-			if (prob(1) && prob(20))
-				adjustOxyLoss(20)
+	// make us die very slowly if we're unconscious, but recover oxyloss if we're conscious
+	switch (stat)
+		if (CONSCIOUS)
+			adjustOxyLoss(-5)
+		if (UNCONSCIOUS) // approx 22 minutes for 100 oxyloss, with a lot of randomness thrown in
+			adjustOxyLoss(pick(0.1, 0.2))
 
 	..()
 
