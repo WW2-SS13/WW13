@@ -11,7 +11,7 @@
 	if (process == "Cancel")
 		return
 
-	processScheduler.restartProcess(processScheduler.nameToProcessMap[process])
+	processScheduler.restartProcess(process)
 
 	message_admins("Admin [key_name_admin(usr)] has restarted the [process] process.")
 	return

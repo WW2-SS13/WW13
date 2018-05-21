@@ -11,9 +11,6 @@ var/list/last_ran_subsystem = list()
 	process:subsystem = 1; \
 	subsystems[process:name] = process; \
 	spawn while (1) {\
-		if (!process || process:killed) { \
-			break; \
-		} \
 		process:schedule_interval = max(process:schedule_interval, world.tick_lag); \
 		sleep(process:schedule_interval); \
 		process:onStart(); \
