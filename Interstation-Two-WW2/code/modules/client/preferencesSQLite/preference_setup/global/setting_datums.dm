@@ -63,6 +63,7 @@ var/list/_client_preferences_by_type
 	else
 		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = 50, channel = TRUE)
 
+/*
 /datum/client_preference/play_ambiance
 	description ="Play ambience"
 	key = "SOUND_AMBIENCE"
@@ -71,7 +72,7 @@ var/list/_client_preferences_by_type
 	if(!enabled)
 		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = FALSE, channel = TRUE)
 		preference_mob << sound(null, repeat = FALSE, wait = FALSE, volume = FALSE, channel = 2)
-
+*/
 /datum/client_preference/ghost_ears
 	description ="Ghost ears"
 	key = "CHAT_GHOSTEARS"
