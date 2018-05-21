@@ -820,7 +820,8 @@
 	new_character.original_job = original_job
 	new_character.name = real_name
 	new_character.dna.ready_dna(new_character)
-	new_character.dna.b_type = client.prefs.b_type
+	if (client)
+		new_character.dna.b_type = client.prefs.b_type
 	new_character.sync_organ_dna()
 
 	if(client && client.prefs.disabilities)
