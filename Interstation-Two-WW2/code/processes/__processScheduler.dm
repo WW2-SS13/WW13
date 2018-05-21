@@ -72,7 +72,7 @@ var/global/processScheduler/processScheduler
 
 /processScheduler/proc/setup()
 	// There can be only one
-	if(processScheduler && (processScheduler != src))
+	if(processScheduler && processScheduler != src)
 		del(src)
 		return FALSE
 
