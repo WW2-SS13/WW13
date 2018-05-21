@@ -110,20 +110,18 @@
 
 	// handle nutrition stuff before we handle stomach stuff in the callback
 
-	var/nutrition_water_loss_base_multiplier = mob_process.schedule_interval/20
-
 	// hunger, thirst nerfed by 10% due to popular demand. It's still hardmode - Kachnov
 
-	#define HUNGER_THIRST_MULTIPLIER 1.00
+	#define HUNGER_THIRST_MULTIPLIER 0.80
 
 	if (has_hunger_and_thirst)
 		switch (stat)
 			if (CONSCIOUS) // takes about 1333 ticks to start starving, or ~44 minutes
-				nutrition -= (0.27/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
-				water -= (0.27/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
+				nutrition -= ((0.27/getStatCoeff("survival")) * HUNGER_THIRST_MULTIPLIER)
+				water -= ((0.27/getStatCoeff("survival")) * HUNGER_THIRST_MULTIPLIER)
 			if (UNCONSCIOUS) // takes over an hour to starve
-				nutrition -= (0.18/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
-				water -= (0.18/getStatCoeff("survival")) * nutrition_water_loss_base_multiplier * HUNGER_THIRST_MULTIPLIER
+				nutrition -= ((0.18/getStatCoeff("survival")) * HUNGER_THIRST_MULTIPLIER)
+				water -= ((0.18/getStatCoeff("survival")) * HUNGER_THIRST_MULTIPLIER)
 
 	#undef HUNGER_THIRST_MULTIPLIER
 
