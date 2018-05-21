@@ -383,7 +383,7 @@
 		return
 
 	if (mob_is_living)
-		for (var/obj/structure/classic_window_frame/W in mob.loc)
+		for (var/obj/structure/window_frame/W in mob.loc)
 			mob.visible_message("<span class = 'warning'>[mob] starts climbing through the window frame.</span>")
 			mob.canmove = FALSE
 			var/oloc = mob.loc
