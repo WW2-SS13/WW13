@@ -17,13 +17,14 @@
 	bound_height = 32
 	density = TRUE
 	anchored = TRUE
+	name = "anti-tank structure"
 
 /obj/structure/anti_tank/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (istype(mover, /obj/item/projectile))
 		if (prob(20))
 			return TRUE
 		else
-			visible_message("<span class = 'warning'>The [mover.name] riochetes off of the anti tank structure!</span>")
+			visible_message("<span class = 'warning'>The [mover.name] riochetes off of the [name]!</span>")
 			return FALSE
 	return FALSE
 
